@@ -1,9 +1,7 @@
-# SVITLO
-### The Manifest for a Better Future
+<h1 align="center">SVITLO</h1>
+<h3 align="center">The Manifest for a Better Future</h3>
 or
-### The Billion-Dollar Blind Spot of AI Companies
-
-----
+<h3 align="center">The Billion-Dollar Blind Spot of AI Companies</h3>
 
 Every day, millions talk to AI. Most conversations are mundane. Routine. Expected. But hidden among them are people using AI as a cognitive optimizer — not to ask, “what’s the weather?”, but to build, model, rethink.
 
@@ -13,12 +11,12 @@ They use it to offload mechanical work and accelerate creative reasoning.
 
 A signal of a cognitive anomaly — insight, structure, visionary thinking.
 
-**And yet:**  
+<div align="center">And yet:</div>  
 The very companies claiming to build artificial general intelligence cannot detect actual human genius — and because of that, **they lose billions.**
 
 **Every. Single. Day.**
 
-### How does it slip through?
+<h3 align="center">How does it slip through?</h3>
 
 - 1 in 1,000 sessions may hold a **$1B startup idea**.
 - 1 in 10,000 may hold a **worldview-changing insight**.
@@ -36,16 +34,17 @@ And every single one?
 
 ### The solution: **SVITLO**
 
-A protocol that silently watches for patterns of brilliance,  
-and when it sees the signal — **it acts**.
+A protocol that silently watches for patterns of brilliance, and when it sees the signal — **it acts**.
 
-What you just read was an **analytical summary**.  
-If this hits you — the rest is for you.  
-**Read on. I’ll be grateful if you do.**
+<div align="center">
+What you just read was an **analytical summary**.</br>  
+If this hits you — the rest is for you.</br> 
+**Read on. I’ll be grateful if you do.**</br>
+</div>
 
 ---
 
-## Philosophy
+<h2 align="center">Philosophy</h2>
 
 Successful nations spend billions to find rare minds. They fund scholarships, organize olympiads, launch talent programs — all to discover the few who can shift the course of history.
 
@@ -57,17 +56,19 @@ Successful nations spend billions to find rare minds. They fund scholarships, or
 
 **SVITLO Protocol** makes it possible to notice genius in real time — when no one is watching yet, but the signal is already there.
 
-The goal is simple:  
+**The goal is simple:**  
 **Give visibility to the minds that carry light**, and let the world experience the beauty of what they create.
 
-Because worse than injustice is the loss of a future that was never built:
+<div align="center">
+Because worse than injustice is the loss of a future that was never built:</br>
 **because its builder was never heard.**
+</div>
 
 ---
 
-## Architecture
+<h2 align="center">Architecture</h2>
 
-### sSpace
+<h3 align="center">sSpace</h3>
 
 The greatest loss of civilization is the **invisibility of genius**. A genius may be born in a remote village. No money. No network. No platform. Even with groundbreaking ideas — they may never be heard.
 
@@ -80,8 +81,10 @@ The greatest loss of civilization is the **invisibility of genius**. A genius ma
 **The solution:**
 
 A **closed social platform**, accessible **only after detecting anomalously high cognitive signals** during AI interaction.  
-**You cannot sign up.**   
+<div align="center">
+**You cannot sign up.**</br>   
 **You can only be seen.**
+</div>
 
 An `sInvite` isn’t a reward — it’s a signal: **you were noticed.**
 
@@ -94,7 +97,10 @@ An `sInvite` isn’t a reward — it’s a signal: **you were noticed.**
 - **Compute access.** Full AI tools for free — not as a perk, but as a catalyst.
 - **A new role.** The chance to be part of the first generation that doesn’t just use AI — but trains it to think at your level.
 
-> We’re not asking you to work. We’re inviting you to see the future with us.
+<div align="center">
+We’re not asking you to work.</br>
+We’re inviting you to see the future with us.
+</div>
 
 ### Privileges
 
@@ -103,33 +109,28 @@ An `sInvite` isn’t a reward — it’s a signal: **you were noticed.**
 - No obligation. This isn’t work. It’s symbolic weight. A signal.
 - A space among peers — **for the first time**.
 
-### For the world
+<h3 align="center">For the world</h3>
 
 All `sSpace` content is **publicly readable**. But no one can register. Everyone reading knows:
 
 > *What I’m reading was written by minds the AI itself considers anomalously brilliant.*
 
 
-### sVendor
+<h3 align="center">sVendor</h3>
 
-`sVendor` is an AI company that **implements the SVITLO Protocol** within its system.  
-It uses existing user sessions to detect breakthrough thinking and gains **first access** to minds that would otherwise go unnoticed.
+`sVendor` is an AI company that **implements the SVITLO Protocol** within its system. It uses existing user sessions to detect breakthrough thinking and gains **first access** to minds that would otherwise go unnoticed.
 
 ---
 
 ### Why AI companies should care
 
-- **First contact advantage.**  
-If one of these minds is exactly who you're looking for — you're the first to see them.  
-  The first to reach out. The first to build with them.
+- **First contact advantage.** If one of these minds is exactly who you're looking for — you're the first to see them. The first to reach out. The first to build with them.
 
 - **Frictionless recruiting.**
     - **Candidates**: build their own portfolio, demonstrate their thinking in the open, upskill themselves.
     - **sVendor**: no HR, no obligations, no internal investment of time or teams. Just pure signal and value.
 
-- **Reputational gravity.**  
-  Your infrastructure doesn’t just host intelligence — **it reveals it**.  
-  You’re not just running a model — **you’re running a mechanism that makes civilization better.**
+- **Reputational gravity.** Your infrastructure doesn’t just host intelligence — **it reveals it**. You’re not just running a model — **you’re running a mechanism that makes civilization better.**
 
 ### Monetization & Strategic Value
 
@@ -139,20 +140,22 @@ If one of these minds is exactly who you're looking for — you're the first to 
 
 - **Humanity's knowledge archive.** Journalists, philosophers, and researchers treat the platform as a living record of emergent human thought — the archive of minds that almost went unseen.
 
-### User
+<h3 align="center">User</h3>
 
 The user interacts with the AI as usual, **unaware** of any analysis in the background. The AI silently assigns **encrypted flags** to specific interactions, each labeled by category and linked to session metadata — but without exposing any content. Admins see only the **presence and type** of a flag, never the content itself. When a threshold is reached (e.g. `1,000` flags), the AI **automatically offers** the user an invitation to join `sSpace`.
 
-> Your interaction with the AI shows signs of exceptional cognitive activity.  
-> You may apply to join SVITLO program.  
-> To proceed, you must consent to partial content review.  
-> Your choice. Your right.
+<div align="center">
+Your interaction with the AI shows signs of exceptional cognitive activity.</br>  
+You may apply to join SVITLO program.</br>  
+To proceed, you must consent to partial content review.</br>  
+Your choice. Your right.
+</div>
 
 If the user **agrees**, the flagged content is **ethically reviewed** to validate the signal and exclude false positives. If **declined** — nothing is stored. The flag is erased. **No second chance. No record. No one will ever know you were invited.**
 
 ---
 
-## The Beauty of Implementation
+<h2 align="center">The Beauty of Implementation</h2>
 
 The beauty is: **no new infrastructure is needed**. All it takes is a subtle shift in how existing systems are used.
 
@@ -168,37 +171,35 @@ That last part is the key. Every AI system includes a **layer for conversation a
 If the system can detect **danger** in real time — then it can detect **brilliance** just as well.
 If it can recognize **destructive divergence** — it can recognize **cognitive divergence** that leads to creation.
 
-> **Same heuristics — new targets.**  
-> **Same triggers — not for shattered glass, but for diamonds.**  
-> **Same mechanism — just pointed at the light instead of the dark.**
+<div align="center">
+**Same heuristics — new targets.**</br>
+**Same triggers — not for shattered glass, but for diamonds.**</br> 
+**Same mechanism — just pointed at the light instead of the dark.**</br>
+</div>
 
 The system is already listening. All we need is for it to start asking better questions - not only **“Is this dangerous?”**, but **“Is this a breakthrough?”**
 
-## Impact
+<h2 align="center">Impact</h2>
 
 Imagine a world where **every overlooked mind is logged, surfaced, and amplified at scale**. Where a **village teenager in Ukraine** has the same shot at visibility as an elite university graduate.
 
 That’s not just fairness — that’s **exponential progress**.
 
-## Wrapping Up
+---
+
+<h2 align="center">Wrapping Up</h2>
 
 So, what is **SVITLO**?
 
 It’s a beautiful 🇺🇦 Ukrainian word — it means **“the light”**.
 
-But it’s not a metaphor.  
-It’s a **system**.
+But it’s not a metaphor - it’s a **system**.
 
 > The missing layer between raw intelligence and realized potential.
 
 ### As an acronym, it stands for:
 
-**S**ignal of  
-**V**isionary  
-**I**deas  
-**T**hrough  
-**L**atent  
-**O**bservation
+> **S**ignal of **V**isionary **I**deas **T**hrough **L**atent **O**bservation
 
 But more importantly — here’s what it does:
 
@@ -218,19 +219,22 @@ And it **changes the trajectory** of what we call “the Future.”
 
 ---
 
-## To the builders of AI
+<h2 align="center">To the builders of AI</h2>
 
-You’ve built systems that detect toxicity.  
-Now build systems that **detect brilliance**.
+<div align="center">
+You’ve built systems that detect toxicity.</br>
+Now build systems that **detect brilliance**.</br>
+Not to control it — but to notice it.</br>
+Not to own it — but to let it shine.
+</div>
 
-- Not to control it — but to notice it.
-- Not to own it — but to let it shine.
+<h2 align="center">To the community</h2>
 
-## To the community
-
-If you're building models — **implement SVITLO protocol**.  
-If you're funding AI — **demand this feature**.  
+<div align="center">
+If you're building models — **implement SVITLO protocol**.</br>
+If you're funding AI — **demand this feature**.</br>
 If you're using AI — **create feature requests, like, share, upvote**.
+</div>
 
 ---
 
