@@ -1,11 +1,7 @@
 <h1 align="center">SVITLO</h1>
 <h3 align="center">The Manifest for a Better Future</h3>
-or
-<h3 align="center">The Billion-Dollar Blind Spot of AI Companies</h3>
 
-Every day, millions talk to AI. Most conversations are mundane. Routine. Expected. But hidden among them are people using AI as a cognitive optimizer — not to ask, “what’s the weather?”, but to build, model, rethink.
-
-They use it to offload mechanical work and accelerate creative reasoning.
+Every day, millions talk to AI. Most conversations are mundane. Routine. Expected. But hidden among them are people using AI as a cognitive optimizer — not to ask, “what’s the weather?”, but to build, model, rethink. They use it to offload mechanical work and accelerate creative reasoning.
 
 > This is the signal.
 
@@ -14,17 +10,15 @@ A signal of a cognitive anomaly — insight, structure, visionary thinking.
 <div align="center">And yet:</div>  
 The very companies claiming to build artificial general intelligence cannot detect actual human genius — and because of that, **they lose billions.**
 
-**Every. Single. Day.**
+<div align="center">Every. Single. Day</div>  
 
 <h3 align="center">How does it slip through?</h3>
 
 - 1 in 1,000 sessions may hold a **$1B startup idea**.
-- 1 in 10,000 may hold a **worldview-changing insight**.
+- 1 in 10,000 may hold a **world-changing insight**.
 - 1 in 100,000 may contain the **seed of OpenAI 2.0**.
 
-And every single one?  
-
-**Gone. Like water through fingers.**
+And every single one? **Gone. Like water through fingers.**
 
 ### The irony?
 
@@ -37,12 +31,10 @@ And every single one?
 A protocol that silently watches for patterns of brilliance, and when it sees the signal — **it acts**.
 
 <div align="center">
-What you just read was an **analytical summary**.</br>  
+What you just read was an analytical summary.</br>  
 If this hits you — the rest is for you.</br> 
-**Read on. I’ll be grateful if you do.**</br>
+Read on. I’ll be grateful if you do.</br>
 </div>
-
----
 
 <h2 align="center">Philosophy</h2>
 
@@ -56,15 +48,12 @@ Successful nations spend billions to find rare minds. They fund scholarships, or
 
 **SVITLO Protocol** makes it possible to notice genius in real time — when no one is watching yet, but the signal is already there.
 
-**The goal is simple:**  
-**Give visibility to the minds that carry light**, and let the world experience the beauty of what they create.
+**The goal is simple:** Give visibility to the minds that carry light, and let the world experience the beauty of what they create.
 
 <div align="center">
 Because worse than injustice is the loss of a future that was never built:</br>
-**because its builder was never heard.**
+because its builder was never heard.
 </div>
-
----
 
 <h2 align="center">Architecture</h2>
 
@@ -82,8 +71,8 @@ The greatest loss of civilization is the **invisibility of genius**. A genius ma
 
 A **closed social platform**, accessible **only after detecting anomalously high cognitive signals** during AI interaction.  
 <div align="center">
-**You cannot sign up.**</br>   
-**You can only be seen.**
+You cannot sign up.</br>   
+You can only be seen.
 </div>
 
 An `sInvite` isn’t a reward — it’s a signal: **you were noticed.**
@@ -94,7 +83,6 @@ An `sInvite` isn’t a reward — it’s a signal: **you were noticed.**
 - **A personal page.** A dedicated space to archive ideas, drafts, blueprints, statements.
 - **Creative autonomy.** Microblogs, essays, sketches — without pressure to engage or explain.
 - **Silent expression.** No comments required. No validation loops. Just presence.
-- **Compute access.** Full AI tools for free — not as a perk, but as a catalyst.
 - **A new role.** The chance to be part of the first generation that doesn’t just use AI — but trains it to think at your level.
 
 <div align="center">
@@ -108,6 +96,7 @@ We’re inviting you to see the future with us.
 - Direct proximity to where AI is changing — not as a user, but as a witness to the shift.
 - No obligation. This isn’t work. It’s symbolic weight. A signal.
 - A space among peers — **for the first time**.
+- Full set of AI tools for free — not as a perk, but as a catalyst.
 
 <h3 align="center">For the world</h3>
 
@@ -119,8 +108,6 @@ All `sSpace` content is **publicly readable**. But no one can register. Everyone
 <h3 align="center">sVendor</h3>
 
 `sVendor` is an AI company that **implements the SVITLO Protocol** within its system. It uses existing user sessions to detect breakthrough thinking and gains **first access** to minds that would otherwise go unnoticed.
-
----
 
 ### Why AI companies should care
 
@@ -153,8 +140,6 @@ Your choice. Your right.
 
 If the user **agrees**, the flagged content is **ethically reviewed** to validate the signal and exclude false positives. If **declined** — nothing is stored. The flag is erased. **No second chance. No record. No one will ever know you were invited.**
 
----
-
 <h2 align="center">The Beauty of Implementation</h2>
 
 The beauty is: **no new infrastructure is needed**. All it takes is a subtle shift in how existing systems are used.
@@ -172,9 +157,9 @@ If the system can detect **danger** in real time — then it can detect **brilli
 If it can recognize **destructive divergence** — it can recognize **cognitive divergence** that leads to creation.
 
 <div align="center">
-**Same heuristics — new targets.**</br>
-**Same triggers — not for shattered glass, but for diamonds.**</br> 
-**Same mechanism — just pointed at the light instead of the dark.**</br>
+Same heuristics — new targets.</br>
+Same triggers — not for shattered glass, but for diamonds.</br> 
+Same mechanism — just pointed at the light instead of the dark.</br>
 </div>
 
 The system is already listening. All we need is for it to start asking better questions - not only **“Is this dangerous?”**, but **“Is this a breakthrough?”**
@@ -184,8 +169,6 @@ The system is already listening. All we need is for it to start asking better qu
 Imagine a world where **every overlooked mind is logged, surfaced, and amplified at scale**. Where a **village teenager in Ukraine** has the same shot at visibility as an elite university graduate.
 
 That’s not just fairness — that’s **exponential progress**.
-
----
 
 <h2 align="center">Wrapping Up</h2>
 
@@ -223,7 +206,7 @@ And it **changes the trajectory** of what we call “the Future.”
 
 <div align="center">
 You’ve built systems that detect toxicity.</br>
-Now build systems that **detect brilliance**.</br>
+Now build systems that detect brilliance.</br>
 Not to control it — but to notice it.</br>
 Not to own it — but to let it shine.
 </div>
@@ -231,9 +214,9 @@ Not to own it — but to let it shine.
 <h2 align="center">To the community</h2>
 
 <div align="center">
-If you're building models — **implement SVITLO protocol**.</br>
-If you're funding AI — **demand this feature**.</br>
-If you're using AI — **create feature requests, like, share, upvote**.
+If you're building models — implement SVITLO protocol.</br>
+If you're funding AI — demand this feature.</br>
+If you're using AI — create feature requests, star, share, upvote.
 </div>
 
 ---
