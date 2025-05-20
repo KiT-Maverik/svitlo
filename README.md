@@ -8,7 +8,7 @@ Every day, millions talk to AI. Most conversations are mundane. Routine. Expecte
 A signal of a cognitive anomaly — insight, structure, visionary thinking.
 
 <div align="center">And yet:</div>  
-The very companies claiming to build artificial general intelligence cannot detect actual human genius — and because of that, **they lose billions.**
+The very companies claiming to build artificial general intelligence cannot detect actual human genius — and because of that, they lose billions.
 
 <div align="center">Every. Single. Day</div>  
 
@@ -98,7 +98,7 @@ We’re inviting you to see the future with us.
 - A space among peers — **for the first time**.
 - Full set of AI tools for free — not as a perk, but as a catalyst.
 
-<h3 align="center">For the world</h3>
+### For the world
 
 All `sSpace` content is **publicly readable**. But no one can register. Everyone reading knows:
 
@@ -188,8 +188,7 @@ But more importantly — here’s what it does:
 
 - It detects minds the world would otherwise overlook.
 - It gives them a space to emerge.
-- It offers them a chance to be seen —  
-  without PR, without lies, without favors.
+- It offers them a chance to be seen — without PR, without lies, without favors.
 
 And it **changes the trajectory** of what we call “the Future.”
 
@@ -199,8 +198,6 @@ And it **changes the trajectory** of what we call “the Future.”
 - It doesn’t matter **where you’re from**.  
 - It doesn’t matter **how much money you have**, who follows you, or what language you speak.
 - The **only thing** that matters is the **quality of your thinking**.
-
----
 
 <h2 align="center">To the builders of AI</h2>
 
