@@ -93,7 +93,7 @@ We’re inviting you to see the future with us.
 ### Privileges
 
 - Early access to experimental models, internal tools, evolving architectures.
-- Direct proximity to where AI is changing — not as a user, but as a witness to the shift.
+- Direct proximity to where AI is changing — not as a witness to the shift, but as a catalyst.
 - No obligation. This isn’t work. It’s symbolic weight. A signal. A space among peers — **for the first time**.
 - Full set of AI tools for free — not as a perk, but as a catalyst.
 
