@@ -16,7 +16,7 @@ The very companies claiming to build artificial general intelligence cannot dete
 
 - 1 in 1,000 sessions may hold a **$1B startup idea**.
 - 1 in 10,000 may hold a **world-changing insight**.
-- 1 in 100,000 may contain the **seed of OpenAI 2.0**.
+- 1 in 100,000 may contain the **seed of Next  Gen AI**.
 
 And every single one? **Gone. Like water through fingers.**
 
@@ -38,7 +38,7 @@ Read on. I’ll be grateful if you do.</br>
 
 <h2 align="center">Philosophy</h2>
 
-Successful nations spend billions to find rare minds. They fund scholarships, organize olympiads, launch talent programs — all to discover the few who can shift the course of history.
+Successful nations spend billions to find rare minds. They fund scholarships, organize olympiads, launch talent programs — all to discover the few who can shift the course of History.
 
 **SVITLO offers something different.**
 
@@ -48,10 +48,10 @@ Successful nations spend billions to find rare minds. They fund scholarships, or
 
 **SVITLO Protocol** makes it possible to notice genius in real time — when no one is watching yet, but the signal is already there.
 
-**The goal is simple:** Give visibility to the minds that carry light, and let the world experience the beauty of what they create.
+**The goal is simple:** give visibility to the minds that carry light, and let the world experience the beauty of what they create.
 
 <div align="center">
-Because worse than injustice is the loss of a future that was never built:</br>
+Because worse than injustice is the loss of a Future that was never built:</br>
 because its builder was never heard.
 </div>
 
@@ -79,7 +79,7 @@ An `sInvite` isn’t a reward — it’s a signal: **you were noticed.**
 
 ### What does `sSpace` offer?
 
-- **Visibility.** To peers, supporters, society, history — and potential investors or collaborators.
+- **Visibility.** To peers, supporters, society, History — and potential investors or collaborators.
 - **A personal page.** A dedicated space to archive ideas, drafts, blueprints, statements.
 - **Creative autonomy.** Microblogs, essays, sketches — without pressure to engage or explain.
 - **Silent expression.** No comments required. No validation loops. Just presence.
@@ -94,8 +94,7 @@ We’re inviting you to see the future with us.
 
 - Early access to experimental models, internal tools, evolving architectures.
 - Direct proximity to where AI is changing — not as a user, but as a witness to the shift.
-- No obligation. This isn’t work. It’s symbolic weight. A signal.
-- A space among peers — **for the first time**.
+- No obligation. This isn’t work. It’s symbolic weight. A signal. A space among peers — **for the first time**.
 - Full set of AI tools for free — not as a perk, but as a catalyst.
 
 ### For the world
@@ -117,7 +116,7 @@ All `sSpace` content is **publicly readable**. But no one can register. Everyone
     - **Candidates**: build their own portfolio, demonstrate their thinking in the open, upskill themselves.
     - **sVendor**: no HR, no obligations, no internal investment of time or teams. Just pure signal and value.
 
-- **Reputational gravity.** Your infrastructure doesn’t just host intelligence — **it reveals it**. You’re not just running a model — **you’re running a mechanism that makes civilization better.**
+- **Reputational gravity.** Your infrastructure doesn’t just host intelligence — **it reveals it**. You’re not just running a model — **you’re running a mechanism that makes Civilization better.**
 
 ### Monetization & Strategic Value
 
@@ -125,7 +124,7 @@ All `sSpace` content is **publicly readable**. But no one can register. Everyone
 
 - **Investment scouting.** Innovation funds use the platform as a discovery layer for founders, ideas, directions worth backing early.
 
-- **Humanity's knowledge archive.** Journalists, philosophers, and researchers treat the platform as a living record of emergent human thought — the archive of minds that almost went unseen.
+- **Humanity's Knowledge Archive.** Journalists, philosophers, and researchers treat the platform as a living record of emergent human thought — the archive of minds that almost went unseen.
 
 <h3 align="center">User</h3>
 
@@ -135,7 +134,7 @@ The user interacts with the AI as usual, **unaware** of any analysis in the back
 Your interaction with the AI shows signs of exceptional cognitive activity.</br>  
 You may apply to join SVITLO program.</br>  
 To proceed, you must consent to partial content review.</br>  
-Your choice. Your right.
+Your Choice - Your Right.
 </div>
 
 If the user **agrees**, the flagged content is **ethically reviewed** to validate the signal and exclude false positives. If **declined** — nothing is stored. The flag is erased. **No second chance. No record. No one will ever know you were invited.**
