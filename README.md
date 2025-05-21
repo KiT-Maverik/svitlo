@@ -84,6 +84,7 @@ An `sInvite` isn’t a reward — it’s a signal: **you were noticed.**
 - **Creative autonomy.** Microblogs, essays, sketches — without pressure to engage or explain.
 - **Silent expression.** No comments required. No validation loops. Just presence.
 - **A new role.** The chance to be part of the first generation that doesn’t just use AI — but trains it to think at your level.
+- **An invitation** to define the Future
 
 <div align="center">
 We’re not asking you to work.</br>
