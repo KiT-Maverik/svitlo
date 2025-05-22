@@ -218,5 +218,6 @@ If you're using AI — create feature requests, star, share, upvote.
 
 ---
 
-> **Let the SVITLO be seen — and the mind behind it recognized.**
+<h1 align="center">Let the SVITLO be seen</h1>
+<h1 align="center">and the mind behind it recognized</h1>
 
