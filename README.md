@@ -48,6 +48,32 @@ Successful nations spend billions to find rare minds. They fund scholarships, or
 
 **SVITLO Protocol** makes it possible to notice genius in real time — when no one is watching yet, but the signal is already there.
 
+Some of the signals the protocol is may be designed to detect (including, but are not limited to):
+
+* Connecting distant or unrelated domains in coherent, novel ways
+  > Example: combining phone technology, touch interface design, internet communication, and luxury fashion into a single object — the iPhone — reframing a gadget as both tool and identity symbol.
+
+* Reframing core assumptions within a domain or question
+  > Example: questioning the purpose of measurement instead of improving precision.
+
+* Cognitive compression — expressing complex systems in intuitive or minimal language
+  > Example: boiling down governance models to thermodynamic analogies.
+
+* Exploring contradiction without collapse — holding multiple, conflicting frames simultaneously
+  > Example: discussing free will and determinism without resolving one.
+
+* Recursive reasoning — reasoning that refers back to its own structure, assumptions, or effect
+  > Example: “If I’m asking this question, what does that reveal about the model I’m using?”
+
+* Tactical doubt — deliberate destabilization of certainty to seek stronger foundations
+  > Example: rejecting well-known solutions to provoke a deeper problem-space.
+
+* Cross-domain synthesis — uniting methods or metaphors from fields that rarely meet
+  > Example: explaining AI alignment using medieval theology or ancient rhetoric.
+
+* Self-aware epistemology — reflections on how knowledge is formed, distorted, or revealed
+  > Example: identifying framing effects in one's own language as they occur.
+
 **The goal is simple:** give visibility to the minds that carry light, and let the world experience the beauty of what they create.
 
 <div align="center">
