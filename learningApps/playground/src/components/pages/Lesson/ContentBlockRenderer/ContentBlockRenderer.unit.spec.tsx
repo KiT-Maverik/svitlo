@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import type { ContentBlock_Catalog } from '@svitlo/engine/content';
+import type { ContentBlock_Catalog, Question_Catalog } from '@svitlo/engine/content';
 import {
   ContentBlockCatalogRenderer, ContentBlockRenderer,
   type ContentBlockResponse, type ContentBlockType, type SceneRegistry,
@@ -77,17 +77,17 @@ describe('ContentBlockRenderer: response dispatch', () => {
 
   it('resolves scenes solely through the provided typed registry', () => {
     const response = typed('scene', {
-      id: 'registered-scene', locale: { code: 'en', title: 'Beam' },
+      id: 'registered-scene', locale, messages: { title: 'Beam' }, rendererKey: 'registered-scene',
     });
     const sceneRegistry: SceneRegistry = {
-      'registered-scene': ({ locale: localized }) => <div role="img" aria-label={String(localized.title)} />,
+      'registered-scene': ({ locale: localized }) => <div role="img" aria-label={localized.code} />,
     };
     render(<ContentBlockRenderer type="scene" response={response} sceneRegistry={sceneRegistry} />);
-    expect(screen.getByRole('img', { name: 'Beam' })).toBeVisible();
+    expect(screen.getByRole('img', { name: 'en' })).toBeVisible();
     expect(() => render(<ContentBlockRenderer type="scene" response={response} />)).toThrow('Unregistered scene');
   });
 
-  it('recursively renders checkpoint answer blocks and checkboxes', () => {
+  it('renders checkpoint answers through the UI Kit widget and dispatcher', () => {
     render(<ContentBlockRenderer type="checkpoint" response={typed('checkpoint', {
       id: 'cp', locale, title: 'Knowledge check', headingLevel: 3, enableChecks: true,
       items: [{ question: 'What is light?', answer: [nestedText] }],
@@ -95,9 +95,9 @@ describe('ContentBlockRenderer: response dispatch', () => {
     expect(screen.getByRole('heading', { name: 'Knowledge check', level: 3 })).toBeInTheDocument();
     fireEvent.click(screen.getByText('What is light?'));
     expect(screen.getByText('Localized response')).toBeVisible();
-    const checkbox = screen.getByRole('checkbox', { name: 'What is light?' });
-    fireEvent.click(checkbox);
-    expect(checkbox).toBeChecked();
+    const check = screen.getByRole('button', { name: 'Check' });
+    fireEvent.click(check);
+    expect(screen.getByRole('button', { name: 'Checked' })).toBeDisabled();
   });
 
   it('rejects untagged checkpoint answers rather than guessing by shape', () => {
@@ -119,7 +119,10 @@ describe('ContentBlockRenderer: response dispatch', () => {
       },
       results: { visibility: 'immediate', showScore: true },
       screen: {},
-      questions: {
+      questionSlugs: ['first'],
+    });
+    const questions = {
+      selectOneAnswer: {
         first: {
           id: 'q-1', type: 'selectOneAnswer', locale, assessmentMethod: 'retrieval', restrictions: [],
           question: [{ ...nestedText, id: 'prompt', value: 'The question' }],
@@ -130,8 +133,8 @@ describe('ContentBlockRenderer: response dispatch', () => {
           },
         },
       },
-    });
-    const { container } = render(<ContentBlockRenderer type="quiz" response={quiz} />);
+    } satisfies Question_Catalog<'response'>;
+    const { container } = render(<ContentBlockRenderer type="quiz" response={quiz} questions={questions} />);
     expect(screen.getByText('The question')).toBeVisible();
     fireEvent.click(screen.getByRole('radio', { name: 'Correct' }));
     const submit = container.querySelector('input[type="submit"]');
@@ -145,7 +148,7 @@ describe('ContentBlockRenderer: response dispatch', () => {
   it('renders quiz welcome; supports the empty catalog without legacy block shapes', () => {
     const quiz = typed('quiz', {
       id: 'q', locale, welcome: 'Your quiz',
-      questions: {}, feedbackMode: 'after-completion', interaction: {
+      questionSlugs: [], feedbackMode: 'after-completion', interaction: {
         retries: 1, showErrors: true, showCorrectAnswers: true, allowExplanations: true,
         allowDeferring: false, allowQuestionNavigation: true, skippable: false,
       },

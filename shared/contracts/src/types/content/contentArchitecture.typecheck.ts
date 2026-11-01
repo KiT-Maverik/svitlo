@@ -10,6 +10,8 @@ import type {
   Lesson,
   Question,
   Question_Type,
+  Section,
+  Section_Type,
 } from '../../content';
 
 type Equal<A, B> =
@@ -18,6 +20,9 @@ type Equal<A, B> =
 type Assert<T extends true> = T;
 
 type _LessonIsCanonical = Assert<Equal<Lesson<'definition'>['type'], 'lesson'>>;
+type _SectionDefinitionKinds = Assert<Equal<Section<'definition'>['type'], Section_Type>>;
+type _SectionDataKinds = Assert<Equal<Section<'data'>['type'], Section_Type>>;
+type _SectionResponseKinds = Assert<Equal<Section<'response'>['type'], Section_Type>>;
 type _RuntimeKinds = Assert<Equal<ContentBlock<'response'>['type'], ContentBlock_Type>>;
 type _QuestionKinds = Assert<Equal<Question<'response'>['type'], Question_Type>>;
 type _SceneDiscriminator = Assert<Equal<ContentBlock_Scene<'response'>['type'], 'scene'>>;

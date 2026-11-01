@@ -7,6 +7,7 @@ import { theory } from './theory';
 
 export const theoryData = {
   id: '32376510-b49a-5da8-91d7-e13cf162c9f9',
+  type: 'theory' as const,
   slug: 'theory' as const,
   title: theory.name,
   navigationLabel: theory.name,

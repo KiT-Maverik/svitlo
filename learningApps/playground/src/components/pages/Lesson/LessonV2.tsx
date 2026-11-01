@@ -11,7 +11,7 @@ export default function LessonV2({ response, locale, href }: {
   href: string;
 }) {
   const sections = response.sectionOrder.map(slug => response.sections[slug]);
-  const quizIndex = sections.findIndex(section => Object.keys(section.content.quiz ?? {}).length > 0);
+  const quizIndex = sections.findIndex(section => section.type === 'quiz');
   return (
     <LocaleProvider locale={locale}>
       <LessonProgressProvider

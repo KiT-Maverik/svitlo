@@ -1,5 +1,5 @@
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine';
-import { defineLessonV2Data, type LessonV2 } from '@svitlo/engine/content';
+import { defineLessonData, type Lesson } from '@svitlo/engine/content';
 import type { howLightMovesDefinition } from './howLightMoves.definition';
 import { howLightMovesFlashcards } from './flashcards/index.data';
 import { howLightMoves_Locale } from './howLightMoves';
@@ -8,7 +8,7 @@ import { practiceData } from './sections/practice/practice.data';
 import { quizData } from './sections/quiz/quiz.data';
 import { theoryData } from './sections/theory/theory.data';
 
-export const howLightMovesData = defineLessonV2Data({
+export const howLightMovesData = defineLessonData({
   id: 'd3048d21-8690-5255-b62c-984c69ac272c',
   group: '1',
   slug: 'howLightMoves',
@@ -32,5 +32,5 @@ export const howLightMovesData = defineLessonV2Data({
     theory: theoryData,
     practice: practiceData,
     quiz: quizData,
-  } satisfies Record<keyof typeof howLightMovesDefinition.sections, LessonV2<'data'>['sections'][string]>,
-} satisfies LessonV2<'data'> & { sectionOrder: string[] });
+  } satisfies Record<keyof typeof howLightMovesDefinition.sections, Lesson<'data'>['sections'][string]>,
+} satisfies Lesson<'data'> & { sectionOrder: string[] });

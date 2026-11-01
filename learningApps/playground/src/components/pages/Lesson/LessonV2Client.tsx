@@ -1,7 +1,7 @@
 'use client';
 
 import { Container } from '@mui/material';
-import type { ContentBlock_Catalog } from '@svitlo/engine/content';
+import type { ContentBlock_Catalog, Question_Catalog } from '@svitlo/engine/content';
 import {
   ContentBlockCatalogRenderer,
   type ContentBlockReference,
@@ -18,7 +18,7 @@ export default function LessonV2Client({ response }: { response: LessonResponse 
   const current = sections[progress.step];
   if (!progress.ready || !current) return <div className={styles.lesson} />;
   const order = current.order as ContentBlockReference[];
-  const isQuiz = Object.keys(current.content.quiz ?? {}).length > 0;
+  const isQuiz = current.type === 'quiz';
   return (
     <div className={styles.lesson}>
       <LessonSteps
@@ -37,6 +37,7 @@ export default function LessonV2Client({ response }: { response: LessonResponse 
             catalog={current.content as unknown as ContentBlock_Catalog<'response'>}
             order={order}
             sceneRegistry={howLightMovesSceneRegistry}
+            questions={response.questions as unknown as Question_Catalog<'response'>}
           />
         </Container>
       </div>

@@ -1,4 +1,5 @@
 import type { LanguageCode } from '@svitlo/engine/localization';
+import { SECTION_TYPES, type Section_Type } from '@svitlo/engine/content';
 
 export type LocaleSource = { code: LanguageCode; isFallback?: true };
 export type LessonCollection = { data: unknown; localeSources: Record<string, LocaleSource> };
@@ -16,6 +17,7 @@ export type LessonContentBlock = {
 export type LessonSectionResponse = {
   id: string;
   slug: string;
+  type: Section_Type;
   title: string;
   navigationLabel: string;
   skippable?: true;
@@ -180,7 +182,15 @@ export function assembleLessonResponse(
     const section = record(rawSection, 'config.data.sections.' + key);
     const sectionSlug = string(section.slug, 'sections.' + key + '.slug');
     if (sectionSlug !== key) throw new Error('Section slug mismatch at ' + key);
+    const sectionType = string(section.type, 'sections.' + key + '.type');
+    if (!SECTION_TYPES.includes(sectionType as Section_Type)) {
+      throw new Error('Unsupported section type at ' + key + ': ' + sectionType);
+    }
     const content = assembleBlocks(section.content, section.order, group + '/' + slug + '/' + key, language);
+    const hasQuiz = Object.keys(content.content.quiz ?? {}).length > 0;
+    if ((sectionType === 'quiz') !== hasQuiz) {
+      throw new Error('Quiz section type and content disagree at ' + key);
+    }
     for (const block of Object.values(content.content.quiz ?? {})) {
       const slugs = block.questionSlugs;
       if (!Array.isArray(slugs) || slugs.some(value => typeof value !== 'string') ||
@@ -202,6 +212,7 @@ export function assembleLessonResponse(
     sections[key] = {
       id: string(section.id, 'sections.' + key + '.id'),
       slug: sectionSlug,
+      type: sectionType as Section_Type,
       title: string(section.title, 'sections.' + key + '.title'),
       navigationLabel: string(section.navigationLabel, 'sections.' + key + '.navigationLabel'),
       ...(section.skippable === true ? { skippable: true as const } : {}),
@@ -221,8 +232,7 @@ export function assembleLessonResponse(
     }
   }
   if (typeof parameters.requireQuiz !== 'boolean') throw new Error('Invalid requireQuiz for ' + slug);
-  const quizCount = Object.values(sections).reduce((count, section) =>
-    count + Object.keys(section.content.quiz ?? {}).length, 0);
+  const quizCount = Object.values(sections).filter(section => section.type === 'quiz').length;
   if (quizCount > 1 || (parameters.requireQuiz && quizCount !== 1)) {
     throw new Error('Lesson ' + group + '/' + slug + ' requires exactly one quiz when requireQuiz is true');
   }

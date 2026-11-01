@@ -1,4 +1,4 @@
-import type { LessonV2 } from '@svitlo/engine/content';
+import type { Lesson } from '@svitlo/engine/content';
 import { practiceDefinition } from './sections/practice/practice.definition';
 import { quizDefinition } from './sections/quiz/quiz.definition';
 import { theoryDefinition } from './sections/theory/theory.definition';
@@ -11,4 +11,4 @@ export const howLightMovesDefinition = {
     practice: practiceDefinition,
     quiz: quizDefinition,
   },
-} satisfies LessonV2<'definition'> & { sectionOrder: string[] };
+} satisfies Lesson<'definition'> & { sectionOrder: string[] };

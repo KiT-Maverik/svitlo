@@ -5,7 +5,7 @@ import type { ContentBlock } from '@svitlo/engine/content';
 export interface KnowledgeCheckpointItem {
   id: string;
   question: string;
-  answer: ContentBlock;
+  answer: readonly ContentBlock<'response'>[];
   /** Overrides the checkpoint-wide setting for this question. */
   enableCheck?: boolean;
   /** Renders a content block using a lesson-specific renderer when needed. */
@@ -40,6 +40,6 @@ export interface KnowledgeCheckpointProps {
     icon?: ReactNode;
     chevron?: ReactNode;
     checkLabel?: ReactNode;
-    renderAnswer?: (answer: ContentBlock) => ReactNode;
+    renderAnswer?: (answer: readonly ContentBlock<'response'>[]) => ReactNode;
   };
 }

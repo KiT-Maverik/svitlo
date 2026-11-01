@@ -41,6 +41,14 @@ test('valid direct composition with full child entities', t => {
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
   assert.deepEqual(checkTaxonomy(root), { domains: 1, groups: 1, skills: 1 });
 });
+test('allows a separate root review file while rejecting other root files', t => {
+  const { root, write } = fixture();
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  write('review.ts', 'export const skillsReview = {};\n');
+  assert.deepEqual(checkTaxonomy(root), { domains: 1, groups: 1, skills: 1 });
+  write('unexpected.ts', 'export {};\n');
+  assert.throws(() => checkTaxonomy(root), /Root index surface/);
+});
 test('reject removed Domain barrel imports', t => {
   const { root, write } = fixture();
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
