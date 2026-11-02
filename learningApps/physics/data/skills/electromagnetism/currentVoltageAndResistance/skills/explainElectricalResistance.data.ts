@@ -5,6 +5,7 @@ export const explainElectricalResistance_Skill_Data = buildSkillConfig({
   id: "7df85410-f39c-4a2e-a2f7-fa7f3c4f84be",
   name: {
     en: "Explain electrical resistance",
+    qm: 'Elektrik rezistansını añlatmaq',
     zh: '解释电阻',
     hi: 'विद्युत प्रतिरोध समझाना',
     es: 'Explicar la resistencia eléctrica',
@@ -37,6 +38,7 @@ export const explainElectricalResistance_Skill_Data = buildSkillConfig({
     methodological: "Resistance determines the relationship between voltage and current under given conditions and depends on conductor material and geometry.",
     frontend: {
       en: "Explore how resistance affects current under specified conditions.",
+      qm: 'Belli şaraitte elektrik rezistansı aqımnı nasıl deñiştirgenini araştır.',
       zh: '探索在给定条件下电阻如何影响电流。',
       hi: 'जानें कि निर्धारित परिस्थितियों में प्रतिरोध धारा को कैसे प्रभावित करता है।',
       es: 'Explora cómo la resistencia afecta a la corriente bajo condiciones especificadas.',
