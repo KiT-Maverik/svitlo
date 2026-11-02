@@ -1,0 +1,58 @@
+# GitHub labels and naming conventions
+
+**Applies to:** all agents and contributors working with GitHub Issues, pull requests, branches, commits, and repository work items.
+
+**Canonical label catalog:** [`.github/labels.json`](../../.github/labels.json). It defines the exact available names, descriptions, and colors. Consult this file before assigning labels; do not invent, rename, or approximate label names. If this guide and the catalog diverge, the catalog defines the available labels and the discrepancy must be reported.
+
+## 1. Separate content from metadata
+
+- **Titles and names describe the specific task, change, or result.**
+- **Labels classify the work** (area, work type, priority, PR role, issue state, origin, or attention).
+- Do not add redundant prefixes or suffixes to an Issue or PR title solely to repeat metadata already expressed by its labels.
+- Prefer short, specific, unambiguous, searchable names. Do not sacrifice clarity just to make a title shorter.
+- A title must still identify the change without reading its full description. Include a subject such as "skills taxonomy" or "quiz navigation" when that is essential.
+- Labels do **not** exist on branches or commits: those names must remain independently recognizable. Keep established branch naming conventions, including agent/integration branch patterns when a workflow requires them.
+
+## 2. Label groups and responsibilities
+
+| Group | Purpose | Where and how to use |
+| --- | --- | --- |
+| `area: *` | Affected part of the monorepo, shared package, or textbook | Issues and PRs. Assign all materially affected areas; use `area: repo` for repository-wide concerns not attributable to a more precise area. |
+| `work: *` | Kind of activity or deliverable | Issues and PRs. Apply one or more when work genuinely spans categories, e.g., translation **and** review. |
+| `priority: *` | Urgency and impact | Primarily Issues; PRs only when priority adds meaningful information. At most one level: `critical`, `high`, `medium`, or `low`. `critical` is for immediate production/security/data-loss situations, not merely large tasks. |
+| `pr: *` | PR's role or special change characteristics | PRs only. `integration` identifies the parent PR; `agent-subtask` identifies an agent PR targeting the integration branch. These two **roles** are mutually exclusive. `breaking-change` and `migration` are independent flags that can accompany either role or a regular PR. |
+| `issue: *` | Issue intake or investigation status | Issues only: `needs-triage`, `needs-info`, `needs-reproduction`. Use only while the condition applies. |
+| `source: *` | Origin of the Issue | Issues only. Choose the factual source: `internal`, `expert-review`, `user-report`, `agent`, or `automation`. Do not confuse a project-owner request (`internal`) with a report submitted through the product's user-report UI (`user-report`). |
+| `attention: *` | Special action still required | Issues and PRs, only when applicable: `decision`, `blocked`, `manual-qa`. Remove a transient label after the underlying condition is resolved. |
+
+For exact `area` choices, check the catalog: shared areas include `server`, `platform`, `scripts`, `contracts`, `engine`, `indexdb`, `ui-kit`, `studio`, and `repo`; the remaining `area` labels cover individual textbooks. The `work` values are `feature`, `fix`, `refactor`, `content`, `translation`, `review`, `tests`, `ci`, `docs`, and `tooling`.
+
+## 3. Application requirements
+
+1. **At creation:** classify each new Issue and PR with the applicable `area: *` and `work: *` labels. Add relevant labels from other groups when appropriate. Creating labels in GitHub or adding names to the catalog does **not** apply them automatically to existing items.
+2. **While updating:** re-evaluate labels when scope, status, blockers, or change characteristics evolve; remove stale labels. Never add mutually exclusive `priority: *` levels or both PR role labels.
+3. **For multi-agent work:** the central PR receives `pr: integration`; each agent's PR receives `pr: agent-subtask` and targets the integration branch. Preserve the mandated integration hierarchy. The actual scope/agent partition belongs in the PR body or work plan rather than boilerplate title prefixes.
+4. **For normal PRs:** omit `pr: integration` and `pr: agent-subtask`; they are not generic PR types. Assign `pr: migration` and/or `pr: breaking-change` only if the changes warrant them.
+5. **When labels cannot be applied:** report the limitation and the exact labels needed. Do not claim the Issue or PR is labeled until GitHub confirms the update.
+6. **For existing Issues/PRs:** these conventions apply when touching them, but this policy alone does not require a bulk historical relabel or rename.
+
+## 4. Naming examples
+
+| Avoid (duplicates labels or adds filler) | Prefer | Metadata carried by labels |
+| --- | --- | --- |
+| `[Biology] Translation Review — Agent 1` | `Unify Crimean Tatar skill terminology` | `area: biology`, `work: translation`, `work: review`, `pr: agent-subtask` |
+| `[Physics] Skills — Integration` | `Implement physics skills taxonomy` | `area: physics`, `work: content`, `pr: integration` |
+| `[Repo] Docs: Add GitHub rules` | `Document GitHub labeling conventions` | `area: repo`, `work: docs` |
+| `URGENT FIX: Quiz broken!` | `Restore keyboard navigation in quiz` | `work: fix`, appropriate `priority: *` |
+
+These are naming examples, not an instruction to rename existing PRs or replace established workflow-required branch names.
+
+### Entity-specific guidance
+
+- **Issue titles:** state the problem or desired outcome; use the body for acceptance criteria and agent assignments.
+- **PR titles:** summarize the concrete delivered change; use the body for implementation detail, validation, target branch, and review context.
+- **Branch names:** keep them short, lowercase, and descriptive (`docs/github-labels-naming`, `review/biology-qm-terminology`). Preserve required workflow identifiers because branches have no labels.
+- **Commit messages:** describe what the commit changes, not just generic labels or "updates". Keep established commit conventions if they exist.
+- **Repository entities and documentation headings:** use accurate, concise domain terms; do not encode status, origin, or priority in a name where structured metadata already captures it.
+
+**Pre-publication check:** Is the title specific and concise? Does it avoid duplicating GitHub labels? Are the actual (not hypothetical) labels applied? Are area and work labels accurate? Are PR roles and target branches correct? Are temporary labels up to date?
