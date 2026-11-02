@@ -5,6 +5,7 @@ export const distinguishElectricFromMagneticFields_Skill_Data = buildSkillConfig
   id: "4794db1e-6753-40d9-8011-248c61e9912e",
   name: {
     en: "Distinguish electric from magnetic fields",
+    qm: 'Elektrik maydanını magnit maydanından ayırmaq',
     zh: '区分电场与磁场',
     hi: 'विद्युत और चुंबकीय क्षेत्रों में अंतर करना',
     es: 'Distinguir campos eléctricos de campos magnéticos',
@@ -37,6 +38,7 @@ export const distinguishElectricFromMagneticFields_Skill_Data = buildSkillConfig
     methodological: "An electric field can act on a stationary charge, whereas the magnetic component of the force on a charge depends on its motion.",
     frontend: {
       en: "Distinguish forces on stationary charges from magnetic forces on moving charges.",
+      qm: 'Tınç turğan elektrik yüküne tesir etken elektrik quvetini areketteki yükke tesir etken magnit quvetinden ayır.',
       zh: '区分电场对静止电荷的力与磁场对运动电荷的力。',
       hi: 'स्थिर आवेश पर विद्युत बल और गतिशील आवेश पर चुंबकीय बल में अंतर करें।',
       es: 'Distingue las fuerzas eléctricas sobre cargas en reposo de las magnéticas sobre cargas en movimiento.',
