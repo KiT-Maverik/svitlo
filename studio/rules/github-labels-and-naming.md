@@ -10,6 +10,8 @@
 - **Labels classify the work** (area, work type, priority, PR role, issue state, origin, or attention).
 - Do not add redundant prefixes or suffixes to an Issue or PR title solely to repeat metadata already expressed by its labels.
 - Never prefix an Issue/PR title with a textbook name in square brackets (for example, `[Physics]`); the corresponding `area: *` label identifies the textbook.
+- Do not use Conventional Commit-style category prefixes in Issue or PR titles (`feat:`, `fix:`, `docs:`, `test:`, `ci:`, `chore:`, `refactor:`, `feat(math):`, etc.). The labels already encode work type and area. This restriction is for Issue/PR **titles**, not commit messages.
+- Do not include redundant `[Draft]`, `[WIP]`, `Integration`, or `(Integration)` markers in PR titles: draft/closed state and `pr: integration` are carried by GitHub metadata. Describe temporary blockers in the PR body and applicable attention labels.
 - Do not include routine agent-count suffixes (for example, `(4 Agents)`) in Issue/PR titles. Document the assignment count and agent workstreams in the Issue body. Keep an individual agent identifier in an agent PR title when it is needed to distinguish parallel workstreams; `pr: agent-subtask` does not encode which agent owns the change.
 - Prefer short, specific, unambiguous, searchable names. Do not sacrifice clarity just to make a title shorter.
 - A title must still identify the change without reading its full description. Include a subject such as "skills taxonomy" or "quiz navigation" when that is essential.
