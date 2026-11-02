@@ -5,6 +5,7 @@ export const explainParallelConnectionsOfElectricCircuitComponents_Skill_Data = 
   id: "1404eb22-b3c7-46ef-9dd4-0a5711fc4bfa",
   name: {
     en: "Explain parallel connections of electric circuit components",
+    qm: 'Devre elementleriniñ paralel bağlanuvını añlatmaq',
     zh: '解释电路元件的并联',
     hi: 'परिपथ के अवयवों का समांतर संयोजन समझाना',
     es: 'Explicar conexiones en paralelo de componentes eléctricos',
@@ -37,6 +38,7 @@ export const explainParallelConnectionsOfElectricCircuitComponents_Skill_Data = 
     methodological: "Parallel branches connect to the same two nodes, so each has the same voltage and the total current is divided among the branches. Opening one branch does not necessarily stop current in the others.",
     frontend: {
       en: "Understand how separate parallel branches share voltage and split current.",
+      qm: 'Paralel dallarda voltajnıñ aynı olğanını, elektrik aqımınıñ ise dallar arasında bölüngenini añla.',
       zh: '理解并联的不同支路电压相同，而电流分流。',
       hi: 'समझें कि समांतर शाखाओं में विभवांतर समान होता है और धारा बँटती है।',
       es: 'Comprende que las ramas paralelas comparten voltaje y dividen la corriente.',
