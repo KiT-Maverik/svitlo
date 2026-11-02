@@ -5,6 +5,7 @@ export const identifyTheFunctionOfASwitch_Skill_Data = buildSkillConfig({
   id: "30bd7eaa-eab5-49f5-94aa-a21293c53288",
   name: {
     en: "Identify the function of a switch",
+    qm: 'Elektrik açqıçınıñ vazifesini tanımaq',
     zh: '识别开关的作用',
     hi: 'स्विच का कार्य पहचानना',
     es: 'Identificar la función de un interruptor',
@@ -37,6 +38,7 @@ export const identifyTheFunctionOfASwitch_Skill_Data = buildSkillConfig({
     methodological: "A switch changes the state of a conducting path and can interrupt current in a particular branch, but it is not itself an energy source.",
     frontend: {
       en: "Explain how a switch changes whether a current path is connected.",
+      qm: 'Açqıçnıñ elektrik aqımınıñ yolunı nasıl bağlağanını ya da üzgenini añlat.',
       zh: '解释开关如何改变电流通路的连通状态。',
       hi: 'समझाएँ कि स्विच विद्युत धारा के रास्ते को कैसे जोड़ता या तोड़ता है।',
       es: 'Explica cómo un interruptor conecta o interrumpe el camino de la corriente.',
