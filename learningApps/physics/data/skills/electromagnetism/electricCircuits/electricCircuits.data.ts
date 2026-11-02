@@ -7,6 +7,7 @@ export const electricCircuits_SkillGroup_Data = buildSkillGroupConfig({
   id: "d5d2a4a4-8869-4481-a1b1-b72ada3ac6bb",
   name: {
     en: "Electric Circuits",
+    qm: 'Elektrik devreleri',
     zh: '电路',
     hi: 'विद्युत परिपथ',
     es: 'Circuitos eléctricos',
@@ -50,6 +51,7 @@ export const electricCircuits_SkillGroup_Data = buildSkillGroupConfig({
     methodological: "An electric circuit needs a conducting path, a source, and components whose interactions determine the operation of a safe model.",
     frontend: {
       en: "Discover how sources, switches and loads work together in simple circuits.",
+      qm: 'Elektrik menbaları, açqıçlar ve sarf eticiler sade devrelerde beraber nasıl çalışqanını araştır.',
       zh: '探索电源、开关和用电器如何在简单电路中共同工作。',
       hi: 'जानें कि सरल परिपथ में स्रोत, स्विच और विद्युत उपभोक्ता कैसे साथ काम करते हैं।',
       es: 'Descubre cómo fuentes, interruptores y receptores funcionan juntos en circuitos sencillos.',
