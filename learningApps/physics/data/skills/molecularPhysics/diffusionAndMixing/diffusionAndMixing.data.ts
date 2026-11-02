@@ -7,6 +7,7 @@ export const diffusionAndMixing_SkillGroup_Data = buildSkillGroupConfig({
   id: "e55646ac-2f04-4c36-a34b-d9050493877e",
   name: {
     en: "Diffusion and Mixing",
+    qm: 'Diffuziya ve qarışuv',
     zh: '扩散与混合',
     hi: 'विसरण और मिश्रण',
     es: 'Difusión y mezcla',
@@ -42,6 +43,7 @@ export const diffusionAndMixing_SkillGroup_Data = buildSkillGroupConfig({
     methodological: "Random thermal motion can cause particles to spread gradually without deliberate stirring.",
     frontend: {
       en: "Discover how random particle movement causes substances to spread and mix.",
+      qm: 'Parçacıqlarnıñ tertipsiz areketi maddelerge nasıl yayılmağa ve qarışmağa yardım etkenini ögren.',
       zh: '了解粒子的无规则运动如何使物质扩散和混合。',
       hi: 'जानें कि कणों की अनियमित गति से पदार्थ कैसे फैलते और मिलते हैं।',
       es: 'Descubre cómo el movimiento aleatorio de las partículas hace que las sustancias se extiendan y mezclen.',
