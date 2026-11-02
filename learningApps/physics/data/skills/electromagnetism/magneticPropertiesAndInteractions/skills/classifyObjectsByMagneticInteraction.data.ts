@@ -38,7 +38,7 @@ export const classifyObjectsByMagneticInteraction_Skill_Data = buildSkillConfig(
     methodological: "Classification is based on the direction and magnitude of a material's magnetic response under relevant conditions; this is not the same as determining whether it has its own magnetic field.",
     frontend: {
       en: "Classify objects by the magnetic response they exhibit.",
-      qm: 'Cisimlerni magnit maydanına bergen cevabınıñ yönüne ve küçüne köre gruppalarğa ayır.',
+      qm: 'Cisimlerni olarnıñ magnit maydanına cevabınıñ yönüne ve küçüne köre gruppalarğa ayır.',
       zh: '按照物体表现出的磁响应对其进行分类。',
       hi: 'वस्तुओं को उनकी चुंबकीय प्रतिक्रिया के अनुसार वर्गीकृत करें।',
       es: 'Clasifica objetos según la respuesta magnética que presentan.',
