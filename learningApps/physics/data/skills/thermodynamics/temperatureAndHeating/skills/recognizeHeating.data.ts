@@ -38,7 +38,7 @@ export const recognizeHeating_Skill_Data = buildSkillConfig({
     methodological: "An increase in temperature reflects a change in thermal state, but energy input does not always increase temperature during a phase transition.",
     frontend: {
       en: "Recognize changes in thermal state during heating.",
-      qm: 'Qızdırıluv vaqtında cisımniñ termik alında olğan deñişmelerni tanı.',
+      qm: 'Qızdırıluv vaqtında cisimniñ termik alında olğan deñişmelerni tanı.',
       zh: '识别加热过程中物体热状态的变化。',
       hi: 'गर्म करते समय ऊष्मीय अवस्था में होने वाले बदलाव पहचानें।',
       es: 'Reconoce los cambios de estado térmico durante el calentamiento.',
