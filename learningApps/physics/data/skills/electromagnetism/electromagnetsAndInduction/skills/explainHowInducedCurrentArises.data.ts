@@ -38,7 +38,7 @@ export const explainHowInducedCurrentArises_Skill_Data = buildSkillConfig({
     methodological: "A changing magnetic flux through a closed conducting loop can induce an electromotive force and current; constant flux by itself does not generate current.",
     frontend: {
       en: "Recognize when changing magnetic flux produces an induced current.",
-      qm: 'Qapalı keçirgen devrede magnit flüksı deñişkende induktsion elektrik aqımınıñ nasıl peyda olğanını tanı.',
+      qm: 'Qapalı keçirgen devrede magnit flüksı deñişkende induktsion elektrik aqımınıñ peyda olğanını tanı.',
       zh: '识别磁通量变化何时会产生感应电流。',
       hi: 'पहचानें कि बदलता चुंबकीय फ्लक्स कब प्रेरित धारा उत्पन्न करता है।',
       es: 'Reconoce cuándo un flujo magnético variable genera una corriente inducida.',
