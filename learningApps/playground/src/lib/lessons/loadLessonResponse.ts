@@ -2,16 +2,14 @@ import 'server-only';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import type { LanguageCode } from '@svitlo/engine/localization';
+import { resolveEntityPath } from '@svitlo/engine/utils';
 import { assembleLessonResponse } from './assembleLessonResponse';
 
-const validSegment = /^[a-zA-Z0-9_-]+$/;
-
 /** Local published files are the sole runtime source; authored TS is never loaded here. */
-export async function loadLessonResponse(group: string, slug: string, language: LanguageCode) {
-  if (![group, slug, language].every(segment => validSegment.test(segment))) {
-    throw new Error('Invalid lesson resource identifier: ' + group + '/' + slug + '/' + language);
-  }
-  const root = path.join(process.cwd(), 'public', 'data', 'pages', 'lessons', group, slug);
+export async function loadLessonResponse(id: string, language: LanguageCode) {
+  if (!/^[a-z]{2}$/.test(language)) throw new Error('Invalid lesson locale');
+  const relativePath = resolveEntityPath(id);
+  const root = path.join(process.cwd(), 'public', 'data', 'pages', 'lessons', ...relativePath.split('/'));
   const kinds = ['config', 'flashcards', 'questions'] as const;
   const [config, flashcards, questions] = await Promise.all(kinds.map(async kind => {
     const filename = path.join(root, kind, language + '.json');
@@ -28,5 +26,5 @@ export async function loadLessonResponse(group: string, slug: string, language: 
       throw new Error('Malformed published lesson JSON: ' + filename, { cause: error });
     }
   }));
-  return assembleLessonResponse(group, slug, language, { config, flashcards, questions });
+  return assembleLessonResponse(id, language, { config, flashcards, questions });
 }
