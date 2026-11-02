@@ -21,7 +21,7 @@ export const explainElectricalPower_Skill_Data = buildSkillConfig({
     tr: 'Elektrik gücünü açıklamak',
     vi: 'Giải thích công suất điện',
     ta: 'மின்திறனை விளக்குதல்',
-    te: 'విద్యుత్ శక్తిని వివరించడం',
+    te: 'విద్యుత్ సామర్థ్యాన్ని వివరించడం',
     mr: 'विद्युतशक्ती स्पष्ट करणे',
     ms: 'Menerangkan kuasa elektrik',
     he: 'הסבר על הספק חשמלי',
