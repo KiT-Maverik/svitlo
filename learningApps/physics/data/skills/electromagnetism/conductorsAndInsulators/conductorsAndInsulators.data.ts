@@ -7,6 +7,7 @@ export const conductorsAndInsulators_SkillGroup_Data = buildSkillGroupConfig({
   id: "2e1318e6-5678-474c-925b-967e0cad957f",
   name: {
     en: "Conductors and Insulators",
+    qm: 'Elektrik keçirgenleri ve izolâtorlar',
     zh: '导体与绝缘体',
     hi: 'चालक और कुचालक',
     es: 'Conductores y aislantes',
@@ -43,6 +44,7 @@ export const conductorsAndInsulators_SkillGroup_Data = buildSkillGroupConfig({
     methodological: "Materials differ in how readily they permit electric charge to move; distinguish an electrical property of a material from a device's purpose.",
     frontend: {
       en: "Explore why some materials let charges move more easily than others.",
+      qm: 'Elektrik yükleri bazı malzemeler içinden neden daa qolay areket etkenini araştır.',
       zh: '探索为什么电荷在某些材料中比在其他材料中更容易移动。',
       hi: 'जानें कि कुछ पदार्थ विद्युत आवेश को दूसरों की तुलना में आसानी से क्यों चलने देते हैं।',
       es: 'Explora por qué algunos materiales permiten mover cargas más fácilmente que otros.',
