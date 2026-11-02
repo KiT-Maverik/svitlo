@@ -68,7 +68,7 @@ export const electricCircuits_SkillGroup_Data = buildSkillGroupConfig({
       vi: 'Khám phá cách nguồn điện, công tắc và tải hoạt động cùng nhau trong mạch đơn giản.',
       ta: 'எளிய மின்சுற்றுகளில் மின்மூலங்கள், சுவிட்சுகள், சுமைகள் எவ்வாறு சேர்ந்து இயங்குகின்றன என்பதை ஆராயுங்கள்.',
       te: 'సరళ విద్యుత్ వలయాల్లో మూలాలు, స్విచ్‌లు, విద్యుత్ లోడ్‌లు కలిసి ఎలా పనిచేస్తాయో తెలుసుకోండి.',
-      mr: 'साध्या परिपथात स्रोत, स्विच आणि विद्युतभार कसे एकत्र कार्य करतात ते शोधा.',
+      mr: 'साध्या परिपथात स्रोत, स्विच आणि विद्युत उपकरणे कशी एकत्र कार्य करतात ते शोधा.',
       ms: 'Terokai bagaimana sumber, suis dan beban berfungsi bersama dalam litar ringkas.',
       he: 'גלה כיצד מקורות מתח, מפסקים וצרכנים פועלים יחד במעגלים פשוטים.',
       pl: 'Poznaj, jak źródła, przełączniki i odbiorniki współdziałają w prostych obwodach.',
