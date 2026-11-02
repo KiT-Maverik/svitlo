@@ -33,6 +33,7 @@ export const testRecognizeBlue_Skill_Data = buildSkillConfig({
     be: '[TEST be] Recognize blue',
     ka: '[TEST ka] Recognize blue',
     kk: '[TEST kk] Recognize blue',
+    qm: '[TEST qm] Recognize blue',
   },
   description: {
     methodological:
@@ -66,6 +67,7 @@ export const testRecognizeBlue_Skill_Data = buildSkillConfig({
       be: '[TEST be] Recognize the color blue in a simple visual example.',
       ka: '[TEST ka] Recognize the color blue in a simple visual example.',
       kk: '[TEST kk] Recognize the color blue in a simple visual example.',
+      qm: '[TEST qm] Recognize the color blue in a simple visual example.',
     },
   },
 });

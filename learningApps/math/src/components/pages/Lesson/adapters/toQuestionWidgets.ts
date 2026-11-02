@@ -6,9 +6,9 @@ export function toQuestionWidgets(quiz: Quiz): SelectOneAnswerQuestion[] {
   return quiz.questionBank.map(question => {
     if (question.type !== 'select-one-answer') throw new Error(`Unsupported question widget: ${question.type}`);
     const correct = question.answers.correct;
-    const options = [correct, ...question.answers.incorrect, ...question.answers.distractors].map(resource => {
-      if (resource.blockType !== 'text') throw new Error('This question widget requires text answer options');
-      return { id: resource.id, label: resource.value };
+    const options = [correct, ...question.answers.incorrect, ...question.answers.distractors].map(contentBlock => {
+      if (contentBlock.blockType !== 'text') throw new Error('This question widget requires text answer options');
+      return { id: contentBlock.id, label: contentBlock.value };
     });
 
     // Keep option order stable across renders without storing another question definition.
@@ -22,7 +22,7 @@ export function toQuestionWidgets(quiz: Quiz): SelectOneAnswerQuestion[] {
     return {
       id: question.id,
       type: 'single-select',
-      prompt: question.content.map(resource => (resource.blockType === 'text' ? resource.value : '')).join('\n'),
+      prompt: question.content.map(contentBlock => (contentBlock.blockType === 'text' ? contentBlock.value : '')).join('\n'),
       options,
       correctId: correct.id,
       explanation: question.explanation?.value ?? '',

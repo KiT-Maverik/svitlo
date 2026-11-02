@@ -33,6 +33,7 @@ export const testRecognizeRed_Skill_Data = buildSkillConfig({
     be: '[TEST be] Recognize red',
     ka: '[TEST ka] Recognize red',
     kk: '[TEST kk] Recognize red',
+    qm: '[TEST qm] Recognize red',
   },
   description: {
     methodological:
@@ -66,6 +67,7 @@ export const testRecognizeRed_Skill_Data = buildSkillConfig({
       be: '[TEST be] Recognize the color red in a simple visual example.',
       ka: '[TEST ka] Recognize the color red in a simple visual example.',
       kk: '[TEST kk] Recognize the color red in a simple visual example.',
+      qm: '[TEST qm] Recognize the color red in a simple visual example.',
     },
   },
 });

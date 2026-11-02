@@ -1,99 +1,65 @@
-import type { Resource, Resource_Config, TextResource, TextResource_Config } from './resource.types';
-import type { Quiz, Quiz_Config, QuizState } from './quiz.types';
-import type { Collection, NonEmptyArray } from '../misc.types';
 import type { LanguageCode } from '../languages';
-import type { DeepReadonly } from '../readonly.types';
+import type { DefineValidKeysFromSlugs, NonEmptyArray } from '../misc.types';
+import type { ContentEntity_ConfigType } from './entity.types';
+import type { Flashcard } from './flashcard.types';
+import type { Locale_Config, Locale_ResponseParams } from './locale.types';
+import type { Question_Catalog, Question_Catalog_ValidSlugs } from './questions';
+import type { Section } from './section.types';
 
-export interface LessonSection_Config<TIcon = unknown> {
-  readonly collection: Extract<Collection, 'lessonSection'>;
-  content: NonEmptyArray<Resource_Config>;
-  id: string;
-  lessonId: Lesson_Config['id'];
-  name: TextResource_Config;
-  skippable: boolean;
-  /** Presentation payload interpreted by the consuming application. */
-  icon?: TIcon;
-}
-
-export interface LessonSection<TIcon = unknown> {
-  readonly collection: Extract<Collection, 'lessonSection'>;
-  content: NonEmptyArray<Resource>;
-  id: string;
-  lessonId: Lesson['id'];
-  name: TextResource;
-  skippable: boolean;
-  /** Presentation payload interpreted by the consuming application. */
-  icon?: TIcon;
-}
-
-export type LessonSection_Content = LessonSection_Config | Quiz_Config;
-
-/** Definitions referenced by a lesson's stable IDs. */
-export interface LessonContentCatalog {
-  text: Readonly<Record<string, TextResource_Config>>;
-  sections: Readonly<Record<string, DeepReadonly<LessonSection_Content>>>;
-}
-
-export interface Lesson_Config {
-  readonly collection: Extract<Collection, 'lesson'>;
-  id: string;
-  slug: string;
+type Lesson_Parameters = {
   requireQuiz: boolean;
+  languages: NonEmptyArray<LanguageCode>;
   sections: {
     allowNavigation: boolean;
     allowSkipping: boolean;
     showIndexes: boolean;
-    content: NonEmptyArray<string>;
   };
+};
+
+type Lesson_Definition = {
+  type: 'lesson';
+  /** Optional key to a registered runtime icon, never JSX. */
+  iconKey?: string;
+  sections: Record<string, Section<'definition'>>;
+  /** Explicit presentation order, independent of record insertion. */
+  sectionOrder?: readonly string[];
+};
+
+type Lesson_Data = {
+  id: string;
+  group: string;
+  slug: string;
+  title: Locale_Config;
+  flashcards: Flashcard<'data'>[];
+  parameters: Lesson_Parameters;
+  questions: Question_Catalog<'data'>;
+  sections: Record<string, Section<'data'>>;
+  sectionOrder?: readonly string[];
+};
+
+type Lesson_Response = Locale_ResponseParams & {
+  id: string;
+  group: string;
+  slug: string;
   title: string;
-  /** Every scene's translations, keyed by short language code. Server selects one value per scene. */
-  sceneLocales?: Record<string, Partial<Record<LanguageCode, object>>>;
-}
+  flashcards: Flashcard<'response'>[];
+  parameters: Lesson_Parameters;
+  questions: Question_Catalog<'response'>;
+  sections: Record<string, Section<'response'>>;
+  sectionOrder?: readonly string[];
+};
 
-export interface Lesson {
-  readonly collection: Extract<Collection, 'lesson'>;
-  id: string;
-  slug: string;
-  requireQuiz: boolean;
-  sections: {
-    allowNavigation: boolean;
-    allowSkipping: boolean;
-    showIndexes: boolean;
-    content: NonEmptyArray<LessonSection | Quiz>;
-  };
-  title: TextResource;
-  /** Only the selected locale is included in the rendered lesson. */
-  sceneLocale?: Readonly<object>;
-}
+export type Lesson<ConfigType extends ContentEntity_ConfigType> = {
+  definition: Lesson_Definition;
+  data: Lesson_Data;
+  response: Lesson_Response;
+}[ConfigType];
 
-interface LessonState_Base {
-  /** Identifies this particular run of the lesson. */
-  id: string;
-  lessonId: Lesson['id'];
+export function defineLessonData<const T extends Lesson<'data'>>(
+  lesson: T & {
+    questions: Question_Catalog_ValidSlugs<T['questions']>;
+    sections: DefineValidKeysFromSlugs<keyof T['sections'] & string, Section<'data'>>;
+  },
+): T {
+  return lesson;
 }
-
-interface LessonState_Progress extends LessonState_Base {
-  startedAt: string;
-  currentSectionId?: string;
-  /** Keyed by section ID; an absent entry means the section has not been visited. */
-  sectionCompletion: Record<string, boolean>;
-  skippedSectionIds: string[];
-  /** Keyed by quiz section ID; the linked QuizState holds its answers and result. */
-  quizStateIds: Record<string, QuizState['id']>;
-}
-
-export type LessonState =
-  | (LessonState_Base & {
-      status: 'new';
-      startedAt?: never;
-      sectionCompletion?: never;
-      skippedSectionIds?: never;
-      quizStateIds?: never;
-      contentCompletedAt?: never;
-      completedAt?: never;
-    })
-  | (LessonState_Progress & { status: 'in-progress'; contentCompletedAt?: never; completedAt?: never })
-  /** Lesson content is complete; any required quiz may still be unfinished. */
-  | (LessonState_Progress & { status: 'content-complete'; contentCompletedAt: string; completedAt?: never })
-  /** All requirements, including a quiz when requireQuiz is true, are met. */
-  | (LessonState_Progress & { status: 'finished'; contentCompletedAt: string; completedAt: string });

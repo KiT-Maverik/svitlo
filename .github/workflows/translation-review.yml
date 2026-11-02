@@ -1,6 +1,6 @@
 name: Agent CI Artifacts
 
-# One reusable CI tool, invoked only on demand or when a draft PR becomes ready.
+# One reusable CI tool, invoked on demand or when a draft PR becomes ready.
 # This workflow must exist on the default branch before comment/manual triggers work.
 on:
   issue_comment:
@@ -20,7 +20,7 @@ on:
           - generate
           - cleanup
   pull_request:
-    branches: [main]
+    branches: [main, new-lesson]
     types: [ready_for_review]
 
 permissions:
@@ -107,6 +107,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ needs.resolve.outputs.head_sha }}
+          fetch-depth: 0
           persist-credentials: false
       - uses: actions/setup-node@v4
         with:
@@ -118,7 +119,11 @@ jobs:
           npm install --prefix "$RUNNER_TEMP/agent-tools" --no-save --ignore-scripts --no-audit --no-fund 'typescript@5'
           mkdir -p node_modules
           ln -s "$RUNNER_TEMP/agent-tools/node_modules/typescript" node_modules/typescript
-      - name: Generate every textbook in every supported language
+      - name: Validate Lesson artifact adapter
+        run: |
+          node --check scripts/generate-lesson-review-artifacts.mjs
+          node --test scripts/generate-lesson-review-artifacts.spec.mjs
+      - name: Generate Skills and Lesson Markdown in every supported language
         run: |
           node --check scripts/generate-translation-review-artifacts.mjs
           node --check scripts/generate-skills-taxonomy.mjs
@@ -164,13 +169,46 @@ jobs:
         run: |
           set -euo pipefail
           test -s .agent-ci-artifacts/manifest.json
-          test -n "$(find .agent-ci-artifacts/taxonomies -type f -name '*.md' -print -quit)"
+          test -n "$(find .agent-ci-artifacts -type f -name '*.md' -print -quit)"
           if find .agent-ci-artifacts -type l -print -quit | grep -q .; then
             echo 'Refusing symlinks in agent artifacts'; exit 1
           fi
           if find .agent-ci-artifacts -type f ! -name '*.md' ! -name 'manifest.json' -print -quit | grep -q .; then
             echo 'Refusing unexpected artifact file type'; exit 1
           fi
+          # Validate the manifest and transport payload using trusted inline code.
+          # Never execute repository scripts in this contents:write publish job.
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          const root = '.agent-ci-artifacts';
+          const manifest = JSON.parse(fs.readFileSync(path.join(root, 'manifest.json'), 'utf8'));
+          if (manifest.kind !== 'pr-scoped-agent-ci-artifacts' ||
+              !Array.isArray(manifest.generated) || !Array.isArray(manifest.failures) ||
+              manifest.generated.length === 0) throw Error('Invalid or empty agent artifact manifest');
+          const expected = new Set();
+          for (const entry of manifest.generated) {
+            const name = entry.path;
+            const segments = typeof name === 'string' ? name.split('/') : [];
+            const depth = segments[1] === 'taxonomies' ? 4 : segments[1] === 'lessons' ? 6 : -1;
+            if (typeof name !== 'string' ||
+                segments[0] !== root || segments.length !== depth ||
+                segments.slice(2).some(part => !/^[a-zA-Z0-9._-]+$/.test(part) || part === '..') ||
+                !name.endsWith('.md') || expected.has(name) || !fs.statSync(name).isFile()) {
+              throw Error('Invalid generated artifact entry: ' + String(name));
+            }
+            expected.add(name);
+          }
+          function walk(dir) {
+            for (const item of fs.readdirSync(dir, { withFileTypes: true })) {
+              const name = path.join(dir, item.name);
+              if (item.isDirectory()) walk(name);
+              else if (name.endsWith('.md') && !expected.has(name.replaceAll(path.sep, '/')))
+                throw Error('Unlisted Markdown artifact: ' + name);
+            }
+          }
+          walk(root);
+          NODE
           git add -A -- .agent-ci-artifacts
           if git diff --cached --quiet; then
             echo 'Agent reference library is unchanged'; exit 0

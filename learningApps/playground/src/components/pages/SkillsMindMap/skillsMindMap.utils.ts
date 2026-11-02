@@ -118,7 +118,7 @@ export function parsePublishedSkillCopy(value: unknown, kind: SkillNodeKind): Pu
   return { name, ...(description === undefined ? {} : { description }) };
 }
 
-/** Rebuild one runtime node from validated independent resources. */
+/** Rebuild one runtime node from validated independent contentBlocks. */
 export function assemblePublishedSkillNode(
   meta: PublishedSkillMeta,
   copy: PublishedSkillCopy,

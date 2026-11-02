@@ -1,14 +1,14 @@
 import type { ReactNode } from 'react';
 import type { Locale } from '@svitlo/engine/localization';
-import type { Resource } from '@svitlo/engine/content';
+import type { ContentBlock } from '@svitlo/engine/content';
 
 export interface KnowledgeCheckpointItem {
   id: string;
   question: string;
-  answer: Resource;
+  answer: readonly ContentBlock<'response'>[];
   /** Overrides the checkpoint-wide setting for this question. */
   enableCheck?: boolean;
-  /** Renders a resource using a lesson-specific renderer when needed. */
+  /** Renders a content block using a lesson-specific renderer when needed. */
   answerSlot?: ReactNode;
   iconSlot?: ReactNode;
 }
@@ -40,6 +40,6 @@ export interface KnowledgeCheckpointProps {
     icon?: ReactNode;
     chevron?: ReactNode;
     checkLabel?: ReactNode;
-    renderAnswer?: (answer: Resource) => ReactNode;
+    renderAnswer?: (answer: readonly ContentBlock<'response'>[]) => ReactNode;
   };
 }

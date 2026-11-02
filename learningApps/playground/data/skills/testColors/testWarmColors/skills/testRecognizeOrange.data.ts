@@ -33,6 +33,7 @@ export const testRecognizeOrange_Skill_Data = buildSkillConfig({
     be: '[TEST be] Recognize orange',
     ka: '[TEST ka] Recognize orange',
     kk: '[TEST kk] Recognize orange',
+    qm: '[TEST qm] Recognize orange',
   },
   description: {
     methodological:
@@ -66,6 +67,7 @@ export const testRecognizeOrange_Skill_Data = buildSkillConfig({
       be: '[TEST be] Recognize the color orange in a simple visual example.',
       ka: '[TEST ka] Recognize the color orange in a simple visual example.',
       kk: '[TEST kk] Recognize the color orange in a simple visual example.',
+      qm: '[TEST qm] Recognize the color orange in a simple visual example.',
     },
   },
 });

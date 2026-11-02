@@ -33,6 +33,7 @@ export const testRecognizeTriangle_Skill_Data = buildSkillConfig({
     be: '[TEST be] Recognize a triangle',
     ka: '[TEST ka] Recognize a triangle',
     kk: '[TEST kk] Recognize a triangle',
+    qm: '[TEST qm] Recognize a triangle',
   },
   description: {
     methodological:
@@ -66,6 +67,7 @@ export const testRecognizeTriangle_Skill_Data = buildSkillConfig({
       be: '[TEST be] Recognize a triangle in a simple visual example.',
       ka: '[TEST ka] Recognize a triangle in a simple visual example.',
       kk: '[TEST kk] Recognize a triangle in a simple visual example.',
+      qm: '[TEST qm] Recognize a triangle in a simple visual example.',
     },
   },
 });

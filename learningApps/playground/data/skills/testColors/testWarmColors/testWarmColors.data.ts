@@ -34,6 +34,7 @@ export const testWarmColors_SkillGroup_Data = buildSkillGroupConfig({
     be: '[TEST be] Warm colors',
     ka: '[TEST ka] Warm colors',
     kk: '[TEST kk] Warm colors',
+    qm: '[TEST qm] Warm colors',
   },
   skills: {
     testRecognizeRed: testRecognizeRed_Skill_Data,

@@ -35,6 +35,7 @@ export const testShapes_SkillDomain_Data = buildSkillDomainConfig({
     be: '[TEST be] Shape recognition',
     ka: '[TEST ka] Shape recognition',
     kk: '[TEST kk] Shape recognition',
+    qm: '[TEST qm] Shape recognition',
   },
   groups: {
     testRoundShapes: testRoundShapes_SkillGroup_Data,

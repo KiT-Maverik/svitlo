@@ -29,7 +29,7 @@ export default async function LessonSectionContent({
 
       if (block.blockType === 'text') return <Fragment key={block.id}>{block.value}</Fragment>;
 
-      throw new Error(`Unsupported lesson resource type: ${block.blockType}`);
+      throw new Error(`Unsupported lesson contentBlock type: ${block.blockType}`);
     }),
   );
 

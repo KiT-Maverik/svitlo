@@ -34,6 +34,7 @@ export const testPolygonShapes_SkillGroup_Data = buildSkillGroupConfig({
     be: '[TEST be] Polygon shapes',
     ka: '[TEST ka] Polygon shapes',
     kk: '[TEST kk] Polygon shapes',
+    qm: '[TEST qm] Polygon shapes',
   },
   skills: {
     testRecognizeTriangle: testRecognizeTriangle_Skill_Data,

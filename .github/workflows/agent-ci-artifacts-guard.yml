@@ -1,10 +1,10 @@
 name: Agent CI Artifacts / clean
 
-# Always runs for every PR into main, even when only Markdown changes.
+# Always runs for PRs into main and the lesson integration branch, including docs-only changes.
 # Configure this check as REQUIRED in main branch protection / rulesets.
 on:
   pull_request:
-    branches: [main]
+    branches: [main, new-lesson]
     types: [opened, reopened, synchronize, ready_for_review]
   merge_group:
 
@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
-      - name: Fail if temporary review documents would enter main
+      - name: Fail if temporary review documents would enter a protected integration branch
         shell: bash
         run: |
           set -euo pipefail

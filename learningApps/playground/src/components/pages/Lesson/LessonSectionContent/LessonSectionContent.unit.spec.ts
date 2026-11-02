@@ -5,12 +5,12 @@ import LessonSectionContent from './LessonSectionContent';
 
 describe('Components', () => {
   describe('LessonSectionContent', () => {
-    it('should render a localized text resource without changing its value', async () => {
+    it('should render a localized text contentBlock without changing its value', async () => {
       await LessonSectionContent_fx.render();
       expect(LessonSectionContent_fx.selectors.text('Introductory lesson content')).toBeVisible();
     });
 
-    it('should preserve the order of scene and text resources', async () => {
+    it('should preserve the order of scene and text contentBlocks', async () => {
       const content = [
         { id: 'before', blockType: 'scene', component: createElement('p', null, 'Before') },
         LessonSectionContent_fx.blocks.text('Middle'),
@@ -30,7 +30,7 @@ describe('Components', () => {
       expect(LessonSectionContent_fx.selectors.article().textContent?.trim().length).toBeGreaterThan(0);
     });
 
-    it('should reject resources that do not have a renderer', async () => {
+    it('should reject contentBlocks that do not have a renderer', async () => {
       const unsupported = {
         id: 'audio-1',
         blockType: 'audio',
@@ -40,7 +40,7 @@ describe('Components', () => {
         fileLocation: '/x.mp3',
       } as const;
       await expect(LessonSectionContent({ locale: 'uk-UA', content: [unsupported] })).rejects.toThrow(
-        'Unsupported lesson resource type: audio',
+        'Unsupported lesson contentBlock type: audio',
       );
     });
 

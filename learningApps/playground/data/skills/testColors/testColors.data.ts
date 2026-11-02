@@ -35,6 +35,7 @@ export const testColors_SkillDomain_Data = buildSkillDomainConfig({
     be: '[TEST be] Color recognition',
     ka: '[TEST ka] Color recognition',
     kk: '[TEST kk] Color recognition',
+    qm: '[TEST qm] Color recognition',
   },
   groups: {
     testWarmColors: testWarmColors_SkillGroup_Data,

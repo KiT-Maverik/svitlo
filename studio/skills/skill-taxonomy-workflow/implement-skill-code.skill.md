@@ -28,7 +28,7 @@ This implementation must also follow [Git-First Typed Content & AI Authoring](..
    - `geometry/angles/skills/index.ts` exports only immediate Skill Data.
    - There is no index file at a Domain or Group directory root.
 
-**Canonical source destination:** `<PackageRoot>/data/skills/`, outside `src/` and relative to the textbook package root. The legacy `src/data/skillsTaxonomy/`, `*.ids.ts` and `index.data.ts` conventions must not be used for new implementations. Compare the Mathematics example with the live engine contracts.
+**Canonical source destination:** `<PackageRoot>/data/skills/`, outside `src/` and relative to the textbook package root. The legacy `src/data/skillsTaxonomy/`, `*.ids.ts` and `index.ts` conventions must not be used for new implementations. Compare the Mathematics example with the live engine contracts.
 
 Current contracts and [Skill](../../docs/entities/skill.md), [SkillGroup](../../docs/entities/skill-group.md), and [SkillDomain](../../docs/entities/skill-domain.md) definitions govern this workflow.
 
@@ -91,7 +91,7 @@ For the selected textbook package only:
                     └── index.ts          # immediate Skill Data named exports
 ```
 
-For an approved direct-Skill Domain, omit the Group directory and place its Skills in `<domainCamelCase>/skills/` with `skills/index.ts`. Both grouped and direct-Skill Domain Data import immediate child Data objects and embed the child objects themselves. **No `index.ts` exists in the Domain or Group directory root**. Do not create `*.ids.ts`, `index.ids.ts`, or `index.data.ts`.
+For an approved direct-Skill Domain, omit the Group directory and place its Skills in `<domainCamelCase>/skills/` with `skills/index.ts`. Both grouped and direct-Skill Domain Data import immediate child Data objects and embed the child objects themselves. **No `index.ts` exists in the Domain or Group directory root**. Do not create `*.ids.ts`, `index.ids.ts`, or `index.ts`.
 
 Use approved lowerCamelCase slugs as directory and file stems; preserve old UUIDs on update and check collision-free UUIDs for new identities.
 

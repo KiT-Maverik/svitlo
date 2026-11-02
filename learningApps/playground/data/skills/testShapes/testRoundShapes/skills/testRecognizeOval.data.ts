@@ -33,6 +33,7 @@ export const testRecognizeOval_Skill_Data = buildSkillConfig({
     be: '[TEST be] Recognize an oval',
     ka: '[TEST ka] Recognize an oval',
     kk: '[TEST kk] Recognize an oval',
+    qm: '[TEST qm] Recognize an oval',
   },
   description: {
     methodological:
@@ -66,6 +67,7 @@ export const testRecognizeOval_Skill_Data = buildSkillConfig({
       be: '[TEST be] Recognize an oval in a simple visual example.',
       ka: '[TEST ka] Recognize an oval in a simple visual example.',
       kk: '[TEST kk] Recognize an oval in a simple visual example.',
+      qm: '[TEST qm] Recognize an oval in a simple visual example.',
     },
   },
 });

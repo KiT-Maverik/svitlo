@@ -5,7 +5,7 @@ import type {
   DynamicQuestion_Variant,
 } from '../src/generation';
 import { DEFAULT_SUPPORTED_LANGUAGES } from '../src/localization';
-import type { TextResource_AllLocales_Config } from '@svitlo/contracts/content';
+import type { TextContentBlock_AllLocales_Config } from '@svitlo/contracts/content';
 
 const girlsApple = {
   selector: 'girlsApple',
@@ -25,13 +25,13 @@ const appleArguments = [girlsApple, boysApple] as const;
 type AppleArguments = typeof appleArguments;
 type AppleVariant = DynamicQuestion_Variant<AppleArguments>;
 
-const appleName: TextResource_AllLocales_Config = {
+const appleName: TextContentBlock_AllLocales_Config = {
   id: 'apples-question',
   blockType: 'text',
   allLocales: true,
   value: Object.fromEntries(
     DEFAULT_SUPPORTED_LANGUAGES.map(language => [language.language, 'Apples']),
-  ) as TextResource_AllLocales_Config['value'],
+  ) as TextContentBlock_AllLocales_Config['value'],
 };
 
 const createAppleValue = <T extends 'girlsApple' | 'boysApple'>(

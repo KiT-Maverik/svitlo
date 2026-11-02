@@ -33,6 +33,7 @@ export const testRecognizeCircle_Skill_Data = buildSkillConfig({
     be: '[TEST be] Recognize a circle',
     ka: '[TEST ka] Recognize a circle',
     kk: '[TEST kk] Recognize a circle',
+    qm: '[TEST qm] Recognize a circle',
   },
   description: {
     methodological:
@@ -66,6 +67,7 @@ export const testRecognizeCircle_Skill_Data = buildSkillConfig({
       be: '[TEST be] Recognize a circle in a simple visual example.',
       ka: '[TEST ka] Recognize a circle in a simple visual example.',
       kk: '[TEST kk] Recognize a circle in a simple visual example.',
+      qm: '[TEST qm] Recognize a circle in a simple visual example.',
     },
   },
 });

@@ -10,26 +10,30 @@ import ExpandMoreRounded from '@mui/icons-material/ExpandMoreRounded';
 import LightbulbOutlineRounded from '@mui/icons-material/LightbulbOutlineRounded';
 import RadioButtonUncheckedRounded from '@mui/icons-material/RadioButtonUncheckedRounded';
 import CheckCircleRounded from '@mui/icons-material/CheckCircleRounded';
-import type { Resource } from '@svitlo/engine/content';
+import type { ContentBlock } from '@svitlo/engine/content';
 import { getLanguageCode, getLocaleDirection } from '@svitlo/engine/localization';
 import type { LanguageCode } from '@svitlo/engine/localization';
 import { locales, type KnowledgeCheckpoint_Locale } from './KnowledgeCheckpoint.locale';
 import type { KnowledgeCheckpointProps, KnowledgeCheckpointProgress } from './KnowledgeCheckpoint.types';
 import styles from './KnowledgeCheckpoint.module.css';
 
-function defaultAnswer(answer: Resource): ReactNode {
-  switch (answer.blockType) {
+function defaultBlockAnswer(answer: ContentBlock<'response'>): ReactNode {
+  switch (answer.type) {
     case 'text':
       return <p className={styles.answerText}>{answer.value}</p>;
     case 'image':
-      return <Box component="img" className={styles.media} src={answer.fileLocation} alt={answer.alt} />;
+      return <Box component="img" className={styles.media} src={answer.src} alt={answer.alt} />;
     case 'audio':
       return <audio className={styles.media} src={answer.fileLocation} controls aria-label={answer.title} />;
     case 'video':
       return <video className={styles.media} src={answer.fileLocation} poster={answer.poster} controls />;
     default:
-      throw new Error(`Provide an answerSlot or slots.renderAnswer for ${answer.blockType} resources`);
+      throw new Error(`Provide an answerSlot or slots.renderAnswer for ${answer.type} content blocks`);
   }
+}
+
+function defaultAnswer(answers: readonly ContentBlock<'response'>[]): ReactNode {
+  return answers.map((answer, index) => <div key={`${answer.id}:${index}`}>{defaultBlockAnswer(answer)}</div>);
 }
 
 export default function KnowledgeCheckpoint({

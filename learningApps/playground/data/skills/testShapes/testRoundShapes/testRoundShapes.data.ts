@@ -34,6 +34,7 @@ export const testRoundShapes_SkillGroup_Data = buildSkillGroupConfig({
     be: '[TEST be] Round shapes',
     ka: '[TEST ka] Round shapes',
     kk: '[TEST kk] Round shapes',
+    qm: '[TEST qm] Round shapes',
   },
   skills: {
     testRecognizeCircle: testRecognizeCircle_Skill_Data,

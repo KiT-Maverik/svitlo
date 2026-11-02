@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import type {
   Lesson_Config,
   Question_Config,
-  SceneResource_Config,
+  SceneContentBlock_Config,
   LessonSection_Config,
   AssessmentMethodId,
 } from '@svitlo/engine/content';
@@ -25,7 +25,7 @@ void (undefined as unknown as LessonExtensionPreservesBase);
 void (undefined as unknown as QuestionExtensionPreservesBase);
 
 // UI representation is supplied by the frontend, never imported by Engine.
-const scene: SceneResource_Config<ReactNode> = {
+const scene: SceneContentBlock_Config<ReactNode> = {
   id: 'scene-example',
   blockType: 'scene',
   component: 'Example React content',

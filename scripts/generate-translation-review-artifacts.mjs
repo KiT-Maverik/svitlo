@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
  * Build one complete, PR-scoped agent reference library from canonical Code.
- * On-demand only. No CLI modes: discover every Code Skills textbook and locale.
- * Output: .agent-ci-artifacts/taxonomies/<textbook>/<locale>.md + manifest.json
+ * On-demand only. No CLI modes: generate Skills and Lesson Markdown in every supported language.
+ * Output: .agent-ci-artifacts/{taxonomies,lessons}/... + manifest.json
  * The CI workflow owns committing and cleaning this directory on the PR branch.
  */
 import fs from 'node:fs';
@@ -11,6 +11,7 @@ import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
 import ts from 'typescript';
+import { discoverLessons, generateLessonReviewArtifacts } from './generate-lesson-review-artifacts.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const output = path.join(root, '.agent-ci-artifacts');
@@ -55,7 +56,8 @@ function packagesFromCode() {
     .sort((a, b) => a.name.localeCompare(b.name));
 }
 function commitSha() {
-  const r = spawnSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' });
+  // Ignore artifact-only commits to keep the manifest stable across regeneration.
+  const r = spawnSync('git', ['log', '-1', '--format=%H', '--', '.', ':(exclude).agent-ci-artifacts/**'], { cwd: root, encoding: 'utf8' });
   return r.status === 0 ? r.stdout.trim() : null;
 }
 function canonicalLinks(markdown, appName, destination) {
@@ -74,13 +76,13 @@ function canonicalLinks(markdown, appName, destination) {
 
 const languages = localesFromCode();
 const textbooks = packagesFromCode();
+const lessonPackages = [...new Set(discoverLessons(root).map(lesson => lesson.package))];
 if (!textbooks.length) throw new Error('No canonical Code Skills taxonomies available');
 const manifest = {
-  schemaVersion: 1,
+  schemaVersion: 2,
   kind: 'pr-scoped-agent-ci-artifacts',
   sourceCommit: commitSha(),
-  generatedAt: new Date().toISOString(),
-  packages: textbooks.map(t => t.package),
+  packages: [...new Set([...textbooks.map(t => t.package), ...lessonPackages])].sort(),
   locales: languages,
   generated: [],
   failures: [],
@@ -101,7 +103,7 @@ for (const textbook of textbooks) {
     const raw = result.stdout || '';
     if (result.error || result.status !== 0 || !raw.startsWith('<!-- GENERATED FROM CODE; DO NOT EDIT. -->')) {
       const error = String(result.error?.message || result.stderr || 'No valid Markdown generated').trim().slice(0, 1500);
-      manifest.failures.push({ textbook: textbook.package, locale, error });
+      manifest.failures.push({ kind: 'taxonomy', textbook: textbook.package, locale, error });
       process.stderr.write('::warning::Could not generate ' + textbook.name + '/' + locale + ': ' + error.replace(/\n/g, ' ') + '\n');
       saveManifest();
       continue;
@@ -113,6 +115,7 @@ for (const textbook of textbooks) {
     fs.writeFileSync(destination, markdown, 'utf8');
     const count = label => Number(markdown.match(new RegExp('^' + label + ': (\\d+)$', 'm'))?.[1]);
     manifest.generated.push({
+      kind: 'taxonomy',
       textbook: textbook.package,
       locale,
       path: '.agent-ci-artifacts/' + relative,
@@ -124,8 +127,20 @@ for (const textbook of textbooks) {
     process.stdout.write('Generated ' + relative + '\n');
   }
 }
+const lessonStats = generateLessonReviewArtifacts({ root, output, languages, manifest, saveManifest });
+manifest.summary = {
+  taxonomyDocuments: manifest.generated.filter(item => item.kind === 'taxonomy').length,
+  discoveredLessons: lessonStats.discoveredLessons,
+  lessonDocuments: lessonStats.generated,
+  failures: manifest.failures.length,
+};
+saveManifest();
 process.stdout.write(
-  'Agent review library: ' + manifest.generated.length + ' documents, ' +
+  'Lesson reference library: ' + lessonStats.generated + ' documents from ' +
+  lessonStats.discoveredLessons + ' lessons; ' + lessonStats.failures + ' failed\n',
+);
+process.stdout.write(
+  'Agent review library: ' + manifest.generated.length + ' documents (Skills + Lessons), ' +
   manifest.failures.length + ' failed, ' + textbooks.length + ' textbooks, ' +
   languages.length + ' locales; source ' + manifest.sourceCommit + '\n',
 );

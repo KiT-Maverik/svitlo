@@ -33,6 +33,7 @@ export const testRecognizeSquare_Skill_Data = buildSkillConfig({
     be: '[TEST be] Recognize a square',
     ka: '[TEST ka] Recognize a square',
     kk: '[TEST kk] Recognize a square',
+    qm: '[TEST qm] Recognize a square',
   },
   description: {
     methodological:
@@ -66,6 +67,7 @@ export const testRecognizeSquare_Skill_Data = buildSkillConfig({
       be: '[TEST be] Recognize a square in a simple visual example.',
       ka: '[TEST ka] Recognize a square in a simple visual example.',
       kk: '[TEST kk] Recognize a square in a simple visual example.',
+      qm: '[TEST qm] Recognize a square in a simple visual example.',
     },
   },
 });

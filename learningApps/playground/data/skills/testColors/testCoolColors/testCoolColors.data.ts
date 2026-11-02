@@ -34,6 +34,7 @@ export const testCoolColors_SkillGroup_Data = buildSkillGroupConfig({
     be: '[TEST be] Cool colors',
     ka: '[TEST ka] Cool colors',
     kk: '[TEST kk] Cool colors',
+    qm: '[TEST qm] Cool colors',
   },
   skills: {
     testRecognizeBlue: testRecognizeBlue_Skill_Data,
