@@ -65,7 +65,7 @@ export function generateLessonReviewArtifacts({ root, output, languages, manifes
   for (const lesson of lessons) {
     for (const locale of languages) {
       const name = `${lesson.textbook}/${lesson.relative}/${locale}`;
-      const relative = path.join('lessons', lesson.textbook, lesson.group, lesson.slug, `${locale}.md`);
+      const relative = path.join('lessons', lesson.textbook, lesson.relative, `${locale}.md`);
       const destination = path.join(output, relative);
       const generated = run(process.execPath, [
         generator, '--package', lesson.package,

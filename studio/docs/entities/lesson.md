@@ -13,13 +13,13 @@ A **Lesson** independently teaches **one or more approved Skills**. It must make
 
 ## EDITORIAL ARTIFACTS AND IMPLEMENTATION
 
-Lesson files live under `<PackageRoot>/data/lessons/<bucketNumber>/<englishCamelCaseSlug>/`. The Lesson folder is stable once created; buckets have at most 100 Lesson directories each, without automatic relocation or compaction.
+Lesson files live under `<PackageRoot>/data/lessons/<last-hex-digit>/<uuid>/`. The [shared UUID addressing rule](../architecture/entity-uuid-addressing.md) determines this path from the permanent Lesson ID. Keep the human-readable camelCase slug in Lesson metadata, not in the directory name. Existing folders do not move when a slug changes.
 
 - `methodologist-brief.md`: approved _what/why/for whom_, prerequisite and Skill scope; an editorial-only source **not included in runtime configuration or client bundles**. Its `Target Skills` contains one direct relative Markdown link per Skill **to the canonical Skill `*.data.ts` path under `data/skills/`**, with the full source filename (including extension) as the link label. New Briefs **target `<PackageRoot>/data/skills/`** for Skill `*.data.ts` references. Validate every link to an existing source file. If that package has not migrated, report the gap as a blocker rather than writing broken links or pointing to `src/`.
 - `content.md`: Screenwriter-owned _how to teach_, ordered Section/block plan, learner-facing content and interaction specifications; a **separate editorial document**, not the runtime config.
 - `scenes/`: separate Scene specifications **only when needed**, later consumed by the Scene implementation workflow.
 - Typed `*.data.ts` configuration and published resources are owned by implementation/build workflows, not by either editorial document.
 
-**Observed contract:** [`Lesson_Config`](../../../shared/contracts/src/types/content/lesson.types.ts) identifies a Lesson with `id`, `slug`, `title`, `requireQuiz` and ordered `sections.content` IDs plus section navigation settings. The contract is **not a complete editorial Lesson definition**; code presence does not establish editorial approval. Do not infer that the folder slug is the runtime ID. Read the current renderer and catalog types before implementation.
+**Observed contract:** [`Lesson<'data'>`](../../../shared/contracts/src/types/content/lesson.types.ts) identifies a Lesson with `id`, `slug`, `title`, `parameters` and ordered `sections`; the bucket is derived by Engine and is not authored. The contract is **not a complete editorial Lesson definition**; code presence does not establish editorial approval. Do not infer that the folder slug is the runtime ID. Read the current renderer and catalog types before implementation.
 
 Related: [Lesson Content](./lesson-content.md), [Section](./section.md), [Program](./program.md), [Skill](./skill.md).
