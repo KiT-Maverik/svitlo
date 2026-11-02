@@ -6,9 +6,10 @@ import { build } from 'esbuild';
 import { DEFAULT_SUPPORTED_LANGUAGES } from '../../../types/languages';
 import type { LanguageCode } from '../../../types/languages';
 import { localizeLessonValue } from './localizeLessonData.utils';
+import { resolveEntityPath } from '../../entityPath/resolveEntityPath.utils';
 
 type LessonData = {
-  group: string;
+  id: string;
   slug: string;
   parameters: { languages: readonly LanguageCode[] };
   flashcards: unknown[];
@@ -20,17 +21,19 @@ type LessonData = {
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
 
-function assertLesson(value: unknown, group: string, slug: string): asserts value is LessonData {
-  if (!isRecord(value) || value.group !== group || value.slug !== slug) {
-    throw new Error(`Lesson ${group}/${slug} must declare group ${group} and slug ${slug}`);
+function assertLesson(value: unknown): asserts value is LessonData {
+  if (!isRecord(value) || typeof value.id !== 'string' || typeof value.slug !== 'string' ||
+      !/^[a-z][A-Za-z0-9]*$/.test(value.slug)) {
+    throw new Error('Lesson must declare a canonical UUID id and camelCase slug');
   }
+  const relativePath = resolveEntityPath(value.id);
   const parameters = value.parameters;
   if (!isRecord(parameters) || !Array.isArray(parameters.languages) || parameters.languages.length === 0 ||
       !parameters.languages.every(code => typeof code === 'string')) {
-    throw new Error(`Lesson ${group}/${slug} has no valid parameters.languages`);
+    throw new Error(`Lesson ${relativePath} has no valid parameters.languages`);
   }
   if (!Array.isArray(value.flashcards) || !isRecord(value.questions) || !isRecord(value.sections)) {
-    throw new Error(`Lesson ${group}/${slug} is missing flashcards, questions, or sections`);
+    throw new Error(`Lesson ${relativePath} is missing flashcards, questions, or sections`);
   }
 }
 
@@ -60,7 +63,7 @@ export async function loadLessonData(entry: string): Promise<unknown> {
       }],
     });
     const exports = require(output) as Record<string, unknown>;
-    const entries = Object.values(exports).filter(value => isRecord(value) && 'group' in value && 'slug' in value);
+    const entries = Object.values(exports).filter(value => isRecord(value) && 'id' in value && 'slug' in value);
     if (entries.length !== 1) throw new Error(`Expected one exported lesson in ${entry}; found ${entries.length}`);
     return entries[0];
   } finally {
@@ -80,12 +83,13 @@ function compactQuizQuestions(value: unknown): unknown {
 }
 
 /** Render three independently fetchable collections for every language of one lesson. */
-export function renderLessonFiles(lesson: unknown, group: string, slug: string): Map<string, string> {
-  assertLesson(lesson, group, slug);
+export function renderLessonFiles(lesson: unknown): Map<string, string> {
+  assertLesson(lesson);
+  const relativePath = resolveEntityPath(lesson.id);
   const supported = new Set(DEFAULT_SUPPORTED_LANGUAGES.map(item => item.language));
   const languages = lesson.parameters.languages;
   if (new Set(languages).size !== languages.length || languages.some(code => !supported.has(code))) {
-    throw new Error(`Lesson ${group}/${slug} has duplicate or unsupported languages`);
+    throw new Error(`Lesson ${relativePath} has duplicate or unsupported languages`);
   }
 
   const { flashcards, questions, sections, ...config } = lesson;
@@ -98,26 +102,34 @@ export function renderLessonFiles(lesson: unknown, group: string, slug: string):
     };
     for (const [kind, source] of Object.entries(collections)) {
       const { value, sources } = localizeLessonValue(source, language, languages);
-      files.set(`${group}/${slug}/${kind}/${language}.json`, JSON.stringify({ data: value, localeSources: sources }) + '\n');
+      files.set(`${relativePath}/${kind}/${language}.json`, JSON.stringify({ data: value, localeSources: sources }) + '\n');
     }
   }
   return files;
 }
 
-/** Discover lessons by group and slug directory. Other files do not become lessons. */
+/** Discover authored lessons by UUID path; editorial-only directories are not generated. */
 export async function renderTextbookLessonFiles(packageDirectory: string): Promise<Map<string, string>> {
-  const lessonsRoot = path.join(packageDirectory, 'data/lessons');
+  const root = path.join(packageDirectory, 'data/lessons');
   const files = new Map<string, string>();
-  if (!fs.existsSync(lessonsRoot)) return files;
-  for (const groupEntry of fs.readdirSync(lessonsRoot, { withFileTypes: true })) {
-    if (!groupEntry.isDirectory()) continue;
-    for (const lessonEntry of fs.readdirSync(path.join(lessonsRoot, groupEntry.name), { withFileTypes: true })) {
-      if (!lessonEntry.isDirectory()) continue;
-      const entry = path.join(lessonsRoot, groupEntry.name, lessonEntry.name, `${lessonEntry.name}.data.ts`);
-      if (!fs.existsSync(entry)) continue;
-      const lesson = await loadLessonData(entry);
-      for (const [name, content] of renderLessonFiles(lesson, groupEntry.name, lessonEntry.name)) {
-        files.set(name, content);
+  if (!fs.existsSync(root)) return files;
+  for (const bucket of fs.readdirSync(root, { withFileTypes: true })) {
+    if (!bucket.isDirectory() || !/^[0-9a-f]$/.test(bucket.name)) continue;
+    const dir = path.join(root, bucket.name);
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (!entry.isDirectory()) continue;
+      const relative = resolveEntityPath(entry.name);
+      if (relative !== `${bucket.name}/${entry.name}`) throw new Error(`Lesson path mismatch: ${bucket.name}/${entry.name}`);
+      const lessonDir = path.join(dir, entry.name);
+      const candidates = fs.readdirSync(lessonDir).filter(name => name.endsWith('.data.ts'));
+      if (!candidates.length) continue; // Editorial draft without authored TS.
+      if (candidates.length !== 1) throw new Error(`Ambiguous Lesson files: ${lessonDir}`);
+      const lesson = await loadLessonData(path.join(lessonDir, candidates[0]));
+      assertLesson(lesson);
+      if (lesson.id.toLowerCase() !== entry.name) throw new Error(`Lesson UUID/path mismatch: ${lessonDir}`);
+      for (const [key, value] of renderLessonFiles(lesson)) {
+        if (files.has(key)) throw new Error(`Duplicate Lesson publication: ${key}`);
+        files.set(key, value);
       }
     }
   }

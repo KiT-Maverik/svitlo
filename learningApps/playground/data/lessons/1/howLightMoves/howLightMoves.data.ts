@@ -10,7 +10,6 @@ import { theoryData } from './sections/theory/theory.data';
 
 export const howLightMovesData = defineLessonData({
   id: 'd3048d21-8690-5255-b62c-984c69ac272c',
-  group: '1',
   slug: 'howLightMoves',
   title: howLightMoves_Locale.name,
   flashcards: howLightMovesFlashcards,
