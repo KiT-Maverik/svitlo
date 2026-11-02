@@ -47,7 +47,7 @@ export const recognizeBalancedForces_Skill_Data = buildSkillConfig({
       pt: "Reconheça que forças equilibradas não causam aceleração, mesmo em um objeto em movimento.",
       ur: "سمجھیں کہ متوازن قوتیں تعجیل پیدا نہیں کرتیں، چاہے جسم حرکت کر رہا ہو۔",
       id: "Pahami bahwa gaya seimbang tidak menyebabkan percepatan, meskipun benda sedang bergerak.",
-      de: "Erkenne, dass sich ausgleichende Kräfte keine Beschleunigung verursachen, auch wenn ein Körper sich bewegt.",
+      de: "Erkenne, dass ausgeglichene Kräfte keine Beschleunigung verursachen, selbst wenn sich ein Körper bewegt.",
       ja: "動いている物体でも力がつり合えば加速度が生じないことを理解しよう。",
       ko: "물체가 움직이고 있어도 힘이 평형이면 가속되지 않는다는 점을 알아보세요.",
       tr: "Bir cisim hareket etse bile dengelenmiş kuvvetlerin ivme oluşturmadığını anla.",
