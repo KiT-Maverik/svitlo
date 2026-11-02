@@ -5,6 +5,7 @@ export const recognizeMagneticAttraction_Skill_Data = buildSkillConfig({
   id: "05e7b8cf-78b7-4fdb-839d-1626efd3d66f",
   name: {
     en: "Recognize magnetic attraction",
+    qm: 'Magnit tartıluvını tanımaq',
     zh: '识别磁吸引',
     hi: 'चुंबकीय आकर्षण पहचानना',
     es: 'Reconocer la atracción magnética',
@@ -37,6 +38,7 @@ export const recognizeMagneticAttraction_Skill_Data = buildSkillConfig({
     methodological: "Identify a situation in which magnets move toward one another due to their interaction.",
     frontend: {
       en: "Recognize situations in which magnets attract each other.",
+      qm: 'Magnitlerniñ bir-birine tartılğanı vaziyetlerni tanı.',
       zh: '识别磁铁相互吸引的情境。',
       hi: 'ऐसी स्थितियाँ पहचानें जिनमें चुंबक एक-दूसरे को आकर्षित करते हैं।',
       es: 'Reconoce situaciones en las que los imanes se atraen.',
