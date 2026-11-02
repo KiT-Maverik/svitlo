@@ -5,6 +5,7 @@ export const recognizeCooling_Skill_Data = buildSkillConfig({
   id: "252bebbd-9141-4bbc-ac4e-06d2742074e9",
   name: {
     en: "Recognize cooling",
+    qm: 'Sovuvnı tanımaq',
     zh: '识别冷却现象',
     hi: 'ठंडा होने की प्रक्रिया पहचानना',
     es: 'Reconocer el enfriamiento',
@@ -37,6 +38,7 @@ export const recognizeCooling_Skill_Data = buildSkillConfig({
     methodological: "A decrease in temperature can accompany energy transfer to the surroundings or changes in a system's physical state.",
     frontend: {
       en: "Recognize cooling as a physical change in thermal state.",
+      qm: 'Sovuvnı cisımniñ termik alınıñ fizik deñişmesi olaraq tanı.',
       zh: '把冷却识别为物体热状态发生的物理变化。',
       hi: 'ठंडा होने को किसी वस्तु की ऊष्मीय अवस्था में भौतिक बदलाव के रूप में पहचानें।',
       es: 'Reconoce el enfriamiento como un cambio físico del estado térmico.',
