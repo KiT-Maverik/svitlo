@@ -6,7 +6,7 @@ export const explainConductionAsEnergyTransferThroughMatter_Skill_Data = buildSk
   name: {
     en: "Explain conduction as energy transfer through matter",
     zh: '解释热传导是能量在物质中的传递',
-    hi: '物質 के माध्यम से ऊष्मा चालन समझाना',
+    hi: 'पदार्थ के माध्यम से ऊष्मा चालन समझाना',
     es: 'Explicar la conducción como transferencia de energía por la materia',
     ar: 'شرح التوصيل بوصفه انتقالًا للطاقة عبر المادة',
     fr: 'Expliquer la conduction comme transfert d’énergie dans la matière',
