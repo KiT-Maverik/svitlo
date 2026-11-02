@@ -46,7 +46,7 @@ export const identifyAnElectricalPowerSource_Skill_Data = buildSkillConfig({
       fr: 'Identifie le composant qui maintient une différence de potentiel dans un circuit.',
       bn: 'বর্তনীতে বিভব পার্থক্য বজায় রাখে এমন উপাদান চিনে নাও।',
       pt: 'Identifique o componente que mantém uma diferença de potencial no circuito.',
-      ur: 'سرکٹ میں تقسیمِ پوٹینشل برقرار رکھنے والا جزو پہچانیں۔',
+      ur: 'سرکٹ میں برقی پوٹینشل کا فرق برقرار رکھنے والا جزو پہچانیں۔',
       id: 'Kenali komponen yang mempertahankan beda potensial dalam rangkaian.',
       de: 'Erkenne das Bauteil, das eine Potenzialdifferenz im Stromkreis aufrechterhält.',
       ja: '回路で電位差を保つ部品を見つけよう。',
