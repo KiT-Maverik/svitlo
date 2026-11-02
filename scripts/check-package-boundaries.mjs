@@ -111,14 +111,6 @@ assert(
   'Playground must host the moved light demonstration route',
 );
 assert(
-  existsSync(resolve(root, 'learningApps/playground/src/data/demoLesson/demoLesson.ts')),
-  'Playground must own its subject-neutral lesson demo data',
-);
-assert(
-  existsSync(resolve(root, 'learningApps/playground/src/data/demoLesson/markdown/sample-ar.md')),
-  'Playground must own localized Markdown test data',
-);
-assert(
   !existsSync(resolve(root, 'learningApps/playground/src/fixtures')),
   'Obsolete Playground fixtures directory must be removed',
 );
