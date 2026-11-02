@@ -5,6 +5,7 @@ export const explainThePropertiesOfStatesOfMatterThroughParticleMotion_Skill_Dat
   id: "ac81314a-0180-490b-8c6c-da0f0c2c8012",
   name: {
     en: "Explain the properties of states of matter through particle motion",
+    qm: 'Madde alları hususiyetlerini parçacıqlar areketinen añlatmaq',
     zh: '通过粒子运动解释物态性质',
     hi: 'कणों की गति से पदार्थ की अवस्थाओं के गुण समझाना',
     es: 'Explicar las propiedades de los estados de la materia mediante el movimiento de partículas',
@@ -37,6 +38,7 @@ export const explainThePropertiesOfStatesOfMatterThroughParticleMotion_Skill_Dat
     methodological: "Differences in the arrangement, motion, and interactions of particles explain the properties of solids, liquids, and gases.",
     frontend: {
       en: "Use particle motion and interactions to explain the properties of states of matter.",
+      qm: 'Qattı, suyuq ve gaz maddelerniñ hususiyetlerini parçacıqlarnıñ areketi ve tesirleşüvi vastasınen añlat.',
       zh: '利用粒子的运动和相互作用解释固体、液体、气体的性质。',
       hi: 'कणों की गति और अंतःक्रिया से ठोस, तरल और गैस के गुण समझाएँ।',
       es: 'Explica las propiedades de sólidos, líquidos y gases por el movimiento e interacción de partículas.',
