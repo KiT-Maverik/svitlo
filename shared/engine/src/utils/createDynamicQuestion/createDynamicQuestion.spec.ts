@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import type { TextContentBlock_AllLanguages_Config } from '../../content';
+import type { Locale_Config } from '@svitlo/contracts/content';
 import { DEFAULT_SUPPORTED_LANGUAGES } from '../../types/languages';
 import type { DynamicQuestion_Config, DynamicQuestion_Variant } from './createDynamicQuestion.types';
 import {
@@ -23,14 +23,9 @@ const variant = (amount: number, enabled: boolean): Variant => [
   { selector: 'enabled', value: enabled },
 ];
 
-const name = {
-  id: 'dynamic-question',
-  blockType: 'text' as const,
-  allLocales: true as const,
-  value: Object.fromEntries(
-    DEFAULT_SUPPORTED_LANGUAGES.map(({ language }) => [language, 'Question']),
-  ) as TextContentBlock_AllLanguages_Config,
-};
+const name: Locale_Config = Object.fromEntries(
+  DEFAULT_SUPPORTED_LANGUAGES.map(({ language }) => [language, 'Question']),
+) as Locale_Config;
 
 const createConfig = (
   buildVariants: () => Variant[] = () => [variant(1, true), variant(2, false), variant(3, true), variant(4, false)],
