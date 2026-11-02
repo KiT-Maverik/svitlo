@@ -59,7 +59,7 @@ export const forcesAndInteractions_SkillDomain_Data = buildSkillDomainConfig({
       de: "Entdecke, wie Kräfte Bewegung verändern, Körper verformen und Stabilität ermöglichen.",
       ja: "力が運動を変え、物体を変形させ、安定を保つ仕組みを学ぼう。",
       ko: "힘이 운동을 바꾸고 물체를 변형시키며 안정성을 유지하는 방법을 알아보세요.",
-      tr: "Kuvvetlerin hareketi nasıl değiştirdiğini, nesneleri nasıl şekil değiştirdiğini ve dengeyi nasıl koruduğunu keşfet.",
+      tr: "Kuvvetlerin hareketi nasıl değiştirdiğini, nesnelerin şeklini nasıl değiştirdiğini ve dengeyi nasıl koruduğunu keşfet.",
       vi: "Khám phá cách lực làm thay đổi chuyển động, biến dạng vật và duy trì sự ổn định.",
       ta: "விசைகள் இயக்கத்தை மாற்றவும், பொருள்களை உருமாற்றவும், நிலைத்தன்மையைப் பேணவும் எவ்வாறு செயல்படுகின்றன என்பதை அறிந்துகொள்.",
       te: "బలాలు కదలికను ఎలా మారుస్తాయి, వస్తువులను ఎలా వైకల్యం చేస్తాయి, స్థిరత్వాన్ని ఎలా కాపాడతాయి తెలుసుకోండి.",
