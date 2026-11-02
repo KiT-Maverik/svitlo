@@ -1,7 +1,7 @@
 # Regrouping Through a Zero Place — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: regroupingAcrossZero
+Slug: regroupingAcrossZero
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

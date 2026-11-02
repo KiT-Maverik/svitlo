@@ -1,7 +1,7 @@
 # What Do We Know? What Must We Find? — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: findWhatWeKnowAndNeed
+Slug: findWhatWeKnowAndNeed
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

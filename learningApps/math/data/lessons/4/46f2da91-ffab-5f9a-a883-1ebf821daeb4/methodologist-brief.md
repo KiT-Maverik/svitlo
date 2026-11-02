@@ -1,7 +1,7 @@
 # Read the Value: Euro Coins and Banknotes — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: recognizeEuroCoinsAndNotes
+Slug: recognizeEuroCoinsAndNotes
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

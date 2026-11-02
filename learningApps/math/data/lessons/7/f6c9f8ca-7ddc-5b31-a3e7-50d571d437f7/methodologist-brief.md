@@ -1,7 +1,7 @@
 # Show the Story Before You Solve — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: buildOneStepProblemModel
+Slug: buildOneStepProblemModel
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

@@ -1,7 +1,7 @@
 # Certain or Impossible? — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: certainAndImpossible
+Slug: certainAndImpossible
 Methodologist status: **Draft — pending editorial approval**
 Code: [Not implemented](#)
 Program dependence: None

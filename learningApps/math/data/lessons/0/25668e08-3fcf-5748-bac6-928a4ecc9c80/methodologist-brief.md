@@ -1,7 +1,7 @@
 # Swap the Addends, Keep the Sum — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: additionCommutative
+Slug: additionCommutative
 Methodologist status: Draft
 Primary audience: **Grade 2**
 Code: Not implemented

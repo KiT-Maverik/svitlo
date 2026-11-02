@@ -1,7 +1,7 @@
 # Ten Tens Become a Hundred — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: tenTensMakeAWholeHundred
+Slug: tenTensMakeAWholeHundred
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

@@ -1,7 +1,7 @@
 # Which Is Longer? Compare Fairly — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: comparingLengths
+Slug: comparingLengths
 Methodologist status: Draft — not approved
 Code: [Not implemented](#)
 Program dependence: None

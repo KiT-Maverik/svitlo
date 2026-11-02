@@ -1,7 +1,7 @@
 # Check Division with Multiplication — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: divisionMultiplicationInverse
+Slug: divisionMultiplicationInverse
 Methodologist status: Draft
 Primary audience: **Grade 3**, within grades 1–3
 Code: Not implemented

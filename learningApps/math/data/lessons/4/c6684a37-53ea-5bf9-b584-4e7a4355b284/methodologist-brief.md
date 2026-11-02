@@ -1,7 +1,7 @@
 # Finding an Unknown Dividend in Exact Division — Methodologist Brief
 
 Date: 2026-10-30
-Lesson slug: findingUnknownDividend
+Slug: findingUnknownDividend
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

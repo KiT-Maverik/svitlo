@@ -1,7 +1,7 @@
 # Finding an Unknown Minuend — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: unknownMinuend
+Slug: unknownMinuend
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

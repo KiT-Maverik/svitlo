@@ -1,7 +1,7 @@
 # How Many Are There? — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: howManyInTheSet
+Slug: howManyInTheSet
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

@@ -1,7 +1,7 @@
 # Different Cash, Same Total? Euro Amounts — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: composeAndCompareEuroAmounts
+Slug: composeAndCompareEuroAmounts
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

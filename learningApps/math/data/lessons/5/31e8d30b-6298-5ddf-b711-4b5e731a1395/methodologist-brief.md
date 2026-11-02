@@ -1,7 +1,7 @@
 # Equal Fractions, Different Pieces — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: equalFractionsDifferentPieces
+Slug: equalFractionsDifferentPieces
 Methodologist status: **Draft — pending explicit approval**
 Code: [Not implemented](#)
 Program dependence: None

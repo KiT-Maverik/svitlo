@@ -1,7 +1,7 @@
 # Equal Parts of One Whole — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: equalPartsOfAWhole
+Slug: equalPartsOfAWhole
 Methodologist status: **Draft — pending editorial approval**
 Code: [Not implemented](#)
 Program dependence: None

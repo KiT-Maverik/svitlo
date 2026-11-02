@@ -1,7 +1,7 @@
 # Finding a Total with Equal Groups — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: equalGroupsModel
+Slug: equalGroupsModel
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

@@ -1,7 +1,7 @@
 # Reading Whole Hours — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: readingWholeHours
+Slug: readingWholeHours
 Methodologist status: **Draft — pending editorial approval**
 Code: [Not implemented](#)
 Program dependence: None

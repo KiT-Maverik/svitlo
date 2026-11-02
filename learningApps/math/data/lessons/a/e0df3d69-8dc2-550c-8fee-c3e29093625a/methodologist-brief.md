@@ -1,7 +1,7 @@
 # Putting Numbers in Order to Twenty — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: orderNumbersWithinTwenty
+Slug: orderNumbersWithinTwenty
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

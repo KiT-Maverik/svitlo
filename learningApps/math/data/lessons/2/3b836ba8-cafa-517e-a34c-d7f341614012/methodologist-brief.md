@@ -1,7 +1,7 @@
 # Two Ways Addition Works — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: additionMeaning
+Slug: additionMeaning
 Methodologist status: Draft
 Primary audience: **Grade 1** (selected by topic difficulty and prerequisites)
 Program dependence: None

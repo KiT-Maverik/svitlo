@@ -1,7 +1,7 @@
 # Plan Two Steps Before You Calculate — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: planTwoStepSolution
+Slug: planTwoStepSolution
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

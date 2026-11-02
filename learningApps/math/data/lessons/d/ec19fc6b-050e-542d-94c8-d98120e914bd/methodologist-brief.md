@@ -1,7 +1,7 @@
 # Points, Lines and Segments — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: pointsLinesAndSegments
+Slug: pointsLinesAndSegments
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

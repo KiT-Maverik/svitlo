@@ -1,7 +1,7 @@
 # Make Both Sides Equal — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: completeMissingEquality
+Slug: completeMissingEquality
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

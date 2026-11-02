@@ -1,7 +1,7 @@
 # Adding Nothing Changes Nothing — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: additionZero
+Slug: additionZero
 Methodologist status: Draft
 Primary audience: **Grade 1** (selected by topic difficulty and prerequisites)
 Program dependence: None

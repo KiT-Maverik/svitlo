@@ -1,7 +1,7 @@
 # Make Groups of a Given Size — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: divisionEqualGrouping
+Slug: divisionEqualGrouping
 Methodologist status: Draft
 Primary audience: **Grade 2** within grades 1–3
 Code: Not implemented

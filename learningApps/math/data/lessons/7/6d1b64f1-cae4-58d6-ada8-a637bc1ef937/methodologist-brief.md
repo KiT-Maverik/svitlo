@@ -1,7 +1,7 @@
 # Numbers Across the Tens: Read and Count to 100 — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: readAndCountToOneHundred
+Slug: readAndCountToOneHundred
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

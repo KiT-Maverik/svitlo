@@ -1,7 +1,7 @@
 # How Much Flat Space? Count Equal Squares — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: coveringShapesWithUnitSquares
+Slug: coveringShapesWithUnitSquares
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

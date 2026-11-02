@@ -1,7 +1,7 @@
 # Finding an Unknown Addend — Methodologist Brief
 
 Date: 2026-10-30
-Lesson slug: findingUnknownAddend
+Slug: findingUnknownAddend
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

@@ -1,7 +1,7 @@
 # The Equals Sign Means Same Value — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: equalsMeansSameValue
+Slug: equalsMeansSameValue
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

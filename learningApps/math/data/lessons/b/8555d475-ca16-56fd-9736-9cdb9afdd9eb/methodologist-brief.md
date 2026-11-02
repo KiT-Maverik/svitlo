@@ -1,7 +1,7 @@
 # Morning, Afternoon, Evening, Night — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: partsOfTheDayInOrder
+Slug: partsOfTheDayInOrder
 Methodologist status: **Draft — pending explicit approval**
 Code: [Not implemented](#)
 Program dependence: None

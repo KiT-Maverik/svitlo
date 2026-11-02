@@ -1,7 +1,7 @@
 # Swapping Factors Without Changing the Total — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: multiplicationCommutative
+Slug: multiplicationCommutative
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

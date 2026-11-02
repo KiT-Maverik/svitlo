@@ -1,7 +1,7 @@
 # Which Collection Has More? — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: compareCollectionsByCounting
+Slug: compareCollectionsByCounting
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

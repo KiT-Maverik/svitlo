@@ -1,7 +1,7 @@
 # Measure Straight Segments in Centimeters — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: measuringSegmentsInCentimeters
+Slug: measuringSegmentsInCentimeters
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

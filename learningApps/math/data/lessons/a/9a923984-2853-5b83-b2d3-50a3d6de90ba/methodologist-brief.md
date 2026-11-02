@@ -1,7 +1,7 @@
 # Finding and Continuing Number Patterns — Methodologist Brief
 
 Date: 2026-10-30
-Lesson slug: numberPatterns
+Slug: numberPatterns
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

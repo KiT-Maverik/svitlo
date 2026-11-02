@@ -1,7 +1,7 @@
 # Compare Tens First: Ordering Numbers to 100 — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: compareAndOrderTwoDigitNumbers
+Slug: compareAndOrderTwoDigitNumbers
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

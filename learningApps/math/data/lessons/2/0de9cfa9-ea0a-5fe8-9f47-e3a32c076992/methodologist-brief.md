@@ -1,7 +1,7 @@
 # Three Addends, Different Groups — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: additionAssociative
+Slug: additionAssociative
 Methodologist status: Draft
 Primary audience: **Grade 2** within grades 1–3
 Code: Not implemented

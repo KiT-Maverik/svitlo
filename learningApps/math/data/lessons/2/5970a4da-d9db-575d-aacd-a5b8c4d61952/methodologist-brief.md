@@ -1,7 +1,7 @@
 # What Does Subtraction Tell Us? — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: subtractionMeaning
+Slug: subtractionMeaning
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

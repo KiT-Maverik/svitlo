@@ -1,7 +1,7 @@
 # Check an Answer by Working Backward — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: verifyWithInverseOperation
+Slug: verifyWithInverseOperation
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

@@ -1,7 +1,7 @@
 # One Relationship, Four Ways to Show It — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: sameMathDifferentModels
+Slug: sameMathDifferentModels
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

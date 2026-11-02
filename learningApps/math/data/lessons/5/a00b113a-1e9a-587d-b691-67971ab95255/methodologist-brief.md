@@ -1,7 +1,7 @@
 # Read the Mass on a Graduated Scale — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: readingMassScale
+Slug: readingMassScale
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

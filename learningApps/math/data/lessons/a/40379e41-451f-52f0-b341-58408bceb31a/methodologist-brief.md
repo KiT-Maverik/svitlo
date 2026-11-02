@@ -1,7 +1,7 @@
 # Which Outcome Is More Likely? — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: whichOutcomeIsMoreLikely
+Slug: whichOutcomeIsMoreLikely
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

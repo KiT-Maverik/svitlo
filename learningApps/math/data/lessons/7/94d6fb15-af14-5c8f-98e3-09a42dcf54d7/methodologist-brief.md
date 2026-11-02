@@ -1,7 +1,7 @@
 # Finding an Unknown Factor — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: unknownFactor
+Slug: unknownFactor
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

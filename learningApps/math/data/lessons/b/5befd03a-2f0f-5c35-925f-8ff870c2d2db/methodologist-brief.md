@@ -1,7 +1,7 @@
 # Pictures That Count — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: buildingAndReadingPictographs
+Slug: buildingAndReadingPictographs
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

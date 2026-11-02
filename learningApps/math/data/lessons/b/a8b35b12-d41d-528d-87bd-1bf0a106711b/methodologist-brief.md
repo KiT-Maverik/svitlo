@@ -1,7 +1,7 @@
 # When Ones Make a New Ten — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: additionCrossingTen
+Slug: additionCrossingTen
 Methodologist status: Draft
 Primary audience: **Grade 2** within grades 1–3
 Code: Not implemented

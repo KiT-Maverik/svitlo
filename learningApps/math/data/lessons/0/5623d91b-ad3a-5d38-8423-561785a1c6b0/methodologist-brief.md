@@ -1,7 +1,7 @@
 # Where Is It? Relative Position — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: relativePositions
+Slug: relativePositions
 Methodologist status: Draft — not approved
 Code: [Not implemented](#)
 Program dependence: None

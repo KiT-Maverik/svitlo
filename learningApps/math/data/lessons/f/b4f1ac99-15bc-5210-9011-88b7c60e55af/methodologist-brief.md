@@ -1,7 +1,7 @@
 # One Group or One in Each? — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: divisionByOneAndSelf
+Slug: divisionByOneAndSelf
 Methodologist status: Draft
 Primary audience: Grade 2
 Code: Not implemented

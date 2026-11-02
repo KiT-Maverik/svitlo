@@ -1,7 +1,7 @@
 # Three at a Time: Division Facts by Three — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: divisionByThree
+Slug: divisionByThree
 Methodologist status: Draft
 Primary audience: Grade 3
 Code: Not implemented

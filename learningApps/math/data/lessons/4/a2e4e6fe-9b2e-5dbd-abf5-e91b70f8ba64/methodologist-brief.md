@@ -1,7 +1,7 @@
 # Two at a Time: Counting Pairs — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: countByTwosWithPairs
+Slug: countByTwosWithPairs
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

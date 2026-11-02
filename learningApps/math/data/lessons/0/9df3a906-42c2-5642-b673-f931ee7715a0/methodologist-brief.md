@@ -1,7 +1,7 @@
 # Same Spinner, Different Results — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: randomExperimentsVary
+Slug: randomExperimentsVary
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

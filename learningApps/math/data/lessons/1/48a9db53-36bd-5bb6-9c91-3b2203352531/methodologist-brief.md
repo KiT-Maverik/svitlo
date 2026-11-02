@@ -1,7 +1,7 @@
 # Half Past, Quarter Past, Quarter To — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: halfAndQuarterHours
+Slug: halfAndQuarterHours
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

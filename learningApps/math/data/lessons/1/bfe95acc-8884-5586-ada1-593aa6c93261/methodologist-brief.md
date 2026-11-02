@@ -1,7 +1,7 @@
 # Say It With a Sign: Less, Greater, Equal — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: compareNumbersWithSymbols
+Slug: compareNumbersWithSymbols
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

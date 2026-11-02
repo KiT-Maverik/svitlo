@@ -1,7 +1,7 @@
 # Read and Write a Number Expression — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: readAndWriteExpressions
+Slug: readAndWriteExpressions
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

@@ -1,7 +1,7 @@
 # Follow and Explain a Route — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: followingRouteDirections
+Slug: followingRouteDirections
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

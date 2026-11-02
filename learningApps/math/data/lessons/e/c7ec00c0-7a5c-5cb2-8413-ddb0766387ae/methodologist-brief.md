@@ -1,7 +1,7 @@
 # Recognize Shapes by Properties — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: recognizingPlaneFigures
+Slug: recognizingPlaneFigures
 Methodologist status: Draft — not approved
 Code: [Not implemented](#)
 Program dependence: None

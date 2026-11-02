@@ -1,7 +1,7 @@
 # Recognize Solids by Their Surfaces — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: identifyingSolidFigures
+Slug: identifyingSolidFigures
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

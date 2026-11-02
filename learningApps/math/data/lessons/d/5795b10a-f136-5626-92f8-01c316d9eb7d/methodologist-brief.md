@@ -1,7 +1,7 @@
 # Multiplication as Equal Groups and Repeated Addition — Methodologist Brief
 
 Date: 2026-10-30
-Lesson slug: multiplicationEqualGroups
+Slug: multiplicationEqualGroups
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

@@ -1,7 +1,7 @@
 # Make Ten First — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: additionMakeTen
+Slug: additionMakeTen
 Methodologist status: Draft
 Primary audience: **Grade 2**
 Code: Not implemented

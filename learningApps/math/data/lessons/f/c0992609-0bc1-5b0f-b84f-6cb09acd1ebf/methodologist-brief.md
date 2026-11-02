@@ -1,7 +1,7 @@
 # How Many Units Long? — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: measuringWithEqualUnits
+Slug: measuringWithEqualUnits
 Methodologist status: Draft — not approved
 Code: [Not implemented](#)
 Program dependence: None

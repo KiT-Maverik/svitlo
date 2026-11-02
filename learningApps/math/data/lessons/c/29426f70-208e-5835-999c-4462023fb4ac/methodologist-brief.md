@@ -1,7 +1,7 @@
 # Regrouping Ones and Tens Into Hundreds — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: additionRegroupingAcrossPlaces
+Slug: additionRegroupingAcrossPlaces
 Methodologist status: Draft
 Primary audience: **Grade 3** within grades 1–3
 Code: Not implemented

@@ -1,7 +1,7 @@
 # Read What a Division Expression Says — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: divisionReadingExpressions
+Slug: divisionReadingExpressions
 Methodologist status: Draft
 Primary audience: **Grade 3**, within grades 1–3
 Code: Not implemented

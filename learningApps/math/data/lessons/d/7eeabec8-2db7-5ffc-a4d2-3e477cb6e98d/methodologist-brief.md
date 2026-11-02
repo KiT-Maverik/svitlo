@@ -1,7 +1,7 @@
 # Does the Answer Make Sense? — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: doesTheAnswerMakeSense
+Slug: doesTheAnswerMakeSense
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

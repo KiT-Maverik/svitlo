@@ -1,7 +1,7 @@
 # Subtraction Across Ten and with Place-Value Columns — Methodologist Brief
 
 Date: 2026-10-30
-Lesson slug: subtractionAcrossTenAndColumns
+Slug: subtractionAcrossTenAndColumns
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

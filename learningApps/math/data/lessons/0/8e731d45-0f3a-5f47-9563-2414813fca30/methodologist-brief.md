@@ -1,7 +1,7 @@
 # One Liter at a Time — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: measuringCapacityInLiters
+Slug: measuringCapacityInLiters
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

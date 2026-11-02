@@ -1,7 +1,7 @@
 # Find Zero and Read a Ruler — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: rulerZeroAndMarks
+Slug: rulerZeroAndMarks
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

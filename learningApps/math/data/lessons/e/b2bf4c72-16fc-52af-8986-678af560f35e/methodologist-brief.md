@@ -1,7 +1,7 @@
 # Add Tens and Ones in Columns — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: additionInColumns
+Slug: additionInColumns
 Methodologist status: Draft
 Primary audience: **Grade 2** within grades 1–3
 Code: Not implemented

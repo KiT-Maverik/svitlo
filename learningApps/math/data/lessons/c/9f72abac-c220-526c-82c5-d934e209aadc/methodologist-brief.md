@@ -1,7 +1,7 @@
 # Find the Story in a Data Table — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: readingAndComparingTables
+Slug: readingAndComparingTables
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

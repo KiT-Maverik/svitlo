@@ -1,7 +1,7 @@
 # Zero as Dividend Is Not Zero as Divisor — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: divisionWithZero
+Slug: divisionWithZero
 Methodologist status: Draft
 Primary audience: Grade 3
 Code: Not implemented

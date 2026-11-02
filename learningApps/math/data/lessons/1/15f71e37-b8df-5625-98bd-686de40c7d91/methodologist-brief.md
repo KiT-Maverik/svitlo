@@ -1,7 +1,7 @@
 # Half and Double: Divide by Two — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: divisionHalvesAndDoubles
+Slug: divisionHalvesAndDoubles
 Methodologist status: Draft
 Primary audience: Grade 2
 Code: Not implemented

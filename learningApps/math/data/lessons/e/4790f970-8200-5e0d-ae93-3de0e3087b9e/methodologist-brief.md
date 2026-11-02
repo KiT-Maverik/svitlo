@@ -1,7 +1,7 @@
 # One Example Is Not a Rule — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: oneExampleIsNotProof
+Slug: oneExampleIsNotProof
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None

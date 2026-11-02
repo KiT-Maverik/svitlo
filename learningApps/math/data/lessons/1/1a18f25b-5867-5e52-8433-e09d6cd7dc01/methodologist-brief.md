@@ -1,7 +1,7 @@
 # Does Every Object Have a Partner? — Methodologist Brief
 
 Date: 2026-10-31
-Lesson slug: evenOrOddByPairing
+Slug: evenOrOddByPairing
 Methodologist status: Draft
 Code: [Not implemented](#)
 Program dependence: None
