@@ -7,6 +7,7 @@ export const phaseTransitions_SkillGroup_Data = buildSkillGroupConfig({
   id: "6e5335c6-28af-4958-87e1-b07daac7e529",
   name: {
     en: "Phase Transitions",
+    qm: 'Faza keçişleri',
     zh: '物态变化',
     hi: 'अवस्था परिवर्तन',
     es: 'Cambios de estado',
@@ -45,6 +46,7 @@ export const phaseTransitions_SkillGroup_Data = buildSkillGroupConfig({
     methodological: "Melting, freezing, evaporation, and condensation link thermal conditions to changes of state of the same substance.",
     frontend: {
       en: "Discover how heating and cooling can change matter's physical state.",
+      qm: 'Qızdırıluv ve sovutuv maddeniñ qattı, suyuq ya da gaz alını nasıl deñiştirgenini ögren.',
       zh: '了解加热和冷却如何改变物质的物理状态。',
       hi: 'जानें कि गर्म और ठंडा करने से पदार्थ की भौतिक अवस्था कैसे बदल सकती है।',
       es: 'Descubre cómo calentar y enfriar puede cambiar el estado físico de la materia.',
