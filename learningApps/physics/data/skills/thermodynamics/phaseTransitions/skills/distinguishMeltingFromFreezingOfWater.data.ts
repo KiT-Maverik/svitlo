@@ -5,6 +5,7 @@ export const distinguishMeltingFromFreezingOfWater_Skill_Data = buildSkillConfig
   id: "15252d24-cf6d-4a29-8bd0-be4ff3224dfa",
   name: {
     en: "Distinguish melting from freezing of water",
+    qm: 'Buznıñ irimesini suvnıñ tonmasından ayırmaq',
     zh: '区分冰的融化与水的凝固',
     hi: 'बर्फ के पिघलने और पानी के जमने में अंतर करना',
     es: 'Distinguir el derretimiento del hielo de la congelación del agua',
@@ -37,6 +38,7 @@ export const distinguishMeltingFromFreezingOfWater_Skill_Data = buildSkillConfig
     methodological: "Melting changes a substance from solid to liquid, while freezing is the reverse; both are phase transitions of the same substance.",
     frontend: {
       en: "Distinguish ice melting from liquid water freezing.",
+      qm: 'Buznıñ suğa çevirilmesi ile suvnıñ buzğa çevirilmesini ayır.',
       zh: '区分冰融化成水和液态水结成冰。',
       hi: 'बर्फ के पिघलने और तरल पानी के जमने में अंतर करें।',
       es: 'Distingue cuando el hielo se derrite de cuando el agua líquida se congela.',
