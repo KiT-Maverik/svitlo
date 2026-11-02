@@ -1,0 +1,9 @@
+export { condensation_Skill_Data } from './condensation.data';
+export { deposition_Skill_Data } from './deposition.data';
+export { freezing_Skill_Data } from './freezing.data';
+export { gases_Skill_Data } from './gases.data';
+export { liquids_Skill_Data } from './liquids.data';
+export { melting_Skill_Data } from './melting.data';
+export { solids_Skill_Data } from './solids.data';
+export { sublimation_Skill_Data } from './sublimation.data';
+export { vaporization_Skill_Data } from './vaporization.data';

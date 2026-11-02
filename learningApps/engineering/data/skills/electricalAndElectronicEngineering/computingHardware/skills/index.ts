@@ -1,0 +1,9 @@
+export { computerHardwareBuses_Skill_Data } from './computerHardwareBuses.data';
+export { computerPowerSupplyArchitecture_Skill_Data } from './computerPowerSupplyArchitecture.data';
+export { computerThermalManagement_Skill_Data } from './computerThermalManagement.data';
+export { displayHardware_Skill_Data } from './displayHardware.data';
+export { inputDeviceHardware_Skill_Data } from './inputDeviceHardware.data';
+export { mainMemoryHardware_Skill_Data } from './mainMemoryHardware.data';
+export { persistentDataStorage_Skill_Data } from './persistentDataStorage.data';
+export { printedCircuitBoardInterconnects_Skill_Data } from './printedCircuitBoardInterconnects.data';
+export { processorHardware_Skill_Data } from './processorHardware.data';

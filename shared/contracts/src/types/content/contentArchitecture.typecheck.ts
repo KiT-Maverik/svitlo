@@ -2,6 +2,7 @@ import type {
   ContentBlock,
   ContentBlock_Checkpoint,
   ContentBlock_Quiz,
+  ContentBlock_Quiz_Screen,
   ContentBlock_Reference,
   ContentBlock_Scene,
   ContentBlock_Text,
@@ -29,6 +30,14 @@ type _SceneDiscriminator = Assert<Equal<ContentBlock_Scene<'response'>['type'], 
 type _SceneUsesRegistryKey = Assert<Equal<ContentBlock_Scene<'response'>['rendererKey'], string>>;
 type _OrderedBlockReference = Assert<Equal<ContentBlock_Reference['type'], ContentBlock_Type>>;
 type _QuizReferencesQuestions = Assert<Equal<ContentBlock_Quiz<'response'>['questionSlugs'][number], string>>;
+type _QuizStartScreen = Assert<Equal<
+  NonNullable<ContentBlock_Quiz<'data'>['screen']['starting']>,
+  ContentBlock_Quiz_Screen<'data'>
+>>;
+type _QuizRetryScreen = Assert<Equal<
+  NonNullable<NonNullable<ContentBlock_Quiz<'response'>['screen']['ending']>['retry']>,
+  ContentBlock_Quiz_Screen<'response'>
+>>;
 
 type CheckpointChild = ContentBlock_Checkpoint<'response'>['items'][number]['answer'][number];
 type _NestedBlocksRemainDiscriminated = Assert<
@@ -49,6 +58,12 @@ const runtimeScene: ContentBlock_Scene<'response'> = {
   messages: { title: 'Light ray' },
 };
 
+const customQuizScreen: ContentBlock_Quiz_Screen<'response'> = {
+  content: [runtimeText],
+};
+// @ts-expect-error A custom screen requires at least one content block.
+const emptyQuizScreen: ContentBlock_Quiz_Screen<'response'> = { content: [] };
+
 // @ts-expect-error A localized runtime content block must carry its discriminator.
 const missingDiscriminator: ContentBlock_Text<'response'> = {
   id: 'text-id',
@@ -64,4 +79,4 @@ declare const quiz: ContentBlock_Quiz<'response'>;
 // @ts-expect-error Quiz question references are immutable.
 quiz.questionSlugs.push('another-question');
 
-void [runtimeText, runtimeScene, missingDiscriminator, quiz, flashcard];
+void [runtimeText, runtimeScene, customQuizScreen, emptyQuizScreen, missingDiscriminator, quiz, flashcard];

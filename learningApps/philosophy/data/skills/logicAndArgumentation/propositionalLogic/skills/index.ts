@@ -1,0 +1,9 @@
+export { classifyAPropositionUsingATruthTable_Skill_Data } from './classifyAPropositionUsingATruthTable.data';
+export { constructATruthTable_Skill_Data } from './constructATruthTable.data';
+export { distinguishAtomicFromCompoundPropositions_Skill_Data } from './distinguishAtomicFromCompoundPropositions.data';
+export { interpretLogicalBiconditional_Skill_Data } from './interpretLogicalBiconditional.data';
+export { interpretLogicalConjunction_Skill_Data } from './interpretLogicalConjunction.data';
+export { interpretLogicalDisjunction_Skill_Data } from './interpretLogicalDisjunction.data';
+export { interpretLogicalNegation_Skill_Data } from './interpretLogicalNegation.data';
+export { interpretMaterialImplication_Skill_Data } from './interpretMaterialImplication.data';
+export { testDeductiveValidityUsingATruthTable_Skill_Data } from './testDeductiveValidityUsingATruthTable.data';

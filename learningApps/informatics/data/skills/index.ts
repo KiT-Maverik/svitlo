@@ -1,0 +1,15 @@
+export { algorithms_SkillDomain_Data } from './algorithms/algorithms.data';
+export { artificialIntelligence_SkillDomain_Data } from './artificialIntelligence/artificialIntelligence.data';
+export { computationalThinking_SkillDomain_Data } from './computationalThinking/computationalThinking.data';
+export { dataStructures_SkillDomain_Data } from './dataStructures/dataStructures.data';
+export { designPatterns_SkillDomain_Data } from './designPatterns/designPatterns.data';
+export { digitalCreativityAndGames_SkillDomain_Data } from './digitalCreativityAndGames/digitalCreativityAndGames.data';
+export { digitalProductUX_SkillDomain_Data } from './digitalProductUX/digitalProductUX.data';
+export { digitalSafetyAndResponsibility_SkillDomain_Data } from './digitalSafetyAndResponsibility/digitalSafetyAndResponsibility.data';
+export { digitalSystemsAndNetworks_SkillDomain_Data } from './digitalSystemsAndNetworks/digitalSystemsAndNetworks.data';
+export { gitAndOpenSource_SkillDomain_Data } from './gitAndOpenSource/gitAndOpenSource.data';
+export { historyOfProgramming_SkillDomain_Data } from './historyOfProgramming/historyOfProgramming.data';
+export { informationAndData_SkillDomain_Data } from './informationAndData/informationAndData.data';
+export { programming_SkillDomain_Data } from './programming/programming.data';
+export { roboticsAndAutomation_SkillDomain_Data } from './roboticsAndAutomation/roboticsAndAutomation.data';
+export { softwareArchitecture_SkillDomain_Data } from './softwareArchitecture/softwareArchitecture.data';

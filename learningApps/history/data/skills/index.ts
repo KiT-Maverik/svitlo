@@ -1,0 +1,11 @@
+export { ancientAfrica_SkillDomain_Data } from './ancientAfrica/ancientAfrica.data';
+export { ancientAmericas_SkillDomain_Data } from './ancientAmericas/ancientAmericas.data';
+export { ancientEuropeBeyondMediterranean_SkillDomain_Data } from './ancientEuropeBeyondMediterranean/ancientEuropeBeyondMediterranean.data';
+export { ancientMediterranean_SkillDomain_Data } from './ancientMediterranean/ancientMediterranean.data';
+export { ancientOceania_SkillDomain_Data } from './ancientOceania/ancientOceania.data';
+export { ancientWesternAsia_SkillDomain_Data } from './ancientWesternAsia/ancientWesternAsia.data';
+export { crossRegionalHistoricalProcesses_SkillDomain_Data } from './crossRegionalHistoricalProcesses/crossRegionalHistoricalProcesses.data';
+export { eastAndCentralAsia_SkillDomain_Data } from './eastAndCentralAsia/eastAndCentralAsia.data';
+export { historicalInquiry_SkillDomain_Data } from './historicalInquiry/historicalInquiry.data';
+export { humanPrehistory_SkillDomain_Data } from './humanPrehistory/humanPrehistory.data';
+export { southAndSoutheastAsia_SkillDomain_Data } from './southAndSoutheastAsia/southAndSoutheastAsia.data';

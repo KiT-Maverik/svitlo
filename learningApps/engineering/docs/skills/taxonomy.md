@@ -22,11 +22,11 @@ Code files: 0/18 Domains · 0/61 Groups · 0/264 Skills
 
 Slug: engineeringDesign
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 4 · Skills: 22
 
-[Not implemented](#)
+[engineeringDesign.data.ts](../../data/skills/engineeringDesign/engineeringDesign.data.ts)
 
 Methodological description: A design must respond to an actual need, not merely demonstrate a technology. This domain concerns converting uncertain problems into requirements, selecting feasible concepts, communicating designs and improving them using evidence.
 User-friendly description: Learn to develop, test and improve technical solutions to practical needs.
@@ -35,11 +35,11 @@ User-friendly description: Learn to develop, test and improve technical solution
 
 Slug: problemDefinition
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 5
 
-[Not implemented](#)
+[problemDefinition.data.ts](../../data/skills/engineeringDesign/problemDefinition/problemDefinition.data.ts)
 
 Methodological description: A clear brief distinguishes what needs to change, how success will be measured and which resources or conditions constrain possible solutions.
 User-friendly description: Discover how clear requirements begin a successful design.
@@ -48,9 +48,9 @@ User-friendly description: Discover how clear requirements begin a successful de
 
 Slug: identifyAnEngineeringNeed
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[identifyAnEngineeringNeed.data.ts](../../data/skills/engineeringDesign/problemDefinition/skills/identifyAnEngineeringNeed.data.ts)
 
 Methodological description: Recognize a practical problem or unmet function in a physical product or environment rather than assuming a particular invention is necessary.
 User-friendly description: Identify a real need that engineering could help address.
@@ -59,9 +59,9 @@ User-friendly description: Identify a real need that engineering could help addr
 
 Slug: formulateADesignProblem
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[formulateADesignProblem.data.ts](../../data/skills/engineeringDesign/problemDefinition/skills/formulateADesignProblem.data.ts)
 
 Methodological description: Specify the required function, intended users and operating context without predetermining the technical solution.
 User-friendly description: Describe what a technical solution must do and who will use it.
@@ -70,9 +70,9 @@ User-friendly description: Describe what a technical solution must do and who wi
 
 Slug: definePerformanceCriteria
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[definePerformanceCriteria.data.ts](../../data/skills/engineeringDesign/problemDefinition/skills/definePerformanceCriteria.data.ts)
 
 Methodological description: State observable success conditions such as load capacity, flow, travel, access or power consumption.
 User-friendly description: Define measurable outcomes that show whether a design succeeds.
@@ -81,9 +81,9 @@ User-friendly description: Define measurable outcomes that show whether a design
 
 Slug: identifyDesignConstraints
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[identifyDesignConstraints.data.ts](../../data/skills/engineeringDesign/problemDefinition/skills/identifyDesignConstraints.data.ts)
 
 Methodological description: Recognize limits imposed by cost, materials, dimensions, time, safety and operating environment.
 User-friendly description: Identify limits such as cost, available materials, space and safety.
@@ -92,9 +92,9 @@ User-friendly description: Identify limits such as cost, available materials, sp
 
 Slug: prioritizeRequirements
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[prioritizeRequirements.data.ts](../../data/skills/engineeringDesign/problemDefinition/skills/prioritizeRequirements.data.ts)
 
 Methodological description: Separate essential conditions from preferred attributes when several goals compete.
 User-friendly description: Decide which requirements are essential and which are optional.
@@ -103,11 +103,11 @@ User-friendly description: Decide which requirements are essential and which are
 
 Slug: conceptSelection
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 5
 
-[Not implemented](#)
+[conceptSelection.data.ts](../../data/skills/engineeringDesign/conceptSelection/conceptSelection.data.ts)
 
 Methodological description: Competing technical arrangements can meet the same need in different ways; choosing responsibly requires functional comparison and defensible compromises.
 User-friendly description: Learn to compare possible ways of meeting a technical need.
@@ -116,9 +116,9 @@ User-friendly description: Learn to compare possible ways of meeting a technical
 
 Slug: generateAlternativeDesignConcepts
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[generateAlternativeDesignConcepts.data.ts](../../data/skills/engineeringDesign/conceptSelection/skills/generateAlternativeDesignConcepts.data.ts)
 
 Methodological description: Propose more than one functional approach to a need rather than only cosmetic variations of one approach.
 User-friendly description: Suggest different functional approaches to the same design challenge.
@@ -127,9 +127,9 @@ User-friendly description: Suggest different functional approaches to the same d
 
 Slug: decomposeADesignProblem
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[decomposeADesignProblem.data.ts](../../data/skills/engineeringDesign/conceptSelection/skills/decomposeADesignProblem.data.ts)
 
 Methodological description: Separate a large objective into subsystems or functions with defined interactions.
 User-friendly description: Divide a complex design into smaller connected functions.
@@ -138,9 +138,9 @@ User-friendly description: Divide a complex design into smaller connected functi
 
 Slug: compareDesignAlternatives
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[compareDesignAlternatives.data.ts](../../data/skills/engineeringDesign/conceptSelection/skills/compareDesignAlternatives.data.ts)
 
 Methodological description: Use stated criteria to evaluate the advantages and limitations of candidate concepts.
 User-friendly description: Compare candidate designs against clearly stated criteria.
@@ -149,9 +149,9 @@ User-friendly description: Compare candidate designs against clearly stated crit
 
 Slug: justifyADesignTradeOff
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[justifyADesignTradeOff.data.ts](../../data/skills/engineeringDesign/conceptSelection/skills/justifyADesignTradeOff.data.ts)
 
 Methodological description: Explain an accepted sacrifice, such as extra mass in exchange for greater strength.
 User-friendly description: Explain why improving one feature may require sacrificing another.
@@ -160,9 +160,9 @@ User-friendly description: Explain why improving one feature may require sacrifi
 
 Slug: anticipateFailureModes
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[anticipateFailureModes.data.ts](../../data/skills/engineeringDesign/conceptSelection/skills/anticipateFailureModes.data.ts)
 
 Methodological description: Predict credible ways a proposed arrangement might fail to deliver its intended function.
 User-friendly description: Predict credible ways a design could fail in use.
@@ -171,11 +171,11 @@ User-friendly description: Predict credible ways a design could fail in use.
 
 Slug: representationsAndPrototypes
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 5
 
-[Not implemented](#)
+[representationsAndPrototypes.data.ts](../../data/skills/engineeringDesign/representationsAndPrototypes/representationsAndPrototypes.data.ts)
 
 Methodological description: Technical representations communicate geometry, operation and interfaces. A model is useful when it preserves properties that matter to the question being investigated.
 User-friendly description: Discover how drawings and prototypes communicate a technical concept.
@@ -184,9 +184,9 @@ User-friendly description: Discover how drawings and prototypes communicate a te
 
 Slug: createAFunctionalBlockDiagram
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[createAFunctionalBlockDiagram.data.ts](../../data/skills/engineeringDesign/representationsAndPrototypes/skills/createAFunctionalBlockDiagram.data.ts)
 
 Methodological description: Show key units and the direction of energy, material or signal flow between them.
 User-friendly description: Create a diagram showing parts and flows of energy, materials or signals.
@@ -195,9 +195,9 @@ User-friendly description: Create a diagram showing parts and flows of energy, m
 
 Slug: interpretTechnicalSystemSchematics
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[interpretTechnicalSystemSchematics.data.ts](../../data/skills/engineeringDesign/representationsAndPrototypes/skills/interpretTechnicalSystemSchematics.data.ts)
 
 Methodological description: Interpret functional symbols and relationships in mechanical, hydraulic, pneumatic or block diagrams. Specialized electrical-circuit connectivity and electrical symbols have a separate competency.
 User-friendly description: Read diagrams to understand how technical components relate.
@@ -206,9 +206,9 @@ User-friendly description: Read diagrams to understand how technical components 
 
 Slug: createADimensionedDrawing
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[createADimensionedDrawing.data.ts](../../data/skills/engineeringDesign/representationsAndPrototypes/skills/createADimensionedDrawing.data.ts)
 
 Methodological description: Specify relevant sizes and geometric relations so another person could reproduce a part.
 User-friendly description: Draw a part with dimensions that communicate its intended size.
@@ -217,9 +217,9 @@ User-friendly description: Draw a part with dimensions that communicate its inte
 
 Slug: buildAFunctionalPrototype
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[buildAFunctionalPrototype.data.ts](../../data/skills/engineeringDesign/representationsAndPrototypes/skills/buildAFunctionalPrototype.data.ts)
 
 Methodological description: Make a physical or computational representation that can demonstrate or investigate a specified design feature.
 User-friendly description: Build a model that tests or demonstrates a particular design idea.
@@ -228,9 +228,9 @@ User-friendly description: Build a model that tests or demonstrates a particular
 
 Slug: designRationale
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[designRationale.data.ts](../../data/skills/engineeringDesign/representationsAndPrototypes/skills/designRationale.data.ts)
 
 Methodological description: Communicate why components, arrangements and dimensions were chosen in relation to requirements.
 User-friendly description: Explain why a design uses particular components and arrangements.
@@ -239,11 +239,11 @@ User-friendly description: Explain why a design uses particular components and a
 
 Slug: testingAndIteration
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 7
 
-[Not implemented](#)
+[testingAndIteration.data.ts](../../data/skills/engineeringDesign/testingAndIteration/testingAndIteration.data.ts)
 
 Methodological description: A plausible prototype is not proof of performance. Measurement, failure analysis and controlled revisions provide a basis for improving the proposed product.
 User-friendly description: Use evidence from testing to improve a prototype and check its purpose.
@@ -252,9 +252,9 @@ User-friendly description: Use evidence from testing to improve a prototype and 
 
 Slug: planAnEngineeringTest
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[planAnEngineeringTest.data.ts](../../data/skills/engineeringDesign/testingAndIteration/skills/planAnEngineeringTest.data.ts)
 
 Methodological description: Define the operating conditions, measurement and pass criterion that will evaluate a requirement.
 User-friendly description: Plan a test with clear operating conditions and a measurable result.
@@ -263,9 +263,9 @@ User-friendly description: Plan a test with clear operating conditions and a mea
 
 Slug: evaluatePrototypePerformance
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluatePrototypePerformance.data.ts](../../data/skills/engineeringDesign/testingAndIteration/skills/evaluatePrototypePerformance.data.ts)
 
 Methodological description: Interpret observed prototype-test results under defined conditions and compare measured outputs with expected performance. This analysis alone does not establish full design verification or validate user needs.
 User-friendly description: Compare a prototype's measured performance with its expected performance.
@@ -274,9 +274,9 @@ User-friendly description: Compare a prototype's measured performance with its e
 
 Slug: diagnoseAPrototypeFailure
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[diagnoseAPrototypeFailure.data.ts](../../data/skills/engineeringDesign/testingAndIteration/skills/diagnoseAPrototypeFailure.data.ts)
 
 Methodological description: Use symptoms and component relationships to identify a plausible cause of poor performance.
 User-friendly description: Investigate which component or condition might explain a prototype failure.
@@ -285,9 +285,9 @@ User-friendly description: Investigate which component or condition might explai
 
 Slug: reviseADesignUsingEvidence
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[reviseADesignUsingEvidence.data.ts](../../data/skills/engineeringDesign/testingAndIteration/skills/reviseADesignUsingEvidence.data.ts)
 
 Methodological description: Change an identified feature on the basis of test results and explain the expected benefit.
 User-friendly description: Use test results to justify a change to a design.
@@ -296,9 +296,9 @@ User-friendly description: Use test results to justify a change to a design.
 
 Slug: verifyDesignRequirements
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[verifyDesignRequirements.data.ts](../../data/skills/engineeringDesign/testingAndIteration/skills/verifyDesignRequirements.data.ts)
 
 Methodological description: Use inspection, test, demonstration or analysis to determine whether stated technical requirements and their acceptance criteria have been met. Passing one test does not establish compliance with untested requirements.
 User-friendly description: Check systematically whether a solution satisfies each technical requirement.
@@ -307,9 +307,9 @@ User-friendly description: Check systematically whether a solution satisfies eac
 
 Slug: validateUserNeeds
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[validateUserNeeds.data.ts](../../data/skills/engineeringDesign/testingAndIteration/skills/validateUserNeeds.data.ts)
 
 Methodological description: Assess whether the finished or representative solution actually meets the real-world needs of intended users in appropriate conditions, even where formal design requirements have been met.
 User-friendly description: Find out whether a finished solution actually serves its intended users.
@@ -318,9 +318,9 @@ User-friendly description: Find out whether a finished solution actually serves 
 
 Slug: measurementUncertainty
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[measurementUncertainty.data.ts](../../data/skills/engineeringDesign/testingAndIteration/skills/measurementUncertainty.data.ts)
 
 Methodological description: Characterize the limits of numerical observations using resolution, calibration, repeatability and error sources, including consequences for a pass-or-fail engineering decision.
 User-friendly description: Understand how measurement uncertainty can affect an engineering decision.
@@ -329,11 +329,11 @@ User-friendly description: Understand how measurement uncertainty can affect an 
 
 Slug: systemsEngineering
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 3 · Skills: 13
 
-[Not implemented](#)
+[systemsEngineering.data.ts](../../data/skills/systemsEngineering/systemsEngineering.data.ts)
 
 Methodological description: An engineered system is defined by coordinated functions and exchanges, not just a collection of parts. This domain addresses architecture, interfaces, dependencies, reliability and the consequences of faults.
 User-friendly description: Explore how components cooperate in complex systems and what happens when they fail.
@@ -342,11 +342,11 @@ User-friendly description: Explore how components cooperate in complex systems a
 
 Slug: functionalArchitecture
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 5
 
-[Not implemented](#)
+[functionalArchitecture.data.ts](../../data/skills/systemsEngineering/functionalArchitecture/functionalArchitecture.data.ts)
 
 Methodological description: The same overall service may be implemented by different assemblies; the function and system boundary must be distinguished from component names.
 User-friendly description: Learn how functions and boundaries define an engineered system.
@@ -355,9 +355,9 @@ User-friendly description: Learn how functions and boundaries define an engineer
 
 Slug: identifyASystemFunction
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[identifyASystemFunction.data.ts](../../data/skills/systemsEngineering/functionalArchitecture/skills/identifyASystemFunction.data.ts)
 
 Methodological description: State the useful transformation or service that a machine or infrastructure delivers.
 User-friendly description: Identify the useful task that an engineered system performs.
@@ -366,9 +366,9 @@ User-friendly description: Identify the useful task that an engineered system pe
 
 Slug: identifySystemBoundaries
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[identifySystemBoundaries.data.ts](../../data/skills/systemsEngineering/functionalArchitecture/skills/identifySystemBoundaries.data.ts)
 
 Methodological description: Separate the engineered assembly from its users, surroundings and connected external services.
 User-friendly description: Distinguish the system being studied from its environment and users.
@@ -377,9 +377,9 @@ User-friendly description: Distinguish the system being studied from its environ
 
 Slug: traceInputsAndOutputs
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[traceInputsAndOutputs.data.ts](../../data/skills/systemsEngineering/functionalArchitecture/skills/traceInputsAndOutputs.data.ts)
 
 Methodological description: Follow energy, materials or signals entering and leaving an operating system, including losses or by-products.
 User-friendly description: Trace materials, energy or information entering and leaving a system.
@@ -388,9 +388,9 @@ User-friendly description: Trace materials, energy or information entering and l
 
 Slug: subsystemFunctions
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[subsystemFunctions.data.ts](../../data/skills/systemsEngineering/functionalArchitecture/skills/subsystemFunctions.data.ts)
 
 Methodological description: Identify why each major assembly is necessary to the overall service.
 User-friendly description: Explain the role of each major subsystem in the overall function.
@@ -399,9 +399,9 @@ User-friendly description: Explain the role of each major subsystem in the overa
 
 Slug: traceAnOperatingSequence
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[traceAnOperatingSequence.data.ts](../../data/skills/systemsEngineering/functionalArchitecture/skills/traceAnOperatingSequence.data.ts)
 
 Methodological description: Describe the causal order of events through startup, normal operation or shutdown.
 User-friendly description: Follow the events involved in starting, using and stopping a system.
@@ -410,11 +410,11 @@ User-friendly description: Follow the events involved in starting, using and sto
 
 Slug: interfacesAndInterdependencies
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[interfacesAndInterdependencies.data.ts](../../data/skills/systemsEngineering/interfacesAndInterdependencies/interfacesAndInterdependencies.data.ts)
 
 Methodological description: Local decisions affect neighboring components through mechanical, electrical, fluid and information connections.
 User-friendly description: Discover how connected components depend on each other.
@@ -423,9 +423,9 @@ User-friendly description: Discover how connected components depend on each othe
 
 Slug: identifyComponentInterfaces
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[identifyComponentInterfaces.data.ts](../../data/skills/systemsEngineering/interfacesAndInterdependencies/skills/identifyComponentInterfaces.data.ts)
 
 Methodological description: Determine what must physically cross a boundary between connected assemblies.
 User-friendly description: Identify where mechanical, electrical or other connections cross between components.
@@ -434,9 +434,9 @@ User-friendly description: Identify where mechanical, electrical or other connec
 
 Slug: analyzeSubsystemDependencies
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeSubsystemDependencies.data.ts](../../data/skills/systemsEngineering/interfacesAndInterdependencies/skills/analyzeSubsystemDependencies.data.ts)
 
 Methodological description: Show how a limitation or interruption in one part influences another part's operation.
 User-friendly description: Explain how a problem in one subsystem affects other parts.
@@ -445,9 +445,9 @@ User-friendly description: Explain how a problem in one subsystem affects other 
 
 Slug: evaluateSystemLevelCompromises
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateSystemLevelCompromises.data.ts](../../data/skills/systemsEngineering/interfacesAndInterdependencies/skills/evaluateSystemLevelCompromises.data.ts)
 
 Methodological description: Explain why optimizing one part may worsen total cost, complexity, efficiency or reliability.
 User-friendly description: Recognize why making one component better can worsen the complete system.
@@ -456,9 +456,9 @@ User-friendly description: Recognize why making one component better can worsen 
 
 Slug: predictTheEffectOfComponentChanges
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[predictTheEffectOfComponentChanges.data.ts](../../data/skills/systemsEngineering/interfacesAndInterdependencies/skills/predictTheEffectOfComponentChanges.data.ts)
 
 Methodological description: Trace how altered dimensions, rates or capacities affect connected system functions.
 User-friendly description: Predict how changing a component's capacity or dimensions affects other components.
@@ -467,11 +467,11 @@ User-friendly description: Predict how changing a component's capacity or dimens
 
 Slug: reliabilityAndMaintenance
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[reliabilityAndMaintenance.data.ts](../../data/skills/systemsEngineering/reliabilityAndMaintenance/reliabilityAndMaintenance.data.ts)
 
 Methodological description: Operating systems face wear and faults, so diagnosis and continued service require explicit understanding of possible failure paths.
 User-friendly description: Explore how engineers manage failures and maintain reliable operation.
@@ -480,9 +480,9 @@ User-friendly description: Explore how engineers manage failures and maintain re
 
 Slug: distinguishComponentAndSystemFailures
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishComponentAndSystemFailures.data.ts](../../data/skills/systemsEngineering/reliabilityAndMaintenance/skills/distinguishComponentAndSystemFailures.data.ts)
 
 Methodological description: Explain why the loss of a part may or may not disable the overall function.
 User-friendly description: Distinguish a failed part from failure of the complete system.
@@ -491,9 +491,9 @@ User-friendly description: Distinguish a failed part from failure of the complet
 
 Slug: traceTechnicalFaults
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[traceTechnicalFaults.data.ts](../../data/skills/systemsEngineering/reliabilityAndMaintenance/skills/traceTechnicalFaults.data.ts)
 
 Methodological description: Use symptoms and dependencies to locate a likely malfunction in a connected system.
 User-friendly description: Trace the symptoms of a malfunction through dependent components.
@@ -502,9 +502,9 @@ User-friendly description: Trace the symptoms of a malfunction through dependent
 
 Slug: systemRedundancy
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[systemRedundancy.data.ts](../../data/skills/systemsEngineering/reliabilityAndMaintenance/skills/systemRedundancy.data.ts)
 
 Methodological description: Recognize how independent backup paths can preserve a critical function during a component failure.
 User-friendly description: Understand how backup paths can keep important functions working.
@@ -513,9 +513,9 @@ User-friendly description: Understand how backup paths can keep important functi
 
 Slug: planPreventiveMaintenance
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[planPreventiveMaintenance.data.ts](../../data/skills/systemsEngineering/reliabilityAndMaintenance/skills/planPreventiveMaintenance.data.ts)
 
 Methodological description: Identify inspections, cleaning, adjustments or replacements justified by wear and operating conditions.
 User-friendly description: Plan inspections and maintenance to reduce predictable failures.
@@ -524,11 +524,11 @@ User-friendly description: Plan inspections and maintenance to reduce predictabl
 
 Slug: materialsAndConnections
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 3 · Skills: 13
 
-[Not implemented](#)
+[materialsAndConnections.data.ts](../../data/skills/materialsAndConnections/materialsAndConnections.data.ts)
 
 Methodological description: Material choice and the quality of interfaces determine whether parts carry loads, resist their environment, assemble correctly and remain usable. This domain focuses on technical suitability rather than the chemistry of substances.
 User-friendly description: Learn to choose materials and joining methods suited to a product's conditions.
@@ -537,11 +537,11 @@ User-friendly description: Learn to choose materials and joining methods suited 
 
 Slug: materialSelection
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 5
 
-[Not implemented](#)
+[materialSelection.data.ts](../../data/skills/materialsAndConnections/materialSelection/materialSelection.data.ts)
 
 Methodological description: A component needs a combination of properties matched to its actual loading, manufacturing process and environment.
 User-friendly description: Explore how material properties affect technical performance.
@@ -550,9 +550,9 @@ User-friendly description: Explore how material properties affect technical perf
 
 Slug: identifyRelevantMaterialProperties
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[identifyRelevantMaterialProperties.data.ts](../../data/skills/materialsAndConnections/materialSelection/skills/identifyRelevantMaterialProperties.data.ts)
 
 Methodological description: Determine whether toughness, strength, stiffness, conductivity, transparency or mass matters in a specified application.
 User-friendly description: Choose the material properties that matter for a specific application.
@@ -561,9 +561,9 @@ User-friendly description: Choose the material properties that matter for a spec
 
 Slug: distinguishMaterialStrengthAndStiffness
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishMaterialStrengthAndStiffness.data.ts](../../data/skills/materialsAndConnections/materialSelection/skills/distinguishMaterialStrengthAndStiffness.data.ts)
 
 Methodological description: Explain why resisting failure and resisting deformation are different requirements.
 User-friendly description: Distinguish resistance to breaking from resistance to deformation.
@@ -572,9 +572,9 @@ User-friendly description: Distinguish resistance to breaking from resistance to
 
 Slug: evaluateMaterialDurability
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateMaterialDurability.data.ts](../../data/skills/materialsAndConnections/materialSelection/skills/evaluateMaterialDurability.data.ts)
 
 Methodological description: Connect wear, corrosion, fatigue or exposure to the expected lifetime of a part.
 User-friendly description: Compare materials by how well they survive wear and environmental exposure.
@@ -583,9 +583,9 @@ User-friendly description: Compare materials by how well they survive wear and e
 
 Slug: materialSuitabilityAssessment
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[materialSuitabilityAssessment.data.ts](../../data/skills/materialsAndConnections/materialSelection/skills/materialSuitabilityAssessment.data.ts)
 
 Methodological description: Evaluate which material properties and processing limitations meet the expected loads and service environment. This is a reusable material-compatibility judgment rather than an individual choice question.
 User-friendly description: Evaluate whether a material can meet the demands of a particular use.
@@ -594,9 +594,9 @@ User-friendly description: Evaluate whether a material can meet the demands of a
 
 Slug: compositeMaterialApplications
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[compositeMaterialApplications.data.ts](../../data/skills/materialsAndConnections/materialSelection/skills/compositeMaterialApplications.data.ts)
 
 Methodological description: Recognize how combined constituents can deliver useful directional or mixed properties.
 User-friendly description: Recognize how combined materials can offer useful properties.
@@ -605,11 +605,11 @@ User-friendly description: Recognize how combined materials can offer useful pro
 
 Slug: jointsAndFasteners
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 5
 
-[Not implemented](#)
+[jointsAndFasteners.data.ts](../../data/skills/materialsAndConnections/jointsAndFasteners/jointsAndFasteners.data.ts)
 
 Methodological description: Connections can be temporary or permanent, transmit different forces and impose different maintenance requirements.
 User-friendly description: Discover how different joints hold parts together and transfer loads.
@@ -618,9 +618,9 @@ User-friendly description: Discover how different joints hold parts together and
 
 Slug: threadedFastening
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[threadedFastening.data.ts](../../data/skills/materialsAndConnections/jointsAndFasteners/skills/threadedFastening.data.ts)
 
 Methodological description: Describe how a bolt or screw retains connected parts and permits suitable disassembly.
 User-friendly description: Understand how threaded connections hold parts and allow disassembly.
@@ -629,9 +629,9 @@ User-friendly description: Understand how threaded connections hold parts and al
 
 Slug: adhesiveJoints
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[adhesiveJoints.data.ts](../../data/skills/materialsAndConnections/jointsAndFasteners/skills/adhesiveJoints.data.ts)
 
 Methodological description: Relate bonding, compatible surfaces and load direction to joint performance.
 User-friendly description: Explore how adhesives connect suitable surfaces.
@@ -640,9 +640,9 @@ User-friendly description: Explore how adhesives connect suitable surfaces.
 
 Slug: weldedJoints
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[weldedJoints.data.ts](../../data/skills/materialsAndConnections/jointsAndFasteners/skills/weldedJoints.data.ts)
 
 Methodological description: Distinguish a joined material interface from detachable mechanical fasteners.
 User-friendly description: Recognize why welding differs from removable fasteners.
@@ -651,9 +651,9 @@ User-friendly description: Recognize why welding differs from removable fastener
 
 Slug: magneticFastening
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[magneticFastening.data.ts](../../data/skills/materialsAndConnections/jointsAndFasteners/skills/magneticFastening.data.ts)
 
 Methodological description: Identify how magnetic attraction can retain a part and when an alternative joint is necessary.
 User-friendly description: Understand when magnets can secure a component.
@@ -662,9 +662,9 @@ User-friendly description: Understand when magnets can secure a component.
 
 Slug: joiningMethodSuitability
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[joiningMethodSuitability.data.ts](../../data/skills/materialsAndConnections/jointsAndFasteners/skills/joiningMethodSuitability.data.ts)
 
 Methodological description: Assess whether detachable, bonded, welded or magnetic joints can transfer loads, provide access and support maintenance. Choosing one particular screw or glue is a task variant.
 User-friendly description: Compare joining methods by strength, accessibility and maintenance.
@@ -673,11 +673,11 @@ User-friendly description: Compare joining methods by strength, accessibility an
 
 Slug: surfacesAndFit
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 3
 
-[Not implemented](#)
+[surfacesAndFit.data.ts](../../data/skills/materialsAndConnections/surfacesAndFit/surfacesAndFit.data.ts)
 
 Methodological description: Small variations at contacting surfaces affect motion, grip, sealing, protection and assembly.
 User-friendly description: Explore how surface properties and small gaps affect mechanical connections.
@@ -686,9 +686,9 @@ User-friendly description: Explore how surface properties and small gaps affect 
 
 Slug: protectiveSurfaceTreatments
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[protectiveSurfaceTreatments.data.ts](../../data/skills/materialsAndConnections/surfacesAndFit/skills/protectiveSurfaceTreatments.data.ts)
 
 Methodological description: Relate coatings or treatments to corrosion, wear, wetting or other surface properties.
 User-friendly description: Choose coatings that protect a surface against wear or corrosion.
@@ -697,9 +697,9 @@ User-friendly description: Choose coatings that protect a surface against wear o
 
 Slug: evaluateFrictionAtAnInterface
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateFrictionAtAnInterface.data.ts](../../data/skills/materialsAndConnections/surfacesAndFit/skills/evaluateFrictionAtAnInterface.data.ts)
 
 Methodological description: Distinguish contacts that need reliable grip from those requiring easy sliding.
 User-friendly description: Recognize where friction should provide grip and where it should be reduced.
@@ -708,9 +708,9 @@ User-friendly description: Recognize where friction should provide grip and wher
 
 Slug: fitsAndClearances
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[fitsAndClearances.data.ts](../../data/skills/materialsAndConnections/surfacesAndFit/skills/fitsAndClearances.data.ts)
 
 Methodological description: Relate permissible gaps and interference between mating parts to sliding, rotation, retention or sealing. This is distinct from decoding a production drawing's dimensional specification.
 User-friendly description: Understand how clearances and fits affect moving or sealing parts.
@@ -719,11 +719,11 @@ User-friendly description: Understand how clearances and fits affect moving or s
 
 Slug: mechanismsAndMachines
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 4 · Skills: 18
 
-[Not implemented](#)
+[mechanismsAndMachines.data.ts](../../data/skills/mechanismsAndMachines/mechanismsAndMachines.data.ts)
 
 Methodological description: Moving assemblies redirect or transmit force, torque and motion to achieve tasks. This domain investigates how real mechanical arrangements work, not the underlying laws of mechanics as an independent science.
 User-friendly description: Discover how mechanical components transmit force and transform movement.
@@ -732,11 +732,11 @@ User-friendly description: Discover how mechanical components transmit force and
 
 Slug: transmissions
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 6
 
-[Not implemented](#)
+[transmissions.data.ts](../../data/skills/mechanismsAndMachines/transmissions/transmissions.data.ts)
 
 Methodological description: Shafts, flexible elements and meshing components connect input motion to a useful output with potentially different speed, force and direction.
 User-friendly description: Explore how shafts, gears and flexible drives carry motion between parts.
@@ -745,9 +745,9 @@ User-friendly description: Explore how shafts, gears and flexible drives carry m
 
 Slug: leverMechanisms
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[leverMechanisms.data.ts](../../data/skills/mechanismsAndMachines/transmissions/skills/leverMechanisms.data.ts)
 
 Methodological description: Identify pivot, input and output arrangement in a lever-driven machine.
 User-friendly description: Identify the pivot and input and output forces in a lever mechanism.
@@ -756,9 +756,9 @@ User-friendly description: Identify the pivot and input and output forces in a l
 
 Slug: gearTransmission
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[gearTransmission.data.ts](../../data/skills/mechanismsAndMachines/transmissions/skills/gearTransmission.data.ts)
 
 Methodological description: Trace rotational transfer between meshing gears and the effect of tooth counts.
 User-friendly description: Trace rotation through connected gears.
@@ -767,9 +767,9 @@ User-friendly description: Trace rotation through connected gears.
 
 Slug: determineAGearRatio
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[determineAGearRatio.data.ts](../../data/skills/mechanismsAndMachines/transmissions/skills/determineAGearRatio.data.ts)
 
 Methodological description: Calculate relative rotation or speed using the teeth of a gear pair.
 User-friendly description: Calculate how gear tooth counts determine speed ratios.
@@ -778,9 +778,9 @@ User-friendly description: Calculate how gear tooth counts determine speed ratio
 
 Slug: beltDrives
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[beltDrives.data.ts](../../data/skills/mechanismsAndMachines/transmissions/skills/beltDrives.data.ts)
 
 Methodological description: Trace how tensioned flexible belts transfer motion between pulleys through friction or toothed engagement, including likely causes of slip.
 User-friendly description: Understand how belt tension and pulley surfaces transfer rotation.
@@ -789,9 +789,9 @@ User-friendly description: Understand how belt tension and pulley surfaces trans
 
 Slug: chainDrives
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[chainDrives.data.ts](../../data/skills/mechanismsAndMachines/transmissions/skills/chainDrives.data.ts)
 
 Methodological description: Describe positive engagement between chain links and sprockets, including the need for alignment, tension and lubrication.
 User-friendly description: Explore how a chain and sprockets transfer movement without ordinary slipping.
@@ -800,9 +800,9 @@ User-friendly description: Explore how a chain and sprockets transfer movement w
 
 Slug: pulleySystems
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[pulleySystems.data.ts](../../data/skills/mechanismsAndMachines/transmissions/skills/pulleySystems.data.ts)
 
 Methodological description: Trace rope paths, supporting segments and moving loads in lifting arrangements.
 User-friendly description: Follow the rope path and supporting segments of a pulley arrangement.
@@ -811,11 +811,11 @@ User-friendly description: Follow the rope path and supporting segments of a pul
 
 Slug: motionConversion
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[motionConversion.data.ts](../../data/skills/mechanismsAndMachines/motionConversion/motionConversion.data.ts)
 
 Methodological description: Mechanical linkages and profiles transform rotation, translation or oscillation into required movement patterns.
 User-friendly description: Discover how moving components transform one kind of motion into another.
@@ -824,9 +824,9 @@ User-friendly description: Discover how moving components transform one kind of 
 
 Slug: crankSliderMechanisms
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[crankSliderMechanisms.data.ts](../../data/skills/mechanismsAndMachines/motionConversion/skills/crankSliderMechanisms.data.ts)
 
 Methodological description: Trace conversion between rotary and reciprocating motion in a piston machine.
 User-friendly description: Explain how a crank and slider connect rotation with back-and-forth motion.
@@ -835,9 +835,9 @@ User-friendly description: Explain how a crank and slider connect rotation with 
 
 Slug: camMechanisms
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[camMechanisms.data.ts](../../data/skills/mechanismsAndMachines/motionConversion/skills/camMechanisms.data.ts)
 
 Methodological description: Connect a shaped rotating profile with the timed displacement of a follower.
 User-friendly description: Understand how a rotating cam moves a follower.
@@ -846,9 +846,9 @@ User-friendly description: Understand how a rotating cam moves a follower.
 
 Slug: screwMechanisms
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[screwMechanisms.data.ts](../../data/skills/mechanismsAndMachines/motionConversion/skills/screwMechanisms.data.ts)
 
 Methodological description: Describe how the pitch and mating threads of a screw convert rotation into controlled axial displacement or a clamping force.
 User-friendly description: Recognize how a screw converts turning into forward movement or pressure.
@@ -857,9 +857,9 @@ User-friendly description: Recognize how a screw converts turning into forward m
 
 Slug: articulatedLinkages
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[articulatedLinkages.data.ts](../../data/skills/mechanismsAndMachines/motionConversion/skills/articulatedLinkages.data.ts)
 
 Methodological description: Trace how connected rigid bars and pivots restrict the trajectory of an output in tools or articulated machines.
 User-friendly description: Trace how jointed bars guide a machine's movement.
@@ -868,11 +868,11 @@ User-friendly description: Trace how jointed bars guide a machine's movement.
 
 Slug: guidanceAndRetention
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 5
 
-[Not implemented](#)
+[guidanceAndRetention.data.ts](../../data/skills/mechanismsAndMachines/guidanceAndRetention/guidanceAndRetention.data.ts)
 
 Methodological description: Motion must be supported and limited while interfaces are protected from damaging friction or unintended release.
 User-friendly description: Explore the parts that support motion and prevent accidental release.
@@ -881,9 +881,9 @@ User-friendly description: Explore the parts that support motion and prevent acc
 
 Slug: bearings
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[bearings.data.ts](../../data/skills/mechanismsAndMachines/guidanceAndRetention/skills/bearings.data.ts)
 
 Methodological description: Identify how supported shafts can rotate relative to a machine housing.
 User-friendly description: Recognize how a bearing supports a moving shaft.
@@ -892,9 +892,9 @@ User-friendly description: Recognize how a bearing supports a moving shaft.
 
 Slug: lubrication
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[lubrication.data.ts](../../data/skills/mechanismsAndMachines/guidanceAndRetention/skills/lubrication.data.ts)
 
 Methodological description: Relate a lubricant to reduced wear and heating at a moving interface.
 User-friendly description: Explain why lubrication reduces friction and wear.
@@ -903,9 +903,9 @@ User-friendly description: Explain why lubrication reduces friction and wear.
 
 Slug: brakingMechanisms
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[brakingMechanisms.data.ts](../../data/skills/mechanismsAndMachines/guidanceAndRetention/skills/brakingMechanisms.data.ts)
 
 Methodological description: Trace how contact forces or another braking device oppose a rotating component and transfer motion energy into heat or another form.
 User-friendly description: Trace how braking devices slow a rotating part.
@@ -914,9 +914,9 @@ User-friendly description: Trace how braking devices slow a rotating part.
 
 Slug: latches
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[latches.data.ts](../../data/skills/mechanismsAndMachines/guidanceAndRetention/skills/latches.data.ts)
 
 Methodological description: Describe how a catch retains a door or moving part in its closed position and permits intentional release.
 User-friendly description: Understand how a latch holds and releases a closure.
@@ -925,9 +925,9 @@ User-friendly description: Understand how a latch holds and releases a closure.
 
 Slug: locks
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[locks.data.ts](../../data/skills/mechanismsAndMachines/guidanceAndRetention/skills/locks.data.ts)
 
 Methodological description: Identify how a key, code or other authorization mechanism restricts the operation of a secured closure.
 User-friendly description: Recognize how locks limit access to an authorized user.
@@ -936,11 +936,11 @@ User-friendly description: Recognize how locks limit access to an authorized use
 
 Slug: integratedMachines
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 3
 
-[Not implemented](#)
+[integratedMachines.data.ts](../../data/skills/mechanismsAndMachines/integratedMachines/integratedMachines.data.ts)
 
 Methodological description: Machines combine multiple components in a working sequence, so their behavior cannot be inferred from a single named part.
 User-friendly description: Explore how several mechanical mechanisms work together in a machine.
@@ -949,9 +949,9 @@ User-friendly description: Explore how several mechanical mechanisms work togeth
 
 Slug: traceMechanicalPowerTransmission
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[traceMechanicalPowerTransmission.data.ts](../../data/skills/mechanismsAndMachines/integratedMachines/skills/traceMechanicalPowerTransmission.data.ts)
 
 Methodological description: Follow useful motion and energy from a prime mover to the working component.
 User-friendly description: Trace energy and motion from the drive to a machine's working component.
@@ -960,9 +960,9 @@ User-friendly description: Trace energy and motion from the drive to a machine's
 
 Slug: motionMechanismSuitability
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[motionMechanismSuitability.data.ts](../../data/skills/mechanismsAndMachines/integratedMachines/skills/motionMechanismSuitability.data.ts)
 
 Methodological description: Relate the output direction, movement pattern, displacement and force needs to feasible mechanisms and their operating limits.
 User-friendly description: Select mechanisms suited to a required direction and pattern of movement.
@@ -971,9 +971,9 @@ User-friendly description: Select mechanisms suited to a required direction and 
 
 Slug: diagnoseTransmissionFaults
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[diagnoseTransmissionFaults.data.ts](../../data/skills/mechanismsAndMachines/integratedMachines/skills/diagnoseTransmissionFaults.data.ts)
 
 Methodological description: Connect slipping, jamming or unexpected movement to plausible defects.
 User-friendly description: Diagnose slipping, jamming and other transmission problems.
@@ -982,11 +982,11 @@ User-friendly description: Diagnose slipping, jamming and other transmission pro
 
 Slug: thermalAndFluidDevices
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 3 · Skills: 11
 
-[Not implemented](#)
+[thermalAndFluidDevices.data.ts](../../data/skills/thermalAndFluidDevices/thermalAndFluidDevices.data.ts)
 
 Methodological description: Practical equipment moves heat, air and other fluids through controlled component chains. Here the object of study is the apparatus and its operating cycle, not the isolated thermodynamic or fluid laws.
 User-friendly description: Explore practical machines that control heating, cooling and the flow of fluids.
@@ -995,11 +995,11 @@ User-friendly description: Explore practical machines that control heating, cool
 
 Slug: heatTransferEquipment
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[heatTransferEquipment.data.ts](../../data/skills/thermalAndFluidDevices/heatTransferEquipment/heatTransferEquipment.data.ts)
 
 Methodological description: Temperature-control devices combine energy input, circulation and insulation to maintain useful thermal conditions.
 User-friendly description: Learn how equipment transfers heat and maintains chosen temperatures.
@@ -1008,9 +1008,9 @@ User-friendly description: Learn how equipment transfers heat and maintains chos
 
 Slug: refrigerationEquipment
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[refrigerationEquipment.data.ts](../../data/skills/thermalAndFluidDevices/heatTransferEquipment/skills/refrigerationEquipment.data.ts)
 
 Methodological description: Trace compressor, condenser, expansion device and evaporator in a cooling cycle.
 User-friendly description: Trace the main stages of a refrigeration cycle.
@@ -1019,9 +1019,9 @@ User-friendly description: Trace the main stages of a refrigeration cycle.
 
 Slug: heatPumps
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[heatPumps.data.ts](../../data/skills/thermalAndFluidDevices/heatTransferEquipment/skills/heatPumps.data.ts)
 
 Methodological description: Identify how heat is transferred from a source to a destination using external work.
 User-friendly description: Understand how a heat pump moves heat using external work.
@@ -1030,9 +1030,9 @@ User-friendly description: Understand how a heat pump moves heat using external 
 
 Slug: heatExchangers
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[heatExchangers.data.ts](../../data/skills/thermalAndFluidDevices/heatTransferEquipment/skills/heatExchangers.data.ts)
 
 Methodological description: Show how two streams transfer heat across a barrier without normally mixing.
 User-friendly description: Explain how heat flows between separate streams in a heat exchanger.
@@ -1041,9 +1041,9 @@ User-friendly description: Explain how heat flows between separate streams in a 
 
 Slug: thermalInsulationSuitability
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[thermalInsulationSuitability.data.ts](../../data/skills/thermalAndFluidDevices/heatTransferEquipment/skills/thermalInsulationSuitability.data.ts)
 
 Methodological description: Assess how an insulating arrangement manages conductive, convective and radiative heat transfer in an intended enclosure.
 User-friendly description: Compare insulation arrangements by how they reduce unwanted heat transfer.
@@ -1052,11 +1052,11 @@ User-friendly description: Compare insulation arrangements by how they reduce un
 
 Slug: fluidMachines
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[fluidMachines.data.ts](../../data/skills/thermalAndFluidDevices/fluidMachines/fluidMachines.data.ts)
 
 Methodological description: Mechanical energy can produce fluid flow, pressure or driven motion using distinct devices with different operating media.
 User-friendly description: Discover how pumps and actuators move liquids and gases.
@@ -1065,9 +1065,9 @@ User-friendly description: Discover how pumps and actuators move liquids and gas
 
 Slug: liquidPumps
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[liquidPumps.data.ts](../../data/skills/thermalAndFluidDevices/fluidMachines/skills/liquidPumps.data.ts)
 
 Methodological description: Trace the components responsible for delivering flow or pressure to a liquid circuit.
 User-friendly description: Trace how a liquid pump provides flow and pressure.
@@ -1076,9 +1076,9 @@ User-friendly description: Trace how a liquid pump provides flow and pressure.
 
 Slug: gasCompressors
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[gasCompressors.data.ts](../../data/skills/thermalAndFluidDevices/fluidMachines/skills/gasCompressors.data.ts)
 
 Methodological description: Distinguish increasing gas pressure from merely circulating air.
 User-friendly description: Distinguish compressing gas from simply moving air.
@@ -1087,9 +1087,9 @@ User-friendly description: Distinguish compressing gas from simply moving air.
 
 Slug: hydraulicActuators
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[hydraulicActuators.data.ts](../../data/skills/thermalAndFluidDevices/fluidMachines/skills/hydraulicActuators.data.ts)
 
 Methodological description: Trace pressurized liquid from a pump and valve to mechanical movement.
 User-friendly description: Understand how pressurized liquid drives a hydraulic actuator.
@@ -1098,9 +1098,9 @@ User-friendly description: Understand how pressurized liquid drives a hydraulic 
 
 Slug: pneumaticActuators
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[pneumaticActuators.data.ts](../../data/skills/thermalAndFluidDevices/fluidMachines/skills/pneumaticActuators.data.ts)
 
 Methodological description: Identify how compressed gas and control valves drive an output mechanism.
 User-friendly description: Explain how compressed air can move a pneumatic actuator.
@@ -1109,11 +1109,11 @@ User-friendly description: Explain how compressed air can move a pneumatic actua
 
 Slug: ventilationAndAirTreatment
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 3
 
-[Not implemented](#)
+[ventilationAndAirTreatment.data.ts](../../data/skills/thermalAndFluidDevices/ventilationAndAirTreatment/ventilationAndAirTreatment.data.ts)
 
 Methodological description: Indoor climate equipment needs functional air paths, treatment components and regulation appropriate to occupied spaces.
 User-friendly description: Explore how buildings circulate and treat indoor air.
@@ -1122,9 +1122,9 @@ User-friendly description: Explore how buildings circulate and treat indoor air.
 
 Slug: ventilationSystems
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[ventilationSystems.data.ts](../../data/skills/thermalAndFluidDevices/ventilationAndAirTreatment/skills/ventilationSystems.data.ts)
 
 Methodological description: Distinguish outdoor-air exchange from recirculating existing indoor air.
 User-friendly description: Distinguish bringing in fresh air from circulating the same indoor air.
@@ -1133,9 +1133,9 @@ User-friendly description: Distinguish bringing in fresh air from circulating th
 
 Slug: airConditioningSystems
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[airConditioningSystems.data.ts](../../data/skills/thermalAndFluidDevices/ventilationAndAirTreatment/skills/airConditioningSystems.data.ts)
 
 Methodological description: Identify the cooling, distribution and control functions of a practical installation.
 User-friendly description: Identify the cooling, distribution and control parts of air conditioning.
@@ -1144,9 +1144,9 @@ User-friendly description: Identify the cooling, distribution and control parts 
 
 Slug: diagnoseRestrictedFluidFlow
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[diagnoseRestrictedFluidFlow.data.ts](../../data/skills/thermalAndFluidDevices/ventilationAndAirTreatment/skills/diagnoseRestrictedFluidFlow.data.ts)
 
 Methodological description: Relate blocked filters, closed valves or narrow passages to delivery problems.
 User-friendly description: Diagnose weak flow caused by filters, valves or narrow passages.
@@ -1155,11 +1155,11 @@ User-friendly description: Diagnose weak flow caused by filters, valves or narro
 
 Slug: structuresAndConstruction
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 4 · Skills: 18
 
-[Not implemented](#)
+[structuresAndConstruction.data.ts](../../data/skills/structuresAndConstruction/structuresAndConstruction.data.ts)
 
 Methodological description: Load-bearing works transfer applied actions into suitable supports while satisfying functional, environmental and construction constraints. This domain treats the built solution rather than architectural style.
 User-friendly description: Explore how buildings, bridges and civil works safely carry loads.
@@ -1168,11 +1168,11 @@ User-friendly description: Explore how buildings, bridges and civil works safely
 
 Slug: structuralElements
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 6
 
-[Not implemented](#)
+[structuralElements.data.ts](../../data/skills/structuresAndConstruction/structuralElements/structuralElements.data.ts)
 
 Methodological description: Characteristic forms route forces differently; a safe structure is not just a visually plausible shape.
 User-friendly description: Learn how different structural parts transfer forces into the ground.
@@ -1181,9 +1181,9 @@ User-friendly description: Learn how different structural parts transfer forces 
 
 Slug: beams
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[beams.data.ts](../../data/skills/structuresAndConstruction/structuralElements/skills/beams.data.ts)
 
 Methodological description: Trace bending and load transfer from a span to its supports.
 User-friendly description: Explain how a beam carries load between supports.
@@ -1192,9 +1192,9 @@ User-friendly description: Explain how a beam carries load between supports.
 
 Slug: columns
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[columns.data.ts](../../data/skills/structuresAndConstruction/structuralElements/skills/columns.data.ts)
 
 Methodological description: Recognize how primarily compression-loaded vertical members support loads and why slender members may become unstable.
 User-friendly description: Recognize how columns support compression and why they may buckle.
@@ -1203,9 +1203,9 @@ User-friendly description: Recognize how columns support compression and why the
 
 Slug: structuralBracing
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[structuralBracing.data.ts](../../data/skills/structuresAndConstruction/structuralElements/skills/structuralBracing.data.ts)
 
 Methodological description: Trace how diagonal members or other lateral systems prevent unwanted sway and redistribute horizontal actions.
 User-friendly description: Understand how braces prevent unwanted sideways motion.
@@ -1214,9 +1214,9 @@ User-friendly description: Understand how braces prevent unwanted sideways motio
 
 Slug: arches
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[arches.data.ts](../../data/skills/structuresAndConstruction/structuralElements/skills/arches.data.ts)
 
 Methodological description: Show how a curved compression path transfers loads and may produce support thrust.
 User-friendly description: Trace forces through an arch and into its supports.
@@ -1225,9 +1225,9 @@ User-friendly description: Trace forces through an arch and into its supports.
 
 Slug: trusses
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[trusses.data.ts](../../data/skills/structuresAndConstruction/structuralElements/skills/trusses.data.ts)
 
 Methodological description: Relate connected triangular members to a framed load path.
 User-friendly description: Recognize how triangular frames carry loads in a truss.
@@ -1236,9 +1236,9 @@ User-friendly description: Recognize how triangular frames carry loads in a trus
 
 Slug: foundations
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[foundations.data.ts](../../data/skills/structuresAndConstruction/structuralElements/skills/foundations.data.ts)
 
 Methodological description: Connect bearing and settlement conditions with transferring structural loads to ground.
 User-friendly description: Explain how foundations transfer a structure's weight into the ground.
@@ -1247,11 +1247,11 @@ User-friendly description: Explain how foundations transfer a structure's weight
 
 Slug: stabilityAndTesting
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[stabilityAndTesting.data.ts](../../data/skills/structuresAndConstruction/stabilityAndTesting/stabilityAndTesting.data.ts)
 
 Methodological description: Deformation, loss of equilibrium and local failure can all compromise a structure before every component breaks.
 User-friendly description: Discover how engineers evaluate whether a structure remains stable.
@@ -1260,9 +1260,9 @@ User-friendly description: Discover how engineers evaluate whether a structure r
 
 Slug: traceStructuralLoadPaths
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[traceStructuralLoadPaths.data.ts](../../data/skills/structuresAndConstruction/stabilityAndTesting/skills/traceStructuralLoadPaths.data.ts)
 
 Methodological description: Follow weight, wind or other loads through elements and supports.
 User-friendly description: Follow forces through connected structural parts and supports.
@@ -1271,9 +1271,9 @@ User-friendly description: Follow forces through connected structural parts and 
 
 Slug: evaluateStructuralStability
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateStructuralStability.data.ts](../../data/skills/structuresAndConstruction/stabilityAndTesting/skills/evaluateStructuralStability.data.ts)
 
 Methodological description: Identify risks of overturning, sway or buckling in a given arrangement.
 User-friendly description: Recognize conditions that may cause sway, tipping or buckling.
@@ -1282,9 +1282,9 @@ User-friendly description: Recognize conditions that may cause sway, tipping or 
 
 Slug: interpretStructuralDeformation
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[interpretStructuralDeformation.data.ts](../../data/skills/structuresAndConstruction/stabilityAndTesting/skills/interpretStructuralDeformation.data.ts)
 
 Methodological description: Relate observed bending or settlement to serviceability and possible damage.
 User-friendly description: Interpret bending and settlement as signs of structural deformation.
@@ -1293,9 +1293,9 @@ User-friendly description: Interpret bending and settlement as signs of structur
 
 Slug: compareStructuralModelsUnderLoad
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[compareStructuralModelsUnderLoad.data.ts](../../data/skills/structuresAndConstruction/stabilityAndTesting/skills/compareStructuralModelsUnderLoad.data.ts)
 
 Methodological description: Use consistent supports and loading to evaluate alternatives without treating a model as a certified full-scale design.
 User-friendly description: Compare structural models under consistent loads and supports.
@@ -1304,11 +1304,11 @@ User-friendly description: Compare structural models under consistent loads and 
 
 Slug: buildings
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[buildings.data.ts](../../data/skills/structuresAndConstruction/buildings/buildings.data.ts)
 
 Methodological description: A complete building combines its main structure with weather protection, spatial access and environmental adaptation.
 User-friendly description: Explore how buildings combine structural support and environmental protection.
@@ -1317,9 +1317,9 @@ User-friendly description: Explore how buildings combine structural support and 
 
 Slug: identifyStructuralBuildingSystems
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[identifyStructuralBuildingSystems.data.ts](../../data/skills/structuresAndConstruction/buildings/skills/identifyStructuralBuildingSystems.data.ts)
 
 Methodological description: Distinguish frames or load-bearing walls from internal partitions.
 User-friendly description: Distinguish load-bearing frames or walls from ordinary partitions.
@@ -1328,9 +1328,9 @@ User-friendly description: Distinguish load-bearing frames or walls from ordinar
 
 Slug: buildingEnvelopes
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[buildingEnvelopes.data.ts](../../data/skills/structuresAndConstruction/buildings/skills/buildingEnvelopes.data.ts)
 
 Methodological description: Relate roofs, walls and openings to control of moisture, weather and heat.
 User-friendly description: Recognize how roofs, walls and windows protect a building from weather.
@@ -1339,9 +1339,9 @@ User-friendly description: Recognize how roofs, walls and windows protect a buil
 
 Slug: relateBuildingDesignToASite
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[relateBuildingDesignToASite.data.ts](../../data/skills/structuresAndConstruction/buildings/skills/relateBuildingDesignToASite.data.ts)
 
 Methodological description: Identify consequences of wind, soil, terrain or climate for construction choices.
 User-friendly description: Explain how site conditions influence building decisions.
@@ -1350,9 +1350,9 @@ User-friendly description: Explain how site conditions influence building decisi
 
 Slug: designAccessibleBuildingCirculation
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[designAccessibleBuildingCirculation.data.ts](../../data/skills/structuresAndConstruction/buildings/skills/designAccessibleBuildingCirculation.data.ts)
 
 Methodological description: Create a proposed arrangement of entrances, corridors, turning spaces and level transitions so people with varying mobility can move through a planned building.
 User-friendly description: Plan pathways and entrances usable by people with different mobility needs.
@@ -1361,11 +1361,11 @@ User-friendly description: Plan pathways and entrances usable by people with dif
 
 Slug: civilWorks
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[civilWorks.data.ts](../../data/skills/structuresAndConstruction/civilWorks/civilWorks.data.ts)
 
 Methodological description: Large built assets require sequential construction and coordination with the ground and existing infrastructure.
 User-friendly description: Discover how engineers plan major construction projects.
@@ -1374,9 +1374,9 @@ User-friendly description: Discover how engineers plan major construction projec
 
 Slug: pavementLayers
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[pavementLayers.data.ts](../../data/skills/structuresAndConstruction/civilWorks/skills/pavementLayers.data.ts)
 
 Methodological description: Identify why different road layers distribute vehicle loads to supporting ground.
 User-friendly description: Understand why pavement uses layers that spread traffic loads.
@@ -1385,9 +1385,9 @@ User-friendly description: Understand why pavement uses layers that spread traff
 
 Slug: bridgeConstructionApproaches
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[bridgeConstructionApproaches.data.ts](../../data/skills/structuresAndConstruction/civilWorks/skills/bridgeConstructionApproaches.data.ts)
 
 Methodological description: Compare supported or staged methods for creating a span.
 User-friendly description: Compare different methods for constructing a bridge span.
@@ -1396,9 +1396,9 @@ User-friendly description: Compare different methods for constructing a bridge s
 
 Slug: tunnelConstructionConstraints
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[tunnelConstructionConstraints.data.ts](../../data/skills/structuresAndConstruction/civilWorks/skills/tunnelConstructionConstraints.data.ts)
 
 Methodological description: Relate ground stability, lining and ventilation to tunneling methods.
 User-friendly description: Recognize how ground conditions and ventilation shape tunnel construction.
@@ -1407,9 +1407,9 @@ User-friendly description: Recognize how ground conditions and ventilation shape
 
 Slug: planConstructionStages
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[planConstructionStages.data.ts](../../data/skills/structuresAndConstruction/civilWorks/skills/planConstructionStages.data.ts)
 
 Methodological description: Sequence foundations, supports, structure and services with realistic dependencies.
 User-friendly description: Order construction steps according to their structural dependencies.
@@ -1418,11 +1418,11 @@ User-friendly description: Order construction steps according to their structura
 
 Slug: waterAndEnvironmentalInfrastructure
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 4 · Skills: 15
 
-[Not implemented](#)
+[waterAndEnvironmentalInfrastructure.data.ts](../../data/skills/waterAndEnvironmentalInfrastructure/waterAndEnvironmentalInfrastructure.data.ts)
 
 Methodological description: Public services depend on connected intake, treatment, storage and collection systems. This domain concerns engineered infrastructure rather than natural water circulation or public-health instruction.
 User-friendly description: Explore engineered systems for safe water, drainage and environmental protection.
@@ -1431,11 +1431,11 @@ User-friendly description: Explore engineered systems for safe water, drainage a
 
 Slug: waterSupply
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[waterSupply.data.ts](../../data/skills/waterAndEnvironmentalInfrastructure/waterSupply/waterSupply.data.ts)
 
 Methodological description: Safe, reliable distribution requires treatment and controlled hydraulic delivery from sources to users.
 User-friendly description: Discover how water reaches homes and other places safely.
@@ -1444,9 +1444,9 @@ User-friendly description: Discover how water reaches homes and other places saf
 
 Slug: traceDrinkingWaterSupply
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[traceDrinkingWaterSupply.data.ts](../../data/skills/waterAndEnvironmentalInfrastructure/waterSupply/skills/traceDrinkingWaterSupply.data.ts)
 
 Methodological description: Follow a source through treatment, storage and distribution to a point of use.
 User-friendly description: Trace how water travels from a source through treatment and supply networks.
@@ -1455,9 +1455,9 @@ User-friendly description: Trace how water travels from a source through treatme
 
 Slug: drinkingWaterTreatment
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[drinkingWaterTreatment.data.ts](../../data/skills/waterAndEnvironmentalInfrastructure/waterSupply/skills/drinkingWaterTreatment.data.ts)
 
 Methodological description: Distinguish filtration, particle separation and disinfection as different barriers.
 User-friendly description: Recognize the main stages of making drinking water suitable for use.
@@ -1466,9 +1466,9 @@ User-friendly description: Recognize the main stages of making drinking water su
 
 Slug: pressureManagement
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[pressureManagement.data.ts](../../data/skills/waterAndEnvironmentalInfrastructure/waterSupply/skills/pressureManagement.data.ts)
 
 Methodological description: Relate tanks, pumps and control devices to service pressure and continuity.
 User-friendly description: Understand how supply systems maintain appropriate water pressure.
@@ -1477,9 +1477,9 @@ User-friendly description: Understand how supply systems maintain appropriate wa
 
 Slug: identifyDistributionLeakage
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[identifyDistributionLeakage.data.ts](../../data/skills/waterAndEnvironmentalInfrastructure/waterSupply/skills/identifyDistributionLeakage.data.ts)
 
 Methodological description: Interpret pressure or flow irregularities as possible evidence of lost water.
 User-friendly description: Identify signs of water leaks in distribution infrastructure.
@@ -1488,11 +1488,11 @@ User-friendly description: Identify signs of water leaks in distribution infrast
 
 Slug: wastewaterAndDrainage
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[wastewaterAndDrainage.data.ts](../../data/skills/waterAndEnvironmentalInfrastructure/wastewaterAndDrainage/wastewaterAndDrainage.data.ts)
 
 Methodological description: Sewage, storm runoff and treated discharge have different handling requirements; networks must account for capacity and contamination.
 User-friendly description: Explore how wastewater and rainwater are collected and managed.
@@ -1501,9 +1501,9 @@ User-friendly description: Explore how wastewater and rainwater are collected an
 
 Slug: traceWastewaterCollection
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[traceWastewaterCollection.data.ts](../../data/skills/waterAndEnvironmentalInfrastructure/wastewaterAndDrainage/skills/traceWastewaterCollection.data.ts)
 
 Methodological description: Follow used water from connected properties to treatment facilities.
 User-friendly description: Follow wastewater from buildings to collection and treatment facilities.
@@ -1512,9 +1512,9 @@ User-friendly description: Follow wastewater from buildings to collection and tr
 
 Slug: wastewaterTreatment
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[wastewaterTreatment.data.ts](../../data/skills/waterAndEnvironmentalInfrastructure/wastewaterAndDrainage/skills/wastewaterTreatment.data.ts)
 
 Methodological description: Identify the different purposes of physical and biological treatment processes.
 User-friendly description: Recognize the physical stages used to treat wastewater.
@@ -1523,9 +1523,9 @@ User-friendly description: Recognize the physical stages used to treat wastewate
 
 Slug: stormwaterDrainage
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[stormwaterDrainage.data.ts](../../data/skills/waterAndEnvironmentalInfrastructure/wastewaterAndDrainage/skills/stormwaterDrainage.data.ts)
 
 Methodological description: Trace runoff from a built surface through inlet, conveyance and discharge or retention.
 User-friendly description: Explore how drains and channels carry runoff away from populated areas.
@@ -1534,9 +1534,9 @@ User-friendly description: Explore how drains and channels carry runoff away fro
 
 Slug: floodControlStructures
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[floodControlStructures.data.ts](../../data/skills/waterAndEnvironmentalInfrastructure/wastewaterAndDrainage/skills/floodControlStructures.data.ts)
 
 Methodological description: Relate barriers, detention or controlled diversion to flood-risk reduction and its limits.
 User-friendly description: Understand how barriers and storage works can reduce flood damage.
@@ -1545,11 +1545,11 @@ User-friendly description: Understand how barriers and storage works can reduce 
 
 Slug: hydraulicInfrastructure
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 3
 
-[Not implemented](#)
+[hydraulicInfrastructure.data.ts](../../data/skills/waterAndEnvironmentalInfrastructure/hydraulicInfrastructure/hydraulicInfrastructure.data.ts)
 
 Methodological description: Flow and water levels can be regulated by built chambers, gates and channels that connect transport or supply routes.
 User-friendly description: Discover how canals, locks and valves manage moving water.
@@ -1558,9 +1558,9 @@ User-friendly description: Discover how canals, locks and valves manage moving w
 
 Slug: canalLocks
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[canalLocks.data.ts](../../data/skills/waterAndEnvironmentalInfrastructure/hydraulicInfrastructure/skills/canalLocks.data.ts)
 
 Methodological description: Trace chamber filling, gates and valves used to move a vessel between levels.
 User-friendly description: Explain how a canal lock raises or lowers a vessel between water levels.
@@ -1569,9 +1569,9 @@ User-friendly description: Explain how a canal lock raises or lowers a vessel be
 
 Slug: flowControlValves
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[flowControlValves.data.ts](../../data/skills/waterAndEnvironmentalInfrastructure/hydraulicInfrastructure/skills/flowControlValves.data.ts)
 
 Methodological description: Identify isolation, throttling or direction-control functions in piping.
 User-friendly description: Recognize how valves regulate water and other fluid flows.
@@ -1580,9 +1580,9 @@ User-friendly description: Recognize how valves regulate water and other fluid f
 
 Slug: compareChannelsAndPipes
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[compareChannelsAndPipes.data.ts](../../data/skills/waterAndEnvironmentalInfrastructure/hydraulicInfrastructure/skills/compareChannelsAndPipes.data.ts)
 
 Methodological description: Distinguish free-surface and enclosed conveyance when choosing a route.
 User-friendly description: Compare open channels and enclosed pipes for transporting water.
@@ -1591,11 +1591,11 @@ User-friendly description: Compare open channels and enclosed pipes for transpor
 
 Slug: environmentalControl
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[environmentalControl.data.ts](../../data/skills/waterAndEnvironmentalInfrastructure/environmentalControl/environmentalControl.data.ts)
 
 Methodological description: Public environmental infrastructure also treats polluted air and solid waste. The engineering problem is selecting and integrating collection, containment and treatment equipment rather than merely recognizing that pollution exists.
 User-friendly description: Learn how engineering systems reduce emissions and manage waste.
@@ -1604,9 +1604,9 @@ User-friendly description: Learn how engineering systems reduce emissions and ma
 
 Slug: airFiltrationEquipment
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[airFiltrationEquipment.data.ts](../../data/skills/waterAndEnvironmentalInfrastructure/environmentalControl/skills/airFiltrationEquipment.data.ts)
 
 Methodological description: Trace air through collection, filter media and discharge components while recognizing the importance of particle size and maintenance.
 User-friendly description: Recognize how air filters capture unwanted particles.
@@ -1615,9 +1615,9 @@ User-friendly description: Recognize how air filters capture unwanted particles.
 
 Slug: industrialEmissionsControl
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[industrialEmissionsControl.data.ts](../../data/skills/waterAndEnvironmentalInfrastructure/environmentalControl/skills/industrialEmissionsControl.data.ts)
 
 Methodological description: Identify capture and treatment stages intended to reduce selected pollutants before a process stream is released.
 User-friendly description: Identify equipment used to control emissions from industrial processes.
@@ -1626,9 +1626,9 @@ User-friendly description: Identify equipment used to control emissions from ind
 
 Slug: solidWasteProcessingSystems
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[solidWasteProcessingSystems.data.ts](../../data/skills/waterAndEnvironmentalInfrastructure/environmentalControl/skills/solidWasteProcessingSystems.data.ts)
 
 Methodological description: Trace collection, sorting, material recovery and residual handling through an engineered waste-management facility.
 User-friendly description: Trace how facilities sort, transform and process solid waste.
@@ -1637,9 +1637,9 @@ User-friendly description: Trace how facilities sort, transform and process soli
 
 Slug: contaminatedSiteRemediationEquipment
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[contaminatedSiteRemediationEquipment.data.ts](../../data/skills/waterAndEnvironmentalInfrastructure/environmentalControl/skills/contaminatedSiteRemediationEquipment.data.ts)
 
 Methodological description: Identify how containment, extraction or treatment systems can address a specified contaminant without assuming one method works for every site.
 User-friendly description: Understand how equipment helps remove or contain pollution from a site.
@@ -1648,11 +1648,11 @@ User-friendly description: Understand how equipment helps remove or contain poll
 
 Slug: energySystems
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 3 · Skills: 12
 
-[Not implemented](#)
+[energySystems.data.ts](../../data/skills/energySystems/energySystems.data.ts)
 
 Methodological description: Useful energy services depend on conversion, storage, power delivery and load management. The engineering emphasis is on connected equipment and operational limitations, while the principles of energy conservation belong to Physics.
 User-friendly description: Discover how engineered systems generate, store, move and use energy.
@@ -1661,11 +1661,11 @@ User-friendly description: Discover how engineered systems generate, store, move
 
 Slug: generation
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 5
 
-[Not implemented](#)
+[generation.data.ts](../../data/skills/energySystems/generation/generation.data.ts)
 
 Methodological description: Electricity and heat can be produced through different converter chains with distinct resource and operating constraints.
 User-friendly description: Explore different technical ways to produce electrical power.
@@ -1674,9 +1674,9 @@ User-friendly description: Explore different technical ways to produce electrica
 
 Slug: electricalGenerators
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[electricalGenerators.data.ts](../../data/skills/energySystems/generation/skills/electricalGenerators.data.ts)
 
 Methodological description: Trace mechanical input to electricity through a generator assembly.
 User-friendly description: Recognize how mechanical rotation drives an electrical generator.
@@ -1685,9 +1685,9 @@ User-friendly description: Recognize how mechanical rotation drives an electrica
 
 Slug: photovoltaicSystems
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[photovoltaicSystems.data.ts](../../data/skills/energySystems/generation/skills/photovoltaicSystems.data.ts)
 
 Methodological description: Identify modules and power electronics used to produce usable electricity from sunlight.
 User-friendly description: Explain how solar cells convert incident light into electricity.
@@ -1696,9 +1696,9 @@ User-friendly description: Explain how solar cells convert incident light into e
 
 Slug: windTurbines
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[windTurbines.data.ts](../../data/skills/energySystems/generation/skills/windTurbines.data.ts)
 
 Methodological description: Trace rotor, drive and generator functions within a wind-energy installation.
 User-friendly description: Trace how a wind turbine drives a generator.
@@ -1707,9 +1707,9 @@ User-friendly description: Trace how a wind turbine drives a generator.
 
 Slug: hydropowerInstallations
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[hydropowerInstallations.data.ts](../../data/skills/energySystems/generation/skills/hydropowerInstallations.data.ts)
 
 Methodological description: Follow water through a turbine and generator toward discharge.
 User-friendly description: Understand how flowing water drives a hydroelectric installation.
@@ -1718,9 +1718,9 @@ User-friendly description: Understand how flowing water drives a hydroelectric i
 
 Slug: thermalPowerStations
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[thermalPowerStations.data.ts](../../data/skills/energySystems/generation/skills/thermalPowerStations.data.ts)
 
 Methodological description: Trace a heat source and working process to a generator rather than assuming a single fuel.
 User-friendly description: Explore how thermal power plants convert heat into electrical output.
@@ -1729,11 +1729,11 @@ User-friendly description: Explore how thermal power plants convert heat into el
 
 Slug: storageAndDelivery
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[storageAndDelivery.data.ts](../../data/skills/energySystems/storageAndDelivery/storageAndDelivery.data.ts)
 
 Methodological description: Reliable supply requires matching time, location and suitable electrical or thermal interfaces.
 User-friendly description: Learn how energy is stored and delivered to users.
@@ -1742,9 +1742,9 @@ User-friendly description: Learn how energy is stored and delivered to users.
 
 Slug: rechargeableBatterySystems
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[rechargeableBatterySystems.data.ts](../../data/skills/energySystems/storageAndDelivery/skills/rechargeableBatterySystems.data.ts)
 
 Methodological description: Identify cells, charging control and protective elements in practical energy storage.
 User-friendly description: Recognize the parts and operating limitations of rechargeable battery systems.
@@ -1753,9 +1753,9 @@ User-friendly description: Recognize the parts and operating limitations of rech
 
 Slug: electricalGridDistribution
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[electricalGridDistribution.data.ts](../../data/skills/energySystems/storageAndDelivery/skills/electricalGridDistribution.data.ts)
 
 Methodological description: Trace energy from generation through substations and delivery networks to loads.
 User-friendly description: Trace electricity from power stations through distribution networks.
@@ -1764,9 +1764,9 @@ User-friendly description: Trace electricity from power stations through distrib
 
 Slug: transformerUse
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[transformerUse.data.ts](../../data/skills/energySystems/storageAndDelivery/skills/transformerUse.data.ts)
 
 Methodological description: Relate changing AC voltage levels to efficient transfer and equipment requirements.
 User-friendly description: Understand why transformers change voltage in power networks.
@@ -1775,9 +1775,9 @@ User-friendly description: Understand why transformers change voltage in power n
 
 Slug: thermalEnergyStorage
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[thermalEnergyStorage.data.ts](../../data/skills/energySystems/storageAndDelivery/skills/thermalEnergyStorage.data.ts)
 
 Methodological description: Describe how heat or cooling can be retained for later use.
 User-friendly description: Compare ways of storing heat for use at another time.
@@ -1786,11 +1786,11 @@ User-friendly description: Compare ways of storing heat for use at another time.
 
 Slug: energyPerformance
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 3
 
-[Not implemented](#)
+[energyPerformance.data.ts](../../data/skills/energySystems/energyPerformance/energyPerformance.data.ts)
 
 Methodological description: Consumption varies over time, and practical output is less than input when converters or networks lose energy.
 User-friendly description: Explore how engineers estimate demand and improve energy performance.
@@ -1799,9 +1799,9 @@ User-friendly description: Explore how engineers estimate demand and improve ene
 
 Slug: estimateEnergyDemand
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[estimateEnergyDemand.data.ts](../../data/skills/energySystems/energyPerformance/skills/estimateEnergyDemand.data.ts)
 
 Methodological description: Combine device power and operating duration to assess required supply or storage.
 User-friendly description: Estimate how much energy a device or system needs to operate.
@@ -1810,9 +1810,9 @@ User-friendly description: Estimate how much energy a device or system needs to 
 
 Slug: evaluateEnergyEfficiency
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateEnergyEfficiency.data.ts](../../data/skills/energySystems/energyPerformance/skills/evaluateEnergyEfficiency.data.ts)
 
 Methodological description: Compare useful device output with energy input and identify major losses.
 User-friendly description: Evaluate whether a system delivers useful output efficiently.
@@ -1821,9 +1821,9 @@ User-friendly description: Evaluate whether a system delivers useful output effi
 
 Slug: loadBalancing
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[loadBalancing.data.ts](../../data/skills/energySystems/energyPerformance/skills/loadBalancing.data.ts)
 
 Methodological description: Recognize why generation, storage and demand must be coordinated across time.
 User-friendly description: Understand how balancing supply and demand helps power systems operate.
@@ -1832,11 +1832,11 @@ User-friendly description: Understand how balancing supply and demand helps powe
 
 Slug: electricalAndElectronicEngineering
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 5 · Skills: 27
 
-[Not implemented](#)
+[electricalAndElectronicEngineering.data.ts](../../data/skills/electricalAndElectronicEngineering/electricalAndElectronicEngineering.data.ts)
 
 Methodological description: Circuits and electronic hardware distribute power, process signals and connect physical controls to useful outputs. The subject here is device architecture and correct component integration, not the scientific derivation of electromagnetic laws.
 User-friendly description: Explore how electrical and electronic hardware is built, measured and protected.
@@ -1845,11 +1845,11 @@ User-friendly description: Explore how electrical and electronic hardware is bui
 
 Slug: circuitConstruction
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 5
 
-[Not implemented](#)
+[circuitConstruction.data.ts](../../data/skills/electricalAndElectronicEngineering/circuitConstruction/circuitConstruction.data.ts)
 
 Methodological description: A functioning assembly requires compatible sources, loads and connections, including means of switching and independent distribution.
 User-friendly description: Discover how diagrams guide the construction of practical electrical circuits.
@@ -1858,9 +1858,9 @@ User-friendly description: Discover how diagrams guide the construction of pract
 
 Slug: interpretCircuitDiagrams
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[interpretCircuitDiagrams.data.ts](../../data/skills/electricalAndElectronicEngineering/circuitConstruction/skills/interpretCircuitDiagrams.data.ts)
 
 Methodological description: Read the symbols, electrical junctions and conductive paths specific to circuit diagrams, including when apparent crossing wires are not electrically connected. This is more specialized than reading general technical schematics.
 User-friendly description: Read component symbols and connections in electrical drawings.
@@ -1869,9 +1869,9 @@ User-friendly description: Read component symbols and connections in electrical 
 
 Slug: assembleALowVoltageCircuit
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[assembleALowVoltageCircuit.data.ts](../../data/skills/electricalAndElectronicEngineering/circuitConstruction/skills/assembleALowVoltageCircuit.data.ts)
 
 Methodological description: Connect a suitable power source and load with correctly rated components while avoiding shorts.
 User-friendly description: Assemble a simple circuit using safe low-voltage components.
@@ -1880,9 +1880,9 @@ User-friendly description: Assemble a simple circuit using safe low-voltage comp
 
 Slug: designASwitchingCircuit
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[designASwitchingCircuit.data.ts](../../data/skills/electricalAndElectronicEngineering/circuitConstruction/skills/designASwitchingCircuit.data.ts)
 
 Methodological description: Place controls so a load can be energized or interrupted deliberately.
 User-friendly description: Plan a circuit that switches a load on and off.
@@ -1891,9 +1891,9 @@ User-friendly description: Plan a circuit that switches a load on and off.
 
 Slug: seriesCircuitArrangements
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[seriesCircuitArrangements.data.ts](../../data/skills/electricalAndElectronicEngineering/circuitConstruction/skills/seriesCircuitArrangements.data.ts)
 
 Methodological description: Identify how interruption of one common current path affects dependent loads.
 User-friendly description: Recognize how series arrangements share one current path.
@@ -1902,9 +1902,9 @@ User-friendly description: Recognize how series arrangements share one current p
 
 Slug: parallelCircuitArrangements
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[parallelCircuitArrangements.data.ts](../../data/skills/electricalAndElectronicEngineering/circuitConstruction/skills/parallelCircuitArrangements.data.ts)
 
 Methodological description: Identify separate supply branches and why loads can operate independently.
 User-friendly description: Understand how parallel branches receive the same voltage.
@@ -1913,11 +1913,11 @@ User-friendly description: Understand how parallel branches receive the same vol
 
 Slug: electronicComponents
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[electronicComponents.data.ts](../../data/skills/electricalAndElectronicEngineering/electronicComponents/electronicComponents.data.ts)
 
 Methodological description: Components can limit, store, steer or switch electrical signals; their appropriate use depends on ratings and surrounding circuit context.
 User-friendly description: Learn the functions of common electronic components.
@@ -1926,9 +1926,9 @@ User-friendly description: Learn the functions of common electronic components.
 
 Slug: resistorApplications
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[resistorApplications.data.ts](../../data/skills/electricalAndElectronicEngineering/electronicComponents/skills/resistorApplications.data.ts)
 
 Methodological description: Identify current limiting, biasing and voltage division as different practical uses.
 User-friendly description: Explore why resistors control current and divide voltage.
@@ -1937,9 +1937,9 @@ User-friendly description: Explore why resistors control current and divide volt
 
 Slug: diodeApplications
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[diodeApplications.data.ts](../../data/skills/electricalAndElectronicEngineering/electronicComponents/skills/diodeApplications.data.ts)
 
 Methodological description: Relate directional conduction, rectification or light emission to practical circuits.
 User-friendly description: Recognize why diodes allow current mainly in one direction.
@@ -1948,9 +1948,9 @@ User-friendly description: Recognize why diodes allow current mainly in one dire
 
 Slug: transistorSwitching
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[transistorSwitching.data.ts](../../data/skills/electricalAndElectronicEngineering/electronicComponents/skills/transistorSwitching.data.ts)
 
 Methodological description: Trace how a relatively small control input governs another electrical path.
 User-friendly description: Use a transistor as an electronically controlled switch.
@@ -1959,9 +1959,9 @@ User-friendly description: Use a transistor as an electronically controlled swit
 
 Slug: capacitorApplications
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[capacitorApplications.data.ts](../../data/skills/electricalAndElectronicEngineering/electronicComponents/skills/capacitorApplications.data.ts)
 
 Methodological description: Relate short-term charge storage to smoothing, filtering or timing in electronics.
 User-friendly description: Understand how capacitors store and release electric charge.
@@ -1970,11 +1970,11 @@ User-friendly description: Understand how capacitors store and release electric 
 
 Slug: embeddedHardware
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[embeddedHardware.data.ts](../../data/skills/electricalAndElectronicEngineering/embeddedHardware/embeddedHardware.data.ts)
 
 Methodological description: Controllers communicate with sensors and actuators through real physical interfaces; programming concepts are treated separately in Informatics.
 User-friendly description: Discover the hardware connections used in embedded control devices.
@@ -1983,9 +1983,9 @@ User-friendly description: Discover the hardware connections used in embedded co
 
 Slug: microcontrollerArchitecture
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[microcontrollerArchitecture.data.ts](../../data/skills/electricalAndElectronicEngineering/embeddedHardware/skills/microcontrollerArchitecture.data.ts)
 
 Methodological description: Identify processor, memory, supply and hardware interfaces in a dedicated controller.
 User-friendly description: Identify a microcontroller's processing, memory and peripheral hardware.
@@ -1994,9 +1994,9 @@ User-friendly description: Identify a microcontroller's processing, memory and p
 
 Slug: sensorInterfaceCompatibility
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[sensorInterfaceCompatibility.data.ts](../../data/skills/electricalAndElectronicEngineering/embeddedHardware/skills/sensorInterfaceCompatibility.data.ts)
 
 Methodological description: Assess whether a sensor output, supply voltage, signal level and timing are compatible with a particular data acquisition input.
 User-friendly description: Check whether sensor signals match a controller's input requirements.
@@ -2005,9 +2005,9 @@ User-friendly description: Check whether sensor signals match a controller's inp
 
 Slug: actuatorDriverCompatibility
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[actuatorDriverCompatibility.data.ts](../../data/skills/electricalAndElectronicEngineering/embeddedHardware/skills/actuatorDriverCompatibility.data.ts)
 
 Methodological description: Determine whether voltage, current, protection and command characteristics suit the drive and the expected actuator load.
 User-friendly description: Recognize when an actuator needs a suitable driver circuit.
@@ -2016,9 +2016,9 @@ User-friendly description: Recognize when an actuator needs a suitable driver ci
 
 Slug: hardwareInputOutputInterfaces
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[hardwareInputOutputInterfaces.data.ts](../../data/skills/electricalAndElectronicEngineering/embeddedHardware/skills/hardwareInputOutputInterfaces.data.ts)
 
 Methodological description: Distinguish real electrical signaling and connector limitations from software data semantics.
 User-friendly description: Understand how hardware input and output interfaces connect devices.
@@ -2027,11 +2027,11 @@ User-friendly description: Understand how hardware input and output interfaces c
 
 Slug: electricalMeasurementAndProtection
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 5
 
-[Not implemented](#)
+[electricalMeasurementAndProtection.data.ts](../../data/skills/electricalAndElectronicEngineering/electricalMeasurementAndProtection/electricalMeasurementAndProtection.data.ts)
 
 Methodological description: Measurements must be connected correctly, while protective devices prevent harmful operating conditions rather than simply switching equipment normally.
 User-friendly description: Learn how electrical measurements and protection devices support safety.
@@ -2040,9 +2040,9 @@ User-friendly description: Learn how electrical measurements and protection devi
 
 Slug: measureCircuitVoltage
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[measureCircuitVoltage.data.ts](../../data/skills/electricalAndElectronicEngineering/electricalMeasurementAndProtection/skills/measureCircuitVoltage.data.ts)
 
 Methodological description: Use a suitable meter across selected terminals to determine a potential difference.
 User-friendly description: Measure the potential difference between two circuit points safely.
@@ -2051,9 +2051,9 @@ User-friendly description: Measure the potential difference between two circuit 
 
 Slug: measureCircuitCurrent
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[measureCircuitCurrent.data.ts](../../data/skills/electricalAndElectronicEngineering/electricalMeasurementAndProtection/skills/measureCircuitCurrent.data.ts)
 
 Methodological description: Choose an appropriate sensing method and insertion point for a selected branch.
 User-friendly description: Measure current through a circuit without connecting the meter incorrectly.
@@ -2062,9 +2062,9 @@ User-friendly description: Measure current through a circuit without connecting 
 
 Slug: overcurrentProtection
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[overcurrentProtection.data.ts](../../data/skills/electricalAndElectronicEngineering/electricalMeasurementAndProtection/skills/overcurrentProtection.data.ts)
 
 Methodological description: Recognize how properly rated fuses or breakers interrupt damaging excessive current.
 User-friendly description: Explain how fuses and breakers limit dangerous overcurrent.
@@ -2073,9 +2073,9 @@ User-friendly description: Explain how fuses and breakers limit dangerous overcu
 
 Slug: protectiveGrounding
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[protectiveGrounding.data.ts](../../data/skills/electricalAndElectronicEngineering/electricalMeasurementAndProtection/skills/protectiveGrounding.data.ts)
 
 Methodological description: Identify intentional fault-current or equipotential connections that reduce electric-shock risk in appropriately designed equipment.
 User-friendly description: Understand how protective grounding supports electrical safety.
@@ -2084,9 +2084,9 @@ User-friendly description: Understand how protective grounding supports electric
 
 Slug: electricalIsolation
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[electricalIsolation.data.ts](../../data/skills/electricalAndElectronicEngineering/electricalMeasurementAndProtection/skills/electricalIsolation.data.ts)
 
 Methodological description: Describe how barriers or isolating components prevent unintended conductive paths between circuits, including hazardous interfaces.
 User-friendly description: Recognize why electrical isolation protects separate circuits and users.
@@ -2095,11 +2095,11 @@ User-friendly description: Recognize why electrical isolation protects separate 
 
 Slug: computingHardware
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 9
 
-[Not implemented](#)
+[computingHardware.data.ts](../../data/skills/electricalAndElectronicEngineering/computingHardware/computingHardware.data.ts)
 
 Methodological description: Computer hardware combines execution, working memory, persistent storage, electrical interconnects, human input/output and power and thermal management. It is distinct from programming, operating systems and software data structures.
 User-friendly description: Explore the physical components of computing devices.
@@ -2108,9 +2108,9 @@ User-friendly description: Explore the physical components of computing devices.
 
 Slug: processorHardware
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[processorHardware.data.ts](../../data/skills/electricalAndElectronicEngineering/computingHardware/skills/processorHardware.data.ts)
 
 Methodological description: Identify the functions of processing units, registers and internal interfaces in executing machine operations without confusing hardware architecture with the algorithms it runs.
 User-friendly description: Recognize how processor circuitry performs computing operations.
@@ -2119,9 +2119,9 @@ User-friendly description: Recognize how processor circuitry performs computing 
 
 Slug: mainMemoryHardware
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[mainMemoryHardware.data.ts](../../data/skills/electricalAndElectronicEngineering/computingHardware/skills/mainMemoryHardware.data.ts)
 
 Methodological description: Distinguish operational random-access memory from persistent storage using volatility, capacity, latency and connection to processing hardware.
 User-friendly description: Understand the hardware role of a computer's main working memory.
@@ -2130,9 +2130,9 @@ User-friendly description: Understand the hardware role of a computer's main wor
 
 Slug: persistentDataStorage
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[persistentDataStorage.data.ts](../../data/skills/electricalAndElectronicEngineering/computingHardware/skills/persistentDataStorage.data.ts)
 
 Methodological description: Relate solid-state or magnetic storage media and controllers to retention, transfer, access performance and device reliability.
 User-friendly description: Compare physical media that retain information without power.
@@ -2141,9 +2141,9 @@ User-friendly description: Compare physical media that retain information withou
 
 Slug: printedCircuitBoardInterconnects
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[printedCircuitBoardInterconnects.data.ts](../../data/skills/electricalAndElectronicEngineering/computingHardware/skills/printedCircuitBoardInterconnects.data.ts)
 
 Methodological description: Trace physical conductive pathways and connector functions that distribute signals and electrical power between mounted components.
 User-friendly description: Trace electrical connections through a printed circuit board.
@@ -2152,9 +2152,9 @@ User-friendly description: Trace electrical connections through a printed circui
 
 Slug: computerHardwareBuses
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[computerHardwareBuses.data.ts](../../data/skills/electricalAndElectronicEngineering/computingHardware/skills/computerHardwareBuses.data.ts)
 
 Methodological description: Describe the communication pathways and electrical interfaces joining processors, memory controllers and peripheral equipment.
 User-friendly description: Explain how computer buses transfer data between components.
@@ -2163,9 +2163,9 @@ User-friendly description: Explain how computer buses transfer data between comp
 
 Slug: displayHardware
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[displayHardware.data.ts](../../data/skills/electricalAndElectronicEngineering/computingHardware/skills/displayHardware.data.ts)
 
 Methodological description: Identify the physical image-forming panel, drive electronics and light-emission or modulation mechanisms independently from displayed software content.
 User-friendly description: Recognize the main hardware functions of a display.
@@ -2174,9 +2174,9 @@ User-friendly description: Recognize the main hardware functions of a display.
 
 Slug: inputDeviceHardware
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[inputDeviceHardware.data.ts](../../data/skills/electricalAndElectronicEngineering/computingHardware/skills/inputDeviceHardware.data.ts)
 
 Methodological description: Explain how mechanical switches, touch sensing or pointing-device transducers convert user actions into electrical signals.
 User-friendly description: Explore how keyboards, sensors and other devices provide computer input.
@@ -2185,9 +2185,9 @@ User-friendly description: Explore how keyboards, sensors and other devices prov
 
 Slug: computerPowerSupplyArchitecture
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[computerPowerSupplyArchitecture.data.ts](../../data/skills/electricalAndElectronicEngineering/computingHardware/skills/computerPowerSupplyArchitecture.data.ts)
 
 Methodological description: Trace conversion, regulation and distribution of the electrical supply to devices with differing voltage and current needs.
 User-friendly description: Understand how a computer converts and distributes power.
@@ -2196,9 +2196,9 @@ User-friendly description: Understand how a computer converts and distributes po
 
 Slug: computerThermalManagement
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[computerThermalManagement.data.ts](../../data/skills/electricalAndElectronicEngineering/computingHardware/skills/computerThermalManagement.data.ts)
 
 Methodological description: Relate computer component heat production to cooling paths, heat sinks, airflow and protection against excessive temperature.
 User-friendly description: Explain why computing hardware needs cooling and heat management.
@@ -2207,11 +2207,11 @@ User-friendly description: Explain why computing hardware needs cooling and heat
 
 Slug: automationAndRobotics
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 4 · Skills: 18
 
-[Not implemented](#)
+[automationAndRobotics.data.ts](../../data/skills/automationAndRobotics/automationAndRobotics.data.ts)
 
 Methodological description: Robotic and automated machinery converts physical observations into controlled actions. Engineering competencies concern sensors, actuators, feedback, mechanism geometry and dependable operation; general algorithms and software authoring remain in Informatics.
 User-friendly description: Discover how sensors, controls and actuators make physical systems respond.
@@ -2220,11 +2220,11 @@ User-friendly description: Discover how sensors, controls and actuators make phy
 
 Slug: sensorsAndMeasurement
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[sensorsAndMeasurement.data.ts](../../data/skills/automationAndRobotics/sensorsAndMeasurement/sensorsAndMeasurement.data.ts)
 
 Methodological description: Reliable decisions depend on selecting an appropriate measured quantity and understanding how placement, calibration and uncertainty shape the signal.
 User-friendly description: Learn how sensors are chosen, calibrated and positioned.
@@ -2233,9 +2233,9 @@ User-friendly description: Learn how sensors are chosen, calibrated and position
 
 Slug: sensorSuitability
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[sensorSuitability.data.ts](../../data/skills/automationAndRobotics/sensorsAndMeasurement/skills/sensorSuitability.data.ts)
 
 Methodological description: Assess the range, measurement principle, response and environmental limitations against a desired physical measurement. Choosing a catalog item is an assessment task, not a distinct Skill.
 User-friendly description: Choose a sensor that measures the physical condition a system needs.
@@ -2244,9 +2244,9 @@ User-friendly description: Choose a sensor that measures the physical condition 
 
 Slug: calibrateASensor
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[calibrateASensor.data.ts](../../data/skills/automationAndRobotics/sensorsAndMeasurement/skills/calibrateASensor.data.ts)
 
 Methodological description: Relate device readings to known references and correct or qualify the measurements.
 User-friendly description: Calibrate a sensor against a known reference.
@@ -2255,9 +2255,9 @@ User-friendly description: Calibrate a sensor against a known reference.
 
 Slug: interpretSensorError
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[interpretSensorError.data.ts](../../data/skills/automationAndRobotics/sensorsAndMeasurement/skills/interpretSensorError.data.ts)
 
 Methodological description: Distinguish real changes from drift, limited resolution and random noise.
 User-friendly description: Recognize how sensor error can affect a control decision.
@@ -2266,9 +2266,9 @@ User-friendly description: Recognize how sensor error can affect a control decis
 
 Slug: sensorPlacement
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[sensorPlacement.data.ts](../../data/skills/automationAndRobotics/sensorsAndMeasurement/skills/sensorPlacement.data.ts)
 
 Methodological description: Relate position and orientation to what a detector can and cannot observe.
 User-friendly description: Find a sensor location that provides useful readings.
@@ -2277,11 +2277,11 @@ User-friendly description: Find a sensor location that provides useful readings.
 
 Slug: feedbackAndControl
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 5
 
-[Not implemented](#)
+[feedbackAndControl.data.ts](../../data/skills/automationAndRobotics/feedbackAndControl/feedbackAndControl.data.ts)
 
 Methodological description: A controlled process needs commands, observations and actuation; feedback can improve regulation but also create delay or oscillation.
 User-friendly description: Explore systems that use feedback to regulate physical processes.
@@ -2290,9 +2290,9 @@ User-friendly description: Explore systems that use feedback to regulate physica
 
 Slug: controlArchitectureTradeOffs
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[controlArchitectureTradeOffs.data.ts](../../data/skills/automationAndRobotics/feedbackAndControl/skills/controlArchitectureTradeOffs.data.ts)
 
 Methodological description: Compare the robustness, sensing cost, responsiveness and stability implications of open-loop versus feedback control as an engineering architecture decision, not merely a definition quiz.
 User-friendly description: Compare control approaches according to their intended behavior and limitations.
@@ -2301,9 +2301,9 @@ User-friendly description: Compare control approaches according to their intende
 
 Slug: feedbackControlLoops
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[feedbackControlLoops.data.ts](../../data/skills/automationAndRobotics/feedbackAndControl/skills/feedbackControlLoops.data.ts)
 
 Methodological description: Locate setpoint, sensor, controller, actuator and physical plant in a working system.
 User-friendly description: Trace how measured output feeds back into a controller.
@@ -2312,9 +2312,9 @@ User-friendly description: Trace how measured output feeds back into a controlle
 
 Slug: analyzeControlResponse
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeControlResponse.data.ts](../../data/skills/automationAndRobotics/feedbackAndControl/skills/analyzeControlResponse.data.ts)
 
 Methodological description: Identify overshoot, steady error, oscillation or excessive delay in observed behavior.
 User-friendly description: Interpret how a control system responds over time to a change.
@@ -2323,9 +2323,9 @@ User-friendly description: Interpret how a control system responds over time to 
 
 Slug: safeControlFallback
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[safeControlFallback.data.ts](../../data/skills/automationAndRobotics/feedbackAndControl/skills/safeControlFallback.data.ts)
 
 Methodological description: Describe how critical equipment should react to missing power, unreliable sensing or lost communication.
 User-friendly description: Recognize when a control system needs a safe response to failure.
@@ -2334,9 +2334,9 @@ User-friendly description: Recognize when a control system needs a safe response
 
 Slug: openLoopControl
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[openLoopControl.data.ts](../../data/skills/automationAndRobotics/feedbackAndControl/skills/openLoopControl.data.ts)
 
 Methodological description: Describe a control process whose command is set without measuring the resulting output for correction, and explain the consequences of changing loads or other disturbances.
 User-friendly description: Understand systems that operate without measuring the result.
@@ -2345,11 +2345,11 @@ User-friendly description: Understand systems that operate without measuring the
 
 Slug: drivesAndActuators
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 5
 
-[Not implemented](#)
+[drivesAndActuators.data.ts](../../data/skills/automationAndRobotics/drivesAndActuators/drivesAndActuators.data.ts)
 
 Methodological description: A controller requires suitable physical mechanisms to turn supplied energy into controllable displacement, rotation or force.
 User-friendly description: Discover how powered actuators move physical components.
@@ -2358,9 +2358,9 @@ User-friendly description: Discover how powered actuators move physical componen
 
 Slug: motorDrivenActuation
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[motorDrivenActuation.data.ts](../../data/skills/automationAndRobotics/drivesAndActuators/skills/motorDrivenActuation.data.ts)
 
 Methodological description: Trace electrical supply and drive control to a rotating mechanical output.
 User-friendly description: Trace how a motor produces useful mechanical action.
@@ -2369,9 +2369,9 @@ User-friendly description: Trace how a motor produces useful mechanical action.
 
 Slug: servoPositioning
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[servoPositioning.data.ts](../../data/skills/automationAndRobotics/drivesAndActuators/skills/servoPositioning.data.ts)
 
 Methodological description: Identify the use of position feedback to command and maintain an actuator's location.
 User-friendly description: Understand how a servo mechanism controls a position.
@@ -2380,9 +2380,9 @@ User-friendly description: Understand how a servo mechanism controls a position.
 
 Slug: actuatorSuitability
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[actuatorSuitability.data.ts](../../data/skills/automationAndRobotics/drivesAndActuators/skills/actuatorSuitability.data.ts)
 
 Methodological description: Relate required torque, force, travel, speed and duty cycle to an available driving principle and its energy supply.
 User-friendly description: Choose actuators that fit required motion, forces and operating limits.
@@ -2391,9 +2391,9 @@ User-friendly description: Choose actuators that fit required motion, forces and
 
 Slug: limitSwitches
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[limitSwitches.data.ts](../../data/skills/automationAndRobotics/drivesAndActuators/skills/limitSwitches.data.ts)
 
 Methodological description: Recognize how end-of-travel signals protect a mechanism from excessive movement.
 User-friendly description: Recognize how limit switches detect the end of travel.
@@ -2402,9 +2402,9 @@ User-friendly description: Recognize how limit switches detect the end of travel
 
 Slug: electricMotorConstruction
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[electricMotorConstruction.data.ts](../../data/skills/automationAndRobotics/drivesAndActuators/skills/electricMotorConstruction.data.ts)
 
 Methodological description: Identify rotor, stator, magnets or windings, bearings and commutation arrangements that produce rotation in an electrical machine. This differs from incorporating a finished motor into a controlled mechanism.
 User-friendly description: Explore the internal parts that let an electric motor rotate.
@@ -2413,11 +2413,11 @@ User-friendly description: Explore the internal parts that let an electric motor
 
 Slug: robotSystems
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[robotSystems.data.ts](../../data/skills/automationAndRobotics/robotSystems/robotSystems.data.ts)
 
 Methodological description: Robots combine mobile or articulated structure with localization, motion control, power and protection; not all robots operate autonomously.
 User-friendly description: Learn to analyze a robot as connected physical subsystems.
@@ -2426,9 +2426,9 @@ User-friendly description: Learn to analyze a robot as connected physical subsys
 
 Slug: identifyRobotSubsystems
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[identifyRobotSubsystems.data.ts](../../data/skills/automationAndRobotics/robotSystems/skills/identifyRobotSubsystems.data.ts)
 
 Methodological description: Assign roles to structure, power, sensors, actuators and controller in a robot.
 User-friendly description: Identify the sensors, controller, drives and frame in a robot.
@@ -2437,9 +2437,9 @@ User-friendly description: Identify the sensors, controller, drives and frame in
 
 Slug: robotDegreesOfFreedom
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[robotDegreesOfFreedom.data.ts](../../data/skills/automationAndRobotics/robotSystems/skills/robotDegreesOfFreedom.data.ts)
 
 Methodological description: Connect the axes and joints of a mechanism to its possible independent movements.
 User-friendly description: Understand how the degrees of freedom describe a robot's possible movement.
@@ -2448,9 +2448,9 @@ User-friendly description: Understand how the degrees of freedom describe a robo
 
 Slug: robotLocalizationHardware
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[robotLocalizationHardware.data.ts](../../data/skills/automationAndRobotics/robotSystems/skills/robotLocalizationHardware.data.ts)
 
 Methodological description: Describe how sensing surroundings or movement contributes to estimating physical position.
 User-friendly description: Recognize hardware used to estimate a robot's location.
@@ -2459,9 +2459,9 @@ User-friendly description: Recognize hardware used to estimate a robot's locatio
 
 Slug: evaluateSafeRobotOperation
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateSafeRobotOperation.data.ts](../../data/skills/automationAndRobotics/robotSystems/skills/evaluateSafeRobotOperation.data.ts)
 
 Methodological description: Identify guards, speed limits, stop systems or separation required around moving robots.
 User-friendly description: Assess how a robot's operating conditions affect safety.
@@ -2470,11 +2470,11 @@ User-friendly description: Assess how a robot's operating conditions affect safe
 
 Slug: transportationAndAerospaceEngineering
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 4 · Skills: 15
 
-[Not implemented](#)
+[transportationAndAerospaceEngineering.data.ts](../../data/skills/transportationAndAerospaceEngineering/transportationAndAerospaceEngineering.data.ts)
 
 Methodological description: Transport machines coordinate power, support, steering, stopping and protection while moving through land, air, water or space. Each vehicle is a system with characteristic environmental and operating constraints.
 User-friendly description: Explore the engineering systems that move vehicles on land, water and in space.
@@ -2483,11 +2483,11 @@ User-friendly description: Explore the engineering systems that move vehicles on
 
 Slug: roadAndRail
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[roadAndRail.data.ts](../../data/skills/transportationAndAerospaceEngineering/roadAndRail/roadAndRail.data.ts)
 
 Methodological description: Surface vehicles depend on transmitting traction, guiding movement, supporting loads and maintaining control during stopping.
 User-friendly description: Discover the connected systems that move and control land vehicles.
@@ -2496,9 +2496,9 @@ User-friendly description: Discover the connected systems that move and control 
 
 Slug: vehicleDrivetrains
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[vehicleDrivetrains.data.ts](../../data/skills/transportationAndAerospaceEngineering/roadAndRail/skills/vehicleDrivetrains.data.ts)
 
 Methodological description: Trace prime-mover output through transmissions to driven wheels.
 User-friendly description: Trace how a drivetrain transfers power to vehicle wheels.
@@ -2507,9 +2507,9 @@ User-friendly description: Trace how a drivetrain transfers power to vehicle whe
 
 Slug: steeringSystems
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[steeringSystems.data.ts](../../data/skills/transportationAndAerospaceEngineering/roadAndRail/skills/steeringSystems.data.ts)
 
 Methodological description: Identify how wheel or axle orientation controls direction.
 User-friendly description: Explain how steering components change a vehicle's direction.
@@ -2518,9 +2518,9 @@ User-friendly description: Explain how steering components change a vehicle's di
 
 Slug: suspensionSystems
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[suspensionSystems.data.ts](../../data/skills/transportationAndAerospaceEngineering/roadAndRail/skills/suspensionSystems.data.ts)
 
 Methodological description: Relate springs, dampers and supports to maintaining contact and controlling motion.
 User-friendly description: Recognize how suspensions manage loads and road irregularities.
@@ -2529,9 +2529,9 @@ User-friendly description: Recognize how suspensions manage loads and road irreg
 
 Slug: vehicleBrakingSystems
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[vehicleBrakingSystems.data.ts](../../data/skills/transportationAndAerospaceEngineering/roadAndRail/skills/vehicleBrakingSystems.data.ts)
 
 Methodological description: Trace control input to braking torque and recognize traction limitations.
 User-friendly description: Understand how braking systems slow or stop vehicles.
@@ -2540,11 +2540,11 @@ User-friendly description: Understand how braking systems slow or stop vehicles.
 
 Slug: aircraft
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[aircraft.data.ts](../../data/skills/transportationAndAerospaceEngineering/aircraft/aircraft.data.ts)
 
 Methodological description: Aircraft incorporate propulsion, lifting surfaces, stabilization and control; different layouts solve different flight missions.
 User-friendly description: Explore the major assemblies used to support and control aircraft.
@@ -2553,9 +2553,9 @@ User-friendly description: Explore the major assemblies used to support and cont
 
 Slug: fixedWingAircraftArchitecture
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[fixedWingAircraftArchitecture.data.ts](../../data/skills/transportationAndAerospaceEngineering/aircraft/skills/fixedWingAircraftArchitecture.data.ts)
 
 Methodological description: Identify the functions of wing, fuselage, tail, propulsion and landing gear.
 User-friendly description: Recognize the wing, structure, propulsion and control parts of a fixed-wing aircraft.
@@ -2564,9 +2564,9 @@ User-friendly description: Recognize the wing, structure, propulsion and control
 
 Slug: flightControlSurfaces
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[flightControlSurfaces.data.ts](../../data/skills/transportationAndAerospaceEngineering/aircraft/skills/flightControlSurfaces.data.ts)
 
 Methodological description: Relate ailerons, elevators and rudders to changes in orientation rather than thrust.
 User-friendly description: Explain how movable control surfaces change aircraft orientation.
@@ -2575,9 +2575,9 @@ User-friendly description: Explain how movable control surfaces change aircraft 
 
 Slug: rotorcraftControl
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[rotorcraftControl.data.ts](../../data/skills/transportationAndAerospaceEngineering/aircraft/skills/rotorcraftControl.data.ts)
 
 Methodological description: Trace changes in rotor thrust to hovering and maneuvering.
 User-friendly description: Understand how rotorcraft control changes lift and direction.
@@ -2586,9 +2586,9 @@ User-friendly description: Understand how rotorcraft control changes lift and di
 
 Slug: compareAircraftPropulsionTechnologies
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[compareAircraftPropulsionTechnologies.data.ts](../../data/skills/transportationAndAerospaceEngineering/aircraft/skills/compareAircraftPropulsionTechnologies.data.ts)
 
 Methodological description: Connect propeller, jet and other arrangements to operating conditions and mission constraints.
 User-friendly description: Compare propulsion systems suited to different aircraft.
@@ -2597,11 +2597,11 @@ User-friendly description: Compare propulsion systems suited to different aircra
 
 Slug: watercraft
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 3
 
-[Not implemented](#)
+[watercraft.data.ts](../../data/skills/transportationAndAerospaceEngineering/watercraft/watercraft.data.ts)
 
 Methodological description: Vessels need suitable hulls, propulsion and steering while managing stability and water resistance.
 User-friendly description: Discover how vessel design and equipment affect travel through water.
@@ -2610,9 +2610,9 @@ User-friendly description: Discover how vessel design and equipment affect trave
 
 Slug: hullDesignChoices
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[hullDesignChoices.data.ts](../../data/skills/transportationAndAerospaceEngineering/watercraft/skills/hullDesignChoices.data.ts)
 
 Methodological description: Relate hull geometry and loading to displacement, stability and resistance.
 User-friendly description: Compare hull arrangements according to stability and resistance.
@@ -2621,9 +2621,9 @@ User-friendly description: Compare hull arrangements according to stability and 
 
 Slug: marinePropulsion
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[marinePropulsion.data.ts](../../data/skills/transportationAndAerospaceEngineering/watercraft/skills/marinePropulsion.data.ts)
 
 Methodological description: Trace motor or engine output to propeller or waterjet thrust.
 User-friendly description: Trace how marine engines and propellers move a vessel.
@@ -2632,9 +2632,9 @@ User-friendly description: Trace how marine engines and propellers move a vessel
 
 Slug: marineSteering
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[marineSteering.data.ts](../../data/skills/transportationAndAerospaceEngineering/watercraft/skills/marineSteering.data.ts)
 
 Methodological description: Identify how rudders, steerable drives or differential thrust change course.
 User-friendly description: Explain how a rudder or another mechanism controls a vessel's heading.
@@ -2643,11 +2643,11 @@ User-friendly description: Explain how a rudder or another mechanism controls a 
 
 Slug: spacecraft
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[spacecraft.data.ts](../../data/skills/transportationAndAerospaceEngineering/spacecraft/spacecraft.data.ts)
 
 Methodological description: Space systems must coordinate propulsion and precision orientation with energy supply, thermal protection and mission hardware.
 User-friendly description: Learn how spacecraft operate beyond ordinary atmospheric conditions.
@@ -2656,9 +2656,9 @@ User-friendly description: Learn how spacecraft operate beyond ordinary atmosphe
 
 Slug: rocketPropulsionSystems
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[rocketPropulsionSystems.data.ts](../../data/skills/transportationAndAerospaceEngineering/spacecraft/skills/rocketPropulsionSystems.data.ts)
 
 Methodological description: Identify propellant supply, energy release and nozzle as functions of a launch engine.
 User-friendly description: Recognize how rocket systems produce thrust by ejecting mass.
@@ -2667,9 +2667,9 @@ User-friendly description: Recognize how rocket systems produce thrust by ejecti
 
 Slug: identifySatelliteSubsystems
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[identifySatelliteSubsystems.data.ts](../../data/skills/transportationAndAerospaceEngineering/spacecraft/skills/identifySatelliteSubsystems.data.ts)
 
 Methodological description: Distinguish payload, power, communications, thermal and attitude-control equipment.
 User-friendly description: Identify power, communication, structure and control subsystems on a satellite.
@@ -2678,9 +2678,9 @@ User-friendly description: Identify power, communication, structure and control 
 
 Slug: spacecraftAttitudeControl
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[spacecraftAttitudeControl.data.ts](../../data/skills/transportationAndAerospaceEngineering/spacecraft/skills/spacecraftAttitudeControl.data.ts)
 
 Methodological description: Relate sensors and actuators to changing orientation rather than simply changing orbit.
 User-friendly description: Understand how spacecraft control orientation in space.
@@ -2689,9 +2689,9 @@ User-friendly description: Understand how spacecraft control orientation in spac
 
 Slug: atmosphericReEntryProtection
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[atmosphericReEntryProtection.data.ts](../../data/skills/transportationAndAerospaceEngineering/spacecraft/skills/atmosphericReEntryProtection.data.ts)
 
 Methodological description: Connect intense heating and mechanical loading to vehicle shielding and geometry.
 User-friendly description: Recognize why spacecraft need protection from heating during re-entry.
@@ -2700,11 +2700,11 @@ User-friendly description: Recognize why spacecraft need protection from heating
 
 Slug: communicationAndMeasurementDevices
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 3 · Skills: 13
 
-[Not implemented](#)
+[communicationAndMeasurementDevices.data.ts](../../data/skills/communicationAndMeasurementDevices/communicationAndMeasurementDevices.data.ts)
 
 Methodological description: Radio, optical and navigation equipment generates, propagates, detects and uses physical signals. Competencies concern real emitters, interfaces, receivers and instrumentation, rather than networking programs or generic data-processing algorithms.
 User-friendly description: Explore physical devices that transmit signals, form images and determine position.
@@ -2713,11 +2713,11 @@ User-friendly description: Explore physical devices that transmit signals, form 
 
 Slug: communicationHardware
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 5
 
-[Not implemented](#)
+[communicationHardware.data.ts](../../data/skills/communicationAndMeasurementDevices/communicationHardware/communicationHardware.data.ts)
 
 Methodological description: Physical communication chains depend on transducers, suitable electromagnetic or wired paths and receiving equipment.
 User-friendly description: Discover the components that send and receive information.
@@ -2726,9 +2726,9 @@ User-friendly description: Discover the components that send and receive informa
 
 Slug: traceACommunicationSignalChain
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[traceACommunicationSignalChain.data.ts](../../data/skills/communicationAndMeasurementDevices/communicationHardware/skills/traceACommunicationSignalChain.data.ts)
 
 Methodological description: Identify input conversion, transmission, propagation, reception and output in a practical link.
 User-friendly description: Trace a signal through transmission, propagation and reception.
@@ -2737,9 +2737,9 @@ User-friendly description: Trace a signal through transmission, propagation and 
 
 Slug: radioTransmitters
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[radioTransmitters.data.ts](../../data/skills/communicationAndMeasurementDevices/communicationHardware/skills/radioTransmitters.data.ts)
 
 Methodological description: Trace how circuitry prepares a signal and supplies suitable electrical excitation to an antenna for radiation.
 User-friendly description: Understand the main functional parts of a radio transmitter.
@@ -2748,9 +2748,9 @@ User-friendly description: Understand the main functional parts of a radio trans
 
 Slug: radioReceivers
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[radioReceivers.data.ts](../../data/skills/communicationAndMeasurementDevices/communicationHardware/skills/radioReceivers.data.ts)
 
 Methodological description: Trace how an antenna and receiving electronics select and recover useful information from a received signal.
 User-friendly description: Recognize how a receiver selects and interprets radio signals.
@@ -2759,9 +2759,9 @@ User-friendly description: Recognize how a receiver selects and interprets radio
 
 Slug: antennaFunctions
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[antennaFunctions.data.ts](../../data/skills/communicationAndMeasurementDevices/communicationHardware/skills/antennaFunctions.data.ts)
 
 Methodological description: Relate antenna coupling, placement and orientation to the intended link.
 User-friendly description: Explore how antennas couple signals to electromagnetic waves.
@@ -2770,9 +2770,9 @@ User-friendly description: Explore how antennas couple signals to electromagneti
 
 Slug: communicationsInfrastructure
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[communicationsInfrastructure.data.ts](../../data/skills/communicationAndMeasurementDevices/communicationHardware/skills/communicationsInfrastructure.data.ts)
 
 Methodological description: Identify the roles of repeaters, base stations and backhaul links in providing coverage.
 User-friendly description: Understand how communication links rely on connected infrastructure.
@@ -2781,11 +2781,11 @@ User-friendly description: Understand how communication links rely on connected 
 
 Slug: opticalDevices
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 5
 
-[Not implemented](#)
+[opticalDevices.data.ts](../../data/skills/communicationAndMeasurementDevices/opticalDevices/opticalDevices.data.ts)
 
 Methodological description: Optical components manipulate or detect light for imaging, sensing and transmission; lasers require particular source and exposure precautions.
 User-friendly description: Learn how optical devices manipulate light for imaging and communication.
@@ -2794,9 +2794,9 @@ User-friendly description: Learn how optical devices manipulate light for imagin
 
 Slug: cameraHardware
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[cameraHardware.data.ts](../../data/skills/communicationAndMeasurementDevices/opticalDevices/skills/cameraHardware.data.ts)
 
 Methodological description: Trace light through an optical path onto an image sensor, apart from software image processing.
 User-friendly description: Trace how a camera's optics and sensor produce an image.
@@ -2805,9 +2805,9 @@ User-friendly description: Trace how a camera's optics and sensor produce an ima
 
 Slug: fiberOpticCommunicationSystems
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[fiberOpticCommunicationSystems.data.ts](../../data/skills/communicationAndMeasurementDevices/opticalDevices/skills/fiberOpticCommunicationSystems.data.ts)
 
 Methodological description: Identify source, fiber path, connectors and receiver in an optical link.
 User-friendly description: Recognize the role of optical fibers in transmitting information.
@@ -2816,9 +2816,9 @@ User-friendly description: Recognize the role of optical fibers in transmitting 
 
 Slug: laserDeviceArchitecture
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[laserDeviceArchitecture.data.ts](../../data/skills/communicationAndMeasurementDevices/opticalDevices/skills/laserDeviceArchitecture.data.ts)
 
 Methodological description: Identify an energized gain medium, light amplification and relevant resonator or output optics.
 User-friendly description: Identify the main components of a laser-based device.
@@ -2827,9 +2827,9 @@ User-friendly description: Identify the main components of a laser-based device.
 
 Slug: opticalComponentSuitability
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[opticalComponentSuitability.data.ts](../../data/skills/communicationAndMeasurementDevices/opticalDevices/skills/opticalComponentSuitability.data.ts)
 
 Methodological description: Assess the functional fit of lenses, mirrors, filters or detectors for an imaging, transmission or measurement purpose.
 User-friendly description: Compare optical components against the function they must serve.
@@ -2838,9 +2838,9 @@ User-friendly description: Compare optical components against the function they 
 
 Slug: identifyLaserDeviceHazards
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[identifyLaserDeviceHazards.data.ts](../../data/skills/communicationAndMeasurementDevices/opticalDevices/skills/identifyLaserDeviceHazards.data.ts)
 
 Methodological description: Connect beam intensity and reflection paths with protective measures and controlled operation.
 User-friendly description: Recognize hazards associated with unsafe laser equipment.
@@ -2849,11 +2849,11 @@ User-friendly description: Recognize hazards associated with unsafe laser equipm
 
 Slug: navigationEquipment
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 3
 
-[Not implemented](#)
+[navigationEquipment.data.ts](../../data/skills/communicationAndMeasurementDevices/navigationEquipment/navigationEquipment.data.ts)
 
 Methodological description: Positioning methods use different physical measurements, and each has characteristic failures and accuracy limitations.
 User-friendly description: Explore the hardware used for navigation and positioning.
@@ -2862,9 +2862,9 @@ User-friendly description: Explore the hardware used for navigation and position
 
 Slug: satelliteNavigationReceivers
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[satelliteNavigationReceivers.data.ts](../../data/skills/communicationAndMeasurementDevices/navigationEquipment/skills/satelliteNavigationReceivers.data.ts)
 
 Methodological description: Recognize how timing signals from multiple satellites support location and time estimates.
 User-friendly description: Understand how satellite navigation receivers use transmitted signals.
@@ -2873,9 +2873,9 @@ User-friendly description: Understand how satellite navigation receivers use tra
 
 Slug: inertialNavigationHardware
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[inertialNavigationHardware.data.ts](../../data/skills/communicationAndMeasurementDevices/navigationEquipment/skills/inertialNavigationHardware.data.ts)
 
 Methodological description: Identify accelerometers and gyroscopes and the accumulation of estimation error.
 User-friendly description: Recognize how inertial sensors estimate changing movement and orientation.
@@ -2884,9 +2884,9 @@ User-friendly description: Recognize how inertial sensors estimate changing move
 
 Slug: comparePositioningMethods
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[comparePositioningMethods.data.ts](../../data/skills/communicationAndMeasurementDevices/navigationEquipment/skills/comparePositioningMethods.data.ts)
 
 Methodological description: Relate satellite, inertial and local-reference approaches to interference, coverage and drift.
 User-friendly description: Compare positioning technologies by their operating limitations.
@@ -2895,11 +2895,11 @@ User-friendly description: Compare positioning technologies by their operating l
 
 Slug: manufacturingAndProduction
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 3 · Skills: 13
 
-[Not implemented](#)
+[manufacturingAndProduction.data.ts](../../data/skills/manufacturingAndProduction/manufacturingAndProduction.data.ts)
 
 Methodological description: Finished products require suitable forming processes, assembly, tolerances and inspection. Production engineering addresses repeatable manufacture under resource, quality and throughput limits.
 User-friendly description: Explore how materials are shaped, products assembled and production quality controlled.
@@ -2908,11 +2908,11 @@ User-friendly description: Explore how materials are shaped, products assembled 
 
 Slug: materialShaping
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 5
 
-[Not implemented](#)
+[materialShaping.data.ts](../../data/skills/manufacturingAndProduction/materialShaping/materialShaping.data.ts)
 
 Methodological description: A manufacturing process imposes specific restrictions on geometry, material, waste and achievable accuracy.
 User-friendly description: Learn to distinguish methods of creating shapes from raw material.
@@ -2921,9 +2921,9 @@ User-friendly description: Learn to distinguish methods of creating shapes from 
 
 Slug: machiningProcesses
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[machiningProcesses.data.ts](../../data/skills/manufacturingAndProduction/materialShaping/skills/machiningProcesses.data.ts)
 
 Methodological description: Describe controlled material removal by tools, such as drilling, milling or turning, and the consequences for accuracy, tool access and waste.
 User-friendly description: Recognize when material is cut away to make a component.
@@ -2932,9 +2932,9 @@ User-friendly description: Recognize when material is cut away to make a compone
 
 Slug: formingProcesses
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[formingProcesses.data.ts](../../data/skills/manufacturingAndProduction/materialShaping/skills/formingProcesses.data.ts)
 
 Methodological description: Identify ways applied force reshapes a material without primarily removing it.
 User-friendly description: Understand how a material is bent or pressed into a new shape.
@@ -2943,9 +2943,9 @@ User-friendly description: Understand how a material is bent or pressed into a n
 
 Slug: moldingProcesses
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[moldingProcesses.data.ts](../../data/skills/manufacturingAndProduction/materialShaping/skills/moldingProcesses.data.ts)
 
 Methodological description: Describe shaping polymer or other moldable feedstock in a cavity under suitable temperature or pressure conditions.
 User-friendly description: Explore how molds define the shape of manufactured parts.
@@ -2954,9 +2954,9 @@ User-friendly description: Explore how molds define the shape of manufactured pa
 
 Slug: castingProcesses
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[castingProcesses.data.ts](../../data/skills/manufacturingAndProduction/materialShaping/skills/castingProcesses.data.ts)
 
 Methodological description: Trace a poured molten or fluid material through filling a cavity, solidifying and removing a cast product.
 User-friendly description: Recognize how liquid material solidifies in a casting form.
@@ -2965,9 +2965,9 @@ User-friendly description: Recognize how liquid material solidifies in a casting
 
 Slug: additiveManufacturing
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[additiveManufacturing.data.ts](../../data/skills/manufacturingAndProduction/materialShaping/skills/additiveManufacturing.data.ts)
 
 Methodological description: Describe incremental material placement or fusion used to produce three-dimensional parts.
 User-friendly description: Understand how additive processes build components in layers.
@@ -2976,11 +2976,11 @@ User-friendly description: Understand how additive processes build components in
 
 Slug: assemblyAndQuality
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[assemblyAndQuality.data.ts](../../data/skills/manufacturingAndProduction/assemblyAndQuality/assemblyAndQuality.data.ts)
 
 Methodological description: Making components separately is insufficient when fits, order of installation or verification are wrong.
 User-friendly description: Discover how assembly plans and checks help produce reliable products.
@@ -2989,9 +2989,9 @@ User-friendly description: Discover how assembly plans and checks help produce r
 
 Slug: planAnAssemblySequence
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[planAnAssemblySequence.data.ts](../../data/skills/manufacturingAndProduction/assemblyAndQuality/skills/planAnAssemblySequence.data.ts)
 
 Methodological description: Choose an order that provides access and establishes correct component alignment.
 User-friendly description: Order assembly steps so later operations can be completed correctly.
@@ -3000,9 +3000,9 @@ User-friendly description: Order assembly steps so later operations can be compl
 
 Slug: interpretManufacturingTolerances
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[interpretManufacturingTolerances.data.ts](../../data/skills/manufacturingAndProduction/assemblyAndQuality/skills/interpretManufacturingTolerances.data.ts)
 
 Methodological description: Read permissible dimensions and deviations from a specified manufacturing drawing, deciding whether a measured component meets its stated production limits.
 User-friendly description: Read permitted dimensional variations in a manufacturing drawing.
@@ -3011,9 +3011,9 @@ User-friendly description: Read permitted dimensional variations in a manufactur
 
 Slug: qualityInspection
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[qualityInspection.data.ts](../../data/skills/manufacturingAndProduction/assemblyAndQuality/skills/qualityInspection.data.ts)
 
 Methodological description: Compare specified product attributes with actual measurements instead of relying on appearance.
 User-friendly description: Check a produced part against measurable quality requirements.
@@ -3022,9 +3022,9 @@ User-friendly description: Check a produced part against measurable quality requ
 
 Slug: diagnoseManufacturingDefects
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[diagnoseManufacturingDefects.data.ts](../../data/skills/manufacturingAndProduction/assemblyAndQuality/skills/diagnoseManufacturingDefects.data.ts)
 
 Methodological description: Relate observed nonconformity to possible processing or assembly causes.
 User-friendly description: Identify likely causes of defects in a manufacturing process.
@@ -3033,11 +3033,11 @@ User-friendly description: Identify likely causes of defects in a manufacturing 
 
 Slug: productionFlow
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[productionFlow.data.ts](../../data/skills/manufacturingAndProduction/productionFlow/productionFlow.data.ts)
 
 Methodological description: Repeated manufacture introduces throughput limits and choices between flexible batches and continuous processes.
 User-friendly description: Explore how resources and components move through production.
@@ -3046,9 +3046,9 @@ User-friendly description: Explore how resources and components move through pro
 
 Slug: traceProductionWorkflow
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[traceProductionWorkflow.data.ts](../../data/skills/manufacturingAndProduction/productionFlow/skills/traceProductionWorkflow.data.ts)
 
 Methodological description: Identify stations and movement of parts from raw inputs to completed products.
 User-friendly description: Trace a product through successive stages of manufacturing.
@@ -3057,9 +3057,9 @@ User-friendly description: Trace a product through successive stages of manufact
 
 Slug: compareBatchAndContinuousProduction
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[compareBatchAndContinuousProduction.data.ts](../../data/skills/manufacturingAndProduction/productionFlow/skills/compareBatchAndContinuousProduction.data.ts)
 
 Methodological description: Distinguish discrete runs from ongoing manufacture and their changeover implications.
 User-friendly description: Compare making products in batches with continuous production.
@@ -3068,9 +3068,9 @@ User-friendly description: Compare making products in batches with continuous pr
 
 Slug: automatedManufacturingCells
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[automatedManufacturingCells.data.ts](../../data/skills/manufacturingAndProduction/productionFlow/skills/automatedManufacturingCells.data.ts)
 
 Methodological description: Identify handling mechanisms, sensors, drives and safety boundaries in repetitive production.
 User-friendly description: Understand how automated workstations coordinate production steps.
@@ -3079,9 +3079,9 @@ User-friendly description: Understand how automated workstations coordinate prod
 
 Slug: identifyProductionWaste
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[identifyProductionWaste.data.ts](../../data/skills/manufacturingAndProduction/productionFlow/skills/identifyProductionWaste.data.ts)
 
 Methodological description: Recognize avoidable scrap, waiting, transport or rework in a manufacturing process.
 User-friendly description: Recognize wasted materials, movement or time in a production process.
@@ -3090,11 +3090,11 @@ User-friendly description: Recognize wasted materials, movement or time in a pro
 
 Slug: processAndAgriculturalEngineering
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 3 · Skills: 13
 
-[Not implemented](#)
+[processAndAgriculturalEngineering.data.ts](../../data/skills/processAndAgriculturalEngineering/processAndAgriculturalEngineering.data.ts)
 
 Methodological description: Some engineered systems transform flowing materials rather than assembling separate mechanical parts. Their design coordinates equipment, transfer rates, process conditions and product quality; agricultural and food technologies adapt these principles to living materials and variable field environments.
 User-friendly description: Explore systems that transform materials and support food and agricultural production.
@@ -3103,11 +3103,11 @@ User-friendly description: Explore systems that transform materials and support 
 
 Slug: processArchitecture
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 5
 
-[Not implemented](#)
+[processArchitecture.data.ts](../../data/skills/processAndAgriculturalEngineering/processArchitecture/processArchitecture.data.ts)
 
 Methodological description: Large production processes connect material inputs, transformations, recirculation and waste streams in a sequence where one operation constrains others.
 User-friendly description: Learn how industrial processes organize equipment and material flows.
@@ -3116,9 +3116,9 @@ User-friendly description: Learn how industrial processes organize equipment and
 
 Slug: interpretAProcessFlowDiagram
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[interpretAProcessFlowDiagram.data.ts](../../data/skills/processAndAgriculturalEngineering/processArchitecture/skills/interpretAProcessFlowDiagram.data.ts)
 
 Methodological description: Trace named material streams and equipment blocks to determine the order and purpose of operations in a production process.
 User-friendly description: Read a diagram showing how a production process connects its equipment.
@@ -3127,9 +3127,9 @@ User-friendly description: Read a diagram showing how a production process conne
 
 Slug: traceMaterialBalances
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[traceMaterialBalances.data.ts](../../data/skills/processAndAgriculturalEngineering/processArchitecture/skills/traceMaterialBalances.data.ts)
 
 Methodological description: Relate input, accumulation, product and waste flows across a specified process boundary without confusing mass conservation with constant volume.
 User-friendly description: Track material entering, leaving and accumulating in a processing system.
@@ -3138,9 +3138,9 @@ User-friendly description: Track material entering, leaving and accumulating in 
 
 Slug: industrialMixingEquipment
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[industrialMixingEquipment.data.ts](../../data/skills/processAndAgriculturalEngineering/processArchitecture/skills/industrialMixingEquipment.data.ts)
 
 Methodological description: Identify agitation or flow arrangements used to distribute multiple ingredients to a required degree of uniformity.
 User-friendly description: Understand how industrial equipment mixes substances.
@@ -3149,9 +3149,9 @@ User-friendly description: Understand how industrial equipment mixes substances.
 
 Slug: dosingEquipment
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[dosingEquipment.data.ts](../../data/skills/processAndAgriculturalEngineering/processArchitecture/skills/dosingEquipment.data.ts)
 
 Methodological description: Describe metering mechanisms that deliver a measured quantity or rate of material into a process stream.
 User-friendly description: Recognize systems that measure and deliver controlled quantities.
@@ -3160,9 +3160,9 @@ User-friendly description: Recognize systems that measure and deliver controlled
 
 Slug: identifyProcessBottlenecks
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[identifyProcessBottlenecks.data.ts](../../data/skills/processAndAgriculturalEngineering/processArchitecture/skills/identifyProcessBottlenecks.data.ts)
 
 Methodological description: Recognize how limited capacity or interruptions at one processing stage affect the output of a connected plant.
 User-friendly description: Identify which process stage limits the output of the whole system.
@@ -3171,11 +3171,11 @@ User-friendly description: Identify which process stage limits the output of the
 
 Slug: industrialProcessEquipment
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[industrialProcessEquipment.data.ts](../../data/skills/processAndAgriculturalEngineering/industrialProcessEquipment/industrialProcessEquipment.data.ts)
 
 Methodological description: Process apparatus can separate mixtures, support controlled chemical transformations or maintain thermal conditions while containing potentially hazardous materials.
 User-friendly description: Discover equipment used to separate, react, heat and contain process materials.
@@ -3184,9 +3184,9 @@ User-friendly description: Discover equipment used to separate, react, heat and 
 
 Slug: industrialSeparationEquipment
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[industrialSeparationEquipment.data.ts](../../data/skills/processAndAgriculturalEngineering/industrialProcessEquipment/skills/industrialSeparationEquipment.data.ts)
 
 Methodological description: Distinguish practical roles for filtration, sedimentation, distillation or membrane systems based on which property enables separation.
 User-friendly description: Recognize equipment that separates substances by physical properties.
@@ -3195,9 +3195,9 @@ User-friendly description: Recognize equipment that separates substances by phys
 
 Slug: chemicalReactorSystems
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[chemicalReactorSystems.data.ts](../../data/skills/processAndAgriculturalEngineering/industrialProcessEquipment/skills/chemicalReactorSystems.data.ts)
 
 Methodological description: Identify containment, feed, mixing, heat control and product removal functions in a vessel designed for a controlled transformation.
 User-friendly description: Identify the controlled functions of chemical reaction vessels.
@@ -3206,9 +3206,9 @@ User-friendly description: Identify the controlled functions of chemical reactio
 
 Slug: processHeatingSystems
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[processHeatingSystems.data.ts](../../data/skills/processAndAgriculturalEngineering/industrialProcessEquipment/skills/processHeatingSystems.data.ts)
 
 Methodological description: Trace heat delivery and temperature regulation through industrial apparatus rather than treating a heater as an isolated element.
 User-friendly description: Trace how heating equipment transfers energy to a process stream.
@@ -3217,9 +3217,9 @@ User-friendly description: Trace how heating equipment transfers energy to a pro
 
 Slug: processContainment
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[processContainment.data.ts](../../data/skills/processAndAgriculturalEngineering/industrialProcessEquipment/skills/processContainment.data.ts)
 
 Methodological description: Relate sealed vessels, piping, ventilation and pressure controls to keeping working materials within suitable operating boundaries.
 User-friendly description: Explain why containers and seals must prevent uncontrolled releases.
@@ -3228,11 +3228,11 @@ User-friendly description: Explain why containers and seals must prevent uncontr
 
 Slug: foodAndAgriculturalTechnology
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[foodAndAgriculturalTechnology.data.ts](../../data/skills/processAndAgriculturalEngineering/foodAndAgriculturalTechnology/foodAndAgriculturalTechnology.data.ts)
 
 Methodological description: Food and field equipment must handle biological materials with variable properties and constraints involving spoilage, hygiene, water use and environmental conditions.
 User-friendly description: Explore machines that store food and support modern agriculture.
@@ -3241,9 +3241,9 @@ User-friendly description: Explore machines that store food and support modern a
 
 Slug: foodPreservationEquipment
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[foodPreservationEquipment.data.ts](../../data/skills/processAndAgriculturalEngineering/foodAndAgriculturalTechnology/skills/foodPreservationEquipment.data.ts)
 
 Methodological description: Identify how refrigeration, dehydration, heating or sealed packaging apparatus supports a specified preservation process.
 User-friendly description: Recognize equipment that helps keep food safe and slow spoilage.
@@ -3252,9 +3252,9 @@ User-friendly description: Recognize equipment that helps keep food safe and slo
 
 Slug: fermentationProductionEquipment
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[fermentationProductionEquipment.data.ts](../../data/skills/processAndAgriculturalEngineering/foodAndAgriculturalTechnology/skills/fermentationProductionEquipment.data.ts)
 
 Methodological description: Trace the functions of a vessel, controlled conditions and material handling in an engineered biological production process.
 User-friendly description: Understand the controlled equipment used in fermentation production.
@@ -3263,9 +3263,9 @@ User-friendly description: Understand the controlled equipment used in fermentat
 
 Slug: irrigationEngineering
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[irrigationEngineering.data.ts](../../data/skills/processAndAgriculturalEngineering/foodAndAgriculturalTechnology/skills/irrigationEngineering.data.ts)
 
 Methodological description: Relate water sources, delivery methods and flow control to plant water needs and resource constraints.
 User-friendly description: Trace how engineered systems deliver water to crops.
@@ -3274,9 +3274,9 @@ User-friendly description: Trace how engineered systems deliver water to crops.
 
 Slug: precisionAgriculturalEquipment
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[precisionAgriculturalEquipment.data.ts](../../data/skills/processAndAgriculturalEngineering/foodAndAgriculturalTechnology/skills/precisionAgriculturalEquipment.data.ts)
 
 Methodological description: Identify the sensing, positioning and variable-delivery functions of machines that adapt work to field conditions.
 User-friendly description: Explore machines that adjust agricultural operations using measured field conditions.
@@ -3285,11 +3285,11 @@ User-friendly description: Explore machines that adjust agricultural operations 
 
 Slug: humanCenteredEngineeringAndErgonomics
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 4 · Skills: 15
 
-[Not implemented](#)
+[humanCenteredEngineeringAndErgonomics.data.ts](../../data/skills/humanCenteredEngineeringAndErgonomics/humanCenteredEngineeringAndErgonomics.data.ts)
 
 Methodological description: Physical controls and built environments must suit real human capabilities. Engineering UX concerns shape, reach, grip, affordance, safe handling and access; digital navigation and software feedback are separate Informatics competencies.
 User-friendly description: Discover how physical products and spaces can work for people with different needs.
@@ -3298,11 +3298,11 @@ User-friendly description: Discover how physical products and spaces can work fo
 
 Slug: userNeeds
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[userNeeds.data.ts](../../data/skills/humanCenteredEngineeringAndErgonomics/userNeeds/userNeeds.data.ts)
 
 Methodological description: Design briefs must address users with differing abilities and usage contexts rather than projecting the designer's own preferences.
 User-friendly description: Learn to investigate the practical activities and limitations of product users.
@@ -3311,9 +3311,9 @@ User-friendly description: Learn to investigate the practical activities and lim
 
 Slug: identifyPhysicalUserScenarios
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[identifyPhysicalUserScenarios.data.ts](../../data/skills/humanCenteredEngineeringAndErgonomics/userNeeds/skills/identifyPhysicalUserScenarios.data.ts)
 
 Methodological description: Specify who uses an object, what task they perform and relevant conditions.
 User-friendly description: Describe the physical actions people need to perform with a product.
@@ -3322,9 +3322,9 @@ User-friendly description: Describe the physical actions people need to perform 
 
 Slug: identifyAccessibilityBarriers
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[identifyAccessibilityBarriers.data.ts](../../data/skills/humanCenteredEngineeringAndErgonomics/userNeeds/skills/identifyAccessibilityBarriers.data.ts)
 
 Methodological description: Recognize force, reach, mobility, hearing, sight or dexterity obstacles introduced by a design.
 User-friendly description: Recognize obstacles that prevent people with different abilities from using a space.
@@ -3333,9 +3333,9 @@ User-friendly description: Recognize obstacles that prevent people with differen
 
 Slug: observePhysicalUsabilityProblems
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[observePhysicalUsabilityProblems.data.ts](../../data/skills/humanCenteredEngineeringAndErgonomics/userNeeds/skills/observePhysicalUsabilityProblems.data.ts)
 
 Methodological description: Distinguish witnessed hesitation or failed handling from assumptions about users.
 User-friendly description: Observe where someone struggles with a product's physical operation.
@@ -3344,9 +3344,9 @@ User-friendly description: Observe where someone struggles with a product's phys
 
 Slug: translateUseObservationsIntoRequirements
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[translateUseObservationsIntoRequirements.data.ts](../../data/skills/humanCenteredEngineeringAndErgonomics/userNeeds/skills/translateUseObservationsIntoRequirements.data.ts)
 
 Methodological description: Define a physical success condition based on an observed problem.
 User-friendly description: Convert user observations into specific technical requirements.
@@ -3355,11 +3355,11 @@ User-friendly description: Convert user observations into specific technical req
 
 Slug: productErgonomics
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[productErgonomics.data.ts](../../data/skills/humanCenteredEngineeringAndErgonomics/productErgonomics/productErgonomics.data.ts)
 
 Methodological description: Geometry, loads and posture influence whether a device can be operated comfortably and dependably.
 User-friendly description: Explore how body dimensions, grip and posture affect product usability.
@@ -3368,9 +3368,9 @@ User-friendly description: Explore how body dimensions, grip and posture affect 
 
 Slug: evaluateControlReachability
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateControlReachability.data.ts](../../data/skills/humanCenteredEngineeringAndErgonomics/productErgonomics/skills/evaluateControlReachability.data.ts)
 
 Methodological description: Check access to buttons, handles or levers from intended operating positions.
 User-friendly description: Check whether people can comfortably reach a product's controls.
@@ -3379,9 +3379,9 @@ User-friendly description: Check whether people can comfortably reach a product'
 
 Slug: evaluateGripAndHandling
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateGripAndHandling.data.ts](../../data/skills/humanCenteredEngineeringAndErgonomics/productErgonomics/skills/evaluateGripAndHandling.data.ts)
 
 Methodological description: Relate handle dimensions, texture and operating force to controlled manipulation.
 User-friendly description: Evaluate how well an object can be held and manipulated.
@@ -3390,9 +3390,9 @@ User-friendly description: Evaluate how well an object can be held and manipulat
 
 Slug: evaluateOperatingPosture
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateOperatingPosture.data.ts](../../data/skills/humanCenteredEngineeringAndErgonomics/productErgonomics/skills/evaluateOperatingPosture.data.ts)
 
 Methodological description: Identify strain caused by working height, repeated movement or sustained position.
 User-friendly description: Recognize postures that make a task uncomfortable or difficult.
@@ -3401,9 +3401,9 @@ User-friendly description: Recognize postures that make a task uncomfortable or 
 
 Slug: adaptProductDimensions
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[adaptProductDimensions.data.ts](../../data/skills/humanCenteredEngineeringAndErgonomics/productErgonomics/skills/adaptProductDimensions.data.ts)
 
 Methodological description: Choose adjustable or alternative dimensions to accommodate different users.
 User-friendly description: Adjust product sizes to suit different bodies and activities.
@@ -3412,11 +3412,11 @@ User-friendly description: Adjust product sizes to suit different bodies and act
 
 Slug: physicalInteraction
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[physicalInteraction.data.ts](../../data/skills/humanCenteredEngineeringAndErgonomics/physicalInteraction/physicalInteraction.data.ts)
 
 Methodological description: Users should perceive the purpose of controls and the effects of their actions through appropriately designed physical cues.
 User-friendly description: Learn to improve how people discover and operate physical controls.
@@ -3425,9 +3425,9 @@ User-friendly description: Learn to improve how people discover and operate phys
 
 Slug: evaluatePhysicalControlDiscoverability
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluatePhysicalControlDiscoverability.data.ts](../../data/skills/humanCenteredEngineeringAndErgonomics/physicalInteraction/skills/evaluatePhysicalControlDiscoverability.data.ts)
 
 Methodological description: Judge whether location, form and tactile cues make a function apparent.
 User-friendly description: Recognize whether a person can find the right physical control.
@@ -3436,9 +3436,9 @@ User-friendly description: Recognize whether a person can find the right physica
 
 Slug: evaluatePhysicalFeedback
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluatePhysicalFeedback.data.ts](../../data/skills/humanCenteredEngineeringAndErgonomics/physicalInteraction/skills/evaluatePhysicalFeedback.data.ts)
 
 Methodological description: Determine whether resistance, movement or another signal communicates that an action occurred.
 User-friendly description: Check whether a product clearly communicates what its controls have done.
@@ -3447,9 +3447,9 @@ User-friendly description: Check whether a product clearly communicates what its
 
 Slug: designErrorResistantControls
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[designErrorResistantControls.data.ts](../../data/skills/humanCenteredEngineeringAndErgonomics/physicalInteraction/skills/designErrorResistantControls.data.ts)
 
 Methodological description: Reduce unintended activation or confusion through control geometry and spacing.
 User-friendly description: Design controls that reduce predictable mistakes.
@@ -3458,9 +3458,9 @@ User-friendly description: Design controls that reduce predictable mistakes.
 
 Slug: testPhysicalProductUsability
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[testPhysicalProductUsability.data.ts](../../data/skills/humanCenteredEngineeringAndErgonomics/physicalInteraction/skills/testPhysicalProductUsability.data.ts)
 
 Methodological description: Observe representative tasks and record whether operation meets defined requirements.
 User-friendly description: Observe people completing real tasks with a physical prototype.
@@ -3469,11 +3469,11 @@ User-friendly description: Observe people completing real tasks with a physical 
 
 Slug: accessibleEnvironments
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 3
 
-[Not implemented](#)
+[accessibleEnvironments.data.ts](../../data/skills/humanCenteredEngineeringAndErgonomics/accessibleEnvironments/accessibleEnvironments.data.ts)
 
 Methodological description: Inclusive infrastructure requires usable routes and fixtures as well as accessible individual devices.
 User-friendly description: Explore how environments can support accessible movement and use.
@@ -3482,9 +3482,9 @@ User-friendly description: Explore how environments can support accessible movem
 
 Slug: evaluateContinuousAccessRoutes
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateContinuousAccessRoutes.data.ts](../../data/skills/humanCenteredEngineeringAndErgonomics/accessibleEnvironments/skills/evaluateContinuousAccessRoutes.data.ts)
 
 Methodological description: Assess an existing connected journey through buildings and public spaces, testing whether doors, surfaces, widths and level changes preserve access. This is different from designing a new internal circulation layout.
 User-friendly description: Evaluate whether an entire route remains accessible without barriers.
@@ -3493,9 +3493,9 @@ User-friendly description: Evaluate whether an entire route remains accessible w
 
 Slug: accessibleFixtureDesign
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[accessibleFixtureDesign.data.ts](../../data/skills/humanCenteredEngineeringAndErgonomics/accessibleEnvironments/skills/accessibleFixtureDesign.data.ts)
 
 Methodological description: Assess fixtures for reachable placement, operating force, usable grip and adequate clearance across varied physical abilities.
 User-friendly description: Plan fittings and fixtures usable by people with different abilities.
@@ -3504,9 +3504,9 @@ User-friendly description: Plan fittings and fixtures usable by people with diff
 
 Slug: compareInclusiveDesignSolutions
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[compareInclusiveDesignSolutions.data.ts](../../data/skills/humanCenteredEngineeringAndErgonomics/accessibleEnvironments/skills/compareInclusiveDesignSolutions.data.ts)
 
 Methodological description: Consider who benefits or remains excluded when choosing a physical design alternative.
 User-friendly description: Compare accessibility solutions by the needs they accommodate.
@@ -3515,11 +3515,11 @@ User-friendly description: Compare accessibility solutions by the needs they acc
 
 Slug: biomimicry
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 2 · Skills: 8
 
-[Not implemented](#)
+[biomimicry.data.ts](../../data/skills/biomimicry/biomimicry.data.ts)
 
 Methodological description: Nature-inspired engineering abstracts useful functional strategies from living systems and subjects technical adaptations to testing. Evolution is not intentional design, and merely studying an organism is not itself an engineering competency.
 User-friendly description: Explore how nature's working strategies inspire useful technical designs.
@@ -3528,11 +3528,11 @@ User-friendly description: Explore how nature's working strategies inspire usefu
 
 Slug: natureInspiredDesign
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[natureInspiredDesign.data.ts](../../data/skills/biomimicry/natureInspiredDesign/natureInspiredDesign.data.ts)
 
 Methodological description: A valid biological analogy extracts a function and tests whether it can work with different materials, geometry and scale.
 User-friendly description: Learn to translate biological functions into engineering principles.
@@ -3541,9 +3541,9 @@ User-friendly description: Learn to translate biological functions into engineer
 
 Slug: identifyFunctionalBiologicalStrategies
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[identifyFunctionalBiologicalStrategies.data.ts](../../data/skills/biomimicry/natureInspiredDesign/skills/identifyFunctionalBiologicalStrategies.data.ts)
 
 Methodological description: Describe the useful effect of a natural structure without portraying evolution as intentional invention.
 User-friendly description: Identify how a living organism solves a functional problem.
@@ -3552,9 +3552,9 @@ User-friendly description: Identify how a living organism solves a functional pr
 
 Slug: abstractABiologicalPrinciple
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[abstractABiologicalPrinciple.data.ts](../../data/skills/biomimicry/natureInspiredDesign/skills/abstractABiologicalPrinciple.data.ts)
 
 Methodological description: Separate a transferable mechanism from the organism's particular form or habitat.
 User-friendly description: Describe a biological mechanism without copying irrelevant natural details.
@@ -3563,9 +3563,9 @@ User-friendly description: Describe a biological mechanism without copying irrel
 
 Slug: applyANaturalPrincipleToADesign
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[applyANaturalPrincipleToADesign.data.ts](../../data/skills/biomimicry/natureInspiredDesign/skills/applyANaturalPrincipleToADesign.data.ts)
 
 Methodological description: Propose a technical arrangement based on an identified biological mechanism.
 User-friendly description: Use a principle observed in nature to develop a technical solution.
@@ -3574,9 +3574,9 @@ User-friendly description: Use a principle observed in nature to develop a techn
 
 Slug: evaluateBiomimeticPerformance
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateBiomimeticPerformance.data.ts](../../data/skills/biomimicry/natureInspiredDesign/skills/evaluateBiomimeticPerformance.data.ts)
 
 Methodological description: Compare a resulting prototype with functional criteria and acknowledge limitations of the analogy.
 User-friendly description: Test whether a nature-inspired design really meets its performance goal.
@@ -3585,11 +3585,11 @@ User-friendly description: Test whether a nature-inspired design really meets it
 
 Slug: bioInspiredTechnologies
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[bioInspiredTechnologies.data.ts](../../data/skills/biomimicry/bioInspiredTechnologies/bioInspiredTechnologies.data.ts)
 
 Methodological description: Distinct examples show recurring design strategies, not a separate Skill for every organism.
 User-friendly description: Discover devices and materials inspired by biological forms and surfaces.
@@ -3598,9 +3598,9 @@ User-friendly description: Discover devices and materials inspired by biological
 
 Slug: bioInspiredAttachment
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[bioInspiredAttachment.data.ts](../../data/skills/biomimicry/bioInspiredTechnologies/skills/bioInspiredAttachment.data.ts)
 
 Methodological description: Relate hooks or structured surfaces to engineered removable fasteners or adhesion.
 User-friendly description: Explore attachment mechanisms inspired by organisms.
@@ -3609,9 +3609,9 @@ User-friendly description: Explore attachment mechanisms inspired by organisms.
 
 Slug: selfCleaningSurfaces
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[selfCleaningSurfaces.data.ts](../../data/skills/biomimicry/bioInspiredTechnologies/skills/selfCleaningSurfaces.data.ts)
 
 Methodological description: Connect surface texture and wetting behavior with liquid and dirt removal.
 User-friendly description: Understand how natural surface structures inspire self-cleaning materials.
@@ -3620,9 +3620,9 @@ User-friendly description: Understand how natural surface structures inspire sel
 
 Slug: biomimeticStreamlining
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[biomimeticStreamlining.data.ts](../../data/skills/biomimicry/bioInspiredTechnologies/skills/biomimeticStreamlining.data.ts)
 
 Methodological description: Relate a biological shape to a proposed drag-reducing vehicle design requiring testing.
 User-friendly description: Recognize how biological shapes can reduce drag in technical designs.
@@ -3631,9 +3631,9 @@ User-friendly description: Recognize how biological shapes can reduce drag in te
 
 Slug: lightweightBioInspiredStructures
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[lightweightBioInspiredStructures.data.ts](../../data/skills/biomimicry/bioInspiredTechnologies/skills/lightweightBioInspiredStructures.data.ts)
 
 Methodological description: Identify shells, cellular patterns or branching that motivate efficient material placement.
 User-friendly description: Explore how natural structures inspire light yet strong engineered forms.
@@ -3642,11 +3642,11 @@ User-friendly description: Explore how natural structures inspire light yet stro
 
 Slug: biomedicalAndAssistiveEngineering
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 2 · Skills: 6
 
-[Not implemented](#)
+[biomedicalAndAssistiveEngineering.data.ts](../../data/skills/biomedicalAndAssistiveEngineering/biomedicalAndAssistiveEngineering.data.ts)
 
 Methodological description: Devices supporting, measuring or interacting with human bodies must satisfy suitable physical interfaces, reliability and safe-use constraints. Clinical diagnosis and the biology of the human body remain outside this engineering domain.
 User-friendly description: Explore technical products that support health, mobility and medical measurement.
@@ -3655,11 +3655,11 @@ User-friendly description: Explore technical products that support health, mobil
 
 Slug: assistiveAndMedicalProducts
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 3
 
-[Not implemented](#)
+[assistiveAndMedicalProducts.data.ts](../../data/skills/biomedicalAndAssistiveEngineering/assistiveAndMedicalProducts/assistiveAndMedicalProducts.data.ts)
 
 Methodological description: Devices that contact or support human bodies require function, fit and safety considerations beyond an ordinary consumer gadget.
 User-friendly description: Discover the engineering functions of assistive and medical devices.
@@ -3668,9 +3668,9 @@ User-friendly description: Discover the engineering functions of assistive and m
 
 Slug: prostheticDeviceFunctions
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[prostheticDeviceFunctions.data.ts](../../data/skills/biomedicalAndAssistiveEngineering/assistiveAndMedicalProducts/skills/prostheticDeviceFunctions.data.ts)
 
 Methodological description: Identify attachment, structural support, alignment and intended functional replacement.
 User-friendly description: Explain how a prosthetic device can replace or support a physical function.
@@ -3679,9 +3679,9 @@ User-friendly description: Explain how a prosthetic device can replace or suppor
 
 Slug: hearingAssistanceDevices
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[hearingAssistanceDevices.data.ts](../../data/skills/biomedicalAndAssistiveEngineering/assistiveAndMedicalProducts/skills/hearingAssistanceDevices.data.ts)
 
 Methodological description: Trace sound pickup, processing, amplification or other output and fitting.
 User-friendly description: Recognize how hearing-assistance equipment processes or delivers sound.
@@ -3690,9 +3690,9 @@ User-friendly description: Recognize how hearing-assistance equipment processes 
 
 Slug: evaluateMedicalDeviceDesignConstraints
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateMedicalDeviceDesignConstraints.data.ts](../../data/skills/biomedicalAndAssistiveEngineering/assistiveAndMedicalProducts/skills/evaluateMedicalDeviceDesignConstraints.data.ts)
 
 Methodological description: Recognize hygiene, safe contact, reliable operation, usability and failure consequences.
 User-friendly description: Identify safety, reliability and user requirements for medical equipment.
@@ -3701,11 +3701,11 @@ User-friendly description: Identify safety, reliability and user requirements fo
 
 Slug: medicalMeasurementDevices
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 3
 
-[Not implemented](#)
+[medicalMeasurementDevices.data.ts](../../data/skills/biomedicalAndAssistiveEngineering/medicalMeasurementDevices/medicalMeasurementDevices.data.ts)
 
 Methodological description: Biomedical devices measure physiological or physical signals with specialized coupling, safety and reliability concerns distinct from ordinary industrial sensing.
 User-friendly description: Learn how devices measure and image physiological conditions.
@@ -3714,9 +3714,9 @@ User-friendly description: Learn how devices measure and image physiological con
 
 Slug: physiologicalMonitoringDevices
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[physiologicalMonitoringDevices.data.ts](../../data/skills/biomedicalAndAssistiveEngineering/medicalMeasurementDevices/skills/physiologicalMonitoringDevices.data.ts)
 
 Methodological description: Identify the sensing, acquisition and physical protection subsystems used to measure temperature, electrical activity or oxygen saturation without inferring clinical diagnoses.
 User-friendly description: Trace how monitoring equipment converts physical signals into measurements.
@@ -3725,9 +3725,9 @@ User-friendly description: Trace how monitoring equipment converts physical sign
 
 Slug: diagnosticImagingHardware
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[diagnosticImagingHardware.data.ts](../../data/skills/biomedicalAndAssistiveEngineering/medicalMeasurementDevices/skills/diagnosticImagingHardware.data.ts)
 
 Methodological description: Distinguish sources, detectors, positioning and associated hardware in ultrasound, radiographic or magnetic-resonance equipment without teaching clinical image interpretation.
 User-friendly description: Explore hardware used to create images for medical investigation.
@@ -3736,9 +3736,9 @@ User-friendly description: Explore hardware used to create images for medical in
 
 Slug: biomedicalMeasurementReliability
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[biomedicalMeasurementReliability.data.ts](../../data/skills/biomedicalAndAssistiveEngineering/medicalMeasurementDevices/skills/biomedicalMeasurementReliability.data.ts)
 
 Methodological description: Assess calibration, interference, patient-contact conditions and signal reliability limits relevant to measurements by a medical device.
 User-friendly description: Recognize the limits and uncertainty of biomedical measurements.
@@ -3747,11 +3747,11 @@ User-friendly description: Recognize the limits and uncertainty of biomedical me
 
 Slug: safetySustainabilityAndResponsibility
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 3 · Skills: 14
 
-[Not implemented](#)
+[safetySustainabilityAndResponsibility.data.ts](../../data/skills/safetySustainabilityAndResponsibility/safetySustainabilityAndResponsibility.data.ts)
 
 Methodological description: Engineering decisions affect people, resources and ecosystems throughout a product's service life. This domain examines foreseeable hazards, life-cycle choices and accountable technical judgment without turning an untested model into a safety certification.
 User-friendly description: Explore how engineering choices affect safety, resources and society over time.
@@ -3760,11 +3760,11 @@ User-friendly description: Explore how engineering choices affect safety, resour
 
 Slug: lifeCycleAndResources
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 5
 
-[Not implemented](#)
+[lifeCycleAndResources.data.ts](../../data/skills/safetySustainabilityAndResponsibility/lifeCycleAndResources/lifeCycleAndResources.data.ts)
 
 Methodological description: Manufacture, operation, repair and disposal can create different impacts; improving one stage does not prove that the whole design is better.
 User-friendly description: Discover how products consume resources from manufacture to disposal.
@@ -3773,9 +3773,9 @@ User-friendly description: Discover how products consume resources from manufact
 
 Slug: traceAProductLifeCycle
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[traceAProductLifeCycle.data.ts](../../data/skills/safetySustainabilityAndResponsibility/lifeCycleAndResources/skills/traceAProductLifeCycle.data.ts)
 
 Methodological description: Identify material, energy and waste flows from sourcing through use to end of service.
 User-friendly description: Follow a product from raw materials through use to end of life.
@@ -3784,9 +3784,9 @@ User-friendly description: Follow a product from raw materials through use to en
 
 Slug: evaluateRepairability
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateRepairability.data.ts](../../data/skills/safetySustainabilityAndResponsibility/lifeCycleAndResources/skills/evaluateRepairability.data.ts)
 
 Methodological description: Recognize the importance of accessible parts, reversible fasteners and replacement options.
 User-friendly description: Evaluate how easily a product can be serviced or repaired.
@@ -3795,9 +3795,9 @@ User-friendly description: Evaluate how easily a product can be serviced or repa
 
 Slug: designProductsForReuse
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[designProductsForReuse.data.ts](../../data/skills/safetySustainabilityAndResponsibility/lifeCycleAndResources/skills/designProductsForReuse.data.ts)
 
 Methodological description: Identify durable, cleanable or interchangeable features that make repeated service or a second use feasible.
 User-friendly description: Consider design choices that allow a product to be used again.
@@ -3806,9 +3806,9 @@ User-friendly description: Consider design choices that allow a product to be us
 
 Slug: designProductsForMaterialRecycling
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[designProductsForMaterialRecycling.data.ts](../../data/skills/safetySustainabilityAndResponsibility/lifeCycleAndResources/skills/designProductsForMaterialRecycling.data.ts)
 
 Methodological description: Relate material identification, compatibility and separable assemblies to viable recovery of constituent materials.
 User-friendly description: Plan for recovering materials when a product reaches the end of use.
@@ -3817,9 +3817,9 @@ User-friendly description: Plan for recovering materials when a product reaches 
 
 Slug: compareEnvironmentalTradeOffs
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[compareEnvironmentalTradeOffs.data.ts](../../data/skills/safetySustainabilityAndResponsibility/lifeCycleAndResources/skills/compareEnvironmentalTradeOffs.data.ts)
 
 Methodological description: Judge alternatives over a stated service life rather than a single operational measure.
 User-friendly description: Compare environmental benefits and harms of alternative technical designs.
@@ -3828,11 +3828,11 @@ User-friendly description: Compare environmental benefits and harms of alternati
 
 Slug: riskAndProtection
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[riskAndProtection.data.ts](../../data/skills/safetySustainabilityAndResponsibility/riskAndProtection/riskAndProtection.data.ts)
 
 Methodological description: Hazard control should be integrated into the physical design and take precedence over simple warnings.
 User-friendly description: Learn to identify engineering hazards and reduce risks.
@@ -3841,9 +3841,9 @@ User-friendly description: Learn to identify engineering hazards and reduce risk
 
 Slug: identifyEngineeringHazards
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[identifyEngineeringHazards.data.ts](../../data/skills/safetySustainabilityAndResponsibility/riskAndProtection/skills/identifyEngineeringHazards.data.ts)
 
 Methodological description: Recognize hazardous motion, temperature, electricity, pressure or stored energy in intended use.
 User-friendly description: Identify physical dangers associated with a technical design.
@@ -3852,9 +3852,9 @@ User-friendly description: Identify physical dangers associated with a technical
 
 Slug: evaluateTechnicalRisk
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateTechnicalRisk.data.ts](../../data/skills/safetySustainabilityAndResponsibility/riskAndProtection/skills/evaluateTechnicalRisk.data.ts)
 
 Methodological description: Consider plausible consequence and occurrence in an explicitly described operating situation.
 User-friendly description: Assess how likely a hazard is and how serious its consequences may be.
@@ -3863,9 +3863,9 @@ User-friendly description: Assess how likely a hazard is and how serious its con
 
 Slug: hazardControlMeasures
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[hazardControlMeasures.data.ts](../../data/skills/safetySustainabilityAndResponsibility/riskAndProtection/skills/hazardControlMeasures.data.ts)
 
 Methodological description: Distinguish elimination, guarding, isolation, automatic protection and warnings by the actual risks each addresses. Selecting a particular safeguard for an exercise is a task variant.
 User-friendly description: Choose technical measures that reduce exposure to hazards.
@@ -3874,9 +3874,9 @@ User-friendly description: Choose technical measures that reduce exposure to haz
 
 Slug: safetyMargins
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[safetyMargins.data.ts](../../data/skills/safetySustainabilityAndResponsibility/riskAndProtection/skills/safetyMargins.data.ts)
 
 Methodological description: Relate uncertainty in loading, materials and use conditions to extra design capacity.
 User-friendly description: Understand why safety factors account for uncertainty and unexpected loads.
@@ -3885,11 +3885,11 @@ User-friendly description: Understand why safety factors account for uncertainty
 
 Slug: ethicsAndPublicEffects
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 5
 
-[Not implemented](#)
+[ethicsAndPublicEffects.data.ts](../../data/skills/safetySustainabilityAndResponsibility/ethicsAndPublicEffects/ethicsAndPublicEffects.data.ts)
 
 Methodological description: Technical solutions create benefits and burdens for users, maintainers, neighbors and communities; limitations must be disclosed.
 User-friendly description: Explore responsibility toward everyone affected by engineered products.
@@ -3898,9 +3898,9 @@ User-friendly description: Explore responsibility toward everyone affected by en
 
 Slug: identifyAffectedStakeholders
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[identifyAffectedStakeholders.data.ts](../../data/skills/safetySustainabilityAndResponsibility/ethicsAndPublicEffects/skills/identifyAffectedStakeholders.data.ts)
 
 Methodological description: Distinguish users, workers, maintainers and others exposed to a product's consequences.
 User-friendly description: Identify the groups who may benefit from or be harmed by a design.
@@ -3909,9 +3909,9 @@ User-friendly description: Identify the groups who may benefit from or be harmed
 
 Slug: evaluateSocialImpactsOfADesign
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateSocialImpactsOfADesign.data.ts](../../data/skills/safetySustainabilityAndResponsibility/ethicsAndPublicEffects/skills/evaluateSocialImpactsOfADesign.data.ts)
 
 Methodological description: Consider foreseeable distribution of access, inconvenience, displacement or other effects on people beyond direct purchasers.
 User-friendly description: Evaluate how a technical product may affect people's lives and opportunities.
@@ -3920,9 +3920,9 @@ User-friendly description: Evaluate how a technical product may affect people's 
 
 Slug: evaluateEnvironmentalImpactsOfADesign
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateEnvironmentalImpactsOfADesign.data.ts](../../data/skills/safetySustainabilityAndResponsibility/ethicsAndPublicEffects/skills/evaluateEnvironmentalImpactsOfADesign.data.ts)
 
 Methodological description: Consider pollution, habitat disruption and resource burdens beyond the immediate operation of the intended product.
 User-friendly description: Examine a design's possible effects on the surrounding environment.
@@ -3931,9 +3931,9 @@ User-friendly description: Examine a design's possible effects on the surroundin
 
 Slug: communicateDesignLimitations
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[communicateDesignLimitations.data.ts](../../data/skills/safetySustainabilityAndResponsibility/ethicsAndPublicEffects/skills/communicateDesignLimitations.data.ts)
 
 Methodological description: State assumptions and unverified safety claims instead of generalizing from limited tests.
 User-friendly description: State what a technical solution cannot safely or reliably do.
@@ -3942,9 +3942,9 @@ User-friendly description: State what a technical solution cannot safely or reli
 
 Slug: justifyResponsibleDesignDecisions
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[justifyResponsibleDesignDecisions.data.ts](../../data/skills/safetySustainabilityAndResponsibility/ethicsAndPublicEffects/skills/justifyResponsibleDesignDecisions.data.ts)
 
 Methodological description: Explain how safety, access, resource use and cost influenced a choice.
 User-friendly description: Justify engineering choices using evidence, safety and social consequences.

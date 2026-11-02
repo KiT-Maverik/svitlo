@@ -24,11 +24,11 @@ Code files: 0/11 Domains · 0/50 Groups · 0/216 Skills
 
 Slug: historicalInquiry
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 4 · Skills: 16
 
-[Not implemented](#)
+[historicalInquiry.data.ts](../../data/skills/historicalInquiry/historicalInquiry.data.ts)
 
 Methodological description: Methods for establishing and checking knowledge of past societies through chronology, geography, source evidence, and historical inference. These competencies apply across ancient regions rather than defining a lesson sequence.
 User-friendly description: Learn how historians investigate the past and evaluate what we know.
@@ -37,11 +37,11 @@ User-friendly description: Learn how historians investigate the past and evaluat
 
 Slug: timeAndPeriodization
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[timeAndPeriodization.data.ts](../../data/skills/historicalInquiry/timeAndPeriodization/timeAndPeriodization.data.ts)
 
 Methodological description: Historical time uses relative and absolute dating; period boundaries are analytical conventions, not universal natural transitions occurring everywhere simultaneously.
 User-friendly description: Explore how dates and historical periods help us organize the past.
@@ -50,9 +50,9 @@ User-friendly description: Explore how dates and historical periods help us orga
 
 Slug: historicalChronology
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[historicalChronology.data.ts](../../data/skills/historicalInquiry/timeAndPeriodization/skills/historicalChronology.data.ts)
 
 Methodological description: Establish the sequence, duration, and simultaneity of events without assuming temporal order alone establishes causation.
 User-friendly description: Place events in order and recognize when they happened together.
@@ -61,9 +61,9 @@ User-friendly description: Place events in order and recognize when they happene
 
 Slug: bceAndCeDating
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[bceAndCeDating.data.ts](../../data/skills/historicalInquiry/timeAndPeriodization/skills/bceAndCeDating.data.ts)
 
 Methodological description: Interpret years and centuries in both eras and correctly calculate intervals without a year zero in conventional dating.
 User-friendly description: Read BCE and CE dates and calculate the time between them.
@@ -72,9 +72,9 @@ User-friendly description: Read BCE and CE dates and calculate the time between 
 
 Slug: historicalPeriodization
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[historicalPeriodization.data.ts](../../data/skills/historicalInquiry/timeAndPeriodization/skills/historicalPeriodization.data.ts)
 
 Methodological description: Explain criteria for dividing the past into periods and recognize that regional transitions occurred at different times.
 User-friendly description: Recognize why different regions use different historical period boundaries.
@@ -83,9 +83,9 @@ User-friendly description: Recognize why different regions use different histori
 
 Slug: synchronizingCivilizations
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[synchronizingCivilizations.data.ts](../../data/skills/historicalInquiry/timeAndPeriodization/skills/synchronizingCivilizations.data.ts)
 
 Methodological description: Compare events in separate regions on one timeline without assuming their societies developed at the same rate.
 User-friendly description: See which historical events happened at the same time in different regions.
@@ -94,11 +94,11 @@ User-friendly description: See which historical events happened at the same time
 
 Slug: historicalSources
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 5
 
-[Not implemented](#)
+[historicalSources.data.ts](../../data/skills/historicalInquiry/historicalSources/historicalSources.data.ts)
 
 Methodological description: Material, written, and visual traces differ in how they were created, preserved, and interpreted and in their reliability.
 User-friendly description: Explore what artifacts, texts and images can reveal about history.
@@ -107,9 +107,9 @@ User-friendly description: Explore what artifacts, texts and images can reveal a
 
 Slug: archaeologicalSources
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[archaeologicalSources.data.ts](../../data/skills/historicalInquiry/historicalSources/skills/archaeologicalSources.data.ts)
 
 Methodological description: Draw contextual and dated inferences from tools, dwellings, burials, and other archaeological remains.
 User-friendly description: Use objects and archaeological sites to understand past lives.
@@ -118,9 +118,9 @@ User-friendly description: Use objects and archaeological sites to understand pa
 
 Slug: writtenHistoricalSources
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[writtenHistoricalSources.data.ts](../../data/skills/historicalInquiry/historicalSources/skills/writtenHistoricalSources.data.ts)
 
 Methodological description: Interpret laws, chronicles, inscriptions, letters, and records in light of their authors, purposes, and intended audiences.
 User-friendly description: Read old documents while considering who wrote them and why.
@@ -129,9 +129,9 @@ User-friendly description: Read old documents while considering who wrote them a
 
 Slug: visualHistoricalSources
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[visualHistoricalSources.data.ts](../../data/skills/historicalInquiry/historicalSources/skills/visualHistoricalSources.data.ts)
 
 Methodological description: Treat historical pictures as evidence of practices and ideas rather than literal photographic accounts of events.
 User-friendly description: Understand what historical images can and cannot prove.
@@ -140,9 +140,9 @@ User-friendly description: Understand what historical images can and cannot prov
 
 Slug: archaeologicalDating
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[archaeologicalDating.data.ts](../../data/skills/historicalInquiry/historicalSources/skills/archaeologicalDating.data.ts)
 
 Methodological description: Distinguish stratigraphy, typological comparison, and scientific dating techniques, including uncertainties and limitations.
 User-friendly description: Explore different ways archaeologists estimate the age of finds.
@@ -151,9 +151,9 @@ User-friendly description: Explore different ways archaeologists estimate the ag
 
 Slug: sourceCriticism
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[sourceCriticism.data.ts](../../data/skills/historicalInquiry/historicalSources/skills/sourceCriticism.data.ts)
 
 Methodological description: Assess origin, bias, omissions, and contradictions and verify claims with independent evidence.
 User-friendly description: Check whether a historical source deserves confidence.
@@ -162,11 +162,11 @@ User-friendly description: Check whether a historical source deserves confidence
 
 Slug: historicalGeography
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 3
 
-[Not implemented](#)
+[historicalGeography.data.ts](../../data/skills/historicalInquiry/historicalGeography/historicalGeography.data.ts)
 
 Methodological description: Landscapes, climate, distances, and routes inform reconstructions of settlement and exchange without assuming geography determines history.
 User-friendly description: Explore how places and routes shaped past societies without deciding their fate.
@@ -175,9 +175,9 @@ User-friendly description: Explore how places and routes shaped past societies w
 
 Slug: historicalMaps
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[historicalMaps.data.ts](../../data/skills/historicalInquiry/historicalGeography/skills/historicalMaps.data.ts)
 
 Methodological description: Interpret maps by date, legend, scale, provisional boundaries, and the approximate nature of many ancient territorial claims.
 User-friendly description: Read historical maps while accounting for uncertain ancient borders.
@@ -186,9 +186,9 @@ User-friendly description: Read historical maps while accounting for uncertain a
 
 Slug: migrationAndSettlement
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[migrationAndSettlement.data.ts](../../data/skills/historicalInquiry/historicalGeography/skills/migrationAndSettlement.data.ts)
 
 Methodological description: Reconstruct movements using combined archaeological, linguistic, genetic, and environmental evidence.
 User-friendly description: Trace where people moved using several kinds of historical clues.
@@ -197,9 +197,9 @@ User-friendly description: Trace where people moved using several kinds of histo
 
 Slug: environmentOfAncientSocieties
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[environmentOfAncientSocieties.data.ts](../../data/skills/historicalInquiry/historicalGeography/skills/environmentOfAncientSocieties.data.ts)
 
 Methodological description: Assess how rivers, seas, climate, and resources shaped opportunities without claiming nature alone decided historical outcomes.
 User-friendly description: Explore the opportunities and challenges ancient environments presented.
@@ -208,11 +208,11 @@ User-friendly description: Explore the opportunities and challenges ancient envi
 
 Slug: historicalExplanations
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[historicalExplanations.data.ts](../../data/skills/historicalInquiry/historicalExplanations/historicalExplanations.data.ts)
 
 Methodological description: Distinguish supported facts, explanatory models, values, uncertain reconstructions, and competing interpretations when reasoning about the past.
 User-friendly description: Learn to build historical explanations from evidence.
@@ -221,9 +221,9 @@ User-friendly description: Learn to build historical explanations from evidence.
 
 Slug: historicalCausality
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[historicalCausality.data.ts](../../data/skills/historicalInquiry/historicalExplanations/skills/historicalCausality.data.ts)
 
 Methodological description: Separate immediate triggers from long-term conditions and consider multiple causes of a historical change.
 User-friendly description: Explore why historical events usually have more than one cause.
@@ -232,9 +232,9 @@ User-friendly description: Explore why historical events usually have more than 
 
 Slug: continuityAndChange
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[continuityAndChange.data.ts](../../data/skills/historicalInquiry/historicalExplanations/skills/continuityAndChange.data.ts)
 
 Methodological description: Recognize that institutions, practices, and traditions change at different speeds and can coexist.
 User-friendly description: Notice what changed and what remained in past societies.
@@ -243,9 +243,9 @@ User-friendly description: Notice what changed and what remained in past societi
 
 Slug: historicalComparison
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[historicalComparison.data.ts](../../data/skills/historicalInquiry/historicalExplanations/skills/historicalComparison.data.ts)
 
 Methodological description: Compare societies by explicit criteria without ranking entire peoples as inherently advanced or backward.
 User-friendly description: Compare societies respectfully using meaningful evidence.
@@ -254,9 +254,9 @@ User-friendly description: Compare societies respectfully using meaningful evide
 
 Slug: historicalUncertainty
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[historicalUncertainty.data.ts](../../data/skills/historicalInquiry/historicalExplanations/skills/historicalUncertainty.data.ts)
 
 Methodological description: Separate well-supported conclusions from hypotheses and unknowns, updating interpretations when new evidence appears.
 User-friendly description: Understand what historians know, suspect or still cannot determine.
@@ -265,11 +265,11 @@ User-friendly description: Understand what historians know, suspect or still can
 
 Slug: humanPrehistory
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 4 · Skills: 18
 
-[Not implemented](#)
+[humanPrehistory.data.ts](../../data/skills/humanPrehistory/humanPrehistory.data.ts)
 
 Methodological description: The long era before written states encompasses human evolution, global dispersal, varied subsistence, and uneven regional transitions toward settlements and metallurgy.
 User-friendly description: Explore how early people lived and spread across the world.
@@ -278,11 +278,11 @@ User-friendly description: Explore how early people lived and spread across the 
 
 Slug: humanOriginsAndDispersal
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[humanOriginsAndDispersal.data.ts](../../data/skills/humanPrehistory/humanOriginsAndDispersal/humanOriginsAndDispersal.data.ts)
 
 Methodological description: Paleoanthropology, archaeology, and genetics jointly investigate human origins; major developments occurred at different times across regions.
 User-friendly description: Discover what evidence reveals about our ancestors and migrations.
@@ -291,9 +291,9 @@ User-friendly description: Discover what evidence reveals about our ancestors an
 
 Slug: originsOfHomo
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[originsOfHomo.data.ts](../../data/skills/humanPrehistory/humanOriginsAndDispersal/skills/originsOfHomo.data.ts)
 
 Methodological description: Explain long evolutionary change and coexistence of human species without a linear ladder-of-progress model.
 User-friendly description: Recognize that early human species coexisted during evolution.
@@ -302,9 +302,9 @@ User-friendly description: Recognize that early human species coexisted during e
 
 Slug: emergenceOfHomoSapiens
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[emergenceOfHomoSapiens.data.ts](../../data/skills/humanPrehistory/humanOriginsAndDispersal/skills/emergenceOfHomoSapiens.data.ts)
 
 Methodological description: Understand the African origin of modern humans as distinct from later waves of migration.
 User-friendly description: Explore where our species emerged and how that differs from later migration.
@@ -313,9 +313,9 @@ User-friendly description: Explore where our species emerged and how that differ
 
 Slug: peoplingOfContinents
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[peoplingOfContinents.data.ts](../../data/skills/humanPrehistory/humanOriginsAndDispersal/skills/peoplingOfContinents.data.ts)
 
 Methodological description: Reconstruct approximate routes and chronological sequences of dispersal into Eurasia, Australia, and the Americas.
 User-friendly description: Trace how ancient humans reached different continents.
@@ -324,9 +324,9 @@ User-friendly description: Trace how ancient humans reached different continents
 
 Slug: adaptationToEnvironments
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[adaptationToEnvironments.data.ts](../../data/skills/humanPrehistory/humanOriginsAndDispersal/skills/adaptationToEnvironments.data.ts)
 
 Methodological description: Identify how communities adjusted to cold, arid, forested, and coastal settings.
 User-friendly description: Discover how early communities adapted to different environments.
@@ -335,11 +335,11 @@ User-friendly description: Discover how early communities adapted to different e
 
 Slug: hunterGathererSocieties
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 5
 
-[Not implemented](#)
+[hunterGathererSocieties.data.ts](../../data/skills/humanPrehistory/hunterGathererSocieties/hunterGathererSocieties.data.ts)
 
 Methodological description: Mobile and semi-sedentary societies used varied ecological niches, tools, and social arrangements.
 User-friendly description: Explore life in communities that hunted, fished and gathered food.
@@ -348,9 +348,9 @@ User-friendly description: Explore life in communities that hunted, fished and g
 
 Slug: foragingEconomies
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[foragingEconomies.data.ts](../../data/skills/humanPrehistory/hunterGathererSocieties/skills/foragingEconomies.data.ts)
 
 Methodological description: Relate gathering, hunting, fishing, and seasonal movement to local environmental conditions.
 User-friendly description: Understand how early people obtained food from wild resources.
@@ -359,9 +359,9 @@ User-friendly description: Understand how early people obtained food from wild r
 
 Slug: stoneToolTechnologies
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[stoneToolTechnologies.data.ts](../../data/skills/humanPrehistory/hunterGathererSocieties/skills/stoneToolTechnologies.data.ts)
 
 Methodological description: Trace changes from simple flakes to specialized tools and their effects on work.
 User-friendly description: Compare the stone tools used by early humans.
@@ -370,9 +370,9 @@ User-friendly description: Compare the stone tools used by early humans.
 
 Slug: controlledUseOfFire
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[controlledUseOfFire.data.ts](../../data/skills/humanPrehistory/hunterGathererSocieties/skills/controlledUseOfFire.data.ts)
 
 Methodological description: Explain the contribution of controlled fire to cooking, protection, materials, and environmental expansion.
 User-friendly description: Explore how controlled fire changed everyday life.
@@ -381,9 +381,9 @@ User-friendly description: Explore how controlled fire changed everyday life.
 
 Slug: earlyHumanCooperation
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[earlyHumanCooperation.data.ts](../../data/skills/humanPrehistory/hunterGathererSocieties/skills/earlyHumanCooperation.data.ts)
 
 Methodological description: Reconstruct cooperation, knowledge transmission, and care without imposing modern institutions on prehistoric communities.
 User-friendly description: Understand how early humans worked together and cared for others.
@@ -392,9 +392,9 @@ User-friendly description: Understand how early humans worked together and cared
 
 Slug: prehistoricSymbolicCulture
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[prehistoricSymbolicCulture.data.ts](../../data/skills/humanPrehistory/hunterGathererSocieties/skills/prehistoricSymbolicCulture.data.ts)
 
 Methodological description: Interpret ornaments, images, burials, and ritual traces while acknowledging ambiguous archaeological evidence.
 User-friendly description: Explore what ancient art and burials may reveal about beliefs.
@@ -403,11 +403,11 @@ User-friendly description: Explore what ancient art and burials may reveal about
 
 Slug: transitionToFoodProduction
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 5
 
-[Not implemented](#)
+[transitionToFoodProduction.data.ts](../../data/skills/humanPrehistory/transitionToFoodProduction/transitionToFoodProduction.data.ts)
 
 Methodological description: Cultivation, herding, and settlements emerged independently in multiple places rather than in one simultaneous universal revolution.
 User-friendly description: Discover how growing food spread in different places and times.
@@ -416,9 +416,9 @@ User-friendly description: Discover how growing food spread in different places 
 
 Slug: plantDomestication
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[plantDomestication.data.ts](../../data/skills/humanPrehistory/transitionToFoodProduction/skills/plantDomestication.data.ts)
 
 Methodological description: Distinguish initial cultivation from long-term biological and economic domestication of wild plants.
 User-friendly description: Explain how people gradually transformed wild plants into crops.
@@ -427,9 +427,9 @@ User-friendly description: Explain how people gradually transformed wild plants 
 
 Slug: animalDomestication
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[animalDomestication.data.ts](../../data/skills/humanPrehistory/transitionToFoodProduction/skills/animalDomestication.data.ts)
 
 Methodological description: Explain changing relationships with animal populations and consequences for food, work, and mobility.
 User-friendly description: Explore how humans began raising domesticated animals.
@@ -438,9 +438,9 @@ User-friendly description: Explore how humans began raising domesticated animals
 
 Slug: permanentSettlements
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[permanentSettlements.data.ts](../../data/skills/humanPrehistory/transitionToFoodProduction/skills/permanentSettlements.data.ts)
 
 Methodological description: Explain the emergence and endurance of settlements through storage, environment, and social choices.
 User-friendly description: Understand why some communities began living in permanent villages.
@@ -449,9 +449,9 @@ User-friendly description: Understand why some communities began living in perma
 
 Slug: prehistoricPottery
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[prehistoricPottery.data.ts](../../data/skills/humanPrehistory/transitionToFoodProduction/skills/prehistoricPottery.data.ts)
 
 Methodological description: Trace fired pottery and its uses for cooking and storage without assuming farming always came first.
 User-friendly description: Learn why people began making ceramic containers.
@@ -460,9 +460,9 @@ User-friendly description: Learn why people began making ceramic containers.
 
 Slug: earlyWeaving
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[earlyWeaving.data.ts](../../data/skills/humanPrehistory/transitionToFoodProduction/skills/earlyWeaving.data.ts)
 
 Methodological description: Describe processing fibers and producing textiles while respecting different regional timelines.
 User-friendly description: Explore how ancient people made and used woven fabrics.
@@ -471,11 +471,11 @@ User-friendly description: Explore how ancient people made and used woven fabric
 
 Slug: growingSocialComplexity
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[growingSocialComplexity.data.ts](../../data/skills/humanPrehistory/growingSocialComplexity/growingSocialComplexity.data.ts)
 
 Methodological description: Larger communities and exchanges sometimes accompanied inequality and centralization but did not inevitably lead to them.
 User-friendly description: Explore how larger settlements sometimes changed society.
@@ -484,9 +484,9 @@ User-friendly description: Explore how larger settlements sometimes changed soci
 
 Slug: prehistoricInequality
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[prehistoricInequality.data.ts](../../data/skills/humanPrehistory/growingSocialComplexity/skills/prehistoricInequality.data.ts)
 
 Methodological description: Use material remains to assess unequal access to resources and prestige while considering alternate interpretations.
 User-friendly description: Look for archaeological clues about differences in wealth and status.
@@ -495,9 +495,9 @@ User-friendly description: Look for archaeological clues about differences in we
 
 Slug: exchangeBeforeStates
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[exchangeBeforeStates.data.ts](../../data/skills/humanPrehistory/growingSocialComplexity/skills/exchangeBeforeStates.data.ts)
 
 Methodological description: Reconstruct long-distance connections from distributions of raw materials, products, and technical traditions.
 User-friendly description: Trace trade and exchange between communities before states existed.
@@ -506,9 +506,9 @@ User-friendly description: Trace trade and exchange between communities before s
 
 Slug: copperBronzeAndIron
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[copperBronzeAndIron.data.ts](../../data/skills/humanPrehistory/growingSocialComplexity/skills/copperBronzeAndIron.data.ts)
 
 Methodological description: Compare metallurgical techniques and local chronologies without assuming uniform metal ages across every society.
 User-friendly description: Discover how metals changed tools at different times around the world.
@@ -517,9 +517,9 @@ User-friendly description: Discover how metals changed tools at different times 
 
 Slug: emergenceOfUrbanCenters
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[emergenceOfUrbanCenters.data.ts](../../data/skills/humanPrehistory/growingSocialComplexity/skills/emergenceOfUrbanCenters.data.ts)
 
 Methodological description: Assess concentrations of people, craft, power, and exchange and distinguish a city by functions rather than size alone.
 User-friendly description: Explore how the first urban centers differed from large villages.
@@ -528,11 +528,11 @@ User-friendly description: Explore how the first urban centers differed from lar
 
 Slug: ancientWesternAsia
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 5 · Skills: 19
 
-[Not implemented](#)
+[ancientWesternAsia.data.ts](../../data/skills/ancientWesternAsia/ancientWesternAsia.data.ts)
 
 Methodological description: Early cities and states in Mesopotamia, the Levant, Anatolia, Iran, and Arabia developed through local environments and enduring trade, political, and cultural contact.
 User-friendly description: Explore the diverse ancient societies of Western Asia.
@@ -541,11 +541,11 @@ User-friendly description: Explore the diverse ancient societies of Western Asia
 
 Slug: mesopotamia
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 6
 
-[Not implemented](#)
+[mesopotamia.data.ts](../../data/skills/ancientWesternAsia/mesopotamia/mesopotamia.data.ts)
 
 Methodological description: The Tigris and Euphrates valleys supported cities, complex administration, writing, and successive supraregional states.
 User-friendly description: Learn how river valleys supported Mesopotamian cities and states.
@@ -554,9 +554,9 @@ User-friendly description: Learn how river valleys supported Mesopotamian cities
 
 Slug: sumerianCityStates
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[sumerianCityStates.data.ts](../../data/skills/ancientWesternAsia/mesopotamia/skills/sumerianCityStates.data.ts)
 
 Methodological description: Explain urban life, temple economies, and rivalry among political centers in southern Mesopotamia.
 User-friendly description: Explore the independent cities of ancient Sumer.
@@ -565,9 +565,9 @@ User-friendly description: Explore the independent cities of ancient Sumer.
 
 Slug: mesopotamianIrrigation
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[mesopotamianIrrigation.data.ts](../../data/skills/ancientWesternAsia/mesopotamia/skills/mesopotamianIrrigation.data.ts)
 
 Methodological description: Connect canals, seasonal water, collective labor, and environmental risks with agricultural productivity.
 User-friendly description: Understand why irrigation mattered to Mesopotamian farming.
@@ -576,9 +576,9 @@ User-friendly description: Understand why irrigation mattered to Mesopotamian fa
 
 Slug: cuneiformWriting
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[cuneiformWriting.data.ts](../../data/skills/ancientWesternAsia/mesopotamia/skills/cuneiformWriting.data.ts)
 
 Methodological description: Trace the emergence of writing from accounting and its expansion to law, scholarship, and literature.
 User-friendly description: Discover how cuneiform writing developed beyond record keeping.
@@ -587,9 +587,9 @@ User-friendly description: Discover how cuneiform writing developed beyond recor
 
 Slug: akkadianEmpire
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[akkadianEmpire.data.ts](../../data/skills/ancientWesternAsia/mesopotamia/skills/akkadianEmpire.data.ts)
 
 Methodological description: Examine the early territorial union of multiple cities and limits on its political stability.
 User-friendly description: Understand how the Akkadian rulers united several cities.
@@ -598,9 +598,9 @@ User-friendly description: Understand how the Akkadian rulers united several cit
 
 Slug: babylonianKingdoms
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[babylonianKingdoms.data.ts](../../data/skills/ancientWesternAsia/mesopotamia/skills/babylonianKingdoms.data.ts)
 
 Methodological description: Explore royal centralization, legal texts, and urban culture across different periods of Babylonian history.
 User-friendly description: Explore government, laws and life in ancient Babylon.
@@ -609,9 +609,9 @@ User-friendly description: Explore government, laws and life in ancient Babylon.
 
 Slug: assyrianEmpire
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[assyrianEmpire.data.ts](../../data/skills/ancientWesternAsia/mesopotamia/skills/assyrianEmpire.data.ts)
 
 Methodological description: Explain military organization, provincial administration, and imperial control in the Neo-Assyrian state.
 User-friendly description: Understand how Assyria governed its empire.
@@ -620,11 +620,11 @@ User-friendly description: Understand how Assyria governed its empire.
 
 Slug: ancientLevant
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[ancientLevant.data.ts](../../data/skills/ancientWesternAsia/ancientLevant/ancientLevant.data.ts)
 
 Methodological description: Coastal towns, inland kingdoms, and religious traditions formed at routes connecting Egypt, Anatolia, and Mesopotamia.
 User-friendly description: Explore the trading kingdoms and traditions of the Levant.
@@ -633,9 +633,9 @@ User-friendly description: Explore the trading kingdoms and traditions of the Le
 
 Slug: phoenicianCities
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[phoenicianCities.data.ts](../../data/skills/ancientWesternAsia/ancientLevant/skills/phoenicianCities.data.ts)
 
 Methodological description: Examine maritime commerce, craft centers, and colonial networks in the eastern Mediterranean.
 User-friendly description: Discover how Phoenician cities connected the Mediterranean.
@@ -644,9 +644,9 @@ User-friendly description: Discover how Phoenician cities connected the Mediterr
 
 Slug: phoenicianWriting
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[phoenicianWriting.data.ts](../../data/skills/ancientWesternAsia/ancientLevant/skills/phoenicianWriting.data.ts)
 
 Methodological description: Describe consonantal alphabetic writing and later influence without claiming Phoenicians invented all alphabets.
 User-friendly description: Understand why Phoenician writing influenced later alphabets.
@@ -655,9 +655,9 @@ User-friendly description: Understand why Phoenician writing influenced later al
 
 Slug: israelAndJudah
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[israelAndJudah.data.ts](../../data/skills/ancientWesternAsia/ancientLevant/skills/israelAndJudah.data.ts)
 
 Methodological description: Compare histories of ancient Levantine kingdoms with archaeological evidence and later written traditions.
 User-friendly description: Explore Israel and Judah through texts and archaeological finds.
@@ -666,9 +666,9 @@ User-friendly description: Explore Israel and Judah through texts and archaeolog
 
 Slug: religionsOfTheAncientLevant
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[religionsOfTheAncientLevant.data.ts](../../data/skills/ancientWesternAsia/ancientLevant/skills/religionsOfTheAncientLevant.data.ts)
 
 Methodological description: Study varied cults and the historical development of Israelite monotheism in context.
 User-friendly description: Discover the different religious traditions of the ancient Levant.
@@ -677,11 +677,11 @@ User-friendly description: Discover the different religious traditions of the an
 
 Slug: anatolia
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 3
 
-[Not implemented](#)
+[anatolia.data.ts](../../data/skills/ancientWesternAsia/anatolia/anatolia.data.ts)
 
 Methodological description: Mountain and plateau regions between the Aegean and Mesopotamia supported distinct kingdoms and cultural exchanges.
 User-friendly description: Explore the ancient kingdoms of Anatolia.
@@ -690,9 +690,9 @@ User-friendly description: Explore the ancient kingdoms of Anatolia.
 
 Slug: hittiteKingdom
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[hittiteKingdom.data.ts](../../data/skills/ancientWesternAsia/anatolia/skills/hittiteKingdom.data.ts)
 
 Methodological description: Describe political structures, diplomacy, and competition for influence in the Late Bronze Age.
 User-friendly description: Learn how the Hittites governed and negotiated with neighboring powers.
@@ -701,9 +701,9 @@ User-friendly description: Learn how the Hittites governed and negotiated with n
 
 Slug: anatolianTradeNetworks
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[anatolianTradeNetworks.data.ts](../../data/skills/ancientWesternAsia/anatolia/skills/anatolianTradeNetworks.data.ts)
 
 Methodological description: Trace circulation of metals, textiles, and other goods between Anatolian centers and neighbors.
 User-friendly description: Explore what ancient Anatolian merchants exchanged.
@@ -712,9 +712,9 @@ User-friendly description: Explore what ancient Anatolian merchants exchanged.
 
 Slug: urartu
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[urartu.data.ts](../../data/skills/ancientWesternAsia/anatolia/skills/urartu.data.ts)
 
 Methodological description: Examine fortifications, administration, and water-management projects of the Armenian Highland state.
 User-friendly description: Discover the forts and engineering works of Urartu.
@@ -723,11 +723,11 @@ User-friendly description: Discover the forts and engineering works of Urartu.
 
 Slug: ancientIranianStates
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[ancientIranianStates.data.ts](../../data/skills/ancientWesternAsia/ancientIranianStates/ancientIranianStates.data.ts)
 
 Methodological description: States on the Iranian plateau and nearby territories governed diverse populations through administrative systems.
 User-friendly description: Explore ancient states formed around the Iranian plateau.
@@ -736,9 +736,9 @@ User-friendly description: Explore ancient states formed around the Iranian plat
 
 Slug: medianConfederations
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[medianConfederations.data.ts](../../data/skills/ancientWesternAsia/ancientIranianStates/skills/medianConfederations.data.ts)
 
 Methodological description: Explain the role of Median communities in shifting Western Asian power while acknowledging limited sources.
 User-friendly description: Learn what historians can infer about the Medes.
@@ -747,9 +747,9 @@ User-friendly description: Learn what historians can infer about the Medes.
 
 Slug: achaemenidEmpire
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[achaemenidEmpire.data.ts](../../data/skills/ancientWesternAsia/ancientIranianStates/skills/achaemenidEmpire.data.ts)
 
 Methodological description: Describe satrapies, royal power, roads, and local administrative traditions in a large multiethnic state.
 User-friendly description: Discover how the Achaemenid Empire governed many peoples.
@@ -758,9 +758,9 @@ User-friendly description: Discover how the Achaemenid Empire governed many peop
 
 Slug: achaemenidExpansion
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[achaemenidExpansion.data.ts](../../data/skills/ancientWesternAsia/ancientIranianStates/skills/achaemenidExpansion.data.ts)
 
 Methodological description: Trace Persian conquests across Western Asia, Egypt, and neighboring areas; conflicts with Greek poleis are a separate competency.
 User-friendly description: Follow how the Achaemenid state expanded into other regions.
@@ -769,9 +769,9 @@ User-friendly description: Follow how the Achaemenid state expanded into other r
 
 Slug: ancientIranianReligions
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[ancientIranianReligions.data.ts](../../data/skills/ancientWesternAsia/ancientIranianStates/skills/ancientIranianReligions.data.ts)
 
 Methodological description: Study ancient Iranian religious diversity and uncertainty about when Zoroastrian traditions developed.
 User-friendly description: Explore the diverse beliefs of ancient Iran.
@@ -780,11 +780,11 @@ User-friendly description: Explore the diverse beliefs of ancient Iran.
 
 Slug: ancientSouthArabia
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 2
 
-[Not implemented](#)
+[ancientSouthArabia.data.ts](../../data/skills/ancientWesternAsia/ancientSouthArabia/ancientSouthArabia.data.ts)
 
 Methodological description: Oasis and mountain centers participated in long-distance trade before the Islamic period.
 User-friendly description: Discover the trading kingdoms of ancient southern Arabia.
@@ -793,9 +793,9 @@ User-friendly description: Discover the trading kingdoms of ancient southern Ara
 
 Slug: southArabianKingdoms
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[southArabianKingdoms.data.ts](../../data/skills/ancientWesternAsia/ancientSouthArabia/skills/southArabianKingdoms.data.ts)
 
 Methodological description: Examine Saba and other kingdoms through local farming, social organization, and trade.
 User-friendly description: Learn about the kingdoms of Saba and its neighbors.
@@ -804,9 +804,9 @@ User-friendly description: Learn about the kingdoms of Saba and its neighbors.
 
 Slug: arabianTradeRoutes
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[arabianTradeRoutes.data.ts](../../data/skills/ancientWesternAsia/ancientSouthArabia/skills/arabianTradeRoutes.data.ts)
 
 Methodological description: Trace incense and other goods across Arabia, the Red Sea, Africa, and the Mediterranean.
 User-friendly description: Follow ancient trade routes carrying incense and other products.
@@ -815,11 +815,11 @@ User-friendly description: Follow ancient trade routes carrying incense and othe
 
 Slug: ancientAfrica
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 5 · Skills: 28
 
-[Not implemented](#)
+[ancientAfrica.data.ts](../../data/skills/ancientAfrica/ancientAfrica.data.ts)
 
 Methodological description: Africa's ancient history extends beyond the Nile through independent political traditions, migrations, crafts, trade, and adaptation to varied environments.
 User-friendly description: Explore the varied societies and cultures of ancient Africa.
@@ -828,11 +828,11 @@ User-friendly description: Explore the varied societies and cultures of ancient 
 
 Slug: ancientEgypt
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 12
 
-[Not implemented](#)
+[ancientEgypt.data.ts](../../data/skills/ancientAfrica/ancientEgypt/ancientEgypt.data.ts)
 
 Methodological description: The Nile state combined long-standing kingship, water management, written culture, and contact with neighbors.
 User-friendly description: Discover how the Nile supported ancient Egyptian society and government.
@@ -841,9 +841,9 @@ User-friendly description: Discover how the Nile supported ancient Egyptian soci
 
 Slug: nileAndEgyptianEconomy
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[nileAndEgyptianEconomy.data.ts](../../data/skills/ancientAfrica/ancientEgypt/skills/nileAndEgyptianEconomy.data.ts)
 
 Methodological description: Relate farming and settlements to seasonal floods, canals, and organized land cultivation.
 User-friendly description: Understand why Nile flooding mattered to Egyptian farming.
@@ -852,9 +852,9 @@ User-friendly description: Understand why Nile flooding mattered to Egyptian far
 
 Slug: unificationOfEgypt
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[unificationOfEgypt.data.ts](../../data/skills/ancientAfrica/ancientEgypt/skills/unificationOfEgypt.data.ts)
 
 Methodological description: Reconstruct early centralization using archaeological and visual evidence.
 User-friendly description: Explore how early Egyptian lands came under centralized rule.
@@ -863,9 +863,9 @@ User-friendly description: Explore how early Egyptian lands came under centraliz
 
 Slug: oldKingdomOfEgypt
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[oldKingdomOfEgypt.data.ts](../../data/skills/ancientAfrica/ancientEgypt/skills/oldKingdomOfEgypt.data.ts)
 
 Methodological description: Study centralized monarchy of Dynasties III–VI, pyramid complexes, and royal control of regional resources.
 User-friendly description: Learn about Old Kingdom rulers and the building of pyramids.
@@ -874,9 +874,9 @@ User-friendly description: Learn about Old Kingdom rulers and the building of py
 
 Slug: middleKingdomOfEgypt
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[middleKingdomOfEgypt.data.ts](../../data/skills/ancientAfrica/ancientEgypt/skills/middleKingdomOfEgypt.data.ts)
 
 Methodological description: Trace renewed centralization, administrative change, and interests in Nubia during Dynasties XI–XIII.
 User-friendly description: Explore how the Middle Kingdom restored and expanded Egyptian power.
@@ -885,9 +885,9 @@ User-friendly description: Explore how the Middle Kingdom restored and expanded 
 
 Slug: newKingdomOfEgypt
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[newKingdomOfEgypt.data.ts](../../data/skills/ancientAfrica/ancientEgypt/skills/newKingdomOfEgypt.data.ts)
 
 Methodological description: Examine conquest, diplomacy, temple institutions, and political transformations in Dynasties XVIII–XX.
 User-friendly description: Discover how New Kingdom Egypt interacted with neighboring lands.
@@ -896,9 +896,9 @@ User-friendly description: Discover how New Kingdom Egypt interacted with neighb
 
 Slug: egyptianIntermediatePeriods
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[egyptianIntermediatePeriods.data.ts](../../data/skills/ancientAfrica/ancientEgypt/skills/egyptianIntermediatePeriods.data.ts)
 
 Methodological description: Explain varied changes of dynasty and decentralization between centralized eras without treating them as total collapse.
 User-friendly description: Understand why Egyptian rule was sometimes divided among competing powers.
@@ -907,9 +907,9 @@ User-friendly description: Understand why Egyptian rule was sometimes divided am
 
 Slug: pharaonicRule
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[pharaonicRule.data.ts](../../data/skills/ancientAfrica/ancientEgypt/skills/pharaonicRule.data.ts)
 
 Methodological description: Describe relations among sacral kingship, officials, priests, and local administration across different eras.
 User-friendly description: Explore how pharaohs governed alongside officials and priests.
@@ -918,9 +918,9 @@ User-friendly description: Explore how pharaohs governed alongside officials and
 
 Slug: egyptianWriting
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[egyptianWriting.data.ts](../../data/skills/ancientAfrica/ancientEgypt/skills/egyptianWriting.data.ts)
 
 Methodological description: Explain hieroglyphic principles and parallel writing forms used in administration and culture.
 User-friendly description: Discover how Egyptians wrote and recorded information.
@@ -929,9 +929,9 @@ User-friendly description: Discover how Egyptians wrote and recorded information
 
 Slug: egyptianReligiousBeliefs
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[egyptianReligiousBeliefs.data.ts](../../data/skills/ancientAfrica/ancientEgypt/skills/egyptianReligiousBeliefs.data.ts)
 
 Methodological description: Study deities, cosmology, temple cults, and changing beliefs across Egyptian regions and periods.
 User-friendly description: Explore the many religious beliefs of ancient Egyptians.
@@ -940,9 +940,9 @@ User-friendly description: Explore the many religious beliefs of ancient Egyptia
 
 Slug: egyptianBurialPractices
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[egyptianBurialPractices.data.ts](../../data/skills/ancientAfrica/ancientEgypt/skills/egyptianBurialPractices.data.ts)
 
 Methodological description: Interpret tombs, burial goods, mummification, and ritual texts while noting social and historical variation.
 User-friendly description: Learn what Egyptian burials reveal about beliefs and social life.
@@ -951,9 +951,9 @@ User-friendly description: Learn what Egyptian burials reveal about beliefs and 
 
 Slug: egyptianConstruction
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[egyptianConstruction.data.ts](../../data/skills/ancientAfrica/ancientEgypt/skills/egyptianConstruction.data.ts)
 
 Methodological description: Examine labor organization, building materials, and engineering of major monuments without pseudohistorical myths.
 User-friendly description: Discover how ancient Egyptians organized large building projects.
@@ -962,9 +962,9 @@ User-friendly description: Discover how ancient Egyptians organized large buildi
 
 Slug: egyptianForeignRelations
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[egyptianForeignRelations.data.ts](../../data/skills/ancientAfrica/ancientEgypt/skills/egyptianForeignRelations.data.ts)
 
 Methodological description: Trace Egypt's trade, diplomacy, and military relations with Nubia and Western Asian states.
 User-friendly description: Explore how Egypt traded and negotiated with neighbors.
@@ -973,11 +973,11 @@ User-friendly description: Explore how Egypt traded and negotiated with neighbor
 
 Slug: nubiaAndKush
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[nubiaAndKush.data.ts](../../data/skills/ancientAfrica/nubiaAndKush/nubiaAndKush.data.ts)
 
 Methodological description: Middle Nile societies formed independent political and cultural centers with complex relations to Egypt.
 User-friendly description: Discover the independent societies of ancient Nubia and Kush.
@@ -986,9 +986,9 @@ User-friendly description: Discover the independent societies of ancient Nubia a
 
 Slug: kermaCulture
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[kermaCulture.data.ts](../../data/skills/ancientAfrica/nubiaAndKush/skills/kermaCulture.data.ts)
 
 Methodological description: Study the Bronze Age urban center, burials, and regional state of Upper Nubia.
 User-friendly description: Explore the archaeological remains of ancient Kerma.
@@ -997,9 +997,9 @@ User-friendly description: Explore the archaeological remains of ancient Kerma.
 
 Slug: kingdomOfKush
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[kingdomOfKush.data.ts](../../data/skills/ancientAfrica/nubiaAndKush/skills/kingdomOfKush.data.ts)
 
 Methodological description: Trace Kushite political history, including Napata and the Twenty-Fifth Dynasty in Egypt.
 User-friendly description: Learn how Kushite kings ruled their own kingdom and Egypt.
@@ -1008,9 +1008,9 @@ User-friendly description: Learn how Kushite kings ruled their own kingdom and E
 
 Slug: meroe
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[meroe.data.ts](../../data/skills/ancientAfrica/nubiaAndKush/skills/meroe.data.ts)
 
 Methodological description: Explore the later Kushite city's royal culture, metallurgy, and distinct writing.
 User-friendly description: Discover the city and culture of Meroë.
@@ -1019,9 +1019,9 @@ User-friendly description: Discover the city and culture of Meroë.
 
 Slug: nileCulturalExchange
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[nileCulturalExchange.data.ts](../../data/skills/ancientAfrica/nubiaAndKush/skills/nileCulturalExchange.data.ts)
 
 Methodological description: Study mutual influences between Egypt and Nubia without reducing Nubian culture to an Egyptian derivative.
 User-friendly description: Understand how Egyptian and Nubian societies influenced each other.
@@ -1030,11 +1030,11 @@ User-friendly description: Understand how Egyptian and Nubian societies influenc
 
 Slug: hornOfAfrica
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 3
 
-[Not implemented](#)
+[hornOfAfrica.data.ts](../../data/skills/ancientAfrica/hornOfAfrica/hornOfAfrica.data.ts)
 
 Methodological description: Red Sea connections linked highland farming societies with maritime exchanges between Africa and Arabia.
 User-friendly description: Explore ancient societies near the Red Sea and Ethiopian highlands.
@@ -1043,9 +1043,9 @@ User-friendly description: Explore ancient societies near the Red Sea and Ethiop
 
 Slug: earlyEthiopianHighlandStates
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[earlyEthiopianHighlandStates.data.ts](../../data/skills/ancientAfrica/hornOfAfrica/skills/earlyEthiopianHighlandStates.data.ts)
 
 Methodological description: Examine local political centers and southern Arabian contacts in the northern Horn of Africa.
 User-friendly description: Discover the early states of the Ethiopian highlands.
@@ -1054,9 +1054,9 @@ User-friendly description: Discover the early states of the Ethiopian highlands.
 
 Slug: aksumiteKingdom
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[aksumiteKingdom.data.ts](../../data/skills/ancientAfrica/hornOfAfrica/skills/aksumiteKingdom.data.ts)
 
 Methodological description: Study late-antique Aksumite kingship, international trade, coinage, and monuments.
 User-friendly description: Explore how Aksum traded and governed in late antiquity.
@@ -1065,9 +1065,9 @@ User-friendly description: Explore how Aksum traded and governed in late antiqui
 
 Slug: christianizationOfAksum
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[christianizationOfAksum.data.ts](../../data/skills/ancientAfrica/hornOfAfrica/skills/christianizationOfAksum.data.ts)
 
 Methodological description: Trace Christianity's spread in the fourth century and the gradual transformation of institutions.
 User-friendly description: Understand how Christianity became important in Aksum.
@@ -1076,11 +1076,11 @@ User-friendly description: Understand how Christianity became important in Aksum
 
 Slug: saharaAndSubSaharanAfrica
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 5
 
-[Not implemented](#)
+[saharaAndSubSaharanAfrica.data.ts](../../data/skills/ancientAfrica/saharaAndSubSaharanAfrica/saharaAndSubSaharanAfrica.data.ts)
 
 Methodological description: Environmental change, diverse livelihoods, and local technologies shaped societies beyond the Nile states.
 User-friendly description: Explore early African cultures across the Sahara and farther south.
@@ -1089,9 +1089,9 @@ User-friendly description: Explore early African cultures across the Sahara and 
 
 Slug: saharanClimateChange
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[saharanClimateChange.data.ts](../../data/skills/ancientAfrica/saharaAndSubSaharanAfrica/skills/saharanClimateChange.data.ts)
 
 Methodological description: Connect wetter ancient periods and later drying to settlement and routes using several kinds of environmental evidence.
 User-friendly description: See how changing Saharan climate influenced settlement and travel.
@@ -1100,9 +1100,9 @@ User-friendly description: See how changing Saharan climate influenced settlemen
 
 Slug: ancientSaharanPastoralists
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[ancientSaharanPastoralists.data.ts](../../data/skills/ancientAfrica/saharaAndSubSaharanAfrica/skills/ancientSaharanPastoralists.data.ts)
 
 Methodological description: Interpret herding, mobility, and rock art as evidence of life under changing environmental conditions.
 User-friendly description: Discover how ancient Saharan pastoral communities lived.
@@ -1111,9 +1111,9 @@ User-friendly description: Discover how ancient Saharan pastoral communities liv
 
 Slug: earlyBantuSpeakingDispersals
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[earlyBantuSpeakingDispersals.data.ts](../../data/skills/ancientAfrica/saharaAndSubSaharanAfrica/skills/earlyBantuSpeakingDispersals.data.ts)
 
 Methodological description: Reconstruct spreading languages, farming practices, and populations without treating the process as one simultaneous migration.
 User-friendly description: Explore how Bantu-speaking communities spread across parts of Africa.
@@ -1122,9 +1122,9 @@ User-friendly description: Explore how Bantu-speaking communities spread across 
 
 Slug: nokCulture
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[nokCulture.data.ts](../../data/skills/ancientAfrica/saharaAndSubSaharanAfrica/skills/nokCulture.data.ts)
 
 Methodological description: Study terracotta art and early iron use in present-day Nigeria while recognizing gaps in evidence.
 User-friendly description: Discover what Nok artifacts reveal about an ancient West African culture.
@@ -1133,9 +1133,9 @@ User-friendly description: Discover what Nok artifacts reveal about an ancient W
 
 Slug: earlyWestAfricanUrbanCenters
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[earlyWestAfricanUrbanCenters.data.ts](../../data/skills/ancientAfrica/saharaAndSubSaharanAfrica/skills/earlyWestAfricanUrbanCenters.data.ts)
 
 Methodological description: Examine Inland Niger Delta sites, including Djenné-Djeno from about the third century BCE, distinguishing early settlement and crafts from later urban florescence.
 User-friendly description: Explore how early towns developed in the Inland Niger Delta.
@@ -1144,11 +1144,11 @@ User-friendly description: Explore how early towns developed in the Inland Niger
 
 Slug: northAfricaBeyondTheNile
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[northAfricaBeyondTheNile.data.ts](../../data/skills/ancientAfrica/northAfricaBeyondTheNile/northAfricaBeyondTheNile.data.ts)
 
 Methodological description: Carthaginian, Numidian, and Saharan societies maintained their own political traditions amid Mediterranean and inland contacts.
 User-friendly description: Discover ancient North African societies beyond Egypt.
@@ -1157,9 +1157,9 @@ User-friendly description: Discover ancient North African societies beyond Egypt
 
 Slug: carthage
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[carthage.data.ts](../../data/skills/ancientAfrica/northAfricaBeyondTheNile/skills/carthage.data.ts)
 
 Methodological description: Trace the Phoenician city's origins and development of trade, military, and state institutions in the western Mediterranean.
 User-friendly description: Explore how Carthage became a major Mediterranean power.
@@ -1168,9 +1168,9 @@ User-friendly description: Explore how Carthage became a major Mediterranean pow
 
 Slug: numidianKingdoms
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[numidianKingdoms.data.ts](../../data/skills/ancientAfrica/northAfricaBeyondTheNile/skills/numidianKingdoms.data.ts)
 
 Methodological description: Study North African political confederations and relations with Carthage and Rome.
 User-friendly description: Learn how Numidian kingdoms interacted with Mediterranean powers.
@@ -1179,9 +1179,9 @@ User-friendly description: Learn how Numidian kingdoms interacted with Mediterra
 
 Slug: garamantes
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[garamantes.data.ts](../../data/skills/ancientAfrica/northAfricaBeyondTheNile/skills/garamantes.data.ts)
 
 Methodological description: Examine the Fezzan oasis civilization's agriculture, settlements, and trans-Saharan contacts.
 User-friendly description: Discover how Garamantes communities lived in Saharan oases.
@@ -1190,9 +1190,9 @@ User-friendly description: Discover how Garamantes communities lived in Saharan 
 
 Slug: northAfricanCulturalInteractions
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[northAfricanCulturalInteractions.data.ts](../../data/skills/ancientAfrica/northAfricaBeyondTheNile/skills/northAfricanCulturalInteractions.data.ts)
 
 Methodological description: Explore coexistence of local languages and traditions with Phoenician, Greek, and Roman influences in antiquity.
 User-friendly description: Explore cultural exchanges in ancient North Africa.
@@ -1201,11 +1201,11 @@ User-friendly description: Explore cultural exchanges in ancient North Africa.
 
 Slug: southAndSoutheastAsia
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 4 · Skills: 18
 
-[Not implemented](#)
+[southAndSoutheastAsia.data.ts](../../data/skills/southAndSoutheastAsia/southAndSoutheastAsia.data.ts)
 
 Methodological description: From Indus cities to South Asian empires and early Southeast Asian states, the region followed diverse urban, religious, and commercial trajectories.
 User-friendly description: Explore the ancient societies of South and Southeast Asia.
@@ -1214,11 +1214,11 @@ User-friendly description: Explore the ancient societies of South and Southeast 
 
 Slug: indusCivilization
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[indusCivilization.data.ts](../../data/skills/southAndSoutheastAsia/indusCivilization/indusCivilization.data.ts)
 
 Methodological description: Indus cities showed planning, crafts, and trade, while political and linguistic questions remain unresolved.
 User-friendly description: Discover what makes the Indus cities remarkable and mysterious.
@@ -1227,9 +1227,9 @@ User-friendly description: Discover what makes the Indus cities remarkable and m
 
 Slug: citiesOfTheIndusCivilization
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[citiesOfTheIndusCivilization.data.ts](../../data/skills/southAndSoutheastAsia/indusCivilization/skills/citiesOfTheIndusCivilization.data.ts)
 
 Methodological description: Examine planning, drainage, and administration at Mohenjo-daro, Harappa, and other settlements.
 User-friendly description: Explore how people organized streets and water in Indus cities.
@@ -1238,9 +1238,9 @@ User-friendly description: Explore how people organized streets and water in Ind
 
 Slug: indusEconomy
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[indusEconomy.data.ts](../../data/skills/southAndSoutheastAsia/indusCivilization/skills/indusEconomy.data.ts)
 
 Methodological description: Describe farming, manufacturing, and land and maritime trade in the Indus region.
 User-friendly description: Learn how Indus communities produced and exchanged goods.
@@ -1249,9 +1249,9 @@ User-friendly description: Learn how Indus communities produced and exchanged go
 
 Slug: indusSigns
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[indusSigns.data.ts](../../data/skills/southAndSoutheastAsia/indusCivilization/skills/indusSigns.data.ts)
 
 Methodological description: Distinguish surviving inscriptions from deciphered text, acknowledging that the script remains undeciphered.
 User-friendly description: Understand why Indus signs are still difficult to read.
@@ -1260,9 +1260,9 @@ User-friendly description: Understand why Indus signs are still difficult to rea
 
 Slug: transformationOfIndusCities
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[transformationOfIndusCities.data.ts](../../data/skills/southAndSoutheastAsia/indusCivilization/skills/transformationOfIndusCities.data.ts)
 
 Methodological description: Analyze regional settlement changes and competing explanations without claiming a single sudden disappearance.
 User-friendly description: Explore what may explain the changes in Indus cities.
@@ -1271,11 +1271,11 @@ User-friendly description: Explore what may explain the changes in Indus cities.
 
 Slug: societiesAndStatesOfAncientIndia
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[societiesAndStatesOfAncientIndia.data.ts](../../data/skills/southAndSoutheastAsia/societiesAndStatesOfAncientIndia/societiesAndStatesOfAncientIndia.data.ts)
 
 Methodological description: After the Vedic period, regional kingdoms and larger empires arose with differing political systems.
 User-friendly description: Discover how states developed in ancient India.
@@ -1284,9 +1284,9 @@ User-friendly description: Discover how states developed in ancient India.
 
 Slug: vedicSocieties
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[vedicSocieties.data.ts](../../data/skills/southAndSoutheastAsia/societiesAndStatesOfAncientIndia/skills/vedicSocieties.data.ts)
 
 Methodological description: Examine oral traditions, economic activity, and changing social structures in northern India.
 User-friendly description: Learn about the people and oral traditions of Vedic India.
@@ -1295,9 +1295,9 @@ User-friendly description: Learn about the people and oral traditions of Vedic I
 
 Slug: mahajanapadas
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[mahajanapadas.data.ts](../../data/skills/southAndSoutheastAsia/societiesAndStatesOfAncientIndia/skills/mahajanapadas.data.ts)
 
 Methodological description: Trace major monarchies, republican polities, and renewed urbanization in the Ganges valley.
 User-friendly description: Explore the states that emerged in the Ganges region.
@@ -1306,9 +1306,9 @@ User-friendly description: Explore the states that emerged in the Ganges region.
 
 Slug: mauryanEmpire
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[mauryanEmpire.data.ts](../../data/skills/southAndSoutheastAsia/societiesAndStatesOfAncientIndia/skills/mauryanEmpire.data.ts)
 
 Methodological description: Explain imperial administration and Ashoka's policies using edicts and other sources.
 User-friendly description: Discover how Mauryan rulers governed and what Ashoka's edicts reveal.
@@ -1317,9 +1317,9 @@ User-friendly description: Discover how Mauryan rulers governed and what Ashoka'
 
 Slug: guptaKingdom
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[guptaKingdom.data.ts](../../data/skills/southAndSoutheastAsia/societiesAndStatesOfAncientIndia/skills/guptaKingdom.data.ts)
 
 Methodological description: Examine northern Indian politics, scholarship, and cultural centers without calling the period a uniform golden age for all.
 User-friendly description: Learn about Gupta-era government, science and culture.
@@ -1328,11 +1328,11 @@ User-friendly description: Learn about Gupta-era government, science and culture
 
 Slug: religiousAndIntellectualTraditions
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[religiousAndIntellectualTraditions.data.ts](../../data/skills/southAndSoutheastAsia/religiousAndIntellectualTraditions/religiousAndIntellectualTraditions.data.ts)
 
 Methodological description: Teachings, texts, and schools evolved over centuries and spread far beyond the subcontinent.
 User-friendly description: Explore how ancient South Asian religious and intellectual ideas developed.
@@ -1341,9 +1341,9 @@ User-friendly description: Explore how ancient South Asian religious and intelle
 
 Slug: earlyHinduTraditions
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[earlyHinduTraditions.data.ts](../../data/skills/southAndSoutheastAsia/religiousAndIntellectualTraditions/skills/earlyHinduTraditions.data.ts)
 
 Methodological description: Trace changing Vedic rituals, philosophy, and practices without inventing one founder.
 User-friendly description: Learn how different traditions contributed to early Hinduism.
@@ -1352,9 +1352,9 @@ User-friendly description: Learn how different traditions contributed to early H
 
 Slug: buddhismInAncientIndia
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[buddhismInAncientIndia.data.ts](../../data/skills/southAndSoutheastAsia/religiousAndIntellectualTraditions/skills/buddhismInAncientIndia.data.ts)
 
 Methodological description: Examine the Buddha's historical setting and the growth of Buddhist communities and schools.
 User-friendly description: Explore how Buddhism arose and spread in ancient India.
@@ -1363,9 +1363,9 @@ User-friendly description: Explore how Buddhism arose and spread in ancient Indi
 
 Slug: jainism
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[jainism.data.ts](../../data/skills/southAndSoutheastAsia/religiousAndIntellectualTraditions/skills/jainism.data.ts)
 
 Methodological description: Explain the ethical teachings and monastic traditions associated with Jain teachers.
 User-friendly description: Discover the teachings and communities of Jainism.
@@ -1374,9 +1374,9 @@ User-friendly description: Discover the teachings and communities of Jainism.
 
 Slug: ancientIndianScience
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[ancientIndianScience.data.ts](../../data/skills/southAndSoutheastAsia/religiousAndIntellectualTraditions/skills/ancientIndianScience.data.ts)
 
 Methodological description: Study early mathematics, medicine, and astronomy while dating individual developments accurately.
 User-friendly description: Learn about ancient Indian ideas in science and calculation.
@@ -1385,11 +1385,11 @@ User-friendly description: Learn about ancient Indian ideas in science and calcu
 
 Slug: ancientSoutheastAsia
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 6
 
-[Not implemented](#)
+[ancientSoutheastAsia.data.ts](../../data/skills/southAndSoutheastAsia/ancientSoutheastAsia/ancientSoutheastAsia.data.ts)
 
 Methodological description: River valleys, islands, and ports exchanged ideas with India and China while retaining local traditions.
 User-friendly description: Explore early Southeast Asian societies and maritime links.
@@ -1398,9 +1398,9 @@ User-friendly description: Explore early Southeast Asian societies and maritime 
 
 Slug: earlySoutheastAsianFarming
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[earlySoutheastAsianFarming.data.ts](../../data/skills/southAndSoutheastAsia/ancientSoutheastAsia/skills/earlySoutheastAsianFarming.data.ts)
 
 Methodological description: Trace rice cultivation, crafts, and settlement on the Southeast Asian mainland.
 User-friendly description: Discover how agriculture shaped early communities in Southeast Asia.
@@ -1409,9 +1409,9 @@ User-friendly description: Discover how agriculture shaped early communities in 
 
 Slug: maritimeTradeOfSoutheastAsia
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[maritimeTradeOfSoutheastAsia.data.ts](../../data/skills/southAndSoutheastAsia/ancientSoutheastAsia/skills/maritimeTradeOfSoutheastAsia.data.ts)
 
 Methodological description: Explain the roles of straits, monsoon routes, and ports in exchanges of goods and ideas.
 User-friendly description: Follow the sea routes connecting Southeast Asian trading ports.
@@ -1420,9 +1420,9 @@ User-friendly description: Follow the sea routes connecting Southeast Asian trad
 
 Slug: earlySoutheastAsianStates
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[earlySoutheastAsianStates.data.ts](../../data/skills/southAndSoutheastAsia/ancientSoutheastAsia/skills/earlySoutheastAsianStates.data.ts)
 
 Methodological description: Reconstruct centers such as Funan from archaeology and external written accounts.
 User-friendly description: Explore how the first states of Southeast Asia formed.
@@ -1431,9 +1431,9 @@ User-friendly description: Explore how the first states of Southeast Asia formed
 
 Slug: culturalContactsWithIndia
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[culturalContactsWithIndia.data.ts](../../data/skills/southAndSoutheastAsia/ancientSoutheastAsia/skills/culturalContactsWithIndia.data.ts)
 
 Methodological description: Examine local adaptation of scripts, religions, and royal symbols rather than passive copying of Indian models.
 User-friendly description: Discover how local societies adapted ideas brought from India.
@@ -1442,9 +1442,9 @@ User-friendly description: Discover how local societies adapted ideas brought fr
 
 Slug: dongSonCulture
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[dongSonCulture.data.ts](../../data/skills/southAndSoutheastAsia/ancientSoutheastAsia/skills/dongSonCulture.data.ts)
 
 Methodological description: Study Bronze Age craft, rituals, and Red River exchanges, including decorated bronze drums.
 User-friendly description: Learn what bronze drums reveal about Dong Son communities.
@@ -1453,9 +1453,9 @@ User-friendly description: Learn what bronze drums reveal about Dong Son communi
 
 Slug: earlyIslandSoutheastAsianCultures
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[earlyIslandSoutheastAsianCultures.data.ts](../../data/skills/southAndSoutheastAsia/ancientSoutheastAsia/skills/earlyIslandSoutheastAsianCultures.data.ts)
 
 Methodological description: Examine settlements, crafts, and local sea connections in Indonesian and Philippine archipelagos before medieval maritime states.
 User-friendly description: Explore life on Southeast Asian islands before later empires.
@@ -1464,11 +1464,11 @@ User-friendly description: Explore life on Southeast Asian islands before later 
 
 Slug: eastAndCentralAsia
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 5 · Skills: 22
 
-[Not implemented](#)
+[eastAndCentralAsia.data.ts](../../data/skills/eastAndCentralAsia/eastAndCentralAsia.data.ts)
 
 Methodological description: China, Korea, Japan, and Inner Asian steppe regions show coexistence and interaction between settled and mobile societies.
 User-friendly description: Explore the diverse ancient societies of East and Central Asia.
@@ -1477,11 +1477,11 @@ User-friendly description: Explore the diverse ancient societies of East and Cen
 
 Slug: earlyChina
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 6
 
-[Not implemented](#)
+[earlyChina.data.ts](../../data/skills/eastAndCentralAsia/earlyChina/earlyChina.data.ts)
 
 Methodological description: Bronze culture, ritual, and rival states shaped later institutions without requiring unchanged continuity.
 User-friendly description: Discover how early Chinese states and traditions developed.
@@ -1490,9 +1490,9 @@ User-friendly description: Discover how early Chinese states and traditions deve
 
 Slug: shangCulture
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[shangCulture.data.ts](../../data/skills/eastAndCentralAsia/earlyChina/skills/shangCulture.data.ts)
 
 Methodological description: Use bronze casting, royal institutions, and oracle-bone texts to interpret early documented Chinese history.
 User-friendly description: Learn what Shang bronze objects and oracle texts reveal.
@@ -1501,9 +1501,9 @@ User-friendly description: Learn what Shang bronze objects and oracle texts reve
 
 Slug: zhouDynasty
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[zhouDynasty.data.ts](../../data/skills/eastAndCentralAsia/earlyChina/skills/zhouDynasty.data.ts)
 
 Methodological description: Trace political changes and the idea of Heaven's Mandate between Zhou rulers and regional elites.
 User-friendly description: Explore how Zhou rulers explained and shared authority.
@@ -1512,9 +1512,9 @@ User-friendly description: Explore how Zhou rulers explained and shared authorit
 
 Slug: springAndAutumnPeriod
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[springAndAutumnPeriod.data.ts](../../data/skills/eastAndCentralAsia/earlyChina/skills/springAndAutumnPeriod.data.ts)
 
 Methodological description: Analyze rivalry among states and changing political ties during the weakening of Zhou power.
 User-friendly description: Explore competing states in China's Spring and Autumn era.
@@ -1523,9 +1523,9 @@ User-friendly description: Explore competing states in China's Spring and Autumn
 
 Slug: warringStatesPeriod
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[warringStatesPeriod.data.ts](../../data/skills/eastAndCentralAsia/earlyChina/skills/warringStatesPeriod.data.ts)
 
 Methodological description: Examine military and administrative reforms before China's political unification.
 User-friendly description: Discover how Warring States governments competed and reformed.
@@ -1534,9 +1534,9 @@ User-friendly description: Discover how Warring States governments competed and 
 
 Slug: confucianTradition
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[confucianTradition.data.ts](../../data/skills/eastAndCentralAsia/earlyChina/skills/confucianTradition.data.ts)
 
 Methodological description: Study Confucius and followers on ethical improvement, social relations, and government.
 User-friendly description: Explore Confucian ideas about conduct and good government.
@@ -1545,9 +1545,9 @@ User-friendly description: Explore Confucian ideas about conduct and good govern
 
 Slug: daoistTraditions
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[daoistTraditions.data.ts](../../data/skills/eastAndCentralAsia/earlyChina/skills/daoistTraditions.data.ts)
 
 Methodological description: Interpret diverse early texts discussing the Dao, spontaneity, and nonaction.
 User-friendly description: Discover Daoist ideas without treating every text as identical.
@@ -1556,11 +1556,11 @@ User-friendly description: Discover Daoist ideas without treating every text as 
 
 Slug: imperialChina
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 5
 
-[Not implemented](#)
+[imperialChina.data.ts](../../data/skills/eastAndCentralAsia/imperialChina/imperialChina.data.ts)
 
 Methodological description: Territorial unification prompted administrative standardization and debate about rule.
 User-friendly description: Explore how Chinese dynasties governed large territories.
@@ -1569,9 +1569,9 @@ User-friendly description: Explore how Chinese dynasties governed large territor
 
 Slug: qinEmpire
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[qinEmpire.data.ts](../../data/skills/eastAndCentralAsia/imperialChina/skills/qinEmpire.data.ts)
 
 Methodological description: Explain centralization and standardization under China's first imperial dynasty.
 User-friendly description: Discover the policies that helped the Qin unite China.
@@ -1580,9 +1580,9 @@ User-friendly description: Discover the policies that helped the Qin unite China
 
 Slug: hanDynasty
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[hanDynasty.data.ts](../../data/skills/eastAndCentralAsia/imperialChina/skills/hanDynasty.data.ts)
 
 Methodological description: Trace bureaucracy, border policy, and economic networks in the Han Empire.
 User-friendly description: Learn how Han rulers administered and connected their empire.
@@ -1591,9 +1591,9 @@ User-friendly description: Learn how Han rulers administered and connected their
 
 Slug: papermakingInAncientChina
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[papermakingInAncientChina.data.ts](../../data/skills/eastAndCentralAsia/imperialChina/skills/papermakingInAncientChina.data.ts)
 
 Methodological description: Trace materials and methods of papermaking, including Han developments, and their effects on writing and record keeping.
 User-friendly description: Explore how Chinese papermaking changed the spread of information.
@@ -1602,9 +1602,9 @@ User-friendly description: Explore how Chinese papermaking changed the spread of
 
 Slug: ancientChineseMetallurgy
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[ancientChineseMetallurgy.data.ts](../../data/skills/eastAndCentralAsia/imperialChina/skills/ancientChineseMetallurgy.data.ts)
 
 Methodological description: Explain bronze and iron technologies including cast iron and their economic and military applications.
 User-friendly description: Discover how metalworking developed in ancient China.
@@ -1613,9 +1613,9 @@ User-friendly description: Discover how metalworking developed in ancient China.
 
 Slug: fallOfHanAndSuccessorStates
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[fallOfHanAndSuccessorStates.data.ts](../../data/skills/eastAndCentralAsia/imperialChina/skills/fallOfHanAndSuccessorStates.data.ts)
 
 Methodological description: Analyze political decentralization and cultural changes at the end of the ancient Han era.
 User-friendly description: Explore what happened after Han imperial rule weakened.
@@ -1624,11 +1624,11 @@ User-friendly description: Explore what happened after Han imperial rule weakene
 
 Slug: ancientKorea
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[ancientKorea.data.ts](../../data/skills/eastAndCentralAsia/ancientKorea/ancientKorea.data.ts)
 
 Methodological description: Study early Korean and Manchurian polities through texts and archaeology that do not always corroborate traditional founding dates.
 User-friendly description: Explore the early kingdoms of the Korean peninsula.
@@ -1637,9 +1637,9 @@ User-friendly description: Explore the early kingdoms of the Korean peninsula.
 
 Slug: gojoseon
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[gojoseon.data.ts](../../data/skills/eastAndCentralAsia/ancientKorea/skills/gojoseon.data.ts)
 
 Methodological description: Interpret archaeological and written evidence about early Gojoseon without treating legendary founding dates as proven.
 User-friendly description: Discover what historians know and debate about Gojoseon.
@@ -1648,9 +1648,9 @@ User-friendly description: Discover what historians know and debate about Gojose
 
 Slug: goguryeo
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[goguryeo.data.ts](../../data/skills/eastAndCentralAsia/ancientKorea/skills/goguryeo.data.ts)
 
 Methodological description: Trace early state formation in northern Korea and Manchuria and contacts with Chinese dynasties.
 User-friendly description: Explore the beginnings of Goguryeo and its neighbors.
@@ -1659,9 +1659,9 @@ User-friendly description: Explore the beginnings of Goguryeo and its neighbors.
 
 Slug: baekje
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[baekje.data.ts](../../data/skills/eastAndCentralAsia/ancientKorea/skills/baekje.data.ts)
 
 Methodological description: Examine early statehood in western and southwestern Korea, political alliances, and cultural contacts.
 User-friendly description: Discover Baekje's early rulers and connections.
@@ -1670,9 +1670,9 @@ User-friendly description: Discover Baekje's early rulers and connections.
 
 Slug: silla
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[silla.data.ts](../../data/skills/eastAndCentralAsia/ancientKorea/skills/silla.data.ts)
 
 Methodological description: Trace gradual state formation in southeastern Korea and development of institutions.
 User-friendly description: Explore how Silla developed from regional communities.
@@ -1681,11 +1681,11 @@ User-friendly description: Explore how Silla developed from regional communities
 
 Slug: ancientJapan
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 3
 
-[Not implemented](#)
+[ancientJapan.data.ts](../../data/skills/eastAndCentralAsia/ancientJapan/ancientJapan.data.ts)
 
 Methodological description: Archaeological traditions from pottery to rice farming and burial mounds show uneven regional changes.
 User-friendly description: Discover the ancient cultures of the Japanese archipelago.
@@ -1694,9 +1694,9 @@ User-friendly description: Discover the ancient cultures of the Japanese archipe
 
 Slug: jomonCulture
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[jomonCulture.data.ts](../../data/skills/eastAndCentralAsia/ancientJapan/skills/jomonCulture.data.ts)
 
 Methodological description: Study Jomon livelihoods and material culture, especially pottery traditions.
 User-friendly description: Learn about the people and pottery of Jomon Japan.
@@ -1705,9 +1705,9 @@ User-friendly description: Learn about the people and pottery of Jomon Japan.
 
 Slug: yayoiCulture
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[yayoiCulture.data.ts](../../data/skills/eastAndCentralAsia/ancientJapan/skills/yayoiCulture.data.ts)
 
 Methodological description: Trace rice agriculture, metalworking, and settlement changes in Yayoi Japan.
 User-friendly description: Explore how rice cultivation and metal tools changed Japan.
@@ -1716,9 +1716,9 @@ User-friendly description: Explore how rice cultivation and metal tools changed 
 
 Slug: kofunPeriod
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[kofunPeriod.data.ts](../../data/skills/eastAndCentralAsia/ancientJapan/skills/kofunPeriod.data.ts)
 
 Methodological description: Study monumental tombs and early Yamato political coalitions.
 User-friendly description: Discover what Kofun burial mounds reveal about early authority.
@@ -1727,11 +1727,11 @@ User-friendly description: Discover what Kofun burial mounds reveal about early 
 
 Slug: innerAsia
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[innerAsia.data.ts](../../data/skills/eastAndCentralAsia/innerAsia/innerAsia.data.ts)
 
 Methodological description: Steppe and oasis societies created polities and connections among large agricultural states.
 User-friendly description: Explore the mobile and settled societies of Inner Asia.
@@ -1740,9 +1740,9 @@ User-friendly description: Explore the mobile and settled societies of Inner Asi
 
 Slug: steppePastoralism
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[steppePastoralism.data.ts](../../data/skills/eastAndCentralAsia/innerAsia/skills/steppePastoralism.data.ts)
 
 Methodological description: Examine seasonal mobility, ecology, social relations, and mixed herding and trade economies.
 User-friendly description: Discover why steppe communities moved with their livestock.
@@ -1751,9 +1751,9 @@ User-friendly description: Discover why steppe communities moved with their live
 
 Slug: sakaAndRelatedSteppeCultures
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[sakaAndRelatedSteppeCultures.data.ts](../../data/skills/eastAndCentralAsia/innerAsia/skills/sakaAndRelatedSteppeCultures.data.ts)
 
 Methodological description: Recognize diverse Iranian-speaking and other Inner Asian groups from archaeology and external ethnonyms.
 User-friendly description: Explore what is known about the Saka and related cultures.
@@ -1762,9 +1762,9 @@ User-friendly description: Explore what is known about the Saka and related cult
 
 Slug: xiongnu
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[xiongnu.data.ts](../../data/skills/eastAndCentralAsia/innerAsia/skills/xiongnu.data.ts)
 
 Methodological description: Examine the Xiongnu political confederation and diplomatic or military ties with Han China.
 User-friendly description: Discover how the Xiongnu interacted with the Han Empire.
@@ -1773,9 +1773,9 @@ User-friendly description: Discover how the Xiongnu interacted with the Han Empi
 
 Slug: centralAsianOasisCenters
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[centralAsianOasisCenters.data.ts](../../data/skills/eastAndCentralAsia/innerAsia/skills/centralAsianOasisCenters.data.ts)
 
 Methodological description: Study towns, caravans, and cultural mediation along early inland trade routes.
 User-friendly description: Explore the oasis cities that connected ancient trade routes.
@@ -1784,11 +1784,11 @@ User-friendly description: Explore the oasis cities that connected ancient trade
 
 Slug: ancientMediterranean
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 6 · Skills: 27
 
-[Not implemented](#)
+[ancientMediterranean.data.ts](../../data/skills/ancientMediterranean/ancientMediterranean.data.ts)
 
 Methodological description: Aegean societies, Greek poleis, Hellenistic kingdoms, and Rome formed an interconnected but heterogeneous Mediterranean world.
 User-friendly description: Explore how different ancient societies shaped the Mediterranean.
@@ -1797,11 +1797,11 @@ User-friendly description: Explore how different ancient societies shaped the Me
 
 Slug: aegeanBronzeAge
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 3
 
-[Not implemented](#)
+[aegeanBronzeAge.data.ts](../../data/skills/ancientMediterranean/aegeanBronzeAge/aegeanBronzeAge.data.ts)
 
 Methodological description: Island and mainland palace centers are known through archaeology, material exchange, and surviving writing systems.
 User-friendly description: Discover the palace societies of the Bronze Age Aegean.
@@ -1810,9 +1810,9 @@ User-friendly description: Discover the palace societies of the Bronze Age Aegea
 
 Slug: minoanCivilization
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[minoanCivilization.data.ts](../../data/skills/ancientMediterranean/aegeanBronzeAge/skills/minoanCivilization.data.ts)
 
 Methodological description: Examine Cretan palaces and maritime links while acknowledging that Linear A remains undeciphered.
 User-friendly description: Explore ancient Crete and the limits of what its writing reveals.
@@ -1821,9 +1821,9 @@ User-friendly description: Explore ancient Crete and the limits of what its writ
 
 Slug: mycenaeanCivilization
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[mycenaeanCivilization.data.ts](../../data/skills/ancientMediterranean/aegeanBronzeAge/skills/mycenaeanCivilization.data.ts)
 
 Methodological description: Study palace economies, fortified centers, and Linear B evidence of early Greek.
 User-friendly description: Learn what the Mycenaean palaces and records reveal about early Greeks.
@@ -1832,9 +1832,9 @@ User-friendly description: Learn what the Mycenaean palaces and records reveal a
 
 Slug: lateBronzeAgeCollapse
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[lateBronzeAgeCollapse.data.ts](../../data/skills/ancientMediterranean/aegeanBronzeAge/skills/lateBronzeAgeCollapse.data.ts)
 
 Methodological description: Evaluate multiple causes and uneven impacts of political and economic disruptions in the eastern Mediterranean.
 User-friendly description: Explore why Bronze Age states changed or collapsed differently.
@@ -1843,11 +1843,11 @@ User-friendly description: Explore why Bronze Age states changed or collapsed di
 
 Slug: greekPoleis
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 6
 
-[Not implemented](#)
+[greekPoleis.data.ts](../../data/skills/ancientMediterranean/greekPoleis/greekPoleis.data.ts)
 
 Methodological description: Self-governing citizen communities varied in political institutions, warfare, and who possessed political rights.
 User-friendly description: Compare how different Greek city-states were governed.
@@ -1856,9 +1856,9 @@ User-friendly description: Compare how different Greek city-states were governed
 
 Slug: greekPolis
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[greekPolis.data.ts](../../data/skills/ancientMediterranean/greekPoleis/skills/greekPolis.data.ts)
 
 Methodological description: Relate civic community, surrounding land, institutions, and citizenship in the ancient Greek world.
 User-friendly description: Understand the city-state as a community and political institution.
@@ -1867,9 +1867,9 @@ User-friendly description: Understand the city-state as a community and politica
 
 Slug: athenianDemocracy
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[athenianDemocracy.data.ts](../../data/skills/ancientMediterranean/greekPoleis/skills/athenianDemocracy.data.ts)
 
 Methodological description: Study citizens' assemblies and courts while recognizing the political exclusion of women, enslaved people, and metics.
 User-friendly description: Explore who could participate in Athenian democracy and who could not.
@@ -1878,9 +1878,9 @@ User-friendly description: Explore who could participate in Athenian democracy a
 
 Slug: spartanSystem
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[spartanSystem.data.ts](../../data/skills/ancientMediterranean/greekPoleis/skills/spartanSystem.data.ts)
 
 Methodological description: Analyze distinctive Spartan political and educational institutions and dependent labor's role in its economy.
 User-friendly description: Discover how Sparta organized government, training and labor.
@@ -1889,9 +1889,9 @@ User-friendly description: Discover how Sparta organized government, training an
 
 Slug: greekColonization
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[greekColonization.data.ts](../../data/skills/ancientMediterranean/greekPoleis/skills/greekColonization.data.ts)
 
 Methodological description: Explain settlements beyond the Balkans and varied relationships with local societies.
 User-friendly description: Trace where Greek communities founded settlements and met other peoples.
@@ -1900,9 +1900,9 @@ User-friendly description: Trace where Greek communities founded settlements and
 
 Slug: grecoPersianWars
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[grecoPersianWars.data.ts](../../data/skills/ancientMediterranean/greekPoleis/skills/grecoPersianWars.data.ts)
 
 Methodological description: Trace major conflicts between Achaemenid Persia and coalitions of Greek poleis and changes in regional power.
 User-friendly description: Understand the wars between Greek city-states and Persia.
@@ -1911,9 +1911,9 @@ User-friendly description: Understand the wars between Greek city-states and Per
 
 Slug: peloponnesianWar
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[peloponnesianWar.data.ts](../../data/skills/ancientMediterranean/greekPoleis/skills/peloponnesianWar.data.ts)
 
 Methodological description: Explain rivalry between Athens and Sparta, alliances, and long-term effects of interstate wars.
 User-friendly description: Explore why Athens and Sparta fought and what followed.
@@ -1922,11 +1922,11 @@ User-friendly description: Explore why Athens and Sparta fought and what followe
 
 Slug: greekCultureAndIdeas
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[greekCultureAndIdeas.data.ts](../../data/skills/ancientMediterranean/greekCultureAndIdeas/greekCultureAndIdeas.data.ts)
 
 Methodological description: Greek religion, philosophy, and art varied across communities and periods rather than forming one fixed culture.
 User-friendly description: Discover the diversity of ancient Greek beliefs, thought and art.
@@ -1935,9 +1935,9 @@ User-friendly description: Discover the diversity of ancient Greek beliefs, thou
 
 Slug: greekReligionAndMythology
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[greekReligionAndMythology.data.ts](../../data/skills/ancientMediterranean/greekCultureAndIdeas/skills/greekReligionAndMythology.data.ts)
 
 Methodological description: Study myths, cults, festivals, and sanctuaries without treating mythological accounts as literal chronicles.
 User-friendly description: Understand how myths and religious practices shaped Greek community life.
@@ -1946,9 +1946,9 @@ User-friendly description: Understand how myths and religious practices shaped G
 
 Slug: greekPhilosophy
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[greekPhilosophy.data.ts](../../data/skills/ancientMediterranean/greekCultureAndIdeas/skills/greekPhilosophy.data.ts)
 
 Methodological description: Trace rational inquiry into nature, ethics, and politics across different ancient philosophical schools.
 User-friendly description: Explore questions asked by ancient Greek philosophers.
@@ -1957,9 +1957,9 @@ User-friendly description: Explore questions asked by ancient Greek philosophers
 
 Slug: ancientGreekArt
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[ancientGreekArt.data.ts](../../data/skills/ancientMediterranean/greekCultureAndIdeas/skills/ancientGreekArt.data.ts)
 
 Methodological description: Examine sculpture, architecture, and imagery in the social and religious settings of archaic, classical, and Hellenistic eras.
 User-friendly description: Recognize how Greek art changed and what roles it served.
@@ -1968,9 +1968,9 @@ User-friendly description: Recognize how Greek art changed and what roles it ser
 
 Slug: ancientGreekTheater
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[ancientGreekTheater.data.ts](../../data/skills/ancientMediterranean/greekCultureAndIdeas/skills/ancientGreekTheater.data.ts)
 
 Methodological description: Study tragedy, comedy, and public performance in relation to festivals and civic life.
 User-friendly description: Discover why theater mattered in ancient Greek cities.
@@ -1979,11 +1979,11 @@ User-friendly description: Discover why theater mattered in ancient Greek cities
 
 Slug: macedoniaAndHellenisticWorld
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 3
 
-[Not implemented](#)
+[macedoniaAndHellenisticWorld.data.ts](../../data/skills/ancientMediterranean/macedoniaAndHellenisticWorld/macedoniaAndHellenisticWorld.data.ts)
 
 Methodological description: Macedon's rise, Alexander's campaigns, and successor kingdoms transformed Balkan, Egyptian, and Asian politics and exchanges.
 User-friendly description: Explore the empires and cultures of the Hellenistic world.
@@ -1992,9 +1992,9 @@ User-friendly description: Explore the empires and cultures of the Hellenistic w
 
 Slug: riseOfMacedonia
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[riseOfMacedonia.data.ts](../../data/skills/ancientMediterranean/macedoniaAndHellenisticWorld/skills/riseOfMacedonia.data.ts)
 
 Methodological description: Analyze Philip II's consolidation and Macedon's relationships with Greek poleis.
 User-friendly description: Understand how Macedonia became a regional power.
@@ -2003,9 +2003,9 @@ User-friendly description: Understand how Macedonia became a regional power.
 
 Slug: conquestsOfAlexander
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[conquestsOfAlexander.data.ts](../../data/skills/ancientMediterranean/macedoniaAndHellenisticWorld/skills/conquestsOfAlexander.data.ts)
 
 Methodological description: Trace the reach of Alexander's campaigns, changed governments, and the limits of his short-lived personal empire.
 User-friendly description: Follow Alexander's conquests and their political consequences.
@@ -2014,9 +2014,9 @@ User-friendly description: Follow Alexander's conquests and their political cons
 
 Slug: hellenisticKingdoms
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[hellenisticKingdoms.data.ts](../../data/skills/ancientMediterranean/macedoniaAndHellenisticWorld/skills/hellenisticKingdoms.data.ts)
 
 Methodological description: Examine successor states and interaction between Greek-speaking and local traditions.
 User-friendly description: Explore the different kingdoms formed after Alexander.
@@ -2025,11 +2025,11 @@ User-friendly description: Explore the different kingdoms formed after Alexander
 
 Slug: romanRepublic
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 5
 
-[Not implemented](#)
+[romanRepublic.data.ts](../../data/skills/ancientMediterranean/romanRepublic/romanRepublic.data.ts)
 
 Methodological description: Conquests and social conflicts reshaped republican institutions and helped produce concentrated individual rule.
 User-friendly description: Discover how Rome's republic grew and changed.
@@ -2038,9 +2038,9 @@ User-friendly description: Discover how Rome's republic grew and changed.
 
 Slug: earlyRomanCommunities
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[earlyRomanCommunities.data.ts](../../data/skills/ancientMediterranean/romanRepublic/skills/earlyRomanCommunities.data.ts)
 
 Methodological description: Locate Rome among Italian peoples and trace Etruscan and Latin influences.
 User-friendly description: Learn how Rome developed among neighboring communities in Italy.
@@ -2049,9 +2049,9 @@ User-friendly description: Learn how Rome developed among neighboring communitie
 
 Slug: romanRepublicanInstitutions
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[romanRepublicanInstitutions.data.ts](../../data/skills/ancientMediterranean/romanRepublic/skills/romanRepublicanInstitutions.data.ts)
 
 Methodological description: Describe the Senate, magistrates, assemblies, and actual social restrictions on participation.
 User-friendly description: Understand who held power in the Roman Republic.
@@ -2060,9 +2060,9 @@ User-friendly description: Understand who held power in the Roman Republic.
 
 Slug: patricianPlebeianConflict
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[patricianPlebeianConflict.data.ts](../../data/skills/ancientMediterranean/romanRepublic/skills/patricianPlebeianConflict.data.ts)
 
 Methodological description: Trace expansion of plebeian rights and revisions to republican institutions.
 User-friendly description: Discover how ordinary Roman citizens gained political rights.
@@ -2071,9 +2071,9 @@ User-friendly description: Discover how ordinary Roman citizens gained political
 
 Slug: punicWars
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[punicWars.data.ts](../../data/skills/ancientMediterranean/romanRepublic/skills/punicWars.data.ts)
 
 Methodological description: Explain Rome and Carthage's competition for influence in the western Mediterranean.
 User-friendly description: Explore the wars between Rome and Carthage.
@@ -2082,9 +2082,9 @@ User-friendly description: Explore the wars between Rome and Carthage.
 
 Slug: crisisOfRomanRepublic
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[crisisOfRomanRepublic.data.ts](../../data/skills/ancientMediterranean/romanRepublic/skills/crisisOfRomanRepublic.data.ts)
 
 Methodological description: Connect expansion, personal armies, and civil wars with the weakening of republican governance.
 User-friendly description: Understand why Roman republican government became unstable.
@@ -2093,11 +2093,11 @@ User-friendly description: Understand why Roman republican government became uns
 
 Slug: romanEmpire
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 6
 
-[Not implemented](#)
+[romanEmpire.data.ts](../../data/skills/ancientMediterranean/romanEmpire/romanEmpire.data.ts)
 
 Methodological description: A huge diverse state relied on armies, provincial rule, law, cities, and infrastructure before profound later transformations.
 User-friendly description: Explore how the Roman Empire governed many different peoples.
@@ -2106,9 +2106,9 @@ User-friendly description: Explore how the Roman Empire governed many different 
 
 Slug: augustanPrincipate
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[augustanPrincipate.data.ts](../../data/skills/ancientMediterranean/romanEmpire/skills/augustanPrincipate.data.ts)
 
 Methodological description: Explain imperial rule emerging under Augustus while some republican forms remained outwardly in place.
 User-friendly description: Discover how Augustus established Roman imperial power.
@@ -2117,9 +2117,9 @@ User-friendly description: Discover how Augustus established Roman imperial powe
 
 Slug: romanProvincialGovernment
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[romanProvincialGovernment.data.ts](../../data/skills/ancientMediterranean/romanEmpire/skills/romanProvincialGovernment.data.ts)
 
 Methodological description: Compare regional administration, taxes, citizenship, and cooperation with local elites.
 User-friendly description: Understand how Roman provinces were governed.
@@ -2128,9 +2128,9 @@ User-friendly description: Understand how Roman provinces were governed.
 
 Slug: romanLaw
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[romanLaw.data.ts](../../data/skills/ancientMediterranean/romanEmpire/skills/romanLaw.data.ts)
 
 Methodological description: Trace legal concepts and citizenship without equating ancient norms with modern human rights.
 User-friendly description: Explore the role and changing ideas of law in Roman society.
@@ -2139,9 +2139,9 @@ User-friendly description: Explore the role and changing ideas of law in Roman s
 
 Slug: dailyLifeInRomanEmpire
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[dailyLifeInRomanEmpire.data.ts](../../data/skills/ancientMediterranean/romanEmpire/skills/dailyLifeInRomanEmpire.data.ts)
 
 Methodological description: Compare homes, work, diets, and unequal experiences of urban, rural, free, and enslaved people.
 User-friendly description: Discover how everyday life varied across the Roman Empire.
@@ -2150,9 +2150,9 @@ User-friendly description: Discover how everyday life varied across the Roman Em
 
 Slug: spreadOfChristianity
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[spreadOfChristianity.data.ts](../../data/skills/ancientMediterranean/romanEmpire/skills/spreadOfChristianity.data.ts)
 
 Methodological description: Trace early Christian communities and changing positions within the Roman Empire.
 User-friendly description: Explore how Christianity spread under Roman rule.
@@ -2161,9 +2161,9 @@ User-friendly description: Explore how Christianity spread under Roman rule.
 
 Slug: transformationOfRomanEmpire
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[transformationOfRomanEmpire.data.ts](../../data/skills/ancientMediterranean/romanEmpire/skills/transformationOfRomanEmpire.data.ts)
 
 Methodological description: Examine late-antique political, military, economic, and religious change and divergent western and eastern trajectories.
 User-friendly description: Understand why the Roman Empire changed in different ways.
@@ -2172,11 +2172,11 @@ User-friendly description: Understand why the Roman Empire changed in different 
 
 Slug: ancientEuropeBeyondMediterranean
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 4 · Skills: 12
 
-[Not implemented](#)
+[ancientEuropeBeyondMediterranean.data.ts](../../data/skills/ancientEuropeBeyondMediterranean/ancientEuropeBeyondMediterranean.data.ts)
 
 Methodological description: Most European communities existed beyond the political frameworks of Greek poleis and Rome while sustaining diverse local and distant connections.
 User-friendly description: Discover ancient European societies beyond Greece and Rome.
@@ -2185,11 +2185,11 @@ User-friendly description: Discover ancient European societies beyond Greece and
 
 Slug: centralAndWesternEurope
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[centralAndWesternEurope.data.ts](../../data/skills/ancientEuropeBeyondMediterranean/centralAndWesternEurope/centralAndWesternEurope.data.ts)
 
 Methodological description: Study metallurgy, settlements, and confederations primarily through archaeological evidence and uneven external descriptions.
 User-friendly description: Explore Bronze and Iron Age cultures in Central and Western Europe.
@@ -2198,9 +2198,9 @@ User-friendly description: Explore Bronze and Iron Age cultures in Central and W
 
 Slug: europeanBronzeAge
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[europeanBronzeAge.data.ts](../../data/skills/ancientEuropeBeyondMediterranean/centralAndWesternEurope/skills/europeanBronzeAge.data.ts)
 
 Methodological description: Trace production, settlements, and exchange networks using local archaeological chronologies outside the Mediterranean.
 User-friendly description: Discover how Bronze Age people worked and traded in Europe.
@@ -2209,9 +2209,9 @@ User-friendly description: Discover how Bronze Age people worked and traded in E
 
 Slug: celticIronAgeCultures
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[celticIronAgeCultures.data.ts](../../data/skills/ancientEuropeBeyondMediterranean/centralAndWesternEurope/skills/celticIronAgeCultures.data.ts)
 
 Methodological description: Study Hallstatt and La Tène material cultures and the limits of assigning archaeological finds to ethnic names.
 User-friendly description: Explore Celtic-related Iron Age cultures through archaeological finds.
@@ -2220,9 +2220,9 @@ User-friendly description: Explore Celtic-related Iron Age cultures through arch
 
 Slug: ancientGermanicCommunities
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[ancientGermanicCommunities.data.ts](../../data/skills/ancientEuropeBeyondMediterranean/centralAndWesternEurope/skills/ancientGermanicCommunities.data.ts)
 
 Methodological description: Examine diverse Central and Northern European societies and their contacts with Rome.
 User-friendly description: Discover the variety of ancient Germanic-speaking communities.
@@ -2231,9 +2231,9 @@ User-friendly description: Discover the variety of ancient Germanic-speaking com
 
 Slug: britainBeforeAndUnderRome
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[britainBeforeAndUnderRome.data.ts](../../data/skills/ancientEuropeBeyondMediterranean/centralAndWesternEurope/skills/britainBeforeAndUnderRome.data.ts)
 
 Methodological description: Compare indigenous British communities, Roman conquest, and forms of interaction on the island.
 User-friendly description: Explore Britain before and during Roman rule.
@@ -2242,11 +2242,11 @@ User-friendly description: Explore Britain before and during Roman rule.
 
 Slug: northernBlackSeaRegion
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[northernBlackSeaRegion.data.ts](../../data/skills/ancientEuropeBeyondMediterranean/northernBlackSeaRegion/northernBlackSeaRegion.data.ts)
 
 Methodological description: The steppe, forest-steppe, and coasts of today's Ukraine held diverse ancient populations without modern state identities being imposed on them.
 User-friendly description: Explore ancient societies in the northern Black Sea region.
@@ -2255,9 +2255,9 @@ User-friendly description: Explore ancient societies in the northern Black Sea r
 
 Slug: earlySteppeCultures
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[earlySteppeCultures.data.ts](../../data/skills/ancientEuropeBeyondMediterranean/northernBlackSeaRegion/skills/earlySteppeCultures.data.ts)
 
 Methodological description: Use archaeological evidence of mobility, herding, and mound-burial traditions in the Black Sea steppe.
 User-friendly description: Learn what ancient steppe burial mounds and settlements reveal.
@@ -2266,9 +2266,9 @@ User-friendly description: Learn what ancient steppe burial mounds and settlemen
 
 Slug: scythianSocieties
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[scythianSocieties.data.ts](../../data/skills/ancientEuropeBeyondMediterranean/northernBlackSeaRegion/skills/scythianSocieties.data.ts)
 
 Methodological description: Examine diverse Scythian groups, livelihoods, material culture, and regional contacts.
 User-friendly description: Explore how Scythian communities lived and traded.
@@ -2277,9 +2277,9 @@ User-friendly description: Explore how Scythian communities lived and traded.
 
 Slug: sarmatians
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[sarmatians.data.ts](../../data/skills/ancientEuropeBeyondMediterranean/northernBlackSeaRegion/skills/sarmatians.data.ts)
 
 Methodological description: Trace Sarmatian dispersal, cavalry, and exchange networks in the northern Black Sea steppes.
 User-friendly description: Discover the history of Sarmatian groups in the steppe.
@@ -2288,9 +2288,9 @@ User-friendly description: Discover the history of Sarmatian groups in the stepp
 
 Slug: greekCitiesOfBlackSea
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[greekCitiesOfBlackSea.data.ts](../../data/skills/ancientEuropeBeyondMediterranean/northernBlackSeaRegion/skills/greekCitiesOfBlackSea.data.ts)
 
 Methodological description: Study civic life and trade at Olbia, Chersonesus, and Panticapaeum and interaction with nearby peoples.
 User-friendly description: Explore Greek cities along the northern Black Sea coast.
@@ -2299,11 +2299,11 @@ User-friendly description: Explore Greek cities along the northern Black Sea coa
 
 Slug: earlyMedievalEasternEurope
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 1
 
-[Not implemented](#)
+[earlyMedievalEasternEurope.data.ts](../../data/skills/ancientEuropeBeyondMediterranean/earlyMedievalEasternEurope/earlyMedievalEasternEurope.data.ts)
 
 Methodological description: Study early medieval Eastern European polities and links with the Baltic, Black Sea, and Byzantine worlds as a limited chronological exception to the ancient focus.
 User-friendly description: Explore early medieval states and trade connections in Eastern Europe.
@@ -2312,9 +2312,9 @@ User-friendly description: Explore early medieval states and trade connections i
 
 Slug: kyivanRus
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[kyivanRus.data.ts](../../data/skills/ancientEuropeBeyondMediterranean/earlyMedievalEasternEurope/skills/kyivanRus.data.ts)
 
 Methodological description: Trace the Kyiv-centered polity of the late ninth through thirteenth centuries, princely government, diverse populations, Byzantine relations, Christianization, and river trade, including the Varangians-to-Greeks route. Distinguish evidence from chronicle traditions and later nationalist interpretations.
 User-friendly description: Explore the people, rulers and trade routes of medieval Kyivan Rus.
@@ -2323,11 +2323,11 @@ User-friendly description: Explore the people, rulers and trade routes of mediev
 
 Slug: northernAndBalticEurope
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 3
 
-[Not implemented](#)
+[northernAndBalticEurope.data.ts](../../data/skills/ancientEuropeBeyondMediterranean/northernAndBalticEurope/northernAndBalticEurope.data.ts)
 
 Methodological description: Rivers and seas connected communities with differing farming, herding, and craft traditions.
 User-friendly description: Discover how northern Europeans connected through waterways.
@@ -2336,9 +2336,9 @@ User-friendly description: Discover how northern Europeans connected through wat
 
 Slug: ancientNorthernEuropeanEconomies
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[ancientNorthernEuropeanEconomies.data.ts](../../data/skills/ancientEuropeBeyondMediterranean/northernAndBalticEurope/skills/ancientNorthernEuropeanEconomies.data.ts)
 
 Methodological description: Compare regional farming, pastoral, hunting, and fishing economies.
 User-friendly description: Learn how ancient northern communities made a living.
@@ -2347,9 +2347,9 @@ User-friendly description: Learn how ancient northern communities made a living.
 
 Slug: balticAmberTrade
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[balticAmberTrade.data.ts](../../data/skills/ancientEuropeBeyondMediterranean/northernAndBalticEurope/skills/balticAmberTrade.data.ts)
 
 Methodological description: Use amber as archaeological evidence of distant ancient exchange routes.
 User-friendly description: Trace how Baltic amber traveled through ancient trade networks.
@@ -2358,9 +2358,9 @@ User-friendly description: Trace how Baltic amber traveled through ancient trade
 
 Slug: scandinavianIronAge
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[scandinavianIronAge.data.ts](../../data/skills/ancientEuropeBeyondMediterranean/northernAndBalticEurope/skills/scandinavianIronAge.data.ts)
 
 Methodological description: Study settlements, material culture, and social change before the Viking Age.
 User-friendly description: Explore Scandinavian life before the Viking period.
@@ -2369,11 +2369,11 @@ User-friendly description: Explore Scandinavian life before the Viking period.
 
 Slug: ancientAmericas
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 5 · Skills: 18
 
-[Not implemented](#)
+[ancientAmericas.data.ts](../../data/skills/ancientAmericas/ancientAmericas.data.ts)
 
 Methodological description: American history includes early peopling, independent agriculture, complex cities and states, and diverse societies without major cities.
 User-friendly description: Explore the variety of ancient societies throughout the Americas.
@@ -2382,11 +2382,11 @@ User-friendly description: Explore the variety of ancient societies throughout t
 
 Slug: earliestAmericanPopulations
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 3
 
-[Not implemented](#)
+[earliestAmericanPopulations.data.ts](../../data/skills/ancientAmericas/earliestAmericanPopulations/earliestAmericanPopulations.data.ts)
 
 Methodological description: Examine early settlement dates and lifeways through archaeology, environmental research, and genetics.
 User-friendly description: Discover how researchers investigate the Americas' earliest inhabitants.
@@ -2395,9 +2395,9 @@ User-friendly description: Discover how researchers investigate the Americas' ea
 
 Slug: peoplingOfTheAmericas
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[peoplingOfTheAmericas.data.ts](../../data/skills/ancientAmericas/earliestAmericanPopulations/skills/peoplingOfTheAmericas.data.ts)
 
 Methodological description: Compare scientific models of arrival routes and dates while acknowledging limits of current evidence.
 User-friendly description: Explore how people first reached the Americas.
@@ -2406,9 +2406,9 @@ User-friendly description: Explore how people first reached the Americas.
 
 Slug: adaptationToAmericanEcosystems
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[adaptationToAmericanEcosystems.data.ts](../../data/skills/ancientAmericas/earliestAmericanPopulations/skills/adaptationToAmericanEcosystems.data.ts)
 
 Methodological description: Trace livelihoods from Arctic and tropical environments to highlands.
 User-friendly description: See how early Americans adapted to varied ecosystems.
@@ -2417,9 +2417,9 @@ User-friendly description: See how early Americans adapted to varied ecosystems.
 
 Slug: independentAmericanCropDomestication
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[independentAmericanCropDomestication.data.ts](../../data/skills/ancientAmericas/earliestAmericanPopulations/skills/independentAmericanCropDomestication.data.ts)
 
 Methodological description: Examine separately evolving centers for maize, squash, potato, and other crops with their own chronologies.
 User-friendly description: Discover plants domesticated by ancient American communities.
@@ -2428,11 +2428,11 @@ User-friendly description: Discover plants domesticated by ancient American comm
 
 Slug: mesoamerica
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 5
 
-[Not implemented](#)
+[mesoamerica.data.ts](../../data/skills/ancientAmericas/mesoamerica/mesoamerica.data.ts)
 
 Methodological description: Independent urban centers, monumental ritual spaces, writing, and polities developed before European colonization.
 User-friendly description: Explore the ancient cities and cultures of Mesoamerica.
@@ -2441,9 +2441,9 @@ User-friendly description: Explore the ancient cities and cultures of Mesoameric
 
 Slug: olmecCenters
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[olmecCenters.data.ts](../../data/skills/ancientAmericas/mesoamerica/skills/olmecCenters.data.ts)
 
 Methodological description: Study early Mesoamerican monumental sculpture, ritual spaces, and debated cultural influence.
 User-friendly description: Discover what the Olmec centers reveal about early Mesoamerica.
@@ -2452,9 +2452,9 @@ User-friendly description: Discover what the Olmec centers reveal about early Me
 
 Slug: earlyMayaCities
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[earlyMayaCities.data.ts](../../data/skills/ancientAmericas/mesoamerica/skills/earlyMayaCities.data.ts)
 
 Methodological description: Trace emerging urban centers and royal institutions of Preclassic and Early Classic Maya periods.
 User-friendly description: Explore how the early Maya built cities and kingdoms.
@@ -2463,9 +2463,9 @@ User-friendly description: Explore how the early Maya built cities and kingdoms.
 
 Slug: mayaWriting
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[mayaWriting.data.ts](../../data/skills/ancientAmericas/mesoamerica/skills/mayaWriting.data.ts)
 
 Methodological description: Explain logosyllabic writing in political texts and calendar records.
 User-friendly description: Understand how Maya writing recorded language and dates.
@@ -2474,9 +2474,9 @@ User-friendly description: Understand how Maya writing recorded language and dat
 
 Slug: teotihuacan
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[teotihuacan.data.ts](../../data/skills/ancientAmericas/mesoamerica/skills/teotihuacan.data.ts)
 
 Methodological description: Study the monumental city's urban planning, multicultural population, and regional influence.
 User-friendly description: Discover how Teotihuacan became a major ancient city.
@@ -2485,9 +2485,9 @@ User-friendly description: Discover how Teotihuacan became a major ancient city.
 
 Slug: mesoamericanCalendars
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[mesoamericanCalendars.data.ts](../../data/skills/ancientAmericas/mesoamerica/skills/mesoamericanCalendars.data.ts)
 
 Methodological description: Distinguish different cyclical time-reckoning systems and their historical functions.
 User-friendly description: Explore how Mesoamerican calendars measured time.
@@ -2496,11 +2496,11 @@ User-friendly description: Explore how Mesoamerican calendars measured time.
 
 Slug: ancientAndes
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[ancientAndes.data.ts](../../data/skills/ancientAmericas/ancientAndes/ancientAndes.data.ts)
 
 Methodological description: Coastal valleys and highlands supported diverse farming, cities, and social coordination.
 User-friendly description: Discover the societies that developed in the Andes.
@@ -2509,9 +2509,9 @@ User-friendly description: Discover the societies that developed in the Andes.
 
 Slug: caralAndEarlyAndeanCenters
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[caralAndEarlyAndeanCenters.data.ts](../../data/skills/ancientAmericas/ancientAndes/skills/caralAndEarlyAndeanCenters.data.ts)
 
 Methodological description: Examine monumental architecture and public coordination in Norte Chico settlements.
 User-friendly description: Explore the early monumental centers of Caral and Norte Chico.
@@ -2520,9 +2520,9 @@ User-friendly description: Explore the early monumental centers of Caral and Nor
 
 Slug: chavinCulture
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[chavinCulture.data.ts](../../data/skills/ancientAmericas/ancientAndes/skills/chavinCulture.data.ts)
 
 Methodological description: Study ritual centers and Andean artistic traditions of the first millennium BCE.
 User-friendly description: Discover the beliefs and art of the Chavín culture.
@@ -2531,9 +2531,9 @@ User-friendly description: Discover the beliefs and art of the Chavín culture.
 
 Slug: nazcaCulture
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[nazcaCulture.data.ts](../../data/skills/ancientAmericas/ancientAndes/skills/nazcaCulture.data.ts)
 
 Methodological description: Examine dry-valley economies, pottery, and geoglyphs without pseudoscientific origin stories.
 User-friendly description: Explore the Nazca geoglyphs and the society that made them.
@@ -2542,9 +2542,9 @@ User-friendly description: Explore the Nazca geoglyphs and the society that made
 
 Slug: mocheCulture
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[mocheCulture.data.ts](../../data/skills/ancientAmericas/ancientAndes/skills/mocheCulture.data.ts)
 
 Methodological description: Study irrigation farming, crafts, and ancient political centers in northern Peru.
 User-friendly description: Learn about Moche farmers, craftspeople and rulers.
@@ -2553,11 +2553,11 @@ User-friendly description: Learn about Moche farmers, craftspeople and rulers.
 
 Slug: northAmericaBeyondMesoamerica
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 3
 
-[Not implemented](#)
+[northAmericaBeyondMesoamerica.data.ts](../../data/skills/ancientAmericas/northAmericaBeyondMesoamerica/northAmericaBeyondMesoamerica.data.ts)
 
 Methodological description: River basins and arid regions had independent exchange networks, ritual spaces, and collective works.
 User-friendly description: Discover ancient societies of North America beyond Mesoamerica.
@@ -2566,9 +2566,9 @@ User-friendly description: Discover ancient societies of North America beyond Me
 
 Slug: povertyPoint
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[povertyPoint.data.ts](../../data/skills/ancientAmericas/northAmericaBeyondMesoamerica/skills/povertyPoint.data.ts)
 
 Methodological description: Study monumental earthworks and interregional exchanges in Archaic-period North America.
 User-friendly description: Explore the large earthworks built at Poverty Point.
@@ -2577,9 +2577,9 @@ User-friendly description: Explore the large earthworks built at Poverty Point.
 
 Slug: adenaAndHopewellTraditions
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[adenaAndHopewellTraditions.data.ts](../../data/skills/ancientAmericas/northAmericaBeyondMesoamerica/skills/adenaAndHopewellTraditions.data.ts)
 
 Methodological description: Examine ceremonial earthworks and material connections in eastern North America.
 User-friendly description: Learn what Adena and Hopewell sites reveal about ancient communities.
@@ -2588,9 +2588,9 @@ User-friendly description: Learn what Adena and Hopewell sites reveal about anci
 
 Slug: ancientSouthwesternNorthAmerica
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[ancientSouthwesternNorthAmerica.data.ts](../../data/skills/ancientAmericas/northAmericaBeyondMesoamerica/skills/ancientSouthwesternNorthAmerica.data.ts)
 
 Methodological description: Describe dry-environment adaptations and early agriculture without projecting later cultures into ancient periods.
 User-friendly description: Explore early settlements and farming in the American Southwest.
@@ -2599,11 +2599,11 @@ User-friendly description: Explore early settlements and farming in the American
 
 Slug: amazonAndCaribbean
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 3
 
-[Not implemented](#)
+[amazonAndCaribbean.data.ts](../../data/skills/ancientAmericas/amazonAndCaribbean/amazonAndCaribbean.data.ts)
 
 Methodological description: River and island environments supported diverse cultures that cannot be judged only by the presence of stone cities.
 User-friendly description: Discover ancient Amazonian and Caribbean communities.
@@ -2612,9 +2612,9 @@ User-friendly description: Discover ancient Amazonian and Caribbean communities.
 
 Slug: earlyAmazonianSocieties
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[earlyAmazonianSocieties.data.ts](../../data/skills/ancientAmericas/amazonAndCaribbean/skills/earlyAmazonianSocieties.data.ts)
 
 Methodological description: Use archaeology of settlements, managed landscapes, and local cultivation in tropical forests.
 User-friendly description: Explore evidence of early settlements within the Amazon.
@@ -2623,9 +2623,9 @@ User-friendly description: Explore evidence of early settlements within the Amaz
 
 Slug: tropicalSouthAmericanFarming
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[tropicalSouthAmericanFarming.data.ts](../../data/skills/ancientAmericas/amazonAndCaribbean/skills/tropicalSouthAmericanFarming.data.ts)
 
 Methodological description: Trace indigenous cultivation and gradual reshaping of tropical landscapes.
 User-friendly description: Discover how communities farmed in tropical South America.
@@ -2634,9 +2634,9 @@ User-friendly description: Discover how communities farmed in tropical South Ame
 
 Slug: caribbeanIslandSettlement
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[caribbeanIslandSettlement.data.ts](../../data/skills/ancientAmericas/amazonAndCaribbean/skills/caribbeanIslandSettlement.data.ts)
 
 Methodological description: Reconstruct successive sea migrations and varied island livelihoods and cultures.
 User-friendly description: Explore how people reached and settled the Caribbean islands.
@@ -2645,11 +2645,11 @@ User-friendly description: Explore how people reached and settled the Caribbean 
 
 Slug: ancientOceania
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 2 · Skills: 8
 
-[Not implemented](#)
+[ancientOceania.data.ts](../../data/skills/ancientOceania/ancientOceania.data.ts)
 
 Methodological description: The settlement of Australia and Pacific islands occurred through successive waves over a long period and required extensive environmental and navigation knowledge.
 User-friendly description: Explore how ancient people reached and lived across Oceania.
@@ -2658,11 +2658,11 @@ User-friendly description: Explore how ancient people reached and lived across O
 
 Slug: australiaAndNewGuinea
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[australiaAndNewGuinea.data.ts](../../data/skills/ancientOceania/australiaAndNewGuinea/australiaAndNewGuinea.data.ts)
 
 Methodological description: Archaeology and living cultural traditions attest to long human presence in the former Sahul landmass.
 User-friendly description: Discover the ancient communities of Australia and New Guinea.
@@ -2671,9 +2671,9 @@ User-friendly description: Discover the ancient communities of Australia and New
 
 Slug: peoplingOfSahul
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[peoplingOfSahul.data.ts](../../data/skills/ancientOceania/australiaAndNewGuinea/skills/peoplingOfSahul.data.ts)
 
 Methodological description: Trace early sea crossings and settlement of the landmass uniting Australia and New Guinea when sea levels were lower.
 User-friendly description: Understand how early seafarers reached the continent of Sahul.
@@ -2682,9 +2682,9 @@ User-friendly description: Understand how early seafarers reached the continent 
 
 Slug: ancientAboriginalAustralianSocieties
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[ancientAboriginalAustralianSocieties.data.ts](../../data/skills/ancientOceania/australiaAndNewGuinea/skills/ancientAboriginalAustralianSocieties.data.ts)
 
 Methodological description: Examine diverse lifeways, environmental interactions, and the longevity of Aboriginal Australian traditions.
 User-friendly description: Explore the long and varied histories of Aboriginal Australian communities.
@@ -2693,9 +2693,9 @@ User-friendly description: Explore the long and varied histories of Aboriginal A
 
 Slug: australianRockArt
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[australianRockArt.data.ts](../../data/skills/ancientOceania/australiaAndNewGuinea/skills/australianRockArt.data.ts)
 
 Methodological description: Interpret rock images and dating limitations as evidence of practices over long timescales.
 User-friendly description: Learn what ancient Australian rock art may reveal.
@@ -2704,9 +2704,9 @@ User-friendly description: Learn what ancient Australian rock art may reveal.
 
 Slug: earlyNewGuineaFarming
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[earlyNewGuineaFarming.data.ts](../../data/skills/ancientOceania/australiaAndNewGuinea/skills/earlyNewGuineaFarming.data.ts)
 
 Methodological description: Study indigenous highland cultivation and its independent historical trajectory.
 User-friendly description: Discover early farming systems in New Guinea's highlands.
@@ -2715,11 +2715,11 @@ User-friendly description: Discover early farming systems in New Guinea's highla
 
 Slug: pacificIslands
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[pacificIslands.data.ts](../../data/skills/ancientOceania/pacificIslands/pacificIslands.data.ts)
 
 Methodological description: Seafaring societies progressively settled distant archipelagos, transporting languages, crops, animals, and navigation knowledge.
 User-friendly description: Explore how people traveled among distant Pacific islands.
@@ -2728,9 +2728,9 @@ User-friendly description: Explore how people traveled among distant Pacific isl
 
 Slug: austronesianExpansion
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[austronesianExpansion.data.ts](../../data/skills/ancientOceania/pacificIslands/skills/austronesianExpansion.data.ts)
 
 Methodological description: Trace the dispersal of Austronesian languages and seafaring cultures across Island Southeast Asia and the Pacific.
 User-friendly description: Follow how Austronesian-speaking communities spread across islands.
@@ -2739,9 +2739,9 @@ User-friendly description: Follow how Austronesian-speaking communities spread a
 
 Slug: lapitaCulture
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[lapitaCulture.data.ts](../../data/skills/ancientOceania/pacificIslands/skills/lapitaCulture.data.ts)
 
 Methodological description: Interpret decorated pottery, settlements, and movements documented archaeologically in western Oceania.
 User-friendly description: Discover the pottery and voyaging traditions of Lapita communities.
@@ -2750,9 +2750,9 @@ User-friendly description: Discover the pottery and voyaging traditions of Lapit
 
 Slug: oceanicNavigation
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[oceanicNavigation.data.ts](../../data/skills/ancientOceania/pacificIslands/skills/oceanicNavigation.data.ts)
 
 Methodological description: Explain how knowledge of winds, stars, waves, and islands supported ancient sea voyages.
 User-friendly description: Explore how Pacific navigators crossed open water.
@@ -2761,9 +2761,9 @@ User-friendly description: Explore how Pacific navigators crossed open water.
 
 Slug: earlyWesternPolynesianSettlement
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[earlyWesternPolynesianSettlement.data.ts](../../data/skills/ancientOceania/pacificIslands/skills/earlyWesternPolynesianSettlement.data.ts)
 
 Methodological description: Trace the initial settlement of Tonga and Samoa with Lapita connections around the late second and early first millennia BCE; later East Polynesian settlement falls outside scope.
 User-friendly description: Learn about the first communities in Tonga and Samoa.
@@ -2772,11 +2772,11 @@ User-friendly description: Learn about the first communities in Tonga and Samoa.
 
 Slug: crossRegionalHistoricalProcesses
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 6 · Skills: 30
 
-[Not implemented](#)
+[crossRegionalHistoricalProcesses.data.ts](../../data/skills/crossRegionalHistoricalProcesses/crossRegionalHistoricalProcesses.data.ts)
 
 Methodological description: Study shared patterns of interaction among independent regional histories without inventing a single unified ancient civilization.
 User-friendly description: Explore historical processes that connected different societies.
@@ -2785,11 +2785,11 @@ User-friendly description: Explore historical processes that connected different
 
 Slug: ancientTradeAndContact
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 5
 
-[Not implemented](#)
+[ancientTradeAndContact.data.ts](../../data/skills/crossRegionalHistoricalProcesses/ancientTradeAndContact/ancientTradeAndContact.data.ts)
 
 Methodological description: Exchange networks involved intermediaries; the spread of objects does not necessarily mean the migration of their makers.
 User-friendly description: Discover how goods and ideas moved between distant communities.
@@ -2798,9 +2798,9 @@ User-friendly description: Discover how goods and ideas moved between distant co
 
 Slug: ancientSilkRoads
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[ancientSilkRoads.data.ts](../../data/skills/crossRegionalHistoricalProcesses/ancientTradeAndContact/skills/ancientSilkRoads.data.ts)
 
 Methodological description: Trace early multiple overland Eurasian routes and the roles of oasis intermediaries.
 User-friendly description: Explore ancient overland routes later known as the Silk Roads.
@@ -2809,9 +2809,9 @@ User-friendly description: Explore ancient overland routes later known as the Si
 
 Slug: ancientIndianOceanTrade
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[ancientIndianOceanTrade.data.ts](../../data/skills/crossRegionalHistoricalProcesses/ancientTradeAndContact/skills/ancientIndianOceanTrade.data.ts)
 
 Methodological description: Examine monsoon-linked routes among South Asia, Arabia, Africa, and neighboring coasts.
 User-friendly description: Follow ships and goods across the ancient Indian Ocean.
@@ -2820,9 +2820,9 @@ User-friendly description: Follow ships and goods across the ancient Indian Ocea
 
 Slug: technologyTransfer
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[technologyTransfer.data.ts](../../data/skills/crossRegionalHistoricalProcesses/ancientTradeAndContact/skills/technologyTransfer.data.ts)
 
 Methodological description: Explain how techniques spread between societies and were adapted to new functions or practices.
 User-friendly description: Recognize how communities learned and changed technologies from others.
@@ -2831,9 +2831,9 @@ User-friendly description: Recognize how communities learned and changed technol
 
 Slug: culturalExchange
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[culturalExchange.data.ts](../../data/skills/crossRegionalHistoricalProcesses/ancientTradeAndContact/skills/culturalExchange.data.ts)
 
 Methodological description: Distinguish contact, imitation, and deliberate local reinterpretation of religious, artistic, and political practices.
 User-friendly description: Discover how people adapted cultural ideas through exchange.
@@ -2842,9 +2842,9 @@ User-friendly description: Discover how people adapted cultural ideas through ex
 
 Slug: ancientAmericanRiverAndSeaExchange
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[ancientAmericanRiverAndSeaExchange.data.ts](../../data/skills/crossRegionalHistoricalProcesses/ancientTradeAndContact/skills/ancientAmericanRiverAndSeaExchange.data.ts)
 
 Methodological description: Study regional circulation of materials and traditions among river basins, coasts, and islands in the Americas.
 User-friendly description: Trace early trade connections by river and sea in the Americas.
@@ -2853,11 +2853,11 @@ User-friendly description: Trace early trade connections by river and sea in the
 
 Slug: powerAndSocialRelations
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[powerAndSocialRelations.data.ts](../../data/skills/crossRegionalHistoricalProcesses/powerAndSocialRelations/powerAndSocialRelations.data.ts)
 
 Methodological description: Comparing institutions requires identifying their functions rather than equating unfamiliar ancient names with familiar ones.
 User-friendly description: Explore how ancient people organized power and social relationships.
@@ -2866,9 +2866,9 @@ User-friendly description: Explore how ancient people organized power and social
 
 Slug: earlyStateFormation
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[earlyStateFormation.data.ts](../../data/skills/crossRegionalHistoricalProcesses/powerAndSocialRelations/skills/earlyStateFormation.data.ts)
 
 Methodological description: Examine durable political authority, resource management, and coercion without presuming one universal route to statehood.
 User-friendly description: Discover different ways early states and governments emerged.
@@ -2877,9 +2877,9 @@ User-friendly description: Discover different ways early states and governments 
 
 Slug: socialHierarchies
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[socialHierarchies.data.ts](../../data/skills/crossRegionalHistoricalProcesses/powerAndSocialRelations/skills/socialHierarchies.data.ts)
 
 Methodological description: Compare hereditary standing, wealth, dependency, and prestige across societies with differing arrangements.
 User-friendly description: Explore how status and social divisions varied across ancient societies.
@@ -2888,9 +2888,9 @@ User-friendly description: Explore how status and social divisions varied across
 
 Slug: slaveryAndOtherDependencies
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[slaveryAndOtherDependencies.data.ts](../../data/skills/crossRegionalHistoricalProcesses/powerAndSocialRelations/skills/slaveryAndOtherDependencies.data.ts)
 
 Methodological description: Distinguish enslavement from other legal and economic conditions of restricted freedom.
 User-friendly description: Recognize different kinds of unfreedom in ancient societies.
@@ -2899,9 +2899,9 @@ User-friendly description: Recognize different kinds of unfreedom in ancient soc
 
 Slug: womenInAncientSocieties
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[womenInAncientSocieties.data.ts](../../data/skills/crossRegionalHistoricalProcesses/powerAndSocialRelations/skills/womenInAncientSocieties.data.ts)
 
 Methodological description: Examine differences in women's legal status, work, and influence while recognizing that many sources represent elites.
 User-friendly description: Explore women's varied experiences and roles in ancient societies.
@@ -2910,11 +2910,11 @@ User-friendly description: Explore women's varied experiences and roles in ancie
 
 Slug: everydayLifeInAntiquity
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 6
 
-[Not implemented](#)
+[everydayLifeInAntiquity.data.ts](../../data/skills/crossRegionalHistoricalProcesses/everydayLifeInAntiquity/everydayLifeInAntiquity.data.ts)
 
 Methodological description: Compare dwellings, objects, texts, and images to reconstruct family relations and daily practices across regions.
 User-friendly description: Discover what ordinary people did in ancient daily life.
@@ -2923,9 +2923,9 @@ User-friendly description: Discover what ordinary people did in ancient daily li
 
 Slug: housingAndDomesticSpace
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[housingAndDomesticSpace.data.ts](../../data/skills/crossRegionalHistoricalProcesses/everydayLifeInAntiquity/skills/housingAndDomesticSpace.data.ts)
 
 Methodological description: Relate house forms, household organization, and rooms to resources, climates, and social distinctions.
 User-friendly description: Explore how people arranged and used their homes.
@@ -2934,9 +2934,9 @@ User-friendly description: Explore how people arranged and used their homes.
 
 Slug: ancientDiets
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[ancientDiets.data.ts](../../data/skills/crossRegionalHistoricalProcesses/everydayLifeInAntiquity/skills/ancientDiets.data.ts)
 
 Methodological description: Study ingredients, cooking, storage, livelihoods, and unequal access to food resources.
 User-friendly description: Compare what different ancient communities ate.
@@ -2945,9 +2945,9 @@ User-friendly description: Compare what different ancient communities ate.
 
 Slug: ancientWorkAndOccupations
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[ancientWorkAndOccupations.data.ts](../../data/skills/crossRegionalHistoricalProcesses/everydayLifeInAntiquity/skills/ancientWorkAndOccupations.data.ts)
 
 Methodological description: Examine agriculture, crafts, exchange, household work, and forms of dependent labor.
 User-friendly description: Explore the many kinds of work done in the ancient world.
@@ -2956,9 +2956,9 @@ User-friendly description: Explore the many kinds of work done in the ancient wo
 
 Slug: familyAndKinship
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[familyAndKinship.data.ts](../../data/skills/crossRegionalHistoricalProcesses/everydayLifeInAntiquity/skills/familyAndKinship.data.ts)
 
 Methodological description: Compare household, marriage, kinship, and inheritance systems without imposing one modern family model.
 User-friendly description: Discover how families and kinship worked in different ancient cultures.
@@ -2967,9 +2967,9 @@ User-friendly description: Discover how families and kinship worked in different
 
 Slug: childhoodAndEducationInAntiquity
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[childhoodAndEducationInAntiquity.data.ts](../../data/skills/crossRegionalHistoricalProcesses/everydayLifeInAntiquity/skills/childhoodAndEducationInAntiquity.data.ts)
 
 Methodological description: Study varied childhood experiences, socialization, craft learning, and access to formal instruction.
 User-friendly description: Explore how children learned and grew in ancient societies.
@@ -2978,9 +2978,9 @@ User-friendly description: Explore how children learned and grew in ancient soci
 
 Slug: leisureAndPublicLife
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[leisureAndPublicLife.data.ts](../../data/skills/crossRegionalHistoricalProcesses/everydayLifeInAntiquity/skills/leisureAndPublicLife.data.ts)
 
 Methodological description: Compare festivals, games, assemblies, and leisure across social groups and settlements.
 User-friendly description: Discover how ancient communities celebrated and spent free time.
@@ -2989,11 +2989,11 @@ User-friendly description: Discover how ancient communities celebrated and spent
 
 Slug: productionAndKnowledge
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 7
 
-[Not implemented](#)
+[productionAndKnowledge.data.ts](../../data/skills/crossRegionalHistoricalProcesses/productionAndKnowledge/productionAndKnowledge.data.ts)
 
 Methodological description: Evaluate material inventions and systems of information transmission by function, spread, and historical context rather than claims of being first.
 User-friendly description: Explore how ancient societies made things and shared knowledge.
@@ -3002,9 +3002,9 @@ User-friendly description: Explore how ancient societies made things and shared 
 
 Slug: originsOfWriting
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[originsOfWriting.data.ts](../../data/skills/crossRegionalHistoricalProcesses/productionAndKnowledge/skills/originsOfWriting.data.ts)
 
 Methodological description: Distinguish independent emergence of writing systems recording language from counting marks or pictures.
 User-friendly description: Discover how different societies began recording language.
@@ -3013,9 +3013,9 @@ User-friendly description: Discover how different societies began recording lang
 
 Slug: earlyUrbanInfrastructure
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[earlyUrbanInfrastructure.data.ts](../../data/skills/crossRegionalHistoricalProcesses/productionAndKnowledge/skills/earlyUrbanInfrastructure.data.ts)
 
 Methodological description: Study water supply, drainage, roads, and public buildings as results of technical and administrative choices.
 User-friendly description: Explore how early cities built shared infrastructure.
@@ -3024,9 +3024,9 @@ User-friendly description: Explore how early cities built shared infrastructure.
 
 Slug: metallurgyAndHistoricalEffects
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[metallurgyAndHistoricalEffects.data.ts](../../data/skills/crossRegionalHistoricalProcesses/productionAndKnowledge/skills/metallurgyAndHistoricalEffects.data.ts)
 
 Methodological description: Connect ores, fuel, crafts, weapons, and trade under varying regional conditions.
 User-friendly description: Understand how metalworking affected work and warfare.
@@ -3035,9 +3035,9 @@ User-friendly description: Understand how metalworking affected work and warfare
 
 Slug: ancientCalendarSystems
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[ancientCalendarSystems.data.ts](../../data/skills/crossRegionalHistoricalProcesses/productionAndKnowledge/skills/ancientCalendarSystems.data.ts)
 
 Methodological description: Compare month, season, and year reckoning used in farming, governance, and rituals.
 User-friendly description: Learn how ancient calendars organized time.
@@ -3046,9 +3046,9 @@ User-friendly description: Learn how ancient calendars organized time.
 
 Slug: ancientMeasurementSystems
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[ancientMeasurementSystems.data.ts](../../data/skills/crossRegionalHistoricalProcesses/productionAndKnowledge/skills/ancientMeasurementSystems.data.ts)
 
 Methodological description: Trace local measures of mass, length, volume, and time used for trade, taxes, construction, and crafts.
 User-friendly description: Explore how ancient people measured goods and time.
@@ -3057,9 +3057,9 @@ User-friendly description: Explore how ancient people measured goods and time.
 
 Slug: historyOfAncientMedicine
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[historyOfAncientMedicine.data.ts](../../data/skills/crossRegionalHistoricalProcesses/productionAndKnowledge/skills/historyOfAncientMedicine.data.ts)
 
 Methodological description: Study medical beliefs, practices, and texts across cultures without confusing historical ideas with modern proof of effectiveness.
 User-friendly description: Discover what ancient societies believed about healing.
@@ -3068,9 +3068,9 @@ User-friendly description: Discover what ancient societies believed about healin
 
 Slug: ancientAstronomicalKnowledge
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[ancientAstronomicalKnowledge.data.ts](../../data/skills/crossRegionalHistoricalProcesses/productionAndKnowledge/skills/ancientAstronomicalKnowledge.data.ts)
 
 Methodological description: Examine observations, calendars, navigation, and historical celestial models across civilizations.
 User-friendly description: Explore how ancient people studied the sky.
@@ -3079,11 +3079,11 @@ User-friendly description: Explore how ancient people studied the sky.
 
 Slug: inventionsAndEngineeringHistory
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[inventionsAndEngineeringHistory.data.ts](../../data/skills/crossRegionalHistoricalProcesses/inventionsAndEngineeringHistory/inventionsAndEngineeringHistory.data.ts)
 
 Methodological description: Investigate the origins, changes, and transmission of technical solutions in relation to materials, needs, and consequences, not modern design practice.
 User-friendly description: Discover how ancient inventions changed over time.
@@ -3092,9 +3092,9 @@ User-friendly description: Discover how ancient inventions changed over time.
 
 Slug: ancientWheeledTransport
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[ancientWheeledTransport.data.ts](../../data/skills/crossRegionalHistoricalProcesses/inventionsAndEngineeringHistory/skills/ancientWheeledTransport.data.ts)
 
 Methodological description: Relate the spread of wheeled vehicles to roads, draft animals, and economic needs.
 User-friendly description: Learn how wheeled vehicles spread in the ancient world.
@@ -3103,9 +3103,9 @@ User-friendly description: Learn how wheeled vehicles spread in the ancient worl
 
 Slug: ancientShipbuilding
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[ancientShipbuilding.data.ts](../../data/skills/crossRegionalHistoricalProcesses/inventionsAndEngineeringHistory/skills/ancientShipbuilding.data.ts)
 
 Methodological description: Compare hull shapes, materials, sails, and steering methods across river and maritime societies.
 User-friendly description: Explore how ancient ships were built and guided.
@@ -3114,9 +3114,9 @@ User-friendly description: Explore how ancient ships were built and guided.
 
 Slug: historicalWaterEngineering
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[historicalWaterEngineering.data.ts](../../data/skills/crossRegionalHistoricalProcesses/inventionsAndEngineeringHistory/skills/historicalWaterEngineering.data.ts)
 
 Methodological description: Compare canals, reservoirs, and distribution systems across arid and floodplain settings.
 User-friendly description: Discover how people engineered water systems in different regions.
@@ -3125,9 +3125,9 @@ User-friendly description: Discover how people engineered water systems in diffe
 
 Slug: ancientConstructionAndLiftingMachines
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[ancientConstructionAndLiftingMachines.data.ts](../../data/skills/crossRegionalHistoricalProcesses/inventionsAndEngineeringHistory/skills/ancientConstructionAndLiftingMachines.data.ts)
 
 Methodological description: Examine historical use of levers, pulleys, ramps, and other devices to build and move heavy loads.
 User-friendly description: Understand the machines used for ancient building projects.
@@ -3136,11 +3136,11 @@ User-friendly description: Understand the machines used for ancient building pro
 
 Slug: crisesAndHistoricalTransformations
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[crisesAndHistoricalTransformations.data.ts](../../data/skills/crossRegionalHistoricalProcesses/crisesAndHistoricalTransformations/crisesAndHistoricalTransformations.data.ts)
 
 Methodological description: Climate shifts, wars, disease, and economic reorganization interacted but produced different outcomes across regions.
 User-friendly description: Explore why ancient societies experienced major changes and crises.
@@ -3149,9 +3149,9 @@ User-friendly description: Explore why ancient societies experienced major chang
 
 Slug: ancientEnvironmentalChallenges
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[ancientEnvironmentalChallenges.data.ts](../../data/skills/crossRegionalHistoricalProcesses/crisesAndHistoricalTransformations/skills/ancientEnvironmentalChallenges.data.ts)
 
 Methodological description: Analyze historical effects of droughts, floods, land depletion, and ecological changes alongside human adaptation.
 User-friendly description: Discover how ancient communities responded to environmental challenges.
@@ -3160,9 +3160,9 @@ User-friendly description: Discover how ancient communities responded to environ
 
 Slug: ancientEpidemicsAndDemography
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[ancientEpidemicsAndDemography.data.ts](../../data/skills/crossRegionalHistoricalProcesses/crisesAndHistoricalTransformations/skills/ancientEpidemicsAndDemography.data.ts)
 
 Methodological description: Assess possible effects of disease, movement, and population change while recognizing limited evidence.
 User-friendly description: Explore what historians can learn about ancient epidemics.
@@ -3171,9 +3171,9 @@ User-friendly description: Explore what historians can learn about ancient epide
 
 Slug: politicalDeclineAndContinuity
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[politicalDeclineAndContinuity.data.ts](../../data/skills/crossRegionalHistoricalProcesses/crisesAndHistoricalTransformations/skills/politicalDeclineAndContinuity.data.ts)
 
 Methodological description: Distinguish the fall of a political institution from the persistence of communities, languages, and practices.
 User-friendly description: Understand why a state's collapse need not mean its people's disappearance.
@@ -3182,9 +3182,9 @@ User-friendly description: Understand why a state's collapse need not mean its p
 
 Slug: comparativeHistoricalTransformations
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[comparativeHistoricalTransformations.data.ts](../../data/skills/crossRegionalHistoricalProcesses/crisesAndHistoricalTransformations/skills/comparativeHistoricalTransformations.data.ts)
 
 Methodological description: Compare the causes and consequences of major changes across regions without imposing one worldwide historical cycle.
 User-friendly description: Compare transformations in different societies using historical evidence.

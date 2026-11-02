@@ -1,0 +1,13 @@
+export { applyObjectAbstraction_Skill_Data } from './applyObjectAbstraction.data';
+export { distinguishAClassFromAnObject_Skill_Data } from './distinguishAClassFromAnObject.data';
+export { distinguishARealObjectFromItsAbstractModel_Skill_Data } from './distinguishARealObjectFromItsAbstractModel.data';
+export { explainAnObjectMethod_Skill_Data } from './explainAnObjectMethod.data';
+export { explainAnObjectProperty_Skill_Data } from './explainAnObjectProperty.data';
+export { explainEncapsulation_Skill_Data } from './explainEncapsulation.data';
+export { explainInheritance_Skill_Data } from './explainInheritance.data';
+export { explainPolymorphism_Skill_Data } from './explainPolymorphism.data';
+export { explainTheConceptOfAClass_Skill_Data } from './explainTheConceptOfAClass.data';
+export { explainTheStructureOfASoftwareObject_Skill_Data } from './explainTheStructureOfASoftwareObject.data';
+export { identifyAnObjectsStateAndBehavior_Skill_Data } from './identifyAnObjectsStateAndBehavior.data';
+export { modelADomainEntityAsASoftwareObject_Skill_Data } from './modelADomainEntityAsASoftwareObject.data';
+export { modelObjectComposition_Skill_Data } from './modelObjectComposition.data';

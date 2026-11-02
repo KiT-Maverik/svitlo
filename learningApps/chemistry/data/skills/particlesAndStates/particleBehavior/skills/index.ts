@@ -1,0 +1,9 @@
+export { diffusion_Skill_Data } from './diffusion.data';
+export { gasPressureTemperatureRelationship_Skill_Data } from './gasPressureTemperatureRelationship.data';
+export { gasPressureVolumeRelationship_Skill_Data } from './gasPressureVolumeRelationship.data';
+export { gasPressure_Skill_Data } from './gasPressure.data';
+export { gasVolumeAmountRelationship_Skill_Data } from './gasVolumeAmountRelationship.data';
+export { gasVolumeTemperatureRelationship_Skill_Data } from './gasVolumeTemperatureRelationship.data';
+export { idealGasModel_Skill_Data } from './idealGasModel.data';
+export { particleMotion_Skill_Data } from './particleMotion.data';
+export { particleNatureOfMatter_Skill_Data } from './particleNatureOfMatter.data';

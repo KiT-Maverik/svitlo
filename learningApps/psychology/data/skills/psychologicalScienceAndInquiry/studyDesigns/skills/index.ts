@@ -1,0 +1,9 @@
+export { blindingInResearch_Skill_Data } from './blindingInResearch.data';
+export { controlledExperiments_Skill_Data } from './controlledExperiments.data';
+export { correlationalStudies_Skill_Data } from './correlationalStudies.data';
+export { expectationEffects_Skill_Data } from './expectationEffects.data';
+export { questionnaireResearch_Skill_Data } from './questionnaireResearch.data';
+export { randomAssignment_Skill_Data } from './randomAssignment.data';
+export { researchInterviews_Skill_Data } from './researchInterviews.data';
+export { researchableHypotheses_Skill_Data } from './researchableHypotheses.data';
+export { systematicObservation_Skill_Data } from './systematicObservation.data';

@@ -1,0 +1,12 @@
+export { egyptianBurialPractices_Skill_Data } from './egyptianBurialPractices.data';
+export { egyptianConstruction_Skill_Data } from './egyptianConstruction.data';
+export { egyptianForeignRelations_Skill_Data } from './egyptianForeignRelations.data';
+export { egyptianIntermediatePeriods_Skill_Data } from './egyptianIntermediatePeriods.data';
+export { egyptianReligiousBeliefs_Skill_Data } from './egyptianReligiousBeliefs.data';
+export { egyptianWriting_Skill_Data } from './egyptianWriting.data';
+export { middleKingdomOfEgypt_Skill_Data } from './middleKingdomOfEgypt.data';
+export { newKingdomOfEgypt_Skill_Data } from './newKingdomOfEgypt.data';
+export { nileAndEgyptianEconomy_Skill_Data } from './nileAndEgyptianEconomy.data';
+export { oldKingdomOfEgypt_Skill_Data } from './oldKingdomOfEgypt.data';
+export { pharaonicRule_Skill_Data } from './pharaonicRule.data';
+export { unificationOfEgypt_Skill_Data } from './unificationOfEgypt.data';

@@ -1,0 +1,17 @@
+export { appliedEconomics_SkillDomain_Data } from './appliedEconomics/appliedEconomics.data';
+export { consumerBehavior_SkillDomain_Data } from './consumerBehavior/consumerBehavior.data';
+export { developmentWellbeingAndInstitutions_SkillDomain_Data } from './developmentWellbeingAndInstitutions/developmentWellbeingAndInstitutions.data';
+export { digitalEconomy_SkillDomain_Data } from './digitalEconomy/digitalEconomy.data';
+export { economicDataAndResearch_SkillDomain_Data } from './economicDataAndResearch/economicDataAndResearch.data';
+export { economicHistoryAndIdeas_SkillDomain_Data } from './economicHistoryAndIdeas/economicHistoryAndIdeas.data';
+export { economicThinking_SkillDomain_Data } from './economicThinking/economicThinking.data';
+export { environmentalAndResourceEconomics_SkillDomain_Data } from './environmentalAndResourceEconomics/environmentalAndResourceEconomics.data';
+export { governmentAndEconomicPolicy_SkillDomain_Data } from './governmentAndEconomicPolicy/governmentAndEconomicPolicy.data';
+export { internationalEconomics_SkillDomain_Data } from './internationalEconomics/internationalEconomics.data';
+export { laborAndEmployment_SkillDomain_Data } from './laborAndEmployment/laborAndEmployment.data';
+export { macroeconomics_SkillDomain_Data } from './macroeconomics/macroeconomics.data';
+export { marketingAndTrade_SkillDomain_Data } from './marketingAndTrade/marketingAndTrade.data';
+export { marketsAndCompetition_SkillDomain_Data } from './marketsAndCompetition/marketsAndCompetition.data';
+export { moneyAndFinancialSystem_SkillDomain_Data } from './moneyAndFinancialSystem/moneyAndFinancialSystem.data';
+export { personalFinance_SkillDomain_Data } from './personalFinance/personalFinance.data';
+export { productionAndEntrepreneurship_SkillDomain_Data } from './productionAndEntrepreneurship/productionAndEntrepreneurship.data';
