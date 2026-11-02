@@ -28,7 +28,7 @@ export const explainConservationOfAngularMomentum_Skill_Data = buildSkillConfig(
     uk: "Пояснювати закон збереження моменту імпульсу",
     lt: "Paaiškinti judesio kiekio momento tvermę",
     lv: "Izskaidrot leņķiskā impulsa nezūdamību",
-    et: "Pöördemomendi jäävuse asemel impulsimomendi jäävuse selgitamine",
+    et: "Impulsimomendi jäävuse selgitamine",
     be: "Тлумачыць закон захаваньня моманту імпульсу",
     ka: "კუთხური იმპულსის მუდმივობის ახსნა",
     kk: "Импульс моментінің сақталуын түсіндіру",
