@@ -5,6 +5,7 @@ export const explainTheMagneticEffectOfElectricCurrent_Skill_Data = buildSkillCo
   id: "d8198103-4001-4552-8e9a-aa8682152624",
   name: {
     en: "Explain the magnetic effect of electric current",
+    qm: 'Elektrik aqımınıñ magnit tesirini añlatmaq',
     zh: '解释电流的磁效应',
     hi: 'विद्युत धारा का चुंबकीय प्रभाव समझाना',
     es: 'Explicar el efecto magnético de la corriente eléctrica',
@@ -37,6 +38,7 @@ export const explainTheMagneticEffectOfElectricCurrent_Skill_Data = buildSkillCo
     methodological: "Moving electric charges create a magnetic field; changing the current changes the field it produces and the associated magnetic interactions.",
     frontend: {
       en: "Explain why an electric current produces a magnetic field.",
+      qm: 'Elektrik aqımı neden magnit maydanını yarattığını añlat.',
       zh: '解释为什么电流会产生磁场。',
       hi: 'समझाएँ कि विद्युत धारा चुंबकीय क्षेत्र क्यों बनाती है।',
       es: 'Explica por qué una corriente eléctrica produce un campo magnético.',
