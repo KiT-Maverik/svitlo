@@ -32,7 +32,7 @@ export const readASimpleMeasuringInstrument_Skill_Data = buildSkillConfig({
     be: "Зьнімаць паказаньні простага вымяральнага прыбору",
     ka: "მარტივი საზომი ხელსაწყოს ჩვენების წაკითხვა",
     kk: "Қарапайым өлшеу аспабының көрсеткішін оқу",
-    qm: "Sadе ölçüv aletiniñ köstergiçini oqumaq",
+    qm: "Sade ölçüv aletiniñ köstergiçini oqumaq",
   },
   description: {
     methodological: "Correctly relate the measured quantity to the position of a pointer on a scale, its units, and the zero reference; a reading has physical meaning only under the relevant measurement conditions.",
