@@ -5,6 +5,7 @@ export const identifyElectricallyConductiveMaterials_Skill_Data = buildSkillConf
   id: "360c4731-5926-435c-adf8-3661f66b0838",
   name: {
     en: "Identify electrically conductive materials",
+    qm: 'Elektrik keçirgen malzemelerni tanımaq',
     zh: '识别导电材料',
     hi: 'विद्युत चालक पदार्थ पहचानना',
     es: 'Identificar materiales conductores de electricidad',
@@ -37,6 +38,7 @@ export const identifyElectricallyConductiveMaterials_Skill_Data = buildSkillConf
     methodological: "Determine experimentally which materials complete a low-voltage circuit.",
     frontend: {
       en: "Test which materials conduct electricity using a safe low-voltage circuit.",
+      qm: 'Havfsız alçaq voltajlı devre yardımınen qaysı malzemeler elektrik aqımını keçirgenini sına.',
       zh: '用安全的低压电路测试哪些材料可以导电。',
       hi: 'सुरक्षित कम-वोल्टता परिपथ से जाँचें कि कौन-से पदार्थ बिजली चलाते हैं।',
       es: 'Comprueba qué materiales conducen electricidad con un circuito seguro de baja tensión.',
