@@ -28,17 +28,17 @@ const publishedDirectory = `public/data/pages/lessons/${relative}`;
 
 ```text
 learningApps/<book>/data/lessons/<last-hex-digit>/<uuid>/
-  lesson.data.ts                 # when implemented
-  lesson.definition.ts           # when implemented
+  <slug>.data.ts                 # when implemented
+  <slug>.definition.ts           # when implemented
   lesson.identity.json           # editorial-only drafts without typed Lesson data
   methodologist-brief.md         # when applicable
   content.md                     # when applicable
   sections/                      # when applicable
 ```
 
-**Implemented Lesson:** `lesson.data.ts` owns `id` and `slug`. The authored Lesson stores no `group`: `resolveEntityPath(id)` derives the bucket, and the source directory must match it. The build-time generator emits localized JSON at `public/data/pages/lessons/<bucket>/<uuid>/<collection>/<language>.json`; the runtime reads **published JSON only**.
+**Implemented Lesson:** `<slug>.data.ts` owns `id` and `slug`. The authored Lesson stores no `group`: `resolveEntityPath(id)` derives the bucket, and the source directory must match it. The build-time generator emits localized JSON at `public/data/pages/lessons/<bucket>/<uuid>/<collection>/<language>.json`; the runtime reads **published JSON only**.
 
-**Editorial draft (e.g. Math):** until a typed `lesson.data.ts` exists, a `lesson.identity.json` file stores the permanent UUID and human-readable slug in each Lesson directory. It is *not* runtime data. On implementation, transfer that UUID into the typed Lesson definition and remove the editorial identity file only when the canonical typed identity exists. Never regenerate an ID from a renamed slug.
+**Editorial draft (e.g. Math):** until a typed `<slug>.data.ts` exists, a `lesson.identity.json` file stores the permanent UUID and human-readable slug in each Lesson directory. It is *not* runtime data. On implementation, transfer that UUID into the typed Lesson data and remove the editorial identity file only when the canonical typed identity exists. Never regenerate an ID from a renamed slug.
 
 The UUID is minted once upon creation (UUIDv4/v5/v7 supported); scripts may use deterministic UUIDv5 for a **one-time migration** only, then persist the result. The generator/validator must check that the path matches the declared ID, UUIDs are unique within the collection, slugs have expected shape, and files are well formed. Path uniqueness alone does **not** prove global UUID uniqueness.
 
