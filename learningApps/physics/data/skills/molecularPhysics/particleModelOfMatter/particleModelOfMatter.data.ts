@@ -7,6 +7,7 @@ export const particleModelOfMatter_SkillGroup_Data = buildSkillGroupConfig({
   id: "970007f0-cb32-4b4e-9839-bec8e25c2446",
   name: {
     en: "Particle Model of Matter",
+    qm: 'Maddeniñ parçacıq modeli',
     zh: '物质的粒子模型',
     hi: 'पदार्थ का कण मॉडल',
     es: 'Modelo de partículas de la materia',
@@ -48,6 +49,7 @@ export const particleModelOfMatter_SkillGroup_Data = buildSkillGroupConfig({
     methodological: "Substances consist of particles with spaces and interactions between them; the model explains properties without requiring complex formulas.",
     frontend: {
       en: "Learn how invisible particles interact to make up physical substances.",
+      qm: 'Közge körünmegen parçacıqlarnıñ bir-birinen nasıl tesirleşip maddeni teşkil etkenini ögren.',
       zh: '了解看不见的粒子如何相互作用并构成物质。',
       hi: 'जानें कि अदृश्य कण आपस में क्रिया करके पदार्थ कैसे बनाते हैं।',
       es: 'Aprende cómo partículas invisibles interactúan y constituyen las sustancias.',
