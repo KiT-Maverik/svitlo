@@ -5,6 +5,7 @@ export const identifyAConsumerOfElectricalEnergy_Skill_Data = buildSkillConfig({
   id: "122d4818-851e-4126-b9dc-cd59a07dbaf0",
   name: {
     en: "Identify a consumer of electrical energy",
+    qm: 'Elektrik energiyasını sarf etken qurulışnı tanımaq',
     zh: '识别电能的用电器',
     hi: 'विद्युत ऊर्जा उपभोक्ता पहचानना',
     es: 'Identificar un receptor de energía eléctrica',
@@ -37,6 +38,7 @@ export const identifyAConsumerOfElectricalEnergy_Skill_Data = buildSkillConfig({
     methodological: "An electrical load converts received electrical energy into thermal, mechanical, light, or other forms, rather than merely \"using current.\"",
     frontend: {
       en: "Recognize loads that transform electrical energy into other forms.",
+      qm: 'Elektrik energiyasını sıcaqlıq, yarıq ya da areket energiyasına çevirgen sarf eticilerni tanı.',
       zh: '识别能将电能转化为其他形式能量的负载。',
       hi: 'ऐसे उपकरण पहचानें जो विद्युत ऊर्जा को अन्य रूपों में बदलते हैं।',
       es: 'Reconoce cargas que transforman la energía eléctrica en otras formas.',
