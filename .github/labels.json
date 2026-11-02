@@ -1,0 +1,277 @@
+[
+  {
+    "name": "area: server",
+    "color": "2563EB",
+    "description": "Changes to backend/server/"
+  },
+  {
+    "name": "area: platform",
+    "color": "2563EB",
+    "description": "Changes to frontend/platform/"
+  },
+  {
+    "name": "area: scripts",
+    "color": "2563EB",
+    "description": "Changes to scripts/"
+  },
+  {
+    "name": "area: contracts",
+    "color": "2563EB",
+    "description": "Changes to shared/contracts/"
+  },
+  {
+    "name": "area: engine",
+    "color": "2563EB",
+    "description": "Changes to shared/engine/"
+  },
+  {
+    "name": "area: indexdb",
+    "color": "2563EB",
+    "description": "Changes to shared/indexdb/"
+  },
+  {
+    "name": "area: ui-kit",
+    "color": "2563EB",
+    "description": "Changes to shared/ui-kit/"
+  },
+  {
+    "name": "area: studio",
+    "color": "2563EB",
+    "description": "Changes to studio/"
+  },
+  {
+    "name": "area: repo",
+    "color": "2563EB",
+    "description": "Repository-wide changes or files outside a specific area"
+  },
+  {
+    "name": "area: art",
+    "color": "2563EB",
+    "description": "Changes to learningApps/art/"
+  },
+  {
+    "name": "area: astronomy",
+    "color": "2563EB",
+    "description": "Changes to learningApps/astronomy/"
+  },
+  {
+    "name": "area: biology",
+    "color": "2563EB",
+    "description": "Changes to learningApps/biology/"
+  },
+  {
+    "name": "area: chemistry",
+    "color": "2563EB",
+    "description": "Changes to learningApps/chemistry/"
+  },
+  {
+    "name": "area: economics",
+    "color": "2563EB",
+    "description": "Changes to learningApps/economics/"
+  },
+  {
+    "name": "area: engineering",
+    "color": "2563EB",
+    "description": "Changes to learningApps/engineering/"
+  },
+  {
+    "name": "area: geography",
+    "color": "2563EB",
+    "description": "Changes to learningApps/geography/"
+  },
+  {
+    "name": "area: health-safety",
+    "color": "2563EB",
+    "description": "Changes to learningApps/health-safety/"
+  },
+  {
+    "name": "area: history",
+    "color": "2563EB",
+    "description": "Changes to learningApps/history/"
+  },
+  {
+    "name": "area: informatics",
+    "color": "2563EB",
+    "description": "Changes to learningApps/informatics/"
+  },
+  {
+    "name": "area: language-literature",
+    "color": "2563EB",
+    "description": "Changes to learningApps/language-literature/"
+  },
+  {
+    "name": "area: languages",
+    "color": "2563EB",
+    "description": "Changes to learningApps/languages/"
+  },
+  {
+    "name": "area: math",
+    "color": "2563EB",
+    "description": "Changes to learningApps/math/"
+  },
+  {
+    "name": "area: philosophy",
+    "color": "2563EB",
+    "description": "Changes to learningApps/philosophy/"
+  },
+  {
+    "name": "area: physics",
+    "color": "2563EB",
+    "description": "Changes to learningApps/physics/"
+  },
+  {
+    "name": "area: playground",
+    "color": "2563EB",
+    "description": "Changes to learningApps/playground/"
+  },
+  {
+    "name": "area: psychology",
+    "color": "2563EB",
+    "description": "Changes to learningApps/psychology/"
+  },
+  {
+    "name": "work: feature",
+    "color": "7C3AED",
+    "description": "New product or technical functionality"
+  },
+  {
+    "name": "work: fix",
+    "color": "7C3AED",
+    "description": "Fix an existing defect"
+  },
+  {
+    "name": "work: refactor",
+    "color": "7C3AED",
+    "description": "Restructure implementation without intentional behavior changes"
+  },
+  {
+    "name": "work: content",
+    "color": "7C3AED",
+    "description": "Create or edit educational content"
+  },
+  {
+    "name": "work: translation",
+    "color": "7C3AED",
+    "description": "Translate or localize content"
+  },
+  {
+    "name": "work: review",
+    "color": "7C3AED",
+    "description": "Scientific, linguistic, methodological, or technical review"
+  },
+  {
+    "name": "work: tests",
+    "color": "7C3AED",
+    "description": "Add or update automated tests"
+  },
+  {
+    "name": "work: ci",
+    "color": "7C3AED",
+    "description": "CI/CD pipelines and GitHub Actions"
+  },
+  {
+    "name": "work: docs",
+    "color": "7C3AED",
+    "description": "Create or maintain documentation"
+  },
+  {
+    "name": "work: tooling",
+    "color": "7C3AED",
+    "description": "Generators, CLIs, and developer tools"
+  },
+  {
+    "name": "priority: critical",
+    "color": "B91C1C",
+    "description": "Immediate action required: production outage, security or data loss"
+  },
+  {
+    "name": "priority: high",
+    "color": "D97706",
+    "description": "Important blocker or time-sensitive work"
+  },
+  {
+    "name": "priority: medium",
+    "color": "3B82F6",
+    "description": "Normal scheduled priority"
+  },
+  {
+    "name": "priority: low",
+    "color": "94A3B8",
+    "description": "Nonurgent enhancement or deferred work"
+  },
+  {
+    "name": "pr: integration",
+    "color": "16A34A",
+    "description": "Central PR collecting agent subtasks into a parent change"
+  },
+  {
+    "name": "pr: agent-subtask",
+    "color": "16A34A",
+    "description": "Individual AI agent subtask PR targeting an integration branch"
+  },
+  {
+    "name": "pr: breaking-change",
+    "color": "16A34A",
+    "description": "Introduces an incompatible API, contract, or format change"
+  },
+  {
+    "name": "pr: migration",
+    "color": "16A34A",
+    "description": "Migrates architecture, interfaces, or data"
+  },
+  {
+    "name": "issue: needs-triage",
+    "color": "EA580C",
+    "description": "Issue has not yet been evaluated or classified"
+  },
+  {
+    "name": "issue: needs-info",
+    "color": "EA580C",
+    "description": "More information is needed to proceed"
+  },
+  {
+    "name": "issue: needs-reproduction",
+    "color": "EA580C",
+    "description": "Reported defect needs a reliable reproduction"
+  },
+  {
+    "name": "source: internal",
+    "color": "0E7490",
+    "description": "Issue originated from the project owner or internal team"
+  },
+  {
+    "name": "source: expert-review",
+    "color": "0E7490",
+    "description": "Issue originated from an invited subject-matter reviewer"
+  },
+  {
+    "name": "source: user-report",
+    "color": "0E7490",
+    "description": "Issue originated from the Svitlo user report interface"
+  },
+  {
+    "name": "source: agent",
+    "color": "0E7490",
+    "description": "Issue independently discovered and filed by an AI agent"
+  },
+  {
+    "name": "source: automation",
+    "color": "0E7490",
+    "description": "Issue created by an automated check or monitoring system"
+  },
+  {
+    "name": "attention: decision",
+    "color": "DB2777",
+    "description": "Requires a decision from the project owner or designated reviewer"
+  },
+  {
+    "name": "attention: blocked",
+    "color": "DB2777",
+    "description": "Work is blocked by a dependency outside the current task"
+  },
+  {
+    "name": "attention: manual-qa",
+    "color": "DB2777",
+    "description": "Requires manual quality assurance beyond CI checks"
+  }
+]
