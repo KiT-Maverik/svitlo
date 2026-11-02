@@ -7,6 +7,7 @@ export const thermalInsulation_SkillGroup_Data = buildSkillGroupConfig({
   id: "c6848cf3-7068-430a-a06c-def5689a40c5",
   name: {
     en: "Thermal Insulation",
+    qm: 'Sıcaqlıq izolâtsiyası',
     zh: '隔热',
     hi: 'ऊष्मा रोधन',
     es: 'Aislamiento térmico',
@@ -43,6 +44,7 @@ export const thermalInsulation_SkillGroup_Data = buildSkillGroupConfig({
     methodological: "Insulating materials slow down energy transfer but do not create energy themselves; this differs from describing the three mechanisms of heat exchange.",
     frontend: {
       en: "Explore how insulation slows the transfer of heat.",
+      qm: 'İzolâtsiya sıcaqlıqnıñ berilüvini nasıl yavaşlatqanını araştır.',
       zh: '探索隔热材料如何减缓热量传递。',
       hi: 'जानें कि ऊष्मा रोधन से ऊष्मा का स्थानांतरण धीमा कैसे होता है।',
       es: 'Explora cómo el aislamiento ralentiza la transferencia de calor.',
