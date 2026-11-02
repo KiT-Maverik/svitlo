@@ -54,7 +54,7 @@ export const explainElectricalPower_Skill_Data = buildSkillConfig({
       tr: 'Elektrik gücünü enerjinin aktarılma hızı olarak anla.',
       vi: 'Hiểu công suất điện là tốc độ truyền năng lượng.',
       ta: 'மின்திறன் என்பது ஆற்றல் பரிமாற்றத்தின் வீதம் என்பதைப் புரிந்துகொள்ளுங்கள்.',
-      te: 'విద్యుత్ సామర్థ్యాన్ని శక్తి బదిలీ రేటుగా అర్థం చేసుకోండి.',
+      te: 'విద్యుత్ పవర్ అనేది శక్తి బదిలీ జరిగే రేటు అని అర్థం చేసుకోండి.',
       mr: 'विद्युतशक्ती म्हणजे ऊर्जा हस्तांतरणाचा दर हे समजून घ्या.',
       ms: 'Fahami kuasa elektrik sebagai kadar pemindahan tenaga.',
       he: 'הבן שהספק חשמלי הוא קצב העברת האנרגיה.',
