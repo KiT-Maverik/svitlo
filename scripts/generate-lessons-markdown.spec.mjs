@@ -105,12 +105,12 @@ describe('Lesson → Markdown review projection', () => {
     assert.throws(() => parseArguments(['--package', 'learningApps/playground', '--locale', 'uk', '--stdout']), /requires --lesson/);
   });
 
-  it('discovers numbered buckets, writes the requested structure, and generates deterministically', async () => {
+  it('discovers UUID buckets, writes the requested structure, and generates deterministically', async () => {
     const tmp = temporaryRepo();
     try {
       const root = path.join(tmp.root, 'learningApps/playground');
       fs.mkdirSync(path.join(root, 'data/lessons/not-a-number/ignored'), { recursive: true });
-      assert.deepEqual(discoverLessons(root).map(item => item.relative), ['d3048d21-8690-5255-b62c-984c69ac272c']);
+      assert.deepEqual(discoverLessons(root).map(item => item.relative), ['c/d3048d21-8690-5255-b62c-984c69ac272c']);
       assert.deepEqual(supportedLanguages(tmp.root), ['en', 'uk']);
       const opts = { package: 'learningApps/playground', lesson: 'd3048d21-8690-5255-b62c-984c69ac272c', locale: 'uk', stdout: true };
       const loader = async () => fixture();

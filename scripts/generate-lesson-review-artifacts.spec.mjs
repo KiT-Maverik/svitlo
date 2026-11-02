@@ -33,7 +33,7 @@ function run(root, languages = ['en', 'uk']) {
   return { result, manifest, output };
 }
 
-test('discovers only canonical numbered lessons with actual data files in deterministic order', () => setup(root => {
+test('discovers only canonical UUID-addressed lessons with actual data files in deterministic order', () => setup(root => {
   createLesson(root, 'playground', '00000000-0000-5000-8000-000000000002', 'someLesson');
   createLesson(root, 'playground', 'd3048d21-8690-5255-b62c-984c69ac272c', 'howLightMoves');
   createLesson(root, 'math', '00000000-0000-5000-8000-000000000003', 'numbers');
@@ -41,7 +41,7 @@ test('discovers only canonical numbered lessons with actual data files in determ
   fs.mkdirSync(invalid, { recursive: true });
   fs.writeFileSync(path.join(invalid, 'bogus.data.ts'), '');
   const actual = discoverLessons(root).map(l => `${l.textbook}/${l.relative}`);
-  assert.deepEqual(actual, ['math/3/00000000-0000-5000-8000-000000000003', 'playground/c/d3048d21-8690-5255-b62c-984c69ac272c', 'playground/2/00000000-0000-5000-8000-000000000002']);
+  assert.deepEqual(actual, ['math/3/00000000-0000-5000-8000-000000000003', 'playground/2/00000000-0000-5000-8000-000000000002', 'playground/c/d3048d21-8690-5255-b62c-984c69ac272c']);
 }));
 
 test('generates locale-specific Markdown and records PR-scoped paths', () => setup(root => {
@@ -60,7 +60,7 @@ test('records individual locale failures while generating other locales', () => 
   createGenerator(root);
   const { result, manifest } = run(root, ['en', 'qm', 'uk']);
   assert.deepEqual(result, { discoveredLessons: 1, generated: 2, failures: 1 });
-  assert.deepEqual(manifest.failures.map(f => [f.kind, f.lesson, f.locale]), [['lesson', '1/howLightMoves', 'qm']]);
+  assert.deepEqual(manifest.failures.map(f => [f.kind, f.lesson, f.locale]), [['lesson', 'c/d3048d21-8690-5255-b62c-984c69ac272c', 'qm']]);
   assert.match(manifest.failures[0].error, /No qm translation/);
 }));
 
