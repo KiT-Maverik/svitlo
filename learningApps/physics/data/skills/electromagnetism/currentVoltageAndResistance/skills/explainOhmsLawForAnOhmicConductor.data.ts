@@ -5,6 +5,7 @@ export const explainOhmsLawForAnOhmicConductor_Skill_Data = buildSkillConfig({
   id: "b0ec03a2-e1f8-478d-a5b4-6251451f97fc",
   name: {
     en: "Explain Ohm's law for an ohmic conductor",
+    qm: 'Om keçirgeni içün Om qanunını añlatmaq',
     zh: '解释欧姆导体的欧姆定律',
     hi: 'ओमीय चालक के लिए ओम का नियम समझाना',
     es: 'Explicar la ley de Ohm para un conductor óhmico',
@@ -37,6 +38,7 @@ export const explainOhmsLawForAnOhmicConductor_Skill_Data = buildSkillConfig({
     methodological: "Under constant conditions, the current through an ohmic conductor is directly proportional to voltage; this law does not describe every component without exception.",
     frontend: {
       en: "Use Ohm's law for conductors that behave ohmically under constant conditions.",
+      qm: 'Şarait deñişmegeni alda Om qanunına boysunğan keçirgenlerge Om qanunını tatbiq et.',
       zh: '在条件不变时，将欧姆定律应用于遵循欧姆定律的导体。',
       hi: 'स्थिर परिस्थितियों में ओमीय चालक पर ओम का नियम लागू करें।',
       es: 'Utiliza la ley de Ohm para conductores óhmicos en condiciones constantes.',
