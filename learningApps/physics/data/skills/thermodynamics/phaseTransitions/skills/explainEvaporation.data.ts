@@ -5,6 +5,7 @@ export const explainEvaporation_Skill_Data = buildSkillConfig({
   id: "0da0b606-7fb8-4f65-ab01-e16bf9bea2fb",
   name: {
     en: "Explain evaporation",
+    qm: 'Buvlanuvnı añlatmaq',
     zh: '解释蒸发',
     hi: 'वाष्पीकरण समझाना',
     es: 'Explicar la evaporación',
@@ -37,6 +38,7 @@ export const explainEvaporation_Skill_Data = buildSkillConfig({
     methodological: "Evaporation is the transition of particles from the surface of a liquid into the gas phase and can occur without boiling.",
     frontend: {
       en: "Explain evaporation from a liquid's surface without boiling.",
+      qm: 'Suyuqlıq qaynamasa bile, onıñ yuzasından buvnıñ nasıl peyda olğanını añlat.',
       zh: '解释液体如何从表面蒸发而无需沸腾。',
       hi: 'समझाएँ कि बिना उबले तरल की सतह से वाष्पीकरण कैसे होता है।',
       es: 'Explica cómo un líquido se evapora desde su superficie sin hervir.',
