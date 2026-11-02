@@ -38,7 +38,7 @@ export const recognizeMagneticRepulsion_Skill_Data = buildSkillConfig({
     methodological: "Identify a situation in which magnets move apart due to their interaction.",
     frontend: {
       en: "Recognize situations in which magnets repel each other.",
-      qm: 'Magnitlerniñ bir-birini itkeni vaziyetlerni tanı.',
+      qm: 'Magnitler bir-birini itken vaziyetlerni tanı.',
       zh: '识别磁铁相互排斥的情境。',
       hi: 'ऐसी स्थितियाँ पहचानें जिनमें चुंबक एक-दूसरे को दूर धकेलते हैं।',
       es: 'Reconoce situaciones en las que los imanes se repelen.',
