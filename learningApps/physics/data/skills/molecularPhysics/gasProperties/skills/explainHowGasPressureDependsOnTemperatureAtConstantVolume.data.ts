@@ -5,6 +5,7 @@ export const explainHowGasPressureDependsOnTemperatureAtConstantVolume_Skill_Dat
   id: "a9453991-3aa9-438a-bf8e-b37652fbda90",
   name: {
     en: "Explain how gas pressure depends on temperature at constant volume",
+    qm: 'Sabit acımda gaz basımınıñ temperaturağa bağlılığını añlatmaq',
     zh: '解释恒定体积下气压与温度的关系',
     hi: 'स्थिर आयतन पर गैस के दाब और तापमान का संबंध समझाना',
     es: 'Explicar la relación entre presión y temperatura a volumen constante',
@@ -37,6 +38,7 @@ export const explainHowGasPressureDependsOnTemperatureAtConstantVolume_Skill_Dat
     methodological: "At constant volume, increasing a gas's temperature generally increases its pressure because the particles move more vigorously.",
     frontend: {
       en: "Explain why gas pressure increases with temperature when volume stays fixed.",
+      qm: 'Acım deñişmegeni alda temperatura artqan sayın gaz basımınıñ neden arttığını añlat.',
       zh: '解释为什么体积不变时，温度升高会使气体压强增大。',
       hi: 'समझाएँ कि आयतन स्थिर रहने पर तापमान बढ़ने से गैस का दाब क्यों बढ़ता है।',
       es: 'Explica por qué la presión del gas aumenta al subir la temperatura si el volumen permanece fijo.',
