@@ -5,6 +5,7 @@ export const identifyMaterialsAttractedToAMagnet_Skill_Data = buildSkillConfig({
   id: "e2993563-f633-4241-9565-a472be2ad895",
   name: {
     en: "Identify materials attracted to a magnet",
+    qm: 'Magnitke tartılğan malzemelerni tanımaq',
     zh: '识别被磁铁吸引的材料',
     hi: 'चुंबक से आकर्षित होने वाले पदार्थ पहचानना',
     es: 'Identificar materiales atraídos por un imán',
@@ -37,6 +38,7 @@ export const identifyMaterialsAttractedToAMagnet_Skill_Data = buildSkillConfig({
     methodological: "The observable effect of a magnetic field on a material depends on its magnetic properties; not all metals are attracted equally.",
     frontend: {
       en: "Recognize materials that respond strongly to magnetic fields.",
+      qm: 'Magnit maydanına küçlü cevap bergen malzemelerni tanı; bütün metallar aynı derecede tartılmay.',
       zh: '识别对磁场反应较强的材料。',
       hi: 'चुंबकीय क्षेत्र के प्रति प्रबल प्रतिक्रिया वाले पदार्थ पहचानें।',
       es: 'Reconoce materiales que responden con fuerza a los campos magnéticos.',
