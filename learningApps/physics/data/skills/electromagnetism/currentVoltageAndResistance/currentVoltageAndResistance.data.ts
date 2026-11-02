@@ -63,7 +63,7 @@ export const currentVoltageAndResistance_SkillGroup_Data = buildSkillGroupConfig
       tr: 'Akım, gerilim, direnç ve gücün devreleri nasıl tanımladığını keşfet.',
       vi: 'Khám phá cách dòng điện, điện áp, điện trở và công suất mô tả mạch điện.',
       ta: 'மின்னோட்டம், மின்னழுத்தம், மின்தடை, திறன் ஆகியவை மின்சுற்றுகளை எவ்வாறு விவரிக்கின்றன என்பதை அறியுங்கள்.',
-      te: 'విద్యుత్ ప్రవాహం, వోల్టేజ్, నిరోధం, శక్తి మిను వలయాలను ఎలా వివరిస్తాయో తెలుసుకోండి.',
+      te: 'విద్యుత్ ప్రవాహం, వోల్టేజ్, నిరోధం, శక్తి విద్యుత్ వలయాలను ఎలా వివరిస్తాయో తెలుసుకోండి.',
       mr: 'प्रवाह, विभवांतर, रोध आणि शक्ती विद्युतपरिपथ कसा समजावतात ते शोधा.',
       ms: 'Ketahui bagaimana arus, voltan, rintangan dan kuasa menerangkan litar.',
       he: 'גלה כיצד זרם, מתח, התנגדות והספק מתארים מעגלים חשמליים.',
