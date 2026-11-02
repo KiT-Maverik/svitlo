@@ -53,7 +53,7 @@ export const explainElectricVoltage_Skill_Data = buildSkillConfig({
       ko: '전압을 두 지점 사이의 전위차로 설명해 보세요.',
       tr: 'Gerilimi iki nokta arasındaki elektriksel potansiyel farkı olarak açıkla.',
       vi: 'Giải thích điện áp là hiệu điện thế giữa hai điểm.',
-      ta: 'மின்னழுத்தம் என்பது இரு புள்ளிகளுக்கிடையேயான மின்னழுத்தத் திறன் வேறுபாடு என்பதை விளக்குங்கள்.',
+      ta: 'மின்னழுத்தம் என்பது இரு புள்ளிகளுக்கிடையேயான மின்னிலை வேறுபாடு என்பதை விளக்குங்கள்.',
       te: 'వోల్టేజీని రెండు బిందువుల మధ్య విద్యుత్ విభవ భేదంగా వివరించండి.',
       mr: 'दोन बिंदूंमधील विद्युत विभवातील फरक म्हणून विभवांतर स्पष्ट करा.',
       ms: 'Terangkan voltan sebagai beza keupayaan elektrik antara dua titik.',
