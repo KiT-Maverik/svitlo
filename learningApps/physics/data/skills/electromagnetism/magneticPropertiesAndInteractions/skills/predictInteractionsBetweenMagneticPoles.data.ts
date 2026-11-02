@@ -5,6 +5,7 @@ export const predictInteractionsBetweenMagneticPoles_Skill_Data = buildSkillConf
   id: "9dcf9fa0-204a-415e-9a6d-c1da8c425c9e",
   name: {
     en: "Predict interactions between magnetic poles",
+    qm: 'Magnit qutuplarınıñ tesirleşüvini evelden aytmaq',
     zh: '预测磁极之间的相互作用',
     hi: 'चुंबकीय ध्रुवों की अंतःक्रिया का अनुमान लगाना',
     es: 'Predecir interacciones entre polos magnéticos',
@@ -37,6 +38,7 @@ export const predictInteractionsBetweenMagneticPoles_Skill_Data = buildSkillConf
     methodological: "Determine attraction or repulsion from a known arrangement of poles.",
     frontend: {
       en: "Predict what happens when known magnetic poles approach one another.",
+      qm: 'Belli magnit qutupları bir-birine yaqınlaştıqta tartıluv ya da itilüv olacağını evelden ayt.',
       zh: '预测已知磁极相互靠近时会发生什么。',
       hi: 'अनुमान लगाएँ कि ज्ञात चुंबकीय ध्रुव पास लाने पर क्या होगा।',
       es: 'Predice qué sucede al acercar polos magnéticos conocidos.',
