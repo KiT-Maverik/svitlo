@@ -5,6 +5,7 @@ export const explainCondensation_Skill_Data = buildSkillConfig({
   id: "1092f20e-6aa8-4ca1-a327-3fda190adcdd",
   name: {
     en: "Explain condensation",
+    qm: 'Kondensatsiyanı añlatmaq',
     zh: '解释凝结',
     hi: 'संघनन समझाना',
     es: 'Explicar la condensación',
@@ -37,6 +38,7 @@ export const explainCondensation_Skill_Data = buildSkillConfig({
     methodological: "Condensation is the transition of matter from gas to liquid, including the formation of droplets from water vapor.",
     frontend: {
       en: "Recognize gas turning into liquid through condensation.",
+      qm: 'Kondensatsiya vaqtında gaznıñ suyuqlıqqa nasıl çevirilgenini añlat.',
       zh: '识别气体通过凝结变成液体的过程。',
       hi: 'समझें कि संघनन से गैस तरल में कैसे बदलती है।',
       es: 'Reconoce cómo un gas se transforma en líquido por condensación.',
