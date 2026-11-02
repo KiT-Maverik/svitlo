@@ -23,7 +23,7 @@ export const read24HourClock_Skill_Data = buildSkillConfig({
     id: 'Membaca waktu dalam format 24 jam',
     de: 'Uhrzeit im 24-Stunden-Format ablesen',
     ja: '24時間表記の時刻を読む',
-    ko: '24시간제로 시간 읽기',
+    ko: '24시간제로 시각 읽기',
     tr: '24 saat biçiminde saati okuma',
     vi: 'Đọc giờ theo định dạng 24 giờ',
     ta: '24 மணி நேர முறையில் நேரத்தை வாசித்தல்',

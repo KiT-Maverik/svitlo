@@ -62,7 +62,7 @@ export const completeEquality_Skill_Data = buildSkillConfig({
       pl: 'Możesz znaleźć brakującą liczbę, aby obie strony równości miały tę samą wartość.',
       uk: 'Ти можеш знаходити невідоме число, за якого обидві частини рівності мають однакове значення.',
       lt: 'Gali rasti trūkstamą skaičių, kad abi lygybės pusės turėtų vienodą vertę.',
-      lv: 'Tu vari atrast trūkstošo skaitli, lai abas vienādības puses būtu vienādas vērtības.',
+      lv: 'Tu vari atrast trūkstošo skaitli tā, lai abām vienādības pusēm būtu vienāda vērtība.',
       et: 'Sa saad leida puuduva arvu, nii et võrduse mõlemad pooled on sama väärtusega.',
       be: 'Ты можаш знайсьці прапушчаны лік, каб абодва бакі роўнасьці мелі аднолькавае значэньне.',
       ka: 'შეგიძლია იპოვო გამოტოვებული რიცხვი, რომ ტოლობის ორივე მხარეს ერთი და იგივე მნიშვნელობა ჰქონდეს.',

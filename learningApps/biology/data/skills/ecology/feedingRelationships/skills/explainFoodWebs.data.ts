@@ -32,6 +32,7 @@ export const explainFoodWebs_Skill_Data = buildSkillConfig({
     be: 'Тлумачыць харчовыя сеткі',
     ka: 'კვებითი ქსელების ახსნა',
     kk: 'Қоректік торларды түсіндіру',
+    qm: 'Azıq ağlarını añlatmaq',
   },
   description: {
     methodological: "Explain how interconnected food chains form a network with several food sources for one species and multiple paths for matter and energy transfer; distinguish a web from a single linear chain.",
@@ -55,7 +56,7 @@ export const explainFoodWebs_Skill_Data = buildSkillConfig({
       te: 'ఒకదానితో ఒకటి కలిసిన ఆహార గొలుసులు ఆహార వలను ఎలా ఏర్పరుస్తాయో అర్థం చేసుకోండి.',
       mr: 'एकमेकांशी जोडलेल्या अन्नसाखळ्यांपासून अन्नजाळे कसे बनते ते समजून घ्या.',
       ms: 'Fahami bagaimana rantai makanan yang saling berhubung membentuk siratan makanan.',
-      he: 'הבן כיצד שרשרות מזון הקשורות זו לזו יוצרות מארג מזון.',
+      he: 'הבינו כיצד שרשרות מזון הקשורות זו לזו יוצרות מארג מזון.',
       pl: 'Zrozum, jak połączone łańcuchy pokarmowe tworzą sieć pokarmową.',
       uk: 'Зрозумій, як пов’язані харчові ланцюги утворюють харчову мережу.',
       lt: 'Suprask, kaip susijungusios mitybos grandinės sudaro mitybos tinklą.',
@@ -64,6 +65,7 @@ export const explainFoodWebs_Skill_Data = buildSkillConfig({
       be: 'Зразумей, як зьвязаныя харчовыя ланцугі ўтвараюць харчовую сетку.',
       ka: 'გაიგე, როგორ ქმნიან ურთიერთდაკავშირებული კვებითი ჯაჭვები კვებით ქსელს.',
       kk: 'Өзара байланысқан қоректік тізбектер қоректік торды қалай құрайтынын түсіндір.',
+      qm: 'Bir-birinen bağlı azıq zıncırları nasıl azıq ağını teşkil etkenini ögreniñiz.',
     },
   },
 });

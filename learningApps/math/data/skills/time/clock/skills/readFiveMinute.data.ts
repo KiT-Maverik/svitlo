@@ -23,7 +23,7 @@ export const readFiveMinute_Skill_Data = buildSkillConfig({
     id: 'Membaca waktu hingga ketelitian lima menit',
     de: 'Uhrzeit auf fünf Minuten genau ablesen',
     ja: '5分単位で時刻を読む',
-    ko: '5분 단위로 시간 읽기',
+    ko: '5분 단위로 시각 읽기',
     tr: 'Saati beş dakika hassasiyetle okuma',
     vi: 'Đọc giờ chính xác đến năm phút',
     ta: 'ஐந்து நிமிடத் துல்லியத்தில் நேரத்தை வாசித்தல்',

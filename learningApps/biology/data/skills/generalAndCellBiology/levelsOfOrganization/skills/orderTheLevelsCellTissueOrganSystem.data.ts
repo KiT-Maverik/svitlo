@@ -32,6 +32,7 @@ export const orderTheLevelsCellTissueOrganSystem_Skill_Data = buildSkillConfig({
     be: 'Упарадкаваць узроўні «клетка → тканка → орган → сыстэма»',
     ka: 'უჯრედის, ქსოვილის, ორგანოსა და სისტემის დონეების დალაგება',
     kk: 'Жасуша, ұлпа, мүше және жүйе деңгейлерін реттеу',
+    qm: 'Üceyre, toqu, organ ve sistema seviyelerini sıralamaq',
   },
   description: {
     methodological: "Establish how cells form tissues, tissues form organs, and organs can work together within a system.",
@@ -64,6 +65,7 @@ export const orderTheLevelsCellTissueOrganSystem_Skill_Data = buildSkillConfig({
       be: 'Разьмяшчай клеткі, тканкі, органы й сыстэмы органаў паводле ўзроўняў арганізацыі.',
       ka: 'დაალაგე უჯრედები, ქსოვილები, ორგანოები და ორგანოთა სისტემები ორგანიზაციის დონეების მიხედვით.',
       kk: 'Жасушаларды, ұлпаларды, мүшелерді және мүшелер жүйелерін ұйымдасу деңгейлері бойынша ретте.',
+      qm: 'Üceyre, toqu, organ ve organ sistemalarınıñ teşkilâtlanma seviyelerini doğru sıraya qoyuñız.',
     },
   },
 });

@@ -62,7 +62,7 @@ export const by7_Skill_Data = buildSkillConfig({
       pl: 'Możesz mnożyć przez siedem za pomocą siedmiu równych grup i wyznaczać nieznane iloczyny z bliskich znanych wyników.',
       uk: 'Ти можеш множити на сім за допомогою семи рівних груп і виводити невідомі добутки з близьких відомих.',
       lt: 'Gali dauginti iš septynių naudodamas septynias lygias grupes ir iš artimų žinomų sandaugų rasti naujus rezultatus.',
-      lv: 'Tu vari reizināt ar septiņi, izmantojot septiņas vienādas grupas un iegūstot jaunus reizinājumus no līdzīgiem zināmiem.',
+      lv: 'Tu vari reizināt ar 7, izmantojot septiņas vienādas grupas un iegūstot jaunus reizinājumus no līdzīgiem zināmiem.',
       et: 'Sa saad seitsmega korrutada seitsme võrdse rühma abil ning leida tundmatuid korrutisi lähedaste tuntud tulemuste põhjal.',
       be: 'Ты можаш множыць на сем празь сем роўных груп і выводзіць невядомыя здабыткі з блізкіх вядомых.',
       ka: 'შეგიძლია შვიდზე გამრავლება შვიდი თანაბარი ჯგუფით და უცნობი ნამრავლების გამოთვლა ახლომდებარე ცნობილებიდან.',

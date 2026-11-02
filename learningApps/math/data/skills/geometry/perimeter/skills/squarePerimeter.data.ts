@@ -64,7 +64,7 @@ export const squarePerimeter_Skill_Data = buildSkillConfig({
       lt: 'Kvadrato perimetrą rask vienos kraštinės ilgį padauginęs iš keturių.',
       lv: 'Kvadrāta perimetru atrodi, vienas malas garumu reizinot ar četri.',
       et: 'Leia ruudu ümbermõõt ühe külje pikkuse neljaga korrutamisel.',
-      be: 'Вылічи пэрымэтар квадрата, памножыўшы даўжыню аднаго боку на чатыры.',
+      be: 'Вылічы пэрымэтар квадрата, памножыўшы даўжыню аднаго боку на чатыры.',
       ka: 'კვადრატის პერიმეტრის საპოვნელად ერთი გვერდის სიგრძე ოთხზე გაამრავლე.',
       kk: 'Шаршының бір қабырғасының ұзындығын төртке көбейтіп периметрін тап.',
     },

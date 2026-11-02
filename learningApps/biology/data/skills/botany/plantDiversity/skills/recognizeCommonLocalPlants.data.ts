@@ -32,6 +32,7 @@ export const recognizeCommonLocalPlants_Skill_Data = buildSkillConfig({
     be: 'Распазнаваць пашыраныя мясцовыя расьліны',
     ka: 'გავრცელებული ადგილობრივი მცენარეების ამოცნობა',
     kk: 'Кең таралған жергілікті өсімдіктерді тану',
+    qm: 'Yerli yayğın ösümliklerni tanımaq',
   },
   description: {
     methodological: "Identify familiar local species by characteristic combinations of leaves, stems, flowers, or fruits, rather than color alone.",
@@ -64,6 +65,7 @@ export const recognizeCommonLocalPlants_Skill_Data = buildSkillConfig({
       be: 'Вызначай знаёмыя мясцовыя расьліны паводле спалучэньня прыкметаў лістоў, сьцёблаў ды іншых частак.',
       ka: 'ამოიცანი შენს მხარეში ნაცნობი მცენარეები ფოთლების, ღეროებისა და სხვა ნიშნების ერთობლიობით.',
       kk: 'Өзің тұратын жердегі таныс өсімдіктерді жапырақ, сабақ және басқа белгілерінің жиынтығынан анықта.',
+      qm: 'Yaşığan yeriñizdeki tanış ösümliklerni yapraq, sap ve başqa belgilerge köre tanıñız.',
     },
   },
 });

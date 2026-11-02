@@ -32,6 +32,7 @@ export const identifyHereditaryTraitsInExamples_Skill_Data = buildSkillConfig({
     be: 'Вызначаць спадчынныя прыкметы на прыкладах',
     ka: 'მემკვიდრეობითი ნიშნების ამოცნობა მაგალითებში',
     kk: 'Мысалдардан тұқым қуалайтын белгілерді тану',
+    qm: 'Misallerde irsiy belgilerni tanımaq',
   },
   description: {
     methodological: "Identify similarities between generations associated with the transmission of genetic information.",
@@ -55,7 +56,7 @@ export const identifyHereditaryTraitsInExamples_Skill_Data = buildSkillConfig({
       te: 'తల్లిదండ్రులు, సంతానం ఉదాహరణల్లో వారసత్వ లక్షణాలను గుర్తించండి.',
       mr: 'पालक आणि संततीच्या उदाहरणांमधून वारशाने मिळणारे गुणधर्म ओळखा.',
       ms: 'Kenal pasti ciri yang diwarisi dalam contoh induk dan anak.',
-      he: 'זהה תכונות שעוברות בתורשה בדוגמאות של הורים וצאצאים.',
+      he: 'זהו תכונות שעוברות בתורשה בדוגמאות של הורים וצאצאים.',
       pl: 'Rozpoznaj cechy dziedziczne w przykładach rodziców i potomstwa.',
       uk: 'Розпізнавай успадковані ознаки на прикладах батьків і нащадків.',
       lt: 'Atpažink paveldimus požymius tėvų ir palikuonių pavyzdžiuose.',
@@ -64,6 +65,7 @@ export const identifyHereditaryTraitsInExamples_Skill_Data = buildSkillConfig({
       be: 'Распазнавай спадчынныя прыкметы на прыкладах бацькоў і нашчадкаў.',
       ka: 'ამოიცანი მემკვიდრეობითი ნიშნები მშობლებისა და შთამომავლების მაგალითებში.',
       kk: 'Ата-аналар мен ұрпақтар мысалынан тұқым қуалайтын белгілерді анықта.',
+      qm: 'Ana-baba canlılar ve olarnıñ balaları aqqındaki misallerde irsiy belgilerni tanıñız.',
     },
   },
 });

@@ -62,7 +62,7 @@ export const by8_Skill_Data = buildSkillConfig({
       pl: 'Możesz dzielić przez osiem, korzystając z równych grup lub znanych iloczynów z ósemką.',
       uk: 'Ти можеш ділити на вісім, використовуючи рівні групи або відомі добутки з вісімкою.',
       lt: 'Gali dalyti iš aštuonių naudodamas lygias grupes arba žinomas sandaugas su aštuonetu.',
-      lv: 'Tu vari dalīt ar 8, izmantojot vienādas grupas vai zināmus reizinājumus ar astoņi.',
+      lv: 'Tu vari dalīt ar 8, izmantojot vienādas grupas vai zināmas reizināšanas ar 8 sakarības.',
       et: 'Sa saad kaheksaga jagada võrdsete rühmade või tuntud kaheksaga korrutamise tulemuste abil.',
       be: 'Ты можаш дзяліць на восем праз роўныя групы або вядомыя здабыткі зь васьмёркай.',
       ka: 'შეგიძლია რვაზე გაყო თანაბარი ჯგუფებით ან რვასთან დაკავშირებული ცნობილი ნამრავლებით.',

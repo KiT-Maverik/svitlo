@@ -58,7 +58,7 @@ export const fractions_SkillDomain_Data = buildSkillDomainConfig({
       fr: "Les fractions représentent des parts d'un tout et des positions sur une droite graduée. Apprends à les représenter, les comparer et calculer avec elles.",
       bn: 'ভগ্নাংশ সম্পূর্ণের অংশ ও সংখ্যারেখায় অবস্থান বোঝায়। ভগ্নাংশ দেখানো, তুলনা ও হিসাব করতে শেখো।',
       pt: 'As frações mostram partes de um todo e posições na reta numérica. Aprenda a representá-las, compará-las e calcular com elas.',
-      ur: 'کسر کل کے حصوں اور خطِ اعداد پر مقامات کو ظاہر کرتے ہیں۔ انہیں لکھنا، موازنہ کرنا اور ان سے حساب کرنا سیکھیں۔',
+      ur: 'کسریں کل کے حصوں اور خطِ اعداد پر مقامات کو ظاہر کرتی ہیں۔ انہیں لکھنا، موازنہ کرنا اور ان سے حساب کرنا سیکھیں۔',
       id: 'Pecahan menunjukkan bagian dari keseluruhan dan posisi pada garis bilangan. Pelajari cara menulis, membandingkan, dan menghitungnya.',
       de: 'Brüche zeigen Anteile eines Ganzen und Positionen auf dem Zahlenstrahl. Lerne, sie darzustellen, zu vergleichen und mit ihnen zu rechnen.',
       ja: '分数は全体の一部分や数直線上の位置を表します。分数の表し方、比べ方、計算のしかたを学びます。',

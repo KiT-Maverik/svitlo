@@ -32,6 +32,7 @@ export const identifyTheRoleOfASeed_Skill_Data = buildSkillConfig({
     be: 'Вызначаць ролю насеньня',
     ka: 'თესლის როლის ამოცნობა',
     kk: 'Тұқымның рөлін анықтау',
+    qm: 'Tohumnıñ rolüni belgilemek',
   },
   description: {
     methodological: "Understand that a seed contains an embryo and a store or source of nutrients for initial growth.",
@@ -64,6 +65,7 @@ export const identifyTheRoleOfASeed_Skill_Data = buildSkillConfig({
       be: 'Дасьледуй, як насеньне падтрымлівае пачатковы рост новай расьліны.',
       ka: 'გაიგე, როგორ უწყობს თესლი ხელს ახალი მცენარის საწყის ზრდას.',
       kk: 'Тұқым жаңа өсімдіктің бастапқы өсуіне қалай көмектесетінін біл.',
+      qm: 'Tohum yañı ösümlikniñ ilk ösüv devrini nasıl temin etkenini ögreniñiz.',
     },
   },
 });

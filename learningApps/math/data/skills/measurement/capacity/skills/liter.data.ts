@@ -7,7 +7,7 @@ export const liter_Skill_Data = buildSkillConfig({
     en: 'Measuring and estimating capacity in liters',
     qm: 'Sıyımlılıqnı litrlerde ölçmek ve tahmin etmek',
     lt: 'Talpos matavimas ir vertinimas litrais',
-    lv: 'Tilpuma mērīšana un novērtēšana litros',
+    lv: 'Ietilpības mērīšana un novērtēšana litros',
     et: 'Mahutavuse mõõtmine ja hindamine liitrites',
     be: 'Вымярэньне і ацэньваньне ўмяшчальнасьці ў літрах',
     ka: 'ტევადობის გაზომვა და შეფასება ლიტრებში',

@@ -6,7 +6,7 @@ export const classifyObjectsAsLivingDeadOrNeverAlive_Skill_Data = buildSkillConf
   name: {
     en: "Classify objects as living, dead, or never alive",
     zh: '将物体分为活的、死亡的或从未有过生命的',
-    hi: 'वस्तुओं को जीवित, मृत या कभी जीवित न रही श्रेणियों में बाँटना',
+    hi: 'वस्तुओं को जीवित, मृत या कभी जीवित न रही वस्तुओं के रूप में वर्गीकृत करना',
     es: 'Clasificar objetos como vivos, muertos o que nunca estuvieron vivos',
     ar: 'تصنيف الأشياء إلى حية أو ميتة أو لم تكن حية قط',
     fr: 'Classer les objets en vivants, morts ou n\'ayant jamais été vivants',
@@ -24,7 +24,7 @@ export const classifyObjectsAsLivingDeadOrNeverAlive_Skill_Data = buildSkillConf
     mr: 'वस्तूंचे सजीव, मृत किंवा कधीच सजीव नसलेल्या अशा गटांत वर्गीकरण करणे',
     ms: 'Mengelaskan objek sebagai hidup, mati atau tidak pernah hidup',
     he: 'מיון עצמים לחיים, מתים או כאלה שמעולם לא היו חיים',
-    pl: 'Klasyfikowanie obiektów jako żywych, martwych lub nigdy nieożywionych',
+    pl: 'Klasyfikowanie obiektów jako żywych, martwych lub takich, które nigdy nie były żywe',
     uk: 'Класифікувати об’єкти як живі, мертві або такі, що ніколи не були живими',
     lt: 'Skirstyti objektus į gyvus, mirusius ir niekada nebuvusius gyvus',
     lv: 'Klasificēt objektus kā dzīvus, mirušus vai nekad nedzīvojušus',
@@ -32,6 +32,7 @@ export const classifyObjectsAsLivingDeadOrNeverAlive_Skill_Data = buildSkillConf
     be: 'Клясыфікаваць аб’екты як жывыя, мёртвыя або тыя, што ніколі не былі жывымі',
     ka: 'ობიექტების დაყოფა ცოცხალ, მკვდარ და არასოდეს ცოცხალ კატეგორიებად',
     kk: 'Нысандарды тірі, өлі немесе ешқашан тірі болмаған деп жіктеу',
+    qm: 'Nesnelerni canlı, ölü ya da iç bir vaqıt canlı olmağan olaraq sınıflandırmaq',
   },
   description: {
     methodological: "Use evidence of life processes and origin to classify an object and justify the decision through diagnostic features. A living tree carries out life processes, a dead leaf once belonged to a living organism, and a stone has no biological origin. Do not equate dead organisms with their remains or with products of biological origin.",
@@ -52,7 +53,7 @@ export const classifyObjectsAsLivingDeadOrNeverAlive_Skill_Data = buildSkillConf
       tr: 'Bir şeyin canlı mı, ölü mü yoksa hiç yaşamamış mı olduğunu kanıtlara dayanarak belirle.',
       vi: 'Dựa vào bằng chứng để xác định một thứ đang sống, đã chết hay chưa từng sống.',
       ta: 'சான்றுகளின் அடிப்படையில் ஒன்று உயிருடன் உள்ளதா, இறந்துவிட்டதா அல்லது ஒருபோதும் உயிருடன் இருந்ததில்லையா என்பதை முடிவுசெய்.',
-      te: 'ఆధారాలను ఉపయోగించి ఏదైనా సజీవంగా ఉందా, మరణించిందా లేదా ఎప్పుడూ సజీవంగా లేదా అని నిర్ణయించండి.',
+      te: 'ఆధారాలను ఉపయోగించి ఏదైనా సజీవంగా ఉందా, చనిపోయిందా లేదా ఎప్పుడూ సజీవంగా లేనిదా అని నిర్ణయించండి.',
       mr: 'पुराव्यांच्या आधारे एखादी गोष्ट सजीव आहे, मृत आहे की कधीच सजीव नव्हती हे ठरवा.',
       ms: 'Gunakan bukti untuk menentukan sama ada sesuatu itu hidup, sudah mati atau tidak pernah hidup.',
       he: 'השתמשו בראיות כדי לקבוע אם משהו חי, מת או מעולם לא היה חי.',
@@ -64,6 +65,7 @@ export const classifyObjectsAsLivingDeadOrNeverAlive_Skill_Data = buildSkillConf
       be: 'Выкарыстоўвай доказы, каб вызначыць, ці нешта жывое, мёртвае або ніколі не было жывым.',
       ka: 'მტკიცებულებებით განსაზღვრე, რაიმე ცოცხალია, მკვდარია თუ არასოდეს ყოფილა ცოცხალი.',
       kk: 'Дәлелдерге сүйеніп, бір нәрсенің тірі, өлі немесе ешқашан тірі болмағанын анықта.',
+      qm: 'Yaşayış belirtilerine ve nesneniñ kelip çıquvına baqıp, o canlımı, ölgenmi ya da iç bir vaqıt canlı olmağanmı — delillerge esaslanıp belgileñiz.',
     },
   },
 });

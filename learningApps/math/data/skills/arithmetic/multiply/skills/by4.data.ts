@@ -62,7 +62,7 @@ export const by4_Skill_Data = buildSkillConfig({
       pl: 'Możesz mnożyć przez cztery, korzystając z czterech równych grup lub podwajając ilość dwa razy.',
       uk: 'Ти можеш множити на чотири за допомогою чотирьох рівних груп або двічі подвоюючи кількість.',
       lt: 'Gali dauginti iš keturių naudodamas keturias lygias grupes arba du kartus padvigubindamas kiekį.',
-      lv: 'Tu vari reizināt ar četri, izmantojot četras vienādas grupas vai divreiz dubultojot daudzumu.',
+      lv: 'Tu vari reizināt ar 4, izmantojot četras vienādas grupas vai divreiz dubultojot daudzumu.',
       et: 'Sa saad neljaga korrutada nelja võrdse rühma abil või kogust kaks korda kahekordistades.',
       be: 'Ты можаш множыць на чатыры праз чатыры роўныя групы або двойчы падвойваючы колькасьць.',
       ka: 'შეგიძლია ოთხზე გამრავლება ოთხი თანაბარი ჯგუფით ან რაოდენობის ორჯერ გაორმაგებით.',

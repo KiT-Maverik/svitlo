@@ -32,6 +32,7 @@ export const identifyThreatsToLocalSpecies_Skill_Data = buildSkillConfig({
     be: 'Вызначаць пагрозы мясцовым відам',
     ka: 'ადგილობრივი სახეობებისთვის საფრთხეების ამოცნობა',
     kk: 'Жергілікті түрлерге қауіптерді анықтау',
+    qm: 'Yerli türlerge olğan telükelerni tanımaq',
   },
   description: {
     methodological: "Distinguish habitat loss, pollution, excessive harvesting or removal, and invasive species as threat factors.",
@@ -55,7 +56,7 @@ export const identifyThreatsToLocalSpecies_Skill_Data = buildSkillConfig({
       te: 'స్థానిక జాతులకు హాని కలిగించే కార్యకలాపాలు, పర్యావరణ మార్పులను గుర్తించండి.',
       mr: 'स्थानिक प्रजातींना धोका निर्माण करणाऱ्या कृती आणि पर्यावरणातील बदल ओळखा.',
       ms: 'Kenal pasti aktiviti dan perubahan persekitaran yang mengancam spesies tempatan.',
-      he: 'זהה פעילויות ושינויים סביבתיים המסכנים מינים מקומיים.',
+      he: 'זהו פעילויות ושינויים סביבתיים המסכנים מינים מקומיים.',
       pl: 'Rozpoznaj działania i zmiany środowiska zagrażające lokalnym gatunkom.',
       uk: 'Визначай діяльність і зміни довкілля, що загрожують місцевим видам.',
       lt: 'Atpažink veiklą ir aplinkos pokyčius, kurie kelia grėsmę vietinėms rūšims.',
@@ -64,6 +65,7 @@ export const identifyThreatsToLocalSpecies_Skill_Data = buildSkillConfig({
       be: 'Вызначай дзейнасьць і зьмены асяродзьдзя, якія пагражаюць мясцовым відам.',
       ka: 'ამოიცანი საქმიანობები და გარემოს ცვლილებები, რომლებიც ადგილობრივ სახეობებს საფრთხეს უქმნის.',
       kk: 'Жергілікті түрлерге қауіп төндіретін әрекеттер мен орта өзгерістерін анықта.',
+      qm: 'Yerli türlerge telüke doğurğan insan faaliyetini ve müit deñişüvlerini belgileñiz.',
     },
   },
 });

@@ -68,7 +68,7 @@ export const ecosystemsAndBiodiversity_SkillGroup_Data = buildSkillGroupConfig({
       te: 'జనాభాలు, జీవ సముదాయాలు, పర్యావరణ కారకాలు కలిసి పర్యావరణ వ్యవస్థలను ఎలా ఏర్పరుస్తాయో అర్థం చేసుకోండి.',
       mr: 'जीवसमूह, समुदाय आणि पर्यावरणीय घटक मिळून परिसंस्था कशी बनते ते समजून घ्या.',
       ms: 'Fahami bagaimana populasi, komuniti dan faktor persekitaran membentuk ekosistem.',
-      he: 'הבן כיצד אוכלוסיות, קהילות וגורמי סביבה יוצרים מערכות אקולוגיות.',
+      he: 'הבינו כיצד אוכלוסיות, קהילות וגורמי סביבה יוצרים מערכות אקולוגיות.',
       pl: 'Zrozum, jak populacje, zespoły organizmów i czynniki środowiska tworzą ekosystemy.',
       uk: 'Зрозумій, як популяції, угруповання та чинники середовища формують екосистеми.',
       lt: 'Suprask, kaip populiacijos, bendrijos ir aplinkos veiksniai sudaro ekosistemas.',

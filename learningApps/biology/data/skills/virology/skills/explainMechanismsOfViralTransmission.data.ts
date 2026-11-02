@@ -32,6 +32,7 @@ export const explainMechanismsOfViralTransmission_Skill_Data = buildSkillConfig(
     be: 'Тлумачыць мэханізмы перадачы вірусаў',
     ka: 'ვირუსების გადაცემის მექანიზმების ახსნა',
     kk: 'Вирустың берілу жолдарын түсіндіру',
+    qm: 'Viruslarnıñ yuqma yollarını añlatmaq',
   },
   description: {
     methodological: "Explain how viruses spread between hosts by different routes, including respiratory particles, contact, biological fluids, vectors, and other mechanisms, and why a particular route depends on the characteristics of the virus and its hosts.",
@@ -64,6 +65,7 @@ export const explainMechanismsOfViralTransmission_Skill_Data = buildSkillConfig(
       be: 'Параўнай розныя шляхі, якімі вірусы перадаюцца ад аднаго гаспадара да іншага.',
       ka: 'შეადარე სხვადასხვა გზა, რომლითაც ვირუსები ერთი მასპინძლიდან მეორეზე გადადის.',
       kk: 'Вирустардың бір иесінен екінші иесіне берілуінің әртүрлі жолдарын салыстыр.',
+      qm: 'Viruslarnıñ bir saipten başqasına qanday yollar vastasınen keçkenini teñeştiriñiz.',
     },
   },
 });

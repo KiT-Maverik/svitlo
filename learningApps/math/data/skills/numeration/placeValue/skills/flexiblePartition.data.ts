@@ -29,7 +29,7 @@ export const flexiblePartition_Skill_Data = buildSkillConfig({
     ta: 'எண்களைப் பல வழிகளில் பிரித்தல்',
     te: 'సంఖ్యలను వివిధ విధాలుగా విభజించడం',
     mr: 'संख्येचे विविध प्रकारे विभाजन',
-    ms: 'Pecahan nombor secara fleksibel',
+    ms: 'Menguraikan nombor dengan pelbagai cara',
     he: 'פירוק מספרים בדרכים שונות',
     pl: 'Elastyczny rozkład liczb',
     uk: 'Гнучке розкладання числа',

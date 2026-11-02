@@ -52,7 +52,7 @@ export const mycology_SkillDomain_Data = buildSkillDomainConfig({
       hi: 'कवकों की बनावट, पोषण प्राप्त करने के तरीके और पदार्थों के पुनर्चक्रण में उनकी भूमिका जानें।',
       es: 'Explora la estructura de los hongos, cómo obtienen nutrientes y cómo ayudan a reciclar la materia.',
       ar: 'استكشف تركيب الفطريات وكيفية حصولها على المغذيات ودورها في إعادة تدوير المواد.',
-      fr: 'Découvrez la structure des champignons, leur manière de se nourrir et leur rôle dans le recyclage de la matière.',
+      fr: 'Découvre la structure des champignons, leur manière de se nourrir et leur rôle dans le recyclage de la matière.',
       bn: 'ছত্রাকের গঠন, পুষ্টি গ্রহণের পদ্ধতি ও পদার্থের পুনঃচক্রায়নে তাদের ভূমিকা জানো।',
       pt: 'Explore a estrutura dos fungos, como obtêm nutrientes e como ajudam a reciclar a matéria.',
       ur: 'دریافت کریں کہ فطر کی ساخت کیا ہے، وہ غذائیت کیسے حاصل کرتے ہیں اور مادوں کی گردش میں کیسے مدد دیتے ہیں۔',

@@ -32,6 +32,7 @@ export const evaluateEcologicalRisksOfBiotechnologyUse_Skill_Data = buildSkillCo
     be: 'Ацэньваць экалягічныя рызыкі выкарыстаньня біятэхналёгіі',
     ka: 'ბიოტექნოლოგიის გამოყენების ეკოლოგიური რისკების შეფასება',
     kk: 'Биотехнологияны қолданудың экологиялық тәуекелдерін бағалау',
+    qm: 'Biotehnologiyanı qullanmağa bağlı ekologik risklerni baalamaq',
   },
   description: {
     methodological: "Consider the likelihood of undesirable effects on nontarget species, ecosystem relationships, or the spread of organisms, distinguishing risk from demonstrated harm.",
@@ -64,6 +65,7 @@ export const evaluateEcologicalRisksOfBiotechnologyUse_Skill_Data = buildSkillCo
       be: 'Дасьледуй магчымыя экалягічныя рызыкі біятэхналёгіі, не мяркуючы, што кожная рызыка абавязкова прычыняе шкоду.',
       ka: 'შეისწავლე ბიოტექნოლოგიის შესაძლო ეკოლოგიური რისკები ისე, რომ არ ივარაუდო, თითქოს ყველა რისკი აუცილებლად იწვევს ზიანს.',
       kk: 'Биотехнологияның ықтимал экологиялық тәуекелдерін зертте, бірақ әр тәуекел міндетті түрде зиян келтіреді деп ойлама.',
+      qm: 'Biotehnologiyanı qullanğan vaqıtta ortaya çıqa bilecek ekologik risklerni araştırıñız; her risk mutlâq zarar ketirecek dep faraz etmeñiz.',
     },
   },
 });

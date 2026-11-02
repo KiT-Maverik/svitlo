@@ -32,6 +32,7 @@ export const distinguishAGeneFromATrait_Skill_Data = buildSkillConfig({
     be: 'Адрозьніваць ген ад прыкметы',
     ka: 'გენისა და ნიშან-თვისების განსხვავება',
     kk: 'Генді белгіден ажырату',
+    qm: 'Genni belgiden farqlamaq',
   },
   description: {
     methodological: "Explain that a gene is a segment of hereditary information, while an observable trait results from its activity and environmental influences.",
@@ -55,7 +56,7 @@ export const distinguishAGeneFromATrait_Skill_Data = buildSkillConfig({
       te: 'జన్యువును అది ప్రభావితం చేయగల కనిపించే లక్షణం నుంచి వేరు చేసి గుర్తించండి.',
       mr: 'जनुक आणि त्याचा प्रभाव पडू शकणारा दिसणारा गुणधर्म यांतील फरक ओळखा.',
       ms: 'Bezakan gen daripada sifat yang boleh dilihat dan mungkin dipengaruhinya.',
-      he: 'הבחן בין גן לבין התכונה הנראית לעין שהוא עשוי להשפיע עליה.',
+      he: 'הבחינו בין גן לבין התכונה הנראית לעין שהוא עשוי להשפיע עליה.',
       pl: 'Odróżnij gen od widocznej cechy, na którą może wpływać.',
       uk: 'Розрізняй ген і видиму ознаку, на яку він може впливати.',
       lt: 'Atskirk geną nuo matomo požymio, kuriam jis gali turėti įtakos.',
@@ -64,6 +65,7 @@ export const distinguishAGeneFromATrait_Skill_Data = buildSkillConfig({
       be: 'Адрозьнівай ген ад бачнай прыкметы, на якую ён можа ўплываць.',
       ka: 'განასხვავე გენი იმ ხილული ნიშან-თვისებისგან, რომელზეც მას შეუძლია გავლენის მოხდენა.',
       kk: 'Генді ол әсер етуі мүмкін көрінетін белгіден ажырат.',
+      qm: 'Genni o tesir ete bilgen közge körüngen hususiyetten farq etiñiz.',
     },
   },
 });

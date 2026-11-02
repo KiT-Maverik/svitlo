@@ -7,7 +7,7 @@ export const chooseAppropriateUnit_Skill_Data = buildSkillConfig({
     en: 'Choosing suitable units for length, mass or capacity',
     qm: 'Uzunlıq, kütle ya da sıyımlılıq içün uyğun birlik saylav',
     lt: 'Tinkamų ilgio, masės ar talpos matavimo vienetų pasirinkimas',
-    lv: 'Piemērotu garuma, masas vai tilpuma mērvienību izvēle',
+    lv: 'Piemērotu garuma, masas vai ietilpības mērvienību izvēle',
     et: 'Sobivate pikkuse, massi või mahutavuse ühikute valimine',
     be: 'Выбар прыдатных адзінак даўжыні, масы ці ўмяшчальнасьці',
     ka: 'სიგრძის, მასის ან ტევადობის შესაბამისი ერთეულების შერჩევა',
@@ -66,7 +66,7 @@ export const chooseAppropriateUnit_Skill_Data = buildSkillConfig({
       et: 'Saad valida pikkuse, massi või mahutavuse mõõtmiseks sobiva ühiku vastavalt sellele, mida mõõdad ja kui täpne tulemus peab olema.',
       be: 'Ты можаш выбраць дарэчную адзінку для даўжыні, масы ці ўмяшчальнасьці залежна ад таго, што вымяраеш і наколькі дакладна.',
       ka: 'შეგიძლია აირჩიო სიგრძის, მასის ან ტევადობის შესაფერისი ერთეული იმის მიხედვით, რას ზომავ და რა სიზუსტე გჭირდება.',
-      kk: 'Нені және қаншалықты дәл өлшейтініңе қарай ұзындық, масса не сыйымдылық үшін қолайлы өлшем бірлікті таңдай аласың.',
+      kk: 'Нені және қаншалықты дәл өлшейтініңе қарай ұзындық, масса не сыйымдылық үшін қолайлы өлшем бірлігін таңдай аласың.',
     },
   },
 });

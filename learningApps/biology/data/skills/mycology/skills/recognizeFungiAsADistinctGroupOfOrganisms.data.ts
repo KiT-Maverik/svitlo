@@ -42,7 +42,7 @@ export const recognizeFungiAsADistinctGroupOfOrganisms_Skill_Data = buildSkillCo
       hi: 'कवकों को पोषण पाने के तरीके और शरीर की बनावट के आधार पर पौधों और जंतुओं से अलग पहचानें।',
       es: 'Distingue los hongos de plantas y animales por cómo se alimentan y cómo están constituidos.',
       ar: 'ميّز الفطريات عن النباتات والحيوانات بحسب طريقة تغذيتها وتركيبها.',
-      fr: 'Distinguez les champignons des plantes et des animaux par leur mode de nutrition et leur structure.',
+      fr: 'Distingue les champignons des plantes et des animaux par leur mode de nutrition et leur structure.',
       bn: 'ছত্রাকের খাদ্যগ্রহণ পদ্ধতি ও গঠন দেখে উদ্ভিদ ও প্রাণী থেকে আলাদা করো।',
       pt: 'Distinga os fungos de plantas e animais pela forma de nutrição e pela estrutura.',
       ur: 'غذائیت حاصل کرنے کے طریقے اور جسمانی ساخت سے فطر کو پودوں اور جانوروں سے الگ پہچانیں۔',

@@ -62,7 +62,7 @@ export const by6_Skill_Data = buildSkillConfig({
       pl: 'Aby pomnożyć przez sześć, możesz połączyć pięć równych grup z jeszcze jedną albo skorzystać ze znanych iloczynów.',
       uk: 'Щоб помножити на шість, ти можеш додати ще одну рівну групу до п’яти або використати відомі добутки.',
       lt: 'Norėdamas padauginti iš šešių, gali prie penkių lygių grupių pridėti dar vieną arba pasinaudoti žinomomis sandaugomis.',
-      lv: 'Lai reizinātu ar seši, vari piecām vienādām grupām pievienot vēl vienu vai izmantot zināmus reizinājumus.',
+      lv: 'Lai reizinātu ar 6, vari piecām vienādām grupām pievienot vēl vienu vai izmantot zināmus reizinājumus.',
       et: 'Kuuega korrutamiseks saad viiele võrdsele rühmale ühe lisada või kasutada tuntud korrutisi.',
       be: 'Каб памножыць на шэсьць, можаш дадаць да пяці роўных груп яшчэ адну або выкарыстаць вядомыя здабыткі.',
       ka: 'ექვსზე გასამრავლებლად შეგიძლია ხუთ თანაბარ ჯგუფს კიდევ ერთი დაუმატო ან ნაცნობი ნამრავლები გამოიყენო.',

@@ -16,7 +16,7 @@ export const oneAsFraction_Skill_Data = buildSkillConfig({
     hi: 'एक पूरे को n/n के रूप में दिखाना',
     es: 'Mostrar un entero como n/n',
     ar: 'تمثيل الواحد الصحيح بالكسر n/n',
-    fr: 'Représenter un entier par n/n',
+    fr: 'Représenter le nombre 1 sous la forme n/n',
     bn: 'এক পূর্ণকে n/n দিয়ে দেখানো',
     pt: 'Representar um inteiro como n/n',
     ur: 'ایک مکمل کو n/n کے طور پر دکھانا',

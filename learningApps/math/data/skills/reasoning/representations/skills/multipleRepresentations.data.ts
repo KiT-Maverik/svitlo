@@ -7,7 +7,7 @@ export const multipleRepresentations_Skill_Data = buildSkillConfig({
     en: 'Converting between concrete, diagrammatic, verbal and symbolic representations',
     qm: 'Eşya, diagramma, söz ve işaretler arasındaki tasvirlerni çevirmek',
     lt: 'Perėjimas tarp konkrečių, scheminių, žodinių ir simbolinių vaizdavimo būdų',
-    lv: 'Pāreja starp konkrētiem, diagrammu, vārdiskiem un simboliskiem attēlojumiem',
+    lv: 'Pāreja starp konkrētiem, shematiskiem, vārdiskiem un simboliskiem attēlojumiem',
     et: 'Konkreetse, skeemilise, sõnalise ja sümboolse esituse teisendamine',
     be: 'Пераход паміж прадметным, схематычным, слоўным і сымбалічным прадстаўленьнем',
     ka: 'კონკრეტულ, დიაგრამულ, სიტყვიერ და სიმბოლურ წარმოდგენებს შორის გარდაქმნა',

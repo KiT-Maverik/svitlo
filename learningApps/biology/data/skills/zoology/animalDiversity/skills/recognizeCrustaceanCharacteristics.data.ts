@@ -32,6 +32,7 @@ export const recognizeCrustaceanCharacteristics_Skill_Data = buildSkillConfig({
     be: 'Распазнаваць прыкметы ракападобных',
     ka: 'კიბოსნაირების ნიშნების ამოცნობა',
     kk: 'Шаянтәрізділердің белгілерін тану',
+    qm: 'Krustatseyalarnıñ belgilerini tanımaq',
   },
   description: {
     methodological: "Recognize diverse crustaceans by jointed appendages, antennae, and characteristic structural traits; do not treat ten legs as a universal characteristic of crustaceans.",
@@ -64,6 +65,7 @@ export const recognizeCrustaceanCharacteristics_Skill_Data = buildSkillConfig({
       be: 'Распазнавай разнастайную будову ракападобных, ня думаючы, што ва ўсіх іх дзесяць ног.',
       ka: 'ამოიცანი კიბოსნაირთა მრავალფეროვანი აგებულება და ნუ იფიქრებ, რომ ყველას ათი ფეხი აქვს.',
       kk: 'Барлық шаянтәрізділердің он аяғы болады деп есептемей, олардың алуан түрлі дене құрылысын таны.',
+      qm: 'Krustatseyalarnıñ çeşit beden quruluşlarını tanıñız; episi on ayaqlı dep tüşünmeñiz.',
     },
   },
 });

@@ -58,7 +58,7 @@ export const forward100_Skill_Data = buildSkillConfig({
       te: '100 లోపు ఏ సంఖ్య నుంచైనా ఒక్కొక్కటి ముందుకు లేదా వెనుకకు సాగండి; పదుల సరిహద్దును దాటినా.',
       mr: '१०० पर्यंत कोणत्याही संख्येपासून एकाने पुढे किंवा मागे जा, दहाची सीमा ओलांडतानाही.',
       ms: 'Dari mana-mana nombor hingga 100, bergerak satu ke hadapan atau ke belakang, walaupun melepasi sempadan puluh.',
-      he: 'התקדמו או חזרו באחת מכל מספר עד 100, גם כשעוברים לעשרת אחרת.',
+      he: 'התקדמו או חזרו באחת מכל מספר עד 100, גם במעבר בין עשרות.',
       pl: 'Od dowolnej liczby do 100 przechodź o jeden do przodu lub do tyłu, również przy zmianie dziesiątki.',
       uk: 'Від будь-якого числа в межах 100 переходь до наступного або попереднього на одиницю, навіть через межу десятка.',
       lt: 'Nuo bet kurio skaičiaus iki 100 eik po vieną pirmyn arba atgal, net pereidamas per dešimtį.',

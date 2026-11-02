@@ -65,7 +65,7 @@ export const habitats_SkillGroup_Data = buildSkillGroupConfig({
       te: 'పర్యావరణ పరిస్థితులు జీవుల జీవితాన్ని ఎలా ప్రభావితం చేస్తాయో తెలుసుకోండి.',
       mr: 'पर्यावरणीय परिस्थिती सजीवांच्या जीवनावर कसा परिणाम करतात ते शोधा.',
       ms: 'Ketahui bagaimana keadaan persekitaran mempengaruhi kehidupan organisma.',
-      he: 'גלה כיצד תנאי הסביבה משפיעים על חיי היצורים.',
+      he: 'גלו כיצד תנאי הסביבה משפיעים על חיי היצורים.',
       pl: 'Dowiedz się, jak warunki środowiskowe wpływają na życie organizmów.',
       uk: 'Дізнайся, як умови довкілля впливають на життя організмів.',
       lt: 'Sužinok, kaip aplinkos sąlygos veikia organizmų gyvenimą.',

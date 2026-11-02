@@ -20,7 +20,7 @@ export const money_SkillDomain_Data = buildSkillDomainConfig({
     es: 'Dinero',
     ar: 'النقود',
     fr: 'Argent',
-    bn: 'টাকা',
+    bn: 'অর্থ',
     pt: 'Dinheiro',
     ur: 'رقم',
     id: 'Uang',

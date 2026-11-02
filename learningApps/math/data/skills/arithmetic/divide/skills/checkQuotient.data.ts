@@ -56,7 +56,7 @@ export const checkQuotient_Skill_Data = buildSkillConfig({
       vi: 'Bạn có thể kiểm tra phép chia bằng cách nhân số chia với thương rồi cộng số dư. Số dư phải nhỏ hơn số chia dương.',
       ta: 'வகுப்பானை ஈவால் பெருக்கி மீதியைச் சேர்த்துப் வகுத்தலைச் சரிபார்க்கலாம். மீதி நேர்ம வகுப்பானைவிடச் சிறியதாக இருக்க வேண்டும்.',
       te: 'భాజకాన్ని భాగఫలంతో గుణించి శేషం కలిపి భాగహారాన్ని సరిచూడవచ్చు. శేషం ధన భాజకంకంటే తక్కువగా ఉండాలి.',
-      mr: 'भाजकाला भागाकाराने गुणून शेष मिळवून भाग तपासता येतो. शेष धन भाजकापेक्षा कमी असला पाहिजे.',
+      mr: 'भाजकाला भागाकाराने गुणून शेष जोडून भागाकार तपासता येतो. शेष धन भाजकापेक्षा कमी असला पाहिजे.',
       ms: 'Kamu boleh menyemak pembahagian dengan mendarab pembahagi dengan hasil bahagi kemudian menambah baki. Baki mesti lebih kecil daripada pembahagi positif.',
       he: 'אפשר לבדוק חילוק באמצעות כפל המחלק במנה והוספת השארית. השארית חייבת להיות קטנה מהמחלק החיובי.',
       pl: 'Możesz sprawdzić dzielenie, mnożąc dzielnik przez iloraz i dodając resztę. Reszta musi być mniejsza od dodatniego dzielnika.',

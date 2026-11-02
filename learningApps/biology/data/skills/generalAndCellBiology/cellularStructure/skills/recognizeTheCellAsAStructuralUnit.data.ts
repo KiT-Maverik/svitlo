@@ -32,6 +32,7 @@ export const recognizeTheCellAsAStructuralUnit_Skill_Data = buildSkillConfig({
     be: 'Разумець клетку як структурную адзінку',
     ka: 'უჯრედის, როგორც სტრუქტურული ერთეულის, ამოცნობა',
     kk: 'Жасушаны құрылымдық бірлік ретінде тану',
+    qm: 'Üceyreni esas quruluş birlemi olaraq tanımaq',
   },
   description: {
     methodological: "Understand that the tissues and bodies of cellular organisms consist of microscopic units, each with its own boundary.",
@@ -64,6 +65,7 @@ export const recognizeTheCellAsAStructuralUnit_Skill_Data = buildSkillConfig({
       be: 'Зразумей, чаму клеткі зьяўляюцца асноўнымі структурнымі адзінкамі жывых арганізмаў.',
       ka: 'გაიგე, რატომ არის უჯრედი ცოცხალი ორგანიზმების აგებულების ძირითადი ერთეული.',
       kk: 'Жасушалардың тірі ағзалардың негізгі құрылымдық бірліктері екенін түсін.',
+      qm: 'Üceyreler canlılarnıñ esas quruluş birlemleri olğanını ne içün aytqanımıznı ögreniñiz.',
     },
   },
 });

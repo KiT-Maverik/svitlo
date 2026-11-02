@@ -78,7 +78,7 @@ export const comparison_SkillGroup_Data = buildSkillGroupConfig({
       uk: 'Порівнюй кількості й числа, визначай більше, менше або дорівнює та впорядковуй числа.',
       lt: 'Lygink kiekius ir skaičius, nustatyk, kuris didesnis, mažesnis ar lygus, ir surikiuok juos.',
       lv: 'Salīdzini daudzumus un skaitļus, nosaki lielāku, mazāku vai vienādu un sakārto skaitļus secībā.',
-      et: 'Võrdle hulki ja arve, leia suurem, väiksem või võrdne väärtus ning järjestage arvud.',
+      et: 'Võrdle hulki ja arve, leia suurem, väiksem või võrdne väärtus ning järjesta arvud.',
       be: 'Параўноўвай колькасьці й лікі, вызначай большы, меншы ці роўны і ўпарадкоўвай лікі.',
       ka: 'შეადარე რაოდენობები და რიცხვები, განსაზღვრე მეტი, ნაკლები ან ტოლი და დაალაგე რიცხვები.',
       kk: 'Мөлшер мен сандарды салыстырып, қайсысы үлкен, кіші не тең екенін анықта және ретте.',

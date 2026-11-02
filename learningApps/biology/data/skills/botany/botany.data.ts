@@ -38,6 +38,7 @@ export const botany_SkillDomain_Data = buildSkillDomainConfig({
     be: 'Батаніка',
     ka: 'ბოტანიკა',
     kk: 'Ботаника',
+    qm: 'Botanika',
   },
   groups: {
     nutritionAndGrowth: nutritionAndGrowth_SkillGroup_Data,
@@ -77,6 +78,7 @@ export const botany_SkillDomain_Data = buildSkillDomainConfig({
       be: 'Дасьледуй будову расьлінаў, іхны рост, размнажэньне й рэакцыі на навакольле.',
       ka: 'შეისწავლე მცენარეთა აგებულება, ზრდა, გამრავლება და გარემოზე რეაგირება.',
       kk: 'Өсімдіктердің құрылысын, өсуін, көбеюін және ортаға жауап беруін зертте.',
+      qm: 'Ösümliklerniñ quruluşunı, ösüvini, çoğaluvını ve müitke nasıl cevap bergenini ögreniñiz.',
     },
   },
 });

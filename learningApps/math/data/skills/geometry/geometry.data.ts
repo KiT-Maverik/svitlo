@@ -30,7 +30,7 @@ export const geometry_SkillDomain_Data = buildSkillDomainConfig({
     fr: 'Géométrie',
     bn: 'জ্যামিতি',
     pt: 'Geometria',
-    ur: 'ہندسہ',
+    ur: 'علمِ ہندسہ',
     id: 'Geometri',
     de: 'Geometrie',
     ja: '幾何学',

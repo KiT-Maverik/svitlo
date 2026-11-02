@@ -62,7 +62,7 @@ export const constructInverseProblem_Skill_Data = buildSkillConfig({
       pl: 'Potrafisz ułożyć zadanie odwrotne, zamieniając role danych i szukanej wielkości, ale zachowując pierwotną zależność matematyczną.',
       uk: 'Ти можеш скласти обернену текстову задачу, помінявши місцями відомі й шукані величини, але зберігши початковий математичний зв’язок.',
       lt: 'Gali sudaryti atvirkštinį tekstinį uždavinį, sukeisdamas žinomų ir ieškomų dydžių vaidmenis, bet išsaugodamas pradinį matematinį ryšį.',
-      lv: 'Vari izveidot apgrieztu teksta uzdevumu, samainot zināmos un meklējamos vērtības, bet saglabājot sākotnējo matemātisko sakarību.',
+      lv: 'Vari izveidot apgrieztu teksta uzdevumu, samainot zināmo un meklējamo lielumu lomas, bet saglabājot sākotnējo matemātisko sakarību.',
       et: 'Saad koostada pöördülesande, vahetades teadaolevad ja otsitavad suurused omavahel, kuid säilitades algse matemaatilise seose.',
       be: 'Ты можаш скласьці адваротную тэкставую задачу, памяняўшы ролі вядомых і шуканых велічыняў, але захаваўшы першапачатковую матэматычную сувязь.',
       ka: 'შეგიძლია შეადგინო შებრუნებული ტექსტური ამოცანა, ცნობილი და საძიებელი სიდიდეების როლების გაცვლით, მაგრამ საწყისი მათემატიკური კავშირის შენარჩუნებით.',

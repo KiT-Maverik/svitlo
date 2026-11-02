@@ -62,7 +62,7 @@ export const by2_Skill_Data = buildSkillConfig({
       pl: 'Możesz znaleźć podwójną ilość, dodając ją do niej samej.',
       uk: 'Ти можеш знайти подвійну кількість, додавши її до самої себе.',
       lt: 'Gali rasti dvigubą kiekį pridėdamas jį prie jo paties.',
-      lv: 'Tu vari atrast divkāršu daudzumu, pieskaitot daudzumu tam pašam.',
+      lv: 'Tu vari atrast divkāršu daudzumu, pieskaitot to pašu daudzumu vēlreiz.',
       et: 'Sa saad koguse kahekordistada, liites selle iseendaga.',
       be: 'Ты можаш знайсьці падвойную колькасьць, склаўшы яе з самой сабою.',
       ka: 'შეგიძლია რაოდენობა გააორმაგო, თუ მას თავის თავს მიუმატებ.',

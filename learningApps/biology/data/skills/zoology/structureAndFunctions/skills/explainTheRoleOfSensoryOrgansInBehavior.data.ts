@@ -32,6 +32,7 @@ export const explainTheRoleOfSensoryOrgansInBehavior_Skill_Data = buildSkillConf
     be: 'Тлумачыць ролю органаў пачуцьцяў у паводзінах',
     ka: 'ქცევაში გრძნობის ორგანოების როლის ახსნა',
     kk: 'Мінез-құлықтағы сезім мүшелерінің рөлін түсіндіру',
+    qm: 'Duyğu organlarınıñ davranıştaki rolüni añlatmaq',
   },
   description: {
     methodological: "Connect perception of sounds, smells, light, or vibrations with orientation and finding food.",
@@ -64,6 +65,7 @@ export const explainTheRoleOfSensoryOrgansInBehavior_Skill_Data = buildSkillConf
       be: 'Даведайся, як органы пачуцьцяў дапамагаюць жывёлам знаходзіць ежу й арыентавацца.',
       ka: 'გაიგე, როგორ ეხმარება გრძნობის ორგანოები ცხოველებს საკვების პოვნასა და ორიენტაციაში.',
       kk: 'Сезім мүшелері жануарларға қорек табуға және бағдарлануға қалай көмектесетінін біл.',
+      qm: 'Duyğu organları ayvanlarğa azıq tapmağa ve etrafta yolunı tapmağa nasıl yardım etkenini ögreniñiz.',
     },
   },
 });

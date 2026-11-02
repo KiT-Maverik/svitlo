@@ -16,7 +16,7 @@ export const relateASenseOrganToTheInformationItDetects_Skill_Data = buildSkillC
     id: 'Menghubungkan Organ Indra dengan Informasi yang Dideteksinya',
     de: 'Sinnesorgane den erfassten Informationen zuordnen',
     ja: '感覚器官と検知する情報を結びつける',
-    ko: '감각 기관을 감지하는 정보와 연결하기',
+    ko: '감각 기관과 그 기관이 감지하는 정보 연결하기',
     tr: 'Duyu organını algıladığı bilgiyle ilişkilendirmek',
     vi: 'Liên hệ cơ quan cảm giác với thông tin nó phát hiện',
     ta: 'புலனுறுப்பையும் அது கண்டறியும் தகவலையும் தொடர்புபடுத்துதல்',

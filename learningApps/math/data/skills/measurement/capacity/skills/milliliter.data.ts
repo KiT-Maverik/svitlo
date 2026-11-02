@@ -39,7 +39,7 @@ export const milliliter_Skill_Data = buildSkillConfig({
       'One liter equals 1,000 milliliters. Different numerical unit representations can express the same volume or capacity; conversion must preserve the factor of one thousand.',
     frontend: {
       en: 'You can measure capacity in milliliters and convert between liters and milliliters, knowing that 1 liter equals 1,000 milliliters.',
-      qm: 'Sıyımlılıqnı millilitrlerde ölçep, litrlernen millilitrler arasında çevirüv yapabilirsin. 1 litr 1000 millilitrge teñ.',
+      qm: 'Sıyımlılıqnı millilitrlerde ölçep, litrni millilitrge ve millilitrni litrge çevire bilesiñ. 1 litr = 1000 millilitr.',
       zh: '你能用毫升测量容量，并在升和毫升之间换算，知道1升等于1000毫升。',
       hi: 'आप धारिता मिलीलीटर में माप सकते हैं और लीटर तथा मिलीलीटर में बदल सकते हैं, यह जानते हुए कि 1 लीटर = 1,000 मिलीलीटर।',
       es: 'Puedes medir capacidades en mililitros y convertir entre litros y mililitros, sabiendo que un litro equivale a 1000 mililitros.',
@@ -65,7 +65,7 @@ export const milliliter_Skill_Data = buildSkillConfig({
       lv: 'Vari mērīt ietilpību mililitros un pārvērst litrus mililitros un otrādi, zinot, ka 1 litrs = 1000 mililitru.',
       et: 'Saad mahutavust milliliitrites mõõta ning liitreid milliliitriteks ja tagasi teisendada, teades, et 1 liiter = 1000 milliliitrit.',
       be: 'Ты можаш вымяраць умяшчальнасьць у мілілітрах і пераводзіць літры ў мілілітры й наадварот, ведаючы, што 1 л = 1000 мл.',
-      ka: 'შეგიძლია ტევადობა მილილიტრებში გაზომო და ლიტრები მილილიტრებში გადაიყვანო ან პირიქით, რადგან 1 ლიტრი = 1000 მილილიტრს.',
+      ka: 'შეგიძლია ტევადობა მილილიტრებში გაზომო და ლიტრები მილილიტრებში გადაიყვანო ან პირიქით, რადგან 1 ლიტრი = 1000 მილილიტრი.',
       kk: 'Сыйымдылықты миллилитрмен өлшеп, 1 литр = 1000 миллилитр екенін біліп, литр мен миллилитрді өзара айналдыра аласың.',
     },
   },

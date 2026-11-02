@@ -20,7 +20,7 @@ export const countBy100_Skill_Data = buildSkillConfig({
     bn: '100 করে গণনা',
     pt: 'Contar de 100 em 100',
     ur: '100 100 کے وقفے سے گننا',
-    id: 'Membilang dengan kelipatan 100',
+    id: 'Membilang dengan langkah 100',
     de: 'In 100er-Schritten zählen',
     ja: '100ずつ数える',
     ko: '100씩 건너뛰며 세기',
@@ -40,7 +40,7 @@ export const countBy100_Skill_Data = buildSkillConfig({
     frontend: {
       en: 'Add one hundred at each step while the tens and ones stay the same.',
       qm: 'Er adımda bir yüz qoş, onluqlar ve birlikler ise aynı qalsın.',
-      zh: '每次加100，百位增加，十位和个位保持不变。',
+      zh: '每次加100，整百的个数增加1，十位和个位不变。',
       hi: 'हर कदम पर सौ जोड़ें; दहाइयों और इकाइयों के अंक वही रहते हैं।',
       es: 'Suma cien en cada paso; las decenas y las unidades permanecen iguales.',
       ar: 'أضف مئة في كل خطوة مع بقاء العشرات والآحاد كما هي.',

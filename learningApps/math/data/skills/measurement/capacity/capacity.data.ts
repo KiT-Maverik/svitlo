@@ -9,7 +9,7 @@ export const capacity_SkillGroup_Data = buildSkillGroupConfig({
     en: 'Capacity',
     qm: 'Sıyımlılıq',
     lt: 'Talpa',
-    lv: 'Tilpums',
+    lv: 'Ietilpība',
     et: 'Mahutavus',
     be: 'Умяшчальнасьць',
     ka: 'ტევადობა',

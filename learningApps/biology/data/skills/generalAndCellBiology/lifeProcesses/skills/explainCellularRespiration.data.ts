@@ -32,6 +32,7 @@ export const explainCellularRespiration_Skill_Data = buildSkillConfig({
     be: 'Тлумачыць клетачнае дыханьне',
     ka: 'უჯრედული სუნთქვის ახსნა',
     kk: 'Жасушалық тыныс алуды түсіндіру',
+    qm: 'Üceyrevi teneffüsni añlatmaq',
   },
   description: {
     methodological: "Explain how cells obtain usable energy by breaking down organic compounds while synthesizing ATP. Distinguish aerobic and anaerobic pathways, and do not equate cellular respiration with lung ventilation or gas exchange in respiratory organs.",
@@ -64,6 +65,7 @@ export const explainCellularRespiration_Skill_Data = buildSkillConfig({
       be: 'Даведайся, як клеткі вызваляюць прыдатную да выкарыстаньня энэргію з арганічных рэчываў.',
       ka: 'გაიგე, როგორ გამოათავისუფლებენ უჯრედები გამოსაყენებელ ენერგიას ორგანული ნივთიერებებიდან.',
       kk: 'Жасушалардың органикалық заттардан қолдануға болатын энергияны қалай бөлетінін біл.',
+      qm: 'Üceyreler organik maddelerden qullanılabilir energiyanı nasıl elde etkenini ögreniñiz.',
     },
   },
 });

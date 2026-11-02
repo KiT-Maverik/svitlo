@@ -32,6 +32,7 @@ export const predictEffectsOfChangingConditionsOnPlantGrowth_Skill_Data = buildS
     be: 'Прадказваць уплыў зьмены ўмоваў на рост расьлінаў',
     ka: 'პირობების ცვლილების გავლენის წინასწარმეტყველება',
     kk: 'Өсуге жағдай өзгерісінің әсерін болжау',
+    qm: 'Şartlar deñişkende ösümlikniñ ösüvini ögünden aytmaq',
   },
   description: {
     methodological: "Predict observable changes in growth when light, water, or minerals are insufficient, while accounting for other conditions held constant.",
@@ -64,6 +65,7 @@ export const predictEffectsOfChangingConditionsOnPlantGrowth_Skill_Data = buildS
       be: 'Прадказвай, як зьмены даступных рэсурсаў паўплываюць на рост расьліны.',
       ka: 'ივარაუდე, როგორ იმოქმედებს რესურსების ცვლილება მცენარის ზრდაზე.',
       kk: 'Ресурстар өзгерісі өсімдіктің өсуіне қалай әсер ететінін болжа.',
+      qm: 'Suv, yarıq ve başqa kaynaklar deñişkende ösümlikniñ ösüvine nasıl tesir etecegini tahmin etiñiz.',
     },
   },
 });

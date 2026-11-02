@@ -61,7 +61,7 @@ export const algebra_SkillDomain_Data = buildSkillDomainConfig({
       bn: 'সমীকরণ, রাশি, সংখ্যার বদলে অক্ষর এবং সংখ্যার ধারা কীভাবে সম্পর্ক প্রকাশ করে ও অজানা মান খুঁজতে সাহায্য করে, তা জানো।',
       pt: 'Explore como equações, expressões, letras que representam números e padrões descrevem relações e ajudam a achar valores desconhecidos.',
       ur: 'جانیں کہ مساوات، عبارتیں، اعداد کی جگہ حروف اور عددی نمونے تعلقات کیسے دکھاتے ہیں اور نامعلوم قدریں کیسے معلوم ہوتی ہیں۔',
-      id: 'Jelajahi bagaimana persamaan, bentuk matematika, huruf yang mewakili bilangan, dan pola menggambarkan hubungan serta membantu mencari nilai yang belum diketahui.',
+      id: 'Jelajahi bagaimana persamaan, ekspresi matematika, huruf yang mewakili bilangan, dan pola menggambarkan hubungan serta membantu mencari nilai yang belum diketahui.',
       de: 'Entdecke, wie Gleichungen, Terme, Buchstaben für Zahlen und Muster Beziehungen beschreiben und beim Finden unbekannter Werte helfen.',
       ja: '方程式・式・数を表す文字・数の規則が関係を示し、未知の値を求めるのにどう役立つかを学びます。',
       ko: '방정식, 식, 수를 나타내는 문자와 규칙이 관계를 어떻게 보여 주고 미지의 값을 찾는 데 도움이 되는지 알아봐요.',

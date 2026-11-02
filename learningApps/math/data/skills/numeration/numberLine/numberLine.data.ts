@@ -18,7 +18,7 @@ export const numberLine_SkillGroup_Data = buildSkillGroupConfig({
     et: 'Arvkiir',
     be: 'Лікавая прамая',
     ka: 'რიცხვითი ღერძი',
-    kk: 'Сан сәулесі',
+    kk: 'Сан түзуі',
     zh: '数轴',
     hi: 'संख्या रेखा',
     es: 'Recta numérica',

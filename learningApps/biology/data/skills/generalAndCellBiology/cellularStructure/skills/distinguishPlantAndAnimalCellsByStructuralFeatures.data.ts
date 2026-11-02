@@ -32,6 +32,7 @@ export const distinguishPlantAndAnimalCellsByStructuralFeatures_Skill_Data = bui
     be: 'Адрозьніваць расьлінныя і жывёльныя клеткі паводле будовы',
     ka: 'მცენარეული და ცხოველური უჯრედების სტრუქტურით გარჩევა',
     kk: 'Құрылымына қарай өсімдік және жануар жасушаларын ажырату',
+    qm: 'Ösümlik ve ayvan üceyrelerini quruluşuna köre farqlamaq',
   },
   description: {
     methodological: "Distinguish characteristic cell features: the cell wall and plastids in plant cells and the absence of these structures in animal cells. Do not assume that all plant cells contain chloroplasts (many root cells, for instance, do not). An illustration, a textual description, or an interactive model are alternative ways of assessing the competency, not part of the Skill name.",
@@ -64,6 +65,7 @@ export const distinguishPlantAndAnimalCellsByStructuralFeatures_Skill_Data = bui
       be: 'Распазнавай асноўныя прыкметы расьлінных і жывёльных клетак, не мяркуючы, што ўсе клеткі выглядаюць аднолькава.',
       ka: 'ამოიცანი მცენარეული და ცხოველური უჯრედების ძირითადი ნიშნები ისე, რომ არ ჩათვალო ყველა უჯრედი ერთნაირად.',
       kk: 'Барлық жасуша бірдей көрінеді деп ойламай, өсімдік пен жануар жасушаларының негізгі белгілерін таны.',
+      qm: 'Ösümlik ve ayvan üceyreleriniñ esas belgilerini tanıñız; bütün üceyreler bir türlü körüne dep tüşünmeñiz.',
     },
   },
 });

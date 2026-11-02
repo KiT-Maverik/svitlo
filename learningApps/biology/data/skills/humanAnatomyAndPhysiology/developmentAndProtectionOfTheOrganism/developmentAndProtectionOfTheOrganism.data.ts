@@ -52,7 +52,7 @@ export const developmentAndProtectionOfTheOrganism_SkillGroup_Data = buildSkillG
       ar: 'استكشف كيف يساهم النمو والدفاع المناعي والتعافي في استمرار عمل الجسم.',
       fr: 'Découvrez comment le développement, les défenses immunitaires et la récupération contribuent au fonctionnement du corps.',
       bn: 'বিকাশ, রোগপ্রতিরোধ এবং সুস্থ হয়ে ওঠা কীভাবে দেহকে সচল রাখে, তা জানো।',
-      pt: 'Explore como o desenvolvimento, as defesas imunes e a recuperação mantêm o corpo.',
+      pt: 'Explore como o desenvolvimento, as defesas imunológicas e a recuperação ajudam a manter o funcionamento do corpo.',
       ur: 'جانیں کہ نشوونما، مدافعتی تحفظ اور بحالی جسم کے افعال کیسے برقرار رکھتے ہیں۔',
       id: 'Pelajari bagaimana perkembangan, pertahanan imun, dan pemulihan membantu mempertahankan fungsi tubuh.',
       de: 'Entdecke, wie Entwicklung, Immunabwehr und Erholung die Körperfunktionen erhalten.',

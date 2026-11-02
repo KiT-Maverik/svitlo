@@ -19,7 +19,7 @@ export const distinguishSexualAndAsexualReproduction_Skill_Data = buildSkillConf
     ko: '유성생식과 무성생식 구별하기',
     tr: 'Eşeyli ve eşeysiz üremeyi ayırmak',
     vi: 'Phân biệt sinh sản hữu tính và vô tính',
-    ta: 'பாலின மற்றும் பாலிலி இனப்பெருக்கத்தை வேறுபடுத்துதல்',
+    ta: 'பாலின மற்றும் பாலிலா இனப்பெருக்கத்தை வேறுபடுத்துதல்',
     te: 'లైంగిక, అలైంగిక ప్రజననాన్ని వేరు చేయడం',
     mr: 'लैंगिक आणि अलैंगिक प्रजननात फरक ओळखणे',
     ms: 'Membezakan pembiakan seks dan aseks',
@@ -32,6 +32,7 @@ export const distinguishSexualAndAsexualReproduction_Skill_Data = buildSkillConf
     be: 'Адрозьніваць палавое і бясполае размнажэньне',
     ka: 'სქესობრივი და უსქესო გამრავლების გარჩევა',
     kk: 'Жынысты және жыныссыз көбеюді ажырату',
+    qm: 'Cinsiy ve cinsiy olmağan çoğaluvnı farqlamaq',
   },
   description: {
     methodological: "Distinguish the fusion of sex cells from reproduction without their fusion, regardless of how offspring outwardly appear.",
@@ -55,7 +56,7 @@ export const distinguishSexualAndAsexualReproduction_Skill_Data = buildSkillConf
       te: 'లైంగిక కణాల కలయికతో జరిగే ప్రజననాన్ని, అటువంటి కలయిక లేకుండా జరిగేదాని నుంచి వేరు చేయండి.',
       mr: 'लैंगिक पेशींचे संयोग असलेले प्रजनन आणि असा संयोग नसलेले प्रजनन यांतील फरक ओळखा.',
       ms: 'Bezakan pembiakan dengan percantuman sel seks daripada pembiakan tanpa percantuman itu.',
-      he: 'הבחן בין רבייה הכוללת איחוי תאי מין לבין רבייה ללא איחוי כזה.',
+      he: 'הבחינו בין רבייה הכוללת איחוי תאי מין לבין רבייה ללא איחוי כזה.',
       pl: 'Odróżnij rozmnażanie z połączeniem komórek płciowych od rozmnażania bez ich połączenia.',
       uk: 'Розрізняй розмноження зі злиттям статевих клітин і без такого злиття.',
       lt: 'Atskirk dauginimąsi susiliejant lytinėms ląstelėms nuo dauginimosi be jų susiliejimo.',
@@ -64,6 +65,7 @@ export const distinguishSexualAndAsexualReproduction_Skill_Data = buildSkillConf
       be: 'Адрозьнівай размнажэньне са зьліцьцём палавых клетак ад размнажэньня бязь іх зьліцьця.',
       ka: 'განასხვავე გამრავლება სასქესო უჯრედების შერწყმით და შერწყმის გარეშე.',
       kk: 'Жыныс жасушалары қосылатын және қосылмайтын көбеюді ажырат.',
+      qm: 'Cinsiy üceyrelerniñ birleşüvi ile olğan çoğaluvnı olarnıñ birleşüvi olmadan olğan çoğaluvdan farq etiñiz.',
     },
   },
 });

@@ -55,7 +55,7 @@ export const by3_Skill_Data = buildSkillConfig({
       tr: 'Eşit grupları ve üçle çarpma bilgilerini kullanarak üçe bölebilirsin.',
       vi: 'Bạn có thể chia cho ba bằng các nhóm bằng nhau và bảng nhân ba.',
       ta: 'சமமான குழுக்களையும் மூன்றின் பெருக்கல் உண்மைகளையும் பயன்படுத்தி மூன்றால் வகுக்கலாம்.',
-      te: 'సమాన సమూహాలు, మూడు గుణకార విషయాలతో మూడుతో భాగించవచ్చు.',
+      te: 'సమాన సమూహాలు, మూడు గుణకార పట్టికలోని ఫలితాలతో మూడుతో భాగించవచ్చు.',
       mr: 'समान गट आणि तीनच्या गुणाकाराची माहिती वापरून तीनने भागता येते.',
       ms: 'Kamu boleh membahagi dengan tiga menggunakan kumpulan sama besar dan fakta darab tiga.',
       he: 'אפשר לחלק בשלוש באמצעות קבוצות שוות ועובדות הכפל בשלוש.',

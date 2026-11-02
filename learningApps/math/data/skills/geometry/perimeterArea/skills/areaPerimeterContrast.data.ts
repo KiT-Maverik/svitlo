@@ -52,7 +52,7 @@ export const areaPerimeterContrast_Skill_Data = buildSkillConfig({
       de: 'Baue Figuren mit gleichem Umfang, aber anderer Fläche, oder gleicher Fläche, aber anderem Umfang.',
       ja: '周りの長さが同じで面積が違う図形や、面積が同じで周りの長さが違う図形を作ります。',
       ko: '둘레는 같지만 넓이가 다른 도형이나 넓이는 같지만 둘레가 다른 도형을 만듭니다.',
-      tr: 'Çevresi aynı alanları farklı veya alanları aynı çevreleri farklı şekiller oluştur.',
+      tr: 'Çevreleri aynı ama alanları farklı olan veya alanları aynı ama çevreleri farklı olan şekiller oluştur.',
       vi: 'Tạo các hình cùng chu vi nhưng khác diện tích, hoặc cùng diện tích nhưng khác chu vi.',
       ta: 'சுற்றளவு சமமாயினும் பரப்பளவு மாறும் வடிவங்களையோ, பரப்பளவு சமமாயினும் சுற்றளவு மாறும் வடிவங்களையோ அமை.',
       te: 'చుట్టుకొలత ఒకటై వైశాల్యం వేరు లేదా వైశాల్యం ఒకటై చుట్టుకొలత వేరైన ఆకృతులు తయారు చేయండి.',

@@ -32,6 +32,7 @@ export const explainDifferencesAmongOffspringOfTheSameSpecies_Skill_Data = build
     be: 'Тлумачыць адрозьненьні паміж нашчадкамі аднаго віду',
     ka: 'ერთი სახეობის შთამომავლებს შორის განსხვავებების ახსნა',
     kk: 'Бір түр ұрпақтарының айырмашылығын түсіндіру',
+    qm: 'Bir türniñ balaları arasındaki farqlarnı añlatmaq',
   },
   description: {
     methodological: "Explain why recombination, mutations, and developmental conditions can produce differences among individuals.",
@@ -55,7 +56,7 @@ export const explainDifferencesAmongOffspringOfTheSameSpecies_Skill_Data = build
       te: 'ఒకే జాతి జీవుల్లో వేర్వేరు లక్షణాలు ఎందుకు ఏర్పడవచ్చో వివరించండి.',
       mr: 'एकाच प्रजातीच्या जीवांमध्ये वेगवेगळे गुणधर्म का निर्माण होऊ शकतात ते स्पष्ट करा.',
       ms: 'Terangkan mengapa individu spesies yang sama boleh mempunyai ciri yang berbeza.',
-      he: 'הסבר מדוע פרטים מאותו מין יכולים לפתח תכונות שונות.',
+      he: 'הסבירו מדוע פרטים מאותו מין יכולים לפתח תכונות שונות.',
       pl: 'Wyjaśnij, dlaczego osobniki tego samego gatunku mogą rozwijać różne cechy.',
       uk: 'Пояснюй, чому особини одного виду можуть набувати різних ознак.',
       lt: 'Paaiškink, kodėl tos pačios rūšies individai gali įgyti skirtingų požymių.',
@@ -64,6 +65,7 @@ export const explainDifferencesAmongOffspringOfTheSameSpecies_Skill_Data = build
       be: 'Патлумач, чаму ў асобінаў аднаго віду могуць узьнікаць розныя прыкметы.',
       ka: 'ახსენი, რატომ შეიძლება ერთი სახეობის ინდივიდებს განსხვავებული ნიშნები განუვითარდეთ.',
       kk: 'Бір түрге жататын дараларда неге әртүрлі белгілер қалыптасуы мүмкін екенін түсіндір.',
+      qm: 'Aynı türge ait canlılarnıñ balalarında ne içün farqlı belgiler inkişaf ete bilgenini añlatıñız.',
     },
   },
 });

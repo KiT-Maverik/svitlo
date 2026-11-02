@@ -53,7 +53,7 @@ export const tenthsAsDivision_Skill_Data = buildSkillConfig({
       ja: '十分の一は全体を10等分した一つ分です。全体を10で割ると1/10で、0.1とも書けます。',
       ko: '십분의 일은 전체를 열 등분한 한 부분입니다. 전체를 10으로 나누면 1/10이고 0.1로도 씁니다.',
       tr: "Onda bir, bütünün on eşit parçasından biridir. Bütünü 10'a bölmek 1/10 verir; 0,1 olarak da yazılır.",
-      vi: 'Một phần mười là một trong mười phần bằng nhau của toàn thể. Chia toàn thể cho 10 được 1/10, cũng viết 0,1.',
+      vi: 'Một phần mười là một trong mười phần bằng nhau của một đơn vị. Lấy một đơn vị chia cho 10 được 1/10, cũng viết là 0,1.',
       ta: 'பத்தில் ஒரு பங்கு முழுமையின் பத்து சமப் பகுதிகளில் ஒன்று. முழுமையை 10-ஆல் வகுத்தால் 1/10 கிடைக்கும்; அதை 0.1 என்றும் எழுதலாம்.',
       te: 'పదవ వంతు అంటే మొత్తం పది సమాన భాగాల్లో ఒకటి. మొత్తాన్ని 10తో భాగిస్తే 1/10 వస్తుంది, దాన్ని 0.1గా కూడా రాస్తారు.',
       mr: 'एक दशांश म्हणजे पूर्णाच्या दहा समान भागांपैकी एक. पूर्णाला 10 ने भागल्यास 1/10 मिळतो; तो 0.1 असाही लिहिता येतो.',

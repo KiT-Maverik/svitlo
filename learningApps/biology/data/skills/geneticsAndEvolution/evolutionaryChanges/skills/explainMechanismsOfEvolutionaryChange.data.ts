@@ -32,6 +32,7 @@ export const explainMechanismsOfEvolutionaryChange_Skill_Data = buildSkillConfig
     be: 'Тлумачыць мэханізмы эвалюцыйных зьменаў',
     ka: 'ევოლუციური ცვლილებების მექანიზმების ახსნა',
     kk: 'Эволюциялық өзгеріс механизмдерін түсіндіру',
+    qm: 'Evolütsion deñişüv mehanizmlerini añlatmaq',
   },
   description: {
     methodological: "Distinguish mutation, natural selection, genetic drift, and gene flow as processes that alter the inherited composition of populations; explain their distinct roles and potential combined action without reducing all evolutionary change to selection.",
@@ -55,7 +56,7 @@ export const explainMechanismsOfEvolutionaryChange_Skill_Data = buildSkillConfig
       te: 'ఉత్పరివర్తనం, సహజ ఎంపిక, జన్యు చలనం, జన్యు ప్రవాహం పరిణామానికి కారణాలుగా ఎలా పనిచేస్తాయో పోల్చండి.',
       mr: 'उत्परिवर्तन, नैसर्गिक निवड, आनुवंशिक अपवाह आणि जनुक प्रवाह यांची उत्क्रांती घडवणाऱ्या प्रक्रिया म्हणून तुलना करा.',
       ms: 'Bandingkan mutasi, pemilihan semula jadi, hanyutan genetik dan aliran gen sebagai punca evolusi.',
-      he: 'השווה מוטציות, ברירה טבעית, סחף גנטי וזרימת גנים כגורמים לאבולוציה.',
+      he: 'השוו מוטציות, ברירה טבעית, סחף גנטי וזרימת גנים כגורמים לאבולוציה.',
       pl: 'Porównaj mutacje, dobór naturalny, dryf genetyczny i przepływ genów jako przyczyny ewolucji.',
       uk: 'Порівнюй мутації, природний добір, генетичний дрейф і потік генів як причини еволюції.',
       lt: 'Palygink mutacijas, gamtinę atranką, genetinį dreifą ir genų srautą kaip evoliucijos priežastis.',
@@ -64,6 +65,7 @@ export const explainMechanismsOfEvolutionaryChange_Skill_Data = buildSkillConfig
       be: 'Параўнай мутацыі, натуральны адбор, генэтычны дрэйф і паток генаў як прычыны эвалюцыі.',
       ka: 'შეადარე მუტაცია, ბუნებრივი გადარჩევა, გენეტიკური დრიფტი და გენთა ნაკადი, როგორც ევოლუციის გამომწვევი პროცესები.',
       kk: 'Мутацияны, табиғи сұрыпталуды, генетикалық дрейфті және ген ағынын эволюцияның себептері ретінде салыстыр.',
+      qm: 'Mutatsiya, tabiiy saylav, genetik drift ve gen aqımını evolütsion deñişüvniñ farqlı sebepleri olaraq teñeştiriñiz.',
     },
   },
 });

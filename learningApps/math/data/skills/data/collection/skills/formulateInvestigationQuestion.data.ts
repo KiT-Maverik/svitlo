@@ -44,7 +44,7 @@ export const formulateInvestigationQuestion_Skill_Data = buildSkillConfig({
       hi: 'आप ऐसा प्रश्न पूछ सकते हैं जिसका उत्तर अलग-अलग अवलोकनों या लोगों से डेटा इकट्ठा करके मिले, क्योंकि उत्तर भिन्न हो सकते हैं।',
       es: 'Puedes plantear una pregunta que requiera reunir datos de varias observaciones o personas porque las respuestas pueden variar.',
       ar: 'يمكنك طرح سؤال يحتاج إلى جمع بيانات من عدة مشاهدات أو أشخاص لأن الإجابات قد تختلف.',
-      fr: 'Tu peux poser une question qui nécessite de recueillir des données auprès de plusieurs personnes ou observations, car les réponses peuvent varier.',
+      fr: 'Tu peux poser une question qui nécessite de recueillir des données à partir de plusieurs observations ou de réponses de plusieurs personnes, car les réponses peuvent varier.',
       bn: 'তুমি এমন প্রশ্ন করতে পারো যার উত্তর পেতে একাধিক পর্যবেক্ষণ বা মানুষের কাছ থেকে তথ্য নিতে হয়, কারণ উত্তরগুলো ভিন্ন হতে পারে।',
       pt: 'Você consegue fazer uma pergunta que exige coletar dados de várias observações ou pessoas, pois as respostas podem variar.',
       ur: 'آپ ایسا سوال بنا سکتے ہیں جس کے جواب کے لیے کئی مشاہدات یا لوگوں سے معلومات جمع کرنا ضروری ہو، کیونکہ جوابات مختلف ہو سکتے ہیں۔',

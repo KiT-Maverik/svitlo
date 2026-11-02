@@ -8,7 +8,7 @@ export const readTemperature_Skill_Data = buildSkillConfig({
     qm: 'Termometrde sıfırdan aşağı olmağan sıcaqlıqlarnı oqumaq',
     lt: 'Teigiamos ir nulinės temperatūros skaitymas termometre',
     lv: 'Nenegatīvu temperatūru nolasīšana termometrā',
-    et: 'Mitte-negatiivsete temperatuuride lugemine termomeetrilt',
+    et: 'Nulli ja positiivsete temperatuuride lugemine termomeetrilt',
     be: 'Чытаньне неадмоўных тэмпэратураў на тэрмомэтры',
     ka: 'არაუარყოფითი ტემპერატურის თერმომეტრზე წაკითხვა',
     kk: 'Термометрден теріс емес температураларды оқу',

@@ -32,6 +32,7 @@ export const recognizeMammalCharacteristics_Skill_Data = buildSkillConfig({
     be: 'Распазнаваць прыкметы сысуноў',
     ka: 'ძუძუმწოვრების ნიშნების ამოცნობა',
     kk: 'Сүтқоректілердің белгілерін тану',
+    qm: 'Süt emizici ayvanlarnıñ belgilerini tanımaq',
   },
   description: {
     methodological: "Identify members by mammary glands and characteristic body coverings without assuming that every mammal gives birth to live young.",
@@ -64,6 +65,7 @@ export const recognizeMammalCharacteristics_Skill_Data = buildSkillConfig({
       be: 'Вызначай сысуноў паводле галоўных прыкметаў, ня думаючы, што ўсе яны нараджаюць жывых дзіцянятаў.',
       ka: 'ამოიცანი ძუძუმწოვრები მათი განმსაზღვრელი ნიშნებით და ნუ იფიქრებ, რომ ყველა ცოცხალ ნაშიერს შობს.',
       kk: 'Барлық сүтқоректілер тірі төл туады деп ойламай, оларды айқындайтын белгілері арқылы таны.',
+      qm: 'Süt emizici ayvanlarnı olarnıñ esas belgilerine köre tanıñız; episi canlı bala doğura dep tüşünmeñiz.',
     },
   },
 });

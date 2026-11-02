@@ -45,7 +45,7 @@ export const nonstandardLength_Skill_Data = buildSkillConfig({
       es: 'Puedes medir longitudes colocando unidades idénticas una tras otra sin huecos ni solapamientos, sabiendo que el número cambia si cambia la unidad.',
       ar: 'يمكنك قياس الطول بوضع وحدات متطابقة متتابعة بلا فراغات أو تداخل، مع فهم أن تغيير حجم الوحدة يغير العدد.',
       fr: "Tu peux mesurer une longueur en plaçant des unités identiques bout à bout sans trou ni chevauchement, et comprendre que le nombre dépend de l'unité.",
-      bn: 'তুমি একই মাপের এককগুলো ফাঁক বা ওভারল্যাপ ছাড়া পরপর বসিয়ে দৈর্ঘ্য মাপতে পারো এবং এককের আকার বদলালে সংখ্যা বদলায় তা বুঝতে পারো।',
+      bn: 'তুমি একই মাপের এককগুলো ফাঁক না রেখে বা একটির ওপর আরেকটি না বসিয়ে পরপর বসিয়ে দৈর্ঘ্য মাপতে পারো এবং এককের আকার বদলালে সংখ্যা বদলায় তা বুঝতে পারো।',
       pt: 'Você consegue medir comprimentos colocando unidades iguais em sequência sem espaços nem sobreposição, sabendo que a contagem depende do tamanho da unidade.',
       ur: 'آپ یکساں اکائیاں بغیر خلا یا ایک دوسرے پر چڑھائے مسلسل رکھ کر لمبائی ناپ سکتے ہیں اور سمجھ سکتے ہیں کہ اکائی بدلنے سے تعداد بدلتی ہے۔',
       id: 'Kamu bisa mengukur panjang dengan menata satuan tak baku yang sama tanpa celah atau tumpang tindih dan memahami bahwa jumlahnya berubah jika ukuran satuan berubah.',
@@ -66,7 +66,7 @@ export const nonstandardLength_Skill_Data = buildSkillConfig({
       et: 'Saad pikkust mõõta võrdseid mõõtühikuid järjest ilma vahede ja kattumisteta asetades ning mõista, miks ühiku suurus muudab ühikute arvu.',
       be: 'Ты можаш вымяраць даўжыню аднолькавымі меркамі, укладаючы іх бяз прамежкаў і накладаньняў, ды разумець, чаму колькасьць залежыць ад памеру меркі.',
       ka: 'შეგიძლია სიგრძე გაზომო ერთნაირი საზომების ზედიზედ, დაშორებისა და გადაფარვის გარეშე დალაგებით და გაიგო, რატომ იცვლება რაოდენობა საზომის ზომის შეცვლისას.',
-      kk: 'Бірдей өлшемдерді арасына саңылау қалдырмай, қабаттастырмай тізіп ұзындықты өлшеп, бірлік көлемі өзгерсе саны да өзгеретінін түсіне аласың.',
+      kk: 'Ұзындығы бірдей өлшеу бірліктерін саңылаусыз және қабаттастырмай тізіп, ұзындықты өлшей аласың; бірліктің ұзындығы өзгерсе, олардың саны да өзгеретінін түсінесің.',
     },
   },
 });

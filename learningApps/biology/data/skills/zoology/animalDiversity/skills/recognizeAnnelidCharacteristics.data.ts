@@ -32,6 +32,7 @@ export const recognizeAnnelidCharacteristics_Skill_Data = buildSkillConfig({
     be: 'Распазнаваць прыкметы кольчатых чарвякоў',
     ka: 'რგოლოვანი ჭიების ნიშნების ამოცნობა',
     kk: 'Буылтық құрттардың белгілерін тану',
+    qm: 'Alqalı qurtlarnıñ belgilerini tanımaq',
   },
   description: {
     methodological: "Recognize the segmented body of annelids and distinguish them from nematodes and flatworms, even where all these animals have similarly elongated bodies.",
@@ -64,6 +65,7 @@ export const recognizeAnnelidCharacteristics_Skill_Data = buildSkillConfig({
       be: 'Распазнавай чарвякоў з сэгмэнтаваным целам і адрозьнівай іх ад іншых чарвякападобных жывёлаў.',
       ka: 'ამოიცანი სეგმენტირებული სხეულის მქონე ჭიები და განასხვავე სხვა ჭიისებრი ცხოველებისგან.',
       kk: 'Денесі буылтықтарға бөлінген құрттарды танып, оларды басқа құрттәрізді жануарлардан ажырат.',
+      qm: 'Bedeni parçalarğa bölüngen alqalı qurtlarnı tanıp, olarnı başqa qurt şeklindeki ayvanlardan farq etiñiz.',
     },
   },
 });

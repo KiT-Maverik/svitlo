@@ -20,7 +20,7 @@ export const countBy10_Skill_Data = buildSkillConfig({
     bn: '10 করে গণনা',
     pt: 'Contar de 10 em 10',
     ur: '10 10 کے وقفے سے گننا',
-    id: 'Membilang dengan kelipatan 10',
+    id: 'Membilang dengan langkah 10',
     de: 'In 10er-Schritten zählen',
     ja: '10ずつ数える',
     ko: '10씩 건너뛰며 세기',

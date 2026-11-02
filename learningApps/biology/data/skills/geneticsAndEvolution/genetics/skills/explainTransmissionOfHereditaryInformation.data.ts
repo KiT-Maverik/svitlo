@@ -21,7 +21,7 @@ export const explainTransmissionOfHereditaryInformation_Skill_Data = buildSkillC
     vi: 'Giải thích sự truyền thông tin di truyền',
     ta: 'மரபுத் தகவல் கடத்தப்படுவதை விளக்குதல்',
     te: 'వారసత్వ సమాచార ప్రసారాన్ని వివరించడం',
-    mr: 'आनुवंशिक माहितीचे संक्रमण स्पष्ट करणे',
+    mr: 'आनुवंशिक माहितीचे हस्तांतरण स्पष्ट करणे',
     ms: 'Menerangkan pemindahan maklumat keturunan',
     he: 'הסבר על העברת מידע תורשתי',
     pl: 'Wyjaśnianie przekazywania informacji dziedzicznej',
@@ -32,6 +32,7 @@ export const explainTransmissionOfHereditaryInformation_Skill_Data = buildSkillC
     be: 'Тлумачыць перадачу спадчыннай інфармацыі',
     ka: 'მემკვიდრეობითი ინფორმაციის გადაცემის ახსნა',
     kk: 'Тұқымқуалаушылық ақпараттың берілуін түсіндіру',
+    qm: 'İrsiy malümatnıñ berilüvini añlatmaq',
   },
   description: {
     methodological: "Explain how DNA is copied and distributed during cell division and passed between generations through sex cells or asexual reproduction. Distinguish transmission of molecular information from its expression in observable traits.",
@@ -55,7 +56,7 @@ export const explainTransmissionOfHereditaryInformation_Skill_Data = buildSkillC
       te: 'వారసత్వ సమాచారం ఎలా ప్రతిరూపించబడి తదుపరి తరాలకు అందుతుందో అర్థం చేసుకోండి.',
       mr: 'आनुवंशिक माहितीची प्रत कशी तयार होते आणि पुढे कशी दिली जाते ते समजून घ्या.',
       ms: 'Fahami bagaimana maklumat keturunan disalin dan diturunkan.',
-      he: 'הבן כיצד מידע תורשתי מועתק ומועבר הלאה.',
+      he: 'הבינו כיצד מידע תורשתי מועתק ומועבר הלאה.',
       pl: 'Zrozum, jak informacja dziedziczna jest kopiowana i przekazywana dalej.',
       uk: 'Зрозумій, як спадкова інформація копіюється та передається далі.',
       lt: 'Suprask, kaip paveldima informacija kopijuojama ir perduodama.',
@@ -64,6 +65,7 @@ export const explainTransmissionOfHereditaryInformation_Skill_Data = buildSkillC
       be: 'Зразумей, як спадчынная інфармацыя капіюецца і перадаецца далей.',
       ka: 'გაიგე, როგორ კოპირდება და გადაეცემა მემკვიდრეობითი ინფორმაცია.',
       kk: 'Тұқымқуалаушылық ақпарат қалай көшіріліп, кейін берілетінін түсін.',
+      qm: 'İrsiy malümatnıñ nusqası nasıl yapılğanını ve soñra nesillerge nasıl berilgenini ögreniñiz.',
     },
   },
 });

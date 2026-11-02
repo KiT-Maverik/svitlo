@@ -23,7 +23,7 @@ export const findUnitPart_Skill_Data = buildSkillConfig({
     id: 'Menentukan 1/n suatu besaran dengan pembagian',
     de: 'Ein n-tel einer Größe durch Division bestimmen',
     ja: '割り算で量の1/nを求める',
-    ko: '나눗셈으로 양의 1/n 구하기',
+    ko: '나눗셈으로 수량의 1/n 구하기',
     tr: "Bölme ile bir çokluğun 1/n'ini bulma",
     vi: 'Tìm 1/n của một đại lượng bằng phép chia',
     ta: 'வகுத்து ஓர் அளவின் 1/n பகுதியைக் காணுதல்',

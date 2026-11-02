@@ -58,7 +58,7 @@ export const regrouping_Skill_Data = buildSkillConfig({
       te: 'తీసివేతలో ఒక స్థానంలో సరిపడా అంకెల విలువ లేకపోతే, ఒక పదిని పది ఒకట్లుగా లేదా ఒక వందను పది పదులుగా మార్చగలవు.',
       mr: 'वजाबाकी करताना एखाद्या स्थानावर पुरेशी किंमत नसेल, तर एक दशक दहा एककांत किंवा एक शतक दहा दशकांत बदलू शकतोस.',
       ms: 'Semasa menolak, jika sesuatu nilai tempat tidak mencukupi, kamu boleh menukar satu puluh kepada sepuluh sa atau satu ratus kepada sepuluh puluh.',
-      he: 'אפשר לחסר מספרים באמצעות המרה של עשרת אחת לעשר יחידות או מאה אחת לעשר עשרות, כשאין מספיק יחידות באחד מערכי המקום.',
+      he: 'אפשר לחסר מספרים באמצעות המרה של עשרייה אחת בעשר יחידות או מאה אחת בעשר עשרות, כשאין מספיק יחידות באחד מערכי המקום.',
       pl: 'Potrafisz odejmować, zamieniając jedną dziesiątkę na dziesięć jedności lub jedną setkę na dziesięć dziesiątek, gdy w danym rzędzie brakuje jednostek.',
       uk: 'Ти можеш віднімати числа, за потреби розмінюючи один десяток на десять одиниць або одну сотню на десять десятків.',
       lt: 'Gali atimti skaičius, kai tam tikroje skiltyje nepakanka vienetų, pakeisdamas vieną dešimtį dešimčia vienetų arba vieną šimtą dešimčia dešimčių.',

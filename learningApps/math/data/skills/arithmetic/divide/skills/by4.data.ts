@@ -55,7 +55,7 @@ export const by4_Skill_Data = buildSkillConfig({
       tr: 'Eşit gruplar veya dörtle çarpma bilgileriyle dörde bölebilir, bazen iki kez yarıya indirebilirsin.',
       vi: 'Bạn có thể chia cho bốn bằng các nhóm bằng nhau hoặc bảng nhân bốn, đôi khi bằng cách chia đôi hai lần.',
       ta: 'சமமான குழுக்கள் அல்லது நான்கின் பெருக்கல் உண்மைகள் மூலம் நான்கால் வகுக்கலாம்; சில நேரங்களில் இருமுறை பாதியாகப் பிரிக்கலாம்.',
-      te: 'సమాన సమూహాలు లేదా నాలుగు గుణకార విషయాలతో నాలుగుతో భాగించవచ్చు; కొన్నిసార్లు రెండుసార్లు సగం చేయవచ్చు.',
+      te: 'సమాన సమూహాలు లేదా నాలుగు గుణకార పట్టికలోని ఫలితాలతో నాలుగుతో భాగించవచ్చు; కొన్నిసార్లు రెండుసార్లు సగం చేయవచ్చు.',
       mr: 'समान गट किंवा चारच्या गुणाकाराचे तथ्य वापरून चारने भागता येते; कधीकधी दोनदा अर्धे करूनही.',
       ms: 'Kamu boleh membahagi dengan empat menggunakan kumpulan sama besar atau fakta darab empat, kadangkala dengan membahagi dua sebanyak dua kali.',
       he: 'אפשר לחלק בארבע באמצעות קבוצות שוות או עובדות הכפל בארבע, ולעיתים על ידי חצייה פעמיים.',

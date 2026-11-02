@@ -32,6 +32,7 @@ export const classifyAnimalsByDiet_Skill_Data = buildSkillConfig({
     be: 'Клясыфікаваць жывёлаў паводле рацыёну',
     ka: 'ცხოველების კვების მიხედვით კლასიფიცირება',
     kk: 'Жануарларды қоректенуіне қарай жіктеу',
+    qm: 'Ayvanlarnı aşayğan azığına köre sınıflandırmaq',
   },
   description: {
     methodological: "Classify examples as herbivores, carnivores, or omnivores according to actual diets rather than animal names.",
@@ -64,6 +65,7 @@ export const classifyAnimalsByDiet_Skill_Data = buildSkillConfig({
       be: 'Клясыфікуй жывёлаў паводле таго, чым яны насамрэч харчуюцца.',
       ka: 'დააჯგუფე ცხოველები იმის მიხედვით, თუ რას ჭამენ სინამდვილეში.',
       kk: 'Жануарларды шын мәнінде жейтін қорегіне қарай жікте.',
+      qm: 'Ayvanlarnı kerçekten ne aşayğanına köre gruplarğa ayırıñız.',
     },
   },
 });

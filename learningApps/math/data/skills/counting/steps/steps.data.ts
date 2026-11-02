@@ -18,7 +18,7 @@ export const steps_SkillGroup_Data = buildSkillGroupConfig({
     hi: 'अंतराल से गिनती',
     es: 'Conteo por intervalos',
     ar: 'العد بالقفزات',
-    fr: 'Comptage par intervalles',
+    fr: 'Comptage de n en n',
     bn: 'লাফিয়ে গণনা',
     pt: 'Contagem por intervalos',
     ur: 'وقفوں سے گنتی',

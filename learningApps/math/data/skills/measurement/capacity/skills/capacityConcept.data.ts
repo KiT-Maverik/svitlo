@@ -7,7 +7,7 @@ export const capacityConcept_Skill_Data = buildSkillConfig({
     en: 'Comparing container capacities by pouring or measuring',
     qm: 'Aqıtıp ya da ölçüp idişlerniñ sıyımlılığını qıyaslav',
     lt: 'Indų talpos palyginimas pilstant ar matuojant',
-    lv: 'Trauku tilpuma salīdzināšana, pārlejot vai mērot',
+    lv: 'Trauku ietilpības salīdzināšana, pārlejot vai mērot',
     et: 'Anumate mahutavuse võrdlemine valamise või mõõtmise abil',
     be: 'Параўнаньне ўмяшчальнасьці пасудзінаў пераліваньнем ці вымярэньнем',
     ka: 'ჭურჭლის ტევადობის შედარება გადასხმით ან გაზომვით',

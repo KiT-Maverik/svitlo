@@ -32,6 +32,7 @@ export const recognizeCompetition_Skill_Data = buildSkillConfig({
     be: 'Распазнаваць канкурэнцыю',
     ka: 'კონკურენციის ამოცნობა',
     kk: 'Бәсекелестікті тану',
+    qm: 'Yarışuvnı tanımaq',
   },
   description: {
     methodological: "Recognize situations in which limited food, light, or territory reduces resource availability to others.",
@@ -55,7 +56,7 @@ export const recognizeCompetition_Skill_Data = buildSkillConfig({
       te: 'పరిమిత వనరుల కోసం జీవులు పోటీపడే ఉదాహరణలను గుర్తించండి.',
       mr: 'मर्यादित संसाधनांसाठी स्पर्धा करणाऱ्या सजीवांची उदाहरणे ओळखा.',
       ms: 'Kenal pasti contoh organisma yang bersaing untuk sumber terhad.',
-      he: 'זהה דוגמאות ליצורים שמתחרים על משאבים מוגבלים.',
+      he: 'זהו דוגמאות ליצורים שמתחרים על משאבים מוגבלים.',
       pl: 'Rozpoznaj przykłady organizmów konkurujących o ograniczone zasoby.',
       uk: 'Знаходь приклади конкуренції організмів за обмежені ресурси.',
       lt: 'Atpažink pavyzdžius, kai organizmai konkuruoja dėl ribotų išteklių.',
@@ -64,6 +65,7 @@ export const recognizeCompetition_Skill_Data = buildSkillConfig({
       be: 'Знаходзь прыклады канкурэнцыі арганізмаў за абмежаваныя рэсурсы.',
       ka: 'ამოიცანი მაგალითები, როდესაც ორგანიზმები შეზღუდული რესურსებისთვის კონკურირებენ.',
       kk: 'Ағзалардың шектеулі ресурстар үшін бәсекелесу мысалдарын анықта.',
+      qm: 'Çekli kaynaklar içün yarışqan canlılarğa misaller tapıñız.',
     },
   },
 });

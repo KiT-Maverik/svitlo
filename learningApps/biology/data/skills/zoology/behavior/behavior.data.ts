@@ -34,6 +34,7 @@ export const behavior_SkillGroup_Data = buildSkillGroupConfig({
     be: 'Паводзіны жывёлаў',
     ka: 'ცხოველთა ქცევა',
     kk: 'Жануарлардың мінез-құлқы',
+    qm: 'Ayvanlarnıñ areketleri ve davranışı',
   },
   skills: {
     explainBenefitsOfGroupBehavior: explainBenefitsOfGroupBehavior_Skill_Data,
@@ -71,6 +72,7 @@ export const behavior_SkillGroup_Data = buildSkillGroupConfig({
       be: 'Дасьледуй, як паводзіны жывёлаў дапамагаюць мець зносіны, абараняцца і жыць у групах.',
       ka: 'გაიგე, როგორ ეხმარება ცხოველებს ქცევა ურთიერთობაში, თავდაცვასა და ჯგუფურ ცხოვრებაში.',
       kk: 'Жануарлардың мінез-құлқы қарым-қатынасқа, қорғануға және топ болып өмір сүруге қалай көмектесетінін біл.',
+      qm: 'Ayvanlarnıñ davranışı alâqa qurmağa, qorçalanuvğa ve topar olıp yaşamağa nasıl yardım etkenini ögreniñiz.',
     },
   },
 });

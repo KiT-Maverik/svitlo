@@ -32,7 +32,7 @@ export const partWholeAddsub_Skill_Data = buildSkillConfig({
     ms: 'Menyelesaikan masalah bahagian dan keseluruhan',
     he: 'פתרון בעיות חלק ושלם',
     pl: 'Rozwiązywanie zadań o części i całości',
-    uk: 'Розв’язувати задачі на ціле й частини',
+    uk: 'Розв’язування задач на ціле й частини',
   },
   description: {
     methodological:

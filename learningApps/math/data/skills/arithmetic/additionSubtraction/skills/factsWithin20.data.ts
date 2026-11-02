@@ -9,7 +9,7 @@ export const factsWithin20_Skill_Data = buildSkillConfig({
     et: 'Liitmine ja lahutamine — arvufaktid 20 piires',
     be: 'Складаньне й адніманьне — таблічныя вылічэньні да 20',
     ka: 'შეკრება და გამოკლება — გამოთვლები 20-ის ფარგლებში',
-    kk: 'Қосу және азайту — 20-ға дейінгі есептеу деректері',
+    kk: 'Қосу және азайту — 20 көлеміндегі негізгі амалдар',
     en: 'Addition and subtraction — Number facts ≤ 20',
     qm: 'Qoşuv ve çıqaruv — 20 içinde esaplav',
     zh: '加减法 — 基本算式 ≤ 20',
