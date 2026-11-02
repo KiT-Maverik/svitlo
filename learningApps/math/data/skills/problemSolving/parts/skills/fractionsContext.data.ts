@@ -4,9 +4,9 @@ export const fractionsContext_Skill_Data = buildSkillConfig({
   slug: 'fractionsContext',
   id: '44334f70-1eba-4175-8396-dfe9a735b9d2',
   name: {
-    lt: 'Vienetinės trupmenos dalies radimas',
+    lt: 'Vienetinės dalies radimas iš dydžio',
     lv: 'Vienības daļas atrašana no lieluma',
-    et: 'Ühikmurru osa leidmine hulgast',
+    et: 'Suuruse ühikmurdosa leidmine',
     be: 'Знаходжаньне адзінкавай долі колькасьці',
     ka: 'რაოდენობის ერთეული წილადის პოვნა',
     kk: 'Шаманың бірлік бөлшегін табу',

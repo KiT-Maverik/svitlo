@@ -23,7 +23,7 @@ export const multiplicativeComparison_Skill_Data = buildSkillConfig({
     id: 'Menyelesaikan perbandingan perkalian',
     de: 'Multiplikative Vergleichsaufgaben lösen',
     ja: '倍による比較問題を解く',
-    ko: '곱셈 비교 문제 풀기',
+    ko: '몇 배인지 비교하는 문제 풀기',
     tr: 'Çarpımsal karşılaştırma problemlerini çözme',
     vi: 'Giải bài toán so sánh theo số lần',
     ta: 'பெருக்கல் ஒப்பீட்டுக் கணக்கைத் தீர்த்தல்',

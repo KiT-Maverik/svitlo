@@ -20,7 +20,7 @@ export const circleDisk_Skill_Data = buildSkillConfig({
     bn: 'বৃত্তরেখা ও বৃত্তাকার ক্ষেত্রের পার্থক্য',
     pt: 'Distinguir circunferência e círculo',
     ur: 'دائرے کی حد اور گول سطح میں فرق',
-    id: 'Membedakan keliling lingkaran dan daerah lingkaran',
+    id: 'Membedakan garis lingkaran dan daerah lingkaran',
     de: 'Kreislinie und Kreisfläche unterscheiden',
     ja: '円周と円の内部を区別する',
     ko: '원둘레와 원판 구별하기',

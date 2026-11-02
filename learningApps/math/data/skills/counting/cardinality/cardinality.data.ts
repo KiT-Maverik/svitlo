@@ -18,7 +18,7 @@ export const cardinality_SkillGroup_Data = buildSkillGroupConfig({
     et: 'Hulga suuruse määramine',
     be: 'Вызначэньне колькасьці',
     ka: 'რაოდენობის განსაზღვრა',
-    kk: 'Санды анықтау',
+    kk: 'Заттардың санын анықтау',
     zh: '基数与数量',
     hi: 'वस्तुओं की संख्या',
     es: 'Cardinalidad',

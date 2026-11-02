@@ -7,7 +7,7 @@ export const wordProblemsMeasures_Skill_Data = buildSkillConfig({
     en: 'Solving measurement word problems with compatible units',
     qm: 'Uyğun birliklernen ölçüv meselelerini çezmek',
     lt: 'Matavimo tekstinių uždavinių sprendimas suderinamais vienetais',
-    lv: 'Mērvienību teksta uzdevumu risināšana ar saderīgām vienībām',
+    lv: 'Mērījumu teksta uzdevumu risināšana ar saderīgām mērvienībām',
     et: 'Mõõtmise tekstülesannete lahendamine sobivate ühikutega',
     be: 'Рашэньне тэкставых задачаў з вымярэньнямі ў сумяшчальных адзінках',
     ka: 'გაზომვებზე ტექსტური ამოცანების ამოხსნა თავსებადი ერთეულებით',

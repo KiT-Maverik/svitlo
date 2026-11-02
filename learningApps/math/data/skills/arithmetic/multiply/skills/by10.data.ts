@@ -53,7 +53,7 @@ export const by10_Skill_Data = buildSkillConfig({
       ja: '位のしくみを使って10倍できます。それぞれの位の値が10倍になります。',
       ko: '자릿값을 이용해 10을 곱할 수 있어요. 각 자리의 값이 열 배가 돼요.',
       tr: 'Basamak değerini kullanarak onla çarpabilirsin: her basamağın değeri on katına çıkar.',
-      vi: 'Bạn có thể nhân với mười dựa vào giá trị hàng: giá trị của mỗi hàng tăng gấp mười lần.',
+      vi: 'Bạn có thể nhân một số với mười nhờ giá trị theo hàng: giá trị của mỗi chữ số tăng gấp mười lần khi chuyển sang hàng cao hơn.',
       ta: 'இடமதிப்பைப் பயன்படுத்திப் பத்தால் பெருக்கலாம்; ஒவ்வோர் இடத்தின் மதிப்பும் பத்து மடங்காகும்.',
       te: 'స్థాన విలువను ఉపయోగించి పదితో గుణించవచ్చు: ప్రతి స్థానపు విలువ పది రెట్లు అవుతుంది.',
       mr: 'स्थानिक किंमत वापरून दहाने गुणता येते: प्रत्येक स्थानाची किंमत दहापट होते.',

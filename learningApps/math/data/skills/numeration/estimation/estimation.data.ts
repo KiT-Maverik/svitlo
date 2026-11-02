@@ -61,7 +61,7 @@ export const estimation_SkillGroup_Data = buildSkillGroupConfig({
       ko: '수량이나 값을 알맞게 어림하고 필요한 정밀도로 반올림합니다.',
       tr: 'Miktar veya değerleri makul biçimde tahmin et ve sayıları gereken hassasiyete göre yuvarla.',
       vi: 'Ước lượng số lượng hoặc giá trị hợp lý và làm tròn số đến độ chính xác phù hợp.',
-      ta: 'அளவு அல்லது மதிப்பை நியாயமாக மதிப்பிட்டு, தேவையான துல்லியத்திற்கு எண்களை வட்டமிடு.',
+      ta: 'அளவு அல்லது மதிப்பை நியாயமாக மதிப்பிட்டு, தேவையான துல்லியத்திற்கு எண்களை முழுமையாக்கு.',
       te: 'పరిమాణం లేదా విలువను సరైన రీతిలో అంచనా వేసి, అవసరమైన ఖచ్చితత్వానికి సంఖ్యలను సమీప విలువకు రౌండ్ చేయండి.',
       mr: 'प्रमाण किंवा मूल्याचा योग्य अंदाज घ्या आणि गरजेच्या अचूकतेनुसार संख्या पूर्णांकित करा.',
       ms: 'Buat anggaran munasabah bagi kuantiti atau nilai dan bundarkan nombor mengikut ketepatan yang diperlukan.',

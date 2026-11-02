@@ -39,7 +39,7 @@ export const meters_Skill_Data = buildSkillConfig({
       '1 m = 10 dm = 100 cm: these length units are related by powers of ten. Different unit expressions for the same length must be equivalent; mixed-unit measurement requires consistent scaling.',
     frontend: {
       en: 'You can measure and describe lengths in meters, decimeters, or centimeters and convert them using 1 m = 10 dm = 100 cm.',
-      qm: 'Uzunlıqnı metr, detsimetr ya da santimetrlerde ölçep ve tasvir etip, 1 m = 10 dm = 100 cm uyğunlığını qullanıp çevirüv yapabilirsin.',
+      qm: 'Uzunlıqnı metr, detsimetr ya da santimetrlerde ölçep, 1 m = 10 dm = 100 cm uyğunlığını qullanaraq birlikler arasında çevire bilesiñ.',
       zh: '你能用米、分米或厘米测量和描述长度，并根据1米＝10分米＝100厘米进行换算。',
       hi: 'आप लंबाई को मीटर, डेसीमीटर या सेंटीमीटर में माप और बता सकते हैं तथा 1 मीटर = 10 डेसीमीटर = 100 सेंटीमीटर से बदल सकते हैं।',
       es: 'Puedes medir y expresar longitudes en metros, decímetros o centímetros y convertirlas usando 1 m = 10 dm = 100 cm.',
@@ -54,7 +54,7 @@ export const meters_Skill_Data = buildSkillConfig({
       ko: '미터, 데시미터, 센티미터로 길이를 재거나 나타내고 1m = 10dm = 100cm를 이용해 단위를 바꿀 수 있어요.',
       tr: 'Uzunlukları metre, desimetre veya santimetreyle ölçüp ifade edebilir, 1 m = 10 dm = 100 cm ilişkisini kullanabilirsin.',
       vi: 'Bạn có thể đo và biểu thị độ dài bằng mét, đềximét hoặc xăngtimét, dùng 1 m = 10 dm = 100 cm để đổi đơn vị.',
-      ta: 'மீட்டர், டெசிமீட்டர் அல்லது சென்டிமீட்டரில் நீளத்தை அளந்து தெரிவித்து, 1 மீ = 10 டெமீ = 100 செமீ என்பதைப் பயன்படுத்த முடியும்.',
+      ta: 'மீட்டர், டெசிமீட்டர் அல்லது சென்டிமீட்டரில் நீளத்தை அளந்து தெரிவித்து, 1 m = 10 dm = 100 cm என்பதைப் பயன்படுத்த முடியும்.',
       te: 'పొడవును మీటర్లు, డెసీమీటర్లు లేదా సెంటీమీటర్లలో కొలిచి, 1 మీ = 10 డెమీ = 100 సెంమీని ఉపయోగించి మార్చగలవు.',
       mr: 'लांबी मीटर, डेसिमीटर किंवा सेंटीमीटरमध्ये मोजू व सांगू शकता आणि १ मी = १० डेसीमी = १०० सेमी वापरून रूपांतर करू शकता.',
       ms: 'Kamu boleh mengukur dan menyatakan panjang dalam meter, desimeter atau sentimeter serta menukarnya dengan 1 m = 10 dm = 100 cm.',

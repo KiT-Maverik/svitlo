@@ -25,7 +25,7 @@ export const portions_SkillGroup_Data = buildSkillGroupConfig({
     id: 'Bagian pecahan dari kuantitas',
     de: 'Bruchteile von Größen',
     ja: '量の分数部分',
-    ko: '양의 분수 부분',
+    ko: '수량의 분수 부분',
     tr: 'Çoklukların kesirli parçaları',
     vi: 'Phần phân số của đại lượng',
     ta: 'அளவுகளின் பின்னப் பகுதிகள்',

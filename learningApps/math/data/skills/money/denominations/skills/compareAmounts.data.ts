@@ -46,7 +46,7 @@ export const compareAmounts_Skill_Data = buildSkillConfig({
       ar: 'يمكنك مقارنة مبلغين من العملة نفسها بجمع قيم القطع والأوراق النقدية، لا بمجرد عدّها أو النظر إلى أحجامها.',
       fr: "Tu peux comparer deux sommes dans une même monnaie en additionnant leurs valeurs, plutôt qu'en comptant les pièces ou en regardant leur taille.",
       bn: 'তুমি একই মুদ্রার দুটি অর্থের পরিমাণ তুলনা করতে পারো, শুধু মুদ্রার সংখ্যা বা আকার না দেখে তাদের মোট মূল্য যোগ করে।',
-      pt: 'Você consegue comparar duas quantias na mesma moeda somando seus valores, em vez de apenas contar as moedas ou observar seus tamanhos.',
+      pt: 'Você consegue comparar duas quantias na mesma moeda somando os valores das moedas e cédulas de cada uma, em vez de apenas contar as peças ou observar seus tamanhos.',
       ur: 'آپ ایک ہی کرنسی کی دو رقموں کا موازنہ سکوں کی تعداد یا سائز دیکھنے کے بجائے ان کی کل مالیت جمع کر کے کر سکتے ہیں۔',
       id: 'Kamu bisa membandingkan dua jumlah uang dalam mata uang yang sama dengan menjumlahkan nilainya, bukan hanya menghitung koin atau melihat ukurannya.',
       de: 'Du kannst zwei Geldbeträge derselben Währung vergleichen, indem du ihre Werte addierst, statt nur Münzen zu zählen oder auf deren Größe zu achten.',

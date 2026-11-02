@@ -39,7 +39,7 @@ export const findStartOrEnd_Skill_Data = buildSkillConfig({
       'A known instant and a duration determine the other instant by adding or subtracting a time interval. Hour, day, and date rollovers must be handled without confusing clock-time notation with duration units.',
     frontend: {
       en: 'You can find when an event began or will end if you know its duration and the other time, including when the date changes.',
-      qm: 'Vaqianıñ devamlılığını ve başlanğıç ya da bitiş vaqıtlarından birini bilseñ, digerini tapa bilesiñ. Tarih deñişken alda da bunı yapabilirsin.',
+      qm: 'Vaqianıñ devamlılığını ve başlanğıç ya da bitiş vaqıtlarından birini bilseñ, digerini tapa bilesiñ. Tarih deñişken alda da bu esaplavnı yerine ketire bilesiñ.',
       zh: '你能在知道持续时间和另一个时刻时，求出事件开始或结束的时刻，包括跨日期的情况。',
       hi: 'आप अवधि और दूसरा समय ज्ञात होने पर घटना के शुरू या समाप्त होने का समय निकाल सकते हैं, भले ही तारीख बदल जाए।',
       es: 'Puedes averiguar cuándo empezó o terminará un suceso si conoces su duración y el otro momento, incluso cuando cambia la fecha.',

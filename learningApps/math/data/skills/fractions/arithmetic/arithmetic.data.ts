@@ -60,7 +60,7 @@ export const arithmetic_SkillGroup_Data = buildSkillGroupConfig({
       ko: '같은 전체에서 같은 크기로 나눈 부분의 분수를 분모를 그대로 두고 더하거나 뺍니다.',
       tr: 'Aynı bütünün eşit büyüklükteki parçalarından oluşan kesirleri, paydayı değiştirmeden topla veya çıkar.',
       vi: 'Cộng hoặc trừ các phân số từ những phần bằng nhau của cùng một toàn thể và giữ nguyên mẫu số.',
-      ta: 'ஒரே முழுமையின் சம அளவுள்ள பகுதிகளைக் குறிக்கும் பின்னங்களைப் பகுதி எண்ணை மாற்றாமல் கூட்டவோ கழிக்கவோ செய்.',
+      ta: 'ஒரே முழுமையின் சம அளவுள்ள பகுதிகளைக் குறிக்கும் பின்னங்களைக் கீழெண்ணை மாற்றாமல் கூட்டவோ கழிக்கவோ செய்.',
       te: 'ఒకే మొత్తంలోని సమాన పరిమాణపు భాగాల భిన్నాలను హారం మార్చకుండా కలపండి లేదా తీసివేయండి.',
       mr: 'एकाच पूर्णाच्या समान आकाराच्या भागांचे अपूर्णांक छेद न बदलता बेरीज किंवा वजाबाकी करा.',
       ms: 'Tambah atau tolak pecahan daripada bahagian sama besar bagi keseluruhan yang sama, tanpa mengubah penyebut.',

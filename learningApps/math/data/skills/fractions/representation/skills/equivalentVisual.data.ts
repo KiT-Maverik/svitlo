@@ -7,7 +7,7 @@ export const equivalentVisual_Skill_Data = buildSkillConfig({
     en: 'Showing equivalent fractions with visual models',
     qm: 'Teñ kesirlerni resimnen köstermek',
     lt: 'Lygiaverčių trupmenų vaizdavimas modeliais',
-    lv: 'Vienādu daļu attēlošana ar vizuāliem modeļiem',
+    lv: 'Vienādas vērtības daļu attēlošana ar vizuāliem modeļiem',
     et: 'Võrdsete murdude näitamine visuaalsete mudelitega',
     be: 'Паказ роўных дробаў з дапамогай мадэляў',
     ka: 'ტოლი წილადების ვიზუალური მოდელებით ჩვენება',

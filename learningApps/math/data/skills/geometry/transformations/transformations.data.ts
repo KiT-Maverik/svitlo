@@ -51,7 +51,7 @@ export const transformations_SkillGroup_Data = buildSkillGroupConfig({
       hi: 'आकृतियाँ खिसकाएँ, घुमाएँ या प्रतिबिंबित करें और देखें कौन से गुण समान रहते हैं।',
       es: 'Desplaza, gira y refleja figuras, observando qué características no cambian.',
       ar: 'حرّك الأشكال ودوّرها واعكسها، ولاحظ الخصائص التي تبقى ثابتة.',
-      fr: 'Déplace, tourne et réfléchis des figures en observant les propriétés qui restent identiques.',
+      fr: 'Fais glisser, tourner et refléter des figures en observant les propriétés qui restent identiques.',
       bn: 'আকৃতি সরাও, ঘোরাও বা প্রতিফলিত করো এবং কোন গুণগুলো একই থাকে দেখো।',
       pt: 'Desloque, gire e reflita figuras, observando quais propriedades permanecem iguais.',
       ur: 'شکلوں کو سرکائیں، گھمائیں یا عکس بنائیں اور دیکھیں کون سی خصوصیات نہیں بدلتیں۔',

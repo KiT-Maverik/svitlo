@@ -56,7 +56,7 @@ export const partWhole_Skill_Data = buildSkillConfig({
       vi: 'Bạn có thể tìm toàn bộ từ các phần hoặc tìm phần còn thiếu khi biết toàn bộ và những phần khác.',
       ta: 'பகுதிகளிலிருந்து முழுத்தொகையைக் காணலாம்; அல்லது முழுத்தொகையும் பிற பகுதிகளும் தெரிந்தால் விடுபட்ட பகுதியைக் காணலாம்.',
       te: 'భాగాల నుంచి మొత్తాన్ని లేదా మొత్తం, ఇతర భాగాలు తెలిసినప్పుడు తెలియని భాగాన్ని కనుగొనగలవు.',
-      mr: 'भागांवरून संपूर्ण रक्कम शोधता येते किंवा संपूर्ण रक्कम व इतर भाग माहीत असतील तर उरलेला भाग काढता येतो.',
+      mr: 'भागांवरून संपूर्ण परिमाण शोधता येते किंवा संपूर्ण रक्कम व इतर भाग माहीत असतील तर उरलेला भाग काढता येतो.',
       ms: 'Kamu boleh mencari keseluruhan daripada bahagian-bahagiannya atau mencari bahagian yang hilang jika keseluruhan dan bahagian lain diketahui.',
       he: 'אפשר למצוא את השלם מתוך חלקיו, או חלק חסר כשמכירים את השלם ואת החלקים האחרים.',
       pl: 'Możesz znaleźć całość na podstawie jej części albo brakującą część, gdy znasz całość i pozostałe części.',

@@ -26,7 +26,7 @@ export const expressions_SkillGroup_Data = buildSkillGroupConfig({
     fr: 'Expressions',
     bn: 'রাশিমালা',
     pt: 'Expressões',
-    ur: 'ریاضی عبارتیں',
+    ur: 'ریاضیاتی عبارتیں',
     id: 'Ekspresi matematika',
     de: 'Terme',
     ja: '式',

@@ -24,7 +24,7 @@ export const general_SkillGroup_Data = buildSkillGroupConfig({
     ar: 'مهارات القياس العامة',
     fr: 'Compétences générales de mesure',
     bn: 'সাধারণ পরিমাপ দক্ষতা',
-    pt: 'Competências gerais de medição',
+    pt: 'Princípios gerais de medição',
     ur: 'پیمائش کی عمومی مہارتیں',
     id: 'Keterampilan pengukuran umum',
     de: 'Allgemeine Messfertigkeiten',

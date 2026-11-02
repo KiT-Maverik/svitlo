@@ -64,7 +64,7 @@ export const increaseDecreaseFactor_Skill_Data = buildSkillConfig({
       lt: 'Gali padidinti ar sumažinti dydį nurodytu kartotiniu ir atskirti daugybą ar dalybą nuo pastovaus dydžio pridėjimo ar atėmimo.',
       lv: 'Vari palielināt vai samazināt lielumu noteiktu reižu skaitu un atšķirt reizināšanu vai dalīšanu no nemainīga daudzuma pieskaitīšanas vai atņemšanas.',
       et: 'Saad suurust etteantud teguriga suurendada või vähendada ning eristada korrutamist ja jagamist kindla hulga liitmisest või lahutamisest.',
-      be: 'Ты можаш павялічыць ці зьменшыць велічыню ў зададзеную колькасьць разоў і адрозьніць множаньне ці дзяленьне ад даданьня або адніманьня сталае колькасьці.',
+      be: 'Ты можаш павялічыць ці зьменшыць велічыню ў зададзеную колькасьць разоў і адрозьніць множаньне ці дзяленьне ад даданьня або адніманьня сталай колькасьці.',
       ka: 'შეგიძლია სიდიდე მოცემული ჯერადობით გაზარდო ან შეამცირო და გაარჩიო გამრავლება-გაყოფა ფიქსირებული რაოდენობის მიმატება-გამოკლებისგან.',
       kk: 'Шаманы берілген еселік коэффициент бойынша арттырып не кемітіп, көбейту-бөлудің тұрақты сан қосу-азайтудан айырмасын түсіне аласың.',
     },

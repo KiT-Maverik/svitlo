@@ -62,7 +62,7 @@ export const by9_Skill_Data = buildSkillConfig({
       pl: 'Możesz mnożyć przez dziewięć za pomocą dziewięciu równych grup albo pomnożyć przez dziesięć i odjąć jedną grupę.',
       uk: 'Ти можеш множити на дев’ять за допомогою дев’яти рівних груп або множачи на десять і віднімаючи одну групу.',
       lt: 'Gali dauginti iš devynių naudodamas devynias lygias grupes arba pirmiausia padaugindamas iš dešimties ir atimdamas vieną grupę.',
-      lv: 'Tu vari reizināt ar deviņi, izmantojot deviņas vienādas grupas vai vispirms reizinot ar desmit un atņemot vienu grupu.',
+      lv: 'Tu vari reizināt ar 9, izmantojot deviņas vienādas grupas vai vispirms reizinot ar 10 un atņemot vienu grupu.',
       et: 'Sa saad üheksaga korrutada üheksa võrdse rühma abil või esmalt kümnega korrutades ja ühe rühma lahutades.',
       be: 'Ты можаш множыць на дзевяць празь дзевяць роўных груп або спачатку памножыўшы на дзесяць і адняўшы адну групу.',
       ka: 'შეგიძლია ცხრაზე გამრავლება ცხრა თანაბარი ჯგუფით ან ათზე გამრავლებით და ერთი ჯგუფის გამოკლებით.',

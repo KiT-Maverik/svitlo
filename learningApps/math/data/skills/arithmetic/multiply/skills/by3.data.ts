@@ -62,7 +62,7 @@ export const by3_Skill_Data = buildSkillConfig({
       pl: 'Możesz przedstawić mnożenie przez trzy jako trzy równe grupy i wyznaczać wielokrotności trzech z poznanych działań.',
       uk: 'Ти можеш розуміти множення на три як три рівні групи та знаходити кратні трьом за відомими результатами.',
       lt: 'Gali daugybą iš trijų vaizduoti trimis lygiomis grupėmis ir rasti trejeto kartotinius iš žinomų veiksmų.',
-      lv: 'Tu vari uztvert reizināšanu ar trīs kā trīs vienādas grupas un atrast trīs daudzkārtņus pēc zināmiem rezultātiem.',
+      lv: 'Tu vari reizināšanu ar 3 attēlot kā trīs vienādas grupas un atrast skaitļa 3 daudzkārtņus no zināmiem reizinājumiem.',
       et: 'Sa saad mõista kolmega korrutamist kolme võrdse rühmana ja leida kolme kordseid tuntud tehete abil.',
       be: 'Ты можаш разумець множаньне на тры як тры роўныя групы і знаходзіць кратныя тром празь вядомыя вынікі.',
       ka: 'შეგიძლია სამზე გამრავლება სამ თანაბარ ჯგუფად წარმოიდგინო და სამის ჯერადები ნაცნობი შედეგებით იპოვო.',

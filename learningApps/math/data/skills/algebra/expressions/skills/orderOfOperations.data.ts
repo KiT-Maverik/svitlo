@@ -21,7 +21,7 @@ export const orderOfOperations_Skill_Data = buildSkillConfig({
     pt: 'Aplicar a ordem das operações',
     ur: 'عملیات کی ترتیب کے اصول لاگو کرنا',
     id: 'Menerapkan urutan operasi',
-    de: 'Rechenregeln zur Reihenfolge anwenden',
+    de: 'Reihenfolge der Rechenoperationen anwenden',
     ja: '計算の順序を適用する',
     ko: '연산 순서 적용하기',
     tr: 'İşlem önceliğini uygulama',

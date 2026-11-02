@@ -39,7 +39,7 @@ export const correspondenceCombinations_Skill_Data = buildSkillConfig({
       'Choosing one element independently from each of two finite sets produces a number of ordered pairs equal to the product of their sizes. The enumeration must be complete and free of duplicates; using a table, tree, or list does not change the count.',
     frontend: {
       en: 'You can count every possible pair made by choosing one item from each of two sets, without missing or repeating any combination.',
-      qm: 'Eki toplumdan er birinden birer eşya saylap tüzülgen bütün mümkün çiftlerni, iç birini qaldırmadan ya da eki kere saymadan, sayabilirsin.',
+      qm: 'Eki toplumdan birer eşya saylap tüzülgen bütün mümkün çiftlerni, iç birini qaldırmadan ve eki kere saymadan saya bilesiñ.',
       zh: '你能从两组物品中各选一个，数出所有可能的搭配，不遗漏也不重复。',
       hi: 'आप दो समूहों में से एक-एक वस्तु चुनकर बनने वाली सभी संभावित जोड़ियाँ बिना छोड़े या दोहराए गिन सकते हैं।',
       es: 'Puedes contar todas las parejas posibles al elegir un elemento de cada uno de dos conjuntos, sin omitir ni repetir ninguna combinación.',

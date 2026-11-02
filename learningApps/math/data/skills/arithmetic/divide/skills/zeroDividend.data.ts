@@ -31,7 +31,7 @@ export const zeroDividend_Skill_Data = buildSkillConfig({
     mr: 'भागाकार — शून्य भाज्य',
     ms: 'Pembahagian — Sifar sebagai nombor yang dibahagi',
     he: 'חילוק — מחולק אפס',
-    pl: 'Dzielenie — Dzielna Zero',
+    pl: 'Dzielenie — Dzielna równa zeru',
     uk: 'Ділення — Нульове ділене',
   },
   description: {

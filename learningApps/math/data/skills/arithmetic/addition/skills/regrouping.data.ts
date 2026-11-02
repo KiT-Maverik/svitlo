@@ -58,7 +58,7 @@ export const regrouping_Skill_Data = buildSkillConfig({
       te: 'కూడికలో అవసరమైనప్పుడు పది ఒకట్లను ఒక పదిగా లేదా పది పదులను ఒక వందగా మార్చగలవు.',
       mr: 'बेरीज करताना गरज पडल्यास दहा एककांचे एक दशक किंवा दहा दशकांचे एक शतक करू शकतोस.',
       ms: 'Kamu boleh menambah nombor dengan menukar sepuluh sa menjadi satu puluh, atau sepuluh puluh menjadi satu ratus, apabila perlu.',
-      he: 'אפשר לחבר מספרים באמצעות המרה של עשר יחידות לעשרת אחת, או עשר עשרות למאה אחת, בעת הצורך.',
+      he: 'אפשר לחבר מספרים באמצעות המרה של עשר יחידות בעשרייה אחת, או עשר עשרות במאה אחת, בעת הצורך.',
       pl: 'Potrafisz dodawać liczby, zamieniając w razie potrzeby dziesięć jedności na jedną dziesiątkę lub dziesięć dziesiątek na jedną setkę.',
       uk: 'Ти можеш додавати числа, за потреби обмінюючи десять одиниць на один десяток або десять десятків на одну сотню.',
       lt: 'Gali sudėti skaičius, kai reikia pakeisdamas dešimt vienetų viena dešimtimi arba dešimt dešimčių vienu šimtu.',

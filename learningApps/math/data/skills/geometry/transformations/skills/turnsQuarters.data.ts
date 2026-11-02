@@ -7,7 +7,7 @@ export const turnsQuarters_Skill_Data = buildSkillConfig({
     en: 'Quarter, half and three-quarter turns',
     qm: 'Çeyrek, yarım ve üç çeyrek buruluv',
     lt: 'Ketvirčio, pusės ir trijų ketvirčių apsisukimai',
-    lv: 'Ceturtdaļas, pusapgrieziena un trīs ceturtdaļu pagriezieni',
+    lv: 'Ceturtdaļapgrieziena, pusapgrieziena un trīs ceturtdaļu apgrieziena attēlošana',
     et: 'Veerand-, pool- ja kolmveerandpöörded',
     be: 'Павароты на чвэрць, палову і тры чвэрці абароту',
     ka: 'მეოთხედი, ნახევარი და სამი მეოთხედი ბრუნები',

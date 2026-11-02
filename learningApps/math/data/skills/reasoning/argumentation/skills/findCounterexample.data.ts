@@ -27,7 +27,7 @@ export const findCounterexample_Skill_Data = buildSkillConfig({
     tr: 'Yanlış bir genellemeyi çürüten karşı örnek bulma',
     vi: 'Tìm phản ví dụ bác bỏ một khái quát sai',
     ta: 'தவறான பொதுமைப்படுத்தலை மறுக்கும் எதிர் எடுத்துக்காட்டு கண்டறிதல்',
-    te: 'తప్పుడు సాధారణీకరణను ఖండించే ప్రతివుదాహరణను కనుగొనడం',
+    te: 'తప్పుడు సాధారణీకరణను ఖండించే ప్రత్యుదాహరణను కనుగొనడం',
     mr: 'चुकीच्या सामान्यीकरणाचे खंडन करणारे प्रतिउदाहरण शोधणे',
     ms: 'Mencari contoh balas yang menyangkal generalisasi salah',
     he: 'מציאת דוגמה נגדית להכללה שגויה',

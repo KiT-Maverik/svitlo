@@ -13,7 +13,7 @@ export const equalSharing_Skill_Data = buildSkillConfig({
     en: 'Division — Equal sharing',
     qm: 'Bölüv — teñ paylaştırma',
     zh: '除法 — 平均分配',
-    hi: 'भाग — समान बाँट',
+    hi: 'भाग — बराबर बाँटना',
     es: 'División — Reparto equitativo',
     ar: 'القسمة — التوزيع بالتساوي',
     fr: 'Division — Partage équitable',
@@ -66,7 +66,7 @@ export const equalSharing_Skill_Data = buildSkillConfig({
       et: 'Sa saad terviku jagada teadaolevaks arvuks võrdseteks rühmadeks ja leida iga rühma suuruse.',
       be: 'Ты можаш разьдзяліць цэлае на вядомую колькасьць роўных груп і знайсьці, колькі прыпадае на кожную.',
       ka: 'შეგიძლია მთლიანი რაოდენობა ცნობილი რაოდენობის თანაბარ ჯგუფებად გაანაწილო და თითოეულის ზომა იპოვო.',
-      kk: 'Бүтінді белгілі мөлшердегі тең топтарға бөліп, әр топқа қаншадан тиетінін таба аласың.',
+      kk: 'Бүтінді саны белгілі тең топтарға бөліп, әр топқа қаншадан тиетінін таба аласың.',
     },
   },
 });

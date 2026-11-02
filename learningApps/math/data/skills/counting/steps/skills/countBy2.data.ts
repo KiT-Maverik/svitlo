@@ -20,7 +20,7 @@ export const countBy2_Skill_Data = buildSkillConfig({
     bn: '2 করে গণনা',
     pt: 'Contar de 2 em 2',
     ur: '2 2 کے وقفے سے گننا',
-    id: 'Membilang dengan kelipatan 2',
+    id: 'Membilang dengan langkah 2',
     de: 'In 2er-Schritten zählen',
     ja: '2ずつ数える',
     ko: '2씩 건너뛰며 세기',

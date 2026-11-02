@@ -8,7 +8,7 @@ export const representations_SkillGroup_Data = buildSkillGroupConfig({
   name: {
     en: 'Mathematical representations',
     qm: 'Matematik tasvirler',
-    lt: 'Matematiniai vaizdiniai',
+    lt: 'Matematiniai vaizdavimo būdai',
     lv: 'Matemātiskie attēlojumi',
     et: 'Matemaatilised esitused',
     be: 'Матэматычныя прадстаўленьні',

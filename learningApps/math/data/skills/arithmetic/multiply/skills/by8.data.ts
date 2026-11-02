@@ -62,7 +62,7 @@ export const by8_Skill_Data = buildSkillConfig({
       pl: 'Możesz mnożyć przez osiem, korzystając z ośmiu równych grup, podwajania lub rozkładania obliczeń na łatwiejsze części.',
       uk: 'Ти можеш множити на вісім за допомогою восьми рівних груп, подвоєння або розкладання обчислення на простіші частини.',
       lt: 'Gali dauginti iš aštuonių naudodamas aštuonias lygias grupes, dvigubinimą arba skaidydamas skaičiavimą į paprastesnes dalis.',
-      lv: 'Tu vari reizināt ar astoņi, izmantojot astoņas vienādas grupas, dubultošanu vai sadalot aprēķinu vienkāršākās daļās.',
+      lv: 'Tu vari reizināt ar 8, izmantojot astoņas vienādas grupas, dubultošanu vai sadalot aprēķinu vienkāršākās daļās.',
       et: 'Sa saad kaheksaga korrutada kaheksa võrdse rühma, kahekordistamise või arvutuse lihtsamateks osadeks jagamise abil.',
       be: 'Ты можаш множыць на восем праз восем роўных груп, падвойваньне або падзел вылічэньня на прасьцейшыя часткі.',
       ka: 'შეგიძლია რვაზე გამრავლება რვა თანაბარი ჯგუფით, გაორმაგებით ან გამოთვლის მარტივ ნაწილებად დაშლით.',

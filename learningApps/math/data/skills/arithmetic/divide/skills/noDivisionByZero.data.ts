@@ -31,7 +31,7 @@ export const noDivisionByZero_Skill_Data = buildSkillConfig({
     mr: 'भागाकार — शून्याने भागणे',
     ms: 'Pembahagian — Bahagi dengan sifar',
     he: 'חילוק — חילוק באפס',
-    pl: 'Dzielenie — Dzielenie przez Zero',
+    pl: 'Dzielenie — Dzielenie przez zero',
     uk: 'Ділення — Ділення на нуль',
   },
   description: {

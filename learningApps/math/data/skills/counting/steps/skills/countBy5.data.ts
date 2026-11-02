@@ -20,7 +20,7 @@ export const countBy5_Skill_Data = buildSkillConfig({
     bn: '5 করে গণনা',
     pt: 'Contar de 5 em 5',
     ur: '5 5 کے وقفے سے گننا',
-    id: 'Membilang dengan kelipatan 5',
+    id: 'Membilang dengan langkah 5',
     de: 'In 5er-Schritten zählen',
     ja: '5ずつ数える',
     ko: '5씩 건너뛰며 세기',

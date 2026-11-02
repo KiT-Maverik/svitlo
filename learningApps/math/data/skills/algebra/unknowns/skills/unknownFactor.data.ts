@@ -22,7 +22,7 @@ export const unknownFactor_Skill_Data = buildSkillConfig({
     ur: 'نامعلوم ضربی عامل معلوم کرنا',
     id: 'Mencari faktor yang tidak diketahui',
     de: 'Einen unbekannten Faktor finden',
-    ja: '未知の乗数を求める',
+    ja: '未知の因数を求める',
     ko: '모르는 곱셈 인수 구하기',
     tr: 'Bilinmeyen çarpanı bulma',
     vi: 'Tìm thừa số chưa biết',

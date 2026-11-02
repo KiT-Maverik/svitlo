@@ -55,7 +55,7 @@ export const by6_Skill_Data = buildSkillConfig({
       tr: 'Eşit grupları veya altıyla çarpma bilgilerini kullanarak altıya bölüp bölümü bulabilirsin.',
       vi: 'Bạn có thể chia cho sáu bằng các nhóm bằng nhau hoặc bảng nhân sáu để tìm thương.',
       ta: 'சமமான குழுக்கள் அல்லது ஆறின் பெருக்கல் உண்மைகளைப் பயன்படுத்தி ஆறால் வகுத்து ஈவைக் காணலாம்.',
-      te: 'సమాన సమూహాలు లేదా ఆరు గుణకార విషయాలను ఉపయోగించి ఆరుతో భాగించి భాగఫలం కనుగొనవచ్చు.',
+      te: 'సమాన సమూహాలు లేదా ఆరు గుణకార పట్టికలోని ఫలితాలను ఉపయోగించి ఆరుతో భాగించి భాగఫలం కనుగొనవచ్చు.',
       mr: 'समान गट किंवा सहाच्या गुणाकाराची माहिती वापरून सहाने भागून भागाकार काढता येतो.',
       ms: 'Kamu boleh membahagi dengan enam menggunakan kumpulan sama besar atau fakta darab untuk mencari hasil bahagi.',
       he: 'אפשר לחלק בשש באמצעות קבוצות שוות או עובדות הכפל כדי למצוא את המנה.',

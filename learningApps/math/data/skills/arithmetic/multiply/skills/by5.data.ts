@@ -62,7 +62,7 @@ export const by5_Skill_Data = buildSkillConfig({
       pl: 'Możesz mnożyć przez pięć, korzystając z pięciu równych grup lub znanych już sum.',
       uk: 'Ти можеш множити на п’ять за допомогою п’яти рівних груп або спираючись на відомі суми.',
       lt: 'Gali dauginti iš penkių naudodamas penkias lygias grupes arba jau žinomas sumas.',
-      lv: 'Tu vari reizināt ar pieci, izmantojot piecas vienādas grupas vai zināmas summas.',
+      lv: 'Tu vari reizināt ar 5, izmantojot piecas vienādas grupas vai zināmas summas.',
       et: 'Sa saad viiega korrutada viie võrdse rühma või juba tuntud summade abil.',
       be: 'Ты можаш множыць на пяць празь пяць роўных груп або абапіраючыся на вядомыя сумы.',
       ka: 'შეგიძლია ხუთზე გამრავლება ხუთი თანაბარი ჯგუფით ან ნაცნობი ჯამების გამოყენებით.',

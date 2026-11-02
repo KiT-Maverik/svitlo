@@ -53,7 +53,7 @@ export const numeration_SkillDomain_Data = buildSkillDomainConfig({
     frontend: {
       en: "See how natural numbers represent quantities, how each digit's position changes its value, and how to compare, place, and estimate numbers.",
       qm: 'Tabiiy sayılar miqdarlarnı nasıl bildirgenini, raqamnıñ yeri qıymetini nasıl deñiştirgenini, sayılarnı nasıl qıyaslap yerleştirmek ve tahmin etmekni ögren.',
-      zh: '了解自然数怎样表示数量、数字的数位怎样决定它的值，以及如何比较、定位和估计数字。',
+      zh: '了解自然数怎样表示数量、每个数字的数位怎样决定其位值，以及如何比较数的大小、在数轴上定位和估算数值。',
       hi: 'समझें कि प्राकृतिक संख्याएँ मात्रा कैसे दिखाती हैं, स्थान के अनुसार अंक का मान कैसे बदलता है और संख्याएँ कैसे तुलना व अनुमान की जाती हैं।',
       es: 'Descubre cómo los números naturales representan cantidades, cómo la posición cambia el valor de una cifra y cómo comparar, situar y estimar números.',
       ar: 'تعرّف كيف تعبّر الأعداد الطبيعية عن الكميات وكيف تحدد منزلة الرقم قيمته، وكيف تقارن الأعداد وتحدد مواقعها وتقدّرها.',

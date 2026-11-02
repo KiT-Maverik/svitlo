@@ -45,7 +45,7 @@ export const compositeArea_Skill_Data = buildSkillConfig({
       es: 'Divide una figura formada por rectángulos en piezas sin solapamiento, calcula sus áreas y súmalas sin contar ninguna dos veces.',
       ar: 'قسّم شكلًا مؤلفًا من مستطيلات إلى أجزاء لا تتداخل، ثم اجمع مساحاتها دون عدّ أي منطقة مرتين.',
       fr: 'Partage une figure faite de rectangles en régions sans chevauchement, calcule leurs aires et additionne-les sans compter deux fois.',
-      bn: 'আয়তক্ষেত্র দিয়ে গঠিত আকৃতিকে ওভারল্যাপ ছাড়া ভাগ করে প্রতিটি ক্ষেত্রফল যোগ করো; এক অংশ দুবার গুনবে না।',
+      bn: 'আয়তক্ষেত্র দিয়ে গঠিত আকৃতিকে একটির ওপর আরেকটি না রেখে ভাগ করে প্রতিটি ক্ষেত্রফল যোগ করো; এক অংশ দুবার গুনবে না।',
       pt: 'Divida uma figura formada por retângulos em peças sem sobreposição e some as áreas sem contar nada duas vezes.',
       ur: 'مستطیلوں سے بنی شکل کو غیر متداخل حصوں میں بانٹیں، ہر رقبہ نکالیں اور بغیر دوبارہ گنے جمع کریں۔',
       id: 'Bagi bangun gabungan persegi panjang menjadi bagian tak bertumpuk, hitung luasnya lalu jumlahkan tanpa menghitung dua kali.',

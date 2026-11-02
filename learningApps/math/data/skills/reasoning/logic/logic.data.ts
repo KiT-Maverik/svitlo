@@ -29,7 +29,7 @@ export const logic_SkillGroup_Data = buildSkillGroupConfig({
     tr: 'Mantıksal akıl yürütme',
     vi: 'Suy luận logic',
     ta: 'தர்க்கரீதியான சிந்தனை',
-    te: 'తార్కిక తర్కం',
+    te: 'తార్కిక విశ్లేషణ',
     mr: 'तार्किक विचार',
     ms: 'Penaakulan logik',
     he: 'חשיבה לוגית',

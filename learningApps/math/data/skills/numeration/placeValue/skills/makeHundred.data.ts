@@ -19,7 +19,7 @@ export const makeHundred_Skill_Data = buildSkillConfig({
     fr: 'Dix dizaines font une centaine',
     bn: 'দশটি দশকে এক শতক',
     pt: 'Dez dezenas formam uma centena',
-    ur: 'دس دہائیوں سے ایک سیکڑا',
+    ur: 'دس دہائیوں سے ایک سینکڑا',
     id: 'Sepuluh puluhan menjadi seratus',
     de: 'Zehn Zehner ergeben einen Hunderter',
     ja: '十が10個で百になる',

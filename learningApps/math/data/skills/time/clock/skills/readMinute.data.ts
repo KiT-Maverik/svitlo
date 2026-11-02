@@ -23,7 +23,7 @@ export const readMinute_Skill_Data = buildSkillConfig({
     id: 'Membaca dan menuliskan waktu hingga ketelitian satu menit',
     de: 'Uhrzeit minutengenau ablesen und notieren',
     ja: '1分単位で時刻を読み書きする',
-    ko: '1분 단위로 시간 읽고 쓰기',
+    ko: '1분 단위로 시각 읽고 쓰기',
     tr: 'Saati bir dakika hassasiyetle okuma ve yazma',
     vi: 'Đọc và viết giờ chính xác đến một phút',
     ta: 'ஒரு நிமிடத் துல்லியத்தில் நேரத்தை வாசித்து எழுதுதல்',

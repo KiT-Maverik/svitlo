@@ -19,7 +19,7 @@ export const hundredsTensOnes_Skill_Data = buildSkillConfig({
     fr: 'Centaines, dizaines et unités des nombres à trois chiffres',
     bn: 'তিন অঙ্কের সংখ্যায় শতক, দশক ও একক',
     pt: 'Centenas, dezenas e unidades de números de três algarismos',
-    ur: 'تین ہندسوں میں سیکڑے، دہائیاں اور اکائیاں',
+    ur: 'تین ہندسوں میں سینکڑے، دہائیاں اور اکائیاں',
     id: 'Ratusan, puluhan, dan satuan pada bilangan tiga digit',
     de: 'Hunderter, Zehner und Einer in dreistelligen Zahlen',
     ja: '3桁の数の百・十・一の位',

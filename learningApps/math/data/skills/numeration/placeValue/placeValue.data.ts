@@ -20,7 +20,7 @@ export const placeValue_SkillGroup_Data = buildSkillGroupConfig({
   name: {
     en: 'Place value',
     qm: 'Razryad qıymeti',
-    lt: 'Skaitmenų vietinė vertė',
+    lt: 'Skaitmenų skyrių vertė',
     lv: 'Cipara vietas vērtība',
     et: 'Kohaväärtus',
     be: 'Разраднае значэньне',

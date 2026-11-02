@@ -19,7 +19,7 @@ export const ray_Skill_Data = buildSkillConfig({
     fr: 'Distinguer demi-droites, segments et droites',
     bn: 'রশ্মি রেখাংশ ও সরলরেখার পার্থক্য',
     pt: 'Distinguir semirretas, segmentos e retas',
-    ur: 'شعاع قطعہ خط اور سیدھی لکیر میں فرق',
+    ur: 'شعاع، قطعہ اور سیدھی لکیر میں فرق',
     id: 'Membedakan sinar, ruas garis, dan garis',
     de: 'Strahlen, Strecken und Geraden unterscheiden',
     ja: '半直線・線分・直線を区別する',
