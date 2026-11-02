@@ -5,6 +5,7 @@ export const explainAnOpenCircuit_Skill_Data = buildSkillConfig({
   id: "ae81edf7-3910-4f39-aab6-7bc6eb077d94",
   name: {
     en: "Explain an open circuit",
+    qm: 'Açıq elektrik devresini añlatmaq',
     zh: '解释断开的电路',
     hi: 'खुले परिपथ की व्याख्या करना',
     es: 'Explicar un circuito abierto',
@@ -37,6 +38,7 @@ export const explainAnOpenCircuit_Skill_Data = buildSkillConfig({
     methodological: "Opening a branch interrupts its conducting path; in a circuit with parallel branches, other parts may continue to operate.",
     frontend: {
       en: "Explain what happens when a current path is broken.",
+      qm: 'Elektrik aqımınıñ yolu üzülgende ne olğanını añlat.',
       zh: '解释电流通路中断时会发生什么。',
       hi: 'समझाएँ कि विद्युत धारा का रास्ता टूटने पर क्या होता है।',
       es: 'Explica qué ocurre cuando se interrumpe el camino de la corriente.',
