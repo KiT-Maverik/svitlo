@@ -5,6 +5,7 @@ export const recognizeTheChargingOfObjectsByFriction_Skill_Data = buildSkillConf
   id: "c7613716-b41a-4512-a9ef-8133de8fab9e",
   name: {
     en: "Recognize the charging of objects by friction",
+    qm: 'Sürtünüvnen cisimlerniñ elektrik yükü almasını tanımaq',
     zh: '识别摩擦起电',
     hi: 'रगड़ से वस्तुओं का आवेशित होना पहचानना',
     es: 'Reconocer la electrización por frotamiento',
@@ -37,6 +38,7 @@ export const recognizeTheChargingOfObjectsByFriction_Skill_Data = buildSkillConf
     methodological: "Using a safe balloon or comb model, connect friction with electrostatic effects rather than attributing them to magnetic attraction.",
     frontend: {
       en: "Recognize how rubbing some objects produces electrostatic effects.",
+      qm: 'Bazı cisimlerni birbirine sürtken soñ statik elektrik tesirleri nasıl peyda olğanını tanı.',
       zh: '识别摩擦某些物体时出现的静电现象。',
       hi: 'पहचानें कि कुछ वस्तुओं को रगड़ने से स्थिरवैद्युत प्रभाव कैसे पैदा होते हैं।',
       es: 'Reconoce cómo frotar ciertos objetos produce efectos electrostáticos.',
