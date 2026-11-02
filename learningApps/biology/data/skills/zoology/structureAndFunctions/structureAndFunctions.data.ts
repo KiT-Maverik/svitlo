@@ -34,6 +34,7 @@ export const structureAndFunctions_SkillGroup_Data = buildSkillGroupConfig({
     be: 'Будова і функцыі',
     ka: 'აგებულება და ფუნქციები',
     kk: 'Құрылысы мен қызметтері',
+    qm: 'Quruluş ve vazifeler',
   },
   skills: {
     explainTheRoleOfSensoryOrgansInBehavior: explainTheRoleOfSensoryOrgansInBehavior_Skill_Data,
@@ -72,6 +73,7 @@ export const structureAndFunctions_SkillGroup_Data = buildSkillGroupConfig({
       be: 'Дасьледуй, як будова цела дапамагае жывёлам рухацца, адчуваць навакольле і абараняцца.',
       ka: 'გაიგე, როგორ ეხმარება სხეულის აგებულება ცხოველებს მოძრაობაში, გარემოს აღქმასა და თავდაცვაში.',
       kk: 'Дене құрылысы жануарлардың қозғалуына, айналаны сезінуіне және қорғануына қалай көмектесетінін зертте.',
+      qm: 'Ayvanlarnıñ beden quruluşları areket etmege, etrafnı sezmege ve özüni qorçalamağa nasıl yardım etkenini ögreniñiz.',
     },
   },
 });

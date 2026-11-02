@@ -32,6 +32,7 @@ export const recognizeInsectCharacteristics_Skill_Data = buildSkillConfig({
     be: 'Распазнаваць прыкметы вусякоў',
     ka: 'მწერების ნიშნების ამოცნობა',
     kk: 'Бунақденелілердің белгілерін тану',
+    qm: 'İnsektlerniñ belgilerini tanımaq',
   },
   description: {
     methodological: "Identify six legs, three main body regions, and other characteristic features of adult insects.",
@@ -64,6 +65,7 @@ export const recognizeInsectCharacteristics_Skill_Data = buildSkillConfig({
       be: 'Распазнавай вусякоў паводле шасьці ног і трох асноўных аддзелаў цела.',
       ka: 'ამოიცანი მწერები მათი ექვსი ფეხისა და სხეულის სამი ძირითადი ნაწილის მიხედვით.',
       kk: 'Бунақденелілерді алты аяғы мен денесінің үш негізгі бөлімі бойынша таны.',
+      qm: 'İnsektlerni altı ayağına ve bedeniniñ üç esas qısmına köre tanıñız.',
     },
   },
 });

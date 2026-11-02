@@ -34,6 +34,7 @@ export const nutritionAndDevelopment_SkillGroup_Data = buildSkillGroupConfig({
     be: 'Харчаваньне і разьвіцьцё',
     ka: 'კვება და განვითარება',
     kk: 'Қоректену және даму',
+    qm: 'Beslenüv ve inkişaf',
   },
   skills: {
     classifyAnimalsByDiet: classifyAnimalsByDiet_Skill_Data,
@@ -72,6 +73,7 @@ export const nutritionAndDevelopment_SkillGroup_Data = buildSkillGroupConfig({
       be: 'Даведайся, чым адрозьніваюцца рацыёны і жыцьцёвыя цыклі розных жывёлаў.',
       ka: 'გაიგე, როგორ განსხვავდება ცხოველთა კვება და სასიცოცხლო ციკლები.',
       kk: 'Жануарлардың қоректенуі мен тіршілік циклдерінің қалай ерекшеленетінін біл.',
+      qm: 'Çeşit ayvanlarnıñ azıqları ve yaşayış devirleri nasıl farqlanğanını ögreniñiz.',
     },
   },
 });

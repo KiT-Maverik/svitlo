@@ -32,6 +32,7 @@ export const identifyExamplesOfNutrition_Skill_Data = buildSkillConfig({
     be: 'Распазнаваць прыклады жыўленьня',
     ka: 'კვების მაგალითების ამოცნობა',
     kk: 'Қоректену мысалдарын тану',
+    qm: 'Beslenüv misallerini tanımaq',
   },
   description: {
     methodological: "Recognize the acquisition and use of nutrients by organisms as nutrition, distinguishing forms of nutrition across different organisms.",
@@ -64,6 +65,7 @@ export const identifyExamplesOfNutrition_Skill_Data = buildSkillConfig({
       be: 'Распазнавай розныя спосабы, якімі арганізмы атрымліваюць і выкарыстоўваюць пажыўныя рэчывы.',
       ka: 'ამოიცანი, როგორ მოიპოვებენ და იყენებენ ორგანიზმები საკვებ ნივთიერებებს სხვადასხვა გზით.',
       kk: 'Ағзалардың қоректік заттарды алуы мен пайдалануының әртүрлі жолдарын таны.',
+      qm: 'Canlılar azıq maddelerini qanday yollar ile alğanını ve qullanğanını tanıñız.',
     },
   },
 });

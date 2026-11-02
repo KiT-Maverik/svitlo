@@ -32,6 +32,7 @@ export const explainMitosis_Skill_Data = buildSkillConfig({
     be: 'Тлумачыць мітоз',
     ka: 'მიტოზის ახსნა',
     kk: 'Митозды түсіндіру',
+    qm: 'Mitoznı añlatmaq',
   },
   description: {
     methodological: "Explain division of a eukaryotic cell nucleus while maintaining the chromosome number and distributing replicated DNA between daughter nuclei. Distinguish mitosis from cytokinesis and explain its roles in growth, tissue renewal, and asexual reproduction.",
@@ -64,6 +65,7 @@ export const explainMitosis_Skill_Data = buildSkillConfig({
       be: 'Дасьледуй, як падчас мітозу генэтычны матэрыял разьмяркоўваецца паміж даччынымі ядрамі.',
       ka: 'გამოიკვლიე, როგორ ნაწილდება მიტოზის დროს გენეტიკური მასალა შვილეულ ბირთვებს შორის.',
       kk: 'Митоз кезінде генетикалық материалдың еншілес ядролар арасында қалай бөлінетінін зертте.',
+      qm: 'Mitoz devamında irsiy material qız üceyrelerniñ çekirdekleri arasında nasıl bölüngenini ögreniñiz.',
     },
   },
 });

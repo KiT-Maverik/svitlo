@@ -76,6 +76,7 @@ export const zoology_SkillDomain_Data = buildSkillDomainConfig({
       be: 'Даведайся, чым жывёлы адрозьніваюцца паводле будовы, руху, росту і паводзінаў.',
       ka: 'გაიგე, რით განსხვავდებიან ცხოველები აგებულებით, მოძრაობით, ზრდითა და ქცევით.',
       kk: 'Жануарлардың құрылысы, қозғалысы, өсуі және мінез-құлқы жағынан қалай ерекшеленетінін біл.',
+      qm: 'Ayvanlarnıñ beden quruluşu, areketi, ösüvi ve davranışlarında qanday farqlar olğanını ögreniñiz.',
     },
   },
 });

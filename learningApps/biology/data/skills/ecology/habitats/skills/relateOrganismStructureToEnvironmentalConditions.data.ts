@@ -32,6 +32,7 @@ export const relateOrganismStructureToEnvironmentalConditions_Skill_Data = build
     be: 'Зьвязваць будову арганізму з умовамі асяродзьдзя',
     ka: 'ორგანიზმის აგებულების გარემო პირობებთან დაკავშირება',
     kk: 'Ағзаның құрылысын орта жағдайларымен байланыстыру',
+    qm: 'Canlınıñ quruluşunı müit şartlarınen bağlaştırmaq',
   },
   description: {
     methodological: "Explain, at the level of ecological niches, how organisms’ structures affect resource use and survival under particular environmental factors. Unlike botanical analysis of individual plant organs, this competency assesses how an organism fits its environment and ecological role.",
@@ -55,7 +56,7 @@ export const relateOrganismStructureToEnvironmentalConditions_Skill_Data = build
       te: 'జీవి శరీర నిర్మాణం తన వాతావరణంలో జీవించి, వనరులు ఉపయోగించుకోవడానికి ఎలా దోహదపడుతుందో వివరించండి.',
       mr: 'सजीवाची रचना त्याला पर्यावरणात टिकून राहण्यास आणि संसाधने वापरण्यास कशी मदत करते ते स्पष्ट करा.',
       ms: 'Terangkan bagaimana struktur organisma membantu ia hidup dan menggunakan sumber dalam persekitarannya.',
-      he: 'הסבר כיצד מבנה היצור מסייע לו לשרוד ולהשתמש במשאבים בסביבתו.',
+      he: 'הסבירו כיצד מבנה היצור מסייע לו לשרוד ולהשתמש במשאבים בסביבתו.',
       pl: 'Wyjaśnij, jak budowa organizmu pomaga mu przetrwać i korzystać z zasobów środowiska.',
       uk: 'Пояснюй, як будова організму допомагає йому виживати та використовувати ресурси середовища.',
       lt: 'Paaiškink, kaip organizmo sandara padeda jam išgyventi ir naudoti aplinkos išteklius.',
@@ -64,6 +65,7 @@ export const relateOrganismStructureToEnvironmentalConditions_Skill_Data = build
       be: 'Патлумач, як будова арганізму дапамагае яму выжываць і выкарыстоўваць рэсурсы асяродзьдзя.',
       ka: 'ახსენი, როგორ ეხმარება აგებულება ორგანიზმს გარემოში გადარჩენასა და რესურსების გამოყენებაში.',
       kk: 'Ағзаның құрылысы ортада тірі қалып, ресурстарды пайдалануға қалай көмектесетінін түсіндір.',
+      qm: 'Canlınıñ quruluşu öz müitinde sağ qalmağa ve kaynaklardan faydalanmağa nasıl yardım etkenini añlatıñız.',
     },
   },
 });

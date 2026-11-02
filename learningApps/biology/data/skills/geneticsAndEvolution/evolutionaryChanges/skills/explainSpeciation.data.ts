@@ -32,6 +32,7 @@ export const explainSpeciation_Skill_Data = buildSkillConfig({
     be: 'Тлумачыць утварэньне новых відаў',
     ka: 'სახეობათა წარმოქმნის ახსნა',
     kk: 'Жаңа түрлердің қалыптасуын түсіндіру',
+    qm: 'Yañı türlerniñ meydanğa kelüvini añlatmaq',
   },
   description: {
     methodological: "Explain how hereditary variation, population divergence, restricted gene flow, and reproductive isolation may give rise to new species; recognize that mechanisms of speciation differ among groups of organisms.",
@@ -55,7 +56,7 @@ export const explainSpeciation_Skill_Data = buildSkillConfig({
       te: 'జీవుల జనాభాలు క్రమంగా వేరుపడి కొత్త జాతులను ఎలా ఏర్పరచగలవో తెలుసుకోండి.',
       mr: 'जीवसमूहांमध्ये फरक वाढत जाऊन नवीन प्रजाती कशा निर्माण होऊ शकतात ते जाणून घ्या.',
       ms: 'Ketahui bagaimana populasi boleh semakin berbeza lalu membentuk spesies baharu.',
-      he: 'גלה כיצד אוכלוסיות יכולות להתפצל ולהתפתח למינים חדשים.',
+      he: 'גלו כיצד אוכלוסיות יכולות להתפצל ולהתפתח למינים חדשים.',
       pl: 'Dowiedz się, jak populacje mogą stopniowo się różnicować i tworzyć nowe gatunki.',
       uk: 'Дізнайся, як популяції можуть поступово розходитися за ознаками й утворювати нові види.',
       lt: 'Sužinok, kaip populiacijos gali skirtis vis labiau ir iš jų susidaryti naujos rūšys.',
@@ -64,6 +65,7 @@ export const explainSpeciation_Skill_Data = buildSkillConfig({
       be: 'Даведайся, як папуляцыі могуць паступова разыходзіцца і ўтвараць новыя віды.',
       ka: 'გაიგე, როგორ შეიძლება პოპულაციები თანდათან განსხვავდებოდნენ და ახალი სახეობები წარმოქმნან.',
       kk: 'Популяциялар біртіндеп алшақтап, жаңа түрлерді қалай түзе алатынын біл.',
+      qm: 'Populyatsiyalar vaqt keçken sayın nasıl bir-birinden farqlanıp yañı türler meydanğa ketire bilgenini ögreniñiz.',
     },
   },
 });

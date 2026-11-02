@@ -32,6 +32,7 @@ export const explainTheImportanceOfBiodiversity_Skill_Data = buildSkillConfig({
     be: 'Тлумачыць важнасьць біяразнастайнасьці',
     ka: 'ბიომრავალფეროვნების მნიშვნელობის ახსნა',
     kk: 'Биоалуантүрліліктің маңызын түсіндіру',
+    qm: 'Biologik çeşitlikniñ emiyetini añlatmaq',
   },
   description: {
     methodological: "Explain why a diversity of ecological roles and relationships can support ecosystem resilience in the face of change.",
@@ -55,7 +56,7 @@ export const explainTheImportanceOfBiodiversity_Skill_Data = buildSkillConfig({
       te: 'పర్యావరణ వ్యవస్థలు మార్పులకు స్పందించడంలో జీవవైవిధ్యం ఎలా సహాయపడుతుందో వివరించండి.',
       mr: 'जैवविविधतेमुळे परिसंस्थांना बदलांना सामोरे जाण्यास कशी मदत होते ते स्पष्ट करा.',
       ms: 'Terangkan bagaimana biodiversiti boleh membantu ekosistem menghadapi perubahan.',
-      he: 'הסבר כיצד מגוון ביולוגי יכול לעזור למערכות אקולוגיות להתמודד עם שינוי.',
+      he: 'הסבירו כיצד מגוון ביולוגי יכול לעזור למערכות אקולוגיות להתמודד עם שינוי.',
       pl: 'Wyjaśnij, jak różnorodność biologiczna może pomagać ekosystemom reagować na zmiany.',
       uk: 'Пояснюй, як біорізноманіття допомагає екосистемам реагувати на зміни.',
       lt: 'Paaiškink, kaip biologinė įvairovė gali padėti ekosistemoms reaguoti į pokyčius.',
@@ -64,6 +65,7 @@ export const explainTheImportanceOfBiodiversity_Skill_Data = buildSkillConfig({
       be: 'Патлумач, як біяразнастайнасьць можа дапамагаць экасыстэмам рэагаваць на зьмены.',
       ka: 'ახსენი, როგორ ეხმარება ბიომრავალფეროვნება ეკოსისტემებს ცვლილებებზე რეაგირებაში.',
       kk: 'Биоалуантүрлілік экожүйелерге өзгерістерге төтеп беруге қалай көмектесетінін түсіндір.',
+      qm: 'Biologik çeşitlik ekosistemalarğa deñişüvlerge uyğunlaşmağa nasıl yardım ete bilgenini añlatıñız.',
     },
   },
 });

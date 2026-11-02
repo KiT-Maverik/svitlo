@@ -32,6 +32,7 @@ export const recognizeFernAndFernAllyCharacteristics_Skill_Data = buildSkillConf
     be: 'Распазнаваць прыкметы папарацяў і роднасных расьлінаў',
     ka: 'გვიმრებისა და მონათესავე მცენარეების ნიშნების ამოცნობა',
     kk: 'Қырықжапырақтар мен туыстас өсімдіктердің белгілерін тану',
+    qm: 'Pteridofitlerniñ ve olarğa yaqın ösümliklerniñ belgilerini tanımaq',
   },
   description: {
     methodological: "Identify vascular spore-producing plants by the structure of their shoots and sporangia; distinguish them from bryophytes and seed plants.",
@@ -42,9 +43,9 @@ export const recognizeFernAndFernAllyCharacteristics_Skill_Data = buildSkillConf
       es: 'Reconoce los helechos y otras plantas vasculares relacionadas que se reproducen mediante esporas.',
       ar: 'تعرّف على السرخسيات والنباتات الوعائية القريبة منها التي تتكاثر بالأبواغ.',
       fr: 'Reconnais les fougères et les plantes vasculaires apparentées qui se reproduisent par spores.',
-      bn: 'রেণুর মাধ্যমে বংশবিস্তারকারী ফার্ন ও সংশ্লিষ্ট সংবহনতন্ত্রযুক্ত উদ্ভিদ চিনতে শেখো।',
+      bn: 'রেণুর মাধ্যমে বংশবিস্তারকারী ফার্ন ও সংশ্লিষ্ট সংবহন কলাযুক্ত উদ্ভিদ চিনতে শেখো।',
       pt: 'Reconheça samambaias e plantas vasculares relacionadas que se reproduzem por esporos.',
-      ur: 'بذریوں کے ذریعے تولید کرنے والے فرن اور متعلقہ عروقی پودے پہچانیں۔',
+      ur: 'تخمکوں کے ذریعے تولید کرنے والے فرن اور متعلقہ عروقی پودے پہچانیں۔',
       id: 'Kenali tumbuhan paku dan tumbuhan berpembuluh terkait yang bereproduksi dengan spora.',
       de: 'Erkenne Farne und verwandte Gefäßpflanzen, die sich durch Sporen fortpflanzen.',
       ja: '胞子で増えるシダ類と近縁の維管束植物を見分けよう。',
@@ -64,6 +65,7 @@ export const recognizeFernAndFernAllyCharacteristics_Skill_Data = buildSkillConf
       be: 'Распазнавай папараці й роднасныя судзінкавыя расьліны, што размнажаюцца спорамі.',
       ka: 'ამოიცანი სპორებით გამრავლებადი გვიმრები და მონათესავე გამტარი ქსოვილების მქონე მცენარეები.',
       kk: 'Спора арқылы көбейетін қырықжапырақтар мен туыстас өткізгіш ұлпалы өсімдіктерді таны.',
+      qm: 'Sporalar vastasınen çoğalğan pteridofitlerni ve olarğa yaqın damarlı ösümliklerni tanıñız.',
     },
   },
 });

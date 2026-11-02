@@ -32,6 +32,7 @@ export const recognizeBryophyteCharacteristics_Skill_Data = buildSkillConfig({
     be: 'Распазнаваць прыкметы мохападобных',
     ka: 'ხავსებისა და მონათესავე მცენარეების ნიშნების ამოცნობა',
     kk: 'Мүктәрізділердің белгілерін тану',
+    qm: 'Briofitlerniñ hususiyetlerini tanımaq',
   },
   description: {
     methodological: "Recognize nonvascular land plants that produce spores and whose life cycle is dominated by the gametophyte; do not call rhizoids true roots.",
@@ -64,6 +65,7 @@ export const recognizeBryophyteCharacteristics_Skill_Data = buildSkillConfig({
       be: 'Даведайся пра характэрныя прыкметы й жыцьцёвыя цыклі імхоў і роднасных расьлінаў.',
       ka: 'გაიგე ხავსებისა და მონათესავე მცენარეების დამახასიათებელი ნიშნები და სასიცოცხლო ციკლები.',
       kk: 'Мүктер мен туыстас өсімдіктердің ерекше белгілері мен өмірлік циклдерін біл.',
+      qm: 'Mohlar ve olarğa yaqın ösümliklerniñ esas belgilerini ve yaşayış devirlerini ögreniñiz.',
     },
   },
 });

@@ -32,6 +32,7 @@ export const relateMajorCellStructuresToTheirFunctions_Skill_Data = buildSkillCo
     be: 'Сувязь асноўных структураў клеткі зь іхнымі функцыямі',
     ka: 'უჯრედის ძირითადი სტრუქტურების დაკავშირება მათ ფუნქციებთან',
     kk: 'Жасушаның негізгі құрылымдарын олардың қызметтерімен байланыстыру',
+    qm: 'Üceyreniñ esas quruluşlarını vazifelerinen bağlaştırmaq',
   },
   description: {
     methodological: "Associate the membrane with selective exchange, the nucleus with genetic information, and other depicted organelles with their main cellular functions.",
@@ -64,6 +65,7 @@ export const relateMajorCellStructuresToTheirFunctions_Skill_Data = buildSkillCo
       be: 'Сувязвай структуры ўнутры клеткі з функцыямі, якія яны выконваюць.',
       ka: 'დააკავშირე უჯრედის შიგნით არსებული სტრუქტურები იმ ფუნქციებთან, რომლებსაც ისინი ასრულებენ.',
       kk: 'Жасуша ішіндегі құрылымдарды олардың атқаратын қызметтерімен байланыстыр.',
+      qm: 'Üceyre içindeki esas quruluşlarnı olar yerine ketirgen vazifelerinen bağlaştırıñız.',
     },
   },
 });

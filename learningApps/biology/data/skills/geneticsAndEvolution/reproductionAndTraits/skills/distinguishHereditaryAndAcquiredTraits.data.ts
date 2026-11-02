@@ -21,7 +21,7 @@ export const distinguishHereditaryAndAcquiredTraits_Skill_Data = buildSkillConfi
     vi: 'Phân biệt tính trạng di truyền và tính trạng mắc phải',
     ta: 'மரபுவழி மற்றும் பெறப்பட்ட பண்புகளை வேறுபடுத்துதல்',
     te: 'వారసత్వ, ఆర్జిత లక్షణాలను వేరు చేయడం',
-    mr: 'आनुवंशिक आणि संपादित गुणधर्मांत फरक ओळखणे',
+    mr: 'आनुवंशिक आणि अर्जित गुणधर्मांत फरक ओळखणे',
     ms: 'Membezakan ciri diwarisi dan diperoleh',
     he: 'הבחנה בין תכונות תורשתיות לנרכשות',
     pl: 'Odróżnianie cech dziedzicznych i nabytych',
@@ -32,6 +32,7 @@ export const distinguishHereditaryAndAcquiredTraits_Skill_Data = buildSkillConfi
     be: 'Адрозьніваць спадчынныя і набытыя прыкметы',
     ka: 'მემკვიდრეობითი და შეძენილი ნიშნების გარჩევა',
     kk: 'Тұқым қуалайтын және жүре пайда болған белгілерді ажырату',
+    qm: 'İrsiy ve ömür devamında qazanılğan belgilerni farqlamaq',
   },
   description: {
     methodological: "Distinguish changes that can be passed to offspring through genetic information from changes acquired by an individual through experience, injury, or training. Explain that most phenotypic traits arise from interactions between genotype and environment, so a rigid binary classification is not universally applicable.",
@@ -55,7 +56,7 @@ export const distinguishHereditaryAndAcquiredTraits_Skill_Data = buildSkillConfi
       te: 'జన్యువులు, పర్యావరణం కలిసి లక్షణాలను ఎలా ప్రభావితం చేస్తాయో తెలుసుకోండి; కచ్చితంగా రెండు వర్గాలుగా విడదీయవద్దు.',
       mr: 'जनुके आणि पर्यावरण दोन्ही गुणधर्मांवर कसे प्रभाव टाकतात ते शोधा; कठोर दोन गट करू नका.',
       ms: 'Terokai pengaruh bersama gen dan persekitaran terhadap ciri tanpa pembahagian dua kategori yang tegar.',
-      he: 'חקור כיצד גנים וסביבה משפיעים יחד על תכונות, בלי לחלק אותן לשתי קבוצות קשיחות.',
+      he: 'חקרו כיצד גנים וסביבה משפיעים יחד על תכונות, בלי לחלק אותן לשתי קבוצות קשיחות.',
       pl: 'Zbadaj, jak geny i środowisko wspólnie wpływają na cechy, bez sztywnego podziału na dwie grupy.',
       uk: 'Досліджуй, як гени й середовище спільно впливають на ознаки, не зводячи їх до суворого поділу на два типи.',
       lt: 'Tyrinėk, kaip genai ir aplinka kartu veikia požymius, neskirstydamas jų į dvi griežtas kategorijas.',
@@ -64,6 +65,7 @@ export const distinguishHereditaryAndAcquiredTraits_Skill_Data = buildSkillConfi
       be: 'Дасьледуй, як гены і асяродзьдзе разам уплываюць на прыкметы, не падзяляючы іх жорстка на два тыпы.',
       ka: 'გამოიკვლიე, როგორ მოქმედებს გენები და გარემო ნიშნებზე ერთად, მკაცრი ორად გაყოფის გარეშე.',
       kk: 'Гендер мен орта белгілерге қалай бірлесіп әсер ететінін зертте, оларды қатаң екіге бөлме.',
+      qm: 'Genler ve müit belgilerge beraber tesir etkenini ögreniñiz; olarnı er vaqıt eki qattiy grupağa ayırmañız.',
     },
   },
 });

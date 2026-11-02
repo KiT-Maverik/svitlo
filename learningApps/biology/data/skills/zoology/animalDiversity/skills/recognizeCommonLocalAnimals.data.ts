@@ -32,6 +32,7 @@ export const recognizeCommonLocalAnimals_Skill_Data = buildSkillConfig({
     be: 'Распазнаваць звычайных мясцовых жывёлаў',
     ka: 'გავრცელებული ადგილობრივი ცხოველების ამოცნობა',
     kk: 'Жергілікті кең таралған жануарларды тану',
+    qm: 'Yerli yayğın ayvanlarnı tanımaq',
   },
   description: {
     methodological: "Identify familiar local species from a characteristic combination of body structure, coverings, and modes of movement.",
@@ -64,6 +65,7 @@ export const recognizeCommonLocalAnimals_Skill_Data = buildSkillConfig({
       be: 'Вызначай знаёмых жывёлаў паводле характэрнай будовы і покрыва цела.',
       ka: 'ამოიცანი ნაცნობი ცხოველები მათი სხეულის დამახასიათებელი აგებულებისა და საფარვლის მიხედვით.',
       kk: 'Таныс жануарларды дене құрылысы мен дене жабынының ерекше белгілері арқылы анықта.',
+      qm: 'Yaşığan yeriñizdeki ayvanlarnı olarnıñ beden quruluşu ve beden örtüsine köre tanıñız.',
     },
   },
 });

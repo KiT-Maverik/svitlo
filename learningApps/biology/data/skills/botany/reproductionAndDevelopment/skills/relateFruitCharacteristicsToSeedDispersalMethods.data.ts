@@ -32,6 +32,7 @@ export const relateFruitCharacteristicsToSeedDispersalMethods_Skill_Data = build
     be: 'Сувязваць прыкметы пладоў са спосабамі распаўсюду насеньня',
     ka: 'ნაყოფის ნიშნების დაკავშირება თესლის გავრცელებასთან',
     kk: 'Жеміс белгілерін тұқым таралуымен байланыстыру',
+    qm: 'Meyva belgilerini tohum yayılmasınıñ usullarınen bağlaştırmaq',
   },
   description: {
     methodological: "Compare adaptations of fruits and seeds to transport by wind, water, or animals.",
@@ -64,6 +65,7 @@ export const relateFruitCharacteristicsToSeedDispersalMethods_Skill_Data = build
       be: 'Сувязвай формы пладоў і насеньня са спосабамі іхнага распаўсюду.',
       ka: 'დააკავშირე ნაყოფისა და თესლის ფორმები მათი გავრცელების გზებთან.',
       kk: 'Жеміс пен тұқым пішіндерін олардың таралу тәсілдерімен байланыстыр.',
+      qm: 'Meyva ve tohumlarnıñ şekillerini olarnıñ etrafqa yayılma usullarınen bağlaştırıñız.',
     },
   },
 });

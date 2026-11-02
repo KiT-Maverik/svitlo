@@ -66,7 +66,7 @@ export const genetics_SkillGroup_Data = buildSkillGroupConfig({
       te: 'డీఎన్‌ఏ, జన్యువులు, వాటి కార్యకలాపాలు వారసత్వ లక్షణాలను ఎలా ప్రభావితం చేస్తాయో తెలుసుకోండి.',
       mr: 'डीएनए, जनुके आणि त्यांची क्रिया आनुवंशिक वैशिष्ट्यांवर कसा परिणाम करतात ते जाणून घ्या.',
       ms: 'Ketahui bagaimana DNA, gen dan aktivitinya mempengaruhi ciri yang diwarisi.',
-      he: 'למד כיצד דנ״א, גנים והפעילות שלהם משפיעים על תכונות תורשתיות.',
+      he: 'למדו כיצד דנ״א, גנים והפעילות שלהם משפיעים על תכונות תורשתיות.',
       pl: 'Dowiedz się, jak DNA, geny i ich aktywność wpływają na cechy dziedziczne.',
       uk: 'Дізнайся, як ДНК, гени та їхня активність впливають на спадкові ознаки.',
       lt: 'Sužinok, kaip DNR, genai ir jų aktyvumas veikia paveldimus požymius.',

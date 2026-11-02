@@ -34,6 +34,7 @@ export const plantStructure_SkillGroup_Data = buildSkillGroupConfig({
     be: 'Будова расьлінаў',
     ka: 'მცენარეთა აგებულება',
     kk: 'Өсімдіктер құрылысы',
+    qm: 'Ösümliklerniñ quruluşu',
   },
   skills: {
     identifyMajorPlantOrgans: identifyMajorPlantOrgans_Skill_Data,
@@ -65,11 +66,12 @@ export const plantStructure_SkillGroup_Data = buildSkillGroupConfig({
       pl: 'Poznaj różne funkcje korzeni, łodyg, liści i organów rozmnażania.',
       uk: 'Дізнайся, яку роль відіграють корені, стебла, листки та репродуктивні органи.',
       lt: 'Sužinok, kaip šaknys, stiebai, lapai ir dauginimosi dalys atlieka skirtingas funkcijas.',
-      lv: 'Uzzini, kā saknes, stumbri, lapas un vairošanās orgāni pilda dažādas funkcijas.',
+      lv: 'Uzzini, kā saknes, stublāji, lapas un vairošanās orgāni pilda dažādas funkcijas.',
       et: 'Õpi, kuidas juured, varred, lehed ja paljunemisosad täidavad erinevaid ülesandeid.',
       be: 'Даведайся, якую ролю выконваюць карані, сьцёблы, лісты й органы размнажэньня.',
       ka: 'გაიგე ფესვების, ღეროების, ფოთლებისა და გამრავლების ნაწილების განსხვავებული ფუნქციები.',
       kk: 'Тамыр, сабақ, жапырақ пен көбею мүшелерінің әртүрлі қызметтерін біл.',
+      qm: 'Tamırlar, saplar, yapraqlar ve çoğaluv organlarınıñ çeşit vazifelerini ögreniñiz.',
     },
   },
 });

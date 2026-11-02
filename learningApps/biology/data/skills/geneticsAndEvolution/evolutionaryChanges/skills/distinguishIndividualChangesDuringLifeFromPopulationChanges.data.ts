@@ -16,7 +16,7 @@ export const distinguishIndividualChangesDuringLifeFromPopulationChanges_Skill_D
     id: 'Membedakan perubahan selama hidup individu dari perubahan populasi',
     de: 'Veränderungen im Leben eines Individuums von Veränderungen einer Population unterscheiden',
     ja: '個体の生涯での変化と集団の変化を区別する',
-    ko: '개체의 일생 동안 변화와 개체군의 변화 구별하기',
+    ko: '개체의 일생 동안의 변화와 개체군의 변화 구별하기',
     tr: 'Bireyin yaşamındaki değişimleri popülasyon değişimlerinden ayırmak',
     vi: 'Phân biệt thay đổi trong đời cá thể với thay đổi của quần thể',
     ta: 'ஒரு உயிரின் வாழ்நாள் மாற்றங்களையும் உயிரினக் கூட்டத்தின் மாற்றங்களையும் வேறுபடுத்துதல்',
@@ -32,6 +32,7 @@ export const distinguishIndividualChangesDuringLifeFromPopulationChanges_Skill_D
     be: 'Адрозьніваць зьмены на працягу жыцьця асобіны ад зьменаў у папуляцыі',
     ka: 'ინდივიდის სიცოცხლის განმავლობაში ცვლილებებისა და პოპულაციის ცვლილებების გარჩევა',
     kk: 'Жеке ағзаның өміріндегі өзгерістерді популяция өзгерістерінен ажырату',
+    qm: 'Şahısnıñ ömründeki deñişüvlerni populyatsiya deñişüvlerinden farqlamaq',
   },
   description: {
     methodological: "Distinguish changes in the growth or behavior of one individual from changes in the frequencies of inherited traits in a population.",
@@ -55,7 +56,7 @@ export const distinguishIndividualChangesDuringLifeFromPopulationChanges_Skill_D
       te: 'ఒక జీవి జీవితకాలంలో జరిగే మార్పులను అనేక తరాలుగా జనాభాలో జరిగే పరిణామం నుంచి వేరు చేసి గుర్తించండి.',
       mr: 'एका जीवाच्या आयुष्यात होणारे बदल आणि अनेक पिढ्यांमध्ये जीवसमूहात होणारी उत्क्रांती यांतील फरक ओळखा.',
       ms: 'Bezakan perubahan sepanjang hayat satu organisma daripada evolusi populasi merentas generasi.',
-      he: 'הבחן בין שינויים במהלך חייו של יצור יחיד לבין אבולוציה של אוכלוסיות לאורך דורות.',
+      he: 'הבחינו בין שינויים במהלך חייו של יצור יחיד לבין אבולוציה של אוכלוסיות לאורך דורות.',
       pl: 'Odróżnij zmiany zachodzące podczas życia pojedynczego organizmu od ewolucji populacji na przestrzeni pokoleń.',
       uk: 'Розрізняй зміни, які відбуваються протягом життя окремого організму, та еволюцію популяцій упродовж поколінь.',
       lt: 'Atskirk vieno organizmo gyvenimo pokyčius nuo populiacijų evoliucijos per daugelį kartų.',
@@ -64,6 +65,7 @@ export const distinguishIndividualChangesDuringLifeFromPopulationChanges_Skill_D
       be: 'Адрозьнівай зьмены на працягу жыцьця аднаго арганізму ад эвалюцыі папуляцыяў на працягу пакаленьняў.',
       ka: 'განასხვავე ერთი ორგანიზმის სიცოცხლეში მომხდარი ცვლილებები და პოპულაციების ევოლუცია თაობების განმავლობაში.',
       kk: 'Бір ағзаның өміріндегі өзгерістерді популяциялардың бірнеше ұрпақ бойындағы эволюциясынан ажырат.',
+      qm: 'Bir canlınıñ ömri devamında olğan deñişüvlerni nesiller boyunca populyatsiyada olğan evolütsion deñişüvlerden farq etiñiz.',
     },
   },
 });

@@ -34,6 +34,7 @@ export const cellDivision_SkillGroup_Data = buildSkillGroupConfig({
     be: 'Дзяленьне клетак',
     ka: 'უჯრედის გაყოფა',
     kk: 'Жасушаның бөлінуі',
+    qm: 'Üceyre bölünüvi',
   },
   skills: {
     explainMeiosis: explainMeiosis_Skill_Data,
@@ -70,6 +71,7 @@ export const cellDivision_SkillGroup_Data = buildSkillGroupConfig({
       be: 'Даведайся, як дзяленьне клетак забясьпечвае рост, абнаўленьне й размнажэньне.',
       ka: 'გაიგე, როგორ უწყობს ხელს უჯრედის გაყოფა ზრდას, განახლებას და გამრავლებას.',
       kk: 'Жасушалардың бөлінуі өсуге, жаңаруға және көбеюге қалай көмектесетінін біл.',
+      qm: 'Üceyreler bölüngende ösüv, yañıdan tiklenüv ve çoğaluv nasıl mümkün olğanını ögreniñiz.',
     },
   },
 });

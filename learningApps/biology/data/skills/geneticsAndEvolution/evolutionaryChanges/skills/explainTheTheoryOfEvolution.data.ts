@@ -32,6 +32,7 @@ export const explainTheTheoryOfEvolution_Skill_Data = buildSkillConfig({
     be: 'Тлумачыць тэорыю эвалюцыі',
     ka: 'ევოლუციის თეორიის ახსნა',
     kk: 'Эволюция теориясын түсіндіру',
+    qm: 'Evolütsiya nazariyesini añlatmaq',
   },
   description: {
     methodological: "Explain modern evolutionary theory as a scientific explanation of changes in inherited population characteristics and the diversity of life, supported by multiple converging lines of evidence. Distinguish a scientific theory from individual hypotheses, factual observations, and claims of purpose-directed development.",
@@ -55,7 +56,7 @@ export const explainTheTheoryOfEvolution_Skill_Data = buildSkillConfig({
       te: 'అనేక రకాల ఆధారాలతో సమర్థించబడిన శాస్త్రీయ వివరణగా పరిణామాన్ని అర్థం చేసుకోండి.',
       mr: 'उत्क्रांती ही विविध प्रकारच्या पुराव्यांनी समर्थित असलेली वैज्ञानिक व्याख्या आहे हे समजून घ्या.',
       ms: 'Fahami evolusi sebagai penjelasan saintifik yang disokong oleh pelbagai jenis bukti.',
-      he: 'הבן את האבולוציה כהסבר מדעי שנתמך בסוגים רבים של ראיות.',
+      he: 'הבינו את האבולוציה כהסבר מדעי שנתמך בסוגים רבים של ראיות.',
       pl: 'Zrozum ewolucję jako wyjaśnienie naukowe poparte różnymi rodzajami dowodów.',
       uk: 'Зрозумій еволюцію як наукове пояснення, підтверджене різними видами доказів.',
       lt: 'Suprask evoliuciją kaip mokslinį paaiškinimą, kurį pagrindžia įvairių rūšių įrodymai.',
@@ -64,6 +65,7 @@ export const explainTheTheoryOfEvolution_Skill_Data = buildSkillConfig({
       be: 'Зразумей эвалюцыю як навуковае тлумачэньне, пацьверджанае рознымі відамі доказаў.',
       ka: 'გაიგე, რომ ევოლუცია მეცნიერული ახსნაა, რომელსაც სხვადასხვა სახის მტკიცებულება ამყარებს.',
       kk: 'Эволюцияны әртүрлі дәлелдермен расталған ғылыми түсіндірме ретінде түсін.',
+      qm: 'Evolütsiya çeşit delillerge esaslanğan ilmiy añlatma olğanını ögreniñiz.',
     },
   },
 });

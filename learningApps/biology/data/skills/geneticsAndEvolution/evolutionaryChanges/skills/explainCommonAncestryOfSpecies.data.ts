@@ -32,6 +32,7 @@ export const explainCommonAncestryOfSpecies_Skill_Data = buildSkillConfig({
     be: 'Тлумачыць агульнае паходжаньне відаў',
     ka: 'სახეობათა საერთო წინაპრების ახსნა',
     kk: 'Түрлердің ортақ ата-тегін түсіндіру',
+    qm: 'Türlerniñ ortaq ecdadını añlatmaq',
   },
   description: {
     methodological: "Explain that different species may descend from common ancestors and that an evolutionary tree represents branching lineages; distinguish a common ancestor from a modern species supposedly transforming directly into another.",
@@ -55,7 +56,7 @@ export const explainCommonAncestryOfSpecies_Skill_Data = buildSkillConfig({
       te: 'వేర్వేరు జాతులు శాఖలుగా విడిపోయే పరిణామ చరిత్రలో ఉమ్మడి పూర్వీకులను ఎలా పంచుకుంటాయో వివరించండి.',
       mr: 'उत्क्रांतीच्या फांद्यांमध्ये विभागलेल्या इतिहासात वेगवेगळ्या प्रजातींचे पूर्वज समान कसे असू शकतात ते स्पष्ट करा.',
       ms: 'Terangkan bagaimana spesies berbeza boleh mempunyai nenek moyang bersama dalam sejarah evolusi yang bercabang.',
-      he: 'הסבר כיצד מינים שונים יכולים לחלוק אבות קדומים משותפים בעץ התפתחות אבולוציוני מסתעף.',
+      he: 'הסבירו כיצד מינים שונים יכולים לחלוק אבות קדומים משותפים בעץ התפתחות אבולוציוני מסתעף.',
       pl: 'Wyjaśnij, jak różne gatunki mogą mieć wspólnych przodków w rozgałęzionej historii ewolucyjnej.',
       uk: 'Пояснюй, як різні види можуть походити від спільних предків у розгалуженій еволюційній історії.',
       lt: 'Paaiškink, kaip skirtingos rūšys gali turėti bendrų protėvių išsišakojusioje evoliucijos istorijoje.',
@@ -64,6 +65,7 @@ export const explainCommonAncestryOfSpecies_Skill_Data = buildSkillConfig({
       be: 'Тлумач, як розныя віды могуць мець агульных продкаў у разгалінаванай эвалюцыйнай гісторыі.',
       ka: 'ახსენი, როგორ შეიძლება სხვადასხვა სახეობას ჰყავდეს საერთო წინაპრები განშტოებულ ევოლუციურ ისტორიაში.',
       kk: 'Әртүрлі түрлердің тармақталған эволюциялық тарихта ортақ ата-тегі қалай болуы мүмкін екенін түсіндір.',
+      qm: 'Çeşit türlerniñ ortaq ecdadları olğanını ve evolütsiya tarihınıñ nasıl dallanğanını añlatıñız.',
     },
   },
 });

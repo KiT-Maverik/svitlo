@@ -32,6 +32,7 @@ export const explainEnergyFlowInAnEcosystem_Skill_Data = buildSkillConfig({
     be: 'Тлумачыць паток энэргіі ў экасыстэме',
     ka: 'ეკოსისტემაში ენერგიის ნაკადის ახსნა',
     kk: 'Экожүйедегі энергия ағынын түсіндіру',
+    qm: 'Ekosistemada energiya aqımını añlatmaq',
   },
   description: {
     methodological: "Explain one-way energy transfer through producers, consumers, and decomposers, energy transformations, and dissipation as heat; do not confuse energy flow with matter cycling.",
@@ -55,7 +56,7 @@ export const explainEnergyFlowInAnEcosystem_Skill_Data = buildSkillConfig({
       te: 'పదార్థం తిరిగి ఉపయోగించబడినా శక్తి మాత్రం ఒక దిశలోనే ఎందుకు ప్రవహిస్తుందో వివరించండి.',
       mr: 'पदार्थांचा पुनर्वापर होत असताना ऊर्जा परिसंस्थेतून एकाच दिशेने का वाहते ते स्पष्ट करा.',
       ms: 'Terangkan mengapa tenaga mengalir sehala dalam ekosistem sedangkan jirim dikitar semula.',
-      he: 'הסבר מדוע אנרגיה זורמת בכיוון אחד בעוד החומר ממוחזר במערכת האקולוגית.',
+      he: 'הסבירו מדוע אנרגיה זורמת בכיוון אחד בעוד החומר ממוחזר במערכת האקולוגית.',
       pl: 'Wyjaśnij, dlaczego energia przepływa przez ekosystem, a materia krąży.',
       uk: 'Пояснюй, чому енергія проходить крізь екосистему, а речовини використовуються повторно.',
       lt: 'Paaiškink, kodėl energija teka viena kryptimi, o medžiagos naudojamos pakartotinai.',
@@ -64,6 +65,7 @@ export const explainEnergyFlowInAnEcosystem_Skill_Data = buildSkillConfig({
       be: 'Патлумач, чаму энэргія праходзіць праз экасыстэму ў адным кірунку, а рэчывы выкарыстоўваюцца паўторна.',
       ka: 'ახსენი, რატომ მიედინება ენერგია ერთი მიმართულებით, ხოლო ნივთიერება კვლავ გამოიყენება.',
       kk: 'Энергия неге бір бағытта ағып, зат қайта пайдаланылатынын түсіндір.',
+      qm: 'Madde qaytadan qullanılğanda energiyanıñ ekosistemadan bir yoñelişte keçkenini ne içün olğanını añlatıñız.',
     },
   },
 });

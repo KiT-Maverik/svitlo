@@ -32,6 +32,7 @@ export const recognizeAmphibianCharacteristics_Skill_Data = buildSkillConfig({
     be: 'Распазнаваць прыкметы земнаводных',
     ka: 'ამფიბიების ნიშნების ამოცნობა',
     kk: 'Қосмекенділердің белгілерін тану',
+    qm: 'Amfibiyalarnıñ belgilerini tanımaq',
   },
   description: {
     methodological: "Identify characteristic features of a group in which development is often associated with water and adults may use lungs and skin for respiration.",
@@ -64,6 +65,7 @@ export const recognizeAmphibianCharacteristics_Skill_Data = buildSkillConfig({
       be: 'Распазнавай агульныя прыкметы земнаводных і асаблівасьці іх разьвіцьця.',
       ka: 'ამოიცანი ამფიბიებისა და მათი განვითარების საერთო ნიშნები.',
       kk: 'Қосмекенділер мен олардың дамуына тән ортақ белгілерді таны.',
+      qm: 'Amfibiyalarnıñ beden quruluşuna ve inkişafına has umumiy belgilerini tanıñız.',
     },
   },
 });

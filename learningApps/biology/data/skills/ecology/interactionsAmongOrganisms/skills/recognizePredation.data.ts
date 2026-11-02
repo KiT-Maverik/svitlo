@@ -32,6 +32,7 @@ export const recognizePredation_Skill_Data = buildSkillConfig({
     be: 'Распазнаваць драпежніцтва',
     ka: 'მტაცებლობის ამოცნობა',
     kk: 'Жыртқыштықты тану',
+    qm: 'Yırtıcılıqnı tanımaq',
   },
   description: {
     methodological: "Distinguish consumption of one organism by another from competition over a shared resource.",
@@ -55,7 +56,7 @@ export const recognizePredation_Skill_Data = buildSkillConfig({
       te: 'ఒక జీవి మరో జీవిని పట్టుకొని తినే సందర్భాన్ని గుర్తించండి.',
       mr: 'एक सजीव दुसऱ्या सजीवाला पकडून खातो तेव्हा ओळखा.',
       ms: 'Kenal pasti apabila organisma menangkap dan memakan organisma lain.',
-      he: 'זהה מצב שבו יצור אחד לוכד יצור אחר וניזון ממנו.',
+      he: 'זהו מצב שבו יצור אחד לוכד יצור אחר וניזון ממנו.',
       pl: 'Rozpoznaj sytuacje, gdy organizm chwyta inny organizm i nim się żywi.',
       uk: 'Визначай, коли один організм ловить інший і живиться ним.',
       lt: 'Atpažink, kada organizmas pagauna kitą ir juo minta.',
@@ -64,6 +65,7 @@ export const recognizePredation_Skill_Data = buildSkillConfig({
       be: 'Вызначай, калі адзін арганізм ловіць іншы і харчуецца ім.',
       ka: 'ამოიცანი, როდის იჭერს ერთი ორგანიზმი მეორეს და მისით იკვებება.',
       kk: 'Бір ағза басқа ағзаны ұстап, онымен қоректенетін жағдайларды анықта.',
+      qm: 'Bir canlı başqa canlını tutıp aşağan vaziyetlerni tanıñız.',
     },
   },
 });

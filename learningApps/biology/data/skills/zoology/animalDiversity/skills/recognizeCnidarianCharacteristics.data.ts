@@ -32,6 +32,7 @@ export const recognizeCnidarianCharacteristics_Skill_Data = buildSkillConfig({
     be: 'Распазнаваць прыкметы кішачнаполасьцевых',
     ka: 'ნაწლავღრუიანების ნიშნების ამოცნობა',
     kk: 'Ішекқуыстылардың белгілерін тану',
+    qm: 'Knidariyalarnıñ belgilerini tanımaq',
   },
   description: {
     methodological: "Recognize cnidarians by stinging cells and the characteristic body plans of polyps and medusae; do not regard the medusa form as obligatory for every member.",
@@ -64,6 +65,7 @@ export const recognizeCnidarianCharacteristics_Skill_Data = buildSkillConfig({
       be: 'Распазнавай мэдузаў і каралы паводле іх жыгучых клетак.',
       ka: 'ამოიცანი მედუზები და მარჯნები მათი მსუსხავი უჯრედებით.',
       kk: 'Медузалар мен маржандарды олардың атпа жасушалары арқылы таны.',
+      qm: 'Meduzalar ve mercanlar kibi ayvanlarnı olarnıñ çaqqıcı üceyrelerine köre tanıñız.',
     },
   },
 });

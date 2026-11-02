@@ -32,6 +32,7 @@ export const identifyTheRoleOfMineralNutrition_Skill_Data = buildSkillConfig({
     be: 'Вызначаць ролю мінэральнага жыўленьня',
     ka: 'მინერალური კვების როლის ამოცნობა',
     kk: 'Минералдық қоректенудің рөлін анықтау',
+    qm: 'Mineral beslenüvniñ rolüni belgilemek',
   },
   description: {
     methodological: "Explain why mineral elements from soil are necessary for tissue formation, although they do not replace food as an energy source.",
@@ -64,6 +65,7 @@ export const identifyTheRoleOfMineralNutrition_Skill_Data = buildSkillConfig({
       be: 'Зразумей, як мінэральныя пажыўныя рэчывы дапамагаюць фармаваць здаровыя тканкі расьлінаў.',
       ka: 'გაიგე, როგორ ეხმარება მინერალური საკვები ნივთიერებები მცენარეებს ჯანსაღი ქსოვილების შექმნაში.',
       kk: 'Минералдық қоректік заттар сау өсімдік ұлпаларын қалыптастыруға қалай көмектесетінін біл.',
+      qm: 'Mineral maddeler ösümlikniñ sağlam toqularınıñ teşkil olmasına ne içün yardım etkenini ögreniñiz.',
     },
   },
 });

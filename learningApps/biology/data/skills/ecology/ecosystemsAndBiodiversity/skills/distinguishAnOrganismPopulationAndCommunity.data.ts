@@ -21,7 +21,7 @@ export const distinguishAnOrganismPopulationAndCommunity_Skill_Data = buildSkill
     vi: 'Phân biệt cá thể, quần thể và quần xã',
     ta: 'உயிரி, உயிரினக் கூட்டம், உயிர்ச் சமூகத்தை வேறுபடுத்துதல்',
     te: 'జీవి, జనాభా, జీవ సముదాయాన్ని వేరు చేయడం',
-    mr: 'सजीव, लोकसंख्या आणि समुदाय यांत फरक ओळखणे',
+    mr: 'सजीव, जीवसमूह आणि समुदाय यांत फरक ओळखणे',
     ms: 'Membezakan organisma, populasi dan komuniti',
     he: 'הבחנה בין אורגניזם, אוכלוסייה וקהילה',
     pl: 'Odróżnianie organizmu, populacji i zespołu organizmów',
@@ -32,6 +32,7 @@ export const distinguishAnOrganismPopulationAndCommunity_Skill_Data = buildSkill
     be: 'Адрозьніваць арганізм, папуляцыю і супольнасьць',
     ka: 'ორგანიზმის, პოპულაციისა და თანასაზოგადოების გარჩევა',
     kk: 'Ағза, популяция және қауымдастықты ажырату',
+    qm: 'Canlı organizm, populyatsiya ve toplulıqnı farqlamaq',
   },
   description: {
     methodological: "Distinguish a single individual from individuals of one species in an area and from a community composed of different species.",
@@ -55,7 +56,7 @@ export const distinguishAnOrganismPopulationAndCommunity_Skill_Data = buildSkill
       te: 'ఒక జీవి, ఒకే జాతి జనాభా, అనేక జాతుల జీవ సముదాయాన్ని వేరు చేయండి.',
       mr: 'एक सजीव, एकाच प्रजातीचा जीवसमूह आणि विविध प्रजातींचा समुदाय यांत फरक ओळखा.',
       ms: 'Bezakan satu organisma, populasi sejenis dan komuniti pelbagai spesies.',
-      he: 'הבחן בין יצור יחיד, אוכלוסייה ממין אחד וקהילה ממינים שונים.',
+      he: 'הבחינו בין יצור יחיד, אוכלוסייה ממין אחד וקהילה ממינים שונים.',
       pl: 'Odróżnij pojedynczy organizm, populację jednego gatunku i zespół wielu gatunków.',
       uk: 'Відрізняй окремий організм, популяцію одного виду й угруповання різних видів.',
       lt: 'Atskirk pavienį organizmą, vienos rūšies populiaciją ir skirtingų rūšių bendriją.',
@@ -64,6 +65,7 @@ export const distinguishAnOrganismPopulationAndCommunity_Skill_Data = buildSkill
       be: 'Адрозьнівай асобны арганізм, папуляцыю аднаго віду і супольнасьць розных відаў.',
       ka: 'განასხვავე ერთი ორგანიზმი, ერთი სახეობის პოპულაცია და სხვადასხვა სახეობის თანასაზოგადოება.',
       kk: 'Жеке ағзаны, бір түр популяциясын және әртүрлі түрлер қауымдастығын ажырат.',
+      qm: 'Bir canlı organizmni, bir türniñ populyatsiyasını ve çeşit türlerden teşkil olğan toplulıqnı farq etiñiz.',
     },
   },
 });

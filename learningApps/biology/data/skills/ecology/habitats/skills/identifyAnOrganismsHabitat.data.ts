@@ -32,6 +32,7 @@ export const identifyAnOrganismsHabitat_Skill_Data = buildSkillConfig({
     be: 'Вызначаць асяродзьдзе існаваньня арганізму',
     ka: 'ორგანიზმის საარსებო გარემოს ამოცნობა',
     kk: 'Ағзаның тіршілік ортасын анықтау',
+    qm: 'Canlınıñ yaşayış yerini belgilemek',
   },
   description: {
     methodological: "Describe typical conditions in which a species finds essential resources and can reproduce.",
@@ -55,7 +56,7 @@ export const identifyAnOrganismsHabitat_Skill_Data = buildSkillConfig({
       te: 'ఒక జాతికి దాని ఆవాసంలో అవసరమైన పరిస్థితులు, వనరులను గుర్తించండి.',
       mr: 'एखाद्या प्रजातीला तिच्या अधिवासात आवश्यक परिस्थिती आणि संसाधने ओळखा.',
       ms: 'Kenal pasti keadaan dan sumber yang diperlukan oleh spesies dalam habitatnya.',
-      he: 'זהה את התנאים והמשאבים שמין זקוק להם בבית הגידול שלו.',
+      he: 'זהו את התנאים והמשאבים שמין זקוק להם בבית הגידול שלו.',
       pl: 'Rozpoznaj warunki i zasoby potrzebne gatunkowi w jego siedlisku.',
       uk: 'Розпізнавай умови та ресурси, потрібні виду в його середовищі існування.',
       lt: 'Atpažink sąlygas ir išteklius, kurių rūšiai reikia buveinėje.',
@@ -64,6 +65,7 @@ export const identifyAnOrganismsHabitat_Skill_Data = buildSkillConfig({
       be: 'Распазнавай умовы і рэсурсы, патрэбныя віду ў ягоным асяродзьдзі існаваньня.',
       ka: 'ამოიცანი პირობები და რესურსები, რომლებიც სახეობას თავის გარემოში სჭირდება.',
       kk: 'Түрге тіршілік ортасында қажет жағдайлар мен ресурстарды анықта.',
+      qm: 'Bir türge öz yaşayış yerinde qaysı şartlar ve kaynaklar kerek olğanını belgileñiz.',
     },
   },
 });

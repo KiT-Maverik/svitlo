@@ -32,6 +32,7 @@ export const explainAnOrgansFunctionInAnOrganism_Skill_Data = buildSkillConfig({
     be: 'Тлумачыць функцыю органа ў арганізьме',
     ka: 'ორგანოს ფუნქციის ახსნა ორგანიზმში',
     kk: 'Ағзадағы мүшенің қызметін түсіндіру',
+    qm: 'Organnıñ canlı bedenindeki vazifesini añlatmaq',
   },
   description: {
     methodological: "Explain how a particular structure contributes to overall life processes, such as absorbing or transporting substances.",
@@ -64,6 +65,7 @@ export const explainAnOrgansFunctionInAnOrganism_Skill_Data = buildSkillConfig({
       be: 'Тлумач, як пэўны орган дапамагае працаваць цэламу арганізму.',
       ka: 'ახსენი, როგორ უწყობს კონკრეტული ორგანო ხელს მთელი ორგანიზმის მუშაობას.',
       kk: 'Белгілі бір мүше бүкіл ағзаның жұмысына қалай көмектесетінін түсіндір.',
+      qm: 'Belgili bir organ bütün canlı organizmniñ faaliyetini nasıl temin etkenini añlatıñız.',
     },
   },
 });

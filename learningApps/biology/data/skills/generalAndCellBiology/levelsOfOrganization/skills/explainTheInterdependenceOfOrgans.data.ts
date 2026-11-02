@@ -32,6 +32,7 @@ export const explainTheInterdependenceOfOrgans_Skill_Data = buildSkillConfig({
     be: 'Тлумачыць узаемазалежнасьць органаў',
     ka: 'ორგანოების ურთიერთდამოკიდებულების ახსნა',
     kk: 'Мүшелердің өзара тәуелділігін түсіндіру',
+    qm: 'Organlarnıñ qarşılıqlı bağlılığını añlatmaq',
   },
   description: {
     methodological: "Show why a disruption in one system can alter the functioning of another.",
@@ -64,6 +65,7 @@ export const explainTheInterdependenceOfOrgans_Skill_Data = buildSkillConfig({
       be: 'Дасьледуй, чаму розныя органы залежаць адзін ад аднаго.',
       ka: 'გამოიკვლიე, რატომ არის სხვადასხვა ორგანო ერთმანეთზე დამოკიდებული.',
       kk: 'Әртүрлі мүшелердің бір-біріне неге тәуелді екенін зертте.',
+      qm: 'Çeşit organlar ne içün bir-birine bağlı olğanını ögreniñiz.',
     },
   },
 });

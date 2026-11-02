@@ -32,6 +32,7 @@ export const distinguishUnicellularAndMulticellularOrganisms_Skill_Data = buildS
     be: 'Адрозьніваць аднаклетачныя і шматклетачныя арганізмы',
     ka: 'ერთუჯრედიანი და მრავალუჯრედიანი ორგანიზმების გარჩევა',
     kk: 'Біржасушалы және көпжасушалы ағзаларды ажырату',
+    qm: 'Bir üceyreli ve çoq üceyreli canlılarnı farqlamaq',
   },
   description: {
     methodological: "Determine whether a single cell carries out all functions of an organism or many specialized cells work together.",
@@ -64,6 +65,7 @@ export const distinguishUnicellularAndMulticellularOrganisms_Skill_Data = buildS
       be: 'Адрозьнівай арганізмы з адной клеткі ад арганізмаў з мноства спэцыялізаваных клетак.',
       ka: 'განასხვავე ერთი უჯრედისგან შემდგარი ორგანიზმები მრავალი სპეციალიზებული უჯრედისგან შემდგარი ორგანიზმებისგან.',
       kk: 'Бір жасушадан тұратын ағзаларды көптеген маманданған жасушалардан тұратын ағзалардан ажырат.',
+      qm: 'Tek üceyreden teşkil olğan canlılarnı çoq sayıda ihtisaslaşqan üceyresi olğan canlılardan farq etiñiz.',
     },
   },
 });

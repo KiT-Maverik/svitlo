@@ -32,6 +32,7 @@ export const recognizeMolluscCharacteristics_Skill_Data = buildSkillConfig({
     be: 'Распазнаваць прыкметы малюскаў',
     ka: 'მოლუსკების ნიშნების ამოცნობა',
     kk: 'Былқылдақденелілердің белгілерін тану',
+    qm: 'Mollüskalarnıñ belgilerini tanımaq',
   },
   description: {
     methodological: "Identify the soft body, mantle, and other characteristic features of gastropods, bivalves, and cephalopods, taking into account that not all molluscs have an external shell.",
@@ -64,6 +65,7 @@ export const recognizeMolluscCharacteristics_Skill_Data = buildSkillConfig({
       be: 'Вызначай малюскаў паводле мяккага цела ды іншых характэрных асаблівасьцяў будовы.',
       ka: 'ამოიცანი მოლუსკები რბილი სხეულითა და სხვა დამახასიათებელი სტრუქტურებით.',
       kk: 'Былқылдақденелілерді жұмсақ денесі мен басқа тән құрылымдары арқылы анықта.',
+      qm: 'Mollüskalarnıñ yumşaq bedeni ve başqa mahsus quruluşlarına köre olarnı tanıñız.',
     },
   },
 });

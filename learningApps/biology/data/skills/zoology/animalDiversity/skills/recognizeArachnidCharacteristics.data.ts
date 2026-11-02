@@ -32,6 +32,7 @@ export const recognizeArachnidCharacteristics_Skill_Data = buildSkillConfig({
     be: 'Распазнаваць прыкметы павукападобных',
     ka: 'ობობასნაირების ნიშნების ამოცნობა',
     kk: 'Өрмекшітәрізділердің белгілерін тану',
+    qm: 'Örümçeksimilerniñ belgilerini tanımaq',
   },
   description: {
     methodological: "Recognize arthropods with characteristic chelicerae and usually four pairs of walking legs in adults; distinguish spiders, ticks and mites, and scorpions from insects.",
@@ -64,6 +65,7 @@ export const recognizeArachnidCharacteristics_Skill_Data = buildSkillConfig({
       be: 'Распазнавай павукоў ды іншых павукападобных паводле характэрных асаблівасьцяў цела.',
       ka: 'ამოიცანი ობობები და სხვა ობობასნაირები მათი დამახასიათებელი სხეულის ნიშნებით.',
       kk: 'Өрмекшілер мен басқа өрмекшітәрізділерді дене құрылысының ерекше белгілері арқылы таны.',
+      qm: 'Örümçeklerni ve başqa örümçeksimilerni beden quruluşunıñ mahsus belgilerine köre tanıñız.',
     },
   },
 });

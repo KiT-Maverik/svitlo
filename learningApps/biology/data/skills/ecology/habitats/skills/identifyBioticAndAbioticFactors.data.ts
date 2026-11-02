@@ -32,6 +32,7 @@ export const identifyBioticAndAbioticFactors_Skill_Data = buildSkillConfig({
     be: 'Вызначаць біятычныя і абіятычныя чыньнікі',
     ka: 'ბიოტური და აბიოტური ფაქტორების ამოცნობა',
     kk: 'Биотикалық және абиотикалық факторларды тану',
+    qm: 'Biotik ve abiotik faktorlarnı belgilemek',
   },
   description: {
     methodological: "Distinguish influences from other organisms from influences of water, light, soil, or temperature.",
@@ -55,7 +56,7 @@ export const identifyBioticAndAbioticFactors_Skill_Data = buildSkillConfig({
       te: 'జీవుల ప్రభావాలను అజీవ పర్యావరణ కారకాల నుంచి వేరు చేయండి.',
       mr: 'सजीवांचे प्रभाव आणि निर्जीव पर्यावरणीय घटक यांतील फरक ओळखा.',
       ms: 'Bezakan pengaruh organisma hidup daripada faktor persekitaran bukan hidup.',
-      he: 'הבחן בין השפעות של יצורים חיים לבין גורמי סביבה דוממים.',
+      he: 'הבחינו בין השפעות של יצורים חיים לבין גורמי סביבה דוממים.',
       pl: 'Odróżnij wpływy organizmów żywych od nieożywionych czynników środowiska.',
       uk: 'Відрізняй вплив живих організмів від чинників неживого середовища.',
       lt: 'Atskirk gyvųjų organizmų poveikį nuo negyvosios aplinkos veiksnių.',
@@ -63,7 +64,8 @@ export const identifyBioticAndAbioticFactors_Skill_Data = buildSkillConfig({
       et: 'Erista elusorganismide mõju eluta keskkonnateguritest.',
       be: 'Адрозьнівай уплыў жывых арганізмаў ад чыньнікаў нежывога асяродзьдзя.',
       ka: 'განასხვავე ცოცხალი ორგანიზმების გავლენა არაცოცხალი გარემოს ფაქტორებისგან.',
-      kk: 'Тірі ағзалардың әсерін өлі орта факторларынан ажырат.',
+      kk: 'Тірі ағзалардың әсерін жансыз орта факторларынан ажырат.',
+      qm: 'Canlılarnıñ tesirini müitniñ cansız faktorlardan farq etiñiz.',
     },
   },
 });

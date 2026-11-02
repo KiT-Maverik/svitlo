@@ -32,6 +32,7 @@ export const recognizeDecomposers_Skill_Data = buildSkillConfig({
     be: 'Распазнаваць рэдуцэнтаў',
     ka: 'დამშლელების ამოცნობა',
     kk: 'Редуценттерді тану',
+    qm: 'Çürüticilerni tanımaq',
   },
   description: {
     methodological: "Identify the role of bacteria, fungi, and other decomposers in transforming dead organic remains.",
@@ -55,7 +56,7 @@ export const recognizeDecomposers_Skill_Data = buildSkillConfig({
       te: 'విచ్ఛిన్నకారులు సేంద్రీయ పదార్థాన్ని ఎలా విచ్ఛిన్నం చేస్తాయో గుర్తించండి.',
       mr: 'अपघटक सेंद्रिय पदार्थांचे विघटन कसे करतात ते ओळखा.',
       ms: 'Kenal pasti bagaimana pengurai memecahkan bahan organik.',
-      he: 'זהה כיצד מפרקים מפרקים חומר אורגני.',
+      he: 'זהו כיצד מפרקים מפרקים חומר אורגני.',
       pl: 'Rozpoznaj, jak destruenci rozkładają materię organiczną.',
       uk: 'Визначай, як редуценти розкладають органічну речовину.',
       lt: 'Atpažink, kaip skaidytojai ardo organines medžiagas.',
@@ -64,6 +65,7 @@ export const recognizeDecomposers_Skill_Data = buildSkillConfig({
       be: 'Вызначай, як рэдуцэнты раскладаюць арганічныя рэчывы.',
       ka: 'გაიგე, როგორ შლიან დამშლელები ორგანულ ნივთიერებას.',
       kk: 'Редуценттердің органикалық затты қалай ыдырататынын анықта.',
+      qm: 'Çürütici canlılar organik maddelerni nasıl parçalağanını tanıñız.',
     },
   },
 });

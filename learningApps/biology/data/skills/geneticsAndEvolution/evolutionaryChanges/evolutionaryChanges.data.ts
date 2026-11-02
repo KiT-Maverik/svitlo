@@ -69,7 +69,7 @@ export const evolutionaryChanges_SkillGroup_Data = buildSkillGroupConfig({
       te: 'జీవుల జనాభాల్లో వారసత్వ వైవిధ్యం తరతరాలకు ఎలా మారుతుందో తెలుసుకోండి.',
       mr: 'जीवसमूहांमधील आनुवंशिक विविधता पिढ्यान्‌पिढ्या कशी बदलते ते जाणून घ्या.',
       ms: 'Ketahui bagaimana variasi yang diwarisi dalam populasi berubah merentas generasi.',
-      he: 'גלה כיצד השונות התורשתית באוכלוסיות משתנה לאורך דורות.',
+      he: 'גלו כיצד השונות התורשתית באוכלוסיות משתנה לאורך דורות.',
       pl: 'Dowiedz się, jak dziedziczna zmienność w populacjach zmienia się przez kolejne pokolenia.',
       uk: 'Дізнайся, як спадкова мінливість у популяціях змінюється протягом багатьох поколінь.',
       lt: 'Sužinok, kaip populiacijų paveldima įvairovė kinta iš kartos į kartą.',

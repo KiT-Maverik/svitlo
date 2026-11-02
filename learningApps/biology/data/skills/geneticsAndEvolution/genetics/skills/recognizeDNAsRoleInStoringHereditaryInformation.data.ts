@@ -22,7 +22,7 @@ export const recognizeDNAsRoleInStoringHereditaryInformation_Skill_Data = buildS
     ta: 'மரபுத் தகவலைச் சேமிப்பதில் டிஎன்ஏவின் பங்கை அறிதல்',
     te: 'వారసత్వ సమాచార నిల్వలో డీఎన్‌ఏ పాత్రను గుర్తించడం',
     mr: 'आनुवंशिक माहिती साठवण्यात डीएनएची भूमिका ओळखणे',
-    ms: 'Maklum peranan DNA dalam menyimpan maklumat keturunan',
+    ms: 'Mengenal pasti peranan DNA dalam menyimpan maklumat keturunan',
     he: 'זיהוי תפקיד הדנ״א באחסון מידע תורשתי',
     pl: 'Rozpoznawanie roli DNA w przechowywaniu informacji dziedzicznej',
     uk: 'Розпізнавати роль ДНК у зберіганні спадкової інформації',
@@ -32,6 +32,7 @@ export const recognizeDNAsRoleInStoringHereditaryInformation_Skill_Data = buildS
     be: 'Распазнаваць ролю ДНК у захаваньні спадчыннай інфармацыі',
     ka: 'მემკვიდრეობითი ინფორმაციის შენახვაში დნმ-ის როლის ამოცნობა',
     kk: 'Тұқымқуалаушылық ақпаратты сақтаудағы ДНҚ рөлін тану',
+    qm: 'İrsiy malümatnı saqlavda DNKnıñ rolüni tanımaq',
   },
   description: {
     methodological: "Explain the role of DNA sequences in storing information about the construction and regulation of cellular structures.",
@@ -55,7 +56,7 @@ export const recognizeDNAsRoleInStoringHereditaryInformation_Skill_Data = buildS
       te: 'జీవ కణాలు ఉపయోగించే సమాచారాన్ని డీఎన్‌ఏ ఎలా నిల్వ చేస్తుందో వివరించండి.',
       mr: 'जिवंत पेशी वापरत असलेली माहिती डीएनए कशी साठवते ते स्पष्ट करा.',
       ms: 'Terangkan bagaimana DNA menyimpan maklumat yang digunakan oleh sel hidup.',
-      he: 'הסבר כיצד דנ״א שומר מידע שתאים חיים משתמשים בו.',
+      he: 'הסבירו כיצד דנ״א שומר מידע שתאים חיים משתמשים בו.',
       pl: 'Wyjaśnij, jak DNA przechowuje informacje wykorzystywane przez żywe komórki.',
       uk: 'Пояснюй, як ДНК зберігає інформацію, яку використовують живі клітини.',
       lt: 'Paaiškink, kaip DNR saugo informaciją, kuria naudojasi gyvos ląstelės.',
@@ -64,6 +65,7 @@ export const recognizeDNAsRoleInStoringHereditaryInformation_Skill_Data = buildS
       be: 'Тлумач, як ДНК захоўвае інфармацыю, якую выкарыстоўваюць жывыя клеткі.',
       ka: 'ახსენი, როგორ ინახავს დნმ ინფორმაციას, რომელსაც ცოცხალი უჯრედები იყენებენ.',
       kk: 'ДНҚ тірі жасушалар қолданатын ақпаратты қалай сақтайтынын түсіндір.',
+      qm: 'DNK canlı üceyreler qullanğan malümatnı nasıl saqlağanını añlatıñız.',
     },
   },
 });

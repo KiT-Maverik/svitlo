@@ -32,6 +32,7 @@ export const recognizeFlatwormCharacteristics_Skill_Data = buildSkillConfig({
     be: 'Распазнаваць прыкметы плоскіх чарвякоў',
     ka: 'ბრტყელი ჭიების ნიშნების ამოცნობა',
     kk: 'Жалпақ құрттардың белгілерін тану',
+    qm: 'Yassı qurtlarnıñ belgilerini tanımaq',
   },
   description: {
     methodological: "Identify the flattened body and other features of flatworms, including free-living and parasitic forms, without confusing them with annelids.",
@@ -64,6 +65,7 @@ export const recognizeFlatwormCharacteristics_Skill_Data = buildSkillConfig({
       be: 'Распазнавай плоскіх чарвякоў і адрозьнівай іх ад кольчатых.',
       ka: 'ამოიცანი ბრტყელი ჭიები და განასხვავე ისინი სეგმენტირებული ჭიებისგან.',
       kk: 'Жалпақ құрттарды танып, оларды буылтық құрттардан ажырат.',
+      qm: 'Yassı qurtlarnı tanıñız ve olarnı bedeni alqalarğa bölüngen qurtlardan farq etiñiz.',
     },
   },
 });

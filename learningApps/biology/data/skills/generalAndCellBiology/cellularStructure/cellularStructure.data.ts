@@ -34,6 +34,7 @@ export const cellularStructure_SkillGroup_Data = buildSkillGroupConfig({
     be: 'Будова клеткі',
     ka: 'უჯრედის აგებულება',
     kk: 'Жасуша құрылысы',
+    qm: 'Üceyre quruluşu',
   },
   skills: {
     distinguishPlantAndAnimalCellsByStructuralFeatures: distinguishPlantAndAnimalCellsByStructuralFeatures_Skill_Data,
@@ -72,6 +73,7 @@ export const cellularStructure_SkillGroup_Data = buildSkillGroupConfig({
       be: 'Даведайся, з чаго складаюцца клеткі і як іхныя структуры дапамагаюць ім выконваць функцыі.',
       ka: 'გაიგე, რისგან შედგება უჯრედები და როგორ ეხმარება მათი სტრუქტურები ფუნქციების შესრულებაში.',
       kk: 'Жасушалардың неден тұратынын және олардың құрылымдары қалай жұмыс істеуге көмектесетінін біл.',
+      qm: 'Üceyreler nelerden teşkil olğanını ve olarnıñ bölümleri ne iş yapqanını ögreniñiz.',
     },
   },
 });

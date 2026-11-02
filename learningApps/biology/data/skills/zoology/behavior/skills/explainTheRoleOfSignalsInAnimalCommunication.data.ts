@@ -32,6 +32,7 @@ export const explainTheRoleOfSignalsInAnimalCommunication_Skill_Data = buildSkil
     be: 'Тлумачыць ролю сыгналаў у камунікацыі жывёлаў',
     ka: 'ცხოველთა კომუნიკაციაში სიგნალების როლის ახსნა',
     kk: 'Жануарлар қарым-қатынасындағы сигналдардың рөлін түсіндіру',
+    qm: 'Ayvanlarnıñ haberleşüvinde signallarnıñ rolüni añlatmaq',
   },
   description: {
     methodological: "Relate sound, smell, movement, or coloration to information received by another individual.",
@@ -61,9 +62,10 @@ export const explainTheRoleOfSignalsInAnimalCommunication_Skill_Data = buildSkil
       lt: 'Paaiškink, kaip gyvūnai bendrauja garsais, judesiais ir kitais signalais.',
       lv: 'Izskaidro, kā dzīvnieki sazinās ar skaņām, kustībām un citiem signāliem.',
       et: 'Selgita, kuidas loomad suhtlevad häälte, liigutuste ja muude signaalide abil.',
-      be: 'Растлумач, як жывёлы размаўляюць пры дапамозе гукаў, рухаў ды іншых сыгналаў.',
+      be: 'Растлумач, як жывёлы перадаюць інфармацыю гукамі, рухамі ды іншымі сыгналамі.',
       ka: 'ახსენი, როგორ ურთიერთობენ ცხოველები ბგერებით, მოძრაობითა და სხვა სიგნალებით.',
       kk: 'Жануарлардың дыбыстар, қимылдар және басқа сигналдар арқылы қалай байланысатынын түсіндір.',
+      qm: 'Ayvanlar ses, areket ve başqa signallar vastasınen nasıl haberleşkenini añlatıñız.',
     },
   },
 });

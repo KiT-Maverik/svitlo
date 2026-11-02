@@ -32,6 +32,7 @@ export const sequenceStagesOfAFloweringPlantsLifeCycle_Skill_Data = buildSkillCo
     be: 'Упарадкаваць этапы жыцьцёвага цыклю кветкавай расьліны',
     ka: 'ყვავილოვანი მცენარის სასიცოცხლო ციკლის დალაგება',
     kk: 'Гүлді өсімдік өмірлік циклінің кезеңдерін реттеу',
+    qm: 'Çeçekli ösümlikniñ yaşayış devri basamaqlarını sıralamaq',
   },
   description: {
     methodological: "Order stages from seed to mature plant, flowering, and formation of new seeds.",
@@ -64,6 +65,7 @@ export const sequenceStagesOfAFloweringPlantsLifeCycle_Skill_Data = buildSkillCo
       be: 'Прасачы этапы ад насеньня да дарослай квітнеючай расьліны й новага насеньня.',
       ka: 'მიჰყევი ეტაპებს თესლიდან მომწიფებულ ყვავილოვან მცენარემდე და ახალ თესლებამდე.',
       kk: 'Тұқымнан жетілген гүлді өсімдікке және жаңа тұқымдарға дейінгі кезеңдерді бақыла.',
+      qm: 'Tohumdan yetişken çeçekli ösümlikke ve yañı tohumlarğa qadar olğan basamaqlarnı doğru sıraya qoyuñız.',
     },
   },
 });

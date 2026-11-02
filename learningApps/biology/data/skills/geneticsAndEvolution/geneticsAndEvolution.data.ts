@@ -66,7 +66,7 @@ export const geneticsAndEvolution_SkillDomain_Data = buildSkillDomainConfig({
       te: 'వంశపారంపర్య సమాచారం తరతరాలకు ఎలా అందుతుందో, జీవుల జనాభాలు ఎలా పరిణామం చెందుతాయో తెలుసుకోండి.',
       mr: 'आनुवंशिक माहिती पिढ्यान्‌पिढ्या कशी जाते आणि जीवसमूहांमध्ये उत्क्रांती कशी होते ते शोधा.',
       ms: 'Terokai bagaimana maklumat keturunan diwarisi antara generasi dan bagaimana populasi mengalami evolusi.',
-      he: 'גלה כיצד מידע תורשתי עובר בין דורות וכיצד אוכלוסיות מתפתחות באבולוציה.',
+      he: 'גלו כיצד מידע תורשתי עובר בין דורות וכיצד אוכלוסיות מתפתחות באבולוציה.',
       pl: 'Poznaj, jak informacja dziedziczna przechodzi między pokoleniami i jak ewoluują populacje.',
       uk: 'Досліджуй, як спадкова інформація передається між поколіннями та як еволюціонують популяції.',
       lt: 'Tyrinėk, kaip paveldima informacija perduodama iš kartos į kartą ir kaip evoliucionuoja populiacijos.',

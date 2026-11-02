@@ -34,6 +34,7 @@ export const reproductionAndDevelopment_SkillGroup_Data = buildSkillGroupConfig(
     be: 'Размнажэньне і разьвіцьцё',
     ka: 'გამრავლება და განვითარება',
     kk: 'Көбею және даму',
+    qm: 'Çoğaluv ve inkişaf',
   },
   skills: {
     describeGermination: describeGermination_Skill_Data,
@@ -73,6 +74,7 @@ export const reproductionAndDevelopment_SkillGroup_Data = buildSkillGroupConfig(
       be: 'Прасачы, як расьліны размнажаюцца й разьвіваюцца цягам жыцьцёвага цыклю.',
       ka: 'მიადევნე თვალი, როგორ მრავლდებიან და ვითარდებიან მცენარეები სასიცოცხლო ციკლის განმავლობაში.',
       kk: 'Өсімдіктердің тіршілік циклінде қалай көбейіп, дамитынын бақыла.',
+      qm: 'Ösümliklerniñ yaşayış devri devamında nasıl çoğalğanını ve inkişaf etkenini ögreniñiz.',
     },
   },
 });

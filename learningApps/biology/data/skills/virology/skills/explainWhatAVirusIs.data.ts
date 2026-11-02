@@ -32,6 +32,7 @@ export const explainWhatAVirusIs_Skill_Data = buildSkillConfig({
     be: 'Тлумачыць, што такое вірус',
     ka: 'იმის ახსნა, თუ რა არის ვირუსი',
     kk: 'Вирустың не екенін түсіндіру',
+    qm: 'Virus ne olğanını añlatmaq',
   },
   description: {
     methodological: "Explain that a virus is a noncellular infectious agent containing genetic material; it lacks its own protein-synthesis machinery and reproduces using a host cell.",
@@ -64,6 +65,7 @@ export const explainWhatAVirusIs_Skill_Data = buildSkillConfig({
       be: 'Растлумач, чаму вірусам патрэбныя жывыя клеткі, каб ствараць новыя вірусы.',
       ka: 'ახსენი, რატომ სჭირდებათ ვირუსებს ცოცხალი უჯრედები ახალი ვირუსების წარმოსაქმნელად.',
       kk: 'Неліктен вирустарға жаңа вирустар түзу үшін тірі жасушалар қажет екенін түсіндір.',
+      qm: 'Viruslar yañı viruslar meydana ketirmek içün nege canlı üceyrelere muhtac olğanını añlatıñız.',
     },
   },
 });

@@ -37,6 +37,7 @@ export const generalAndCellBiology_SkillDomain_Data = buildSkillDomainConfig({
     be: 'Агульная і клетачная біялёгія',
     ka: 'ზოგადი და უჯრედული ბიოლოგია',
     kk: 'Жалпы және жасуша биологиясы',
+    qm: 'Umumiy ve üceyre biologiyası',
   },
   groups: {
     cellDivision: cellDivision_SkillGroup_Data,
@@ -75,6 +76,7 @@ export const generalAndCellBiology_SkillDomain_Data = buildSkillDomainConfig({
       be: 'Дасьледуй, як клеткі й структуры арганізму працуюць разам, падтрымліваючы жыцьцёвыя працэсы.',
       ka: 'შეისწავლე, როგორ მუშაობენ უჯრედები და ორგანიზმის სტრუქტურები ერთად სასიცოცხლო პროცესების შესანარჩუნებლად.',
       kk: 'Жасушалар мен ағза құрылымдарының тіршілік үдерістерін қолдау үшін қалай бірлесіп жұмыс істейтінін зертте.',
+      qm: 'Üceyreler ve beden quruluşları bir-birinen çalışıp yaşayış süreçlerini nasıl devam ettirgenini ögreniñiz.',
     },
   },
 });

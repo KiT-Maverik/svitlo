@@ -34,6 +34,7 @@ export const characteristicsOfLivingThings_SkillDomain_Data = buildSkillDomainCo
     be: 'Прыкметы жывых арганізмаў',
     ka: 'ცოცხალი ორგანიზმების ნიშნები',
     kk: 'Тірі ағзалардың белгілері',
+    qm: 'Canlılarnıñ hususiyetleri',
   },
   groups: {
   },
@@ -71,6 +72,7 @@ export const characteristicsOfLivingThings_SkillDomain_Data = buildSkillDomainCo
       be: 'Даведайся, што робіць нешта жывым, што некалі было жывым, а што ніколі не было жывым.',
       ka: 'გაიგე, რა ხდის რაიმეს ცოცხალს, რა იყო ოდესღაც ცოცხალი და რა არასოდეს ყოფილა ცოცხალი.',
       kk: 'Ненің тірі екенін, ненің бұрын тірі болғанын және ненің ешқашан тірі болмағанын біл.',
+      qm: 'Bir şeyniñ ne içün canlı olğanını, evel yaşağan şeylerni ve iç bir vaqıt canlı olmağan nesnelerni farq etmege ögreniñiz.',
     },
   },
 });

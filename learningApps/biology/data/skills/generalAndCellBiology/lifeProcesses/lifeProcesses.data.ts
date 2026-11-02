@@ -34,6 +34,7 @@ export const lifeProcesses_SkillGroup_Data = buildSkillGroupConfig({
     be: 'Жыцьцёвыя працэсы',
     ka: 'სასიცოცხლო პროცესები',
     kk: 'Тіршілік үдерістері',
+    qm: 'Yaşayış süreçleri',
   },
   skills: {
     explainCellularRespiration: explainCellularRespiration_Skill_Data,
@@ -73,6 +74,7 @@ export const lifeProcesses_SkillGroup_Data = buildSkillGroupConfig({
       be: 'Даведайся, як арганізмы атрымліваюць рэсурсы, растуць і рэагуюць на навакольле.',
       ka: 'გაიგე, როგორ იღებენ ორგანიზმები რესურსებს, იზრდებიან და რეაგირებენ გარემოზე.',
       kk: 'Ағзалардың ресурстарды қалай алатынын, өсетінін және қоршаған ортаға жауап беретінін біл.',
+      qm: 'Canlılar azıq ve başqa kaynaklarnı nasıl alğanını, öskenini ve müitke nasıl cevap bergenini ögreniñiz.',
     },
   },
 });

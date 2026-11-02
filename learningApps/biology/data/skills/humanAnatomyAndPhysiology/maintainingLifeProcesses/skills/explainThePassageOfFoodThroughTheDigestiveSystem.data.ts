@@ -26,7 +26,7 @@ export const explainThePassageOfFoodThroughTheDigestiveSystem_Skill_Data = build
     he: 'הסבר מעבר המזון במערכת העיכול',
     pl: 'Wyjaśnianie drogi pokarmu przez układ trawienny',
     uk: 'Пояснювати проходження їжі травною системою',
-    lt: 'Maisto kelio virškinimo sistema paaiškinimas',
+    lt: 'Maisto kelio virškinimo sistemoje paaiškinimas',
     lv: 'Barības pārvietošanās gremošanas sistēmā skaidrošana',
     et: 'Toidu liikumise selgitamine seedekulglas',
     be: 'Тлумачыць праходжаньне ежы праз стрававальную сыстэму',

@@ -11,7 +11,7 @@ export const explainMechanismsOfTraitInheritance_Skill_Data = buildSkillConfig({
     ar: 'شرح آليات توريث الصفات',
     fr: 'Expliquer les mécanismes de transmission des caractères',
     bn: 'বৈশিষ্ট্যের বংশগতির প্রক্রিয়া ব্যাখ্যা করা',
-    pt: 'Explicar os mecanismos de herança dos traços',
+    pt: 'Explicar os mecanismos de herança das características',
     ur: 'صفات کی وراثت کے طریقوں کی وضاحت',
     id: 'Menjelaskan mekanisme pewarisan sifat',
     de: 'Mechanismen der Merkmalsvererbung erklären',
@@ -32,6 +32,7 @@ export const explainMechanismsOfTraitInheritance_Skill_Data = buildSkillConfig({
     be: 'Тлумачыць мэханізмы ўспадкоўваньня прыкметаў',
     ka: 'ნიშან-თვისებების მემკვიდრეობით გადაცემის მექანიზმების ახსნა',
     kk: 'Белгілердің тұқымқуалау механизмдерін түсіндіру',
+    qm: 'Belgilerniñ irsiy keçüv mehanizmlerini añlatmaq',
   },
   description: {
     methodological: "Explain the roles of genes, alleles, and chromosomes, segregation of alleles, and formation of their combinations in offspring. Apply Mendelian patterns where appropriate and distinguish them from polygenic and environmentally influenced traits.",
@@ -55,7 +56,7 @@ export const explainMechanismsOfTraitInheritance_Skill_Data = buildSkillConfig({
       te: 'జన్యువులు, వాటి వివిధ రూపాలు తరతరాలకు ఎలా సంక్రమిస్తాయో తెలుసుకోండి.',
       mr: 'जनुके आणि त्यांचे वेगवेगळे प्रकार पिढ्यान्‌पिढ्या कसे वारशाने मिळतात ते शोधा.',
       ms: 'Terokai bagaimana gen dan variasinya diwarisi merentas generasi.',
-      he: 'חקור כיצד גנים והגרסאות השונות שלהם עוברים בתורשה בין דורות.',
+      he: 'חקרו כיצד גנים והגרסאות השונות שלהם עוברים בתורשה בין דורות.',
       pl: 'Poznaj, jak geny i ich warianty są dziedziczone z pokolenia na pokolenie.',
       uk: 'Досліджуй, як гени та їхні варіанти успадковуються між поколіннями.',
       lt: 'Sužinok, kaip genai ir jų variantai paveldimi iš kartos į kartą.',
@@ -64,6 +65,7 @@ export const explainMechanismsOfTraitInheritance_Skill_Data = buildSkillConfig({
       be: 'Дасьледуй, як гены і іхныя варыянты перадаюцца ў спадчыну паміж пакаленьнямі.',
       ka: 'გამოიკვლიე, როგორ გადაეცემა გენები და მათი ვარიანტები თაობებს შორის.',
       kk: 'Гендер мен олардың нұсқалары ұрпақтан ұрпаққа қалай берілетінін зертте.',
+      qm: 'Genler ve olarnıñ çeşit variantları nesilden nesilge nasıl keçkenini ögreniñiz.',
     },
   },
 });
