@@ -5,7 +5,7 @@ export const explainHowGasPressureDependsOnTemperatureAtConstantVolume_Skill_Dat
   id: "a9453991-3aa9-438a-bf8e-b37652fbda90",
   name: {
     en: "Explain how gas pressure depends on temperature at constant volume",
-    qm: 'Sabit acımda gaz basımınıñ temperaturağa bağlılığını añlatmaq',
+    qm: 'Sabit hacımda gaz basımınıñ temperaturağa bağlılığını añlatmaq',
     zh: '解释恒定体积下气压与温度的关系',
     hi: 'स्थिर आयतन पर गैस के दाब और तापमान का संबंध समझाना',
     es: 'Explicar la relación entre presión y temperatura a volumen constante',
