@@ -131,7 +131,7 @@ assert(
   existsSync(
     resolve(
       root,
-      'learningApps/playground/src/data/howLightMoves/sections/theory/resources/scenes/Checkpoint/Checkpoint.e2e.spec.ts',
+      'learningApps/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/sections/theory/scenes/Checkpoint/Checkpoint.e2e.spec.ts',
     ),
   ),
   'Checkpoint scene must own its E2E coverage',

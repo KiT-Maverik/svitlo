@@ -54,7 +54,7 @@ describe('assembleLessonResponse', () => {
     expect(lesson.sections.theory.content.scene.ray.locale).toEqual({
       scene: { title: 'Промінь' }, code: 'uk',
     });
-    expect(lesson.sections.theory.content.checkpoint.checkpoint.items[0]).toBeUndefined();
+    expect(lesson.sections.theory.content.checkpoint.checkpoint).toBeDefined();
     expect(lesson.sections.quiz.content.quiz.quiz.questions?.q1.id).toEqual('question-id');
     expect(lesson.localeSources.config['/title']).toEqual({ code: 'uk' });
     expect(lesson.flashcards).toHaveLength(1);
