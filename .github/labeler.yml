@@ -1,0 +1,80 @@
+# PR labels from changed files or agent branch conventions.
+# Labels are defined with colors and descriptions in .github/labels.json.
+# 'area: repo' is a fallback managed by the PR workflow, not a glob rule.
+'area: server':
+  - changed-files:
+      - any-glob-to-any-file: 'backend/server/**'
+'area: platform':
+  - changed-files:
+      - any-glob-to-any-file: 'frontend/platform/**'
+'area: scripts':
+  - changed-files:
+      - any-glob-to-any-file: 'scripts/**'
+'area: contracts':
+  - changed-files:
+      - any-glob-to-any-file: 'shared/contracts/**'
+'area: engine':
+  - changed-files:
+      - any-glob-to-any-file: 'shared/engine/**'
+'area: indexdb':
+  - changed-files:
+      - any-glob-to-any-file: 'shared/indexdb/**'
+'area: ui-kit':
+  - changed-files:
+      - any-glob-to-any-file: 'shared/ui-kit/**'
+'area: studio':
+  - changed-files:
+      - any-glob-to-any-file: 'studio/**'
+'area: art':
+  - changed-files:
+      - any-glob-to-any-file: 'learningApps/art/**'
+'area: astronomy':
+  - changed-files:
+      - any-glob-to-any-file: 'learningApps/astronomy/**'
+'area: biology':
+  - changed-files:
+      - any-glob-to-any-file: 'learningApps/biology/**'
+'area: chemistry':
+  - changed-files:
+      - any-glob-to-any-file: 'learningApps/chemistry/**'
+'area: economics':
+  - changed-files:
+      - any-glob-to-any-file: 'learningApps/economics/**'
+'area: engineering':
+  - changed-files:
+      - any-glob-to-any-file: 'learningApps/engineering/**'
+'area: geography':
+  - changed-files:
+      - any-glob-to-any-file: 'learningApps/geography/**'
+'area: health-safety':
+  - changed-files:
+      - any-glob-to-any-file: 'learningApps/health-safety/**'
+'area: history':
+  - changed-files:
+      - any-glob-to-any-file: 'learningApps/history/**'
+'area: informatics':
+  - changed-files:
+      - any-glob-to-any-file: 'learningApps/informatics/**'
+'area: language-literature':
+  - changed-files:
+      - any-glob-to-any-file: 'learningApps/language-literature/**'
+'area: languages':
+  - changed-files:
+      - any-glob-to-any-file: 'learningApps/languages/**'
+'area: math':
+  - changed-files:
+      - any-glob-to-any-file: 'learningApps/math/**'
+'area: philosophy':
+  - changed-files:
+      - any-glob-to-any-file: 'learningApps/philosophy/**'
+'area: physics':
+  - changed-files:
+      - any-glob-to-any-file: 'learningApps/physics/**'
+'area: playground':
+  - changed-files:
+      - any-glob-to-any-file: 'learningApps/playground/**'
+'area: psychology':
+  - changed-files:
+      - any-glob-to-any-file: 'learningApps/psychology/**'
+'pr: agent-subtask':
+  - head-branch: '(^|[-_/])agent[-_/]?[0-9]+($|[-_/])'
