@@ -5,6 +5,7 @@ export const identifyAnElectricalPowerSource_Skill_Data = buildSkillConfig({
   id: "0d1b8c0c-20cc-450f-bbd6-623dab8ec2d3",
   name: {
     en: "Identify an electrical power source",
+    qm: 'Elektrik energiyası menbasını tanımaq',
     zh: '识别电源',
     hi: 'विद्युत ऊर्जा स्रोत पहचानना',
     es: 'Identificar una fuente de energía eléctrica',
@@ -37,6 +38,7 @@ export const identifyAnElectricalPowerSource_Skill_Data = buildSkillConfig({
     methodological: "A source maintains a potential difference between its terminals and converts other forms of energy into electrical energy, unlike a passive conductor.",
     frontend: {
       en: "Identify the component that maintains a potential difference in a circuit.",
+      qm: 'Elektrik devresinde eki noqtanıñ potentsial farqını saqlağan menbanı belgile.',
       zh: '识别电路中维持电势差的元件。',
       hi: 'परिपथ में विभवांतर बनाए रखने वाले घटक की पहचान करें।',
       es: 'Identifica el componente que mantiene una diferencia de potencial en un circuito.',
