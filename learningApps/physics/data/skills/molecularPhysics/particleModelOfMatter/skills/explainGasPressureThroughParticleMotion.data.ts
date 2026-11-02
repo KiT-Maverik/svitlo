@@ -5,6 +5,7 @@ export const explainGasPressureThroughParticleMotion_Skill_Data = buildSkillConf
   id: "99e5dfa6-e685-4a4a-9ed7-6bb10e592e4f",
   name: {
     en: "Explain gas pressure through particle motion",
+    qm: 'Gaz basımını parçacıqlarnıñ areketinen añlatmaq',
     zh: '通过粒子运动解释气体压强',
     hi: 'कणों की गति से गैस का दाब समझाना',
     es: 'Explicar la presión de un gas mediante el movimiento de partículas',
@@ -37,6 +38,7 @@ export const explainGasPressureThroughParticleMotion_Skill_Data = buildSkillConf
     methodological: "The combined collisions of particles with the vessel walls produce force per unit area, that is, pressure.",
     frontend: {
       en: "Explain gas pressure through many particle collisions with a surface.",
+      qm: 'Gaz parçacıqlarınıñ qap divarlarına çoq sefer urulması basımnı nasıl peyda etkenini añlat.',
       zh: '解释大量粒子与容器壁碰撞如何产生气体压强。',
       hi: 'समझाएँ कि सतह से अनेक कणों की टक्करों के कारण गैस का दाब कैसे बनता है।',
       es: 'Explica cómo muchas colisiones de partículas contra una superficie producen presión.',
