@@ -5,6 +5,7 @@ export const selectAMaterialForMaintainingTemperature_Skill_Data = buildSkillCon
   id: "4640dda1-6953-4679-a115-30aeb988e8d3",
   name: {
     en: "Select a material for maintaining temperature",
+    qm: 'Temperaturanı saqlamaq içün malzeme saylamaq',
     zh: '选择保持温度的材料',
     hi: 'तापमान बनाए रखने के लिए पदार्थ चुनना',
     es: 'Elegir un material para mantener la temperatura',
@@ -37,6 +38,7 @@ export const selectAMaterialForMaintainingTemperature_Skill_Data = buildSkillCon
     methodological: "Choose an insulator for a simple everyday task and justify the choice using the material's properties.",
     frontend: {
       en: "Choose an insulating material for a practical temperature-control need.",
+      qm: 'Temperaturanı saqlamaq içün ameliy ihtiyacğa yarağan izolâtsiya malzemesini sayla.',
       zh: '为实际保温或隔热需求选择合适的材料。',
       hi: 'किसी व्यावहारिक ताप नियंत्रण आवश्यकता के लिए ऊष्मारोधक पदार्थ चुनें।',
       es: 'Elige un material aislante para controlar la temperatura en una situación práctica.',
