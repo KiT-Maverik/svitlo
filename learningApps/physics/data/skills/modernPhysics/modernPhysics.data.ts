@@ -74,7 +74,7 @@ export const modernPhysics_SkillDomain_Data = buildSkillDomainConfig({
       be: "Дасьледуй квантавыя зьявы, ядзерныя пераўтварэньні і фізыку прасторы-часу.",
       ka: "შეისწავლე კვანტური მოვლენები, ბირთვული ცვლილებები და სივრცე-დროის ფიზიკა.",
       kk: "Кванттық құбылыстарды, ядролық өзгерістерді және кеңістік-уақыт физикасын зертте.",
-      qm: "Kvant adiseselerini, yadro deñişmelerini ve fezâ-vaqıt fizikasını araştır.",
+      qm: "Kvant adiseselerini, yadro deñişmelerini ve boşluq-vaqıt fizikasını araştır.",
     },
   },
 });
