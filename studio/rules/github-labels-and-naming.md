@@ -9,6 +9,8 @@
 - **Titles and names describe the specific task, change, or result.**
 - **Labels classify the work** (area, work type, priority, PR role, issue state, origin, or attention).
 - Do not add redundant prefixes or suffixes to an Issue or PR title solely to repeat metadata already expressed by its labels.
+- Never prefix an Issue/PR title with a textbook name in square brackets (for example, `[Physics]`); the corresponding `area: *` label identifies the textbook.
+- Do not include routine agent-count suffixes (for example, `(4 Agents)`) in Issue/PR titles. Document the assignment count and agent workstreams in the Issue body. Keep an individual agent identifier in an agent PR title when it is needed to distinguish parallel workstreams; `pr: agent-subtask` does not encode which agent owns the change.
 - Prefer short, specific, unambiguous, searchable names. Do not sacrifice clarity just to make a title shorter.
 - A title must still identify the change without reading its full description. Include a subject such as "skills taxonomy" or "quiz navigation" when that is essential.
 - Labels do **not** exist on branches or commits: those names must remain independently recognizable. Keep established branch naming conventions, including agent/integration branch patterns when a workflow requires them.
@@ -41,7 +43,7 @@ For exact `area` choices, check the catalog: shared areas include `server`, `pla
 | Avoid (duplicates labels or adds filler) | Prefer | Metadata carried by labels |
 | --- | --- | --- |
 | `[Biology] Translation Review — Agent 1` | `Unify Crimean Tatar skill terminology` | `area: biology`, `work: translation`, `work: review`, `pr: agent-subtask` |
-| `[Physics] Skills — Integration` | `Implement physics skills taxonomy` | `area: physics`, `work: content`, `pr: integration` |
+| `[Physics] Skills taxonomy — Integration (4 Agents)` | `Localize skills taxonomy` | `area: physics`, `work: translation`, `pr: integration` |
 | `[Repo] Docs: Add GitHub rules` | `Document GitHub labeling conventions` | `area: repo`, `work: docs` |
 | `URGENT FIX: Quiz broken!` | `Restore keyboard navigation in quiz` | `work: fix`, appropriate `priority: *` |
 
