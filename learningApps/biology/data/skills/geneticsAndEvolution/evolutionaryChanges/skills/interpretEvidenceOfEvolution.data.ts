@@ -32,6 +32,7 @@ export const interpretEvidenceOfEvolution_Skill_Data = buildSkillConfig({
     be: 'Інтэрпрэтаваць доказы эвалюцыі',
     ka: 'ევოლუციის მტკიცებულებების განმარტება',
     kk: 'Эволюция дәлелдерін түсіндіру',
+    qm: 'Evolütsiyanıñ delillerini talil etmek',
   },
   description: {
     methodological: "Explain convergent evidence for life's history from fossils, comparative anatomy, biogeography, embryology, and molecular data, taking into account the limitations of each type of evidence.",
@@ -64,6 +65,7 @@ export const interpretEvidenceOfEvolution_Skill_Data = buildSkillConfig({
       be: 'Дасьледуй, як выкапні, анатомія і ДНК даюць доказы эвалюцыі.',
       ka: 'გამოიკვლიე, როგორ გვაწვდიან ნამარხები, ანატომია და დნმ ევოლუციის მტკიცებულებებს.',
       kk: 'Қазба қалдықтар, анатомия және ДНҚ эволюцияның дәлелдерін қалай беретінін зертте.',
+      qm: 'Qazılma qalıntılar, anatomiya ve DNK evolütsiya aqqında nasıl deliller bergenini araştırıñız.',
     },
   },
 });

@@ -32,6 +32,7 @@ export const distinguishAVirusFromACellularOrganism_Skill_Data = buildSkillConfi
     be: 'Адрозьніваць вірус ад клеткавага арганізму',
     ka: 'ვირუსის განსხვავება უჯრედული ორგანიზმისგან',
     kk: 'Вирусты жасушалы ағзадан ажырату',
+    qm: 'Virusnı üceyreli canlıdan farqlamaq',
   },
   description: {
     methodological: "Compare cellular organisms' cell membranes, cytoplasm, and independent metabolism with the absence of this cellular organization in a virus particle.",
@@ -64,6 +65,7 @@ export const distinguishAVirusFromACellularOrganism_Skill_Data = buildSkillConfi
       be: 'Зразумей, чым вірусы адрозьніваюцца ад арганізмаў, пабудаваных з клетак.',
       ka: 'გაიგე, რით განსხვავდებიან ვირუსები უჯრედებისგან შედგენილი ორგანიზმებისგან.',
       kk: 'Вирустардың жасушалардан тұратын ағзалардан қалай ерекшеленетінін түсін.',
+      qm: 'Viruslar üceyrelerden teşkil olğan canlılardan ne içün farqlı olğanını ögreniñiz.',
     },
   },
 });

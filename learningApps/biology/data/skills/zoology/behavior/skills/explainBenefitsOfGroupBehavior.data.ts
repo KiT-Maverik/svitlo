@@ -32,6 +32,7 @@ export const explainBenefitsOfGroupBehavior_Skill_Data = buildSkillConfig({
     be: 'Тлумачыць перавагі групавых паводзінаў',
     ka: 'ჯგუფური ქცევის სარგებლის ახსნა',
     kk: 'Топтық мінез-құлықтың пайдасын түсіндіру',
+    qm: 'Topar davranışınıñ faydalarını añlatmaq',
   },
   description: {
     methodological: "Explain how cooperative foraging, defense, or care for offspring may improve the success of individuals.",
@@ -64,6 +65,7 @@ export const explainBenefitsOfGroupBehavior_Skill_Data = buildSkillConfig({
       be: 'Даведайся, як групавыя паводзіны могуць дапамагаць жывёлам здабываць ежу, абараняцца і клапаціцца пра нашчадкаў.',
       ka: 'გაიგე, როგორ შეიძლება ჯგუფური ქცევა ეხმარებოდეს ცხოველებს საკვების მოპოვებაში, თავდაცვასა და ნაშიერებზე ზრუნვაში.',
       kk: 'Топтық мінез-құлық жануарларға қорек табуға, қорғануға және төлдерін күтуге қалай көмектесетінін біл.',
+      qm: 'Topar olıp areket etmek ayvanlarğa azıq tapmağa, qorçalanmağa ve balalarını baqmağa nasıl yardım ete bilgenini ögreniñiz.',
     },
   },
 });

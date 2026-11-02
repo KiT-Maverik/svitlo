@@ -34,6 +34,7 @@ export const virology_SkillDomain_Data = buildSkillDomainConfig({
     be: 'Вірусалёгія',
     ka: 'ვირუსოლოგია',
     kk: 'Вирусология',
+    qm: 'Virusologiya',
   },
   groups: {
   },
@@ -73,6 +74,7 @@ export const virology_SkillDomain_Data = buildSkillDomainConfig({
       be: 'Даведайся, што такое вірусы, як яны размнажаюцца ў клетках гаспадара і як пашыраюцца.',
       ka: 'გაიგე, რა არის ვირუსები, როგორ მრავლდებიან ისინი მასპინძლის უჯრედებში და როგორ ვრცელდებიან.',
       kk: 'Вирустардың не екенін, олардың иесінің жасушаларында қалай көбейетінін және қалай таралатынын біл.',
+      qm: 'Viruslar ne olğanını, saip üceyrelerde nasıl çoğalğanını ve nasıl yayılğanını ögreniñiz.',
     },
   },
 });

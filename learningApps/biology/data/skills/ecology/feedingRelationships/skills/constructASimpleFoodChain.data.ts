@@ -32,6 +32,7 @@ export const constructASimpleFoodChain_Skill_Data = buildSkillConfig({
     be: 'Будаваць просты харчовы ланцуг',
     ka: 'მარტივი კვებითი ჯაჭვის აგება',
     kk: 'Қарапайым қоректік тізбек құру',
+    qm: 'Adiy azıq zıncırı qurmaq',
   },
   description: {
     methodological: "Correctly arrange the direction of matter and energy transfer between a producer and consumers.",
@@ -64,6 +65,7 @@ export const constructASimpleFoodChain_Skill_Data = buildSkillConfig({
       be: 'Пабудуй харчовы ланцуг, які паказвае, хто ад каго атрымлівае рэчывы і энэргію.',
       ka: 'ააგე კვებითი ჯაჭვი, რომელიც აჩვენებს, ვინ ვისგან იღებს ნივთიერებასა და ენერგიას.',
       kk: 'Қандай ағза қандай ағзадан зат пен энергия алатынын көрсететін қоректік тізбек құрастыр.',
+      qm: 'Qaysı canlı qaysısından madde ve energiya alğanını köstergen azıq zıncırı qurıñız.',
     },
   },
 });

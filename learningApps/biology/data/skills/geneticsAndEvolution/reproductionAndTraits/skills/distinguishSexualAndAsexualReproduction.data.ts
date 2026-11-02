@@ -32,6 +32,7 @@ export const distinguishSexualAndAsexualReproduction_Skill_Data = buildSkillConf
     be: 'Адрозьніваць палавое і бясполае размнажэньне',
     ka: 'სქესობრივი და უსქესო გამრავლების გარჩევა',
     kk: 'Жынысты және жыныссыз көбеюді ажырату',
+    qm: 'Cinsiy ve cinsiy olmağan çoğaluvnı farqlamaq',
   },
   description: {
     methodological: "Distinguish the fusion of sex cells from reproduction without their fusion, regardless of how offspring outwardly appear.",
@@ -64,6 +65,7 @@ export const distinguishSexualAndAsexualReproduction_Skill_Data = buildSkillConf
       be: 'Адрозьнівай размнажэньне са зьліцьцём палавых клетак ад размнажэньня бязь іх зьліцьця.',
       ka: 'განასხვავე გამრავლება სასქესო უჯრედების შერწყმით და შერწყმის გარეშე.',
       kk: 'Жыныс жасушалары қосылатын және қосылмайтын көбеюді ажырат.',
+      qm: 'Cinsiy üceyrelerniñ birleşüvi ile olğan çoğaluvnı olarnıñ birleşüvi olmadan olğan çoğaluvdan farq etiñiz.',
     },
   },
 });

@@ -32,6 +32,7 @@ export const explainTheRoleOfPollinatorsInSpeciesInteractions_Skill_Data = build
     be: 'Тлумачыць ролю апыляльнікаў ва ўзаемадзеяньнях відаў',
     ka: 'დამმტვერავების როლის ახსნა სახეობათა ურთიერთქმედებებში',
     kk: 'Түрлер әрекеттесуіндегі тозаңдандырғыштардың рөлін түсіндіру',
+    qm: 'Türler arasındaki alâqalarda tozlandırıcılarnıñ rolüni añlatmaq',
   },
   description: {
     methodological: "Explain how an animal’s transfer of pollen relates to plant reproduction and to the pollinator’s resources.",
@@ -64,6 +65,7 @@ export const explainTheRoleOfPollinatorsInSpeciesInteractions_Skill_Data = build
       be: 'Патлумач, як апыляльнікі і кветкавыя расьліны залежаць адно ад аднаго.',
       ka: 'ახსენი, როგორ არიან დამმტვერავები და ყვავილოვანი მცენარეები ერთმანეთზე დამოკიდებული.',
       kk: 'Тозаңдандырғыштар мен гүлді өсімдіктер бір-біріне қалай тәуелді екенін түсіндір.',
+      qm: 'Tozlandırıcı canlılar ve çeçekli ösümlikler nasıl bir-birine bağlı olğanını añlatıñız.',
     },
   },
 });

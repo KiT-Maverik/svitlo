@@ -32,6 +32,7 @@ export const relateOrganismStructureToEnvironmentalConditions_Skill_Data = build
     be: 'Зьвязваць будову арганізму з умовамі асяродзьдзя',
     ka: 'ორგანიზმის აგებულების გარემო პირობებთან დაკავშირება',
     kk: 'Ағзаның құрылысын орта жағдайларымен байланыстыру',
+    qm: 'Canlınıñ quruluşunı müit şartlarınen bağlaştırmaq',
   },
   description: {
     methodological: "Explain, at the level of ecological niches, how organisms’ structures affect resource use and survival under particular environmental factors. Unlike botanical analysis of individual plant organs, this competency assesses how an organism fits its environment and ecological role.",
@@ -64,6 +65,7 @@ export const relateOrganismStructureToEnvironmentalConditions_Skill_Data = build
       be: 'Патлумач, як будова арганізму дапамагае яму выжываць і выкарыстоўваць рэсурсы асяродзьдзя.',
       ka: 'ახსენი, როგორ ეხმარება აგებულება ორგანიზმს გარემოში გადარჩენასა და რესურსების გამოყენებაში.',
       kk: 'Ағзаның құрылысы ортада тірі қалып, ресурстарды пайдалануға қалай көмектесетінін түсіндір.',
+      qm: 'Canlınıñ quruluşu öz müitinde sağ qalmağa ve kaynaklardan faydalanmağa nasıl yardım etkenini añlatıñız.',
     },
   },
 });

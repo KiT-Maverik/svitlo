@@ -32,13 +32,14 @@ export const explainThePrincipleOfGeneticModification_Skill_Data = buildSkillCon
     be: 'Тлумачыць прынцып генэтычнай мадыфікацыі',
     ka: 'გენეტიკური მოდიფიკაციის პრინციპის ახსნა',
     kk: 'Генетикалық модификациялау қағидатын түсіндіру',
+    qm: 'Genetik deñiştirüv printsipini añlatmaq',
   },
   description: {
     methodological: "Define genetic modification as the intentional alteration of genetic material by biotechnological methods. Distinguish changing DNA from simply selecting organisms by traits without assuming that every genetic change automatically brings benefits or harm.",
     frontend: {
       en: "Explain how genetic modification changes DNA, unlike choosing parents for breeding.",
       zh: '解释基因改造如何改变 DNA，以及它与为育种选择亲本有何不同。',
-      hi: 'समझाएँ कि आनुवंशिक संशोधन डीएनए को कैसे बदलता है और यह प्रजनन के लिए माता-पिता चुनने से कैसे अलग है।',
+      hi: 'समझाएँ कि आनुवंशिक संशोधन डीएनए में कैसे बदलाव करता है, जबकि चयनात्मक प्रजनन में वांछित गुणों वाले जनक जीव चुने जाते हैं।',
       es: 'Explica cómo la modificación genética cambia el ADN, a diferencia de elegir progenitores para la cría.',
       ar: 'اشرح كيف يغيّر التعديل الوراثي الحمض النووي، بخلاف اختيار الكائنات الأبوية للتربية الانتقائية.',
       fr: 'Explique comment la modification génétique change l\'ADN, contrairement à la sélection d\'organismes reproducteurs pour l\'élevage ou la culture.',
@@ -64,6 +65,7 @@ export const explainThePrincipleOfGeneticModification_Skill_Data = buildSkillCon
       be: 'Растлумач, як генэтычная мадыфікацыя зьмяняе ДНК, у адрозьненьне ад выбару бацькоўскіх арганізмаў для разьвядзеньня.',
       ka: 'ახსენი, როგორ ცვლის გენეტიკური მოდიფიკაცია დნმ-ს, განსხვავებით გამრავლებისთვის მშობელი ორგანიზმების შერჩევისგან.',
       kk: 'Генетикалық модификация ДНҚ-ны қалай өзгертетінін және оның будандастыру үшін ата-аналық ағзаларды таңдаудан айырмасын түсіндір.',
+      qm: 'Genetik deñiştirüv DNKnı nasıl deñiştirgenini ve bunun yetiştirüv içün ana-baba canlılarnı saylavdan farqlı olğanını añlatıñız.',
     },
   },
 });

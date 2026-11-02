@@ -32,6 +32,7 @@ export const distinguishGymnospermsAndAngiosperms_Skill_Data = buildSkillConfig(
     be: 'Адрозьніваць голанасенныя й пакрытанасенныя расьліны',
     ka: 'შიშველთესლოვნებისა და ფარულთესლოვნების გარჩევა',
     kk: 'Ашықтұқымды және жабықтұқымды өсімдіктерді ажырату',
+    qm: 'Açıq tohumlı ve qapalı tohumlı ösümliklerni farqlamaq',
   },
   description: {
     methodological: "Explain the difference between seed plants with exposed ovules and flowering plants whose seeds develop inside a fruit; do not equate this division with evergreen habit or leaf shape.",
@@ -64,6 +65,7 @@ export const distinguishGymnospermsAndAngiosperms_Skill_Data = buildSkillConfig(
       be: 'Адрозьнівай голанасенныя ад кветкавых расьлінаў паводле будовы насеньня.',
       ka: 'თესლის სტრუქტურის მიხედვით განასხვავე შიშველთესლოვნები ყვავილოვანი მცენარეებისგან.',
       kk: 'Тұқым құрылысына қарап, ашықтұқымды өсімдіктерді гүлді жабықтұқымдылардан ажырат.',
+      qm: 'Tohumlarınıñ quruluşuna köre gimnospermalarnı çeçekli, qapalı tohumlı ösümliklerden farq etiñiz.',
     },
   },
 });

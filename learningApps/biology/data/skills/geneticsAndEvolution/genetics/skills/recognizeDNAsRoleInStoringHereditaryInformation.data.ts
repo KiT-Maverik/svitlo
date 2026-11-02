@@ -32,6 +32,7 @@ export const recognizeDNAsRoleInStoringHereditaryInformation_Skill_Data = buildS
     be: 'Распазнаваць ролю ДНК у захаваньні спадчыннай інфармацыі',
     ka: 'მემკვიდრეობითი ინფორმაციის შენახვაში დნმ-ის როლის ამოცნობა',
     kk: 'Тұқымқуалаушылық ақпаратты сақтаудағы ДНҚ рөлін тану',
+    qm: 'İrsiy malümatnı saqlavda DNKnıñ rolüni tanımaq',
   },
   description: {
     methodological: "Explain the role of DNA sequences in storing information about the construction and regulation of cellular structures.",
@@ -64,6 +65,7 @@ export const recognizeDNAsRoleInStoringHereditaryInformation_Skill_Data = buildS
       be: 'Тлумач, як ДНК захоўвае інфармацыю, якую выкарыстоўваюць жывыя клеткі.',
       ka: 'ახსენი, როგორ ინახავს დნმ ინფორმაციას, რომელსაც ცოცხალი უჯრედები იყენებენ.',
       kk: 'ДНҚ тірі жасушалар қолданатын ақпаратты қалай сақтайтынын түсіндір.',
+      qm: 'DNK canlı üceyreler qullanğan malümatnı nasıl saqlağanını añlatıñız.',
     },
   },
 });

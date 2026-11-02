@@ -32,6 +32,7 @@ export const explainSpeciation_Skill_Data = buildSkillConfig({
     be: 'Тлумачыць утварэньне новых відаў',
     ka: 'სახეობათა წარმოქმნის ახსნა',
     kk: 'Жаңа түрлердің қалыптасуын түсіндіру',
+    qm: 'Yañı türlerniñ meydanğa kelüvini añlatmaq',
   },
   description: {
     methodological: "Explain how hereditary variation, population divergence, restricted gene flow, and reproductive isolation may give rise to new species; recognize that mechanisms of speciation differ among groups of organisms.",
@@ -64,6 +65,7 @@ export const explainSpeciation_Skill_Data = buildSkillConfig({
       be: 'Даведайся, як папуляцыі могуць паступова разыходзіцца і ўтвараць новыя віды.',
       ka: 'გაიგე, როგორ შეიძლება პოპულაციები თანდათან განსხვავდებოდნენ და ახალი სახეობები წარმოქმნან.',
       kk: 'Популяциялар біртіндеп алшақтап, жаңа түрлерді қалай түзе алатынын біл.',
+      qm: 'Populyatsiyalar vaqt keçken sayın nasıl bir-birinden farqlanıp yañı türler meydanğa ketire bilgenini ögreniñiz.',
     },
   },
 });

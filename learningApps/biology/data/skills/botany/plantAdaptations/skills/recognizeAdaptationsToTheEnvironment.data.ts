@@ -32,6 +32,7 @@ export const recognizeAdaptationsToTheEnvironment_Skill_Data = buildSkillConfig(
     be: 'Распазнаваць прыстасаваньні да асяродзьдзя',
     ka: 'გარემოსადმი შეგუებების ამოცნობა',
     kk: 'Ортаға бейімделуді тану',
+    qm: 'Müitke uyğunlaşuv belgilerini tanımaq',
   },
   description: {
     methodological: "Identify particular morphological or physiological adaptations in plants, such as a waxy covering, water storage, or leaf shedding, and distinguish them from incidental characteristics. The central competency is recognizing an adaptation from its characteristic manifestations.",
@@ -64,6 +65,7 @@ export const recognizeAdaptationsToTheEnvironment_Skill_Data = buildSkillConfig(
       be: 'Распазнавай асаблівасьці, якія дапамагаюць расьлінам выжываць у навакольлі.',
       ka: 'ამოიცანი განსაკუთრებული ნიშნები, რომლებიც მცენარეებს გარემოში გადარჩენაში ეხმარება.',
       kk: 'Өсімдіктердің айналадағы ортада тіршілік етуіне көмектесетін ерекше белгілерді таны.',
+      qm: 'Ösümliklerniñ yaşağan müitinde sağ qalmasına yardım etken mahsus belgilerini tanıñız.',
     },
   },
 });

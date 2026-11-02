@@ -32,6 +32,7 @@ export const explainMechanismsOfEvolutionaryChange_Skill_Data = buildSkillConfig
     be: 'Тлумачыць мэханізмы эвалюцыйных зьменаў',
     ka: 'ევოლუციური ცვლილებების მექანიზმების ახსნა',
     kk: 'Эволюциялық өзгеріс механизмдерін түсіндіру',
+    qm: 'Evolütsion deñişüv mehanizmlerini añlatmaq',
   },
   description: {
     methodological: "Distinguish mutation, natural selection, genetic drift, and gene flow as processes that alter the inherited composition of populations; explain their distinct roles and potential combined action without reducing all evolutionary change to selection.",
@@ -64,6 +65,7 @@ export const explainMechanismsOfEvolutionaryChange_Skill_Data = buildSkillConfig
       be: 'Параўнай мутацыі, натуральны адбор, генэтычны дрэйф і паток генаў як прычыны эвалюцыі.',
       ka: 'შეადარე მუტაცია, ბუნებრივი გადარჩევა, გენეტიკური დრიფტი და გენთა ნაკადი, როგორც ევოლუციის გამომწვევი პროცესები.',
       kk: 'Мутацияны, табиғи сұрыпталуды, генетикалық дрейфті және ген ағынын эволюцияның себептері ретінде салыстыр.',
+      qm: 'Mutatsiya, tabiiy saylav, genetik drift ve gen aqımını evolütsion deñişüvniñ farqlı sebepleri olaraq teñeştiriñiz.',
     },
   },
 });

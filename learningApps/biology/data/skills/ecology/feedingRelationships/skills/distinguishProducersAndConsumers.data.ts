@@ -32,6 +32,7 @@ export const distinguishProducersAndConsumers_Skill_Data = buildSkillConfig({
     be: 'Адрозьніваць прадуцэнтаў і кансумэнтаў',
     ka: 'პროდუცენტებისა და კონსუმენტების გარჩევა',
     kk: 'Продуценттер мен консументтерді ажырату',
+    qm: 'Produtsentler ve konsumentlerni farqlamaq',
   },
   description: {
     methodological: "Determine which organisms produce organic substances from inorganic ones and which obtain them by consuming other organisms.",
@@ -64,6 +65,7 @@ export const distinguishProducersAndConsumers_Skill_Data = buildSkillConfig({
       be: 'Распазнавай прадуцэнтаў і кансумэнтаў паводле спосабу атрыманьня арганічных рэчываў.',
       ka: 'განასხვავე პროდუცენტები და კონსუმენტები იმის მიხედვით, როგორ იღებენ ორგანულ ნივთიერებებს.',
       kk: 'Ағзаларды органикалық затты алу жолына қарай продуценттер мен консументтерге ажырат.',
+      qm: 'Organik maddelerni nasıl elde etkenine köre produtsentlerni ve konsumentlerni farq etiñiz.',
     },
   },
 });

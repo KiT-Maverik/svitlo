@@ -32,6 +32,7 @@ export const explainEnergyFlowInAnEcosystem_Skill_Data = buildSkillConfig({
     be: 'Тлумачыць паток энэргіі ў экасыстэме',
     ka: 'ეკოსისტემაში ენერგიის ნაკადის ახსნა',
     kk: 'Экожүйедегі энергия ағынын түсіндіру',
+    qm: 'Ekosistemada energiya aqımını añlatmaq',
   },
   description: {
     methodological: "Explain one-way energy transfer through producers, consumers, and decomposers, energy transformations, and dissipation as heat; do not confuse energy flow with matter cycling.",
@@ -64,6 +65,7 @@ export const explainEnergyFlowInAnEcosystem_Skill_Data = buildSkillConfig({
       be: 'Патлумач, чаму энэргія праходзіць праз экасыстэму ў адным кірунку, а рэчывы выкарыстоўваюцца паўторна.',
       ka: 'ახსენი, რატომ მიედინება ენერგია ერთი მიმართულებით, ხოლო ნივთიერება კვლავ გამოიყენება.',
       kk: 'Энергия неге бір бағытта ағып, зат қайта пайдаланылатынын түсіндір.',
+      qm: 'Madde qaytadan qullanılğanda energiyanıñ ekosistemadan bir yoñelişte keçkenini ne içün olğanını añlatıñız.',
     },
   },
 });

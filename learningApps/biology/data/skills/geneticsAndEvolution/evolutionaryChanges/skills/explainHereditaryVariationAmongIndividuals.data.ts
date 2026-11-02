@@ -32,6 +32,7 @@ export const explainHereditaryVariationAmongIndividuals_Skill_Data = buildSkillC
     be: 'Тлумачыць спадчынную зьменлівасьць асобінаў',
     ka: 'ინდივიდებს შორის მემკვიდრეობითი ცვალებადობის ახსნა',
     kk: 'Даралар арасындағы тұқымқуалайтын өзгергіштікті түсіндіру',
+    qm: 'Şahıslar arasındaki irsiy çeşitlikni añlatmaq',
   },
   description: {
     methodological: "Relate differences that may be inherited to diversity among individuals and the possibility of population change.",
@@ -64,6 +65,7 @@ export const explainHereditaryVariationAmongIndividuals_Skill_Data = buildSkillC
       be: 'Растлумач, чаму паміж асобінамі існуюць спадчынныя адрозьненьні.',
       ka: 'ახსენი, რატომ არსებობს ინდივიდებს შორის მემკვიდრეობითი განსხვავებები.',
       kk: 'Даралар арасында тұқым қуалайтын айырмашылықтар неге болатынын түсіндір.',
+      qm: 'Bir türge ait ayrı canlılarda nesilden nesilge keçken farqlar ne içün olğanını añlatıñız.',
     },
   },
 });

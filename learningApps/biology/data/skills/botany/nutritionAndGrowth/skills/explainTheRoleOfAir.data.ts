@@ -32,6 +32,7 @@ export const explainTheRoleOfAir_Skill_Data = buildSkillConfig({
     be: 'Тлумачыць ролю паветра',
     ka: 'ჰაერის როლის ახსნა',
     kk: 'Ауаның рөлін түсіндіру',
+    qm: 'Avanıñ rolüni añlatmaq',
   },
   description: {
     methodological: "Distinguish the use of carbon dioxide during photosynthesis from the use of oxygen during cellular respiration.",
@@ -64,6 +65,7 @@ export const explainTheRoleOfAir_Skill_Data = buildSkillConfig({
       be: 'Адрозьнівай выкарыстаньне расьлінамі вуглякіслага газу й кіслароду ў розных працэсах.',
       ka: 'განასხვავე მცენარეთა მიერ ნახშირორჟანგისა და ჟანგბადის გამოყენება სხვადასხვა პროცესში.',
       kk: 'Өсімдіктердің әртүрлі үдерістерде көмірқышқыл газы мен оттегін пайдалануын ажырат.',
+      qm: 'Ösümlikler karbon dioksid ve oksigenden çeşit biologik süreçlerde nasıl faydalanğanını farq etiñiz.',
     },
   },
 });

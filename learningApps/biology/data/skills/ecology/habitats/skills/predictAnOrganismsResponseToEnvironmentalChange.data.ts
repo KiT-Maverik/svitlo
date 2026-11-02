@@ -32,6 +32,7 @@ export const predictAnOrganismsResponseToEnvironmentalChange_Skill_Data = buildS
     be: 'Прагназаваць рэакцыю арганізму на зьмены асяродзьдзя',
     ka: 'გარემოს ცვლილებაზე ორგანიზმის რეაქციის პროგნოზირება',
     kk: 'Ағзаның орта өзгерісіне жауабын болжау',
+    qm: 'Canlınıñ müit deñişüvine cevabını tahmin etmek',
   },
   description: {
     methodological: "Predict how a change in available resources or temperature will alter the behavior, growth, or survival of a species.",
@@ -64,6 +65,7 @@ export const predictAnOrganismsResponseToEnvironmentalChange_Skill_Data = buildS
       be: 'Прадбач, як зьмены рэсурсаў або тэмпэратуры могуць паўплываць на від.',
       ka: 'ივარაუდე, როგორ იმოქმედებს რესურსების ან ტემპერატურის ცვლილება სახეობაზე.',
       kk: 'Ресурстар не температура өзгерсе, түрге қалай әсер етуі мүмкін екенін болжа.',
+      qm: 'Kaynaklar ya da araret deñişkende bir türge qanday tesir ola bilecegini tahmin etiñiz.',
     },
   },
 });

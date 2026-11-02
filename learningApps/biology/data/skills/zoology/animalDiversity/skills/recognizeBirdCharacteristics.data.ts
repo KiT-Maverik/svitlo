@@ -32,13 +32,14 @@ export const recognizeBirdCharacteristics_Skill_Data = buildSkillConfig({
     be: 'Распазнаваць прыкметы птушак',
     ka: 'ფრინველების ნიშნების ამოცნობა',
     kk: 'Құстардың белгілерін тану',
+    qm: 'Quşlarnıñ belgilerini tanımaq',
   },
   description: {
     methodological: "Use feathers as the primary diagnostic characteristic of birds, regardless of their ability to fly.",
     frontend: {
       en: "Recognize birds by their feathers, even when they cannot fly.",
       zh: '根据羽毛识别鸟类，即使它们不会飞。',
-      hi: 'पक्षियों को उनके पंखों से पहचानें, भले ही वे उड़ नहीं सकते हों।',
+      hi: 'पक्षियों को उनके परों से पहचानें, भले ही वे उड़ न सकें।',
       es: 'Reconoce las aves por sus plumas, incluso cuando no pueden volar.',
       ar: 'تعرّف على الطيور من خلال ريشها، حتى إن كانت لا تستطيع الطيران.',
       fr: 'Reconnais les oiseaux grâce à leurs plumes, même lorsqu\'ils ne peuvent pas voler.',
@@ -64,6 +65,7 @@ export const recognizeBirdCharacteristics_Skill_Data = buildSkillConfig({
       be: 'Распазнавай птушак па пер\'і, нават калі яны ня ўмеюць лётаць.',
       ka: 'ამოიცანი ფრინველები ბუმბულით, მაშინაც კი, თუ მათ ფრენა არ შეუძლიათ.',
       kk: 'Құстарды ұша алмаса да қауырсындары арқылы таны.',
+      qm: 'Uçalmağan quşlar da dahil, quşlarnı bedenlerindeki tüylerge köre tanıñız.',
     },
   },
 });

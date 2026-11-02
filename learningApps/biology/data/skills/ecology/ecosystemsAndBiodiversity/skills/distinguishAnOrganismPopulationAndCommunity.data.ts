@@ -32,6 +32,7 @@ export const distinguishAnOrganismPopulationAndCommunity_Skill_Data = buildSkill
     be: 'Адрозьніваць арганізм, папуляцыю і супольнасьць',
     ka: 'ორგანიზმის, პოპულაციისა და თანასაზოგადოების გარჩევა',
     kk: 'Ағза, популяция және қауымдастықты ажырату',
+    qm: 'Canlı organizm, populyatsiya ve toplulıqnı farqlamaq',
   },
   description: {
     methodological: "Distinguish a single individual from individuals of one species in an area and from a community composed of different species.",
@@ -64,6 +65,7 @@ export const distinguishAnOrganismPopulationAndCommunity_Skill_Data = buildSkill
       be: 'Адрозьнівай асобны арганізм, папуляцыю аднаго віду і супольнасьць розных відаў.',
       ka: 'განასხვავე ერთი ორგანიზმი, ერთი სახეობის პოპულაცია და სხვადასხვა სახეობის თანასაზოგადოება.',
       kk: 'Жеке ағзаны, бір түр популяциясын және әртүрлі түрлер қауымдастығын ажырат.',
+      qm: 'Bir canlı organizmni, bir türniñ populyatsiyasını ve çeşit türlerden teşkil olğan toplulıqnı farq etiñiz.',
     },
   },
 });

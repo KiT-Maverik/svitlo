@@ -32,6 +32,7 @@ export const explainDifferencesAmongOffspringOfTheSameSpecies_Skill_Data = build
     be: 'Тлумачыць адрозьненьні паміж нашчадкамі аднаго віду',
     ka: 'ერთი სახეობის შთამომავლებს შორის განსხვავებების ახსნა',
     kk: 'Бір түр ұрпақтарының айырмашылығын түсіндіру',
+    qm: 'Bir türniñ balaları arasındaki farqlarnı añlatmaq',
   },
   description: {
     methodological: "Explain why recombination, mutations, and developmental conditions can produce differences among individuals.",
@@ -64,6 +65,7 @@ export const explainDifferencesAmongOffspringOfTheSameSpecies_Skill_Data = build
       be: 'Патлумач, чаму ў асобінаў аднаго віду могуць узьнікаць розныя прыкметы.',
       ka: 'ახსენი, რატომ შეიძლება ერთი სახეობის ინდივიდებს განსხვავებული ნიშნები განუვითარდეთ.',
       kk: 'Бір түрге жататын дараларда неге әртүрлі белгілер қалыптасуы мүмкін екенін түсіндір.',
+      qm: 'Aynı türge ait canlılarnıñ balalarında ne içün farqlı belgiler inkişaf ete bilgenini añlatıñız.',
     },
   },
 });

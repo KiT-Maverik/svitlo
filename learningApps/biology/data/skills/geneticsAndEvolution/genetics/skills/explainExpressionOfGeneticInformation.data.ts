@@ -32,6 +32,7 @@ export const explainExpressionOfGeneticInformation_Skill_Data = buildSkillConfig
     be: 'Тлумачыць экспрэсію генэтычнай інфармацыі',
     ka: 'გენეტიკური ინფორმაციის ექსპრესიის ახსნა',
     kk: 'Генетикалық ақпараттың экспрессиясын түсіндіру',
+    qm: 'Genetik malümatnıñ faal oluvını añlatmaq',
   },
   description: {
     methodological: "Explain how DNA information can be transcribed into RNA and realized through protein synthesis and regulation of gene activity; do not equate an individual gene with a ready-made phenotypic trait.",
@@ -64,6 +65,7 @@ export const explainExpressionOfGeneticInformation_Skill_Data = buildSkillConfig
       be: 'Даведайся, як клеткі выкарыстоўваюць інфармацыю ДНК і рэгулююць яе рэалізацыю.',
       ka: 'გაიგე, როგორ იყენებენ უჯრედები დნმ-ის ინფორმაციას და როგორ არეგულირებენ მის მოქმედებას.',
       kk: 'Жасушалар ДНҚ ақпаратын қалай қолданып, оның іске асуын қалай реттейтінін біл.',
+      qm: 'Üceyreler DNKda saqlanğan malümatnı nasıl qullanğanını ve bu süreçni nasıl idare etkenini ögreniñiz.',
     },
   },
 });

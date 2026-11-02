@@ -32,6 +32,7 @@ export const recognizeFishCharacteristics_Skill_Data = buildSkillConfig({
     be: 'Распазнаваць прыкметы рыб',
     ka: 'თევზების ნიშნების ამოცნობა',
     kk: 'Балықтардың белгілерін тану',
+    qm: 'Balıqlarnıñ belgilerini tanımaq',
   },
   description: {
     methodological: "Identify typical traits of aquatic vertebrates with gill respiration and fins while accounting for the diversity of fish.",
@@ -64,6 +65,7 @@ export const recognizeFishCharacteristics_Skill_Data = buildSkillConfig({
       be: 'Вызначай тыповыя прыкметы рыб, улічваючы іх разнастайнасьць.',
       ka: 'ამოიცანი თევზების ტიპური ნიშნები მათი მრავალფეროვნების გათვალისწინებით.',
       kk: 'Балықтардың алуандығын ескере отырып, олардың тән белгілерін анықта.',
+      qm: 'Balıqlarnıñ çeşitliligini de köz ögüne alıp, olarğa has esas belgilerini tanıñız.',
     },
   },
 });

@@ -34,6 +34,7 @@ export const animalDiversity_SkillGroup_Data = buildSkillGroupConfig({
     be: 'Разнастайнасьць жывёлаў',
     ka: 'ცხოველთა მრავალფეროვნება',
     kk: 'Жануарлар алуандығы',
+    qm: 'Ayvanlar çeşitliligi',
   },
   skills: {
     distinguishVertebratesAndInvertebrates: distinguishVertebratesAndInvertebrates_Skill_Data,
@@ -85,6 +86,7 @@ export const animalDiversity_SkillGroup_Data = buildSkillGroupConfig({
       be: 'Дасьледуй розныя прыкметы асноўных групаў жывёлаў.',
       ka: 'შეისწავლე ცხოველთა ძირითადი ჯგუფების განსხვავებული ნიშნები.',
       kk: 'Жануарлардың негізгі топтарының әртүрлі белгілерін зертте.',
+      qm: 'Ayvanlarnıñ esas gruplarını sadece tışqı beñzerlikke degil, beden quruluşunıñ belgilerine köre tanıñız.',
     },
   },
 });

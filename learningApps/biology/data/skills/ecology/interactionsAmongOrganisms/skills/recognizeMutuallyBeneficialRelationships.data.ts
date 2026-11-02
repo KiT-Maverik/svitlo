@@ -32,6 +32,7 @@ export const recognizeMutuallyBeneficialRelationships_Skill_Data = buildSkillCon
     be: 'Распазнаваць узаемавыгадныя сувязі',
     ka: 'ურთიერთსასარგებლო ურთიერთობების ამოცნობა',
     kk: 'Өзара пайдалы қатынастарды тану',
+    qm: 'İki tarafqa da faydalı alâqalarnı tanımaq',
   },
   description: {
     methodological: "Identify interactions that increase the fitness of both species rather than only one.",
@@ -64,6 +65,7 @@ export const recognizeMutuallyBeneficialRelationships_Skill_Data = buildSkillCon
       be: 'Вызначай узаемадзеяньні, карысныя для абодвух відаў.',
       ka: 'ამოიცანი ურთიერთობები, რომლებიც ორივე მონაწილე სახეობას სარგებელს აძლევს.',
       kk: 'Қатысушы екі түрге де пайда әкелетін қатынастарды анықта.',
+      qm: 'Eki türge de fayda ketirgen qarşılıqlı alâqalarnı tanıñız.',
     },
   },
 });

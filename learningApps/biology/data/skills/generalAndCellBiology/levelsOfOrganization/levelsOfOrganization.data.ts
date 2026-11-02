@@ -34,6 +34,7 @@ export const levelsOfOrganization_SkillGroup_Data = buildSkillGroupConfig({
     be: 'Узроўні арганізацыі',
     ka: 'ორგანიზაციის დონეები',
     kk: 'Ұйымдасу деңгейлері',
+    qm: 'Teşkilâtlanma seviyeleri',
   },
   skills: {
     distinguishAPartOfAnOrganismFromAWholeOrganism: distinguishAPartOfAnOrganismFromAWholeOrganism_Skill_Data,
@@ -72,6 +73,7 @@ export const levelsOfOrganization_SkillGroup_Data = buildSkillGroupConfig({
       be: 'Дасьледуй, як клеткі, тканкі, органы й сыстэмы органаў спалучаюцца ў жывых арганізмах.',
       ka: 'გამოიკვლიე, როგორ ერთიანდება უჯრედები, ქსოვილები, ორგანოები და ორგანოთა სისტემები ცოცხალ ორგანიზმებში.',
       kk: 'Жасушалар, ұлпалар, мүшелер және мүшелер жүйелері тірі ағзаларда қалай байланысатынын зертте.',
+      qm: 'Üceyreler, toqular, organlar ve organ sistemaları canlı bedeninde nasıl birleşkenini ögreniñiz.',
     },
   },
 });

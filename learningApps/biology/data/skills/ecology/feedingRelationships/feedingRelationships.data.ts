@@ -57,7 +57,7 @@ export const feedingRelationships_SkillGroup_Data = buildSkillGroupConfig({
       pt: 'Explore como as relações alimentares transferem matéria e energia nos ecossistemas.',
       ur: 'جانیں کہ غذائی تعلقات ماحولیاتی نظاموں میں مادے اور توانائی کو کیسے منتقل کرتے ہیں۔',
       id: 'Jelajahi bagaimana hubungan makan-dimakan memindahkan materi dan energi dalam ekosistem.',
-      de: 'Erkunde, wie Nahrungsbeziehungen Stoffe und Energie durch Ökosysteme übertragen.',
+      de: 'Erkunde, wie Stoffe und Energie über Nahrungsbeziehungen in Ökosystemen weitergegeben werden.',
       ja: '食物を通じた関係によって、生態系の物質とエネルギーがどう移るか調べよう。',
       ko: '먹이 관계를 통해 생태계에서 물질과 에너지가 어떻게 전달되는지 알아보세요.',
       tr: 'Beslenme ilişkilerinin ekosistemlerde madde ve enerjiyi nasıl aktardığını keşfet.',

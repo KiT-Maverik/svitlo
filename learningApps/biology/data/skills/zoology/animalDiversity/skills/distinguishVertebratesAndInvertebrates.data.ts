@@ -32,6 +32,7 @@ export const distinguishVertebratesAndInvertebrates_Skill_Data = buildSkillConfi
     be: 'Адрозьніваць хрыбетных ад бязхрыбетных',
     ka: 'ხერხემლიანებისა და უხერხემლოების გარჩევა',
     kk: 'Омыртқалылар мен омыртқасыздарды ажырату',
+    qm: 'Omurtqalı ve omurtqasız ayvanlarnı farqlamaq',
   },
   description: {
     methodological: "Use the presence of a vertebral column as the anatomical dividing line between these two broad groups.",
@@ -64,6 +65,7 @@ export const distinguishVertebratesAndInvertebrates_Skill_Data = buildSkillConfi
       be: 'Адрозьнівай жывёлаў з хрыбетнікам ад тых, у каго яго няма.',
       ka: 'განასხვავე ხერხემლის მქონე ცხოველები ხერხემლის არმქონეთაგან.',
       kk: 'Омыртқа жотасы бар жануарларды омыртқасы жоқ жануарлардан ажырат.',
+      qm: 'Omurtqa sütüni olğan ayvanlarnı omurtqası olmağan ayvanlardan farq etiñiz.',
     },
   },
 });

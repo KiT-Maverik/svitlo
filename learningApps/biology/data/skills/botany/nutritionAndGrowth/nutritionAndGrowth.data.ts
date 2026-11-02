@@ -34,6 +34,7 @@ export const nutritionAndGrowth_SkillGroup_Data = buildSkillGroupConfig({
     be: 'Жыўленьне і рост',
     ka: 'კვება და ზრდა',
     kk: 'Қоректену және өсу',
+    qm: 'Beslenüv ve ösüv',
   },
   skills: {
     explainPlantsNeedForWater: explainPlantsNeedForWater_Skill_Data,
@@ -73,6 +74,7 @@ export const nutritionAndGrowth_SkillGroup_Data = buildSkillGroupConfig({
       be: 'Даведайся, як вада, сьвятло, паветра й мінэральныя рэчывы падтрымліваюць рост расьлінаў.',
       ka: 'გაიგე, როგორ ეხმარება წყალი, სინათლე, ჰაერი და მინერალები მცენარეთა ზრდას.',
       kk: 'Су, жарық, ауа мен минералдардың өсімдіктің өсуіне қалай көмектесетінін біл.',
+      qm: 'Suv, yarıq, ava ve mineral maddeler ösümliklerniñ ösüvine nasıl yardım etkenini ögreniñiz.',
     },
   },
 });

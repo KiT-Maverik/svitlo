@@ -32,6 +32,7 @@ export const describeGermination_Skill_Data = buildSkillConfig({
     be: 'Апісваць прарастаньне',
     ka: 'აღმოცენების აღწერა',
     kk: 'Тұқымның өнуін сипаттау',
+    qm: 'Tohumnıñ çimlenüvini tasvir etmek',
   },
   description: {
     methodological: "Establish the order in which the embryonic root and shoot emerge, as well as the roles of water and an appropriate temperature.",
@@ -64,6 +65,7 @@ export const describeGermination_Skill_Data = buildSkillConfig({
       be: 'Апішы, як насеньне пачынае ўтвараць карані й парасткі.',
       ka: 'აღწერე, როგორ იწყებს თესლი ფესვებისა და ყლორტების განვითარებას.',
       kk: 'Тұқымнан тамыр мен өркеннің қалай өсе бастайтынын сипатта.',
+      qm: 'Tohumdan tamır ve sürgün nasıl çıqa başlağanını tasvir etiñiz.',
     },
   },
 });

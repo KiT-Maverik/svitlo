@@ -32,6 +32,7 @@ export const explainTheImportanceOfBiodiversity_Skill_Data = buildSkillConfig({
     be: 'Тлумачыць важнасьць біяразнастайнасьці',
     ka: 'ბიომრავალფეროვნების მნიშვნელობის ახსნა',
     kk: 'Биоалуантүрліліктің маңызын түсіндіру',
+    qm: 'Biologik çeşitlikniñ emiyetini añlatmaq',
   },
   description: {
     methodological: "Explain why a diversity of ecological roles and relationships can support ecosystem resilience in the face of change.",
@@ -64,6 +65,7 @@ export const explainTheImportanceOfBiodiversity_Skill_Data = buildSkillConfig({
       be: 'Патлумач, як біяразнастайнасьць можа дапамагаць экасыстэмам рэагаваць на зьмены.',
       ka: 'ახსენი, როგორ ეხმარება ბიომრავალფეროვნება ეკოსისტემებს ცვლილებებზე რეაგირებაში.',
       kk: 'Биоалуантүрлілік экожүйелерге өзгерістерге төтеп беруге қалай көмектесетінін түсіндір.',
+      qm: 'Biologik çeşitlik ekosistemalarğa deñişüvlerge uyğunlaşmağa nasıl yardım ete bilgenini añlatıñız.',
     },
   },
 });

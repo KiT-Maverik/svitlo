@@ -32,6 +32,7 @@ export const explainMatterCyclingInEcosystems_Skill_Data = buildSkillConfig({
     be: 'Тлумачыць кругаварот рэчываў у экасыстэмах',
     ka: 'ეკოსისტემებში ნივთიერებათა წრებრუნვის ახსნა',
     kk: 'Экожүйелердегі зат айналымын түсіндіру',
+    qm: 'Ekosistemalarda madde devridaimini añlatmaq',
   },
   description: {
     methodological: "Explain the repeated transfer and reuse of chemical elements and compounds between organisms and the abiotic environment through uptake, feeding, excretion, and decomposition; distinguish cyclical matter movement from one-way energy flow.",
@@ -64,6 +65,7 @@ export const explainMatterCyclingInEcosystems_Skill_Data = buildSkillConfig({
       be: 'Даведайся, як рэчывы цыркулююць паміж арганізмамі і нежывым асяродзьдзем.',
       ka: 'გაიგე, როგორ ბრუნავს ნივთიერება ორგანიზმებსა და არაცოცხალ გარემოს შორის.',
       kk: 'Заттың ағзалар мен жансыз орта арасында қалай айналатынын біл.',
+      qm: 'Maddeler canlılar ve cansız müit arasında nasıl dolaşqanını ögreniñiz.',
     },
   },
 });

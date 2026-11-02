@@ -24,7 +24,7 @@ export const explainThePrincipleOfSelectiveBreeding_Skill_Data = buildSkillConfi
     mr: 'निवडक प्रजननाचे तत्त्व स्पष्ट करणे',
     ms: 'Menjelaskan prinsip pembiakbakaan terpilih',
     he: 'הסבר עקרון הרבייה הבררנית',
-    pl: 'Wyjaśnianie zasady hodowli selektywnej',
+    pl: 'Wyjaśnianie zasad doboru hodowlanego',
     uk: 'Пояснювати принцип селекційного розведення',
     lt: 'Paaiškinti atrankinio veisimo principą',
     lv: 'Izskaidrot selektīvās audzēšanas principu',
@@ -32,6 +32,7 @@ export const explainThePrincipleOfSelectiveBreeding_Skill_Data = buildSkillConfi
     be: 'Тлумачыць прынцып сэлекцыйнага разьвядзеньня',
     ka: 'სელექციური გამრავლების პრინციპის ახსნა',
     kk: 'Селекциялық өсіру қағидатын түсіндіру',
+    qm: 'İrsiy belgilerge köre saylap yetiştirüv printsipini añlatmaq',
   },
   description: {
     methodological: "Define selective breeding as purposeful selection and reproduction of organisms with desired inherited traits across generations to create or improve crop varieties and animal breeds. Understand that a breeder selects carriers of hereditary variants rather than arbitrarily 'ordering' a characteristic in each offspring.",
@@ -56,7 +57,7 @@ export const explainThePrincipleOfSelectiveBreeding_Skill_Data = buildSkillConfi
       mr: 'निवडक प्रजननामुळे अनेक पिढ्यांमध्ये इच्छित आनुवंशिक गुणधर्मांचे प्रमाण कसे वाढू शकते ते समजून घ्या.',
       ms: 'Fahami cara pembiakbakaan terpilih mengembangkan ciri yang diwarisi merentas generasi.',
       he: 'הבינו כיצד רבייה בררנית מטפחת תכונות תורשתיות לאורך דורות.',
-      pl: 'Zrozum, jak hodowla selektywna rozwija cechy dziedziczne przez kolejne pokolenia.',
+      pl: 'Dowiedz się, jak dobór hodowlany zwiększa częstość pożądanych cech dziedzicznych w kolejnych pokoleniach.',
       uk: 'Зрозумій, як селекційне розведення розвиває спадкові ознаки протягом поколінь.',
       lt: 'Suprask, kaip atrankinis veisimas ugdo paveldimus požymius per kartas.',
       lv: 'Izproti, kā selektīvā audzēšana attīsta iedzimtas pazīmes vairākās paaudzēs.',
@@ -64,6 +65,7 @@ export const explainThePrincipleOfSelectiveBreeding_Skill_Data = buildSkillConfi
       be: 'Зразумей, як сэлекцыйнае разьвядзеньне разьвівае спадчынныя прыкметы цягам пакаленьняў.',
       ka: 'გაიგე, როგორ ვითარდება მემკვიდრეობითი ნიშნები სელექციური გამრავლებით თაობების განმავლობაში.',
       kk: 'Селекциялық өсіру тұқым қуалайтын белгілерді ұрпақтан ұрпаққа қалай дамытатынын түсін.',
+      qm: 'İstenilgen irsiy belgileri olğan canlılarnı saylap çoğaltuv nesiller devamında bu belgilerge nasıl tesir etkenini ögreniñiz.',
     },
   },
 });

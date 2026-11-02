@@ -32,6 +32,7 @@ export const describeSeasonalChangesInPlants_Skill_Data = buildSkillConfig({
     be: 'Апісваць сэзонныя зьмены расьлінаў',
     ka: 'მცენარეთა სეზონური ცვლილებების აღწერა',
     kk: 'Өсімдіктердің маусымдық өзгерістерін сипаттау',
+    qm: 'Ösümliklerniñ mevsimlik deñişüvlerini tasvir etmek',
   },
   description: {
     methodological: "Establish the relationship between changes in day length or temperature and leaf fall, dormancy, or resumption of growth.",
@@ -64,6 +65,7 @@ export const describeSeasonalChangesInPlants_Skill_Data = buildSkillConfig({
       be: 'Сувязвай сэзонныя зьмены расьлінаў з тэмпэратурай і працягласьцю сьветлавога дня.',
       ka: 'დააკავშირე მცენარეთა სეზონური ცვლილებები ტემპერატურასა და დღის ხანგრძლივობასთან.',
       kk: 'Өсімдіктердің маусымдық өзгерістерін температура мен күн ұзақтығымен байланыстыр.',
+      qm: 'Ösümliklerniñ mevsimlik deñişüvlerini ava arareti ve künniñ uzunlığınen bağlaştırıñız.',
     },
   },
 });

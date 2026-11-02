@@ -32,6 +32,7 @@ export const explainTheInterdependenceOfEcosystemComponents_Skill_Data = buildSk
     be: 'Тлумачыць узаемазалежнасьць частак экасыстэмы',
     ka: 'ეკოსისტემის კომპონენტების ურთიერთდამოკიდებულების ახსნა',
     kk: 'Экожүйе құрамдастарының өзара тәуелділігін түсіндіру',
+    qm: 'Ekosistema qısımlarınıñ karşılıqlı bağlılığını añlatmaq',
   },
   description: {
     methodological: "Explain how organisms, populations, and nonliving ecosystem factors are linked by feeding and other interactions: a change in species abundance, disappearance of a predator, arrival of an invasive organism, or shortage of a resource may affect other participants and the system as a whole. Describe both direct and indirect consequences in particular examples without declaring a species 'beneficial' or 'harmful' merely because of what it eats.",
@@ -64,6 +65,7 @@ export const explainTheInterdependenceOfEcosystemComponents_Skill_Data = buildSk
       be: 'Дасьледуй, як зьмена адной часткі экасыстэмы можа паўплываць на многія іншыя.',
       ka: 'გამოიკვლიე, როგორ მოქმედებს ეკოსისტემის ერთი ნაწილის ცვლილება სხვა მრავალ ნაწილზე.',
       kk: 'Экожүйенің бір бөлігіндегі өзгеріс басқа көптеген бөлігіне қалай әсер ететінін зертте.',
+      qm: 'Ekosistemanıñ bir qısmında olğan deñişüv başka qısımlarğa nasıl tesir ete bilgenini ögreniñiz.',
     },
   },
 });

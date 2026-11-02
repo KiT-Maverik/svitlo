@@ -32,6 +32,7 @@ export const recognizeReptileCharacteristics_Skill_Data = buildSkillConfig({
     be: 'Распазнаваць прыкметы паўзуноў',
     ka: 'ქვეწარმავლების ნიშნების ამოცნობა',
     kk: 'Бауырымен жорғалаушылардың белгілерін тану',
+    qm: 'Sürüngenlerniñ belgilerini tanımaq',
   },
   description: {
     methodological: "Identify members by characteristics of scaled skin and reproductive features of terrestrial amniotes.",
@@ -64,6 +65,7 @@ export const recognizeReptileCharacteristics_Skill_Data = buildSkillConfig({
       be: 'Вызначай прыкметы паўзуноў, у тым ліку асаблівасьці скуры і размнажэньня.',
       ka: 'ამოიცანი ქვეწარმავლების ნიშნები, მათ შორის კანისა და გამრავლების თავისებურებები.',
       kk: 'Бауырымен жорғалаушылардың терісі мен көбеюіне қатысты белгілерін анықта.',
+      qm: 'Sürüngenlerniñ deri quruluşu ve çoğaluvı da dahil, olarnıñ esas belgilerini tanıñız.',
     },
   },
 });

@@ -32,6 +32,7 @@ export const explainTheTheoryOfEvolution_Skill_Data = buildSkillConfig({
     be: 'Тлумачыць тэорыю эвалюцыі',
     ka: 'ევოლუციის თეორიის ახსნა',
     kk: 'Эволюция теориясын түсіндіру',
+    qm: 'Evolütsiya nazariyesini añlatmaq',
   },
   description: {
     methodological: "Explain modern evolutionary theory as a scientific explanation of changes in inherited population characteristics and the diversity of life, supported by multiple converging lines of evidence. Distinguish a scientific theory from individual hypotheses, factual observations, and claims of purpose-directed development.",
@@ -64,6 +65,7 @@ export const explainTheTheoryOfEvolution_Skill_Data = buildSkillConfig({
       be: 'Зразумей эвалюцыю як навуковае тлумачэньне, пацьверджанае рознымі відамі доказаў.',
       ka: 'გაიგე, რომ ევოლუცია მეცნიერული ახსნაა, რომელსაც სხვადასხვა სახის მტკიცებულება ამყარებს.',
       kk: 'Эволюцияны әртүрлі дәлелдермен расталған ғылыми түсіндірме ретінде түсін.',
+      qm: 'Evolütsiya çeşit delillerge esaslanğan ilmiy añlatma olğanını ögreniñiz.',
     },
   },
 });

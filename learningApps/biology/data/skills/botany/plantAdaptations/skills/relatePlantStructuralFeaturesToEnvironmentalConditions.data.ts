@@ -32,6 +32,7 @@ export const relatePlantStructuralFeaturesToEnvironmentalConditions_Skill_Data =
     be: 'Сувязваць будову расьлінаў з умовамі асяродзьдзя',
     ka: 'მცენარის აგებულების დაკავშირება გარემოს პირობებთან',
     kk: 'Өсімдік құрылысының белгілерін орта жағдайымен байланыстыру',
+    qm: 'Ösümlikniñ quruluş belgilerini müit şartlarınen bağlaştırmaq',
   },
   description: {
     methodological: "Explain causal links between root, leaf, and shoot structure and environmental resources or limitations; compare how different structural solutions affect water balance, access to light, and survival. The central competency is functional explanation rather than merely identifying an adaptation.",
@@ -64,6 +65,7 @@ export const relatePlantStructuralFeaturesToEnvironmentalConditions_Skill_Data =
       be: 'Тлумач, чаму карані, лісты й парасткі маюць формы, прыстасаваныя да розных умоваў.',
       ka: 'ახსენი, რატომ აქვთ ფესვებს, ფოთლებსა და ყლორტებს სხვადასხვა პირობებისთვის შესაფერისი ფორმები.',
       kk: 'Тамыр, жапырақ және өркендердің пішіні әртүрлі жағдайға неге сәйкес келетінін түсіндір.',
+      qm: 'Tamırlar, yapraqlar ve sürgünlerniñ çeşit müit şartlarında ne içün farqlı şekilde olğanını añlatıñız.',
     },
   },
 });

@@ -32,6 +32,7 @@ export const recognizeEchinodermCharacteristics_Skill_Data = buildSkillConfig({
     be: 'Распазнаваць прыкметы ігласкурых',
     ka: 'კანეკლიანების ნიშნების ამოცნობა',
     kk: 'Тікентерілілердің белгілерін тану',
+    qm: 'İynederililerniñ belgilerini tanımaq',
   },
   description: {
     methodological: "Identify marine invertebrates with a water vascular system and characteristic adult symmetry, distinguishing sea stars, sea urchins, and other representatives.",
@@ -64,6 +65,7 @@ export const recognizeEchinodermCharacteristics_Skill_Data = buildSkillConfig({
       be: 'Вызначай марскіх зорак ды іншых ігласкурых паводле характэрных асаблівасьцяў будовы.',
       ka: 'ამოიცანი ზღვის ვარსკვლავები და სხვა კანეკლიანები მათი განსაკუთრებული აგებულებით.',
       kk: 'Теңіз жұлдыздары мен басқа тікентерілілерді ерекше дене құрылысы арқылы анықта.',
+      qm: 'Deñiz yıldızları ve başqa iynederililerni olarnıñ özüne has beden quruluşuna köre tanıñız.',
     },
   },
 });

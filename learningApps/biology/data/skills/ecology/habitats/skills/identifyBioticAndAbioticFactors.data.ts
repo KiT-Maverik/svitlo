@@ -32,6 +32,7 @@ export const identifyBioticAndAbioticFactors_Skill_Data = buildSkillConfig({
     be: 'Вызначаць біятычныя і абіятычныя чыньнікі',
     ka: 'ბიოტური და აბიოტური ფაქტორების ამოცნობა',
     kk: 'Биотикалық және абиотикалық факторларды тану',
+    qm: 'Biotik ve abiotik faktorlarnı belgilemek',
   },
   description: {
     methodological: "Distinguish influences from other organisms from influences of water, light, soil, or temperature.",
@@ -64,6 +65,7 @@ export const identifyBioticAndAbioticFactors_Skill_Data = buildSkillConfig({
       be: 'Адрозьнівай уплыў жывых арганізмаў ад чыньнікаў нежывога асяродзьдзя.',
       ka: 'განასხვავე ცოცხალი ორგანიზმების გავლენა არაცოცხალი გარემოს ფაქტორებისგან.',
       kk: 'Тірі ағзалардың әсерін жансыз орта факторларынан ажырат.',
+      qm: 'Canlılarnıñ tesirini müitniñ cansız faktorlardan farq etiñiz.',
     },
   },
 });

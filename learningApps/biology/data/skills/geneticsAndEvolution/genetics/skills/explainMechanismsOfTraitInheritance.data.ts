@@ -32,6 +32,7 @@ export const explainMechanismsOfTraitInheritance_Skill_Data = buildSkillConfig({
     be: 'Тлумачыць мэханізмы ўспадкоўваньня прыкметаў',
     ka: 'ნიშან-თვისებების მემკვიდრეობით გადაცემის მექანიზმების ახსნა',
     kk: 'Белгілердің тұқымқуалау механизмдерін түсіндіру',
+    qm: 'Belgilerniñ irsiy keçüv mehanizmlerini añlatmaq',
   },
   description: {
     methodological: "Explain the roles of genes, alleles, and chromosomes, segregation of alleles, and formation of their combinations in offspring. Apply Mendelian patterns where appropriate and distinguish them from polygenic and environmentally influenced traits.",
@@ -64,6 +65,7 @@ export const explainMechanismsOfTraitInheritance_Skill_Data = buildSkillConfig({
       be: 'Дасьледуй, як гены і іхныя варыянты перадаюцца ў спадчыну паміж пакаленьнямі.',
       ka: 'გამოიკვლიე, როგორ გადაეცემა გენები და მათი ვარიანტები თაობებს შორის.',
       kk: 'Гендер мен олардың нұсқалары ұрпақтан ұрпаққа қалай берілетінін зертте.',
+      qm: 'Genler ve olarnıñ çeşit variantları nesilden nesilge nasıl keçkenini ögreniñiz.',
     },
   },
 });

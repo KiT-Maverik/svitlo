@@ -34,6 +34,7 @@ export const biotechnology_SkillDomain_Data = buildSkillDomainConfig({
     be: 'Біятэхналёгія',
     ka: 'ბიოტექნოლოგია',
     kk: 'Биотехнология',
+    qm: 'Biotehnologiya',
   },
   groups: {
   },
@@ -75,6 +76,7 @@ export const biotechnology_SkillDomain_Data = buildSkillDomainConfig({
       be: 'Даведайся, як людзі выкарыстоўваюць арганізмы, клеткі і біялягічныя працэсы для стварэньня карысных прадуктаў.',
       ka: 'გაიგე, როგორ იყენებენ ადამიანები ორგანიზმებს, უჯრედებსა და ბიოლოგიურ პროცესებს სასარგებლო პროდუქტების მისაღებად.',
       kk: 'Адамдардың пайдалы өнімдер жасау үшін ағзаларды, жасушаларды және биологиялық үдерістерді қалай пайдаланатынын біл.',
+      qm: 'İnsanlar faydalı mahsulatlar almaq içün canlılardan, üceyrelerden ve biologik süreçlerden nasıl faydalanğanını ögreniñiz.',
     },
   },
 });

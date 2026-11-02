@@ -32,6 +32,7 @@ export const explainNaturalSelection_Skill_Data = buildSkillConfig({
     be: 'Тлумачыць натуральны адбор',
     ka: 'ბუნებრივი გადარჩევის ახსნა',
     kk: 'Табиғи сұрыпталуды түсіндіру',
+    qm: 'Tabiiy saylavnı añlatmaq',
   },
   description: {
     methodological: "Explain how inherited differences in survival and reproductive success change the frequencies of hereditary variants in a population over generations; selection is neither a conscious choice by organisms nor progress toward predetermined perfection.",
@@ -64,6 +65,7 @@ export const explainNaturalSelection_Skill_Data = buildSkillConfig({
       be: 'Зразумей, як натуральны адбор можа зьмяняць частату спадчынных прыкметаў у папуляцыі на працягу пакаленьняў.',
       ka: 'გაიგე, როგორ შეიძლება ბუნებრივმა გადარჩევამ თაობების განმავლობაში პოპულაციაში მემკვიდრეობითი ნიშნების სიხშირე შეცვალოს.',
       kk: 'Табиғи сұрыпталу ұрпақтар бойы популяциядағы тұқым қуалайтын белгілердің жиілігін қалай өзгерте алатынын түсін.',
+      qm: 'Tabiiy saylav nesiller devamında populyatsiyada irsiy belgiler qanadar yayğın olğanını nasıl deñiştire bilgenini ögreniñiz.',
     },
   },
 });

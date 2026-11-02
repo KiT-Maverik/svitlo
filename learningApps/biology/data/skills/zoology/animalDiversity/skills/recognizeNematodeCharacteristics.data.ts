@@ -32,6 +32,7 @@ export const recognizeNematodeCharacteristics_Skill_Data = buildSkillConfig({
     be: 'Распазнаваць прыкметы круглых чарвякоў',
     ka: 'მრგვალი ჭიების ნიშნების ამოცნობა',
     kk: 'Жұмыр құрттардың белгілерін тану',
+    qm: 'Nematodlarnıñ belgilerini tanımaq',
   },
   description: {
     methodological: "Recognize the unsegmented elongated bodies of roundworms and features of their lifestyles, including free-living and parasitic forms.",
@@ -64,6 +65,7 @@ export const recognizeNematodeCharacteristics_Skill_Data = buildSkillConfig({
       be: 'Распазнавай круглых чарвякоў паводле нясэгмэнтаванага цела ды іншых прыкметаў.',
       ka: 'ამოიცანი მრგვალი ჭიები დაუნაწევრებელი სხეულითა და სხვა ნიშნებით.',
       kk: 'Жұмыр құрттарды буылтықтарға бөлінбеген денесі мен басқа белгілері арқылы таны.',
+      qm: 'Nematodlarnıñ alqalarğa bölünmegen bedenine ve başqa belgilerine köre olarnı tanıñız.',
     },
   },
 });

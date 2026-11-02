@@ -32,6 +32,7 @@ export const explainCompleteMetamorphosisInInsects_Skill_Data = buildSkillConfig
     be: 'Тлумачыць поўнае ператварэньне ў вусякоў',
     ka: 'მწერებში სრული მეტამორფოზის ახსნა',
     kk: 'Бунақденелілердің толық түрленуін түсіндіру',
+    qm: 'İnsektlerde tam metamorfoznı añlatmaq',
   },
   description: {
     methodological: "Explain the four developmental stages of insects with complete metamorphosis: egg, larva, pupa, and imago; using butterflies, beetles, or flies as examples, distinguish the markedly different functions and structures of larvae and adults.",
@@ -64,6 +65,7 @@ export const explainCompleteMetamorphosisInInsects_Skill_Data = buildSkillConfig
       be: 'Прасачы стадыі яйка, лічынкі, кукалкі й дарослага вусяка пры поўным ператварэньні.',
       ka: 'გაეცანი მწერების სრული მეტამორფოზის ეტაპებს: კვერცხი, მატლი, ჭუპრი და ზრდასრული მწერი.',
       kk: 'Бунақденелілердің толық түрленуіндегі жұмыртқа, дернәсіл, қуыршақ және ересек кезеңдерін бақыла.',
+      qm: 'İnsektlerniñ tam metamorfozında yumurta, larva, pupa ve yetişken basamaqlarını sırasına köre ögreniñiz.',
     },
   },
 });

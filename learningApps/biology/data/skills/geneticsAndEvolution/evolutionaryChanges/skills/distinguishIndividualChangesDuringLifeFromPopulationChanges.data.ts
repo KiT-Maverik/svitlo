@@ -32,6 +32,7 @@ export const distinguishIndividualChangesDuringLifeFromPopulationChanges_Skill_D
     be: 'Адрозьніваць зьмены на працягу жыцьця асобіны ад зьменаў у папуляцыі',
     ka: 'ინდივიდის სიცოცხლის განმავლობაში ცვლილებებისა და პოპულაციის ცვლილებების გარჩევა',
     kk: 'Жеке ағзаның өміріндегі өзгерістерді популяция өзгерістерінен ажырату',
+    qm: 'Şahısnıñ ömründeki deñişüvlerni populyatsiya deñişüvlerinden farqlamaq',
   },
   description: {
     methodological: "Distinguish changes in the growth or behavior of one individual from changes in the frequencies of inherited traits in a population.",
@@ -64,6 +65,7 @@ export const distinguishIndividualChangesDuringLifeFromPopulationChanges_Skill_D
       be: 'Адрозьнівай зьмены на працягу жыцьця аднаго арганізму ад эвалюцыі папуляцыяў на працягу пакаленьняў.',
       ka: 'განასხვავე ერთი ორგანიზმის სიცოცხლეში მომხდარი ცვლილებები და პოპულაციების ევოლუცია თაობების განმავლობაში.',
       kk: 'Бір ағзаның өміріндегі өзгерістерді популяциялардың бірнеше ұрпақ бойындағы эволюциясынан ажырат.',
+      qm: 'Bir canlınıñ ömri devamında olğan deñişüvlerni nesiller boyunca populyatsiyada olğan evolütsion deñişüvlerden farq etiñiz.',
     },
   },
 });

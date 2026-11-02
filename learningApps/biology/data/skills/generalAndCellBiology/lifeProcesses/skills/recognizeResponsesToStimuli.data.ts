@@ -32,6 +32,7 @@ export const recognizeResponsesToStimuli_Skill_Data = buildSkillConfig({
     be: 'Распазнаваць рэакцыі на раздражняльнікі',
     ka: 'გამღიზიანებლებზე რეაქციების ამოცნობა',
     kk: 'Тітіркендіргіштерге жауаптарды тану',
+    qm: 'Tesirlerge cevapnı tanımaq',
   },
   description: {
     methodological: "Establish how light, touch, or a chemical signal elicits a change in an organism’s state or movement.",
@@ -64,6 +65,7 @@ export const recognizeResponsesToStimuli_Skill_Data = buildSkillConfig({
       be: 'Распазнавай, як жывыя арганізмы рэагуюць на сьвятло, дотык і іншыя сыгналы.',
       ka: 'ამოიცანი, როგორ რეაგირებენ ცოცხალი ორგანიზმები სინათლეზე, შეხებასა და სხვა სიგნალებზე.',
       kk: 'Тірі ағзалардың жарыққа, жанасуға және басқа сигналдарға қалай жауап беретінін таны.',
+      qm: 'Canlılar yarıq, tiyiş ve başqa signallarğa nasıl cevap bergenini tanıñız.',
     },
   },
 });

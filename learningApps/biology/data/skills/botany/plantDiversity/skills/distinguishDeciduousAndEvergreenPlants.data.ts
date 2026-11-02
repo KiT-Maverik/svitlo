@@ -32,6 +32,7 @@ export const distinguishDeciduousAndEvergreenPlants_Skill_Data = buildSkillConfi
     be: 'Адрозьніваць лісьцепадныя і вечназялёныя расьліны',
     ka: 'ფოთოლმცვენი და მარადმწვანე მცენარეების გარჩევა',
     kk: 'Жапырақ тастайтын және мәңгі жасыл өсімдіктерді ажырату',
+    qm: 'Yapraq tüşürgen ve daim yeşil ösümliklerni farqlamaq',
   },
   description: {
     methodological: "Distinguish annual leaf shedding from retaining foliage throughout the year; this is not equivalent to the distinction between conifers and broadleaf plants.",
@@ -64,6 +65,7 @@ export const distinguishDeciduousAndEvergreenPlants_Skill_Data = buildSkillConfi
       be: 'Распазнавай вечназялёныя й лісьцепадныя расьліны паводле захаваньня лістоты.',
       ka: 'განასხვავე მარადმწვანე და ფოთოლმცვენი მცენარეები ფოთლების შენარჩუნების მიხედვით.',
       kk: 'Жапырақтарының сақталу мерзіміне қарай мәңгі жасыл және жапырақ тастайтын өсімдіктерді ажырат.',
+      qm: 'Yapraqlarını mevsimge köre tüşürgen ösümliklerni yıl devamında yeşil qalğan ösümliklerden farq etiñiz.',
     },
   },
 });

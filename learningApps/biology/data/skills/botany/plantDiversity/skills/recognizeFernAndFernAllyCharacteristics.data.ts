@@ -32,6 +32,7 @@ export const recognizeFernAndFernAllyCharacteristics_Skill_Data = buildSkillConf
     be: 'Распазнаваць прыкметы папарацяў і роднасных расьлінаў',
     ka: 'გვიმრებისა და მონათესავე მცენარეების ნიშნების ამოცნობა',
     kk: 'Қырықжапырақтар мен туыстас өсімдіктердің белгілерін тану',
+    qm: 'Pteridofitlerniñ ve olarğa yaqın ösümliklerniñ belgilerini tanımaq',
   },
   description: {
     methodological: "Identify vascular spore-producing plants by the structure of their shoots and sporangia; distinguish them from bryophytes and seed plants.",
@@ -64,6 +65,7 @@ export const recognizeFernAndFernAllyCharacteristics_Skill_Data = buildSkillConf
       be: 'Распазнавай папараці й роднасныя судзінкавыя расьліны, што размнажаюцца спорамі.',
       ka: 'ამოიცანი სპორებით გამრავლებადი გვიმრები და მონათესავე გამტარი ქსოვილების მქონე მცენარეები.',
       kk: 'Спора арқылы көбейетін қырықжапырақтар мен туыстас өткізгіш ұлпалы өсімдіктерді таны.',
+      qm: 'Sporalar vastasınen çoğalğan pteridofitlerni ve olarğa yaqın damarlı ösümliklerni tanıñız.',
     },
   },
 });

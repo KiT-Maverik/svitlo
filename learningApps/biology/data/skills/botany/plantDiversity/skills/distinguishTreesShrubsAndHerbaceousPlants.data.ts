@@ -32,6 +32,7 @@ export const distinguishTreesShrubsAndHerbaceousPlants_Skill_Data = buildSkillCo
     be: 'Адрозьніваць дрэвы, кусты й травяністыя расьліны',
     ka: 'ხეების, ბუჩქებისა და ბალახოვანი მცენარეების გარჩევა',
     kk: 'Ағаш, бұта және шөптесін өсімдіктерді ажырату',
+    qm: 'Ağaçlar, çalılar ve ot ösümliklerini farqlamaq',
   },
   description: {
     methodological: "Determine growth form from the type and branching pattern of woody or herbaceous stems.",
@@ -64,6 +65,7 @@ export const distinguishTreesShrubsAndHerbaceousPlants_Skill_Data = buildSkillCo
       be: 'Адрозьнівай дрэвы, кусты й травяністыя расьліны паводле росту іхных сьцёблаў.',
       ka: 'ღეროების ზრდის მიხედვით განასხვავე ხეები, ბუჩქები და ბალახოვანი მცენარეები.',
       kk: 'Сабақтарының өсуіне қарай ағаш, бұта және шөптесін өсімдіктерді ажырат.',
+      qm: 'Saplarınıñ ösüvine ve quruluşuna köre ağaçlarnı, çalılarnı ve ot ösümliklerini farq etiñiz.',
     },
   },
 });

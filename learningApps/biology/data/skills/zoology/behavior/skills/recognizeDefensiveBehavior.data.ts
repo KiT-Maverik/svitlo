@@ -32,6 +32,7 @@ export const recognizeDefensiveBehavior_Skill_Data = buildSkillConfig({
     be: 'Распазнаваць абарончыя паводзіны',
     ka: 'თავდაცვითი ქცევის ამოცნობა',
     kk: 'Қорғану мінез-құлқын тану',
+    qm: 'Qorçalanuv davranışını tanımaq',
   },
   description: {
     methodological: "Determine whether fleeing, freezing, distraction, or attacking reduces a threat in a given situation.",
@@ -64,6 +65,7 @@ export const recognizeDefensiveBehavior_Skill_Data = buildSkillConfig({
       be: 'Распазнавай паводзіны жывёлаў, калі ім пагражае небясьпека.',
       ka: 'ამოიცანი ცხოველების ქცევა საფრთხის დროს.',
       kk: 'Қауіп төнген кезде жануарлар көрсететін мінез-құлықты таны.',
+      qm: 'Telüke peyda olğanda ayvanlar qullanğan qorçalanuv davranışlarını tanıñız.',
     },
   },
 });

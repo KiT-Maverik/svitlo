@@ -32,6 +32,7 @@ export const distinguishJuvenilesAndAdults_Skill_Data = buildSkillConfig({
     be: 'Адрозьніваць маладых і дарослых жывёлаў',
     ka: 'ახალგაზრდა და ზრდასრული ცხოველების გარჩევა',
     kk: 'Жас және ересек жануарларды ажырату',
+    qm: 'Yaş ve yetişken ayvanlarnı farqlamaq',
   },
   description: {
     methodological: "Determine an individual’s developmental stage by body proportions, coverings, or reproductive maturity.",
@@ -64,6 +65,7 @@ export const distinguishJuvenilesAndAdults_Skill_Data = buildSkillConfig({
       be: 'Распазнавай адрозьненьні паміж маладымі й дарослымі жывёламі.',
       ka: 'ამოიცანი განსხვავებები ახალგაზრდა და ზრდასრულ ცხოველებს შორის.',
       kk: 'Жас және ересек жануарлардың айырмашылықтарын таны.',
+      qm: 'Yaş ayvanlar ile yetişken ayvanlar arasındaki farqlarnı tanıñız.',
     },
   },
 });

@@ -34,6 +34,7 @@ export const plantDiversity_SkillGroup_Data = buildSkillGroupConfig({
     be: 'Разнастайнасьць расьлінаў',
     ka: 'მცენარეთა მრავალფეროვნება',
     kk: 'Өсімдіктердің алуантүрлілігі',
+    qm: 'Ösümlikler çeşitliligi',
   },
   skills: {
     distinguishDeciduousAndEvergreenPlants: distinguishDeciduousAndEvergreenPlants_Skill_Data,
@@ -74,6 +75,7 @@ export const plantDiversity_SkillGroup_Data = buildSkillGroupConfig({
       be: 'Распазнавай розныя расьліны паводле іхных характэрных прыкметаў.',
       ka: 'ამოიცანი მრავალგვარი მცენარე მათი გამორჩეული ნიშნებით.',
       kk: 'Өсімдіктердің сан алуандығын ерекше белгілері арқылы таны.',
+      qm: 'Ösümliklerni olarnıñ özüne has belgilerine köre tanıp, çeşitliligini ögreniñiz.',
     },
   },
 });

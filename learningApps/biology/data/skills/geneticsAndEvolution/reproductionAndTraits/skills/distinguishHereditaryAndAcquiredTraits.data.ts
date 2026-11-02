@@ -32,6 +32,7 @@ export const distinguishHereditaryAndAcquiredTraits_Skill_Data = buildSkillConfi
     be: 'Адрозьніваць спадчынныя і набытыя прыкметы',
     ka: 'მემკვიდრეობითი და შეძენილი ნიშნების გარჩევა',
     kk: 'Тұқым қуалайтын және жүре пайда болған белгілерді ажырату',
+    qm: 'İrsiy ve ömür devamında qazanılğan belgilerni farqlamaq',
   },
   description: {
     methodological: "Distinguish changes that can be passed to offspring through genetic information from changes acquired by an individual through experience, injury, or training. Explain that most phenotypic traits arise from interactions between genotype and environment, so a rigid binary classification is not universally applicable.",
@@ -64,6 +65,7 @@ export const distinguishHereditaryAndAcquiredTraits_Skill_Data = buildSkillConfi
       be: 'Дасьледуй, як гены і асяродзьдзе разам уплываюць на прыкметы, не падзяляючы іх жорстка на два тыпы.',
       ka: 'გამოიკვლიე, როგორ მოქმედებს გენები და გარემო ნიშნებზე ერთად, მკაცრი ორად გაყოფის გარეშე.',
       kk: 'Гендер мен орта белгілерге қалай бірлесіп әсер ететінін зертте, оларды қатаң екіге бөлме.',
+      qm: 'Genler ve müit belgilerge beraber tesir etkenini ögreniñiz; olarnı er vaqıt eki qattiy grupağa ayırmañız.',
     },
   },
 });

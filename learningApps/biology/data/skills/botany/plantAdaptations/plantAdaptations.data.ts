@@ -34,6 +34,7 @@ export const plantAdaptations_SkillGroup_Data = buildSkillGroupConfig({
     be: 'Прыстасаваньні расьлінаў',
     ka: 'მცენარეთა შეგუებები',
     kk: 'Өсімдіктердің бейімделуі',
+    qm: 'Ösümliklerniñ müitke uyğunlaşuvı',
   },
   skills: {
     describeSeasonalChangesInPlants: describeSeasonalChangesInPlants_Skill_Data,
@@ -71,6 +72,7 @@ export const plantAdaptations_SkillGroup_Data = buildSkillGroupConfig({
       be: 'Дасьледуй, як асаблівасьці расьлінаў дапамагаюць ім выжываць у розных умовах.',
       ka: 'ნახე, როგორ ეხმარება მცენარეთა თვისებები მათ სხვადასხვა გარემოში გადარჩენაში.',
       kk: 'Өсімдіктердің ерекшеліктері әртүрлі ортада тіршілік етуге қалай көмектесетінін көр.',
+      qm: 'Ösümliklerniñ hususiyetleri çeşit müitlerde sağ qalmağa nasıl yardım etkenini ögreniñiz.',
     },
   },
 });

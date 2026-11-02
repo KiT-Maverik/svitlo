@@ -32,6 +32,7 @@ export const explainCommonAncestryOfSpecies_Skill_Data = buildSkillConfig({
     be: 'Тлумачыць агульнае паходжаньне відаў',
     ka: 'სახეობათა საერთო წინაპრების ახსნა',
     kk: 'Түрлердің ортақ ата-тегін түсіндіру',
+    qm: 'Türlerniñ ortaq ecdadını añlatmaq',
   },
   description: {
     methodological: "Explain that different species may descend from common ancestors and that an evolutionary tree represents branching lineages; distinguish a common ancestor from a modern species supposedly transforming directly into another.",
@@ -64,6 +65,7 @@ export const explainCommonAncestryOfSpecies_Skill_Data = buildSkillConfig({
       be: 'Тлумач, як розныя віды могуць мець агульных продкаў у разгалінаванай эвалюцыйнай гісторыі.',
       ka: 'ახსენი, როგორ შეიძლება სხვადასხვა სახეობას ჰყავდეს საერთო წინაპრები განშტოებულ ევოლუციურ ისტორიაში.',
       kk: 'Әртүрлі түрлердің тармақталған эволюциялық тарихта ортақ ата-тегі қалай болуы мүмкін екенін түсіндір.',
+      qm: 'Çeşit türlerniñ ortaq ecdadları olğanını ve evolütsiya tarihınıñ nasıl dallanğanını añlatıñız.',
     },
   },
 });

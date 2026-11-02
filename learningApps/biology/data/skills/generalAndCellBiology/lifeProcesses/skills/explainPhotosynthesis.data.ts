@@ -32,6 +32,7 @@ export const explainPhotosynthesis_Skill_Data = buildSkillConfig({
     be: 'Тлумачыць фотасынтэз',
     ka: 'ფოტოსინთეზის ახსნა',
     kk: 'Фотосинтезді түсіндіру',
+    qm: 'Fotosintezni añlatmaq',
   },
   description: {
     methodological: "Explain the conversion of light energy into chemical energy as photosynthetic organisms form organic substances from carbon dioxide and water; identify the roles of chloroplasts and pigments and the release of oxygen during oxygenic photosynthesis. Do not equate photosynthesis with mineral nutrition or respiration.",
@@ -64,6 +65,7 @@ export const explainPhotosynthesis_Skill_Data = buildSkillConfig({
       be: 'Тлумач, як фотасынтэзавальныя арганізмы выкарыстоўваюць сьвятло для ўтварэньня арганічных рэчываў.',
       ka: 'ახსენი, როგორ იყენებენ ფოტოსინთეზის უნარის მქონე ორგანიზმები სინათლეს ორგანული ნივთიერებების შესაქმნელად.',
       kk: 'Фотосинтез жасайтын ағзалардың жарық арқылы органикалық заттарды қалай түзетінін түсіндір.',
+      qm: 'Fotosintez yapqan canlılar yarıqtan faydalanıp organik maddelerni nasıl meydana ketirgenini añlatıñız.',
     },
   },
 });

@@ -32,6 +32,7 @@ export const explainMeiosis_Skill_Data = buildSkillConfig({
     be: 'Тлумачыць мэёз',
     ka: 'მეიოზის ახსნა',
     kk: 'Мейозды түсіндіру',
+    qm: 'Meyoznı añlatmaq',
   },
   description: {
     methodological: "Explain successive divisions following a single round of DNA replication, the halving of chromosome number, recombination, and independent chromosome assortment. Distinguish meiotic products in animals and plants: in plants, meiosis may produce spores rather than gametes directly.",
@@ -64,6 +65,7 @@ export const explainMeiosis_Skill_Data = buildSkillConfig({
       be: 'Даведайся, як мэёз утварае клеткі зь меншай колькасьцю храмасом і стварае генэтычную разнастайнасьць.',
       ka: 'გაიგე, როგორ წარმოქმნის მეიოზი უჯრედებს ნაკლები ქრომოსომით და როგორ ქმნის გენეტიკურ მრავალფეროვნებას.',
       kk: 'Мейоз хромосома саны аз жасушаларды қалай түзетінін және генетикалық өзгергіштікке қалай әкелетінін біл.',
+      qm: 'Meyoz neticesinde hromosoma sayısı az olğan üceyreler ve irsiy çeşitlik nasıl meydana kelgenini ögreniñiz.',
     },
   },
 });

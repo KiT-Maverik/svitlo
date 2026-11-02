@@ -14,7 +14,7 @@ export const justifyProtectionOfSpeciesListedInRedDataBooks_Skill_Data = buildSk
     pt: 'Justificar a proteção de espécies nos Livros Vermelhos',
     ur: 'سرخ کتابوں میں درج انواع کے تحفظ کا جواز',
     id: 'Menjelaskan perlunya melindungi spesies dalam Buku Data Merah',
-    de: 'Den Schutz von Arten in Roten Datenbüchern begründen',
+    de: 'Den Schutz von Arten in Roten Büchern begründen',
     ja: 'レッドデータブック掲載種の保護の必要性を説明する',
     ko: '적색자료집 수록 종의 보호 필요성 설명하기',
     tr: 'Kırmızı Veri Kitaplarındaki türlerin korunmasını gerekçelendirmek',
@@ -32,6 +32,7 @@ export const justifyProtectionOfSpeciesListedInRedDataBooks_Skill_Data = buildSk
     be: 'Абгрунтоўваць ахову відаў з Чырвоных кніг',
     ka: 'წითელ წიგნებში შეტანილი სახეობების დაცვის დასაბუთება',
     kk: 'Қызыл кітаптардағы түрлерді қорғауды негіздеу',
+    qm: 'Qırmızı kitaplardaki türlerni qorçalamaqnı esaslandırmaq',
   },
   description: {
     methodological: "Explain why species listed in national or regional Red Data Books require conservation attention in light of threats and population status. Distinguish the legal and informational status of a particular Red Data Book from the international IUCN Red List: these lists are not equivalent.",
@@ -46,7 +47,7 @@ export const justifyProtectionOfSpeciesListedInRedDataBooks_Skill_Data = buildSk
       pt: 'Explique por que espécies ameaçadas listadas em Livros Vermelhos precisam de conservação.',
       ur: 'وضاحت کریں کہ سرخ کتابوں میں درج خطرے سے دوچار انواع کے تحفظ پر توجہ کیوں ضروری ہے۔',
       id: 'Jelaskan mengapa spesies terancam yang tercatat dalam Buku Data Merah perlu dilestarikan.',
-      de: 'Erkläre, warum bedrohte Arten in Roten Datenbüchern besonderen Schutz benötigen.',
+      de: 'Erkläre, warum bedrohte Arten, die in Roten Büchern aufgeführt sind, besonderen Schutz benötigen.',
       ja: 'レッドデータブックに載る絶滅のおそれのある種を守る理由を説明しよう。',
       ko: '적색자료집에 실린 위협받는 종을 왜 보전해야 하는지 설명해 보세요.',
       tr: 'Kırmızı Veri Kitaplarında yer alan tehdit altındaki türlerin neden korunması gerektiğini açıkla.',
@@ -64,6 +65,7 @@ export const justifyProtectionOfSpeciesListedInRedDataBooks_Skill_Data = buildSk
       be: 'Патлумач, чаму віды пад пагрозай, занесеныя ў Чырвоныя кнігі, патрабуюць аховы.',
       ka: 'ახსენი, რატომ საჭიროებენ დაცვას წითელ წიგნებში შეტანილი საფრთხის ქვეშ მყოფი სახეობები.',
       kk: 'Қызыл кітаптарға енген жойылу қаупі бар түрлерді неге қорғау қажет екенін түсіндір.',
+      qm: 'Qırmızı kitaplarga kirsetilgen telüke astındaki türler ne içün hususiy qorçalavğa muhtac olğanını añlatıñız.',
     },
   },
 });

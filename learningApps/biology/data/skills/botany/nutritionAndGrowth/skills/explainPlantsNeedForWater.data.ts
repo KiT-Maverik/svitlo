@@ -32,6 +32,7 @@ export const explainPlantsNeedForWater_Skill_Data = buildSkillConfig({
     be: 'Тлумачыць патрэбу расьлінаў у вадзе',
     ka: 'მცენარეებისთვის წყლის საჭიროების ახსნა',
     kk: 'Өсімдіктердің суға мұқтаждығын түсіндіру',
+    qm: 'Ösümliklerge suv ne içün kerek olğanını añlatmaq',
   },
   description: {
     methodological: "Explain water’s involvement in substance transport, cell maintenance, and photosynthesis rather than treating water merely as a plant’s 'drink'.",
@@ -64,6 +65,7 @@ export const explainPlantsNeedForWater_Skill_Data = buildSkillConfig({
       be: 'Зразумей, чаму вада патрэбная расьлінам для пераносу рэчываў, працы клетак і фотасынтэзу.',
       ka: 'გაიგე, რატომ სჭირდებათ მცენარეებს წყალი ნივთიერებების გადასატანად, უჯრედების მუშაობისა და ფოტოსინთეზისთვის.',
       kk: 'Су өсімдікке зат тасымалдау, жасуша жұмысы және фотосинтез үшін неге қажет екенін түсін.',
+      qm: 'Ösümliklerge maddelerni taşımaq, üceyrelerniñ faaliyetini saqlamaq ve fotosintez içün suv nege kerek olğanını añlatıñız.',
     },
   },
 });

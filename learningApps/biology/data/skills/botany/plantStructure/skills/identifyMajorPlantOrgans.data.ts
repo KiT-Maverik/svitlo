@@ -32,6 +32,7 @@ export const identifyMajorPlantOrgans_Skill_Data = buildSkillConfig({
     be: 'Распазнаваць асноўныя органы расьлінаў',
     ka: 'მცენარის ძირითადი ორგანოების ამოცნობა',
     kk: 'Өсімдіктің негізгі мүшелерін анықтау',
+    qm: 'Ösümlikniñ esas organlarını tanımaq',
   },
   description: {
     methodological: "On a plant or model, distinguish roots, stems, leaves, and reproductive organs, including flowers, by their position and distinguishing characteristics.",
@@ -64,6 +65,7 @@ export const identifyMajorPlantOrgans_Skill_Data = buildSkillConfig({
       be: 'Вызначай асноўныя органы расьліны й іхнае разьмяшчэньне.',
       ka: 'ამოიცანი მცენარის ძირითადი სტრუქტურები და მათი მდებარეობა.',
       kk: 'Өсімдіктің негізгі құрылымдарын және олардың орналасуын анықта.',
+      qm: 'Ösümlikniñ esas organlarını ve olarnıñ qayerde bulunğanını belgileñiz.',
     },
   },
 });

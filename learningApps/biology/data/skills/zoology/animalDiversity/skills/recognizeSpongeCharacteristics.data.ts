@@ -32,6 +32,7 @@ export const recognizeSpongeCharacteristics_Skill_Data = buildSkillConfig({
     be: 'Распазнаваць прыкметы губак',
     ka: 'ღრუბლების ნიშნების ამოცნობა',
     kk: 'Губкалардың белгілерін тану',
+    qm: 'Deñiz süngerleriniñ belgilerini tanımaq',
   },
   description: {
     methodological: "Recognize the porous body structure and filter-feeding of sponges, explaining that they lack true tissues and organs.",
@@ -64,6 +65,7 @@ export const recognizeSpongeCharacteristics_Skill_Data = buildSkillConfig({
       be: 'Распазнавай губак паводле порыстага цела і фільтрацыйнага спосабу харчаваньня.',
       ka: 'ამოიცანი ღრუბლები ფოროვანი სხეულითა და წყლის გაფილტვრით კვების წესით.',
       kk: 'Губкаларды кеуекті денесі мен суды сүзу арқылы қоректену тәсіліне қарап таны.',
+      qm: 'Süngerlerni delikli bedenlerine ve suvnı süzüp azıq aluvına köre tanıñız.',
     },
   },
 });

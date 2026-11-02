@@ -39,7 +39,7 @@ export const explainBacterialCellDivision_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Explain how bacterial cells reproduce by dividing in two.",
       zh: '解释细菌细胞如何通过一分为二进行繁殖。',
-      hi: 'समझाएँ कि जीवाणु कोशिकाएँ दो भागों में विभाजित होकर कैसे बढ़ती हैं।',
+      hi: 'समझाएँ कि जीवाणु कोशिकाएँ दो भागों में बँटकर अपनी संख्या कैसे बढ़ाती हैं।',
       es: 'Explica cómo se reproducen las células bacterianas al dividirse en dos.',
       ar: 'اشرح كيف تتكاثر الخلايا البكتيرية بالانقسام إلى خليتين.',
       fr: 'Expliquez comment les bactéries se reproduisent en divisant leurs cellules en deux.',

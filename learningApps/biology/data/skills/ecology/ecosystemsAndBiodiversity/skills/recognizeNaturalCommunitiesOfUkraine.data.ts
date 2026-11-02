@@ -32,6 +32,7 @@ export const recognizeNaturalCommunitiesOfUkraine_Skill_Data = buildSkillConfig(
     be: 'Распазнаваць прыродныя супольнасьці Ўкраіны',
     ka: 'უკრაინის ბუნებრივი თანასაზოგადოებების ამოცნობა',
     kk: 'Украинаның табиғи қауымдастықтарын тану',
+    qm: 'Ukrainanıñ tabiiy canlı toplulıqlarını tanımaq',
   },
   description: {
     methodological: "Identify characteristic combinations of plants, animals, and conditions in Ukrainian forests, steppes, meadows, or bodies of water.",
@@ -64,6 +65,7 @@ export const recognizeNaturalCommunitiesOfUkraine_Skill_Data = buildSkillConfig(
       be: 'Распазнавай характэрныя супольнасьці арганізмаў у лясах, стэпах і вадаёмах Украіны.',
       ka: 'ამოიცანი უკრაინის ტყეებისთვის, სტეპებისა და წყალსატევებისთვის დამახასიათებელი ცოცხალი თანასაზოგადოებები.',
       kk: 'Украинаның ормандары, далалары мен су айдындарына тән тірі ағзалар қауымдастықтарын таны.',
+      qm: 'Ukrainanıñ ormanlarında, steplerinde ve suvlarında rastkelgen tipik canlı toplulıqlarını tanıñız.',
     },
   },
 });

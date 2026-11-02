@@ -32,6 +32,7 @@ export const identifyProtectiveAdaptationsInAnimals_Skill_Data = buildSkillConfi
     be: 'Вызначаць ахоўныя прыстасаваньні жывёлаў',
     ka: 'ცხოველთა დამცავი შეგუებების გამოვლენა',
     kk: 'Жануарлардың қорғаныш бейімделулерін анықтау',
+    qm: 'Ayvanlarnıñ qorçalayıcı uyğunlaşuvlarını tanımaq',
   },
   description: {
     methodological: "Identify the function of camouflage, shells or armor, spines, and other defensive structures in particular situations.",
@@ -64,6 +65,7 @@ export const identifyProtectiveAdaptationsInAnimals_Skill_Data = buildSkillConfi
       be: 'Распазнавай асаблівасьці будовы, якія дапамагаюць жывёлам абараняцца.',
       ka: 'ამოიცანი სხეულის აგებულების თავისებურებები, რომლებიც ცხოველებს თავდაცვაში ეხმარება.',
       kk: 'Жануарлардың қорғануына көмектесетін дене құрылымдарын таны.',
+      qm: 'Ayvanlarğa özüni qorçalamağa yardım etken beden quruluşlarını tanıñız.',
     },
   },
 });

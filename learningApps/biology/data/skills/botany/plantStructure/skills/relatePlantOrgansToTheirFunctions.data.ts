@@ -32,6 +32,7 @@ export const relatePlantOrgansToTheirFunctions_Skill_Data = buildSkillConfig({
     be: 'Сувязваць органы расьлінаў зь іхнымі функцыямі',
     ka: 'მცენარის ორგანოების დაკავშირება მათ ფუნქციებთან',
     kk: 'Өсімдік мүшелерін қызметтерімен байланыстыру',
+    qm: 'Ösümlik organlarını vazifelerinen bağlaştırmaq',
   },
   description: {
     methodological: "Explain which structures enable water absorption, support, substance transport, photosynthesis, and seed production.",
@@ -64,6 +65,7 @@ export const relatePlantOrgansToTheirFunctions_Skill_Data = buildSkillConfig({
       be: 'Сувязвай кожны орган расьліны з функцыямі, якія ён выконвае.',
       ka: 'დააკავშირე მცენარის თითოეული ორგანო მის ფუნქციებთან.',
       kk: 'Өсімдіктің әр мүшесін оның атқаратын қызметімен байланыстыр.',
+      qm: 'Er bir ösümlik organını yerine ketirgen vazifesinen bağlaştırıñız.',
     },
   },
 });

@@ -32,6 +32,7 @@ export const explainTheRoleOfLight_Skill_Data = buildSkillConfig({
     be: 'Тлумачыць ролю сьвятла',
     ka: 'სინათლის როლის ახსნა',
     kk: 'Жарықтың рөлін түсіндіру',
+    qm: 'Yarıqnıñ rolüni añlatmaq',
   },
   description: {
     methodological: "Relate illumination to the production of organic substances in photosynthesizing parts of plants.",
@@ -64,6 +65,7 @@ export const explainTheRoleOfLight_Skill_Data = buildSkillConfig({
       be: 'Тлумач, чаму сьвятло неабходнае для ўтварэньня арганічных рэчываў праз фотасынтэз.',
       ka: 'ახსენი, რატომ არის სინათლე აუცილებელი ფოტოსინთეზით ორგანული ნივთიერებების შესაქმნელად.',
       kk: 'Фотосинтез арқылы қорек жасауға жарық неге қажет екенін түсіндір.',
+      qm: 'Fotosintez vastasınen organik maddeler meydanğa ketirmek içün yarıq nege kerek olğanını añlatıñız.',
     },
   },
 });

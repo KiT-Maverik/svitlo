@@ -32,6 +32,7 @@ export const recognizeHumanUsesOfMicroorganisms_Skill_Data = buildSkillConfig({
     be: 'Распазнаваць выкарыстаньне мікраарганізмаў чалавекам',
     ka: 'ადამიანების მიერ მიკროორგანიზმების გამოყენების ამოცნობა',
     kk: 'Адамдардың микроағзаларды пайдалану жолдарын тану',
+    qm: 'Mikroorganizmalarnıñ insanlar tarafından qullanıluvını tanımaq',
   },
   description: {
     methodological: "Identify how yeasts or bacteria are used to produce food or other products.",
@@ -64,6 +65,7 @@ export const recognizeHumanUsesOfMicroorganisms_Skill_Data = buildSkillConfig({
       be: 'Даведайся, як бактэрыі і дрожджы выкарыстоўваюць для вытворчасьці ежы ды іншых матэрыялаў.',
       ka: 'გაიგე, როგორ იყენებენ ბაქტერიებსა და საფუვრებს საკვებისა და სხვა მასალების მისაღებად.',
       kk: 'Бактериялар мен ашытқылардың тағам және басқа материалдар өндіру үшін қалай қолданылатынын таны.',
+      qm: 'Bakteriyalar ve mayalar aş mahsulatlarınen başqa faydalı şeylerni azırlamaq içün nasıl qullanılğanını tanıñız.',
     },
   },
 });

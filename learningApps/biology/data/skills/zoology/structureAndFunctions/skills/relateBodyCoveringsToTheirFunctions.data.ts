@@ -32,6 +32,7 @@ export const relateBodyCoveringsToTheirFunctions_Skill_Data = buildSkillConfig({
     be: 'Зьвязваць покрывы цела зь іх функцыямі',
     ka: 'სხეულის საფარვლის ფუნქციებთან დაკავშირება',
     kk: 'Дене жабындарын олардың қызметімен байланыстыру',
+    qm: 'Beden örtüsini vazifelerinen bağlaştırmaq',
   },
   description: {
     methodological: "Explain how feathers, fur, scales, and skin provide protection, thermal insulation, or water balance.",
@@ -64,6 +65,7 @@ export const relateBodyCoveringsToTheirFunctions_Skill_Data = buildSkillConfig({
       be: 'Растлумач, як поўсьць, пер\'е, луска і скура абараняюць цела жывёлаў.',
       ka: 'ახსენი, როგორ იცავს ბეწვი, ბუმბული, ქერცლი და კანი ცხოველების სხეულს.',
       kk: 'Жүн, қауырсын, қабыршақ және тері жануарлардың денесін қалай қорғайтынын түсіндір.',
+      qm: 'Tük, quş tüyü, pul ve deri ayvanlarnıñ bedenini nasıl qorçalağanını añlatıñız.',
     },
   },
 });

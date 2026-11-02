@@ -32,6 +32,7 @@ export const recognizeGrowthAndDevelopment_Skill_Data = buildSkillConfig({
     be: 'Распазнаваць рост і разьвіцьцё',
     ka: 'ზრდისა და განვითარების ამოცნობა',
     kk: 'Өсу мен дамуды тану',
+    qm: 'Ösüv ve inkişafnı farqlamaq',
   },
   description: {
     methodological: "Distinguish increases in mass or size from changes in structure and function during transitions between life stages.",
@@ -64,6 +65,7 @@ export const recognizeGrowthAndDevelopment_Skill_Data = buildSkillConfig({
       be: 'Адрозьнівай павелічэньне памераў ад зьменаў будовы й функцыяў арганізму.',
       ka: 'განასხვავე ზომის მატება ორგანიზმის აგებულებისა და ფუნქციების ცვლილებებისგან.',
       kk: 'Көлемінің ұлғаюын ағзаның құрылысы мен қызметінің өзгеруінен ажырат.',
+      qm: 'Canlınıñ boyu ya da kütlesi artuvını quruluş ve vazifelerindeki deñişüvlerden farq etiñiz.',
     },
   },
 });

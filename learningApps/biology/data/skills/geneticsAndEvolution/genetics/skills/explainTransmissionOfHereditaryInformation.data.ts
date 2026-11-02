@@ -32,6 +32,7 @@ export const explainTransmissionOfHereditaryInformation_Skill_Data = buildSkillC
     be: 'Тлумачыць перадачу спадчыннай інфармацыі',
     ka: 'მემკვიდრეობითი ინფორმაციის გადაცემის ახსნა',
     kk: 'Тұқымқуалаушылық ақпараттың берілуін түсіндіру',
+    qm: 'İrsiy malümatnıñ berilüvini añlatmaq',
   },
   description: {
     methodological: "Explain how DNA is copied and distributed during cell division and passed between generations through sex cells or asexual reproduction. Distinguish transmission of molecular information from its expression in observable traits.",
@@ -64,6 +65,7 @@ export const explainTransmissionOfHereditaryInformation_Skill_Data = buildSkillC
       be: 'Зразумей, як спадчынная інфармацыя капіюецца і перадаецца далей.',
       ka: 'გაიგე, როგორ კოპირდება და გადაეცემა მემკვიდრეობითი ინფორმაცია.',
       kk: 'Тұқымқуалаушылық ақпарат қалай көшіріліп, кейін берілетінін түсін.',
+      qm: 'İrsiy malümatnıñ nusqası nasıl yapılğanını ve soñra nesillerge nasıl berilgenini ögreniñiz.',
     },
   },
 });

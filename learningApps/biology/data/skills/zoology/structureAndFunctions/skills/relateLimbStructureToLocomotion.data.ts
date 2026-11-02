@@ -32,6 +32,7 @@ export const relateLimbStructureToLocomotion_Skill_Data = buildSkillConfig({
     be: 'Зьвязваць будову канечнасьцяў са спосабам перамяшчэньня',
     ka: 'კიდურების აგებულების მოძრაობასთან დაკავშირება',
     kk: 'Аяқ-қол құрылысының қозғалыспен байланысын анықтау',
+    qm: 'Ayaq ve qanat quruluşunı areket usullarınen bağlaştırmaq',
   },
   description: {
     methodological: "Relate the shape of legs, fins, or wings to the requirements of walking, swimming, digging, or flying.",
@@ -64,6 +65,7 @@ export const relateLimbStructureToLocomotion_Skill_Data = buildSkillConfig({
       be: 'Зьвяжы форму канечнасьцяў з хадзьбой, плаваньнем, капаньнем або палётам.',
       ka: 'დააკავშირე კიდურების ფორმა სიარულთან, ცურვასთან, თხრასთან ან ფრენასთან.',
       kk: 'Аяқ-қол пішінін жүру, жүзу, қазу немесе ұшумен байланыстыр.',
+      qm: 'Ayaq, qanat ve başqa areket organlarınıñ şekillerini yürümek, yüzmek, qazmaq ya da uçmaqnen bağlaştırıñız.',
     },
   },
 });

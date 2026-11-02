@@ -32,6 +32,7 @@ export const explainTheRoleOfPollination_Skill_Data = buildSkillConfig({
     be: 'Тлумачыць ролю апыленьня',
     ka: 'დამტვერვის როლის ახსნა',
     kk: 'Тозаңданудың рөлін түсіндіру',
+    qm: 'Tozlanmanıñ rolüni añlatmaq',
   },
   description: {
     methodological: "Explain transfer of pollen to a stigma or another receptive structure as a step preceding fertilization.",
@@ -64,6 +65,7 @@ export const explainTheRoleOfPollination_Skill_Data = buildSkillConfig({
       be: 'Тлумач, якую ролю апыленьне выконвае перад апладненьнем.',
       ka: 'ახსენი დამტვერვის როლი განაყოფიერებამდე.',
       kk: 'Ұрықтануға дейін тозаңданудың қандай рөл атқаратынын түсіндір.',
+      qm: 'Tozlanma uruqlandırmadan evel nasıl rol oynağanını añlatıñız.',
     },
   },
 });
