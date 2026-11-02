@@ -1,0 +1,12 @@
+export { aestheticsAndPhilosophyOfArt_SkillDomain_Data } from './aestheticsAndPhilosophyOfArt/aestheticsAndPhilosophyOfArt.data';
+export { epistemologyAndCriticalEvaluation_SkillDomain_Data } from './epistemologyAndCriticalEvaluation/epistemologyAndCriticalEvaluation.data';
+export { ethicsAndMoralReasoning_SkillDomain_Data } from './ethicsAndMoralReasoning/ethicsAndMoralReasoning.data';
+export { historyAndTraditionsOfPhilosophy_SkillDomain_Data } from './historyAndTraditionsOfPhilosophy/historyAndTraditionsOfPhilosophy.data';
+export { logicAndArgumentation_SkillDomain_Data } from './logicAndArgumentation/logicAndArgumentation.data';
+export { metaphysics_SkillDomain_Data } from './metaphysics/metaphysics.data';
+export { mindSelfAndHumanExistence_SkillDomain_Data } from './mindSelfAndHumanExistence/mindSelfAndHumanExistence.data';
+export { philosophicalInquiry_SkillDomain_Data } from './philosophicalInquiry/philosophicalInquiry.data';
+export { philosophyOfLanguage_SkillDomain_Data } from './philosophyOfLanguage/philosophyOfLanguage.data';
+export { philosophyOfReligion_SkillDomain_Data } from './philosophyOfReligion/philosophyOfReligion.data';
+export { philosophyOfScience_SkillDomain_Data } from './philosophyOfScience/philosophyOfScience.data';
+export { socialAndPoliticalPhilosophy_SkillDomain_Data } from './socialAndPoliticalPhilosophy/socialAndPoliticalPhilosophy.data';

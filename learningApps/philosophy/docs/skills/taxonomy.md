@@ -22,11 +22,11 @@ Code files: 0/12 Domains · 0/48 Groups · 0/222 Skills
 
 Slug: philosophicalInquiry
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 3 · Skills: 12
 
-[Not implemented](#)
+[philosophicalInquiry.data.ts](../../data/skills/philosophicalInquiry/philosophicalInquiry.data.ts)
 
 Methodological description: Philosophy investigates conceptual, normative, and foundational questions whose answers require reasons rather than observation alone. This domain concerns the practices used to formulate, refine, and discuss such questions; it is distinct from the formal evaluation of arguments in Logic.
 User-friendly description: Explore questions about meaning, values and assumptions through reasoned discussion.
@@ -35,11 +35,11 @@ User-friendly description: Explore questions about meaning, values and assumptio
 
 Slug: questionsAndProblems
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[questionsAndProblems.data.ts](../../data/skills/philosophicalInquiry/questionsAndProblems/questionsAndProblems.data.ts)
 
 Methodological description: A productive philosophical problem can be examined through competing answers, explicit concepts, and reasons. The object is to make a question discussable without assuming that every question has a single empirical test.
 User-friendly description: Learn to turn puzzling ideas into questions that can be discussed thoughtfully.
@@ -48,9 +48,9 @@ User-friendly description: Learn to turn puzzling ideas into questions that can 
 
 Slug: distinguishPhilosophicalQuestionsFromEmpiricalQuestions
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishPhilosophicalQuestionsFromEmpiricalQuestions.data.ts](../../data/skills/philosophicalInquiry/questionsAndProblems/skills/distinguishPhilosophicalQuestionsFromEmpiricalQuestions.data.ts)
 
 Methodological description: Identify when an issue asks what a concept means, what ought to be done, or what ultimately explains something, rather than only requesting a measurable fact; many questions have both aspects.
 User-friendly description: Recognize how philosophical questions differ from questions answered by measurement.
@@ -59,9 +59,9 @@ User-friendly description: Recognize how philosophical questions differ from que
 
 Slug: formulateAPhilosophicalQuestion
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[formulateAPhilosophicalQuestion.data.ts](../../data/skills/philosophicalInquiry/questionsAndProblems/skills/formulateAPhilosophicalQuestion.data.ts)
 
 Methodological description: Turn an ordinary puzzlement into an open question about meaning, reasons, values, or assumptions that admits more than a yes-or-no preference.
 User-friendly description: Ask an open question about reasons, meaning or values rather than a simple preference.
@@ -70,9 +70,9 @@ User-friendly description: Ask an open question about reasons, meaning or values
 
 Slug: identifyAssumptionsInAPhilosophicalProblem
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[identifyAssumptionsInAPhilosophicalProblem.data.ts](../../data/skills/philosophicalInquiry/questionsAndProblems/skills/identifyAssumptionsInAPhilosophicalProblem.data.ts)
 
 Methodological description: Expose propositions that a question or proposed answer takes for granted, such as what counts as a person or what makes an action fair.
 User-friendly description: Find the hidden assumptions behind a philosophical question or proposed answer.
@@ -81,9 +81,9 @@ User-friendly description: Find the hidden assumptions behind a philosophical qu
 
 Slug: distinguishAPhilosophicalProblemFromAnExample
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishAPhilosophicalProblemFromAnExample.data.ts](../../data/skills/philosophicalInquiry/questionsAndProblems/skills/distinguishAPhilosophicalProblemFromAnExample.data.ts)
 
 Methodological description: Separate the general issue, such as whether promises create obligations, from the particular story used to make it vivid.
 User-friendly description: Distinguish a general philosophical issue from a story illustrating it.
@@ -92,11 +92,11 @@ User-friendly description: Distinguish a general philosophical issue from a stor
 
 Slug: conceptualAnalysis
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[conceptualAnalysis.data.ts](../../data/skills/philosophicalInquiry/conceptualAnalysis/conceptualAnalysis.data.ts)
 
 Methodological description: Careful discussion depends on tracking the boundaries of concepts, especially when ordinary words cover multiple cases. These abilities refine meanings rather than merely memorize technical vocabulary.
 User-friendly description: Explore how clear definitions and carefully chosen examples improve philosophical thinking.
@@ -105,9 +105,9 @@ User-friendly description: Explore how clear definitions and carefully chosen ex
 
 Slug: clarifyAContestedConcept
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[clarifyAContestedConcept.data.ts](../../data/skills/philosophicalInquiry/conceptualAnalysis/skills/clarifyAContestedConcept.data.ts)
 
 Methodological description: Specify relevant conditions or uses of a term such as freedom so interlocutors can determine what their disagreement concerns.
 User-friendly description: Clarify the meaning of a term when people disagree about how it is used.
@@ -116,9 +116,9 @@ User-friendly description: Clarify the meaning of a term when people disagree ab
 
 Slug: distinguishNecessaryFromSufficientConditions
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishNecessaryFromSufficientConditions.data.ts](../../data/skills/philosophicalInquiry/conceptualAnalysis/skills/distinguishNecessaryFromSufficientConditions.data.ts)
 
 Methodological description: Determine whether a proposed property is required for a concept to apply, enough for it to apply, or both; a condition can fail one test and pass the other.
 User-friendly description: Determine whether a condition is required, sufficient, both or neither.
@@ -127,9 +127,9 @@ User-friendly description: Determine whether a condition is required, sufficient
 
 Slug: testADefinitionWithACounterexample
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[testADefinitionWithACounterexample.data.ts](../../data/skills/philosophicalInquiry/conceptualAnalysis/skills/testADefinitionWithACounterexample.data.ts)
 
 Methodological description: Find a case included or excluded incorrectly by a proposed definition and explain what the case reveals about its limits.
 User-friendly description: Challenge a definition by finding a case it handles incorrectly.
@@ -138,9 +138,9 @@ User-friendly description: Challenge a definition by finding a case it handles i
 
 Slug: useAThoughtExperimentToExamineAConcept
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[useAThoughtExperimentToExamineAConcept.data.ts](../../data/skills/philosophicalInquiry/conceptualAnalysis/skills/useAThoughtExperimentToExamineAConcept.data.ts)
 
 Methodological description: Vary features of an imagined situation to isolate a philosophical principle; make clear which assumptions are stipulated rather than observed.
 User-friendly description: Use an imagined scenario to test an idea while keeping its assumptions clear.
@@ -149,11 +149,11 @@ User-friendly description: Use an imagined scenario to test an idea while keepin
 
 Slug: dialogueAndDisagreement
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[dialogueAndDisagreement.data.ts](../../data/skills/philosophicalInquiry/dialogueAndDisagreement/dialogueAndDisagreement.data.ts)
 
 Methodological description: Reasoned dialogue seeks understanding and justified revision, not simply winning assent. Participants must fairly represent alternatives and keep interpersonal respect separate from agreement.
 User-friendly description: Discover how respectful disagreement can help us reconsider ideas.
@@ -162,9 +162,9 @@ User-friendly description: Discover how respectful disagreement can help us reco
 
 Slug: reconstructAnotherPersonsPositionFairly
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[reconstructAnotherPersonsPositionFairly.data.ts](../../data/skills/philosophicalInquiry/dialogueAndDisagreement/skills/reconstructAnotherPersonsPositionFairly.data.ts)
 
 Methodological description: Restate an interlocutor's strongest contextually plausible position accurately and charitably, rather than attacking a weaker caricature; fair reconstruction does not require overlooking genuine contradictions or unsupported claims.
 User-friendly description: Restate someone else's position accurately before criticizing it.
@@ -173,9 +173,9 @@ User-friendly description: Restate someone else's position accurately before cri
 
 Slug: askAProbingPhilosophicalQuestion
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[askAProbingPhilosophicalQuestion.data.ts](../../data/skills/philosophicalInquiry/dialogueAndDisagreement/skills/askAProbingPhilosophicalQuestion.data.ts)
 
 Methodological description: Request a reason, distinction, implication, or counterexample that can advance inquiry without demanding personal disclosure.
 User-friendly description: Ask a question that tests another person's reasons or clarifies their view.
@@ -184,9 +184,9 @@ User-friendly description: Ask a question that tests another person's reasons or
 
 Slug: respondToAPhilosophicalObjection
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[respondToAPhilosophicalObjection.data.ts](../../data/skills/philosophicalInquiry/dialogueAndDisagreement/skills/respondToAPhilosophicalObjection.data.ts)
 
 Methodological description: Address the actual challenge to a claim, rather than diverting to the objector's identity or motives.
 User-friendly description: Address the substance of an objection instead of attacking its author.
@@ -195,9 +195,9 @@ User-friendly description: Address the substance of an objection instead of atta
 
 Slug: reviseAPositionInLightOfReasons
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[reviseAPositionInLightOfReasons.data.ts](../../data/skills/philosophicalInquiry/dialogueAndDisagreement/skills/reviseAPositionInLightOfReasons.data.ts)
 
 Methodological description: Identify which premise or conclusion should change when a cogent objection defeats an earlier commitment.
 User-friendly description: Change a belief or argument when a stronger reason shows it needs revision.
@@ -206,11 +206,11 @@ User-friendly description: Change a belief or argument when a stronger reason sh
 
 Slug: logicAndArgumentation
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 6 · Skills: 35
 
-[Not implemented](#)
+[logicAndArgumentation.data.ts](../../data/skills/logicAndArgumentation/logicAndArgumentation.data.ts)
 
 Methodological description: The central question is whether reasons support a conclusion and in what way. Formal entailment, defeasible inference, and argumentative defects are distinguished from psychological causes of belief, which belong chiefly to Psychology.
 User-friendly description: Learn to evaluate whether reasons support a conclusion and recognize faulty reasoning.
@@ -219,11 +219,11 @@ User-friendly description: Learn to evaluate whether reasons support a conclusio
 
 Slug: argumentsAndInference
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[argumentsAndInference.data.ts](../../data/skills/logicAndArgumentation/argumentsAndInference/argumentsAndInference.data.ts)
 
 Methodological description: Arguments connect propositions through an inferential claim; assertions, explanations, and rhetorical appeals may occur nearby without playing the same role.
 User-friendly description: Discover how premises and conclusions form an argument.
@@ -232,9 +232,9 @@ User-friendly description: Discover how premises and conclusions form an argumen
 
 Slug: identifyPremisesInAnArgument
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[identifyPremisesInAnArgument.data.ts](../../data/skills/logicAndArgumentation/argumentsAndInference/skills/identifyPremisesInAnArgument.data.ts)
 
 Methodological description: Locate the reasons offered in support of a conclusion, including unstated propositions when context makes them indispensable.
 User-friendly description: Find the statements offered as reasons for a claim.
@@ -243,9 +243,9 @@ User-friendly description: Find the statements offered as reasons for a claim.
 
 Slug: identifyAnArgumentsConclusion
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[identifyAnArgumentsConclusion.data.ts](../../data/skills/logicAndArgumentation/argumentsAndInference/skills/identifyAnArgumentsConclusion.data.ts)
 
 Methodological description: Determine which proposition is supposed to follow or gain support, regardless of its position in a passage.
 User-friendly description: Identify the central claim an argument is trying to establish.
@@ -254,9 +254,9 @@ User-friendly description: Identify the central claim an argument is trying to e
 
 Slug: distinguishAnArgumentFromAnExplanation
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishAnArgumentFromAnExplanation.data.ts](../../data/skills/logicAndArgumentation/argumentsAndInference/skills/distinguishAnArgumentFromAnExplanation.data.ts)
 
 Methodological description: Tell reasoning intended to establish a claim from an account of why an already accepted event or fact occurred.
 User-friendly description: Tell a reason for believing something apart from an explanation of an accepted fact.
@@ -265,9 +265,9 @@ User-friendly description: Tell a reason for believing something apart from an e
 
 Slug: reconstructAnArgumentInStandardForm
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[reconstructAnArgumentInStandardForm.data.ts](../../data/skills/logicAndArgumentation/argumentsAndInference/skills/reconstructAnArgumentInStandardForm.data.ts)
 
 Methodological description: Arrange its relevant premises and conclusion explicitly while preserving the original reasoning rather than improving it silently.
 User-friendly description: Rewrite an argument as clear premises followed by its conclusion.
@@ -276,11 +276,11 @@ User-friendly description: Rewrite an argument as clear premises followed by its
 
 Slug: deductiveReasoning
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 6
 
-[Not implemented](#)
+[deductiveReasoning.data.ts](../../data/skills/logicAndArgumentation/deductiveReasoning/deductiveReasoning.data.ts)
 
 Methodological description: Deduction concerns whether it is possible for premises to be true while a conclusion is false. Logical form is evaluated separately from whether the premises describe the world correctly.
 User-friendly description: Explore when conclusions necessarily follow from given premises.
@@ -289,9 +289,9 @@ User-friendly description: Explore when conclusions necessarily follow from give
 
 Slug: assessDeductiveValidity
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[assessDeductiveValidity.data.ts](../../data/skills/logicAndArgumentation/deductiveReasoning/skills/assessDeductiveValidity.data.ts)
 
 Methodological description: Determine whether a conclusion must hold if the premises hold, using logical structure rather than agreement with the conclusion.
 User-friendly description: Check whether premises could all be true while a conclusion is false.
@@ -300,9 +300,9 @@ User-friendly description: Check whether premises could all be true while a conc
 
 Slug: distinguishValidityFromSoundness
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishValidityFromSoundness.data.ts](../../data/skills/logicAndArgumentation/deductiveReasoning/skills/distinguishValidityFromSoundness.data.ts)
 
 Methodological description: Recognize that a sound deductive argument requires both a valid inference and true premises.
 User-friendly description: Understand why a logically valid argument can still have false premises.
@@ -311,9 +311,9 @@ User-friendly description: Understand why a logically valid argument can still h
 
 Slug: applyModusPonens
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[applyModusPonens.data.ts](../../data/skills/logicAndArgumentation/deductiveReasoning/skills/applyModusPonens.data.ts)
 
 Methodological description: Infer a consequent from a conditional and its antecedent without treating the inverse conditional as equivalent.
 User-friendly description: Apply the rule that if A implies B and A holds, then B follows.
@@ -322,9 +322,9 @@ User-friendly description: Apply the rule that if A implies B and A holds, then 
 
 Slug: applyModusTollens
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[applyModusTollens.data.ts](../../data/skills/logicAndArgumentation/deductiveReasoning/skills/applyModusTollens.data.ts)
 
 Methodological description: Reject the antecedent of a conditional from the denial of its consequent, under the conditional as stated.
 User-friendly description: Use a conditional and the denial of its result to reject its antecedent.
@@ -333,9 +333,9 @@ User-friendly description: Use a conditional and the denial of its result to rej
 
 Slug: evaluateACategoricalSyllogism
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateACategoricalSyllogism.data.ts](../../data/skills/logicAndArgumentation/deductiveReasoning/skills/evaluateACategoricalSyllogism.data.ts)
 
 Methodological description: Examine whether relations among classes support the proposed conclusion, rather than relying on familiar subject matter.
 User-friendly description: Determine whether statements about categories logically support a conclusion.
@@ -344,9 +344,9 @@ User-friendly description: Determine whether statements about categories logical
 
 Slug: identifyAContradictionInASetOfClaims
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[identifyAContradictionInASetOfClaims.data.ts](../../data/skills/logicAndArgumentation/deductiveReasoning/skills/identifyAContradictionInASetOfClaims.data.ts)
 
 Methodological description: Show where commitments cannot all be true together under the same meanings and conditions.
 User-friendly description: Recognize claims that cannot all be true under the same conditions.
@@ -355,11 +355,11 @@ User-friendly description: Recognize claims that cannot all be true under the sa
 
 Slug: nonDeductiveReasoning
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[nonDeductiveReasoning.data.ts](../../data/skills/logicAndArgumentation/nonDeductiveReasoning/nonDeductiveReasoning.data.ts)
 
 Methodological description: Many reasonable arguments support conclusions without guaranteeing them. Their strength depends on evidence, alternatives, sampling, or explanatory power rather than formal certainty.
 User-friendly description: Learn to assess reasoning that offers support without guaranteeing certainty.
@@ -368,9 +368,9 @@ User-friendly description: Learn to assess reasoning that offers support without
 
 Slug: evaluateAnInductiveGeneralization
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateAnInductiveGeneralization.data.ts](../../data/skills/logicAndArgumentation/nonDeductiveReasoning/skills/evaluateAnInductiveGeneralization.data.ts)
 
 Methodological description: Judge how well observed cases support a claim about a broader population, including the relevance of selection and variation.
 User-friendly description: Evaluate how well observed examples support a broader generalization.
@@ -379,9 +379,9 @@ User-friendly description: Evaluate how well observed examples support a broader
 
 Slug: evaluateAnalogicalReasoning
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateAnalogicalReasoning.data.ts](../../data/skills/logicAndArgumentation/nonDeductiveReasoning/skills/evaluateAnalogicalReasoning.data.ts)
 
 Methodological description: Check whether compared cases share features relevant to the proposed conclusion rather than merely superficial similarities.
 User-friendly description: Compare cases by similarities that actually matter to the conclusion.
@@ -390,9 +390,9 @@ User-friendly description: Compare cases by similarities that actually matter to
 
 Slug: evaluateAnInferenceToTheBestExplanation
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateAnInferenceToTheBestExplanation.data.ts](../../data/skills/logicAndArgumentation/nonDeductiveReasoning/skills/evaluateAnInferenceToTheBestExplanation.data.ts)
 
 Methodological description: Compare hypotheses by how well they explain evidence, their assumptions, and their fit with alternative explanations.
 User-friendly description: Choose between possible explanations using evidence and assumptions.
@@ -401,9 +401,9 @@ User-friendly description: Choose between possible explanations using evidence a
 
 Slug: distinguishDeductiveCertaintyFromProbabilisticSupport
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishDeductiveCertaintyFromProbabilisticSupport.data.ts](../../data/skills/logicAndArgumentation/nonDeductiveReasoning/skills/distinguishDeductiveCertaintyFromProbabilisticSupport.data.ts)
 
 Methodological description: Recognize that a well-supported conclusion can remain revisable when the reasoning is non-deductive.
 User-friendly description: Distinguish logically certain deductions from conclusions supported by probability.
@@ -412,11 +412,11 @@ User-friendly description: Distinguish logically certain deductions from conclus
 
 Slug: propositionalLogic
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 9
 
-[Not implemented](#)
+[propositionalLogic.data.ts](../../data/skills/logicAndArgumentation/propositionalLogic/propositionalLogic.data.ts)
 
 Methodological description: Truth-functional connections between propositions determine the logical properties of compound statements. Symbolic operators and truth tables clarify implications independent of the subject matter used in examples.
 User-friendly description: Discover how truth conditions work for statements joined by logical operators.
@@ -425,9 +425,9 @@ User-friendly description: Discover how truth conditions work for statements joi
 
 Slug: distinguishAtomicFromCompoundPropositions
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishAtomicFromCompoundPropositions.data.ts](../../data/skills/logicAndArgumentation/propositionalLogic/skills/distinguishAtomicFromCompoundPropositions.data.ts)
 
 Methodological description: A proposition can stand alone or form part of a statement built with logical connectives; truth-functional structure differs from the number of words in an ordinary sentence.
 User-friendly description: Tell a single proposition apart from one assembled with logical connectives.
@@ -436,9 +436,9 @@ User-friendly description: Tell a single proposition apart from one assembled wi
 
 Slug: interpretLogicalNegation
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[interpretLogicalNegation.data.ts](../../data/skills/logicAndArgumentation/propositionalLogic/skills/interpretLogicalNegation.data.ts)
 
 Methodological description: Determine when the denial of a proposition is true and distinguish negation from a stronger contrary statement.
 User-friendly description: Understand how negating a claim changes its truth conditions.
@@ -447,9 +447,9 @@ User-friendly description: Understand how negating a claim changes its truth con
 
 Slug: interpretLogicalConjunction
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[interpretLogicalConjunction.data.ts](../../data/skills/logicAndArgumentation/propositionalLogic/skills/interpretLogicalConjunction.data.ts)
 
 Methodological description: Apply the truth conditions of logical 'and' while distinguishing conjunction from a chronological or causal relationship.
 User-friendly description: Recognize when a logical AND statement is true.
@@ -458,9 +458,9 @@ User-friendly description: Recognize when a logical AND statement is true.
 
 Slug: interpretLogicalDisjunction
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[interpretLogicalDisjunction.data.ts](../../data/skills/logicAndArgumentation/propositionalLogic/skills/interpretLogicalDisjunction.data.ts)
 
 Methodological description: Apply the truth conditions of inclusive 'or' and distinguish these from interpretations that require exactly one alternative.
 User-friendly description: Interpret inclusive OR without assuming only one option can be true.
@@ -469,9 +469,9 @@ User-friendly description: Interpret inclusive OR without assuming only one opti
 
 Slug: interpretMaterialImplication
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[interpretMaterialImplication.data.ts](../../data/skills/logicAndArgumentation/propositionalLogic/skills/interpretMaterialImplication.data.ts)
 
 Methodological description: Determine when a conditional is true in classical propositional logic without confusing logical implication with causation.
 User-friendly description: Understand when a conditional is true in classical propositional logic.
@@ -480,9 +480,9 @@ User-friendly description: Understand when a conditional is true in classical pr
 
 Slug: interpretLogicalBiconditional
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[interpretLogicalBiconditional.data.ts](../../data/skills/logicAndArgumentation/propositionalLogic/skills/interpretLogicalBiconditional.data.ts)
 
 Methodological description: Assess 'if and only if' statements as two-way conditional relationships, rather than treating either one-way conditional as sufficient.
 User-friendly description: Recognize that 'if and only if' requires implications in both directions.
@@ -491,9 +491,9 @@ User-friendly description: Recognize that 'if and only if' requires implications
 
 Slug: constructATruthTable
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[constructATruthTable.data.ts](../../data/skills/logicAndArgumentation/propositionalLogic/skills/constructATruthTable.data.ts)
 
 Methodological description: Enumerate truth-value combinations for atomic propositions and systematically compute outcomes of logical expressions.
 User-friendly description: Construct a table of possible truth assignments for a logical expression.
@@ -502,9 +502,9 @@ User-friendly description: Construct a table of possible truth assignments for a
 
 Slug: classifyAPropositionUsingATruthTable
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[classifyAPropositionUsingATruthTable.data.ts](../../data/skills/logicAndArgumentation/propositionalLogic/skills/classifyAPropositionUsingATruthTable.data.ts)
 
 Methodological description: Distinguish tautological, contradictory, and contingent expressions through their truth values under all assignments.
 User-friendly description: Use truth tables to recognize always-true, always-false and contingent statements.
@@ -513,9 +513,9 @@ User-friendly description: Use truth tables to recognize always-true, always-fal
 
 Slug: testDeductiveValidityUsingATruthTable
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[testDeductiveValidityUsingATruthTable.data.ts](../../data/skills/logicAndArgumentation/propositionalLogic/skills/testDeductiveValidityUsingATruthTable.data.ts)
 
 Methodological description: Search for a case in which all premises are true but the conclusion false to determine propositional validity.
 User-friendly description: Check a deduction by searching for true premises with a false conclusion.
@@ -524,11 +524,11 @@ User-friendly description: Check a deduction by searching for true premises with
 
 Slug: predicateLogic
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 6
 
-[Not implemented](#)
+[predicateLogic.data.ts](../../data/skills/logicAndArgumentation/predicateLogic/predicateLogic.data.ts)
 
 Methodological description: Variables and quantifiers permit reasoning about individuals and collections. The relevant universe and scope of each quantifier must be made explicit to evaluate meaning and inference.
 User-friendly description: Explore how quantifiers express claims about all or some members of a group.
@@ -537,9 +537,9 @@ User-friendly description: Explore how quantifiers express claims about all or s
 
 Slug: distinguishPredicatesFromPropositions
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishPredicatesFromPropositions.data.ts](../../data/skills/logicAndArgumentation/predicateLogic/skills/distinguishPredicatesFromPropositions.data.ts)
 
 Methodological description: Recognize a predicate with an unbound variable as an open expression and a proposition as a statement with specified truth conditions.
 User-friendly description: Distinguish an open expression about a variable from a complete proposition.
@@ -548,9 +548,9 @@ User-friendly description: Distinguish an open expression about a variable from 
 
 Slug: interpretUniversalQuantification
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[interpretUniversalQuantification.data.ts](../../data/skills/logicAndArgumentation/predicateLogic/skills/interpretUniversalQuantification.data.ts)
 
 Methodological description: Determine what it means for a property to hold for every element of a specified domain and how one counterexample would matter.
 User-friendly description: Read a statement that applies to every member of a specified group.
@@ -559,9 +559,9 @@ User-friendly description: Read a statement that applies to every member of a sp
 
 Slug: interpretExistentialQuantification
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[interpretExistentialQuantification.data.ts](../../data/skills/logicAndArgumentation/predicateLogic/skills/interpretExistentialQuantification.data.ts)
 
 Methodological description: Determine what it means for at least one element of a specified domain to satisfy a property, without implying uniqueness.
 User-friendly description: Understand how 'there exists' means at least one matching example.
@@ -570,9 +570,9 @@ User-friendly description: Understand how 'there exists' means at least one matc
 
 Slug: negateAQuantifiedProposition
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[negateAQuantifiedProposition.data.ts](../../data/skills/logicAndArgumentation/predicateLogic/skills/negateAQuantifiedProposition.data.ts)
 
 Methodological description: Use the relationships between not-all and some-not, and between none and there-exists, to interpret negation accurately.
 User-friendly description: Negate statements involving 'all' or 'some' without changing their meaning incorrectly.
@@ -581,9 +581,9 @@ User-friendly description: Negate statements involving 'all' or 'some' without c
 
 Slug: analyzeTheScopeOfAQuantifier
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeTheScopeOfAQuantifier.data.ts](../../data/skills/logicAndArgumentation/predicateLogic/skills/analyzeTheScopeOfAQuantifier.data.ts)
 
 Methodological description: Identify which variables and expressions are governed by a quantifier and how scope changes the meaning of a formula.
 User-friendly description: Recognize how the placement of a quantifier changes the meaning of a statement.
@@ -592,9 +592,9 @@ User-friendly description: Recognize how the placement of a quantifier changes t
 
 Slug: evaluateAnInferenceWithQuantifiers
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateAnInferenceWithQuantifiers.data.ts](../../data/skills/logicAndArgumentation/predicateLogic/skills/evaluateAnInferenceWithQuantifiers.data.ts)
 
 Methodological description: Check whether a conclusion about all or some members of a domain follows from quantified premises under a stated interpretation.
 User-friendly description: Check whether quantified premises really imply a proposed conclusion.
@@ -603,11 +603,11 @@ User-friendly description: Check whether quantified premises really imply a prop
 
 Slug: argumentativeFallacies
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 6
 
-[Not implemented](#)
+[argumentativeFallacies.data.ts](../../data/skills/logicAndArgumentation/argumentativeFallacies/argumentativeFallacies.data.ts)
 
 Methodological description: A flaw concerns the relation between claims and reasons, not necessarily the speaker's motives or a named cognitive bias. Context matters: surface wording alone rarely proves fallaciousness.
 User-friendly description: Learn to recognize common flaws in the support offered for claims.
@@ -616,9 +616,9 @@ User-friendly description: Learn to recognize common flaws in the support offere
 
 Slug: detectAnAdHominemFallacy
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[detectAnAdHominemFallacy.data.ts](../../data/skills/logicAndArgumentation/argumentativeFallacies/skills/detectAnAdHominemFallacy.data.ts)
 
 Methodological description: Identify when a personal attack substitutes for addressing reasons, while distinguishing relevant credibility evidence from irrelevant insults.
 User-friendly description: Recognize when a personal attack replaces relevant reasoning.
@@ -627,9 +627,9 @@ User-friendly description: Recognize when a personal attack replaces relevant re
 
 Slug: detectAStrawManArgument
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[detectAStrawManArgument.data.ts](../../data/skills/logicAndArgumentation/argumentativeFallacies/skills/detectAStrawManArgument.data.ts)
 
 Methodological description: Show where a position is distorted into an easier target and recover the actual view before evaluating it.
 User-friendly description: Notice when someone's position is distorted into an easier argument to attack.
@@ -638,9 +638,9 @@ User-friendly description: Notice when someone's position is distorted into an e
 
 Slug: detectAFalseDilemma
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[detectAFalseDilemma.data.ts](../../data/skills/logicAndArgumentation/argumentativeFallacies/skills/detectAFalseDilemma.data.ts)
 
 Methodological description: Identify a purported exhaustive choice that overlooks meaningful alternatives or combined possibilities.
 User-friendly description: Find meaningful alternatives hidden by a misleading either-or choice.
@@ -649,9 +649,9 @@ User-friendly description: Find meaningful alternatives hidden by a misleading e
 
 Slug: detectCircularReasoning
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[detectCircularReasoning.data.ts](../../data/skills/logicAndArgumentation/argumentativeFallacies/skills/detectCircularReasoning.data.ts)
 
 Methodological description: Recognize when the offered support presupposes the very claim at issue without independent justification.
 User-friendly description: Recognize arguments that assume the conclusion they claim to prove.
@@ -660,9 +660,9 @@ User-friendly description: Recognize arguments that assume the conclusion they c
 
 Slug: detectAnEquivocationFallacy
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[detectAnEquivocationFallacy.data.ts](../../data/skills/logicAndArgumentation/argumentativeFallacies/skills/detectAnEquivocationFallacy.data.ts)
 
 Methodological description: Trace a shift between meanings of the same expression that makes an inference appear stronger than it is.
 User-friendly description: Spot when the meaning of a word shifts within an argument.
@@ -671,9 +671,9 @@ User-friendly description: Spot when the meaning of a word shifts within an argu
 
 Slug: evaluateAnAppealToAuthority
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateAnAppealToAuthority.data.ts](../../data/skills/logicAndArgumentation/argumentativeFallacies/skills/evaluateAnAppealToAuthority.data.ts)
 
 Methodological description: Examine whether expertise is relevant and reliable evidence in context, rather than assuming that invoking any authority proves a conclusion.
 User-friendly description: Decide whether cited expertise is relevant evidence rather than automatic proof.
@@ -682,11 +682,11 @@ User-friendly description: Decide whether cited expertise is relevant evidence r
 
 Slug: epistemologyAndCriticalEvaluation
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 4 · Skills: 19
 
-[Not implemented](#)
+[epistemologyAndCriticalEvaluation.data.ts](../../data/skills/epistemologyAndCriticalEvaluation/epistemologyAndCriticalEvaluation.data.ts)
 
 Methodological description: Questions about knowledge concern what can be believed responsibly, what makes claims true, and when confidence should change. This domain applies general standards of justification to testimony and public information; scientific experimental design has its own domain.
 User-friendly description: Explore what makes a belief justified and how to evaluate public information.
@@ -695,11 +695,11 @@ User-friendly description: Explore what makes a belief justified and how to eval
 
 Slug: knowledgeAndJustification
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 5
 
-[Not implemented](#)
+[knowledgeAndJustification.data.ts](../../data/skills/epistemologyAndCriticalEvaluation/knowledgeAndJustification/knowledgeAndJustification.data.ts)
 
 Methodological description: Belief, truth, evidence, and knowledge have distinct roles in epistemic evaluation. Competing theories of knowledge can disagree about exactly how those roles connect.
 User-friendly description: Discover how belief, truth, evidence and knowledge relate but differ.
@@ -708,9 +708,9 @@ User-friendly description: Discover how belief, truth, evidence and knowledge re
 
 Slug: distinguishBeliefFromKnowledge
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishBeliefFromKnowledge.data.ts](../../data/skills/epistemologyAndCriticalEvaluation/knowledgeAndJustification/skills/distinguishBeliefFromKnowledge.data.ts)
 
 Methodological description: Recognize that sincerely accepting a proposition does not by itself establish that it is known, even when the speaker is confident.
 User-friendly description: Understand why believing a claim sincerely does not automatically make it knowledge.
@@ -719,9 +719,9 @@ User-friendly description: Understand why believing a claim sincerely does not a
 
 Slug: distinguishTruthFromJustification
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishTruthFromJustification.data.ts](../../data/skills/epistemologyAndCriticalEvaluation/knowledgeAndJustification/skills/distinguishTruthFromJustification.data.ts)
 
 Methodological description: Explain why a claim might be true for reasons its holder cannot supply, or well supported yet ultimately false.
 User-friendly description: Distinguish a claim being true from having good reasons to believe it.
@@ -730,9 +730,9 @@ User-friendly description: Distinguish a claim being true from having good reaso
 
 Slug: evaluateReasonsForABelief
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateReasonsForABelief.data.ts](../../data/skills/epistemologyAndCriticalEvaluation/knowledgeAndJustification/skills/evaluateReasonsForABelief.data.ts)
 
 Methodological description: Determine whether offered grounds actually bear on the proposition and withstand plausible objections.
 User-friendly description: Check whether the reasons offered actually support a belief.
@@ -741,9 +741,9 @@ User-friendly description: Check whether the reasons offered actually support a 
 
 Slug: analyzeMathematicalProofAsJustification
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeMathematicalProofAsJustification.data.ts](../../data/skills/epistemologyAndCriticalEvaluation/knowledgeAndJustification/skills/analyzeMathematicalProofAsJustification.data.ts)
 
 Methodological description: Examine why deductive proof has a distinctive epistemic role in mathematics, distinguishing formal derivability from experimental confirmation and acknowledging debates about proof's explanatory value.
 User-friendly description: Explore why mathematical proof differs from evidence gathered through experiments.
@@ -752,9 +752,9 @@ User-friendly description: Explore why mathematical proof differs from evidence 
 
 Slug: compareAPrioriAndEmpiricalJustification
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[compareAPrioriAndEmpiricalJustification.data.ts](../../data/skills/epistemologyAndCriticalEvaluation/knowledgeAndJustification/skills/compareAPrioriAndEmpiricalJustification.data.ts)
 
 Methodological description: Distinguish support based primarily on reasoning from support requiring experience, without assuming the boundary is universally uncontested.
 User-friendly description: Compare knowledge grounded in reasoning with knowledge grounded in experience.
@@ -763,11 +763,11 @@ User-friendly description: Compare knowledge grounded in reasoning with knowledg
 
 Slug: evidenceAndTestimony
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 5
 
-[Not implemented](#)
+[evidenceAndTestimony.data.ts](../../data/skills/epistemologyAndCriticalEvaluation/evidenceAndTestimony/evidenceAndTestimony.data.ts)
 
 Methodological description: Knowledge often depends on information supplied by other people or institutions. Source reliability, independence, and evidential fit require appraisal without treating every source as equally trustworthy.
 User-friendly description: Learn to assess claims and evidence passed on by other people.
@@ -776,9 +776,9 @@ User-friendly description: Learn to assess claims and evidence passed on by othe
 
 Slug: distinguishAClaimFromItsEvidence
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishAClaimFromItsEvidence.data.ts](../../data/skills/epistemologyAndCriticalEvaluation/evidenceAndTestimony/skills/distinguishAClaimFromItsEvidence.data.ts)
 
 Methodological description: Separate what someone asserts from the observations, documents, or arguments presented to support it.
 User-friendly description: Separate an assertion from the evidence used to support it.
@@ -787,9 +787,9 @@ User-friendly description: Separate an assertion from the evidence used to suppo
 
 Slug: evaluateTestimonialCredibility
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateTestimonialCredibility.data.ts](../../data/skills/epistemologyAndCriticalEvaluation/evidenceAndTestimony/skills/evaluateTestimonialCredibility.data.ts)
 
 Methodological description: Consider the speaker's opportunity to know, relevant competence, track record, and possible conflicts without reducing evaluation to popularity.
 User-friendly description: Evaluate a witness or expert using relevant experience and possible conflicts.
@@ -798,9 +798,9 @@ User-friendly description: Evaluate a witness or expert using relevant experienc
 
 Slug: analyzeEpistemicInjustice
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeEpistemicInjustice.data.ts](../../data/skills/epistemologyAndCriticalEvaluation/evidenceAndTestimony/skills/analyzeEpistemicInjustice.data.ts)
 
 Methodological description: Examine how prejudicial credibility judgments or unequal interpretive resources can wrong someone in their capacity as a knower, distinct from warranted critical assessment of testimony.
 User-friendly description: Explore how unfair judgments about credibility can prevent people from being heard.
@@ -809,9 +809,9 @@ User-friendly description: Explore how unfair judgments about credibility can pr
 
 Slug: checkCorroborationAcrossSources
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[checkCorroborationAcrossSources.data.ts](../../data/skills/epistemologyAndCriticalEvaluation/evidenceAndTestimony/skills/checkCorroborationAcrossSources.data.ts)
 
 Methodological description: Determine whether apparently agreeing accounts are genuinely independent or reproduce one underlying report.
 User-friendly description: Check whether several agreeing sources truly provide independent evidence.
@@ -820,9 +820,9 @@ User-friendly description: Check whether several agreeing sources truly provide 
 
 Slug: distinguishDirectEvidenceFromHearsay
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishDirectEvidenceFromHearsay.data.ts](../../data/skills/epistemologyAndCriticalEvaluation/evidenceAndTestimony/skills/distinguishDirectEvidenceFromHearsay.data.ts)
 
 Methodological description: Recognize what a record or witness directly establishes and what depends on another person's retelling.
 User-friendly description: Distinguish firsthand records from claims repeated through others.
@@ -831,11 +831,11 @@ User-friendly description: Distinguish firsthand records from claims repeated th
 
 Slug: uncertaintyAndSkepticism
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[uncertaintyAndSkepticism.data.ts](../../data/skills/epistemologyAndCriticalEvaluation/uncertaintyAndSkepticism/uncertaintyAndSkepticism.data.ts)
 
 Methodological description: Rational inquiry must accommodate incomplete evidence and the possibility of error without collapsing into indiscriminate doubt.
 User-friendly description: Discover how to think responsibly when evidence is incomplete.
@@ -844,9 +844,9 @@ User-friendly description: Discover how to think responsibly when evidence is in
 
 Slug: calibrateConfidenceToEvidence
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[calibrateConfidenceToEvidence.data.ts](../../data/skills/epistemologyAndCriticalEvaluation/uncertaintyAndSkepticism/skills/calibrateConfidenceToEvidence.data.ts)
 
 Methodological description: Express degrees of certainty proportionate to the support available and identify what new information could change them.
 User-friendly description: Adjust how certain you feel about a claim to match the available evidence.
@@ -855,9 +855,9 @@ User-friendly description: Adjust how certain you feel about a claim to match th
 
 Slug: recognizeTheLimitsOfPersonalKnowledge
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[recognizeTheLimitsOfPersonalKnowledge.data.ts](../../data/skills/epistemologyAndCriticalEvaluation/uncertaintyAndSkepticism/skills/recognizeTheLimitsOfPersonalKnowledge.data.ts)
 
 Methodological description: Differentiate what one has observed, inferred, learned from others, or cannot currently establish.
 User-friendly description: Recognize the difference between what you observed and what you only inferred.
@@ -866,9 +866,9 @@ User-friendly description: Recognize the difference between what you observed an
 
 Slug: evaluateASkepticalChallenge
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateASkepticalChallenge.data.ts](../../data/skills/epistemologyAndCriticalEvaluation/uncertaintyAndSkepticism/skills/evaluateASkepticalChallenge.data.ts)
 
 Methodological description: Assess whether a proposed possibility of error undermines a specific knowledge claim or sets an unrealistically absolute standard.
 User-friendly description: Evaluate whether a skeptical objection genuinely challenges a particular claim.
@@ -877,9 +877,9 @@ User-friendly description: Evaluate whether a skeptical objection genuinely chal
 
 Slug: identifyADisagreementAboutEvidenceStandards
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[identifyADisagreementAboutEvidenceStandards.data.ts](../../data/skills/epistemologyAndCriticalEvaluation/uncertaintyAndSkepticism/skills/identifyADisagreementAboutEvidenceStandards.data.ts)
 
 Methodological description: Distinguish people contesting a factual premise from people applying different thresholds for accepting the same evidence.
 User-friendly description: Spot disagreements about the standard of evidence, not only the facts.
@@ -888,11 +888,11 @@ User-friendly description: Spot disagreements about the standard of evidence, no
 
 Slug: mediaAndPublicInformation
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 5
 
-[Not implemented](#)
+[mediaAndPublicInformation.data.ts](../../data/skills/epistemologyAndCriticalEvaluation/mediaAndPublicInformation/mediaAndPublicInformation.data.ts)
 
 Methodological description: Information environments combine reporting, interpretation, promotion, and falsehood. Epistemic evaluation concerns the warrant for public claims, not the psychological mechanics by which messages persuade audiences.
 User-friendly description: Learn to investigate reporting, opinions and claims shared in public.
@@ -901,9 +901,9 @@ User-friendly description: Learn to investigate reporting, opinions and claims s
 
 Slug: distinguishReportingFromOpinion
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishReportingFromOpinion.data.ts](../../data/skills/epistemologyAndCriticalEvaluation/mediaAndPublicInformation/skills/distinguishReportingFromOpinion.data.ts)
 
 Methodological description: Identify whether a passage presents checkable occurrences, interpretation, advocacy, or a mixture requiring separate evaluation.
 User-friendly description: Distinguish factual reporting from interpretation and advocacy.
@@ -912,9 +912,9 @@ User-friendly description: Distinguish factual reporting from interpretation and
 
 Slug: traceAPublicClaimToItsOriginalSource
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[traceAPublicClaimToItsOriginalSource.data.ts](../../data/skills/epistemologyAndCriticalEvaluation/mediaAndPublicInformation/skills/traceAPublicClaimToItsOriginalSource.data.ts)
 
 Methodological description: Follow citations or reposts to determine what a primary document, recording, or dataset actually says.
 User-friendly description: Follow a claim back to what its original document or recording actually says.
@@ -923,9 +923,9 @@ User-friendly description: Follow a claim back to what its original document or 
 
 Slug: evaluateEvidenceBehindAHeadline
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateEvidenceBehindAHeadline.data.ts](../../data/skills/epistemologyAndCriticalEvaluation/mediaAndPublicInformation/skills/evaluateEvidenceBehindAHeadline.data.ts)
 
 Methodological description: Compare a summary with the underlying article or evidence and identify claims that exceed what is documented.
 User-friendly description: Compare a headline's promise with evidence provided in the underlying report.
@@ -934,9 +934,9 @@ User-friendly description: Compare a headline's promise with evidence provided i
 
 Slug: recognizeMisleadingContextInPresentedEvidence
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[recognizeMisleadingContextInPresentedEvidence.data.ts](../../data/skills/epistemologyAndCriticalEvaluation/mediaAndPublicInformation/skills/recognizeMisleadingContextInPresentedEvidence.data.ts)
 
 Methodological description: Detect how cropping, omitted baselines, selective examples, or missing dates can alter the apparent meaning of otherwise genuine material.
 User-friendly description: Recognize how omitted dates, cropped images or missing context can mislead.
@@ -945,9 +945,9 @@ User-friendly description: Recognize how omitted dates, cropped images or missin
 
 Slug: distinguishMisinformationFromDeliberateDeceptionClaims
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishMisinformationFromDeliberateDeceptionClaims.data.ts](../../data/skills/epistemologyAndCriticalEvaluation/mediaAndPublicInformation/skills/distinguishMisinformationFromDeliberateDeceptionClaims.data.ts)
 
 Methodological description: Identify inaccurate information without asserting an author's intention to deceive unless independent evidence supports that inference.
 User-friendly description: Identify inaccurate claims without assuming a speaker intended to deceive.
@@ -956,11 +956,11 @@ User-friendly description: Identify inaccurate claims without assuming a speaker
 
 Slug: philosophyOfScience
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 4 · Skills: 26
 
-[Not implemented](#)
+[philosophyOfScience.data.ts](../../data/skills/philosophyOfScience/philosophyOfScience.data.ts)
 
 Methodological description: Scientific inquiry is examined as a way of building, testing, and revising explanations. The focus is on general methodology and evidential justification; physics, biology, psychology, and other sciences own their domain-specific investigations.
 User-friendly description: Explore how scientific claims are tested, supported, revised and challenged.
@@ -969,11 +969,11 @@ User-friendly description: Explore how scientific claims are tested, supported, 
 
 Slug: questionsAndHypotheses
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 5
 
-[Not implemented](#)
+[questionsAndHypotheses.data.ts](../../data/skills/philosophyOfScience/questionsAndHypotheses/questionsAndHypotheses.data.ts)
 
 Methodological description: Research design starts with propositions that can be addressed using evidence. Questions, hypotheses, predictions, and observation serve different epistemic roles.
 User-friendly description: Learn the difference between research questions, hypotheses, predictions and observations.
@@ -982,9 +982,9 @@ User-friendly description: Learn the difference between research questions, hypo
 
 Slug: formulateAnEmpiricallyInvestigableQuestion
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[formulateAnEmpiricallyInvestigableQuestion.data.ts](../../data/skills/philosophyOfScience/questionsAndHypotheses/skills/formulateAnEmpiricallyInvestigableQuestion.data.ts)
 
 Methodological description: Identify observations or comparisons that could bear on a precise research question, while recognizing questions outside empirical testing.
 User-friendly description: Ask a question that can be investigated through relevant evidence.
@@ -993,9 +993,9 @@ User-friendly description: Ask a question that can be investigated through relev
 
 Slug: formulateATestableHypothesis
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[formulateATestableHypothesis.data.ts](../../data/skills/philosophyOfScience/questionsAndHypotheses/skills/formulateATestableHypothesis.data.ts)
 
 Methodological description: State a possible answer whose empirical implications can be investigated rather than relying on an unfalsifiable restatement.
 User-friendly description: Propose an explanation that could be tested against observations.
@@ -1004,9 +1004,9 @@ User-friendly description: Propose an explanation that could be tested against o
 
 Slug: deriveAPredictionFromAHypothesis
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[deriveAPredictionFromAHypothesis.data.ts](../../data/skills/philosophyOfScience/questionsAndHypotheses/skills/deriveAPredictionFromAHypothesis.data.ts)
 
 Methodological description: Explain what should be observed under specified conditions if a proposed explanation is correct.
 User-friendly description: Predict what should happen if a hypothesis is correct under stated conditions.
@@ -1015,9 +1015,9 @@ User-friendly description: Predict what should happen if a hypothesis is correct
 
 Slug: distinguishObservationFromInterpretation
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishObservationFromInterpretation.data.ts](../../data/skills/philosophyOfScience/questionsAndHypotheses/skills/distinguishObservationFromInterpretation.data.ts)
 
 Methodological description: Separate a recorded outcome from the theory-dependent explanation assigned to that outcome.
 User-friendly description: Separate what was recorded from how someone explains it.
@@ -1026,9 +1026,9 @@ User-friendly description: Separate what was recorded from how someone explains 
 
 Slug: compareObservationalAndExperimentalResearch
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[compareObservationalAndExperimentalResearch.data.ts](../../data/skills/philosophyOfScience/questionsAndHypotheses/skills/compareObservationalAndExperimentalResearch.data.ts)
 
 Methodological description: Distinguish observing variation as it occurs from deliberately manipulating an explanatory factor.
 User-friendly description: Distinguish watching natural variation from deliberately changing a factor.
@@ -1037,11 +1037,11 @@ User-friendly description: Distinguish watching natural variation from deliberat
 
 Slug: experimentalDesign
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 9
 
-[Not implemented](#)
+[experimentalDesign.data.ts](../../data/skills/philosophyOfScience/experimentalDesign/experimentalDesign.data.ts)
 
 Methodological description: Controlled investigations attempt to isolate explanatory factors while managing confounding, expectations, and ethical constraints. Particular safeguards solve different problems and are not interchangeable.
 User-friendly description: Discover how research designs can make comparisons more trustworthy.
@@ -1050,9 +1050,9 @@ User-friendly description: Discover how research designs can make comparisons mo
 
 Slug: identifyAnIndependentVariable
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[identifyAnIndependentVariable.data.ts](../../data/skills/philosophyOfScience/experimentalDesign/skills/identifyAnIndependentVariable.data.ts)
 
 Methodological description: Recognize the hypothesized influence, manipulated factor, or explanatory predictor in a specified study, including designs where the researcher observes rather than sets its value.
 User-friendly description: Identify the factor proposed to influence an outcome in a study.
@@ -1061,9 +1061,9 @@ User-friendly description: Identify the factor proposed to influence an outcome 
 
 Slug: identifyADependentVariable
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[identifyADependentVariable.data.ts](../../data/skills/philosophyOfScience/experimentalDesign/skills/identifyADependentVariable.data.ts)
 
 Methodological description: Recognize the measured response or outcome whose variation an investigation attempts to account for, distinguishing outcome measurement from factors that may influence it.
 User-friendly description: Recognize what a study measures as its outcome.
@@ -1072,9 +1072,9 @@ User-friendly description: Recognize what a study measures as its outcome.
 
 Slug: controlRelevantExperimentalConditions
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[controlRelevantExperimentalConditions.data.ts](../../data/skills/philosophyOfScience/experimentalDesign/skills/controlRelevantExperimentalConditions.data.ts)
 
 Methodological description: Hold relevant background conditions stable or account for them so comparisons are not undermined by extraneous differences.
 User-friendly description: Keep relevant background conditions consistent for a fair comparison.
@@ -1083,9 +1083,9 @@ User-friendly description: Keep relevant background conditions consistent for a 
 
 Slug: explainThePurposeOfAControlGroup
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[explainThePurposeOfAControlGroup.data.ts](../../data/skills/philosophyOfScience/experimentalDesign/skills/explainThePurposeOfAControlGroup.data.ts)
 
 Methodological description: Identify the comparison condition needed to interpret an intervention's effect where a control group is appropriate.
 User-friendly description: Understand why a control group can help isolate the effect of an intervention.
@@ -1094,9 +1094,9 @@ User-friendly description: Understand why a control group can help isolate the e
 
 Slug: explainRandomAssignment
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[explainRandomAssignment.data.ts](../../data/skills/philosophyOfScience/experimentalDesign/skills/explainRandomAssignment.data.ts)
 
 Methodological description: Show how allocating participants or units by chance can reduce systematic pre-existing differences between comparison groups.
 User-friendly description: Explain how assigning groups by chance can reduce pre-existing differences.
@@ -1105,9 +1105,9 @@ User-friendly description: Explain how assigning groups by chance can reduce pre
 
 Slug: explainSingleBlinding
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[explainSingleBlinding.data.ts](../../data/skills/philosophyOfScience/experimentalDesign/skills/explainSingleBlinding.data.ts)
 
 Methodological description: Identify which party is kept unaware of assigned conditions and how that may reduce particular expectation-related effects.
 User-friendly description: Understand why hiding assigned conditions from one group can limit expectations.
@@ -1116,9 +1116,9 @@ User-friendly description: Understand why hiding assigned conditions from one gr
 
 Slug: explainDoubleBlinding
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[explainDoubleBlinding.data.ts](../../data/skills/philosophyOfScience/experimentalDesign/skills/explainDoubleBlinding.data.ts)
 
 Methodological description: Identify when both participants and interacting researchers or outcome assessors are kept unaware of allocation, and why such a design is neither always feasible nor universally required.
 User-friendly description: Explore how blinding both participants and researchers can reduce some biases.
@@ -1127,9 +1127,9 @@ User-friendly description: Explore how blinding both participants and researcher
 
 Slug: evaluateResearchEthics
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateResearchEthics.data.ts](../../data/skills/philosophyOfScience/experimentalDesign/skills/evaluateResearchEthics.data.ts)
 
 Methodological description: Assess informed consent, voluntary participation, proportionality of risk, participant protection, and integrity of reporting in proposed research; distinguish ethical permissibility from whether a study can yield valid data.
 User-friendly description: Consider consent, safety and truthful reporting when evaluating a proposed study.
@@ -1138,9 +1138,9 @@ User-friendly description: Consider consent, safety and truthful reporting when 
 
 Slug: explainAPlaceboControl
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[explainAPlaceboControl.data.ts](../../data/skills/philosophyOfScience/experimentalDesign/skills/explainAPlaceboControl.data.ts)
 
 Methodological description: Distinguish a comparison intended to account for expectations or contextual effects from an active treatment or mere absence of intervention.
 User-friendly description: Understand why placebo comparisons can help separate treatment and expectation effects.
@@ -1149,11 +1149,11 @@ User-friendly description: Understand why placebo comparisons can help separate 
 
 Slug: evidenceAndCausalInference
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 6
 
-[Not implemented](#)
+[evidenceAndCausalInference.data.ts](../../data/skills/philosophyOfScience/evidenceAndCausalInference/evidenceAndCausalInference.data.ts)
 
 Methodological description: Observations become informative only through assumptions about measurement, variation, and alternative explanations. The quality of a causal conclusion is not identical to the size of an observed association.
 User-friendly description: Explore what evidence can and cannot establish about causal relationships.
@@ -1162,9 +1162,9 @@ User-friendly description: Explore what evidence can and cannot establish about 
 
 Slug: distinguishCorrelationFromCausation
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishCorrelationFromCausation.data.ts](../../data/skills/philosophyOfScience/evidenceAndCausalInference/skills/distinguishCorrelationFromCausation.data.ts)
 
 Methodological description: Explain why two variables varying together does not alone show that changing one produces the other.
 User-friendly description: Recognize that two variables changing together need not mean one causes the other.
@@ -1173,9 +1173,9 @@ User-friendly description: Recognize that two variables changing together need n
 
 Slug: identifyAConfoundingFactor
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[identifyAConfoundingFactor.data.ts](../../data/skills/philosophyOfScience/evidenceAndCausalInference/skills/identifyAConfoundingFactor.data.ts)
 
 Methodological description: Find a plausible third variable or selection process capable of producing an apparent relationship.
 User-friendly description: Find a third factor that could explain an apparent relationship.
@@ -1184,9 +1184,9 @@ User-friendly description: Find a third factor that could explain an apparent re
 
 Slug: assessSampleRepresentativeness
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[assessSampleRepresentativeness.data.ts](../../data/skills/philosophyOfScience/evidenceAndCausalInference/skills/assessSampleRepresentativeness.data.ts)
 
 Methodological description: Examine whether selection and coverage allow findings to extend to the population named in a conclusion.
 User-friendly description: Decide whether a study's selected participants represent the wider population.
@@ -1195,9 +1195,9 @@ User-friendly description: Decide whether a study's selected participants repres
 
 Slug: evaluateSamplingUncertainty
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateSamplingUncertainty.data.ts](../../data/skills/philosophyOfScience/evidenceAndCausalInference/skills/evaluateSamplingUncertainty.data.ts)
 
 Methodological description: Assess how sample size, observed variation, and sampling processes affect the precision of an estimate, distinguishing imprecision from whether the sample represents its target population.
 User-friendly description: Explore how sampling choices and variation affect an estimate's precision.
@@ -1206,9 +1206,9 @@ User-friendly description: Explore how sampling choices and variation affect an 
 
 Slug: assessMeasurementValidity
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[assessMeasurementValidity.data.ts](../../data/skills/philosophyOfScience/evidenceAndCausalInference/skills/assessMeasurementValidity.data.ts)
 
 Methodological description: Determine whether an operational measure genuinely captures the construct a researcher claims to study.
 User-friendly description: Check whether a measurement actually measures what it claims to measure.
@@ -1217,9 +1217,9 @@ User-friendly description: Check whether a measurement actually measures what it
 
 Slug: evaluateACausalConclusionFromAStudy
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateACausalConclusionFromAStudy.data.ts](../../data/skills/philosophyOfScience/evidenceAndCausalInference/skills/evaluateACausalConclusionFromAStudy.data.ts)
 
 Methodological description: Judge how design, alternative explanations, limitations, and observed evidence jointly support or weaken a causal claim.
 User-friendly description: Evaluate causal claims by examining design, evidence and possible alternatives.
@@ -1228,11 +1228,11 @@ User-friendly description: Evaluate causal claims by examining design, evidence 
 
 Slug: theoriesAndScientificPractice
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 6
 
-[Not implemented](#)
+[theoriesAndScientificPractice.data.ts](../../data/skills/philosophyOfScience/theoriesAndScientificPractice/theoriesAndScientificPractice.data.ts)
 
 Methodological description: Scientific conclusions are provisional but not arbitrary: shared procedures, criticism, reproducibility, and explanatory success distinguish responsible inquiry from mere assertion.
 User-friendly description: Discover how scientific theories improve through criticism and new evidence.
@@ -1241,9 +1241,9 @@ User-friendly description: Discover how scientific theories improve through crit
 
 Slug: distinguishAScientificTheoryFromAHypothesis
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishAScientificTheoryFromAHypothesis.data.ts](../../data/skills/philosophyOfScience/theoriesAndScientificPractice/skills/distinguishAScientificTheoryFromAHypothesis.data.ts)
 
 Methodological description: Recognize a theory as a broad explanatory framework supported and refined through inquiry, not merely an untested guess.
 User-friendly description: Distinguish a broad tested scientific theory from an individual hypothesis.
@@ -1252,9 +1252,9 @@ User-friendly description: Distinguish a broad tested scientific theory from an 
 
 Slug: evaluateTheFalsifiabilityOfAClaim
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateTheFalsifiabilityOfAClaim.data.ts](../../data/skills/philosophyOfScience/theoriesAndScientificPractice/skills/evaluateTheFalsifiabilityOfAClaim.data.ts)
 
 Methodological description: Assess whether plausible observations could count against a proposition without treating falsifiability as the sole criterion of science.
 User-friendly description: Ask what observations could count against a scientific claim.
@@ -1263,9 +1263,9 @@ User-friendly description: Ask what observations could count against a scientifi
 
 Slug: explainTheRoleOfReplication
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[explainTheRoleOfReplication.data.ts](../../data/skills/philosophyOfScience/theoriesAndScientificPractice/skills/explainTheRoleOfReplication.data.ts)
 
 Methodological description: Show why repeating an investigation can expose chance results, context dependence, or methodological errors.
 User-friendly description: Understand why repeating research helps check findings.
@@ -1274,9 +1274,9 @@ User-friendly description: Understand why repeating research helps check finding
 
 Slug: evaluateScientificPeerReview
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateScientificPeerReview.data.ts](../../data/skills/philosophyOfScience/theoriesAndScientificPractice/skills/evaluateScientificPeerReview.data.ts)
 
 Methodological description: Distinguish expert scrutiny of methods and interpretation from a guarantee that published claims are correct.
 User-friendly description: Recognize the value and limits of expert review of scientific work.
@@ -1285,9 +1285,9 @@ User-friendly description: Recognize the value and limits of expert review of sc
 
 Slug: identifyConflictsOfInterestInResearch
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[identifyConflictsOfInterestInResearch.data.ts](../../data/skills/philosophyOfScience/theoriesAndScientificPractice/skills/identifyConflictsOfInterestInResearch.data.ts)
 
 Methodological description: Recognize relationships that may create incentives to bias design, interpretation, or publication without assuming misconduct.
 User-friendly description: Notice relationships that could influence how researchers conduct or report a study.
@@ -1296,9 +1296,9 @@ User-friendly description: Notice relationships that could influence how researc
 
 Slug: explainScientificSelfCorrection
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[explainScientificSelfCorrection.data.ts](../../data/skills/philosophyOfScience/theoriesAndScientificPractice/skills/explainScientificSelfCorrection.data.ts)
 
 Methodological description: Describe how independent criticism and new evidence can revise established models, without equating uncertainty with lack of knowledge.
 User-friendly description: Explain how new evidence can lead science to revise earlier conclusions.
@@ -1307,11 +1307,11 @@ User-friendly description: Explain how new evidence can lead science to revise e
 
 Slug: metaphysics
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 4 · Skills: 14
 
-[Not implemented](#)
+[metaphysics.data.ts](../../data/skills/metaphysics/metaphysics.data.ts)
 
 Methodological description: Metaphysics examines the most general categories of reality, such as what exists, how things persist, and what makes events possible. Its conceptual questions differ from describing particular natural mechanisms in the sciences.
 User-friendly description: Explore philosophical questions about existence, identity, reality, time and possibility.
@@ -1320,11 +1320,11 @@ User-friendly description: Explore philosophical questions about existence, iden
 
 Slug: existenceAndCategories
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 3
 
-[Not implemented](#)
+[existenceAndCategories.data.ts](../../data/skills/metaphysics/existenceAndCategories/existenceAndCategories.data.ts)
 
 Methodological description: Different theories posit concrete objects, properties, events, or abstract entities; their classification determines what kinds of ontological commitments a claim makes.
 User-friendly description: Examine different kinds of things that philosophers consider real.
@@ -1333,9 +1333,9 @@ User-friendly description: Examine different kinds of things that philosophers c
 
 Slug: distinguishConcreteFromAbstractEntities
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishConcreteFromAbstractEntities.data.ts](../../data/skills/metaphysics/existenceAndCategories/skills/distinguishConcreteFromAbstractEntities.data.ts)
 
 Methodological description: Assess whether a proposed entity has spatial or causal features characteristic of concrete things or is treated as abstract, such as a mathematical object.
 User-friendly description: Distinguish physical objects from entities such as numbers or abstract ideas.
@@ -1344,9 +1344,9 @@ User-friendly description: Distinguish physical objects from entities such as nu
 
 Slug: evaluateAnExistenceClaim
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateAnExistenceClaim.data.ts](../../data/skills/metaphysics/existenceAndCategories/skills/evaluateAnExistenceClaim.data.ts)
 
 Methodological description: Examine the criteria by which something is said to exist rather than assuming that naming it settles its ontological status.
 User-friendly description: Ask what evidence or reasoning supports saying that something exists.
@@ -1355,9 +1355,9 @@ User-friendly description: Ask what evidence or reasoning supports saying that s
 
 Slug: distinguishPropertiesFromObjects
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishPropertiesFromObjects.data.ts](../../data/skills/metaphysics/existenceAndCategories/skills/distinguishPropertiesFromObjects.data.ts)
 
 Methodological description: Separate a bearer from qualities attributed to it, while recognizing that some metaphysical theories analyze this distinction differently.
 User-friendly description: Separate an object from the properties attributed to it.
@@ -1366,11 +1366,11 @@ User-friendly description: Separate an object from the properties attributed to 
 
 Slug: mathematicalReality
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 3
 
-[Not implemented](#)
+[mathematicalReality.data.ts](../../data/skills/metaphysics/mathematicalReality/mathematicalReality.data.ts)
 
 Methodological description: Philosophical accounts of mathematics disagree over whether its objects exist independently, are constructs of formal language, or are positions within structures. These ontological commitments are distinct from learning to perform mathematical operations.
 User-friendly description: Explore debates about whether mathematical objects exist independently of people.
@@ -1379,9 +1379,9 @@ User-friendly description: Explore debates about whether mathematical objects ex
 
 Slug: evaluateMathematicalPlatonism
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateMathematicalPlatonism.data.ts](../../data/skills/metaphysics/mathematicalReality/skills/evaluateMathematicalPlatonism.data.ts)
 
 Methodological description: Assess the view that mathematical objects or structures exist independently of human thought and how it attempts to explain the apparent objectivity of mathematics.
 User-friendly description: Examine arguments that mathematical entities exist independently of human minds.
@@ -1390,9 +1390,9 @@ User-friendly description: Examine arguments that mathematical entities exist in
 
 Slug: evaluateMathematicalNominalism
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateMathematicalNominalism.data.ts](../../data/skills/metaphysics/mathematicalReality/skills/evaluateMathematicalNominalism.data.ts)
 
 Methodological description: Examine strategies for understanding mathematical language and successful reasoning without committing to independently existing abstract mathematical objects.
 User-friendly description: Evaluate how mathematical reasoning might work without independently existing abstract objects.
@@ -1401,9 +1401,9 @@ User-friendly description: Evaluate how mathematical reasoning might work withou
 
 Slug: analyzeMathematicalStructuralism
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeMathematicalStructuralism.data.ts](../../data/skills/metaphysics/mathematicalReality/skills/analyzeMathematicalStructuralism.data.ts)
 
 Methodological description: Evaluate the claim that mathematical objects are understood through positions and relations in structures rather than through individually identifying intrinsic properties.
 User-friendly description: Explore whether mathematical objects are best understood by their relationships.
@@ -1412,11 +1412,11 @@ User-friendly description: Explore whether mathematical objects are best underst
 
 Slug: identityAndPersistence
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[identityAndPersistence.data.ts](../../data/skills/metaphysics/identityAndPersistence/identityAndPersistence.data.ts)
 
 Methodological description: Questions about sameness arise when material, properties, or relations change over time. Numerical identity is different from merely sharing characteristics.
 User-friendly description: Ask what makes something remain the same thing through change.
@@ -1425,9 +1425,9 @@ User-friendly description: Ask what makes something remain the same thing throug
 
 Slug: distinguishNumericalFromQualitativeIdentity
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishNumericalFromQualitativeIdentity.data.ts](../../data/skills/metaphysics/identityAndPersistence/skills/distinguishNumericalFromQualitativeIdentity.data.ts)
 
 Methodological description: Identify the difference between being one and the same entity and being indistinguishable in specified properties.
 User-friendly description: Distinguish being the same individual object from merely looking identical.
@@ -1436,9 +1436,9 @@ User-friendly description: Distinguish being the same individual object from mer
 
 Slug: evaluatePersistenceThroughChange
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluatePersistenceThroughChange.data.ts](../../data/skills/metaphysics/identityAndPersistence/skills/evaluatePersistenceThroughChange.data.ts)
 
 Methodological description: Assess competing criteria for when an object remains the same despite replacement, growth, or alteration.
 User-friendly description: Consider whether replacing parts changes the identity of an object.
@@ -1447,9 +1447,9 @@ User-friendly description: Consider whether replacing parts changes the identity
 
 Slug: analyzeAPartWholeRelation
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeAPartWholeRelation.data.ts](../../data/skills/metaphysics/identityAndPersistence/skills/analyzeAPartWholeRelation.data.ts)
 
 Methodological description: Examine whether a component and a composite have different identities and what changes follow from replacing parts.
 User-friendly description: Explore how an object's parts relate to the whole they compose.
@@ -1458,9 +1458,9 @@ User-friendly description: Explore how an object's parts relate to the whole the
 
 Slug: analyzeAMetaphysicalParadox
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeAMetaphysicalParadox.data.ts](../../data/skills/metaphysics/identityAndPersistence/skills/analyzeAMetaphysicalParadox.data.ts)
 
 Methodological description: Identify apparently plausible assumptions that generate inconsistent conclusions in a puzzle about reality.
 User-friendly description: Uncover conflicting assumptions in puzzles about the nature of reality.
@@ -1469,11 +1469,11 @@ User-friendly description: Uncover conflicting assumptions in puzzles about the 
 
 Slug: causationTimeAndPossibility
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[causationTimeAndPossibility.data.ts](../../data/skills/metaphysics/causationTimeAndPossibility/causationTimeAndPossibility.data.ts)
 
 Methodological description: Metaphysical inquiry asks what causal dependence means and how temporal or modal claims relate beyond specific measurements.
 User-friendly description: Examine philosophical ideas about cause, time and what could have happened.
@@ -1482,9 +1482,9 @@ User-friendly description: Examine philosophical ideas about cause, time and wha
 
 Slug: distinguishCausationFromTemporalSuccession
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishCausationFromTemporalSuccession.data.ts](../../data/skills/metaphysics/causationTimeAndPossibility/skills/distinguishCausationFromTemporalSuccession.data.ts)
 
 Methodological description: Recognize that one event occurring before another does not itself establish a productive or counterfactual dependence.
 User-friendly description: Recognize why an earlier event is not necessarily the cause of a later one.
@@ -1493,9 +1493,9 @@ User-friendly description: Recognize why an earlier event is not necessarily the
 
 Slug: comparePhilosophicalAccountsOfTime
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[comparePhilosophicalAccountsOfTime.data.ts](../../data/skills/metaphysics/causationTimeAndPossibility/skills/comparePhilosophicalAccountsOfTime.data.ts)
 
 Methodological description: Explain differences between views that privilege the present and views treating past, present, and future as equally real.
 User-friendly description: Compare views about whether only the present or all times are equally real.
@@ -1504,9 +1504,9 @@ User-friendly description: Compare views about whether only the present or all t
 
 Slug: distinguishPossibilityFromNecessity
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishPossibilityFromNecessity.data.ts](../../data/skills/metaphysics/causationTimeAndPossibility/skills/distinguishPossibilityFromNecessity.data.ts)
 
 Methodological description: Identify claims that could be otherwise and those held to be true in every relevant possible circumstance.
 User-friendly description: Distinguish something that might happen from something that must be true.
@@ -1515,9 +1515,9 @@ User-friendly description: Distinguish something that might happen from somethin
 
 Slug: evaluateACounterfactualClaim
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateACounterfactualClaim.data.ts](../../data/skills/metaphysics/causationTimeAndPossibility/skills/evaluateACounterfactualClaim.data.ts)
 
 Methodological description: Examine what would follow if specified conditions had differed while keeping relevant background assumptions coherent.
 User-friendly description: Assess what might follow under an imagined alternative set of conditions.
@@ -1526,11 +1526,11 @@ User-friendly description: Assess what might follow under an imagined alternativ
 
 Slug: philosophyOfReligion
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 3 · Skills: 15
 
-[Not implemented](#)
+[philosophyOfReligion.data.ts](../../data/skills/philosophyOfReligion/philosophyOfReligion.data.ts)
 
 Methodological description: Reasoned inquiry into religious and nonreligious worldviews considers ultimate explanations, sources of belief, conceptions of divinity, and coexistence under pluralism. This domain evaluates arguments without prescribing worship, faith, atheism, or other personal commitments.
 User-friendly description: Explore arguments about religious and nonreligious worldviews without prescribing belief.
@@ -1539,11 +1539,11 @@ User-friendly description: Explore arguments about religious and nonreligious wo
 
 Slug: faithReasonAndExperience
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[faithReasonAndExperience.data.ts](../../data/skills/philosophyOfReligion/faithReasonAndExperience/faithReasonAndExperience.data.ts)
 
 Methodological description: Different accounts of religious knowledge appeal to reasoning, testimony, revelation, or experience. Philosophical examination weighs what these sources can justify and remains distinct from taking part in a religious practice.
 User-friendly description: Learn how faith, reasoning and experience are used to justify religious claims.
@@ -1552,9 +1552,9 @@ User-friendly description: Learn how faith, reasoning and experience are used to
 
 Slug: distinguishPhilosophicalInquiryFromReligiousPractice
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishPhilosophicalInquiryFromReligiousPractice.data.ts](../../data/skills/philosophyOfReligion/faithReasonAndExperience/skills/distinguishPhilosophicalInquiryFromReligiousPractice.data.ts)
 
 Methodological description: Separate reasoning about religious claims from performing rituals, accepting revelation, or participating in a tradition.
 User-friendly description: Distinguish discussing religious ideas from taking part in religious practices.
@@ -1563,9 +1563,9 @@ User-friendly description: Distinguish discussing religious ideas from taking pa
 
 Slug: compareFaithAndReasonAsSourcesOfJustification
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[compareFaithAndReasonAsSourcesOfJustification.data.ts](../../data/skills/philosophyOfReligion/faithReasonAndExperience/skills/compareFaithAndReasonAsSourcesOfJustification.data.ts)
 
 Methodological description: Analyze philosophical accounts in which faith and reasoning conflict, complement one another, or play different roles, without assuming one universal religious position.
 User-friendly description: Compare views of how faith and reasoning support or challenge one another.
@@ -1574,9 +1574,9 @@ User-friendly description: Compare views of how faith and reasoning support or c
 
 Slug: evaluateReligiousExperienceAsEvidence
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateReligiousExperienceAsEvidence.data.ts](../../data/skills/philosophyOfReligion/faithReasonAndExperience/skills/evaluateReligiousExperienceAsEvidence.data.ts)
 
 Methodological description: Assess the possible warrant of reported transcendent experience, distinguishing the fact of having an experience from the explanation proposed for it.
 User-friendly description: Explore whether a personal religious experience supports a wider claim.
@@ -1585,9 +1585,9 @@ User-friendly description: Explore whether a personal religious experience suppo
 
 Slug: evaluateAReportedMiracleClaim
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateAReportedMiracleClaim.data.ts](../../data/skills/philosophyOfReligion/faithReasonAndExperience/skills/evaluateAReportedMiracleClaim.data.ts)
 
 Methodological description: Weigh testimony, background assumptions, and plausible alternative explanations when assessing an extraordinary event claim without prejudging its truth.
 User-friendly description: Evaluate an extraordinary event claim by weighing testimony and alternatives.
@@ -1596,11 +1596,11 @@ User-friendly description: Evaluate an extraordinary event claim by weighing tes
 
 Slug: ultimateRealityAndDivinity
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 8
 
-[Not implemented](#)
+[ultimateRealityAndDivinity.data.ts](../../data/skills/philosophyOfReligion/ultimateRealityAndDivinity/ultimateRealityAndDivinity.data.ts)
 
 Methodological description: Religious and nonreligious accounts of ultimate reality include competing conceptions of divinity and nontheistic accounts of liberation or existence. Their arguments may invoke experience, explanation, definition, or objections, without settling a worldview by stipulation.
 User-friendly description: Examine arguments about ultimate explanations and different conceptions of divinity.
@@ -1609,9 +1609,9 @@ User-friendly description: Examine arguments about ultimate explanations and dif
 
 Slug: reconstructAPhilosophicalArgumentAboutDivinity
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[reconstructAPhilosophicalArgumentAboutDivinity.data.ts](../../data/skills/philosophyOfReligion/ultimateRealityAndDivinity/skills/reconstructAPhilosophicalArgumentAboutDivinity.data.ts)
 
 Methodological description: Identify premises and conclusion in a theistic, atheistic, or agnostic argument without treating the position as settled by its name.
 User-friendly description: Identify the reasons offered in an argument for or against the divine.
@@ -1620,9 +1620,9 @@ User-friendly description: Identify the reasons offered in an argument for or ag
 
 Slug: evaluateAProposedUltimateExplanation
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateAProposedUltimateExplanation.data.ts](../../data/skills/philosophyOfReligion/ultimateRealityAndDivinity/skills/evaluateAProposedUltimateExplanation.data.ts)
 
 Methodological description: Consider whether an account of why anything exists explains more than it assumes and what further questions it raises.
 User-friendly description: Ask how much an explanation of existence explains and what it assumes.
@@ -1631,9 +1631,9 @@ User-friendly description: Ask how much an explanation of existence explains and
 
 Slug: analyzeACosmologicalArgument
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeACosmologicalArgument.data.ts](../../data/skills/philosophyOfReligion/ultimateRealityAndDivinity/skills/analyzeACosmologicalArgument.data.ts)
 
 Methodological description: Evaluate reasoning from existence, dependence, contingency, or causation toward an ultimate explanation, including challenges to its assumptions.
 User-friendly description: Evaluate arguments that reason from dependence or causation to an ultimate cause.
@@ -1642,9 +1642,9 @@ User-friendly description: Evaluate arguments that reason from dependence or cau
 
 Slug: analyzeAnOntologicalArgument
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeAnOntologicalArgument.data.ts](../../data/skills/philosophyOfReligion/ultimateRealityAndDivinity/skills/analyzeAnOntologicalArgument.data.ts)
 
 Methodological description: Evaluate an a priori argument that moves from a proposed concept of God or maximal greatness toward existence, examining whether its logical premises and modal assumptions warrant the conclusion.
 User-friendly description: Explore arguments that attempt to derive divine existence from a definition.
@@ -1653,9 +1653,9 @@ User-friendly description: Explore arguments that attempt to derive divine exist
 
 Slug: analyzeADesignArgument
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeADesignArgument.data.ts](../../data/skills/philosophyOfReligion/ultimateRealityAndDivinity/skills/analyzeADesignArgument.data.ts)
 
 Methodological description: Examine whether order or complexity supports an inference to a designer, considering the evidential relevance of natural alternatives.
 User-friendly description: Consider whether complexity or order is evidence of intelligent design.
@@ -1664,9 +1664,9 @@ User-friendly description: Consider whether complexity or order is evidence of i
 
 Slug: analyzeAnArgumentFromEvil
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeAnArgumentFromEvil.data.ts](../../data/skills/philosophyOfReligion/ultimateRealityAndDivinity/skills/analyzeAnArgumentFromEvil.data.ts)
 
 Methodological description: Explain how suffering and wrongdoing challenge particular accounts of divinity and assess the strengths of proposed philosophical responses.
 User-friendly description: Assess how suffering challenges particular accounts of divinity.
@@ -1675,9 +1675,9 @@ User-friendly description: Assess how suffering challenges particular accounts o
 
 Slug: analyzeNontheisticReligiousAccountsOfReality
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeNontheisticReligiousAccountsOfReality.data.ts](../../data/skills/philosophyOfReligion/ultimateRealityAndDivinity/skills/analyzeNontheisticReligiousAccountsOfReality.data.ts)
 
 Methodological description: Examine how a particular nontheistic religious tradition understands reality, suffering, liberation, or ultimate truth without incorrectly treating absence of a creator deity as absence of religion.
 User-friendly description: Explore religious views that do not depend on belief in a creator deity.
@@ -1686,9 +1686,9 @@ User-friendly description: Explore religious views that do not depend on belief 
 
 Slug: comparePhilosophicalConceptionsOfDivinity
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[comparePhilosophicalConceptionsOfDivinity.data.ts](../../data/skills/philosophyOfReligion/ultimateRealityAndDivinity/skills/comparePhilosophicalConceptionsOfDivinity.data.ts)
 
 Methodological description: Distinguish personal, impersonal, and plural conceptions of ultimate reality while recognizing significant diversity within traditions.
 User-friendly description: Compare personal, impersonal and plural understandings of ultimate reality.
@@ -1697,11 +1697,11 @@ User-friendly description: Compare personal, impersonal and plural understanding
 
 Slug: diversityAndMeaning
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 3
 
-[Not implemented](#)
+[diversityAndMeaning.data.ts](../../data/skills/philosophyOfReligion/diversityAndMeaning/diversityAndMeaning.data.ts)
 
 Methodological description: Competing outlooks on religion, nonbelief, and life purpose raise interpretive and normative problems. Dialogue must distinguish a disagreement about truth from respect for people's freedom of conscience.
 User-friendly description: Learn to discuss differences in religion, nonbelief and life's meaning respectfully.
@@ -1710,9 +1710,9 @@ User-friendly description: Learn to discuss differences in religion, nonbelief a
 
 Slug: analyzeReligiousPluralismAsAPhilosophicalProblem
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeReligiousPluralismAsAPhilosophicalProblem.data.ts](../../data/skills/philosophyOfReligion/diversityAndMeaning/skills/analyzeReligiousPluralismAsAPhilosophicalProblem.data.ts)
 
 Methodological description: Compare accounts of how conflicting ultimate-belief claims might be understood and evaluated while respecting freedom of conscience.
 User-friendly description: Explore philosophical responses to competing religious truth claims.
@@ -1721,9 +1721,9 @@ User-friendly description: Explore philosophical responses to competing religiou
 
 Slug: analyzeReligiousToleranceAsAnEthicalPrinciple
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeReligiousToleranceAsAnEthicalPrinciple.data.ts](../../data/skills/philosophyOfReligion/diversityAndMeaning/skills/analyzeReligiousToleranceAsAnEthicalPrinciple.data.ts)
 
 Methodological description: Examine justifications and limits for respecting divergent religious or nonreligious commitments, distinguishing toleration from endorsement.
 User-friendly description: Consider reasons and limits for respecting people with different convictions.
@@ -1732,9 +1732,9 @@ User-friendly description: Consider reasons and limits for respecting people wit
 
 Slug: distinguishReligiousSkepticismFromAgnosticism
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishReligiousSkepticismFromAgnosticism.data.ts](../../data/skills/philosophyOfReligion/diversityAndMeaning/skills/distinguishReligiousSkepticismFromAgnosticism.data.ts)
 
 Methodological description: Separate withholding belief about particular religious claims from positions on the possibility of knowing whether divine reality exists.
 User-friendly description: Distinguish doubts about religious claims from uncertainty about what can be known.
@@ -1743,11 +1743,11 @@ User-friendly description: Distinguish doubts about religious claims from uncert
 
 Slug: mindSelfAndHumanExistence
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 4 · Skills: 17
 
-[Not implemented](#)
+[mindSelfAndHumanExistence.data.ts](../../data/skills/mindSelfAndHumanExistence/mindSelfAndHumanExistence.data.ts)
 
 Methodological description: Questions about subjective experience, the continuity of the self, deliberate action, and a meaningful human life cannot be resolved solely through psychological measurement. This domain examines theories of mind, identity, agency, and existential commitments, distinguishing them from empirical mental-health claims.
 User-friendly description: Explore philosophical questions about consciousness, personal identity, freedom and meaning.
@@ -1756,11 +1756,11 @@ User-friendly description: Explore philosophical questions about consciousness, 
 
 Slug: mindAndConsciousness
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[mindAndConsciousness.data.ts](../../data/skills/mindSelfAndHumanExistence/mindAndConsciousness/mindAndConsciousness.data.ts)
 
 Methodological description: A first-person experience and a third-person physical description offer different perspectives on mental life. Philosophical theories disagree about how these perspectives relate.
 User-friendly description: Discover different ways of understanding subjective experience and the mind.
@@ -1769,9 +1769,9 @@ User-friendly description: Discover different ways of understanding subjective e
 
 Slug: distinguishMentalFromPhysicalDescriptions
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishMentalFromPhysicalDescriptions.data.ts](../../data/skills/mindSelfAndHumanExistence/mindAndConsciousness/skills/distinguishMentalFromPhysicalDescriptions.data.ts)
 
 Methodological description: Identify when a claim describes subjective experience, observable behavior, or bodily processes, and why they are not automatically equivalent.
 User-friendly description: Distinguish descriptions of feelings from descriptions of physical brain processes.
@@ -1780,9 +1780,9 @@ User-friendly description: Distinguish descriptions of feelings from description
 
 Slug: compareTheoriesOfTheMindBodyRelation
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[compareTheoriesOfTheMindBodyRelation.data.ts](../../data/skills/mindSelfAndHumanExistence/mindAndConsciousness/skills/compareTheoriesOfTheMindBodyRelation.data.ts)
 
 Methodological description: Contrast representative views such as physicalism and dualism by their commitments and explanatory challenges.
 User-friendly description: Compare philosophical explanations of how mind and body are related.
@@ -1791,9 +1791,9 @@ User-friendly description: Compare philosophical explanations of how mind and bo
 
 Slug: explainTheProblemOfOtherMinds
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[explainTheProblemOfOtherMinds.data.ts](../../data/skills/mindSelfAndHumanExistence/mindAndConsciousness/skills/explainTheProblemOfOtherMinds.data.ts)
 
 Methodological description: Describe why another being's subjective experiences are not observed in the same way as one's own, and what kinds of inferences are used.
 User-friendly description: Ask how we can know whether another being has subjective experiences.
@@ -1802,9 +1802,9 @@ User-friendly description: Ask how we can know whether another being has subject
 
 Slug: analyzeAPhilosophicalProblemOfArtificialConsciousness
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeAPhilosophicalProblemOfArtificialConsciousness.data.ts](../../data/skills/mindSelfAndHumanExistence/mindAndConsciousness/skills/analyzeAPhilosophicalProblemOfArtificialConsciousness.data.ts)
 
 Methodological description: Assess what would and would not count as evidence of experience in an artificial system, without claiming a settled test exists.
 User-friendly description: Consider what evidence could support a claim about artificial consciousness.
@@ -1813,11 +1813,11 @@ User-friendly description: Consider what evidence could support a claim about ar
 
 Slug: personalIdentity
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[personalIdentity.data.ts](../../data/skills/mindSelfAndHumanExistence/personalIdentity/personalIdentity.data.ts)
 
 Methodological description: The self may be characterized by bodily, psychological, narrative, or relational continuity. The question is what makes someone the same person, not how memory works empirically.
 User-friendly description: Explore what makes someone the same person despite changes over time.
@@ -1826,9 +1826,9 @@ User-friendly description: Explore what makes someone the same person despite ch
 
 Slug: distinguishPersonalIdentityFromSimilarity
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishPersonalIdentityFromSimilarity.data.ts](../../data/skills/mindSelfAndHumanExistence/personalIdentity/skills/distinguishPersonalIdentityFromSimilarity.data.ts)
 
 Methodological description: Explain why sharing a personality or appearance is not enough to establish that two persons are numerically identical.
 User-friendly description: Recognize why two similar people are not necessarily the same individual.
@@ -1837,9 +1837,9 @@ User-friendly description: Recognize why two similar people are not necessarily 
 
 Slug: compareBodilyAndPsychologicalContinuityAccounts
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[compareBodilyAndPsychologicalContinuityAccounts.data.ts](../../data/skills/mindSelfAndHumanExistence/personalIdentity/skills/compareBodilyAndPsychologicalContinuityAccounts.data.ts)
 
 Methodological description: Assess how different criteria handle change, memory loss, and hypothetical transfer scenarios.
 User-friendly description: Compare body-based and psychology-based accounts of personal identity.
@@ -1848,9 +1848,9 @@ User-friendly description: Compare body-based and psychology-based accounts of p
 
 Slug: evaluateTheRoleOfMemoryInPersonalIdentity
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateTheRoleOfMemoryInPersonalIdentity.data.ts](../../data/skills/mindSelfAndHumanExistence/personalIdentity/skills/evaluateTheRoleOfMemoryInPersonalIdentity.data.ts)
 
 Methodological description: Examine the philosophical significance and limitations of remembered experience as a criterion of persistence.
 User-friendly description: Examine whether memories are enough to establish personal continuity.
@@ -1859,9 +1859,9 @@ User-friendly description: Examine whether memories are enough to establish pers
 
 Slug: analyzeAPersonhoodCriterion
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeAPersonhoodCriterion.data.ts](../../data/skills/mindSelfAndHumanExistence/personalIdentity/skills/analyzeAPersonhoodCriterion.data.ts)
 
 Methodological description: Test a proposed condition of being a person against borderline cases without assigning anyone lesser real-world dignity.
 User-friendly description: Test ideas about personhood against difficult cases without denying human dignity.
@@ -1870,11 +1870,11 @@ User-friendly description: Test ideas about personhood against difficult cases w
 
 Slug: agencyAndFreeWill
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 5
 
-[Not implemented](#)
+[agencyAndFreeWill.data.ts](../../data/skills/mindSelfAndHumanExistence/agencyAndFreeWill/agencyAndFreeWill.data.ts)
 
 Methodological description: Acting for reasons, selecting among alternatives, and being accountable are connected but separable philosophical ideas.
 User-friendly description: Explore how choice, reasons and responsibility relate to freedom.
@@ -1883,9 +1883,9 @@ User-friendly description: Explore how choice, reasons and responsibility relate
 
 Slug: distinguishAnActionFromAnEvent
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishAnActionFromAnEvent.data.ts](../../data/skills/mindSelfAndHumanExistence/agencyAndFreeWill/skills/distinguishAnActionFromAnEvent.data.ts)
 
 Methodological description: Identify whether a description invokes an agent's intention or reason rather than only something that happened to a body.
 User-friendly description: Distinguish an intentional action from something that merely happens.
@@ -1894,9 +1894,9 @@ User-friendly description: Distinguish an intentional action from something that
 
 Slug: distinguishReasonsForActionFromCausesOfBehavior
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishReasonsForActionFromCausesOfBehavior.data.ts](../../data/skills/mindSelfAndHumanExistence/agencyAndFreeWill/skills/distinguishReasonsForActionFromCausesOfBehavior.data.ts)
 
 Methodological description: Separate justifying considerations from causal explanations, recognizing that the two may be related.
 User-friendly description: Separate reasons that justify acting from causes that explain behavior.
@@ -1905,9 +1905,9 @@ User-friendly description: Separate reasons that justify acting from causes that
 
 Slug: compareDeterminismAndIndeterminism
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[compareDeterminismAndIndeterminism.data.ts](../../data/skills/mindSelfAndHumanExistence/agencyAndFreeWill/skills/compareDeterminismAndIndeterminism.data.ts)
 
 Methodological description: Explain the different claims about how events are determined and why randomness alone does not establish control.
 User-friendly description: Compare a fully determined world with one that allows indeterminate events.
@@ -1916,9 +1916,9 @@ User-friendly description: Compare a fully determined world with one that allows
 
 Slug: compareCompatibilistAndIncompatibilistFreedom
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[compareCompatibilistAndIncompatibilistFreedom.data.ts](../../data/skills/mindSelfAndHumanExistence/agencyAndFreeWill/skills/compareCompatibilistAndIncompatibilistFreedom.data.ts)
 
 Methodological description: Examine whether meaningful free action is possible under determinism and how rival views define freedom.
 User-friendly description: Examine whether freedom and responsibility can coexist with determinism.
@@ -1927,9 +1927,9 @@ User-friendly description: Examine whether freedom and responsibility can coexis
 
 Slug: evaluateConditionsOfMoralResponsibility
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateConditionsOfMoralResponsibility.data.ts](../../data/skills/mindSelfAndHumanExistence/agencyAndFreeWill/skills/evaluateConditionsOfMoralResponsibility.data.ts)
 
 Methodological description: Consider knowledge, control, intention, and coercion in judging whether blame or praise is warranted.
 User-friendly description: Consider the knowledge and control needed for moral responsibility.
@@ -1938,11 +1938,11 @@ User-friendly description: Consider the knowledge and control needed for moral r
 
 Slug: humanExistenceAndMeaning
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[humanExistenceAndMeaning.data.ts](../../data/skills/mindSelfAndHumanExistence/humanExistenceAndMeaning/humanExistenceAndMeaning.data.ts)
 
 Methodological description: Existential reflection examines how people understand purpose, authenticity, finitude, and commitments, without prescribing a single life ideal or substituting for mental-health care.
 User-friendly description: Explore philosophical approaches to living a meaningful and authentic life.
@@ -1951,9 +1951,9 @@ User-friendly description: Explore philosophical approaches to living a meaningf
 
 Slug: distinguishALifePurposeFromAPassingPreference
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishALifePurposeFromAPassingPreference.data.ts](../../data/skills/mindSelfAndHumanExistence/humanExistenceAndMeaning/skills/distinguishALifePurposeFromAPassingPreference.data.ts)
 
 Methodological description: Examine how sustained commitments and values differ from momentary wants when evaluating an account of a meaningful life.
 User-friendly description: Distinguish long-term life commitments from momentary wishes.
@@ -1962,9 +1962,9 @@ User-friendly description: Distinguish long-term life commitments from momentary
 
 Slug: comparePhilosophicalAccountsOfMeaningInLife
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[comparePhilosophicalAccountsOfMeaningInLife.data.ts](../../data/skills/mindSelfAndHumanExistence/humanExistenceAndMeaning/skills/comparePhilosophicalAccountsOfMeaningInLife.data.ts)
 
 Methodological description: Contrast accounts that ground human meaning in relationships, achievement, self-authorship, transcendence, religious commitments, or nonreligious purposes, assessing their philosophical reasons without requiring adherence to any worldview.
 User-friendly description: Compare different ideas about what gives human life meaning.
@@ -1973,9 +1973,9 @@ User-friendly description: Compare different ideas about what gives human life m
 
 Slug: analyzeAuthenticityAsAPhilosophicalConcept
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeAuthenticityAsAPhilosophicalConcept.data.ts](../../data/skills/mindSelfAndHumanExistence/humanExistenceAndMeaning/skills/analyzeAuthenticityAsAPhilosophicalConcept.data.ts)
 
 Methodological description: Evaluate competing claims about acting from one's commitments, social expectations, and self-understanding.
 User-friendly description: Explore whether acting authentically requires independence from social expectations.
@@ -1984,9 +1984,9 @@ User-friendly description: Explore whether acting authentically requires indepen
 
 Slug: analyzeThePhilosophicalSignificanceOfMortality
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeThePhilosophicalSignificanceOfMortality.data.ts](../../data/skills/mindSelfAndHumanExistence/humanExistenceAndMeaning/skills/analyzeThePhilosophicalSignificanceOfMortality.data.ts)
 
 Methodological description: Examine how finitude affects arguments about priorities and meaning rather than making predictions about an individual's emotional response.
 User-friendly description: Reflect on how human mortality can shape arguments about life's priorities.
@@ -1995,11 +1995,11 @@ User-friendly description: Reflect on how human mortality can shape arguments ab
 
 Slug: ethicsAndMoralReasoning
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 5 · Skills: 25
 
-[Not implemented](#)
+[ethicsAndMoralReasoning.data.ts](../../data/skills/ethicsAndMoralReasoning/ethicsAndMoralReasoning.data.ts)
 
 Methodological description: Ethics studies what ought to be done, what makes actions right or wrong, and how moral reasons apply to individuals and institutions. It evaluates normative standards rather than describing the psychological development of moral feelings.
 User-friendly description: Explore what makes actions right or wrong and how to justify moral judgments.
@@ -2008,11 +2008,11 @@ User-friendly description: Explore what makes actions right or wrong and how to 
 
 Slug: moralConcepts
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[moralConcepts.data.ts](../../data/skills/ethicsAndMoralReasoning/moralConcepts/moralConcepts.data.ts)
 
 Methodological description: Ethical claims use concepts such as duty, harm, intention, and virtue that cannot be reduced to personal approval.
 User-friendly description: Learn to recognize concepts such as duty, intention, harm and moral responsibility.
@@ -2021,9 +2021,9 @@ User-friendly description: Learn to recognize concepts such as duty, intention, 
 
 Slug: distinguishMoralFromNonMoralJudgments
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishMoralFromNonMoralJudgments.data.ts](../../data/skills/ethicsAndMoralReasoning/moralConcepts/skills/distinguishMoralFromNonMoralJudgments.data.ts)
 
 Methodological description: Identify when a claim concerns obligations or rights rather than taste, etiquette, prudence, or mere legality.
 User-friendly description: Tell ethical claims apart from personal taste, etiquette and legal rules.
@@ -2032,9 +2032,9 @@ User-friendly description: Tell ethical claims apart from personal taste, etique
 
 Slug: distinguishIntentionsFromConsequences
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishIntentionsFromConsequences.data.ts](../../data/skills/ethicsAndMoralReasoning/moralConcepts/skills/distinguishIntentionsFromConsequences.data.ts)
 
 Methodological description: Explain why an action's aim and its actual effects may be evaluated separately in moral reasoning.
 User-friendly description: Evaluate an action's intended purpose separately from its effects.
@@ -2043,9 +2043,9 @@ User-friendly description: Evaluate an action's intended purpose separately from
 
 Slug: analyzeMoralDuty
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeMoralDuty.data.ts](../../data/skills/ethicsAndMoralReasoning/moralConcepts/skills/analyzeMoralDuty.data.ts)
 
 Methodological description: Identify what it means to hold that a person is obligated to act even when doing so is inconvenient.
 User-friendly description: Understand why moral obligations can apply even when fulfilling them is inconvenient.
@@ -2054,9 +2054,9 @@ User-friendly description: Understand why moral obligations can apply even when 
 
 Slug: distinguishMoralResponsibilityFromCausalResponsibility
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishMoralResponsibilityFromCausalResponsibility.data.ts](../../data/skills/ethicsAndMoralReasoning/moralConcepts/skills/distinguishMoralResponsibilityFromCausalResponsibility.data.ts)
 
 Methodological description: Separate causing an outcome from being appropriately accountable for it under relevant knowledge and control conditions.
 User-friendly description: Distinguish responsibility for causing something from deserving moral blame.
@@ -2065,11 +2065,11 @@ User-friendly description: Distinguish responsibility for causing something from
 
 Slug: metaethics
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 6
 
-[Not implemented](#)
+[metaethics.data.ts](../../data/skills/ethicsAndMoralReasoning/metaethics/metaethics.data.ts)
 
 Methodological description: Inquiry into the meaning, objectivity, and epistemic standing of moral discourse underlies but does not itself prescribe codes of conduct. Normative theories decide how to act; metaethical theories examine the status of such judgments.
 User-friendly description: Explore what moral claims mean and whether moral truths depend on personal beliefs.
@@ -2078,9 +2078,9 @@ User-friendly description: Explore what moral claims mean and whether moral trut
 
 Slug: distinguishMetaethicalFromNormativeQuestions
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishMetaethicalFromNormativeQuestions.data.ts](../../data/skills/ethicsAndMoralReasoning/metaethics/skills/distinguishMetaethicalFromNormativeQuestions.data.ts)
 
 Methodological description: Separate questions about which actions are right from questions about what moral claims mean and whether their truth is objective.
 User-friendly description: Distinguish asking what is right from asking what moral judgments mean.
@@ -2089,9 +2089,9 @@ User-friendly description: Distinguish asking what is right from asking what mor
 
 Slug: compareMoralRealismAndAntiRealism
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[compareMoralRealismAndAntiRealism.data.ts](../../data/skills/ethicsAndMoralReasoning/metaethics/skills/compareMoralRealismAndAntiRealism.data.ts)
 
 Methodological description: Assess opposing views about whether moral truths exist independently of attitudes, and distinguish this ontological disagreement from practical moral choices.
 User-friendly description: Compare views that affirm objective moral truths with views that reject them.
@@ -2100,9 +2100,9 @@ User-friendly description: Compare views that affirm objective moral truths with
 
 Slug: evaluateMoralRelativism
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateMoralRelativism.data.ts](../../data/skills/ethicsAndMoralReasoning/metaethics/skills/evaluateMoralRelativism.data.ts)
 
 Methodological description: Test the view that moral truth or justification varies by culture or individual against cases involving disagreement, criticism, and reform.
 User-friendly description: Examine whether right and wrong depend on culture or individual perspective.
@@ -2111,9 +2111,9 @@ User-friendly description: Examine whether right and wrong depend on culture or 
 
 Slug: distinguishMoralCognitivismFromNonCognitivism
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishMoralCognitivismFromNonCognitivism.data.ts](../../data/skills/ethicsAndMoralReasoning/metaethics/skills/distinguishMoralCognitivismFromNonCognitivism.data.ts)
 
 Methodological description: Examine whether moral utterances express truth-apt beliefs or instead function as prescriptions, commitments, or other attitudes.
 User-friendly description: Explore whether moral sentences state facts or express attitudes and commitments.
@@ -2122,9 +2122,9 @@ User-friendly description: Explore whether moral sentences state facts or expres
 
 Slug: analyzeMoralDisagreement
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeMoralDisagreement.data.ts](../../data/skills/ethicsAndMoralReasoning/metaethics/skills/analyzeMoralDisagreement.data.ts)
 
 Methodological description: Identify whether disputants differ about facts, principles, or the status of moral claims, and what kinds of reasons could address those differences.
 User-friendly description: Separate disagreements over facts from disagreements over moral standards.
@@ -2133,9 +2133,9 @@ User-friendly description: Separate disagreements over facts from disagreements 
 
 Slug: examineMoralMotivation
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[examineMoralMotivation.data.ts](../../data/skills/ethicsAndMoralReasoning/metaethics/skills/examineMoralMotivation.data.ts)
 
 Methodological description: Compare philosophical positions on whether sincerely judging an act right necessarily motivates someone to perform it, without substituting a psychological causal theory.
 User-friendly description: Consider whether believing something is right necessarily motivates action.
@@ -2144,11 +2144,11 @@ User-friendly description: Consider whether believing something is right necessa
 
 Slug: ethicalFrameworks
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 5
 
-[Not implemented](#)
+[ethicalFrameworks.data.ts](../../data/skills/ethicsAndMoralReasoning/ethicalFrameworks/ethicalFrameworks.data.ts)
 
 Methodological description: Normative theories emphasize different criteria of moral assessment. A theory is not a universal formula that automatically resolves every difficult case.
 User-friendly description: Compare major theories for evaluating right and wrong actions.
@@ -2157,9 +2157,9 @@ User-friendly description: Compare major theories for evaluating right and wrong
 
 Slug: applyConsequentialistReasoning
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[applyConsequentialistReasoning.data.ts](../../data/skills/ethicsAndMoralReasoning/ethicalFrameworks/skills/applyConsequentialistReasoning.data.ts)
 
 Methodological description: Evaluate an action by outcomes and the welfare or values its consequences affect, accounting for affected parties.
 User-friendly description: Consider likely outcomes and everyone affected when evaluating a choice.
@@ -2168,9 +2168,9 @@ User-friendly description: Consider likely outcomes and everyone affected when e
 
 Slug: applyDutyBasedReasoning
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[applyDutyBasedReasoning.data.ts](../../data/skills/ethicsAndMoralReasoning/ethicalFrameworks/skills/applyDutyBasedReasoning.data.ts)
 
 Methodological description: Assess whether an act respects a rule, obligation, or person's standing even when violating it might have beneficial effects.
 User-friendly description: Judge an action in light of duties and rights as well as its consequences.
@@ -2179,9 +2179,9 @@ User-friendly description: Judge an action in light of duties and rights as well
 
 Slug: applyVirtueEthicalReasoning
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[applyVirtueEthicalReasoning.data.ts](../../data/skills/ethicsAndMoralReasoning/ethicalFrameworks/skills/applyVirtueEthicalReasoning.data.ts)
 
 Methodological description: Consider the traits and practical judgment exemplified by an action rather than evaluating only isolated rules or outcomes.
 User-friendly description: Ask what an action shows about character and practical wisdom.
@@ -2190,9 +2190,9 @@ User-friendly description: Ask what an action shows about character and practica
 
 Slug: applyCareEthicalReasoning
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[applyCareEthicalReasoning.data.ts](../../data/skills/ethicsAndMoralReasoning/ethicalFrameworks/skills/applyCareEthicalReasoning.data.ts)
 
 Methodological description: Evaluate obligations arising from dependence, relationships, vulnerability, and context without treating care as the absence of principles.
 User-friendly description: Consider vulnerability, relationships and care when evaluating obligations.
@@ -2201,9 +2201,9 @@ User-friendly description: Consider vulnerability, relationships and care when e
 
 Slug: compareEthicalFrameworksOnOneDilemma
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[compareEthicalFrameworksOnOneDilemma.data.ts](../../data/skills/ethicsAndMoralReasoning/ethicalFrameworks/skills/compareEthicalFrameworksOnOneDilemma.data.ts)
 
 Methodological description: Explain why distinct normative standards may support different recommendations even when the underlying facts are shared.
 User-friendly description: Compare how different moral theories reach conclusions about one dilemma.
@@ -2212,11 +2212,11 @@ User-friendly description: Compare how different moral theories reach conclusion
 
 Slug: moralDeliberation
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 5
 
-[Not implemented](#)
+[moralDeliberation.data.ts](../../data/skills/ethicsAndMoralReasoning/moralDeliberation/moralDeliberation.data.ts)
 
 Methodological description: Difficult cases require identifying who is affected, which reasons conflict, and whether an apparent compromise respects relevant obligations.
 User-friendly description: Learn to reason through difficult choices with competing ethical considerations.
@@ -2225,9 +2225,9 @@ User-friendly description: Learn to reason through difficult choices with compet
 
 Slug: identifyStakeholdersInAnEthicalDilemma
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[identifyStakeholdersInAnEthicalDilemma.data.ts](../../data/skills/ethicsAndMoralReasoning/moralDeliberation/skills/identifyStakeholdersInAnEthicalDilemma.data.ts)
 
 Methodological description: Recognize persons or other morally relevant parties affected directly or indirectly by a proposed choice.
 User-friendly description: Identify all the people and other parties affected by a moral choice.
@@ -2236,9 +2236,9 @@ User-friendly description: Identify all the people and other parties affected by
 
 Slug: identifyConflictingMoralObligations
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[identifyConflictingMoralObligations.data.ts](../../data/skills/ethicsAndMoralReasoning/moralDeliberation/skills/identifyConflictingMoralObligations.data.ts)
 
 Methodological description: Specify duties or values that cannot all be fully honored in a concrete case without assuming that all conflicts are irresolvable.
 User-friendly description: Recognize when two ethical obligations cannot both be fully honored.
@@ -2247,9 +2247,9 @@ User-friendly description: Recognize when two ethical obligations cannot both be
 
 Slug: justifyAMoralJudgment
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[justifyAMoralJudgment.data.ts](../../data/skills/ethicsAndMoralReasoning/moralDeliberation/skills/justifyAMoralJudgment.data.ts)
 
 Methodological description: Connect a normative conclusion to stated values, principles, and case facts rather than mere personal preference.
 User-friendly description: Support a moral judgment using explicit principles and relevant facts.
@@ -2258,9 +2258,9 @@ User-friendly description: Support a moral judgment using explicit principles an
 
 Slug: evaluateAMoralCounterargument
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateAMoralCounterargument.data.ts](../../data/skills/ethicsAndMoralReasoning/moralDeliberation/skills/evaluateAMoralCounterargument.data.ts)
 
 Methodological description: Test whether an objection exposes an overlooked harm, inconsistency, or relevant exception to a principle.
 User-friendly description: Consider objections that reveal harms, exceptions or inconsistencies.
@@ -2269,9 +2269,9 @@ User-friendly description: Consider objections that reveal harms, exceptions or 
 
 Slug: assessProportionalityInMoralDecisions
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[assessProportionalityInMoralDecisions.data.ts](../../data/skills/ethicsAndMoralReasoning/moralDeliberation/skills/assessProportionalityInMoralDecisions.data.ts)
 
 Methodological description: Consider whether a harmful burden or restriction is justified in relation to its aim and less harmful alternatives.
 User-friendly description: Evaluate whether harms or restrictions are proportionate to a justified aim.
@@ -2280,11 +2280,11 @@ User-friendly description: Evaluate whether harms or restrictions are proportion
 
 Slug: appliedEthics
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 5
 
-[Not implemented](#)
+[appliedEthics.data.ts](../../data/skills/ethicsAndMoralReasoning/appliedEthics/appliedEthics.data.ts)
 
 Methodological description: Ethical principles face distinctive challenges when rights, vulnerable people, nonhuman life, and emerging technologies are involved.
 User-friendly description: Explore ethical questions about consent, privacy, animals, nature and technology.
@@ -2293,9 +2293,9 @@ User-friendly description: Explore ethical questions about consent, privacy, ani
 
 Slug: evaluateConsentInAnEthicalScenario
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateConsentInAnEthicalScenario.data.ts](../../data/skills/ethicsAndMoralReasoning/appliedEthics/skills/evaluateConsentInAnEthicalScenario.data.ts)
 
 Methodological description: Assess whether a decision is adequately informed, voluntary, and within the decision-maker's authority.
 User-friendly description: Check whether consent is informed, voluntary and given by the right person.
@@ -2304,9 +2304,9 @@ User-friendly description: Check whether consent is informed, voluntary and give
 
 Slug: evaluatePrivacyAsAnEthicalValue
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluatePrivacyAsAnEthicalValue.data.ts](../../data/skills/ethicsAndMoralReasoning/appliedEthics/skills/evaluatePrivacyAsAnEthicalValue.data.ts)
 
 Methodological description: Reason about informational control, trust, and harms of disclosure beyond compliance with a particular law.
 User-friendly description: Consider why privacy matters even beyond legal requirements.
@@ -2315,9 +2315,9 @@ User-friendly description: Consider why privacy matters even beyond legal requir
 
 Slug: evaluateDutiesTowardNonhumanAnimals
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateDutiesTowardNonhumanAnimals.data.ts](../../data/skills/ethicsAndMoralReasoning/appliedEthics/skills/evaluateDutiesTowardNonhumanAnimals.data.ts)
 
 Methodological description: Compare grounds for considering animal welfare or moral status in choices that affect sentient beings.
 User-friendly description: Examine moral reasons for considering the welfare of nonhuman animals.
@@ -2326,9 +2326,9 @@ User-friendly description: Examine moral reasons for considering the welfare of 
 
 Slug: evaluateEnvironmentalObligations
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateEnvironmentalObligations.data.ts](../../data/skills/ethicsAndMoralReasoning/appliedEthics/skills/evaluateEnvironmentalObligations.data.ts)
 
 Methodological description: Examine duties to ecosystems and future generations, including trade-offs between present and long-term interests.
 User-friendly description: Explore obligations to ecosystems and future generations.
@@ -2337,9 +2337,9 @@ User-friendly description: Explore obligations to ecosystems and future generati
 
 Slug: evaluateEthicalImplicationsOfAutomatedDecisions
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateEthicalImplicationsOfAutomatedDecisions.data.ts](../../data/skills/ethicsAndMoralReasoning/appliedEthics/skills/evaluateEthicalImplicationsOfAutomatedDecisions.data.ts)
 
 Methodological description: Assess responsibility, contestability, fairness, and potential harm when an algorithm influences consequential choices.
 User-friendly description: Evaluate fairness, accountability and harm in decisions influenced by algorithms.
@@ -2348,11 +2348,11 @@ User-friendly description: Evaluate fairness, accountability and harm in decisio
 
 Slug: socialAndPoliticalPhilosophy
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 6 · Skills: 23
 
-[Not implemented](#)
+[socialAndPoliticalPhilosophy.data.ts](../../data/skills/socialAndPoliticalPhilosophy/socialAndPoliticalPhilosophy.data.ts)
 
 Methodological description: Political and social philosophy examines the justification of collective rules, institutions, authority, rights, and distributions of benefits and burdens. It asks normative questions rather than describing the chronology of regimes or the mechanics of markets.
 User-friendly description: Examine the moral foundations of laws, rights, authority and shared social decisions.
@@ -2361,11 +2361,11 @@ User-friendly description: Examine the moral foundations of laws, rights, author
 
 Slug: justiceAndEquality
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[justiceAndEquality.data.ts](../../data/skills/socialAndPoliticalPhilosophy/justiceAndEquality/justiceAndEquality.data.ts)
 
 Methodological description: Claims of fairness depend on what is distributed, who qualifies for consideration, and which differences are morally relevant.
 User-friendly description: Explore how different concepts of fairness shape social arrangements.
@@ -2374,9 +2374,9 @@ User-friendly description: Explore how different concepts of fairness shape soci
 
 Slug: distinguishEqualityFromEquity
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishEqualityFromEquity.data.ts](../../data/skills/socialAndPoliticalPhilosophy/justiceAndEquality/skills/distinguishEqualityFromEquity.data.ts)
 
 Methodological description: Compare giving identical treatment with responding to relevant differences in needs or disadvantage, without assuming one always settles justice.
 User-friendly description: Compare treating people identically with accounting for relevant differences.
@@ -2385,9 +2385,9 @@ User-friendly description: Compare treating people identically with accounting f
 
 Slug: compareDistributivePrinciples
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[compareDistributivePrinciples.data.ts](../../data/skills/socialAndPoliticalPhilosophy/justiceAndEquality/skills/compareDistributivePrinciples.data.ts)
 
 Methodological description: Evaluate allocation by need, merit, equality, entitlement, or sufficiency and identify conflicts between principles.
 User-friendly description: Evaluate whether resources should be distributed by need, merit, rights or equality.
@@ -2396,9 +2396,9 @@ User-friendly description: Evaluate whether resources should be distributed by n
 
 Slug: analyzeProceduralFairness
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeProceduralFairness.data.ts](../../data/skills/socialAndPoliticalPhilosophy/justiceAndEquality/skills/analyzeProceduralFairness.data.ts)
 
 Methodological description: Assess the transparency, consistency, and opportunity to contest a decision independent of who benefits from its outcome.
 User-friendly description: Decide whether a decision-making process is fair even when its result is disputed.
@@ -2407,9 +2407,9 @@ User-friendly description: Decide whether a decision-making process is fair even
 
 Slug: evaluateAClaimAboutDiscrimination
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateAClaimAboutDiscrimination.data.ts](../../data/skills/socialAndPoliticalPhilosophy/justiceAndEquality/skills/evaluateAClaimAboutDiscrimination.data.ts)
 
 Methodological description: Examine whether a distinction in treatment is relevantly justified or imposes an unfair burden on a protected or vulnerable group.
 User-friendly description: Examine whether differences in treatment are justified or discriminatory.
@@ -2418,11 +2418,11 @@ User-friendly description: Examine whether differences in treatment are justifie
 
 Slug: rightsAndLiberty
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[rightsAndLiberty.data.ts](../../data/skills/socialAndPoliticalPhilosophy/rightsAndLiberty/rightsAndLiberty.data.ts)
 
 Methodological description: A right may protect a person's action, claim, or status and create obligations for others. Competing rights can require principled reconciliation.
 User-friendly description: Explore what people may claim as rights and what liberty involves.
@@ -2431,9 +2431,9 @@ User-friendly description: Explore what people may claim as rights and what libe
 
 Slug: distinguishRightsFromPrivileges
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishRightsFromPrivileges.data.ts](../../data/skills/socialAndPoliticalPhilosophy/rightsAndLiberty/skills/distinguishRightsFromPrivileges.data.ts)
 
 Methodological description: Identify whether a claim concerns an entitlement owed to a person or an advantage conditional on discretionary permission.
 User-friendly description: Distinguish a claim owed to a person from a privilege granted conditionally.
@@ -2442,9 +2442,9 @@ User-friendly description: Distinguish a claim owed to a person from a privilege
 
 Slug: distinguishNegativeAndPositiveLiberty
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishNegativeAndPositiveLiberty.data.ts](../../data/skills/socialAndPoliticalPhilosophy/rightsAndLiberty/skills/distinguishNegativeAndPositiveLiberty.data.ts)
 
 Methodological description: Contrast freedom from interference with capacities or opportunities to act, while recognizing debates about their relationship.
 User-friendly description: Compare freedom from interference with the ability to act effectively.
@@ -2453,9 +2453,9 @@ User-friendly description: Compare freedom from interference with the ability to
 
 Slug: analyzeAConflictBetweenRights
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeAConflictBetweenRights.data.ts](../../data/skills/socialAndPoliticalPhilosophy/rightsAndLiberty/skills/analyzeAConflictBetweenRights.data.ts)
 
 Methodological description: Identify whose claims compete and evaluate justified limits without assuming one right automatically cancels all others.
 User-friendly description: Consider how conflicts between important rights might be resolved.
@@ -2464,9 +2464,9 @@ User-friendly description: Consider how conflicts between important rights might
 
 Slug: explainFreedomOfConscience
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[explainFreedomOfConscience.data.ts](../../data/skills/socialAndPoliticalPhilosophy/rightsAndLiberty/skills/explainFreedomOfConscience.data.ts)
 
 Methodological description: Assess why protecting personal belief and nonbelief may matter independently of agreement with any particular worldview.
 User-friendly description: Explore why people should be free to hold religious or nonreligious convictions.
@@ -2475,11 +2475,11 @@ User-friendly description: Explore why people should be free to hold religious o
 
 Slug: politicalAuthority
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[politicalAuthority.data.ts](../../data/skills/socialAndPoliticalPhilosophy/politicalAuthority/politicalAuthority.data.ts)
 
 Methodological description: Institutions exercise collective power that requires justification. Political legitimacy, coercion, and obedience are distinct concepts.
 User-friendly description: Examine what makes political authority legitimate rather than merely powerful.
@@ -2488,9 +2488,9 @@ User-friendly description: Examine what makes political authority legitimate rat
 
 Slug: evaluateTheLegitimacyOfPoliticalAuthority
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateTheLegitimacyOfPoliticalAuthority.data.ts](../../data/skills/socialAndPoliticalPhilosophy/politicalAuthority/skills/evaluateTheLegitimacyOfPoliticalAuthority.data.ts)
 
 Methodological description: Examine reasons offered to justify the right to make binding public decisions, not merely whether an institution controls force.
 User-friendly description: Compare arguments that justify government through consent, security or cooperation.
@@ -2499,9 +2499,9 @@ User-friendly description: Compare arguments that justify government through con
 
 Slug: compareSocialContractArguments
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[compareSocialContractArguments.data.ts](../../data/skills/socialAndPoliticalPhilosophy/politicalAuthority/skills/compareSocialContractArguments.data.ts)
 
 Methodological description: Explain how alternative accounts use consent, cooperation, security, or fairness to justify political obligations.
 User-friendly description: Evaluate the reasons offered for public institutions' authority to make rules.
@@ -2510,9 +2510,9 @@ User-friendly description: Evaluate the reasons offered for public institutions'
 
 Slug: evaluateTheLimitsOfStateCoercion
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateTheLimitsOfStateCoercion.data.ts](../../data/skills/socialAndPoliticalPhilosophy/politicalAuthority/skills/evaluateTheLimitsOfStateCoercion.data.ts)
 
 Methodological description: Assess competing grounds for restricting individual actions, such as preventing harm or protecting rights.
 User-friendly description: Consider when restrictions on personal freedom might be justified.
@@ -2521,9 +2521,9 @@ User-friendly description: Consider when restrictions on personal freedom might 
 
 Slug: analyzeCivilDisobedience
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeCivilDisobedience.data.ts](../../data/skills/socialAndPoliticalPhilosophy/politicalAuthority/skills/analyzeCivilDisobedience.data.ts)
 
 Methodological description: Consider the moral conditions, aims, and limits of nonviolent principled lawbreaking without equating legality with morality.
 User-friendly description: Discuss moral arguments about principled, nonviolent disobedience of laws.
@@ -2532,11 +2532,11 @@ User-friendly description: Discuss moral arguments about principled, nonviolent 
 
 Slug: philosophyOfLaw
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[philosophyOfLaw.data.ts](../../data/skills/socialAndPoliticalPhilosophy/philosophyOfLaw/philosophyOfLaw.data.ts)
 
 Methodological description: Jurisprudence considers what makes a norm legally valid, why legal institutions claim authority, and how rules should be interpreted. These questions are not limited to any country's current statutes or to political legitimacy in general.
 User-friendly description: Explore what makes legal rules authoritative and how they should be interpreted.
@@ -2545,9 +2545,9 @@ User-friendly description: Explore what makes legal rules authoritative and how 
 
 Slug: analyzeLegalPositivism
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeLegalPositivism.data.ts](../../data/skills/socialAndPoliticalPhilosophy/philosophyOfLaw/skills/analyzeLegalPositivism.data.ts)
 
 Methodological description: Evaluate accounts that identify valid law through social sources or institutional practices rather than making moral correctness a necessary condition of legal validity.
 User-friendly description: Examine the view that legal validity depends on social sources rather than moral merit.
@@ -2556,9 +2556,9 @@ User-friendly description: Examine the view that legal validity depends on socia
 
 Slug: analyzeNaturalLawTheory
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeNaturalLawTheory.data.ts](../../data/skills/socialAndPoliticalPhilosophy/philosophyOfLaw/skills/analyzeNaturalLawTheory.data.ts)
 
 Methodological description: Evaluate theories that understand legal authority or validity as importantly connected to morality, distinguishing different versions of this connection.
 User-friendly description: Compare views that connect the authority of law with moral principles.
@@ -2567,9 +2567,9 @@ User-friendly description: Compare views that connect the authority of law with 
 
 Slug: evaluateTheoriesOfLegalInterpretation
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateTheoriesOfLegalInterpretation.data.ts](../../data/skills/socialAndPoliticalPhilosophy/philosophyOfLaw/skills/evaluateTheoriesOfLegalInterpretation.data.ts)
 
 Methodological description: Assess how text, legislative purpose, precedent, and institutional role support competing interpretations of a legal provision without deciding a real legal dispute.
 User-friendly description: Consider how text, purpose and precedent affect interpretations of a legal rule.
@@ -2578,9 +2578,9 @@ User-friendly description: Consider how text, purpose and precedent affect inter
 
 Slug: analyzeTheRuleOfLaw
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeTheRuleOfLaw.data.ts](../../data/skills/socialAndPoliticalPhilosophy/philosophyOfLaw/skills/analyzeTheRuleOfLaw.data.ts)
 
 Methodological description: Examine principles such as generality, accessibility, prospectivity, consistent application, and constraints on arbitrary power as grounds for evaluating a legal order.
 User-friendly description: Explore principles that keep laws public, predictable and free from arbitrary power.
@@ -2589,11 +2589,11 @@ User-friendly description: Explore principles that keep laws public, predictable
 
 Slug: technologyAndSociety
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 3
 
-[Not implemented](#)
+[technologyAndSociety.data.ts](../../data/skills/socialAndPoliticalPhilosophy/technologyAndSociety/technologyAndSociety.data.ts)
 
 Methodological description: Technological artifacts and institutions shape the practical conditions of action, social change, and control. Philosophical analysis evaluates these mediation and agency claims rather than measuring product usage or engineering device performance.
 User-friendly description: Learn to analyze how technologies affect human action and society.
@@ -2602,9 +2602,9 @@ User-friendly description: Learn to analyze how technologies affect human action
 
 Slug: analyzeTechnologicalMediation
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeTechnologicalMediation.data.ts](../../data/skills/socialAndPoliticalPhilosophy/technologyAndSociety/skills/analyzeTechnologicalMediation.data.ts)
 
 Methodological description: Examine how a technological artifact changes the available actions, relationships, or choices through which people engage the world, without reducing the issue to the device's technical operation.
 User-friendly description: Examine how technology changes the choices and relationships available to people.
@@ -2613,9 +2613,9 @@ User-friendly description: Examine how technology changes the choices and relati
 
 Slug: evaluateTechnologicalDeterminism
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateTechnologicalDeterminism.data.ts](../../data/skills/socialAndPoliticalPhilosophy/technologyAndSociety/skills/evaluateTechnologicalDeterminism.data.ts)
 
 Methodological description: Assess arguments that technological development determines social arrangements, including objections based on political choice, design, and historical contingency.
 User-friendly description: Question whether technological change alone determines how societies develop.
@@ -2624,9 +2624,9 @@ User-friendly description: Question whether technological change alone determine
 
 Slug: analyzeHumanAutonomyInTechnologicalSystems
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeHumanAutonomyInTechnologicalSystems.data.ts](../../data/skills/socialAndPoliticalPhilosophy/technologyAndSociety/skills/analyzeHumanAutonomyInTechnologicalSystems.data.ts)
 
 Methodological description: Evaluate when reliance on automated or networked systems enhances or constrains meaningful choice and control, separate from the narrower ethics of individual algorithmic decisions.
 User-friendly description: Explore when technology increases or reduces a person's control over their decisions.
@@ -2635,11 +2635,11 @@ User-friendly description: Explore when technology increases or reduces a person
 
 Slug: publicReasonAndCivicLife
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[publicReasonAndCivicLife.data.ts](../../data/skills/socialAndPoliticalPhilosophy/publicReasonAndCivicLife/publicReasonAndCivicLife.data.ts)
 
 Methodological description: People with incompatible values must still make shared decisions. Philosophical inquiry examines how disagreements can be handled under pluralism and institutional accountability.
 User-friendly description: Discover how people with different values can justify decisions affecting everyone.
@@ -2648,9 +2648,9 @@ User-friendly description: Discover how people with different values can justify
 
 Slug: distinguishPublicReasonsFromPrivatePreferences
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishPublicReasonsFromPrivatePreferences.data.ts](../../data/skills/socialAndPoliticalPhilosophy/publicReasonAndCivicLife/skills/distinguishPublicReasonsFromPrivatePreferences.data.ts)
 
 Methodological description: Identify justifications aimed at principles others can evaluate, rather than asserting that a personal desire must settle collective policy.
 User-friendly description: Distinguish public reasons from preferences that others have no reason to share.
@@ -2659,9 +2659,9 @@ User-friendly description: Distinguish public reasons from preferences that othe
 
 Slug: analyzeDemocraticLegitimacy
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeDemocraticLegitimacy.data.ts](../../data/skills/socialAndPoliticalPhilosophy/publicReasonAndCivicLife/skills/analyzeDemocraticLegitimacy.data.ts)
 
 Methodological description: Evaluate the roles of participation, representation, minority protections, and accountability in justifying collective decisions.
 User-friendly description: Consider how participation, representation and accountability justify democracy.
@@ -2670,9 +2670,9 @@ User-friendly description: Consider how participation, representation and accoun
 
 Slug: assessAnArgumentAboutTheCommonGood
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[assessAnArgumentAboutTheCommonGood.data.ts](../../data/skills/socialAndPoliticalPhilosophy/publicReasonAndCivicLife/skills/assessAnArgumentAboutTheCommonGood.data.ts)
 
 Methodological description: Examine who benefits, who bears costs, and whether a proposed collective interest disregards legitimate dissent.
 User-friendly description: Examine whose interests a claim about the common good represents.
@@ -2681,9 +2681,9 @@ User-friendly description: Examine whose interests a claim about the common good
 
 Slug: evaluateCompetingViewsOfPoliticalObligation
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateCompetingViewsOfPoliticalObligation.data.ts](../../data/skills/socialAndPoliticalPhilosophy/publicReasonAndCivicLife/skills/evaluateCompetingViewsOfPoliticalObligation.data.ts)
 
 Methodological description: Consider when citizens may have moral reasons to obey, criticize, or resist laws irrespective of mere fear of punishment.
 User-friendly description: Explore reasons people might follow, challenge or resist political laws.
@@ -2692,11 +2692,11 @@ User-friendly description: Explore reasons people might follow, challenge or res
 
 Slug: philosophyOfLanguage
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 3 · Skills: 10
 
-[Not implemented](#)
+[philosophyOfLanguage.data.ts](../../data/skills/philosophyOfLanguage/philosophyOfLanguage.data.ts)
 
 Methodological description: Language is examined as a system for conveying meaning, referring to the world, performing actions, and shaping interpretation. Grammar instruction and literary composition remain primarily in Language and Literature.
 User-friendly description: Explore how words convey meaning, refer to things and shape understanding.
@@ -2705,11 +2705,11 @@ User-friendly description: Explore how words convey meaning, refer to things and
 
 Slug: meaningAndReference
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 3
 
-[Not implemented](#)
+[meaningAndReference.data.ts](../../data/skills/philosophyOfLanguage/meaningAndReference/meaningAndReference.data.ts)
 
 Methodological description: Words and sentences can express meanings beyond identifying objects; context, concepts, and the distinction between expression and referent affect analysis.
 User-friendly description: Discover the difference between a word, its meaning and what it refers to.
@@ -2718,9 +2718,9 @@ User-friendly description: Discover the difference between a word, its meaning a
 
 Slug: distinguishAWordFromItsReferent
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishAWordFromItsReferent.data.ts](../../data/skills/philosophyOfLanguage/meaningAndReference/skills/distinguishAWordFromItsReferent.data.ts)
 
 Methodological description: Explain why a linguistic expression and the person, object, or kind it denotes are not identical.
 User-friendly description: Distinguish a word from the thing or person it names.
@@ -2729,9 +2729,9 @@ User-friendly description: Distinguish a word from the thing or person it names.
 
 Slug: distinguishSenseFromReference
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishSenseFromReference.data.ts](../../data/skills/philosophyOfLanguage/meaningAndReference/skills/distinguishSenseFromReference.data.ts)
 
 Methodological description: Analyze how different expressions can pick out the same entity while presenting it in different ways.
 User-friendly description: Recognize how different expressions can refer to the same entity in different ways.
@@ -2740,9 +2740,9 @@ User-friendly description: Recognize how different expressions can refer to the 
 
 Slug: identifySemanticAmbiguity
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[identifySemanticAmbiguity.data.ts](../../data/skills/philosophyOfLanguage/meaningAndReference/skills/identifySemanticAmbiguity.data.ts)
 
 Methodological description: Recognize when a sentence admits multiple readings due to a word or syntactic structure rather than simply lacking evidence.
 User-friendly description: Find sentences with more than one possible meaning.
@@ -2751,11 +2751,11 @@ User-friendly description: Find sentences with more than one possible meaning.
 
 Slug: communicationAndInterpretation
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 3
 
-[Not implemented](#)
+[communicationAndInterpretation.data.ts](../../data/skills/philosophyOfLanguage/communicationAndInterpretation/communicationAndInterpretation.data.ts)
 
 Methodological description: What a speaker says can differ from what a speaker conveys or does by saying it. Interpretation must take context and plausible alternatives into account.
 User-friendly description: Learn how context affects what people say and communicate.
@@ -2764,9 +2764,9 @@ User-friendly description: Learn how context affects what people say and communi
 
 Slug: distinguishLiteralMeaningFromImplication
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishLiteralMeaningFromImplication.data.ts](../../data/skills/philosophyOfLanguage/communicationAndInterpretation/skills/distinguishLiteralMeaningFromImplication.data.ts)
 
 Methodological description: Identify content explicitly expressed versus a reasonable conversational inference that could be cancelled or revised.
 User-friendly description: Distinguish the literal meaning of a statement from what it suggests.
@@ -2775,9 +2775,9 @@ User-friendly description: Distinguish the literal meaning of a statement from w
 
 Slug: identifyASpeechAct
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[identifyASpeechAct.data.ts](../../data/skills/philosophyOfLanguage/communicationAndInterpretation/skills/identifyASpeechAct.data.ts)
 
 Methodological description: Recognize how an utterance functions as a promise, request, warning, or assertion beyond its sentence structure.
 User-friendly description: Recognize when saying something performs an action such as promising or requesting.
@@ -2786,9 +2786,9 @@ User-friendly description: Recognize when saying something performs an action su
 
 Slug: evaluateContextualInterpretations
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateContextualInterpretations.data.ts](../../data/skills/philosophyOfLanguage/communicationAndInterpretation/skills/evaluateContextualInterpretations.data.ts)
 
 Methodological description: Compare readings of an utterance using the speaker's context, conventions, and available evidence.
 User-friendly description: Choose between interpretations by considering context and available evidence.
@@ -2797,11 +2797,11 @@ User-friendly description: Choose between interpretations by considering context
 
 Slug: languageTruthAndPower
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[languageTruthAndPower.data.ts](../../data/skills/philosophyOfLanguage/languageTruthAndPower/languageTruthAndPower.data.ts)
 
 Methodological description: Descriptive categories, framing, and public speech influence which interpretations appear available. Evaluating their justification differs from explaining psychological persuasion.
 User-friendly description: Explore how language expresses judgments and shapes public discussion.
@@ -2810,9 +2810,9 @@ User-friendly description: Explore how language expresses judgments and shapes p
 
 Slug: distinguishDescriptiveFromEvaluativeLanguage
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishDescriptiveFromEvaluativeLanguage.data.ts](../../data/skills/philosophyOfLanguage/languageTruthAndPower/skills/distinguishDescriptiveFromEvaluativeLanguage.data.ts)
 
 Methodological description: Identify how apparently factual wording can also express approval, disapproval, or a contested standard.
 User-friendly description: Recognize when seemingly factual wording also expresses an evaluation.
@@ -2821,9 +2821,9 @@ User-friendly description: Recognize when seemingly factual wording also express
 
 Slug: analyzeAFramingChoice
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeAFramingChoice.data.ts](../../data/skills/philosophyOfLanguage/languageTruthAndPower/skills/analyzeAFramingChoice.data.ts)
 
 Methodological description: Explain how alternate labels foreground different aspects of one issue and test what evidence each framing leaves out.
 User-friendly description: Compare labels that highlight different aspects of the same issue.
@@ -2832,9 +2832,9 @@ User-friendly description: Compare labels that highlight different aspects of th
 
 Slug: evaluateAClaimAboutLinguisticRepresentation
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateAClaimAboutLinguisticRepresentation.data.ts](../../data/skills/philosophyOfLanguage/languageTruthAndPower/skills/evaluateAClaimAboutLinguisticRepresentation.data.ts)
 
 Methodological description: Assess whether a label fairly describes people or phenomena without equating linguistic conventions with objective essences.
 User-friendly description: Consider whether descriptions of people and things are fair and well supported.
@@ -2843,9 +2843,9 @@ User-friendly description: Consider whether descriptions of people and things ar
 
 Slug: analyzeATruthConditionalClaim
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeATruthConditionalClaim.data.ts](../../data/skills/philosophyOfLanguage/languageTruthAndPower/skills/analyzeATruthConditionalClaim.data.ts)
 
 Methodological description: Identify circumstances under which an assertion would count as true or false while recognizing context-dependent expressions.
 User-friendly description: Identify which circumstances would make a statement true or false.
@@ -2854,11 +2854,11 @@ User-friendly description: Identify which circumstances would make a statement t
 
 Slug: aestheticsAndPhilosophyOfArt
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 3 · Skills: 11
 
-[Not implemented](#)
+[aestheticsAndPhilosophyOfArt.data.ts](../../data/skills/aestheticsAndPhilosophyOfArt/aestheticsAndPhilosophyOfArt.data.ts)
 
 Methodological description: Aesthetic inquiry asks why experiences, works, and environments are judged beautiful, expressive, meaningful, or artistically valuable. Its focus is justification and concepts of value, not techniques of making art.
 User-friendly description: Explore why people consider experiences and artworks beautiful or valuable.
@@ -2867,11 +2867,11 @@ User-friendly description: Explore why people consider experiences and artworks 
 
 Slug: aestheticJudgment
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[aestheticJudgment.data.ts](../../data/skills/aestheticsAndPhilosophyOfArt/aestheticJudgment/aestheticJudgment.data.ts)
 
 Methodological description: An aesthetic evaluation can invoke perceptual qualities, interpretation, tradition, or standards that other observers may dispute.
 User-friendly description: Discover how aesthetic opinions can be supported by reasons.
@@ -2880,9 +2880,9 @@ User-friendly description: Discover how aesthetic opinions can be supported by r
 
 Slug: distinguishAestheticFromInstrumentalValue
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishAestheticFromInstrumentalValue.data.ts](../../data/skills/aestheticsAndPhilosophyOfArt/aestheticJudgment/skills/distinguishAestheticFromInstrumentalValue.data.ts)
 
 Methodological description: Explain why something may be appreciated for its appearance or experience rather than its practical usefulness.
 User-friendly description: Distinguish an object's beauty or expressive value from its practical use.
@@ -2891,9 +2891,9 @@ User-friendly description: Distinguish an object's beauty or expressive value fr
 
 Slug: justifyAnAestheticJudgment
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[justifyAnAestheticJudgment.data.ts](../../data/skills/aestheticsAndPhilosophyOfArt/aestheticJudgment/skills/justifyAnAestheticJudgment.data.ts)
 
 Methodological description: Support an appraisal with relevant features and criteria rather than simply reporting that one likes or dislikes an object.
 User-friendly description: Explain an aesthetic evaluation using relevant features instead of personal taste alone.
@@ -2902,9 +2902,9 @@ User-friendly description: Explain an aesthetic evaluation using relevant featur
 
 Slug: compareObjectiveAndSubjectiveAccountsOfBeauty
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[compareObjectiveAndSubjectiveAccountsOfBeauty.data.ts](../../data/skills/aestheticsAndPhilosophyOfArt/aestheticJudgment/skills/compareObjectiveAndSubjectiveAccountsOfBeauty.data.ts)
 
 Methodological description: Examine whether aesthetic assessments can be reasoned about beyond individual preference without assuming universal consensus.
 User-friendly description: Compare views about whether beauty can be judged beyond individual preference.
@@ -2913,9 +2913,9 @@ User-friendly description: Compare views about whether beauty can be judged beyo
 
 Slug: analyzeTheRoleOfContextInAestheticExperience
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeTheRoleOfContextInAestheticExperience.data.ts](../../data/skills/aestheticsAndPhilosophyOfArt/aestheticJudgment/skills/analyzeTheRoleOfContextInAestheticExperience.data.ts)
 
 Methodological description: Explain how setting, background knowledge, and cultural conventions can alter interpretation while the object remains unchanged.
 User-friendly description: Explore how context or background knowledge changes an aesthetic experience.
@@ -2924,11 +2924,11 @@ User-friendly description: Explore how context or background knowledge changes a
 
 Slug: artAndInterpretation
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[artAndInterpretation.data.ts](../../data/skills/aestheticsAndPhilosophyOfArt/artAndInterpretation/artAndInterpretation.data.ts)
 
 Methodological description: A work can bear meanings and values that are not reducible to the creator's stated intent or a viewer's immediate reaction.
 User-friendly description: Consider how artworks can communicate meanings beyond what their makers intended.
@@ -2937,9 +2937,9 @@ User-friendly description: Consider how artworks can communicate meanings beyond
 
 Slug: evaluateADefinitionOfArt
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateADefinitionOfArt.data.ts](../../data/skills/aestheticsAndPhilosophyOfArt/artAndInterpretation/skills/evaluateADefinitionOfArt.data.ts)
 
 Methodological description: Test a proposed criterion against borderline cases, changing practices, and works that challenge established categories.
 User-friendly description: Test definitions of art against unusual or borderline examples.
@@ -2948,9 +2948,9 @@ User-friendly description: Test definitions of art against unusual or borderline
 
 Slug: distinguishArtisticIntentionFromInterpretation
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishArtisticIntentionFromInterpretation.data.ts](../../data/skills/aestheticsAndPhilosophyOfArt/artAndInterpretation/skills/distinguishArtisticIntentionFromInterpretation.data.ts)
 
 Methodological description: Assess what a creator reportedly intended separately from meanings supported by the work and its reception.
 User-friendly description: Separate an artist's intentions from interpretations supported by the work.
@@ -2959,9 +2959,9 @@ User-friendly description: Separate an artist's intentions from interpretations 
 
 Slug: compareInterpretationsOfAnArtwork
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[compareInterpretationsOfAnArtwork.data.ts](../../data/skills/aestheticsAndPhilosophyOfArt/artAndInterpretation/skills/compareInterpretationsOfAnArtwork.data.ts)
 
 Methodological description: Evaluate rival readings by their attention to the work's features and context rather than assuming every reading is equally supported.
 User-friendly description: Compare interpretations of an artwork using evidence from its features and history.
@@ -2970,9 +2970,9 @@ User-friendly description: Compare interpretations of an artwork using evidence 
 
 Slug: analyzeTheEthicalEvaluationOfArt
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeTheEthicalEvaluationOfArt.data.ts](../../data/skills/aestheticsAndPhilosophyOfArt/artAndInterpretation/skills/analyzeTheEthicalEvaluationOfArt.data.ts)
 
 Methodological description: Explore whether and how moral concerns about content, production, or reception bear on artistic appraisal.
 User-friendly description: Examine whether moral concerns should influence artistic judgment.
@@ -2981,11 +2981,11 @@ User-friendly description: Examine whether moral concerns should influence artis
 
 Slug: valueAndTaste
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 3
 
-[Not implemented](#)
+[valueAndTaste.data.ts](../../data/skills/aestheticsAndPhilosophyOfArt/valueAndTaste/valueAndTaste.data.ts)
 
 Methodological description: Debates about taste raise questions about expertise, social convention, and the relation of appreciation to human flourishing.
 User-friendly description: Explore how personal taste, expertise and cultural traditions influence appreciation.
@@ -2994,9 +2994,9 @@ User-friendly description: Explore how personal taste, expertise and cultural tr
 
 Slug: distinguishTasteFromAnArguedEvaluation
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[distinguishTasteFromAnArguedEvaluation.data.ts](../../data/skills/aestheticsAndPhilosophyOfArt/valueAndTaste/skills/distinguishTasteFromAnArguedEvaluation.data.ts)
 
 Methodological description: Recognize that a personal reaction and a defensible public judgment may overlap but require different kinds of support.
 User-friendly description: Recognize the difference between liking something and defending an evaluation of it.
@@ -3005,9 +3005,9 @@ User-friendly description: Recognize the difference between liking something and
 
 Slug: evaluateTheRoleOfExpertiseInAestheticJudgment
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateTheRoleOfExpertiseInAestheticJudgment.data.ts](../../data/skills/aestheticsAndPhilosophyOfArt/valueAndTaste/skills/evaluateTheRoleOfExpertiseInAestheticJudgment.data.ts)
 
 Methodological description: Consider how practiced perception and historical knowledge may inform an assessment without making expert preferences infallible.
 User-friendly description: Consider how expertise informs judgments without making experts infallible.
@@ -3016,9 +3016,9 @@ User-friendly description: Consider how expertise informs judgments without maki
 
 Slug: analyzeAestheticPluralism
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeAestheticPluralism.data.ts](../../data/skills/aestheticsAndPhilosophyOfArt/valueAndTaste/skills/analyzeAestheticPluralism.data.ts)
 
 Methodological description: Examine how multiple traditions can sustain meaningful standards without requiring one global ranking of their forms.
 User-friendly description: Explore how different artistic traditions can have meaningful standards of value.
@@ -3027,11 +3027,11 @@ User-friendly description: Explore how different artistic traditions can have me
 
 Slug: historyAndTraditionsOfPhilosophy
 Action: create
-Status: pending
+Status: implemented
 
 Groups: 3 · Skills: 15
 
-[Not implemented](#)
+[historyAndTraditionsOfPhilosophy.data.ts](../../data/skills/historyAndTraditionsOfPhilosophy/historyAndTraditionsOfPhilosophy.data.ts)
 
 Methodological description: Historically situated philosophical arguments develop through schools, intellectual movements, and traditions across cultures. Interpretation requires understanding both what a thinker argued and the debate that shaped the argument, without privileging one lineage as philosophy's default.
 User-friendly description: Explore philosophical ideas across cultures and historical periods through their arguments.
@@ -3040,11 +3040,11 @@ User-friendly description: Explore philosophical ideas across cultures and histo
 
 Slug: readingPhilosophicalWorks
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 4
 
-[Not implemented](#)
+[readingPhilosophicalWorks.data.ts](../../data/skills/historyAndTraditionsOfPhilosophy/readingPhilosophicalWorks/readingPhilosophicalWorks.data.ts)
 
 Methodological description: Texts require interpreting claims, their argumentative context, and the questions the author sought to answer; historical wording cannot always be mapped directly to modern categories.
 User-friendly description: Learn to read philosophical works with attention to their questions and context.
@@ -3053,9 +3053,9 @@ User-friendly description: Learn to read philosophical works with attention to t
 
 Slug: identifyTheCentralProblemInAPhilosophicalText
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[identifyTheCentralProblemInAPhilosophicalText.data.ts](../../data/skills/historyAndTraditionsOfPhilosophy/readingPhilosophicalWorks/skills/identifyTheCentralProblemInAPhilosophicalText.data.ts)
 
 Methodological description: Determine which issue motivates an argument rather than treating every illustrative passage as the main thesis.
 User-friendly description: Identify the main problem a philosopher is trying to address.
@@ -3064,9 +3064,9 @@ User-friendly description: Identify the main problem a philosopher is trying to 
 
 Slug: reconstructAHistoricalPhilosophicalArgument
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[reconstructAHistoricalPhilosophicalArgument.data.ts](../../data/skills/historyAndTraditionsOfPhilosophy/readingPhilosophicalWorks/skills/reconstructAHistoricalPhilosophicalArgument.data.ts)
 
 Methodological description: Extract claims and reasons from a source while distinguishing a philosopher's stated position from later summaries.
 User-friendly description: Reconstruct a historical argument using what the philosopher actually wrote.
@@ -3075,9 +3075,9 @@ User-friendly description: Reconstruct a historical argument using what the phil
 
 Slug: interpretAPhilosopherInHistoricalContext
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[interpretAPhilosopherInHistoricalContext.data.ts](../../data/skills/historyAndTraditionsOfPhilosophy/readingPhilosophicalWorks/skills/interpretAPhilosopherInHistoricalContext.data.ts)
 
 Methodological description: Use contemporaneous debates and available concepts to avoid attributing later assumptions to an earlier author.
 User-friendly description: Interpret philosophical views in light of the debates of their own time.
@@ -3086,9 +3086,9 @@ User-friendly description: Interpret philosophical views in light of the debates
 
 Slug: evaluateAPhilosophicalTextCritically
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[evaluateAPhilosophicalTextCritically.data.ts](../../data/skills/historyAndTraditionsOfPhilosophy/readingPhilosophicalWorks/skills/evaluateAPhilosophicalTextCritically.data.ts)
 
 Methodological description: Assess reasons offered in a source rather than accepting or rejecting a view solely because of the author's reputation.
 User-friendly description: Evaluate the reasons in a classic philosophical text, not just its author's reputation.
@@ -3097,11 +3097,11 @@ User-friendly description: Evaluate the reasons in a classic philosophical text,
 
 Slug: schoolsAndMovements
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 3
 
-[Not implemented](#)
+[schoolsAndMovements.data.ts](../../data/skills/historyAndTraditionsOfPhilosophy/schoolsAndMovements/schoolsAndMovements.data.ts)
 
 Methodological description: Philosophical movements and schools arise around distinctive approaches to knowledge, reason, liberty, and existence; their boundaries and internal disagreements cannot be reduced to dates alone.
 User-friendly description: Discover how different philosophical schools approach shared questions.
@@ -3110,9 +3110,9 @@ User-friendly description: Discover how different philosophical schools approach
 
 Slug: compareMajorModernEpistemologicalApproaches
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[compareMajorModernEpistemologicalApproaches.data.ts](../../data/skills/historyAndTraditionsOfPhilosophy/schoolsAndMovements/skills/compareMajorModernEpistemologicalApproaches.data.ts)
 
 Methodological description: Explain the distinct emphases of rationalist, empiricist, and critical traditions through representative arguments.
 User-friendly description: Compare how rationalism, empiricism and critical philosophy approach knowledge.
@@ -3121,9 +3121,9 @@ User-friendly description: Compare how rationalism, empiricism and critical phil
 
 Slug: analyzeAnEnlightenmentPhilosophicalArgument
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeAnEnlightenmentPhilosophicalArgument.data.ts](../../data/skills/historyAndTraditionsOfPhilosophy/schoolsAndMovements/skills/analyzeAnEnlightenmentPhilosophicalArgument.data.ts)
 
 Methodological description: Place a claim about reason, liberty, or authority in its intellectual context while acknowledging diverse and conflicting Enlightenment positions.
 User-friendly description: Explore Enlightenment arguments about reason, authority and freedom.
@@ -3132,9 +3132,9 @@ User-friendly description: Explore Enlightenment arguments about reason, authori
 
 Slug: compareExistentialistAndAnalyticApproachesToAProblem
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[compareExistentialistAndAnalyticApproachesToAProblem.data.ts](../../data/skills/historyAndTraditionsOfPhilosophy/schoolsAndMovements/skills/compareExistentialistAndAnalyticApproachesToAProblem.data.ts)
 
 Methodological description: Identify differences in methods and questions without claiming that either broad family has one uniform answer.
 User-friendly description: Compare existentialist and analytic approaches without oversimplifying either tradition.
@@ -3143,11 +3143,11 @@ User-friendly description: Compare existentialist and analytic approaches withou
 
 Slug: philosophicalTraditions
 Action: create
-Status: pending
+Status: implemented
 
 Skills: 8
 
-[Not implemented](#)
+[philosophicalTraditions.data.ts](../../data/skills/historyAndTraditionsOfPhilosophy/philosophicalTraditions/philosophicalTraditions.data.ts)
 
 Methodological description: Intellectual traditions developed across many cultures through original arguments and sustained exchanges. Greek, Indian, Chinese, Islamic, African, Latin American, and particular Indigenous lineages are examined as philosophical sources in their own right, without treating a region as a single doctrine.
 User-friendly description: Examine philosophical arguments developed in many distinct cultural traditions.
@@ -3156,9 +3156,9 @@ User-friendly description: Examine philosophical arguments developed in many dis
 
 Slug: compareClassicalGreekPhilosophicalApproaches
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[compareClassicalGreekPhilosophicalApproaches.data.ts](../../data/skills/historyAndTraditionsOfPhilosophy/philosophicalTraditions/skills/compareClassicalGreekPhilosophicalApproaches.data.ts)
 
 Methodological description: Contrast representative methods or commitments in Socratic, Platonic, and Aristotelian arguments without collapsing them into one doctrine.
 User-friendly description: Compare ideas associated with Socrates, Plato and Aristotle.
@@ -3167,9 +3167,9 @@ User-friendly description: Compare ideas associated with Socrates, Plato and Ari
 
 Slug: analyzeAPhilosophicalArgumentFromAnIndianTradition
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeAPhilosophicalArgumentFromAnIndianTradition.data.ts](../../data/skills/historyAndTraditionsOfPhilosophy/philosophicalTraditions/skills/analyzeAPhilosophicalArgumentFromAnIndianTradition.data.ts)
 
 Methodological description: Identify claims and reasons in a specific Indian philosophical school while preserving its distinctive terms and internal disagreements.
 User-friendly description: Explore an argument from a specific Indian philosophical school.
@@ -3178,9 +3178,9 @@ User-friendly description: Explore an argument from a specific Indian philosophi
 
 Slug: analyzeAPhilosophicalArgumentFromAChineseTradition
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeAPhilosophicalArgumentFromAChineseTradition.data.ts](../../data/skills/historyAndTraditionsOfPhilosophy/philosophicalTraditions/skills/analyzeAPhilosophicalArgumentFromAChineseTradition.data.ts)
 
 Methodological description: Interpret a position in a specific Chinese philosophical lineage, such as Confucian or Daoist thinking, without conflating them.
 User-friendly description: Interpret a philosophical claim from a Chinese tradition in its proper context.
@@ -3189,9 +3189,9 @@ User-friendly description: Interpret a philosophical claim from a Chinese tradit
 
 Slug: analyzeAPhilosophicalArgumentFromAnIslamicTradition
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeAPhilosophicalArgumentFromAnIslamicTradition.data.ts](../../data/skills/historyAndTraditionsOfPhilosophy/philosophicalTraditions/skills/analyzeAPhilosophicalArgumentFromAnIslamicTradition.data.ts)
 
 Methodological description: Explain a selected debate in Islamic philosophy using its intellectual context rather than assuming theology and philosophy are identical.
 User-friendly description: Examine a debate within Islamic philosophy using its historical setting.
@@ -3200,9 +3200,9 @@ User-friendly description: Examine a debate within Islamic philosophy using its 
 
 Slug: analyzeAPhilosophicalArgumentFromAnAfricanTradition
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeAPhilosophicalArgumentFromAnAfricanTradition.data.ts](../../data/skills/historyAndTraditionsOfPhilosophy/philosophicalTraditions/skills/analyzeAPhilosophicalArgumentFromAnAfricanTradition.data.ts)
 
 Methodological description: Examine a representative argument concerning persons, community, knowledge, or values while avoiding claims that Africa has a single philosophy.
 User-friendly description: Analyze a philosophical argument from a particular African tradition.
@@ -3211,9 +3211,9 @@ User-friendly description: Analyze a philosophical argument from a particular Af
 
 Slug: analyzeAPhilosophicalArgumentFromALatinAmericanTradition
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeAPhilosophicalArgumentFromALatinAmericanTradition.data.ts](../../data/skills/historyAndTraditionsOfPhilosophy/philosophicalTraditions/skills/analyzeAPhilosophicalArgumentFromALatinAmericanTradition.data.ts)
 
 Methodological description: Reconstruct an argument from a specific Latin American current, such as liberation or decolonial philosophy, in its intellectual and social context without reducing the region to one doctrine.
 User-friendly description: Explore Latin American philosophical arguments in their social and intellectual context.
@@ -3222,9 +3222,9 @@ User-friendly description: Explore Latin American philosophical arguments in the
 
 Slug: analyzeAPhilosophicalArgumentFromAnIndigenousTradition
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[analyzeAPhilosophicalArgumentFromAnIndigenousTradition.data.ts](../../data/skills/historyAndTraditionsOfPhilosophy/philosophicalTraditions/skills/analyzeAPhilosophicalArgumentFromAnIndigenousTradition.data.ts)
 
 Methodological description: Interpret philosophical claims from a particular Indigenous people or intellectual tradition on their own conceptual terms, recognizing differences among communities and avoiding a generic 'Indigenous worldview'.
 User-friendly description: Consider philosophical ideas from a particular Indigenous tradition on its own terms.
@@ -3233,9 +3233,9 @@ User-friendly description: Consider philosophical ideas from a particular Indige
 
 Slug: comparePositionsAcrossPhilosophicalTraditions
 Action: create
-Status: pending
+Status: implemented
 
-[Not implemented](#)
+[comparePositionsAcrossPhilosophicalTraditions.data.ts](../../data/skills/historyAndTraditionsOfPhilosophy/philosophicalTraditions/skills/comparePositionsAcrossPhilosophicalTraditions.data.ts)
 
 Methodological description: Identify a genuine shared problem and meaningful conceptual differences without forcing one tradition's categories onto another.
 User-friendly description: Compare how different traditions address similar philosophical questions.

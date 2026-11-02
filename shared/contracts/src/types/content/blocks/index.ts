@@ -6,7 +6,7 @@ import type { DefineValidKeysFromSlugs } from '../../misc.types';
 import type { ContentEntity_ConfigType } from '../entity.types';
 import type { ContentBlock_Image } from './image.types';
 import type { ContentBlock_Markdown } from './markdown.types';
-import type { ContentBlock_Quiz } from './quiz.types';
+import type { ContentBlock_Quiz, ContentBlock_Quiz_Screen } from './quiz.types';
 import type { ContentBlock_Scene } from './scene.types';
 import type { ContentBlock_Text } from './text.types';
 import type { ContentBlock_Video } from './video.types';
@@ -71,6 +71,7 @@ export type {
   ContentBlock_Image,
   ContentBlock_Markdown,
   ContentBlock_Quiz,
+  ContentBlock_Quiz_Screen,
   ContentBlock_Scene,
   ContentBlock_Text,
   ContentBlock_Video,

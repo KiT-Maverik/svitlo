@@ -1,0 +1,11 @@
+export { compareNetworkAccessMethods_Skill_Data } from './compareNetworkAccessMethods.data';
+export { distinguishHTTPFromHTTPS_Skill_Data } from './distinguishHTTPFromHTTPS.data';
+export { distinguishOSIFromTCPIP_Skill_Data } from './distinguishOSIFromTCPIP.data';
+export { distinguishTCPFromUDP_Skill_Data } from './distinguishTCPFromUDP.data';
+export { explainANetworkProtocol_Skill_Data } from './explainANetworkProtocol.data';
+export { explainCSMACA_Skill_Data } from './explainCSMACA.data';
+export { explainCSMACD_Skill_Data } from './explainCSMACD.data';
+export { explainDNS_Skill_Data } from './explainDNS.data';
+export { explainTheOSILayers_Skill_Data } from './explainTheOSILayers.data';
+export { explainThePurposeOfIP_Skill_Data } from './explainThePurposeOfIP.data';
+export { explainTokenRing_Skill_Data } from './explainTokenRing.data';

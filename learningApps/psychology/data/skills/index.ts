@@ -1,0 +1,14 @@
+export { appliedPsychology_SkillDomain_Data } from './appliedPsychology/appliedPsychology.data';
+export { attentionAndConsciousness_SkillDomain_Data } from './attentionAndConsciousness/attentionAndConsciousness.data';
+export { biologicalFoundationsOfBehavior_SkillDomain_Data } from './biologicalFoundationsOfBehavior/biologicalFoundationsOfBehavior.data';
+export { developmentAcrossTheLifespan_SkillDomain_Data } from './developmentAcrossTheLifespan/developmentAcrossTheLifespan.data';
+export { emotionAndPsychologicalRegulation_SkillDomain_Data } from './emotionAndPsychologicalRegulation/emotionAndPsychologicalRegulation.data';
+export { learningAndBehaviorChange_SkillDomain_Data } from './learningAndBehaviorChange/learningAndBehaviorChange.data';
+export { memoryAndMetacognition_SkillDomain_Data } from './memoryAndMetacognition/memoryAndMetacognition.data';
+export { mentalHealthAndClinicalScience_SkillDomain_Data } from './mentalHealthAndClinicalScience/mentalHealthAndClinicalScience.data';
+export { motivationGoalsAndHabits_SkillDomain_Data } from './motivationGoalsAndHabits/motivationGoalsAndHabits.data';
+export { personalityAndIndividualVariation_SkillDomain_Data } from './personalityAndIndividualVariation/personalityAndIndividualVariation.data';
+export { psychologicalScienceAndInquiry_SkillDomain_Data } from './psychologicalScienceAndInquiry/psychologicalScienceAndInquiry.data';
+export { sensationAndPerception_SkillDomain_Data } from './sensationAndPerception/sensationAndPerception.data';
+export { socialPsychology_SkillDomain_Data } from './socialPsychology/socialPsychology.data';
+export { thinkingAndDecisionMaking_SkillDomain_Data } from './thinkingAndDecisionMaking/thinkingAndDecisionMaking.data';

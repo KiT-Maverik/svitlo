@@ -1,0 +1,9 @@
+export { assessAnEmailSendersAuthenticity_Skill_Data } from './assessAnEmailSendersAuthenticity.data';
+export { assessTheRiskOfFollowingALink_Skill_Data } from './assessTheRiskOfFollowingALink.data';
+export { configureMultiFactorAuthentication_Skill_Data } from './configureMultiFactorAuthentication.data';
+export { createAStrongPassphrase_Skill_Data } from './createAStrongPassphrase.data';
+export { explainMultiFactorAuthentication_Skill_Data } from './explainMultiFactorAuthentication.data';
+export { explainWhySoftwareUpdatesMatter_Skill_Data } from './explainWhySoftwareUpdatesMatter.data';
+export { recognizeAPhishingMessage_Skill_Data } from './recognizeAPhishingMessage.data';
+export { respondToSuspiciousDigitalContact_Skill_Data } from './respondToSuspiciousDigitalContact.data';
+export { verifyAWebsitesDomain_Skill_Data } from './verifyAWebsitesDomain.data';

@@ -1,0 +1,13 @@
+export { digitalAndConsumerSafety_SkillDomain_Data } from './digitalAndConsumerSafety/digitalAndConsumerSafety.data';
+export { emergenciesAndCivilProtection_SkillDomain_Data } from './emergenciesAndCivilProtection/emergenciesAndCivilProtection.data';
+export { everydayAndOccupationalSafety_SkillDomain_Data } from './everydayAndOccupationalSafety/everydayAndOccupationalSafety.data';
+export { firstAidAndImmediateResponse_SkillDomain_Data } from './firstAidAndImmediateResponse/firstAidAndImmediateResponse.data';
+export { healthLiteracyAndCare_SkillDomain_Data } from './healthLiteracyAndCare/healthLiteracyAndCare.data';
+export { hygieneAndInfectionPrevention_SkillDomain_Data } from './hygieneAndInfectionPrevention/hygieneAndInfectionPrevention.data';
+export { mentalWellBeingAndSupport_SkillDomain_Data } from './mentalWellBeingAndSupport/mentalWellBeingAndSupport.data';
+export { movementSleepAndEverydayRoutines_SkillDomain_Data } from './movementSleepAndEverydayRoutines/movementSleepAndEverydayRoutines.data';
+export { nutritionAndFoodSafety_SkillDomain_Data } from './nutritionAndFoodSafety/nutritionAndFoodSafety.data';
+export { personalBoundariesAndViolencePrevention_SkillDomain_Data } from './personalBoundariesAndViolencePrevention/personalBoundariesAndViolencePrevention.data';
+export { sexualAndReproductiveHealth_SkillDomain_Data } from './sexualAndReproductiveHealth/sexualAndReproductiveHealth.data';
+export { substanceUseAndDependencePrevention_SkillDomain_Data } from './substanceUseAndDependencePrevention/substanceUseAndDependencePrevention.data';
+export { transportWaterAndOutdoorSafety_SkillDomain_Data } from './transportWaterAndOutdoorSafety/transportWaterAndOutdoorSafety.data';

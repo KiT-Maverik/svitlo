@@ -1,9 +1,15 @@
 import type { ContentEntity_ConfigType } from '../entity.types';
+import type { NonEmptyArray } from '../../misc.types';
 import type { Locale_Config, Locale_ResponseParams } from '../locale.types';
 import type { Question_SelectOneAnswer } from '../questions/selectOneAnswer.types';
+import type { ContentBlock } from './index';
 import type { ContentBlock_Data_Meta, ContentBlock_Definition_Meta, ContentBlock_Response_Meta } from './common.types';
 
-type Quiz_Settings = {
+export type ContentBlock_Quiz_Screen<ConfigType extends 'data' | 'response'> =
+  | { showDefaultContent: true; content?: readonly ContentBlock<ConfigType>[] }
+  | { showDefaultContent?: false; content: NonEmptyArray<ContentBlock<ConfigType>> };
+
+type Quiz_Settings<ConfigType extends 'data' | 'response'> = {
   feedbackMode: 'immediate' | 'after-completion';
   grading?: { mode: 'percentage' | 'points'; successThreshold: number };
   interaction: {
@@ -18,9 +24,15 @@ type Quiz_Settings = {
   maxDuration?: number;
   results: { visibility: 'immediate' | 'after-review' | 'hidden'; showScore: boolean };
   screen: {
+    /** Shown before the first question. */
+    starting?: ContentBlock_Quiz_Screen<ConfigType>;
     ending?: {
-      success: { showDefaultContent: true };
-      fail: { showDefaultContent: true };
+      /** Passing result. */
+      success: ContentBlock_Quiz_Screen<ConfigType>;
+      /** Failed with no attempts remaining. */
+      fail: ContentBlock_Quiz_Screen<ConfigType>;
+      /** Failure while another attempt is available. */
+      retry?: ContentBlock_Quiz_Screen<ConfigType>;
     };
   };
 };
@@ -28,14 +40,14 @@ type Quiz_Settings = {
 type ContentBlock_Quiz_Definition = ContentBlock_Definition_Meta<'quiz'>;
 
 type ContentBlock_Quiz_Data = ContentBlock_Data_Meta &
-  Quiz_Settings & {
+  Quiz_Settings<'data'> & {
     welcome: Locale_Config;
     questions: Record<string, Question_SelectOneAnswer<'data'>>;
   };
 
 type ContentBlock_Quiz_Response = ContentBlock_Response_Meta<'quiz'> &
   Locale_ResponseParams &
-  Quiz_Settings & {
+  Quiz_Settings<'response'> & {
     welcome: string;
     /** References to Lesson.questions.selectOneAnswer, not duplicated questions. */
     questionSlugs: readonly string[];

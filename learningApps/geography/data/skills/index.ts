@@ -1,0 +1,11 @@
+export { atmosphereWeatherAndClimate_SkillDomain_Data } from './atmosphereWeatherAndClimate/atmosphereWeatherAndClimate.data';
+export { environmentAndSociety_SkillDomain_Data } from './environmentAndSociety/environmentAndSociety.data';
+export { geographicInquiry_SkillDomain_Data } from './geographicInquiry/geographicInquiry.data';
+export { geographicObjects_SkillDomain_Data } from './geographicObjects/geographicObjects.data';
+export { geology_SkillDomain_Data } from './geology/geology.data';
+export { humanGeography_SkillDomain_Data } from './humanGeography/humanGeography.data';
+export { landformsAndSurfaceProcesses_SkillDomain_Data } from './landformsAndSurfaceProcesses/landformsAndSurfaceProcesses.data';
+export { mapsAndGeospatialRepresentations_SkillDomain_Data } from './mapsAndGeospatialRepresentations/mapsAndGeospatialRepresentations.data';
+export { naturalRegionsAndBiogeography_SkillDomain_Data } from './naturalRegionsAndBiogeography/naturalRegionsAndBiogeography.data';
+export { spatialOrientation_SkillDomain_Data } from './spatialOrientation/spatialOrientation.data';
+export { waterSystems_SkillDomain_Data } from './waterSystems/waterSystems.data';

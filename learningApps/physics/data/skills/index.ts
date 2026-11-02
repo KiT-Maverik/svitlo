@@ -1,0 +1,12 @@
+export { electromagnetism_SkillDomain_Data } from './electromagnetism/electromagnetism.data';
+export { energy_SkillDomain_Data } from './energy/energy.data';
+export { fluidMechanics_SkillDomain_Data } from './fluidMechanics/fluidMechanics.data';
+export { forcesAndInteractions_SkillDomain_Data } from './forcesAndInteractions/forcesAndInteractions.data';
+export { measurement_SkillDomain_Data } from './measurement/measurement.data';
+export { mechanics_SkillDomain_Data } from './mechanics/mechanics.data';
+export { modernPhysics_SkillDomain_Data } from './modernPhysics/modernPhysics.data';
+export { molecularPhysics_SkillDomain_Data } from './molecularPhysics/molecularPhysics.data';
+export { optics_SkillDomain_Data } from './optics/optics.data';
+export { radiation_SkillDomain_Data } from './radiation/radiation.data';
+export { thermodynamics_SkillDomain_Data } from './thermodynamics/thermodynamics.data';
+export { waves_SkillDomain_Data } from './waves/waves.data';

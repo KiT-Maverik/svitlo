@@ -26,7 +26,12 @@ const quizBlock = {
   questions: howLightMovesQuestionsData.selectOneAnswer,
   results: { visibility: 'immediate', showScore: true },
   screen: {
-    ending: { success: { showDefaultContent: true }, fail: { showDefaultContent: true } },
+    starting: { showDefaultContent: true },
+    ending: {
+      success: { showDefaultContent: true },
+      fail: { showDefaultContent: true },
+      retry: { showDefaultContent: true },
+    },
   },
 } satisfies ContentBlock_Quiz<'data'>;
 

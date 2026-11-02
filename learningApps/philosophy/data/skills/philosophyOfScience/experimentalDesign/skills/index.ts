@@ -1,0 +1,9 @@
+export { controlRelevantExperimentalConditions_Skill_Data } from './controlRelevantExperimentalConditions.data';
+export { evaluateResearchEthics_Skill_Data } from './evaluateResearchEthics.data';
+export { explainAPlaceboControl_Skill_Data } from './explainAPlaceboControl.data';
+export { explainDoubleBlinding_Skill_Data } from './explainDoubleBlinding.data';
+export { explainRandomAssignment_Skill_Data } from './explainRandomAssignment.data';
+export { explainSingleBlinding_Skill_Data } from './explainSingleBlinding.data';
+export { explainThePurposeOfAControlGroup_Skill_Data } from './explainThePurposeOfAControlGroup.data';
+export { identifyADependentVariable_Skill_Data } from './identifyADependentVariable.data';
+export { identifyAnIndependentVariable_Skill_Data } from './identifyAnIndependentVariable.data';
