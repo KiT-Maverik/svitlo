@@ -6,7 +6,7 @@
 - `/questions`: shared question widgets
 - `/questions/api`: question events, slots and controller usage
 - `/topics/light`: interactive How Light Moves demonstration with scenes and quiz,
-  with its tests under `src/data/howLightMoves` (checkpoint E2E beside its scene)
+  authored in `data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c`
 - `/topics/demo`: subject-neutral lesson demonstration with navigation, quiz,
   localization and persisted progress, defined in `src/data/demoLesson/demoLesson.ts`
 

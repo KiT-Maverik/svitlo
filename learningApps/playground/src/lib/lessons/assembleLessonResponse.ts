@@ -1,6 +1,6 @@
 import type { LanguageCode } from '@svitlo/engine/localization';
 import { SECTION_TYPES, type Section_Type } from '@svitlo/engine/content';
-import { resolveEntityPath } from '@svitlo/engine/utils';
+import { resolveEntityPath } from '@svitlo/engine';
 
 export type LocaleSource = { code: LanguageCode; isFallback?: true };
 export type LessonCollection = { data: unknown; localeSources: Record<string, LocaleSource> };
