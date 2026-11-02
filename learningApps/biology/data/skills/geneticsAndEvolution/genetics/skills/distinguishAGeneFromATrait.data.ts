@@ -56,7 +56,7 @@ export const distinguishAGeneFromATrait_Skill_Data = buildSkillConfig({
       te: 'జన్యువును అది ప్రభావితం చేయగల కనిపించే లక్షణం నుంచి వేరు చేసి గుర్తించండి.',
       mr: 'जनुक आणि त्याचा प्रभाव पडू शकणारा दिसणारा गुणधर्म यांतील फरक ओळखा.',
       ms: 'Bezakan gen daripada sifat yang boleh dilihat dan mungkin dipengaruhinya.',
-      he: 'הבחן בין גן לבין התכונה הנראית לעין שהוא עשוי להשפיע עליה.',
+      he: 'הבחינו בין גן לבין התכונה הנראית לעין שהוא עשוי להשפיע עליה.',
       pl: 'Odróżnij gen od widocznej cechy, na którą może wpływać.',
       uk: 'Розрізняй ген і видиму ознаку, на яку він може впливати.',
       lt: 'Atskirk geną nuo matomo požymio, kuriam jis gali turėti įtakos.',

@@ -53,7 +53,7 @@ export const classifyObjectsAsLivingDeadOrNeverAlive_Skill_Data = buildSkillConf
       tr: 'Bir şeyin canlı mı, ölü mü yoksa hiç yaşamamış mı olduğunu kanıtlara dayanarak belirle.',
       vi: 'Dựa vào bằng chứng để xác định một thứ đang sống, đã chết hay chưa từng sống.',
       ta: 'சான்றுகளின் அடிப்படையில் ஒன்று உயிருடன் உள்ளதா, இறந்துவிட்டதா அல்லது ஒருபோதும் உயிருடன் இருந்ததில்லையா என்பதை முடிவுசெய்.',
-      te: 'ఆధారాలను ఉపయోగించి ఏదైనా సజీవంగా ఉందా, మరణించిందా లేదా ఎప్పుడూ సజీవంగా లేదా అని నిర్ణయించండి.',
+      te: 'ఆధారాలను ఉపయోగించి ఏదైనా సజీవంగా ఉందా, చనిపోయిందా లేదా ఎప్పుడూ సజీవంగా లేనిదా అని నిర్ణయించండి.',
       mr: 'पुराव्यांच्या आधारे एखादी गोष्ट सजीव आहे, मृत आहे की कधीच सजीव नव्हती हे ठरवा.',
       ms: 'Gunakan bukti untuk menentukan sama ada sesuatu itu hidup, sudah mati atau tidak pernah hidup.',
       he: 'השתמשו בראיות כדי לקבוע אם משהו חי, מת או מעולם לא היה חי.',

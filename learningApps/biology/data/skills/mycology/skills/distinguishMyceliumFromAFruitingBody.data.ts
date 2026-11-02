@@ -42,7 +42,7 @@ export const distinguishMyceliumFromAFruitingBody_Skill_Data = buildSkillConfig(
       hi: 'जानें कि कवक का छिपा कवकजाल दिखाई देने वाले फलनकाय से कैसे अलग है।',
       es: 'Descubre cómo el micelio oculto de un hongo se diferencia de su cuerpo fructífero visible.',
       ar: 'اكتشف كيف يختلف الغزل الفطري المخفي عن الجسم الثمري المرئي للفطر.',
-      fr: 'Découvrez en quoi le mycélium caché d\'un champignon diffère de son sporophore visible.',
+      fr: 'Découvre en quoi le mycélium caché d\'un champignon diffère de son sporophore visible.',
       bn: 'ছত্রাকের আড়ালে থাকা মাইসেলিয়াম দৃশ্যমান ফলদেহ থেকে কীভাবে আলাদা, তা জানো।',
       pt: 'Descubra como o micélio oculto de um fungo difere de seu corpo de frutificação visível.',
       ur: 'جانیں کہ فطر کا پوشیدہ ریشوں کا جال اس کے نظر آنے والے ثمرآور جسم سے کیسے مختلف ہے۔',

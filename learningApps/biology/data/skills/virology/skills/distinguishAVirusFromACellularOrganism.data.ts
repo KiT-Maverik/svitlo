@@ -27,7 +27,7 @@ export const distinguishAVirusFromACellularOrganism_Skill_Data = buildSkillConfi
     pl: 'Odróżnianie wirusa od organizmu komórkowego',
     uk: 'Відрізняти вірус від клітинного організму',
     lt: 'Atskirti virusą nuo ląstelinio organizmo',
-    lv: 'Atšķirt vīrusu no šūnaina organisma',
+    lv: 'Atšķirt vīrusu no organisma, kas sastāv no šūnām',
     et: 'Viiruse eristamine rakulise ehitusega organismist',
     be: 'Адрозьніваць вірус ад клеткавага арганізму',
     ka: 'ვირუსის განსხვავება უჯრედული ორგანიზმისგან',

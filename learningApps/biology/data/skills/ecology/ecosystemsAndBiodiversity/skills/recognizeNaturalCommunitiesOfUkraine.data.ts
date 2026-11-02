@@ -56,7 +56,7 @@ export const recognizeNaturalCommunitiesOfUkraine_Skill_Data = buildSkillConfig(
       te: 'ఉక్రెయిన్ అడవులు, స్టెప్పీలు, జల ప్రాంతాల ప్రత్యేక జీవ సముదాయాలను గుర్తించండి.',
       mr: 'युक्रेनच्या जंगलांतील, स्टेपी प्रदेशांतील आणि जलक्षेत्रांतील वैशिष्ट्यपूर्ण सजीव समुदाय ओळखा.',
       ms: 'Kenal pasti komuniti hidupan khas di hutan, steppe dan perairan Ukraine.',
-      he: 'זהה חברות יצורים אופייניות ליערות, לערבות ולמקווי המים של אוקראינה.',
+      he: 'זהו חברות יצורים אופייניות ליערות, לערבות ולמקווי המים של אוקראינה.',
       pl: 'Rozpoznaj typowe zbiorowiska organizmów w lasach, stepach i wodach Ukrainy.',
       uk: 'Розпізнавай характерні угруповання організмів у лісах, степах і водоймах України.',
       lt: 'Atpažink būdingas gyvųjų organizmų bendrijas Ukrainos miškuose, stepėse ir vandenyse.',

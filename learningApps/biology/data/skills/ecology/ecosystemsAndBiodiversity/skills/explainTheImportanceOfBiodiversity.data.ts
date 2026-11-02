@@ -56,7 +56,7 @@ export const explainTheImportanceOfBiodiversity_Skill_Data = buildSkillConfig({
       te: 'పర్యావరణ వ్యవస్థలు మార్పులకు స్పందించడంలో జీవవైవిధ్యం ఎలా సహాయపడుతుందో వివరించండి.',
       mr: 'जैवविविधतेमुळे परिसंस्थांना बदलांना सामोरे जाण्यास कशी मदत होते ते स्पष्ट करा.',
       ms: 'Terangkan bagaimana biodiversiti boleh membantu ekosistem menghadapi perubahan.',
-      he: 'הסבר כיצד מגוון ביולוגי יכול לעזור למערכות אקולוגיות להתמודד עם שינוי.',
+      he: 'הסבירו כיצד מגוון ביולוגי יכול לעזור למערכות אקולוגיות להתמודד עם שינוי.',
       pl: 'Wyjaśnij, jak różnorodność biologiczna może pomagać ekosystemom reagować na zmiany.',
       uk: 'Пояснюй, як біорізноманіття допомагає екосистемам реагувати на зміни.',
       lt: 'Paaiškink, kaip biologinė įvairovė gali padėti ekosistemoms reaguoti į pokyčius.',

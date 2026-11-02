@@ -56,7 +56,7 @@ export const explainExpressionOfGeneticInformation_Skill_Data = buildSkillConfig
       te: 'కణాలు డీఎన్‌ఏ సమాచారాన్ని ఎలా ఉపయోగించి, నియంత్రిస్తాయో తెలుసుకోండి.',
       mr: 'पेशी डीएनएतील माहिती कशी वापरतात आणि तिची क्रिया कशी नियंत्रित करतात ते जाणून घ्या.',
       ms: 'Ketahui bagaimana sel menggunakan dan mengawal maklumat dalam DNA.',
-      he: 'למד כיצד תאים משתמשים במידע שבדנ״א ומווסתים את פעילותו.',
+      he: 'למדו כיצד תאים משתמשים במידע שבדנ״א ומווסתים את פעילותו.',
       pl: 'Poznaj, jak komórki wykorzystują informacje DNA i regulują ich działanie.',
       uk: 'Досліджуй, як клітини використовують інформацію ДНК та регулюють її реалізацію.',
       lt: 'Sužinok, kaip ląstelės naudoja DNR informaciją ir reguliuoja jos veikimą.',

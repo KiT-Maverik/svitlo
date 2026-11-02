@@ -56,7 +56,7 @@ export const predictAnOrganismsResponseToEnvironmentalChange_Skill_Data = buildS
       te: 'వనరులు లేదా ఉష్ణోగ్రత మారితే ఒక జాతిపై ఎలా ప్రభావం పడుతుందో అంచనా వేయండి.',
       mr: 'संसाधने किंवा तापमान बदलल्यास एखाद्या प्रजातीवर कसा परिणाम होईल याचा अंदाज लावा.',
       ms: 'Ramalkan bagaimana perubahan sumber atau suhu boleh mempengaruhi sesuatu spesies.',
-      he: 'חזה כיצד שינוי במשאבים או בטמפרטורה עשוי להשפיע על מין.',
+      he: 'חזו כיצד שינוי במשאבים או בטמפרטורה עשוי להשפיע על מין.',
       pl: 'Przewidź, jak zmiany zasobów lub temperatury mogą wpłynąć na gatunek.',
       uk: 'Передбачай, як зміна ресурсів або температури може вплинути на вид.',
       lt: 'Numatyk, kaip išteklių ar temperatūros pokytis gali paveikti rūšį.',

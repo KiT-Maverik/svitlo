@@ -68,7 +68,7 @@ export const ecology_SkillDomain_Data = buildSkillDomainConfig({
       te: 'జీవులు ఒకదానిపై మరొకటి, తమ పర్యావరణంపై ఎలా ఆధారపడతాయో తెలుసుకోండి.',
       mr: 'सजीव एकमेकांवर आणि त्यांच्या पर्यावरणावर कसे अवलंबून असतात ते शोधा.',
       ms: 'Terokai bagaimana organisma saling bergantung antara satu sama lain dan pada persekitarannya.',
-      he: 'גלה כיצד יצורים חיים תלויים זה בזה ובסביבתם.',
+      he: 'גלו כיצד יצורים חיים תלויים זה בזה ובסביבתם.',
       pl: 'Poznaj zależności organizmów między sobą i od środowiska.',
       uk: 'Досліджуй, як організми залежать один від одного та від свого середовища.',
       lt: 'Tyrinėk, kaip organizmai priklauso vieni nuo kitų ir nuo savo aplinkos.',

@@ -56,7 +56,7 @@ export const identifyAnOrganismsHabitat_Skill_Data = buildSkillConfig({
       te: 'ఒక జాతికి దాని ఆవాసంలో అవసరమైన పరిస్థితులు, వనరులను గుర్తించండి.',
       mr: 'एखाद्या प्रजातीला तिच्या अधिवासात आवश्यक परिस्थिती आणि संसाधने ओळखा.',
       ms: 'Kenal pasti keadaan dan sumber yang diperlukan oleh spesies dalam habitatnya.',
-      he: 'זהה את התנאים והמשאבים שמין זקוק להם בבית הגידול שלו.',
+      he: 'זהו את התנאים והמשאבים שמין זקוק להם בבית הגידול שלו.',
       pl: 'Rozpoznaj warunki i zasoby potrzebne gatunkowi w jego siedlisku.',
       uk: 'Розпізнавай умови та ресурси, потрібні виду в його середовищі існування.',
       lt: 'Atpažink sąlygas ir išteklius, kurių rūšiai reikia buveinėje.',

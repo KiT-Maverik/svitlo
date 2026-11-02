@@ -56,7 +56,7 @@ export const recognizeCompetition_Skill_Data = buildSkillConfig({
       te: 'పరిమిత వనరుల కోసం జీవులు పోటీపడే ఉదాహరణలను గుర్తించండి.',
       mr: 'मर्यादित संसाधनांसाठी स्पर्धा करणाऱ्या सजीवांची उदाहरणे ओळखा.',
       ms: 'Kenal pasti contoh organisma yang bersaing untuk sumber terhad.',
-      he: 'זהה דוגמאות ליצורים שמתחרים על משאבים מוגבלים.',
+      he: 'זהו דוגמאות ליצורים שמתחרים על משאבים מוגבלים.',
       pl: 'Rozpoznaj przykłady organizmów konkurujących o ograniczone zasoby.',
       uk: 'Знаходь приклади конкуренції організмів за обмежені ресурси.',
       lt: 'Atpažink pavyzdžius, kai organizmai konkuruoja dėl ribotų išteklių.',

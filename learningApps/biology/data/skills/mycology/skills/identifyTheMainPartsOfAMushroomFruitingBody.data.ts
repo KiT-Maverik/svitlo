@@ -42,7 +42,7 @@ export const identifyTheMainPartsOfAMushroomFruitingBody_Skill_Data = buildSkill
       hi: 'परिचित मशरूम की टोपी, डंठल और बीजाणु बनाने वाली संरचनाओं को पहचानें।',
       es: 'Identifica el sombrero, el pie y las estructuras que producen esporas en una seta común.',
       ar: 'حدّد قبعة الفطر وساقه والتراكيب التي تنتج الأبواغ في فطر مألوف.',
-      fr: 'Repérez le chapeau, le pied et les structures productrices de spores d\'un champignon courant.',
+      fr: 'Repère le chapeau, le pied et les structures productrices de spores d\'un champignon courant.',
       bn: 'পরিচিত মাশরুমের টুপি, ডাঁটি ও রেণু উৎপাদনকারী অংশ চিহ্নিত করো।',
       pt: 'Identifique o chapéu, o pé e as estruturas produtoras de esporos de um cogumelo comum.',
       ur: 'عام کھمبی کی ٹوپی، ڈنڈی اور تخمک پیدا کرنے والی ساختوں کو پہچانیں۔',

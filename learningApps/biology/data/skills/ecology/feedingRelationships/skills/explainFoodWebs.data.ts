@@ -56,7 +56,7 @@ export const explainFoodWebs_Skill_Data = buildSkillConfig({
       te: 'ఒకదానితో ఒకటి కలిసిన ఆహార గొలుసులు ఆహార వలను ఎలా ఏర్పరుస్తాయో అర్థం చేసుకోండి.',
       mr: 'एकमेकांशी जोडलेल्या अन्नसाखळ्यांपासून अन्नजाळे कसे बनते ते समजून घ्या.',
       ms: 'Fahami bagaimana rantai makanan yang saling berhubung membentuk siratan makanan.',
-      he: 'הבן כיצד שרשרות מזון הקשורות זו לזו יוצרות מארג מזון.',
+      he: 'הבינו כיצד שרשרות מזון הקשורות זו לזו יוצרות מארג מזון.',
       pl: 'Zrozum, jak połączone łańcuchy pokarmowe tworzą sieć pokarmową.',
       uk: 'Зрозумій, як пов’язані харчові ланцюги утворюють харчову мережу.',
       lt: 'Suprask, kaip susijungusios mitybos grandinės sudaro mitybos tinklą.',

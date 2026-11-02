@@ -55,7 +55,7 @@ export const biotechnology_SkillDomain_Data = buildSkillDomainConfig({
       ar: 'اكتشف كيف يستخدم الناس الكائنات الحية والخلايا والعمليات الحيوية لصنع منتجات مفيدة.',
       fr: 'Découvre comment les humains utilisent des organismes, des cellules et des processus biologiques pour fabriquer des produits utiles.',
       bn: 'মানুষ কীভাবে জীব, কোষ ও জৈবিক প্রক্রিয়া ব্যবহার করে উপকারী পণ্য তৈরি করে তা জানো।',
-      pt: 'Explore como as pessoas usam organismos, células e processos biológicos para produzir produtos úteis.',
+      pt: 'Explore como as pessoas usam organismos, células e processos biológicos para criar produtos úteis.',
       ur: 'جانیں کہ لوگ مفید مصنوعات بنانے کے لیے جانداروں، خلیوں اور حیاتیاتی عمل کو کیسے استعمال کرتے ہیں۔',
       id: 'Pelajari bagaimana manusia memanfaatkan organisme, sel, dan proses biologis untuk menghasilkan produk yang berguna.',
       de: 'Erkunde, wie Menschen Organismen, Zellen und biologische Prozesse nutzen, um nützliche Produkte herzustellen.',

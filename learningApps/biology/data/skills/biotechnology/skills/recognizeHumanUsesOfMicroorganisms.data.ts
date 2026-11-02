@@ -17,7 +17,7 @@ export const recognizeHumanUsesOfMicroorganisms_Skill_Data = buildSkillConfig({
     de: 'Menschliche Nutzung von Mikroorganismen erkennen',
     ja: '人間による微生物の利用を知る',
     ko: '사람들이 미생물을 활용하는 방법 알아보기',
-    tr: 'İnsanların mikroorganizmaları kullanım alanlarını tanımak',
+    tr: 'Mikroorganizmaların insanlar tarafından kullanım alanlarını tanımak',
     vi: 'Nhận biết cách con người sử dụng vi sinh vật',
     ta: 'மனிதர்கள் நுண்ணுயிரிகளைப் பயன்படுத்தும் வழிகளை அறிதல்',
     te: 'సూక్ష్మజీవులను మనుషులు ఉపయోగించే మార్గాలను గుర్తించడం',

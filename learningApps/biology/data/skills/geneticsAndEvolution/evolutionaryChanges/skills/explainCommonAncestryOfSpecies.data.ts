@@ -56,7 +56,7 @@ export const explainCommonAncestryOfSpecies_Skill_Data = buildSkillConfig({
       te: 'వేర్వేరు జాతులు శాఖలుగా విడిపోయే పరిణామ చరిత్రలో ఉమ్మడి పూర్వీకులను ఎలా పంచుకుంటాయో వివరించండి.',
       mr: 'उत्क्रांतीच्या फांद्यांमध्ये विभागलेल्या इतिहासात वेगवेगळ्या प्रजातींचे पूर्वज समान कसे असू शकतात ते स्पष्ट करा.',
       ms: 'Terangkan bagaimana spesies berbeza boleh mempunyai nenek moyang bersama dalam sejarah evolusi yang bercabang.',
-      he: 'הסבר כיצד מינים שונים יכולים לחלוק אבות קדומים משותפים בעץ התפתחות אבולוציוני מסתעף.',
+      he: 'הסבירו כיצד מינים שונים יכולים לחלוק אבות קדומים משותפים בעץ התפתחות אבולוציוני מסתעף.',
       pl: 'Wyjaśnij, jak różne gatunki mogą mieć wspólnych przodków w rozgałęzionej historii ewolucyjnej.',
       uk: 'Пояснюй, як різні види можуть походити від спільних предків у розгалуженій еволюційній історії.',
       lt: 'Paaiškink, kaip skirtingos rūšys gali turėti bendrų protėvių išsišakojusioje evoliucijos istorijoje.',

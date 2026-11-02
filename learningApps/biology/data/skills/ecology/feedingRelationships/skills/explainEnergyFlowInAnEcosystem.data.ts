@@ -56,7 +56,7 @@ export const explainEnergyFlowInAnEcosystem_Skill_Data = buildSkillConfig({
       te: 'పదార్థం తిరిగి ఉపయోగించబడినా శక్తి మాత్రం ఒక దిశలోనే ఎందుకు ప్రవహిస్తుందో వివరించండి.',
       mr: 'पदार्थांचा पुनर्वापर होत असताना ऊर्जा परिसंस्थेतून एकाच दिशेने का वाहते ते स्पष्ट करा.',
       ms: 'Terangkan mengapa tenaga mengalir sehala dalam ekosistem sedangkan jirim dikitar semula.',
-      he: 'הסבר מדוע אנרגיה זורמת בכיוון אחד בעוד החומר ממוחזר במערכת האקולוגית.',
+      he: 'הסבירו מדוע אנרגיה זורמת בכיוון אחד בעוד החומר ממוחזר במערכת האקולוגית.',
       pl: 'Wyjaśnij, dlaczego energia przepływa przez ekosystem, a materia krąży.',
       uk: 'Пояснюй, чому енергія проходить крізь екосистему, а речовини використовуються повторно.',
       lt: 'Paaiškink, kodėl energija teka viena kryptimi, o medžiagos naudojamos pakartotinai.',

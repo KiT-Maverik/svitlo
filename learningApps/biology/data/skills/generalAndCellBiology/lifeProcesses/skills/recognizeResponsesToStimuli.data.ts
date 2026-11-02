@@ -28,7 +28,7 @@ export const recognizeResponsesToStimuli_Skill_Data = buildSkillConfig({
     uk: 'Розпізнавати реакції на подразники',
     lt: 'Atpažinti reakcijas į dirgiklius',
     lv: 'Atpazīt reakcijas uz kairinātājiem',
-    et: 'Reaktsioonide äratundmine ärritajatele',
+    et: 'Ärritajatele reageerimise äratundmine',
     be: 'Распазнаваць рэакцыі на раздражняльнікі',
     ka: 'გამღიზიანებლებზე რეაქციების ამოცნობა',
     kk: 'Тітіркендіргіштерге жауаптарды тану',

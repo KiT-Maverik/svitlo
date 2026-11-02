@@ -56,7 +56,7 @@ export const explainMechanismsOfEvolutionaryChange_Skill_Data = buildSkillConfig
       te: 'ఉత్పరివర్తనం, సహజ ఎంపిక, జన్యు చలనం, జన్యు ప్రవాహం పరిణామానికి కారణాలుగా ఎలా పనిచేస్తాయో పోల్చండి.',
       mr: 'उत्परिवर्तन, नैसर्गिक निवड, आनुवंशिक अपवाह आणि जनुक प्रवाह यांची उत्क्रांती घडवणाऱ्या प्रक्रिया म्हणून तुलना करा.',
       ms: 'Bandingkan mutasi, pemilihan semula jadi, hanyutan genetik dan aliran gen sebagai punca evolusi.',
-      he: 'השווה מוטציות, ברירה טבעית, סחף גנטי וזרימת גנים כגורמים לאבולוציה.',
+      he: 'השוו מוטציות, ברירה טבעית, סחף גנטי וזרימת גנים כגורמים לאבולוציה.',
       pl: 'Porównaj mutacje, dobór naturalny, dryf genetyczny i przepływ genów jako przyczyny ewolucji.',
       uk: 'Порівнюй мутації, природний добір, генетичний дрейф і потік генів як причини еволюції.',
       lt: 'Palygink mutacijas, gamtinę atranką, genetinį dreifą ir genų srautą kaip evoliucijos priežastis.',

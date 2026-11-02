@@ -66,7 +66,7 @@ export const feedingRelationships_SkillGroup_Data = buildSkillGroupConfig({
       te: 'ఆహార సంబంధాల ద్వారా పర్యావరణ వ్యవస్థల్లో పదార్థం, శక్తి ఎలా బదిలీ అవుతాయో తెలుసుకోండి.',
       mr: 'अन्नसंबंधांमुळे परिसंस्थेत पदार्थ आणि ऊर्जा कशी हस्तांतरित होते ते शोधा.',
       ms: 'Terokai bagaimana hubungan pemakanan memindahkan jirim dan tenaga dalam ekosistem.',
-      he: 'חקור כיצד יחסי הזנה מעבירים חומר ואנרגיה במערכות אקולוגיות.',
+      he: 'חקרו כיצד יחסי הזנה מעבירים חומר ואנרגיה במערכות אקולוגיות.',
       pl: 'Poznaj, jak zależności pokarmowe przenoszą materię i energię w ekosystemach.',
       uk: 'Досліджуй, як харчові зв’язки передають речовини й енергію в екосистемах.',
       lt: 'Sužinok, kaip mitybos ryšiai perduoda medžiagas ir energiją ekosistemose.',

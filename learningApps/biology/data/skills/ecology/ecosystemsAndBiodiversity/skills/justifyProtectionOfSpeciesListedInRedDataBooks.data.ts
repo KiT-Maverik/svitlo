@@ -56,7 +56,7 @@ export const justifyProtectionOfSpeciesListedInRedDataBooks_Skill_Data = buildSk
       te: 'రెడ్ డేటా పుస్తకాల్లో నమోదైన ప్రమాదంలో ఉన్న జాతులను ఎందుకు పరిరక్షించాలో వివరించండి.',
       mr: 'लाल माहितीपुस्तकांत नोंदवलेल्या धोक्यातील प्रजातींचे संवर्धन का आवश्यक आहे ते स्पष्ट करा.',
       ms: 'Terangkan mengapa spesies terancam dalam Buku Data Merah perlu diberi perhatian pemuliharaan.',
-      he: 'הסבר מדוע מינים מאוימים הרשומים בספרים האדומים זקוקים לשימור.',
+      he: 'הסבירו מדוע מינים מאוימים הרשומים בספרים האדומים זקוקים לשימור.',
       pl: 'Wyjaśnij, dlaczego zagrożone gatunki z Czerwonych Ksiąg wymagają ochrony.',
       uk: 'Пояснюй, чому види під загрозою, занесені до Червоних книг, потребують охорони.',
       lt: 'Paaiškink, kodėl į Raudonąsias knygas įtrauktoms nykstančioms rūšims reikia apsaugos.',

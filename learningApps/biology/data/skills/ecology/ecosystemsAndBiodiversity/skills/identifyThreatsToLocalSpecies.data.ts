@@ -56,7 +56,7 @@ export const identifyThreatsToLocalSpecies_Skill_Data = buildSkillConfig({
       te: 'స్థానిక జాతులకు హాని కలిగించే కార్యకలాపాలు, పర్యావరణ మార్పులను గుర్తించండి.',
       mr: 'स्थानिक प्रजातींना धोका निर्माण करणाऱ्या कृती आणि पर्यावरणातील बदल ओळखा.',
       ms: 'Kenal pasti aktiviti dan perubahan persekitaran yang mengancam spesies tempatan.',
-      he: 'זהה פעילויות ושינויים סביבתיים המסכנים מינים מקומיים.',
+      he: 'זהו פעילויות ושינויים סביבתיים המסכנים מינים מקומיים.',
       pl: 'Rozpoznaj działania i zmiany środowiska zagrażające lokalnym gatunkom.',
       uk: 'Визначай діяльність і зміни довкілля, що загрожують місцевим видам.',
       lt: 'Atpažink veiklą ir aplinkos pokyčius, kurie kelia grėsmę vietinėms rūšims.',

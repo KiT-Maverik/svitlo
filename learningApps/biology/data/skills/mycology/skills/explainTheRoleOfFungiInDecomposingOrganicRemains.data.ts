@@ -42,7 +42,7 @@ export const explainTheRoleOfFungiInDecomposingOrganicRemains_Skill_Data = build
       hi: 'समझाएँ कि कवक जैविक अवशेषों को कैसे विघटित करते हैं और पदार्थों को पारितंत्र में वापस लौटाते हैं।',
       es: 'Explica cómo los hongos descomponen restos orgánicos y devuelven materiales a los ecosistemas.',
       ar: 'اشرح كيف تفكك الفطريات البقايا العضوية وتعيد المواد إلى النظم البيئية.',
-      fr: 'Expliquez comment les champignons décomposent les restes organiques et rendent les matières aux écosystèmes.',
+      fr: 'Explique comment les champignons décomposent les restes organiques et restituent leurs éléments aux écosystèmes.',
       bn: 'ছত্রাক জৈব অবশেষ ভেঙে কীভাবে পদার্থকে বাস্তুতন্ত্রে ফিরিয়ে দেয়, তা ব্যাখ্যা করো।',
       pt: 'Explique como os fungos decompõem restos orgânicos e devolvem materiais aos ecossistemas.',
       ur: 'وضاحت کریں کہ فطر نامیاتی باقیات کو کیسے گلاتے ہیں اور مادے کو ماحولیاتی نظام میں واپس لاتے ہیں۔',

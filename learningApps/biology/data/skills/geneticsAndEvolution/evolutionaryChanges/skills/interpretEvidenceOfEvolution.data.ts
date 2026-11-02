@@ -56,7 +56,7 @@ export const interpretEvidenceOfEvolution_Skill_Data = buildSkillConfig({
       te: 'శిలాజాలు, శరీర నిర్మాణ శాస్త్రం, డీఎన్‌ఏ పరిణామానికి ఎలా ఆధారాలుగా నిలుస్తాయో తెలుసుకోండి.',
       mr: 'जीवाश्म, शरीररचना आणि डीएनए उत्क्रांतीचा पुरावा कसा देतात ते शोधा.',
       ms: 'Terokai bagaimana fosil, anatomi dan DNA memberikan bukti evolusi.',
-      he: 'גלה כיצד מאובנים, אנטומיה ודנ״א מספקים ראיות לאבולוציה.',
+      he: 'גלו כיצד מאובנים, אנטומיה ודנ״א מספקים ראיות לאבולוציה.',
       pl: 'Dowiedz się, jak skamieniałości, anatomia i DNA dostarczają dowodów ewolucji.',
       uk: 'Досліджуй, як викопні рештки, анатомія та ДНК надають докази еволюції.',
       lt: 'Sužinok, kaip fosilijos, anatomija ir DNR suteikia evoliucijos įrodymų.',

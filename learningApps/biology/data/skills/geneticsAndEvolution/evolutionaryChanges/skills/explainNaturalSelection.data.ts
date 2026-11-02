@@ -56,7 +56,7 @@ export const explainNaturalSelection_Skill_Data = buildSkillConfig({
       te: 'సహజ ఎంపిక తరతరాలుగా జీవుల జనాభాలో వారసత్వ లక్షణాల తరచుదనాన్ని ఎలా మార్చగలదో అర్థం చేసుకోండి.',
       mr: 'नैसर्गिक निवडीमुळे पिढ्यान्‌पिढ्या जीवसमूहातील आनुवंशिक गुणधर्मांची वारंवारता कशी बदलू शकते ते समजून घ्या.',
       ms: 'Fahami bagaimana pemilihan semula jadi boleh mengubah kekerapan ciri yang diwarisi dalam populasi merentas generasi.',
-      he: 'הבן כיצד ברירה טבעית יכולה לשנות את השכיחות של תכונות תורשתיות באוכלוסייה לאורך דורות.',
+      he: 'הבינו כיצד ברירה טבעית יכולה לשנות את השכיחות של תכונות תורשתיות באוכלוסייה לאורך דורות.',
       pl: 'Zrozum, jak dobór naturalny może zmieniać częstość cech dziedzicznych w populacji na przestrzeni pokoleń.',
       uk: 'Зрозумій, як природний добір може змінювати частоту спадкових ознак у популяції протягом поколінь.',
       lt: 'Suprask, kaip gamtinė atranka per kartas gali pakeisti paveldimų požymių dažnį populiacijoje.',

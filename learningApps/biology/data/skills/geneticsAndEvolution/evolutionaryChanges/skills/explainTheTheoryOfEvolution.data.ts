@@ -56,7 +56,7 @@ export const explainTheTheoryOfEvolution_Skill_Data = buildSkillConfig({
       te: 'అనేక రకాల ఆధారాలతో సమర్థించబడిన శాస్త్రీయ వివరణగా పరిణామాన్ని అర్థం చేసుకోండి.',
       mr: 'उत्क्रांती ही विविध प्रकारच्या पुराव्यांनी समर्थित असलेली वैज्ञानिक व्याख्या आहे हे समजून घ्या.',
       ms: 'Fahami evolusi sebagai penjelasan saintifik yang disokong oleh pelbagai jenis bukti.',
-      he: 'הבן את האבולוציה כהסבר מדעי שנתמך בסוגים רבים של ראיות.',
+      he: 'הבינו את האבולוציה כהסבר מדעי שנתמך בסוגים רבים של ראיות.',
       pl: 'Zrozum ewolucję jako wyjaśnienie naukowe poparte różnymi rodzajami dowodów.',
       uk: 'Зрозумій еволюцію як наукове пояснення, підтверджене різними видами доказів.',
       lt: 'Suprask evoliuciją kaip mokslinį paaiškinimą, kurį pagrindžia įvairių rūšių įrodymai.',

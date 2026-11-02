@@ -56,7 +56,7 @@ export const identifyHereditaryTraitsInExamples_Skill_Data = buildSkillConfig({
       te: 'తల్లిదండ్రులు, సంతానం ఉదాహరణల్లో వారసత్వ లక్షణాలను గుర్తించండి.',
       mr: 'पालक आणि संततीच्या उदाहरणांमधून वारशाने मिळणारे गुणधर्म ओळखा.',
       ms: 'Kenal pasti ciri yang diwarisi dalam contoh induk dan anak.',
-      he: 'זהה תכונות שעוברות בתורשה בדוגמאות של הורים וצאצאים.',
+      he: 'זהו תכונות שעוברות בתורשה בדוגמאות של הורים וצאצאים.',
       pl: 'Rozpoznaj cechy dziedziczne w przykładach rodziców i potomstwa.',
       uk: 'Розпізнавай успадковані ознаки на прикладах батьків і нащадків.',
       lt: 'Atpažink paveldimus požymius tėvų ir palikuonių pavyzdžiuose.',

@@ -56,7 +56,7 @@ export const relateOrganismStructureToEnvironmentalConditions_Skill_Data = build
       te: 'జీవి శరీర నిర్మాణం తన వాతావరణంలో జీవించి, వనరులు ఉపయోగించుకోవడానికి ఎలా దోహదపడుతుందో వివరించండి.',
       mr: 'सजीवाची रचना त्याला पर्यावरणात टिकून राहण्यास आणि संसाधने वापरण्यास कशी मदत करते ते स्पष्ट करा.',
       ms: 'Terangkan bagaimana struktur organisma membantu ia hidup dan menggunakan sumber dalam persekitarannya.',
-      he: 'הסבר כיצד מבנה היצור מסייע לו לשרוד ולהשתמש במשאבים בסביבתו.',
+      he: 'הסבירו כיצד מבנה היצור מסייע לו לשרוד ולהשתמש במשאבים בסביבתו.',
       pl: 'Wyjaśnij, jak budowa organizmu pomaga mu przetrwać i korzystać z zasobów środowiska.',
       uk: 'Пояснюй, як будова організму допомагає йому виживати та використовувати ресурси середовища.',
       lt: 'Paaiškink, kaip organizmo sandara padeda jam išgyventi ir naudoti aplinkos išteklius.',

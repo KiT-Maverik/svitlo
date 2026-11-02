@@ -55,7 +55,7 @@ export const recognizeNematodeCharacteristics_Skill_Data = buildSkillConfig({
       ta: 'கண்டங்களாகப் பிரியாத உடலையும் பிற பண்புகளையும் கொண்டு உருளைப் புழுக்களை அடையாளம் காண்.',
       te: 'ఖండాలుగా విభజించని శరీరం, ఇతర లక్షణాల ఆధారంగా గుండ్రని పురుగులను గుర్తించండి.',
       mr: 'खंड नसलेल्या शरीरावरून आणि इतर गुणधर्मांवरून सूत्रकृमी ओळखा.',
-      ms: 'Kenal pasti cacing gelang melalui badan tidak bersegmen dan ciri lain.',
+      ms: 'Kenal pasti nematod melalui badan yang tidak bersegmen dan ciri lain.',
       he: 'זהו תולעים נימיות לפי גופן שאינו מחולק לפרקים ומאפיינים נוספים.',
       pl: 'Rozpoznawaj nicienie po niesegmentowanym ciele i innych cechach.',
       uk: 'Розпізнавай круглих червів за несегментованим тілом та іншими ознаками.',

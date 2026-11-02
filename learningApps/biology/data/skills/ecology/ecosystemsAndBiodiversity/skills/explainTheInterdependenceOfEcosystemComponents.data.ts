@@ -56,7 +56,7 @@ export const explainTheInterdependenceOfEcosystemComponents_Skill_Data = buildSk
       te: 'పర్యావరణ వ్యవస్థలో ఒక భాగం మారితే ఇతర అనేక భాగాలపై ఎలా ప్రభావం పడుతుందో తెలుసుకోండి.',
       mr: 'परिसंस्थेतील एका भागातील बदल इतर अनेक भागांना कसा प्रभावित करू शकतो ते शोधा.',
       ms: 'Terokai bagaimana perubahan pada satu bahagian ekosistem boleh mempengaruhi banyak bahagian lain.',
-      he: 'גלה כיצד שינוי בחלק אחד של המערכת האקולוגית יכול להשפיע על חלקים רבים אחרים.',
+      he: 'גלו כיצד שינוי בחלק אחד של המערכת האקולוגית יכול להשפיע על חלקים רבים אחרים.',
       pl: 'Poznaj, jak zmiana jednej części ekosystemu może wpływać na wiele innych.',
       uk: 'Досліджуй, як зміна однієї частини екосистеми може впливати на багато інших.',
       lt: 'Sužinok, kaip vienos ekosistemos dalies pokytis gali paveikti daugelį kitų.',

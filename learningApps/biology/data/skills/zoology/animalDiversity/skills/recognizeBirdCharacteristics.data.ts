@@ -45,7 +45,7 @@ export const recognizeBirdCharacteristics_Skill_Data = buildSkillConfig({
       fr: 'Reconnais les oiseaux grâce à leurs plumes, même lorsqu\'ils ne peuvent pas voler.',
       bn: 'পালক দেখে পাখি চিনে নাও, এমনকি তারা উড়তে না পারলেও।',
       pt: 'Reconheça aves pelas penas, mesmo quando não conseguem voar.',
-      ur: 'پرندوں کو ان کے پروں کے پر سے پہچانیں، چاہے وہ اڑ نہ سکتے ہوں۔',
+      ur: 'پرندوں کو ان کے پَر سے پہچانیں، چاہے وہ اُڑ نہ سکتے ہوں۔',
       id: 'Kenali burung dari bulunya, bahkan jika burung itu tidak dapat terbang.',
       de: 'Erkenne Vögel an ihren Federn, auch wenn sie nicht fliegen können.',
       ja: '飛べない鳥でも、羽毛があることから鳥類だと見分けよう。',

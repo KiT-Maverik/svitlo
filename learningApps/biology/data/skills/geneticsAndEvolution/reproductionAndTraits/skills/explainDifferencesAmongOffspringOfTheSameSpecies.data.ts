@@ -56,7 +56,7 @@ export const explainDifferencesAmongOffspringOfTheSameSpecies_Skill_Data = build
       te: 'ఒకే జాతి జీవుల్లో వేర్వేరు లక్షణాలు ఎందుకు ఏర్పడవచ్చో వివరించండి.',
       mr: 'एकाच प्रजातीच्या जीवांमध्ये वेगवेगळे गुणधर्म का निर्माण होऊ शकतात ते स्पष्ट करा.',
       ms: 'Terangkan mengapa individu spesies yang sama boleh mempunyai ciri yang berbeza.',
-      he: 'הסבר מדוע פרטים מאותו מין יכולים לפתח תכונות שונות.',
+      he: 'הסבירו מדוע פרטים מאותו מין יכולים לפתח תכונות שונות.',
       pl: 'Wyjaśnij, dlaczego osobniki tego samego gatunku mogą rozwijać różne cechy.',
       uk: 'Пояснюй, чому особини одного виду можуть набувати різних ознак.',
       lt: 'Paaiškink, kodėl tos pačios rūšies individai gali įgyti skirtingų požymių.',

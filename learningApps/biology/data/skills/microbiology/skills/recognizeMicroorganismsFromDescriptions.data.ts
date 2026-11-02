@@ -41,7 +41,7 @@ export const recognizeMicroorganismsFromDescriptions_Skill_Data = buildSkillConf
       zh: '认识到许多不同种类的生物都可能非常微小。',
       hi: 'समझें कि बहुत अलग प्रकार के जीव भी सूक्ष्म आकार के हो सकते हैं।',
       es: 'Reconoce que muchos tipos distintos de seres vivos pueden ser microscópicos.',
-      ar: 'تعرّف أن أنواعًا مختلفة كثيرة من الكائنات الحية قد تكون مجهرية.',
+      ar: 'اكتشف أن أنواعًا كثيرة ومختلفة من الكائنات الحية قد تكون مجهرية.',
       fr: 'Comprenez que de nombreux types d\'êtres vivants peuvent être microscopiques.',
       bn: 'বিভিন্ন ধরনের অনেক জীবই যে অণুবীক্ষণিক হতে পারে, তা বুঝে নাও।',
       pt: 'Reconheça que muitos tipos diferentes de seres vivos podem ser microscópicos.',
