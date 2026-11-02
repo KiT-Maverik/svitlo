@@ -14,6 +14,7 @@ export const electromagnetism_SkillDomain_Data = buildSkillDomainConfig({
   id: "5ca8345e-cfc6-4753-afd0-0143ba112479",
   name: {
     en: "Electromagnetism",
+    qm: 'Elektromagnetizm',
     zh: '电磁学',
     hi: 'विद्युतचुंबकत्व',
     es: 'Electromagnetismo',
@@ -56,6 +57,7 @@ export const electromagnetism_SkillDomain_Data = buildSkillDomainConfig({
     methodological: "Electric charges, currents, and magnetic fields describe related interactions; electricity and magnetism share underlying principles but begin with different observations.",
     frontend: {
       en: "Explore how charges, electric currents and magnetic fields interact.",
+      qm: 'Elektrik yükleri, elektrik aqımı ve magnit maydanları bir-birinen nasıl tesirleşkenini araştır.',
       zh: '探索电荷、电流和磁场如何相互作用。',
       hi: 'जानें कि विद्युत आवेश, विद्युत धारा और चुंबकीय क्षेत्र कैसे परस्पर क्रिया करते हैं।',
       es: 'Explora cómo interactúan las cargas, las corrientes eléctricas y los campos magnéticos.',
