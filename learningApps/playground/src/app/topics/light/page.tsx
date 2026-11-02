@@ -7,8 +7,7 @@ import { resolveLocale } from '@/i18n/resolveLocale';
 import { loadLessonResponse } from '@/lib/lessons/loadLessonResponse';
 import LessonV2 from '@/components/pages/Lesson/LessonV2';
 
-const group = '1';
-const slug = 'howLightMoves';
+const lessonId = 'd3048d21-8690-5255-b62c-984c69ac272c';
 
 async function localizedLesson(searchParams: Promise<{ lang?: string | string[] }>) {
   const locale = resolveLocale(
@@ -18,7 +17,7 @@ async function localizedLesson(searchParams: Promise<{ lang?: string | string[] 
   ) as Locale;
   const language = DEFAULT_SUPPORTED_LANGUAGES.find(entry => entry.locale === locale);
   if (!language) throw new Error('No language mapping for ' + locale);
-  return { locale, response: await loadLessonResponse(group, slug, language.language) };
+  return { locale, response: await loadLessonResponse(lessonId, language.language) };
 }
 
 export async function generateMetadata({ searchParams }: PageProps<'/topics/light'>): Promise<Metadata> {

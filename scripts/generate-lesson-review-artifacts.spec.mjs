@@ -9,8 +9,8 @@ function setup(fn) {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-lesson-artifacts-'));
   try { return fn(root); } finally { fs.rmSync(root, { recursive: true, force: true }); }
 }
-function createLesson(root, app = 'playground', group = '1', slug = 'howLightMoves') {
-  const dir = path.join(root, 'learningApps', app, 'data', 'lessons', group, slug);
+function createLesson(root, app = 'playground', id = 'd3048d21-8690-5255-b62c-984c69ac272c', slug = 'howLightMoves') {
+  const dir = path.join(root, 'learningApps', app, 'data', 'lessons', id.slice(-1), id);
   fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(path.join(dir, `${slug}.data.ts`), 'export const lesson = {};\n');
 }
@@ -33,15 +33,15 @@ function run(root, languages = ['en', 'uk']) {
   return { result, manifest, output };
 }
 
-test('discovers only canonical numbered lessons with actual data files in deterministic order', () => setup(root => {
-  createLesson(root, 'playground', '2', 'someLesson');
-  createLesson(root, 'playground', '1', 'howLightMoves');
-  createLesson(root, 'math', '3', 'numbers');
+test('discovers only canonical UUID-addressed lessons with actual data files in deterministic order', () => setup(root => {
+  createLesson(root, 'playground', '00000000-0000-5000-8000-000000000002', 'someLesson');
+  createLesson(root, 'playground', 'd3048d21-8690-5255-b62c-984c69ac272c', 'howLightMoves');
+  createLesson(root, 'math', '00000000-0000-5000-8000-000000000003', 'numbers');
   const invalid = path.join(root, 'learningApps', 'playground', 'data', 'lessons', 'misc', 'bogus');
   fs.mkdirSync(invalid, { recursive: true });
   fs.writeFileSync(path.join(invalid, 'bogus.data.ts'), '');
-  const actual = discoverLessons(root).map(l => `${l.textbook}/${l.group}/${l.slug}`);
-  assert.deepEqual(actual, ['math/3/numbers', 'playground/1/howLightMoves', 'playground/2/someLesson']);
+  const actual = discoverLessons(root).map(l => `${l.textbook}/${l.relative}`);
+  assert.deepEqual(actual, ['math/3/00000000-0000-5000-8000-000000000003', 'playground/2/00000000-0000-5000-8000-000000000002', 'playground/c/d3048d21-8690-5255-b62c-984c69ac272c']);
 }));
 
 test('generates locale-specific Markdown and records PR-scoped paths', () => setup(root => {
@@ -49,10 +49,10 @@ test('generates locale-specific Markdown and records PR-scoped paths', () => set
   createGenerator(root);
   const { result, manifest, output } = run(root);
   assert.deepEqual(result, { discoveredLessons: 1, generated: 2, failures: 0 });
-  assert.equal(manifest.generated[0].path, '.agent-ci-artifacts/lessons/playground/1/howLightMoves/en.md');
+  assert.equal(manifest.generated[0].path, '.agent-ci-artifacts/lessons/playground/c/d3048d21-8690-5255-b62c-984c69ac272c/en.md');
   assert.equal(manifest.generated[0].kind, 'lesson');
-  assert.equal(fs.readFileSync(path.join(output, 'lessons/playground/1/howLightMoves/uk.md'), 'utf8'), '# 1/howLightMoves: uk\n');
-  assert.equal(fs.readFileSync(path.join(root, 'learningApps/playground/data/lessons/1/howLightMoves/howLightMoves.data.ts'), 'utf8'), 'export const lesson = {};\n');
+  assert.equal(fs.readFileSync(path.join(output, 'lessons/playground/c/d3048d21-8690-5255-b62c-984c69ac272c/uk.md'), 'utf8'), '# d3048d21-8690-5255-b62c-984c69ac272c: uk\n');
+  assert.equal(fs.readFileSync(path.join(root, 'learningApps/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/howLightMoves.data.ts'), 'utf8'), 'export const lesson = {};\n');
 }));
 
 test('records individual locale failures while generating other locales', () => setup(root => {
@@ -60,7 +60,7 @@ test('records individual locale failures while generating other locales', () => 
   createGenerator(root);
   const { result, manifest } = run(root, ['en', 'qm', 'uk']);
   assert.deepEqual(result, { discoveredLessons: 1, generated: 2, failures: 1 });
-  assert.deepEqual(manifest.failures.map(f => [f.kind, f.lesson, f.locale]), [['lesson', '1/howLightMoves', 'qm']]);
+  assert.deepEqual(manifest.failures.map(f => [f.kind, f.lesson, f.locale]), [['lesson', 'c/d3048d21-8690-5255-b62c-984c69ac272c', 'qm']]);
   assert.match(manifest.failures[0].error, /No qm translation/);
 }));
 
@@ -76,15 +76,15 @@ test('repeat generation is deterministic and ignores unrelated/noncanonical fold
   createLesson(root);
   createGenerator(root);
   const first = run(root);
-  const firstMarkdown = fs.readFileSync(path.join(first.output, 'lessons/playground/1/howLightMoves/en.md'), 'utf8');
+  const firstMarkdown = fs.readFileSync(path.join(first.output, 'lessons/playground/c/d3048d21-8690-5255-b62c-984c69ac272c/en.md'), 'utf8');
   const second = run(root);
-  assert.equal(firstMarkdown, fs.readFileSync(path.join(second.output, 'lessons/playground/1/howLightMoves/en.md'), 'utf8'));
+  assert.equal(firstMarkdown, fs.readFileSync(path.join(second.output, 'lessons/playground/c/d3048d21-8690-5255-b62c-984c69ac272c/en.md'), 'utf8'));
   assert.deepEqual(first.manifest, second.manifest);
 }));
 
 test('rejects symlinked lesson directories during discovery', () => setup(root => {
   createLesson(root);
-  const group = path.join(root, 'learningApps/playground/data/lessons/1');
-  fs.symlinkSync(path.join(group, 'howLightMoves'), path.join(group, 'linkedLesson'));
+  const group = path.join(root, 'learningApps/playground/data/lessons/c');
+  fs.symlinkSync(path.join(group, 'd3048d21-8690-5255-b62c-984c69ac272c'), path.join(group, 'linkedLesson'));
   assert.equal(discoverLessons(root).length, 1);
 }));

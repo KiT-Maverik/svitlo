@@ -10,8 +10,8 @@ The Lesson must **teach, illustrate, invite prediction and meaningful action, ex
 
 This Skill works on **existing Lesson directories selected or identified by the user**, not arbitrary new Lesson topics.
 
-- If the user names a textbook, directory, one Lesson, several Lessons or another unambiguous natural-language selection, resolve the exact existing directories under `<PackageRoot>/data/lessons/<bucketNumber>/<lessonSlug>/`. Read those folders; **do not ask the user to repeat already clear scope**.
-- The user may also ask to **find Lessons with a Methodologist Brief / methodology outline but no `content.md`**. Inspect the specified textbook or subtree across numbered buckets, recognizing `methodologist-brief.md` and verifiable legacy methodical filenames. Treat `content.md` as the canonical Lesson Content filename; inspect legacy `script.md`, `*.lesson-script.md`, and other existing authored content documents before calling a Lesson missing authored Lesson Content. A legacy file is not an instruction to overwrite or silently duplicate it. Report the matching Lesson paths and methodical approval states. **Discovery alone does not authorize authoring Lesson Content**.
+- If the user names a textbook, directory, one Lesson, several Lessons or another unambiguous natural-language selection, resolve the exact existing directories under `<PackageRoot>/data/lessons/<bucket>/<uuid>/`. Read those folders; **do not ask the user to repeat already clear scope**.
+- The user may also ask to **find Lessons with a Methodologist Brief / methodology outline but no `content.md`**. Inspect the specified textbook or subtree across UUID buckets, recognizing `methodologist-brief.md` and verifiable legacy methodical filenames. Treat `content.md` as the canonical Lesson Content filename; inspect legacy `script.md`, `*.lesson-script.md`, and other existing authored content documents before calling a Lesson missing authored Lesson Content. A legacy file is not an instruction to overwrite or silently duplicate it. Report the matching Lesson paths and methodical approval states. **Discovery alone does not authorize authoring Lesson Content**.
 - If the user has not identified any textbook/Lesson/search scope, ask **which Lesson(s) or textbook/folder** to work with. Do not choose Playground or random Lessons as a substitute.
 - For multiple explicitly assigned Lessons, read and audit each Brief independently, preserve each Lesson's folder/bucket, write **one `content.md` per approved Lesson**, and report blocked/unapproved Lessons rather than silently skipping them or applying one Brief to another.
 - Do not create a Lesson folder, move Lessons between buckets, change a Lesson's camelCase slug, or write `content.md` for unspecified Lessons. Revisions edit the existing `content.md` in place after reviewing it.
@@ -21,7 +21,7 @@ This Skill works on **existing Lesson directories selected or identified by the 
 **Do not author `content.md` until the following are verified:**
 
 1. **Approved Methodologist input in each chosen Lesson directory:** read `methodologist-brief.md` with `Methodologist status: Approved`, or an explicitly verified, editor-approved legacy methodology outline with equivalent substance. Confirm target outcomes, factual content/sources, audience, prerequisites, **the direct canonical `*.data.ts` links in the Brief's Target Skills list (complete filenames as link labels)** and restrictions. Confirm that every relative link structurally targets the **planned `<PackageRoot>/Data/skills/` tree**, not `src/`, and its label matches the target `.data.ts` filename. If the destination does not yet exist because Skills migration is pending, **report the unresolved link explicitly**, consult the approved Skill semantics from currently available canonical/staging sources, and do not claim the future file exists. Do not replace the approved Skill set with inferred descriptions, generated-taxonomy links or invented locations. A draft, a Curriculum label or the folder slug alone is **not enough**. If missing/unapproved, stop authoring for that Lesson and report the blocker; do not create or approve the Brief on the Screenwriter's behalf.
-2. **Selected Lesson folder and context:** identify the standalone textbook package root (`<PackageRoot>`), actual numbered Lesson folder, intended output language and learner profile. The user determines the scope. The `content.md` file is stored **beside the Brief**, never in `studio/` or an automatically chosen Playground directory.
+2. **Selected Lesson folder and context:** identify the standalone textbook package root (`<PackageRoot>`), actual UUID Lesson folder, intended output language and learner profile. The user determines the scope. The `content.md` file is stored **beside the Brief**, never in `studio/` or an automatically chosen Playground directory.
 3. **Read relevant architecture:** all [Svitlo Architecture & Product Principles](../../docs/architecture/README.md), particularly the [Learning Philosophy](../../docs/architecture/learning-experience-philosophy.md), [Notes concept](../../docs/architecture/lesson-notes.md), [Localization & Accessibility](../../docs/architecture/internationalization-and-accessibility.md) and [Offline/Device Compatibility](../../docs/architecture/offline-first-and-device-compatibility.md). Also read [Roles Proposition](../../Roles%20Proposition.md), [Long Chat Overture](../../Long%20Chat%20Overture.md), the current code contracts/renderers below, applicable `AGENTS.md` and local instructions. Historical concepts are design intent, not evidence of already implemented APIs.
 4. **Inspect existing lesson content:** read any applicable existing Lesson, Section, Question, Scene, content-resource and accessibility/localization patterns in the selected app, plus useful reference demonstrations in `learningApps/playground`. Verify the _present_ implementation before authoring platform-specific specifications.
 5. **Editorial integrity:** where the Methodologist input conflicts with reliable facts, is ambiguous, or presupposes nonexistent assessment behavior, **report the exact blocker and proposed clarification**. Do not silently change competencies, learning goals or scoring rules.
@@ -185,8 +185,8 @@ For **Quiz/question** sequences, describe the pedagogical **purpose and position
 <PackageRoot>/
 └── Data/
     └── Lessons/
-        └── <existingBucketNumber>/
-            └── <existingLessonSlug>/
+        └── <existingUuidBucket>/
+            └── <existingLessonUuid>/
                 ├── methodologist-brief.md    # existing; do not modify
                 ├── content.md                 # Screenwriter-authored output
                 └── scenes/                  # only if custom Scenes are specified
@@ -194,7 +194,7 @@ For **Quiz/question** sequences, describe the pedagogical **purpose and position
                     └── ...
 ```
 
-Use the **existing numbered Lesson directory** chosen by the user. Do not create a parallel `docs/lessons` tree, move a Lesson, or invent its bucket/slug. Keep the Methodologist Brief unchanged and write or update only `content.md` plus independently required `scenes/*.scene-spec.md` artifacts. Scan the directory for an existing legacy `script.md`, `*.lesson-script.md`, or other authored Lesson content before creating `content.md`; flag migration conflicts rather than silently duplicating or moving it.
+Use the **existing UUID Lesson directory** chosen by the user. Do not create a parallel `docs/lessons` tree, move a Lesson, or invent its bucket/slug. Keep the Methodologist Brief unchanged and write or update only `content.md` plus independently required `scenes/*.scene-spec.md` artifacts. Scan the directory for an existing legacy `script.md`, `*.lesson-script.md`, or other authored Lesson content before creating `content.md`; flag migration conflicts rather than silently duplicating or moving it.
 
 ### Lesson Content format (the generated document, not this instruction)
 
@@ -347,7 +347,7 @@ including LTR, RTL, reduced motion and assistive-technology use>
 
 Provide:
 
-1. **One** draft `content.md` per explicitly assigned, approved Lesson, **including a planned Lesson Notes/unlock section**, inside that Lesson's existing `data/lessons/<bucket>/<slug>/` folder.
+1. **One** draft `content.md` per explicitly assigned, approved Lesson, **including a planned Lesson Notes/unlock section**, inside that Lesson's existing `data/lessons/<bucket>/<uuid>/` folder.
 2. **One specification per custom Scene**, with real relative links from the Lesson Content. A purely text or existing-widget Lesson need not create an empty Scene specification.
 3. A concise editorial report stating the **most important interactive concepts**, how the Lesson avoids passive content without losing clarity, the chosen Sections/Resource blocks, **verified runtime capabilities vs proposed features**, accessibility/localization decisions, any source/technical gaps and which artifacts are waiting for approval.
 

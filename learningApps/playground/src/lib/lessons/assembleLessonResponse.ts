@@ -1,5 +1,6 @@
 import type { LanguageCode } from '@svitlo/engine/localization';
 import { SECTION_TYPES, type Section_Type } from '@svitlo/engine/content';
+import { resolveEntityPath } from '@svitlo/engine/utils';
 
 export type LocaleSource = { code: LanguageCode; isFallback?: true };
 export type LessonCollection = { data: unknown; localeSources: Record<string, LocaleSource> };
@@ -26,7 +27,6 @@ export type LessonSectionResponse = {
 };
 export type LessonResponse = {
   id: string;
-  group: string;
   slug: string;
   title: string;
   locale: { code: LanguageCode };
@@ -140,8 +140,7 @@ function assembleBlocks(
 
 /** Pure response assembly: runtime consumes only the three published JSON collections. */
 export function assembleLessonResponse(
-  group: string,
-  slug: string,
+  id: string,
   language: LanguageCode,
   raw: { config: unknown; flashcards: unknown; questions: unknown },
 ): LessonResponse {
@@ -156,17 +155,19 @@ export function assembleLessonResponse(
       }
     }
   }
+  const relativePath = resolveEntityPath(id);
   const data = record(config.data, 'config.data');
-  if (data.group !== group || data.slug !== slug) {
-    throw new Error('Lesson JSON identity mismatch: expected ' + group + '/' + slug);
+  if (data.id !== id) {
+    throw new Error('Lesson JSON identity mismatch: expected ' + id);
   }
+  const slug = string(data.slug, 'config.data.slug');
   const parameters = record(data.parameters, 'config.data.parameters');
   const languages = parameters.languages;
   if (!Array.isArray(languages) || !languages.includes(language)) {
-    throw new Error('Lesson ' + group + '/' + slug + ' does not support language ' + language);
+    throw new Error('Lesson ' + relativePath + ' does not support language ' + language);
   }
   const settings = record(parameters.sections, 'config.data.parameters.sections');
-  if (!Array.isArray(flashcards.data)) throw new Error('Invalid flashcards for ' + group + '/' + slug);
+  if (!Array.isArray(flashcards.data)) throw new Error('Invalid flashcards for ' + relativePath);
   const questionCatalog = record(questions.data, 'questions.data');
   const indexedQuestions: LessonResponse['questions'] = {};
   for (const [kind, entries] of Object.entries(questionCatalog)) {
@@ -186,7 +187,7 @@ export function assembleLessonResponse(
     if (!SECTION_TYPES.includes(sectionType as Section_Type)) {
       throw new Error('Unsupported section type at ' + key + ': ' + sectionType);
     }
-    const content = assembleBlocks(section.content, section.order, group + '/' + slug + '/' + key, language);
+    const content = assembleBlocks(section.content, section.order, relativePath + '/' + key, language);
     const hasQuiz = Object.keys(content.content.quiz ?? {}).length > 0;
     if ((sectionType === 'quiz') !== hasQuiz) {
       throw new Error('Quiz section type and content disagree at ' + key);
@@ -195,7 +196,7 @@ export function assembleLessonResponse(
       const slugs = block.questionSlugs;
       if (!Array.isArray(slugs) || slugs.some(value => typeof value !== 'string') ||
           new Set(slugs).size !== slugs.length || slugs.length === 0) {
-        throw new Error('Invalid quiz questionSlugs in ' + group + '/' + slug + '/' + key);
+        throw new Error('Invalid quiz questionSlugs in ' + relativePath + '/' + key);
       }
       const resolved: Record<string, Record<string, unknown>> = {};
       for (const questionSlug of slugs as string[]) {
@@ -203,7 +204,7 @@ export function assembleLessonResponse(
           bank[questionSlug] ? [bank[questionSlug]] : []);
         if (matches.length !== 1) {
           throw new Error('Quiz references missing or ambiguous question ' + questionSlug +
-            ' in ' + group + '/' + slug + '/' + key);
+            ' in ' + relativePath + '/' + key);
         }
         resolved[questionSlug] = matches[0];
       }
@@ -223,22 +224,21 @@ export function assembleLessonResponse(
   if (!Array.isArray(sectionOrder) || sectionOrder.length !== Object.keys(sections).length ||
       sectionOrder.some(value => typeof value !== 'string' || !(value in sections)) ||
       new Set(sectionOrder).size !== sectionOrder.length) {
-    throw new Error('Invalid sectionOrder for ' + group + '/' + slug);
+    throw new Error('Invalid sectionOrder for ' + relativePath);
   }
   const options = ['allowNavigation', 'allowSkipping', 'showIndexes'] as const;
   for (const option of options) {
     if (typeof settings[option] !== 'boolean') {
-      throw new Error('Invalid ' + option + ' for ' + group + '/' + slug);
+      throw new Error('Invalid ' + option + ' for ' + relativePath);
     }
   }
   if (typeof parameters.requireQuiz !== 'boolean') throw new Error('Invalid requireQuiz for ' + slug);
   const quizCount = Object.values(sections).filter(section => section.type === 'quiz').length;
   if (quizCount > 1 || (parameters.requireQuiz && quizCount !== 1)) {
-    throw new Error('Lesson ' + group + '/' + slug + ' requires exactly one quiz when requireQuiz is true');
+    throw new Error('Lesson ' + relativePath + ' requires exactly one quiz when requireQuiz is true');
   }
   return {
     id: string(data.id, 'config.data.id'),
-    group,
     slug,
     title: string(data.title, 'config.data.title'),
     locale: { code: language },

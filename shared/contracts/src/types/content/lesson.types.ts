@@ -27,7 +27,6 @@ type Lesson_Definition = {
 
 type Lesson_Data = {
   id: string;
-  group: string;
   slug: string;
   title: Locale_Config;
   flashcards: Flashcard<'data'>[];
@@ -39,7 +38,6 @@ type Lesson_Data = {
 
 type Lesson_Response = Locale_ResponseParams & {
   id: string;
-  group: string;
   slug: string;
   title: string;
   flashcards: Flashcard<'response'>[];

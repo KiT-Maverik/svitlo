@@ -1,6 +1,7 @@
 /** Read-only, deterministic review projection of the canonical LessonV2 data model. */
 import fs from 'node:fs';
 import path from 'node:path';
+import { resolveEntityPath } from '@svitlo/engine/utils';
 
 const isRecord = value => value !== null && typeof value === 'object' && !Array.isArray(value);
 const pointer = parts => '/' + parts.map(part => String(part).replaceAll('~', '~0').replaceAll('/', '~1')).join('/');
@@ -89,22 +90,20 @@ export function renderLessonMarkdown({ lesson, locale, languages, packagePath, s
   if (!isRecord(lesson)) throw new Error('Lesson must be an object');
   const textbook = segment(packagePath.split('/')[1], 'textbook');
   if (packagePath !== `learningApps/${textbook}`) throw new Error('Invalid package path');
-  const group = segment(lesson.group, 'lesson group');
-  if (!/^\d+$/.test(group)) throw new Error('Lesson group must be numbered');
+  const relative = resolveEntityPath(required(lesson.id, 'lesson id'));
   const slug = segment(lesson.slug, 'lesson slug');
-  required(lesson.id, 'lesson id');
   if (!isRecord(lesson.parameters) || !Array.isArray(lesson.parameters.languages) || !lesson.parameters.languages.length) {
     throw new Error('Missing lesson parameters.languages');
   }
   if (new Set(lesson.parameters.languages).size !== lesson.parameters.languages.length || lesson.parameters.languages.some(code => !languages.includes(code))) {
     throw new Error('Duplicate or unsupported lesson languages');
   }
-  if (!lesson.parameters.languages.includes(locale)) throw new Error(`Lesson ${group}/${slug} does not support locale ${locale}`);
+  if (!lesson.parameters.languages.includes(locale)) throw new Error(`Lesson ${relative} does not support locale ${locale}`);
   if (!isRecord(lesson.sections) || !Object.keys(lesson.sections).length || !isRecord(lesson.questions) || !Array.isArray(lesson.flashcards)) {
-    throw new Error(`Lesson ${group}/${slug} is missing sections, questions, or flashcards`);
+    throw new Error(`Lesson ${relative} is missing sections, questions, or flashcards`);
   }
   const { value: localized, sources } = localizeReviewValue(lesson, locale, lesson.parameters.languages);
-  const lessonPath = `${packagePath}/data/lessons/${group}/${slug}`;
+  const lessonPath = `${packagePath}/data/lessons/${relative}`;
   const entry = `${lessonPath}/${slug}.data.ts`;
   const files = sourceFiles?.files ?? [];
   const link = file => `https://github.com/KiT-Maverik/svitlo-web/blob/${encodeURIComponent(sourceRef)}/${file.split('/').map(encodeURIComponent).join('/')}`;
@@ -233,7 +232,7 @@ export function renderLessonMarkdown({ lesson, locale, languages, packagePath, s
   }
 
   heading(1, inline(localized.title));
-  add(`- Entity: \`lesson\``, `- ID: \`${inline(lesson.id)}\``, `- Group / slug: \`${group}/${slug}\``, `- Requested language: \`${locale}\``, `- Canonical: ${source(lesson.id)}`);
+  add(`- Entity: \`lesson\``, `- ID: \`${inline(lesson.id)}\``, `- Group / slug: \`${relative}\``, `- Requested language: \`${locale}\``, `- Canonical: ${source(lesson.id)}`);
   const fallbackCodes = [...new Set(Object.values(sources).filter(v => v.isFallback).map(v => v.code))];
   add(`- Source languages: ${fallbackCodes.length ? fallbackCodes.map(v => `\`${v}\` (explicit fallback)`).join(', ') : `\`${locale}\` (no fallbacks)`}`, '');
   if (sources['/title']?.isFallback) add(`> Lesson title fallback: ${sources['/title'].code}`, '');
