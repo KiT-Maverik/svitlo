@@ -7,6 +7,7 @@ export const magneticPropertiesAndInteractions_SkillGroup_Data = buildSkillGroup
   id: "8e0d45e9-e2cd-49ed-8798-a0fac3a7a5cb",
   name: {
     en: "Magnetic Properties and Interactions",
+    qm: 'Magnit hususiyetleri ve tesirleşüvler',
     zh: '磁性与磁相互作用',
     hi: 'चुंबकीय गुण और अंतःक्रियाएँ',
     es: 'Propiedades e interacciones magnéticas',
@@ -47,6 +48,7 @@ export const magneticPropertiesAndInteractions_SkillGroup_Data = buildSkillGroup
     methodological: "Materials and pole orientation affect interactions; direct contact between magnets is not required.",
     frontend: {
       en: "Discover how magnetic materials and poles interact.",
+      qm: 'Magnit malzemeleri ve magnit qutupları bir-birinen nasıl tesirleşkenini araştır.',
       zh: '了解磁性材料和磁极如何相互作用。',
       hi: 'जानें कि चुंबकीय पदार्थ और चुंबक के ध्रुव कैसे परस्पर क्रिया करते हैं।',
       es: 'Descubre cómo interactúan los materiales magnéticos y los polos.',
