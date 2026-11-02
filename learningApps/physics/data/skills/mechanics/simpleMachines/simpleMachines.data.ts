@@ -34,7 +34,7 @@ export const simpleMachines_SkillGroup_Data = buildSkillGroupConfig({
     be: "Простыя мэханізмы",
     ka: "მარტივი მექანიზმები",
     kk: "Қарапайым механизмдер",
-    qm: "Sadе mehanizmler",
+    qm: "Sade mehanizmler",
   },
   skills: {
     explainHowALeverWorks: explainHowALeverWorks_Skill_Data,
