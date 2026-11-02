@@ -5,6 +5,7 @@ export const explainDiffusion_Skill_Data = buildSkillConfig({
   id: "c0a41a83-acb2-4d10-9ca0-7ec7f9971a18",
   name: {
     en: "Explain diffusion",
+    qm: 'Diffuziyanı añlatmaq',
     zh: '解释扩散',
     hi: 'विसरण समझाना',
     es: 'Explicar la difusión',
@@ -37,6 +38,7 @@ export const explainDiffusion_Skill_Data = buildSkillConfig({
     methodological: "Diffusion results from particles' thermal motion and the gradual equalization of their concentrations without the need for macroscopic mixing.",
     frontend: {
       en: "Explain how diffusion can occur without stirring.",
+      qm: 'Qarıştırmadan bile diffuziyanıñ nasıl olğanını añlat.',
       zh: '解释为什么不搅拌也会发生扩散。',
       hi: 'समझाएँ कि बिना हिलाए भी विसरण कैसे हो सकता है।',
       es: 'Explica cómo puede ocurrir la difusión sin agitar.',
