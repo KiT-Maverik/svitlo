@@ -5,6 +5,7 @@ export const explainTheParticulateStructureOfMatter_Skill_Data = buildSkillConfi
   id: "b72aa0c8-ae85-4516-b426-0a734b1204bc",
   name: {
     en: "Explain the particulate structure of matter",
+    qm: 'Maddeniñ parçacıqlı qurulışını añlatmaq',
     zh: '解释物质的粒子结构',
     hi: 'पदार्थ की कणीय संरचना समझाना',
     es: 'Explicar la estructura particulada de la materia',
@@ -37,6 +38,7 @@ export const explainTheParticulateStructureOfMatter_Skill_Data = buildSkillConfi
     methodological: "Demonstrate that even water in a transparent glass consists of particles invisible to the naked eye.",
     frontend: {
       en: "Explain why ordinary matter is made of particles too small to see directly.",
+      qm: 'Adiy maddeniñ neden köznen körülmegen pek ufaq parçacıqlardan ibaret olğanını añlat.',
       zh: '解释为什么日常物质由肉眼看不见的微小粒子组成。',
       hi: 'समझाएँ कि साधारण पदार्थ ऐसे छोटे कणों से क्यों बना है जिन्हें सीधे नहीं देख सकते।',
       es: 'Explica por qué la materia está formada por partículas demasiado pequeñas para verlas directamente.',
