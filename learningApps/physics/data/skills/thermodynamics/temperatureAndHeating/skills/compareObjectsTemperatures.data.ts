@@ -5,6 +5,7 @@ export const compareObjectsTemperatures_Skill_Data = buildSkillConfig({
   id: "0f293019-3a56-42f0-b638-f9b3d65e8135",
   name: {
     en: "Compare objects' temperatures",
+    qm: 'Cisimlerniñ temperatularını qıyaslamaq',
     zh: '比较物体的温度',
     hi: 'वस्तुओं के तापमान की तुलना करना',
     es: 'Comparar las temperaturas de los objetos',
@@ -37,6 +38,7 @@ export const compareObjectsTemperatures_Skill_Data = buildSkillConfig({
     methodological: "Temperature characterizes a body's thermal state; valid comparisons rely on measurements, not the intensity of subjective warmth.",
     frontend: {
       en: "Compare temperatures using instruments rather than touch alone.",
+      qm: 'Temperaturalarnı faqat qolnen yoqlap degil, ölçev aletlerinen qıyasla.',
       zh: '使用测量仪器而不是仅凭触觉来比较温度。',
       hi: 'केवल छूकर नहीं, बल्कि उपकरणों से तापमान मापकर तुलना करें।',
       es: 'Compara temperaturas con instrumentos y no solo mediante el tacto.',
