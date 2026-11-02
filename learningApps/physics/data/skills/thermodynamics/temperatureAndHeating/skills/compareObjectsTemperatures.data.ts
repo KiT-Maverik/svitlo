@@ -5,7 +5,7 @@ export const compareObjectsTemperatures_Skill_Data = buildSkillConfig({
   id: "0f293019-3a56-42f0-b638-f9b3d65e8135",
   name: {
     en: "Compare objects' temperatures",
-    qm: 'Cisimlerniñ temperatularını qıyaslamaq',
+    qm: 'Cisimlerniñ temperaturalarını qıyaslamaq',
     zh: '比较物体的温度',
     hi: 'वस्तुओं के तापमान की तुलना करना',
     es: 'Comparar las temperaturas de los objetos',
