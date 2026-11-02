@@ -5,6 +5,7 @@ export const explainSeriesConnectionsOfElectricCircuitComponents_Skill_Data = bu
   id: "7db07119-89dd-4607-8187-957dfc1d8007",
   name: {
     en: "Explain series connections of electric circuit components",
+    qm: 'Devre elementleriniñ art arda bağlanuvını añlatmaq',
     zh: '解释电路元件的串联',
     hi: 'परिपथ के अवयवों का श्रेणी संयोजन समझाना',
     es: 'Explicar conexiones en serie de componentes eléctricos',
@@ -37,6 +38,7 @@ export const explainSeriesConnectionsOfElectricCircuitComponents_Skill_Data = bu
     methodological: "Components connected in series share a common current path: the same current passes through each, and the total voltage across the combination is the sum of the voltages across the individual components. Breaking the single path stops current through all those components.",
     frontend: {
       en: "Explore how components on one path share current in a series circuit.",
+      qm: 'Art arda bağlanğan elementlerden aynı elektrik aqımı nasıl keçkenini araştır.',
       zh: '探索串联电路中的各个元件如何通过同一条路径流过相同的电流。',
       hi: 'जानें कि श्रेणी परिपथ में एक ही रास्ते के घटकों से समान धारा कैसे गुजरती है।',
       es: 'Explora cómo los componentes de una sola trayectoria comparten corriente en un circuito en serie.',
