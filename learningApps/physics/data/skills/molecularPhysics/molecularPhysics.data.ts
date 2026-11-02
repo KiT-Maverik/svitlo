@@ -9,6 +9,7 @@ export const molecularPhysics_SkillDomain_Data = buildSkillDomainConfig({
   id: "8f16e6e4-0b6b-4b73-a88a-55a2c5fe4fad",
   name: {
     en: "Molecular Physics",
+    qm: 'Molekulâr fizika',
     zh: '分子物理学',
     hi: 'आणविक भौतिकी',
     es: 'Física molecular',
@@ -46,6 +47,7 @@ export const molecularPhysics_SkillDomain_Data = buildSkillDomainConfig({
     methodological: "Particle models help explain physical properties and changes in states of matter. Unlike chemistry, this Domain focuses on particle movement, interactions, and arrangement rather than chemical reactions.",
     frontend: {
       en: "Explore how the movement and arrangement of particles explain matter's behavior.",
+      qm: 'Parçacıqlarnıñ areketi ve yerleşüvi maddeniñ hususiyetlerini nasıl añlatqanını araştır.',
       zh: '探索粒子的运动和排列如何解释物质的性质。',
       hi: 'जानें कि कणों की गति और व्यवस्था पदार्थ के व्यवहार को कैसे समझाती हैं।',
       es: 'Explora cómo el movimiento y la disposición de las partículas explican el comportamiento de la materia.',
