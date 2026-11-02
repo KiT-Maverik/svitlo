@@ -38,7 +38,7 @@ export const explainGasCompressibility_Skill_Data = buildSkillConfig({
     methodological: "Compressing a gas reduces the average distances between particles while the sizes of the molecules remain virtually unchanged.",
     frontend: {
       en: "Understand why gases can be squeezed into a smaller volume.",
-      qm: 'Gaznıñ neden kiçikce acımğa sıqıştırıla bilgenini añla.',
+      qm: 'Gaznıñ neden daa kiçik hacımğa sıqıştırıla bilgenini añla.',
       zh: '理解为什么气体能够被压缩到更小的体积。',
       hi: 'समझें कि गैस को छोटे आयतन में क्यों दबाया जा सकता है।',
       es: 'Comprende por qué los gases pueden comprimirse en un volumen menor.',
