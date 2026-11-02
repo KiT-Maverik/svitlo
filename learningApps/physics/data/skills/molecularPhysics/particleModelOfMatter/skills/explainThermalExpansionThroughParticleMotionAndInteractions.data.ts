@@ -47,7 +47,7 @@ export const explainThermalExpansionThroughParticleMotionAndInteractions_Skill_D
       bn: 'প্রসারণে সাধারণত কণার আকার নয়, তাদের মাঝের দূরত্ব কেন বদলায়, তা বোঝো।',
       pt: 'Entenda por que a dilatação geralmente altera o espaçamento entre partículas, não seu tamanho.',
       ur: 'سمجھیں کہ حرارتی پھیلاؤ عموماً ذرات کے درمیانی فاصلے کو بدلتا ہے، ذرات کے حجم کو نہیں۔',
-      id: 'Pahami mengapa pemuaian biasanya mengubah jarak antarp­artikel, bukan ukuran partikelnya.',
+      id: 'Pahami mengapa pemuaian biasanya mengubah jarak antarpartikel, bukan ukuran partikelnya.',
       de: 'Verstehe, warum Ausdehnung meist Teilchenabstände und nicht die Größe der Teilchen verändert.',
       ja: '熱膨張で主に変わるのは粒子の大きさではなく粒子間の距離だと理解しよう。',
       ko: '열팽창이 입자 크기가 아니라 주로 입자 사이 거리를 바꾸는 이유를 이해해 보세요.',
