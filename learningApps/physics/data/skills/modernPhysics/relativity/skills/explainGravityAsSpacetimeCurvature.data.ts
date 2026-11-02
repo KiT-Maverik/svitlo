@@ -32,7 +32,7 @@ export const explainGravityAsSpacetimeCurvature_Skill_Data = buildSkillConfig({
     be: "Тлумачыць гравітацыю як скрыўленьне прасторы-часу",
     ka: "გრავიტაციის ახსნა როგორც სივრცე-დროის გამრუდებისა",
     kk: "Гравитацияны кеңістік-уақыт қисаюы ретінде түсіндіру",
-    qm: "Çekim quvetini fezâ-vaqıtnıñ egilüvi olaraq añlatmaq",
+    qm: "Çekim quvetini boşluq-vaqıtnıñ egilüvi olaraq añlatmaq",
   },
   description: {
     methodological: "Recognize the general relativity concept that the distribution of mass and energy affects spacetime geometry; do not treat a rubber-sheet-and-ball analogy as a literal mechanism of gravity.",
@@ -65,7 +65,7 @@ export const explainGravityAsSpacetimeCurvature_Skill_Data = buildSkillConfig({
       be: "Зразумей, што ў агульнай тэорыі адноснасьці гравітацыя ёсьць вынікам скрыўленае прасторы-часу.",
       ka: "გაიგე, რომ ფარდობითობის ზოგად თეორიაში გრავიტაცია სივრცე-დროის გამრუდების შედეგია.",
       kk: "Жалпы салыстырмалылықта тартылыс кеңістік-уақыттың қисаюынан туындайтынын түсін.",
-      qm: "Umumiy nisbiylikte çekim quveti egilgen fezâ-vaqıtnıñ neticesi olğanını añla.",
+      qm: "Umumiy nisbiylikte çekim quveti egilgen boşluq-vaqıtnıñ neticesi olğanını añla.",
     },
   },
 });
