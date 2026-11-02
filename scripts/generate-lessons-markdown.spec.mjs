@@ -9,7 +9,7 @@ import { inferBlockType, localizeReviewValue, renderLessonMarkdown, sourceIndex,
 const T = (en, uk) => uk === undefined ? { fallback: 'en', en } : { en, uk };
 const text = (id, en, uk) => ({ id, slug: id, value: T(en, uk) });
 const fixture = () => ({
-  id: 'lesson-1', group: '1', slug: 'light', title: T('Light', 'Світло'),
+  id: 'd3048d21-8690-5255-b62c-984c69ac272c', slug: 'light', title: T('Light', 'Світло'),
   parameters: { languages: ['en', 'uk'] },
   sections: {
     theory: {
@@ -44,9 +44,9 @@ function temporaryRepo() {
   const languageFile = path.join(root, 'shared/contracts/src/types/languages.ts');
   fs.mkdirSync(path.dirname(languageFile), { recursive: true });
   fs.writeFileSync(languageFile, "export const DEFAULT_SUPPORTED_LANGUAGES = [{ language: 'en' }, { language: 'uk' }] as const;\n");
-  const lessonDir = path.join(root, 'learningApps/playground/data/lessons/1/light');
+  const lessonDir = path.join(root, 'learningApps/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c');
   fs.mkdirSync(lessonDir, { recursive: true });
-  fs.writeFileSync(path.join(lessonDir, 'light.data.ts'), "export const light = { id: 'lesson-1' };\n");
+  fs.writeFileSync(path.join(lessonDir, 'light.data.ts'), "export const light = { id: 'd3048d21-8690-5255-b62c-984c69ac272c' };\n");
   return { root, lessonDir, cleanup: () => fs.rmSync(root, { recursive: true, force: true }) };
 }
 
@@ -98,10 +98,10 @@ describe('Lesson → Markdown review projection', () => {
   });
 
   it('validates paths and stdout cardinality', () => {
-    assert.deepEqual(parseArguments(['--package', 'learningApps/playground', '--lesson', '1/light', '--locale', 'uk', '--stdout']),
-      { package: 'learningApps/playground', lesson: '1/light', locale: 'uk', stdout: true });
-    assert.throws(() => parseArguments(['--package', 'learningApps/../secrets', '--lesson', '1/light', '--locale', 'uk', '--stdout']), /Invalid --package/);
-    assert.throws(() => parseArguments(['--package', 'learningApps/playground', '--lesson', '../secrets', '--locale', 'uk', '--stdout']), /Invalid --lesson/);
+    assert.deepEqual(parseArguments(['--package', 'learningApps/playground', '--lesson', 'd3048d21-8690-5255-b62c-984c69ac272c', '--locale', 'uk', '--stdout']),
+      { package: 'learningApps/playground', lesson: 'd3048d21-8690-5255-b62c-984c69ac272c', locale: 'uk', stdout: true });
+    assert.throws(() => parseArguments(['--package', 'learningApps/../secrets', '--lesson', 'd3048d21-8690-5255-b62c-984c69ac272c', '--locale', 'uk', '--stdout']), /Invalid --package/);
+    assert.throws(() => parseArguments(['--package', 'learningApps/playground', '--lesson', '../secrets', '--locale', 'uk', '--stdout']), /canonical UUID/);
     assert.throws(() => parseArguments(['--package', 'learningApps/playground', '--locale', 'uk', '--stdout']), /requires --lesson/);
   });
 
@@ -110,9 +110,9 @@ describe('Lesson → Markdown review projection', () => {
     try {
       const root = path.join(tmp.root, 'learningApps/playground');
       fs.mkdirSync(path.join(root, 'data/lessons/not-a-number/ignored'), { recursive: true });
-      assert.deepEqual(discoverLessons(root).map(item => `${item.group}/${item.slug}`), ['1/light']);
+      assert.deepEqual(discoverLessons(root).map(item => item.relative), ['d3048d21-8690-5255-b62c-984c69ac272c']);
       assert.deepEqual(supportedLanguages(tmp.root), ['en', 'uk']);
-      const opts = { package: 'learningApps/playground', lesson: '1/light', locale: 'uk', stdout: true };
+      const opts = { package: 'learningApps/playground', lesson: 'd3048d21-8690-5255-b62c-984c69ac272c', locale: 'uk', stdout: true };
       const loader = async () => fixture();
       const first = await generate(opts, { root: tmp.root, loader });
       const second = await generate(opts, { root: tmp.root, loader });
@@ -120,9 +120,9 @@ describe('Lesson → Markdown review projection', () => {
       assert.match(first, /Світло/);
       const count = await generate({ ...opts, stdout: false, output: 'out' }, { root: tmp.root, loader });
       assert.equal(count, 1);
-      assert.equal(fs.readFileSync(path.join(tmp.root, 'out/playground/1/light/uk.md'), 'utf8'), first);
-      assert.equal(fs.readFileSync(path.join(tmp.lessonDir, 'light.data.ts'), 'utf8'), "export const light = { id: 'lesson-1' };\n");
-      await assert.rejects(generate({ ...opts, lesson: '1/doesNotExist' }, { root: tmp.root, loader }), /No matching canonical lessons/);
+      assert.equal(fs.readFileSync(path.join(tmp.root, 'out/playground/c/d3048d21-8690-5255-b62c-984c69ac272c/uk.md'), 'utf8'), first);
+      assert.equal(fs.readFileSync(path.join(tmp.lessonDir, 'light.data.ts'), 'utf8'), "export const light = { id: 'd3048d21-8690-5255-b62c-984c69ac272c' };\n");
+      await assert.rejects(generate({ ...opts, lesson: '00000000-0000-5000-8000-000000000004' }, { root: tmp.root, loader }), /No matching canonical lessons/);
     } finally { tmp.cleanup(); }
   });
 
@@ -138,8 +138,8 @@ describe('Lesson → Markdown review projection', () => {
     const tmp = temporaryRepo();
     try {
       fs.symlinkSync(tmp.lessonDir, path.join(tmp.lessonDir, 'linked'));
-      assert.throws(() => sourceIndex(tmp.root, 'learningApps/playground/data/lessons/1/light'), /Symlink|Invalid/);
-      assert.throws(() => sourceIndex(tmp.root, 'learningApps/playground/data/lessons/1/light/../light'), /Invalid/);
+      assert.throws(() => sourceIndex(tmp.root, 'learningApps/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c'), /Symlink|Invalid/);
+      assert.throws(() => sourceIndex(tmp.root, 'learningApps/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/../light'), /Invalid/);
     } finally { tmp.cleanup(); }
   });
 });
