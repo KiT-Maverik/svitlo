@@ -54,7 +54,7 @@ export const technologyTransfer_Skill_Data = buildSkillConfig({
       vi: "Nhận biết cách các cộng đồng học hỏi rồi thay đổi công nghệ từ nơi khác.",
       ta: "சமூகங்கள் பிறரிடமிருந்து தொழில்நுட்பங்களைக் கற்றுக்கொண்டு எவ்வாறு மாற்றின என்பதை அறிந்துகொள்.",
       te: "సమూహాలు ఇతరుల నుంచి సాంకేతికతలను నేర్చుకుని ఎలా మార్చుకున్నాయో తెలుసుకోండి.",
-      mr: "समुदायांनी इतरांकडून तंत्रज्ञान शिकून ते कसे बदलले ते जाणून घे.",
+      mr: "समुदायांनी इतरांकडून तंत्रज्ञान शिकून ते कसे बदलले ते जाणून घ्या.",
       ms: "Kenali bagaimana komuniti mempelajari teknologi daripada orang lain dan menyesuaikannya.",
       he: "גלו כיצד קהילות למדו טכנולוגיות מאחרות ושינו אותן.",
       pl: "Poznaj sposoby, w jakie społeczności uczyły się technik od innych i je modyfikowały.",

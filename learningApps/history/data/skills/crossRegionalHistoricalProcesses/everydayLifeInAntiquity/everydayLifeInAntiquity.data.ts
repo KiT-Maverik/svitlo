@@ -64,7 +64,7 @@ export const everydayLifeInAntiquity_SkillGroup_Data = buildSkillGroupConfig({
       vi: "Tìm hiểu người bình thường đã làm gì trong đời sống hằng ngày thời cổ.",
       ta: "பண்டைய சாதாரண மக்களின் அன்றாடச் செயல்களை அறிந்துகொள்.",
       te: "ప్రాచీన కాలంలో సామాన్యులు రోజువారీ జీవితంలో ఏమి చేసేవారో తెలుసుకోండి.",
-      mr: "प्राचीन काळातील सामान्य लोक रोज काय करत होते ते जाणून घे.",
+      mr: "प्राचीन काळातील सामान्य लोक रोज काय करत होते ते जाणून घ्या.",
       ms: "Ketahui kegiatan orang biasa dalam kehidupan harian zaman purba.",
       he: "גלו מה עשו אנשים רגילים בחיי היומיום בעת העתיקה.",
       pl: "Poznaj codzienne zajęcia zwykłych ludzi w starożytności.",

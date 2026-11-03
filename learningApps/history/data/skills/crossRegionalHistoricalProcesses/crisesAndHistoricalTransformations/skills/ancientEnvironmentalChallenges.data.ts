@@ -54,7 +54,7 @@ export const ancientEnvironmentalChallenges_Skill_Data = buildSkillConfig({
       vi: "Tìm hiểu cách cộng đồng cổ đại ứng phó với các thách thức môi trường.",
       ta: "பண்டைய சமூகங்கள் சுற்றுச்சூழல் சவால்களை எவ்வாறு எதிர்கொண்டன என்பதை அறிந்துகொள்.",
       te: "ప్రాచీన సమూహాలు పర్యావరణ సవాళ్లను ఎలా ఎదుర్కొన్నాయో తెలుసుకోండి.",
-      mr: "प्राचीन समुदायांनी पर्यावरणीय आव्हानांना कसा प्रतिसाद दिला ते जाणून घे.",
+      mr: "प्राचीन समुदायांनी पर्यावरणीय आव्हानांना कसा प्रतिसाद दिला ते जाणून घ्या.",
       ms: "Ketahui cara komuniti purba menangani cabaran alam sekitar.",
       he: "גלו כיצד קהילות עתיקות התמודדו עם אתגרים סביבתיים.",
       pl: "Dowiedz się, jak dawne społeczności reagowały na wyzwania środowiskowe.",

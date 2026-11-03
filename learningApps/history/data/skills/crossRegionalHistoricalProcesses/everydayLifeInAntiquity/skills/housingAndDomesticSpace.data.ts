@@ -54,7 +54,7 @@ export const housingAndDomesticSpace_Skill_Data = buildSkillConfig({
       vi: "Khám phá cách người xưa bố trí và sử dụng nhà ở.",
       ta: "பண்டைய மக்கள் வீடுகளை எவ்வாறு அமைத்துப் பயன்படுத்தினர் என்பதை ஆராய்.",
       te: "ప్రాచీన ప్రజలు ఇళ్లను ఎలా ఏర్పాటు చేసి ఉపయోగించారో పరిశీలించండి.",
-      mr: "प्राचीन लोकांनी घरे कशी मांडली व वापरली ते जाणून घे.",
+      mr: "प्राचीन लोकांनी घरे कशी मांडली व वापरली ते जाणून घ्या.",
       ms: "Terokai cara manusia purba menyusun dan menggunakan rumah mereka.",
       he: "גלו כיצד אנשים בעת העתיקה סידרו את בתיהם והשתמשו בהם.",
       pl: "Poznaj sposoby urządzania i wykorzystywania domów w starożytności.",
