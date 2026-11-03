@@ -65,7 +65,7 @@ export const fluidMechanics_SkillDomain_Data = buildSkillDomainConfig({
       vi: "Khám phá cách chất lỏng và chất khí chảy, tạo áp suất và tác động lên vật đang chuyển động.",
       ta: "திரவங்களும் வாயுக்களும் எவ்வாறு பாய்ந்து அழுத்தம் செலுத்தி நகரும் பொருள்களைப் பாதிக்கின்றன என்பதை ஆராய்.",
       te: "ద్రవాలు, వాయువులు ఎలా ప్రవహించి పీడనం కలిగించి కదిలే వస్తువులపై ప్రభావం చూపుతాయో తెలుసుకోండి.",
-      mr: "द्रव आणि वायू कसे वाहतात, दाब टाकतात आणि हलणाऱ्या वस्तूंवर परिणाम करतात ते जाणून घ्या.",
+      mr: "द्रव आणि वायू कसे वाहतात, दाब निर्माण करतात आणि हालणाऱ्या वस्तूंना आधार देतात ते जाणून घ्या.",
       ms: "Terokai bagaimana cecair dan gas mengalir, mengenakan tekanan dan mempengaruhi objek bergerak.",
       he: "חקרו כיצד נוזלים וגזים זורמים, מפעילים לחץ ומשפיעים על גופים בתנועה.",
       pl: "Odkrywaj, jak ciecze i gazy płyną, wywierają ciśnienie i oddziałują na poruszające się ciała.",

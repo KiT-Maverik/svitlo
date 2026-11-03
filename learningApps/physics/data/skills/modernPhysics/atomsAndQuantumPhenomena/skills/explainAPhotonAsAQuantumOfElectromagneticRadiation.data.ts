@@ -54,7 +54,7 @@ export const explainAPhotonAsAQuantumOfElectromagneticRadiation_Skill_Data = bui
       vi: "Hiểu photon là lượng tử năng lượng của bức xạ điện từ.",
       ta: "ஃபோட்டான்கள் மின்காந்தக் கதிர்வீச்சின் ஆற்றல் குவாண்டங்கள் என்பதைப் புரிந்துகொள்.",
       te: "ఫోటాన్లు విద్యుదయస్కాంత వికిరణ శక్తి క్వాంటాలు అని అర్థం చేసుకో.",
-      mr: "फोटॉन हे विद्युतचुंबकीय प्रारणाच्या ऊर्जेचे क्वांटम आहेत हे समजून घे.",
+      mr: "फोटॉन हे विद्युतचुंबकीय प्रारणाच्या ऊर्जेचे क्वांटम आहेत हे समजून घ्या.",
       ms: "Fahami foton sebagai kuantum tenaga sinaran elektromagnet.",
       he: "הבינו שפוטונים הם מנות אנרגיה של קרינה אלקטרומגנטית.",
       pl: "Zrozum, że fotony są kwantami energii promieniowania elektromagnetycznego.",

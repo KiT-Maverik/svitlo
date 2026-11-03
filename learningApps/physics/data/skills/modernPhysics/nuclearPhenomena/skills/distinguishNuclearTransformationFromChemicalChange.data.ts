@@ -54,7 +54,7 @@ export const distinguishNuclearTransformationFromChemicalChange_Skill_Data = bui
       vi: "Phân biệt biến đổi bên trong hạt nhân nguyên tử với phản ứng hóa học.",
       ta: "அணுக்கருவுக்குள் ஏற்படும் மாற்றங்களையும் வேதியியல் வினைகளையும் வேறுபடுத்து.",
       te: "అణుకేంద్రకం లోపల జరిగే మార్పును రసాయన ప్రతిచర్య నుంచి వేరు చేయి.",
-      mr: "अणुकेंद्रकातील बदल रासायनिक अभिक्रियांपेक्षा वेगळे ओळख.",
+      mr: "अणुकेंद्रकातील बदल रासायनिक अभिक्रियांपेक्षा वेगळे ओळखा.",
       ms: "Bezakan perubahan dalam nukleus atom daripada tindak balas kimia.",
       he: "הבחינו בין שינויים בתוך גרעין האטום לתגובות כימיות.",
       pl: "Odróżnij zmiany wewnątrz jądra atomowego od reakcji chemicznych.",

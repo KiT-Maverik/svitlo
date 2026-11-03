@@ -54,7 +54,7 @@ export const explainDiscreteAtomicEnergyStates_Skill_Data = buildSkillConfig({
       vi: "Nhận biết nguyên tử có các mức năng lượng rời rạc ở trạng thái liên kết.",
       ta: "அணுவின் கட்டுப்பட்ட நிலைகளில் தனித்தனி ஆற்றல் மட்டங்கள் இருப்பதை அறிந்துகொள்.",
       te: "పరమాణువు బంధిత స్థితుల్లో నిర్దిష్ట, విచ్ఛిన్న శక్తి స్థాయులు ఉంటాయని గుర్తించు.",
-      mr: "अणूच्या बंधित अवस्थांमध्ये विशिष्ट, वेगवेगळ्या ऊर्जा पातळ्या असतात हे ओळख.",
+      mr: "अणूच्या बंधित अवस्थांमध्ये विशिष्ट, वेगवेगळ्या ऊर्जा पातळ्या असतात हे ओळखा.",
       ms: "Kenali bahawa atom mempunyai aras tenaga diskret dalam keadaan terikat.",
       he: "הכירו בכך שלאטומים יש רמות אנרגיה בדידות במצבים קשורים.",
       pl: "Rozpoznaj, że atomy w stanach związanych mają dyskretne poziomy energii.",
