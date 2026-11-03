@@ -19,7 +19,7 @@ export const explainWaveRefraction_Skill_Data = buildSkillConfig({
     ko: "파동의 굴절 설명하기",
     tr: "Dalga kırılmasını açıklamak",
     vi: "Giải thích khúc xạ sóng",
-    ta: "அலை ஒளிவிலகலை விளக்குதல்",
+    ta: "அலை விலகலை விளக்குதல்",
     te: "తరంగ వక్రీభవనాన్ని వివరించడం",
     mr: "तरंगांचे अपवर्तन स्पष्ट करणे",
     ms: "Menerangkan Pembiasan Gelombang",

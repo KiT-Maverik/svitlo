@@ -38,7 +38,7 @@ export const explainNuclearFusion_Skill_Data = buildSkillConfig({
     methodological: "Light nuclei can combine under suitable conditions, and changes in binding energy can lead to energy release.",
     frontend: {
       en: "Explain how combining light nuclei can release energy.",
-      zh: "解释轻原子核结合时如何释放能量。",
+      zh: "解释轻原子核在适当条件下聚合时，为什么可能释放能量。",
       hi: "समझाओ कि हल्के नाभिकों के मिलने से ऊर्जा कैसे निकल सकती है।",
       es: "Explica cómo la unión de núcleos ligeros puede liberar energía.",
       ar: "اشرح كيف يمكن لاتحاد النوى الخفيفة أن يطلق طاقة.",
@@ -48,7 +48,7 @@ export const explainNuclearFusion_Skill_Data = buildSkillConfig({
       ur: "وضاحت کریں کہ ہلکے ایٹمی مرکزے مل کر توانائی کیسے خارج کر سکتے ہیں۔",
       id: "Jelaskan bagaimana penggabungan inti ringan dapat melepaskan energi.",
       de: "Erkläre, wie die Verschmelzung leichter Atomkerne Energie freisetzen kann.",
-      ja: "軽い原子核が結びついてエネルギーを放出する仕組みを説明しましょう。",
+      ja: "軽い原子核が適切な条件で融合し、結合エネルギーの変化によってエネルギーを放出する場合を説明しましょう。",
       ko: "가벼운 원자핵이 합쳐질 때 에너지가 방출될 수 있는 이유를 설명해 보세요.",
       tr: "Hafif çekirdeklerin birleşmesinin nasıl enerji açığa çıkarabildiğini açıkla.",
       vi: "Giải thích cách kết hợp các hạt nhân nhẹ có thể giải phóng năng lượng.",
