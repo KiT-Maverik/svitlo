@@ -9,7 +9,7 @@ type ContentBlock_Code_Source =
   | { fileLocation: Locale_Config; code?: never }
   | { code: Locale_Config; fileLocation?: never };
 
-type ContentBlock_Code_Data = ContentBlock_Data_Meta & ContentBlock_Code_Source & {
+type ContentBlock_Code_Data = ContentBlock_Data_Meta<'code'> & ContentBlock_Code_Source & {
   language: string;
   title?: Locale_Config;
   variables?: { id: string; value: Locale_Config }[];
