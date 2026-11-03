@@ -65,7 +65,7 @@ export const decomposeAProblem_Skill_Data = buildSkillConfig({
       be: "Падзялі вялікую задачу на меншыя, якія можна разьвязаць паасобку.",
       ka: "დაყავი დიდი ამოცანა პატარა დავალებებად, რომელთა ცალკე გადაჭრაც შეიძლება.",
       kk: "Үлкен мәселені жеке шешуге болатын шағын тапсырмаларға бөл.",
-      qm: "Büyük meseleni ayrı-ayrı çözülebilgen kiçik vazifelерge böl.",
+      qm: "Büyük meseleni ayrı-ayrı çözülebilgen kiçik vazifelerge böl.",
     },
   },
 });
