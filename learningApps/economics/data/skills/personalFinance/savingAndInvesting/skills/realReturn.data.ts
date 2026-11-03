@@ -24,7 +24,7 @@ export const realReturn_Skill_Data = buildSkillConfig({
     mr: "वास्तविक परतावा",
     ms: "Pulangan Sebenar",
     he: "תשואה ריאלית",
-    pl: "Stopa zwrotu realna",
+    pl: "Realna stopa zwrotu",
     uk: "Реальна дохідність",
     lt: "Realioji grąža",
     lv: "Reālā atdeve",
