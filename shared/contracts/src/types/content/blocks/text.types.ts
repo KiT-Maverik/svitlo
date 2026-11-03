@@ -17,7 +17,7 @@ export type ContentBlock_Text_Presentation = {
   wrap?: ContentBlock_Text_Wrap;
 };
 
-export type ContentBlock_Text_Data = ContentBlock_Data_Meta & ContentBlock_Text_Presentation & {
+export type ContentBlock_Text_Data = ContentBlock_Data_Meta<'text'> & ContentBlock_Text_Presentation & {
   value: Locale_Config;
 };
 
