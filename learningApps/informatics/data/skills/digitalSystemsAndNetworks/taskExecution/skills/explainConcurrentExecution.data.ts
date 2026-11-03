@@ -27,7 +27,7 @@ export const explainConcurrentExecution_Skill_Data = buildSkillConfig({
     pl: "Wyjaśnianie wykonywania współbieżnego",
     uk: "Пояснювати конкурентне виконання",
     lt: "Paaiškinti konkurentinį vykdymą",
-    lv: "Izskaidrot uzdevumu savstarpēji pārklātu izpildi",
+    lv: "Izskaidrot uzdevumu izpildes pārklāšanos",
     et: "Konkurentse täitmise selgitamine",
     be: "Тлумачыць канкурэнтнае выкананьне",
     ka: "კონკურენტული შესრულების ახსნა",
