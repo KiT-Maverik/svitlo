@@ -53,7 +53,7 @@ export const wavePhenomena_SkillGroup_Data = buildSkillGroupConfig({
       ar: "اكتشف كيف تنعكس الموجات وتنكسر وتتراكب وتحيد وتتجاوب رنينيًا.",
       fr: "Découvre comment les ondes se réfléchissent, se réfractent, se superposent, diffractent et résonnent.",
       bn: "তরঙ্গের প্রতিফলন, প্রতিসরণ, উপরিপাতন, অপবর্তন ও অনুনাদ সম্পর্কে জানো।",
-      pt: "Descubra como as ondas se refletem, refratam, sobrepõem, difratam e ressoam.",
+      pt: "Descubra como as ondas se refletem, refratam, interferem umas com as outras, difratam e entram em ressonância.",
       ur: "دیکھیں کہ لہریں کیسے منعکس، منکسر، متداخل، منتشر اور گونج دار ہوتی ہیں۔",
       id: "Temukan bagaimana gelombang memantul, membias, bertumpuk, terdifraksi, dan beresonansi.",
       de: "Entdecke, wie Wellen reflektiert, gebrochen, überlagert, gebeugt und in Resonanz versetzt werden.",
