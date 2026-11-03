@@ -4,7 +4,7 @@ export const spartanSystem_Skill_Data = buildSkillConfig({
   slug: "spartanSystem",
   id: "4ad0d126-aaab-4b8b-b912-2a31e6a979b0",
   name: {
-    en: "Спартанський устрій",
+    en: "Spartan System",
     zh: "斯巴达制度",
     hi: "स्पार्टा की व्यवस्था",
     es: "Sistema espartano",

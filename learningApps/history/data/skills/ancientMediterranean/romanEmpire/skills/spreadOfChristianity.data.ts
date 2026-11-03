@@ -4,7 +4,7 @@ export const spreadOfChristianity_Skill_Data = buildSkillConfig({
   slug: "spreadOfChristianity",
   id: "c093f651-30da-4cdb-ac64-8363199fc0e6",
   name: {
-    en: "Поширення християнства",
+    en: "Spread of Christianity",
     zh: "基督教的传播",
     hi: "ईसाई धर्म का प्रसार",
     es: "Difusión del cristianismo",

@@ -4,7 +4,7 @@ export const augustanPrincipate_Skill_Data = buildSkillConfig({
   slug: "augustanPrincipate",
   id: "fd921b81-5d61-4419-80a1-dc52c10f25dd",
   name: {
-    en: "Принципат Августа",
+    en: "Augustan Principate",
     zh: "奥古斯都的元首制",
     hi: "ऑगस्टस का प्रिंसिपेट",
     es: "Principado de Augusto",

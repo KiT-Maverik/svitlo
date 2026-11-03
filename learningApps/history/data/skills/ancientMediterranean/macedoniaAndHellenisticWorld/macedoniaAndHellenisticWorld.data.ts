@@ -6,7 +6,7 @@ export const macedoniaAndHellenisticWorld_SkillGroup_Data = buildSkillGroupConfi
   slug: "macedoniaAndHellenisticWorld",
   id: "78005c99-235d-4d1d-a852-bf5da04b7266",
   name: {
-    en: "Македонія та елліністичний світ",
+    en: "Macedonia and the Hellenistic World",
     zh: "马其顿与希腊化世界",
     hi: "मकदूनिया और हेलेनिस्टिक विश्व",
     es: "Macedonia y mundo helenístico",

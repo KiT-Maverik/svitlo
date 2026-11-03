@@ -4,7 +4,7 @@ export const riseOfMacedonia_Skill_Data = buildSkillConfig({
   slug: "riseOfMacedonia",
   id: "177e98cd-ed0c-4a37-8328-978cd049dd2a",
   name: {
-    en: "Македонське піднесення",
+    en: "Rise of Macedonia",
     zh: "马其顿的崛起",
     hi: "मकदूनिया का उदय",
     es: "Ascenso de Macedonia",

@@ -4,7 +4,7 @@ export const conquestsOfAlexander_Skill_Data = buildSkillConfig({
   slug: "conquestsOfAlexander",
   id: "5bbd9ba0-9852-45e5-aa48-2404b2f931a7",
   name: {
-    en: "Завоювання Александра",
+    en: "Conquests of Alexander the Great",
     zh: "亚历山大的征服",
     hi: "सिकंदर की विजयें",
     es: "Conquistas de Alejandro",

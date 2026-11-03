@@ -4,7 +4,7 @@ export const dailyLifeInRomanEmpire_Skill_Data = buildSkillConfig({
   slug: "dailyLifeInRomanEmpire",
   id: "fc39859e-b5a2-4fe0-adaa-182ed27f0b5f",
   name: {
-    en: "Повсякденне життя Римської імперії",
+    en: "Daily Life in the Roman Empire",
     zh: "罗马帝国的日常生活",
     hi: "रोमन साम्राज्य में दैनिक जीवन",
     es: "Vida cotidiana en el Imperio romano",

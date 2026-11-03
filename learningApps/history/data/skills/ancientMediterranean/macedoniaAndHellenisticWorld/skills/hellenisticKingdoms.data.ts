@@ -4,7 +4,7 @@ export const hellenisticKingdoms_Skill_Data = buildSkillConfig({
   slug: "hellenisticKingdoms",
   id: "cf536c38-8ab6-4cdd-8b20-543d85bc0fd8",
   name: {
-    en: "Елліністичні держави",
+    en: "Hellenistic Kingdoms",
     zh: "希腊化诸王国",
     hi: "हेलेनिस्टिक राज्य",
     es: "Reinos helenísticos",
