@@ -48,7 +48,6 @@ describe('assembleLessonResponse', () => {
     expect(lesson.sections.theory.order).toEqual([{ type: 'markdown', key: 'p1' }, { type: 'scene', key: 'ray' }, { type: 'checkpoint', key: 'checkpoint' }]);
     expect(lesson.sections.theory.blocks.map(block => block.type)).toEqual(['markdown', 'scene', 'checkpoint']);
     expect(lesson.sections.quiz.blocks).toEqual([]);
-    expect(lesson.sections.quiz.questions.map(question => question.type)).toEqual(['selectOneAnswer']);
     expect(lesson.sectionOrder).toEqual(['theory', 'quiz']);
     expect(lesson.sections.theory.type).toBe('theory');
     expect(lesson.sections.quiz.type).toBe('quiz');

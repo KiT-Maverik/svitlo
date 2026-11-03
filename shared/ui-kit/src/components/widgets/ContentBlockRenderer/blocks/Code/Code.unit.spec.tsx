@@ -43,3 +43,19 @@ describe('Code content block', () => {
     expect(resolveCodeVariables('const value = { nested: { count: 1 }};')).toBe('const value = { nested: { count: 1 }};');
   });
 });
+
+
+describe('Code variables and localization', () => {
+  it('replaces repeated short markers without altering ordinary object braces', () => {
+    expect(resolveCodeVariables(
+      'const item = { first: "{{word}}", second: "{{word}}" };',
+      [{ id: 'word', value: 'light' }],
+    )).toBe('const item = { first: "light", second: "light" };');
+  });
+
+  it('marks code figures with the locale direction and keeps the language label', () => {
+    const { container } = render(<Code {...response} locale={{ code: 'ar' }} />);
+    expect(container.querySelector('figure')).toHaveAttribute('dir', 'rtl');
+    expect(screen.getByText('typescript')).toBeVisible();
+  });
+});

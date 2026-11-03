@@ -70,3 +70,45 @@ describe('Audio content block', () => {
     expect(screen.getByRole('alert')).toHaveTextContent('Аудіо не знайдено');
   });
 });
+
+
+describe('Audio fallback lifecycle', () => {
+  it('automatically retries an offline stalled player when connectivity returns', () => {
+    setOnline(false);
+    const { container } = render(<Audio {...response} />);
+    fireEvent.waiting(container.querySelector('audio')!);
+    expect(screen.getByRole('alert')).toHaveTextContent('Аудіо недоступне без мережі');
+
+    setOnline(true);
+    fireEvent(window, new Event('online'));
+    expect(screen.queryByRole('alert')).toBeNull();
+    expect(container.querySelector('audio')).toHaveAttribute('src', '/lesson.mp3');
+  });
+
+  it('does not retain an unavailable fallback when the source changes', () => {
+    setOnline(true);
+    const { container, rerender } = render(<Audio {...response} />);
+    failAudio(container.querySelector('audio')!, 4);
+    expect(screen.getByRole('alert')).toBeInTheDocument();
+
+    rerender(<Audio {...response} fileLocation="/new-lesson.mp3" />);
+    expect(screen.queryByRole('alert')).toBeNull();
+    expect(container.querySelector('audio')).toHaveAttribute('src', '/new-lesson.mp3');
+  });
+
+  it('uses the built-in English fallback without author overrides', () => {
+    setOnline(true);
+    const { container } = render(<Audio {...response} locale={{ code: 'en' }} fallback={undefined} />);
+    failAudio(container.querySelector('audio')!, 4);
+    expect(screen.getByRole('alert')).toHaveTextContent('This audio is unavailable.');
+    expect(screen.getByRole('button', { name: 'Try again' })).toBeVisible();
+  });
+
+  it('ignores media errors caused by an aborted load', () => {
+    setOnline(true);
+    const { container } = render(<Audio {...response} />);
+    failAudio(container.querySelector('audio')!, 1);
+    expect(screen.queryByRole('alert')).toBeNull();
+    expect(container.querySelector('audio')).toBeInTheDocument();
+  });
+});

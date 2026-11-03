@@ -71,3 +71,44 @@ describe('Video content block', () => {
     expect(screen.getByRole('alert')).toHaveTextContent('Відео не знайдено');
   });
 });
+
+
+describe('Video fallback lifecycle', () => {
+  it('automatically retries an offline waiting player when connectivity returns', () => {
+    setOnline(false);
+    const { container } = render(<Video {...response} />);
+    fireEvent.waiting(container.querySelector('video')!);
+    expect(screen.getByRole('alert')).toHaveTextContent('Відео недоступне без мережі');
+
+    setOnline(true);
+    fireEvent(window, new Event('online'));
+    expect(screen.queryByRole('alert')).toBeNull();
+    expect(container.querySelector('video')).toHaveAttribute('src', '/lesson.mp4');
+  });
+
+  it('discards a previous source failure after changing the file location', () => {
+    setOnline(true);
+    const { container, rerender } = render(<Video {...response} />);
+    failVideo(container.querySelector('video')!, 4);
+    expect(screen.getByRole('alert')).toBeInTheDocument();
+
+    rerender(<Video {...response} fileLocation="/another.mp4" />);
+    expect(screen.queryByRole('alert')).toBeNull();
+    expect(container.querySelector('video')).toHaveAttribute('src', '/another.mp4');
+  });
+
+  it('shows default English fallback copy when no custom fallback exists', () => {
+    setOnline(true);
+    const { container } = render(<Video {...response} locale={{ code: 'en' }} fallback={undefined} />);
+    failVideo(container.querySelector('video')!, 4);
+    expect(screen.getByRole('alert')).toHaveTextContent('This video is unavailable.');
+    expect(screen.getByRole('button', { name: 'Try again' })).toBeVisible();
+  });
+
+  it('ignores errors from an aborted video request', () => {
+    setOnline(true);
+    const { container } = render(<Video {...response} />);
+    failVideo(container.querySelector('video')!, 1);
+    expect(screen.queryByRole('alert')).toBeNull();
+  });
+});
