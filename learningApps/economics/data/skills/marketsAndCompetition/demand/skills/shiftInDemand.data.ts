@@ -45,7 +45,7 @@ export const shiftInDemand_Skill_Data = buildSkillConfig({
       fr: "Explique ce qui peut modifier la demande même si le prix du produit ne change pas.",
       bn: "পণ্যের দাম অপরিবর্তিত থেকেও কোন কারণগুলো চাহিদা বদলায় তা বোঝাও।",
       pt: "Explique o que pode alterar a demanda mesmo se o preço do produto não mudar.",
-      ur: "بتائیں کہ قیمت یکساں رہنے کے باوجود طلب کیسے بدل سکتی ہے۔",
+      ur: "بتائیں کہ کسی چیز کی قیمت بدلے بغیر کن عوامل سے طلب کا پورا منحنی منتقل ہو سکتا ہے۔",
       id: "Jelaskan faktor yang dapat menggeser permintaan meski harga produk tetap.",
       de: "Erkläre, wodurch Nachfrage auch bei gleichem Produktpreis verschoben werden kann.",
       ja: "商品の価格が同じでも需要を変える要因を説明しよう。",
