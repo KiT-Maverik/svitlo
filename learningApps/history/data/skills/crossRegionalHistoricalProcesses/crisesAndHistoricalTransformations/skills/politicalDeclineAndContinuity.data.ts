@@ -27,7 +27,7 @@ export const politicalDeclineAndContinuity_Skill_Data = buildSkillConfig({
     pl: "Upadek polityczny i ciągłość",
     uk: "Політичний занепад і спадкоємність",
     lt: "Politinis nuosmukis ir tęstinumas",
-    lv: "Politiskais noriets un pēctecība",
+    lv: "Politiskais noriets un sabiedrības nepārtrauktība",
     et: "Poliitiline allakäik ja järjepidevus",
     be: "Палітычны заняпад і пераемнасьць",
     ka: "პოლიტიკური დაქვეითება და უწყვეტობა",
