@@ -65,7 +65,7 @@ export const predictTheEffectOfShapeOnMotionThroughAir_Skill_Data = buildSkillCo
       be: "Прадказвай, як форма й вугал цела зьмяняюць супраціў і пад'ёмную сілу.",
       ka: "იწინასწარმეტყველე, როგორ ცვლის სხეულის ფორმა ან კუთხე წინაღობასა და ამწევ ძალას.",
       kk: "Дененің пішіні не бұрышы кедергі мен көтергіш күшті қалай өзгертетінін болжа.",
-      qm: "Cisimniñ şekli ya da burçı qarşlıq ve köterici quvetni nasıl deñiştirgenini qabaqtan ayt.",
+      qm: "Cisimniñ şekli ya da burçı qarşılıq ve köterici quvetni nasıl deñiştirgenini qabaqtan ayt.",
     },
   },
 });

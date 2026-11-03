@@ -25,7 +25,7 @@ export const distinguishRisingFloatingAndSinking_Skill_Data = buildSkillConfig({
     ms: "Membezakan Naik, Terapung dan Tenggelam",
     he: "הבחנה בין עלייה, ציפה ושקיעה",
     pl: "Rozróżnianie wynurzania, pływania i tonięcia",
-    uk: "Розрізняти спливання, плавання й занурення",
+    uk: "Розрізняти спливання, плавання й тонення",
     lt: "Skirti kilimą, plūduriavimą ir skendimą",
     lv: "Atšķirt uzpeldēšanu, peldēšanu un grimšanu",
     et: "Eristada kerkimist, ujumist ja vajumist",
