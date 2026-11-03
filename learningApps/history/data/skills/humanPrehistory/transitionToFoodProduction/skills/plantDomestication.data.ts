@@ -4,7 +4,7 @@ export const plantDomestication_Skill_Data = buildSkillConfig({
   slug: "plantDomestication",
   id: "171498b6-3d50-4234-a026-3f16058051d8",
   name: {
-    en: "Одомашнення рослин",
+    en: "Plant Domestication",
     zh: "植物驯化",
     hi: "पौधों का पालतूकरण",
     es: "Domesticación de plantas",

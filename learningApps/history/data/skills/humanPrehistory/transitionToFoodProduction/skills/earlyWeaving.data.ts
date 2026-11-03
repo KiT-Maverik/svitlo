@@ -4,7 +4,7 @@ export const earlyWeaving_Skill_Data = buildSkillConfig({
   slug: "earlyWeaving",
   id: "6fadfd73-0fca-4191-bfdf-869edfd2b48d",
   name: {
-    en: "Раннє ткацтво",
+    en: "Early Weaving",
     zh: "早期纺织",
     hi: "प्रारंभिक बुनाई",
     es: "Primeros tejidos",

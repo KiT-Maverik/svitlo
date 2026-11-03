@@ -4,7 +4,7 @@ export const foragingEconomies_Skill_Data = buildSkillConfig({
   slug: "foragingEconomies",
   id: "1c43f4c0-73f3-41ab-bb8e-f4c2f2980106",
   name: {
-    en: "Привласнювальне господарство",
+    en: "Foraging Economies",
     zh: "采集狩猎经济",
     hi: "जंगल से खाद्य संग्रह की अर्थव्यवस्था",
     es: "Economías de recolección y caza",

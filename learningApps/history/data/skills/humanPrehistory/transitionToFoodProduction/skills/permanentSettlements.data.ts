@@ -4,7 +4,7 @@ export const permanentSettlements_Skill_Data = buildSkillConfig({
   slug: "permanentSettlements",
   id: "10f31be3-3f7b-4cc9-8ee6-701a110e178b",
   name: {
-    en: "Осілі поселення",
+    en: "Permanent Settlements",
     zh: "永久性聚落",
     hi: "स्थायी बस्तियाँ",
     es: "Asentamientos permanentes",

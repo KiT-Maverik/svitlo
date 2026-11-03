@@ -4,7 +4,7 @@ export const animalDomestication_Skill_Data = buildSkillConfig({
   slug: "animalDomestication",
   id: "f8135b68-0ce4-45d0-9394-bec327682954",
   name: {
-    en: "Одомашнення тварин",
+    en: "Animal Domestication",
     zh: "动物驯化",
     hi: "पशुओं का पालतूकरण",
     es: "Domesticación de animales",

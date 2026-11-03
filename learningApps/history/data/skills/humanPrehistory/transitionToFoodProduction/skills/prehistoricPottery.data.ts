@@ -4,7 +4,7 @@ export const prehistoricPottery_Skill_Data = buildSkillConfig({
   slug: "prehistoricPottery",
   id: "0a267743-a56f-43ab-af54-c387b0c04bc0",
   name: {
-    en: "Первісна кераміка",
+    en: "Prehistoric Pottery",
     zh: "史前陶器",
     hi: "प्रागैतिहासिक मिट्टी के बर्तन",
     es: "Cerámica prehistórica",

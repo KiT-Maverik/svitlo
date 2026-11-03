@@ -6,7 +6,7 @@ export const transitionToFoodProduction_SkillGroup_Data = buildSkillGroupConfig(
   slug: "transitionToFoodProduction",
   id: "14b528ab-ae67-4b32-b2da-1affd02a5910",
   name: {
-    en: "Переходи до виробництва їжі",
+    en: "Transitions to Food Production",
     zh: "向食物生产的转变",
     hi: "खाद्य उत्पादन की ओर बदलाव",
     es: "Transiciones a la producción de alimentos",

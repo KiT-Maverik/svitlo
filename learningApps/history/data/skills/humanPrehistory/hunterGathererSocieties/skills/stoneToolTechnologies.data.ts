@@ -4,7 +4,7 @@ export const stoneToolTechnologies_Skill_Data = buildSkillConfig({
   slug: "stoneToolTechnologies",
   id: "8e60a62f-fcb2-4bd7-84fc-9ff2d7367c23",
   name: {
-    en: "Кам'яні технології",
+    en: "Stone Tool Technologies",
     zh: "石器技术",
     hi: "पत्थर के औज़ारों की तकनीक",
     es: "Tecnologías de herramientas de piedra",
