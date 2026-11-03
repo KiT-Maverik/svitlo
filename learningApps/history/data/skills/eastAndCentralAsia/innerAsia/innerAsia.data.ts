@@ -67,7 +67,7 @@ export const innerAsia_SkillGroup_Data = buildSkillGroupConfig({
       he: "חקרו את החברות הנודדות והיושבות באסיה הפנימית.",
       pl: "Poznaj mobilne i osiadłe społeczności Azji Wewnętrznej.",
       uk: "Досліди кочові й осілі суспільства Внутрішньої Азії.",
-      lt: "Tyrinėkite klajoklių ir sėslias Vidinės Azijos visuomenes.",
+      lt: "Tyrinėkite klajokliškas ir sėslias Vidinės Azijos visuomenes.",
       lv: "Iepazīsti Iekšējās Āzijas klejotāju un pastāvīgi apmetušās sabiedrības.",
       et: "Uuri Sise-Aasia rändavaid ja paikseid ühiskondi.",
       be: "Дасьледуй вандроўныя і аселыя грамадзтвы Ўнутранай Азіі.",
