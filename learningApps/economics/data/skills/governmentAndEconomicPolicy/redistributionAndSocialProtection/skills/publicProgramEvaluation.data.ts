@@ -48,7 +48,7 @@ export const publicProgramEvaluation_Skill_Data = buildSkillConfig({
       ur: "طے کریں کہ سرکاری پروگرام نے کس لاگت سے اپنے اہداف پورے کیے۔",
       id: "Nilai apakah program pemerintah mencapai tujuannya dan berapa biayanya.",
       de: "Beurteile, ob ein staatliches Programm seine Ziele erreicht hat und zu welchen Kosten.",
-      ja: "政府の事業がどの費用で目標を達成したか判断しよう。",
+      ja: "政府の施策が目標を達成したか、どの程度の費用がかかったか評価しよう。",
       ko: "정부 사업이 어떤 비용으로 목표를 달성했는지 평가해 보세요.",
       tr: "Bir kamu programının hedeflerine ulaşıp ulaşmadığını ve maliyetini değerlendirin.",
       vi: "Xác định chương trình chính phủ đạt mục tiêu hay chưa và tốn bao nhiêu chi phí.",
