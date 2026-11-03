@@ -10,7 +10,7 @@ import { ContentBlock_Quiz } from './blocks/Quiz/ContentBlock_Quiz';
 import { ContentBlock_Scene } from './blocks/Scene/ContentBlock_Scene';
 import { ContentBlock_Text } from './blocks/Text/Text';
 import { ContentBlock_Video } from './blocks/Video/ContentBlock_Video';
-import { ContentBlock_Youtube } from './blocks/Youtube/ContentBlock_Youtube';
+import { ContentBlock_Youtube } from './blocks/Youtube/Youtube';
 import type { ContentBlockRenderContext, ContentBlockRendererProps, NestedResponse } from '#types/content-blocks';
 import { assertNever, requireTaggedResponse } from './utils';
 
