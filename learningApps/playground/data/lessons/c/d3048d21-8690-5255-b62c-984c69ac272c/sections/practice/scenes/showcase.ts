@@ -1,3 +1,4 @@
+import { sceneLocalesToData } from '../../../sceneLocales';
 import type {ContentBlock_Scene} from "@svitlo/engine/content";
 import {LanguageCode} from "@svitlo/engine/localization";
 
@@ -965,3 +966,9 @@ export const showcase_Locale: Record<LanguageCode, Locale> = {
 
 export type Showcase_ContentBlock<ConfigType extends 'definition' | 'data' | 'response'> =
   ContentBlock_Scene<ConfigType, Locale>;
+
+export const showcaseData: Showcase_ContentBlock<'data'> = {
+  id: 'how-light-moves-scene-showcase',
+  slug: 'showcase',
+  locales: sceneLocalesToData(showcase_Locale),
+};

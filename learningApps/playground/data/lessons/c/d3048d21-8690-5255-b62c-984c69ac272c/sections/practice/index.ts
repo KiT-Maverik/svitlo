@@ -1,4 +1,4 @@
-import { defineContentBlockCatalog,  type Section } from '@svitlo/engine/content';
+import { defineContentBlockCatalog, type Section } from '@svitlo/engine/content';
 import { showcaseData } from './scenes/showcase';
 
 const title = {
@@ -40,7 +40,7 @@ export const practice_Section = {
   title,
   navigationLabel: title,
   skippable: true,
-  order: [{ type: 'text', key: 'task' }, { type: 'scene', key: 'showcase' }],
+  order: [{ type: 'text', slug: 'task' }, { type: 'scene', slug: 'showcase' }],
   content: defineContentBlockCatalog({
     scene: { showcase: showcaseData },
     text: {
@@ -77,4 +77,4 @@ export const practice_Section = {
         }, },
     },
   }),
-} satisfies Section<'data'> & { order: { type: string; key: string }[] };
+} satisfies Section<'data'>;
