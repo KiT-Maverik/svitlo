@@ -61,7 +61,7 @@ export const greekReligionAndMythology_Skill_Data = buildSkillConfig({
       uk: "Зрозумій, як міфи й релігійні практики впливали на життя грецьких громад.",
       lt: "Supraskite, kaip mitai ir religinės praktikos formavo graikų bendruomenių gyvenimą.",
       lv: "Izproti, kā mīti un reliģiskās prakses veidoja grieķu kopienu dzīvi.",
-      et: "Mõista, kuidas müüdid ja usutavad kujundasid Kreeka kogukondade elu.",
+      et: "Mõista, kuidas müüdid ja usulised tavad kujundasid Kreeka kogukondade elu.",
       be: "Зразумей, як міты й рэлігійныя практыкі ўплывалі на жыцьцё грэцкіх грамадаў.",
       ka: "გაიაზრეთ, როგორ აყალიბებდა მითები და რელიგიური წეს-ჩვეულებები ბერძნული თემების ცხოვრებას.",
       kk: "Мифтер мен діни тәжірибелер грек қауымдарының өмірін қалай қалыптастырғанын түсініңіз.",

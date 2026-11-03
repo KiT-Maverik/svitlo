@@ -31,7 +31,7 @@ export const scythianSocieties_Skill_Data = buildSkillConfig({
     et: "Sküütide ühiskonnad",
     be: "Скіфскія грамадзтвы",
     ka: "სკვითური საზოგადოებები",
-    kk: "Сақ-скиф қоғамдары",
+    kk: "Скиф қоғамдары",
     qm: "İskit cemiyetleri",
   },
   description: {

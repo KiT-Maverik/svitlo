@@ -39,7 +39,7 @@ export const independentAmericanCropDomestication_Skill_Data = buildSkillConfig(
     frontend: {
       en: "Discover plants domesticated by ancient American communities.",
       zh: "认识古代美洲各地独立驯化的农作物。",
-      hi: "प्राचीन अमेरिकी समुदायों द्वारा स्वतंत्र रूप से उगाए गए घरेलू फसल पौधों के बारे में जानें।",
+      hi: "जानें कि प्राचीन अमेरिकी समुदायों ने किन पौधों का स्वतंत्र रूप से घरेलूकरण किया।",
       es: "Descubre las plantas domesticadas por las antiguas comunidades americanas.",
       ar: "اكتشف النباتات التي دجّنتها المجتمعات الأمريكية القديمة.",
       fr: "Découvre les plantes domestiquées par les communautés anciennes des Amériques.",
