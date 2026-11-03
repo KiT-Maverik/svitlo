@@ -87,3 +87,37 @@ describe('Image content block', () => {
     expect(screen.getByRole('alert')).toHaveTextContent('Зображення не знайдено');
   });
 });
+
+
+describe('Image fallback lifecycle', () => {
+  it('retries an offline failure automatically when the connection returns', () => {
+    setOnline(false);
+    render(<Image {...response} />);
+    fireEvent.error(screen.getByAltText('Схема руху світла'));
+    expect(screen.getByRole('alert')).toHaveTextContent('Зображення не збережено офлайн');
+
+    setOnline(true);
+    fireEvent(window, new Event('online'));
+    expect(screen.queryByRole('alert')).toBeNull();
+    expect(screen.getByAltText('Схема руху світла')).toBeInTheDocument();
+  });
+
+  it('does not carry a failed state across image source changes', () => {
+    setOnline(true);
+    const { rerender } = render(<Image {...response} />);
+    fireEvent.error(screen.getByAltText('Схема руху світла'));
+    expect(screen.getByRole('alert')).toBeInTheDocument();
+
+    rerender(<Image {...response} src="/alternate-diagram.png" />);
+    expect(screen.queryByRole('alert')).toBeNull();
+    expect(screen.getByAltText('Схема руху світла').getAttribute('src')).toContain('alternate-diagram.png');
+  });
+
+  it('uses its built-in fallback when localized overrides are absent', () => {
+    setOnline(true);
+    render(<Image {...response} locale={{ code: 'en' }} fallback={undefined} />);
+    fireEvent.error(screen.getByAltText('Схема руху світла'));
+    expect(screen.getByRole('alert')).toHaveTextContent('This image is unavailable.');
+    expect(screen.getByRole('button', { name: 'Try again' })).toBeVisible();
+  });
+});

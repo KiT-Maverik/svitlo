@@ -94,3 +94,23 @@ describe('Text', () => {
     expect(container.textContent).toBe('Hello John ');
   });
 });
+
+
+describe('Text additional inline styling', () => {
+  it('combines cursive and crossed-out styles on a single fragment', () => {
+    render(<Text {...textResponse(
+      'The {{id: old; value: outdated}} wording is replaced.',
+      [{ id: 'old', applyStyle: ['cursive', 'crossed'] }],
+    )} />);
+    const fragment = screen.getByText('outdated');
+    expect(fragment).toHaveClass(styles.cursive);
+    expect(fragment).toHaveStyle({ textDecorationLine: 'line-through' });
+  });
+
+  it('preserves literal punctuation around multiple inline fragments', () => {
+    const { container } = render(<Text {...textResponse(
+      '({{id: first; value: one}}), [{{id: second; value: two}}]!',
+    )} />);
+    expect(container.textContent).toBe('(one), [two]!');
+  });
+});

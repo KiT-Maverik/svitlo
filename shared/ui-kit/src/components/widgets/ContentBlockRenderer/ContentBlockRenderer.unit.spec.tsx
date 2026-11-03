@@ -49,3 +49,28 @@ describe('ContentBlockRenderer', () => {
     expect(() => render(<ContentBlockRenderer blocks={[quiz]} />)).toThrow('requires a supported response.type');
   });
 });
+
+
+describe('ContentBlockRenderer guard and state coverage', () => {
+  it('rejects a response without a type discriminator', () => {
+    const untagged = { id: 'untagged', locale, value: 'Ambiguous content' } as unknown as ContentBlockResponse;
+    expect(() => render(<ContentBlockRenderer blocks={[untagged]} />))
+      .toThrow('requires a supported response.type discriminator');
+  });
+
+  it('preserves an expanded and checked checkpoint when a sibling text block changes', () => {
+    const checkpoint: ContentBlockResponse = {
+      id: 'persistent-checkpoint', type: 'checkpoint', locale, title: 'Review',
+      enableChecks: true,
+      items: [{ question: 'What did you learn?', answer: [last] }],
+    };
+    const { rerender } = render(<ContentBlockRenderer blocks={[first, checkpoint]} />);
+    fireEvent.click(screen.getByText('What did you learn?'));
+    fireEvent.click(screen.getByRole('button', { name: 'Check' }));
+    expect(screen.getByRole('button', { name: 'Checked' })).toBeDisabled();
+
+    rerender(<ContentBlockRenderer blocks={[{ ...first, value: 'Updated opening' }, checkpoint]} />);
+    expect(screen.getByText('Updated opening')).toBeVisible();
+    expect(screen.getByRole('button', { name: 'Checked' })).toBeDisabled();
+  });
+});

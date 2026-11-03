@@ -33,3 +33,43 @@ describe('Checkpoint content block', () => {
     expect(screen.queryByRole('button', { name: 'Check' })).toBeNull();
   });
 });
+
+
+describe('Checkpoint configuration and accessibility', () => {
+  it('enables confirmation for all items and keeps their state independent', () => {
+    render(<Checkpoint
+      {...response}
+      enableChecks
+      items={[
+        { ...response.items[0], check: undefined },
+        { question: 'What is a ray?', answer: [{ id: 'answer-2', type: 'text', locale: { code: 'en' }, value: 'A model of light' }] },
+      ]}
+      renderNested={block => <span>{block.id}</span>}
+    />);
+    fireEvent.click(screen.getByText('What is light?'));
+    fireEvent.click(screen.getByRole('button', { name: 'Check' }));
+    expect(screen.getByRole('button', { name: 'Checked' })).toBeDisabled();
+
+    fireEvent.click(screen.getByText('What is a ray?'));
+    expect(screen.getByText('answer-2')).toBeVisible();
+    expect(screen.getByRole('button', { name: 'Check' })).toBeEnabled();
+  });
+
+  it('uses right-to-left direction and clamps the item heading level at six', () => {
+    render(<Checkpoint
+      {...response}
+      locale={{ code: 'ar' }}
+      title="اختبر معلوماتك"
+      headingLevel={6}
+      showIndices={false}
+      showChevron={false}
+      showIcon
+      renderAsGroup={false}
+      renderNested={() => null}
+    />);
+    const title = screen.getByRole('heading', { name: 'اختبر معلوماتك', level: 6 });
+    expect(title.closest('section')).toHaveAttribute('dir', 'rtl');
+    expect(screen.queryByText('01')).toBeNull();
+    expect(screen.getByText('What is light?')).toHaveAttribute('dir', 'rtl');
+  });
+});
