@@ -13,7 +13,7 @@ export const borrowerAffordability_Skill_Data = buildSkillConfig({
     bn: "ঋণ পরিশোধের সামর্থ্য",
     pt: "Capacidade de pagamento do tomador",
     ur: "قرض لینے والے کی ادائیگی کی استطاعت",
-    id: "Kemampuan Membayar Peminjam",
+    id: "Kemampuan membayar peminjam",
     de: "Tragfähigkeit eines Kredits",
     ja: "借り手の返済能力",
     ko: "대출자 상환 능력",

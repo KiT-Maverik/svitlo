@@ -13,7 +13,7 @@ export const personalIncomeSources_Skill_Data = buildSkillConfig({
     bn: "ব্যক্তিগত আয়ের উৎস",
     pt: "Fontes de renda pessoal",
     ur: "ذاتی آمدنی کے ذرائع",
-    id: "Sumber Pendapatan Pribadi",
+    id: "Sumber pendapatan pribadi",
     de: "Persönliche Einkommensquellen",
     ja: "個人の収入源",
     ko: "개인 소득원",

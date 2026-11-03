@@ -15,7 +15,7 @@ export const paymentsAndTransactions_SkillGroup_Data = buildSkillGroupConfig({
     bn: "অর্থপ্রদান ও লেনদেন",
     pt: "Pagamentos e transações",
     ur: "ادائیگیاں اور لین دین",
-    id: "Pembayaran dan Transaksi",
+    id: "Pembayaran dan transaksi",
     de: "Zahlungen und Transaktionen",
     ja: "支払いと取引",
     ko: "결제와 거래",

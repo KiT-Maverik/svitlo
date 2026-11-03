@@ -13,7 +13,7 @@ export const financialGoals_Skill_Data = buildSkillConfig({
     bn: "আর্থিক লক্ষ্য",
     pt: "Metas financeiras",
     ur: "مالی مقاصد",
-    id: "Tujuan Keuangan",
+    id: "Tujuan keuangan",
     de: "Finanzielle Ziele",
     ja: "金銭的な目標",
     ko: "재무 목표",

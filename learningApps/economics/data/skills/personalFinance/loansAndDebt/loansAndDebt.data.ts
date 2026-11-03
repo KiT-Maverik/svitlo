@@ -15,7 +15,7 @@ export const loansAndDebt_SkillGroup_Data = buildSkillGroupConfig({
     bn: "ঋণ ও দেনা",
     pt: "Empréstimos e dívidas",
     ur: "قرضے اور ادھار",
-    id: "Pinjaman dan Utang",
+    id: "Pinjaman dan utang",
     de: "Kredite und Schulden",
     ja: "借り入れと負債",
     ko: "대출과 부채",
