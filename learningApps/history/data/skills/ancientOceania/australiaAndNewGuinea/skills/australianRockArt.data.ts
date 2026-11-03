@@ -11,7 +11,7 @@ export const australianRockArt_Skill_Data = buildSkillConfig({
     ar: "الفن الصخري الأسترالي",
     fr: "Art rupestre australien",
     bn: "অস্ট্রেলিয়ার শিলাচিত্র",
-    pt: "Arte rupestre australiano",
+    pt: "Arte rupestre australiana",
     ur: "آسٹریلوی چٹانی فن",
     id: "Seni cadas Australia",
     de: "Australische Felskunst",
