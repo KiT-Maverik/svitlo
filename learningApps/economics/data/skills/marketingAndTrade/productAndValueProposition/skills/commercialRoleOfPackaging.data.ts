@@ -13,7 +13,7 @@ export const commercialRoleOfPackaging_Skill_Data = buildSkillConfig({
     bn: "মোড়কের বাণিজ্যিক ভূমিকা",
     pt: "Papel comercial da embalagem",
     ur: "پیکنگ کا تجارتی کردار",
-    id: "Peran Komersial Kemasan",
+    id: "Peran komersial kemasan",
     de: "Kommerzielle Rolle der Verpackung",
     ja: "包装の商業的役割",
     ko: "포장의 상업적 역할",
