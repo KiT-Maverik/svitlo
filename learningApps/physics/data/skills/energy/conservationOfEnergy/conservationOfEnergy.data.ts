@@ -72,7 +72,7 @@ export const conservationOfEnergy_SkillGroup_Data = buildSkillGroupConfig({
       be: "Зразумей, чаму поўная энэргія ізаляванай сыстэмы захоўваецца.",
       ka: "გაიგე, რატომ ნარჩუნდება იზოლირებული სისტემის სრული ენერგია.",
       kk: "Оқшауланған жүйенің толық энергиясы неге сақталатынын түсін.",
-      qm: "Ayrı sistemanıñ umumiy energiyası niçün saqlana, añla.",
+      qm: "Tışarınen energiya almağan ve bermegen sistemanıñ umumiy energiyası niçün saqlana, añla.",
     },
   },
 });

@@ -58,7 +58,7 @@ export const predictTheDirectionOfAReflectedRay_Skill_Data = buildSkillConfig({
       ms: "Ramalkan sudut pantulan relatif kepada garis normal permukaan.",
       he: "חזו את זוויות ההחזרה ביחס לאנך למשטח.",
       pl: "Przewidź kąty odbicia względem normalnej do powierzchni.",
-      uk: "Передбач кути відбивання відносно нормалі до поверхні.",
+      uk: "Передбачай напрям відбитого променя, застосовуючи закон відбивання відносно нормалі до поверхні.",
       lt: "Numatyk atspindžio kampus paviršiaus normalės atžvilgiu.",
       lv: "Paredzi atstarošanās leņķus attiecībā pret virsmas normāli.",
       et: "Ennusta peegeldumisnurki pinna normaali suhtes.",

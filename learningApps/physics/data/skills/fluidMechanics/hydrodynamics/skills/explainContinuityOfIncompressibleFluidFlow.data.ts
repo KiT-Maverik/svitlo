@@ -39,7 +39,7 @@ export const explainContinuityOfIncompressibleFluidFlow_Skill_Data = buildSkillC
     frontend: {
       en: "Connect changes in channel width with the speed of steady incompressible flow.",
       zh: "联系流道宽度的变化与稳定不可压缩流动的速度。",
-      hi: "प्रवाह मार्ग की चौड़ाई में बदलाव को स्थिर असंपीड्य प्रवाह की गति से जोड़ें।",
+      hi: "प्रवाह मार्ग के अनुप्रस्थ काट के क्षेत्रफल में बदलाव को स्थिर असंपीड्य प्रवाह की चाल से जोड़ें।",
       es: "Relaciona los cambios en la sección del canal con la velocidad de un flujo constante e incompresible.",
       ar: "اربط تغير عرض المجرى بسرعة التدفق المستقر للمائع غير القابل للانضغاط.",
       fr: "Relie les variations de section du canal à la vitesse d'un écoulement stable et incompressible.",
