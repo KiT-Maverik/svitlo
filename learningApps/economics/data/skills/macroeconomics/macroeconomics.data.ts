@@ -53,7 +53,7 @@ export const macroeconomics_SkillDomain_Data = buildSkillDomainConfig({
       hi: "जानें कि राष्ट्रीय उत्पादन, कीमतें, रोज़गार और आर्थिक वृद्धि कैसे जुड़े हैं।",
       es: "Explora cómo se relacionan la producción nacional, los precios, el empleo y el crecimiento.",
       ar: "اكتشف كيف يرتبط الناتج الوطني والأسعار والتوظيف والنمو الاقتصادي.",
-      fr: "Explorez les liens entre la production nationale, les prix, l’emploi et la croissance.",
+      fr: "Explore les liens entre la production nationale, les prix, l’emploi et la croissance.",
       bn: "জাতীয় উৎপাদন, মূল্য, কর্মসংস্থান ও প্রবৃদ্ধির পারস্পরিক সম্পর্ক জানো।",
       pt: "Explore as relações entre produção nacional, preços, emprego e crescimento.",
       ur: "جانیں کہ قومی پیداوار، قیمتیں، روزگار اور ترقی کیسے ایک دوسرے سے وابستہ ہیں۔",

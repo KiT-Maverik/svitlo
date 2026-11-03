@@ -49,7 +49,7 @@ export const growthAndProductivity_SkillGroup_Data = buildSkillGroupConfig({
       hi: "जानें कि दीर्घ अवधि में अर्थव्यवस्था का उत्पादन किससे बढ़ता है।",
       es: "Descubre qué permite producir más a una economía a largo plazo.",
       ar: "اكتشف ما الذي يساعد الاقتصاد على زيادة الإنتاج على المدى الطويل.",
-      fr: "Découvrez ce qui aide une économie à produire davantage à long terme.",
+      fr: "Découvre ce qui aide une économie à produire davantage à long terme.",
       bn: "দীর্ঘমেয়াদে অর্থনীতি বেশি উৎপাদন করতে কী সহায়তা করে তা জানো।",
       pt: "Descubra o que ajuda uma economia a produzir mais no longo prazo.",
       ur: "جانیں کہ طویل مدت میں معیشت کی پیداوار کیسے بڑھتی ہے۔",

@@ -42,7 +42,7 @@ export const aggregateDemand_Skill_Data = buildSkillConfig({
       hi: "जानें कि वस्तुओं और सेवाओं की कुल माँग को क्या प्रभावित करता है।",
       es: "Explora qué determina la demanda total de bienes y servicios.",
       ar: "اكتشف ما الذي يحدد إجمالي الطلب على السلع والخدمات.",
-      fr: "Explorez les facteurs qui déterminent la demande totale de biens et services.",
+      fr: "Explore les facteurs qui déterminent la demande totale de biens et services.",
       bn: "পণ্য ও সেবার মোট চাহিদা কীভাবে নির্ধারিত হয় তা জানো।",
       pt: "Explore o que determina a demanda total por bens e serviços.",
       ur: "جانیں کہ اشیا اور خدمات کی کل طلب کو کون سے عوامل شکل دیتے ہیں۔",

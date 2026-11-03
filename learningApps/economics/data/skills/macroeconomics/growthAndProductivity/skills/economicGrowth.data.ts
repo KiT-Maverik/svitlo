@@ -42,7 +42,7 @@ export const economicGrowth_Skill_Data = buildSkillConfig({
       hi: "मुद्रास्फीति समायोजित उत्पादन की वृद्धि दर मापें।",
       es: "Mide a qué ritmo crece la producción ajustada por inflación.",
       ar: "قس سرعة نمو الإنتاج بعد استبعاد أثر التضخم.",
-      fr: "Mesurez la vitesse de croissance de la production corrigée de l’inflation.",
+      fr: "Mesure la vitesse de croissance de la production corrigée de l’inflation.",
       bn: "মূল্যস্ফীতির প্রভাব বাদ দিয়ে উৎপাদন কত দ্রুত বাড়ছে তা মাপো।",
       pt: "Meça a velocidade de crescimento da produção descontada a inflação.",
       ur: "افراطِ زر کے اثرات نکال کر پیداوار کی شرحِ نمو ناپیں۔",
