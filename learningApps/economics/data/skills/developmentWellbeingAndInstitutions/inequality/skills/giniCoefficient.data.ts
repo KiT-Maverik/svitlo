@@ -42,7 +42,7 @@ export const giniCoefficient_Skill_Data = buildSkillConfig({
       hi: "जिनी गुणांक समझें, लेकिन इसे पूरी तस्वीर न मानें।",
       es: "Interpreta un coeficiente de Gini sin asumir que lo explica todo.",
       ar: "فسّر معامل جيني دون افتراض أنه يروي القصة كاملة.",
-      fr: "Interprétez un coefficient de Gini sans supposer qu’il résume toute la situation.",
+      fr: "Interprète un coefficient de Gini sans supposer qu’il résume toute la situation.",
       bn: "জিনি সহগ বুঝে নাও, কিন্তু একে পুরো চিত্র মনে কোরো না।",
       pt: "Interprete o coeficiente de Gini sem imaginar que ele conta toda a história.",
       ur: "جینی عدد کو سمجھیں، مگر اسے مکمل تصویر نہ سمجھیں۔",
