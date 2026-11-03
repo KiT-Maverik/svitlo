@@ -32,7 +32,7 @@ export const housingAndDomesticSpace_Skill_Data = buildSkillConfig({
     be: "Жытло і хатняя прастора",
     ka: "საცხოვრებელი და საოჯახო სივრცე",
     kk: "Тұрғын үй және үй ішіндегі кеңістік",
-    qm: "Mesken ve ev içi meкân",
+    qm: "Mesken ve ev içi mekân",
   },
   description: {
     methodological: "Relate house forms, household organization, and rooms to resources, climates, and social distinctions.",
