@@ -23,7 +23,7 @@ export const operatingSystems_SkillGroup_Data = buildSkillGroupConfig({
     vi: "Hệ điều hành",
     ta: "இயக்க முறைமைகள்",
     te: "ఆపరేటింగ్ సిస్టమ్‌లు",
-    mr: "कार्यप्रणाली प्रणाली",
+    mr: "ऑपरेटिंग सिस्टीम",
     ms: "Sistem pengendalian",
     he: "מערכות הפעלה",
     pl: "Systemy operacyjne",
