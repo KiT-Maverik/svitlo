@@ -65,7 +65,7 @@ export const explainTokens_Skill_Data = buildSkillConfig({
       be: 'Зразумей токены як адзінкі прадстаўленьня тэксту, што залежаць ад мадэлі.',
       ka: 'გაიგე, რომ ტოკენი მოდელზე დამოკიდებული ტექსტის წარმოდგენის ერთეულია.',
       kk: 'Токенді модельге байланысты мәтін көрсету бірлігі ретінде түсін.',
-      qm: 'Tokenni modelge köre belgilengän metin parçası olaraq añla.',
+      qm: 'Tokenni modelge köre belgilengen metin parçası olaraq añla.',
     },
   },
 });
