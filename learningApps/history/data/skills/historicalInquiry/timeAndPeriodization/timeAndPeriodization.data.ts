@@ -62,7 +62,7 @@ export const timeAndPeriodization_SkillGroup_Data = buildSkillGroupConfig({
       vi: "Khám phá cách niên đại và thời kỳ lịch sử giúp chúng ta sắp xếp quá khứ.",
       ta: "தேதிகளும் வரலாற்றுக் காலங்களும் கடந்தகாலத்தை ஒழுங்குபடுத்த எவ்வாறு உதவுகின்றன என்பதை ஆராய்.",
       te: "తేదీలు, చారిత్రక యుగాలు గతాన్ని క్రమబద్ధీకరించడంలో ఎలా సహాయపడతాయో తెలుసుకోండి.",
-      mr: "तारखा आणि ऐतिहासिक कालखंड आपल्याला भूतकाळ कसा मांडता येतो हे शोधा.",
+      mr: "तारखा आणि ऐतिहासिक कालखंड भूतकाळ समजून घेण्यास आणि त्याची मांडणी करण्यास कशी मदत करतात ते जाणून घ्या.",
       ms: "Terokai bagaimana tarikh dan zaman sejarah membantu kita menyusun masa lalu.",
       he: "גלו כיצד תאריכים ותקופות היסטוריות עוזרים לנו לארגן את העבר.",
       pl: "Odkryj, jak daty i epoki historyczne pomagają nam porządkować przeszłość.",
