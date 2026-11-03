@@ -4,7 +4,7 @@ export const guptaKingdom_Skill_Data = buildSkillConfig({
   slug: "guptaKingdom",
   id: "80197cc7-5ad0-4a5c-b6ef-816f1c5873de",
   name: {
-    en: "Держава Гуптів",
+    en: "Gupta Kingdom",
     zh: "笈多王朝",
     hi: "गुप्त साम्राज्य",
     es: "Reino gupta",

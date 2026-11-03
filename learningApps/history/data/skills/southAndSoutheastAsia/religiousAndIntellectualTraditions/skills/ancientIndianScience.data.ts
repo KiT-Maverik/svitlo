@@ -4,7 +4,7 @@ export const ancientIndianScience_Skill_Data = buildSkillConfig({
   slug: "ancientIndianScience",
   id: "a30624e8-65ae-4f5d-aba5-9dd15a75b61c",
   name: {
-    en: "Індійська наукова культура",
+    en: "Ancient Indian Scientific Traditions",
     zh: "古印度科学文化",
     hi: "प्राचीन भारतीय वैज्ञानिक संस्कृति",
     es: "Cultura científica de la India antigua",

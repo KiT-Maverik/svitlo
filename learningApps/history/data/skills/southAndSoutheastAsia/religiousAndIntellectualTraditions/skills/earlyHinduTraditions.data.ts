@@ -4,7 +4,7 @@ export const earlyHinduTraditions_Skill_Data = buildSkillConfig({
   slug: "earlyHinduTraditions",
   id: "0cc39976-d667-4b4b-a105-9763ff2ea7ff",
   name: {
-    en: "Ранні індуїстські традиції",
+    en: "Early Hindu Traditions",
     zh: "早期印度教传统",
     hi: "प्रारंभिक हिंदू परंपराएँ",
     es: "Primeras tradiciones hindúes",

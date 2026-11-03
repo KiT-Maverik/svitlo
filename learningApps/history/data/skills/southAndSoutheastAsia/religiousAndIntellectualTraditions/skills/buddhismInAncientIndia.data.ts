@@ -4,7 +4,7 @@ export const buddhismInAncientIndia_Skill_Data = buildSkillConfig({
   slug: "buddhismInAncientIndia",
   id: "fd97cdd5-dd85-4dfb-9aa2-e7cab2143ac1",
   name: {
-    en: "Буддизм у давній Індії",
+    en: "Buddhism in Ancient India",
     zh: "古印度的佛教",
     hi: "प्राचीन भारत में बौद्ध धर्म",
     es: "Budismo en la India antigua",

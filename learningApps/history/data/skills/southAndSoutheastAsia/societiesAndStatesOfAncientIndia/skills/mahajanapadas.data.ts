@@ -4,7 +4,7 @@ export const mahajanapadas_Skill_Data = buildSkillConfig({
   slug: "mahajanapadas",
   id: "f1bc9555-0e94-43a0-b7c5-754c36ab66e1",
   name: {
-    en: "Махаджанапади",
+    en: "Mahajanapadas",
     zh: "十六大国",
     hi: "महाजनपद",
     es: "Mahajanapadas",

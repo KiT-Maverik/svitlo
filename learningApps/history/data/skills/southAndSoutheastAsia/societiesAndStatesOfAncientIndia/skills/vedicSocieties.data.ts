@@ -4,7 +4,7 @@ export const vedicSocieties_Skill_Data = buildSkillConfig({
   slug: "vedicSocieties",
   id: "a3707296-1f32-434a-a36e-074fd1f85349",
   name: {
-    en: "Ведійські суспільства",
+    en: "Vedic Societies",
     zh: "吠陀时代的社会",
     hi: "वैदिक समाज",
     es: "Sociedades védicas",

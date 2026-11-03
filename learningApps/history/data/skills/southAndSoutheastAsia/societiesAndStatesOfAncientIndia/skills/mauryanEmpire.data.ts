@@ -4,7 +4,7 @@ export const mauryanEmpire_Skill_Data = buildSkillConfig({
   slug: "mauryanEmpire",
   id: "6e8e6c87-7ecd-4f8b-8021-2ff2f4b2c044",
   name: {
-    en: "Імперія Маур'їв",
+    en: "Mauryan Empire",
     zh: "孔雀帝国",
     hi: "मौर्य साम्राज्य",
     es: "Imperio maurya",

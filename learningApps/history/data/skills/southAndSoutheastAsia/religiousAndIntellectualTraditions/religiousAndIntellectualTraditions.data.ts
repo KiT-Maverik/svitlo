@@ -6,7 +6,7 @@ export const religiousAndIntellectualTraditions_SkillGroup_Data = buildSkillGrou
   slug: "religiousAndIntellectualTraditions",
   id: "306a08df-08ba-470b-88da-fdab77bf1904",
   name: {
-    en: "Релігійні та інтелектуальні традиції",
+    en: "Religious and Intellectual Traditions",
     zh: "宗教与思想传统",
     hi: "धार्मिक और बौद्धिक परंपराएँ",
     es: "Tradiciones religiosas e intelectuales",

@@ -4,7 +4,7 @@ export const jainism_Skill_Data = buildSkillConfig({
   slug: "jainism",
   id: "d1ae509f-a14d-43fc-9eb0-4b40100eb7d5",
   name: {
-    en: "Джайнізм",
+    en: "Jainism",
     zh: "耆那教",
     hi: "जैन धर्म",
     es: "Jainismo",

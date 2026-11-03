@@ -6,7 +6,7 @@ export const societiesAndStatesOfAncientIndia_SkillGroup_Data = buildSkillGroupC
   slug: "societiesAndStatesOfAncientIndia",
   id: "c26d62e2-f630-4279-a5e9-7c2bb237ff27",
   name: {
-    en: "Суспільства та держави давньої Індії",
+    en: "Societies and States of Ancient India",
     zh: "古印度的社会与国家",
     hi: "प्राचीन भारत के समाज और राज्य",
     es: "Sociedades y estados de la India antigua",
