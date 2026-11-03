@@ -54,7 +54,7 @@ export const historyOfAncientMedicine_Skill_Data = buildSkillConfig({
       vi: "Tìm hiểu các xã hội cổ đại quan niệm như thế nào về việc chữa bệnh.",
       ta: "நோயைக் குணப்படுத்துவது பற்றி பண்டைய சமூகங்கள் என்ன நம்பின என்பதை அறிந்துகொள்.",
       te: "ప్రాచీన సమాజాలు చికిత్స, స్వస్థత గురించి ఏమి నమ్మేవో తెలుసుకోండి.",
-      mr: "प्राचीन समाजांत उपचारांबद्दल कोणत्या समजुती होत्या ते जाणून घे.",
+      mr: "प्राचीन समाजांत उपचारांबद्दल कोणत्या समजुती होत्या ते जाणून घ्या.",
       ms: "Ketahui kepercayaan masyarakat purba tentang rawatan dan penyembuhan.",
       he: "גלו מה האמינו חברות עתיקות על טיפול וריפוי.",
       pl: "Poznaj wierzenia dawnych społeczeństw dotyczące leczenia.",

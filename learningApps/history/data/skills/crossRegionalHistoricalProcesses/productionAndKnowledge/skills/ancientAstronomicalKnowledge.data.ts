@@ -54,7 +54,7 @@ export const ancientAstronomicalKnowledge_Skill_Data = buildSkillConfig({
       vi: "Khám phá cách người xưa nghiên cứu bầu trời.",
       ta: "பண்டைய மக்கள் வானத்தை எவ்வாறு கவனித்து ஆராய்ந்தனர் என்பதை ஆராய்.",
       te: "ప్రాచీన ప్రజలు ఆకాశాన్ని ఎలా పరిశీలించి అధ్యయనం చేశారో తెలుసుకోండి.",
-      mr: "प्राचीन लोक आकाशाचा अभ्यास कसा करत होते ते जाणून घे.",
+      mr: "प्राचीन लोक आकाशाचा अभ्यास कसा करत होते ते जाणून घ्या.",
       ms: "Terokai cara manusia purba mengkaji langit.",
       he: "גלו כיצד אנשים בעת העתיקה חקרו את השמים.",
       pl: "Poznaj sposoby badania nieba w starożytności.",

@@ -54,7 +54,7 @@ export const originsOfWriting_Skill_Data = buildSkillConfig({
       vi: "Tìm hiểu cách các xã hội khác nhau bắt đầu ghi lại ngôn ngữ bằng chữ viết.",
       ta: "பல்வேறு சமூகங்கள் மொழியை எழுத்தில் எவ்வாறு பதிவு செய்யத் தொடங்கின என்பதை ஆராய்.",
       te: "వేర్వేరు సమాజాలు భాషను లిపిలో ఎలా నమోదు చేయడం మొదలుపెట్టాయో తెలుసుకోండి.",
-      mr: "विविध समाजांनी भाषा लिखित स्वरूपात कशी नोंदवायला सुरुवात केली ते जाणून घे.",
+      mr: "विविध समाजांनी भाषा लिखित स्वरूपात कशी नोंदवायला सुरुवात केली ते जाणून घ्या.",
       ms: "Terokai bagaimana masyarakat berbeza mula merekodkan bahasa melalui tulisan.",
       he: "גלו כיצד חברות שונות החלו לתעד שפה באמצעות כתב.",
       pl: "Dowiedz się, jak różne społeczeństwa zaczęły zapisywać język za pomocą pisma.",

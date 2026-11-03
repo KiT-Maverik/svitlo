@@ -54,7 +54,7 @@ export const metallurgyAndHistoricalEffects_Skill_Data = buildSkillConfig({
       vi: "Hiểu cách chế tác kim loại ảnh hưởng đến lao động và chiến tranh.",
       ta: "உலோக வேலைப்பாடுகள் உழைப்பையும் போரையும் எவ்வாறு பாதித்தன என்பதைப் புரிந்துகொள்.",
       te: "లోహ పనితనం వృత్తులను, యుద్ధాలను ఎలా ప్రభావితం చేసిందో అర్థం చేసుకోండి.",
-      mr: "धातुकामाचा कामधंद्यांवर आणि युद्धांवर कसा परिणाम झाला ते समजून घे.",
+      mr: "धातुकामाचा कामधंद्यांवर आणि युद्धांवर कसा परिणाम झाला ते समजून घ्या.",
       ms: "Fahami bagaimana kerja logam mempengaruhi pekerjaan dan peperangan.",
       he: "הבינו כיצד עיבוד מתכות השפיע על עבודה ולוחמה.",
       pl: "Zrozum, jak obróbka metali wpływała na pracę i prowadzenie wojen.",
