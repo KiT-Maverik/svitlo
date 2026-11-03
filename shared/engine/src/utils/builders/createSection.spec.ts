@@ -61,7 +61,10 @@ describe('Section Builder', () => {
   });
 
   it('allows duplicate alias names under different block types', () => {
-    const withSameAlias = section().addBlock('text', 'intro', task);
+    const withSameAlias = section().addBlock('text', 'intro', createContentBlock({
+      type: 'text', id: 'second-intro-id', slug: 'secondIntro',
+      value: { language: 'en', value: 'Another intro' },
+    }));
     assert.deepEqual(withSameAlias.setOrder(['text.intro', 'markdown.intro'])
       .build('en')?.content.map(item => item.type), ['text', 'markdown', 'markdown', 'text']);
   });
