@@ -8,7 +8,7 @@ export const ancientChineseMetallurgy_Skill_Data = buildSkillConfig({
     zh: "中国古代冶金",
     hi: "प्राचीन चीन में धातुकर्म",
     es: "Metalurgia de la China antigua",
-    ar: "التعدين وصناعة المعادن في الصين القديمة",
+    ar: "صناعة المعادن في الصين القديمة",
     fr: "Métallurgie dans la Chine ancienne",
     bn: "প্রাচীন চীনের ধাতুবিদ্যা",
     pt: "Metalurgia na China antiga",
