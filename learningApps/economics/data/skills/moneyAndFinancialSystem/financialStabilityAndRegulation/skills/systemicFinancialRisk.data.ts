@@ -13,7 +13,7 @@ export const systemicFinancialRisk_Skill_Data = buildSkillConfig({
     bn: "ব্যবস্থাগত আর্থিক ঝুঁকি",
     pt: "Risco financeiro sistêmico",
     ur: "نظامی مالی خطرہ",
-    id: "Risiko Keuangan Sistemik",
+    id: "Risiko keuangan sistemik",
     de: "Systemisches Finanzrisiko",
     ja: "システミック金融リスク",
     ko: "시스템 금융 위험",

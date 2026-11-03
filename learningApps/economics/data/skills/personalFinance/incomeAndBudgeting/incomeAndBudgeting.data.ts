@@ -15,7 +15,7 @@ export const incomeAndBudgeting_SkillGroup_Data = buildSkillGroupConfig({
     bn: "আয় ও বাজেট",
     pt: "Renda e orçamento",
     ur: "آمدنی اور بجٹ",
-    id: "Pendapatan dan Anggaran",
+    id: "Pendapatan dan anggaran",
     de: "Einkommen und Budget",
     ja: "収入と予算",
     ko: "소득과 예산",

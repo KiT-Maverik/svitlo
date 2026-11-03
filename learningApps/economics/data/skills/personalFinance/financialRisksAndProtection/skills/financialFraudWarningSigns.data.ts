@@ -13,7 +13,7 @@ export const financialFraudWarningSigns_Skill_Data = buildSkillConfig({
     bn: "আর্থিক প্রতারণার সতর্কসংকেত",
     pt: "Sinais de fraude financeira",
     ur: "مالی فراڈ کی انتباہی نشانیاں",
-    id: "Tanda Peringatan Penipuan Keuangan",
+    id: "Tanda peringatan penipuan keuangan",
     de: "Warnzeichen für Finanzbetrug",
     ja: "金融詐欺の警告サイン",
     ko: "금융 사기의 경고 신호",
