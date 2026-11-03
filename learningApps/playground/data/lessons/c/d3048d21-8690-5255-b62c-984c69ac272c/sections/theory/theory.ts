@@ -1,10 +1,11 @@
-import { checkpoint } from './checkpoints/checkpoint';
-import lightPropagationSimulation from './scenes/lightPropagationSimulation';
-import { lightRayDiagram } from './scenes/lightRayDiagram';
-import { getMarkdownLocale } from '@svitlo/engine/utils';
+import { defineContentBlockCatalog, type ContentBlock_Catalog_DataFor, type Section } from '@svitlo/engine/content';
+import type { theoryDefinition } from './theory.definition';
+import { checkpointData } from './checkpoints/checkpoint';
+import { lightPropagationSimulationData } from './scenes/lightPropagationSimulation';
+import { lightRayDiagramData } from './scenes/lightRayDiagram';
+import {getMarkdownLocale} from "@svitlo/engine/utils";
 
-export const theory = {
-  name: {
+const title = {
     ar: 'النظرية',
     be: 'Тэорыя',
     bn: 'তত্ত্ব',
@@ -34,15 +35,24 @@ export const theory = {
     ur: 'نظریہ',
     vi: 'Lý thuyết',
     zh: '理论',
+  };
+
+export const theory_Section = {
+  id: '32376510-b49a-5da8-91d7-e13cf162c9f9',
+  type: 'theory',
+  slug: 'theory',
+  title,
+  navigationLabel: title,
+  content: defineContentBlockCatalog({
+    checkpoint: { checkpoint: checkpointData },
+    markdown: {
+      p1: getMarkdownLocale(new URL('./markdown/p1/', import.meta.url)),
+      p2: getMarkdownLocale(new URL('./markdown/p2/', import.meta.url)),
+      p3: getMarkdownLocale(new URL('./markdown/p3/', import.meta.url)),
+    },
+    scene: {
+      lightPropagationSimulation: lightPropagationSimulationData,
+      lightRayDiagram: lightRayDiagramData,
+    },
   },
-  markdown: {
-    p1: getMarkdownLocale(new URL('./markdown/p1/', import.meta.url)),
-    p2: getMarkdownLocale(new URL('./markdown/p2/', import.meta.url)),
-    p3: getMarkdownLocale(new URL('./markdown/p3/', import.meta.url)),
-  },
-  scene: {
-    checkpoint,
-    lightRayDiagram,
-    lightPropagationSimulation,
-  },
-};
+} satisfies Section<'data'>;

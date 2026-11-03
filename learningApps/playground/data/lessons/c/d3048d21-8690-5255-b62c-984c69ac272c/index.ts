@@ -4,7 +4,7 @@ import { howLightMoves_Flashcards } from './flashcards';
 import { howLightMoves_Questions } from './questions';
 import { practice_Section } from './sections/practice';
 import { quiz_Section } from './sections/quiz';
-import { theoryData } from './sections/theory/theory.data';
+import { theory_Section } from './sections/theory/theory';
 
 export const howLightMoves_Data = defineLessonData({
   id: 'd3048d21-8690-5255-b62c-984c69ac272c',
@@ -56,14 +56,14 @@ export const howLightMoves_Data = defineLessonData({
   },
   questions: howLightMoves_Questions,
   sections: {
-    theory: theoryData,
+    theory: theory_Section,
     practice: practice_Section,
     quiz: quiz_Section,
   },
 } satisfies Lesson<'data'>);
 
 const scenes = [
-  theoryData.content.scene.lightPropagationSimulation.id,
-  theoryData.content.scene.lightRayDiagram.id,
+  theory_Section.content.scene.lightPropagationSimulation.id,
+  theory_Section.content.scene.lightRayDiagram.id,
   practice_Section.content.scene.showcase.id,
 ] as const;
