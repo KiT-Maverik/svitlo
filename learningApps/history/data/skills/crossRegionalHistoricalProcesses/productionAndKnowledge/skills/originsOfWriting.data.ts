@@ -4,7 +4,7 @@ export const originsOfWriting_Skill_Data = buildSkillConfig({
   slug: "originsOfWriting",
   id: "b43d6075-29df-4a09-a83a-bca1050bf6b8",
   name: {
-    en: "Походження писемності",
+    en: "Origins of Writing",
     zh: "文字的起源",
     hi: "लेखन का उद्भव",
     es: "Orígenes de la escritura",

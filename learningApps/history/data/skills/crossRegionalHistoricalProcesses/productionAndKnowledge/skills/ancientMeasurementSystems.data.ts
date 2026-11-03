@@ -4,7 +4,7 @@ export const ancientMeasurementSystems_Skill_Data = buildSkillConfig({
   slug: "ancientMeasurementSystems",
   id: "629b6996-0468-4991-879f-b6cc1e27ce39",
   name: {
-    en: "Давні системи вимірювання",
+    en: "Ancient Measurement Systems",
     zh: "古代度量衡体系",
     hi: "प्राचीन मापन प्रणालियाँ",
     es: "Sistemas de medición antiguos",

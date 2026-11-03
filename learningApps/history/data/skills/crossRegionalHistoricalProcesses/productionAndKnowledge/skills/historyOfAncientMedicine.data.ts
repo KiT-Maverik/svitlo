@@ -4,7 +4,7 @@ export const historyOfAncientMedicine_Skill_Data = buildSkillConfig({
   slug: "historyOfAncientMedicine",
   id: "a038d659-92d3-4399-b56f-72c701f98203",
   name: {
-    en: "Історія давньої медицини",
+    en: "History of Ancient Medicine",
     zh: "古代医学史",
     hi: "प्राचीन चिकित्सा का इतिहास",
     es: "Historia de la medicina antigua",

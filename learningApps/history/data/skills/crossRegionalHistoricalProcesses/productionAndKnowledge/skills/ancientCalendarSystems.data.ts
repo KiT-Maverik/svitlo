@@ -4,7 +4,7 @@ export const ancientCalendarSystems_Skill_Data = buildSkillConfig({
   slug: "ancientCalendarSystems",
   id: "e2786627-cbf9-4b59-aac7-da9cbf4de1ee",
   name: {
-    en: "Давні календарні системи",
+    en: "Ancient Calendar Systems",
     zh: "古代历法体系",
     hi: "प्राचीन कैलेंडर प्रणालियाँ",
     es: "Sistemas de calendario antiguos",
