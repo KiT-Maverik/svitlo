@@ -42,7 +42,7 @@ export const predictHowALoadAffectsFloating_Skill_Data = buildSkillConfig({
       hi: "अनुमान लगाएँ कि अतिरिक्त भार से तैरती वस्तु कितनी अधिक डूबेगी।",
       es: "Predice cómo el peso adicional cambia la profundidad a la que flota un objeto.",
       ar: "تنبأ كيف يغير الوزن الإضافي عمق غمر الجسم الطافي.",
-      fr: "Prédire comment une masse supplémentaire modifie l'enfoncement d'un objet flottant.",
+      fr: "Prévois comment une masse supplémentaire modifie l'enfoncement d'un objet flottant.",
       bn: "বাড়তি ওজন ভাসমান বস্তু কতটা গভীরে ডোবে তা কীভাবে বদলায় বলো।",
       pt: "Preveja como o peso extra altera a profundidade de imersão de um objeto flutuante.",
       ur: "بتائیں کہ اضافی وزن سے تیرتی چیز پانی میں کتنی گہری جاتی ہے۔",

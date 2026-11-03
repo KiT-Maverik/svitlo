@@ -39,7 +39,7 @@ export const explainHowAPulleyWorks_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Compare how fixed and movable pulleys redirect or distribute a load.",
       zh: "比较定滑轮和动滑轮如何改变用力方向或分担负载。",
-      hi: "तुलना करें कि स्थिर और चल घिरनियाँ भार की दिशा या उसके बँटवारे को कैसे बदलती हैं।",
+      hi: "तुलना करें कि स्थिर घिरनी बल की दिशा कैसे बदलती है और चल घिरनी रस्सी के हिस्सों में भार कैसे बाँटती है।",
       es: "Compara cómo las poleas fijas y móviles cambian la dirección de la fuerza o distribuyen la carga.",
       ar: "قارن كيف تغيّر البكرات الثابتة والمتحركة اتجاه القوة أو توزيع الحمل.",
       fr: "Compare comment les poulies fixes et mobiles modifient la direction de la force ou répartissent la charge.",

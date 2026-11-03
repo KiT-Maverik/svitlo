@@ -63,7 +63,7 @@ export const atomsAndQuantumPhenomena_SkillGroup_Data = buildSkillGroupConfig({
       vi: "Tìm hiểu cấu trúc nguyên tử và hành vi lượng tử khác mô hình cổ điển như thế nào.",
       ta: "அணு அமைப்பும் குவாண்டம் நடத்தையும் செவ்வியல் மாதிரிகளிலிருந்து எவ்வாறு வேறுபடுகின்றன என்பதை அறிந்துகொள்.",
       te: "పరమాణు నిర్మాణం, క్వాంటం ప్రవర్తన సంప్రదాయ నమూనాల నుంచి ఎలా భిన్నమో తెలుసుకో.",
-      mr: "अणूची रचना आणि क्वांटम वर्तन पारंपरिक प्रतिमानांपेक्षा कसे वेगळे आहे ते जाणून घे.",
+      mr: "अणूची रचना आणि क्वांटम वर्तन पारंपरिक प्रतिमानांपेक्षा कसे वेगळे आहे ते जाणून घ्या.",
       ms: "Ketahui bagaimana struktur atom dan kelakuan kuantum berbeza daripada model klasik.",
       he: "גלו כיצד מבנה האטום והתנהגות קוונטית שונים ממודלים קלאסיים.",
       pl: "Dowiedz się, jak budowa atomu i zachowanie kwantowe różnią się od modeli klasycznych.",

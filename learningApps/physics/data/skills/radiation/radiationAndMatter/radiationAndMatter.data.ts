@@ -60,7 +60,7 @@ export const radiationAndMatter_SkillGroup_Data = buildSkillGroupConfig({
       vi: "Tìm hiểu cách vật liệu hấp thụ, phát xạ, phản xạ hoặc truyền bức xạ.",
       ta: "பொருட்கள் கதிர்வீச்சை எவ்வாறு உறிஞ்சி, வெளியிட்டு, எதிரொளித்து அல்லது கடத்துகின்றன என்பதை ஆராய்.",
       te: "పదార్థాలు వికిరణాన్ని ఎలా శోషించి, విడుదల చేసి, పరావర్తనం చేసి లేదా ప్రసారం చేస్తాయో తెలుసుకో.",
-      mr: "पदार्थ प्रारण कसे शोषतात, उत्सर्जित करतात, परावर्तित करतात किंवा आरपार जाऊ देतात ते जाणून घे.",
+      mr: "पदार्थ प्रारण कसे शोषतात, उत्सर्जित करतात, परावर्तित करतात किंवा आरपार जाऊ देतात ते जाणून घ्या.",
       ms: "Terokai bagaimana bahan menyerap, memancarkan, memantulkan atau menghantar sinaran.",
       he: "גלו כיצד חומרים בולעים, פולטים, מחזירים או מעבירים קרינה.",
       pl: "Poznaj, jak materiały pochłaniają, emitują, odbijają lub przepuszczają promieniowanie.",
