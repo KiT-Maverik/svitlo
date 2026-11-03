@@ -44,7 +44,7 @@ export const calculateGravitationalPotentialEnergy_Skill_Data = buildSkillConfig
       ar: "احسب تغير طاقة الوضع الثقالية من الكتلة والجاذبية والارتفاع.",
       fr: "Calcule les variations d'énergie potentielle gravitationnelle à partir de la masse, de la gravité et de la hauteur.",
       bn: "ভর, মহাকর্ষীয় ত্বরণ ও উচ্চতার পরিবর্তন দিয়ে বিভবশক্তির পরিবর্তন হিসাব করো।",
-      pt: "Calcule variações da energia potencial gravitacional a partir da massa, gravidade e altura.",
+      pt: "Calcule a variação da energia potencial gravitacional a partir da massa, da aceleração da gravidade e da diferença de altura em relação à referência.",
       ur: "کمیت، کششِ ثقل اور بلندی سے ثقلی مخفی توانائی کی تبدیلی نکالیں۔",
       id: "Hitung perubahan energi potensial gravitasi dari massa, gravitasi, dan ketinggian.",
       de: "Berechne die Änderung der gravitativen potenziellen Energie aus Masse, Fallbeschleunigung und Höhenänderung.",
