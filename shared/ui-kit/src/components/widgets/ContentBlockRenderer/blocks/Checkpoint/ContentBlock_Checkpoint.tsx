@@ -1,11 +1,11 @@
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/localization';
-import KnowledgeCheckpoint from '../../KnowledgeCheckpoint/KnowledgeCheckpoint';
-import type { ContentBlockResponse, RenderNested } from '../types';
+import KnowledgeCheckpoint from '../../../KnowledgeCheckpoint/KnowledgeCheckpoint';
+import type { ContentBlockResponse, RenderNested } from '../../types';
 
-export function CheckpointBlock({ response, renderNested }: {
+export const ContentBlock_Checkpoint = ({ response, renderNested }: {
   response: ContentBlockResponse<'checkpoint'>;
   renderNested: RenderNested;
-}) {
+}) => {
   const locale = DEFAULT_SUPPORTED_LANGUAGES.find(item => item.language === response.locale.code)?.locale ?? 'en-US';
   return (
     <KnowledgeCheckpoint
@@ -31,4 +31,4 @@ export function CheckpointBlock({ response, renderNested }: {
       )) }}
     />
   );
-}
+};

@@ -1,5 +1,5 @@
-import type { ContentBlockResponse } from '../types';
-import { localizedAttributes } from '../utils';
+import type { ContentBlockResponse } from '../../types';
+import { localizedAttributes } from '../../utils';
 
 function validateYoutubeUrl(href: string): URL {
   let url: URL;
@@ -25,7 +25,7 @@ function youtubeEmbedUrl(href: string): string {
   return 'https://www.youtube-nocookie.com/embed/' + id;
 }
 
-export function YoutubeBlock({ response }: { response: ContentBlockResponse<'youtube'> }) {
+export const ContentBlock_Youtube = ({ response }: { response: ContentBlockResponse<'youtube'> }) => {
   const attributes = localizedAttributes(response);
   if (response.mode === 'link') {
     validateYoutubeUrl(response.href);
@@ -53,4 +53,4 @@ export function YoutubeBlock({ response }: { response: ContentBlockResponse<'you
     );
   }
   throw new Error('Unsupported YouTube display mode');
-}
+};

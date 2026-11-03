@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import type { ContentBlockResponse } from '../types';
-import { localizedAttributes } from '../utils';
+import type { ContentBlockResponse } from '../../types';
+import { localizedAttributes } from '../../utils';
 
-export function CodeBlock({ response }: { response: ContentBlockResponse<'code'> }) {
+export const ContentBlock_Code = ({ response }: { response: ContentBlockResponse<'code'> }) => {
   const [loaded, setLoaded] = useState<{ path: string; value: string } | null>(null);
   const [failed, setFailed] = useState<{ path: string; message: string } | null>(null);
   const locationIsLocal = response.fileLocation.startsWith('/') && !response.fileLocation.startsWith('//');
@@ -34,4 +34,4 @@ export function CodeBlock({ response }: { response: ContentBlockResponse<'code'>
       <code>{loaded?.path === response.fileLocation ? loaded.value : response.fileLocation}</code>
     </pre>
   );
-}
+};

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { Question_Catalog } from '@svitlo/engine/content';
-import type { ContentBlockResponse, RenderNested } from '../types';
-import { localizedAttributes } from '../utils';
+import type { ContentBlockResponse, RenderNested } from '../../types';
+import { localizedAttributes } from '../../utils';
 
 function stableHash(value: string): number {
   let hash = 2166136261;
@@ -9,7 +9,7 @@ function stableHash(value: string): number {
   return hash >>> 0;
 }
 
-export function QuizBlock({
+export const ContentBlock_Quiz = ({
   response,
   questions: questionCatalog,
   renderNested,
@@ -17,7 +17,7 @@ export function QuizBlock({
   response: ContentBlockResponse<'quiz'>;
   questions?: Question_Catalog<'response'>;
   renderNested: RenderNested;
-}) {
+}) => {
   const questions = response.questionSlugs.map(slug => {
     const question = questionCatalog?.selectOneAnswer?.[slug];
     if (!question) throw new Error('Missing selectOneAnswer question: ' + slug);
@@ -87,4 +87,4 @@ export function QuizBlock({
       </form>
     </section>
   );
-}
+};
