@@ -4,7 +4,7 @@ export const europeanBronzeAge_Skill_Data = buildSkillConfig({
   slug: "europeanBronzeAge",
   id: "7cbe6eb7-b1cd-465d-80db-fab78e37eecc",
   name: {
-    en: "Європейська бронзова доба",
+    en: "European Bronze Age",
     zh: "欧洲青铜时代",
     hi: "यूरोपीय कांस्य युग",
     es: "Edad del Bronce europea",

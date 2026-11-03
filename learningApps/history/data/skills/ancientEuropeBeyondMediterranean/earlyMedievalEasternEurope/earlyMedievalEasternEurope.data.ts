@@ -6,7 +6,7 @@ export const earlyMedievalEasternEurope_SkillGroup_Data = buildSkillGroupConfig(
   slug: "earlyMedievalEasternEurope",
   id: "f763fd64-839e-4349-a597-e4e980ea588e",
   name: {
-    en: "Східна Європа раннього Середньовіччя",
+    en: "Early Medieval Eastern Europe",
     zh: "中世纪早期东欧",
     hi: "प्रारंभिक मध्यकालीन पूर्वी यूरोप",
     es: "Europa oriental en la Alta Edad Media",

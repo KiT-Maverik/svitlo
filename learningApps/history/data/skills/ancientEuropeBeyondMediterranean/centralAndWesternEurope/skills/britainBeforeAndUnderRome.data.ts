@@ -4,7 +4,7 @@ export const britainBeforeAndUnderRome_Skill_Data = buildSkillConfig({
   slug: "britainBeforeAndUnderRome",
   id: "f638bab0-b8db-4a56-894a-efb34f5caee8",
   name: {
-    en: "Британія до і під час римського панування",
+    en: "Britain Before and Under Roman Rule",
     zh: "罗马统治前与统治下的不列颠",
     hi: "रोमन शासन से पहले और उसके दौरान ब्रिटेन",
     es: "Britania antes y durante el dominio romano",

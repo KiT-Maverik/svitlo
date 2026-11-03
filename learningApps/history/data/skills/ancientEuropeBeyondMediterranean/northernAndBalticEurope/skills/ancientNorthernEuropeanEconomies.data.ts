@@ -4,7 +4,7 @@ export const ancientNorthernEuropeanEconomies_Skill_Data = buildSkillConfig({
   slug: "ancientNorthernEuropeanEconomies",
   id: "7a22b2d7-b5cc-4bdd-af62-1d5e72f663b8",
   name: {
-    en: "Давнє господарство Північної Європи",
+    en: "Ancient Northern European Economies",
     zh: "古代北欧的生计",
     hi: "प्राचीन उत्तरी यूरोप की आजीविकाएँ",
     es: "Economías antiguas del norte de Europa",

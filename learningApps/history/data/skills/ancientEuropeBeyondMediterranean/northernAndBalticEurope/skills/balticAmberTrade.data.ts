@@ -4,7 +4,7 @@ export const balticAmberTrade_Skill_Data = buildSkillConfig({
   slug: "balticAmberTrade",
   id: "984029a3-a2cb-4b24-ac1e-b2fb2ab04603",
   name: {
-    en: "Балтійська бурштинова торгівля",
+    en: "Baltic Amber Trade",
     zh: "波罗的海琥珀贸易",
     hi: "बाल्टिक अंबर का व्यापार",
     es: "Comercio del ámbar báltico",

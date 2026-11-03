@@ -4,7 +4,7 @@ export const celticIronAgeCultures_Skill_Data = buildSkillConfig({
   slug: "celticIronAgeCultures",
   id: "44b3d703-102b-4c58-86d1-721c346c287a",
   name: {
-    en: "Кельтські культури залізної доби",
+    en: "Celtic Iron Age Cultures",
     zh: "凯尔特铁器时代文化",
     hi: "लौह युग की केल्टिक संस्कृतियाँ",
     es: "Culturas celtas de la Edad del Hierro",

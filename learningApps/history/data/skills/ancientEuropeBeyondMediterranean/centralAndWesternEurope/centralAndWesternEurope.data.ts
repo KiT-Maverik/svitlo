@@ -6,7 +6,7 @@ export const centralAndWesternEurope_SkillGroup_Data = buildSkillGroupConfig({
   slug: "centralAndWesternEurope",
   id: "0fbaa949-a1c8-44cd-8f95-a40687821dc1",
   name: {
-    en: "Центральна та Західна Європа",
+    en: "Central and Western Europe",
     zh: "中欧和西欧",
     hi: "मध्य और पश्चिमी यूरोप",
     es: "Europa central y occidental",

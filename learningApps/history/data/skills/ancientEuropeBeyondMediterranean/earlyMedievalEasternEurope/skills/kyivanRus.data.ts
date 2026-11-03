@@ -4,7 +4,7 @@ export const kyivanRus_Skill_Data = buildSkillConfig({
   slug: "kyivanRus",
   id: "80a36811-c314-40c2-aa55-63c41d13a3e8",
   name: {
-    en: "Київська Русь",
+    en: "Kyivan Rus",
     zh: "基辅罗斯",
     hi: "कीवियाई रुस",
     es: "Rus de Kyiv",

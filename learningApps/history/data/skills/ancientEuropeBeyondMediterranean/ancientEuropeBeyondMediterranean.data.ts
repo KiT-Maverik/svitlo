@@ -9,7 +9,7 @@ export const ancientEuropeBeyondMediterranean_SkillDomain_Data = buildSkillDomai
   slug: "ancientEuropeBeyondMediterranean",
   id: "397058c6-6268-4a12-b3d3-35e8248f66c1",
   name: {
-    en: "Європа поза Середземномор'ям",
+    en: "Europe Beyond the Mediterranean",
     zh: "地中海以外的古代欧洲",
     hi: "भूमध्यसागर के बाहर का प्राचीन यूरोप",
     es: "Europa antigua fuera del Mediterráneo",

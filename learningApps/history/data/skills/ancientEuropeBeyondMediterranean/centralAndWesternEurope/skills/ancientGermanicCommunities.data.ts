@@ -4,7 +4,7 @@ export const ancientGermanicCommunities_Skill_Data = buildSkillConfig({
   slug: "ancientGermanicCommunities",
   id: "531a83f6-9f27-4cf9-a8fb-edaf985e127d",
   name: {
-    en: "Давні германські спільноти",
+    en: "Ancient Germanic Communities",
     zh: "古代日耳曼语族社群",
     hi: "प्राचीन जर्मनिक-भाषी समुदाय",
     es: "Comunidades germánicas antiguas",
