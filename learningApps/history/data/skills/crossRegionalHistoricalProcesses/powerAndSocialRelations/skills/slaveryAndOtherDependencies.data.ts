@@ -4,7 +4,7 @@ export const slaveryAndOtherDependencies_Skill_Data = buildSkillConfig({
   slug: "slaveryAndOtherDependencies",
   id: "3cc87d64-4ba2-4088-ac67-32ec27b0b2c3",
   name: {
-    en: "Рабство та інші форми залежності",
+    en: "Slavery and Other Dependencies",
     zh: "奴隶制与其他依附形式",
     hi: "दासता और निर्भरता के अन्य रूप",
     es: "Esclavitud y otras formas de dependencia",

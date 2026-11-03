@@ -4,7 +4,7 @@ export const earlyStateFormation_Skill_Data = buildSkillConfig({
   slug: "earlyStateFormation",
   id: "5a42bc6f-f945-40f5-9b86-fe6fd7bc9f8c",
   name: {
-    en: "Формування ранніх держав",
+    en: "Early State Formation",
     zh: "早期国家的形成",
     hi: "प्रारंभिक राज्यों का निर्माण",
     es: "Formación de los primeros Estados",

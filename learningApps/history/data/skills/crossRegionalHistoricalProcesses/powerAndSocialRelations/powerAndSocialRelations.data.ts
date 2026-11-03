@@ -6,7 +6,7 @@ export const powerAndSocialRelations_SkillGroup_Data = buildSkillGroupConfig({
   slug: "powerAndSocialRelations",
   id: "069c0e55-cd2f-49b1-ab91-2614dc1618c6",
   name: {
-    en: "Влада і суспільні відносини",
+    en: "Power and Social Relations",
     zh: "权力与社会关系",
     hi: "सत्ता और सामाजिक संबंध",
     es: "Poder y relaciones sociales",

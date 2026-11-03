@@ -4,7 +4,7 @@ export const womenInAncientSocieties_Skill_Data = buildSkillConfig({
   slug: "womenInAncientSocieties",
   id: "8b6eb041-89b8-4513-bd33-521bdcf62014",
   name: {
-    en: "Становище жінок у давньому світі",
+    en: "Women in Ancient Societies",
     zh: "古代社会中的女性",
     hi: "प्राचीन समाजों में महिलाएँ",
     es: "Las mujeres en las sociedades antiguas",

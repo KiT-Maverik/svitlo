@@ -4,7 +4,7 @@ export const ancientWheeledTransport_Skill_Data = buildSkillConfig({
   slug: "ancientWheeledTransport",
   id: "380d5d55-c2dd-4c65-9a98-c8d0a4d41da6",
   name: {
-    en: "Колісний транспорт давнини",
+    en: "Ancient Wheeled Transport",
     zh: "古代轮式运输",
     hi: "प्राचीन पहिएदार परिवहन",
     es: "Transporte antiguo con ruedas",

@@ -4,7 +4,7 @@ export const socialHierarchies_Skill_Data = buildSkillConfig({
   slug: "socialHierarchies",
   id: "4485a1d7-f66d-467b-996e-1986c2ca6aa2",
   name: {
-    en: "Соціальні ієрархії",
+    en: "Social Hierarchies",
     zh: "社会等级制度",
     hi: "सामाजिक पदानुक्रम",
     es: "Jerarquías sociales",

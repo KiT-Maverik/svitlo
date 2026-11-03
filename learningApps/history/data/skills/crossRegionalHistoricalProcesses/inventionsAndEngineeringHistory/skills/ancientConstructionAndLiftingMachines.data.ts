@@ -4,7 +4,7 @@ export const ancientConstructionAndLiftingMachines_Skill_Data = buildSkillConfig
   slug: "ancientConstructionAndLiftingMachines",
   id: "b0fb4196-e9ac-4a6b-9aac-3ef694fc599b",
   name: {
-    en: "Будівельні та підіймальні механізми давнини",
+    en: "Ancient Construction and Lifting Machines",
     zh: "古代建筑与起重机械",
     hi: "प्राचीन निर्माण और भारोत्तोलन मशीनें",
     es: "Máquinas antiguas de construcción y elevación",

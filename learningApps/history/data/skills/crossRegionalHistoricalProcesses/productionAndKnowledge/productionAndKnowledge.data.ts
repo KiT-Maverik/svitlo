@@ -6,7 +6,7 @@ export const productionAndKnowledge_SkillGroup_Data = buildSkillGroupConfig({
   slug: "productionAndKnowledge",
   id: "742b4358-b545-4895-9856-453f918343d0",
   name: {
-    en: "Виробництво та знання",
+    en: "Production and Knowledge",
     zh: "生产与知识",
     hi: "उत्पादन और ज्ञान",
     es: "Producción y conocimiento",

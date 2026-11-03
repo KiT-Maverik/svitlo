@@ -4,7 +4,7 @@ export const historicalWaterEngineering_Skill_Data = buildSkillConfig({
   slug: "historicalWaterEngineering",
   id: "a285f2fd-6d7f-434b-b78a-261875a3b867",
   name: {
-    en: "Водогосподарська інженерія",
+    en: "Historical Water Engineering",
     zh: "古代水利工程",
     hi: "प्राचीन जल अभियांत्रिकी",
     es: "Ingeniería hidráulica histórica",

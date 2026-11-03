@@ -4,7 +4,7 @@ export const ancientShipbuilding_Skill_Data = buildSkillConfig({
   slug: "ancientShipbuilding",
   id: "b73816d8-fb54-46df-acc3-3212c7da6e9c",
   name: {
-    en: "Суднобудування давнього світу",
+    en: "Ancient Shipbuilding",
     zh: "古代造船",
     hi: "प्राचीन जहाज़ निर्माण",
     es: "Construcción naval antigua",
