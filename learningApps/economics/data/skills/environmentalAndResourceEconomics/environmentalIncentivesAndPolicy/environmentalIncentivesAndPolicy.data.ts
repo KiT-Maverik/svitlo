@@ -66,7 +66,7 @@ export const environmentalIncentivesAndPolicy_SkillGroup_Data = buildSkillGroupC
       ms: "Terokai dasar ekonomi yang menggalakkan pengurangan pencemaran.",
       he: "גלו מדיניות כלכלית שמעודדת הפחתת זיהום.",
       pl: "Poznaj polityki gospodarcze zachęcające do ograniczania zanieczyszczeń.",
-      uk: "Досліди економічні політики, які стимулюють менше забруднювати.",
+      uk: "Досліди інструменти економічної політики, які спонукають зменшувати забруднення.",
       lt: "Tyrinėk ekonominę politiką, skatinančią mažinti taršą.",
       lv: "Izpēti ekonomisko politiku, kas mudina mazināt piesārņojumu.",
       et: "Uuri majanduspoliitikat, mis motiveerib vähem saastama.",

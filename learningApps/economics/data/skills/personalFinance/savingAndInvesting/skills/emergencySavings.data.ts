@@ -28,7 +28,7 @@ export const emergencySavings_Skill_Data = buildSkillConfig({
     uk: "Резерв на непередбачені витрати",
     lt: "Santaupos nenumatytoms išlaidoms",
     lv: "Ārkārtas uzkrājumi",
-    et: "Hädaabivaru",
+    et: "Rahaline hädaabifond",
     be: "Запас на непрадбачаныя выдаткі",
     ka: "საგანგებო დანაზოგი",
     kk: "Төтенше жағдайға жинақ",
