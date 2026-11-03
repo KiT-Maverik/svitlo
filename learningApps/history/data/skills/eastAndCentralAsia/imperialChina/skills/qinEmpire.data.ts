@@ -32,7 +32,7 @@ export const qinEmpire_Skill_Data = buildSkillConfig({
     be: "Імпэрыя Цынь",
     ka: "ცინის იმპერია",
     kk: "Цинь империясы",
-    qm: "Çin imperiyası",
+    qm: "Qin imperiyası",
   },
   description: {
     methodological: "Explain centralization and standardization under China's first imperial dynasty.",
@@ -65,7 +65,7 @@ export const qinEmpire_Skill_Data = buildSkillConfig({
       be: "Даведайся, якія захады дапамаглі Цынь аб’яднаць Кітай.",
       ka: "გაიგეთ, რომელმა პოლიტიკამ შეუწყო ხელი ცინის მიერ ჩინეთის გაერთიანებას.",
       kk: "Цинь билеушілеріне Қытайды біріктіруге қандай саясат көмектескенін біліңіз.",
-      qm: "Çin devleti bütün Çinni birleştirmek içün nasıl siyasetler qullanğanını ögren.",
+      qm: "Qin sülâlesine Çinni birleştirmekte yardım etken siyasiy tedbirlerni ögren.",
     },
   },
 });
