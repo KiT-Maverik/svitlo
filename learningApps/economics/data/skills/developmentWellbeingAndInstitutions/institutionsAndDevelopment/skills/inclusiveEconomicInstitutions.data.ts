@@ -42,7 +42,7 @@ export const inclusiveEconomicInstitutions_Skill_Data = buildSkillConfig({
       hi: "समझें कि समान पहुँच और सुरक्षित अधिकार आर्थिक अवसर कैसे बढ़ाते हैं।",
       es: "Reconoce cómo el acceso justo y los derechos protegidos amplían las oportunidades económicas.",
       ar: "تعرّف كيف يوسّع الوصول العادل والحقوق المضمونة الفرص الاقتصادية.",
-      fr: "Découvrez comment l’accès équitable et la protection des droits élargissent les possibilités économiques.",
+      fr: "Découvre comment l’accès équitable et la protection des droits élargissent les possibilités économiques.",
       bn: "ন্যায্য প্রবেশাধিকার ও সুরক্ষিত অধিকার কীভাবে অর্থনৈতিক সুযোগ বাড়ায় তা জানো।",
       pt: "Reconheça como acesso justo e direitos protegidos ampliam oportunidades econômicas.",
       ur: "پہچانیں کہ منصفانہ رسائی اور محفوظ حقوق معاشی مواقع کیسے بڑھاتے ہیں۔",

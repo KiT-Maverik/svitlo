@@ -49,7 +49,7 @@ export const institutionsAndDevelopment_SkillGroup_Data = buildSkillGroupConfig(
       hi: "जानें कि संस्थाएँ समाज की समृद्धि की संभावनाओं को कैसे प्रभावित करती हैं।",
       es: "Explora cómo las instituciones influyen en las posibilidades de prosperidad de una sociedad.",
       ar: "استكشف كيف تؤثر المؤسسات في فرص المجتمع لتحقيق الازدهار.",
-      fr: "Explorez comment les institutions influencent les perspectives de prospérité d’une société.",
+      fr: "Explore comment les institutions influencent les perspectives de prospérité d’une société.",
       bn: "প্রতিষ্ঠানগুলো সমাজের সমৃদ্ধির সম্ভাবনাকে কীভাবে প্রভাবিত করে তা জানো।",
       pt: "Explore como instituições afetam as oportunidades de prosperidade de uma sociedade.",
       ur: "جانیں کہ ادارے معاشرے کی خوشحالی کے امکانات کو کیسے متاثر کرتے ہیں۔",
