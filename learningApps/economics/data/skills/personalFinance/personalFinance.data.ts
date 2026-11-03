@@ -69,7 +69,7 @@ export const personalFinance_SkillDomain_Data = buildSkillDomainConfig({
       te: "డబ్బు ప్రణాళిక, అప్పుల అవగాహన, రోజువారీ ఆర్థిక నిర్ణయాలు నేర్చుకోండి.",
       mr: "पैशाचे नियोजन, कर्ज समजणे व रोजचे आर्थिक निर्णय घेणे शिका.",
       ms: "Belajar merancang wang, memahami pinjaman dan mengurus keputusan kewangan harian.",
-      he: "למדו לתכנן כסף, להבין הלוואות ולנהל החלטות כספיות יומיומיות.",
+      he: "למדו לנהל תקציב, להבין הלוואות ולקבל החלטות כספיות יומיומיות.",
       pl: "Naucz się planować pieniądze, rozumieć pożyczki i podejmować codzienne decyzje finansowe.",
       uk: "Навчися планувати гроші, розуміти позики й ухвалювати щоденні фінансові рішення.",
       lt: "Mokykis planuoti pinigus, suprasti skolinimąsi ir valdyti kasdienius finansinius sprendimus.",

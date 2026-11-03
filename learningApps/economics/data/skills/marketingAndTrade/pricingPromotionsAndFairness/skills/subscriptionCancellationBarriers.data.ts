@@ -56,7 +56,7 @@ export const subscriptionCancellationBarriers_Skill_Data = buildSkillConfig({
       te: "సభ్యత్వం రద్దును అనవసరంగా కష్టతరం చేసినప్పుడు గుర్తించండి.",
       mr: "सदस्यता रद्द करणे विनाकारण कठीण केलेले कधी असते ते ओळखा.",
       ms: "Kenali apabila pembatalan langganan dipersulit tanpa sebab.",
-      he: "זהו מצבים שבהם ביטול מנוי מקשה ללא צורך.",
+      he: "זהו מקרים שבהם ביטול מנוי מסובך שלא לצורך.",
       pl: "Rozpoznaj sytuacje, gdy rezygnacja z subskrypcji jest niepotrzebnie utrudniana.",
       uk: "Розпізнавай випадки, коли скасування підписки безпідставно ускладнюють.",
       lt: "Atpažink, kada prenumeratos atšaukimas be reikalo apsunkinamas.",
