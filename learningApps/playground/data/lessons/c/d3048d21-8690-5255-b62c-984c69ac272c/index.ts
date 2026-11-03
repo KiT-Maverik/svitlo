@@ -2,8 +2,8 @@ import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine';
 import { defineLessonData, type Lesson } from '@svitlo/engine/content';
 import { howLightMoves_Flashcards } from './flashcards';
 import { howLightMoves_Questions } from './questions';
-import { practiceData } from './sections/practice/practice.data';
-import { quizData } from './sections/quiz/quiz.data';
+import { practice_Section } from './sections/practice';
+import { quiz_Section } from './sections/quiz';
 import { theoryData } from './sections/theory/theory.data';
 
 export const howLightMoves_Data = defineLessonData({
@@ -57,13 +57,13 @@ export const howLightMoves_Data = defineLessonData({
   questions: howLightMoves_Questions,
   sections: {
     theory: theoryData,
-    practice: practiceData,
-    quiz: quizData,
+    practice: practice_Section,
+    quiz: quiz_Section,
   },
 } satisfies Lesson<'data'>);
 
 const scenes = [
   theoryData.content.scene.lightPropagationSimulation.id,
   theoryData.content.scene.lightRayDiagram.id,
-  practiceData.content.scene.showcase.id,
+  practice_Section.content.scene.showcase.id,
 ] as const;
