@@ -45,7 +45,7 @@ export const predictThePositionOfAShadow_Skill_Data = buildSkillConfig({
       fr: "Prévois de quel côté d'un objet son ombre apparaîtra.",
       bn: "বস্তুর কোন পাশে ছায়া পড়বে তা অনুমান করো।",
       pt: "Preveja de que lado de um objeto a sombra aparecerá.",
-      ur: "اندازہ لگاؤ کہ کسی چیز کے کس طرف سایہ پڑے گا۔",
+      ur: "اندازہ لگائیں کہ کسی چیز کے کس طرف سایہ پڑے گا۔",
       id: "Prediksi di sisi mana sebuah benda akan muncul bayangannya.",
       de: "Sage voraus, auf welcher Seite eines Gegenstands sein Schatten erscheint.",
       ja: "物体のどちら側に影ができるか予測しましょう。",

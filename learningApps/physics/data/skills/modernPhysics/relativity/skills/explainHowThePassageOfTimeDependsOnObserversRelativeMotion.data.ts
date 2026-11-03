@@ -45,7 +45,7 @@ export const explainHowThePassageOfTimeDependsOnObserversRelativeMotion_Skill_Da
       fr: "Découvre pourquoi des observateurs en mouvement relatif peuvent mesurer des durées différentes.",
       bn: "একে অপরের সাপেক্ষে চলমান পর্যবেক্ষকেরা কেন আলাদা সময়ের ব্যবধান মাপতে পারেন, তা জানো।",
       pt: "Explore por que observadores em movimento relativo podem medir intervalos de tempo diferentes.",
-      ur: "دریافت کرو کہ نسبتی حرکت میں مبصرین وقت کے مختلف وقفے کیوں ناپ سکتے ہیں۔",
+      ur: "دریافت کریں کہ نسبتی حرکت میں مبصرین وقت کے مختلف وقفے کیوں ناپ سکتے ہیں۔",
       id: "Pelajari mengapa pengamat yang bergerak relatif dapat mengukur selang waktu berbeda.",
       de: "Entdecke, warum relativ zueinander bewegte Beobachter unterschiedliche Zeitintervalle messen können.",
       ja: "相対的に動く観測者が異なる時間間隔を測ることがある理由を調べましょう。",

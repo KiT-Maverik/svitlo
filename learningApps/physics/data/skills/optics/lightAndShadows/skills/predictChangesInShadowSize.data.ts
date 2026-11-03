@@ -45,7 +45,7 @@ export const predictChangesInShadowSize_Skill_Data = buildSkillConfig({
       fr: "Comprends comment déplacer une source lumineuse ou un objet modifie la taille de l'ombre.",
       bn: "আলোর উৎস বা বস্তু সরালে ছায়ার আকার কীভাবে বদলায়, তা বোঝো।",
       pt: "Entenda como mover uma fonte de luz ou um objeto muda o tamanho da sombra.",
-      ur: "سمجھو کہ روشنی کا منبع یا چیز ہلانے سے سائے کا سائز کیسے بدلتا ہے۔",
+      ur: "سمجھیں کہ روشنی کا منبع یا چیز ہلانے سے سائے کا سائز کیسے بدلتا ہے۔",
       id: "Pahami bagaimana memindahkan sumber cahaya atau benda mengubah ukuran bayangan.",
       de: "Verstehe, wie das Verschieben einer Lichtquelle oder eines Gegenstands die Schattengröße verändert.",
       ja: "光源や物体を動かすと影の大きさが変わる理由を理解しましょう。",

@@ -45,7 +45,7 @@ export const explainRadioactivity_Skill_Data = buildSkillConfig({
       fr: "Explique comment les noyaux atomiques instables subissent des transformations radioactives.",
       bn: "অস্থিতিশীল পরমাণুর নিউক্লিয়াসে তেজস্ক্রিয় পরিবর্তন কীভাবে ঘটে, তা ব্যাখ্যা করো।",
       pt: "Explique como núcleos atômicos instáveis passam por transformações radioativas.",
-      ur: "وضاحت کرو کہ غیر مستحکم ایٹمی مرکزے تابکار تبدیلیوں سے کیسے گزرتے ہیں۔",
+      ur: "وضاحت کریں کہ غیر مستحکم ایٹمی مرکزے تابکار تبدیلیوں سے کیسے گزرتے ہیں۔",
       id: "Jelaskan bagaimana inti atom tidak stabil mengalami perubahan radioaktif.",
       de: "Erkläre, wie instabile Atomkerne radioaktive Umwandlungen durchlaufen.",
       ja: "不安定な原子核が放射性崩壊する仕組みを説明しましょう。",

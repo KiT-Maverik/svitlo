@@ -45,7 +45,7 @@ export const explainTheGravitationalDeflectionOfLight_Skill_Data = buildSkillCon
       fr: "Explique comment la gravitation courbe la trajectoire de la lumière sans qu'il s'agisse de réfraction optique ordinaire.",
       bn: "মহাকর্ষ কীভাবে আলোর পথ বাঁকায়, অথচ এটি সাধারণ আলোকীয় প্রতিসরণ নয়, তা ব্যাখ্যা করো।",
       pt: "Explique como a gravidade curva a trajetória da luz sem ser uma refração óptica comum.",
-      ur: "وضاحت کرو کہ کششِ ثقل روشنی کا راستہ کیسے موڑتی ہے، حالانکہ یہ عام نوری انکسار نہیں ہے۔",
+      ur: "وضاحت کریں کہ کششِ ثقل روشنی کا راستہ کیسے موڑتی ہے، حالانکہ یہ عام نوری انکسار نہیں ہے۔",
       id: "Jelaskan bagaimana gravitasi membelokkan lintasan cahaya tanpa pembiasan optik biasa.",
       de: "Erkläre, wie Gravitation Lichtbahnen krümmt, ohne dass dies gewöhnliche optische Brechung ist.",
       ja: "通常の光学的な屈折とは異なり、重力が光の経路を曲げる仕組みを説明しましょう。",

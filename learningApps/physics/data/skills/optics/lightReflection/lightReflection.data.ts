@@ -51,7 +51,7 @@ export const lightReflection_SkillGroup_Data = buildSkillGroupConfig({
       fr: "Découvre comment la lumière change de direction lorsqu'elle rencontre une surface réfléchissante.",
       bn: "প্রতিফলক পৃষ্ঠে পড়ে আলো কীভাবে দিক বদলায়, তা জানো।",
       pt: "Descubra como a luz muda de direção ao atingir uma superfície refletora.",
-      ur: "دیکھو کہ روشنی منعکس کرنے والی سطح سے ٹکرا کر سمت کیسے بدلتی ہے۔",
+      ur: "دیکھیں کہ روشنی منعکس کرنے والی سطح سے ٹکرا کر سمت کیسے بدلتی ہے۔",
       id: "Pelajari bagaimana cahaya berubah arah saat mengenai permukaan pemantul.",
       de: "Entdecke, wie Licht an einer reflektierenden Oberfläche seine Richtung ändert.",
       ja: "光が反射する面に当たると進む向きが変わる仕組みを調べましょう。",

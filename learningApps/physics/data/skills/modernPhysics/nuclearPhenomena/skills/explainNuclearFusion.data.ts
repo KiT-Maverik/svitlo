@@ -45,7 +45,7 @@ export const explainNuclearFusion_Skill_Data = buildSkillConfig({
       fr: "Explique comment la fusion de noyaux légers peut libérer de l'énergie.",
       bn: "হালকা পরমাণুর নিউক্লিয়াস একত্র হলে কীভাবে শক্তি মুক্ত হতে পারে, তা ব্যাখ্যা করো।",
       pt: "Explique como a união de núcleos leves pode liberar energia.",
-      ur: "وضاحت کرو کہ ہلکے ایٹمی مرکزے مل کر توانائی کیسے خارج کر سکتے ہیں۔",
+      ur: "وضاحت کریں کہ ہلکے ایٹمی مرکزے مل کر توانائی کیسے خارج کر سکتے ہیں۔",
       id: "Jelaskan bagaimana penggabungan inti ringan dapat melepaskan energi.",
       de: "Erkläre, wie die Verschmelzung leichter Atomkerne Energie freisetzen kann.",
       ja: "軽い原子核が結びついてエネルギーを放出する仕組みを説明しましょう。",

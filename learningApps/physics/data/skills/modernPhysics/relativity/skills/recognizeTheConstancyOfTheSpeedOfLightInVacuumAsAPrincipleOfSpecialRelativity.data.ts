@@ -45,7 +45,7 @@ export const recognizeTheConstancyOfTheSpeedOfLightInVacuumAsAPrincipleOfSpecial
       fr: "Comprends que la vitesse de la lumière dans le vide est invariante pour tous les observateurs inertiels en relativité restreinte.",
       bn: "বিশেষ আপেক্ষিকতায় সব জড় পর্যবেক্ষকের কাছে শূন্যস্থানে আলোর বেগ একই থাকে—এটি বোঝো।",
       pt: "Entenda que a velocidade da luz no vácuo é invariante para todos os observadores inerciais na relatividade restrita.",
-      ur: "سمجھو کہ خصوصی اضافیت میں خلا میں روشنی کی رفتار تمام جمودی مبصرین کے لیے ایک جیسی رہتی ہے۔",
+      ur: "سمجھیں کہ خصوصی اضافیت میں خلا میں روشنی کی رفتار تمام جمودی مبصرین کے لیے ایک جیسی رہتی ہے۔",
       id: "Pahami bahwa kecepatan cahaya dalam vakum tetap sama bagi semua pengamat inersial dalam relativitas khusus.",
       de: "Verstehe, dass die Lichtgeschwindigkeit im Vakuum für alle Inertialbeobachter in der speziellen Relativität gleich bleibt.",
       ja: "特殊相対性理論では、真空中の光速はすべての慣性観測者にとって一定だと理解しましょう。",

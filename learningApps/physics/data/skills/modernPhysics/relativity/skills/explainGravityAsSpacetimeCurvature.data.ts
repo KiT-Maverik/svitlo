@@ -45,7 +45,7 @@ export const explainGravityAsSpacetimeCurvature_Skill_Data = buildSkillConfig({
       fr: "Reconnais la gravitation comme une conséquence de la courbure de l'espace-temps en relativité générale.",
       bn: "সাধারণ আপেক্ষিকতায় বক্র স্থান-কালের ফল হিসেবে মহাকর্ষকে বোঝো।",
       pt: "Reconheça a gravidade como consequência do espaço-tempo curvo na relatividade geral.",
-      ur: "پہچانو کہ عمومی اضافیت میں کششِ ثقل خمیدہ مکاں و زماں کا نتیجہ ہے۔",
+      ur: "پہچانیں کہ عمومی اضافیت میں کششِ ثقل خمیدہ مکاں و زماں کا نتیجہ ہے۔",
       id: "Kenali gravitasi sebagai akibat ruang-waktu melengkung dalam relativitas umum.",
       de: "Erkenne Gravitation in der Allgemeinen Relativitätstheorie als Folge gekrümmter Raumzeit.",
       ja: "一般相対性理論では重力が時空の曲がりの結果であると理解しましょう。",

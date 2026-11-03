@@ -45,7 +45,7 @@ export const explainHowAShadowForms_Skill_Data = buildSkillConfig({
       fr: "Explique comment un objet opaque bloque la lumière et forme une ombre.",
       bn: "অস্বচ্ছ বস্তু আলো আটকে কীভাবে ছায়া তৈরি করে, তা ব্যাখ্যা করো।",
       pt: "Explica como um objeto opaco bloqueia a luz e forma uma sombra.",
-      ur: "وضاحت کرو کہ غیر شفاف چیز روشنی روک کر سایہ کیسے بناتی ہے۔",
+      ur: "وضاحت کریں کہ غیر شفاف چیز روشنی روک کر سایہ کیسے بناتی ہے۔",
       id: "Jelaskan bagaimana benda yang tidak tembus cahaya menghalangi cahaya hingga terbentuk bayangan.",
       de: "Erkläre, wie ein lichtundurchlässiger Gegenstand Licht blockiert und einen Schatten erzeugt.",
       ja: "不透明な物体が光を遮って影をつくる仕組みを説明しましょう。",
