@@ -11,7 +11,7 @@ import { ContentBlock_Scene } from './blocks/Scene/ContentBlock_Scene';
 import { ContentBlock_Text } from './blocks/Text/ContentBlock_Text';
 import { ContentBlock_Video } from './blocks/Video/ContentBlock_Video';
 import { ContentBlock_Youtube } from './blocks/Youtube/ContentBlock_Youtube';
-import type { ContentBlockRenderContext, ContentBlockRendererProps, NestedResponse } from './types';
+import type { ContentBlockRenderContext, ContentBlockRendererProps, NestedResponse } from '#types/content-blocks';
 import { assertNever, requireTaggedResponse } from './utils';
 
 export type {
@@ -21,7 +21,7 @@ export type {
   ContentBlockResponse,
   ContentBlockType,
   SceneRegistry,
-} from './types';
+} from '#types/content-blocks';
 /** Dispatch a nested response through the same parent renderer as top-level blocks. */
 function renderNested(response: NestedResponse, context: ContentBlockRenderContext): ReactNode {
   const tagged = requireTaggedResponse(response);

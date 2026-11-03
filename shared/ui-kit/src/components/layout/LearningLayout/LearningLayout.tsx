@@ -20,7 +20,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import TopNavbar from '../Navigation/TopNavbar';
 import BottomNavbar from '../Navigation/BottomNavbar';
 import { getLocaleDirection, type Locale } from '@svitlo/engine/localization';
-import VerticalSpace from '../../widgets/VerticalSpace/VerticalSpace';
+import VerticalSpace from '#widgets/VerticalSpace/VerticalSpace';
 import { getLearningLayoutMessages } from './locales';
 import { aria } from './LearningLayout.constants';
 
