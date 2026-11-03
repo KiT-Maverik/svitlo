@@ -15,7 +15,7 @@ export const publicProgramEvaluation_Skill_Data = buildSkillConfig({
     ur: "سرکاری پروگرام کی جانچ",
     id: "Evaluasi program publik",
     de: "Evaluation öffentlicher Programme",
-    ja: "公共事業の評価",
+    ja: "公的施策の評価",
     ko: "공공 프로그램 평가",
     tr: "Kamu programı değerlendirmesi",
     vi: "Đánh giá chương trình công",
