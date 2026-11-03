@@ -57,7 +57,7 @@ export const explainOhmsLawForAnOhmicConductor_Skill_Data = buildSkillConfig({
       te: 'స్థిర పరిస్థితుల్లో ఓమీయ వాహకాలకు ఓమ్ నియమాన్ని వర్తింపజేయండి.',
       mr: 'स्थिर परिस्थितीत ओहमिक वाहकाला ओहमचा नियम लागू करा.',
       ms: 'Gunakan hukum Ohm bagi pengalir ohmik dalam keadaan tetap.',
-      he: 'השתמש בחוק אוהם עבור מוליכים אוהמיים בתנאים קבועים.',
+      he: 'השתמשו בחוק אוהם עבור מוליכים אוהמיים בתנאים קבועים.',
       pl: 'Zastosuj prawo Ohma do przewodników omowych przy stałych warunkach.',
       uk: 'Застосовуй закон Ома до омічних провідників за сталих умов.',
       lt: 'Taikyk Omo dėsnį ominiams laidininkams esant pastovioms sąlygoms.',

@@ -57,7 +57,7 @@ export const identifyElectricallyConductiveMaterials_Skill_Data = buildSkillConf
       te: 'సురక్షితమైన తక్కువ వోల్టేజ్ వలయంతో ఏ పదార్థాలు విద్యుత్‌ను వహిస్తాయో పరీక్షించండి.',
       mr: 'सुरक्षित कमी विभवांतराच्या परिपथातून कोणते पदार्थ वीज वाहतात ते तपासा.',
       ms: 'Uji bahan yang mengalirkan elektrik menggunakan litar voltan rendah yang selamat.',
-      he: 'בדוק אילו חומרים מוליכים חשמל באמצעות מעגל בטוח במתח נמוך.',
+      he: 'בדקו אילו חומרים מוליכים חשמל באמצעות מעגל בטוח במתח נמוך.',
       pl: 'Sprawdź, które materiały przewodzą prąd w bezpiecznym obwodzie niskiego napięcia.',
       uk: 'Перевіряй провідність матеріалів у безпечному низьковольтному колі.',
       lt: 'Saugiąja žemos įtampos grandine patikrink, kurios medžiagos praleidžia elektrą.',

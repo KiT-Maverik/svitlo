@@ -57,7 +57,7 @@ export const identifyElectricallyInsulatingMaterials_Skill_Data = buildSkillConf
       te: 'విద్యుత్ ప్రవాహాన్ని అడ్డుకునే లేదా బాగా తగ్గించే పదార్థాలను గుర్తించండి.',
       mr: 'विद्युतप्रवाह रोखणारे किंवा खूप कमी करणारे पदार्थ ओळखा.',
       ms: 'Kenal pasti bahan yang menghalang atau sangat mengehadkan arus elektrik.',
-      he: 'זהה חומרים שמונעים או מגבילים מאוד זרם חשמלי.',
+      he: 'זהו חומרים שמונעים או מגבילים מאוד זרם חשמלי.',
       pl: 'Rozpoznaj materiały, które uniemożliwiają lub znacznie ograniczają przepływ prądu.',
       uk: 'Розпізнавай матеріали, що перешкоджають струму або суттєво його обмежують.',
       lt: 'Atpažink medžiagas, kurios sustabdo arba labai riboja elektros srovę.',

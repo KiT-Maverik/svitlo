@@ -66,7 +66,7 @@ export const currentVoltageAndResistance_SkillGroup_Data = buildSkillGroupConfig
       te: 'విద్యుత్ ప్రవాహం, వోల్టేజ్, నిరోధం, శక్తి విద్యుత్ వలయాలను ఎలా వివరిస్తాయో తెలుసుకోండి.',
       mr: 'प्रवाह, विभवांतर, रोध आणि शक्ती विद्युतपरिपथ कसा समजावतात ते शोधा.',
       ms: 'Ketahui bagaimana arus, voltan, rintangan dan kuasa menerangkan litar.',
-      he: 'גלה כיצד זרם, מתח, התנגדות והספק מתארים מעגלים חשמליים.',
+      he: 'גלו כיצד זרם, מתח, התנגדות והספק מתארים מעגלים חשמליים.',
       pl: 'Poznaj, jak natężenie prądu, napięcie, opór i moc opisują obwody.',
       uk: 'Дізнайся, як струм, напруга, опір і потужність описують електричні кола.',
       lt: 'Sužinok, kaip srovė, įtampa, varža ir galia apibūdina grandines.',
