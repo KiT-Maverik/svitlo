@@ -28,7 +28,7 @@ Every Response Scene carries `rendererKey: string`, resolved by the **runtime co
 
 Quiz authored Data can embed selected questions for strict validation, but the published quiz block stores only `questionSlugs`; each slug must resolve in the Lesson's localized `questions.selectOneAnswer` catalog. Question payloads are published once.
 
-Presentation order is separate from catalog lookup: `Lesson.sectionOrder` and `Section.order` are optional ordered references. A renderer/publisher should prefer those order declarations and validate references against catalogs, rather than relying on lexicographic or object-entry iteration.
+Presentation order is separate from catalog lookup: `Lesson.sectionOrder` controls the order of Sections. A Section Builder stores a type/alias-indexed catalog of child builders while authoring; `setOrder()` prioritizes type-qualified aliases, and `build(languageCode)` publishes an ordered flat `Section<'response'>.content` array. The Response has no separate `Section.order` or catalog lookup.
 
 ## Migration notes for parallel agents
 
