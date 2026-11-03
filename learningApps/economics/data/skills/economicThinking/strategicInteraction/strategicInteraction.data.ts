@@ -60,7 +60,7 @@ export const strategicInteraction_SkillGroup_Data = buildSkillGroupConfig({
       tr: "En iyi seçiminin neden başkalarının yaptıklarına bağlı olabileceğini keşfet.",
       vi: "Khám phá vì sao lựa chọn tốt nhất của bạn có thể phụ thuộc vào hành động của người khác.",
       ta: "உன் சிறந்த தேர்வு ஏன் மற்றவர்களின் செயல்களைச் சார்ந்திருக்கலாம் என்பதை ஆராய்.",
-      te: "నీ ఉత్తమ ఎంపిక ఇతరుల చర్యలపై ఎందుకు ఆధారపడవచ్చో తెలుసుకోండి.",
+      te: "మీకు ఉత్తమమైన ఎంపిక ఇతరుల చర్యలపై ఎందుకు ఆధారపడవచ్చో తెలుసుకోండి.",
       mr: "तुमची सर्वोत्तम निवड इतरांच्या कृतींवर का अवलंबून असू शकते ते शोधा.",
       ms: "Ketahui sebab pilihan terbaikmu boleh bergantung pada tindakan orang lain.",
       he: "גלו מדוע הבחירה הטובה ביותר שלכם עשויה להיות תלויה במעשיהם של אחרים.",
