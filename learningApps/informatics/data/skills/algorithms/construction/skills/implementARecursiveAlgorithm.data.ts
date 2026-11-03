@@ -59,7 +59,7 @@ export const implementARecursiveAlgorithm_Skill_Data = buildSkillConfig({
       he: "בנו אלגוריתם רקורסיבי עם תת־בעיות קטנות יותר ומקרה בסיס שמסיים את הרקורסיה.",
       pl: "Zbuduj algorytm rekurencyjny z mniejszymi podproblemami i przypadkiem bazowym kończącym wywołania.",
       uk: "Побудуй рекурсивний алгоритм із меншими підзадачами та базовим випадком, який завершує рекурсію.",
-      lt: "Sukurk rekursinį algoritmą su mažėjančiais poaibiais uždavinių ir baigiančiu baziniu atveju.",
+      lt: "Sukurk rekursinį algoritmą, kuris skaidydamas uždavinį į vis mažesnes dalis galiausiai pasiekia bazinį atvejį.",
       lv: "Izveido rekursīvu algoritmu ar mazākām apakšproblēmām un bāzes gadījumu, kas aptur rekursiju.",
       et: "Koosta rekursiivne algoritm väiksemate alamülesannete ja lõpetava baasjuhuga.",
       be: "Пабудуй рэкурсіўны альгарытм зь меншымі падзадачамі і базавым выпадкам, які спыняе рэкурсію.",
