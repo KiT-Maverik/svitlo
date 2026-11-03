@@ -4,7 +4,7 @@ export const greekPhilosophy_Skill_Data = buildSkillConfig({
   slug: "greekPhilosophy",
   id: "97f10304-8abf-49c0-bf85-74ee40cbc24f",
   name: {
-    en: "Грецька філософія",
+    en: "Greek Philosophy",
     zh: "古希腊哲学",
     hi: "यूनानी दर्शन",
     es: "Filosofía griega",

@@ -4,7 +4,7 @@ export const ancientGreekArt_Skill_Data = buildSkillConfig({
   slug: "ancientGreekArt",
   id: "a45831e2-e43e-421c-8f44-b717f38d1b6d",
   name: {
-    en: "Давньогрецьке мистецтво",
+    en: "Ancient Greek Art",
     zh: "古希腊艺术",
     hi: "प्राचीन यूनानी कला",
     es: "Arte griego antiguo",

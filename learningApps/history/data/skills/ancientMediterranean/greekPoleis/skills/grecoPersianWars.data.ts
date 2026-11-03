@@ -4,7 +4,7 @@ export const grecoPersianWars_Skill_Data = buildSkillConfig({
   slug: "grecoPersianWars",
   id: "9d3601dc-9908-460c-bc66-07c4d1da51b3",
   name: {
-    en: "Греко-перські війни",
+    en: "Greco-Persian Wars",
     zh: "希波战争",
     hi: "यूनानी-फ़ारसी युद्ध",
     es: "Guerras médicas",

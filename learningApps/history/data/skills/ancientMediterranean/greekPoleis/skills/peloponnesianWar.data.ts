@@ -4,7 +4,7 @@ export const peloponnesianWar_Skill_Data = buildSkillConfig({
   slug: "peloponnesianWar",
   id: "6cb2f95d-078e-44e4-bee2-15e759be3eaa",
   name: {
-    en: "Пелопоннеська війна",
+    en: "Peloponnesian War",
     zh: "伯罗奔尼撒战争",
     hi: "पेलोपोनीसियन युद्ध",
     es: "Guerra del Peloponeso",

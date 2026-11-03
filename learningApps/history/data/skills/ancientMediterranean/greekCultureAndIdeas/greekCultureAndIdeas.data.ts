@@ -6,7 +6,7 @@ export const greekCultureAndIdeas_SkillGroup_Data = buildSkillGroupConfig({
   slug: "greekCultureAndIdeas",
   id: "f5e5caa8-dff9-4db1-ad33-7d6fcb46f407",
   name: {
-    en: "Культура та інтелектуальні традиції",
+    en: "Greek Culture and Intellectual Traditions",
     zh: "古希腊文化与思想传统",
     hi: "यूनानी संस्कृति और बौद्धिक परंपराएँ",
     es: "Cultura e ideas de la Grecia antigua",

@@ -6,7 +6,7 @@ export const greekPoleis_SkillGroup_Data = buildSkillGroupConfig({
   slug: "greekPoleis",
   id: "1e05f5d6-12d6-4c51-bb52-8e99b0cf3bfe",
   name: {
-    en: "Грецькі поліси",
+    en: "Greek Poleis",
     zh: "希腊城邦",
     hi: "यूनानी नगर-राज्य",
     es: "Ciudades-Estado griegas",

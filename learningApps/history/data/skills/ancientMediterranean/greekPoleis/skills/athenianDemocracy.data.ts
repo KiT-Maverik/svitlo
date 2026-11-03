@@ -4,7 +4,7 @@ export const athenianDemocracy_Skill_Data = buildSkillConfig({
   slug: "athenianDemocracy",
   id: "1ff65806-e699-4d38-854f-0efe97005c0b",
   name: {
-    en: "Афінська демократія",
+    en: "Athenian Democracy",
     zh: "雅典民主制",
     hi: "एथेंस का लोकतंत्र",
     es: "Democracia ateniense",

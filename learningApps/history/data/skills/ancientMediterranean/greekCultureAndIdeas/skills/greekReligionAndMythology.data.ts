@@ -4,7 +4,7 @@ export const greekReligionAndMythology_Skill_Data = buildSkillConfig({
   slug: "greekReligionAndMythology",
   id: "d6db5f74-df93-4858-8a3e-7b5b14816de9",
   name: {
-    en: "Грецька релігія та міфологія",
+    en: "Greek Religion and Mythology",
     zh: "古希腊宗教与神话",
     hi: "यूनानी धर्म और मिथक",
     es: "Religión y mitología griegas",

@@ -4,7 +4,7 @@ export const greekColonization_Skill_Data = buildSkillConfig({
   slug: "greekColonization",
   id: "1b0af8dc-09c9-4abc-83fc-f9047f33e5ce",
   name: {
-    en: "Грецька колонізація",
+    en: "Greek Colonization",
     zh: "希腊殖民活动",
     hi: "यूनानी उपनिवेश स्थापना",
     es: "Colonización griega",
