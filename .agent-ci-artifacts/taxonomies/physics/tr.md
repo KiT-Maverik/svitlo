@@ -1,0 +1,2056 @@
+<!-- GENERATED FROM CODE; DO NOT EDIT. -->
+
+# Skills Taxonomy (tr)
+
+> Names and available user-friendly descriptions use the requested locale. Methodological descriptions remain canonical English, not translated. This is a generated Code view, not the editorial staging template.
+
+## SUMMARY
+
+Domains: 12
+
+Groups: 48
+
+Skills: 180
+
+## DOMAINS
+
+### Elektromanyetizma
+
+Groups: 8 · Skills: 31
+
+[electromagnetism.data.ts](../../../learningApps/physics/data/skills/electromagnetism/electromagnetism.data.ts)
+
+**Methodological description (English):** Electric charges, currents, and magnetic fields describe related interactions; electricity and magnetism share underlying principles but begin with different observations.
+
+**User-friendly description (tr):** Elektrik yüklerinin, akımların ve manyetik alanların nasıl etkileştiğini keşfet.
+
+#### İletkenler ve yalıtkanlar
+
+Skills: 2
+
+[conductorsAndInsulators.data.ts](../../../learningApps/physics/data/skills/electromagnetism/conductorsAndInsulators/conductorsAndInsulators.data.ts)
+
+**Methodological description (English):** Materials differ in how readily they permit electric charge to move; distinguish an electrical property of a material from a device's purpose.
+
+**User-friendly description (tr):** Elektrik yüklerinin bazı malzemelerde neden daha kolay hareket ettiğini keşfet.
+
+##### Elektrik iletkeni malzemeleri belirlemek
+
+[identifyElectricallyConductiveMaterials.data.ts](../../../learningApps/physics/data/skills/electromagnetism/conductorsAndInsulators/skills/identifyElectricallyConductiveMaterials.data.ts)
+
+**Methodological description (English):** Determine experimentally which materials complete a low-voltage circuit.
+
+**User-friendly description (tr):** Güvenli, düşük gerilimli bir devreyle hangi malzemelerin elektriği ilettiğini test et.
+
+##### Elektrik yalıtkanı malzemeleri belirlemek
+
+[identifyElectricallyInsulatingMaterials.data.ts](../../../learningApps/physics/data/skills/electromagnetism/conductorsAndInsulators/skills/identifyElectricallyInsulatingMaterials.data.ts)
+
+**Methodological description (English):** Determine experimentally which materials impede the flow of current.
+
+**User-friendly description (tr):** Elektrik akımını engelleyen veya büyük ölçüde sınırlayan malzemeleri belirle.
+
+#### Akım, gerilim ve direnç
+
+Skills: 5
+
+[currentVoltageAndResistance.data.ts](../../../learningApps/physics/data/skills/electromagnetism/currentVoltageAndResistance/currentVoltageAndResistance.data.ts)
+
+**Methodological description (English):** Current describes the flow of electric charge, voltage is a potential difference, and resistance is opposition to current under specified physical conditions.
+
+**User-friendly description (tr):** Akım, gerilim, direnç ve gücün devreleri nasıl tanımladığını keşfet.
+
+##### Elektrik akımını açıklamak
+
+[explainElectricCurrent.data.ts](../../../learningApps/physics/data/skills/electromagnetism/currentVoltageAndResistance/skills/explainElectricCurrent.data.ts)
+
+**Methodological description (English):** Electric current involves directed transport of charge, not merely random motion of charge carriers.
+
+**User-friendly description (tr):** Elektrik akımını yüklerin yönlü hareketi olarak anla.
+
+##### Elektrik gerilimini açıklamak
+
+[explainElectricVoltage.data.ts](../../../learningApps/physics/data/skills/electromagnetism/currentVoltageAndResistance/skills/explainElectricVoltage.data.ts)
+
+**Methodological description (English):** Voltage specifies the difference in electric potential between two points and is not current itself.
+
+**User-friendly description (tr):** Gerilimi iki nokta arasındaki elektriksel potansiyel farkı olarak açıkla.
+
+##### Elektrik gücünü açıklamak
+
+[explainElectricalPower.data.ts](../../../learningApps/physics/data/skills/electromagnetism/currentVoltageAndResistance/skills/explainElectricalPower.data.ts)
+
+**Methodological description (English):** Electrical power describes the rate of electrical energy transfer or transformation.
+
+**User-friendly description (tr):** Elektrik gücünü enerjinin aktarılma hızı olarak anla.
+
+##### Elektrik direncini açıklamak
+
+[explainElectricalResistance.data.ts](../../../learningApps/physics/data/skills/electromagnetism/currentVoltageAndResistance/skills/explainElectricalResistance.data.ts)
+
+**Methodological description (English):** Resistance determines the relationship between voltage and current under given conditions and depends on conductor material and geometry.
+
+**User-friendly description (tr):** Belirli koşullarda direncin akımı nasıl etkilediğini keşfet.
+
+##### Ohmik iletken için Ohm yasasını açıklamak
+
+[explainOhmsLawForAnOhmicConductor.data.ts](../../../learningApps/physics/data/skills/electromagnetism/currentVoltageAndResistance/skills/explainOhmsLawForAnOhmicConductor.data.ts)
+
+**Methodological description (English):** Under constant conditions, the current through an ohmic conductor is directly proportional to voltage; this law does not describe every component without exception.
+
+**User-friendly description (tr):** Sabit koşullarda ohmik iletkenlere Ohm yasasını uygula.
+
+#### Elektrik ve manyetik alanlar
+
+Skills: 3
+
+[electricAndMagneticFields.data.ts](../../../learningApps/physics/data/skills/electromagnetism/electricAndMagneticFields/electricAndMagneticFields.data.ts)
+
+**Methodological description (English):** Fields describe interactions involving electric charges and magnetic systems without direct contact, but their physical effects differ.
+
+**User-friendly description (tr):** Elektrik ve manyetik alanların nasıl farklı kuvvetler oluşturduğunu keşfet.
+
+##### Elektrik ve manyetik alanları ayırt etmek
+
+[distinguishElectricFromMagneticFields.data.ts](../../../learningApps/physics/data/skills/electromagnetism/electricAndMagneticFields/skills/distinguishElectricFromMagneticFields.data.ts)
+
+**Methodological description (English):** An electric field can act on a stationary charge, whereas the magnetic component of the force on a charge depends on its motion.
+
+**User-friendly description (tr):** Duran yüklere etki eden elektrik kuvvetleriyle hareketli yüklere etki eden manyetik kuvvetleri ayır.
+
+##### Elektrik alanı açıklamak
+
+[explainTheElectricField.data.ts](../../../learningApps/physics/data/skills/electromagnetism/electricAndMagneticFields/skills/explainTheElectricField.data.ts)
+
+**Methodological description (English):** An electric field determines the force on an electric charge and exists independently of a test charge.
+
+**User-friendly description (tr):** Elektrik alanın doğrudan temas olmadan yüke nasıl etki ettiğini anla.
+
+##### Manyetik alanı açıklamak
+
+[explainTheMagneticField.data.ts](../../../learningApps/physics/data/skills/electromagnetism/electricAndMagneticFields/skills/explainTheMagneticField.data.ts)
+
+**Methodological description (English):** A magnetic field can act on moving charges and magnetic systems; the direction and magnitude of its effects depend on conditions.
+
+**User-friendly description (tr):** Manyetik alanların hareketli yükleri ve manyetik cisimleri nasıl etkilediğini açıkla.
+
+#### Elektrik yükleri ve etkileşimleri
+
+Skills: 3
+
+[electricChargesAndInteractions.data.ts](../../../learningApps/physics/data/skills/electromagnetism/electricChargesAndInteractions/electricChargesAndInteractions.data.ts)
+
+**Methodological description (English):** Electrification, interactions between charged bodies, and charge transfer obey conservation of electric charge. Electric interaction can occur without direct contact.
+
+**User-friendly description (tr):** Elektrik yüklerinin nasıl aktarıldığını ve kuvvet uyguladığını keşfet.
+
+##### Elektrik yükleri arasında çekme ve itmeyi ayırmak
+
+[distinguishAttractionFromRepulsionBetweenElectricCharges.data.ts](../../../learningApps/physics/data/skills/electromagnetism/electricChargesAndInteractions/skills/distinguishAttractionFromRepulsionBetweenElectricCharges.data.ts)
+
+**Methodological description (English):** Like charges repel and unlike charges attract; electric interaction is distinct from magnetic interaction.
+
+**User-friendly description (tr):** Zıt yüklerin çekimini aynı tür yüklerin itmesinden ayırt et.
+
+##### Elektrik yükünün korunmasını açıklamak
+
+[explainConservationOfElectricCharge.data.ts](../../../learningApps/physics/data/skills/electromagnetism/electricChargesAndInteractions/skills/explainConservationOfElectricCharge.data.ts)
+
+**Methodological description (English):** The total charge of an isolated system is conserved during charge transfer and physical interactions.
+
+**User-friendly description (tr):** Yük aktarımı sırasında toplam elektrik yükünün neden sabit kaldığını açıkla.
+
+##### Sürtünmeyle elektriklenmeyi tanımak
+
+[recognizeTheChargingOfObjectsByFriction.data.ts](../../../learningApps/physics/data/skills/electromagnetism/electricChargesAndInteractions/skills/recognizeTheChargingOfObjectsByFriction.data.ts)
+
+**Methodological description (English):** Using a safe balloon or comb model, connect friction with electrostatic effects rather than attributing them to magnetic attraction.
+
+**User-friendly description (tr):** Bazı cisimleri sürtmenin elektrostatik etkiler oluşturduğunu belirle.
+
+#### Elektrik devreleri
+
+Skills: 9
+
+[electricCircuits.data.ts](../../../learningApps/physics/data/skills/electromagnetism/electricCircuits/electricCircuits.data.ts)
+
+**Methodological description (English):** An electric circuit needs a conducting path, a source, and components whose interactions determine the operation of a safe model.
+
+**User-friendly description (tr):** Basit devrelerde kaynakların, anahtarların ve yüklerin birlikte nasıl çalıştığını keşfet.
+
+##### Açık devreyi açıklamak
+
+[explainAnOpenCircuit.data.ts](../../../learningApps/physics/data/skills/electromagnetism/electricCircuits/skills/explainAnOpenCircuit.data.ts)
+
+**Methodological description (English):** Opening a branch interrupts its conducting path; in a circuit with parallel branches, other parts may continue to operate.
+
+**User-friendly description (tr):** Akım yolu kesildiğinde ne olduğunu açıkla.
+
+##### Devre düğümünde akım dengesini açıklamak
+
+[explainCurrentBalanceAtACircuitNode.data.ts](../../../learningApps/physics/data/skills/electromagnetism/electricCircuits/skills/explainCurrentBalanceAtACircuitNode.data.ts)
+
+**Methodological description (English):** Under steady current, charge does not accumulate at a node; the total current entering equals the total current leaving.
+
+**User-friendly description (tr):** Kararlı durumda bir düğüme giren toplam akımın çıkan toplam akıma neden eşit olduğunu açıkla.
+
+##### Devre elemanlarının paralel bağlanmasını açıklamak
+
+[explainParallelConnectionsOfElectricCircuitComponents.data.ts](../../../learningApps/physics/data/skills/electromagnetism/electricCircuits/skills/explainParallelConnectionsOfElectricCircuitComponents.data.ts)
+
+**Methodological description (English):** Parallel branches connect to the same two nodes, so each has the same voltage and the total current is divided among the branches. Opening one branch does not necessarily stop current in the others.
+
+**User-friendly description (tr):** Paralel kolların aynı gerilime sahip olduğunu ve akımın kollara bölündüğünü anla.
+
+##### Devre elemanlarının seri bağlanmasını açıklamak
+
+[explainSeriesConnectionsOfElectricCircuitComponents.data.ts](../../../learningApps/physics/data/skills/electromagnetism/electricCircuits/skills/explainSeriesConnectionsOfElectricCircuitComponents.data.ts)
+
+**Methodological description (English):** Components connected in series share a common current path: the same current passes through each, and the total voltage across the combination is the sum of the voltages across the individual components. Breaking the single path stops current through all those components.
+
+**User-friendly description (tr):** Seri devrede tek yoldaki elemanlardan aynı akımın nasıl geçtiğini keşfet.
+
+##### Elektrik enerjisi tüketicisini belirlemek
+
+[identifyAConsumerOfElectricalEnergy.data.ts](../../../learningApps/physics/data/skills/electromagnetism/electricCircuits/skills/identifyAConsumerOfElectricalEnergy.data.ts)
+
+**Methodological description (English):** An electrical load converts received electrical energy into thermal, mechanical, light, or other forms, rather than merely "using current."
+
+**User-friendly description (tr):** Elektrik enerjisini başka biçimlere dönüştüren yükleri tanı.
+
+##### Elektrik enerjisi kaynağını belirlemek
+
+[identifyAnElectricalPowerSource.data.ts](../../../learningApps/physics/data/skills/electromagnetism/electricCircuits/skills/identifyAnElectricalPowerSource.data.ts)
+
+**Methodological description (English):** A source maintains a potential difference between its terminals and converts other forms of energy into electrical energy, unlike a passive conductor.
+
+**User-friendly description (tr):** Devrede potansiyel farkını sürdüren bileşeni belirle.
+
+##### Anahtarın işlevini belirlemek
+
+[identifyTheFunctionOfASwitch.data.ts](../../../learningApps/physics/data/skills/electromagnetism/electricCircuits/skills/identifyTheFunctionOfASwitch.data.ts)
+
+**Methodological description (English):** A switch changes the state of a conducting path and can interrupt current in a particular branch, but it is not itself an energy source.
+
+**User-friendly description (tr):** Anahtarın akım yolunu nasıl bağladığını veya kestiğini açıkla.
+
+##### Devrede anahtarın etkisini tahmin etmek
+
+[predictTheEffectOfASwitchInACircuit.data.ts](../../../learningApps/physics/data/skills/electromagnetism/electricCircuits/skills/predictTheEffectOfASwitchInACircuit.data.ts)
+
+**Methodological description (English):** The consequences of switching depend on where the switch is placed relative to the source, loads, and parallel paths.
+
+**User-friendly description (tr):** Anahtarın devrenin hangi kısımlarını açıp kapatacağını tahmin et.
+
+##### Kapalı elektrik devresini tanımak
+
+[recognizeAClosedElectricCircuit.data.ts](../../../learningApps/physics/data/skills/electromagnetism/electricCircuits/skills/recognizeAClosedElectricCircuit.data.ts)
+
+**Methodological description (English):** A closed circuit has a continuous conducting path; sustained current also requires a source of electromotive force.
+
+**User-friendly description (tr):** Devrede kesintisiz bir iletken yolun olup olmadığını belirle.
+
+#### Elektromıknatıslar ve indüksiyon
+
+Skills: 2
+
+[electromagnetsAndInduction.data.ts](../../../learningApps/physics/data/skills/electromagnetism/electromagnetsAndInduction/electromagnetsAndInduction.data.ts)
+
+**Methodological description (English):** Electric current can create a magnetic field, and changing magnetic conditions can produce electrical effects, explaining many systems.
+
+**User-friendly description (tr):** Akımların manyetik alan oluşturmasını ve değişen alanların elektrik akımı indüklemesini keşfet.
+
+##### İndüklenen akımın nasıl oluştuğunu açıklamak
+
+[explainHowInducedCurrentArises.data.ts](../../../learningApps/physics/data/skills/electromagnetism/electromagnetsAndInduction/skills/explainHowInducedCurrentArises.data.ts)
+
+**Methodological description (English):** A changing magnetic flux through a closed conducting loop can induce an electromotive force and current; constant flux by itself does not generate current.
+
+**User-friendly description (tr):** Değişen manyetik akının ne zaman indüksiyon akımı oluşturduğunu belirle.
+
+##### Elektrik akımının manyetik etkisini açıklamak
+
+[explainTheMagneticEffectOfElectricCurrent.data.ts](../../../learningApps/physics/data/skills/electromagnetism/electromagnetsAndInduction/skills/explainTheMagneticEffectOfElectricCurrent.data.ts)
+
+**Methodological description (English):** Moving electric charges create a magnetic field; changing the current changes the field it produces and the associated magnetic interactions.
+
+**User-friendly description (tr):** Elektrik akımının neden manyetik alan oluşturduğunu açıkla.
+
+#### Fiziksel sistemlerde manyetik etkiler
+
+Skills: 1
+
+[magneticEffectsInPhysicalSystems.data.ts](../../../learningApps/physics/data/skills/electromagnetism/magneticEffectsInPhysicalSystems/magneticEffectsInPhysicalSystems.data.ts)
+
+**Methodological description (English):** Magnetic forces in real systems are explained by fields and material properties; choosing an engineering design belongs to Engineering.
+
+**User-friendly description (tr):** Manyetik alanların fiziksel sistemler üzerindeki etkilerini keşfet.
+
+##### Bir sistemde manyetik alanın fiziksel rolünü açıklamak
+
+[explainThePhysicalRoleOfAMagneticFieldInASystem.data.ts](../../../learningApps/physics/data/skills/electromagnetism/magneticEffectsInPhysicalSystems/skills/explainThePhysicalRoleOfAMagneticFieldInASystem.data.ts)
+
+**Methodological description (English):** Determine how magnetic interaction affects a system's motion or state without proceeding to select a technical component.
+
+**User-friendly description (tr):** Manyetik alanın hareketi veya başka bir fiziksel durumu nasıl etkilediğini açıkla.
+
+#### Manyetik özellikler ve etkileşimler
+
+Skills: 6
+
+[magneticPropertiesAndInteractions.data.ts](../../../learningApps/physics/data/skills/electromagnetism/magneticPropertiesAndInteractions/magneticPropertiesAndInteractions.data.ts)
+
+**Methodological description (English):** Materials and pole orientation affect interactions; direct contact between magnets is not required.
+
+**User-friendly description (tr):** Manyetik maddelerin ve kutupların nasıl etkileştiğini keşfet.
+
+##### Cisimleri manyetik etkileşime göre sınıflandırmak
+
+[classifyObjectsByMagneticInteraction.data.ts](../../../learningApps/physics/data/skills/electromagnetism/magneticPropertiesAndInteractions/skills/classifyObjectsByMagneticInteraction.data.ts)
+
+**Methodological description (English):** Classification is based on the direction and magnitude of a material's magnetic response under relevant conditions; this is not the same as determining whether it has its own magnetic field.
+
+**User-friendly description (tr):** Cisimleri gösterdikleri manyetik tepkiye göre sınıflandır.
+
+##### Temassız manyetik etkiyi açıklamak
+
+[explainMagneticActionWithoutContact.data.ts](../../../learningApps/physics/data/skills/electromagnetism/magneticPropertiesAndInteractions/skills/explainMagneticActionWithoutContact.data.ts)
+
+**Methodological description (English):** Recognize magnetic force as an interaction that does not require direct contact.
+
+**User-friendly description (tr):** Mıknatısın cisme dokunmadan nasıl kuvvet uygulayabildiğini açıkla.
+
+##### Mıknatısa çekilen malzemeleri belirlemek
+
+[identifyMaterialsAttractedToAMagnet.data.ts](../../../learningApps/physics/data/skills/electromagnetism/magneticPropertiesAndInteractions/skills/identifyMaterialsAttractedToAMagnet.data.ts)
+
+**Methodological description (English):** The observable effect of a magnetic field on a material depends on its magnetic properties; not all metals are attracted equally.
+
+**User-friendly description (tr):** Manyetik alanlara güçlü tepki gösteren malzemeleri tanı.
+
+##### Manyetik kutuplar arasındaki etkileşimleri tahmin etmek
+
+[predictInteractionsBetweenMagneticPoles.data.ts](../../../learningApps/physics/data/skills/electromagnetism/magneticPropertiesAndInteractions/skills/predictInteractionsBetweenMagneticPoles.data.ts)
+
+**Methodological description (English):** Determine attraction or repulsion from a known arrangement of poles.
+
+**User-friendly description (tr):** Bilinen manyetik kutuplar yaklaştırıldığında ne olacağını tahmin et.
+
+##### Manyetik çekimi tanımak
+
+[recognizeMagneticAttraction.data.ts](../../../learningApps/physics/data/skills/electromagnetism/magneticPropertiesAndInteractions/skills/recognizeMagneticAttraction.data.ts)
+
+**Methodological description (English):** Identify a situation in which magnets move toward one another due to their interaction.
+
+**User-friendly description (tr):** Mıknatısların birbirini çektiği durumları belirle.
+
+##### Manyetik itmeyi tanımak
+
+[recognizeMagneticRepulsion.data.ts](../../../learningApps/physics/data/skills/electromagnetism/magneticPropertiesAndInteractions/skills/recognizeMagneticRepulsion.data.ts)
+
+**Methodological description (English):** Identify a situation in which magnets move apart due to their interaction.
+
+**User-friendly description (tr):** Mıknatısların birbirini ittiği durumları belirle.
+
+### Enerji
+
+Groups: 4 · Skills: 12
+
+[energy.data.ts](../../../learningApps/physics/data/skills/energy/energy.data.ts)
+
+**Methodological description (English):** Energy is a quantity that helps describe physical changes and connect phenomena involving motion, heating, light, and electricity. The emphasis is on energy transfer, transformation, and conservation rather than arithmetic formulas.
+
+**User-friendly description (tr):** Fiziksel sistemlerde enerjinin nasıl depolandığını, aktarıldığını, dönüştüğünü ve korunduğunu keşfet.
+
+#### Enerjinin Korunumu
+
+Skills: 3
+
+[conservationOfEnergy.data.ts](../../../learningApps/physics/data/skills/energy/conservationOfEnergy/conservationOfEnergy.data.ts)
+
+**Methodological description (English):** The total energy of an isolated system is conserved even as its form or distribution among bodies changes. A decrease in energy available for useful work is not its disappearance; for an open system, exchange with the surroundings must be considered.
+
+**User-friendly description (tr):** Yalıtılmış bir sistemin toplam enerjisinin neden korunduğunu anla.
+
+##### Enerjinin korunumu yasasını açıklamak
+
+[explainTheLawOfConservationOfEnergy.data.ts](../../../learningApps/physics/data/skills/energy/conservationOfEnergy/skills/explainTheLawOfConservationOfEnergy.data.ts)
+
+**Methodological description (English):** The total energy of an isolated system remains unchanged; for an open system, energy exchange with the surroundings must be taken into account.
+
+**User-friendly description (tr):** Biçimi veya yeri değişse de enerjinin nasıl korunduğunu açıkla.
+
+##### Kullanışlı enerjinin azalmasını açıklamak
+
+[explainTheLossOfUsefulEnergy.data.ts](../../../learningApps/physics/data/skills/energy/conservationOfEnergy/skills/explainTheLossOfUsefulEnergy.data.ts)
+
+**Methodological description (English):** Dissipation into forms of energy less suitable for a particular task reduces a process's usefulness but does not violate conservation of total energy.
+
+**User-friendly description (tr):** Daha az kullanışlı biçimlere dağılan enerjinin yok olmadığını fark et.
+
+##### Enerjinin kaybolduğu fikrini çürütmek
+
+[refuteTheIdeaThatEnergyDisappears.data.ts](../../../learningApps/physics/data/skills/energy/conservationOfEnergy/skills/refuteTheIdeaThatEnergyDisappears.data.ts)
+
+**Methodological description (English):** Identify unaccounted energy transfers and transformations instead of attributing a system's change of state to energy disappearing.
+
+**User-friendly description (tr):** Enerjinin yok olduğunu sanmak yerine nereye gittiğini bul.
+
+#### Enerji Aktarımı ve Dönüşümü
+
+Skills: 2
+
+[energyTransferAndTransformation.data.ts](../../../learningApps/physics/data/skills/energy/energyTransferAndTransformation/energyTransferAndTransformation.data.ts)
+
+**Methodological description (English):** Energy can pass between objects and change form; the sequence of events matters more than the name of a particular device.
+
+**User-friendly description (tr):** Enerjinin cisimler arasında nasıl aktarıldığını ve biçim değiştirdiğini öğren.
+
+##### Fiziksel süreçte enerji dönüşümünü açıklamak
+
+[explainEnergyTransformationInAPhysicalProcess.data.ts](../../../learningApps/physics/data/skills/energy/energyTransferAndTransformation/skills/explainEnergyTransformationInAPhysicalProcess.data.ts)
+
+**Methodological description (English):** Energy changes form during physical processes, for example when energy shifts between motion and position; the total energy of an isolated system is conserved.
+
+**User-friendly description (tr):** Enerji dönüşümünü korunum ilkesini dikkate alarak izle.
+
+##### Cisimler arasında enerji aktarımını belirlemek
+
+[identifyEnergyTransferBetweenBodies.data.ts](../../../learningApps/physics/data/skills/energy/energyTransferAndTransformation/skills/identifyEnergyTransferBetweenBodies.data.ts)
+
+**Methodological description (English):** Using colliding balls or water heating, show which body transfers energy to which other body.
+
+**User-friendly description (tr):** Etkileşim sırasında hangi cismin diğerine enerji aktardığını belirle.
+
+#### Enerji Biçimleri
+
+Skills: 5
+
+[formsOfEnergy.data.ts](../../../learningApps/physics/data/skills/energy/formsOfEnergy/formsOfEnergy.data.ts)
+
+**Methodological description (English):** Motion, position, deformation, and internal state can be associated with different forms of energy; descriptions should refer to a specific physical system.
+
+**User-friendly description (tr):** Değişen fiziksel durumlarda farklı enerji biçimlerini tanı.
+
+##### Kütle çekim potansiyel enerjisini hesaplamak
+
+[calculateGravitationalPotentialEnergy.data.ts](../../../learningApps/physics/data/skills/energy/formsOfEnergy/skills/calculateGravitationalPotentialEnergy.data.ts)
+
+**Methodological description (English):** Determine the change in a body's gravitational potential energy near Earth's surface from its mass, gravitational acceleration, and change in height, correctly accounting for the chosen reference level and units. This calculation assumes an approximately uniform gravitational field and differs from calculating elastic potential energy.
+
+**User-friendly description (tr):** Kütle, yer çekimi ivmesi ve yükseklik değişiminden potansiyel enerji değişimini hesapla.
+
+##### Enerji biçimlerini sınıflandırmak
+
+[classifyFormsOfEnergy.data.ts](../../../learningApps/physics/data/skills/energy/formsOfEnergy/skills/classifyFormsOfEnergy.data.ts)
+
+**Methodological description (English):** Distinguish energy of motion, energy related to bodies' positions, elastic deformation energy, and internal energy based on the physical properties of a system.
+
+**User-friendly description (tr):** Hareket, konum, şekil değiştirme ve iç durumla ilgili enerji biçimlerini ayırt et.
+
+##### Enerjiyi kaynağından ayırt etmek
+
+[distinguishEnergyFromItsSource.data.ts](../../../learningApps/physics/data/skills/energy/formsOfEnergy/skills/distinguishEnergyFromItsSource.data.ts)
+
+**Methodological description (English):** Energy characterizes the state and changes of a system, whereas a source is a body or process from which energy is transferred to another system; the source does not create it from nothing.
+
+**User-friendly description (tr):** Bir sistemin enerjisiyle ona enerji aktaran kaynağı birbirinden ayır.
+
+##### Kinetik enerjiyi hareket enerjisi olarak açıklamak
+
+[explainKineticEnergyAsEnergyOfMotion.data.ts](../../../learningApps/physics/data/skills/energy/formsOfEnergy/skills/explainKineticEnergyAsEnergyOfMotion.data.ts)
+
+**Methodological description (English):** Kinetic energy is associated with a body's motion relative to a reference frame and depends on mass and speed, but it is not the same as momentum.
+
+**User-friendly description (tr):** Hareket eden cismin kütlesi ve hızının kinetik enerjisini nasıl etkilediğini açıkla.
+
+##### Potansiyel enerjiyi açıklamak
+
+[explainPotentialEnergy.data.ts](../../../learningApps/physics/data/skills/energy/formsOfEnergy/skills/explainPotentialEnergy.data.ts)
+
+**Methodological description (English):** Potential energy is related to a physical system's configuration and interactions among its components, including bodies' positions in a gravitational field or elastic deformation. Its value is specified relative to a chosen zero level; this competency addresses physical meaning rather than calculation.
+
+**User-friendly description (tr):** Potansiyel enerjinin düzenlemeye ve seçilen referans düzeyine bağlı olduğunu anla.
+
+#### İş ve Güç
+
+Skills: 2
+
+[workAndPower.data.ts](../../../learningApps/physics/data/skills/energy/workAndPower/workAndPower.data.ts)
+
+**Methodological description (English):** Work describes energy transfer by a force during displacement, while power describes the rate of energy transfer.
+
+**User-friendly description (tr):** Mekanik iş ve gücün fiziksel anlamını keşfet.
+
+##### Mekanik işi açıklamak
+
+[explainMechanicalWork.data.ts](../../../learningApps/physics/data/skills/energy/workAndPower/skills/explainMechanicalWork.data.ts)
+
+**Methodological description (English):** Mechanical work involves the component of force along displacement; exerting force without displacement does not perform mechanical work.
+
+**User-friendly description (tr):** Bir kuvvetin yer değiştirme sırasında neden enerji aktardığını açıkla.
+
+##### Gücün fiziksel anlamını açıklamak
+
+[explainThePhysicalMeaningOfPower.data.ts](../../../learningApps/physics/data/skills/energy/workAndPower/skills/explainThePhysicalMeaningOfPower.data.ts)
+
+**Methodological description (English):** Power describes the rate of doing work or transferring energy and is not a separate form of energy.
+
+**User-friendly description (tr):** Gücü enerji aktarımı veya iş yapma hızı olarak anla.
+
+### Akışkanlar Mekaniği
+
+Groups: 4 · Skills: 15
+
+[fluidMechanics.data.ts](../../../learningApps/physics/data/skills/fluidMechanics/fluidMechanics.data.ts)
+
+**Methodological description (English):** Water and air transmit pressure, flow, resist bodies' motion, and can provide buoyancy. Familiar containers, floating objects, and airflow make these phenomena accessible.
+
+**User-friendly description (tr):** Sıvı ve gazların nasıl aktığını, basınç uyguladığını ve hareketli cisimleri etkilediğini keşfet.
+
+#### Aerodinamik
+
+Skills: 3
+
+[aerodynamics.data.ts](../../../learningApps/physics/data/skills/fluidMechanics/aerodynamics/aerodynamics.data.ts)
+
+**Methodological description (English):** Air exerts drag on moving bodies; shape and relative speed affect the interaction. Building aircraft or designing hulls are Engineering applications.
+
+**User-friendly description (tr):** Havanın içinden geçen cisimleri nasıl etkilediğini öğren.
+
+##### Aerodinamik kaldırma kuvvetini açıklamak
+
+[explainAerodynamicLift.data.ts](../../../learningApps/physics/data/skills/fluidMechanics/aerodynamics/skills/explainAerodynamicLift.data.ts)
+
+**Methodological description (English):** Airflow interacting with a body can produce a force perpendicular to the flow; it should not be explained solely by differences in air-path length.
+
+**User-friendly description (tr):** Eşit yol yanılgısına dayanmadan hava akımının kaldırma kuvveti üretmesini keşfet.
+
+##### Hareket sırasında hava direncinin kaynağını açıklamak
+
+[explainTheOriginOfAirResistanceDuringMotion.data.ts](../../../learningApps/physics/data/skills/fluidMechanics/aerodynamics/skills/explainTheOriginOfAirResistanceDuringMotion.data.ts)
+
+**Methodological description (English):** Using a paper sheet or ball, connect drag to the body's interaction with air; do not claim that drag arises only from an unsuitable shape.
+
+**User-friendly description (tr):** Havada hareket etmenin neden direnç oluşturduğunu açıkla.
+
+##### Şeklin havadaki harekete etkisini tahmin etmek
+
+[predictTheEffectOfShapeOnMotionThroughAir.data.ts](../../../learningApps/physics/data/skills/fluidMechanics/aerodynamics/skills/predictTheEffectOfShapeOnMotionThroughAir.data.ts)
+
+**Methodological description (English):** A body's shape and orientation affect airflow around it, drag, and, under certain conditions, lift.
+
+**User-friendly description (tr):** Cismin biçiminin veya açısının sürükleme ve kaldırma kuvvetini nasıl değiştirdiğini tahmin et.
+
+#### Yüzme ve Kaldırma Kuvveti
+
+Skills: 5
+
+[floatingAndBuoyancy.data.ts](../../../learningApps/physics/data/skills/fluidMechanics/floatingAndBuoyancy/floatingAndBuoyancy.data.ts)
+
+**Methodological description (English):** A body's behavior in water is determined by gravity together with forces exerted by the liquid; material and shape may affect the outcome through average density.
+
+**User-friendly description (tr):** Yoğunluk ve kaldırma kuvvetinin cismin yüzmesini ya da batmasını nasıl belirlediğini keşfet.
+
+##### Yükselme, yüzme ve batmayı ayırt etmek
+
+[distinguishRisingFloatingAndSinking.data.ts](../../../learningApps/physics/data/skills/fluidMechanics/floatingAndBuoyancy/skills/distinguishRisingFloatingAndSinking.data.ts)
+
+**Methodological description (English):** Identify three possible behaviors of safe objects in water through observation or simulation.
+
+**User-friendly description (tr):** Bir cismin suda yükselmesini, yüzmesini veya batmasını ayırt et.
+
+##### Arşimet ilkesini açıklamak
+
+[explainArchimedesPrinciple.data.ts](../../../learningApps/physics/data/skills/fluidMechanics/floatingAndBuoyancy/skills/explainArchimedesPrinciple.data.ts)
+
+**Methodological description (English):** Under the relevant conditions, the buoyant force equals the weight of the volume of liquid or gas displaced by the body.
+
+**User-friendly description (tr):** Kaldırma kuvvetini yer değiştiren akışkanla ilişkilendirmek için Arşimet ilkesini kullan.
+
+##### Kaldırma kuvvetini açıklamak
+
+[explainBuoyantForce.data.ts](../../../learningApps/physics/data/skills/fluidMechanics/floatingAndBuoyancy/skills/explainBuoyantForce.data.ts)
+
+**Methodological description (English):** The pressure difference exerted by a liquid or gas on a submerged body produces a net upward force.
+
+**User-friendly description (tr):** Basınç farklarının yukarı yönlü kaldırma kuvvetini nasıl oluşturduğunu açıkla.
+
+##### Yoğunluğu açıklamak
+
+[explainDensity.data.ts](../../../learningApps/physics/data/skills/fluidMechanics/floatingAndBuoyancy/skills/explainDensity.data.ts)
+
+**Methodological description (English):** Density is the mass per unit volume of a substance and helps determine the relationship between a body's properties and those of the surrounding medium.
+
+**User-friendly description (tr):** Yoğunluğu birim hacimdeki kütle olarak anla.
+
+##### Yükün yüzmeye etkisini tahmin etmek
+
+[predictHowALoadAffectsFloating.data.ts](../../../learningApps/physics/data/skills/fluidMechanics/floatingAndBuoyancy/skills/predictHowALoadAffectsFloating.data.ts)
+
+**Methodological description (English):** Increasing the mass of a load changes the buoyant force and displaced volume needed for equilibrium, so a body may become more deeply submerged.
+
+**User-friendly description (tr):** Ek ağırlığın yüzen cismin suya ne kadar battığını nasıl değiştirdiğini tahmin et.
+
+#### Hidrodinamik
+
+Skills: 3
+
+[hydrodynamics.data.ts](../../../learningApps/physics/data/skills/fluidMechanics/hydrodynamics/hydrodynamics.data.ts)
+
+**Methodological description (English):** Water and other liquids flow under certain conditions and resist bodies moving through the stream; comparison with air explains differences between the media.
+
+**User-friendly description (tr):** Suyun akışını ve hareketli cisimlere karşı gösterdiği direnci anla.
+
+##### Su ve havada hareket direncini karşılaştırmak
+
+[compareResistanceToMotionInWaterAndAir.data.ts](../../../learningApps/physics/data/skills/fluidMechanics/hydrodynamics/skills/compareResistanceToMotionInWaterAndAir.data.ts)
+
+**Methodological description (English):** Use qualitative examples to recognize why moving the same object through water and through air feels different.
+
+**User-friendly description (tr):** Aynı cismin su ve havada hareket ederken karşılaştığı direnci karşılaştır.
+
+##### Sıkıştırılamaz akışın sürekliliğini açıklamak
+
+[explainContinuityOfIncompressibleFluidFlow.data.ts](../../../learningApps/physics/data/skills/fluidMechanics/hydrodynamics/skills/explainContinuityOfIncompressibleFluidFlow.data.ts)
+
+**Methodological description (English):** For steady flow without leakage, a change in a channel's cross-sectional area is associated with a change in fluid speed.
+
+**User-friendly description (tr):** Kanal kesitindeki değişikliklerle kararlı sıkıştırılamaz akışın hızını ilişkilendir.
+
+##### Farklı seviyelerdeki kaplar arasında su akışını açıklamak
+
+[explainWaterFlowBetweenContainersAtDifferentLevels.data.ts](../../../learningApps/physics/data/skills/fluidMechanics/hydrodynamics/skills/explainWaterFlowBetweenContainersAtDifferentLevels.data.ts)
+
+**Methodological description (English):** A hydrostatic pressure difference between connected vessels causes liquid to flow until pressures balance or other forces intervene.
+
+**User-friendly description (tr):** Farklı yüksekliklerdeki kaplar arasında suyun neden aktığını açıkla.
+
+#### Sıvı ve Gazlarda Basınç
+
+Skills: 4
+
+[pressureInLiquidsAndGases.data.ts](../../../learningApps/physics/data/skills/fluidMechanics/pressureInLiquidsAndGases/pressureInLiquidsAndGases.data.ts)
+
+**Methodological description (English):** Pressure is transmitted through a medium and changes with depth in still water; container examples help distinguish pressure from the mere amount of water.
+
+**User-friendly description (tr):** Sıvı ve gaz basıncının nasıl etki ettiğini ve koşullarla nasıl değiştiğini öğren.
+
+##### Kapalı bir sıvıda basıncın iletimini açıklamak
+
+[explainPressureTransmissionInAnEnclosedLiquid.data.ts](../../../learningApps/physics/data/skills/fluidMechanics/pressureInLiquidsAndGases/skills/explainPressureTransmissionInAnEnclosedLiquid.data.ts)
+
+**Methodological description (English):** A pressure change applied to an enclosed liquid at rest is transmitted in every direction, unlike the variation of hydrostatic pressure with depth.
+
+**User-friendly description (tr):** Kapalı bir sıvıda basınç değişiminin nasıl iletildiğini açıkla.
+
+##### Su basıncının derinlikle neden arttığını açıklamak
+
+[explainWhyWaterPressureIncreasesWithDepth.data.ts](../../../learningApps/physics/data/skills/fluidMechanics/pressureInLiquidsAndGases/skills/explainWhyWaterPressureIncreasesWithDepth.data.ts)
+
+**Methodological description (English):** In a stationary liquid of constant density, pressure increases with depth because of the weight of the layers above; the container's shape alone does not determine it.
+
+**User-friendly description (tr):** Durgun suyun daha derinde neden daha büyük basınç uyguladığını açıkla.
+
+##### Gaz basıncına örnekler bulmak
+
+[identifyGasPressureInExamples.data.ts](../../../learningApps/physics/data/skills/fluidMechanics/pressureInLiquidsAndGases/skills/identifyGasPressureInExamples.data.ts)
+
+**Methodological description (English):** A gas acts on surfaces through collisions of its particles; pressure depends on the gas's physical state and the conditions of its confinement.
+
+**User-friendly description (tr):** Kapalı bir gazın çevresindeki yüzeylere nasıl basınç uyguladığını belirle.
+
+##### Sıvı basıncının farklı yönlerde etkisini tanımak
+
+[recognizeLiquidPressureActingInDifferentDirections.data.ts](../../../learningApps/physics/data/skills/fluidMechanics/pressureInLiquidsAndGases/skills/recognizeLiquidPressureActingInDifferentDirections.data.ts)
+
+**Methodological description (English):** Use a model of holes in a container to explain why water exerts pressure in directions other than downward.
+
+**User-friendly description (tr):** Sıvı basıncının aşağıya olduğu gibi yanlara da etki ettiğini fark et.
+
+### Kuvvetler ve etkileşimler
+
+Groups: 3 · Skills: 14
+
+[forcesAndInteractions.data.ts](../../../learningApps/physics/data/skills/forcesAndInteractions/forcesAndInteractions.data.ts)
+
+**Methodological description (English):** When bodies touch or affect one another at a distance, their motion, shape, or state of equilibrium may change. This Domain covers general concepts of force, contact, gravity, and stability; specifically magnetic and electric phenomena belong to Electromagnetism.
+
+**User-friendly description (tr):** Kuvvetlerin hareketi nasıl değiştirdiğini, nesnelerin şeklini nasıl değiştirdiğini ve dengeyi nasıl koruduğunu keşfet.
+
+#### Temas kuvvetleri ve sürtünme
+
+Skills: 5
+
+[contactForcesAndFriction.data.ts](../../../learningApps/physics/data/skills/forcesAndInteractions/contactForcesAndFriction/contactForcesAndFriction.data.ts)
+
+**Methodological description (English):** Contact can produce pushing, pulling, and friction; the direction of interaction and surface properties affect motion.
+
+**User-friendly description (tr):** İtme, çekme ve sürtünmenin temas hâlindeki nesneleri nasıl etkilediğini keşfet.
+
+##### Farklı yüzeylerdeki hareketi karşılaştırmak
+
+[compareMotionOnDifferentSurfaces.data.ts](../../../learningApps/physics/data/skills/forcesAndInteractions/contactForcesAndFriction/skills/compareMotionOnDifferentSurfaces.data.ts)
+
+**Methodological description (English):** Interactions between contacting surfaces affect friction and resistance to sliding or rolling, changing mechanical motion under otherwise similar conditions.
+
+**User-friendly description (tr):** Sürtünmeyi dikkate alarak farklı yüzeylerdeki hareketleri karşılaştır.
+
+##### Durmada sürtünmenin rolünü açıklamak
+
+[explainTheRoleOfFrictionInStopping.data.ts](../../../learningApps/physics/data/skills/forcesAndInteractions/contactForcesAndFriction/skills/explainTheRoleOfFrictionInStopping.data.ts)
+
+**Methodological description (English):** Friction during sliding or rolling can reduce kinetic energy of motion, converting it into the internal energy of the bodies and surroundings.
+
+**User-friendly description (tr):** Sürtünmenin hareketi nasıl yavaşlattığını ve enerjiyi çevreye nasıl aktardığını açıkla.
+
+##### Kuvvet yönünün etkisini tahmin etmek
+
+[predictTheEffectOfForceDirection.data.ts](../../../learningApps/physics/data/skills/forcesAndInteractions/contactForcesAndFriction/skills/predictTheEffectOfForceDirection.data.ts)
+
+**Methodological description (English):** The direction of the net force relative to velocity determines whether motion speeds up, slows down, or changes direction.
+
+**User-friendly description (tr):** Kuvvetin yönünün hızlanma, yavaşlama veya yön değiştirmeyi nasıl etkilediğini tahmin et.
+
+##### Çekme kuvvetlerini tanımak
+
+[recognizePullingForces.data.ts](../../../learningApps/physics/data/skills/forcesAndInteractions/contactForcesAndFriction/skills/recognizePullingForces.data.ts)
+
+**Methodological description (English):** Pulling is a contact interaction through a connection or grip, with force directed toward its source; it differs from pressure and pushing.
+
+**User-friendly description (tr):** Çekme kuvvetini ve etki ettiği bağlantıyı tanı.
+
+##### İtme kuvvetlerini tanımak
+
+[recognizePushingForces.data.ts](../../../learningApps/physics/data/skills/forcesAndInteractions/contactForcesAndFriction/skills/recognizePushingForces.data.ts)
+
+**Methodological description (English):** A contact push transfers force from the acting body in the direction of pressure on another body; not every change in motion is caused by pushing.
+
+**User-friendly description (tr):** Bir cismin doğrudan temas ederek diğerini nasıl ittiğini tanı.
+
+#### Denge ve kararlılık
+
+Skills: 6
+
+[equilibriumAndStability.data.ts](../../../learningApps/physics/data/skills/forcesAndInteractions/equilibriumAndStability/equilibriumAndStability.data.ts)
+
+**Methodological description (English):** Balanced forces allow a body to remain at rest, while the arrangement of supports and loads affects a model's stability and deformation.
+
+**User-friendly description (tr):** Yapıları dengede ve kararlı tutan kuvvetleri anla.
+
+##### Yapısal şekillerin dayanıklılığını karşılaştırmak
+
+[compareTheStrengthOfStructuralShapes.data.ts](../../../learningApps/physics/data/skills/forcesAndInteractions/equilibriumAndStability/skills/compareTheStrengthOfStructuralShapes.data.ts)
+
+**Methodological description (English):** Under identical testing conditions, determine which shape better withstands a load.
+
+**User-friendly description (tr):** Farklı şekillerdeki yapıların aynı yüke ne kadar dayandığını karşılaştır.
+
+##### Yük aktarımını açıklamak
+
+[explainLoadTransfer.data.ts](../../../learningApps/physics/data/skills/forcesAndInteractions/equilibriumAndStability/skills/explainLoadTransfer.data.ts)
+
+**Methodological description (English):** Identify how forces from a load pass through structural elements to supports, and distinguish the force-transmission path from the shape of the structure.
+
+**User-friendly description (tr):** Bir yükün kuvvetinin yapı elemanlarından desteklere nasıl iletildiğini izle.
+
+##### Yapısal destek elemanlarını belirlemek
+
+[identifyStructuralSupportElements.data.ts](../../../learningApps/physics/data/skills/forcesAndInteractions/equilibriumAndStability/skills/identifyStructuralSupportElements.data.ts)
+
+**Methodological description (English):** Identify the elements supporting a model bridge or building.
+
+**User-friendly description (tr):** Bir model yapının ağırlığını taşıyan parçaları belirle.
+
+##### Yapısal kararlılığı tahmin etmek
+
+[predictStructuralStability.data.ts](../../../learningApps/physics/data/skills/forcesAndInteractions/equilibriumAndStability/skills/predictStructuralStability.data.ts)
+
+**Methodological description (English):** Compare the stability of two models using basic support-related characteristics.
+
+**User-friendly description (tr):** Desteklenen yapılardan hangilerinin daha kararlı kalacağını karşılaştır.
+
+##### Kütle merkezinin konumunun kararlılığa etkisini tahmin etmek
+
+[predictTheEffectOfCenterOfMassPositionOnStability.data.ts](../../../learningApps/physics/data/skills/forcesAndInteractions/equilibriumAndStability/skills/predictTheEffectOfCenterOfMassPositionOnStability.data.ts)
+
+**Methodological description (English):** The position of the center of mass relative to the support area affects whether a body can overturn under gravity.
+
+**User-friendly description (tr):** Kütle merkezinin hangi konumda cismin devrilmesini kolaylaştırdığını tahmin et.
+
+##### Dengelenmiş kuvvetleri tanımak
+
+[recognizeBalancedForces.data.ts](../../../learningApps/physics/data/skills/forcesAndInteractions/equilibriumAndStability/skills/recognizeBalancedForces.data.ts)
+
+**Methodological description (English):** When the net force is zero, there is no acceleration; a body may be at rest or continue moving uniformly in a straight line.
+
+**User-friendly description (tr):** Bir cisim hareket etse bile dengelenmiş kuvvetlerin ivme oluşturmadığını anla.
+
+#### Kütle çekimi
+
+Skills: 3
+
+[gravity.data.ts](../../../learningApps/physics/data/skills/forcesAndInteractions/gravity/gravity.data.ts)
+
+**Methodological description (English):** Bodies with mass interact gravitationally even without touching. Earth's gravity governs falling near its surface, and other celestial bodies also exert gravitational influence.
+
+**User-friendly description (tr):** Kütle çekimini kütlesi olan cisimler arasındaki etkileşim olarak keşfet.
+
+##### Bir cismin kütlesini Dünya'nın kütle çekim kuvvetinden ayırt etmek
+
+[distinguishABodysMassFromEarthsGravitationalForce.data.ts](../../../learningApps/physics/data/skills/forcesAndInteractions/gravity/skills/distinguishABodysMassFromEarthsGravitationalForce.data.ts)
+
+**Methodological description (English):** Compare a body's unchanged mass with gravitational force, which depends on the gravitational field, using models. Do not equate these quantities or confuse gravitational force with the body's weight as the force it exerts on a support.
+
+**User-friendly description (tr):** Bir cismin kütlesini ona etki eden kütle çekim kuvvetinden ayırt et.
+
+##### Dünya'nın bir cisme uyguladığı kütle çekim kuvvetini açıklamak
+
+[explainEarthsGravitationalForceOnABody.data.ts](../../../learningApps/physics/data/skills/forcesAndInteractions/gravity/skills/explainEarthsGravitationalForceOnABody.data.ts)
+
+**Methodological description (English):** Earth exerts a gravitational force on a body depending on the body's mass and the gravitational field; distinguish that force from mass and from weight as the body's action on a support.
+
+**User-friendly description (tr):** Dünya'nın kütle çekiminin bir cisme neden kuvvet uyguladığını anla.
+
+##### Düşme yönünü tahmin etmek
+
+[predictTheDirectionOfFalling.data.ts](../../../learningApps/physics/data/skills/forcesAndInteractions/gravity/skills/predictTheDirectionOfFalling.data.ts)
+
+**Methodological description (English):** Near Earth's surface, gravity acts approximately toward Earth's center, so a body in free fall accelerates downward relative to the local vertical.
+
+**User-friendly description (tr):** Yerçekiminin serbest düşen bir cismi hangi yönde ivmelendirdiğini tahmin et.
+
+### Ölçme
+
+Groups: 2 · Skills: 7
+
+[measurement.data.ts](../../../learningApps/physics/data/skills/measurement/measurement.data.ts)
+
+**Methodological description (English):** Physical measurement connects an observable property to an agreed method of comparison through the choice of quantity, unit, and instrument. Its purpose is to make descriptions of phenomena reproducible without tying them to formulas or mathematics lessons.
+
+**User-friendly description (tr):** Fizikçilerin büyüklük, birim ve güvenilir yöntemlerle özellikleri nasıl ölçtüğünü keşfet.
+
+#### Ölçüm araçları ve yöntemleri
+
+Skills: 3
+
+[instrumentsAndMeasurementMethods.data.ts](../../../learningApps/physics/data/skills/measurement/instrumentsAndMeasurementMethods/instrumentsAndMeasurementMethods.data.ts)
+
+**Methodological description (English):** An instrument's reading depends on its scale, units, and correct use; the method of obtaining data matters as much as the number itself.
+
+**User-friendly description (tr):** Araçların ve özenli yöntemlerin fiziksel ölçümleri nasıl yararlı kıldığını keşfet.
+
+##### Tekrarlanan ölçümlerin neden farklı olabileceğini açıklamak
+
+[explainWhyRepeatedMeasurementsMayDiffer.data.ts](../../../learningApps/physics/data/skills/measurement/instrumentsAndMeasurementMethods/skills/explainWhyRepeatedMeasurementsMayDiffer.data.ts)
+
+**Methodological description (English):** Repeated measurements can differ because of instrument precision limits, reading methods, or changing conditions; a difference in values does not always mean that the measured phenomenon has changed.
+
+**User-friendly description (tr):** Aynı nesneyi ölçerken bile tekrarlanan okumaların neden farklı olabileceğini açıkla.
+
+##### Basit bir ölçüm aracını okumak
+
+[readASimpleMeasuringInstrument.data.ts](../../../learningApps/physics/data/skills/measurement/instrumentsAndMeasurementMethods/skills/readASimpleMeasuringInstrument.data.ts)
+
+**Methodological description (English):** Correctly relate the measured quantity to the position of a pointer on a scale, its units, and the zero reference; a reading has physical meaning only under the relevant measurement conditions.
+
+**User-friendly description (tr):** Bir aracın göstergesini, ölçeğini, birimini ve sıfır noktasını doğru oku.
+
+##### Termometreden sıcaklık okumak
+
+[readTemperatureFromAThermometer.data.ts](../../../learningApps/physics/data/skills/measurement/instrumentsAndMeasurementMethods/skills/readTemperatureFromAThermometer.data.ts)
+
+**Methodological description (English):** Relate the position of a pointer or liquid column to the temperature scale and units, accounting for the scale origin and measurement limits.
+
+**User-friendly description (tr):** Sıcaklığı belirlemek için termometrenin ölçeğini ve birimlerini oku.
+
+#### Fiziksel büyüklükler ve birimler
+
+Skills: 4
+
+[physicalQuantitiesAndUnits.data.ts](../../../learningApps/physics/data/skills/measurement/physicalQuantitiesAndUnits/physicalQuantitiesAndUnits.data.ts)
+
+**Methodological description (English):** A single object can be described using different quantities; comparisons of the same quantity require compatible units and observation conditions.
+
+**User-friendly description (tr):** Fiziksel özellikleri uygun ölçümler ve birimlerle ifade etmeyi öğren.
+
+##### Aynı büyüklüğün ölçümlerini karşılaştırmak
+
+[compareMeasurementsOfTheSameQuantity.data.ts](../../../learningApps/physics/data/skills/measurement/physicalQuantitiesAndUnits/skills/compareMeasurementsOfTheSameQuantity.data.ts)
+
+**Methodological description (English):** Given consistent units and clearly stated conditions, determine which measured value is larger or smaller; this is physical interpretation, not arithmetic practice.
+
+**User-friendly description (tr):** Aynı koşullarda ve tutarlı birimlerle yapılan ölçümleri karşılaştır.
+
+##### Fiziksel büyüklüğü ölçü biriminden ayırt etmek
+
+[distinguishAPhysicalQuantityFromItsUnitOfMeasurement.data.ts](../../../learningApps/physics/data/skills/measurement/physicalQuantitiesAndUnits/skills/distinguishAPhysicalQuantityFromItsUnitOfMeasurement.data.ts)
+
+**Methodological description (English):** A physical quantity describes a property of a body or phenomenon, whereas a unit establishes an agreed scale for expressing it numerically; length and centimeter serve different roles.
+
+**User-friendly description (tr):** Ölçülen özelliği onu ifade etmek için kullanılan birimden ayırt et.
+
+##### Bir cismin kütlesinin fiziksel anlamını açıklamak
+
+[explainThePhysicalMeaningOfABodysMass.data.ts](../../../learningApps/physics/data/skills/measurement/physicalQuantitiesAndUnits/skills/explainThePhysicalMeaningOfABodysMass.data.ts)
+
+**Methodological description (English):** Mass characterizes a body's inertia: under the same applied influence, a more massive body is generally harder to change in motion. Mass must not be equated with gravitational force, which can depend on location.
+
+**User-friendly description (tr):** Kütleyi yerçekimi kuvveti değil, hareket değişimine karşı direnç olarak anla.
+
+##### Bilinen bir fiziksel büyüklük için birim seçmek
+
+[selectAUnitForAFamiliarPhysicalQuantity.data.ts](../../../learningApps/physics/data/skills/measurement/physicalQuantitiesAndUnits/skills/selectAUnitForAFamiliarPhysicalQuantity.data.ts)
+
+**Methodological description (English):** Choose appropriate units of time, length, and mass in everyday examples without confusing a physical quantity with an object.
+
+**User-friendly description (tr):** Zaman, kütle ve uzunluk için uygun ölçü birimlerini seç.
+
+### Mekanik
+
+Groups: 6 · Skills: 21
+
+[mechanics.data.ts](../../../learningApps/physics/data/skills/mechanics/mechanics.data.ts)
+
+**Methodological description (English):** Mechanics describes changes in bodies' positions over time, the inertial properties of motion, and the transmission of mechanical action through simple systems. Basic explanations of types of forces and equilibrium are assigned to the neighboring Domain.
+
+**User-friendly description (tr):** Cisimlerin nasıl hareket ettiğini, değişime direndiğini ve mekanik sistemlerle hareketi ilettiğini keşfet.
+
+#### Hareketi tanımlamak
+
+Skills: 4
+
+[describingMotion.data.ts](../../../learningApps/physics/data/skills/mechanics/describingMotion/describingMotion.data.ts)
+
+**Methodological description (English):** Position, direction, speed, and repetition are needed for a qualitative description of a trajectory; motion is always considered relative to a chosen reference.
+
+**User-friendly description (tr):** Nesnelerin nereye hareket ettiğini ve hareketin zamanla nasıl değiştiğini anlatmayı öğren.
+
+##### Hareket hızlarını karşılaştırmak
+
+[compareSpeedsOfMotion.data.ts](../../../learningApps/physics/data/skills/mechanics/describingMotion/skills/compareSpeedsOfMotion.data.ts)
+
+**Methodological description (English):** Speed relates displacement or distance to time; comparisons account for whether the same time intervals or different periods of motion are involved.
+
+**User-friendly description (tr):** Belirli zaman aralıklarında nesnelerin ne kadar hızlı hareket ettiğini karşılaştır.
+
+##### Hareketin yönünü tanımlamak
+
+[describeTheDirectionOfMotion.data.ts](../../../learningApps/physics/data/skills/mechanics/describingMotion/skills/describeTheDirectionOfMotion.data.ts)
+
+**Methodological description (English):** Determine the direction of a body's velocity or displacement relative to a selected reference frame, distinguishing direction from the total distance traveled.
+
+**User-friendly description (tr):** Seçtiğin bakış noktasına göre hareketin yönünü belirle.
+
+##### Referans noktasına göre hareketi belirlemek
+
+[identifyMotionRelativeToAReferencePoint.data.ts](../../../learningApps/physics/data/skills/mechanics/describingMotion/skills/identifyMotionRelativeToAReferencePoint.data.ts)
+
+**Methodological description (English):** Motion is a change in a body's position relative to a reference frame over time; an object can move relative to one reference and remain stationary relative to another.
+
+**User-friendly description (tr):** Bir cismin bir referansa göre hareketli, başka bir referansa göre durgun olabileceğini açıkla.
+
+##### Periyodik hareketi tanımak
+
+[recognizePeriodicMotion.data.ts](../../../learningApps/physics/data/skills/mechanics/describingMotion/skills/recognizePeriodicMotion.data.ts)
+
+**Methodological description (English):** Identify recurring physical states and distinguish regular cycles of motion from random or one-time changes in position.
+
+**User-friendly description (tr):** Düzenli bir döngüyle tekrarlanan hareketi tanı.
+
+#### Eylemsizlik ve hareket değişimleri
+
+Skills: 2
+
+[inertiaAndChangesInMotion.data.ts](../../../learningApps/physics/data/skills/mechanics/inertiaAndChangesInMotion/inertiaAndChangesInMotion.data.ts)
+
+**Methodological description (English):** A body may continue moving after an applied action ceases, while changes in motion are associated with interaction; accessible models do not require equations of motion.
+
+**User-friendly description (tr):** Eylemsizliği ve hareket değişimleriyle ilişkisini keşfet.
+
+##### Düzgün ve düzgün olmayan hareketi ayırt etmek
+
+[distinguishUniformFromNonuniformMotion.data.ts](../../../learningApps/physics/data/skills/mechanics/inertiaAndChangesInMotion/skills/distinguishUniformFromNonuniformMotion.data.ts)
+
+**Methodological description (English):** Compare successive positions of an object to determine whether it travels equal distances in equal time intervals.
+
+**User-friendly description (tr):** Sabit süratli hareket ile sürati zamanla değişen hareketi ayırt et.
+
+##### Harekette eylemsizliğin etkilerini tanımak
+
+[recognizeManifestationsOfInertiaInMotion.data.ts](../../../learningApps/physics/data/skills/mechanics/inertiaAndChangesInMotion/skills/recognizeManifestationsOfInertiaInMotion.data.ts)
+
+**Methodological description (English):** Explain why an object or passenger tends to maintain its previous state of motion during an abrupt change in speed.
+
+**User-friendly description (tr):** Koşullar aniden değişse de hareketli cisimlerin neden hareketlerini sürdürme eğiliminde olduğunu açıkla.
+
+#### Momentum ve çarpışmalar
+
+Skills: 4
+
+[momentumAndCollisions.data.ts](../../../learningApps/physics/data/skills/mechanics/momentumAndCollisions/momentumAndCollisions.data.ts)
+
+**Methodological description (English):** Momentum characterizes a body's motion, while collisions demonstrate momentum transfer and change. In the absence of external impulse, the total momentum of a system is conserved regardless of the type of collision.
+
+**User-friendly description (tr):** Hareketli cisimlerin çarpışmalarda momentumu nasıl aktardığını keşfet.
+
+##### Esnek ve esnek olmayan çarpışmaları ayırt etmek
+
+[distinguishElasticFromInelasticCollisions.data.ts](../../../learningApps/physics/data/skills/mechanics/momentumAndCollisions/skills/distinguishElasticFromInelasticCollisions.data.ts)
+
+**Methodological description (English):** In an elastic collision, the system's kinetic energy is conserved; in an inelastic collision, some becomes internal energy and deformation. Momentum remains conserved in an isolated system.
+
+**User-friendly description (tr):** Enerji korunumu ile momentum korunumunu karıştırmadan iki çarpışma türünü karşılaştır.
+
+##### Doğrusal momentumun korunmasını açıklamak
+
+[explainConservationOfLinearMomentum.data.ts](../../../learningApps/physics/data/skills/mechanics/momentumAndCollisions/skills/explainConservationOfLinearMomentum.data.ts)
+
+**Methodological description (English):** In the absence of a net external impulse, the total momentum of a system remains constant even though individual bodies change their momenta.
+
+**User-friendly description (tr):** Dışarıdan itme uygulanmadığında toplam momentumun neden sabit kaldığını anla.
+
+##### İtmeyi açıklamak
+
+[explainImpulse.data.ts](../../../learningApps/physics/data/skills/mechanics/momentumAndCollisions/skills/explainImpulse.data.ts)
+
+**Methodological description (English):** A change in a body's momentum is related to the magnitude and duration of an applied force, which explains physical differences among braking methods.
+
+**User-friendly description (tr):** Belirli bir süre etki eden kuvvetin momentumu nasıl değiştirdiğini keşfet.
+
+##### Doğrusal momentumu açıklamak
+
+[explainLinearMomentum.data.ts](../../../learningApps/physics/data/skills/mechanics/momentumAndCollisions/skills/explainLinearMomentum.data.ts)
+
+**Methodological description (English):** Momentum depends on a body's mass and velocity and has a direction; equal velocities of bodies with different masses do not imply equal momentum.
+
+**User-friendly description (tr):** Momentumun kütleye, hıza ve yöne nasıl bağlı olduğunu açıkla.
+
+#### Newton yasaları
+
+Skills: 3
+
+[newtonsLaws.data.ts](../../../learningApps/physics/data/skills/mechanics/newtonsLaws/newtonsLaws.data.ts)
+
+**Methodological description (English):** Newton's laws establish the relationships among forces, inertia, and changes in bodies' motion in the appropriate reference frames.
+
+**User-friendly description (tr):** Newton yasalarının kuvvetleri hareket değişimleriyle nasıl ilişkilendirdiğini öğren.
+
+##### Newton'un birinci yasasını açıklamak
+
+[explainNewtonsFirstLaw.data.ts](../../../learningApps/physics/data/skills/mechanics/newtonsLaws/skills/explainNewtonsFirstLaw.data.ts)
+
+**Methodological description (English):** When the net force is zero, a body's velocity in an inertial reference frame remains constant; rest is a special case.
+
+**User-friendly description (tr):** Eylemsiz referans sisteminde net kuvvetin sıfır olmasının neden sabit hıza karşılık geldiğini açıkla.
+
+##### Newton'un ikinci yasasını açıklamak
+
+[explainNewtonsSecondLaw.data.ts](../../../learningApps/physics/data/skills/mechanics/newtonsLaws/skills/explainNewtonsSecondLaw.data.ts)
+
+**Methodological description (English):** A body's acceleration is determined by the net force and its mass; under the same force, bodies of different masses change velocity differently.
+
+**User-friendly description (tr):** Kuvvet ve kütlenin birlikte ivmeyi nasıl belirlediğini keşfet.
+
+##### Newton'un üçüncü yasasını açıklamak
+
+[explainNewtonsThirdLaw.data.ts](../../../learningApps/physics/data/skills/mechanics/newtonsLaws/skills/explainNewtonsThirdLaw.data.ts)
+
+**Methodological description (English):** The interaction forces between two bodies are equal in magnitude and opposite in direction but act on different bodies, so they do not cancel on a single body.
+
+**User-friendly description (tr):** Farklı cisimlere etki eden eşit büyüklükte ve zıt yönlü etkileşim kuvvetlerini tanı.
+
+#### Dönme hareketi
+
+Skills: 4
+
+[rotationalMotion.data.ts](../../../learningApps/physics/data/skills/mechanics/rotationalMotion/rotationalMotion.data.ts)
+
+**Methodological description (English):** Rotation involves torque, mass distribution, and inertial properties. Conservation of angular momentum describes a system's motion when there is no net external torque.
+
+**User-friendly description (tr):** Döndürme etkisi yaratan kuvvetlerin ve kütle dağılımının dönme hareketini nasıl etkilediğini keşfet.
+
+##### Eksen etrafında dönme ile dairesel yolda hareketi ayırt etmek
+
+[distinguishRotationAboutAnAxisFromMotionAlongACircle.data.ts](../../../learningApps/physics/data/skills/mechanics/rotationalMotion/skills/distinguishRotationAboutAnAxisFromMotionAlongACircle.data.ts)
+
+**Methodological description (English):** A body's rotation about its own axis differs from the motion of its center along a circular path, during which the direction of velocity changes.
+
+**User-friendly description (tr):** Bir cismin kendi ekseninde dönmesiyle dairesel bir yörüngede ilerlemesini ayırt et.
+
+##### Açısal momentumun korunmasını açıklamak
+
+[explainConservationOfAngularMomentum.data.ts](../../../learningApps/physics/data/skills/mechanics/rotationalMotion/skills/explainConservationOfAngularMomentum.data.ts)
+
+**Methodological description (English):** In the absence of net external torque, a system's total angular momentum is conserved.
+
+**User-friendly description (tr):** Net dış tork yokken açısal momentumun neden sabit kaldığını anla.
+
+##### Dönme eylemsizliğini açıklamak
+
+[explainRotationalInertia.data.ts](../../../learningApps/physics/data/skills/mechanics/rotationalMotion/skills/explainRotationalInertia.data.ts)
+
+**Methodological description (English):** The distribution of mass relative to an axis affects how rotation changes, even when the total mass is the same.
+
+**User-friendly description (tr):** Eksenden uzaklaşan kütlenin dönme değişimine karşı direnci nasıl etkilediğini tanı.
+
+##### Torku açıklamak
+
+[explainTorque.data.ts](../../../learningApps/physics/data/skills/mechanics/rotationalMotion/skills/explainTorque.data.ts)
+
+**Methodological description (English):** The turning effect of a force depends on its direction and lever arm relative to the axis, not merely on the force's magnitude.
+
+**User-friendly description (tr):** Aynı kuvvetin kaldıraç koluna bağlı olarak bir cismi neden farklı biçimde döndürdüğünü açıkla.
+
+#### Basit makineler
+
+Skills: 4
+
+[simpleMachines.data.ts](../../../learningApps/physics/data/skills/mechanics/simpleMachines/simpleMachines.data.ts)
+
+**Methodological description (English):** Levers, pulleys, wheels, and gears demonstrate the transmission of force and rotation. The focus here is on physical principles, not selecting a design or engineering a machine.
+
+**User-friendly description (tr):** Kaldıraçların, tekerleklerin, makaraların ve dişlilerin hareket ve kuvveti nasıl ilettiğini anla.
+
+##### Kaldıracın nasıl çalıştığını açıklamak
+
+[explainHowALeverWorks.data.ts](../../../learningApps/physics/data/skills/mechanics/simpleMachines/skills/explainHowALeverWorks.data.ts)
+
+**Methodological description (English):** A lever's mechanical advantage depends on distances between the fulcrum and the points where forces are applied; gaining force involves a corresponding change in displacement.
+
+**User-friendly description (tr):** Bir kaldıracın kuvvet ile mesafe arasındaki ilişkiyi nasıl değiştirdiğini keşfet.
+
+##### Makaranın nasıl çalıştığını açıklamak
+
+[explainHowAPulleyWorks.data.ts](../../../learningApps/physics/data/skills/mechanics/simpleMachines/skills/explainHowAPulleyWorks.data.ts)
+
+**Methodological description (English):** A fixed pulley changes the direction of the applied force, whereas a movable pulley can reduce the force needed by distributing the load across rope segments.
+
+**User-friendly description (tr):** Sabit ve hareketli makaraların kuvvetin yönünü nasıl değiştirdiğini veya yükü nasıl paylaştırdığını karşılaştır.
+
+##### Tekerlek ve milin nasıl çalıştığını açıklamak
+
+[explainHowAWheelAndAxleWork.data.ts](../../../learningApps/physics/data/skills/mechanics/simpleMachines/skills/explainHowAWheelAndAxleWork.data.ts)
+
+**Methodological description (English):** The shared rotation of a wheel and axle transmits motion and changes the relationship between applied forces and displacements; a wheel can also change the nature of friction.
+
+**User-friendly description (tr):** Tekerlek ve milin dönmeyi nasıl ilettiğini ve uygulanan kuvvetleri nasıl değiştirdiğini anla.
+
+##### Birbirine geçen dişlilerin dönüşünü tahmin etmek
+
+[predictTheRotationOfMeshedGears.data.ts](../../../learningApps/physics/data/skills/mechanics/simpleMachines/skills/predictTheRotationOfMeshedGears.data.ts)
+
+**Methodological description (English):** A directly meshed pair of gears rotates in opposite directions, and the ratio of their angular velocities depends on the number of teeth.
+
+**User-friendly description (tr):** Birbirine geçen dişlilerin nasıl döneceğini ve diş sayısının hızlarını nasıl etkilediğini tahmin et.
+
+### Modern fizik
+
+Groups: 3 · Skills: 16
+
+[modernPhysics.data.ts](../../../learningApps/physics/data/skills/modernPhysics/modernPhysics.data.ts)
+
+**Methodological description (English):** Models of atoms, quantum and nuclear phenomena, and spacetime explain observations not covered by classical physics alone. Younger children can encounter the concepts without mathematical formalism.
+
+**User-friendly description (tr):** Kuantum olaylarını, çekirdek değişimlerini ve uzay-zaman fiziğini keşfet.
+
+#### Atomlar ve kuantum olayları
+
+Skills: 5
+
+[atomsAndQuantumPhenomena.data.ts](../../../learningApps/physics/data/skills/modernPhysics/atomsAndQuantumPhenomena/atomsAndQuantumPhenomena.data.ts)
+
+**Methodological description (English):** Atomic models and discrete packets of energy help explain light and properties of matter that cannot be described solely in terms of mechanical motion.
+
+**User-friendly description (tr):** Atom yapısının ve kuantum davranışının klasik modellerden nasıl ayrıldığını keşfet.
+
+##### Atomu temel bileşenlerinden ayırt etmek
+
+[distinguishAnAtomFromItsPrincipalComponents.data.ts](../../../learningApps/physics/data/skills/modernPhysics/atomsAndQuantumPhenomena/skills/distinguishAnAtomFromItsPrincipalComponents.data.ts)
+
+**Methodological description (English):** An atom consists of a nucleus and an electron cloud; electrons' motion and states do not correspond to literal planetary orbits.
+
+**User-friendly description (tr):** Atomların kuantum durumlarındaki elektronlarla çevrili bir çekirdeği olduğunu anla.
+
+##### Fotonu elektromanyetik ışınım kuantumu olarak açıklamak
+
+[explainAPhotonAsAQuantumOfElectromagneticRadiation.data.ts](../../../learningApps/physics/data/skills/modernPhysics/atomsAndQuantumPhenomena/skills/explainAPhotonAsAQuantumOfElectromagneticRadiation.data.ts)
+
+**Methodological description (English):** A photon is a quantum of the electromagnetic field whose energy is related to radiation frequency; it should not be interpreted as a tiny classical ball.
+
+**User-friendly description (tr):** Fotonları elektromanyetik ışınımın enerji kuantumları olarak anla.
+
+##### Atomun kesikli enerji durumlarını açıklamak
+
+[explainDiscreteAtomicEnergyStates.data.ts](../../../learningApps/physics/data/skills/modernPhysics/atomsAndQuantumPhenomena/skills/explainDiscreteAtomicEnergyStates.data.ts)
+
+**Methodological description (English):** Bound states of an atom have definite energies, and transitions between states involve energy absorption or emission.
+
+**User-friendly description (tr):** Atomların bağlı durumlarında kesikli enerji düzeyleri olduğunu anla.
+
+##### Uyarılmış bir atomun ışık yaymasını açıklamak
+
+[explainLightEmissionByAnExcitedAtom.data.ts](../../../learningApps/physics/data/skills/modernPhysics/atomsAndQuantumPhenomena/skills/explainLightEmissionByAnExcitedAtom.data.ts)
+
+**Methodological description (English):** A transition of an atom between energy states may be accompanied by the emission of a photon whose energy is determined by the difference between those states.
+
+**User-friendly description (tr):** Atomların enerji düzeyleri arasında geçiş yaparken nasıl foton yayabildiğini açıkla.
+
+##### Kuantum nesnelerinin dalga ve parçacık benzeri davranışlarını açıklamak
+
+[explainWaveLikeAndParticleLikeBehaviorOfQuantumObjects.data.ts](../../../learningApps/physics/data/skills/modernPhysics/atomsAndQuantumPhenomena/skills/explainWaveLikeAndParticleLikeBehaviorOfQuantumObjects.data.ts)
+
+**Methodological description (English):** Light and matter exhibit phenomena that cannot be exhaustively described by only a classical wave or a classical particle picture.
+
+**User-friendly description (tr):** Kuantum nesnelerinin neden hem dalga hem de parçacık benzeri özellikler gösterdiğini keşfet.
+
+#### Nükleer olaylar
+
+Skills: 6
+
+[nuclearPhenomena.data.ts](../../../learningApps/physics/data/skills/modernPhysics/nuclearPhenomena/nuclearPhenomena.data.ts)
+
+**Methodological description (English):** Changes in atomic nuclei differ from chemical reactions and may release energy.
+
+**User-friendly description (tr):** Atom çekirdeklerinin nasıl değiştiğini ve bazı dönüşümlerin neden enerji açığa çıkardığını keşfet.
+
+##### Alfa, beta ve gama ışınımını ayırt etmek
+
+[distinguishAlphaBetaAndGammaRadiation.data.ts](../../../learningApps/physics/data/skills/modernPhysics/nuclearPhenomena/skills/distinguishAlphaBetaAndGammaRadiation.data.ts)
+
+**Methodological description (English):** Alpha radiation consists of helium nuclei, beta radiation of electrons or positrons, and gamma radiation of high-energy photons.
+
+**User-friendly description (tr):** Alfa parçacıklarını, beta parçacıklarını ve gama fotonlarını tanı.
+
+##### Nükleer dönüşümü kimyasal değişimden ayırt etmek
+
+[distinguishNuclearTransformationFromChemicalChange.data.ts](../../../learningApps/physics/data/skills/modernPhysics/nuclearPhenomena/skills/distinguishNuclearTransformationFromChemicalChange.data.ts)
+
+**Methodological description (English):** A nuclear transformation changes an atom's nucleus, whereas chemical reactions primarily change bonds and electronic structure.
+
+**User-friendly description (tr):** Atom çekirdeğindeki değişimleri kimyasal tepkimelerden ayırt et.
+
+##### Yarı ömrü açıklamak
+
+[explainHalfLife.data.ts](../../../learningApps/physics/data/skills/modernPhysics/nuclearPhenomena/skills/explainHalfLife.data.ts)
+
+**Methodological description (English):** Half-life describes the statistical decline in the number of unstable nuclei in a population, not the lifetime of an individual nucleus.
+
+**User-friendly description (tr):** Yarı ömrün çok sayıdaki kararsız çekirdeğin istatistiksel davranışı olduğunu anla.
+
+##### Nükleer fisyonu açıklamak
+
+[explainNuclearFission.data.ts](../../../learningApps/physics/data/skills/modernPhysics/nuclearPhenomena/skills/explainNuclearFission.data.ts)
+
+**Methodological description (English):** Heavy nuclei can split into lighter fragments and release energy because of changes in binding energy.
+
+**User-friendly description (tr):** Ağır çekirdeklerin bölünmesinin nasıl enerji açığa çıkarabildiğini keşfet.
+
+##### Nükleer füzyonu açıklamak
+
+[explainNuclearFusion.data.ts](../../../learningApps/physics/data/skills/modernPhysics/nuclearPhenomena/skills/explainNuclearFusion.data.ts)
+
+**Methodological description (English):** Light nuclei can combine under suitable conditions, and changes in binding energy can lead to energy release.
+
+**User-friendly description (tr):** Hafif çekirdeklerin birleşmesinin nasıl enerji açığa çıkarabildiğini açıkla.
+
+##### Radyoaktiviteyi açıklamak
+
+[explainRadioactivity.data.ts](../../../learningApps/physics/data/skills/modernPhysics/nuclearPhenomena/skills/explainRadioactivity.data.ts)
+
+**Methodological description (English):** Unstable atomic nuclei spontaneously transform while emitting particles or energy; this is not an ordinary chemical reaction.
+
+**User-friendly description (tr):** Kararsız atom çekirdeklerinin nasıl radyoaktif dönüşüme uğradığını açıkla.
+
+#### Görelilik
+
+Skills: 5
+
+[relativity.data.ts](../../../learningApps/physics/data/skills/modernPhysics/relativity/relativity.data.ts)
+
+**Methodological description (English):** Special relativity describes how measurements of space and time relate to motion, while general relativity describes gravity as spacetime geometry. They should not be confused with the history of astronomy or require formulas in an introductory curriculum.
+
+**User-friendly description (tr):** Hareketin ve kütleçekiminin uzay ve zaman ölçümlerini nasıl etkilediğini keşfet.
+
+##### Kütleçekimini uzay-zaman eğriliği olarak açıklamak
+
+[explainGravityAsSpacetimeCurvature.data.ts](../../../learningApps/physics/data/skills/modernPhysics/relativity/skills/explainGravityAsSpacetimeCurvature.data.ts)
+
+**Methodological description (English):** Recognize the general relativity concept that the distribution of mass and energy affects spacetime geometry; do not treat a rubber-sheet-and-ball analogy as a literal mechanism of gravity.
+
+**User-friendly description (tr):** Genel görelilikte kütleçekimini eğrilmiş uzay-zamanın sonucu olarak anla.
+
+##### Zamanın akışının gözlemcilerin göreli hareketine bağlılığını açıklamak
+
+[explainHowThePassageOfTimeDependsOnObserversRelativeMotion.data.ts](../../../learningApps/physics/data/skills/modernPhysics/relativity/skills/explainHowThePassageOfTimeDependsOnObserversRelativeMotion.data.ts)
+
+**Methodological description (English):** Using a conceptual model, explain why observers moving relative to one another may measure a time interval differently; this is a physical principle, not an animation-use skill.
+
+**User-friendly description (tr):** Birbirine göre hareket eden gözlemcilerin neden farklı zaman aralıkları ölçebildiğini keşfet.
+
+##### Kütleçekiminin zamanın akışına etkisini açıklamak
+
+[explainTheEffectOfGravityOnThePassageOfTime.data.ts](../../../learningApps/physics/data/skills/modernPhysics/relativity/skills/explainTheEffectOfGravityOnThePassageOfTime.data.ts)
+
+**Methodological description (English):** The relative rates of clocks can depend on gravitational potential and observation conditions; this is a physical effect of general relativity.
+
+**User-friendly description (tr):** Kütleçekiminin saatlerin göreli işleyiş hızlarını nasıl değiştirebildiğini keşfet.
+
+##### Işığın kütleçekimsel sapmasını açıklamak
+
+[explainTheGravitationalDeflectionOfLight.data.ts](../../../learningApps/physics/data/skills/modernPhysics/relativity/skills/explainTheGravitationalDeflectionOfLight.data.ts)
+
+**Methodological description (English):** Near massive bodies, spacetime geometry changes light trajectories; this is not refraction at the boundary of two optical media.
+
+**User-friendly description (tr):** Kütleçekiminin ışığın yolunu sıradan optik kırılma olmadan nasıl büktüğünü açıkla.
+
+##### Işığın boşluktaki hızının sabitliğini özel görelilik ilkesi olarak tanımak
+
+[recognizeTheConstancyOfTheSpeedOfLightInVacuumAsAPrincipleOfSpecialRelativity.data.ts](../../../learningApps/physics/data/skills/modernPhysics/relativity/skills/recognizeTheConstancyOfTheSpeedOfLightInVacuumAsAPrincipleOfSpecialRelativity.data.ts)
+
+**Methodological description (English):** Using qualitative models, distinguish the invariant speed of light in vacuum for inertial observers from ordinary addition of speeds of everyday objects.
+
+**User-friendly description (tr):** Özel görelilikte ışığın vakumdaki hızının tüm eylemsiz gözlemciler için değişmediğini anla.
+
+### Moleküler fizik
+
+Groups: 3 · Skills: 10
+
+[molecularPhysics.data.ts](../../../learningApps/physics/data/skills/molecularPhysics/molecularPhysics.data.ts)
+
+**Methodological description (English):** Particle models help explain physical properties and changes in states of matter. Unlike chemistry, this Domain focuses on particle movement, interactions, and arrangement rather than chemical reactions.
+
+**User-friendly description (tr):** Taneciklerin hareketinin ve dizilişinin maddenin davranışını nasıl açıkladığını keşfet.
+
+#### Difüzyon ve karışma
+
+Skills: 1
+
+[diffusionAndMixing.data.ts](../../../learningApps/physics/data/skills/molecularPhysics/diffusionAndMixing/diffusionAndMixing.data.ts)
+
+**Methodological description (English):** Random thermal motion can cause particles to spread gradually without deliberate stirring.
+
+**User-friendly description (tr):** Taneciklerin rastgele hareketinin maddeleri nasıl yaydığını ve karıştırdığını keşfet.
+
+##### Difüzyonu açıklamak
+
+[explainDiffusion.data.ts](../../../learningApps/physics/data/skills/molecularPhysics/diffusionAndMixing/skills/explainDiffusion.data.ts)
+
+**Methodological description (English):** Diffusion results from particles' thermal motion and the gradual equalization of their concentrations without the need for macroscopic mixing.
+
+**User-friendly description (tr):** Karıştırma olmadan da difüzyonun nasıl gerçekleşebildiğini açıkla.
+
+#### Gazların özellikleri
+
+Skills: 2
+
+[gasProperties.data.ts](../../../learningApps/physics/data/skills/molecularPhysics/gasProperties/gasProperties.data.ts)
+
+**Methodological description (English):** The compressibility of gases and the dependence of their pressure on conditions follow from particle motion and the spaces between particles.
+
+**User-friendly description (tr):** Tanecik modeliyle gazların fiziksel özelliklerini keşfet.
+
+##### Gazların sıkıştırılabilirliğini açıklamak
+
+[explainGasCompressibility.data.ts](../../../learningApps/physics/data/skills/molecularPhysics/gasProperties/skills/explainGasCompressibility.data.ts)
+
+**Methodological description (English):** Compressing a gas reduces the average distances between particles while the sizes of the molecules remain virtually unchanged.
+
+**User-friendly description (tr):** Gazların daha küçük bir hacme neden sıkıştırılabildiğini anla.
+
+##### Sabit hacimde gaz basıncının sıcaklığa bağlılığını açıklamak
+
+[explainHowGasPressureDependsOnTemperatureAtConstantVolume.data.ts](../../../learningApps/physics/data/skills/molecularPhysics/gasProperties/skills/explainHowGasPressureDependsOnTemperatureAtConstantVolume.data.ts)
+
+**Methodological description (English):** At constant volume, increasing a gas's temperature generally increases its pressure because the particles move more vigorously.
+
+**User-friendly description (tr):** Hacim sabitken sıcaklık arttığında gaz basıncının neden yükseldiğini açıkla.
+
+#### Maddenin tanecik modeli
+
+Skills: 7
+
+[particleModelOfMatter.data.ts](../../../learningApps/physics/data/skills/molecularPhysics/particleModelOfMatter/particleModelOfMatter.data.ts)
+
+**Methodological description (English):** Substances consist of particles with spaces and interactions between them; the model explains properties without requiring complex formulas.
+
+**User-friendly description (tr):** Görünmeyen taneciklerin etkileşerek maddeleri nasıl oluşturduğunu öğren.
+
+##### Katı, sıvı ve gazlarda tanecik dizilişlerini karşılaştırmak
+
+[compareParticleArrangementsInSolidsLiquidsAndGases.data.ts](../../../learningApps/physics/data/skills/molecularPhysics/particleModelOfMatter/skills/compareParticleArrangementsInSolidsLiquidsAndGases.data.ts)
+
+**Methodological description (English):** Particles in solids mostly oscillate around fixed positions; in liquids, particles can move relative to one another; and in gases they have much greater freedom of movement and characteristic interparticle distances.
+
+**User-friendly description (tr):** Katı, sıvı ve gazlarda taneciklerin dizilişlerini karşılaştır.
+
+##### Gaz basıncını tanecik hareketiyle açıklamak
+
+[explainGasPressureThroughParticleMotion.data.ts](../../../learningApps/physics/data/skills/molecularPhysics/particleModelOfMatter/skills/explainGasPressureThroughParticleMotion.data.ts)
+
+**Methodological description (English):** The combined collisions of particles with the vessel walls produce force per unit area, that is, pressure.
+
+**User-friendly description (tr):** Çok sayıda taneciğin bir yüzeye çarpmasının nasıl basınç oluşturduğunu açıkla.
+
+##### Taneciklerin rastgele ısıl hareketini açıklamak
+
+[explainRandomThermalMotionOfParticles.data.ts](../../../learningApps/physics/data/skills/molecularPhysics/particleModelOfMatter/skills/explainRandomThermalMotionOfParticles.data.ts)
+
+**Methodological description (English):** Particles of matter are constantly moving, but not all at the same speed; the type of motion depends on the physical state.
+
+**User-friendly description (tr):** Taneciklerin neden sürekli farklı yönlerde ve hızlarda hareket ettiğini anla.
+
+##### Maddenin tanecikli yapısını açıklamak
+
+[explainTheParticulateStructureOfMatter.data.ts](../../../learningApps/physics/data/skills/molecularPhysics/particleModelOfMatter/skills/explainTheParticulateStructureOfMatter.data.ts)
+
+**Methodological description (English):** Demonstrate that even water in a transparent glass consists of particles invisible to the naked eye.
+
+**User-friendly description (tr):** Maddenin neden doğrudan görülemeyecek kadar küçük taneciklerden oluştuğunu açıkla.
+
+##### Maddenin hâllerinin özelliklerini tanecik hareketiyle açıklamak
+
+[explainThePropertiesOfStatesOfMatterThroughParticleMotion.data.ts](../../../learningApps/physics/data/skills/molecularPhysics/particleModelOfMatter/skills/explainThePropertiesOfStatesOfMatterThroughParticleMotion.data.ts)
+
+**Methodological description (English):** Differences in the arrangement, motion, and interactions of particles explain the properties of solids, liquids, and gases.
+
+**User-friendly description (tr):** Tanecik hareketi ve etkileşimleriyle katı, sıvı ve gazların özelliklerini açıkla.
+
+##### Isıl genleşmeyi tanecik hareketi ve etkileşimleriyle açıklamak
+
+[explainThermalExpansionThroughParticleMotionAndInteractions.data.ts](../../../learningApps/physics/data/skills/molecularPhysics/particleModelOfMatter/skills/explainThermalExpansionThroughParticleMotionAndInteractions.data.ts)
+
+**Methodological description (English):** Heating often changes the average distances between particles, not the sizes of the molecules themselves.
+
+**User-friendly description (tr):** Genleşmenin genellikle taneciklerin boyutunu değil, aralarındaki uzaklığı değiştirdiğini anla.
+
+##### Tanecik hareketini sıcaklık değişimiyle ilişkilendirmek
+
+[relateParticleMotionToTemperatureChanges.data.ts](../../../learningApps/physics/data/skills/molecularPhysics/particleModelOfMatter/skills/relateParticleMotionToTemperatureChanges.data.ts)
+
+**Methodological description (English):** Using an animation, explain why average particle motion generally becomes more vigorous when heated.
+
+**User-friendly description (tr):** Isıtmayı taneciklerin tipik hareketindeki değişimlerle ilişkilendir.
+
+### Optik
+
+Groups: 5 · Skills: 11
+
+[optics.data.ts](../../../learningApps/physics/data/skills/optics/optics.data.ts)
+
+**Methodological description (English):** Optics studies the propagation of light, image formation, and the interaction of light rays with surfaces, water, and lenses. The broader electromagnetic radiation spectrum is classified separately.
+
+**User-friendly description (tr):** Görünür ışığın nasıl yayıldığını, yansıdığını, kırıldığını ve görüntü oluşturduğunu keşfet.
+
+#### Işık ve gölgeler
+
+Skills: 3
+
+[lightAndShadows.data.ts](../../../learningApps/physics/data/skills/optics/lightAndShadows/lightAndShadows.data.ts)
+
+**Methodological description (English):** Obstacles and the source's position determine a shadow's appearance, direction, and size; a model enables qualitative predictions.
+
+**User-friendly description (tr):** Nesnelerin ve ışık kaynaklarının yerleşiminin nasıl gölge oluşturduğunu keşfet.
+
+##### Gölgenin nasıl oluştuğunu açıklamak
+
+[explainHowAShadowForms.data.ts](../../../learningApps/physics/data/skills/optics/lightAndShadows/skills/explainHowAShadowForms.data.ts)
+
+**Methodological description (English):** Relate a shadow to the blocking of light by an opaque object.
+
+**User-friendly description (tr):** Opak bir cismin ışığı engelleyerek nasıl gölge oluşturduğunu açıkla.
+
+##### Gölgenin boyutundaki değişimleri tahmin etmek
+
+[predictChangesInShadowSize.data.ts](../../../learningApps/physics/data/skills/optics/lightAndShadows/skills/predictChangesInShadowSize.data.ts)
+
+**Methodological description (English):** Determine how changing their relative positions affects shadow size.
+
+**User-friendly description (tr):** Işık kaynağını veya cismi hareket ettirmenin gölge boyutunu nasıl değiştirdiğini anla.
+
+##### Gölgenin konumunu tahmin etmek
+
+[predictThePositionOfAShadow.data.ts](../../../learningApps/physics/data/skills/optics/lightAndShadows/skills/predictThePositionOfAShadow.data.ts)
+
+**Methodological description (English):** Predict where a shadow forms given the positions of the source and object.
+
+**User-friendly description (tr):** Bir cismin gölgesinin hangi tarafında oluşacağını tahmin et.
+
+#### Işığın yansıması
+
+Skills: 2
+
+[lightReflection.data.ts](../../../learningApps/physics/data/skills/optics/lightReflection/lightReflection.data.ts)
+
+**Methodological description (English):** A surface changes the direction of a light ray; mirrors provide a visible model of this behavior.
+
+**User-friendly description (tr):** Işığın yansıtıcı bir yüzeye çarpınca yönünü nasıl değiştirdiğini keşfet.
+
+##### Yansıyan ışının yönünü tahmin etmek
+
+[predictTheDirectionOfAReflectedRay.data.ts](../../../learningApps/physics/data/skills/optics/lightReflection/skills/predictTheDirectionOfAReflectedRay.data.ts)
+
+**Methodological description (English):** According to the law of reflection, the angle between the ray and the surface normal is the same for incident and reflected rays.
+
+**User-friendly description (tr):** Bir yüzeyin normaline göre yansıma açısını tahmin et.
+
+##### Işığın yansımasını tanımak
+
+[recognizeLightReflection.data.ts](../../../learningApps/physics/data/skills/optics/lightReflection/skills/recognizeLightReflection.data.ts)
+
+**Methodological description (English):** Identify situations in which light returns from a surface.
+
+**User-friendly description (tr):** Işığın bir yüzeyden ne zaman geri yansıdığını tanı.
+
+#### Işık kaynakları ve görünürlük
+
+Skills: 3
+
+[lightSourcesAndVisibility.data.ts](../../../learningApps/physics/data/skills/optics/lightSourcesAndVisibility/lightSourcesAndVisibility.data.ts)
+
+**Methodological description (English):** An object is visible when light from it reaches the eye; a light source and an illuminated surface play different roles.
+
+**User-friendly description (tr):** Bazı cisimlerin neden ışık yaydığını, diğerlerininse yansıyan ışık sayesinde göründüğünü keşfet.
+
+##### Doğal ve yapay ışık kaynaklarını sınıflandırmak
+
+[classifyNaturalAndArtificialLightSources.data.ts](../../../learningApps/physics/data/skills/optics/lightSourcesAndVisibility/skills/classifyNaturalAndArtificialLightSources.data.ts)
+
+**Methodological description (English):** Group light sources according to their origin.
+
+**User-friendly description (tr):** Doğal ve insanlar tarafından üretilen ışık kaynaklarını tanı.
+
+##### Işık kaynağını aydınlatılan cisimden ayırt etmek
+
+[distinguishALightSourceFromAnIlluminatedBody.data.ts](../../../learningApps/physics/data/skills/optics/lightSourcesAndVisibility/skills/distinguishALightSourceFromAnIlluminatedBody.data.ts)
+
+**Methodological description (English):** Recognize a body that emits light and one that reflects it.
+
+**User-friendly description (tr):** Işık yayan cisim ile onun aydınlattığı cismi ayırt et.
+
+##### Bir cismin görülebilme koşulunu açıklamak
+
+[explainTheConditionForAnObjectToBeVisible.data.ts](../../../learningApps/physics/data/skills/optics/lightSourcesAndVisibility/skills/explainTheConditionForAnObjectToBeVisible.data.ts)
+
+**Methodological description (English):** Identify the need for light from an object to reach the eye.
+
+**User-friendly description (tr):** Bir cismi yalnızca ondan gelen ışık göze ulaştığında neden görebildiğimizi açıkla.
+
+#### Kırılma ve mercekler
+
+Skills: 2
+
+[refractionAndLenses.data.ts](../../../learningApps/physics/data/skills/optics/refractionAndLenses/refractionAndLenses.data.ts)
+
+**Methodological description (English):** Moving between media and the shape of a lens affect ray direction and image formation.
+
+**User-friendly description (tr):** Işığın farklı maddeler arasında ve merceklerden geçerken nasıl yön değiştirdiğini keşfet.
+
+##### Yakınsak ve ıraksak mercekleri ayırt etmek
+
+[distinguishConvergingAndDivergingLenses.data.ts](../../../learningApps/physics/data/skills/optics/refractionAndLenses/skills/distinguishConvergingAndDivergingLenses.data.ts)
+
+**Methodological description (English):** Use a simulation to observe how different lenses change the directions of light rays passing through them.
+
+**User-friendly description (tr):** Işık ışınlarını bir araya getiren merceklerle onları dağıtan mercekleri karşılaştır.
+
+##### Ortamlar arasındaki sınırda ışığın kırılmasını açıklamak
+
+[explainLightRefractionAtTheBoundaryBetweenMedia.data.ts](../../../learningApps/physics/data/skills/optics/refractionAndLenses/skills/explainLightRefractionAtTheBoundaryBetweenMedia.data.ts)
+
+**Methodological description (English):** When light passes between media with different optical properties, its speed changes and, at oblique incidence, so does the direction of the light wave.
+
+**User-friendly description (tr):** Işığın iki ortamın sınırında yönünü nasıl değiştirebildiğini açıkla.
+
+#### Saydamlık
+
+Skills: 1
+
+[transparency.data.ts](../../../learningApps/physics/data/skills/optics/transparency/transparency.data.ts)
+
+**Methodological description (English):** Transparency characterizes the transmission, absorption, and scattering of visible light by a material and its ability to transmit an image.
+
+**User-friendly description (tr):** Malzemelerin geçirdikleri ışığın miktarı ve netliği bakımından nasıl farklılaştığını öğren.
+
+##### Malzemeleri saydamlıklarına göre sınıflandırmak
+
+[classifyMaterialsByTransparency.data.ts](../../../learningApps/physics/data/skills/optics/transparency/skills/classifyMaterialsByTransparency.data.ts)
+
+**Methodological description (English):** Distinguish transparent, translucent, and opaque materials by their ability to transmit light and form a clear image through the material.
+
+**User-friendly description (tr):** Saydam, yarı saydam ve opak malzemeleri ayırt et.
+
+### Işınım
+
+Groups: 2 · Skills: 5
+
+[radiation.data.ts](../../../learningApps/physics/data/skills/radiation/radiation.data.ts)
+
+**Methodological description (English):** Radiation describes energy transfer from a source through space, including invisible parts of the electromagnetic spectrum and their interaction with matter. Geometric image formation with light belongs to Optics.
+
+**User-friendly description (tr):** Elektromanyetik ışınımı ve maddeyle etkileşimlerini keşfet.
+
+#### Elektromanyetik ışınım
+
+Skills: 3
+
+[electromagneticRadiation.data.ts](../../../learningApps/physics/data/skills/radiation/electromagneticRadiation/electromagneticRadiation.data.ts)
+
+**Methodological description (English):** Radio waves, infrared, visible, and ultraviolet radiation are different regions of the electromagnetic spectrum.
+
+**User-friendly description (tr):** Elektromanyetik tayfın görünen ve görünmeyen bölümlerini keşfet.
+
+##### Görünür ve görünmez elektromanyetik ışınımı ayırt etmek
+
+[distinguishVisibleFromInvisibleElectromagneticRadiation.data.ts](../../../learningApps/physics/data/skills/radiation/electromagneticRadiation/skills/distinguishVisibleFromInvisibleElectromagneticRadiation.data.ts)
+
+**Methodological description (English):** Use lamp light, infrared radiation, and radio waves to demonstrate that not all radiation can be detected by the eye.
+
+**User-friendly description (tr):** Radyo dalgalarının ve kızılötesi ışınımın insan gözüyle görülmediğini anla.
+
+##### Elektromanyetik dalgaların havasız ortamda yayılmasını açıklamak
+
+[explainThePropagationOfElectromagneticWavesWithoutAir.data.ts](../../../learningApps/physics/data/skills/radiation/electromagneticRadiation/skills/explainThePropagationOfElectromagneticWavesWithoutAir.data.ts)
+
+**Methodological description (English):** Use sunlight to explain why electromagnetic radiation can propagate through the vacuum of space.
+
+**User-friendly description (tr):** Elektromanyetik dalgaların uzay boşluğunda neden yayılabildiğini açıkla.
+
+##### Bilinen ışınım türlerini elektromanyetik tayfla ilişkilendirmek
+
+[relateFamiliarTypesOfRadiationToTheElectromagneticSpectrum.data.ts](../../../learningApps/physics/data/skills/radiation/electromagneticRadiation/skills/relateFamiliarTypesOfRadiationToTheElectromagneticSpectrum.data.ts)
+
+**Methodological description (English):** Radio waves, infrared, visible, and ultraviolet radiation occupy positions in the spectrum according to frequency and wavelength; visibility does not determine their physical nature.
+
+**User-friendly description (tr):** Bilinen ışınım türlerinin elektromanyetik tayftaki yerlerini bul.
+
+#### Işınım ve madde
+
+Skills: 2
+
+[radiationAndMatter.data.ts](../../../learningApps/physics/data/skills/radiation/radiationAndMatter/radiationAndMatter.data.ts)
+
+**Methodological description (English):** Materials can emit, reflect, transmit, or absorb energy; the outcomes depend on the type of radiation and the properties of matter.
+
+**User-friendly description (tr):** Maddelerin ışınımı nasıl soğurduğunu, yaydığını, yansıttığını veya geçirdiğini keşfet.
+
+##### Enerji yayımını gelen ışığın yansımasından ayırt etmek
+
+[distinguishEnergyEmissionFromReflectionOfReceivedLight.data.ts](../../../learningApps/physics/data/skills/radiation/radiationAndMatter/skills/distinguishEnergyEmissionFromReflectionOfReceivedLight.data.ts)
+
+**Methodological description (English):** Using the Sun and Moon, explain that a source emits energy while an illuminated body can reflect it.
+
+**User-friendly description (tr):** Bir kaynağın yaydığı ışığı, bir cismin yansıttığı ışıktan ayırt et.
+
+##### Işınım soğurulmasıyla ısınmayı açıklamak
+
+[explainHeatingThroughRadiationAbsorption.data.ts](../../../learningApps/physics/data/skills/radiation/radiationAndMatter/skills/explainHeatingThroughRadiationAbsorption.data.ts)
+
+**Methodological description (English):** Using two surfaces in sunlight, relate differences in heating to energy absorption.
+
+**User-friendly description (tr):** Aynı ışınıma maruz kalan farklı yüzeylerin neden farklı ölçüde ısındığını açıkla.
+
+### Termodinamik
+
+Groups: 4 · Skills: 15
+
+[thermodynamics.data.ts](../../../learningApps/physics/data/skills/thermodynamics/thermodynamics.data.ts)
+
+**Methodological description (English):** Thermal processes describe changes in temperature, energy transfer, and transitions between states of matter. Macroscopic observations are distinguished from particle-level explanations in the neighboring Domain.
+
+**User-friendly description (tr):** Sıcaklığı, ısınmayı, enerji aktarımını ve hâl değişimlerini keşfet.
+
+#### Isı aktarım mekanizmaları
+
+Skills: 5
+
+[heatTransferMechanisms.data.ts](../../../learningApps/physics/data/skills/thermodynamics/heatTransferMechanisms/heatTransferMechanisms.data.ts)
+
+**Methodological description (English):** Thermal energy is transferred through particle interactions, liquid or gas motion, or electromagnetic radiation. Several mechanisms may act simultaneously in a single process.
+
+**User-friendly description (tr):** Isının maddelerden, akan akışkanlardan ve ışınımla nasıl aktarıldığını keşfet.
+
+##### İletimi madde içinde enerji aktarımı olarak açıklamak
+
+[explainConductionAsEnergyTransferThroughMatter.data.ts](../../../learningApps/physics/data/skills/thermodynamics/heatTransferMechanisms/skills/explainConductionAsEnergyTransferThroughMatter.data.ts)
+
+**Methodological description (English):** Using a metal spoon heated in hot water, explain energy transfer without bulk movement of the entire substance.
+
+**User-friendly description (tr):** Maddenin akması gerekmeden ısı iletimini açıkla.
+
+##### Taşınımı akışkan akışıyla enerji aktarımı olarak açıklamak
+
+[explainConvectionAsEnergyTransferByFluidFlow.data.ts](../../../learningApps/physics/data/skills/thermodynamics/heatTransferMechanisms/skills/explainConvectionAsEnergyTransferByFluidFlow.data.ts)
+
+**Methodological description (English):** Convection carries thermal energy with macroscopic motion of a liquid or gas; distinguish it from conduction without bulk material flow.
+
+**User-friendly description (tr):** Hareketli sıvıların ve gazların ısıl enerjiyi nasıl taşıdığını belirle.
+
+##### Işıma yoluyla ısı aktarımını açıklamak
+
+[explainRadiativeHeatTransfer.data.ts](../../../learningApps/physics/data/skills/thermodynamics/heatTransferMechanisms/skills/explainRadiativeHeatTransfer.data.ts)
+
+**Methodological description (English):** Using heat from the Sun or fire, demonstrate energy transfer by electromagnetic waves without contact or moving air.
+
+**User-friendly description (tr):** Elektromanyetik ışınımın maddesel bir ortam olmadan ısıyı nasıl aktardığını açıkla.
+
+##### Bir fiziksel durumda ısı aktarım mekanizmasını belirlemek
+
+[identifyTheHeatTransferMechanismFromAPhysicalSituation.data.ts](../../../learningApps/physics/data/skills/thermodynamics/heatTransferMechanisms/skills/identifyTheHeatTransferMechanismFromAPhysicalSituation.data.ts)
+
+**Methodological description (English):** For a hot spoon, heated water, or sunlight, select and justify conduction, convection, radiation, or a combination of them. This is an integrative competency, not three separate tests combined in one task.
+
+**User-friendly description (tr):** Belirli bir durumda hangi ısı aktarım süreçlerinin gerçekleştiğini belirle.
+
+##### Isı aktarımının yönünü tahmin etmek
+
+[predictTheDirectionOfHeatTransfer.data.ts](../../../learningApps/physics/data/skills/thermodynamics/heatTransferMechanisms/skills/predictTheDirectionOfHeatTransfer.data.ts)
+
+**Methodological description (English):** In the absence of external work, heat spontaneously flows from a warmer body to a colder one until thermal equilibrium is reached.
+
+**User-friendly description (tr):** Farklı sıcaklıktaki cisimler arasında ısıl enerjinin hangi yöne aktarıldığını tahmin et.
+
+#### Hâl değişimleri
+
+Skills: 4
+
+[phaseTransitions.data.ts](../../../learningApps/physics/data/skills/thermodynamics/phaseTransitions/phaseTransitions.data.ts)
+
+**Methodological description (English):** Melting, freezing, evaporation, and condensation link thermal conditions to changes of state of the same substance.
+
+**User-friendly description (tr):** Isıtma ve soğutmanın maddenin fiziksel hâlini nasıl değiştirebildiğini keşfet.
+
+##### Buharlaşma ile kaynamayı ayırmak
+
+[distinguishEvaporationFromBoiling.data.ts](../../../learningApps/physics/data/skills/thermodynamics/phaseTransitions/skills/distinguishEvaporationFromBoiling.data.ts)
+
+**Methodological description (English):** Boiling produces vapor bubbles throughout the volume of a liquid, whereas evaporation occurs at its surface.
+
+**User-friendly description (tr):** Kaynama sırasında oluşan kabarcıklarla yüzeyden buharlaşmayı ayırt et.
+
+##### Buzun erimesiyle suyun donmasını ayırmak
+
+[distinguishMeltingFromFreezingOfWater.data.ts](../../../learningApps/physics/data/skills/thermodynamics/phaseTransitions/skills/distinguishMeltingFromFreezingOfWater.data.ts)
+
+**Methodological description (English):** Melting changes a substance from solid to liquid, while freezing is the reverse; both are phase transitions of the same substance.
+
+**User-friendly description (tr):** Buzun erimesiyle sıvı suyun donmasını ayırt et.
+
+##### Yoğuşmayı açıklamak
+
+[explainCondensation.data.ts](../../../learningApps/physics/data/skills/thermodynamics/phaseTransitions/skills/explainCondensation.data.ts)
+
+**Methodological description (English):** Condensation is the transition of matter from gas to liquid, including the formation of droplets from water vapor.
+
+**User-friendly description (tr):** Yoğuşma sırasında gazın sıvıya nasıl dönüştüğünü belirle.
+
+##### Buharlaşmayı açıklamak
+
+[explainEvaporation.data.ts](../../../learningApps/physics/data/skills/thermodynamics/phaseTransitions/skills/explainEvaporation.data.ts)
+
+**Methodological description (English):** Evaporation is the transition of particles from the surface of a liquid into the gas phase and can occur without boiling.
+
+**User-friendly description (tr):** Sıvının kaynamadan yüzeyinden nasıl buharlaştığını açıkla.
+
+#### Sıcaklık ve ısıtma
+
+Skills: 4
+
+[temperatureAndHeating.data.ts](../../../learningApps/physics/data/skills/thermodynamics/temperatureAndHeating/temperatureAndHeating.data.ts)
+
+**Methodological description (English):** Temperature characterizes thermal state but is not the same as a subjective feeling of warmth or cold; heating and cooling are changes of state.
+
+**User-friendly description (tr):** Sıcaklık ölçümleriyle sıcaklık hissini ayırt etmeyi öğren.
+
+##### Cisimlerin sıcaklıklarını karşılaştırmak
+
+[compareObjectsTemperatures.data.ts](../../../learningApps/physics/data/skills/thermodynamics/temperatureAndHeating/skills/compareObjectsTemperatures.data.ts)
+
+**Methodological description (English):** Temperature characterizes a body's thermal state; valid comparisons rely on measurements, not the intensity of subjective warmth.
+
+**User-friendly description (tr):** Sıcaklıkları yalnızca dokunarak değil, ölçüm araçlarıyla karşılaştır.
+
+##### Sıcaklıkla sıcaklık hissini ayırmak
+
+[distinguishTemperatureFromTheSensationOfWarmth.data.ts](../../../learningApps/physics/data/skills/thermodynamics/temperatureAndHeating/skills/distinguishTemperatureFromTheSensationOfWarmth.data.ts)
+
+**Methodological description (English):** Explain why the sensation of touch is not always an accurate measure of temperature.
+
+**User-friendly description (tr):** Aynı sıcaklıktaki iki cismin dokununca neden farklı hissedilebildiğini açıkla.
+
+##### Soğumayı tanımak
+
+[recognizeCooling.data.ts](../../../learningApps/physics/data/skills/thermodynamics/temperatureAndHeating/skills/recognizeCooling.data.ts)
+
+**Methodological description (English):** A decrease in temperature can accompany energy transfer to the surroundings or changes in a system's physical state.
+
+**User-friendly description (tr):** Soğumayı ısıl durumdaki fiziksel bir değişim olarak belirle.
+
+##### Isınmayı tanımak
+
+[recognizeHeating.data.ts](../../../learningApps/physics/data/skills/thermodynamics/temperatureAndHeating/skills/recognizeHeating.data.ts)
+
+**Methodological description (English):** An increase in temperature reflects a change in thermal state, but energy input does not always increase temperature during a phase transition.
+
+**User-friendly description (tr):** Isıtma sırasında ısıl durumdaki değişimleri belirle.
+
+#### Isı yalıtımı
+
+Skills: 2
+
+[thermalInsulation.data.ts](../../../learningApps/physics/data/skills/thermodynamics/thermalInsulation/thermalInsulation.data.ts)
+
+**Methodological description (English):** Insulating materials slow down energy transfer but do not create energy themselves; this differs from describing the three mechanisms of heat exchange.
+
+**User-friendly description (tr):** Yalıtımın ısı aktarımını nasıl yavaşlattığını keşfet.
+
+##### Malzemelerin ısı yalıtım özelliklerini karşılaştırmak
+
+[compareMaterialsThermalInsulationProperties.data.ts](../../../learningApps/physics/data/skills/thermodynamics/thermalInsulation/skills/compareMaterialsThermalInsulationProperties.data.ts)
+
+**Methodological description (English):** Determine from experimental results which material slows heat transfer more effectively.
+
+**User-friendly description (tr):** Malzemeleri istenmeyen ısı aktarımını ne kadar azalttıklarına göre karşılaştır.
+
+##### Sıcaklığı korumak için malzeme seçmek
+
+[selectAMaterialForMaintainingTemperature.data.ts](../../../learningApps/physics/data/skills/thermodynamics/thermalInsulation/skills/selectAMaterialForMaintainingTemperature.data.ts)
+
+**Methodological description (English):** Choose an insulator for a simple everyday task and justify the choice using the material's properties.
+
+**User-friendly description (tr):** Günlük yaşamda sıcaklığı korumak için uygun bir yalıtım malzemesi seç.
+
+### Dalgalar
+
+Groups: 4 · Skills: 23
+
+[waves.data.ts](../../../learningApps/physics/data/skills/waves/waves.data.ts)
+
+**Methodological description (English):** Oscillations produce recurring disturbances that can propagate through water, air, and other media. Sound is one manifestation, while wave patterns are visible on the surface of water.
+
+**User-friendly description (tr):** Titreşimleri, sesi ve dalga bozunumlarının yayılıp etkileşmesini keşfet.
+
+#### Akustik
+
+Skills: 8
+
+[acoustics.data.ts](../../../learningApps/physics/data/skills/waves/acoustics/acoustics.data.ts)
+
+**Methodological description (English):** Loudness, pitch, and the propagation of sound through a medium are related to oscillation properties; auditory experiences can be explored with safe simulations.
+
+**User-friendly description (tr):** Titreşimin ve ses yayılımının duyduklarımızı nasıl etkilediğini keşfet.
+
+##### Seslerin gürlüğünü karşılaştırmak
+
+[compareTheLoudnessOfSounds.data.ts](../../../learningApps/physics/data/skills/waves/acoustics/skills/compareTheLoudnessOfSounds.data.ts)
+
+**Methodological description (English):** Loudness is the perception of sound intensity and also depends on frequency and hearing sensitivity; compare it independently of pitch.
+
+**User-friendly description (tr):** Seslerin ne kadar gür duyulduğunu karşılaştır; gürlüğü perdeyle karıştırma.
+
+##### İnce ve kalın sesleri ayırt etmek
+
+[distinguishHighPitchedFromLowPitchedSounds.data.ts](../../../learningApps/physics/data/skills/waves/acoustics/skills/distinguishHighPitchedFromLowPitchedSounds.data.ts)
+
+**Methodological description (English):** Pitch is primarily related to the frequency of sound oscillations, not amplitude, which affects intensity.
+
+**User-friendly description (tr):** Ses dalgalarının frekansına göre ince ve kalın perdeleri tanı.
+
+##### Yankıyı ses yansıması olarak açıklamak
+
+[explainAnEchoAsSoundReflection.data.ts](../../../learningApps/physics/data/skills/waves/acoustics/skills/explainAnEchoAsSoundReflection.data.ts)
+
+**Methodological description (English):** Using an echo in an empty room, recognize a returning sound wave after it interacts with a surface.
+
+**User-friendly description (tr):** Yankıyı bir yüzeyden yansıyan ses dalgası olarak açıkla.
+
+##### Ses gürlüğünün salınım genliğine bağlılığını açıklamak
+
+[explainHowSoundLoudnessDependsOnOscillationAmplitude.data.ts](../../../learningApps/physics/data/skills/waves/acoustics/skills/explainHowSoundLoudnessDependsOnOscillationAmplitude.data.ts)
+
+**Methodological description (English):** All else being equal, a greater sound-pressure amplitude means greater intensity, although perceived loudness also depends on frequency.
+
+**User-friendly description (tr):** Daha büyük ses genliğini şiddetle ilişkilendirirken algıyı da dikkate al.
+
+##### Ses perdesinin salınım frekansına bağlılığını açıklamak
+
+[explainHowSoundPitchDependsOnOscillationFrequency.data.ts](../../../learningApps/physics/data/skills/waves/acoustics/skills/explainHowSoundPitchDependsOnOscillationFrequency.data.ts)
+
+**Methodological description (English):** All else being equal, a higher sound frequency corresponds to a higher pitch; it is not the same as increased loudness.
+
+**User-friendly description (tr):** Daha yüksek ses frekansını duyulan daha yüksek perdeyle ilişkilendir.
+
+##### Mesafeyle sesin zayıflamasını açıklamak
+
+[explainSoundAttenuationWithDistance.data.ts](../../../learningApps/physics/data/skills/waves/acoustics/skills/explainSoundAttenuationWithDistance.data.ts)
+
+**Methodological description (English):** As a wave spreads from a localized source, its energy is generally distributed over an increasing area, reducing intensity; absorption also affects sound levels.
+
+**User-friendly description (tr):** Kaynaktan uzaklaştıkça sesin genellikle neden zayıfladığını anla.
+
+##### Kaynak ve dinleyicinin göreli hareketinde perde değişimini açıklamak
+
+[explainTheChangeInPerceivedPitchDuringRelativeMotionOfSourceAndListener.data.ts](../../../learningApps/physics/data/skills/waves/acoustics/skills/explainTheChangeInPerceivedPitchDuringRelativeMotionOfSourceAndListener.data.ts)
+
+**Methodological description (English):** For an unchanged sound emitted by a source, explain the Doppler effect: the frequency heard by the observer is higher as the source approaches and lower as it moves away. Do not confuse this frequency change with loudness or engine revolutions.
+
+**User-friendly description (tr):** Hareket eden ses kaynağının duyulan perdeyi neden değiştirdiğini keşfet.
+
+##### Sesin bir ortamda yayılmasını tanımak
+
+[recognizeSoundTransmissionThroughAMedium.data.ts](../../../learningApps/physics/data/skills/waves/acoustics/skills/recognizeSoundTransmissionThroughAMedium.data.ts)
+
+**Methodological description (English):** Sound requires an elastic material medium, in which pressure or deformation oscillations pass between adjacent parts of matter; mechanical sound does not propagate in a vacuum.
+
+**User-friendly description (tr):** Sesin titreşimlerin yol alacağı bir ortama neden ihtiyaç duyduğunu açıkla.
+
+#### Salınımlar
+
+Skills: 4
+
+[oscillations.data.ts](../../../learningApps/physics/data/skills/waves/oscillations/oscillations.data.ts)
+
+**Methodological description (English):** Repetitive motion around a given state allows vibration, periodicity, and sound sources to be described.
+
+**User-friendly description (tr):** Tekrarlanan hareketin salınımları ve ses kaynaklarını nasıl oluşturduğunu öğren.
+
+##### Ses kaynağının titreşimlerini belirlemek
+
+[detectVibrationsOfASoundSource.data.ts](../../../learningApps/physics/data/skills/waves/oscillations/skills/detectVibrationsOfASoundSource.data.ts)
+
+**Methodological description (English):** Identify the oscillating part of a system that generates a sound disturbance, as distinct from components that merely transmit vibration onward.
+
+**User-friendly description (tr):** Bir nesnenin gerçekten titreşip ses üreten bölümünü bul.
+
+##### Salınım hareketini tanımak
+
+[recognizeOscillatoryMotion.data.ts](../../../learningApps/physics/data/skills/waves/oscillations/skills/recognizeOscillatoryMotion.data.ts)
+
+**Methodological description (English):** Oscillation is a change in a physical state around equilibrium that may recur; not every motion involving reversals is harmonic oscillation.
+
+**User-friendly description (tr):** Bir fiziksel durumun denge çevresinde ne zaman salındığını fark et.
+
+##### Salınımların periyodikliğini tanımak
+
+[recognizeThePeriodicityOfOscillations.data.ts](../../../learningApps/physics/data/skills/waves/oscillations/skills/recognizeThePeriodicityOfOscillations.data.ts)
+
+**Methodological description (English):** A periodic oscillation repeats a physical state at equal time intervals; not every motion that changes direction is periodic.
+
+**User-friendly description (tr):** Düzenli zaman aralıklarıyla tekrarlanan salınımı tanı.
+
+##### Sesi titreşimle ilişkilendirmek
+
+[relateSoundToVibration.data.ts](../../../learningApps/physics/data/skills/waves/oscillations/skills/relateSoundToVibration.data.ts)
+
+**Methodological description (English):** Sound arises when an oscillating source disturbs an elastic medium; oscillation without a medium does not produce a mechanical sound wave.
+
+**User-friendly description (tr):** Titreşen kaynağı ürettiği ses bozunumuyla ilişkilendir.
+
+#### Dalga Olayları
+
+Skills: 5
+
+[wavePhenomena.data.ts](../../../learningApps/physics/data/skills/waves/wavePhenomena/wavePhenomena.data.ts)
+
+**Methodological description (English):** Reflection, refraction, interference, diffraction, and resonance can occur in different kinds of physical waves.
+
+**User-friendly description (tr):** Dalgaların yansıma, kırılma, üst üste binme, kırınım ve rezonansını keşfet.
+
+##### Rezonansı açıklamak
+
+[explainResonance.data.ts](../../../learningApps/physics/data/skills/waves/wavePhenomena/skills/explainResonance.data.ts)
+
+**Methodological description (English):** A periodic driving force near a system's natural frequency can substantially increase the amplitude of its oscillations.
+
+**User-friendly description (tr):** Doğal frekansa yakın periyodik zorlamanın salınım genliğini nasıl artırabileceğini anla.
+
+##### Dalga kırınımını açıklamak
+
+[explainWaveDiffraction.data.ts](../../../learningApps/physics/data/skills/waves/wavePhenomena/skills/explainWaveDiffraction.data.ts)
+
+**Methodological description (English):** Waves may bend around obstacles or spread after passing through openings depending on relative dimensions and wavelength.
+
+**User-friendly description (tr):** Dalgaların engellerin çevresine ya da açıklıklardan geçerek nasıl yayıldığını keşfet.
+
+##### Dalga girişimini açıklamak
+
+[explainWaveInterference.data.ts](../../../learningApps/physics/data/skills/waves/wavePhenomena/skills/explainWaveInterference.data.ts)
+
+**Methodological description (English):** Superposed waves may reinforce or weaken the resulting disturbance depending on their phases.
+
+**User-friendly description (tr):** Üst üste binen dalgaların birbirini ne zaman güçlendirdiğini veya zayıflattığını fark et.
+
+##### Dalga yansımasını açıklamak
+
+[explainWaveReflection.data.ts](../../../learningApps/physics/data/skills/waves/wavePhenomena/skills/explainWaveReflection.data.ts)
+
+**Methodological description (English):** Part of a disturbance may return from a boundary between media, changing its direction of propagation.
+
+**User-friendly description (tr):** Bir dalganın sınıra ulaştığında nasıl geri dönebildiğini açıkla.
+
+##### Dalga kırılmasını açıklamak
+
+[explainWaveRefraction.data.ts](../../../learningApps/physics/data/skills/waves/wavePhenomena/skills/explainWaveRefraction.data.ts)
+
+**Methodological description (English):** A change in propagation speed at a boundary between media can change a wave's direction while the source frequency stays the same.
+
+**User-friendly description (tr):** Yayılma hızı değişince dalganın yönünün neden değişebileceğini anla.
+
+#### Dalga Özellikleri
+
+Skills: 6
+
+[waveProperties.data.ts](../../../learningApps/physics/data/skills/waves/waveProperties/waveProperties.data.ts)
+
+**Methodological description (English):** Waves have a direction of propagation, a characteristic rhythm, and a disturbance magnitude; observing water waves distinguishes wave propagation from transport of all the water.
+
+**User-friendly description (tr):** Dalgaların nasıl yayıldığını ve özelliklerinin nasıl ölçüldüğünü öğren.
+
+##### Gözlenebilir ritimle dalga frekanslarını karşılaştırmak
+
+[compareWaveFrequenciesByObservableRhythm.data.ts](../../../learningApps/physics/data/skills/waves/waveProperties/skills/compareWaveFrequenciesByObservableRhythm.data.ts)
+
+**Methodological description (English):** In two animations, identify which produces more recurring crests in the same amount of time.
+
+**User-friendly description (tr):** Aynı sürede gerçekleşen çevrim sayısına göre dalgaları karşılaştır.
+
+##### Kaynağın salınımını dalga yayılımından ayırt etmek
+
+[distinguishSourceOscillationFromWavePropagation.data.ts](../../../learningApps/physics/data/skills/waves/waveProperties/skills/distinguishSourceOscillationFromWavePropagation.data.ts)
+
+**Methodological description (English):** An oscillating source creates a disturbance that propagates through a medium, while the medium's particles do not necessarily move along with the wavefront.
+
+**User-friendly description (tr):** Titreşen kaynak ile ondan uzaklaşan bozunumu ayırt et.
+
+##### Dalganın enerji aktarımını madde taşınmasından ayırt etmek
+
+[distinguishWaveEnergyTransferFromMatterTransport.data.ts](../../../learningApps/physics/data/skills/waves/waveProperties/skills/distinguishWaveEnergyTransferFromMatterTransport.data.ts)
+
+**Methodological description (English):** A wave carries energy without necessarily transporting the entire medium over the corresponding distance.
+
+**User-friendly description (tr):** Dalgaların tüm ortamı taşımadan nasıl enerji aktardığını açıkla.
+
+##### Dalga genliğini açıklamak
+
+[explainWaveAmplitude.data.ts](../../../learningApps/physics/data/skills/waves/waveProperties/skills/explainWaveAmplitude.data.ts)
+
+**Methodological description (English):** Amplitude is the greatest deviation of a physical quantity from its equilibrium value, not the wave's frequency.
+
+**User-friendly description (tr):** Genliği denge durumundan en büyük sapma olarak anla.
+
+##### Dalga hızını açıklamak
+
+[explainWaveSpeed.data.ts](../../../learningApps/physics/data/skills/waves/waveProperties/skills/explainWaveSpeed.data.ts)
+
+**Methodological description (English):** Wave speed describes the propagation of a disturbance and differs from the motion of particles within the medium.
+
+**User-friendly description (tr):** Dalganın yayılma hızıyla ortam parçacıklarının hareketini ayırt et.
+
+##### Dalga boyunu açıklamak
+
+[explainWavelength.data.ts](../../../learningApps/physics/data/skills/waves/waveProperties/skills/explainWavelength.data.ts)
+
+**Methodological description (English):** Wavelength is the distance between adjacent points at the same phase of the disturbance, such as two successive crests.
+
+**User-friendly description (tr):** Dalga boyunu aynı fazdaki ardışık dalga noktaları arasındaki uzaklık olarak tanı.
+
