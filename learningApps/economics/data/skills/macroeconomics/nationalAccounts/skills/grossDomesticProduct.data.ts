@@ -42,7 +42,7 @@ export const grossDomesticProduct_Skill_Data = buildSkillConfig({
       hi: "समझें कि जीडीपी में क्या गिना जाता है और क्या नहीं।",
       es: "Comprende qué contabiliza el PIB y qué deja fuera.",
       ar: "افهم ما الذي يشمله الناتج المحلي الإجمالي وما الذي يستبعده.",
-      fr: "Comprenez ce que le PIB comptabilise et ce qu’il ne mesure pas.",
+      fr: "Comprends ce que le PIB comptabilise et ce qu’il ne mesure pas.",
       bn: "জিডিপিতে কী গণনা করা হয় আর কী বাদ পড়ে তা বুঝে নাও।",
       pt: "Entenda o que o PIB contabiliza e o que deixa de fora.",
       ur: "سمجھیں کہ جی ڈی پی میں کیا شمار ہوتا ہے اور کیا نہیں۔",

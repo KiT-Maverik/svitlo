@@ -42,7 +42,7 @@ export const inflationAndDeflation_Skill_Data = buildSkillConfig({
       hi: "सामान्य मुद्रास्फीति और किसी एक वस्तु की कीमत बढ़ने में अंतर पहचानें।",
       es: "Distingue la inflación del aumento de precio de un solo producto.",
       ar: "ميّز بين التضخم وارتفاع سعر سلعة واحدة.",
-      fr: "Distinguez l’inflation d’une hausse du prix d’un seul produit.",
+      fr: "Distingue l’inflation d’une hausse du prix d’un seul produit.",
       bn: "সামগ্রিক মুদ্রাস্ফীতি আর একটি পণ্যের দাম বাড়ার পার্থক্য বোঝো।",
       pt: "Diferencie inflação de uma alta no preço de um único produto.",
       ur: "عام افراطِ زر اور ایک چیز کی قیمت بڑھنے میں فرق کریں۔",

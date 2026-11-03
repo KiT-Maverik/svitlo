@@ -42,7 +42,7 @@ export const aggregateExpenditureComponents_Skill_Data = buildSkillConfig({
       hi: "अर्थव्यवस्था में खर्च की मुख्य श्रेणियों को पहचानें।",
       es: "Identifica las principales categorías de gasto en una economía.",
       ar: "حدّد الفئات الرئيسية للإنفاق في الاقتصاد.",
-      fr: "Identifiez les principales catégories de dépenses dans une économie.",
+      fr: "Identifie les principales catégories de dépenses dans une économie.",
       bn: "অর্থনীতির প্রধান ব্যয় বিভাগগুলো চিহ্নিত করো।",
       pt: "Identifique as principais categorias de gastos de uma economia.",
       ur: "معیشت میں خرچ کی اہم اقسام کو پہچانیں۔",

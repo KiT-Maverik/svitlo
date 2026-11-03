@@ -42,7 +42,7 @@ export const nominalAndRealOutput_Skill_Data = buildSkillConfig({
       hi: "पहचानें कि उत्पादन बढ़ा है या केवल कीमतें बढ़ी हैं।",
       es: "Distingue si aumentó la producción o si solo subieron los precios.",
       ar: "ميّز بين زيادة الإنتاج وارتفاع الأسعار وحده.",
-      fr: "Distinguez une hausse de la production d’une simple hausse des prix.",
+      fr: "Distingue une hausse de la production d’une simple hausse des prix.",
       bn: "উৎপাদন সত্যিই বেড়েছে, নাকি শুধু দাম বেড়েছে তা আলাদা করো।",
       pt: "Diferencie um aumento da produção de uma simples alta dos preços.",
       ur: "پہچانیں کہ پیداوار بڑھی ہے یا صرف قیمتیں بڑھیں۔",

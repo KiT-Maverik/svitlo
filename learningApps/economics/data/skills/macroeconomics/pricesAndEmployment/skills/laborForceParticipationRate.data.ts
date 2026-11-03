@@ -42,7 +42,7 @@ export const laborForceParticipationRate_Skill_Data = buildSkillConfig({
       hi: "श्रमबल सहभागिता दर और बेरोज़गारी दर की तुलना करें।",
       es: "Compara la participación laboral con la tasa de desempleo.",
       ar: "قارن المشاركة في القوى العاملة بمعدل البطالة.",
-      fr: "Comparez la participation au marché du travail et le taux de chômage.",
+      fr: "Compare la participation au marché du travail et le taux de chômage.",
       bn: "শ্রমশক্তিতে অংশগ্রহণের হার ও বেকারত্বের হার তুলনা করো।",
       pt: "Compare participação na força de trabalho com a taxa de desemprego.",
       ur: "افرادی قوت میں شرکت کی شرح کو بے روزگاری کی شرح سے ملائیں۔",
