@@ -54,7 +54,7 @@ export const relateFamiliarTypesOfRadiationToTheElectromagneticSpectrum_Skill_Da
       vi: "Xác định vị trí các loại bức xạ quen thuộc trên phổ điện từ.",
       ta: "பழக்கமான கதிர்வீச்சு வகைகள் மின்காந்த நிறமாலையில் எங்குள்ளன என்பதைக் கண்டறி.",
       te: "తెలిసిన వికిరణ రకాలు విద్యుదయస్కాంత వర్ణపటంలో ఎక్కడున్నాయో గుర్తించు.",
-      mr: "परिचित प्रारणांचे प्रकार विद्युतचुंबकीय वर्णपटात कुठे येतात ते शोध.",
+      mr: "परिचित प्रारणांचे प्रकार विद्युतचुंबकीय वर्णपटात कुठे येतात ते शोधा.",
       ms: "Kenal pasti kedudukan jenis sinaran biasa pada spektrum elektromagnet.",
       he: "מצאו היכן נמצאים סוגי קרינה מוכרים בספקטרום האלקטרומגנטי.",
       pl: "Znajdź miejsca znanych rodzajów promieniowania w widmie elektromagnetycznym.",

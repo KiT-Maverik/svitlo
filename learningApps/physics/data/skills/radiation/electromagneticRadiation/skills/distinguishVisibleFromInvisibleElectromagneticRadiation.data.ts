@@ -54,7 +54,7 @@ export const distinguishVisibleFromInvisibleElectromagneticRadiation_Skill_Data 
       vi: "Nhận biết rằng sóng vô tuyến và bức xạ hồng ngoại không thể nhìn thấy bằng mắt người.",
       ta: "வானொலி அலைகளையும் அகச்சிவப்புக் கதிர்வீச்சையும் மனிதக் கண்களால் காண முடியாது என்பதை அறிந்துகொள்.",
       te: "రేడియో తరంగాలు, పరారుణ వికిరణం మన కళ్లకు కనిపించవని గుర్తించు.",
-      mr: "रेडिओ लहरी आणि अवरक्त प्रारण मानवी डोळ्यांना दिसत नाही हे ओळख.",
+      mr: "रेडिओ लहरी आणि अवरक्त प्रारण मानवी डोळ्यांना दिसत नाही हे ओळखा.",
       ms: "Ketahui bahawa gelombang radio dan sinaran inframerah tidak kelihatan kepada mata manusia.",
       he: "הכירו בכך שגלי רדיו וקרינה תת־אדומה אינם נראים לעין האנושית.",
       pl: "Rozpoznaj, że fal radiowych i promieniowania podczerwonego nie widać ludzkim okiem.",

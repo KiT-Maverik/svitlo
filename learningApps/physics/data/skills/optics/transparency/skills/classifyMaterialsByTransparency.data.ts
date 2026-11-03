@@ -54,7 +54,7 @@ export const classifyMaterialsByTransparency_Skill_Data = buildSkillConfig({
       vi: "Phân biệt vật liệu trong suốt, mờ và không trong suốt.",
       ta: "ஒளிபுகும், ஒளிகசியும், ஒளிபுகாத பொருட்களை வேறுபடுத்து.",
       te: "పారదర్శక, అర్ధపారదర్శక, అపారదర్శక పదార్థాలను వేరు చేయి.",
-      mr: "पारदर्शक, अर्धपारदर्शक व अपारदर्शक पदार्थांत फरक ओळख.",
+      mr: "पारदर्शक, अर्धपारदर्शक व अपारदर्शक पदार्थांत फरक ओळखा.",
       ms: "Bezakan bahan lutsinar, lutcahaya dan legap.",
       he: "הבחינו בין חומרים שקופים, שקופים למחצה ואטומים.",
       pl: "Odróżnij materiały przezroczyste, prześwitujące i nieprzezroczyste.",
