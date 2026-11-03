@@ -4,6 +4,7 @@ import { LocaleProvider } from '@/i18n/LocaleProvider/LocaleProvider';
 import LessonLearningLayout from '@/components/layout/LearningLayout/LearningLayout';
 import { LessonProgressProvider } from './LessonProgress/LessonProgress';
 import LessonV2Client from './LessonV2Client';
+import { SceneLocaleProvider } from './SceneLocaleContext';
 
 export default function LessonV2({ response, locale, href }: {
   response: LessonResponse;
@@ -12,8 +13,14 @@ export default function LessonV2({ response, locale, href }: {
 }) {
   const sections = response.sectionOrder.map(slug => response.sections[slug]);
   const quizIndex = sections.findIndex(section => section.type === 'quiz');
+  const scenes = {
+    simulation: response.sections.theory?.content.scene?.lightPropagationSimulation?.messages,
+    ray: response.sections.theory?.content.scene?.lightRayDiagram?.messages,
+    practice: response.sections.practice?.content.scene?.showcase?.messages,
+  };
   return (
     <LocaleProvider locale={locale}>
+      <SceneLocaleProvider locale={locale} scenes={scenes}>
       <LessonProgressProvider
         key={response.id}
         lessonId={response.id}
@@ -29,6 +36,7 @@ export default function LessonV2({ response, locale, href }: {
           <LessonV2Client response={response} />
         </LessonLearningLayout>
       </LessonProgressProvider>
+      </SceneLocaleProvider>
     </LocaleProvider>
   );
 }

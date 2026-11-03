@@ -22,7 +22,7 @@ function fixture() {
             order: [{ type: 'markdown', slug: 'p1' }, { type: 'scene', slug: 'ray' }, { type: 'checkpoint', slug: 'checkpoint' }],
             content: {
               markdown: { p1: { id: 'markdown-id', slug: 'p1', locales: '# Світло' } },
-              scene: { ray: { id: 'scene-id', slug: 'ray', locales: { scene: { title: 'Промінь' } } } },
+              scene: { ray: { id: 'scene-id', slug: 'ray', messages: { scene: { title: 'Промінь' } } } },
               checkpoint: { checkpoint: { id: 'check-id', slug: 'checkpoint', title: 'Перевірка', items: [] } },
             },
           },
@@ -55,9 +55,8 @@ describe('assembleLessonResponse', () => {
     expect(lesson.sections.quiz.type).toBe('quiz');
     expect(lesson.sections.theory.content.markdown.p1.text).toEqual('# Світло');
     expect(lesson.sections.theory.content.scene.ray.sceneId).toEqual('c/'+id+'/theory/scene/ray');
-    expect(lesson.sections.theory.content.scene.ray.locale).toEqual({
-      scene: { title: 'Промінь' }, code: 'uk',
-    });
+    expect(lesson.sections.theory.content.scene.ray.locale).toEqual({ code: 'uk' });
+    expect(lesson.sections.theory.content.scene.ray.messages).toEqual({ scene: { title: 'Промінь' } });
     expect(lesson.sections.theory.content.checkpoint.checkpoint).toBeDefined();
     expect(lesson.sections.quiz.content.quiz.quiz.questions?.q1.id).toEqual('question-id');
     expect(lesson.localeSources.config['/title']).toEqual({ code: 'uk' });
