@@ -36,7 +36,7 @@ export function ContentBlockRenderer(props: ContentBlockRendererProps): ReactNod
   switch (props.type) {
     case 'text': return <ContentBlock_Text {...props.response} />;
     case 'markdown': return <Markdown response={props.response} />;
-    case 'checkpoint': return <Checkpoint response={props.response} renderNested={nested} />;
+    case 'checkpoint': return <Checkpoint {...props.response} renderNested={nested} />;
     case 'scene': return <Scene response={props.response} sceneRegistry={props.sceneRegistry} />;
     case 'code': return <Code response={props.response} />;
     case 'audio': return <Audio response={props.response} />;

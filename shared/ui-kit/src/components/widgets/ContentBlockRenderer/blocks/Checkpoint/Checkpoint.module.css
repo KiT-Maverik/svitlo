@@ -114,13 +114,6 @@
   font-size: 1rem;
   line-height: 1.7;
 }
-.answerText {
-  margin: 0;
-}
-.media {
-  display: block;
-  max-width: 100%;
-}
 .actions {
   display: flex;
   justify-content: flex-end;
