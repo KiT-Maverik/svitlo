@@ -22,7 +22,7 @@ export const nominalAndRealMeasures_Skill_Data = buildSkillConfig({
     ta: "பெயரளவு மற்றும் உண்மை அளவுகள்",
     te: "నామమాత్ర, వాస్తవ కొలమానాలు",
     mr: "नाममात्र आणि वास्तविक मापे",
-    ms: "Ukuran nominal dan benar",
+    ms: "Ukuran nominal dan sebenar",
     he: "מדדים נומינליים וריאליים",
     pl: "Wielkości nominalne i realne",
     uk: "Номінальні та реальні величини",
