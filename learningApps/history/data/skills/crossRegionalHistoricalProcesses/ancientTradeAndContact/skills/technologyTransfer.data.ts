@@ -4,7 +4,7 @@ export const technologyTransfer_Skill_Data = buildSkillConfig({
   slug: "technologyTransfer",
   id: "2a047815-6d19-4840-8e31-4e17e5163e8a",
   name: {
-    en: "Технологічне запозичення",
+    en: "Technology Transfer",
     zh: "技术传播与借鉴",
     hi: "प्रौद्योगिकी का प्रसार और अपनाना",
     es: "Transferencia de tecnología",

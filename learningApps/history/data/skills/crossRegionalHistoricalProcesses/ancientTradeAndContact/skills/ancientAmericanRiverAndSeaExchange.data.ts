@@ -4,7 +4,7 @@ export const ancientAmericanRiverAndSeaExchange_Skill_Data = buildSkillConfig({
   slug: "ancientAmericanRiverAndSeaExchange",
   id: "a8748580-103c-4f8b-9917-e385014cd5f3",
   name: {
-    en: "Давні річкові та морські обміни Америк",
+    en: "Ancient American River and Sea Exchange",
     zh: "古代美洲河流与海上交流",
     hi: "प्राचीन अमेरिका में नदी और समुद्री आदान-प्रदान",
     es: "Intercambio fluvial y marítimo en la América antigua",

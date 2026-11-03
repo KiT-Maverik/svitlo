@@ -4,7 +4,7 @@ export const ancientIndianOceanTrade_Skill_Data = buildSkillConfig({
   slug: "ancientIndianOceanTrade",
   id: "0727b9ee-9e76-4a8d-9159-29f8a79c9628",
   name: {
-    en: "Торгівля Індійського океану",
+    en: "Ancient Indian Ocean Trade",
     zh: "古代印度洋贸易",
     hi: "प्राचीन हिंद महासागर व्यापार",
     es: "Comercio antiguo del océano Índico",

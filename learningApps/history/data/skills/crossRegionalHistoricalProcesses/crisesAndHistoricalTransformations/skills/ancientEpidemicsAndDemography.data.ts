@@ -4,7 +4,7 @@ export const ancientEpidemicsAndDemography_Skill_Data = buildSkillConfig({
   slug: "ancientEpidemicsAndDemography",
   id: "52ac19c6-3abd-4366-a611-a7ee346c9702",
   name: {
-    en: "Епідемії та демографічні зрушення",
+    en: "Ancient Epidemics and Demography",
     zh: "古代流行病与人口变化",
     hi: "प्राचीन महामारी और जनसांख्यिकी",
     es: "Epidemias antiguas y demografía",

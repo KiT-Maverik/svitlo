@@ -6,7 +6,7 @@ export const ancientTradeAndContact_SkillGroup_Data = buildSkillGroupConfig({
   slug: "ancientTradeAndContact",
   id: "3f9f087a-f429-4c2e-8b62-d3a2d18a405a",
   name: {
-    en: "Торгівля та контакти",
+    en: "Ancient Trade and Contact",
     zh: "古代贸易与交流",
     hi: "प्राचीन व्यापार और संपर्क",
     es: "Comercio y contactos antiguos",

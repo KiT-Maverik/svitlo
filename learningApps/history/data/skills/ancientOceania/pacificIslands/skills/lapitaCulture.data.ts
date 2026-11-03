@@ -4,7 +4,7 @@ export const lapitaCulture_Skill_Data = buildSkillConfig({
   slug: "lapitaCulture",
   id: "d88e29f1-1ab8-4dc0-bb85-f72cbe3e3d7c",
   name: {
-    en: "Культура Лапіта",
+    en: "Lapita Culture",
     zh: "拉皮塔文化",
     hi: "लापिता संस्कृति",
     es: "Cultura lapita",

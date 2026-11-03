@@ -4,7 +4,7 @@ export const ancientEnvironmentalChallenges_Skill_Data = buildSkillConfig({
   slug: "ancientEnvironmentalChallenges",
   id: "15263259-8bcb-407a-87b5-0ed1bba0f2a7",
   name: {
-    en: "Екологічні виклики давнини",
+    en: "Ancient Environmental Challenges",
     zh: "古代环境挑战",
     hi: "प्राचीन पर्यावरणीय चुनौतियाँ",
     es: "Desafíos ambientales de la Antigüedad",

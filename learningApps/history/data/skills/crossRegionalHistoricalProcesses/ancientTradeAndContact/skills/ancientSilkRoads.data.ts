@@ -4,7 +4,7 @@ export const ancientSilkRoads_Skill_Data = buildSkillConfig({
   slug: "ancientSilkRoads",
   id: "d0f45514-bb04-44ec-a47a-5a3238038ae4",
   name: {
-    en: "Шовкові шляхи давньої доби",
+    en: "Ancient Silk Roads",
     zh: "古代丝绸之路",
     hi: "प्राचीन रेशम मार्ग",
     es: "Rutas de la Seda antiguas",

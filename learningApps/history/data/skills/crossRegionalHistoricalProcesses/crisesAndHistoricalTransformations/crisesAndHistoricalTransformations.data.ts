@@ -6,7 +6,7 @@ export const crisesAndHistoricalTransformations_SkillGroup_Data = buildSkillGrou
   slug: "crisesAndHistoricalTransformations",
   id: "8690c916-53b3-4bed-b5fb-066b597625cf",
   name: {
-    en: "Кризи й трансформації",
+    en: "Crises and Historical Transformations",
     zh: "危机与历史变迁",
     hi: "संकट और ऐतिहासिक परिवर्तन",
     es: "Crisis y transformaciones históricas",
