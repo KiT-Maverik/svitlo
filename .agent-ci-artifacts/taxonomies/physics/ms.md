@@ -636,13 +636,13 @@ Skills: 4
 
 **User-friendly description (ms):** Ketahui bagaimana tekanan cecair dan gas bertindak dan berubah mengikut keadaan.
 
-##### Menerangkan Penghantaran Tekanan dalam Cecair Tertutup
+##### Menerangkan penghantaran tekanan dalam cecair yang terkurung
 
 [explainPressureTransmissionInAnEnclosedLiquid.data.ts](../../../learningApps/physics/data/skills/fluidMechanics/pressureInLiquidsAndGases/skills/explainPressureTransmissionInAnEnclosedLiquid.data.ts)
 
 **Methodological description (English):** A pressure change applied to an enclosed liquid at rest is transmitted in every direction, unlike the variation of hydrostatic pressure with depth.
 
-**User-friendly description (ms):** Terangkan bagaimana perubahan tekanan tersebar melalui cecair tertutup.
+**User-friendly description (ms):** Terangkan bagaimana perubahan tekanan merambat ke semua arah dalam cecair pegun yang terkurung di dalam bekas.
 
 ##### Menerangkan Mengapa Tekanan Air Bertambah dengan Kedalaman
 

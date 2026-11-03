@@ -636,13 +636,13 @@ Skills: 4
 
 **User-friendly description (tr):** Sıvı ve gaz basıncının nasıl etki ettiğini ve koşullarla nasıl değiştiğini öğren.
 
-##### Kapalı bir sıvıda basıncın iletimini açıklamak
+##### Kapalı kaptaki sıvıda basıncın iletimini açıklamak
 
 [explainPressureTransmissionInAnEnclosedLiquid.data.ts](../../../learningApps/physics/data/skills/fluidMechanics/pressureInLiquidsAndGases/skills/explainPressureTransmissionInAnEnclosedLiquid.data.ts)
 
 **Methodological description (English):** A pressure change applied to an enclosed liquid at rest is transmitted in every direction, unlike the variation of hydrostatic pressure with depth.
 
-**User-friendly description (tr):** Kapalı bir sıvıda basınç değişiminin nasıl iletildiğini açıkla.
+**User-friendly description (tr):** Kapalı bir kap içindeki durgun sıvıda basınç değişiminin her yöne nasıl iletildiğini açıkla.
 
 ##### Su basıncının derinlikle neden arttığını açıklamak
 

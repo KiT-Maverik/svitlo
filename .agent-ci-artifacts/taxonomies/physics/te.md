@@ -636,13 +636,13 @@ Skills: 4
 
 **User-friendly description (te):** ద్రవ, వాయు పీడనం ఎలా పనిచేసి పరిస్థితులను బట్టి మారుతుందో తెలుసుకోండి.
 
-##### మూసిన ద్రవంలో పీడన ప్రసారాన్ని వివరించడం
+##### మూసివేసిన పాత్రలోని ద్రవంలో పీడన ప్రసారాన్ని వివరించడం
 
 [explainPressureTransmissionInAnEnclosedLiquid.data.ts](../../../learningApps/physics/data/skills/fluidMechanics/pressureInLiquidsAndGases/skills/explainPressureTransmissionInAnEnclosedLiquid.data.ts)
 
 **Methodological description (English):** A pressure change applied to an enclosed liquid at rest is transmitted in every direction, unlike the variation of hydrostatic pressure with depth.
 
-**User-friendly description (te):** మూసిన ద్రవం ద్వారా పీడన మార్పులు ఎలా ప్రసరిస్తాయో వివరించండి.
+**User-friendly description (te):** మూసివేసిన పాత్రలో నిశ్చలంగా ఉన్న ద్రవంలో పీడన మార్పు అన్ని దిశల్లో ఎలా ప్రసరిస్తుందో వివరించండి.
 
 ##### లోతుతో నీటి పీడనం ఎందుకు పెరుగుతుందో వివరించడం
 
@@ -1008,9 +1008,9 @@ Skills: 4
 
 **Methodological description (English):** In the absence of a net external impulse, the total momentum of a system remains constant even though individual bodies change their momenta.
 
-**User-friendly description (te):** బాహ్య ఆవేశం లేనప్పుడు మొత్తం ద్రవ్యవేగం ఎందుకు స్థిరంగా ఉంటుందో అర్థం చేసుకోండి.
+**User-friendly description (te):** బాహ్య బల ప్రచోదనం లేనప్పుడు మొత్తం ద్రవ్యవేగం ఎందుకు స్థిరంగా ఉంటుందో అర్థం చేసుకోండి.
 
-##### ఆవేశాన్ని వివరించడం
+##### బల ప్రచోదనాన్ని వివరించడం
 
 [explainImpulse.data.ts](../../../learningApps/physics/data/skills/mechanics/momentumAndCollisions/skills/explainImpulse.data.ts)
 
@@ -1152,7 +1152,7 @@ Groups: 3 · Skills: 16
 
 **Methodological description (English):** Models of atoms, quantum and nuclear phenomena, and spacetime explain observations not covered by classical physics alone. Younger children can encounter the concepts without mathematical formalism.
 
-**User-friendly description (te):** క్వాంటం ఘటనలు, అణుకేంద్రక మార్పులు, స్థలకాల భౌతికశాస్త్రాన్ని తెలుసుకో.
+**User-friendly description (te):** క్వాంటం ఘటనలు, అణుకేంద్రక మార్పులు, స్థలకాల భౌతికశాస్త్రాన్ని తెలుసుకోండి.
 
 #### పరమాణువులు మరియు క్వాంటం ఘటనలు
 
@@ -1162,7 +1162,7 @@ Skills: 5
 
 **Methodological description (English):** Atomic models and discrete packets of energy help explain light and properties of matter that cannot be described solely in terms of mechanical motion.
 
-**User-friendly description (te):** పరమాణు నిర్మాణం, క్వాంటం ప్రవర్తన సంప్రదాయ నమూనాల నుంచి ఎలా భిన్నమో తెలుసుకో.
+**User-friendly description (te):** పరమాణు నిర్మాణం, క్వాంటం ప్రవర్తన సంప్రదాయ నమూనాల నుంచి ఎలా భిన్నమో తెలుసుకోండి.
 
 ##### పరమాణువును దాని ప్రధాన భాగాల నుంచి వేరు చేయడం
 
@@ -1170,7 +1170,7 @@ Skills: 5
 
 **Methodological description (English):** An atom consists of a nucleus and an electron cloud; electrons' motion and states do not correspond to literal planetary orbits.
 
-**User-friendly description (te):** పరమాణువులో కేంద్రకం, దాని చుట్టూ క్వాంటం స్థితుల్లో ఎలక్ట్రాన్లు ఉంటాయని గుర్తించు.
+**User-friendly description (te):** పరమాణువులో కేంద్రకం, దాని చుట్టూ క్వాంటం స్థితుల్లో ఎలక్ట్రాన్లు ఉంటాయని గుర్తించండి.
 
 ##### ఫోటాన్‌ను విద్యుదయస్కాంత వికిరణం యొక్క క్వాంటంగా వివరించడం
 
@@ -1178,15 +1178,15 @@ Skills: 5
 
 **Methodological description (English):** A photon is a quantum of the electromagnetic field whose energy is related to radiation frequency; it should not be interpreted as a tiny classical ball.
 
-**User-friendly description (te):** ఫోటాన్లు విద్యుదయస్కాంత వికిరణ శక్తి క్వాంటాలు అని అర్థం చేసుకో.
+**User-friendly description (te):** ఫోటాన్లు విద్యుదయస్కాంత వికిరణ శక్తి క్వాంటాలు అని అర్థం చేసుకోండి.
 
-##### పరమాణువు యొక్క విచ్ఛిన్న శక్తి స్థితులను వివరించడం
+##### పరమాణువు యొక్క వివిక్త శక్తి స్థితులను వివరించడం
 
 [explainDiscreteAtomicEnergyStates.data.ts](../../../learningApps/physics/data/skills/modernPhysics/atomsAndQuantumPhenomena/skills/explainDiscreteAtomicEnergyStates.data.ts)
 
 **Methodological description (English):** Bound states of an atom have definite energies, and transitions between states involve energy absorption or emission.
 
-**User-friendly description (te):** పరమాణువు బంధిత స్థితుల్లో నిర్దిష్ట, విచ్ఛిన్న శక్తి స్థాయులు ఉంటాయని గుర్తించు.
+**User-friendly description (te):** పరమాణువు బంధిత స్థితుల్లో నిర్దిష్ట, వివిక్త శక్తి స్థాయులు ఉంటాయని గుర్తించండి.
 
 ##### ఉత్తేజిత పరమాణువు కాంతి విడుదలను వివరించడం
 
@@ -1194,7 +1194,7 @@ Skills: 5
 
 **Methodological description (English):** A transition of an atom between energy states may be accompanied by the emission of a photon whose energy is determined by the difference between those states.
 
-**User-friendly description (te):** పరమాణువులు శక్తి స్థాయులు మారేటప్పుడు ఫోటాన్లను ఎలా విడుదల చేస్తాయో వివరించు.
+**User-friendly description (te):** పరమాణువులు శక్తి స్థాయులు మారేటప్పుడు ఫోటాన్లను ఎలా విడుదల చేస్తాయో వివరించండి.
 
 ##### క్వాంటం వస్తువుల తరంగ, కణ లక్షణాలను వివరించడం
 
@@ -1202,7 +1202,7 @@ Skills: 5
 
 **Methodological description (English):** Light and matter exhibit phenomena that cannot be exhaustively described by only a classical wave or a classical particle picture.
 
-**User-friendly description (te):** క్వాంటం వస్తువులు తరంగం, కణం లాంటి ప్రవర్తన రెండింటినీ ఎందుకు చూపిస్తాయో తెలుసుకో.
+**User-friendly description (te):** క్వాంటం వస్తువులు తరంగం, కణం లాంటి ప్రవర్తన రెండింటినీ ఎందుకు చూపిస్తాయో తెలుసుకోండి.
 
 #### అణుకేంద్రక ఘటనలు
 
@@ -1212,7 +1212,7 @@ Skills: 6
 
 **Methodological description (English):** Changes in atomic nuclei differ from chemical reactions and may release energy.
 
-**User-friendly description (te):** అణుకేంద్రకాలు ఎలా మారతాయో, కొన్ని మార్పుల్లో శక్తి ఎందుకు విడుదలవుతుందో తెలుసుకో.
+**User-friendly description (te):** అణుకేంద్రకాలు ఎలా మారతాయో, కొన్ని మార్పుల్లో శక్తి ఎందుకు విడుదలవుతుందో తెలుసుకోండి.
 
 ##### ఆల్ఫా, బీటా, గామా వికిరణాలను వేరు చేయడం
 
@@ -1220,7 +1220,7 @@ Skills: 6
 
 **Methodological description (English):** Alpha radiation consists of helium nuclei, beta radiation of electrons or positrons, and gamma radiation of high-energy photons.
 
-**User-friendly description (te):** ఆల్ఫా కణాలు, బీటా కణాలు, గామా ఫోటాన్లను గుర్తించు.
+**User-friendly description (te):** ఆల్ఫా కణాలు, బీటా కణాలు, గామా ఫోటాన్లను గుర్తించండి.
 
 ##### అణుకేంద్రక మార్పును రసాయన మార్పు నుంచి వేరు చేయడం
 
@@ -1228,7 +1228,7 @@ Skills: 6
 
 **Methodological description (English):** A nuclear transformation changes an atom's nucleus, whereas chemical reactions primarily change bonds and electronic structure.
 
-**User-friendly description (te):** అణుకేంద్రకం లోపల జరిగే మార్పును రసాయన ప్రతిచర్య నుంచి వేరు చేయి.
+**User-friendly description (te):** అణుకేంద్రకం లోపల జరిగే మార్పును రసాయన ప్రతిచర్య నుంచి వేరు చేయండి.
 
 ##### అర్ధాయుష్కాలాన్ని వివరించడం
 
@@ -1236,7 +1236,7 @@ Skills: 6
 
 **Methodological description (English):** Half-life describes the statistical decline in the number of unstable nuclei in a population, not the lifetime of an individual nucleus.
 
-**User-friendly description (te):** అర్ధాయుష్కాలం అనేక అస్థిర కేంద్రకాలలో కనిపించే గణాంక నమూనా అని అర్థం చేసుకో.
+**User-friendly description (te):** అర్ధాయుష్కాలం అనేక అస్థిర కేంద్రకాలలో కనిపించే గణాంక నమూనా అని అర్థం చేసుకోండి.
 
 ##### అణు విచ్ఛిత్తిని వివరించడం
 
@@ -1244,7 +1244,7 @@ Skills: 6
 
 **Methodological description (English):** Heavy nuclei can split into lighter fragments and release energy because of changes in binding energy.
 
-**User-friendly description (te):** భారీ కేంద్రకాలు విడిపోయి శక్తిని ఎలా విడుదల చేయగలవో తెలుసుకో.
+**User-friendly description (te):** భారీ కేంద్రకాలు విడిపోయి శక్తిని ఎలా విడుదల చేయగలవో తెలుసుకోండి.
 
 ##### అణు సంలీనాన్ని వివరించడం
 
@@ -1252,7 +1252,7 @@ Skills: 6
 
 **Methodological description (English):** Light nuclei can combine under suitable conditions, and changes in binding energy can lead to energy release.
 
-**User-friendly description (te):** తేలికపాటి కేంద్రకాలు కలిసినప్పుడు శక్తి ఎలా విడుదలవుతుందో వివరించు.
+**User-friendly description (te):** తేలికపాటి కేంద్రకాలు కలిసినప్పుడు శక్తి ఎలా విడుదలవుతుందో వివరించండి.
 
 ##### రేడియోధార్మికతను వివరించడం
 
@@ -1260,7 +1260,7 @@ Skills: 6
 
 **Methodological description (English):** Unstable atomic nuclei spontaneously transform while emitting particles or energy; this is not an ordinary chemical reaction.
 
-**User-friendly description (te):** అస్థిర అణుకేంద్రకాలు రేడియోధార్మిక మార్పులకు ఎలా లోనవుతాయో వివరించు.
+**User-friendly description (te):** అస్థిర అణుకేంద్రకాలు రేడియోధార్మిక మార్పులకు ఎలా లోనవుతాయో వివరించండి.
 
 #### సాపేక్షత
 
@@ -1270,7 +1270,7 @@ Skills: 5
 
 **Methodological description (English):** Special relativity describes how measurements of space and time relate to motion, while general relativity describes gravity as spacetime geometry. They should not be confused with the history of astronomy or require formulas in an introductory curriculum.
 
-**User-friendly description (te):** చలనం, గురుత్వాకర్షణ స్థలం మరియు కాలం కొలతలపై ఎలా ప్రభావం చూపుతాయో తెలుసుకో.
+**User-friendly description (te):** చలనం, గురుత్వాకర్షణ స్థలం మరియు కాలం కొలతలపై ఎలా ప్రభావం చూపుతాయో తెలుసుకోండి.
 
 ##### గురుత్వాకర్షణను స్థలకాల వక్రతగా వివరించడం
 
@@ -1278,7 +1278,7 @@ Skills: 5
 
 **Methodological description (English):** Recognize the general relativity concept that the distribution of mass and energy affects spacetime geometry; do not treat a rubber-sheet-and-ball analogy as a literal mechanism of gravity.
 
-**User-friendly description (te):** సాధారణ సాపేక్షతలో గురుత్వాకర్షణ వంగిన స్థలకాలం ఫలితమని గుర్తించు.
+**User-friendly description (te):** సాధారణ సాపేక్షతలో గురుత్వాకర్షణ వంగిన స్థలకాలం ఫలితమని గుర్తించండి.
 
 ##### పరిశీలకుల సాపేక్ష చలనం ఆధారంగా కాలగమనం మారడాన్ని వివరించడం
 
@@ -1286,7 +1286,7 @@ Skills: 5
 
 **Methodological description (English):** Using a conceptual model, explain why observers moving relative to one another may measure a time interval differently; this is a physical principle, not an animation-use skill.
 
-**User-friendly description (te):** ఒకరికొకరు సాపేక్షంగా కదిలే పరిశీలకులు వేర్వేరు కాల వ్యవధులను ఎందుకు కొలవవచ్చో తెలుసుకో.
+**User-friendly description (te):** ఒకరికొకరు సాపేక్షంగా కదిలే పరిశీలకులు వేర్వేరు కాల వ్యవధులను ఎందుకు కొలవవచ్చో తెలుసుకోండి.
 
 ##### కాలగమనంపై గురుత్వాకర్షణ ప్రభావాన్ని వివరించడం
 
@@ -1294,7 +1294,7 @@ Skills: 5
 
 **Methodological description (English):** The relative rates of clocks can depend on gravitational potential and observation conditions; this is a physical effect of general relativity.
 
-**User-friendly description (te):** గురుత్వాకర్షణ గడియారాల సాపేక్ష నడక వేగాన్ని ఎలా మార్చగలదో తెలుసుకో.
+**User-friendly description (te):** గురుత్వాకర్షణ గడియారాల సాపేక్ష నడక వేగాన్ని ఎలా మార్చగలదో తెలుసుకోండి.
 
 ##### గురుత్వాకర్షణ వల్ల కాంతి వంగడాన్ని వివరించడం
 
@@ -1302,7 +1302,7 @@ Skills: 5
 
 **Methodological description (English):** Near massive bodies, spacetime geometry changes light trajectories; this is not refraction at the boundary of two optical media.
 
-**User-friendly description (te):** ఇది సాధారణ కాంతి వక్రీభవనం కాకుండానే గురుత్వాకర్షణ కాంతి మార్గాన్ని ఎలా వంచుతుందో వివరించు.
+**User-friendly description (te):** ఇది సాధారణ కాంతి వక్రీభవనం కాకుండానే గురుత్వాకర్షణ కాంతి మార్గాన్ని ఎలా వంచుతుందో వివరించండి.
 
 ##### శూన్యంలో కాంతి వేగం స్థిరత్వాన్ని ప్రత్యేక సాపేక్షత సూత్రంగా గుర్తించడం
 
@@ -1310,7 +1310,7 @@ Skills: 5
 
 **Methodological description (English):** Using qualitative models, distinguish the invariant speed of light in vacuum for inertial observers from ordinary addition of speeds of everyday objects.
 
-**User-friendly description (te):** ప్రత్యేక సాపేక్షతలో శూన్యంలో కాంతి వేగం అన్ని జడత్వ పరిశీలకులకు ఒకేలా ఉంటుందని అర్థం చేసుకో.
+**User-friendly description (te):** ప్రత్యేక సాపేక్షతలో శూన్యంలో కాంతి వేగం అన్ని జడత్వ పరిశీలకులకు ఒకేలా ఉంటుందని అర్థం చేసుకోండి.
 
 ### అణు భౌతిక శాస్త్రం
 
@@ -1458,7 +1458,7 @@ Skills: 3
 
 **Methodological description (English):** Relate a shadow to the blocking of light by an opaque object.
 
-**User-friendly description (te):** అపారదర్శక వస్తువు కాంతిని అడ్డుకుని నీడను ఎలా ఏర్పరుస్తుందో వివరించు.
+**User-friendly description (te):** అపారదర్శక వస్తువు కాంతిని అడ్డుకుని నీడను ఎలా ఏర్పరుస్తుందో వివరించండి.
 
 ##### నీడ పరిమాణ మార్పులను అంచనా వేయడం
 
@@ -1466,7 +1466,7 @@ Skills: 3
 
 **Methodological description (English):** Determine how changing their relative positions affects shadow size.
 
-**User-friendly description (te):** కాంతి మూలం లేదా వస్తువు కదిలితే నీడ పరిమాణం ఎలా మారుతుందో అర్థం చేసుకో.
+**User-friendly description (te):** కాంతి మూలం లేదా వస్తువు కదిలితే నీడ పరిమాణం ఎలా మారుతుందో అర్థం చేసుకోండి.
 
 ##### నీడ స్థానం అంచనా వేయడం
 
@@ -1474,7 +1474,7 @@ Skills: 3
 
 **Methodological description (English):** Predict where a shadow forms given the positions of the source and object.
 
-**User-friendly description (te):** వస్తువు ఏ వైపున నీడ ఏర్పడుతుందో అంచనా వేయి.
+**User-friendly description (te):** వస్తువు ఏ వైపున నీడ ఏర్పడుతుందో అంచనా వేయండి.
 
 #### కాంతి పరావర్తనం
 
@@ -1484,7 +1484,7 @@ Skills: 2
 
 **Methodological description (English):** A surface changes the direction of a light ray; mirrors provide a visible model of this behavior.
 
-**User-friendly description (te):** కాంతి పరావర్తన ఉపరితలాన్ని తాకినప్పుడు దిశ ఎలా మారుతుందో తెలుసుకో.
+**User-friendly description (te):** కాంతి పరావర్తన ఉపరితలాన్ని తాకినప్పుడు దిశ ఎలా మారుతుందో తెలుసుకోండి.
 
 ##### పరావర్తన కిరణం దిశను అంచనా వేయడం
 
@@ -1492,7 +1492,7 @@ Skills: 2
 
 **Methodological description (English):** According to the law of reflection, the angle between the ray and the surface normal is the same for incident and reflected rays.
 
-**User-friendly description (te):** ఉపరితల లంబరేఖతో పోల్చి పరావర్తన కోణాన్ని అంచనా వేయి.
+**User-friendly description (te):** ఉపరితల లంబరేఖతో పోల్చి పరావర్తన కోణాన్ని అంచనా వేయండి.
 
 ##### కాంతి పరావర్తనాన్ని గుర్తించడం
 
@@ -1500,7 +1500,7 @@ Skills: 2
 
 **Methodological description (English):** Identify situations in which light returns from a surface.
 
-**User-friendly description (te):** కాంతి ఉపరితలం నుంచి ఎప్పుడు తిరిగి పరావర్తనం అవుతుందో గుర్తించు.
+**User-friendly description (te):** కాంతి ఉపరితలం నుంచి ఎప్పుడు తిరిగి పరావర్తనం అవుతుందో గుర్తించండి.
 
 #### కాంతి మూలాలు మరియు దృశ్యమానత
 
@@ -1510,7 +1510,7 @@ Skills: 3
 
 **Methodological description (English):** An object is visible when light from it reaches the eye; a light source and an illuminated surface play different roles.
 
-**User-friendly description (te):** కొన్ని వస్తువులు స్వయంగా కాంతిని విడుదల చేస్తే మరికొన్ని పరావర్తన కాంతితో ఎందుకు కనిపిస్తాయో తెలుసుకో.
+**User-friendly description (te):** కొన్ని వస్తువులు స్వయంగా కాంతిని విడుదల చేస్తే మరికొన్ని పరావర్తన కాంతితో ఎందుకు కనిపిస్తాయో తెలుసుకోండి.
 
 ##### సహజ, కృత్రిమ కాంతి మూలాలను వర్గీకరించడం
 
@@ -1518,7 +1518,7 @@ Skills: 3
 
 **Methodological description (English):** Group light sources according to their origin.
 
-**User-friendly description (te):** సహజ, మానవ నిర్మిత కాంతి మూలాలను గుర్తించు.
+**User-friendly description (te):** సహజ, మానవ నిర్మిత కాంతి మూలాలను గుర్తించండి.
 
 ##### కాంతి మూలం, కాంతి పడిన వస్తువు మధ్య తేడా గుర్తించడం
 
@@ -1526,7 +1526,7 @@ Skills: 3
 
 **Methodological description (English):** Recognize a body that emits light and one that reflects it.
 
-**User-friendly description (te):** కాంతిని విడుదల చేసే వస్తువును, ఆ కాంతితో వెలిగే వస్తువును వేరు చేయి.
+**User-friendly description (te):** కాంతిని విడుదల చేసే వస్తువును, ఆ కాంతితో వెలిగే వస్తువును వేరు చేయండి.
 
 ##### వస్తువు కనిపించడానికి అవసరమైన పరిస్థితిని వివరించడం
 
@@ -1534,7 +1534,7 @@ Skills: 3
 
 **Methodological description (English):** Identify the need for light from an object to reach the eye.
 
-**User-friendly description (te):** వస్తువు నుంచి వచ్చే కాంతి కంటికి చేరినప్పుడే అది ఎందుకు కనిపిస్తుందో వివరించు.
+**User-friendly description (te):** వస్తువు నుంచి వచ్చే కాంతి కంటికి చేరినప్పుడే అది ఎందుకు కనిపిస్తుందో వివరించండి.
 
 #### వక్రీభవనం మరియు కటకాలు
 
@@ -1544,7 +1544,7 @@ Skills: 2
 
 **Methodological description (English):** Moving between media and the shape of a lens affect ray direction and image formation.
 
-**User-friendly description (te):** కాంతి వేర్వేరు పదార్థాల మధ్య, కటకాల గుండా వెళ్లేటప్పుడు ఎలా వంగుతుందో తెలుసుకో.
+**User-friendly description (te):** కాంతి వేర్వేరు పదార్థాల మధ్య, కటకాల గుండా వెళ్లేటప్పుడు ఎలా వంగుతుందో తెలుసుకోండి.
 
 ##### అభిసారి, అపసారి కటకాలను వేరుచేయడం
 
@@ -1552,7 +1552,7 @@ Skills: 2
 
 **Methodological description (English):** Use a simulation to observe how different lenses change the directions of light rays passing through them.
 
-**User-friendly description (te):** కాంతి కిరణాలను కూడగట్టే కటకాలను, చెల్లాచెదురు చేసే కటకాలతో పోల్చు.
+**User-friendly description (te):** కాంతి కిరణాలను కూడగట్టే కటకాలను, చెల్లాచెదురు చేసే కటకాలతో పోల్చండి.
 
 ##### రెండు మాధ్యమాల సరిహద్దులో కాంతి వక్రీభవనాన్ని వివరించడం
 
@@ -1560,7 +1560,7 @@ Skills: 2
 
 **Methodological description (English):** When light passes between media with different optical properties, its speed changes and, at oblique incidence, so does the direction of the light wave.
 
-**User-friendly description (te):** రెండు మాధ్యమాల సరిహద్దులో కాంతి దిశ ఎలా మారవచ్చో వివరించు.
+**User-friendly description (te):** రెండు మాధ్యమాల సరిహద్దులో కాంతి దిశ ఎలా మారవచ్చో వివరించండి.
 
 #### పారదర్శకత
 
@@ -1570,7 +1570,7 @@ Skills: 1
 
 **Methodological description (English):** Transparency characterizes the transmission, absorption, and scattering of visible light by a material and its ability to transmit an image.
 
-**User-friendly description (te):** వేర్వేరు పదార్థాలు ఎంత కాంతిని ఎంత స్పష్టంగా పంపిస్తాయో తెలుసుకో.
+**User-friendly description (te):** వేర్వేరు పదార్థాలు ఎంత కాంతిని ఎంత స్పష్టంగా పంపిస్తాయో తెలుసుకోండి.
 
 ##### పారదర్శకత ఆధారంగా పదార్థాలను వర్గీకరించడం
 
@@ -1578,7 +1578,7 @@ Skills: 1
 
 **Methodological description (English):** Distinguish transparent, translucent, and opaque materials by their ability to transmit light and form a clear image through the material.
 
-**User-friendly description (te):** పారదర్శక, అర్ధపారదర్శక, అపారదర్శక పదార్థాలను వేరు చేయి.
+**User-friendly description (te):** పారదర్శక, అర్ధపారదర్శక, అపారదర్శక పదార్థాలను వేరు చేయండి.
 
 ### వికిరణం
 
@@ -1588,7 +1588,7 @@ Groups: 2 · Skills: 5
 
 **Methodological description (English):** Radiation describes energy transfer from a source through space, including invisible parts of the electromagnetic spectrum and their interaction with matter. Geometric image formation with light belongs to Optics.
 
-**User-friendly description (te):** విద్యుదయస్కాంత వికిరణం, పదార్థంతో దాని పరస్పర చర్యలను తెలుసుకో.
+**User-friendly description (te):** విద్యుదయస్కాంత వికిరణం, పదార్థంతో దాని పరస్పర చర్యలను తెలుసుకోండి.
 
 #### విద్యుదయస్కాంత వికిరణం
 
@@ -1598,7 +1598,7 @@ Skills: 3
 
 **Methodological description (English):** Radio waves, infrared, visible, and ultraviolet radiation are different regions of the electromagnetic spectrum.
 
-**User-friendly description (te):** విద్యుదయస్కాంత వర్ణపటంలోని కనిపించే, కనిపించని ప్రాంతాలను తెలుసుకో.
+**User-friendly description (te):** విద్యుదయస్కాంత వర్ణపటంలోని కనిపించే, కనిపించని ప్రాంతాలను తెలుసుకోండి.
 
 ##### కనిపించే, కనిపించని విద్యుదయస్కాంత వికిరణాన్ని వేరు చేయడం
 
@@ -1606,7 +1606,7 @@ Skills: 3
 
 **Methodological description (English):** Use lamp light, infrared radiation, and radio waves to demonstrate that not all radiation can be detected by the eye.
 
-**User-friendly description (te):** రేడియో తరంగాలు, పరారుణ వికిరణం మన కళ్లకు కనిపించవని గుర్తించు.
+**User-friendly description (te):** రేడియో తరంగాలు, పరారుణ వికిరణం మన కళ్లకు కనిపించవని గుర్తించండి.
 
 ##### గాలి లేకుండానే విద్యుదయస్కాంత తరంగాలు వ్యాపించడాన్ని వివరించడం
 
@@ -1614,7 +1614,7 @@ Skills: 3
 
 **Methodological description (English):** Use sunlight to explain why electromagnetic radiation can propagate through the vacuum of space.
 
-**User-friendly description (te):** విద్యుదయస్కాంత తరంగాలు అంతరిక్ష శూన్యంలో ఎందుకు ప్రయాణించగలవో వివరించు.
+**User-friendly description (te):** విద్యుదయస్కాంత తరంగాలు అంతరిక్ష శూన్యంలో ఎందుకు ప్రయాణించగలవో వివరించండి.
 
 ##### తెలిసిన వికిరణ రకాలను విద్యుదయస్కాంత వర్ణపటంతో అనుసంధానించడం
 
@@ -1622,7 +1622,7 @@ Skills: 3
 
 **Methodological description (English):** Radio waves, infrared, visible, and ultraviolet radiation occupy positions in the spectrum according to frequency and wavelength; visibility does not determine their physical nature.
 
-**User-friendly description (te):** తెలిసిన వికిరణ రకాలు విద్యుదయస్కాంత వర్ణపటంలో ఎక్కడున్నాయో గుర్తించు.
+**User-friendly description (te):** తెలిసిన వికిరణ రకాలు విద్యుదయస్కాంత వర్ణపటంలో ఎక్కడున్నాయో గుర్తించండి.
 
 #### వికిరణం మరియు పదార్థం
 
@@ -1632,7 +1632,7 @@ Skills: 2
 
 **Methodological description (English):** Materials can emit, reflect, transmit, or absorb energy; the outcomes depend on the type of radiation and the properties of matter.
 
-**User-friendly description (te):** పదార్థాలు వికిరణాన్ని ఎలా శోషించి, విడుదల చేసి, పరావర్తనం చేసి లేదా ప్రసారం చేస్తాయో తెలుసుకో.
+**User-friendly description (te):** పదార్థాలు వికిరణాన్ని ఎలా శోషించి, విడుదల చేసి, పరావర్తనం చేసి లేదా ప్రసారం చేస్తాయో తెలుసుకోండి.
 
 ##### శక్తి ఉద్గారాన్ని, అందిన కాంతి పరావర్తనం నుంచి వేరుచేయడం
 
@@ -1640,7 +1640,7 @@ Skills: 2
 
 **Methodological description (English):** Using the Sun and Moon, explain that a source emits energy while an illuminated body can reflect it.
 
-**User-friendly description (te):** మూలం విడుదల చేసే కాంతిని, వస్తువు పరావర్తనం చేసే కాంతి నుంచి వేరు చేయి.
+**User-friendly description (te):** మూలం విడుదల చేసే కాంతిని, వస్తువు పరావర్తనం చేసే కాంతి నుంచి వేరు చేయండి.
 
 ##### వికిరణ శోషణ వల్ల వేడెక్కడాన్ని వివరించడం
 
@@ -1648,7 +1648,7 @@ Skills: 2
 
 **Methodological description (English):** Using two surfaces in sunlight, relate differences in heating to energy absorption.
 
-**User-friendly description (te):** ఒకే వికిరణం అందినా వేర్వేరు ఉపరితలాలు ఎందుకు వేర్వేరుగా వేడెక్కుతాయో వివరించు.
+**User-friendly description (te):** ఒకే వికిరణం అందినా వేర్వేరు ఉపరితలాలు ఎందుకు వేర్వేరుగా వేడెక్కుతాయో వివరించండి.
 
 ### ఉష్ణగతిక శాస్త్రం
 

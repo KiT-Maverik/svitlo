@@ -22,7 +22,7 @@ Groups: 8 · Skills: 31
 
 **Methodological description (English):** Electric charges, currents, and magnetic fields describe related interactions; electricity and magnetism share underlying principles but begin with different observations.
 
-**User-friendly description (he):** חקור כיצד מטענים חשמליים, זרמים ושדות מגנטיים פועלים זה על זה.
+**User-friendly description (he):** חקרו כיצד מטענים חשמליים, זרמים ושדות מגנטיים פועלים זה על זה.
 
 #### מוליכים ומבודדים
 
@@ -32,7 +32,7 @@ Skills: 2
 
 **Methodological description (English):** Materials differ in how readily they permit electric charge to move; distinguish an electrical property of a material from a device's purpose.
 
-**User-friendly description (he):** גלה מדוע מטענים נעים בקלות רבה יותר בחומרים מסוימים.
+**User-friendly description (he):** גלו מדוע מטענים נעים בקלות רבה יותר בחומרים מסוימים.
 
 ##### זיהוי חומרים מוליכי חשמל
 
@@ -40,7 +40,7 @@ Skills: 2
 
 **Methodological description (English):** Determine experimentally which materials complete a low-voltage circuit.
 
-**User-friendly description (he):** בדוק אילו חומרים מוליכים חשמל באמצעות מעגל בטוח במתח נמוך.
+**User-friendly description (he):** בדקו אילו חומרים מוליכים חשמל באמצעות מעגל בטוח במתח נמוך.
 
 ##### זיהוי חומרים מבודדי חשמל
 
@@ -48,7 +48,7 @@ Skills: 2
 
 **Methodological description (English):** Determine experimentally which materials impede the flow of current.
 
-**User-friendly description (he):** זהה חומרים שמונעים או מגבילים מאוד זרם חשמלי.
+**User-friendly description (he):** זהו חומרים שמונעים או מגבילים מאוד זרם חשמלי.
 
 #### זרם, מתח והתנגדות
 
@@ -58,7 +58,7 @@ Skills: 5
 
 **Methodological description (English):** Current describes the flow of electric charge, voltage is a potential difference, and resistance is opposition to current under specified physical conditions.
 
-**User-friendly description (he):** גלה כיצד זרם, מתח, התנגדות והספק מתארים מעגלים חשמליים.
+**User-friendly description (he):** גלו כיצד זרם, מתח, התנגדות והספק מתארים מעגלים חשמליים.
 
 ##### הסבר על זרם חשמלי
 
@@ -66,7 +66,7 @@ Skills: 5
 
 **Methodological description (English):** Electric current involves directed transport of charge, not merely random motion of charge carriers.
 
-**User-friendly description (he):** הבן זרם חשמלי כתנועה מכוונת של מטען.
+**User-friendly description (he):** הבינו זרם חשמלי כתנועה מכוונת של מטען.
 
 ##### הסבר על מתח חשמלי
 
@@ -74,7 +74,7 @@ Skills: 5
 
 **Methodological description (English):** Voltage specifies the difference in electric potential between two points and is not current itself.
 
-**User-friendly description (he):** הסבר מתח כהפרש פוטנציאלים חשמליים בין שתי נקודות.
+**User-friendly description (he):** הסבירו מתח כהפרש פוטנציאלים חשמליים בין שתי נקודות.
 
 ##### הסבר על הספק חשמלי
 
@@ -82,7 +82,7 @@ Skills: 5
 
 **Methodological description (English):** Electrical power describes the rate of electrical energy transfer or transformation.
 
-**User-friendly description (he):** הבן שהספק חשמלי הוא קצב העברת האנרגיה.
+**User-friendly description (he):** הבינו שהספק חשמלי הוא קצב העברת האנרגיה.
 
 ##### הסבר על התנגדות חשמלית
 
@@ -90,7 +90,7 @@ Skills: 5
 
 **Methodological description (English):** Resistance determines the relationship between voltage and current under given conditions and depends on conductor material and geometry.
 
-**User-friendly description (he):** חקור כיצד התנגדות משפיעה על הזרם בתנאים נתונים.
+**User-friendly description (he):** חקרו כיצד התנגדות משפיעה על הזרם בתנאים נתונים.
 
 ##### הסבר על חוק אוהם למוליך אוהמי
 
@@ -98,7 +98,7 @@ Skills: 5
 
 **Methodological description (English):** Under constant conditions, the current through an ohmic conductor is directly proportional to voltage; this law does not describe every component without exception.
 
-**User-friendly description (he):** השתמש בחוק אוהם עבור מוליכים אוהמיים בתנאים קבועים.
+**User-friendly description (he):** השתמשו בחוק אוהם עבור מוליכים אוהמיים בתנאים קבועים.
 
 #### שדות חשמליים ומגנטיים
 
@@ -108,7 +108,7 @@ Skills: 3
 
 **Methodological description (English):** Fields describe interactions involving electric charges and magnetic systems without direct contact, but their physical effects differ.
 
-**User-friendly description (he):** למד כיצד שדות חשמליים ומגנטיים מפעילים סוגים שונים של כוחות.
+**User-friendly description (he):** למדו כיצד שדות חשמליים ומגנטיים מפעילים סוגים שונים של כוחות.
 
 ##### הבחנה בין שדות חשמליים ומגנטיים
 
@@ -116,7 +116,7 @@ Skills: 3
 
 **Methodological description (English):** An electric field can act on a stationary charge, whereas the magnetic component of the force on a charge depends on its motion.
 
-**User-friendly description (he):** הבחן בין כוח חשמלי על מטען נייח לבין כוח מגנטי על מטען נע.
+**User-friendly description (he):** הבחינו בין כוח חשמלי על מטען נייח לבין כוח מגנטי על מטען נע.
 
 ##### הסבר על השדה החשמלי
 
@@ -124,7 +124,7 @@ Skills: 3
 
 **Methodological description (English):** An electric field determines the force on an electric charge and exists independently of a test charge.
 
-**User-friendly description (he):** הבן כיצד שדה חשמלי משפיע על מטען ללא מגע ישיר.
+**User-friendly description (he):** הבינו כיצד שדה חשמלי משפיע על מטען ללא מגע ישיר.
 
 ##### הסבר על השדה המגנטי
 
@@ -132,7 +132,7 @@ Skills: 3
 
 **Methodological description (English):** A magnetic field can act on moving charges and magnetic systems; the direction and magnitude of its effects depend on conditions.
 
-**User-friendly description (he):** הסבר כיצד שדות מגנטיים משפיעים על מטענים נעים ועל עצמים מגנטיים.
+**User-friendly description (he):** הסבירו כיצד שדות מגנטיים משפיעים על מטענים נעים ועל עצמים מגנטיים.
 
 #### מטענים חשמליים ויחסי גומלין
 
@@ -142,7 +142,7 @@ Skills: 3
 
 **Methodological description (English):** Electrification, interactions between charged bodies, and charge transfer obey conservation of electric charge. Electric interaction can occur without direct contact.
 
-**User-friendly description (he):** למד כיצד מטענים חשמליים מועברים ומפעילים כוחות.
+**User-friendly description (he):** למדו כיצד מטענים חשמליים מועברים ומפעילים כוחות.
 
 ##### הבחנה בין משיכה לדחייה בין מטענים חשמליים
 
@@ -150,7 +150,7 @@ Skills: 3
 
 **Methodological description (English):** Like charges repel and unlike charges attract; electric interaction is distinct from magnetic interaction.
 
-**User-friendly description (he):** הבחן בין משיכת מטענים מנוגדים לדחיית מטענים מאותו סימן.
+**User-friendly description (he):** הבחינו בין משיכת מטענים מנוגדים לדחיית מטענים מאותו סימן.
 
 ##### הסבר על שימור מטען חשמלי
 
@@ -158,7 +158,7 @@ Skills: 3
 
 **Methodological description (English):** The total charge of an isolated system is conserved during charge transfer and physical interactions.
 
-**User-friendly description (he):** הסבר מדוע המטען החשמלי הכולל נשאר קבוע בזמן העברתו.
+**User-friendly description (he):** הסבירו מדוע המטען החשמלי הכולל נשאר קבוע בזמן העברתו.
 
 ##### זיהוי טעינה חשמלית בשפשוף
 
@@ -166,7 +166,7 @@ Skills: 3
 
 **Methodological description (English):** Using a safe balloon or comb model, connect friction with electrostatic effects rather than attributing them to magnetic attraction.
 
-**User-friendly description (he):** זהה כיצד שפשוף עצמים מסוימים יוצר תופעות אלקטרוסטטיות.
+**User-friendly description (he):** זהו כיצד שפשוף עצמים מסוימים יוצר תופעות אלקטרוסטטיות.
 
 #### מעגלים חשמליים
 
@@ -176,7 +176,7 @@ Skills: 9
 
 **Methodological description (English):** An electric circuit needs a conducting path, a source, and components whose interactions determine the operation of a safe model.
 
-**User-friendly description (he):** גלה כיצד מקורות מתח, מפסקים וצרכנים פועלים יחד במעגלים פשוטים.
+**User-friendly description (he):** גלו כיצד מקורות מתח, מפסקים וצרכנים פועלים יחד במעגלים פשוטים.
 
 ##### הסבר על מעגל פתוח
 
@@ -184,7 +184,7 @@ Skills: 9
 
 **Methodological description (English):** Opening a branch interrupts its conducting path; in a circuit with parallel branches, other parts may continue to operate.
 
-**User-friendly description (he):** הסבר מה קורה כאשר מסלול הזרם נקטע.
+**User-friendly description (he):** הסבירו מה קורה כאשר מסלול הזרם נקטע.
 
 ##### הסבר על איזון הזרם בצומת חשמלי
 
@@ -192,7 +192,7 @@ Skills: 9
 
 **Methodological description (English):** Under steady current, charge does not accumulate at a node; the total current entering equals the total current leaving.
 
-**User-friendly description (he):** הסבר מדוע במצב יציב סכום הזרמים הנכנסים לצומת שווה לסכום היוצאים.
+**User-friendly description (he):** הסבירו מדוע במצב יציב סכום הזרמים הנכנסים לצומת שווה לסכום היוצאים.
 
 ##### הסבר על חיבור מקבילי של רכיבים במעגל
 
@@ -200,7 +200,7 @@ Skills: 9
 
 **Methodological description (English):** Parallel branches connect to the same two nodes, so each has the same voltage and the total current is divided among the branches. Opening one branch does not necessarily stop current in the others.
 
-**User-friendly description (he):** הבן שבענפים מקבילים המתח זהה והזרם מתחלק בין הענפים.
+**User-friendly description (he):** הבינו שבענפים מקבילים המתח זהה והזרם מתחלק בין הענפים.
 
 ##### הסבר על חיבור טורי של רכיבים במעגל
 
@@ -208,7 +208,7 @@ Skills: 9
 
 **Methodological description (English):** Components connected in series share a common current path: the same current passes through each, and the total voltage across the combination is the sum of the voltages across the individual components. Breaking the single path stops current through all those components.
 
-**User-friendly description (he):** חקור כיצד אותו זרם עובר בכל הרכיבים הנמצאים במסלול יחיד במעגל טורי.
+**User-friendly description (he):** חקרו כיצד אותו זרם עובר בכל הרכיבים הנמצאים במסלול יחיד במעגל טורי.
 
 ##### זיהוי צרכן אנרגיה חשמלית
 
@@ -216,7 +216,7 @@ Skills: 9
 
 **Methodological description (English):** An electrical load converts received electrical energy into thermal, mechanical, light, or other forms, rather than merely "using current."
 
-**User-friendly description (he):** זהה צרכנים שממירים אנרגיה חשמלית לצורות אחרות.
+**User-friendly description (he):** זהו צרכנים שממירים אנרגיה חשמלית לצורות אחרות.
 
 ##### זיהוי מקור אנרגיה חשמלית
 
@@ -224,7 +224,7 @@ Skills: 9
 
 **Methodological description (English):** A source maintains a potential difference between its terminals and converts other forms of energy into electrical energy, unlike a passive conductor.
 
-**User-friendly description (he):** זהה את הרכיב השומר על הפרש פוטנציאלים במעגל.
+**User-friendly description (he):** זהו את הרכיב השומר על הפרש פוטנציאלים במעגל.
 
 ##### זיהוי תפקיד מפסק
 
@@ -232,7 +232,7 @@ Skills: 9
 
 **Methodological description (English):** A switch changes the state of a conducting path and can interrupt current in a particular branch, but it is not itself an energy source.
 
-**User-friendly description (he):** הסבר כיצד מפסק מחבר או מנתק מסלול זרם.
+**User-friendly description (he):** הסבירו כיצד מפסק מחבר או מנתק מסלול זרם.
 
 ##### חיזוי השפעת מפסק במעגל
 
@@ -240,7 +240,7 @@ Skills: 9
 
 **Methodological description (English):** The consequences of switching depend on where the switch is placed relative to the source, loads, and parallel paths.
 
-**User-friendly description (he):** חזה אילו חלקים במעגל המפסק יפעיל או יכבה.
+**User-friendly description (he):** חזו אילו חלקים במעגל המפסק יפעיל או יכבה.
 
 ##### זיהוי מעגל חשמלי סגור
 
@@ -248,7 +248,7 @@ Skills: 9
 
 **Methodological description (English):** A closed circuit has a continuous conducting path; sustained current also requires a source of electromotive force.
 
-**User-friendly description (he):** זהה מעגל שיש בו מסלול הולכה רציף.
+**User-friendly description (he):** זהו מעגל שיש בו מסלול הולכה רציף.
 
 #### אלקטרומגנטים והשראה
 
@@ -258,7 +258,7 @@ Skills: 2
 
 **Methodological description (English):** Electric current can create a magnetic field, and changing magnetic conditions can produce electrical effects, explaining many systems.
 
-**User-friendly description (he):** גלה כיצד זרמים יוצרים שדות מגנטיים ושדות משתנים משרים זרמים חשמליים.
+**User-friendly description (he):** גלו כיצד זרמים יוצרים שדות מגנטיים ושדות משתנים משרים זרמים חשמליים.
 
 ##### הסבר על היווצרות זרם מושרה
 
@@ -266,7 +266,7 @@ Skills: 2
 
 **Methodological description (English):** A changing magnetic flux through a closed conducting loop can induce an electromotive force and current; constant flux by itself does not generate current.
 
-**User-friendly description (he):** זהה מתי שינוי בשטף מגנטי יוצר זרם מושרה.
+**User-friendly description (he):** זהו מתי שינוי בשטף מגנטי יוצר זרם מושרה.
 
 ##### הסבר על ההשפעה המגנטית של זרם חשמלי
 
@@ -274,7 +274,7 @@ Skills: 2
 
 **Methodological description (English):** Moving electric charges create a magnetic field; changing the current changes the field it produces and the associated magnetic interactions.
 
-**User-friendly description (he):** הסבר מדוע זרם חשמלי יוצר שדה מגנטי.
+**User-friendly description (he):** הסבירו מדוע זרם חשמלי יוצר שדה מגנטי.
 
 #### השפעות מגנטיות במערכות פיזיקליות
 
@@ -284,7 +284,7 @@ Skills: 1
 
 **Methodological description (English):** Magnetic forces in real systems are explained by fields and material properties; choosing an engineering design belongs to Engineering.
 
-**User-friendly description (he):** חקור את השפעת השדות המגנטיים על מערכות פיזיקליות.
+**User-friendly description (he):** חקרו את השפעת השדות המגנטיים על מערכות פיזיקליות.
 
 ##### הסבר על תפקידו הפיזיקלי של שדה מגנטי במערכת
 
@@ -292,7 +292,7 @@ Skills: 1
 
 **Methodological description (English):** Determine how magnetic interaction affects a system's motion or state without proceeding to select a technical component.
 
-**User-friendly description (he):** הסבר כיצד שדה מגנטי משפיע על תנועה או על מצב פיזיקלי אחר.
+**User-friendly description (he):** הסבירו כיצד שדה מגנטי משפיע על תנועה או על מצב פיזיקלי אחר.
 
 #### תכונות מגנטיות ויחסי גומלין
 
@@ -302,7 +302,7 @@ Skills: 6
 
 **Methodological description (English):** Materials and pole orientation affect interactions; direct contact between magnets is not required.
 
-**User-friendly description (he):** גלה כיצד חומרים מגנטיים וקטבים פועלים זה על זה.
+**User-friendly description (he):** גלו כיצד חומרים מגנטיים וקטבים פועלים זה על זה.
 
 ##### מיון עצמים לפי אינטראקציה מגנטית
 
@@ -310,7 +310,7 @@ Skills: 6
 
 **Methodological description (English):** Classification is based on the direction and magnitude of a material's magnetic response under relevant conditions; this is not the same as determining whether it has its own magnetic field.
 
-**User-friendly description (he):** מיין עצמים לפי התגובה המגנטית שהם מציגים.
+**User-friendly description (he):** מיינו עצמים לפי התגובה המגנטית שהם מציגים.
 
 ##### הסבר על פעולה מגנטית ללא מגע
 
@@ -318,7 +318,7 @@ Skills: 6
 
 **Methodological description (English):** Recognize magnetic force as an interaction that does not require direct contact.
 
-**User-friendly description (he):** הסבר מדוע מגנט יכול להפעיל כוח בלי לגעת בעצם.
+**User-friendly description (he):** הסבירו מדוע מגנט יכול להפעיל כוח בלי לגעת בעצם.
 
 ##### זיהוי חומרים הנמשכים למגנט
 
@@ -326,7 +326,7 @@ Skills: 6
 
 **Methodological description (English):** The observable effect of a magnetic field on a material depends on its magnetic properties; not all metals are attracted equally.
 
-**User-friendly description (he):** זהה חומרים המגיבים בחוזקה לשדות מגנטיים.
+**User-friendly description (he):** זהו חומרים המגיבים בחוזקה לשדות מגנטיים.
 
 ##### חיזוי אינטראקציות בין קטבים מגנטיים
 
@@ -334,7 +334,7 @@ Skills: 6
 
 **Methodological description (English):** Determine attraction or repulsion from a known arrangement of poles.
 
-**User-friendly description (he):** חזה מה קורה כשמקרבים קטבים מגנטיים ידועים זה לזה.
+**User-friendly description (he):** חזו מה קורה כשמקרבים קטבים מגנטיים ידועים זה לזה.
 
 ##### זיהוי משיכה מגנטית
 
@@ -342,7 +342,7 @@ Skills: 6
 
 **Methodological description (English):** Identify a situation in which magnets move toward one another due to their interaction.
 
-**User-friendly description (he):** זהה מצבים שבהם מגנטים מושכים זה את זה.
+**User-friendly description (he):** זהו מצבים שבהם מגנטים מושכים זה את זה.
 
 ##### זיהוי דחייה מגנטית
 
@@ -350,7 +350,7 @@ Skills: 6
 
 **Methodological description (English):** Identify a situation in which magnets move apart due to their interaction.
 
-**User-friendly description (he):** זהה מצבים שבהם מגנטים דוחים זה את זה.
+**User-friendly description (he):** זהו מצבים שבהם מגנטים דוחים זה את זה.
 
 ### אנרגיה
 
@@ -636,13 +636,13 @@ Skills: 4
 
 **User-friendly description (he):** גלו כיצד לחץ נוזלים וגזים פועל ומשתנה בהתאם לתנאים.
 
-##### הסבר העברת לחץ בנוזל כלוא
+##### הסבר העברת לחץ בנוזל הכלוא בכלי סגור
 
 [explainPressureTransmissionInAnEnclosedLiquid.data.ts](../../../learningApps/physics/data/skills/fluidMechanics/pressureInLiquidsAndGases/skills/explainPressureTransmissionInAnEnclosedLiquid.data.ts)
 
 **Methodological description (English):** A pressure change applied to an enclosed liquid at rest is transmitted in every direction, unlike the variation of hydrostatic pressure with depth.
 
-**User-friendly description (he):** הסבירו כיצד שינוי בלחץ עובר דרך נוזל כלוא.
+**User-friendly description (he):** הסבירו כיצד שינוי לחץ מועבר לכל הכיוונים בנוזל במנוחה הכלוא בכלי סגור.
 
 ##### הסבר מדוע לחץ המים גדל עם העומק
 
@@ -1320,7 +1320,7 @@ Groups: 3 · Skills: 10
 
 **Methodological description (English):** Particle models help explain physical properties and changes in states of matter. Unlike chemistry, this Domain focuses on particle movement, interactions, and arrangement rather than chemical reactions.
 
-**User-friendly description (he):** חקור כיצד תנועה וסידור של חלקיקים מסבירים את התנהגות החומר.
+**User-friendly description (he):** חקרו כיצד תנועה וסידור של חלקיקים מסבירים את התנהגות החומר.
 
 #### דיפוזיה וערבוב
 
@@ -1330,7 +1330,7 @@ Skills: 1
 
 **Methodological description (English):** Random thermal motion can cause particles to spread gradually without deliberate stirring.
 
-**User-friendly description (he):** גלה כיצד תנועה אקראית של חלקיקים גורמת לחומרים להתפשט ולהתערבב.
+**User-friendly description (he):** גלו כיצד תנועה אקראית של חלקיקים גורמת לחומרים להתפשט ולהתערבב.
 
 ##### הסבר על דיפוזיה
 
@@ -1338,7 +1338,7 @@ Skills: 1
 
 **Methodological description (English):** Diffusion results from particles' thermal motion and the gradual equalization of their concentrations without the need for macroscopic mixing.
 
-**User-friendly description (he):** הסבר כיצד דיפוזיה יכולה להתרחש גם ללא ערבוב.
+**User-friendly description (he):** הסבירו כיצד דיפוזיה יכולה להתרחש גם ללא ערבוב.
 
 #### תכונות הגזים
 
@@ -1348,7 +1348,7 @@ Skills: 2
 
 **Methodological description (English):** The compressibility of gases and the dependence of their pressure on conditions follow from particle motion and the spaces between particles.
 
-**User-friendly description (he):** חקור את התכונות הפיזיקליות של גזים בעזרת מודל החלקיקים.
+**User-friendly description (he):** חקרו את התכונות הפיזיקליות של גזים בעזרת מודל החלקיקים.
 
 ##### הסבר על דחיסות גזים
 
@@ -1356,7 +1356,7 @@ Skills: 2
 
 **Methodological description (English):** Compressing a gas reduces the average distances between particles while the sizes of the molecules remain virtually unchanged.
 
-**User-friendly description (he):** הבן מדוע ניתן לדחוס גז לנפח קטן יותר.
+**User-friendly description (he):** הבינו מדוע ניתן לדחוס גז לנפח קטן יותר.
 
 ##### הסבר על תלות לחץ הגז בטמפרטורה בנפח קבוע
 
@@ -1364,7 +1364,7 @@ Skills: 2
 
 **Methodological description (English):** At constant volume, increasing a gas's temperature generally increases its pressure because the particles move more vigorously.
 
-**User-friendly description (he):** הסבר מדוע לחץ הגז עולה עם הטמפרטורה כאשר הנפח נשאר קבוע.
+**User-friendly description (he):** הסבירו מדוע לחץ הגז עולה עם הטמפרטורה כאשר הנפח נשאר קבוע.
 
 #### מודל החלקיקים של החומר
 
@@ -1374,7 +1374,7 @@ Skills: 7
 
 **Methodological description (English):** Substances consist of particles with spaces and interactions between them; the model explains properties without requiring complex formulas.
 
-**User-friendly description (he):** למד כיצד חלקיקים בלתי נראים פועלים זה על זה ויוצרים חומרים.
+**User-friendly description (he):** למדו כיצד חלקיקים בלתי נראים פועלים זה על זה ויוצרים חומרים.
 
 ##### השוואת סידור חלקיקים במוצקים, נוזלים וגזים
 
@@ -1382,7 +1382,7 @@ Skills: 7
 
 **Methodological description (English):** Particles in solids mostly oscillate around fixed positions; in liquids, particles can move relative to one another; and in gases they have much greater freedom of movement and characteristic interparticle distances.
 
-**User-friendly description (he):** השווה את סידור החלקיקים במוצקים, בנוזלים ובגזים.
+**User-friendly description (he):** השוו את סידור החלקיקים במוצקים, בנוזלים ובגזים.
 
 ##### הסבר על לחץ גז באמצעות תנועת חלקיקים
 
@@ -1390,7 +1390,7 @@ Skills: 7
 
 **Methodological description (English):** The combined collisions of particles with the vessel walls produce force per unit area, that is, pressure.
 
-**User-friendly description (he):** הסבר כיצד התנגשויות רבות של חלקיקים בדופן יוצרות לחץ.
+**User-friendly description (he):** הסבירו כיצד התנגשויות רבות של חלקיקים בדופן יוצרות לחץ.
 
 ##### הסבר על תנועה תרמית אקראית של חלקיקים
 
@@ -1398,7 +1398,7 @@ Skills: 7
 
 **Methodological description (English):** Particles of matter are constantly moving, but not all at the same speed; the type of motion depends on the physical state.
 
-**User-friendly description (he):** הבן מדוע חלקיקים נעים כל הזמן בדרכים ובמהירויות שונות.
+**User-friendly description (he):** הבינו מדוע חלקיקים נעים כל הזמן בדרכים ובמהירויות שונות.
 
 ##### הסבר על המבנה החלקיקי של החומר
 
@@ -1406,7 +1406,7 @@ Skills: 7
 
 **Methodological description (English):** Demonstrate that even water in a transparent glass consists of particles invisible to the naked eye.
 
-**User-friendly description (he):** הסבר מדוע חומר עשוי מחלקיקים קטנים מכדי לראותם ישירות.
+**User-friendly description (he):** הסבירו מדוע חומר עשוי מחלקיקים קטנים מכדי לראותם ישירות.
 
 ##### הסבר תכונות מצבי צבירה דרך תנועת חלקיקים
 
@@ -1414,7 +1414,7 @@ Skills: 7
 
 **Methodological description (English):** Differences in the arrangement, motion, and interactions of particles explain the properties of solids, liquids, and gases.
 
-**User-friendly description (he):** השתמש בתנועת החלקיקים וביחסי הגומלין ביניהם להסברת תכונות מוצק, נוזל וגז.
+**User-friendly description (he):** השתמשו בתנועת החלקיקים וביחסי הגומלין ביניהם להסברת תכונות מוצק, נוזל וגז.
 
 ##### הסבר על התפשטות תרמית דרך תנועה ויחסי גומלין של חלקיקים
 
@@ -1422,7 +1422,7 @@ Skills: 7
 
 **Methodological description (English):** Heating often changes the average distances between particles, not the sizes of the molecules themselves.
 
-**User-friendly description (he):** הבן מדוע התפשטות משנה בדרך כלל את המרווחים בין חלקיקים ולא את גודלם.
+**User-friendly description (he):** הבינו מדוע התפשטות משנה בדרך כלל את המרווחים בין חלקיקים ולא את גודלם.
 
 ##### קישור תנועת חלקיקים לשינויי טמפרטורה
 
@@ -1430,7 +1430,7 @@ Skills: 7
 
 **Methodological description (English):** Using an animation, explain why average particle motion generally becomes more vigorous when heated.
 
-**User-friendly description (he):** קשר חימום לשינויים בתנועתם האופיינית של החלקיקים.
+**User-friendly description (he):** קשרו חימום לשינויים בתנועתם האופיינית של החלקיקים.
 
 ### אופטיקה
 
@@ -1658,7 +1658,7 @@ Groups: 4 · Skills: 15
 
 **Methodological description (English):** Thermal processes describe changes in temperature, energy transfer, and transitions between states of matter. Macroscopic observations are distinguished from particle-level explanations in the neighboring Domain.
 
-**User-friendly description (he):** חקור טמפרטורה, חימום, העברת אנרגיה ושינויי מצב צבירה.
+**User-friendly description (he):** חקרו טמפרטורה, חימום, העברת אנרגיה ושינויי מצב צבירה.
 
 #### מנגנוני מעבר חום
 
@@ -1668,7 +1668,7 @@ Skills: 5
 
 **Methodological description (English):** Thermal energy is transferred through particle interactions, liquid or gas motion, or electromagnetic radiation. Several mechanisms may act simultaneously in a single process.
 
-**User-friendly description (he):** גלה כיצד חום עובר דרך חומר, זרימת נוזלים וגזים וקרינה.
+**User-friendly description (he):** גלו כיצד חום עובר דרך חומר, זרימת נוזלים וגזים וקרינה.
 
 ##### הסבר על הולכת חום כהעברת אנרגיה דרך חומר
 
@@ -1676,7 +1676,7 @@ Skills: 5
 
 **Methodological description (English):** Using a metal spoon heated in hot water, explain energy transfer without bulk movement of the entire substance.
 
-**User-friendly description (he):** הסבר כיצד חום עובר בהולכה בלי שהחומר כולו יזרום.
+**User-friendly description (he):** הסבירו כיצד חום עובר בהולכה בלי שהחומר כולו יזרום.
 
 ##### הסבר על הסעה כהעברת אנרגיה בזרימת זורמים
 
@@ -1684,7 +1684,7 @@ Skills: 5
 
 **Methodological description (English):** Convection carries thermal energy with macroscopic motion of a liquid or gas; distinguish it from conduction without bulk material flow.
 
-**User-friendly description (he):** זהה כיצד נוזלים וגזים בתנועה מעבירים אנרגיית חום.
+**User-friendly description (he):** זהו כיצד נוזלים וגזים בתנועה מעבירים אנרגיית חום.
 
 ##### הסבר על מעבר חום בקרינה
 
@@ -1692,7 +1692,7 @@ Skills: 5
 
 **Methodological description (English):** Using heat from the Sun or fire, demonstrate energy transfer by electromagnetic waves without contact or moving air.
 
-**User-friendly description (he):** הסבר כיצד קרינה אלקטרומגנטית מעבירה חום בלי תווך חומרי.
+**User-friendly description (he):** הסבירו כיצד קרינה אלקטרומגנטית מעבירה חום בלי תווך חומרי.
 
 ##### זיהוי מנגנון מעבר חום במצב פיזיקלי
 
@@ -1700,7 +1700,7 @@ Skills: 5
 
 **Methodological description (English):** For a hot spoon, heated water, or sunlight, select and justify conduction, convection, radiation, or a combination of them. This is an integrative competency, not three separate tests combined in one task.
 
-**User-friendly description (he):** זהה אילו תהליכי מעבר חום מתרחשים במצב נתון.
+**User-friendly description (he):** זהו אילו תהליכי מעבר חום מתרחשים במצב נתון.
 
 ##### חיזוי כיוון מעבר החום
 
@@ -1708,7 +1708,7 @@ Skills: 5
 
 **Methodological description (English):** In the absence of external work, heat spontaneously flows from a warmer body to a colder one until thermal equilibrium is reached.
 
-**User-friendly description (he):** חזה לאיזה כיוון זורמת אנרגיית החום בין גופים בטמפרטורות שונות.
+**User-friendly description (he):** חזו לאיזה כיוון זורמת אנרגיית החום בין גופים בטמפרטורות שונות.
 
 #### מעברי מצב צבירה
 
@@ -1718,7 +1718,7 @@ Skills: 4
 
 **Methodological description (English):** Melting, freezing, evaporation, and condensation link thermal conditions to changes of state of the same substance.
 
-**User-friendly description (he):** גלה כיצד חימום וקירור יכולים לשנות את מצב הצבירה של חומר.
+**User-friendly description (he):** גלו כיצד חימום וקירור יכולים לשנות את מצב הצבירה של חומר.
 
 ##### הבחנה בין אידוי לרתיחה
 
@@ -1726,7 +1726,7 @@ Skills: 4
 
 **Methodological description (English):** Boiling produces vapor bubbles throughout the volume of a liquid, whereas evaporation occurs at its surface.
 
-**User-friendly description (he):** הבחן בין בועות הנוצרות ברתיחה לבין אידוי מפני הנוזל.
+**User-friendly description (he):** הבחינו בין בועות הנוצרות ברתיחה לבין אידוי מפני הנוזל.
 
 ##### הבחנה בין התכת קרח לקפיאת מים
 
@@ -1734,7 +1734,7 @@ Skills: 4
 
 **Methodological description (English):** Melting changes a substance from solid to liquid, while freezing is the reverse; both are phase transitions of the same substance.
 
-**User-friendly description (he):** הבחן בין קרח שנמס לבין מים נוזליים שקופאים.
+**User-friendly description (he):** הבחינו בין קרח שנמס לבין מים נוזליים שקופאים.
 
 ##### הסבר על עיבוי
 
@@ -1742,7 +1742,7 @@ Skills: 4
 
 **Methodological description (English):** Condensation is the transition of matter from gas to liquid, including the formation of droplets from water vapor.
 
-**User-friendly description (he):** זהה כיצד גז הופך לנוזל בתהליך עיבוי.
+**User-friendly description (he):** זהו כיצד גז הופך לנוזל בתהליך עיבוי.
 
 ##### הסבר על אידוי
 
@@ -1750,7 +1750,7 @@ Skills: 4
 
 **Methodological description (English):** Evaporation is the transition of particles from the surface of a liquid into the gas phase and can occur without boiling.
 
-**User-friendly description (he):** הסבר כיצד נוזל מתאדה מפני השטח גם בלי לרתוח.
+**User-friendly description (he):** הסבירו כיצד נוזל מתאדה מפני השטח גם בלי לרתוח.
 
 #### טמפרטורה וחימום
 
@@ -1760,7 +1760,7 @@ Skills: 4
 
 **Methodological description (English):** Temperature characterizes thermal state but is not the same as a subjective feeling of warmth or cold; heating and cooling are changes of state.
 
-**User-friendly description (he):** למד להבחין בין מדידות טמפרטורה לבין תחושה של חום.
+**User-friendly description (he):** למדו להבחין בין מדידות טמפרטורה לבין תחושה של חום.
 
 ##### השוואת טמפרטורות של עצמים
 
@@ -1768,7 +1768,7 @@ Skills: 4
 
 **Methodological description (English):** Temperature characterizes a body's thermal state; valid comparisons rely on measurements, not the intensity of subjective warmth.
 
-**User-friendly description (he):** השווה טמפרטורות באמצעות מכשירי מדידה ולא רק במגע.
+**User-friendly description (he):** השוו טמפרטורות באמצעות מכשירי מדידה ולא רק במגע.
 
 ##### הבחנה בין טמפרטורה לתחושת חום
 
@@ -1776,7 +1776,7 @@ Skills: 4
 
 **Methodological description (English):** Explain why the sensation of touch is not always an accurate measure of temperature.
 
-**User-friendly description (he):** הסבר מדוע שני עצמים באותה טמפרטורה יכולים להרגיש שונים במגע.
+**User-friendly description (he):** הסבירו מדוע שני עצמים באותה טמפרטורה יכולים להרגיש שונים במגע.
 
 ##### זיהוי התקררות
 
@@ -1784,7 +1784,7 @@ Skills: 4
 
 **Methodological description (English):** A decrease in temperature can accompany energy transfer to the surroundings or changes in a system's physical state.
 
-**User-friendly description (he):** זהה התקררות כשינוי פיזיקלי במצב התרמי של גוף.
+**User-friendly description (he):** זהו התקררות כשינוי פיזיקלי במצב התרמי של גוף.
 
 ##### זיהוי חימום
 
@@ -1792,7 +1792,7 @@ Skills: 4
 
 **Methodological description (English):** An increase in temperature reflects a change in thermal state, but energy input does not always increase temperature during a phase transition.
 
-**User-friendly description (he):** זהה שינויים במצב התרמי בזמן חימום.
+**User-friendly description (he):** זהו שינויים במצב התרמי בזמן חימום.
 
 #### בידוד תרמי
 
@@ -1802,7 +1802,7 @@ Skills: 2
 
 **Methodological description (English):** Insulating materials slow down energy transfer but do not create energy themselves; this differs from describing the three mechanisms of heat exchange.
 
-**User-friendly description (he):** חקור כיצד בידוד מאט את מעבר החום.
+**User-friendly description (he):** חקרו כיצד בידוד מאט את מעבר החום.
 
 ##### השוואת תכונות הבידוד התרמי של חומרים
 
@@ -1810,7 +1810,7 @@ Skills: 2
 
 **Methodological description (English):** Determine from experimental results which material slows heat transfer more effectively.
 
-**User-friendly description (he):** השווה חומרים לפי יכולתם להפחית מעבר חום לא רצוי.
+**User-friendly description (he):** השוו חומרים לפי יכולתם להפחית מעבר חום לא רצוי.
 
 ##### בחירת חומר לשמירת טמפרטורה
 
@@ -1818,7 +1818,7 @@ Skills: 2
 
 **Methodological description (English):** Choose an insulator for a simple everyday task and justify the choice using the material's properties.
 
-**User-friendly description (he):** בחר חומר מבודד לצורך מעשי של שמירה על טמפרטורה.
+**User-friendly description (he):** בחרו חומר מבודד לצורך מעשי של שמירה על טמפרטורה.
 
 ### גלים
 

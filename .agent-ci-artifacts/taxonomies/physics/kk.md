@@ -636,13 +636,13 @@ Skills: 4
 
 **User-friendly description (kk):** Сұйықтар мен газдардағы қысымның әрекетін және жағдайға қарай өзгерісін біл.
 
-##### Тұйық сұйықта қысым берілуін түсіндіру
+##### Жабық ыдыстағы сұйықта қысым берілуін түсіндіру
 
 [explainPressureTransmissionInAnEnclosedLiquid.data.ts](../../../learningApps/physics/data/skills/fluidMechanics/pressureInLiquidsAndGases/skills/explainPressureTransmissionInAnEnclosedLiquid.data.ts)
 
 **Methodological description (English):** A pressure change applied to an enclosed liquid at rest is transmitted in every direction, unlike the variation of hydrostatic pressure with depth.
 
-**User-friendly description (kk):** Қысым өзгерісі тұйық сұйық арқылы қалай берілетінін түсіндір.
+**User-friendly description (kk):** Жабық ыдыстағы тыныш сұйықта қысым өзгерісі барлық бағытта қалай берілетінін түсіндір.
 
 ##### Су қысымының тереңдікпен неге артатынын түсіндіру
 
@@ -1070,7 +1070,7 @@ Skills: 4
 
 **User-friendly description (kk):** Айналдыратын күштер мен массаның таралуы айналмалы қозғалысқа қалай әсер ететінін зертте.
 
-##### Ось бойымен айналуды шеңбер бойымен қозғалыстан ажырату
+##### Өз осінің айналасында айналуды шеңбер бойымен қозғалыстан ажырату
 
 [distinguishRotationAboutAnAxisFromMotionAlongACircle.data.ts](../../../learningApps/physics/data/skills/mechanics/rotationalMotion/skills/distinguishRotationAboutAnAxisFromMotionAlongACircle.data.ts)
 

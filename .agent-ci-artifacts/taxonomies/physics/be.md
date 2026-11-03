@@ -394,7 +394,7 @@ Skills: 3
 
 **Methodological description (English):** Identify unaccounted energy transfers and transformations instead of attributing a system's change of state to energy disappearing.
 
-**User-friendly description (be):** Высьвятляй, куды перайшла энэргія, замест меркаваць, што яна проста зьнікла.
+**User-friendly description (be):** Высьвятляй, куды перайшла энэргія, замест таго, каб меркаваць, што яна проста зьнікла.
 
 #### Перадача й ператварэньне энэргіі
 
@@ -636,13 +636,13 @@ Skills: 4
 
 **User-friendly description (be):** Даведайся, як дзейнічае ціск вадкасьцяў і газаў і як ён мяняецца.
 
-##### Тлумачыць перадачу ціску ў замкнёнай вадкасьці
+##### Тлумачыць перадачу ціску ў вадкасьці ў замкнёнай пасудзіне
 
 [explainPressureTransmissionInAnEnclosedLiquid.data.ts](../../../learningApps/physics/data/skills/fluidMechanics/pressureInLiquidsAndGases/skills/explainPressureTransmissionInAnEnclosedLiquid.data.ts)
 
 **Methodological description (English):** A pressure change applied to an enclosed liquid at rest is transmitted in every direction, unlike the variation of hydrostatic pressure with depth.
 
-**User-friendly description (be):** Растлумач, як зьмена ціску перадаецца праз замкнёную вадкасьць.
+**User-friendly description (be):** Растлумач, як зьмена ціску перадаецца ва ўсе бакі ў вадкасьці ў замкнёнай пасудзіне.
 
 ##### Тлумачыць, чаму ціск вады павялічваецца з глыбінёй
 
@@ -1502,7 +1502,7 @@ Skills: 2
 
 **User-friendly description (be):** Распазнай, калі сьвятло адбіваецца ад паверхні.
 
-#### Крыніцы сьвятла й бачнасць
+#### Крыніцы сьвятла й бачнасьць
 
 Skills: 3
 
@@ -1528,7 +1528,7 @@ Skills: 3
 
 **User-friendly description (be):** Адрозьні цела, якое выпраменьвае сьвятло, ад цела, якое толькі асьвятляецца.
 
-##### Тлумачыць умову бачнасці прадмета
+##### Тлумачыць умову бачнасьці прадмета
 
 [explainTheConditionForAnObjectToBeVisible.data.ts](../../../learningApps/physics/data/skills/optics/lightSourcesAndVisibility/skills/explainTheConditionForAnObjectToBeVisible.data.ts)
 

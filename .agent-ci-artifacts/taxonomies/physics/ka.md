@@ -636,13 +636,13 @@ Skills: 4
 
 **User-friendly description (ka):** გაიგე, როგორ მოქმედებს სითხეებისა და აირების წნევა და როგორ იცვლება პირობებთან ერთად.
 
-##### ჩაკეტილ სითხეში წნევის გადაცემის ახსნა
+##### დახურულ ჭურჭელში სითხის წნევის გადაცემის ახსნა
 
 [explainPressureTransmissionInAnEnclosedLiquid.data.ts](../../../learningApps/physics/data/skills/fluidMechanics/pressureInLiquidsAndGases/skills/explainPressureTransmissionInAnEnclosedLiquid.data.ts)
 
 **Methodological description (English):** A pressure change applied to an enclosed liquid at rest is transmitted in every direction, unlike the variation of hydrostatic pressure with depth.
 
-**User-friendly description (ka):** ახსენი, როგორ გადაეცემა წნევის ცვლილება ჩაკეტილ სითხეში.
+**User-friendly description (ka):** ახსენი, როგორ გადაეცემა წნევის ცვლილება ყველა მიმართულებით დახურულ ჭურჭელში მოთავსებულ უძრავ სითხეში.
 
 ##### ახსნა, რატომ იზრდება წყლის წნევა სიღრმესთან ერთად
 
@@ -1526,7 +1526,7 @@ Skills: 3
 
 **Methodological description (English):** Recognize a body that emits light and one that reflects it.
 
-**User-friendly description (ka):** განასხვავეთ საგანი, რომელიც სინათლეს ასხივებს, იმისგან, რომელსაც სინათლე მხოლოდ ანათებს.
+**User-friendly description (ka):** განასხვავე საგანი, რომელიც სინათლეს ასხივებს, იმისგან, რომელსაც სინათლე მხოლოდ ანათებს.
 
 ##### საგნის ხილვადობის პირობის ახსნა
 
