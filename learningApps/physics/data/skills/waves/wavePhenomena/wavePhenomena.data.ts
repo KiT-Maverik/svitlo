@@ -57,7 +57,7 @@ export const wavePhenomena_SkillGroup_Data = buildSkillGroupConfig({
       ur: "دیکھیں کہ لہریں کیسے منعکس، منکسر، متداخل، منتشر اور گونج دار ہوتی ہیں۔",
       id: "Temukan bagaimana gelombang memantul, membias, bertumpuk, terdifraksi, dan beresonansi.",
       de: "Entdecke, wie Wellen reflektiert, gebrochen, überlagert, gebeugt und in Resonanz versetzt werden.",
-      ja: "波の反射、屈折、重ね合わせ、回折、共振を調べよう。",
+      ja: "波の反射、屈折、干渉、回折、共振を調べよう。",
       ko: "파동의 반사, 굴절, 중첩, 회절, 공명을 탐구해 보세요.",
       tr: "Dalgaların yansıma, kırılma, üst üste binme, kırınım ve rezonansını keşfet.",
       vi: "Khám phá phản xạ, khúc xạ, chồng chất, nhiễu xạ và cộng hưởng sóng.",
