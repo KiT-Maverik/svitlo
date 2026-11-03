@@ -59,7 +59,7 @@ export const economicGrowth_Skill_Data = buildSkillConfig({
       he: "מדדו באיזו מהירות צומחת התפוקה בניכוי השפעת האינפלציה.",
       pl: "Zmierz tempo wzrostu produkcji po uwzględnieniu inflacji.",
       uk: "Виміряй темп зростання випуску з урахуванням інфляції.",
-      lt: "Išmatuokite infliaciją įvertinusios gamybos augimo spartą.",
+      lt: "Išmatuokite pagal infliaciją pakoreguotos gamybos augimo spartą.",
       lv: "Izmēri, cik strauji aug no inflācijas attīrīts ražošanas apjoms.",
       et: "Mõõda inflatsiooniga korrigeeritud toodangu kasvukiirust.",
       be: "Вымерай тэмп росту выпуску з улікам інфляцыі.",
