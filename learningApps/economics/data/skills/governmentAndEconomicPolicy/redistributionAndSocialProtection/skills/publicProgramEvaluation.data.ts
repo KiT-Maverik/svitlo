@@ -41,7 +41,7 @@ export const publicProgramEvaluation_Skill_Data = buildSkillConfig({
       zh: "判断政府项目是否实现目标以及成本是多少。",
       hi: "तय करें कि सरकारी कार्यक्रम अपने लक्ष्य तक पहुँचा या नहीं और किस लागत पर।",
       es: "Determina si un programa público cumplió sus objetivos y a qué coste.",
-      ar: "حدّد هل حقق برنامج حكومي أهدافه وبتكلفة كم.",
+      ar: "قيّم ما إذا كان برنامج حكومي قد حقق أهدافه، وبأي تكلفة.",
       fr: "Déterminez si un programme public a atteint ses objectifs et à quel coût.",
       bn: "সরকারি কর্মসূচি কী খরচে লক্ষ্য অর্জন করেছে তা বিচার করো।",
       pt: "Avalie se um programa governamental atingiu seus objetivos e a que custo.",
