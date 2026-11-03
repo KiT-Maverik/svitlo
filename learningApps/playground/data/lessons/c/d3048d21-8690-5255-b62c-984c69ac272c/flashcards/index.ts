@@ -1,7 +1,7 @@
 import type { Flashcard } from '@svitlo/engine/content';
-import { fastestMedium_Question_Data } from '../questions/fastestMedium.data';
-import { lightTravelsStraight_Question_Data } from '../questions/lightTravelsStraight.data';
-import { opaqueObjectShadow_Question_Data } from '../questions/opaqueObjectShadow.data';
+import { fastestMedium_Question_Data } from '../questions/fastestMedium';
+import { lightTravelsStraight_Question_Data } from '../questions/lightTravelsStraight';
+import { opaqueObjectShadow_Question_Data } from '../questions/opaqueObjectShadow';
 
 export const howLightMoves_Flashcards = [
   {

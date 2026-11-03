@@ -5,7 +5,7 @@ import {
   type Section,
 } from '@svitlo/engine/content';
 import type { quizDefinition } from './quiz.definition';
-import { howLightMoves_Questions } from '../../questions/index.data';
+import { howLightMoves_Questions } from '../../questions';
 import { quiz } from './quiz';
 
 const quizBlock = {

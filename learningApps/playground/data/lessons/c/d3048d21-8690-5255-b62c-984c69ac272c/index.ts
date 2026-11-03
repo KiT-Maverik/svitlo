@@ -1,7 +1,7 @@
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine';
 import { defineLessonData, type Lesson } from '@svitlo/engine/content';
-import { howLightMoves_Flashcards } from './flashcards/index.data';
-import { howLightMoves_Questions } from './questions/index.data';
+import { howLightMoves_Flashcards } from './flashcards';
+import { howLightMoves_Questions } from './questions';
 import { practiceData } from './sections/practice/practice.data';
 import { quizData } from './sections/quiz/quiz.data';
 import { theoryData } from './sections/theory/theory.data';
