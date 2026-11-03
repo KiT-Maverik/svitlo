@@ -46,7 +46,7 @@ export const healthEconomics_SkillGroup_Data = buildSkillGroupConfig({
     frontend: {
       en: "Discover why healthcare markets operate differently from ordinary product markets.",
       zh: "了解医疗服务市场为什么不同于普通商品市场。",
-      hi: "जानें कि स्वास्थ्य सेवा बाज़ार सामान्य वस्तुओं के बाज़ार से अलग क्यों हैं।",
+      hi: "जानें कि स्वास्थ्य सेवाओं के बाज़ार सामान्य वस्तुओं के बाज़ारों से अलग क्यों होते हैं।",
       es: "Descubre por qué los mercados de atención sanitaria funcionan de otra forma que los de bienes comunes.",
       ar: "اكتشف لماذا تختلف أسواق الرعاية الصحية عن أسواق السلع العادية.",
       fr: "Découvre pourquoi les marchés des soins de santé fonctionnent autrement que ceux des produits ordinaires.",
