@@ -1,5 +1,5 @@
 import type { LanguageCode } from '@svitlo/engine/localization';
-import { SECTION_TYPES, type ContentBlock, type Question, type Section_Type } from '@svitlo/engine/content';
+import { SECTION_TYPES, type ContentBlock, type ContentBlock_Reference, type Question, type Section_Type } from '@svitlo/engine/content';
 import { resolveEntityPath } from '@svitlo/engine';
 
 export type LocaleSource = { code: LanguageCode; isFallback?: true };
@@ -24,7 +24,7 @@ export type LessonSectionResponse = {
   navigationLabel: string;
   skippable?: true;
   content: Record<string, Record<string, LessonContentBlock>>;
-  order: { type: string; key: string }[];
+  order: ContentBlock_Reference[];
   blocks: LessonRenderableBlock[];
   /** Server-assembled array of typed responses, ready for the client renderer. */
   questions: Question<'response'>[];
@@ -132,16 +132,16 @@ function assembleBlocks(
     const ref = record(raw, location + '.order[' + index + ']');
     return {
       type: string(ref.type, location + '.order[' + index + '].type'),
-      key: string(ref.key, location + '.order[' + index + '].key'),
+      slug: string(ref.slug, location + '.order[' + index + '].slug'),
     };
   });
-  const names = references.map(ref => ref.type + '/' + ref.key);
+  const names = references.map(ref => ref.type + '/' + ref.slug);
   if (new Set(names).size !== names.length || names.some(name => !keys.includes(name))) {
     throw new Error('Content order must reference every block once at ' + location);
   }
   const blocks = references
     .filter(reference => reference.type !== 'quiz')
-    .map(({ type, key }) => normalized[type][key] as unknown as LessonRenderableBlock);
+    .map(({ type, slug }) => normalized[type][slug] as unknown as LessonRenderableBlock);
   return { content: normalized, order: references, blocks };
 }
 

@@ -19,7 +19,7 @@ function fixture() {
         sections: {
           theory: {
             id: 'section-id', slug: 'theory', type: 'theory', title: 'Теорія', navigationLabel: 'Теорія',
-            order: [{ type: 'markdown', key: 'p1' }, { type: 'scene', key: 'ray' }, { type: 'checkpoint', key: 'checkpoint' }],
+            order: [{ type: 'markdown', slug: 'p1' }, { type: 'scene', slug: 'ray' }, { type: 'checkpoint', slug: 'checkpoint' }],
             content: {
               markdown: { p1: { id: 'markdown-id', slug: 'p1', locales: '# Світло' } },
               scene: { ray: { id: 'scene-id', slug: 'ray', locales: { scene: { title: 'Промінь' } } } },
@@ -28,7 +28,7 @@ function fixture() {
           },
           quiz: {
             id: 'quiz-section', slug: 'quiz', type: 'quiz', title: 'Тест', navigationLabel: 'Тест',
-            order: [{ type: 'quiz', key: 'quiz' }],
+            order: [{ type: 'quiz', slug: 'quiz' }],
             content: { quiz: { quiz: { id: 'quiz-id', slug: 'quiz', questionSlugs: ['q1'] } } },
           },
         },
@@ -45,7 +45,7 @@ describe('assembleLessonResponse', () => {
   it('preserves ordering, locale sources, markdown, scene identity and resolved questions', () => {
     const lesson = assembleLessonResponse(id, 'uk', fixture());
     expect(Object.keys(lesson.sections)).toEqual(['theory', 'quiz']);
-    expect(lesson.sections.theory.order).toEqual([{ type: 'markdown', key: 'p1' }, { type: 'scene', key: 'ray' }, { type: 'checkpoint', key: 'checkpoint' }]);
+    expect(lesson.sections.theory.order).toEqual([{ type: 'markdown', slug: 'p1' }, { type: 'scene', slug: 'ray' }, { type: 'checkpoint', slug: 'checkpoint' }]);
     expect(lesson.sections.theory.blocks.map(block => block.type)).toEqual(['markdown', 'scene', 'checkpoint']);
     expect(lesson.sections.quiz.blocks).toEqual([]);
     expect(lesson.sections.quiz.questions.map(question => question.id)).toEqual(['question-id']);
@@ -88,7 +88,7 @@ describe('assembleLessonResponse', () => {
   });
   it('rejects an invalid order rather than silently dropping blocks', () => {
     const raw = fixture();
-    raw.config.data.sections.theory.order = [{ type: 'markdown', key: 'p1' }];
+    raw.config.data.sections.theory.order = [{ type: 'markdown', slug: 'p1' }];
     expect(() => assembleLessonResponse(id, 'uk', raw)).toThrow(/content order/);
   });
   it('rejects the wrong identity or an unsupported locale', () => {
