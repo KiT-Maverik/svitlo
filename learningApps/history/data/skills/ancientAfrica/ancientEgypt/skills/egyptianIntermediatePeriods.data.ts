@@ -19,7 +19,7 @@ export const egyptianIntermediatePeriods_Skill_Data = buildSkillConfig({
     ko: "이집트 중간기",
     tr: "Mısır Ara Dönemleri",
     vi: "Các thời kỳ chuyển tiếp Ai Cập",
-    ta: "எகிப்தின் இடைக்காலப் பகுதிகள்",
+    ta: "எகிப்தின் இடைப்பட்ட ஆட்சிக்காலங்கள்",
     te: "ఈజిప్టు మధ్యంతర కాలాలు",
     mr: "इजिप्तचे संक्रमणकाळ",
     ms: "Zaman Peralihan Mesir",
