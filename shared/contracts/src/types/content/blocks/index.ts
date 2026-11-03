@@ -78,4 +78,13 @@ export type {
   ContentBlock_Youtube,
 };
 
+export type {
+  ContentBlock_Text_Data,
+  ContentBlock_Text_Response,
+  ContentBlock_Text_Wrap,
+  HighlightTone,
+  StyledTextRule,
+  StyledTextStyle,
+} from './text.types';
+
 export type { ContentBlock_Type } from './common.types';

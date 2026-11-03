@@ -48,7 +48,16 @@ const runtimeText: ContentBlock_Text<'response'> = {
   id: 'text-id',
   type: 'text',
   locale: { code: 'en' },
-  value: 'hello',
+  value: 'hello {{id: name; value: John}}',
+  styling: [{ id: 'name', applyStyle: ['highlight', 'variable'], tone: 'info' }],
+  wrap: { typographyProps: { component: 'h2', variant: 'h4', sx: { mb: 2 } } },
+};
+const authoredText: ContentBlock_Text<'data'> = {
+  id: 'text-id',
+  slug: 'intro',
+  value: { value: 'hello {{id: name; value: John}}', language: 'en' },
+  styling: [{ id: 'name', applyStyle: ['highlight'], tone: 'warning' }],
+  wrap: { typographyProps: { component: 'p', align: 'center' } },
 };
 const runtimeScene: ContentBlock_Scene<'response'> = {
   id: 'scene-id',
@@ -79,4 +88,4 @@ declare const quiz: ContentBlock_Quiz<'response'>;
 // @ts-expect-error Quiz question references are immutable.
 quiz.questionSlugs.push('another-question');
 
-void [runtimeText, runtimeScene, customQuizScreen, emptyQuizScreen, missingDiscriminator, quiz, flashcard];
+void [runtimeText, authoredText, runtimeScene, customQuizScreen, emptyQuizScreen, missingDiscriminator, quiz, flashcard];

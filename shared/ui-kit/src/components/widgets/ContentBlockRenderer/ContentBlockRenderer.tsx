@@ -34,7 +34,7 @@ export function ContentBlockRenderer(props: ContentBlockRendererProps): ReactNod
   const nested = (response: NestedResponse) => renderNested(response, context);
 
   switch (props.type) {
-    case 'text': return <ContentBlock_Text response={props.response} />;
+    case 'text': return <ContentBlock_Text {...props.response} />;
     case 'markdown': return <ContentBlock_Markdown response={props.response} />;
     case 'checkpoint': return <ContentBlock_Checkpoint response={props.response} renderNested={nested} />;
     case 'scene': return <ContentBlock_Scene response={props.response} sceneRegistry={props.sceneRegistry} />;

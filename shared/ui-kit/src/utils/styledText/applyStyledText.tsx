@@ -1,21 +1,11 @@
-import type { NonEmptyArray } from '@svitlo/engine';
+import type { ContentBlock_Text_Response } from '@svitlo/engine/content';
 
 import { parseStyledText } from './parseStyledText';
 import styles from './StyledText.module.css';
 
-export type StyledTextStyle = 'highlight' | 'bold' | 'cursive' | 'underscore' | 'crossed' | 'variable';
-export type HighlightTone = 'neutral' | 'info' | 'warning' | 'success';
-
-export interface StyledTextRule {
-  id: string;
-  applyStyle: NonEmptyArray<StyledTextStyle>;
-  applyColor?: string;
-  tone?: HighlightTone;
-}
-
 export interface ApplyStyledTextOptions {
   text: string;
-  styling?: NonEmptyArray<StyledTextRule>;
+  styling?: ContentBlock_Text_Response['styling'];
 }
 
 export function applyStyledText({ text, styling }: ApplyStyledTextOptions) {
