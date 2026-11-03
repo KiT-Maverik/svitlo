@@ -60,7 +60,7 @@ export const wavePhenomena_SkillGroup_Data = buildSkillGroupConfig({
       ja: "波の反射、屈折、干渉、回折、共振を調べよう。",
       ko: "파동의 반사, 굴절, 간섭, 회절, 공명을 탐구해 보세요.",
       tr: "Dalgaların yansıma, kırılma, üst üste binme, kırınım ve rezonansını keşfet.",
-      vi: "Khám phá phản xạ, khúc xạ, chồng chất, nhiễu xạ và cộng hưởng sóng.",
+      vi: "Khám phá phản xạ, khúc xạ, giao thoa, nhiễu xạ và cộng hưởng sóng.",
       ta: "அலை பிரதிபலிப்பு, ஒளிவிலகல் போன்ற திசைமாற்றம், மேலிடல், விளிம்பு வளைவு, ஒத்ததிர்வை ஆராய்.",
       te: "తరంగ ప్రతిఫలనం, వక్రీభవనం, అధ్యారోపణ, వివర్తనం, అనునాదం గురించి తెలుసుకోండి.",
       mr: "तरंगांचे परावर्तन, अपवर्तन, अध्यारोपण, विवर्तन आणि अनुनाद पाहा.",
