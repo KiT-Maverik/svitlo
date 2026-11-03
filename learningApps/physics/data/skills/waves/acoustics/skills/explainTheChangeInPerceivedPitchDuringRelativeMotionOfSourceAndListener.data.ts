@@ -59,7 +59,7 @@ export const explainTheChangeInPerceivedPitchDuringRelativeMotionOfSourceAndList
       he: "חקרו מדוע מקור קול נע עשוי לשנות את גובה הצליל הנשמע.",
       pl: "Zbadaj, dlaczego poruszające się źródło dźwięku może zmieniać słyszaną wysokość tonu.",
       uk: "Досліди, чому рухоме джерело звуку змінює висоту тону, яку чує слухач.",
-      lt: "Tyrinėk, kodėl judantis garso šaltinis gali pakeisti girdimą tono aukštį.",
+      lt: "Paaiškink Doplerio efektą: artėjant šaltiniui ir klausytojui girdimas tonas aukštėja, o jiems tolstant – žemėja.",
       lv: "Izpēti, kāpēc kustīgs skaņas avots var mainīt dzirdēto toņa augstumu.",
       et: "Uuri, miks liikuv heliallikas võib muuta kuuldavat helikõrgust.",
       be: "Дасьледуй, чаму рухомая крыніца гуку можа зьмяняць вышыню тону, які чуе слухач.",
