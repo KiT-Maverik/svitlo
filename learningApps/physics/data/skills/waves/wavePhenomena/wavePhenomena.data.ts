@@ -68,7 +68,7 @@ export const wavePhenomena_SkillGroup_Data = buildSkillGroupConfig({
       he: "גלו כיצד גלים מוחזרים, נשברים, חופפים, עוקפים מכשולים ומהדהדים.",
       pl: "Odkryj odbicie, załamanie, nakładanie, dyfrakcję i rezonans fal.",
       uk: "Досліджуй відбивання, заломлення, накладання, дифракцію та резонанс хвиль.",
-      lt: "Tyrinėk bangų atspindį, lūžį, sudėtį, difrakciją ir rezonansą.",
+      lt: "Tyrinėk bangų atspindį, lūžį, interferenciją, difrakciją ir rezonansą.",
       lv: "Uzzini par viļņu atstarošanos, laušanu, pārklāšanos, difrakciju un rezonansi.",
       et: "Avasta lainete peegeldumine, murdumine, kattumine, difraktsioon ja resonants.",
       be: "Дасьледуй адбіваньне, праламленьне, накладаньне, дыфракцыю й рэзананс хваляў.",
