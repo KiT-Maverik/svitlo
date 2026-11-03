@@ -11,7 +11,7 @@ export const technologicalCatchUp_Skill_Data = buildSkillConfig({
     ar: "اللحاق التكنولوجي",
     fr: "Rattrapage technologique",
     bn: "প্রযুক্তিগত ব্যবধান কমানো",
-    pt: "Aproximação tecnológica",
+    pt: "Recuperação do atraso tecnológico",
     ur: "ٹیکنالوجی میں فاصلہ کم کرنا",
     id: "Mengejar ketertinggalan teknologi",
     de: "Technologischer Aufholprozess",
