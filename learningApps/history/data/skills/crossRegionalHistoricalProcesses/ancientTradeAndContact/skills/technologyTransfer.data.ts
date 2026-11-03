@@ -41,7 +41,7 @@ export const technologyTransfer_Skill_Data = buildSkillConfig({
       zh: "认识社群如何从他人那里学习技术，并加以改造。",
       hi: "जानें कि समुदाय अन्य लोगों से तकनीकें सीखकर उनमें बदलाव कैसे करते थे।",
       es: "Reconoce cómo las comunidades aprendían tecnologías de otras y las modificaban.",
-      ar: "تعرّف كيف تعلمت المجتمعات تقنيات من غيرها وعدّلتها.",
+      ar: "اكتشف كيف تعلّمت المجتمعات تقنيات من غيرها وعدّلتها.",
       fr: "Découvre comment les communautés adoptaient et adaptaient des techniques venues d'ailleurs.",
       bn: "জনগোষ্ঠীগুলো কীভাবে অন্যদের কাছ থেকে প্রযুক্তি শিখে বদলে নিত তা জানো।",
       pt: "Entenda como comunidades aprendiam tecnologias de outras e as adaptavam.",
