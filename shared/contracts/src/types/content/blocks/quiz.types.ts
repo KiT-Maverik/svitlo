@@ -39,7 +39,7 @@ type Quiz_Settings<ConfigType extends 'data' | 'response'> = {
 
 type ContentBlock_Quiz_Definition = ContentBlock_Definition_Meta<'quiz'>;
 
-type ContentBlock_Quiz_Data = ContentBlock_Data_Meta &
+type ContentBlock_Quiz_Data = ContentBlock_Data_Meta<'quiz'> &
   Quiz_Settings<'data'> & {
     welcome: Locale_Config;
     questions: Record<string, Question_SelectOneAnswer<'data'>>;
