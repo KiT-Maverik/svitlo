@@ -54,7 +54,7 @@ export const oceanicNavigation_Skill_Data = buildSkillConfig({
       vi: "Khám phá cách những người đi biển Thái Bình Dương vượt qua vùng biển khơi.",
       ta: "பசிபிக் கடற்பயணிகள் திறந்த கடலை எவ்வாறு கடந்து சென்றனர் என்பதை ஆராய்.",
       te: "పసిఫిక్ నావికులు బహిరంగ సముద్రాన్ని ఎలా దాటారో తెలుసుకోండి.",
-      mr: "प्रशांत महासागरातील नाविक खुला समुद्र कसा पार करत होते ते जाणून घे.",
+      mr: "प्रशांत महासागरातील नाविक खुला समुद्र कसा पार करत होते ते जाणून घ्या.",
       ms: "Terokai bagaimana pelayar Pasifik merentasi laut lepas.",
       he: "גלו כיצד ימאי האוקיינוס השקט חצו את הים הפתוח.",
       pl: "Zbadaj, jak żeglarze Pacyfiku pokonywali otwarte morze.",

@@ -54,7 +54,7 @@ export const childhoodAndEducationInAntiquity_Skill_Data = buildSkillConfig({
       vi: "Khám phá cách trẻ em lớn lên và học hỏi trong các xã hội cổ đại.",
       ta: "பண்டைய சமூகங்களில் குழந்தைகள் எவ்வாறு வளர்ந்து கற்றனர் என்பதை ஆராய்.",
       te: "ప్రాచీన సమాజాల్లో పిల్లలు ఎలా పెరిగి నేర్చుకున్నారో తెలుసుకోండి.",
-      mr: "प्राचीन समाजांमध्ये मुले कशी वाढत आणि शिकत होती ते जाणून घे.",
+      mr: "प्राचीन समाजांमध्ये मुले कशी वाढत आणि शिकत होती ते जाणून घ्या.",
       ms: "Terokai bagaimana kanak-kanak membesar dan belajar dalam masyarakat purba.",
       he: "גלו כיצד ילדים גדלו ולמדו בחברות עתיקות.",
       pl: "Poznaj sposoby dorastania i uczenia się dzieci w dawnych społeczeństwach.",

@@ -42,7 +42,7 @@ export const greekCitiesOfBlackSea_Skill_Data = buildSkillConfig({
       hi: "काला सागर के उत्तरी तट पर बसे यूनानी नगरों का अध्ययन करें।",
       es: "Explora las ciudades griegas de la costa septentrional del mar Negro.",
       ar: "استكشف المدن اليونانية الممتدة على الساحل الشمالي للبحر الأسود.",
-      fr: "Explorez les cités grecques de la côte nord de la mer Noire.",
+      fr: "Explore les cités grecques de la côte nord de la mer Noire.",
       bn: "কৃষ্ণসাগরের উত্তর উপকূলের গ্রিক নগরগুলো অন্বেষণ করো।",
       pt: "Explore as cidades gregas ao longo da costa norte do mar Negro.",
       ur: "بحیرۂ اسود کے شمالی ساحل پر یونانی شہروں کا جائزہ لیں۔",

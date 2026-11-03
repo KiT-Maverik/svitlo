@@ -42,7 +42,7 @@ export const romanProvincialGovernment_Skill_Data = buildSkillConfig({
       hi: "समझें कि रोमन प्रांतों पर शासन कैसे किया जाता था।",
       es: "Comprende cómo se administraban las provincias romanas.",
       ar: "افهم كيف كانت المقاطعات الرومانية تُدار.",
-      fr: "Comprenez comment les provinces romaines étaient gouvernées.",
+      fr: "Comprends comment les provinces romaines étaient gouvernées.",
       bn: "রোমান প্রদেশগুলো কীভাবে পরিচালিত হতো তা বুঝে নাও।",
       pt: "Entenda como as províncias romanas eram governadas.",
       ur: "سمجھیں کہ رومی صوبوں میں حکومت کیسے چلائی جاتی تھی۔",

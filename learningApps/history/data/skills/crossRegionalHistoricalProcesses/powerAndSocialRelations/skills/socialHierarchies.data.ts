@@ -54,7 +54,7 @@ export const socialHierarchies_Skill_Data = buildSkillConfig({
       vi: "Khám phá sự khác nhau về địa vị và phân tầng xã hội giữa các xã hội cổ đại.",
       ta: "வெவ்வேறு பண்டைய சமூகங்களில் அந்தஸ்தும் சமூகப் பிரிவுகளும் எவ்வாறு மாறுபட்டன என்பதை ஆராய்.",
       te: "వేర్వేరు ప్రాచీన సమాజాల్లో హోదా, సామాజిక విభజనలు ఎలా మారాయో తెలుసుకోండి.",
-      mr: "विविध प्राचीन समाजांमध्ये दर्जा आणि सामाजिक विभागणी कशी बदलत होती ते जाणून घे.",
+      mr: "विविध प्राचीन समाजांमध्ये दर्जा आणि सामाजिक विभागणी कशी बदलत होती ते जाणून घ्या.",
       ms: "Terokai bagaimana status dan pembahagian sosial berbeza antara masyarakat purba.",
       he: "גלו כיצד מעמד וחלוקות חברתיות השתנו בין חברות עתיקות.",
       pl: "Poznaj różnice w statusie i podziałach społecznych między dawnymi społeczeństwami.",

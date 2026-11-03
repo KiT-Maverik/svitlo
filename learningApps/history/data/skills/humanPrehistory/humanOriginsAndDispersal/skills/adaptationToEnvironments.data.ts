@@ -6,7 +6,7 @@ export const adaptationToEnvironments_Skill_Data = buildSkillConfig({
   name: {
     en: "Adaptation to Natural Environments",
     zh: "适应自然环境",
-    hi: "पर्यावरण के अनुकूलन",
+    hi: "प्राकृतिक पर्यावरण के अनुरूप ढलना",
     es: "Adaptación a los entornos naturales",
     ar: "التكيف مع البيئات الطبيعية",
     fr: "Adaptation aux environnements",

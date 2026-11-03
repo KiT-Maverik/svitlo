@@ -42,7 +42,7 @@ export const crisisOfRomanRepublic_Skill_Data = buildSkillConfig({
       hi: "समझें कि रोमन गणराज्य की शासन-व्यवस्था अस्थिर क्यों हो गई।",
       es: "Comprende por qué se volvió inestable el gobierno republicano de Roma.",
       ar: "افهم أسباب اضطراب نظام الحكم الجمهوري في روما.",
-      fr: "Comprenez pourquoi le gouvernement républicain de Rome est devenu instable.",
+      fr: "Comprends pourquoi le gouvernement républicain de Rome est devenu instable.",
       bn: "রোমান প্রজাতান্ত্রিক শাসন কেন অস্থিতিশীল হয়ে পড়েছিল তা বুঝে নাও।",
       pt: "Entenda por que o governo republicano de Roma se tornou instável.",
       ur: "سمجھیں کہ روم کی جمہوری حکومت غیر مستحکم کیوں ہوئی۔",

@@ -52,7 +52,7 @@ export const earlyChina_SkillGroup_Data = buildSkillGroupConfig({
       hi: "जानें कि प्रारंभिक चीनी राज्य और परंपराएँ कैसे विकसित हुईं।",
       es: "Descubre cómo se desarrollaron los primeros Estados y tradiciones de China.",
       ar: "اكتشف كيف نشأت الدول والتقاليد الصينية المبكرة وتطورت.",
-      fr: "Découvrez comment les premiers États et traditions de Chine se sont développés.",
+      fr: "Découvre comment les premiers États et traditions de Chine se sont développés.",
       bn: "চীনের প্রথম দিকের রাষ্ট্র ও ঐতিহ্য কীভাবে গড়ে উঠেছিল তা জানো।",
       pt: "Descubra como os primeiros Estados e tradições chineses se desenvolveram.",
       ur: "جانیں کہ چین کی ابتدائی ریاستیں اور روایات کیسے پروان چڑھیں۔",

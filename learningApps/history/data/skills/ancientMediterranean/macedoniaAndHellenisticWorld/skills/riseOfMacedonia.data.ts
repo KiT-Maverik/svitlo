@@ -42,7 +42,7 @@ export const riseOfMacedonia_Skill_Data = buildSkillConfig({
       hi: "समझें कि मकदूनिया कैसे एक क्षेत्रीय शक्ति बना।",
       es: "Comprende cómo Macedonia se convirtió en una potencia regional.",
       ar: "افهم كيف أصبحت مقدونيا قوة إقليمية.",
-      fr: "Comprenez comment la Macédoine est devenue une puissance régionale.",
+      fr: "Comprends comment la Macédoine est devenue une puissance régionale.",
       bn: "ম্যাসিডোনিয়া কীভাবে আঞ্চলিক শক্তিতে পরিণত হয়েছিল তা বুঝে নাও।",
       pt: "Entenda como a Macedônia se tornou uma potência regional.",
       ur: "سمجھیں کہ مقدونیہ ایک علاقائی طاقت کیسے بنا۔",

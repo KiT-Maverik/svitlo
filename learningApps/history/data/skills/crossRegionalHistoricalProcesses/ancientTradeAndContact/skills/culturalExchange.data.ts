@@ -54,7 +54,7 @@ export const culturalExchange_Skill_Data = buildSkillConfig({
       vi: "Tìm hiểu cách con người tiếp nhận và điều chỉnh ý tưởng văn hóa qua giao lưu.",
       ta: "பரிமாற்றத்தின் மூலம் மக்கள் பண்பாட்டுக் கருத்துகளை எவ்வாறு ஏற்று மாற்றினர் என்பதை அறிந்துகொள்.",
       te: "పరస్పర మార్పిడి ద్వారా ప్రజలు సాంస్కృతిక ఆలోచనలను ఎలా మార్చుకుని స్వీకరించారో తెలుసుకోండి.",
-      mr: "देवाणघेवाणीतून लोकांनी सांस्कृतिक कल्पना कशा स्वीकारल्या व बदलल्या ते शिक.",
+      mr: "देवाणघेवाणीतून लोकांनी सांस्कृतिक कल्पना कशा स्वीकारल्या व बदलल्या ते शिका.",
       ms: "Ketahui bagaimana manusia menyesuaikan idea budaya melalui pertukaran.",
       he: "גלו כיצד אנשים אימצו ושינו רעיונות תרבותיים במפגשים בין קהילות.",
       pl: "Dowiedz się, jak ludzie przekształcali idee kulturowe podczas wymiany.",

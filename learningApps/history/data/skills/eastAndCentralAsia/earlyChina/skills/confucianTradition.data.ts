@@ -42,7 +42,7 @@ export const confucianTradition_Skill_Data = buildSkillConfig({
       hi: "आचरण और सुशासन के बारे में कन्फ्यूशियस के विचार जानें।",
       es: "Explora las ideas confucianas sobre la conducta y el buen gobierno.",
       ar: "استكشف الأفكار الكونفوشيوسية عن السلوك والحكم الرشيد.",
-      fr: "Explorez les idées confucéennes sur la conduite et le bon gouvernement.",
+      fr: "Explore les idées confucéennes sur la conduite et le bon gouvernement.",
       bn: "আচরণ ও সুশাসন সম্পর্কে কনফুসীয় ধারণাগুলো জানো।",
       pt: "Explore as ideias confucianas sobre conduta e bom governo.",
       ur: "طرزِ عمل اور اچھی حکمرانی کے بارے میں کنفیوشیائی افکار جانیں۔",

@@ -42,7 +42,7 @@ export const hellenisticKingdoms_Skill_Data = buildSkillConfig({
       hi: "सिकंदर के बाद बने अलग-अलग राज्यों के बारे में जानें।",
       es: "Explora los distintos reinos formados después de Alejandro.",
       ar: "استكشف الممالك المختلفة التي نشأت بعد الإسكندر.",
-      fr: "Explorez les différents royaumes formés après Alexandre.",
+      fr: "Explore les différents royaumes formés après Alexandre.",
       bn: "আলেকজান্ডারের পর গড়ে ওঠা বিভিন্ন রাজ্য সম্পর্কে জানো।",
       pt: "Explore os diferentes reinos formados após Alexandre.",
       ur: "سکندر کے بعد قائم ہونے والی مختلف بادشاہتوں کو جانیں۔",

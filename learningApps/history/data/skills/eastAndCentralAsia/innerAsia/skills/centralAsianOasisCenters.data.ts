@@ -42,7 +42,7 @@ export const centralAsianOasisCenters_Skill_Data = buildSkillConfig({
       hi: "प्राचीन व्यापार मार्गों को जोड़ने वाले नखलिस्तानी नगरों का अध्ययन करें।",
       es: "Explora las ciudades de oasis que conectaban las antiguas rutas comerciales.",
       ar: "استكشف مدن الواحات التي ربطت طرق التجارة القديمة.",
-      fr: "Explorez les villes des oasis qui reliaient les anciennes routes commerciales.",
+      fr: "Explore les villes des oasis qui reliaient les anciennes routes commerciales.",
       bn: "প্রাচীন বাণিজ্যপথগুলোকে যুক্ত করা মরূদ্যানের শহরগুলো সম্পর্কে জানো।",
       pt: "Explore as cidades de oásis que ligavam antigas rotas comerciais.",
       ur: "ان نخلستانی شہروں کا جائزہ لیں جو قدیم تجارتی راستوں کو جوڑتے تھے۔",

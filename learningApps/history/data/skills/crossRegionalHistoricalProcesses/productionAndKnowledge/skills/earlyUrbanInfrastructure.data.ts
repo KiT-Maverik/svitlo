@@ -54,7 +54,7 @@ export const earlyUrbanInfrastructure_Skill_Data = buildSkillConfig({
       vi: "Khám phá cách các đô thị đầu tiên xây dựng hạ tầng dùng chung.",
       ta: "ஆரம்பகால நகரங்கள் பொதுப் பயன்பாட்டு உள்கட்டமைப்பை எவ்வாறு உருவாக்கின என்பதை ஆராய்.",
       te: "తొలి నగరాలు ఉమ్మడి మౌలిక సదుపాయాలను ఎలా నిర్మించాయో తెలుసుకోండి.",
-      mr: "प्रारंभिक शहरांनी सामायिक पायाभूत सुविधा कशा उभारल्या ते जाणून घे.",
+      mr: "प्रारंभिक शहरांनी सामायिक पायाभूत सुविधा कशा उभारल्या ते जाणून घ्या.",
       ms: "Terokai cara bandar awal membina infrastruktur untuk kegunaan bersama.",
       he: "גלו כיצד ערים מוקדמות הקימו תשתיות לשימוש משותף.",
       pl: "Poznaj sposoby budowy wspólnej infrastruktury w pierwszych miastach.",

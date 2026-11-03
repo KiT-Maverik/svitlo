@@ -42,7 +42,7 @@ export const sarmatians_Skill_Data = buildSkillConfig({
       hi: "स्तेपी क्षेत्र में सार्माटियन समूहों के इतिहास को जानें।",
       es: "Descubre la historia de los grupos sármatas en las estepas.",
       ar: "تعرّف تاريخ الجماعات السارماتية في السهوب.",
-      fr: "Découvrez l’histoire des groupes sarmates dans les steppes.",
+      fr: "Découvre l’histoire des groupes sarmates dans les steppes.",
       bn: "স্তেপ অঞ্চলের সার্মাটীয় জনগোষ্ঠীগুলোর ইতিহাস জানো।",
       pt: "Descubra a história dos grupos sármatas nas estepes.",
       ur: "گھاس زاروں میں سرماتی گروہوں کی تاریخ کے بارے میں جانیں۔",

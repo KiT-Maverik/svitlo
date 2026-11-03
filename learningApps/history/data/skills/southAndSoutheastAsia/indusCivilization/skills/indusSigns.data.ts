@@ -39,7 +39,7 @@ export const indusSigns_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Understand why Indus signs are still difficult to read.",
       zh: "理解为何印度河文字至今仍难以解读。",
-      hi: "समझें कि सिंधु लिपि के चिह्न अब भी पढ़ना मुश्किल क्यों है।",
+      hi: "समझें कि सिंधु लिपि के चिह्नों को आज भी पढ़ना क्यों कठिन है।",
       es: "Comprende por qué los signos del Indo siguen sin poder leerse con certeza.",
       ar: "افهم لماذا لا يزال تفسير رموز السند صعبًا.",
       fr: "Comprends pourquoi les signes de l'Indus restent difficiles à lire.",

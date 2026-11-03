@@ -45,7 +45,7 @@ export const assyrianEmpire_Skill_Data = buildSkillConfig({
       fr: "Comprends comment l'Assyrie gouvernait son empire.",
       bn: "আসিরিয়া কীভাবে তার সাম্রাজ্য শাসন করত তা বোঝো।",
       pt: "Entenda como a Assíria governava seu império.",
-      ur: "سمجھیں کہ آشور نے اپنی سلطنت کی حکمرانی کیسے کی۔",
+      ur: "سمجھیں کہ آشور نے اپنی سلطنت پر کیسے حکومت کی۔",
       id: "Pahami bagaimana Asyur memerintah kekaisarannya.",
       de: "Verstehe, wie Assyrien sein Reich regierte.",
       ja: "アッシリアがどのように帝国を統治したか理解しよう。",

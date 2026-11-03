@@ -61,7 +61,7 @@ export const amazonAndCaribbean_SkillGroup_Data = buildSkillGroupConfig({
       vi: "Tìm hiểu các cộng đồng cổ ở Amazon và Caribe.",
       ta: "அமேசான், கரீபியப் பகுதிகளின் பண்டைய சமூகங்களை அறிந்துகொள்.",
       te: "అమెజాన్, కరీబియన్ ప్రాంతాల్లోని ప్రాచీన సమూహాల గురించి తెలుసుకోండి.",
-      mr: "अ‍ॅमेझॉन व कॅरिबियनमधील प्राचीन समुदाय जाणून घे.",
+      mr: "अ‍ॅमेझॉन व कॅरिबियनमधील प्राचीन समुदाय जाणून घ्या.",
       ms: "Kenali komuniti purba di Amazon dan Caribbean.",
       he: "גלו את הקהילות העתיקות באמזוניה ובקריביים.",
       pl: "Poznaj dawne społeczności Amazonii i Karaibów.",

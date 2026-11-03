@@ -52,7 +52,7 @@ export const greekPoleis_SkillGroup_Data = buildSkillGroupConfig({
       hi: "तुलना करें कि अलग-अलग यूनानी नगर-राज्य कैसे शासित थे।",
       es: "Compara cómo se gobernaban las distintas ciudades-Estado griegas.",
       ar: "قارن أساليب الحكم في المدن اليونانية المختلفة.",
-      fr: "Comparez les modes de gouvernement des différentes cités grecques.",
+      fr: "Compare les modes de gouvernement des différentes cités grecques.",
       bn: "বিভিন্ন গ্রিক নগররাষ্ট্র কীভাবে পরিচালিত হতো তা তুলনা করো।",
       pt: "Compare como diferentes cidades-Estado gregas eram governadas.",
       ur: "موازنہ کریں کہ مختلف یونانی شہری ریاستوں میں حکومت کیسے چلتی تھی۔",

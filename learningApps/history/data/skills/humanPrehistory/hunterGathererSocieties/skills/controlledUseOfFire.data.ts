@@ -48,7 +48,7 @@ export const controlledUseOfFire_Skill_Data = buildSkillConfig({
       ur: "جانیں کہ آگ کو قابو میں لا کر استعمال کرنے سے روزمرہ زندگی کیسے بدلی۔",
       id: "Pelajari bagaimana penggunaan api yang terkendali mengubah kehidupan sehari-hari.",
       de: "Entdecke, wie der kontrollierte Umgang mit Feuer den Alltag veränderte.",
-      ja: "火を安全に使えるようになったことが日常生活をどう変えたか探ろう。",
+      ja: "火を制御して使うことで日常生活がどう変わったか探ろう。",
       ko: "불을 통제하여 사용하는 것이 일상을 어떻게 바꾸었는지 알아보세요.",
       tr: "Ateşin denetimli kullanımının günlük yaşamı nasıl değiştirdiğini keşfet.",
       vi: "Khám phá việc sử dụng lửa có kiểm soát đã thay đổi cuộc sống hằng ngày ra sao.",

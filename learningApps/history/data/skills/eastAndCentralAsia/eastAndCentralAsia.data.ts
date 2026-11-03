@@ -55,7 +55,7 @@ export const eastAndCentralAsia_SkillDomain_Data = buildSkillDomainConfig({
       hi: "पूर्वी और मध्य एशिया के विविध प्राचीन समाजों के बारे में जानें।",
       es: "Explora la diversidad de las sociedades antiguas de Asia oriental y central.",
       ar: "اكتشف تنوّع المجتمعات القديمة في شرق آسيا وآسيا الوسطى.",
-      fr: "Découvrez la diversité des sociétés anciennes d’Asie orientale et centrale.",
+      fr: "Découvre la diversité des sociétés anciennes d’Asie orientale et centrale.",
       bn: "পূর্ব ও মধ্য এশিয়ার বৈচিত্র্যময় প্রাচীন সমাজগুলো সম্পর্কে জানো।",
       pt: "Explore a diversidade das sociedades antigas da Ásia Oriental e Central.",
       ur: "مشرقی اور وسطی ایشیا کے متنوع قدیم معاشروں کو دریافت کریں۔",

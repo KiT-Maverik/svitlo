@@ -49,7 +49,7 @@ export const northernAndBalticEurope_SkillGroup_Data = buildSkillGroupConfig({
       hi: "जानें कि उत्तरी यूरोप के लोग जलमार्गों से कैसे जुड़े थे।",
       es: "Descubre cómo los europeos del norte se conectaban mediante vías navegables.",
       ar: "اكتشف كيف تواصل سكان شمال أوروبا عبر الممرات المائية.",
-      fr: "Découvrez comment les voies navigables reliaient les populations du nord de l’Europe.",
+      fr: "Découvre comment les voies navigables reliaient les populations du nord de l’Europe.",
       bn: "জলপথের মাধ্যমে উত্তর ইউরোপের মানুষ কীভাবে যুক্ত ছিল তা জানো।",
       pt: "Descubra como as vias navegáveis conectavam os povos do norte da Europa.",
       ur: "جانیں کہ شمالی یورپ کے لوگ آبی راستوں سے کیسے جڑے ہوئے تھے۔",

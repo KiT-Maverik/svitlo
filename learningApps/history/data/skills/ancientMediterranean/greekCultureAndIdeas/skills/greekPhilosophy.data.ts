@@ -42,7 +42,7 @@ export const greekPhilosophy_Skill_Data = buildSkillConfig({
       hi: "प्राचीन यूनानी दार्शनिकों द्वारा पूछे गए प्रश्नों का अध्ययन करें।",
       es: "Explora las preguntas planteadas por los filósofos de la Grecia antigua.",
       ar: "استكشف الأسئلة التي طرحها فلاسفة اليونان القدماء.",
-      fr: "Explorez les questions posées par les philosophes de la Grèce antique.",
+      fr: "Explore les questions posées par les philosophes de la Grèce antique.",
       bn: "প্রাচীন গ্রিক দার্শনিকেরা কী কী প্রশ্ন করতেন তা জানো।",
       pt: "Explore as questões levantadas pelos filósofos da Grécia antiga.",
       ur: "قدیم یونانی فلسفیوں کے اٹھائے گئے سوالات کا جائزہ لیں۔",

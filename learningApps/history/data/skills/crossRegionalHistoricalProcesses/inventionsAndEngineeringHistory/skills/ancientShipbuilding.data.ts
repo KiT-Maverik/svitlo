@@ -54,7 +54,7 @@ export const ancientShipbuilding_Skill_Data = buildSkillConfig({
       vi: "Khám phá cách tàu thuyền cổ đại được đóng và điều khiển.",
       ta: "பண்டைய கப்பல்கள் எவ்வாறு கட்டப்பட்டு இயக்கப்பட்டன என்பதை ஆராய்.",
       te: "ప్రాచీన ఓడలను ఎలా నిర్మించి నడిపారో పరిశీలించండి.",
-      mr: "प्राचीन जहाजे कशी बांधली व चालवली जात होती ते जाणून घे.",
+      mr: "प्राचीन जहाजे कशी बांधली व चालवली जात होती ते जाणून घ्या.",
       ms: "Terokai cara kapal purba dibina dan dikemudi.",
       he: "גלו כיצד בנו וכיוונו ספינות בעת העתיקה.",
       pl: "Poznaj sposoby budowy i sterowania dawnymi statkami.",

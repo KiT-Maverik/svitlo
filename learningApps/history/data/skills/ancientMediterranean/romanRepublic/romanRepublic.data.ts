@@ -51,7 +51,7 @@ export const romanRepublic_SkillGroup_Data = buildSkillGroupConfig({
       hi: "जानें कि रोमन गणराज्य कैसे बढ़ा और बदला।",
       es: "Descubre cómo creció y cambió la República de Roma.",
       ar: "اكتشف كيف توسعت جمهورية روما وتغيّرت.",
-      fr: "Découvrez comment la République de Rome a grandi et évolué.",
+      fr: "Découvre comment la République de Rome a grandi et évolué.",
       bn: "রোমান প্রজাতন্ত্র কীভাবে বিস্তৃত ও পরিবর্তিত হয়েছিল তা জানো।",
       pt: "Descubra como a república de Roma cresceu e mudou.",
       ur: "جانیں کہ روم کی جمہوریہ کیسے پھیلی اور بدلی۔",

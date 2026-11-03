@@ -50,7 +50,7 @@ export const ancientKorea_SkillGroup_Data = buildSkillGroupConfig({
       hi: "कोरियाई प्रायद्वीप के प्रारंभिक राज्यों के बारे में जानें।",
       es: "Explora los primeros reinos de la península de Corea.",
       ar: "اكتشف الممالك المبكرة في شبه الجزيرة الكورية.",
-      fr: "Explorez les premiers royaumes de la péninsule coréenne.",
+      fr: "Explore les premiers royaumes de la péninsule coréenne.",
       bn: "কোরীয় উপদ্বীপের প্রাথমিক রাজ্যগুলো সম্পর্কে জানো।",
       pt: "Explore os primeiros reinos da península coreana.",
       ur: "جزیرہ نما کوریا کی ابتدائی بادشاہتوں کے بارے میں جانیں۔",

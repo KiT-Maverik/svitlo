@@ -42,7 +42,7 @@ export const balticAmberTrade_Skill_Data = buildSkillConfig({
       hi: "जानें कि बाल्टिक अंबर प्राचीन व्यापारिक मार्गों से कैसे दूर तक पहुँचा।",
       es: "Sigue el recorrido del ámbar báltico por las antiguas redes comerciales.",
       ar: "تتبّع انتقال كهرمان البلطيق عبر شبكات التجارة القديمة.",
-      fr: "Suivez la circulation de l’ambre baltique dans les anciens réseaux commerciaux.",
+      fr: "Suis la circulation de l’ambre baltique dans les anciens réseaux commerciaux.",
       bn: "প্রাচীন বাণিজ্যপথ দিয়ে বাল্টিক অ্যাম্বার কীভাবে ছড়িয়েছিল তা অনুসরণ করো।",
       pt: "Acompanhe a circulação do âmbar báltico pelas antigas redes comerciais.",
       ur: "دیکھیے کہ بالٹک کا عنبر قدیم تجارتی راستوں سے کیسے پھیلا۔",
