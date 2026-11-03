@@ -57,7 +57,7 @@ export const explainSeriesConnectionsOfElectricCircuitComponents_Skill_Data = bu
       te: 'శ్రేణి వలయంలో ఒకే మార్గంలోని భాగాలన్నింటిలో ఒకే ప్రవాహం ఎందుకు ఉంటుందో తెలుసుకోండి.',
       mr: 'एकसर परिपथातील एकाच मार्गावरच्या घटकांतून समान प्रवाह कसा जातो ते शोधा.',
       ms: 'Terokai mengapa komponen pada satu laluan litar siri dilalui arus yang sama.',
-      he: 'חקור כיצד אותו זרם עובר בכל הרכיבים הנמצאים במסלול יחיד במעגל טורי.',
+      he: 'חקרו כיצד אותו זרם עובר בכל הרכיבים הנמצאים במסלול יחיד במעגל טורי.',
       pl: 'Poznaj, dlaczego przez wszystkie elementy na jednej drodze w obwodzie szeregowym płynie ten sam prąd.',
       uk: 'Досліджуй, як через елементи єдиного шляху в послідовному колі проходить однаковий струм.',
       lt: 'Sužinok, kodėl visais vieno kelio elementais nuoseklioje grandinėje teka ta pati srovė.',

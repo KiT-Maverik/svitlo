@@ -57,7 +57,7 @@ export const explainParallelConnectionsOfElectricCircuitComponents_Skill_Data = 
       te: 'సమాంతర శాఖలకు ఒకే వోల్టేజ్ ఉండి ప్రవాహం శాఖల మధ్య విడిపోతుందని అర్థం చేసుకోండి.',
       mr: 'समांतर शाखांवरील विभवांतर समान असते व प्रवाह विभागला जातो हे समजून घ्या.',
       ms: 'Fahami bahawa cabang selari berkongsi voltan yang sama dan arus terbahagi.',
-      he: 'הבן שבענפים מקבילים המתח זהה והזרם מתחלק בין הענפים.',
+      he: 'הבינו שבענפים מקבילים המתח זהה והזרם מתחלק בין הענפים.',
       pl: 'Zrozum, że gałęzie równoległe mają takie samo napięcie, a prąd dzieli się między nie.',
       uk: 'Зрозумій, що в паралельних гілках однакова напруга, а струм розподіляється між ними.',
       lt: 'Suprask, kad lygiagrečiose šakose įtampa vienoda, o srovė pasidalija.',

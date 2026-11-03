@@ -57,7 +57,7 @@ export const explainHowInducedCurrentArises_Skill_Data = buildSkillConfig({
       te: 'అయస్కాంత ఫ్లక్స్ మార్పుతో ప్రేరిత ప్రవాహం ఎప్పుడు ఏర్పడుతుందో గుర్తించండి.',
       mr: 'चुंबकीय फ्लक्स बदलल्यावर प्रेरित प्रवाह कधी तयार होतो ते ओळखा.',
       ms: 'Kenal pasti bila perubahan fluks magnet menghasilkan arus teraruh.',
-      he: 'זהה מתי שינוי בשטף מגנטי יוצר זרם מושרה.',
+      he: 'זהו מתי שינוי בשטף מגנטי יוצר זרם מושרה.',
       pl: 'Rozpoznaj, kiedy zmiana strumienia magnetycznego wywołuje prąd indukowany.',
       uk: 'Розпізнавай, коли зміна магнітного потоку спричиняє індукційний струм.',
       lt: 'Atpažink, kada kintantis magnetinis srautas sukelia indukuotą srovę.',
