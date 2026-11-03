@@ -51,7 +51,7 @@ export const mesopotamia_SkillGroup_Data = buildSkillGroupConfig({
       zh: "了解河谷如何支撑美索不达米亚的城市与国家。",
       hi: "जानें कि नदी घाटियों ने मेसोपोटामिया के नगरों और राज्यों को कैसे सहारा दिया।",
       es: "Aprende cómo los valles fluviales sustentaron las ciudades y los Estados mesopotámicos.",
-      ar: "تعرّف كيف دعمت أودية الأنهار مدن بلاد الرافدين ودولها.",
+      ar: "اكتشف كيف دعمت أودية الأنهار مدن بلاد الرافدين ودولها.",
       fr: "Découvre comment les vallées fluviales ont favorisé les villes et les États mésopotamiens.",
       bn: "নদী উপত্যকা কীভাবে মেসোপটেমিয়ার নগর ও রাষ্ট্রকে বিকশিত হতে সাহায্য করেছিল তা জানো।",
       pt: "Aprenda como os vales fluviais sustentaram cidades e Estados mesopotâmicos.",
