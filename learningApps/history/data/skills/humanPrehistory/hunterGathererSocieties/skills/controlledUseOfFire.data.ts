@@ -4,7 +4,7 @@ export const controlledUseOfFire_Skill_Data = buildSkillConfig({
   slug: "controlledUseOfFire",
   id: "722b860a-ae3a-43f5-a68e-d3fc79e9bcc0",
   name: {
-    en: "Використання вогню",
+    en: "Controlled Use of Fire",
     zh: "有控制地使用火",
     hi: "आग का नियंत्रित उपयोग",
     es: "Uso controlado del fuego",

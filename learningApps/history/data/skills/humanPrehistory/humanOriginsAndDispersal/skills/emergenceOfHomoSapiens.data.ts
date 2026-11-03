@@ -4,7 +4,7 @@ export const emergenceOfHomoSapiens_Skill_Data = buildSkillConfig({
   slug: "emergenceOfHomoSapiens",
   id: "8561684f-c7f8-404a-9aa3-8da9da9269bc",
   name: {
-    en: "Поява Homo sapiens",
+    en: "Emergence of Homo sapiens",
     zh: "智人的出现",
     hi: "होमो सेपियन्स का उद्भव",
     es: "Aparición de Homo sapiens",

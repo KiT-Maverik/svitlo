@@ -9,7 +9,7 @@ export const humanPrehistory_SkillDomain_Data = buildSkillDomainConfig({
   slug: "humanPrehistory",
   id: "76421fa2-5fcb-4a89-abc2-55966aa5f2f7",
   name: {
-    en: "Первісна історія людства",
+    en: "Human Prehistory",
     zh: "人类史前史",
     hi: "मानव प्रागैतिहास",
     es: "Prehistoria humana",

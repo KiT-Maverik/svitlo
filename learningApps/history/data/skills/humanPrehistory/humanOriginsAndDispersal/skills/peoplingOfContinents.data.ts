@@ -4,7 +4,7 @@ export const peoplingOfContinents_Skill_Data = buildSkillConfig({
   slug: "peoplingOfContinents",
   id: "13b67e91-2c21-4a49-a730-f413f54d7085",
   name: {
-    en: "Заселення континентів",
+    en: "Peopling of the Continents",
     zh: "各大洲的人类定居",
     hi: "महाद्वीपों में मानव बसावट",
     es: "Poblamiento de los continentes",

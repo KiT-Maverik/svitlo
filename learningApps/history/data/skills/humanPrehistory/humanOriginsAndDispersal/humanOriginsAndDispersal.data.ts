@@ -6,7 +6,7 @@ export const humanOriginsAndDispersal_SkillGroup_Data = buildSkillGroupConfig({
   slug: "humanOriginsAndDispersal",
   id: "34016e25-e0ac-45f4-be94-9db66febf661",
   name: {
-    en: "Походження та розселення",
+    en: "Human Origins and Dispersal",
     zh: "人类起源与迁徙",
     hi: "मानव उत्पत्ति और प्रसार",
     es: "Orígenes y dispersión humanos",

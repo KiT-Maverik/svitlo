@@ -4,7 +4,7 @@ export const adaptationToEnvironments_Skill_Data = buildSkillConfig({
   slug: "adaptationToEnvironments",
   id: "628ab257-8ca4-4d9e-aaf3-4cd77233fa0c",
   name: {
-    en: "Адаптація до природних умов",
+    en: "Adaptation to Natural Environments",
     zh: "适应自然环境",
     hi: "पर्यावरण के अनुकूलन",
     es: "Adaptación a los entornos naturales",

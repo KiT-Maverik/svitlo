@@ -6,7 +6,7 @@ export const hunterGathererSocieties_SkillGroup_Data = buildSkillGroupConfig({
   slug: "hunterGathererSocieties",
   id: "76a6db8b-eb77-431d-91a3-6d30fc104bf7",
   name: {
-    en: "Мисливці та збирачі",
+    en: "Hunter-Gatherer Societies",
     zh: "狩猎采集社会",
     hi: "शिकारी-संग्रहकर्ता समाज",
     es: "Sociedades cazadoras-recolectoras",

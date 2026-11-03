@@ -4,7 +4,7 @@ export const earlyHumanCooperation_Skill_Data = buildSkillConfig({
   slug: "earlyHumanCooperation",
   id: "886602b5-0251-4e5e-9fd3-31483c8dec1b",
   name: {
-    en: "Соціальна взаємодія ранніх людей",
+    en: "Social Interaction Among Early Humans",
     zh: "早期人类合作",
     hi: "आरंभिक मानव सहयोग",
     es: "Cooperación entre los primeros humanos",
