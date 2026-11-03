@@ -53,7 +53,7 @@ export const predictSearchScaling_Skill_Data = buildSkillConfig({
       tr: "Veri iki katına çıktığında ikili aramada neden yaklaşık bir ek kontrol gerektiğini anla.",
       vi: "Hiểu vì sao dữ liệu tăng gấp đôi chỉ khiến tìm kiếm nhị phân thêm khoảng một lần kiểm tra.",
       ta: "தரவு இரட்டிப்பானாலும் இருமத் தேடலில் ஏன் சுமார் ஒரு சோதனை மட்டுமே கூடுகிறது என்பதைப் புரிந்துகொள்.",
-      te: "డేటా రెట్టింపైనప్పుడు ద్విసంఖ్యాక శోధనలో సుమారు ఒక తనిఖీ మాత్రమే ఎందుకు పెరుగుతుందో అర్థం చేసుకోండి.",
+      te: "డేటా రెట్టింపైనప్పుడు బైనరీ శోధనలో సుమారు ఒక తనిఖీ మాత్రమే ఎందుకు పెరుగుతుందో అర్థం చేసుకోండి.",
       mr: "डेटा दुप्पट झाल्यावर द्विमान शोधात साधारण एकच तपासणी जास्त का लागते ते समजून घे.",
       ms: "Fahami mengapa penggandaan data menambah kira-kira satu semakan sahaja pada carian binari.",
       he: "הבינו מדוע הכפלת הנתונים מוסיפה בערך בדיקה אחת לחיפוש בינארי.",

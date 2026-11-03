@@ -53,7 +53,7 @@ export const compareSearchMethodsByCheckCount_Skill_Data = buildSkillConfig({
       tr: "Doğrusal ve ikili aramanın kaç kontrol gerektirdiğini karşılaştır.",
       vi: "So sánh số lần kiểm tra của tìm kiếm tuyến tính và nhị phân.",
       ta: "நேரியல் மற்றும் இருமத் தேடல்களுக்கு வேண்டிய சோதனைகளின் எண்ணிக்கையை ஒப்பிடு.",
-      te: "రేఖీయ, ద్విసంఖ్యాక శోధనలకు అవసరమైన తనిఖీల సంఖ్యను పోల్చండి.",
+      te: "రేఖీయ, బైనరీ శోధనలకు అవసరమైన తనిఖీల సంఖ్యను పోల్చండి.",
       mr: "रेषीय आणि द्विमान शोधात किती तपासण्या लागतात ते तुलना कर.",
       ms: "Bandingkan bilangan semakan carian linear dan binari.",
       he: "השוו את מספר הבדיקות הנדרש בחיפוש ליניארי ובינארי.",
