@@ -38,7 +38,7 @@ type DeepPartial<T> =
 export type ContentBlockConfigPatch<Type extends BuildableContentBlockType> =
   [OverrideKeys<Type>] extends [never]
     ? never
-    : DeepPartial<Pick<ContentBlock_Map<'data'>[Type], OverrideKeys<Type>>>;
+    : DeepPartial<Pick<ContentBlock_Map<'data'>[Type], Extract<OverrideKeys<Type>, keyof ContentBlock_Map<'data'>[Type]>>>;
 
 export interface ContentBlockBuilder<Type extends BuildableContentBlockType> {
   readonly type: Type;
@@ -208,5 +208,5 @@ function makeBuilder<Type extends BuildableContentBlockType>(
 export function createContentBlock<const Data extends BuildableContentBlockData>(
   data: Data,
 ): ContentBlockBuilder<Data['type']> {
-  return makeBuilder(data, false);
+  return makeBuilder<Data['type']>(data as ContentBlock_Map<'data'>[Data['type']], false);
 }
