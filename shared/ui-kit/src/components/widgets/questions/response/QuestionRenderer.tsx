@@ -1,37 +1,46 @@
 'use client';
 
-import { Box } from '@mui/material';
+import type { Question } from '@svitlo/engine/content';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
-import { QuestionAttempt } from '../helpers/QuestionAttempt/QuestionAttempt';
-import { renderQuestionBlocks, toQuestionAttempt, type QuestionResponse } from './toQuestionAttempt';
+import { AnswerWithNumber } from '../AnswerWithNumber/AnswerWithNumber';
+import { AnswerWithText } from '../AnswerWithText/AnswerWithText';
+import { BuildAnswerWithBlocks } from '../BuildAnswerWithBlocks/BuildAnswerWithBlocks';
+import { FillBlanksWithBlocks } from '../FillBlanksWithBlocks/FillBlanksWithBlocks';
+import { FillBlanksWithText } from '../FillBlanksWithText/FillBlanksWithText';
+import { MatchBlocks } from '../MatchBlocks/MatchBlocks';
+import { OrderSequence } from '../OrderSequence/OrderSequence';
+import { SelectMultipleAnswers } from '../SelectMultipleAnswers/SelectMultipleAnswers';
+import { SelectOneAnswer } from '../SelectOneAnswer/SelectOneAnswer';
+
+export type QuestionResponse = Question<'response'>;
 
 export type QuestionRendererProps = {
   questions?: readonly QuestionResponse[];
   sceneRegistry?: SceneRegistry;
 };
 
-export const QuestionRenderer = ({ questions, sceneRegistry }: QuestionRendererProps) => {
+function QuestionBlock({ response, sceneRegistry }: { response: QuestionResponse; sceneRegistry?: SceneRegistry }) {
+  switch (response.type) {
+    case 'selectOneAnswer': return <SelectOneAnswer response={response} sceneRegistry={sceneRegistry} />;
+    case 'selectMultipleAnswers': return <SelectMultipleAnswers response={response} sceneRegistry={sceneRegistry} />;
+    case 'matchBlocks': return <MatchBlocks response={response} sceneRegistry={sceneRegistry} />;
+    case 'answerWithText': return <AnswerWithText response={response} sceneRegistry={sceneRegistry} />;
+    case 'answerWithNumber': return <AnswerWithNumber response={response} sceneRegistry={sceneRegistry} />;
+    case 'orderSequence': return <OrderSequence response={response} sceneRegistry={sceneRegistry} />;
+    case 'buildAnswerWithBlocks': return <BuildAnswerWithBlocks response={response} sceneRegistry={sceneRegistry} />;
+    case 'fillBlanksWithBlocks': return <FillBlanksWithBlocks response={response} sceneRegistry={sceneRegistry} />;
+    case 'fillBlanksWithText': return <FillBlanksWithText response={response} sceneRegistry={sceneRegistry} />;
+    default: {
+      const unreachable: never = response;
+      throw new Error('Unsupported question type: ' + String(unreachable));
+    }
+  }
+}
+
+/** Consume the server-assembled responses directly; no legacy question model. */
+export function QuestionRenderer({ questions, sceneRegistry }: QuestionRendererProps) {
   if (!questions?.length) return null;
-
-  return questions.map(response => {
-    const question = toQuestionAttempt(response, sceneRegistry);
-    const prompt = renderQuestionBlocks(response.question, sceneRegistry);
-    const explanation = renderQuestionBlocks(response.explanation, sceneRegistry);
-    const hint = renderQuestionBlocks(response.hint, sceneRegistry);
-    const hintLabel = response.locale.code === 'uk' ? 'Підказка' : 'Hint';
-
-    return (
-      <QuestionAttempt
-        key={`${response.type}:${response.id}:${response.locale.code}:${JSON.stringify(response)}`}
-        question={question}
-        explanationContent={explanation}
-        slots={{ question: () => (
-          <>
-            <Box component="div" role="heading" aria-level={2}>{prompt}</Box>
-            {hint && <Box component="details" sx={{ mt: 1 }}><summary>{hintLabel}</summary>{hint}</Box>}
-          </>
-        ) }}
-      />
-    );
-  });
-};
+  return questions.map(response => (
+    <QuestionBlock key={response.type + ':' + response.id} response={response} sceneRegistry={sceneRegistry} />
+  ));
+}

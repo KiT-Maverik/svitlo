@@ -8,5 +8,4 @@ export { OrderSequence } from './OrderSequence/OrderSequence';
 export { SelectMultipleAnswers } from './SelectMultipleAnswers/SelectMultipleAnswers';
 export { SelectOneAnswer } from './SelectOneAnswer/SelectOneAnswer';
 export { QuestionRenderer } from './response/QuestionRenderer';
-export type { QuestionRendererProps } from './response/QuestionRenderer';
-export type { QuestionResponse } from './response/toQuestionAttempt';
+export type { QuestionRendererProps, QuestionResponse } from './response/QuestionRenderer';
