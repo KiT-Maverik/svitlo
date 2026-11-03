@@ -31,6 +31,13 @@ type Css = {
 
 type Condition = {
   operation: 'condition'
+  in?: { v: NonEmptyArray<string | number>, render: string }
+  notIn?: {v: NonEmptyArray<string | number>, render: string }
+  equals?: { v: string | number, render: string }
+  notEquals?: { v: string | number, render: string }
+  lth?: { v: number, render: string }
+  gth?: { v: number, render: string }
+  inRange?: { v: [number, number], render: string }
   id: string
 }
 
