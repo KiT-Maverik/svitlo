@@ -32,7 +32,7 @@ export const prehistoricPottery_Skill_Data = buildSkillConfig({
     be: "Першабытная кераміка",
     ka: "წინაისტორიული კერამიკა",
     kk: "Тарихқа дейінгі қыш бұйымдар",
-    qm: "Qadimiy keramikа",
+    qm: "Qadimiy keramika",
   },
   description: {
     methodological: "Trace fired pottery and its uses for cooking and storage without assuming farming always came first.",
