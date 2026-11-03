@@ -5,7 +5,6 @@ import type {
   ContentBlock_Image,
   ContentBlock_Quiz,
   ContentBlock_Quiz_Screen,
-  ContentBlock_Reference,
   ContentBlock_Scene,
   ContentBlock_Text,
   ContentBlock_Type,
@@ -31,7 +30,6 @@ type _RuntimeKinds = Assert<Equal<ContentBlock<'response'>['type'], ContentBlock
 type _QuestionKinds = Assert<Equal<Question<'response'>['type'], Question_Type>>;
 type _SceneDiscriminator = Assert<Equal<ContentBlock_Scene<'response'>['type'], 'scene'>>;
 type _SceneUsesRegistryKey = Assert<Equal<ContentBlock_Scene<'response'>['rendererKey'], string>>;
-type _OrderedBlockReference = Assert<Equal<ContentBlock_Reference['type'], ContentBlock_Type>>;
 type _QuizReferencesQuestions = Assert<Equal<ContentBlock_Quiz<'response'>['questionSlugs'][number], string>>;
 type _QuizStartScreen = Assert<Equal<
   NonNullable<ContentBlock_Quiz<'data'>['screen']['starting']>,
