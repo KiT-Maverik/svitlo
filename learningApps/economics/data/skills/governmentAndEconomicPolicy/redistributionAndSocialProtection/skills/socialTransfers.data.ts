@@ -65,7 +65,7 @@ export const socialTransfers_Skill_Data = buildSkillConfig({
       be: "Дасьледуй, як сацыяльныя выплаты зьмяняюць рэсурсы хатніх гаспадарак.",
       ka: "გამოიკვლიეთ, როგორ ცვლის სოციალური გადასახდელები შინამეურნეობების რესურსებს.",
       kk: "Әлеуметтік төлемдер үй шаруашылықтарының ресурстарын қалай өзгертетінін біліңіз.",
-      qm: "İçtimaiy ödemeler ailelerniñ qınaqlarını nasıl deñiştirgenini araştır.",
+      qm: "İçtimaiy ödemeler ailelerniñ resurslarını nasıl deñiştirgenini araştır.",
     },
   },
 });
