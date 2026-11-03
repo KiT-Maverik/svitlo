@@ -60,7 +60,7 @@ export const refineAPromptBasedOnResults_Skill_Data = buildSkillConfig({
       pl: 'Ulepsz prośbę do AI po sprawdzeniu, czego zabrakło w poprzedniej odpowiedzi.',
       uk: 'Поліпшуй запит до ШІ після перевірки того, чого бракувало у попередній відповіді.',
       lt: 'Patobulink DI užklausą patikrinęs, ko trūko ankstesniame atsakyme.',
-      lv: 'Uzlabojiet MI pieprasījumu, pārbaudot, kas trūka iepriekšējā atbildē.',
+      lv: 'Uzlabo MI pieprasījumu, pārbaudot, kas trūka iepriekšējā atbildē.',
       et: 'Paranda TI päringut pärast seda, kui oled kontrollinud eelmise vastuse puudusi.',
       be: 'Палепшы запыт да ШІ, праверыўшы, чаго бракавала папярэдняму адказу.',
       ka: 'წინა პასუხის ნაკლოვანებების შემოწმების შემდეგ გააუმჯობესე AI მოთხოვნა.',

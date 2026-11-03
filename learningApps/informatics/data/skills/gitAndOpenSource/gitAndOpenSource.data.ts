@@ -12,7 +12,7 @@ export const gitAndOpenSource_SkillDomain_Data = buildSkillDomainConfig({
     zh: "Git 与开源",
     hi: "Git और ओपन सोर्स",
     es: "Git y código abierto",
-    ar: "Git والمصادر المفتوحة",
+    ar: "Git والبرمجيات مفتوحة المصدر",
     fr: "Git et logiciel libre",
     bn: "গিট ও ওপেন সোর্স",
     pt: "Git e código aberto",
