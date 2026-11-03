@@ -38,7 +38,7 @@ export const explainTheChangeInPerceivedPitchDuringRelativeMotionOfSourceAndList
     methodological: "For an unchanged sound emitted by a source, explain the Doppler effect: the frequency heard by the observer is higher as the source approaches and lower as it moves away. Do not confuse this frequency change with loudness or engine revolutions.",
     frontend: {
       en: "Explore why moving sound sources can change the pitch someone hears.",
-      zh: "探索运动中的声源为何会改变听者听到的音高。",
+      zh: "解释声源与听者相对靠近时音调变高、相对远离时变低的多普勒效应。",
       hi: "जानें कि चलती ध्वनि का स्रोत सुनाई देने वाला तारत्व कैसे बदलता है।",
       es: "Explora por qué una fuente sonora en movimiento puede cambiar el tono que se escucha.",
       ar: "استكشف لماذا يغيّر المصدر الصوتي المتحرك درجة الصوت المسموع.",
