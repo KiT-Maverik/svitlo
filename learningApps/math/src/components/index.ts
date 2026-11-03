@@ -1,2 +1,2 @@
-export * from './layout';
-export * from './pages';
+// Textbook components are routed directly through the Next.js App Router.
+export {};

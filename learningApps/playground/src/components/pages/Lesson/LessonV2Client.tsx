@@ -2,6 +2,7 @@
 
 import { Container } from '@mui/material';
 import { ContentBlockRenderer } from './ContentBlockRenderer/ContentBlockRenderer';
+import { QuestionRenderer } from '@svitlo/ui-kit/questions';
 import type { LessonResponse } from '@/lib/lessons/assembleLessonResponse';
 import { useLessonProgress } from './LessonProgress/LessonProgress';
 import { LessonSteps } from './LessonSteps/LessonSteps';
@@ -25,13 +26,17 @@ export default function LessonV2Client({ response }: { response: LessonResponse 
         allowNavigation={response.parameters.sections.allowNavigation}
         onNavigate={step => dispatch({ type: 'visit', step })}
       />
-      <div key={current.id} className={styles.stage}
-        onSubmitCapture={isQuiz ? () => dispatch({ type: 'testDone' }) : undefined}>
+      <div key={current.id} className={styles.stage}>
         <Container maxWidth="md" sx={{ py: { xs: 3, md: 6 } }}>
-          <ContentBlockRenderer
-            blocks={current.blocks}
-            sceneRegistry={howLightMovesSceneRegistry}
-          />
+          {isQuiz ? (
+            <QuestionRenderer
+              questions={current.questions}
+              sceneRegistry={howLightMovesSceneRegistry}
+              onComplete={() => dispatch({ type: 'testDone' })}
+            />
+          ) : (
+            <ContentBlockRenderer blocks={current.blocks} sceneRegistry={howLightMovesSceneRegistry} />
+          )}
         </Container>
       </div>
     </div>

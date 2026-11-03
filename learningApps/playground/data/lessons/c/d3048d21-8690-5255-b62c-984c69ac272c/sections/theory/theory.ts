@@ -1,5 +1,4 @@
-import { defineContentBlockCatalog, type ContentBlock_Catalog_DataFor, type Section } from '@svitlo/engine/content';
-import type { theoryDefinition } from './theory.definition';
+import { defineContentBlockCatalog, type Section } from '@svitlo/engine/content';
 import { checkpointData } from './checkpoints/checkpoint';
 import { lightPropagationSimulationData } from './scenes/lightPropagationSimulation';
 import { lightRayDiagramData } from './scenes/lightRayDiagram';
@@ -40,19 +39,27 @@ const title = {
 export const theory_Section = {
   id: '32376510-b49a-5da8-91d7-e13cf162c9f9',
   type: 'theory',
-  slug: 'theory',
+  slug: 'theory' as const,
   title,
   navigationLabel: title,
+  order: [
+    { type: 'markdown', slug: 'p1' },
+    { type: 'scene', slug: 'lightRayDiagram' },
+    { type: 'markdown', slug: 'p2' },
+    { type: 'scene', slug: 'lightPropagationSimulation' },
+    { type: 'markdown', slug: 'p3' },
+    { type: 'checkpoint', slug: 'checkpoint' },
+  ],
   content: defineContentBlockCatalog({
     checkpoint: { checkpoint: checkpointData },
     markdown: {
-      p1: getMarkdownLocale(new URL('./markdown/p1/', import.meta.url)),
-      p2: getMarkdownLocale(new URL('./markdown/p2/', import.meta.url)),
-      p3: getMarkdownLocale(new URL('./markdown/p3/', import.meta.url)),
+      p1: { id: 'how-light-moves-p1', slug: 'p1', locales: getMarkdownLocale(new URL('./markdown/p1/', import.meta.url)) },
+      p2: { id: 'how-light-moves-p2', slug: 'p2', locales: getMarkdownLocale(new URL('./markdown/p2/', import.meta.url)) },
+      p3: { id: 'how-light-moves-p3', slug: 'p3', locales: getMarkdownLocale(new URL('./markdown/p3/', import.meta.url)) },
     },
     scene: {
       lightPropagationSimulation: lightPropagationSimulationData,
       lightRayDiagram: lightRayDiagramData,
     },
-  },
+  }),
 } satisfies Section<'data'>;

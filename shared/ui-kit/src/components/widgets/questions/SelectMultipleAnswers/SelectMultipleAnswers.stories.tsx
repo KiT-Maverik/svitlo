@@ -1,100 +1,28 @@
 import type { Meta, StoryObj } from '@storybook/nextjs';
-import { expect, userEvent, within } from 'storybook/test';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
-import { QuestionAttempt, type QuestionAttemptProps } from '../helpers';
-import { multipleSelectQuestion } from '../../../../../.storybook/fixtures/questions';
+import type { Question_SelectMultipleAnswers } from '@svitlo/engine/content';
+import { SelectMultipleAnswers } from './SelectMultipleAnswers';
 
-type StoryProps = QuestionAttemptProps<'multiple-select'>;
-
-function SelectMultipleAnswersStory(props: StoryProps) {
-  return <QuestionAttempt {...props} />;
-}
+const locale = { code: 'en' as const };
+const text = (id: string, value: string) => ({ id, type: 'text' as const, locale, value });
+const response: Question_SelectMultipleAnswers<'response'> = {
+  type: 'selectMultipleAnswers', id: 'multiple-story', locale,
+  assessmentMethod: 'retrieval', restrictions: [],
+  question: [text('prompt', 'Select the prime numbers.')],
+  answers: {
+    correct: { two: text('two', '2'), five: text('five', '5') },
+    incorrect: { four: text('four', '4') },
+    distractors: { six: text('six', '6') },
+  },
+  explanation: [text('explanation', '2 and 5 are prime numbers.')],
+};
 
 const meta = {
   title: 'Questions/Select multiple answers',
-  component: SelectMultipleAnswersStory,
+  component: SelectMultipleAnswers,
   tags: ['autodocs'],
-  parameters: {
-    docs: {
-      description: { component: 'Запитання, у якому можна вибрати кілька правильних варіантів.' },
-    },
-  },
-  argTypes: {
-    question: { control: 'object', description: 'Опис запитання, варіанти та правильні відповіді.' },
-    showResult: { control: 'boolean' },
-    showExplanation: { control: 'boolean' },
-    showErrors: { control: 'boolean' },
-    showCorrectAnswers: { control: 'boolean' },
-    showLetters: { control: 'boolean' },
-    disabled: { control: 'boolean' },
-    readOnly: { control: 'boolean' },
-    checkMode: { control: 'select', options: ['manual', 'on-change'] },
-    onChange: { action: 'change' },
-    onCheck: { action: 'check' },
-    onAnswer: { action: 'answer' },
-    onCorrect: { action: 'correct' },
-    onIncorrect: { action: 'incorrect' },
-    onRetry: { action: 'retry' },
-    onReset: { action: 'reset' },
-    slots: { control: false },
-    slotProps: { control: false },
-    actionSlots: { control: false },
-  },
-  args: {
-    question: multipleSelectQuestion,
-    showResult: true,
-    showExplanation: true,
-    showErrors: true,
-    showCorrectAnswers: true,
-    showLetters: true,
-    disabled: false,
-    readOnly: false,
-    checkMode: 'manual',
-  },
-} satisfies Meta<typeof SelectMultipleAnswersStory>;
+  args: { response },
+} satisfies Meta<typeof SelectMultipleAnswers>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
-
 export const Playground: Story = {};
-
-export const Disabled: Story = {
-  args: { disabled: true },
-};
-
-export const ReadOnly: Story = {
-  args: { readOnly: true },
-};
-
-export const Correct: Story = {
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    await userEvent.click(canvas.getByRole('button', { name: /^2$/ }));
-    await userEvent.click(canvas.getByRole('button', { name: /^5$/ }));
-    await userEvent.click(canvas.getByRole('button', { name: 'Перевірити' }));
-    await expect(canvas.getByRole('button', { name: 'Спробувати ще раз' })).toBeVisible();
-  },
-};
-
-export const Incorrect: Story = {
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    await userEvent.click(canvas.getByRole('button', { name: /^4$/ }));
-    await userEvent.click(canvas.getByRole('button', { name: 'Перевірити' }));
-    await expect(canvas.getByRole('button', { name: 'Спробувати ще раз' })).toBeVisible();
-  },
-};
-
-export const StateGallery: Story = {
-  render: args => (
-    <Stack spacing={3}>
-      <Typography variant="h6">Стан за замовчуванням</Typography>
-      <SelectMultipleAnswersStory {...args} />
-      <Typography variant="h6">Без літер і пояснення</Typography>
-      <SelectMultipleAnswersStory {...args} showLetters={false} showExplanation={false} />
-      <Typography variant="h6">Заблокований стан</Typography>
-      <SelectMultipleAnswersStory {...args} disabled />
-    </Stack>
-  ),
-};

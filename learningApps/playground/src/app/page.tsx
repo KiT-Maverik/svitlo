@@ -1,4 +1,5 @@
 import { Box, Button, Container, Stack, Typography } from '@mui/material';
+
 export default function Home() {
   return (
     <Container component="main" maxWidth="md" sx={{ py: { xs: 4, sm: 8 } }}>
@@ -12,16 +13,12 @@ export default function Home() {
           </Typography>
         </Box>
         <Stack direction="row" sx={{ gap: 2, flexWrap: 'wrap' }}>
-          <Button variant="contained" href="/topics/demo">
-            Демонстраційний урок
-          </Button>
-          <Button variant="outlined" href="/topics/light">
+          <Button variant="contained" href="/topics/light">
             Відкрити урок «Як рухається світло»
           </Button>
           <Button variant="outlined" href="/questions">
             Інтерактивні запитання
           </Button>
-          <Button href="/questions/api">API запитань</Button>
           <Button variant="contained" color="secondary" href="/skillAnalytics">
             Аналітика навичок
           </Button>

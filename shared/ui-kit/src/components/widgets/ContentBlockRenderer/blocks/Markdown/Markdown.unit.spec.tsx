@@ -37,7 +37,7 @@ describe('Markdown content block', () => {
   });
 
   it('derives language and RTL direction from the response locale', () => {
-    render(<Markdown {...response} locale={{ code: 'ar' }} text="# عنوان الدرس\n\nنص عربي" />);
+    render(<Markdown {...response} locale={{ code: 'ar' }} text={'# عنوان الدرس\n\nنص عربي'} />);
     const article = screen.getByRole('article');
     expect(article).toHaveAttribute('lang', 'ar-SA');
     expect(article).toHaveAttribute('dir', 'rtl');

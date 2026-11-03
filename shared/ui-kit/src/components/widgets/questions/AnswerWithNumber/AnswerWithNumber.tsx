@@ -1,28 +1,37 @@
 'use client';
-import type { InteractionProps } from '../interaction-props';
-import { NumberField } from './NumberField/NumberField';
-import { uk } from '../messages';
-export function AnswerWithNumber({
-  question,
-  value,
-  onChange,
-  disabled,
-  readOnly,
-  result,
-  showErrors,
-  showCorrectAnswers,
-}: InteractionProps<'numeric'>) {
+import { TextField } from '@mui/material';
+import type { Question_AnswerWithNumber } from '@svitlo/engine/content';
+import type { SceneRegistry } from '../../ContentBlockRenderer';
+import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
+
+export function parseQuestionNumber(value: string): number | null {
+  const trimmed = value.trim();
+  if (!/^[+-]?(?:(?:[0-9]+(?:[.,][0-9]*)?)|(?:[.,][0-9]+))(?:e[+-]?[0-9]+)?$/iu.test(trimmed)) return null;
+  const number = Number(trimmed.replace(',', '.'));
+  return Number.isFinite(number) ? number : null;
+}
+
+export function AnswerWithNumber({ response, sceneRegistry }: {
+  response: Question_AnswerWithNumber<'response'>;
+  sceneRegistry?: SceneRegistry;
+}) {
+  const attempt = useQuestionAttempt(
+    () => '',
+    value => {
+      const number = parseQuestionNumber(value);
+      return number !== null && response.correctAnswers.includes(number);
+    },
+    value => parseQuestionNumber(value) !== null,
+  );
   return (
-    <NumberField
-      label={question.unit ? `${uk.answer} (${question.unit})` : uk.answer}
-      value={value}
-      onChange={onChange}
-      disabled={disabled}
-      readOnly={readOnly}
-      result={result}
-      showErrors={showErrors}
-      showCorrectAnswers={showCorrectAnswers}
-      helperText={uk.numberFormat}
-    />
+    <QuestionFrame response={response} sceneRegistry={sceneRegistry} attempt={attempt}>
+      <TextField fullWidth label={response.locale.code === 'uk' ? 'Ваша відповідь' : 'Your answer'}
+        placeholder={response.placeholder} value={attempt.value}
+        onChange={event => attempt.setValue(event.target.value)}
+        disabled={attempt.checked} error={attempt.checked && !attempt.correct}
+        color={attempt.checked && attempt.correct ? 'success' : 'primary'}
+        slotProps={{ htmlInput: { inputMode: 'decimal' } }}
+        sx={{ display: 'block', maxWidth: 480, mx: 'auto' }} />
+    </QuestionFrame>
   );
 }
