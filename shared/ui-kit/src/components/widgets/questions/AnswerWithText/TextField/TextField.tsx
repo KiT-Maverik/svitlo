@@ -8,6 +8,7 @@ import { resultFeedback, type FeedbackVisibility } from '../../feedback';
 import { uk } from '../../messages';
 interface TextFieldProps extends FeedbackVisibility {
   label: string;
+  placeholder?: string;
   value: string;
   onChange: (value: string) => void;
   disabled?: boolean;
@@ -19,6 +20,7 @@ interface TextFieldProps extends FeedbackVisibility {
 /** Shared controlled text/numeric surface; grading remains outside this component. */
 export function TextField({
   label,
+  placeholder,
   value,
   onChange,
   disabled,
@@ -36,6 +38,7 @@ export function TextField({
       id={id}
       fullWidth
       label={label}
+      placeholder={placeholder}
       value={value}
       onChange={e => onChange(e.target.value)}
       onMouseDown={event => {

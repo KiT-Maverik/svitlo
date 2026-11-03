@@ -15,6 +15,7 @@ const minWidth = 96;
 const maxWidth = 360;
 function BlankTextInput({
   id,
+  placeholder,
   value,
   onChange,
   disabled,
@@ -22,6 +23,7 @@ function BlankTextInput({
   feedback,
 }: {
   id: string;
+  placeholder?: string;
   value: string;
   onChange: (value: string) => void;
   disabled: boolean;
@@ -52,6 +54,7 @@ function BlankTextInput({
     >
       <TextField
         id={id}
+        placeholder={placeholder}
         aria-label={aria.blankInput}
         data-testid={testId.blankInput(id)}
         size="small"
@@ -171,6 +174,7 @@ export function FillBlanksWithText({
           <Box component="span" key={part.id}>
             <BlankTextInput
               id={`${question.id}-${part.id}`}
+              placeholder={question.placeholder}
               value={value[part.id] ?? ''}
               onChange={next => onChange({ ...value, [part.id]: next })}
               disabled={Boolean(disabled)}

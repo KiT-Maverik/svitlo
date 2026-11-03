@@ -221,7 +221,7 @@ export function MatchBlocks({
                   }}
                 >
                   <Typography component="span" sx={{ minWidth: 0, overflowWrap: 'anywhere', textAlign: 'center' }}>
-                    {item.label}
+                    {item.content ?? item.label}
                   </Typography>
                   {side === 'left' && FeedbackIcon && (
                     <FeedbackIcon

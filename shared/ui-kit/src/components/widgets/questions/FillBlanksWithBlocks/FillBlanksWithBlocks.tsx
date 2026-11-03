@@ -54,7 +54,7 @@ function DraggableBlock({
       component="button"
       clickable
       variant="outlined"
-      label={item.label}
+      label={item.content ?? item.label}
       {...attributes}
       {...dndListeners}
       disabled={disabled}
@@ -108,6 +108,7 @@ function DraggableBlock({
 }
 function BlankDrop({
   id,
+  placeholder,
   item,
   preview,
   correctAnswer,
@@ -120,6 +121,7 @@ function BlankDrop({
   onRemove,
 }: {
   id: string;
+  placeholder?: string;
   item?: Item;
   preview?: Item;
   correctAnswer?: string;
@@ -172,12 +174,12 @@ function BlankDrop({
       {shownItem ? (
         graded ? (
           <Box component="span" sx={{ lineHeight: 1.4, overflowWrap: 'anywhere' }}>
-            {shownItem.label}
+            {shownItem.content ?? shownItem.label}
           </Box>
         ) : showingPreview ? (
           <Chip
             aria-hidden="true"
-            label={shownItem.label}
+            label={shownItem.content ?? shownItem.label}
             variant="outlined"
             sx={{ ...chipSx, pointerEvents: 'none' }}
           />
@@ -192,7 +194,9 @@ function BlankDrop({
           />
         )
       ) : (
-        <Box component="span" aria-hidden="true" sx={{ width: 56, height: 1, bgcolor: 'text.disabled' }} />
+        placeholder
+          ? <Box component="span" sx={{ color: 'text.secondary' }}>{placeholder}</Box>
+          : <Box component="span" aria-hidden="true" sx={{ width: 56, height: 1, bgcolor: 'text.disabled' }} />
       )}
       {graded && feedback ? (
         <Box
@@ -239,7 +243,7 @@ function PreviewBlock({ item }: { item: Item }) {
   return (
     <Chip
       aria-hidden="true"
-      label={item.label}
+      label={item.content ?? item.label}
       variant="outlined"
       sx={{
         ...chipSx,
@@ -381,6 +385,7 @@ export function FillBlanksWithBlocks({
               <BlankDrop
                 key={part.id}
                 id={blankTarget(part.id)}
+                placeholder={question.placeholder}
                 item={question.blocks.find(item => item.id === value[part.id])}
                 preview={activeItem}
                 correctAnswer={question.blocks.find(item => item.id === question.correctBlocks[part.id])?.label}

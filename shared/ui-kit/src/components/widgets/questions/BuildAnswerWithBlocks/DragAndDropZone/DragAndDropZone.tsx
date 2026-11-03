@@ -68,7 +68,7 @@ function AvailableBlock({
       onKeyDown={undefined}
       aria-pressed={undefined}
       aria-label={`${uk.add}: ${item.label} (${index + 1})`}
-      label={item.label}
+      label={item.content ?? item.label}
       disabled={locked}
       onClick={event => toggle(event.currentTarget)}
       sx={{ ...chipSx, opacity: isDragging ? 0.25 : 1 }}
@@ -101,7 +101,7 @@ function SortableBlock({
       {...listeners}
       aria-label={`${uk.remove}: ${item.label} (${index + 1})`}
       data-feedback={feedback}
-      label={item.label}
+      label={item.content ?? item.label}
       variant="outlined"
       disabled={locked}
       onClick={event => toggle(event.currentTarget)}
@@ -452,7 +452,7 @@ export function DragAndDropZone({
       <Chip
         data-insertion-preview="true"
         aria-hidden="true"
-        label={activeItem.label}
+        label={activeItem.content ?? activeItem.label}
         variant="outlined"
         sx={{
           ...chipSx,
@@ -591,7 +591,7 @@ export function DragAndDropZone({
                   {correctAnswerItems.map(item => (
                     <Chip
                       key={item.id}
-                      label={item.label}
+                      label={item.content ?? item.label}
                       variant="outlined"
                       disabled
                       sx={{ ...chipSx, cursor: 'default' }}
@@ -642,7 +642,7 @@ export function DragAndDropZone({
           {activeItem ? (
             <Chip
               aria-hidden="true"
-              label={activeItem.label}
+              label={activeItem.content ?? activeItem.label}
               sx={{ ...chipSx, width: '100%', bgcolor: 'background.paper', cursor: 'grabbing' }}
             />
           ) : null}
@@ -668,7 +668,7 @@ export function DragAndDropZone({
             '@media (prefers-reduced-motion: reduce)': { display: 'none' },
           }}
         >
-          <Chip label={departure.item.label} sx={{ ...chipSx, width: '100%' }} />
+          <Chip label={departure.item.content ?? departure.item.label} sx={{ ...chipSx, width: '100%' }} />
         </Box>
       )}
     </Stack>

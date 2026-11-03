@@ -3,6 +3,7 @@ import type { InteractionProps } from '../interaction-props';
 import { TextField } from './TextField/TextField';
 import { uk } from '../messages';
 export function AnswerWithText({
+  question,
   value,
   onChange,
   disabled,
@@ -14,6 +15,7 @@ export function AnswerWithText({
   return (
     <TextField
       label={uk.answer}
+      placeholder={question.placeholder}
       value={value}
       onChange={onChange}
       disabled={disabled}

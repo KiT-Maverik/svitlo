@@ -33,6 +33,7 @@ export interface QuestionSlotProps<K extends QuestionType> {
   actions?: SlotProps<StackProps, K>;
 }
 export interface QuestionAttemptOptions<K extends QuestionType> extends AttemptOptions<K>, FeedbackVisibility {
+  explanationContent?: ReactNode;
   showLetters?: boolean;
   /** Optional content for the three regions of the shared actions panel. */
   actionSlots?: { left?: QuestionSlot<K>; center?: QuestionSlot<K>; right?: QuestionSlot<K> };

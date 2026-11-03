@@ -116,7 +116,7 @@ function SortableAnswer({
           }}
         />
         <Typography component="span" sx={{ minWidth: 0, overflowWrap: 'anywhere' }}>
-          {item.label}
+          {item.content ?? item.label}
         </Typography>
       </ButtonBase>
     </Box>

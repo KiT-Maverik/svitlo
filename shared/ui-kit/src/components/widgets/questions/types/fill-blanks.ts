@@ -7,6 +7,7 @@ export interface FillBlanksWithBlocksQuestion extends BaseQuestion {
   parts: FillBlankPart[];
   blocks: Item[];
   correctBlocks: Record<string, string>;
+  placeholder?: string;
 }
 
 export interface FillBlanksWithTextQuestion extends BaseQuestion {
@@ -14,4 +15,5 @@ export interface FillBlanksWithTextQuestion extends BaseQuestion {
   parts: FillBlankPart[];
   acceptedAnswers: Record<string, string[]>;
   normalization: TextNormalization;
+  placeholder?: string;
 }

@@ -21,6 +21,7 @@ export function SelectMultipleAnswers({
         <AnswerOption
           key={item.id}
           label={item.label}
+          content={item.content}
           letter={showLetters ? answerLetter(index) : undefined}
           selected={value.includes(item.id)}
           feedback={choiceFeedback(result, value.includes(item.id), question.correctIds.includes(item.id), {

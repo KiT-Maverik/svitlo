@@ -1,6 +1,9 @@
+import type { ReactNode } from 'react';
+
 export interface Item {
   id: string;
   label: string;
+  content?: ReactNode;
 }
 export interface BaseQuestion {
   id: string;

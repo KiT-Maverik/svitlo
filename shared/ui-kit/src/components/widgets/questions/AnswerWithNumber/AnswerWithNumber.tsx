@@ -15,6 +15,7 @@ export function AnswerWithNumber({
   return (
     <NumberField
       label={question.unit ? `${uk.answer} (${question.unit})` : uk.answer}
+      placeholder={question.placeholder}
       value={value}
       onChange={onChange}
       disabled={disabled}

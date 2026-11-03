@@ -4,6 +4,7 @@ import type { InteractionProps } from '../interaction-props';
 import { choiceFeedback } from '../feedback';
 import { Box } from '@mui/material';
 import { AnswerOption, answerColumnSx, answerLetter } from '../helpers';
+
 export function SelectOneAnswer({
   question,
   value,
@@ -21,9 +22,10 @@ export function SelectOneAnswer({
         <AnswerOption
           key={item.id}
           label={item.label}
+          content={item.content}
           letter={showLetters ? answerLetter(index) : undefined}
           selected={value === item.id}
-          feedback={choiceFeedback(result, value === item.id, question.correctId === item.id, {
+          feedback={choiceFeedback(result, value === item.id, (question.acceptedIds ?? [question.correctId]).includes(item.id), {
             showErrors,
             showCorrectAnswers,
           })}

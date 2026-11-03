@@ -1,5 +1,5 @@
 import type { LanguageCode } from '@svitlo/engine/localization';
-import { SECTION_TYPES, type ContentBlock, type Section_Type } from '@svitlo/engine/content';
+import { SECTION_TYPES, type ContentBlock, type Question, type Section_Type } from '@svitlo/engine/content';
 import { resolveEntityPath } from '@svitlo/engine';
 
 export type LocaleSource = { code: LanguageCode; isFallback?: true };
@@ -26,6 +26,7 @@ export type LessonSectionResponse = {
   content: Record<string, Record<string, LessonContentBlock>>;
   order: { type: string; key: string }[];
   blocks: LessonRenderableBlock[];
+  questions: Question<'response'>[];
 };
 export type LessonResponse = {
   id: string;
@@ -197,6 +198,7 @@ export function assembleLessonResponse(
     if ((sectionType === 'quiz') !== hasQuiz) {
       throw new Error('Quiz section type and content disagree at ' + key);
     }
+    const sectionQuestions: Question<'response'>[] = [];
     for (const block of Object.values(content.content.quiz ?? {})) {
       const slugs = block.questionSlugs;
       if (!Array.isArray(slugs) || slugs.some(value => typeof value !== 'string') ||
@@ -212,6 +214,7 @@ export function assembleLessonResponse(
             ' in ' + relativePath + '/' + key);
         }
         resolved[questionSlug] = matches[0];
+        sectionQuestions.push(matches[0] as unknown as Question<'response'>);
       }
       block.questions = resolved;
     }
@@ -223,6 +226,7 @@ export function assembleLessonResponse(
       navigationLabel: string(section.navigationLabel, 'sections.' + key + '.navigationLabel'),
       ...(section.skippable === true ? { skippable: true as const } : {}),
       ...content,
+      questions: sectionQuestions,
     };
   }
   const sectionOrder = data.sectionOrder;

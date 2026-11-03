@@ -47,7 +47,7 @@ export const checkers: { [K in QuestionType]: Checker<K> } = {
     if (!validItems(q.options) || !contains(q.options, q.correctId)) return invalid('definition');
     if (value === null || value === '') return empty;
     if (!contains(q.options, value)) return invalid('unknown-id');
-    return grade(value === q.correctId);
+    return grade((q.acceptedIds ?? [q.correctId]).includes(value));
   },
   'multiple-select': (q, value) => {
     if (!validItems(q.options) || !q.correctIds.length || validateIds(q.correctIds, q.options))
@@ -90,9 +90,10 @@ export const checkers: { [K in QuestionType]: Checker<K> } = {
     const number = parseAnswerWithNumber(value);
     if (number === null) return invalid('number-format');
     // Compensate only for binary floating-point rounding at the inclusive boundary.
-    const rounding =
-      q.tolerance === 0 ? 0 : Number.EPSILON * Math.max(Math.abs(number), Math.abs(q.expected), q.tolerance) * 2;
-    return grade(Math.abs(number - q.expected) <= q.tolerance + rounding);
+    return grade((q.acceptedNumbers ?? [q.expected]).some(expected => {
+      const rounding = q.tolerance === 0 ? 0 : Number.EPSILON * Math.max(Math.abs(number), Math.abs(expected), q.tolerance) * 2;
+      return Math.abs(number - expected) <= q.tolerance + rounding;
+    }));
   },
   ordering: (q, value) => {
     if (!validItems(q.items) || q.correctOrder.length !== q.items.length || validateIds(q.correctOrder, q.items))

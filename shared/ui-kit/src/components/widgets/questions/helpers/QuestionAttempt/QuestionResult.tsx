@@ -2,13 +2,14 @@
 
 import { Box, Fade, Paper } from '@mui/material';
 import { MarkdownContent } from '../../../MarkdownContent';
+import type { ReactNode } from 'react';
 import { uk } from '../../messages';
 export function QuestionResult({
   explanation,
   visible,
   onClose,
 }: {
-  explanation: string;
+  explanation: ReactNode;
   visible: boolean;
   onClose: () => void;
 }) {
@@ -50,7 +51,7 @@ export function QuestionResult({
               bgcolor: 'background.paper',
             }}
           >
-            <MarkdownContent content={explanation} />
+            {typeof explanation === 'string' ? <MarkdownContent content={explanation} /> : explanation}
           </Paper>
         </Box>
       </Fade>

@@ -258,7 +258,7 @@ function Attempt<K extends QuestionType>(props: QuestionAttemptProps<K>) {
       >
         {slots?.answers ? slots.answers({ ...context, children: answerContent }) : answerContent}
         <QuestionResult
-          explanation={question.explanation}
+          explanation={props.explanationContent ?? question.explanation}
           visible={explanationVisible && showResult && showExplanation}
           onClose={() => setExplanationVisible(false)}
         />

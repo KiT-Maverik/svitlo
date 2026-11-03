@@ -6,6 +6,7 @@ import { TextField } from '../../AnswerWithText/TextField/TextField';
 
 interface NumberFieldProps extends FeedbackVisibility {
   label: string;
+  placeholder?: string;
   value: string;
   onChange: (value: string) => void;
   disabled?: boolean;

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import { alpha, ButtonBase, Box, Divider, Typography } from '@mui/material';
 import RadioButtonUnchecked from '@mui/icons-material/RadioButtonUnchecked';
 import RadioButtonChecked from '@mui/icons-material/RadioButtonChecked';
@@ -24,6 +24,7 @@ export function answerLetter(index: number): string {
 /** Reusable toggle. The entire answer, including its icon, is one button. */
 export function AnswerOption({
   label,
+  content,
   selected,
   onToggle,
   disabled = false,
@@ -31,6 +32,7 @@ export function AnswerOption({
   letter,
 }: {
   label: string;
+  content?: ReactNode;
   selected: boolean;
   onToggle: () => void;
   disabled?: boolean;
@@ -47,6 +49,8 @@ export function AnswerOption({
 
   const option = (
     <ButtonBase
+      component="div"
+      role="button"
       aria-label={label}
       aria-description={feedback ? feedbackText : undefined}
       data-feedback={feedback}
@@ -162,10 +166,8 @@ export function AnswerOption({
           />
         </Box>
       </Box>
-      <Box component="span" sx={{ minWidth: 0 }}>
-        <Typography component="span" sx={{ overflowWrap: 'anywhere' }}>
-          {label}
-        </Typography>
+      <Box component="div" sx={{ minWidth: 0, overflowWrap: 'anywhere' }}>
+        {content ?? <Typography component="span">{label}</Typography>}
       </Box>
     </ButtonBase>
   );
