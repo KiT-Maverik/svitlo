@@ -4,7 +4,8 @@ export type ContentBlock_Definition_Meta<T extends ContentBlock_Type> = {
   type: T;
 }
 
-export type ContentBlock_Data_Meta = {
+export type ContentBlock_Data_Meta<T extends ContentBlock_Type> = {
+  type: T;
   id: string;
   slug: string;
 }
