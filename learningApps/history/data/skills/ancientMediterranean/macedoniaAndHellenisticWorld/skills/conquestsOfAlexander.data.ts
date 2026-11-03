@@ -60,7 +60,7 @@ export const conquestsOfAlexander_Skill_Data = buildSkillConfig({
       pl: "Prześledź podboje Aleksandra i ich konsekwencje polityczne.",
       uk: "Простеж завоювання Александра та їхні політичні наслідки.",
       lt: "Sekite Aleksandro užkariavimus ir jų politines pasekmes.",
-      lv: "Izseko Aleksandra iekarojumus un to politiskās sekas.",
+      lv: "Izpēti Aleksandra iekarojumus un to politiskās sekas.",
       et: "Jälgi Aleksandri vallutusi ja nende poliitilisi tagajärgi.",
       be: "Прасачы заваёвы Аляксандра і іх палітычныя наступствы.",
       ka: "მიჰყევით ალექსანდრეს დაპყრობებსა და მათ პოლიტიკურ შედეგებს.",
