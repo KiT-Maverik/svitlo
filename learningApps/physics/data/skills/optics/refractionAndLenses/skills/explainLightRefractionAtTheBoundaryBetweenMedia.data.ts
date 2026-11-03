@@ -53,7 +53,7 @@ export const explainLightRefractionAtTheBoundaryBetweenMedia_Skill_Data = buildS
       tr: "Işığın iki ortamın sınırında yönünü nasıl değiştirebildiğini açıkla.",
       vi: "Giải thích cách ánh sáng có thể đổi hướng tại ranh giới giữa hai môi trường.",
       ta: "இரு ஊடகங்களின் எல்லையில் ஒளி எவ்வாறு திசை மாறக்கூடும் என்பதை விளக்கு.",
-      te: "రెండు మాధ్యమాల సరిహద్దులో కాంతి దిశ ఎలా మారవచ్చో వివరించు.",
+      te: "రెండు మాధ్యమాల సరిహద్దులో కాంతి దిశ ఎలా మారవచ్చో వివరించండి.",
       mr: "दोन माध्यमांच्या सीमेवर प्रकाशाची दिशा कशी बदलू शकते ते स्पष्ट करा.",
       ms: "Terangkan bagaimana cahaya boleh berubah arah pada sempadan dua medium.",
       he: "הסבירו כיצד אור יכול לשנות כיוון בגבול בין שני תווכים.",

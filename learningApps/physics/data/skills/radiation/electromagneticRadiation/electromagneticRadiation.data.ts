@@ -60,7 +60,7 @@ export const electromagneticRadiation_SkillGroup_Data = buildSkillGroupConfig({
       tr: "Elektromanyetik tayfın görünen ve görünmeyen bölümlerini keşfet.",
       vi: "Khám phá các phần nhìn thấy và không nhìn thấy của phổ điện từ.",
       ta: "மின்காந்த நிறமாலையின் காணக்கூடிய மற்றும் காணமுடியாத பகுதிகளை அறிந்துகொள்.",
-      te: "విద్యుదయస్కాంత వర్ణపటంలోని కనిపించే, కనిపించని ప్రాంతాలను తెలుసుకో.",
+      te: "విద్యుదయస్కాంత వర్ణపటంలోని కనిపించే, కనిపించని ప్రాంతాలను తెలుసుకోండి.",
       mr: "विद्युतचुंबकीय वर्णपटातील दिसणारे व न दिसणारे भाग जाणून घ्या.",
       ms: "Kenali bahagian spektrum elektromagnet yang kelihatan dan tidak kelihatan.",
       he: "גלו את החלקים הנראים והבלתי נראים של הספקטרום האלקטרומגנטי.",

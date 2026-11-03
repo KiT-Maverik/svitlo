@@ -53,7 +53,7 @@ export const explainThePropagationOfElectromagneticWavesWithoutAir_Skill_Data = 
       tr: "Elektromanyetik dalgaların uzay boşluğunda neden yayılabildiğini açıkla.",
       vi: "Giải thích vì sao sóng điện từ có thể truyền qua chân không vũ trụ.",
       ta: "மின்காந்த அலைகள் விண்வெளியின் வெற்றிடத்திலும் ஏன் பயணிக்கின்றன என்பதை விளக்கு.",
-      te: "విద్యుదయస్కాంత తరంగాలు అంతరిక్ష శూన్యంలో ఎందుకు ప్రయాణించగలవో వివరించు.",
+      te: "విద్యుదయస్కాంత తరంగాలు అంతరిక్ష శూన్యంలో ఎందుకు ప్రయాణించగలవో వివరించండి.",
       mr: "विद्युतचुंबकीय लहरी अंतराळातील निर्वातातही कशा प्रवास करतात ते स्पष्ट करा.",
       ms: "Terangkan mengapa gelombang elektromagnet boleh merambat melalui vakum angkasa.",
       he: "הסבירו מדוע גלים אלקטרומגנטיים יכולים לנוע בריק החלל.",

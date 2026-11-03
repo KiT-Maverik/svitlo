@@ -58,7 +58,7 @@ export const transparency_SkillGroup_Data = buildSkillGroupConfig({
       tr: "Malzemelerin geçirdikleri ışığın miktarı ve netliği bakımından nasıl farklılaştığını öğren.",
       vi: "Tìm hiểu các vật liệu khác nhau về lượng ánh sáng truyền qua và độ rõ của nó như thế nào.",
       ta: "பொருட்கள் கடத்தும் ஒளியின் அளவும் தெளிவும் எவ்வாறு வேறுபடுகின்றன என்பதை அறிந்துகொள்.",
-      te: "వేర్వేరు పదార్థాలు ఎంత కాంతిని ఎంత స్పష్టంగా పంపిస్తాయో తెలుసుకో.",
+      te: "వేర్వేరు పదార్థాలు ఎంత కాంతిని ఎంత స్పష్టంగా పంపిస్తాయో తెలుసుకోండి.",
       mr: "निरनिराळे पदार्थ किती प्रकाश आणि किती स्पष्टपणे जाऊ देतात ते जाणून घ्या.",
       ms: "Ketahui bagaimana bahan berbeza dari segi jumlah dan kejelasan cahaya yang melaluinya.",
       he: "גלו כיצד חומרים נבדלים בכמות האור ובמידת הבהירות שבה הוא עובר דרכם.",
