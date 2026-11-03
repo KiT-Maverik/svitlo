@@ -65,7 +65,7 @@ export const distinguishLinearAndLogarithmicGrowth_Skill_Data = buildSkillConfig
       be: "Параўнай рост прапарцыйна памеру ўваходу з ростам пры паўторным дзяленьні напалову.",
       ka: "შეადარე შეყვანის ზომის პროპორციული ზრდა განმეორებითი განახევრებისას ზრდას.",
       kk: "Кіріс көлеміне пропорционал өсуді қайта-қайта екіге бөлумен байланысты өсумен салыстыр.",
-      qm: "Kirgen malümat ölçüsüne nisbeten artışnı tekrardan ekiге bölüv artışınen teñeştir.",
+      qm: "Kirgen malümat ölçüsüne nisbeten artışnı tekrardan ekige bölüv artışınen teñeştir.",
     },
   },
 });
