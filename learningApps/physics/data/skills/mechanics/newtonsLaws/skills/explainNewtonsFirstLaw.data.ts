@@ -59,7 +59,7 @@ export const explainNewtonsFirstLaw_Skill_Data = buildSkillConfig({
       he: "הסבירו מדוע כוח שקול אפס משמעו מהירות וקטורית קבועה במערכת ייחוס אינרציאלית.",
       pl: "Wyjaśnij, dlaczego zerowa siła wypadkowa oznacza stałą prędkość w inercjalnym układzie odniesienia.",
       uk: "Поясни, чому нульова рівнодійна сил означає сталу швидкість в інерціальній системі відліку.",
-      lt: "Paaiškink, kodėl nulinė atstojamoji jėga reiškia pastovų greitį inercinėje atskaitos sistemoje.",
+      lt: "Paaiškink, kodėl inercinėje atskaitos sistemoje nulinė atstojamoji jėga reiškia nekintantį greičio vektorių.",
       lv: "Izskaidro, kāpēc nulles kopspēks nozīmē nemainīgu ātruma vektoru inerciālā atskaites sistēmā.",
       et: "Selgita, miks nulliga võrdne resultantjõud tähendab inertsiaalsüsteemis muutumatut kiirusvektorit.",
       be: "Растлумач, чаму нулявая раўнадзейная сіла азначае сталую хуткасьць у інэрцыяльнай сыстэме адліку.",
