@@ -43,7 +43,7 @@ export function QuestionChoice({
       <Box component="span" aria-hidden="true" sx={{ fontWeight: 700, flexShrink: 0 }}>
         {feedback === 'correct' ? '✓' : feedback === 'incorrect' ? '✕' : selected ? '●' : '○'}
       </Box>
-      <Box component="span" sx={{ minWidth: 0, flex: 1 }}>
+      <Box component="div" sx={{ minWidth: 0, flex: 1 }}>
         <QuestionContent blocks={[block]} sceneRegistry={sceneRegistry} />
       </Box>
     </ButtonBase>
