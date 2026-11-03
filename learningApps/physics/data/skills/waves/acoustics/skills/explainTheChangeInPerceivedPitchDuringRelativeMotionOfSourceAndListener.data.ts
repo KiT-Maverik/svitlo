@@ -49,7 +49,7 @@ export const explainTheChangeInPerceivedPitchDuringRelativeMotionOfSourceAndList
       id: "Jelajahi mengapa sumber bunyi bergerak dapat mengubah tinggi nada yang terdengar.",
       de: "Erkunde, warum eine bewegte Schallquelle die wahrgenommene Tonhöhe ändern kann.",
       ja: "動く音源が聞こえる音の高さを変える理由を探ろう。",
-      ko: "움직이는 음원이 들리는 음높이를 바꾸는 이유를 알아보세요.",
+      ko: "음원과 듣는 사람이 서로 가까워지면 들리는 음높이가 높아지고 멀어지면 낮아지는 도플러 효과를 알아보세요.",
       tr: "Hareket eden ses kaynağının duyulan perdeyi neden değiştirdiğini keşfet.",
       vi: "Khám phá vì sao nguồn âm chuyển động làm thay đổi độ cao âm người nghe cảm nhận.",
       ta: "நகரும் ஒலி மூலம் கேட்கும் சுருதியை ஏன் மாற்றுகிறது என்பதை ஆராய்.",
