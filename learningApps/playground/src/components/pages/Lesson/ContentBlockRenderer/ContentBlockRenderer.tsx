@@ -1,11 +1,10 @@
 'use client';
 
-export { ContentBlockRenderer, ContentBlockCatalogRenderer } from '@svitlo/ui-kit/widgets';
+export { ContentBlockRenderer } from '@svitlo/ui-kit/widgets';
 export type {
-  ContentBlockRenderContext,
   ContentBlockRendererProps,
   ContentBlockResponse,
   ContentBlockType,
-  ContentBlockReference,
+  ResponseOf,
   SceneRegistry,
 } from '@svitlo/ui-kit/widgets';

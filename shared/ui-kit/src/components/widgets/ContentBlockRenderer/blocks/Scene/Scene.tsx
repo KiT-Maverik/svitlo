@@ -1,7 +1,7 @@
-import type { ContentBlockResponse, SceneRegistry } from '../../types';
+import type { ResponseOf, SceneRegistry } from '../../types';
 
 export const Scene = ({ response, sceneRegistry }: {
-  response: ContentBlockResponse<'scene'>;
+  response: ResponseOf<'scene'>;
   sceneRegistry?: SceneRegistry;
 }) => {
   const Scene = sceneRegistry?.[response.id];

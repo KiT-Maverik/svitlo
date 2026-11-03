@@ -1,5 +1,5 @@
 import type { LanguageCode } from '@svitlo/engine/localization';
-import { SECTION_TYPES, type Section_Type } from '@svitlo/engine/content';
+import { SECTION_TYPES, type ContentBlock, type Section_Type } from '@svitlo/engine/content';
 import { resolveEntityPath } from '@svitlo/engine';
 
 export type LocaleSource = { code: LanguageCode; isFallback?: true };
@@ -15,6 +15,7 @@ export type LessonContentBlock = {
   questions?: Record<string, Record<string, unknown>>;
   [key: string]: unknown;
 };
+export type LessonRenderableBlock = Exclude<ContentBlock<'response'>, { type: 'quiz' }>;
 export type LessonSectionResponse = {
   id: string;
   slug: string;
@@ -24,6 +25,7 @@ export type LessonSectionResponse = {
   skippable?: true;
   content: Record<string, Record<string, LessonContentBlock>>;
   order: { type: string; key: string }[];
+  blocks: LessonRenderableBlock[];
 };
 export type LessonResponse = {
   id: string;
@@ -96,7 +98,7 @@ function assembleBlocks(
   order: unknown,
   location: string,
   language: LanguageCode,
-): Pick<LessonSectionResponse, 'content' | 'order'> {
+): Pick<LessonSectionResponse, 'content' | 'order' | 'blocks'> {
   const catalog = record(content, location);
   const normalized: LessonSectionResponse['content'] = {};
   const keys: string[] = [];
@@ -109,7 +111,7 @@ function assembleBlocks(
       const id = string(block.id, location + '/' + kind + '/' + key + '.id');
       const reference = kind + '/' + key;
       keys.push(reference);
-      const resolved: LessonContentBlock = { ...block, id, slug, blockType: kind, locale: { code: language } };
+      const resolved: LessonContentBlock = { ...block, id, slug, type: kind, blockType: kind, locale: { code: language } };
       if (kind === 'markdown') {
         resolved.text = string(block.text, location + '/' + reference + '.text');
       }
@@ -135,7 +137,10 @@ function assembleBlocks(
   if (new Set(names).size !== names.length || names.some(name => !keys.includes(name))) {
     throw new Error('Content order must reference every block once at ' + location);
   }
-  return { content: normalized, order: references };
+  const blocks = references
+    .filter(reference => reference.type !== 'quiz')
+    .map(({ type, key }) => normalized[type][key] as unknown as LessonRenderableBlock);
+  return { content: normalized, order: references, blocks };
 }
 
 /** Pure response assembly: runtime consumes only the three published JSON collections. */
