@@ -16,7 +16,7 @@ export const predictHowALoadAffectsFloating_Skill_Data = buildSkillConfig({
     id: "Memperkirakan Pengaruh Beban terhadap Daya Apung",
     de: "Einfluss einer Last auf das Schwimmen vorhersagen",
     ja: "荷重が浮き方に与える影響を予測する",
-    ko: "하중이 뜸에 주는 영향 예측하기",
+    ko: "하중이 물체의 뜨는 상태에 미치는 영향 예측하기",
     tr: "Yükün yüzmeye etkisini tahmin etmek",
     vi: "Dự đoán tác động của tải lên sự nổi",
     ta: "சுமை மிதத்தலை எவ்வாறு பாதிக்கிறது எனக் கணித்தல்",
