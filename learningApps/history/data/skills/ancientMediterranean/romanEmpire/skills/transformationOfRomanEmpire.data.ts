@@ -42,7 +42,7 @@ export const transformationOfRomanEmpire_Skill_Data = buildSkillConfig({
       hi: "समझें कि रोमन साम्राज्य में अलग-अलग तरह के परिवर्तन क्यों हुए।",
       es: "Comprende por qué el Imperio romano cambió de distintas maneras.",
       ar: "افهم لماذا تغيّرت الإمبراطورية الرومانية بطرق مختلفة.",
-      fr: "Comprenez pourquoi l’Empire romain a évolué de différentes manières.",
+      fr: "Comprends pourquoi l’Empire romain a évolué de différentes manières.",
       bn: "রোমান সাম্রাজ্য কেন বিভিন্নভাবে পরিবর্তিত হয়েছিল তা বুঝে নাও।",
       pt: "Entenda por que o Império Romano mudou de maneiras diferentes.",
       ur: "سمجھیں کہ رومی سلطنت میں مختلف طرح کی تبدیلیاں کیوں آئیں۔",

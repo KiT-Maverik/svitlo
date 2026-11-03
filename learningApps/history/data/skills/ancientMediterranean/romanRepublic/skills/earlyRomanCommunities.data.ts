@@ -42,7 +42,7 @@ export const earlyRomanCommunities_Skill_Data = buildSkillConfig({
       hi: "जानें कि इटली के पड़ोसी समुदायों के बीच रोम कैसे विकसित हुआ।",
       es: "Aprende cómo Roma se desarrolló entre comunidades vecinas de Italia.",
       ar: "اكتشف كيف تطورت روما بين المجتمعات المجاورة في إيطاليا.",
-      fr: "Découvrez comment Rome s’est développée parmi les communautés voisines d’Italie.",
+      fr: "Découvre comment Rome s’est développée parmi les communautés voisines d’Italie.",
       bn: "ইতালির প্রতিবেশী জনগোষ্ঠীগুলোর মাঝে রোম কীভাবে গড়ে উঠেছিল তা শেখো।",
       pt: "Aprenda como Roma se desenvolveu entre comunidades vizinhas na Itália.",
       ur: "جانیں کہ اٹلی کی پڑوسی آبادیوں کے درمیان روم کیسے ترقی کرتا گیا۔",

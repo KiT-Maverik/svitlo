@@ -42,7 +42,7 @@ export const augustanPrincipate_Skill_Data = buildSkillConfig({
       hi: "जानें कि ऑगस्टस ने रोम में साम्राज्यवादी सत्ता कैसे स्थापित की।",
       es: "Descubre cómo Augusto estableció el poder imperial romano.",
       ar: "اكتشف كيف أسّس أغسطس السلطة الإمبراطورية في روما.",
-      fr: "Découvrez comment Auguste a établi le pouvoir impérial romain.",
+      fr: "Découvre comment Auguste a établi le pouvoir impérial romain.",
       bn: "অগাস্টাস কীভাবে রোমান সাম্রাজ্যিক ক্ষমতা প্রতিষ্ঠা করেন তা জানো।",
       pt: "Descubra como Augusto estabeleceu o poder imperial romano.",
       ur: "جانیں کہ آگسٹس نے روم میں شاہی اقتدار کیسے قائم کیا۔",
