@@ -43,7 +43,7 @@ export const distributionCosts_Skill_Data = buildSkillConfig({
       es: "Descubre por qué transporte y almacenamiento afectan el costo del producto.",
       ar: "افهم لماذا يؤثر النقل والتخزين في تكلفة المنتج.",
       fr: "Comprends pourquoi transport et stockage influencent le coût d'un produit.",
-      bn: "পরিবহন ও সংরক্ষণ পণ্যের খরচ কেন বাড়ায় তা জানো।",
+      bn: "পরিবহন ও সংরক্ষণ পণ্যের খরচকে কীভাবে প্রভাবিত করে তা জানো।",
       pt: "Veja por que transporte e armazenamento afetam o custo de um produto.",
       ur: "جانیں کہ نقل و حمل اور ذخیرہ مصنوعات کی لاگت کیسے بدلتے ہیں۔",
       id: "Lihat mengapa transportasi dan penyimpanan memengaruhi biaya produk.",
