@@ -60,7 +60,7 @@ export const originsOfWriting_Skill_Data = buildSkillConfig({
       pl: "Dowiedz się, jak różne społeczeństwa zaczęły zapisywać język za pomocą pisma.",
       uk: "Досліди, як різні суспільства почали записувати мову за допомогою письма.",
       lt: "Tyrinėk, kaip skirtingos visuomenės pradėjo užrašyti kalbą raštu.",
-      lv: "Izpēti, kā dažādas sabiedrības sāka pierakstīt valodu rakstiski.",
+      lv: "Izpēti, kā dažādas sabiedrības sāka fiksēt valodu rakstībā.",
       et: "Uuri, kuidas eri ühiskonnad hakkasid keelt kirja panema.",
       be: "Дасьледуй, як розныя грамадзтвы пачалі запісваць мову з дапамогай пісьма.",
       ka: "შეისწავლე, როგორ დაიწყეს სხვადასხვა საზოგადოებებმა ენის წერილობით დაფიქსირება.",
