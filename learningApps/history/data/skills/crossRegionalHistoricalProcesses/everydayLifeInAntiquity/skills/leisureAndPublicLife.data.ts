@@ -46,7 +46,7 @@ export const leisureAndPublicLife_Skill_Data = buildSkillConfig({
       bn: "প্রাচীন জনগোষ্ঠী কীভাবে উৎসব করত ও অবসর কাটাত তা জানো।",
       pt: "Descubra como comunidades antigas festejavam e passavam o tempo livre.",
       ur: "جانیں کہ قدیم برادریاں جشن کیسے مناتی اور فارغ وقت کیسے گزارتی تھیں۔",
-      id: "Pelajari cara masyarakat kuno merayakan perayaan dan mengisi waktu luang.",
+      id: "Pelajari cara masyarakat kuno mengadakan perayaan dan mengisi waktu luang.",
       de: "Entdecke, wie frühe Gemeinschaften feierten und ihre Freizeit verbrachten.",
       ja: "古代の共同体がお祝いや余暇をどう過ごしたか学びましょう。",
       ko: "고대 공동체가 축제를 즐기고 여가를 보낸 방식을 알아보세요.",
