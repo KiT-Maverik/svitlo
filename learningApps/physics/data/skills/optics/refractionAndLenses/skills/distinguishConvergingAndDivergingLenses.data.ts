@@ -54,7 +54,7 @@ export const distinguishConvergingAndDivergingLenses_Skill_Data = buildSkillConf
       vi: "So sánh thấu kính làm tia sáng hội tụ với thấu kính làm chúng phân kỳ.",
       ta: "ஒளிக்கதிர்களைக் குவிக்கும் வில்லைகளையும் விரிக்கும் வில்லைகளையும் ஒப்பிடு.",
       te: "కాంతి కిరణాలను కూడగట్టే కటకాలను, చెల్లాచెదురు చేసే కటకాలతో పోల్చు.",
-      mr: "प्रकाशकिरण एकत्र आणणारी भिंगे आणि पसरवणारी भिंगे यांची तुलना कर.",
+      mr: "प्रकाशकिरण एकत्र आणणारी भिंगे आणि पसरवणारी भिंगे यांची तुलना करा.",
       ms: "Bandingkan kanta yang menumpukan sinar cahaya dengan kanta yang mencapahkannya.",
       he: "השוו עדשות שמרכזות קרני אור לעדשות שמפזרות אותן.",
       pl: "Porównaj soczewki skupiające promienie światła z tymi, które je rozpraszają.",

@@ -54,7 +54,7 @@ export const predictTheDirectionOfAReflectedRay_Skill_Data = buildSkillConfig({
       vi: "Dự đoán góc phản xạ so với pháp tuyến của bề mặt.",
       ta: "ஒரு மேற்பரப்பின் செங்குத்துக் கோட்டுடன் ஒப்பிட்டு எதிரொளிப்புக் கோணத்தை முன்னறி.",
       te: "ఉపరితల లంబరేఖతో పోల్చి పరావర్తన కోణాన్ని అంచనా వేయి.",
-      mr: "पृष्ठभागाच्या लंबरेषेशी परावर्तनाचा कोन किती असेल ते भाकीत कर.",
+      mr: "पृष्ठभागाच्या लंबरेषेशी परावर्तनाचा कोन किती असेल ते भाकीत करा.",
       ms: "Ramalkan sudut pantulan relatif kepada garis normal permukaan.",
       he: "חזו את זוויות ההחזרה ביחס לאנך למשטח.",
       pl: "Przewidź kąty odbicia względem normalnej do powierzchni.",

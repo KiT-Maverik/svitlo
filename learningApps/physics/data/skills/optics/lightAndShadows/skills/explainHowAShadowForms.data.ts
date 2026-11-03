@@ -54,7 +54,7 @@ export const explainHowAShadowForms_Skill_Data = buildSkillConfig({
       vi: "Giải thích cách một vật không trong suốt chắn ánh sáng để tạo bóng.",
       ta: "ஒளிபுகாத பொருள் ஒளியைத் தடுத்து நிழலை எவ்வாறு உருவாக்குகிறது என்பதை விளக்குங்கள்.",
       te: "అపారదర్శక వస్తువు కాంతిని అడ్డుకుని నీడను ఎలా ఏర్పరుస్తుందో వివరించు.",
-      mr: "अपारदर्शक वस्तू प्रकाश अडवून सावली कशी तयार करते ते स्पष्ट कर.",
+      mr: "अपारदर्शक वस्तू प्रकाश अडवून सावली कशी तयार करते ते स्पष्ट करा.",
       ms: "Terangkan bagaimana objek legap menghalang cahaya lalu membentuk bayang-bayang.",
       he: "הסבירו כיצד גוף אטום חוסם אור ויוצר צל.",
       pl: "Wyjaśnij, jak nieprzezroczysty przedmiot zasłania światło i tworzy cień.",

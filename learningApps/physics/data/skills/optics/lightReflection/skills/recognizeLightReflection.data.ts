@@ -54,7 +54,7 @@ export const recognizeLightReflection_Skill_Data = buildSkillConfig({
       vi: "Nhận biết khi ánh sáng bật trở lại từ một bề mặt.",
       ta: "ஒளி ஒரு மேற்பரப்பிலிருந்து எப்போது திரும்பிப் பிரதிபலிக்கிறது என்பதை அறி.",
       te: "కాంతి ఉపరితలం నుంచి ఎప్పుడు తిరిగి పరావర్తనం అవుతుందో గుర్తించు.",
-      mr: "प्रकाश पृष्ठभागावरून परत कधी येतो ते ओळख.",
+      mr: "प्रकाश पृष्ठभागावरून परत कधी येतो ते ओळखा.",
       ms: "Kenali apabila cahaya dipantulkan semula oleh permukaan.",
       he: "זהו מתי אור מוחזר ממשטח.",
       pl: "Rozpoznaj, kiedy światło odbija się od powierzchni.",

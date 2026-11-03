@@ -54,7 +54,7 @@ export const explainTheConditionForAnObjectToBeVisible_Skill_Data = buildSkillCo
       vi: "Giải thích vì sao ta chỉ nhìn thấy vật khi ánh sáng từ vật truyền đến mắt.",
       ta: "பொருளிலிருந்து வரும் ஒளி கண்ணை அடையும்போது மட்டுமே அதை ஏன் பார்க்க முடிகிறது என்பதை விளக்கு.",
       te: "వస్తువు నుంచి వచ్చే కాంతి కంటికి చేరినప్పుడే అది ఎందుకు కనిపిస్తుందో వివరించు.",
-      mr: "वस्तूकडून येणारा प्रकाश डोळ्यांपर्यंत पोहोचल्यावरच ती का दिसते ते स्पष्ट कर.",
+      mr: "वस्तूकडून येणारा प्रकाश डोळ्यांपर्यंत पोहोचल्यावरच ती का दिसते ते स्पष्ट करा.",
       ms: "Terangkan mengapa objek hanya kelihatan apabila cahaya daripadanya sampai ke mata.",
       he: "הסבירו מדוע אפשר לראות עצם רק כאשר אור שמגיע ממנו נכנס לעין.",
       pl: "Wyjaśnij, dlaczego widzimy przedmiot tylko wtedy, gdy światło od niego dociera do oka.",

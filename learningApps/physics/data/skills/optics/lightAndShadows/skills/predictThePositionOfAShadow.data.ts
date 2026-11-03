@@ -54,7 +54,7 @@ export const predictThePositionOfAShadow_Skill_Data = buildSkillConfig({
       vi: "Dự đoán bóng sẽ xuất hiện ở phía nào của vật.",
       ta: "பொருளின் எந்தப் பக்கத்தில் நிழல் தோன்றும் என்பதை முன்னறி.",
       te: "వస్తువు ఏ వైపున నీడ ఏర్పడుతుందో అంచనా వేయి.",
-      mr: "वस्तूच्या कोणत्या बाजूला सावली पडेल ते भाकीत कर.",
+      mr: "वस्तूच्या कोणत्या बाजूला सावली पडेल ते भाकीत करा.",
       ms: "Ramalkan di sebelah mana sesuatu objek bayang-bayangnya akan muncul.",
       he: "חזו באיזה צד של עצם יופיע הצל שלו.",
       pl: "Przewidź, po której stronie przedmiotu pojawi się cień.",
