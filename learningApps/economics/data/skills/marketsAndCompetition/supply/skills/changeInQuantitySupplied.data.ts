@@ -50,7 +50,7 @@ export const changeInQuantitySupplied_Skill_Data = buildSkillConfig({
       de: "Unterscheide die Bereitschaft zum Angebot von der tatsächlich verkauften Menge.",
       ja: "供給する意思がある数量と実際に売れた数量を区別しよう。",
       ko: "공급하려는 양과 실제 판매된 양을 구별해 보세요.",
-      tr: "Arz etme isteğiyle gerçekten satılan miktarı birbirinden ayır.",
+      tr: "Fiyat değiştiğinde arz eğrisi boyunca hareketi ve arz edilen miktarın gerçek satıştan farkını keşfet.",
       vi: "Phân biệt lượng sẵn lòng cung ứng với lượng thực tế đã bán.",
       ta: "வழங்கத் தயாரான அளவையும் உண்மையில் விற்கப்பட்ட அளவையும் வேறுபடுத்து.",
       te: "సరఫరాకు సిద్ధంగా ఉన్న పరిమాణాన్ని నిజంగా అమ్మిన పరిమాణం నుంచి వేరు చేయండి.",

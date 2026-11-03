@@ -42,7 +42,7 @@ export const absoluteAndRelativePoverty_Skill_Data = buildSkillConfig({
       hi: "आवश्यक चीज़ों की कमी और दूसरों की तुलना में गरीब होने का अंतर समझें।",
       es: "Distingue entre carecer de lo esencial y ser pobre respecto a los demás.",
       ar: "ميّز بين الحرمان من الأساسيات والفقر مقارنة بالآخرين.",
-      fr: "Distinguez le manque de biens essentiels de la pauvreté par rapport aux autres.",
+      fr: "Distingue le manque de biens essentiels de la pauvreté par rapport aux autres.",
       bn: "মৌলিক চাহিদার অভাব এবং অন্যদের তুলনায় দরিদ্র হওয়ার পার্থক্য করো।",
       pt: "Distinga a falta do essencial da pobreza em relação às outras pessoas.",
       ur: "بنیادی ضروریات کی کمی اور دوسروں کے مقابلے میں غریب ہونے میں فرق کریں۔",

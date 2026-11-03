@@ -15,7 +15,7 @@ export const financialRisksAndProtection_SkillGroup_Data = buildSkillGroupConfig
     bn: "আর্থিক ঝুঁকি ও সুরক্ষা",
     pt: "Riscos financeiros e proteção",
     ur: "مالی خطرات اور تحفظ",
-    id: "Risiko Keuangan dan Perlindungan",
+    id: "Risiko keuangan dan perlindungan",
     de: "Finanzrisiken und Schutz",
     ja: "金融リスクと保護",
     ko: "금융 위험과 보호",

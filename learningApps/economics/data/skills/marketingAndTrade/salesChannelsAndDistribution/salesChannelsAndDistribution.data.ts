@@ -15,7 +15,7 @@ export const salesChannelsAndDistribution_SkillGroup_Data = buildSkillGroupConfi
     bn: "বিক্রয় মাধ্যম ও বিতরণ",
     pt: "Canais de venda e distribuição",
     ur: "فروخت کے ذرائع اور تقسیم",
-    id: "Saluran Penjualan dan Distribusi",
+    id: "Saluran penjualan dan distribusi",
     de: "Vertriebskanäle und Distribution",
     ja: "販売経路と流通",
     ko: "판매 경로와 유통",

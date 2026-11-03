@@ -13,7 +13,7 @@ export const laborDemand_Skill_Data = buildSkillConfig({
     bn: "শ্রমের চাহিদা",
     pt: "Demanda de trabalho",
     ur: "محنت کی طلب",
-    id: "Permintaan Tenaga Kerja",
+    id: "Permintaan tenaga kerja",
     de: "Arbeitsnachfrage",
     ja: "労働需要",
     ko: "노동 수요",

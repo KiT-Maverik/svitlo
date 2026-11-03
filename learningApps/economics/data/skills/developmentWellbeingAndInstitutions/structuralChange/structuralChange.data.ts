@@ -49,7 +49,7 @@ export const structuralChange_SkillGroup_Data = buildSkillGroupConfig({
       hi: "जानें कि अर्थव्यवस्था में नौकरियों और उद्योगों का मिश्रण कैसे बदलता है।",
       es: "Descubre cómo evoluciona la combinación de empleos y sectores de una economía.",
       ar: "اكتشف كيف تتطور تركيبة الوظائف والقطاعات في الاقتصاد.",
-      fr: "Découvrez comment évolue la composition des emplois et des secteurs d’une économie.",
+      fr: "Découvre comment évolue la composition des emplois et des secteurs d’une économie.",
       bn: "অর্থনীতির পেশা ও শিল্পের সমন্বয় কীভাবে বদলায় তা জানো।",
       pt: "Descubra como a composição de empregos e setores de uma economia evolui.",
       ur: "جانیں کہ معیشت میں ملازمتوں اور صنعتوں کی ترکیب کیسے بدلتی ہے۔",

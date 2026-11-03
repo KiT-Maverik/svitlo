@@ -15,7 +15,7 @@ export const savingAndInvesting_SkillGroup_Data = buildSkillGroupConfig({
     bn: "সঞ্চয় ও বিনিয়োগ",
     pt: "Poupança e investimento",
     ur: "بچت اور سرمایہ کاری",
-    id: "Menabung dan Berinvestasi",
+    id: "Menabung dan berinvestasi",
     de: "Sparen und Investieren",
     ja: "貯蓄と投資",
     ko: "저축과 투자",

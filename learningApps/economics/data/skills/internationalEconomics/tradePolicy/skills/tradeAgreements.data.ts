@@ -42,7 +42,7 @@ export const tradeAgreements_Skill_Data = buildSkillConfig({
       hi: "जानें कि देश व्यापार समझौतों पर बातचीत क्यों करते हैं।",
       es: "Explora por qué los países negocian acuerdos comerciales.",
       ar: "اكتشف لماذا تتفاوض الدول لإبرام اتفاقيات تجارية.",
-      fr: "Explorez pourquoi les pays négocient des accords commerciaux.",
+      fr: "Explore pourquoi les pays négocient des accords commerciaux.",
       bn: "দেশগুলো কেন বাণিজ্য চুক্তির জন্য আলোচনা করে তা জানো।",
       pt: "Explore por que os países negociam acordos comerciais.",
       ur: "جانیں کہ ممالک تجارتی معاہدوں پر مذاکرات کیوں کرتے ہیں۔",

@@ -42,7 +42,7 @@ export const multidimensionalPoverty_Skill_Data = buildSkillConfig({
       hi: "जानें कि गरीबी केवल आय से जुड़ी समस्या क्यों नहीं है।",
       es: "Explora por qué la pobreza abarca más que los ingresos.",
       ar: "اكتشف لماذا لا يقتصر الفقر على الدخل.",
-      fr: "Explorez pourquoi la pauvreté ne se résume pas aux revenus.",
+      fr: "Explore pourquoi la pauvreté ne se résume pas aux revenus.",
       bn: "দারিদ্র্য কেন শুধু আয়ের বিষয় নয় তা অন্বেষণ করো।",
       pt: "Explore por que a pobreza envolve mais que a renda.",
       ur: "جانیں کہ غربت صرف آمدن کا مسئلہ کیوں نہیں ہے۔",

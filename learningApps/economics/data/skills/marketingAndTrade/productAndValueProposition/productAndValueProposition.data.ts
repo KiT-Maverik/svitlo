@@ -15,7 +15,7 @@ export const productAndValueProposition_SkillGroup_Data = buildSkillGroupConfig(
     bn: "পণ্য ও মূল্য প্রস্তাব",
     pt: "Produto e proposta de valor",
     ur: "مصنوع اور قدر کی پیشکش",
-    id: "Produk dan Proposisi Nilai",
+    id: "Produk dan proposisi nilai",
     de: "Produkt und Wertversprechen",
     ja: "商品と価値提案",
     ko: "제품과 가치 제안",

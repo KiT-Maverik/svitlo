@@ -13,7 +13,7 @@ export const purchasingPowerOfMoney_Skill_Data = buildSkillConfig({
     bn: "অর্থের ক্রয়ক্ষমতা",
     pt: "Poder de compra do dinheiro",
     ur: "رقم کی قوتِ خرید",
-    id: "Daya Beli Uang",
+    id: "Daya beli uang",
     de: "Kaufkraft des Geldes",
     ja: "貨幣の購買力",
     ko: "화폐의 구매력",

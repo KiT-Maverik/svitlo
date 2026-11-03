@@ -13,7 +13,7 @@ export const functionsOfMoney_Skill_Data = buildSkillConfig({
     bn: "অর্থের কাজ",
     pt: "Funções do dinheiro",
     ur: "رقم کے افعال",
-    id: "Fungsi Uang",
+    id: "Fungsi uang",
     de: "Funktionen des Geldes",
     ja: "貨幣の機能",
     ko: "화폐의 기능",

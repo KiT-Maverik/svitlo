@@ -59,7 +59,7 @@ export const transportAndInfrastructure_SkillGroup_Data = buildSkillGroupConfig(
       ko: "교통과 공공 기반 시설의 경제적 상충관계를 살펴보세요.",
       tr: "Ulaşım ve kamu altyapısının ardındaki ekonomik ödünleşmeleri keşfet.",
       vi: "Khám phá những đánh đổi kinh tế trong giao thông và hạ tầng công cộng.",
-      ta: "போக்குவரத்திலும் பொது உள்கட்டமைப்பிலும் உள்ள பொருளாதாரப் பரிமாற்றங்களை ஆராய்.",
+      ta: "போக்குவரத்திலும் பொது உள்கட்டமைப்பிலும் உள்ள பொருளாதாரச் சமரசங்களை ஆராய்.",
       te: "రవాణా, ప్రజా మౌలిక సదుపాయాల వెనుక ఉన్న ఆర్థిక రాజీలను పరిశీలించండి.",
       mr: "वाहतूक व सार्वजनिक पायाभूत सुविधांमधील आर्थिक तडजोडी जाणून घे.",
       ms: "Terokai pertimbangan ekonomi di sebalik pengangkutan dan infrastruktur awam.",

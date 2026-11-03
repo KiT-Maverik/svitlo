@@ -13,7 +13,7 @@ export const valueProposition_Skill_Data = buildSkillConfig({
     bn: "মূল্য প্রস্তাব",
     pt: "Proposta de valor",
     ur: "قدر کی پیشکش",
-    id: "Proposisi Nilai",
+    id: "Proposisi nilai",
     de: "Wertversprechen",
     ja: "価値提案",
     ko: "가치 제안",

@@ -13,7 +13,7 @@ export const latePaymentConsequences_Skill_Data = buildSkillConfig({
     bn: "বিলম্বিত পরিশোধের ফল",
     pt: "Consequências do atraso no pagamento",
     ur: "قسط کی تاخیر کے نتائج",
-    id: "Akibat Terlambat Membayar",
+    id: "Akibat terlambat membayar",
     de: "Folgen verspäteter Zahlungen",
     ja: "返済遅延の影響",
     ko: "연체의 결과",

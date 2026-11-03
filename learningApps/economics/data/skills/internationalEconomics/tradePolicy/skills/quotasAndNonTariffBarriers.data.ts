@@ -42,7 +42,7 @@ export const quotasAndNonTariffBarriers_Skill_Data = buildSkillConfig({
       hi: "पहचानें कि कोटा और नियम अंतरराष्ट्रीय व्यापार कैसे सीमित करते हैं।",
       es: "Reconoce cómo las cuotas y las normas limitan el comercio internacional.",
       ar: "تعرّف كيف تحد الحصص والقواعد من التجارة الدولية.",
-      fr: "Reconnaissez comment quotas et règles peuvent limiter le commerce international.",
+      fr: "Reconnais comment quotas et règles peuvent limiter le commerce international.",
       bn: "কোটা ও নিয়ম আন্তর্জাতিক বাণিজ্য কীভাবে সীমিত করে তা জানো।",
       pt: "Reconheça como cotas e regras podem limitar o comércio internacional.",
       ur: "پہچانیں کہ کوٹے اور ضابطے عالمی تجارت کو کیسے محدود کرتے ہیں۔",

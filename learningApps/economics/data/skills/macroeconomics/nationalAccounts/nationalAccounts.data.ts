@@ -50,7 +50,7 @@ export const nationalAccounts_SkillGroup_Data = buildSkillGroupConfig({
       hi: "जानें कि अर्थशास्त्री समग्र आर्थिक गतिविधि को कैसे मापते हैं।",
       es: "Descubre cómo miden los economistas la actividad económica total.",
       ar: "تعرّف كيف يقيس الاقتصاديون النشاط الاقتصادي الإجمالي.",
-      fr: "Découvrez comment les économistes mesurent l’activité économique globale.",
+      fr: "Découvre comment les économistes mesurent l’activité économique globale.",
       bn: "অর্থনীতিবিদেরা সামগ্রিক অর্থনৈতিক কার্যকলাপ কীভাবে পরিমাপ করেন তা শেখো।",
       pt: "Aprenda como economistas medem a atividade econômica total.",
       ur: "جانیں کہ ماہرینِ معاشیات مجموعی معاشی سرگرمی کو کیسے ناپتے ہیں۔",

@@ -42,7 +42,7 @@ export const automaticStabilizers_Skill_Data = buildSkillConfig({
       hi: "समझें कि अर्थव्यवस्था बदलने पर कर और लाभ कैसे अपने आप बदलते हैं।",
       es: "Descubre cómo los impuestos y las prestaciones responden automáticamente a los cambios económicos.",
       ar: "تعرّف كيف تستجيب الضرائب والإعانات تلقائيًا للتغيرات الاقتصادية.",
-      fr: "Découvrez comment impôts et prestations s’adaptent automatiquement aux changements économiques.",
+      fr: "Découvre comment impôts et prestations s’adaptent automatiquement aux changements économiques.",
       bn: "অর্থনীতি বদলালে কর ও সুবিধাগুলো কীভাবে স্বয়ংক্রিয়ভাবে সাড়া দেয় তা জানো।",
       pt: "Veja como tributos e benefícios respondem automaticamente às mudanças econômicas.",
       ur: "معیشت بدلنے پر ٹیکس اور مراعات خود بخود کیسے ردِعمل دیتے ہیں؟",

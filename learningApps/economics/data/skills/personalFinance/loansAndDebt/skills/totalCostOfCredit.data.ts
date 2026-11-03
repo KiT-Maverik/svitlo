@@ -13,7 +13,7 @@ export const totalCostOfCredit_Skill_Data = buildSkillConfig({
     bn: "ঋণের মোট খরচ",
     pt: "Custo total do crédito",
     ur: "قرض کی کل لاگت",
-    id: "Total Biaya Kredit",
+    id: "Total biaya kredit",
     de: "Gesamtkosten eines Kredits",
     ja: "借り入れの総費用",
     ko: "총대출비용",

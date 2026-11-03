@@ -49,7 +49,7 @@ export const tradePolicy_SkillGroup_Data = buildSkillGroupConfig({
       hi: "जानें कि व्यापार के नियम बाज़ार और कीमतों को कैसे बदलते हैं।",
       es: "Explora cómo las normas comerciales modifican mercados y precios.",
       ar: "استكشف كيف تغيّر قواعد التجارة الأسواق والأسعار.",
-      fr: "Explorez comment les règles commerciales influencent les marchés et les prix.",
+      fr: "Explore comment les règles commerciales influencent les marchés et les prix.",
       bn: "বাণিজ্যের নিয়ম বাজার ও দাম কীভাবে বদলায় তা জানো।",
       pt: "Explore como regras de comércio mudam mercados e preços.",
       ur: "جانیں کہ تجارتی قواعد بازار اور قیمتوں کو کیسے بدلتے ہیں۔",

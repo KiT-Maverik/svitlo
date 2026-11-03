@@ -54,7 +54,7 @@ export const economicReturnsToEducation_Skill_Data = buildSkillConfig({
       vi: "So sánh giá trị kinh tế của giáo dục với chi phí thời gian và tiền bạc.",
       ta: "கல்வியின் பொருளாதார மதிப்பை அதன் காலச் செலவுடனும் பணச் செலவுடனும் ஒப்பிடு.",
       te: "విద్య ఆర్థిక విలువను దానికి అయ్యే సమయం, డబ్బు ఖర్చులతో పోల్చండి.",
-      mr: "शिक्षणाचे आर्थिक मूल्य त्यासाठी लागणाऱ्या वेळ आणि पैशांशी तुलना कर.",
+      mr: "शिक्षणाच्या आर्थिक मूल्याची त्यासाठी लागणाऱ्या वेळेच्या आणि पैशांच्या खर्चाशी तुलना कर.",
       ms: "Bandingkan nilai ekonomi pendidikan dengan kos masa dan wang.",
       he: "השוו את הערך הכלכלי של השכלה לעלותה בזמן ובכסף.",
       pl: "Porównaj wartość ekonomiczną edukacji z kosztami czasu i pieniędzy.",

@@ -13,7 +13,7 @@ export const insurancePrinciples_Skill_Data = buildSkillConfig({
     bn: "বিমার মূলনীতি",
     pt: "Princípios do seguro",
     ur: "بیمے کے اصول",
-    id: "Prinsip Asuransi",
+    id: "Prinsip asuransi",
     de: "Grundlagen der Versicherung",
     ja: "保険の原則",
     ko: "보험의 원칙",

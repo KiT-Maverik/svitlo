@@ -13,7 +13,7 @@ export const simpleInterest_Skill_Data = buildSkillConfig({
     bn: "সরল সুদ",
     pt: "Juros simples",
     ur: "سادہ سود",
-    id: "Bunga Sederhana",
+    id: "Bunga sederhana",
     de: "Einfache Verzinsung",
     ja: "単利",
     ko: "단리",

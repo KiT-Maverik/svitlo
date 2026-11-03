@@ -13,7 +13,7 @@ export const formsOfMoney_Skill_Data = buildSkillConfig({
     bn: "অর্থের রূপ",
     pt: "Formas de dinheiro",
     ur: "رقم کی شکلیں",
-    id: "Bentuk Uang",
+    id: "Bentuk uang",
     de: "Geldformen",
     ja: "貨幣の形態",
     ko: "화폐의 형태",
