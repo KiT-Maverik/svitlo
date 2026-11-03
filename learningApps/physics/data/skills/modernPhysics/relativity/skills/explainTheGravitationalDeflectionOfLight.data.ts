@@ -54,7 +54,7 @@ export const explainTheGravitationalDeflectionOfLight_Skill_Data = buildSkillCon
       vi: "Giải thích cách hấp dẫn bẻ cong đường đi của ánh sáng mà không phải khúc xạ quang học thông thường.",
       ta: "இது சாதாரண ஒளிவிலகல் அல்லாமல் ஈர்ப்புவிசை ஒளியின் பாதையை எவ்வாறு வளைக்கிறது என்பதை விளக்கு.",
       te: "ఇది సాధారణ కాంతి వక్రీభవనం కాకుండానే గురుత్వాకర్షణ కాంతి మార్గాన్ని ఎలా వంచుతుందో వివరించు.",
-      mr: "हा साधा प्रकाशीय अपवर्तनाचा प्रकार नसताना गुरुत्वाकर्षण प्रकाशाचा मार्ग कसा वाकवते ते स्पष्ट कर.",
+      mr: "हा साधा प्रकाशीय अपवर्तनाचा प्रकार नसताना गुरुत्वाकर्षण प्रकाशाचा मार्ग कसा वाकवते ते स्पष्ट करा.",
       ms: "Terangkan bagaimana graviti membengkokkan laluan cahaya tanpa menjadi pembiasan optik biasa.",
       he: "הסבירו כיצד כבידה מעקמת את מסלול האור בלי שזו שבירה אופטית רגילה.",
       pl: "Wyjaśnij, jak grawitacja zakrzywia tor światła bez zwykłego załamania optycznego.",

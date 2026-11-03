@@ -54,7 +54,7 @@ export const explainGravityAsSpacetimeCurvature_Skill_Data = buildSkillConfig({
       vi: "Nhận biết hấp dẫn là hệ quả của không-thời gian cong trong thuyết tương đối rộng.",
       ta: "பொதுச் சார்பியலில் ஈர்ப்பு என்பது வளைந்த வெளி-காலத்தின் விளைவு என்பதை அறி.",
       te: "సాధారణ సాపేక్షతలో గురుత్వాకర్షణ వంగిన స్థలకాలం ఫలితమని గుర్తించు.",
-      mr: "सामान्य सापेक्षतेत गुरुत्वाकर्षण हे वक्र अवकाशकाळाचा परिणाम आहे हे ओळख.",
+      mr: "सामान्य सापेक्षतेत गुरुत्वाकर्षण हे वक्र अवकाशकाळाचा परिणाम आहे हे ओळखा.",
       ms: "Kenali graviti sebagai akibat ruang-masa melengkung dalam relativiti am.",
       he: "הכירו בכבידה כתוצאה של מרחב־זמן מעוקם בתורת היחסות הכללית.",
       pl: "Rozpoznaj grawitację jako skutek zakrzywionej czasoprzestrzeni w ogólnej teorii względności.",

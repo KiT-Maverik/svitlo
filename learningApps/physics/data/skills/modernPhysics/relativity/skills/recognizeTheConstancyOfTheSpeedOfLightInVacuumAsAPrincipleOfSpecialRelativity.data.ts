@@ -54,7 +54,7 @@ export const recognizeTheConstancyOfTheSpeedOfLightInVacuumAsAPrincipleOfSpecial
       vi: "Hiểu rằng tốc độ ánh sáng trong chân không là bất biến đối với mọi người quan sát quán tính trong thuyết tương đối hẹp.",
       ta: "சிறப்புச் சார்பியலில் வெற்றிட ஒளிவேகம் எல்லா நிலைமக் பார்வையாளர்களுக்கும் மாறாதது என்பதைப் புரிந்துகொள்.",
       te: "ప్రత్యేక సాపేక్షతలో శూన్యంలో కాంతి వేగం అన్ని జడత్వ పరిశీలకులకు ఒకేలా ఉంటుందని అర్థం చేసుకో.",
-      mr: "विशेष सापेक्षतेत निर्वातातील प्रकाशवेग सर्व जडत्वीय निरीक्षकांसाठी समान राहतो हे समजून घे.",
+      mr: "विशेष सापेक्षतेत निर्वातातील प्रकाशवेग सर्व जडत्वीय निरीक्षकांसाठी समान राहतो हे समजून घ्या.",
       ms: "Fahami bahawa laju cahaya dalam vakum adalah sama bagi semua pemerhati inersia dalam relativiti khas.",
       he: "הבינו שמהירות האור בריק קבועה לכל הצופים האינרציאליים בתורת היחסות הפרטית.",
       pl: "Zrozum, że prędkość światła w próżni jest stała dla wszystkich obserwatorów inercjalnych w szczególnej teorii względności.",

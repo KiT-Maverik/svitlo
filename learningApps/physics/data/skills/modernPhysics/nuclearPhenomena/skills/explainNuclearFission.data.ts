@@ -54,7 +54,7 @@ export const explainNuclearFission_Skill_Data = buildSkillConfig({
       vi: "Tìm hiểu cách hạt nhân nặng phân chia và giải phóng năng lượng.",
       ta: "கனமான அணுக்கருக்கள் பிளவுபட்டு ஆற்றலை எவ்வாறு வெளியிடுகின்றன என்பதை ஆராய்.",
       te: "భారీ కేంద్రకాలు విడిపోయి శక్తిని ఎలా విడుదల చేయగలవో తెలుసుకో.",
-      mr: "जड अणुकेंद्रके फुटून ऊर्जा कशी मुक्त करू शकतात ते जाणून घे.",
+      mr: "जड अणुकेंद्रके फुटून ऊर्जा कशी मुक्त करू शकतात ते जाणून घ्या.",
       ms: "Terokai bagaimana pembelahan nukleus berat boleh membebaskan tenaga.",
       he: "גלו כיצד ביקוע של גרעינים כבדים יכול לשחרר אנרגיה.",
       pl: "Poznaj, jak rozszczepianie ciężkich jąder może uwalniać energię.",

@@ -54,7 +54,7 @@ export const explainHowThePassageOfTimeDependsOnObserversRelativeMotion_Skill_Da
       vi: "Tìm hiểu vì sao những người quan sát chuyển động tương đối có thể đo các khoảng thời gian khác nhau.",
       ta: "ஒன்றுடன் ஒன்று சார்பாக நகரும் பார்வையாளர்கள் ஏன் வேறு கால இடைவெளிகளை அளக்கக்கூடும் என்பதை ஆராய்.",
       te: "ఒకరికొకరు సాపేక్షంగా కదిలే పరిశీలకులు వేర్వేరు కాల వ్యవధులను ఎందుకు కొలవవచ్చో తెలుసుకో.",
-      mr: "एकमेकांच्या सापेक्ष हालणारे निरीक्षक वेगवेगळे कालांतर का मोजू शकतात ते जाणून घे.",
+      mr: "एकमेकांच्या सापेक्ष हालणारे निरीक्षक वेगवेगळे कालांतर का मोजू शकतात ते जाणून घ्या.",
       ms: "Terokai mengapa pemerhati yang bergerak secara relatif boleh mengukur selang masa berbeza.",
       he: "גלו מדוע צופים הנעים זה ביחס לזה עשויים למדוד פרקי זמן שונים.",
       pl: "Dowiedz się, dlaczego obserwatorzy w ruchu względnym mogą mierzyć różne odstępy czasu.",

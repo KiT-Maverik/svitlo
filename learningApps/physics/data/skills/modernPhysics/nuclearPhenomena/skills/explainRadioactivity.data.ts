@@ -54,7 +54,7 @@ export const explainRadioactivity_Skill_Data = buildSkillConfig({
       vi: "Giải thích cách các hạt nhân không bền trải qua biến đổi phóng xạ.",
       ta: "நிலையற்ற அணுக்கருக்கள் எவ்வாறு கதிரியக்க மாற்றங்களுக்கு உட்படுகின்றன என்பதை விளக்கு.",
       te: "అస్థిర అణుకేంద్రకాలు రేడియోధార్మిక మార్పులకు ఎలా లోనవుతాయో వివరించు.",
-      mr: "अस्थिर अणुकेंद्रकांत किरणोत्सारी परिवर्तन कसे घडतात ते स्पष्ट कर.",
+      mr: "अस्थिर अणुकेंद्रकांत किरणोत्सारी परिवर्तन कसे घडतात ते स्पष्ट करा.",
       ms: "Terangkan bagaimana nukleus atom tidak stabil mengalami perubahan radioaktif.",
       he: "הסבירו כיצד גרעיני אטומים לא יציבים עוברים התפרקות רדיואקטיבית.",
       pl: "Wyjaśnij, jak niestabilne jądra atomowe ulegają przemianom promieniotwórczym.",
