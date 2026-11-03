@@ -42,7 +42,7 @@ export const minoanCivilization_Skill_Data = buildSkillConfig({
       hi: "प्राचीन क्रीट का अध्ययन करें और समझें कि उसकी लिपि से हम सीमित जानकारी ही पा सकते हैं।",
       es: "Explora la antigua Creta y los límites de lo que revela su escritura.",
       ar: "استكشف كريت القديمة وحدود ما تكشفه كتاباتها.",
-      fr: "Explorez la Crète antique et les limites de ce que révèle son écriture.",
+      fr: "Explore la Crète antique et les limites de ce que révèle son écriture.",
       bn: "প্রাচীন ক্রিট এবং সেখানকার লিপি থেকে কতটুকু জানা যায় তা অন্বেষণ করো।",
       pt: "Explore a Creta antiga e os limites do que sua escrita revela.",
       ur: "قدیم کریٹ اور اس کے رسم الخط سے ملنے والی معلومات کی حدود کا جائزہ لیں۔",

@@ -57,7 +57,7 @@ export const ancientMediterranean_SkillDomain_Data = buildSkillDomainConfig({
       hi: "जानें कि विभिन्न प्राचीन समाजों ने भूमध्यसागरीय क्षेत्र को कैसे आकार दिया।",
       es: "Explora cómo distintas sociedades antiguas dieron forma al Mediterráneo.",
       ar: "اكتشف كيف شكّلت المجتمعات القديمة المختلفة عالم البحر المتوسط.",
-      fr: "Explorez comment différentes sociétés anciennes ont façonné la Méditerranée.",
+      fr: "Explore comment différentes sociétés anciennes ont façonné la Méditerranée.",
       bn: "বিভিন্ন প্রাচীন সমাজ কীভাবে ভূমধ্যসাগরীয় অঞ্চলকে গড়ে তুলেছিল তা জানো।",
       pt: "Explore como diferentes sociedades antigas moldaram o Mediterrâneo.",
       ur: "جانیں کہ مختلف قدیم معاشروں نے بحیرۂ روم کے خطے کو کیسے شکل دی۔",

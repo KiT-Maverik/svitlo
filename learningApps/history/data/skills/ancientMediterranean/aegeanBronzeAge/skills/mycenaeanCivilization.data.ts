@@ -42,7 +42,7 @@ export const mycenaeanCivilization_Skill_Data = buildSkillConfig({
       hi: "जानें कि माइसीनी महल और अभिलेख प्रारंभिक यूनानियों के बारे में क्या बताते हैं।",
       es: "Descubre qué revelan los palacios y registros micénicos sobre los primeros griegos.",
       ar: "اكتشف ما تكشفه قصور الميسينيين وسجلاتهم عن اليونانيين الأوائل.",
-      fr: "Découvrez ce que les palais et archives mycéniens révèlent sur les premiers Grecs.",
+      fr: "Découvre ce que les palais et archives mycéniens révèlent sur les premiers Grecs.",
       bn: "মাইসেনীয় প্রাসাদ ও নথি প্রাচীন গ্রিকদের সম্পর্কে কী জানায় তা শেখো।",
       pt: "Descubra o que os palácios e registros micênicos revelam sobre os primeiros gregos.",
       ur: "جانیں کہ میسینی محلات اور ریکارڈ ابتدائی یونانیوں کے بارے میں کیا بتاتے ہیں۔",

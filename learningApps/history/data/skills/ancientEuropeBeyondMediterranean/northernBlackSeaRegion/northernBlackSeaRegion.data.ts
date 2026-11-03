@@ -50,7 +50,7 @@ export const northernBlackSeaRegion_SkillGroup_Data = buildSkillGroupConfig({
       hi: "काला सागर के उत्तरी क्षेत्र के प्राचीन समाजों को जानें।",
       es: "Explora las sociedades antiguas de la región norte del mar Negro.",
       ar: "استكشف المجتمعات القديمة في المنطقة الواقعة شمال البحر الأسود.",
-      fr: "Explorez les sociétés anciennes de la région septentrionale de la mer Noire.",
+      fr: "Explore les sociétés anciennes de la région septentrionale de la mer Noire.",
       bn: "কৃষ্ণসাগরের উত্তর তীরবর্তী প্রাচীন সমাজগুলো সম্পর্কে জানো।",
       pt: "Explore as sociedades antigas da região norte do mar Negro.",
       ur: "بحیرۂ اسود کے شمالی ساحل کے قدیم معاشروں کو جانیں۔",

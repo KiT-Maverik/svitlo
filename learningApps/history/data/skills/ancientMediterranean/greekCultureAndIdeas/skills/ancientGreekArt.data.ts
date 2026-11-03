@@ -42,7 +42,7 @@ export const ancientGreekArt_Skill_Data = buildSkillConfig({
       hi: "पहचानें कि यूनानी कला कैसे बदली और उसकी क्या भूमिकाएँ थीं।",
       es: "Reconoce cómo cambió el arte griego y qué funciones cumplía.",
       ar: "تعرّف كيف تغيّر الفن اليوناني والأدوار التي أدّاها.",
-      fr: "Reconnaissez comment l’art grec a évolué et quels rôles il remplissait.",
+      fr: "Reconnais comment l’art grec a évolué et quels rôles il remplissait.",
       bn: "গ্রিক শিল্প কীভাবে বদলেছে ও কী কী ভূমিকা পালন করেছে তা চিনে নাও।",
       pt: "Reconheça como a arte grega mudou e quais papéis desempenhou.",
       ur: "جانیں کہ یونانی فن کیسے بدلا اور اس نے کیا کردار ادا کیے۔",
