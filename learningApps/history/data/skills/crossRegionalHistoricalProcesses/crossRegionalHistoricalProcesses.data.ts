@@ -34,7 +34,7 @@ export const crossRegionalHistoricalProcesses_SkillDomain_Data = buildSkillDomai
     pl: "Międzyregionalne procesy historyczne",
     uk: "Спільні міжрегіональні історичні процеси",
     lt: "Tarpregioniniai istoriniai procesai",
-    lv: "Starp­reģionāli vēsturiskie procesi",
+    lv: "Starpreģionāli vēsturiskie procesi",
     et: "Piirkondadevahelised ajalooprotsessid",
     be: "Міжрэгіянальныя гістарычныя працэсы",
     ka: "რეგიონთაშორისი ისტორიული პროცესები",
