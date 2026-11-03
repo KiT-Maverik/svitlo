@@ -65,7 +65,7 @@ export const explainHowGlaciersFormAndMove_Skill_Data = buildSkillConfig({
       be: "Патлумач, як назапашаны сьнег ператвараецца ў ледавік, што павольна рухаецца.",
       ka: "ახსენი, როგორ იქცევა დაგროვილი თოვლი ნელა მოძრავ მყინვარად.",
       kk: "Жиналған қардың баяу жылжитын мұздыққа қалай айналатынын түсіндір.",
-      qm: "Toplanğan qar yavaş-yavaş aqıp turğan buzluqqa nasıl aylанğanını añlat.",
+      qm: "Toplanğan qar yavaş-yavaş aqıp turğan buzluqqa nasıl aylanğanını añlat.",
     },
   },
 });
