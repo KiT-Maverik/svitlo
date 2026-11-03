@@ -370,7 +370,7 @@ Skills: 3
 
 **Methodological description (English):** The total energy of an isolated system is conserved even as its form or distribution among bodies changes. A decrease in energy available for useful work is not its disappearance; for an open system, exchange with the surroundings must be considered.
 
-**User-friendly description (qm):** Ayrı sistemanıñ umumiy energiyası niçün saqlana, añla.
+**User-friendly description (qm):** Tışarınen energiya almağan ve bermegen sistemanıñ umumiy energiyası niçün saqlana, añla.
 
 ##### Energiyanıñ saqlanuv qanunını añlatmaq
 
@@ -540,7 +540,7 @@ Skills: 3
 
 **Methodological description (English):** A body's shape and orientation affect airflow around it, drag, and, under certain conditions, lift.
 
-**User-friendly description (qm):** Cisimniñ şekli ya da burçı qarşlıq ve köterici quvetni nasıl deñiştirgenini qabaqtan ayt.
+**User-friendly description (qm):** Cisimniñ şekli ya da burçı qarşılıq ve köterici quvetni nasıl deñiştirgenini qabaqtan ayt.
 
 #### Suvda qalmaq ve köterici quvet
 
@@ -608,7 +608,7 @@ Skills: 3
 
 **Methodological description (English):** Use qualitative examples to recognize why moving the same object through water and through air feels different.
 
-**User-friendly description (qm):** Bir cisimmniñ suvda ve avada areket etkeninde karşılağan qarşılığını qıyasla.
+**User-friendly description (qm):** Bir cisimniñ suvda ve avada areket etkeninde qarşılağan qarşılığını qıyasla.
 
 ##### Sıqıştırılmağan sıyıqlıq aqımınıñ devamlılığını añlatmaq
 
@@ -618,13 +618,13 @@ Skills: 3
 
 **User-friendly description (qm):** Aqım yolunıñ kesimi deñişkende sabit aqımnıñ tezligi nasıl deñişe, añla.
 
-##### Türlü seviyedeki saıtlar arasında suv aqımını añlatmaq
+##### Türlü seviyedeki savutlar arasında suv aqımını añlatmaq
 
 [explainWaterFlowBetweenContainersAtDifferentLevels.data.ts](../../../learningApps/physics/data/skills/fluidMechanics/hydrodynamics/skills/explainWaterFlowBetweenContainersAtDifferentLevels.data.ts)
 
 **Methodological description (English):** A hydrostatic pressure difference between connected vessels causes liquid to flow until pressures balance or other forces intervene.
 
-**User-friendly description (qm):** Suv türlü yüksekliklerdeki saıtlardan niçün aqqa, añlat.
+**User-friendly description (qm):** Suv türlü seviyedeki bağlanğan savutlar arasında ne içün aqqa, añlat.
 
 #### Sıyıqlıqlar ve gazlarda basım
 
@@ -1640,7 +1640,7 @@ Skills: 2
 
 **Methodological description (English):** Using the Sun and Moon, explain that a source emits energy while an illuminated body can reflect it.
 
-**User-friendly description (qm):** Menbadan saçılğan yarıqnı cisimden aks etken yarıqnıñ farqını añla.
+**User-friendly description (qm):** Menbadan saçılğan yarıqnı cisimden aks etken yarıqtan ayır.
 
 ##### Nurlanuvnı siñdirüv sebebinen qızuvnı añlatmaq
 

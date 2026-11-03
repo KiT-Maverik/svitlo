@@ -506,7 +506,7 @@ Groups: 4 · Skills: 15
 
 **Methodological description (English):** Water and air transmit pressure, flow, resist bodies' motion, and can provide buoyancy. Familiar containers, floating objects, and airflow make these phenomena accessible.
 
-**User-friendly description (hi):** जानें कि द्रव और गैसें कैसे बहती हैं, दबाव डालती हैं और गतिमान वस्तुओं को सहारा देती हैं।
+**User-friendly description (hi):** जानें कि द्रव और गैसें कैसे बहती हैं, दाब डालती हैं और गतिमान वस्तुओं पर बल लगाती हैं।
 
 #### वायुगतिकी
 
@@ -582,7 +582,7 @@ Skills: 5
 
 **Methodological description (English):** Density is the mass per unit volume of a substance and helps determine the relationship between a body's properties and those of the surrounding medium.
 
-**User-friendly description (hi):** समझें कि घनत्व किसी निश्चित आयतन में मौजूद द्रव्यमान है।
+**User-friendly description (hi):** समझें कि घनत्व प्रति इकाई आयतन का द्रव्यमान है।
 
 ##### भार से तैरने पर पड़ने वाले प्रभाव का अनुमान लगाना
 
@@ -616,7 +616,7 @@ Skills: 3
 
 **Methodological description (English):** For steady flow without leakage, a change in a channel's cross-sectional area is associated with a change in fluid speed.
 
-**User-friendly description (hi):** प्रवाह मार्ग की चौड़ाई में बदलाव को स्थिर असंपीड्य प्रवाह की गति से जोड़ें।
+**User-friendly description (hi):** प्रवाह मार्ग के अनुप्रस्थ काट के क्षेत्रफल में बदलाव को स्थिर असंपीड्य प्रवाह की चाल से जोड़ें।
 
 ##### अलग जलस्तर वाले पात्रों के बीच पानी का बहाव समझाना
 
@@ -636,7 +636,7 @@ Skills: 4
 
 **User-friendly description (hi):** देखें कि द्रव और गैस का दाब कैसे कार्य करता है और परिस्थितियों के साथ कैसे बदलता है।
 
-##### बंद द्रव में दाब का संचरण समझाएँ
+##### बंद द्रव में दाब के संचरण को समझाना
 
 [explainPressureTransmissionInAnEnclosedLiquid.data.ts](../../../learningApps/physics/data/skills/fluidMechanics/pressureInLiquidsAndGases/skills/explainPressureTransmissionInAnEnclosedLiquid.data.ts)
 
@@ -644,7 +644,7 @@ Skills: 4
 
 **User-friendly description (hi):** समझाएँ कि बंद द्रव में दाब का परिवर्तन कैसे फैलता है।
 
-##### समझाएँ कि पानी का दाब गहराई के साथ क्यों बढ़ता है
+##### पानी का दाब गहराई के साथ क्यों बढ़ता है, यह समझाना
 
 [explainWhyWaterPressureIncreasesWithDepth.data.ts](../../../learningApps/physics/data/skills/fluidMechanics/pressureInLiquidsAndGases/skills/explainWhyWaterPressureIncreasesWithDepth.data.ts)
 
@@ -652,7 +652,7 @@ Skills: 4
 
 **User-friendly description (hi):** समझाएँ कि स्थिर पानी अधिक गहराई पर अधिक दाब क्यों डालता है।
 
-##### गैस के दाब के उदाहरण पहचानें
+##### गैस के दाब के उदाहरण पहचानना
 
 [identifyGasPressureInExamples.data.ts](../../../learningApps/physics/data/skills/fluidMechanics/pressureInLiquidsAndGases/skills/identifyGasPressureInExamples.data.ts)
 
@@ -660,7 +660,7 @@ Skills: 4
 
 **User-friendly description (hi):** पहचानें कि बंद गैस आसपास की सतहों पर दाब कैसे डालती है।
 
-##### द्रव के दाब को विभिन्न दिशाओं में कार्य करते पहचानें
+##### द्रव के दाब का विभिन्न दिशाओं में प्रभाव पहचानना
 
 [recognizeLiquidPressureActingInDifferentDirections.data.ts](../../../learningApps/physics/data/skills/fluidMechanics/pressureInLiquidsAndGases/skills/recognizeLiquidPressureActingInDifferentDirections.data.ts)
 
@@ -1126,7 +1126,7 @@ Skills: 4
 
 **Methodological description (English):** A fixed pulley changes the direction of the applied force, whereas a movable pulley can reduce the force needed by distributing the load across rope segments.
 
-**User-friendly description (hi):** तुलना करें कि स्थिर और चल घिरनियाँ भार की दिशा या उसके बँटवारे को कैसे बदलती हैं।
+**User-friendly description (hi):** तुलना करें कि स्थिर घिरनी बल की दिशा कैसे बदलती है और चल घिरनी रस्सी के हिस्सों में भार कैसे बाँटती है।
 
 ##### पहिया और धुरी कैसे काम करते हैं, समझाना
 

@@ -438,7 +438,7 @@ Skills: 5
 
 **Methodological description (English):** Determine the change in a body's gravitational potential energy near Earth's surface from its mass, gravitational acceleration, and change in height, correctly accounting for the chosen reference level and units. This calculation assumes an approximately uniform gravitational field and differs from calculating elastic potential energy.
 
-**User-friendly description (uk):** Обчислюй зміну гравітаційної потенціальної енергії за масою, прискоренням вільного падіння й висотою.
+**User-friendly description (uk):** Обчислюй зміну гравітаційної потенціальної енергії за масою, прискоренням вільного падіння й зміною висоти.
 
 ##### Класифікувати форми енергії
 
@@ -552,7 +552,7 @@ Skills: 5
 
 **User-friendly description (uk):** Досліди, як густина й виштовхувальна сила визначають, чи плаватиме тіло, чи тонутиме.
 
-##### Розрізняти спливання, плавання й занурення
+##### Розрізняти спливання, плавання й тонення
 
 [distinguishRisingFloatingAndSinking.data.ts](../../../learningApps/physics/data/skills/fluidMechanics/floatingAndBuoyancy/skills/distinguishRisingFloatingAndSinking.data.ts)
 
@@ -1492,7 +1492,7 @@ Skills: 2
 
 **Methodological description (English):** According to the law of reflection, the angle between the ray and the surface normal is the same for incident and reflected rays.
 
-**User-friendly description (uk):** Передбач кути відбивання відносно нормалі до поверхні.
+**User-friendly description (uk):** Передбачай напрям відбитого променя, застосовуючи закон відбивання відносно нормалі до поверхні.
 
 ##### Розпізнавати відбивання світла
 

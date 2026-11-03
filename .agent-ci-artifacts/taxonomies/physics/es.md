@@ -1294,7 +1294,7 @@ Skills: 5
 
 **Methodological description (English):** The relative rates of clocks can depend on gravitational potential and observation conditions; this is a physical effect of general relativity.
 
-**User-friendly description (es):** Explora cómo la gravedad puede cambiar las velocidades relativas de los relojes.
+**User-friendly description (es):** Explora cómo la gravedad puede modificar el ritmo relativo al que marchan los relojes.
 
 ##### Explicar la desviación gravitatoria de la luz
 

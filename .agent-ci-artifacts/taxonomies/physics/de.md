@@ -438,7 +438,7 @@ Skills: 5
 
 **Methodological description (English):** Determine the change in a body's gravitational potential energy near Earth's surface from its mass, gravitational acceleration, and change in height, correctly accounting for the chosen reference level and units. This calculation assumes an approximately uniform gravitational field and differs from calculating elastic potential energy.
 
-**User-friendly description (de):** Berechne Änderungen der potenziellen Energie aus Masse, Schwerkraft und Höhe.
+**User-friendly description (de):** Berechne die Änderung der gravitativen potenziellen Energie aus Masse, Fallbeschleunigung und Höhenänderung.
 
 ##### Energieformen einteilen
 
@@ -496,7 +496,7 @@ Skills: 2
 
 **Methodological description (English):** Power describes the rate of doing work or transferring energy and is not a separate form of energy.
 
-**User-friendly description (de):** Verstehe Leistung als Rate der Energieübertragung oder Arbeit.
+**User-friendly description (de):** Verstehe Leistung als die pro Zeit übertragene Energie oder verrichtete Arbeit.
 
 ### Strömungsmechanik
 

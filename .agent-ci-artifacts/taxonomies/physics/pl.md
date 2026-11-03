@@ -1634,7 +1634,7 @@ Skills: 2
 
 **User-friendly description (pl):** Poznaj, jak materiały pochłaniają, emitują, odbijają lub przepuszczają promieniowanie.
 
-##### Odróżnianie emisji energii od odbicia padaświetlającego światła
+##### Odróżnianie emisji energii od odbicia padającego światła
 
 [distinguishEnergyEmissionFromReflectionOfReceivedLight.data.ts](../../../learningApps/physics/data/skills/radiation/radiationAndMatter/skills/distinguishEnergyEmissionFromReflectionOfReceivedLight.data.ts)
 

@@ -1304,7 +1304,7 @@ Skills: 5
 
 **User-friendly description (et):** Selgita, kuidas gravitatsioon kõverdab valguse teekonda ilma tavalise optilise murdumiseta.
 
-##### Valguse kiiruse jäävuse vaakumis mõistmine erirelatiivsusteooria põhimõttena
+##### Valguse kiiruse muutumatuse vaakumis mõistmine erirelatiivsusteooria põhimõttena
 
 [recognizeTheConstancyOfTheSpeedOfLightInVacuumAsAPrincipleOfSpecialRelativity.data.ts](../../../learningApps/physics/data/skills/modernPhysics/relativity/skills/recognizeTheConstancyOfTheSpeedOfLightInVacuumAsAPrincipleOfSpecialRelativity.data.ts)
 
@@ -1546,7 +1546,7 @@ Skills: 2
 
 **User-friendly description (et):** Uuri, kuidas valgus murdub eri ainete piiril ja läätsi läbides.
 
-##### Kumer- ja nõgusläätsede eristamine
+##### Koondavate ja hajutavate läätsede eristamine
 
 [distinguishConvergingAndDivergingLenses.data.ts](../../../learningApps/physics/data/skills/optics/refractionAndLenses/skills/distinguishConvergingAndDivergingLenses.data.ts)
 
