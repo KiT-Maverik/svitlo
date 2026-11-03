@@ -65,7 +65,7 @@ export const marginalAnalysis_Skill_Data = buildSkillConfig({
       be: "Вызначай, ці вартая яшчэ адна адзінка дзейнасьці сваіх дадатковых выдаткаў.",
       ka: "გადაწყვიტე, ღირს თუ არა საქმიანობის კიდევ ერთი ერთეული მის დამატებით ხარჯად.",
       kk: "Іс-әрекетті тағы бір бірлікке арттыру қосымша шығынға тұра ма, анықта.",
-      qm: "Bir faaliyetten bir danе daa yapuvnıñ artqa masrafına degerli olğanını belgile.",
+      qm: "Bir faaliyetten bir dane daa yapuvnıñ artqa masrafına degerli olğanını belgile.",
     },
   },
 });
