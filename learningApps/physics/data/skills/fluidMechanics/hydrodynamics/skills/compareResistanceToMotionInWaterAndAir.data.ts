@@ -65,7 +65,7 @@ export const compareResistanceToMotionInWaterAndAir_Skill_Data = buildSkillConfi
       be: "Параўноўвай супраціў, які адчувае адно цела пры руху ў вадзе й паветры.",
       ka: "შეადარე ერთი და იმავე სხეულის მოძრაობის წინააღმდეგობა წყალსა და ჰაერში.",
       kk: "Бір дененің судағы және ауадағы қозғалыс кедергісін салыстыр.",
-      qm: "Bir cisimmniñ suvda ve avada areket etkeninde karşılağan qarşılığını qıyasla.",
+      qm: "Bir cisimniñ suvda ve avada areket etkeninde qarşılağan qarşılığını qıyasla.",
     },
   },
 });
