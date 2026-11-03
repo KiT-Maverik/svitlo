@@ -131,7 +131,7 @@ function assembleBlocks(
   const references = order.map((raw, index) => {
     const ref = record(raw, location + '.order[' + index + ']');
     return {
-      type: string(ref.type, location + '.order[' + index + '].type'),
+      type: string(ref.type, location + '.order[' + index + '].type') as ContentBlock_Reference['type'],
       slug: string(ref.slug, location + '.order[' + index + '].slug'),
     };
   });
