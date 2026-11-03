@@ -49,7 +49,7 @@ export const prehistoricPottery_Skill_Data = buildSkillConfig({
       id: "Pelajari mengapa manusia mulai membuat wadah keramik.",
       de: "Erfahre, warum Menschen begannen, Gefäße aus Keramik herzustellen.",
       ja: "人々が土器を作り始めた理由を学ぼう。",
-      ko: "사람들이 도자기 용기를 만들기 시작한 이유를 알아보세요.",
+      ko: "사람들이 토기 그릇을 만들기 시작한 이유를 알아보세요.",
       tr: "İnsanların neden seramik kaplar yapmaya başladığını öğren.",
       vi: "Tìm hiểu vì sao con người bắt đầu chế tạo đồ đựng bằng gốm.",
       ta: "மக்கள் ஏன் சுடுமண் பாத்திரங்கள் செய்யத் தொடங்கினர் என்பதைக் கற்றுக்கொள்.",
