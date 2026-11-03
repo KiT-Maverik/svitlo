@@ -63,7 +63,7 @@ export const manipulativeCommercialTactics_Skill_Data = buildSkillConfig({
       lv: "Atpazīsti viltus steigu, mākslīgu deficītu un citu pirkšanas spiedienu.",
       et: "Tunne ära näiline kiirustamine, võlts nappus ja ostusurve.",
       be: "Распазнавай штучную сьпешку, уяўны дэфіцыт і іншы ціск на пакупніка.",
-      ka: "ამოიცანი ყალბი სიჩქარე, ხელოვნური დეფიციტი და ყიდვის ზეწოლა.",
+      ka: "ამოიცანი ხელოვნურად შექმნილი გადაუდებლობა, მოჩვენებითი დეფიციტი და ზეწოლა ყიდვისკენ.",
       kk: "Жалған асығыстықты, жасанды тапшылықты және сатып алу қысымын таны.",
       qm: "Sahte acelelikni, yalancı qıtlıqnı ve satın almağa basqını tanı.",
     },

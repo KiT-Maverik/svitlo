@@ -29,7 +29,7 @@ export const laborForceParticipationRate_Skill_Data = buildSkillConfig({
     lt: "Darbo jėgos aktyvumo lygis",
     lv: "Darbaspēka līdzdalības līmenis",
     et: "Tööjõus osalemise määr",
-    be: "Ровень удзелу ў працоўнай сіле",
+    be: "Узровень удзелу ў працоўнай сіле",
     ka: "სამუშაო ძალაში მონაწილეობის დონე",
     kk: "Жұмыс күшіне қатысу деңгейі",
     qm: "İş quvetinde iştirak seviyesi",

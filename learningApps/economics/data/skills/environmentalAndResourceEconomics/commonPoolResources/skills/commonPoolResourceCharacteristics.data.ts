@@ -29,7 +29,7 @@ export const commonPoolResourceCharacteristics_Skill_Data = buildSkillConfig({
     lt: "Bendro naudojimo išteklių savybės",
     lv: "Koplietošanas resursu īpašības",
     et: "Ühiskasutatavate ressursside omadused",
-    be: "Свойствы рэсурсаў супольнага карыстаньня",
+    be: "Уласьцівасьці рэсурсаў супольнага карыстаньня",
     ka: "საერთო რესურსების თვისებები",
     kk: "Ортақ ресурстардың сипаттары",
     qm: "Umumiy resurslarnıñ hususiyetleri",

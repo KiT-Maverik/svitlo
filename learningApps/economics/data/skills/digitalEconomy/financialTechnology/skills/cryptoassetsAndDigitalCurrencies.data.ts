@@ -52,7 +52,7 @@ export const cryptoassetsAndDigitalCurrencies_Skill_Data = buildSkillConfig({
       ko: "암호자산과 공식 디지털 통화를 구별해 보세요.",
       tr: "Kripto varlıklarla resmî dijital paralar arasındaki farkı tanı.",
       vi: "Phân biệt tài sản mã hóa với tiền kỹ thuật số chính thức.",
-      ta: "கிரிப்டோ சொத்துகளையும் அரசின் எண்ணிம நாணயங்களையும் வேறுபடுத்து.",
+      ta: "கிரிப்டோ சொத்துகளையும் அதிகாரப்பூர்வ எண்ணிம நாணயங்களையும் வேறுபடுத்து.",
       te: "క్రిప్టో ఆస్తులను అధికారిక డిజిటల్ కరెన్సీల నుంచి వేరు చేయండి.",
       mr: "क्रिप्टो मालमत्ता आणि अधिकृत डिजिटल चलने यांतील फरक ओळख.",
       ms: "Bezakan aset kripto dengan mata wang digital rasmi.",

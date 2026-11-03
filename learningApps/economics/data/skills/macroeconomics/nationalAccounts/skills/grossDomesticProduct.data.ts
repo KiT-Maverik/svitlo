@@ -63,7 +63,7 @@ export const grossDomesticProduct_Skill_Data = buildSkillConfig({
       lv: "Izproti, ko IKP ietver un ko ne.",
       et: "Mõista, mida SKP arvestab ja mida mitte.",
       be: "Зразумей, што ўлічвае ВУП, а што застаецца па-за ім.",
-      ka: "გაიაზრეთ, რას ითვლის მშპ და რას ტოვებს გამოტოვებულს.",
+      ka: "გაიაზრეთ, რა შედის მშპ-ში და რა რჩება მის მიღმა.",
       kk: "ЖІӨ нені қамтитынын және нені есепке алмайтынын түсініңіз.",
       qm: "UİM neyi esapqa alğanını ve neyi almağanını añla.",
     },
