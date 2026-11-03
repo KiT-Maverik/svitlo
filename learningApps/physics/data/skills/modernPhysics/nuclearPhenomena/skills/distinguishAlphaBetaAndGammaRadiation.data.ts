@@ -45,7 +45,7 @@ export const distinguishAlphaBetaAndGammaRadiation_Skill_Data = buildSkillConfig
       fr: "Reconnais les particules alpha, les particules bêta et les photons gamma.",
       bn: "আলফা কণা, বিটা কণা ও গামা ফোটন চেনো।",
       pt: "Reconheça partículas alfa, partículas beta e fótons gama.",
-      ur: "الفا ذرات، بیٹا ذرات اور گاما فوٹون پہچانو۔",
+      ur: "الفا ذرات، بیٹا ذرات اور گاما فوٹون پہچانیں۔",
       id: "Kenali partikel alfa, partikel beta, dan foton gama.",
       de: "Erkenne Alphateilchen, Betateilchen und Gammaphotonen.",
       ja: "アルファ粒子、ベータ粒子、ガンマ光子を見分けましょう。",

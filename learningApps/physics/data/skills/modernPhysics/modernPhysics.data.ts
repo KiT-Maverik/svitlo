@@ -54,7 +54,7 @@ export const modernPhysics_SkillDomain_Data = buildSkillDomainConfig({
       fr: "Explore les phénomènes quantiques, les transformations nucléaires et la physique de l'espace-temps.",
       bn: "কোয়ান্টাম ঘটনা, নিউক্লীয় পরিবর্তন ও স্থান-কালের পদার্থবিজ্ঞান জানো।",
       pt: "Explore fenômenos quânticos, transformações nucleares e a física do espaço-tempo.",
-      ur: "کوانٹمی مظاہر، نیوکلیائی تبدیلیوں اور مکاں و زماں کی طبیعیات دریافت کرو۔",
+      ur: "کوانٹمی مظاہر، نیوکلیائی تبدیلیوں اور مکاں و زماں کی طبیعیات دریافت کریں۔",
       id: "Jelajahi fenomena kuantum, perubahan inti atom, dan fisika ruang-waktu.",
       de: "Erkunde Quantenphänomene, Veränderungen von Atomkernen und die Physik der Raumzeit.",
       ja: "量子現象、原子核の変化、時空の物理を探りましょう。",

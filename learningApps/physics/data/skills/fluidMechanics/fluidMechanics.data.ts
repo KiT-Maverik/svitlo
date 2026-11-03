@@ -56,7 +56,7 @@ export const fluidMechanics_SkillDomain_Data = buildSkillDomainConfig({
       fr: "Explore comment les liquides et les gaz s'écoulent, exercent une pression et peuvent soutenir des corps en mouvement.",
       bn: "তরল ও গ্যাস কীভাবে প্রবাহিত হয়, চাপ সৃষ্টি করে এবং চলমান বস্তুকে ভাসতে বা চলতে সহায়তা করে, তা জানো।",
       pt: "Explore como líquidos e gases escoam, exercem pressão e agem sobre corpos em movimento.",
-      ur: "جانیں کہ مائع اور گیسیں کیسے بہتی ہیں، دباؤ ڈالتی ہیں اور متحرک اجسام پر اثر انداز ہوتی ہیں۔",
+      ur: "جانیں کہ مائع اور گیسیں کیسے بہتی ہیں، دباؤ ڈالتی ہیں اور حرکت کرتے اجسام کو سہارا دیتی ہیں۔",
       id: "Jelajahi bagaimana cairan dan gas mengalir, memberikan tekanan, dan dapat menopang benda yang bergerak.",
       de: "Erkunde, wie Flüssigkeiten und Gase fließen, Druck ausüben und bewegte Körper beeinflussen.",
       ja: "液体や気体が流れ、圧力を及ぼし、動く物体に作用するしくみを探ろう。",

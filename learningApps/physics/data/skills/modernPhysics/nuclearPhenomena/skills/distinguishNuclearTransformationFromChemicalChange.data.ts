@@ -45,7 +45,7 @@ export const distinguishNuclearTransformationFromChemicalChange_Skill_Data = bui
       fr: "Distingue les changements au sein du noyau atomique des réactions chimiques.",
       bn: "পরমাণুর নিউক্লিয়াসের পরিবর্তন আর রাসায়নিক বিক্রিয়ার পার্থক্য করো।",
       pt: "Diferencie alterações no núcleo de um átomo de reações químicas.",
-      ur: "ایٹم کے مرکزے میں تبدیلی اور کیمیائی ردِعمل میں فرق کرو۔",
+      ur: "ایٹم کے مرکزے میں تبدیلی اور کیمیائی ردِعمل میں فرق کریں۔",
       id: "Bedakan perubahan di dalam inti atom dari reaksi kimia.",
       de: "Unterscheide Veränderungen im Atomkern von chemischen Reaktionen.",
       ja: "原子核の内部の変化と化学反応を区別しましょう。",

@@ -45,7 +45,7 @@ export const explainHalfLife_Skill_Data = buildSkillConfig({
       fr: "Comprends la demi-vie comme une régularité statistique pour un grand nombre de noyaux instables.",
       bn: "অর্ধায়ু হলো বহু অস্থিতিশীল নিউক্লিয়াসের পরিসংখ্যানগত ধারা—এটি বোঝো।",
       pt: "Entenda a meia-vida como um padrão estatístico observado em muitos núcleos instáveis.",
-      ur: "سمجھو کہ نصف حیات بہت سے غیر مستحکم مرکزوں میں پایا جانے والا شماریاتی نمونہ ہے۔",
+      ur: "سمجھیں کہ نصف حیات بہت سے غیر مستحکم مرکزوں میں پایا جانے والا شماریاتی نمونہ ہے۔",
       id: "Pahami waktu paruh sebagai pola statistik pada banyak inti atom yang tidak stabil.",
       de: "Verstehe die Halbwertszeit als statistisches Muster bei vielen instabilen Atomkernen.",
       ja: "半減期は多数の不安定な原子核に見られる統計的な規則性だと理解しましょう。",

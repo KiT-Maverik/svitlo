@@ -13,7 +13,7 @@ export const explainConservationOfElectricCharge_Skill_Data = buildSkillConfig({
     fr: 'Expliquer la conservation de la charge électrique',
     bn: 'বৈদ্যুতিক আধান সংরক্ষণ ব্যাখ্যা করা',
     pt: 'Explicar a conservação da carga elétrica',
-    ur: 'برقی بار کے بقائے کی وضاحت',
+    ur: 'برقی بار کی بقا کی وضاحت',
     id: 'Menjelaskan kekekalan muatan listrik',
     de: 'Erhaltung elektrischer Ladung erklären',
     ja: '電荷保存を説明する',

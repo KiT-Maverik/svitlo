@@ -45,7 +45,7 @@ export const explainAPhotonAsAQuantumOfElectromagneticRadiation_Skill_Data = bui
       fr: "Comprends les photons comme des quanta d'énergie du rayonnement électromagnétique.",
       bn: "ফোটন হলো তড়িৎচুম্বকীয় বিকিরণের শক্তির কোয়ান্টাম—এটি বোঝো।",
       pt: "Entenda os fótons como quanta de energia da radiação eletromagnética.",
-      ur: "سمجھو کہ فوٹون برقی مقناطیسی تابکاری کی توانائی کا ایک کوانٹم ہے۔",
+      ur: "سمجھیں کہ فوٹون برقی مقناطیسی تابکاری کی توانائی کا ایک کوانٹم ہے۔",
       id: "Pahami foton sebagai kuantum energi radiasi elektromagnetik.",
       de: "Verstehe Photonen als Energiequanten elektromagnetischer Strahlung.",
       ja: "光子は電磁放射のエネルギーの量子であることを理解しましょう。",

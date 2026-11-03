@@ -45,7 +45,7 @@ export const explainDiscreteAtomicEnergyStates_Skill_Data = buildSkillConfig({
       fr: "Reconnais que les atomes possèdent des niveaux d'énergie discrets dans leurs états liés.",
       bn: "পরমাণুর আবদ্ধ অবস্থায় নির্দিষ্ট পৃথক শক্তিস্তর থাকে—এটি বোঝো।",
       pt: "Reconheça que os átomos têm níveis de energia discretos em estados ligados.",
-      ur: "پہچانو کہ ایٹم کی پابند حالتوں میں توانائی کی جداگانہ سطحیں ہوتی ہیں۔",
+      ur: "پہچانیں کہ ایٹم کی پابند حالتوں میں توانائی کی جداگانہ سطحیں ہوتی ہیں۔",
       id: "Kenali bahwa atom memiliki tingkat energi diskret dalam keadaan terikat.",
       de: "Erkenne, dass Atome in gebundenen Zuständen bestimmte diskrete Energieniveaus besitzen.",
       ja: "原子の束縛状態にはとびとびのエネルギー準位があることを理解しましょう。",

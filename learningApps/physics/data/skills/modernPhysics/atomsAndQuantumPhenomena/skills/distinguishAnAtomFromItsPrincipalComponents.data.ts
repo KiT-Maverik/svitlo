@@ -45,7 +45,7 @@ export const distinguishAnAtomFromItsPrincipalComponents_Skill_Data = buildSkill
       fr: "Reconnais qu'un atome possède un noyau entouré d'électrons dans des états quantiques.",
       bn: "পরমাণুর কেন্দ্রে নিউক্লিয়াস ও তার চারপাশে কোয়ান্টাম অবস্থায় ইলেকট্রন থাকে—এটি বোঝো।",
       pt: "Reconheça que os átomos têm um núcleo cercado por elétrons em estados quânticos.",
-      ur: "پہچانو کہ ایٹم میں مرکزہ ہوتا ہے اور اس کے گرد کوانٹمی حالتوں میں الیکٹران ہوتے ہیں۔",
+      ur: "پہچانیں کہ ایٹم میں مرکزہ ہوتا ہے اور اس کے گرد کوانٹمی حالتوں میں الیکٹران ہوتے ہیں۔",
       id: "Kenali atom sebagai inti yang dikelilingi elektron dalam keadaan kuantum.",
       de: "Erkenne, dass Atome aus einem Kern bestehen, der von Elektronen in Quantenzuständen umgeben ist.",
       ja: "原子は原子核と、量子状態にある電子からなることを理解しましょう。",
