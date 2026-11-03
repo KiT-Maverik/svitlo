@@ -62,7 +62,7 @@ export const modernPhysics_SkillDomain_Data = buildSkillDomainConfig({
       tr: "Kuantum olaylarını, çekirdek değişimlerini ve uzay-zaman fiziğini keşfet.",
       vi: "Khám phá hiện tượng lượng tử, biến đổi hạt nhân và vật lý không-thời gian.",
       ta: "குவாண்டம் நிகழ்வுகள், அணுக்கரு மாற்றங்கள், வெளி-கால இயற்பியல் ஆகியவற்றை ஆராய்.",
-      te: "క్వాంటం ఘటనలు, అణుకేంద్రక మార్పులు, స్థలకాల భౌతికశాస్త్రాన్ని తెలుసుకో.",
+      te: "క్వాంటం ఘటనలు, అణుకేంద్రక మార్పులు, స్థలకాల భౌతికశాస్త్రాన్ని తెలుసుకోండి.",
       mr: "क्वांटम घटना, अणुकेंद्रीय बदल आणि अवकाशकाळाचे भौतिकशास्त्र जाणून घ्या.",
       ms: "Terokai fenomena kuantum, perubahan nuklear dan fizik ruang-masa.",
       he: "גלו תופעות קוונטיות, שינויים גרעיניים ואת הפיזיקה של המרחב־זמן.",
