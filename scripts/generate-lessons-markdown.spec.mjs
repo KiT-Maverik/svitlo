@@ -72,7 +72,7 @@ describe('Lesson → Markdown review projection', () => {
     assert.match(uk, /Перед/);
     assert.match(uk, /Question 1: q1/);
     assert.equal((uk.match(/Question 1: q1/g) ?? []).length, 1, 'quiz and question catalog should not duplicate a question');
-    assert.match(uk, /blob\/new-lesson\/learningApps\/playground\/data\/lessons\/1\/light\/light.data.ts/);
+    assert.match(uk, /blob\/new-lesson\/learningApps\/playground\/data\/lessons\/c\/d3048d21-8690-5255-b62c-984c69ac272c\/light.data.ts/);
     assert.equal(renderLessonMarkdown({ lesson, locale: 'uk', languages: ['en', 'uk'], packagePath: 'learningApps/playground' }), uk);
     assert.doesNotMatch(uk, /undefined|object Object|Date\(/);
   });
