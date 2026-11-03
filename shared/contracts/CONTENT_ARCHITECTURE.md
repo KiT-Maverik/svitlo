@@ -8,7 +8,7 @@
 - `Section<'definition' | 'data' | 'response'>`
 - `Flashcard<'definition' | 'data' | 'response'>`
 - `Question<'definition' | 'data' | 'response'>`, `Question_Map`, `Question_Catalog`, `Question_Catalog_DataFor`, `Question_Catalog_ValidSlugs`, and nine `Question_*` variants
-- `ContentBlock<'definition' | 'data' | 'response'>`, `ContentBlock_Map`, `ContentBlock_Type`, `ContentBlock_Catalog`, `ContentBlock_Catalog_DataFor`, `ContentBlock_Reference`, `defineContentBlockCatalog` and ten `ContentBlock_*` variants
+- `ContentBlock<'definition' | 'data' | 'response'>`, `ContentBlock_Map`, `ContentBlock_Type`, `ContentBlock_Catalog`, `ContentBlock_Catalog_DataFor`, `defineContentBlockCatalog` and ten `ContentBlock_*` variants
 - A Quiz is `ContentBlock_Quiz`, not a separate standalone Lesson section or independent `Quiz_Config`.
 - Session/progress-only types remain `LessonState`, `QuizState`, `QuizAnswer`, `QuizResult`, etc., in `state.types.ts` and `@svitlo/contracts/state`.
 
