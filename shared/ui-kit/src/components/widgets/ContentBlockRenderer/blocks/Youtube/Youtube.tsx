@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 
-import type { ContentBlockResponse } from '../../types';
+import type { ContentBlock_Youtube_Response } from '@svitlo/engine/content';
 import { localizedAttributes } from '../../utils';
 import {
   createYoutubeIframe,
@@ -17,10 +17,9 @@ import {
 } from './Youtube.utils';
 import styles from './Youtube.module.css';
 
-type YoutubeResponse = ContentBlockResponse<'youtube'>;
 type FallbackKind = 'loading' | 'offline' | 'unavailable';
 
-export const ContentBlock_Youtube = ({ response }: { response: YoutubeResponse }) => {
+export const ContentBlock_Youtube = ({ response }: { response: ContentBlock_Youtube_Response }) => {
   const online = useSyncExternalStore(subscribeConnectionChange, getConnectionSnapshot, getServerConnectionSnapshot);
   const playerHost = useRef<HTMLDivElement>(null);
   const [failedHref, setFailedHref] = useState<string | null>(null);

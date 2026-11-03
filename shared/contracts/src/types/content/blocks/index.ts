@@ -85,6 +85,8 @@ export type {
   ContentBlock_Text_Wrap,
 } from './text.types';
 
+export type { ContentBlock_Youtube_Response } from './youtube.types';
+
 export type {
   HighlightTone,
   StyledText_Rule,

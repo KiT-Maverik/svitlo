@@ -22,7 +22,7 @@ type ContentBlock_Youtube_Data = ContentBlock_Data_Meta & {
   fallback?: Youtube_Fallback<Locale_Config>;
 } & Youtube_Display<Locale_Config>;
 
-type ContentBlock_Youtube_Response = ContentBlock_Response_Meta<'youtube'> & Locale_ResponseParams & {
+export type ContentBlock_Youtube_Response = ContentBlock_Response_Meta<'youtube'> & Locale_ResponseParams & {
   href: string;
   fallback?: Youtube_Fallback<string>;
 } & Youtube_Display<string>;
