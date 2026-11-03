@@ -24,7 +24,7 @@ type ContentBlock_Scene_Locales_Data<TLocales> = TLocales extends string
     ? { [Key in keyof TLocales]: ContentBlock_Scene_Locales_Data<TLocales[Key]> }
     : never;
 
-type ContentBlock_Scene_Data<TLocales extends object> = ContentBlock_Data_Meta & {
+type ContentBlock_Scene_Data<TLocales extends object> = ContentBlock_Data_Meta<'scene'> & {
   locales: ContentBlock_Scene_Locales_Data<ContentBlock_Scene_Locales_Strings<TLocales>>;
 };
 
