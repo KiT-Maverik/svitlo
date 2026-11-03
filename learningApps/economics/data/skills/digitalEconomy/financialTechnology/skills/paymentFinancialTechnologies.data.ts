@@ -24,7 +24,7 @@ export const paymentFinancialTechnologies_Skill_Data = buildSkillConfig({
     mr: "देयकांसाठी वित्तीय तंत्रज्ञान",
     ms: "Teknologi kewangan pembayaran",
     he: "טכנולוגיות פיננסיות לתשלום",
-    pl: "Technologie płatności finansowych",
+    pl: "Technologie płatnicze",
     uk: "Платіжні фінансові технології",
     lt: "Mokėjimų finansinės technologijos",
     lv: "Maksājumu finanšu tehnoloģijas",
