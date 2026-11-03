@@ -6,7 +6,7 @@ export const explainPressureTransmissionInAnEnclosedLiquid_Skill_Data = buildSki
   name: {
     en: "Explain pressure transmission in an enclosed liquid",
     zh: "解释密闭液体中的压强传递",
-    hi: "बंद द्रव में दाब का संचरण समझाएँ",
+    hi: "बंद द्रव में दाब के संचरण को समझाना",
     es: "Explicar la transmisión de presión en un líquido encerrado",
     ar: "تفسير انتقال الضغط في سائل محصور",
     fr: "Expliquer la transmission de pression dans un liquide confiné",
