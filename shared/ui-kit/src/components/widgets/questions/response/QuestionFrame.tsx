@@ -1,10 +1,11 @@
 'use client';
 
-import { useId, useState, type ReactNode } from 'react';
+import { useContext, useId, useState, type ReactNode } from 'react';
 import { Box, Button, Paper, Stack, Typography } from '@mui/material';
 import type { Question } from '@svitlo/engine/content';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
 import { QuestionContent } from './QuestionContent';
+import { QuestionCompletionContext } from './QuestionCompletion';
 
 export type QuestionResponse = Question<'response'>;
 
@@ -52,6 +53,8 @@ export function QuestionFrame<Value>({
   children: ReactNode;
 }) {
   const headingId = useId();
+  const completion = useContext(QuestionCompletionContext);
+  const trackingId = response.type + ':' + response.id;
   const lang = response.locale.code;
   const t = lang === 'uk' ? copy.uk : copy.en;
   return (
@@ -85,9 +88,16 @@ export function QuestionFrame<Value>({
       ) : null}
       <Stack direction="row" sx={{ justifyContent: 'center' }}>
         {attempt.checked ? (
-          <Button variant="contained" onClick={attempt.retry}>{t.retry}</Button>
+          <Button variant="contained" onClick={() => {
+            completion.markUnchecked(trackingId);
+            attempt.retry();
+          }}>{t.retry}</Button>
         ) : (
-          <Button variant="contained" disabled={!attempt.canCheck} onClick={attempt.check}>{t.check}</Button>
+          <Button variant="contained" disabled={!attempt.canCheck} onClick={() => {
+            if (!attempt.canCheck) return;
+            attempt.check();
+            completion.markChecked(trackingId);
+          }}>{t.check}</Button>
         )}
       </Stack>
     </Paper>

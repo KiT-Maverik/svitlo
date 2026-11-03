@@ -1,5 +1,5 @@
-import { fireEvent, render, screen, within } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
 import type { Question } from '@svitlo/engine/content';
 import { QuestionRenderer } from './questions/response/QuestionRenderer';
 import { parseQuestionNumber } from './questions/AnswerWithNumber/AnswerWithNumber';
@@ -60,6 +60,23 @@ describe('QuestionRenderer — contract responses', () => {
     const { container } = render(<QuestionRenderer questions={questions} />);
     expect(within(container).getAllByRole('region')).toHaveLength(9);
     expect(within(container).getAllByRole('button', { name: 'Check' })).toHaveLength(9);
+  });
+
+  it('signals completion only after every contract response has been checked', async () => {
+    const onComplete = vi.fn();
+    const another: Question<'response'> = {
+      ...one,
+      id: 'question-2',
+      question: [text('second-prompt', 'Another question')],
+    };
+    render(<QuestionRenderer questions={[one, another]} onComplete={onComplete} />);
+    const yesButtons = screen.getAllByRole('button', { name: 'Yes' });
+    fireEvent.click(yesButtons[0]);
+    fireEvent.click(screen.getAllByRole('button', { name: 'Check' })[0]);
+    expect(onComplete).not.toHaveBeenCalled();
+    fireEvent.click(yesButtons[1]);
+    fireEvent.click(screen.getByRole('button', { name: 'Check' }));
+    await waitFor(() => expect(onComplete).toHaveBeenCalledTimes(1));
   });
 
   it('resets attempt state when a question ID changes', () => {
