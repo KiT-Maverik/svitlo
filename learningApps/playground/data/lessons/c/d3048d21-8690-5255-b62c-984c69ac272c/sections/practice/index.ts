@@ -44,7 +44,7 @@ export const practice_Section = {
   content: defineContentBlockCatalog({
     scene: { showcase: showcaseData },
     text: {
-      task: { id: 'practice-task', slug: 'task' as const, value: {
+      task: { type: 'text', id: 'practice-task', slug: 'task' as const, value: {
           ar: 'قارِن سرعة الضوء في الفراغ والهواء والماء.',
           be: 'Параўнай хуткасьць сьвятла ў вакуўме, паветры і вадзе.',
           bn: 'শূন্যস্থান, বায়ু ও পানিতে আলোর গতির তুলনা করো।',
