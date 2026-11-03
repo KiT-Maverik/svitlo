@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import type { ContentBlock_Map, ContentBlock_Type } from '@svitlo/contracts/content';
-import type { LanguageCode } from '../../../types/languages';
-import { DEFAULT_SUPPORTED_LANGUAGES } from '../../../types/languages';
+import type { LanguageCode } from '../../types/languages';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '../../types/languages';
 import { localizeLessonValue, type LocaleSource } from '../generators/lessons/localizeLessonData.utils';
 
 /**
