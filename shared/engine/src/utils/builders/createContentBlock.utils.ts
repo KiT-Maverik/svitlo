@@ -208,5 +208,5 @@ function makeBuilder<Type extends BuildableContentBlockType>(
 export function createContentBlock<const Data extends BuildableContentBlockData>(
   data: Data,
 ): ContentBlockBuilder<Data['type']> {
-  return makeBuilder<Data['type']>(data as ContentBlock_Map<'data'>[Data['type']], false);
+  return makeBuilder<Data['type']>(data as unknown as ContentBlock_Map<'data'>[Data['type']], false);
 }
