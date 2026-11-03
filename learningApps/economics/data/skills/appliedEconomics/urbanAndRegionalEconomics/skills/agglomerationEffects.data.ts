@@ -45,7 +45,7 @@ export const agglomerationEffects_Skill_Data = buildSkillConfig({
       fr: "Explore pourquoi la concentration des entreprises peut accroître la productivité, mais aussi les coûts.",
       bn: "প্রতিষ্ঠান এক জায়গায় জড়ো হলে উৎপাদনশীলতা ও খরচ দুটোই কেন বাড়তে পারে তা জানো।",
       pt: "Explore por que a concentração de empresas pode elevar a produtividade e os custos.",
-      ur: "جانیں کہ کاروباروں کا ایک جگہ جمع ہونا پیداوار کے ساتھ اخراجات بھی کیوں بڑھا سکتا ہے۔",
+      ur: "جانیں کہ کاروباروں کا ایک جگہ جمع ہونا پیداواری صلاحیت کیوں بڑھا سکتا ہے، مگر اخراجات بھی بڑھا سکتا ہے۔",
       id: "Jelajahi mengapa pemusatan bisnis meningkatkan produktivitas sekaligus biaya.",
       de: "Erkunde, warum die räumliche Konzentration von Unternehmen die Produktivität, aber auch die Kosten steigern kann.",
       ja: "企業が集まると生産性が上がる一方で費用も増える可能性がある理由を考えましょう。",
