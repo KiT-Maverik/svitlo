@@ -27,7 +27,7 @@ function renderBlock(response: ContentBlockResponse, sceneRegistry?: SceneRegist
 
   switch (response.type) {
     case 'text': return <ContentBlock_Text {...response} />;
-    case 'markdown': return <Markdown response={response} />;
+    case 'markdown': return <Markdown {...response} />;
     case 'checkpoint': return <Checkpoint {...response} renderNested={nested} />;
     case 'scene': return <Scene response={response} sceneRegistry={sceneRegistry} />;
     case 'code': return <Code {...response} />;

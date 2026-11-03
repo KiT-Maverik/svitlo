@@ -41,10 +41,6 @@
       "types": "./dist/components/layout/Navigation/*.d.ts",
       "default": "./dist/components/layout/Navigation/*.js"
     },
-    "./widgets/MarkdownContent": {
-      "types": "./dist/components/widgets/MarkdownContent/index.d.ts",
-      "default": "./dist/components/widgets/MarkdownContent/index.js"
-    },
     "./questions/helpers": {
       "types": "./dist/components/widgets/questions/helpers/index.d.ts",
       "default": "./dist/components/widgets/questions/helpers/index.js"

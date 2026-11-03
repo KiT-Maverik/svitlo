@@ -24,6 +24,17 @@ describe('ContentBlockRenderer', () => {
       .toEqual(['First block', 'Middle block', 'Last block']);
   });
 
+  it('renders Markdown responses through the dispatcher with their locale direction', () => {
+    render(<ContentBlockRenderer blocks={[{
+      id: 'rtl-markdown', type: 'markdown', locale: { code: 'ar' },
+      text: '# عنوان الدرس\\n\\n**نص عربي**',
+    }]} />);
+    const article = screen.getByRole('article');
+    expect(article).toHaveAttribute('dir', 'rtl');
+    expect(article).toHaveAttribute('lang', 'ar-SA');
+    expect(screen.getByRole('heading', { name: 'عنوان الدرس' })).toBeVisible();
+  });
+
   it('renders checkpoint answers through the same dispatcher', () => {
     render(<ContentBlockRenderer blocks={[{
       id: 'checkpoint', type: 'checkpoint', locale, title: 'Review',
