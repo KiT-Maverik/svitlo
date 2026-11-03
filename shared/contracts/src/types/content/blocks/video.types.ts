@@ -11,7 +11,7 @@ type Video_Fallback<Value> = {
   retry?: Value;
 };
 
-type ContentBlock_Video_Data = ContentBlock_Data_Meta & {
+type ContentBlock_Video_Data = ContentBlock_Data_Meta<'video'> & {
   fileLocation: Locale_Config;
   poster: Locale_Config;
   title?: Locale_Config;
