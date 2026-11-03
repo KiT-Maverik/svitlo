@@ -83,7 +83,7 @@ export function QuestionFrame<Value>({
           <QuestionContent blocks={response.explanation} sceneRegistry={sceneRegistry} />
         </Box>
       ) : null}
-      <Stack direction="row" justifyContent="center">
+      <Stack direction="row" sx={{ justifyContent: 'center' }}>
         {attempt.checked ? (
           <Button variant="contained" onClick={attempt.retry}>{t.retry}</Button>
         ) : (

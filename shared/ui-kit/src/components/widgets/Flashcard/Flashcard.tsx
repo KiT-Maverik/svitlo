@@ -102,7 +102,7 @@ export const Flashcard = forwardRef<HTMLButtonElement, FlashcardProps>(function 
             <>
               <Divider className={styles.flashControlsDivider} />
               <div className={styles.flashControls}>
-                <Stack direction="row" justifyContent="space-between" gap={2}>
+                <Stack direction="row" gap={2} sx={{ justifyContent: 'space-between' }}>
                   <Button variant="outlined" disabled={disabled} onClick={() => onRate(false)}>
                       {locale.flashcard.actions.forgot}
                     </Button>

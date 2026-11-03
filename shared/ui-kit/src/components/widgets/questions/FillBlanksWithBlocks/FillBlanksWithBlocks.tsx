@@ -32,7 +32,7 @@ export function FillBlanksWithBlocks({ response, sceneRegistry }: {
   return (
     <QuestionFrame response={response} sceneRegistry={sceneRegistry} attempt={attempt}>
       <Stack spacing={2}>
-        <Stack direction="row" useFlexGap flexWrap="wrap" justifyContent="center" gap={1}
+        <Stack direction="row" useFlexGap gap={1} sx={{ flexWrap: 'wrap', justifyContent: 'center' }}
           role="group" aria-label={response.locale.code === 'uk' ? 'Пропуски' : 'Blanks'}>
           {response.slots.map(slot => {
             const selected = items.find(item => item.id === attempt.value[slot.selector]);
