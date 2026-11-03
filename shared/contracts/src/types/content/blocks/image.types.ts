@@ -4,14 +4,32 @@ import type { Locale_Config, Locale_ResponseParams } from '../locale.types';
 
 type ContentBlock_Image_Definition = ContentBlock_Definition_Meta<'image'>;
 
-type ContentBlock_Image_Data = ContentBlock_Data_Meta & {
-  locales: Locale_Config;
-  alt: Locale_Config;
+type Image_Fallback<Value> = {
+  offline?: Value;
+  unavailable?: Value;
+  retry?: Value;
 };
 
-type ContentBlock_Image_Response = ContentBlock_Response_Meta<'image'> & Locale_ResponseParams & {
+type Image_Layout =
+  | { width: number; height: number; fill?: false; aspectRatio?: never; objectFit?: never }
+  | { fill: true; aspectRatio: number; objectFit?: 'contain' | 'cover'; width?: never; height?: never };
+
+type ContentBlock_Image_Data = ContentBlock_Data_Meta & Image_Layout & {
+  src: Locale_Config;
+  alt: Locale_Config;
+  caption?: Locale_Config;
+  sizes?: string;
+  unoptimized?: boolean;
+  fallback?: Image_Fallback<Locale_Config>;
+};
+
+export type ContentBlock_Image_Response = ContentBlock_Response_Meta<'image'> & Locale_ResponseParams & Image_Layout & {
   src: string;
   alt: string;
+  caption?: string;
+  sizes?: string;
+  unoptimized?: boolean;
+  fallback?: Image_Fallback<string>;
 };
 
 export type ContentBlock_Image<ConfigType extends ContentEntity_ConfigType> = {

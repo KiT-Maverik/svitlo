@@ -42,7 +42,7 @@ export function ContentBlockRenderer(props: ContentBlockRendererProps): ReactNod
     case 'audio': return <Audio response={props.response} />;
     case 'video': return <Video {...props.response} />;
     case 'youtube': return <Youtube {...props.response} />;
-    case 'image': return <Image response={props.response} />;
+    case 'image': return <Image {...props.response} />;
     case 'quiz': return <ContentBlock_Quiz response={props.response} questions={props.questions} renderNested={nested} />;
     default: return assertNever(props);
   }

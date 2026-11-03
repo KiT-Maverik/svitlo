@@ -1,6 +1,7 @@
 import type {
   ContentBlock,
   ContentBlock_Checkpoint,
+  ContentBlock_Image,
   ContentBlock_Quiz,
   ContentBlock_Quiz_Screen,
   ContentBlock_Reference,
@@ -71,6 +72,26 @@ const authoredYoutube: ContentBlock_Youtube<'data'> = {
     unavailable: { value: 'Video unavailable', language: 'en' },
   },
 };
+const authoredImage: ContentBlock_Image<'data'> = {
+  id: 'image-id',
+  slug: 'diagram',
+  src: { value: '/diagram.png', language: 'en' },
+  alt: { value: 'Light ray diagram', language: 'en' },
+  caption: { value: 'Path of a light ray', language: 'en' },
+  width: 800,
+  height: 450,
+  fallback: { unavailable: { value: 'Diagram unavailable', language: 'en' } },
+};
+const authoredFillImage: ContentBlock_Image<'data'> = {
+  id: 'image-fill-id',
+  slug: 'responsive-diagram',
+  src: { value: '/diagram.png', language: 'en' },
+  alt: { value: 'Responsive light ray diagram', language: 'en' },
+  fill: true,
+  aspectRatio: 16 / 9,
+  objectFit: 'contain',
+  sizes: '(max-width: 768px) 100vw, 768px',
+};
 // @ts-expect-error Embedded YouTube videos require an accessible title or hint.
 const unlabelledYoutube: ContentBlock_Youtube<'response'> = {
   id: 'youtube-id',
@@ -108,4 +129,4 @@ declare const quiz: ContentBlock_Quiz<'response'>;
 // @ts-expect-error Quiz question references are immutable.
 quiz.questionSlugs.push('another-question');
 
-void [runtimeText, authoredText, authoredYoutube, unlabelledYoutube, runtimeScene, customQuizScreen, emptyQuizScreen, missingDiscriminator, quiz, flashcard];
+void [runtimeText, authoredText, authoredYoutube, authoredImage, authoredFillImage, unlabelledYoutube, runtimeScene, customQuizScreen, emptyQuizScreen, missingDiscriminator, quiz, flashcard];
