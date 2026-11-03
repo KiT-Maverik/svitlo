@@ -51,11 +51,10 @@ export const howLightMovesData = defineLessonData({
       allowNavigation: true,
       allowSkipping: true,
       showIndexes: true,
-      order: [],
+      order: ['theory', 'practice', 'quiz'],
     },
   },
   questions: howLightMovesQuestionsData,
-  sectionOrder: ['theory', 'practice', 'quiz'],
   sections: {
     theory: theoryData,
     practice: practiceData,
