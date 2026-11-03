@@ -75,7 +75,7 @@ export const dataStructures_SkillDomain_Data = buildSkillDomainConfig({
       te: "వివిధ కార్యకలాపాల కోసం సేకరణలు, కీలు, వృక్షాలు, నెట్‌వర్క్‌లు డేటాను ఎలా క్రమబద్ధీకరిస్తాయో తెలుసుకోండి.",
       mr: "संग्रह, किल्ल्या, वृक्ष आणि जाळी वेगवेगळ्या क्रियांसाठी डेटा कसा मांडतात ते जाणून घे.",
       ms: "Ketahui bagaimana koleksi, kekunci, pokok dan rangkaian menyusun data untuk operasi yang berbeza.",
-      he: "מגלים כיצד אוספים, מפתחות, עצים ורשתות מארגנים נתונים לצורך פעולות שונות.",
+      he: "גלו כיצד אוספים, מפתחות, עצים ורשתות מארגנים נתונים לצורך פעולות שונות.",
       pl: "Dowiedz się, jak kolekcje, klucze, drzewa i sieci porządkują dane na potrzeby różnych operacji.",
       uk: "Дізнайся, як колекції, ключі, дерева та мережі впорядковують дані для різних операцій.",
       lt: "Sužinok, kaip rinkiniai, raktai, medžiai ir tinklai tvarko duomenis įvairioms operacijoms.",
