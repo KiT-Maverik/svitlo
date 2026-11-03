@@ -8,6 +8,9 @@ export interface TextProps {
     typographyProps?: Omit<TypographyProps, 'children'>;
   };
   transform?: NonEmptyArray<Replace | Style | Css | Condition>
+  variables?: {
+    [key: string]: string | number | boolean
+  }
 }
 
 type Replace = {
