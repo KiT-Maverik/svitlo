@@ -6,7 +6,7 @@ export const historicalSources_SkillGroup_Data = buildSkillGroupConfig({
   slug: "historicalSources",
   id: "fc29c26b-6ca0-40b1-9246-a06a13396dbb",
   name: {
-    en: "Джерела",
+    en: "Historical Sources",
     zh: "历史资料",
     hi: "ऐतिहासिक स्रोत",
     es: "Fuentes históricas",

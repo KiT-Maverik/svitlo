@@ -4,7 +4,7 @@ export const visualHistoricalSources_Skill_Data = buildSkillConfig({
   slug: "visualHistoricalSources",
   id: "30caa1fe-1fe9-4f45-873c-86a609826108",
   name: {
-    en: "Образотворчі джерела",
+    en: "Visual Historical Sources",
     zh: "历史图像资料",
     hi: "दृश्य ऐतिहासिक स्रोत",
     es: "Fuentes históricas visuales",

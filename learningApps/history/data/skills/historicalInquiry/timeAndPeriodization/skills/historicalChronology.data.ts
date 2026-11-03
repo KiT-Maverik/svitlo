@@ -4,7 +4,7 @@ export const historicalChronology_Skill_Data = buildSkillConfig({
   slug: "historicalChronology",
   id: "731b09d8-2c26-4b6b-b7a5-234dd9908b35",
   name: {
-    en: "Історична хронологія",
+    en: "Historical Chronology",
     zh: "历史年代顺序",
     hi: "ऐतिहासिक कालक्रम",
     es: "Cronología histórica",

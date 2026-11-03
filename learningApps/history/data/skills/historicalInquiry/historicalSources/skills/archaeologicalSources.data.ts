@@ -4,7 +4,7 @@ export const archaeologicalSources_Skill_Data = buildSkillConfig({
   slug: "archaeologicalSources",
   id: "c64342ba-ac05-4335-abb6-1765d39b261a",
   name: {
-    en: "Археологічні джерела",
+    en: "Archaeological Sources",
     zh: "考古资料",
     hi: "पुरातात्त्विक स्रोत",
     es: "Fuentes arqueológicas",

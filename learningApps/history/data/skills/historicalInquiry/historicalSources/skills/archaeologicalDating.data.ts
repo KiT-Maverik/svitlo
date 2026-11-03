@@ -4,7 +4,7 @@ export const archaeologicalDating_Skill_Data = buildSkillConfig({
   slug: "archaeologicalDating",
   id: "a8c022ff-5bf3-44ff-bd36-21c78f985895",
   name: {
-    en: "Археологічне датування",
+    en: "Archaeological Dating",
     zh: "考古年代测定",
     hi: "पुरातात्त्विक काल निर्धारण",
     es: "Datación arqueológica",

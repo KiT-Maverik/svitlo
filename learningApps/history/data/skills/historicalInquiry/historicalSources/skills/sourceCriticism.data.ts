@@ -4,7 +4,7 @@ export const sourceCriticism_Skill_Data = buildSkillConfig({
   slug: "sourceCriticism",
   id: "a2588901-2159-428e-bf5a-0ba5fc3aebd0",
   name: {
-    en: "Критика джерела",
+    en: "Source Criticism",
     zh: "史料批判",
     hi: "स्रोतों की आलोचनात्मक जाँच",
     es: "Crítica de fuentes",

@@ -9,7 +9,7 @@ export const historicalInquiry_SkillDomain_Data = buildSkillDomainConfig({
   slug: "historicalInquiry",
   id: "15c40ab9-112c-47f4-b106-4ff75ad99b1e",
   name: {
-    en: "Історичне пізнання",
+    en: "Historical Inquiry",
     zh: "历史探究",
     hi: "ऐतिहासिक अन्वेषण",
     es: "Indagación histórica",

@@ -4,7 +4,7 @@ export const bceAndCeDating_Skill_Data = buildSkillConfig({
   slug: "bceAndCeDating",
   id: "35ba8e99-cbb8-4c15-865a-343f2c740145",
   name: {
-    en: "Датування до нашої ери та нашої ери",
+    en: "BCE and CE Dating",
     zh: "公元前与公元纪年",
     hi: "ईसा पूर्व और ईस्वी सन् की तिथियाँ",
     es: "Datación antes y después de la era común",
