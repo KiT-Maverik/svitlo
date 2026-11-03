@@ -42,7 +42,7 @@ export const romanRepublicanInstitutions_Skill_Data = buildSkillConfig({
       hi: "समझें कि रोमन गणराज्य में सत्ता किनके पास थी।",
       es: "Comprende quién ejercía el poder en la República romana.",
       ar: "افهم من كان يمتلك السلطة في الجمهورية الرومانية.",
-      fr: "Comprenez qui détenait le pouvoir dans la République romaine.",
+      fr: "Comprends qui détenait le pouvoir dans la République romaine.",
       bn: "রোমান প্রজাতন্ত্রে কার হাতে ক্ষমতা ছিল তা বুঝে নাও।",
       pt: "Entenda quem exercia o poder na República Romana.",
       ur: "سمجھیں کہ رومی جمہوریہ میں اقتدار کن کے پاس تھا۔",

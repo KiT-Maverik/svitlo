@@ -54,7 +54,7 @@ export const povertyPoint_Skill_Data = buildSkillConfig({
       vi: "Khám phá các công trình đất quy mô lớn ở Poverty Point.",
       ta: "பாவர்ட்டி பாயிண்டில் கட்டப்பட்ட பெரும் மண்மேடுக் கட்டுமானங்களை ஆராய்.",
       te: "పావర్టీ పాయింట్ వద్ద నిర్మించిన భారీ మట్టి కట్టడాలను పరిశీలించండి.",
-      mr: "पॉव्हर्टी पॉइंट येथील मोठ्या मातीच्या बांधकामांची माहिती घे.",
+      mr: "पॉव्हर्टी पॉइंट येथील मोठ्या मातीच्या बांधकामांची माहिती घ्या.",
       ms: "Terokai binaan tanah besar yang didirikan di Poverty Point.",
       he: "גלו את עבודות העפר הגדולות שנבנו בפוורטי פוינט.",
       pl: "Poznaj wielkie konstrukcje ziemne wzniesione w Poverty Point.",

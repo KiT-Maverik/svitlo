@@ -42,7 +42,7 @@ export const ancientGreekTheater_Skill_Data = buildSkillConfig({
       hi: "जानें कि प्राचीन यूनानी नगरों में रंगमंच क्यों महत्वपूर्ण था।",
       es: "Descubre por qué el teatro era importante en las ciudades griegas antiguas.",
       ar: "اكتشف لماذا كان المسرح مهمًا في المدن اليونانية القديمة.",
-      fr: "Découvrez pourquoi le théâtre comptait dans les cités grecques antiques.",
+      fr: "Découvre pourquoi le théâtre comptait dans les cités grecques antiques.",
       bn: "প্রাচীন গ্রিক নগরগুলোতে নাট্যকলা কেন গুরুত্বপূর্ণ ছিল তা জানো।",
       pt: "Descubra por que o teatro era importante nas cidades gregas antigas.",
       ur: "جانیں کہ قدیم یونانی شہروں میں تھیٹر کیوں اہم تھا۔",

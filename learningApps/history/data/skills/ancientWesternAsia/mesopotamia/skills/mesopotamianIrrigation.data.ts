@@ -45,7 +45,7 @@ export const mesopotamianIrrigation_Skill_Data = buildSkillConfig({
       fr: "Comprends pourquoi l'irrigation était importante pour l'agriculture mésopotamienne.",
       bn: "মেসোপটেমিয়ার কৃষিতে সেচ কেন গুরুত্বপূর্ণ ছিল তা বোঝো।",
       pt: "Entenda por que a irrigação era importante para a agricultura mesopotâmica.",
-      ur: "سمجھیں کہ میسوپوٹیمیا کی زراعت کے لیے آب پاشی کیوں اہم تھی۔",
+      ur: "سمجھیں کہ بین النہرین کی زراعت کے لیے آب پاشی کیوں اہم تھی۔",
       id: "Pahami mengapa irigasi penting bagi pertanian Mesopotamia.",
       de: "Verstehe, warum Bewässerung für die mesopotamische Landwirtschaft wichtig war.",
       ja: "メソポタミアの農業で灌漑が重要だった理由を考えよう。",

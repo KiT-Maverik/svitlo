@@ -42,7 +42,7 @@ export const scythianSocieties_Skill_Data = buildSkillConfig({
       hi: "जानें कि स्किथियाई समुदाय कैसे रहते और व्यापार करते थे।",
       es: "Explora cómo vivían y comerciaban las comunidades escitas.",
       ar: "استكشف كيف عاشت المجتمعات السكيثية وتاجرت.",
-      fr: "Explorez la vie et les échanges commerciaux des communautés scythes.",
+      fr: "Explore la vie et les échanges commerciaux des communautés scythes.",
       bn: "সিথীয় জনগোষ্ঠী কীভাবে বাস ও বাণিজ্য করত তা অন্বেষণ করো।",
       pt: "Explore como as comunidades citas viviam e comerciavam.",
       ur: "دیکھیے کہ سکیتھیائی آبادیاں کیسے رہتی اور تجارت کرتی تھیں۔",

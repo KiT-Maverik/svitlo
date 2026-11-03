@@ -54,7 +54,7 @@ export const familyAndKinship_Skill_Data = buildSkillConfig({
       vi: "Tìm hiểu cách gia đình và quan hệ họ hàng vận hành trong các nền văn hóa cổ.",
       ta: "பல்வேறு பண்டைய பண்பாடுகளில் குடும்பமும் உறவுமுறையும் எவ்வாறு செயல்பட்டன என்பதை அறிந்துகொள்.",
       te: "వేర్వేరు ప్రాచీన సంస్కృతుల్లో కుటుంబం, బంధుత్వం ఎలా పనిచేశాయో తెలుసుకోండి.",
-      mr: "विविध प्राचीन संस्कृतींमध्ये कुटुंब आणि नातेसंबंध कसे होते ते जाणून घे.",
+      mr: "विविध प्राचीन संस्कृतींमध्ये कुटुंब आणि नातेसंबंध कसे होते ते जाणून घ्या.",
       ms: "Ketahui bagaimana keluarga dan hubungan persaudaraan berfungsi dalam budaya purba.",
       he: "גלו כיצד פעלו משפחות וקשרי קרבה בתרבויות עתיקות שונות.",
       pl: "Poznaj sposoby funkcjonowania rodzin i więzi pokrewieństwa w różnych kulturach starożytnych.",

@@ -54,7 +54,7 @@ export const peoplingOfSahul_Skill_Data = buildSkillConfig({
       vi: "Hiểu cách những người đi biển đầu tiên đến lục địa Sahul.",
       ta: "ஆரம்பகாலக் கடற்பயணிகள் சாஹுல் நிலப்பரப்பை எவ்வாறு அடைந்தனர் என்பதைப் புரிந்துகொள்.",
       te: "తొలి సముద్రయాత్రికులు సాహుల్ ఖండానికి ఎలా చేరారో అర్థం చేసుకోండి.",
-      mr: "प्रारंभिक नाविक साहुल भूभागात कसे पोहोचले ते समजून घे.",
+      mr: "प्रारंभिक नाविक साहुल भूभागात कसे पोहोचले ते समजून घ्या.",
       ms: "Fahami bagaimana pelayar awal tiba di benua Sahul.",
       he: "הבינו כיצד יורדי הים הראשונים הגיעו ליבשת סהול.",
       pl: "Zrozum, jak pierwsi żeglarze dotarli na kontynent Sahul.",

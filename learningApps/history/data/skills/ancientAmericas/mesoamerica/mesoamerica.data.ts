@@ -63,7 +63,7 @@ export const mesoamerica_SkillGroup_Data = buildSkillGroupConfig({
       vi: "Khám phá các thành phố và nền văn hóa cổ đại Mesoamerica.",
       ta: "மெசோஅமெரிக்காவின் பண்டைய நகரங்களையும் பண்பாடுகளையும் ஆராய்.",
       te: "మెసోఅమెరికా ప్రాచీన నగరాలు, సంస్కృతులను పరిశీలించండి.",
-      mr: "मेसोअमेरिकेतील प्राचीन शहरे आणि संस्कृती जाणून घे.",
+      mr: "मेसोअमेरिकेतील प्राचीन शहरे आणि संस्कृती जाणून घ्या.",
       ms: "Terokai bandar dan budaya purba Mesoamerika.",
       he: "גלו את הערים והתרבויות העתיקות של מסואמריקה.",
       pl: "Poznaj dawne miasta i kultury Mezoameryki.",

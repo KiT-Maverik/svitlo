@@ -54,7 +54,7 @@ export const ancientMeasurementSystems_Skill_Data = buildSkillConfig({
       vi: "Khám phá cách người xưa đo lường hàng hóa và thời gian.",
       ta: "பண்டைய மக்கள் பொருட்களையும் நேரத்தையும் எவ்வாறு அளந்தனர் என்பதை ஆராய்.",
       te: "ప్రాచీన ప్రజలు వస్తువులను, కాలాన్ని ఎలా కొలిచారో తెలుసుకోండి.",
-      mr: "प्राचीन लोक वस्तू आणि वेळ कशी मोजत होते ते जाणून घे.",
+      mr: "प्राचीन लोक वस्तू आणि वेळ कशी मोजत होते ते जाणून घ्या.",
       ms: "Terokai bagaimana manusia purba mengukur barangan dan masa.",
       he: "גלו כיצד אנשים בעת העתיקה מדדו סחורות וזמן.",
       pl: "Poznaj sposoby mierzenia towarów i czasu w starożytności.",

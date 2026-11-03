@@ -42,7 +42,7 @@ export const qinEmpire_Skill_Data = buildSkillConfig({
       hi: "उन नीतियों के बारे में जानें जिनसे छिन ने चीन को एकजुट किया।",
       es: "Descubre las políticas que ayudaron a los Qin a unificar China.",
       ar: "اكتشف السياسات التي ساعدت تشين على توحيد الصين.",
-      fr: "Découvrez les politiques qui ont aidé les Qin à unifier la Chine.",
+      fr: "Découvre les politiques qui ont aidé les Qin à unifier la Chine.",
       bn: "ছিন শাসকেরা কোন নীতির সাহায্যে চীনকে একত্রিত করেছিলেন তা জানো।",
       pt: "Descubra as políticas que ajudaram os Qin a unificar a China.",
       ur: "ان پالیسیوں کے بارے میں جانیں جن سے چِن نے چین کو متحد کیا۔",

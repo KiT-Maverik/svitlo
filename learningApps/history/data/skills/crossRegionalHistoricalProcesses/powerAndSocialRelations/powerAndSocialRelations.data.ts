@@ -62,7 +62,7 @@ export const powerAndSocialRelations_SkillGroup_Data = buildSkillGroupConfig({
       vi: "Khám phá cách người xưa tổ chức quyền lực và các quan hệ xã hội.",
       ta: "பண்டைய மக்கள் அதிகாரத்தையும் சமூக உறவுகளையும் எவ்வாறு ஒழுங்கமைத்தனர் என்பதை ஆராய்.",
       te: "ప్రాచీన ప్రజలు అధికారాన్ని, సామాజిక సంబంధాలను ఎలా వ్యవస్థీకరించారో తెలుసుకోండి.",
-      mr: "प्राचीन लोकांनी सत्ता आणि सामाजिक संबंध कसे संघटित केले ते जाणून घे.",
+      mr: "प्राचीन लोकांनी सत्ता आणि सामाजिक संबंध कसे संघटित केले ते जाणून घ्या.",
       ms: "Terokai cara masyarakat purba mengatur kuasa dan hubungan sosial.",
       he: "גלו כיצד אנשים בעת העתיקה ארגנו כוח ויחסים חברתיים.",
       pl: "Poznaj sposoby organizowania władzy i relacji społecznych w starożytności.",

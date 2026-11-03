@@ -42,7 +42,7 @@ export const patricianPlebeianConflict_Skill_Data = buildSkillConfig({
       hi: "जानें कि सामान्य रोमन नागरिकों ने राजनीतिक अधिकार कैसे प्राप्त किए।",
       es: "Descubre cómo los ciudadanos romanos comunes consiguieron derechos políticos.",
       ar: "اكتشف كيف حصل المواطنون الرومان العاديون على حقوق سياسية.",
-      fr: "Découvrez comment les citoyens romains ordinaires ont obtenu des droits politiques.",
+      fr: "Découvre comment les citoyens romains ordinaires ont obtenu des droits politiques.",
       bn: "সাধারণ রোমান নাগরিকেরা কীভাবে রাজনৈতিক অধিকার অর্জন করেছিলেন তা জানো।",
       pt: "Descubra como os cidadãos romanos comuns conquistaram direitos políticos.",
       ur: "جانیں کہ عام رومی شہریوں نے سیاسی حقوق کیسے حاصل کیے۔",

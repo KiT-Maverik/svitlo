@@ -65,7 +65,7 @@ export const productionAndKnowledge_SkillGroup_Data = buildSkillGroupConfig({
       vi: "Khám phá cách các xã hội cổ đại tạo ra đồ vật và chia sẻ tri thức.",
       ta: "பண்டைய சமூகங்கள் பொருட்களை எவ்வாறு உற்பத்தி செய்தும் அறிவைப் பகிர்ந்தும் இருந்தன என்பதை ஆராய்.",
       te: "ప్రాచీన సమాజాలు వస్తువులను ఎలా తయారు చేసి జ్ఞానాన్ని ఎలా పంచుకున్నాయో తెలుసుకోండి.",
-      mr: "प्राचीन समाज वस्तू कशा बनवत आणि ज्ञान कसे वाटून घेत ते जाणून घे.",
+      mr: "प्राचीन समाज वस्तू कशा बनवत आणि ज्ञान कसे वाटून घेत ते जाणून घ्या.",
       ms: "Terokai cara masyarakat purba menghasilkan barangan dan berkongsi ilmu.",
       he: "גלו כיצד חברות עתיקות ייצרו חפצים וחלקו ידע.",
       pl: "Poznaj sposoby wytwarzania przedmiotów i dzielenia się wiedzą w dawnych społeczeństwach.",

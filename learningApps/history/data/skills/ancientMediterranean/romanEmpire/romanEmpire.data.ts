@@ -52,7 +52,7 @@ export const romanEmpire_SkillGroup_Data = buildSkillGroupConfig({
       hi: "जानें कि रोमन साम्राज्य ने अनेक अलग-अलग लोगों पर कैसे शासन किया।",
       es: "Explora cómo el Imperio romano gobernó a muchos pueblos distintos.",
       ar: "اكتشف كيف حكمت الإمبراطورية الرومانية شعوبًا كثيرة ومختلفة.",
-      fr: "Explorez comment l’Empire romain gouvernait de nombreux peuples différents.",
+      fr: "Explore comment l’Empire romain gouvernait de nombreux peuples différents.",
       bn: "রোমান সাম্রাজ্য কীভাবে বহু ভিন্ন জনগোষ্ঠীকে শাসন করত তা জানো।",
       pt: "Explore como o Império Romano governava muitos povos diferentes.",
       ur: "دیکھیے کہ رومی سلطنت نے مختلف قوموں پر کیسے حکومت کی۔",

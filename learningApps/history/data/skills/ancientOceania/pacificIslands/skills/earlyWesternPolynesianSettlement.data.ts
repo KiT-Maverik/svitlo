@@ -54,7 +54,7 @@ export const earlyWesternPolynesianSettlement_Skill_Data = buildSkillConfig({
       vi: "Tìm hiểu các cộng đồng đầu tiên ở Tonga và Samoa.",
       ta: "டோங்கா, சமோவாவில் வாழ்ந்த ஆரம்பகால சமூகங்களை அறிந்துகொள்.",
       te: "టోంగా, సమోవాలోని తొలి సమూహాల గురించి తెలుసుకోండి.",
-      mr: "टोंगा आणि सामोआमधील सर्वात आधीचे समुदाय जाणून घे.",
+      mr: "टोंगा आणि सामोआमधील सर्वात आधीचे समुदाय जाणून घ्या.",
       ms: "Kenali komuniti terawal di Tonga dan Samoa.",
       he: "גלו את הקהילות הראשונות בטונגה ובסמואה.",
       pl: "Poznaj pierwsze społeczności Tonga i Samoa.",

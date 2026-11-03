@@ -54,7 +54,7 @@ export const olmecCenters_Skill_Data = buildSkillConfig({
       vi: "Tìm hiểu các trung tâm Olmec cho biết gì về Mesoamerica thời kỳ đầu.",
       ta: "ஒல்மெக் மையங்கள் ஆரம்பகால மெசோஅமெரிக்காவைப் பற்றி என்ன காட்டுகின்றன என்பதை அறிந்துகொள்.",
       te: "ఒల్మెక్ కేంద్రాలు తొలి మెసోఅమెరికా గురించి ఏమి చెబుతాయో తెలుసుకోండి.",
-      mr: "ओल्मेक केंद्रांमधून प्रारंभिक मेसोअमेरिकेविषयी काय समजते ते जाणून घे.",
+      mr: "ओल्मेक केंद्रांमधून प्रारंभिक मेसोअमेरिकेविषयी काय समजते ते जाणून घ्या.",
       ms: "Ketahui apa yang didedahkan pusat Olmec tentang Mesoamerika awal.",
       he: "גלו מה מלמדים המרכזים האולמקיים על מסואמריקה הקדומה.",
       pl: "Dowiedz się, co o wczesnej Mezoameryce mówią ośrodki olmeckie.",

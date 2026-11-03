@@ -41,7 +41,7 @@ export const kermaCulture_Skill_Data = buildSkillConfig({
       zh: "探索古代克尔马的考古遗存。",
       hi: "प्राचीन केर्मा के पुरातात्त्विक अवशेषों का अध्ययन करें।",
       es: "Explora los restos arqueológicos de la antigua Kerma.",
-      ar: "استكشف الآثار الأثرية لكرمة القديمة.",
+      ar: "استكشف البقايا الأثرية لكرمة القديمة.",
       fr: "Explore les vestiges archéologiques de l'ancienne Kerma.",
       bn: "প্রাচীন কেরমার প্রত্নতাত্ত্বিক নিদর্শন অনুসন্ধান করো।",
       pt: "Explore os vestígios arqueológicos da antiga Kerma.",

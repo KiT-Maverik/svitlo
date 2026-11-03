@@ -62,7 +62,7 @@ export const inventionsAndEngineeringHistory_SkillGroup_Data = buildSkillGroupCo
       vi: "Tìm hiểu các phát minh cổ đại thay đổi như thế nào theo thời gian.",
       ta: "பண்டைய கண்டுபிடிப்புகள் காலப்போக்கில் எவ்வாறு மாறின என்பதை ஆராய்.",
       te: "ప్రాచీన ఆవిష్కరణలు కాలంతో ఎలా మారాయో పరిశీలించండి.",
-      mr: "प्राचीन शोध कालांतराने कसे बदलत गेले ते जाणून घे.",
+      mr: "प्राचीन शोध कालांतराने कसे बदलत गेले ते जाणून घ्या.",
       ms: "Terokai bagaimana rekaan purba berubah mengikut masa.",
       he: "גלו כיצד המצאות עתיקות השתנו לאורך הזמן.",
       pl: "Poznaj, jak starożytne wynalazki zmieniały się z upływem czasu.",

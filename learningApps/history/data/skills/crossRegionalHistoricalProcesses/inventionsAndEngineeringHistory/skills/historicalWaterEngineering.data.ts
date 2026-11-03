@@ -54,7 +54,7 @@ export const historicalWaterEngineering_Skill_Data = buildSkillConfig({
       vi: "Tìm hiểu cách con người xây dựng hệ thống nước ở những vùng khác nhau.",
       ta: "வெவ்வேறு பகுதிகளில் மக்கள் நீரமைப்புகளை எவ்வாறு உருவாக்கினர் என்பதை அறிந்துகொள்.",
       te: "వివిధ ప్రాంతాల్లో ప్రజలు నీటి వ్యవస్థలను ఎలా నిర్మించారో తెలుసుకోండి.",
-      mr: "विविध प्रदेशांमध्ये लोकांनी जलव्यवस्था कशा उभारल्या ते जाणून घे.",
+      mr: "विविध प्रदेशांमध्ये लोकांनी जलव्यवस्था कशा उभारल्या ते जाणून घ्या.",
       ms: "Ketahui cara masyarakat membina sistem air di pelbagai rantau.",
       he: "גלו כיצד אנשים הקימו מערכות מים באזורים שונים.",
       pl: "Dowiedz się, jak ludzie tworzyli systemy wodne w różnych regionach.",

@@ -60,7 +60,7 @@ export const maritimeTradeOfSoutheastAsia_Skill_Data = buildSkillConfig({
       pl: "Prześledź szlaki morskie łączące porty handlowe regionu.",
       uk: "Простеж морські маршрути, які поєднували торговельні порти Південно-Східної Азії.",
       lt: "Sek jūrų kelius, jungusius Pietryčių Azijos prekybos uostus.",
-      lv: "Izseko jūras ceļus, kas savienoja reģiona tirdzniecības ostas.",
+      lv: "Izpēti jūras ceļus, kas savienoja reģiona tirdzniecības ostas.",
       et: "Jälgi kaubasadamate vahelisi mereteid Kagu-Aasias.",
       be: "Прасачы марскія шляхі, што зьвязвалі гандлёвыя порты рэгіёну.",
       ka: "მიჰყევი სავაჭრო ნავსადგურების დამაკავშირებელ საზღვაო გზებს.",

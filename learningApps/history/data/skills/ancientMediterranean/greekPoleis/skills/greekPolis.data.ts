@@ -42,7 +42,7 @@ export const greekPolis_Skill_Data = buildSkillConfig({
       hi: "नगर-राज्य को एक समुदाय और राजनीतिक संस्था दोनों के रूप में समझें।",
       es: "Comprende la ciudad-Estado como comunidad e institución política.",
       ar: "افهم المدينة-الدولة بوصفها مجتمعًا ومؤسسة سياسية معًا.",
-      fr: "Comprenez la cité-État comme une communauté et une institution politique.",
+      fr: "Comprends la cité-État comme une communauté et une institution politique.",
       bn: "নগররাষ্ট্রকে একদিকে সমাজ, অন্যদিকে রাজনৈতিক প্রতিষ্ঠান হিসেবে বুঝে নাও।",
       pt: "Compreenda a cidade-Estado como comunidade e instituição política.",
       ur: "شہری ریاست کو ایک برادری اور سیاسی ادارے دونوں کے طور پر سمجھیں۔",

@@ -54,7 +54,7 @@ export const womenInAncientSocieties_Skill_Data = buildSkillConfig({
       vi: "Khám phá những trải nghiệm và vai trò đa dạng của phụ nữ trong các xã hội cổ đại.",
       ta: "பண்டைய சமூகங்களில் பெண்களின் பல்வேறு அனுபவங்களையும் பங்குகளையும் ஆராய்.",
       te: "ప్రాచీన సమాజాల్లో మహిళల విభిన్న అనుభవాలు, పాత్రలను తెలుసుకోండి.",
-      mr: "प्राचीन समाजांतील स्त्रियांचे विविध अनुभव आणि भूमिका जाणून घे.",
+      mr: "प्राचीन समाजांतील स्त्रियांचे विविध अनुभव आणि भूमिका जाणून घ्या.",
       ms: "Terokai pelbagai pengalaman dan peranan wanita dalam masyarakat purba.",
       he: "גלו את מגוון החוויות והתפקידים של נשים בחברות עתיקות.",
       pl: "Poznaj zróżnicowane doświadczenia i role kobiet w dawnych społeczeństwach.",

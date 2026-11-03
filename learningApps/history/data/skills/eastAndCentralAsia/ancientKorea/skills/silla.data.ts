@@ -42,7 +42,7 @@ export const silla_Skill_Data = buildSkillConfig({
       hi: "जानें कि शिल्ला क्षेत्रीय समुदायों से कैसे विकसित हुआ।",
       es: "Explora cómo Silla se desarrolló a partir de comunidades regionales.",
       ar: "اكتشف كيف نشأت شيلا من مجتمعات إقليمية.",
-      fr: "Explorez la formation de Silla à partir de communautés régionales.",
+      fr: "Explore la formation de Silla à partir de communautés régionales.",
       bn: "আঞ্চলিক জনগোষ্ঠী থেকে সিল্লা কীভাবে গড়ে উঠেছিল তা জানো।",
       pt: "Explore como Silla se desenvolveu a partir de comunidades regionais.",
       ur: "دیکھیے کہ شلا علاقائی برادریوں سے کیسے ترقی کر کے ابھرا۔",

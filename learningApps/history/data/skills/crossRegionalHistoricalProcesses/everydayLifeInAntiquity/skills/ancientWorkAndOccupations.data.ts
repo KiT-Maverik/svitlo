@@ -54,7 +54,7 @@ export const ancientWorkAndOccupations_Skill_Data = buildSkillConfig({
       vi: "Khám phá nhiều loại công việc trong thế giới cổ đại.",
       ta: "பண்டைய உலகில் செய்யப்பட்ட பல்வேறு பணிகளை ஆராய்.",
       te: "ప్రాచీన ప్రపంచంలోని అనేక రకాల పనులను పరిశీలించండి.",
-      mr: "प्राचीन जगातील वेगवेगळ्या प्रकारची कामे जाणून घे.",
+      mr: "प्राचीन जगातील वेगवेगळ्या प्रकारची कामे जाणून घ्या.",
       ms: "Terokai pelbagai jenis pekerjaan dalam dunia purba.",
       he: "גלו את מגוון סוגי העבודה בעולם העתיק.",
       pl: "Poznaj różne rodzaje pracy wykonywane w świecie starożytnym.",

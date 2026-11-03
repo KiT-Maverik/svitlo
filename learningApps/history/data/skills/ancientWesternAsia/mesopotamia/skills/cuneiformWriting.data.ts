@@ -46,7 +46,7 @@ export const cuneiformWriting_Skill_Data = buildSkillConfig({
       bn: "হিসাব রাখার বাইরে কীভাবে কিউনিফর্ম লিপির ব্যবহার বেড়েছিল তা জানো।",
       pt: "Descubra como a escrita cuneiforme se desenvolveu além do registro de contas.",
       ur: "جانیں کہ میخی تحریر حساب کتاب کے ریکارڈ سے آگے کیسے ترقی کرتی گئی۔",
-      id: "Pelajari bagaimana tulisan paku berkembang melampaui pencatatan perdagangan.",
+      id: "Pelajari bagaimana tulisan paku berkembang dari pencatatan sederhana menjadi sarana menulis untuk berbagai keperluan.",
       de: "Entdecke, wie sich die Keilschrift über die reine Buchführung hinaus entwickelte.",
       ja: "楔形文字が記録や会計以外にも使われるようになった過程を探ろう。",
       ko: "쐐기 문자가 회계 기록을 넘어 어떻게 발달했는지 알아보세요.",

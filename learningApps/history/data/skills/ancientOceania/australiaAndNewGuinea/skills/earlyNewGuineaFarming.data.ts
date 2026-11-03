@@ -54,7 +54,7 @@ export const earlyNewGuineaFarming_Skill_Data = buildSkillConfig({
       vi: "Khám phá các hệ thống canh tác sơ khai ở vùng cao New Guinea.",
       ta: "நியூ கினியா உயர்நிலங்களின் ஆரம்பகால வேளாண்மை முறைகளை ஆராய்.",
       te: "న్యూ గినియా ఎత్తైన ప్రాంతాల తొలి వ్యవసాయ వ్యవస్థలను పరిశీలించండి.",
-      mr: "न्यू गिनीच्या डोंगराळ भागातील प्रारंभिक शेती व्यवस्था जाणून घे.",
+      mr: "न्यू गिनीच्या डोंगराळ भागातील प्रारंभिक शेती व्यवस्था जाणून घ्या.",
       ms: "Terokai sistem pertanian awal di tanah tinggi New Guinea.",
       he: "גלו את מערכות החקלאות הקדומות ברמות גינאה החדשה.",
       pl: "Poznaj wczesne systemy uprawne wyżyn Nowej Gwinei.",

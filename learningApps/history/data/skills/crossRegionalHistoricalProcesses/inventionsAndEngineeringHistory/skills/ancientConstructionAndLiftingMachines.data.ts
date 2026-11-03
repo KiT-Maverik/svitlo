@@ -54,7 +54,7 @@ export const ancientConstructionAndLiftingMachines_Skill_Data = buildSkillConfig
       vi: "Tìm hiểu các máy móc được dùng trong công trình xây dựng cổ đại.",
       ta: "பண்டைய கட்டுமானத் திட்டங்களில் பயன்படுத்திய இயந்திரங்களைப் புரிந்துகொள்.",
       te: "ప్రాచీన నిర్మాణ పనుల్లో వాడిన యంత్రాలను అర్థం చేసుకోండి.",
-      mr: "प्राचीन बांधकामात वापरलेली यंत्रे समजून घे.",
+      mr: "प्राचीन बांधकामात वापरलेली यंत्रे समजून घ्या.",
       ms: "Fahami mesin yang digunakan dalam projek pembinaan purba.",
       he: "הבינו אילו מכונות שימשו בפרויקטי בנייה עתיקים.",
       pl: "Poznaj maszyny używane w dawnych przedsięwzięciach budowlanych.",

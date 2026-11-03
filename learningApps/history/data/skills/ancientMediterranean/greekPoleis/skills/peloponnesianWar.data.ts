@@ -42,7 +42,7 @@ export const peloponnesianWar_Skill_Data = buildSkillConfig({
       hi: "जानें कि एथेंस और स्पार्टा में युद्ध क्यों हुआ और उसके बाद क्या हुआ।",
       es: "Explora por qué lucharon Atenas y Esparta y qué sucedió después.",
       ar: "اكتشف لماذا حاربت أثينا وإسبرطة وما الذي تلا ذلك.",
-      fr: "Explorez pourquoi Athènes et Sparte se sont affrontées et ce qui s’est ensuivi.",
+      fr: "Explore pourquoi Athènes et Sparte se sont affrontées et ce qui s’est ensuivi.",
       bn: "এথেন্স ও স্পার্টা কেন লড়েছিল এবং পরে কী ঘটেছিল তা জানো।",
       pt: "Explore por que Atenas e Esparta lutaram e o que aconteceu depois.",
       ur: "جانیں کہ ایتھنز اور اسپارٹا کیوں لڑے اور اس کے بعد کیا ہوا۔",

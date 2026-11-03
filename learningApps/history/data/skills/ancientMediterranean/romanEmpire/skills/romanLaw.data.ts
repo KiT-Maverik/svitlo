@@ -42,7 +42,7 @@ export const romanLaw_Skill_Data = buildSkillConfig({
       hi: "रोमन समाज में क़ानून की भूमिका और उसके बदलते विचारों को जानें।",
       es: "Explora el papel del derecho y cómo cambiaron sus ideas en la sociedad romana.",
       ar: "اكتشف دور القانون وتطور الأفكار المتعلقة به في المجتمع الروماني.",
-      fr: "Explorez le rôle du droit et l’évolution des idées juridiques dans la société romaine.",
+      fr: "Explore le rôle du droit et l’évolution des idées juridiques dans la société romaine.",
       bn: "রোমান সমাজে আইনের ভূমিকা ও আইন সম্পর্কে বদলে যাওয়া ধারণাগুলো জানো।",
       pt: "Explore o papel do direito e a evolução das ideias sobre a lei na sociedade romana.",
       ur: "رومی معاشرے میں قانون کے کردار اور اس کے بدلتے تصورات کا جائزہ لیں۔",

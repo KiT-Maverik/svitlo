@@ -62,7 +62,7 @@ export const pacificIslands_SkillGroup_Data = buildSkillGroupConfig({
       vi: "Khám phá cách con người di chuyển giữa các đảo Thái Bình Dương xa xôi.",
       ta: "மக்கள் தொலைதூர பசிபிக் தீவுகளுக்கிடையே எவ்வாறு பயணித்தனர் என்பதை ஆராய்.",
       te: "దూరంగా ఉన్న పసిఫిక్ దీవుల మధ్య ప్రజలు ఎలా ప్రయాణించారో తెలుసుకోండి.",
-      mr: "लोक प्रशांत महासागरातील दूरच्या बेटांदरम्यान कसे प्रवास करत ते जाणून घे.",
+      mr: "लोक प्रशांत महासागरातील दूरच्या बेटांदरम्यान कसे प्रवास करत ते जाणून घ्या.",
       ms: "Terokai cara manusia bergerak antara pulau-pulau Pasifik yang berjauhan.",
       he: "גלו כיצד אנשים הפליגו בין איים מרוחקים באוקיינוס השקט.",
       pl: "Poznaj sposoby podróżowania między odległymi wyspami Pacyfiku.",
