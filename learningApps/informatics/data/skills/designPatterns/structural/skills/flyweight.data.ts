@@ -18,7 +18,7 @@ export const flyweight_Skill_Data = buildSkillConfig({
     ja: "フライウェイト",
     ko: "플라이웨이트",
     tr: "Sinek Sıklet",
-    vi: "Hạng ruồi",
+    vi: "Mẫu Flyweight",
     ta: "இலகு பொருள்",
     te: "ఫ్లైవెయిట్",
     mr: "फ्लायवेट",
