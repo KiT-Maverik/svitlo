@@ -65,7 +65,7 @@ export const explainEarlyElectronicProgramming_Skill_Data = buildSkillConfig({
       be: "Даведайся, як каманды першых электронных кампутараў стваралі й правяралі праграмы.",
       ka: "გაიგე, როგორ ქმნიდნენ და ამოწმებდნენ პროგრამებს პირველი ელექტრონული კომპიუტერების გუნდები.",
       kk: "Алғашқы электрондық компьютер командалары бағдарламаларды қалай құрып, тексергенін біл.",
-      qm: "İlk elektron bilgisayar takımları programmalarnı nasıl yaratıp teşkerгенini ögren.",
+      qm: "İlk elektron bilgisayar takımları programmalarnı nasıl yaratıp teşkergenini ögren.",
     },
   },
 });
