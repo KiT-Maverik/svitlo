@@ -55,7 +55,7 @@ export const financialRiskAndExpectedReward_Skill_Data = buildSkillConfig({
       ta: "சாத்தியமான பலன்களைப் பண இழப்பு ஆபத்துடன் ஒப்பிடு.",
       te: "సాధ్యమైన లాభాలను డబ్బు కోల్పోయే ప్రమాదంతో పోల్చండి.",
       mr: "संभाव्य लाभ व पैसे गमावण्याच्या धोक्याची तुलना करा.",
-      ms: "Bandingkan keuntungan mungkin dengan risiko kehilangan wang.",
+      ms: "Bandingkan potensi keuntungan dengan risiko kehilangan wang.",
       he: "השוו רווחים אפשריים לסיכון של אובדן כסף.",
       pl: "Porównaj możliwe korzyści z ryzykiem utraty pieniędzy.",
       uk: "Порівнюй можливу вигоду з ризиком втратити гроші.",

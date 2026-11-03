@@ -64,7 +64,7 @@ export const personalIncomeSources_Skill_Data = buildSkillConfig({
       et: "Tunne ära erinevad viisid tulu saamiseks.",
       be: "Распазнавай розныя спосабы атрыманьня даходу.",
       ka: "ამოიცანი შემოსავლის მიღების სხვადასხვა გზა.",
-      kk: "Адамдардың табыс табудың әртүрлі жолдарын таны.",
+      kk: "Табыс табудың әртүрлі жолдарын таны.",
       qm: "İnsanlar kirsetni türlü yollarnen nasıl alğanını ögren.",
     },
   },

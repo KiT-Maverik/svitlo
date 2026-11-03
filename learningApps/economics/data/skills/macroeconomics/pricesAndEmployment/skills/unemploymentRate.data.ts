@@ -29,7 +29,7 @@ export const unemploymentRate_Skill_Data = buildSkillConfig({
     lt: "Nedarbo lygis",
     lv: "Bezdarba līmenis",
     et: "Töötuse määr",
-    be: "Ровень беспрацоўя",
+    be: "Узровень беспрацоўя",
     ka: "უმუშევრობის დონე",
     kk: "Жұмыссыздық деңгейі",
     qm: "İşsizlik seviyesi",

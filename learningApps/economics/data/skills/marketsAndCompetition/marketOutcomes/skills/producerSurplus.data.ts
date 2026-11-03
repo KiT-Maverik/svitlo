@@ -56,7 +56,7 @@ export const producerSurplus_Skill_Data = buildSkillConfig({
       te: "విక్రేత కనీస ధర కంటే ఎక్కువ పొందే ప్రయోజనాన్ని తెలుసుకోండి.",
       mr: "विक्रेत्यांच्या किमान स्वीकार्य किंमतीपेक्षा अधिक मिळणारा फायदा जाणून घ्या.",
       ms: "Terokai manfaat penjual melebihi harga minimum yang diterima.",
-      he: "גלו את הרווח שהמוכרים מקבלים מעבר למחיר המזערי שהיו מוכנים לקבל.",
+      he: "גלו את עודף היצרן — ההפרש בין המחיר שמוכרים מקבלים למחיר המזערי שהיו מוכנים לקבל.",
       pl: "Odkryj korzyść sprzedawców ponad najniższą cenę, jaką zaakceptowaliby.",
       uk: "Досліди вигоду продавця понад мінімально прийнятну для нього ціну.",
       lt: "Sužinok naudą, kurią pardavėjas gauna virš mažiausios priimtinos kainos.",

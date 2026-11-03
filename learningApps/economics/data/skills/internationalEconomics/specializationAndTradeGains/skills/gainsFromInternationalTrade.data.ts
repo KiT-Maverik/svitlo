@@ -23,7 +23,7 @@ export const gainsFromInternationalTrade_Skill_Data = buildSkillConfig({
     te: "అంతర్జాతీయ వాణిజ్య లాభాలు",
     mr: "आंतरराष्ट्रीय व्यापाराचे लाभ",
     ms: "Keuntungan perdagangan antarabangsa",
-    he: "רווחים מסחר בינלאומי",
+    he: "רווחים ממסחר בינלאומי",
     pl: "Korzyści z handlu międzynarodowego",
     uk: "Вигоди міжнародної торгівлі",
     lt: "Tarptautinės prekybos nauda",
