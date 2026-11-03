@@ -48,7 +48,7 @@ export const consumerBehavior_SkillDomain_Data = buildSkillDomainConfig({
     frontend: {
       en: "Explore how people choose what to buy and what information shapes their decisions.",
       zh: "探索人们如何决定购买什么，以及哪些信息影响他们的选择。",
-      hi: "जानें कि लोग क्या खरीदने का निर्णय कैसे लेते हैं और जानकारी कैसे प्रभाव डालती है।",
+      hi: "जानें कि लोग क्या खरीदें, यह कैसे तय करते हैं और कौन-सी जानकारी उनके निर्णयों को प्रभावित करती है।",
       es: "Explora cómo deciden las personas qué comprar y qué información influye en ellas.",
       ar: "اكتشف كيف يقرر الناس ما يشترونه وكيف تشكّل المعلومات اختياراتهم.",
       fr: "Découvre comment les gens choisissent leurs achats et quelles informations les guident.",
@@ -70,7 +70,7 @@ export const consumerBehavior_SkillDomain_Data = buildSkillDomainConfig({
       uk: "Досліди, як люди вирішують, що купувати, і яка інформація впливає на їхній вибір.",
       lt: "Sužinok, kaip žmonės renkasi pirkinius ir kokia informacija juos veikia.",
       lv: "Uzzini, kā cilvēki izvēlas pirkumus un kāda informācija ietekmē viņu lēmumus.",
-      et: "Uuri, kuidas inimesed valivad oste ja milline teave nende otsuseid mõjutab.",
+      et: "Uuri, kuidas inimesed otsustavad, mida osta, ja milline teave nende otsuseid mõjutab.",
       be: "Дасьледуй, як людзі выбіраюць пакупкі і якія зьвесткі ўплываюць на іх рашэньні.",
       ka: "გაიგე, როგორ არჩევენ ადამიანები, რა იყიდონ, და რა ინფორმაცია მოქმედებს მათ გადაწყვეტილებებზე.",
       kk: "Адамдар нені сатып алуды қалай таңдайтынын және қандай ақпарат әсер ететінін зертте.",
