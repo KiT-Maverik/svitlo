@@ -54,7 +54,7 @@ export const conquestsOfAlexander_Skill_Data = buildSkillConfig({
       vi: "Theo dõi các cuộc chinh phạt của Alexander và hệ quả chính trị của chúng.",
       ta: "அலெக்சாண்டரின் வெற்றிப் படையெடுப்புகளையும் அவற்றின் அரசியல் விளைவுகளையும் பின்தொடருங்கள்.",
       te: "అలెగ్జాండర్ ఆక్రమణలు, వాటి రాజకీయ పరిణామాలను అన్వేషించండి.",
-      mr: "अलेक्झांडरच्या विजयमोहीम आणि त्यांचे राजकीय परिणाम जाणून घ्या.",
+      mr: "अलेक्झांडरच्या विजयमोहिमा आणि त्यांचे राजकीय परिणाम जाणून घ्या.",
       ms: "Ikuti penaklukan Alexander dan kesan politiknya.",
       he: "עקבו אחר כיבושי אלכסנדר והשלכותיהם הפוליטיות.",
       pl: "Prześledź podboje Aleksandra i ich konsekwencje polityczne.",
