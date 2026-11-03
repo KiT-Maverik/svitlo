@@ -65,7 +65,7 @@ export const temperatureAndHeating_SkillGroup_Data = buildSkillGroupConfig({
       te: 'ఉష్ణోగ్రత కొలతలకూ వెచ్చదనంగా అనిపించడానికీ తేడా తెలుసుకోండి.',
       mr: 'तापमानाची मोजणी आणि उबदार वाटण्याची भावना यांतील फरक जाणून घ्या.',
       ms: 'Belajar membezakan bacaan suhu daripada rasa hangat.',
-      he: 'למד להבחין בין מדידות טמפרטורה לבין תחושה של חום.',
+      he: 'למדו להבחין בין מדידות טמפרטורה לבין תחושה של חום.',
       pl: 'Naucz się odróżniać pomiar temperatury od odczuwania ciepła.',
       uk: 'Навчися відрізняти виміряну температуру від відчуття тепла.',
       lt: 'Išmok atskirti temperatūros matavimą nuo šilumos pojūčio.',
