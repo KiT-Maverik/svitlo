@@ -56,7 +56,7 @@ export const consumerBehavior_SkillDomain_Data = buildSkillDomainConfig({
       pt: "Explore como as pessoas escolhem o que comprar e quais informações orientam suas decisões.",
       ur: "جانیں کہ لوگ کیا خریدنے کا انتخاب کیسے کرتے ہیں اور کون سی معلومات فیصلوں پر اثر ڈالتی ہیں۔",
       id: "Pelajari cara orang memilih barang yang dibeli serta informasi yang memengaruhi keputusan.",
-      de: "Erkunde, wie Menschen ihre Einkäufe auswählen und welche Informationen sie dabei beeinflussen.",
+      de: "Erkunde, wie Menschen entscheiden, was sie kaufen, und welche Informationen ihre Entscheidungen beeinflussen.",
       ja: "人々が何を買うか、どの情報を参考に決めるか探ろう。",
       ko: "사람들이 무엇을 살지 결정하고 어떤 정보에 영향을 받는지 알아보세요.",
       tr: "İnsanların ne satın alacağına nasıl karar verdiğini ve hangi bilgilerin etkili olduğunu keşfet.",
