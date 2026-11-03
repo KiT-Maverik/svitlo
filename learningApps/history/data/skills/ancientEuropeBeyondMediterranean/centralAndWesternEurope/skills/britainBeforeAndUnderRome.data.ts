@@ -42,7 +42,7 @@ export const britainBeforeAndUnderRome_Skill_Data = buildSkillConfig({
       hi: "रोमन शासन से पहले और उसके दौरान ब्रिटेन के इतिहास का अध्ययन करें।",
       es: "Explora Britania antes y durante el dominio romano.",
       ar: "استكشف بريطانيا قبل الحكم الروماني وخلاله.",
-      fr: "Explorez la Bretagne avant et pendant la domination romaine.",
+      fr: "Explore la Bretagne avant et pendant la domination romaine.",
       bn: "রোমান শাসনের আগে এবং রোমান শাসনকালে ব্রিটেন সম্পর্কে জানো।",
       pt: "Explore a Britânia antes e durante o domínio romano.",
       ur: "رومی اقتدار سے پہلے اور اس کے دوران برطانیہ کی تاریخ کا جائزہ لیں۔",

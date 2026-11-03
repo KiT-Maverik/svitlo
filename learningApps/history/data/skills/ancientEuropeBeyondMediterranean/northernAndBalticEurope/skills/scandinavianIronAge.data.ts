@@ -42,7 +42,7 @@ export const scandinavianIronAge_Skill_Data = buildSkillConfig({
       hi: "वाइकिंग युग से पहले स्कैंडिनेविया में जीवन का अध्ययन करें।",
       es: "Explora la vida escandinava antes de la época vikinga.",
       ar: "استكشف الحياة في إسكندنافيا قبل عصر الفايكنغ.",
-      fr: "Explorez la vie scandinave avant l’époque viking.",
+      fr: "Explore la vie scandinave avant l’époque viking.",
       bn: "ভাইকিং যুগের আগের স্ক্যান্ডিনেভিয়ার জীবন সম্পর্কে জানো।",
       pt: "Explore a vida escandinava antes da Era Viking.",
       ur: "وائکنگ دور سے پہلے اسکینڈینیویا کی زندگی کا مطالعہ کریں۔",

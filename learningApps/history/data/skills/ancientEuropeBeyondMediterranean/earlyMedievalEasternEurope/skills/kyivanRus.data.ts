@@ -42,7 +42,7 @@ export const kyivanRus_Skill_Data = buildSkillConfig({
       hi: "मध्यकालीन कीवियाई रुस के लोगों, शासकों और व्यापार मार्गों को जानें।",
       es: "Descubre los pueblos, gobernantes y rutas comerciales de la Rus de Kyiv medieval.",
       ar: "تعرّف إلى شعوب روس كييف في العصور الوسطى وحكّامها وطرق تجارتها.",
-      fr: "Découvrez les peuples, les souverains et les routes commerciales de la Rous de Kyiv médiévale.",
+      fr: "Découvre les peuples, les souverains et les routes commerciales de la Rous de Kyiv médiévale.",
       bn: "মধ্যযুগের কিয়েভীয় রুসের মানুষ, শাসক ও বাণিজ্যপথ অন্বেষণ করো।",
       pt: "Conheça os povos, governantes e rotas comerciais da Rus de Kyiv medieval.",
       ur: "قرونِ وسطیٰ کی کییف کی روس کے لوگوں، حکمرانوں اور تجارتی راستوں کا جائزہ لیں۔",

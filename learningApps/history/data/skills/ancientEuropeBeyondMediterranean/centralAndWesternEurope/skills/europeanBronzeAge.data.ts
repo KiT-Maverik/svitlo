@@ -42,7 +42,7 @@ export const europeanBronzeAge_Skill_Data = buildSkillConfig({
       hi: "जानें कि कांस्य युग में यूरोप के लोग कैसे काम और व्यापार करते थे।",
       es: "Descubre cómo trabajaban y comerciaban las personas de la Edad del Bronce en Europa.",
       ar: "اكتشف كيف كان الناس يعملون ويتاجرون في أوروبا خلال العصر البرونزي.",
-      fr: "Découvrez comment les populations de l’Europe de l’âge du bronze travaillaient et commerçaient.",
+      fr: "Découvre comment les populations de l’Europe de l’âge du bronze travaillaient et commerçaient.",
       bn: "ব্রোঞ্জ যুগের ইউরোপের মানুষ কীভাবে কাজ ও বাণিজ্য করত তা জানো।",
       pt: "Descubra como as pessoas trabalhavam e comerciavam na Europa durante a Idade do Bronze.",
       ur: "جانیں کہ عہدِ کانسی کے یورپی باشندے کس طرح کام اور تجارت کرتے تھے۔",

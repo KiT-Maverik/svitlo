@@ -42,7 +42,7 @@ export const ancientGermanicCommunities_Skill_Data = buildSkillConfig({
       hi: "प्राचीन जर्मनिक भाषाएँ बोलने वाले समुदायों की विविधता को जानें।",
       es: "Descubre la diversidad de las antiguas comunidades de habla germánica.",
       ar: "تعرّف إلى تنوّع الجماعات القديمة الناطقة باللغات الجرمانية.",
-      fr: "Découvrez la diversité des communautés anciennes parlant des langues germaniques.",
+      fr: "Découvre la diversité des communautés anciennes parlant des langues germaniques.",
       bn: "প্রাচীন জার্মানিক ভাষাভাষী জনগোষ্ঠীগুলোর বৈচিত্র্য সম্পর্কে জানো।",
       pt: "Descubra a diversidade das antigas comunidades de línguas germânicas.",
       ur: "قدیم جرمانوی زبانیں بولنے والی آبادیوں کے تنوع کو جانیں۔",
