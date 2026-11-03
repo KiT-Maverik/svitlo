@@ -86,6 +86,7 @@ export type {
 } from './text.types';
 
 export type { ContentBlock_Youtube_Response } from './youtube.types';
+export type { ContentBlock_Video_Response } from './video.types';
 
 export type {
   HighlightTone,

@@ -40,7 +40,7 @@ export function ContentBlockRenderer(props: ContentBlockRendererProps): ReactNod
     case 'scene': return <Scene response={props.response} sceneRegistry={props.sceneRegistry} />;
     case 'code': return <Code response={props.response} />;
     case 'audio': return <Audio response={props.response} />;
-    case 'video': return <Video response={props.response} />;
+    case 'video': return <Video {...props.response} />;
     case 'youtube': return <Youtube {...props.response} />;
     case 'image': return <Image response={props.response} />;
     case 'quiz': return <ContentBlock_Quiz response={props.response} questions={props.questions} renderNested={nested} />;
