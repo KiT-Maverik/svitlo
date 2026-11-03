@@ -15,7 +15,7 @@ export const financialMarkets_SkillGroup_Data = buildSkillGroupConfig({
     bn: "আর্থিক বাজার",
     pt: "Mercados financeiros",
     ur: "مالی منڈیاں",
-    id: "Pasar Keuangan",
+    id: "Pasar keuangan",
     de: "Finanzmärkte",
     ja: "金融市場",
     ko: "금융시장",

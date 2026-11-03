@@ -15,7 +15,7 @@ export const banksAndCreditIntermediation_SkillGroup_Data = buildSkillGroupConfi
     bn: "ব্যাংক ও ঋণ মধ্যস্থতা",
     pt: "Bancos e intermediação de crédito",
     ur: "بینک اور قرض کی وساطت",
-    id: "Bank dan Perantara Kredit",
+    id: "Bank dan perantara kredit",
     de: "Banken und Kreditvermittlung",
     ja: "銀行と信用仲介",
     ko: "은행과 신용 중개",

@@ -13,7 +13,7 @@ export const distributionCosts_Skill_Data = buildSkillConfig({
     bn: "বিতরণ খরচ",
     pt: "Custos de distribuição",
     ur: "تقسیم کے اخراجات",
-    id: "Biaya Distribusi",
+    id: "Biaya distribusi",
     de: "Vertriebskosten",
     ja: "流通費用",
     ko: "유통 비용",
