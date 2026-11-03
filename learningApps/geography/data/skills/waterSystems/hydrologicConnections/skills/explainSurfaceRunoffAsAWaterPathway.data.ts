@@ -65,7 +65,7 @@ export const explainSurfaceRunoffAsAWaterPathway_Skill_Data = buildSkillConfig({
       be: "Апіш, як залішняя дажджавая ці талая вада цячэ па зямлі.",
       ka: "აღწერე, როგორ მიედინება ზედმეტი წვიმისა თუ თოვლის დნობის წყალი ხმელეთზე.",
       kk: "Артық жаңбыр мен еріген қар суының жер бетімен ағуын сипатта.",
-      qm: "Artıq yağmur ya da irigen qar suvı yer üstünden nasıl aqқанını tarif et.",
+      qm: "Artıq yağmur ya da irigen qar suvı yer üstünden nasıl aqqanını tarif et.",
     },
   },
 });
