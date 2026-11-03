@@ -53,7 +53,7 @@ export const classifyNaturalAndArtificialLightSources_Skill_Data = buildSkillCon
       tr: "Doğal ve insanlar tarafından üretilen ışık kaynaklarını tanı.",
       vi: "Nhận biết các nguồn sáng tự nhiên và do con người tạo ra.",
       ta: "இயற்கையான ஒளி மூலங்களையும் மனிதனால் உருவாக்கப்பட்டவற்றையும் அறிந்துகொள்.",
-      te: "సహజ, మానవ నిర్మిత కాంతి మూలాలను గుర్తించు.",
+      te: "సహజ, మానవ నిర్మిత కాంతి మూలాలను గుర్తించండి.",
       mr: "नैसर्गिक आणि माणसांनी तयार केलेले प्रकाशस्रोत ओळखा.",
       ms: "Kenal pasti sumber cahaya semula jadi dan buatan manusia.",
       he: "זהו מקורות אור טבעיים וכאלה שבני אדם יצרו.",

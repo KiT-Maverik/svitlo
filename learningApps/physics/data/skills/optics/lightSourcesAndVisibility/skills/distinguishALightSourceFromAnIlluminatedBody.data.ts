@@ -53,7 +53,7 @@ export const distinguishALightSourceFromAnIlluminatedBody_Skill_Data = buildSkil
       tr: "Işık yayan cisim ile onun aydınlattığı cismi ayırt et.",
       vi: "Phân biệt vật phát sáng với vật chỉ được chiếu sáng.",
       ta: "ஒளி வெளியிடும் பொருளையும் அது ஒளியூட்டும் பொருளையும் வேறுபடுத்து.",
-      te: "కాంతిని విడుదల చేసే వస్తువును, ఆ కాంతితో వెలిగే వస్తువును వేరు చేయి.",
+      te: "కాంతిని విడుదల చేసే వస్తువును, ఆ కాంతితో వెలిగే వస్తువును వేరు చేయండి.",
       mr: "प्रकाश देणारी वस्तू आणि तिच्या प्रकाशाने उजळणारी वस्तू यांत फरक ओळखा.",
       ms: "Bezakan objek yang memancarkan cahaya dengan objek yang disinarinya.",
       he: "הבחינו בין עצם הפולט אור לבין עצם שהאור רק מאיר אותו.",
