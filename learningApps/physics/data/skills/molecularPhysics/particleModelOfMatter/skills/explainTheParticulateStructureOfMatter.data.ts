@@ -57,7 +57,7 @@ export const explainTheParticulateStructureOfMatter_Skill_Data = buildSkillConfi
       te: 'కంటికి నేరుగా కనిపించనంత చిన్న కణాలతో పదార్థం ఎందుకు తయారైందో వివరించండి.',
       mr: 'सामान्य पदार्थ थेट न दिसणाऱ्या सूक्ष्म कणांपासून का बनतो ते स्पष्ट करा.',
       ms: 'Terangkan mengapa jirim terdiri daripada zarah yang terlalu kecil untuk dilihat secara langsung.',
-      he: 'הסבר מדוע חומר עשוי מחלקיקים קטנים מכדי לראותם ישירות.',
+      he: 'הסבירו מדוע חומר עשוי מחלקיקים קטנים מכדי לראותם ישירות.',
       pl: 'Wyjaśnij, dlaczego materia składa się z cząstek zbyt małych, by dostrzec je bezpośrednio.',
       uk: 'Пояснюй, чому речовина складається з частинок, надто малих для безпосереднього спостереження.',
       lt: 'Paaiškink, kodėl medžiaga sudaryta iš dalelių, per mažų tiesiogiai pamatyti.',

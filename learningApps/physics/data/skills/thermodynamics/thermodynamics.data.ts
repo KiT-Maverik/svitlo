@@ -68,7 +68,7 @@ export const thermodynamics_SkillDomain_Data = buildSkillDomainConfig({
       te: 'ఉష్ణోగ్రత, వేడెక్కడం, శక్తి బదిలీ, పదార్థ స్థితి మార్పులను అన్వేషించండి.',
       mr: 'तापमान, तापणे, ऊर्जेचे हस्तांतरण आणि पदार्थाच्या अवस्थांतील बदल जाणून घ्या.',
       ms: 'Terokai suhu, pemanasan, pemindahan tenaga dan perubahan keadaan jirim.',
-      he: 'חקור טמפרטורה, חימום, העברת אנרגיה ושינויי מצב צבירה.',
+      he: 'חקרו טמפרטורה, חימום, העברת אנרגיה ושינויי מצב צבירה.',
       pl: 'Poznaj temperaturę, ogrzewanie, przekazywanie energii i zmiany stanu skupienia.',
       uk: 'Досліджуй температуру, нагрівання, передавання енергії та зміни агрегатного стану.',
       lt: 'Tyrinėk temperatūrą, šildymą, energijos perdavimą ir medžiagos būsenų pokyčius.',

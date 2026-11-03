@@ -57,7 +57,7 @@ export const explainRadiativeHeatTransfer_Skill_Data = buildSkillConfig({
       te: 'విద్యుదయస్కాంత వికిరణం పదార్థ మాధ్యమం లేకుండానే ఉష్ణాన్ని ఎలా బదిలీ చేస్తుందో వివరించండి.',
       mr: 'विद्युतचुंबकीय प्रारण पदार्थरूपी माध्यमाशिवाय उष्णता कशी वाहून नेते ते स्पष्ट करा.',
       ms: 'Terangkan bagaimana sinaran elektromagnet memindahkan haba tanpa medium bahan.',
-      he: 'הסבר כיצד קרינה אלקטרומגנטית מעבירה חום בלי תווך חומרי.',
+      he: 'הסבירו כיצד קרינה אלקטרומגנטית מעבירה חום בלי תווך חומרי.',
       pl: 'Wyjaśnij, jak promieniowanie elektromagnetyczne przenosi ciepło bez ośrodka materialnego.',
       uk: 'Пояснюй, як електромагнітне випромінювання переносить тепло без матеріального середовища.',
       lt: 'Paaiškink, kaip elektromagnetinė spinduliuotė perduoda šilumą be medžiaginės terpės.',
