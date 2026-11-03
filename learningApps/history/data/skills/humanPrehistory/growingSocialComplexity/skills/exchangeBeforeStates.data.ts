@@ -4,7 +4,7 @@ export const exchangeBeforeStates_Skill_Data = buildSkillConfig({
   slug: "exchangeBeforeStates",
   id: "f41d300b-be71-4d9e-9b2d-f98c6d5d63db",
   name: {
-    en: "Обмін до появи держав",
+    en: "Exchange Before States",
     zh: "国家形成前的交换",
     hi: "राज्यों से पहले विनिमय",
     es: "Intercambio antes de los Estados",

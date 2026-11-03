@@ -4,7 +4,7 @@ export const historicalPeriodization_Skill_Data = buildSkillConfig({
   slug: "historicalPeriodization",
   id: "a981f46d-c5c3-4d5e-9830-f64fd1f7bb94",
   name: {
-    en: "Історична періодизація",
+    en: "Historical Periodization",
     zh: "历史分期",
     hi: "ऐतिहासिक काल-विभाजन",
     es: "Periodización histórica",

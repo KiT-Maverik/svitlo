@@ -4,7 +4,7 @@ export const copperBronzeAndIron_Skill_Data = buildSkillConfig({
   slug: "copperBronzeAndIron",
   id: "b0be1d1b-7236-46e7-b810-066f55bc499b",
   name: {
-    en: "Мідь, бронза та залізо",
+    en: "Copper, Bronze, and Iron",
     zh: "铜、青铜与铁",
     hi: "ताँबा, कांसा और लोहा",
     es: "Cobre, bronce y hierro",

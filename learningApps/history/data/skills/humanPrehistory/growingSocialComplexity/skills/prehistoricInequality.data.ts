@@ -4,7 +4,7 @@ export const prehistoricInequality_Skill_Data = buildSkillConfig({
   slug: "prehistoricInequality",
   id: "0eb52a18-8fc5-4a40-bb32-7ff04bab41d5",
   name: {
-    en: "Майнова та соціальна нерівність",
+    en: "Wealth and Social Inequality",
     zh: "史前财产与社会不平等",
     hi: "प्रागैतिहासिक असमानता",
     es: "Desigualdad en la prehistoria",

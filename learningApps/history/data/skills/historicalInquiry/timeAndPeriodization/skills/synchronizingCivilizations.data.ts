@@ -4,7 +4,7 @@ export const synchronizingCivilizations_Skill_Data = buildSkillConfig({
   slug: "synchronizingCivilizations",
   id: "4ee549d5-8c6a-429e-9540-1293697dc80f",
   name: {
-    en: "Синхронізація цивілізацій",
+    en: "Synchronizing Civilizations",
     zh: "不同文明的年代对照",
     hi: "सभ्यताओं की कालगत तुलना",
     es: "Sincronización de civilizaciones",

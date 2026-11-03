@@ -6,7 +6,7 @@ export const growingSocialComplexity_SkillGroup_Data = buildSkillGroupConfig({
   slug: "growingSocialComplexity",
   id: "8e0c5ba0-75c9-40cb-b71f-0841f645de49",
   name: {
-    en: "Ускладнення спільнот",
+    en: "Growing Social Complexity",
     zh: "社会结构日益复杂",
     hi: "सामाजिक जटिलता का विकास",
     es: "Creciente complejidad social",

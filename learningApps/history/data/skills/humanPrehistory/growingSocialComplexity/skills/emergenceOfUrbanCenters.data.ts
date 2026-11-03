@@ -4,7 +4,7 @@ export const emergenceOfUrbanCenters_Skill_Data = buildSkillConfig({
   slug: "emergenceOfUrbanCenters",
   id: "4dad3ccf-d73a-4f94-a89d-15857aa8584a",
   name: {
-    en: "Поява міських центрів",
+    en: "Emergence of Urban Centers",
     zh: "早期城市中心的出现",
     hi: "शहरी केंद्रों का उद्भव",
     es: "Surgimiento de los centros urbanos",

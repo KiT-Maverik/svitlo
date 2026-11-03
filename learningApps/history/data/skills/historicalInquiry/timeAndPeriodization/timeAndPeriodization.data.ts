@@ -6,7 +6,7 @@ export const timeAndPeriodization_SkillGroup_Data = buildSkillGroupConfig({
   slug: "timeAndPeriodization",
   id: "fee37e4b-2452-48e5-8ff3-d4ff63a51e63",
   name: {
-    en: "Час і періодизація",
+    en: "Time and Periodization",
     zh: "时间与历史分期",
     hi: "समय और काल-विभाजन",
     es: "Tiempo y periodización",
