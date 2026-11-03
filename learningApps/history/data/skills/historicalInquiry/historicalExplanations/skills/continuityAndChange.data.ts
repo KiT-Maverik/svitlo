@@ -4,7 +4,7 @@ export const continuityAndChange_Skill_Data = buildSkillConfig({
   slug: "continuityAndChange",
   id: "bb6ee781-5440-4b57-a3ba-a11af97bab08",
   name: {
-    en: "Безперервність і зміни",
+    en: "Continuity and Change",
     zh: "延续与变化",
     hi: "निरंतरता और परिवर्तन",
     es: "Continuidad y cambio",

@@ -6,7 +6,7 @@ export const historicalGeography_SkillGroup_Data = buildSkillGroupConfig({
   slug: "historicalGeography",
   id: "ddced799-3043-44f5-8045-9ddc8c0374dc",
   name: {
-    en: "Простір минулого",
+    en: "Geography of the Past",
     zh: "历史地理",
     hi: "ऐतिहासिक भूगोल",
     es: "Geografía histórica",

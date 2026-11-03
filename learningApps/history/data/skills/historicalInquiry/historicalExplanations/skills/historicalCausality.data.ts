@@ -4,7 +4,7 @@ export const historicalCausality_Skill_Data = buildSkillConfig({
   slug: "historicalCausality",
   id: "9a10ab0f-d3dc-44cf-ad58-3e449b80293d",
   name: {
-    en: "Історична причинність",
+    en: "Historical Causality",
     zh: "历史因果关系",
     hi: "ऐतिहासिक कारण-कार्य संबंध",
     es: "Causalidad histórica",

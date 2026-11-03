@@ -4,7 +4,7 @@ export const historicalComparison_Skill_Data = buildSkillConfig({
   slug: "historicalComparison",
   id: "2e244706-ed4d-4c26-a6c6-7faf00c15442",
   name: {
-    en: "Історичне порівняння",
+    en: "Historical Comparison",
     zh: "历史比较",
     hi: "ऐतिहासिक तुलना",
     es: "Comparación histórica",

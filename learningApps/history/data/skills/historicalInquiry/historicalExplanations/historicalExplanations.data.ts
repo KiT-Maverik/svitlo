@@ -6,7 +6,7 @@ export const historicalExplanations_SkillGroup_Data = buildSkillGroupConfig({
   slug: "historicalExplanations",
   id: "dc762b63-609d-434b-9553-0acac99b583b",
   name: {
-    en: "Історичні пояснення",
+    en: "Historical Explanations",
     zh: "历史解释",
     hi: "ऐतिहासिक व्याख्याएँ",
     es: "Explicaciones históricas",

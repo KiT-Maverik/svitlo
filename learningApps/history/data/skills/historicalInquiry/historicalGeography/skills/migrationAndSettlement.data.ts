@@ -4,7 +4,7 @@ export const migrationAndSettlement_Skill_Data = buildSkillConfig({
   slug: "migrationAndSettlement",
   id: "febba0ca-7258-4818-b573-b548fa15b027",
   name: {
-    en: "Міграції та розселення",
+    en: "Migration and Settlement",
     zh: "迁徙与定居",
     hi: "प्रवास और बसावट",
     es: "Migración y asentamiento",

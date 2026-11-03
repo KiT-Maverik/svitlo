@@ -4,7 +4,7 @@ export const historicalMaps_Skill_Data = buildSkillConfig({
   slug: "historicalMaps",
   id: "998413be-fe59-4ffd-a154-649de752df36",
   name: {
-    en: "Історична карта",
+    en: "Historical Maps",
     zh: "历史地图",
     hi: "ऐतिहासिक मानचित्र",
     es: "Mapas históricos",

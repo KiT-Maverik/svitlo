@@ -4,7 +4,7 @@ export const environmentOfAncientSocieties_Skill_Data = buildSkillConfig({
   slug: "environmentOfAncientSocieties",
   id: "0fd7bb70-c12e-43d5-936a-07a10a33f865",
   name: {
-    en: "Природне середовище давніх суспільств",
+    en: "Natural Environment of Ancient Societies",
     zh: "古代社会的自然环境",
     hi: "प्राचीन समाजों का प्राकृतिक पर्यावरण",
     es: "Entorno natural de las sociedades antiguas",
