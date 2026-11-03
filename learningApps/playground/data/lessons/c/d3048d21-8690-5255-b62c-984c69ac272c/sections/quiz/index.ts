@@ -2,6 +2,7 @@ import {
   defineContentBlockCatalog,
   type Section,
 } from '@svitlo/engine/content';
+import { howLightMoves_Questions } from '../../questions';
 
 const title = {
   ar: 'اختبار',
@@ -34,6 +35,25 @@ const title = {
   vi: 'Bài kiểm tra',
   zh: '测验',
 }
+
+const quizBlock = {
+  id: 'd57aedcf-2381-527d-87e6-076bedcc9bd5',
+  slug: 'quiz',
+  welcome: title,
+  feedbackMode: 'immediate' as const,
+  interaction: {
+    retries: 0,
+    showErrors: true,
+    showCorrectAnswers: true,
+    allowExplanations: true,
+    allowDeferring: false,
+    allowQuestionNavigation: true,
+    skippable: true,
+  },
+  results: { visibility: 'after-review' as const, showScore: true },
+  screen: {},
+  questions: howLightMoves_Questions.selectOneAnswer,
+};
 
 export const quiz_Section = {
   id: '2a02b81f-dbd6-58d8-9711-4deb97312a56',
