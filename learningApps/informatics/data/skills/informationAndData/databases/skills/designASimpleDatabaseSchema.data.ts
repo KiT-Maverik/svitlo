@@ -32,7 +32,7 @@ export const designASimpleDatabaseSchema_Skill_Data = buildSkillConfig({
     be: "Праектаваць простую схему базы зьвестак",
     ka: "მარტივი მონაცემთა ბაზის სქემის შექმნა",
     kk: "Қарапайым деректер базасы схемасын жобалау",
-    qm: "Sadе verilgenler bazasınıñ şemasını qurmaq",
+    qm: "Sade verilgenler bazasınıñ şemasını qurmaq",
   },
   description: {
     methodological: "Independently identify entities, fields, keys, and required relationships for a task without needlessly duplicating facts. For example, model books and loans separately for a library; this designs a coherent schema rather than describing an existing table.",
