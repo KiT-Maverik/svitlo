@@ -49,7 +49,7 @@ export const taxes_SkillGroup_Data = buildSkillGroupConfig({
       hi: "समझें कि कर सार्वजनिक धन कैसे जुटाते हैं और निर्णयों पर कैसे असर डालते हैं।",
       es: "Comprende cómo los impuestos financian los servicios públicos e influyen en las decisiones.",
       ar: "افهم كيف تموّل الضرائب الخدمات العامة وتؤثر في القرارات.",
-      fr: "Comprenez comment les prélèvements financent l’action publique et influencent les choix.",
+      fr: "Comprends comment les prélèvements financent l’action publique et influencent les choix.",
       bn: "কর কীভাবে সরকারি তহবিল জোগায় ও সিদ্ধান্তকে প্রভাবিত করে তা বুঝে নাও।",
       pt: "Entenda como os tributos financiam o setor público e influenciam decisões.",
       ur: "سمجھیں کہ ٹیکس سرکاری وسائل کیسے فراہم کرتے اور فیصلوں پر کیسے اثر ڈالتے ہیں۔",

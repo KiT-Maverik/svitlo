@@ -42,7 +42,7 @@ export const taxProgressivity_Skill_Data = buildSkillConfig({
       hi: "तुलना करें कि आय के विभिन्न स्तरों पर कर का बोझ कैसे बदलता है।",
       es: "Compara cómo cambia la carga tributaria según el nivel de ingresos.",
       ar: "قارن كيفية تغيّر العبء الضريبي عند مستويات دخل مختلفة.",
-      fr: "Comparez la charge fiscale selon différents niveaux de revenu.",
+      fr: "Compare la charge fiscale selon différents niveaux de revenu.",
       bn: "আয়ের বিভিন্ন স্তরে করের বোঝা কীভাবে বদলায় তা তুলনা করো।",
       pt: "Compare como a carga tributária muda conforme a renda.",
       ur: "موازنہ کریں کہ آمدن کے مختلف درجوں پر ٹیکس کا بوجھ کیسے بدلتا ہے۔",

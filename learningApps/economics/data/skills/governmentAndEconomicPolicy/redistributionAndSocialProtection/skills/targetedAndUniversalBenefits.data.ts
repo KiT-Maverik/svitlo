@@ -42,7 +42,7 @@ export const targetedAndUniversalBenefits_Skill_Data = buildSkillConfig({
       hi: "सभी को मिलने वाली सहायता और विशेष समूहों को मिलने वाली सहायता की तुलना करें।",
       es: "Compara el apoyo para toda la población con el dirigido a grupos específicos.",
       ar: "قارن الدعم المتاح للجميع بالدعم المخصص لفئات معينة.",
-      fr: "Comparez le soutien accessible à tous et celui destiné à des groupes précis.",
+      fr: "Compare le soutien accessible à tous et celui destiné à des groupes précis.",
       bn: "সবার জন্য সহায়তা এবং নির্দিষ্ট গোষ্ঠীর জন্য সহায়তা তুলনা করো।",
       pt: "Compare apoio disponível a todos com apoio destinado a grupos específicos.",
       ur: "سب کے لیے مدد اور مخصوص گروہوں کے لیے مدد کا موازنہ کریں۔",

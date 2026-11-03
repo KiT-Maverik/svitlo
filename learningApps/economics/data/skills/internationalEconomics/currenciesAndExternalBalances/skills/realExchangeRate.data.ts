@@ -42,7 +42,7 @@ export const realExchangeRate_Skill_Data = buildSkillConfig({
       hi: "विनिमय दर को ध्यान में रखकर देशों के बीच कीमतों की तुलना करें।",
       es: "Compara precios entre países teniendo en cuenta los tipos de cambio.",
       ar: "قارن الأسعار بين الدول بعد أخذ أسعار الصرف في الحسبان.",
-      fr: "Comparez les prix entre pays en tenant compte des taux de change.",
+      fr: "Compare les prix entre pays en tenant compte des taux de change.",
       bn: "বিনিময় হার বিবেচনা করে বিভিন্ন দেশের দাম তুলনা করো।",
       pt: "Compare preços entre países após considerar o câmbio.",
       ur: "شرحِ مبادلہ کو مدنظر رکھ کر ملکوں کی قیمتوں کا موازنہ کریں۔",

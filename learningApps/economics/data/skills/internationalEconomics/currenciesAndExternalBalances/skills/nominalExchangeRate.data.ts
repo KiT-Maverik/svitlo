@@ -42,7 +42,7 @@ export const nominalExchangeRate_Skill_Data = buildSkillConfig({
       hi: "समझें कि एक मुद्रा की कीमत दूसरी मुद्रा में कितनी है।",
       es: "Interpreta cuánto vale una moneda expresada en otra.",
       ar: "افهم قيمة عملة واحدة مقابل عملة أخرى.",
-      fr: "Interprétez la valeur d’une monnaie exprimée dans une autre.",
+      fr: "Interprète la valeur d’une monnaie exprimée dans une autre.",
       bn: "এক মুদ্রার মূল্য অন্য মুদ্রায় কত তা বুঝে নাও।",
       pt: "Leia quanto uma moeda vale em unidades de outra.",
       ur: "سمجھیں کہ ایک کرنسی کی دوسری کرنسی میں کیا قیمت ہے۔",
