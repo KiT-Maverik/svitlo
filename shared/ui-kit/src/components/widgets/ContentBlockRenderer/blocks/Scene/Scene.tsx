@@ -1,6 +1,6 @@
 import type { ContentBlockResponse, SceneRegistry } from '../../types';
 
-export const ContentBlock_Scene = ({ response, sceneRegistry }: {
+export const Scene = ({ response, sceneRegistry }: {
   response: ContentBlockResponse<'scene'>;
   sceneRegistry?: SceneRegistry;
 }) => {

@@ -2,7 +2,7 @@ import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/localization';
 import KnowledgeCheckpoint from '../../../KnowledgeCheckpoint/KnowledgeCheckpoint';
 import type { ContentBlockResponse, RenderNested } from '../../types';
 
-export const ContentBlock_Checkpoint = ({ response, renderNested }: {
+export const Checkpoint = ({ response, renderNested }: {
   response: ContentBlockResponse<'checkpoint'>;
   renderNested: RenderNested;
 }) => {

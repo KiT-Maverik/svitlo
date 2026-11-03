@@ -1,15 +1,15 @@
 'use client';
 
 import type { ReactNode } from 'react';
-import { ContentBlock_Audio } from './blocks/Audio/ContentBlock_Audio';
-import { ContentBlock_Checkpoint } from './blocks/Checkpoint/ContentBlock_Checkpoint';
-import { ContentBlock_Code } from './blocks/Code/ContentBlock_Code';
-import { ContentBlock_Image } from './blocks/Image/ContentBlock_Image';
-import { ContentBlock_Markdown } from './blocks/Markdown/ContentBlock_Markdown';
+import { Audio } from './blocks/Audio/Audio';
+import { Checkpoint } from './blocks/Checkpoint/Checkpoint';
+import { Code } from './blocks/Code/Code';
+import { Image } from './blocks/Image/Image';
+import { Markdown } from './blocks/Markdown/Markdown';
 import { ContentBlock_Quiz } from './blocks/Quiz/ContentBlock_Quiz';
-import { ContentBlock_Scene } from './blocks/Scene/ContentBlock_Scene';
+import { Scene } from './blocks/Scene/Scene';
 import { ContentBlock_Text } from './blocks/Text/Text';
-import { ContentBlock_Video } from './blocks/Video/ContentBlock_Video';
+import { Video } from './blocks/Video/Video';
 import { ContentBlock_Youtube } from './blocks/Youtube/Youtube';
 import type { ContentBlockRenderContext, ContentBlockRendererProps, NestedResponse } from '#types/content-blocks';
 import { assertNever, requireTaggedResponse } from './utils';
@@ -35,14 +35,14 @@ export function ContentBlockRenderer(props: ContentBlockRendererProps): ReactNod
 
   switch (props.type) {
     case 'text': return <ContentBlock_Text {...props.response} />;
-    case 'markdown': return <ContentBlock_Markdown response={props.response} />;
-    case 'checkpoint': return <ContentBlock_Checkpoint response={props.response} renderNested={nested} />;
-    case 'scene': return <ContentBlock_Scene response={props.response} sceneRegistry={props.sceneRegistry} />;
-    case 'code': return <ContentBlock_Code response={props.response} />;
-    case 'audio': return <ContentBlock_Audio response={props.response} />;
-    case 'video': return <ContentBlock_Video response={props.response} />;
+    case 'markdown': return <Markdown response={props.response} />;
+    case 'checkpoint': return <Checkpoint response={props.response} renderNested={nested} />;
+    case 'scene': return <Scene response={props.response} sceneRegistry={props.sceneRegistry} />;
+    case 'code': return <Code response={props.response} />;
+    case 'audio': return <Audio response={props.response} />;
+    case 'video': return <Video response={props.response} />;
     case 'youtube': return <ContentBlock_Youtube response={props.response} />;
-    case 'image': return <ContentBlock_Image response={props.response} />;
+    case 'image': return <Image response={props.response} />;
     case 'quiz': return <ContentBlock_Quiz response={props.response} questions={props.questions} renderNested={nested} />;
     default: return assertNever(props);
   }

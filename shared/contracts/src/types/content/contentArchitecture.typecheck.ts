@@ -7,6 +7,7 @@ import type {
   ContentBlock_Scene,
   ContentBlock_Text,
   ContentBlock_Type,
+  ContentBlock_Youtube,
   Flashcard,
   Lesson,
   Question,
@@ -59,6 +60,25 @@ const authoredText: ContentBlock_Text<'data'> = {
   styling: [{ id: 'name', applyStyle: ['highlight'], tone: 'warning' }],
   wrap: { typographyProps: { component: 'p', align: 'center' } },
 };
+const authoredYoutube: ContentBlock_Youtube<'data'> = {
+  id: 'youtube-id',
+  slug: 'video',
+  mode: 'embed',
+  href: { value: 'https://youtu.be/M7lc1UVf-VE', language: 'en' },
+  title: { value: 'Lesson video', language: 'en' },
+  fallback: {
+    offline: { value: 'Connect to watch', language: 'en' },
+    unavailable: { value: 'Video unavailable', language: 'en' },
+  },
+};
+// @ts-expect-error Embedded YouTube videos require an accessible title or hint.
+const unlabelledYoutube: ContentBlock_Youtube<'response'> = {
+  id: 'youtube-id',
+  type: 'youtube',
+  mode: 'embed',
+  locale: { code: 'en' },
+  href: 'https://youtu.be/M7lc1UVf-VE',
+};
 const runtimeScene: ContentBlock_Scene<'response'> = {
   id: 'scene-id',
   type: 'scene',
@@ -88,4 +108,4 @@ declare const quiz: ContentBlock_Quiz<'response'>;
 // @ts-expect-error Quiz question references are immutable.
 quiz.questionSlugs.push('another-question');
 
-void [runtimeText, authoredText, runtimeScene, customQuizScreen, emptyQuizScreen, missingDiscriminator, quiz, flashcard];
+void [runtimeText, authoredText, authoredYoutube, unlabelledYoutube, runtimeScene, customQuizScreen, emptyQuizScreen, missingDiscriminator, quiz, flashcard];

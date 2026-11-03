@@ -1,56 +1,107 @@
+'use client';
+
+import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
+
 import type { ContentBlockResponse } from '../../types';
 import { localizedAttributes } from '../../utils';
+import {
+  createYoutubeIframe,
+  getConnectionSnapshot,
+  getServerConnectionSnapshot,
+  loadYoutubeApi,
+  subscribeConnectionChange,
+  youtubeEmbedUrl,
+  youtubeFallbackText,
+  youtubeVideoId,
+  type YoutubePlayer,
+} from './Youtube.utils';
+import styles from './Youtube.module.css';
 
-function validateYoutubeUrl(href: string): URL {
-  let url: URL;
-  try { url = new URL(href); }
-  catch { throw new Error('Invalid YouTube URL'); }
-  if (url.protocol !== 'https:') throw new Error('YouTube URL must use HTTPS');
-  const allowed = ['youtu.be', 'youtube.com', 'www.youtube.com', 'm.youtube.com', 'www.youtube-nocookie.com'];
-  if (!allowed.includes(url.hostname.toLowerCase())) throw new Error('URL is not a supported YouTube host');
-  return url;
-}
+type YoutubeResponse = ContentBlockResponse<'youtube'>;
+type FallbackKind = 'loading' | 'offline' | 'unavailable';
 
-function youtubeEmbedUrl(href: string): string {
-  const url = validateYoutubeUrl(href);
-  const host = url.hostname.toLowerCase();
-  let id: string | undefined;
-  if (host === 'youtu.be') id = url.pathname.slice(1);
-  else if (host === 'youtube.com' || host === 'www.youtube.com' || host === 'm.youtube.com' || host === 'www.youtube-nocookie.com') {
-    if (url.pathname === '/watch') id = url.searchParams.get('v') ?? undefined;
-    else if (url.pathname.startsWith('/embed/')) id = url.pathname.slice('/embed/'.length);
-    else if (url.pathname.startsWith('/shorts/')) id = url.pathname.slice('/shorts/'.length);
-  }
-  if (!id || !/^[A-Za-z0-9_-]{11}$/.test(id)) throw new Error('Unsupported YouTube video identifier');
-  return 'https://www.youtube-nocookie.com/embed/' + id;
-}
-
-export const ContentBlock_Youtube = ({ response }: { response: ContentBlockResponse<'youtube'> }) => {
+export const ContentBlock_Youtube = ({ response }: { response: YoutubeResponse }) => {
+  const online = useSyncExternalStore(subscribeConnectionChange, getConnectionSnapshot, getServerConnectionSnapshot);
+  const playerHost = useRef<HTMLDivElement>(null);
+  const [failedHref, setFailedHref] = useState<string | null>(null);
+  const unavailable = response.mode === 'embed' && failedHref === response.href;
   const attributes = localizedAttributes(response);
+  const label = response.title || response.hint || response.href;
+
+  if (response.mode === 'link') youtubeVideoId(response.href);
+  else {
+    youtubeEmbedUrl(response.href);
+    if (!response.title && !response.hint) throw new Error('Embedded YouTube blocks require an accessible title or hint');
+  }
+
+  useEffect(() => {
+    if (response.mode !== 'embed' || online !== true || unavailable) return;
+    const host = playerHost.current;
+    if (!host) return;
+
+    let active = true;
+    let player: YoutubePlayer | undefined;
+    const iframe = createYoutubeIframe(response.href, label);
+    host.replaceChildren(iframe);
+    const timeout = window.setTimeout(() => {
+      if (active) setFailedHref(response.href);
+    }, 20_000);
+
+    loadYoutubeApi().then(api => {
+      if (!active) return;
+      player = new api.Player(iframe, {
+        events: {
+          onReady: () => window.clearTimeout(timeout),
+          onError: () => {
+            window.clearTimeout(timeout);
+            if (active) setFailedHref(response.href);
+          },
+        },
+      });
+    }).catch(() => {
+      if (active) setFailedHref(response.href);
+    });
+
+    return () => {
+      active = false;
+      window.clearTimeout(timeout);
+      player?.destroy();
+      host.replaceChildren();
+    };
+  }, [response.href, response.mode, label, online, unavailable]);
+
+  const fallbackKind: FallbackKind | null = online === null ? 'loading' : !online ? 'offline' : unavailable ? 'unavailable' : null;
+  const fallbackText = fallbackKind === 'loading'
+    ? youtubeFallbackText(response.locale.code, 'loading')
+    : fallbackKind
+      ? response.fallback?.[fallbackKind] || youtubeFallbackText(response.locale.code, fallbackKind)
+      : null;
+  const fallback = fallbackKind && (
+    <div key="fallback" className={styles.placeholder} role="status">
+      <strong>{label}</strong>
+      <span>{fallbackText}</span>
+      {fallbackKind === 'unavailable' && (
+        <button type="button" onClick={() => setFailedHref(null)}>
+          {response.fallback?.retry || youtubeFallbackText(response.locale.code, 'retry')}
+        </button>
+      )}
+    </div>
+  );
+
   if (response.mode === 'link') {
-    validateYoutubeUrl(response.href);
-    return (
+    return fallbackKind ? (
+      <div {...attributes} className={styles.linkFallback}>{fallback}</div>
+    ) : (
       <a {...attributes} href={response.href} rel="noopener noreferrer" target="_blank">
-        {response.title || response.hint || response.href}
+        {label}
       </a>
     );
   }
-  if (response.mode === 'embed') {
-    const url = youtubeEmbedUrl(response.href);
-    if (!response.title && !response.hint) throw new Error('Embedded YouTube blocks require an accessible title or hint');
-    return (
-      <figure {...attributes}>
-        <iframe
-          src={url}
-          title={response.title || response.hint}
-          loading="lazy"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-          referrerPolicy="strict-origin-when-cross-origin"
-        />
-        {response.hint && <figcaption>{response.hint}</figcaption>}
-      </figure>
-    );
-  }
-  throw new Error('Unsupported YouTube display mode');
+
+  return (
+    <figure {...attributes} className={styles.figure}>
+      {fallback || <div key="player" ref={playerHost} className={styles.player} />}
+      {response.hint && <figcaption>{response.hint}</figcaption>}
+    </figure>
+  );
 };
