@@ -17,7 +17,7 @@ export const ancientEpidemicsAndDemography_Skill_Data = buildSkillConfig({
     de: "Antike Epidemien und Bevölkerungsentwicklung",
     ja: "古代の疫病と人口変動",
     ko: "고대 전염병과 인구 변화",
-    tr: "Antik Salgınlar ve Nüfus Değişimi",
+    tr: "Antik Salgınlar ve Demografi",
     vi: "Dịch bệnh cổ đại và nhân khẩu học",
     ta: "பண்டைய தொற்றுநோய்களும் மக்கள்தொகை மாற்றங்களும்",
     te: "ప్రాచీన అంటువ్యాధులు, జనాభా మార్పులు",

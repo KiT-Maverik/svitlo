@@ -56,7 +56,7 @@ export const qinEmpire_Skill_Data = buildSkillConfig({
       te: "చిన్ రాజ్యం చైనాను ఏకం చేయడంలో తోడ్పడిన విధానాలను తెలుసుకోండి.",
       mr: "छिन राजवटीला चीन एकत्र करण्यास मदत करणारी धोरणे जाणून घ्या.",
       ms: "Kenali dasar yang membantu Qin menyatukan China.",
-      he: "גלו אילו מדיניות סייעו לצ׳ין לאחד את סין.",
+      he: "גלו אילו צעדי מדיניות סייעו לצ׳ין לאחד את סין.",
       pl: "Poznaj zasady i działania, które pomogły Qin zjednoczyć Chiny.",
       uk: "Дізнайся, які заходи допомогли династії Цінь об’єднати Китай.",
       lt: "Sužinokite, kokia politika padėjo Čin suvienyti Kiniją.",
