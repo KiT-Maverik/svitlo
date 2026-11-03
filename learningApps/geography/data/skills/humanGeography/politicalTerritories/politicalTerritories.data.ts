@@ -70,7 +70,7 @@ export const politicalTerritories_SkillGroup_Data = buildSkillGroupConfig({
       lv: "Uzzini, kā politiskās robežas un administratīvās vienības organizē ģeogrāfisko telpu.",
       et: "Avasta, kuidas riigipiirid ja haldusüksused geograafilist ruumi liigendavad.",
       be: "Даведайся, як палітычныя межы і адміністрацыйныя адзінкі падзяляюць геаграфічную прастору.",
-      ka: "გაიგე, როგორ აწესრიგებს პოლიტიკურ საზღვრებსა და ადმინისტრაციულ ერთეულებს გეოგრაფიული სივრცე.",
+      ka: "გაიგე, როგორ აწესრიგებს პოლიტიკური საზღვრები და ადმინისტრაციული ერთეულები გეოგრაფიულ სივრცეს.",
       kk: "Саяси шекаралар мен әкімшілік аумақтардың географиялық кеңістікті қалай ұйымдастыратынын біл.",
       qm: "Siyasiy sıñırlar ve idariy bölgeler coğrafiy fezanı nasıl bölgenini ögren.",
     },
