@@ -1,169 +1,387 @@
-import type { LightRayDiagram_ContentBlock } from './lightRayDiagram.types';
+import type { ContentBlock_Scene } from '@svitlo/engine/content';
+import type { LanguageCode } from '@svitlo/engine/localization';
 
-export const lightRayDiagram = {
+const en = {
   scene: {
-    title: {
-      ar: 'تتبّع مسار الضوء',
-      be: 'Прасачы шлях сьвятла',
-      bn: 'আলোর পথ অনুসরণ করো',
-      de: 'Verfolge den Weg des Lichts',
-      en: 'Trace the path of light',
-      es: 'Sigue el recorrido de la luz',
-      et: 'Jälgi valguse teekonda',
-      fr: 'Suis le trajet de la lumière',
-      he: 'עקבו אחר מסלול האור',
-      hi: 'प्रकाश के पथ का अनुसरण करें',
-      id: 'Telusuri lintasan cahaya',
-      ja: '光の進む道をたどろう',
-      ka: 'მიჰყევი სინათლის გზას',
-      kk: 'Жарықтың жолын бақыла',
-      ko: '빛의 경로를 따라가 보세요',
-      lt: 'Sek šviesos kelią',
-      lv: 'Izseko gaismas ceļu',
-      mr: 'प्रकाशाचा मार्ग पाहा',
-      ms: 'Jejaki laluan cahaya',
-      pl: 'Prześledź drogę światła',
-      pt: 'Acompanhe o caminho da luz',
-      qm: 'Yarıqnıñ yolunı izle',
-      ta: 'ஒளியின் பாதையைப் பின்தொடருங்கள்',
-      te: 'కాంతి మార్గాన్ని అనుసరించండి',
-      tr: 'Işığın yolunu takip et',
-      uk: 'Світловий промінь',
-      ur: 'روشنی کے راستے کا مشاہدہ کریں',
-      vi: 'Theo dõi đường đi của ánh sáng',
-      zh: '追踪光的路径',
-    },
-    description: {
-      ar: 'من المصدر إلى الشاشة في خط مستقيم.',
-      be: 'Ад крыніцы па простай лініі да экрана.',
-      bn: 'উৎস থেকে সরলরেখায় পর্দা পর্যন্ত।',
-      de: 'Von der Quelle geradlinig zum Schirm.',
-      en: 'From the source straight to the screen.',
-      es: 'De la fuente a la pantalla en línea recta.',
-      et: 'Allikast sirgjooneliselt ekraanini.',
-      fr: 'De la source à l’écran en ligne droite.',
-      he: 'ממקור האור אל המסך בקו ישר.',
-      hi: 'स्रोत से पर्दे तक सीधी रेखा में।',
-      id: 'Dari sumber menuju layar dalam garis lurus.',
-      ja: '光源からスクリーンまで一直線に。',
-      ka: 'წყაროდან ეკრანამდე სწორი ხაზით.',
-      kk: 'Көзден экранға дейін түзу сызық бойымен.',
-      ko: '광원에서 스크린까지 직선으로.',
-      lt: 'Nuo šaltinio tiesia linija iki ekrano.',
-      lv: 'No avota taisnā līnijā līdz ekrānam.',
-      mr: 'स्रोतापासून पडद्यापर्यंत सरळ रेषेत.',
-      ms: 'Dari sumber ke skrin dalam garis lurus.',
-      pl: 'Od źródła prosto do ekranu.',
-      pt: 'Da fonte até a tela em linha reta.',
-      qm: 'Menbadan ekranğa doğru sızıq boyunca.',
-      ta: 'ஒளிமூலத்திலிருந்து திரை வரை நேர்கோட்டில்.',
-      te: 'కాంతి మూలం నుంచి తెర వరకు సరళరేఖలో.',
-      tr: 'Kaynaktan ekrana düz bir çizgi boyunca.',
-      uk: 'Світло від ліхтарика ліворуч поширюється прямою лінією до екрана праворуч.',
-      ur: 'منبع سے پردے تک سیدھی لکیر میں۔',
-      vi: 'Từ nguồn sáng đến màn theo đường thẳng.',
-      zh: '从光源沿直线传播到屏幕。',
-    },
+    title: 'Trace the path of light',
+    description: 'From the source straight to the screen.',
   },
   labels: {
-    source: {
-      ar: 'مصدر الضوء',
-      be: 'Крыніца сьвятла',
-      bn: 'আলোর উৎস',
-      de: 'Lichtquelle',
-      en: 'Light source',
-      es: 'Fuente de luz',
-      et: 'Valgusallikas',
-      fr: 'Source lumineuse',
-      he: 'מקור אור',
-      hi: 'प्रकाश स्रोत',
-      id: 'Sumber cahaya',
-      ja: '光源',
-      ka: 'სინათლის წყარო',
-      kk: 'Жарық көзі',
-      ko: '광원',
-      lt: 'Šviesos šaltinis',
-      lv: 'Gaismas avots',
-      mr: 'प्रकाशस्रोत',
-      ms: 'Sumber cahaya',
-      pl: 'Źródło światła',
-      pt: 'Fonte de luz',
-      qm: 'Yarıq menbası',
-      ta: 'ஒளிமூலம்',
-      te: 'కాంతి మూలం',
-      tr: 'Işık kaynağı',
-      uk: 'Джерело',
-      ur: 'روشنی کا منبع',
-      vi: 'Nguồn sáng',
-      zh: '光源',
-    },
-    direction: {
-      ar: 'اتجاه انتشار الضوء',
-      be: 'Кірунак сьвятла',
-      bn: 'আলোর দিক',
-      de: 'Richtung des Lichts',
-      en: 'Direction of light',
-      es: 'Dirección de la luz',
-      et: 'Valguse suund',
-      fr: 'Direction de la lumière',
-      he: 'כיוון התפשטות האור',
-      hi: 'प्रकाश की दिशा',
-      id: 'Arah cahaya',
-      ja: '光の進む方向',
-      ka: 'სინათლის მიმართულება',
-      kk: 'Жарықтың таралу бағыты',
-      ko: '빛의 진행 방향',
-      lt: 'Šviesos sklidimo kryptis',
-      lv: 'Gaismas virziens',
-      mr: 'प्रकाशाची दिशा',
-      ms: 'Arah cahaya',
-      pl: 'Kierunek światła',
-      pt: 'Direção da luz',
-      qm: 'Yarıqnıñ yayılma yönelişi',
-      ta: 'ஒளியின் திசை',
-      te: 'కాంతి దిశ',
-      tr: 'Işığın yönü',
-      uk: 'Напрямок поширення',
-      ur: 'روشنی کی سمت',
-      vi: 'Hướng truyền ánh sáng',
-      zh: '光的传播方向',
-    },
-    screen: {
-      ar: 'الشاشة',
-      be: 'Экран',
-      bn: 'পর্দা',
-      de: 'Schirm',
-      en: 'Screen',
-      es: 'Pantalla',
-      et: 'Ekraan',
-      fr: 'Écran',
-      he: 'מסך',
-      hi: 'पर्दा',
-      id: 'Layar',
-      ja: 'スクリーン',
-      ka: 'ეკრანი',
-      kk: 'Экран',
-      ko: '스크린',
-      lt: 'Ekranas',
-      lv: 'Ekrāns',
-      mr: 'पडदा',
-      ms: 'Skrin',
-      pl: 'Ekran',
-      pt: 'Tela',
-      qm: 'Ekran',
-      ta: 'திரை',
-      te: 'తెర',
-      tr: 'Ekran',
-      uk: 'Екран',
-      ur: 'پردہ',
-      vi: 'Màn',
-      zh: '屏幕',
-    },
+    source: 'Light source',
+    direction: 'Direction of light',
+    screen: 'Screen',
   },
 };
 
-export const lightRayDiagramData = {
-  id: '5acac9ef-2452-5072-b471-1255d52b4a28',
-  slug: 'lightRayDiagram' as const,
-  locales: lightRayDiagram,
-} satisfies LightRayDiagram_ContentBlock<'data'>;
+type Locale = typeof en;
+
+const ar: Locale = {
+  scene: {
+    title: 'تتبّع مسار الضوء',
+    description: 'من المصدر إلى الشاشة في خط مستقيم.',
+  },
+  labels: {
+    source: 'مصدر الضوء',
+    direction: 'اتجاه انتشار الضوء',
+    screen: 'الشاشة',
+  },
+};
+
+const be: Locale = {
+  scene: {
+    title: 'Прасачы шлях сьвятла',
+    description: 'Ад крыніцы па простай лініі да экрана.',
+  },
+  labels: {
+    source: 'Крыніца сьвятла',
+    direction: 'Кірунак сьвятла',
+    screen: 'Экран',
+  },
+};
+
+const bn: Locale = {
+  scene: {
+    title: 'আলোর পথ অনুসরণ করো',
+    description: 'উৎস থেকে সরলরেখায় পর্দা পর্যন্ত।',
+  },
+  labels: {
+    source: 'আলোর উৎস',
+    direction: 'আলোর দিক',
+    screen: 'পর্দা',
+  },
+};
+
+const de: Locale = {
+  scene: {
+    title: 'Verfolge den Weg des Lichts',
+    description: 'Von der Quelle geradlinig zum Schirm.',
+  },
+  labels: {
+    source: 'Lichtquelle',
+    direction: 'Richtung des Lichts',
+    screen: 'Schirm',
+  },
+};
+
+const es: Locale = {
+  scene: {
+    title: 'Sigue el recorrido de la luz',
+    description: 'De la fuente a la pantalla en línea recta.',
+  },
+  labels: {
+    source: 'Fuente de luz',
+    direction: 'Dirección de la luz',
+    screen: 'Pantalla',
+  },
+};
+
+const et: Locale = {
+  scene: {
+    title: 'Jälgi valguse teekonda',
+    description: 'Allikast sirgjooneliselt ekraanini.',
+  },
+  labels: {
+    source: 'Valgusallikas',
+    direction: 'Valguse suund',
+    screen: 'Ekraan',
+  },
+};
+
+const fr: Locale = {
+  scene: {
+    title: 'Suis le trajet de la lumière',
+    description: 'De la source à l’écran en ligne droite.',
+  },
+  labels: {
+    source: 'Source lumineuse',
+    direction: 'Direction de la lumière',
+    screen: 'Écran',
+  },
+};
+
+const he: Locale = {
+  scene: {
+    title: 'עקבו אחר מסלול האור',
+    description: 'ממקור האור אל המסך בקו ישר.',
+  },
+  labels: {
+    source: 'מקור אור',
+    direction: 'כיוון התפשטות האור',
+    screen: 'מסך',
+  },
+};
+
+const hi: Locale = {
+  scene: {
+    title: 'प्रकाश के पथ का अनुसरण करें',
+    description: 'स्रोत से पर्दे तक सीधी रेखा में।',
+  },
+  labels: {
+    source: 'प्रकाश स्रोत',
+    direction: 'प्रकाश की दिशा',
+    screen: 'पर्दा',
+  },
+};
+
+const id: Locale = {
+  scene: {
+    title: 'Telusuri lintasan cahaya',
+    description: 'Dari sumber menuju layar dalam garis lurus.',
+  },
+  labels: {
+    source: 'Sumber cahaya',
+    direction: 'Arah cahaya',
+    screen: 'Layar',
+  },
+};
+
+const ja: Locale = {
+  scene: {
+    title: '光の進む道をたどろう',
+    description: '光源からスクリーンまで一直線に。',
+  },
+  labels: {
+    source: '光源',
+    direction: '光の進む方向',
+    screen: 'スクリーン',
+  },
+};
+
+const ka: Locale = {
+  scene: {
+    title: 'მიჰყევი სინათლის გზას',
+    description: 'წყაროდან ეკრანამდე სწორი ხაზით.',
+  },
+  labels: {
+    source: 'სინათლის წყარო',
+    direction: 'სინათლის მიმართულება',
+    screen: 'ეკრანი',
+  },
+};
+
+const kk: Locale = {
+  scene: {
+    title: 'Жарықтың жолын бақыла',
+    description: 'Көзден экранға дейін түзу сызық бойымен.',
+  },
+  labels: {
+    source: 'Жарық көзі',
+    direction: 'Жарықтың таралу бағыты',
+    screen: 'Экран',
+  },
+};
+
+const ko: Locale = {
+  scene: {
+    title: '빛의 경로를 따라가 보세요',
+    description: '광원에서 스크린까지 직선으로.',
+  },
+  labels: {
+    source: '광원',
+    direction: '빛의 진행 방향',
+    screen: '스크린',
+  },
+};
+
+const lt: Locale = {
+  scene: {
+    title: 'Sek šviesos kelią',
+    description: 'Nuo šaltinio tiesia linija iki ekrano.',
+  },
+  labels: {
+    source: 'Šviesos šaltinis',
+    direction: 'Šviesos sklidimo kryptis',
+    screen: 'Ekranas',
+  },
+};
+
+const lv: Locale = {
+  scene: {
+    title: 'Izseko gaismas ceļu',
+    description: 'No avota taisnā līnijā līdz ekrānam.',
+  },
+  labels: {
+    source: 'Gaismas avots',
+    direction: 'Gaismas virziens',
+    screen: 'Ekrāns',
+  },
+};
+
+const mr: Locale = {
+  scene: {
+    title: 'प्रकाशाचा मार्ग पाहा',
+    description: 'स्रोतापासून पडद्यापर्यंत सरळ रेषेत.',
+  },
+  labels: {
+    source: 'प्रकाशस्रोत',
+    direction: 'प्रकाशाची दिशा',
+    screen: 'पडदा',
+  },
+};
+
+const ms: Locale = {
+  scene: {
+    title: 'Jejaki laluan cahaya',
+    description: 'Dari sumber ke skrin dalam garis lurus.',
+  },
+  labels: {
+    source: 'Sumber cahaya',
+    direction: 'Arah cahaya',
+    screen: 'Skrin',
+  },
+};
+
+const pl: Locale = {
+  scene: {
+    title: 'Prześledź drogę światła',
+    description: 'Od źródła prosto do ekranu.',
+  },
+  labels: {
+    source: 'Źródło światła',
+    direction: 'Kierunek światła',
+    screen: 'Ekran',
+  },
+};
+
+const pt: Locale = {
+  scene: {
+    title: 'Acompanhe o caminho da luz',
+    description: 'Da fonte até a tela em linha reta.',
+  },
+  labels: {
+    source: 'Fonte de luz',
+    direction: 'Direção da luz',
+    screen: 'Tela',
+  },
+};
+
+const qm: Locale = {
+  scene: {
+    title: 'Yarıqnıñ yolunı izle',
+    description: 'Menbadan ekranğa doğru sızıq boyunca.',
+  },
+  labels: {
+    source: 'Yarıq menbası',
+    direction: 'Yarıqnıñ yayılma yönelişi',
+    screen: 'Ekran',
+  },
+};
+
+const ta: Locale = {
+  scene: {
+    title: 'ஒளியின் பாதையைப் பின்தொடருங்கள்',
+    description: 'ஒளிமூலத்திலிருந்து திரை வரை நேர்கோட்டில்.',
+  },
+  labels: {
+    source: 'ஒளிமூலம்',
+    direction: 'ஒளியின் திசை',
+    screen: 'திரை',
+  },
+};
+
+const te: Locale = {
+  scene: {
+    title: 'కాంతి మార్గాన్ని అనుసరించండి',
+    description: 'కాంతి మూలం నుంచి తెర వరకు సరళరేఖలో.',
+  },
+  labels: {
+    source: 'కాంతి మూలం',
+    direction: 'కాంతి దిశ',
+    screen: 'తెర',
+  },
+};
+
+const tr: Locale = {
+  scene: {
+    title: 'Işığın yolunu takip et',
+    description: 'Kaynaktan ekrana düz bir çizgi boyunca.',
+  },
+  labels: {
+    source: 'Işık kaynağı',
+    direction: 'Işığın yönü',
+    screen: 'Ekran',
+  },
+};
+
+const uk: Locale = {
+  scene: {
+    title: 'Світловий промінь',
+    description: 'Світло від ліхтарика ліворуч поширюється прямою лінією до екрана праворуч.',
+  },
+  labels: {
+    source: 'Джерело',
+    direction: 'Напрямок поширення',
+    screen: 'Екран',
+  },
+};
+
+const ur: Locale = {
+  scene: {
+    title: 'روشنی کے راستے کا مشاہدہ کریں',
+    description: 'منبع سے پردے تک سیدھی لکیر میں۔',
+  },
+  labels: {
+    source: 'روشنی کا منبع',
+    direction: 'روشنی کی سمت',
+    screen: 'پردہ',
+  },
+};
+
+const vi: Locale = {
+  scene: {
+    title: 'Theo dõi đường đi của ánh sáng',
+    description: 'Từ nguồn sáng đến màn theo đường thẳng.',
+  },
+  labels: {
+    source: 'Nguồn sáng',
+    direction: 'Hướng truyền ánh sáng',
+    screen: 'Màn',
+  },
+};
+
+const zh: Locale = {
+  scene: {
+    title: '追踪光的路径',
+    description: '从光源沿直线传播到屏幕。',
+  },
+  labels: {
+    source: '光源',
+    direction: '光的传播方向',
+    screen: '屏幕',
+  },
+};
+
+export const lightRayDiagram_Locale: Record<LanguageCode, Locale> = {
+  en,
+  ar,
+  be,
+  bn,
+  de,
+  es,
+  et,
+  fr,
+  he,
+  hi,
+  id,
+  ja,
+  ka,
+  kk,
+  ko,
+  lt,
+  lv,
+  mr,
+  ms,
+  pl,
+  pt,
+  qm,
+  ta,
+  te,
+  tr,
+  uk,
+  ur,
+  vi,
+  zh,
+};
+
+export type LightRayDiagram_ContentBlock<ConfigType extends 'definition' | 'data' | 'response'> =
+  ContentBlock_Scene<ConfigType, Locale>;
