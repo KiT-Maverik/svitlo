@@ -20,7 +20,7 @@ export const marketingAndTrade_SkillDomain_Data = buildSkillDomainConfig({
     bn: "বিপণন ও বাণিজ্য",
     pt: "Marketing e comércio",
     ur: "بازاری کاری اور تجارت",
-    id: "Pemasaran dan Perdagangan",
+    id: "Pemasaran dan perdagangan",
     de: "Marketing und Handel",
     ja: "マーケティングと取引",
     ko: "마케팅과 거래",

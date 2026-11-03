@@ -13,7 +13,7 @@ export const advertisingClaims_Skill_Data = buildSkillConfig({
     bn: "বিজ্ঞাপনের দাবি",
     pt: "Alegações publicitárias",
     ur: "اشتہاری دعوے",
-    id: "Klaim Iklan",
+    id: "Klaim iklan",
     de: "Werbeversprechen",
     ja: "広告の主張",
     ko: "광고 주장",
