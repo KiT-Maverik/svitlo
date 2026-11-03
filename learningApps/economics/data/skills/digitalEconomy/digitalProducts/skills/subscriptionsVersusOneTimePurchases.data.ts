@@ -18,7 +18,7 @@ export const subscriptionsVersusOneTimePurchases_Skill_Data = buildSkillConfig({
     ja: "サブスクリプションと買い切り",
     ko: "구독과 일회성 구매",
     tr: "Abonelik ve Tek Seferlik Satın Alma",
-    vi: "Đăng ký thuê bao và mua một lần",
+    vi: "Gói đăng ký định kỳ và mua một lần",
     ta: "சந்தாக்களும் ஒருமுறை வாங்குதலும்",
     te: "చందాలు, ఒక్కసారిగా కొనుగోలు",
     mr: "सदस्यत्व आणि एकदाच खरेदी",
