@@ -1,3 +1,6 @@
+import type {ContentBlock_Scene} from "@svitlo/engine/content";
+import {LanguageCode} from "@svitlo/engine/localization";
+
 const en = {
   header: {
     eyebrow: 'EXPLORE · COMPARE · OBSERVE',
@@ -928,7 +931,7 @@ const zh: Locale = {
   },
 };
 
-export const showcase = {
+export const showcase_Locale: Record<LanguageCode, Locale> = {
   en,
   ar,
   be,
@@ -958,4 +961,7 @@ export const showcase = {
   ur,
   vi,
   zh,
-} satisfies Record<string, Locale>;
+};
+
+export type Showcase_ContentBlock<ConfigType extends 'definition' | 'data' | 'response'> =
+  ContentBlock_Scene<ConfigType, Locale>;
