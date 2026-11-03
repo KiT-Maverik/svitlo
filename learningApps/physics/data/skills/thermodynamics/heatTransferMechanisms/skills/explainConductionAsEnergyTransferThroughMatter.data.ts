@@ -57,7 +57,7 @@ export const explainConductionAsEnergyTransferThroughMatter_Skill_Data = buildSk
       te: 'పదార్థం మొత్తం ప్రవహించకుండానే ఉష్ణ వాహకత్వం ఎలా జరుగుతుందో వివరించండి.',
       mr: 'पदार्थाचा प्रवाह नसतानाही उष्णतावहन कसे घडते ते स्पष्ट करा.',
       ms: 'Terangkan pengaliran haba tanpa perlu bahan itu mengalir.',
-      he: 'הסבר כיצד חום עובר בהולכה בלי שהחומר כולו יזרום.',
+      he: 'הסבירו כיצד חום עובר בהולכה בלי שהחומר כולו יזרום.',
       pl: 'Wyjaśnij przewodzenie ciepła bez przepływu całej substancji.',
       uk: 'Пояснюй передавання тепла без переміщення всієї речовини потоком.',
       lt: 'Paaiškink šilumos laidumą be visos medžiagos tekėjimo.',

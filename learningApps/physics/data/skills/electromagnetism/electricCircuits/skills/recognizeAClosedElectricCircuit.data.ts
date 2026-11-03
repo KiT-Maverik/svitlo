@@ -57,7 +57,7 @@ export const recognizeAClosedElectricCircuit_Skill_Data = buildSkillConfig({
       te: 'వలయంలో నిరంతర విద్యుత్ వాహక మార్గం ఉందో లేదో గుర్తించండి.',
       mr: 'परिपथात सलग विद्युतवाहक मार्ग आहे का ते ओळखा.',
       ms: 'Kenal pasti litar yang mempunyai laluan pengalir berterusan.',
-      he: 'זהה מעגל שיש בו מסלול הולכה רציף.',
+      he: 'זהו מעגל שיש בו מסלול הולכה רציף.',
       pl: 'Rozpoznaj, czy obwód ma nieprzerwaną drogę przewodzącą.',
       uk: 'Визначай, чи є в колі безперервний провідний шлях.',
       lt: 'Atpažink grandinę su nenutrūkstamu laidžiu keliu.',

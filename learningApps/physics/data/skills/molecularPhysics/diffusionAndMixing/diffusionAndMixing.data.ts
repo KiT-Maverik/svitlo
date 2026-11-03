@@ -62,7 +62,7 @@ export const diffusionAndMixing_SkillGroup_Data = buildSkillGroupConfig({
       te: 'కణాల యాదృచ్ఛిక చలనం పదార్థాలు వ్యాపించి కలిసేలా ఎలా చేస్తుందో తెలుసుకోండి.',
       mr: 'कणांची अनियमित हालचाल पदार्थांना पसरवते आणि मिसळते हे जाणून घ्या.',
       ms: 'Ketahui bagaimana gerakan rawak zarah menyebabkan bahan tersebar dan bercampur.',
-      he: 'גלה כיצד תנועה אקראית של חלקיקים גורמת לחומרים להתפשט ולהתערבב.',
+      he: 'גלו כיצד תנועה אקראית של חלקיקים גורמת לחומרים להתפשט ולהתערבב.',
       pl: 'Dowiedz się, jak losowy ruch cząstek prowadzi do rozprzestrzeniania i mieszania substancji.',
       uk: 'Дізнайся, як хаотичний рух частинок спричиняє поширення й змішування речовин.',
       lt: 'Sužinok, kaip atsitiktinis dalelių judėjimas skatina medžiagų sklidimą ir maišymąsi.',

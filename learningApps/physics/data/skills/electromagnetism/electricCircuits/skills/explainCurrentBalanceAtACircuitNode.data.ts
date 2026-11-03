@@ -57,7 +57,7 @@ export const explainCurrentBalanceAtACircuitNode_Skill_Data = buildSkillConfig({
       te: 'స్థిరస్థితిలో కూడలిలోకి వచ్చే మొత్తం ప్రవాహం బయటకు వెళ్లే ప్రవాహంతో ఎందుకు సమానమో వివరించండి.',
       mr: 'स्थिर स्थितीत संधिबिंदूत येणारा एकूण प्रवाह आणि बाहेर जाणारा एकूण प्रवाह समान का असतो ते स्पष्ट करा.',
       ms: 'Terangkan mengapa jumlah arus masuk ke nod sama dengan arus keluar dalam keadaan mantap.',
-      he: 'הסבר מדוע במצב יציב סכום הזרמים הנכנסים לצומת שווה לסכום היוצאים.',
+      he: 'הסבירו מדוע במצב יציב סכום הזרמים הנכנסים לצומת שווה לסכום היוצאים.',
       pl: 'Wyjaśnij, dlaczego w stanie ustalonym suma prądów wpływających do węzła równa się sumie wypływających.',
       uk: 'Пояснюй, чому в усталеному режимі сума струмів, що входять у вузол, дорівнює сумі струмів, які виходять.',
       lt: 'Paaiškink, kodėl nusistovėjusiu režimu į mazgą įtekančių srovių suma lygi ištekančių sumai.',

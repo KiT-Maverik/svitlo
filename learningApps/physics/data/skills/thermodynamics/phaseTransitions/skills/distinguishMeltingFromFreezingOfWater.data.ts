@@ -57,7 +57,7 @@ export const distinguishMeltingFromFreezingOfWater_Skill_Data = buildSkillConfig
       te: 'మంచు కరగడం, ద్రవ నీరు గడ్డకట్టడం మధ్య తేడాను గుర్తించండి.',
       mr: 'बर्फ वितळणे आणि द्रवरूप पाणी गोठणे यांतील फरक ओळखा.',
       ms: 'Bezakan ais mencair daripada air cecair membeku.',
-      he: 'הבחן בין קרח שנמס לבין מים נוזליים שקופאים.',
+      he: 'הבחינו בין קרח שנמס לבין מים נוזליים שקופאים.',
       pl: 'Odróżnij topniejący lód od zamarzającej wody.',
       uk: 'Розрізняй танення льоду та замерзання рідкої води.',
       lt: 'Atskirk ledo tirpimą nuo skysto vandens užšalimo.',

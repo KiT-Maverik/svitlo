@@ -57,7 +57,7 @@ export const distinguishEvaporationFromBoiling_Skill_Data = buildSkillConfig({
       te: 'మరిగేటప్పుడు ద్రవంలో ఏర్పడే బుడగలను ఉపరితల ఆవిరీభవనం నుంచి వేరు చేయండి.',
       mr: 'उकळताना निर्माण होणारे बुडबुडे आणि पृष्ठभागावरून होणारे बाष्पीभवन वेगळे ओळखा.',
       ms: 'Bezakan gelembung yang terbentuk semasa mendidih daripada penyejatan di permukaan.',
-      he: 'הבחן בין בועות הנוצרות ברתיחה לבין אידוי מפני הנוזל.',
+      he: 'הבחינו בין בועות הנוצרות ברתיחה לבין אידוי מפני הנוזל.',
       pl: 'Odróżnij pęcherzyki powstające podczas wrzenia od parowania z powierzchni.',
       uk: 'Розрізняй утворення бульбашок під час кипіння та випаровування з поверхні.',
       lt: 'Atskirk verdant susidarančius burbuliukus nuo garavimo paviršiuje.',

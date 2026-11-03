@@ -65,7 +65,7 @@ export const phaseTransitions_SkillGroup_Data = buildSkillGroupConfig({
       te: 'వేడిచేయడం, చల్లబరచడం ద్వారా పదార్థ స్థితి ఎలా మారుతుందో తెలుసుకోండి.',
       mr: 'तापवणे आणि थंड करणे यांमुळे पदार्थाची अवस्था कशी बदलते ते जाणून घ्या.',
       ms: 'Ketahui bagaimana pemanasan dan penyejukan boleh mengubah keadaan fizikal jirim.',
-      he: 'גלה כיצד חימום וקירור יכולים לשנות את מצב הצבירה של חומר.',
+      he: 'גלו כיצד חימום וקירור יכולים לשנות את מצב הצבירה של חומר.',
       pl: 'Dowiedz się, jak ogrzewanie i chłodzenie zmieniają stan skupienia materii.',
       uk: 'Дізнайся, як нагрівання та охолодження можуть змінювати агрегатний стан речовини.',
       lt: 'Sužinok, kaip šildymas ir vėsinimas keičia medžiagos agregatinę būseną.',

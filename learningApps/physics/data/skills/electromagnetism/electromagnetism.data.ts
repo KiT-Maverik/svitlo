@@ -76,7 +76,7 @@ export const electromagnetism_SkillDomain_Data = buildSkillDomainConfig({
       te: 'విద్యుదావేశాలు, విద్యుత్ ప్రవాహాలు, అయస్కాంత క్షేత్రాలు ఎలా పరస్పరం పనిచేస్తాయో తెలుసుకోండి.',
       mr: 'विद्युतभार, विद्युतप्रवाह आणि चुंबकीय क्षेत्र यांचा परस्पर संबंध शोधा.',
       ms: 'Terokai bagaimana cas elektrik, arus dan medan magnet saling berinteraksi.',
-      he: 'חקור כיצד מטענים חשמליים, זרמים ושדות מגנטיים פועלים זה על זה.',
+      he: 'חקרו כיצד מטענים חשמליים, זרמים ושדות מגנטיים פועלים זה על זה.',
       pl: 'Poznaj wzajemne oddziaływania ładunków, prądów elektrycznych i pól magnetycznych.',
       uk: 'Досліджуй, як взаємодіють електричні заряди, струми й магнітні поля.',
       lt: 'Tyrinėk, kaip sąveikauja elektros krūviai, srovės ir magnetiniai laukai.',

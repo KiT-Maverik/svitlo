@@ -57,7 +57,7 @@ export const explainElectricVoltage_Skill_Data = buildSkillConfig({
       te: 'వోల్టేజీని రెండు బిందువుల మధ్య విద్యుత్ విభవ భేదంగా వివరించండి.',
       mr: 'दोन बिंदूंमधील विद्युत विभवातील फरक म्हणून विभवांतर स्पष्ट करा.',
       ms: 'Terangkan voltan sebagai beza keupayaan elektrik antara dua titik.',
-      he: 'הסבר מתח כהפרש פוטנציאלים חשמליים בין שתי נקודות.',
+      he: 'הסבירו מתח כהפרש פוטנציאלים חשמליים בין שתי נקודות.',
       pl: 'Wyjaśnij napięcie jako różnicę potencjałów elektrycznych między dwoma punktami.',
       uk: 'Пояснюй напругу як різницю електричних потенціалів між двома точками.',
       lt: 'Paaiškink įtampą kaip elektrinio potencialo skirtumą tarp dviejų taškų.',

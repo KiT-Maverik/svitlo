@@ -57,7 +57,7 @@ export const distinguishTemperatureFromTheSensationOfWarmth_Skill_Data = buildSk
       te: 'ఒకే ఉష్ణోగ్రత గల రెండు వస్తువులు తాకినప్పుడు వేరుగా ఎందుకు అనిపించవచ్చో వివరించండి.',
       mr: 'समान तापमानाच्या दोन वस्तू स्पर्शाला वेगळ्या का वाटू शकतात ते स्पष्ट करा.',
       ms: 'Terangkan mengapa dua objek pada suhu sama boleh terasa berbeza apabila disentuh.',
-      he: 'הסבר מדוע שני עצמים באותה טמפרטורה יכולים להרגיש שונים במגע.',
+      he: 'הסבירו מדוע שני עצמים באותה טמפרטורה יכולים להרגיש שונים במגע.',
       pl: 'Wyjaśnij, dlaczego dwa przedmioty o tej samej temperaturze mogą wydawać się inne w dotyku.',
       uk: 'Пояснюй, чому два предмети однакової температури можуть відчуватися по-різному.',
       lt: 'Paaiškink, kodėl du vienodos temperatūros daiktai liečiant gali atrodyti skirtingi.',

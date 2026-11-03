@@ -57,7 +57,7 @@ export const identifyAConsumerOfElectricalEnergy_Skill_Data = buildSkillConfig({
       te: 'విద్యుత్ శక్తిని ఇతర రూపాలుగా మార్చే లోడ్‌లను గుర్తించండి.',
       mr: 'विद्युतऊर्जा इतर प्रकारांत बदलणारे भार ओळखा.',
       ms: 'Kenal pasti beban yang menukar tenaga elektrik kepada bentuk lain.',
-      he: 'זהה צרכנים שממירים אנרגיה חשמלית לצורות אחרות.',
+      he: 'זהו צרכנים שממירים אנרגיה חשמלית לצורות אחרות.',
       pl: 'Rozpoznaj odbiorniki zamieniające energię elektryczną w inne formy.',
       uk: 'Розпізнавай навантаження, що перетворюють електричну енергію на інші форми.',
       lt: 'Atpažink imtuvus, kurie elektrinę energiją paverčia kitomis formomis.',

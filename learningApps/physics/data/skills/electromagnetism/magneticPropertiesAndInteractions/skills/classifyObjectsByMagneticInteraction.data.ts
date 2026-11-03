@@ -57,7 +57,7 @@ export const classifyObjectsByMagneticInteraction_Skill_Data = buildSkillConfig(
       te: 'వస్తువులు చూపే అయస్కాంత ప్రతిస్పందన ఆధారంగా వర్గీకరించండి.',
       mr: 'वस्तूंच्या चुंबकीय प्रतिसादानुसार त्यांचे वर्गीकरण करा.',
       ms: 'Kelaskan objek mengikut tindak balas magnet yang ditunjukkan.',
-      he: 'מיין עצמים לפי התגובה המגנטית שהם מציגים.',
+      he: 'מיינו עצמים לפי התגובה המגנטית שהם מציגים.',
       pl: 'Klasyfikuj przedmioty według ich reakcji na pole magnetyczne.',
       uk: 'Групуй тіла за тим, як вони реагують на магнітне поле.',
       lt: 'Klasifikuok kūnus pagal jų magnetinį atsaką.',

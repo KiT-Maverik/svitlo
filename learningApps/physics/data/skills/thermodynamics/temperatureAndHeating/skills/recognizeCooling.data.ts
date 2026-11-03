@@ -57,7 +57,7 @@ export const recognizeCooling_Skill_Data = buildSkillConfig({
       te: 'చల్లబడడాన్ని ఉష్ణ స్థితిలోని భౌతిక మార్పుగా గుర్తించండి.',
       mr: 'थंड होणे हा उष्णतास्थितीतील भौतिक बदल आहे हे ओळखा.',
       ms: 'Kenal pasti penyejukan sebagai perubahan fizikal pada keadaan terma.',
-      he: 'זהה התקררות כשינוי פיזיקלי במצב התרמי של גוף.',
+      he: 'זהו התקררות כשינוי פיזיקלי במצב התרמי של גוף.',
       pl: 'Rozpoznaj ochładzanie jako fizyczną zmianę stanu cieplnego.',
       uk: 'Визначай охолодження як фізичну зміну теплового стану.',
       lt: 'Atpažink vėsimą kaip fizikinį šiluminės būsenos pokytį.',

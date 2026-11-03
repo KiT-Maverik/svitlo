@@ -57,7 +57,7 @@ export const identifyTheHeatTransferMechanismFromAPhysicalSituation_Skill_Data =
       te: 'ఒక పరిస్థితిలో ఏ ఉష్ణ బదిలీ ప్రక్రియలు పనిచేస్తున్నాయో గుర్తించండి.',
       mr: 'दिलेल्या परिस्थितीत कोणत्या उष्णता हस्तांतरण प्रक्रिया घडतात ते ओळखा.',
       ms: 'Kenal pasti proses pemindahan haba yang berlaku dalam sesuatu keadaan.',
-      he: 'זהה אילו תהליכי מעבר חום מתרחשים במצב נתון.',
+      he: 'זהו אילו תהליכי מעבר חום מתרחשים במצב נתון.',
       pl: 'Rozpoznaj, jakie procesy przekazywania ciepła zachodzą w danej sytuacji.',
       uk: 'Розпізнавай, які процеси теплопередачі діють у конкретній ситуації.',
       lt: 'Atpažink, kokie šilumos perdavimo procesai vyksta tam tikroje situacijoje.',

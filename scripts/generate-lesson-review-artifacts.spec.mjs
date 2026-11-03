@@ -51,7 +51,7 @@ test('generates locale-specific Markdown and records PR-scoped paths', () => set
   assert.deepEqual(result, { discoveredLessons: 1, generated: 2, failures: 0 });
   assert.equal(manifest.generated[0].path, '.agent-ci-artifacts/lessons/playground/c/d3048d21-8690-5255-b62c-984c69ac272c/en.md');
   assert.equal(manifest.generated[0].kind, 'lesson');
-  assert.equal(fs.readFileSync(path.join(output, 'lessons/playground/c/d3048d21-8690-5255-b62c-984c69ac272c/uk.md'), 'utf8'), '# d3048d21-8690-5255-b62c-984c69ac272c: uk\n');
+  assert.equal(fs.readFileSync(path.join(output, 'lessons/playground/c/d3048d21-8690-5255-b62c-984c69ac272c/uk.md'), 'utf8'), '# c/d3048d21-8690-5255-b62c-984c69ac272c: uk\n');
   assert.equal(fs.readFileSync(path.join(root, 'learningApps/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/howLightMoves.data.ts'), 'utf8'), 'export const lesson = {};\n');
 }));
 

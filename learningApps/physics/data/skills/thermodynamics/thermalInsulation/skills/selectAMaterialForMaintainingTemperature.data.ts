@@ -57,7 +57,7 @@ export const selectAMaterialForMaintainingTemperature_Skill_Data = buildSkillCon
       te: 'వాస్తవ అవసరానికి అనువైన ఉష్ణ నిరోధక పదార్థాన్ని ఎంపిక చేయండి.',
       mr: 'प्रत्यक्ष तापमान नियंत्रणाच्या गरजेसाठी उष्णतारोधक पदार्थ निवडा.',
       ms: 'Pilih bahan penebat bagi keperluan praktikal mengawal suhu.',
-      he: 'בחר חומר מבודד לצורך מעשי של שמירה על טמפרטורה.',
+      he: 'בחרו חומר מבודד לצורך מעשי של שמירה על טמפרטורה.',
       pl: 'Wybierz materiał izolacyjny do praktycznego zadania utrzymywania temperatury.',
       uk: 'Вибирай ізоляційний матеріал для практичного завдання зі збереження температури.',
       lt: 'Pasirink izoliacinę medžiagą praktiniam temperatūros palaikymo tikslui.',

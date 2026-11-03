@@ -57,7 +57,7 @@ export const recognizeMagneticAttraction_Skill_Data = buildSkillConfig({
       te: 'అయస్కాంతాలు ఒకదానినొకటి ఆకర్షించే పరిస్థితులను గుర్తించండి.',
       mr: 'चुंबक एकमेकांना आकर्षित करतात अशा परिस्थिती ओळखा.',
       ms: 'Kenal pasti keadaan apabila magnet saling menarik.',
-      he: 'זהה מצבים שבהם מגנטים מושכים זה את זה.',
+      he: 'זהו מצבים שבהם מגנטים מושכים זה את זה.',
       pl: 'Rozpoznaj sytuacje, w których magnesy się przyciągają.',
       uk: 'Визначай ситуації, коли магніти притягуються.',
       lt: 'Atpažink situacijas, kai magnetai vienas kitą traukia.',

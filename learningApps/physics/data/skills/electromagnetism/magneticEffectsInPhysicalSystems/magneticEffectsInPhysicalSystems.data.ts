@@ -62,7 +62,7 @@ export const magneticEffectsInPhysicalSystems_SkillGroup_Data = buildSkillGroupC
       te: 'భౌతిక వ్యవస్థలపై అయస్కాంత క్షేత్రాల ప్రభావాలను అన్వేషించండి.',
       mr: 'भौतिक प्रणालींवरील चुंबकीय क्षेत्रांचे परिणाम शोधा.',
       ms: 'Terokai kesan medan magnet terhadap sistem fizikal.',
-      he: 'חקור את השפעת השדות המגנטיים על מערכות פיזיקליות.',
+      he: 'חקרו את השפעת השדות המגנטיים על מערכות פיזיקליות.',
       pl: 'Poznaj wpływ pól magnetycznych na układy fizyczne.',
       uk: 'Досліджуй вплив магнітних полів на фізичні системи.',
       lt: 'Tyrinėk magnetinių laukų poveikį fizikinėms sistemoms.',

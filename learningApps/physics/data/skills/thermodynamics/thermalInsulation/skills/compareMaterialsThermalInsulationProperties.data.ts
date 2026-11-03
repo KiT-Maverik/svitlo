@@ -57,7 +57,7 @@ export const compareMaterialsThermalInsulationProperties_Skill_Data = buildSkill
       te: 'అవాంఛిత ఉష్ణ బదిలీని ఎంతగా తగ్గిస్తాయనే దాని ఆధారంగా పదార్థాలను పోల్చండి.',
       mr: 'नको असलेले उष्णता हस्तांतरण किती कमी करतात यावरून पदार्थांची तुलना करा.',
       ms: 'Bandingkan bahan mengikut keupayaannya mengurangkan pemindahan haba yang tidak dikehendaki.',
-      he: 'השווה חומרים לפי יכולתם להפחית מעבר חום לא רצוי.',
+      he: 'השוו חומרים לפי יכולתם להפחית מעבר חום לא רצוי.',
       pl: 'Porównaj materiały według tego, jak ograniczają niepożądane przekazywanie ciepła.',
       uk: 'Порівнюй матеріали за тим, наскільки вони зменшують небажану теплопередачу.',
       lt: 'Palygink medžiagas pagal tai, kaip jos mažina nepageidaujamą šilumos perdavimą.',

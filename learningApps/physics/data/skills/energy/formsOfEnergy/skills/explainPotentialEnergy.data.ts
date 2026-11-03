@@ -48,7 +48,7 @@ export const explainPotentialEnergy_Skill_Data = buildSkillConfig({
       ur: "سمجھیں کہ مخفی توانائی ترتیب اور منتخب حوالہ جاتی سطح پر منحصر ہے۔",
       id: "Pahami energi potensial berkaitan dengan konfigurasi dan tingkat acuan terpilih.",
       de: "Verstehe potenzielle Energie als abhängig von der Anordnung und einem gewählten Bezugsniveau.",
-      ja: "位置エネルギーが配置と選んだ基準の高さに関係すると理解しよう。",
+      ja: "位置エネルギーが系の配置や相互作用、選んだ基準に関係すると理解しよう。",
       ko: "퍼텐셜 에너지가 배치와 선택한 기준점에 관련됨을 이해해 보세요.",
       tr: "Potansiyel enerjinin düzenlemeye ve seçilen referans düzeyine bağlı olduğunu anla.",
       vi: "Hiểu thế năng liên quan đến cấu hình và mức tham chiếu đã chọn.",

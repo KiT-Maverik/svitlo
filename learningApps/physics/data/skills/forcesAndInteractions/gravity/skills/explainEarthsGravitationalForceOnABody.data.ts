@@ -51,7 +51,7 @@ export const explainEarthsGravitationalForceOnABody_Skill_Data = buildSkillConfi
       ja: "地球の重力が物体に力を及ぼす理由を理解しよう。",
       ko: "지구 중력이 물체에 힘을 가하는 이유를 이해해 보세요.",
       tr: "Dünya'nın kütle çekiminin bir cisme neden kuvvet uyguladığını anla.",
-      vi: "Hiểu vì sao lực hấp dẫn của Trái Đất tác dụng lực lên một vật.",
+      vi: "Giải thích lực hấp dẫn của Trái Đất tác dụng lên vật phụ thuộc vào khối lượng và trường hấp dẫn như thế nào.",
       ta: "பூமியின் ஈர்ப்பு ஒரு பொருளின் மீது ஏன் விசையைச் செலுத்துகிறது என்பதைப் புரிந்துகொள்.",
       te: "భూమి గురుత్వాకర్షణ వస్తువుపై ఎందుకు బలాన్ని ప్రయోగిస్తుందో అర్థం చేసుకోండి.",
       mr: "पृथ्वीचे गुरुत्वाकर्षण वस्तूवर बल का लावते हे समजून घ्या.",

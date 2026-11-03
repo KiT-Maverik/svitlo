@@ -57,7 +57,7 @@ export const explainThePhysicalRoleOfAMagneticFieldInASystem_Skill_Data = buildS
       te: 'అయస్కాంత క్షేత్రం చలనాన్ని లేదా ఇతర భౌతిక స్థితిని ఎలా ప్రభావితం చేస్తుందో వివరించండి.',
       mr: 'चुंबकीय क्षेत्र गती किंवा इतर भौतिक स्थितीवर कसा परिणाम करते ते स्पष्ट करा.',
       ms: 'Terangkan bagaimana medan magnet mempengaruhi gerakan atau keadaan fizikal lain.',
-      he: 'הסבר כיצד שדה מגנטי משפיע על תנועה או על מצב פיזיקלי אחר.',
+      he: 'הסבירו כיצד שדה מגנטי משפיע על תנועה או על מצב פיזיקלי אחר.',
       pl: 'Wyjaśnij, jak pole magnetyczne wpływa na ruch lub inny stan fizyczny.',
       uk: 'Пояснюй, як магнітне поле впливає на рух або інший фізичний стан.',
       lt: 'Paaiškink, kaip magnetinis laukas veikia judėjimą ar kitą fizikinę būseną.',
