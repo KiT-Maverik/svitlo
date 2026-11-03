@@ -42,7 +42,7 @@ export const foreignDirectInvestment_Skill_Data = buildSkillConfig({
       hi: "ऐसे निवेश पहचानें जिनमें विदेशी व्यवसाय में दीर्घकालिक भूमिका शामिल हो।",
       es: "Reconoce la inversión que implica una participación duradera en un negocio extranjero.",
       ar: "تعرّف الاستثمار الذي ينطوي على دور مستمر في شركة أجنبية.",
-      fr: "Reconnaissez les investissements impliquant une participation durable dans une entreprise étrangère.",
+      fr: "Reconnais les investissements impliquant une participation durable dans une entreprise étrangère.",
       bn: "বিদেশি ব্যবসায় স্থায়ী ভূমিকা তৈরি করে এমন বিনিয়োগ চিনে নাও।",
       pt: "Reconheça investimentos com participação duradoura em uma empresa estrangeira.",
       ur: "وہ سرمایہ کاری پہچانیں جس میں بیرون ملک کاروبار میں دیرپا کردار شامل ہو۔",

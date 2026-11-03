@@ -42,7 +42,7 @@ export const absoluteAdvantage_Skill_Data = buildSkillConfig({
       hi: "पहचानें कि कौन कम संसाधनों से कोई वस्तु बना सकता है।",
       es: "Reconoce quién puede producir algo utilizando menos recursos.",
       ar: "حدّد من يستطيع إنتاج شيء ما باستخدام موارد أقل.",
-      fr: "Repérez qui peut produire un bien avec moins de ressources.",
+      fr: "Repère qui peut produire un bien avec moins de ressources.",
       bn: "কম সম্পদ ব্যবহার করে কে কোনো পণ্য উৎপাদন করতে পারে তা চিহ্নিত করো।",
       pt: "Reconheça quem consegue produzir algo com menos recursos.",
       ur: "پہچانیں کہ کون کم وسائل سے کوئی چیز بنا سکتا ہے۔",
