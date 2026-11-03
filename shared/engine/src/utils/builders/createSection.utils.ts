@@ -106,7 +106,7 @@ function snapshot<Content extends SectionContentBuilders>(content: Content): Con
     }
     result[type] = Object.freeze(entries);
   }
-  return Object.freeze(result) as Content;
+  return Object.freeze(result) as unknown as Content;
 }
 
 function flatten(content: SectionContentBuilders): Entry[] {
@@ -169,7 +169,7 @@ function makeSection<Content extends SectionContentBuilders>(
       const next = {
         ...content,
         [type]: { ...content[type], [alias]: block },
-      } as WithAddedBlock<Content, typeof type, typeof alias>;
+      } as unknown as WithAddedBlock<Content, typeof type, typeof alias>;
       return makeSection(current, next, priority, disabled);
     },
     updateBlock(type, alias, update) {
@@ -182,7 +182,7 @@ function makeSection<Content extends SectionContentBuilders>(
       const next = {
         ...content,
         [type]: { ...content[type], [alias]: updated },
-      } as Content;
+      } as unknown as Content;
       return makeSection(current, next, priority, disabled);
     },
     disable() {
