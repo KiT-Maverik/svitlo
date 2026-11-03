@@ -60,7 +60,7 @@ export const ancientAmericanRiverAndSeaExchange_Skill_Data = buildSkillConfig({
       pl: "Prześledź wczesne szlaki handlowe rzeczne i morskie obu Ameryk.",
       uk: "Простеж ранні торговельні зв’язки річками й морями Америк.",
       lt: "Sek ankstyvuosius prekybos ryšius Amerikų upėmis ir jūromis.",
-      lv: "Izseko agrīnos tirdzniecības saites pa Ameriku upēm un jūrām.",
+      lv: "Izseko agrīnajām tirdzniecības saitēm pa Ameriku upēm un jūrām.",
       et: "Jälgi varaseid kaubandussidemeid mööda Ameerika jõgesid ja meresid.",
       be: "Прасачы раньнія гандлёвыя сувязі рэкамі і марамі Амэрык.",
       ka: "მიჰყევი ძველი ამერიკის მდინარეებითა და ზღვებით ადრეულ სავაჭრო კავშირებს.",
