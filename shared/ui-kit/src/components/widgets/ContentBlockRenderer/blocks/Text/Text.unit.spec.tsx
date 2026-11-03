@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { Text, type TextProps } from './Text';
-import styles from './Text.module.css';
+import styles from '#utils/styledText/StyledText.module.css';
 
 describe('Text', () => {
   it('renders marker values without service syntax when no styling is supplied', () => {

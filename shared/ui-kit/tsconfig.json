@@ -17,7 +17,8 @@
       "#layout/*": ["src/components/layout/*"],
       "#widgets/*": ["src/components/widgets/*"],
       "#testing/*": ["src/testing/*"],
-      "#types/*": ["src/types/*"]
+      "#types/*": ["src/types/*"],
+      "#utils/*": ["src/utils/*"]
     },
     "jsx": "react-jsx",
     "types": ["node", "vitest/globals"]

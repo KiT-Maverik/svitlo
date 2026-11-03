@@ -1,4 +1,4 @@
-export type TextPart =
+export type StyledTextPart =
   | { kind: 'text'; value: string }
   | { kind: 'fragment'; id: string; value: string };
 
@@ -12,8 +12,8 @@ function readableFallback(source: string): string {
 }
 
 /** Parse published inline markers without making malformed content disappear. */
-export function parseText(text: string): TextPart[] {
-  const parts: TextPart[] = [];
+export function parseStyledText(text: string): StyledTextPart[] {
+  const parts: StyledTextPart[] = [];
   let cursor = 0;
 
   while (cursor < text.length) {
