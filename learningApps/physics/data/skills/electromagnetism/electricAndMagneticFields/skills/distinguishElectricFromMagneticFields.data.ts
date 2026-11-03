@@ -57,7 +57,7 @@ export const distinguishElectricFromMagneticFields_Skill_Data = buildSkillConfig
       te: 'నిశ్చల ఆవేశంపై విద్యుత్ బలాన్ని, కదిలే ఆవేశంపై అయస్కాంత బలాన్ని వేరు చేయండి.',
       mr: 'स्थिर भारावरील विद्युतबल आणि गतिमान भारावरील चुंबकीय बल यांत फरक ओळखा.',
       ms: 'Bezakan daya elektrik pada cas pegun daripada daya magnet pada cas bergerak.',
-      he: 'הבחן בין כוח חשמלי על מטען נייח לבין כוח מגנטי על מטען נע.',
+      he: 'הבחינו בין כוח חשמלי על מטען נייח לבין כוח מגנטי על מטען נע.',
       pl: 'Odróżnij siły elektryczne działające na ładunki nieruchome od magnetycznych na ładunki w ruchu.',
       uk: 'Розрізняй сили електричного поля на нерухомі заряди й магнітні сили на рухомі заряди.',
       lt: 'Atskirk elektrines jėgas nejudantiems krūviams nuo magnetinių jėgų judantiems krūviams.',

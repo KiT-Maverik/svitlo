@@ -57,7 +57,7 @@ export const explainDiffusion_Skill_Data = buildSkillConfig({
       te: 'కలపకుండానే విసరణ ఎలా జరుగుతుందో వివరించండి.',
       mr: 'ढवळल्याशिवायही प्रसरण कसे होऊ शकते ते स्पष्ट करा.',
       ms: 'Terangkan bagaimana resapan boleh berlaku tanpa dikacau.',
-      he: 'הסבר כיצד דיפוזיה יכולה להתרחש גם ללא ערבוב.',
+      he: 'הסבירו כיצד דיפוזיה יכולה להתרחש גם ללא ערבוב.',
       pl: 'Wyjaśnij, jak dyfuzja zachodzi bez mieszania.',
       uk: 'Пояснюй, як дифузія відбувається навіть без перемішування.',
       lt: 'Paaiškink, kaip difuzija vyksta net nemaišant.',

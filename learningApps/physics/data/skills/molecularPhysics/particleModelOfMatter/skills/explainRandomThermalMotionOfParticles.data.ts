@@ -57,7 +57,7 @@ export const explainRandomThermalMotionOfParticles_Skill_Data = buildSkillConfig
       te: 'కణాలు భిన్నమైన మార్గాల్లో, వేగాల్లో నిరంతరం ఎందుకు కదులుతాయో అర్థం చేసుకోండి.',
       mr: 'कण वेगवेगळ्या प्रकारे व वेगाने सतत का हलतात ते समजून घ्या.',
       ms: 'Fahami mengapa zarah sentiasa bergerak dengan cara dan kelajuan yang berbeza.',
-      he: 'הבן מדוע חלקיקים נעים כל הזמן בדרכים ובמהירויות שונות.',
+      he: 'הבינו מדוע חלקיקים נעים כל הזמן בדרכים ובמהירויות שונות.',
       pl: 'Zrozum, dlaczego cząstki poruszają się stale na różne sposoby i z różnymi prędkościami.',
       uk: 'Зрозумій, чому частинки безперервно рухаються по-різному та з різними швидкостями.',
       lt: 'Suprask, kodėl dalelės nuolat juda įvairiais būdais ir greičiais.',

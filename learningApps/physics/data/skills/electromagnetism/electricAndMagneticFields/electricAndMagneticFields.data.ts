@@ -64,7 +64,7 @@ export const electricAndMagneticFields_SkillGroup_Data = buildSkillGroupConfig({
       te: 'విద్యుత్, అయస్కాంత క్షేత్రాలు వేర్వేరు రకాల బలాలను ఎలా కలిగిస్తాయో తెలుసుకోండి.',
       mr: 'विद्युत आणि चुंबकीय क्षेत्रे वेगवेगळी बले कशी लावतात ते जाणून घ्या.',
       ms: 'Ketahui bagaimana medan elektrik dan magnet mengenakan daya yang berbeza.',
-      he: 'למד כיצד שדות חשמליים ומגנטיים מפעילים סוגים שונים של כוחות.',
+      he: 'למדו כיצד שדות חשמליים ומגנטיים מפעילים סוגים שונים של כוחות.',
       pl: 'Dowiedz się, jak pola elektryczne i magnetyczne wywierają różne rodzaje sił.',
       uk: 'Досліджуй, як електричні й магнітні поля чинять різні види сил.',
       lt: 'Sužinok, kaip elektriniai ir magnetiniai laukai veikia skirtingomis jėgomis.',

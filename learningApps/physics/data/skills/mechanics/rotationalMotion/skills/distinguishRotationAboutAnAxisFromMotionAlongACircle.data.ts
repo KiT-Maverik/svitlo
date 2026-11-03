@@ -31,7 +31,7 @@ export const distinguishRotationAboutAnAxisFromMotionAlongACircle_Skill_Data = b
     et: "Ümber telje pöörlemise ja ringjoonel liikumise eristamine",
     be: "Адрозьніваць кручэньне вакол восі ад руху па коле",
     ka: "ღერძის გარშემო ბრუნვისა და წრიულ გზაზე მოძრაობის განსხვავება",
-    kk: "Ось бойымен айналуды шеңбер бойымен қозғалыстан ажырату",
+    kk: "Өз осінің айналасында айналуды шеңбер бойымен қозғалыстан ажырату",
     qm: "Oq etrafında aylanuvnı daire boyu areketten ayırmaq",
   },
   description: {

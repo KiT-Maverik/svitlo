@@ -6,7 +6,7 @@ export const recognizeLiquidPressureActingInDifferentDirections_Skill_Data = bui
   name: {
     en: "Recognize liquid pressure acting in different directions",
     zh: "认识液体压强作用于不同方向",
-    hi: "द्रव के दाब को विभिन्न दिशाओं में कार्य करते पहचानें",
+    hi: "द्रव के दाब का विभिन्न दिशाओं में प्रभाव पहचानना",
     es: "Reconocer la presión de los líquidos en distintas direcciones",
     ar: "تمييز تأثير ضغط السائل في اتجاهات مختلفة",
     fr: "Reconnaître la pression d'un liquide dans plusieurs directions",

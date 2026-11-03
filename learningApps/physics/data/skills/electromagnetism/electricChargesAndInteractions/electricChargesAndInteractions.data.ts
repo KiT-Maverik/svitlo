@@ -64,7 +64,7 @@ export const electricChargesAndInteractions_SkillGroup_Data = buildSkillGroupCon
       te: 'విద్యుదావేశాలు ఎలా బదిలీ అయి బలాలను కలిగిస్తాయో తెలుసుకోండి.',
       mr: 'विद्युतभार कसे हस्तांतरित होतात आणि बले कशी लावतात ते जाणून घ्या.',
       ms: 'Ketahui bagaimana cas elektrik dipindahkan dan mengenakan daya.',
-      he: 'למד כיצד מטענים חשמליים מועברים ומפעילים כוחות.',
+      he: 'למדו כיצד מטענים חשמליים מועברים ומפעילים כוחות.',
       pl: 'Poznaj, jak ładunki elektryczne są przenoszone i wywierają siły.',
       uk: 'Дізнайся, як передаються електричні заряди та як вони діють силами.',
       lt: 'Sužinok, kaip perduodami elektros krūviai ir kaip jie veikia jėgomis.',

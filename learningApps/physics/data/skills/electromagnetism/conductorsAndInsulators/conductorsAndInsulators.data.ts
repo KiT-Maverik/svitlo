@@ -63,7 +63,7 @@ export const conductorsAndInsulators_SkillGroup_Data = buildSkillGroupConfig({
       te: 'కొన్ని పదార్థాల్లో విద్యుదావేశాలు మరింత సులభంగా ఎందుకు కదులుతాయో తెలుసుకోండి.',
       mr: 'काही पदार्थांत विद्युतभार इतरांपेक्षा सहज का हलतो ते शोधा.',
       ms: 'Ketahui mengapa cas bergerak lebih mudah dalam sesetengah bahan.',
-      he: 'גלה מדוע מטענים נעים בקלות רבה יותר בחומרים מסוימים.',
+      he: 'גלו מדוע מטענים נעים בקלות רבה יותר בחומרים מסוימים.',
       pl: 'Poznaj, dlaczego ładunki poruszają się łatwiej w jednych materiałach niż w innych.',
       uk: 'Досліджуй, чому в одних матеріалах заряди рухаються легше, ніж в інших.',
       lt: 'Sužinok, kodėl krūviai vienose medžiagose juda lengviau nei kitose.',

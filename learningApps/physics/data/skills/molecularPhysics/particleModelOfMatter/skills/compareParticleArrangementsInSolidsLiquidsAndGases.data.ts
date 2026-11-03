@@ -57,7 +57,7 @@ export const compareParticleArrangementsInSolidsLiquidsAndGases_Skill_Data = bui
       te: 'ఘనాలు, ద్రవాలు, వాయువుల్లో కణాలు ఎలా అమరుతాయో పోల్చండి.',
       mr: 'घन, द्रव आणि वायू यांतील कणांची मांडणी तुलना करा.',
       ms: 'Bandingkan susunan zarah dalam pepejal, cecair dan gas.',
-      he: 'השווה את סידור החלקיקים במוצקים, בנוזלים ובגזים.',
+      he: 'השוו את סידור החלקיקים במוצקים, בנוזלים ובגזים.',
       pl: 'Porównaj ułożenie cząstek w ciałach stałych, cieczach i gazach.',
       uk: 'Порівнюй розташування частинок у твердих тілах, рідинах і газах.',
       lt: 'Palygink dalelių išsidėstymą kietosiose, skystosiose ir dujinėse medžiagose.',

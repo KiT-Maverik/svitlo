@@ -57,7 +57,7 @@ export const energy_SkillDomain_Data = buildSkillDomainConfig({
       bn: "ভৌত ব্যবস্থায় শক্তি কীভাবে সঞ্চিত, স্থানান্তরিত, রূপান্তরিত ও সংরক্ষিত হয় তা জানো।",
       pt: "Explore como a energia é armazenada, transferida, transformada e conservada em sistemas físicos.",
       ur: "جانیں کہ طبیعی نظاموں میں توانائی کیسے ذخیرہ، منتقل، تبدیل اور محفوظ رہتی ہے۔",
-      id: "Jelajahi bagaimana energi disimpan, ditransfer, diubah bentuknya, dan dilestarikan dalam sistem fisik.",
+      id: "Jelajahi bagaimana energi disimpan, dipindahkan, diubah bentuknya, dan tetap kekal dalam sistem fisik.",
       de: "Erkunde, wie Energie in physikalischen Systemen gespeichert, übertragen, umgewandelt und erhalten wird.",
       ja: "物理系でエネルギーが蓄えられ、移動し、変換され、保存されるしくみを探ろう。",
       ko: "물리계에서 에너지가 저장되고 전달되며 변환되고 보존되는 원리를 알아보세요.",

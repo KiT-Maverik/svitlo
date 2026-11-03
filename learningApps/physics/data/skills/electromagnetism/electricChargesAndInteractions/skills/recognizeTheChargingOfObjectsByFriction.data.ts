@@ -57,7 +57,7 @@ export const recognizeTheChargingOfObjectsByFriction_Skill_Data = buildSkillConf
       te: 'కొన్ని వస్తువులను రుద్దితే స్థిరవిద్యుత్ ప్రభావాలు ఎలా కలుగుతాయో గుర్తించండి.',
       mr: 'काही वस्तू घासल्याने स्थिरविद्युत परिणाम कसे होतात ते ओळखा.',
       ms: 'Kenal pasti bagaimana geseran sesetengah objek menghasilkan kesan elektrostatik.',
-      he: 'זהה כיצד שפשוף עצמים מסוימים יוצר תופעות אלקטרוסטטיות.',
+      he: 'זהו כיצד שפשוף עצמים מסוימים יוצר תופעות אלקטרוסטטיות.',
       pl: 'Rozpoznaj efekty elektrostatyczne powstające przy pocieraniu niektórych przedmiotów.',
       uk: 'Визначай, як тертя деяких тіл спричиняє електростатичні явища.',
       lt: 'Atpažink, kaip trinant kai kuriuos daiktus atsiranda elektrostatinių reiškinių.',

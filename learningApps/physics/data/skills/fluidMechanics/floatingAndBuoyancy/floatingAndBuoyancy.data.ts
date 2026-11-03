@@ -18,7 +18,7 @@ export const floatingAndBuoyancy_SkillGroup_Data = buildSkillGroupConfig({
     id: "Mengapung dan Gaya Apung",
     de: "Schwimmen und Auftrieb",
     ja: "浮遊と浮力",
-    ko: "뜸과 부력",
+    ko: "뜨고 가라앉기와 부력",
     tr: "Yüzme ve Kaldırma Kuvveti",
     vi: "Sự nổi và lực đẩy Ác-si-mét",
     ta: "மிதத்தலும் மிதப்பு விசையும்",

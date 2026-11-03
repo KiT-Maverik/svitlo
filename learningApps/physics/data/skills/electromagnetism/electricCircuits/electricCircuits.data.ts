@@ -70,7 +70,7 @@ export const electricCircuits_SkillGroup_Data = buildSkillGroupConfig({
       te: 'సరళ విద్యుత్ వలయాల్లో మూలాలు, స్విచ్‌లు, విద్యుత్ లోడ్‌లు కలిసి ఎలా పనిచేస్తాయో తెలుసుకోండి.',
       mr: 'साध्या परिपथात स्रोत, स्विच आणि विद्युत उपकरणे कशी एकत्र कार्य करतात ते शोधा.',
       ms: 'Terokai bagaimana sumber, suis dan beban berfungsi bersama dalam litar ringkas.',
-      he: 'גלה כיצד מקורות מתח, מפסקים וצרכנים פועלים יחד במעגלים פשוטים.',
+      he: 'גלו כיצד מקורות מתח, מפסקים וצרכנים פועלים יחד במעגלים פשוטים.',
       pl: 'Poznaj, jak źródła, przełączniki i odbiorniki współdziałają w prostych obwodach.',
       uk: 'Досліджуй, як джерела, вимикачі та споживачі працюють разом у простих колах.',
       lt: 'Tyrinėk, kaip šaltiniai, jungikliai ir imtuvai veikia paprastose grandinėse.',

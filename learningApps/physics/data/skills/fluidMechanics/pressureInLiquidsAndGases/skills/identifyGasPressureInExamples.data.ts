@@ -6,7 +6,7 @@ export const identifyGasPressureInExamples_Skill_Data = buildSkillConfig({
   name: {
     en: "Identify gas pressure in examples",
     zh: "识别气体压强的实例",
-    hi: "गैस के दाब के उदाहरण पहचानें",
+    hi: "गैस के दाब के उदाहरण पहचानना",
     es: "Identificar la presión de gases en ejemplos",
     ar: "تحديد ضغط الغاز في أمثلة",
     fr: "Repérer la pression des gaz dans des exemples",

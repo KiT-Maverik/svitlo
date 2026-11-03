@@ -57,7 +57,7 @@ export const explainTheMagneticEffectOfElectricCurrent_Skill_Data = buildSkillCo
       te: 'విద్యుత్ ప్రవాహం ఎందుకు అయస్కాంత క్షేత్రాన్ని సృష్టిస్తుందో వివరించండి.',
       mr: 'विद्युतप्रवाह चुंबकीय क्षेत्र का निर्माण करतो ते स्पष्ट करा.',
       ms: 'Terangkan mengapa arus elektrik menghasilkan medan magnet.',
-      he: 'הסבר מדוע זרם חשמלי יוצר שדה מגנטי.',
+      he: 'הסבירו מדוע זרם חשמלי יוצר שדה מגנטי.',
       pl: 'Wyjaśnij, dlaczego prąd elektryczny wytwarza pole magnetyczne.',
       uk: 'Пояснюй, чому електричний струм створює магнітне поле.',
       lt: 'Paaiškink, kodėl elektros srovė sukuria magnetinį lauką.',

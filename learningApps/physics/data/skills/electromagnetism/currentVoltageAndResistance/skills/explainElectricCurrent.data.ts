@@ -57,7 +57,7 @@ export const explainElectricCurrent_Skill_Data = buildSkillConfig({
       te: 'విద్యుత్ ప్రవాహాన్ని ఆవేశాల దిశాబద్ధ చలనంగా అర్థం చేసుకోండి.',
       mr: 'विद्युतप्रवाह म्हणजे भाराची दिशात्मक हालचाल हे समजून घ्या.',
       ms: 'Fahami arus elektrik sebagai pergerakan cas yang terarah.',
-      he: 'הבן זרם חשמלי כתנועה מכוונת של מטען.',
+      he: 'הבינו זרם חשמלי כתנועה מכוונת של מטען.',
       pl: 'Zrozum prąd elektryczny jako uporządkowany ruch ładunków.',
       uk: 'Зрозумій електричний струм як напрямлений рух зарядів.',
       lt: 'Suprask elektros srovę kaip kryptingą krūvių judėjimą.',

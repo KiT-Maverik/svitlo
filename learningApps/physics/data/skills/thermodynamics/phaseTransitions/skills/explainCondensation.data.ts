@@ -57,7 +57,7 @@ export const explainCondensation_Skill_Data = buildSkillConfig({
       te: 'సాంద్రీకరణ ద్వారా వాయువు ద్రవంగా ఎలా మారుతుందో గుర్తించండి.',
       mr: 'संघननामुळे वायूचे द्रवात रूपांतर कसे होते ते ओळखा.',
       ms: 'Kenal pasti bagaimana gas menjadi cecair melalui pemeluwapan.',
-      he: 'זהה כיצד גז הופך לנוזל בתהליך עיבוי.',
+      he: 'זהו כיצד גז הופך לנוזל בתהליך עיבוי.',
       pl: 'Rozpoznaj przemianę gazu w ciecz podczas skraplania.',
       uk: 'Розпізнавай перехід газу в рідину під час конденсації.',
       lt: 'Atpažink, kaip dujos kondensuodamosi virsta skysčiu.',

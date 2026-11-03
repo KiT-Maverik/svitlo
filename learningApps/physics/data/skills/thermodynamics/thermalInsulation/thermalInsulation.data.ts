@@ -63,7 +63,7 @@ export const thermalInsulation_SkillGroup_Data = buildSkillGroupConfig({
       te: 'ఉష్ణ నిరోధం వేడి బదిలీని ఎలా నెమ్మదింపజేస్తుందో తెలుసుకోండి.',
       mr: 'उष्णतारोधनामुळे उष्णता हस्तांतरण कसे मंदावते ते जाणून घ्या.',
       ms: 'Terokai bagaimana penebatan melambatkan pemindahan haba.',
-      he: 'חקור כיצד בידוד מאט את מעבר החום.',
+      he: 'חקרו כיצד בידוד מאט את מעבר החום.',
       pl: 'Poznaj, jak izolacja spowalnia przekazywanie ciepła.',
       uk: 'Досліджуй, як ізоляція сповільнює передавання тепла.',
       lt: 'Tyrinėk, kaip izoliacija sulėtina šilumos perdavimą.',

@@ -57,7 +57,7 @@ export const explainConvectionAsEnergyTransferByFluidFlow_Skill_Data = buildSkil
       te: 'కదిలే ద్రవాలు, వాయువులు ఉష్ణ శక్తిని ఎలా తీసుకెళ్తాయో గుర్తించండి.',
       mr: 'वाहणारे द्रव व वायू उष्णता ऊर्जा कशी वाहून नेतात ते ओळखा.',
       ms: 'Kenal pasti bagaimana cecair dan gas bergerak membawa tenaga haba.',
-      he: 'זהה כיצד נוזלים וגזים בתנועה מעבירים אנרגיית חום.',
+      he: 'זהו כיצד נוזלים וגזים בתנועה מעבירים אנרגיית חום.',
       pl: 'Rozpoznaj, jak poruszające się ciecze i gazy przenoszą energię cieplną.',
       uk: 'Розпізнавай, як рухомі рідини та гази переносять теплову енергію.',
       lt: 'Atpažink, kaip judantys skysčiai ir dujos perneša šiluminę energiją.',

@@ -57,7 +57,7 @@ export const explainThePropertiesOfStatesOfMatterThroughParticleMotion_Skill_Dat
       te: 'కణాల చలనం, పరస్పర చర్యలతో ఘన, ద్రవ, వాయువుల లక్షణాలను వివరించండి.',
       mr: 'कणांची गती आणि परस्परक्रिया वापरून घन, द्रव आणि वायूचे गुणधर्म स्पष्ट करा.',
       ms: 'Gunakan gerakan dan interaksi zarah untuk menerangkan sifat pepejal, cecair dan gas.',
-      he: 'השתמש בתנועת החלקיקים וביחסי הגומלין ביניהם להסברת תכונות מוצק, נוזל וגז.',
+      he: 'השתמשו בתנועת החלקיקים וביחסי הגומלין ביניהם להסברת תכונות מוצק, נוזל וגז.',
       pl: 'Wyjaśnij cechy ciał stałych, cieczy i gazów na podstawie ruchu i oddziaływań cząstek.',
       uk: 'Використовуй рух і взаємодії частинок, щоб пояснювати властивості твердих тіл, рідин і газів.',
       lt: 'Dalelių judėjimu ir sąveika paaiškink kietųjų kūnų, skysčių ir dujų savybes.',

@@ -57,7 +57,7 @@ export const predictTheEffectOfASwitchInACircuit_Skill_Data = buildSkillConfig({
       te: 'స్విచ్ వలయంలో ఏ భాగాలను ఆన్ లేదా ఆఫ్ చేస్తుందో అంచనా వేయండి.',
       mr: 'स्विचमुळे परिपथाचे कोणते भाग सुरू किंवा बंद होतील याचा अंदाज लावा.',
       ms: 'Ramalkan bahagian litar yang akan dihidupkan atau dimatikan oleh suis.',
-      he: 'חזה אילו חלקים במעגל המפסק יפעיל או יכבה.',
+      he: 'חזו אילו חלקים במעגל המפסק יפעיל או יכבה.',
       pl: 'Przewidź, które części obwodu przełącznik włączy lub wyłączy.',
       uk: 'Прогнозуй, які частини кола вмикатиме або вимикатиме перемикач.',
       lt: 'Numatyk, kurias grandinės dalis jungiklis įjungs ar išjungs.',

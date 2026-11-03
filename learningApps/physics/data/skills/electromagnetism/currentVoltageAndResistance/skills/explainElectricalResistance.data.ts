@@ -57,7 +57,7 @@ export const explainElectricalResistance_Skill_Data = buildSkillConfig({
       te: 'నిర్దిష్ట పరిస్థితుల్లో నిరోధం విద్యుత్ ప్రవాహాన్ని ఎలా ప్రభావితం చేస్తుందో తెలుసుకోండి.',
       mr: 'ठराविक परिस्थितीत रोधाचा प्रवाहावर कसा परिणाम होतो ते जाणून घ्या.',
       ms: 'Terokai bagaimana rintangan mempengaruhi arus dalam keadaan tertentu.',
-      he: 'חקור כיצד התנגדות משפיעה על הזרם בתנאים נתונים.',
+      he: 'חקרו כיצד התנגדות משפיעה על הזרם בתנאים נתונים.',
       pl: 'Poznaj, jak opór wpływa na prąd w określonych warunkach.',
       uk: 'Досліджуй, як опір впливає на струм за визначених умов.',
       lt: 'Sužinok, kaip varža veikia srovę esant tam tikroms sąlygoms.',

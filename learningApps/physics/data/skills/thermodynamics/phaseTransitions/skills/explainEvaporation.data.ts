@@ -57,7 +57,7 @@ export const explainEvaporation_Skill_Data = buildSkillConfig({
       te: 'ద్రవం మరిగకుండానే ఉపరితలం నుంచి ఎలా ఆవిరవుతుందో వివరించండి.',
       mr: 'द्रव न उकळताही त्याच्या पृष्ठभागावरून बाष्पीभवन कसे होते ते स्पष्ट करा.',
       ms: 'Terangkan bagaimana cecair menyejat dari permukaannya tanpa mendidih.',
-      he: 'הסבר כיצד נוזל מתאדה מפני השטח גם בלי לרתוח.',
+      he: 'הסבירו כיצד נוזל מתאדה מפני השטח גם בלי לרתוח.',
       pl: 'Wyjaśnij, jak ciecz paruje z powierzchni, nie osiągając wrzenia.',
       uk: 'Пояснюй, як рідина випаровується з поверхні без кипіння.',
       lt: 'Paaiškink, kaip skystis garuoja nuo paviršiaus nevirdamas.',

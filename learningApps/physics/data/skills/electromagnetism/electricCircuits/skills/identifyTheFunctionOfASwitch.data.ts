@@ -57,7 +57,7 @@ export const identifyTheFunctionOfASwitch_Skill_Data = buildSkillConfig({
       te: 'స్విచ్ విద్యుత్ ప్రవాహ మార్గాన్ని ఎలా కలుపుతుందో లేదా తెంచుతుందో వివరించండి.',
       mr: 'स्विच विद्युतप्रवाहाचा मार्ग कसा जोडतो किंवा तोडतो ते स्पष्ट करा.',
       ms: 'Terangkan bagaimana suis menyambung atau memutuskan laluan arus.',
-      he: 'הסבר כיצד מפסק מחבר או מנתק מסלול זרם.',
+      he: 'הסבירו כיצד מפסק מחבר או מנתק מסלול זרם.',
       pl: 'Wyjaśnij, jak przełącznik łączy lub przerywa drogę przepływu prądu.',
       uk: 'Пояснюй, як вимикач замикає або розриває шлях струму.',
       lt: 'Paaiškink, kaip jungiklis sujungia arba nutraukia srovės kelią.',

@@ -68,7 +68,7 @@ export const particleModelOfMatter_SkillGroup_Data = buildSkillGroupConfig({
       te: 'కంటికి కనిపించని కణాలు పరస్పరం చర్య చేసి పదార్థాన్ని ఎలా ఏర్పరుస్తాయో తెలుసుకోండి.',
       mr: 'न दिसणारे कण परस्परक्रिया करून पदार्थ कसा बनवतात ते जाणून घ्या.',
       ms: 'Ketahui bagaimana zarah yang tidak kelihatan berinteraksi membentuk bahan.',
-      he: 'למד כיצד חלקיקים בלתי נראים פועלים זה על זה ויוצרים חומרים.',
+      he: 'למדו כיצד חלקיקים בלתי נראים פועלים זה על זה ויוצרים חומרים.',
       pl: 'Dowiedz się, jak niewidoczne cząstki oddziałują ze sobą i tworzą substancje.',
       uk: 'Дізнайся, як невидимі частинки взаємодіють і утворюють речовини.',
       lt: 'Sužinok, kaip nematomos dalelės sąveikauja ir sudaro medžiagas.',

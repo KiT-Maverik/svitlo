@@ -57,7 +57,7 @@ export const recognizeHeating_Skill_Data = buildSkillConfig({
       te: 'వేడిచేసే సమయంలో ఉష్ణ స్థితిలో మార్పులను గుర్తించండి.',
       mr: 'तापवताना उष्णतास्थितीतील बदल ओळखा.',
       ms: 'Kenal pasti perubahan keadaan terma semasa pemanasan.',
-      he: 'זהה שינויים במצב התרמי בזמן חימום.',
+      he: 'זהו שינויים במצב התרמי בזמן חימום.',
       pl: 'Rozpoznaj zmiany stanu cieplnego podczas ogrzewania.',
       uk: 'Визначай зміни теплового стану під час нагрівання.',
       lt: 'Atpažink šiluminės būsenos pokyčius šildant.',
