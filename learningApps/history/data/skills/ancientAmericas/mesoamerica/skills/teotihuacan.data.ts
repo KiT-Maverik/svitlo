@@ -4,7 +4,7 @@ export const teotihuacan_Skill_Data = buildSkillConfig({
   slug: "teotihuacan",
   id: "a3f6267e-418d-4059-8620-5e239e93514c",
   name: {
-    en: "Теотіуакан",
+    en: "Teotihuacan",
     zh: "特奥蒂瓦坎",
     hi: "तेओतिहुआकान",
     es: "Teotihuacán",

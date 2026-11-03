@@ -4,7 +4,7 @@ export const earlyMayaCities_Skill_Data = buildSkillConfig({
   slug: "earlyMayaCities",
   id: "327f722b-bcde-4b13-be8b-5b90ed6f8ccc",
   name: {
-    en: "Ранні міста майя",
+    en: "Early Maya Cities",
     zh: "早期玛雅城市",
     hi: "प्रारंभिक माया नगर",
     es: "Primeras ciudades mayas",

@@ -4,7 +4,7 @@ export const peoplingOfTheAmericas_Skill_Data = buildSkillConfig({
   slug: "peoplingOfTheAmericas",
   id: "70b3a1bf-cfb2-494f-ade3-a664bfeb607e",
   name: {
-    en: "Заселення Америк",
+    en: "Peopling of the Americas",
     zh: "美洲的最初定居",
     hi: "अमेरिकी महाद्वीपों का प्रारंभिक बसाव",
     es: "Poblamiento de las Américas",

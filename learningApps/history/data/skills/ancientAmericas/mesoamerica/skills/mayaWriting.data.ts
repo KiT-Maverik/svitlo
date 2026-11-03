@@ -4,7 +4,7 @@ export const mayaWriting_Skill_Data = buildSkillConfig({
   slug: "mayaWriting",
   id: "4de1f105-27c1-4513-9345-76470c9a9264",
   name: {
-    en: "Маянське письмо",
+    en: "Maya Writing",
     zh: "玛雅文字",
     hi: "माया लिपि",
     es: "Escritura maya",

@@ -6,7 +6,7 @@ export const mesoamerica_SkillGroup_Data = buildSkillGroupConfig({
   slug: "mesoamerica",
   id: "dd189fec-807f-47ae-b575-3c8dfa34ae53",
   name: {
-    en: "Мезоамерика",
+    en: "Mesoamerica",
     zh: "中美洲古代文明区",
     hi: "मेसोअमेरिका",
     es: "Mesoamérica",

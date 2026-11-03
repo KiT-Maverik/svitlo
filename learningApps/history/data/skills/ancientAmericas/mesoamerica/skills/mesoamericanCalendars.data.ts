@@ -4,7 +4,7 @@ export const mesoamericanCalendars_Skill_Data = buildSkillConfig({
   slug: "mesoamericanCalendars",
   id: "7f049c25-e0f6-4f81-a00f-129f98fcae14",
   name: {
-    en: "Мезоамериканські календарі",
+    en: "Mesoamerican Calendars",
     zh: "中美洲古代历法",
     hi: "मेसोअमेरिकी पंचांग",
     es: "Calendarios mesoamericanos",

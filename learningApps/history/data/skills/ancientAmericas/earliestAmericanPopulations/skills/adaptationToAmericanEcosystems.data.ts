@@ -4,7 +4,7 @@ export const adaptationToAmericanEcosystems_Skill_Data = buildSkillConfig({
   slug: "adaptationToAmericanEcosystems",
   id: "6148308a-7616-4842-b204-fcfef34ebb29",
   name: {
-    en: "Адаптація до американських екосистем",
+    en: "Adaptation to American Ecosystems",
     zh: "适应美洲生态系统",
     hi: "अमेरिकी पारितंत्रों के अनुसार ढलना",
     es: "Adaptación a los ecosistemas americanos",

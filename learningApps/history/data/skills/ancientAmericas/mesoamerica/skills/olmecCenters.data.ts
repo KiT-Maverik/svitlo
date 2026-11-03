@@ -4,7 +4,7 @@ export const olmecCenters_Skill_Data = buildSkillConfig({
   slug: "olmecCenters",
   id: "a8381be5-b3f9-4ca1-ab34-bed9eab81d9a",
   name: {
-    en: "Ольмецькі центри",
+    en: "Olmec Centers",
     zh: "奥尔梅克中心",
     hi: "ओल्मेक केंद्र",
     es: "Centros olmecas",

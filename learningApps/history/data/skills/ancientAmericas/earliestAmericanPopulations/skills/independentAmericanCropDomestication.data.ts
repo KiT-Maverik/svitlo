@@ -4,7 +4,7 @@ export const independentAmericanCropDomestication_Skill_Data = buildSkillConfig(
   slug: "independentAmericanCropDomestication",
   id: "e3d33281-cd81-41ed-9313-ddfbae69e388",
   name: {
-    en: "Незалежне одомашнення рослин в Америках",
+    en: "Independent American Crop Domestication",
     zh: "美洲作物的独立驯化",
     hi: "अमेरिका में फसलों का स्वतंत्र घरेलूकरण",
     es: "Domesticación independiente de cultivos en América",

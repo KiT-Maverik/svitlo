@@ -6,7 +6,7 @@ export const northAmericaBeyondMesoamerica_SkillGroup_Data = buildSkillGroupConf
   slug: "northAmericaBeyondMesoamerica",
   id: "7594459d-1887-477f-9659-f02a0bd82e1a",
   name: {
-    en: "Північна Америка поза Мезоамерикою",
+    en: "North America Beyond Mesoamerica",
     zh: "中美洲文明区以外的北美洲",
     hi: "मेसोअमेरिका के बाहर उत्तरी अमेरिका",
     es: "Norteamérica fuera de Mesoamérica",

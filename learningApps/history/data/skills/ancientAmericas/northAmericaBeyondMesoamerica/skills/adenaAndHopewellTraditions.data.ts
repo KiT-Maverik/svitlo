@@ -4,7 +4,7 @@ export const adenaAndHopewellTraditions_Skill_Data = buildSkillConfig({
   slug: "adenaAndHopewellTraditions",
   id: "6d3a03ef-5ca8-42cd-a4cc-43a50c68dec6",
   name: {
-    en: "Традиції Адена та Гоупвелл",
+    en: "Adena and Hopewell Traditions",
     zh: "阿迪纳与霍普韦尔传统",
     hi: "अडेना और होपवेल परंपराएँ",
     es: "Tradiciones Adena y Hopewell",
