@@ -45,7 +45,7 @@ export const distinguishALightSourceFromAnIlluminatedBody_Skill_Data = buildSkil
       fr: "Distingue un objet qui émet de la lumière d'un objet qu'elle éclaire.",
       bn: "নিজে আলো দেয় এমন বস্তু আর অন্য আলোতে আলোকিত বস্তুর পার্থক্য করো।",
       pt: "Diferencie um objeto que emite luz de outro que apenas recebe iluminação.",
-      ur: "خود روشنی دینے والی چیز اور اس روشنی سے روشن ہونے والی چیز میں فرق کرو۔",
+      ur: "خود روشنی دینے والی چیز اور اس روشنی سے روشن ہونے والی چیز میں فرق کریں۔",
       id: "Bedakan benda yang memancarkan cahaya dengan benda yang diteranginya.",
       de: "Unterscheide einen Gegenstand, der Licht aussendet, von einem, der nur beleuchtet wird.",
       ja: "光を出す物体と、その光で照らされる物体を区別しましょう。",

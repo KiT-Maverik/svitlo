@@ -45,7 +45,7 @@ export const explainTheConditionForAnObjectToBeVisible_Skill_Data = buildSkillCo
       fr: "Explique pourquoi nous ne voyons un objet que lorsque la lumière qui en provient atteint l'œil.",
       bn: "বস্তু থেকে আসা আলো চোখে পৌঁছালেই কেন সেটি দেখা যায়, তা ব্যাখ্যা করো।",
       pt: "Explique por que só vemos um objeto quando a luz proveniente dele chega aos olhos.",
-      ur: "وضاحت کرو کہ کوئی چیز تبھی نظر آتی ہے جب اس سے آنے والی روشنی آنکھ تک پہنچتی ہے۔",
+      ur: "وضاحت کریں کہ کوئی چیز تبھی نظر آتی ہے جب اس سے آنے والی روشنی آنکھ تک پہنچتی ہے۔",
       id: "Jelaskan mengapa kita hanya dapat melihat benda saat cahaya darinya mencapai mata.",
       de: "Erkläre, warum wir einen Gegenstand nur sehen, wenn Licht von ihm ins Auge gelangt.",
       ja: "物体から来た光が目に届いたときだけ見える理由を説明しましょう。",

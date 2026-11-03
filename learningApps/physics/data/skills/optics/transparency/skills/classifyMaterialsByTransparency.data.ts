@@ -45,7 +45,7 @@ export const classifyMaterialsByTransparency_Skill_Data = buildSkillConfig({
       fr: "Distingue les matériaux transparents, translucides et opaques.",
       bn: "স্বচ্ছ, অর্ধস্বচ্ছ ও অস্বচ্ছ পদার্থের পার্থক্য করো।",
       pt: "Diferencie materiais transparentes, translúcidos e opacos.",
-      ur: "شفاف، نیم شفاف اور غیر شفاف مادوں میں فرق کرو۔",
+      ur: "شفاف، نیم شفاف اور غیر شفاف مادوں میں فرق کریں۔",
       id: "Bedakan bahan transparan, bahan yang meneruskan sebagian cahaya, dan bahan yang tidak tembus cahaya.",
       de: "Unterscheide transparente, durchscheinende und undurchsichtige Materialien.",
       ja: "透明、半透明、不透明の材料を区別しましょう。",

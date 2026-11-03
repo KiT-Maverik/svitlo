@@ -45,7 +45,7 @@ export const explainLightRefractionAtTheBoundaryBetweenMedia_Skill_Data = buildS
       fr: "Explique comment la lumière peut changer de direction à la frontière entre deux milieux.",
       bn: "দুই মাধ্যমের সীমানা পেরোলে আলো কীভাবে দিক বদলাতে পারে, তা ব্যাখ্যা করো।",
       pt: "Explique como a luz pode mudar de direção ao atravessar o limite entre dois meios.",
-      ur: "وضاحت کرو کہ دو وسطوں کی سرحد پر روشنی کی سمت کیسے بدل سکتی ہے۔",
+      ur: "وضاحت کریں کہ دو وسطوں کی سرحد پر روشنی کی سمت کیسے بدل سکتی ہے۔",
       id: "Jelaskan bagaimana cahaya dapat berubah arah di batas antara dua medium.",
       de: "Erkläre, wie Licht beim Übergang zwischen zwei Medien seine Richtung ändern kann.",
       ja: "光が異なる二つの媒質の境界で方向を変える理由を説明しましょう。",

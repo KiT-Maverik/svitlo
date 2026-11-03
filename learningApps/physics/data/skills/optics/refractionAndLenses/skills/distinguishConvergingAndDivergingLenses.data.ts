@@ -45,7 +45,7 @@ export const distinguishConvergingAndDivergingLenses_Skill_Data = buildSkillConf
       fr: "Compare les lentilles qui rapprochent les rayons lumineux et celles qui les écartent.",
       bn: "আলোকরশ্মি একত্র করে এমন লেন্সের সঙ্গে রশ্মি ছড়িয়ে দেয় এমন লেন্সের তুলনা করো।",
       pt: "Compare lentes que aproximam os raios de luz com lentes que os afastam.",
-      ur: "روشنی کی شعاعیں اکٹھی کرنے والے عدسوں اور انہیں پھیلانے والے عدسوں کا موازنہ کرو۔",
+      ur: "روشنی کی شعاعیں اکٹھی کرنے والے عدسوں اور انہیں پھیلانے والے عدسوں کا موازنہ کریں۔",
       id: "Bandingkan lensa yang mengumpulkan sinar cahaya dengan lensa yang menyebarkannya.",
       de: "Vergleiche Linsen, die Lichtstrahlen bündeln, mit solchen, die sie auseinanderlaufen lassen.",
       ja: "光線を集めるレンズと広げるレンズを比較しましょう。",

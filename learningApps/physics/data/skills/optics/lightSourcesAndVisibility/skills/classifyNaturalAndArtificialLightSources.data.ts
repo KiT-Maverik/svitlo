@@ -45,7 +45,7 @@ export const classifyNaturalAndArtificialLightSources_Skill_Data = buildSkillCon
       fr: "Reconnais les sources de lumière naturelles et celles fabriquées par les humains.",
       bn: "প্রাকৃতিক ও মানুষের তৈরি আলোর উৎস চেনো।",
       pt: "Reconheça fontes de luz naturais e criadas por pessoas.",
-      ur: "قدرتی اور انسان کی بنائی ہوئی روشنی کے ذرائع پہچانو۔",
+      ur: "قدرتی اور انسان کی بنائی ہوئی روشنی کے ذرائع پہچانیں۔",
       id: "Kenali sumber cahaya alami dan sumber cahaya buatan manusia.",
       de: "Erkenne natürliche und von Menschen hergestellte Lichtquellen.",
       ja: "自然の光源と人がつくった光源を見分けましょう。",
