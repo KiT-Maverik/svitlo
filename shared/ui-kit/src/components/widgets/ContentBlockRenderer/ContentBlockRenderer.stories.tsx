@@ -8,7 +8,7 @@ const mixedBlocks: NonNullable<ContentBlockRendererProps['blocks']> = [
   { id: 'intro', type: 'text', locale, value: 'Light travels in straight lines through a uniform medium.' },
   { id: 'example', type: 'code', locale, language: 'javascript', title: 'Example',
     code: 'const speedOfLight = 299_792_458;\nconsole.log(speedOfLight);' },
-  { id: 'markdown-note', type: 'markdown', locale, text: '## Key idea\\n\\n**Speed** is a distance divided by time.' },
+  { id: 'markdown-note', type: 'markdown', locale, text: '## Key idea\n\n**Speed** is a distance divided by time.' },
   { id: 'summary', type: 'text', locale, value: 'Now check your understanding.' },
 ];
 

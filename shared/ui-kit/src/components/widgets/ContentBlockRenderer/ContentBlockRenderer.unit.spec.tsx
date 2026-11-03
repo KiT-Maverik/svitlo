@@ -27,7 +27,7 @@ describe('ContentBlockRenderer', () => {
   it('renders Markdown responses through the dispatcher with their locale direction', () => {
     render(<ContentBlockRenderer blocks={[{
       id: 'rtl-markdown', type: 'markdown', locale: { code: 'ar' },
-      text: '# عنوان الدرس\\n\\n**نص عربي**',
+      text: '# عنوان الدرس\n\n**نص عربي**',
     }]} />);
     const article = screen.getByRole('article');
     expect(article).toHaveAttribute('dir', 'rtl');
