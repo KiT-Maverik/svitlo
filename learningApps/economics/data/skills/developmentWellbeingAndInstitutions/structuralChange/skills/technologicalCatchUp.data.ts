@@ -17,7 +17,7 @@ export const technologicalCatchUp_Skill_Data = buildSkillConfig({
     de: "Technologischer Aufholprozess",
     ja: "技術的キャッチアップ",
     ko: "기술 추격",
-    tr: "Teknolojide yakalama",
+    tr: "Teknoloji açığını kapatma",
     vi: "Bắt kịp công nghệ",
     ta: "தொழில்நுட்ப இடைவெளியைக் குறைத்தல்",
     te: "సాంకేతిక వెనుకబాటును అధిగమించడం",
