@@ -13,7 +13,7 @@ export const retailPricingStrategies_Skill_Data = buildSkillConfig({
     bn: "খুচরা মূল্য নির্ধারণ কৌশল",
     pt: "Estratégias de preços no varejo",
     ur: "خوردہ قیمتوں کی حکمت عملیاں",
-    id: "Strategi Harga Eceran",
+    id: "Strategi harga eceran",
     de: "Preisstrategien im Einzelhandel",
     ja: "小売価格戦略",
     ko: "소매 가격 전략",

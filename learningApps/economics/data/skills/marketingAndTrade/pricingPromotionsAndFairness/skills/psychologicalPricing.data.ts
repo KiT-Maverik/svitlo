@@ -13,7 +13,7 @@ export const psychologicalPricing_Skill_Data = buildSkillConfig({
     bn: "মনস্তাত্ত্বিক মূল্য নির্ধারণ",
     pt: "Preços psicológicos",
     ur: "نفسیاتی قیمت گذاری",
-    id: "Penetapan Harga Psikologis",
+    id: "Penetapan harga psikologis",
     de: "Psychologische Preisgestaltung",
     ja: "心理的価格設定",
     ko: "심리적 가격 설정",

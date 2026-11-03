@@ -13,7 +13,7 @@ export const targetAudience_Skill_Data = buildSkillConfig({
     bn: "লক্ষ্য গ্রাহক",
     pt: "Público-alvo",
     ur: "ہدفی صارفین",
-    id: "Sasaran Pelanggan",
+    id: "Sasaran pelanggan",
     de: "Zielgruppe",
     ja: "ターゲット顧客",
     ko: "목표 고객층",

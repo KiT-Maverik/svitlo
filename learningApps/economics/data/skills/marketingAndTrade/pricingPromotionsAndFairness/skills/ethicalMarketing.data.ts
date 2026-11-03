@@ -13,7 +13,7 @@ export const ethicalMarketing_Skill_Data = buildSkillConfig({
     bn: "নৈতিক বিপণন",
     pt: "Marketing ético",
     ur: "اخلاقی مارکیٹنگ",
-    id: "Pemasaran Etis",
+    id: "Pemasaran etis",
     de: "Ethisches Marketing",
     ja: "倫理的なマーケティング",
     ko: "윤리적 마케팅",

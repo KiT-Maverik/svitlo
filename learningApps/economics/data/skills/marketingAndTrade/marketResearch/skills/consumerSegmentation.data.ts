@@ -13,7 +13,7 @@ export const consumerSegmentation_Skill_Data = buildSkillConfig({
     bn: "ভোক্তা বিভাজন",
     pt: "Segmentação de consumidores",
     ur: "صارفین کی تقسیم",
-    id: "Segmentasi Konsumen",
+    id: "Segmentasi konsumen",
     de: "Kundensegmentierung",
     ja: "顧客のセグメント分け",
     ko: "소비자 세분화",
