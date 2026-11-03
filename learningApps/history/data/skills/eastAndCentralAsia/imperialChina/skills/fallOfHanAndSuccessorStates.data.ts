@@ -42,7 +42,7 @@ export const fallOfHanAndSuccessorStates_Skill_Data = buildSkillConfig({
       hi: "जानें कि हान साम्राज्य का शासन कमज़ोर होने के बाद क्या हुआ।",
       es: "Explora qué ocurrió tras el debilitamiento del gobierno imperial Han.",
       ar: "استكشف ما حدث بعد ضعف الحكم الإمبراطوري لأسرة هان.",
-      fr: "Explorez ce qui s’est passé après l’affaiblissement du pouvoir impérial Han.",
+      fr: "Explore ce qui s’est passé après l’affaiblissement du pouvoir impérial Han.",
       bn: "হান সাম্রাজ্যের শাসন দুর্বল হওয়ার পরে কী ঘটেছিল তা অন্বেষণ করো।",
       pt: "Explore o que aconteceu após o enfraquecimento do poder imperial Han.",
       ur: "دیکھیے کہ ہان کی شاہی حکومت کمزور ہونے کے بعد کیا ہوا۔",

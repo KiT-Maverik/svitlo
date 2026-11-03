@@ -42,7 +42,7 @@ export const hanDynasty_Skill_Data = buildSkillConfig({
       hi: "जानें कि हान शासकों ने अपने साम्राज्य का प्रशासन और संपर्क कैसे व्यवस्थित किया।",
       es: "Aprende cómo los gobernantes Han administraban y conectaban su imperio.",
       ar: "اكتشف كيف أدار حكّام هان إمبراطوريتهم وربطوا أقاليمها.",
-      fr: "Découvrez comment les souverains Han administraient leur empire et reliaient ses régions.",
+      fr: "Découvre comment les souverains Han administraient leur empire et reliaient ses régions.",
       bn: "হান শাসকেরা কীভাবে সাম্রাজ্য পরিচালনা এবং বিভিন্ন অঞ্চলকে যুক্ত করতেন তা শেখো।",
       pt: "Saiba como os governantes Han administravam e conectavam seu império.",
       ur: "جانیں کہ ہان حکمران اپنی سلطنت کا انتظام اور مختلف علاقوں کو باہم مربوط کیسے رکھتے تھے۔",

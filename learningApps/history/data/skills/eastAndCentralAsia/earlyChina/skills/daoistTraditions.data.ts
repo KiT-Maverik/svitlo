@@ -42,7 +42,7 @@ export const daoistTraditions_Skill_Data = buildSkillConfig({
       hi: "दाओवादी विचारों का अध्ययन करें और अलग-अलग ग्रंथों को एक जैसा न मानें।",
       es: "Descubre las ideas taoístas sin suponer que todos sus textos dicen lo mismo.",
       ar: "تعرّف إلى الأفكار الطاوية دون افتراض أن جميع نصوصها متطابقة.",
-      fr: "Découvrez les idées taoïstes sans supposer que tous les textes se ressemblent.",
+      fr: "Découvre les idées taoïstes sans supposer que tous les textes se ressemblent.",
       bn: "সব দাওবাদী রচনাকে এক রকম না ধরে তাদের বিভিন্ন ধারণা অন্বেষণ করো।",
       pt: "Conheça as ideias taoístas sem tratar todos os textos como iguais.",
       ur: "داؤ مت کے افکار جانیں، مگر تمام متون کو یکساں نہ سمجھیں۔",
