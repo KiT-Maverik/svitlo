@@ -65,7 +65,7 @@ export const buildAnAbstractSystemModel_Skill_Data = buildSkillConfig({
       be: "Ствары спрошчанае прадстаўленьне складанай сытуацыі або сыстэмы.",
       ka: "შექმენი რთული სიტუაციის ან სისტემის გამარტივებული წარმოდგენა.",
       kk: "Күрделі жағдайдың немесе жүйенің жеңілдетілген үлгісін жаса.",
-      qm: "Mürekkep vaziyetni ya da sistemanı añlatqan sadелеştirilgen modelni qur.",
+      qm: "Mürekkep vaziyetni ya da sistemanı añlatqan sadeleştirilgen modelni qur.",
     },
   },
 });
