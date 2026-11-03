@@ -438,7 +438,7 @@ Skills: 5
 
 **Methodological description (English):** Determine the change in a body's gravitational potential energy near Earth's surface from its mass, gravitational acceleration, and change in height, correctly accounting for the chosen reference level and units. This calculation assumes an approximately uniform gravitational field and differs from calculating elastic potential energy.
 
-**User-friendly description (pt):** Calcule variações da energia potencial gravitacional a partir da massa, gravidade e altura.
+**User-friendly description (pt):** Calcule a variação da energia potencial gravitacional a partir da massa, da aceleração da gravidade e da diferença de altura em relação à referência.
 
 ##### Classificar formas de energia
 
@@ -1194,7 +1194,7 @@ Skills: 5
 
 **Methodological description (English):** A transition of an atom between energy states may be accompanied by the emission of a photon whose energy is determined by the difference between those states.
 
-**User-friendly description (pt):** Explique como os átomos podem emitir fótons ao mudar de nível de energia.
+**User-friendly description (pt):** Explique como um átomo excitado pode emitir um fóton ao passar para um nível de energia menor, com energia igual à diferença entre os níveis.
 
 ##### Explicar o comportamento ondulatório e corpuscular de objetos quânticos
 
@@ -1458,7 +1458,7 @@ Skills: 3
 
 **Methodological description (English):** Relate a shadow to the blocking of light by an opaque object.
 
-**User-friendly description (pt):** Explica como um objeto opaco bloqueia a luz e forma uma sombra.
+**User-friendly description (pt):** Explique como um objeto opaco bloqueia a luz e forma uma sombra.
 
 ##### Prever mudanças no tamanho da sombra
 
@@ -1894,7 +1894,7 @@ Skills: 8
 
 **Methodological description (English):** For an unchanged sound emitted by a source, explain the Doppler effect: the frequency heard by the observer is higher as the source approaches and lower as it moves away. Do not confuse this frequency change with loudness or engine revolutions.
 
-**User-friendly description (pt):** Explore por que fontes sonoras em movimento podem mudar a altura percebida.
+**User-friendly description (pt):** Explore o efeito Doppler: o tom ouvido fica mais agudo quando fonte e ouvinte se aproximam e mais grave quando se afastam.
 
 ##### Reconhecer a propagação do som em um meio
 
@@ -1954,7 +1954,7 @@ Skills: 5
 
 **Methodological description (English):** Reflection, refraction, interference, diffraction, and resonance can occur in different kinds of physical waves.
 
-**User-friendly description (pt):** Descubra como as ondas se refletem, refratam, sobrepõem, difratam e ressoam.
+**User-friendly description (pt):** Descubra como as ondas se refletem, refratam, interferem umas com as outras, difratam e entram em ressonância.
 
 ##### Explicar a ressonância
 

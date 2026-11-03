@@ -438,7 +438,7 @@ Skills: 5
 
 **Methodological description (English):** Determine the change in a body's gravitational potential energy near Earth's surface from its mass, gravitational acceleration, and change in height, correctly accounting for the chosen reference level and units. This calculation assumes an approximately uniform gravitational field and differs from calculating elastic potential energy.
 
-**User-friendly description (vi):** Tính độ biến thiên thế năng trọng trường dựa trên khối lượng, trọng trường và độ cao.
+**User-friendly description (vi):** Tính độ biến thiên thế năng trọng trường từ khối lượng, gia tốc trọng trường và độ chênh lệch độ cao.
 
 ##### Phân loại các dạng năng lượng
 
@@ -810,7 +810,7 @@ Skills: 3
 
 **Methodological description (English):** Earth exerts a gravitational force on a body depending on the body's mass and the gravitational field; distinguish that force from mass and from weight as the body's action on a support.
 
-**User-friendly description (vi):** Hiểu vì sao lực hấp dẫn của Trái Đất tác dụng lực lên một vật.
+**User-friendly description (vi):** Giải thích lực hấp dẫn của Trái Đất tác dụng lên vật phụ thuộc vào khối lượng và trường hấp dẫn như thế nào.
 
 ##### Dự đoán hướng rơi
 
@@ -1194,7 +1194,7 @@ Skills: 5
 
 **Methodological description (English):** A transition of an atom between energy states may be accompanied by the emission of a photon whose energy is determined by the difference between those states.
 
-**User-friendly description (vi):** Giải thích cách nguyên tử phát ra photon khi chuyển mức năng lượng.
+**User-friendly description (vi):** Giải thích vì sao nguyên tử kích thích có thể phát photon khi chuyển xuống mức năng lượng thấp hơn, với năng lượng bằng độ chênh lệch hai mức.
 
 ##### Giải thích hành vi dạng sóng và dạng hạt của các vật thể lượng tử
 
@@ -1894,7 +1894,7 @@ Skills: 8
 
 **Methodological description (English):** For an unchanged sound emitted by a source, explain the Doppler effect: the frequency heard by the observer is higher as the source approaches and lower as it moves away. Do not confuse this frequency change with loudness or engine revolutions.
 
-**User-friendly description (vi):** Khám phá vì sao nguồn âm chuyển động làm thay đổi độ cao âm người nghe cảm nhận.
+**User-friendly description (vi):** Giải thích hiệu ứng Doppler: âm nghe cao hơn khi nguồn và người nghe tiến lại gần nhau, thấp hơn khi họ rời xa nhau.
 
 ##### Nhận biết sự truyền âm qua môi trường
 
@@ -1954,7 +1954,7 @@ Skills: 5
 
 **Methodological description (English):** Reflection, refraction, interference, diffraction, and resonance can occur in different kinds of physical waves.
 
-**User-friendly description (vi):** Khám phá phản xạ, khúc xạ, chồng chất, nhiễu xạ và cộng hưởng sóng.
+**User-friendly description (vi):** Khám phá phản xạ, khúc xạ, giao thoa, nhiễu xạ và cộng hưởng sóng.
 
 ##### Giải thích cộng hưởng
 

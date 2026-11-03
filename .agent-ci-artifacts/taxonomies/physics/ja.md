@@ -470,7 +470,7 @@ Skills: 5
 
 **Methodological description (English):** Potential energy is related to a physical system's configuration and interactions among its components, including bodies' positions in a gravitational field or elastic deformation. Its value is specified relative to a chosen zero level; this competency addresses physical meaning rather than calculation.
 
-**User-friendly description (ja):** 位置エネルギーが配置と選んだ基準の高さに関係すると理解しよう。
+**User-friendly description (ja):** 位置エネルギーが系の配置や相互作用、選んだ基準に関係すると理解しよう。
 
 #### 仕事と仕事率
 
@@ -1194,7 +1194,7 @@ Skills: 5
 
 **Methodological description (English):** A transition of an atom between energy states may be accompanied by the emission of a photon whose energy is determined by the difference between those states.
 
-**User-friendly description (ja):** 原子がエネルギー準位を変えるとき光子を放出する仕組みを説明しましょう。
+**User-friendly description (ja):** 励起原子が低いエネルギー準位へ遷移するとき、準位差に応じたエネルギーの光子を放出する仕組みを説明しましょう。
 
 ##### 量子の波としての性質と粒子としての性質を説明する
 
@@ -1252,7 +1252,7 @@ Skills: 6
 
 **Methodological description (English):** Light nuclei can combine under suitable conditions, and changes in binding energy can lead to energy release.
 
-**User-friendly description (ja):** 軽い原子核が結びついてエネルギーを放出する仕組みを説明しましょう。
+**User-friendly description (ja):** 軽い原子核が適切な条件で融合し、結合エネルギーの変化によってエネルギーを放出する場合を説明しましょう。
 
 ##### 放射能を説明する
 
@@ -1954,7 +1954,7 @@ Skills: 5
 
 **Methodological description (English):** Reflection, refraction, interference, diffraction, and resonance can occur in different kinds of physical waves.
 
-**User-friendly description (ja):** 波の反射、屈折、重ね合わせ、回折、共振を調べよう。
+**User-friendly description (ja):** 波の反射、屈折、干渉、回折、共振を調べよう。
 
 ##### 共振を説明する
 

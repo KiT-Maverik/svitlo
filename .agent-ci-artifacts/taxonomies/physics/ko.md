@@ -542,7 +542,7 @@ Skills: 3
 
 **User-friendly description (ko):** 물체의 모양이나 각도가 항력과 양력을 어떻게 바꾸는지 예측해 보세요.
 
-#### 뜸과 부력
+#### 뜨고 가라앉기와 부력
 
 Skills: 5
 
@@ -584,7 +584,7 @@ Skills: 5
 
 **User-friendly description (ko):** 밀도를 단위 부피당 질량으로 이해해 보세요.
 
-##### 하중이 뜸에 주는 영향 예측하기
+##### 하중이 물체의 뜨는 상태에 미치는 영향 예측하기
 
 [predictHowALoadAffectsFloating.data.ts](../../../learningApps/physics/data/skills/fluidMechanics/floatingAndBuoyancy/skills/predictHowALoadAffectsFloating.data.ts)
 
@@ -1894,7 +1894,7 @@ Skills: 8
 
 **Methodological description (English):** For an unchanged sound emitted by a source, explain the Doppler effect: the frequency heard by the observer is higher as the source approaches and lower as it moves away. Do not confuse this frequency change with loudness or engine revolutions.
 
-**User-friendly description (ko):** 움직이는 음원이 들리는 음높이를 바꾸는 이유를 알아보세요.
+**User-friendly description (ko):** 음원과 듣는 사람이 서로 가까워지면 들리는 음높이가 높아지고 멀어지면 낮아지는 도플러 효과를 알아보세요.
 
 ##### 매질을 통한 소리 전파 알아보기
 
@@ -1954,7 +1954,7 @@ Skills: 5
 
 **Methodological description (English):** Reflection, refraction, interference, diffraction, and resonance can occur in different kinds of physical waves.
 
-**User-friendly description (ko):** 파동의 반사, 굴절, 중첩, 회절, 공명을 탐구해 보세요.
+**User-friendly description (ko):** 파동의 반사, 굴절, 간섭, 회절, 공명을 탐구해 보세요.
 
 ##### 공명 설명하기
 

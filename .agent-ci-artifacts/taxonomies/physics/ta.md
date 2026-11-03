@@ -1194,7 +1194,7 @@ Skills: 5
 
 **Methodological description (English):** A transition of an atom between energy states may be accompanied by the emission of a photon whose energy is determined by the difference between those states.
 
-**User-friendly description (ta):** அணுக்கள் ஆற்றல் மட்டங்களை மாற்றும்போது ஃபோட்டான்களை எவ்வாறு வெளியிடுகின்றன என்பதை விளக்கு.
+**User-friendly description (ta):** தூண்டப்பட்ட அணு குறைந்த ஆற்றல் மட்டத்துக்கு மாறும்போது மட்டங்களின் ஆற்றல் வேறுபாட்டுக்கு இணையான ஃபோட்டானை வெளியிடலாம் என்பதை விளக்கு.
 
 ##### குவாண்டம் பொருட்களின் அலைப் பண்பையும் துகள் பண்பையும் விளக்குதல்
 
@@ -1588,7 +1588,7 @@ Groups: 2 · Skills: 5
 
 **Methodological description (English):** Radiation describes energy transfer from a source through space, including invisible parts of the electromagnetic spectrum and their interaction with matter. Geometric image formation with light belongs to Optics.
 
-**User-friendly description (ta):** மின்காந்தக் கதிர்வீச்சும் அது பருப்பொருளுடன் வினையாற்றும் விதமும் ஆராய்.
+**User-friendly description (ta):** மின்காந்தக் கதிர்வீச்சையும் அது பருப்பொருளுடன் வினையாற்றும் விதத்தையும் ஆராய்.
 
 #### மின்காந்தக் கதிர்வீச்சு
 
@@ -1894,7 +1894,7 @@ Skills: 8
 
 **Methodological description (English):** For an unchanged sound emitted by a source, explain the Doppler effect: the frequency heard by the observer is higher as the source approaches and lower as it moves away. Do not confuse this frequency change with loudness or engine revolutions.
 
-**User-friendly description (ta):** நகரும் ஒலி மூலம் கேட்கும் சுருதியை ஏன் மாற்றுகிறது என்பதை ஆராய்.
+**User-friendly description (ta):** ஒலி மூலமும் கேட்பவரும் ஒன்றை ஒன்று அணுகும்போது கேட்கும் சுருதி உயர்வதையும் விலகும்போது குறைவதையும் டாப்ளர் விளைவாக விளக்கு.
 
 ##### ஊடகத்தின் வழி ஒலி பரவலை அறிதல்
 
@@ -1954,7 +1954,7 @@ Skills: 5
 
 **Methodological description (English):** Reflection, refraction, interference, diffraction, and resonance can occur in different kinds of physical waves.
 
-**User-friendly description (ta):** அலை பிரதிபலிப்பு, ஒளிவிலகல் போன்ற திசைமாற்றம், மேலிடல், விளிம்பு வளைவு, ஒத்ததிர்வை ஆராய்.
+**User-friendly description (ta):** அலைகளின் பிரதிபலிப்பு, விலகல், குறுக்கீடு, விளிம்பு வளைவு, ஒத்ததிர்வு ஆகியவற்றை ஆராய்.
 
 ##### ஒத்ததிர்வை விளக்குதல்
 
@@ -1988,7 +1988,7 @@ Skills: 5
 
 **User-friendly description (ta):** ஒரு எல்லையை அடையும்போது அலை எவ்வாறு திரும்பிச் செல்லலாம் என்பதை விளக்கு.
 
-##### அலை ஒளிவிலகலை விளக்குதல்
+##### அலை விலகலை விளக்குதல்
 
 [explainWaveRefraction.data.ts](../../../learningApps/physics/data/skills/waves/wavePhenomena/skills/explainWaveRefraction.data.ts)
 

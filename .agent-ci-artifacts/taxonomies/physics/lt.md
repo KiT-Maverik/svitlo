@@ -438,7 +438,7 @@ Skills: 5
 
 **Methodological description (English):** Determine the change in a body's gravitational potential energy near Earth's surface from its mass, gravitational acceleration, and change in height, correctly accounting for the chosen reference level and units. This calculation assumes an approximately uniform gravitational field and differs from calculating elastic potential energy.
 
-**User-friendly description (lt):** Apskaičiuok energijos pokytį pagal masę, gravitaciją ir aukštį.
+**User-friendly description (lt):** Apskaičiuok gravitacinės potencinės energijos pokytį iš masės, laisvojo kritimo pagreičio ir aukščio pokyčio.
 
 ##### Klasifikuoti energijos formas
 
@@ -1042,7 +1042,7 @@ Skills: 3
 
 **Methodological description (English):** When the net force is zero, a body's velocity in an inertial reference frame remains constant; rest is a special case.
 
-**User-friendly description (lt):** Paaiškink, kodėl nulinė atstojamoji jėga reiškia pastovų greitį inercinėje atskaitos sistemoje.
+**User-friendly description (lt):** Paaiškink, kodėl inercinėje atskaitos sistemoje nulinė atstojamoji jėga reiškia nekintantį greičio vektorių.
 
 ##### Paaiškinti antrąjį Niutono dėsnį
 
@@ -1194,7 +1194,7 @@ Skills: 5
 
 **Methodological description (English):** A transition of an atom between energy states may be accompanied by the emission of a photon whose energy is determined by the difference between those states.
 
-**User-friendly description (lt):** Paaiškink, kaip atomai gali spinduliuoti fotonus pereidami tarp energijos lygių.
+**User-friendly description (lt):** Paaiškink, kaip sužadintas atomas, pereidamas į žemesnį energijos lygmenį, gali išspinduliuoti fotoną, kurio energija lygi lygmenų skirtumui.
 
 ##### Kvantinių objektų banginio ir dalelinio elgesio paaiškinimas
 
@@ -1894,7 +1894,7 @@ Skills: 8
 
 **Methodological description (English):** For an unchanged sound emitted by a source, explain the Doppler effect: the frequency heard by the observer is higher as the source approaches and lower as it moves away. Do not confuse this frequency change with loudness or engine revolutions.
 
-**User-friendly description (lt):** Tyrinėk, kodėl judantis garso šaltinis gali pakeisti girdimą tono aukštį.
+**User-friendly description (lt):** Paaiškink Doplerio efektą: artėjant šaltiniui ir klausytojui girdimas tonas aukštėja, o jiems tolstant – žemėja.
 
 ##### Atpažinti garso sklidimą per terpę
 
@@ -1954,7 +1954,7 @@ Skills: 5
 
 **Methodological description (English):** Reflection, refraction, interference, diffraction, and resonance can occur in different kinds of physical waves.
 
-**User-friendly description (lt):** Tyrinėk bangų atspindį, lūžį, sudėtį, difrakciją ir rezonansą.
+**User-friendly description (lt):** Tyrinėk bangų atspindį, lūžį, interferenciją, difrakciją ir rezonansą.
 
 ##### Aiškinti rezonansą
 

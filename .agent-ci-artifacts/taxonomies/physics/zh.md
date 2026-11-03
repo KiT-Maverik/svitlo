@@ -616,7 +616,7 @@ Skills: 3
 
 **Methodological description (English):** For steady flow without leakage, a change in a channel's cross-sectional area is associated with a change in fluid speed.
 
-**User-friendly description (zh):** 联系流道宽度的变化与稳定不可压缩流动的速度。
+**User-friendly description (zh):** 解释在稳定、无泄漏的不可压缩流动中，流道横截面积的变化如何影响流速。
 
 ##### 解释不同水位容器之间的水流
 
@@ -1194,7 +1194,7 @@ Skills: 5
 
 **Methodological description (English):** A transition of an atom between energy states may be accompanied by the emission of a photon whose energy is determined by the difference between those states.
 
-**User-friendly description (zh):** 解释原子在改变能级时如何发射光子。
+**User-friendly description (zh):** 解释激发态原子跃迁到较低能级时，如何发射能量与能级差对应的光子。
 
 ##### 解释量子物体的波动性与粒子性
 
@@ -1252,7 +1252,7 @@ Skills: 6
 
 **Methodological description (English):** Light nuclei can combine under suitable conditions, and changes in binding energy can lead to energy release.
 
-**User-friendly description (zh):** 解释轻原子核结合时如何释放能量。
+**User-friendly description (zh):** 解释轻原子核在适当条件下聚合时，为什么可能释放能量。
 
 ##### 解释放射性
 
@@ -1894,7 +1894,7 @@ Skills: 8
 
 **Methodological description (English):** For an unchanged sound emitted by a source, explain the Doppler effect: the frequency heard by the observer is higher as the source approaches and lower as it moves away. Do not confuse this frequency change with loudness or engine revolutions.
 
-**User-friendly description (zh):** 探索运动中的声源为何会改变听者听到的音高。
+**User-friendly description (zh):** 解释声源与听者相对靠近时音调变高、相对远离时变低的多普勒效应。
 
 ##### 认识声音通过介质传播
 
