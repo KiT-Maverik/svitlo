@@ -46,7 +46,7 @@ export const economicsOfPersonalData_Skill_Data = buildSkillConfig({
       bn: "ব্যক্তিগত তথ্যের বিনিময়ে পাওয়া সেবায় লুকানো অর্থনৈতিক সিদ্ধান্তগুলো জানো।",
       pt: "Explore as trocas econômicas ocultas de serviços financiados com dados pessoais.",
       ur: "ذاتی ڈیٹا کے ذریعے مالی اعانت حاصل کرنے والی خدمات کے پوشیدہ معاشی سمجھوتے سمجھیں۔",
-      id: "Jelajahi pertukaran ekonomi tersembunyi dalam layanan yang didanai data pribadi.",
+      id: "Jelajahi kompromi ekonomi yang tersembunyi dalam layanan yang didanai data pribadi.",
       de: "Erkunde versteckte wirtschaftliche Abwägungen bei Diensten, die mit persönlichen Daten finanziert werden.",
       ja: "個人データで運営されるサービスに潜む経済的な利害の交換を探りましょう。",
       ko: "개인정보로 운영되는 서비스에 숨은 경제적 상충관계를 살펴보세요.",
