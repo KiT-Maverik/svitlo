@@ -14,7 +14,7 @@ export const paymentFinancialTechnologies_Skill_Data = buildSkillConfig({
     pt: "Tecnologias financeiras de pagamento",
     ur: "ادائیگی کی مالی ٹیکنالوجیاں",
     id: "Teknologi pembayaran digital",
-    de: "Finanztechnologien für Zahlungen",
+    de: "Digitale Zahlungstechnologien",
     ja: "デジタル決済技術",
     ko: "디지털 결제 기술",
     tr: "Ödeme Finans Teknolojileri",
