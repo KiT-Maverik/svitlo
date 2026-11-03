@@ -57,7 +57,7 @@ export const identifyMaterialsAttractedToAMagnet_Skill_Data = buildSkillConfig({
       te: 'అయస్కాంత క్షేత్రాలకు బలంగా ప్రతిస్పందించే పదార్థాలను గుర్తించండి.',
       mr: 'चुंबकीय क्षेत्राला तीव्र प्रतिसाद देणारे पदार्थ ओळखा.',
       ms: 'Kenal pasti bahan yang bertindak balas kuat terhadap medan magnet.',
-      he: 'זהה חומרים המגיבים בחוזקה לשדות מגנטיים.',
+      he: 'זהו חומרים המגיבים בחוזקה לשדות מגנטיים.',
       pl: 'Rozpoznaj materiały silnie reagujące na pola magnetyczne.',
       uk: 'Розпізнавай матеріали, які сильно реагують на магнітне поле.',
       lt: 'Atpažink medžiagas, stipriai reaguojančias į magnetinius laukus.',

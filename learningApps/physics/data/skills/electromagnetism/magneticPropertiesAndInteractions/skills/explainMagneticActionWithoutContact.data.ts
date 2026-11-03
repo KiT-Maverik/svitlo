@@ -57,7 +57,7 @@ export const explainMagneticActionWithoutContact_Skill_Data = buildSkillConfig({
       te: 'వస్తువును తాకకుండానే అయస్కాంతం బలం ఎలా ప్రయోగించగలదో వివరించండి.',
       mr: 'चुंबक वस्तूला न स्पर्श करताही बल कसे लावू शकतो ते स्पष्ट करा.',
       ms: 'Terangkan mengapa magnet boleh mengenakan daya tanpa menyentuh objek.',
-      he: 'הסבר מדוע מגנט יכול להפעיל כוח בלי לגעת בעצם.',
+      he: 'הסבירו מדוע מגנט יכול להפעיל כוח בלי לגעת בעצם.',
       pl: 'Wyjaśnij, dlaczego magnes wywiera siłę bez dotykania przedmiotu.',
       uk: 'Пояснюй, чому магніт може діяти силою, не торкаючись тіла.',
       lt: 'Paaiškink, kodėl magnetas gali veikti kūną jėga jo neliesdamas.',

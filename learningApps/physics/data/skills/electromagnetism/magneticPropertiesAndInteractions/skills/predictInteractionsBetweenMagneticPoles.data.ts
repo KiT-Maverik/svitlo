@@ -57,7 +57,7 @@ export const predictInteractionsBetweenMagneticPoles_Skill_Data = buildSkillConf
       te: 'తెలిసిన అయస్కాంత ధ్రువాలను దగ్గరకు తెస్తే ఏమి జరుగుతుందో అంచనా వేయండి.',
       mr: 'माहीत असलेले ध्रुव जवळ आणल्यावर काय घडेल ते सांगा.',
       ms: 'Ramalkan apa yang berlaku apabila kutub magnet yang diketahui didekatkan.',
-      he: 'חזה מה קורה כשמקרבים קטבים מגנטיים ידועים זה לזה.',
+      he: 'חזו מה קורה כשמקרבים קטבים מגנטיים ידועים זה לזה.',
       pl: 'Przewidź, co się stanie po zbliżeniu znanych biegunów magnetycznych.',
       uk: 'Прогнозуй, що станеться, якщо наблизити відомі магнітні полюси.',
       lt: 'Numatyk, kas nutiks suartinus žinomus magnetinius polius.',

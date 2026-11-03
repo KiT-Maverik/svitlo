@@ -67,7 +67,7 @@ export const magneticPropertiesAndInteractions_SkillGroup_Data = buildSkillGroup
       te: 'అయస్కాంత పదార్థాలు, ధ్రువాలు ఎలా పరస్పరం చర్య జరుపుతాయో తెలుసుకోండి.',
       mr: 'चुंबकीय पदार्थ आणि ध्रुव कसे परस्परक्रिया करतात ते जाणून घ्या.',
       ms: 'Terokai bagaimana bahan magnet dan kutub magnet saling berinteraksi.',
-      he: 'גלה כיצד חומרים מגנטיים וקטבים פועלים זה על זה.',
+      he: 'גלו כיצד חומרים מגנטיים וקטבים פועלים זה על זה.',
       pl: 'Poznaj, jak materiały magnetyczne i bieguny na siebie oddziałują.',
       uk: 'Досліджуй, як взаємодіють магнітні матеріали й полюси.',
       lt: 'Sužinok, kaip sąveikauja magnetinės medžiagos ir poliai.',

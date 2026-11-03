@@ -57,7 +57,7 @@ export const recognizeMagneticRepulsion_Skill_Data = buildSkillConfig({
       te: 'అయస్కాంతాలు ఒకదానినొకటి వికర్షించే పరిస్థితులను గుర్తించండి.',
       mr: 'चुंबक एकमेकांना दूर ढकलतात अशा परिस्थिती ओळखा.',
       ms: 'Kenal pasti keadaan apabila magnet saling menolak.',
-      he: 'זהה מצבים שבהם מגנטים דוחים זה את זה.',
+      he: 'זהו מצבים שבהם מגנטים דוחים זה את זה.',
       pl: 'Rozpoznaj sytuacje, w których magnesy się odpychają.',
       uk: 'Визначай ситуації, коли магніти відштовхуються.',
       lt: 'Atpažink situacijas, kai magnetai vienas kitą stumia.',
