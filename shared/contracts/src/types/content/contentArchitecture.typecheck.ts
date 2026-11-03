@@ -1,12 +1,15 @@
 import type {
   ContentBlock,
   ContentBlock_Checkpoint,
+  ContentBlock_Code,
+  ContentBlock_Image,
   ContentBlock_Quiz,
   ContentBlock_Quiz_Screen,
   ContentBlock_Reference,
   ContentBlock_Scene,
   ContentBlock_Text,
   ContentBlock_Type,
+  ContentBlock_Youtube,
   Flashcard,
   Lesson,
   Question,
@@ -48,7 +51,70 @@ const runtimeText: ContentBlock_Text<'response'> = {
   id: 'text-id',
   type: 'text',
   locale: { code: 'en' },
-  value: 'hello',
+  value: 'hello {{id: name; value: John}}',
+  styling: [{ id: 'name', applyStyle: ['highlight', 'variable'], tone: 'info' }],
+  wrap: { typographyProps: { component: 'h2', variant: 'h4', sx: { mb: 2 } } },
+};
+const authoredText: ContentBlock_Text<'data'> = {
+  id: 'text-id',
+  slug: 'intro',
+  value: { value: 'hello {{id: name; value: John}}', language: 'en' },
+  styling: [{ id: 'name', applyStyle: ['highlight'], tone: 'warning' }],
+  wrap: { typographyProps: { component: 'p', align: 'center' } },
+};
+const authoredYoutube: ContentBlock_Youtube<'data'> = {
+  id: 'youtube-id',
+  slug: 'video',
+  mode: 'embed',
+  href: { value: 'https://youtu.be/M7lc1UVf-VE', language: 'en' },
+  title: { value: 'Lesson video', language: 'en' },
+  fallback: {
+    offline: { value: 'Connect to watch', language: 'en' },
+    unavailable: { value: 'Video unavailable', language: 'en' },
+  },
+};
+const authoredImage: ContentBlock_Image<'data'> = {
+  id: 'image-id',
+  slug: 'diagram',
+  src: { value: '/diagram.png', language: 'en' },
+  alt: { value: 'Light ray diagram', language: 'en' },
+  caption: { value: 'Path of a light ray', language: 'en' },
+  width: 800,
+  height: 450,
+  fallback: { unavailable: { value: 'Diagram unavailable', language: 'en' } },
+};
+const authoredCode: ContentBlock_Code<'data'> = {
+  id: 'code-id',
+  slug: 'greeting',
+  fileLocation: { value: '/examples/greeting.ts', language: 'en' },
+  language: 'typescript',
+  variables: [{ id: 'greeting', value: { value: 'Hello', language: 'en' } }],
+};
+const runtimeCode: ContentBlock_Code<'response'> = {
+  id: 'code-id',
+  type: 'code',
+  locale: { code: 'en' },
+  code: 'console.log("{{greeting}}");',
+  language: 'typescript',
+  variables: [{ id: 'greeting', value: 'Hello' }],
+};
+const authoredFillImage: ContentBlock_Image<'data'> = {
+  id: 'image-fill-id',
+  slug: 'responsive-diagram',
+  src: { value: '/diagram.png', language: 'en' },
+  alt: { value: 'Responsive light ray diagram', language: 'en' },
+  fill: true,
+  aspectRatio: 16 / 9,
+  objectFit: 'contain',
+  sizes: '(max-width: 768px) 100vw, 768px',
+};
+// @ts-expect-error Embedded YouTube videos require an accessible title or hint.
+const unlabelledYoutube: ContentBlock_Youtube<'response'> = {
+  id: 'youtube-id',
+  type: 'youtube',
+  mode: 'embed',
+  locale: { code: 'en' },
+  href: 'https://youtu.be/M7lc1UVf-VE',
 };
 const runtimeScene: ContentBlock_Scene<'response'> = {
   id: 'scene-id',
@@ -79,4 +145,4 @@ declare const quiz: ContentBlock_Quiz<'response'>;
 // @ts-expect-error Quiz question references are immutable.
 quiz.questionSlugs.push('another-question');
 
-void [runtimeText, runtimeScene, customQuizScreen, emptyQuizScreen, missingDiscriminator, quiz, flashcard];
+void [runtimeText, authoredText, authoredYoutube, authoredImage, authoredFillImage, authoredCode, runtimeCode, unlabelledYoutube, runtimeScene, customQuizScreen, emptyQuizScreen, missingDiscriminator, quiz, flashcard];

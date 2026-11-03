@@ -4,16 +4,25 @@ import type { Locale_Config, Locale_ResponseParams } from '../locale.types';
 
 type ContentBlock_Audio_Definition = ContentBlock_Definition_Meta<'audio'>;
 
+type Audio_Fallback<Value> = {
+  offline?: Value;
+  unavailable?: Value;
+  playbackError?: Value;
+  retry?: Value;
+};
+
 type ContentBlock_Audio_Data = ContentBlock_Data_Meta & {
   fileLocation: Locale_Config;
   title: Locale_Config;
-  description: Locale_Config;
+  description?: Locale_Config;
+  fallback?: Audio_Fallback<Locale_Config>;
 };
 
-type ContentBlock_Audio_Response = ContentBlock_Response_Meta<'audio'> & Locale_ResponseParams & {
+export type ContentBlock_Audio_Response = ContentBlock_Response_Meta<'audio'> & Locale_ResponseParams & {
   fileLocation: string;
   title: string;
-  description: string;
+  description?: string;
+  fallback?: Audio_Fallback<string>;
 };
 
 export type ContentBlock_Audio<ConfigType extends ContentEntity_ConfigType> = {

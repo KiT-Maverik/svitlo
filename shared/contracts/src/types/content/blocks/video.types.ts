@@ -4,14 +4,25 @@ import type { Locale_Config, Locale_ResponseParams } from '../locale.types';
 
 type ContentBlock_Video_Definition = ContentBlock_Definition_Meta<'video'>;
 
+type Video_Fallback<Value> = {
+  offline?: Value;
+  unavailable?: Value;
+  playbackError?: Value;
+  retry?: Value;
+};
+
 type ContentBlock_Video_Data = ContentBlock_Data_Meta & {
   fileLocation: Locale_Config;
   poster: Locale_Config;
+  title?: Locale_Config;
+  fallback?: Video_Fallback<Locale_Config>;
 };
 
-type ContentBlock_Video_Response = ContentBlock_Response_Meta<'video'> & Locale_ResponseParams & {
+export type ContentBlock_Video_Response = ContentBlock_Response_Meta<'video'> & Locale_ResponseParams & {
   fileLocation: string;
   poster: string;
+  title?: string;
+  fallback?: Video_Fallback<string>;
 };
 
 export type ContentBlock_Video<ConfigType extends ContentEntity_ConfigType> = {

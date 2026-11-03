@@ -59,6 +59,14 @@ function isPublicImport(pkg, specifier) {
   });
 }
 
+function isDeclaredPackageImport(pkg, specifier) {
+  return Object.keys(pkg.imports || {}).some(key => {
+    if (key === specifier) return true;
+    const wildcard = key.indexOf('*');
+    return wildcard >= 0 && specifier.startsWith(key.slice(0, wildcard)) && specifier.endsWith(key.slice(wildcard + 1));
+  });
+}
+
 for (const [path, pkg] of workspaces) {
   const packageRoot = resolve(root, path);
   const tsconfig = readJson(path + '/tsconfig.json');
@@ -81,6 +89,10 @@ for (const [path, pkg] of workspaces) {
           remainder !== '..' && !remainder.startsWith('..' + sep) && !isAbsolute(remainder),
           'Cross-package relative import: ' + description,
         );
+        continue;
+      }
+      if (specifier.startsWith('#')) {
+        assert(isDeclaredPackageImport(pkg, specifier), 'Undeclared package-local import: ' + description);
         continue;
       }
       if (specifier.startsWith('@/') || Object.hasOwn(localAliases, specifier)) {

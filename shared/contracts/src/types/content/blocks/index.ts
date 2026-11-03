@@ -78,4 +78,26 @@ export type {
   ContentBlock_Youtube,
 };
 
+export type {
+  ContentBlock_Text_Data,
+  ContentBlock_Text_Presentation,
+  ContentBlock_Text_Response,
+  ContentBlock_Text_Wrap,
+} from './text.types';
+
+export type { ContentBlock_Youtube_Response } from './youtube.types';
+export type { ContentBlock_Video_Response } from './video.types';
+export type { ContentBlock_Image_Response } from './image.types';
+export type { ContentBlock_Checkpoint_Response } from './checkpoint.types';
+export type { ContentBlock_Audio_Response } from './audio.types';
+export type { ContentBlock_Code_Response } from './code.types';
+export type { ContentBlock_Markdown_Response } from './markdown.types';
+
+export type {
+  HighlightTone,
+  StyledText_Rule,
+  StyledText_Rules,
+  StyledTextStyle,
+} from '../../text.types';
+
 export type { ContentBlock_Type } from './common.types';
