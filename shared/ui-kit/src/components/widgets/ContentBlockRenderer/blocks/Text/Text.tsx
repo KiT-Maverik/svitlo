@@ -42,6 +42,8 @@ type Condition = {
   id: string
 }
 
+'Blah-Blah {{id: name; option1: Bob; option2: Jane}}'
+
 export const Text = ({ text, wrap }: TextProps) => {
   if (wrap?.enabled === false) return text;
 
