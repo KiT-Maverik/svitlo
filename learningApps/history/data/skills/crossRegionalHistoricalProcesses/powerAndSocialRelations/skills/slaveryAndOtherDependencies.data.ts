@@ -59,7 +59,7 @@ export const slaveryAndOtherDependencies_Skill_Data = buildSkillConfig({
       he: "זהו צורות שונות של שלילת חירות בחברות עתיקות.",
       pl: "Rozpoznaj różne formy braku wolności w społeczeństwach starożytnych.",
       uk: "Розпізнавай різні форми несвободи в давніх суспільствах.",
-      lt: "Atpažink įvairias nelaisvės formas senovės visuomenėse.",
+      lt: "Atpažink įvairias laisvės suvaržymo formas senovės visuomenėse.",
       lv: "Atpazīsti dažādas nebrīvības formas senajās sabiedrībās.",
       et: "Tunne ära eri vabaduse puudumise vormid muistsetes ühiskondades.",
       be: "Распазнавай розныя формы несвабоды ў старажытных грамадзтвах.",

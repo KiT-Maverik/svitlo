@@ -56,7 +56,7 @@ export const indusCivilization_SkillGroup_Data = buildSkillGroupConfig({
       ur: "جانیں کہ وادیٔ سندھ کے شہر غیر معمولی اور پراسرار کیوں ہیں۔",
       id: "Temukan hal menakjubkan dan misterius dari kota-kota Indus.",
       de: "Entdecke, was die Indus-Städte bemerkenswert und rätselhaft macht.",
-      ja: "インダスの都市が驚くべき点と未解明の謎を見つけよう。",
+      ja: "インダスの都市の注目すべき特徴と、まだ解明されていない謎を探ろう。",
       ko: "인더스 도시가 특별하고 수수께끼 같은 이유를 알아보세요.",
       tr: "İndus kentlerini dikkat çekici ve gizemli yapan özellikleri öğren.",
       vi: "Tìm hiểu những điểm đặc biệt và bí ẩn của các đô thị sông Ấn.",
