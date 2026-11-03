@@ -10,7 +10,7 @@ export const ancientAfrica_SkillDomain_Data = buildSkillDomainConfig({
   slug: "ancientAfrica",
   id: "c73e038b-1bfd-421b-adb5-b75dd00cebb0",
   name: {
-    en: "Африка",
+    en: "Africa",
     zh: "非洲",
     hi: "अफ्रीका",
     es: "África",

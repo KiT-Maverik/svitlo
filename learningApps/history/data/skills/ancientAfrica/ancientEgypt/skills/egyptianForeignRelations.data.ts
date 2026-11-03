@@ -4,7 +4,7 @@ export const egyptianForeignRelations_Skill_Data = buildSkillConfig({
   slug: "egyptianForeignRelations",
   id: "2a98d27f-a2fe-433a-9247-80102db5e0e2",
   name: {
-    en: "Єгипетські міжнародні відносини",
+    en: "Egyptian Foreign Relations",
     zh: "埃及的对外关系",
     hi: "मिस्र के विदेशी संबंध",
     es: "Relaciones exteriores de Egipto",

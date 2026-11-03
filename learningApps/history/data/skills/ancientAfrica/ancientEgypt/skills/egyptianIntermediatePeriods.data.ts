@@ -4,7 +4,7 @@ export const egyptianIntermediatePeriods_Skill_Data = buildSkillConfig({
   slug: "egyptianIntermediatePeriods",
   id: "1d5fde05-c710-40bf-b3e5-4ed57fe8132d",
   name: {
-    en: "Перехідні періоди Єгипту",
+    en: "Egyptian Intermediate Periods",
     zh: "埃及各中间期",
     hi: "मिस्र के मध्यवर्ती काल",
     es: "Períodos intermedios de Egipto",

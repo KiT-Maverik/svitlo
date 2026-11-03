@@ -4,7 +4,7 @@ export const egyptianConstruction_Skill_Data = buildSkillConfig({
   slug: "egyptianConstruction",
   id: "a271bd69-0488-4798-8bb4-48b43ecd01b1",
   name: {
-    en: "Єгипетське будівництво",
+    en: "Egyptian Construction",
     zh: "埃及建筑",
     hi: "मिस्री निर्माण कार्य",
     es: "Construcción egipcia",

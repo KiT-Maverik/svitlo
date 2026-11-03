@@ -4,7 +4,7 @@ export const egyptianBurialPractices_Skill_Data = buildSkillConfig({
   slug: "egyptianBurialPractices",
   id: "1180dc48-b2d7-426d-ad0b-a5c646de0b51",
   name: {
-    en: "Поховальні практики Єгипту",
+    en: "Egyptian Burial Practices",
     zh: "埃及丧葬习俗",
     hi: "मिस्र की अंत्येष्टि प्रथाएँ",
     es: "Prácticas funerarias egipcias",

@@ -6,7 +6,7 @@ export const ancientEgypt_SkillGroup_Data = buildSkillGroupConfig({
   slug: "ancientEgypt",
   id: "49358541-07a4-465a-a44f-2efd1da01604",
   name: {
-    en: "Єгипет",
+    en: "Egypt",
     zh: "古埃及",
     hi: "प्राचीन मिस्र",
     es: "Egipto antiguo",
