@@ -17,7 +17,7 @@ export const laborAndEmployment_SkillDomain_Data = buildSkillDomainConfig({
     bn: "শ্রম ও কর্মসংস্থান",
     pt: "Trabalho e emprego",
     ur: "محنت اور روزگار",
-    id: "Tenaga Kerja dan Pekerjaan",
+    id: "Tenaga kerja dan pekerjaan",
     de: "Arbeit und Beschäftigung",
     ja: "労働と雇用",
     ko: "노동과 고용",

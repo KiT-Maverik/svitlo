@@ -13,7 +13,7 @@ export const collectiveBargaining_Skill_Data = buildSkillConfig({
     bn: "যৌথ দরকষাকষি",
     pt: "Negociação coletiva",
     ur: "اجتماعی سودے بازی",
-    id: "Perundingan Kolektif",
+    id: "Perundingan kolektif",
     de: "Tarifverhandlungen",
     ja: "団体交渉",
     ko: "단체 교섭",

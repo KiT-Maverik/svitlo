@@ -13,7 +13,7 @@ export const automationAndEmployment_Skill_Data = buildSkillConfig({
     bn: "স্বয়ংক্রিয়করণ ও কর্মসংস্থান",
     pt: "Automação e emprego",
     ur: "خودکار عمل اور روزگار",
-    id: "Otomatisasi dan Pekerjaan",
+    id: "Otomatisasi dan pekerjaan",
     de: "Automatisierung und Beschäftigung",
     ja: "自動化と雇用",
     ko: "자동화와 고용",

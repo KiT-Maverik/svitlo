@@ -15,7 +15,7 @@ export const employmentAndMobility_SkillGroup_Data = buildSkillGroupConfig({
     bn: "কর্মসংস্থান ও স্থানান্তর",
     pt: "Emprego e mobilidade",
     ur: "روزگار اور نقل و حرکت",
-    id: "Pekerjaan dan Mobilitas",
+    id: "Pekerjaan dan mobilitas",
     de: "Beschäftigung und Mobilität",
     ja: "就職と職業移動",
     ko: "고용과 이동성",
