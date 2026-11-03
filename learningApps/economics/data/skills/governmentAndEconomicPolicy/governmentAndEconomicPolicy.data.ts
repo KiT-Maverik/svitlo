@@ -55,7 +55,7 @@ export const governmentAndEconomicPolicy_SkillDomain_Data = buildSkillDomainConf
       hi: "जानें कि सरकारी निर्णय संसाधनों, प्रोत्साहनों और आर्थिक परिणामों को कैसे प्रभावित करते हैं।",
       es: "Explora cómo las decisiones públicas influyen en recursos, incentivos y resultados económicos.",
       ar: "استكشف كيف تؤثر القرارات الحكومية في الموارد والحوافز والنتائج الاقتصادية.",
-      fr: "Explorez comment les décisions publiques influencent les ressources, les incitations et les résultats économiques.",
+      fr: "Explore comment les décisions publiques influencent les ressources, les incitations et les résultats économiques.",
       bn: "সরকারি সিদ্ধান্ত কীভাবে সম্পদ, প্রণোদনা ও অর্থনৈতিক ফলাফলে প্রভাব ফেলে তা জানো।",
       pt: "Explore como decisões do governo influenciam recursos, incentivos e resultados econômicos.",
       ur: "جانیں کہ حکومتی فیصلے وسائل، ترغیبات اور معاشی نتائج کو کیسے متاثر کرتے ہیں۔",

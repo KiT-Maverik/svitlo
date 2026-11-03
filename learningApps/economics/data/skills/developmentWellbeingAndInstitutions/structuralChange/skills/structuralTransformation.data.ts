@@ -42,7 +42,7 @@ export const structuralTransformation_Skill_Data = buildSkillConfig({
       hi: "जानें कि श्रमिक और निवेश उद्योगों के बीच जाने से क्या बदलाव होते हैं।",
       es: "Explora qué ocurre cuando trabajadores e inversiones se trasladan entre sectores.",
       ar: "استكشف ما يحدث عندما ينتقل العاملون والاستثمار بين القطاعات.",
-      fr: "Explorez ce qui se passe lorsque travailleurs et investissements changent de secteur.",
+      fr: "Explore ce qui se passe lorsque travailleurs et investissements changent de secteur.",
       bn: "শ্রমিক ও বিনিয়োগ এক খাত থেকে অন্য খাতে গেলে কী ঘটে তা জানো।",
       pt: "Explore o que acontece quando trabalhadores e investimentos mudam de setor.",
       ur: "جانیں کہ کارکن اور سرمایہ کاری شعبوں کے درمیان منتقل ہونے سے کیا ہوتا ہے۔",

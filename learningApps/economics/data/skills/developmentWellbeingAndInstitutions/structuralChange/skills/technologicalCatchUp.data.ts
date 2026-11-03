@@ -42,7 +42,7 @@ export const technologicalCatchUp_Skill_Data = buildSkillConfig({
       hi: "समझें कि देश दूसरे स्थानों पर विकसित तकनीक से कैसे सीखते हैं।",
       es: "Comprende cómo los países aprenden de tecnologías desarrolladas en otros lugares.",
       ar: "افهم كيف تستفيد الدول من التقنيات المطورة في أماكن أخرى.",
-      fr: "Comprenez comment les pays apprennent des technologies mises au point ailleurs.",
+      fr: "Comprends comment les pays apprennent des technologies mises au point ailleurs.",
       bn: "অন্য জায়গায় উদ্ভাবিত প্রযুক্তি থেকে দেশগুলো কীভাবে শেখে তা বোঝো।",
       pt: "Entenda como países aprendem com tecnologias desenvolvidas em outros lugares.",
       ur: "سمجھیں کہ ملک دوسری جگہوں پر تیار ٹیکنالوجی سے کیسے سیکھتے ہیں۔",

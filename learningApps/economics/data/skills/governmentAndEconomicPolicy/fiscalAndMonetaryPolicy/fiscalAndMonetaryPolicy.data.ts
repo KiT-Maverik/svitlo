@@ -50,7 +50,7 @@ export const fiscalAndMonetaryPolicy_SkillGroup_Data = buildSkillGroupConfig({
       hi: "आर्थिक स्थिरता बनाए रखने के मुख्य नीतिगत साधनों की तुलना करें।",
       es: "Compara las principales herramientas para mantener la estabilidad económica.",
       ar: "قارن الأدوات الرئيسية المستخدمة لدعم الاستقرار الاقتصادي.",
-      fr: "Comparez les principaux instruments utilisés pour favoriser la stabilité économique.",
+      fr: "Compare les principaux instruments utilisés pour favoriser la stabilité économique.",
       bn: "অর্থনৈতিক স্থিতিশীলতার প্রধান নীতিগত উপায়গুলো তুলনা করো।",
       pt: "Compare os principais instrumentos usados para apoiar a estabilidade econômica.",
       ur: "معاشی استحکام کے اہم پالیسی آلات کا موازنہ کریں۔",
