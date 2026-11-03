@@ -32,7 +32,7 @@ export const gojoseon_Skill_Data = buildSkillConfig({
     be: "Кочасон (Старажытны Часон)",
     ka: "გოჯოსონი (ძველი ჯოსონი)",
     kk: "Кочосон (Ежелгі Чосон)",
-    qm: "Koc os on (Qadimiy Cos on)",
+    qm: "Gojoseon (Qadimiy Joseon)",
   },
   description: {
     methodological: "Interpret archaeological and written evidence about early Gojoseon without treating legendary founding dates as proven.",
@@ -65,7 +65,7 @@ export const gojoseon_Skill_Data = buildSkillConfig({
       be: "Даведайся, што гісторыкі ведаюць пра Кочасон і пра што яшчэ спрачаюцца.",
       ka: "გაიგეთ, რა იციან ისტორიკოსებმა გოჯოსონის შესახებ და რაზე კამათობენ.",
       kk: "Тарихшылар Кочосон туралы нені білетінін және нені талқылайтынын біліңіз.",
-      qm: "Tarihçiler Koc os on aqqında neler bilgenini ve nelerde tartışqanını ögren.",
+      qm: "Tarihçiler Gojoseon aqqında neler bilgenini ve nelerde tartışqanını ögren.",
     },
   },
 });
