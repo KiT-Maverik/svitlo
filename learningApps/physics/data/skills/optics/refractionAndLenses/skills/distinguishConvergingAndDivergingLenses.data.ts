@@ -28,7 +28,7 @@ export const distinguishConvergingAndDivergingLenses_Skill_Data = buildSkillConf
     uk: "Розрізняти збиральні та розсіювальні лінзи",
     lt: "Glaudžiamųjų ir sklaidomųjų lęšių atskyrimas",
     lv: "Savācējlēcu un izkliedētājlēcu atšķiršana",
-    et: "Kumer- ja nõgusläätsede eristamine",
+    et: "Koondavate ja hajutavate läätsede eristamine",
     be: "Адрозьніваць зьбіральныя і расьсейвальныя лінзы",
     ka: "შემკრები და გამბნევი ლინზების გარჩევა",
     kk: "Жинағыш және шашыратқыш линзаларды ажырату",

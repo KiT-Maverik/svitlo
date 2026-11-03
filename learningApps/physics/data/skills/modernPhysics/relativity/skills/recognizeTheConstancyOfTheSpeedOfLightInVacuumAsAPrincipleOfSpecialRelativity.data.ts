@@ -28,7 +28,7 @@ export const recognizeTheConstancyOfTheSpeedOfLightInVacuumAsAPrincipleOfSpecial
     uk: "Розпізнавати сталість швидкості світла у вакуумі як принцип спеціальної теорії відносності",
     lt: "Šviesos greičio pastovumo vakuume atpažinimas kaip specialiosios reliatyvumo teorijos principo",
     lv: "Gaismas ātruma nemainīguma vakuumā atpazīšana kā speciālās relativitātes teorijas principa",
-    et: "Valguse kiiruse jäävuse vaakumis mõistmine erirelatiivsusteooria põhimõttena",
+    et: "Valguse kiiruse muutumatuse vaakumis mõistmine erirelatiivsusteooria põhimõttena",
     be: "Распазнаваць нязьменнасьць хуткасьці сьвятла ў вакуўме як прынцып спэцыяльнай тэорыі адноснасьці",
     ka: "სინათლის სიჩქარის მუდმივობის ამოცნობა ვაკუუმში როგორც ფარდობითობის სპეციალური თეორიის პრინციპისა",
     kk: "Вакуумдағы жарық жылдамдығының тұрақтылығын арнайы салыстырмалылық принципі ретінде тану",
