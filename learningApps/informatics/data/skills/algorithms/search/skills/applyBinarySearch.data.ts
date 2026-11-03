@@ -20,7 +20,7 @@ export const applyBinarySearch_Skill_Data = buildSkillConfig({
     tr: "İkili arama uygulamak",
     vi: "Áp dụng tìm kiếm nhị phân",
     ta: "இருமத் தேடலைப் பயன்படுத்துதல்",
-    te: "ద్విసంఖ్యాక శోధనను అమలు చేయడం",
+    te: "బైనరీ శోధనను అమలు చేయడం",
     mr: "द्विमान शोध लागू करणे",
     ms: "Mengaplikasikan carian binari",
     he: "להפעיל חיפוש בינארי",

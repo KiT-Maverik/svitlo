@@ -13,11 +13,11 @@ test('howLightMoves renders ordered sections, markdown, scenes and quiz from pub
   await expect(page.getByRole('heading', { name: 'Одне світло. Різні середовища.' })).toBeVisible();
   await next.click();
   await expect(page.getByText('Перевірмо, як рухається світло.')).toBeVisible();
-  await expect(page.locator('fieldset')).toHaveCount(6);
+  await expect(page.locator('fieldset')).toHaveCount(7);
 });
 
 test('switching the requested locale selects localized JSON, including scene props', async ({ page }) => {
-  const resource = await page.request.get('/data/pages/lessons/1/howLightMoves/config/en.json');
+  const resource = await page.request.get('/data/pages/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/config/en.json');
   expect(resource.ok()).toBe(true);
   const json = await resource.json();
   expect(json.data.title).toBe('How Light Travels');
@@ -27,5 +27,5 @@ test('switching the requested locale selects localized JSON, including scene pro
   await expect(page.getByRole('region', {
     name: 'Animation of light traveling from the source to the screen',
   })).toBeVisible();
-  await expect(page.getByText('How Light Travels', { exact: true }).first()).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'How light travels', exact: true })).toBeVisible();
 });

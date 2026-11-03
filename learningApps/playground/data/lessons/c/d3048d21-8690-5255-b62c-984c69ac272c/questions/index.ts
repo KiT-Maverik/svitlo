@@ -1,0 +1,18 @@
+import type { Question_Catalog } from '@svitlo/engine/content';
+import { airVacuumSpeed_Question_Data } from './airVacuumSpeed';
+import { fastestMedium_Question_Data } from './fastestMedium';
+import { lightRayDirection_Question_Data } from './lightRayDirection';
+import { lightSpeedInWater_Question_Data } from './lightSpeedInWater';
+import { lightTravelsStraight_Question_Data } from './lightTravelsStraight';
+import { opaqueObjectShadow_Question_Data } from './opaqueObjectShadow';
+
+export const howLightMoves_Questions = {
+  selectOneAnswer: {
+    lightTravelsStraight: lightTravelsStraight_Question_Data,
+    lightRayDirection: lightRayDirection_Question_Data,
+    fastestMedium: fastestMedium_Question_Data,
+    lightSpeedInWater: lightSpeedInWater_Question_Data,
+    airVacuumSpeed: airVacuumSpeed_Question_Data,
+    opaqueObjectShadow: opaqueObjectShadow_Question_Data,
+  },
+} satisfies Question_Catalog<'data'>;

@@ -55,7 +55,7 @@ export const preventCommonDigitalInteractionErrors_Skill_Data = buildSkillConfig
       ta: "தவிர்க்கக்கூடிய பிழைகளைத் தடுக்க குறிச்சொற்கள், சரிபார்ப்பு மற்றும் உறுதிப்படுத்தலைப் பயன்படுத்துங்கள்.",
       te: "నివారించగలిగే తప్పులను అరికట్టేందుకు లేబుళ్లు, ధృవీకరణ, నిర్ధారణను ఉపయోగించండి.",
       mr: "टाळता येणाऱ्या चुका रोखण्यासाठी लेबले, पडताळणी आणि पुष्टी वापरा.",
-      ms: "Gunakan label, pengesahan dan pengesahan tindakan untuk mencegah kesilapan yang boleh dielakkan.",
+      ms: "Gunakan label, semakan input dan pengesahan tindakan untuk mencegah kesilapan yang boleh dielakkan.",
       he: "השתמשו בתוויות, באימות ובאישור כדי למנוע טעויות שאפשר להימנע מהן.",
       pl: "Używaj etykiet, walidacji i potwierdzeń, by zapobiegać błędom, których można uniknąć.",
       uk: "Використовуй підписи, перевірку даних і підтвердження, щоб запобігати помилкам.",

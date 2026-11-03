@@ -60,7 +60,7 @@ export const editADigitalArtifact_Skill_Data = buildSkillConfig({
       pl: "Ulepsz istniejący plik cyfrowy, zachowując jego zamierzone znaczenie.",
       uk: "Покращуй наявний цифровий файл, не втрачаючи його початкового змісту.",
       lt: "Patobulink esamą skaitmeninį failą neprarasdamas jo numatytos prasmės.",
-      lv: "Uzlabojiet esošu digitālu failu, saglabājot tā paredzēto nozīmi.",
+      lv: "Uzlabo esošu digitālu failu, saglabājot tā paredzēto nozīmi.",
       et: "Paranda olemasolevat digifaili selle algset mõtet säilitades.",
       be: "Паляпшай існы лічбавы файл, захоўваючы яго задуманы сэнс.",
       ka: "გააუმჯობესე არსებული ციფრული ფაილი მისი თავდაპირველი აზრის შენარჩუნებით.",
