@@ -23,6 +23,7 @@ export const howLightMovesData = defineLessonData({
       allowNavigation: true,
       allowSkipping: true,
       showIndexes: true,
+      order: [],
     },
   },
   questions: howLightMovesQuestionsData,
@@ -32,4 +33,10 @@ export const howLightMovesData = defineLessonData({
     practice: practiceData,
     quiz: quizData,
   } satisfies Record<keyof typeof howLightMovesDefinition.sections, Lesson<'data'>['sections'][string]>,
-} satisfies Lesson<'data'> & { sectionOrder: string[] });
+} satisfies Lesson<'data'>);
+
+const scenes = [
+  theoryData.content.scene.lightPropagationSimulation.id,
+  theoryData.content.scene.lightRayDiagram.id,
+  practiceData.content.scene.showcase.id,
+] as const;
