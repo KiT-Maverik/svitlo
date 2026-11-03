@@ -41,7 +41,7 @@ type Condition = {
   lth?: { v: number, render: string }
   gth?: { v: number, render: string }
   inRange?: { v: [number, number], render: string }
-  truthy: {yesRender: string | number, noRender: string}
+  truthy?: {yesRender: string | number, noRender: string}
   id: string
 }
 
