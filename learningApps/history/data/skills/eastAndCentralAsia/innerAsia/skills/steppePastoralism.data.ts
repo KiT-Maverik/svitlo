@@ -4,7 +4,7 @@ export const steppePastoralism_Skill_Data = buildSkillConfig({
   slug: "steppePastoralism",
   id: "cf23c273-e419-4b84-83e1-e1ba9526ac9e",
   name: {
-    en: "Кочове скотарство степів",
+    en: "Steppe Pastoralism",
     zh: "草原畜牧业",
     hi: "स्तेपी पशुपालन",
     es: "Pastoreo de las estepas",
