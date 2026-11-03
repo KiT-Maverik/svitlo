@@ -65,7 +65,7 @@ export const consumerPriceIndex_Skill_Data = buildSkillConfig({
       be: "Даведайся, як індэкс цэнаў адлюстроўвае зьмены кошту жыцьця.",
       ka: "გაიგეთ, როგორ ასახავს ფასების ინდექსი ცხოვრების ღირებულების ცვლილებას.",
       kk: "Баға индексі өмір сүру құнының өзгеруін қалай көрсететінін біліңіз.",
-      qm: "Fiyat indeksi yaşav masraflarınıñ deñişüvini nasıl kösterгенini ögren.",
+      qm: "Fiyat indeksi yaşav masraflarınıñ deñişüvini nasıl köstergenini ögren.",
     },
   },
 });
