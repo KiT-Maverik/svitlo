@@ -4,7 +4,7 @@ export const caralAndEarlyAndeanCenters_Skill_Data = buildSkillConfig({
   slug: "caralAndEarlyAndeanCenters",
   id: "6f196a1e-663e-4dc3-80ca-6bbc4aa19072",
   name: {
-    en: "Караль та ранні центри Анд",
+    en: "Caral and Early Andean Centers",
     zh: "卡拉尔与早期安第斯中心",
     hi: "काराल और प्रारंभिक एंडीज़ केंद्र",
     es: "Caral y primeros centros andinos",

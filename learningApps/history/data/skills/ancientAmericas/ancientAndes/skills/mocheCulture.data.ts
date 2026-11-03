@@ -4,7 +4,7 @@ export const mocheCulture_Skill_Data = buildSkillConfig({
   slug: "mocheCulture",
   id: "83373e1c-d143-447a-bec8-aa1612d8de04",
   name: {
-    en: "Культура Моче",
+    en: "Moche Culture",
     zh: "莫切文化",
     hi: "मोचे संस्कृति",
     es: "Cultura moche",

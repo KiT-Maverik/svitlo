@@ -4,7 +4,7 @@ export const chavinCulture_Skill_Data = buildSkillConfig({
   slug: "chavinCulture",
   id: "cebcc3f8-288f-4544-a173-ab78a14f0865",
   name: {
-    en: "Чавін",
+    en: "Chavín Culture",
     zh: "查文文化",
     hi: "चाविन संस्कृति",
     es: "Cultura chavín",

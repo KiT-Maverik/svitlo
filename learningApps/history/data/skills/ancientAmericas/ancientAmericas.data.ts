@@ -10,7 +10,7 @@ export const ancientAmericas_SkillDomain_Data = buildSkillDomainConfig({
   slug: "ancientAmericas",
   id: "b460f1a4-07a1-463a-8095-03f27708ad9e",
   name: {
-    en: "Америки",
+    en: "Americas",
     zh: "美洲",
     hi: "अमेरिकी महाद्वीप",
     es: "Américas",

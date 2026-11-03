@@ -4,7 +4,7 @@ export const nazcaCulture_Skill_Data = buildSkillConfig({
   slug: "nazcaCulture",
   id: "f007b6d7-8d2e-4c3a-9ec2-df53352db41c",
   name: {
-    en: "Культура Наска",
+    en: "Nazca Culture",
     zh: "纳斯卡文化",
     hi: "नाज़्का संस्कृति",
     es: "Cultura nazca",

@@ -6,7 +6,7 @@ export const amazonAndCaribbean_SkillGroup_Data = buildSkillGroupConfig({
   slug: "amazonAndCaribbean",
   id: "b71fa763-19d5-423f-b785-85046c9dbf4f",
   name: {
-    en: "Амазонія та Карибський басейн",
+    en: "Amazonia and the Caribbean",
     zh: "亚马孙地区与加勒比海地区",
     hi: "अमेज़न और कैरेबियाई क्षेत्र",
     es: "Amazonía y el Caribe",

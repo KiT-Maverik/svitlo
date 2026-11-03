@@ -4,7 +4,7 @@ export const tropicalSouthAmericanFarming_Skill_Data = buildSkillConfig({
   slug: "tropicalSouthAmericanFarming",
   id: "d97334d5-ff08-4182-9702-12bd8b3b138a",
   name: {
-    en: "Давнє землеробство тропічної Південної Америки",
+    en: "Ancient Farming in Tropical South America",
     zh: "热带南美洲的古代农业",
     hi: "उष्णकटिबंधीय दक्षिण अमेरिका की प्राचीन खेती",
     es: "Agricultura antigua de Sudamérica tropical",

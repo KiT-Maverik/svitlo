@@ -6,7 +6,7 @@ export const earliestAmericanPopulations_SkillGroup_Data = buildSkillGroupConfig
   slug: "earliestAmericanPopulations",
   id: "c6fa86ed-782c-49a5-934b-dac368645a53",
   name: {
-    en: "Раннє населення",
+    en: "Earliest American Populations",
     zh: "美洲最早期居民",
     hi: "अमेरिका के प्रारंभिक निवासी",
     es: "Primeras poblaciones de América",

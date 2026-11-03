@@ -4,7 +4,7 @@ export const caribbeanIslandSettlement_Skill_Data = buildSkillConfig({
   slug: "caribbeanIslandSettlement",
   id: "ec1fad76-05aa-4bcd-b78f-0abc130f7531",
   name: {
-    en: "Заселення Карибських островів",
+    en: "Settlement of the Caribbean Islands",
     zh: "加勒比海岛屿的定居",
     hi: "कैरेबियाई द्वीपों में बसावट",
     es: "Poblamiento de las islas del Caribe",

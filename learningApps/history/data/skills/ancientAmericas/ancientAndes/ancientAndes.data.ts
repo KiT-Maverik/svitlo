@@ -6,7 +6,7 @@ export const ancientAndes_SkillGroup_Data = buildSkillGroupConfig({
   slug: "ancientAndes",
   id: "80ecf86d-411d-45ad-a562-3147d4346bac",
   name: {
-    en: "Анди",
+    en: "Andes",
     zh: "安第斯地区",
     hi: "एंडीज़",
     es: "Los Andes",

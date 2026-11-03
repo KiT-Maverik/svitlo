@@ -4,7 +4,7 @@ export const earlyAmazonianSocieties_Skill_Data = buildSkillConfig({
   slug: "earlyAmazonianSocieties",
   id: "de7648cd-4174-489e-8d09-17108d6f2ade",
   name: {
-    en: "Ранні суспільства Амазонії",
+    en: "Early Amazonian Societies",
     zh: "早期亚马孙社会",
     hi: "प्रारंभिक अमेज़न समाज",
     es: "Sociedades amazónicas tempranas",
