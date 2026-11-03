@@ -26,7 +26,7 @@ export const proxy_Skill_Data = buildSkillConfig({
     he: "מיופה כוח",
     pl: "Pełnomocnik",
     uk: "Замісник",
-    lt: "Tarpininkas",
+    lt: "Įgaliotinis (Proxy)",
     lv: "Starpniekobjekts",
     et: "Asendaja",
     be: "Намесьнік",

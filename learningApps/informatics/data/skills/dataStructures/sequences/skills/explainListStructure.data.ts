@@ -59,7 +59,7 @@ export const explainListStructure_Skill_Data = buildSkillConfig({
       he: "הבינו שרשימות הן אוספים מסודרים שאפשר לייצג בדרכים שונות.",
       pl: "Rozpoznaj listy jako uporządkowane kolekcje, które można przedstawiać na różne sposoby.",
       uk: "Розпізнавай списки як впорядковані колекції, які можна представляти різними способами.",
-      lt: "Atpažink sąrašus kaip surikiuotus rinkinius, kuriuos galima vaizduoti įvairiai.",
+      lt: "Atpažink sąrašus kaip elementų tvarką turinčius rinkinius, kuriuos galima vaizduoti įvairiai.",
       lv: "Atpazīsti sarakstus kā sakārtotas kolekcijas, ko var attēlot dažādi.",
       et: "Mõista, et loendid on järjestatud kogumid, mida saab esitada eri viisidel.",
       be: "Распазнавай сьпісы як упарадкаваныя калекцыі, якія можна паказваць рознымі спосабамі.",
