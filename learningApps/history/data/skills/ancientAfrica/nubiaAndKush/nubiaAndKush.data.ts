@@ -6,7 +6,7 @@ export const nubiaAndKush_SkillGroup_Data = buildSkillGroupConfig({
   slug: "nubiaAndKush",
   id: "17daa14b-d8b4-40b9-af0b-b37ed9037d3b",
   name: {
-    en: "Нубія та Куш",
+    en: "Nubia and Kush",
     zh: "努比亚与库施",
     hi: "नूबिया और कुश",
     es: "Nubia y Kush",

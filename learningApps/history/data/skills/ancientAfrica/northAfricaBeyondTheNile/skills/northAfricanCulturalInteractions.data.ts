@@ -4,7 +4,7 @@ export const northAfricanCulturalInteractions_Skill_Data = buildSkillConfig({
   slug: "northAfricanCulturalInteractions",
   id: "9c42ea37-d538-46f1-97ae-f1c329392d8f",
   name: {
-    en: "Північноафриканські культурні взаємодії",
+    en: "North African Cultural Interactions",
     zh: "北非文化交流",
     hi: "उत्तर अफ्रीकी सांस्कृतिक संपर्क",
     es: "Interacciones culturales norteafricanas",

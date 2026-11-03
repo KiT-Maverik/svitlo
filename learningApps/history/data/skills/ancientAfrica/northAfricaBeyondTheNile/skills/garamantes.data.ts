@@ -4,7 +4,7 @@ export const garamantes_Skill_Data = buildSkillConfig({
   slug: "garamantes",
   id: "89b9c800-e3bb-4fe3-be9a-9e154f3fc120",
   name: {
-    en: "Гараманти",
+    en: "Garamantes",
     zh: "加拉曼特人",
     hi: "गरामांतेस",
     es: "Garamantes",

@@ -4,7 +4,7 @@ export const earlyEthiopianHighlandStates_Skill_Data = buildSkillConfig({
   slug: "earlyEthiopianHighlandStates",
   id: "8b35ae63-b070-4370-93f5-67bce4a59b7b",
   name: {
-    en: "Ранні держави Ефіопського нагір'я",
+    en: "Early Ethiopian Highland States",
     zh: "埃塞俄比亚高原早期国家",
     hi: "इथियोपियाई उच्चभूमि के प्रारंभिक राज्य",
     es: "Primeros estados de las tierras altas etíopes",

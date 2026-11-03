@@ -4,7 +4,7 @@ export const kermaCulture_Skill_Data = buildSkillConfig({
   slug: "kermaCulture",
   id: "7f6280b7-46b8-46d5-afe7-c8ebe305c0c1",
   name: {
-    en: "Культура Керми",
+    en: "Kerma Culture",
     zh: "克尔马文化",
     hi: "केर्मा संस्कृति",
     es: "Cultura de Kerma",

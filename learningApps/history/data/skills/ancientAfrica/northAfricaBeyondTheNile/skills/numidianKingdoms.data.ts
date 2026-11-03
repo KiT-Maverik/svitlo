@@ -4,7 +4,7 @@ export const numidianKingdoms_Skill_Data = buildSkillConfig({
   slug: "numidianKingdoms",
   id: "fa62cd73-5220-42ca-93a3-0a819c2cc34f",
   name: {
-    en: "Нумідійські царства",
+    en: "Numidian Kingdoms",
     zh: "努米底亚诸王国",
     hi: "न्यूमीडिया के राज्य",
     es: "Reinos númidas",

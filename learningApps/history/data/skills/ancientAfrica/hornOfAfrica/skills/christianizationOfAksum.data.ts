@@ -4,7 +4,7 @@ export const christianizationOfAksum_Skill_Data = buildSkillConfig({
   slug: "christianizationOfAksum",
   id: "0836363b-9d09-4c0d-b4b6-d1ea0430b220",
   name: {
-    en: "Християнізація Аксума",
+    en: "Christianization of Aksum",
     zh: "阿克苏姆的基督教化",
     hi: "अक्सुम का ईसाईकरण",
     es: "Cristianización de Aksum",

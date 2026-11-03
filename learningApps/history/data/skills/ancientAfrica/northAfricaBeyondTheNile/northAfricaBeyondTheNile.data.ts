@@ -6,7 +6,7 @@ export const northAfricaBeyondTheNile_SkillGroup_Data = buildSkillGroupConfig({
   slug: "northAfricaBeyondTheNile",
   id: "1a0ba7c6-d424-4499-8f24-f4e1138fc594",
   name: {
-    en: "Північна Африка поза долиною Нілу",
+    en: "North Africa Beyond the Nile",
     zh: "尼罗河流域以外的北非",
     hi: "नील घाटी से बाहर उत्तरी अफ्रीका",
     es: "África del Norte fuera del valle del Nilo",

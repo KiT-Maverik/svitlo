@@ -4,7 +4,7 @@ export const kingdomOfKush_Skill_Data = buildSkillConfig({
   slug: "kingdomOfKush",
   id: "e8f95e20-080b-4e90-a409-48052aa78cf8",
   name: {
-    en: "Царство Куш",
+    en: "Kingdom of Kush",
     zh: "库施王国",
     hi: "कुश साम्राज्य",
     es: "Reino de Kush",
