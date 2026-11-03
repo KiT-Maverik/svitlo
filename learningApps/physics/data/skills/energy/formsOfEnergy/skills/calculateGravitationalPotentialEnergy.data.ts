@@ -59,7 +59,7 @@ export const calculateGravitationalPotentialEnergy_Skill_Data = buildSkillConfig
       he: "חשבו את השינוי באנרגיה הפוטנציאלית הכבידתית לפי מסה, כבידה וגובה.",
       pl: "Oblicz zmianę energii potencjalnej na podstawie masy, grawitacji i wysokości.",
       uk: "Обчислюй зміну гравітаційної потенціальної енергії за масою, прискоренням вільного падіння й зміною висоти.",
-      lt: "Apskaičiuok energijos pokytį pagal masę, gravitaciją ir aukštį.",
+      lt: "Apskaičiuok gravitacinės potencinės energijos pokytį iš masės, laisvojo kritimo pagreičio ir aukščio pokyčio.",
       lv: "Aprēķini potenciālās enerģijas izmaiņu pēc masas, gravitācijas un augstuma.",
       et: "Arvuta potentsiaalse energia muutus massi, raskuskiirenduse ja kõrguse järgi.",
       be: "Вылічы зьмену патэнцыйнай энэргіі паводле масы, гравітацыі й вышыні.",
