@@ -47,7 +47,7 @@ export const austronesianExpansion_Skill_Data = buildSkillConfig({
       pt: "Acompanhe a expansão de comunidades de línguas austronésias entre as ilhas.",
       ur: "جانیں کہ آسٹرونیشیائی زبانیں بولنے والی آبادیاں جزائر میں کیسے پھیلیں۔",
       id: "Telusuri bagaimana komunitas berbahasa Austronesia menyebar di antara pulau.",
-      de: "Découvre comment les austronesischsprachigen Gemeinschaften sich über Inseln verbreiteten.",
+      de: "Verfolge, wie sich austronesischsprachige Gemeinschaften über die Inseln verbreiteten.",
       ja: "オーストロネシア諸語を話す人々が島々に広がった過程をたどりましょう。",
       ko: "오스트로네시아어족 언어를 사용하는 공동체가 섬들로 어떻게 퍼졌는지 알아보세요.",
       tr: "Avustronezya dilleri konuşan toplulukların adalara nasıl yayıldığını izle.",
