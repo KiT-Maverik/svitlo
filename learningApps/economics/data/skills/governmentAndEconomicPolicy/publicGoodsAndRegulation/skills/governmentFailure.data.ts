@@ -42,7 +42,7 @@ export const governmentFailure_Skill_Data = buildSkillConfig({
       hi: "पहचानें कि सरकारी हस्तक्षेप अपने लक्ष्य क्यों नहीं पूरा कर पाता।",
       es: "Reconoce cómo la intervención estatal puede no cumplir sus objetivos.",
       ar: "تعرّف كيف قد تعجز التدخلات الحكومية عن تحقيق أهدافها.",
-      fr: "Reconnaissez pourquoi une intervention publique peut manquer ses objectifs.",
+      fr: "Reconnais pourquoi une intervention publique peut manquer ses objectifs.",
       bn: "সরকারের হস্তক্ষেপ কীভাবে লক্ষ্য অর্জনে ব্যর্থ হতে পারে তা জানো।",
       pt: "Reconheça como intervenções governamentais podem não alcançar seus objetivos.",
       ur: "جانیں کہ حکومتی مداخلت کبھی اپنے اہداف کیوں پورے نہیں کر پاتی۔",

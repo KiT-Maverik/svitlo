@@ -49,7 +49,7 @@ export const publicBudgetAndDebt_SkillGroup_Data = buildSkillGroupConfig({
       hi: "समझें कि सरकारी बजट, घाटा और सार्वजनिक ऋण कैसे जुड़े हैं।",
       es: "Descubre cómo se relacionan presupuestos públicos, déficits y deuda.",
       ar: "اكتشف العلاقة بين الموازنات العامة والعجز والدَّين.",
-      fr: "Découvrez comment budgets publics, déficits et dette sont liés.",
+      fr: "Découvre comment budgets publics, déficits et dette sont liés.",
       bn: "সরকারি বাজেট, ঘাটতি ও ঋণের সম্পর্ক জানো।",
       pt: "Descubra como orçamentos públicos, déficits e dívida se relacionam.",
       ur: "جانیں کہ سرکاری بجٹ، خسارے اور قرض کا آپس میں کیا تعلق ہے۔",

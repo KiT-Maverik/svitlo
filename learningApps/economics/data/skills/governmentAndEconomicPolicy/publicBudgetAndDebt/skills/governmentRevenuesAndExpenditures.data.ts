@@ -42,7 +42,7 @@ export const governmentRevenuesAndExpenditures_Skill_Data = buildSkillConfig({
       hi: "जानें कि सरकारी धन कहाँ से आता है और कहाँ खर्च होता है।",
       es: "Reconoce de dónde obtiene el Estado el dinero y a dónde lo destina.",
       ar: "تعرّف من أين تحصل الحكومة على أموالها وأين تنفقها.",
-      fr: "Repérez d’où vient l’argent public et à quoi il sert.",
+      fr: "Repère d’où vient l’argent public et à quoi il sert.",
       bn: "সরকার কোথা থেকে অর্থ পায় এবং কোথায় ব্যয় করে তা চিহ্নিত করো।",
       pt: "Identifique de onde vêm os recursos do governo e como são usados.",
       ur: "پہچانیں کہ حکومت کا پیسہ کہاں سے آتا اور کہاں خرچ ہوتا ہے۔",

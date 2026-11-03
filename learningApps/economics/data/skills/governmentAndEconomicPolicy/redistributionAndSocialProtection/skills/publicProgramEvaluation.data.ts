@@ -42,7 +42,7 @@ export const publicProgramEvaluation_Skill_Data = buildSkillConfig({
       hi: "तय करें कि सरकारी कार्यक्रम अपने लक्ष्य तक पहुँचा या नहीं और किस लागत पर।",
       es: "Determina si un programa público cumplió sus objetivos y a qué coste.",
       ar: "قيّم ما إذا كان برنامج حكومي قد حقق أهدافه، وبأي تكلفة.",
-      fr: "Déterminez si un programme public a atteint ses objectifs et à quel coût.",
+      fr: "Détermine si un programme public a atteint ses objectifs et à quel coût.",
       bn: "সরকারি কর্মসূচি কী খরচে লক্ষ্য অর্জন করেছে তা বিচার করো।",
       pt: "Avalie se um programa governamental atingiu seus objetivos e a que custo.",
       ur: "طے کریں کہ سرکاری پروگرام نے کس لاگت سے اپنے اہداف پورے کیے۔",

@@ -42,7 +42,7 @@ export const publicDebtSustainability_Skill_Data = buildSkillConfig({
       hi: "जानें कि सरकार की ऋण सँभालने की क्षमता किन कारणों पर निर्भर करती है।",
       es: "Explora los factores que influyen en la capacidad estatal para gestionar su deuda.",
       ar: "استكشف العوامل المؤثرة في قدرة الحكومة على إدارة ديونها.",
-      fr: "Explorez ce qui influence la capacité d’un État à gérer sa dette.",
+      fr: "Explore ce qui influence la capacité d’un État à gérer sa dette.",
       bn: "সরকারের ঋণ পরিচালনার সক্ষমতা কীসে নির্ভর করে তা জানো।",
       pt: "Explore os fatores que afetam a capacidade do governo de administrar sua dívida.",
       ur: "جانیں کہ حکومت کے قرض سنبھالنے کی صلاحیت کن عوامل پر منحصر ہے۔",
