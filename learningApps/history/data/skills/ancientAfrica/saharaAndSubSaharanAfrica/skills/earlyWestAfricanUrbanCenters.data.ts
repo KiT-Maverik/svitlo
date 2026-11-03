@@ -4,7 +4,7 @@ export const earlyWestAfricanUrbanCenters_Skill_Data = buildSkillConfig({
   slug: "earlyWestAfricanUrbanCenters",
   id: "16f5aa75-8909-4f40-8f12-9e0b7e38f39d",
   name: {
-    en: "Ранні міські центри Західної Африки",
+    en: "Early West African Urban Centers",
     zh: "西非早期城市中心",
     hi: "पश्चिम अफ्रीका के शुरुआती नगरीय केंद्र",
     es: "Primeros centros urbanos de África occidental",

@@ -6,7 +6,7 @@ export const ancientSoutheastAsia_SkillGroup_Data = buildSkillGroupConfig({
   slug: "ancientSoutheastAsia",
   id: "ee7d8586-eba9-48a9-84d7-d46a4a4b987a",
   name: {
-    en: "Південно-Східна Азія",
+    en: "Southeast Asia",
     zh: "古代东南亚",
     hi: "प्राचीन दक्षिण-पूर्व एशिया",
     es: "Sudeste Asiático antiguo",

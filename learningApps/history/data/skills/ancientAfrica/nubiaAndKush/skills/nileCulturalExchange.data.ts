@@ -4,7 +4,7 @@ export const nileCulturalExchange_Skill_Data = buildSkillConfig({
   slug: "nileCulturalExchange",
   id: "a4ab7d39-0567-444e-9946-46e7d113aa8f",
   name: {
-    en: "Нільський культурний обмін",
+    en: "Nile Cultural Exchange",
     zh: "尼罗河流域的文化交流",
     hi: "नील क्षेत्र का सांस्कृतिक आदान-प्रदान",
     es: "Intercambio cultural en el Nilo",

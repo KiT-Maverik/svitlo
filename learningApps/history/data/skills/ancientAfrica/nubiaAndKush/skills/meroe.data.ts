@@ -4,7 +4,7 @@ export const meroe_Skill_Data = buildSkillConfig({
   slug: "meroe",
   id: "708fcbb0-8846-41eb-b81d-5e10c7026132",
   name: {
-    en: "Мерое",
+    en: "Meroë",
     zh: "麦罗埃",
     hi: "मेरोए",
     es: "Meroe",

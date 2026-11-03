@@ -4,7 +4,7 @@ export const earlyBantuSpeakingDispersals_Skill_Data = buildSkillConfig({
   slug: "earlyBantuSpeakingDispersals",
   id: "d3a37314-64c0-4cf3-acb4-c5bbd5f81c9f",
   name: {
-    en: "Раннє розселення бантомовних спільнот",
+    en: "Early Dispersals of Bantu-Speaking Communities",
     zh: "班图语社群的早期扩散",
     hi: "बांटू-भाषी समुदायों का प्रारंभिक प्रसार",
     es: "Primeras dispersiones de pueblos de lenguas bantúes",

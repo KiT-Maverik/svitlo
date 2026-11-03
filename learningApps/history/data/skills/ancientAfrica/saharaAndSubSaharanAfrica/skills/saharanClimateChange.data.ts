@@ -4,7 +4,7 @@ export const saharanClimateChange_Skill_Data = buildSkillConfig({
   slug: "saharanClimateChange",
   id: "e9fac5b2-7335-463e-85c5-76a48f80c08d",
   name: {
-    en: "Зміни клімату Сахари",
+    en: "Saharan Climate Change",
     zh: "撒哈拉气候变化",
     hi: "सहारा का जलवायु परिवर्तन",
     es: "Cambios climáticos del Sáhara",

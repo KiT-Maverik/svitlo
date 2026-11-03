@@ -4,7 +4,7 @@ export const ancientSaharanPastoralists_Skill_Data = buildSkillConfig({
   slug: "ancientSaharanPastoralists",
   id: "89c98f7f-10cd-4622-bb8a-18eb8c688ad8",
   name: {
-    en: "Давні пастуші суспільства Сахари",
+    en: "Ancient Saharan Pastoralists",
     zh: "古代撒哈拉牧民",
     hi: "प्राचीन सहारा के पशुपालक",
     es: "Antiguos pastores del Sáhara",

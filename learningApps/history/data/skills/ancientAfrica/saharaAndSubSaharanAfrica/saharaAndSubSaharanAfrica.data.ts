@@ -6,7 +6,7 @@ export const saharaAndSubSaharanAfrica_SkillGroup_Data = buildSkillGroupConfig({
   slug: "saharaAndSubSaharanAfrica",
   id: "2050434f-3ac0-4400-8563-828fd54ff8b8",
   name: {
-    en: "Сахара та землі на південь від неї",
+    en: "Sahara and Sub-Saharan Africa",
     zh: "撒哈拉及撒哈拉以南非洲",
     hi: "सहारा और उप-सहारा अफ्रीका",
     es: "Sáhara y África subsahariana",

@@ -4,7 +4,7 @@ export const culturalContactsWithIndia_Skill_Data = buildSkillConfig({
   slug: "culturalContactsWithIndia",
   id: "25d82126-471d-4fd0-a252-beb017ac2ea2",
   name: {
-    en: "Культурні контакти з Індією",
+    en: "Cultural Contacts with India",
     zh: "与印度的文化联系",
     hi: "भारत के साथ सांस्कृतिक संपर्क",
     es: "Contactos culturales con la India",

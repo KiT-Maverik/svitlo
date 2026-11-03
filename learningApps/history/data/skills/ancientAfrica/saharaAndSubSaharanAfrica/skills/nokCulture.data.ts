@@ -4,7 +4,7 @@ export const nokCulture_Skill_Data = buildSkillConfig({
   slug: "nokCulture",
   id: "dce464f8-c4e0-4763-99e4-92ff0926fffc",
   name: {
-    en: "Культура Нок",
+    en: "Nok Culture",
     zh: "诺克文化",
     hi: "नोक संस्कृति",
     es: "Cultura Nok",
