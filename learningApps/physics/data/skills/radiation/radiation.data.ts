@@ -59,7 +59,7 @@ export const radiation_SkillDomain_Data = buildSkillDomainConfig({
       ko: "전자기 복사와 물질의 상호작용을 알아보세요.",
       tr: "Elektromanyetik ışınımı ve maddeyle etkileşimlerini keşfet.",
       vi: "Tìm hiểu bức xạ điện từ và tương tác của nó với vật chất.",
-      ta: "மின்காந்தக் கதிர்வீச்சும் அது பருப்பொருளுடன் வினையாற்றும் விதமும் ஆராய்.",
+      ta: "மின்காந்தக் கதிர்வீச்சையும் அது பருப்பொருளுடன் வினையாற்றும் விதத்தையும் ஆராய்.",
       te: "విద్యుదయస్కాంత వికిరణం, పదార్థంతో దాని పరస్పర చర్యలను తెలుసుకోండి.",
       mr: "विद्युतचुंबकीय प्रारण आणि पदार्थाशी त्याचा परस्परसंबंध अभ्यास करा.",
       ms: "Terokai sinaran elektromagnet dan interaksinya dengan jirim.",
