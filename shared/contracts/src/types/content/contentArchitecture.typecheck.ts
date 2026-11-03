@@ -1,6 +1,7 @@
 import type {
   ContentBlock,
   ContentBlock_Checkpoint,
+  ContentBlock_Code,
   ContentBlock_Image,
   ContentBlock_Quiz,
   ContentBlock_Quiz_Screen,
@@ -82,6 +83,21 @@ const authoredImage: ContentBlock_Image<'data'> = {
   height: 450,
   fallback: { unavailable: { value: 'Diagram unavailable', language: 'en' } },
 };
+const authoredCode: ContentBlock_Code<'data'> = {
+  id: 'code-id',
+  slug: 'greeting',
+  fileLocation: { value: '/examples/greeting.ts', language: 'en' },
+  language: 'typescript',
+  variables: [{ id: 'greeting', value: { value: 'Hello', language: 'en' } }],
+};
+const runtimeCode: ContentBlock_Code<'response'> = {
+  id: 'code-id',
+  type: 'code',
+  locale: { code: 'en' },
+  code: 'console.log("{{greeting}}");',
+  language: 'typescript',
+  variables: [{ id: 'greeting', value: 'Hello' }],
+};
 const authoredFillImage: ContentBlock_Image<'data'> = {
   id: 'image-fill-id',
   slug: 'responsive-diagram',
@@ -129,4 +145,4 @@ declare const quiz: ContentBlock_Quiz<'response'>;
 // @ts-expect-error Quiz question references are immutable.
 quiz.questionSlugs.push('another-question');
 
-void [runtimeText, authoredText, authoredYoutube, authoredImage, authoredFillImage, unlabelledYoutube, runtimeScene, customQuizScreen, emptyQuizScreen, missingDiscriminator, quiz, flashcard];
+void [runtimeText, authoredText, authoredYoutube, authoredImage, authoredFillImage, authoredCode, runtimeCode, unlabelledYoutube, runtimeScene, customQuizScreen, emptyQuizScreen, missingDiscriminator, quiz, flashcard];
