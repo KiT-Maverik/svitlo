@@ -70,7 +70,7 @@ export const everydayLifeInAntiquity_SkillGroup_Data = buildSkillGroupConfig({
       pl: "Poznaj codzienne zajęcia zwykłych ludzi w starożytności.",
       uk: "Дізнайся, чим займалися звичайні люди в повсякденному житті давнини.",
       lt: "Sužinok, ką paprasti žmonės veikdavo kasdien senovėje.",
-      lv: "Uzzini, ko parasti cilvēki darīja ikdienā senatnē.",
+      lv: "Uzzini, ko vienkāršie cilvēki darīja ikdienā senatnē.",
       et: "Õpi, mida tavalised inimesed muistses igapäevaelus tegid.",
       be: "Даведайся, чым займаліся звычайныя людзі ў штодзённым жыцьці старажытнасьці.",
       ka: "გაიგე, რას აკეთებდნენ ჩვეულებრივი ადამიანები ყოველდღიურ ცხოვრებაში ძველად.",
