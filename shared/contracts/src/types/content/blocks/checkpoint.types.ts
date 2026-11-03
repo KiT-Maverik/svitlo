@@ -37,7 +37,7 @@ type ContentBlock_Checkpoint_Settings = {
 
 type ContentBlock_Checkpoint_Definition = ContentBlock_Definition_Meta<'checkpoint'>;
 
-type ContentBlock_Checkpoint_Data = ContentBlock_Data_Meta & ContentBlock_Checkpoint_Settings & {
+type ContentBlock_Checkpoint_Data = ContentBlock_Data_Meta<'checkpoint'> & ContentBlock_Checkpoint_Settings & {
   title: Locale_Config;
   items: {
     question: Locale_Config;
