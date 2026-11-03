@@ -1222,7 +1222,7 @@ Skills: 6
 
 **Methodological description (English):** Trace the emergence of writing from accounting and its expansion to law, scholarship, and literature.
 
-**User-friendly description (id):** Pelajari bagaimana tulisan paku berkembang melampaui pencatatan perdagangan.
+**User-friendly description (id):** Pelajari bagaimana tulisan paku berkembang dari pencatatan sederhana menjadi sarana menulis untuk berbagai keperluan.
 
 ##### Irigasi Mesopotamia
 
@@ -1398,7 +1398,7 @@ Skills: 6
 
 **Methodological description (English):** Compare festivals, games, assemblies, and leisure across social groups and settlements.
 
-**User-friendly description (id):** Pelajari cara masyarakat kuno merayakan perayaan dan mengisi waktu luang.
+**User-friendly description (id):** Pelajari cara masyarakat kuno mengadakan perayaan dan mengisi waktu luang.
 
 #### Penemuan dan sejarah teknik
 

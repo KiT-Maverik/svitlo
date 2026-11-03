@@ -616,7 +616,7 @@ Skills: 4
 
 **User-friendly description (ur):** بحیرۂ اسود کے شمالی ساحل کے قدیم معاشروں کو جانیں۔
 
-##### ابتدائی صحرائی گھاس زار ثقافتیں
+##### ابتدائی استپی گھاس زاروں کی ثقافتیں
 
 [earlySteppeCultures.data.ts](../../../learningApps/history/data/skills/ancientEuropeBeyondMediterranean/northernBlackSeaRegion/skills/earlySteppeCultures.data.ts)
 
@@ -1190,7 +1190,7 @@ Skills: 6
 
 **Methodological description (English):** The Tigris and Euphrates valleys supported cities, complex administration, writing, and successive supraregional states.
 
-**User-friendly description (ur):** جانیں کہ دریائی وادیوں نے میسوپوٹیمیا کے شہروں اور ریاستوں کی مدد کیسے کی۔
+**User-friendly description (ur):** جانیں کہ دریائی وادیوں نے بین النہرین کے شہروں اور ریاستوں کی ترقی میں کیسے مدد کی۔
 
 ##### اکادی سلطنت
 
@@ -1206,7 +1206,7 @@ Skills: 6
 
 **Methodological description (English):** Explain military organization, provincial administration, and imperial control in the Neo-Assyrian state.
 
-**User-friendly description (ur):** سمجھیں کہ آشور نے اپنی سلطنت کی حکمرانی کیسے کی۔
+**User-friendly description (ur):** سمجھیں کہ آشور نے اپنی سلطنت پر کیسے حکومت کی۔
 
 ##### بابلی سلطنتیں
 
@@ -1230,7 +1230,7 @@ Skills: 6
 
 **Methodological description (English):** Connect canals, seasonal water, collective labor, and environmental risks with agricultural productivity.
 
-**User-friendly description (ur):** سمجھیں کہ میسوپوٹیمیا کی زراعت کے لیے آب پاشی کیوں اہم تھی۔
+**User-friendly description (ur):** سمجھیں کہ بین النہرین کی زراعت کے لیے آب پاشی کیوں اہم تھی۔
 
 ##### سومیری شہری ریاستیں
 
@@ -1762,7 +1762,7 @@ Skills: 4
 
 **User-friendly description (ur):** ان نخلستانی شہروں کا جائزہ لیں جو قدیم تجارتی راستوں کو جوڑتے تھے۔
 
-##### ساکا اور متعلقہ صحرائی گھاس زار ثقافتیں
+##### ساکا اور متعلقہ استپی ثقافتیں
 
 [sakaAndRelatedSteppeCultures.data.ts](../../../learningApps/history/data/skills/eastAndCentralAsia/innerAsia/skills/sakaAndRelatedSteppeCultures.data.ts)
 
@@ -1920,7 +1920,7 @@ Skills: 5
 
 **Methodological description (English):** Interpret laws, chronicles, inscriptions, letters, and records in light of their authors, purposes, and intended audiences.
 
-**User-friendly description (ur):** پرانے دستاویزات پڑھتے وقت یہ بھی سوچیں کہ انہیں کس نے اور کیوں لکھا۔
+**User-friendly description (ur):** پرانی دستاویزات پڑھتے وقت یہ بھی سوچیں کہ انہیں کس نے اور کیوں لکھا۔
 
 #### وقت اور تاریخی ادوار کی تقسیم
 

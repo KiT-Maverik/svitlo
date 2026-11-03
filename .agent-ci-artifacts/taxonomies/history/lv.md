@@ -402,13 +402,13 @@ Skills: 3
 
 **User-friendly description (lv):** Apskati, kā agrīnie Ameriku iedzīvotāji pielāgojās dažādām ekosistēmām.
 
-##### Neatkarīga kultūraugu pieradināšana Amerikās
+##### Neatkarīga kultūraugu domesticēšana Amerikās
 
 [independentAmericanCropDomestication.data.ts](../../../learningApps/history/data/skills/ancientAmericas/earliestAmericanPopulations/skills/independentAmericanCropDomestication.data.ts)
 
 **Methodological description (English):** Examine separately evolving centers for maize, squash, potato, and other crops with their own chronologies.
 
-**User-friendly description (lv):** Uzzini par augiem, kurus pieradināja senās Ameriku kopienas.
+**User-friendly description (lv):** Uzzini, kurus savvaļas augus senās Ameriku kopienas pārvērta par kultūraugiem.
 
 ##### Ameriku apdzīvošana
 
@@ -682,7 +682,7 @@ Skills: 3
 
 **Methodological description (English):** Examine Cretan palaces and maritime links while acknowledging that Linear A remains undeciphered.
 
-**User-friendly description (lv):** Izpēti seno Krētu un robežas tam, ko var uzzināt no tās rakstības.
+**User-friendly description (lv):** Izpēti seno Krētu un to, ko no tās rakstības var un ko nevar uzzināt.
 
 ##### Mikēnu civilizācija
 
@@ -808,7 +808,7 @@ Skills: 3
 
 **Methodological description (English):** Trace the reach of Alexander's campaigns, changed governments, and the limits of his short-lived personal empire.
 
-**User-friendly description (lv):** Izseko Aleksandra iekarojumus un to politiskās sekas.
+**User-friendly description (lv):** Izpēti Aleksandra iekarojumus un to politiskās sekas.
 
 ##### Hellēnistiskās valstis
 
@@ -1266,7 +1266,7 @@ Skills: 5
 
 **Methodological description (English):** Study regional circulation of materials and traditions among river basins, coasts, and islands in the Americas.
 
-**User-friendly description (lv):** Izseko agrīnos tirdzniecības saites pa Ameriku upēm un jūrām.
+**User-friendly description (lv):** Izseko agrīnajām tirdzniecības saitēm pa Ameriku upēm un jūrām.
 
 ##### Senā Indijas okeāna tirdzniecība
 
@@ -1274,7 +1274,7 @@ Skills: 5
 
 **Methodological description (English):** Examine monsoon-linked routes among South Asia, Arabia, Africa, and neighboring coasts.
 
-**User-friendly description (lv):** Izseko kuģu un preču ceļus senajā Indijas okeānā.
+**User-friendly description (lv):** Izseko kuģu un preču kustībai senajā Indijas okeānā.
 
 ##### Senie Zīda ceļi
 
@@ -1334,7 +1334,7 @@ Skills: 4
 
 **User-friendly description (lv):** Salīdzini dažādu sabiedrību pārmaiņas, izmantojot vēstures liecības.
 
-##### Politiskais noriets un pēctecība
+##### Politiskais noriets un sabiedrības nepārtrauktība
 
 [politicalDeclineAndContinuity.data.ts](../../../learningApps/history/data/skills/crossRegionalHistoricalProcesses/crisesAndHistoricalTransformations/skills/politicalDeclineAndContinuity.data.ts)
 
@@ -1350,7 +1350,7 @@ Skills: 6
 
 **Methodological description (English):** Compare dwellings, objects, texts, and images to reconstruct family relations and daily practices across regions.
 
-**User-friendly description (lv):** Uzzini, ko parasti cilvēki darīja ikdienā senatnē.
+**User-friendly description (lv):** Uzzini, ko vienkāršie cilvēki darīja ikdienā senatnē.
 
 ##### Seno sabiedrību uzturs
 
@@ -1548,7 +1548,7 @@ Skills: 7
 
 **Methodological description (English):** Distinguish independent emergence of writing systems recording language from counting marks or pictures.
 
-**User-friendly description (lv):** Izpēti, kā dažādas sabiedrības sāka pierakstīt valodu rakstiski.
+**User-friendly description (lv):** Izpēti, kā dažādas sabiedrības sāka fiksēt valodu rakstībā.
 
 ### Austrumāzija un Centrālāzija
 
@@ -1870,7 +1870,7 @@ Skills: 3
 
 **Methodological description (English):** Reconstruct movements using combined archaeological, linguistic, genetic, and environmental evidence.
 
-**User-friendly description (lv):** Izseko cilvēku pārvietošanos, izmantojot dažādas vēstures liecības.
+**User-friendly description (lv):** Izseko cilvēku pārvietošanās ceļiem, izmantojot dažādas vēstures liecības.
 
 #### Vēstures avoti
 
@@ -2224,7 +2224,7 @@ Skills: 6
 
 **Methodological description (English):** Explain the roles of straits, monsoon routes, and ports in exchanges of goods and ideas.
 
-**User-friendly description (lv):** Izseko jūras ceļus, kas savienoja reģiona tirdzniecības ostas.
+**User-friendly description (lv):** Izpēti jūras ceļus, kas savienoja reģiona tirdzniecības ostas.
 
 #### Indas civilizācija
 

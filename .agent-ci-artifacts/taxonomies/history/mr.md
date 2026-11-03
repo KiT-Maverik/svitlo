@@ -214,7 +214,7 @@ Skills: 4
 
 **Methodological description (English):** Middle Nile societies formed independent political and cultural centers with complex relations to Egypt.
 
-**User-friendly description (mr):** प्राचीन नुबिया व कुशच्या स्वतंत्र समाजांना जाणून घ्या.
+**User-friendly description (mr):** प्राचीन नुबिया व कुशच्या स्वतंत्र समाजांविषयी जाणून घ्या.
 
 ##### केर्मा संस्कृती
 
@@ -306,7 +306,7 @@ Groups: 5 · Skills: 18
 
 **Methodological description (English):** American history includes early peopling, independent agriculture, complex cities and states, and diverse societies without major cities.
 
-**User-friendly description (mr):** अमेरिका खंडातील प्राचीन समाजांची विविधता जाणून घे.
+**User-friendly description (mr):** अमेरिका खंडातील प्राचीन समाजांची विविधता जाणून घ्या.
 
 #### अ‍ॅमेझॉन आणि कॅरिबियन
 
@@ -316,7 +316,7 @@ Skills: 3
 
 **Methodological description (English):** River and island environments supported diverse cultures that cannot be judged only by the presence of stone cities.
 
-**User-friendly description (mr):** अ‍ॅमेझॉन व कॅरिबियनमधील प्राचीन समुदाय जाणून घे.
+**User-friendly description (mr):** अ‍ॅमेझॉन व कॅरिबियनमधील प्राचीन समुदाय जाणून घ्या.
 
 ##### कॅरिबियन बेटांवरील वस्ती
 
@@ -324,7 +324,7 @@ Skills: 3
 
 **Methodological description (English):** Reconstruct successive sea migrations and varied island livelihoods and cultures.
 
-**User-friendly description (mr):** लोक कॅरिबियन बेटांवर कसे पोहोचले व स्थायिक झाले ते जाणून घे.
+**User-friendly description (mr):** लोक कॅरिबियन बेटांवर कसे पोहोचले व स्थायिक झाले ते जाणून घ्या.
 
 ##### प्राचीन अ‍ॅमेझॉन समाज
 
@@ -332,7 +332,7 @@ Skills: 3
 
 **Methodological description (English):** Use archaeology of settlements, managed landscapes, and local cultivation in tropical forests.
 
-**User-friendly description (mr):** अ‍ॅमेझॉनमधील सुरुवातीच्या वस्त्यांचे पुरावे शोध.
+**User-friendly description (mr):** अ‍ॅमेझॉनमधील सुरुवातीच्या वस्त्यांचे पुरावे शोधा.
 
 ##### उष्णकटिबंधीय दक्षिण अमेरिकेतील प्राचीन शेती
 
@@ -340,7 +340,7 @@ Skills: 3
 
 **Methodological description (English):** Trace indigenous cultivation and gradual reshaping of tropical landscapes.
 
-**User-friendly description (mr):** उष्णकटिबंधीय दक्षिण अमेरिकेतील समुदाय शेती कशी करत होते ते जाणून घे.
+**User-friendly description (mr):** उष्णकटिबंधीय दक्षिण अमेरिकेतील समुदाय शेती कशी करत होते ते जाणून घ्या.
 
 #### अँडीज
 
@@ -350,7 +350,7 @@ Skills: 4
 
 **Methodological description (English):** Coastal valleys and highlands supported diverse farming, cities, and social coordination.
 
-**User-friendly description (mr):** अँडीजमध्ये विकसित झालेले समाज जाणून घे.
+**User-friendly description (mr):** अँडीजमध्ये विकसित झालेले समाज जाणून घ्या.
 
 ##### काराल आणि प्रारंभिक अँडीयन केंद्रे
 
@@ -366,7 +366,7 @@ Skills: 4
 
 **Methodological description (English):** Study ritual centers and Andean artistic traditions of the first millennium BCE.
 
-**User-friendly description (mr):** चावीन संस्कृतीतील श्रद्धा आणि कला जाणून घे.
+**User-friendly description (mr):** चावीन संस्कृतीतील श्रद्धा आणि कला जाणून घ्या.
 
 ##### मोचे संस्कृती
 
@@ -374,7 +374,7 @@ Skills: 4
 
 **Methodological description (English):** Study irrigation farming, crafts, and ancient political centers in northern Peru.
 
-**User-friendly description (mr):** मोचे समाजातील शेतकरी, कारागीर आणि शासक जाणून घे.
+**User-friendly description (mr):** मोचे समाजातील शेतकरी, कारागीर आणि शासक जाणून घ्या.
 
 ##### नाझ्का संस्कृती
 
@@ -382,7 +382,7 @@ Skills: 4
 
 **Methodological description (English):** Examine dry-valley economies, pottery, and geoglyphs without pseudoscientific origin stories.
 
-**User-friendly description (mr):** नाझ्का भूचित्रे आणि ती घडवणारा समाज जाणून घे.
+**User-friendly description (mr):** नाझ्का भूचित्रे आणि ती घडवणारा समाज जाणून घ्या.
 
 #### अमेरिकेतील प्रारंभीची लोकसंख्या
 
@@ -392,7 +392,7 @@ Skills: 3
 
 **Methodological description (English):** Examine early settlement dates and lifeways through archaeology, environmental research, and genetics.
 
-**User-friendly description (mr):** अमेरिकेतील सर्वात आधीच्या रहिवाशांचा अभ्यास संशोधक कसा करतात ते शिक.
+**User-friendly description (mr):** अमेरिकेतील सर्वात आधीच्या रहिवाशांचा अभ्यास संशोधक कसा करतात ते शिका.
 
 ##### अमेरिकी परिसंस्थांशी जुळवून घेणे
 
@@ -408,7 +408,7 @@ Skills: 3
 
 **Methodological description (English):** Examine separately evolving centers for maize, squash, potato, and other crops with their own chronologies.
 
-**User-friendly description (mr):** प्राचीन अमेरिकी समुदायांनी लागवडीसाठी विकसित केलेली पिके जाणून घे.
+**User-friendly description (mr):** प्राचीन अमेरिकी समुदायांनी लागवडीसाठी विकसित केलेली पिके जाणून घ्या.
 
 ##### अमेरिका खंडातील मानववस्ती
 
@@ -416,7 +416,7 @@ Skills: 3
 
 **Methodological description (English):** Compare scientific models of arrival routes and dates while acknowledging limits of current evidence.
 
-**User-friendly description (mr):** माणसे पहिल्यांदा अमेरिका खंडात कशी पोहोचली ते जाणून घे.
+**User-friendly description (mr):** माणसे पहिल्यांदा अमेरिका खंडात कशी पोहोचली ते जाणून घ्या.
 
 #### मेसोअमेरिका
 
@@ -426,7 +426,7 @@ Skills: 5
 
 **Methodological description (English):** Independent urban centers, monumental ritual spaces, writing, and polities developed before European colonization.
 
-**User-friendly description (mr):** मेसोअमेरिकेतील प्राचीन शहरे आणि संस्कृती जाणून घे.
+**User-friendly description (mr):** मेसोअमेरिकेतील प्राचीन शहरे आणि संस्कृती जाणून घ्या.
 
 ##### प्रारंभिक माया शहरे
 
@@ -434,7 +434,7 @@ Skills: 5
 
 **Methodological description (English):** Trace emerging urban centers and royal institutions of Preclassic and Early Classic Maya periods.
 
-**User-friendly description (mr):** प्रारंभिक मायांनी शहरे आणि राज्ये कशी उभारली ते जाणून घे.
+**User-friendly description (mr):** प्रारंभिक मायांनी शहरे आणि राज्ये कशी उभारली ते जाणून घ्या.
 
 ##### माया लिपी
 
@@ -442,7 +442,7 @@ Skills: 5
 
 **Methodological description (English):** Explain logosyllabic writing in political texts and calendar records.
 
-**User-friendly description (mr):** माया लिपीत भाषा आणि तारखा कशा नोंदवल्या जात ते समजून घे.
+**User-friendly description (mr):** माया लिपीत भाषा आणि तारखा कशा नोंदवल्या जात ते समजून घ्या.
 
 ##### मेसोअमेरिकी दिनदर्शिका
 
@@ -450,7 +450,7 @@ Skills: 5
 
 **Methodological description (English):** Distinguish different cyclical time-reckoning systems and their historical functions.
 
-**User-friendly description (mr):** मेसोअमेरिकी दिनदर्शिकांमधून वेळ कसा मोजला जात होता ते शिक.
+**User-friendly description (mr):** मेसोअमेरिकी दिनदर्शिकांमधून वेळ कसा मोजला जात होता ते शिका.
 
 ##### ओल्मेक केंद्रे
 
@@ -458,7 +458,7 @@ Skills: 5
 
 **Methodological description (English):** Study early Mesoamerican monumental sculpture, ritual spaces, and debated cultural influence.
 
-**User-friendly description (mr):** ओल्मेक केंद्रांमधून प्रारंभिक मेसोअमेरिकेविषयी काय समजते ते जाणून घे.
+**User-friendly description (mr):** ओल्मेक केंद्रांमधून प्रारंभिक मेसोअमेरिकेविषयी काय समजते ते जाणून घ्या.
 
 ##### तेओतिहुआकान
 
@@ -466,7 +466,7 @@ Skills: 5
 
 **Methodological description (English):** Study the monumental city's urban planning, multicultural population, and regional influence.
 
-**User-friendly description (mr):** तेओतिहुआकान मोठे प्राचीन शहर कसे बनले ते जाणून घे.
+**User-friendly description (mr):** तेओतिहुआकान मोठे प्राचीन शहर कसे बनले ते जाणून घ्या.
 
 #### मेसोअमेरिकेबाहेरील उत्तर अमेरिका
 
@@ -476,7 +476,7 @@ Skills: 3
 
 **Methodological description (English):** River basins and arid regions had independent exchange networks, ritual spaces, and collective works.
 
-**User-friendly description (mr):** मेसोअमेरिकेबाहेरील उत्तर अमेरिकेतील प्राचीन समाज जाणून घे.
+**User-friendly description (mr):** मेसोअमेरिकेबाहेरील उत्तर अमेरिकेतील प्राचीन समाज जाणून घ्या.
 
 ##### अडेना आणि होपवेल परंपरा
 
@@ -484,7 +484,7 @@ Skills: 3
 
 **Methodological description (English):** Examine ceremonial earthworks and material connections in eastern North America.
 
-**User-friendly description (mr):** अडेना व होपवेल स्थळे प्राचीन समुदायांबद्दल काय सांगतात ते जाणून घे.
+**User-friendly description (mr):** अडेना व होपवेल स्थळे प्राचीन समुदायांबद्दल काय सांगतात ते जाणून घ्या.
 
 ##### उत्तर अमेरिकेच्या नैऋत्येकडील प्राचीन समाज
 
@@ -492,7 +492,7 @@ Skills: 3
 
 **Methodological description (English):** Describe dry-environment adaptations and early agriculture without projecting later cultures into ancient periods.
 
-**User-friendly description (mr):** अमेरिकेच्या नैऋत्य भागातील सुरुवातीच्या वस्त्या आणि शेती जाणून घे.
+**User-friendly description (mr):** अमेरिकेच्या नैऋत्य भागातील सुरुवातीच्या वस्त्या आणि शेती जाणून घ्या.
 
 ##### पॉव्हर्टी पॉइंट
 
@@ -500,7 +500,7 @@ Skills: 3
 
 **Methodological description (English):** Study monumental earthworks and interregional exchanges in Archaic-period North America.
 
-**User-friendly description (mr):** पॉव्हर्टी पॉइंट येथील मोठ्या मातीच्या बांधकामांची माहिती घे.
+**User-friendly description (mr):** पॉव्हर्टी पॉइंट येथील मोठ्या मातीच्या बांधकामांची माहिती घ्या.
 
 ### भूमध्यसागराच्या बाहेरील प्राचीन युरोप
 
@@ -808,7 +808,7 @@ Skills: 3
 
 **Methodological description (English):** Trace the reach of Alexander's campaigns, changed governments, and the limits of his short-lived personal empire.
 
-**User-friendly description (mr):** अलेक्झांडरच्या विजयमोहीम आणि त्यांचे राजकीय परिणाम जाणून घ्या.
+**User-friendly description (mr):** अलेक्झांडरच्या विजयमोहिमा आणि त्यांचे राजकीय परिणाम जाणून घ्या.
 
 ##### हेलेनिस्टिक राज्ये
 
@@ -942,7 +942,7 @@ Groups: 2 · Skills: 8
 
 **Methodological description (English):** The settlement of Australia and Pacific islands occurred through successive waves over a long period and required extensive environmental and navigation knowledge.
 
-**User-friendly description (mr):** प्राचीन लोक ओशिनियात कसे पोहोचले आणि तेथे कसे राहिले ते जाणून घे.
+**User-friendly description (mr):** प्राचीन लोक ओशिनियात कसे पोहोचले आणि तेथे कसे राहिले ते जाणून घ्या.
 
 #### ऑस्ट्रेलिया आणि न्यू गिनी
 
@@ -952,7 +952,7 @@ Skills: 4
 
 **Methodological description (English):** Archaeology and living cultural traditions attest to long human presence in the former Sahul landmass.
 
-**User-friendly description (mr):** ऑस्ट्रेलिया व न्यू गिनीतील प्राचीन समुदाय जाणून घे.
+**User-friendly description (mr):** ऑस्ट्रेलिया व न्यू गिनीतील प्राचीन समुदाय जाणून घ्या.
 
 ##### ऑस्ट्रेलियातील आदिवासींचे प्राचीन समाज
 
@@ -960,7 +960,7 @@ Skills: 4
 
 **Methodological description (English):** Examine diverse lifeways, environmental interactions, and the longevity of Aboriginal Australian traditions.
 
-**User-friendly description (mr):** ऑस्ट्रेलियातील आदिवासी समुदायांचा प्रदीर्घ आणि विविध इतिहास जाणून घे.
+**User-friendly description (mr):** ऑस्ट्रेलियातील आदिवासी समुदायांचा प्रदीर्घ आणि विविध इतिहास जाणून घ्या.
 
 ##### ऑस्ट्रेलियातील शैलकला
 
@@ -968,7 +968,7 @@ Skills: 4
 
 **Methodological description (English):** Interpret rock images and dating limitations as evidence of practices over long timescales.
 
-**User-friendly description (mr):** ऑस्ट्रेलियाच्या प्राचीन शैलकलेतून काय समजू शकते ते जाणून घे.
+**User-friendly description (mr):** ऑस्ट्रेलियाच्या प्राचीन शैलकलेतून काय समजू शकते ते जाणून घ्या.
 
 ##### न्यू गिनीतील प्रारंभिक शेती
 
@@ -976,7 +976,7 @@ Skills: 4
 
 **Methodological description (English):** Study indigenous highland cultivation and its independent historical trajectory.
 
-**User-friendly description (mr):** न्यू गिनीच्या डोंगराळ भागातील प्रारंभिक शेती व्यवस्था जाणून घे.
+**User-friendly description (mr):** न्यू गिनीच्या डोंगराळ भागातील प्रारंभिक शेती व्यवस्था जाणून घ्या.
 
 ##### साहुलमधील मानववस्ती
 
@@ -984,7 +984,7 @@ Skills: 4
 
 **Methodological description (English):** Trace early sea crossings and settlement of the landmass uniting Australia and New Guinea when sea levels were lower.
 
-**User-friendly description (mr):** प्रारंभिक नाविक साहुल भूभागात कसे पोहोचले ते समजून घे.
+**User-friendly description (mr):** प्रारंभिक नाविक साहुल भूभागात कसे पोहोचले ते समजून घ्या.
 
 #### प्रशांत महासागरातील बेटे
 
@@ -994,7 +994,7 @@ Skills: 4
 
 **Methodological description (English):** Seafaring societies progressively settled distant archipelagos, transporting languages, crops, animals, and navigation knowledge.
 
-**User-friendly description (mr):** लोक प्रशांत महासागरातील दूरच्या बेटांदरम्यान कसे प्रवास करत ते जाणून घे.
+**User-friendly description (mr):** लोक प्रशांत महासागरातील दूरच्या बेटांदरम्यान कसे प्रवास करत ते जाणून घ्या.
 
 ##### ऑस्ट्रोनेशियन विस्तार
 
@@ -1010,7 +1010,7 @@ Skills: 4
 
 **Methodological description (English):** Trace the initial settlement of Tonga and Samoa with Lapita connections around the late second and early first millennia BCE; later East Polynesian settlement falls outside scope.
 
-**User-friendly description (mr):** टोंगा आणि सामोआमधील सर्वात आधीचे समुदाय जाणून घे.
+**User-friendly description (mr):** टोंगा आणि सामोआमधील सर्वात आधीचे समुदाय जाणून घ्या.
 
 ##### लापिता संस्कृती
 
@@ -1018,7 +1018,7 @@ Skills: 4
 
 **Methodological description (English):** Interpret decorated pottery, settlements, and movements documented archaeologically in western Oceania.
 
-**User-friendly description (mr):** लापिता समुदायांच्या मातीची भांडी आणि नौकानयन परंपरा जाणून घे.
+**User-friendly description (mr):** लापिता समुदायांच्या मातीची भांडी आणि नौकानयन परंपरा जाणून घ्या.
 
 ##### महासागरीय नौकानयन
 
@@ -1026,7 +1026,7 @@ Skills: 4
 
 **Methodological description (English):** Explain how knowledge of winds, stars, waves, and islands supported ancient sea voyages.
 
-**User-friendly description (mr):** प्रशांत महासागरातील नाविक खुला समुद्र कसा पार करत होते ते जाणून घे.
+**User-friendly description (mr):** प्रशांत महासागरातील नाविक खुला समुद्र कसा पार करत होते ते जाणून घ्या.
 
 ### प्राचीन पश्चिम आशिया
 
@@ -1248,7 +1248,7 @@ Groups: 6 · Skills: 30
 
 **Methodological description (English):** Study shared patterns of interaction among independent regional histories without inventing a single unified ancient civilization.
 
-**User-friendly description (mr):** वेगवेगळ्या समाजांना जोडणाऱ्या ऐतिहासिक प्रक्रिया जाणून घे.
+**User-friendly description (mr):** वेगवेगळ्या समाजांना जोडणाऱ्या ऐतिहासिक प्रक्रिया जाणून घ्या.
 
 #### प्राचीन व्यापार आणि संपर्क
 
@@ -1258,7 +1258,7 @@ Skills: 5
 
 **Methodological description (English):** Exchange networks involved intermediaries; the spread of objects does not necessarily mean the migration of their makers.
 
-**User-friendly description (mr):** दूरवरच्या समुदायांमध्ये वस्तू आणि कल्पना कशा पसरत होत्या ते जाणून घे.
+**User-friendly description (mr):** दूरवरच्या समुदायांमध्ये वस्तू आणि कल्पना कशा पसरत होत्या ते जाणून घ्या.
 
 ##### प्राचीन अमेरिकेतील नदी व सागरी देवाणघेवाण
 
@@ -1266,7 +1266,7 @@ Skills: 5
 
 **Methodological description (English):** Study regional circulation of materials and traditions among river basins, coasts, and islands in the Americas.
 
-**User-friendly description (mr):** प्राचीन अमेरिकेतील नद्या व समुद्रामार्गे झालेल्या पहिल्या व्यापारसंबंधांचा मागोवा घे.
+**User-friendly description (mr):** प्राचीन अमेरिकेतील नद्या व समुद्रामार्गे झालेल्या पहिल्या व्यापारसंबंधांचा मागोवा घ्या.
 
 ##### प्राचीन हिंदी महासागर व्यापार
 
@@ -1282,7 +1282,7 @@ Skills: 5
 
 **Methodological description (English):** Trace early multiple overland Eurasian routes and the roles of oasis intermediaries.
 
-**User-friendly description (mr):** नंतर रेशीम मार्ग म्हणून ओळखले गेलेले प्राचीन स्थलमार्ग शोध.
+**User-friendly description (mr):** नंतर रेशीम मार्ग म्हणून ओळखले गेलेले प्राचीन स्थलमार्ग शोधा.
 
 ##### सांस्कृतिक देवाणघेवाण
 
@@ -1290,7 +1290,7 @@ Skills: 5
 
 **Methodological description (English):** Distinguish contact, imitation, and deliberate local reinterpretation of religious, artistic, and political practices.
 
-**User-friendly description (mr):** देवाणघेवाणीतून लोकांनी सांस्कृतिक कल्पना कशा स्वीकारल्या व बदलल्या ते शिक.
+**User-friendly description (mr):** देवाणघेवाणीतून लोकांनी सांस्कृतिक कल्पना कशा स्वीकारल्या व बदलल्या ते शिका.
 
 ##### तंत्रज्ञान हस्तांतरण
 
@@ -1298,7 +1298,7 @@ Skills: 5
 
 **Methodological description (English):** Explain how techniques spread between societies and were adapted to new functions or practices.
 
-**User-friendly description (mr):** समुदायांनी इतरांकडून तंत्रज्ञान शिकून ते कसे बदलले ते जाणून घे.
+**User-friendly description (mr):** समुदायांनी इतरांकडून तंत्रज्ञान शिकून ते कसे बदलले ते जाणून घ्या.
 
 #### संकटे आणि ऐतिहासिक बदल
 
@@ -1308,7 +1308,7 @@ Skills: 4
 
 **Methodological description (English):** Climate shifts, wars, disease, and economic reorganization interacted but produced different outcomes across regions.
 
-**User-friendly description (mr):** प्राचीन समाजांमध्ये मोठे बदल व संकटे का आली ते जाणून घे.
+**User-friendly description (mr):** प्राचीन समाजांमध्ये मोठे बदल व संकटे का आली ते जाणून घ्या.
 
 ##### प्राचीन पर्यावरणीय आव्हाने
 
@@ -1316,7 +1316,7 @@ Skills: 4
 
 **Methodological description (English):** Analyze historical effects of droughts, floods, land depletion, and ecological changes alongside human adaptation.
 
-**User-friendly description (mr):** प्राचीन समुदायांनी पर्यावरणीय आव्हानांना कसा प्रतिसाद दिला ते जाणून घे.
+**User-friendly description (mr):** प्राचीन समुदायांनी पर्यावरणीय आव्हानांना कसा प्रतिसाद दिला ते जाणून घ्या.
 
 ##### प्राचीन साथी आणि लोकसंख्याशास्त्र
 
@@ -1332,7 +1332,7 @@ Skills: 4
 
 **Methodological description (English):** Compare the causes and consequences of major changes across regions without imposing one worldwide historical cycle.
 
-**User-friendly description (mr):** ऐतिहासिक पुराव्यांच्या आधारे विविध समाजांतील बदलांची तुलना कर.
+**User-friendly description (mr):** ऐतिहासिक पुराव्यांच्या आधारे विविध समाजांतील बदलांची तुलना करा.
 
 ##### राजकीय ऱ्हास आणि सातत्य
 
@@ -1340,7 +1340,7 @@ Skills: 4
 
 **Methodological description (English):** Distinguish the fall of a political institution from the persistence of communities, languages, and practices.
 
-**User-friendly description (mr):** राज्य कोसळले तरी तेथील लोक नाहीसे होत नाहीत हे समजून घे.
+**User-friendly description (mr):** राज्य कोसळले तरी तेथील लोक नाहीसे होत नाहीत हे समजून घ्या.
 
 #### प्राचीन दैनंदिन जीवन
 
@@ -1350,7 +1350,7 @@ Skills: 6
 
 **Methodological description (English):** Compare dwellings, objects, texts, and images to reconstruct family relations and daily practices across regions.
 
-**User-friendly description (mr):** प्राचीन काळातील सामान्य लोक रोज काय करत होते ते जाणून घे.
+**User-friendly description (mr):** प्राचीन काळातील सामान्य लोक रोज काय करत होते ते जाणून घ्या.
 
 ##### प्राचीन समाजांचा आहार
 
@@ -1358,7 +1358,7 @@ Skills: 6
 
 **Methodological description (English):** Study ingredients, cooking, storage, livelihoods, and unequal access to food resources.
 
-**User-friendly description (mr):** विविध प्राचीन समुदाय काय खात होते याची तुलना कर.
+**User-friendly description (mr):** विविध प्राचीन समुदाय काय खात होते याची तुलना करा.
 
 ##### प्राचीन काळातील काम आणि व्यवसाय
 
@@ -1366,7 +1366,7 @@ Skills: 6
 
 **Methodological description (English):** Examine agriculture, crafts, exchange, household work, and forms of dependent labor.
 
-**User-friendly description (mr):** प्राचीन जगातील वेगवेगळ्या प्रकारची कामे जाणून घे.
+**User-friendly description (mr):** प्राचीन जगातील वेगवेगळ्या प्रकारची कामे जाणून घ्या.
 
 ##### प्राचीन काळातील बालपण आणि शिक्षण
 
@@ -1374,7 +1374,7 @@ Skills: 6
 
 **Methodological description (English):** Study varied childhood experiences, socialization, craft learning, and access to formal instruction.
 
-**User-friendly description (mr):** प्राचीन समाजांमध्ये मुले कशी वाढत आणि शिकत होती ते जाणून घे.
+**User-friendly description (mr):** प्राचीन समाजांमध्ये मुले कशी वाढत आणि शिकत होती ते जाणून घ्या.
 
 ##### कुटुंब आणि नातेसंबंध
 
@@ -1382,7 +1382,7 @@ Skills: 6
 
 **Methodological description (English):** Compare household, marriage, kinship, and inheritance systems without imposing one modern family model.
 
-**User-friendly description (mr):** विविध प्राचीन संस्कृतींमध्ये कुटुंब आणि नातेसंबंध कसे होते ते जाणून घे.
+**User-friendly description (mr):** विविध प्राचीन संस्कृतींमध्ये कुटुंब आणि नातेसंबंध कसे होते ते जाणून घ्या.
 
 ##### निवास आणि घरातील जागा
 
@@ -1390,7 +1390,7 @@ Skills: 6
 
 **Methodological description (English):** Relate house forms, household organization, and rooms to resources, climates, and social distinctions.
 
-**User-friendly description (mr):** प्राचीन लोकांनी घरे कशी मांडली व वापरली ते जाणून घे.
+**User-friendly description (mr):** प्राचीन लोकांनी घरे कशी मांडली व वापरली ते जाणून घ्या.
 
 ##### प्राचीन काळातील विरंगुळा आणि सार्वजनिक जीवन
 
@@ -1398,7 +1398,7 @@ Skills: 6
 
 **Methodological description (English):** Compare festivals, games, assemblies, and leisure across social groups and settlements.
 
-**User-friendly description (mr):** प्राचीन समुदाय सण कसे साजरे करत आणि मोकळा वेळ कसा घालवत ते जाणून घे.
+**User-friendly description (mr):** प्राचीन समुदाय सण कसे साजरे करत आणि मोकळा वेळ कसा घालवत ते जाणून घ्या.
 
 #### शोध आणि अभियांत्रिकीचा इतिहास
 
@@ -1408,7 +1408,7 @@ Skills: 4
 
 **Methodological description (English):** Investigate the origins, changes, and transmission of technical solutions in relation to materials, needs, and consequences, not modern design practice.
 
-**User-friendly description (mr):** प्राचीन शोध कालांतराने कसे बदलत गेले ते जाणून घे.
+**User-friendly description (mr):** प्राचीन शोध कालांतराने कसे बदलत गेले ते जाणून घ्या.
 
 ##### प्राचीन बांधकाम आणि उचल यंत्रे
 
@@ -1416,7 +1416,7 @@ Skills: 4
 
 **Methodological description (English):** Examine historical use of levers, pulleys, ramps, and other devices to build and move heavy loads.
 
-**User-friendly description (mr):** प्राचीन बांधकामात वापरलेली यंत्रे समजून घे.
+**User-friendly description (mr):** प्राचीन बांधकामात वापरलेली यंत्रे समजून घ्या.
 
 ##### प्राचीन जहाजबांधणी
 
@@ -1424,7 +1424,7 @@ Skills: 4
 
 **Methodological description (English):** Compare hull shapes, materials, sails, and steering methods across river and maritime societies.
 
-**User-friendly description (mr):** प्राचीन जहाजे कशी बांधली व चालवली जात होती ते जाणून घे.
+**User-friendly description (mr):** प्राचीन जहाजे कशी बांधली व चालवली जात होती ते जाणून घ्या.
 
 ##### प्राचीन चाकांची वाहतूक
 
@@ -1432,7 +1432,7 @@ Skills: 4
 
 **Methodological description (English):** Relate the spread of wheeled vehicles to roads, draft animals, and economic needs.
 
-**User-friendly description (mr):** चाकांची वाहने प्राचीन जगात कशी पसरली ते जाणून घे.
+**User-friendly description (mr):** चाकांची वाहने प्राचीन जगात कशी पसरली ते जाणून घ्या.
 
 ##### प्राचीन जलअभियांत्रिकी
 
@@ -1440,7 +1440,7 @@ Skills: 4
 
 **Methodological description (English):** Compare canals, reservoirs, and distribution systems across arid and floodplain settings.
 
-**User-friendly description (mr):** विविध प्रदेशांमध्ये लोकांनी जलव्यवस्था कशा उभारल्या ते जाणून घे.
+**User-friendly description (mr):** विविध प्रदेशांमध्ये लोकांनी जलव्यवस्था कशा उभारल्या ते जाणून घ्या.
 
 #### सत्ता आणि सामाजिक संबंध
 
@@ -1450,7 +1450,7 @@ Skills: 4
 
 **Methodological description (English):** Comparing institutions requires identifying their functions rather than equating unfamiliar ancient names with familiar ones.
 
-**User-friendly description (mr):** प्राचीन लोकांनी सत्ता आणि सामाजिक संबंध कसे संघटित केले ते जाणून घे.
+**User-friendly description (mr):** प्राचीन लोकांनी सत्ता आणि सामाजिक संबंध कसे संघटित केले ते जाणून घ्या.
 
 ##### प्रारंभीच्या राज्यांची निर्मिती
 
@@ -1458,7 +1458,7 @@ Skills: 4
 
 **Methodological description (English):** Examine durable political authority, resource management, and coercion without presuming one universal route to statehood.
 
-**User-friendly description (mr):** प्रारंभीची राज्ये आणि शासनव्यवस्था वेगवेगळ्या मार्गांनी कशा उदयाला आल्या ते जाणून घे.
+**User-friendly description (mr):** प्रारंभीची राज्ये आणि शासनव्यवस्था वेगवेगळ्या मार्गांनी कशा उदयाला आल्या ते जाणून घ्या.
 
 ##### गुलामगिरी आणि अवलंबित्वाचे इतर प्रकार
 
@@ -1466,7 +1466,7 @@ Skills: 4
 
 **Methodological description (English):** Distinguish enslavement from other legal and economic conditions of restricted freedom.
 
-**User-friendly description (mr):** प्राचीन समाजांतील स्वातंत्र्याच्या अभावाचे विविध प्रकार ओळख.
+**User-friendly description (mr):** प्राचीन समाजांतील स्वातंत्र्याच्या अभावाचे विविध प्रकार ओळखा.
 
 ##### सामाजिक श्रेणीरचना
 
@@ -1474,7 +1474,7 @@ Skills: 4
 
 **Methodological description (English):** Compare hereditary standing, wealth, dependency, and prestige across societies with differing arrangements.
 
-**User-friendly description (mr):** विविध प्राचीन समाजांमध्ये दर्जा आणि सामाजिक विभागणी कशी बदलत होती ते जाणून घे.
+**User-friendly description (mr):** विविध प्राचीन समाजांमध्ये दर्जा आणि सामाजिक विभागणी कशी बदलत होती ते जाणून घ्या.
 
 ##### प्राचीन समाजांतील स्त्रिया
 
@@ -1482,7 +1482,7 @@ Skills: 4
 
 **Methodological description (English):** Examine differences in women's legal status, work, and influence while recognizing that many sources represent elites.
 
-**User-friendly description (mr):** प्राचीन समाजांतील स्त्रियांचे विविध अनुभव आणि भूमिका जाणून घे.
+**User-friendly description (mr):** प्राचीन समाजांतील स्त्रियांचे विविध अनुभव आणि भूमिका जाणून घ्या.
 
 #### उत्पादन आणि ज्ञान
 
@@ -1492,7 +1492,7 @@ Skills: 7
 
 **Methodological description (English):** Evaluate material inventions and systems of information transmission by function, spread, and historical context rather than claims of being first.
 
-**User-friendly description (mr):** प्राचीन समाज वस्तू कशा बनवत आणि ज्ञान कसे वाटून घेत ते जाणून घे.
+**User-friendly description (mr):** प्राचीन समाज वस्तू कशा बनवत आणि ज्ञान कसे वाटून घेत ते जाणून घ्या.
 
 ##### प्राचीन खगोलशास्त्रीय ज्ञान
 
@@ -1500,7 +1500,7 @@ Skills: 7
 
 **Methodological description (English):** Examine observations, calendars, navigation, and historical celestial models across civilizations.
 
-**User-friendly description (mr):** प्राचीन लोक आकाशाचा अभ्यास कसा करत होते ते जाणून घे.
+**User-friendly description (mr):** प्राचीन लोक आकाशाचा अभ्यास कसा करत होते ते जाणून घ्या.
 
 ##### प्राचीन कालगणना पद्धती
 
@@ -1508,7 +1508,7 @@ Skills: 7
 
 **Methodological description (English):** Compare month, season, and year reckoning used in farming, governance, and rituals.
 
-**User-friendly description (mr):** प्राचीन कालगणना पद्धतींनी वेळ कसा व्यवस्थित मांडला ते जाणून घे.
+**User-friendly description (mr):** प्राचीन कालगणना पद्धतींनी वेळ कसा व्यवस्थित मांडला ते जाणून घ्या.
 
 ##### प्राचीन मापनपद्धती
 
@@ -1516,7 +1516,7 @@ Skills: 7
 
 **Methodological description (English):** Trace local measures of mass, length, volume, and time used for trade, taxes, construction, and crafts.
 
-**User-friendly description (mr):** प्राचीन लोक वस्तू आणि वेळ कशी मोजत होते ते जाणून घे.
+**User-friendly description (mr):** प्राचीन लोक वस्तू आणि वेळ कशी मोजत होते ते जाणून घ्या.
 
 ##### प्रारंभिक नागरी पायाभूत सुविधा
 
@@ -1524,7 +1524,7 @@ Skills: 7
 
 **Methodological description (English):** Study water supply, drainage, roads, and public buildings as results of technical and administrative choices.
 
-**User-friendly description (mr):** प्रारंभिक शहरांनी सामायिक पायाभूत सुविधा कशा उभारल्या ते जाणून घे.
+**User-friendly description (mr):** प्रारंभिक शहरांनी सामायिक पायाभूत सुविधा कशा उभारल्या ते जाणून घ्या.
 
 ##### प्राचीन वैद्यकाचा इतिहास
 
@@ -1532,7 +1532,7 @@ Skills: 7
 
 **Methodological description (English):** Study medical beliefs, practices, and texts across cultures without confusing historical ideas with modern proof of effectiveness.
 
-**User-friendly description (mr):** प्राचीन समाजांत उपचारांबद्दल कोणत्या समजुती होत्या ते जाणून घे.
+**User-friendly description (mr):** प्राचीन समाजांत उपचारांबद्दल कोणत्या समजुती होत्या ते जाणून घ्या.
 
 ##### धातुकर्म आणि त्याचे ऐतिहासिक परिणाम
 
@@ -1540,7 +1540,7 @@ Skills: 7
 
 **Methodological description (English):** Connect ores, fuel, crafts, weapons, and trade under varying regional conditions.
 
-**User-friendly description (mr):** धातुकामाचा कामधंद्यांवर आणि युद्धांवर कसा परिणाम झाला ते समजून घे.
+**User-friendly description (mr):** धातुकामाचा कामधंद्यांवर आणि युद्धांवर कसा परिणाम झाला ते समजून घ्या.
 
 ##### लिपीचा उगम
 
@@ -1548,7 +1548,7 @@ Skills: 7
 
 **Methodological description (English):** Distinguish independent emergence of writing systems recording language from counting marks or pictures.
 
-**User-friendly description (mr):** विविध समाजांनी भाषा लिखित स्वरूपात कशी नोंदवायला सुरुवात केली ते जाणून घे.
+**User-friendly description (mr):** विविध समाजांनी भाषा लिखित स्वरूपात कशी नोंदवायला सुरुवात केली ते जाणून घ्या.
 
 ### पूर्व आणि मध्य आशिया
 
@@ -1930,7 +1930,7 @@ Skills: 4
 
 **Methodological description (English):** Historical time uses relative and absolute dating; period boundaries are analytical conventions, not universal natural transitions occurring everywhere simultaneously.
 
-**User-friendly description (mr):** तारखा आणि ऐतिहासिक कालखंड आपल्याला भूतकाळ कसा मांडता येतो हे शोधा.
+**User-friendly description (mr):** तारखा आणि ऐतिहासिक कालखंड भूतकाळ समजून घेण्यास आणि त्याची मांडणी करण्यास कशी मदत करतात ते जाणून घ्या.
 
 ##### इ.स.पूर्व आणि इ.स.ची कालगणना
 

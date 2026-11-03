@@ -402,13 +402,13 @@ Skills: 3
 
 **User-friendly description (bn):** আমেরিকার আদি মানুষ নানা বাস্তুতন্ত্রে কীভাবে মানিয়ে নিয়েছিল তা দেখো।
 
-##### আমেরিকায় ফসলের স্বতন্ত্র গৃহপালন
+##### আমেরিকায় ফসলের স্বতন্ত্র গৃহীকরণ
 
 [independentAmericanCropDomestication.data.ts](../../../learningApps/history/data/skills/ancientAmericas/earliestAmericanPopulations/skills/independentAmericanCropDomestication.data.ts)
 
 **Methodological description (English):** Examine separately evolving centers for maize, squash, potato, and other crops with their own chronologies.
 
-**User-friendly description (bn):** আমেরিকার প্রাচীন জনগোষ্ঠীর গৃহপালিত ফসলগুলো সম্পর্কে জানো।
+**User-friendly description (bn):** আমেরিকার প্রাচীন জনগোষ্ঠী যেসব বুনো উদ্ভিদকে চাষের উপযোগী করে তুলেছিল, সেগুলো সম্পর্কে জানো।
 
 ##### আমেরিকায় মানুষের প্রথম বসতি
 
@@ -2142,7 +2142,7 @@ Skills: 5
 
 **User-friendly description (bn):** কিছু সম্প্রদায় কেন স্থায়ী গ্রামে বসবাস শুরু করেছিল তা বোঝো।
 
-##### উদ্ভিদের গৃহপালন
+##### উদ্ভিদের গৃহীকরণ
 
 [plantDomestication.data.ts](../../../learningApps/history/data/skills/humanPrehistory/transitionToFoodProduction/skills/plantDomestication.data.ts)
 

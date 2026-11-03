@@ -510,7 +510,7 @@ Groups: 4 · Skills: 12
 
 **Methodological description (English):** Most European communities existed beyond the political frameworks of Greek poleis and Rome while sustaining diverse local and distant connections.
 
-**User-friendly description (fr):** Découvrez les sociétés européennes anciennes au-delà de la Grèce et de Rome.
+**User-friendly description (fr):** Découvre les sociétés européennes anciennes au-delà de la Grèce et de Rome.
 
 #### Europe centrale et occidentale
 
@@ -520,7 +520,7 @@ Skills: 4
 
 **Methodological description (English):** Study metallurgy, settlements, and confederations primarily through archaeological evidence and uneven external descriptions.
 
-**User-friendly description (fr):** Explorez les cultures des âges du bronze et du fer en Europe centrale et occidentale.
+**User-friendly description (fr):** Explore les cultures des âges du bronze et du fer en Europe centrale et occidentale.
 
 ##### Anciennes communautés germaniques
 
@@ -528,15 +528,15 @@ Skills: 4
 
 **Methodological description (English):** Examine diverse Central and Northern European societies and their contacts with Rome.
 
-**User-friendly description (fr):** Découvrez la diversité des communautés anciennes parlant des langues germaniques.
+**User-friendly description (fr):** Découvre la diversité des communautés anciennes parlant des langues germaniques.
 
-##### Bretagne avant et sous Rome
+##### Grande-Bretagne avant et sous la domination romaine
 
 [britainBeforeAndUnderRome.data.ts](../../../learningApps/history/data/skills/ancientEuropeBeyondMediterranean/centralAndWesternEurope/skills/britainBeforeAndUnderRome.data.ts)
 
 **Methodological description (English):** Compare indigenous British communities, Roman conquest, and forms of interaction on the island.
 
-**User-friendly description (fr):** Explorez la Bretagne avant et pendant la domination romaine.
+**User-friendly description (fr):** Explore la Bretagne avant et pendant la domination romaine.
 
 ##### Cultures celtiques de l’âge du fer
 
@@ -544,7 +544,7 @@ Skills: 4
 
 **Methodological description (English):** Study Hallstatt and La Tène material cultures and the limits of assigning archaeological finds to ethnic names.
 
-**User-friendly description (fr):** Explorez les cultures de l’âge du fer liées aux Celtes grâce aux découvertes archéologiques.
+**User-friendly description (fr):** Explore les cultures de l’âge du fer liées aux Celtes grâce aux découvertes archéologiques.
 
 ##### Âge du bronze européen
 
@@ -552,7 +552,7 @@ Skills: 4
 
 **Methodological description (English):** Trace production, settlements, and exchange networks using local archaeological chronologies outside the Mediterranean.
 
-**User-friendly description (fr):** Découvrez comment les populations de l’Europe de l’âge du bronze travaillaient et commerçaient.
+**User-friendly description (fr):** Découvre comment les populations de l’Europe de l’âge du bronze travaillaient et commerçaient.
 
 #### Europe orientale du haut Moyen Âge
 
@@ -562,7 +562,7 @@ Skills: 1
 
 **Methodological description (English):** Study early medieval Eastern European polities and links with the Baltic, Black Sea, and Byzantine worlds as a limited chronological exception to the ancient focus.
 
-**User-friendly description (fr):** Explorez les États et les relations commerciales du haut Moyen Âge en Europe orientale.
+**User-friendly description (fr):** Explore les États et les relations commerciales du haut Moyen Âge en Europe orientale.
 
 ##### Rous de Kyiv
 
@@ -570,7 +570,7 @@ Skills: 1
 
 **Methodological description (English):** Trace the Kyiv-centered polity of the late ninth through thirteenth centuries, princely government, diverse populations, Byzantine relations, Christianization, and river trade, including the Varangians-to-Greeks route. Distinguish evidence from chronicle traditions and later nationalist interpretations.
 
-**User-friendly description (fr):** Découvrez les peuples, les souverains et les routes commerciales de la Rous de Kyiv médiévale.
+**User-friendly description (fr):** Découvre les peuples, les souverains et les routes commerciales de la Rous de Kyiv médiévale.
 
 #### Europe du Nord et de la Baltique
 
@@ -580,7 +580,7 @@ Skills: 3
 
 **Methodological description (English):** Rivers and seas connected communities with differing farming, herding, and craft traditions.
 
-**User-friendly description (fr):** Découvrez comment les voies navigables reliaient les populations du nord de l’Europe.
+**User-friendly description (fr):** Découvre comment les voies navigables reliaient les populations du nord de l’Europe.
 
 ##### Économies anciennes d’Europe du Nord
 
@@ -588,7 +588,7 @@ Skills: 3
 
 **Methodological description (English):** Compare regional farming, pastoral, hunting, and fishing economies.
 
-**User-friendly description (fr):** Découvrez comment les anciennes communautés nordiques assuraient leur subsistance.
+**User-friendly description (fr):** Découvre comment les anciennes communautés nordiques assuraient leur subsistance.
 
 ##### Commerce de l’ambre baltique
 
@@ -596,7 +596,7 @@ Skills: 3
 
 **Methodological description (English):** Use amber as archaeological evidence of distant ancient exchange routes.
 
-**User-friendly description (fr):** Suivez la circulation de l’ambre baltique dans les anciens réseaux commerciaux.
+**User-friendly description (fr):** Suis la circulation de l’ambre baltique dans les anciens réseaux commerciaux.
 
 ##### Âge du fer en Scandinavie
 
@@ -604,7 +604,7 @@ Skills: 3
 
 **Methodological description (English):** Study settlements, material culture, and social change before the Viking Age.
 
-**User-friendly description (fr):** Explorez la vie scandinave avant l’époque viking.
+**User-friendly description (fr):** Explore la vie scandinave avant l’époque viking.
 
 #### Région nord de la mer Noire
 
@@ -614,7 +614,7 @@ Skills: 4
 
 **Methodological description (English):** The steppe, forest-steppe, and coasts of today's Ukraine held diverse ancient populations without modern state identities being imposed on them.
 
-**User-friendly description (fr):** Explorez les sociétés anciennes de la région septentrionale de la mer Noire.
+**User-friendly description (fr):** Explore les sociétés anciennes de la région septentrionale de la mer Noire.
 
 ##### Premières cultures des steppes
 
@@ -622,7 +622,7 @@ Skills: 4
 
 **Methodological description (English):** Use archaeological evidence of mobility, herding, and mound-burial traditions in the Black Sea steppe.
 
-**User-friendly description (fr):** Découvrez ce que révèlent les anciens tumulus funéraires et établissements des steppes.
+**User-friendly description (fr):** Découvre ce que révèlent les anciens tumulus funéraires et établissements des steppes.
 
 ##### Cités grecques de la mer Noire
 
@@ -630,7 +630,7 @@ Skills: 4
 
 **Methodological description (English):** Study civic life and trade at Olbia, Chersonesus, and Panticapaeum and interaction with nearby peoples.
 
-**User-friendly description (fr):** Explorez les cités grecques de la côte nord de la mer Noire.
+**User-friendly description (fr):** Explore les cités grecques de la côte nord de la mer Noire.
 
 ##### Sarmates
 
@@ -638,7 +638,7 @@ Skills: 4
 
 **Methodological description (English):** Trace Sarmatian dispersal, cavalry, and exchange networks in the northern Black Sea steppes.
 
-**User-friendly description (fr):** Découvrez l’histoire des groupes sarmates dans les steppes.
+**User-friendly description (fr):** Découvre l’histoire des groupes sarmates dans les steppes.
 
 ##### Sociétés scythes
 
@@ -646,7 +646,7 @@ Skills: 4
 
 **Methodological description (English):** Examine diverse Scythian groups, livelihoods, material culture, and regional contacts.
 
-**User-friendly description (fr):** Explorez la vie et les échanges commerciaux des communautés scythes.
+**User-friendly description (fr):** Explore la vie et les échanges commerciaux des communautés scythes.
 
 ### Méditerranée antique
 
@@ -656,7 +656,7 @@ Groups: 6 · Skills: 27
 
 **Methodological description (English):** Aegean societies, Greek poleis, Hellenistic kingdoms, and Rome formed an interconnected but heterogeneous Mediterranean world.
 
-**User-friendly description (fr):** Explorez comment différentes sociétés anciennes ont façonné la Méditerranée.
+**User-friendly description (fr):** Explore comment différentes sociétés anciennes ont façonné la Méditerranée.
 
 #### Âge du bronze égéen
 
@@ -666,7 +666,7 @@ Skills: 3
 
 **Methodological description (English):** Island and mainland palace centers are known through archaeology, material exchange, and surviving writing systems.
 
-**User-friendly description (fr):** Découvrez les sociétés palatiales de l’Égée à l’âge du bronze.
+**User-friendly description (fr):** Découvre les sociétés palatiales de l’Égée à l’âge du bronze.
 
 ##### Effondrement de la fin de l’âge du bronze
 
@@ -674,7 +674,7 @@ Skills: 3
 
 **Methodological description (English):** Evaluate multiple causes and uneven impacts of political and economic disruptions in the eastern Mediterranean.
 
-**User-friendly description (fr):** Explorez pourquoi les États de l’âge du bronze se sont transformés ou effondrés différemment.
+**User-friendly description (fr):** Explore pourquoi les États de l’âge du bronze se sont transformés ou effondrés différemment.
 
 ##### Civilisation minoenne
 
@@ -682,7 +682,7 @@ Skills: 3
 
 **Methodological description (English):** Examine Cretan palaces and maritime links while acknowledging that Linear A remains undeciphered.
 
-**User-friendly description (fr):** Explorez la Crète antique et les limites de ce que révèle son écriture.
+**User-friendly description (fr):** Explore la Crète antique et les limites de ce que révèle son écriture.
 
 ##### Civilisation mycénienne
 
@@ -690,7 +690,7 @@ Skills: 3
 
 **Methodological description (English):** Study palace economies, fortified centers, and Linear B evidence of early Greek.
 
-**User-friendly description (fr):** Découvrez ce que les palais et archives mycéniens révèlent sur les premiers Grecs.
+**User-friendly description (fr):** Découvre ce que les palais et archives mycéniens révèlent sur les premiers Grecs.
 
 #### Culture et traditions intellectuelles grecques
 
@@ -700,7 +700,7 @@ Skills: 4
 
 **Methodological description (English):** Greek religion, philosophy, and art varied across communities and periods rather than forming one fixed culture.
 
-**User-friendly description (fr):** Découvrez la diversité des croyances, des idées et des arts de la Grèce antique.
+**User-friendly description (fr):** Découvre la diversité des croyances, des idées et des arts de la Grèce antique.
 
 ##### Art grec antique
 
@@ -708,7 +708,7 @@ Skills: 4
 
 **Methodological description (English):** Examine sculpture, architecture, and imagery in the social and religious settings of archaic, classical, and Hellenistic eras.
 
-**User-friendly description (fr):** Reconnaissez comment l’art grec a évolué et quels rôles il remplissait.
+**User-friendly description (fr):** Reconnais comment l’art grec a évolué et quels rôles il remplissait.
 
 ##### Théâtre grec antique
 
@@ -716,7 +716,7 @@ Skills: 4
 
 **Methodological description (English):** Study tragedy, comedy, and public performance in relation to festivals and civic life.
 
-**User-friendly description (fr):** Découvrez pourquoi le théâtre comptait dans les cités grecques antiques.
+**User-friendly description (fr):** Découvre pourquoi le théâtre comptait dans les cités grecques antiques.
 
 ##### Philosophie grecque
 
@@ -724,7 +724,7 @@ Skills: 4
 
 **Methodological description (English):** Trace rational inquiry into nature, ethics, and politics across different ancient philosophical schools.
 
-**User-friendly description (fr):** Explorez les questions posées par les philosophes de la Grèce antique.
+**User-friendly description (fr):** Explore les questions posées par les philosophes de la Grèce antique.
 
 ##### Religion et mythologie grecques
 
@@ -732,7 +732,7 @@ Skills: 4
 
 **Methodological description (English):** Study myths, cults, festivals, and sanctuaries without treating mythological accounts as literal chronicles.
 
-**User-friendly description (fr):** Comprenez comment les mythes et les pratiques religieuses façonnaient la vie des communautés grecques.
+**User-friendly description (fr):** Comprends comment les mythes et les pratiques religieuses façonnaient la vie des communautés grecques.
 
 #### Cités grecques
 
@@ -742,7 +742,7 @@ Skills: 6
 
 **Methodological description (English):** Self-governing citizen communities varied in political institutions, warfare, and who possessed political rights.
 
-**User-friendly description (fr):** Comparez les modes de gouvernement des différentes cités grecques.
+**User-friendly description (fr):** Compare les modes de gouvernement des différentes cités grecques.
 
 ##### Démocratie athénienne
 
@@ -750,7 +750,7 @@ Skills: 6
 
 **Methodological description (English):** Study citizens' assemblies and courts while recognizing the political exclusion of women, enslaved people, and metics.
 
-**User-friendly description (fr):** Explorez qui pouvait participer à la démocratie athénienne et qui en était exclu.
+**User-friendly description (fr):** Explore qui pouvait participer à la démocratie athénienne et qui en était exclu.
 
 ##### Guerres médiques
 
@@ -758,7 +758,7 @@ Skills: 6
 
 **Methodological description (English):** Trace major conflicts between Achaemenid Persia and coalitions of Greek poleis and changes in regional power.
 
-**User-friendly description (fr):** Comprenez les guerres entre les cités grecques et la Perse.
+**User-friendly description (fr):** Comprends les guerres entre les cités grecques et la Perse.
 
 ##### Colonisation grecque
 
@@ -766,7 +766,7 @@ Skills: 6
 
 **Methodological description (English):** Explain settlements beyond the Balkans and varied relationships with local societies.
 
-**User-friendly description (fr):** Repérez où les communautés grecques fondaient des établissements et rencontraient d’autres peuples.
+**User-friendly description (fr):** Repère où les communautés grecques fondaient des établissements et rencontraient d’autres peuples.
 
 ##### Polis grecque
 
@@ -774,7 +774,7 @@ Skills: 6
 
 **Methodological description (English):** Relate civic community, surrounding land, institutions, and citizenship in the ancient Greek world.
 
-**User-friendly description (fr):** Comprenez la cité-État comme une communauté et une institution politique.
+**User-friendly description (fr):** Comprends la cité-État comme une communauté et une institution politique.
 
 ##### Guerre du Péloponnèse
 
@@ -782,7 +782,7 @@ Skills: 6
 
 **Methodological description (English):** Explain rivalry between Athens and Sparta, alliances, and long-term effects of interstate wars.
 
-**User-friendly description (fr):** Explorez pourquoi Athènes et Sparte se sont affrontées et ce qui s’est ensuivi.
+**User-friendly description (fr):** Explore pourquoi Athènes et Sparte se sont affrontées et ce qui s’est ensuivi.
 
 ##### Système spartiate
 
@@ -790,7 +790,7 @@ Skills: 6
 
 **Methodological description (English):** Analyze distinctive Spartan political and educational institutions and dependent labor's role in its economy.
 
-**User-friendly description (fr):** Découvrez comment Sparte organisait le gouvernement, la formation et le travail.
+**User-friendly description (fr):** Découvre comment Sparte organisait le gouvernement, la formation et le travail.
 
 #### Macédoine et monde hellénistique
 
@@ -800,7 +800,7 @@ Skills: 3
 
 **Methodological description (English):** Macedon's rise, Alexander's campaigns, and successor kingdoms transformed Balkan, Egyptian, and Asian politics and exchanges.
 
-**User-friendly description (fr):** Explorez les empires et les cultures du monde hellénistique.
+**User-friendly description (fr):** Explore les empires et les cultures du monde hellénistique.
 
 ##### Conquêtes d’Alexandre
 
@@ -808,7 +808,7 @@ Skills: 3
 
 **Methodological description (English):** Trace the reach of Alexander's campaigns, changed governments, and the limits of his short-lived personal empire.
 
-**User-friendly description (fr):** Suivez les conquêtes d’Alexandre et leurs conséquences politiques.
+**User-friendly description (fr):** Suis les conquêtes d’Alexandre et leurs conséquences politiques.
 
 ##### Royaumes hellénistiques
 
@@ -816,7 +816,7 @@ Skills: 3
 
 **Methodological description (English):** Examine successor states and interaction between Greek-speaking and local traditions.
 
-**User-friendly description (fr):** Explorez les différents royaumes formés après Alexandre.
+**User-friendly description (fr):** Explore les différents royaumes formés après Alexandre.
 
 ##### Ascension de la Macédoine
 
@@ -824,7 +824,7 @@ Skills: 3
 
 **Methodological description (English):** Analyze Philip II's consolidation and Macedon's relationships with Greek poleis.
 
-**User-friendly description (fr):** Comprenez comment la Macédoine est devenue une puissance régionale.
+**User-friendly description (fr):** Comprends comment la Macédoine est devenue une puissance régionale.
 
 #### Empire romain
 
@@ -834,7 +834,7 @@ Skills: 6
 
 **Methodological description (English):** A huge diverse state relied on armies, provincial rule, law, cities, and infrastructure before profound later transformations.
 
-**User-friendly description (fr):** Explorez comment l’Empire romain gouvernait de nombreux peuples différents.
+**User-friendly description (fr):** Explore comment l’Empire romain gouvernait de nombreux peuples différents.
 
 ##### Principat d’Auguste
 
@@ -842,7 +842,7 @@ Skills: 6
 
 **Methodological description (English):** Explain imperial rule emerging under Augustus while some republican forms remained outwardly in place.
 
-**User-friendly description (fr):** Découvrez comment Auguste a établi le pouvoir impérial romain.
+**User-friendly description (fr):** Découvre comment Auguste a établi le pouvoir impérial romain.
 
 ##### Vie quotidienne dans l’Empire romain
 
@@ -850,7 +850,7 @@ Skills: 6
 
 **Methodological description (English):** Compare homes, work, diets, and unequal experiences of urban, rural, free, and enslaved people.
 
-**User-friendly description (fr):** Découvrez comment le quotidien variait selon les régions de l’Empire romain.
+**User-friendly description (fr):** Découvre comment le quotidien variait selon les régions de l’Empire romain.
 
 ##### Droit romain
 
@@ -858,7 +858,7 @@ Skills: 6
 
 **Methodological description (English):** Trace legal concepts and citizenship without equating ancient norms with modern human rights.
 
-**User-friendly description (fr):** Explorez le rôle du droit et l’évolution des idées juridiques dans la société romaine.
+**User-friendly description (fr):** Explore le rôle du droit et l’évolution des idées juridiques dans la société romaine.
 
 ##### Administration des provinces romaines
 
@@ -866,7 +866,7 @@ Skills: 6
 
 **Methodological description (English):** Compare regional administration, taxes, citizenship, and cooperation with local elites.
 
-**User-friendly description (fr):** Comprenez comment les provinces romaines étaient gouvernées.
+**User-friendly description (fr):** Comprends comment les provinces romaines étaient gouvernées.
 
 ##### Diffusion du christianisme
 
@@ -874,7 +874,7 @@ Skills: 6
 
 **Methodological description (English):** Trace early Christian communities and changing positions within the Roman Empire.
 
-**User-friendly description (fr):** Découvrez comment le christianisme s’est diffusé sous la domination romaine.
+**User-friendly description (fr):** Découvre comment le christianisme s’est diffusé sous la domination romaine.
 
 ##### Transformations de l’Empire romain
 
@@ -882,7 +882,7 @@ Skills: 6
 
 **Methodological description (English):** Examine late-antique political, military, economic, and religious change and divergent western and eastern trajectories.
 
-**User-friendly description (fr):** Comprenez pourquoi l’Empire romain a évolué de différentes manières.
+**User-friendly description (fr):** Comprends pourquoi l’Empire romain a évolué de différentes manières.
 
 #### République romaine
 
@@ -892,7 +892,7 @@ Skills: 5
 
 **Methodological description (English):** Conquests and social conflicts reshaped republican institutions and helped produce concentrated individual rule.
 
-**User-friendly description (fr):** Découvrez comment la République de Rome a grandi et évolué.
+**User-friendly description (fr):** Découvre comment la République de Rome a grandi et évolué.
 
 ##### Crise de la République romaine
 
@@ -900,7 +900,7 @@ Skills: 5
 
 **Methodological description (English):** Connect expansion, personal armies, and civil wars with the weakening of republican governance.
 
-**User-friendly description (fr):** Comprenez pourquoi le gouvernement républicain de Rome est devenu instable.
+**User-friendly description (fr):** Comprends pourquoi le gouvernement républicain de Rome est devenu instable.
 
 ##### Premières communautés romaines
 
@@ -908,7 +908,7 @@ Skills: 5
 
 **Methodological description (English):** Locate Rome among Italian peoples and trace Etruscan and Latin influences.
 
-**User-friendly description (fr):** Découvrez comment Rome s’est développée parmi les communautés voisines d’Italie.
+**User-friendly description (fr):** Découvre comment Rome s’est développée parmi les communautés voisines d’Italie.
 
 ##### Conflit entre patriciens et plébéiens
 
@@ -916,7 +916,7 @@ Skills: 5
 
 **Methodological description (English):** Trace expansion of plebeian rights and revisions to republican institutions.
 
-**User-friendly description (fr):** Découvrez comment les citoyens romains ordinaires ont obtenu des droits politiques.
+**User-friendly description (fr):** Découvre comment les citoyens romains ordinaires ont obtenu des droits politiques.
 
 ##### Guerres puniques
 
@@ -924,7 +924,7 @@ Skills: 5
 
 **Methodological description (English):** Explain Rome and Carthage's competition for influence in the western Mediterranean.
 
-**User-friendly description (fr):** Explorez les guerres entre Rome et Carthage.
+**User-friendly description (fr):** Explore les guerres entre Rome et Carthage.
 
 ##### Institutions de la République romaine
 
@@ -932,7 +932,7 @@ Skills: 5
 
 **Methodological description (English):** Describe the Senate, magistrates, assemblies, and actual social restrictions on participation.
 
-**User-friendly description (fr):** Comprenez qui détenait le pouvoir dans la République romaine.
+**User-friendly description (fr):** Comprends qui détenait le pouvoir dans la République romaine.
 
 ### Océanie
 
@@ -1558,7 +1558,7 @@ Groups: 5 · Skills: 22
 
 **Methodological description (English):** China, Korea, Japan, and Inner Asian steppe regions show coexistence and interaction between settled and mobile societies.
 
-**User-friendly description (fr):** Découvrez la diversité des sociétés anciennes d’Asie orientale et centrale.
+**User-friendly description (fr):** Découvre la diversité des sociétés anciennes d’Asie orientale et centrale.
 
 #### Japon ancien
 
@@ -1568,7 +1568,7 @@ Skills: 3
 
 **Methodological description (English):** Archaeological traditions from pottery to rice farming and burial mounds show uneven regional changes.
 
-**User-friendly description (fr):** Découvrez les cultures anciennes de l’archipel japonais.
+**User-friendly description (fr):** Découvre les cultures anciennes de l’archipel japonais.
 
 ##### Culture Jōmon
 
@@ -1576,7 +1576,7 @@ Skills: 3
 
 **Methodological description (English):** Study Jomon livelihoods and material culture, especially pottery traditions.
 
-**User-friendly description (fr):** Découvrez les habitants et les poteries du Japon de Jōmon.
+**User-friendly description (fr):** Découvre les habitants et les poteries du Japon de Jōmon.
 
 ##### Période Kofun
 
@@ -1584,7 +1584,7 @@ Skills: 3
 
 **Methodological description (English):** Study monumental tombs and early Yamato political coalitions.
 
-**User-friendly description (fr):** Découvrez ce que révèlent les tumulus funéraires Kofun sur l’autorité ancienne.
+**User-friendly description (fr):** Découvre ce que révèlent les tumulus funéraires Kofun sur l’autorité ancienne.
 
 ##### Culture Yayoi
 
@@ -1592,7 +1592,7 @@ Skills: 3
 
 **Methodological description (English):** Trace rice agriculture, metalworking, and settlement changes in Yayoi Japan.
 
-**User-friendly description (fr):** Explorez comment la riziculture et les outils métalliques ont transformé le Japon.
+**User-friendly description (fr):** Explore comment la riziculture et les outils métalliques ont transformé le Japon.
 
 #### Corée ancienne
 
@@ -1602,7 +1602,7 @@ Skills: 4
 
 **Methodological description (English):** Study early Korean and Manchurian polities through texts and archaeology that do not always corroborate traditional founding dates.
 
-**User-friendly description (fr):** Explorez les premiers royaumes de la péninsule coréenne.
+**User-friendly description (fr):** Explore les premiers royaumes de la péninsule coréenne.
 
 ##### Baekje
 
@@ -1610,7 +1610,7 @@ Skills: 4
 
 **Methodological description (English):** Examine early statehood in western and southwestern Korea, political alliances, and cultural contacts.
 
-**User-friendly description (fr):** Découvrez les premiers souverains de Baekje et leurs liens avec d’autres sociétés.
+**User-friendly description (fr):** Découvre les premiers souverains de Baekje et leurs liens avec d’autres sociétés.
 
 ##### Goguryeo
 
@@ -1618,7 +1618,7 @@ Skills: 4
 
 **Methodological description (English):** Trace early state formation in northern Korea and Manchuria and contacts with Chinese dynasties.
 
-**User-friendly description (fr):** Explorez les origines de Goguryeo et ses relations avec ses voisins.
+**User-friendly description (fr):** Explore les origines de Goguryeo et ses relations avec ses voisins.
 
 ##### Gojoseon (Ancien Joseon)
 
@@ -1626,7 +1626,7 @@ Skills: 4
 
 **Methodological description (English):** Interpret archaeological and written evidence about early Gojoseon without treating legendary founding dates as proven.
 
-**User-friendly description (fr):** Découvrez ce que les historiens savent et débattent au sujet de Gojoseon.
+**User-friendly description (fr):** Découvre ce que les historiens savent de Gojoseon et les questions dont ils débattent.
 
 ##### Silla
 
@@ -1634,7 +1634,7 @@ Skills: 4
 
 **Methodological description (English):** Trace gradual state formation in southeastern Korea and development of institutions.
 
-**User-friendly description (fr):** Explorez la formation de Silla à partir de communautés régionales.
+**User-friendly description (fr):** Explore la formation de Silla à partir de communautés régionales.
 
 #### La Chine ancienne à ses débuts
 
@@ -1644,7 +1644,7 @@ Skills: 6
 
 **Methodological description (English):** Bronze culture, ritual, and rival states shaped later institutions without requiring unchanged continuity.
 
-**User-friendly description (fr):** Découvrez comment les premiers États et traditions de Chine se sont développés.
+**User-friendly description (fr):** Découvre comment les premiers États et traditions de Chine se sont développés.
 
 ##### Tradition confucéenne
 
@@ -1652,7 +1652,7 @@ Skills: 6
 
 **Methodological description (English):** Study Confucius and followers on ethical improvement, social relations, and government.
 
-**User-friendly description (fr):** Explorez les idées confucéennes sur la conduite et le bon gouvernement.
+**User-friendly description (fr):** Explore les idées confucéennes sur la conduite et le bon gouvernement.
 
 ##### Traditions taoïstes
 
@@ -1660,7 +1660,7 @@ Skills: 6
 
 **Methodological description (English):** Interpret diverse early texts discussing the Dao, spontaneity, and nonaction.
 
-**User-friendly description (fr):** Découvrez les idées taoïstes sans supposer que tous les textes se ressemblent.
+**User-friendly description (fr):** Découvre les idées taoïstes sans supposer que tous les textes se ressemblent.
 
 ##### Culture Shang
 
@@ -1668,7 +1668,7 @@ Skills: 6
 
 **Methodological description (English):** Use bronze casting, royal institutions, and oracle-bone texts to interpret early documented Chinese history.
 
-**User-friendly description (fr):** Découvrez ce que révèlent les bronzes Shang et les textes divinatoires.
+**User-friendly description (fr):** Découvre ce que révèlent les bronzes Shang et les textes divinatoires.
 
 ##### Période des Printemps et Automnes
 
@@ -1676,7 +1676,7 @@ Skills: 6
 
 **Methodological description (English):** Analyze rivalry among states and changing political ties during the weakening of Zhou power.
 
-**User-friendly description (fr):** Explorez les États rivaux de Chine à l’époque des Printemps et Automnes.
+**User-friendly description (fr):** Explore les États rivaux de Chine à l’époque des Printemps et Automnes.
 
 ##### Période des Royaumes combattants
 
@@ -1684,7 +1684,7 @@ Skills: 6
 
 **Methodological description (English):** Examine military and administrative reforms before China's political unification.
 
-**User-friendly description (fr):** Découvrez comment les États des Royaumes combattants rivalisaient et se réformaient.
+**User-friendly description (fr):** Découvre comment les États des Royaumes combattants rivalisaient et se réformaient.
 
 ##### Dynastie Zhou
 
@@ -1692,7 +1692,7 @@ Skills: 6
 
 **Methodological description (English):** Trace political changes and the idea of Heaven's Mandate between Zhou rulers and regional elites.
 
-**User-friendly description (fr):** Explorez comment les souverains Zhou justifiaient et partageaient le pouvoir.
+**User-friendly description (fr):** Explore comment les souverains Zhou justifiaient et partageaient le pouvoir.
 
 #### Chine impériale
 
@@ -1702,7 +1702,7 @@ Skills: 5
 
 **Methodological description (English):** Territorial unification prompted administrative standardization and debate about rule.
 
-**User-friendly description (fr):** Explorez la façon dont les dynasties chinoises gouvernaient de vastes territoires.
+**User-friendly description (fr):** Explore la façon dont les dynasties chinoises gouvernaient de vastes territoires.
 
 ##### Métallurgie dans la Chine ancienne
 
@@ -1710,7 +1710,7 @@ Skills: 5
 
 **Methodological description (English):** Explain bronze and iron technologies including cast iron and their economic and military applications.
 
-**User-friendly description (fr):** Découvrez comment le travail des métaux s’est développé dans la Chine ancienne.
+**User-friendly description (fr):** Découvre comment le travail des métaux s’est développé dans la Chine ancienne.
 
 ##### Déclin des Han et États successeurs
 
@@ -1718,7 +1718,7 @@ Skills: 5
 
 **Methodological description (English):** Analyze political decentralization and cultural changes at the end of the ancient Han era.
 
-**User-friendly description (fr):** Explorez ce qui s’est passé après l’affaiblissement du pouvoir impérial Han.
+**User-friendly description (fr):** Explore ce qui s’est passé après l’affaiblissement du pouvoir impérial Han.
 
 ##### Dynastie Han
 
@@ -1726,7 +1726,7 @@ Skills: 5
 
 **Methodological description (English):** Trace bureaucracy, border policy, and economic networks in the Han Empire.
 
-**User-friendly description (fr):** Découvrez comment les souverains Han administraient leur empire et reliaient ses régions.
+**User-friendly description (fr):** Découvre comment les souverains Han administraient leur empire et reliaient ses régions.
 
 ##### Fabrication du papier dans la Chine ancienne
 
@@ -1734,7 +1734,7 @@ Skills: 5
 
 **Methodological description (English):** Trace materials and methods of papermaking, including Han developments, and their effects on writing and record keeping.
 
-**User-friendly description (fr):** Explorez comment la fabrication chinoise du papier a transformé la circulation de l’information.
+**User-friendly description (fr):** Explore comment la fabrication chinoise du papier a transformé la circulation de l’information.
 
 ##### Empire Qin
 
@@ -1742,7 +1742,7 @@ Skills: 5
 
 **Methodological description (English):** Explain centralization and standardization under China's first imperial dynasty.
 
-**User-friendly description (fr):** Découvrez les politiques qui ont aidé les Qin à unifier la Chine.
+**User-friendly description (fr):** Découvre les politiques qui ont aidé les Qin à unifier la Chine.
 
 #### Asie intérieure
 
@@ -1752,7 +1752,7 @@ Skills: 4
 
 **Methodological description (English):** Steppe and oasis societies created polities and connections among large agricultural states.
 
-**User-friendly description (fr):** Explorez les sociétés mobiles et sédentaires d’Asie intérieure.
+**User-friendly description (fr):** Explore les sociétés mobiles et sédentaires d’Asie intérieure.
 
 ##### Centres oasiens d’Asie centrale
 
@@ -1760,7 +1760,7 @@ Skills: 4
 
 **Methodological description (English):** Study towns, caravans, and cultural mediation along early inland trade routes.
 
-**User-friendly description (fr):** Explorez les villes des oasis qui reliaient les anciennes routes commerciales.
+**User-friendly description (fr):** Explore les villes des oasis qui reliaient les anciennes routes commerciales.
 
 ##### Sakas et cultures apparentées des steppes
 
@@ -1768,7 +1768,7 @@ Skills: 4
 
 **Methodological description (English):** Recognize diverse Iranian-speaking and other Inner Asian groups from archaeology and external ethnonyms.
 
-**User-friendly description (fr):** Explorez les connaissances sur les Sakas et les cultures apparentées.
+**User-friendly description (fr):** Explore les connaissances sur les Sakas et les cultures apparentées.
 
 ##### Pastoralisme des steppes
 
@@ -1776,7 +1776,7 @@ Skills: 4
 
 **Methodological description (English):** Examine seasonal mobility, ecology, social relations, and mixed herding and trade economies.
 
-**User-friendly description (fr):** Découvrez pourquoi les communautés des steppes se déplaçaient avec leurs troupeaux.
+**User-friendly description (fr):** Découvre pourquoi les communautés des steppes se déplaçaient avec leurs troupeaux.
 
 ##### Xiongnu
 
@@ -1784,7 +1784,7 @@ Skills: 4
 
 **Methodological description (English):** Examine the Xiongnu political confederation and diplomatic or military ties with Han China.
 
-**User-friendly description (fr):** Découvrez comment les Xiongnu interagissaient avec l’Empire Han.
+**User-friendly description (fr):** Découvre comment les Xiongnu interagissaient avec l’Empire Han.
 
 ### Enquête historique
 

@@ -222,7 +222,7 @@ Skills: 4
 
 **Methodological description (English):** Study the Bronze Age urban center, burials, and regional state of Upper Nubia.
 
-**User-friendly description (ar):** استكشف الآثار الأثرية لكرمة القديمة.
+**User-friendly description (ar):** استكشف البقايا الأثرية لكرمة القديمة.
 
 ##### مملكة كوش
 
@@ -528,7 +528,7 @@ Skills: 4
 
 **Methodological description (English):** Examine diverse Central and Northern European societies and their contacts with Rome.
 
-**User-friendly description (ar):** تعرّف تنوّع الجماعات القديمة الناطقة باللغات الجرمانية.
+**User-friendly description (ar):** تعرّف إلى تنوّع الجماعات القديمة الناطقة باللغات الجرمانية.
 
 ##### بريطانيا قبل الحكم الروماني وخلاله
 
@@ -570,7 +570,7 @@ Skills: 1
 
 **Methodological description (English):** Trace the Kyiv-centered polity of the late ninth through thirteenth centuries, princely government, diverse populations, Byzantine relations, Christianization, and river trade, including the Varangians-to-Greeks route. Distinguish evidence from chronicle traditions and later nationalist interpretations.
 
-**User-friendly description (ar):** تعرّف شعوب روس كييف في العصور الوسطى وحكامها وطرق تجارتها.
+**User-friendly description (ar):** تعرّف إلى شعوب روس كييف في العصور الوسطى وحكّامها وطرق تجارتها.
 
 #### شمال أوروبا ومنطقة البلطيق
 
@@ -666,7 +666,7 @@ Skills: 3
 
 **Methodological description (English):** Island and mainland palace centers are known through archaeology, material exchange, and surviving writing systems.
 
-**User-friendly description (ar):** تعرّف مجتمعات القصور في منطقة إيجة خلال العصر البرونزي.
+**User-friendly description (ar):** تعرّف إلى مجتمعات القصور في منطقة إيجة خلال العصر البرونزي.
 
 ##### انهيار أواخر العصر البرونزي
 
@@ -690,7 +690,7 @@ Skills: 3
 
 **Methodological description (English):** Study palace economies, fortified centers, and Linear B evidence of early Greek.
 
-**User-friendly description (ar):** تعرّف ما تكشفه قصور الميسينيين وسجلاتهم عن اليونانيين الأوائل.
+**User-friendly description (ar):** اكتشف ما تكشفه قصور الميسينيين وسجلاتهم عن اليونانيين الأوائل.
 
 #### الثقافة والأفكار اليونانية القديمة
 
@@ -790,7 +790,7 @@ Skills: 6
 
 **Methodological description (English):** Analyze distinctive Spartan political and educational institutions and dependent labor's role in its economy.
 
-**User-friendly description (ar):** تعرّف كيف نظّمت إسبرطة الحكم والتدريب والعمل.
+**User-friendly description (ar):** اكتشف كيف نظّمت إسبرطة الحكم والتدريب والعمل.
 
 #### مقدونيا والعالم الهلنستي
 
@@ -842,7 +842,7 @@ Skills: 6
 
 **Methodological description (English):** Explain imperial rule emerging under Augustus while some republican forms remained outwardly in place.
 
-**User-friendly description (ar):** تعرّف كيف أسس أغسطس سلطة الإمبراطورية الرومانية.
+**User-friendly description (ar):** اكتشف كيف أسّس أغسطس السلطة الإمبراطورية في روما.
 
 ##### الحياة اليومية في الإمبراطورية الرومانية
 
@@ -850,7 +850,7 @@ Skills: 6
 
 **Methodological description (English):** Compare homes, work, diets, and unequal experiences of urban, rural, free, and enslaved people.
 
-**User-friendly description (ar):** تعرّف كيف اختلفت الحياة اليومية في أنحاء الإمبراطورية الرومانية.
+**User-friendly description (ar):** اكتشف كيف اختلفت الحياة اليومية في أنحاء الإمبراطورية الرومانية.
 
 ##### القانون الروماني
 
@@ -908,7 +908,7 @@ Skills: 5
 
 **Methodological description (English):** Locate Rome among Italian peoples and trace Etruscan and Latin influences.
 
-**User-friendly description (ar):** تعرّف كيف تطورت روما بين المجتمعات المجاورة في إيطاليا.
+**User-friendly description (ar):** اكتشف كيف تطورت روما بين المجتمعات المجاورة في إيطاليا.
 
 ##### الصراع بين الأشراف والعامة
 
@@ -1190,7 +1190,7 @@ Skills: 6
 
 **Methodological description (English):** The Tigris and Euphrates valleys supported cities, complex administration, writing, and successive supraregional states.
 
-**User-friendly description (ar):** تعرّف كيف دعمت أودية الأنهار مدن بلاد الرافدين ودولها.
+**User-friendly description (ar):** اكتشف كيف دعمت أودية الأنهار مدن بلاد الرافدين ودولها.
 
 ##### الإمبراطورية الأكدية
 
@@ -1232,7 +1232,7 @@ Skills: 6
 
 **User-friendly description (ar):** افهم أهمية الري للزراعة في بلاد الرافدين.
 
-##### المدن الدول السومرية
+##### دول المدن السومرية
 
 [sumerianCityStates.data.ts](../../../learningApps/history/data/skills/ancientWesternAsia/mesopotamia/skills/sumerianCityStates.data.ts)
 
@@ -1298,7 +1298,7 @@ Skills: 5
 
 **Methodological description (English):** Explain how techniques spread between societies and were adapted to new functions or practices.
 
-**User-friendly description (ar):** تعرّف كيف تعلمت المجتمعات تقنيات من غيرها وعدّلتها.
+**User-friendly description (ar):** اكتشف كيف تعلّمت المجتمعات تقنيات من غيرها وعدّلتها.
 
 #### الأزمات والتحولات التاريخية
 
@@ -1534,13 +1534,13 @@ Skills: 7
 
 **User-friendly description (ar):** اكتشف معتقدات المجتمعات القديمة حول العلاج والشفاء.
 
-##### علم المعادن وآثاره التاريخية
+##### صناعة المعادن وآثارها التاريخية
 
 [metallurgyAndHistoricalEffects.data.ts](../../../learningApps/history/data/skills/crossRegionalHistoricalProcesses/productionAndKnowledge/skills/metallurgyAndHistoricalEffects.data.ts)
 
 **Methodological description (English):** Connect ores, fuel, crafts, weapons, and trade under varying regional conditions.
 
-**User-friendly description (ar):** افهم كيف أثّر تشكيل المعادن في العمل والحروب.
+**User-friendly description (ar):** افهم كيف أثّرت صناعة المعادن في العمل والحروب.
 
 ##### نشأة الكتابة
 
@@ -1576,7 +1576,7 @@ Skills: 3
 
 **Methodological description (English):** Study Jomon livelihoods and material culture, especially pottery traditions.
 
-**User-friendly description (ar):** تعرّف سكان اليابان في عصر جومون وفخارهم.
+**User-friendly description (ar):** تعرّف إلى سكان اليابان في عصر جومون وفخارهم.
 
 ##### فترة كوفون
 
@@ -1610,7 +1610,7 @@ Skills: 4
 
 **Methodological description (English):** Examine early statehood in western and southwestern Korea, political alliances, and cultural contacts.
 
-**User-friendly description (ar):** تعرّف حكام بايكتشي الأوائل وصلاتهم بالمناطق الأخرى.
+**User-friendly description (ar):** تعرّف إلى حكّام بايكتشي الأوائل وصلاتهم بالمناطق الأخرى.
 
 ##### غوغوريو
 
@@ -1660,7 +1660,7 @@ Skills: 6
 
 **Methodological description (English):** Interpret diverse early texts discussing the Dao, spontaneity, and nonaction.
 
-**User-friendly description (ar):** تعرّف الأفكار الطاوية دون افتراض أن جميع نصوصها متطابقة.
+**User-friendly description (ar):** تعرّف إلى الأفكار الطاوية دون افتراض أن جميع نصوصها متطابقة.
 
 ##### ثقافة شانغ
 
@@ -1668,7 +1668,7 @@ Skills: 6
 
 **Methodological description (English):** Use bronze casting, royal institutions, and oracle-bone texts to interpret early documented Chinese history.
 
-**User-friendly description (ar):** تعرّف ما تكشفه المصنوعات البرونزية ونصوص العرافة في عصر شانغ.
+**User-friendly description (ar):** اكتشف ما تكشفه المصنوعات البرونزية ونصوص العرافة في عصر شانغ.
 
 ##### فترة الربيع والخريف
 
@@ -1704,7 +1704,7 @@ Skills: 5
 
 **User-friendly description (ar):** اكتشف كيف حكمت الأسر الصينية مناطق شاسعة.
 
-##### التعدين وصناعة المعادن في الصين القديمة
+##### صناعة المعادن في الصين القديمة
 
 [ancientChineseMetallurgy.data.ts](../../../learningApps/history/data/skills/eastAndCentralAsia/imperialChina/skills/ancientChineseMetallurgy.data.ts)
 
@@ -1726,7 +1726,7 @@ Skills: 5
 
 **Methodological description (English):** Trace bureaucracy, border policy, and economic networks in the Han Empire.
 
-**User-friendly description (ar):** تعرّف كيف أدار حكام هان إمبراطوريتهم وربطوا أقاليمها.
+**User-friendly description (ar):** اكتشف كيف أدار حكّام هان إمبراطوريتهم وربطوا أقاليمها.
 
 ##### صناعة الورق في الصين القديمة
 
