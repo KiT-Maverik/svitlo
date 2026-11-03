@@ -45,7 +45,7 @@ export const programData_SkillGroup_Data = buildSkillGroupConfig({
     methodological: "Working with values received, stored, and changed at runtime: variables, types, inputs, and state transitions. This concerns data during code execution rather than external datasets for statistical analysis.",
     frontend: {
       en: "Work with the values and changing state used by a running program.",
-      zh: "使用运行中程序的数值和不断变化的状态。",
+      zh: "使用程序运行时的各种值，并理解其状态如何变化。",
       hi: "चलते हुए प्रोग्राम में उपयोग होने वाले मानों और बदलती स्थिति के साथ काम करें।",
       es: "Trabaja con los valores y el estado cambiante que utiliza un programa en ejecución.",
       ar: "تعرّف إلى القيم والحالة المتغيرة التي يستخدمها البرنامج أثناء تشغيله.",

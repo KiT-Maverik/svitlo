@@ -13,7 +13,7 @@ export const interpreter_Skill_Data = buildSkillConfig({
     bn: "ইন্টারপ্রেটার",
     pt: "Interpretador",
     ur: "انٹرپریٹر",
-    id: "Penerjemah",
+    id: "Interpreter",
     de: "Interpreter",
     ja: "インタープリター",
     ko: "인터프리터",

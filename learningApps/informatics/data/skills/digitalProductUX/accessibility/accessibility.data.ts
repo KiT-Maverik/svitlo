@@ -14,7 +14,7 @@ export const accessibility_SkillGroup_Data = buildSkillGroupConfig({
     fr: "Accessibilité",
     bn: "প্রবেশগম্যতা",
     pt: "Acessibilidade",
-    ur: "قابلِ رسائی",
+    ur: "رسائی پذیری",
     id: "Aksesibilitas",
     de: "Barrierefreiheit",
     ja: "アクセシビリティ",

@@ -63,7 +63,7 @@ export const chainOfResponsibility_Skill_Data = buildSkillConfig({
       lv: "Pārsūti pieprasījumu apstrādātājiem, līdz kāds to var apstrādāt.",
       et: "Saada päring töötlejalt järgmisele, kuni keegi saab selle täita.",
       be: "Перадавай запыт паміж апрацоўнікамі, пакуль нехта зь іх ня зможа яго апрацаваць.",
-      ka: "გადაეცი მოთხოვნა დამმუშავებლებს, სანამ რომელიმე ვერ შეძლებს მის დამუშავებას.",
+      ka: "გადაეცი მოთხოვნა დამმუშავებლებს რიგრიგობით, სანამ ერთ-ერთი მათგანი არ დაამუშავებს მას.",
       kk: "Сұрауды өңдей алатын өңдеуші табылғанша кезекпен жібер.",
       qm: "Talapnı bir işleyiciden başqasına, biri onı işlep olğance, geçir.",
     },
