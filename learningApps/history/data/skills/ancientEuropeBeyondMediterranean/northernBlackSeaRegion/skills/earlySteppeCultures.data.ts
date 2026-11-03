@@ -12,7 +12,7 @@ export const earlySteppeCultures_Skill_Data = buildSkillConfig({
     fr: "Premières cultures des steppes",
     bn: "প্রাথমিক স্তেপ সংস্কৃতি",
     pt: "Primeiras culturas das estepes",
-    ur: "ابتدائی صحرائی گھاس زار ثقافتیں",
+    ur: "ابتدائی استپی گھاس زاروں کی ثقافتیں",
     id: "Kebudayaan stepa awal",
     de: "Frühe Steppenkulturen",
     ja: "初期の草原文化",
