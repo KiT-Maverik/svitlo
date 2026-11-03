@@ -48,7 +48,7 @@ export const explainNuclearFusion_Skill_Data = buildSkillConfig({
       ur: "وضاحت کریں کہ ہلکے ایٹمی مرکزے مل کر توانائی کیسے خارج کر سکتے ہیں۔",
       id: "Jelaskan bagaimana penggabungan inti ringan dapat melepaskan energi.",
       de: "Erkläre, wie die Verschmelzung leichter Atomkerne Energie freisetzen kann.",
-      ja: "軽い原子核が結びついてエネルギーを放出する仕組みを説明しましょう。",
+      ja: "軽い原子核が適切な条件で融合し、結合エネルギーの変化によってエネルギーを放出する場合を説明しましょう。",
       ko: "가벼운 원자핵이 합쳐질 때 에너지가 방출될 수 있는 이유를 설명해 보세요.",
       tr: "Hafif çekirdeklerin birleşmesinin nasıl enerji açığa çıkarabildiğini açıkla.",
       vi: "Giải thích cách kết hợp các hạt nhân nhẹ có thể giải phóng năng lượng.",
