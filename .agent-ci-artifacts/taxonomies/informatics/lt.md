@@ -156,7 +156,7 @@ Skills: 6
 
 **Methodological description (English):** Independently construct a recursive solution with a valid base case and progressively smaller subproblems so calls terminate. Test boundary inputs; being able to explain existing recursion is not equivalent to designing an algorithm.
 
-**User-friendly description (lt):** Sukurk rekursinį algoritmą su mažėjančiais poaibiais uždavinių ir baigiančiu baziniu atveju.
+**User-friendly description (lt):** Sukurk rekursinį algoritmą, kuris skaidydamas uždavinį į vis mažesnes dalis galiausiai pasiekia bazinį atvejį.
 
 #### Paieška
 
@@ -880,7 +880,7 @@ Skills: 7
 
 **Methodological description (English):** Ordered collections including arrays, lists, and linked representations. Indexing, insertion, removal, and traversal have different requirements and costs.
 
-**User-friendly description (lt):** Tyrinėk surikiuotus rinkinius ir kaip pasiekti, pridėti bei pašalinti jų elementus.
+**User-friendly description (lt):** Tyrinėk rinkinius, kuriuose svarbi elementų tvarka, ir kaip pasiekti, pridėti bei pašalinti jų elementus.
 
 ##### Pasiekti sekos elementą pagal indeksą
 
@@ -912,7 +912,7 @@ Skills: 7
 
 **Methodological description (English):** A list represents an ordered collection with element operations, regardless of whether its underlying representation uses an array or linked nodes.
 
-**User-friendly description (lt):** Atpažink sąrašus kaip surikiuotus rinkinius, kuriuos galima vaizduoti įvairiai.
+**User-friendly description (lt):** Atpažink sąrašus kaip elementų tvarką turinčius rinkinius, kuriuos galima vaizduoti įvairiai.
 
 ##### Įterpti elementą į seką
 
@@ -1314,7 +1314,7 @@ Skills: 7
 
 **User-friendly description (lt):** Dalykis pakartotinai naudojamais objektų duomenimis, kad sumažintum perteklinį atminties naudojimą.
 
-##### Tarpininkas
+##### Įgaliotinis (Proxy)
 
 [proxy.data.ts](../../../learningApps/informatics/data/skills/designPatterns/structural/skills/proxy.data.ts)
 
@@ -1840,7 +1840,7 @@ Skills: 4
 
 **Methodological description (English):** Explain that ROM and related nonvolatile technologies can hold device firmware or initial startup instructions without power. The historical name 'read-only memory' does not mean all modern firmware is physically immutable; many devices use reprogrammable flash memory.
 
-**User-friendly description (lt):** Atpažink, kaip neišliekamumo neprarandanti programinės aparatinės įrangos atmintis padeda įrenginiams įsijungti.
+**User-friendly description (lt):** Sužinok, kaip ROM ir panaši atmintis išlaiko įrenginio paleidimo instrukcijas išjungus maitinimą.
 
 #### Tinklo modeliai ir protokolai
 

@@ -2750,7 +2750,7 @@ Skills: 3
 
 **Methodological description (English):** Working with values received, stored, and changed at runtime: variables, types, inputs, and state transitions. This concerns data during code execution rather than external datasets for statistical analysis.
 
-**User-friendly description (zh):** 使用运行中程序的数值和不断变化的状态。
+**User-friendly description (zh):** 使用程序运行时的各种值，并理解其状态如何变化。
 
 ##### 更新程序状态
 

@@ -1306,7 +1306,7 @@ Skills: 7
 
 **User-friendly description (vi):** Cung cấp lối vào đơn giản cho tập hợp thành phần phức tạp.
 
-##### Hạng ruồi
+##### Mẫu Flyweight
 
 [flyweight.data.ts](../../../learningApps/informatics/data/skills/designPatterns/structural/skills/flyweight.data.ts)
 
