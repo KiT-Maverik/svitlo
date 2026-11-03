@@ -44,7 +44,7 @@ export const explainLightEmissionByAnExcitedAtom_Skill_Data = buildSkillConfig({
       ar: "اشرح كيف يمكن للذرات أن تصدر فوتونات عند الانتقال بين مستويات الطاقة.",
       fr: "Explique comment les atomes peuvent émettre des photons lorsqu'ils changent de niveau d'énergie.",
       bn: "পরমাণু শক্তিস্তর বদলানোর সময় কীভাবে ফোটন নিঃসরণ করতে পারে, তা ব্যাখ্যা করো।",
-      pt: "Explique como os átomos podem emitir fótons ao mudar de nível de energia.",
+      pt: "Explique como um átomo excitado pode emitir um fóton ao passar para um nível de energia menor, com energia igual à diferença entre os níveis.",
       ur: "وضاحت کریں کہ ایٹم توانائی کی سطح بدلتے ہوئے فوٹون کیسے خارج کر سکتے ہیں۔",
       id: "Jelaskan bagaimana atom dapat memancarkan foton ketika berpindah tingkat energi.",
       de: "Erkläre, wie Atome beim Wechsel des Energieniveaus Photonen aussenden können.",
