@@ -41,7 +41,7 @@ export const dailyLifeInRomanEmpire_Skill_Data = buildSkillConfig({
       zh: "了解罗马帝国各地的日常生活有何不同。",
       hi: "जानें कि रोमन साम्राज्य के विभिन्न भागों में रोज़मर्रा की ज़िंदगी कैसे अलग थी।",
       es: "Descubre cómo variaba la vida diaria por todo el Imperio romano.",
-      ar: "تعرّف كيف اختلفت الحياة اليومية في أنحاء الإمبراطورية الرومانية.",
+      ar: "اكتشف كيف اختلفت الحياة اليومية في أنحاء الإمبراطورية الرومانية.",
       fr: "Découvrez comment le quotidien variait selon les régions de l’Empire romain.",
       bn: "রোমান সাম্রাজ্যের বিভিন্ন অঞ্চলে দৈনন্দিন জীবন কীভাবে আলাদা ছিল তা জানো।",
       pt: "Descubra como a vida diária variava nas diferentes regiões do Império Romano.",
