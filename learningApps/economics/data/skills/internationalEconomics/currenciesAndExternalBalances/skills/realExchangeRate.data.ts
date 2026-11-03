@@ -22,7 +22,7 @@ export const realExchangeRate_Skill_Data = buildSkillConfig({
     ta: "உண்மை மாற்று விகிதம்",
     te: "వాస్తవ మారకపు రేటు",
     mr: "वास्तविक विनिमय दर",
-    ms: "Kadar pertukaran benar",
+    ms: "Kadar pertukaran sebenar",
     he: "שער חליפין ריאלי",
     pl: "Realny kurs walutowy",
     uk: "Реальний валютний курс",

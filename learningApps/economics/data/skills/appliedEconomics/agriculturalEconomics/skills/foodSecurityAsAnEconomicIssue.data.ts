@@ -38,7 +38,7 @@ export const foodSecurityAsAnEconomicIssue_Skill_Data = buildSkillConfig({
     methodological: "Analyze physical and economic access to food, stability of supplies, and why sufficient aggregate production does not ensure everyone can obtain food.",
     frontend: {
       en: "Explore why enough food being produced does not mean everyone can afford or access it.",
-      zh: "探索为什么粮食产量充足不代表人人都买得起或获得到食物。",
+      zh: "探索为什么粮食产量充足并不意味着人人都买得起或能获得食物。",
       hi: "जानें कि पर्याप्त भोजन बनने पर भी हर कोई उसे खरीद या प्राप्त क्यों नहीं कर पाता।",
       es: "Explora por qué producir suficientes alimentos no significa que todos puedan comprarlos o acceder a ellos.",
       ar: "اكتشف لماذا لا يعني إنتاج ما يكفي من الغذاء أن الجميع يستطيع شراءه أو الوصول إليه.",
@@ -64,7 +64,7 @@ export const foodSecurityAsAnEconomicIssue_Skill_Data = buildSkillConfig({
       et: "Uuri, miks piisav toidutootmine ei tähenda, et kõik saavad toitu osta või kätte.",
       be: "Дасьледуй, чаму дастатковая вытворчасьць ежы не гарантуе, што кожны можа яе набыць або атрымаць.",
       ka: "შეისწავლე, რატომ არ ნიშნავს საკმარისი საკვების წარმოება, რომ ყველას შეუძლია მისი ყიდვა ან მიღება.",
-      kk: "Жеткілікті азық-түлік өндірісі әркімнің оны сатып ала немесе ала алатынын неге білдірмейтінін зертте.",
+      kk: "Жеткілікті азық-түлік өндірілсе де, оның барлығына қолжетімді болатынына неге кепілдік жоқ екенін зертте.",
       qm: "Yeterli aşayış istisal olunsa da er kes onı satın alıp tapabilmegenini niçün olğanını ögren.",
     },
   },

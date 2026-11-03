@@ -70,7 +70,7 @@ export const taxes_SkillGroup_Data = buildSkillGroupConfig({
       lv: "Izproti, kā nodokļi nodrošina publiskos līdzekļus un ietekmē lēmumus.",
       et: "Mõista, kuidas maksud koguvad avalikke vahendeid ja mõjutavad valikuid.",
       be: "Зразумей, як падаткі зьбіраюць грамадзкія сродкі і ўплываюць на рашэньні.",
-      ka: "გაიაზრეთ, როგორ აგროვებს გადასახადები საჯარო სახსრებს და ზემოქმედებს არჩევანზე.",
+      ka: "გაიაზრეთ, როგორ ივსება სახელმწიფო ბიუჯეტი გადასახადებით და როგორ მოქმედებს გადასახადები ეკონომიკურ გადაწყვეტილებებზე.",
       kk: "Салықтар мемлекеттік қаржыны қалай жинап, шешімдерге әсер ететінін түсініңіз.",
       qm: "Vergiler cemaat içün aqçanı nasıl toplağanını ve qararlarğa nasıl tesir etkenini añla.",
     },

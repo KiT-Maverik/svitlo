@@ -63,7 +63,7 @@ export const specializationAndTradeGains_SkillGroup_Data = buildSkillGroupConfig
       ta: "நாடுகள் ஏன் சிறப்பாக்கம் செய்து வணிகத்தால் பயனடைகின்றன என்பதை அறியுங்கள்.",
       te: "దేశాలు ఎందుకు ప్రత్యేకీకరిస్తాయి, వాణిజ్యం నుంచి ఏమి పొందుతాయో తెలుసుకోండి.",
       mr: "देश विशिष्ट उत्पादनात का पारंगत होतात आणि व्यापारातून काय मिळवतात ते जाणून घ्या.",
-      ms: "Ketahui mengapa negara mengkhusus dan keuntungan daripada perdagangan.",
+      ms: "Ketahui mengapa negara mengkhusus dan bagaimana mereka mendapat manfaat daripada perdagangan.",
       he: "למדו מדוע מדינות מתמחות ובמה הן מרוויחות מהמסחר.",
       pl: "Dowiedz się, dlaczego kraje się specjalizują i co zyskują na wymianie.",
       uk: "Дізнайся, чому країни спеціалізуються та що отримують від торгівлі.",

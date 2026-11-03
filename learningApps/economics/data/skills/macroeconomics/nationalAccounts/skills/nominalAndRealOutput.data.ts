@@ -22,7 +22,7 @@ export const nominalAndRealOutput_Skill_Data = buildSkillConfig({
     ta: "பெயரளவு மற்றும் உண்மை உற்பத்தி",
     te: "నామమాత్ర, వాస్తవ ఉత్పత్తి",
     mr: "नाममात्र आणि वास्तविक उत्पादन",
-    ms: "Keluaran nominal dan benar",
+    ms: "Keluaran nominal dan sebenar",
     he: "תפוקה נומינלית וריאלית",
     pl: "Produkcja nominalna i realna",
     uk: "Номінальний і реальний випуск",

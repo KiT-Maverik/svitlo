@@ -20,7 +20,7 @@ export const financialStabilityAndRegulation_SkillGroup_Data = buildSkillGroupCo
     ja: "金融の安定と規制",
     ko: "금융 안정과 규제",
     tr: "Finansal İstikrar ve Düzenleme",
-    vi: "Ổn định và quản lý tài chính",
+    vi: "Ổn định và điều tiết tài chính",
     ta: "நிதி நிலைத்தன்மையும் ஒழுங்குமுறையும்",
     te: "ఆర్థిక స్థిరత్వం మరియు నియంత్రణ",
     mr: "वित्तीय स्थैर्य आणि नियमन",

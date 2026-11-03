@@ -78,7 +78,7 @@ export const governmentAndEconomicPolicy_SkillDomain_Data = buildSkillDomainConf
       be: "Дасьледуй, як дзяржаўныя рашэньні ўплываюць на рэсурсы, стымулы й эканамічныя вынікі.",
       ka: "გამოიკვლიეთ, როგორ მოქმედებს მთავრობის გადაწყვეტილებები რესურსებზე, სტიმულებსა და ეკონომიკურ შედეგებზე.",
       kk: "Үкімет шешімдері ресурстарға, ынталарға және экономикалық нәтижелерге қалай ықпал ететінін зерттеңіз.",
-      qm: "Devlet qararları qınaqlarnı, teşviqlerni ve iqtisadiy neticelerni nasıl tesir etkenini araştır.",
+      qm: "Devlet qararları resurslarğa, teşviqlerge ve iqtisadiy neticelerge nasıl tesir etkenini araştır.",
     },
   },
 });

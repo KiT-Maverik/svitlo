@@ -51,7 +51,7 @@ export const collectiveBargaining_Skill_Data = buildSkillConfig({
       ja: "労働者の団体と雇用主が労働条件をどう交渉するか学ぼう。",
       ko: "노동자 단체와 고용주가 고용 조건을 어떻게 협상하는지 알아보세요.",
       tr: "İşçi grupları ve işverenlerin çalışma koşullarını nasıl müzakere ettiğini keşfet.",
-      vi: "Tìm hiểu cách nhóm người lao động và chủ sử dụng đàm phán điều kiện làm việc.",
+      vi: "Tìm hiểu cách các nhóm người lao động và người sử dụng lao động đàm phán điều kiện làm việc.",
       ta: "தொழிலாளர் குழுக்களும் முதலாளிகளும் வேலை நிபந்தனைகளை எவ்வாறு பேச்சுவார்த்தை நடத்துகின்றனர் என்பதை அறி.",
       te: "కార్మిక సమూహాలు, యజమానులు ఉద్యోగ షరతులను ఎలా చర్చిస్తారో తెలుసుకోండి.",
       mr: "कामगार गट व मालक रोजगाराच्या अटी कशा ठरवतात ते जाणून घ्या.",

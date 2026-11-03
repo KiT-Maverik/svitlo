@@ -19,7 +19,7 @@ export const macroeconomicShocks_Skill_Data = buildSkillConfig({
     ko: "거시경제 충격",
     tr: "Makroekonomik şoklar",
     vi: "Các cú sốc kinh tế vĩ mô",
-    ta: "பேரினப் பொருளாதார அதிர்ச்சிகள்",
+    ta: "பேரியல் பொருளாதார அதிர்ச்சிகள்",
     te: "స్థూల ఆర్థిక దెబ్బలు",
     mr: "समष्टि आर्थिक धक्के",
     ms: "Kejutan makroekonomi",

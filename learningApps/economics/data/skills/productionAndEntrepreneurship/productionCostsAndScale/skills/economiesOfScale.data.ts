@@ -31,7 +31,7 @@ export const economiesOfScale_Skill_Data = buildSkillConfig({
     et: "Mastaabisääst",
     be: "Эканомія ад маштабу",
     ka: "მასშტაბის ეკონომია",
-    kk: "Ауқым үнемі",
+    kk: "Ауқым есебінен үнемдеу",
     qm: "Miqyas iqtisadı",
   },
   description: {

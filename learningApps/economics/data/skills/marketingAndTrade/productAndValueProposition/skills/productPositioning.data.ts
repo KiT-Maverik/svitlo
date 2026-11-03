@@ -22,7 +22,7 @@ export const productPositioning_Skill_Data = buildSkillConfig({
     ta: "பொருள் நிலைப்படுத்தல்",
     te: "ఉత్పత్తి స్థాన నిర్ధారణ",
     mr: "उत्पादनाचे स्थाननिर्धारण",
-    ms: "Peletakan Produk",
+    ms: "Penentududukan Produk",
     he: "מיצוב מוצר",
     pl: "Pozycjonowanie produktu",
     uk: "Позиціювання продукту",

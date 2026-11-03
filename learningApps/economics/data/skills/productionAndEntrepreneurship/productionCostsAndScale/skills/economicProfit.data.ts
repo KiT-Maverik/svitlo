@@ -64,7 +64,7 @@ export const economicProfit_Skill_Data = buildSkillConfig({
       et: "Mõista, miks majanduslik kasum arvestab enamat kui kirjapandud kulusid.",
       be: "Зразумей, чаму эканамічны прыбытак улічвае ня толькі запісаныя выдаткі.",
       ka: "გაიგე, რატომ ითვალისწინებს ეკონომიკური მოგება აღრიცხულ ხარჯებზე მეტს.",
-      kk: "Экономикалық пайда неге тіркелген шығыннан артық шығынды ескеретінін түсін.",
+      kk: "Экономикалық пайда есепте көрсетілген шығындармен қатар балама шығындарды да неге ескеретінін түсін.",
       qm: "İqtisadiy fayda ne içün yazılğan masraflardan başqa masraflarnı da esapqa alğanını añla.",
     },
   },

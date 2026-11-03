@@ -16,7 +16,7 @@ export const socialTransfers_Skill_Data = buildSkillConfig({
     id: "Transfer sosial",
     de: "Sozialtransfers",
     ja: "社会移転給付",
-    ko: "사회 이전 지급",
+    ko: "사회적 이전지출",
     tr: "Sosyal transferler",
     vi: "Chuyển giao xã hội",
     ta: "சமூகப் பணப் பரிமாற்றங்கள்",
@@ -65,7 +65,7 @@ export const socialTransfers_Skill_Data = buildSkillConfig({
       be: "Дасьледуй, як сацыяльныя выплаты зьмяняюць рэсурсы хатніх гаспадарак.",
       ka: "გამოიკვლიეთ, როგორ ცვლის სოციალური გადასახდელები შინამეურნეობების რესურსებს.",
       kk: "Әлеуметтік төлемдер үй шаруашылықтарының ресурстарын қалай өзгертетінін біліңіз.",
-      qm: "İçtimaiy ödemeler ailelerniñ qınaqlarını nasıl deñiştirgenini araştır.",
+      qm: "İçtimaiy ödemeler ailelerniñ resurslarını nasıl deñiştirgenini araştır.",
     },
   },
 });

@@ -24,7 +24,7 @@ export const macroeconomics_SkillDomain_Data = buildSkillDomainConfig({
     ko: "거시경제학",
     tr: "Makroekonomi",
     vi: "Kinh tế học vĩ mô",
-    ta: "பேரினப் பொருளியல்",
+    ta: "பேரியல் பொருளாதாரம்",
     te: "స్థూల ఆర్థిక శాస్త్రం",
     mr: "समष्टि अर्थशास्त्र",
     ms: "Makroekonomi",

@@ -56,7 +56,7 @@ export const correlationAndCausation_Skill_Data = buildSkillConfig({
       te: "రెండు ధోరణులు కలిసి మారడం ఒకటి మరొకదానికి కారణమని ఎందుకు నిరూపించదో వివరించండి.",
       mr: "दोन प्रवाह एकत्र बदलले तरी एक दुसऱ्याचे कारण आहे हे का सिद्ध होत नाही ते स्पष्ट कर.",
       ms: "Terangkan mengapa dua arah aliran yang berubah bersama tidak membuktikan sebab akibat.",
-      he: "הסבירו מדוע שני מגמות המשתנות יחד אינן מוכיחות שאחת גורמת לאחרת.",
+      he: "הסבירו מדוע שתי מגמות שמשתנות יחד אינן מוכיחות שאחת גורמת לאחרת.",
       pl: "Wyjaśnij, dlaczego wspólne zmiany dwóch trendów nie dowodzą związku przyczynowego.",
       uk: "Поясни, чому одночасні зміни двох тенденцій не доводять, що одна спричиняє іншу.",
       lt: "Paaiškink, kodėl dvi kartu kintančios tendencijos neįrodo priežastinio ryšio.",

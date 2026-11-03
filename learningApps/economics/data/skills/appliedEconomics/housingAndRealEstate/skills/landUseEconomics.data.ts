@@ -39,7 +39,7 @@ export const landUseEconomics_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Explore how land-use rules influence where and what people build.",
       zh: "探索土地使用规则如何影响人们在何处建造以及建造什么。",
-      hi: "जानें कि भूमि उपयोग नियम कहाँ और क्या बनाया जाएगा, इसे कैसे प्रभावित करते हैं।",
+      hi: "जानें कि भूमि उपयोग के नियम निर्माण के स्थान और प्रकार को कैसे प्रभावित करते हैं।",
       es: "Explora cómo las normas del uso del suelo influyen en dónde y qué se construye.",
       ar: "اكتشف كيف تؤثر قواعد استخدام الأراضي في مواقع البناء وأنواعه.",
       fr: "Explore comment les règles d'utilisation des sols influencent les lieux et les types de constructions.",
@@ -65,7 +65,7 @@ export const landUseEconomics_Skill_Data = buildSkillConfig({
       be: "Дасьледуй, як правілы землекарыстаньня ўплываюць на месца і тып забудовы.",
       ka: "შეისწავლე, როგორ მოქმედებს მიწათსარგებლობის წესები მშენებლობის ადგილზე და ტიპზე.",
       kk: "Жер пайдалану ережелері құрылыстың орны мен түріне қалай әсер ететінін зертте.",
-      qm: "Yer qullanımı qa ideleri qayerde ve ne qurulğanına nasıl tesir etkenini ögren.",
+      qm: "Yer qullanımı qaydeleri qayerde ve ne qurulğanına nasıl tesir etkenini ögren.",
     },
   },
 });
