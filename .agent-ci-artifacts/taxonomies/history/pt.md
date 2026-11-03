@@ -962,7 +962,7 @@ Skills: 4
 
 **User-friendly description (pt):** Explore as histórias longas e diversas das comunidades aborígines australianas.
 
-##### Arte rupestre australiano
+##### Arte rupestre australiana
 
 [australianRockArt.data.ts](../../../learningApps/history/data/skills/ancientOceania/australiaAndNewGuinea/skills/australianRockArt.data.ts)
 

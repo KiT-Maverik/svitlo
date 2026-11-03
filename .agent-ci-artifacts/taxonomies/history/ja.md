@@ -492,7 +492,7 @@ Skills: 3
 
 **Methodological description (English):** Describe dry-environment adaptations and early agriculture without projecting later cultures into ancient periods.
 
-**User-friendly description (ja):** アメリカ南西部の初期の集落と農業について調べましょう。
+**User-friendly description (ja):** 北米南西部の初期の集落と農業について調べましょう。
 
 ##### ポヴァティ・ポイント
 
@@ -2074,7 +2074,7 @@ Skills: 5
 
 **Methodological description (English):** Explain the contribution of controlled fire to cooking, protection, materials, and environmental expansion.
 
-**User-friendly description (ja):** 火を安全に使えるようになったことが日常生活をどう変えたか探ろう。
+**User-friendly description (ja):** 火を制御して使うことで日常生活がどう変わったか探ろう。
 
 ##### 初期人類の協力
 
@@ -2234,7 +2234,7 @@ Skills: 4
 
 **Methodological description (English):** Indus cities showed planning, crafts, and trade, while political and linguistic questions remain unresolved.
 
-**User-friendly description (ja):** インダスの都市が驚くべき点と未解明の謎を見つけよう。
+**User-friendly description (ja):** インダスの都市の注目すべき特徴と、まだ解明されていない謎を探ろう。
 
 ##### インダス文明の都市
 

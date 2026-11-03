@@ -58,7 +58,7 @@ Skills: 12
 
 **User-friendly description (ta):** எகிப்து அண்டை நாடுகளுடன் எப்படி வணிகமும் பேச்சுவார்த்தையும் நடத்தியது என்பதை ஆராய்.
 
-##### எகிப்தின் இடைக்காலப் பகுதிகள்
+##### எகிப்தின் இடைப்பட்ட ஆட்சிக்காலங்கள்
 
 [egyptianIntermediatePeriods.data.ts](../../../learningApps/history/data/skills/ancientAfrica/ancientEgypt/skills/egyptianIntermediatePeriods.data.ts)
 
@@ -2216,7 +2216,7 @@ Skills: 6
 
 **Methodological description (English):** Reconstruct centers such as Funan from archaeology and external written accounts.
 
-**User-friendly description (ta):** இப்பகுதியின் முதல் அரசுகள் எவ்வாறு உருவானதை ஆராய்.
+**User-friendly description (ta):** இப்பகுதியின் முதல் அரசுகள் எவ்வாறு உருவாயின என்பதை ஆராய்.
 
 ##### தென்கிழக்கு ஆசியக் கடல்வழி வணிகம்
 

@@ -492,7 +492,7 @@ Skills: 3
 
 **Methodological description (English):** Describe dry-environment adaptations and early agriculture without projecting later cultures into ancient periods.
 
-**User-friendly description (ko):** 미국 남서부의 초기 정착지와 농경을 살펴보세요.
+**User-friendly description (ko):** 북아메리카 남서부의 초기 정착지와 농경을 살펴보세요.
 
 ##### 포버티 포인트
 

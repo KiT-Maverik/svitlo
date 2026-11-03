@@ -682,7 +682,7 @@ Skills: 3
 
 **Methodological description (English):** Examine Cretan palaces and maritime links while acknowledging that Linear A remains undeciphered.
 
-**User-friendly description (lt):** Tyrinėkite senovės Kretą ir ribas, ką gali atskleisti jos raštas.
+**User-friendly description (lt):** Tyrinėkite senovės Kretą ir jos rašto teikiamų žinių ribas.
 
 ##### Mikėnų civilizacija
 
@@ -1466,7 +1466,7 @@ Skills: 4
 
 **Methodological description (English):** Distinguish enslavement from other legal and economic conditions of restricted freedom.
 
-**User-friendly description (lt):** Atpažink įvairias nelaisvės formas senovės visuomenėse.
+**User-friendly description (lt):** Atpažink įvairias laisvės suvaržymo formas senovės visuomenėse.
 
 ##### Socialinės hierarchijos
 
@@ -1752,7 +1752,7 @@ Skills: 4
 
 **Methodological description (English):** Steppe and oasis societies created polities and connections among large agricultural states.
 
-**User-friendly description (lt):** Tyrinėkite klajoklių ir sėslias Vidinės Azijos visuomenes.
+**User-friendly description (lt):** Tyrinėkite klajokliškas ir sėslias Vidinės Azijos visuomenes.
 
 ##### Vidurinės Azijos oazių centrai
 
