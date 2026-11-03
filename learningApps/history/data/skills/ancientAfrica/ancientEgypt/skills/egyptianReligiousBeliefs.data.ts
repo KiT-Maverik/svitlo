@@ -4,7 +4,7 @@ export const egyptianReligiousBeliefs_Skill_Data = buildSkillConfig({
   slug: "egyptianReligiousBeliefs",
   id: "416464dd-52a2-498b-a75a-276dd01e4b10",
   name: {
-    en: "Релігійні уявлення Єгипту",
+    en: "Egyptian Religious Beliefs",
     zh: "埃及宗教信仰",
     hi: "मिस्र की धार्मिक मान्यताएँ",
     es: "Creencias religiosas egipcias",

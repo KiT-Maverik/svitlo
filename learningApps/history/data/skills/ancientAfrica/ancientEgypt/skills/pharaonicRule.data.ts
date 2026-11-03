@@ -4,7 +4,7 @@ export const pharaonicRule_Skill_Data = buildSkillConfig({
   slug: "pharaonicRule",
   id: "967b8736-f1a7-4807-a511-2b04fd59ec31",
   name: {
-    en: "Фараонська влада",
+    en: "Pharaonic Rule",
     zh: "法老统治",
     hi: "फ़राओ का शासन",
     es: "Gobierno de los faraones",

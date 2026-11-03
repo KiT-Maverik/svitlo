@@ -4,7 +4,7 @@ export const newKingdomOfEgypt_Skill_Data = buildSkillConfig({
   slug: "newKingdomOfEgypt",
   id: "256384fc-09ce-4021-8161-ea91103f5090",
   name: {
-    en: "Нове царство Єгипту",
+    en: "New Kingdom of Egypt",
     zh: "埃及新王国",
     hi: "मिस्र का नवीन साम्राज्य",
     es: "Imperio Nuevo de Egipto",

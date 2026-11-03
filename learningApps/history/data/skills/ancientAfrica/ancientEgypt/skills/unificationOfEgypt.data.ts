@@ -4,7 +4,7 @@ export const unificationOfEgypt_Skill_Data = buildSkillConfig({
   slug: "unificationOfEgypt",
   id: "ccbdb397-d531-4021-add4-1f0d6ebd9150",
   name: {
-    en: "Об'єднання Єгипту",
+    en: "Unification of Egypt",
     zh: "埃及的统一",
     hi: "मिस्र का एकीकरण",
     es: "Unificación de Egipto",

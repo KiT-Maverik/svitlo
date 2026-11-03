@@ -4,7 +4,7 @@ export const oldKingdomOfEgypt_Skill_Data = buildSkillConfig({
   slug: "oldKingdomOfEgypt",
   id: "e37fca92-2987-4b0f-8376-5b669cfc236d",
   name: {
-    en: "Стародавнє царство Єгипту",
+    en: "Old Kingdom of Egypt",
     zh: "埃及古王国",
     hi: "मिस्र का पुरातन साम्राज्य",
     es: "Imperio Antiguo de Egipto",

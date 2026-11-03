@@ -4,7 +4,7 @@ export const egyptianWriting_Skill_Data = buildSkillConfig({
   slug: "egyptianWriting",
   id: "0cf22559-8c41-4819-88c6-b5dd7f80e71a",
   name: {
-    en: "Єгипетська писемність",
+    en: "Egyptian Writing",
     zh: "埃及文字",
     hi: "मिस्री लेखन",
     es: "Escritura egipcia",

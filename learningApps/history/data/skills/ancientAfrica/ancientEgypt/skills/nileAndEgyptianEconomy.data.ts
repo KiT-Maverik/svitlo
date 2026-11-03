@@ -4,7 +4,7 @@ export const nileAndEgyptianEconomy_Skill_Data = buildSkillConfig({
   slug: "nileAndEgyptianEconomy",
   id: "0e1d31ec-ec03-4a9d-ae29-b6cc3c0e9f5f",
   name: {
-    en: "Ніл і господарство",
+    en: "The Nile and Egyptian Economy",
     zh: "尼罗河与经济",
     hi: "नील नदी और अर्थव्यवस्था",
     es: "El Nilo y la economía",

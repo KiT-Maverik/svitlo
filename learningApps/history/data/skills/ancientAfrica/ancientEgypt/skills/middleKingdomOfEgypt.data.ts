@@ -4,7 +4,7 @@ export const middleKingdomOfEgypt_Skill_Data = buildSkillConfig({
   slug: "middleKingdomOfEgypt",
   id: "f767eadf-8fa8-4a2c-a19e-77e1f411c005",
   name: {
-    en: "Середнє царство Єгипту",
+    en: "Middle Kingdom of Egypt",
     zh: "埃及中王国",
     hi: "मिस्र का मध्य साम्राज्य",
     es: "Imperio Medio de Egipto",

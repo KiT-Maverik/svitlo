@@ -6,7 +6,7 @@ export const hornOfAfrica_SkillGroup_Data = buildSkillGroupConfig({
   slug: "hornOfAfrica",
   id: "dd64dd81-5094-4eb5-9ee0-28d02a5498ec",
   name: {
-    en: "Африканський Ріг",
+    en: "Horn of Africa",
     zh: "非洲之角",
     hi: "अफ्रीका का सींग",
     es: "Cuerno de África",

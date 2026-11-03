@@ -4,7 +4,7 @@ export const aksumiteKingdom_Skill_Data = buildSkillConfig({
   slug: "aksumiteKingdom",
   id: "c57cf80a-f1c9-46ea-bcf2-229384afffe0",
   name: {
-    en: "Аксумське царство",
+    en: "Kingdom of Aksum",
     zh: "阿克苏姆王国",
     hi: "अक्सुम साम्राज्य",
     es: "Reino de Aksum",
