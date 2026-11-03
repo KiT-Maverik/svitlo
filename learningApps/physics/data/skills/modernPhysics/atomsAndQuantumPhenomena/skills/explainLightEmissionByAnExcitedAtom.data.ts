@@ -38,7 +38,7 @@ export const explainLightEmissionByAnExcitedAtom_Skill_Data = buildSkillConfig({
     methodological: "A transition of an atom between energy states may be accompanied by the emission of a photon whose energy is determined by the difference between those states.",
     frontend: {
       en: "Explain how atoms can emit photons when changing energy levels.",
-      zh: "解释原子在改变能级时如何发射光子。",
+      zh: "解释激发态原子跃迁到较低能级时，如何发射能量与能级差对应的光子。",
       hi: "समझाओ कि ऊर्जा स्तर बदलते समय परमाणु फोटॉन कैसे उत्सर्जित कर सकते हैं।",
       es: "Explica cómo los átomos pueden emitir fotones al cambiar de nivel de energía.",
       ar: "اشرح كيف يمكن للذرات أن تصدر فوتونات عند الانتقال بين مستويات الطاقة.",
