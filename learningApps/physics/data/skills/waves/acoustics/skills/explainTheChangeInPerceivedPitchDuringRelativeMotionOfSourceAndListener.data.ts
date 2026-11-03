@@ -52,7 +52,7 @@ export const explainTheChangeInPerceivedPitchDuringRelativeMotionOfSourceAndList
       ko: "음원과 듣는 사람이 서로 가까워지면 들리는 음높이가 높아지고 멀어지면 낮아지는 도플러 효과를 알아보세요.",
       tr: "Hareket eden ses kaynağının duyulan perdeyi neden değiştirdiğini keşfet.",
       vi: "Giải thích hiệu ứng Doppler: âm nghe cao hơn khi nguồn và người nghe tiến lại gần nhau, thấp hơn khi họ rời xa nhau.",
-      ta: "நகரும் ஒலி மூலம் கேட்கும் சுருதியை ஏன் மாற்றுகிறது என்பதை ஆராய்.",
+      ta: "ஒலி மூலமும் கேட்பவரும் ஒன்றை ஒன்று அணுகும்போது கேட்கும் சுருதி உயர்வதையும் விலகும்போது குறைவதையும் டாப்ளர் விளைவாக விளக்கு.",
       te: "కదిలే శబ్ద మూలం వినిపించే పిచ్‌ను ఎందుకు మార్చగలదో తెలుసుకోండి.",
       mr: "हलणारा ध्वनी स्रोत ऐकू येणारा स्वर का बदलू शकतो ते पाहा.",
       ms: "Terokai sebab sumber bunyi bergerak dapat mengubah pic yang didengar.",
