@@ -54,7 +54,7 @@ export const peoplingOfTheAmericas_Skill_Data = buildSkillConfig({
       vi: "Khám phá cách con người lần đầu đặt chân đến châu Mỹ.",
       ta: "மனிதர்கள் முதன்முதலில் அமெரிக்கக் கண்டங்களை எவ்வாறு அடைந்தனர் என்பதை ஆராய்.",
       te: "మనుషులు మొదట అమెరికా ఖండాలకు ఎలా చేరుకున్నారో తెలుసుకోండి.",
-      mr: "माणसे पहिल्यांदा अमेरिका खंडात कशी पोहोचली ते जाणून घे.",
+      mr: "माणसे पहिल्यांदा अमेरिका खंडात कशी पोहोचली ते जाणून घ्या.",
       ms: "Terokai bagaimana manusia mula-mula tiba di benua Amerika.",
       he: "גלו כיצד בני אדם הגיעו לראשונה ליבשות אמריקה.",
       pl: "Zbadaj, jak ludzie po raz pierwszy dotarli do obu Ameryk.",

@@ -54,7 +54,7 @@ export const tropicalSouthAmericanFarming_Skill_Data = buildSkillConfig({
       vi: "Tìm hiểu cách các cộng đồng canh tác ở vùng nhiệt đới Nam Mỹ.",
       ta: "வெப்பமண்டலத் தென் அமெரிக்காவில் மக்கள் எவ்வாறு வேளாண்மை செய்தனர் என்பதை அறிந்துகொள்.",
       te: "ఉష్ణమండల దక్షిణ అమెరికా సమూహాలు ఎలా వ్యవసాయం చేశాయో తెలుసుకోండి.",
-      mr: "उष्णकटिबंधीय दक्षिण अमेरिकेतील समुदाय शेती कशी करत होते ते जाणून घे.",
+      mr: "उष्णकटिबंधीय दक्षिण अमेरिकेतील समुदाय शेती कशी करत होते ते जाणून घ्या.",
       ms: "Ketahui cara masyarakat bertani di Amerika Selatan tropika.",
       he: "גלו כיצד קהילות עסקו בחקלאות בדרום אמריקה הטרופית.",
       pl: "Dowiedz się, jak społeczności uprawiały ziemię w tropikalnej Ameryce Południowej.",

@@ -60,7 +60,7 @@ export const migrationAndSettlement_Skill_Data = buildSkillConfig({
       pl: "Śledź przemieszczanie się ludzi na podstawie różnych śladów historycznych.",
       uk: "Простежуй пересування людей за різними видами історичних свідчень.",
       lt: "Sek žmonių judėjimą pagal įvairius istorinius pėdsakus.",
-      lv: "Izseko cilvēku pārvietošanos, izmantojot dažādas vēstures liecības.",
+      lv: "Izseko cilvēku pārvietošanās ceļiem, izmantojot dažādas vēstures liecības.",
       et: "Jälgi inimeste liikumist eri liiki ajalooliste jälgede põhjal.",
       be: "Прасачы перасоўваньні людзей паводле розных гістарычных сьведчаньняў.",
       ka: "გაჰყევი ადამიანთა გადაადგილებას სხვადასხვა ისტორიული მტკიცებულების გამოყენებით.",

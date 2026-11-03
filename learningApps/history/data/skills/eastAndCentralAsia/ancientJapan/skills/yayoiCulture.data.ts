@@ -42,7 +42,7 @@ export const yayoiCulture_Skill_Data = buildSkillConfig({
       hi: "जानें कि धान की खेती और धातु के औज़ारों ने जापान को कैसे बदला।",
       es: "Explora cómo el cultivo de arroz y las herramientas de metal cambiaron Japón.",
       ar: "استكشف كيف غيّرت زراعة الأرز والأدوات المعدنية اليابان.",
-      fr: "Explorez comment la riziculture et les outils métalliques ont transformé le Japon.",
+      fr: "Explore comment la riziculture et les outils métalliques ont transformé le Japon.",
       bn: "ধানচাষ ও ধাতব সরঞ্জাম কীভাবে জাপানকে বদলেছিল তা জানো।",
       pt: "Explore como o cultivo do arroz e as ferramentas de metal mudaram o Japão.",
       ur: "دیکھیے کہ چاول کی کاشت اور دھاتی اوزاروں نے جاپان کو کیسے بدلا۔",

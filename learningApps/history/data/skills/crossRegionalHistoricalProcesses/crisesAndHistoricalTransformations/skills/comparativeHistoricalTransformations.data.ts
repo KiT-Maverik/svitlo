@@ -54,7 +54,7 @@ export const comparativeHistoricalTransformations_Skill_Data = buildSkillConfig(
       vi: "So sánh những biến đổi ở các xã hội khác nhau bằng bằng chứng lịch sử.",
       ta: "வரலாற்றுச் சான்றுகளைக் கொண்டு வெவ்வேறு சமூகங்களின் மாற்றங்களை ஒப்பிடு.",
       te: "చారిత్రక ఆధారాలతో వేర్వేరు సమాజాల పరివర్తనలను పోల్చండి.",
-      mr: "ऐतिहासिक पुराव्यांच्या आधारे विविध समाजांतील बदलांची तुलना कर.",
+      mr: "ऐतिहासिक पुराव्यांच्या आधारे विविध समाजांतील बदलांची तुलना करा.",
       ms: "Bandingkan perubahan pelbagai masyarakat menggunakan bukti sejarah.",
       he: "השוו שינויים בחברות שונות באמצעות עדויות היסטוריות.",
       pl: "Porównaj przemiany w różnych społeczeństwach na podstawie źródeł historycznych.",

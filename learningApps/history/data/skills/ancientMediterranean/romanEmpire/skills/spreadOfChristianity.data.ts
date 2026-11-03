@@ -42,7 +42,7 @@ export const spreadOfChristianity_Skill_Data = buildSkillConfig({
       hi: "जानें कि रोमन शासन के दौरान ईसाई धर्म कैसे फैला।",
       es: "Explora cómo se extendió el cristianismo bajo el dominio romano.",
       ar: "استكشف كيف انتشرت المسيحية في ظل الحكم الروماني.",
-      fr: "Découvrez comment le christianisme s’est diffusé sous la domination romaine.",
+      fr: "Découvre comment le christianisme s’est diffusé sous la domination romaine.",
       bn: "রোমান শাসনামলে খ্রিস্টধর্ম কীভাবে ছড়িয়ে পড়েছিল তা জানো।",
       pt: "Explore como o cristianismo se espalhou sob o domínio romano.",
       ur: "جانیں کہ رومی اقتدار کے تحت عیسائیت کیسے پھیلی۔",

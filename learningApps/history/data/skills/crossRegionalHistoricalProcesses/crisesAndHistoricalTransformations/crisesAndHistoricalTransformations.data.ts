@@ -62,7 +62,7 @@ export const crisesAndHistoricalTransformations_SkillGroup_Data = buildSkillGrou
       vi: "Khám phá vì sao các xã hội cổ đại trải qua biến động lớn và khủng hoảng.",
       ta: "பண்டைய சமூகங்கள் ஏன் பெரிய மாற்றங்களையும் நெருக்கடிகளையும் சந்தித்தன என்பதை ஆராய்.",
       te: "ప్రాచీన సమాజాలు పెద్ద మార్పులు, సంక్షోభాలను ఎందుకు ఎదుర్కొన్నాయో తెలుసుకోండి.",
-      mr: "प्राचीन समाजांमध्ये मोठे बदल व संकटे का आली ते जाणून घे.",
+      mr: "प्राचीन समाजांमध्ये मोठे बदल व संकटे का आली ते जाणून घ्या.",
       ms: "Terokai sebab masyarakat purba mengalami perubahan besar dan krisis.",
       he: "גלו מדוע חברות עתיקות חוו שינויים גדולים ומשברים.",
       pl: "Poznaj przyczyny wielkich zmian i kryzysów w dawnych społeczeństwach.",

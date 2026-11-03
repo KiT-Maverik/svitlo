@@ -51,7 +51,7 @@ export const imperialChina_SkillGroup_Data = buildSkillGroupConfig({
       hi: "जानें कि चीनी राजवंशों ने विशाल क्षेत्रों पर कैसे शासन किया।",
       es: "Explora cómo las dinastías chinas gobernaron extensos territorios.",
       ar: "اكتشف كيف حكمت الأسر الصينية مناطق شاسعة.",
-      fr: "Explorez la façon dont les dynasties chinoises gouvernaient de vastes territoires.",
+      fr: "Explore la façon dont les dynasties chinoises gouvernaient de vastes territoires.",
       bn: "চীনা রাজবংশগুলো কীভাবে বিশাল ভূখণ্ড শাসন করত তা জানো।",
       pt: "Explore como as dinastias chinesas governavam vastos territórios.",
       ur: "دیکھیے کہ چینی شاہی خاندان وسیع علاقوں پر کیسے حکومت کرتے تھے۔",

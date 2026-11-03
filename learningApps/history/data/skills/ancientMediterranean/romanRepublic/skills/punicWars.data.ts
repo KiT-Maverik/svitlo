@@ -32,7 +32,7 @@ export const punicWars_Skill_Data = buildSkillConfig({
     be: "Пунічныя войны",
     ka: "პუნიკური ომები",
     kk: "Пуни соғыстары",
-    qm: "Puni cenklari",
+    qm: "Puni cenkleri",
   },
   description: {
     methodological: "Explain Rome and Carthage's competition for influence in the western Mediterranean.",
@@ -42,7 +42,7 @@ export const punicWars_Skill_Data = buildSkillConfig({
       hi: "रोम और कार्थेज के बीच हुए युद्धों के बारे में जानें।",
       es: "Explora las guerras entre Roma y Cartago.",
       ar: "استكشف الحروب بين روما وقرطاج.",
-      fr: "Explorez les guerres entre Rome et Carthage.",
+      fr: "Explore les guerres entre Rome et Carthage.",
       bn: "রোম ও কার্থেজের মধ্যে যুদ্ধগুলো সম্পর্কে জানো।",
       pt: "Explore as guerras entre Roma e Cartago.",
       ur: "روم اور قرطاج کے درمیان جنگوں کا جائزہ لیں۔",
@@ -65,7 +65,7 @@ export const punicWars_Skill_Data = buildSkillConfig({
       be: "Дасьледуй войны паміж Рымам і Картагенам.",
       ka: "გამოიკვლიეთ რომსა და კართაგენს შორის ომები.",
       kk: "Рим мен Карфаген арасындағы соғыстарды зерттеңіз.",
-      qm: "Roma ve Kartagen arasında olğan cenklarnı araştır.",
+      qm: "Roma ve Kartagen arasında olğan cenklerni araştır.",
     },
   },
 });

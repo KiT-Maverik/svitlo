@@ -54,7 +54,7 @@ export const ancientDiets_Skill_Data = buildSkillConfig({
       vi: "So sánh thức ăn của các cộng đồng cổ đại khác nhau.",
       ta: "பல்வேறு பண்டைய சமூகங்கள் என்ன உணவுண்டன என்பதை ஒப்பிடு.",
       te: "వేర్వేరు ప్రాచీన సమూహాలు ఏమి తినేవో పోల్చండి.",
-      mr: "विविध प्राचीन समुदाय काय खात होते याची तुलना कर.",
+      mr: "विविध प्राचीन समुदाय काय खात होते याची तुलना करा.",
       ms: "Bandingkan makanan komuniti purba yang berbeza.",
       he: "השוו את המאכלים של קהילות קדומות שונות.",
       pl: "Porównaj to, co jadły różne dawne społeczności.",

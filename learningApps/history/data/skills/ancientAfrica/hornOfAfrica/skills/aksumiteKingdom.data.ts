@@ -53,7 +53,7 @@ export const aksumiteKingdom_Skill_Data = buildSkillConfig({
       tr: "Geç Antik Çağ'da Aksum'un ticaretini ve yönetimini keşfet.",
       vi: "Khám phá cách Aksum giao thương và cai trị trong thời Hậu cổ đại.",
       ta: "பண்டைக்காலத்தின் இறுதியில் அக்சும் எவ்வாறு வணிகமும் ஆட்சியும் செய்தது என்பதை ஆராய்.",
-      te: "ప్రాచీన యుగం చివర్లో అక్సుమ్ వాణిజ్యం, పాలన ఎలా చేశారో తెలుసుకోండి.",
+      te: "ప్రాచీన యుగం చివర్లో అక్సుమ్ రాజ్యం ఎలా వాణిజ్యం చేసి, తన పాలనను నిర్వహించిందో తెలుసుకోండి.",
       mr: "उत्तर प्राचीन काळात अक्सुमने व्यापार व राज्यकारभार कसा केला ते जाणून घ्या.",
       ms: "Terokai cara Aksum berdagang dan memerintah pada zaman Antikuiti Akhir.",
       he: "גלו כיצד אקסום סחרה ושלטה בשלהי העת העתיקה.",

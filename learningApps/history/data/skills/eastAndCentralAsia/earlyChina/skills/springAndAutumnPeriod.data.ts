@@ -42,7 +42,7 @@ export const springAndAutumnPeriod_Skill_Data = buildSkillConfig({
       hi: "चीन के वसंत और शरद युग में प्रतिस्पर्धी राज्यों का अध्ययन करें।",
       es: "Explora los Estados rivales de China durante las Primaveras y los Otoños.",
       ar: "استكشف الدول المتنافسة في الصين خلال عصر الربيع والخريف.",
-      fr: "Explorez les États rivaux de Chine à l’époque des Printemps et Automnes.",
+      fr: "Explore les États rivaux de Chine à l’époque des Printemps et Automnes.",
       bn: "চীনের বসন্ত ও শরৎ যুগে প্রতিদ্বন্দ্বী রাষ্ট্রগুলো সম্পর্কে জানো।",
       pt: "Explore os Estados rivais da China no período das Primaveras e Outonos.",
       ur: "چین کے بہار اور خزاں کے عہد میں حریف ریاستوں کا جائزہ لیں۔",

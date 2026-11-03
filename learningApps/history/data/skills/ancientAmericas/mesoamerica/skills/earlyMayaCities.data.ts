@@ -54,7 +54,7 @@ export const earlyMayaCities_Skill_Data = buildSkillConfig({
       vi: "Khám phá cách người Maya thời kỳ đầu xây dựng thành phố và vương quốc.",
       ta: "ஆரம்பகால மாயா மக்கள் நகரங்களையும் அரசுகளையும் எவ்வாறு கட்டமைத்தனர் என்பதை ஆராய்.",
       te: "తొలి మాయా ప్రజలు నగరాలు, రాజ్యాలను ఎలా నిర్మించారో తెలుసుకోండి.",
-      mr: "प्रारंभिक मायांनी शहरे आणि राज्ये कशी उभारली ते जाणून घे.",
+      mr: "प्रारंभिक मायांनी शहरे आणि राज्ये कशी उभारली ते जाणून घ्या.",
       ms: "Terokai bagaimana masyarakat Maya awal membina bandar dan kerajaan.",
       he: "גלו כיצד בני המאיה הראשונים הקימו ערים וממלכות.",
       pl: "Zbadaj, jak pierwsi Majowie budowali miasta i królestwa.",

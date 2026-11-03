@@ -42,7 +42,7 @@ export const xiongnu_Skill_Data = buildSkillConfig({
       hi: "जानें कि शियोंगनू का हान साम्राज्य से कैसा संबंध था।",
       es: "Descubre cómo interactuaron los xiongnu con el Imperio Han.",
       ar: "اكتشف كيف تفاعل الشيونغنو مع إمبراطورية هان.",
-      fr: "Découvrez comment les Xiongnu interagissaient avec l’Empire Han.",
+      fr: "Découvre comment les Xiongnu interagissaient avec l’Empire Han.",
       bn: "শিওংনুরা হান সাম্রাজ্যের সঙ্গে কীভাবে যোগাযোগ করত তা জানো।",
       pt: "Descubra como os xiongnu interagiam com o Império Han.",
       ur: "جانیں کہ شیونگنو کے ہان سلطنت کے ساتھ کیسے تعلقات تھے۔",

@@ -53,7 +53,7 @@ export const israelAndJudah_Skill_Data = buildSkillConfig({
       tr: "İsrail ve Yahuda'yı metinler ve arkeolojik buluntular üzerinden incele.",
       vi: "Khám phá Israel và Judah qua văn bản và các phát hiện khảo cổ.",
       ta: "உரைகளும் தொல்பொருள் கண்டுபிடிப்புகளும் கொண்டு இசுரேலையும் யூதாவையும் ஆராய்.",
-      te: "పాఠాలు, పురావస్తు ఆధారాల ద్వారా ఇజ్రాయెల్, యూదా చరిత్రను తెలుసుకోండి.",
+      te: "లిఖిత మూలాలు, పురావస్తు ఆధారాల ద్వారా ప్రాచీన ఇజ్రాయెల్, యూదా చరిత్రను తెలుసుకోండి.",
       mr: "लिखित स्रोत आणि पुरातत्त्वीय शोधांतून इस्राएल व यहूदा जाणून घ्या.",
       ms: "Terokai Israel dan Yehuda melalui teks dan penemuan arkeologi.",
       he: "חקרו את ישראל ויהודה באמצעות מקורות כתובים וממצאים ארכאולוגיים.",

@@ -54,7 +54,7 @@ export const mocheCulture_Skill_Data = buildSkillConfig({
       vi: "Tìm hiểu nông dân, thợ thủ công và người cai trị Moche.",
       ta: "மோச்சே சமூகத்தின் விவசாயிகள், கைவினைஞர்கள், ஆட்சியாளர்கள் பற்றி அறிந்துகொள்.",
       te: "మోచే రైతులు, చేతివృత్తిదారులు, పాలకుల గురించి తెలుసుకోండి.",
-      mr: "मोचे समाजातील शेतकरी, कारागीर आणि शासक जाणून घे.",
+      mr: "मोचे समाजातील शेतकरी, कारागीर आणि शासक जाणून घ्या.",
       ms: "Kenali petani, tukang mahir dan pemerintah masyarakat Moche.",
       he: "גלו את החקלאים, בעלי המלאכה והשליטים של תרבות מוצ'ה.",
       pl: "Poznaj rolników, rzemieślników i władców kultury Moche.",

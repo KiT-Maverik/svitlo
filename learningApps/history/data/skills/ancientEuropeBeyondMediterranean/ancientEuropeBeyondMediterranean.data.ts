@@ -53,7 +53,7 @@ export const ancientEuropeBeyondMediterranean_SkillDomain_Data = buildSkillDomai
       hi: "यूनान और रोम से परे प्राचीन यूरोपीय समाजों की खोज करें।",
       es: "Descubre las sociedades europeas antiguas más allá de Grecia y Roma.",
       ar: "اكتشف المجتمعات الأوروبية القديمة خارج اليونان وروما.",
-      fr: "Découvrez les sociétés européennes anciennes au-delà de la Grèce et de Rome.",
+      fr: "Découvre les sociétés européennes anciennes au-delà de la Grèce et de Rome.",
       bn: "গ্রিস ও রোমের বাইরের প্রাচীন ইউরোপীয় সমাজগুলো সম্পর্কে জানো।",
       pt: "Descubra as sociedades europeias antigas para além da Grécia e de Roma.",
       ur: "یونان اور روم سے باہر قدیم یورپی معاشروں کو دریافت کریں۔",

@@ -42,7 +42,7 @@ export const papermakingInAncientChina_Skill_Data = buildSkillConfig({
       hi: "जानें कि चीनी कागज़ निर्माण ने सूचना के प्रसार को कैसे बदला।",
       es: "Explora cómo la fabricación china del papel transformó la difusión de información.",
       ar: "استكشف كيف غيّرت صناعة الورق الصينية انتشار المعلومات.",
-      fr: "Explorez comment la fabrication chinoise du papier a transformé la circulation de l’information.",
+      fr: "Explore comment la fabrication chinoise du papier a transformé la circulation de l’information.",
       bn: "চীনে কাগজ তৈরির প্রযুক্তি কীভাবে তথ্য ছড়িয়ে দেওয়ার পদ্ধতি বদলেছিল তা জানো।",
       pt: "Explore como a fabricação chinesa de papel mudou a circulação das informações.",
       ur: "جانیں کہ چین میں کاغذ سازی نے معلومات کے پھیلاؤ کو کیسے بدلا۔",

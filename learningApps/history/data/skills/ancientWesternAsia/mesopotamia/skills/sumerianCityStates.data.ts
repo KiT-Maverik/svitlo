@@ -8,7 +8,7 @@ export const sumerianCityStates_Skill_Data = buildSkillConfig({
     zh: "苏美尔城邦",
     hi: "सुमेर के नगर-राज्य",
     es: "Ciudades-Estado sumerias",
-    ar: "المدن الدول السومرية",
+    ar: "دول المدن السومرية",
     fr: "Cités-États sumériennes",
     bn: "সুমেরীয় নগররাষ্ট্র",
     pt: "Cidades-Estado sumérias",

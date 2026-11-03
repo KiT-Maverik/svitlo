@@ -10,7 +10,7 @@ export const plantDomestication_Skill_Data = buildSkillConfig({
     es: "Domesticación de plantas",
     ar: "تدجين النباتات",
     fr: "Domestication des plantes",
-    bn: "উদ্ভিদের গৃহপালন",
+    bn: "উদ্ভিদের গৃহীকরণ",
     pt: "Domesticação de plantas",
     ur: "پودوں کی گھریلو کاشت کے لیے تبدیلی",
     id: "Domestikasi tanaman",

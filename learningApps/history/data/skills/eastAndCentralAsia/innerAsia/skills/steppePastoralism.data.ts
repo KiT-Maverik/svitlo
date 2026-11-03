@@ -42,7 +42,7 @@ export const steppePastoralism_Skill_Data = buildSkillConfig({
       hi: "जानें कि स्तेपी समुदाय अपने पशुओं के साथ क्यों घूमते थे।",
       es: "Descubre por qué las comunidades de las estepas se desplazaban con su ganado.",
       ar: "اكتشف سبب انتقال مجتمعات السهوب مع قطعانها.",
-      fr: "Découvrez pourquoi les communautés des steppes se déplaçaient avec leurs troupeaux.",
+      fr: "Découvre pourquoi les communautés des steppes se déplaçaient avec leurs troupeaux.",
       bn: "স্তেপ অঞ্চলের জনগোষ্ঠী কেন পশুপালের সঙ্গে স্থান বদলাত তা জানো।",
       pt: "Descubra por que as comunidades das estepes se deslocavam com seus rebanhos.",
       ur: "جانیں کہ گھاس زاروں کی آبادیاں اپنے مویشیوں کے ساتھ کیوں نقل مکانی کرتی تھیں۔",

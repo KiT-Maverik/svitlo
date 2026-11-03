@@ -54,7 +54,7 @@ export const adenaAndHopewellTraditions_Skill_Data = buildSkillConfig({
       vi: "Tìm hiểu các di chỉ Adena và Hopewell cho biết gì về cộng đồng cổ đại.",
       ta: "அடீனா, ஹோப்வெல் தொல்லியல் இடங்கள் பண்டைய சமூகங்களைப் பற்றி என்ன காட்டுகின்றன என்பதை அறிந்துகொள்.",
       te: "అడెనా, హోప్‌వెల్ స్థలాలు ప్రాచీన సమూహాల గురించి ఏమి తెలియజేస్తాయో తెలుసుకోండి.",
-      mr: "अडेना व होपवेल स्थळे प्राचीन समुदायांबद्दल काय सांगतात ते जाणून घे.",
+      mr: "अडेना व होपवेल स्थळे प्राचीन समुदायांबद्दल काय सांगतात ते जाणून घ्या.",
       ms: "Ketahui apa yang ditunjukkan tapak Adena dan Hopewell tentang komuniti purba.",
       he: "גלו מה מלמדים אתרי אדנה והופוול על קהילות עתיקות.",
       pl: "Dowiedz się, co stanowiska Adena i Hopewell mówią o dawnych społecznościach.",
@@ -65,7 +65,7 @@ export const adenaAndHopewellTraditions_Skill_Data = buildSkillConfig({
       be: "Даведайся, што помнікі Адэна і Гоўпвэл распавядаюць пра старажытныя супольнасьці.",
       ka: "გაიგე, რას გვიჩვენებს ადენასა და ჰოუპველის ძეგლები ძველი თემების შესახებ.",
       kk: "Адена мен Хоупвелл ескерткіштері ежелгі қауымдар туралы не көрсететінін біл.",
-      qm: "Adena ve Houpvell yadyarlıkları qadimiy toplulıqlar aqqında neni köstergenini ögren.",
+      qm: "Adena ve Houpvell yadigârlıqları qadimiy toplulıqlar aqqında neni köstergenini ögren.",
     },
   },
 });

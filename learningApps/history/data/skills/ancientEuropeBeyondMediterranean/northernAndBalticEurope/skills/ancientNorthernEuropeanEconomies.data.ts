@@ -42,7 +42,7 @@ export const ancientNorthernEuropeanEconomies_Skill_Data = buildSkillConfig({
       hi: "जानें कि प्राचीन उत्तरी समुदाय अपना जीवनयापन कैसे करते थे।",
       es: "Conoce cómo se ganaban la vida las comunidades antiguas del norte.",
       ar: "تعرّف كيف كانت المجتمعات الشمالية القديمة تكسب عيشها.",
-      fr: "Découvrez comment les anciennes communautés nordiques assuraient leur subsistance.",
+      fr: "Découvre comment les anciennes communautés nordiques assuraient leur subsistance.",
       bn: "উত্তরের প্রাচীন জনগোষ্ঠী কীভাবে জীবিকা নির্বাহ করত তা জানো।",
       pt: "Saiba como as comunidades antigas do norte garantiam seu sustento.",
       ur: "جانیں کہ شمال کی قدیم آبادیاں اپنا گزر بسر کیسے کرتی تھیں۔",

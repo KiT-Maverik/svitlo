@@ -67,7 +67,7 @@ export const ancientAmericas_SkillDomain_Data = buildSkillDomainConfig({
       vi: "Khám phá sự đa dạng của các xã hội cổ đại trên khắp châu Mỹ.",
       ta: "அமெரிக்கக் கண்டங்களின் பல்வேறு பகுதிகளில் வாழ்ந்த பண்டைய சமூகங்களின் பன்முகத்தன்மையை அறிந்துகொள்.",
       te: "అమెరికా ఖండాల అంతటా ఉన్న ప్రాచీన సమాజాల వైవిధ్యాన్ని తెలుసుకోండి.",
-      mr: "अमेरिका खंडातील प्राचीन समाजांची विविधता जाणून घे.",
+      mr: "अमेरिका खंडातील प्राचीन समाजांची विविधता जाणून घ्या.",
       ms: "Terokai kepelbagaian masyarakat purba di seluruh benua Amerika.",
       he: "גלו את מגוון החברות העתיקות ברחבי יבשות אמריקה.",
       pl: "Poznaj różnorodność dawnych społeczności obu Ameryk.",
