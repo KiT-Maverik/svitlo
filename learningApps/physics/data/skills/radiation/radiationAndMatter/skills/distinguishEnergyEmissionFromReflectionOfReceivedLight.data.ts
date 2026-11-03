@@ -53,7 +53,7 @@ export const distinguishEnergyEmissionFromReflectionOfReceivedLight_Skill_Data =
       tr: "Bir kaynağın yaydığı ışığı, bir cismin yansıttığı ışıktan ayırt et.",
       vi: "Phân biệt ánh sáng do nguồn phát ra với ánh sáng bị vật phản xạ.",
       ta: "ஒளி மூலத்திலிருந்து வெளியேறும் ஒளியையும் பொருள் எதிரொளிக்கும் ஒளியையும் வேறுபடுத்து.",
-      te: "మూలం విడుదల చేసే కాంతిని, వస్తువు పరావర్తనం చేసే కాంతి నుంచి వేరు చేయి.",
+      te: "మూలం విడుదల చేసే కాంతిని, వస్తువు పరావర్తనం చేసే కాంతి నుంచి వేరు చేయండి.",
       mr: "स्रोताने उत्सर्जित केलेला प्रकाश आणि वस्तूने परावर्तित केलेला प्रकाश वेगळा ओळखा.",
       ms: "Bezakan cahaya yang dipancarkan sumber dengan cahaya yang dipantulkan objek.",
       he: "הבחינו בין אור שמקור פולט לבין אור שעצם מחזיר.",
