@@ -1,11 +1,11 @@
-import type { ContentBlock_Text_Response } from '@svitlo/engine/content';
+import type { StyledText_Rules } from '@svitlo/engine/content';
 
 import { parseStyledText } from './parseStyledText';
 import styles from './StyledText.module.css';
 
 export interface ApplyStyledTextOptions {
   text: string;
-  styling?: ContentBlock_Text_Response['styling'];
+  styling?: StyledText_Rules;
 }
 
 export function applyStyledText({ text, styling }: ApplyStyledTextOptions) {

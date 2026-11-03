@@ -80,11 +80,16 @@ export type {
 
 export type {
   ContentBlock_Text_Data,
+  ContentBlock_Text_Presentation,
   ContentBlock_Text_Response,
   ContentBlock_Text_Wrap,
-  HighlightTone,
-  StyledTextRule,
-  StyledTextStyle,
 } from './text.types';
+
+export type {
+  HighlightTone,
+  StyledText_Rule,
+  StyledText_Rules,
+  StyledTextStyle,
+} from '../../text.types';
 
 export type { ContentBlock_Type } from './common.types';
