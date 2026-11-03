@@ -44,7 +44,7 @@ export const explainTheChangeInPerceivedPitchDuringRelativeMotionOfSourceAndList
       ar: "استكشف لماذا يغيّر المصدر الصوتي المتحرك درجة الصوت المسموع.",
       fr: "Explore pourquoi une source sonore en mouvement modifie la hauteur perçue.",
       bn: "চলমান শব্দের উৎস শ্রোতার শোনা সুর কেন বদলায় তা জানো।",
-      pt: "Explore por que fontes sonoras em movimento podem mudar a altura percebida.",
+      pt: "Explore o efeito Doppler: o tom ouvido fica mais agudo quando fonte e ouvinte se aproximam e mais grave quando se afastam.",
       ur: "دیکھیں کہ متحرک صوتی منبع سنی جانے والی آواز کا سر کیوں بدل سکتا ہے۔",
       id: "Jelajahi mengapa sumber bunyi bergerak dapat mengubah tinggi nada yang terdengar.",
       de: "Erkunde, warum eine bewegte Schallquelle die wahrgenommene Tonhöhe ändern kann.",
