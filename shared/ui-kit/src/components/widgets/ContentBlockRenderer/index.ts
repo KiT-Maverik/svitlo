@@ -1,4 +1,5 @@
-export { ContentBlockRenderer, ContentBlockCatalogRenderer } from './ContentBlockRenderer';
+export { ContentBlockRenderer } from './ContentBlockRenderer';
+export { ContentBlockCatalogRenderer } from './ContentBlockCatalogRenderer';
 export type {
   ContentBlockRenderContext,
   ContentBlockRendererProps,
