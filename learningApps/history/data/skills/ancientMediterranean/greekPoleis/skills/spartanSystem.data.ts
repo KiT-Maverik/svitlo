@@ -41,7 +41,7 @@ export const spartanSystem_Skill_Data = buildSkillConfig({
       zh: "了解斯巴达如何组织政府、训练与劳动。",
       hi: "जानें कि स्पार्टा में शासन, प्रशिक्षण और श्रम कैसे संगठित थे।",
       es: "Descubre cómo Esparta organizaba el gobierno, la formación y el trabajo.",
-      ar: "تعرّف كيف نظّمت إسبرطة الحكم والتدريب والعمل.",
+      ar: "اكتشف كيف نظّمت إسبرطة الحكم والتدريب والعمل.",
       fr: "Découvrez comment Sparte organisait le gouvernement, la formation et le travail.",
       bn: "স্পার্টায় শাসন, প্রশিক্ষণ ও শ্রম কীভাবে সংগঠিত ছিল তা জানো।",
       pt: "Descubra como Esparta organizava o governo, o treinamento e o trabalho.",
