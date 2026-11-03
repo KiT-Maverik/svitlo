@@ -175,7 +175,7 @@ function makeSection<Content extends SectionContentBuilders>(
     updateBlock(type, alias, update) {
       const block = content[type]?.[alias];
       if (!block) throw new Error('Unknown Section block: ' + String(type) + '.' + alias);
-      const updated = update(block);
+      const updated = update(block as unknown as NonNullable<Content[typeof type]>[typeof alias]);
       if (!updated || updated.type !== type || updated.slug !== block.slug) {
         throw new Error('Section updateBlock cannot replace block identity');
       }
