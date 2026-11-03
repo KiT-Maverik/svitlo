@@ -6,6 +6,7 @@ import { parseText } from './parseText';
 import styles from './Text.module.css';
 
 type TextStyle = 'highlight' | 'bold' | 'cursive' | 'underscore' | 'crossed' | 'variable';
+
 type HighlightTone = 'neutral' | 'info' | 'warning' | 'success';
 
 interface FragmentStyle {
@@ -61,6 +62,8 @@ export const Text = ({ text, wrap, styling }: TextProps) => {
   });
 
   const rendered = content.every(part => typeof part === 'string') ? content.join('') : content;
+
   if (wrap?.enabled === false) return rendered;
+
   return <Typography component="p" {...wrap?.typographyProps}>{rendered}</Typography>;
 };
