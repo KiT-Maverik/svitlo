@@ -59,7 +59,7 @@ export const boundedRationality_Skill_Data = buildSkillConfig({
       he: "ראו מדוע אנשים משתמשים בקיצורי דרך במקום להשוות כל אפשרות.",
       pl: "Zobacz, dlaczego często używamy uproszczeń zamiast porównywać wszystkie opcje.",
       uk: "Помічай, чому люди часто використовують спрощення замість порівняння всіх варіантів.",
-      lt: "Suprask, kodėl žmonės dažnai naudoja trumpinius, užuot palyginę visas galimybes.",
+      lt: "Suprask, kodėl žmonės dažnai remiasi supaprastintomis taisyklėmis, užuot palyginę visas galimybes.",
       lv: "Pamani, kāpēc cilvēki bieži izmanto īsceļus, nevis salīdzina visas iespējas.",
       et: "Märka, miks inimesed kasutavad sageli lihtsustusi, mitte ei võrdle kõiki võimalusi.",
       be: "Заўважай, чаму людзі часта спрашчаюць выбар замест параўнаньня ўсіх варыянтаў.",

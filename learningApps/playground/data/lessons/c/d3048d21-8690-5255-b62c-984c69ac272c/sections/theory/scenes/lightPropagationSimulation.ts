@@ -1,3 +1,4 @@
+import { sceneLocalesToData } from '../../../sceneLocales';
 import type { ContentBlock_Scene } from '@svitlo/engine/content';
 import type { LanguageCode } from '@svitlo/engine/localization';
 
@@ -704,3 +705,9 @@ export const lightPropagationSimulation_Locale: Record<LanguageCode, Locale> = {
 
 export type LightPropagationSimulation_ContentBlock<ConfigType extends 'definition' | 'data' | 'response'> =
   ContentBlock_Scene<ConfigType, Locale>;
+
+export const lightPropagationSimulationData = {
+  id: 'how-light-moves-scene-propagation',
+  slug: 'lightPropagationSimulation' as const,
+  locales: sceneLocalesToData(lightPropagationSimulation_Locale),
+} satisfies LightPropagationSimulation_ContentBlock<'data'>;

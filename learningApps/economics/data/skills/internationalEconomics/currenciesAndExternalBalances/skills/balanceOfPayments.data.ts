@@ -42,7 +42,7 @@ export const balanceOfPayments_Skill_Data = buildSkillConfig({
       hi: "देखें कि अंतरराष्ट्रीय भुगतान और निवेश कैसे दर्ज किए जाते हैं।",
       es: "Descubre cómo se registran los pagos y las inversiones internacionales.",
       ar: "اكتشف كيف تُسجّل المدفوعات والاستثمارات الدولية.",
-      fr: "Découvrez comment sont enregistrés les paiements et investissements internationaux.",
+      fr: "Découvre comment sont enregistrés les paiements et investissements internationaux.",
       bn: "আন্তর্জাতিক অর্থপ্রদান ও বিনিয়োগ কীভাবে নথিভুক্ত হয় তা জানো।",
       pt: "Veja como pagamentos e investimentos internacionais são registrados.",
       ur: "جانیں کہ بین الاقوامی ادائیگیاں اور سرمایہ کاریاں کیسے درج ہوتی ہیں۔",

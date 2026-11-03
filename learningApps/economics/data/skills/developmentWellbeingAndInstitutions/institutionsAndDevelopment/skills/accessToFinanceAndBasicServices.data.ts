@@ -42,7 +42,7 @@ export const accessToFinanceAndBasicServices_Skill_Data = buildSkillConfig({
       hi: "जानें कि आवश्यक सेवाएँ लोगों के आर्थिक अवसरों को कैसे प्रभावित करती हैं।",
       es: "Explora cómo los servicios esenciales afectan las oportunidades económicas de las personas.",
       ar: "استكشف كيف تؤثر الخدمات الأساسية في فرص الأفراد الاقتصادية.",
-      fr: "Explorez comment les services essentiels influencent les possibilités économiques.",
+      fr: "Explore comment les services essentiels influencent les possibilités économiques.",
       bn: "জরুরি সেবা মানুষের অর্থনৈতিক সুযোগকে কীভাবে প্রভাবিত করে তা জানো।",
       pt: "Explore como serviços essenciais influenciam as oportunidades econômicas.",
       ur: "جانیں کہ ضروری خدمات لوگوں کے معاشی مواقع کو کیسے متاثر کرتی ہیں۔",

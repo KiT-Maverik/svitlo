@@ -17,7 +17,7 @@ export const productionAndEntrepreneurship_SkillDomain_Data = buildSkillDomainCo
     fr: "Production et entrepreneuriat",
     bn: "উৎপাদন ও উদ্যোক্তা কার্যক্রম",
     pt: "Produção e empreendedorismo",
-    ur: "پیداوار اور کاروباری ذہن",
+    ur: "پیداوار اور کاروباری سرگرمی",
     id: "Produksi dan kewirausahaan",
     de: "Produktion und Unternehmertum",
     ja: "生産と起業",

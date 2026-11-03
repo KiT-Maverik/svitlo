@@ -42,7 +42,7 @@ export const taxIncidence_Skill_Data = buildSkillConfig({
       hi: "जानें कि कर का बोझ वास्तव में किस पर पड़ता है।",
       es: "Explora quién soporta realmente el coste de un impuesto.",
       ar: "اكتشف من يتحمل تكلفة الضريبة فعليًا.",
-      fr: "Explorez qui supporte réellement le coût d’un impôt.",
+      fr: "Explore qui supporte réellement le coût d’un impôt.",
       bn: "করের খরচ আসলে কার ওপর পড়ে তা জানো।",
       pt: "Explore quem realmente arca com o custo de um tributo.",
       ur: "جانیں کہ ٹیکس کی اصل لاگت کون برداشت کرتا ہے۔",

@@ -42,7 +42,7 @@ export const wealthDistribution_Skill_Data = buildSkillConfig({
       hi: "संपत्ति की असमानता और आय की असमानता में अंतर समझें।",
       es: "Distingue la desigualdad de riqueza de la desigualdad de ingresos.",
       ar: "ميّز بين عدم المساواة في الثروة وعدم المساواة في الدخل.",
-      fr: "Distinguez les inégalités de patrimoine de celles de revenu.",
+      fr: "Distingue les inégalités de patrimoine de celles de revenu.",
       bn: "সম্পদবৈষম্য ও আয়বৈষম্যের পার্থক্য করো।",
       pt: "Distinga desigualdade de patrimônio da desigualdade de renda.",
       ur: "دولت میں عدم مساوات اور آمدن میں عدم مساوات کا فرق سمجھیں۔",

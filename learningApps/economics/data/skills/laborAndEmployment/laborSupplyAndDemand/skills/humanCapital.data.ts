@@ -13,7 +13,7 @@ export const humanCapital_Skill_Data = buildSkillConfig({
     bn: "মানব পুঁজি",
     pt: "Capital humano",
     ur: "انسانی سرمایہ",
-    id: "Modal Manusia",
+    id: "Modal manusia",
     de: "Humankapital",
     ja: "人的資本",
     ko: "인적 자본",

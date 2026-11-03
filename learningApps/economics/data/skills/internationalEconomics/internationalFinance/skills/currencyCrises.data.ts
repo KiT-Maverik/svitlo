@@ -42,7 +42,7 @@ export const currencyCrises_Skill_Data = buildSkillConfig({
       hi: "जानें कि किसी मुद्रा का संकट कैसे विकसित हो सकता है।",
       es: "Explora cómo puede surgir una crisis de una moneda.",
       ar: "استكشف كيف يمكن أن تنشأ أزمة عملة.",
-      fr: "Explorez comment une crise monétaire peut se développer.",
+      fr: "Explore comment une crise monétaire peut se développer.",
       bn: "মুদ্রা সংকট কীভাবে তৈরি হতে পারে তা অন্বেষণ করো।",
       pt: "Explore como uma crise cambial pode se desenvolver.",
       ur: "دیکھیے کہ کرنسی کا بحران کیسے پیدا ہو سکتا ہے۔",

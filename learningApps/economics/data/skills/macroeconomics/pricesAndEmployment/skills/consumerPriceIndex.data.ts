@@ -42,7 +42,7 @@ export const consumerPriceIndex_Skill_Data = buildSkillConfig({
       hi: "जानें कि मूल्य सूचकांक जीवन-यापन की लागत में बदलाव कैसे दिखाता है।",
       es: "Aprende cómo un índice de precios sigue los cambios del coste de vida.",
       ar: "تعرّف كيف يتتبع مؤشر الأسعار تغيرات تكلفة المعيشة.",
-      fr: "Découvrez comment un indice des prix suit l’évolution du coût de la vie.",
+      fr: "Découvre comment un indice des prix suit l’évolution du coût de la vie.",
       bn: "মূল্যসূচক জীবনযাত্রার ব্যয়ের পরিবর্তন কীভাবে অনুসরণ করে তা জানো।",
       pt: "Aprenda como um índice acompanha mudanças no custo de vida.",
       ur: "جانیں کہ قیمتوں کا اشاریہ زندگی کے اخراجات میں تبدیلی کیسے ظاہر کرتا ہے۔",

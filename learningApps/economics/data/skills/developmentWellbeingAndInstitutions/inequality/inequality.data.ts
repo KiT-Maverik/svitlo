@@ -50,7 +50,7 @@ export const inequality_SkillGroup_Data = buildSkillGroupConfig({
       hi: "समझें कि औसत आय से संसाधनों का बँटवारा क्यों पता नहीं चलता।",
       es: "Explora por qué el ingreso promedio no revela cómo se reparten los recursos.",
       ar: "اكتشف لماذا لا يكشف متوسط الدخل كيفية توزيع الموارد.",
-      fr: "Explorez pourquoi le revenu moyen ne révèle pas la répartition des ressources.",
+      fr: "Explore pourquoi le revenu moyen ne révèle pas la répartition des ressources.",
       bn: "গড় আয় কেন সম্পদের বণ্টন সম্পর্কে সব বলে না তা জানো।",
       pt: "Explore por que a renda média não revela como os recursos são distribuídos.",
       ur: "جانیں کہ اوسط آمدن وسائل کی تقسیم کی مکمل تصویر کیوں نہیں دکھاتی۔",
@@ -73,7 +73,7 @@ export const inequality_SkillGroup_Data = buildSkillGroupConfig({
       be: "Дасьледуй, чаму сярэдні даход не паказвае, як разьмеркаваныя рэсурсы.",
       ka: "გამოიკვლიეთ, რატომ ვერ გვიჩვენებს საშუალო შემოსავალი რესურსების განაწილებას.",
       kk: "Орташа табыс ресурстардың қалай бөлінетінін неге көрсетпейтінін зерттеңіз.",
-      qm: "Orta kelir qınaqlarnıñ nasıl paylaştırılğanını ne içün köstermeygenini araştır.",
+      qm: "Orta kelir resurslarnıñ nasıl paylaştırılğanını ne içün köstermeygenini araştır.",
     },
   },
 });

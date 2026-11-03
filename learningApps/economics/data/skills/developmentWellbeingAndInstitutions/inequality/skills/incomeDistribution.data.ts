@@ -42,7 +42,7 @@ export const incomeDistribution_Skill_Data = buildSkillConfig({
       hi: "तुलना करें कि अलग-अलग समूहों में आय कैसे बँटी है।",
       es: "Compara cómo se distribuyen los ingresos entre distintos grupos.",
       ar: "قارن كيفية توزيع الدخل بين المجموعات المختلفة.",
-      fr: "Comparez comment les revenus sont répartis entre les groupes.",
+      fr: "Compare comment les revenus sont répartis entre les groupes.",
       bn: "বিভিন্ন গোষ্ঠীর মধ্যে আয় কীভাবে বণ্টিত তা তুলনা করো।",
       pt: "Compare como a renda se distribui entre grupos.",
       ur: "مختلف گروہوں میں آمدن کی تقسیم کا موازنہ کریں۔",

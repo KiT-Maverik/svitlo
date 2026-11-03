@@ -13,7 +13,7 @@ export const discountsAndPromotions_Skill_Data = buildSkillConfig({
     bn: "ছাড় ও প্রচার",
     pt: "Descontos e promoções",
     ur: "رعایتیں اور تشہیری پیشکشیں",
-    id: "Diskon dan Promosi",
+    id: "Diskon dan promosi",
     de: "Rabatte und Aktionen",
     ja: "割引と販促",
     ko: "할인과 판촉",

@@ -50,7 +50,7 @@ export const marginalUtility_Skill_Data = buildSkillConfig({
       de: "Erkunde den zusätzlichen Nutzen einer weiteren Einheit eines Gutes.",
       ja: "商品を一単位増やすことで得られる追加の価値を探ろう。",
       ko: "물건 한 단위를 더 가질 때 늘어나는 가치를 알아보세요.",
-      tr: "Bir şeyin bir birim daha alınmasının getirdiği ek değeri keşfet.",
+      tr: "Bir maldan bir birim daha tüketmenin sağladığı ek faydayı keşfet.",
       vi: "Khám phá một đơn vị hàng hóa bổ sung đem lại bao nhiêu giá trị.",
       ta: "ஒரு பொருளின் கூடுதல் அலகு உனக்கு தரும் கூடுதல் மதிப்பை ஆராய்.",
       te: "ఒక వస్తువు ఇంకో యూనిట్ వల్ల వచ్చే అదనపు విలువను తెలుసుకోండి.",

@@ -42,7 +42,7 @@ export const monetaryTransmissionMechanism_Skill_Data = buildSkillConfig({
       hi: "समझें कि केंद्रीय बैंक का निर्णय पूरी अर्थव्यवस्था तक कैसे पहुँचता है।",
       es: "Comprende cómo una decisión del banco central afecta a la economía en general.",
       ar: "افهم كيف ينتقل أثر قرار البنك المركزي إلى الاقتصاد كله.",
-      fr: "Comprenez comment une décision de banque centrale se transmet à l’économie.",
+      fr: "Comprends comment une décision de banque centrale se transmet à l’économie.",
       bn: "কেন্দ্রীয় ব্যাংকের সিদ্ধান্ত পুরো অর্থনীতিতে কীভাবে প্রভাব ফেলে তা বোঝো।",
       pt: "Entenda como uma decisão do banco central afeta a economia em geral.",
       ur: "سمجھیں کہ مرکزی بینک کے فیصلے کا اثر پوری معیشت تک کیسے پہنچتا ہے۔",

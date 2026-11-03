@@ -42,7 +42,7 @@ export const internationalCapitalFlows_Skill_Data = buildSkillConfig({
       hi: "जानें कि निवेशक देशों के बीच पूँजी क्यों ले जाते हैं।",
       es: "Descubre por qué los inversores mueven capital entre países.",
       ar: "اكتشف لماذا ينقل المستثمرون رؤوس الأموال عبر الحدود.",
-      fr: "Découvrez pourquoi les investisseurs déplacent des capitaux entre pays.",
+      fr: "Découvre pourquoi les investisseurs déplacent des capitaux entre pays.",
       bn: "বিনিয়োগকারীরা কেন দেশ থেকে দেশে পুঁজি সরান তা জানো।",
       pt: "Descubra por que investidores movimentam capital entre países.",
       ur: "جانیں کہ سرمایہ کار سرحدوں کے پار سرمایہ کیوں منتقل کرتے ہیں۔",

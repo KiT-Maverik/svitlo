@@ -21,7 +21,7 @@ export const discountingFutureConsequences_Skill_Data = buildSkillConfig({
     vi: "Chiết khấu hệ quả trong tương lai",
     ta: "எதிர்கால விளைவுகளின் தள்ளுபடி மதிப்பீடு",
     te: "భవిష్యత్ పరిణామాల తగ్గింపు విలువ",
-    mr: "भविष्यातील परिणामांचे सवलतीकरण",
+    mr: "भविष्यातील परिणामांचे वर्तमानमूल्यांकन",
     ms: "Pendiskaunan akibat masa depan",
     he: "היוון השלכות עתידיות",
     pl: "Dyskontowanie przyszłych skutków",

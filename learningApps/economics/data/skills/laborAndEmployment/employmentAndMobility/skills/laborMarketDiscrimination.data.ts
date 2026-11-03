@@ -13,7 +13,7 @@ export const laborMarketDiscrimination_Skill_Data = buildSkillConfig({
     bn: "শ্রমবাজারে বৈষম্য",
     pt: "Discriminação no mercado de trabalho",
     ur: "محنت کی منڈی میں امتیاز",
-    id: "Diskriminasi Pasar Kerja",
+    id: "Diskriminasi pasar kerja",
     de: "Diskriminierung auf dem Arbeitsmarkt",
     ja: "労働市場での差別",
     ko: "노동시장의 차별",

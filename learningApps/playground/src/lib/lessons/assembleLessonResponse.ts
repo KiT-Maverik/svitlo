@@ -1,5 +1,5 @@
 import type { LanguageCode } from '@svitlo/engine/localization';
-import { SECTION_TYPES, type ContentBlock, type Section_Type } from '@svitlo/engine/content';
+import { SECTION_TYPES, type ContentBlock, type ContentBlock_Reference, type Question, type Section_Type } from '@svitlo/engine/content';
 import { resolveEntityPath } from '@svitlo/engine';
 
 export type LocaleSource = { code: LanguageCode; isFallback?: true };
@@ -24,8 +24,10 @@ export type LessonSectionResponse = {
   navigationLabel: string;
   skippable?: true;
   content: Record<string, Record<string, LessonContentBlock>>;
-  order: { type: string; key: string }[];
+  order: ContentBlock_Reference[];
   blocks: LessonRenderableBlock[];
+  /** Server-assembled array of typed responses, ready for the client renderer. */
+  questions: Question<'response'>[];
 };
 export type LessonResponse = {
   id: string;
@@ -116,8 +118,8 @@ function assembleBlocks(
         resolved.text = string(block.text, location + '/' + reference + '.text');
       }
       if (kind === 'scene') {
-        resolved.locales = record(block.locales, location + '/' + reference + '.locales');
-        resolved.locale = { ...resolved.locales, code: language };
+        resolved.messages = record(block.messages, location + '/' + reference + '.messages');
+        resolved.locale = { code: language };
         resolved.sceneId = location + '/' + reference;
       }
       normalized[kind][key] = resolved;
@@ -129,17 +131,17 @@ function assembleBlocks(
   const references = order.map((raw, index) => {
     const ref = record(raw, location + '.order[' + index + ']');
     return {
-      type: string(ref.type, location + '.order[' + index + '].type'),
-      key: string(ref.key, location + '.order[' + index + '].key'),
+      type: string(ref.type, location + '.order[' + index + '].type') as ContentBlock_Reference['type'],
+      slug: string(ref.slug, location + '.order[' + index + '].slug'),
     };
   });
-  const names = references.map(ref => ref.type + '/' + ref.key);
+  const names = references.map(ref => ref.type + '/' + ref.slug);
   if (new Set(names).size !== names.length || names.some(name => !keys.includes(name))) {
     throw new Error('Content order must reference every block once at ' + location);
   }
   const blocks = references
     .filter(reference => reference.type !== 'quiz')
-    .map(({ type, key }) => normalized[type][key] as unknown as LessonRenderableBlock);
+    .map(({ type, slug }) => normalized[type][slug] as unknown as LessonRenderableBlock);
   return { content: normalized, order: references, blocks };
 }
 
@@ -197,6 +199,7 @@ export function assembleLessonResponse(
     if ((sectionType === 'quiz') !== hasQuiz) {
       throw new Error('Quiz section type and content disagree at ' + key);
     }
+    const sectionQuestions: Question<'response'>[] = [];
     for (const block of Object.values(content.content.quiz ?? {})) {
       const slugs = block.questionSlugs;
       if (!Array.isArray(slugs) || slugs.some(value => typeof value !== 'string') ||
@@ -212,6 +215,14 @@ export function assembleLessonResponse(
             ' in ' + relativePath + '/' + key);
         }
         resolved[questionSlug] = matches[0];
+        // The published catalog is typed at authoring/build time; verify its
+        // discriminator before crossing the JSON boundary into the UI.
+        const response = matches[0];
+        const responseType = string(response.type, 'questions.data.' + questionSlug + '.type');
+        if (!(responseType in indexedQuestions)) {
+          throw new Error('Unsupported question response type: ' + responseType);
+        }
+        sectionQuestions.push(response as Question<'response'>);
       }
       block.questions = resolved;
     }
@@ -223,6 +234,7 @@ export function assembleLessonResponse(
       navigationLabel: string(section.navigationLabel, 'sections.' + key + '.navigationLabel'),
       ...(section.skippable === true ? { skippable: true as const } : {}),
       ...content,
+      questions: sectionQuestions,
     };
   }
   const sectionOrder = data.sectionOrder;

@@ -15,7 +15,7 @@ export const laborSupplyAndDemand_SkillGroup_Data = buildSkillGroupConfig({
     bn: "শ্রমের যোগান ও চাহিদা",
     pt: "Oferta e demanda de trabalho",
     ur: "محنت کی رسد اور طلب",
-    id: "Penawaran dan Permintaan Tenaga Kerja",
+    id: "Penawaran dan permintaan tenaga kerja",
     de: "Arbeitsangebot und Arbeitsnachfrage",
     ja: "労働供給と労働需要",
     ko: "노동 공급과 수요",

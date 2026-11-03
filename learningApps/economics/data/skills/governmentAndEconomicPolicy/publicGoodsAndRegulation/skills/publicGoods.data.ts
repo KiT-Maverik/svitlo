@@ -42,7 +42,7 @@ export const publicGoods_Skill_Data = buildSkillConfig({
       hi: "समझें कि कुछ साझा वस्तुओं के लिए व्यक्तिगत खरीद से धन जुटाना कठिन क्यों है।",
       es: "Comprende por qué algunos bienes compartidos son difíciles de financiar mediante compras individuales.",
       ar: "افهم لماذا يصعب تمويل بعض السلع المشتركة عبر المشتريات الفردية.",
-      fr: "Comprenez pourquoi certains biens collectifs sont difficiles à financer par des achats individuels.",
+      fr: "Comprends pourquoi certains biens collectifs sont difficiles à financer par des achats individuels.",
       bn: "কিছু সবার জন্য উন্মুক্ত পণ্যের ব্যয় ব্যক্তিগত কেনাকাটায় মেটানো কঠিন কেন তা বোঝো।",
       pt: "Entenda por que é difícil financiar certos bens compartilhados por compras individuais.",
       ur: "سمجھیں کہ کچھ مشترک اشیا کی مالی اعانت انفرادی خریداری سے مشکل کیوں ہے۔",

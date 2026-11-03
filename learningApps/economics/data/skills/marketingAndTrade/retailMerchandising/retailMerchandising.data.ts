@@ -15,7 +15,7 @@ export const retailMerchandising_SkillGroup_Data = buildSkillGroupConfig({
     bn: "খুচরা দোকানে পণ্য উপস্থাপন",
     pt: "Exposição comercial no varejo",
     ur: "دکان میں مصنوعات کی نمائش",
-    id: "Penataan Produk Ritel",
+    id: "Penataan produk ritel",
     de: "Warenpräsentation im Einzelhandel",
     ja: "小売店舗の商品陳列",
     ko: "소매 상품 진열",

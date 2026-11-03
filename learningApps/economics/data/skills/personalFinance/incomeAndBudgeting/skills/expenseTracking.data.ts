@@ -13,7 +13,7 @@ export const expenseTracking_Skill_Data = buildSkillConfig({
     bn: "ব্যয়ের হিসাব",
     pt: "Controle de despesas",
     ur: "اخراجات کا حساب",
-    id: "Pencatatan Pengeluaran",
+    id: "Pencatatan pengeluaran",
     de: "Ausgaben erfassen",
     ja: "支出の記録",
     ko: "지출 기록",

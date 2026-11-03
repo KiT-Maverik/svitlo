@@ -13,7 +13,7 @@ export const advertisingEffectiveness_Skill_Data = buildSkillConfig({
     bn: "বিজ্ঞাপনের কার্যকারিতা",
     pt: "Eficácia da publicidade",
     ur: "اشتہاری اثرپذیری",
-    id: "Efektivitas Iklan",
+    id: "Efektivitas iklan",
     de: "Werbewirksamkeit",
     ja: "広告効果",
     ko: "광고 효과",

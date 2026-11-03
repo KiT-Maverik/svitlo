@@ -1,4 +1,4 @@
-import { Button, Container, Stack, Typography } from '@mui/material';
+import { Container, Stack, Typography } from '@mui/material';
 
 export default function Home() {
   return (
@@ -10,12 +10,6 @@ export default function Home() {
         <Typography variant="body1" color="text.secondary">
           Навчальні матеріали з математики готуються. Демонстрації компонентів доступні окремо у Playground.
         </Typography>
-        <Stack direction="row" sx={{ gap: 2, flexWrap: 'wrap' }}>
-          <Button variant="outlined" href="/questions">
-            Інтерактивні запитання
-          </Button>
-          <Button href="/questions/api">API запитань</Button>
-        </Stack>
       </Stack>
     </Container>
   );

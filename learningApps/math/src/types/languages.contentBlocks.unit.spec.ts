@@ -51,19 +51,15 @@ describe('Extended locale contentBlock coverage', () => {
     expect(DEFAULT_SUPPORTED_LANGUAGES.find(item => item.locale === locale)?.language).toBe('qm');
     expect(getLearningLayoutMessages(locale).navigation.top).toBe('Oquvnıñ yuqarı navigatsiyası');
     expect(getNavbarPreferencesMessages(locale).language).toBe('Til');
-    const source = readFileSync(join(root, 'src/components/pages/Lesson/locales', `${locale}.ts`), 'utf8');
-    expect(source).toContain('export const locale');
   });
 
-  it('provides locale dictionaries for the learner interface and lesson UI', () => {
+  it('provides locale dictionaries for the shared learner interface', () => {
     for (const locale of newLocales) expect(getLearningLayoutMessages(locale).brand).toBeTruthy();
     for (const locale of newLocales) {
       const preferences = getNavbarPreferencesMessages(locale);
       expect(preferences.language).toBeTruthy();
       expect(preferences.theme.dark).toBeTruthy();
       expect(preferences.theme.light).toBeTruthy();
-      const source = readFileSync(join(root, 'src/components/pages/Lesson/locales', `${locale}.ts`), 'utf8');
-      expect(source).toContain('export const locale');
     }
   });
 });

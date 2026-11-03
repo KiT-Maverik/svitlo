@@ -42,7 +42,7 @@ export const corruptionAndEconomicIncentives_Skill_Data = buildSkillConfig({
       hi: "समझें कि भ्रष्टाचार व्यापारिक निर्णय और प्रतिस्पर्धा को कैसे बिगाड़ता है।",
       es: "Comprende cómo la corrupción distorsiona las decisiones empresariales y la competencia.",
       ar: "افهم كيف يشوّه الفساد قرارات الأعمال والمنافسة.",
-      fr: "Comprenez comment la corruption fausse les décisions des entreprises et la concurrence.",
+      fr: "Comprends comment la corruption fausse les décisions des entreprises et la concurrence.",
       bn: "দুর্নীতি ব্যবসায়িক সিদ্ধান্ত ও প্রতিযোগিতাকে কীভাবে বিকৃত করে তা বোঝো।",
       pt: "Entenda como a corrupção distorce decisões empresariais e a concorrência.",
       ur: "سمجھیں کہ بدعنوانی کاروباری فیصلوں اور مسابقت کو کیسے بگاڑتی ہے۔",

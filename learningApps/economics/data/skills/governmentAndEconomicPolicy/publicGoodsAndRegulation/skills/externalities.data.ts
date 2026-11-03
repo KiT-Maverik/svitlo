@@ -42,7 +42,7 @@ export const externalities_Skill_Data = buildSkillConfig({
       hi: "आर्थिक गतिविधि से दूसरों को होने वाली लागत या लाभ पहचानें।",
       es: "Identifica costes o beneficios de una actividad económica que afectan a terceros.",
       ar: "حدّد تكاليف أو فوائد نشاط اقتصادي تؤثر في أشخاص آخرين.",
-      fr: "Repérez les coûts ou avantages d’une activité économique pour d’autres personnes.",
+      fr: "Repère les coûts ou avantages d’une activité économique pour d’autres personnes.",
       bn: "অর্থনৈতিক কাজের ফলে অন্যদের ওপর পড়া খরচ বা সুবিধা চিহ্নিত করো।",
       pt: "Identifique custos e benefícios de atividades econômicas que afetam outras pessoas.",
       ur: "معاشی سرگرمی کے ایسے فائدے یا نقصانات پہچانیں جو دوسروں کو متاثر کریں۔",

@@ -42,7 +42,7 @@ export const competitionPolicy_Skill_Data = buildSkillConfig({
       hi: "जानें कि प्रतिस्पर्धा नीति कार्टेल और बाज़ार शक्ति के दुरुपयोग से कैसे निपटती है।",
       es: "Explora cómo la política de competencia aborda los cárteles y abusos del poder de mercado.",
       ar: "اكتشف كيف تتعامل سياسة المنافسة مع التكتلات الاحتكارية وإساءة استخدام القوة السوقية.",
-      fr: "Explorez comment la politique de concurrence lutte contre les cartels et les abus de pouvoir de marché.",
+      fr: "Explore comment la politique de concurrence lutte contre les cartels et les abus de pouvoir de marché.",
       bn: "কার্টেল ও বাজারক্ষমতার অপব্যবহার মোকাবিলায় প্রতিযোগিতা নীতির ভূমিকা জানো।",
       pt: "Explore como a defesa da concorrência enfrenta cartéis e abusos de poder de mercado.",
       ur: "دیکھیے کہ مسابقتی پالیسی کارٹیل اور بازار کی طاقت کے ناجائز استعمال سے کیسے نمٹتی ہے۔",

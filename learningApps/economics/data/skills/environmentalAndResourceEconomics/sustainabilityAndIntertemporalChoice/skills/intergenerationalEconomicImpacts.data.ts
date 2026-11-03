@@ -54,7 +54,7 @@ export const intergenerationalEconomicImpacts_Skill_Data = buildSkillConfig({
       vi: "Xem xét thế hệ nào được lợi hay chịu thiệt từ một quyết định.",
       ta: "ஒரு முடிவால் எந்தத் தலைமுறைகள் பயனடைகின்றன அல்லது இழக்கின்றன என்பதைச் சிந்தி.",
       te: "ఒక నిర్ణయం వల్ల ఏ తరాలు లాభపడతాయి లేదా నష్టపోతాయో ఆలోచించండి.",
-      mr: "एखाद्या निर्णयाचा कोणत्या पिढ्यांना फायदा वा तोटा होतो ते विचार कर.",
+      mr: "एखाद्या निर्णयामुळे कोणत्या पिढ्यांना फायदा किंवा तोटा होतो याचा विचार कर.",
       ms: "Pertimbangkan generasi mana yang mendapat manfaat atau kerugian daripada keputusan.",
       he: "חשבו אילו דורות מרוויחים או נפגעים מהחלטה.",
       pl: "Zastanów się, które pokolenia zyskują lub tracą wskutek decyzji.",

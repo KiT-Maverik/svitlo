@@ -13,7 +13,7 @@ export const employmentContracts_Skill_Data = buildSkillConfig({
     bn: "কর্মচুক্তি",
     pt: "Contratos de trabalho",
     ur: "ملازمت کے معاہدے",
-    id: "Kontrak Kerja",
+    id: "Kontrak kerja",
     de: "Arbeitsverträge",
     ja: "雇用契約",
     ko: "근로 계약",

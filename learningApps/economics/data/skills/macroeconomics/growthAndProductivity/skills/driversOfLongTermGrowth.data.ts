@@ -42,7 +42,7 @@ export const driversOfLongTermGrowth_Skill_Data = buildSkillConfig({
       hi: "जानें कि कौशल, तकनीक, निवेश और संस्थाएँ वृद्धि में कैसे मदद करती हैं।",
       es: "Explora cómo capacidades, tecnología, inversión e instituciones apoyan el crecimiento.",
       ar: "اكتشف كيف تدعم المهارات والتكنولوجيا والاستثمار والمؤسسات النمو.",
-      fr: "Explorez comment les compétences, la technologie, l’investissement et les institutions soutiennent la croissance.",
+      fr: "Explore comment les compétences, la technologie, l’investissement et les institutions soutiennent la croissance.",
       bn: "দক্ষতা, প্রযুক্তি, বিনিয়োগ ও প্রতিষ্ঠান প্রবৃদ্ধিতে কীভাবে সহায়তা করে তা জানো।",
       pt: "Explore como habilidades, tecnologia, investimentos e instituições sustentam o crescimento.",
       ur: "جانیں کہ مہارت، ٹیکنالوجی، سرمایہ کاری اور ادارے ترقی میں کیسے مدد دیتے ہیں۔",

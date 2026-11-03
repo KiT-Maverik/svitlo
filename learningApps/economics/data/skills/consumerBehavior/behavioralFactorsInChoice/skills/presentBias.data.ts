@@ -5,7 +5,7 @@ export const presentBias_Skill_Data = buildSkillConfig({
   id: "5cca8b25-71a7-482a-9085-389907ad7779",
   name: {
     en: "Present Bias",
-    zh: "当前偏误",
+    zh: "当下偏误",
     hi: "वर्तमान पक्षपात",
     es: "Sesgo del presente",
     ar: "التحيز للحاضر",
@@ -27,7 +27,7 @@ export const presentBias_Skill_Data = buildSkillConfig({
     pl: "Błąd teraźniejszości",
     uk: "Упередження щодо теперішнього",
     lt: "Dabarties šališkumas",
-    lv: "Tagadnes aizspriedums",
+    lv: "Nosliece par labu tagadnei",
     et: "Oleviku eelistamine",
     be: "Перавага цяперашняга",
     ka: "აწმყოს მიკერძოება",

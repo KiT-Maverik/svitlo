@@ -13,7 +13,7 @@ export const personalBudget_Skill_Data = buildSkillConfig({
     bn: "ব্যক্তিগত বাজেট",
     pt: "Orçamento pessoal",
     ur: "ذاتی بجٹ",
-    id: "Anggaran Pribadi",
+    id: "Anggaran pribadi",
     de: "Persönliches Budget",
     ja: "個人の予算",
     ko: "개인 예산",

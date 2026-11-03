@@ -51,7 +51,7 @@ export const businessFluctuationsAndAggregateDemand_SkillGroup_Data = buildSkill
       hi: "जानें कि अर्थव्यवस्थाएँ विस्तार और मंदी के दौर से क्यों गुजरती हैं।",
       es: "Explora por qué las economías pasan por períodos de expansión y desaceleración.",
       ar: "اكتشف لماذا تمر الاقتصادات بفترات توسع وتباطؤ.",
-      fr: "Découvrez pourquoi les économies traversent des phases d’expansion et de ralentissement.",
+      fr: "Découvre pourquoi les économies traversent des phases d’expansion et de ralentissement.",
       bn: "অর্থনীতি কেন সম্প্রসারণ ও মন্দগতির পর্যায়ে যায় তা জানো।",
       pt: "Explore por que as economias passam por expansão e desaceleração.",
       ur: "جانیں کہ معیشتیں توسیع اور سست روی کے ادوار سے کیوں گزرتی ہیں۔",
