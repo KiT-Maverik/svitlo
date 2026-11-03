@@ -12,7 +12,7 @@ export const sakaAndRelatedSteppeCultures_Skill_Data = buildSkillConfig({
     fr: "Sakas et cultures apparentées des steppes",
     bn: "সাকা ও সংশ্লিষ্ট স্তেপ সংস্কৃতি",
     pt: "Sacas e culturas das estepes relacionadas",
-    ur: "ساکا اور متعلقہ صحرائی گھاس زار ثقافتیں",
+    ur: "ساکا اور متعلقہ استپی ثقافتیں",
     id: "Saka dan kebudayaan stepa terkait",
     de: "Saken und verwandte Steppenkulturen",
     ja: "サカと関連する草原文化",
