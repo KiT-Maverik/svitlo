@@ -42,7 +42,7 @@ export const punicWars_Skill_Data = buildSkillConfig({
       hi: "रोम और कार्थेज के बीच हुए युद्धों के बारे में जानें।",
       es: "Explora las guerras entre Roma y Cartago.",
       ar: "استكشف الحروب بين روما وقرطاج.",
-      fr: "Explorez les guerres entre Rome et Carthage.",
+      fr: "Explore les guerres entre Rome et Carthage.",
       bn: "রোম ও কার্থেজের মধ্যে যুদ্ধগুলো সম্পর্কে জানো।",
       pt: "Explore as guerras entre Roma e Cartago.",
       ur: "روم اور قرطاج کے درمیان جنگوں کا جائزہ لیں۔",

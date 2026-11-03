@@ -42,7 +42,7 @@ export const kofunPeriod_Skill_Data = buildSkillConfig({
       hi: "जानें कि कोफुन दफ़न टीले प्रारंभिक सत्ता के बारे में क्या बताते हैं।",
       es: "Descubre qué revelan los túmulos funerarios Kofun sobre la autoridad temprana.",
       ar: "اكتشف ما تكشفه تلال الدفن في كوفون عن السلطة المبكرة.",
-      fr: "Découvrez ce que révèlent les tumulus funéraires Kofun sur l’autorité ancienne.",
+      fr: "Découvre ce que révèlent les tumulus funéraires Kofun sur l’autorité ancienne.",
       bn: "কোফুন সমাধিস্তূপগুলো প্রাথমিক ক্ষমতা সম্পর্কে কী জানায় তা শেখো।",
       pt: "Descubra o que os túmulos Kofun revelam sobre a autoridade inicial.",
       ur: "جانیں کہ کوفون کے تدفینی ٹیلے ابتدائی اقتدار کے بارے میں کیا بتاتے ہیں۔",

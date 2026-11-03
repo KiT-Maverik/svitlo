@@ -49,7 +49,7 @@ export const ancientJapan_SkillGroup_Data = buildSkillGroupConfig({
       hi: "जापानी द्वीपसमूह की प्राचीन संस्कृतियों के बारे में जानें।",
       es: "Descubre las culturas antiguas del archipiélago japonés.",
       ar: "اكتشف الثقافات القديمة في الأرخبيل الياباني.",
-      fr: "Découvrez les cultures anciennes de l’archipel japonais.",
+      fr: "Découvre les cultures anciennes de l’archipel japonais.",
       bn: "জাপানি দ্বীপপুঞ্জের প্রাচীন সংস্কৃতিগুলো সম্পর্কে জানো।",
       pt: "Descubra as culturas antigas do arquipélago japonês.",
       ur: "جاپانی جزائر کی قدیم ثقافتوں کے بارے میں جانیں۔",

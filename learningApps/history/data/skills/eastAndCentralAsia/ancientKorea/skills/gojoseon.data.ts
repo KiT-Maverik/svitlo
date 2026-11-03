@@ -42,7 +42,7 @@ export const gojoseon_Skill_Data = buildSkillConfig({
       hi: "जानें कि गोजोसोन के बारे में इतिहासकार क्या जानते हैं और किन बातों पर बहस होती है।",
       es: "Descubre qué saben y qué debaten los historiadores sobre Gojoseon.",
       ar: "اكتشف ما يعرفه المؤرخون وما يختلفون بشأنه حول غوجوسون.",
-      fr: "Découvrez ce que les historiens savent et débattent au sujet de Gojoseon.",
+      fr: "Découvre ce que les historiens savent et débattent au sujet de Gojoseon.",
       bn: "গোজোসন সম্পর্কে ইতিহাসবিদেরা কী জানেন এবং কী নিয়ে বিতর্ক করেন তা শেখো।",
       pt: "Descubra o que os historiadores sabem e discutem sobre Gojoseon.",
       ur: "جانیں کہ گوجوسون کے بارے میں مؤرخین کیا جانتے ہیں اور کن باتوں پر اختلاف ہے۔",

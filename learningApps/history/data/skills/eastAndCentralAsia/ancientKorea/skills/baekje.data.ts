@@ -42,7 +42,7 @@ export const baekje_Skill_Data = buildSkillConfig({
       hi: "बैक्जे के शुरुआती शासकों और उनके संबंधों का अध्ययन करें।",
       es: "Conoce a los primeros gobernantes de Baekje y sus vínculos.",
       ar: "تعرّف إلى حكّام بايكتشي الأوائل وصلاتهم بالمناطق الأخرى.",
-      fr: "Découvrez les premiers souverains de Baekje et leurs liens avec d’autres sociétés.",
+      fr: "Découvre les premiers souverains de Baekje et leurs liens avec d’autres sociétés.",
       bn: "বেকজের প্রাথমিক শাসক ও তাঁদের যোগাযোগ সম্পর্কে জানো।",
       pt: "Conheça os primeiros governantes de Baekje e suas conexões.",
       ur: "بیکجے کے ابتدائی حکمرانوں اور ان کے روابط کے بارے میں جانیں۔",

@@ -42,7 +42,7 @@ export const jomonCulture_Skill_Data = buildSkillConfig({
       hi: "जोमोन काल के जापान के लोगों और मिट्टी के बर्तनों का अध्ययन करें।",
       es: "Conoce a las personas y la cerámica del Japón Jōmon.",
       ar: "تعرّف إلى سكان اليابان في عصر جومون وفخارهم.",
-      fr: "Découvrez les habitants et les poteries du Japon de Jōmon.",
+      fr: "Découvre les habitants et les poteries du Japon de Jōmon.",
       bn: "জোমোন যুগের জাপানের মানুষ ও মৃৎপাত্র সম্পর্কে জানো।",
       pt: "Conheça as pessoas e a cerâmica do Japão Jōmon.",
       ur: "جومون دور کے جاپان کے لوگوں اور ان کے مٹی کے برتنوں کو جانیں۔",
