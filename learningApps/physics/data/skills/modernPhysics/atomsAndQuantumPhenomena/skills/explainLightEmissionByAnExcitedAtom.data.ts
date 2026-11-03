@@ -59,7 +59,7 @@ export const explainLightEmissionByAnExcitedAtom_Skill_Data = buildSkillConfig({
       he: "הסבירו כיצד אטומים יכולים לפלוט פוטונים כאשר הם עוברים בין רמות אנרגיה.",
       pl: "Wyjaśnij, jak atomy mogą emitować fotony podczas przejść między poziomami energii.",
       uk: "Поясни, як атоми можуть випромінювати фотони під час переходу між рівнями енергії.",
-      lt: "Paaiškink, kaip atomai gali spinduliuoti fotonus pereidami tarp energijos lygių.",
+      lt: "Paaiškink, kaip sužadintas atomas, pereidamas į žemesnį energijos lygmenį, gali išspinduliuoti fotoną, kurio energija lygi lygmenų skirtumui.",
       lv: "Izskaidro, kā atomi var izstarot fotonus, pārejot starp enerģijas līmeņiem.",
       et: "Selgita, kuidas aatomid saavad energiatasemete vahel liikudes footoneid kiirata.",
       be: "Растлумач, як атамы могуць выпраменьваць фатоны пры пераходзе паміж узроўнямі энэргіі.",
