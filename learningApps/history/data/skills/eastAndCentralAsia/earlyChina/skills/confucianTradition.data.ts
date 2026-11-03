@@ -4,7 +4,7 @@ export const confucianTradition_Skill_Data = buildSkillConfig({
   slug: "confucianTradition",
   id: "41d45a2e-3b1a-4bca-820b-e96a5789a86b",
   name: {
-    en: "Конфуціанська традиція",
+    en: "Confucian Tradition",
     zh: "儒家传统",
     hi: "कन्फ्यूशियस परंपरा",
     es: "Tradición confuciana",

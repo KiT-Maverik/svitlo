@@ -4,7 +4,7 @@ export const silla_Skill_Data = buildSkillConfig({
   slug: "silla",
   id: "06470589-cc59-44df-9cc2-a57c0889b464",
   name: {
-    en: "Сілла",
+    en: "Silla",
     zh: "新罗",
     hi: "शिल्ला",
     es: "Silla",

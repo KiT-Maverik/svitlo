@@ -4,7 +4,7 @@ export const baekje_Skill_Data = buildSkillConfig({
   slug: "baekje",
   id: "0e98481f-0d8d-48f9-bddd-3b9f9eebef77",
   name: {
-    en: "Пекче",
+    en: "Baekje",
     zh: "百济",
     hi: "बैक्जे",
     es: "Baekje",

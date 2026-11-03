@@ -6,7 +6,7 @@ export const ancientKorea_SkillGroup_Data = buildSkillGroupConfig({
   slug: "ancientKorea",
   id: "84333876-0c5b-4758-94f2-5c28e374ec9c",
   name: {
-    en: "Корея",
+    en: "Korea",
     zh: "古代朝鲜半岛",
     hi: "प्राचीन कोरिया",
     es: "Corea antigua",

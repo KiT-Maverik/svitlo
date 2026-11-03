@@ -4,7 +4,7 @@ export const daoistTraditions_Skill_Data = buildSkillConfig({
   slug: "daoistTraditions",
   id: "b3bc5a46-565a-4687-840d-e08277e2e2d9",
   name: {
-    en: "Даоські традиції",
+    en: "Daoist Traditions",
     zh: "道家传统",
     hi: "दाओवादी परंपराएँ",
     es: "Tradiciones taoístas",

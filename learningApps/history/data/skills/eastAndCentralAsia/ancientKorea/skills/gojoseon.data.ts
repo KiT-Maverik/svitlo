@@ -4,7 +4,7 @@ export const gojoseon_Skill_Data = buildSkillConfig({
   slug: "gojoseon",
   id: "6789e2ed-aa6a-437c-88d9-f806e925ed8b",
   name: {
-    en: "Кочосон (Давній Чосон)",
+    en: "Gojoseon (Old Joseon)",
     zh: "古朝鲜",
     hi: "गोजोसोन (प्राचीन जोसोन)",
     es: "Gojoseon (Antiguo Joseon)",

@@ -4,7 +4,7 @@ export const warringStatesPeriod_Skill_Data = buildSkillConfig({
   slug: "warringStatesPeriod",
   id: "7a900550-760b-45c2-97c9-1205f29d8494",
   name: {
-    en: "Період Чжаньґо",
+    en: "Warring States Period",
     zh: "战国时期",
     hi: "युद्धरत राज्यों का काल",
     es: "Período de los Reinos Combatientes",

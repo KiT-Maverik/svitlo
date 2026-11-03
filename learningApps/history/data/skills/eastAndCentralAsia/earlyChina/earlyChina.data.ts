@@ -6,7 +6,7 @@ export const earlyChina_SkillGroup_Data = buildSkillGroupConfig({
   slug: "earlyChina",
   id: "6bdf71d4-1451-4391-9ff3-8858f7251b81",
   name: {
-    en: "Ранній Китай",
+    en: "Early China",
     zh: "早期中国",
     hi: "प्रारंभिक चीन",
     es: "China temprana",

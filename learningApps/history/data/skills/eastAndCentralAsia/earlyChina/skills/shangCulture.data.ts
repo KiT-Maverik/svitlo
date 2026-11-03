@@ -4,7 +4,7 @@ export const shangCulture_Skill_Data = buildSkillConfig({
   slug: "shangCulture",
   id: "ffe80b18-849f-472b-b335-0545ce1fd08a",
   name: {
-    en: "Культура Шан",
+    en: "Shang Culture",
     zh: "商文化",
     hi: "शांग संस्कृति",
     es: "Cultura Shang",

@@ -4,7 +4,7 @@ export const goguryeo_Skill_Data = buildSkillConfig({
   slug: "goguryeo",
   id: "c0248f1b-2d4b-4426-bdde-d21623d45b58",
   name: {
-    en: "Когурьо",
+    en: "Goguryeo",
     zh: "高句丽",
     hi: "गोगुर्यो",
     es: "Goguryeo",
