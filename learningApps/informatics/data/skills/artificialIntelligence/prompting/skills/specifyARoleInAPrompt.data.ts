@@ -65,7 +65,7 @@ export const specifyARoleInAPrompt_Skill_Data = buildSkillConfig({
       be: 'Задавай карысны погляд ці стыль, але не прымай іх за сапраўдную экспэртнасьць.',
       ka: 'განსაზღვრე სასარგებლო ხედვა ან სტილი, მაგრამ ეს ნამდვილ ექსპერტიზად არ მიიჩნიო.',
       kk: 'Пайдалы көзқарас не стильді белгіле, бірақ оны нақты сарапшылық деп қабылдама.',
-      qm: 'Faydalı baqış ya da uslûp belgile, amma bunı aqiqiy mütehassıslıqnen qarıştırma.',
+      qm: 'Faydalı baqış ya da uslup belgile, amma bunı aqiqiy mütehassıslıqnen qarıştırma.',
     },
   },
 });
