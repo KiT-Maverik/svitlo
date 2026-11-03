@@ -54,7 +54,7 @@ export const economicsOfPersonalData_Skill_Data = buildSkillConfig({
       vi: "Khám phá những đánh đổi kinh tế ít thấy của dịch vụ được tài trợ bằng dữ liệu cá nhân.",
       ta: "தனிப்பட்ட தரவுகளால் நிதியளிக்கப்படும் சேவைகளின் மறைமுகப் பொருளாதாரப் பரிமாற்றங்களை ஆராய்.",
       te: "వ్యక్తిగత డేటాతో నడిచే సేవల్లో దాగిన ఆర్థిక రాజీలను పరిశీలించండి.",
-      mr: "वैयक्तिक माहितीवर चालणाऱ्या सेवांमधील लपलेले आर्थिक तडजोडी जाणून घे.",
+      mr: "वैयक्तिक माहितीच्या आधारे वित्तपुरवठा होणाऱ्या सेवांमधील लपलेल्या आर्थिक तडजोडी समजून घे.",
       ms: "Terokai pertukaran ekonomi tersembunyi dalam perkhidmatan yang dibiayai data peribadi.",
       he: "גלו פשרות כלכליות נסתרות בשירותים הממומנים באמצעות מידע אישי.",
       pl: "Poznaj ukryte kompromisy ekonomiczne usług finansowanych danymi osobowymi.",

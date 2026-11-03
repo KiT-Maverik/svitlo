@@ -21,7 +21,7 @@ export const inflationAndDeflation_Skill_Data = buildSkillConfig({
     vi: "Lạm phát và giảm phát",
     ta: "பணவீக்கமும் பணச்சுருக்கமும்",
     te: "ద్రవ్యోల్బణం, ప్రతి ద్రవ్యోల్బణం",
-    mr: "महागाई आणि अवमूल्यनात्मक किंमतघट",
+    mr: "महागाई आणि सर्वसाधारण किंमतघट",
     ms: "Inflasi dan deflasi",
     he: "אינפלציה ודפלציה",
     pl: "Inflacja i deflacja",

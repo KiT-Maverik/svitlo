@@ -54,7 +54,7 @@ export const taxProgressivity_Skill_Data = buildSkillConfig({
       vi: "So sánh gánh nặng thuế thay đổi theo mức thu nhập như thế nào.",
       ta: "வெவ்வேறு வருமான நிலைகளில் வரிச் சுமை எவ்வாறு மாறுகிறது என்பதை ஒப்பிடுங்கள்.",
       te: "వివిధ ఆదాయ స్థాయిల్లో పన్ను భారం ఎలా మారుతుందో పోల్చండి.",
-      mr: "विविध उत्पन्न पातळ्यांवर करभार कसा बदलतो ते तुलना करा.",
+      mr: "विविध उत्पन्न पातळ्यांवर करभार कसा बदलतो याची तुलना करा.",
       ms: "Bandingkan perubahan beban cukai mengikut tahap pendapatan.",
       he: "השוו כיצד נטל המס משתנה בין רמות הכנסה שונות.",
       pl: "Porównaj, jak obciążenie podatkowe zmienia się przy różnych dochodach.",

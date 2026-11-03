@@ -21,7 +21,7 @@ export const financialFraudWarningSigns_Skill_Data = buildSkillConfig({
     vi: "Dấu hiệu cảnh báo lừa đảo tài chính",
     ta: "நிதி மோசடி எச்சரிக்கை அறிகுறிகள்",
     te: "ఆర్థిక మోసాల హెచ్చరిక సంకేతాలు",
-    mr: "आर्थिक फसवणुकीची इशारे",
+    mr: "आर्थिक फसवणुकीचे इशारे",
     ms: "Tanda Amaran Penipuan Kewangan",
     he: "סימני אזהרה להונאה פיננסית",
     pl: "Oznaki oszustwa finansowego",

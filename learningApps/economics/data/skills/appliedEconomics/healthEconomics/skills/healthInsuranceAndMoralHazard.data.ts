@@ -54,7 +54,7 @@ export const healthInsuranceAndMoralHazard_Skill_Data = buildSkillConfig({
       vi: "Hiểu bảo hiểm có thể thay đổi người trả tiền và cách sử dụng dịch vụ y tế như thế nào.",
       ta: "காப்பீடு யார் பணம் செலுத்துகிறார் என்பதையும் சேவைப் பயன்பாட்டையும் எவ்வாறு மாற்றலாம் என்பதைப் புரிந்துகொள்.",
       te: "బీమా ఎవరు చెల్లిస్తారు, సేవలను ఎలా ఉపయోగిస్తారు అన్న రెండింటినీ ఎలా మార్చుతుందో తెలుసుకోండి.",
-      mr: "विमा पैसे कोण देते आणि सेवा कशा वापरल्या जातात हे दोन्ही कसे बदलू शकतो ते समजून घे.",
+      mr: "विम्यामुळे आरोग्यसेवेचा खर्च कोण उचलतो आणि सेवांचा वापर कसा होतो, हे दोन्ही कसे बदलू शकते ते समजून घे.",
       ms: "Fahami bagaimana insurans mengubah pihak yang membayar dan cara perkhidmatan digunakan.",
       he: "הבינו כיצד ביטוח עשוי לשנות מי משלם וכיצד משתמשים בשירותים.",
       pl: "Zrozum, jak ubezpieczenie może zmienić płatnika i sposób korzystania z usług.",
