@@ -20,7 +20,7 @@ export const compareDenseAndMoEModels_Skill_Data = buildSkillConfig({
     tr: 'Yoğun ve uzmanlar karışımı modellerini karşılaştırmak',
     vi: 'So sánh mô hình đặc và hỗn hợp chuyên gia',
     ta: 'அடர்த்தியான மாதிரிகளையும் நிபுணர் கலவை மாதிரிகளையும் ஒப்பிடுதல்',
-    te: 'அడர்த்தியான నమూనాలు, నిపుణుల మిశ్రమ నమూనాలను పోల్చడం',
+    te: 'సాంద్రమైన నమూనాలు, నిపుణుల మిశ్రమ నమూనాలను పోల్చడం',
     mr: 'घन आणि तज्ज्ञांच्या मिश्रणाचे मॉडेल यांची तुलना करणे',
     ms: 'Membandingkan model padat dan campuran pakar',
     he: 'השוואת מודלים צפופים ומודלי תערובת מומחים',
