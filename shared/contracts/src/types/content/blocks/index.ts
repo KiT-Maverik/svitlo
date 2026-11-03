@@ -89,6 +89,7 @@ export type { ContentBlock_Youtube_Response } from './youtube.types';
 export type { ContentBlock_Video_Response } from './video.types';
 export type { ContentBlock_Image_Response } from './image.types';
 export type { ContentBlock_Checkpoint_Response } from './checkpoint.types';
+export type { ContentBlock_Audio_Response } from './audio.types';
 
 export type {
   HighlightTone,
