@@ -17,7 +17,7 @@ type Youtube_Display<Value> =
       | { title?: Value; hint: Value }
     ));
 
-type ContentBlock_Youtube_Data = ContentBlock_Data_Meta & {
+type ContentBlock_Youtube_Data = ContentBlock_Data_Meta<'youtube'> & {
   href: Locale_Config;
   fallback?: Youtube_Fallback<Locale_Config>;
 } & Youtube_Display<Locale_Config>;
