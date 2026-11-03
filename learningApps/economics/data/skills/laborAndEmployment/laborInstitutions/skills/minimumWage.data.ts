@@ -13,7 +13,7 @@ export const minimumWage_Skill_Data = buildSkillConfig({
     bn: "ন্যূনতম মজুরি",
     pt: "Salário mínimo",
     ur: "کم از کم اجرت",
-    id: "Upah Minimum",
+    id: "Upah minimum",
     de: "Mindestlohn",
     ja: "最低賃金",
     ko: "최저 임금",

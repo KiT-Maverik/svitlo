@@ -15,7 +15,7 @@ export const advertisingAndCommunications_SkillGroup_Data = buildSkillGroupConfi
     bn: "বিজ্ঞাপন ও যোগাযোগ",
     pt: "Publicidade e comunicação",
     ur: "اشتہارات اور ابلاغ",
-    id: "Periklanan dan Komunikasi",
+    id: "Periklanan dan komunikasi",
     de: "Werbung und Kommunikation",
     ja: "広告とコミュニケーション",
     ko: "광고와 커뮤니케이션",

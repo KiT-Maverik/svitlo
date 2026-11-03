@@ -42,7 +42,7 @@ export const macroeconomicShocks_Skill_Data = buildSkillConfig({
       hi: "तुलना करें कि विभिन्न प्रकार के झटके अर्थव्यवस्था को कैसे प्रभावित करते हैं।",
       es: "Compara cómo afectan a la economía distintos tipos de perturbaciones.",
       ar: "قارن آثار أنواع مختلفة من الصدمات على الاقتصاد.",
-      fr: "Comparez les effets de différents types de chocs sur l’économie.",
+      fr: "Compare les effets de différents types de chocs sur l’économie.",
       bn: "বিভিন্ন ধরনের ধাক্কা অর্থনীতিকে কীভাবে প্রভাবিত করে তা তুলনা করো।",
       pt: "Compare como diferentes tipos de choques afetam a economia.",
       ur: "موازنہ کریں کہ مختلف قسم کے جھٹکے معیشت کو کیسے متاثر کرتے ہیں۔",

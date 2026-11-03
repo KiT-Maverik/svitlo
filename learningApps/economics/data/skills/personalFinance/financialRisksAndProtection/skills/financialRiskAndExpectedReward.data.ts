@@ -13,7 +13,7 @@ export const financialRiskAndExpectedReward_Skill_Data = buildSkillConfig({
     bn: "আর্থিক ঝুঁকি ও প্রত্যাশিত লাভ",
     pt: "Risco financeiro e retorno esperado",
     ur: "مالی خطرہ اور متوقع فائدہ",
-    id: "Risiko Keuangan dan Imbalan yang Diharapkan",
+    id: "Risiko keuangan dan imbalan yang diharapkan",
     de: "Finanzrisiko und erwarteter Ertrag",
     ja: "金融リスクと期待収益",
     ko: "금융 위험과 기대 수익",

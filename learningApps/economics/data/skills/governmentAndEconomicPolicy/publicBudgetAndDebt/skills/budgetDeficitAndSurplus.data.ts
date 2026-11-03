@@ -42,7 +42,7 @@ export const budgetDeficitAndSurplus_Skill_Data = buildSkillConfig({
       hi: "सालाना बजट घाटे और कुल सरकारी ऋण का अंतर समझें।",
       es: "Comprende la diferencia entre el déficit de un año y la deuda pública total.",
       ar: "افهم الفرق بين العجز السنوي وإجمالي الدَّين العام.",
-      fr: "Distinguez le déficit d’une année de l’ensemble de la dette publique.",
+      fr: "Distingue le déficit d’une année de l’ensemble de la dette publique.",
       bn: "এক বছরের ঘাটতি ও মোট সরকারি ঋণের পার্থক্য বোঝো।",
       pt: "Entenda a diferença entre o déficit anual e o total da dívida pública.",
       ur: "سالانہ خسارے اور کل سرکاری قرض میں فرق سمجھیں۔",

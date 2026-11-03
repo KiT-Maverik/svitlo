@@ -13,7 +13,7 @@ export const testingMarketDemand_Skill_Data = buildSkillConfig({
     bn: "বাজারের চাহিদা পরীক্ষা",
     pt: "Teste de demanda de mercado",
     ur: "بازاری طلب کی جانچ",
-    id: "Pengujian Permintaan Pasar",
+    id: "Pengujian permintaan pasar",
     de: "Marktnachfrage testen",
     ja: "市場需要の検証",
     ko: "시장 수요 검증",

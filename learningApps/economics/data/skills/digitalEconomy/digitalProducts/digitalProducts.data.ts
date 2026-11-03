@@ -53,7 +53,7 @@ export const digitalProducts_SkillGroup_Data = buildSkillGroupConfig({
       bn: "ডিজিটাল পণ্য তৈরি ব্যয়বহুল হলেও অনুলিপি করা সস্তা কেন তা জানো।",
       pt: "Descubra por que criar produtos digitais pode custar caro, mas copiá-los custa pouco.",
       ur: "جانیں کہ ڈیجیٹل مصنوعات بنانا مہنگا لیکن ان کی نقل تیار کرنا سستا کیوں ہو سکتا ہے۔",
-      id: "Pelajari mengapa membuat produk digital mahal, tetapi menggandakannya murah.",
+      id: "Pelajari mengapa membuat produk digital bisa mahal, sementara menggandakannya bisa murah.",
       de: "Erfahre, warum digitale Produkte teuer in der Entwicklung, aber günstig zu kopieren sein können.",
       ja: "デジタル製品は開発費が高くても、複製費は低くなり得る理由を考えましょう。",
       ko: "디지털 상품은 개발비가 높아도 복제 비용은 낮은 이유를 알아보세요.",

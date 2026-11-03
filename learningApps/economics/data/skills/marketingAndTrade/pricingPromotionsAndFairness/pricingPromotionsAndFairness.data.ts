@@ -15,7 +15,7 @@ export const pricingPromotionsAndFairness_SkillGroup_Data = buildSkillGroupConfi
     bn: "দাম, প্রচার ও ন্যায্যতা",
     pt: "Preços, promoções e justiça",
     ur: "قیمتیں، تشہیر اور انصاف",
-    id: "Harga, Promosi, dan Keadilan",
+    id: "Harga, promosi, dan keadilan",
     de: "Preise, Aktionen und Fairness",
     ja: "価格、販促、公正さ",
     ko: "가격, 판촉, 공정성",

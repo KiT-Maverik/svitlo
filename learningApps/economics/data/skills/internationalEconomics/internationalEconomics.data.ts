@@ -53,7 +53,7 @@ export const internationalEconomics_SkillDomain_Data = buildSkillDomainConfig({
       hi: "जानें कि व्यापार, मुद्राएँ और निवेश देशों को कैसे जोड़ते हैं।",
       es: "Explora cómo el comercio, las monedas y la inversión conectan países.",
       ar: "استكشف كيف تربط التجارة والعملات والاستثمارات بين الدول.",
-      fr: "Explorez comment le commerce, les monnaies et les investissements relient les pays.",
+      fr: "Explore comment le commerce, les monnaies et les investissements relient les pays.",
       bn: "বাণিজ্য, মুদ্রা ও বিনিয়োগ কীভাবে দেশগুলোকে যুক্ত করে তা জানো।",
       pt: "Explore como comércio, moedas e investimentos conectam países.",
       ur: "جانیں کہ تجارت، کرنسیاں اور سرمایہ کاری مختلف ملکوں کو کیسے جوڑتے ہیں۔",

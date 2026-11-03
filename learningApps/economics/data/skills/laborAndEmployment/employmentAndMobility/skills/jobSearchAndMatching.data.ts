@@ -13,7 +13,7 @@ export const jobSearchAndMatching_Skill_Data = buildSkillConfig({
     bn: "চাকরি খোঁজা ও মিল",
     pt: "Busca e compatibilidade de empregos",
     ur: "نوکری کی تلاش اور مطابقت",
-    id: "Pencarian dan Kecocokan Pekerjaan",
+    id: "Pencarian dan kecocokan pekerjaan",
     de: "Jobsuche und Stellenvermittlung",
     ja: "求職と職務マッチング",
     ko: "구직과 일자리 매칭",

@@ -42,7 +42,7 @@ export const businessCycle_Skill_Data = buildSkillConfig({
       hi: "व्यापार चक्र के विभिन्न चरणों को पहचानें।",
       es: "Reconoce las distintas fases del ciclo económico.",
       ar: "تعرّف المراحل المختلفة للدورة الاقتصادية.",
-      fr: "Reconnaissez les différentes phases du cycle économique.",
+      fr: "Reconnais les différentes phases du cycle économique.",
       bn: "অর্থনৈতিক চক্রের বিভিন্ন ধাপ চিহ্নিত করো।",
       pt: "Reconheça as diferentes fases do ciclo econômico.",
       ur: "معاشی چکر کے مختلف مراحل کو پہچانیں۔",

@@ -13,7 +13,7 @@ export const manipulativeCommercialTactics_Skill_Data = buildSkillConfig({
     bn: "প্ররোচনামূলক বাণিজ্যিক কৌশল",
     pt: "Táticas comerciais manipuladoras",
     ur: "ہیرا پھیری کے تجارتی ہتھکنڈے",
-    id: "Taktik Dagang Manipulatif",
+    id: "Taktik dagang manipulatif",
     de: "Manipulative Verkaufstaktiken",
     ja: "操作的な販売手法",
     ko: "조작적 판매 전술",

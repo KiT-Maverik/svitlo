@@ -15,7 +15,7 @@ export const laborInstitutions_SkillGroup_Data = buildSkillGroupConfig({
     bn: "শ্রম প্রতিষ্ঠান",
     pt: "Instituições trabalhistas",
     ur: "محنت کے ادارے",
-    id: "Lembaga Ketenagakerjaan",
+    id: "Lembaga ketenagakerjaan",
     de: "Arbeitsinstitutionen",
     ja: "労働制度",
     ko: "노동 제도",

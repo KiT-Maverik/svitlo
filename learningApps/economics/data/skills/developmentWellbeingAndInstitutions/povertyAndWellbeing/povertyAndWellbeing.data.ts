@@ -49,7 +49,7 @@ export const povertyAndWellbeing_SkillGroup_Data = buildSkillGroupConfig({
       hi: "गरीबी और कल्याण को मापने के विभिन्न तरीकों के बारे में जानें।",
       es: "Descubre distintas maneras de medir la pobreza y el bienestar.",
       ar: "تعرّف الطرق المختلفة لقياس الفقر والرفاه.",
-      fr: "Découvrez différentes façons de mesurer la pauvreté et le bien-être.",
+      fr: "Découvre différentes façons de mesurer la pauvreté et le bien-être.",
       bn: "দারিদ্র্য ও কল্যাণ মাপার বিভিন্ন পদ্ধতি জানো।",
       pt: "Conheça maneiras diferentes de medir pobreza e bem-estar.",
       ur: "غربت اور فلاح کو ماپنے کے مختلف طریقے جانیں۔",

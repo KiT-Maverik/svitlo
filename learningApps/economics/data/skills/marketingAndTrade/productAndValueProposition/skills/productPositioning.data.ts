@@ -13,7 +13,7 @@ export const productPositioning_Skill_Data = buildSkillConfig({
     bn: "পণ্যের অবস্থান নির্ধারণ",
     pt: "Posicionamento de produto",
     ur: "مصنوع کی پوزیشننگ",
-    id: "Pemosisian Produk",
+    id: "Pemosisian produk",
     de: "Produktpositionierung",
     ja: "商品のポジショニング",
     ko: "제품 포지셔닝",

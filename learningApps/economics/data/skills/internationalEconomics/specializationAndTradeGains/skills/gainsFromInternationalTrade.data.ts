@@ -42,7 +42,7 @@ export const gainsFromInternationalTrade_Skill_Data = buildSkillConfig({
       hi: "जानें कि व्यापार से देशों को लाभ होते हुए भी कुछ समूहों को नुकसान क्यों हो सकता है।",
       es: "Explora cómo los países pueden beneficiarse del comercio mientras algunos grupos pierden.",
       ar: "اكتشف كيف تستفيد الدول من التجارة رغم تضرر بعض الفئات.",
-      fr: "Explorez comment les pays gagnent à commercer alors que certains groupes peuvent perdre.",
+      fr: "Explore comment les pays gagnent à commercer alors que certains groupes peuvent perdre.",
       bn: "কিছু গোষ্ঠী ক্ষতিগ্রস্ত হলেও দেশগুলো কীভাবে বাণিজ্যে লাভবান হয় তা জানো।",
       pt: "Explore como países podem se beneficiar do comércio enquanto certos grupos perdem.",
       ur: "جانیں کہ ملک تجارت سے فائدہ اٹھاتے ہوئے کچھ گروہوں کو نقصان کیوں پہنچ سکتا ہے۔",

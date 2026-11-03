@@ -19,7 +19,7 @@ export const personalFinance_SkillDomain_Data = buildSkillDomainConfig({
     bn: "ব্যক্তিগত অর্থব্যবস্থা",
     pt: "Finanças pessoais",
     ur: "ذاتی مالیات",
-    id: "Keuangan Pribadi",
+    id: "Keuangan pribadi",
     de: "Persönliche Finanzen",
     ja: "個人の家計管理",
     ko: "개인 재무",

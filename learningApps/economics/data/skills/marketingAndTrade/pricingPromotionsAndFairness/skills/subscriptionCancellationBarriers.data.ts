@@ -13,7 +13,7 @@ export const subscriptionCancellationBarriers_Skill_Data = buildSkillConfig({
     bn: "সাবস্ক্রিপশন বাতিলে বাধা",
     pt: "Barreiras ao cancelamento de assinaturas",
     ur: "رکنیت ختم کرنے میں رکاوٹیں",
-    id: "Hambatan Membatalkan Langganan",
+    id: "Hambatan membatalkan langganan",
     de: "Hürden bei der Kündigung von Abos",
     ja: "定期契約の解約障壁",
     ko: "구독 해지 장벽",

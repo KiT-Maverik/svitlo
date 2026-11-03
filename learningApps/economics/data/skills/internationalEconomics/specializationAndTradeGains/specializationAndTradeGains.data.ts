@@ -50,7 +50,7 @@ export const specializationAndTradeGains_SkillGroup_Data = buildSkillGroupConfig
       hi: "जानें कि देश विशेषज्ञता क्यों अपनाते हैं और व्यापार से क्या लाभ पाते हैं।",
       es: "Descubre por qué los países se especializan y qué ganan comerciando.",
       ar: "اكتشف لماذا تتخصص الدول وماذا تكسب من التبادل التجاري.",
-      fr: "Découvrez pourquoi les pays se spécialisent et ce qu’ils gagnent au commerce.",
+      fr: "Découvre pourquoi les pays se spécialisent et ce qu’ils gagnent au commerce.",
       bn: "দেশগুলো কেন বিশেষায়িত উৎপাদন করে এবং বাণিজ্যে কী পায় তা জানো।",
       pt: "Descubra por que os países se especializam e o que ganham ao comerciar.",
       ur: "جانیں کہ ملک تخصص کیوں اختیار کرتے ہیں اور تجارت سے کیا حاصل کرتے ہیں۔",

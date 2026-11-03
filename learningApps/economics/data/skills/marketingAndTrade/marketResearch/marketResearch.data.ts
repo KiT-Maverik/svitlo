@@ -15,7 +15,7 @@ export const marketResearch_SkillGroup_Data = buildSkillGroupConfig({
     bn: "বাজার গবেষণা",
     pt: "Pesquisa de mercado",
     ur: "بازار کی تحقیق",
-    id: "Riset Pasar",
+    id: "Riset pasar",
     de: "Marktforschung",
     ja: "市場調査",
     ko: "시장 조사",

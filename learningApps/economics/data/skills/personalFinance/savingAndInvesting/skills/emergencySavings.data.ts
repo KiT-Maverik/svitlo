@@ -13,7 +13,7 @@ export const emergencySavings_Skill_Data = buildSkillConfig({
     bn: "জরুরি সঞ্চয়",
     pt: "Reserva de emergência",
     ur: "ہنگامی بچت",
-    id: "Tabungan Darurat",
+    id: "Tabungan darurat",
     de: "Notfallrücklagen",
     ja: "緊急時の貯蓄",
     ko: "비상 저축",

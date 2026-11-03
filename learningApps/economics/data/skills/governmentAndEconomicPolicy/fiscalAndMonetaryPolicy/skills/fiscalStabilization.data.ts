@@ -42,7 +42,7 @@ export const fiscalStabilization_Skill_Data = buildSkillConfig({
       hi: "जानें कि सरकारी खर्च और कर आर्थिक गतिविधियों को कैसे प्रभावित कर सकते हैं।",
       es: "Explora cómo el gasto público y los impuestos pueden influir en la actividad económica.",
       ar: "استكشف تأثير الإنفاق الحكومي والضرائب في النشاط الاقتصادي.",
-      fr: "Explorez comment les dépenses publiques et les impôts influencent l’activité économique.",
+      fr: "Explore comment les dépenses publiques et les impôts influencent l’activité économique.",
       bn: "সরকারি ব্যয় ও কর অর্থনৈতিক কার্যকলাপকে কীভাবে প্রভাবিত করে তা জানো।",
       pt: "Explore como gastos públicos e tributos podem influenciar a atividade econômica.",
       ur: "جانیں کہ سرکاری اخراجات اور ٹیکس معاشی سرگرمی پر کیسے اثر ڈال سکتے ہیں۔",

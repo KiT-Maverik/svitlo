@@ -13,7 +13,7 @@ export const wholesaleTrade_Skill_Data = buildSkillConfig({
     bn: "পাইকারি বাণিজ্য",
     pt: "Comércio atacadista",
     ur: "تھوک تجارت",
-    id: "Perdagangan Grosir",
+    id: "Perdagangan grosir",
     de: "Großhandel",
     ja: "卸売業",
     ko: "도매업",

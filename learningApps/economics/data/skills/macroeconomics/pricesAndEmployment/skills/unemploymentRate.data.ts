@@ -42,7 +42,7 @@ export const unemploymentRate_Skill_Data = buildSkillConfig({
       hi: "समझें कि बेरोज़गारी मापते समय किन लोगों को गिना जाता है।",
       es: "Comprende quiénes se cuentan al medir el desempleo.",
       ar: "افهم من يُحتسب عند قياس البطالة.",
-      fr: "Comprenez qui est comptabilisé dans la mesure du chômage.",
+      fr: "Comprends qui est comptabilisé dans la mesure du chômage.",
       bn: "বেকারত্ব মাপার সময় কাদের গণনা করা হয় তা বোঝো।",
       pt: "Entenda quem entra no cálculo do desemprego.",
       ur: "سمجھیں کہ بے روزگاری کی پیمائش میں کن لوگوں کو گنا جاتا ہے۔",

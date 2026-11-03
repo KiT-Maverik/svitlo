@@ -13,7 +13,7 @@ export const bankLiquidity_Skill_Data = buildSkillConfig({
     bn: "ব্যাংকের তারল্য",
     pt: "Liquidez bancária",
     ur: "بینک کی نقد دستیابی",
-    id: "Likuiditas Bank",
+    id: "Likuiditas bank",
     de: "Bankliquidität",
     ja: "銀行の流動性",
     ko: "은행 유동성",

@@ -42,7 +42,7 @@ export const potentialOutput_Skill_Data = buildSkillConfig({
       hi: "समझें कि अर्थव्यवस्था अपनी टिकाऊ क्षमता से कम या अधिक उत्पादन क्यों कर सकती है।",
       es: "Comprende por qué una economía puede producir por debajo o por encima de su capacidad sostenible.",
       ar: "افهم لماذا قد ينتج الاقتصاد أقل أو أكثر من قدرته المستدامة.",
-      fr: "Comprenez pourquoi une économie peut produire en dessous ou au-dessus de sa capacité durable.",
+      fr: "Comprends pourquoi une économie peut produire en dessous ou au-dessus de sa capacité durable.",
       bn: "টেকসই সক্ষমতার নিচে বা ওপরে অর্থনীতি কেন উৎপাদন করতে পারে তা বুঝে নাও।",
       pt: "Entenda por que uma economia pode produzir abaixo ou acima da capacidade sustentável.",
       ur: "سمجھیں کہ معیشت اپنی پائیدار پیداواری صلاحیت سے کم یا زیادہ پیداوار کیوں دے سکتی ہے۔",

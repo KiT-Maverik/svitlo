@@ -13,7 +13,7 @@ export const sponsoredEndorsementsAndInfluencerAdvertising_Skill_Data = buildSki
     bn: "স্পনসর করা সুপারিশ ও ইনফ্লুয়েন্সার বিজ্ঞাপন",
     pt: "Recomendações patrocinadas e publicidade de influenciadores",
     ur: "معاوضے والی سفارشات اور انفلوئنسر اشتہار",
-    id: "Dukungan Bersponsor dan Iklan Influencer",
+    id: "Dukungan bersponsor dan iklan influencer",
     de: "Gesponserte Empfehlungen und Influencer-Werbung",
     ja: "スポンサー推薦とインフルエンサー広告",
     ko: "후원 추천과 인플루언서 광고",

@@ -42,7 +42,7 @@ export const socialTransfers_Skill_Data = buildSkillConfig({
       hi: "जानें कि सामाजिक भुगतान परिवार के संसाधनों को कैसे बदलते हैं।",
       es: "Explora cómo las ayudas sociales modifican los recursos de los hogares.",
       ar: "استكشف كيف تغيّر المدفوعات الاجتماعية موارد الأسر.",
-      fr: "Explorez comment les prestations sociales modifient les ressources des ménages.",
+      fr: "Explore comment les prestations sociales modifient les ressources des ménages.",
       bn: "সামাজিক ভাতা পরিবারের সম্পদ কীভাবে বদলায় তা অন্বেষণ করো।",
       pt: "Explore como benefícios sociais mudam os recursos das famílias.",
       ur: "جانیں کہ سماجی ادائیگیاں گھریلو وسائل کیسے بدلتی ہیں۔",

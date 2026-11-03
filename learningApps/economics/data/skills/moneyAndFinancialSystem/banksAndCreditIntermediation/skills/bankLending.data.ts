@@ -13,7 +13,7 @@ export const bankLending_Skill_Data = buildSkillConfig({
     bn: "ব্যাংকের ঋণ প্রদান",
     pt: "Empréstimos bancários",
     ur: "بینکوں کی قرض دہی",
-    id: "Pemberian Kredit Bank",
+    id: "Pemberian kredit bank",
     de: "Kreditvergabe durch Banken",
     ja: "銀行貸出",
     ko: "은행 대출",

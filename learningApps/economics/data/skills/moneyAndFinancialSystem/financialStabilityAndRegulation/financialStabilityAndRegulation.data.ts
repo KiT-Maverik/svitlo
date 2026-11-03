@@ -15,7 +15,7 @@ export const financialStabilityAndRegulation_SkillGroup_Data = buildSkillGroupCo
     bn: "আর্থিক স্থিতিশীলতা ও নিয়ন্ত্রণ",
     pt: "Estabilidade e regulação financeira",
     ur: "مالی استحکام اور ضابطے",
-    id: "Stabilitas dan Regulasi Keuangan",
+    id: "Stabilitas dan regulasi keuangan",
     de: "Finanzstabilität und Regulierung",
     ja: "金融の安定と規制",
     ko: "금융 안정과 규제",

@@ -18,7 +18,7 @@ export const moneyAndFinancialSystem_SkillDomain_Data = buildSkillDomainConfig({
     bn: "অর্থ ও আর্থিক ব্যবস্থা",
     pt: "Dinheiro e sistema financeiro",
     ur: "رقم اور مالی نظام",
-    id: "Uang dan Sistem Keuangan",
+    id: "Uang dan sistem keuangan",
     de: "Geld und Finanzsystem",
     ja: "貨幣と金融システム",
     ko: "화폐와 금융 시스템",

@@ -42,7 +42,7 @@ export const causesAndMechanismsOfInflation_Skill_Data = buildSkillConfig({
       hi: "जानें कि पूरे अर्थतंत्र में कीमतें बढ़ने के कौन-कौन से कारण हैं।",
       es: "Explora las distintas razones por las que suben los precios en toda la economía.",
       ar: "استكشف الأسباب المختلفة لارتفاع الأسعار في الاقتصاد كله.",
-      fr: "Explorez les différentes raisons pour lesquelles les prix augmentent dans l’économie.",
+      fr: "Explore les différentes raisons pour lesquelles les prix augmentent dans l’économie.",
       bn: "সারা অর্থনীতিতে দাম বাড়ার বিভিন্ন কারণ অন্বেষণ করো।",
       pt: "Explore as diferentes razões para a alta de preços em toda a economia.",
       ur: "جانیں کہ پوری معیشت میں قیمتیں بڑھنے کی مختلف وجوہات کیا ہیں۔",
