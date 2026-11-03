@@ -14,7 +14,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import LabelOutlined from '@mui/icons-material/LabelOutlined';
 import MoreVert from '@mui/icons-material/MoreVert';
 import LockOpenOutlined from '@mui/icons-material/LockOpenOutlined';
-import { QuestionActions } from '../questions/helpers';
+import Stack from '@mui/material/Stack';
 import styles from './Flashcard.module.css';
 import { aria } from './Flashcard.constants';
 import { locales } from './Flashcard.locale';
@@ -102,18 +102,14 @@ export const Flashcard = forwardRef<HTMLButtonElement, FlashcardProps>(function 
             <>
               <Divider className={styles.flashControlsDivider} />
               <div className={styles.flashControls}>
-                <QuestionActions
-                  left={
-                    <Button variant="outlined" disabled={disabled} onClick={() => onRate(false)}>
+                <Stack direction="row" justifyContent="space-between" gap={2}>
+                  <Button variant="outlined" disabled={disabled} onClick={() => onRate(false)}>
                       {locale.flashcard.actions.forgot}
                     </Button>
-                  }
-                  right={
-                    <Button variant="outlined" disabled={disabled} onClick={() => onRate(true)}>
+                  <Button variant="outlined" disabled={disabled} onClick={() => onRate(true)}>
                       {locale.flashcard.actions.remembered}
                     </Button>
-                  }
-                />
+                </Stack>
               </div>
             </>
           )}
