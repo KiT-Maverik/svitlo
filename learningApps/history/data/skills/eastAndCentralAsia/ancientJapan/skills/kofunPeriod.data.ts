@@ -4,7 +4,7 @@ export const kofunPeriod_Skill_Data = buildSkillConfig({
   slug: "kofunPeriod",
   id: "fa1376e3-1f86-468a-8e88-3ea531017114",
   name: {
-    en: "Період Кофун",
+    en: "Kofun Period",
     zh: "古坟时代",
     hi: "कोफुन काल",
     es: "Período Kofun",

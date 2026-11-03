@@ -4,7 +4,7 @@ export const earlyRomanCommunities_Skill_Data = buildSkillConfig({
   slug: "earlyRomanCommunities",
   id: "adf1adab-16d8-4020-94d4-0ac8abdb2d48",
   name: {
-    en: "Ранні римські громади",
+    en: "Early Roman Communities",
     zh: "早期罗马社群",
     hi: "प्रारंभिक रोमन समुदाय",
     es: "Primeras comunidades romanas",

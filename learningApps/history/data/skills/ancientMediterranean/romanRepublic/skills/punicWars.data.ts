@@ -4,7 +4,7 @@ export const punicWars_Skill_Data = buildSkillConfig({
   slug: "punicWars",
   id: "82590301-bc8b-4455-b4a5-68cdb250555b",
   name: {
-    en: "Пунічні війни",
+    en: "Punic Wars",
     zh: "布匿战争",
     hi: "प्यूनिक युद्ध",
     es: "Guerras púnicas",

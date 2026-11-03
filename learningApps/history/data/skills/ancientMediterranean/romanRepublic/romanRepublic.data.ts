@@ -6,7 +6,7 @@ export const romanRepublic_SkillGroup_Data = buildSkillGroupConfig({
   slug: "romanRepublic",
   id: "54625705-7687-4170-8ff2-45c99bdf217b",
   name: {
-    en: "Римська республіка",
+    en: "Roman Republic",
     zh: "罗马共和国",
     hi: "रोमन गणराज्य",
     es: "República romana",

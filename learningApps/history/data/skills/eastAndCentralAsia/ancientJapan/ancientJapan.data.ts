@@ -6,7 +6,7 @@ export const ancientJapan_SkillGroup_Data = buildSkillGroupConfig({
   slug: "ancientJapan",
   id: "db7670ec-8b18-41b9-b78d-47b961434f18",
   name: {
-    en: "Японія",
+    en: "Japan",
     zh: "古代日本",
     hi: "प्राचीन जापान",
     es: "Japón antiguo",

@@ -4,7 +4,7 @@ export const yayoiCulture_Skill_Data = buildSkillConfig({
   slug: "yayoiCulture",
   id: "9a7aee8a-863a-463c-b81a-f3aec307863f",
   name: {
-    en: "Культура Яйой",
+    en: "Yayoi Culture",
     zh: "弥生文化",
     hi: "यायोई संस्कृति",
     es: "Cultura Yayoi",

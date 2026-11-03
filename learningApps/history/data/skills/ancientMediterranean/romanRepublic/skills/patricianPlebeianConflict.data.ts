@@ -4,7 +4,7 @@ export const patricianPlebeianConflict_Skill_Data = buildSkillConfig({
   slug: "patricianPlebeianConflict",
   id: "3b20808e-778a-4c9b-a9db-9e798c2af53c",
   name: {
-    en: "Боротьба патриціїв і плебеїв",
+    en: "Patrician–Plebeian Conflict",
     zh: "贵族与平民的斗争",
     hi: "पैट्रिशियन और प्लेबियन संघर्ष",
     es: "Conflicto entre patricios y plebeyos",

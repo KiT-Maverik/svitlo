@@ -4,7 +4,7 @@ export const crisisOfRomanRepublic_Skill_Data = buildSkillConfig({
   slug: "crisisOfRomanRepublic",
   id: "74f4d5db-3b0a-4dfd-8aae-becf79e3934a",
   name: {
-    en: "Криза Республіки",
+    en: "Crisis of the Roman Republic",
     zh: "罗马共和国危机",
     hi: "रोमन गणराज्य का संकट",
     es: "Crisis de la República romana",

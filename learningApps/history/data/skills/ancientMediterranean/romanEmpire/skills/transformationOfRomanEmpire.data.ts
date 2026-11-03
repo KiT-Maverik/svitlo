@@ -4,7 +4,7 @@ export const transformationOfRomanEmpire_Skill_Data = buildSkillConfig({
   slug: "transformationOfRomanEmpire",
   id: "a00a2df0-33e3-4cf3-815a-ebd34f3c284e",
   name: {
-    en: "Трансформація Римської імперії",
+    en: "Transformation of the Roman Empire",
     zh: "罗马帝国的转型",
     hi: "रोमन साम्राज्य का रूपांतरण",
     es: "Transformación del Imperio romano",

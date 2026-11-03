@@ -4,7 +4,7 @@ export const romanRepublicanInstitutions_Skill_Data = buildSkillConfig({
   slug: "romanRepublicanInstitutions",
   id: "cd77ac85-fc1f-4a17-91ea-347ee8c61f2e",
   name: {
-    en: "Республіканські інститути",
+    en: "Roman Republican Institutions",
     zh: "罗马共和制度",
     hi: "रोमन गणराज्य की संस्थाएँ",
     es: "Instituciones de la República romana",

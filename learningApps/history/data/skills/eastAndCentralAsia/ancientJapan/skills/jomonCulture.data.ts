@@ -4,7 +4,7 @@ export const jomonCulture_Skill_Data = buildSkillConfig({
   slug: "jomonCulture",
   id: "35ab583a-3a28-4d12-8b22-4f5638bfc6f1",
   name: {
-    en: "Культура Дзьомон",
+    en: "Jōmon Culture",
     zh: "绳文文化",
     hi: "जोमोन संस्कृति",
     es: "Cultura Jōmon",
