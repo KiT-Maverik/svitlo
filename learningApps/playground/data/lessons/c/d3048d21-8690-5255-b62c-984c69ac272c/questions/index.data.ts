@@ -6,7 +6,7 @@ import { lightSpeedInWater_Question_Data } from './lightSpeedInWater.data';
 import { lightTravelsStraight_Question_Data } from './lightTravelsStraight.data';
 import { opaqueObjectShadow_Question_Data } from './opaqueObjectShadow.data';
 
-export const howLightMovesQuestionsData = {
+export const howLightMoves_Questions = {
   selectOneAnswer: {
     lightTravelsStraight: lightTravelsStraight_Question_Data,
     lightRayDirection: lightRayDirection_Question_Data,

@@ -1,12 +1,12 @@
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine';
 import { defineLessonData, type Lesson } from '@svitlo/engine/content';
-import { howLightMovesFlashcards } from './flashcards/index.data';
-import { howLightMovesQuestionsData } from './questions/index.data';
+import { howLightMoves_Flashcards } from './flashcards/index.data';
+import { howLightMoves_Questions } from './questions/index.data';
 import { practiceData } from './sections/practice/practice.data';
 import { quizData } from './sections/quiz/quiz.data';
 import { theoryData } from './sections/theory/theory.data';
 
-export const howLightMovesData = defineLessonData({
+export const howLightMoves_Data = defineLessonData({
   id: 'd3048d21-8690-5255-b62c-984c69ac272c',
   slug: 'howLightMoves',
   title:  {
@@ -40,7 +40,7 @@ export const howLightMovesData = defineLessonData({
     pl: 'Jak rozchodzi się światło',
     uk: 'Як рухається світло',
   },
-  flashcards: howLightMovesFlashcards,
+  flashcards: howLightMoves_Flashcards,
   parameters: {
     requireQuiz: true,
     languages: [
@@ -54,7 +54,7 @@ export const howLightMovesData = defineLessonData({
       order: ['theory', 'practice', 'quiz'],
     },
   },
-  questions: howLightMovesQuestionsData,
+  questions: howLightMoves_Questions,
   sections: {
     theory: theoryData,
     practice: practiceData,

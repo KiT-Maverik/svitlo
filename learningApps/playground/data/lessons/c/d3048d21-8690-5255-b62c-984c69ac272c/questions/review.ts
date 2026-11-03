@@ -1,6 +1,6 @@
 import type { ReviewCatalog } from '@svitlo/engine/content';
-import type { howLightMovesQuestionsData } from './index.data';
+import type { howLightMoves_Questions } from './index.data';
 
 export const howLightMovesQuestionsReview = {} satisfies ReviewCatalog<
-  keyof typeof howLightMovesQuestionsData.selectOneAnswer
+  keyof typeof howLightMoves_Questions.selectOneAnswer
 >;

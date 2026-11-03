@@ -5,7 +5,7 @@ import {
   type Section,
 } from '@svitlo/engine/content';
 import type { quizDefinition } from './quiz.definition';
-import { howLightMovesQuestionsData } from '../../questions/index.data';
+import { howLightMoves_Questions } from '../../questions/index.data';
 import { quiz } from './quiz';
 
 const quizBlock = {
@@ -23,7 +23,7 @@ const quizBlock = {
     allowQuestionNavigation: true,
     skippable: true,
   },
-  questions: howLightMovesQuestionsData.selectOneAnswer,
+  questions: howLightMoves_Questions.selectOneAnswer,
   results: { visibility: 'immediate', showScore: true },
   screen: {
     starting: { showDefaultContent: true },
