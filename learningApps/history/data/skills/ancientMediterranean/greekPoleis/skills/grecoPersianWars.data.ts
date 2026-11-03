@@ -42,7 +42,7 @@ export const grecoPersianWars_Skill_Data = buildSkillConfig({
       hi: "यूनानी नगर-राज्यों और फ़ारस के बीच हुए युद्धों को समझें।",
       es: "Comprende las guerras entre las ciudades-Estado griegas y Persia.",
       ar: "افهم الحروب بين المدن اليونانية المستقلة وبلاد فارس.",
-      fr: "Comprenez les guerres entre les cités grecques et la Perse.",
+      fr: "Comprends les guerres entre les cités grecques et la Perse.",
       bn: "গ্রিক নগররাষ্ট্র ও পারস্যের মধ্যে যুদ্ধগুলো বুঝে নাও।",
       pt: "Entenda as guerras entre as cidades-Estado gregas e a Pérsia.",
       ur: "یونانی شہری ریاستوں اور فارس کے درمیان جنگوں کو سمجھیں۔",

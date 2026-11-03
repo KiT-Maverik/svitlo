@@ -42,7 +42,7 @@ export const greekReligionAndMythology_Skill_Data = buildSkillConfig({
       hi: "समझें कि मिथकों और धार्मिक प्रथाओं ने यूनानी सामुदायिक जीवन को कैसे प्रभावित किया।",
       es: "Comprende cómo los mitos y las prácticas religiosas moldeaban la vida comunitaria griega.",
       ar: "افهم كيف شكّلت الأساطير والممارسات الدينية حياة المجتمعات اليونانية.",
-      fr: "Comprenez comment les mythes et les pratiques religieuses façonnaient la vie des communautés grecques.",
+      fr: "Comprends comment les mythes et les pratiques religieuses façonnaient la vie des communautés grecques.",
       bn: "পুরাণ ও ধর্মীয় অনুশীলন কীভাবে গ্রিক সমাজজীবনকে প্রভাবিত করেছিল তা বুঝে নাও।",
       pt: "Entenda como mitos e práticas religiosas moldavam a vida das comunidades gregas.",
       ur: "سمجھیں کہ اساطیر اور مذہبی رسم و رواج نے یونانی سماجی زندگی کو کیسے متاثر کیا۔",

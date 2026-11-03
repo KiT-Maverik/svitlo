@@ -42,7 +42,7 @@ export const athenianDemocracy_Skill_Data = buildSkillConfig({
       hi: "जानें कि एथेंस के लोकतंत्र में कौन भाग ले सकता था और कौन नहीं।",
       es: "Explora quién podía participar en la democracia ateniense y quién quedaba excluido.",
       ar: "اكتشف من كان يحق له المشاركة في الديمقراطية الأثينية ومن استُبعد.",
-      fr: "Explorez qui pouvait participer à la démocratie athénienne et qui en était exclu.",
+      fr: "Explore qui pouvait participer à la démocratie athénienne et qui en était exclu.",
       bn: "এথেন্সের গণতন্ত্রে কারা অংশ নিতে পারত আর কারা পারত না তা জানো।",
       pt: "Explore quem podia participar da democracia ateniense e quem era excluído.",
       ur: "جانیں کہ ایتھنز کی جمہوریت میں کون شریک ہو سکتا تھا اور کون نہیں۔",

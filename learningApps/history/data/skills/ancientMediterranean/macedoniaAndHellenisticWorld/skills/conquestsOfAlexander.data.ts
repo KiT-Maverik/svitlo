@@ -42,7 +42,7 @@ export const conquestsOfAlexander_Skill_Data = buildSkillConfig({
       hi: "सिकंदर की विजयों और उनके राजनीतिक परिणामों का अध्ययन करें।",
       es: "Sigue las conquistas de Alejandro y sus consecuencias políticas.",
       ar: "تتبّع فتوحات الإسكندر ونتائجها السياسية.",
-      fr: "Suivez les conquêtes d’Alexandre et leurs conséquences politiques.",
+      fr: "Suis les conquêtes d’Alexandre et leurs conséquences politiques.",
       bn: "আলেকজান্ডারের বিজয়াভিযান ও সেগুলোর রাজনৈতিক পরিণতি অনুসরণ করো।",
       pt: "Acompanhe as conquistas de Alexandre e suas consequências políticas.",
       ur: "سکندر کی فتوحات اور ان کے سیاسی نتائج کا جائزہ لیں۔",
