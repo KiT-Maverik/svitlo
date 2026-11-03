@@ -59,7 +59,7 @@ export const minoanCivilization_Skill_Data = buildSkillConfig({
       he: "חקרו את כרתים העתיקה ואת מגבלות מה שהכתב שלה יכול ללמד אותנו.",
       pl: "Poznaj starożytną Kretę i ograniczenia wiedzy płynącej z jej pisma.",
       uk: "Досліди давній Крит і межі того, що його писемність може розповісти.",
-      lt: "Tyrinėkite senovės Kretą ir ribas, ką gali atskleisti jos raštas.",
+      lt: "Tyrinėkite senovės Kretą ir jos rašto teikiamų žinių ribas.",
       lv: "Izpēti seno Krētu un robežas tam, ko var uzzināt no tās rakstības.",
       et: "Uuri muistset Kreetat ja seda, mida selle kiri meile võimaldab ning ei võimalda teada saada.",
       be: "Дасьледуй старажытны Крыт і межы таго, што яго пісьмо можа паведаміць.",
