@@ -57,7 +57,7 @@ export const explainHowGasPressureDependsOnTemperatureAtConstantVolume_Skill_Dat
       te: 'ఘనపరిమాణం స్థిరంగా ఉన్నప్పుడు ఉష్ణోగ్రత పెరిగితే వాయు పీడనం ఎందుకు పెరుగుతుందో వివరించండి.',
       mr: 'घनफळ स्थिर असताना तापमान वाढल्यावर वायूचा दाब का वाढतो ते स्पष्ट करा.',
       ms: 'Terangkan mengapa tekanan gas meningkat apabila suhu naik jika isi padu kekal.',
-      he: 'הסבר מדוע לחץ הגז עולה עם הטמפרטורה כאשר הנפח נשאר קבוע.',
+      he: 'הסבירו מדוע לחץ הגז עולה עם הטמפרטורה כאשר הנפח נשאר קבוע.',
       pl: 'Wyjaśnij, dlaczego ciśnienie gazu rośnie wraz z temperaturą przy stałej objętości.',
       uk: 'Пояснюй, чому за незмінного об’єму тиск газу зростає з підвищенням температури.',
       lt: 'Paaiškink, kodėl pastovaus tūrio dujų slėgis didėja kylant temperatūrai.',

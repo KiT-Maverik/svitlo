@@ -66,7 +66,7 @@ export const molecularPhysics_SkillDomain_Data = buildSkillDomainConfig({
       te: 'కణాల చలనం, అమరిక పదార్థ ప్రవర్తనను ఎలా వివరిస్తాయో అన్వేషించండి.',
       mr: 'कणांची गती आणि मांडणी पदार्थाचे वर्तन कसे स्पष्ट करतात ते शोधा.',
       ms: 'Terokai bagaimana gerakan dan susunan zarah menerangkan sifat jirim.',
-      he: 'חקור כיצד תנועה וסידור של חלקיקים מסבירים את התנהגות החומר.',
+      he: 'חקרו כיצד תנועה וסידור של חלקיקים מסבירים את התנהגות החומר.',
       pl: 'Poznaj, jak ruch i ułożenie cząstek wyjaśniają zachowanie materii.',
       uk: 'Досліджуй, як рух і розташування частинок пояснюють поведінку речовини.',
       lt: 'Tyrinėk, kaip dalelių judėjimas ir išsidėstymas paaiškina medžiagos savybes.',

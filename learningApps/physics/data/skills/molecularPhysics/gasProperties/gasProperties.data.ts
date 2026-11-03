@@ -63,7 +63,7 @@ export const gasProperties_SkillGroup_Data = buildSkillGroupConfig({
       te: 'కణ నమూనాతో వాయువుల భౌతిక లక్షణాలను అన్వేషించండి.',
       mr: 'कणांच्या मॉडेलने वायूंचे भौतिक गुणधर्म शोधा.',
       ms: 'Terokai sifat fizikal gas menggunakan model zarah.',
-      he: 'חקור את התכונות הפיזיקליות של גזים בעזרת מודל החלקיקים.',
+      he: 'חקרו את התכונות הפיזיקליות של גזים בעזרת מודל החלקיקים.',
       pl: 'Poznaj fizyczne właściwości gazów za pomocą modelu cząsteczkowego.',
       uk: 'Досліджуй фізичні властивості газів за допомогою моделі частинок.',
       lt: 'Tyrinėk fizines dujų savybes taikydamas dalelių modelį.',
