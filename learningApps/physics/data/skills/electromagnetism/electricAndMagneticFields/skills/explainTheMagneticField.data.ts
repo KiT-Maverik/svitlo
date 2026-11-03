@@ -57,7 +57,7 @@ export const explainTheMagneticField_Skill_Data = buildSkillConfig({
       te: 'అయస్కాంత క్షేత్రాలు కదిలే ఆవేశాలు, అయస్కాంత వస్తువులపై ఎలా ప్రభావం చూపుతాయో వివరించండి.',
       mr: 'चुंबकीय क्षेत्र गतिमान विद्युतभार आणि चुंबकीय वस्तूंवर कसा परिणाम करते ते स्पष्ट करा.',
       ms: 'Terangkan bagaimana medan magnet mempengaruhi cas bergerak dan objek bermagnet.',
-      he: 'הסבר כיצד שדות מגנטיים משפיעים על מטענים נעים ועל עצמים מגנטיים.',
+      he: 'הסבירו כיצד שדות מגנטיים משפיעים על מטענים נעים ועל עצמים מגנטיים.',
       pl: 'Wyjaśnij, jak pola magnetyczne działają na poruszające się ładunki i obiekty magnetyczne.',
       uk: 'Пояснюй, як магнітні поля впливають на рухомі заряди й магнітні тіла.',
       lt: 'Paaiškink, kaip magnetiniai laukai veikia judančius krūvius ir magnetinius kūnus.',

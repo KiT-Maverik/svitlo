@@ -57,7 +57,7 @@ export const distinguishAttractionFromRepulsionBetweenElectricCharges_Skill_Data
       te: 'వ్యతిరేక ఆవేశాల ఆకర్షణను, ఒకే రకం ఆవేశాల వికర్షణ నుంచి వేరు చేయండి.',
       mr: 'विरुद्ध भारांचे आकर्षण आणि समान भारांचे प्रतिकर्षण यांत फरक ओळखा.',
       ms: 'Bezakan tarikan cas bertentangan daripada tolakan cas sejenis.',
-      he: 'הבחן בין משיכת מטענים מנוגדים לדחיית מטענים מאותו סימן.',
+      he: 'הבחינו בין משיכת מטענים מנוגדים לדחיית מטענים מאותו סימן.',
       pl: 'Odróżnij przyciąganie ładunków różnoimiennych od odpychania jednoimiennych.',
       uk: 'Розрізняй притягання різнойменних зарядів і відштовхування однойменних.',
       lt: 'Atskirk priešingų krūvių trauką nuo vienodų krūvių stūmimo.',

@@ -57,7 +57,7 @@ export const explainConservationOfElectricCharge_Skill_Data = buildSkillConfig({
       te: 'ఆవేశం బదిలీ అయినప్పటికీ మొత్తం విద్యుదావేశం ఎందుకు స్థిరంగా ఉంటుందో వివరించండి.',
       mr: 'भार हस्तांतरणात एकूण विद्युतभार का कायम राहतो ते स्पष्ट करा.',
       ms: 'Terangkan mengapa jumlah cas elektrik kekal semasa pemindahan.',
-      he: 'הסבר מדוע המטען החשמלי הכולל נשאר קבוע בזמן העברתו.',
+      he: 'הסבירו מדוע המטען החשמלי הכולל נשאר קבוע בזמן העברתו.',
       pl: 'Wyjaśnij, dlaczego całkowity ładunek elektryczny nie zmienia się podczas przenoszenia.',
       uk: 'Пояснюй, чому сумарний електричний заряд не змінюється під час передавання.',
       lt: 'Paaiškink, kodėl bendras elektros krūvis perduodant išlieka pastovus.',
