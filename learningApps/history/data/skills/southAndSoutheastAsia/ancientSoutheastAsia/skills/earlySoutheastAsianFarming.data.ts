@@ -4,7 +4,7 @@ export const earlySoutheastAsianFarming_Skill_Data = buildSkillConfig({
   slug: "earlySoutheastAsianFarming",
   id: "11a48885-dcaa-4f45-826e-8ba2ae3389e2",
   name: {
-    en: "Ранні землеробські спільноти",
+    en: "Early Southeast Asian Farming Communities",
     zh: "东南亚早期农业社区",
     hi: "दक्षिण-पूर्व एशिया के प्रारंभिक कृषक समुदाय",
     es: "Primeras comunidades agrícolas del Sudeste Asiático",

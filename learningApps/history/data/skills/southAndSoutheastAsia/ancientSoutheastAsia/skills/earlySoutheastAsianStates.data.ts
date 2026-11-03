@@ -4,7 +4,7 @@ export const earlySoutheastAsianStates_Skill_Data = buildSkillConfig({
   slug: "earlySoutheastAsianStates",
   id: "b4ece043-b725-456e-b541-40d7b1a9c462",
   name: {
-    en: "Ранні державні утворення",
+    en: "Early Southeast Asian States",
     zh: "东南亚早期国家",
     hi: "दक्षिण-पूर्व एशिया के प्रारंभिक राज्य",
     es: "Primeros estados del Sudeste Asiático",

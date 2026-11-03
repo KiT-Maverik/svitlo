@@ -4,7 +4,7 @@ export const dongSonCulture_Skill_Data = buildSkillConfig({
   slug: "dongSonCulture",
   id: "be9bfc99-02fd-4dec-95fe-66021608c863",
   name: {
-    en: "Культура Донгшон",
+    en: "Dong Son Culture",
     zh: "东山文化",
     hi: "डोंग सोन संस्कृति",
     es: "Cultura Dong Son",

@@ -4,7 +4,7 @@ export const maritimeTradeOfSoutheastAsia_Skill_Data = buildSkillConfig({
   slug: "maritimeTradeOfSoutheastAsia",
   id: "1426feaa-27a5-42bb-87c9-988cc52097cd",
   name: {
-    en: "Морська торгівля регіону",
+    en: "Maritime Trade of Southeast Asia",
     zh: "东南亚海上贸易",
     hi: "दक्षिण-पूर्व एशिया का समुद्री व्यापार",
     es: "Comercio marítimo del Sudeste Asiático",

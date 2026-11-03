@@ -4,7 +4,7 @@ export const citiesOfTheIndusCivilization_Skill_Data = buildSkillConfig({
   slug: "citiesOfTheIndusCivilization",
   id: "970c36e7-04dd-4e0c-8e1a-6310f175d89f",
   name: {
-    en: "Міста Індської цивілізації",
+    en: "Cities of the Indus Civilization",
     zh: "印度河文明的城市",
     hi: "सिंधु सभ्यता के नगर",
     es: "Ciudades de la civilización del Indo",

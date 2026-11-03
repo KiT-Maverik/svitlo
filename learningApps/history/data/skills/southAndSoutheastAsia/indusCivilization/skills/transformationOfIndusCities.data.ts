@@ -4,7 +4,7 @@ export const transformationOfIndusCities_Skill_Data = buildSkillConfig({
   slug: "transformationOfIndusCities",
   id: "94eb068e-c5b6-49c7-a355-da7d0d5307e0",
   name: {
-    en: "Трансформація індських міст",
+    en: "Transformation of Indus Cities",
     zh: "印度河城市的转型",
     hi: "सिंधु नगरों का परिवर्तन",
     es: "Transformación de las ciudades del Indo",

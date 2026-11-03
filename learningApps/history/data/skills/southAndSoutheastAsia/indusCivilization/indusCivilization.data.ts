@@ -6,7 +6,7 @@ export const indusCivilization_SkillGroup_Data = buildSkillGroupConfig({
   slug: "indusCivilization",
   id: "2fb73927-8f98-41e4-be76-9179ae3f9426",
   name: {
-    en: "Індська цивілізація",
+    en: "Indus Civilization",
     zh: "印度河文明",
     hi: "सिंधु सभ्यता",
     es: "Civilización del Indo",

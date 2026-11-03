@@ -4,7 +4,7 @@ export const indusSigns_Skill_Data = buildSkillConfig({
   slug: "indusSigns",
   id: "7cf46757-ae12-478d-ab10-48f2904563f2",
   name: {
-    en: "Індські знаки",
+    en: "Indus Signs",
     zh: "印度河文字和符号",
     hi: "सिंधु चिह्न",
     es: "Signos del Indo",

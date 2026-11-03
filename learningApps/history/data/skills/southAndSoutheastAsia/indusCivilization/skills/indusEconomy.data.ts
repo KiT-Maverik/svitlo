@@ -4,7 +4,7 @@ export const indusEconomy_Skill_Data = buildSkillConfig({
   slug: "indusEconomy",
   id: "af5fe868-48d3-42bc-b182-b1243685783c",
   name: {
-    en: "Індське господарство",
+    en: "Indus Economy",
     zh: "印度河流域经济",
     hi: "सिंधु क्षेत्र की अर्थव्यवस्था",
     es: "Economía del Indo",

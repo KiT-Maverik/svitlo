@@ -4,7 +4,7 @@ export const earlyIslandSoutheastAsianCultures_Skill_Data = buildSkillConfig({
   slug: "earlyIslandSoutheastAsianCultures",
   id: "481ec4ae-020c-45a3-86e7-7d044851e685",
   name: {
-    en: "Ранні острівні культури Південно-Східної Азії",
+    en: "Early Island Southeast Asian Cultures",
     zh: "东南亚岛屿早期文化",
     hi: "दक्षिण-पूर्व एशियाई द्वीपों की प्रारंभिक संस्कृतियाँ",
     es: "Primeras culturas insulares del Sudeste Asiático",
