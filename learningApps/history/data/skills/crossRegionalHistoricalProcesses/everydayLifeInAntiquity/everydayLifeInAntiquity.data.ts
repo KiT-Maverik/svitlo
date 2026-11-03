@@ -6,7 +6,7 @@ export const everydayLifeInAntiquity_SkillGroup_Data = buildSkillGroupConfig({
   slug: "everydayLifeInAntiquity",
   id: "fd3f6b88-5a95-49a7-9df4-bc044b840af6",
   name: {
-    en: "Повсякденне життя",
+    en: "Everyday Life in Antiquity",
     zh: "古代日常生活",
     hi: "प्राचीन दैनिक जीवन",
     es: "Vida cotidiana en la Antigüedad",

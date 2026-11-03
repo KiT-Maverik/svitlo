@@ -4,7 +4,7 @@ export const comparativeHistoricalTransformations_Skill_Data = buildSkillConfig(
   slug: "comparativeHistoricalTransformations",
   id: "8b16de28-9ade-4814-bd2f-610cd9776f8a",
   name: {
-    en: "Порівняльні історичні трансформації",
+    en: "Comparative Historical Transformations",
     zh: "历史变迁的比较研究",
     hi: "ऐतिहासिक परिवर्तनों की तुलना",
     es: "Comparación de transformaciones históricas",

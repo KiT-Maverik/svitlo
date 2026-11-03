@@ -4,7 +4,7 @@ export const housingAndDomesticSpace_Skill_Data = buildSkillConfig({
   slug: "housingAndDomesticSpace",
   id: "3bbe01f5-b52e-4bd4-ab86-ec717b946a65",
   name: {
-    en: "Житло і домашній простір",
+    en: "Housing and Domestic Space",
     zh: "古代住房与家庭空间",
     hi: "आवास और घरेलू स्थान",
     es: "Vivienda y espacios domésticos",

@@ -4,7 +4,7 @@ export const childhoodAndEducationInAntiquity_Skill_Data = buildSkillConfig({
   slug: "childhoodAndEducationInAntiquity",
   id: "e13d4d72-9ab9-4909-994d-1baa4f084ca3",
   name: {
-    en: "Дитинство і виховання в давнину",
+    en: "Childhood and Education in Antiquity",
     zh: "古代的童年与教育",
     hi: "प्राचीन बचपन और शिक्षा",
     es: "Infancia y educación en la Antigüedad",

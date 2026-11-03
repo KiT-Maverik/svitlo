@@ -6,7 +6,7 @@ export const inventionsAndEngineeringHistory_SkillGroup_Data = buildSkillGroupCo
   slug: "inventionsAndEngineeringHistory",
   id: "7ee2d150-c8e0-4c5a-8fb5-f01cf2bc1fd2",
   name: {
-    en: "Винаходи та інженерія",
+    en: "Inventions and Engineering History",
     zh: "发明与工程技术史",
     hi: "आविष्कार और अभियांत्रिकी का इतिहास",
     es: "Inventos e historia de la ingeniería",

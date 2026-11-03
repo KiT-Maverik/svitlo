@@ -4,7 +4,7 @@ export const leisureAndPublicLife_Skill_Data = buildSkillConfig({
   slug: "leisureAndPublicLife",
   id: "dfe0c934-4149-4d55-b611-754da4545cdb",
   name: {
-    en: "Дозвілля та громадський побут",
+    en: "Leisure and Public Life",
     zh: "古代休闲与公共生活",
     hi: "प्राचीन अवकाश और सार्वजनिक जीवन",
     es: "Ocio y vida pública en la Antigüedad",

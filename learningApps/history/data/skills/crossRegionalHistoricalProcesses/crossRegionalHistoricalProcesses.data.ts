@@ -11,7 +11,7 @@ export const crossRegionalHistoricalProcesses_SkillDomain_Data = buildSkillDomai
   slug: "crossRegionalHistoricalProcesses",
   id: "963c15c5-4829-4514-9fea-8e2e5f6083f0",
   name: {
-    en: "Спільні процеси",
+    en: "Cross-Regional Historical Processes",
     zh: "跨区域历史进程",
     hi: "अंतरक्षेत्रीय ऐतिहासिक प्रक्रियाएँ",
     es: "Procesos históricos interregionales",

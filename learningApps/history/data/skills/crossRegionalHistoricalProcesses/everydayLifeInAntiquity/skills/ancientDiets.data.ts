@@ -4,7 +4,7 @@ export const ancientDiets_Skill_Data = buildSkillConfig({
   slug: "ancientDiets",
   id: "0c9e6143-048a-4951-a9cd-b0edb5e6ce74",
   name: {
-    en: "Харчування давніх суспільств",
+    en: "Ancient Diets",
     zh: "古代社会的饮食",
     hi: "प्राचीन समाजों का भोजन",
     es: "Alimentación de las sociedades antiguas",

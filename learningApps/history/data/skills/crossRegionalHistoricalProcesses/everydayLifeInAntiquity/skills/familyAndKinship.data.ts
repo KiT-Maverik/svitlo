@@ -4,7 +4,7 @@ export const familyAndKinship_Skill_Data = buildSkillConfig({
   slug: "familyAndKinship",
   id: "2ff755d4-04ca-4bcb-bbb6-528e74ad1292",
   name: {
-    en: "Сім'я та спорідненість",
+    en: "Family and Kinship",
     zh: "家庭与亲属关系",
     hi: "परिवार और रिश्तेदारी",
     es: "Familia y parentesco",

@@ -4,7 +4,7 @@ export const politicalDeclineAndContinuity_Skill_Data = buildSkillConfig({
   slug: "politicalDeclineAndContinuity",
   id: "5986f95f-1b05-4363-b14b-5394bbf52366",
   name: {
-    en: "Політичний занепад і спадкоємність",
+    en: "Political Decline and Continuity",
     zh: "政治衰落与社会延续",
     hi: "राजनीतिक पतन और निरंतरता",
     es: "Declive político y continuidad",

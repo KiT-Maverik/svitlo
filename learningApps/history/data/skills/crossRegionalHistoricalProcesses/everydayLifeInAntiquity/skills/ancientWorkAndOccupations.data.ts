@@ -4,7 +4,7 @@ export const ancientWorkAndOccupations_Skill_Data = buildSkillConfig({
   slug: "ancientWorkAndOccupations",
   id: "646c325c-aa48-48fe-9789-4a5ac486edd5",
   name: {
-    en: "Праця і заняття у давнину",
+    en: "Ancient Work and Occupations",
     zh: "古代劳动与职业",
     hi: "प्राचीन श्रम और व्यवसाय",
     es: "Trabajo y oficios en la Antigüedad",
