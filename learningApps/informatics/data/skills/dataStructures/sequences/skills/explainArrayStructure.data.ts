@@ -65,7 +65,7 @@ export const explainArrayStructure_Skill_Data = buildSkillConfig({
       be: "Зразумей, як масівы захоўваюць элемэнты ў пазыцыях, вызначаных індэксамі.",
       ka: "გაიგე, როგორ ინახავს მასივი ელემენტებს ინდექსებით განსაზღვრულ პოზიციებზე.",
       kk: "Массивтер элементтерді индекстермен белгіленген орындарда қалай сақтайтынын түсін.",
-      qm: "Massivlerniñ unsurlarnı indekslernen belgilenген yerlerde nasıl saqlağanını añla.",
+      qm: "Massivlerniñ unsurlarnı indekslernen belgilengen yerlerde nasıl saqlağanını añla.",
     },
   },
 });
