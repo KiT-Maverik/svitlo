@@ -13,7 +13,7 @@ export const peoplingOfTheAmericas_Skill_Data = buildSkillConfig({
     bn: "আমেরিকায় মানুষের প্রথম বসতি",
     pt: "Povoamento das Américas",
     ur: "براعظم ہائے امریکا کی ابتدائی آبادکاری",
-    id: "Peopling of the Americas",
+    id: "Permukiman awal manusia di Benua Amerika",
     de: "Besiedlung Amerikas",
     ja: "アメリカ大陸への人類の移住",
     ko: "아메리카 대륙의 초기 정착",
