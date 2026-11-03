@@ -1,9 +1,15 @@
-import { practice } from './sections/practice/practice';
-import { theory } from './sections/theory/theory';
-import { quiz } from './sections/quiz/quiz';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine';
+import { defineLessonData, type Lesson } from '@svitlo/engine/content';
+import { howLightMoves_Flashcards } from './flashcards';
+import { howLightMoves_Questions } from './questions';
+import { practice_Section } from './sections/practice';
+import { quiz_Section } from './sections/quiz';
+import { theory_Section } from './sections/theory/theory';
 
-export const howLightMoves_Locale = {
-  name: {
+export const howLightMoves_Data = defineLessonData({
+  id: 'd3048d21-8690-5255-b62c-984c69ac272c',
+  slug: 'howLightMoves',
+  title:  {
     en: 'How Light Travels',
     qm: 'Yarıq nasıl yayıla?',
     lt: 'Kaip sklinda šviesa',
@@ -34,9 +40,30 @@ export const howLightMoves_Locale = {
     pl: 'Jak rozchodzi się światło',
     uk: 'Як рухається світло',
   },
-  section: {
-    practice,
-    quiz,
-    theory,
+  flashcards: howLightMoves_Flashcards,
+  parameters: {
+    requireQuiz: true,
+    languages: [
+      DEFAULT_SUPPORTED_LANGUAGES[0].language,
+      ...DEFAULT_SUPPORTED_LANGUAGES.slice(1).map(({ language }) => language),
+    ],
+    sections: {
+      allowNavigation: true,
+      allowSkipping: true,
+      showIndexes: true,
+      order: ['theory', 'practice', 'quiz'],
+    },
   },
-};
+  questions: howLightMoves_Questions,
+  sections: {
+    theory: theory_Section,
+    practice: practice_Section,
+    quiz: quiz_Section,
+  },
+} satisfies Lesson<'data'>);
+
+const scenes = [
+  theory_Section.content.scene.lightPropagationSimulation.id,
+  theory_Section.content.scene.lightRayDiagram.id,
+  practice_Section.content.scene.showcase.id,
+] as const;
