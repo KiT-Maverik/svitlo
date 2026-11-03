@@ -6,7 +6,7 @@ export const explainWhyWaterPressureIncreasesWithDepth_Skill_Data = buildSkillCo
   name: {
     en: "Explain why water pressure increases with depth",
     zh: "解释为什么水压随深度增加",
-    hi: "समझाएँ कि पानी का दाब गहराई के साथ क्यों बढ़ता है",
+    hi: "पानी का दाब गहराई के साथ क्यों बढ़ता है, यह समझाना",
     es: "Explicar por qué aumenta la presión del agua con la profundidad",
     ar: "تفسير زيادة ضغط الماء مع العمق",
     fr: "Expliquer pourquoi la pression de l'eau augmente avec la profondeur",
