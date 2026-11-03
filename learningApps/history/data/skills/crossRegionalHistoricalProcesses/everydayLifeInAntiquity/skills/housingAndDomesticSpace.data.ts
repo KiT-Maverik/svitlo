@@ -40,7 +40,7 @@ export const housingAndDomesticSpace_Skill_Data = buildSkillConfig({
       en: "Explore how people arranged and used their homes.",
       zh: "探索古代人们如何安排与使用住房。",
       hi: "जानें कि प्राचीन लोग अपने घरों को कैसे व्यवस्थित और इस्तेमाल करते थे।",
-      es: "Explora cómo organizaban y utilizaban sus hogares las personas antiguas.",
+      es: "Explora cómo se organizaban y utilizaban los hogares en la Antigüedad.",
       ar: "استكشف كيف نظّم الناس في الماضي منازلهم واستخدموها.",
       fr: "Explore comment les gens organisaient et utilisaient leurs maisons dans l'Antiquité.",
       bn: "প্রাচীন মানুষ কীভাবে ঘর সাজাত এবং ব্যবহার করত তা জানো।",
