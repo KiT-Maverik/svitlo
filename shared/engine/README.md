@@ -48,3 +48,38 @@ when nested in another content block.
 Builder objects are authoring-only; published JSON contains Response data.
 Future Section and Lesson builders can call child build(languageCode) and
 omit disabled results, independently of this builder.
+
+
+## Section Builder and ordering
+
+Sections hold live, reusable Content Block Builder instances in their authoring
+catalog, grouped by block kind and then alias:
+
+    const section = createSection({
+      id: 'uuid', slug: 'theory', type: 'theory',
+      title: { language: 'en', value: 'Theory' },
+      navigationLabel: { language: 'en', value: 'Theory' },
+      content: { markdown: { intro }, text: { task } },
+    });
+
+    const customized = section
+      .updateBlock('text', 'task', builder => builder.disable())
+      .setOrder(['text.task', 'markdown.intro']);
+    const response = customized.build('uk');
+
+Type-safe setOrder() accepts `type.alias` paths and prioritizes them; omitted
+blocks are appended in declaration order. setOrder([]) restores the default order.
+Unknown paths and duplicate entries are rejected. The authoring content catalog
+can contain the same alias under different block types.
+
+addBlock(type, alias, childBuilder) inserts a new builder and extends available
+setOrder paths. updateBlock(type, alias, callback) applies a child builder's
+immutable API to a new Section; directly invoking an immutable child method
+without storing the returned builder does not modify its parent Section.
+withConfig() overrides Section presentation metadata; disable() suppresses
+the entire Section Response.
+
+build(languageCode) generates a **flat, ordered array of content responses**,
+omits disabled children, and retains no separate order metadata. This is an
+intentional breaking change to the Section Response contract, not a legacy
+compatibility adapter. Scenes remain excluded from the builder until refactored.
