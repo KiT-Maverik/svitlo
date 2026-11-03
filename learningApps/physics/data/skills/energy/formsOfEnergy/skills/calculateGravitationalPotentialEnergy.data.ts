@@ -51,7 +51,7 @@ export const calculateGravitationalPotentialEnergy_Skill_Data = buildSkillConfig
       ja: "質量、重力加速度、高さの変化から位置エネルギーの変化を計算しよう。",
       ko: "질량, 중력 가속도, 높이를 이용해 중력 퍼텐셜 에너지의 변화를 계산해 보세요.",
       tr: "Kütle, yer çekimi ivmesi ve yükseklik değişiminden potansiyel enerji değişimini hesapla.",
-      vi: "Tính độ biến thiên thế năng trọng trường dựa trên khối lượng, trọng trường và độ cao.",
+      vi: "Tính độ biến thiên thế năng trọng trường từ khối lượng, gia tốc trọng trường và độ chênh lệch độ cao.",
       ta: "நிறை, ஈர்ப்பு முடுக்கம் மற்றும் உயர மாற்றத்தால் ஈர்ப்பு நிலை ஆற்றல் மாற்றத்தைக் கணக்கிடு.",
       te: "ద్రవ్యరాశి, గురుత్వ త్వరణం, ఎత్తు మార్పుతో స్థితిజ శక్తి మార్పును లెక్కించండి.",
       mr: "वस्तुमान, गुरुत्वीय त्वरण व उंचीच्या बदलावरून स्थितिज ऊर्जेतील बदल काढा.",
