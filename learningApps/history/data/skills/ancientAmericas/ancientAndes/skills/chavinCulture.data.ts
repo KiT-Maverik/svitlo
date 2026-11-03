@@ -54,7 +54,7 @@ export const chavinCulture_Skill_Data = buildSkillConfig({
       vi: "Tìm hiểu tín ngưỡng và nghệ thuật của văn hóa Chavín.",
       ta: "சாவின் பண்பாட்டின் நம்பிக்கைகளையும் கலையையும் அறிந்துகொள்.",
       te: "చావిన్ సంస్కృతి విశ్వాసాలు, కళ గురించి తెలుసుకోండి.",
-      mr: "चावीन संस्कृतीतील श्रद्धा आणि कला जाणून घे.",
+      mr: "चावीन संस्कृतीतील श्रद्धा आणि कला जाणून घ्या.",
       ms: "Ketahui kepercayaan dan seni budaya Chavín.",
       he: "גלו את האמונות והאמנות של תרבות צ'אווין.",
       pl: "Poznaj wierzenia i sztukę kultury Chavín.",

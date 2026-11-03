@@ -54,7 +54,7 @@ export const earlyAmazonianSocieties_Skill_Data = buildSkillConfig({
       vi: "Tìm hiểu bằng chứng về những khu định cư đầu tiên ở Amazon.",
       ta: "அமேசான் பகுதியில் இருந்த ஆரம்பகாலக் குடியிருப்புகளின் சான்றுகளை ஆராய்.",
       te: "అమెజాన్‌లో తొలి నివాసాల ఆధారాలను పరిశీలించండి.",
-      mr: "अ‍ॅमेझॉनमधील सुरुवातीच्या वस्त्यांचे पुरावे शोध.",
+      mr: "अ‍ॅमेझॉनमधील सुरुवातीच्या वस्त्यांचे पुरावे शोधा.",
       ms: "Terokai bukti petempatan awal di kawasan Amazon.",
       he: "חקרו עדויות ליישובים קדומים באמזוניה.",
       pl: "Poznaj dowody na istnienie wczesnych osad w Amazonii.",

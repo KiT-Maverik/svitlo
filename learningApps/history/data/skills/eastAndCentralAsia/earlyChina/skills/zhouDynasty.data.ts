@@ -42,7 +42,7 @@ export const zhouDynasty_Skill_Data = buildSkillConfig({
       hi: "जानें कि झोउ शासकों ने सत्ता को कैसे उचित ठहराया और बाँटा।",
       es: "Explora cómo los gobernantes Zhou justificaban y compartían la autoridad.",
       ar: "اكتشف كيف برّر حكّام تشو سلطتهم ووزّعوها.",
-      fr: "Explorez comment les souverains Zhou justifiaient et partageaient le pouvoir.",
+      fr: "Explore comment les souverains Zhou justifiaient et partageaient le pouvoir.",
       bn: "ঝৌ শাসকেরা কীভাবে ক্ষমতার বৈধতা ব্যাখ্যা ও ভাগ করতেন তা জানো।",
       pt: "Explore como os governantes Zhou justificavam e compartilhavam a autoridade.",
       ur: "دیکھیے کہ ژو حکمران اقتدار کی توجیہ اور تقسیم کیسے کرتے تھے۔",

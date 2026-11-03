@@ -45,7 +45,7 @@ export const writtenHistoricalSources_Skill_Data = buildSkillConfig({
       fr: "Lis des documents anciens en considérant qui les a rédigés et pourquoi.",
       bn: "পুরোনো নথি পড়ার সময় ভাবো কে এবং কেন তা লিখেছিল।",
       pt: "Leia documentos antigos considerando quem os escreveu e por quê.",
-      ur: "پرانے دستاویزات پڑھتے وقت یہ بھی سوچیں کہ انہیں کس نے اور کیوں لکھا۔",
+      ur: "پرانی دستاویزات پڑھتے وقت یہ بھی سوچیں کہ انہیں کس نے اور کیوں لکھا۔",
       id: "Baca dokumen lama sambil mempertimbangkan siapa yang menulisnya dan alasannya.",
       de: "Lies alte Dokumente und bedenke, wer sie geschrieben hat und warum.",
       ja: "古い文書を読むときは、誰が何のために書いたのか考えよう。",

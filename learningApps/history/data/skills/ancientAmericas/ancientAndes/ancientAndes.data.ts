@@ -62,7 +62,7 @@ export const ancientAndes_SkillGroup_Data = buildSkillGroupConfig({
       vi: "Tìm hiểu các xã hội hình thành và phát triển ở dãy Andes.",
       ta: "ஆண்டிஸ் மலைத்தொடரில் வளர்ந்த சமூகங்களை அறிந்துகொள்.",
       te: "ఆండీస్ పర్వతాల్లో అభివృద్ధి చెందిన సమాజాల గురించి తెలుసుకోండి.",
-      mr: "अँडीजमध्ये विकसित झालेले समाज जाणून घे.",
+      mr: "अँडीजमध्ये विकसित झालेले समाज जाणून घ्या.",
       ms: "Kenali masyarakat yang berkembang di kawasan Andes.",
       he: "גלו את החברות שהתפתחו בהרי האנדים.",
       pl: "Poznaj społeczności, które rozwinęły się w Andach.",

@@ -54,7 +54,7 @@ export const mesoamericanCalendars_Skill_Data = buildSkillConfig({
       vi: "Khám phá cách các lịch Mesoamerica tính thời gian.",
       ta: "மெசோஅமெரிக்க நாட்காட்டிகள் காலத்தை எவ்வாறு கணக்கிட்டன என்பதை ஆராய்.",
       te: "మెసోఅమెరికా క్యాలెండర్లు కాలాన్ని ఎలా లెక్కించాయో తెలుసుకోండి.",
-      mr: "मेसोअमेरिकी दिनदर्शिकांमधून वेळ कसा मोजला जात होता ते शिक.",
+      mr: "मेसोअमेरिकी दिनदर्शिकांमधून वेळ कसा मोजला जात होता ते शिका.",
       ms: "Terokai cara kalendar Mesoamerika mengukur masa.",
       he: "גלו כיצד לוחות השנה המסואמריקאיים מדדו זמן.",
       pl: "Poznaj sposoby mierzenia czasu za pomocą kalendarzy mezoamerykańskich.",

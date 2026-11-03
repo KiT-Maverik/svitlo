@@ -42,7 +42,7 @@ export const lateBronzeAgeCollapse_Skill_Data = buildSkillConfig({
       hi: "जानें कि कांस्य युग के राज्यों में परिवर्तन या पतन अलग-अलग ढंग से क्यों हुआ।",
       es: "Explora por qué los Estados de la Edad del Bronce cambiaron o colapsaron de distintas maneras.",
       ar: "اكتشف لماذا تغيّرت دول العصر البرونزي أو انهارت بطرق مختلفة.",
-      fr: "Explorez pourquoi les États de l’âge du bronze se sont transformés ou effondrés différemment.",
+      fr: "Explore pourquoi les États de l’âge du bronze se sont transformés ou effondrés différemment.",
       bn: "ব্রোঞ্জ যুগের রাষ্ট্রগুলো কেন ভিন্নভাবে বদলে গিয়েছিল বা ভেঙে পড়েছিল তা জানো।",
       pt: "Explore por que os Estados da Idade do Bronze mudaram ou entraram em colapso de maneiras distintas.",
       ur: "دیکھیے کہ عہدِ کانسی کی ریاستیں مختلف طریقوں سے کیوں بدلیں یا منہدم ہوئیں۔",

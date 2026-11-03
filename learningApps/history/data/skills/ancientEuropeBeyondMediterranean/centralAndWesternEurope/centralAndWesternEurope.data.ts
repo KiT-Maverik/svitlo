@@ -50,7 +50,7 @@ export const centralAndWesternEurope_SkillGroup_Data = buildSkillGroupConfig({
       hi: "मध्य और पश्चिमी यूरोप की कांस्य और लौह युगीन संस्कृतियों का अध्ययन करें।",
       es: "Explora las culturas de la Edad del Bronce y del Hierro de Europa central y occidental.",
       ar: "استكشف ثقافات العصرين البرونزي والحديدي في أوروبا الوسطى والغربية.",
-      fr: "Explorez les cultures des âges du bronze et du fer en Europe centrale et occidentale.",
+      fr: "Explore les cultures des âges du bronze et du fer en Europe centrale et occidentale.",
       bn: "মধ্য ও পশ্চিম ইউরোপের ব্রোঞ্জ ও লৌহ যুগের সংস্কৃতিগুলো জানো।",
       pt: "Explore as culturas das Idades do Bronze e do Ferro na Europa Central e Ocidental.",
       ur: "وسطی اور مغربی یورپ میں کانسی اور لوہے کے ادوار کی ثقافتوں کو جانیں۔",

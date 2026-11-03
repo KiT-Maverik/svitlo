@@ -54,7 +54,7 @@ export const ancientWheeledTransport_Skill_Data = buildSkillConfig({
       vi: "Tìm hiểu cách phương tiện bánh xe lan rộng trong thế giới cổ đại.",
       ta: "சக்கர வாகனங்கள் பண்டைய உலகில் எவ்வாறு பரவின என்பதை அறிந்துகொள்.",
       te: "చక్రాల వాహనాలు ప్రాచీన ప్రపంచంలో ఎలా వ్యాపించాయో తెలుసుకోండి.",
-      mr: "चाकांची वाहने प्राचीन जगात कशी पसरली ते जाणून घे.",
+      mr: "चाकांची वाहने प्राचीन जगात कशी पसरली ते जाणून घ्या.",
       ms: "Ketahui bagaimana kenderaan beroda tersebar dalam dunia purba.",
       he: "גלו כיצד כלי רכב בעלי גלגלים התפשטו בעולם העתיק.",
       pl: "Dowiedz się, jak pojazdy kołowe rozprzestrzeniały się w świecie starożytnym.",

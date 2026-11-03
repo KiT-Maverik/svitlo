@@ -54,7 +54,7 @@ export const ancientAboriginalAustralianSocieties_Skill_Data = buildSkillConfig(
       vi: "Khám phá lịch sử lâu dài và đa dạng của cộng đồng thổ dân Úc.",
       ta: "ஆஸ்திரேலியப் பழங்குடி சமூகங்களின் நீண்ட, பல்வகை வரலாறுகளை ஆராய்.",
       te: "ఆస్ట్రేలియా ఆదివాసీ సమూహాల సుదీర్ఘ, వైవిధ్యమైన చరిత్రలను తెలుసుకోండి.",
-      mr: "ऑस्ट्रेलियातील आदिवासी समुदायांचा प्रदीर्घ आणि विविध इतिहास जाणून घे.",
+      mr: "ऑस्ट्रेलियातील आदिवासी समुदायांचा प्रदीर्घ आणि विविध इतिहास जाणून घ्या.",
       ms: "Terokai sejarah panjang dan pelbagai komuniti Orang Asli Australia.",
       he: "גלו את ההיסטוריות הארוכות והמגוונות של קהילות הילידים באוסטרליה.",
       pl: "Poznaj długie i zróżnicowane dzieje rdzennych społeczności Australii.",

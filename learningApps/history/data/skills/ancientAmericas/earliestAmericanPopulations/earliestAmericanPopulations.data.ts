@@ -61,7 +61,7 @@ export const earliestAmericanPopulations_SkillGroup_Data = buildSkillGroupConfig
       vi: "Tìm hiểu cách các nhà nghiên cứu điều tra những cư dân đầu tiên ở châu Mỹ.",
       ta: "அமெரிக்கக் கண்டங்களின் முதல் குடியிருப்பாளர்களைப் பற்றி ஆய்வாளர்கள் எவ்வாறு ஆராய்கிறார்கள் என்பதை அறிந்துகொள்.",
       te: "అమెరికా ఖండాల తొలి నివాసులను పరిశోధకులు ఎలా అధ్యయనం చేస్తారో తెలుసుకోండి.",
-      mr: "अमेरिकेतील सर्वात आधीच्या रहिवाशांचा अभ्यास संशोधक कसा करतात ते शिक.",
+      mr: "अमेरिकेतील सर्वात आधीच्या रहिवाशांचा अभ्यास संशोधक कसा करतात ते शिका.",
       ms: "Ketahui cara penyelidik mengkaji penduduk terawal benua Amerika.",
       he: "גלו כיצד חוקרים לומדים על התושבים הקדומים ביותר של אמריקה.",
       pl: "Dowiedz się, jak badacze poznają najwcześniejszych mieszkańców Ameryk.",

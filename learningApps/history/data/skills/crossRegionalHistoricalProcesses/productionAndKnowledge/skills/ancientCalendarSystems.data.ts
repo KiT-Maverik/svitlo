@@ -54,7 +54,7 @@ export const ancientCalendarSystems_Skill_Data = buildSkillConfig({
       vi: "Tìm hiểu cách lịch cổ đại giúp con người tổ chức thời gian.",
       ta: "பண்டைய நாட்காட்டிகள் காலத்தை எவ்வாறு ஒழுங்குபடுத்தின என்பதை அறிந்துகொள்.",
       te: "ప్రాచీన క్యాలెండర్లు కాలాన్ని ఎలా నిర్వహించాయో తెలుసుకోండి.",
-      mr: "प्राचीन कालगणना पद्धतींनी वेळ कसा व्यवस्थित मांडला ते जाणून घे.",
+      mr: "प्राचीन कालगणना पद्धतींनी वेळ कसा व्यवस्थित मांडला ते जाणून घ्या.",
       ms: "Ketahui cara kalendar purba membantu menyusun masa.",
       he: "גלו כיצד לוחות שנה עתיקים סייעו בארגון הזמן.",
       pl: "Dowiedz się, jak starożytne kalendarze pomagały porządkować czas.",

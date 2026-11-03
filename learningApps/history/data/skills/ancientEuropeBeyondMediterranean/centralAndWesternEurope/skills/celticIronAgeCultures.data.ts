@@ -42,7 +42,7 @@ export const celticIronAgeCultures_Skill_Data = buildSkillConfig({
       hi: "पुरातात्त्विक खोजों के माध्यम से केल्टिक-संबंधित लौह युगीन संस्कृतियों को जानें।",
       es: "Explora las culturas de la Edad del Hierro vinculadas a los celtas mediante hallazgos arqueológicos.",
       ar: "استكشف ثقافات العصر الحديدي المرتبطة بالكلتيين من خلال المكتشفات الأثرية.",
-      fr: "Explorez les cultures de l’âge du fer liées aux Celtes grâce aux découvertes archéologiques.",
+      fr: "Explore les cultures de l’âge du fer liées aux Celtes grâce aux découvertes archéologiques.",
       bn: "প্রত্নতাত্ত্বিক নিদর্শনের সাহায্যে কেল্টদের সঙ্গে সম্পর্কিত লৌহ যুগের সংস্কৃতি অন্বেষণ করো।",
       pt: "Explore culturas da Idade do Ferro ligadas aos celtas por meio de achados arqueológicos.",
       ur: "آثارِ قدیمہ کی دریافتوں سے کیلٹ لوگوں سے متعلق عہدِ آہن کی ثقافتوں کا مطالعہ کریں۔",

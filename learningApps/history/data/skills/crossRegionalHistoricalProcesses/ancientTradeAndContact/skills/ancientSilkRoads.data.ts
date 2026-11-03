@@ -54,7 +54,7 @@ export const ancientSilkRoads_Skill_Data = buildSkillConfig({
       vi: "Khám phá các tuyến đường bộ cổ đại sau này được gọi là Con đường Tơ lụa.",
       ta: "பின்னர் பட்டுப் பாதைகள் என அழைக்கப்பட்ட பண்டைய நிலவழிகளை ஆராய்.",
       te: "తరువాత పట్టు మార్గాలుగా పిలువబడిన ప్రాచీన భూ మార్గాలను పరిశీలించండి.",
-      mr: "नंतर रेशीम मार्ग म्हणून ओळखले गेलेले प्राचीन स्थलमार्ग शोध.",
+      mr: "नंतर रेशीम मार्ग म्हणून ओळखले गेलेले प्राचीन स्थलमार्ग शोधा.",
       ms: "Terokai laluan darat purba yang kemudian dikenali sebagai Laluan Sutera.",
       he: "גלו נתיבי יבשה קדומים שכונו בהמשך דרכי המשי.",
       pl: "Poznaj starożytne szlaki lądowe nazwane później drogami jedwabnymi.",

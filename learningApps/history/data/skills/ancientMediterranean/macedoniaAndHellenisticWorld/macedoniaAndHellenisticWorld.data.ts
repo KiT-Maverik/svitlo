@@ -49,7 +49,7 @@ export const macedoniaAndHellenisticWorld_SkillGroup_Data = buildSkillGroupConfi
       hi: "हेलेनिस्टिक संसार के साम्राज्यों और संस्कृतियों के बारे में जानें।",
       es: "Explora los imperios y culturas del mundo helenístico.",
       ar: "استكشف إمبراطوريات العالم الهلنستي وثقافاته.",
-      fr: "Explorez les empires et les cultures du monde hellénistique.",
+      fr: "Explore les empires et les cultures du monde hellénistique.",
       bn: "হেলেনিস্টিক বিশ্বের সাম্রাজ্য ও সংস্কৃতিগুলো সম্পর্কে জানো।",
       pt: "Explore os impérios e as culturas do mundo helenístico.",
       ur: "ہیلینی دنیا کی سلطنتوں اور ثقافتوں کو جانیں۔",

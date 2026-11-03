@@ -42,7 +42,7 @@ export const goguryeo_Skill_Data = buildSkillConfig({
       hi: "गोगुर्यो की शुरुआत और उसके पड़ोसियों के बारे में जानें।",
       es: "Explora los orígenes de Goguryeo y sus pueblos vecinos.",
       ar: "استكشف نشأة غوغوريو وعلاقاتها بجيرانها.",
-      fr: "Explorez les origines de Goguryeo et ses relations avec ses voisins.",
+      fr: "Explore les origines de Goguryeo et ses relations avec ses voisins.",
       bn: "গোগুরিয়োর সূচনা এবং প্রতিবেশী সমাজগুলোকে জানো।",
       pt: "Explore as origens de Goguryeo e seus vizinhos.",
       ur: "گوگوریو کے آغاز اور اس کے پڑوسیوں کا جائزہ لیں۔",

@@ -42,7 +42,7 @@ export const greekColonization_Skill_Data = buildSkillConfig({
       hi: "देखें कि यूनानी समुदायों ने कहाँ बस्तियाँ बसाईं और अन्य लोगों से मिले।",
       es: "Sigue dónde fundaron asentamientos las comunidades griegas y entraron en contacto con otros pueblos.",
       ar: "تتبّع أماكن تأسيس التجمعات اليونانية لمستوطنات ولقائها شعوبًا أخرى.",
-      fr: "Repérez où les communautés grecques fondaient des établissements et rencontraient d’autres peuples.",
+      fr: "Repère où les communautés grecques fondaient des établissements et rencontraient d’autres peuples.",
       bn: "গ্রিক জনগোষ্ঠী কোথায় বসতি গড়েছিল ও অন্য জনগণের সঙ্গে মিলিত হয়েছিল তা খুঁজে দেখো।",
       pt: "Acompanhe onde comunidades gregas fundaram assentamentos e encontraram outros povos.",
       ur: "دیکھیے کہ یونانی آبادیوں نے کہاں نئی بستیاں قائم کیں اور دوسرے لوگوں سے ملیں۔",

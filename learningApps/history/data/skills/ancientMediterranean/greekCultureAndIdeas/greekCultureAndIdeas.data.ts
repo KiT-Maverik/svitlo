@@ -50,7 +50,7 @@ export const greekCultureAndIdeas_SkillGroup_Data = buildSkillGroupConfig({
       hi: "प्राचीन यूनानी मान्यताओं, चिंतन और कला की विविधता जानें।",
       es: "Descubre la diversidad de creencias, pensamiento y arte de la Grecia antigua.",
       ar: "اكتشف تنوّع المعتقدات والفكر والفن في اليونان القديمة.",
-      fr: "Découvrez la diversité des croyances, des idées et des arts de la Grèce antique.",
+      fr: "Découvre la diversité des croyances, des idées et des arts de la Grèce antique.",
       bn: "প্রাচীন গ্রিকদের বিশ্বাস, চিন্তা ও শিল্পের বৈচিত্র্য সম্পর্কে জানো।",
       pt: "Descubra a diversidade de crenças, pensamento e arte da Grécia antiga.",
       ur: "قدیم یونانی عقائد، فکر اور فن کے تنوع کو دریافت کریں۔",

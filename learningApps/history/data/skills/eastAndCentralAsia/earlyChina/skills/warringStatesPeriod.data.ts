@@ -42,7 +42,7 @@ export const warringStatesPeriod_Skill_Data = buildSkillConfig({
       hi: "जानें कि युद्धरत राज्यों की सरकारों ने कैसे प्रतिस्पर्धा की और सुधार किए।",
       es: "Descubre cómo los gobiernos de los Reinos Combatientes compitieron y se reformaron.",
       ar: "اكتشف كيف تنافست حكومات الممالك المتحاربة وأدخلت إصلاحات.",
-      fr: "Découvrez comment les États des Royaumes combattants rivalisaient et se réformaient.",
+      fr: "Découvre comment les États des Royaumes combattants rivalisaient et se réformaient.",
       bn: "যুদ্ধরত রাজ্যগুলোর সরকার কীভাবে প্রতিদ্বন্দ্বিতা ও সংস্কার করেছিল তা জানো।",
       pt: "Descubra como os governos dos Reinos Combatentes disputaram poder e fizeram reformas.",
       ur: "جانیں کہ متحارب ریاستوں کی حکومتوں نے کیسے مقابلہ کیا اور اصلاحات کیں۔",

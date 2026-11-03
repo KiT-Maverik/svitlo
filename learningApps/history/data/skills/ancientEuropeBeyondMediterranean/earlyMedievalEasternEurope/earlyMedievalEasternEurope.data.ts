@@ -47,7 +47,7 @@ export const earlyMedievalEasternEurope_SkillGroup_Data = buildSkillGroupConfig(
       hi: "पूर्वी यूरोप के प्रारंभिक मध्यकालीन राज्यों और व्यापारिक संबंधों का अध्ययन करें।",
       es: "Explora los Estados y vínculos comerciales de la Europa oriental altomedieval.",
       ar: "استكشف الدول والروابط التجارية في أوروبا الشرقية خلال العصور الوسطى المبكرة.",
-      fr: "Explorez les États et les relations commerciales du haut Moyen Âge en Europe orientale.",
+      fr: "Explore les États et les relations commerciales du haut Moyen Âge en Europe orientale.",
       bn: "প্রারম্ভিক মধ্যযুগের পূর্ব ইউরোপের রাষ্ট্র ও বাণিজ্যিক যোগাযোগ সম্পর্কে জানো।",
       pt: "Explore os Estados e as conexões comerciais da Europa Oriental no início da Idade Média.",
       ur: "مشرقی یورپ کی ابتدائی قرونِ وسطیٰ کی ریاستوں اور تجارتی روابط کو جانیں۔",

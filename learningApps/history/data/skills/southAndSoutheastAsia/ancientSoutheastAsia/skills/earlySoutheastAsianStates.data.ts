@@ -52,7 +52,7 @@ export const earlySoutheastAsianStates_Skill_Data = buildSkillConfig({
       ko: "이 지역의 첫 국가들이 어떻게 형성되었는지 살펴보세요.",
       tr: "Bölgede ilk devletlerin nasıl oluştuğunu keşfet.",
       vi: "Khám phá cách những quốc gia đầu tiên trong vùng hình thành.",
-      ta: "இப்பகுதியின் முதல் அரசுகள் எவ்வாறு உருவானதை ஆராய்.",
+      ta: "இப்பகுதியின் முதல் அரசுகள் எவ்வாறு உருவாயின என்பதை ஆராய்.",
       te: "ప్రాంతంలోని తొలి రాజ్యాలు ఎలా ఏర్పడ్డాయో తెలుసుకోండి.",
       mr: "या प्रदेशातील पहिली राज्ये कशी उदयास आली ते जाणून घ्या.",
       ms: "Terokai bagaimana negeri pertama di rantau ini terbentuk.",

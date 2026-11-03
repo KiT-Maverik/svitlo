@@ -62,7 +62,7 @@ export const australiaAndNewGuinea_SkillGroup_Data = buildSkillGroupConfig({
       vi: "Tìm hiểu các cộng đồng cổ đại ở Úc và New Guinea.",
       ta: "ஆஸ்திரேலியா, நியூ கினியாவின் பண்டைய சமூகங்களை அறிந்துகொள்.",
       te: "ఆస్ట్రేలియా, న్యూ గినియా ప్రాచీన సమాజాల గురించి తెలుసుకోండి.",
-      mr: "ऑस्ट्रेलिया व न्यू गिनीतील प्राचीन समुदाय जाणून घे.",
+      mr: "ऑस्ट्रेलिया व न्यू गिनीतील प्राचीन समुदाय जाणून घ्या.",
       ms: "Kenali komuniti purba Australia dan New Guinea.",
       he: "גלו את הקהילות הקדומות של אוסטרליה וגינאה החדשה.",
       pl: "Poznaj dawne społeczności Australii i Nowej Gwinei.",

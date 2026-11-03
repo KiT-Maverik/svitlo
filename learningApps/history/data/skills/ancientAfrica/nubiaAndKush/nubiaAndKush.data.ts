@@ -62,7 +62,7 @@ export const nubiaAndKush_SkillGroup_Data = buildSkillGroupConfig({
       vi: "Tìm hiểu các xã hội độc lập của Nubia và Kush cổ đại.",
       ta: "பண்டைய நூபியா, குஷ் ஆகியவற்றின் சுதந்திரச் சமூகங்களை அறி.",
       te: "ప్రాచీన నూబియా, కుష్ స్వతంత్ర సమాజాలను తెలుసుకోండి.",
-      mr: "प्राचीन नुबिया व कुशच्या स्वतंत्र समाजांना जाणून घ्या.",
+      mr: "प्राचीन नुबिया व कुशच्या स्वतंत्र समाजांविषयी जाणून घ्या.",
       ms: "Ketahui masyarakat bebas Nubia dan Kush purba.",
       he: "גלו את החברות העצמאיות של נוביה וכוש העתיקות.",
       pl: "Odkryj niezależne społeczeństwa starożytnej Nubii i Kuszu.",
