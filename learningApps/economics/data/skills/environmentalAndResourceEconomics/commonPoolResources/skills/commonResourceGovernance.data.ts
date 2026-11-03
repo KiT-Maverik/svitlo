@@ -65,7 +65,7 @@ export const commonResourceGovernance_Skill_Data = buildSkillConfig({
       be: "Параўнай правілы, якія дапамагаюць супольнасьцям берагчы агульныя рэсурсы.",
       ka: "შეადარე წესები, რომლებიც თემებს საერთო რესურსების დაცვაში ეხმარება.",
       kk: "Қауымдарға ортақ ресурстарды қорғауға көмектесетін ережелерді салыстыр.",
-      qm: "Toplulıqlarğa umumiy resurslarnı qorumağa yardım etken qa idelerni teñeştir.",
+      qm: "Toplulıqlarğa umumiy resurslarnı qorumağa yardım etken qaydeler­ni teñeştir.",
     },
   },
 });

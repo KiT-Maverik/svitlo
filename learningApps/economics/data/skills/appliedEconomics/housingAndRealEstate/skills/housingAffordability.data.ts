@@ -22,7 +22,7 @@ export const housingAffordability_Skill_Data = buildSkillConfig({
     ta: "வீட்டுவசதிச் செலவைச் சமாளிக்கும் திறன்",
     te: "గృహ స్థోమత",
     mr: "घरांची परवड",
-    ms: "Kemampuan memiliki rumah",
+    ms: "Kemampuan membayar kos perumahan",
     he: "יכולת לממן דיור",
     pl: "Przystępność cenowa mieszkań",
     uk: "Доступність житла",

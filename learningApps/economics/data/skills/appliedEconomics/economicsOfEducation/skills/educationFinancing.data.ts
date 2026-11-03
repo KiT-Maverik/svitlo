@@ -21,7 +21,7 @@ export const educationFinancing_Skill_Data = buildSkillConfig({
     vi: "Tài trợ giáo dục",
     ta: "கல்வி நிதியளிப்பு",
     te: "విద్యకు నిధులు",
-    mr: "शिक्षणाचे वित्तपुरवठा",
+    mr: "शिक्षणाचा वित्तपुरवठा",
     ms: "Pembiayaan pendidikan",
     he: "מימון חינוך",
     pl: "Finansowanie edukacji",

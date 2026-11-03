@@ -65,7 +65,7 @@ export const institutionalEconomicThought_Skill_Data = buildSkillConfig({
       be: "Зразумей, як інстытуты і грамадзкія правілы ўплываюць на эканамічныя вынікі.",
       ka: "გაიგე, როგორ აყალიბებენ ინსტიტუტები და სოციალური წესები ეკონომიკურ შედეგებს.",
       kk: "Институттар мен әлеуметтік ережелер экономикалық нәтижелерге қалай әсер ететінін түсін.",
-      qm: "Müesseseler ve cemiyet qa ideleri iqtisadiy neticelerge nasıl tesir etkenini añla.",
+      qm: "Müesseseler ve cemiyet qaydeleri iqtisadiy neticelerge nasıl tesir etkenini añla.",
     },
   },
 });

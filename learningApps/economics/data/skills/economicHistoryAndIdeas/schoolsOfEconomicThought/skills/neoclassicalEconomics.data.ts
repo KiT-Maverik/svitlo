@@ -65,7 +65,7 @@ export const neoclassicalEconomics_Skill_Data = buildSkillConfig({
       be: "Зразумей эканамічныя мадэлі, заснаваныя на стымулах і гранічных выбарах.",
       ka: "გაიგე ეკონომიკური მოდელები, რომლებიც სტიმულებსა და ზღვრულ არჩევანზეა დაფუძნებული.",
       kk: "Ынталандырулар мен шекті таңдауға негізделген экономикалық модельдерді түсін.",
-      qm: "Teşviqler ve marjinal saylavlarğa esaslanğan iqtisadiy modeller­ni añla.",
+      qm: "Teşviqler ve marjinal saylavlarğa esaslanğan iqtisadiy modellerni añla.",
     },
   },
 });

@@ -7,7 +7,7 @@ export const commonPoolResources_SkillGroup_Data = buildSkillGroupConfig({
   id: "fde81938-6b51-4c84-ab2a-564dcb36a018",
   name: {
     en: "Спільні ресурси",
-    zh: "公共池塘资源",
+    zh: "公共池资源",
     hi: "साझा संसाधन",
     es: "Recursos de uso común",
     ar: "موارد المشاع",

@@ -14,7 +14,7 @@ export const creatorEconomy_Skill_Data = buildSkillConfig({
     pt: "Economia dos criadores",
     ur: "تخلیق کاروں کی معیشت",
     id: "Ekonomi kreator",
-    de: "Creator Economy",
+    de: "Ökonomie der Online-Kreativen",
     ja: "クリエイター経済",
     ko: "크리에이터 경제",
     tr: "İçerik Üreticisi Ekonomisi",

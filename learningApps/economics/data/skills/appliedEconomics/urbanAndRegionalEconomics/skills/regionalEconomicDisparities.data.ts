@@ -65,7 +65,7 @@ export const regionalEconomicDisparities_Skill_Data = buildSkillConfig({
       be: "Параўнай эканамічныя магчымасьці розных рэгіёнаў паводле адпаведных паказьнікаў.",
       ka: "შეადარე სხვადასხვა რეგიონის ეკონომიკური შესაძლებლობები შესაბამისი მაჩვენებლებით.",
       kk: "Өңірлердің экономикалық мүмкіндіктерін тиісті көрсеткіштермен салыстыр.",
-      qm: "Çeşit bölgeler­niñ iqtisadiy imkânlarını münasip köstergiçlernen teñeştir.",
+      qm: "Çeşit bölgeleriniñ iqtisadiy imkânlarını münasip köstergiçlernen teñeştir.",
     },
   },
 });

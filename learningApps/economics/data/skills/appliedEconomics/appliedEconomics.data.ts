@@ -80,7 +80,7 @@ export const appliedEconomics_SkillDomain_Data = buildSkillDomainConfig({
       be: "Дасьледуй, як эканамічныя прынцыпы ўжываюць у гарадах, жыльлі, транспарце, адукацыі, мэдыцыне і сельскай гаспадарцы.",
       ka: "შეისწავლე ეკონომიკური პრინციპების გამოყენება ქალაქებში, საცხოვრებელში, ტრანსპორტში, განათლებაში, ჯანდაცვასა და სოფლის მეურნეობაში.",
       kk: "Экономикалық қағидалардың қала, тұрғын үй, көлік, білім, денсаулық және ауыл шаруашылығында қолданылуын зертте.",
-      qm: "İqtisadiy qa ideler şehirler, evler, naqliyat, tasıl, sağlıq ve ziraatta nasıl qullanılğanını ögren.",
+      qm: "İqtisadiy qaydeler şehirler, evler, naqliyat, tasıl, sağlıq ve ziraatta nasıl qullanılğanını ögren.",
     },
   },
 });

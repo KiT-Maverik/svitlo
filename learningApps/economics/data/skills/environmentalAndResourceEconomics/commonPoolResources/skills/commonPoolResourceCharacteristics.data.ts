@@ -5,7 +5,7 @@ export const commonPoolResourceCharacteristics_Skill_Data = buildSkillConfig({
   id: "5109775f-ea3f-4c86-a8a9-eed76e5d559a",
   name: {
     en: "Ресурси спільного користування",
-    zh: "公共池塘资源的特征",
+    zh: "公共池资源的特征",
     hi: "साझा संसाधनों की विशेषताएँ",
     es: "Características de los recursos de uso común",
     ar: "خصائص الموارد المشتركة",

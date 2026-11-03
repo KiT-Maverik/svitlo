@@ -32,7 +32,7 @@ export const limitsOfEconomicModels_Skill_Data = buildSkillConfig({
     be: "Межы эканамічных мадэляў",
     ka: "ეკონომიკური მოდელების შეზღუდვები",
     kk: "Экономикалық модельдердің шектеулері",
-    qm: "İqtisadiy modeller­niñ sıñırları",
+    qm: "İqtisadiy modellerniñ sıñırları",
   },
   description: {
     methodological: "Identify assumptions and contexts limiting the reliability of a model's prediction or explanation.",
