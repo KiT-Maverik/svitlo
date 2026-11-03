@@ -45,7 +45,7 @@ export const targetAudience_Skill_Data = buildSkillConfig({
       fr: "Identifie les clients auxquels un produit convient le mieux.",
       bn: "কোন ক্রেতাদের জন্য পণ্যটি সবচেয়ে উপযোগী তা চিহ্নিত করো।",
       pt: "Identifique os clientes para quem um produto é mais relevante.",
-      ur: "پہچانیں کہ کون سے گاہک کسی مصنوع سے زیادہ فائدہ اٹھائیں گے۔",
+      ur: "پہچانیں کہ کسی مصنوع کا تعلق کن گاہکوں کی ضروریات سے سب سے زیادہ ہے۔",
       id: "Identifikasi pelanggan yang paling sesuai dengan suatu produk.",
       de: "Ermittle, für welche Kunden ein Produkt besonders relevant ist.",
       ja: "商品が最も役立つ顧客を見つけよう。",
