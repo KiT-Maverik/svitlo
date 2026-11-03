@@ -4,7 +4,7 @@ export const ancientIranianReligions_Skill_Data = buildSkillConfig({
   slug: "ancientIranianReligions",
   id: "463e790e-bd52-4bf1-9c4b-3aacc577ab51",
   name: {
-    en: "Іранські релігійні уявлення",
+    en: "Ancient Iranian Religious Beliefs",
     zh: "古代伊朗宗教观念",
     hi: "प्राचीन ईरानी धार्मिक मान्यताएँ",
     es: "Religiones del antiguo Irán",

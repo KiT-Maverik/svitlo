@@ -4,7 +4,7 @@ export const achaemenidEmpire_Skill_Data = buildSkillConfig({
   slug: "achaemenidEmpire",
   id: "ec1fc96f-ce6c-401e-91bf-2c914ed23206",
   name: {
-    en: "Держава Ахеменідів",
+    en: "Achaemenid Empire",
     zh: "阿契美尼德帝国",
     hi: "हख़ामनी साम्राज्य",
     es: "Imperio aqueménida",

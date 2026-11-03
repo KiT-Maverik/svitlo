@@ -4,7 +4,7 @@ export const anatolianTradeNetworks_Skill_Data = buildSkillConfig({
   slug: "anatolianTradeNetworks",
   id: "e062e14b-4414-498c-a104-2189de617167",
   name: {
-    en: "Анатолійські торгові мережі",
+    en: "Anatolian Trade Networks",
     zh: "安纳托利亚贸易网络",
     hi: "अनातोलिया के व्यापारिक नेटवर्क",
     es: "Redes comerciales de Anatolia",

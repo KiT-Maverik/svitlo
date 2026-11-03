@@ -4,7 +4,7 @@ export const urartu_Skill_Data = buildSkillConfig({
   slug: "urartu",
   id: "ae591195-0752-4242-a58a-ad45ddd2366b",
   name: {
-    en: "Урарту",
+    en: "Urartu",
     zh: "乌拉尔图",
     hi: "उरार्तु",
     es: "Urartu",

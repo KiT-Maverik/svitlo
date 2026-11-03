@@ -4,7 +4,7 @@ export const achaemenidExpansion_Skill_Data = buildSkillConfig({
   slug: "achaemenidExpansion",
   id: "5053dd43-61fd-431a-8ca8-63a0f4cb8028",
   name: {
-    en: "Експансія Ахеменідів",
+    en: "Achaemenid Expansion",
     zh: "阿契美尼德扩张",
     hi: "हख़ामनी विस्तार",
     es: "Expansión aqueménida",

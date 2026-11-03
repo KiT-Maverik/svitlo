@@ -6,7 +6,7 @@ export const ancientIranianStates_SkillGroup_Data = buildSkillGroupConfig({
   slug: "ancientIranianStates",
   id: "4694dad0-424a-4770-b50f-81694bb1a79d",
   name: {
-    en: "Іранські держави",
+    en: "Iranian States",
     zh: "古代伊朗诸国",
     hi: "प्राचीन ईरानी राज्य",
     es: "Estados iranios antiguos",
