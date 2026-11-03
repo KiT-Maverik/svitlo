@@ -41,11 +41,6 @@ export type ContentBlock_Catalog<ConfigType extends ContentEntity_ConfigType> = 
   [Type in ContentBlock_Type & keyof ContentBlock_Map<ConfigType>]?: Readonly<Record<string, ContentBlock_Map<ConfigType>[Type]>>;
 };
 
-/** Ordered references to blocks in a Section catalog. */
-export type ContentBlock_Reference = {
-  [Type in keyof ContentBlock_Map<'response'>]: { type: Type; slug: string };
-}[keyof ContentBlock_Map<'response'>];
-
 export type ContentBlock_Catalog_DataFor<Definition extends ContentBlock_Catalog<'definition'>> = {
   [Type in keyof Definition]: Type extends keyof ContentBlock_Map<'data'>
     ? Record<keyof Definition[Type] & string, ContentBlock_Map<'data'>[Type]>
