@@ -173,6 +173,24 @@ function runGate(changed) {
       exec('npm', ['run', 'test', '--workspace', name]);
     }
   }
+  if (changed.some(file =>
+    file.startsWith('scripts/generate-lessons-markdown.') ||
+    file.startsWith('scripts/generate-lesson-review-artifacts.') ||
+    file.startsWith('scripts/lib/lesson-markdown.') ||
+    file.startsWith('shared/engine/src/utils/generators/lessons/') ||
+    file.startsWith('learningApps/playground/data/lessons/')
+  )) {
+    ensureSharedDependencies('@svitlo/engine');
+    if (!built.has('@svitlo/engine')) {
+      exec('npm', ['run', 'build', '--workspace', '@svitlo/engine']);
+      built.add('@svitlo/engine');
+    }
+    exec('node', ['--test',
+      'scripts/generate-lessons-markdown.spec.mjs',
+      'scripts/generate-lesson-review-artifacts.spec.mjs',
+    ]);
+  }
+
   if (plan.mathComponents) {
     ensureSharedDependencies('@svitlo/math');
     exec('npm', ['run', 'test:components', '--workspace', '@svitlo/math']);

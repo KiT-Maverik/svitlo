@@ -1,0 +1,84 @@
+name: Sync repository labels
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/labels.json'
+      - '.github/workflows/sync-labels.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: repository-labels
+  cancel-in-progress: false
+
+jobs:
+  synchronize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Apply the canonical label catalogue and remove obsolete labels
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const fs = require('node:fs');
+            const desired = JSON.parse(fs.readFileSync('.github/labels.json', 'utf8'));
+            if (!Array.isArray(desired) || desired.length !== 55) {
+              throw new Error('Refusing label sync: expected exactly 55 desired labels.');
+            }
+            const names = new Set();
+            for (const label of desired) {
+              if (!label.name || !/^[a-fA-F0-9]{6}$/.test(label.color) ||
+                  !label.description || label.description.length > 100) {
+                throw new Error('Invalid label definition: ' + JSON.stringify(label));
+              }
+              const key = label.name.toLowerCase();
+              if (names.has(key)) throw new Error('Duplicate label: ' + label.name);
+              names.add(key);
+            }
+            const { owner, repo } = context.repo;
+            const before = await github.paginate(github.rest.issues.listLabelsForRepo, {
+              owner, repo, per_page: 100
+            });
+            const existing = new Map(before.map(label => [label.name.toLowerCase(), label]));
+            let created = 0, updated = 0, deleted = 0;
+            // Create/update the entire target catalogue BEFORE deleting older labels.
+            for (const label of desired) {
+              const old = existing.get(label.name.toLowerCase());
+              if (!old) {
+                await github.rest.issues.createLabel({owner, repo, ...label});
+                created++;
+              } else if (old.name !== label.name ||
+                         old.color.toLowerCase() !== label.color.toLowerCase() ||
+                         (old.description || '') !== label.description) {
+                await github.rest.issues.updateLabel({
+                  owner, repo, name: old.name, new_name: label.name,
+                  color: label.color, description: label.description
+                });
+                updated++;
+              }
+            }
+            // Intentionally remove legacy/default labels not in the approved taxonomy.
+            for (const old of before) {
+              if (!names.has(old.name.toLowerCase())) {
+                await github.rest.issues.deleteLabel({owner, repo, name: old.name});
+                deleted++;
+              }
+            }
+            const after = await github.paginate(github.rest.issues.listLabelsForRepo, {
+              owner, repo, per_page: 100
+            });
+            if (after.length !== desired.length ||
+                after.some(label => !names.has(label.name.toLowerCase()))) {
+              throw new Error('Label sync postcondition failed: unexpected catalogue.');
+            }
+            core.info('Label sync completed: ' + JSON.stringify({
+              previous: before.length, desired: desired.length, created, updated, deleted
+            }));

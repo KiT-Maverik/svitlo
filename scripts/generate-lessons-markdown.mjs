@@ -3,7 +3,7 @@
  * Read-only LessonV2 data → review Markdown. No published JSON or authored data changes.
  *
  * node scripts/generate-lessons-markdown.mjs --package learningApps/playground \
- *   --lesson 1/howLightMoves --locale uk --stdout
+ *   --lesson d3048d21-8690-5255-b62c-984c69ac272c --locale uk --stdout
  * node scripts/generate-lessons-markdown.mjs --package learningApps/playground \
  *   --locale uk --output .agent-ci-artifacts/lessons
  */
@@ -13,9 +13,10 @@ import process from 'node:process';
 import Module from 'node:module';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { renderLessonMarkdown, sourceIndex, supportedLanguages } from './lib/lesson-markdown.mjs';
+import { resolveEntityPath } from '@svitlo/engine/utils';
 
 const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const usage = 'Usage: --package learningApps/<textbook> [--lesson <number>/<slug>] --locale <language> (--stdout | --output <directory>)';
+const usage = 'Usage: --package learningApps/<textbook> [--lesson <uuid>] --locale <language> (--stdout | --output <directory>)';
 
 export function parseArguments(argv) {
   const options = {};
@@ -34,7 +35,7 @@ export function parseArguments(argv) {
   if (!options.package || !options.locale || Boolean(options.stdout) === Boolean(options.output)) throw new Error(usage);
   if (options.stdout && !options.lesson) throw new Error('--stdout requires --lesson to select exactly one document');
   if (!/^learningApps\/[a-z][a-z0-9-]*$/.test(options.package)) throw new Error('Invalid --package: expected learningApps/<textbook>');
-  if (options.lesson && !/^\d+\/[A-Za-z0-9][A-Za-z0-9_-]*$/.test(options.lesson)) throw new Error('Invalid --lesson: expected <number>/<slug>');
+  if (options.lesson) resolveEntityPath(options.lesson);
   return options;
 }
 
@@ -51,18 +52,22 @@ export function discoverLessons(packageDirectory) {
   const root = path.join(packageDirectory, 'data/lessons');
   realDirectory(root, packageDirectory);
   const result = [];
-  for (const group of fs.readdirSync(root, { withFileTypes: true }).sort((a, b) => Number(a.name) - Number(b.name) || a.name.localeCompare(b.name, 'en'))) {
-    if (!group.isDirectory() || !/^\d+$/.test(group.name)) continue;
-    const bucket = path.join(root, group.name);
-    realDirectory(bucket, root);
-    for (const lesson of fs.readdirSync(bucket, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name, 'en'))) {
-      if (!lesson.isDirectory() || !/^[A-Za-z0-9][A-Za-z0-9_-]*$/.test(lesson.name)) continue;
-      const directory = path.join(bucket, lesson.name);
-      realDirectory(directory, bucket);
-      const entry = path.join(directory, `${lesson.name}.data.ts`);
-      if (!fs.existsSync(entry)) throw new Error(`Missing canonical LessonV2 entry: ${entry}`);
-      if (fs.lstatSync(entry).isSymbolicLink() || !fs.statSync(entry).isFile()) throw new Error(`Invalid canonical LessonV2 entry: ${entry}`);
-      result.push({ group: group.name, slug: lesson.name, directory, entry });
+  for (const bucket of fs.readdirSync(root, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name, 'en'))) {
+    if (!bucket.isDirectory() || !/^[0-9a-f]$/.test(bucket.name)) continue;
+    const bucketPath = path.join(root, bucket.name);
+    realDirectory(bucketPath, root);
+    for (const lesson of fs.readdirSync(bucketPath, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name, 'en'))) {
+      if (!lesson.isDirectory()) continue;
+      const relative = resolveEntityPath(lesson.name);
+      if (relative !== `${bucket.name}/${lesson.name}`) throw new Error(`Lesson path mismatch: ${relative}`);
+      const directory = path.join(bucketPath, lesson.name);
+      realDirectory(directory, bucketPath);
+      const candidates = fs.readdirSync(directory).filter(name => name.endsWith('.data.ts'));
+      if (!candidates.length) continue;
+      if (candidates.length !== 1) throw new Error(`Ambiguous Lesson entry in ${directory}`);
+      const entry = path.join(directory, candidates[0]);
+      if (fs.lstatSync(entry).isSymbolicLink() || !fs.statSync(entry).isFile()) throw new Error(`Invalid Lesson entry: ${entry}`);
+      result.push({ id: lesson.name, relative, directory, entry });
     }
   }
   return result;
@@ -98,7 +103,7 @@ export async function loadLesson(entry, packageDirectory) {
   loaded.filename = filename;
   loaded.paths = Module._nodeModulePaths(packageDirectory);
   loaded._compile(output.outputFiles[0].text, filename);
-  const lessonExports = Object.values(loaded.exports).filter(value => value !== null && typeof value === 'object' && !Array.isArray(value) && 'group' in value && 'slug' in value);
+  const lessonExports = Object.values(loaded.exports).filter(value => value !== null && typeof value === 'object' && !Array.isArray(value) && 'id' in value && 'slug' in value);
   if (lessonExports.length !== 1) throw new Error(`Expected exactly one exported LessonV2 data object in ${entry}, found ${lessonExports.length}`);
   return lessonExports[0];
 }
@@ -110,15 +115,15 @@ export async function generate(options, { root = repositoryRoot, loader = loadLe
   const locales = supportedLanguages(root);
   if (!locales.includes(options.locale)) throw new Error(`Unsupported locale ${options.locale}; expected one of ${locales.join(', ')}`);
   const candidates = discoverLessons(packageDirectory);
-  const selected = options.lesson ? candidates.filter(item => `${item.group}/${item.slug}` === options.lesson) : candidates;
+  const selected = options.lesson ? candidates.filter(item => item.id === options.lesson) : candidates;
   if (!selected.length) throw new Error(`No matching canonical lessons for ${options.lesson ?? options.package}`);
   const generated = [];
   for (const item of selected) {
     const lesson = await loader(item.entry, packageDirectory);
-    if (lesson.group !== item.group || lesson.slug !== item.slug) throw new Error(`Lesson identity mismatch at ${item.entry}`);
+    if (lesson.id !== item.id || resolveEntityPath(lesson.id) !== item.relative) throw new Error(`Lesson identity mismatch at ${item.entry}`);
     const sources = sourceIndex(root, path.relative(root, item.directory));
     const markdown = renderLessonMarkdown({ lesson, locale: options.locale, languages: locales, packagePath: options.package, sourceFiles: sources });
-    generated.push({ path: `${options.package.split('/')[1]}/${item.group}/${item.slug}/${options.locale}.md`, markdown });
+    generated.push({ path: `${options.package.split('/')[1]}/${item.relative}/${options.locale}.md`, markdown });
   }
   if (options.stdout) return generated[0].markdown;
   const outputRoot = path.resolve(root, options.output);

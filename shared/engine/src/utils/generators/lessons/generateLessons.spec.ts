@@ -5,9 +5,9 @@ import path from 'node:path';
 import { describe, it } from 'node:test';
 import { renderLessonFiles, writeLessonFiles } from './generateLessons.utils';
 
+const id = 'd3048d21-8690-5255-b62c-984c69ac272c';
 const lesson = {
-  id: 'lesson-id',
-  group: '1',
+  id,
   slug: 'howLightMoves',
   title: { en: 'Light', uk: 'Світло' },
   parameters: { languages: ['en', 'uk'] },
@@ -23,11 +23,11 @@ const lesson = {
 
 describe('renderLessonFiles', () => {
   it('publishes separate localized collections and tracks field-level fallback', () => {
-    const files = renderLessonFiles(lesson, '1', 'howLightMoves');
+    const files = renderLessonFiles(lesson);
     assert.equal(files.size, 6);
-    const config = JSON.parse(files.get('1/howLightMoves/config/uk.json')!);
-    const cards = JSON.parse(files.get('1/howLightMoves/flashcards/uk.json')!);
-    const questions = JSON.parse(files.get('1/howLightMoves/questions/uk.json')!);
+    const config = JSON.parse(files.get(`c/${id}/config/uk.json`)!);
+    const cards = JSON.parse(files.get(`c/${id}/flashcards/uk.json`)!);
+    const questions = JSON.parse(files.get(`c/${id}/questions/uk.json`)!);
     assert.equal(config.data.title, 'Світло');
     assert.deepEqual(config.data.sections.quiz.content.quiz.quiz.questionSlugs, ['q1']);
     assert.equal(config.data.flashcards, undefined);
@@ -38,9 +38,9 @@ describe('renderLessonFiles', () => {
     assert.equal(questions.data.selectOneAnswer.q1.title, 'Що?');
   });
 
-  it('rejects a mismatched group or slug', () => {
-    assert.throws(() => renderLessonFiles(lesson, '2', 'howLightMoves'), /must declare group 2/);
-    assert.throws(() => renderLessonFiles(lesson, '1', 'other'), /must declare group 1 and slug other/);
+  it('rejects invalid UUID and malformed slug', () => {
+    assert.throws(() => renderLessonFiles({ ...lesson, id: 'invalid' }), /canonical UUID/);
+    assert.throws(() => renderLessonFiles({ ...lesson, slug: '../bad' }), /camelCase slug/);
   });
 
   it('writes files and removes stale output', () => {
@@ -48,10 +48,10 @@ describe('renderLessonFiles', () => {
     try {
       fs.mkdirSync(temp, { recursive: true });
       fs.writeFileSync(path.join(temp, 'stale.json'), '{}');
-      const files = renderLessonFiles(lesson, '1', 'howLightMoves');
+      const files = renderLessonFiles(lesson);
       writeLessonFiles(temp, files);
       assert.equal(fs.existsSync(path.join(temp, 'stale.json')), false);
-      assert.equal(fs.readFileSync(path.join(temp, '1/howLightMoves/config/uk.json'), 'utf8'), files.get('1/howLightMoves/config/uk.json'));
+      assert.equal(fs.readFileSync(path.join(temp, `c/${id}/config/uk.json`), 'utf8'), files.get(`c/${id}/config/uk.json`));
     } finally {
       fs.rmSync(temp, { recursive: true, force: true });
     }

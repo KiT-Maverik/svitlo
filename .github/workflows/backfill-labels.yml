@@ -1,0 +1,41 @@
+name: Backfill labels on existing Issues and PRs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/backfill-labels.yml'
+      - '.github/scripts/backfill-labels.cjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+concurrency:
+  group: github-label-backfill
+  cancel-in-progress: false
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Apply historical labels (all Issue and PR states)
+        uses: actions/github-script@v9
+        env:
+          SHARD: ${{ matrix.shard }}
+        with:
+          script: |
+            const backfill = require('./.github/scripts/backfill-labels.cjs');
+            await backfill({
+              github, context, core, shard: Number(process.env.SHARD), shards: 4
+            });

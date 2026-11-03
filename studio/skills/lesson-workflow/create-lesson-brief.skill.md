@@ -112,45 +112,42 @@ Program dependence: None
 
 **Target Skills rules:** Write a simple Markdown list with **one direct source-file link per approved Skill**, formatted exactly as `- [completeFilename.data.ts](relative/path/to/completeFilename.data.ts)`. The **link label must equal the target file's full basename**, including `.data.ts`; do not add bold Skill headings, friendly names, `Canonical Skill source` labels, UUIDs, `index.ts` aggregators, `*.ids.ts` dictionaries, generated taxonomy Markdown, or placeholder `#` links. Link directly to the `*.data.ts` file defining that **Skill**, not a Group/Domain.
 
-The **canonical Target Skills destination is `<PackageRoot>/data/skills/`**, the existing static authoring-data tree at the textbook application root, independent of `src/`. For a Brief in `learningApps/math/data/lessons/1/understandingNumbers/`, an **illustrative existing** Skill location `learningApps/math/data/skills/arithmetic/addition/skills/addMeaning.data.ts` would be linked as:
+The **canonical Target Skills destination is `<PackageRoot>/data/skills/`**, the existing static authoring-data tree at the textbook application root, independent of `src/`. For a Brief in `learningApps/math/data/lessons/2/3b836ba8-cafa-517e-a34c-d7f341614012/`, an **illustrative existing** Skill location `learningApps/math/data/skills/arithmetic/addition/skills/addMeaning.data.ts` would be linked as:
 
 ```md
 - [addMeaning.data.ts](../../../../data/skills/arithmetic/addition/skills/addMeaning.data.ts)
 ```
 
-The intermediate folders `arithmetic/addition/skills/` are an **example only**; use the actual Skill source-file nesting, rather than imposing that illustrative hierarchy. Compute `../../../../data/skills/` from the actual numbered Lesson directory and append the verified Skill-relative path. **Do not point any new Brief to `src/data/skillsTaxonomy/`**. Check that the Markdown label equals the exact `.data.ts` basename and the path is normalized within the target textbook's `data/skills/` tree. Verify every linked source file exists before authoring a Brief. **If a textbook has not migrated, report the missing destinations as blockers**, not verified links; do not switch to `src/` or claim those source files exist. If the source filename/nesting is genuinely unknown, raise an explicit migration decision rather than fabricate it. Generated taxonomy Markdown remains a read-only discovery aid, not a Target Skills link destination.
+The intermediate folders `arithmetic/addition/skills/` are an **example only**; use the actual Skill source-file nesting, rather than imposing that illustrative hierarchy. Compute `../../../../data/skills/` from the actual UUID Lesson directory and append the verified Skill-relative path. **Do not point any new Brief to `src/data/skillsTaxonomy/`**. Check that the Markdown label equals the exact `.data.ts` basename and the path is normalized within the target textbook's `data/skills/` tree. Verify every linked source file exists before authoring a Brief. **If a textbook has not migrated, report the missing destinations as blockers**, not verified links; do not switch to `src/` or claim those source files exist. If the source filename/nesting is genuinely unknown, raise an explicit migration decision rather than fabricate it. Generated taxonomy Markdown remains a read-only discovery aid, not a Target Skills link destination.
 
-## FILE PLACEMENT AND STABLE 100-LESSON BUCKET RULE
+## FILE PLACEMENT — UUID-ADDRESSED LESSONS
 
-The independent Methodologist Brief is stored at:
+Each Lesson has a stable UUID. Its **folder is the UUID** in the bucket computed by `resolveEntityPath(id)` from `@svitlo/engine/utils` (see [entity UUID addressing](../../docs/architecture/entity-uuid-addressing.md)):
 
 ```text
-<PackageRoot>/data/lessons/<bucketNumber>/<lessonSlug>/methodologist-brief.md
+<PackageRoot>/data/lessons/<last-hex-digit>/<uuid>/methodologist-brief.md
 ```
 
-Example: `learningApps/math/data/lessons/1/understandingNumbers/methodologist-brief.md`.
+- On creation, mint the UUID once, use the shared Engine resolver to derive the path, and save a `lesson.identity.json` with `{ "id": "<uuid>", "slug": "<camelCaseSlug>" }` if typed `lesson.data.ts` does not exist yet.
+- Keep the slug unique and meaningful within the textbook; it is **metadata**, not a folder name. Never regenerate the ID if title or slug changes.
+- On revision, find the existing Lesson by UUID (or search the IDE for its slug), edit the Brief in the same ID directory, and retain its identity.
+- Do not manage UUID buckets, count Lesson folders, compact, rebalance, or edit `group` fields. Bucket depth changes only through a coordinated migration.
+- This workflow creates **only the Brief** and, when creating a new editorial-only Lesson folder, the minimal identity file. It never creates `content.md`, runtime Lesson configurations, assets or Scenes.
 
-- Resolve the actual standalone textbook root; do not use the monorepo root or Playground by default. When creating the first Lesson, create `data/`, `data/lessons/` and `1/` if absent. Preserve the exact capitalization `Data/Lessons`.
-- Choose a unique, semantic **English camelCase** `lessonSlug` across every bucket in the textbook. Do not derive paths from grades, Curriculum, Modules, Chapters, Domains or Groups.
-- Buckets are numbered `1`, `2`, ...; count **Lesson directories**, not files. Put each new Lesson into the **highest-numbered existing bucket** until it holds **100** Lesson directories. When full, create the next bucket and place new Lessons there. No separate counter or registry is required.
-- **Never automatically move, rename, rebalance, renumber or compact existing Lesson directories.** Deletions may leave gaps. Do not fill older buckets merely to remove those gaps. Buckets are technical groupings, not Lesson sequence numbers or runtime IDs.
-- For revisions, find the existing Lesson across all numbered buckets and edit its Brief **in place**, retaining its path and slug. Before creation, check for duplicate slugs across all buckets; re-read the tree if concurrent writers may have changed the last bucket.
-- This Skill does **not** create or modify `content.md`, runtime Lesson configuration, assets or Scene specifications. The Brief stays adjacent to them but is editorial-only and **must not be embedded in published Lesson config or client resources**.
-
-Lessons remain Program-neutral and can be reused from multiple Curricula.
+Lessons remain Program-neutral and may be reused in several Curricula.
 
 ## DELIVERABLES AND ACCEPTANCE
 
-**Output exactly one authored/updated `methodologist-brief.md`** in the selected Lesson's stable numbered directory, with explicit `Draft` status and a verified Lesson Code link or the specified placeholder. Do not write companion Lesson Briefs, Lesson Content documents, runtime configs, or duplicate methodical content. Leave existing specialist and implementation artifacts untouched.
+**Output exactly one authored/updated `methodologist-brief.md`** in the selected Lesson's stable UUID directory, with explicit `Draft` status and a verified Lesson Code link or the specified placeholder. Do not write companion Lesson Briefs, Lesson Content documents, runtime configs, or duplicate methodical content. Leave existing specialist and implementation artifacts untouched.
 
 The accompanying editor-facing handoff (chat/PR, not a second mandatory file) reports:
 
-- The actual Brief path, Lesson slug, numbered bucket, and create/update operation.
+- The actual Brief path, Lesson slug, UUID bucket, and create/update operation.
 - Target Skills listed as direct relative links targeting the canonical `data/skills/` tree and labeled with exact `.data.ts` filenames; report any unresolved source-file migration, plus learning outcomes, scope and prerequisite decisions.
 - Optional Curriculum/Program compatibility checks, or that none was requested.
 - Factual sources, open editorial questions, approval status and the handoff requirements for the Screenwriter.
 - Verified Code link or `[Not implemented](#)`, and any generation or taxonomy blockers.
 
-**Acceptance gates:** genuinely approved Skill definitions read; every Target Skill has a relative `*.data.ts` link into `data/skills/` with an exact source-filename label; every destination is verified, or its unresolved migration is reported as a blocker; no links back into `src/`; no invented Skills/IDs; audience and instructional intent supported; observable outcomes and prerequisites; substantive subject content and citations; no unauthorized instructional design, assessment, gamification, code or client serialization; one separate Methodologist Brief; canonical `data/skills/` targets checked against the filesystem; no existing Lesson directories relocated; and no approval claimed without an editor decision.
+**Acceptance gates:** genuinely approved Skill definitions read; every Target Skill has a relative `*.data.ts` link into `data/skills/` with an exact source-filename label; every destination is verified, or its unresolved migration is reported as a blocker; no links back into `src/`; no invented Skills/IDs; audience and instructional intent supported; observable outcomes and prerequisites; substantive subject content and citations; no unauthorized instructional design, assessment, gamification, code or client serialization; one separate Methodologist Brief; canonical `data/skills/` targets checked against the filesystem; no existing Lesson directories relocated without authorization; and no approval claimed without an editor decision.
 
 **Handoff:** Once explicitly approved, the separate Brief becomes the pedagogical source for [Create Lesson Content](./create-lesson-content.skill.md), which creates `content.md` in the **same existing Lesson directory**. The Screenwriter may not modify the Brief or introduce Program narrative. Never launch the next workflow automatically.
