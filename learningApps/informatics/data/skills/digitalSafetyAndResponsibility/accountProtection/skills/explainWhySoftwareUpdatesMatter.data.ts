@@ -45,7 +45,7 @@ export const explainWhySoftwareUpdatesMatter_Skill_Data = buildSkillConfig({
       fr: 'Découvre comment les mises à jour officielles peuvent corriger des failles de sécurité.',
       bn: 'প্রস্তুতকারকের আনুষ্ঠানিক সফটওয়্যার আপডেট কীভাবে নিরাপত্তার দুর্বলতা ঠিক করতে সাহায্য করে, তা জানো।',
       pt: 'Entenda como atualizações oficiais ajudam a corrigir falhas de segurança.',
-      ur: 'جانیں کہ سرکاری سافٹ ویئر اپ ڈیٹس حفاظتی خامیوں کو کیسے ٹھیک کرتی ہیں۔',
+      ur: 'جانیں کہ سافٹ ویئر بنانے والوں کی جاری کردہ مستند اپ ڈیٹس حفاظتی کمزوریاں دور کرنے میں کیسے مدد دیتی ہیں۔',
       id: 'Ketahui mengapa pembaruan resmi dapat memperbaiki kelemahan keamanan.',
       de: 'Lerne, warum offizielle Updates Sicherheitslücken schließen können.',
       ja: '正規の更新によってセキュリティ上の弱点を修正できる理由を学ぼう。',
