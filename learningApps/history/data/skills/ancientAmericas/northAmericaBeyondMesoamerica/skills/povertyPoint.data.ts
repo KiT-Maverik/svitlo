@@ -4,7 +4,7 @@ export const povertyPoint_Skill_Data = buildSkillConfig({
   slug: "povertyPoint",
   id: "304d36df-4a14-48a8-a946-742b50b6378d",
   name: {
-    en: "Поверті-Пойнт",
+    en: "Poverty Point",
     zh: "波弗蒂角",
     hi: "पॉवर्टी पॉइंट",
     es: "Poverty Point",

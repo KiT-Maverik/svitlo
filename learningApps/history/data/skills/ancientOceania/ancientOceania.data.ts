@@ -7,7 +7,7 @@ export const ancientOceania_SkillDomain_Data = buildSkillDomainConfig({
   slug: "ancientOceania",
   id: "83bcaecb-a01b-450c-9e1e-540a4c4f5b12",
   name: {
-    en: "Океанія",
+    en: "Oceania",
     zh: "大洋洲",
     hi: "ओशिनिया",
     es: "Oceanía",

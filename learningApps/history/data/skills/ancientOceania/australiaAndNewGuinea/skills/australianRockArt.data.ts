@@ -4,7 +4,7 @@ export const australianRockArt_Skill_Data = buildSkillConfig({
   slug: "australianRockArt",
   id: "b2942714-ec04-42a7-a0c0-c132fd798e96",
   name: {
-    en: "Наскельне мистецтво Австралії",
+    en: "Australian Rock Art",
     zh: "澳大利亚岩画艺术",
     hi: "ऑस्ट्रेलिया की शैलकला",
     es: "Arte rupestre australiano",

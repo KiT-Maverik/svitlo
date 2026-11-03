@@ -4,7 +4,7 @@ export const austronesianExpansion_Skill_Data = buildSkillConfig({
   slug: "austronesianExpansion",
   id: "40f41c66-906c-4d51-ae6d-ef330d584617",
   name: {
-    en: "Австронезійське розселення",
+    en: "Austronesian Expansion",
     zh: "南岛语族的扩散",
     hi: "ऑस्ट्रोनेशियाई विस्तार",
     es: "Expansión austronesia",

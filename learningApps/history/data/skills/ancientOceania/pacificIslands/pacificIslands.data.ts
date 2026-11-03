@@ -6,7 +6,7 @@ export const pacificIslands_SkillGroup_Data = buildSkillGroupConfig({
   slug: "pacificIslands",
   id: "5c26ca3e-28b8-435c-abc0-8959cf1af92f",
   name: {
-    en: "Острівний Тихий океан",
+    en: "Pacific Islands",
     zh: "太平洋岛屿",
     hi: "प्रशांत महासागर के द्वीप",
     es: "Islas del Pacífico",

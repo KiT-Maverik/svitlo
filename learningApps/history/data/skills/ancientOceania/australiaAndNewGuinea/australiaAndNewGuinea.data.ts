@@ -6,7 +6,7 @@ export const australiaAndNewGuinea_SkillGroup_Data = buildSkillGroupConfig({
   slug: "australiaAndNewGuinea",
   id: "789a7c3c-8525-43fb-827f-1834d88ab398",
   name: {
-    en: "Австралія та Нова Гвінея",
+    en: "Australia and New Guinea",
     zh: "澳大利亚与新几内亚",
     hi: "ऑस्ट्रेलिया और न्यू गिनी",
     es: "Australia y Nueva Guinea",

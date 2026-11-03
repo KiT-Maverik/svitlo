@@ -4,7 +4,7 @@ export const peoplingOfSahul_Skill_Data = buildSkillConfig({
   slug: "peoplingOfSahul",
   id: "7cdc322e-aa81-4f63-ac23-52db586948e6",
   name: {
-    en: "Заселення Сахулу",
+    en: "Peopling of Sahul",
     zh: "萨胡尔大陆的定居",
     hi: "साहुल का प्रारंभिक बसाव",
     es: "Poblamiento de Sahul",

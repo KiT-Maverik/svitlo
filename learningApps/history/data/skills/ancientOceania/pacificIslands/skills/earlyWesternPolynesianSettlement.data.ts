@@ -4,7 +4,7 @@ export const earlyWesternPolynesianSettlement_Skill_Data = buildSkillConfig({
   slug: "earlyWesternPolynesianSettlement",
   id: "6a35e7a7-4de3-4bbd-a3bd-3e30c420004f",
   name: {
-    en: "Раннє заселення Західної Полінезії",
+    en: "Early Western Polynesian Settlement",
     zh: "西波利尼西亚的早期定居",
     hi: "पश्चिमी पोलिनेशिया में प्रारंभिक बसावट",
     es: "Poblamiento temprano de la Polinesia occidental",

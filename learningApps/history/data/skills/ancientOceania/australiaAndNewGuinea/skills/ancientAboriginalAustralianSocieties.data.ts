@@ -4,7 +4,7 @@ export const ancientAboriginalAustralianSocieties_Skill_Data = buildSkillConfig(
   slug: "ancientAboriginalAustralianSocieties",
   id: "1784b5ad-11c2-44d4-a160-fabc89363a24",
   name: {
-    en: "Давні аборигенні суспільства Австралії",
+    en: "Ancient Aboriginal Australian Societies",
     zh: "澳大利亚原住民的古代社会",
     hi: "ऑस्ट्रेलियाई आदिवासियों के प्राचीन समाज",
     es: "Sociedades antiguas de los pueblos aborígenes australianos",

@@ -4,7 +4,7 @@ export const ancientSouthwesternNorthAmerica_Skill_Data = buildSkillConfig({
   slug: "ancientSouthwesternNorthAmerica",
   id: "f7a1b0ab-03c6-444c-ae42-aa883de05a9b",
   name: {
-    en: "Давні суспільства південного заходу Північної Америки",
+    en: "Ancient Societies of Southwestern North America",
     zh: "北美洲西南部古代社会",
     hi: "उत्तरी अमेरिका के दक्षिण-पश्चिम के प्राचीन समाज",
     es: "Sociedades antiguas del suroeste de Norteamérica",

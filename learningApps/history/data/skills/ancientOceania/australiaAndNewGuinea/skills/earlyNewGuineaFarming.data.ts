@@ -4,7 +4,7 @@ export const earlyNewGuineaFarming_Skill_Data = buildSkillConfig({
   slug: "earlyNewGuineaFarming",
   id: "c0614b7c-7639-4799-b1c8-f55264b9b515",
   name: {
-    en: "Ранні землеробські практики Нової Гвінеї",
+    en: "Early New Guinea Farming",
     zh: "新几内亚早期农业",
     hi: "न्यू गिनी की प्रारंभिक खेती",
     es: "Agricultura temprana en Nueva Guinea",
