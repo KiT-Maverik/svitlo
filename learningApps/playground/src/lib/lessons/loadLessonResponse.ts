@@ -2,7 +2,7 @@ import 'server-only';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import type { LanguageCode } from '@svitlo/engine/localization';
-import { resolveEntityPath } from '@svitlo/engine/utils';
+import { resolveEntityPath } from '@svitlo/engine';
 import { assembleLessonResponse } from './assembleLessonResponse';
 
 /** Local published files are the sole runtime source; authored TS is never loaded here. */
