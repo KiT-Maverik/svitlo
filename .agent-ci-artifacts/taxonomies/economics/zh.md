@@ -56,7 +56,7 @@ Skills: 3
 
 **Methodological description (English):** Analyze physical and economic access to food, stability of supplies, and why sufficient aggregate production does not ensure everyone can obtain food.
 
-**User-friendly description (zh):** 探索为什么粮食产量充足不代表人人都买得起或获得到食物。
+**User-friendly description (zh):** 探索为什么粮食产量充足并不意味着人人都买得起或能获得食物。
 
 #### 教育经济学
 
@@ -272,7 +272,7 @@ Skills: 4
 
 **User-friendly description (zh):** 探索为什么同一事实表述为收益或损失时给人的感觉不同。
 
-##### 当前偏误
+##### 当下偏误
 
 [presentBias.data.ts](../../../learningApps/economics/data/skills/consumerBehavior/behavioralFactorsInChoice/skills/presentBias.data.ts)
 

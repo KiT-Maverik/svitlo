@@ -1340,13 +1340,13 @@ Skills: 3
 
 **User-friendly description (ja):** 公的支援が特定の経済的なリスクをどう減らすか探ろう。
 
-##### 公共事業の評価
+##### 公的施策の評価
 
 [publicProgramEvaluation.data.ts](../../../learningApps/economics/data/skills/governmentAndEconomicPolicy/redistributionAndSocialProtection/skills/publicProgramEvaluation.data.ts)
 
 **Methodological description (English):** Assess a program's stated objectives, actual outcomes, opportunity costs, and unintended effects.
 
-**User-friendly description (ja):** 政府の事業がどの費用で目標を達成したか判断しよう。
+**User-friendly description (ja):** 政府の施策が目標を達成したか、どの程度の費用がかかったか評価しよう。
 
 ##### 社会移転給付
 
@@ -1578,7 +1578,7 @@ Groups: 3 · Skills: 13
 
 **User-friendly description (ja):** 働く人と雇用主が仕事、技能、賃金についてどう決めるか探ろう。
 
-#### 就職と職業移動
+#### 雇用と労働移動
 
 Skills: 4
 
@@ -1906,7 +1906,7 @@ Skills: 6
 
 **User-friendly description (ja):** 失業率を測るとき誰が計算に含まれるか理解しよう。
 
-### マーケティングと取引
+### マーケティングと商取引
 
 Groups: 6 · Skills: 26
 
@@ -1974,7 +1974,7 @@ Skills: 3
 
 **Methodological description (English):** Audience needs and competitive conditions can be studied using observations, surveys, and tests of assumptions.
 
-**User-friendly description (ja):** 企業が顧客や競合についてどのように根拠を集めるか学ぼう。
+**User-friendly description (ja):** 企業が顧客や競合についてどのように情報を集めるか学ぼう。
 
 ##### 顧客のセグメント分け
 

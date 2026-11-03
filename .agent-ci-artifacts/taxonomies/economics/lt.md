@@ -254,7 +254,7 @@ Skills: 4
 
 **Methodological description (English):** Explain how limits of time, knowledge, or computational ability lead decision-makers to use simplified rules.
 
-**User-friendly description (lt):** Suprask, kodėl žmonės dažnai naudoja trumpinius, užuot palyginę visas galimybes.
+**User-friendly description (lt):** Suprask, kodėl žmonės dažnai remiasi supaprastintomis taisyklėmis, užuot palyginę visas galimybes.
 
 ##### Pasirinkimų architektūra
 
@@ -852,7 +852,7 @@ Skills: 3
 
 **Methodological description (English):** Analyze the roles of land, seasonality, ownership, and agricultural surplus in historical economic systems.
 
-**User-friendly description (lt):** Tyrinėk, kaip žemė ir žemdirbystė formavo senovės ekonomikas.
+**User-friendly description (lt):** Tyrinėk, kaip žemė ir žemdirbystė formavo istorines ekonomikas.
 
 ##### Ekonominių ryšių globalizacija
 
@@ -1796,7 +1796,7 @@ Skills: 3
 
 **Methodological description (English):** Evaluate changes in real output over time and distinguish its growth rate from its absolute level.
 
-**User-friendly description (lt):** Išmatuokite infliaciją įvertinusios gamybos augimo spartą.
+**User-friendly description (lt):** Išmatuokite pagal infliaciją pakoreguotos gamybos augimo spartą.
 
 ##### Potencialioji gamyba
 
@@ -1974,7 +1974,7 @@ Skills: 3
 
 **Methodological description (English):** Audience needs and competitive conditions can be studied using observations, surveys, and tests of assumptions.
 
-**User-friendly description (lt):** Sužinok, kaip įmonės renka įrodymus apie klientus ir konkurentus.
+**User-friendly description (lt):** Sužinok, kaip įmonės renka duomenis apie klientus ir konkurentus.
 
 ##### Vartotojų segmentavimas
 
@@ -2008,7 +2008,7 @@ Skills: 7
 
 **Methodological description (English):** Price offers have commercial effects, but judging them requires verifying actual savings and methods of influencing buyers.
 
-**User-friendly description (lt):** Mokykis vertinti akcijų kainas, nuolaidas ir sąžiningą pardavimą.
+**User-friendly description (lt):** Mokykis vertinti išpardavimo kainas, nuolaidas ir sąžiningą pardavimo praktiką.
 
 ##### Nuolaidos ir akcijos
 
@@ -2338,7 +2338,7 @@ Skills: 4
 
 **User-friendly description (lt):** Rask paklausos ir pasiūlos kreivių sankirtą.
 
-##### Rinkos trūkumai ir perteklius
+##### Prekių trūkumas ir perteklius rinkoje
 
 [marketShortagesAndSurpluses.data.ts](../../../learningApps/economics/data/skills/marketsAndCompetition/marketEquilibrium/skills/marketShortagesAndSurpluses.data.ts)
 
@@ -2748,7 +2748,7 @@ Skills: 5
 
 **User-friendly description (lt):** Sužinok, kaip palūkanos nuo palūkanų augina santaupas arba skolą.
 
-##### Avarinės santaupos
+##### Santaupos nenumatytoms išlaidoms
 
 [emergencySavings.data.ts](../../../learningApps/economics/data/skills/personalFinance/savingAndInvesting/skills/emergencySavings.data.ts)
 

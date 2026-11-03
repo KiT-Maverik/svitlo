@@ -1348,7 +1348,7 @@ Skills: 3
 
 **User-friendly description (ko):** 정부 사업이 어떤 비용으로 목표를 달성했는지 평가해 보세요.
 
-##### 사회 이전 지급
+##### 사회적 이전지출
 
 [socialTransfers.data.ts](../../../learningApps/economics/data/skills/governmentAndEconomicPolicy/redistributionAndSocialProtection/skills/socialTransfers.data.ts)
 
@@ -1578,7 +1578,7 @@ Groups: 3 · Skills: 13
 
 **User-friendly description (ko):** 근로자와 고용주가 일자리, 기술, 임금에 관해 어떻게 결정하는지 살펴보세요.
 
-#### 고용과 이동성
+#### 고용과 노동 이동성
 
 Skills: 4
 
@@ -1906,7 +1906,7 @@ Skills: 6
 
 **User-friendly description (ko):** 실업을 측정할 때 누가 집계되는지 이해하세요.
 
-### 마케팅과 거래
+### 마케팅과 상거래
 
 Groups: 6 · Skills: 26
 
@@ -1974,7 +1974,7 @@ Skills: 3
 
 **Methodological description (English):** Audience needs and competitive conditions can be studied using observations, surveys, and tests of assumptions.
 
-**User-friendly description (ko):** 기업이 고객과 경쟁사에 대한 근거를 어떻게 모으는지 배워 보세요.
+**User-friendly description (ko):** 기업이 고객과 경쟁사에 대한 정보를 어떻게 수집하는지 배워 보세요.
 
 ##### 소비자 세분화
 
@@ -2176,7 +2176,7 @@ Skills: 3
 
 **User-friendly description (ko):** 운송과 보관이 제품 비용에 영향을 주는 이유를 알아보세요.
 
-##### 도매 무역
+##### 도매업
 
 [wholesaleTrade.data.ts](../../../learningApps/economics/data/skills/marketingAndTrade/salesChannelsAndDistribution/skills/wholesaleTrade.data.ts)
 
@@ -2338,7 +2338,7 @@ Skills: 4
 
 **User-friendly description (ko):** 수요곡선과 공급곡선이 만나는 지점을 찾아보세요.
 
-##### 시장 부족과 잉여
+##### 시장의 공급 부족과 공급 과잉
 
 [marketShortagesAndSurpluses.data.ts](../../../learningApps/economics/data/skills/marketsAndCompetition/marketEquilibrium/skills/marketShortagesAndSurpluses.data.ts)
 
@@ -2482,7 +2482,7 @@ Skills: 4
 
 **Methodological description (English):** Interpret a debt obligation, coupon, maturity, and the relationship between market price and yield.
 
-**User-friendly description (ko):** 사고팔 수 있는 대출 채권으로서 채권을 이해해 보세요.
+**User-friendly description (ko):** 사고팔 수 있는 채무 증서로서 채권을 이해해 보세요.
 
 ##### 이자율
 
@@ -2526,7 +2526,7 @@ Skills: 3
 
 **User-friendly description (ko):** 금융 규칙이 위험을 줄이려는 방식을 이해해 보세요.
 
-##### 시스템 금융 위험
+##### 시스템적 금융 위험
 
 [systemicFinancialRisk.data.ts](../../../learningApps/economics/data/skills/moneyAndFinancialSystem/financialStabilityAndRegulation/skills/systemicFinancialRisk.data.ts)
 

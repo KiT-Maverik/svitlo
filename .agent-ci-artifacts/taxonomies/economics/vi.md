@@ -562,7 +562,7 @@ Skills: 3
 
 **User-friendly description (vi):** Hiểu vì sao việc tạo thêm một bản sao số có thể tốn rất ít chi phí.
 
-##### Đăng ký thuê bao và mua một lần
+##### Gói đăng ký định kỳ và mua một lần
 
 [subscriptionsVersusOneTimePurchases.data.ts](../../../learningApps/economics/data/skills/digitalEconomy/digitalProducts/skills/subscriptionsVersusOneTimePurchases.data.ts)
 
@@ -1576,9 +1576,9 @@ Groups: 3 · Skills: 13
 
 **Methodological description (English):** Labor markets connect working time, qualifications, pay, vacancies, and hiring rules. This domain distinguishes individual work decisions from aggregate unemployment.
 
-**User-friendly description (vi):** Khám phá cách người lao động và chủ sử dụng quyết định về việc làm, kỹ năng và tiền lương.
+**User-friendly description (vi):** Khám phá cách người lao động và người sử dụng lao động quyết định về việc làm, kỹ năng và tiền lương.
 
-#### Việc làm và di chuyển
+#### Việc làm và dịch chuyển lao động
 
 Skills: 4
 
@@ -1636,7 +1636,7 @@ Skills: 3
 
 **Methodological description (English):** Explain how trade unions and employers' organizations can affect working conditions and bargaining power.
 
-**User-friendly description (vi):** Tìm hiểu cách nhóm người lao động và chủ sử dụng đàm phán điều kiện làm việc.
+**User-friendly description (vi):** Tìm hiểu cách các nhóm người lao động và người sử dụng lao động đàm phán điều kiện làm việc.
 
 ##### Hợp đồng lao động
 
@@ -1974,7 +1974,7 @@ Skills: 3
 
 **Methodological description (English):** Audience needs and competitive conditions can be studied using observations, surveys, and tests of assumptions.
 
-**User-friendly description (vi):** Tìm hiểu cách doanh nghiệp thu thập bằng chứng về khách hàng và đối thủ.
+**User-friendly description (vi):** Tìm hiểu cách doanh nghiệp thu thập dữ liệu về khách hàng và đối thủ cạnh tranh.
 
 ##### Phân khúc người tiêu dùng
 
@@ -2064,7 +2064,7 @@ Skills: 7
 
 **Methodological description (English):** Identify burdensome cancellation steps, hidden automatic renewal, and imbalance between ease of signing up and canceling; distinguish these from transparent lawful renewal terms.
 
-**User-friendly description (vi):** Nhận biết khi việc hủy thuê bao bị gây khó khăn không cần thiết.
+**User-friendly description (vi):** Nhận biết khi việc hủy đăng ký dịch vụ bị gây khó khăn không cần thiết.
 
 #### Sản phẩm và đề xuất giá trị
 
@@ -2500,7 +2500,7 @@ Skills: 4
 
 **User-friendly description (vi):** Tìm hiểu ý nghĩa của việc sở hữu cổ phần trong công ty.
 
-#### Ổn định và quản lý tài chính
+#### Ổn định và điều tiết tài chính
 
 Skills: 3
 

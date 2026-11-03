@@ -168,7 +168,7 @@ Skills: 3
 
 **Methodological description (English):** Moving people and goods creates direct and external costs, while infrastructure requires large initial investments and lasts for long periods.
 
-**User-friendly description (ta):** போக்குவரத்திலும் பொது உள்கட்டமைப்பிலும் உள்ள பொருளாதாரப் பரிமாற்றங்களை ஆராய்.
+**User-friendly description (ta):** போக்குவரத்திலும் பொது உள்கட்டமைப்பிலும் உள்ள பொருளாதாரச் சமரசங்களை ஆராய்.
 
 ##### போக்குவரத்து நெரிசலின் பொருளியல்
 
@@ -552,7 +552,7 @@ Skills: 3
 
 **Methodological description (English):** Evaluate exchanges of personal data for services, information asymmetry, and the economic value of privacy.
 
-**User-friendly description (ta):** தனிப்பட்ட தரவுகளால் நிதியளிக்கப்படும் சேவைகளின் மறைமுகப் பொருளாதாரப் பரிமாற்றங்களை ஆராய்.
+**User-friendly description (ta):** தனிப்பட்ட தரவுகளால் நிதியளிக்கப்படும் சேவைகளின் மறைமுகப் பொருளாதாரச் சமரசங்களை ஆராய்.
 
 ##### எண்ணிம நகலெடுப்பின் விளிம்புநிலைச் செலவு
 
@@ -586,7 +586,7 @@ Skills: 2
 
 **Methodological description (English):** Distinguish privately issued cryptoassets, tokenized claims, and central bank digital currencies by their nature and risks.
 
-**User-friendly description (ta):** கிரிப்டோ சொத்துகளையும் அரசின் எண்ணிம நாணயங்களையும் வேறுபடுத்து.
+**User-friendly description (ta):** கிரிப்டோ சொத்துகளையும் அதிகாரப்பூர்வ எண்ணிம நாணயங்களையும் வேறுபடுத்து.
 
 ##### கொடுப்பனவுக்கான நிதித் தொழில்நுட்பங்கள்
 
@@ -1712,7 +1712,7 @@ Skills: 6
 
 **User-friendly description (ta):** வருமானம், ஓய்வு, பிற பொறுப்புகள் இடையிலான சமநிலையை ஆராய்.
 
-### பேரினப் பொருளியல்
+### பேரியல் பொருளாதாரம்
 
 Groups: 4 · Skills: 18
 
@@ -1756,7 +1756,7 @@ Skills: 5
 
 **User-friendly description (ta):** பொருளாதாரச் சுழற்சியின் பல்வேறு கட்டங்களை அறிந்துகொள்ளுங்கள்.
 
-##### பேரினப் பொருளாதார அதிர்ச்சிகள்
+##### பேரியல் பொருளாதார அதிர்ச்சிகள்
 
 [macroeconomicShocks.data.ts](../../../learningApps/economics/data/skills/macroeconomics/businessFluctuationsAndAggregateDemand/skills/macroeconomicShocks.data.ts)
 
@@ -2008,7 +2008,7 @@ Skills: 7
 
 **Methodological description (English):** Price offers have commercial effects, but judging them requires verifying actual savings and methods of influencing buyers.
 
-**User-friendly description (ta):** விற்பனை விலை, தள்ளுபடி, நியாயமான விற்பனை முறைகளை மதிப்பிடக் கற்றுக்கொள்.
+**User-friendly description (ta):** சலுகை விலைகள், தள்ளுபடிகள், நியாயமான விற்பனை முறைகளை மதிப்பிடக் கற்றுக்கொள்.
 
 ##### தள்ளுபடிகளும் சலுகைகளும்
 
@@ -2476,7 +2476,7 @@ Skills: 4
 
 **User-friendly description (ta):** நிதிச் சொத்துகளின் ஆபத்து, சாத்திய வருவாய், பணமாக்கும் திறன் ஆகியவற்றை ஒப்பிடு.
 
-##### பத்திரங்கள்
+##### கடன்பத்திரங்கள்
 
 [bonds.data.ts](../../../learningApps/economics/data/skills/moneyAndFinancialSystem/financialMarkets/skills/bonds.data.ts)
 
@@ -2620,7 +2620,7 @@ Skills: 4
 
 **Methodological description (English):** Money planning begins by understanding sources of income, recurring obligations, and the limits of available spending.
 
-**User-friendly description (ta):** வருமானமும் செலவுகளும் குடும்பத் திட்டத்தை எவ்வாறு வடிவமைக்கின்றன என்பதை ஆராய்.
+**User-friendly description (ta):** வருமானமும் செலவுகளும் குடும்ப வரவுசெலவுத் திட்டத்தை எவ்வாறு வடிவமைக்கின்றன என்பதை ஆராய்.
 
 ##### செலவுக் கண்காணிப்பு
 

@@ -518,7 +518,7 @@ Skills: 3
 
 **User-friendly description (pt):** Explore o que acontece quando trabalhadores e investimentos mudam de setor.
 
-##### Aproximação tecnológica
+##### Recuperação do atraso tecnológico
 
 [technologicalCatchUp.data.ts](../../../learningApps/economics/data/skills/developmentWellbeingAndInstitutions/structuralChange/skills/technologicalCatchUp.data.ts)
 
@@ -1974,7 +1974,7 @@ Skills: 3
 
 **Methodological description (English):** Audience needs and competitive conditions can be studied using observations, surveys, and tests of assumptions.
 
-**User-friendly description (pt):** Aprenda como empresas coletam evidências sobre clientes e concorrentes.
+**User-friendly description (pt):** Aprenda como empresas coletam informações sobre clientes e concorrentes.
 
 ##### Segmentação de consumidores
 
@@ -2042,7 +2042,7 @@ Skills: 7
 
 **User-friendly description (pt):** Reconheça urgência falsa, escassez artificial e outras pressões para comprar.
 
-##### Preços psicológicos
+##### Precificação psicológica
 
 [psychologicalPricing.data.ts](../../../learningApps/economics/data/skills/marketingAndTrade/pricingPromotionsAndFairness/skills/psychologicalPricing.data.ts)
 
