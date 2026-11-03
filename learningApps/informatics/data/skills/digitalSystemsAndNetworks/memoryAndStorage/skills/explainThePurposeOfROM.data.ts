@@ -59,7 +59,7 @@ export const explainThePurposeOfROM_Skill_Data = buildSkillConfig({
       he: "זהו כיצד זיכרון קושחה בלתי נדיף מסייע להתקנים להתחיל לפעול.",
       pl: "Rozpoznaj, jak nieulotna pamięć oprogramowania układowego pomaga urządzeniom się uruchamiać.",
       uk: "Розпізнавай, як енергонезалежна пам'ять мікропрограм допомагає пристроям запускатися.",
-      lt: "Atpažink, kaip neišliekamumo neprarandanti programinės aparatinės įrangos atmintis padeda įrenginiams įsijungti.",
+      lt: "Sužinok, kaip ROM ir panaši atmintis išlaiko įrenginio paleidimo instrukcijas išjungus maitinimą.",
       lv: "Atpazīsti, kā energoneatkarīga aparātprogrammatūras atmiņa palīdz ierīcēm startēt.",
       et: "Uuri, kuidas püsimälu püsivara aitab seadmeid käivitada.",
       be: "Распазнавай, як энэрганезалежная памяць прашыўкі дапамагае прыладам запускацца.",

@@ -32,7 +32,7 @@ export const explainContributionGuidelines_Skill_Data = buildSkillConfig({
     be: "Тлумачыць правілы ўнёску",
     ka: "წვლილის შეტანის წესების ახსნა",
     kk: "Үлес қосу нұсқауларын түсіндіру",
-    qm: "Qatqı qa idelerini añlatmaq",
+    qm: "Qatqı qaidelerini añlatmaq",
   },
   description: {
     methodological: "Rules for contributions, code review, and discussing changes help teams maintain a shared project.",
@@ -65,7 +65,7 @@ export const explainContributionGuidelines_Skill_Data = buildSkillConfig({
       be: "Зразумей, чаму правілы ўнёску дапамагаюць людзям працаваць над агульным кодам.",
       ka: "გაიგე, რატომ ეხმარება წვლილის წესები ადამიანებს საერთო კოდის ბაზაზე მუშაობაში.",
       kk: "Үлес қосу ережелері ортақ код базасында жұмыс істеуге неге көмектесетінін түсін.",
-      qm: "Qatqı qa ideleri niçün insanlarğa bir kod temeli üstünde işlemekke yardım etkenini añla.",
+      qm: "Qatqı qaideleri niçün insanlarğa bir kod temeli üstünde işlemekke yardım etkenini añla.",
     },
   },
 });

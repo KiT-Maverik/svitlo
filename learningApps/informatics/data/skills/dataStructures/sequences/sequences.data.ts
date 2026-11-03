@@ -70,7 +70,7 @@ export const sequences_SkillGroup_Data = buildSkillGroupConfig({
       he: "גלו אוספים מסודרים וכיצד לגשת לאיברים שלהם, להוסיף ולהסיר אותם.",
       pl: "Poznaj uporządkowane kolekcje oraz sposoby odczytywania, dodawania i usuwania ich elementów.",
       uk: "Досліди впорядковані колекції та способи доступу, додавання й вилучення їхніх елементів.",
-      lt: "Tyrinėk surikiuotus rinkinius ir kaip pasiekti, pridėti bei pašalinti jų elementus.",
+      lt: "Tyrinėk rinkinius, kuriuose svarbi elementų tvarka, ir kaip pasiekti, pridėti bei pašalinti jų elementus.",
       lv: "Izpēti sakārtotas kolekcijas un to elementu piekļuvi, pievienošanu un izņemšanu.",
       et: "Uuri järjestatud kogumeid ning elementide lugemist, lisamist ja eemaldamist.",
       be: "Дасьледуй упарадкаваныя калекцыі і спосабы доступу, даданьня і выдаленьня іх элемэнтаў.",
