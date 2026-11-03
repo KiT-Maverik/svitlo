@@ -39,7 +39,7 @@ export const explainDensity_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Understand density as the amount of mass in a given volume.",
       zh: "理解密度是一定体积内所含的质量。",
-      hi: "समझें कि घनत्व किसी निश्चित आयतन में मौजूद द्रव्यमान है।",
+      hi: "समझें कि घनत्व प्रति इकाई आयतन का द्रव्यमान है।",
       es: "Comprende la densidad como masa por unidad de volumen.",
       ar: "افهم الكثافة بوصفها الكتلة في حجم معين.",
       fr: "Comprends la masse volumique comme une masse par unité de volume.",
