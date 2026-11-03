@@ -4,7 +4,7 @@ import type { Locale_Config, Locale_ResponseParams } from '../locale.types';
 
 type ContentBlock_Markdown_Definition = ContentBlock_Definition_Meta<'markdown'>;
 
-type ContentBlock_Markdown_Data = ContentBlock_Data_Meta & {
+type ContentBlock_Markdown_Data = ContentBlock_Data_Meta<'markdown'> & {
   locales: Locale_Config;
 };
 
