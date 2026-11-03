@@ -17,7 +17,7 @@ export const peoplingOfContinents_Skill_Data = buildSkillConfig({
     de: "Besiedlung der Kontinente",
     ja: "各大陸への人類の進出",
     ko: "대륙으로의 인류 확산",
-    tr: "Kıtaların insanlarla yerleşimi",
+    tr: "Kıtalara İnsanların Yerleşmesi",
     vi: "Con người định cư trên các châu lục",
     ta: "கண்டங்களில் மனிதர்கள் குடியேறுதல்",
     te: "ఖండాల్లో మానవ నివాస విస్తరణ",

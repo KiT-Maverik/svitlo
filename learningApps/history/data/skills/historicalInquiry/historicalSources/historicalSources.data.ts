@@ -62,7 +62,7 @@ export const historicalSources_SkillGroup_Data = buildSkillGroupConfig({
       tr: "Eserlerin, metinlerin ve görsellerin tarih hakkında neler gösterebildiğini keşfet.",
       vi: "Khám phá hiện vật, văn bản và hình ảnh có thể cho biết điều gì về lịch sử.",
       ta: "தொல்பொருட்கள், உரைகள், படங்கள் வரலாற்றைப் பற்றி எதை வெளிப்படுத்துகின்றன என்பதை ஆராய்.",
-      te: "వస్తువులు, పాఠాలు, చిత్రాలు చరిత్ర గురించి ఏమి తెలుపగలవో తెలుసుకోండి.",
+      te: "వస్తువులు, లిఖిత ఆధారాలు, చిత్రాలు చరిత్ర గురించి ఏమి తెలుపగలవో తెలుసుకోండి.",
       mr: "वस्तू, मजकूर आणि चित्रे इतिहासाविषयी काय सांगू शकतात ते शोधा.",
       ms: "Terokai perkara yang boleh didedahkan oleh artifak, teks dan imej tentang sejarah.",
       he: "גלו מה חפצים, טקסטים ותמונות יכולים ללמד על ההיסטוריה.",
