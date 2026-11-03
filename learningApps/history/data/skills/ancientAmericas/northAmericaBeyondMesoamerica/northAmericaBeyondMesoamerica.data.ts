@@ -61,7 +61,7 @@ export const northAmericaBeyondMesoamerica_SkillGroup_Data = buildSkillGroupConf
       vi: "Tìm hiểu các xã hội cổ đại ở Bắc Mỹ bên ngoài Mesoamerica.",
       ta: "மெசோஅமெரிக்காவுக்கு வெளியிலுள்ள வட அமெரிக்கப் பண்டைய சமூகங்களை அறிந்துகொள்.",
       te: "మెసోఅమెరికా వెలుపలి ఉత్తర అమెరికా ప్రాచీన సమాజాలను తెలుసుకోండి.",
-      mr: "मेसोअमेरिकेबाहेरील उत्तर अमेरिकेतील प्राचीन समाज जाणून घे.",
+      mr: "मेसोअमेरिकेबाहेरील उत्तर अमेरिकेतील प्राचीन समाज जाणून घ्या.",
       ms: "Kenali masyarakat purba Amerika Utara di luar Mesoamerika.",
       he: "גלו את החברות העתיקות של צפון אמריקה מחוץ למסואמריקה.",
       pl: "Poznaj dawne społeczności Ameryki Północnej poza Mezoameryką.",

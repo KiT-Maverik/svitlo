@@ -61,7 +61,7 @@ export const ancientOceania_SkillDomain_Data = buildSkillDomainConfig({
       vi: "Khám phá cách người cổ đại đến và sinh sống khắp châu Đại Dương.",
       ta: "பண்டைய மக்கள் ஓசியானியாவை எவ்வாறு அடைந்து வாழ்ந்தனர் என்பதை ஆராய்.",
       te: "ప్రాచీన ప్రజలు ఓషియానియాకు ఎలా చేరుకుని నివసించారో తెలుసుకోండి.",
-      mr: "प्राचीन लोक ओशिनियात कसे पोहोचले आणि तेथे कसे राहिले ते जाणून घे.",
+      mr: "प्राचीन लोक ओशिनियात कसे पोहोचले आणि तेथे कसे राहिले ते जाणून घ्या.",
       ms: "Terokai cara manusia purba tiba dan hidup di seluruh Oceania.",
       he: "גלו כיצד אנשים קדומים הגיעו לאוקיאניה וחיו ברחביה.",
       pl: "Poznaj sposoby, w jakie dawni ludzie docierali do Oceanii i w niej żyli.",

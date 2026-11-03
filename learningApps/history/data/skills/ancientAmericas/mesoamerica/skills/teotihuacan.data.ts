@@ -54,7 +54,7 @@ export const teotihuacan_Skill_Data = buildSkillConfig({
       vi: "Tìm hiểu cách Teotihuacan trở thành một đô thị cổ đại lớn.",
       ta: "தேயோத்திவாகான் எவ்வாறு பெரும் பண்டைய நகரமாக வளர்ந்தது என்பதை அறிந்துகொள்.",
       te: "టియోటిహువాకాన్ గొప్ప ప్రాచీన నగరంగా ఎలా ఎదిగిందో తెలుసుకోండి.",
-      mr: "तेओतिहुआकान मोठे प्राचीन शहर कसे बनले ते जाणून घे.",
+      mr: "तेओतिहुआकान मोठे प्राचीन शहर कसे बनले ते जाणून घ्या.",
       ms: "Ketahui bagaimana Teotihuacan menjadi sebuah bandar purba yang besar.",
       he: "גלו כיצד טאוטיווקאן הפכה לעיר עתיקה גדולה.",
       pl: "Dowiedz się, jak Teotihuacán stało się wielkim miastem starożytności.",

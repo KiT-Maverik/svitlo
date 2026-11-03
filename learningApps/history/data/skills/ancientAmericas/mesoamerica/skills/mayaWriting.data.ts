@@ -54,7 +54,7 @@ export const mayaWriting_Skill_Data = buildSkillConfig({
       vi: "Hiểu cách chữ viết Maya ghi lại ngôn ngữ và ngày tháng.",
       ta: "மாயா எழுத்துமுறை மொழியையும் தேதிகளையும் எவ்வாறு பதிவு செய்தது என்பதைப் புரிந்துகொள்.",
       te: "మాయా లిపి భాషను, తేదీలను ఎలా నమోదు చేసిందో అర్థం చేసుకోండి.",
-      mr: "माया लिपीत भाषा आणि तारखा कशा नोंदवल्या जात ते समजून घे.",
+      mr: "माया लिपीत भाषा आणि तारखा कशा नोंदवल्या जात ते समजून घ्या.",
       ms: "Fahami bagaimana tulisan Maya merekodkan bahasa dan tarikh.",
       he: "הבינו כיצד כתב המאיה תיעד שפה ותאריכים.",
       pl: "Zrozum, jak pismo Majów zapisywało język i daty.",

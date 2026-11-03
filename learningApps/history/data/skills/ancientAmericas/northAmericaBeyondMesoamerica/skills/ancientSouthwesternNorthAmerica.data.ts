@@ -54,7 +54,7 @@ export const ancientSouthwesternNorthAmerica_Skill_Data = buildSkillConfig({
       vi: "Tìm hiểu các khu định cư và nông nghiệp sơ khai ở Tây Nam Bắc Mỹ.",
       ta: "வட அமெரிக்கத் தென்மேற்கின் ஆரம்பகாலக் குடியிருப்புகளையும் வேளாண்மையையும் ஆராய்.",
       te: "ఉత్తర అమెరికా నైరుతిలో తొలి నివాసాలు, వ్యవసాయం గురించి తెలుసుకోండి.",
-      mr: "अमेरिकेच्या नैऋत्य भागातील सुरुवातीच्या वस्त्या आणि शेती जाणून घे.",
+      mr: "अमेरिकेच्या नैऋत्य भागातील सुरुवातीच्या वस्त्या आणि शेती जाणून घ्या.",
       ms: "Terokai petempatan awal dan pertanian di barat daya Amerika.",
       he: "גלו יישובים קדומים וחקלאות בדרום־מערב אמריקה.",
       pl: "Poznaj wczesne osady i rolnictwo na południowym zachodzie Ameryki Północnej.",
