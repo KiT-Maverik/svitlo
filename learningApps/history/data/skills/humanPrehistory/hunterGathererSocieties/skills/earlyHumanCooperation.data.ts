@@ -28,7 +28,7 @@ export const earlyHumanCooperation_Skill_Data = buildSkillConfig({
     uk: "Соціальна взаємодія ранніх людей",
     lt: "Ankstyvųjų žmonių bendradarbiavimas",
     lv: "Agrīno cilvēku sadarbība",
-    et: "Varaste inimeste koostöö",
+    et: "Varaste inimeste sotsiaalne suhtlus",
     be: "Супраца раньніх людзей",
     ka: "ადრეული ადამიანების თანამშრომლობა",
     kk: "Алғашқы адамдардың ынтымақтастығы",
