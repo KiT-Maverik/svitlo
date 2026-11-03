@@ -1,4 +1,5 @@
-import Typography, { type TypographyProps } from '@mui/material/Typography';
+import Typography, {type TypographyProps} from '@mui/material/Typography';
+
 import {NonEmptyArray} from "@svitlo/engine";
 
 export interface TextProps {
@@ -7,20 +8,16 @@ export interface TextProps {
     enabled?: false;
     typographyProps?: Omit<TypographyProps, 'children'>;
   };
-  transform?: NonEmptyArray<Replace | Style | Condition>
-  variables?: {
-    [key: string]: string | number | boolean
-  }
+  styling?: NonEmptyArray<
+    {
+      applyStyle: NonEmptyArray<'highlight' | 'bold' | 'cursive' | 'underscore' | 'crossed' | 'variable'>
+      color?: string
+      id: string
+    }
+  >
 }
 
-type Style = {
-  operation: 'style'
-  apply: NonEmptyArray<'highlight' | 'bold' | 'cursive' | 'underscore' | 'crossed' | 'variable'>
-  color?: string
-  id: string
-}
-
-export const Text = ({ text, wrap }: TextProps) => {
+export const Text = ({text, wrap}: TextProps) => {
   if (wrap?.enabled === false) return text;
 
   return <Typography component="p" {...wrap?.typographyProps}>{text}</Typography>;
