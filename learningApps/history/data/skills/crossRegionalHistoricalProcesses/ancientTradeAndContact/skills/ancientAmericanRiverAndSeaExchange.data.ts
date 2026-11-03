@@ -28,7 +28,7 @@ export const ancientAmericanRiverAndSeaExchange_Skill_Data = buildSkillConfig({
     uk: "Давні річкові та морські обміни Америк",
     lt: "Senovės Amerikų upių ir jūrų mainai",
     lv: "Senie Ameriku upju un jūras sakari",
-    et: "Muinasaegne Ameerika jõe- ja mereteede vahetus",
+    et: "Muinasaegne jõe- ja merekaubandus Ameerikas",
     be: "Старажытныя рачныя і марскія абмены Амэрык",
     ka: "ძველი ამერიკის მდინარისა და ზღვის გაცვლები",
     kk: "Ежелгі Американың өзен және теңіз алмасуы",

@@ -40,7 +40,7 @@ export const ancientMeasurementSystems_Skill_Data = buildSkillConfig({
       en: "Explore how ancient people measured goods and time.",
       zh: "探索古代人们如何测量商品和时间。",
       hi: "जानें कि प्राचीन लोग वस्तुओं और समय को कैसे मापते थे।",
-      es: "Explora cómo las personas antiguas medían las mercancías y el tiempo.",
+      es: "Explora cómo se medían los bienes y el tiempo en la Antigüedad.",
       ar: "استكشف كيف كان الناس قديمًا يقيسون السلع والوقت.",
       fr: "Explore comment les peuples anciens mesuraient les marchandises et le temps.",
       bn: "প্রাচীন মানুষ কীভাবে পণ্য ও সময় পরিমাপ করত তা জানো।",

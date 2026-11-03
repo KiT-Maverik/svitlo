@@ -50,7 +50,7 @@ export const arabianTradeRoutes_Skill_Data = buildSkillConfig({
       de: "Verfolge alte Handelswege für Weihrauch und andere Waren.",
       ja: "乳香やその他の商品を運んだ古代の交易路をたどろう。",
       ko: "유향과 기타 상품이 오가던 고대 교역로를 추적해 보세요.",
-      tr: "Günlük ve başka ürünlerin taşındığı eski ticaret yollarını izle.",
+      tr: "Tütsü ve diğer malların taşındığı eski ticaret yollarını izle.",
       vi: "Lần theo những tuyến thương mại cổ xưa vận chuyển hương liệu và các sản phẩm khác.",
       ta: "நறுமணப் பிசினும் பிற பொருட்களும் கொண்டு சென்ற பண்டைய வணிகப் பாதைகளைப் பின்தொடர்.",
       te: "సాంబ్రాణి, ఇతర ఉత్పత్తులను తీసుకెళ్లిన ప్రాచీన వాణిజ్య మార్గాలను గుర్తించండి.",

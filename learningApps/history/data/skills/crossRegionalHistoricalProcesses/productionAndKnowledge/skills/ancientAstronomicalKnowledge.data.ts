@@ -40,7 +40,7 @@ export const ancientAstronomicalKnowledge_Skill_Data = buildSkillConfig({
       en: "Explore how ancient people studied the sky.",
       zh: "探索古代人们如何观察和研究天空。",
       hi: "जानें कि प्राचीन लोग आकाश का अध्ययन कैसे करते थे।",
-      es: "Explora cómo las personas antiguas estudiaban el cielo.",
+      es: "Explora cómo se estudiaba el cielo en la Antigüedad.",
       ar: "استكشف كيف درس الناس قديمًا السماء.",
       fr: "Explore comment les peuples anciens étudiaient le ciel.",
       bn: "প্রাচীন মানুষ কীভাবে আকাশ পর্যবেক্ষণ ও অধ্যয়ন করত তা জানো।",
