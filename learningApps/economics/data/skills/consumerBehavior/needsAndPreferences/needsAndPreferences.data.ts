@@ -12,7 +12,7 @@ export const needsAndPreferences_SkillGroup_Data = buildSkillGroupConfig({
     es: "Necesidades y preferencias",
     ar: "الحاجات والتفضيلات",
     fr: "Besoins et préférences",
-    bn: "চাহিদা ও পছন্দ",
+    bn: "প্রয়োজন ও পছন্দ",
     pt: "Necessidades e preferências",
     ur: "ضروریات اور ترجیحات",
     id: "Kebutuhan dan preferensi",
