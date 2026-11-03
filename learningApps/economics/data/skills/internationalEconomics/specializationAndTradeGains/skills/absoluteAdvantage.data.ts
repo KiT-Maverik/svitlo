@@ -65,7 +65,7 @@ export const absoluteAdvantage_Skill_Data = buildSkillConfig({
       be: "Вызнач, хто можа вырабляць нешта з меншымі выдаткамі рэсурсаў.",
       ka: "ამოიცანით, ვინ აწარმოებს ნაკლები რესურსით.",
       kk: "Аз ресурс жұмсап кім өнім өндіре алатынын анықтаңыз.",
-      qm: "Bir malnı daa az qınaqnen kim istisal etebilgenini belgile.",
+      qm: "Bir malnı kim daa az resurs qullanıp istisal etebilgenini belgile.",
     },
   },
 });
