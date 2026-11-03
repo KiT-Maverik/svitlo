@@ -65,7 +65,7 @@ export const landUseEconomics_Skill_Data = buildSkillConfig({
       be: "Дасьледуй, як правілы землекарыстаньня ўплываюць на месца і тып забудовы.",
       ka: "შეისწავლე, როგორ მოქმედებს მიწათსარგებლობის წესები მშენებლობის ადგილზე და ტიპზე.",
       kk: "Жер пайдалану ережелері құрылыстың орны мен түріне қалай әсер ететінін зертте.",
-      qm: "Yer qullanımı qa ideleri qayerde ve ne qurulğanına nasıl tesir etkenini ögren.",
+      qm: "Yer qullanımı qaydeleri qayerde ve ne qurulğanına nasıl tesir etkenini ögren.",
     },
   },
 });
