@@ -6,15 +6,16 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
-// Temporary Agent 3 CI bootstrap: do not import the unbuilt Engine workspace here.
-// Matches shared/engine/src/utils/entityPath/resolveEntityPath.utils.ts.
+// Keep reference-library generation dependency-free: the workflow installs only
+// the TypeScript parser, not the built Engine workspace. Preserve Engine's
+// canonical UUID-addressing contract.
 const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 function resolveEntityPath(id) {
   if (typeof id !== 'string' || !UUID_PATTERN.test(id)) {
     throw new Error('Expected a canonical UUID entity ID');
   }
   const normalized = id.toLowerCase();
-  return `${normalized.slice(-1)}/${normalized}`;
+  return normalized.slice(-1) + '/' + normalized;
 }
 
 const appNamePattern = /^[a-z][a-z0-9-]*$/;
