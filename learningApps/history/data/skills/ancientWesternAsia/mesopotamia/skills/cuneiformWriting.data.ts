@@ -4,7 +4,7 @@ export const cuneiformWriting_Skill_Data = buildSkillConfig({
   slug: "cuneiformWriting",
   id: "628bd56b-f348-4fbc-bb30-cefe90a9e857",
   name: {
-    en: "Клинопис",
+    en: "Cuneiform Writing",
     zh: "楔形文字",
     hi: "कीलाक्षर लेखन",
     es: "Escritura cuneiforme",

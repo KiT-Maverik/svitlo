@@ -4,7 +4,7 @@ export const akkadianEmpire_Skill_Data = buildSkillConfig({
   slug: "akkadianEmpire",
   id: "55fd6cf4-9437-411e-a2d4-3233e6c34b8b",
   name: {
-    en: "Аккадське царство",
+    en: "Akkadian Empire",
     zh: "阿卡德帝国",
     hi: "अक्कादी साम्राज्य",
     es: "Imperio acadio",

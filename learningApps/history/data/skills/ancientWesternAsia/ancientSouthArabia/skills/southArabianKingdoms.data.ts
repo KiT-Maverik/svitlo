@@ -4,7 +4,7 @@ export const southArabianKingdoms_Skill_Data = buildSkillConfig({
   slug: "southArabianKingdoms",
   id: "be1342dd-4427-4001-807b-b84b9ec96135",
   name: {
-    en: "Давні південноаравійські царства",
+    en: "Ancient South Arabian Kingdoms",
     zh: "古代南阿拉伯王国",
     hi: "प्राचीन दक्षिण अरब के राज्य",
     es: "Reinos antiguos de Arabia meridional",

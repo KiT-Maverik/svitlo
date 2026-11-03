@@ -4,7 +4,7 @@ export const sumerianCityStates_Skill_Data = buildSkillConfig({
   slug: "sumerianCityStates",
   id: "e17f88e3-0fd7-4ddc-b1f3-183fb1566675",
   name: {
-    en: "Шумерські міста-держави",
+    en: "Sumerian City-States",
     zh: "苏美尔城邦",
     hi: "सुमेर के नगर-राज्य",
     es: "Ciudades-Estado sumerias",

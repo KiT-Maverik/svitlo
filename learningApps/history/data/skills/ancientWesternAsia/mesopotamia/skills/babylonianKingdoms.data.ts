@@ -4,7 +4,7 @@ export const babylonianKingdoms_Skill_Data = buildSkillConfig({
   slug: "babylonianKingdoms",
   id: "8c3a30bf-ec11-4251-b8b4-59b723ff807d",
   name: {
-    en: "Вавилонські царства",
+    en: "Babylonian Kingdoms",
     zh: "巴比伦诸王国",
     hi: "बेबीलोनियाई राज्य",
     es: "Reinos babilónicos",

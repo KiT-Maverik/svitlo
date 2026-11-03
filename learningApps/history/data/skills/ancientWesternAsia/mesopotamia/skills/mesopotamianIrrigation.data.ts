@@ -4,7 +4,7 @@ export const mesopotamianIrrigation_Skill_Data = buildSkillConfig({
   slug: "mesopotamianIrrigation",
   id: "71e1ee98-234d-400f-9984-cfabb6e3756d",
   name: {
-    en: "Іригація Межиріччя",
+    en: "Mesopotamian Irrigation",
     zh: "美索不达米亚灌溉",
     hi: "मेसोपोटामिया में सिंचाई",
     es: "Riego mesopotámico",

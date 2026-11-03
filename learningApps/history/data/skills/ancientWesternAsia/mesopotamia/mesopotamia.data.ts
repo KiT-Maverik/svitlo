@@ -6,7 +6,7 @@ export const mesopotamia_SkillGroup_Data = buildSkillGroupConfig({
   slug: "mesopotamia",
   id: "00e49671-064e-43da-85ae-e413fef5d01f",
   name: {
-    en: "Межиріччя",
+    en: "Mesopotamia",
     zh: "美索不达米亚",
     hi: "मेसोपोटामिया",
     es: "Mesopotamia",

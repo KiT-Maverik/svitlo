@@ -4,7 +4,7 @@ export const assyrianEmpire_Skill_Data = buildSkillConfig({
   slug: "assyrianEmpire",
   id: "bff9103d-75de-4d10-b870-7ce10a6c1e45",
   name: {
-    en: "Ассирійська держава",
+    en: "Assyrian Empire",
     zh: "亚述帝国",
     hi: "असीरियाई साम्राज्य",
     es: "Imperio asirio",
