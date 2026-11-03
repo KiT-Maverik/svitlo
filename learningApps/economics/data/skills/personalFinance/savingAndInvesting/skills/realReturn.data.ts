@@ -13,7 +13,7 @@ export const realReturn_Skill_Data = buildSkillConfig({
     bn: "প্রকৃত আয়",
     pt: "Retorno real",
     ur: "حقیقی منافع",
-    id: "Imbal Hasil Riil",
+    id: "Imbal hasil riil",
     de: "Reale Rendite",
     ja: "実質収益率",
     ko: "실질 수익률",
