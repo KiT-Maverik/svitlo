@@ -43,7 +43,7 @@ describe('QuestionRenderer — contract responses', () => {
 
   it('renders every contract question type and keeps attempts independent', () => {
     const block = text('answer', 'Answer');
-    const questions: Question<'response'>[] = [
+    const definitions: Question<'response'>[] = [
       one,
       { ...common, type: 'selectMultipleAnswers',
         answers: { correct: { a: block }, incorrect: {}, distractors: {} } },
@@ -56,7 +56,8 @@ describe('QuestionRenderer — contract responses', () => {
         slots: [{ selector: 'first', correctAnswer: block }], distractors: [], placeholder: 'Choose' },
       { ...common, type: 'fillBlanksWithText',
         slots: [{ selector: 'first', correctAnswers: ['Answer'] }], placeholder: 'Fill' },
-    ].map((question, index) => ({ ...question, id: 'question-' + index }));
+    ];
+    const questions = definitions.map((question, index) => ({ ...question, id: 'question-' + index }));
     const { container } = render(<QuestionRenderer questions={questions} />);
     expect(within(container).getAllByRole('region')).toHaveLength(9);
     expect(within(container).getAllByRole('button', { name: 'Check' })).toHaveLength(9);
