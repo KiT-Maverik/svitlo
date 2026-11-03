@@ -4,7 +4,7 @@ export const greekCitiesOfBlackSea_Skill_Data = buildSkillConfig({
   slug: "greekCitiesOfBlackSea",
   id: "50852105-81fb-4d81-9dcd-a1284247c102",
   name: {
-    en: "Грецькі міста Причорномор'я",
+    en: "Greek Cities of the Black Sea",
     zh: "黑海沿岸的希腊城市",
     hi: "काला सागर तट के यूनानी नगर",
     es: "Ciudades griegas del mar Negro",

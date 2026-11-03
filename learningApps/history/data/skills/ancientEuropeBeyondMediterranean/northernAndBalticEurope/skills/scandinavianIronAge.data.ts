@@ -4,7 +4,7 @@ export const scandinavianIronAge_Skill_Data = buildSkillConfig({
   slug: "scandinavianIronAge",
   id: "75012ac4-9286-4f63-8550-5b4e2d7a6926",
   name: {
-    en: "Залізна доба Скандинавії",
+    en: "Scandinavian Iron Age",
     zh: "斯堪的纳维亚铁器时代",
     hi: "स्कैंडिनेविया का लौह युग",
     es: "Edad del Hierro escandinava",

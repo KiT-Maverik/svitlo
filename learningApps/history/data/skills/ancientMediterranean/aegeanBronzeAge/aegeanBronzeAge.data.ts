@@ -6,7 +6,7 @@ export const aegeanBronzeAge_SkillGroup_Data = buildSkillGroupConfig({
   slug: "aegeanBronzeAge",
   id: "ae48e3b7-4b07-423a-868c-6cd00f5d56b5",
   name: {
-    en: "Егейська бронзова доба",
+    en: "Aegean Bronze Age",
     zh: "爱琴海青铜时代",
     hi: "एजियन कांस्य युग",
     es: "Edad del Bronce egea",

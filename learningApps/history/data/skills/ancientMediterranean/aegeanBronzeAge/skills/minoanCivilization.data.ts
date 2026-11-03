@@ -4,7 +4,7 @@ export const minoanCivilization_Skill_Data = buildSkillConfig({
   slug: "minoanCivilization",
   id: "910c57c6-83d3-4283-b2ff-460e50802ada",
   name: {
-    en: "Мінойська цивілізація",
+    en: "Minoan Civilization",
     zh: "米诺斯文明",
     hi: "मिनोअन सभ्यता",
     es: "Civilización minoica",

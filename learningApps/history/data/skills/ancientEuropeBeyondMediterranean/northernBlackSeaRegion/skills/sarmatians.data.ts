@@ -4,7 +4,7 @@ export const sarmatians_Skill_Data = buildSkillConfig({
   slug: "sarmatians",
   id: "366742ce-dd5e-41fd-8ab3-353f604b4327",
   name: {
-    en: "Сармати",
+    en: "Sarmatians",
     zh: "萨尔马提亚人",
     hi: "सार्माटियन",
     es: "Sármatas",

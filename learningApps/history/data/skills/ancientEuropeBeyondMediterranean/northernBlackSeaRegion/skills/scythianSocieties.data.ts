@@ -4,7 +4,7 @@ export const scythianSocieties_Skill_Data = buildSkillConfig({
   slug: "scythianSocieties",
   id: "756a7dd6-6463-4b0d-83bd-5bc6acc85e0b",
   name: {
-    en: "Скіфські суспільства",
+    en: "Scythian Societies",
     zh: "斯基泰社会",
     hi: "स्किथियाई समाज",
     es: "Sociedades escitas",

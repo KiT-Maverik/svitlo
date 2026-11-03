@@ -6,7 +6,7 @@ export const northernBlackSeaRegion_SkillGroup_Data = buildSkillGroupConfig({
   slug: "northernBlackSeaRegion",
   id: "c64aa0c2-a81c-4147-86f2-2ccdf4c564cb",
   name: {
-    en: "Північне Причорномор'я",
+    en: "Northern Black Sea Region",
     zh: "黑海北岸地区",
     hi: "उत्तरी काला सागर क्षेत्र",
     es: "Región septentrional del mar Negro",

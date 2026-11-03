@@ -4,7 +4,7 @@ export const mycenaeanCivilization_Skill_Data = buildSkillConfig({
   slug: "mycenaeanCivilization",
   id: "87f99176-bf8f-43dd-a133-d2fb88c9bfaf",
   name: {
-    en: "Мікенська цивілізація",
+    en: "Mycenaean Civilization",
     zh: "迈锡尼文明",
     hi: "माइसीनी सभ्यता",
     es: "Civilización micénica",

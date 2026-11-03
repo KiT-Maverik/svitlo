@@ -4,7 +4,7 @@ export const earlySteppeCultures_Skill_Data = buildSkillConfig({
   slug: "earlySteppeCultures",
   id: "661cde76-368e-4c59-857d-d6fe05b9f635",
   name: {
-    en: "Степові культури ранньої доби",
+    en: "Early Steppe Cultures",
     zh: "早期草原文化",
     hi: "प्रारंभिक स्तेपी संस्कृतियाँ",
     es: "Primeras culturas de las estepas",

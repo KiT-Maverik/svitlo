@@ -11,7 +11,7 @@ export const ancientMediterranean_SkillDomain_Data = buildSkillDomainConfig({
   slug: "ancientMediterranean",
   id: "af195a28-6cbe-4020-b737-663f4bd36ccb",
   name: {
-    en: "Середземномор'я",
+    en: "Mediterranean",
     zh: "古代地中海世界",
     hi: "प्राचीन भूमध्यसागरीय संसार",
     es: "Mediterráneo antiguo",
