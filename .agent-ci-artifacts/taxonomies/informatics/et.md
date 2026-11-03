@@ -362,13 +362,13 @@ Skills: 6
 
 **User-friendly description (et):** Uuri, kuidas keelemudelid jagavad teksti tokeniteks ja kasutavad konteksti.
 
-##### Eristada valimist kõige tõenäolisema tokeni valimisest
+##### Eristada tõenäosuslikku tokenivalikut kõige tõenäolisema tokeni valimisest
 
 [distinguishSamplingFromChoosingTheMostLikelyToken.data.ts](../../../learningApps/informatics/data/skills/artificialIntelligence/languageModelTokensAndContext/skills/distinguishSamplingFromChoosingTheMostLikelyToken.data.ts)
 
 **Methodological description (English):** Compare decoding by sampling from a probability distribution with deterministically selecting its highest-probability continuation.
 
-**User-friendly description (et):** Võrdle kõige tõenäolisema tokeni valimist teiste võimalike jätkude juhuvalimiga.
+**User-friendly description (et):** Võrdle kõige tõenäolisema tokeni valimist järgmise tokeni valikuga tõenäosusjaotuse alusel.
 
 ##### Eristada tokeneid, märke ja sõnu
 

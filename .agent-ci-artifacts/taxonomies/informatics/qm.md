@@ -408,7 +408,7 @@ Skills: 6
 
 **Methodological description (English):** Understand a token as a unit defined by a tokenizer: single letters, word fragments, whole words, or punctuation may be encoded in different ways.
 
-**User-friendly description (qm):** Tokenni modelge köre belgilengän metin parçası olaraq añla.
+**User-friendly description (qm):** Tokenni modelge köre belgilengen metin parçası olaraq añla.
 
 #### Model arhitekturaları ve resurslar
 
@@ -508,7 +508,7 @@ Skills: 7
 
 **Methodological description (English):** State a desired subject-matter role or response style without treating the declared role as evidence of actual professional experience.
 
-**User-friendly description (qm):** Faydalı baqış ya da uslûp belgile, amma bunı aqiqiy mütehassıslıqnen qarıştırma.
+**User-friendly description (qm):** Faydalı baqış ya da uslup belgile, amma bunı aqiqiy mütehassıslıqnen qarıştırma.
 
 ##### Cevap formatını belgilemek
 
@@ -2170,13 +2170,13 @@ Skills: 3
 
 **User-friendly description (qm):** Kim neyi deñiştirecegini ve ortaqlıq tüzetmeler nasıl birleştirilgenini planlaştır.
 
-##### Qatqı qa idelerini añlatmaq
+##### Qatqı qaidelerini añlatmaq
 
 [explainContributionGuidelines.data.ts](../../../learningApps/informatics/data/skills/gitAndOpenSource/collaborativeDigitalProductDevelopment/skills/explainContributionGuidelines.data.ts)
 
 **Methodological description (English):** Rules for contributions, code review, and discussing changes help teams maintain a shared project.
 
-**User-friendly description (qm):** Qatqı qa ideleri niçün insanlarğa bir kod temeli üstünde işlemekke yardım etkenini añla.
+**User-friendly description (qm):** Qatqı qaideleri niçün insanlarğa bir kod temeli üstünde işlemekke yardım etkenini añla.
 
 ##### Raqamlı mahsulnıñ versiyalarını közetmek
 
