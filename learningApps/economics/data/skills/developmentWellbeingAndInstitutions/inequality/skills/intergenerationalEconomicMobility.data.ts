@@ -42,7 +42,7 @@ export const intergenerationalEconomicMobility_Skill_Data = buildSkillConfig({
       hi: "जानें कि पारिवारिक परिस्थितियाँ भविष्य के अवसर कैसे प्रभावित करती हैं।",
       es: "Explora cómo las circunstancias familiares influyen en las oportunidades futuras.",
       ar: "اكتشف كيف تؤثر ظروف الأسرة في فرص الأجيال المقبلة.",
-      fr: "Explorez comment l’origine familiale peut influencer les chances futures.",
+      fr: "Explore comment l’origine familiale peut influencer les chances futures.",
       bn: "পারিবারিক পরিস্থিতি ভবিষ্যৎ সুযোগকে কীভাবে প্রভাবিত করে তা জানো।",
       pt: "Explore como as condições familiares influenciam as oportunidades futuras.",
       ur: "جانیں کہ خاندانی حالات مستقبل کے مواقع کیسے بدل سکتے ہیں۔",
