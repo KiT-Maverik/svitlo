@@ -29,7 +29,7 @@ export const socialAndEnvironmentalImpactOfComputing_SkillGroup_Data = buildSkil
     pl: 'Społeczne i środowiskowe skutki informatyki',
     uk: 'Соціальний та екологічний вплив обчислювальних технологій',
     lt: 'Socialinis ir aplinkosauginis kompiuterijos poveikis',
-    lv: 'Datortehnikas sociālā un vides ietekme',
+    lv: 'Skaitļošanas sociālā un vides ietekme',
     et: 'Andmetöötluse sotsiaalne ja keskkonnamõju',
     be: 'Сацыяльны й экалягічны ўплыў вылічальных тэхналёгіяў',
     ka: 'გამოთვლითი ტექნოლოგიების სოციალური და ეკოლოგიური გავლენა',
