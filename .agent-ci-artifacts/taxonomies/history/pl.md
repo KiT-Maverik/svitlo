@@ -606,7 +606,7 @@ Skills: 3
 
 **User-friendly description (pl):** Poznaj życie w Skandynawii przed epoką wikingów.
 
-#### Północne wybrzeże Morza Czarnego
+#### Północne Nadczarnomorze
 
 Skills: 4
 
@@ -614,7 +614,7 @@ Skills: 4
 
 **Methodological description (English):** The steppe, forest-steppe, and coasts of today's Ukraine held diverse ancient populations without modern state identities being imposed on them.
 
-**User-friendly description (pl):** Poznaj starożytne społeczności północnego wybrzeża Morza Czarnego.
+**User-friendly description (pl):** Poznaj starożytne społeczności Północnego Nadczarnomorza.
 
 ##### Wczesne kultury stepowe
 
@@ -2116,7 +2116,7 @@ Skills: 5
 
 **Methodological description (English):** Cultivation, herding, and settlements emerged independently in multiple places rather than in one simultaneous universal revolution.
 
-**User-friendly description (pl):** Odkryj, jak uprawa żywności rozprzestrzeniała się w różnych miejscach i czasach.
+**User-friendly description (pl):** Odkryj, jak uprawa roślin jadalnych rozprzestrzeniała się w różnych miejscach i czasach.
 
 ##### Udomowienie zwierząt
 

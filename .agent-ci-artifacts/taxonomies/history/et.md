@@ -606,7 +606,7 @@ Skills: 3
 
 **User-friendly description (et):** Uuri elu Skandinaavias enne viikingiaega.
 
-#### Mustamere põhjarannik
+#### Musta mere põhjapoolsed alad
 
 Skills: 4
 
@@ -614,7 +614,7 @@ Skills: 4
 
 **Methodological description (English):** The steppe, forest-steppe, and coasts of today's Ukraine held diverse ancient populations without modern state identities being imposed on them.
 
-**User-friendly description (et):** Uuri muistseid ühiskondi Musta mere põhjarannikul.
+**User-friendly description (et):** Uuri muistseid ühiskondi Musta mere põhjapoolsetel aladel.
 
 ##### Varased stepikultuurid
 
@@ -732,7 +732,7 @@ Skills: 4
 
 **Methodological description (English):** Study myths, cults, festivals, and sanctuaries without treating mythological accounts as literal chronicles.
 
-**User-friendly description (et):** Mõista, kuidas müüdid ja usutavad kujundasid Kreeka kogukondade elu.
+**User-friendly description (et):** Mõista, kuidas müüdid ja usulised tavad kujundasid Kreeka kogukondade elu.
 
 #### Kreeka polised
 
@@ -1260,7 +1260,7 @@ Skills: 5
 
 **User-friendly description (et):** Õpi, kuidas kaubad ja ideed kaugete kogukondade vahel liikusid.
 
-##### Muinasaegne Ameerika jõe- ja mereteede vahetus
+##### Muinasaegne jõe- ja merekaubandus Ameerikas
 
 [ancientAmericanRiverAndSeaExchange.data.ts](../../../learningApps/history/data/skills/crossRegionalHistoricalProcesses/ancientTradeAndContact/skills/ancientAmericanRiverAndSeaExchange.data.ts)
 
@@ -2076,7 +2076,7 @@ Skills: 5
 
 **User-friendly description (et):** Uuri, kuidas tule kontrollitud kasutamine muutis igapäevaelu.
 
-##### Varaste inimeste koostöö
+##### Varaste inimeste sotsiaalne suhtlus
 
 [earlyHumanCooperation.data.ts](../../../learningApps/history/data/skills/humanPrehistory/hunterGathererSocieties/skills/earlyHumanCooperation.data.ts)
 

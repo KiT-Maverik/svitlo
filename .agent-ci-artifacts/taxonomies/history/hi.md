@@ -408,7 +408,7 @@ Skills: 3
 
 **Methodological description (English):** Examine separately evolving centers for maize, squash, potato, and other crops with their own chronologies.
 
-**User-friendly description (hi):** प्राचीन अमेरिकी समुदायों द्वारा स्वतंत्र रूप से उगाए गए घरेलू फसल पौधों के बारे में जानें।
+**User-friendly description (hi):** जानें कि प्राचीन अमेरिकी समुदायों ने किन पौधों का स्वतंत्र रूप से घरेलूकरण किया।
 
 ##### अमेरिकी महाद्वीपों का प्रारंभिक बसाव
 
@@ -1258,7 +1258,7 @@ Skills: 5
 
 **Methodological description (English):** Exchange networks involved intermediaries; the spread of objects does not necessarily mean the migration of their makers.
 
-**User-friendly description (hi):** जानें कि वस्तुएँ और विचार दूर-दूर की समुदायों के बीच कैसे पहुँचे।
+**User-friendly description (hi):** जानें कि वस्तुएँ और विचार दूर-दूर के समुदायों के बीच कैसे पहुँचे।
 
 ##### प्राचीन अमेरिका में नदी और समुद्री आदान-प्रदान
 
@@ -2026,7 +2026,7 @@ Skills: 4
 
 **User-friendly description (hi):** जानें कि प्रमाण हमारे पूर्वजों और प्रवासों के बारे में क्या बताते हैं।
 
-##### पर्यावरण के अनुकूलन
+##### प्राकृतिक पर्यावरण के अनुरूप ढलना
 
 [adaptationToEnvironments.data.ts](../../../learningApps/history/data/skills/humanPrehistory/humanOriginsAndDispersal/skills/adaptationToEnvironments.data.ts)
 
@@ -2084,7 +2084,7 @@ Skills: 5
 
 **User-friendly description (hi):** समझें कि शुरुआती मनुष्य कैसे मिलकर काम करते और दूसरों की देखभाल करते थे।
 
-##### जंगल से खाद्य संग्रह की अर्थव्यवस्था
+##### शिकार और संग्रहण की अर्थव्यवस्था
 
 [foragingEconomies.data.ts](../../../learningApps/history/data/skills/humanPrehistory/hunterGathererSocieties/skills/foragingEconomies.data.ts)
 
@@ -2258,7 +2258,7 @@ Skills: 4
 
 **Methodological description (English):** Distinguish surviving inscriptions from deciphered text, acknowledging that the script remains undeciphered.
 
-**User-friendly description (hi):** समझें कि सिंधु लिपि के चिह्न अब भी पढ़ना मुश्किल क्यों है।
+**User-friendly description (hi):** समझें कि सिंधु लिपि के चिह्नों को आज भी पढ़ना क्यों कठिन है।
 
 ##### सिंधु नगरों का परिवर्तन
 

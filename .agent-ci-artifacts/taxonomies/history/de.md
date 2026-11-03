@@ -2116,7 +2116,7 @@ Skills: 5
 
 **Methodological description (English):** Cultivation, herding, and settlements emerged independently in multiple places rather than in one simultaneous universal revolution.
 
-**User-friendly description (de):** Entdecke, wie sich der Anbau von Nahrung zu verschiedenen Zeiten an unterschiedlichen Orten ausbreitete.
+**User-friendly description (de):** Entdecke, wie sich der Anbau von Nahrungspflanzen zu verschiedenen Zeiten an unterschiedlichen Orten ausbreitete.
 
 ##### Domestizierung von Tieren
 
@@ -2126,7 +2126,7 @@ Skills: 5
 
 **User-friendly description (de):** Erkunde, wie Menschen begannen, domestizierte Tiere zu halten.
 
-##### Frühe Webkunst
+##### Frühes Weben
 
 [earlyWeaving.data.ts](../../../learningApps/history/data/skills/humanPrehistory/transitionToFoodProduction/skills/earlyWeaving.data.ts)
 
@@ -2224,7 +2224,7 @@ Skills: 6
 
 **Methodological description (English):** Explain the roles of straits, monsoon routes, and ports in exchanges of goods and ideas.
 
-**User-friendly description (de):** Folge den Seerouten zwischen den Handels­häfen Südostasiens.
+**User-friendly description (de):** Folge den Seerouten zwischen den Handelshäfen Südostasiens.
 
 #### Indus-Zivilisation
 

@@ -1390,7 +1390,7 @@ Skills: 6
 
 **Methodological description (English):** Relate house forms, household organization, and rooms to resources, climates, and social distinctions.
 
-**User-friendly description (es):** Explora cómo organizaban y utilizaban sus hogares las personas antiguas.
+**User-friendly description (es):** Explora cómo se organizaban y utilizaban los hogares en la Antigüedad.
 
 ##### Ocio y vida pública en la Antigüedad
 
@@ -1500,7 +1500,7 @@ Skills: 7
 
 **Methodological description (English):** Examine observations, calendars, navigation, and historical celestial models across civilizations.
 
-**User-friendly description (es):** Explora cómo las personas antiguas estudiaban el cielo.
+**User-friendly description (es):** Explora cómo se estudiaba el cielo en la Antigüedad.
 
 ##### Sistemas de calendario antiguos
 
@@ -1516,7 +1516,7 @@ Skills: 7
 
 **Methodological description (English):** Trace local measures of mass, length, volume, and time used for trade, taxes, construction, and crafts.
 
-**User-friendly description (es):** Explora cómo las personas antiguas medían las mercancías y el tiempo.
+**User-friendly description (es):** Explora cómo se medían los bienes y el tiempo en la Antigüedad.
 
 ##### Infraestructura de las primeras ciudades
 
@@ -2116,7 +2116,7 @@ Skills: 5
 
 **Methodological description (English):** Cultivation, herding, and settlements emerged independently in multiple places rather than in one simultaneous universal revolution.
 
-**User-friendly description (es):** Explora cómo el cultivo de alimentos se extendió en distintos lugares y épocas.
+**User-friendly description (es):** Explora cómo el cultivo de plantas alimenticias se extendió en distintos lugares y épocas.
 
 ##### Domesticación de animales
 
@@ -2126,7 +2126,7 @@ Skills: 5
 
 **User-friendly description (es):** Explora cómo los seres humanos comenzaron a criar animales domesticados.
 
-##### Primeros tejidos
+##### Primeras técnicas de tejido
 
 [earlyWeaving.data.ts](../../../learningApps/history/data/skills/humanPrehistory/transitionToFoodProduction/skills/earlyWeaving.data.ts)
 

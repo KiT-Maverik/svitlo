@@ -484,7 +484,7 @@ Skills: 3
 
 **Methodological description (English):** Examine ceremonial earthworks and material connections in eastern North America.
 
-**User-friendly description (qm):** Adena ve Houpvell yadyarlıkları qadimiy toplulıqlar aqqında neni köstergenini ögren.
+**User-friendly description (qm):** Adena ve Houpvell yadigârlıqları qadimiy toplulıqlar aqqında neni köstergenini ögren.
 
 ##### Şimaliy Amerikanıñ cenübiy-ğarbındaki qadimiy cemiyetler
 
@@ -606,7 +606,7 @@ Skills: 3
 
 **User-friendly description (qm):** Vikingler devrinden evel Skandinaviyadaki ayatnı araştır.
 
-#### Qara Deñizniñ şimaliy yalısı
+#### Qara Deñizniñ şimaliy bölgeleri
 
 Skills: 4
 
@@ -614,7 +614,7 @@ Skills: 4
 
 **Methodological description (English):** The steppe, forest-steppe, and coasts of today's Ukraine held diverse ancient populations without modern state identities being imposed on them.
 
-**User-friendly description (qm):** Qara Deñizniñ şimaliy yalısındaki qadimiy cemiyetlerni araştır.
+**User-friendly description (qm):** Qara Deñizniñ şimaliy bölgelerindeki qadimiy cemiyetlerni araştır.
 
 ##### Erteki çöl medeniyetleri
 
@@ -752,13 +752,13 @@ Skills: 6
 
 **User-friendly description (qm):** Afina demokratiyasında kim qatnaşa bilgenini ve kimniñ aqqı olmağanını araştır.
 
-##### Yunan–Fars cenklari
+##### Yunan–Fars cenkleri
 
 [grecoPersianWars.data.ts](../../../learningApps/history/data/skills/ancientMediterranean/greekPoleis/skills/grecoPersianWars.data.ts)
 
 **Methodological description (English):** Trace major conflicts between Achaemenid Persia and coalitions of Greek poleis and changes in regional power.
 
-**User-friendly description (qm):** Yunan şeer-devletleri ve Fars devleti arasındaki cenklarnı añla.
+**User-friendly description (qm):** Yunan şeer-devletleri ve Fars devleti arasındaki cenklerni añla.
 
 ##### Yunan köçürilmesi ve yerleşmeleri
 
@@ -918,13 +918,13 @@ Skills: 5
 
 **User-friendly description (qm):** Adiy Roma vatandaşları siyasiy aqlarnı nasıl qazanğanını ögren.
 
-##### Puni cenklari
+##### Puni cenkleri
 
 [punicWars.data.ts](../../../learningApps/history/data/skills/ancientMediterranean/romanRepublic/skills/punicWars.data.ts)
 
 **Methodological description (English):** Explain Rome and Carthage's competition for influence in the western Mediterranean.
 
-**User-friendly description (qm):** Roma ve Kartagen arasında olğan cenklarnı araştır.
+**User-friendly description (qm):** Roma ve Kartagen arasında olğan cenklerni araştır.
 
 ##### Roma cumhuriyetiniñ müesseseleri
 
