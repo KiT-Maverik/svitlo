@@ -51,7 +51,7 @@ export const explainLightEmissionByAnExcitedAtom_Skill_Data = buildSkillConfig({
       ja: "励起原子が低いエネルギー準位へ遷移するとき、準位差に応じたエネルギーの光子を放出する仕組みを説明しましょう。",
       ko: "원자가 에너지 준위를 바꿀 때 광자를 방출할 수 있는 원리를 설명해 보세요.",
       tr: "Atomların enerji düzeyleri arasında geçiş yaparken nasıl foton yayabildiğini açıkla.",
-      vi: "Giải thích cách nguyên tử phát ra photon khi chuyển mức năng lượng.",
+      vi: "Giải thích vì sao nguyên tử kích thích có thể phát photon khi chuyển xuống mức năng lượng thấp hơn, với năng lượng bằng độ chênh lệch hai mức.",
       ta: "அணுக்கள் ஆற்றல் மட்டங்களை மாற்றும்போது ஃபோட்டான்களை எவ்வாறு வெளியிடுகின்றன என்பதை விளக்கு.",
       te: "పరమాణువులు శక్తి స్థాయులు మారేటప్పుడు ఫోటాన్లను ఎలా విడుదల చేస్తాయో వివరించు.",
       mr: "अणू ऊर्जा पातळी बदलताना फोटॉन कसे उत्सर्जित करू शकतात ते स्पष्ट करा.",
