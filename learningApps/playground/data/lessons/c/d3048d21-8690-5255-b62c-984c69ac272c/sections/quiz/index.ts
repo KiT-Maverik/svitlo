@@ -45,5 +45,5 @@ export const quiz_Section = {
   order: [{ type: 'quiz', key: 'quiz' }],
   content: defineContentBlockCatalog({
     quiz: { quiz: quizBlock },
-  }
+  }),
 } satisfies Section<'data'> & { order: { type: string; key: string }[] };

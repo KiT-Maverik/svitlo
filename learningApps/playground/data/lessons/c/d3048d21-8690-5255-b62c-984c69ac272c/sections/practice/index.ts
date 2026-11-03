@@ -76,5 +76,5 @@ export const practice_Section = {
           zh: '比较光在真空、空气和水中的传播速度。',
         }, },
     },
-  }
+  }),
 } satisfies Section<'data'> & { order: { type: string; key: string }[] };

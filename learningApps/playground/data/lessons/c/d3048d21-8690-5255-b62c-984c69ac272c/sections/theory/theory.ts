@@ -54,5 +54,5 @@ export const theory_Section = {
       lightPropagationSimulation: lightPropagationSimulationData,
       lightRayDiagram: lightRayDiagramData,
     },
-  },
+  }),
 } satisfies Section<'data'>;
