@@ -24,7 +24,7 @@ export const distinguishEnergyEmissionFromReflectionOfReceivedLight_Skill_Data =
     mr: "ऊर्जा उत्सर्जन आणि पडलेल्या प्रकाशाचे परावर्तन यात फरक ओळखणे",
     ms: "Membezakan pemancaran tenaga dan pantulan cahaya yang diterima",
     he: "הבחנה בין פליטת אנרגיה להחזרת אור שהתקבל",
-    pl: "Odróżnianie emisji energii od odbicia padaświetlającego światła",
+    pl: "Odróżnianie emisji energii od odbicia padającego światła",
     uk: "Розрізняти випромінювання енергії та відбивання отриманого світла",
     lt: "Energijos emisijos ir gautos šviesos atspindžio atskyrimas",
     lv: "Enerģijas izstarošanas un saņemtās gaismas atstarošanas atšķiršana",
@@ -65,7 +65,7 @@ export const distinguishEnergyEmissionFromReflectionOfReceivedLight_Skill_Data =
       be: "Адрозьнівай сьвятло, выпраменьванае крыніцай, ад сьвятла, адбітага прадметам.",
       ka: "განასხვავე წყაროს გამოსხივებული სინათლე საგნის არეკლილი სინათლისგან.",
       kk: "Көзден шыққан жарық пен денеден шағылған жарықты ажырат.",
-      qm: "Menbadan saçılğan yarıqnı cisimden aks etken yarıqnıñ farqını añla.",
+      qm: "Menbadan saçılğan yarıqnı cisimden aks etken yarıqtan ayır.",
     },
   },
 });

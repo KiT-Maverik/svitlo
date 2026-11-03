@@ -32,7 +32,7 @@ export const explainWaterFlowBetweenContainersAtDifferentLevels_Skill_Data = bui
     be: "Тлумачыць плынь вады паміж пасудзінамі на розных узроўнях",
     ka: "სხვადასხვა დონეზე მდებარე ჭურჭლებს შორის წყლის დინების ახსნა",
     kk: "Әртүрлі деңгейдегі ыдыстар арасында судың ағуын түсіндіру",
-    qm: "Türlü seviyedeki saıtlar arasında suv aqımını añlatmaq",
+    qm: "Türlü seviyedeki savutlar arasında suv aqımını añlatmaq",
   },
   description: {
     methodological: "A hydrostatic pressure difference between connected vessels causes liquid to flow until pressures balance or other forces intervene.",
@@ -65,7 +65,7 @@ export const explainWaterFlowBetweenContainersAtDifferentLevels_Skill_Data = bui
       be: "Растлумач, чаму вада цячэ паміж пасудзінамі на розных узроўнях.",
       ka: "ახსენი, რატომ მიედინება წყალი სხვადასხვა სიმაღლის ჭურჭლებს შორის.",
       kk: "Әртүрлі деңгейдегі ыдыстар арасында судың неге ағатынын түсіндір.",
-      qm: "Suv türlü yüksekliklerdeki saıtlardan niçün aqqa, añlat.",
+      qm: "Suv türlü seviyedeki bağlanğan savutlar arasında ne içün aqqa, añlat.",
     },
   },
 });
