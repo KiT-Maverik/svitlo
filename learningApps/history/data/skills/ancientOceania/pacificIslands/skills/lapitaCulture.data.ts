@@ -54,7 +54,7 @@ export const lapitaCulture_Skill_Data = buildSkillConfig({
       vi: "Khám phá đồ gốm và truyền thống đi biển của cộng đồng Lapita.",
       ta: "லபிட்டா சமூகங்களின் மட்பாண்டங்களையும் கடற்பயண மரபுகளையும் ஆராய்.",
       te: "లాపిటా సమూహాల కుండల తయారీ, సముద్రయాన సంప్రదాయాలను పరిశీలించండి.",
-      mr: "लापिता समुदायांच्या मातीची भांडी आणि नौकानयन परंपरा जाणून घे.",
+      mr: "लापिता समुदायांच्या मातीची भांडी आणि नौकानयन परंपरा जाणून घ्या.",
       ms: "Terokai tembikar dan tradisi pelayaran masyarakat Lapita.",
       he: "גלו את כלי החרס ומסורות השיט של קהילות לפיטה.",
       pl: "Poznaj ceramikę i tradycje żeglarskie społeczności Lapita.",

@@ -54,7 +54,7 @@ export const australianRockArt_Skill_Data = buildSkillConfig({
       vi: "Tìm hiểu nghệ thuật đá cổ đại ở Úc có thể tiết lộ điều gì.",
       ta: "ஆஸ்திரேலியாவின் பண்டைய பாறை ஓவியங்கள் எதை வெளிப்படுத்தக்கூடும் என்பதை அறிந்துகொள்.",
       te: "ఆస్ట్రేలియా ప్రాచీన శిలాచిత్రాలు ఏమి తెలియజేయగలవో తెలుసుకోండి.",
-      mr: "ऑस्ट्रेलियाच्या प्राचीन शैलकलेतून काय समजू शकते ते जाणून घे.",
+      mr: "ऑस्ट्रेलियाच्या प्राचीन शैलकलेतून काय समजू शकते ते जाणून घ्या.",
       ms: "Ketahui apa yang mungkin didedahkan seni batu purba Australia.",
       he: "גלו מה אמנות הסלע העתיקה של אוסטרליה עשויה ללמד אותנו.",
       pl: "Dowiedz się, co może ujawnić dawna sztuka naskalna Australii.",

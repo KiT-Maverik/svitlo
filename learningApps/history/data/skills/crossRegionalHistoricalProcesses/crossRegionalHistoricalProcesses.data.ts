@@ -69,7 +69,7 @@ export const crossRegionalHistoricalProcesses_SkillDomain_Data = buildSkillDomai
       vi: "Khám phá các quá trình lịch sử kết nối những xã hội khác nhau.",
       ta: "வெவ்வேறு சமூகங்களை இணைத்த வரலாற்றுச் செயல்முறைகளை ஆராய்.",
       te: "వేర్వేరు సమాజాలను కలిపిన చారిత్రక ప్రక్రియలను పరిశీలించండి.",
-      mr: "वेगवेगळ्या समाजांना जोडणाऱ्या ऐतिहासिक प्रक्रिया जाणून घे.",
+      mr: "वेगवेगळ्या समाजांना जोडणाऱ्या ऐतिहासिक प्रक्रिया जाणून घ्या.",
       ms: "Terokai proses sejarah yang menghubungkan masyarakat berbeza.",
       he: "גלו תהליכים היסטוריים שקישרו בין חברות שונות.",
       pl: "Poznaj procesy historyczne łączące różne społeczeństwa.",
