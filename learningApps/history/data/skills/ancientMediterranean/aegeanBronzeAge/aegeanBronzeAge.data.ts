@@ -48,7 +48,7 @@ export const aegeanBronzeAge_SkillGroup_Data = buildSkillGroupConfig({
       zh: "了解爱琴海青铜时代的宫殿社会。",
       hi: "एजियन कांस्य युग के महल-केंद्रित समाजों के बारे में जानें।",
       es: "Descubre las sociedades palaciales del Egeo durante la Edad del Bronce.",
-      ar: "تعرّف مجتمعات القصور في منطقة إيجة خلال العصر البرونزي.",
+      ar: "تعرّف إلى مجتمعات القصور في منطقة إيجة خلال العصر البرونزي.",
       fr: "Découvrez les sociétés palatiales de l’Égée à l’âge du bronze.",
       bn: "ব্রোঞ্জ যুগের এজিয়ান অঞ্চলের প্রাসাদকেন্দ্রিক সমাজগুলো সম্পর্কে জানো।",
       pt: "Descubra as sociedades palacianas do Egeu na Idade do Bronze.",
