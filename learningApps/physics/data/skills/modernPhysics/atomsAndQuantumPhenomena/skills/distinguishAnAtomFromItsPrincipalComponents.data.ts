@@ -53,7 +53,7 @@ export const distinguishAnAtomFromItsPrincipalComponents_Skill_Data = buildSkill
       tr: "Atomların kuantum durumlarındaki elektronlarla çevrili bir çekirdeği olduğunu anla.",
       vi: "Nhận biết nguyên tử gồm hạt nhân được bao quanh bởi electron trong các trạng thái lượng tử.",
       ta: "அணுவில் கருவும் அதைச் சூழ்ந்த குவாண்டம் நிலைகளிலுள்ள எலக்ட்ரான்களும் உள்ளன என்பதை அறி.",
-      te: "పరమాణువులో కేంద్రకం, దాని చుట్టూ క్వాంటం స్థితుల్లో ఎలక్ట్రాన్లు ఉంటాయని గుర్తించు.",
+      te: "పరమాణువులో కేంద్రకం, దాని చుట్టూ క్వాంటం స్థితుల్లో ఎలక్ట్రాన్లు ఉంటాయని గుర్తించండి.",
       mr: "अणूत केंद्रक असून त्याभोवती क्वांटम अवस्थांतील इलेक्ट्रॉन असतात हे ओळखा.",
       ms: "Kenali atom sebagai nukleus yang dikelilingi elektron dalam keadaan kuantum.",
       he: "הכירו בכך שלאטום יש גרעין המוקף באלקטרונים במצבים קוונטיים.",

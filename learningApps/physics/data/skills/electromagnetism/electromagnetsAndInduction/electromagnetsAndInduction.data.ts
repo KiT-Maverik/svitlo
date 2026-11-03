@@ -63,7 +63,7 @@ export const electromagnetsAndInduction_SkillGroup_Data = buildSkillGroupConfig(
       te: 'విద్యుత్ ప్రవాహాలు అయస్కాంత క్షేత్రాలు ఎలా సృష్టిస్తాయో, మారే క్షేత్రాలు ప్రవాహాన్ని ఎలా ప్రేరేపిస్తాయో తెలుసుకోండి.',
       mr: 'विद्युतप्रवाह चुंबकीय क्षेत्र कसा निर्माण करतो आणि बदलते क्षेत्र प्रवाह कसा प्रेरित करते ते जाणून घ्या.',
       ms: 'Ketahui bagaimana arus mewujudkan medan magnet dan medan berubah mengaruh arus elektrik.',
-      he: 'גלה כיצד זרמים יוצרים שדות מגנטיים ושדות משתנים משרים זרמים חשמליים.',
+      he: 'גלו כיצד זרמים יוצרים שדות מגנטיים ושדות משתנים משרים זרמים חשמליים.',
       pl: 'Poznaj, jak prądy wytwarzają pola magnetyczne, a zmienne pola indukują prąd.',
       uk: 'Дізнайся, як струми створюють магнітні поля, а змінні поля індукують електричний струм.',
       lt: 'Sužinok, kaip srovės sukuria magnetinius laukus, o kintantys laukai indukuoja srovę.',

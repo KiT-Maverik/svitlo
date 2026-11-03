@@ -57,7 +57,7 @@ export const explainElectricalPower_Skill_Data = buildSkillConfig({
       te: 'విద్యుత్ పవర్ అనేది శక్తి బదిలీ జరిగే రేటు అని అర్థం చేసుకోండి.',
       mr: 'विद्युतशक्ती म्हणजे ऊर्जा हस्तांतरणाचा दर हे समजून घ्या.',
       ms: 'Fahami kuasa elektrik sebagai kadar pemindahan tenaga.',
-      he: 'הבן שהספק חשמלי הוא קצב העברת האנרגיה.',
+      he: 'הבינו שהספק חשמלי הוא קצב העברת האנרגיה.',
       pl: 'Zrozum moc elektryczną jako tempo przekazywania energii.',
       uk: 'Зрозумій електричну потужність як швидкість передавання енергії.',
       lt: 'Suprask elektrinę galią kaip energijos perdavimo spartą.',

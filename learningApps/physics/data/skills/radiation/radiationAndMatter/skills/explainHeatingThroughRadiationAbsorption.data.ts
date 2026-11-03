@@ -53,7 +53,7 @@ export const explainHeatingThroughRadiationAbsorption_Skill_Data = buildSkillCon
       tr: "Aynı ışınıma maruz kalan farklı yüzeylerin neden farklı ölçüde ısındığını açıkla.",
       vi: "Giải thích vì sao các bề mặt khác nhau nóng lên khác nhau khi nhận cùng bức xạ.",
       ta: "ஒரே கதிர்வீச்சைப் பெற்றாலும் வெவ்வேறு மேற்பரப்புகள் ஏன் வேறுபட்டு சூடாகின்றன என்பதை விளக்கு.",
-      te: "ఒకే వికిరణం అందినా వేర్వేరు ఉపరితలాలు ఎందుకు వేర్వేరుగా వేడెక్కుతాయో వివరించు.",
+      te: "ఒకే వికిరణం అందినా వేర్వేరు ఉపరితలాలు ఎందుకు వేర్వేరుగా వేడెక్కుతాయో వివరించండి.",
       mr: "सारखे प्रारण मिळूनही भिन्न पृष्ठभाग वेगवेगळे का तापतात ते स्पष्ट करा.",
       ms: "Terangkan mengapa permukaan berbeza menjadi panas pada kadar berlainan di bawah sinaran yang sama.",
       he: "הסבירו מדוע משטחים שונים מתחממים באופן שונה תחת אותה קרינה.",

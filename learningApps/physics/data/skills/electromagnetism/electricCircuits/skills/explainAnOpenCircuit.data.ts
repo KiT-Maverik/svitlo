@@ -57,7 +57,7 @@ export const explainAnOpenCircuit_Skill_Data = buildSkillConfig({
       te: 'ప్రవాహ మార్గం తెగిపోయినప్పుడు ఏమి జరుగుతుందో వివరించండి.',
       mr: 'प्रवाहाचा मार्ग तुटल्यावर काय घडते ते स्पष्ट करा.',
       ms: 'Terangkan apa yang berlaku apabila laluan arus terputus.',
-      he: 'הסבר מה קורה כאשר מסלול הזרם נקטע.',
+      he: 'הסבירו מה קורה כאשר מסלול הזרם נקטע.',
       pl: 'Wyjaśnij, co się dzieje, gdy droga przepływu prądu zostaje przerwana.',
       uk: 'Пояснюй, що відбувається, коли шлях струму перервано.',
       lt: 'Paaiškink, kas nutinka nutrūkus srovės keliui.',

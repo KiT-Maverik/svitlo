@@ -53,7 +53,7 @@ export const explainHalfLife_Skill_Data = buildSkillConfig({
       tr: "Yarı ömrün çok sayıdaki kararsız çekirdeğin istatistiksel davranışı olduğunu anla.",
       vi: "Hiểu chu kỳ bán rã là quy luật thống kê của nhiều hạt nhân không bền.",
       ta: "அரை ஆயுட்காலம் பல நிலையற்ற அணுக்கருக்களில் காணப்படும் புள்ளிவிவர முறையைக் குறிக்கிறது என்பதை அறி.",
-      te: "అర్ధాయుష్కాలం అనేక అస్థిర కేంద్రకాలలో కనిపించే గణాంక నమూనా అని అర్థం చేసుకో.",
+      te: "అర్ధాయుష్కాలం అనేక అస్థిర కేంద్రకాలలో కనిపించే గణాంక నమూనా అని అర్థం చేసుకోండి.",
       mr: "अर्धायुष्य हा अनेक अस्थिर अणुकेंद्रकांचा सांख्यिकीय नियम आहे हे समजून घ्या.",
       ms: "Fahami separuh hayat sebagai pola statistik bagi banyak nukleus yang tidak stabil.",
       he: "הבינו שזמן מחצית החיים מתאר דפוס סטטיסטי במספר רב של גרעינים לא יציבים.",

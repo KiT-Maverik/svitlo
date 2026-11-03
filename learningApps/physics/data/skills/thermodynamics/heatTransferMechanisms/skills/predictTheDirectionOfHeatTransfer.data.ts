@@ -57,7 +57,7 @@ export const predictTheDirectionOfHeatTransfer_Skill_Data = buildSkillConfig({
       te: 'వేర్వేరు ఉష్ణోగ్రతలున్న వస్తువుల మధ్య ఉష్ణ శక్తి ఏ దిశలో ప్రవహిస్తుందో అంచనా వేయండి.',
       mr: 'वेगवेगळे तापमान असलेल्या वस्तूंमध्ये उष्णता ऊर्जा कोणत्या दिशेने जाते ते सांगा.',
       ms: 'Ramalkan arah aliran tenaga haba antara objek yang berbeza suhu.',
-      he: 'חזה לאיזה כיוון זורמת אנרגיית החום בין גופים בטמפרטורות שונות.',
+      he: 'חזו לאיזה כיוון זורמת אנרגיית החום בין גופים בטמפרטורות שונות.',
       pl: 'Przewidź, w którą stronę płynie energia cieplna między ciałami o różnych temperaturach.',
       uk: 'Прогнозуй, у якому напрямку передається теплова енергія між тілами з різними температурами.',
       lt: 'Numatyk, kuria kryptimi šiluminė energija perduodama tarp skirtingos temperatūros kūnų.',

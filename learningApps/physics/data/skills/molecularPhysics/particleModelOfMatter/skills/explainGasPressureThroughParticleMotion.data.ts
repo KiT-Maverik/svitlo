@@ -57,7 +57,7 @@ export const explainGasPressureThroughParticleMotion_Skill_Data = buildSkillConf
       te: 'అనేక కణాలు పాత్ర గోడలను ఢీకొనడం వల్ల పీడనం ఎలా ఏర్పడుతుందో వివరించండి.',
       mr: 'अनेक कण पृष्ठभागाला धडकून वायूचा दाब कसा निर्माण होतो ते स्पष्ट करा.',
       ms: 'Terangkan bagaimana perlanggaran banyak zarah dengan dinding bekas menghasilkan tekanan.',
-      he: 'הסבר כיצד התנגשויות רבות של חלקיקים בדופן יוצרות לחץ.',
+      he: 'הסבירו כיצד התנגשויות רבות של חלקיקים בדופן יוצרות לחץ.',
       pl: 'Wyjaśnij, jak liczne zderzenia cząstek ze ściankami naczynia wywołują ciśnienie.',
       uk: 'Пояснюй, як численні зіткнення частинок зі стінками посудини створюють тиск.',
       lt: 'Paaiškink, kaip daugybė dalelių smūgių į sienelę sukuria slėgį.',

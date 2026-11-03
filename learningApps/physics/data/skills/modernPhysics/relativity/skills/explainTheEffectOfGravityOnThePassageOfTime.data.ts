@@ -53,7 +53,7 @@ export const explainTheEffectOfGravityOnThePassageOfTime_Skill_Data = buildSkill
       tr: "Kütleçekiminin saatlerin göreli işleyiş hızlarını nasıl değiştirebildiğini keşfet.",
       vi: "Tìm hiểu cách hấp dẫn có thể làm thay đổi tốc độ chạy tương đối của các đồng hồ.",
       ta: "ஈர்ப்பு விசையால் கடிகாரங்கள் ஓடும் சார்பு விகிதங்கள் எவ்வாறு மாறக்கூடும் என்பதை ஆராய்.",
-      te: "గురుత్వాకర్షణ గడియారాల సాపేక్ష నడక వేగాన్ని ఎలా మార్చగలదో తెలుసుకో.",
+      te: "గురుత్వాకర్షణ గడియారాల సాపేక్ష నడక వేగాన్ని ఎలా మార్చగలదో తెలుసుకోండి.",
       mr: "गुरुत्वाकर्षणामुळे घड्याळांच्या चालण्याचे सापेक्ष दर कसे बदलू शकतात ते जाणून घ्या.",
       ms: "Terokai bagaimana graviti boleh mengubah kadar relatif jam berjalan.",
       he: "גלו כיצד כבידה יכולה לשנות את קצב פעולתן היחסי של שעונים.",

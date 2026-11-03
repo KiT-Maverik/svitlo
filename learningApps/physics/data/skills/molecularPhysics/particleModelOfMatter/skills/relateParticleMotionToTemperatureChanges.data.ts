@@ -57,7 +57,7 @@ export const relateParticleMotionToTemperatureChanges_Skill_Data = buildSkillCon
       te: 'వేడిచేయడాన్ని కణాల సాధారణ చలనంలో మార్పులతో అనుసంధానించండి.',
       mr: 'तापवणे आणि कणांच्या नेहमीच्या गतीतील बदल यांचा संबंध लावा.',
       ms: 'Kaitkan pemanasan dengan perubahan gerakan lazim zarah.',
-      he: 'קשר חימום לשינויים בתנועתם האופיינית של החלקיקים.',
+      he: 'קשרו חימום לשינויים בתנועתם האופיינית של החלקיקים.',
       pl: 'Powiąż ogrzewanie ze zmianami typowego ruchu cząstek.',
       uk: 'Пов’язуй нагрівання зі змінами характерного руху частинок.',
       lt: 'Susiek šildymą su būdingais dalelių judėjimo pokyčiais.',

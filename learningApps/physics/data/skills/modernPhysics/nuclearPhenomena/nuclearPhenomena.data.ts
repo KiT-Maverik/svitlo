@@ -63,7 +63,7 @@ export const nuclearPhenomena_SkillGroup_Data = buildSkillGroupConfig({
       tr: "Atom çekirdeklerinin nasıl değiştiğini ve bazı dönüşümlerin neden enerji açığa çıkardığını keşfet.",
       vi: "Tìm hiểu cách hạt nhân nguyên tử biến đổi và vì sao một số biến đổi giải phóng năng lượng.",
       ta: "அணுக்கருக்கள் எவ்வாறு மாறுகின்றன, சில மாற்றங்கள் ஏன் ஆற்றலை வெளியிடுகின்றன என்பதை அறிந்துகொள்.",
-      te: "అణుకేంద్రకాలు ఎలా మారతాయో, కొన్ని మార్పుల్లో శక్తి ఎందుకు విడుదలవుతుందో తెలుసుకో.",
+      te: "అణుకేంద్రకాలు ఎలా మారతాయో, కొన్ని మార్పుల్లో శక్తి ఎందుకు విడుదలవుతుందో తెలుసుకోండి.",
       mr: "अणुकेंद्रक कसे बदलतात आणि काही बदलांत ऊर्जा का मुक्त होते ते जाणून घ्या.",
       ms: "Ketahui bagaimana nukleus atom berubah dan mengapa sesetengah perubahan membebaskan tenaga.",
       he: "גלו כיצד גרעיני אטומים משתנים ומדוע חלק מהשינויים משחררים אנרגיה.",

@@ -53,7 +53,7 @@ export const distinguishAlphaBetaAndGammaRadiation_Skill_Data = buildSkillConfig
       tr: "Alfa parçacıklarını, beta parçacıklarını ve gama fotonlarını tanı.",
       vi: "Nhận biết hạt alpha, hạt beta và photon gamma.",
       ta: "ஆல்ஃபா துகள்கள், பீட்டா துகள்கள், காமா ஃபோட்டான்களை அறிந்துகொள்.",
-      te: "ఆల్ఫా కణాలు, బీటా కణాలు, గామా ఫోటాన్లను గుర్తించు.",
+      te: "ఆల్ఫా కణాలు, బీటా కణాలు, గామా ఫోటాన్లను గుర్తించండి.",
       mr: "अल्फा कण, बीटा कण आणि गॅमा फोटॉन ओळखा.",
       ms: "Kenali zarah alfa, zarah beta dan foton gama.",
       he: "זהו חלקיקי אלפא, חלקיקי בטא ופוטוני גמא.",

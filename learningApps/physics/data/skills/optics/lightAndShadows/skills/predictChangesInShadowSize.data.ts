@@ -53,7 +53,7 @@ export const predictChangesInShadowSize_Skill_Data = buildSkillConfig({
       tr: "Işık kaynağını veya cismi hareket ettirmenin gölge boyutunu nasıl değiştirdiğini anla.",
       vi: "Hiểu cách di chuyển nguồn sáng hoặc vật làm thay đổi kích thước bóng.",
       ta: "ஒளி மூலத்தையோ பொருளையோ நகர்த்தும்போது நிழலின் அளவு எவ்வாறு மாறுகிறது என்பதைப் புரிந்துகொள்.",
-      te: "కాంతి మూలం లేదా వస్తువు కదిలితే నీడ పరిమాణం ఎలా మారుతుందో అర్థం చేసుకో.",
+      te: "కాంతి మూలం లేదా వస్తువు కదిలితే నీడ పరిమాణం ఎలా మారుతుందో అర్థం చేసుకోండి.",
       mr: "प्रकाशस्रोत किंवा वस्तू हलवल्यावर सावलीचा आकार कसा बदलतो ते समजून घ्या.",
       ms: "Fahami bagaimana mengalihkan sumber cahaya atau objek mengubah saiz bayang-bayang.",
       he: "הבינו כיצד הזזה של מקור אור או עצם משנה את גודל הצל.",

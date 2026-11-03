@@ -53,7 +53,7 @@ export const explainLightEmissionByAnExcitedAtom_Skill_Data = buildSkillConfig({
       tr: "Atomların enerji düzeyleri arasında geçiş yaparken nasıl foton yayabildiğini açıkla.",
       vi: "Giải thích vì sao nguyên tử kích thích có thể phát photon khi chuyển xuống mức năng lượng thấp hơn, với năng lượng bằng độ chênh lệch hai mức.",
       ta: "தூண்டப்பட்ட அணு குறைந்த ஆற்றல் மட்டத்துக்கு மாறும்போது மட்டங்களின் ஆற்றல் வேறுபாட்டுக்கு இணையான ஃபோட்டானை வெளியிடலாம் என்பதை விளக்கு.",
-      te: "పరమాణువులు శక్తి స్థాయులు మారేటప్పుడు ఫోటాన్లను ఎలా విడుదల చేస్తాయో వివరించు.",
+      te: "పరమాణువులు శక్తి స్థాయులు మారేటప్పుడు ఫోటాన్లను ఎలా విడుదల చేస్తాయో వివరించండి.",
       mr: "अणू ऊर्जा पातळी बदलताना फोटॉन कसे उत्सर्जित करू शकतात ते स्पष्ट करा.",
       ms: "Terangkan bagaimana atom boleh memancarkan foton apabila berpindah aras tenaga.",
       he: "הסבירו כיצד אטומים יכולים לפלוט פוטונים כאשר הם עוברים בין רמות אנרגיה.",

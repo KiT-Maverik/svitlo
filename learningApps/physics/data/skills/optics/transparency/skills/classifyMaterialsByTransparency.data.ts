@@ -53,7 +53,7 @@ export const classifyMaterialsByTransparency_Skill_Data = buildSkillConfig({
       tr: "Saydam, yarı saydam ve opak malzemeleri ayırt et.",
       vi: "Phân biệt vật liệu trong suốt, mờ và không trong suốt.",
       ta: "ஒளிபுகும், ஒளிகசியும், ஒளிபுகாத பொருட்களை வேறுபடுத்து.",
-      te: "పారదర్శక, అర్ధపారదర్శక, అపారదర్శక పదార్థాలను వేరు చేయి.",
+      te: "పారదర్శక, అర్ధపారదర్శక, అపారదర్శక పదార్థాలను వేరు చేయండి.",
       mr: "पारदर्शक, अर्धपारदर्शक व अपारदर्शक पदार्थांत फरक ओळखा.",
       ms: "Bezakan bahan lutsinar, lutcahaya dan legap.",
       he: "הבחינו בין חומרים שקופים, שקופים למחצה ואטומים.",

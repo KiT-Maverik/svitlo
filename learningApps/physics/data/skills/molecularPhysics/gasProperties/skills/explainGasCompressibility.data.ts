@@ -57,7 +57,7 @@ export const explainGasCompressibility_Skill_Data = buildSkillConfig({
       te: 'వాయువులను చిన్న ఘనపరిమాణంలోకి ఎందుకు నొక్కి కుదించవచ్చో అర్థం చేసుకోండి.',
       mr: 'वायूला कमी घनफळात का दाबता येते ते समजून घ्या.',
       ms: 'Fahami mengapa gas boleh dimampatkan menjadi isi padu lebih kecil.',
-      he: 'הבן מדוע ניתן לדחוס גז לנפח קטן יותר.',
+      he: 'הבינו מדוע ניתן לדחוס גז לנפח קטן יותר.',
       pl: 'Zrozum, dlaczego gaz można sprężyć do mniejszej objętości.',
       uk: 'Зрозумій, чому газ можна стиснути до меншого об’єму.',
       lt: 'Suprask, kodėl dujas galima suspausti į mažesnį tūrį.',

@@ -59,7 +59,7 @@ export const lightReflection_SkillGroup_Data = buildSkillGroupConfig({
       tr: "Işığın yansıtıcı bir yüzeye çarpınca yönünü nasıl değiştirdiğini keşfet.",
       vi: "Tìm hiểu cách ánh sáng đổi hướng khi gặp bề mặt phản xạ.",
       ta: "ஒளி எதிரொளிக்கும் மேற்பரப்பைச் சந்திக்கும் போது அதன் திசை எவ்வாறு மாறுகிறது என்பதை ஆராய்.",
-      te: "కాంతి పరావర్తన ఉపరితలాన్ని తాకినప్పుడు దిశ ఎలా మారుతుందో తెలుసుకో.",
+      te: "కాంతి పరావర్తన ఉపరితలాన్ని తాకినప్పుడు దిశ ఎలా మారుతుందో తెలుసుకోండి.",
       mr: "प्रकाश परावर्तक पृष्ठभागावर पडल्यावर दिशा कशी बदलतो ते जाणून घ्या.",
       ms: "Terokai bagaimana cahaya berubah arah apabila mengenai permukaan pemantul.",
       he: "גלו כיצד אור משנה כיוון כשהוא פוגע במשטח מחזיר אור.",

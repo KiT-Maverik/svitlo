@@ -57,7 +57,7 @@ export const identifyAnElectricalPowerSource_Skill_Data = buildSkillConfig({
       te: 'వలయంలో విభవ భేదాన్ని నిలుపుకునే భాగాన్ని గుర్తించండి.',
       mr: 'परिपथात विभवांतर राखणारा घटक ओळखा.',
       ms: 'Kenal pasti komponen yang mengekalkan beza keupayaan dalam litar.',
-      he: 'זהה את הרכיב השומר על הפרש פוטנציאלים במעגל.',
+      he: 'זהו את הרכיב השומר על הפרש פוטנציאלים במעגל.',
       pl: 'Rozpoznaj element utrzymujący różnicę potencjałów w obwodzie.',
       uk: 'Розпізнавай компонент, що підтримує різницю потенціалів у колі.',
       lt: 'Atpažink grandinės elementą, palaikantį potencialų skirtumą.',

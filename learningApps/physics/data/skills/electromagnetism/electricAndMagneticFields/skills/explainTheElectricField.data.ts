@@ -57,7 +57,7 @@ export const explainTheElectricField_Skill_Data = buildSkillConfig({
       te: 'నేరుగా తాకకుండానే విద్యుత్ క్షేత్రం ఆవేశంపై ఎలా ప్రభావం చూపుతుందో అర్థం చేసుకోండి.',
       mr: 'थेट संपर्काशिवाय विद्युत क्षेत्र भारावर कसा परिणाम करते ते समजून घ्या.',
       ms: 'Fahami bagaimana medan elektrik bertindak pada cas tanpa sentuhan langsung.',
-      he: 'הבן כיצד שדה חשמלי משפיע על מטען ללא מגע ישיר.',
+      he: 'הבינו כיצד שדה חשמלי משפיע על מטען ללא מגע ישיר.',
       pl: 'Zrozum, jak pole elektryczne działa na ładunek bez bezpośredniego kontaktu.',
       uk: 'Зрозумій, як електричне поле діє на заряд без безпосереднього контакту.',
       lt: 'Suprask, kaip elektrinis laukas veikia krūvį be tiesioginio kontakto.',

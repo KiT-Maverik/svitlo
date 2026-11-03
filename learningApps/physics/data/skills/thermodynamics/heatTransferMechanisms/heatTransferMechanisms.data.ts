@@ -66,7 +66,7 @@ export const heatTransferMechanisms_SkillGroup_Data = buildSkillGroupConfig({
       te: 'పదార్థం, ప్రవహించే ద్రవాలు లేదా వాయువులు, వికిరణం ద్వారా ఉష్ణం ఎలా బదిలీ అవుతుందో తెలుసుకోండి.',
       mr: 'पदार्थ, वाहणारे द्रव किंवा वायू आणि प्रारण यांमधून उष्णता कशी पसरते ते जाणून घ्या.',
       ms: 'Ketahui bagaimana haba berpindah melalui jirim, bendalir yang mengalir dan sinaran.',
-      he: 'גלה כיצד חום עובר דרך חומר, זרימת נוזלים וגזים וקרינה.',
+      he: 'גלו כיצד חום עובר דרך חומר, זרימת נוזלים וגזים וקרינה.',
       pl: 'Dowiedz się, jak ciepło przenosi się przez materię, przepływ płynów i promieniowanie.',
       uk: 'Дізнайся, як тепло передається через речовину, потоки рідин і газів та випромінювання.',
       lt: 'Sužinok, kaip šiluma perduodama per medžiagą, judančius skysčius ir dujas bei spinduliavimą.',

@@ -62,7 +62,7 @@ export const refuteTheIdeaThatEnergyDisappears_Skill_Data = buildSkillConfig({
       lt: "Išsiaiškink, kur energija patenka, užuot manęs, kad ji pradingsta.",
       lv: "Noskaidro, kur enerģija nonāk, nevis pieņem, ka tā vienkārši pazūd.",
       et: "Uuri, kuhu energia läks, selle asemel et arvata, et see kaob.",
-      be: "Высьвятляй, куды перайшла энэргія, замест меркаваць, што яна проста зьнікла.",
+      be: "Высьвятляй, куды перайшла энэргія, замест таго, каб меркаваць, што яна проста зьнікла.",
       ka: "გაარკვიე, სად გადავიდა ენერგია, იმის ნაცვლად, რომ იფიქრო, თითქოს გაქრა.",
       kk: "Энергия жоғалды демей, қайда кеткенін анықта.",
       qm: "Energiya coyuldı dep düşünmeyip, qayda keçkenini tap.",

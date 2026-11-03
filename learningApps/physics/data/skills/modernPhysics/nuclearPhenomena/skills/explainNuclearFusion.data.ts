@@ -53,7 +53,7 @@ export const explainNuclearFusion_Skill_Data = buildSkillConfig({
       tr: "Hafif çekirdeklerin birleşmesinin nasıl enerji açığa çıkarabildiğini açıkla.",
       vi: "Giải thích cách kết hợp các hạt nhân nhẹ có thể giải phóng năng lượng.",
       ta: "இலேசான அணுக்கருக்கள் இணையும் போது ஆற்றல் எவ்வாறு வெளியிடப்படலாம் என்பதை விளக்கு.",
-      te: "తేలికపాటి కేంద్రకాలు కలిసినప్పుడు శక్తి ఎలా విడుదలవుతుందో వివరించు.",
+      te: "తేలికపాటి కేంద్రకాలు కలిసినప్పుడు శక్తి ఎలా విడుదలవుతుందో వివరించండి.",
       mr: "हलकी अणुकेंद्रके एकत्र आल्यावर ऊर्जा कशी मुक्त होऊ शकते ते स्पष्ट करा.",
       ms: "Terangkan bagaimana percantuman nukleus ringan boleh membebaskan tenaga.",
       he: "הסבירו כיצד איחוי גרעינים קלים עשוי לשחרר אנרגיה.",

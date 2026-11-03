@@ -57,7 +57,7 @@ export const explainThermalExpansionThroughParticleMotionAndInteractions_Skill_D
       te: 'వ్యాకోచంలో సాధారణంగా కణాల పరిమాణం కాక వాటి మధ్య దూరం ఎందుకు మారుతుందో అర్థం చేసుకోండి.',
       mr: 'प्रसरणामुळे सहसा कणांचे आकार नाही तर त्यांच्यातील अंतर बदलते हे समजून घ्या.',
       ms: 'Fahami mengapa pengembangan biasanya mengubah jarak antara zarah, bukan saiz zarah.',
-      he: 'הבן מדוע התפשטות משנה בדרך כלל את המרווחים בין חלקיקים ולא את גודלם.',
+      he: 'הבינו מדוע התפשטות משנה בדרך כלל את המרווחים בין חלקיקים ולא את גודלם.',
       pl: 'Zrozum, dlaczego rozszerzanie zmienia zwykle odległości między cząstkami, a nie ich rozmiar.',
       uk: 'Зрозумій, чому під час розширення зазвичай змінюються відстані між частинками, а не їхні розміри.',
       lt: 'Suprask, kodėl plečiantis dažniausiai kinta atstumai tarp dalelių, o ne jų dydis.',

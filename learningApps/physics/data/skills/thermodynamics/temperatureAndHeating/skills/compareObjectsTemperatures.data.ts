@@ -57,7 +57,7 @@ export const compareObjectsTemperatures_Skill_Data = buildSkillConfig({
       te: 'తాకి చూడడమే కాకుండా కొలత పరికరాలతో ఉష్ణోగ్రతలను పోల్చండి.',
       mr: 'केवळ स्पर्शावर विसंबून न राहता उपकरणांनी तापमान मोजून तुलना करा.',
       ms: 'Bandingkan suhu menggunakan alat pengukur, bukan hanya sentuhan.',
-      he: 'השווה טמפרטורות באמצעות מכשירי מדידה ולא רק במגע.',
+      he: 'השוו טמפרטורות באמצעות מכשירי מדידה ולא רק במגע.',
       pl: 'Porównuj temperatury za pomocą przyrządów, a nie tylko dotyku.',
       uk: 'Порівнюй температури за допомогою приладів, а не лише на дотик.',
       lt: 'Lygink temperatūras matavimo prietaisais, o ne vien liesdamas.',
