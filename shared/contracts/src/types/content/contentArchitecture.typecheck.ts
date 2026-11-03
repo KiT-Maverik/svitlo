@@ -56,6 +56,7 @@ const runtimeText: ContentBlock_Text<'response'> = {
   wrap: { typographyProps: { component: 'h2', variant: 'h4', sx: { mb: 2 } } },
 };
 const authoredText: ContentBlock_Text<'data'> = {
+  type: 'text',
   id: 'text-id',
   slug: 'intro',
   value: { value: 'hello {{id: name; value: John}}', language: 'en' },
@@ -63,6 +64,7 @@ const authoredText: ContentBlock_Text<'data'> = {
   wrap: { typographyProps: { component: 'p', align: 'center' } },
 };
 const authoredYoutube: ContentBlock_Youtube<'data'> = {
+  type: 'youtube',
   id: 'youtube-id',
   slug: 'video',
   mode: 'embed',
@@ -74,6 +76,7 @@ const authoredYoutube: ContentBlock_Youtube<'data'> = {
   },
 };
 const authoredImage: ContentBlock_Image<'data'> = {
+  type: 'image',
   id: 'image-id',
   slug: 'diagram',
   src: { value: '/diagram.png', language: 'en' },
@@ -84,6 +87,7 @@ const authoredImage: ContentBlock_Image<'data'> = {
   fallback: { unavailable: { value: 'Diagram unavailable', language: 'en' } },
 };
 const authoredCode: ContentBlock_Code<'data'> = {
+  type: 'code',
   id: 'code-id',
   slug: 'greeting',
   fileLocation: { value: '/examples/greeting.ts', language: 'en' },
@@ -99,6 +103,7 @@ const runtimeCode: ContentBlock_Code<'response'> = {
   variables: [{ id: 'greeting', value: 'Hello' }],
 };
 const authoredFillImage: ContentBlock_Image<'data'> = {
+  type: 'image',
   id: 'image-fill-id',
   slug: 'responsive-diagram',
   src: { value: '/diagram.png', language: 'en' },
