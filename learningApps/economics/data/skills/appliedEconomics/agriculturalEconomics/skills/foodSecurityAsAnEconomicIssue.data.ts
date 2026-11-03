@@ -64,7 +64,7 @@ export const foodSecurityAsAnEconomicIssue_Skill_Data = buildSkillConfig({
       et: "Uuri, miks piisav toidutootmine ei tähenda, et kõik saavad toitu osta või kätte.",
       be: "Дасьледуй, чаму дастатковая вытворчасьць ежы не гарантуе, што кожны можа яе набыць або атрымаць.",
       ka: "შეისწავლე, რატომ არ ნიშნავს საკმარისი საკვების წარმოება, რომ ყველას შეუძლია მისი ყიდვა ან მიღება.",
-      kk: "Жеткілікті азық-түлік өндірісі әркімнің оны сатып ала немесе ала алатынын неге білдірмейтінін зертте.",
+      kk: "Жеткілікті азық-түлік өндірілсе де, оның барлығына қолжетімді болатынына неге кепілдік жоқ екенін зертте.",
       qm: "Yeterli aşayış istisal olunsa da er kes onı satın alıp tapabilmegenini niçün olğanını ögren.",
     },
   },
