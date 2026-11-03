@@ -19,31 +19,31 @@ import styles from './Youtube.module.css';
 
 type FallbackKind = 'loading' | 'offline' | 'unavailable';
 
-export const ContentBlock_Youtube = ({ response }: { response: ContentBlock_Youtube_Response }) => {
+export const Youtube = ({ href, mode, title, hint, fallback: fallbackMessages, locale }: ContentBlock_Youtube_Response) => {
   const online = useSyncExternalStore(subscribeConnectionChange, getConnectionSnapshot, getServerConnectionSnapshot);
   const playerHost = useRef<HTMLDivElement>(null);
   const [failedHref, setFailedHref] = useState<string | null>(null);
-  const unavailable = response.mode === 'embed' && failedHref === response.href;
-  const attributes = localizedAttributes(response);
-  const label = response.title || response.hint || response.href;
+  const unavailable = mode === 'embed' && failedHref === href;
+  const attributes = localizedAttributes({ locale });
+  const label = title || hint || href;
 
-  if (response.mode === 'link') youtubeVideoId(response.href);
+  if (mode === 'link') youtubeVideoId(href);
   else {
-    youtubeEmbedUrl(response.href);
-    if (!response.title && !response.hint) throw new Error('Embedded YouTube blocks require an accessible title or hint');
+    youtubeEmbedUrl(href);
+    if (!title && !hint) throw new Error('Embedded YouTube blocks require an accessible title or hint');
   }
 
   useEffect(() => {
-    if (response.mode !== 'embed' || online !== true || unavailable) return;
+    if (mode !== 'embed' || online !== true || unavailable) return;
     const host = playerHost.current;
     if (!host) return;
 
     let active = true;
     let player: YoutubePlayer | undefined;
-    const iframe = createYoutubeIframe(response.href, label);
+    const iframe = createYoutubeIframe(href, label);
     host.replaceChildren(iframe);
     const timeout = window.setTimeout(() => {
-      if (active) setFailedHref(response.href);
+      if (active) setFailedHref(href);
     }, 20_000);
 
     loadYoutubeApi().then(api => {
@@ -53,12 +53,12 @@ export const ContentBlock_Youtube = ({ response }: { response: ContentBlock_Yout
           onReady: () => window.clearTimeout(timeout),
           onError: () => {
             window.clearTimeout(timeout);
-            if (active) setFailedHref(response.href);
+            if (active) setFailedHref(href);
           },
         },
       });
     }).catch(() => {
-      if (active) setFailedHref(response.href);
+      if (active) setFailedHref(href);
     });
 
     return () => {
@@ -67,13 +67,13 @@ export const ContentBlock_Youtube = ({ response }: { response: ContentBlock_Yout
       player?.destroy();
       host.replaceChildren();
     };
-  }, [response.href, response.mode, label, online, unavailable]);
+  }, [href, mode, label, online, unavailable]);
 
   const fallbackKind: FallbackKind | null = online === null ? 'loading' : !online ? 'offline' : unavailable ? 'unavailable' : null;
   const fallbackText = fallbackKind === 'loading'
-    ? youtubeFallbackText(response.locale.code, 'loading')
+    ? youtubeFallbackText(locale.code, 'loading')
     : fallbackKind
-      ? response.fallback?.[fallbackKind] || youtubeFallbackText(response.locale.code, fallbackKind)
+      ? fallbackMessages?.[fallbackKind] || youtubeFallbackText(locale.code, fallbackKind)
       : null;
   const fallback = fallbackKind && (
     <div key="fallback" className={styles.placeholder} role="status">
@@ -81,17 +81,17 @@ export const ContentBlock_Youtube = ({ response }: { response: ContentBlock_Yout
       <span>{fallbackText}</span>
       {fallbackKind === 'unavailable' && (
         <button type="button" onClick={() => setFailedHref(null)}>
-          {response.fallback?.retry || youtubeFallbackText(response.locale.code, 'retry')}
+          {fallbackMessages?.retry || youtubeFallbackText(locale.code, 'retry')}
         </button>
       )}
     </div>
   );
 
-  if (response.mode === 'link') {
+  if (mode === 'link') {
     return fallbackKind ? (
       <div {...attributes} className={styles.linkFallback}>{fallback}</div>
     ) : (
-      <a {...attributes} href={response.href} rel="noopener noreferrer" target="_blank">
+      <a {...attributes} href={href} rel="noopener noreferrer" target="_blank">
         {label}
       </a>
     );
@@ -100,7 +100,7 @@ export const ContentBlock_Youtube = ({ response }: { response: ContentBlock_Yout
   return (
     <figure {...attributes} className={styles.figure}>
       {fallback || <div key="player" ref={playerHost} className={styles.player} />}
-      {response.hint && <figcaption>{response.hint}</figcaption>}
+      {hint && <figcaption>{hint}</figcaption>}
     </figure>
   );
 };

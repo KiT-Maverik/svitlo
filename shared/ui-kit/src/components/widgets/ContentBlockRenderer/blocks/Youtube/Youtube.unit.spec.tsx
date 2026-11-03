@@ -1,11 +1,11 @@
 import { act, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import type { ContentBlockResponse } from '../../types';
-import { ContentBlock_Youtube } from './Youtube';
+import type { ContentBlock_Youtube_Response } from '@svitlo/engine/content';
+import { Youtube } from './Youtube';
 import { youtubeEmbedUrl, youtubeVideoId } from './Youtube.utils';
 
-const response: ContentBlockResponse<'youtube'> = {
+const response: ContentBlock_Youtube_Response = {
   id: 'youtube-1',
   type: 'youtube',
   mode: 'embed',
@@ -34,15 +34,15 @@ afterEach(() => {
 describe('YouTube content block', () => {
   it('shows the offline placeholder without creating an iframe', () => {
     setOnline(false);
-    const { container } = render(<ContentBlock_Youtube response={response} />);
+    const { container } = render(<Youtube {...response} />);
     expect(screen.getByRole('status')).toHaveTextContent('Немає з’єднання');
     expect(container.querySelector('iframe')).toBeNull();
   });
 
   it('shows a link only while online', () => {
     setOnline(false);
-    const linkResponse: ContentBlockResponse<'youtube'> = { ...response, mode: 'link' };
-    render(<ContentBlock_Youtube response={linkResponse} />);
+    const linkResponse: ContentBlock_Youtube_Response = { ...response, mode: 'link' };
+    render(<Youtube {...linkResponse} />);
     expect(screen.queryByRole('link')).toBeNull();
     expect(screen.getByRole('status')).toHaveTextContent('Немає з’єднання');
 
@@ -63,7 +63,7 @@ describe('YouTube content block', () => {
       },
     };
 
-    const { container } = render(<ContentBlock_Youtube response={response} />);
+    const { container } = render(<Youtube {...response} />);
     await waitFor(() => expect(reportError).toBeTypeOf('function'));
     expect(container.querySelector('iframe')).toHaveAttribute('title', 'Приклад відео');
 

@@ -10,7 +10,7 @@ import { ContentBlock_Quiz } from './blocks/Quiz/ContentBlock_Quiz';
 import { Scene } from './blocks/Scene/Scene';
 import { ContentBlock_Text } from './blocks/Text/Text';
 import { Video } from './blocks/Video/Video';
-import { ContentBlock_Youtube } from './blocks/Youtube/Youtube';
+import { Youtube } from './blocks/Youtube/Youtube';
 import type { ContentBlockRenderContext, ContentBlockRendererProps, NestedResponse } from '#types/content-blocks';
 import { assertNever, requireTaggedResponse } from './utils';
 
@@ -41,7 +41,7 @@ export function ContentBlockRenderer(props: ContentBlockRendererProps): ReactNod
     case 'code': return <Code response={props.response} />;
     case 'audio': return <Audio response={props.response} />;
     case 'video': return <Video response={props.response} />;
-    case 'youtube': return <ContentBlock_Youtube response={props.response} />;
+    case 'youtube': return <Youtube {...props.response} />;
     case 'image': return <Image response={props.response} />;
     case 'quiz': return <ContentBlock_Quiz response={props.response} questions={props.questions} renderNested={nested} />;
     default: return assertNever(props);
