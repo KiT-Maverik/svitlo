@@ -46,7 +46,7 @@ type ContentBlock_Checkpoint_Data = ContentBlock_Data_Meta & ContentBlock_Checkp
   }[];
 };
 
-type ContentBlock_Checkpoint_Response = ContentBlock_Response_Meta<'checkpoint'> &
+export type ContentBlock_Checkpoint_Response = ContentBlock_Response_Meta<'checkpoint'> &
   Locale_ResponseParams &
   ContentBlock_Checkpoint_Settings & {
     title: string;

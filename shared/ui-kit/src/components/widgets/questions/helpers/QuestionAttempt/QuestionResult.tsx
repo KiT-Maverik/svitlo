@@ -1,7 +1,7 @@
 'use client';
 
 import { Box, Fade, Paper } from '@mui/material';
-import { MarkdownContent } from '../../../MarkdownContent';
+import { Markdown } from '../../../ContentBlockRenderer/blocks/Markdown/Markdown';
 import { uk } from '../../messages';
 export function QuestionResult({
   explanation,
@@ -50,7 +50,7 @@ export function QuestionResult({
               bgcolor: 'background.paper',
             }}
           >
-            <MarkdownContent content={explanation} />
+            <Markdown id="question-result-explanation" type="markdown" locale={{ code: "uk" }} text={explanation} />
           </Paper>
         </Box>
       </Fade>

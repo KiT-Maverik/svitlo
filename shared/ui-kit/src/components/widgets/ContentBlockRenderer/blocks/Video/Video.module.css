@@ -1,0 +1,28 @@
+.figure {
+  margin: 0;
+}
+
+.video,
+.placeholder {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  min-height: 200px;
+}
+
+.video {
+  background: #000;
+}
+
+.placeholder {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  text-align: center;
+  color: var(--mui-palette-text-secondary, #555);
+  background: var(--mui-palette-action-hover, #f3f3f3);
+}

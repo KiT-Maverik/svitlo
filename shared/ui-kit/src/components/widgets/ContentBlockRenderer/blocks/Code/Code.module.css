@@ -1,0 +1,52 @@
+.figure {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--mui-palette-divider, #ccc);
+  border-radius: 0.75rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.6rem 0.9rem;
+  color: var(--mui-palette-text-secondary, #555);
+  background: var(--mui-palette-action-hover, #f3f3f3);
+  font-size: 0.8rem;
+}
+
+.language {
+  margin-inline-start: auto;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+}
+
+.pre {
+  margin: 0;
+  overflow-x: auto;
+  padding: 1rem;
+  color: var(--mui-palette-text-primary, #222);
+  background: var(--mui-palette-background-paper, #fff);
+  tab-size: 2;
+}
+
+.code {
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  white-space: pre;
+}
+
+.code :global(.hljs-comment),
+.code :global(.hljs-quote) { color: var(--mui-palette-text-secondary, #777); }
+.code :global(.hljs-keyword),
+.code :global(.hljs-selector-tag),
+.code :global(.hljs-type) { color: var(--mui-palette-secondary-main, #7b1fa2); }
+.code :global(.hljs-string),
+.code :global(.hljs-attr),
+.code :global(.hljs-addition) { color: var(--mui-palette-success-main, #2e7d32); }
+.code :global(.hljs-number),
+.code :global(.hljs-literal),
+.code :global(.hljs-built_in) { color: var(--mui-palette-warning-main, #ed6c02); }
+.code :global(.hljs-title),
+.code :global(.hljs-function),
+.code :global(.hljs-variable) { color: var(--mui-palette-info-main, #0288d1); }

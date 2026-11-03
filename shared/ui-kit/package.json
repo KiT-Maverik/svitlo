@@ -5,6 +5,13 @@
   "type": "commonjs",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "imports": {
+    "#layout/*": "./dist/components/layout/*.js",
+    "#widgets/*": "./dist/components/widgets/*.js",
+    "#testing/*": "./dist/testing/*.js",
+    "#types/*": "./dist/types/*.js",
+    "#utils/*": "./dist/utils/*.js"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -33,14 +40,6 @@
     "./navigation/*": {
       "types": "./dist/components/layout/Navigation/*.d.ts",
       "default": "./dist/components/layout/Navigation/*.js"
-    },
-    "./widgets/KnowledgeCheckpoint": {
-      "types": "./dist/components/widgets/KnowledgeCheckpoint/index.d.ts",
-      "default": "./dist/components/widgets/KnowledgeCheckpoint/index.js"
-    },
-    "./widgets/MarkdownContent": {
-      "types": "./dist/components/widgets/MarkdownContent/index.d.ts",
-      "default": "./dist/components/widgets/MarkdownContent/index.js"
     },
     "./questions/helpers": {
       "types": "./dist/components/widgets/questions/helpers/index.d.ts",
@@ -98,7 +97,8 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@svitlo/engine": "0.0.0"
+    "@svitlo/engine": "0.0.0",
+    "highlight.js": "^11.12.0"
   },
   "peerDependencies": {
     "@dnd-kit/core": "^6.3.1",
@@ -108,6 +108,7 @@
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^9.5.0",
     "@mui/material": "^9.5.0",
+    "next": "16.4.2",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "react-markdown": "^10.1.0",

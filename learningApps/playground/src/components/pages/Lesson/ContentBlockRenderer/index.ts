@@ -1,9 +1,8 @@
-export { ContentBlockRenderer, ContentBlockCatalogRenderer } from './ContentBlockRenderer';
+export { ContentBlockRenderer } from './ContentBlockRenderer';
 export type {
-  ContentBlockRenderContext,
   ContentBlockRendererProps,
   ContentBlockResponse,
   ContentBlockType,
-  ContentBlockReference,
+  ResponseOf,
   SceneRegistry,
 } from './ContentBlockRenderer';
