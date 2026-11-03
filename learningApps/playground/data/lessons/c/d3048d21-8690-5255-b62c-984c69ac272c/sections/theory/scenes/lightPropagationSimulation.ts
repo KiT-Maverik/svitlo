@@ -706,8 +706,8 @@ export const lightPropagationSimulation_Locale: Record<LanguageCode, Locale> = {
 export type LightPropagationSimulation_ContentBlock<ConfigType extends 'definition' | 'data' | 'response'> =
   ContentBlock_Scene<ConfigType, Locale>;
 
-export const lightPropagationSimulationData: LightPropagationSimulation_ContentBlock<'data'> = {
+export const lightPropagationSimulationData = {
   id: 'how-light-moves-scene-propagation',
-  slug: 'lightPropagationSimulation',
+  slug: 'lightPropagationSimulation' as const,
   locales: sceneLocalesToData(lightPropagationSimulation_Locale),
-};
+} satisfies LightPropagationSimulation_ContentBlock<'data'>;

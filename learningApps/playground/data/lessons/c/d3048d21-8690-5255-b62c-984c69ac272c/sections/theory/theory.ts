@@ -39,7 +39,7 @@ const title = {
 export const theory_Section = {
   id: '32376510-b49a-5da8-91d7-e13cf162c9f9',
   type: 'theory',
-  slug: 'theory',
+  slug: 'theory' as const,
   title,
   navigationLabel: title,
   order: [

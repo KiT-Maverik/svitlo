@@ -38,7 +38,7 @@ const title = {
 
 const quizBlock = {
   id: 'd57aedcf-2381-527d-87e6-076bedcc9bd5',
-  slug: 'quiz',
+  slug: 'quiz' as const,
   welcome: title,
   feedbackMode: 'immediate' as const,
   interaction: {

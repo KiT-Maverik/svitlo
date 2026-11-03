@@ -387,8 +387,8 @@ export const lightRayDiagram_Locale: Record<LanguageCode, Locale> = {
 export type LightRayDiagram_ContentBlock<ConfigType extends 'definition' | 'data' | 'response'> =
   ContentBlock_Scene<ConfigType, Locale>;
 
-export const lightRayDiagramData: LightRayDiagram_ContentBlock<'data'> = {
+export const lightRayDiagramData = {
   id: 'how-light-moves-scene-ray',
-  slug: 'lightRayDiagram',
+  slug: 'lightRayDiagram' as const,
   locales: sceneLocalesToData(lightRayDiagram_Locale),
-};
+} satisfies LightRayDiagram_ContentBlock<'data'>;

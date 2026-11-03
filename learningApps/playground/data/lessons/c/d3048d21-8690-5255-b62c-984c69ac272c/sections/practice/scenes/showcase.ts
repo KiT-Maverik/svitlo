@@ -967,8 +967,8 @@ export const showcase_Locale: Record<LanguageCode, Locale> = {
 export type Showcase_ContentBlock<ConfigType extends 'definition' | 'data' | 'response'> =
   ContentBlock_Scene<ConfigType, Locale>;
 
-export const showcaseData: Showcase_ContentBlock<'data'> = {
+export const showcaseData = {
   id: 'how-light-moves-scene-showcase',
-  slug: 'showcase',
+  slug: 'showcase' as const,
   locales: sceneLocalesToData(showcase_Locale),
-};
+} satisfies Showcase_ContentBlock<'data'>;
