@@ -38,7 +38,7 @@ export const foodSecurityAsAnEconomicIssue_Skill_Data = buildSkillConfig({
     methodological: "Analyze physical and economic access to food, stability of supplies, and why sufficient aggregate production does not ensure everyone can obtain food.",
     frontend: {
       en: "Explore why enough food being produced does not mean everyone can afford or access it.",
-      zh: "探索为什么粮食产量充足不代表人人都买得起或获得到食物。",
+      zh: "探索为什么粮食产量充足并不意味着人人都买得起或能获得食物。",
       hi: "जानें कि पर्याप्त भोजन बनने पर भी हर कोई उसे खरीद या प्राप्त क्यों नहीं कर पाता।",
       es: "Explora por qué producir suficientes alimentos no significa que todos puedan comprarlos o acceder a ellos.",
       ar: "اكتشف لماذا لا يعني إنتاج ما يكفي من الغذاء أن الجميع يستطيع شراءه أو الوصول إليه.",
