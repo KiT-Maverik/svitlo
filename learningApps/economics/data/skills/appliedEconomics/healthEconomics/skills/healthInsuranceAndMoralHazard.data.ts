@@ -43,7 +43,7 @@ export const healthInsuranceAndMoralHazard_Skill_Data = buildSkillConfig({
       es: "Comprende cómo un seguro puede cambiar quién paga y cómo se utilizan los servicios.",
       ar: "افهم كيف يغيّر التأمين من يدفع وكيفية استخدام الخدمات.",
       fr: "Comprends comment l'assurance peut modifier qui paie et l'utilisation des soins.",
-      bn: "বিমা কে খরচ দেয় এবং সেবা কীভাবে ব্যবহৃত হয়—দুটিই কীভাবে বদলায় তা বোঝো।",
+      bn: "বিমা কীভাবে খরচের দায় ও স্বাস্থ্যসেবার ব্যবহারের ধরন বদলাতে পারে তা বোঝো।",
       pt: "Entenda como o seguro pode mudar quem paga e como os serviços são usados.",
       ur: "سمجھیں کہ بیمہ اخراجات ادا کرنے والے اور خدمات کے استعمال دونوں کو کیسے بدل سکتا ہے۔",
       id: "Pahami bagaimana asuransi mengubah siapa yang membayar dan cara layanan digunakan.",
