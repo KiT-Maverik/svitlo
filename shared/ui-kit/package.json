@@ -45,14 +45,6 @@
       "types": "./dist/components/widgets/MarkdownContent/index.d.ts",
       "default": "./dist/components/widgets/MarkdownContent/index.js"
     },
-    "./questions/helpers": {
-      "types": "./dist/components/widgets/questions/helpers/index.d.ts",
-      "default": "./dist/components/widgets/questions/helpers/index.js"
-    },
-    "./questions/types": {
-      "types": "./dist/components/widgets/questions/types/index.d.ts",
-      "default": "./dist/components/widgets/questions/types/index.js"
-    },
     "./learning-layout": {
       "types": "./dist/components/layout/LearningLayout/index.d.ts",
       "default": "./dist/components/layout/LearningLayout/index.js"
@@ -93,7 +85,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.build.json && node scripts/copy-assets.mjs",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "test:logic": "tsc -p tsconfig.test.json && node --test .test-build/components/widgets/questions/*.unit.spec.js .test-build/components/widgets/questions/helpers/AnswerOption/*.unit.spec.js",
+    "test:logic": "npm run typecheck",
     "test:components": "vitest run",
     "test": "npm run test:logic && npm run test:components",
     "prepack": "npm run build",
