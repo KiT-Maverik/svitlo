@@ -54,7 +54,7 @@ export const nazcaCulture_Skill_Data = buildSkillConfig({
       vi: "Khám phá các hình vẽ trên mặt đất Nazca và xã hội đã tạo ra chúng.",
       ta: "நாஸ்கா நிலவரைவுகளையும் அவற்றை உருவாக்கிய சமூகத்தையும் ஆராய்.",
       te: "నాజ్కా భూచిత్రాలను, వాటిని రూపొందించిన సమాజాన్ని పరిశీలించండి.",
-      mr: "नाझ्का भूचित्रे आणि ती घडवणारा समाज जाणून घे.",
+      mr: "नाझ्का भूचित्रे आणि ती घडवणारा समाज जाणून घ्या.",
       ms: "Terokai geoglif Nazca dan masyarakat yang menghasilkannya.",
       he: "גלו את ציורי הקרקע של נסקה ואת החברה שיצרה אותם.",
       pl: "Poznaj geoglify Nazca i społeczność, która je stworzyła.",

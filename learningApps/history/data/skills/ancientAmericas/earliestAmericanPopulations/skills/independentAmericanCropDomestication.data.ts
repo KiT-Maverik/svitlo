@@ -54,7 +54,7 @@ export const independentAmericanCropDomestication_Skill_Data = buildSkillConfig(
       vi: "Tìm hiểu các loài cây được cộng đồng châu Mỹ cổ đại thuần hóa.",
       ta: "பண்டைய அமெரிக்க சமூகங்கள் பழக்கப்படுத்திய பயிர்களை அறிந்துகொள்.",
       te: "ప్రాచీన అమెరికా సమాజాలు పెంపకీకరించిన పంటల గురించి తెలుసుకోండి.",
-      mr: "प्राचीन अमेरिकी समुदायांनी लागवडीसाठी विकसित केलेली पिके जाणून घे.",
+      mr: "प्राचीन अमेरिकी समुदायांनी लागवडीसाठी विकसित केलेली पिके जाणून घ्या.",
       ms: "Kenali tumbuhan yang dijinakkan oleh masyarakat Amerika purba.",
       he: "גלו אילו צמחים בויתו בידי קהילות אמריקאיות קדומות.",
       pl: "Poznaj rośliny udomowione przez dawne społeczności obu Ameryk.",

@@ -54,7 +54,7 @@ export const caribbeanIslandSettlement_Skill_Data = buildSkillConfig({
       vi: "Khám phá cách con người đến và định cư trên các đảo Caribe.",
       ta: "மக்கள் கரீபியத் தீவுகளை எவ்வாறு அடைந்து அங்கு குடியேறினர் என்பதை ஆராய்.",
       te: "ప్రజలు కరీబియన్ దీవులకు ఎలా చేరుకుని స్థిరపడ్డారో తెలుసుకోండి.",
-      mr: "लोक कॅरिबियन बेटांवर कसे पोहोचले व स्थायिक झाले ते जाणून घे.",
+      mr: "लोक कॅरिबियन बेटांवर कसे पोहोचले व स्थायिक झाले ते जाणून घ्या.",
       ms: "Terokai cara manusia sampai dan menetap di pulau-pulau Caribbean.",
       he: "גלו כיצד אנשים הגיעו לאיי הקריביים והתיישבו בהם.",
       pl: "Zbadaj, jak ludzie docierali na wyspy karaibskie i osiedlali się na nich.",
