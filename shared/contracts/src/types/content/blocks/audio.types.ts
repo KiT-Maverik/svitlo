@@ -11,7 +11,7 @@ type Audio_Fallback<Value> = {
   retry?: Value;
 };
 
-type ContentBlock_Audio_Data = ContentBlock_Data_Meta & {
+type ContentBlock_Audio_Data = ContentBlock_Data_Meta<'audio'> & {
   fileLocation: Locale_Config;
   title: Locale_Config;
   description?: Locale_Config;
