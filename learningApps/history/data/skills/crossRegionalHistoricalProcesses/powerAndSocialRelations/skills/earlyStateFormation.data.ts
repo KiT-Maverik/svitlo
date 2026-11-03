@@ -54,7 +54,7 @@ export const earlyStateFormation_Skill_Data = buildSkillConfig({
       vi: "Tìm hiểu những con đường khác nhau dẫn đến sự hình thành nhà nước và chính quyền đầu tiên.",
       ta: "ஆரம்பகால அரசுகளும் ஆட்சிமுறைகளும் பல்வேறு வழிகளில் எவ்வாறு தோன்றின என்பதை அறிந்துகொள்.",
       te: "తొలి రాజ్యాలు, ప్రభుత్వాలు వేర్వేరు మార్గాల్లో ఎలా ఏర్పడ్డాయో తెలుసుకోండి.",
-      mr: "प्रारंभीची राज्ये आणि शासनव्यवस्था वेगवेगळ्या मार्गांनी कशा उदयाला आल्या ते जाणून घे.",
+      mr: "प्रारंभीची राज्ये आणि शासनव्यवस्था वेगवेगळ्या मार्गांनी कशा उदयाला आल्या ते जाणून घ्या.",
       ms: "Ketahui pelbagai cara negara dan pemerintahan awal terbentuk.",
       he: "גלו דרכים שונות שבהן הופיעו מדינות וממשלים מוקדמים.",
       pl: "Poznaj różne drogi powstawania pierwszych państw i władz.",

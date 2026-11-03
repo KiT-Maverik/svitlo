@@ -54,7 +54,7 @@ export const leisureAndPublicLife_Skill_Data = buildSkillConfig({
       vi: "Tìm hiểu các cộng đồng cổ đại ăn mừng và dùng thời gian rảnh ra sao.",
       ta: "பண்டைய சமூகங்கள் எவ்வாறு கொண்டாடியும் ஓய்வு நேரத்தைச் செலவிட்டும் இருந்தன என்பதை அறிந்துகொள்.",
       te: "ప్రాచీన సమూహాలు వేడుకలు ఎలా జరుపుకుని, ఖాళీ సమయాన్ని ఎలా గడిపాయో తెలుసుకోండి.",
-      mr: "प्राचीन समुदाय सण कसे साजरे करत आणि मोकळा वेळ कसा घालवत ते जाणून घे.",
+      mr: "प्राचीन समुदाय सण कसे साजरे करत आणि मोकळा वेळ कसा घालवत ते जाणून घ्या.",
       ms: "Ketahui cara masyarakat purba menyambut perayaan dan menghabiskan masa lapang.",
       he: "גלו כיצד קהילות עתיקות חגגו ובילו את זמנן הפנוי.",
       pl: "Dowiedz się, jak dawne społeczności świętowały i spędzały wolny czas.",
