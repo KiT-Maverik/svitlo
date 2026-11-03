@@ -9,7 +9,7 @@ export const distinguishRisingFloatingAndSinking_Skill_Data = buildSkillConfig({
     hi: "ऊपर उठने, तैरने और डूबने में अंतर करना",
     es: "Distinguir entre ascender, flotar y hundirse",
     ar: "التمييز بين الصعود والطفو والغوص",
-    fr: "Distinguer la remontée, la flottaison et l'immersion",
+    fr: "Distinguer la remontée, la flottaison et le fait de couler",
     bn: "ওপরে ওঠা, ভাসা ও ডোবার পার্থক্য করা",
     pt: "Distinguir subir, flutuar e afundar",
     ur: "اوپر اٹھنے، تیرنے اور ڈوبنے میں فرق کرنا",

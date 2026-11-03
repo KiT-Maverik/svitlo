@@ -43,7 +43,7 @@ export const explainWaveInterference_Skill_Data = buildSkillConfig({
       es: "Reconoce cuándo las ondas superpuestas se refuerzan o se debilitan.",
       ar: "تعرّف كيف يمكن للموجات المتراكبة أن تعزز إحداها الأخرى أو تضعفها.",
       fr: "Reconnais quand des ondes superposées se renforcent ou s'atténuent.",
-      bn: "ওপরিপাতিত তরঙ্গ কীভাবে একে অন্যকে শক্তিশালী বা দুর্বল করে তা চেনো।",
+      bn: "উপরিপাতিত তরঙ্গ কীভাবে একে অন্যকে শক্তিশালী বা দুর্বল করে তা চেনো।",
       pt: "Reconheça quando ondas sobrepostas se reforçam ou se enfraquecem.",
       ur: "پہچانیں کہ ایک دوسرے پر آنے والی لہریں کیسے مضبوط یا کمزور ہو سکتی ہیں۔",
       id: "Kenali saat gelombang yang bertumpang tindih saling memperkuat atau melemahkan.",

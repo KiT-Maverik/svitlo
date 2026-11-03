@@ -42,7 +42,7 @@ export const predictTheEffectOfShapeOnMotionThroughAir_Skill_Data = buildSkillCo
       hi: "अनुमान लगाएँ कि वस्तु का आकार और कोण प्रतिरोध तथा उत्थापन कैसे बदलते हैं।",
       es: "Predice cómo la forma o el ángulo de un objeto modifican la resistencia y la sustentación.",
       ar: "تنبأ كيف يغير شكل الجسم أو زاويته قوة السحب والرفع.",
-      fr: "Prédire comment la forme ou l'orientation d'un objet modifie la traînée et la portance.",
+      fr: "Prévois comment la forme ou l'orientation d'un objet modifie la traînée et la portance.",
       bn: "বস্তুর আকৃতি বা কোণ কীভাবে বাধা ও উত্তোলন বল বদলায় তা অনুমান করো।",
       pt: "Preveja como a forma ou a inclinação de um objeto alteram o arrasto e a sustentação.",
       ur: "بتائیں کہ جسم کی شکل یا زاویہ مزاحمت اور اٹھانے والی قوت کو کیسے بدلتا ہے۔",

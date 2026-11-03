@@ -42,7 +42,7 @@ export const explainThePhysicalMeaningOfPower_Skill_Data = buildSkillConfig({
       hi: "शक्ति को ऊर्जा स्थानांतरण या कार्य करने की दर के रूप में समझें।",
       es: "Comprende la potencia como la rapidez de transferencia de energía o realización de trabajo.",
       ar: "افهم القدرة بوصفها معدل نقل الطاقة أو إنجاز الشغل.",
-      fr: "Comprends la puissance comme le débit de transfert d'énergie ou de travail effectué.",
+      fr: "Comprends la puissance comme la quantité d’énergie transférée ou de travail effectué par unité de temps.",
       bn: "ক্ষমতাকে শক্তি স্থানান্তর বা কাজ করার হার হিসেবে বোঝো।",
       pt: "Entenda potência como a taxa de transferência de energia ou realização de trabalho.",
       ur: "طاقت کو توانائی کی منتقلی یا کام انجام دینے کی شرح کے طور پر سمجھیں۔",

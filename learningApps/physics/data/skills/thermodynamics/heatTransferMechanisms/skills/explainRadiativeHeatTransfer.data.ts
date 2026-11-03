@@ -44,7 +44,7 @@ export const explainRadiativeHeatTransfer_Skill_Data = buildSkillConfig({
       es: 'Explica cómo la radiación electromagnética transfiere calor sin un medio material.',
       ar: 'اشرح كيف ينقل الإشعاع الكهرومغناطيسي الحرارة دون وسط مادي.',
       fr: 'Explique comment le rayonnement électromagnétique transfère de la chaleur sans milieu matériel.',
-      bn: 'বিদ্যুৎচুম্বকীয় বিকিরণ কীভাবে কোনো বস্তুগত মাধ্যম ছাড়াই তাপ পরিবহন করে, তা ব্যাখ্যা করো।',
+      bn: 'তড়িৎচুম্বকীয় বিকিরণ কীভাবে কোনো বস্তুগত মাধ্যম ছাড়াই তাপ পরিবহন করে, তা ব্যাখ্যা করো।',
       pt: 'Explique como a radiação eletromagnética transfere calor sem meio material.',
       ur: 'وضاحت کریں کہ برقی مقناطیسی تابکاری مادی واسطے کے بغیر حرارت کیسے منتقل کرتی ہے۔',
       id: 'Jelaskan bagaimana radiasi elektromagnetik memindahkan kalor tanpa medium materi.',
