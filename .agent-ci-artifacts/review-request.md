@@ -1,3 +1,3 @@
-# Temporary review integration bootstrap
+# History Skills — Agent 3 temporary review request
 
-Issue #222 — History Skills independent linguistic review. This marker only opens the Draft integration PR; delete before creating agent branches. Never merge this marker into `main`.
+Issue #222; 7 exclusively assigned locales: `ar`, `ur`, `fr`, `bn`, `id`, `mr`, `lv`. This PR-only marker must be replaced by generated review artifacts and cleaned before merging.
