@@ -27,7 +27,7 @@ export const distinguishHighPitchedFromLowPitchedSounds_Skill_Data = buildSkillC
     pl: "Odróżnianie dźwięków wysokich od niskich",
     uk: "Розрізняти високі й низькі звуки",
     lt: "Skirti aukštus ir žemus garsus",
-    lv: "Atšķirt augstas un zemas skaņas",
+    lv: "Atšķirt augstus un zemus toņus",
     et: "Eristada kõrgeid ja madalaid helisid",
     be: "Адрозьніваць высокія й нізкія гукі",
     ka: "მაღალი და დაბალი ბგერების გარჩევა",

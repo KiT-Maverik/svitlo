@@ -60,7 +60,7 @@ export const explainGravityAsSpacetimeCurvature_Skill_Data = buildSkillConfig({
       pl: "Rozpoznaj grawitację jako skutek zakrzywionej czasoprzestrzeni w ogólnej teorii względności.",
       uk: "Зрозумій, що в загальній теорії відносності гравітація є наслідком викривленого простору-часу.",
       lt: "Suprask, kad bendrojoje reliatyvumo teorijoje gravitacija kyla iš erdvėlaikio kreivumo.",
-      lv: "Suprati, ka vispārīgajā relativitātes teorijā gravitācija ir laikatelpas izliekuma sekas.",
+      lv: "Izproti, ka vispārīgajā relativitātes teorijā gravitācija ir laikatelpas izliekuma sekas.",
       et: "Mõista, et üldrelatiivsusteoorias on gravitatsioon aegruumi kõveruse tagajärg.",
       be: "Зразумей, што ў агульнай тэорыі адноснасьці гравітацыя ёсьць вынікам скрыўленае прасторы-часу.",
       ka: "გაიგე, რომ ფარდობითობის ზოგად თეორიაში გრავიტაცია სივრცე-დროის გამრუდების შედეგია.",

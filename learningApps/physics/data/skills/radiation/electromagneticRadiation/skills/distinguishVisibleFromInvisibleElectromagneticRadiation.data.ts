@@ -60,7 +60,7 @@ export const distinguishVisibleFromInvisibleElectromagneticRadiation_Skill_Data 
       pl: "Rozpoznaj, że fal radiowych i promieniowania podczerwonego nie widać ludzkim okiem.",
       uk: "Зрозумій, що радіохвилі та інфрачервоне випромінювання невидимі для людського ока.",
       lt: "Suprask, kad radijo bangų ir infraraudonosios spinduliuotės žmogaus akis nemato.",
-      lv: "Saprotiet, ka radioviļņi un infrasarkanais starojums cilvēka acij nav redzami.",
+      lv: "Izproti, ka radioviļņi un infrasarkanais starojums cilvēka acij nav redzami.",
       et: "Mõista, et raadiolained ja infrapunakiirgus pole inimese silmale nähtavad.",
       be: "Зразумей, што радыёхвалі й інфрачырвонае выпраменьваньне нябачныя для чалавечага вока.",
       ka: "გაიგე, რომ რადიოტალღები და ინფრაწითელი გამოსხივება ადამიანის თვალით უხილავია.",
