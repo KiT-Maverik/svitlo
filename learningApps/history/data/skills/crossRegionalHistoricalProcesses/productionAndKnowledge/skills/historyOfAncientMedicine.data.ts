@@ -62,7 +62,7 @@ export const historyOfAncientMedicine_Skill_Data = buildSkillConfig({
       lt: "Sužinok, ką senovės visuomenės manė apie gydymą.",
       lv: "Uzzini, kādi bija seno sabiedrību priekšstati par ārstēšanu.",
       et: "Õpi, mida muistsed ühiskonnad uskusid ravimise kohta.",
-      be: "Даведайся, які ўяўленьні пра лячэньне мелі старажытныя грамадзтвы.",
+      be: "Даведайся, якія ўяўленьні пра лячэньне мелі старажытныя грамадзтвы.",
       ka: "გაიგე, რას ფიქრობდნენ ძველი საზოგადოებები მკურნალობის შესახებ.",
       kk: "Ежелгі қоғамдардың емдеу туралы қандай түсініктері болғанын біл.",
       qm: "Qadimiy cemiyetlerniñ tedavi aqqında qanday inançları olğanını bil.",
