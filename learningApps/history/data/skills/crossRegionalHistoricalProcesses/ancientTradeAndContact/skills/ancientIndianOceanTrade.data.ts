@@ -60,7 +60,7 @@ export const ancientIndianOceanTrade_Skill_Data = buildSkillConfig({
       pl: "Śledź statki i towary przemieszczające się po dawnym Oceanie Indyjskim.",
       uk: "Простеж шлях кораблів і товарів давнім Індійським океаном.",
       lt: "Sek laivų ir prekių judėjimą senovės Indijos vandenyne.",
-      lv: "Izseko kuģu un preču ceļus senajā Indijas okeānā.",
+      lv: "Izseko kuģu un preču kustībai senajā Indijas okeānā.",
       et: "Jälgi laevu ja kaupu muistsetel India ookeani marsruutidel.",
       be: "Прасачы шлях караблёў і тавараў старажытным Індыйскім акіянам.",
       ka: "მიჰყევი გემებისა და საქონლის გადაადგილებას ძველ ინდოეთის ოკეანეში.",
