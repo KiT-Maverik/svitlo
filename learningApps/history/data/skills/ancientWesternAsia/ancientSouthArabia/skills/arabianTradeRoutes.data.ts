@@ -4,7 +4,7 @@ export const arabianTradeRoutes_Skill_Data = buildSkillConfig({
   slug: "arabianTradeRoutes",
   id: "712b06da-067a-44c2-832a-ab908c8d3d66",
   name: {
-    en: "Аравійські торгові шляхи",
+    en: "Arabian Trade Routes",
     zh: "阿拉伯贸易路线",
     hi: "अरब व्यापार मार्ग",
     es: "Rutas comerciales de Arabia",

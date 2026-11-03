@@ -6,7 +6,7 @@ export const ancientLevant_SkillGroup_Data = buildSkillGroupConfig({
   slug: "ancientLevant",
   id: "f3fc5abb-b868-4b99-8f26-b103ad1d34e7",
   name: {
-    en: "Левант",
+    en: "Levant",
     zh: "古代黎凡特",
     hi: "प्राचीन लेवांत",
     es: "Levante antiguo",

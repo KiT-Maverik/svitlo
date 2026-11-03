@@ -4,7 +4,7 @@ export const medianConfederations_Skill_Data = buildSkillConfig({
   slug: "medianConfederations",
   id: "a8e5cbe9-257f-41a1-b2e7-3abead672e6e",
   name: {
-    en: "Мідійські об'єднання",
+    en: "Median Confederations",
     zh: "米底人联盟",
     hi: "मादी संघ",
     es: "Confederaciones medas",

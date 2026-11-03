@@ -4,7 +4,7 @@ export const israelAndJudah_Skill_Data = buildSkillConfig({
   slug: "israelAndJudah",
   id: "e01c33bf-c598-4466-ab57-d56ddb6bbd74",
   name: {
-    en: "Ізраїль і Юдея",
+    en: "Israel and Judah",
     zh: "以色列与犹大",
     hi: "इस्राएल और यहूदा",
     es: "Israel y Judá",

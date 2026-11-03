@@ -4,7 +4,7 @@ export const religionsOfTheAncientLevant_Skill_Data = buildSkillConfig({
   slug: "religionsOfTheAncientLevant",
   id: "0e910841-6bbf-4b11-826c-f6208848fdb4",
   name: {
-    en: "Релігійні традиції давнього Леванту",
+    en: "Religious Traditions of the Ancient Levant",
     zh: "古代黎凡特的宗教传统",
     hi: "प्राचीन लेवांत की धार्मिक परंपराएँ",
     es: "Tradiciones religiosas del antiguo Levante",

@@ -4,7 +4,7 @@ export const phoenicianCities_Skill_Data = buildSkillConfig({
   slug: "phoenicianCities",
   id: "f6aa2838-1b69-4fbb-aa5a-296de07acfe4",
   name: {
-    en: "Фінікійські міста",
+    en: "Phoenician Cities",
     zh: "腓尼基城市",
     hi: "फोनीशियाई नगर",
     es: "Ciudades fenicias",

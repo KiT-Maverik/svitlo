@@ -4,7 +4,7 @@ export const phoenicianWriting_Skill_Data = buildSkillConfig({
   slug: "phoenicianWriting",
   id: "ff509e58-f4fb-412b-924c-d5f665019165",
   name: {
-    en: "Фінікійське письмо",
+    en: "Phoenician Writing",
     zh: "腓尼基文字",
     hi: "फोनीशियाई लिपि",
     es: "Escritura fenicia",
