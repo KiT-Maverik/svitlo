@@ -47,7 +47,7 @@ export const maritimeTradeOfSoutheastAsia_Skill_Data = buildSkillConfig({
       pt: "Siga as rotas marítimas que conectavam portos comerciais do Sudeste Asiático.",
       ur: "تجارتی بندرگاہوں کو جوڑنے والے سمندری راستوں کو دریافت کریں۔",
       id: "Ikuti jalur laut yang menghubungkan pelabuhan dagang Asia Tenggara.",
-      de: "Folge den Seerouten zwischen den Handels­häfen Südostasiens.",
+      de: "Folge den Seerouten zwischen den Handelshäfen Südostasiens.",
       ja: "東南アジアの交易港を結ぶ海路をたどろう。",
       ko: "동남아시아 교역 항구를 잇는 바닷길을 따라가 보세요.",
       tr: "Ticaret limanlarını birbirine bağlayan deniz yollarını izle.",

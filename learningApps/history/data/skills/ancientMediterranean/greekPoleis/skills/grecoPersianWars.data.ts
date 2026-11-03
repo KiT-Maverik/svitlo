@@ -32,7 +32,7 @@ export const grecoPersianWars_Skill_Data = buildSkillConfig({
     be: "Грэка-пэрсыдзкія войны",
     ka: "ბერძენ-სპარსელთა ომები",
     kk: "Грек-парсы соғыстары",
-    qm: "Yunan–Fars cenklari",
+    qm: "Yunan–Fars cenkleri",
   },
   description: {
     methodological: "Trace major conflicts between Achaemenid Persia and coalitions of Greek poleis and changes in regional power.",
@@ -65,7 +65,7 @@ export const grecoPersianWars_Skill_Data = buildSkillConfig({
       be: "Зразумей войны паміж грэцкімі полісамі й Пэрсіяй.",
       ka: "გაიაზრეთ ბერძნულ ქალაქ-სახელმწიფოებსა და სპარსეთს შორის ომები.",
       kk: "Грек қала-мемлекеттері мен Парсы елі арасындағы соғыстарды түсініңіз.",
-      qm: "Yunan şeer-devletleri ve Fars devleti arasındaki cenklarnı añla.",
+      qm: "Yunan şeer-devletleri ve Fars devleti arasındaki cenklerni añla.",
     },
   },
 });

@@ -48,7 +48,7 @@ export const ancientTradeAndContact_SkillGroup_Data = buildSkillGroupConfig({
     frontend: {
       en: "Discover how goods and ideas moved between distant communities.",
       zh: "认识商品与观念如何在相距遥远的社群之间传播。",
-      hi: "जानें कि वस्तुएँ और विचार दूर-दूर की समुदायों के बीच कैसे पहुँचे।",
+      hi: "जानें कि वस्तुएँ और विचार दूर-दूर के समुदायों के बीच कैसे पहुँचे।",
       es: "Descubre cómo circularon bienes e ideas entre comunidades lejanas.",
       ar: "اكتشف كيف انتقلت السلع والأفكار بين المجتمعات البعيدة.",
       fr: "Découvre comment les biens et les idées circulaient entre des communautés éloignées.",

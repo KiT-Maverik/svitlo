@@ -6,7 +6,7 @@ export const foragingEconomies_Skill_Data = buildSkillConfig({
   name: {
     en: "Foraging Economies",
     zh: "采集狩猎经济",
-    hi: "जंगल से खाद्य संग्रह की अर्थव्यवस्था",
+    hi: "शिकार और संग्रहण की अर्थव्यवस्था",
     es: "Economías de recolección y caza",
     ar: "اقتصادات جمع الغذاء والصيد",
     fr: "Économies de chasse et de cueillette",
