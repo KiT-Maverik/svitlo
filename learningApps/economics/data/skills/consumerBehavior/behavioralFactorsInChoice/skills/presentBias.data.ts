@@ -27,7 +27,7 @@ export const presentBias_Skill_Data = buildSkillConfig({
     pl: "Błąd teraźniejszości",
     uk: "Упередження щодо теперішнього",
     lt: "Dabarties šališkumas",
-    lv: "Tagadnes aizspriedums",
+    lv: "Nosliece par labu tagadnei",
     et: "Oleviku eelistamine",
     be: "Перавага цяперашняга",
     ka: "აწმყოს მიკერძოება",

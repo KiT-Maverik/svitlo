@@ -29,7 +29,7 @@ export const needsAndPreferences_SkillGroup_Data = buildSkillGroupConfig({
     pl: "Potrzeby i preferencje",
     uk: "Потреби та вподобання",
     lt: "Poreikiai ir pirmenybės",
-    lv: "Vajadzības un vēlmes",
+    lv: "Vajadzības un priekšrokas",
     et: "Vajadused ja eelistused",
     be: "Патрэбы й упадабаньні",
     ka: "საჭიროებები და პრეფერენციები",

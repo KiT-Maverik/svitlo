@@ -60,7 +60,7 @@ export const shiftInDemand_Skill_Data = buildSkillConfig({
       pl: "Wyjaśnij, co może zmienić popyt, nawet gdy cena produktu pozostaje stała.",
       uk: "Поясни, що може змістити попит, навіть якщо ціна товару незмінна.",
       lt: "Paaiškink, kas gali pakeisti paklausą net nekintant prekės kainai.",
-      lv: "Izskaidro, kas var mainīt pieprasījumu, pat ja preces cena paliek nemainīga.",
+      lv: "Izskaidro, kas var nobīdīt visu pieprasījuma līkni, pat ja preces cena nemainās.",
       et: "Selgita, mis võib nõudlust nihutada isegi muutumatu hinna korral.",
       be: "Растлумач, што можа зьмяніць попыт, нават калі цана тавару нязьменная.",
       ka: "ახსენი, რა ცვლის მოთხოვნას მაშინაც, თუ პროდუქტის ფასი არ იცვლება.",

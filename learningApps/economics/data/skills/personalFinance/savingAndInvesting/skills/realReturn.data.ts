@@ -60,7 +60,7 @@ export const realReturn_Skill_Data = buildSkillConfig({
       pl: "Sprawdź, czy stopa zwrotu rzeczywiście nadąża za inflacją.",
       uk: "Перевір, чи фінансова дохідність справді компенсує інфляцію.",
       lt: "Patikrink, ar finansinė grąža tikrai atitinka infliaciją.",
-      lv: "Pārbaudi, vai finanšu atdeve tiešām atbilst inflācijai.",
+      lv: "Pārbaudi, vai finanšu atdeve patiešām kompensē inflācijas ietekmi.",
       et: "Uuri, kas finantstootlus peab inflatsiooniga tegelikult sammu.",
       be: "Правер, ці фінансавая даходнасьць сапраўды пакрывае інфляцыю.",
       ka: "შეამოწმე, ფინანსური მოგება ნამდვილად ეწევა თუ არა ინფლაციას.",
