@@ -4,7 +4,7 @@ export const qinEmpire_Skill_Data = buildSkillConfig({
   slug: "qinEmpire",
   id: "5107d995-4332-464a-aa5d-f08115ab63af",
   name: {
-    en: "Імперія Цінь",
+    en: "Qin Empire",
     zh: "秦帝国",
     hi: "छिन साम्राज्य",
     es: "Imperio Qin",

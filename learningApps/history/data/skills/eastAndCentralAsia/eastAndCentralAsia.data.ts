@@ -10,7 +10,7 @@ export const eastAndCentralAsia_SkillDomain_Data = buildSkillDomainConfig({
   slug: "eastAndCentralAsia",
   id: "c151bf39-0aba-4a40-b75f-40788f187631",
   name: {
-    en: "Східна та Центральна Азія",
+    en: "East and Central Asia",
     zh: "东亚与中亚",
     hi: "पूर्वी और मध्य एशिया",
     es: "Asia oriental y central",

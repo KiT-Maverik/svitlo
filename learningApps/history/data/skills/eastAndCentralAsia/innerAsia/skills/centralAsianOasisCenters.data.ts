@@ -4,7 +4,7 @@ export const centralAsianOasisCenters_Skill_Data = buildSkillConfig({
   slug: "centralAsianOasisCenters",
   id: "1d88f52d-603d-4cfc-bc53-c3382200c599",
   name: {
-    en: "Оазові центри Центральної Азії",
+    en: "Central Asian Oasis Centers",
     zh: "中亚绿洲城市",
     hi: "मध्य एशिया के नखलिस्तान केंद्र",
     es: "Centros de oasis de Asia Central",

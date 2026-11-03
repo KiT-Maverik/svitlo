@@ -4,7 +4,7 @@ export const papermakingInAncientChina_Skill_Data = buildSkillConfig({
   slug: "papermakingInAncientChina",
   id: "8f8981fb-d4ce-4c47-ba2b-7db5c9a18522",
   name: {
-    en: "Виробництво паперу в давньому Китаї",
+    en: "Papermaking in Ancient China",
     zh: "中国古代造纸术",
     hi: "प्राचीन चीन में कागज़ निर्माण",
     es: "Fabricación del papel en la China antigua",

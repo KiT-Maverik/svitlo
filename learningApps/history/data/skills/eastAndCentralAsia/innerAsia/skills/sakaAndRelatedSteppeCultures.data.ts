@@ -4,7 +4,7 @@ export const sakaAndRelatedSteppeCultures_Skill_Data = buildSkillConfig({
   slug: "sakaAndRelatedSteppeCultures",
   id: "67f6acee-6cef-4395-9dd9-097e54678d2f",
   name: {
-    en: "Саки та споріднені степові культури",
+    en: "Saka and Related Steppe Cultures",
     zh: "塞种及相关草原文化",
     hi: "साका और संबंधित स्तेपी संस्कृतियाँ",
     es: "Sakas y culturas esteparias relacionadas",

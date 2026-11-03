@@ -4,7 +4,7 @@ export const ancientChineseMetallurgy_Skill_Data = buildSkillConfig({
   slug: "ancientChineseMetallurgy",
   id: "134855c3-aaf8-4391-8327-2b8db4bd3d3c",
   name: {
-    en: "Металургія давнього Китаю",
+    en: "Ancient Chinese Metallurgy",
     zh: "中国古代冶金",
     hi: "प्राचीन चीन में धातुकर्म",
     es: "Metalurgia de la China antigua",

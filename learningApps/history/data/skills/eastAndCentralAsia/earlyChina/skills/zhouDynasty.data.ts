@@ -4,7 +4,7 @@ export const zhouDynasty_Skill_Data = buildSkillConfig({
   slug: "zhouDynasty",
   id: "cad57066-0756-41ad-ae58-f8c1b809dce5",
   name: {
-    en: "Династія Чжоу",
+    en: "Zhou Dynasty",
     zh: "周朝",
     hi: "झोउ राजवंश",
     es: "Dinastía Zhou",

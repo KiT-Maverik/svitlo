@@ -6,7 +6,7 @@ export const innerAsia_SkillGroup_Data = buildSkillGroupConfig({
   slug: "innerAsia",
   id: "7aa11b7a-047f-4c39-968d-9f18b9e16e5e",
   name: {
-    en: "Внутрішня Азія",
+    en: "Inner Asia",
     zh: "内亚",
     hi: "आंतरिक एशिया",
     es: "Asia interior",

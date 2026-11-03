@@ -4,7 +4,7 @@ export const fallOfHanAndSuccessorStates_Skill_Data = buildSkillConfig({
   slug: "fallOfHanAndSuccessorStates",
   id: "b6ef2317-4aba-4c54-936f-aca7b544cdd7",
   name: {
-    en: "Розпад Хань та наступні держави",
+    en: "Fall of the Han Dynasty and Successor States",
     zh: "汉朝衰落及其后继政权",
     hi: "हान पतन और उत्तरवर्ती राज्य",
     es: "Caída de los Han y Estados sucesores",

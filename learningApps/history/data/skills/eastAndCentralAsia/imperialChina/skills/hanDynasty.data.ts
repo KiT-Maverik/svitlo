@@ -4,7 +4,7 @@ export const hanDynasty_Skill_Data = buildSkillConfig({
   slug: "hanDynasty",
   id: "9707c11a-9878-461b-91ac-13bb1038d684",
   name: {
-    en: "Династія Хань",
+    en: "Han Dynasty",
     zh: "汉朝",
     hi: "हान राजवंश",
     es: "Dinastía Han",

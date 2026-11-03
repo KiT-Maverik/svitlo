@@ -6,7 +6,7 @@ export const imperialChina_SkillGroup_Data = buildSkillGroupConfig({
   slug: "imperialChina",
   id: "54400f62-60bd-47bf-80b8-4e6d1e2433a8",
   name: {
-    en: "Імперський Китай",
+    en: "Imperial China",
     zh: "帝制中国",
     hi: "साम्राज्यकालीन चीन",
     es: "China imperial",
