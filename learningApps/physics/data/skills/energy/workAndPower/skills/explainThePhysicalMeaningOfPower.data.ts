@@ -47,7 +47,7 @@ export const explainThePhysicalMeaningOfPower_Skill_Data = buildSkillConfig({
       pt: "Entenda potência como a taxa de transferência de energia ou realização de trabalho.",
       ur: "طاقت کو توانائی کی منتقلی یا کام انجام دینے کی شرح کے طور پر سمجھیں۔",
       id: "Pahami daya sebagai laju perpindahan energi atau usaha yang dilakukan.",
-      de: "Verstehe Leistung als Rate der Energieübertragung oder Arbeit.",
+      de: "Verstehe Leistung als die pro Zeit übertragene Energie oder verrichtete Arbeit.",
       ja: "仕事率をエネルギーが移動する速さや仕事の速さとして理解しよう。",
       ko: "일률을 에너지가 전달되거나 일이 이루어지는 속도로 이해해 보세요.",
       tr: "Gücü enerji aktarımı veya iş yapma hızı olarak anla.",

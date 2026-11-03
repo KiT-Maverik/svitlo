@@ -40,7 +40,7 @@ export const explainTheEffectOfGravityOnThePassageOfTime_Skill_Data = buildSkill
       en: "Explore how gravity can change the relative rates of clocks.",
       zh: "探索引力如何改变不同位置时钟的相对走时速率。",
       hi: "जानो कि गुरुत्वाकर्षण अलग-अलग स्थानों पर घड़ियों के चलने की सापेक्ष दर कैसे बदल सकता है।",
-      es: "Explora cómo la gravedad puede cambiar las velocidades relativas de los relojes.",
+      es: "Explora cómo la gravedad puede modificar el ritmo relativo al que marchan los relojes.",
       ar: "اكتشف كيف يمكن للجاذبية أن تغيّر المعدلات النسبية لسير الساعات.",
       fr: "Découvre comment la gravitation peut modifier les rythmes relatifs des horloges.",
       bn: "মহাকর্ষ কীভাবে ঘড়ির আপেক্ষিক চলার হার বদলাতে পারে, তা জানো।",
