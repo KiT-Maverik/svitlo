@@ -45,7 +45,7 @@ export const relateFamiliarTypesOfRadiationToTheElectromagneticSpectrum_Skill_Da
       fr: "Place les types de rayonnement connus dans le spectre électromagnétique.",
       bn: "পরিচিত বিকিরণের ধরনগুলো তড়িৎচুম্বকীয় বর্ণালিতে কোথায় আছে, তা চিহ্নিত করো।",
       pt: "Localize tipos conhecidos de radiação no espectro eletromagnético.",
-      ur: "برقی مقناطیسی طیف میں عام تابکاری کی اقسام کی جگہ معلوم کرو۔",
+      ur: "برقی مقناطیسی طیف میں عام تابکاری کی اقسام کی جگہ معلوم کریں۔",
       id: "Temukan posisi jenis radiasi yang dikenal dalam spektrum elektromagnetik.",
       de: "Ordne bekannte Strahlungsarten an ihren Stellen im elektromagnetischen Spektrum ein.",
       ja: "身近な放射の種類が電磁スペクトルのどこにあるか調べましょう。",

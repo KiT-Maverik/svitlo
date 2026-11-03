@@ -52,7 +52,7 @@ export const radiation_SkillDomain_Data = buildSkillDomainConfig({
       fr: "Explore le rayonnement électromagnétique et ses interactions avec la matière.",
       bn: "তড়িৎচুম্বকীয় বিকিরণ ও পদার্থের সঙ্গে তার মিথস্ক্রিয়া জানো।",
       pt: "Explore a radiação eletromagnética e suas interações com a matéria.",
-      ur: "برقی مقناطیسی تابکاری اور مادے کے ساتھ اس کے تعاملات دریافت کرو۔",
+      ur: "برقی مقناطیسی تابکاری اور مادے کے ساتھ اس کے تعاملات دریافت کریں۔",
       id: "Jelajahi radiasi elektromagnetik dan interaksinya dengan materi.",
       de: "Erkunde elektromagnetische Strahlung und ihre Wechselwirkungen mit Materie.",
       ja: "電磁放射と物質との相互作用を調べましょう。",

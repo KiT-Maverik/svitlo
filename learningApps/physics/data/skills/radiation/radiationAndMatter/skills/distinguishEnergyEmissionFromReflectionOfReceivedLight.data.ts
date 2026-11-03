@@ -45,7 +45,7 @@ export const distinguishEnergyEmissionFromReflectionOfReceivedLight_Skill_Data =
       fr: "Distingue la lumière émise par une source de celle réfléchie par un objet.",
       bn: "উৎস থেকে নির্গত আলো এবং বস্তু থেকে প্রতিফলিত আলোর পার্থক্য করো।",
       pt: "Diferencie a luz emitida por uma fonte da luz refletida por um objeto.",
-      ur: "روشنی کے منبع سے نکلنے والی روشنی اور کسی چیز کی منعکس روشنی میں فرق کرو۔",
+      ur: "روشنی کے منبع سے نکلنے والی روشنی اور کسی چیز کی منعکس روشنی میں فرق کریں۔",
       id: "Bedakan cahaya yang dipancarkan sumber dengan cahaya yang dipantulkan benda.",
       de: "Unterscheide von einer Quelle ausgesandtes Licht von Licht, das ein Gegenstand reflektiert.",
       ja: "光源が出す光と物体が反射する光を区別しましょう。",

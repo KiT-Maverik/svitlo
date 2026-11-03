@@ -45,7 +45,7 @@ export const distinguishVisibleFromInvisibleElectromagneticRadiation_Skill_Data 
       fr: "Reconnais que les ondes radio et le rayonnement infrarouge sont invisibles à l'œil humain.",
       bn: "রেডিও তরঙ্গ ও অবলোহিত বিকিরণ মানুষের চোখে দেখা যায় না—এটি বোঝো।",
       pt: "Reconheça que ondas de rádio e radiação infravermelha não são visíveis aos olhos humanos.",
-      ur: "سمجھو کہ ریڈیو لہریں اور زیرِ سرخ شعاعیں انسانی آنکھ کو نظر نہیں آتیں۔",
+      ur: "سمجھیں کہ ریڈیو لہریں اور زیرِ سرخ شعاعیں انسانی آنکھ کو نظر نہیں آتیں۔",
       id: "Kenali bahwa gelombang radio dan radiasi inframerah tidak terlihat oleh mata manusia.",
       de: "Erkenne, dass Radiowellen und Infrarotstrahlung für das menschliche Auge unsichtbar sind.",
       ja: "電波や赤外線は人の目には見えないことを理解しましょう。",

@@ -45,7 +45,7 @@ export const explainThePropagationOfElectromagneticWavesWithoutAir_Skill_Data = 
       fr: "Explique pourquoi les ondes électromagnétiques peuvent traverser le vide spatial.",
       bn: "তড়িৎচুম্বকীয় তরঙ্গ মহাশূন্যের শূন্যস্থান দিয়ে কীভাবে যেতে পারে, তা ব্যাখ্যা করো।",
       pt: "Explique por que ondas eletromagnéticas podem viajar pelo vácuo espacial.",
-      ur: "وضاحت کرو کہ برقی مقناطیسی لہریں خلا کے ویکیوم سے کیسے گزر سکتی ہیں۔",
+      ur: "وضاحت کریں کہ برقی مقناطیسی لہریں خلا کے ویکیوم سے کیسے گزر سکتی ہیں۔",
       id: "Jelaskan mengapa gelombang elektromagnetik dapat merambat melalui ruang hampa.",
       de: "Erkläre, warum elektromagnetische Wellen sich durch das Vakuum des Weltraums ausbreiten können.",
       ja: "電磁波が宇宙空間の真空を進める理由を説明しましょう。",

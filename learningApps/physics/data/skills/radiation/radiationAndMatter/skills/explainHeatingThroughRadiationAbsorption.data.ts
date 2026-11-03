@@ -45,7 +45,7 @@ export const explainHeatingThroughRadiationAbsorption_Skill_Data = buildSkillCon
       fr: "Explique pourquoi différentes surfaces ne chauffent pas de la même façon sous le même rayonnement.",
       bn: "একই বিকিরণে ভিন্ন পৃষ্ঠ কেন ভিন্ন মাত্রায় গরম হয়, তা ব্যাখ্যা করো।",
       pt: "Explique por que diferentes superfícies aquecem de formas distintas sob a mesma radiação.",
-      ur: "وضاحت کرو کہ یکساں تابکاری ملنے پر مختلف سطحیں الگ طرح کیوں گرم ہوتی ہیں۔",
+      ur: "وضاحت کریں کہ یکساں تابکاری ملنے پر مختلف سطحیں الگ طرح کیوں گرم ہوتی ہیں۔",
       id: "Jelaskan mengapa permukaan yang berbeda memanas secara berbeda di bawah radiasi yang sama.",
       de: "Erkläre, warum verschiedene Oberflächen bei gleicher Bestrahlung unterschiedlich warm werden.",
       ja: "同じ放射を受けても表面によって温まり方が異なる理由を説明しましょう。",

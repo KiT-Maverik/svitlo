@@ -52,7 +52,7 @@ export const electromagneticRadiation_SkillGroup_Data = buildSkillGroupConfig({
       fr: "Découvre les parties visibles et invisibles du spectre électromagnétique.",
       bn: "তড়িৎচুম্বকীয় বর্ণালির দৃশ্যমান ও অদৃশ্য অংশ সম্পর্কে জানো।",
       pt: "Descubra as partes visíveis e invisíveis do espectro eletromagnético.",
-      ur: "برقی مقناطیسی طیف کے نظر آنے والے اور نہ آنے والے حصوں کو جانو۔",
+      ur: "برقی مقناطیسی طیف کے نظر آنے والے اور نہ آنے والے حصوں کو جانیں۔",
       id: "Kenali bagian spektrum elektromagnetik yang terlihat dan tidak terlihat.",
       de: "Entdecke die sichtbaren und unsichtbaren Bereiche des elektromagnetischen Spektrums.",
       ja: "電磁スペクトルの目に見える部分と見えない部分を調べましょう。",
