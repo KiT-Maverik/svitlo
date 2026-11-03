@@ -49,7 +49,7 @@ export const describingMotion_SkillGroup_Data = buildSkillGroupConfig({
       zh: "学习描述物体向哪里运动，以及运动如何随时间变化。",
       hi: "सीखें कि वस्तुएँ किस दिशा में चलती हैं और समय के साथ उनकी गति कैसे बदलती है।",
       es: "Aprende a describir hacia dónde se mueven los objetos y cómo cambia el movimiento con el tiempo.",
-      ar: "تعلّم وصف اتجاه حركة الأشياء وكيف تتغير الحركة مع الزمن.",
+      ar: "تعلّم وصف مواضع الأجسام أثناء حركتها وكيف تتغير حركتها مع الزمن.",
       fr: "Apprends à décrire où se déplacent les objets et comment leur mouvement change avec le temps.",
       bn: "বস্তু কোথায় চলে এবং সময়ের সঙ্গে গতি কীভাবে বদলায় তা বর্ণনা করতে শেখো।",
       pt: "Aprenda a descrever para onde os objetos se movem e como o movimento muda com o tempo.",

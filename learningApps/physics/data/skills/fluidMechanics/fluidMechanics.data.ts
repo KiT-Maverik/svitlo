@@ -52,7 +52,7 @@ export const fluidMechanics_SkillDomain_Data = buildSkillDomainConfig({
       zh: "探索液体和气体如何流动、产生压力并作用于运动的物体。",
       hi: "जानें कि द्रव और गैसें कैसे बहती हैं, दबाव डालती हैं और गतिमान वस्तुओं को सहारा देती हैं।",
       es: "Explora cómo fluyen los líquidos y gases, ejercen presión y actúan sobre cuerpos en movimiento.",
-      ar: "استكشف كيف تتدفق السوائل والغازات وتؤثر بالضغط على الأجسام المتحركة.",
+      ar: "استكشف كيف تتدفق السوائل والغازات وتولّد ضغطًا وتساعد على حمل الأجسام أثناء حركتها.",
       fr: "Explore comment les liquides et les gaz s'écoulent, exercent une pression et agissent sur les corps en mouvement.",
       bn: "তরল ও গ্যাস কীভাবে প্রবাহিত হয়, চাপ দেয় এবং চলমান বস্তুর ওপর কাজ করে তা জানো।",
       pt: "Explore como líquidos e gases escoam, exercem pressão e agem sobre corpos em movimento.",
