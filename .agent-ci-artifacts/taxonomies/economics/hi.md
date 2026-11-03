@@ -100,7 +100,7 @@ Skills: 3
 
 **Methodological description (English):** Healthcare markets involve substantial information asymmetry, insurance arrangements, and external effects of population health.
 
-**User-friendly description (hi):** जानें कि स्वास्थ्य सेवा बाज़ार सामान्य वस्तुओं के बाज़ार से अलग क्यों हैं।
+**User-friendly description (hi):** जानें कि स्वास्थ्य सेवाओं के बाज़ार सामान्य वस्तुओं के बाज़ारों से अलग क्यों होते हैं।
 
 ##### स्वास्थ्य बीमा और नैतिक जोखिम
 
@@ -158,7 +158,7 @@ Skills: 3
 
 **Methodological description (English):** Evaluate how zoning, development limits, and alternative uses of land affect rents, construction volumes, and the location of activity.
 
-**User-friendly description (hi):** जानें कि भूमि उपयोग नियम कहाँ और क्या बनाया जाएगा, इसे कैसे प्रभावित करते हैं।
+**User-friendly description (hi):** जानें कि भूमि उपयोग के नियम निर्माण के स्थान और प्रकार को कैसे प्रभावित करते हैं।
 
 #### परिवहन और अवसंरचना
 
@@ -236,7 +236,7 @@ Groups: 3 · Skills: 13
 
 **Methodological description (English):** Consumers evaluate needs, quality, alternatives, and information under varying incomes and psychological constraints. This domain analyzes their choices rather than sellers' methods of promoting goods.
 
-**User-friendly description (hi):** जानें कि लोग क्या खरीदने का निर्णय कैसे लेते हैं और जानकारी कैसे प्रभाव डालती है।
+**User-friendly description (hi):** जानें कि लोग क्या खरीदें, यह कैसे तय करते हैं और कौन-सी जानकारी उनके निर्णयों को प्रभावित करती है।
 
 #### चुनाव में व्यवहार संबंधी कारक
 

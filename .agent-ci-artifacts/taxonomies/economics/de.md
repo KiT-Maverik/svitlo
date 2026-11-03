@@ -236,7 +236,7 @@ Groups: 3 · Skills: 13
 
 **Methodological description (English):** Consumers evaluate needs, quality, alternatives, and information under varying incomes and psychological constraints. This domain analyzes their choices rather than sellers' methods of promoting goods.
 
-**User-friendly description (de):** Erkunde, wie Menschen ihre Einkäufe auswählen und welche Informationen sie dabei beeinflussen.
+**User-friendly description (de):** Erkunde, wie Menschen entscheiden, was sie kaufen, und welche Informationen ihre Entscheidungen beeinflussen.
 
 #### Verhaltensfaktoren bei Entscheidungen
 
@@ -588,7 +588,7 @@ Skills: 2
 
 **User-friendly description (de):** Unterscheide Kryptowerte von offiziellen digitalen Währungen.
 
-##### Finanztechnologien für Zahlungen
+##### Digitale Zahlungstechnologien
 
 [paymentFinancialTechnologies.data.ts](../../../learningApps/economics/data/skills/digitalEconomy/financialTechnology/skills/paymentFinancialTechnologies.data.ts)
 
@@ -2378,7 +2378,7 @@ Skills: 3
 
 **Methodological description (English):** Estimate benefits to sellers beyond the minimum compensation they would accept, distinguishing these from accounting profit.
 
-**User-friendly description (de):** Erkunde den Gewinn oberhalb des niedrigsten Preises, den Anbieter akzeptieren würden.
+**User-friendly description (de):** Erkunde den Vorteil für Anbieter, wenn der Verkaufspreis über ihrem niedrigsten akzeptablen Preis liegt.
 
 #### Angebot
 
@@ -2576,7 +2576,7 @@ Groups: 5 · Skills: 19
 
 **Methodological description (English):** Households receive income, make payments, and decide how to save, borrow, and manage risks. This domain develops practical literacy rather than personalized investment advice.
 
-**User-friendly description (de):** Lerne, Geld zu planen, Kredite zu verstehen und alltägliche Finanzentscheidungen zu treffen.
+**User-friendly description (de):** Lerne, deine Finanzen zu planen, Kredite zu verstehen und alltägliche Finanzentscheidungen zu treffen.
 
 #### Finanzrisiken und Schutz
 

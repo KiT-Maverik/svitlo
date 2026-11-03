@@ -158,7 +158,7 @@ Skills: 3
 
 **Methodological description (English):** Evaluate how zoning, development limits, and alternative uses of land affect rents, construction volumes, and the location of activity.
 
-**User-friendly description (qm):** Yer qullanımı qa ideleri qayerde ve ne qurulğanına nasıl tesir etkenini ögren.
+**User-friendly description (qm):** Yer qullanımı qaydeleri qayerde ve ne qurulğanına nasıl tesir etkenini ögren.
 
 #### Naqliyat ve altyapı
 
@@ -390,7 +390,7 @@ Skills: 4
 
 **Methodological description (English):** Distributions of income and wealth can differ even among societies with identical average incomes.
 
-**User-friendly description (qm):** Orta kelir qınaqlarnıñ nasıl paylaştırılğanını ne içün köstermeygenini araştır.
+**User-friendly description (qm):** Orta kelir resurslarnıñ nasıl paylaştırılğanını ne içün köstermeygenini araştır.
 
 ##### Cini koeffitsiyenti
 
@@ -1210,7 +1210,7 @@ Groups: 5 · Skills: 17
 
 **Methodological description (English):** The public sector changes incentives, finances shared needs, and redistributes resources. Policy instruments have benefits, costs, risks, and political trade-offs; no single approach is assumed universally correct.
 
-**User-friendly description (qm):** Devlet qararları qınaqlarnı, teşviqlerni ve iqtisadiy neticelerni nasıl tesir etkenini araştır.
+**User-friendly description (qm):** Devlet qararları resurslarğa, teşviqlerge ve iqtisadiy neticelerge nasıl tesir etkenini araştır.
 
 #### Bütçe ve para siyaseti
 
@@ -1354,7 +1354,7 @@ Skills: 3
 
 **Methodological description (English):** Analyze the purposes of public benefits and payments and their effects on disposable income and incentives.
 
-**User-friendly description (qm):** İçtimaiy ödemeler ailelerniñ qınaqlarını nasıl deñiştirgenini araştır.
+**User-friendly description (qm):** İçtimaiy ödemeler ailelerniñ resurslarını nasıl deñiştirgenini araştır.
 
 ##### Belgili gruppalarğa ve erkeske yardım
 
@@ -1508,7 +1508,7 @@ Skills: 4
 
 **Methodological description (English):** Determine whether one producer can make a product with fewer resources than another producer.
 
-**User-friendly description (qm):** Bir malnı daa az qınaqnen kim istisal etebilgenini belgile.
+**User-friendly description (qm):** Bir malnı kim daa az resurs qullanıp istisal etebilgenini belgile.
 
 ##### Teñeştirilmeli üstünlik
 

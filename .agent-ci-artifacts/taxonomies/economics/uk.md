@@ -1142,7 +1142,7 @@ Skills: 4
 
 **Methodological description (English):** Pollution and other externalities can be addressed with instruments that have differing costs and consequences.
 
-**User-friendly description (uk):** Досліди економічні політики, які стимулюють менше забруднювати.
+**User-friendly description (uk):** Досліди інструменти економічної політики, які спонукають зменшувати забруднення.
 
 ##### Економічна оцінка екологічного проєкту
 

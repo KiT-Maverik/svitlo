@@ -236,7 +236,7 @@ Groups: 3 · Skills: 13
 
 **Methodological description (English):** Consumers evaluate needs, quality, alternatives, and information under varying incomes and psychological constraints. This domain analyzes their choices rather than sellers' methods of promoting goods.
 
-**User-friendly description (pl):** Odkryj, jak ludzie wybierają zakupy i jakie informacje wpływają na ich decyzje.
+**User-friendly description (pl):** Odkryj, jak ludzie decydują, co kupić, i jakie informacje wpływają na ich decyzje.
 
 #### Czynniki behawioralne wyboru
 
@@ -588,7 +588,7 @@ Skills: 2
 
 **User-friendly description (pl):** Odróżnij kryptoaktywa od oficjalnych walut cyfrowych.
 
-##### Technologie płatności finansowych
+##### Technologie płatnicze
 
 [paymentFinancialTechnologies.data.ts](../../../learningApps/economics/data/skills/digitalEconomy/financialTechnology/skills/paymentFinancialTechnologies.data.ts)
 
@@ -2252,7 +2252,7 @@ Skills: 3
 
 **Methodological description (English):** Interpret the relationship between price and quantity demanded when other factors are held constant, distinguishing the general pattern from possible exceptions.
 
-**User-friendly description (pl):** Odkryj, dlaczego wyższa cena zwykle oznacza mniejszą ilość żądaną.
+**User-friendly description (pl):** Odkryj, dlaczego wyższa cena zwykle oznacza mniejszą wielkość popytu.
 
 ##### Przesunięcie popytu
 
@@ -2576,7 +2576,7 @@ Groups: 5 · Skills: 19
 
 **Methodological description (English):** Households receive income, make payments, and decide how to save, borrow, and manage risks. This domain develops practical literacy rather than personalized investment advice.
 
-**User-friendly description (pl):** Naucz się planować pieniądze, rozumieć pożyczki i podejmować codzienne decyzje finansowe.
+**User-friendly description (pl):** Naucz się planować wydatki, rozumieć pożyczki i podejmować codzienne decyzje finansowe.
 
 #### Ryzyka finansowe i ochrona
 
@@ -2764,7 +2764,7 @@ Skills: 5
 
 **User-friendly description (pl):** Dowiedz się, czemu rozłożenie inwestycji ogranicza część ryzyka, lecz nie eliminuje strat.
 
-##### Stopa zwrotu realna
+##### Realna stopa zwrotu
 
 [realReturn.data.ts](../../../learningApps/economics/data/skills/personalFinance/savingAndInvesting/skills/realReturn.data.ts)
 

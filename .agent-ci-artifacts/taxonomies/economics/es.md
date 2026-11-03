@@ -100,7 +100,7 @@ Skills: 3
 
 **Methodological description (English):** Healthcare markets involve substantial information asymmetry, insurance arrangements, and external effects of population health.
 
-**User-friendly description (es):** Descubre por qué los mercados de atención sanitaria funcionan de otra forma que los de bienes comunes.
+**User-friendly description (es):** Descubre por qué los mercados de atención sanitaria funcionan de manera diferente a los mercados de productos habituales.
 
 ##### Seguro médico y riesgo moral
 

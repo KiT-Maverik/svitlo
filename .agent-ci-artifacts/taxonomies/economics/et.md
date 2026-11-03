@@ -236,7 +236,7 @@ Groups: 3 · Skills: 13
 
 **Methodological description (English):** Consumers evaluate needs, quality, alternatives, and information under varying incomes and psychological constraints. This domain analyzes their choices rather than sellers' methods of promoting goods.
 
-**User-friendly description (et):** Uuri, kuidas inimesed valivad oste ja milline teave nende otsuseid mõjutab.
+**User-friendly description (et):** Uuri, kuidas inimesed otsustavad, mida osta, ja milline teave nende otsuseid mõjutab.
 
 #### Käitumuslikud valikutegurid
 
@@ -2378,7 +2378,7 @@ Skills: 3
 
 **Methodological description (English):** Estimate benefits to sellers beyond the minimum compensation they would accept, distinguishing these from accounting profit.
 
-**User-friendly description (et):** Uuri müüja kasu, mis ületab tema madalaimat vastuvõetavat hinda.
+**User-friendly description (et):** Uuri, millist kasu saab müüja, kui müügihind ületab tema madalaimat vastuvõetavat hinda.
 
 #### Pakkumine
 
@@ -2576,7 +2576,7 @@ Groups: 5 · Skills: 19
 
 **Methodological description (English):** Households receive income, make payments, and decide how to save, borrow, and manage risks. This domain develops practical literacy rather than personalized investment advice.
 
-**User-friendly description (et):** Õpi raha planeerima, laenamist mõistma ja igapäevaseid finantsotsuseid tegema.
+**User-friendly description (et):** Õpi oma rahaasju planeerima, laenamist mõistma ja igapäevaseid finantsotsuseid tegema.
 
 #### Finantsriskid ja kaitse
 
@@ -2748,7 +2748,7 @@ Skills: 5
 
 **User-friendly description (et):** Uuri, kuidas intressilt teenitav intress kasvatab sääste või võlga.
 
-##### Hädaabivaru
+##### Rahaline hädaabifond
 
 [emergencySavings.data.ts](../../../learningApps/economics/data/skills/personalFinance/savingAndInvesting/skills/emergencySavings.data.ts)
 
