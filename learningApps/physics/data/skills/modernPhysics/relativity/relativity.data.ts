@@ -63,7 +63,7 @@ export const relativity_SkillGroup_Data = buildSkillGroupConfig({
       vi: "Tìm hiểu chuyển động và hấp dẫn ảnh hưởng đến phép đo không gian và thời gian như thế nào.",
       ta: "இயக்கமும் ஈர்ப்புவிசையும் வெளி மற்றும் நேர அளவீடுகளை எவ்வாறு பாதிக்கின்றன என்பதை ஆராய்.",
       te: "చలనం, గురుత్వాకర్షణ స్థలం మరియు కాలం కొలతలపై ఎలా ప్రభావం చూపుతాయో తెలుసుకో.",
-      mr: "गती आणि गुरुत्वाकर्षण अवकाश व काळाच्या मोजमापांवर कसा परिणाम करतात ते जाणून घे.",
+      mr: "गती आणि गुरुत्वाकर्षण अवकाश व काळाच्या मोजमापांवर कसा परिणाम करतात ते जाणून घ्या.",
       ms: "Terokai bagaimana gerakan dan graviti mempengaruhi pengukuran ruang dan masa.",
       he: "גלו כיצד תנועה וכבידה משפיעות על מדידות המרחב והזמן.",
       pl: "Poznaj, jak ruch i grawitacja wpływają na pomiary przestrzeni i czasu.",

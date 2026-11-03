@@ -61,7 +61,7 @@ export const lightSourcesAndVisibility_SkillGroup_Data = buildSkillGroupConfig({
       vi: "Tìm hiểu vì sao một số vật tự phát sáng còn những vật khác được nhìn thấy nhờ ánh sáng phản xạ.",
       ta: "சில பொருட்கள் தாமே ஒளி வெளியிடுவதையும் மற்றவை எதிரொளித்த ஒளியால் தெரியவருவதையும் அறிந்துகொள்.",
       te: "కొన్ని వస్తువులు స్వయంగా కాంతిని విడుదల చేస్తే మరికొన్ని పరావర్తన కాంతితో ఎందుకు కనిపిస్తాయో తెలుసుకో.",
-      mr: "काही वस्तू स्वतः प्रकाश देतात आणि इतर परावर्तित प्रकाशामुळे दिसतात, असे का ते जाणून घे.",
+      mr: "काही वस्तू स्वतः प्रकाश देतात आणि इतर परावर्तित प्रकाशामुळे दिसतात, असे का ते जाणून घ्या.",
       ms: "Ketahui mengapa sesetengah objek memancarkan cahaya sendiri manakala yang lain kelihatan kerana pantulan cahaya.",
       he: "גלו מדוע חלק מהעצמים פולטים אור ואחרים נראים בזכות אור שהוחזר מהם.",
       pl: "Dowiedz się, dlaczego niektóre przedmioty emitują światło, a inne widać dzięki odbiciu światła.",

@@ -9,7 +9,7 @@ export const explainHowGasPressureDependsOnTemperatureAtConstantVolume_Skill_Dat
     zh: '解释恒定体积下气压与温度的关系',
     hi: 'स्थिर आयतन पर गैस के दाब और तापमान का संबंध समझाना',
     es: 'Explicar la relación entre presión y temperatura a volumen constante',
-    ar: 'شرح اعتماد ضغط الغاز على الحرارة عند ثبات الحجم',
+    ar: 'شرح اعتماد ضغط الغاز على درجة الحرارة عند ثبات الحجم',
     fr: 'Expliquer le lien entre pression et température d’un gaz à volume constant',
     bn: 'স্থির আয়তনে গ্যাসের চাপ ও তাপমাত্রার সম্পর্ক ব্যাখ্যা করা',
     pt: 'Explicar a relação entre pressão e temperatura de um gás a volume constante',

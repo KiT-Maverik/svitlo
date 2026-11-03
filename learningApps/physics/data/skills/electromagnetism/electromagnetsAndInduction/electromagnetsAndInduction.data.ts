@@ -50,7 +50,7 @@ export const electromagnetsAndInduction_SkillGroup_Data = buildSkillGroupConfig(
       es: 'Descubre cómo las corrientes crean campos magnéticos y los campos variables inducen electricidad.',
       ar: 'اكتشف كيف تولّد التيارات مجالات مغناطيسية وكيف يحث تغير المجال تيارًا كهربائيًا.',
       fr: 'Découvre comment les courants créent des champs magnétiques et comment leur variation induit un courant.',
-      bn: 'বিদ্যুৎপ্রবাহ কীভাবে চৌম্বকক্ষেত্র তৈরি করে ও পরিবর্তনশীল ক্ষেত্র বিদ্যুৎ আবিষ্ট করে, তা জানো।',
+      bn: 'বিদ্যুৎপ্রবাহ কীভাবে চৌম্বকক্ষেত্র তৈরি করে ও পরিবর্তনশীল চৌম্বকক্ষেত্র কীভাবে আবিষ্ট বিদ্যুৎপ্রবাহ সৃষ্টি করে, তা জানো।',
       pt: 'Descubra como correntes criam campos magnéticos e campos variáveis induzem eletricidade.',
       ur: 'جانیں کہ رو سے مقناطیسی میدان کیسے بنتا ہے اور بدلتا میدان برقی رو کیسے پیدا کرتا ہے۔',
       id: 'Ketahui bagaimana arus menimbulkan medan magnet dan perubahan medan menginduksi arus listrik.',

@@ -70,7 +70,7 @@ export const molecularPhysics_SkillDomain_Data = buildSkillDomainConfig({
       pl: 'Poznaj, jak ruch i ułożenie cząstek wyjaśniają zachowanie materii.',
       uk: 'Досліджуй, як рух і розташування частинок пояснюють поведінку речовини.',
       lt: 'Tyrinėk, kaip dalelių judėjimas ir išsidėstymas paaiškina medžiagos savybes.',
-      lv: 'Izpēti, kā daļiņu kustība un izvietojums izskaidro vielas īpašības.',
+      lv: 'Izpēti, kā daļiņu kustība un izvietojums izskaidro vielas uzvedību.',
       et: 'Uuri, kuidas osakeste liikumine ja paiknemine selgitavad aine omadusi.',
       be: 'Дасьледуй, як рух і разьмяшчэньне часьціц тлумачаць паводзіны рэчыва.',
       ka: 'გამოიკვლიე, როგორ ხსნის ნაწილაკების მოძრაობა და განლაგება ნივთიერების თვისებებს.',
