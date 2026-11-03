@@ -76,7 +76,7 @@ export const personalFinance_SkillDomain_Data = buildSkillDomainConfig({
       lv: "Mācies plānot naudu, izprast aizņemšanos un pieņemt ikdienas finanšu lēmumus.",
       et: "Õpi raha planeerima, laenamist mõistma ja igapäevaseid finantsotsuseid tegema.",
       be: "Вучыся плянаваць бюджэт, разумець пазыкі й прымаць штодзённыя фінансавыя рашэньні.",
-      ka: "ისწავლე ფულის დაგეგმვა, სესხების გაგება და ყოველდღიური ფინანსური გადაწყვეტილებები.",
+      ka: "ისწავლე ბიუჯეტის დაგეგმვა, სესხების პირობების გაგება და ყოველდღიური ფინანსური გადაწყვეტილებების მიღება.",
       kk: "Ақшаны жоспарлауды, қарыз алуды түсінуді және күнделікті қаржы шешімдерін үйрен.",
       qm: "Aqçanı planlamaqnı, borç almaqnı ve kündelik maliy qararlarnı ögren.",
     },
