@@ -354,7 +354,7 @@ Skills: 5
 
 **Methodological description (English):** Evaluate the change in utility from consuming an additional unit with relevant conditions held constant; distinguish it from total utility.
 
-**User-friendly description (tr):** Bir şeyin bir birim daha alınmasının getirdiği ek değeri keşfet.
+**User-friendly description (tr):** Bir maldan bir birim daha tüketmenin sağladığı ek faydayı keşfet.
 
 ##### İhtiyaçlar ve istekler
 
@@ -518,7 +518,7 @@ Skills: 3
 
 **User-friendly description (tr):** Çalışanlar ve yatırımlar sektörler arasında kayınca neler olduğunu inceleyin.
 
-##### Teknolojide yakalama
+##### Teknoloji açığını kapatma
 
 [technologicalCatchUp.data.ts](../../../learningApps/economics/data/skills/developmentWellbeingAndInstitutions/structuralChange/skills/technologicalCatchUp.data.ts)
 
@@ -2364,7 +2364,7 @@ Skills: 3
 
 **User-friendly description (tr):** Ödemeye razı olduğun fiyatın altında ödemenin sağladığı faydayı gör.
 
-##### Dara kaybı
+##### Ölü ağırlık kaybı
 
 [deadweightLoss.data.ts](../../../learningApps/economics/data/skills/marketsAndCompetition/marketOutcomes/skills/deadweightLoss.data.ts)
 
@@ -2396,7 +2396,7 @@ Skills: 3
 
 **Methodological description (English):** Identify movement along an unchanged supply curve caused by the good's own price, other factors fixed; quantity supplied is what sellers are willing and able to offer, not necessarily actual sales.
 
-**User-friendly description (tr):** Arz etme isteğiyle gerçekten satılan miktarı birbirinden ayır.
+**User-friendly description (tr):** Fiyat değiştiğinde arz eğrisi boyunca hareketi ve arz edilen miktarın gerçek satıştan farkını keşfet.
 
 ##### Arz kanunu
 
@@ -2576,7 +2576,7 @@ Groups: 5 · Skills: 19
 
 **Methodological description (English):** Households receive income, make payments, and decide how to save, borrow, and manage risks. This domain develops practical literacy rather than personalized investment advice.
 
-**User-friendly description (tr):** Paranı planlamayı, borçlanmayı anlamayı ve günlük mali kararları yönetmeyi öğren.
+**User-friendly description (tr):** Bütçe hazırlamayı, borçlanmanın koşullarını anlamayı ve günlük finansal kararlar almayı öğren.
 
 #### Finansal Riskler ve Korunma
 

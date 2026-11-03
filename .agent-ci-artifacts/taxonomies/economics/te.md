@@ -1064,7 +1064,7 @@ Skills: 3
 
 **Methodological description (English):** The consequences of one participant's decision may depend on others' choices, and individual incentives can diverge from collective interests.
 
-**User-friendly description (te):** నీ ఉత్తమ ఎంపిక ఇతరుల చర్యలపై ఎందుకు ఆధారపడవచ్చో తెలుసుకోండి.
+**User-friendly description (te):** మీకు ఉత్తమమైన ఎంపిక ఇతరుల చర్యలపై ఎందుకు ఆధారపడవచ్చో తెలుసుకోండి.
 
 ##### సమష్టి చర్య సమస్య
 

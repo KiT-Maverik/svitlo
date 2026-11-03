@@ -680,7 +680,7 @@ Skills: 3
 
 **Methodological description (English):** Distinguish variables changing together from evidence supporting the causal effect of an intervention or changed factor.
 
-**User-friendly description (he):** הסבירו מדוע שני מגמות המשתנות יחד אינן מוכיחות שאחת גורמת לאחרת.
+**User-friendly description (he):** הסבירו מדוע שתי מגמות שמשתנות יחד אינן מוכיחות שאחת גורמת לאחרת.
 
 #### מדדים כלכליים
 
@@ -1518,7 +1518,7 @@ Skills: 4
 
 **User-friendly description (he):** הבינו מדוע מסחר עשוי להועיל גם כשמדינה אחת מייצרת הכול ביעילות רבה יותר.
 
-##### רווחים מסחר בינלאומי
+##### רווחים ממסחר בינלאומי
 
 [gainsFromInternationalTrade.data.ts](../../../learningApps/economics/data/skills/internationalEconomics/specializationAndTradeGains/skills/gainsFromInternationalTrade.data.ts)
 
@@ -2064,7 +2064,7 @@ Skills: 7
 
 **Methodological description (English):** Identify burdensome cancellation steps, hidden automatic renewal, and imbalance between ease of signing up and canceling; distinguish these from transparent lawful renewal terms.
 
-**User-friendly description (he):** זהו מצבים שבהם ביטול מנוי מקשה ללא צורך.
+**User-friendly description (he):** זהו מקרים שבהם ביטול מנוי מסובך שלא לצורך.
 
 #### מוצר והצעת ערך
 
@@ -2378,7 +2378,7 @@ Skills: 3
 
 **Methodological description (English):** Estimate benefits to sellers beyond the minimum compensation they would accept, distinguishing these from accounting profit.
 
-**User-friendly description (he):** גלו את הרווח שהמוכרים מקבלים מעבר למחיר המזערי שהיו מוכנים לקבל.
+**User-friendly description (he):** גלו את עודף היצרן — ההפרש בין המחיר שמוכרים מקבלים למחיר המזערי שהיו מוכנים לקבל.
 
 #### היצע
 
@@ -2576,7 +2576,7 @@ Groups: 5 · Skills: 19
 
 **Methodological description (English):** Households receive income, make payments, and decide how to save, borrow, and manage risks. This domain develops practical literacy rather than personalized investment advice.
 
-**User-friendly description (he):** למדו לתכנן כסף, להבין הלוואות ולנהל החלטות כספיות יומיומיות.
+**User-friendly description (he):** למדו לנהל תקציב, להבין הלוואות ולקבל החלטות כספיות יומיומיות.
 
 #### סיכונים כספיים והגנה
 

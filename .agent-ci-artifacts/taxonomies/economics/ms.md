@@ -552,7 +552,7 @@ Skills: 3
 
 **Methodological description (English):** Evaluate exchanges of personal data for services, information asymmetry, and the economic value of privacy.
 
-**User-friendly description (ms):** Terokai pertukaran ekonomi tersembunyi dalam perkhidmatan yang dibiayai data peribadi.
+**User-friendly description (ms):** Terokai pertimbangan kos, manfaat dan privasi dalam perkhidmatan yang dibiayai melalui data peribadi.
 
 ##### Kos marginal salinan digital
 
@@ -708,7 +708,7 @@ Skills: 4
 
 **User-friendly description (ms):** Baca bagaimana ukuran ekonomi berubah mengikut masa.
 
-##### Ukuran nominal dan benar
+##### Ukuran nominal dan sebenar
 
 [nominalAndRealMeasures.data.ts](../../../learningApps/economics/data/skills/economicDataAndResearch/economicIndicators/skills/nominalAndRealMeasures.data.ts)
 
@@ -1442,7 +1442,7 @@ Skills: 4
 
 **User-friendly description (ms):** Fahami nilai satu mata wang dalam mata wang lain.
 
-##### Kadar pertukaran benar
+##### Kadar pertukaran sebenar
 
 [realExchangeRate.data.ts](../../../learningApps/economics/data/skills/internationalEconomics/currenciesAndExternalBalances/skills/realExchangeRate.data.ts)
 
@@ -1500,7 +1500,7 @@ Skills: 4
 
 **Methodological description (English):** Relative rather than merely absolute advantages can explain the pattern of exchange between economies.
 
-**User-friendly description (ms):** Ketahui mengapa negara mengkhusus dan keuntungan daripada perdagangan.
+**User-friendly description (ms):** Ketahui mengapa negara mengkhusus dan bagaimana mereka mendapat manfaat daripada perdagangan.
 
 ##### Kelebihan mutlak
 
@@ -1840,7 +1840,7 @@ Skills: 4
 
 **User-friendly description (ms):** Fahami perkara yang dikira dalam KDNK dan yang tidak termasuk.
 
-##### Keluaran nominal dan benar
+##### Keluaran nominal dan sebenar
 
 [nominalAndRealOutput.data.ts](../../../learningApps/economics/data/skills/macroeconomics/nationalAccounts/skills/nominalAndRealOutput.data.ts)
 
@@ -2092,7 +2092,7 @@ Skills: 4
 
 **User-friendly description (ms):** Terokai cara pasaran produk boleh berubah dari semasa ke semasa.
 
-##### Peletakan Produk
+##### Penentududukan Produk
 
 [productPositioning.data.ts](../../../learningApps/economics/data/skills/marketingAndTrade/productAndValueProposition/skills/productPositioning.data.ts)
 
@@ -2576,7 +2576,7 @@ Groups: 5 · Skills: 19
 
 **Methodological description (English):** Households receive income, make payments, and decide how to save, borrow, and manage risks. This domain develops practical literacy rather than personalized investment advice.
 
-**User-friendly description (ms):** Belajar merancang wang, memahami pinjaman dan mengurus keputusan kewangan harian.
+**User-friendly description (ms):** Belajar merancang belanjawan, memahami pinjaman dan membuat keputusan kewangan harian.
 
 #### Risiko Kewangan dan Perlindungan
 
@@ -2602,7 +2602,7 @@ Skills: 3
 
 **Methodological description (English):** Evaluate uncertain benefits, possible losses, risk tolerance, and time horizons in personal financial choices without limiting analysis to a single market asset.
 
-**User-friendly description (ms):** Bandingkan keuntungan mungkin dengan risiko kehilangan wang.
+**User-friendly description (ms):** Bandingkan potensi keuntungan dengan risiko kehilangan wang.
 
 ##### Prinsip Insurans
 

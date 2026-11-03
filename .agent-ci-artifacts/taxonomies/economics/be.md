@@ -1110,7 +1110,7 @@ Skills: 3
 
 **User-friendly description (be):** Даведайся, чаму супольныя рэсурсы могуць выкарыстоўваць празьмерна.
 
-##### Свойствы рэсурсаў супольнага карыстаньня
+##### Уласьцівасьці рэсурсаў супольнага карыстаньня
 
 [commonPoolResourceCharacteristics.data.ts](../../../learningApps/economics/data/skills/environmentalAndResourceEconomics/commonPoolResources/skills/commonPoolResourceCharacteristics.data.ts)
 
@@ -1882,7 +1882,7 @@ Skills: 6
 
 **User-friendly description (be):** Адрозьнівай агульную інфляцыю ад росту цаны аднаго тавару.
 
-##### Ровень удзелу ў працоўнай сіле
+##### Узровень удзелу ў працоўнай сіле
 
 [laborForceParticipationRate.data.ts](../../../learningApps/economics/data/skills/macroeconomics/pricesAndEmployment/skills/laborForceParticipationRate.data.ts)
 
@@ -1898,7 +1898,7 @@ Skills: 6
 
 **User-friendly description (be):** Дасьледуй, чаму беспрацоўе мае розныя прычыны.
 
-##### Ровень беспрацоўя
+##### Узровень беспрацоўя
 
 [unemploymentRate.data.ts](../../../learningApps/economics/data/skills/macroeconomics/pricesAndEmployment/skills/unemploymentRate.data.ts)
 
@@ -2576,7 +2576,7 @@ Groups: 5 · Skills: 19
 
 **Methodological description (English):** Households receive income, make payments, and decide how to save, borrow, and manage risks. This domain develops practical literacy rather than personalized investment advice.
 
-**User-friendly description (be):** Вучыся плянаваць грошы, разумець пазыкі й кіраваць штодзённымі фінансавымі рашэньнямі.
+**User-friendly description (be):** Вучыся плянаваць бюджэт, разумець пазыкі й прымаць штодзённыя фінансавыя рашэньні.
 
 #### Фінансавыя рызыкі й абарона
 

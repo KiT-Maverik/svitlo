@@ -1372,7 +1372,7 @@ Skills: 3
 
 **Methodological description (English):** Mandatory payments finance public revenue and can change the behavior of buyers, workers, and firms.
 
-**User-friendly description (ka):** გაიაზრეთ, როგორ აგროვებს გადასახადები საჯარო სახსრებს და ზემოქმედებს არჩევანზე.
+**User-friendly description (ka):** გაიაზრეთ, როგორ ივსება სახელმწიფო ბიუჯეტი გადასახადებით და როგორ მოქმედებს გადასახადები ეკონომიკურ გადაწყვეტილებებზე.
 
 ##### პირდაპირი და არაპირდაპირი გადასახადები
 
@@ -1838,7 +1838,7 @@ Skills: 4
 
 **Methodological description (English):** Interpret the value of final production within an economy over a stated period and recognize the limits of this indicator.
 
-**User-friendly description (ka):** გაიაზრეთ, რას ითვლის მშპ და რას ტოვებს გამოტოვებულს.
+**User-friendly description (ka):** გაიაზრეთ, რა შედის მშპ-ში და რა რჩება მის მიღმა.
 
 ##### ნომინალური და რეალური გამოშვება
 
@@ -2040,7 +2040,7 @@ Skills: 7
 
 **Methodological description (English):** Recognize unsupported urgency, fake scarcity, misleading ratings, reviews, and popularity claims, distinguishing honest persuasion from deceptive commercial statements.
 
-**User-friendly description (ka):** ამოიცანი ყალბი სიჩქარე, ხელოვნური დეფიციტი და ყიდვის ზეწოლა.
+**User-friendly description (ka):** ამოიცანი ხელოვნურად შექმნილი გადაუდებლობა, მოჩვენებითი დეფიციტი და ზეწოლა ყიდვისკენ.
 
 ##### ფსიქოლოგიური ფასწარმოქმნა
 
@@ -2576,7 +2576,7 @@ Groups: 5 · Skills: 19
 
 **Methodological description (English):** Households receive income, make payments, and decide how to save, borrow, and manage risks. This domain develops practical literacy rather than personalized investment advice.
 
-**User-friendly description (ka):** ისწავლე ფულის დაგეგმვა, სესხების გაგება და ყოველდღიური ფინანსური გადაწყვეტილებები.
+**User-friendly description (ka):** ისწავლე ბიუჯეტის დაგეგმვა, სესხების პირობების გაგება და ყოველდღიური ფინანსური გადაწყვეტილებების მიღება.
 
 #### ფინანსური რისკები და დაცვა
 

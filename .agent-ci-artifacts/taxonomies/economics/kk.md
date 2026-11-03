@@ -56,7 +56,7 @@ Skills: 3
 
 **Methodological description (English):** Analyze physical and economic access to food, stability of supplies, and why sufficient aggregate production does not ensure everyone can obtain food.
 
-**User-friendly description (kk):** Жеткілікті азық-түлік өндірісі әркімнің оны сатып ала немесе ала алатынын неге білдірмейтінін зертте.
+**User-friendly description (kk):** Жеткілікті азық-түлік өндірілсе де, оның барлығына қолжетімді болатынына неге кепілдік жоқ екенін зертте.
 
 #### Білім беру экономикасы
 
@@ -2576,7 +2576,7 @@ Groups: 5 · Skills: 19
 
 **Methodological description (English):** Households receive income, make payments, and decide how to save, borrow, and manage risks. This domain develops practical literacy rather than personalized investment advice.
 
-**User-friendly description (kk):** Ақшаны жоспарлауды, қарыз алуды түсінуді және күнделікті қаржы шешімдерін үйрен.
+**User-friendly description (kk):** Бюджетті жоспарлауды, қарыз шарттарын түсінуді және күнделікті қаржылық шешім қабылдауды үйрен.
 
 #### Қаржылық тәуекелдер және қорғаныс
 
@@ -2652,7 +2652,7 @@ Skills: 4
 
 **Methodological description (English):** Distinguish wages, business earnings, returns from assets, and transfers by their nature and stability.
 
-**User-friendly description (kk):** Адамдардың табыс табудың әртүрлі жолдарын таны.
+**User-friendly description (kk):** Табыс табудың әртүрлі жолдарын таны.
 
 #### Несиелер мен қарыздар
 
@@ -2882,9 +2882,9 @@ Skills: 5
 
 **Methodological description (English):** Evaluate a firm's result after both explicit expenditures and implicit opportunity costs, distinguishing economic from accounting profit.
 
-**User-friendly description (kk):** Экономикалық пайда неге тіркелген шығыннан артық шығынды ескеретінін түсін.
+**User-friendly description (kk):** Экономикалық пайда есепте көрсетілген шығындармен қатар балама шығындарды да неге ескеретінін түсін.
 
-##### Ауқым үнемі
+##### Ауқым есебінен үнемдеу
 
 [economiesOfScale.data.ts](../../../learningApps/economics/data/skills/productionAndEntrepreneurship/productionCostsAndScale/skills/economiesOfScale.data.ts)
 
