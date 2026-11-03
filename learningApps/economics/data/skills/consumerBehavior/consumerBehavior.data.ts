@@ -66,7 +66,7 @@ export const consumerBehavior_SkillDomain_Data = buildSkillDomainConfig({
       mr: "लोक काय खरेदी करायचे कसे ठरवतात आणि माहितीचा त्यावर कसा परिणाम होतो ते पाहा.",
       ms: "Terokai cara orang memilih pembelian dan maklumat yang membentuk keputusan.",
       he: "גלו כיצד אנשים בוחרים מה לקנות ואיזה מידע משפיע על החלטותיהם.",
-      pl: "Odkryj, jak ludzie wybierają zakupy i jakie informacje wpływają na ich decyzje.",
+      pl: "Odkryj, jak ludzie decydują, co kupić, i jakie informacje wpływają na ich decyzje.",
       uk: "Досліди, як люди вирішують, що купувати, і яка інформація впливає на їхній вибір.",
       lt: "Sužinok, kaip žmonės renkasi pirkinius ir kokia informacija juos veikia.",
       lv: "Uzzini, kā cilvēki izvēlas pirkumus un kāda informācija ietekmē viņu lēmumus.",
