@@ -17,7 +17,7 @@ export const deadweightLoss_Skill_Data = buildSkillConfig({
     de: "Wohlfahrtsverlust",
     ja: "死荷重損失",
     ko: "사회적 순손실",
-    tr: "Dara kaybı",
+    tr: "Ölü ağırlık kaybı",
     vi: "Tổn thất vô ích",
     ta: "சமூக நல இழப்பு",
     te: "నికర సామాజిక నష్టం",

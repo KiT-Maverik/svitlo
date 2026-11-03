@@ -13,7 +13,7 @@ export const geographicLaborMobility_Skill_Data = buildSkillConfig({
     bn: "ভৌগোলিক শ্রম চলাচল",
     pt: "Mobilidade geográfica do trabalho",
     ur: "جغرافیائی محنتی نقل و حرکت",
-    id: "Mobilitas Tenaga Kerja Geografis",
+    id: "Mobilitas tenaga kerja geografis",
     de: "Räumliche Arbeitsmobilität",
     ja: "地域間の労働移動",
     ko: "지리적 노동 이동",

@@ -13,7 +13,7 @@ export const compoundInterest_Skill_Data = buildSkillConfig({
     bn: "চক্রবৃদ্ধি সুদ",
     pt: "Juros compostos",
     ur: "مرکب سود",
-    id: "Bunga Majemuk",
+    id: "Bunga majemuk",
     de: "Zinseszins",
     ja: "複利",
     ko: "복리",

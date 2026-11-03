@@ -13,7 +13,7 @@ export const wageDetermination_Skill_Data = buildSkillConfig({
     bn: "মজুরি নির্ধারণ",
     pt: "Determinação dos salários",
     ur: "اجرت کا تعین",
-    id: "Penentuan Upah",
+    id: "Penentuan upah",
     de: "Lohnbildung",
     ja: "賃金の決定",
     ko: "임금 결정",

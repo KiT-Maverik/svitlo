@@ -57,7 +57,7 @@ export const lawOfDemand_Skill_Data = buildSkillConfig({
       mr: "किंमत वाढल्यावर सहसा मागणीचे प्रमाण का घटते ते शोधा.",
       ms: "Terokai sebab harga lebih tinggi biasanya mengurangkan kuantiti diminta.",
       he: "גלו מדוע מחיר גבוה יותר בדרך כלל מפחית את הכמות המבוקשת.",
-      pl: "Odkryj, dlaczego wyższa cena zwykle oznacza mniejszą ilość żądaną.",
+      pl: "Odkryj, dlaczego wyższa cena zwykle oznacza mniejszą wielkość popytu.",
       uk: "Досліди, чому вища ціна зазвичай означає меншу бажану кількість.",
       lt: "Sužinok, kodėl aukštesnė kaina paprastai mažina norimą kiekį.",
       lv: "Uzzini, kāpēc augstāka cena parasti nozīmē mazāku pieprasīto daudzumu.",

@@ -13,7 +13,7 @@ export const paymentFeesAndTerms_Skill_Data = buildSkillConfig({
     bn: "অর্থপ্রদানের ফি ও শর্ত",
     pt: "Taxas e condições de pagamento",
     ur: "ادائیگی کی فیسیں اور شرائط",
-    id: "Biaya dan Ketentuan Pembayaran",
+    id: "Biaya dan ketentuan pembayaran",
     de: "Zahlungsgebühren und Bedingungen",
     ja: "支払手数料と条件",
     ko: "결제 수수료와 조건",

@@ -50,7 +50,7 @@ export const publicGoodsAndRegulation_SkillGroup_Data = buildSkillGroupConfig({
       hi: "जानें कि कुछ आवश्यकताओं के लिए सामूहिक व्यवस्था या विनियमन क्यों ज़रूरी है।",
       es: "Descubre por qué ciertas necesidades requieren provisión colectiva o regulación.",
       ar: "اكتشف لماذا تحتاج بعض الاحتياجات إلى توفير جماعي أو تنظيم.",
-      fr: "Découvrez pourquoi certains besoins nécessitent une fourniture collective ou des règles.",
+      fr: "Découvre pourquoi certains besoins nécessitent une fourniture collective ou des règles.",
       bn: "কিছু চাহিদা পূরণে যৌথ উদ্যোগ বা নিয়ন্ত্রণ কেন দরকার তা জানো।",
       pt: "Descubra por que algumas necessidades exigem oferta coletiva ou regulação.",
       ur: "جانیں کہ کچھ ضروریات کے لیے اجتماعی فراہمی یا قواعد کیوں درکار ہوتے ہیں۔",

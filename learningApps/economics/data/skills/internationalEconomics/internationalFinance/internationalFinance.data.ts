@@ -50,7 +50,7 @@ export const internationalFinance_SkillGroup_Data = buildSkillGroupConfig({
       hi: "जानें कि देश सीमाओं के पार उधार और निवेश कैसे करते हैं।",
       es: "Explora cómo los países piden préstamos e invierten a través de las fronteras.",
       ar: "استكشف كيف تقترض الدول وتستثمر عبر الحدود.",
-      fr: "Explorez comment les pays empruntent et investissent au-delà des frontières.",
+      fr: "Explore comment les pays empruntent et investissent au-delà des frontières.",
       bn: "দেশগুলো সীমান্ত পেরিয়ে কীভাবে ঋণ নেয় ও বিনিয়োগ করে তা জানো।",
       pt: "Explore como países tomam empréstimos e investem além de suas fronteiras.",
       ur: "جانیں کہ ممالک سرحدوں کے پار قرض اور سرمایہ کاری کیسے کرتے ہیں۔",

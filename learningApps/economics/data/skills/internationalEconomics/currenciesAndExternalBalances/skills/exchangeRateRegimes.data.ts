@@ -42,7 +42,7 @@ export const exchangeRateRegimes_Skill_Data = buildSkillConfig({
       hi: "मुक्त रूप से बदलती विनिमय दर और अधिकारियों द्वारा नियंत्रित दर की तुलना करें।",
       es: "Compara los tipos de cambio flotantes con los gestionados por las autoridades.",
       ar: "قارن أسعار الصرف العائمة بتلك التي تديرها السلطات.",
-      fr: "Comparez les taux flottants aux taux gérés par les autorités.",
+      fr: "Compare les taux flottants aux taux gérés par les autorités.",
       bn: "ভাসমান বিনিময় হার ও কর্তৃপক্ষের নিয়ন্ত্রিত হারের তুলনা করো।",
       pt: "Compare o câmbio flutuante com taxas administradas pelas autoridades.",
       ur: "آزادانہ بدلنے والی شرحوں کا حکام کے زیرِ انتظام شرحوں سے موازنہ کریں۔",

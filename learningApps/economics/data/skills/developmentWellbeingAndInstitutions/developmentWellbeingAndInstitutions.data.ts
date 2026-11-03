@@ -53,7 +53,7 @@ export const developmentWellbeingAndInstitutions_SkillDomain_Data = buildSkillDo
       hi: "जानें कि समाजों में संपत्ति, अवसर और जीवन की गुणवत्ता अलग क्यों होती है।",
       es: "Explora por qué la riqueza, las oportunidades y la calidad de vida varían entre sociedades.",
       ar: "استكشف لماذا تختلف الثروة والفرص وجودة الحياة بين المجتمعات.",
-      fr: "Explorez pourquoi richesse, possibilités et qualité de vie diffèrent entre sociétés.",
+      fr: "Explore pourquoi richesse, possibilités et qualité de vie diffèrent entre sociétés.",
       bn: "বিভিন্ন সমাজে সম্পদ, সুযোগ ও জীবনমান কেন আলাদা তা জানো।",
       pt: "Explore por que riqueza, oportunidades e qualidade de vida diferem entre sociedades.",
       ur: "جانیں کہ معاشروں میں دولت، مواقع اور معیارِ زندگی مختلف کیوں ہیں۔",

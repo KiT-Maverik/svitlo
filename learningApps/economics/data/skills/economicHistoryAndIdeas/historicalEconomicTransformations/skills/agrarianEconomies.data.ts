@@ -59,7 +59,7 @@ export const agrarianEconomies_Skill_Data = buildSkillConfig({
       he: "גלו כיצד הקרקע והחקלאות עיצבו כלכלות בעבר.",
       pl: "Poznaj wpływ ziemi i rolnictwa na dawne gospodarki.",
       uk: "Досліди, як земля й землеробство формували економіки минулого.",
-      lt: "Tyrinėk, kaip žemė ir žemdirbystė formavo senovės ekonomikas.",
+      lt: "Tyrinėk, kaip žemė ir žemdirbystė formavo istorines ekonomikas.",
       lv: "Izpēti, kā zeme un lauksaimniecība veidoja senās ekonomikas.",
       et: "Uuri, kuidas maa ja põllumajandus kujundasid ajaloolisi majandusi.",
       be: "Дасьледуй, як зямля і земляробства фармавалі эканомікі мінулага.",

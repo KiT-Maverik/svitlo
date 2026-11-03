@@ -13,7 +13,7 @@ export const workLeisureTradeoff_Skill_Data = buildSkillConfig({
     bn: "কাজ ও অবসরের মধ্যে বাছাই",
     pt: "Escolha entre trabalho e lazer",
     ur: "کام اور فراغت کا انتخاب",
-    id: "Pilihan Kerja dan Waktu Luang",
+    id: "Pilihan kerja dan waktu luang",
     de: "Abwägung zwischen Arbeit und Freizeit",
     ja: "労働と余暇の選択",
     ko: "노동과 여가의 선택",

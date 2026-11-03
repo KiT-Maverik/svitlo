@@ -13,7 +13,7 @@ export const financialSupervision_Skill_Data = buildSkillConfig({
     bn: "আর্থিক তদারকি",
     pt: "Supervisão financeira",
     ur: "مالی نگرانی",
-    id: "Pengawasan Keuangan",
+    id: "Pengawasan keuangan",
     de: "Finanzaufsicht",
     ja: "金融監督",
     ko: "금융 감독",

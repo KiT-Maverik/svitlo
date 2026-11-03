@@ -13,7 +13,7 @@ export const hiddenChargesAndForcedExtras_Skill_Data = buildSkillConfig({
     bn: "লুকানো খরচ ও চাপিয়ে দেওয়া অতিরিক্ত পণ্য",
     pt: "Cobranças ocultas e extras impostos",
     ur: "پوشیدہ فیسیں اور زبردستی اضافی چیزیں",
-    id: "Biaya Tersembunyi dan Tambahan Paksa",
+    id: "Biaya tersembunyi dan tambahan paksa",
     de: "Versteckte Kosten und aufgedrängte Extras",
     ja: "隠れた料金と強制的な追加項目",
     ko: "숨겨진 비용과 강제 추가 항목",

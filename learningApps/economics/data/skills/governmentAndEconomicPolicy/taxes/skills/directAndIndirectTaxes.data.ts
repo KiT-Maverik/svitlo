@@ -42,7 +42,7 @@ export const directAndIndirectTaxes_Skill_Data = buildSkillConfig({
       hi: "आय पर लगने वाले कर और खरीद पर लगने वाले कर में अंतर करें।",
       es: "Distingue los impuestos sobre ingresos de los impuestos sobre compras.",
       ar: "ميّز بين الضرائب على الدخل والضرائب على المشتريات.",
-      fr: "Distinguez les impôts sur les revenus des taxes sur les achats.",
+      fr: "Distingue les impôts sur les revenus des taxes sur les achats.",
       bn: "আয়ের ওপর কর ও কেনাকাটার ওপর করের পার্থক্য করো।",
       pt: "Distinga tributos sobre rendimentos daqueles cobrados nas compras.",
       ur: "آمدن پر ٹیکس اور خریداری پر ٹیکس میں فرق کریں۔",

@@ -13,7 +13,7 @@ export const transactionConfirmation_Skill_Data = buildSkillConfig({
     bn: "লেনদেন নিশ্চিতকরণ",
     pt: "Confirmação da transação",
     ur: "لین دین کی تصدیق",
-    id: "Konfirmasi Transaksi",
+    id: "Konfirmasi transaksi",
     de: "Transaktionsbestätigung",
     ja: "取引の確認",
     ko: "거래 확인",

@@ -42,7 +42,7 @@ export const multiplierEffect_Skill_Data = buildSkillConfig({
       hi: "समझें कि खर्च में एक वृद्धि से आगे और वृद्धि कैसे हो सकती है।",
       es: "Comprende por qué un aumento del gasto puede generar incrementos posteriores.",
       ar: "افهم كيف يمكن لزيادة أولى في الإنفاق أن تؤدي إلى زيادات لاحقة.",
-      fr: "Comprenez pourquoi une hausse des dépenses peut en déclencher d’autres.",
+      fr: "Comprends pourquoi une hausse des dépenses peut en déclencher d’autres.",
       bn: "একবার ব্যয় বাড়লে কেন আরও ব্যয় বাড়তে পারে তা বুঝে নাও।",
       pt: "Entenda como um aumento inicial de gastos pode gerar outros aumentos.",
       ur: "سمجھیں کہ خرچ میں ایک اضافہ مزید اضافوں کا سبب کیسے بن سکتا ہے۔",

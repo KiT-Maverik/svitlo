@@ -13,7 +13,7 @@ export const interestRates_Skill_Data = buildSkillConfig({
     bn: "সুদের হার",
     pt: "Taxas de juros",
     ur: "شرح سود",
-    id: "Suku Bunga",
+    id: "Suku bunga",
     de: "Zinssätze",
     ja: "金利",
     ko: "이자율",

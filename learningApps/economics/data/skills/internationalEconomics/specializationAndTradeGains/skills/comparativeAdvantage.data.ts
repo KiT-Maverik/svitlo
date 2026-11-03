@@ -42,7 +42,7 @@ export const comparativeAdvantage_Skill_Data = buildSkillConfig({
       hi: "समझें कि एक देश हर चीज़ अधिक कुशलता से बनाए तब भी व्यापार लाभकारी क्यों हो सकता है।",
       es: "Comprende por qué el comercio ayuda incluso si un país produce todo con mayor eficiencia.",
       ar: "افهم لماذا تفيد التجارة حتى عندما يكون بلد واحد أكثر كفاءة في إنتاج كل شيء.",
-      fr: "Comprenez pourquoi l’échange peut être utile même lorsqu’un pays produit tout plus efficacement.",
+      fr: "Comprends pourquoi l’échange peut être utile même lorsqu’un pays produit tout plus efficacement.",
       bn: "একটি দেশ সবকিছু বেশি দক্ষতায় বানালেও বাণিজ্য কেন লাভজনক হতে পারে তা বোঝো।",
       pt: "Entenda por que o comércio pode beneficiar mesmo quando um país produz tudo com mais eficiência.",
       ur: "سمجھیں کہ ایک ملک ہر چیز زیادہ مؤثر طریقے سے بنائے تب بھی تجارت کیوں فائدہ دے سکتی ہے۔",

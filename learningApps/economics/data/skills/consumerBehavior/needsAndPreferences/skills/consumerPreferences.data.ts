@@ -27,7 +27,7 @@ export const consumerPreferences_Skill_Data = buildSkillConfig({
     pl: "Preferencje konsumenta",
     uk: "Споживчі вподобання",
     lt: "Vartotojo pirmenybės",
-    lv: "Patērētāju vēlmes",
+    lv: "Patērētāju priekšrokas",
     et: "Tarbija eelistused",
     be: "Спажывецкія ўпадабаньні",
     ka: "მომხმარებლის პრეფერენციები",

@@ -13,7 +13,7 @@ export const assetRiskAndReturn_Skill_Data = buildSkillConfig({
     bn: "সম্পদের ঝুঁকি ও আয়",
     pt: "Risco e retorno dos ativos",
     ur: "اثاثوں کے خطرات اور منافع",
-    id: "Risiko dan Imbal Hasil Aset",
+    id: "Risiko dan imbal hasil aset",
     de: "Risiko und Rendite von Vermögenswerten",
     ja: "資産のリスクと収益",
     ko: "자산의 위험과 수익",
