@@ -38,7 +38,7 @@ export const explainContinuityOfIncompressibleFluidFlow_Skill_Data = buildSkillC
     methodological: "For steady flow without leakage, a change in a channel's cross-sectional area is associated with a change in fluid speed.",
     frontend: {
       en: "Connect changes in channel width with the speed of steady incompressible flow.",
-      zh: "联系流道宽度的变化与稳定不可压缩流动的速度。",
+      zh: "解释在稳定、无泄漏的不可压缩流动中，流道横截面积的变化如何影响流速。",
       hi: "प्रवाह मार्ग के अनुप्रस्थ काट के क्षेत्रफल में बदलाव को स्थिर असंपीड्य प्रवाह की चाल से जोड़ें।",
       es: "Relaciona los cambios en la sección del canal con la velocidad de un flujo constante e incompresible.",
       ar: "اربط تغير عرض المجرى بسرعة التدفق المستقر للمائع غير القابل للانضغاط.",
