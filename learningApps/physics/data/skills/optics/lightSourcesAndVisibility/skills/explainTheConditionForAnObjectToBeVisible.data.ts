@@ -29,7 +29,7 @@ export const explainTheConditionForAnObjectToBeVisible_Skill_Data = buildSkillCo
     lt: "Sąlygos, kada daiktas matomas, paaiškinimas",
     lv: "Priekšmeta redzamības nosacījuma skaidrošana",
     et: "Eseme nähtavuse tingimuse selgitamine",
-    be: "Тлумачыць умову бачнасці прадмета",
+    be: "Тлумачыць умову бачнасьці прадмета",
     ka: "საგნის ხილვადობის პირობის ახსნა",
     kk: "Заттың көріну шартын түсіндіру",
     qm: "Cisimniñ körünüvi içün şartnı añlatmaq",

@@ -53,7 +53,7 @@ export const explainConservationOfLinearMomentum_Skill_Data = buildSkillConfig({
       tr: "Dışarıdan itme uygulanmadığında toplam momentumun neden sabit kaldığını anla.",
       vi: "Hiểu vì sao tổng động lượng không đổi khi không có xung lực bên ngoài.",
       ta: "வெளிப்புற விசைத்தாக்கம் இல்லாதபோது மொத்த உந்தம் ஏன் மாறாமல் இருக்கிறது என்பதைப் புரிந்துகொள்.",
-      te: "బాహ్య ఆవేశం లేనప్పుడు మొత్తం ద్రవ్యవేగం ఎందుకు స్థిరంగా ఉంటుందో అర్థం చేసుకోండి.",
+      te: "బాహ్య బల ప్రచోదనం లేనప్పుడు మొత్తం ద్రవ్యవేగం ఎందుకు స్థిరంగా ఉంటుందో అర్థం చేసుకోండి.",
       mr: "बाह्य आवेग नसताना एकूण संवेग स्थिर का राहतो हे समजून घ्या.",
       ms: "Fahami mengapa jumlah momentum kekal malar tanpa impuls luar.",
       he: "הבינו מדוע התנע הכולל נשאר קבוע ללא מתקף חיצוני.",

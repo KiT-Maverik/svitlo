@@ -63,7 +63,7 @@ export const distinguishALightSourceFromAnIlluminatedBody_Skill_Data = buildSkil
       lv: "Atšķir priekšmetu, kas izstaro gaismu, no priekšmeta, kuru tā tikai apgaismo.",
       et: "Erista valgust kiirgavat keha sellest, mida valgus ainult valgustab.",
       be: "Адрозьні цела, якое выпраменьвае сьвятло, ад цела, якое толькі асьвятляецца.",
-      ka: "განასხვავეთ საგანი, რომელიც სინათლეს ასხივებს, იმისგან, რომელსაც სინათლე მხოლოდ ანათებს.",
+      ka: "განასხვავე საგანი, რომელიც სინათლეს ასხივებს, იმისგან, რომელსაც სინათლე მხოლოდ ანათებს.",
       kk: "Жарық шығаратын дене мен тек жарықтанатын денені ажырат.",
       qm: "Yarıq saçqan cisimni, o yarıqnen aydınlatılğan cisimden ayır.",
     },

@@ -31,7 +31,7 @@ export const lightSourcesAndVisibility_SkillGroup_Data = buildSkillGroupConfig({
     lt: "Šviesos šaltiniai ir matomumas",
     lv: "Gaismas avoti un redzamība",
     et: "Valgusallikad ja nähtavus",
-    be: "Крыніцы сьвятла й бачнасць",
+    be: "Крыніцы сьвятла й бачнасьць",
     ka: "სინათლის წყაროები და ხილვადობა",
     kk: "Жарық көздері мен көріну",
     qm: "Yarıq menbaları ve körünürlik",

@@ -20,7 +20,7 @@ export const explainImpulse_Skill_Data = buildSkillConfig({
     tr: "İtmeyi açıklamak",
     vi: "Giải thích xung lực",
     ta: "விசைத்தாக்கத்தை விளக்குதல்",
-    te: "ఆవేశాన్ని వివరించడం",
+    te: "బల ప్రచోదనాన్ని వివరించడం",
     mr: "बलाचा आवेग स्पष्ट करणे",
     ms: "Menjelaskan impuls",
     he: "הסבר מתקף",
