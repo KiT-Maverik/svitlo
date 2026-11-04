@@ -58,7 +58,7 @@ export const constructValidity_Skill_Data = buildSkillConfig({
       ms: "Nilai sama ada ujian benar-benar mengukur konsep yang didakwanya.",
       he: "העריכו אם מבחן באמת מודד את המושג שהוא מתיימר למדוד.",
       pl: "Oceń, czy test rzeczywiście mierzy pojęcie, które deklaruje mierzyć.",
-      uk: "Оціни, чи справді тест вимірює те поняття, яке заявляє.",
+      uk: "Оціни, чи справді тест вимірює саме те поняття, яке він покликаний вимірювати.",
       lt: "Įvertink, ar testas iš tiesų matuoja tai, ką teigia matuojantis.",
       lv: "Novērtē, vai tests tiešām mēra jēdzienu, ko sola izmērīt.",
       et: "Hinda, kas test mõõdab tõesti seda mõistet, mida väidab mõõtvat.",

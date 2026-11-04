@@ -32,7 +32,7 @@ export const motivationalCrowding_Skill_Data = buildSkillConfig({
     be: "Выцясьненьне ўнутранай матывацыі",
     ka: "შინაგანი მოტივაციის განდევნა",
     kk: "Ішкі мотивацияның ығыстырылуы",
-    qm: "Tışqı mukâfatnıñ içki ilhamnı azaltuvı",
+    qm: "Tışqı mukâfatnıñ içki motivatsiyanı azaltuvı",
   },
   description: {
     methodological: "Evaluate circumstances in which external incentives change an existing interest rather than simply adding more motivation.",

@@ -36,7 +36,7 @@ export const motivationGoalsAndHabits_SkillDomain_Data = buildSkillDomainConfig(
     be: "Матывацыя, мэты і звычкі",
     ka: "მოტივაცია, მიზნები და ჩვევები",
     kk: "Мотивация, мақсаттар және әдеттер",
-    qm: "İlham, maqsatlar ve adetler",
+    qm: "Motivatsiya, maqsatlar ve adetler",
   },
   groups: {
     goalPursuitAndSelfControl: goalPursuitAndSelfControl_SkillGroup_Data,

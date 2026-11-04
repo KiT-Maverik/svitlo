@@ -39,7 +39,7 @@ export const compassion_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Distinguish compassionate concern from simply understanding another's feelings.",
       zh: "区分希望帮助他人的关怀与仅仅理解其感受。",
-      hi: "दूसरे के लिए मदद की चिंता को केवल उसकी भावना समझने से अलग पहचानें।",
+      hi: "दूसरे की सहायता करने की करुणापूर्ण इच्छा को केवल उसकी भावनाएँ समझने से अलग पहचानें।",
       es: "Distingue la preocupación compasiva de solo comprender lo que siente otra persona.",
       ar: "ميّز الاهتمام الرحيم بالآخرين من مجرد فهم مشاعرهم.",
       fr: "Distingue le souci bienveillant d’autrui du simple fait de comprendre ses sentiments.",
@@ -65,7 +65,7 @@ export const compassion_Skill_Data = buildSkillConfig({
       be: "Адрозьнівай спачувальны клопат ад простага разуменьня пачуцьцяў іншага.",
       ka: "განასხვავე სხვის მიმართ მზრუნველობა მისი გრძნობების უბრალოდ გაგებისგან.",
       kk: "Өзгені түсінуден бөлек оған көмектескің келетін жанашырлықты ажырат.",
-      qm: "Başqanıñ duyğularını añlamaqnen oña meramet kösterip yardım istemekni ayır.",
+      qm: "Başqanıñ duyğularını añlamaqnen oña meramet kösterip yardım etüvni ayır.",
     },
   },
 });

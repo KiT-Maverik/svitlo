@@ -32,7 +32,7 @@ export const extrinsicMotivation_Skill_Data = buildSkillConfig({
     be: "Зьнешняя матывацыя",
     ka: "გარეგანი მოტივაცია",
     kk: "Сыртқы мотивация",
-    qm: "Tışqı ilham",
+    qm: "Tışqı motivatsiya",
   },
   description: {
     methodological: "Explain pursuing an activity because of an outcome separable from the activity, such as recognition, payment, or avoidance of a consequence.",
@@ -65,7 +65,7 @@ export const extrinsicMotivation_Skill_Data = buildSkillConfig({
       be: "Дасьледуй, як зьнешнія ўзнагароды й ціск уплываюць на матывацыю.",
       ka: "გამოიკვლიე, როგორ მოქმედებს გარე ჯილდოები და ზეწოლა მოტივაციაზე.",
       kk: "Сыртқы сыйақылар мен қысым мотивацияға қалай әсер ететінін зертте.",
-      qm: "Tışqı mukâfatlar ve basım ilhamğa nasıl tesir etkenini araştır.",
+      qm: "Tışqı mukâfatlar ve basım motivatsiyağa nasıl tesir etkenini araştır.",
     },
   },
 });

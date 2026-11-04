@@ -8,7 +8,7 @@ export const goalPursuitAndSelfControl_SkillGroup_Data = buildSkillGroupConfig({
   name: {
     en: "Goal Pursuit and Self-Control",
     zh: "目标追求与自我控制",
-    hi: "लक्ष्य का पीछा और आत्म-नियंत्रण",
+    hi: "लक्ष्य प्राप्ति और आत्म-नियंत्रण",
     es: "Persecución de metas y autocontrol",
     ar: "السعي إلى الأهداف وضبط النفس",
     fr: "Poursuite des objectifs et maîtrise de soi",

@@ -32,7 +32,7 @@ export const intrinsicMotivation_Skill_Data = buildSkillConfig({
     be: "Унутраная матывацыя",
     ka: "შინაგანი მოტივაცია",
     kk: "Ішкі мотивация",
-    qm: "İçki ilham",
+    qm: "İçki motivatsiya",
   },
   description: {
     methodological: "Explain engaging in an activity because it is personally interesting or satisfying in itself.",
