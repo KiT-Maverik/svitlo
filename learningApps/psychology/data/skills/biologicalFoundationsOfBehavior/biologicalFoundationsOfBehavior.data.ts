@@ -76,7 +76,7 @@ export const biologicalFoundationsOfBehavior_SkillDomain_Data = buildSkillDomain
       be: "Дасьледуй, як мозг, гармоны, спадчынныя рысы і асяродзьдзе ўплываюць на паводзіны.",
       ka: "გაიგე, როგორ მოქმედებს ტვინი, ჰორმონები, მემკვიდრეობითი თვისებები და გარემო ქცევაზე.",
       kk: "Ми, гормондар, тұқым қуалайтын белгілер мен орта мінез-құлыққа қалай әсер ететінін біл.",
-      qm: "Miy, gormonlar, miras qalıp kelgen hususiyetler ve etraf-muіt davranışqa nasıl tesir etkenini ögren.",
+      qm: "Miy, gormonlar, miras qalıp kelgen hususiyetler ve etraf-mühit davranışqa nasıl tesir etkenini ögren.",
     },
   },
 });
