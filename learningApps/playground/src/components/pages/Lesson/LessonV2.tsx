@@ -11,12 +11,16 @@ export default function LessonV2({ response, locale, href }: {
   locale: Locale;
   href: string;
 }) {
-  const sections = response.sectionOrder.map(slug => response.sections[slug]);
+  const sections = response.sections;
   const quizIndex = sections.findIndex(section => section.type === 'quiz');
+  const sceneMessages = (sectionSlug: string, blockSlug: string) =>
+    sections.find(section => section.slug === sectionSlug)?.content
+      .map(block => block.type === 'scene' && block.slug === blockSlug ? block.messages : undefined)
+      .find(messages => messages !== undefined);
   const scenes = {
-    simulation: response.sections.theory?.content.scene?.lightPropagationSimulation?.messages,
-    ray: response.sections.theory?.content.scene?.lightRayDiagram?.messages,
-    practice: response.sections.practice?.content.scene?.showcase?.messages,
+    simulation: sceneMessages('theory', 'lightPropagationSimulation'),
+    ray: sceneMessages('theory', 'lightRayDiagram'),
+    practice: sceneMessages('practice', 'showcase'),
   };
   return (
     <LocaleProvider locale={locale}>

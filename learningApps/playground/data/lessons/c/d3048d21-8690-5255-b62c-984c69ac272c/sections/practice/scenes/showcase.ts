@@ -968,6 +968,7 @@ export type Showcase_ContentBlock<ConfigType extends 'definition' | 'data' | 're
   ContentBlock_Scene<ConfigType, HowLightMoves_Languages, Locale>;
 
 export const showcaseData = {
+  type: 'scene',
   id: 'how-light-moves-scene-showcase',
   slug: 'showcase' as const,
   locales: sceneLocalesToData(howLightMoves_languages, showcase_Locale),

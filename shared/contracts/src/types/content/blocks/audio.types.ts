@@ -11,7 +11,7 @@ type Audio_Fallback<Value> = {
   retry?: Value;
 };
 
-type ContentBlock_Audio_Data<SupportedLanguages extends Locale_Languages> = ContentBlock_Data_Meta & {
+type ContentBlock_Audio_Data<SupportedLanguages extends Locale_Languages> = ContentBlock_Data_Meta<'audio'> & {
   fileLocation: Locale_Options<SupportedLanguages>;
   title: Locale_Options<SupportedLanguages>;
   description?: Locale_Options<SupportedLanguages>;

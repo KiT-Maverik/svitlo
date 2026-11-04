@@ -14,7 +14,7 @@ type Image_Layout =
   | { width: number; height: number; fill?: false; aspectRatio?: never; objectFit?: never }
   | { fill: true; aspectRatio: number; objectFit?: 'contain' | 'cover'; width?: never; height?: never };
 
-type ContentBlock_Image_Data<SupportedLanguages extends Locale_Languages> = ContentBlock_Data_Meta & Image_Layout & {
+type ContentBlock_Image_Data<SupportedLanguages extends Locale_Languages> = ContentBlock_Data_Meta<'image'> & Image_Layout & {
   src: Locale_Options<SupportedLanguages>;
   alt: Locale_Options<SupportedLanguages>;
   caption?: Locale_Options<SupportedLanguages>;

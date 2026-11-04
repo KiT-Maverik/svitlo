@@ -7,6 +7,7 @@ export const fastestMedium_Question_Data = {
       vacuum: {
         id: 'c0985811-54b5-5a43-9382-2726a24923ea',
         slug: 'vacuum',
+        type: 'text',
         value: {
           ar: 'في الفراغ.',
           be: 'У вакуўме.',
@@ -44,6 +45,7 @@ export const fastestMedium_Question_Data = {
       water: {
         id: '2235c6a8-ce3e-5d2c-a987-ab1702e88420',
         slug: 'water',
+        type: 'text',
         value: {
           ar: 'في الماء.',
           be: 'У вадзе.',
@@ -81,6 +83,7 @@ export const fastestMedium_Question_Data = {
       air: {
         id: 'c37f2103-b856-5bd3-81b7-c4f8af9a0203',
         slug: 'air',
+        type: 'text',
         value: {
           ar: 'في الهواء.',
           be: 'У паветры.',
@@ -120,6 +123,7 @@ export const fastestMedium_Question_Data = {
     {
       id: '03aa97f3-2e49-56b0-b3ae-a3d289eb1dcd',
       slug: 'vacuumFastest',
+      type: 'text',
       value: {
         ar: 'ينتشر الضوء بأكبر سرعة في الفراغ، نحو 300,000 كم/ثانية.',
         be: 'Найхутчэй сьвятло пашыраецца ў вакуўме — каля 300 000 км/с.',
@@ -159,6 +163,7 @@ export const fastestMedium_Question_Data = {
     {
       id: 'f671bcff-e9a1-5d7a-afd0-f28b4d591078',
       slug: 'question',
+      type: 'text',
       value: {
         ar: 'أين ينتشر الضوء بأكبر سرعة: في الفراغ أم الهواء أم الماء؟',
         be: 'Дзе сьвятло пашыраецца найхутчэй: у вакуўме, паветры ці вадзе?',

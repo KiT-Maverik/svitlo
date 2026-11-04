@@ -13,12 +13,13 @@ const lesson = {
   parameters: { languages: ['en', 'uk'] },
   flashcards: [{ id: 'card-id', front: [{ text: { fallback: 'en', en: 'Ray' } }] }],
   questions: { selectOneAnswer: { q1: { id: 'question-id', slug: 'q1', title: { en: 'What?', uk: 'Що?' } } } },
-  sections: {
-    quiz: {
+  sections: [
+    {
+      id: 'quiz-section', slug: 'quiz', type: 'quiz',
       title: { language: 'en', value: 'Quiz' },
-      content: { quiz: { quiz: { questions: { q1: { id: 'question-id', slug: 'q1' } } } } },
+      content: [{ type: 'quiz', id: 'quiz-block', slug: 'quiz', questions: { q1: { id: 'question-id', slug: 'q1' } } }],
     },
-  },
+  ],
 };
 
 describe('renderLessonFiles', () => {
@@ -29,10 +30,10 @@ describe('renderLessonFiles', () => {
     const cards = JSON.parse(files.get(`c/${id}/flashcards/uk.json`)!);
     const questions = JSON.parse(files.get(`c/${id}/questions/uk.json`)!);
     assert.equal(config.data.title, 'Світло');
-    assert.deepEqual(config.data.sections.quiz.content.quiz.quiz.questionSlugs, ['q1']);
+    assert.deepEqual(config.data.sections[0].content[0].questionSlugs, ['q1']);
     assert.equal(config.data.flashcards, undefined);
     assert.equal(config.data.questions, undefined);
-    assert.deepEqual(config.localeSources['/sections/quiz/title'], { code: 'en', isFallback: true });
+    assert.deepEqual(config.localeSources['/sections/0/title'], { code: 'en', isFallback: true });
     assert.equal(cards.data[0].front[0].text, 'Ray');
     assert.deepEqual(cards.localeSources['/0/front/0/text'], { code: 'en', isFallback: true });
     assert.equal(questions.data.selectOneAnswer.q1.title, 'Що?');

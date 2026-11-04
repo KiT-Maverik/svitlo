@@ -231,6 +231,7 @@ export const checkpoint = {
 type CheckpointAnswer = Checkpoint_ContentBlock<'data'>['items'][number]['answer'];
 
 export const checkpointData = {
+  type: 'checkpoint',
   id: 'cd65e160-da27-57e1-a58f-38b1276c4346',
   slug: 'checkpoint' as const,
   title: checkpoint.title,
@@ -239,6 +240,7 @@ export const checkpointData = {
     answer: [{
       id: `light-explanation-answer-${index + 1}`,
       slug: `lightExplanationAnswer${index + 1}`,
+      type: 'text',
       value: answer,
     }] satisfies CheckpointAnswer,
   })),

@@ -12,6 +12,7 @@ export const howLightMoves_Flashcards = [
       {
         id: '92a594ef-604e-5145-84cd-eb8c027c427b',
         slug: 'front',
+        type: 'text',
         value: lightTravelsStraight_Question_Data.question[0].value,
       },
     ],
@@ -19,6 +20,7 @@ export const howLightMoves_Flashcards = [
       {
         id: '0abe9721-e67e-5c7a-97d4-c152bf863286',
         slug: 'back',
+        type: 'text',
         value: lightTravelsStraight_Question_Data.answers.correct.straightLine.value,
       },
     ],
@@ -33,6 +35,7 @@ export const howLightMoves_Flashcards = [
       {
         id: '77e01b3b-7d28-5910-9ba0-2021fa71dc50',
         slug: 'front',
+        type: 'text',
         value: fastestMedium_Question_Data.question[0].value,
       },
     ],
@@ -40,6 +43,7 @@ export const howLightMoves_Flashcards = [
       {
         id: 'b790287a-f297-5057-88b1-954e1226ca5f',
         slug: 'back',
+        type: 'text',
         value: fastestMedium_Question_Data.answers.correct.vacuum.value,
       },
     ],
@@ -54,6 +58,7 @@ export const howLightMoves_Flashcards = [
       {
         id: '8c3c60f6-3f70-5ab3-aa22-0a99a34888cd',
         slug: 'front',
+        type: 'text',
         value: opaqueObjectShadow_Question_Data.question[0].value,
       },
     ],
@@ -61,6 +66,7 @@ export const howLightMoves_Flashcards = [
       {
         id: '2df093ea-4ef3-5935-94e7-06bb5a4b409c',
         slug: 'back',
+        type: 'text',
         value: opaqueObjectShadow_Question_Data.answers.correct.shadow.value,
       },
     ],
