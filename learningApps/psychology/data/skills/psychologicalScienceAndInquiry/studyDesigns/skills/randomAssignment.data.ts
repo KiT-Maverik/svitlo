@@ -52,7 +52,7 @@ export const randomAssignment_Skill_Data = buildSkillConfig({
       ko: "무작위 배정이 연구 집단의 비교 가능성을 어떻게 높이는지 알아보세요.",
       tr: "Rastgele atamanın araştırma gruplarını nasıl daha karşılaştırılabilir kıldığını öğren.",
       vi: "Hiểu cách phân nhóm ngẫu nhiên giúp các nhóm nghiên cứu dễ so sánh hơn.",
-      ta: "சீரற்ற ஒதுக்கீடு ஆய்வுக் குழுக்களை ஒப்பிடுவதற்கு எவ்வாறு உதவுகிறது என்பதைப் புரிந்துகொள்.",
+      ta: "சீரற்ற ஒதுக்கீடு ஆய்வுக் குழுக்களை ஒப்பிடுவதற்கு எவ்வாறு உதவுகிறது என்பதைப் புரிந்துகொள்ளுங்கள்.",
       te: "యాదృచ్ఛిక కేటాయింపుతో అధ్యయన సమూహాలను పోల్చడం ఎలా సులభమవుతుందో తెలుసుకోండి.",
       mr: "यादृच्छिक वाटपामुळे संशोधनातील गट अधिक तुलनीय कसे होतात ते समजून घे.",
       ms: "Fahami bagaimana penugasan rawak menjadikan kumpulan kajian lebih setanding.",

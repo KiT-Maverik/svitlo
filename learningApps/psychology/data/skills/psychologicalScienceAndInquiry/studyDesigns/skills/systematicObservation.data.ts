@@ -52,7 +52,7 @@ export const systematicObservation_Skill_Data = buildSkillConfig({
       ko: "개인적 인상에 의존하지 않고 일관된 관찰 규칙으로 행동을 기록해 보세요.",
       tr: "Kişisel izlenimler yerine tutarlı gözlem kurallarıyla davranışı kaydet.",
       vi: "Ghi lại hành vi theo quy tắc quan sát nhất quán thay vì chỉ dựa vào ấn tượng.",
-      ta: "தனிப்பட்ட எண்ணங்களை நம்பாமல் ஒரே மாதிரியான கவனிப்பு விதிகளின்படி நடத்தையைப் பதிவு செய்.",
+      ta: "தனிப்பட்ட எண்ணங்களை நம்பாமல் ஒரே மாதிரியான கவனிப்பு விதிகளின்படி நடத்தையைப் பதிவு செய்யுங்கள்.",
       te: "వ్యక్తిగత అభిప్రాయాల బదులు ఒకే విధమైన పరిశీలన నియమాలతో ప్రవర్తనను నమోదు చేయండి.",
       mr: "केवळ छापांऐवजी ठरावीक निरीक्षण नियम वापरून वर्तनाची नोंद कर.",
       ms: "Catat tingkah laku mengikut peraturan pemerhatian yang konsisten, bukan tanggapan peribadi.",
