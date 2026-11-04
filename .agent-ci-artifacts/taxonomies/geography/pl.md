@@ -48,7 +48,7 @@ Skills: 3
 
 **Methodological description (English):** Identify affected places and the warning's time scope without mistaking a forecast zone for an exact prediction at every point.
 
-**User-friendly description (pl):** Odczytaj mapę ostrzeżeń, aby wskazać dotknięte obszary i okresy.
+**User-friendly description (pl):** Odczytaj mapę ostrzeżeń pogodowych, aby wskazać objęte nimi obszary i okresy ich obowiązywania.
 
 ##### Rozpoznawanie obszarów zagrożonych zjawiskami pogodowymi
 
@@ -728,7 +728,7 @@ Skills: 5
 
 **User-friendly description (pl):** Rozpoznaj, kiedy naturalne skupisko użytecznych minerałów tworzy złoże.
 
-##### Wyjaśnianie, dlaczego złoże może być rudą opłacalną do wydobycia lub nie
+##### Wyjaśnianie, kiedy złoże mineralne nadaje się do opłacalnego wydobycia
 
 [explainWhyAMineralDepositMayOrMayNotBeAnOre.data.ts](../../../learningApps/geography/data/skills/geology/mineralDeposits/skills/explainWhyAMineralDepositMayOrMayNotBeAnOre.data.ts)
 

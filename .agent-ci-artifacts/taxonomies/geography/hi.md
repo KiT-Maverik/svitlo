@@ -48,7 +48,7 @@ Skills: 3
 
 **Methodological description (English):** Identify affected places and the warning's time scope without mistaking a forecast zone for an exact prediction at every point.
 
-**User-friendly description (hi):** मौसम चेतावनी के नक्शे से प्रभावित इलाके और समय पहचानें।
+**User-friendly description (hi):** मौसम चेतावनी के नक्शे से चेतावनी के अंतर्गत आने वाले इलाके और उसकी अवधि पहचानें।
 
 ##### मौसमी खतरों के संपर्क वाले क्षेत्र पहचानना
 
@@ -930,7 +930,7 @@ Skills: 5
 
 **User-friendly description (hi):** समझाएँ कि वस्तुओं, सेवाओं और संसाधनों के लिए क्षेत्र एक-दूसरे पर कैसे निर्भर हैं।
 
-##### आर्थिक गतिविधियों के भौगोलिक विशेषज्ञता को समझाना
+##### आर्थिक गतिविधियों की भौगोलिक विशेषज्ञता को समझाना
 
 [explainGeographicSpecializationOfEconomicActivities.data.ts](../../../learningApps/geography/data/skills/humanGeography/economicGeography/skills/explainGeographicSpecializationOfEconomicActivities.data.ts)
 
@@ -1080,7 +1080,7 @@ Skills: 3
 
 **Methodological description (English):** Determine or explain the difference in elevation between local points independently of their absolute heights above sea level, using it to describe the vertical variation of a landscape.
 
-**User-friendly description (hi):** समुद्र तल से ऊँचाई की परवाह किए बिना आसपास के स्थानों के बीच ऊँचाई का अंतर तुलना करें।
+**User-friendly description (hi):** समुद्र तल से ऊँचाई की परवाह किए बिना आसपास के स्थानों के बीच ऊँचाई के अंतर की तुलना करें।
 
 #### मृदा और सतही अवसाद
 

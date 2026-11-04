@@ -48,7 +48,7 @@ Skills: 3
 
 **Methodological description (English):** Identify affected places and the warning's time scope without mistaking a forecast zone for an exact prediction at every point.
 
-**User-friendly description (uk):** Прочитай карту попереджень і визнач постраждалі райони та проміжки часу.
+**User-friendly description (uk):** Прочитай карту погодних попереджень і визнач території, на які вони поширюються, та час їхньої дії.
 
 ##### Розпізнавання територій, уразливих до погодних небезпек
 
@@ -728,7 +728,7 @@ Skills: 5
 
 **User-friendly description (uk):** Розпізнавай, коли природне скупчення корисних мінералів утворює родовище.
 
-##### Пояснювати, чому родовище може бути рудним або нерентабельним
+##### Пояснювати, за яких умов родовище є рудним і його можна розробляти
 
 [explainWhyAMineralDepositMayOrMayNotBeAnOre.data.ts](../../../learningApps/geography/data/skills/geology/mineralDeposits/skills/explainWhyAMineralDepositMayOrMayNotBeAnOre.data.ts)
 

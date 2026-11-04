@@ -48,7 +48,7 @@ Skills: 3
 
 **Methodological description (English):** Identify affected places and the warning's time scope without mistaking a forecast zone for an exact prediction at every point.
 
-**User-friendly description (de):** Lies eine Wetterwarnkarte und erkenne betroffene Gebiete und Zeiträume.
+**User-friendly description (de):** Lies eine Wetterwarnkarte und erkenne, für welche Gebiete und Zeiträume die Warnungen gelten.
 
 ##### Gebiete mit Wettergefahren erkennen
 

@@ -48,7 +48,7 @@ Skills: 3
 
 **Methodological description (English):** Identify affected places and the warning's time scope without mistaking a forecast zone for an exact prediction at every point.
 
-**User-friendly description (qm):** Ava tenbiyesi haritasında tesir körgen yerlerni ve vaqıt aralıqlarını belgile.
+**User-friendly description (qm):** Ava tenbiyesi haritasında tenbiye qamrağan yerlerni ve keçerli vaqıt aralığını belgile.
 
 ##### Ava havflarına açıq yerlerni tanımaq
 
@@ -390,7 +390,7 @@ Skills: 5
 
 **Methodological description (English):** Separate areas sharing a measurable characteristic from areas connected through activity around a center, such as a commuting region.
 
-**User-friendly description (qm):** Umumiy hususiyetler ya da merkeznen bağlarına köre belgilengən regionlarnı tanı.
+**User-friendly description (qm):** Umumiy hususiyetler ya da merkeznen bağlarına köre belgilengen regionlarnı tanı.
 
 ##### Coğrafiy obyekt añlamını añlatmaq
 
@@ -440,7 +440,7 @@ Skills: 8
 
 **Methodological description (English):** Describe a historically and geographically recognized world region such as Europe or Asia, distinguishing regional convention from purely continuous landmass without imposing one national schoolbook's definitions universally.
 
-**User-friendly description (qm):** Dünya parçalarınıñ qısmen qa'idelerge köre belgilengənini añla.
+**User-friendly description (qm):** Dünya parçalarınıñ qısmen qa'idelerge köre belgilengenini añla.
 
 ##### Okean añlamını añlatmaq
 
@@ -920,7 +920,7 @@ Skills: 5
 
 **Methodological description (English):** Relate transport access, resources, population, and environmental constraints to plausible site choices without claiming one universal optimal location.
 
-**User-friendly description (qm):** Ulaşım qolaylığı, resurslar ve relyef işletmelerniñ yerini niçün tesir etkenini añlat.
+**User-friendly description (qm):** Ulaşım qolaylığı, resurslar ve relyef işletmelerniñ qayda yerleşkenine nasıl tesir etkenini añlat.
 
 ##### Bölgeler arasında coğrafiy qarşılıqlı bağlılıqnı añlatmaq
 
@@ -1626,7 +1626,7 @@ Skills: 6
 
 **Methodological description (English):** Explain that the legally observed clock time in a place depends on the jurisdiction and applicable time zone, and can differ from the Sun's position. Civil local time is not the same concept as local solar time, and different places can share one civil clock time.
 
-**User-friendly description (qm):** Bir yerde qanunen belgilengən saatnen Küneşke esaslanğan vaqıtnı farq et.
+**User-friendly description (qm):** Bir yerde qanunen belgilengen saatnen Küneşke esaslanğan vaqıtnı farq et.
 
 ##### Yerli küneş vaqıtınıñ boyluqqa köre niçün deñişkenini añlatmaq
 
@@ -1634,7 +1634,7 @@ Skills: 6
 
 **Methodological description (English):** Connect Earth's rotation with the apparent passage of the Sun across the sky: places at different longitudes reach solar noon at different moments. This geographic tendency is not a rule that political zone boundaries follow exact meridians.
 
-**User-friendly description (qm):** Farklı boyluqlarda küneş öğlesi ne içün ayrı vaqıtlarda kelgenini añlat.
+**User-friendly description (qm):** Farqlı boyluqlarda küneş öğlesi ne içün ayrı vaqıtlarda kelgenini añlat.
 
 ##### Alendeki tarih deñiştirme sızığını keçkende tarih deñişüvini añlamaq
 
@@ -1746,7 +1746,7 @@ Skills: 4
 
 **User-friendly description (qm):** Buvğa çevrilüv, yağanaqlar, toplanma ve aqış arasındaki bağnı añlat.
 
-#### Deñiz ve yalığa bağlı adisesler
+#### Deñiz ve yalığa bağlı adiseler
 
 Skills: 3
 

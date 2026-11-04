@@ -48,7 +48,7 @@ Skills: 3
 
 **Methodological description (English):** Identify affected places and the warning's time scope without mistaking a forecast zone for an exact prediction at every point.
 
-**User-friendly description (es):** Lee el mapa de alertas para identificar áreas y períodos afectados.
+**User-friendly description (es):** Lee el mapa de alertas meteorológicas para identificar las zonas y los períodos de vigencia de los avisos.
 
 ##### Reconocer zonas expuestas a riesgos meteorológicos
 
@@ -66,7 +66,7 @@ Skills: 4
 
 **Methodological description (English):** Water vapor, atmospheric pressure differences, moving air masses and energy exchanges explain the geographic formation and movement of weather systems. The focus is observable and spatially significant processes rather than equations of fluid mechanics.
 
-**User-friendly description (es):** Descubre qué provoca las nubes, la lluvia, el viento y los sistemas cambiantes.
+**User-friendly description (es):** Descubre qué provoca la formación de nubes, la lluvia y el viento, y los cambios en los sistemas meteorológicos.
 
 ##### Explicar cómo se forman las nubes
 
@@ -728,7 +728,7 @@ Skills: 5
 
 **User-friendly description (es):** Reconoce cuándo una concentración natural de minerales útiles constituye un yacimiento.
 
-##### Explicar por qué un yacimiento puede ser mineral explotable o no
+##### Explicar por qué algunos yacimientos minerales pueden explotarse y otros no
 
 [explainWhyAMineralDepositMayOrMayNotBeAnOre.data.ts](../../../learningApps/geography/data/skills/geology/mineralDeposits/skills/explainWhyAMineralDepositMayOrMayNotBeAnOre.data.ts)
 

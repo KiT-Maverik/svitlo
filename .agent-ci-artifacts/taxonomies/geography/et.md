@@ -48,7 +48,7 @@ Skills: 3
 
 **Methodological description (English):** Identify affected places and the warning's time scope without mistaking a forecast zone for an exact prediction at every point.
 
-**User-friendly description (et):** Loe hoiatuskaardilt mõjutatud alad ja ajavahemikud.
+**User-friendly description (et):** Loe hoiatuskaardilt, millistele aladele ja ajavahemikele hoiatus kehtib.
 
 ##### Ilmaohtudele avatud piirkondade äratundmine
 
@@ -1344,7 +1344,7 @@ Skills: 3
 
 **Methodological description (English):** Relate mapped color ranges, symbol sizes, or categories to the underlying variable while respecting units and class boundaries.
 
-**User-friendly description (et):** Kasuta teemakaarte legende, et lugeda kategooriaid, vahemikke ja väärtusi.
+**User-friendly description (et):** Kasuta teemakaartide legende, et lugeda kategooriaid, vahemikke ja väärtusi.
 
 ##### Geograafilise küsimuse jaoks kaarditüübi valimine
 
@@ -1382,7 +1382,7 @@ Skills: 3
 
 **User-friendly description (et):** Võrdle tingimusi, mille tõttu eri paikades kujunevad erinevad elupaigad.
 
-##### Tunda peamiste maisma bioomide levikumustreid
+##### Tunda peamiste maismaabioomide levikumustreid
 
 [identifyMajorTerrestrialBiomePatterns.data.ts](../../../learningApps/geography/data/skills/naturalRegionsAndBiogeography/biomesAndHabitats/skills/identifyMajorTerrestrialBiomePatterns.data.ts)
 
