@@ -61,7 +61,7 @@ export const motivationGoalsAndHabits_SkillDomain_Data = buildSkillDomainConfig(
       ko: "사람들이 행동하고 목표를 좇으며 자동적인 습관을 형성하는 이유를 알아보세요.",
       tr: "İnsanların neden harekete geçtiğini, hedef izlediğini ve otomatik rutinler edindiğini keşfet.",
       vi: "Khám phá vì sao con người hành động, theo đuổi mục tiêu và tạo thói quen tự động.",
-      ta: "மக்கள் ஏன் செயல்பட்டு, இலக்குகளை நாடி, தானியங்கும் வழக்கங்களை உருவாக்குகிறார்கள் என்பதை அறிக.",
+      ta: "மக்கள் ஏன் செயல்பட்டு, இலக்குகளை நாடி, தானியங்கும் வழக்கங்களை உருவாக்குகிறார்கள் என்பதை அறியுங்கள்.",
       te: "మనుషులు ఎందుకు చర్యలు తీసుకుని, లక్ష్యాలు చేరి, స్వయంచాలక అలవాట్లు ఏర్పరుచుకుంటారో తెలుసుకోండి.",
       mr: "माणसे का कृती करतात, ध्येयांचा पाठपुरावा करतात आणि आपोआप होणाऱ्या सवयी बनवतात ते पाहा.",
       ms: "Terokai mengapa orang bertindak, mengejar matlamat dan membentuk rutin automatik.",

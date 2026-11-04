@@ -52,7 +52,7 @@ export const seekingAppropriateSupport_Skill_Data = buildSkillConfig({
       ko: "믿을 수 있는 사람에게 도움을 요청해야 할 때를 알아보세요.",
       tr: "Güvendiğin bir kişiden ne zaman destek istemenin uygun olduğunu tanı.",
       vi: "Nhận biết lúc nào nên tìm sự giúp đỡ từ người đáng tin cậy.",
-      ta: "நம்பிக்கைக்குரிய ஒருவரிடம் எப்போது உதவி கேட்பது சரி என்பதை அறிக.",
+      ta: "நம்பிக்கைக்குரிய ஒருவரிடம் எப்போது உதவி கேட்பது சரி என்பதை அறியுங்கள்.",
       te: "నమ్మకమైన వ్యక్తి నుంచి సహాయం ఎప్పుడు కోరాలో గుర్తించండి.",
       mr: "विश्वासू व्यक्तीकडून मदत घेणे कधी योग्य आहे ते ओळख.",
       ms: "Kenali masa yang sesuai untuk meminta sokongan orang dipercayai.",

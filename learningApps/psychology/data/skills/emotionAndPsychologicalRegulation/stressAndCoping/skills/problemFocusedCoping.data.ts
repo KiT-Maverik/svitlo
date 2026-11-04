@@ -52,7 +52,7 @@ export const problemFocusedCoping_Skill_Data = buildSkillConfig({
       ko: "스트레스를 일으키는 문제나 조건을 바꾸어 대처하는 방법을 알아보세요.",
       tr: "Stresin kaynağı olan problemi veya koşulları değiştirerek baş etmeyi keşfet.",
       vi: "Tìm cách giảm căng thẳng bằng cách thay đổi vấn đề hay điều kiện gây ra nó.",
-      ta: "அழுத்தம் தரும் பிரச்சினை அல்லது சூழலை மாற்றிச் சமாளிப்பதை ஆராய்.",
+      ta: "அழுத்தம் தரும் பிரச்சினை அல்லது சூழலை மாற்றிச் சமாளிப்பதை ஆராயுங்கள்.",
       te: "ఒత్తిడి కలిగించే సమస్య లేదా పరిస్థితిని మార్చి ఎదుర్కొనే మార్గాలను తెలుసుకోండి.",
       mr: "ताण आणणारी समस्या किंवा परिस्थिती बदलून सामना कसा करतात ते पाहा.",
       ms: "Terokai cara mengubah masalah atau keadaan yang menyebabkan tekanan.",

@@ -52,7 +52,7 @@ export const emotionFocusedCoping_Skill_Data = buildSkillConfig({
       ko: "상황을 바꾸지 못할 때 감정 반응을 다스리는 방법을 알아보세요.",
       tr: "Koşullar değiştirilemediğinde duygusal tepkileri yönetme yollarını keşfet.",
       vi: "Tìm cách quản lý cảm xúc khi không thể thay đổi hoàn cảnh.",
-      ta: "சூழலை மாற்ற முடியாதபோது உணர்ச்சிப் பதில்களை நிர்வகிக்கும் வழிகளை ஆராய்.",
+      ta: "சூழலை மாற்ற முடியாதபோது உணர்ச்சிப் பதில்களை நிர்வகிக்கும் வழிகளை ஆராயுங்கள்.",
       te: "పరిస్థితులు మార్చలేనప్పుడు భావ స్పందనలను నిర్వహించే విధానాలను తెలుసుకోండి.",
       mr: "परिस्थिती बदलू शकत नसल्यास भावनिक प्रतिक्रिया सांभाळण्याचे मार्ग पाहा.",
       ms: "Terokai cara mengurus emosi apabila keadaan tidak dapat diubah.",
