@@ -73,7 +73,7 @@ export const biologicalDifferencesAndContext_SkillGroup_Data = buildSkillGroupCo
       be: "Даведайся, як спадчынныя чыньнікі, гармоны і асяродзьдзе разам фармуюць паводзіны.",
       ka: "გაიგე, როგორ აყალიბებს მემკვიდრეობა, ჰორმონები და გარემო ქცევას ერთობლივად.",
       kk: "Тұқым қуалайтын факторлар, гормондар мен орта мінез-құлықты қалай бірге қалыптастыратынын біл.",
-      qm: "Miras qalıp kelgen amiller, gormonlar ve muіt davranışnı nasıl beraber şekillendirgenini ögren.",
+      qm: "Miras qalıp kelgen amiller, gormonlar ve mühit davranışnı nasıl beraber şekillendirgenini ögren.",
     },
   },
 });
