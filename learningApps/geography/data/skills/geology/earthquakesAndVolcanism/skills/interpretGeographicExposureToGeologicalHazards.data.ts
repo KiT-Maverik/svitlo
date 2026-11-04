@@ -10,7 +10,7 @@ export const interpretGeographicExposureToGeologicalHazards_Skill_Data = buildSk
     es: "Interpretar la exposición geográfica a peligros geológicos",
     ar: "تفسير التعرض الجغرافي للأخطار الجيولوجية",
     fr: "Interpréter l'exposition géographique aux aléas géologiques",
-    bn: "ভূতাত্ত্বিক বিপদের ভৌগোলিক সংস্পর্শ ব্যাখ্যা করা",
+    bn: "ভূতাত্ত্বিক বিপদের সংস্পর্শে থাকা অঞ্চল বিশ্লেষণ করা",
     pt: "Interpretar a exposição geográfica a perigos geológicos",
     ur: "ارضیاتی خطرات سے جغرافیائی طور پر متاثر ہونے کے امکان کو سمجھنا",
     id: "Menafsirkan keterpaparan geografis terhadap bahaya geologi",
