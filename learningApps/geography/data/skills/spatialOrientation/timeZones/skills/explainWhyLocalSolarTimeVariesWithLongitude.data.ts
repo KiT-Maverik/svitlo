@@ -65,7 +65,7 @@ export const explainWhyLocalSolarTimeVariesWithLongitude_Skill_Data = buildSkill
       be: "Растлумач, чаму сонечны поўдзень на розных даўготах настае ў розны час.",
       ka: "ახსენი, რატომ დგება მზის შუადღე სხვადასხვა გრძედზე სხვადასხვა დროს.",
       kk: "Әртүрлі бойлықтарда күн талтүсі неге әр уақытта болатынын түсіндір.",
-      qm: "Farklı boyluqlarda küneş öğlesi ne içün ayrı vaqıtlarda kelgenini añlat.",
+      qm: "Farqlı boyluqlarda küneş öğlesi ne içün ayrı vaqıtlarda kelgenini añlat.",
     },
   },
 });

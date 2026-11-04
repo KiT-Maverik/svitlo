@@ -39,7 +39,7 @@ export const interpretRelativeReliefBetweenLocations_Skill_Data = buildSkillConf
     frontend: {
       en: "Compare height differences between nearby places independently of sea-level elevation.",
       zh: "不依赖于海拔高度，比较邻近地点之间的高差。",
-      hi: "समुद्र तल से ऊँचाई की परवाह किए बिना आसपास के स्थानों के बीच ऊँचाई का अंतर तुलना करें।",
+      hi: "समुद्र तल से ऊँचाई की परवाह किए बिना आसपास के स्थानों के बीच ऊँचाई के अंतर की तुलना करें।",
       es: "Compara las diferencias de altura entre lugares cercanos sin depender de su altitud sobre el nivel del mar.",
       ar: "قارن فروق الارتفاع بين الأماكن المتقاربة بصرف النظر عن ارتفاعها عن سطح البحر.",
       fr: "Compare les différences de hauteur entre des lieux proches sans tenir compte de leur altitude par rapport à la mer.",
