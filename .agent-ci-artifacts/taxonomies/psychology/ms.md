@@ -304,7 +304,7 @@ Skills: 4
 
 **User-friendly description (ms):** Terokai cara perubahan kesedaran dikaji melalui laporan kendiri dan tingkah laku.
 
-##### Pemprosesan Berusaha dan Automatik
+##### Pemprosesan Terkawal dan Automatik
 
 [effortfulAndAutomaticProcessing.data.ts](../../../learningApps/psychology/data/skills/attentionAndConsciousness/awarenessAndAutomaticity/skills/effortfulAndAutomaticProcessing.data.ts)
 

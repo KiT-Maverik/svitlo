@@ -1416,7 +1416,7 @@ Skills: 4
 
 **User-friendly description (ka):** ამოიცანი, როდის არის საჭირო სხვადასხვა კვალიფიციური სპეციალისტი ან მიმართვა.
 
-##### ფსიქოლოგიური სკრინინგი და დიაგნოზი
+##### განსხვავება ფსიქოლოგიურ სკრინინგსა და დიაგნოზს შორის
 
 [psychologicalScreeningVersusDiagnosis.data.ts](../../../learningApps/psychology/data/skills/mentalHealthAndClinicalScience/assessmentAndProfessionalSupport/skills/psychologicalScreeningVersusDiagnosis.data.ts)
 
@@ -1718,7 +1718,7 @@ Skills: 7
 
 **User-friendly description (ka):** გამოიკვლიე, რატომ ასუსტებს გარე ჯილდო ზოგჯერ შინაგან ინტერესს.
 
-##### საჭიროებები და მისწრაფებები
+##### მოთხოვნილებები და ლტოლვები
 
 [needsAndDrives.data.ts](../../../learningApps/psychology/data/skills/motivationGoalsAndHabits/motivationalMechanisms/skills/needsAndDrives.data.ts)
 

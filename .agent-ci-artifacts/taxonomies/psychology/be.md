@@ -1416,7 +1416,7 @@ Skills: 4
 
 **User-friendly description (be):** Распазнавай, калі патрэбныя фахоўцы розных спэцыяльнасьцяў або накіраваньне.
 
-##### Псыхалягічны скрынінг і дыягностыка
+##### Розьніца паміж псыхалягічным скрынінгам і дыягназам
 
 [psychologicalScreeningVersusDiagnosis.data.ts](../../../learningApps/psychology/data/skills/mentalHealthAndClinicalScience/assessmentAndProfessionalSupport/skills/psychologicalScreeningVersusDiagnosis.data.ts)
 

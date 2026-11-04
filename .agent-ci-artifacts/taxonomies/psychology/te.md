@@ -1416,7 +1416,7 @@ Skills: 4
 
 **User-friendly description (te):** వేర్వేరు అర్హత కలిగిన నిపుణులు లేదా రిఫరల్ ఎప్పుడు అవసరమో గుర్తించండి.
 
-##### మానసిక స్క్రీనింగ్ మరియు నిర్ధారణ
+##### మానసిక స్క్రీనింగ్ మరియు నిర్ధారణ మధ్య తేడా
 
 [psychologicalScreeningVersusDiagnosis.data.ts](../../../learningApps/psychology/data/skills/mentalHealthAndClinicalScience/assessmentAndProfessionalSupport/skills/psychologicalScreeningVersusDiagnosis.data.ts)
 

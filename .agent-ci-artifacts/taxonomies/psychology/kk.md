@@ -1416,7 +1416,7 @@ Skills: 4
 
 **User-friendly description (kk):** Әртүрлі білікті маман не басқа маманға жолдама қашан қажет екенін таны.
 
-##### Психологиялық скрининг пен диагноз
+##### Психологиялық скрининг пен диагноздың айырмашылығы
 
 [psychologicalScreeningVersusDiagnosis.data.ts](../../../learningApps/psychology/data/skills/mentalHealthAndClinicalScience/assessmentAndProfessionalSupport/skills/psychologicalScreeningVersusDiagnosis.data.ts)
 
@@ -1492,7 +1492,7 @@ Skills: 5
 
 **User-friendly description (kk):** Даму ерекшеліктерін түсіну үшін мәнмәтін мен кәсіби бағалау неге қажет екенін біл.
 
-##### Мәжбүрлі және қайталанатын үлгілер
+##### Компульсивті және қайталанатын үлгілер
 
 [compulsiveAndRepetitivePatterns.data.ts](../../../learningApps/psychology/data/skills/mentalHealthAndClinicalScience/patternsOfPsychologicalDifficulty/skills/compulsiveAndRepetitivePatterns.data.ts)
 

@@ -1416,7 +1416,7 @@ Skills: 4
 
 **User-friendly description (tr):** Ne zaman farklı nitelikli uzmanlara veya yönlendirmeye ihtiyaç olduğunu fark et.
 
-##### Psikolojik Tarama ve Tanı
+##### Psikolojik Tarama ile Tanı Arasındaki Fark
 
 [psychologicalScreeningVersusDiagnosis.data.ts](../../../learningApps/psychology/data/skills/mentalHealthAndClinicalScience/assessmentAndProfessionalSupport/skills/psychologicalScreeningVersusDiagnosis.data.ts)
 
@@ -1492,7 +1492,7 @@ Skills: 5
 
 **User-friendly description (tr):** Gelişim farklılıklarının neden bağlam ve uzman değerlendirmesi gerektirdiğini anla.
 
-##### Zorlayıcı ve Tekrarlayan Örüntüler
+##### Kompulsif ve Tekrarlayıcı Örüntüler
 
 [compulsiveAndRepetitivePatterns.data.ts](../../../learningApps/psychology/data/skills/mentalHealthAndClinicalScience/patternsOfPsychologicalDifficulty/skills/compulsiveAndRepetitivePatterns.data.ts)
 

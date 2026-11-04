@@ -1498,7 +1498,7 @@ Skills: 5
 
 **Methodological description (English):** Distinguish persistent unwanted thoughts and ritualized behavior associated with impairment from ordinary habits.
 
-**User-friendly description (he):** הבחינו בין מחשבות לא רצויות וטקסים פוגעניים לתפקוד לבין הרגלים רגילים.
+**User-friendly description (he):** הבחינו בין מחשבות לא רצויות וטקסים הפוגעים בתפקוד לבין הרגלים רגילים.
 
 ##### קשיים הקשורים לדיכאון
 
