@@ -26,3 +26,24 @@ export type Locale_ResponseParams = {
 };
 
 export type Locale_Config = Locales_All | Locales_Subset<LanguageCode> | Locales_Single | Locales_Partial;
+
+type New_Locale_Config<Languages extends LanguageCode = LanguageCode> =
+  Record<Languages, string>;
+
+type NonLocalizable = string;
+
+type Locale_Options<T extends LanguageCode> = New_Locale_Config<T> | NonLocalizable;
+
+const buildLocaleConfig = (
+  config: New_Locale_Config<LanguageCode>,
+  fallback: LanguageCode = 'en'
+) => {
+  if (typeof config === 'string') {
+    return config;
+  }
+
+  return {
+    ...config,
+    fallback,
+  };
+}
