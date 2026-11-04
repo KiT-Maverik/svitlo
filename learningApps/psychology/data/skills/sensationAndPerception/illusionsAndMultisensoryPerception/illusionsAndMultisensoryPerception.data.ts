@@ -34,7 +34,7 @@ export const illusionsAndMultisensoryPerception_SkillGroup_Data = buildSkillGrou
     be: "Ілюзіі і шматсэнсарнае ўспрыманьне",
     ka: "ილუზიები და მრავალსენსორული აღქმა",
     kk: "Иллюзиялар және көпсезімдік қабылдау",
-    qm: "Yanlış duyğular ve çoq duyğulı qabul etüv",
+    qm: "Qabul etüv illüziyaları ve çoq duyğulı qabul etüv",
   },
   skills: {
     crossModalIntegration: crossModalIntegration_Skill_Data,
