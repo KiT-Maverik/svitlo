@@ -118,8 +118,7 @@ function assembleBlocks(
         resolved.text = string(block.text, location + '/' + reference + '.text');
       }
       if (kind === 'scene') {
-        resolved.messages = record(block.messages, location + '/' + reference + '.messages');
-        resolved.locale = { code: language };
+        record(block.locales, location + '/' + reference + '.locales');
         resolved.sceneId = location + '/' + reference;
       }
       normalized[kind][key] = resolved;

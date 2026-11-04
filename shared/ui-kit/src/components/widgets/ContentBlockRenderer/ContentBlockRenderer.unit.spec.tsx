@@ -45,11 +45,11 @@ describe('ContentBlockRenderer', () => {
 
   it('continues to resolve scenes from the supplied registry', () => {
     const sceneRegistry: SceneRegistry = id => id === 'diagram'
-      ? ({ messages }) => <div role="img" aria-label={messages.title as string} />
+      ? ({ locales }) => <div role="img" aria-label={locales.title as string} />
       : undefined;
     render(<ContentBlockRenderer blocks={[{
       id: 'diagram', type: 'scene', rendererKey: 'diagram',
-      messages: { title: 'Diagram' },
+      locales: { title: 'Diagram' },
     }]} sceneRegistry={sceneRegistry} />);
     expect(screen.getByRole('img', { name: 'Diagram' })).toBeVisible();
   });

@@ -118,7 +118,7 @@ const runtimeScene: ContentBlock_Scene<'response', TestLanguages> = {
   id: 'scene-id',
   type: 'scene',
   rendererKey: 'lightRayDiagram',
-  messages: { title: 'Light ray' },
+  locales: { title: 'Light ray' },
 };
 
 const customQuizScreen: ContentBlock_Quiz_Screen<'response', TestLanguages> = {

@@ -1,4 +1,7 @@
+// @vitest-environment node
 import { describe, expect, it } from 'vitest';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/localization';
+import { renderTextbookLessonFiles } from '@svitlo/engine/utils';
 import { assembleLessonResponse } from './assembleLessonResponse';
 const id = 'd3048d21-8690-5255-b62c-984c69ac272c';
 
@@ -22,7 +25,7 @@ function fixture() {
             order: [{ type: 'markdown', slug: 'p1' }, { type: 'scene', slug: 'ray' }, { type: 'checkpoint', slug: 'checkpoint' }],
             content: {
               markdown: { p1: { id: 'markdown-id', slug: 'p1', locales: '# Світло' } },
-              scene: { ray: { id: 'scene-id', slug: 'ray', messages: { scene: { title: 'Промінь' } } } },
+              scene: { ray: { id: 'scene-id', slug: 'ray', locales: { scene: { title: 'Промінь' } } } },
               checkpoint: { checkpoint: { id: 'check-id', slug: 'checkpoint', title: 'Перевірка', items: [] } },
             },
           },
@@ -42,6 +45,20 @@ function fixture() {
 }
 
 describe('assembleLessonResponse', () => {
+  it('assembles every language from the authored playground lesson', async () => {
+    const files = await renderTextbookLessonFiles(process.cwd());
+    for (const { language } of DEFAULT_SUPPORTED_LANGUAGES) {
+      const root = `c/${id}`;
+      const resource = (kind: 'config' | 'flashcards' | 'questions') =>
+        JSON.parse(files.get(`${root}/${kind}/${language}.json`) ?? 'null') as unknown;
+      const lesson = assembleLessonResponse(id, language, {
+        config: resource('config'),
+        flashcards: resource('flashcards'),
+        questions: resource('questions'),
+      });
+      expect(lesson.sections.theory.content.scene.lightPropagationSimulation.locales).toHaveProperty('scene.title');
+    }
+  });
   it('preserves ordering, locale sources, markdown, scene identity and resolved questions', () => {
     const lesson = assembleLessonResponse(id, 'uk', fixture());
     expect(Object.keys(lesson.sections)).toEqual(['theory', 'quiz']);
@@ -56,7 +73,7 @@ describe('assembleLessonResponse', () => {
     expect(lesson.sections.theory.content.markdown.p1.text).toEqual('# Світло');
     expect(lesson.sections.theory.content.scene.ray.sceneId).toEqual('c/'+id+'/theory/scene/ray');
     expect(lesson.sections.theory.content.scene.ray.locale).toEqual({ code: 'uk' });
-    expect(lesson.sections.theory.content.scene.ray.messages).toEqual({ scene: { title: 'Промінь' } });
+    expect(lesson.sections.theory.content.scene.ray.locales).toEqual({ scene: { title: 'Промінь' } });
     expect(lesson.sections.theory.content.checkpoint.checkpoint).toBeDefined();
     expect(lesson.sections.quiz.content.quiz.quiz.questions?.q1.id).toEqual('question-id');
     expect(lesson.localeSources.config['/title']).toEqual({ code: 'uk' });

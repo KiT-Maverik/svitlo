@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Box, Container } from '@mui/material';
@@ -6,7 +7,15 @@ import { PLAYGROUND_SKILL_ANALYTICS_DOMAINS } from '@/components/pages/SkillsMin
 
 export const metadata: Metadata = { title: 'Прокачати навичку — Світло Playground' };
 
-export default async function SkillLearningPage({ params }: { params: Promise<{ skillId: string }> }) {
+export default function SkillLearningPage({ params }: { params: Promise<{ skillId: string }> }) {
+  return (
+    <Suspense fallback={<Container component="main" maxWidth="md" sx={{ py: { xs: 2, md: 4 } }} />}>
+      <SkillLearningContent params={params} />
+    </Suspense>
+  );
+}
+
+async function SkillLearningContent({ params }: { params: Promise<{ skillId: string }> }) {
   const { skillId } = await params;
   return (
     <Container component="main" maxWidth="md" sx={{ py: { xs: 2, md: 4 } }}>
