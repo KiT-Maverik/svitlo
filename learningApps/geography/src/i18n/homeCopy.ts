@@ -29,4 +29,5 @@ export const geographyHomeCopy = {
   be: ['Геаграфія', 'Навучальныя матэрыялы рыхтуюцца.'],
   ka: ['გეოგრაფია', 'სასწავლო მასალები მზადდება.'],
   kk: ['География', 'Оқу материалдары дайындалып жатыр.'],
+  qm: ['Coğrafiya', 'Oquv materialları azırlana.'],
 } as const satisfies Readonly<Record<LanguageCode, HomeCopy>>;
