@@ -13,7 +13,7 @@ export const explainTradeOffsOfAProposedSpatialDecision_Skill_Data = buildSkillC
     bn: "প্রস্তাবিত স্থানিক সিদ্ধান্তের লাভ-ক্ষতি ব্যাখ্যা করা",
     pt: "Explicar vantagens e custos de uma decisão espacial proposta",
     ur: "مجوزہ مکانی فیصلے کے فائدے اور نقصانات سمجھانا",
-    id: "Menjelaskan pertukaran manfaat dan biaya keputusan spasial yang diusulkan",
+    id: "Menjelaskan kompromi manfaat dan biaya dalam keputusan spasial yang diusulkan",
     de: "Zielkonflikte einer vorgeschlagenen räumlichen Entscheidung erklären",
     ja: "提案された空間的な判断の利点と欠点を説明する",
     ko: "제안된 공간적 결정의 득실 설명하기",
