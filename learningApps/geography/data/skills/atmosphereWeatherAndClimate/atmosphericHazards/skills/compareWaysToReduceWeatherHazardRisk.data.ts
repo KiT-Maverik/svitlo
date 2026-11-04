@@ -12,7 +12,7 @@ export const compareWaysToReduceWeatherHazardRisk_Skill_Data = buildSkillConfig(
     fr: "Comparer les moyens de réduire les risques météo",
     bn: "আবহাওয়ার ঝুঁকি কমানোর উপায় তুলনা",
     pt: "Comparar formas de reduzir riscos meteorológicos",
-    ur: "موسمی خطروں کا خطرہ گھٹانے کے طریقوں کا موازنہ",
+    ur: "مقارنة طرق الحد من مخاطر الطقس",
     id: "Membandingkan cara mengurangi risiko bahaya cuaca",
     de: "Möglichkeiten zur Senkung von Wetterrisiken vergleichen",
     ja: "気象災害のリスクを減らす方法を比較する",
