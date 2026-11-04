@@ -32,7 +32,7 @@ export const geneEnvironmentInteraction_Skill_Data = buildSkillConfig({
     be: "Узаемадзеяньне генаў і асяродзьдзя",
     ka: "გენებისა და გარემოს ურთიერთქმედება",
     kk: "Ген мен ортаның өзара әрекеті",
-    qm: "Gen ve muіt tesiri",
+    qm: "Gen ve mühit tesiri",
   },
   description: {
     methodological: "Explain why an inherited predisposition can have different behavioral consequences in different surroundings.",
