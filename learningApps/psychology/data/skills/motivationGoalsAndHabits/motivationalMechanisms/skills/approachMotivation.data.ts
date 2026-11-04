@@ -54,7 +54,7 @@ export const approachMotivation_Skill_Data = buildSkillConfig({
       vi: "Nhận biết động lực tiến tới kết quả mong muốn.",
       ta: "விரும்பிய விளைவை நோக்கிச் செல்லும் உந்துதலை அறிக.",
       te: "కోరుకున్న ఫలితాన్ని చేరాలనే ప్రేరణను గుర్తించండి.",
-      mr: "हवे असलेल्या परिणामाकडे जाण्याची प्रेरणा ओळख.",
+      mr: "हवे असलेल्या परिणामाकडे जाण्याची प्रेरणा ओळखा.",
       ms: "Kenali dorongan menuju hasil yang diingini.",
       he: "זהו דחף להתקרב לתוצאה רצויה.",
       pl: "Rozpoznaj motywację do zbliżenia się do pożądanego wyniku.",

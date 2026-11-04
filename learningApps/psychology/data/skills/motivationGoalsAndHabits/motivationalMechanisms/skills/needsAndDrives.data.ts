@@ -54,7 +54,7 @@ export const needsAndDrives_Skill_Data = buildSkillConfig({
       vi: "Hiểu nhu cầu tâm lý và thể chất định hình hành vi như thế nào.",
       ta: "உளவியல் மற்றும் உடல் தேவைகள் நடத்தை எவ்வாறு வடிவமைக்கின்றன என்பதைப் புரிந்துகொள்.",
       te: "మానసిక, శారీరక అవసరాలు ప్రవర్తనను ఎలా మలుస్తాయో అర్థం చేసుకోండి.",
-      mr: "मानसिक व शारीरिक गरजा वर्तन कसे घडवतात ते समज.",
+      mr: "मानसिक व शारीरिक गरजा वर्तन कसे घडवतात ते समजून घ्या.",
       ms: "Fahami bagaimana keperluan jiwa dan tubuh membentuk tingkah laku.",
       he: "הבינו כיצד צרכים פסיכולוגיים וגופניים מעצבים התנהגות.",
       pl: "Zrozum, jak potrzeby psychiczne i cielesne kształtują zachowanie.",

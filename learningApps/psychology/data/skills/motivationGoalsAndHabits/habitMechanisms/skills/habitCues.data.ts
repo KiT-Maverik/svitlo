@@ -54,7 +54,7 @@ export const habitCues_Skill_Data = buildSkillConfig({
       vi: "Nhận biết tín hiệu bối cảnh kích hoạt phản ứng theo thói quen.",
       ta: "பழக்கமான செயலைத் தூண்டும் சூழல் அறிகுறிகளைக் கண்டறிக.",
       te: "అలవాటు స్పందనను ప్రారంభించే పరిసర సంకేతాలను గుర్తించండి.",
-      mr: "सवयीची प्रतिक्रिया सुरू करणारे परिसरातील संकेत ओळख.",
+      mr: "सवयीची प्रतिक्रिया सुरू करणारे परिसरातील संकेत ओळखा.",
       ms: "Kenal pasti isyarat persekitaran yang mencetuskan tindak balas biasa.",
       he: "זהו סימנים בהקשר שמעוררים תגובה הרגלית.",
       pl: "Rozpoznaj wskazówki otoczenia uruchamiające nawykową reakcję.",

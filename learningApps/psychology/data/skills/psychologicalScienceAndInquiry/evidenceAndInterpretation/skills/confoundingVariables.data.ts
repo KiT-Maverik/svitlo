@@ -54,7 +54,7 @@ export const confoundingVariables_Skill_Data = buildSkillConfig({
       vi: "Xác định các yếu tố khác có thể giải thích sự khác biệt giữa các nhóm.",
       ta: "குழுக்களுக்கிடையேயான வேறுபாட்டை விளக்கக்கூடிய பிற காரணிகளைக் கண்டறி.",
       te: "సమూహాల మధ్య తేడాను వివరించగల ఇతర అంశాలను గుర్తించండి.",
-      mr: "गटांतील फरक स्पष्ट करू शकणारे इतर घटक ओळख.",
+      mr: "गटांतील फरक स्पष्ट करू शकणारे इतर घटक ओळखा.",
       ms: "Kenal pasti faktor lain yang mungkin menjelaskan perbezaan antara kumpulan.",
       he: "זהו גורמים אחרים שעשויים להסביר הבדל בין קבוצות.",
       pl: "Rozpoznaj inne czynniki, które mogą wyjaśniać różnice między grupami.",

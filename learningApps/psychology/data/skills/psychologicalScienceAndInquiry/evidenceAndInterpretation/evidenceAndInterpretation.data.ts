@@ -64,7 +64,7 @@ export const evidenceAndInterpretation_SkillGroup_Data = buildSkillGroupConfig({
       vi: "Tìm hiểu cách bằng chứng và phân tích minh bạch hỗ trợ các kết luận nghiên cứu.",
       ta: "சான்றுகளும் வெளிப்படையான பகுப்பாய்வும் ஆராய்ச்சி முடிவுகளை எவ்வாறு ஆதரிக்கின்றன என்பதை அறிந்துகொள்.",
       te: "ఆధారాలు, పారదర్శక విశ్లేషణ పరిశోధన తీర్మానాలకు ఎలా మద్దతిస్తాయో తెలుసుకోండి.",
-      mr: "पुरावे आणि पारदर्शक विश्लेषण संशोधनातील निष्कर्षांना कसा आधार देतात ते जाणून घे.",
+      mr: "पुरावे आणि पारदर्शक विश्लेषण संशोधनातील निष्कर्षांना कसा आधार देतात ते जाणून घ्या.",
       ms: "Ketahui bagaimana bukti dan analisis telus menyokong kesimpulan penyelidikan.",
       he: "למדו כיצד ראיות וניתוח שקוף תומכים במסקנות מחקר.",
       pl: "Dowiedz się, jak dowody i przejrzysta analiza wspierają wnioski z badań.",

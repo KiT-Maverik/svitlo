@@ -54,7 +54,7 @@ export const correlationAndCausation_Skill_Data = buildSkillConfig({
       vi: "Phân biệt mối liên hệ với bằng chứng rằng một yếu tố tâm lý gây ra yếu tố khác.",
       ta: "இரண்டு உளவியல் காரணிகளுக்கிடையேயான தொடர்பை ஒன்று மற்றொன்றுக்குக் காரணம் என்பதற்கான சான்றிலிருந்து வேறுபடுத்து.",
       te: "రెండు మానసిక అంశాల మధ్య సంబంధాన్ని ఒకటి మరొకదానికి కారణమన్న ఆధారం నుంచి వేరు చేయండి.",
-      mr: "दोन मानसशास्त्रीय घटकांचा संबंध आणि एक घटक दुसऱ्यास कारणीभूत असल्याचा पुरावा यांतील फरक ओळख.",
+      mr: "दोन मानसशास्त्रीय घटकांचा संबंध आणि एक घटक दुसऱ्यास कारणीभूत असल्याचा पुरावा यांतील फरक ओळखा.",
       ms: "Bezakan kaitan antara faktor dengan bukti bahawa satu faktor psikologi menyebabkan faktor lain.",
       he: "הבחינו בין קשר סטטיסטי לבין ראיות שגורם פסיכולוגי אחד גורם לאחר.",
       pl: "Odróżniaj związek między zmiennymi od dowodu, że jeden czynnik psychologiczny powoduje drugi.",
