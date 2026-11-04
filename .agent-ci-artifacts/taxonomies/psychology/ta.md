@@ -378,7 +378,7 @@ Groups: 4 · Skills: 17
 
 **Methodological description (English):** Neural, endocrine, genetic, and evolved processes influence experience and action through interaction with environments. This field emphasizes explanatory mechanisms rather than rote anatomical detail or biological determinism.
 
-**User-friendly description (ta):** மூளை, ஹார்மோன்கள், மரபுவழிப் பண்புகள், சூழல் ஆகியவை நடத்தையை எவ்வாறு பாதிக்கின்றன என்பதை அறிந்துகொள்.
+**User-friendly description (ta):** மூளை, ஹார்மோன்கள், மரபுவழிப் பண்புகள், சூழல் ஆகியவை நடத்தையை எவ்வாறு பாதிக்கின்றன என்பதை அறிந்துகொள்ளுங்கள்.
 
 #### உயிரியல் வேறுபாடுகளும் சூழலும்
 
@@ -388,7 +388,7 @@ Skills: 4
 
 **Methodological description (English):** Inherited characteristics, hormones, and environmental exposures jointly shape outcomes, without fixing a person's future.
 
-**User-friendly description (ta):** மரபுவழிக் காரணிகள், ஹார்மோன்கள், சூழல் ஆகியவை நடத்தையை எவ்வாறு கூட்டாக வடிவமைக்கின்றன என்பதை அறிந்துகொள்.
+**User-friendly description (ta):** மரபுவழிக் காரணிகள், ஹார்மோன்கள், சூழல் ஆகியவை நடத்தையை எவ்வாறு கூட்டாக வடிவமைக்கின்றன என்பதை அறிந்துகொள்ளுங்கள்.
 
 ##### மரபணு–சூழல் தொடர்பு
 
@@ -396,7 +396,7 @@ Skills: 4
 
 **Methodological description (English):** Explain why an inherited predisposition can have different behavioral consequences in different surroundings.
 
-**User-friendly description (ta):** மரபணு சார்புகள் வெவ்வேறு சூழல்களில் ஏன் வெவ்வேறு விளைவுகளைத் தருகின்றன என்பதை ஆராய்.
+**User-friendly description (ta):** மரபணு சார்புகள் வெவ்வேறு சூழல்களில் ஏன் வெவ்வேறு விளைவுகளைத் தருகின்றன என்பதை ஆராயுங்கள்.
 
 ##### மரபுரிமைத்தன்மையின் விளக்கம்
 
@@ -404,7 +404,7 @@ Skills: 4
 
 **Methodological description (English):** Distinguish statistical variation within a studied population from a fixed percentage of one individual's trait attributed to genes.
 
-**User-friendly description (ta):** மரபுரிமைத்தன்மை மக்கள்தொகை சார்ந்த புள்ளிவிவரம்; ஒருவரின் தனிப்பட்ட சதவீதம் அல்ல என்பதைப் புரிந்துகொள்.
+**User-friendly description (ta):** மரபுரிமைத்தன்மை மக்கள்தொகை சார்ந்த புள்ளிவிவரம்; ஒருவரின் தனிப்பட்ட சதவீதம் அல்ல என்பதைப் புரிந்துகொள்ளுங்கள்.
 
 ##### ஹார்மோன் தாக்கங்கள்
 
@@ -412,7 +412,7 @@ Skills: 4
 
 **Methodological description (English):** Explain how endocrine signals can change arousal or behavior without implying that their effects are universal or direct.
 
-**User-friendly description (ta):** சூழலுக்கு ஏற்ப ஹார்மோன்கள் விழிப்புநிலையையும் நடத்தையையும் எவ்வாறு பாதிக்கக்கூடும் என்பதை அறி.
+**User-friendly description (ta):** சூழலுக்கு ஏற்ப ஹார்மோன்கள் விழிப்புநிலையையும் நடத்தையையும் எவ்வாறு பாதிக்கக்கூடும் என்பதை அறியுங்கள்.
 
 ##### உடலியல் மனஅழுத்தப் பதில்கள்
 
@@ -420,7 +420,7 @@ Skills: 4
 
 **Methodological description (English):** Relate autonomic and hormonal changes to perceived demands and subsequent recovery.
 
-**User-friendly description (ta):** உடல் தேவைகளுக்கு எவ்வாறு பதிலளித்து மீள்கிறது என்பதை ஆராய்.
+**User-friendly description (ta):** உடல் தேவைகளுக்கு எவ்வாறு பதிலளித்து மீள்கிறது என்பதை ஆராயுங்கள்.
 
 #### மூளை–நடத்தை உறவுகள்
 
@@ -430,7 +430,7 @@ Skills: 5
 
 **Methodological description (English):** Distributed neural systems support specific psychological functions; brain scans and localized damage require cautious interpretation.
 
-**User-friendly description (ta):** ஒன்றிணைந்து செயல்படும் மூளை அமைப்புகள் பல்வேறு நடத்தைகளை எவ்வாறு ஆதரிக்கின்றன என்பதை அறிந்துகொள்.
+**User-friendly description (ta):** ஒன்றிணைந்து செயல்படும் மூளை அமைப்புகள் பல்வேறு நடத்தைகளை எவ்வாறு ஆதரிக்கின்றன என்பதை அறிந்துகொள்ளுங்கள்.
 
 ##### நிர்வாகக் கட்டுப்பாட்டு வலையமைப்புகள்
 
@@ -438,7 +438,7 @@ Skills: 5
 
 **Methodological description (English):** Relate interacting brain systems to working-memory updating, flexible planning, and response inhibition.
 
-**User-friendly description (ta):** மூளை வலையமைப்புகள் திட்டமிடல், நினைவாற்றல், சுயக்கட்டுப்பாட்டை எவ்வாறு ஆதரிக்கின்றன என்பதை ஆராய்.
+**User-friendly description (ta):** மூளை வலையமைப்புகள் திட்டமிடல், நினைவாற்றல், சுயக்கட்டுப்பாட்டை எவ்வாறு ஆதரிக்கின்றன என்பதை ஆராயுங்கள்.
 
 ##### செயல்பாட்டுச் சிறப்பாக்கம்
 
@@ -446,7 +446,7 @@ Skills: 5
 
 **Methodological description (English):** Explain distinctive contributions of brain regions while rejecting the idea that complex experience lives in one isolated location.
 
-**User-friendly description (ta):** சிக்கலான சிந்தனைகளை ஒரே மூளைப் பகுதிக்கு ஒதுக்காமல் சிறப்பு மூளைச் செயல்பாடுகளை அறிந்துகொள்.
+**User-friendly description (ta):** சிக்கலான சிந்தனைகளை ஒரே மூளைப் பகுதிக்கு ஒதுக்காமல் சிறப்பு மூளைச் செயல்பாடுகளை அறிந்துகொள்ளுங்கள்.
 
 ##### இயக்க நரம்புப் பாதைகள்
 
@@ -454,7 +454,7 @@ Skills: 5
 
 **Methodological description (English):** Relate commands from central nervous processing to coordinated bodily movement and action.
 
-**User-friendly description (ta):** நரம்பு மண்டலம் இயக்கத்தை எவ்வாறு ஒருங்கிணைக்கிறது என்பதை விளக்கு.
+**User-friendly description (ta):** நரம்பு மண்டலம் இயக்கத்தை எவ்வாறு ஒருங்கிணைக்கிறது என்பதை விளக்குங்கள்.
 
 ##### நரம்புப் படங்களிலிருந்து ஊகம்
 
@@ -462,7 +462,7 @@ Skills: 5
 
 **Methodological description (English):** Distinguish an imaged physiological signal from an inferred thought and identify the limits of reverse inference.
 
-**User-friendly description (ta):** மூளைச் செயல்பாட்டின் படங்கள் குறிப்பிட்ட எண்ணங்களை நேரடியாக ஏன் காட்ட முடியாது என்பதைப் புரிந்துகொள்.
+**User-friendly description (ta):** மூளைச் செயல்பாட்டின் படங்கள் குறிப்பிட்ட எண்ணங்களை நேரடியாக ஏன் காட்ட முடியாது என்பதைப் புரிந்துகொள்ளுங்கள்.
 
 ##### உணர்வு நரம்புப் பாதைகள்
 
@@ -470,7 +470,7 @@ Skills: 5
 
 **Methodological description (English):** Relate incoming bodily signals to coordinated processing that supports detection and response.
 
-**User-friendly description (ta):** உணர்வுச் சமிக்ஞைகள் புலனுணர்வுக்கும் செயலுக்கும் உதவ எவ்வாறு செயலாக்கப்படுகின்றன என்பதைத் தொடர்ந்து பார்.
+**User-friendly description (ta):** உணர்வுச் சமிக்ஞைகள் புலனுணர்வுக்கும் செயலுக்கும் உதவ எவ்வாறு செயலாக்கப்படுகின்றன என்பதைத் தொடர்ந்து பாருங்கள்.
 
 #### பரிணாம விளக்கங்கள்
 
@@ -480,7 +480,7 @@ Skills: 3
 
 **Methodological description (English):** Evolutionary explanations generate testable hypotheses about behavior but require evidence beyond a plausible adaptation story.
 
-**User-friendly description (ta):** பரிணாமக் கோட்பாடுகள் நடத்தை பற்றி சோதிக்கக்கூடிய கருதுகோள்களை எவ்வாறு முன்வைக்கின்றன என்பதை அறிந்துகொள்.
+**User-friendly description (ta):** பரிணாமக் கோட்பாடுகள் நடத்தை பற்றி சோதிக்கக்கூடிய கருதுகோள்களை எவ்வாறு முன்வைக்கின்றன என்பதை அறிந்துகொள்ளுங்கள்.
 
 ##### தகவமைப்பின் பரிமாற்றச் செலவுகள்
 
@@ -488,7 +488,7 @@ Skills: 3
 
 **Methodological description (English):** Explain why a tendency advantageous in one context may impose costs in another rather than treating all traits as optimal.
 
-**User-friendly description (ta):** ஒரு சூழலில் பயனுள்ள போக்கு மற்றொரு சூழலில் ஏன் இழப்பை ஏற்படுத்தலாம் என்பதைப் புரிந்துகொள்.
+**User-friendly description (ta):** ஒரு சூழலில் பயனுள்ள போக்கு மற்றொரு சூழலில் ஏன் இழப்பை ஏற்படுத்தலாம் என்பதைப் புரிந்துகொள்ளுங்கள்.
 
 ##### பரிணாமக் கூற்றுகளை மதிப்பிடுதல்
 
@@ -496,7 +496,7 @@ Skills: 3
 
 **Methodological description (English):** Assess behavioral adaptation hypotheses against comparative evidence and plausible developmental or cultural alternatives.
 
-**User-friendly description (ta):** நம்பத்தகுந்த கதைகளை மட்டும் அல்லாமல் சான்றுகளைக் கொண்டு பரிணாம விளக்கங்களை மதிப்பிடு.
+**User-friendly description (ta):** நம்பத்தகுந்த கதைகளை மட்டும் அல்லாமல் சான்றுகளைக் கொண்டு பரிணாம விளக்கங்களை மதிப்பிடுங்கள்.
 
 ##### தேர்வும் நடத்தை மாறுபாடும்
 
@@ -504,7 +504,7 @@ Skills: 3
 
 **Methodological description (English):** Explain how inherited variation and differential reproduction could change behavioral predispositions across generations.
 
-**User-friendly description (ta):** மரபுவழி நடத்தைப் போக்குகள் தலைமுறைகளில் எவ்வாறு மாறக்கூடும் என்பதை விளக்கு.
+**User-friendly description (ta):** மரபுவழி நடத்தைப் போக்குகள் தலைமுறைகளில் எவ்வாறு மாறக்கூடும் என்பதை விளக்குங்கள்.
 
 #### நரம்புத் தகவல் தொடர்பு
 
@@ -514,7 +514,7 @@ Skills: 5
 
 **Methodological description (English):** Communication within nervous systems depends on electrical signals, chemical modulation, and changing connections that relate to behavioral functions.
 
-**User-friendly description (ta):** நியூரான்கள் எவ்வாறு சமிக்ஞைகள் அனுப்புகின்றன, இணைப்புகளை மாற்றுகின்றன என்பதை அறி.
+**User-friendly description (ta):** நியூரான்கள் எவ்வாறு சமிக்ஞைகள் அனுப்புகின்றன, இணைப்புகளை மாற்றுகின்றன என்பதை அறியுங்கள்.
 
 ##### நரம்புத் தூண்டுதல்
 
@@ -522,7 +522,7 @@ Skills: 5
 
 **Methodological description (English):** Explain how excitatory signals raise the probability of a target neuron or circuit becoming active under relevant conditions.
 
-**User-friendly description (ta):** தூண்டல் சமிக்ஞைகள் நரம்புச் செயல்பாட்டின் வாய்ப்பை எவ்வாறு அதிகரிக்கின்றன என்பதைப் புரிந்துகொள்.
+**User-friendly description (ta):** தூண்டல் சமிக்ஞைகள் நரம்புச் செயல்பாட்டின் வாய்ப்பை எவ்வாறு அதிகரிக்கின்றன என்பதைப் புரிந்துகொள்ளுங்கள்.
 
 ##### நரம்புத் தடுப்பு
 
@@ -530,7 +530,7 @@ Skills: 5
 
 **Methodological description (English):** Explain how inhibitory signals reduce or regulate activation within a circuit without implying that inhibition means absence of information processing.
 
-**User-friendly description (ta):** தடுக்கும் சமிக்ஞைகள் நரம்புச் செயல்பாட்டைக் கட்டுப்படுத்த எவ்வாறு உதவுகின்றன என்பதை விளக்கு.
+**User-friendly description (ta):** தடுக்கும் சமிக்ஞைகள் நரம்புச் செயல்பாட்டைக் கட்டுப்படுத்த எவ்வாறு உதவுகின்றன என்பதை விளக்குங்கள்.
 
 ##### நரம்பு நெகிழ்தன்மை
 
@@ -538,7 +538,7 @@ Skills: 5
 
 **Methodological description (English):** Relate experience-dependent changes in neural connections to learning and adaptation without claiming unlimited voluntary control.
 
-**User-friendly description (ta):** அனுபவங்கள் காலப்போக்கில் நரம்பு இணைப்புகளை எவ்வாறு மாற்றுகின்றன என்பதை ஆராய்.
+**User-friendly description (ta):** அனுபவங்கள் காலப்போக்கில் நரம்பு இணைப்புகளை எவ்வாறு மாற்றுகின்றன என்பதை ஆராயுங்கள்.
 
 ##### நரம்புச் சமிக்ஞை கடத்தல்
 
@@ -546,7 +546,7 @@ Skills: 5
 
 **Methodological description (English):** Connect electrical impulses and synaptic transmission with communication between neurons and the timing of responses.
 
-**User-friendly description (ta):** நரம்பணுக்கள் மின்சார மற்றும் வேதியியல் சமிக்ஞைகளை எவ்வாறு கடத்துகின்றன என்பதை விளக்கு.
+**User-friendly description (ta):** நரம்பணுக்கள் மின்சார மற்றும் வேதியியல் சமிக்ஞைகளை எவ்வாறு கடத்துகின்றன என்பதை விளக்குங்கள்.
 
 ##### நரம்புக் கடத்திகளின் செயல்பாடு
 
@@ -554,7 +554,7 @@ Skills: 5
 
 **Methodological description (English):** Explain modulatory chemical signaling without the misleading claim that a single neurotransmitter directly causes one emotion.
 
-**User-friendly description (ta):** ஒரே நரம்புக் கடத்தி குறிப்பிட்ட ஓர் உணர்ச்சியை ஏன் நிர்ணயிக்காது என்பதை அறிந்துகொள்.
+**User-friendly description (ta):** ஒரே நரம்புக் கடத்தி குறிப்பிட்ட ஓர் உணர்ச்சியை ஏன் நிர்ணயிக்காது என்பதை அறிந்துகொள்ளுங்கள்.
 
 ### வாழ்நாள் முழுவதுமான வளர்ச்சி
 
@@ -750,7 +750,7 @@ Groups: 4 · Skills: 19
 
 **Methodological description (English):** Emotional responses combine appraisal, bodily activation, expression, and action tendencies. Regulation concerns responding flexibly to emotions, not suppressing every uncomfortable experience.
 
-**User-friendly description (ta):** உணர்ச்சிகள் எவ்வாறு தோன்றி, தகவல் தந்து, ஒழுங்குபடுத்தப்படுகின்றன என்பதை அறிக.
+**User-friendly description (ta):** உணர்ச்சிகள் எவ்வாறு தோன்றி, தகவல் தந்து, ஒழுங்குபடுத்தப்படுகின்றன என்பதை அறியுங்கள்.
 
 #### உணர்ச்சி செயல்முறைகள்
 
@@ -760,7 +760,7 @@ Skills: 5
 
 **Methodological description (English):** Emotions emerge from interpretations, physiological changes, and situational information that interact in complex ways.
 
-**User-friendly description (ta):** உணர்ச்சிகளின் பணிகள், உடல் எதிர்வினைகள், விளக்கங்களை அறிக.
+**User-friendly description (ta):** உணர்ச்சிகளின் பணிகள், உடல் எதிர்வினைகள், விளக்கங்களை அறியுங்கள்.
 
 ##### உணர்ச்சிகளின் செயல்பாடுகள்
 
@@ -768,7 +768,7 @@ Skills: 5
 
 **Methodological description (English):** Explain how emotion can signal needs, orient attention, and prepare action while avoiding fixed rules for every person.
 
-**User-friendly description (ta):** தேவைகள், அச்சுறுத்தல்கள், வாய்ப்புகளை உணர்ச்சிகள் எவ்வாறு தெரிவிக்கின்றன என்பதைப் புரிந்துகொள்.
+**User-friendly description (ta):** தேவைகள், அச்சுறுத்தல்கள், வாய்ப்புகளை உணர்ச்சிகள் எவ்வாறு தெரிவிக்கின்றன என்பதைப் புரிந்துகொள்ளுங்கள்.
 
 ##### உணர்ச்சிக் கோட்பாடுகள்
 
@@ -776,7 +776,7 @@ Skills: 5
 
 **Methodological description (English):** Compare explanatory accounts of the relationship among bodily changes, appraisal, and conscious experience.
 
-**User-friendly description (ta):** உணர்வுகளுக்கும் உடல் எதிர்வினைகளுக்கும் உள்ள தொடர்பை விளக்கும் கோட்பாடுகளை ஒப்பிடுக.
+**User-friendly description (ta):** உணர்வுகளுக்கும் உடல் எதிர்வினைகளுக்கும் உள்ள தொடர்பை விளக்கும் கோட்பாடுகளை ஒப்பிடுங்கள்.
 
 ##### உணர்ச்சி மதிப்பீடு
 
@@ -784,7 +784,7 @@ Skills: 5
 
 **Methodological description (English):** Analyze how interpretations of an event influence feelings when the physical event is otherwise unchanged.
 
-**User-friendly description (ta):** ஒரு சூழலைப் புரியும் விதம் உணர்ச்சிப் பதிலை எவ்வாறு பாதிக்கிறது என்பதை ஆராய்.
+**User-friendly description (ta):** ஒரு சூழலைப் புரியும் விதம் உணர்ச்சிப் பதிலை எவ்வாறு பாதிக்கிறது என்பதை ஆராயுங்கள்.
 
 ##### மனநிலையும் உணர்ச்சியும்
 
@@ -792,7 +792,7 @@ Skills: 5
 
 **Methodological description (English):** Distinguish relatively persistent affective states from briefer reactions focused on a specific event.
 
-**User-friendly description (ta):** குறுகிய உணர்ச்சிக்கும் நீடித்த மனநிலைக்கும் உள்ள வேறுபாட்டை அறிக.
+**User-friendly description (ta):** குறுகிய உணர்ச்சிக்கும் நீடித்த மனநிலைக்கும் உள்ள வேறுபாட்டை அறியுங்கள்.
 
 ##### உணர்ச்சிகளின் உடலியல்
 
@@ -800,7 +800,7 @@ Skills: 5
 
 **Methodological description (English):** Relate changes in arousal and bodily responses to experienced emotion without assuming a unique bodily signature for each state.
 
-**User-friendly description (ta):** வெவ்வேறு உணர்ச்சி நிலைகளுடன் வரும் உடல் மாற்றங்களை அறிக.
+**User-friendly description (ta):** வெவ்வேறு உணர்ச்சி நிலைகளுடன் வரும் உடல் மாற்றங்களை அறியுங்கள்.
 
 #### உணர்ச்சியை அறிதலும் வெளிப்படுத்தலும்
 
@@ -810,7 +810,7 @@ Skills: 4
 
 **Methodological description (English):** Emotional information is conveyed through multiple channels, but neither facial expression nor tone is an infallible window into another mind.
 
-**User-friendly description (ta):** பல்வேறு சூழலில் உணர்ச்சிகளை அறிந்து வெளிப்படுத்துவதைக் கற்றுக்கொள்.
+**User-friendly description (ta):** பல்வேறு சூழலில் உணர்ச்சிகளை அறிந்து வெளிப்படுத்துவதைக் கற்றுக்கொள்ளுங்கள்.
 
 ##### உணர்ச்சி வெளிப்பாட்டில் பண்பாட்டு வேறுபாடுகள்
 
@@ -818,7 +818,7 @@ Skills: 4
 
 **Methodological description (English):** Explain how social norms can influence whether and how feelings are displayed.
 
-**User-friendly description (ta):** சமூக, பண்பாட்டு விதிகள் உணர்ச்சி வெளிப்பாட்டை எவ்வாறு பாதிக்கின்றன என்பதை அறிக.
+**User-friendly description (ta):** சமூக, பண்பாட்டு விதிகள் உணர்ச்சி வெளிப்பாட்டை எவ்வாறு பாதிக்கின்றன என்பதை அறியுங்கள்.
 
 ##### உணர்ச்சி சொற்களஞ்சியம்
 
@@ -826,7 +826,7 @@ Skills: 4
 
 **Methodological description (English):** Differentiate related affective states to communicate distinctions in intensity, quality, or cause.
 
-**User-friendly description (ta):** உணர்ச்சி அனுபவங்களைத் துல்லியமாகக் கூறும் சொற்களைப் பயன்படுத்து.
+**User-friendly description (ta):** உணர்ச்சி அனுபவங்களைத் துல்லியமாகக் கூறும் சொற்களைப் பயன்படுத்துங்கள்.
 
 ##### உணர்ச்சிசார் சுய விழிப்புணர்வு
 
@@ -834,7 +834,7 @@ Skills: 4
 
 **Methodological description (English):** Identify feelings, accompanying sensations, and possible triggers without assuming a single interpretation is certain.
 
-**User-friendly description (ta):** காரணத்தை முன்கூட்டியே கருதாமல் உன் உணர்ச்சி நிலையை கவனித்து விவரி.
+**User-friendly description (ta):** காரணத்தை முன்கூட்டியே கருதாமல் உங்கள் உணர்ச்சி நிலையை கவனித்து விவரியுங்கள்.
 
 ##### உணர்ச்சி குறிப்புகளை வாசித்தல்
 
@@ -842,7 +842,7 @@ Skills: 4
 
 **Methodological description (English):** Interpret facial, vocal, and contextual signals cautiously rather than equating one expression with a definite inner state.
 
-**User-friendly description (ta):** முகபாவனையை உணர்வின் உறுதியான சான்றாகக் கருதாமல் குறிப்புகளைப் புரிந்துகொள்.
+**User-friendly description (ta):** முகபாவனையை உணர்வின் உறுதியான சான்றாகக் கருதாமல் குறிப்புகளைப் புரிந்துகொள்ளுங்கள்.
 
 #### உணர்ச்சி ஒழுங்குபடுத்தல் உத்திகள்
 
@@ -852,7 +852,7 @@ Skills: 5
 
 **Methodological description (English):** People can influence attention, interpretation, expression, or behavior in response to emotion, with different strategies fitting different circumstances.
 
-**User-friendly description (ta):** கடினமான உணர்ச்சி அனுபவங்களை எதிர்கொள்ளும் வழிகளை ஆராய்.
+**User-friendly description (ta):** கடினமான உணர்ச்சி அனுபவங்களை எதிர்கொள்ளும் வழிகளை ஆராயுங்கள்.
 
 ##### கவன ஒழுங்குபடுத்தல்
 
@@ -860,7 +860,7 @@ Skills: 5
 
 **Methodological description (English):** Explain how directing focus alters emotional intensity or persistence, including limits of distraction.
 
-**User-friendly description (ta):** பயனுள்ளதாக இருந்தால் கவனத்தைத் திட்டமிட்டு வேறு திசைக்கு மாற்று.
+**User-friendly description (ta):** பயனுள்ளதாக இருந்தால் கவனத்தைத் திட்டமிட்டு வேறு திசைக்கு மாற்றுங்கள்.
 
 ##### அறிவுசார் மறுமதிப்பீடு
 
@@ -868,7 +868,7 @@ Skills: 5
 
 **Methodological description (English):** Explain how reconsidering an event's meaning can change the emotional response without denying the event.
 
-**User-friendly description (ta):** உணர்ச்சிப் பதிலை மாற்ற சூழலின் பொருளை மீண்டும் சிந்தி.
+**User-friendly description (ta):** உணர்ச்சிப் பதிலை மாற்ற சூழலின் பொருளை மீண்டும் சிந்தியுங்கள்.
 
 ##### உணர்ச்சி வெளிப்பாட்டை அடக்குதல்
 
@@ -876,7 +876,7 @@ Skills: 5
 
 **Methodological description (English):** Evaluate potential immediate and interpersonal costs of withholding outward emotional expression.
 
-**User-friendly description (ta):** வெளியில் உணர்ச்சியை மறைப்பதும் உள்ளுணர்வை மாற்றுவதும் வேறு என்பதை அறிக.
+**User-friendly description (ta):** வெளியில் உணர்ச்சியை மறைப்பதும் உள்ளுணர்வை மாற்றுவதும் வேறு என்பதை அறியுங்கள்.
 
 ##### உணர்ச்சி ஒழுங்குபடுத்தலில் நெகிழ்வுத்தன்மை
 
@@ -884,7 +884,7 @@ Skills: 5
 
 **Methodological description (English):** Select and justify possible responses to changing situations instead of treating one technique as universally best.
 
-**User-friendly description (ta):** சூழலுக்கு ஏற்ற உணர்ச்சி ஒழுங்குபடுத்தல் முறையைத் தேர்ந்தெடு.
+**User-friendly description (ta):** சூழலுக்கு ஏற்ற உணர்ச்சி ஒழுங்குபடுத்தல் முறையைத் தேர்ந்தெடுங்கள்.
 
 ##### பொருத்தமான ஆதரவை நாடுதல்
 
@@ -892,7 +892,7 @@ Skills: 5
 
 **Methodological description (English):** Distinguish self-management from situations in which trusted or qualified assistance is an appropriate response.
 
-**User-friendly description (ta):** நம்பிக்கைக்குரிய ஒருவரிடம் எப்போது உதவி கேட்பது சரி என்பதை அறிக.
+**User-friendly description (ta):** நம்பிக்கைக்குரிய ஒருவரிடம் எப்போது உதவி கேட்பது சரி என்பதை அறியுங்கள்.
 
 #### மன அழுத்தமும் அதைச் சமாளித்தலும்
 
@@ -902,7 +902,7 @@ Skills: 5
 
 **Methodological description (English):** Stress is shaped by demands and perceived resources, with psychological consequences depending partly on duration and opportunities for recovery.
 
-**User-friendly description (ta):** மக்கள் மன அழுத்தத்தை எவ்வாறு மதிப்பிட்டு, அனுபவித்து, சமாளிக்கிறார்கள் என்பதை அறிக.
+**User-friendly description (ta):** மக்கள் மன அழுத்தத்தை எவ்வாறு மதிப்பிட்டு, அனுபவித்து, சமாளிக்கிறார்கள் என்பதை அறியுங்கள்.
 
 ##### திடீர் மன அழுத்தம்
 
@@ -910,7 +910,7 @@ Skills: 5
 
 **Methodological description (English):** Explain a relatively short-lived response to demands or threat and how recovery may follow the event.
 
-**User-friendly description (ta):** உடனடி சவால்களுக்கு ஏற்படும் குறுகியகால மன எதிர்வினைகளைப் புரிந்துகொள்.
+**User-friendly description (ta):** உடனடி சவால்களுக்கு ஏற்படும் குறுகியகால மன எதிர்வினைகளைப் புரிந்துகொள்ளுங்கள்.
 
 ##### நீடித்த மன அழுத்தம்
 
@@ -918,7 +918,7 @@ Skills: 5
 
 **Methodological description (English):** Explain sustained exposure to stressors and why duration and available resources affect psychological consequences.
 
-**User-friendly description (ta):** தொடர்ந்து நீடிக்கும் அழுத்தத்தைச் சிறிய அழுத்த நிகழ்விலிருந்து வேறுபடுத்து.
+**User-friendly description (ta):** தொடர்ந்து நீடிக்கும் அழுத்தத்தைச் சிறிய அழுத்த நிகழ்விலிருந்து வேறுபடுத்துங்கள்.
 
 ##### உணர்ச்சி சார்ந்த சமாளிப்பு
 
@@ -926,7 +926,7 @@ Skills: 5
 
 **Methodological description (English):** Explain responses aimed at managing distress when the situation itself may not be immediately alterable.
 
-**User-friendly description (ta):** சூழலை மாற்ற முடியாதபோது உணர்ச்சிப் பதில்களை நிர்வகிக்கும் வழிகளை ஆராய்.
+**User-friendly description (ta):** சூழலை மாற்ற முடியாதபோது உணர்ச்சிப் பதில்களை நிர்வகிக்கும் வழிகளை ஆராயுங்கள்.
 
 ##### பிரச்சினை சார்ந்த சமாளிப்பு
 
@@ -934,7 +934,7 @@ Skills: 5
 
 **Methodological description (English):** Explain responses aimed at modifying a controllable source of difficulty.
 
-**User-friendly description (ta):** அழுத்தம் தரும் பிரச்சினை அல்லது சூழலை மாற்றிச் சமாளிப்பதை ஆராய்.
+**User-friendly description (ta):** அழுத்தம் தரும் பிரச்சினை அல்லது சூழலை மாற்றிச் சமாளிப்பதை ஆராயுங்கள்.
 
 ##### மன அழுத்த மதிப்பீடு
 
@@ -942,7 +942,7 @@ Skills: 5
 
 **Methodological description (English):** Explain how a person's interpretation of demands and resources shapes experienced strain.
 
-**User-friendly description (ta):** கோரிக்கைகளைப் புரியும் விதம் மன அழுத்தப் பதிலை எவ்வாறு மாற்றுகிறது என்பதை அறிக.
+**User-friendly description (ta):** கோரிக்கைகளைப் புரியும் விதம் மன அழுத்தப் பதிலை எவ்வாறு மாற்றுகிறது என்பதை அறியுங்கள்.
 
 ### கற்றலும் நடத்தை மாற்றமும்
 
@@ -1566,7 +1566,7 @@ Groups: 3 · Skills: 16
 
 **Methodological description (English):** Motivation concerns what initiates, directs, and sustains action. Goals and habits reflect interactions among needs, rewards, expectations, self-control, and environmental cues rather than an unchanging amount of willpower.
 
-**User-friendly description (ta):** மக்கள் ஏன் செயல்பட்டு, இலக்குகளை நாடி, தானியங்கும் வழக்கங்களை உருவாக்குகிறார்கள் என்பதை அறிக.
+**User-friendly description (ta):** மக்கள் ஏன் செயல்பட்டு, இலக்குகளை நாடி, தானியங்கும் வழக்கங்களை உருவாக்குகிறார்கள் என்பதை அறியுங்கள்.
 
 #### இலக்கை நாடுதலும் சுயகட்டுப்பாடும்
 
@@ -1576,7 +1576,7 @@ Skills: 5
 
 **Methodological description (English):** Persistent action requires monitoring progress, choosing responses, and adapting goals to changing conditions.
 
-**User-friendly description (ta):** இலக்குகளை அமைத்து, தொடர்ந்தும், சூழலுக்கு ஏற்ப மாற்றவும் கற்றுக்கொள்.
+**User-friendly description (ta):** இலக்குகளை அமைத்து, தொடர்ந்தும், சூழலுக்கு ஏற்ப மாற்றவும் கற்றுக்கொள்ளுங்கள்.
 
 ##### இலக்கைத் திருத்துதலும் கைவிடுதலும்
 
@@ -1584,7 +1584,7 @@ Skills: 5
 
 **Methodological description (English):** Evaluate when adjusting or abandoning an unattainable objective may be more adaptive than persisting.
 
-**User-friendly description (ta):** ஒரு இலக்கை மாற்றுவது அல்லது கைவிடுவது எப்போது பொருத்தமாக இருக்கும் என்பதை அறிக.
+**User-friendly description (ta):** ஒரு இலக்கை மாற்றுவது அல்லது கைவிடுவது எப்போது பொருத்தமாக இருக்கும் என்பதை அறியுங்கள்.
 
 ##### இலக்கின் துல்லியம்
 
@@ -1592,7 +1592,7 @@ Skills: 5
 
 **Methodological description (English):** Explain how a clearly defined target can guide action and progress monitoring differently from a vague intention.
 
-**User-friendly description (ta):** தெளிவான, குறிப்பிட்ட இலக்குகள் செயல்களை எவ்வாறு வழிநடத்துகின்றன என்பதை அறிக.
+**User-friendly description (ta):** தெளிவான, குறிப்பிட்ட இலக்குகள் செயல்களை எவ்வாறு வழிநடத்துகின்றன என்பதை அறியுங்கள்.
 
 ##### செயலாக்க நோக்கங்கள்
 
@@ -1600,7 +1600,7 @@ Skills: 5
 
 **Methodological description (English):** Explain how linking a situational cue to a planned response can bridge an intention–action gap.
 
-**User-friendly description (ta):** ஒரு சூழலையும் திட்டமிட்ட செயலையும் இணைக்க 'என்றால்… அப்போது…' திட்டங்களைப் பயன்படுத்து.
+**User-friendly description (ta):** ஒரு சூழலையும் திட்டமிட்ட செயலையும் இணைக்க 'என்றால்… அப்போது…' திட்டங்களைப் பயன்படுத்துங்கள்.
 
 ##### சுயகட்டுப்பாடும் தடுப்பும்
 
@@ -1608,7 +1608,7 @@ Skills: 5
 
 **Methodological description (English):** Describe delaying or redirecting an immediate impulse in service of a competing aim, including contextual limitations.
 
-**User-friendly description (ta):** திடீர் உந்துதலை அடக்க கவனமும் சிந்தனைக் கட்டுப்பாடும் ஏன் தேவை என்பதை ஆராய்.
+**User-friendly description (ta):** திடீர் உந்துதலை அடக்க கவனமும் சிந்தனைக் கட்டுப்பாடும் ஏன் தேவை என்பதை ஆராயுங்கள்.
 
 ##### சுய செயல்திறன் நம்பிக்கை
 
@@ -1616,7 +1616,7 @@ Skills: 5
 
 **Methodological description (English):** Explain how beliefs about one's capability influence attempts, persistence, and response to setbacks without guaranteeing outcomes.
 
-**User-friendly description (ta):** தன் திறனில் நம்பிக்கை முயற்சியையும் விடாமுயற்சியையும் எவ்வாறு பாதிக்கிறது என்பதை அறிக.
+**User-friendly description (ta):** தன் திறனில் நம்பிக்கை முயற்சியையும் விடாமுயற்சியையும் எவ்வாறு பாதிக்கிறது என்பதை அறியுங்கள்.
 
 #### பழக்கங்களின் இயங்குமுறைகள்
 
@@ -1626,7 +1626,7 @@ Skills: 4
 
 **Methodological description (English):** Repeated actions become cue-sensitive routines that can operate with reduced deliberation, though habits remain dependent on context.
 
-**User-friendly description (ta):** திரும்பத் திரும்பச் செய்யும் செயல்கள் குறிப்புகளுடன் இணைந்து எவ்வாறு பழக்கமாகின்றன என்பதை அறிக.
+**User-friendly description (ta):** திரும்பத் திரும்பச் செய்யும் செயல்கள் குறிப்புகளுடன் இணைந்து எவ்வாறு பழக்கமாகின்றன என்பதை அறியுங்கள்.
 
 ##### பழக்கத் தூண்டுகுறிகள்
 
@@ -1634,7 +1634,7 @@ Skills: 4
 
 **Methodological description (English):** Identify environmental or internal signals that trigger a learned routine.
 
-**User-friendly description (ta):** பழக்கமான செயலைத் தூண்டும் சூழல் அறிகுறிகளைக் கண்டறிக.
+**User-friendly description (ta):** பழக்கமான செயலைத் தூண்டும் சூழல் அறிகுறிகளைக் கண்டறியுங்கள்.
 
 ##### பழக்கத்தை இடைநிறுத்துதல்
 
@@ -1642,7 +1642,7 @@ Skills: 4
 
 **Methodological description (English):** Explain how changed surroundings or interruption of familiar cues can alter routine behavior.
 
-**User-friendly description (ta):** தூண்டுகுறிகளை மாற்றுவது பழைய பழக்கத்தை எவ்வாறு நிறுத்தக்கூடும் என்பதை அறிக.
+**User-friendly description (ta):** தூண்டுகுறிகளை மாற்றுவது பழைய பழக்கத்தை எவ்வாறு நிறுத்தக்கூடும் என்பதை அறியுங்கள்.
 
 ##### பழக்கம் உருவாதல்
 
@@ -1650,7 +1650,7 @@ Skills: 4
 
 **Methodological description (English):** Relate repetition in stable contexts and reinforcing outcomes to increasing automaticity.
 
-**User-friendly description (ta):** ஒரே மாதிரியான சூழலில் மீண்டும் செய்வது செயலை எவ்வாறு தானியங்கச் செய்கிறது என்பதை ஆராய்.
+**User-friendly description (ta):** ஒரே மாதிரியான சூழலில் மீண்டும் செய்வது செயலை எவ்வாறு தானியங்கச் செய்கிறது என்பதை ஆராயுங்கள்.
 
 ##### பழக்கத்தை மாற்றீடு செய்தல்
 
@@ -1658,7 +1658,7 @@ Skills: 4
 
 **Methodological description (English):** Analyze replacing an established response with an alternative to the same cue rather than relying only on suppression.
 
-**User-friendly description (ta):** விரும்பாத வழக்கத்துக்குப் பதிலாக வேறொரு செயலைப் பயன்படுத்தும் வழியை ஆராய்.
+**User-friendly description (ta):** விரும்பாத வழக்கத்துக்குப் பதிலாக வேறொரு செயலைப் பயன்படுத்தும் வழியை ஆராயுங்கள்.
 
 #### உந்துதல் இயங்குமுறைகள்
 
@@ -1668,7 +1668,7 @@ Skills: 7
 
 **Methodological description (English):** Behavior is influenced by internal states and external incentives, with competing explanations and substantial individual variation.
 
-**User-friendly description (ta):** மனிதச் செயலுக்குப் பின்னுள்ள பல்வேறு உந்துதல்களை அறிக.
+**User-friendly description (ta):** மனிதச் செயலுக்குப் பின்னுள்ள பல்வேறு உந்துதல்களை அறியுங்கள்.
 
 ##### நெருங்கும் உந்துதல்
 
@@ -1676,7 +1676,7 @@ Skills: 7
 
 **Methodological description (English):** Explain initiation of actions aimed at obtaining anticipated positive outcomes.
 
-**User-friendly description (ta):** விரும்பிய விளைவை நோக்கிச் செல்லும் உந்துதலை அறிக.
+**User-friendly description (ta):** விரும்பிய விளைவை நோக்கிச் செல்லும் உந்துதலை அறியுங்கள்.
 
 ##### தவிர்க்கும் உந்துதல்
 
@@ -1684,7 +1684,7 @@ Skills: 7
 
 **Methodological description (English):** Explain actions aimed at preventing or escaping an anticipated undesirable outcome.
 
-**User-friendly description (ta):** விரும்பாத விளைவைத் தவிர்க்கும் உந்துதலை அறிக.
+**User-friendly description (ta):** விரும்பாத விளைவைத் தவிர்க்கும் உந்துதலை அறியுங்கள்.
 
 ##### எதிர்பார்ப்பும் மதிப்பும்
 
@@ -1692,7 +1692,7 @@ Skills: 7
 
 **Methodological description (English):** Analyze how anticipated success and the perceived value of an outcome jointly influence effort.
 
-**User-friendly description (ta):** எதிர்பார்ப்பும் உணரப்படும் மதிப்பும் முயற்சியை ஏன் பாதிக்கின்றன என்பதை விளக்குக.
+**User-friendly description (ta):** எதிர்பார்ப்பும் உணரப்படும் மதிப்பும் முயற்சியை ஏன் பாதிக்கின்றன என்பதை விளக்குங்கள்.
 
 ##### வெளிப்புற உந்துதல்
 
@@ -1700,7 +1700,7 @@ Skills: 7
 
 **Methodological description (English):** Explain pursuing an activity because of an outcome separable from the activity, such as recognition, payment, or avoidance of a consequence.
 
-**User-friendly description (ta):** வெளிப்புற வெகுமதிகளும் அழுத்தங்களும் உந்துதலை எவ்வாறு பாதிக்கின்றன என்பதை ஆராய்.
+**User-friendly description (ta):** வெளிப்புற வெகுமதிகளும் அழுத்தங்களும் உந்துதலை எவ்வாறு பாதிக்கின்றன என்பதை ஆராயுங்கள்.
 
 ##### உள்ளார்ந்த உந்துதல்
 
@@ -1708,7 +1708,7 @@ Skills: 7
 
 **Methodological description (English):** Explain engaging in an activity because it is personally interesting or satisfying in itself.
 
-**User-friendly description (ta):** ஒரு செயலின் சொந்த நிறைவுக்காக அதைச் செய்யும் விருப்பத்தை அறிக.
+**User-friendly description (ta):** ஒரு செயலின் சொந்த நிறைவுக்காக அதைச் செய்யும் விருப்பத்தை அறியுங்கள்.
 
 ##### உந்துதலைக் குறைக்கும் வெளிப்புற வெகுமதி
 
@@ -1716,7 +1716,7 @@ Skills: 7
 
 **Methodological description (English):** Evaluate circumstances in which external incentives change an existing interest rather than simply adding more motivation.
 
-**User-friendly description (ta):** வெளிப்புற வெகுமதிகள் ஏன் சில நேரங்களில் உள்ளார்ந்த ஆர்வத்தை குறைக்கின்றன என்பதை ஆராய்.
+**User-friendly description (ta):** வெளிப்புற வெகுமதிகள் ஏன் சில நேரங்களில் உள்ளார்ந்த ஆர்வத்தை குறைக்கின்றன என்பதை ஆராயுங்கள்.
 
 ##### தேவைகளும் உந்துசக்திகளும்
 
@@ -1724,7 +1724,7 @@ Skills: 7
 
 **Methodological description (English):** Explain how physiological and psychological needs can influence the direction and intensity of behavior.
 
-**User-friendly description (ta):** உளவியல் மற்றும் உடல் தேவைகள் நடத்தை எவ்வாறு வடிவமைக்கின்றன என்பதைப் புரிந்துகொள்.
+**User-friendly description (ta):** உளவியல் மற்றும் உடல் தேவைகள் நடத்தை எவ்வாறு வடிவமைக்கின்றன என்பதைப் புரிந்துகொள்ளுங்கள்.
 
 ### ஆளுமையும் தனிநபர் வேறுபாடுகளும்
 
@@ -1928,7 +1928,7 @@ Groups: 5 · Skills: 31
 
 **Methodological description (English):** Psychology explains behavior and mental processes through empirical evidence, multiple levels of analysis, and ethical inquiry. Its explanations are provisional and require stronger support than anecdote or authority.
 
-**User-friendly description (ta):** உளவியலாளர்கள் கவனமான ஆராய்ச்சியின் மூலம் நடத்தை மற்றும் மனச் செயல்முறைகளை எவ்வாறு ஆராய்கிறார்கள் என்பதை அறிந்துகொள்.
+**User-friendly description (ta):** உளவியலாளர்கள் கவனமான ஆராய்ச்சியின் மூலம் நடத்தை மற்றும் மனச் செயல்முறைகளை எவ்வாறு ஆராய்கிறார்கள் என்பதை அறிந்துகொள்ளுங்கள்.
 
 #### சான்றுகளும் விளக்கமும்
 
@@ -1938,7 +1938,7 @@ Skills: 6
 
 **Methodological description (English):** Quantitative summaries and research transparency help discriminate robust patterns from noise and misleading causal stories.
 
-**User-friendly description (ta):** சான்றுகளும் வெளிப்படையான பகுப்பாய்வும் ஆராய்ச்சி முடிவுகளை எவ்வாறு ஆதரிக்கின்றன என்பதை அறிந்துகொள்.
+**User-friendly description (ta):** சான்றுகளும் வெளிப்படையான பகுப்பாய்வும் ஆராய்ச்சி முடிவுகளை எவ்வாறு ஆதரிக்கின்றன என்பதை அறிந்துகொள்ளுங்கள்.
 
 ##### பகுப்பாய்வை மீளுருவாக்கும் திறன்
 
@@ -1946,7 +1946,7 @@ Skills: 6
 
 **Methodological description (English):** Explain why access to reported methods, data, and analytic decisions allows independent verification of a result.
 
-**User-friendly description (ta):** தெளிவான முறைகளும் பகுப்பாய்வுத் தேர்வுகளும் சுயாதீன சரிபார்ப்பை எவ்வாறு உதவுகின்றன என்பதை அறிந்துகொள்.
+**User-friendly description (ta):** தெளிவான முறைகளும் பகுப்பாய்வுத் தேர்வுகளும் சுயாதீன சரிபார்ப்பை எவ்வாறு உதவுகின்றன என்பதை அறிந்துகொள்ளுங்கள்.
 
 ##### குழப்பும் மாறிகள்
 
@@ -1954,7 +1954,7 @@ Skills: 6
 
 **Methodological description (English):** Identify background factors that move with a proposed cause and could produce an observed group difference.
 
-**User-friendly description (ta):** குழுக்களுக்கிடையேயான வேறுபாட்டை விளக்கக்கூடிய பிற காரணிகளைக் கண்டறி.
+**User-friendly description (ta):** குழுக்களுக்கிடையேயான வேறுபாட்டை விளக்கக்கூடிய பிற காரணிகளைக் கண்டறியுங்கள்.
 
 ##### தொடர்புறவும் காரணத்தன்மையும்
 
@@ -1962,7 +1962,7 @@ Skills: 6
 
 **Methodological description (English):** Consider reversed direction and third-variable explanations when two psychological measures vary together.
 
-**User-friendly description (ta):** இரண்டு உளவியல் காரணிகளுக்கிடையேயான தொடர்பை ஒன்று மற்றொன்றுக்குக் காரணம் என்பதற்கான சான்றிலிருந்து வேறுபடுத்து.
+**User-friendly description (ta):** இரண்டு உளவியல் காரணிகளுக்கிடையேயான தொடர்பை ஒன்று மற்றொன்றுக்குக் காரணம் என்பதற்கான சான்றிலிருந்து வேறுபடுத்துங்கள்.
 
 ##### ஆராய்ச்சியில் விளக்கப் புள்ளியியல்
 
@@ -1970,7 +1970,7 @@ Skills: 6
 
 **Methodological description (English):** Interpret distributions, typical values, and variability without treating a group average as every participant's experience.
 
-**User-friendly description (ta):** அனைவரும் சராசரியைப் போலவே இருப்பார்கள் என்று கருதாமல் வழக்கமான மதிப்புகளையும் மாறுபாட்டையும் புரிந்துகொள்.
+**User-friendly description (ta):** அனைவரும் சராசரியைப் போலவே இருப்பார்கள் என்று கருதாமல் வழக்கமான மதிப்புகளையும் மாறுபாட்டையும் புரிந்துகொள்ளுங்கள்.
 
 ##### சான்றுகளின் தரம்
 
@@ -1978,7 +1978,7 @@ Skills: 6
 
 **Methodological description (English):** Weigh converging studies, effect magnitude, uncertainty, and publication bias instead of relying on one striking result.
 
-**User-friendly description (ta):** ஆராய்ச்சி முடிவுகளை அவற்றின் வலிமை, நிச்சயமின்மை, சாத்தியமான சார்புகள் ஆகியவற்றால் ஒப்பிடு.
+**User-friendly description (ta):** ஆராய்ச்சி முடிவுகளை அவற்றின் வலிமை, நிச்சயமின்மை, சாத்தியமான சார்புகள் ஆகியவற்றால் ஒப்பிடுங்கள்.
 
 ##### ஆய்வை மீண்டும் செய்தல்
 
@@ -1986,7 +1986,7 @@ Skills: 6
 
 **Methodological description (English):** Explain why repeating a psychological investigation with new observations helps assess the robustness and generality of a result.
 
-**User-friendly description (ta):** ஒரு ஆய்வை மீண்டும் செய்வது முடிவின் உறுதித்தன்மையை எவ்வாறு சோதிக்க உதவுகிறது என்பதை அறிந்துகொள்.
+**User-friendly description (ta):** ஒரு ஆய்வை மீண்டும் செய்வது முடிவின் உறுதித்தன்மையை எவ்வாறு சோதிக்க உதவுகிறது என்பதை அறிந்துகொள்ளுங்கள்.
 
 #### அடிப்படைகளும் கண்ணோட்டங்களும்
 
@@ -1996,7 +1996,7 @@ Skills: 4
 
 **Methodological description (English):** Scientific accounts distinguish description, prediction, and causal explanation while combining cognitive, biological, behavioral, and sociocultural perspectives.
 
-**User-friendly description (ta):** உளவியலின் வெவ்வேறு கண்ணோட்டங்களையும் அறிவியல் நோக்கங்களையும் அறிந்துகொள்.
+**User-friendly description (ta):** உளவியலின் வெவ்வேறு கண்ணோட்டங்களையும் அறிவியல் நோக்கங்களையும் அறிந்துகொள்ளுங்கள்.
 
 ##### விளக்கமும் முன்னறிவிப்பும்
 
@@ -2004,7 +2004,7 @@ Skills: 4
 
 **Methodological description (English):** Separate a description of observed behavior, a forecast about future behavior, and a proposed mechanism responsible for it.
 
-**User-friendly description (ta):** நடத்தையை விவரித்தல், முன்னறிவித்தல், அதன் காரணங்களை விளக்குதல் ஆகியவற்றின் வேறுபாட்டை அறிந்துகொள்.
+**User-friendly description (ta):** நடத்தையை விவரித்தல், முன்னறிவித்தல், அதன் காரணங்களை விளக்குதல் ஆகியவற்றின் வேறுபாட்டை அறிந்துகொள்ளுங்கள்.
 
 ##### வரலாற்று உளவியல் அணுகுமுறைகள்
 
@@ -2012,7 +2012,7 @@ Skills: 4
 
 **Methodological description (English):** Evaluate foundational schools of thought in their historical context and assess why some claims have been revised by later evidence.
 
-**User-friendly description (ta):** சான்றுகள் மேம்பட்டபோது தொடக்ககால உளவியல் கோட்பாடுகள் எவ்வாறு மாறின என்பதை ஆராய்.
+**User-friendly description (ta):** சான்றுகள் மேம்பட்டபோது தொடக்ககால உளவியல் கோட்பாடுகள் எவ்வாறு மாறின என்பதை ஆராயுங்கள்.
 
 ##### உளவியல் கண்ணோட்டங்கள்
 
@@ -2020,7 +2020,7 @@ Skills: 4
 
 **Methodological description (English):** Compare how behavioral, cognitive, biological, developmental, and sociocultural models explain different aspects of the same phenomenon.
 
-**User-friendly description (ta):** ஒரே நடத்தையை வெவ்வேறு உளவியல் அணுகுமுறைகள் எவ்வாறு விளக்குகின்றன என்பதை ஒப்பிடு.
+**User-friendly description (ta):** ஒரே நடத்தையை வெவ்வேறு உளவியல் அணுகுமுறைகள் எவ்வாறு விளக்குகின்றன என்பதை ஒப்பிடுங்கள்.
 
 ##### உளவியல் அறிவியலின் வரம்பு
 
@@ -2028,7 +2028,7 @@ Skills: 4
 
 **Methodological description (English):** Distinguish the empirical study of behavior and experience from philosophical evaluation of arguments and from medical diagnosis or treatment.
 
-**User-friendly description (ta):** உளவியல் ஆராய்ச்சியைத் தத்துவம் மற்றும் மருத்துவச் சிகிச்சையிலிருந்து வேறுபடுத்து.
+**User-friendly description (ta):** உளவியல் ஆராய்ச்சியைத் தத்துவம் மற்றும் மருத்துவச் சிகிச்சையிலிருந்து வேறுபடுத்துங்கள்.
 
 #### அளவீடும் மாதிரித் தேர்வும்
 
@@ -2038,7 +2038,7 @@ Skills: 5
 
 **Methodological description (English):** Operational measures offer imperfect indicators of psychological constructs, and recruitment choices limit generalization.
 
-**User-friendly description (ta):** உளவியலாளர்கள் கருத்துகளை எவ்வாறு அளவிடுகிறார்கள், ஆய்வுப் பங்கேற்பாளர்களை எவ்வாறு தேர்ந்தெடுக்கிறார்கள் என்பதை அறிந்துகொள்.
+**User-friendly description (ta):** உளவியலாளர்கள் கருத்துகளை எவ்வாறு அளவிடுகிறார்கள், ஆய்வுப் பங்கேற்பாளர்களை எவ்வாறு தேர்ந்தெடுக்கிறார்கள் என்பதை அறிந்துகொள்ளுங்கள்.
 
 ##### கருத்துரு செல்லுபடித்தன்மை
 
@@ -2046,7 +2046,7 @@ Skills: 5
 
 **Methodological description (English):** Assess whether a test actually captures the intended psychological attribute rather than a convenient proxy.
 
-**User-friendly description (ta):** ஒரு சோதனை தான் அளப்பதாகக் கூறும் கருத்தையே உண்மையில் அளக்கிறதா என்று மதிப்பிடு.
+**User-friendly description (ta):** ஒரு சோதனை தான் அளப்பதாகக் கூறும் கருத்தையே உண்மையில் அளக்கிறதா என்று மதிப்பிடுங்கள்.
 
 ##### அளவீட்டுச் சார்பு
 
@@ -2054,7 +2054,7 @@ Skills: 5
 
 **Methodological description (English):** Identify systematic distortions from test wording, cultural assumptions, inaccessible formats, or observer expectations.
 
-**User-friendly description (ta):** ஒரு அளவீடு மக்களை முறையாகத் தவறாகச் சித்தரிக்கவோ பாதிக்கவோ செய்யும் வழிகளைக் கண்டறி.
+**User-friendly description (ta):** ஒரு அளவீடு மக்களை முறையாகத் தவறாகச் சித்தரிக்கவோ பாதிக்கவோ செய்யும் வழிகளைக் கண்டறியுங்கள்.
 
 ##### செயல்பாட்டு வரையறைகள்
 
@@ -2062,7 +2062,7 @@ Skills: 5
 
 **Methodological description (English):** Translate an abstract concept such as stress or attention into an observable indicator and identify what it leaves out.
 
-**User-friendly description (ta):** அருவமான உளவியல் கருத்தை கவனிக்கக்கூடிய அளவீடுகளாக மாற்று.
+**User-friendly description (ta):** அருவமான உளவியல் கருத்தை கவனிக்கக்கூடிய அளவீடுகளாக மாற்றுங்கள்.
 
 ##### அளவீட்டின் நம்பகத்தன்மை
 
@@ -2070,7 +2070,7 @@ Skills: 5
 
 **Methodological description (English):** Evaluate whether repeated or equivalent measurements are consistent enough for their intended interpretation.
 
-**User-friendly description (ta):** உளவியல் அளவீடு தொடர்ச்சியாக ஒரே மாதிரியான முடிவுகளைத் தருகிறதா எனச் சரிபார்.
+**User-friendly description (ta):** உளவியல் அளவீடு தொடர்ச்சியாக ஒரே மாதிரியான முடிவுகளைத் தருகிறதா எனச் சரிபாருங்கள்.
 
 ##### பிரதிநிதித்துவ மாதிரித் தேர்வு
 
@@ -2078,7 +2078,7 @@ Skills: 5
 
 **Methodological description (English):** Explain how sampling, recruitment, and nonresponse affect the generalizability of findings.
 
-**User-friendly description (ta):** மாதிரித் தேர்வு முறை முழு மக்கள்தொகை பற்றிய முடிவுகளை எவ்வாறு கட்டுப்படுத்துகிறது என்பதை அறிந்துகொள்.
+**User-friendly description (ta):** மாதிரித் தேர்வு முறை முழு மக்கள்தொகை பற்றிய முடிவுகளை எவ்வாறு கட்டுப்படுத்துகிறது என்பதை அறிந்துகொள்ளுங்கள்.
 
 #### ஆராய்ச்சி நெறிமுறைகள்
 
@@ -2088,7 +2088,7 @@ Skills: 7
 
 **Methodological description (English):** Studies involving people must respect autonomy, dignity, safety, and confidentiality, including additional safeguards for vulnerable participants.
 
-**User-friendly description (ta):** ஆராய்ச்சி மனிதர்களின் சுயாட்சியையும் கண்ணியத்தையும் பாதுகாப்பையும் எவ்வாறு மதிக்க முடியும் என்பதை அறிந்துகொள்.
+**User-friendly description (ta):** ஆராய்ச்சி மனிதர்களின் சுயாட்சியையும் கண்ணியத்தையும் பாதுகாப்பையும் எவ்வாறு மதிக்க முடியும் என்பதை அறிந்துகொள்ளுங்கள்.
 
 ##### ஆராய்ச்சியில் தவறாக வழிநடத்துதல்
 
@@ -2096,7 +2096,7 @@ Skills: 7
 
 **Methodological description (English):** Evaluate the rare conditions under which incomplete disclosure might be ethically defensible given oversight, scientific necessity, and risks.
 
-**User-friendly description (ta):** ஆராய்ச்சித் தகவலை மறைப்பது எந்தச் சூழலில் நெறிமுறையாக நியாயமானதாக இருக்கலாம் என்பதைச் சிந்தி.
+**User-friendly description (ta):** ஆராய்ச்சித் தகவலை மறைப்பது எந்தச் சூழலில் நெறிமுறையாக நியாயமானதாக இருக்கலாம் என்பதைச் சிந்தியுங்கள்.
 
 ##### தகவலறிந்த ஒப்புதல்
 
@@ -2104,7 +2104,7 @@ Skills: 7
 
 **Methodological description (English):** Identify the information required for a voluntary decision to participate, including procedures, foreseeable risks, and withdrawal.
 
-**User-friendly description (ta):** ஆய்வில் பங்கேற்க ஒப்புக்கொள்ளும் முன் பங்கேற்பாளர்கள் என்ன தெரிந்துகொள்ள வேண்டும் என்பதை அறி.
+**User-friendly description (ta):** ஆய்வில் பங்கேற்க ஒப்புக்கொள்ளும் முன் பங்கேற்பாளர்கள் என்ன தெரிந்துகொள்ள வேண்டும் என்பதை அறியுங்கள்.
 
 ##### ஆராய்ச்சியில் பெயரறியாமை
 
@@ -2112,7 +2112,7 @@ Skills: 7
 
 **Methodological description (English):** Explain when collected data cannot be linked to a participant and why this differs from merely promising confidentiality.
 
-**User-friendly description (ta):** பெயரறியா ஆய்வுத் தரவையும் இரகசியமாக வைக்கப்படும் தகவலையும் வேறுபடுத்து.
+**User-friendly description (ta):** பெயரறியா ஆய்வுத் தரவையும் இரகசியமாக வைக்கப்படும் தகவலையும் வேறுபடுத்துங்கள்.
 
 ##### ஆராய்ச்சித் தகவல் இரகசியத்தன்மை
 
@@ -2120,7 +2120,7 @@ Skills: 7
 
 **Methodological description (English):** Explain how identifiable participant information may be protected through access restrictions and careful reporting.
 
-**User-friendly description (ta):** அடையாளம் காணக்கூடிய பங்கேற்பாளர்களின் தரவை ஆராய்ச்சியாளர்கள் எவ்வாறு பாதுகாக்கிறார்கள் என்பதைப் புரிந்துகொள்.
+**User-friendly description (ta):** அடையாளம் காணக்கூடிய பங்கேற்பாளர்களின் தரவை ஆராய்ச்சியாளர்கள் எவ்வாறு பாதுகாக்கிறார்கள் என்பதைப் புரிந்துகொள்ளுங்கள்.
 
 ##### ஆராய்ச்சிக்குப் பிந்தைய விளக்கம்
 
@@ -2128,7 +2128,7 @@ Skills: 7
 
 **Methodological description (English):** Explain the purpose of a meaningful post-participation explanation and support when a study withheld important information.
 
-**User-friendly description (ta):** ஆய்வுக்குப் பிறகு ஆராய்ச்சியாளர்கள் ஏன் பங்கேற்பாளர்களுக்கு விளக்கம் தர வேண்டியிருக்கலாம் என்பதை விளக்கு.
+**User-friendly description (ta):** ஆய்வுக்குப் பிறகு ஆராய்ச்சியாளர்கள் ஏன் பங்கேற்பாளர்களுக்கு விளக்கம் தர வேண்டியிருக்கலாம் என்பதை விளக்குங்கள்.
 
 ##### பாதிக்கப்படக்கூடிய பங்கேற்பாளர்களுடனான ஆராய்ச்சி
 
@@ -2136,7 +2136,7 @@ Skills: 7
 
 **Methodological description (English):** Explain additional assent, consent, power-balance, and accessibility considerations involving children or dependent groups.
 
-**User-friendly description (ta):** குழந்தைகளுக்கும் பாதிக்கப்படக்கூடிய பங்கேற்பாளர்களுக்கும் தேவையான கூடுதல் பாதுகாப்புகளை அறிந்துகொள்.
+**User-friendly description (ta):** குழந்தைகளுக்கும் பாதிக்கப்படக்கூடிய பங்கேற்பாளர்களுக்கும் தேவையான கூடுதல் பாதுகாப்புகளை அறிந்துகொள்ளுங்கள்.
 
 ##### இடர்–பலன் மதிப்பீடு
 
@@ -2144,7 +2144,7 @@ Skills: 7
 
 **Methodological description (English):** Identify possible distress, coercion, stigma, and privacy harms and consider less intrusive alternatives.
 
-**User-friendly description (ta):** ஆராய்ச்சியின் சாத்தியமான பலன்களைத் துன்பம், பாதிப்பு, வற்புறுத்தல் ஆகியவற்றின் இடர்களுடன் ஒப்பிடு.
+**User-friendly description (ta):** ஆராய்ச்சியின் சாத்தியமான பலன்களைத் துன்பம், பாதிப்பு, வற்புறுத்தல் ஆகியவற்றின் இடர்களுடன் ஒப்பிடுங்கள்.
 
 #### ஆராய்ச்சி வடிவமைப்புகள்
 
@@ -2154,7 +2154,7 @@ Skills: 9
 
 **Methodological description (English):** Different ways of collecting evidence answer different questions and support different levels of causal inference.
 
-**User-friendly description (ta):** வெவ்வேறு ஆராய்ச்சி வடிவமைப்புகள் ஏன் வெவ்வேறு முடிவுகளை ஆதரிக்கின்றன என்பதை அறிந்துகொள்.
+**User-friendly description (ta):** வெவ்வேறு ஆராய்ச்சி வடிவமைப்புகள் ஏன் வெவ்வேறு முடிவுகளை ஆதரிக்கின்றன என்பதை அறிந்துகொள்ளுங்கள்.
 
 ##### ஆராய்ச்சியில் மறைத்தல்
 
@@ -2162,7 +2162,7 @@ Skills: 9
 
 **Methodological description (English):** Explain how keeping condition assignments unknown to participants or evaluators can reduce some sources of bias, and why blinding is not universally possible.
 
-**User-friendly description (ta):** பங்கேற்பாளர்கள் அல்லது மதிப்பீட்டாளர்களிடம் குழு ஒதுக்கீட்டை மறைப்பது சில சார்புகளை எவ்வாறு குறைக்கிறது என்பதை விளக்கு.
+**User-friendly description (ta):** பங்கேற்பாளர்கள் அல்லது மதிப்பீட்டாளர்களிடம் குழு ஒதுக்கீட்டை மறைப்பது சில சார்புகளை எவ்வாறு குறைக்கிறது என்பதை விளக்குங்கள்.
 
 ##### கட்டுப்படுத்தப்பட்ட சோதனைகள்
 
@@ -2170,7 +2170,7 @@ Skills: 9
 
 **Methodological description (English):** Identify manipulated variables, outcome measures, comparison conditions, and the logic of an experimental contrast.
 
-**User-friendly description (ta):** சோதனையில் மாற்றப்படும் காரணிகள், அளவிடப்படும் முடிவுகள், கட்டுப்பாடுகள் ஆகியவற்றைக் கண்டறி.
+**User-friendly description (ta):** சோதனையில் மாற்றப்படும் காரணிகள், அளவிடப்படும் முடிவுகள், கட்டுப்பாடுகள் ஆகியவற்றைக் கண்டறியுங்கள்.
 
 ##### தொடர்புறவு ஆய்வுகள்
 
@@ -2178,7 +2178,7 @@ Skills: 9
 
 **Methodological description (English):** Determine what an association between measured variables reveals without treating co-occurrence as proof of cause.
 
-**User-friendly description (ta):** தொடர்புறவுகள் எதைக் காட்டுகின்றன, எதை நிரூபிக்க முடியாது என்பதை அறிந்துகொள்.
+**User-friendly description (ta):** தொடர்புறவுகள் எதைக் காட்டுகின்றன, எதை நிரூபிக்க முடியாது என்பதை அறிந்துகொள்ளுங்கள்.
 
 ##### எதிர்பார்ப்பு விளைவுகள்
 
@@ -2186,7 +2186,7 @@ Skills: 9
 
 **Methodological description (English):** Explain how beliefs about an intervention or condition can change reported experience or behavior independently of its specific mechanism.
 
-**User-friendly description (ta):** எதிர்பார்ப்புகள் நடத்தை அல்லது தெரிவிக்கப்படும் அனுபவத்தை எவ்வாறு பாதிக்கின்றன என்பதை அறிந்துகொள்.
+**User-friendly description (ta):** எதிர்பார்ப்புகள் நடத்தை அல்லது தெரிவிக்கப்படும் அனுபவத்தை எவ்வாறு பாதிக்கின்றன என்பதை அறிந்துகொள்ளுங்கள்.
 
 ##### கேள்வித்தாள் ஆராய்ச்சி
 
@@ -2194,7 +2194,7 @@ Skills: 9
 
 **Methodological description (English):** Interpret structured self-reports while considering item wording, response scales, and socially desirable answers.
 
-**User-friendly description (ta):** கேள்விகளின் சொற்கள் மற்றும் பதில் சார்புகளை கருத்தில் கொண்டு கேள்வித்தாள்களை விளக்கிப் புரிந்துகொள்.
+**User-friendly description (ta):** கேள்விகளின் சொற்கள் மற்றும் பதில் சார்புகளை கருத்தில் கொண்டு கேள்வித்தாள்களை விளக்கிப் புரிந்துகொள்ளுங்கள்.
 
 ##### சீரற்ற ஒதுக்கீடு
 
@@ -2202,7 +2202,7 @@ Skills: 9
 
 **Methodological description (English):** Explain how chance allocation to conditions reduces systematic differences without confusing it with population sampling.
 
-**User-friendly description (ta):** சீரற்ற ஒதுக்கீடு ஆய்வுக் குழுக்களை ஒப்பிடுவதற்கு எவ்வாறு உதவுகிறது என்பதைப் புரிந்துகொள்.
+**User-friendly description (ta):** சீரற்ற ஒதுக்கீடு ஆய்வுக் குழுக்களை ஒப்பிடுவதற்கு எவ்வாறு உதவுகிறது என்பதைப் புரிந்துகொள்ளுங்கள்.
 
 ##### ஆராய்ச்சி நேர்காணல்கள்
 
@@ -2210,7 +2210,7 @@ Skills: 9
 
 **Methodological description (English):** Interpret conversational accounts of experience while considering interviewer influence, recall limits, and unequal disclosure pressures.
 
-**User-friendly description (ta):** நேர்காணல்கள் எதை வெளிப்படுத்துகின்றன, கேள்விகள் பதில்களை எவ்வாறு பாதிக்கின்றன என்பதை ஆராய்.
+**User-friendly description (ta):** நேர்காணல்கள் எதை வெளிப்படுத்துகின்றன, கேள்விகள் பதில்களை எவ்வாறு பாதிக்கின்றன என்பதை ஆராயுங்கள்.
 
 ##### ஆராயக்கூடிய கருதுகோள்கள்
 
@@ -2218,7 +2218,7 @@ Skills: 9
 
 **Methodological description (English):** Transform a broad statement about human behavior into a claim with observable variables and possible disconfirming evidence.
 
-**User-friendly description (ta):** நடத்தை பற்றிய அன்றாடக் கூற்றை ஆராய்ந்து சோதிக்கக்கூடிய கருதுகோளாக மாற்று.
+**User-friendly description (ta):** நடத்தை பற்றிய அன்றாடக் கூற்றை ஆராய்ந்து சோதிக்கக்கூடிய கருதுகோளாக மாற்றுங்கள்.
 
 ##### முறையான கவனிப்பு
 
@@ -2226,7 +2226,7 @@ Skills: 9
 
 **Methodological description (English):** Use predefined behavioral categories to distinguish structured observations from informal personal impressions.
 
-**User-friendly description (ta):** தனிப்பட்ட எண்ணங்களை நம்பாமல் ஒரே மாதிரியான கவனிப்பு விதிகளின்படி நடத்தையைப் பதிவு செய்.
+**User-friendly description (ta):** தனிப்பட்ட எண்ணங்களை நம்பாமல் ஒரே மாதிரியான கவனிப்பு விதிகளின்படி நடத்தையைப் பதிவு செய்யுங்கள்.
 
 ### புலனுணர்ச்சியும் புலனறிதலும்
 
@@ -2236,7 +2236,7 @@ Groups: 5 · Skills: 23
 
 **Methodological description (English):** Sensory information is detected, selected, organized, and interpreted into an experienced world. Psychological perception differs from simple measurement of physical stimuli or anatomy of sense organs.
 
-**User-friendly description (ta):** புலன் சமிக்ஞைகள் நம்மைச் சுற்றியுள்ள உலக அனுபவமாக எவ்வாறு மாறுகின்றன என்பதை அறிந்துகொள்.
+**User-friendly description (ta):** புலன் சமிக்ஞைகள் நம்மைச் சுற்றியுள்ள உலக அனுபவமாக எவ்வாறு மாறுகின்றன என்பதை அறிந்துகொள்ளுங்கள்.
 
 #### உடல் மற்றும் வேதியியல் புலன்கள்
 
@@ -2246,7 +2246,7 @@ Skills: 6
 
 **Methodological description (English):** Touch, pain, balance, body position, smell, and taste rely on partly distinct receptor and processing pathways. Their psychological importance lies in how signals become conscious experiences and guide action, not in cataloguing anatomy alone.
 
-**User-friendly description (ta):** தொடுதல், வலி, மணம், சுவை, உடல் உணர்வுகள் அனுபவத்தை எவ்வாறு வழிநடத்துகின்றன என்பதை ஆராய்.
+**User-friendly description (ta):** தொடுதல், வலி, மணம், சுவை, உடல் உணர்வுகள் அனுபவத்தை எவ்வாறு வழிநடத்துகின்றன என்பதை ஆராயுங்கள்.
 
 ##### வலி புலனறிதல்
 
@@ -2254,7 +2254,7 @@ Skills: 6
 
 **Methodological description (English):** Explain how nociceptive input, context, attention, and expectations interact in the experience of pain, without equating its intensity with a single tissue measurement.
 
-**User-friendly description (ta):** வலி அனுபவம் ஏன் ஒரே திசுச் சமிக்ஞையை மட்டும் சார்ந்திருக்காது என்பதை ஆராய்.
+**User-friendly description (ta):** வலி அனுபவம் ஏன் ஒரே திசுச் சமிக்ஞையை மட்டும் சார்ந்திருக்காது என்பதை ஆராயுங்கள்.
 
 ##### உடல் நிலை உணர்வு
 
@@ -2262,7 +2262,7 @@ Skills: 6
 
 **Methodological description (English):** Explain how information about muscle and joint state supports awareness of limb position and movement even without vision.
 
-**User-friendly description (ta):** பார்க்காமலேயே கை கால்களின் நிலையை உடல் எவ்வாறு உணர்கிறது என்பதைப் புரிந்துகொள்.
+**User-friendly description (ta):** பார்க்காமலேயே கை கால்களின் நிலையை உடல் எவ்வாறு உணர்கிறது என்பதைப் புரிந்துகொள்ளுங்கள்.
 
 ##### மணப் புலனறிதல்
 
@@ -2270,7 +2270,7 @@ Skills: 6
 
 **Methodological description (English):** Describe how patterns of odorant stimulation contribute to identifying smells and why learning, adaptation, and context can alter odor judgments.
 
-**User-friendly description (ta):** முந்தைய அனுபவமும் சூழலும் மணங்களை அறிதலை எவ்வாறு பாதிக்கின்றன என்பதை அறி.
+**User-friendly description (ta):** முந்தைய அனுபவமும் சூழலும் மணங்களை அறிதலை எவ்வாறு பாதிக்கின்றன என்பதை அறியுங்கள்.
 
 ##### சுவைப் புலனறிதல்
 
@@ -2278,7 +2278,7 @@ Skills: 6
 
 **Methodological description (English):** Explain how gustatory information supports basic taste qualities and interacts with smell and other sensory cues in experienced flavor.
 
-**User-friendly description (ta):** சுவையும் மணமும் சேர்ந்து உணவின் முழுச் சுவையை எவ்வாறு உருவாக்குகின்றன என்பதை ஆராய்.
+**User-friendly description (ta):** சுவையும் மணமும் சேர்ந்து உணவின் முழுச் சுவையை எவ்வாறு உருவாக்குகின்றன என்பதை ஆராயுங்கள்.
 
 ##### தொடுதல் புலனறிதல்
 
@@ -2286,7 +2286,7 @@ Skills: 6
 
 **Methodological description (English):** Explain how contact, pressure, vibration, and texture are discriminated through somatosensory processing, and why perceived touch depends on stimulus location and context.
 
-**User-friendly description (ta):** அழுத்தமும் அதிர்வும் தொடுதல் அனுபவமாக எவ்வாறு மாறுகின்றன என்பதைப் புரிந்துகொள்.
+**User-friendly description (ta):** அழுத்தமும் அதிர்வும் தொடுதல் அனுபவமாக எவ்வாறு மாறுகின்றன என்பதைப் புரிந்துகொள்ளுங்கள்.
 
 ##### சமநிலைப் புலனறிதல்
 
@@ -2294,7 +2294,7 @@ Skills: 6
 
 **Methodological description (English):** Explain how sensed head motion and orientation contribute to balance and spatial perception, including interactions with vision and proprioception.
 
-**User-friendly description (ta):** தலையின் இயக்கமும் திசையும் சமநிலையை எவ்வாறு பேண உதவுகின்றன என்பதை விளக்கு.
+**User-friendly description (ta):** தலையின் இயக்கமும் திசையும் சமநிலையை எவ்வாறு பேண உதவுகின்றன என்பதை விளக்குங்கள்.
 
 #### மாயத்தோற்றங்களும் பல்புலன் புலனறிதலும்
 
@@ -2304,7 +2304,7 @@ Skills: 4
 
 **Methodological description (English):** Systematic distortions and interactions across senses reveal how perception infers likely causes of stimulation.
 
-**User-friendly description (ta):** புலன் மாயத்தோற்றங்கள் புலனறிதல் செயல்முறையைப் பற்றி என்ன கூறுகின்றன என்பதை அறிந்துகொள்.
+**User-friendly description (ta):** புலன் மாயத்தோற்றங்கள் புலனறிதல் செயல்முறையைப் பற்றி என்ன கூறுகின்றன என்பதை அறிந்துகொள்ளுங்கள்.
 
 ##### பல்புலன் ஒருங்கிணைப்பு
 
@@ -2312,7 +2312,7 @@ Skills: 4
 
 **Methodological description (English):** Explain how combined sensory cues can modify a percept compared with cues considered separately.
 
-**User-friendly description (ta):** வெவ்வேறு புலன்களின் குறிப்புகள் ஒரே அனுபவத்தை எவ்வாறு மாற்றுகின்றன என்பதை ஆராய்.
+**User-friendly description (ta):** வெவ்வேறு புலன்களின் குறிப்புகள் ஒரே அனுபவத்தை எவ்வாறு மாற்றுகின்றன என்பதை ஆராயுங்கள்.
 
 ##### நேரில் கண்டவரின் புலனறிதல்
 
@@ -2320,7 +2320,7 @@ Skills: 4
 
 **Methodological description (English):** Assess the effects of attention, conditions, and later interpretation on the reliability of witnessed events.
 
-**User-friendly description (ta):** கவனம் சிதறும் சூழலில் நேரில் கண்டவரின் கவனிப்புக்குள்ள வரம்புகளைச் சிந்தி.
+**User-friendly description (ta):** கவனம் சிதறும் சூழலில் நேரில் கண்டவரின் கவனிப்புக்குள்ள வரம்புகளைச் சிந்தியுங்கள்.
 
 ##### புலனறிதல் எதிர்பார்ப்புகள்
 
@@ -2328,7 +2328,7 @@ Skills: 4
 
 **Methodological description (English):** Analyze the influence of prior knowledge or priming while distinguishing interpretation from the actual stimulus.
 
-**User-friendly description (ta):** முந்தைய அறிவு மாறாத தூண்டுதலின் விளக்கத்தை எப்போது மாற்றுகிறது என்பதை அறி.
+**User-friendly description (ta):** முந்தைய அறிவு மாறாத தூண்டுதலின் விளக்கத்தை எப்போது மாற்றுகிறது என்பதை அறியுங்கள்.
 
 ##### காட்சி மாயத்தோற்றங்கள்
 
@@ -2336,7 +2336,7 @@ Skills: 4
 
 **Methodological description (English):** Explain how contextual cues create reliable differences between an object's measured property and its appearance.
 
-**User-friendly description (ta):** காட்சி மாயத்தோற்றம் அளவிடப்பட்ட இயற்பியல் பண்பிலிருந்து ஏன் மாறுபடலாம் என்பதை விளக்கு.
+**User-friendly description (ta):** காட்சி மாயத்தோற்றம் அளவிடப்பட்ட இயற்பியல் பண்பிலிருந்து ஏன் மாறுபடலாம் என்பதை விளக்குங்கள்.
 
 #### புலனறிதலின் ஒழுங்கமைப்பு
 
@@ -2346,7 +2346,7 @@ Skills: 4
 
 **Methodological description (English):** The mind uses grouping cues and expectations to construct coherent objects from ambiguous sensory input.
 
-**User-friendly description (ta):** புலன் தகவலை மனம் எவ்வாறு அடையாளம் காணக்கூடிய பொருட்களாகக் குழுவாக்குகிறது என்பதை அறிந்துகொள்.
+**User-friendly description (ta):** புலன் தகவலை மனம் எவ்வாறு அடையாளம் காணக்கூடிய பொருட்களாகக் குழுவாக்குகிறது என்பதை அறிந்துகொள்ளுங்கள்.
 
 ##### கீழிருந்து மேலான மற்றும் மேலிருந்து கீழான செயலாக்கம்
 
@@ -2354,7 +2354,7 @@ Skills: 4
 
 **Methodological description (English):** Distinguish stimulus-driven evidence from prior expectations and explain their interaction in perception.
 
-**User-friendly description (ta):** எதிர்பார்ப்புகளும் வரும் புலன் தகவலும் சேர்ந்து புலனறிதலை எவ்வாறு உருவாக்குகின்றன என்பதை ஆராய்.
+**User-friendly description (ta):** எதிர்பார்ப்புகளும் வரும் புலன் தகவலும் சேர்ந்து புலனறிதலை எவ்வாறு உருவாக்குகின்றன என்பதை ஆராயுங்கள்.
 
 ##### உருவம்–பின்புல ஒழுங்கமைப்பு
 
@@ -2362,7 +2362,7 @@ Skills: 4
 
 **Methodological description (English):** Identify how context changes which part of a scene is experienced as a foreground object.
 
-**User-friendly description (ta):** ஒரு காட்சியில் எவை முன்புலமாகவும் எவை பின்புலமாகவும் தோன்றுகின்றன என்பதை அறி.
+**User-friendly description (ta):** ஒரு காட்சியில் எவை முன்புலமாகவும் எவை பின்புலமாகவும் தோன்றுகின்றன என்பதை அறியுங்கள்.
 
 ##### கெஸ்டால்ட் குழுவாக்கம்
 
@@ -2370,7 +2370,7 @@ Skills: 4
 
 **Methodological description (English):** Apply similarity, proximity, closure, and continuity to explain grouping of visible elements.
 
-**User-friendly description (ta):** அருகாமை, ஒற்றுமை, தொடர்ச்சி ஆகியவற்றால் காட்சிக் கூறுகள் எவ்வாறு குழுவாகத் தோன்றுகின்றன என்பதை விளக்கு.
+**User-friendly description (ta):** அருகாமை, ஒற்றுமை, தொடர்ச்சி ஆகியவற்றால் காட்சிக் கூறுகள் எவ்வாறு குழுவாகத் தோன்றுகின்றன என்பதை விளக்குங்கள்.
 
 ##### புலனறிதல் நிலைத்தன்மை
 
@@ -2378,7 +2378,7 @@ Skills: 4
 
 **Methodological description (English):** Explain relatively stable perceived size, shape, or color across changing sensory conditions.
 
-**User-friendly description (ta):** சூழல் மாறினாலும் அளவு, வடிவம், நிறம் ஏன் நிலையாகத் தோன்றலாம் என்பதைப் புரிந்துகொள்.
+**User-friendly description (ta):** சூழல் மாறினாலும் அளவு, வடிவம், நிறம் ஏன் நிலையாகத் தோன்றலாம் என்பதைப் புரிந்துகொள்ளுங்கள்.
 
 #### புலன் தூண்டுதலைக் கண்டறிதல்
 
@@ -2388,7 +2388,7 @@ Skills: 5
 
 **Methodological description (English):** Sensitivity depends on stimulus intensity, adaptation, and detection conditions rather than a perfectly fixed threshold.
 
-**User-friendly description (ta):** தூண்டுதலின் வலிமையும் சூழலும் அதைக் கண்டறிவதை எவ்வாறு பாதிக்கின்றன என்பதை ஆராய்.
+**User-friendly description (ta):** தூண்டுதலின் வலிமையும் சூழலும் அதைக் கண்டறிவதை எவ்வாறு பாதிக்கின்றன என்பதை ஆராயுங்கள்.
 
 ##### கண்டறிதல் வரம்புகள்
 
@@ -2396,7 +2396,7 @@ Skills: 5
 
 **Methodological description (English):** Explain how signal strength and competing noise affect the likelihood of noticing a stimulus.
 
-**User-friendly description (ta):** இரைச்சலின் நடுவே வலுவான சமிக்ஞைகளை ஏன் எளிதில் கவனிக்கலாம் என்பதை விளக்கு.
+**User-friendly description (ta):** இரைச்சலின் நடுவே வலுவான சமிக்ஞைகளை ஏன் எளிதில் கவனிக்கலாம் என்பதை விளக்குங்கள்.
 
 ##### வேறுபாட்டை உணரும் வரம்புகள்
 
@@ -2404,7 +2404,7 @@ Skills: 5
 
 **Methodological description (English):** Relate the detectable difference between stimuli to their starting intensity and context.
 
-**User-friendly description (ta):** இரண்டு தூண்டுதல்களுக்கிடையேயான வேறுபாடு எப்போது உணரப்படுகிறது என்பதை அறிந்துகொள்.
+**User-friendly description (ta):** இரண்டு தூண்டுதல்களுக்கிடையேயான வேறுபாடு எப்போது உணரப்படுகிறது என்பதை அறிந்துகொள்ளுங்கள்.
 
 ##### புலனுணர்ச்சியும் புலனறிதலும் இடையிலான வேறுபாடு
 
@@ -2412,7 +2412,7 @@ Skills: 5
 
 **Methodological description (English):** Distinguish sensory encoding of stimulation from the interpretation of what that stimulation represents.
 
-**User-friendly description (ta):** தூண்டுதலைக் கண்டறிவதையும் அதன் பொருளைப் புரிந்துகொள்வதையும் வேறுபடுத்து.
+**User-friendly description (ta):** தூண்டுதலைக் கண்டறிவதையும் அதன் பொருளைப் புரிந்துகொள்வதையும் வேறுபடுத்துங்கள்.
 
 ##### புலன் தழுவல்
 
@@ -2420,7 +2420,7 @@ Skills: 5
 
 **Methodological description (English):** Describe changed sensitivity after sustained stimulation without mistaking it for change in the source.
 
-**User-friendly description (ta):** நிலையான தூண்டுதலுக்கு தொடர்ந்து ஆளாகும்போது உணர்திறன் எவ்வாறு மாறுகிறது என்பதை ஆராய்.
+**User-friendly description (ta):** நிலையான தூண்டுதலுக்கு தொடர்ந்து ஆளாகும்போது உணர்திறன் எவ்வாறு மாறுகிறது என்பதை ஆராயுங்கள்.
 
 ##### புலன் சமிக்ஞை மாற்றம்
 
@@ -2428,7 +2428,7 @@ Skills: 5
 
 **Methodological description (English):** Explain how sensory receptors transform light, mechanical stimulation, or chemical signals into neural activity, distinguishing this initial encoding from later perception.
 
-**User-friendly description (ta):** புலன் ஏற்பிகள் தூண்டுதலை நரம்புச் சமிக்ஞைகளாக எவ்வாறு மாற்றுகின்றன என்பதைப் புரிந்துகொள்.
+**User-friendly description (ta):** புலன் ஏற்பிகள் தூண்டுதலை நரம்புச் சமிக்ஞைகளாக எவ்வாறு மாற்றுகின்றன என்பதைப் புரிந்துகொள்ளுங்கள்.
 
 #### காட்சி மற்றும் செவியுணர்வு அனுபவம்
 
@@ -2438,7 +2438,7 @@ Skills: 4
 
 **Methodological description (English):** Spatial, chromatic, and speech experiences emerge from interpreting patterns of visual or acoustic information.
 
-**User-friendly description (ta):** காட்சி மற்றும் ஒலித் தகவல் வடிவங்களை நாம் எவ்வாறு புரிந்துகொள்கிறோம் என்பதை அறிந்துகொள்.
+**User-friendly description (ta):** காட்சி மற்றும் ஒலித் தகவல் வடிவங்களை நாம் எவ்வாறு புரிந்துகொள்கிறோம் என்பதை அறிந்துகொள்ளுங்கள்.
 
 ##### நிறப் புலனறிதல்
 
@@ -2446,7 +2446,7 @@ Skills: 4
 
 **Methodological description (English):** Relate wavelengths, relative context, and neural processing to perceived colors without equating color with one wavelength.
 
-**User-friendly description (ta):** நாம் உணரும் நிறம் சூழலையும் நரம்புச் செயலாக்கத்தையும் ஏன் சார்ந்துள்ளது என்பதை ஆராய்.
+**User-friendly description (ta):** நாம் உணரும் நிறம் சூழலையும் நரம்புச் செயலாக்கத்தையும் ஏன் சார்ந்துள்ளது என்பதை ஆராயுங்கள்.
 
 ##### ஆழப் புலனறிதல்
 
@@ -2454,7 +2454,7 @@ Skills: 4
 
 **Methodological description (English):** Explain the contributions of binocular and monocular cues to estimating distance.
 
-**User-friendly description (ta):** பொருட்கள் எவ்வளவு தூரத்தில் உள்ளன என்பதை மதிப்பிட உதவும் காட்சிக் குறிப்புகளை அடையாளம் காண்.
+**User-friendly description (ta):** பொருட்கள் எவ்வளவு தூரத்தில் உள்ளன என்பதை மதிப்பிட உதவும் காட்சிக் குறிப்புகளை அடையாளம் காணுங்கள்.
 
 ##### ஒலியின் இருப்பிடத்தை அறிதல்
 
@@ -2462,7 +2462,7 @@ Skills: 4
 
 **Methodological description (English):** Explain how timing and level differences between ears contribute to perceived sound direction.
 
-**User-friendly description (ta):** இரண்டு காதுகளுக்கிடையேயான வேறுபாடுகள் ஒலி வரும் திசையைக் கண்டறிய எவ்வாறு உதவுகின்றன என்பதைப் புரிந்துகொள்.
+**User-friendly description (ta):** இரண்டு காதுகளுக்கிடையேயான வேறுபாடுகள் ஒலி வரும் திசையைக் கண்டறிய எவ்வாறு உதவுகின்றன என்பதைப் புரிந்துகொள்ளுங்கள்.
 
 ##### பேச்சுப் புலனறிதல்
 
@@ -2470,7 +2470,7 @@ Skills: 4
 
 **Methodological description (English):** Analyze how acoustic cues, noise, and language expectations shape understanding of spoken messages.
 
-**User-friendly description (ta):** ஒலியும் மொழி சார்ந்த எதிர்பார்ப்புகளும் பேச்சைப் புரிந்துகொள்வதை எவ்வாறு பாதிக்கின்றன என்பதை அறி.
+**User-friendly description (ta):** ஒலியும் மொழி சார்ந்த எதிர்பார்ப்புகளும் பேச்சைப் புரிந்துகொள்வதை எவ்வாறு பாதிக்கின்றன என்பதை அறியுங்கள்.
 
 ### சமூக உளவியல்
 
@@ -2480,7 +2480,7 @@ Groups: 4 · Skills: 24
 
 **Methodological description (English):** Thought and behavior change in the actual or imagined presence of others. Social processes involve interpretation, group membership, influence, and relationships without assuming all people respond alike.
 
-**User-friendly description (ta):** மற்றவர்கள் நம் நம்பிக்கைகள், செயல்கள், உறவுகளை எவ்வாறு பாதிக்கிறார்கள் என்பதை அறிக.
+**User-friendly description (ta):** மற்றவர்கள் நம் நம்பிக்கைகள், செயல்கள், உறவுகளை எவ்வாறு பாதிக்கிறார்கள் என்பதை அறியுங்கள்.
 
 #### குழுவின் இயக்கவியல்
 
@@ -2490,7 +2490,7 @@ Skills: 5
 
 **Methodological description (English):** Belonging and coordination can alter performance, responsibility, intergroup attitudes, and collective decisions.
 
-**User-friendly description (ta):** குழு அடையாளங்களும் விவாதங்களும் நடத்தையை எவ்வாறு வடிவமைக்கின்றன என்பதை ஆராய்.
+**User-friendly description (ta):** குழு அடையாளங்களும் விவாதங்களும் நடத்தையை எவ்வாறு வடிவமைக்கின்றன என்பதை ஆராயுங்கள்.
 
 ##### பார்வையாளர் விளைவு
 
@@ -2498,7 +2498,7 @@ Skills: 5
 
 **Methodological description (English):** Explain how others' presence can change perceived responsibility or interpretations of a situation.
 
-**User-friendly description (ta):** பலர் இருக்கும்போது உதவ மக்கள் ஏன் தயங்கலாம் என்பதை ஆராய்.
+**User-friendly description (ta):** பலர் இருக்கும்போது உதவ மக்கள் ஏன் தயங்கலாம் என்பதை ஆராயுங்கள்.
 
 ##### குழு துருவமயமாக்கல்
 
@@ -2506,7 +2506,7 @@ Skills: 5
 
 **Methodological description (English):** Describe how discussion among similarly inclined people can shift collective judgments toward more extreme positions.
 
-**User-friendly description (ta):** குழு விவாதம் பொதுவான கருத்தை ஏன் மேலும் தீவிரமாக்கலாம் என்பதை அறிக.
+**User-friendly description (ta):** குழு விவாதம் பொதுவான கருத்தை ஏன் மேலும் தீவிரமாக்கலாம் என்பதை அறியுங்கள்.
 
 ##### குழுமச் சிந்தனை
 
@@ -2514,7 +2514,7 @@ Skills: 5
 
 **Methodological description (English):** Identify pressures toward unanimity that discourage dissent and reduce the scrutiny of alternatives.
 
-**User-friendly description (ta):** ஒப்புதலுக்கான அழுத்தம் எப்போது விமர்சன மதிப்பீட்டைத் தடுக்கிறது என்பதை அறிக.
+**User-friendly description (ta):** ஒப்புதலுக்கான அழுத்தம் எப்போது விமர்சன மதிப்பீட்டைத் தடுக்கிறது என்பதை அறியுங்கள்.
 
 ##### உள்குழு மற்றும் வெளிக்குழு சார்பு
 
@@ -2522,7 +2522,7 @@ Skills: 5
 
 **Methodological description (English):** Analyze unequal evaluation of people based on group membership even without direct personal experience.
 
-**User-friendly description (ta):** காரணமின்றித் தன் குழுவையே ஆதரிக்கும் சார்பை அறிக.
+**User-friendly description (ta):** காரணமின்றித் தன் குழுவையே ஆதரிக்கும் சார்பை அறியுங்கள்.
 
 ##### சமூக அடையாளம்
 
@@ -2530,7 +2530,7 @@ Skills: 5
 
 **Methodological description (English):** Explain how membership in meaningful groups contributes to self-description and intergroup interpretation.
 
-**User-friendly description (ta):** ஒரு குழுவைச் சேர்ந்திருப்பது ஒருவரின் சமூக அடையாளத்தை எவ்வாறு பாதிக்கிறது என்பதை அறிக.
+**User-friendly description (ta):** ஒரு குழுவைச் சேர்ந்திருப்பது ஒருவரின் சமூக அடையாளத்தை எவ்வாறு பாதிக்கிறது என்பதை அறியுங்கள்.
 
 #### செல்வாக்கும் சம்மதிக்கச் செய்வதும்
 
@@ -2540,7 +2540,7 @@ Skills: 6
 
 **Methodological description (English):** Other people's behavior, claims, and group norms can shift beliefs or actions through identifiable social mechanisms.
 
-**User-friendly description (ta):** குழுக்கள், அதிகாரம், செய்திகள் தேர்வுகளை எவ்வாறு பாதிக்கின்றன என்பதை அறிக.
+**User-friendly description (ta):** குழுக்கள், அதிகாரம், செய்திகள் தேர்வுகளை எவ்வாறு பாதிக்கின்றன என்பதை அறியுங்கள்.
 
 ##### குழுவுடன் ஒத்துப்போதல்
 
@@ -2548,7 +2548,7 @@ Skills: 6
 
 **Methodological description (English):** Explain changes in expressed judgments or behavior under perceived group pressure.
 
-**User-friendly description (ta):** குழுவின் எதிர்பார்ப்புக்கேற்ப நடத்தை மாற்றப்படுவதை அறிக.
+**User-friendly description (ta):** குழுவின் எதிர்பார்ப்புக்கேற்ப நடத்தை மாற்றப்படுவதை அறியுங்கள்.
 
 ##### தகவல் சார்ந்த சமூகச் செல்வாக்கு
 
@@ -2556,7 +2556,7 @@ Skills: 6
 
 **Methodological description (English):** Explain adopting others' judgments when they appear to provide useful evidence about uncertainty.
 
-**User-friendly description (ta):** முடிவெடுக்க மற்றவர்களின் தகவலை எப்போது பயன்படுத்துகிறோம் என்பதை அறிக.
+**User-friendly description (ta):** முடிவெடுக்க மற்றவர்களின் தகவலை எப்போது பயன்படுத்துகிறோம் என்பதை அறியுங்கள்.
 
 ##### நெறிமுறை சார்ந்த சமூகச் செல்வாக்கு
 
@@ -2564,7 +2564,7 @@ Skills: 6
 
 **Methodological description (English):** Explain compliance motivated by social approval or avoidance of rejection.
 
-**User-friendly description (ta):** குழுவில் சேர விரும்புவது எப்போது நடத்தையை மாற்றுகிறது என்பதை அறிக.
+**User-friendly description (ta):** குழுவில் சேர விரும்புவது எப்போது நடத்தையை மாற்றுகிறது என்பதை அறியுங்கள்.
 
 ##### அதிகாரத்திற்குக் கீழ்ப்படிதல்
 
@@ -2572,7 +2572,7 @@ Skills: 6
 
 **Methodological description (English):** Analyze how authority cues and situational pressures influence compliance, including ethical limits of classic research.
 
-**User-friendly description (ta):** அதிகாரம் முடிவைப் பாதித்தாலும் அது சரியாகவே இருக்கும் என உறுதி இல்லை என்பதை அறிக.
+**User-friendly description (ta):** அதிகாரம் முடிவைப் பாதித்தாலும் அது சரியாகவே இருக்கும் என உறுதி இல்லை என்பதை அறியுங்கள்.
 
 ##### சம்மதிக்கச் செய்யும் பாதைகள்
 
@@ -2580,7 +2580,7 @@ Skills: 6
 
 **Methodological description (English):** Compare careful evaluation of arguments with reliance on source or presentation cues.
 
-**User-friendly description (ta):** சம்மதிக்க வைக்கும் செய்திகள் மனப்பாங்கை மாற்றும் பல வழிகளை ஒப்பிடுக.
+**User-friendly description (ta):** சம்மதிக்க வைக்கும் செய்திகள் மனப்பாங்கை மாற்றும் பல வழிகளை ஒப்பிடுங்கள்.
 
 ##### உளவியல் சூழ்ச்சியை அறிதல்
 
@@ -2588,7 +2588,7 @@ Skills: 6
 
 **Methodological description (English):** Identify exploitative uses of urgency, isolation, guilt, or unequal power without teaching techniques to manipulate others.
 
-**User-friendly description (ta):** அச்சம், குற்றவுணர்வு, சமூக எதிர்பார்ப்பை பயன்படுத்தும் அழுத்த முறைகளை அறிக.
+**User-friendly description (ta):** அச்சம், குற்றவுணர்வு, சமூக எதிர்பார்ப்பை பயன்படுத்தும் அழுத்த முறைகளை அறியுங்கள்.
 
 #### உறவுகளும் தொடர்பாடலும்
 
@@ -2598,7 +2598,7 @@ Skills: 7
 
 **Methodological description (English):** Relationships develop through mutual interpretation, reciprocal actions, boundaries, and social context rather than perfect reading of another's intentions.
 
-**User-friendly description (ta):** ஆரோக்கியமான உரையாடல், தனிப்பட்ட எல்லைகள், உறவுச் சிக்கல்களை அறியக் கற்றுக்கொள்.
+**User-friendly description (ta):** ஆரோக்கியமான உரையாடல், தனிப்பட்ட எல்லைகள், உறவுச் சிக்கல்களை அறியக் கற்றுக்கொள்ளுங்கள்.
 
 ##### செயல்திறன் மிக்க கவனித்துக் கேட்பது
 
@@ -2606,7 +2606,7 @@ Skills: 7
 
 **Methodological description (English):** Distinguish checking understanding and attending to another person's meaning from merely waiting to reply.
 
-**User-friendly description (ta):** மற்றவரின் பேச்சை கவனமாகக் கேட்டு கருத்தைத் தெளிவுபடுத்தப் பயிற்சி செய்.
+**User-friendly description (ta):** மற்றவரின் பேச்சை கவனமாகக் கேட்டு கருத்தைத் தெளிவுபடுத்தப் பயிற்சி செய்யுங்கள்.
 
 ##### உறவுகளில் பற்றுதல்
 
@@ -2614,7 +2614,7 @@ Skills: 7
 
 **Methodological description (English):** Explain how expectations about availability and support can influence close relationships while avoiding rigid labeling of individuals.
 
-**User-friendly description (ta):** பற்றுதல் முறைகள் காலப்போக்கில் உறவுகளை எவ்வாறு பாதிக்கலாம் என்பதை ஆராய்.
+**User-friendly description (ta):** பற்றுதல் முறைகள் காலப்போக்கில் உறவுகளை எவ்வாறு பாதிக்கலாம் என்பதை ஆராயுங்கள்.
 
 ##### தனிநபர்களுக்கிடையேயான முரண்பாடு
 
@@ -2622,7 +2622,7 @@ Skills: 7
 
 **Methodological description (English):** Analyze how unmet expectations, differing interpretations, communication patterns, and situational pressures contribute to the emergence or escalation of disagreements between people.
 
-**User-friendly description (ta):** கருத்து வேறுபாடு எவ்வாறு தீவிரமடைகிறது, அதை ஆக்கபூர்வமாக எவ்வாறு தீர்க்கலாம் என்பதை ஆராய்.
+**User-friendly description (ta):** கருத்து வேறுபாடு எவ்வாறு தீவிரமடைகிறது, அதை ஆக்கபூர்வமாக எவ்வாறு தீர்க்கலாம் என்பதை ஆராயுங்கள்.
 
 ##### சொற்களற்ற தொடர்பாடல்
 
@@ -2630,7 +2630,7 @@ Skills: 7
 
 **Methodological description (English):** Interpret gesture, tone, and interpersonal distance in cultural and situational context rather than through universal decoding rules.
 
-**User-friendly description (ta):** முகபாவனை, சைகை, குரல் தொனி தகவலை எவ்வாறு தெரிவிக்கின்றன என்பதை அறிக.
+**User-friendly description (ta):** முகபாவனை, சைகை, குரல் தொனி தகவலை எவ்வாறு தெரிவிக்கின்றன என்பதை அறியுங்கள்.
 
 ##### தனிப்பட்ட எல்லைகள்
 
@@ -2638,7 +2638,7 @@ Skills: 7
 
 **Methodological description (English):** Explain how individuals express limits about interactions, information, and bodily or emotional space, and how those limits merit respect.
 
-**User-friendly description (ta):** தன் உடல், நேரம், தகவல் குறித்து ஒருவர் அமைக்கும் எல்லைகளை அறிக.
+**User-friendly description (ta):** தன் உடல், நேரம், தகவல் குறித்து ஒருவர் அமைக்கும் எல்லைகளை அறியுங்கள்.
 
 ##### உறவைச் சீர்செய்தல்
 
@@ -2646,7 +2646,7 @@ Skills: 7
 
 **Methodological description (English):** Explain how acknowledgment, apology, changed behavior, and negotiated expectations can help restore trust after interpersonal harm without assuming reconciliation is always safe or obligatory.
 
-**User-friendly description (ta):** கருத்து வேறுபாட்டுக்குப் பிறகு நம்பிக்கையை மீட்டெடுக்க உதவுவதை அறிக.
+**User-friendly description (ta):** கருத்து வேறுபாட்டுக்குப் பிறகு நம்பிக்கையை மீட்டெடுக்க உதவுவதை அறியுங்கள்.
 
 ##### விருப்பத்துடன் அளிக்கும் ஒப்புதல்
 
@@ -2654,7 +2654,7 @@ Skills: 7
 
 **Methodological description (English):** Distinguish an informed, freely given and revocable agreement from silence, coercion, or assumed permission.
 
-**User-friendly description (ta):** ஒப்புதல் சுயவிருப்பத்துடன் இருக்க வேண்டும்; அதைத் திரும்பப் பெறலாம் என்பதை அறிக.
+**User-friendly description (ta):** ஒப்புதல் சுயவிருப்பத்துடன் இருக்க வேண்டும்; அதைத் திரும்பப் பெறலாம் என்பதை அறியுங்கள்.
 
 #### சமூகப் புரிதல்
 
@@ -2664,7 +2664,7 @@ Skills: 6
 
 **Methodological description (English):** Judgments about other people are inferred from limited evidence and shaped by expectations, roles, and context.
 
-**User-friendly description (ta):** மற்றவர்களின் செயல்கள், நோக்கங்கள், உணர்வுகளை நாம் எவ்வாறு பொருள்கொள்கிறோம் என்பதை ஆராய்.
+**User-friendly description (ta):** மற்றவர்களின் செயல்கள், நோக்கங்கள், உணர்வுகளை நாம் எவ்வாறு பொருள்கொள்கிறோம் என்பதை ஆராயுங்கள்.
 
 ##### கருணை
 
@@ -2672,7 +2672,7 @@ Skills: 6
 
 **Methodological description (English):** Explain concern for another person's suffering accompanied by motivation to offer appropriate help, distinct from understanding alone.
 
-**User-friendly description (ta):** பிறருக்கு உதவ விரும்பும் கருணையையும் அவர்களின் உணர்வை மட்டும் புரிதலையும் வேறுபடுத்து.
+**User-friendly description (ta):** பிறருக்கு உதவ விரும்பும் கருணையையும் அவர்களின் உணர்வை மட்டும் புரிதலையும் வேறுபடுத்துங்கள்.
 
 ##### பிறருணர்வு
 
@@ -2680,7 +2680,7 @@ Skills: 6
 
 **Methodological description (English):** Explain understanding or affectively responding to another person's possible experience while recognizing that one cannot know it with certainty.
 
-**User-friendly description (ta):** மற்றொருவரின் அனுபவத்தை அறிந்து அதன் சில உணர்வுகளைப் பகிர்வதே பிறருணர்வு என்பதை அறிக.
+**User-friendly description (ta):** மற்றொருவரின் அனுபவத்தை அறிந்து அதன் சில உணர்வுகளைப் பகிர்வதே பிறருணர்வு என்பதை அறியுங்கள்.
 
 ##### முதல் எண்ணங்கள்
 
@@ -2688,7 +2688,7 @@ Skills: 6
 
 **Methodological description (English):** Explain how early information can disproportionately influence expectations about a person.
 
-**User-friendly description (ta):** முதல் எண்ணம் எவ்வாறு உருவாகிறது, ஏன் தவறாக இருக்கலாம் என்பதை அறிக.
+**User-friendly description (ta):** முதல் எண்ணம் எவ்வாறு உருவாகிறது, ஏன் தவறாக இருக்கலாம் என்பதை அறியுங்கள்.
 
 ##### மற்றவர் பார்வையை எடுத்துக்கொள்ளுதல்
 
@@ -2696,7 +2696,7 @@ Skills: 6
 
 **Methodological description (English):** Explain inferring another person's possible viewpoint while recognizing that their actual experience remains uncertain.
 
-**User-friendly description (ta):** ஒரு சூழலை மற்றொரு நபரின் பார்வையிலிருந்து காணப் பயிற்சி செய்.
+**User-friendly description (ta):** ஒரு சூழலை மற்றொரு நபரின் பார்வையிலிருந்து காணப் பயிற்சி செய்யுங்கள்.
 
 ##### சமூக காரண ஒதுக்கீடு
 
@@ -2704,7 +2704,7 @@ Skills: 6
 
 **Methodological description (English):** Distinguish explanations invoking a person's dispositions from those emphasizing circumstances and available choices.
 
-**User-friendly description (ta):** மற்றவர்களின் நடத்தைக்கான காரணங்களை மக்கள் எவ்வாறு ஊகிக்கிறார்கள் என்பதைப் புரிந்துகொள்.
+**User-friendly description (ta):** மற்றவர்களின் நடத்தைக்கான காரணங்களை மக்கள் எவ்வாறு ஊகிக்கிறார்கள் என்பதைப் புரிந்துகொள்ளுங்கள்.
 
 ##### ஒரே மாதிரியான முன்கருத்து செயல்படுதல்
 
@@ -2712,7 +2712,7 @@ Skills: 6
 
 **Methodological description (English):** Analyze how culturally available categories affect social perception without treating stereotypes as reliable descriptions.
 
-**User-friendly description (ta):** தெளிவாகச் சிந்திக்கும் முன்பே முன்கருத்துகள் தீர்ப்பை எவ்வாறு பாதிக்கின்றன என்பதை ஆராய்.
+**User-friendly description (ta):** தெளிவாகச் சிந்திக்கும் முன்பே முன்கருத்துகள் தீர்ப்பை எவ்வாறு பாதிக்கின்றன என்பதை ஆராயுங்கள்.
 
 ### சிந்தனையும் முடிவெடுத்தலும்
 

@@ -278,7 +278,7 @@ Skills: 5
 
 **User-friendly description (lt):** Paaiškink, kaip žmogus sutelkia dėmesį į svarbią informaciją nepaisydamas trukdžių.
 
-##### Tvarus dėmesys
+##### Dėmesio išlaikymas
 
 [sustainedAttention.data.ts](../../../learningApps/psychology/data/skills/attentionAndConsciousness/attentionAllocation/skills/sustainedAttention.data.ts)
 
@@ -1416,7 +1416,7 @@ Skills: 4
 
 **User-friendly description (lt):** Atpažink, kada reikia skirtingų kvalifikuotų specialistų ar siuntimo.
 
-##### Psichologinė atranka ir diagnozė
+##### Psichologinė patikra ir diagnozė
 
 [psychologicalScreeningVersusDiagnosis.data.ts](../../../learningApps/psychology/data/skills/mentalHealthAndClinicalScience/assessmentAndProfessionalSupport/skills/psychologicalScreeningVersusDiagnosis.data.ts)
 
@@ -2672,7 +2672,7 @@ Skills: 6
 
 **Methodological description (English):** Explain concern for another person's suffering accompanied by motivation to offer appropriate help, distinct from understanding alone.
 
-**User-friendly description (lt):** Atskirk atjautų rūpestį kitu nuo vien jo jausmų supratimo.
+**User-friendly description (lt):** Atskirk atjautą ir norą padėti nuo vien kito žmogaus jausmų supratimo.
 
 ##### Empatija
 
@@ -2964,7 +2964,7 @@ Skills: 6
 
 **Methodological description (English):** Explain generalizing beyond observed cases and why resulting conclusions remain uncertain.
 
-**User-friendly description (lt):** Atpažink, kaip pavyzdžiai pagrindžia platesnes, bet nepatikimas išvadas.
+**User-friendly description (lt):** Atpažink, kaip pavyzdžiai pagrindžia platesnes, bet nevisiškai tikras išvadas.
 
 ##### Įžvalga ir pertvarkymas
 

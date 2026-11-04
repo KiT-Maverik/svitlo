@@ -328,7 +328,7 @@ Skills: 4
 
 **User-friendly description (ko):** 연습을 통해 과제가 점차 자동화되는 방식을 알아보세요.
 
-#### 수면과 일일 리듬
+#### 수면과 일주기 리듬
 
 Skills: 4
 
@@ -2372,7 +2372,7 @@ Skills: 4
 
 **User-friendly description (ko):** 근접성, 유사성, 연속성으로 시각적 묶음이 생기는 이유를 설명해 보세요.
 
-##### 지각 항등성
+##### 지각 항상성
 
 [perceptualConstancy.data.ts](../../../learningApps/psychology/data/skills/sensationAndPerception/perceptualOrganization/skills/perceptualConstancy.data.ts)
 

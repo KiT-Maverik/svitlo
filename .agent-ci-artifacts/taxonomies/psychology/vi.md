@@ -1238,7 +1238,7 @@ Skills: 6
 
 **Methodological description (English):** Explain access to acquired concepts, facts, and meanings without needing to mentally relive a specific event.
 
-**User-friendly description (vi):** Nhận biết trí nhớ về sự kiện, khái niệm và ý nghĩa.
+**User-friendly description (vi):** Nhận biết trí nhớ về các dữ kiện, khái niệm và ý nghĩa.
 
 ##### Trí nhớ cảm giác
 

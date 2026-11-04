@@ -328,7 +328,7 @@ Skills: 4
 
 **User-friendly description (ja):** 練習によって作業が少しずつ自然にできるようになる仕組みを考えよう。
 
-#### 睡眠と日内リズム
+#### 睡眠と概日リズム
 
 Skills: 4
 
@@ -1282,7 +1282,7 @@ Skills: 5
 
 **User-friendly description (ja):** 関連する課題を交互に練習すると、違いを見分けやすくなる理由を考えよう。
 
-##### 想起す練習
+##### 想起練習
 
 [retrievalPractice.data.ts](../../../learningApps/psychology/data/skills/memoryAndMetacognition/monitoringAndLearningStrategies/skills/retrievalPractice.data.ts)
 
@@ -1356,7 +1356,7 @@ Skills: 7
 
 **User-friendly description (ja):** 以前学んだことが新しい学習を妨げる場合を見分けよう。
 
-##### 想起す手がかり
+##### 想起の手がかり
 
 [retrievalCues.data.ts](../../../learningApps/psychology/data/skills/memoryAndMetacognition/retrievalAndDistortion/skills/retrievalCues.data.ts)
 

@@ -2824,7 +2824,7 @@ Skills: 7
 
 **User-friendly description (zh):** 识别何时人们过度用他人的性格来解释其行为。
 
-##### 事后偏差
+##### 后见之明偏差
 
 [hindsightBias.data.ts](../../../learningApps/psychology/data/skills/thinkingAndDecisionMaking/heuristicsAndBiases/skills/hindsightBias.data.ts)
 
