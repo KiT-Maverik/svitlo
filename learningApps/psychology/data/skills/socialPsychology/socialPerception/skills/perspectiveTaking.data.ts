@@ -52,7 +52,7 @@ export const perspectiveTaking_Skill_Data = buildSkillConfig({
       ko: "다른 사람의 관점에서 상황을 생각하는 연습을 해 보세요.",
       tr: "Bir durumu başka birinin bakış açısından düşünmeyi dene.",
       vi: "Luyện xem xét tình huống từ góc nhìn của một người khác.",
-      ta: "ஒரு சூழலை மற்றொரு நபரின் பார்வையிலிருந்து காணப் பயிற்சி செய்.",
+      ta: "ஒரு சூழலை மற்றொரு நபரின் பார்வையிலிருந்து காணப் பயிற்சி செய்யுங்கள்.",
       te: "పరిస్థితిని మరో వ్యక్తి దృక్కోణం నుంచి చూడటానికి అభ్యాసం చేయండి.",
       mr: "परिस्थितीकडे दुसऱ्या व्यक्तीच्या नजरेतून पाहण्याचा सराव कर.",
       ms: "Berlatih mempertimbangkan situasi dari sudut pandangan orang lain.",
