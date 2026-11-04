@@ -6,7 +6,7 @@ export const explainGeographicSpecializationOfEconomicActivities_Skill_Data = bu
   name: {
     en: "Explain geographic specialization of economic activities",
     zh: "解释经济活动的地理专业化",
-    hi: "आर्थिक गतिविधियों के भौगोलिक विशेषज्ञता को समझाना",
+    hi: "आर्थिक गतिविधियों की भौगोलिक विशेषज्ञता को समझाना",
     es: "Explicar la especialización geográfica de las actividades económicas",
     ar: "شرح التخصص الجغرافي للأنشطة الاقتصادية",
     fr: "Expliquer la spécialisation géographique des activités économiques",

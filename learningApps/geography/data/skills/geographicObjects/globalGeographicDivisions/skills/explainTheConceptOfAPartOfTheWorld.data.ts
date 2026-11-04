@@ -65,7 +65,7 @@ export const explainTheConceptOfAPartOfTheWorld_Skill_Data = buildSkillConfig({
       be: "Зразумей, што часткі сьвету часткова вызначаюцца паводле ўмоўнасьцяў.",
       ka: "გაიგე, რომ მსოფლიოს ნაწილები ნაწილობრივ შეთანხმებული წესებით განისაზღვრება.",
       kk: "Дүние бөліктері ішінара қалыптасқан келісімдермен анықталатынын түсін.",
-      qm: "Dünya parçalarınıñ qısmen qa'idelerge köre belgilengənini añla.",
+      qm: "Dünya parçalarınıñ qısmen qa'idelerge köre belgilengenini añla.",
     },
   },
 });

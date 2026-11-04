@@ -65,7 +65,7 @@ export const distinguishFormalAndFunctionalRegions_Skill_Data = buildSkillConfig
       be: "Распазнавай рэгіёны, вызначаныя агульнымі рысамі або сувязямі з цэнтрам.",
       ka: "ამოიცანი საერთო ნიშნებით ან ცენტრთან კავშირებით განსაზღვრული რეგიონები.",
       kk: "Ортақ белгілермен немесе орталықпен байланыспен анықталатын аймақтарды таны.",
-      qm: "Umumiy hususiyetler ya da merkeznen bağlarına köre belgilengən regionlarnı tanı.",
+      qm: "Umumiy hususiyetler ya da merkeznen bağlarına köre belgilengen regionlarnı tanı.",
     },
   },
 });

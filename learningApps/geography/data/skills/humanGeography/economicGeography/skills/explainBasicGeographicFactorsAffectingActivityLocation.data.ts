@@ -65,7 +65,7 @@ export const explainBasicGeographicFactorsAffectingActivityLocation_Skill_Data =
       be: "Патлумач, чаму даступнасьць, рэсурсы і рэльеф уплываюць на месца прадпрыемстваў.",
       ka: "ახსენი, რატომ მოქმედებს ხელმისაწვდომობა, რესურსები და რელიეფი საწარმოების მდებარეობაზე.",
       kk: "Қолжетімділік, ресурстар мен жер бедері кәсіпорындардың орналасуына неге әсер ететінін түсіндір.",
-      qm: "Ulaşım qolaylığı, resurslar ve relyef işletmelerniñ yerini niçün tesir etkenini añlat.",
+      qm: "Ulaşım qolaylığı, resurslar ve relyef işletmelerniñ qayda yerleşkenine nasıl tesir etkenini añlat.",
     },
   },
 });
