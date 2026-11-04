@@ -1,7 +1,7 @@
 import type { ContentBlock_Data_Meta, ContentBlock_Definition_Meta, ContentBlock_Response_Meta } from './common.types';
 import type { ContentEntity_ConfigType } from '../entity.types';
 import type { LanguageCode } from '../../languages';
-import type { New_Locale_Options, Locale_ResponseParams } from '../locale.types';
+import type { Locale_Options, Locale_ResponseParams } from '../locale.types';
 
 /** Preserve the scene's keys while rejecting non-string leaves at any depth. */
 type ContentBlock_Scene_Locales_Strings<TLocales> = TLocales extends string
@@ -20,7 +20,7 @@ type ContentBlock_Scene_Definition = ContentBlock_Definition_Meta<'scene'> & {
 };
 
 type ContentBlock_Scene_Locales_Data<TLocales, SupportedLanguages extends LanguageCode> = TLocales extends string
-  ? New_Locale_Options<SupportedLanguages>
+  ? Locale_Options<SupportedLanguages>
   : TLocales extends object
     ? { [Key in keyof TLocales]: ContentBlock_Scene_Locales_Data<TLocales[Key], SupportedLanguages> }
     : never;

@@ -1,7 +1,7 @@
 import type { ContentBlock_Data_Meta, ContentBlock_Definition_Meta, ContentBlock_Response_Meta } from './common.types';
 import type { ContentEntity_ConfigType } from '../entity.types';
 import type { LanguageCode } from '../../languages';
-import type { New_Locale_Options, Locale_ResponseParams } from '../locale.types';
+import type { Locale_Options, Locale_ResponseParams } from '../locale.types';
 
 type ContentBlock_Image_Definition = ContentBlock_Definition_Meta<'image'>;
 
@@ -16,12 +16,12 @@ type Image_Layout =
   | { fill: true; aspectRatio: number; objectFit?: 'contain' | 'cover'; width?: never; height?: never };
 
 type ContentBlock_Image_Data<SupportedLanguages extends LanguageCode> = ContentBlock_Data_Meta & Image_Layout & {
-  src: New_Locale_Options<SupportedLanguages>;
-  alt: New_Locale_Options<SupportedLanguages>;
-  caption?: New_Locale_Options<SupportedLanguages>;
+  src: Locale_Options<SupportedLanguages>;
+  alt: Locale_Options<SupportedLanguages>;
+  caption?: Locale_Options<SupportedLanguages>;
   sizes?: string;
   unoptimized?: boolean;
-  fallback?: Image_Fallback<New_Locale_Options<SupportedLanguages>>;
+  fallback?: Image_Fallback<Locale_Options<SupportedLanguages>>;
 };
 
 export type ContentBlock_Image_Response = ContentBlock_Response_Meta<'image'> & Locale_ResponseParams & Image_Layout & {

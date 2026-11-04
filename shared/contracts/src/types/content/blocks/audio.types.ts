@@ -1,7 +1,7 @@
 import type { ContentBlock_Data_Meta, ContentBlock_Definition_Meta, ContentBlock_Response_Meta } from './common.types';
 import type { ContentEntity_ConfigType } from '../entity.types';
 import type { LanguageCode } from '../../languages';
-import type { New_Locale_Options, Locale_ResponseParams } from '../locale.types';
+import type { Locale_Options, Locale_ResponseParams } from '../locale.types';
 
 type ContentBlock_Audio_Definition = ContentBlock_Definition_Meta<'audio'>;
 
@@ -13,10 +13,10 @@ type Audio_Fallback<Value> = {
 };
 
 type ContentBlock_Audio_Data<SupportedLanguages extends LanguageCode> = ContentBlock_Data_Meta & {
-  fileLocation: New_Locale_Options<SupportedLanguages>;
-  title: New_Locale_Options<SupportedLanguages>;
-  description?: New_Locale_Options<SupportedLanguages>;
-  fallback?: Audio_Fallback<New_Locale_Options<SupportedLanguages>>;
+  fileLocation: Locale_Options<SupportedLanguages>;
+  title: Locale_Options<SupportedLanguages>;
+  description?: Locale_Options<SupportedLanguages>;
+  fallback?: Audio_Fallback<Locale_Options<SupportedLanguages>>;
 };
 
 export type ContentBlock_Audio_Response = ContentBlock_Response_Meta<'audio'> & Locale_ResponseParams & {

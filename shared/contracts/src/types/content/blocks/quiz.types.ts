@@ -1,7 +1,7 @@
 import type { ContentEntity_ConfigType } from '../entity.types';
 import type { NonEmptyArray } from '../../misc.types';
 import type { LanguageCode } from '../../languages';
-import type { New_Locale_Options, Locale_ResponseParams } from '../locale.types';
+import type { Locale_Options, Locale_ResponseParams } from '../locale.types';
 import type { Question_SelectOneAnswer } from '../questions/selectOneAnswer.types';
 import type { ContentBlock } from './index';
 import type { ContentBlock_Data_Meta, ContentBlock_Definition_Meta, ContentBlock_Response_Meta } from './common.types';
@@ -42,7 +42,7 @@ type ContentBlock_Quiz_Definition = ContentBlock_Definition_Meta<'quiz'>;
 
 type ContentBlock_Quiz_Data<SupportedLanguages extends LanguageCode> = ContentBlock_Data_Meta &
   Quiz_Settings<'data', SupportedLanguages> & {
-    welcome: New_Locale_Options<SupportedLanguages>;
+    welcome: Locale_Options<SupportedLanguages>;
     questions: Record<string, Question_SelectOneAnswer<'data', SupportedLanguages>>;
   };
 

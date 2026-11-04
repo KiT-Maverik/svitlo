@@ -1,7 +1,7 @@
 import type { NonEmptyArray } from '../../misc.types';
 import type { LanguageCode } from '../../languages';
 import type { ContentEntity_ConfigType } from '../entity.types';
-import type { New_Locale_Options, Locale_ResponseParams } from '../locale.types';
+import type { Locale_Options, Locale_ResponseParams } from '../locale.types';
 import type { ContentBlock_Audio } from './audio.types';
 import type { ContentBlock_Code } from './code.types';
 import type { ContentBlock_Data_Meta, ContentBlock_Definition_Meta, ContentBlock_Response_Meta } from './common.types';
@@ -39,9 +39,9 @@ type ContentBlock_Checkpoint_Settings = {
 type ContentBlock_Checkpoint_Definition = ContentBlock_Definition_Meta<'checkpoint'>;
 
 type ContentBlock_Checkpoint_Data<SupportedLanguages extends LanguageCode> = ContentBlock_Data_Meta & ContentBlock_Checkpoint_Settings & {
-  title: New_Locale_Options<SupportedLanguages>;
+  title: Locale_Options<SupportedLanguages>;
   items: {
-    question: New_Locale_Options<SupportedLanguages>;
+    question: Locale_Options<SupportedLanguages>;
     answer: CheckpointAnswer<'data', SupportedLanguages>;
     check?: true;
   }[];

@@ -1,33 +1,6 @@
 import type { LanguageCode } from '../languages';
 
-export type Locales_All<Value = string> = Record<LanguageCode, Value>;
-
-export type Locales_Subset<Languages extends LanguageCode, Value = string> = Record<Languages, Value> & {
-  fallback: Languages;
-};
-
-export type Locales_Partial<Value = string> = {
-  [FallbackLanguage in LanguageCode]: {
-    fallback: FallbackLanguage;
-  } & Record<FallbackLanguage, Value> &
-    Partial<Record<Exclude<LanguageCode, FallbackLanguage>, Value>>;
-}[LanguageCode];
-
-export type Locales_Single<Value = string> = {
-  value: Value;
-  language: LanguageCode;
-};
-
-export type Locale_ResponseParams = {
-  locale: {
-    code: LanguageCode;
-    isFallback?: true;
-  };
-};
-
-export type Locale_Config = Locales_All | Locales_Subset<LanguageCode> | Locales_Single | Locales_Partial;
-
-type New_Locale_Config<SupportedLanguages extends LanguageCode = LanguageCode> =
+type Locale_Config<SupportedLanguages extends LanguageCode = LanguageCode> =
   Record<SupportedLanguages, string>;
 
 /**
@@ -38,11 +11,13 @@ type New_Locale_Config<SupportedLanguages extends LanguageCode = LanguageCode> =
  *
  * Do not use to bypass missing translations.
  */
-type New_NonLocalizable = string;
+type NonLocalizable = string;
 
 /**
  * Text that is either:
  * - Fully localized for all supported languages.
  * - Intentionally language-independent.
  */
-export type New_Locale_Options<SupportedLanguages extends LanguageCode> = New_Locale_Config<SupportedLanguages> | New_NonLocalizable;
+export type Locale_Options<SupportedLanguages extends LanguageCode> = Locale_Config<SupportedLanguages> | NonLocalizable;
+
+export type Locale_Subset<SupportedLanguages extends LanguageCode> = Record<SupportedLanguages, string>;

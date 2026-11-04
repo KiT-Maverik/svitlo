@@ -2,7 +2,7 @@ import type { LanguageCode } from '../languages';
 import type { DefineValidKeysFromSlugs, NonEmptyArray } from '../misc.types';
 import type { ContentEntity_ConfigType } from './entity.types';
 import type { Flashcard } from './flashcard.types';
-import type { New_Locale_Options, Locale_ResponseParams } from './locale.types';
+import type { Locale_Options, Locale_ResponseParams } from './locale.types';
 import type { Question_Catalog, Question_Catalog_ValidSlugs } from './questions';
 import type { Section } from './section.types';
 
@@ -28,7 +28,7 @@ type Lesson_Definition = {
 type Lesson_Data<SupportedLanguages extends LanguageCode> = {
   id: string;
   slug: string;
-  title: New_Locale_Options<SupportedLanguages>;
+  title: Locale_Options<SupportedLanguages>;
   flashcards: Flashcard<'data', SupportedLanguages>[];
   parameters: Lesson_Parameters<SupportedLanguages>;
   questions: Question_Catalog<'data', SupportedLanguages>;
