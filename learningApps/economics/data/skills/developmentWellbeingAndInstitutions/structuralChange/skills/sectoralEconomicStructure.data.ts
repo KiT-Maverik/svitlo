@@ -42,7 +42,7 @@ export const sectoralEconomicStructure_Skill_Data = buildSkillConfig({
       hi: "खेती, उद्योग और सेवाओं की आर्थिक भूमिकाओं की तुलना करें।",
       es: "Compara las funciones económicas de agricultura, industria y servicios.",
       ar: "قارن الأدوار الاقتصادية للزراعة والصناعة والخدمات.",
-      fr: "Comparez les rôles économiques de l’agriculture, de l’industrie et des services.",
+      fr: "Compare les rôles économiques de l’agriculture, de l’industrie et des services.",
       bn: "কৃষি, শিল্প ও সেবার অর্থনৈতিক ভূমিকা তুলনা করো।",
       pt: "Compare os papéis econômicos da agricultura, da indústria e dos serviços.",
       ur: "زراعت، صنعت اور خدمات کے معاشی کرداروں کا موازنہ کریں۔",

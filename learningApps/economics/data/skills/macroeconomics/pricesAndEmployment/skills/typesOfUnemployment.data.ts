@@ -42,7 +42,7 @@ export const typesOfUnemployment_Skill_Data = buildSkillConfig({
       hi: "जानें कि बेरोज़गारी के अलग-अलग कारण क्यों हो सकते हैं।",
       es: "Explora por qué el desempleo puede tener causas diferentes.",
       ar: "اكتشف لماذا تحدث البطالة لأسباب مختلفة.",
-      fr: "Explorez les différentes causes du chômage.",
+      fr: "Explore les différentes causes du chômage.",
       bn: "বেকারত্বের বিভিন্ন কারণ কেন থাকতে পারে তা অন্বেষণ করো।",
       pt: "Explore por que o desemprego pode ter causas diferentes.",
       ur: "جانیں کہ بے روزگاری کی مختلف وجوہات کیا ہو سکتی ہیں۔",

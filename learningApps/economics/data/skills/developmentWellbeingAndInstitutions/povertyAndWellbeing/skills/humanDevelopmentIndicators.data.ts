@@ -42,7 +42,7 @@ export const humanDevelopmentIndicators_Skill_Data = buildSkillConfig({
       hi: "समझें कि मानव विकास सूचकांक क्या मापते हैं और क्या नहीं।",
       es: "Comprende qué miden y qué no reflejan los índices de desarrollo humano.",
       ar: "افهم ما الذي تقيسه مؤشرات التنمية البشرية وما الذي لا تغطيه.",
-      fr: "Comprenez ce que les indices de développement humain mesurent et omettent.",
+      fr: "Comprends ce que les indices de développement humain mesurent et omettent.",
       bn: "মানব উন্নয়ন সূচক কী মাপে আর কী বাদ দেয় তা বোঝো।",
       pt: "Entenda o que os índices de desenvolvimento humano medem e deixam de fora.",
       ur: "سمجھیں کہ انسانی ترقی کے اشاریے کیا ناپتے ہیں اور کیا نہیں۔",

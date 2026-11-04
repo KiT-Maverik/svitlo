@@ -15,7 +15,7 @@ export const natureOfMoney_SkillGroup_Data = buildSkillGroupConfig({
     bn: "অর্থের প্রকৃতি",
     pt: "Natureza do dinheiro",
     ur: "رقم کی نوعیت",
-    id: "Hakikat Uang",
+    id: "Hakikat uang",
     de: "Wesen des Geldes",
     ja: "貨幣の本質",
     ko: "화폐의 본질",

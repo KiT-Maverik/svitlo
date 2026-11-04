@@ -50,7 +50,7 @@ export const currenciesAndExternalBalances_SkillGroup_Data = buildSkillGroupConf
       hi: "जानें कि विनिमय दर और सीमा-पार खातों की व्यवस्था कैसे काम करती है।",
       es: "Aprende cómo funcionan los tipos de cambio y las cuentas transfronterizas.",
       ar: "تعرّف كيف تعمل أسعار الصرف والحسابات عبر الحدود.",
-      fr: "Découvrez comment fonctionnent les taux de change et les comptes transfrontaliers.",
+      fr: "Découvre comment fonctionnent les taux de change et les comptes transfrontaliers.",
       bn: "বিনিময় হার ও আন্তদেশীয় হিসাব কীভাবে কাজ করে তা জানো।",
       pt: "Aprenda como funcionam as taxas de câmbio e as contas internacionais.",
       ur: "جانیں کہ زرِ مبادلہ کی شرحیں اور سرحد پار کھاتے کیسے کام کرتے ہیں۔",

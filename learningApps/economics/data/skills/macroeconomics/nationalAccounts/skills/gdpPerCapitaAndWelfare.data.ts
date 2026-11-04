@@ -42,7 +42,7 @@ export const gdpPerCapitaAndWelfare_Skill_Data = buildSkillConfig({
       hi: "जानें कि प्रति व्यक्ति जीडीपी कल्याण का पूरा माप क्यों नहीं है।",
       es: "Reconoce por qué el PIB por persona no mide por completo el bienestar.",
       ar: "افهم لماذا لا يقيس نصيب الفرد من الناتج المحلي الرفاه بالكامل.",
-      fr: "Comprenez pourquoi le PIB par personne ne mesure pas tout le bien-être.",
+      fr: "Comprends pourquoi le PIB par personne ne mesure pas tout le bien-être.",
       bn: "মাথাপিছু জিডিপি কেন মানুষের কল্যাণের পূর্ণ পরিমাপ নয় তা বোঝো।",
       pt: "Reconheça por que o PIB por pessoa não mede plenamente o bem-estar.",
       ur: "سمجھیں کہ فی کس جی ڈی پی فلاح و بہبود کا مکمل پیمانہ کیوں نہیں ہے۔",

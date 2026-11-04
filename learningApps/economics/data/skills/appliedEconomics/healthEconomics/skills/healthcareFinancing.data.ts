@@ -21,7 +21,7 @@ export const healthcareFinancing_Skill_Data = buildSkillConfig({
     vi: "Tài chính chăm sóc sức khỏe",
     ta: "சுகாதாரச் சேவை நிதியளிப்பு",
     te: "ఆరోగ్య సంరక్షణకు నిధులు",
-    mr: "आरोग्यसेवेचे वित्तपुरवठा",
+    mr: "आरोग्यसेवेचा वित्तपुरवठा",
     ms: "Pembiayaan penjagaan kesihatan",
     he: "מימון שירותי בריאות",
     pl: "Finansowanie opieki zdrowotnej",

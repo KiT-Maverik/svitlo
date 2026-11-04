@@ -13,7 +13,7 @@ export const investmentDiversification_Skill_Data = buildSkillConfig({
     bn: "বিনিয়োগের বৈচিত্র্যকরণ",
     pt: "Diversificação de investimentos",
     ur: "سرمایہ کاری میں تنوع",
-    id: "Diversifikasi Investasi",
+    id: "Diversifikasi investasi",
     de: "Diversifikation von Anlagen",
     ja: "投資の分散",
     ko: "투자 분산",

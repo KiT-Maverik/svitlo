@@ -51,9 +51,9 @@ export const howLightMoves_Data = defineLessonData({
       allowNavigation: true,
       allowSkipping: true,
       showIndexes: true,
-      order: ['theory', 'practice', 'quiz'],
     },
   },
+  sectionOrder: ['theory', 'practice', 'quiz'],
   questions: howLightMoves_Questions,
   sections: {
     theory: theory_Section,
@@ -62,8 +62,3 @@ export const howLightMoves_Data = defineLessonData({
   },
 } satisfies Lesson<'data'>);
 
-const scenes = [
-  theory_Section.content.scene.lightPropagationSimulation.id,
-  theory_Section.content.scene.lightRayDiagram.id,
-  practice_Section.content.scene.showcase.id,
-] as const;

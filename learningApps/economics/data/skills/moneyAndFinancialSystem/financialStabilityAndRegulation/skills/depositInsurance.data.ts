@@ -13,7 +13,7 @@ export const depositInsurance_Skill_Data = buildSkillConfig({
     bn: "আমানত বিমা",
     pt: "Seguro de depósitos",
     ur: "ڈپازٹ انشورنس",
-    id: "Penjaminan Simpanan",
+    id: "Penjaminan simpanan",
     de: "Einlagensicherung",
     ja: "預金保険",
     ko: "예금자 보호",

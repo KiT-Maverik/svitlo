@@ -13,7 +13,7 @@ export const storeNavigation_Skill_Data = buildSkillConfig({
     bn: "দোকানের পথনির্দেশ",
     pt: "Circulação na loja",
     ur: "دکان میں راستہ تلاش کرنا",
-    id: "Navigasi Toko",
+    id: "Navigasi toko",
     de: "Orientierung im Geschäft",
     ja: "店内の案内",
     ko: "매장 내 동선",

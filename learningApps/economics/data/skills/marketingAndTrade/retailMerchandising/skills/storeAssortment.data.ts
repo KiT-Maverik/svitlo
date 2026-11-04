@@ -13,7 +13,7 @@ export const storeAssortment_Skill_Data = buildSkillConfig({
     bn: "দোকানের পণ্যের বৈচিত্র্য",
     pt: "Sortimento da loja",
     ur: "دکان کی مصنوعات کا انتخاب",
-    id: "Ragam Produk Toko",
+    id: "Ragam produk toko",
     de: "Warensortiment",
     ja: "店の商品構成",
     ko: "매장 상품 구성",

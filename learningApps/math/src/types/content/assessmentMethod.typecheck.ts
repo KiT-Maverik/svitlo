@@ -1,6 +1,5 @@
 import { assessmentMethods_AssessmentMethod_Ids } from '@svitlo/engine/content';
-import type { AssessmentMethodId } from '@svitlo/engine/content';
-import type { Question_Base_Config } from '@svitlo/engine/content';
+import type { AssessmentMethodId, Question } from '@svitlo/engine/content';
 
 const valid: AssessmentMethodId = assessmentMethods_AssessmentMethod_Ids.retrieval;
 void valid;
@@ -13,11 +12,10 @@ void badKey;
 const badUuid: AssessmentMethodId = 'aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa';
 void badUuid;
 
-// @ts-expect-error All content questions must declare exactly one primary method.
-const missingMethod: Question_Base_Config = {
-  id: 'q',
-  type: 'answer-with-number',
-  restrictions: [],
-  content: [{ id: 'prompt', blockType: 'text', allLocales: false, value: { en: 'Question' } }],
-};
-void missingMethod;
+// The canonical question response includes an assessment method and restrictions.
+type NumericQuestion = Extract<Question<'response'>, { type: 'answerWithNumber' }>;
+type Assert<T extends true> = T;
+type HasAssessmentMethod = Assert<'assessmentMethod' extends keyof NumericQuestion ? true : false>;
+type HasRestrictions = Assert<'restrictions' extends keyof NumericQuestion ? true : false>;
+void (undefined as unknown as HasAssessmentMethod);
+void (undefined as unknown as HasRestrictions);

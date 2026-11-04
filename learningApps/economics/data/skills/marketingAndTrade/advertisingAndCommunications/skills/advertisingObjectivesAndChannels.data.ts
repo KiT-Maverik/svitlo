@@ -13,7 +13,7 @@ export const advertisingObjectivesAndChannels_Skill_Data = buildSkillConfig({
     bn: "বিজ্ঞাপনের লক্ষ্য ও মাধ্যম",
     pt: "Objetivos e canais publicitários",
     ur: "اشتہاری مقاصد اور ذرائع",
-    id: "Tujuan dan Saluran Iklan",
+    id: "Tujuan dan saluran iklan",
     de: "Werbeziele und Kanäle",
     ja: "広告の目的と媒体",
     ko: "광고 목적과 채널",

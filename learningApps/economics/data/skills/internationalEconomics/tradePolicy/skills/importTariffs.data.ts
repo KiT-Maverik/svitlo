@@ -42,7 +42,7 @@ export const importTariffs_Skill_Data = buildSkillConfig({
       hi: "समझें कि आयात पर शुल्क लगने से किसे लाभ और किसे नुकसान हो सकता है।",
       es: "Comprende quién puede ganar o perder cuando se aplican aranceles a las importaciones.",
       ar: "افهم من قد يستفيد أو يتضرر عند فرض رسوم على الواردات.",
-      fr: "Comprenez qui peut gagner ou perdre lorsqu’un droit de douane frappe les importations.",
+      fr: "Comprends qui peut gagner ou perdre lorsqu’un droit de douane frappe les importations.",
       bn: "আমদানিতে শুল্ক বসালে কারা লাভ বা ক্ষতির মুখে পড়ে তা বুঝে নাও।",
       pt: "Entenda quem pode ganhar ou perder com tarifas sobre importações.",
       ur: "سمجھیں کہ درآمدات پر محصول لگنے سے کس کو فائدہ یا نقصان ہو سکتا ہے۔",

@@ -42,7 +42,7 @@ export const monetaryPolicy_Skill_Data = buildSkillConfig({
       hi: "जानें कि केंद्रीय बैंक मुद्रास्फीति और उधार को कैसे प्रभावित कर सकता है।",
       es: "Explora cómo un banco central puede influir en la inflación y el crédito.",
       ar: "اكتشف كيف يؤثر البنك المركزي في التضخم والاقتراض.",
-      fr: "Explorez comment une banque centrale agit sur l’inflation et le crédit.",
+      fr: "Explore comment une banque centrale agit sur l’inflation et le crédit.",
       bn: "কেন্দ্রীয় ব্যাংক কীভাবে মুদ্রাস্ফীতি ও ঋণগ্রহণে প্রভাব ফেলে তা অন্বেষণ করো।",
       pt: "Explore como um banco central pode influenciar a inflação e os empréstimos.",
       ur: "جانیں کہ مرکزی بینک افراطِ زر اور قرض کو کیسے متاثر کر سکتا ہے۔",

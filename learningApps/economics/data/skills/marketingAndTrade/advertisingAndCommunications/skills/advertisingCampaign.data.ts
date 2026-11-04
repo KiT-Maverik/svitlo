@@ -13,7 +13,7 @@ export const advertisingCampaign_Skill_Data = buildSkillConfig({
     bn: "বিজ্ঞাপন প্রচারাভিযান",
     pt: "Campanha publicitária",
     ur: "اشتہاری مہم",
-    id: "Kampanye Iklan",
+    id: "Kampanye iklan",
     de: "Werbekampagne",
     ja: "広告キャンペーン",
     ko: "광고 캠페인",

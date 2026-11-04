@@ -42,7 +42,7 @@ export const globalValueChains_Skill_Data = buildSkillConfig({
       hi: "देखें कि एक उत्पाद बनाने में अलग-अलग देश कैसे योगदान देते हैं।",
       es: "Descubre cómo distintos países contribuyen a fabricar un mismo producto.",
       ar: "تعرّف كيف تساهم دول مختلفة في إنتاج منتج واحد.",
-      fr: "Découvrez comment différents pays participent à la fabrication d’un même produit.",
+      fr: "Découvre comment différents pays participent à la fabrication d’un même produit.",
       bn: "একটি পণ্য তৈরিতে বিভিন্ন দেশ কীভাবে অংশ নেয় তা দেখো।",
       pt: "Veja como diferentes países participam da produção de um mesmo produto.",
       ur: "دیکھیے کہ ایک چیز بنانے میں مختلف ممالک کیسے حصہ لیتے ہیں۔",

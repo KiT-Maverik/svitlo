@@ -13,7 +13,7 @@ export const paymentMethods_Skill_Data = buildSkillConfig({
     bn: "অর্থপ্রদানের পদ্ধতি",
     pt: "Meios de pagamento",
     ur: "ادائیگی کے طریقے",
-    id: "Metode Pembayaran",
+    id: "Metode pembayaran",
     de: "Zahlungsmethoden",
     ja: "支払い方法",
     ko: "결제 수단",

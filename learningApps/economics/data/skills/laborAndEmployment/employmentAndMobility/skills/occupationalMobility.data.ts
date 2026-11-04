@@ -13,7 +13,7 @@ export const occupationalMobility_Skill_Data = buildSkillConfig({
     bn: "পেশাগত গতিশীলতা",
     pt: "Mobilidade ocupacional",
     ur: "پیشہ ورانہ نقل و حرکت",
-    id: "Mobilitas Pekerjaan",
+    id: "Mobilitas pekerjaan",
     de: "Berufliche Mobilität",
     ja: "職業間の移動",
     ko: "직업 이동성",

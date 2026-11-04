@@ -52,7 +52,7 @@ export const pricesAndEmployment_SkillGroup_Data = buildSkillGroupConfig({
       hi: "जानें कि मुद्रास्फीति और बेरोज़गारी को कैसे मापा और समझाया जाता है।",
       es: "Explora cómo se miden y explican la inflación y el desempleo.",
       ar: "اكتشف كيف يُقاس التضخم والبطالة ويُفسَّران.",
-      fr: "Explorez comment l’inflation et le chômage sont mesurés et expliqués.",
+      fr: "Explore comment l’inflation et le chômage sont mesurés et expliqués.",
       bn: "মুদ্রাস্ফীতি ও বেকারত্ব কীভাবে মাপা ও ব্যাখ্যা করা হয় তা জানো।",
       pt: "Explore como a inflação e o desemprego são medidos e explicados.",
       ur: "جانیں کہ افراطِ زر اور بے روزگاری کی پیمائش و وضاحت کیسے ہوتی ہے۔",

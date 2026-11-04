@@ -42,7 +42,7 @@ export const debtCrises_Skill_Data = buildSkillConfig({
       hi: "समझें कि उधारकर्ताओं या सरकारों पर ऋण संकट क्यों आ सकता है।",
       es: "Comprende por qué los prestatarios o gobiernos pueden enfrentar una crisis de deuda.",
       ar: "افهم لماذا قد يواجه المقترضون أو الحكومات أزمة ديون.",
-      fr: "Comprenez pourquoi des emprunteurs ou des gouvernements peuvent subir une crise de la dette.",
+      fr: "Comprends pourquoi des emprunteurs ou des gouvernements peuvent subir une crise de la dette.",
       bn: "ঋণগ্রহীতা বা সরকার কেন ঋণ সংকটে পড়তে পারে তা বুঝে নাও।",
       pt: "Entenda por que tomadores de empréstimos ou governos enfrentam crises de dívida.",
       ur: "سمجھیں کہ قرض لینے والے یا حکومتیں قرض کے بحران میں کیوں پھنس سکتی ہیں۔",

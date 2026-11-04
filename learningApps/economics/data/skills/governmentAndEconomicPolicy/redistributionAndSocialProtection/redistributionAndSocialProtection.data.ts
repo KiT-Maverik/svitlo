@@ -49,7 +49,7 @@ export const redistributionAndSocialProtection_SkillGroup_Data = buildSkillGroup
       hi: "जानें कि सार्वजनिक सहायता कुछ वित्तीय जोखिम कैसे घटा सकती है।",
       es: "Descubre cómo el apoyo público puede reducir determinados riesgos económicos.",
       ar: "اكتشف كيف يمكن للدعم العام تقليل بعض المخاطر المالية.",
-      fr: "Découvrez comment le soutien public peut réduire certains risques financiers.",
+      fr: "Découvre comment le soutien public peut réduire certains risques financiers.",
       bn: "সরকারি সহায়তা কীভাবে কিছু আর্থিক ঝুঁকি কমায় তা জানো।",
       pt: "Descubra como o apoio público pode reduzir determinados riscos financeiros.",
       ur: "جانیں کہ سرکاری مدد کچھ مالی خطرات کیسے کم کرتی ہے۔",

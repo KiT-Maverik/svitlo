@@ -13,7 +13,7 @@ export const productDisplay_Skill_Data = buildSkillConfig({
     bn: "পণ্য প্রদর্শন",
     pt: "Exposição de produtos",
     ur: "مصنوعات کی نمائش",
-    id: "Pajangan Produk",
+    id: "Pajangan produk",
     de: "Produktpräsentation",
     ja: "商品陳列",
     ko: "상품 진열",

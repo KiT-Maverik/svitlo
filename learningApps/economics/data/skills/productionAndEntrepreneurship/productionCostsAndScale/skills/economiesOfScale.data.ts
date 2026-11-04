@@ -21,7 +21,7 @@ export const economiesOfScale_Skill_Data = buildSkillConfig({
     vi: "Lợi thế kinh tế theo quy mô",
     ta: "அளவளாவிய சிக்கனம்",
     te: "పరిమాణ ఆర్థిక ప్రయోజనాలు",
-    mr: "प्रमाणाच्या अर्थव्यवस्था",
+    mr: "मोठ्या प्रमाणावरील उत्पादनातील बचत",
     ms: "Ekonomi bidangan",
     he: "יתרונות לגודל",
     pl: "Korzyści skali",
@@ -31,7 +31,7 @@ export const economiesOfScale_Skill_Data = buildSkillConfig({
     et: "Mastaabisääst",
     be: "Эканомія ад маштабу",
     ka: "მასშტაბის ეკონომია",
-    kk: "Ауқым үнемі",
+    kk: "Ауқым есебінен үнемдеу",
     qm: "Miqyas iqtisadı",
   },
   description: {

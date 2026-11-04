@@ -13,7 +13,7 @@ export const distributionChannels_Skill_Data = buildSkillConfig({
     bn: "বিতরণ মাধ্যম",
     pt: "Canais de distribuição",
     ur: "تقسیم کے ذرائع",
-    id: "Saluran Distribusi",
+    id: "Saluran distribusi",
     de: "Vertriebskanäle",
     ja: "流通経路",
     ko: "유통 경로",

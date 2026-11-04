@@ -13,7 +13,7 @@ export const inventoryManagement_Skill_Data = buildSkillConfig({
     bn: "মজুত ব্যবস্থাপনা",
     pt: "Gestão de estoques",
     ur: "ذخیرے کا انتظام",
-    id: "Manajemen Persediaan",
+    id: "Manajemen persediaan",
     de: "Bestandsmanagement",
     ja: "在庫管理",
     ko: "재고 관리",

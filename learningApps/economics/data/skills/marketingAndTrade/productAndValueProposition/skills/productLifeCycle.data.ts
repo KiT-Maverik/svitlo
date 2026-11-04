@@ -13,7 +13,7 @@ export const productLifeCycle_Skill_Data = buildSkillConfig({
     bn: "পণ্যের জীবনচক্র",
     pt: "Ciclo de vida do produto",
     ur: "مصنوع کی زندگی کا دور",
-    id: "Daur Hidup Produk",
+    id: "Daur hidup produk",
     de: "Produktlebenszyklus",
     ja: "製品ライフサイクル",
     ko: "제품 수명 주기",

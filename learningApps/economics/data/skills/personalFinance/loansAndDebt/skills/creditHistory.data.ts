@@ -13,7 +13,7 @@ export const creditHistory_Skill_Data = buildSkillConfig({
     bn: "ঋণ পরিশোধের ইতিহাস",
     pt: "Histórico de crédito",
     ur: "قرض کی سابقہ تاریخ",
-    id: "Riwayat Kredit",
+    id: "Riwayat kredit",
     de: "Kredithistorie",
     ja: "信用履歴",
     ko: "신용 이력",

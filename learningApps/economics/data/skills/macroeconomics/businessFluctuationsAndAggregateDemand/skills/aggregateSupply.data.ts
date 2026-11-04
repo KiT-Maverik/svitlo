@@ -42,7 +42,7 @@ export const aggregateSupply_Skill_Data = buildSkillConfig({
       hi: "जानें कि अर्थव्यवस्था के कुल उत्पादन की सीमा किन कारणों से तय होती है।",
       es: "Descubre qué limita la producción total de una economía.",
       ar: "اكتشف ما يحد من إجمالي ما يمكن للاقتصاد إنتاجه.",
-      fr: "Découvrez ce qui limite la production totale d’une économie.",
+      fr: "Découvre ce qui limite la production totale d’une économie.",
       bn: "অর্থনীতি মোট কতটা উৎপাদন করতে পারে তার সীমা কী তা জানো।",
       pt: "Descubra o que limita a quantidade total que uma economia pode produzir.",
       ur: "جانیں کہ معیشت کی کل پیداواری صلاحیت کو کیا محدود کرتا ہے۔",

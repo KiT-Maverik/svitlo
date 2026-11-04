@@ -13,7 +13,7 @@ export const bankDeposits_Skill_Data = buildSkillConfig({
     bn: "ব্যাংক আমানত",
     pt: "Depósitos bancários",
     ur: "بینک ڈپازٹ",
-    id: "Simpanan Bank",
+    id: "Simpanan bank",
     de: "Bankeinlagen",
     ja: "銀行預金",
     ko: "은행 예금",
