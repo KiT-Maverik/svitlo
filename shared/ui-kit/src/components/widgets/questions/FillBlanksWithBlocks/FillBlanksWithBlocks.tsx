@@ -1,16 +1,18 @@
 'use client';
 
 import { Box, ButtonBase, Stack, Typography } from '@mui/material';
-import type { Question_FillBlanksWithBlocks } from '@svitlo/engine/content';
+import type { Question_FillBlanksWithBlocks, Locale_Languages } from '@svitlo/engine/content';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
+import { useContentLanguage } from '../../ContentBlockRenderer/ContentLanguageContext';
 import { QuestionChoice } from '../response/QuestionChoice';
 import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
 import { QuestionContent, type QuestionItem, shuffleItems } from '../response/QuestionContent';
 
 export function FillBlanksWithBlocks({ response, sceneRegistry }: {
-  response: Question_FillBlanksWithBlocks<'response'>;
+  response: Question_FillBlanksWithBlocks<'response', Locale_Languages>;
   sceneRegistry?: SceneRegistry;
 }) {
+  const language = useContentLanguage();
   const correct: QuestionItem[] = response.slots.map(slot => ({
     id: 'correct:' + slot.selector, block: slot.correctAnswer,
   }));
@@ -33,7 +35,7 @@ export function FillBlanksWithBlocks({ response, sceneRegistry }: {
     <QuestionFrame response={response} sceneRegistry={sceneRegistry} attempt={attempt}>
       <Stack spacing={2}>
         <Stack direction="row" useFlexGap spacing={1} sx={{ flexWrap: 'wrap', justifyContent: 'center' }}
-          role="group" aria-label={response.locale.code === 'uk' ? 'Пропуски' : 'Blanks'}>
+          role="group" aria-label={language === 'uk' ? 'Пропуски' : 'Blanks'}>
           {response.slots.map(slot => {
             const selected = items.find(item => item.id === attempt.value[slot.selector]);
             const correctSlot = selected?.id === 'correct:' + slot.selector;
@@ -52,7 +54,7 @@ export function FillBlanksWithBlocks({ response, sceneRegistry }: {
             );
           })}
         </Stack>
-        <Box role="group" aria-label={response.locale.code === 'uk' ? 'Доступні блоки' : 'Available blocks'}>
+        <Box role="group" aria-label={language === 'uk' ? 'Доступні блоки' : 'Available blocks'}>
           <Stack spacing={1}>
             {items.filter(item => !used.has(item.id)).map(item => (
               <QuestionChoice key={item.id} block={item.block} selected={false}

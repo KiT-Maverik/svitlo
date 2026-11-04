@@ -1,5 +1,5 @@
 import type { LanguageCode } from '@svitlo/engine/localization';
-import { SECTION_TYPES, type ContentBlock, type ContentBlock_Reference, type Question, type Section_Type } from '@svitlo/engine/content';
+import { SECTION_TYPES, type ContentBlock, type ContentBlock_Reference, type Locale_Languages, type Question, type Section_Type } from '@svitlo/engine/content';
 import { resolveEntityPath } from '@svitlo/engine';
 
 export type LocaleSource = { code: LanguageCode; isFallback?: true };
@@ -15,7 +15,7 @@ export type LessonContentBlock = {
   questions?: Record<string, Record<string, unknown>>;
   [key: string]: unknown;
 };
-export type LessonRenderableBlock = Exclude<ContentBlock<'response'>, { type: 'quiz' }>;
+export type LessonRenderableBlock = Exclude<ContentBlock<'response', Locale_Languages>, { type: 'quiz' }>;
 export type LessonSectionResponse = {
   id: string;
   slug: string;
@@ -27,7 +27,7 @@ export type LessonSectionResponse = {
   order: ContentBlock_Reference[];
   blocks: LessonRenderableBlock[];
   /** Server-assembled array of typed responses, ready for the client renderer. */
-  questions: Question<'response'>[];
+  questions: Question<'response', Locale_Languages>[];
 };
 export type LessonResponse = {
   id: string;
@@ -199,7 +199,7 @@ export function assembleLessonResponse(
     if ((sectionType === 'quiz') !== hasQuiz) {
       throw new Error('Quiz section type and content disagree at ' + key);
     }
-    const sectionQuestions: Question<'response'>[] = [];
+    const sectionQuestions: Question<'response', Locale_Languages>[] = [];
     for (const block of Object.values(content.content.quiz ?? {})) {
       const slugs = block.questionSlugs;
       if (!Array.isArray(slugs) || slugs.some(value => typeof value !== 'string') ||
@@ -222,7 +222,7 @@ export function assembleLessonResponse(
         if (!(responseType in indexedQuestions)) {
           throw new Error('Unsupported question response type: ' + responseType);
         }
-        sectionQuestions.push(response as Question<'response'>);
+        sectionQuestions.push(response as Question<'response', Locale_Languages>);
       }
       block.questions = resolved;
     }

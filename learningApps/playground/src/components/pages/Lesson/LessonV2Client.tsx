@@ -31,11 +31,12 @@ export default function LessonV2Client({ response }: { response: LessonResponse 
           {isQuiz ? (
             <QuestionRenderer
               questions={current.questions}
+              language={response.locale.code}
               sceneRegistry={howLightMovesSceneRegistry}
               onComplete={() => dispatch({ type: 'testDone' })}
             />
           ) : (
-            <ContentBlockRenderer blocks={current.blocks} sceneRegistry={howLightMovesSceneRegistry} />
+            <ContentBlockRenderer blocks={current.blocks} sceneRegistry={howLightMovesSceneRegistry} language={response.locale.code} />
           )}
         </Container>
       </div>

@@ -1,16 +1,18 @@
 'use client';
 import { useState } from 'react';
 import { Box, Stack, Typography } from '@mui/material';
-import type { Question_MatchBlocks } from '@svitlo/engine/content';
+import type { Question_MatchBlocks, Locale_Languages } from '@svitlo/engine/content';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
+import { useContentLanguage } from '../../ContentBlockRenderer/ContentLanguageContext';
 import { QuestionChoice } from '../response/QuestionChoice';
 import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
 import { shuffleItems } from '../response/QuestionContent';
 
 export function MatchBlocks({ response, sceneRegistry }: {
-  response: Question_MatchBlocks<'response'>;
+  response: Question_MatchBlocks<'response', Locale_Languages>;
   sceneRegistry?: SceneRegistry;
 }) {
+  const language = useContentLanguage();
   const pairs = Object.entries(response.pairs).map(([id, blocks]) => ({ id, ...blocks }));
   const right = shuffleItems(pairs, response.id);
   const [pending, setPending] = useState<string | null>(null);
@@ -30,7 +32,7 @@ export function MatchBlocks({ response, sceneRegistry }: {
     <QuestionFrame response={response} sceneRegistry={sceneRegistry}
       attempt={{ ...attempt, retry: () => { attempt.retry(); setPending(null); } }}>
       <Typography variant="body2" sx={{ mb: 1, textAlign: 'center' }}>
-        {response.locale.code === 'uk' ? 'Оберіть елемент ліворуч, потім його пару праворуч.' :
+        {language === 'uk' ? 'Оберіть елемент ліворуч, потім його пару праворуч.' :
           'Choose an item on the left, then its match on the right.'}
       </Typography>
       <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: 2 }}>

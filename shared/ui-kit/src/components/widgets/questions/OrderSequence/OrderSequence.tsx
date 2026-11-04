@@ -1,12 +1,12 @@
 'use client';
-import type { Question_OrderSequence } from '@svitlo/engine/content';
+import type { Question_OrderSequence, Locale_Languages } from '@svitlo/engine/content';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
 import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
 import { type QuestionItem, shuffleItems } from '../response/QuestionContent';
 import { QuestionSortable } from '../response/QuestionSortable';
 
 export function OrderSequence({ response, sceneRegistry }: {
-  response: Question_OrderSequence<'response'>;
+  response: Question_OrderSequence<'response', Locale_Languages>;
   sceneRegistry?: SceneRegistry;
 }) {
   const items: QuestionItem[] = response.sequence.map((block, index) => ({ id: index + ':' + block.id, block }));

@@ -1,7 +1,9 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
-import type { Question } from '@svitlo/engine/content';
+import type { Question, Locale_Languages } from '@svitlo/engine/content';
+import type { LanguageCode } from '@svitlo/engine/localization';
+import { ContentLanguageContext, useContentLanguage } from '../../ContentBlockRenderer/ContentLanguageContext';
 import { QuestionCompletionContext } from './QuestionCompletion';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
 import { AnswerWithNumber } from '../AnswerWithNumber/AnswerWithNumber';
@@ -14,11 +16,12 @@ import { OrderSequence } from '../OrderSequence/OrderSequence';
 import { SelectMultipleAnswers } from '../SelectMultipleAnswers/SelectMultipleAnswers';
 import { SelectOneAnswer } from '../SelectOneAnswer/SelectOneAnswer';
 
-export type QuestionResponse = Question<'response'>;
+export type QuestionResponse = Question<'response', Locale_Languages>;
 
 export type QuestionRendererProps = {
   questions?: readonly QuestionResponse[];
   sceneRegistry?: SceneRegistry;
+  language?: LanguageCode;
   /** Called exactly once after all questions have been checked. */
   onComplete?: () => void;
 };
@@ -42,7 +45,8 @@ function QuestionBlock({ response, sceneRegistry }: { response: QuestionResponse
 }
 
 /** Consume the server-assembled responses directly; no legacy question model. */
-export function QuestionRenderer({ questions = [], sceneRegistry, onComplete }: QuestionRendererProps) {
+export function QuestionRenderer({ questions = [], sceneRegistry, language, onComplete }: QuestionRendererProps) {
+  const inheritedLanguage = useContentLanguage();
   const [checkedIds, setCheckedIds] = useState<ReadonlySet<string>>(() => new Set());
   const completed = useRef<string | null>(null);
   const signature = questions.map(question => question.type + ':' + question.id).join('|');
@@ -73,10 +77,12 @@ export function QuestionRenderer({ questions = [], sceneRegistry, onComplete }: 
 
   if (!questions.length) return null;
   return (
-    <QuestionCompletionContext.Provider value={context}>
-      {questions.map(response => (
-        <QuestionBlock key={response.type + ':' + response.id} response={response} sceneRegistry={sceneRegistry} />
-      ))}
-    </QuestionCompletionContext.Provider>
+    <ContentLanguageContext.Provider value={language ?? inheritedLanguage}>
+      <QuestionCompletionContext.Provider value={context}>
+        {questions.map(response => (
+          <QuestionBlock key={response.type + ':' + response.id} response={response} sceneRegistry={sceneRegistry} />
+        ))}
+      </QuestionCompletionContext.Provider>
+    </ContentLanguageContext.Provider>
   );
 }
