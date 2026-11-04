@@ -1558,7 +1558,7 @@ Skills: 4
 
 **User-friendly description (qm):** Ruhiy yahşılıq tek şadlıq sezgisinden ibaret olmağanını añla.
 
-### İlham, maqsatlar ve adetler
+### Motivatsiya, maqsatlar ve adetler
 
 Groups: 3 · Skills: 16
 
@@ -1660,7 +1660,7 @@ Skills: 4
 
 **User-friendly description (qm):** İstenmegen adetni başqa bir cevapnen deñiştirüvni araştır.
 
-#### İlham berici sebepler
+#### Motivatsiya mekanizmleri
 
 Skills: 7
 
@@ -1668,7 +1668,7 @@ Skills: 7
 
 **Methodological description (English):** Behavior is influenced by internal states and external incentives, with competing explanations and substantial individual variation.
 
-**User-friendly description (qm):** İnsan areketiniñ artındaki çeşit ilham qaynaqlarını ögren.
+**User-friendly description (qm):** İnsan areketiniñ artındaki çeşit motivatsiya qaynaqlarını ögren.
 
 ##### İstengen neticege yaqınlaşuv
 
@@ -1694,15 +1694,15 @@ Skills: 7
 
 **User-friendly description (qm):** Bekleyişler ve sezilgen qıymet ne içün ıntıluvnı deñiştirgenini añlat.
 
-##### Tışqı ilham
+##### Tışqı motivatsiya
 
 [extrinsicMotivation.data.ts](../../../learningApps/psychology/data/skills/motivationGoalsAndHabits/motivationalMechanisms/skills/extrinsicMotivation.data.ts)
 
 **Methodological description (English):** Explain pursuing an activity because of an outcome separable from the activity, such as recognition, payment, or avoidance of a consequence.
 
-**User-friendly description (qm):** Tışqı mukâfatlar ve basım ilhamğa nasıl tesir etkenini araştır.
+**User-friendly description (qm):** Tışqı mukâfatlar ve basım motivatsiyağa nasıl tesir etkenini araştır.
 
-##### İçki ilham
+##### İçki motivatsiya
 
 [intrinsicMotivation.data.ts](../../../learningApps/psychology/data/skills/motivationGoalsAndHabits/motivationalMechanisms/skills/intrinsicMotivation.data.ts)
 
@@ -1710,7 +1710,7 @@ Skills: 7
 
 **User-friendly description (qm):** Bir işni özünden memnünlik alğanı içün yapmaq istegini tanı.
 
-##### Tışqı mukâfatnıñ içki ilhamnı azaltuvı
+##### Tışqı mukâfatnıñ içki motivatsiyanı azaltuvı
 
 [motivationalCrowding.data.ts](../../../learningApps/psychology/data/skills/motivationGoalsAndHabits/motivationalMechanisms/skills/motivationalCrowding.data.ts)
 
@@ -2296,7 +2296,7 @@ Skills: 6
 
 **User-friendly description (qm):** Başnıñ areketi ve yönelişi muvanetni nasıl saqlamağa yardım etkenini añlat.
 
-#### Yanlış duyğular ve çoq duyğulı qabul etüv
+#### Qabul etüv illüziyaları ve çoq duyğulı qabul etüv
 
 Skills: 4
 
@@ -2380,7 +2380,7 @@ Skills: 4
 
 **User-friendly description (qm):** Şarait deñişse bile ölçü, şekil ya da renk ne içün deñişmez körüne bilgenini añla.
 
-#### Duyğu işaretini añlav
+#### Duyğu işaretini sezmek
 
 Skills: 5
 
@@ -2672,7 +2672,7 @@ Skills: 6
 
 **Methodological description (English):** Explain concern for another person's suffering accompanied by motivation to offer appropriate help, distinct from understanding alone.
 
-**User-friendly description (qm):** Başqanıñ duyğularını añlamaqnen oña meramet kösterip yardım istemekni ayır.
+**User-friendly description (qm):** Başqanıñ duyğularını añlamaqnen oña meramet kösterip yardım etüvni ayır.
 
 ##### Empatiya
 

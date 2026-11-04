@@ -1052,7 +1052,7 @@ Skills: 6
 
 **Methodological description (English):** Explain why a previously weakened conditioned response may reappear after a delay.
 
-**User-friendly description (de):** Verstehe, warum eine gelöschte Reaktion manchmal erneut auftreten kann.
+**User-friendly description (de):** Verstehe, warum eine zuvor abgeschwächte konditionierte Reaktion manchmal wieder auftreten kann.
 
 ##### Reizdiskrimination
 
@@ -1450,7 +1450,7 @@ Skills: 4
 
 **User-friendly description (de):** Verstehe die Grundsätze kognitiver und verhaltenstherapeutischer Behandlungsansätze.
 
-##### Behandlungsversprechen beurteilen
+##### Bewertung von Behandlungsbehauptungen
 
 [evaluatingTreatmentClaims.data.ts](../../../learningApps/psychology/data/skills/mentalHealthAndClinicalScience/interventionEvidenceAndEthics/skills/evaluatingTreatmentClaims.data.ts)
 
@@ -1776,7 +1776,7 @@ Skills: 5
 
 **Methodological description (English):** Explain differences in developmental trajectories of attention, communication, sensory processing, and executive functions, accounting for the role of environment and support without treating variation itself as a disorder.
 
-**User-friendly description (de):** Verstehe, dass Unterschiede der Neuroentwicklung zwischen Menschen stark variieren können.
+**User-friendly description (de):** Verstehe, dass die Neuroentwicklung von Mensch zu Mensch sehr unterschiedlich verlaufen kann.
 
 ##### Interpretation standardisierter Testwerte
 

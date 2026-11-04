@@ -1450,7 +1450,7 @@ Skills: 4
 
 **User-friendly description (pl):** Zrozum zasady podejść terapeutycznych opartych na poznaniu i zachowaniu.
 
-##### Oceniać twierdzenia dotyczące terapii
+##### Ocena twierdzeń dotyczących terapii
 
 [evaluatingTreatmentClaims.data.ts](../../../learningApps/psychology/data/skills/mentalHealthAndClinicalScience/interventionEvidenceAndEthics/skills/evaluatingTreatmentClaims.data.ts)
 
@@ -1776,7 +1776,7 @@ Skills: 5
 
 **Methodological description (English):** Explain differences in developmental trajectories of attention, communication, sensory processing, and executive functions, accounting for the role of environment and support without treating variation itself as a disorder.
 
-**User-friendly description (pl):** Zrozum, że różnice w neurorozwoju mogą znacznie się różnić między osobami.
+**User-friendly description (pl):** Zrozum, że przebieg neurorozwoju może być bardzo zróżnicowany u różnych osób.
 
 ##### Interpretacja wyników standaryzowanych
 

@@ -1196,7 +1196,7 @@ Skills: 4
 
 **Methodological description (English):** Interpret why appropriately distributed study episodes often support longer-lasting recall than massed review.
 
-**User-friendly description (uk):** Зрозумій, чому вправляння з інтервалами може покращувати тривалість запам'ятовування.
+**User-friendly description (uk):** Зрозумій, чому вправляння з інтервалами допомагає довше зберігати вивчене в пам’яті.
 
 #### Системи пам'яті
 
@@ -1450,7 +1450,7 @@ Skills: 4
 
 **User-friendly description (uk):** Зрозумій принципи, на яких ґрунтуються когнітивні й поведінкові підходи до лікування.
 
-##### Оцінювати твердження про лікування
+##### Оцінювання тверджень про лікування
 
 [evaluatingTreatmentClaims.data.ts](../../../learningApps/psychology/data/skills/mentalHealthAndClinicalScience/interventionEvidenceAndEthics/skills/evaluatingTreatmentClaims.data.ts)
 
@@ -2046,7 +2046,7 @@ Skills: 5
 
 **Methodological description (English):** Assess whether a test actually captures the intended psychological attribute rather than a convenient proxy.
 
-**User-friendly description (uk):** Оціни, чи справді тест вимірює те поняття, яке заявляє.
+**User-friendly description (uk):** Оціни, чи справді тест вимірює саме те поняття, яке він покликаний вимірювати.
 
 ##### Упередженість вимірювання
 

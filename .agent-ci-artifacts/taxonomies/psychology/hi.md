@@ -710,13 +710,13 @@ Skills: 4
 
 **User-friendly description (hi):** जानें कि जीवविज्ञान, अनुभव और संदर्भ विकास में बदलावों को कैसे आकार देते हैं।
 
-##### विकास की लचीलापन क्षमता
+##### विकासात्मक लचीलापन
 
 [developmentalPlasticity.data.ts](../../../learningApps/psychology/data/skills/developmentAcrossTheLifespan/mechanismsOfDevelopment/skills/developmentalPlasticity.data.ts)
 
 **Methodological description (English):** Explain why abilities may change with experience across life while acknowledging sensitive periods and contextual constraints.
 
-**User-friendly description (hi):** समझें कि जीवन भर अनुभवों के कारण विकास कैसे बदलने के लिए सक्षम रहता है।
+**User-friendly description (hi):** समझें कि अनुभव जीवन भर विकास की दिशा को कैसे बदल सकते हैं।
 
 ##### विकास-अनुसंधान की रूपरेखाएँ
 
@@ -954,7 +954,7 @@ Groups: 4 · Skills: 19
 
 **User-friendly description (hi):** जानें कि अनुभव, व्यवहार के परिणाम और दूसरों को देखना समय के साथ व्यवहार कैसे बदलते हैं।
 
-#### सक्रिय अनुबंधन द्वारा सीखना
+#### क्रियाप्रसूत अधिगम
 
 Skills: 6
 
@@ -1568,7 +1568,7 @@ Groups: 3 · Skills: 16
 
 **User-friendly description (hi):** जानें कि लोग क्यों काम करते, लक्ष्य अपनाते और स्वतः होने वाली दिनचर्या बनाते हैं।
 
-#### लक्ष्य का पीछा और आत्म-नियंत्रण
+#### लक्ष्य प्राप्ति और आत्म-नियंत्रण
 
 Skills: 5
 
@@ -2672,7 +2672,7 @@ Skills: 6
 
 **Methodological description (English):** Explain concern for another person's suffering accompanied by motivation to offer appropriate help, distinct from understanding alone.
 
-**User-friendly description (hi):** दूसरे के लिए मदद की चिंता को केवल उसकी भावना समझने से अलग पहचानें।
+**User-friendly description (hi):** दूसरे की सहायता करने की करुणापूर्ण इच्छा को केवल उसकी भावनाएँ समझने से अलग पहचानें।
 
 ##### समानुभूति
 

@@ -22,7 +22,7 @@ Groups: 5 · Skills: 19
 
 **Methodological description (English):** Psychological knowledge informs educational, occupational, health, design, and community settings. Applications translate evidence about people into context-sensitive decisions without claiming that a single intervention suits everyone.
 
-**User-friendly description (es):** Explora cómo las pruebas psicológicas orientan la educación, el trabajo, la salud y las comunidades.
+**User-friendly description (es):** Explora cómo los hallazgos de la investigación psicológica orientan la educación, el trabajo, la salud y las comunidades.
 
 #### Comunidad, medios y entorno
 
@@ -1450,7 +1450,7 @@ Skills: 4
 
 **User-friendly description (es):** Comprende los principios de los enfoques terapéuticos cognitivos y conductuales.
 
-##### Evaluar afirmaciones sobre tratamientos
+##### Evaluación de afirmaciones sobre tratamientos
 
 [evaluatingTreatmentClaims.data.ts](../../../learningApps/psychology/data/skills/mentalHealthAndClinicalScience/interventionEvidenceAndEthics/skills/evaluatingTreatmentClaims.data.ts)
 
@@ -1776,7 +1776,7 @@ Skills: 5
 
 **Methodological description (English):** Explain differences in developmental trajectories of attention, communication, sensory processing, and executive functions, accounting for the role of environment and support without treating variation itself as a disorder.
 
-**User-friendly description (es):** Comprende que las diferencias del neurodesarrollo pueden variar mucho entre personas.
+**User-friendly description (es):** Comprende que el neurodesarrollo puede variar mucho de una persona a otra.
 
 ##### Interpretación de puntuaciones estandarizadas
 

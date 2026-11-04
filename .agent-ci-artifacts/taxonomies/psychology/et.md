@@ -1450,7 +1450,7 @@ Skills: 4
 
 **User-friendly description (et):** Mõista kognitiivsete ja käitumuslike ravimeetodite põhimõtteid.
 
-##### Hinnata raviväiteid
+##### Raviväidete hindamine
 
 [evaluatingTreatmentClaims.data.ts](../../../learningApps/psychology/data/skills/mentalHealthAndClinicalScience/interventionEvidenceAndEthics/skills/evaluatingTreatmentClaims.data.ts)
 
@@ -1776,7 +1776,7 @@ Skills: 5
 
 **Methodological description (English):** Explain differences in developmental trajectories of attention, communication, sensory processing, and executive functions, accounting for the role of environment and support without treating variation itself as a disorder.
 
-**User-friendly description (et):** Mõista, et neuroarengulised erinevused võivad inimeste vahel olla väga mitmekesised.
+**User-friendly description (et):** Mõista, et neuroareng võib eri inimestel kulgeda väga erinevalt.
 
 ##### Standardiseeritud skooride tõlgendamine
 
