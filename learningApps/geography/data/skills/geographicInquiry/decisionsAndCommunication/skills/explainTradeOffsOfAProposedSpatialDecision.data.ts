@@ -42,7 +42,7 @@ export const explainTradeOffsOfAProposedSpatialDecision_Skill_Data = buildSkillC
       hi: "सड़क, पार्क या बस्ती संबंधी निर्णयों के लाभ और लागत समझाएँ।",
       es: "Explica beneficios y costos de decisiones sobre carreteras, parques o asentamientos.",
       ar: "اشرح فوائد وتكاليف القرارات المتعلقة بالطرق والحدائق والمستوطنات.",
-      fr: "Explique les avantages et les coûts de décisions concernant les routes, les parcs ou les établissements.",
+      fr: "Explique les avantages et les coûts de décisions concernant des routes, des parcs ou des zones d’habitation.",
       bn: "রাস্তা, পার্ক বা বসতি নিয়ে সিদ্ধান্তের সুবিধা ও খরচ ব্যাখ্যা করো।",
       pt: "Explique benefícios e custos de decisões sobre estradas, parques ou assentamentos.",
       ur: "سڑکوں، پارکوں یا بستیوں سے متعلق فیصلوں کے فوائد اور اخراجات سمجھائیں۔",
