@@ -32,7 +32,7 @@ export const speechPerception_Skill_Data = buildSkillConfig({
     be: "Успрыманьне маўленьня",
     ka: "მეტყველების აღქმა",
     kk: "Сөйлеуді қабылдау",
-    qm: "Nutunı qabul etüv",
+    qm: "Nutuqnı qabul etüv",
   },
   description: {
     methodological: "Analyze how acoustic cues, noise, and language expectations shape understanding of spoken messages.",
