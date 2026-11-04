@@ -1,7 +1,7 @@
 import type { LanguageCode } from '../languages';
 import {NonEmptyArray} from "@/types/misc.types";
 
-type Locale_Config<SupportedLanguages extends LanguageCode = LanguageCode> =
+type Locale_Config<SupportedLanguages extends LanguageCode> =
   Record<SupportedLanguages, string>;
 
 /**
