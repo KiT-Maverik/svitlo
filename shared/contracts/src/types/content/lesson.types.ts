@@ -47,7 +47,7 @@ type Lesson_Response = {
   sectionOrder?: readonly string[];
 };
 
-export type Lesson<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode = LanguageCode> = {
+export type Lesson<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode> = {
   definition: Lesson_Definition;
   data: Lesson_Data<SupportedLanguages>;
   response: Lesson_Response;

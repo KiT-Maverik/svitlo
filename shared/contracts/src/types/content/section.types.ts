@@ -44,7 +44,7 @@ type Section_Response = {
   order?: readonly ContentBlock_Reference[];
 };
 
-export type Section<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode = LanguageCode> = {
+export type Section<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode> = {
   definition: Section_Definition;
   data: Section_Data<SupportedLanguages>;
   response: Section_Response;
