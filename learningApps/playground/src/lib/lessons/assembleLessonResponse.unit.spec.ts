@@ -97,7 +97,8 @@ describe('assembleLessonResponse', () => {
 
   it('rejects duplicate or undiscriminated blocks', () => {
     const duplicate = fixture();
-    duplicate.config.data.sections[0].content.push({ ...duplicate.config.data.sections[0].content[0] });
+    duplicate.config.data.sections[0].content[1].type = 'markdown';
+    duplicate.config.data.sections[0].content[1].slug = 'p1';
     expect(() => assembleLessonResponse(id, 'uk', duplicate)).toThrow(/Duplicate content block/);
     const missingType = fixture();
     (missingType.config.data.sections[0].content[0] as { type?: string }).type = undefined;
