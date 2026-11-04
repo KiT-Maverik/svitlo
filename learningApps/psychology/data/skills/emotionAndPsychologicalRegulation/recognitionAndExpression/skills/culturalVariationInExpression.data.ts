@@ -52,7 +52,7 @@ export const culturalVariationInExpression_Skill_Data = buildSkillConfig({
       ko: "사회적·문화적 규범이 감정 표현에 주는 영향을 알아보세요.",
       tr: "Toplumsal ve kültürel kuralların duyguları ifade etmeyi nasıl etkilediğini tanı.",
       vi: "Nhận biết quy tắc xã hội và văn hóa ảnh hưởng tới biểu đạt cảm xúc ra sao.",
-      ta: "சமூக, பண்பாட்டு விதிகள் உணர்ச்சி வெளிப்பாட்டை எவ்வாறு பாதிக்கின்றன என்பதை அறிக.",
+      ta: "சமூக, பண்பாட்டு விதிகள் உணர்ச்சி வெளிப்பாட்டை எவ்வாறு பாதிக்கின்றன என்பதை அறியுங்கள்.",
       te: "సామాజిక, సాంస్కృతిక నియమాలు భావాల వ్యక్తీకరణను ఎలా ప్రభావితం చేస్తాయో తెలుసుకోండి.",
       mr: "सामाजिक व सांस्कृतिक नियम भावना व्यक्त करण्यावर कसा परिणाम करतात ते ओळख.",
       ms: "Kenali bagaimana peraturan sosial dan budaya mempengaruhi luahan emosi.",

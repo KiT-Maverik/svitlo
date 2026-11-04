@@ -52,7 +52,7 @@ export const regulationStrategyFlexibility_Skill_Data = buildSkillConfig({
       ko: "상황에 알맞은 감정 조절 방법을 선택하세요.",
       tr: "Duruma uygun duygu düzenleme stratejileri seç.",
       vi: "Chọn cách điều hòa cảm xúc phù hợp với từng tình huống.",
-      ta: "சூழலுக்கு ஏற்ற உணர்ச்சி ஒழுங்குபடுத்தல் முறையைத் தேர்ந்தெடு.",
+      ta: "சூழலுக்கு ஏற்ற உணர்ச்சி ஒழுங்குபடுத்தல் முறையைத் தேர்ந்தெடுங்கள்.",
       te: "పరిస్థితికి సరిపోయే భావ నియంత్రణ పద్ధతులను ఎంచుకోండి.",
       mr: "विशिष्ट परिस्थितीला योग्य भावनानियमन पद्धत निवड.",
       ms: "Pilih strategi pengawalan emosi yang sesuai dengan keadaan.",

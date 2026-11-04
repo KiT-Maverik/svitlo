@@ -52,7 +52,7 @@ export const physiologyOfEmotion_Skill_Data = buildSkillConfig({
       ko: "여러 감정 상태에 동반될 수 있는 신체 변화를 알아보세요.",
       tr: "Farklı duygu durumlarına eşlik edebilen bedensel değişimleri tanı.",
       vi: "Nhận biết thay đổi cơ thể có thể đi kèm các trạng thái cảm xúc khác nhau.",
-      ta: "வெவ்வேறு உணர்ச்சி நிலைகளுடன் வரும் உடல் மாற்றங்களை அறிக.",
+      ta: "வெவ்வேறு உணர்ச்சி நிலைகளுடன் வரும் உடல் மாற்றங்களை அறியுங்கள்.",
       te: "వేర్వేరు భావోద్వేగాలతో వచ్చే శరీర మార్పులను గుర్తించండి.",
       mr: "वेगवेगळ्या भावनांसोबत होणारे शारीरिक बदल ओळख.",
       ms: "Kenali perubahan tubuh yang mungkin mengiringi keadaan emosi berbeza.",

@@ -61,7 +61,7 @@ export const regulationStrategies_SkillGroup_Data = buildSkillGroupConfig({
       ko: "다루기 어려운 감정 경험에 대처하는 방법을 살펴보세요.",
       tr: "Zor duygusal deneyimlere yanıt vermenin yollarını keşfet.",
       vi: "Khám phá cách ứng phó những trải nghiệm cảm xúc khó khăn.",
-      ta: "கடினமான உணர்ச்சி அனுபவங்களை எதிர்கொள்ளும் வழிகளை ஆராய்.",
+      ta: "கடினமான உணர்ச்சி அனுபவங்களை எதிர்கொள்ளும் வழிகளை ஆராயுங்கள்.",
       te: "కష్టమైన భావ అనుభవాలను ఎదుర్కొనే విధానాలను అన్వేషించండి.",
       mr: "कठीण भावनिक अनुभवांना प्रतिसाद देण्याचे मार्ग पाहा.",
       ms: "Terokai cara menghadapi pengalaman emosi yang sukar.",
