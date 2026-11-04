@@ -1,0 +1,83 @@
+name: Psychology Skills validation
+
+on:
+  pull_request:
+    branches:
+      - main
+      - feat/psychology-skills-integration
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths:
+      - 'learningApps/psychology/data/skills/**'
+      - '.github/workflows/psychology-skills-validation.yml'
+      - 'learningApps/psychology/docs/skills/issue-201-coordination.md'
+  push:
+    branches:
+      - feat/psychology-skills-integration
+    paths:
+      - 'learningApps/psychology/data/skills/**'
+      - '.github/workflows/psychology-skills-validation.yml'
+      - 'learningApps/psychology/docs/skills/issue-201-coordination.md'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: psychology-skills-validation-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Psychology Skills / strict taxonomy and TypeScript
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Validate workspace manifests
+        run: node scripts/check-workspaces.mjs
+      - name: Validate canonical Psychology Skill graph
+        run: node scripts/check-skills-taxonomy-structure.mjs learningApps/psychology/data/skills
+      - name: Build real contracts and engine
+        run: |
+          npm run build --workspace @svitlo/contracts
+          npm run build --workspace @svitlo/engine
+      - name: Strict scoped Agent TypeScript (real builders/contracts)
+        if: github.event_name == 'pull_request' && github.base_ref == 'feat/psychology-skills-integration'
+        env:
+          AGENT_BRANCH: ${{ github.head_ref }}
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const assignments = {
+            'feat/psychology-skills-agent-1': ['psychologicalScienceAndInquiry', 'biologicalFoundationsOfBehavior', 'sensationAndPerception'],
+            'feat/psychology-skills-agent-2': ['attentionAndConsciousness', 'learningAndBehaviorChange', 'memoryAndMetacognition', 'thinkingAndDecisionMaking'],
+            'feat/psychology-skills-agent-3': ['emotionAndPsychologicalRegulation', 'motivationGoalsAndHabits', 'socialPsychology'],
+            'feat/psychology-skills-agent-4': ['developmentAcrossTheLifespan', 'personalityAndIndividualVariation', 'mentalHealthAndClinicalScience', 'appliedPsychology'],
+          };
+          const domains = assignments[process.env.AGENT_BRANCH];
+          if (!domains) throw new Error('Unrecognized agent branch: ' + process.env.AGENT_BRANCH);
+          const include = domains.map(domain => 'data/skills/' + domain + '/**/*.ts');
+          const tsconfig = {
+            extends: './tsconfig.json',
+            compilerOptions: { incremental: false, strict: true },
+            include,
+            exclude: [],
+          };
+          const path = 'learningApps/psychology/tsconfig.agent-check.tmp.json';
+          fs.writeFileSync(path, JSON.stringify(tsconfig, null, 2) + '\n');
+          console.log('Scoped strict TS includes:', include.join(', '));
+          NODE
+          npx tsc --noEmit --project learningApps/psychology/tsconfig.agent-check.tmp.json
+      - name: Full Psychology TypeScript (all authored data)
+        if: github.event_name == 'push' || github.base_ref == 'main'
+        run: npm run typecheck --workspace @svitlo/psychology
+      - name: Psychology app build (integrated corpus)
+        if: github.event_name == 'push' || github.base_ref == 'main'
+        run: npm run build --workspace @svitlo/psychology
