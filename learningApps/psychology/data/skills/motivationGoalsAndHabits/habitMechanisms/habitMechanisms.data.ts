@@ -60,7 +60,7 @@ export const habitMechanisms_SkillGroup_Data = buildSkillGroupConfig({
       ko: "반복 행동이 단서와 연결되어 습관이 되는 과정을 알아보세요.",
       tr: "Tekrarlanan eylemlerin işaretlerle bağlanıp alışkanlığa nasıl dönüştüğünü keşfet.",
       vi: "Tìm hiểu hành động lặp lại gắn với tín hiệu rồi trở thành thói quen ra sao.",
-      ta: "திரும்பத் திரும்பச் செய்யும் செயல்கள் குறிப்புகளுடன் இணைந்து எவ்வாறு பழக்கமாகின்றன என்பதை அறிக.",
+      ta: "திரும்பத் திரும்பச் செய்யும் செயல்கள் குறிப்புகளுடன் இணைந்து எவ்வாறு பழக்கமாகின்றன என்பதை அறியுங்கள்.",
       te: "పునరావృత చర్యలు సంకేతాలతో కలిసి అలవాట్లుగా ఎలా మారుతాయో తెలుసుకోండి.",
       mr: "पुन्हा पुन्हा केलेली कृती संकेतांशी जोडून सवय कशी बनते ते पाहा.",
       ms: "Ketahui bagaimana tindakan berulang dikaitkan dengan isyarat lalu menjadi tabiat.",

@@ -52,7 +52,7 @@ export const habitDisruption_Skill_Data = buildSkillConfig({
       ko: "단서를 바꾸면 기존 습관을 끊을 수 있는 이유를 이해하세요.",
       tr: "İpuçlarını değiştirmenin yerleşik alışkanlığı nasıl böldüğünü anla.",
       vi: "Hiểu cách thay đổi tín hiệu có thể làm gián đoạn thói quen sẵn có.",
-      ta: "தூண்டுகுறிகளை மாற்றுவது பழைய பழக்கத்தை எவ்வாறு நிறுத்தக்கூடும் என்பதை அறிக.",
+      ta: "தூண்டுகுறிகளை மாற்றுவது பழைய பழக்கத்தை எவ்வாறு நிறுத்தக்கூடும் என்பதை அறியுங்கள்.",
       te: "సంకేతాలు మార్చడం పాత అలవాటును ఎలా ఆపగలదో అర్థం చేసుకోండి.",
       mr: "संकेत बदलल्याने जुनी सवय कशी खंडित होऊ शकते ते समज.",
       ms: "Fahami bagaimana perubahan petunjuk boleh menghentikan tabiat lama.",
