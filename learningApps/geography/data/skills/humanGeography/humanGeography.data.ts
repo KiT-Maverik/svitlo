@@ -53,7 +53,7 @@ export const humanGeography_SkillDomain_Data = buildSkillDomainConfig({
       hi: "जानें कि लोग, बस्तियाँ, संस्कृतियाँ और आर्थिक गतिविधियाँ विभिन्न स्थानों में कैसे वितरित हैं।",
       es: "Explora cómo se distribuyen las personas, los asentamientos, las culturas y las actividades económicas.",
       ar: "استكشف كيف يتوزع الناس والمستوطنات والثقافات والأنشطة الاقتصادية بين الأماكن.",
-      fr: "Explore comment les populations, les établissements, les cultures et les activités économiques se répartissent dans l’espace.",
+      fr: "Explore comment les populations, les lieux habités, les cultures et les activités économiques se répartissent dans l’espace.",
       bn: "মানুষ, বসতি, সংস্কৃতি ও অর্থনৈতিক কার্যক্রম বিভিন্ন স্থানে কীভাবে ছড়িয়ে আছে তা জানো।",
       pt: "Explore como pessoas, assentamentos, culturas e atividades econômicas se distribuem entre os lugares.",
       ur: "جانیں کہ لوگ، آبادیاں، ثقافتیں اور معاشی سرگرمیاں مختلف مقامات پر کیسے تقسیم ہیں۔",
