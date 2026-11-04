@@ -54,7 +54,7 @@ export const cognitiveReappraisal_Skill_Data = buildSkillConfig({
       vi: "Xem lại ý nghĩa tình huống để thay đổi phản ứng cảm xúc.",
       ta: "உணர்ச்சிப் பதிலை மாற்ற சூழலின் பொருளை மீண்டும் சிந்தி.",
       te: "భావ ప్రతిస్పందన మారేందుకు పరిస్థితి అర్థాన్ని మళ్లీ పరిశీలించండి.",
-      mr: "भावनिक प्रतिक्रिया बदलण्यासाठी परिस्थितीचा अर्थ पुन्हा विचारात घे.",
+      mr: "भावनिक प्रतिक्रिया बदलण्यासाठी परिस्थितीचा अर्थ पुन्हा विचारात घ्या.",
       ms: "Fikir semula makna keadaan untuk mengubah tindak balas emosi.",
       he: "חשבו מחדש על משמעות מצב כדי לשנות את התגובה הרגשית.",
       pl: "Przemyśl znaczenie sytuacji na nowo, aby zmienić reakcję emocjonalną.",

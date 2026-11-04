@@ -54,7 +54,7 @@ export const goalRevisionAndDisengagement_Skill_Data = buildSkillConfig({
       vi: "Hiểu khi nào thay đổi hoặc bỏ mục tiêu có thể giúp thích nghi.",
       ta: "ஒரு இலக்கை மாற்றுவது அல்லது கைவிடுவது எப்போது பொருத்தமாக இருக்கும் என்பதை அறிக.",
       te: "లక్ష్యాన్ని మార్చడం లేదా వదలడం ఎప్పుడు అనుకూలమో తెలుసుకోండి.",
-      mr: "ध्येय बदलणे किंवा सोडणे कधी परिस्थितीशी जुळवून घेण्यास मदत करते ते समज.",
+      mr: "ध्येय बदलणे किंवा सोडणे कधी परिस्थितीशी जुळवून घेण्यास मदत करते ते समजून घ्या.",
       ms: "Fahami bila mengubah atau meninggalkan matlamat membantu penyesuaian diri.",
       he: "הבינו מתי שינוי מטרה או ויתור עליה יכולים לסייע בהסתגלות.",
       pl: "Zrozum, kiedy zmiana lub porzucenie celu pomaga dostosować się do sytuacji.",
