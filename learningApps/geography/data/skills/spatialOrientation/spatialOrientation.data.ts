@@ -76,7 +76,7 @@ export const spatialOrientation_SkillDomain_Data = buildSkillDomainConfig({
       be: "Даведайся, як месцы, кірункі, маршруты і розьніца ў часе дапамагаюць нам арыентавацца.",
       ka: "გაიგე, როგორ გვეხმარება მდებარეობა, მიმართულებები, მარშრუტები და დროის სხვაობა ორიენტირებაში.",
       kk: "Орындар, бағыттар, жолдар мен уақыт айырмашылығы бағдар табуға қалай көмектесетінін біл.",
-      qm: "Yerler, yönelişler, yollar ve vaqıt farqları nasıl yön tapmağa yardım etkenini ögren.",
+      qm: "Yerler, yönler, yollar ve vaqıt farqları yön tapmağa nasıl yardım etkenini ögren.",
     },
   },
 });
