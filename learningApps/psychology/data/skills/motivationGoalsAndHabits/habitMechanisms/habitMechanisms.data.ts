@@ -73,7 +73,7 @@ export const habitMechanisms_SkillGroup_Data = buildSkillGroupConfig({
       be: "Даведайся, як паўторныя дзеяньні зьвязваюцца з сыгналамі й робяцца звычкамі.",
       ka: "გაიგე, როგორ უკავშირდება განმეორებითი ქმედებები მინიშნებებს და ჩვევებად იქცევა.",
       kk: "Қайталанған іс-әрекеттер белгімен байланысып, әдетке қалай айналатынын зертте.",
-      qm: "Tekrarlanğan işler işaretlernen bağlanıp nasıl adetke aylанğanını ögren.",
+      qm: "Tekrarlanğan işler işaretlernen bağlanıp nasıl adetke aylanğanını ögren.",
     },
   },
 });
