@@ -54,7 +54,7 @@ export const selectionAndBehavioralVariation_Skill_Data = buildSkillConfig({
       vi: "Giải thích cách những khuynh hướng hành vi di truyền có thể thay đổi qua các thế hệ.",
       ta: "மரபுவழி நடத்தைப் போக்குகள் தலைமுறைகளில் எவ்வாறு மாறக்கூடும் என்பதை விளக்கு.",
       te: "వారసత్వ ప్రవర్తనా ప్రవృత్తులు తరతరాలుగా ఎలా మారవచ్చో వివరించండి.",
-      mr: "आनुवंशिक वर्तनप्रवृत्ती पिढ्यानपिढ्या कशा बदलू शकतात ते स्पष्ट कर.",
+      mr: "आनुवंशिक वर्तनप्रवृत्ती पिढ्यानपिढ्या कशा बदलू शकतात ते स्पष्ट करा.",
       ms: "Terangkan bagaimana kecenderungan tingkah laku diwarisi boleh berubah merentas generasi.",
       he: "הסבירו כיצד נטיות התנהגותיות תורשתיות עשויות להשתנות לאורך דורות.",
       pl: "Wyjaśnij, jak dziedziczne skłonności behawioralne mogą zmieniać się między pokoleniami.",

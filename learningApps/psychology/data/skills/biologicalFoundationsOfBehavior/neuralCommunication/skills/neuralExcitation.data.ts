@@ -54,7 +54,7 @@ export const neuralExcitation_Skill_Data = buildSkillConfig({
       vi: "Hiểu cách tín hiệu kích thích làm tăng khả năng hoạt động của tế bào thần kinh.",
       ta: "தூண்டல் சமிக்ஞைகள் நரம்புச் செயல்பாட்டின் வாய்ப்பை எவ்வாறு அதிகரிக்கின்றன என்பதைப் புரிந்துகொள்.",
       te: "ఉత్తేజక సంకేతాలు నాడీ కార్యకలాపాల అవకాశాన్ని ఎలా పెంచుతాయో అర్థం చేసుకోండి.",
-      mr: "उद्दीपक संकेत मज्जापेशींची क्रियाशीलता वाढण्याची शक्यता कशी वाढवतात ते जाणून घे.",
+      mr: "उद्दीपक संकेत मज्जापेशींची क्रियाशीलता वाढण्याची शक्यता कशी वाढवतात ते जाणून घ्या.",
       ms: "Fahami bagaimana isyarat penguja meningkatkan kemungkinan aktiviti saraf.",
       he: "הבינו כיצד אותות מעוררים מגבירים את הסיכוי לפעילות עצבית.",
       pl: "Zrozum, jak sygnały pobudzające zwiększają prawdopodobieństwo aktywności neuronów.",

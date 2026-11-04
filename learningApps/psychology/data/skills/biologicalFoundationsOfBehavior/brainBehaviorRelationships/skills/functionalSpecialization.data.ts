@@ -54,7 +54,7 @@ export const functionalSpecialization_Skill_Data = buildSkillConfig({
       vi: "Nhận biết các chức năng chuyên biệt của não mà không gán tư duy phức tạp cho một vị trí duy nhất.",
       ta: "சிக்கலான சிந்தனைகளை ஒரே மூளைப் பகுதிக்கு ஒதுக்காமல் சிறப்பு மூளைச் செயல்பாடுகளை அறிந்துகொள்.",
       te: "సంక్లిష్ట ఆలోచనలను ఒకే స్థానానికి ఆపాదించకుండా ప్రత్యేక మెదడు విధులను గుర్తించండి.",
-      mr: "गुंतागुंतीचे विचार एका जागेशी न जोडता मेंदूची विशिष्ट कार्ये ओळख.",
+      mr: "गुंतागुंतीचे विचार एका जागेशी न जोडता मेंदूची विशिष्ट कार्ये ओळखा.",
       ms: "Kenali fungsi otak yang khusus tanpa mengaitkan pemikiran kompleks pada satu tempat sahaja.",
       he: "זהו תפקודים מוחיים מיוחדים בלי לייחס מחשבות מורכבות למקום יחיד במוח.",
       pl: "Rozpoznaj wyspecjalizowane funkcje mózgu bez przypisywania złożonych myśli jednemu miejscu.",

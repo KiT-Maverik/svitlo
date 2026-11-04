@@ -65,7 +65,7 @@ export const biologicalFoundationsOfBehavior_SkillDomain_Data = buildSkillDomain
       vi: "Khám phá cách não bộ, hormone, đặc điểm di truyền và môi trường ảnh hưởng đến hành vi.",
       ta: "மூளை, ஹார்மோன்கள், மரபுவழிப் பண்புகள், சூழல் ஆகியவை நடத்தையை எவ்வாறு பாதிக்கின்றன என்பதை அறிந்துகொள்.",
       te: "మెదడు, హార్మోన్లు, వారసత్వ లక్షణాలు, పరిసరాలు ప్రవర్తనపై ఎలా ప్రభావం చూపుతాయో తెలుసుకోండి.",
-      mr: "मेंदू, संप्रेरके, आनुवंशिक गुणधर्म आणि वातावरण वर्तनावर कसा परिणाम करतात ते जाणून घे.",
+      mr: "मेंदू, संप्रेरके, आनुवंशिक गुणधर्म आणि वातावरण वर्तनावर कसा परिणाम करतात ते जाणून घ्या.",
       ms: "Terokai bagaimana otak, hormon, sifat warisan dan persekitaran mempengaruhi tingkah laku.",
       he: "גלו כיצד המוח, הורמונים, תכונות תורשתיות והסביבה משפיעים על התנהגות.",
       pl: "Odkryj, jak mózg, hormony, cechy dziedziczne i otoczenie wpływają na zachowanie.",
