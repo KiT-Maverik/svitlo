@@ -65,7 +65,7 @@ export const choiceArchitecture_Skill_Data = buildSkillConfig({
       be: "Даведайся, як варыянты па змоўчаньні й іх разьмяшчэньне могуць уплываць на рашэньні.",
       ka: "გაიგე, როგორ შეიძლება ნაგულისხმევმა არჩევანმა და ვარიანტების განლაგებამ გადაწყვეტილებებზე იმოქმედოს.",
       kk: "Әдепкі нұсқалар мен таңдаулардың орналасуы шешімдерге қалай әсер ететінін біл.",
-      qm: "Başta belgilenген saylavlar ve variantlarnıñ tertibi qararlarğa nasıl tesir etkenini kör.",
+      qm: "Başta belgilengen saylavlar ve variantlarnıñ tertibi qararlarğa nasıl tesir etkenini kör.",
     },
   },
 });
