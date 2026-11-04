@@ -19,7 +19,7 @@ export const interpretContourSpacingAsTerrainSteepness_Skill_Data = buildSkillCo
     ko: "등고선 간격으로 지형의 경사 해석하기",
     tr: "Eşyükselti eğrilerinin aralığından arazi eğimini yorumlama",
     vi: "Giải thích độ dốc địa hình qua khoảng cách đường đồng mức",
-    ta: "சம உயரக் கோடுகளின் இடைவெளியைக் கொண்டு நிலச்சரிவின் செங்குத்துத் தன்மையை அறிதல்",
+    ta: "சம உயரக் கோடுகளின் இடைவெளியைக் கொண்டு சரிவின் செங்குத்துத்தன்மையை அறிதல்",
     te: "సమోన్నతి రేఖల మధ్య దూరంతో భూవాలు నిటారుతనాన్ని అర్థం చేసుకోవడం",
     mr: "समोच्च रेषांमधील अंतरावरून भूभागाचा उतार समजून घेणे",
     ms: "Mentafsir kecuraman cerun daripada jarak antara garisan kontur",
