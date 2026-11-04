@@ -1,4 +1,5 @@
 import type { Question_SelectOneAnswer } from '@svitlo/engine/content';
+import type { HowLightMoves_Languages } from '../constants';
 
 export const lightSpeedInWater_Question_Data = {
   answers: {
@@ -6,6 +7,7 @@ export const lightSpeedInWater_Question_Data = {
       decreases: {
         id: '71d00332-0a6a-57ee-b4a0-1b790b861383',
         slug: 'decreases',
+        type: 'text',
         value: {
           ar: 'تنخفض.',
           be: 'Памяншаецца.',
@@ -43,6 +45,7 @@ export const lightSpeedInWater_Question_Data = {
       unchanged: {
         id: '72ba744e-7ec1-5692-9408-da33f99343a9',
         slug: 'unchanged',
+        type: 'text',
         value: {
           ar: 'لا تتغير.',
           be: 'Не зьмяняецца.',
@@ -80,6 +83,7 @@ export const lightSpeedInWater_Question_Data = {
       increases: {
         id: '95a775a8-abfc-5305-8eed-64f6ce715d0f',
         slug: 'increases',
+        type: 'text',
         value: {
           ar: 'تزداد.',
           be: 'Павялічваецца.',
@@ -119,6 +123,7 @@ export const lightSpeedInWater_Question_Data = {
     {
       id: '3cff3b68-c893-58e4-a32c-72a291f6b324',
       slug: 'decreases',
+      type: 'text',
       value: {
         ar: 'ينتشر الضوء في الماء أبطأ مما ينتشر في الفراغ.',
         be: 'У вадзе сьвятло пашыраецца павольней, чым у вакуўме.',
@@ -158,6 +163,7 @@ export const lightSpeedInWater_Question_Data = {
     {
       id: '802c89a1-87bc-5f24-9190-92b8f145b5e0',
       slug: 'question',
+      type: 'text',
       value: {
         ar: 'كيف تتغير سرعة الضوء في الماء مقارنةً بالفراغ؟',
         be: 'Як зьмяняецца хуткасьць сьвятла ў вадзе ў параўнаньні з вакуўмам?',
@@ -193,4 +199,4 @@ export const lightSpeedInWater_Question_Data = {
   ],
   restrictions: [],
   type: 'selectOneAnswer',
-} satisfies Question_SelectOneAnswer<'data'>;
+} satisfies Question_SelectOneAnswer<'data', HowLightMoves_Languages>;

@@ -3,11 +3,10 @@ import { describe, expect, it } from 'vitest';
 import type { ContentBlockResponse } from './ContentBlockRenderer';
 import { ContentBlockRenderer } from './ContentBlockRenderer';
 
-const locale = { code: 'en' as const };
 const blocks: ContentBlockResponse[] = [
-  { id: 'intro', type: 'text', locale, value: 'Introduction' },
-  { id: 'diagram', type: 'image', locale, src: '/diagram.png', alt: 'Light diagram', width: 800, height: 450 },
-  { id: 'summary', type: 'text', locale, value: 'Summary' },
+  { id: 'intro', type: 'text', value: 'Introduction' },
+  { id: 'diagram', type: 'image', src: '/diagram.png', alt: 'Light diagram', width: 800, height: 450 },
+  { id: 'summary', type: 'text', value: 'Summary' },
 ];
 
 describe('lesson content block renderer', () => {

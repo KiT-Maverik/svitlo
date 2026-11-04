@@ -1,5 +1,5 @@
 import { assessmentMethods_AssessmentMethod_Ids } from '@svitlo/engine/content';
-import type { AssessmentMethodId, Question } from '@svitlo/engine/content';
+import type { AssessmentMethodId, Locale_Languages, Question } from '@svitlo/engine/content';
 
 const valid: AssessmentMethodId = assessmentMethods_AssessmentMethod_Ids.retrieval;
 void valid;
@@ -13,7 +13,7 @@ const badUuid: AssessmentMethodId = 'aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa';
 void badUuid;
 
 // The canonical question response includes an assessment method and restrictions.
-type NumericQuestion = Extract<Question<'response'>, { type: 'answerWithNumber' }>;
+type NumericQuestion = Extract<Question<'response', Locale_Languages>, { type: 'answerWithNumber' }>;
 type Assert<T extends true> = T;
 type HasAssessmentMethod = Assert<'assessmentMethod' extends keyof NumericQuestion ? true : false>;
 type HasRestrictions = Assert<'restrictions' extends keyof NumericQuestion ? true : false>;

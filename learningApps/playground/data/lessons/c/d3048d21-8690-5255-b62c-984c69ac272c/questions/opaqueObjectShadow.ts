@@ -1,4 +1,5 @@
 import type { Question_SelectOneAnswer } from '@svitlo/engine/content';
+import type { HowLightMoves_Languages } from '../constants';
 
 export const opaqueObjectShadow_Question_Data = {
   answers: {
@@ -6,6 +7,7 @@ export const opaqueObjectShadow_Question_Data = {
       shadow: {
         id: 'a2eb0999-1548-5369-b2ec-2cf4c4b79a71',
         slug: 'shadow',
+        type: 'text',
         value: {
           ar: 'ظل.',
           be: 'Цень.',
@@ -43,6 +45,7 @@ export const opaqueObjectShadow_Question_Data = {
       vacuum: {
         id: '175d4b62-a7b2-57ac-9551-1653840cc9ac',
         slug: 'vacuum',
+        type: 'text',
         value: {
           ar: 'فراغ.',
           be: 'Вакуўм.',
@@ -80,6 +83,7 @@ export const opaqueObjectShadow_Question_Data = {
       newLightSource: {
         id: '916bb013-5312-5d6b-8faa-ca665f89bdd6',
         slug: 'newLightSource',
+        type: 'text',
         value: {
           ar: 'مصدر ضوء جديد.',
           be: 'Новая крыніца сьвятла.',
@@ -119,6 +123,7 @@ export const opaqueObjectShadow_Question_Data = {
     {
       id: '9096e740-cc30-58df-80d2-bc6e42789fc6',
       slug: 'shadow',
+      type: 'text',
       value: {
         ar: 'يتكوّن ظل خلف الجسم المعتم.',
         be: 'За непразрыстым прадметам утвараецца цень.',
@@ -158,6 +163,7 @@ export const opaqueObjectShadow_Question_Data = {
     {
       id: '449b5f02-dcf0-50c9-9c18-a379fd78589c',
       slug: 'question',
+      type: 'text',
       value: {
         ar: 'ماذا يتكوّن خلف جسم معتم يحجب الضوء؟',
         be: 'Што ўтвараецца за непразрыстым прадметам, які затрымлівае сьвятло?',
@@ -193,4 +199,4 @@ export const opaqueObjectShadow_Question_Data = {
   ],
   restrictions: [],
   type: 'selectOneAnswer',
-} satisfies Question_SelectOneAnswer<'data'>;
+} satisfies Question_SelectOneAnswer<'data', HowLightMoves_Languages>;

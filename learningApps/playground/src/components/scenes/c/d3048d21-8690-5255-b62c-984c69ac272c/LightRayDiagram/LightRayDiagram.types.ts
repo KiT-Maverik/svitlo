@@ -1,4 +1,4 @@
-import type { ContentBlock_Scene } from '@svitlo/engine/content';
+import type { ContentBlock_Scene, Locale_Languages } from '@svitlo/engine/content';
 
 export type LightRayDiagram_Locale = {
   scene: {
@@ -13,4 +13,4 @@ export type LightRayDiagram_Locale = {
 };
 
 export type LightRayDiagram_ContentBlock<ConfigType extends 'definition' | 'data' | 'response'> =
-  ContentBlock_Scene<ConfigType, LightRayDiagram_Locale>;
+  ContentBlock_Scene<ConfigType, Locale_Languages, LightRayDiagram_Locale>;

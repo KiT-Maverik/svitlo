@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import type { Locale_Config } from '@svitlo/contracts/content';
+import type { Locale_Languages, Locale_Options } from '@svitlo/contracts/content';
 import { DEFAULT_SUPPORTED_LANGUAGES } from '../../types/languages';
 import type { DynamicQuestion_Config, DynamicQuestion_Variant } from './createDynamicQuestion.types';
 import {
@@ -23,14 +23,20 @@ const variant = (amount: number, enabled: boolean): Variant => [
   { selector: 'enabled', value: enabled },
 ];
 
-const name: Locale_Config = Object.fromEntries(
+const supportedLanguages = [
+  DEFAULT_SUPPORTED_LANGUAGES[0].language,
+  ...DEFAULT_SUPPORTED_LANGUAGES.slice(1).map(({ language }) => language),
+] as const satisfies Locale_Languages;
+type TestLanguages = typeof supportedLanguages;
+
+const name: Locale_Options<TestLanguages> = Object.fromEntries(
   DEFAULT_SUPPORTED_LANGUAGES.map(({ language }) => [language, 'Question']),
-) as Locale_Config;
+) as Record<TestLanguages[number], string>;
 
 const createConfig = (
   buildVariants: () => Variant[] = () => [variant(1, true), variant(2, false), variant(3, true), variant(4, false)],
   checkConstraints: (candidate: Variant) => boolean = () => true,
-): DynamicQuestion_Config<TestArguments> => ({
+): DynamicQuestion_Config<TestArguments, TestLanguages> => ({
   arguments: argumentsConfig,
   buildVariants,
   checkConstraints,

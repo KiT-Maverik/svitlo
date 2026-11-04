@@ -1,4 +1,5 @@
 import type { Question_Catalog } from '@svitlo/engine/content';
+import type { HowLightMoves_Languages } from '../constants';
 import { airVacuumSpeed_Question_Data } from './airVacuumSpeed';
 import { fastestMedium_Question_Data } from './fastestMedium';
 import { lightRayDirection_Question_Data } from './lightRayDirection';
@@ -15,4 +16,4 @@ export const howLightMoves_Questions = {
     airVacuumSpeed: airVacuumSpeed_Question_Data,
     opaqueObjectShadow: opaqueObjectShadow_Question_Data,
   },
-} satisfies Question_Catalog<'data'>;
+} satisfies Question_Catalog<'data', HowLightMoves_Languages>;

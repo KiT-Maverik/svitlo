@@ -1,6 +1,6 @@
 import type { ContentBlock_Data_Meta, ContentBlock_Definition_Meta, ContentBlock_Response_Meta } from './common.types';
 import type { ContentEntity_ConfigType } from '../entity.types';
-import type { Locale_Config, Locale_ResponseParams } from '../locale.types';
+import type { Locale_Languages, Locale_Options } from '../locale.types';
 
 /** Preserve the scene's keys while rejecting non-string leaves at any depth. */
 type ContentBlock_Scene_Locales_Strings<TLocales> = TLocales extends string
@@ -9,7 +9,7 @@ type ContentBlock_Scene_Locales_Strings<TLocales> = TLocales extends string
     ? { [Key in keyof TLocales]: ContentBlock_Scene_Locales_Strings<TLocales[Key]> }
     : never;
 
-type ContentBlock_Scene_LocaleShape = {
+export type ContentBlock_Scene_LocaleShape = {
   [Key: string]: string | ContentBlock_Scene_LocaleShape;
 };
 
@@ -18,28 +18,28 @@ type ContentBlock_Scene_Definition = ContentBlock_Definition_Meta<'scene'> & {
   rendererKey: string;
 };
 
-type ContentBlock_Scene_Locales_Data<TLocales> = TLocales extends string
-  ? Locale_Config
+type ContentBlock_Scene_Locales_Data<TLocales, SupportedLanguages extends Locale_Languages> = TLocales extends string
+  ? Locale_Options<SupportedLanguages>
   : TLocales extends object
-    ? { [Key in keyof TLocales]: ContentBlock_Scene_Locales_Data<TLocales[Key]> }
+    ? { [Key in keyof TLocales]: ContentBlock_Scene_Locales_Data<TLocales[Key], SupportedLanguages> }
     : never;
 
-type ContentBlock_Scene_Data<TLocales extends object> = ContentBlock_Data_Meta & {
-  locales: ContentBlock_Scene_Locales_Data<ContentBlock_Scene_Locales_Strings<TLocales>>;
+type ContentBlock_Scene_Data<TLocales extends object, SupportedLanguages extends Locale_Languages> = ContentBlock_Data_Meta<'scene'> & {
+  locales: ContentBlock_Scene_Locales_Data<ContentBlock_Scene_Locales_Strings<TLocales>, SupportedLanguages>;
 };
 
-type ContentBlock_Scene_Response<TLocales extends object> = ContentBlock_Response_Meta<'scene'> &
-  Locale_ResponseParams & {
-    /** Translated scene props, separate from the locale selection metadata. */
+type ContentBlock_Scene_Response<TLocales extends object> = ContentBlock_Response_Meta<'scene'> & {
+    /** Translated scene props. */
     messages: ContentBlock_Scene_Locales_Strings<TLocales>;
     rendererKey: string;
   };
 
 export type ContentBlock_Scene<
   ConfigType extends ContentEntity_ConfigType,
+  SupportedLanguages extends Locale_Languages,
   TLocales extends object = ContentBlock_Scene_LocaleShape,
 > = {
   definition: ContentBlock_Scene_Definition;
-  data: ContentBlock_Scene_Data<TLocales>;
+  data: ContentBlock_Scene_Data<TLocales, SupportedLanguages>;
   response: ContentBlock_Scene_Response<TLocales>;
 }[ConfigType];

@@ -1,21 +1,12 @@
 import type { LanguageCode } from '@svitlo/engine/localization';
-import { SECTION_TYPES, type ContentBlock, type ContentBlock_Reference, type Question, type Section_Type } from '@svitlo/engine/content';
+import { SECTION_TYPES, type ContentBlock, type Locale_Languages, type Question, type Section_Type } from '@svitlo/engine/content';
 import { resolveEntityPath } from '@svitlo/engine';
 
 export type LocaleSource = { code: LanguageCode; isFallback?: true };
 export type LessonCollection = { data: unknown; localeSources: Record<string, LocaleSource> };
-export type LessonContentBlock = {
-  id: string;
-  slug: string;
-  blockType: string;
-  sceneId?: string;
-  text?: string;
-  value?: string;
-  locales?: Record<string, unknown>;
-  questions?: Record<string, Record<string, unknown>>;
-  [key: string]: unknown;
-};
-export type LessonRenderableBlock = Exclude<ContentBlock<'response'>, { type: 'quiz' }>;
+/** Published section content is already ordered and discriminated. */
+export type LessonContentBlock = ContentBlock<'response', Locale_Languages> & { slug: string };
+export type LessonRenderableBlock = Exclude<LessonContentBlock, { type: 'quiz' }>;
 export type LessonSectionResponse = {
   id: string;
   slug: string;
@@ -23,11 +14,9 @@ export type LessonSectionResponse = {
   title: string;
   navigationLabel: string;
   skippable?: true;
-  content: Record<string, Record<string, LessonContentBlock>>;
-  order: ContentBlock_Reference[];
-  blocks: LessonRenderableBlock[];
-  /** Server-assembled array of typed responses, ready for the client renderer. */
-  questions: Question<'response'>[];
+  content: LessonContentBlock[];
+  /** Questions referenced by this section's quiz blocks, ready for rendering. */
+  questions: Question<'response', Locale_Languages>[];
 };
 export type LessonResponse = {
   id: string;
@@ -41,8 +30,7 @@ export type LessonResponse = {
   };
   flashcards: unknown[];
   questions: Record<string, Record<string, Record<string, unknown>>>;
-  sections: Record<string, LessonSectionResponse>;
-  sectionOrder: string[];
+  sections: LessonSectionResponse[];
   localeSources: {
     config: Record<string, LocaleSource>;
     flashcards: Record<string, LocaleSource>;
@@ -77,72 +65,45 @@ function collection(value: unknown, name: string): LessonCollection {
   return { data: document.data, localeSources: sources as Record<string, LocaleSource> };
 }
 
-/** Add Response discriminators for nested content where current authored contracts omit them. */
-function decorateResponse(value: unknown, language: LanguageCode): unknown {
-  if (Array.isArray(value)) return value.map(entry => decorateResponse(entry, language));
+/** Authoring data already carries a discriminant; only rename published localized fields. */
+function decorateResponse(value: unknown): unknown {
+  if (Array.isArray(value)) return value.map(decorateResponse);
   if (!value || typeof value !== 'object') return value;
   const source = value as Record<string, unknown>;
-  const children = Object.fromEntries(
-    Object.entries(source).map(([key, child]) => [key, decorateResponse(child, language)]),
-  );
+  const children = Object.fromEntries(Object.entries(source).map(([key, child]) => [key, decorateResponse(child)]));
   if (typeof source.id !== 'string' || typeof source.slug !== 'string') return children;
-  const locale = { code: language };
-  if (typeof source.value === 'string') return { ...children, type: 'text', locale };
-  if (typeof source.locales === 'string') {
+  if (source.type === 'markdown' && typeof source.locales === 'string') {
     const { locales: text, ...rest } = children;
-    return { ...rest, type: 'markdown', text, locale };
+    return { ...rest, text };
   }
-  return { ...children, locale };
+  if (source.type === 'scene' && source.locales && typeof source.locales === 'object') {
+    const { locales: messages, ...rest } = children;
+    return { ...rest, messages, rendererKey: source.id };
+  }
+  return children;
 }
 
-function assembleBlocks(
-  content: unknown,
-  order: unknown,
-  location: string,
-  language: LanguageCode,
-): Pick<LessonSectionResponse, 'content' | 'order' | 'blocks'> {
-  const catalog = record(content, location);
-  const normalized: LessonSectionResponse['content'] = {};
-  const keys: string[] = [];
-  for (const [kind, entries] of Object.entries(catalog)) {
-    normalized[kind] = {};
-    for (const [key, raw] of Object.entries(record(entries, location + '/' + kind))) {
-      const block = record(decorateResponse(raw, language), location + '/' + kind + '/' + key);
-      const slug = string(block.slug, location + '/' + kind + '/' + key + '.slug');
-      if (slug !== key) throw new Error('Block slug mismatch at ' + location + '/' + kind + '/' + key);
-      const id = string(block.id, location + '/' + kind + '/' + key + '.id');
-      const reference = kind + '/' + key;
-      keys.push(reference);
-      const resolved: LessonContentBlock = { ...block, id, slug, type: kind, blockType: kind, locale: { code: language } };
-      if (kind === 'markdown') {
-        resolved.text = string(block.text, location + '/' + reference + '.text');
-      }
-      if (kind === 'scene') {
-        resolved.messages = record(block.messages, location + '/' + reference + '.messages');
-        resolved.locale = { code: language };
-        resolved.sceneId = location + '/' + reference;
-      }
-      normalized[kind][key] = resolved;
-    }
-  }
-  if (!Array.isArray(order) || order.length !== keys.length) {
-    throw new Error('Invalid content order at ' + location);
-  }
-  const references = order.map((raw, index) => {
-    const ref = record(raw, location + '.order[' + index + ']');
-    return {
-      type: string(ref.type, location + '.order[' + index + '].type') as ContentBlock_Reference['type'],
-      slug: string(ref.slug, location + '.order[' + index + '].slug'),
-    };
+const supportedBlockTypes = new Set([
+  'text', 'markdown', 'checkpoint', 'scene', 'code', 'audio', 'video', 'youtube', 'image', 'quiz',
+]);
+
+function assembleBlocks(content: unknown, location: string): LessonContentBlock[] {
+  if (!Array.isArray(content)) throw new Error('Expected ordered content array at ' + location);
+  const seen = new Set<string>();
+  return content.map((raw, index) => {
+    const where = location + '[' + index + ']';
+    const block = record(decorateResponse(raw), where);
+    const id = string(block.id, where + '.id');
+    const slug = string(block.slug, where + '.slug');
+    const type = string(block.type, where + '.type');
+    if (!supportedBlockTypes.has(type)) throw new Error('Unsupported content block type at ' + where + ': ' + type);
+    const key = type + '/' + slug;
+    if (seen.has(key)) throw new Error('Duplicate content block ' + key + ' at ' + location);
+    seen.add(key);
+    if (type === 'markdown') string(block.text, where + '.text');
+    if (type === 'scene') record(block.messages, where + '.messages');
+    return { ...block, id, slug, type } as LessonContentBlock;
   });
-  const names = references.map(ref => ref.type + '/' + ref.slug);
-  if (new Set(names).size !== names.length || names.some(name => !keys.includes(name))) {
-    throw new Error('Content order must reference every block once at ' + location);
-  }
-  const blocks = references
-    .filter(reference => reference.type !== 'quiz')
-    .map(({ type, slug }) => normalized[type][slug] as unknown as LessonRenderableBlock);
-  return { content: normalized, order: references, blocks };
 }
 
 /** Pure response assembly: runtime consumes only the three published JSON collections. */
@@ -182,66 +143,64 @@ export function assembleLessonResponse(
     for (const [key, value] of Object.entries(record(entries, 'questions.data.' + kind))) {
       const question = record(value, 'questions.data.' + kind + '.' + key);
       if (question.slug !== key) throw new Error('Question slug mismatch at ' + kind + '/' + key);
-      indexedQuestions[kind][key] = record(decorateResponse(question, language), 'questions.data.' + kind + '.' + key);
+      indexedQuestions[kind][key] = record(decorateResponse(question), 'questions.data.' + kind + '.' + key);
     }
   }
-  const sections: LessonResponse['sections'] = {};
-  for (const [key, rawSection] of Object.entries(record(data.sections, 'config.data.sections'))) {
-    const section = record(rawSection, 'config.data.sections.' + key);
-    const sectionSlug = string(section.slug, 'sections.' + key + '.slug');
-    if (sectionSlug !== key) throw new Error('Section slug mismatch at ' + key);
-    const sectionType = string(section.type, 'sections.' + key + '.type');
+  if (!Array.isArray(data.sections)) throw new Error('Expected ordered sections array for ' + relativePath);
+  const sections: LessonResponse['sections'] = [];
+  const sectionSlugs = new Set<string>();
+  const sectionIds = new Set<string>();
+  for (const [index, rawSection] of data.sections.entries()) {
+    const where = 'config.data.sections[' + index + ']';
+    const section = record(rawSection, where);
+    const sectionSlug = string(section.slug, where + '.slug');
+    const sectionId = string(section.id, where + '.id');
+    if (sectionSlugs.has(sectionSlug) || sectionIds.has(sectionId)) {
+      throw new Error('Duplicate section identity at ' + where);
+    }
+    sectionSlugs.add(sectionSlug);
+    sectionIds.add(sectionId);
+    const sectionType = string(section.type, where + '.type');
     if (!SECTION_TYPES.includes(sectionType as Section_Type)) {
-      throw new Error('Unsupported section type at ' + key + ': ' + sectionType);
+      throw new Error('Unsupported section type at ' + where + ': ' + sectionType);
     }
-    const content = assembleBlocks(section.content, section.order, relativePath + '/' + key, language);
-    const hasQuiz = Object.keys(content.content.quiz ?? {}).length > 0;
-    if ((sectionType === 'quiz') !== hasQuiz) {
-      throw new Error('Quiz section type and content disagree at ' + key);
+    const content = assembleBlocks(section.content, relativePath + '/' + sectionSlug + '/content');
+    const quizBlocks = content.filter(block => block.type === 'quiz');
+    if ((sectionType === 'quiz') !== (quizBlocks.length === 1)) {
+      throw new Error('Quiz section type and content disagree at ' + sectionSlug);
     }
-    const sectionQuestions: Question<'response'>[] = [];
-    for (const block of Object.values(content.content.quiz ?? {})) {
+    const sectionQuestions: Question<'response', Locale_Languages>[] = [];
+    for (const block of quizBlocks) {
       const slugs = block.questionSlugs;
       if (!Array.isArray(slugs) || slugs.some(value => typeof value !== 'string') ||
           new Set(slugs).size !== slugs.length || slugs.length === 0) {
-        throw new Error('Invalid quiz questionSlugs in ' + relativePath + '/' + key);
+        throw new Error('Invalid quiz questionSlugs in ' + relativePath + '/' + sectionSlug);
       }
-      const resolved: Record<string, Record<string, unknown>> = {};
-      for (const questionSlug of slugs as string[]) {
+      for (const questionSlug of slugs) {
         const matches = Object.values(indexedQuestions).flatMap(bank =>
           bank[questionSlug] ? [bank[questionSlug]] : []);
         if (matches.length !== 1) {
           throw new Error('Quiz references missing or ambiguous question ' + questionSlug +
-            ' in ' + relativePath + '/' + key);
+            ' in ' + relativePath + '/' + sectionSlug);
         }
-        resolved[questionSlug] = matches[0];
-        // The published catalog is typed at authoring/build time; verify its
-        // discriminator before crossing the JSON boundary into the UI.
         const response = matches[0];
         const responseType = string(response.type, 'questions.data.' + questionSlug + '.type');
         if (!(responseType in indexedQuestions)) {
           throw new Error('Unsupported question response type: ' + responseType);
         }
-        sectionQuestions.push(response as Question<'response'>);
+        sectionQuestions.push(response as Question<'response', Locale_Languages>);
       }
-      block.questions = resolved;
     }
-    sections[key] = {
-      id: string(section.id, 'sections.' + key + '.id'),
+    sections.push({
+      id: sectionId,
       slug: sectionSlug,
       type: sectionType as Section_Type,
-      title: string(section.title, 'sections.' + key + '.title'),
-      navigationLabel: string(section.navigationLabel, 'sections.' + key + '.navigationLabel'),
+      title: string(section.title, where + '.title'),
+      navigationLabel: string(section.navigationLabel, where + '.navigationLabel'),
       ...(section.skippable === true ? { skippable: true as const } : {}),
-      ...content,
+      content,
       questions: sectionQuestions,
-    };
-  }
-  const sectionOrder = data.sectionOrder;
-  if (!Array.isArray(sectionOrder) || sectionOrder.length !== Object.keys(sections).length ||
-      sectionOrder.some(value => typeof value !== 'string' || !(value in sections)) ||
-      new Set(sectionOrder).size !== sectionOrder.length) {
-    throw new Error('Invalid sectionOrder for ' + relativePath);
+    });
   }
   const options = ['allowNavigation', 'allowSkipping', 'showIndexes'] as const;
   for (const option of options) {
@@ -250,7 +209,7 @@ export function assembleLessonResponse(
     }
   }
   if (typeof parameters.requireQuiz !== 'boolean') throw new Error('Invalid requireQuiz for ' + slug);
-  const quizCount = Object.values(sections).filter(section => section.type === 'quiz').length;
+  const quizCount = sections.filter(section => section.type === 'quiz').length;
   if (quizCount > 1 || (parameters.requireQuiz && quizCount !== 1)) {
     throw new Error('Lesson ' + relativePath + ' requires exactly one quiz when requireQuiz is true');
   }
@@ -267,7 +226,6 @@ export function assembleLessonResponse(
     flashcards: flashcards.data,
     questions: indexedQuestions,
     sections,
-    sectionOrder: sectionOrder as string[],
     localeSources: {
       config: config.localeSources,
       flashcards: flashcards.localeSources,

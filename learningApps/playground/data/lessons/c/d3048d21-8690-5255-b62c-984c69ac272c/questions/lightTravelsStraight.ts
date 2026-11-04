@@ -1,4 +1,5 @@
 import type { Question_SelectOneAnswer } from '@svitlo/engine/content';
+import type { HowLightMoves_Languages } from '../constants';
 
 export const lightTravelsStraight_Question_Data = {
   answers: {
@@ -6,6 +7,7 @@ export const lightTravelsStraight_Question_Data = {
       straightLine: {
         id: '4431da6c-745c-5eda-8dfb-7443e99d16ee',
         slug: 'straightLine',
+        type: 'text',
         value: {
           ar: 'في خط مستقيم.',
           be: 'Па простай лініі.',
@@ -43,6 +45,7 @@ export const lightTravelsStraight_Question_Data = {
       curve: {
         id: 'b32eb866-d619-5cad-9a89-bd4b96470385',
         slug: 'curve',
+        type: 'text',
         value: {
           ar: 'دائمًا في مسار منحني.',
           be: 'Заўсёды па крывой.',
@@ -80,6 +83,7 @@ export const lightTravelsStraight_Question_Data = {
       circle: {
         id: 'e63111e7-011e-5294-9a18-c43e8d093f41',
         slug: 'circle',
+        type: 'text',
         value: {
           ar: 'في دائرة.',
           be: 'Па коле.',
@@ -119,6 +123,7 @@ export const lightTravelsStraight_Question_Data = {
     {
       id: '7c16616c-d8b5-54d5-bb17-7257f8289c52',
       slug: 'straightLine',
+      type: 'text',
       value: {
         ar: 'ينتشر الضوء في خط مستقيم داخل وسط شفاف ومتجانس.',
         be: 'У аднародным празрыстым асяродзьдзі сьвятло пашыраецца па простай лініі.',
@@ -158,6 +163,7 @@ export const lightTravelsStraight_Question_Data = {
     {
       id: '42b21cc4-14a5-5159-8c28-aa1fb0309c95',
       slug: 'question',
+      type: 'text',
       value: {
         ar: 'كيف ينتشر الضوء في وسط شفاف ومتجانس؟',
         be: 'Як сьвятло пашыраецца ў аднародным празрыстым асяродзьдзі?',
@@ -193,4 +199,4 @@ export const lightTravelsStraight_Question_Data = {
   ],
   restrictions: [],
   type: 'selectOneAnswer',
-} satisfies Question_SelectOneAnswer<'data'>;
+} satisfies Question_SelectOneAnswer<'data', HowLightMoves_Languages>;

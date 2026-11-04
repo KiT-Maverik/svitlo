@@ -1,28 +1,27 @@
 import type { LanguageCode } from '../languages';
 
-export type Locales_All<Value = string> = Record<LanguageCode, Value>;
+/** Non-empty tuple of language codes declared by a content source. */
+export type Locale_Languages = readonly [LanguageCode, ...LanguageCode[]];
 
-export type Locales_Subset<Languages extends LanguageCode, Value = string> = Record<Languages, Value> & {
-  fallback: Languages;
-};
+type Locale_Config<SupportedLanguages extends Locale_Languages> =
+  Record<SupportedLanguages[number], string>;
 
-export type Locales_Partial<Value = string> = {
-  [FallbackLanguage in LanguageCode]: {
-    fallback: FallbackLanguage;
-  } & Record<FallbackLanguage, Value> &
-    Partial<Record<Exclude<LanguageCode, FallbackLanguage>, Value>>;
-}[LanguageCode];
+/**
+ * Language-independent text.
+ *
+ * Use only when the exact same value is intentionally
+ * displayed in every supported language.
+ *
+ * Do not use to bypass missing translations.
+ */
+type NonLocalizable = string;
 
-export type Locales_Single<Value = string> = {
-  value: Value;
-  language: LanguageCode;
-};
+/**
+ * Text that is either:
+ * - Fully localized for all supported languages.
+ * - Intentionally language-independent.
+ */
+export type Locale_Options<SupportedLanguages extends Locale_Languages> = Locale_Config<SupportedLanguages> | NonLocalizable;
 
-export type Locale_ResponseParams = {
-  locale: {
-    code: LanguageCode;
-    isFallback?: true;
-  };
-};
-
-export type Locale_Config = Locales_All | Locales_Subset<LanguageCode> | Locales_Single | Locales_Partial;
+/** Ordered, non-empty list of languages supported by a lesson. */
+export type Lesson_Locale = Locale_Languages;

@@ -9,18 +9,18 @@ import ExpandMoreRounded from '@mui/icons-material/ExpandMoreRounded';
 import LightbulbOutlineRounded from '@mui/icons-material/LightbulbOutlineRounded';
 import RadioButtonUncheckedRounded from '@mui/icons-material/RadioButtonUncheckedRounded';
 import CheckCircleRounded from '@mui/icons-material/CheckCircleRounded';
-import type { ContentBlock_Checkpoint_Response } from '@svitlo/engine/content';
+import type { ContentBlock_Checkpoint_Response, Locale_Languages } from '@svitlo/engine/content';
 import { DEFAULT_SUPPORTED_LANGUAGES, getLocaleDirection } from '@svitlo/engine/localization';
 
 import type { RenderNested } from '../../types';
+import { useContentLanguage } from '../../ContentLanguageContext';
 import { locales } from './Checkpoint.locale';
 import styles from './Checkpoint.module.css';
 
-type CheckpointProps = ContentBlock_Checkpoint_Response & { renderNested: RenderNested };
+type CheckpointProps = ContentBlock_Checkpoint_Response<Locale_Languages> & { renderNested: RenderNested };
 
 export const Checkpoint = ({
   id,
-  locale,
   title,
   items,
   headingLevel = 2,
@@ -34,12 +34,13 @@ export const Checkpoint = ({
   renderAsGroup = true,
   renderNested,
 }: CheckpointProps) => {
+  const languageCode = useContentLanguage();
   const domId = useId();
   const [expanded, setExpanded] = useState<number | null>(null);
   const [checkedIds, setCheckedIds] = useState<Set<string>>(() => new Set());
-  const language = DEFAULT_SUPPORTED_LANGUAGES.find(item => item.language === locale.code)?.locale ?? 'en-US';
+  const language = DEFAULT_SUPPORTED_LANGUAGES.find(item => item.language === languageCode)?.locale ?? 'en-US';
   const direction = getLocaleDirection(language);
-  const messages = locales[locale.code] ?? locales.en;
+  const messages = locales[languageCode] ?? locales.en;
   const accordionHeading = `h${Math.min(headingLevel + 1, 6)}` as 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 
   return (

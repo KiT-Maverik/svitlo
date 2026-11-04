@@ -14,5 +14,4 @@ export type * from './types/content/state.types';
 
 export { defineLessonData } from './types/content/lesson.types';
 export { SECTION_TYPES } from './types/content/section.types';
-export { defineContentBlockCatalog } from './types/content/blocks';
 export { assessmentMethods_AssessmentMethod_Ids } from './types/content/assessmentMethod.ids';

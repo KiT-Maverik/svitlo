@@ -1,4 +1,5 @@
-import { defineContentBlockCatalog, type Section } from '@svitlo/engine/content';
+import type { HowLightMoves_Languages } from '../../constants';
+import type { Section } from '@svitlo/engine/content';
 import { checkpointData } from './checkpoints/checkpoint';
 import { lightPropagationSimulationData } from './scenes/lightPropagationSimulation';
 import { lightRayDiagramData } from './scenes/lightRayDiagram';
@@ -42,24 +43,12 @@ export const theory_Section = {
   slug: 'theory' as const,
   title,
   navigationLabel: title,
-  order: [
-    { type: 'markdown', slug: 'p1' },
-    { type: 'scene', slug: 'lightRayDiagram' },
-    { type: 'markdown', slug: 'p2' },
-    { type: 'scene', slug: 'lightPropagationSimulation' },
-    { type: 'markdown', slug: 'p3' },
-    { type: 'checkpoint', slug: 'checkpoint' },
+  content: [
+    { type: 'markdown', id: 'how-light-moves-p1', slug: 'p1', locales: getMarkdownLocale(new URL('./markdown/p1/', import.meta.url)) },
+    lightRayDiagramData,
+    { type: 'markdown', id: 'how-light-moves-p2', slug: 'p2', locales: getMarkdownLocale(new URL('./markdown/p2/', import.meta.url)) },
+    lightPropagationSimulationData,
+    { type: 'markdown', id: 'how-light-moves-p3', slug: 'p3', locales: getMarkdownLocale(new URL('./markdown/p3/', import.meta.url)) },
+    checkpointData,
   ],
-  content: defineContentBlockCatalog({
-    checkpoint: { checkpoint: checkpointData },
-    markdown: {
-      p1: { id: 'how-light-moves-p1', slug: 'p1', locales: getMarkdownLocale(new URL('./markdown/p1/', import.meta.url)) },
-      p2: { id: 'how-light-moves-p2', slug: 'p2', locales: getMarkdownLocale(new URL('./markdown/p2/', import.meta.url)) },
-      p3: { id: 'how-light-moves-p3', slug: 'p3', locales: getMarkdownLocale(new URL('./markdown/p3/', import.meta.url)) },
-    },
-    scene: {
-      lightPropagationSimulation: lightPropagationSimulationData,
-      lightRayDiagram: lightRayDiagramData,
-    },
-  }),
-} satisfies Section<'data'>;
+} satisfies Section<'data', HowLightMoves_Languages>;

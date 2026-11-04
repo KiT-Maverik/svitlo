@@ -1,6 +1,6 @@
 import type { ContentBlock_Data_Meta, ContentBlock_Definition_Meta, ContentBlock_Response_Meta } from './common.types';
 import type { ContentEntity_ConfigType } from '../entity.types';
-import type { Locale_Config, Locale_ResponseParams } from '../locale.types';
+import type { Locale_Languages, Locale_Options } from '../locale.types';
 
 type ContentBlock_Youtube_Definition = ContentBlock_Definition_Meta<'youtube'>;
 
@@ -17,18 +17,18 @@ type Youtube_Display<Value> =
       | { title?: Value; hint: Value }
     ));
 
-type ContentBlock_Youtube_Data = ContentBlock_Data_Meta & {
-  href: Locale_Config;
-  fallback?: Youtube_Fallback<Locale_Config>;
-} & Youtube_Display<Locale_Config>;
+type ContentBlock_Youtube_Data<SupportedLanguages extends Locale_Languages> = ContentBlock_Data_Meta<'youtube'> & {
+  href: Locale_Options<SupportedLanguages>;
+  fallback?: Youtube_Fallback<Locale_Options<SupportedLanguages>>;
+} & Youtube_Display<Locale_Options<SupportedLanguages>>;
 
-export type ContentBlock_Youtube_Response = ContentBlock_Response_Meta<'youtube'> & Locale_ResponseParams & {
+export type ContentBlock_Youtube_Response = ContentBlock_Response_Meta<'youtube'> & {
   href: string;
   fallback?: Youtube_Fallback<string>;
 } & Youtube_Display<string>;
 
-export type ContentBlock_Youtube<ConfigType extends ContentEntity_ConfigType> = {
+export type ContentBlock_Youtube<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends Locale_Languages> = {
   definition: ContentBlock_Youtube_Definition;
-  data: ContentBlock_Youtube_Data;
+  data: ContentBlock_Youtube_Data<SupportedLanguages>;
   response: ContentBlock_Youtube_Response;
 }[ConfigType];

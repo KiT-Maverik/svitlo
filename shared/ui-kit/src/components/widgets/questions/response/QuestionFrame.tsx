@@ -2,12 +2,13 @@
 
 import { useContext, useId, useState, type ReactNode } from 'react';
 import { Box, Button, Paper, Stack, Typography } from '@mui/material';
-import type { Question } from '@svitlo/engine/content';
+import type { Question, Locale_Languages } from '@svitlo/engine/content';
+import { useContentLanguage } from '../../ContentBlockRenderer/ContentLanguageContext';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
 import { QuestionContent } from './QuestionContent';
 import { QuestionCompletionContext } from './QuestionCompletion';
 
-export type QuestionResponse = Question<'response'>;
+export type QuestionResponse = Question<'response', Locale_Languages>;
 
 export function useQuestionAttempt<Value>(
   initial: () => Value,
@@ -55,7 +56,7 @@ export function QuestionFrame<Value>({
   const headingId = useId();
   const completion = useContext(QuestionCompletionContext);
   const trackingId = response.type + ':' + response.id;
-  const lang = response.locale.code;
+  const lang = useContentLanguage();
   const t = lang === 'uk' ? copy.uk : copy.en;
   return (
     <Paper

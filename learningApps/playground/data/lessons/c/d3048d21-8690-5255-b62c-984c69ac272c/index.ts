@@ -1,12 +1,12 @@
-import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine';
 import { defineLessonData, type Lesson } from '@svitlo/engine/content';
+import { howLightMoves_languages, type HowLightMoves_Languages } from './constants';
 import { howLightMoves_Flashcards } from './flashcards';
 import { howLightMoves_Questions } from './questions';
 import { practice_Section } from './sections/practice';
 import { quiz_Section } from './sections/quiz';
 import { theory_Section } from './sections/theory/theory';
 
-export const howLightMoves_Data = defineLessonData({
+export const howLightMoves_Data = defineLessonData<HowLightMoves_Languages>()({
   id: 'd3048d21-8690-5255-b62c-984c69ac272c',
   slug: 'howLightMoves',
   title:  {
@@ -43,22 +43,14 @@ export const howLightMoves_Data = defineLessonData({
   flashcards: howLightMoves_Flashcards,
   parameters: {
     requireQuiz: true,
-    languages: [
-      DEFAULT_SUPPORTED_LANGUAGES[0].language,
-      ...DEFAULT_SUPPORTED_LANGUAGES.slice(1).map(({ language }) => language),
-    ],
+    languages: howLightMoves_languages,
     sections: {
       allowNavigation: true,
       allowSkipping: true,
       showIndexes: true,
     },
   },
-  sectionOrder: ['theory', 'practice', 'quiz'],
   questions: howLightMoves_Questions,
-  sections: {
-    theory: theory_Section,
-    practice: practice_Section,
-    quiz: quiz_Section,
-  },
-} satisfies Lesson<'data'>);
+  sections: [theory_Section, practice_Section, quiz_Section],
+} satisfies Lesson<'data', HowLightMoves_Languages>);
 

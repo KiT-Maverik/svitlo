@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs';
 
 import { Markdown } from './Markdown';
+import { ContentLanguageContext } from '../../ContentLanguageContext';
 
 const meta = {
   title: 'Content blocks/Markdown',
@@ -16,13 +17,11 @@ const meta = {
   args: {
     id: 'markdown-example',
     type: 'markdown',
-    locale: { code: 'en' },
     text: '# How light moves\n\nLight travels in **straight lines** through a uniform medium.\n\n- Observe the ray\n- Describe its direction\n\n[Learn more](https://en.wikipedia.org/wiki/Light)',
   },
   argTypes: {
     id: { control: false },
     type: { control: false },
-    locale: { control: 'object' },
     text: { control: 'text' },
   },
 } satisfies Meta<typeof Markdown>;
@@ -45,8 +44,8 @@ export const AuthoredHtml: Story = {
 };
 
 export const RightToLeft: Story = {
+  decorators: [(StoryComponent) => <ContentLanguageContext.Provider value="ar"><StoryComponent /></ContentLanguageContext.Provider>],
   args: {
-    locale: { code: 'ar' },
     text: '# كيف ينتقل الضوء؟\n\nينتقل الضوء في **خطوط مستقيمة** في وسط متجانس.\n\n- انظر إلى الشعاع\n- حدد اتجاهه',
   },
 };

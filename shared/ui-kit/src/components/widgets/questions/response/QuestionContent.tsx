@@ -1,8 +1,8 @@
-import type { ContentBlock } from '@svitlo/engine/content';
+import type { ContentBlock, Locale_Languages } from '@svitlo/engine/content';
 import { ContentBlockRenderer } from '../../ContentBlockRenderer';
 import type { ContentBlockResponse, SceneRegistry } from '../../ContentBlockRenderer';
 
-export type QuestionBlock = ContentBlock<'response'>;
+export type QuestionBlock = ContentBlock<'response', Locale_Languages>;
 
 function renderable(block: QuestionBlock): ContentBlockResponse {
   if (block.type === 'quiz') {

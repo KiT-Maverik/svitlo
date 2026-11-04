@@ -1,15 +1,15 @@
 import type { ContentEntity_ConfigType } from '../entity.types';
 import type { NonEmptyArray } from '../../misc.types';
-import type { Locale_Config, Locale_ResponseParams } from '../locale.types';
+import type { Locale_Languages, Locale_Options } from '../locale.types';
 import type { Question_SelectOneAnswer } from '../questions/selectOneAnswer.types';
 import type { ContentBlock } from './index';
 import type { ContentBlock_Data_Meta, ContentBlock_Definition_Meta, ContentBlock_Response_Meta } from './common.types';
 
-export type ContentBlock_Quiz_Screen<ConfigType extends 'data' | 'response'> =
-  | { showDefaultContent: true; content?: readonly ContentBlock<ConfigType>[] }
-  | { showDefaultContent?: false; content: NonEmptyArray<ContentBlock<ConfigType>> };
+export type ContentBlock_Quiz_Screen<ConfigType extends 'data' | 'response', SupportedLanguages extends Locale_Languages> =
+  | { showDefaultContent: true; content?: readonly ContentBlock<ConfigType, SupportedLanguages>[] }
+  | { showDefaultContent?: false; content: NonEmptyArray<ContentBlock<ConfigType, SupportedLanguages>> };
 
-type Quiz_Settings<ConfigType extends 'data' | 'response'> = {
+type Quiz_Settings<ConfigType extends 'data' | 'response', SupportedLanguages extends Locale_Languages> = {
   feedbackMode: 'immediate' | 'after-completion';
   grading?: { mode: 'percentage' | 'points'; successThreshold: number };
   interaction: {
@@ -25,36 +25,35 @@ type Quiz_Settings<ConfigType extends 'data' | 'response'> = {
   results: { visibility: 'immediate' | 'after-review' | 'hidden'; showScore: boolean };
   screen: {
     /** Shown before the first question. */
-    starting?: ContentBlock_Quiz_Screen<ConfigType>;
+    starting?: ContentBlock_Quiz_Screen<ConfigType, SupportedLanguages>;
     ending?: {
       /** Passing result. */
-      success: ContentBlock_Quiz_Screen<ConfigType>;
+      success: ContentBlock_Quiz_Screen<ConfigType, SupportedLanguages>;
       /** Failed with no attempts remaining. */
-      fail: ContentBlock_Quiz_Screen<ConfigType>;
+      fail: ContentBlock_Quiz_Screen<ConfigType, SupportedLanguages>;
       /** Failure while another attempt is available. */
-      retry?: ContentBlock_Quiz_Screen<ConfigType>;
+      retry?: ContentBlock_Quiz_Screen<ConfigType, SupportedLanguages>;
     };
   };
 };
 
 type ContentBlock_Quiz_Definition = ContentBlock_Definition_Meta<'quiz'>;
 
-type ContentBlock_Quiz_Data = ContentBlock_Data_Meta &
-  Quiz_Settings<'data'> & {
-    welcome: Locale_Config;
-    questions: Record<string, Question_SelectOneAnswer<'data'>>;
+type ContentBlock_Quiz_Data<SupportedLanguages extends Locale_Languages> = ContentBlock_Data_Meta<'quiz'> &
+  Quiz_Settings<'data', SupportedLanguages> & {
+    welcome: Locale_Options<SupportedLanguages>;
+    questions: Record<string, Question_SelectOneAnswer<'data', SupportedLanguages>>;
   };
 
-type ContentBlock_Quiz_Response = ContentBlock_Response_Meta<'quiz'> &
-  Locale_ResponseParams &
-  Quiz_Settings<'response'> & {
+type ContentBlock_Quiz_Response<SupportedLanguages extends Locale_Languages> = ContentBlock_Response_Meta<'quiz'> &
+  Quiz_Settings<'response', SupportedLanguages> & {
     welcome: string;
     /** References to Lesson.questions.selectOneAnswer, not duplicated questions. */
     questionSlugs: readonly string[];
   };
 
-export type ContentBlock_Quiz<ConfigType extends ContentEntity_ConfigType> = {
+export type ContentBlock_Quiz<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends Locale_Languages> = {
   definition: ContentBlock_Quiz_Definition;
-  data: ContentBlock_Quiz_Data;
-  response: ContentBlock_Quiz_Response;
+  data: ContentBlock_Quiz_Data<SupportedLanguages>;
+  response: ContentBlock_Quiz_Response<SupportedLanguages>;
 }[ConfigType];

@@ -1,6 +1,6 @@
+import { howLightMoves_languages, type HowLightMoves_Languages } from '../../../constants';
 import { sceneLocalesToData } from '../../../sceneLocales';
 import type { ContentBlock_Scene } from '@svitlo/engine/content';
-import type { LanguageCode } from '@svitlo/engine/localization';
 
 const en = {
   scene: {
@@ -352,7 +352,7 @@ const zh: Locale = {
   },
 };
 
-export const lightRayDiagram_Locale: Record<LanguageCode, Locale> = {
+export const lightRayDiagram_Locale: Record<HowLightMoves_Languages[number], Locale> = {
   en,
   ar,
   be,
@@ -385,10 +385,11 @@ export const lightRayDiagram_Locale: Record<LanguageCode, Locale> = {
 };
 
 export type LightRayDiagram_ContentBlock<ConfigType extends 'definition' | 'data' | 'response'> =
-  ContentBlock_Scene<ConfigType, Locale>;
+  ContentBlock_Scene<ConfigType, HowLightMoves_Languages, Locale>;
 
 export const lightRayDiagramData = {
+  type: 'scene',
   id: 'how-light-moves-scene-ray',
   slug: 'lightRayDiagram' as const,
-  locales: sceneLocalesToData(lightRayDiagram_Locale),
+  locales: sceneLocalesToData(howLightMoves_languages, lightRayDiagram_Locale),
 } satisfies LightRayDiagram_ContentBlock<'data'>;

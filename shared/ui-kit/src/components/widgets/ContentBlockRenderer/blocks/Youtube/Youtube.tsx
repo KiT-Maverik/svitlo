@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 
 import type { ContentBlock_Youtube_Response } from '@svitlo/engine/content';
 import { localizedAttributes } from '../../utils';
+import { useContentLanguage } from '../../ContentLanguageContext';
 import {
   createYoutubeIframe,
   getConnectionSnapshot,
@@ -19,12 +20,13 @@ import styles from './Youtube.module.css';
 
 type FallbackKind = 'loading' | 'offline' | 'unavailable';
 
-export const Youtube = ({ href, mode, title, hint, fallback: fallbackMessages, locale }: ContentBlock_Youtube_Response) => {
+export const Youtube = ({ href, mode, title, hint, fallback: fallbackMessages }: ContentBlock_Youtube_Response) => {
+  const contentLanguage = useContentLanguage();
   const online = useSyncExternalStore(subscribeConnectionChange, getConnectionSnapshot, getServerConnectionSnapshot);
   const playerHost = useRef<HTMLDivElement>(null);
   const [failedHref, setFailedHref] = useState<string | null>(null);
   const unavailable = mode === 'embed' && failedHref === href;
-  const attributes = localizedAttributes({ locale });
+  const attributes = localizedAttributes({ locale: { code: contentLanguage } });
   const label = title || hint || href;
 
   if (mode === 'link') youtubeVideoId(href);
@@ -71,9 +73,9 @@ export const Youtube = ({ href, mode, title, hint, fallback: fallbackMessages, l
 
   const fallbackKind: FallbackKind | null = online === null ? 'loading' : !online ? 'offline' : unavailable ? 'unavailable' : null;
   const fallbackText = fallbackKind === 'loading'
-    ? youtubeFallbackText(locale.code, 'loading')
+    ? youtubeFallbackText(contentLanguage, 'loading')
     : fallbackKind
-      ? fallbackMessages?.[fallbackKind] || youtubeFallbackText(locale.code, fallbackKind)
+      ? fallbackMessages?.[fallbackKind] || youtubeFallbackText(contentLanguage, fallbackKind)
       : null;
   const fallback = fallbackKind && (
     <div key="fallback" className={styles.placeholder} role="status">
@@ -81,7 +83,7 @@ export const Youtube = ({ href, mode, title, hint, fallback: fallbackMessages, l
       <span>{fallbackText}</span>
       {fallbackKind === 'unavailable' && (
         <button type="button" onClick={() => setFailedHref(null)}>
-          {fallbackMessages?.retry || youtubeFallbackText(locale.code, 'retry')}
+          {fallbackMessages?.retry || youtubeFallbackText(contentLanguage, 'retry')}
         </button>
       )}
     </div>
