@@ -54,7 +54,7 @@ export const obedienceToAuthority_Skill_Data = buildSkillConfig({
       vi: "Tìm hiểu vì sao quyền lực có thể ảnh hưởng quyết định nhưng không bảo đảm đúng.",
       ta: "அதிகாரம் முடிவைப் பாதித்தாலும் அது சரியாகவே இருக்கும் என உறுதி இல்லை என்பதை அறிக.",
       te: "అధికారం నిర్ణయాలను ప్రభావితం చేసినా అవి తప్పనిసరిగా సరైనవి కావని తెలుసుకోండి.",
-      mr: "अधिकार निर्णय बदलू शकतो पण ते बरोबर आहेतच असे नाही हे समज.",
+      mr: "अधिकार निर्णय बदलू शकतो पण ते बरोबर आहेतच असे नाही हे समजून घ्या.",
       ms: "Terokai mengapa autoriti mempengaruhi keputusan tanpa menjamin kebenarannya.",
       he: "חקרו מדוע סמכות משפיעה על החלטות בלי להבטיח שהן נכונות.",
       pl: "Zbadaj, dlaczego autorytet wpływa na decyzje, nie gwarantując ich słuszności.",

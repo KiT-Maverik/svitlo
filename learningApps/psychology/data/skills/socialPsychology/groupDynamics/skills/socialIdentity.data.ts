@@ -54,7 +54,7 @@ export const socialIdentity_Skill_Data = buildSkillConfig({
       vi: "Hiểu cảm giác thuộc về nhóm ảnh hưởng bản sắc xã hội của mỗi người ra sao.",
       ta: "ஒரு குழுவைச் சேர்ந்திருப்பது ஒருவரின் சமூக அடையாளத்தை எவ்வாறு பாதிக்கிறது என்பதை அறிக.",
       te: "గుంపుకు చెందిన భావన సామాజిక గుర్తింపును ఎలా ప్రభావితం చేస్తుందో అర్థం చేసుకోండి.",
-      mr: "गटाचा सदस्य असल्याने सामाजिक ओळखीवर कसा परिणाम होतो ते समज.",
+      mr: "गटाचा सदस्य असल्याने सामाजिक ओळखीवर कसा परिणाम होतो ते समजून घ्या.",
       ms: "Fahami bagaimana keahlian kumpulan mempengaruhi identiti sosial seseorang.",
       he: "הבינו כיצד השתייכות לקבוצה משפיעה על הזהות החברתית.",
       pl: "Zrozum, jak przynależność do grupy wpływa na tożsamość społeczną.",

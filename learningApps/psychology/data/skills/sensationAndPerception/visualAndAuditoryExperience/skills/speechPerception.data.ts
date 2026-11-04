@@ -54,7 +54,7 @@ export const speechPerception_Skill_Data = buildSkillConfig({
       vi: "Nhận biết âm thanh và kỳ vọng ngôn ngữ ảnh hưởng đến việc hiểu lời nói như thế nào.",
       ta: "ஒலியும் மொழி சார்ந்த எதிர்பார்ப்புகளும் பேச்சைப் புரிந்துகொள்வதை எவ்வாறு பாதிக்கின்றன என்பதை அறி.",
       te: "శబ్దాలు, భాషపై అంచనాలు మాట్లాడే మాటలను అర్థం చేసుకోవడాన్ని ఎలా ప్రభావితం చేస్తాయో గుర్తించండి.",
-      mr: "ध्वनी आणि भाषिक अपेक्षा बोलणे समजण्यावर कसा परिणाम करतात ते ओळख.",
+      mr: "ध्वनी आणि भाषिक अपेक्षा बोलणे समजण्यावर कसा परिणाम करतात ते ओळखा.",
       ms: "Kenali bagaimana bunyi dan jangkaan bahasa mempengaruhi pemahaman pertuturan.",
       he: "זהו כיצד צלילים וציפיות לשוניות משפיעים על הבנת דיבור.",
       pl: "Rozpoznaj, jak dźwięki i oczekiwania językowe wpływają na rozumienie mowy.",

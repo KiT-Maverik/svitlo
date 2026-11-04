@@ -54,7 +54,7 @@ export const informationalSocialInfluence_Skill_Data = buildSkillConfig({
       vi: "Hiểu khi nào ta dùng thông tin từ người khác để định hướng quyết định.",
       ta: "முடிவெடுக்க மற்றவர்களின் தகவலை எப்போது பயன்படுத்துகிறோம் என்பதை அறிக.",
       te: "ఇతరుల సమాచారం నిర్ణయాలకు మార్గనిర్దేశం చేయడానికి ఎప్పుడు ఉపయోగపడుతుందో తెలుసుకోండి.",
-      mr: "इतरांनी दिलेली माहिती निर्णय घेण्यासाठी कधी वापरतो ते समज.",
+      mr: "इतरांनी दिलेली माहिती निर्णय घेण्यासाठी कधी वापरतो ते समजून घ्या.",
       ms: "Fahami bila maklumat orang lain digunakan untuk memandu keputusan.",
       he: "הבינו מתי מידע מאחרים משמש אותנו להכוונת החלטות.",
       pl: "Zrozum, kiedy informacje od innych pomagają nam podejmować decyzje.",

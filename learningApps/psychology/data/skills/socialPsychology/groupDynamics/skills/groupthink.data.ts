@@ -54,7 +54,7 @@ export const groupthink_Skill_Data = buildSkillConfig({
       vi: "Nhận biết khi áp lực đồng thuận ngăn cản đánh giá phản biện.",
       ta: "ஒப்புதலுக்கான அழுத்தம் எப்போது விமர்சன மதிப்பீட்டைத் தடுக்கிறது என்பதை அறிக.",
       te: "అంగీకార ఒత్తిడి విమర్శాత్మక పరిశీలనను ఎప్పుడు అడ్డుకుంటుందో గుర్తించండి.",
-      mr: "एकमताच्या दबावामुळे चिकित्सक मूल्यांकन कधी थांबते ते ओळख.",
+      mr: "एकमताच्या दबावामुळे चिकित्सक मूल्यांकन कधी थांबते ते ओळखा.",
       ms: "Kenali keadaan apabila tekanan untuk bersetuju menghalang penilaian kritis.",
       he: "זהו מתי לחץ להסכמה מונע הערכה ביקורתית בקבוצה.",
       pl: "Rozpoznaj, kiedy presja zgody blokuje krytyczną ocenę w grupie.",

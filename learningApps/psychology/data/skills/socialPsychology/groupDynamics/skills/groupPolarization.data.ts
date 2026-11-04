@@ -54,7 +54,7 @@ export const groupPolarization_Skill_Data = buildSkillConfig({
       vi: "Hiểu vì sao thảo luận nhóm có thể làm quan điểm chung cực đoan hơn.",
       ta: "குழு விவாதம் பொதுவான கருத்தை ஏன் மேலும் தீவிரமாக்கலாம் என்பதை அறிக.",
       te: "గుంపు చర్చ సాధారణ అభిప్రాయాలను మరింత తీవ్రం చేయడానికి కారణం తెలుసుకోండి.",
-      mr: "गटचर्चेमुळे समान मते अधिक टोकाची का होऊ शकतात ते समज.",
+      mr: "गटचर्चेमुळे समान मते अधिक टोकाची का होऊ शकतात ते समजून घ्या.",
       ms: "Fahami mengapa perbincangan kumpulan boleh menjadikan pandangan bersama lebih ekstrem.",
       he: "הבינו מדוע דיון קבוצתי יכול להקצין עמדות משותפות.",
       pl: "Zrozum, dlaczego dyskusja w grupie może wyostrzyć wspólne stanowiska.",

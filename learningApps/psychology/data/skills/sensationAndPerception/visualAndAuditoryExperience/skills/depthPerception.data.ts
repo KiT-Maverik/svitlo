@@ -54,7 +54,7 @@ export const depthPerception_Skill_Data = buildSkillConfig({
       vi: "Xác định những tín hiệu thị giác giúp ước lượng khoảng cách tới vật.",
       ta: "பொருட்கள் எவ்வளவு தூரத்தில் உள்ளன என்பதை மதிப்பிட உதவும் காட்சிக் குறிப்புகளை அடையாளம் காண்.",
       te: "వస్తువు ఎంత దూరంలో ఉందో అంచనా వేయడానికి సహాయపడే దృశ్య సూచనలను గుర్తించండి.",
-      mr: "वस्तू किती दूर आहे हे ठरवायला मदत करणारे दृश्य संकेत ओळख.",
+      mr: "वस्तू किती दूर आहे हे ठरवायला मदत करणारे दृश्य संकेत ओळखा.",
       ms: "Kenal pasti petunjuk visual yang membantu kita menganggar jarak objek.",
       he: "זהו רמזים חזותיים שעוזרים להעריך עד כמה משהו רחוק.",
       pl: "Rozpoznaj wskazówki wzrokowe pomagające ocenić odległość przedmiotów.",
