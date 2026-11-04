@@ -21,7 +21,7 @@ export const interpretGeographicExposureToGeologicalHazards_Skill_Data = buildSk
     vi: "Giải thích mức độ phơi lộ theo vị trí trước hiểm họa địa chất",
     ta: "புவியியல் ஆபத்துகளுக்கான இடவியல் வெளிப்பாட்டை விளக்குதல்",
     te: "భౌగోళిక స్థానాలపై భూగర్భ ప్రమాదాల ప్రభావ అవకాశాన్ని అర్థం చేసుకోవడం",
-    mr: "भूवैज्ञानिक धोक्यांना भौगोलिक उघडेपणा समजून घेणे",
+    mr: "भूवैज्ञानिक धोक्यांना सामोरे जाणाऱ्या क्षेत्रांचे भौगोलिक विश्लेषण करणे",
     ms: "Mentafsir pendedahan geografi kepada bahaya geologi",
     he: "פירוש חשיפה גאוגרפית לסיכונים גאולוגיים",
     pl: "Interpretowanie przestrzennego narażenia na zagrożenia geologiczne",
