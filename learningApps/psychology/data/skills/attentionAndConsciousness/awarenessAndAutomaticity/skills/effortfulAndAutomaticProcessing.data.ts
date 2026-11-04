@@ -22,7 +22,7 @@ export const effortfulAndAutomaticProcessing_Skill_Data = buildSkillConfig({
     ta: "முயற்சிசார் மற்றும் தானியங்கிச் செயலாக்கம்",
     te: "ప్రయత్నపూర్వక, స్వయంచాలక ప్రక్రియలు",
     mr: "प्रयत्नपूर्वक आणि स्वयंचलित प्रक्रिया",
-    ms: "Pemprosesan Berusaha dan Automatik",
+    ms: "Pemprosesan Terkawal dan Automatik",
     he: "עיבוד מכוון ואוטומטי",
     pl: "Przetwarzanie kontrolowane i automatyczne",
     uk: "Свідоме зусилля й автоматична обробка",
