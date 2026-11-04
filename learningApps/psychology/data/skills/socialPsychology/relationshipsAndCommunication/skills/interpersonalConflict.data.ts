@@ -52,7 +52,7 @@ export const interpersonalConflict_Skill_Data = buildSkillConfig({
       ko: "의견 차이가 어떻게 커지고 건설적으로 해결될 수 있는지 알아보세요.",
       tr: "Anlaşmazlıkların nasıl büyüdüğünü ve yapıcı biçimde nasıl çözülebileceğini keşfet.",
       vi: "Khám phá bất đồng leo thang ra sao và có thể giải quyết tích cực thế nào.",
-      ta: "கருத்து வேறுபாடு எவ்வாறு தீவிரமடைகிறது, அதை ஆக்கபூர்வமாக எவ்வாறு தீர்க்கலாம் என்பதை ஆராய்.",
+      ta: "கருத்து வேறுபாடு எவ்வாறு தீவிரமடைகிறது, அதை ஆக்கபூர்வமாக எவ்வாறு தீர்க்கலாம் என்பதை ஆராயுங்கள்.",
       te: "విభేదాలు ఎలా తీవ్రమై, నిర్మాణాత్మకంగా ఎలా పరిష్కరించవచ్చో తెలుసుకోండి.",
       mr: "मतभेद कसे वाढतात आणि रचनात्मकरीत्या कसे सोडवता येतात ते पाहा.",
       ms: "Terokai bagaimana perselisihan menjadi lebih serius dan boleh diselesaikan secara membina.",

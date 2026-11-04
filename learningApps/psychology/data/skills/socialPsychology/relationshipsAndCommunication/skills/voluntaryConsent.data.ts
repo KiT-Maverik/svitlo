@@ -52,7 +52,7 @@ export const voluntaryConsent_Skill_Data = buildSkillConfig({
       ko: "동의는 자발적이어야 하며 철회할 수 있음을 이해하세요.",
       tr: "Rızanın özgürce verilmesi gerektiğini ve geri çekilebileceğini anla.",
       vi: "Hiểu rằng sự đồng ý phải tự nguyện và có thể rút lại.",
-      ta: "ஒப்புதல் சுயவிருப்பத்துடன் இருக்க வேண்டும்; அதைத் திரும்பப் பெறலாம் என்பதை அறிக.",
+      ta: "ஒப்புதல் சுயவிருப்பத்துடன் இருக்க வேண்டும்; அதைத் திரும்பப் பெறலாம் என்பதை அறியுங்கள்.",
       te: "సమ్మతి స్వేచ్ఛగా ఇవ్వాలి, దాన్ని వెనక్కి తీసుకోవచ్చని అర్థం చేసుకోండి.",
       mr: "संमती स्वेच्छेने दिली पाहिजे आणि ती मागे घेता येते हे समज.",
       ms: "Fahami persetujuan mesti diberikan secara bebas dan boleh ditarik balik.",

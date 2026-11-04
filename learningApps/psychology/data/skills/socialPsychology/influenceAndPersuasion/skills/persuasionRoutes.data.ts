@@ -52,7 +52,7 @@ export const persuasionRoutes_Skill_Data = buildSkillConfig({
       ko: "설득 메시지가 태도를 바꾸는 서로 다른 경로를 비교하세요.",
       tr: "İkna edici mesajların tutumları değiştirdiği farklı yolları karşılaştır.",
       vi: "So sánh những cách thông điệp thuyết phục làm thay đổi thái độ.",
-      ta: "சம்மதிக்க வைக்கும் செய்திகள் மனப்பாங்கை மாற்றும் பல வழிகளை ஒப்பிடுக.",
+      ta: "சம்மதிக்க வைக்கும் செய்திகள் மனப்பாங்கை மாற்றும் பல வழிகளை ஒப்பிடுங்கள்.",
       te: "సందేశాలు వైఖరిని మార్చే వివిధ మార్గాలను పోల్చండి.",
       mr: "संदेश वेगवेगळ्या मार्गांनी दृष्टिकोन कसे बदलतात यांची तुलना कर.",
       ms: "Bandingkan pelbagai cara mesej pemujukan mengubah sikap.",
