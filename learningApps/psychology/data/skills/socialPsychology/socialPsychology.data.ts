@@ -63,7 +63,7 @@ export const socialPsychology_SkillDomain_Data = buildSkillDomainConfig({
       ko: "다른 사람들이 우리의 믿음과 행동, 관계에 미치는 영향을 알아보세요.",
       tr: "Başkalarının inançlarımızı, davranışlarımızı ve ilişkilerimizi nasıl etkilediğini keşfet.",
       vi: "Khám phá cách người khác ảnh hưởng tới niềm tin, hành động và quan hệ của chúng ta.",
-      ta: "மற்றவர்கள் நம் நம்பிக்கைகள், செயல்கள், உறவுகளை எவ்வாறு பாதிக்கிறார்கள் என்பதை அறிக.",
+      ta: "மற்றவர்கள் நம் நம்பிக்கைகள், செயல்கள், உறவுகளை எவ்வாறு பாதிக்கிறார்கள் என்பதை அறியுங்கள்.",
       te: "ఇతరులు మన నమ్మకాలు, చర్యలు, సంబంధాలను ఎలా ప్రభావితం చేస్తారో తెలుసుకోండి.",
       mr: "इतर लोक आपल्या विश्वास, कृती व नातेसंबंधांवर कसा परिणाम करतात ते जाणून घे.",
       ms: "Terokai bagaimana orang lain mempengaruhi kepercayaan, tindakan dan hubungan kita.",

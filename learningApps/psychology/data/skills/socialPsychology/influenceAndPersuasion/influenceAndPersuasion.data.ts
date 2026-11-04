@@ -62,7 +62,7 @@ export const influenceAndPersuasion_SkillGroup_Data = buildSkillGroupConfig({
       ko: "집단, 권위, 메시지가 선택에 미치는 영향을 알아보세요.",
       tr: "Grupların, otoritenin ve mesajların seçimleri nasıl etkilediğini keşfet.",
       vi: "Khám phá nhóm, người có thẩm quyền và thông điệp ảnh hưởng lựa chọn ra sao.",
-      ta: "குழுக்கள், அதிகாரம், செய்திகள் தேர்வுகளை எவ்வாறு பாதிக்கின்றன என்பதை அறிக.",
+      ta: "குழுக்கள், அதிகாரம், செய்திகள் தேர்வுகளை எவ்வாறு பாதிக்கின்றன என்பதை அறியுங்கள்.",
       te: "గుంపులు, అధికారం, సందేశాలు నిర్ణయాలను ఎలా ప్రభావితం చేస్తాయో తెలుసుకోండి.",
       mr: "गट, अधिकार आणि संदेश निवडींवर कसा परिणाम करतात ते पाहा.",
       ms: "Ketahui bagaimana kumpulan, kuasa dan mesej mempengaruhi pilihan.",
