@@ -43,7 +43,7 @@ export const interpretGeographicVariationsInFreshwaterStorage_Skill_Data = build
       es: "Compara el hielo, los acuíferos, lagos y ríos como depósitos de agua entre regiones.",
       ar: "قارن الجليد والخزانات الجوفية والبحيرات والأنهار بوصفها مخازن مياه بين المناطق.",
       fr: "Compare glace, aquifères, lacs et rivières comme réserves d’eau selon les régions.",
-      bn: "বিভিন্ন অঞ্চলে বরফ, ভূগর্ভস্থ জলাধার, হ্রদ ও নদীর সঞ্চয় তুলনা করো।",
+      bn: "বিভিন্ন অঞ্চলে বরফ, জলধারক স্তর, হ্রদ ও নদীতে সঞ্চিত মিঠাপানির তুলনা করো।",
       pt: "Compare gelo, aquíferos, lagos e rios como reservatórios em diferentes regiões.",
       ur: "علاقوں میں برف، آبی تہوں، جھیلوں اور دریاؤں کو آبی ذخائر کے طور پر پرکھیں۔",
       id: "Bandingkan es, akuifer, danau, dan sungai sebagai cadangan air di berbagai wilayah.",

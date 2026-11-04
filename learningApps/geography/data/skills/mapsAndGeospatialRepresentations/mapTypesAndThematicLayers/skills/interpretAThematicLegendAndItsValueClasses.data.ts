@@ -61,7 +61,7 @@ export const interpretAThematicLegendAndItsValueClasses_Skill_Data = buildSkillC
       uk: "За тематичною легендою читай категорії, діапазони та значення на карті.",
       lt: "Naudok temines legendas kategorijoms, intervalams ir vertėms skaityti.",
       lv: "Izmanto tematiskās leģendas, lai lasītu kategorijas, diapazonus un vērtības.",
-      et: "Kasuta teemakaarte legende, et lugeda kategooriaid, vahemikke ja väärtusi.",
+      et: "Kasuta teemakaartide legende, et lugeda kategooriaid, vahemikke ja väärtusi.",
       be: "Паводле тэматычнай легенды чытай катэгорыі, дыяпазоны і значэньні.",
       ka: "გამოიყენე თემატური ლეგენდა რუკის კატეგორიების, შუალედებისა და მნიშვნელობების წასაკითხად.",
       kk: "Тақырыптық түсіндірме арқылы картадағы санат, аралық және мәндерді оқы.",

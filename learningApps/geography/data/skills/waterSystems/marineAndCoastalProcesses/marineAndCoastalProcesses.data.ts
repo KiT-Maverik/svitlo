@@ -34,7 +34,7 @@ export const marineAndCoastalProcesses_SkillGroup_Data = buildSkillGroupConfig({
     be: "Марскія і прыбярэжныя працэсы",
     ka: "საზღვაო და სანაპირო პროცესები",
     kk: "Теңіз және жағалау үдерістері",
-    qm: "Deñiz ve yalığa bağlı adisesler",
+    qm: "Deñiz ve yalığa bağlı adiseler",
   },
   skills: {
     identifyCoastalErosionAndDepositionFeatures: identifyCoastalErosionAndDepositionFeatures_Skill_Data,

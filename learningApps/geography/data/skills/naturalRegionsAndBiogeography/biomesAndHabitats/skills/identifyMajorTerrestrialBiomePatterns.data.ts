@@ -28,7 +28,7 @@ export const identifyMajorTerrestrialBiomePatterns_Skill_Data = buildSkillConfig
     uk: "Визначати закономірності розміщення основних наземних біомів",
     lt: "Atpažinti pagrindinių sausumos biomų paplitimo dėsningumus",
     lv: "Atpazīt galveno sauszemes biomu izvietojuma likumsakarības",
-    et: "Tunda peamiste maisma bioomide levikumustreid",
+    et: "Tunda peamiste maismaabioomide levikumustreid",
     be: "Вызначаць заканамернасьці разьмяшчэньня асноўных наземных біёмаў",
     ka: "ძირითადი ხმელეთის ბიომების გავრცელების კანონზომიერებების ამოცნობა",
     kk: "Негізгі құрлық биомдарының таралу заңдылықтарын анықтау",

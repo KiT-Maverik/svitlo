@@ -71,7 +71,7 @@ export const atmosphereWeatherAndClimate_SkillDomain_Data = buildSkillDomainConf
       pl: "Poznaj warunki atmosferyczne, długotrwałe wzorce klimatu i zagrożenia pogodowe.",
       uk: "Досліди стан атмосфери, довготривалі кліматичні закономірності та погодні небезпеки.",
       lt: "Tyrinėk atmosferos sąlygas, ilgalaikius klimato dėsningumus ir orų pavojus.",
-      lv: "Izpēti atmosfēras stāvokli, ilgtermiņa klimata rakstus un laikapstākļu draudus.",
+      lv: "Izpēti atmosfēras stāvokli, ilgtermiņa klimata likumsakarības un laikapstākļu radītos apdraudējumus.",
       et: "Uuri atmosfääri olusid, pikaajalisi kliimamustreid ja ilmastikuohte.",
       be: "Дасьледуй стан атмасфэры, доўгатэрміновы клімат і пагрозы надвор’я.",
       ka: "გამოიკვლიე ატმოსფეროს პირობები, ხანგრძლივი კლიმატური კანონზომიერებები და ამინდის საფრთხეები.",

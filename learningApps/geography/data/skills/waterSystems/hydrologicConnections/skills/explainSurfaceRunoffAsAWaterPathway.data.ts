@@ -62,7 +62,7 @@ export const explainSurfaceRunoffAsAWaterPathway_Skill_Data = buildSkillConfig({
       lt: "Aprašyk, kaip perteklinis lietaus ar tirpsmo vanduo teka žemės paviršiumi.",
       lv: "Apraksti, kā lietus vai kūstoša sniega liekais ūdens plūst pa zemi.",
       et: "Kirjelda, kuidas liigne vihma- või sulavesi üle maapinna voolab.",
-      be: "Апіш, як залішняя дажджавая ці талая вада цячэ па зямлі.",
+      be: "Апішы, як залішняя дажджавая ці талая вада цячэ па зямлі.",
       ka: "აღწერე, როგორ მიედინება ზედმეტი წვიმისა თუ თოვლის დნობის წყალი ხმელეთზე.",
       kk: "Артық жаңбыр мен еріген қар суының жер бетімен ағуын сипатта.",
       qm: "Artıq yağmur ya da irigen qar suvı yer üstünden nasıl aqqanını tarif et.",

@@ -48,7 +48,7 @@ export const atmosphericProcesses_SkillGroup_Data = buildSkillGroupConfig({
       en: "Discover what causes clouds, rainfall, wind and changing weather systems.",
       zh: "了解云、降雨、风和天气系统变化的成因。",
       hi: "जानें कि बादल, वर्षा, हवा और बदलती मौसम प्रणालियाँ क्यों बनती हैं।",
-      es: "Descubre qué provoca las nubes, la lluvia, el viento y los sistemas cambiantes.",
+      es: "Descubre qué provoca la formación de nubes, la lluvia y el viento, y los cambios en los sistemas meteorológicos.",
       ar: "اكتشف أسباب السحب والمطر والرياح وتغير الأنظمة الجوية.",
       fr: "Découvre ce qui provoque nuages, pluie, vent et changements du temps.",
       bn: "মেঘ, বৃষ্টি, বাতাস ও আবহাওয়ার পরিবর্তনের কারণ জানো।",

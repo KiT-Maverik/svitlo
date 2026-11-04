@@ -14,7 +14,7 @@ export const humanEnvironmentInteractions_SkillGroup_Data = buildSkillGroupConfi
     fr: "Interactions entre l’humain et l’environnement",
     bn: "মানুষ ও পরিবেশের মিথস্ক্রিয়া",
     pt: "Interações entre pessoas e ambiente",
-    ur: "انسان اور ماحول کی باہمی تعاملات",
+    ur: "انسان اور ماحول کے باہمی تعاملات",
     id: "Interaksi Manusia dan Lingkungan",
     de: "Mensch-Umwelt-Beziehungen",
     ja: "人間と環境の相互作用",

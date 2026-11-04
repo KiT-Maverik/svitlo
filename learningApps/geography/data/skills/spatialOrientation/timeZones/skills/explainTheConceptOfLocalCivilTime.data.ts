@@ -65,7 +65,7 @@ export const explainTheConceptOfLocalCivilTime_Skill_Data = buildSkillConfig({
       be: "Адрозьнівай законны гадзіньнікавы час у месцы ад часу паводле Сонца.",
       ka: "განასხვავე კონკრეტული ადგილის კანონით დადგენილი დრო მზის მიხედვით განსაზღვრული დროისგან.",
       kk: "Белгілі жердің заңды сағат уақытын Күнге негізделген уақыттан ажырат.",
-      qm: "Bir yerde qanunen belgilengən saatnen Küneşke esaslanğan vaqıtnı farq et.",
+      qm: "Bir yerde qanunen belgilengen saatnen Küneşke esaslanğan vaqıtnı farq et.",
     },
   },
 });
