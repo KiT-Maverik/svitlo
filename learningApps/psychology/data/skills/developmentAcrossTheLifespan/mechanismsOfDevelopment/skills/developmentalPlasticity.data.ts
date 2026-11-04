@@ -6,7 +6,7 @@ export const developmentalPlasticity_Skill_Data = buildSkillConfig({
   name: {
     en: "Developmental Plasticity",
     zh: "发展的可塑性",
-    hi: "विकास की लचीलापन क्षमता",
+    hi: "विकासात्मक लचीलापन",
     es: "Plasticidad del desarrollo",
     ar: "المرونة النمائية",
     fr: "Plasticité du développement",
@@ -39,7 +39,7 @@ export const developmentalPlasticity_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Understand how development remains adaptable to experience over time.",
       zh: "理解发展如何随着时间推移继续受到经历的影响并发生调整。",
-      hi: "समझें कि जीवन भर अनुभवों के कारण विकास कैसे बदलने के लिए सक्षम रहता है।",
+      hi: "समझें कि अनुभव जीवन भर विकास की दिशा को कैसे बदल सकते हैं।",
       es: "Comprende cómo el desarrollo sigue siendo adaptable a la experiencia con el tiempo.",
       ar: "افهم كيف تظل مسارات النمو قابلة للتكيف مع الخبرات بمرور الوقت.",
       fr: "Comprends comment le développement conserve sa capacité d'adaptation aux expériences au fil du temps.",
