@@ -54,7 +54,7 @@ export const touchPerception_Skill_Data = buildSkillConfig({
       vi: "Hiểu cách áp lực và rung động trở thành trải nghiệm chạm.",
       ta: "அழுத்தமும் அதிர்வும் தொடுதல் அனுபவமாக எவ்வாறு மாறுகின்றன என்பதைப் புரிந்துகொள்.",
       te: "ఒత్తిడి, కంపనం స్పర్శ అనుభూతిగా ఎలా మారతాయో తెలుసుకోండి.",
-      mr: "दाब आणि कंपन स्पर्शाच्या अनुभवात कसे बदलतात ते समजून घे.",
+      mr: "दाब आणि कंपन स्पर्शाच्या अनुभवात कसे बदलतात ते समजून घ्या.",
       ms: "Fahami bagaimana tekanan dan getaran menjadi pengalaman sentuhan.",
       he: "הבינו כיצד לחץ ורטט הופכים לחוויית מגע.",
       pl: "Zrozum, jak nacisk i drgania zmieniają się w doświadczenie dotyku.",

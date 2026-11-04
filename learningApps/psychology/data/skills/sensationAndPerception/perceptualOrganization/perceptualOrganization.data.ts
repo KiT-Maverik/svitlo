@@ -62,7 +62,7 @@ export const perceptualOrganization_SkillGroup_Data = buildSkillGroupConfig({
       vi: "Tìm hiểu cách tâm trí nhóm thông tin giác quan thành những vật thể dễ nhận biết.",
       ta: "புலன் தகவலை மனம் எவ்வாறு அடையாளம் காணக்கூடிய பொருட்களாகக் குழுவாக்குகிறது என்பதை அறிந்துகொள்.",
       te: "ఇంద్రియ సమాచారాన్ని మనసు ఎలా గుర్తించగల వస్తువులుగా సమూహపరుస్తుందో తెలుసుకోండి.",
-      mr: "मन संवेदनांची माहिती ओळखता येतील अशा वस्तूंमध्ये कशी एकत्र करते ते जाणून घे.",
+      mr: "मन संवेदनांची माहिती ओळखता येतील अशा वस्तूंमध्ये कशी एकत्र करते ते जाणून घ्या.",
       ms: "Ketahui bagaimana minda mengumpulkan maklumat deria menjadi objek yang boleh dikenal pasti.",
       he: "למדו כיצד המוח מקבץ מידע חושי לעצמים שאפשר לזהות.",
       pl: "Dowiedz się, jak umysł grupuje informacje zmysłowe w rozpoznawalne obiekty.",

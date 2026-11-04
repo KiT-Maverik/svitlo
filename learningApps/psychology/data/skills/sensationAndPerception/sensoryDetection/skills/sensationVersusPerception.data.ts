@@ -54,7 +54,7 @@ export const sensationVersusPerception_Skill_Data = buildSkillConfig({
       vi: "Phân biệt việc phát hiện kích thích với diễn giải ý nghĩa của nó.",
       ta: "தூண்டுதலைக் கண்டறிவதையும் அதன் பொருளைப் புரிந்துகொள்வதையும் வேறுபடுத்து.",
       te: "ఉద్దీపనను గుర్తించడం, దాని అర్థాన్ని వివరించడం మధ్య తేడాను తెలుసుకోండి.",
-      mr: "उत्तेजना ओळखणे आणि तिचा अर्थ लावणे यांतला फरक समजून घे.",
+      mr: "उत्तेजना ओळखणे आणि तिचा अर्थ लावणे यांतला फरक समजून घ्या.",
       ms: "Bezakan antara mengesan rangsangan dengan mentafsir maknanya.",
       he: "הבחינו בין זיהוי גירוי לבין פירוש משמעותו.",
       pl: "Odróżniaj wykrywanie bodźca od interpretowania jego znaczenia.",

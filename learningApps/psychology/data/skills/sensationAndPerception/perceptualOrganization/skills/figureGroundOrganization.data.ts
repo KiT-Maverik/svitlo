@@ -54,7 +54,7 @@ export const figureGroundOrganization_Skill_Data = buildSkillConfig({
       vi: "Nhận biết phần nào của cảnh được xem là tiền cảnh và phần nào là hậu cảnh.",
       ta: "ஒரு காட்சியில் எவை முன்புலமாகவும் எவை பின்புலமாகவும் தோன்றுகின்றன என்பதை அறி.",
       te: "దృశ్యంలో ఏ భాగాలు ముందున్నట్లు, ఏవి నేపథ్యంలో ఉన్నట్లు కనిపిస్తాయో గుర్తించండి.",
-      mr: "दृश्यातील कोणते भाग पुढे आणि कोणते पार्श्वभूमीत दिसतात ते ओळख.",
+      mr: "दृश्यातील कोणते भाग पुढे आणि कोणते पार्श्वभूमीत दिसतात ते ओळखा.",
       ms: "Kenal pasti bahagian pemandangan yang kelihatan sebagai latar depan atau belakang.",
       he: "זהו אילו חלקים בסצנה נראים בקדמה ואילו ברקע.",
       pl: "Rozpoznaj, które elementy sceny wyglądają na pierwszy plan, a które na tło.",

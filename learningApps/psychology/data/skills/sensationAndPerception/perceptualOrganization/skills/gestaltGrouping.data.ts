@@ -54,7 +54,7 @@ export const gestaltGrouping_Skill_Data = buildSkillConfig({
       vi: "Dùng sự gần nhau, tương đồng và liên tục để giải thích cách các yếu tố thị giác được nhóm lại.",
       ta: "அருகாமை, ஒற்றுமை, தொடர்ச்சி ஆகியவற்றால் காட்சிக் கூறுகள் எவ்வாறு குழுவாகத் தோன்றுகின்றன என்பதை விளக்கு.",
       te: "సామీప్యం, సారూప్యం, కొనసాగింపుతో దృశ్య అంశాలు ఎలా సమూహాలుగా కనిపిస్తాయో వివరించండి.",
-      mr: "जवळीक, साम्य आणि सातत्य वापरून दृश्य घटकांचे गट कसे तयार होतात ते स्पष्ट कर.",
+      mr: "जवळीक, साम्य आणि सातत्य वापरून दृश्य घटकांचे गट कसे तयार होतात ते स्पष्ट करा.",
       ms: "Gunakan kedekatan, persamaan dan kesinambungan untuk menjelaskan pengelompokan visual.",
       he: "השתמשו בקרבה, בדמיון וברציפות כדי להסביר קיבוץ חזותי.",
       pl: "Wykorzystaj bliskość, podobieństwo i ciągłość do wyjaśnienia grupowania wizualnego.",
