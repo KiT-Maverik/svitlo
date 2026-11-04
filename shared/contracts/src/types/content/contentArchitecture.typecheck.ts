@@ -58,7 +58,7 @@ const runtimeText: ContentBlock_Text<'response'> = {
 const authoredText: ContentBlock_Text<'data'> = {
   id: 'text-id',
   slug: 'intro',
-  value: { value: 'hello {{id: name; value: John}}', language: 'en' },
+  value: 'hello {{id: name; value: John}}',
   styling: [{ id: 'name', applyStyle: ['highlight'], tone: 'warning' }],
   wrap: { typographyProps: { component: 'p', align: 'center' } },
 };
@@ -66,29 +66,29 @@ const authoredYoutube: ContentBlock_Youtube<'data'> = {
   id: 'youtube-id',
   slug: 'video',
   mode: 'embed',
-  href: { value: 'https://youtu.be/M7lc1UVf-VE', language: 'en' },
-  title: { value: 'Lesson video', language: 'en' },
+  href: 'https://youtu.be/M7lc1UVf-VE',
+  title: 'Lesson video',
   fallback: {
-    offline: { value: 'Connect to watch', language: 'en' },
-    unavailable: { value: 'Video unavailable', language: 'en' },
+    offline: 'Connect to watch',
+    unavailable: 'Video unavailable',
   },
 };
 const authoredImage: ContentBlock_Image<'data'> = {
   id: 'image-id',
   slug: 'diagram',
-  src: { value: '/diagram.png', language: 'en' },
-  alt: { value: 'Light ray diagram', language: 'en' },
-  caption: { value: 'Path of a light ray', language: 'en' },
+  src: '/diagram.png',
+  alt: 'Light ray diagram',
+  caption: 'Path of a light ray',
   width: 800,
   height: 450,
-  fallback: { unavailable: { value: 'Diagram unavailable', language: 'en' } },
+  fallback: { unavailable: 'Diagram unavailable' },
 };
 const authoredCode: ContentBlock_Code<'data'> = {
   id: 'code-id',
   slug: 'greeting',
-  fileLocation: { value: '/examples/greeting.ts', language: 'en' },
+  fileLocation: '/examples/greeting.ts',
   language: 'typescript',
-  variables: [{ id: 'greeting', value: { value: 'Hello', language: 'en' } }],
+  variables: [{ id: 'greeting', value: 'Hello' }],
 };
 const runtimeCode: ContentBlock_Code<'response'> = {
   id: 'code-id',
@@ -101,8 +101,8 @@ const runtimeCode: ContentBlock_Code<'response'> = {
 const authoredFillImage: ContentBlock_Image<'data'> = {
   id: 'image-fill-id',
   slug: 'responsive-diagram',
-  src: { value: '/diagram.png', language: 'en' },
-  alt: { value: 'Responsive light ray diagram', language: 'en' },
+  src: '/diagram.png',
+  alt: 'Responsive light ray diagram',
   fill: true,
   aspectRatio: 16 / 9,
   objectFit: 'contain',

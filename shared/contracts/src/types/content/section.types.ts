@@ -1,5 +1,6 @@
 import type { ContentEntity_ConfigType } from './entity.types';
-import type { Locale_Config, Locale_ResponseParams } from './locale.types';
+import type { LanguageCode } from '../languages';
+import type { New_Locale_Options, Locale_ResponseParams } from './locale.types';
 import type { ContentBlock_Catalog, ContentBlock_Reference } from './blocks';
 
 /** Presentation categories; individual sections still choose their content blocks. */
@@ -21,14 +22,14 @@ type Section_Definition = {
   order?: readonly ContentBlock_Reference[];
 };
 
-type Section_Data = {
+type Section_Data<SupportedLanguages extends LanguageCode> = {
   id: string;
   slug: string;
   type: Section_Type;
-  title: Locale_Config;
-  navigationLabel: Locale_Config;
+  title: New_Locale_Options<SupportedLanguages>;
+  navigationLabel: New_Locale_Options<SupportedLanguages>;
   skippable?: true;
-  content: ContentBlock_Catalog<'data'>;
+  content: ContentBlock_Catalog<'data', SupportedLanguages>;
   order?: readonly ContentBlock_Reference[];
 };
 
@@ -43,8 +44,8 @@ type Section_Response = Locale_ResponseParams & {
   order?: readonly ContentBlock_Reference[];
 };
 
-export type Section<ConfigType extends ContentEntity_ConfigType> = {
+export type Section<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode = LanguageCode> = {
   definition: Section_Definition;
-  data: Section_Data;
+  data: Section_Data<SupportedLanguages>;
   response: Section_Response;
 }[ConfigType];

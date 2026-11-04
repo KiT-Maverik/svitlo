@@ -1,18 +1,19 @@
 import type { ContentBlock_Data_Meta, ContentBlock_Definition_Meta, ContentBlock_Response_Meta } from './common.types';
 import type { ContentEntity_ConfigType } from '../entity.types';
-import type { Locale_Config, Locale_ResponseParams } from '../locale.types';
+import type { LanguageCode } from '../../languages';
+import type { New_Locale_Options, Locale_ResponseParams } from '../locale.types';
 
 type ContentBlock_Code_Definition = ContentBlock_Definition_Meta<'code'>;
 
-type ContentBlock_Code_Source =
+type ContentBlock_Code_Source<SupportedLanguages extends LanguageCode> =
   /** The publisher reads this source and places its text into the response. */
-  | { fileLocation: Locale_Config; code?: never }
-  | { code: Locale_Config; fileLocation?: never };
+  | { fileLocation: New_Locale_Options<SupportedLanguages>; code?: never }
+  | { code: New_Locale_Options<SupportedLanguages>; fileLocation?: never };
 
-type ContentBlock_Code_Data = ContentBlock_Data_Meta & ContentBlock_Code_Source & {
+type ContentBlock_Code_Data<SupportedLanguages extends LanguageCode> = ContentBlock_Data_Meta & ContentBlock_Code_Source<SupportedLanguages> & {
   language: string;
-  title?: Locale_Config;
-  variables?: { id: string; value: Locale_Config }[];
+  title?: New_Locale_Options<SupportedLanguages>;
+  variables?: { id: string; value: New_Locale_Options<SupportedLanguages> }[];
 };
 
 export type ContentBlock_Code_Response = ContentBlock_Response_Meta<'code'> & Locale_ResponseParams & {
@@ -23,8 +24,8 @@ export type ContentBlock_Code_Response = ContentBlock_Response_Meta<'code'> & Lo
   variables?: { id: string; value: string }[];
 };
 
-export type ContentBlock_Code<ConfigType extends ContentEntity_ConfigType> = {
+export type ContentBlock_Code<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode = LanguageCode> = {
   definition: ContentBlock_Code_Definition;
-  data: ContentBlock_Code_Data;
+  data: ContentBlock_Code_Data<SupportedLanguages>;
   response: ContentBlock_Code_Response;
 }[ConfigType];
