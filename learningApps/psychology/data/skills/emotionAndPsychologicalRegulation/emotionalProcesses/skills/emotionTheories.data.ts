@@ -54,7 +54,7 @@ export const emotionTheories_Skill_Data = buildSkillConfig({
       vi: "So sánh các lý thuyết giải thích mối liên hệ giữa cảm nhận và phản ứng cơ thể.",
       ta: "உணர்வுகளுக்கும் உடல் எதிர்வினைகளுக்கும் உள்ள தொடர்பை விளக்கும் கோட்பாடுகளை ஒப்பிடுக.",
       te: "అనుభూతులు, శరీర ప్రతిస్పందనల సంబంధాన్ని వివరించే సిద్ధాంతాలను పోల్చండి.",
-      mr: "भावना व शारीरिक प्रतिसाद यांचे नाते सांगणाऱ्या सिद्धांतांची तुलना कर.",
+      mr: "भावना व शारीरिक प्रतिसाद यांचे नाते सांगणाऱ्या सिद्धांतांची तुलना करा.",
       ms: "Bandingkan teori tentang hubungan perasaan dengan tindak balas tubuh.",
       he: "השוו תיאוריות המסבירות את הקשר בין תחושות לתגובות הגוף.",
       pl: "Porównaj teorie opisujące związek uczuć z reakcjami ciała.",

@@ -54,7 +54,7 @@ export const neuralInhibition_Skill_Data = buildSkillConfig({
       vi: "Giải thích cách tín hiệu ức chế giúp điều hòa hoạt động thần kinh.",
       ta: "தடுக்கும் சமிக்ஞைகள் நரம்புச் செயல்பாட்டைக் கட்டுப்படுத்த எவ்வாறு உதவுகின்றன என்பதை விளக்கு.",
       te: "నిరోధక సంకేతాలు నాడీ కార్యకలాపాల నియంత్రణకు ఎలా సహాయపడతాయో వివరించండి.",
-      mr: "अवरोधक संकेत मज्जापेशींच्या क्रियाशीलतेचे नियमन कसे करतात ते स्पष्ट कर.",
+      mr: "अवरोधक संकेत मज्जापेशींच्या क्रियाशीलतेचे नियमन कसे करतात ते स्पष्ट करा.",
       ms: "Terangkan bagaimana isyarat perencat membantu mengawal aktiviti saraf.",
       he: "הסבירו כיצד אותות מעכבים עוזרים לווסת פעילות עצבית.",
       pl: "Wyjaśnij, jak sygnały hamujące pomagają regulować aktywność neuronów.",

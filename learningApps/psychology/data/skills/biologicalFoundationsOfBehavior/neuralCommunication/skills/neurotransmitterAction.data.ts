@@ -54,7 +54,7 @@ export const neurotransmitterAction_Skill_Data = buildSkillConfig({
       vi: "Nhận biết vì sao một chất dẫn truyền thần kinh không quyết định một cảm xúc cụ thể.",
       ta: "ஒரே நரம்புக் கடத்தி குறிப்பிட்ட ஓர் உணர்ச்சியை ஏன் நிர்ணயிக்காது என்பதை அறிந்துகொள்.",
       te: "ఒక్క న్యూరోట్రాన్స్‌మిటర్ ఒక్క భావోద్వేగాన్ని ఎందుకు నిర్ణయించదో తెలుసుకోండి.",
-      mr: "एकच न्यूरोट्रान्समीटर एकाच विशिष्ट भावना का ठरवत नाही ते समजून घे.",
+      mr: "एकच न्यूरोट्रान्समीटर एकाच विशिष्ट भावना का ठरवत नाही ते समजून घ्या.",
       ms: "Kenali mengapa satu neurotransmiter tidak menentukan satu emosi tertentu.",
       he: "זהו מדוע מוליך עצבי יחיד אינו קובע רגש מסוים.",
       pl: "Zrozum, dlaczego jeden neuroprzekaźnik nie determinuje jednej konkretnej emocji.",

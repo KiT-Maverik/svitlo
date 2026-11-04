@@ -62,7 +62,7 @@ export const recognitionAndExpression_SkillGroup_Data = buildSkillGroupConfig({
       vi: "Học cách nhận biết và biểu đạt cảm xúc trong những hoàn cảnh khác nhau.",
       ta: "பல்வேறு சூழலில் உணர்ச்சிகளை அறிந்து வெளிப்படுத்துவதைக் கற்றுக்கொள்.",
       te: "వివిధ పరిస్థితుల్లో భావోద్వేగాలను ఎలా గుర్తించి వ్యక్తం చేస్తారో నేర్చుకోండి.",
-      mr: "विविध परिस्थितीत भावना कशा ओळखायच्या व व्यक्त करायच्या ते शिक.",
+      mr: "विविध परिस्थितीत भावना कशा ओळखायच्या व व्यक्त करायच्या ते शिका.",
       ms: "Belajar mengenal pasti dan meluahkan emosi dalam pelbagai keadaan.",
       he: "למדו לזהות ולהביע רגשות בהקשרים שונים.",
       pl: "Dowiedz się, jak rozpoznawać i wyrażać emocje w różnych sytuacjach.",

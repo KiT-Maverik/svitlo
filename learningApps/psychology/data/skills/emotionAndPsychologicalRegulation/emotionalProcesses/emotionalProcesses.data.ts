@@ -63,7 +63,7 @@ export const emotionalProcesses_SkillGroup_Data = buildSkillGroupConfig({
       vi: "Tìm hiểu chức năng, phản ứng cơ thể và cách diễn giải liên quan đến cảm xúc.",
       ta: "உணர்ச்சிகளின் பணிகள், உடல் எதிர்வினைகள், விளக்கங்களை அறிக.",
       te: "భావోద్వేగాల విధులు, శరీర స్పందనలు, పరిస్థితుల అర్థీకరణను తెలుసుకోండి.",
-      mr: "भावनांची कार्ये, शारीरिक प्रतिक्रिया आणि अर्थलागू प्रक्रिया जाणून घे.",
+      mr: "भावनांची कार्ये, शारीरिक प्रतिक्रिया आणि अर्थलागू प्रक्रिया जाणून घ्या.",
       ms: "Kenali fungsi, tindak balas tubuh dan tafsiran yang terlibat dalam emosi.",
       he: "למדו על תפקידי הרגשות, תגובות הגוף והפירושים הקשורים אליהם.",
       pl: "Poznaj funkcje emocji, reakcje ciała i sposoby interpretacji.",
