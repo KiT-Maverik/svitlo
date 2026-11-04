@@ -52,7 +52,7 @@ export const functionalSpecialization_Skill_Data = buildSkillConfig({
       ko: "뇌의 기능별 전문성을 이해하되 복잡한 생각을 한 부위에만 연결하지 마세요.",
       tr: "Karmaşık düşünceleri tek bir noktaya atfetmeden özelleşmiş beyin işlevlerini tanı.",
       vi: "Nhận biết các chức năng chuyên biệt của não mà không gán tư duy phức tạp cho một vị trí duy nhất.",
-      ta: "சிக்கலான சிந்தனைகளை ஒரே மூளைப் பகுதிக்கு ஒதுக்காமல் சிறப்பு மூளைச் செயல்பாடுகளை அறிந்துகொள்.",
+      ta: "சிக்கலான சிந்தனைகளை ஒரே மூளைப் பகுதிக்கு ஒதுக்காமல் சிறப்பு மூளைச் செயல்பாடுகளை அறிந்துகொள்ளுங்கள்.",
       te: "సంక్లిష్ట ఆలోచనలను ఒకే స్థానానికి ఆపాదించకుండా ప్రత్యేక మెదడు విధులను గుర్తించండి.",
       mr: "गुंतागुंतीचे विचार एका जागेशी न जोडता मेंदूची विशिष्ट कार्ये ओळख.",
       ms: "Kenali fungsi otak yang khusus tanpa mengaitkan pemikiran kompleks pada satu tempat sahaja.",

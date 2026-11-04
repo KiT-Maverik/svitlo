@@ -52,7 +52,7 @@ export const heritabilityInterpretation_Skill_Data = buildSkillConfig({
       ko: "유전율은 집단의 통계량이지 개인에게 적용되는 비율이 아님을 이해해 보세요.",
       tr: "Kalıtılabilirliğin kişisel bir yüzde değil, popülasyona ait bir istatistik olduğunu öğren.",
       vi: "Hiểu vì sao hệ số di truyền là thống kê của quần thể chứ không phải tỉ lệ phần trăm của một người.",
-      ta: "மரபுரிமைத்தன்மை மக்கள்தொகை சார்ந்த புள்ளிவிவரம்; ஒருவரின் தனிப்பட்ட சதவீதம் அல்ல என்பதைப் புரிந்துகொள்.",
+      ta: "மரபுரிமைத்தன்மை மக்கள்தொகை சார்ந்த புள்ளிவிவரம்; ஒருவரின் தனிப்பட்ட சதவீதம் அல்ல என்பதைப் புரிந்துகொள்ளுங்கள்.",
       te: "వారసత్వ ప్రభావం ఒక జనాభా గణాంకమని, వ్యక్తి శాతం కాదని అర్థం చేసుకోండి.",
       mr: "आनुवंशिकतेचा मापदंड हा लोकसंख्येचा सांख्यिकीय गुणधर्म आहे, एखाद्या व्यक्तीची टक्केवारी नाही हे समजून घे.",
       ms: "Fahami bahawa kebolehwarisan ialah statistik populasi, bukannya peratusan bagi seseorang.",

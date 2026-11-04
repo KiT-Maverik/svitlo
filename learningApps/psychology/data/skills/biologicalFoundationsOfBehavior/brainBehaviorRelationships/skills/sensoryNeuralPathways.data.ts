@@ -52,7 +52,7 @@ export const sensoryNeuralPathways_Skill_Data = buildSkillConfig({
       ko: "감각 신호가 지각과 행동을 위해 어떻게 처리되는지 따라가 보세요.",
       tr: "Duyusal sinyallerin algı ve eylem için nasıl işlendiğini izle.",
       vi: "Theo dõi cách tín hiệu cảm giác được xử lý để hỗ trợ tri giác và hành động.",
-      ta: "உணர்வுச் சமிக்ஞைகள் புலனுணர்வுக்கும் செயலுக்கும் உதவ எவ்வாறு செயலாக்கப்படுகின்றன என்பதைத் தொடர்ந்து பார்.",
+      ta: "உணர்வுச் சமிக்ஞைகள் புலனுணர்வுக்கும் செயலுக்கும் உதவ எவ்வாறு செயலாக்கப்படுகின்றன என்பதைத் தொடர்ந்து பாருங்கள்.",
       te: "ఇంద్రియ సంకేతాలు గ్రహణం, చర్యలకు తోడ్పడేలా ఎలా ప్రాసెస్ అవుతాయో పరిశీలించండి.",
       mr: "संवेदनांचे संकेत प्रक्रिया होऊन आकलन व कृतीला कशी मदत होते ते पाहा.",
       ms: "Ikuti cara isyarat deria diproses untuk menyokong persepsi dan tindakan.",

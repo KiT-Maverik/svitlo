@@ -52,7 +52,7 @@ export const executiveControlNetworks_Skill_Data = buildSkillConfig({
       ko: "뇌 네트워크가 계획, 기억, 자기 통제를 어떻게 지원하는지 살펴보세요.",
       tr: "Beyin ağlarının planlamayı, belleği ve özdenetimi nasıl desteklediğini keşfet.",
       vi: "Khám phá cách các mạng lưới não hỗ trợ lập kế hoạch, trí nhớ và tự kiểm soát.",
-      ta: "மூளை வலையமைப்புகள் திட்டமிடல், நினைவாற்றல், சுயக்கட்டுப்பாட்டை எவ்வாறு ஆதரிக்கின்றன என்பதை ஆராய்.",
+      ta: "மூளை வலையமைப்புகள் திட்டமிடல், நினைவாற்றல், சுயக்கட்டுப்பாட்டை எவ்வாறு ஆதரிக்கின்றன என்பதை ஆராயுங்கள்.",
       te: "మెదడు నెట్‌వర్క్‌లు ప్రణాళిక, జ్ఞాపకశక్తి, స్వీయ నియంత్రణకు ఎలా తోడ్పడతాయో పరిశీలించండి.",
       mr: "मेंदूतील जाळी नियोजन, स्मरणशक्ती आणि आत्मनियंत्रणाला कशी मदत करतात ते पाहा.",
       ms: "Terokai bagaimana rangkaian otak menyokong perancangan, ingatan dan kawalan diri.",
