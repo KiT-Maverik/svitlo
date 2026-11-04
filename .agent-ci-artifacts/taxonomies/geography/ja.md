@@ -728,7 +728,7 @@ Skills: 5
 
 **User-friendly description (ja):** 役立つ鉱物が自然に集中して鉱床となる条件を見分けよう。
 
-##### 鉱床が採掘可能な鉱石となる条件を説明する
+##### 鉱床が採算の取れる採掘対象となる条件を説明する
 
 [explainWhyAMineralDepositMayOrMayNotBeAnOre.data.ts](../../../learningApps/geography/data/skills/geology/mineralDeposits/skills/explainWhyAMineralDepositMayOrMayNotBeAnOre.data.ts)
 

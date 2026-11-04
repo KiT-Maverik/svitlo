@@ -728,7 +728,7 @@ Skills: 5
 
 **User-friendly description (zh):** 识别天然有用矿物的集中分布为何构成矿床。
 
-##### 解释矿床为何可能成为矿石或不具矿石价值
+##### 解释为何并非所有矿床都具有经济开采价值
 
 [explainWhyAMineralDepositMayOrMayNotBeAnOre.data.ts](../../../learningApps/geography/data/skills/geology/mineralDeposits/skills/explainWhyAMineralDepositMayOrMayNotBeAnOre.data.ts)
 

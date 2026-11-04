@@ -384,7 +384,7 @@ Skills: 5
 
 **User-friendly description (ko):** 분명하게 제시된 지리적 기준으로 장소를 지역별로 묶어 보세요.
 
-##### 형식 지역과 기능 지역 구분하기
+##### 동질 지역과 기능 지역 구분하기
 
 [distinguishFormalAndFunctionalRegions.data.ts](../../../learningApps/geography/data/skills/geographicObjects/classification/skills/distinguishFormalAndFunctionalRegions.data.ts)
 
@@ -728,7 +728,7 @@ Skills: 5
 
 **User-friendly description (ko):** 유용한 광물이 자연적으로 모인 곳이 광상에 해당하는 조건을 알아보세요.
 
-##### 광상이 채굴 가능한 광석이 될 수도 아닐 수도 있는 이유 설명하기
+##### 광상이 경제적으로 채굴 가능한 경우와 그렇지 않은 경우 설명하기
 
 [explainWhyAMineralDepositMayOrMayNotBeAnOre.data.ts](../../../learningApps/geography/data/skills/geology/mineralDeposits/skills/explainWhyAMineralDepositMayOrMayNotBeAnOre.data.ts)
 
@@ -1440,7 +1440,7 @@ Skills: 4
 
 **User-friendly description (ko):** 관찰 자료의 차이를 고려하면서 지도로 지역별 생물다양성을 비교해 보세요.
 
-#### 환경 경도
+#### 환경 구배
 
 Skills: 3
 

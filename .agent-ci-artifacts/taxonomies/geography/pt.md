@@ -728,7 +728,7 @@ Skills: 5
 
 **User-friendly description (pt):** Reconheça quando uma concentração natural de minerais úteis constitui um depósito.
 
-##### Explicar por que um depósito pode ou não ser minério explorável
+##### Explicar por que nem todo depósito mineral é economicamente viável para extração
 
 [explainWhyAMineralDepositMayOrMayNotBeAnOre.data.ts](../../../learningApps/geography/data/skills/geology/mineralDeposits/skills/explainWhyAMineralDepositMayOrMayNotBeAnOre.data.ts)
 

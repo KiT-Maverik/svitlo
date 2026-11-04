@@ -728,7 +728,7 @@ Skills: 5
 
 **User-friendly description (lt):** Atpažink, kada natūrali naudingųjų mineralų sankaupa sudaro telkinį.
 
-##### Paaiškinti, kodėl telkinys gali būti ekonomiškai naudinga rūda arba ne
+##### Paaiškinti, kodėl vienus mineralų telkinius ekonomiškai apsimoka eksploatuoti, o kitų – ne
 
 [explainWhyAMineralDepositMayOrMayNotBeAnOre.data.ts](../../../learningApps/geography/data/skills/geology/mineralDeposits/skills/explainWhyAMineralDepositMayOrMayNotBeAnOre.data.ts)
 
@@ -1098,7 +1098,7 @@ Skills: 4
 
 **Methodological description (English):** Distinguish coarser gravel and sand from finer silt and clay by relative particle size and observed texture, without treating soil categories as identical to rock types.
 
-**User-friendly description (lt):** Pagal dalelių dydį atskirk žvyrą, smėlį, dulkes ir molį.
+**User-friendly description (lt):** Pagal dalelių dydį atskirk žvyrą, smėlį, aleuritą ir molį.
 
 ##### Paaiškinti, kaip paviršiuje formuojasi dirvožemio profilis
 
@@ -1754,7 +1754,7 @@ Skills: 3
 
 **Methodological description (English):** Coastal and marine environments differ in exposure, enclosure, water movement, and relation to land. The emphasis is on geographic patterns and coastal form rather than detailed fluid dynamics.
 
-**User-friendly description (lt):** Sužinok, kaip bangos, potvyniai ir srovės veikia krantus bei vandenynus.
+**User-friendly description (lt):** Sužinok, kaip bangos, potvyniai ir atoslūgiai bei srovės veikia krantus ir vandenynus.
 
 ##### Pakrančių erozijos ir sąnašų formų atpažinimas
 
@@ -1772,13 +1772,13 @@ Skills: 3
 
 **User-friendly description (lt):** Aiškink vandenyno srovių pasiskirstymą ir poveikį pakrantėms.
 
-##### Vandenyno potvynių geografinių dėsningumų aiškinimas
+##### Vandenyno potvynių ir atoslūgių geografinių dėsningumų aiškinimas
 
 [interpretGeographicPatternsOfOceanTides.data.ts](../../../learningApps/geography/data/skills/waterSystems/marineAndCoastalProcesses/skills/interpretGeographicPatternsOfOceanTides.data.ts)
 
 **Methodological description (English):** Identify regional and temporal variations in tidal water levels and their implications for coastlines and navigation, distinguishing tidal cycles from persistent ocean currents.
 
-**User-friendly description (lt):** Palygink potvynius skirtingose pakrantės vietose ir įvairiu laiku.
+**User-friendly description (lt):** Palygink potvynių ir atoslūgių ciklus skirtingose pakrantės vietose ir įvairiu laiku.
 
 #### Upės ir jų baseinai
 

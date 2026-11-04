@@ -728,7 +728,7 @@ Skills: 5
 
 **User-friendly description (vi):** Nhận biết khi nào sự tập trung khoáng vật có ích trong tự nhiên tạo thành mỏ.
 
-##### Giải thích vì sao mỏ khoáng có thể là quặng khai thác được hoặc không
+##### Giải thích vì sao không phải mỏ khoáng sản nào cũng có thể khai thác có lãi
 
 [explainWhyAMineralDepositMayOrMayNotBeAnOre.data.ts](../../../learningApps/geography/data/skills/geology/mineralDeposits/skills/explainWhyAMineralDepositMayOrMayNotBeAnOre.data.ts)
 
@@ -1364,7 +1364,7 @@ Groups: 3 · Skills: 10
 
 **User-friendly description (vi):** Khám phá cách khí hậu, địa hình và nước ảnh hưởng đến sự phân bố địa lý của sinh vật.
 
-#### Quần xã sinh vật và môi trường sống
+#### Khu sinh học và môi trường sống
 
 Skills: 3
 
@@ -1382,7 +1382,7 @@ Skills: 3
 
 **User-friendly description (vi):** So sánh những điều kiện tạo nên môi trường sống khác nhau ở các địa điểm khác nhau.
 
-##### Nhận diện quy luật phân bố các quần xã sinh vật trên cạn chủ yếu
+##### Nhận diện quy luật phân bố các khu sinh học trên cạn chủ yếu
 
 [identifyMajorTerrestrialBiomePatterns.data.ts](../../../learningApps/geography/data/skills/naturalRegionsAndBiogeography/biomesAndHabitats/skills/identifyMajorTerrestrialBiomePatterns.data.ts)
 
@@ -1390,13 +1390,13 @@ Skills: 3
 
 **User-friendly description (vi):** Nhận ra quy luật phân bố toàn cầu của rừng, đồng cỏ, hoang mạc và đài nguyên.
 
-##### Nhận biết vùng chuyển tiếp giữa các quần xã sinh vật
+##### Nhận biết vùng chuyển tiếp giữa các khu sinh học
 
 [recognizeTransitionZonesBetweenBiomes.data.ts](../../../learningApps/geography/data/skills/naturalRegionsAndBiogeography/biomesAndHabitats/skills/recognizeTransitionZonesBetweenBiomes.data.ts)
 
 **Methodological description (English):** Identify that vegetation and environmental conditions may change gradually across boundaries rather than at a perfectly sharp line.
 
-**User-friendly description (vi):** Hiểu vì sao ranh giới giữa các quần xã sinh vật có thể thay đổi dần dần thay vì đột ngột.
+**User-friendly description (vi):** Hiểu vì sao ranh giới giữa các khu sinh học có thể thay đổi dần dần thay vì đột ngột.
 
 #### Hệ sinh thái
 

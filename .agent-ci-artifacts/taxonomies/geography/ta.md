@@ -728,7 +728,7 @@ Skills: 5
 
 **User-friendly description (ta):** பயனுள்ள கனிமங்கள் இயற்கையாகச் செறிவது எப்போது கனிமப் படிவமாகிறது என்பதை அறியுங்கள்.
 
-##### கனிமப் படிவு ஏன் சில நேரங்களில் பயன்படும் தாதுவாக இருக்கும் அல்லது இருக்காது என்பதை விளக்குதல்
+##### கனிமப் படிவத்தை ஏன் சில சூழல்களில் இலாபகரமாக வெட்டி எடுக்க முடியும், பிற சூழல்களில் முடியாது என்பதை விளக்குதல்
 
 [explainWhyAMineralDepositMayOrMayNotBeAnOre.data.ts](../../../learningApps/geography/data/skills/geology/mineralDeposits/skills/explainWhyAMineralDepositMayOrMayNotBeAnOre.data.ts)
 
@@ -1058,7 +1058,7 @@ Skills: 3
 
 **User-friendly description (ta):** உயரம், நிலப்பரப்பு, சரிவு ஆகியவற்றை விவரித்துப் புரிந்துகொள்வது எப்படி என்று கற்றுக்கொள்ளுங்கள்.
 
-##### சம உயரக் கோடுகளின் இடைவெளியைக் கொண்டு நிலச்சரிவின் செங்குத்துத் தன்மையை அறிதல்
+##### சம உயரக் கோடுகளின் இடைவெளியைக் கொண்டு சரிவின் செங்குத்துத்தன்மையை அறிதல்
 
 [interpretContourSpacingAsTerrainSteepness.data.ts](../../../learningApps/geography/data/skills/landformsAndSurfaceProcesses/reliefAndElevation/skills/interpretContourSpacingAsTerrainSteepness.data.ts)
 
