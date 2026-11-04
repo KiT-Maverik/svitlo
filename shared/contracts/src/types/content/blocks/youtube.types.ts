@@ -1,7 +1,7 @@
 import type { ContentBlock_Data_Meta, ContentBlock_Definition_Meta, ContentBlock_Response_Meta } from './common.types';
 import type { ContentEntity_ConfigType } from '../entity.types';
 import type { LanguageCode } from '../../languages';
-import type { Locale_Options, Locale_ResponseParams } from '../locale.types';
+import type { Locale_Options } from '../locale.types';
 
 type ContentBlock_Youtube_Definition = ContentBlock_Definition_Meta<'youtube'>;
 
@@ -23,7 +23,7 @@ type ContentBlock_Youtube_Data<SupportedLanguages extends LanguageCode> = Conten
   fallback?: Youtube_Fallback<Locale_Options<SupportedLanguages>>;
 } & Youtube_Display<Locale_Options<SupportedLanguages>>;
 
-export type ContentBlock_Youtube_Response = ContentBlock_Response_Meta<'youtube'> & Locale_ResponseParams & {
+export type ContentBlock_Youtube_Response = ContentBlock_Response_Meta<'youtube'> & {
   href: string;
   fallback?: Youtube_Fallback<string>;
 } & Youtube_Display<string>;

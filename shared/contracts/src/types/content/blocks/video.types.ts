@@ -1,7 +1,7 @@
 import type { ContentBlock_Data_Meta, ContentBlock_Definition_Meta, ContentBlock_Response_Meta } from './common.types';
 import type { ContentEntity_ConfigType } from '../entity.types';
 import type { LanguageCode } from '../../languages';
-import type { Locale_Options, Locale_ResponseParams } from '../locale.types';
+import type { Locale_Options } from '../locale.types';
 
 type ContentBlock_Video_Definition = ContentBlock_Definition_Meta<'video'>;
 
@@ -19,7 +19,7 @@ type ContentBlock_Video_Data<SupportedLanguages extends LanguageCode> = ContentB
   fallback?: Video_Fallback<Locale_Options<SupportedLanguages>>;
 };
 
-export type ContentBlock_Video_Response = ContentBlock_Response_Meta<'video'> & Locale_ResponseParams & {
+export type ContentBlock_Video_Response = ContentBlock_Response_Meta<'video'> & {
   fileLocation: string;
   poster: string;
   title?: string;

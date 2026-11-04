@@ -1,6 +1,5 @@
 import type { Disability } from '../../disabilities.types';
 import type { AssessmentMethodKey } from '../assessmentMethod.types';
-import type { Locale_ResponseParams } from '../locale.types';
 
 export type Question_Type =
   | 'selectOneAnswer'
@@ -25,7 +24,7 @@ export type Question_Data_Meta<Type extends Question_Type> = {
   restrictions: Disability[];
 };
 
-export type Question_Response_Meta<Type extends Question_Type> = Locale_ResponseParams & {
+export type Question_Response_Meta<Type extends Question_Type> = {
   id: string;
   type: Type;
   assessmentMethod: AssessmentMethodKey;

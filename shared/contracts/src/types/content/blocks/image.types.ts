@@ -1,7 +1,7 @@
 import type { ContentBlock_Data_Meta, ContentBlock_Definition_Meta, ContentBlock_Response_Meta } from './common.types';
 import type { ContentEntity_ConfigType } from '../entity.types';
 import type { LanguageCode } from '../../languages';
-import type { Locale_Options, Locale_ResponseParams } from '../locale.types';
+import type { Locale_Options } from '../locale.types';
 
 type ContentBlock_Image_Definition = ContentBlock_Definition_Meta<'image'>;
 
@@ -24,7 +24,7 @@ type ContentBlock_Image_Data<SupportedLanguages extends LanguageCode> = ContentB
   fallback?: Image_Fallback<Locale_Options<SupportedLanguages>>;
 };
 
-export type ContentBlock_Image_Response = ContentBlock_Response_Meta<'image'> & Locale_ResponseParams & Image_Layout & {
+export type ContentBlock_Image_Response = ContentBlock_Response_Meta<'image'> & Image_Layout & {
   src: string;
   alt: string;
   caption?: string;

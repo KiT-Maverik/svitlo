@@ -1,6 +1,6 @@
 import type { ContentEntity_ConfigType } from './entity.types';
 import type { LanguageCode } from '../languages';
-import type { Locale_Options, Locale_ResponseParams } from './locale.types';
+import type { Locale_Options } from './locale.types';
 import type { ContentBlock_Catalog, ContentBlock_Reference } from './blocks';
 
 /** Presentation categories; individual sections still choose their content blocks. */
@@ -33,7 +33,7 @@ type Section_Data<SupportedLanguages extends LanguageCode> = {
   order?: readonly ContentBlock_Reference[];
 };
 
-type Section_Response = Locale_ResponseParams & {
+type Section_Response = {
   id: string;
   slug: string;
   type: Section_Type;

@@ -50,7 +50,6 @@ type _NestedBlocksRemainDiscriminated = Assert<
 const runtimeText: ContentBlock_Text<'response'> = {
   id: 'text-id',
   type: 'text',
-  locale: { code: 'en' },
   value: 'hello {{id: name; value: John}}',
   styling: [{ id: 'name', applyStyle: ['highlight', 'variable'], tone: 'info' }],
   wrap: { typographyProps: { component: 'h2', variant: 'h4', sx: { mb: 2 } } },
@@ -93,7 +92,6 @@ const authoredCode: ContentBlock_Code<'data'> = {
 const runtimeCode: ContentBlock_Code<'response'> = {
   id: 'code-id',
   type: 'code',
-  locale: { code: 'en' },
   code: 'console.log("{{greeting}}");',
   language: 'typescript',
   variables: [{ id: 'greeting', value: 'Hello' }],
@@ -113,13 +111,11 @@ const unlabelledYoutube: ContentBlock_Youtube<'response'> = {
   id: 'youtube-id',
   type: 'youtube',
   mode: 'embed',
-  locale: { code: 'en' },
   href: 'https://youtu.be/M7lc1UVf-VE',
 };
 const runtimeScene: ContentBlock_Scene<'response'> = {
   id: 'scene-id',
   type: 'scene',
-  locale: { code: 'en' },
   rendererKey: 'lightRayDiagram',
   messages: { title: 'Light ray' },
 };
@@ -133,7 +129,6 @@ const emptyQuizScreen: ContentBlock_Quiz_Screen<'response'> = { content: [] };
 // @ts-expect-error A localized runtime content block must carry its discriminator.
 const missingDiscriminator: ContentBlock_Text<'response'> = {
   id: 'text-id',
-  locale: { code: 'en' },
   value: 'hello',
 };
 

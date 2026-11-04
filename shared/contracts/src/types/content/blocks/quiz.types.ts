@@ -1,7 +1,7 @@
 import type { ContentEntity_ConfigType } from '../entity.types';
 import type { NonEmptyArray } from '../../misc.types';
 import type { LanguageCode } from '../../languages';
-import type { Locale_Options, Locale_ResponseParams } from '../locale.types';
+import type { Locale_Options } from '../locale.types';
 import type { Question_SelectOneAnswer } from '../questions/selectOneAnswer.types';
 import type { ContentBlock } from './index';
 import type { ContentBlock_Data_Meta, ContentBlock_Definition_Meta, ContentBlock_Response_Meta } from './common.types';
@@ -47,7 +47,6 @@ type ContentBlock_Quiz_Data<SupportedLanguages extends LanguageCode> = ContentBl
   };
 
 type ContentBlock_Quiz_Response = ContentBlock_Response_Meta<'quiz'> &
-  Locale_ResponseParams &
   Quiz_Settings<'response', LanguageCode> & {
     welcome: string;
     /** References to Lesson.questions.selectOneAnswer, not duplicated questions. */

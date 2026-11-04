@@ -1,7 +1,7 @@
 import type { NonEmptyArray } from '../../misc.types';
 import type { LanguageCode } from '../../languages';
 import type { ContentEntity_ConfigType } from '../entity.types';
-import type { Locale_Options, Locale_ResponseParams } from '../locale.types';
+import type { Locale_Options } from '../locale.types';
 import type { ContentBlock_Audio } from './audio.types';
 import type { ContentBlock_Code } from './code.types';
 import type { ContentBlock_Data_Meta, ContentBlock_Definition_Meta, ContentBlock_Response_Meta } from './common.types';
@@ -48,7 +48,6 @@ type ContentBlock_Checkpoint_Data<SupportedLanguages extends LanguageCode> = Con
 };
 
 export type ContentBlock_Checkpoint_Response = ContentBlock_Response_Meta<'checkpoint'> &
-  Locale_ResponseParams &
   ContentBlock_Checkpoint_Settings & {
     title: string;
     items: {

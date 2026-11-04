@@ -1,7 +1,7 @@
 import type { ContentBlock_Data_Meta, ContentBlock_Definition_Meta, ContentBlock_Response_Meta } from './common.types';
 import type { ContentEntity_ConfigType } from '../entity.types';
 import type { LanguageCode } from '../../languages';
-import type { Locale_Options, Locale_ResponseParams } from '../locale.types';
+import type { Locale_Options } from '../locale.types';
 
 type ContentBlock_Code_Definition = ContentBlock_Definition_Meta<'code'>;
 
@@ -16,7 +16,7 @@ type ContentBlock_Code_Data<SupportedLanguages extends LanguageCode> = ContentBl
   variables?: { id: string; value: Locale_Options<SupportedLanguages> }[];
 };
 
-export type ContentBlock_Code_Response = ContentBlock_Response_Meta<'code'> & Locale_ResponseParams & {
+export type ContentBlock_Code_Response = ContentBlock_Response_Meta<'code'> & {
   /** Display-only source text. Inline {{id}} markers use localized variables below. */
   code: string;
   language: string;
