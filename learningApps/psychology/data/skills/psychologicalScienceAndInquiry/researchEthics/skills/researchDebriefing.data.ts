@@ -54,7 +54,7 @@ export const researchDebriefing_Skill_Data = buildSkillConfig({
       vi: "Giải thích vì sao đôi khi nhà nghiên cứu cần trao đổi đầy đủ với người tham gia sau nghiên cứu.",
       ta: "ஆய்வுக்குப் பிறகு ஆராய்ச்சியாளர்கள் ஏன் பங்கேற்பாளர்களுக்கு விளக்கம் தர வேண்டியிருக்கலாம் என்பதை விளக்கு.",
       te: "అధ్యయనం తర్వాత పరిశోధకులు పాల్గొనేవారికి ఎందుకు వివరణ ఇవ్వాల్సి వస్తుందో వివరించండి.",
-      mr: "अभ्यासानंतर संशोधकांना सहभागींना माहिती का द्यावी लागू शकते ते स्पष्ट कर.",
+      mr: "अभ्यासानंतर संशोधकांना सहभागींना माहिती का द्यावी लागू शकते ते स्पष्ट करा.",
       ms: "Jelaskan mengapa penyelidik kadangkala perlu memberi penerangan kepada peserta selepas kajian.",
       he: "הסבירו מדוע חוקרים צריכים לפעמים להסביר למשתתפים את המחקר לאחר סיומו.",
       pl: "Wyjaśnij, dlaczego badacze czasem muszą omówić z uczestnikami badanie po jego zakończeniu.",

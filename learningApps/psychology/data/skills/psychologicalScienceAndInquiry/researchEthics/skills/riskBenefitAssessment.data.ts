@@ -54,7 +54,7 @@ export const riskBenefitAssessment_Skill_Data = buildSkillConfig({
       vi: "So sánh lợi ích nghiên cứu có thể có với nguy cơ đau khổ, tổn hại hoặc ép buộc.",
       ta: "ஆராய்ச்சியின் சாத்தியமான பலன்களைத் துன்பம், பாதிப்பு, வற்புறுத்தல் ஆகியவற்றின் இடர்களுடன் ஒப்பிடு.",
       te: "పరిశోధన వల్ల కలిగే లాభాలను బాధ, హాని లేదా ఒత్తిడి ప్రమాదాలతో పోల్చండి.",
-      mr: "संशोधनाचे संभाव्य फायदे आणि त्रास, हानी किंवा दबाव यांच्या जोखमींची तुलना कर.",
+      mr: "संशोधनाचे संभाव्य फायदे आणि त्रास, हानी किंवा दबाव यांच्या जोखमींची तुलना करा.",
       ms: "Bandingkan manfaat penyelidikan yang mungkin diperoleh dengan risiko tekanan, kemudaratan atau paksaan.",
       he: "השוו בין תועלות אפשריות של מחקר לבין סיכוני מצוקה, פגיעה או כפייה.",
       pl: "Porównaj potencjalne korzyści z badań z ryzykiem stresu, szkody lub przymusu.",

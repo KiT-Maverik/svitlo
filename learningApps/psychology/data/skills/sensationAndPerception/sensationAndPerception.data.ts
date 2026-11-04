@@ -67,7 +67,7 @@ export const sensationAndPerception_SkillDomain_Data = buildSkillDomainConfig({
       vi: "Khám phá cách tín hiệu giác quan trở thành trải nghiệm của chúng ta về thế giới xung quanh.",
       ta: "புலன் சமிக்ஞைகள் நம்மைச் சுற்றியுள்ள உலக அனுபவமாக எவ்வாறு மாறுகின்றன என்பதை அறிந்துகொள்.",
       te: "ఇంద్రియ సంకేతాలు మన చుట్టూ ఉన్న ప్రపంచ అనుభవాలుగా ఎలా మారతాయో తెలుసుకోండి.",
-      mr: "इंद्रियांचे संकेत आपल्या आसपासच्या जगाच्या अनुभवात कसे बदलतात ते जाणून घे.",
+      mr: "इंद्रियांचे संकेत आपल्या आसपासच्या जगाच्या अनुभवात कसे बदलतात ते जाणून घ्या.",
       ms: "Terokai bagaimana isyarat deria menjadi pengalaman kita tentang dunia sekeliling.",
       he: "גלו כיצד אותות חושיים הופכים לחוויית העולם שסביבנו.",
       pl: "Odkryj, jak sygnały zmysłowe stają się doświadczeniem otaczającego nas świata.",

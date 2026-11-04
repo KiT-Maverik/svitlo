@@ -54,7 +54,7 @@ export const systematicObservation_Skill_Data = buildSkillConfig({
       vi: "Ghi lại hành vi theo quy tắc quan sát nhất quán thay vì chỉ dựa vào ấn tượng.",
       ta: "தனிப்பட்ட எண்ணங்களை நம்பாமல் ஒரே மாதிரியான கவனிப்பு விதிகளின்படி நடத்தையைப் பதிவு செய்.",
       te: "వ్యక్తిగత అభిప్రాయాల బదులు ఒకే విధమైన పరిశీలన నియమాలతో ప్రవర్తనను నమోదు చేయండి.",
-      mr: "केवळ छापांऐवजी ठरावीक निरीक्षण नियम वापरून वर्तनाची नोंद कर.",
+      mr: "केवळ छापांऐवजी ठरावीक निरीक्षण नियम वापरून वर्तनाची नोंद करा.",
       ms: "Catat tingkah laku mengikut peraturan pemerhatian yang konsisten, bukan tanggapan peribadi.",
       he: "תעדו התנהגות על פי כללי תצפית עקביים ולא רק על סמך התרשמות.",
       pl: "Zapisuj zachowania według spójnych zasad obserwacji zamiast polegać na wrażeniach.",

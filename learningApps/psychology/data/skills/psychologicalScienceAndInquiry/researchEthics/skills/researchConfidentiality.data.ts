@@ -54,7 +54,7 @@ export const researchConfidentiality_Skill_Data = buildSkillConfig({
       vi: "Hiểu cách nhà nghiên cứu bảo vệ dữ liệu có thể xác định danh tính người tham gia.",
       ta: "அடையாளம் காணக்கூடிய பங்கேற்பாளர்களின் தரவை ஆராய்ச்சியாளர்கள் எவ்வாறு பாதுகாக்கிறார்கள் என்பதைப் புரிந்துகொள்.",
       te: "గుర్తించగలిగే పాల్గొనేవారి డేటాను పరిశోధకులు ఎలా కాపాడతారో తెలుసుకోండి.",
-      mr: "ओळख पटू शकणाऱ्या सहभागींच्या माहितीचे संशोधक कसे संरक्षण करतात ते समजून घे.",
+      mr: "ओळख पटू शकणाऱ्या सहभागींच्या माहितीचे संशोधक कसे संरक्षण करतात ते समजून घ्या.",
       ms: "Fahami cara penyelidik melindungi data peserta yang boleh dikenal pasti.",
       he: "הבינו כיצד חוקרים מגינים על נתונים המאפשרים לזהות משתתפים.",
       pl: "Zrozum, jak badacze chronią dane pozwalające zidentyfikować uczestników.",

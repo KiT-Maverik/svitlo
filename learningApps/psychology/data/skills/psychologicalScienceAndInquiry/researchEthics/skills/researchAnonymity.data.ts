@@ -54,7 +54,7 @@ export const researchAnonymity_Skill_Data = buildSkillConfig({
       vi: "Phân biệt dữ liệu nghiên cứu ẩn danh với thông tin được giữ bí mật.",
       ta: "பெயரறியா ஆய்வுத் தரவையும் இரகசியமாக வைக்கப்படும் தகவலையும் வேறுபடுத்து.",
       te: "అనామక పరిశోధన డేటాను గోప్యంగా ఉంచిన సమాచారంతో వేరు చేయండి.",
-      mr: "अनामिक संशोधन माहिती आणि गोपनीय ठेवलेली माहिती यांतील फरक ओळख.",
+      mr: "अनामिक संशोधन माहिती आणि गोपनीय ठेवलेली माहिती यांतील फरक ओळखा.",
       ms: "Bezakan data penyelidikan tanpa nama daripada maklumat yang sekadar dirahsiakan.",
       he: "הבחינו בין נתוני מחקר אנונימיים לבין מידע הנשמר בסודיות.",
       pl: "Odróżniaj anonimowe dane badawcze od informacji objętych poufnością.",
