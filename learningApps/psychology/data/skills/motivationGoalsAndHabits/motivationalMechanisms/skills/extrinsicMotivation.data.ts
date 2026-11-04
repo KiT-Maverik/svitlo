@@ -52,7 +52,7 @@ export const extrinsicMotivation_Skill_Data = buildSkillConfig({
       ko: "외부 보상과 압력이 동기에 미치는 영향을 알아보세요.",
       tr: "Dış ödüllerin ve baskıların motivasyonu nasıl etkilediğini keşfet.",
       vi: "Khám phá cách phần thưởng và áp lực bên ngoài ảnh hưởng đến động lực.",
-      ta: "வெளிப்புற வெகுமதிகளும் அழுத்தங்களும் உந்துதலை எவ்வாறு பாதிக்கின்றன என்பதை ஆராய்.",
+      ta: "வெளிப்புற வெகுமதிகளும் அழுத்தங்களும் உந்துதலை எவ்வாறு பாதிக்கின்றன என்பதை ஆராயுங்கள்.",
       te: "బయటి బహుమతులు, ఒత్తిళ్లు ప్రేరణను ఎలా ప్రభావితం చేస్తాయో తెలుసుకోండి.",
       mr: "बाहेरची बक्षिसे व दबाव प्रेरणेला कसे प्रभावित करतात ते पाहा.",
       ms: "Terokai bagaimana ganjaran dan tekanan luar mempengaruhi motivasi.",

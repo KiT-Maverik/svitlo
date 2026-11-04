@@ -52,7 +52,7 @@ export const motivationalCrowding_Skill_Data = buildSkillConfig({
       ko: "외부 보상이 때로 내재적인 흥미를 줄이는 이유를 살펴보세요.",
       tr: "Dış ödüllerin bazen içsel ilgiyi neden azalttığını keşfet.",
       vi: "Khám phá vì sao phần thưởng bên ngoài đôi khi làm giảm hứng thú nội tại.",
-      ta: "வெளிப்புற வெகுமதிகள் ஏன் சில நேரங்களில் உள்ளார்ந்த ஆர்வத்தை குறைக்கின்றன என்பதை ஆராய்.",
+      ta: "வெளிப்புற வெகுமதிகள் ஏன் சில நேரங்களில் உள்ளார்ந்த ஆர்வத்தை குறைக்கின்றன என்பதை ஆராயுங்கள்.",
       te: "బయటి బహుమతులు కొన్నిసార్లు అంతర్గత ఆసక్తిని ఎందుకు తగ్గిస్తాయో తెలుసుకోండి.",
       mr: "बाहेरच्या बक्षिसांनी कधी अंतर्गत आवड का कमी होते ते पाहा.",
       ms: "Terokai mengapa ganjaran luar kadang-kadang melemahkan minat dalaman.",

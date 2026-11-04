@@ -52,7 +52,7 @@ export const evidenceQuality_Skill_Data = buildSkillConfig({
       ko: "연구 결과를 근거의 강도, 불확실성, 가능한 편향을 기준으로 비교해 보세요.",
       tr: "Araştırma bulgularını güçleri, belirsizlikleri ve olası yanlılıkları açısından karşılaştır.",
       vi: "So sánh kết quả nghiên cứu theo độ mạnh, sự không chắc chắn và các thiên lệch có thể có.",
-      ta: "ஆராய்ச்சி முடிவுகளை அவற்றின் வலிமை, நிச்சயமின்மை, சாத்தியமான சார்புகள் ஆகியவற்றால் ஒப்பிடு.",
+      ta: "ஆராய்ச்சி முடிவுகளை அவற்றின் வலிமை, நிச்சயமின்மை, சாத்தியமான சார்புகள் ஆகியவற்றால் ஒப்பிடுங்கள்.",
       te: "పరిశోధన ఫలితాలను వాటి బలం, అనిశ్చితి, సాధ్యమైన పక్షపాతాల ఆధారంగా పోల్చండి.",
       mr: "संशोधन निष्कर्षांची ताकद, अनिश्चितता आणि संभाव्य पक्षपात यांच्या आधारे तुलना करा.",
       ms: "Bandingkan dapatan penyelidikan berdasarkan kekuatan, ketidakpastian dan kemungkinan bias.",

@@ -52,7 +52,7 @@ export const neuroimagingInference_Skill_Data = buildSkillConfig({
       ko: "뇌 활동 영상이 특정 생각을 직접 드러내지 못하는 이유를 알아보세요.",
       tr: "Beyin etkinliği görüntülerinin belirli düşünceleri neden doğrudan gösteremediğini anla.",
       vi: "Hiểu vì sao ảnh hoạt động não không trực tiếp tiết lộ những suy nghĩ cụ thể.",
-      ta: "மூளைச் செயல்பாட்டின் படங்கள் குறிப்பிட்ட எண்ணங்களை நேரடியாக ஏன் காட்ட முடியாது என்பதைப் புரிந்துகொள்.",
+      ta: "மூளைச் செயல்பாட்டின் படங்கள் குறிப்பிட்ட எண்ணங்களை நேரடியாக ஏன் காட்ட முடியாது என்பதைப் புரிந்துகொள்ளுங்கள்.",
       te: "మెదడు కార్యకలాపాల చిత్రాలు నిర్దిష్ట ఆలోచనలను నేరుగా ఎందుకు వెల్లడించలేవో అర్థం చేసుకోండి.",
       mr: "मेंदूच्या क्रियेच्या प्रतिमांतून विशिष्ट विचार थेट का दिसत नाहीत ते समजून घ्या.",
       ms: "Fahami mengapa imej aktiviti otak tidak dapat mendedahkan fikiran tertentu secara langsung.",

@@ -52,7 +52,7 @@ export const sensoryAdaptation_Skill_Data = buildSkillConfig({
       ko: "일정한 자극에 계속 노출되면 민감도가 어떻게 달라지는지 살펴보세요.",
       tr: "Sürekli bir uyarıcıya maruz kalındığında duyarlılığın nasıl değişebileceğini keşfet.",
       vi: "Khám phá độ nhạy có thể thay đổi thế nào khi tiếp xúc liên tục với kích thích.",
-      ta: "நிலையான தூண்டுதலுக்கு தொடர்ந்து ஆளாகும்போது உணர்திறன் எவ்வாறு மாறுகிறது என்பதை ஆராய்.",
+      ta: "நிலையான தூண்டுதலுக்கு தொடர்ந்து ஆளாகும்போது உணர்திறன் எவ்வாறு மாறுகிறது என்பதை ஆராயுங்கள்.",
       te: "ఒకే ఉద్దీపనకు ఎక్కువసేపు గురైనప్పుడు సున్నితత్వం ఎలా మారవచ్చో పరిశీలించండి.",
       mr: "एकाच उत्तेजनेचा दीर्घकाळ अनुभव आल्यावर संवेदनशीलता कशी बदलते ते पाहा.",
       ms: "Terokai bagaimana kepekaan berubah selepas pendedahan berterusan kepada rangsangan.",

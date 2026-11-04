@@ -52,7 +52,7 @@ export const empathy_Skill_Data = buildSkillConfig({
       ko: "공감이 다른 사람의 경험을 알아차리고 일부를 함께 느끼는 것임을 이해하세요.",
       tr: "Empatiyi başkasının deneyimini tanımak ve bir yönünü paylaşmak olarak anla.",
       vi: "Hiểu đồng cảm là nhận biết và phần nào chia sẻ trải nghiệm của người khác.",
-      ta: "மற்றொருவரின் அனுபவத்தை அறிந்து அதன் சில உணர்வுகளைப் பகிர்வதே பிறருணர்வு என்பதை அறிக.",
+      ta: "மற்றொருவரின் அனுபவத்தை அறிந்து அதன் சில உணர்வுகளைப் பகிர்வதே பிறருணர்வு என்பதை அறியுங்கள்.",
       te: "ఇతరుల అనుభవాన్ని గుర్తించి కొంతవరకు పంచుకోవడమే సహానుభూతి అని అర్థం చేసుకోండి.",
       mr: "इतरांच्या अनुभवातील काही भाग समजणे व जाणवणे म्हणजे सहानुभूती हे समजून घ्या.",
       ms: "Fahami empati sebagai mengenali dan berkongsi sebahagian pengalaman orang lain.",

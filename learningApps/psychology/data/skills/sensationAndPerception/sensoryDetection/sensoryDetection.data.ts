@@ -61,7 +61,7 @@ export const sensoryDetection_SkillGroup_Data = buildSkillGroupConfig({
       ko: "자극의 강도와 조건이 탐지에 어떻게 영향을 주는지 살펴보세요.",
       tr: "Uyarıcının şiddetinin ve koşullarının algılanmasını nasıl etkilediğini araştır.",
       vi: "Tìm hiểu cường độ và điều kiện kích thích ảnh hưởng đến khả năng phát hiện ra sao.",
-      ta: "தூண்டுதலின் வலிமையும் சூழலும் அதைக் கண்டறிவதை எவ்வாறு பாதிக்கின்றன என்பதை ஆராய்.",
+      ta: "தூண்டுதலின் வலிமையும் சூழலும் அதைக் கண்டறிவதை எவ்வாறு பாதிக்கின்றன என்பதை ஆராயுங்கள்.",
       te: "ఉద్దీపన బలం, పరిస్థితులు దాని గుర్తింపును ఎలా ప్రభావితం చేస్తాయో పరిశీలించండి.",
       mr: "उत्तेजनेची तीव्रता आणि परिस्थिती ती ओळखण्यावर कसा परिणाम करतात ते पाहा.",
       ms: "Ketahui bagaimana kekuatan dan keadaan rangsangan mempengaruhi pengesanannya.",

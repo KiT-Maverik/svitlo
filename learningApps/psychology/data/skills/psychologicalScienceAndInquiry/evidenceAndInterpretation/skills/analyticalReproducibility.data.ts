@@ -52,7 +52,7 @@ export const analyticalReproducibility_Skill_Data = buildSkillConfig({
       ko: "명확한 방법과 분석 선택이 독립적인 검증을 가능하게 하는 이유를 알아보세요.",
       tr: "Açık yöntemlerin ve analiz kararlarının bağımsız denetimi neden mümkün kıldığını fark et.",
       vi: "Nhận biết vì sao phương pháp và lựa chọn phân tích rõ ràng cho phép kiểm chứng độc lập.",
-      ta: "தெளிவான முறைகளும் பகுப்பாய்வுத் தேர்வுகளும் சுயாதீன சரிபார்ப்பை எவ்வாறு உதவுகின்றன என்பதை அறிந்துகொள்.",
+      ta: "தெளிவான முறைகளும் பகுப்பாய்வுத் தேர்வுகளும் சுயாதீன சரிபார்ப்பை எவ்வாறு உதவுகின்றன என்பதை அறிந்துகொள்ளுங்கள்.",
       te: "స్పష్టమైన పద్ధతులు, విశ్లేషణ నిర్ణయాలు స్వతంత్ర తనిఖీకి ఎందుకు వీలు కల్పిస్తాయో అర్థం చేసుకోండి.",
       mr: "स्पष्ट पद्धती आणि विश्लेषण निर्णयांमुळे स्वतंत्र पडताळणी कशी शक्य होते ते जाणून घ्या.",
       ms: "Kenali sebab kaedah dan pilihan analisis yang jelas membolehkan semakan bebas.",

@@ -52,7 +52,7 @@ export const motorNeuralPathways_Skill_Data = buildSkillConfig({
       ko: "신경계가 움직임을 조정하는 방법을 설명해 보세요.",
       tr: "Sinir sisteminin hareketleri nasıl eşgüdümlediğini açıkla.",
       vi: "Giải thích cách hệ thần kinh giúp phối hợp vận động.",
-      ta: "நரம்பு மண்டலம் இயக்கத்தை எவ்வாறு ஒருங்கிணைக்கிறது என்பதை விளக்கு.",
+      ta: "நரம்பு மண்டலம் இயக்கத்தை எவ்வாறு ஒருங்கிணைக்கிறது என்பதை விளக்குங்கள்.",
       te: "నాడీవ్యవస్థ కదలికలను ఎలా సమన్వయం చేస్తుందో వివరించండి.",
       mr: "मज्जासंस्था हालचालींचा समन्वय कसा साधते ते स्पष्ट करा.",
       ms: "Terangkan bagaimana sistem saraf membantu menyelaraskan pergerakan.",

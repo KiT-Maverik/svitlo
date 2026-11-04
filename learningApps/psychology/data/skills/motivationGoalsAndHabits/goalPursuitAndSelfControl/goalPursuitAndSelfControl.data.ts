@@ -61,7 +61,7 @@ export const goalPursuitAndSelfControl_SkillGroup_Data = buildSkillGroupConfig({
       ko: "목표를 세우고 지속하며 상황 변화에 적응하는 방법을 배우세요.",
       tr: "Hedef koymayı, sürdürmeyi ve koşullar değişince uyum sağlamayı öğren.",
       vi: "Học cách đặt mục tiêu, duy trì cố gắng và thích ứng khi hoàn cảnh thay đổi.",
-      ta: "இலக்குகளை அமைத்து, தொடர்ந்தும், சூழலுக்கு ஏற்ப மாற்றவும் கற்றுக்கொள்.",
+      ta: "இலக்குகளை அமைத்து, தொடர்ந்தும், சூழலுக்கு ஏற்ப மாற்றவும் கற்றுக்கொள்ளுங்கள்.",
       te: "లక్ష్యాలు పెట్టుకుని కొనసాగడం, పరిస్థితులకు తగ్గట్టు మారడం నేర్చుకోండి.",
       mr: "लोक ध्येये कशी ठरवतात, टिकवतात व परिस्थितीनुसार बदलतात ते शिका.",
       ms: "Belajar menetapkan matlamat, bertahan dan menyesuaikan diri apabila keadaan berubah.",

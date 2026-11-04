@@ -52,7 +52,7 @@ export const researchInterviews_Skill_Data = buildSkillConfig({
       ko: "면담을 통해 무엇을 알 수 있는지, 질문이 답변에 어떤 영향을 주는지 살펴보세요.",
       tr: "Görüşmelerin neleri ortaya çıkarabildiğini ve soruların yanıtları nasıl etkilediğini keşfet.",
       vi: "Khám phá phỏng vấn có thể cho biết điều gì và câu hỏi ảnh hưởng đến câu trả lời ra sao.",
-      ta: "நேர்காணல்கள் எதை வெளிப்படுத்துகின்றன, கேள்விகள் பதில்களை எவ்வாறு பாதிக்கின்றன என்பதை ஆராய்.",
+      ta: "நேர்காணல்கள் எதை வெளிப்படுத்துகின்றன, கேள்விகள் பதில்களை எவ்வாறு பாதிக்கின்றன என்பதை ஆராயுங்கள்.",
       te: "ఇంటర్వ్యూలతో ఏమి తెలుసుకోవచ్చో, ప్రశ్నలు సమాధానాలను ఎలా ప్రభావితం చేస్తాయో పరిశీలించండి.",
       mr: "मुलाखतींतून काय समजू शकते आणि प्रश्नांमुळे उत्तरांवर कसा परिणाम होतो ते पाहा.",
       ms: "Terokai perkara yang dapat didedahkan oleh temu bual dan bagaimana soalan mempengaruhi jawapan.",

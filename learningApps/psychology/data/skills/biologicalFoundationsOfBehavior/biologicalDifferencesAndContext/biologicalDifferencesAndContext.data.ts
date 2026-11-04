@@ -60,7 +60,7 @@ export const biologicalDifferencesAndContext_SkillGroup_Data = buildSkillGroupCo
       ko: "유전적 요인, 호르몬, 환경이 함께 행동을 형성하는 방법을 알아보세요.",
       tr: "Kalıtsal etkenlerin, hormonların ve çevrenin davranışı birlikte nasıl şekillendirdiğini keşfet.",
       vi: "Khám phá cách di truyền, hormone và môi trường cùng định hình hành vi.",
-      ta: "மரபுவழிக் காரணிகள், ஹார்மோன்கள், சூழல் ஆகியவை நடத்தையை எவ்வாறு கூட்டாக வடிவமைக்கின்றன என்பதை அறிந்துகொள்.",
+      ta: "மரபுவழிக் காரணிகள், ஹார்மோன்கள், சூழல் ஆகியவை நடத்தையை எவ்வாறு கூட்டாக வடிவமைக்கின்றன என்பதை அறிந்துகொள்ளுங்கள்.",
       te: "వారసత్వ అంశాలు, హార్మోన్లు, పరిసరాలు కలిసి ప్రవర్తనను ఎలా మలుస్తాయో తెలుసుకోండి.",
       mr: "आनुवंशिक घटक, संप्रेरके आणि वातावरण मिळून वर्तन कसे घडवतात ते पाहा.",
       ms: "Ketahui bagaimana faktor warisan, hormon dan persekitaran bersama-sama membentuk tingkah laku.",

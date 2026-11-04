@@ -52,7 +52,7 @@ export const crossModalIntegration_Skill_Data = buildSkillConfig({
       ko: "서로 다른 감각의 단서가 같은 경험을 어떻게 바꿀 수 있는지 알아보세요.",
       tr: "Farklı duyulardan gelen ipuçlarının aynı deneyimi nasıl değiştirebildiğini keşfet.",
       vi: "Khám phá tín hiệu từ các giác quan khác nhau có thể thay đổi cùng một trải nghiệm như thế nào.",
-      ta: "வெவ்வேறு புலன்களின் குறிப்புகள் ஒரே அனுபவத்தை எவ்வாறு மாற்றுகின்றன என்பதை ஆராய்.",
+      ta: "வெவ்வேறு புலன்களின் குறிப்புகள் ஒரே அனுபவத்தை எவ்வாறு மாற்றுகின்றன என்பதை ஆராயுங்கள்.",
       te: "వేర్వేరు ఇంద్రియాల సూచనలు ఒకే అనుభవాన్ని ఎలా మార్చగలవో పరిశీలించండి.",
       mr: "वेगवेगळ्या इंद्रियांचे संकेत एकाच अनुभवात कसा बदल घडवू शकतात ते पाहा.",
       ms: "Terokai bagaimana petunjuk daripada deria berbeza boleh mengubah pengalaman yang sama.",

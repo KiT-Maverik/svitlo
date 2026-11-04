@@ -52,7 +52,7 @@ export const questionnaireResearch_Skill_Data = buildSkillConfig({
       ko: "문항의 표현과 응답 편향을 고려하여 설문 결과를 해석해 보세요.",
       tr: "Anketleri soru ifadelerini ve yanıt yanlılıklarını dikkate alarak yorumla.",
       vi: "Diễn giải bảng hỏi có tính đến cách diễn đạt câu hỏi và thiên lệch trả lời.",
-      ta: "கேள்விகளின் சொற்கள் மற்றும் பதில் சார்புகளை கருத்தில் கொண்டு கேள்வித்தாள்களை விளக்கிப் புரிந்துகொள்.",
+      ta: "கேள்விகளின் சொற்கள் மற்றும் பதில் சார்புகளை கருத்தில் கொண்டு கேள்வித்தாள்களை விளக்கிப் புரிந்துகொள்ளுங்கள்.",
       te: "ప్రశ్నల పదజాలం, సమాధానాల్లో పక్షపాతాన్ని పరిగణనలోకి తీసుకుని ప్రశ్నావళులను అర్థం చేసుకోండి.",
       mr: "प्रश्नांची शब्दरचना आणि उत्तरांतील पक्षपात लक्षात घेऊन प्रश्नावलींचा अर्थ लाव.",
       ms: "Tafsirkan soal selidik dengan mengambil kira pilihan kata dan bias jawapan.",

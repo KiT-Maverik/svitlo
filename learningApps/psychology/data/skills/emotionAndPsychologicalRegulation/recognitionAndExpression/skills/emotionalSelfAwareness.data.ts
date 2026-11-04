@@ -52,7 +52,7 @@ export const emotionalSelfAwareness_Skill_Data = buildSkillConfig({
       ko: "원인을 단정하지 말고 자신의 감정 상태를 관찰하고 설명하세요.",
       tr: "Nedenini hemen varsaymadan kendi duygu durumunu gözlemle ve anlat.",
       vi: "Quan sát và mô tả cảm xúc bản thân mà không vội khẳng định nguyên nhân.",
-      ta: "காரணத்தை முன்கூட்டியே கருதாமல் உன் உணர்ச்சி நிலையை கவனித்து விவரி.",
+      ta: "காரணத்தை முன்கூட்டியே கருதாமல் உங்கள் உணர்ச்சி நிலையை கவனித்து விவரியுங்கள்.",
       te: "కారణాన్ని ముందే అనుకోకుండా మీ భావ స్థితిని గమనించి వివరించండి.",
       mr: "कारण गृहित न धरता स्वतःची भावनिक स्थिती पाहा आणि वर्णन करा.",
       ms: "Perhati dan huraikan emosimu tanpa terus mengandaikan sebabnya.",

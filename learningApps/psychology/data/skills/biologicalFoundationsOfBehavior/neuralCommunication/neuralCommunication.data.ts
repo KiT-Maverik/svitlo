@@ -61,7 +61,7 @@ export const neuralCommunication_SkillGroup_Data = buildSkillGroupConfig({
       ko: "뉴런이 신호를 보내고 연결을 바꾸는 방법을 알아보세요.",
       tr: "Nöronların nasıl sinyal gönderdiğini ve bağlantılarını değiştirdiğini öğren.",
       vi: "Tìm hiểu cách các tế bào thần kinh truyền tín hiệu và thay đổi kết nối.",
-      ta: "நியூரான்கள் எவ்வாறு சமிக்ஞைகள் அனுப்புகின்றன, இணைப்புகளை மாற்றுகின்றன என்பதை அறி.",
+      ta: "நியூரான்கள் எவ்வாறு சமிக்ஞைகள் அனுப்புகின்றன, இணைப்புகளை மாற்றுகின்றன என்பதை அறியுங்கள்.",
       te: "న్యూరాన్లు సంకేతాలను ఎలా పంపుతాయో, తమ అనుసంధానాలను ఎలా మార్చుకుంటాయో తెలుసుకోండి.",
       mr: "मज्जापेशी संकेत कसे पाठवतात आणि त्यांचे परस्पर संबंध कसे बदलतात ते पाहा.",
       ms: "Ketahui bagaimana neuron menghantar isyarat dan mengubah sambungannya.",

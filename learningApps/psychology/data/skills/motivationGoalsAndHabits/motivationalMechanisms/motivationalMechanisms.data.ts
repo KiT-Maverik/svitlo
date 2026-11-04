@@ -63,7 +63,7 @@ export const motivationalMechanisms_SkillGroup_Data = buildSkillGroupConfig({
       ko: "행동의 바탕이 되는 다양한 동기의 원천을 살펴보세요.",
       tr: "İnsan davranışlarının ardındaki farklı motivasyon kaynaklarını öğren.",
       vi: "Tìm hiểu nhiều nguồn động lực thúc đẩy hành vi con người.",
-      ta: "மனிதச் செயலுக்குப் பின்னுள்ள பல்வேறு உந்துதல்களை அறிக.",
+      ta: "மனிதச் செயலுக்குப் பின்னுள்ள பல்வேறு உந்துதல்களை அறியுங்கள்.",
       te: "మనిషి చర్యల వెనుక ఉన్న వివిధ ప్రేరణ మూలాలను తెలుసుకోండి.",
       mr: "मानवी कृतीमागील प्रेरणेचे वेगवेगळे स्रोत जाणून घ्या.",
       ms: "Ketahui pelbagai punca motivasi di sebalik tindakan manusia.",

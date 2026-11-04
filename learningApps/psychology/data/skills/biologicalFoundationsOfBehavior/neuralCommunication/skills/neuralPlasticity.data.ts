@@ -52,7 +52,7 @@ export const neuralPlasticity_Skill_Data = buildSkillConfig({
       ko: "경험에 따라 신경 연결이 시간이 지나며 어떻게 달라지는지 알아보세요.",
       tr: "Deneyimlerin sinir bağlantılarını zamanla nasıl değiştirebildiğini keşfet.",
       vi: "Khám phá cách trải nghiệm có thể thay đổi kết nối thần kinh theo thời gian.",
-      ta: "அனுபவங்கள் காலப்போக்கில் நரம்பு இணைப்புகளை எவ்வாறு மாற்றுகின்றன என்பதை ஆராய்.",
+      ta: "அனுபவங்கள் காலப்போக்கில் நரம்பு இணைப்புகளை எவ்வாறு மாற்றுகின்றன என்பதை ஆராயுங்கள்.",
       te: "అనుభవాలు కాలక్రమంలో నాడీ అనుసంధానాలను ఎలా మార్చగలవో పరిశీలించండి.",
       mr: "अनुभवांमुळे कालांतराने मज्जापेशींमधील संबंध कसे बदलू शकतात ते पाहा.",
       ms: "Terokai bagaimana pengalaman boleh mengubah sambungan saraf dari masa ke masa.",

@@ -52,7 +52,7 @@ export const inGroupAndOutGroupBias_Skill_Data = buildSkillConfig({
       ko: "정당한 이유 없이 자기 집단을 더 좋게 대하는 경향을 알아보세요.",
       tr: "Kendi grubunu gerekçesiz kayırma eğilimini tanı.",
       vi: "Nhận biết sự ưu ái vô lý dành cho nhóm của mình.",
-      ta: "காரணமின்றித் தன் குழுவையே ஆதரிக்கும் சார்பை அறிக.",
+      ta: "காரணமின்றித் தன் குழுவையே ஆதரிக்கும் சார்பை அறியுங்கள்.",
       te: "సరైన కారణం లేకుండా తన గుంపునే ఎక్కువగా మెచ్చుకోవడాన్ని గుర్తించండి.",
       mr: "विनाकारण स्वतःच्या गटाची बाजू घेणे ओळखा.",
       ms: "Kenali sikap pilih kasih tanpa sebab terhadap kumpulan sendiri.",

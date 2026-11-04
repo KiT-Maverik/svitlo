@@ -52,7 +52,7 @@ export const emotionVocabulary_Skill_Data = buildSkillConfig({
       ko: "감정 경험을 정확하게 설명하는 단어를 사용하세요.",
       tr: "Duygusal deneyimleri doğru anlatan sözcükler kullan.",
       vi: "Dùng từ ngữ mô tả chính xác trải nghiệm cảm xúc.",
-      ta: "உணர்ச்சி அனுபவங்களைத் துல்லியமாகக் கூறும் சொற்களைப் பயன்படுத்து.",
+      ta: "உணர்ச்சி அனுபவங்களைத் துல்லியமாகக் கூறும் சொற்களைப் பயன்படுத்துங்கள்.",
       te: "భావోద్వేగ అనుభవాన్ని ఖచ్చితంగా వివరించే పదాలు వాడండి.",
       mr: "भावनिक अनुभव अचूक सांगणारे शब्द वापरा.",
       ms: "Gunakan perkataan yang menggambarkan pengalaman emosi secara tepat.",

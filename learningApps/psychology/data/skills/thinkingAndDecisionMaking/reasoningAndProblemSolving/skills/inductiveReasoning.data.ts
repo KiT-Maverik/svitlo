@@ -59,7 +59,7 @@ export const inductiveReasoning_Skill_Data = buildSkillConfig({
       he: "זהו כיצד דוגמאות תומכות במסקנות כלליות שעדיין אינן ודאיות.",
       pl: "Rozpoznaj, jak przykłady wspierają szersze, lecz niepewne wnioski.",
       uk: "Розпізнай, як окремі приклади підтримують ширші, але непевні висновки.",
-      lt: "Atpažink, kaip pavyzdžiai pagrindžia platesnes, bet nepatikimas išvadas.",
+      lt: "Atpažink, kaip pavyzdžiai pagrindžia platesnes, bet nevisiškai tikras išvadas.",
       lv: "Atpazīsti, kā piemēri pamato plašākus, bet vēl nedrošus secinājumus.",
       et: "Märka, kuidas näited toetavad üldisemaid, kuid siiski ebakindlaid järeldusi.",
       be: "Распазнай, як прыклады падтрымліваюць больш агульныя, але няпэўныя высновы.",

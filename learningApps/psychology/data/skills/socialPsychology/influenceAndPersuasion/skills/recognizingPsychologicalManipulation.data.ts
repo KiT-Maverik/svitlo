@@ -52,7 +52,7 @@ export const recognizingPsychologicalManipulation_Skill_Data = buildSkillConfig(
       ko: "두려움, 죄책감, 사회적 기대를 이용하는 압박 방법을 알아보세요.",
       tr: "Korku, suçluluk veya toplumsal beklentileri kullanan baskı yöntemlerini belirle.",
       vi: "Nhận ra cách gây áp lực lợi dụng nỗi sợ, cảm giác tội lỗi hoặc kỳ vọng xã hội.",
-      ta: "அச்சம், குற்றவுணர்வு, சமூக எதிர்பார்ப்பை பயன்படுத்தும் அழுத்த முறைகளை அறிக.",
+      ta: "அச்சம், குற்றவுணர்வு, சமூக எதிர்பார்ப்பை பயன்படுத்தும் அழுத்த முறைகளை அறியுங்கள்.",
       te: "భయం, అపరాధ భావం, సామాజిక అంచనాలను దోచుకునే ఒత్తిడి పద్ధతులను గుర్తించండి.",
       mr: "भीती, अपराधभावना किंवा सामाजिक अपेक्षांचा वापर करणारे दबावाचे उपाय ओळखा.",
       ms: "Kenali cara tekanan yang mengeksploitasi takut, rasa bersalah atau jangkaan sosial.",

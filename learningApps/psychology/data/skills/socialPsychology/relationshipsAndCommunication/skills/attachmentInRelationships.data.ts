@@ -52,7 +52,7 @@ export const attachmentInRelationships_Skill_Data = buildSkillConfig({
       ko: "애착 유형이 시간이 지나며 관계에 미치는 영향을 살펴보세요.",
       tr: "Bağlanma örüntülerinin zamanla ilişkileri nasıl etkileyebileceğini keşfet.",
       vi: "Khám phá các kiểu gắn bó ảnh hưởng đến mối quan hệ theo thời gian ra sao.",
-      ta: "பற்றுதல் முறைகள் காலப்போக்கில் உறவுகளை எவ்வாறு பாதிக்கலாம் என்பதை ஆராய்.",
+      ta: "பற்றுதல் முறைகள் காலப்போக்கில் உறவுகளை எவ்வாறு பாதிக்கலாம் என்பதை ஆராயுங்கள்.",
       te: "అనుబంధ నమూనాలు కాలక్రమంలో సంబంధాలను ఎలా ప్రభావితం చేస్తాయో తెలుసుకోండి.",
       mr: "जोडले जाण्याच्या पद्धती काळानुसार नाती कशी प्रभावित करतात ते पाहा.",
       ms: "Terokai bagaimana corak kelekatan mempengaruhi hubungan dari masa ke masa.",

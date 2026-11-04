@@ -52,7 +52,7 @@ export const relationshipRepair_Skill_Data = buildSkillConfig({
       ko: "다툼 뒤에 신뢰를 되찾는 데 도움이 되는 행동을 이해하세요.",
       tr: "Anlaşmazlıktan sonra güveni yeniden kazanmanın yollarını öğren.",
       vi: "Hiểu điều gì giúp khôi phục niềm tin sau bất đồng.",
-      ta: "கருத்து வேறுபாட்டுக்குப் பிறகு நம்பிக்கையை மீட்டெடுக்க உதவுவதை அறிக.",
+      ta: "கருத்து வேறுபாட்டுக்குப் பிறகு நம்பிக்கையை மீட்டெடுக்க உதவுவதை அறியுங்கள்.",
       te: "విభేదం తర్వాత నమ్మకాన్ని తిరిగి పొందటానికి సహాయపడే విషయాలు తెలుసుకోండి.",
       mr: "मतभेदानंतर विश्वास परत मिळवायला काय मदत करते ते समजून घ्या.",
       ms: "Fahami perkara yang membantu memulihkan kepercayaan selepas perselisihan.",

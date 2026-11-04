@@ -52,7 +52,7 @@ export const emotionalAppraisal_Skill_Data = buildSkillConfig({
       ko: "상황에 대한 해석이 감정 반응을 어떻게 바꾸는지 알아보세요.",
       tr: "Bir durumu yorumlama biçiminin duygusal tepkiyi nasıl etkilediğini keşfet.",
       vi: "Khám phá cách hiểu tình huống ảnh hưởng đến phản ứng cảm xúc.",
-      ta: "ஒரு சூழலைப் புரியும் விதம் உணர்ச்சிப் பதிலை எவ்வாறு பாதிக்கிறது என்பதை ஆராய்.",
+      ta: "ஒரு சூழலைப் புரியும் விதம் உணர்ச்சிப் பதிலை எவ்வாறு பாதிக்கிறது என்பதை ஆராயுங்கள்.",
       te: "పరిస్థితిని అర్థం చేసుకునే విధానం భావోద్వేగ స్పందనను ఎలా ప్రభావితం చేస్తుందో పరిశీలించండి.",
       mr: "परिस्थितीचा अर्थ लावल्याने भावनिक प्रतिक्रिया कशी बदलते ते पाहा.",
       ms: "Terokai cara tafsiran situasi mempengaruhi tindak balas emosi.",

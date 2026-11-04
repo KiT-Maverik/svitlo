@@ -62,7 +62,7 @@ export const bodyAndChemicalSenses_SkillGroup_Data = buildSkillGroupConfig({
       ko: "촉각, 통증, 냄새, 맛, 신체 감각이 경험을 어떻게 이끄는지 살펴보세요.",
       tr: "Dokunma, ağrı, koku, tat ve beden duyularının deneyimlerimizi nasıl yönlendirdiğini keşfet.",
       vi: "Khám phá cách xúc giác, đau, khứu giác, vị giác và cảm giác cơ thể định hướng trải nghiệm.",
-      ta: "தொடுதல், வலி, மணம், சுவை, உடல் உணர்வுகள் அனுபவத்தை எவ்வாறு வழிநடத்துகின்றன என்பதை ஆராய்.",
+      ta: "தொடுதல், வலி, மணம், சுவை, உடல் உணர்வுகள் அனுபவத்தை எவ்வாறு வழிநடத்துகின்றன என்பதை ஆராயுங்கள்.",
       te: "స్పర్శ, నొప్పి, వాసన, రుచి, శరీర భావనలు అనుభవాలకు ఎలా దారితీస్తాయో తెలుసుకోండి.",
       mr: "स्पर्श, वेदना, गंध, चव आणि शरीराच्या संवेदना अनुभवांना कशी दिशा देतात ते पाहा.",
       ms: "Terokai bagaimana sentuhan, sakit, bau, rasa dan deria badan membimbing pengalaman kita.",

@@ -52,7 +52,7 @@ export const smellPerception_Skill_Data = buildSkillConfig({
       ko: "이전 경험과 맥락이 냄새를 알아보는 데 어떻게 영향을 주는지 살펴보세요.",
       tr: "Önceki deneyimlerin ve bağlamın kokuları tanımayı nasıl etkilediğini fark et.",
       vi: "Nhận biết kinh nghiệm trước đây và bối cảnh ảnh hưởng đến nhận diện mùi như thế nào.",
-      ta: "முந்தைய அனுபவமும் சூழலும் மணங்களை அறிதலை எவ்வாறு பாதிக்கின்றன என்பதை அறி.",
+      ta: "முந்தைய அனுபவமும் சூழலும் மணங்களை அறிதலை எவ்வாறு பாதிக்கின்றன என்பதை அறியுங்கள்.",
       te: "గత అనుభవం, సందర్భం వాసనలను గుర్తించడంపై ఎలా ప్రభావం చూపుతాయో గుర్తించండి.",
       mr: "आधीचे अनुभव आणि परिस्थिती वास ओळखण्यावर कसा परिणाम करतात ते जाणून घ्या.",
       ms: "Kenali bagaimana pengalaman lalu dan konteks mempengaruhi pengecaman bau.",

@@ -52,7 +52,7 @@ export const painPerception_Skill_Data = buildSkillConfig({
       ko: "통증 경험이 단 하나의 조직 신호로 결정되지 않는 이유를 알아보세요.",
       tr: "Ağrı deneyiminin neden tek bir doku sinyalinden fazlasına bağlı olduğunu araştır.",
       vi: "Tìm hiểu vì sao trải nghiệm đau không chỉ phụ thuộc vào một tín hiệu từ mô.",
-      ta: "வலி அனுபவம் ஏன் ஒரே திசுச் சமிக்ஞையை மட்டும் சார்ந்திருக்காது என்பதை ஆராய்.",
+      ta: "வலி அனுபவம் ஏன் ஒரே திசுச் சமிக்ஞையை மட்டும் சார்ந்திருக்காது என்பதை ஆராயுங்கள்.",
       te: "నొప్పి అనుభవం ఒకే కణజాల సంకేతానికి మాత్రమే ఎందుకు పరిమితం కాదో పరిశీలించండి.",
       mr: "वेदनेचा अनुभव एका ऊतीच्या संकेतापुरता का मर्यादित नसतो ते पाहा.",
       ms: "Terokai mengapa pengalaman sakit bergantung pada lebih daripada satu isyarat tisu.",

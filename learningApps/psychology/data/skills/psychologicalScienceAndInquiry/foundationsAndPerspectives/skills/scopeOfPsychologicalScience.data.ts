@@ -52,7 +52,7 @@ export const scopeOfPsychologicalScience_Skill_Data = buildSkillConfig({
       ko: "심리학 연구와 철학, 임상 치료의 차이를 구분해 보세요.",
       tr: "Psikolojik araştırmayı felsefeden ve klinik tedaviden ayırt et.",
       vi: "Phân biệt nghiên cứu tâm lý học với triết học và điều trị lâm sàng.",
-      ta: "உளவியல் ஆராய்ச்சியைத் தத்துவம் மற்றும் மருத்துவச் சிகிச்சையிலிருந்து வேறுபடுத்து.",
+      ta: "உளவியல் ஆராய்ச்சியைத் தத்துவம் மற்றும் மருத்துவச் சிகிச்சையிலிருந்து வேறுபடுத்துங்கள்.",
       te: "మనస్తత్వ పరిశోధనను తత్వశాస్త్రం, వైద్య చికిత్స నుంచి వేరు చేసి గుర్తించండి.",
       mr: "मानसशास्त्रीय संशोधन, तत्त्वज्ञान आणि वैद्यकीय उपचार यांतील फरक ओळखा.",
       ms: "Bezakan penyelidikan psikologi daripada falsafah dan rawatan klinikal.",

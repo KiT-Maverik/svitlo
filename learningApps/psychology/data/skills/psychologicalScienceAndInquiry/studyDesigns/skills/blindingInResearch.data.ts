@@ -52,7 +52,7 @@ export const blindingInResearch_Skill_Data = buildSkillConfig({
       ko: "참가자나 평가자가 집단 배정을 모르면 특정 편향을 어떻게 줄일 수 있는지 설명해 보세요.",
       tr: "Katılımcıların veya değerlendiricilerin grup atamalarını bilmemesinin bazı yanlılıkları nasıl azalttığını açıkla.",
       vi: "Giải thích cách giấu thông tin phân nhóm với người tham gia hoặc người đánh giá có thể giảm một số thiên lệch.",
-      ta: "பங்கேற்பாளர்கள் அல்லது மதிப்பீட்டாளர்களிடம் குழு ஒதுக்கீட்டை மறைப்பது சில சார்புகளை எவ்வாறு குறைக்கிறது என்பதை விளக்கு.",
+      ta: "பங்கேற்பாளர்கள் அல்லது மதிப்பீட்டாளர்களிடம் குழு ஒதுக்கீட்டை மறைப்பது சில சார்புகளை எவ்வாறு குறைக்கிறது என்பதை விளக்குங்கள்.",
       te: "పాల్గొనేవారికి లేదా మూల్యాంకనకర్తలకు సమూహ కేటాయింపు తెలియకుండా ఉంచడం కొన్ని పక్షపాతాలను ఎలా తగ్గిస్తుందో వివరించండి.",
       mr: "सहभागींना किंवा मूल्यांकनकर्त्यांना गटवाटप माहीत नसल्यास काही पक्षपात कसे कमी होतात ते स्पष्ट करा.",
       ms: "Terangkan bagaimana menyembunyikan pembahagian kumpulan daripada peserta atau penilai boleh mengurangkan bias tertentu.",

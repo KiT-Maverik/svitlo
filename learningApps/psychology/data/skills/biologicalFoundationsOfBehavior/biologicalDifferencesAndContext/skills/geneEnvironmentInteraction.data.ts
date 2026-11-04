@@ -52,7 +52,7 @@ export const geneEnvironmentInteraction_Skill_Data = buildSkillConfig({
       ko: "유전적 소인이 환경에 따라 다른 결과를 낳는 이유를 알아보세요.",
       tr: "Genetik yatkınlıkların farklı ortamlarda neden farklı sonuçlar doğurabildiğini araştır.",
       vi: "Tìm hiểu vì sao khuynh hướng di truyền có thể dẫn đến kết quả khác nhau trong môi trường khác nhau.",
-      ta: "மரபணு சார்புகள் வெவ்வேறு சூழல்களில் ஏன் வெவ்வேறு விளைவுகளைத் தருகின்றன என்பதை ஆராய்.",
+      ta: "மரபணு சார்புகள் வெவ்வேறு சூழல்களில் ஏன் வெவ்வேறு விளைவுகளைத் தருகின்றன என்பதை ஆராயுங்கள்.",
       te: "జన్యు ప్రవృత్తులు వేర్వేరు పరిస్థితుల్లో వేర్వేరు ఫలితాలు ఎందుకు ఇస్తాయో తెలుసుకోండి.",
       mr: "आनुवंशिक प्रवृत्तींचे परिणाम वेगवेगळ्या परिस्थितीत वेगळे का असू शकतात ते पाहा.",
       ms: "Terokai mengapa kecenderungan genetik boleh membawa hasil yang berbeza dalam persekitaran berlainan.",

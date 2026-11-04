@@ -52,7 +52,7 @@ export const emotionFunctions_Skill_Data = buildSkillConfig({
       ko: "감정이 필요와 위협, 기회를 어떻게 알리는지 이해하세요.",
       tr: "Duyguların ihtiyaç, tehlike ve fırsatları nasıl işaret ettiğini anla.",
       vi: "Hiểu cách cảm xúc báo hiệu nhu cầu, nguy cơ và cơ hội.",
-      ta: "தேவைகள், அச்சுறுத்தல்கள், வாய்ப்புகளை உணர்ச்சிகள் எவ்வாறு தெரிவிக்கின்றன என்பதைப் புரிந்துகொள்.",
+      ta: "தேவைகள், அச்சுறுத்தல்கள், வாய்ப்புகளை உணர்ச்சிகள் எவ்வாறு தெரிவிக்கின்றன என்பதைப் புரிந்துகொள்ளுங்கள்.",
       te: "అవసరాలు, ముప్పులు, అవకాశాలను భావోద్వేగాలు ఎలా సూచిస్తాయో అర్థం చేసుకోండి.",
       mr: "भावना गरजा, धोके आणि संधी कशा दाखवतात ते समजून घ्या.",
       ms: "Fahami bagaimana emosi memberi isyarat keperluan, ancaman dan peluang.",

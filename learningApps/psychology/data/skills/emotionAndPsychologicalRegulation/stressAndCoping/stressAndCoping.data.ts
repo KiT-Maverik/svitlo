@@ -61,7 +61,7 @@ export const stressAndCoping_SkillGroup_Data = buildSkillGroupConfig({
       ko: "사람들이 스트레스를 평가하고 경험하며 대처하는 방법을 알아보세요.",
       tr: "İnsanların stresi nasıl değerlendirdiğini, yaşadığını ve yönettiğini keşfet.",
       vi: "Khám phá cách mọi người đánh giá, trải qua và ứng phó căng thẳng.",
-      ta: "மக்கள் மன அழுத்தத்தை எவ்வாறு மதிப்பிட்டு, அனுபவித்து, சமாளிக்கிறார்கள் என்பதை அறிக.",
+      ta: "மக்கள் மன அழுத்தத்தை எவ்வாறு மதிப்பிட்டு, அனுபவித்து, சமாளிக்கிறார்கள் என்பதை அறியுங்கள்.",
       te: "ప్రజలు ఒత్తిడిని ఎలా అంచనా వేసి, అనుభవించి, ఎదుర్కొంటారో తెలుసుకోండి.",
       mr: "लोक ताणाचे मूल्यमापन, अनुभव आणि सामना कसा करतात ते पाहा.",
       ms: "Ketahui cara orang menilai, mengalami dan menangani tekanan.",

@@ -52,7 +52,7 @@ export const implementationIntentions_Skill_Data = buildSkillConfig({
       ko: "‘만약 …이면 …한다’는 계획으로 상황과 행동을 연결하세요.",
       tr: "Bir durumu planlanan eyleme bağlamak için «eğer… o zaman…» planı kullan.",
       vi: "Dùng kế hoạch «nếu… thì…» để nối tình huống với hành động dự định.",
-      ta: "ஒரு சூழலையும் திட்டமிட்ட செயலையும் இணைக்க 'என்றால்… அப்போது…' திட்டங்களைப் பயன்படுத்து.",
+      ta: "ஒரு சூழலையும் திட்டமிட்ட செயலையும் இணைக்க 'என்றால்… அப்போது…' திட்டங்களைப் பயன்படுத்துங்கள்.",
       te: "పరిస్థితిని ఉద్దేశించిన చర్యతో అనుసంధానించేందుకు ‘ఒకవేళ… అయితే…’ ప్రణాళిక వాడండి.",
       mr: "परिस्थिती आणि ठरलेली कृती जोडण्यासाठी «जर… तर…» योजना वापरा.",
       ms: "Gunakan rancangan «jika… maka…» untuk mengaitkan situasi dengan tindakan.",

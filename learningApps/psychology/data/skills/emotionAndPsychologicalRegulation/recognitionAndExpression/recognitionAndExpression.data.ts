@@ -60,7 +60,7 @@ export const recognitionAndExpression_SkillGroup_Data = buildSkillGroupConfig({
       ko: "상황에 따라 감정을 알아보고 표현하는 방법을 배우세요.",
       tr: "Duyguların farklı durumlarda nasıl tanındığını ve ifade edildiğini öğren.",
       vi: "Học cách nhận biết và biểu đạt cảm xúc trong những hoàn cảnh khác nhau.",
-      ta: "பல்வேறு சூழலில் உணர்ச்சிகளை அறிந்து வெளிப்படுத்துவதைக் கற்றுக்கொள்.",
+      ta: "பல்வேறு சூழலில் உணர்ச்சிகளை அறிந்து வெளிப்படுத்துவதைக் கற்றுக்கொள்ளுங்கள்.",
       te: "వివిధ పరిస్థితుల్లో భావోద్వేగాలను ఎలా గుర్తించి వ్యక్తం చేస్తారో నేర్చుకోండి.",
       mr: "विविध परिस्थितीत भावना कशा ओळखायच्या व व्यक्त करायच्या ते शिका.",
       ms: "Belajar mengenal pasti dan meluahkan emosi dalam pelbagai keadaan.",

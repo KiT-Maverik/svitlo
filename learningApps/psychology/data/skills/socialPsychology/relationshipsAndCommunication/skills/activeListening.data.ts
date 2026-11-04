@@ -52,7 +52,7 @@ export const activeListening_Skill_Data = buildSkillConfig({
       ko: "집중해서 듣고 상대의 뜻을 확인하는 연습을 해 보세요.",
       tr: "Dikkatle dinlemeyi ve karşıdakinin anlatmak istediğini netleştirmeyi dene.",
       vi: "Luyện chú tâm nghe và làm rõ điều người khác muốn truyền đạt.",
-      ta: "மற்றவரின் பேச்சை கவனமாகக் கேட்டு கருத்தைத் தெளிவுபடுத்தப் பயிற்சி செய்.",
+      ta: "மற்றவரின் பேச்சை கவனமாகக் கேட்டு கருத்தைத் தெளிவுபடுத்தப் பயிற்சி செய்யுங்கள்.",
       te: "శ్రద్ధగా విని, ఎదుటివారి మాటల అర్థాన్ని స్పష్టం చేసుకోవడం అభ్యసించండి.",
       mr: "लक्षपूर्वक ऐकणे व समोरच्याचे म्हणणे स्पष्ट करून घेण्याचा सराव करा.",
       ms: "Berlatih memberi perhatian dan menjelaskan maksud komunikasi orang lain.",

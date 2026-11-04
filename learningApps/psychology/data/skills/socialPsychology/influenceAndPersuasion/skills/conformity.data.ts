@@ -52,7 +52,7 @@ export const conformity_Skill_Data = buildSkillConfig({
       ko: "집단의 기대에 맞추려고 행동을 바꾸는 현상을 알아보세요.",
       tr: "Grubun beklentilerine uymak için davranışı değiştirmeyi tanı.",
       vi: "Nhận biết thay đổi hành vi để phù hợp mong đợi của nhóm.",
-      ta: "குழுவின் எதிர்பார்ப்புக்கேற்ப நடத்தை மாற்றப்படுவதை அறிக.",
+      ta: "குழுவின் எதிர்பார்ப்புக்கேற்ப நடத்தை மாற்றப்படுவதை அறியுங்கள்.",
       te: "గుంపు అంచనాలకు సరిపోయేందుకు ప్రవర్తన మార్చడాన్ని గుర్తించండి.",
       mr: "गटाच्या अपेक्षांशी जुळण्यासाठी वर्तन बदलणे ओळखा.",
       ms: "Kenali perubahan tingkah laku agar sepadan dengan jangkaan kumpulan.",

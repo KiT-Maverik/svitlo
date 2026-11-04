@@ -52,7 +52,7 @@ export const researchWithVulnerableParticipants_Skill_Data = buildSkillConfig({
       ko: "아동과 취약한 상황의 참가자에게 필요한 추가 보호 조치를 알아보세요.",
       tr: "Çocuklar ve kırılgan durumdaki katılımcılar için gereken ek korumaları tanı.",
       vi: "Nhận biết các biện pháp bảo vệ bổ sung cần thiết cho trẻ em và người tham gia dễ bị tổn thương.",
-      ta: "குழந்தைகளுக்கும் பாதிக்கப்படக்கூடிய பங்கேற்பாளர்களுக்கும் தேவையான கூடுதல் பாதுகாப்புகளை அறிந்துகொள்.",
+      ta: "குழந்தைகளுக்கும் பாதிக்கப்படக்கூடிய பங்கேற்பாளர்களுக்கும் தேவையான கூடுதல் பாதுகாப்புகளை அறிந்துகொள்ளுங்கள்.",
       te: "పిల్లలు, ప్రమాదాలకు లోనయ్యే పాల్గొనేవారి కోసం అవసరమైన అదనపు రక్షణలను గుర్తించండి.",
       mr: "मुले आणि असुरक्षित स्थितीतील सहभागी यांच्यासाठी आवश्यक अतिरिक्त संरक्षणे ओळखा.",
       ms: "Kenali perlindungan tambahan yang diperlukan oleh kanak-kanak dan peserta rentan.",
