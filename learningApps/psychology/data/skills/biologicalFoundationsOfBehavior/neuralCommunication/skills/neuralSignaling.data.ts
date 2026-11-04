@@ -54,7 +54,7 @@ export const neuralSignaling_Skill_Data = buildSkillConfig({
       vi: "Giải thích cách tế bào thần kinh truyền tín hiệu điện và hóa học.",
       ta: "நரம்பணுக்கள் மின்சார மற்றும் வேதியியல் சமிக்ஞைகளை எவ்வாறு கடத்துகின்றன என்பதை விளக்கு.",
       te: "నాడీకణాలు విద్యుత్, రసాయన సంకేతాలను ఎలా పంపుతాయో వివరించండి.",
-      mr: "मज्जापेशी विद्युत आणि रासायनिक संकेत कसे पाठवतात ते स्पष्ट कर.",
+      mr: "मज्जापेशी विद्युत आणि रासायनिक संकेत कसे पाठवतात ते स्पष्ट करा.",
       ms: "Terangkan bagaimana sel saraf menghantar isyarat elektrik dan kimia.",
       he: "הסבירו כיצד תאי עצב מעבירים אותות חשמליים וכימיים.",
       pl: "Wyjaśnij, jak komórki nerwowe przekazują sygnały elektryczne i chemiczne.",

@@ -54,7 +54,7 @@ export const empathy_Skill_Data = buildSkillConfig({
       vi: "Hiểu đồng cảm là nhận biết và phần nào chia sẻ trải nghiệm của người khác.",
       ta: "மற்றொருவரின் அனுபவத்தை அறிந்து அதன் சில உணர்வுகளைப் பகிர்வதே பிறருணர்வு என்பதை அறிக.",
       te: "ఇతరుల అనుభవాన్ని గుర్తించి కొంతవరకు పంచుకోవడమే సహానుభూతి అని అర్థం చేసుకోండి.",
-      mr: "इतरांच्या अनुभवातील काही भाग समजणे व जाणवणे म्हणजे सहानुभूती हे समज.",
+      mr: "इतरांच्या अनुभवातील काही भाग समजणे व जाणवणे म्हणजे सहानुभूती हे समजून घ्या.",
       ms: "Fahami empati sebagai mengenali dan berkongsi sebahagian pengalaman orang lain.",
       he: "הבינו שאמפתיה כוללת זיהוי וחוויה חלקית של חוויית הזולת.",
       pl: "Zrozum empatię jako rozpoznawanie i częściowe współodczuwanie doświadczeń drugiej osoby.",

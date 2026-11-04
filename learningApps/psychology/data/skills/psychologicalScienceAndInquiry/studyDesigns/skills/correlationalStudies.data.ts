@@ -54,7 +54,7 @@ export const correlationalStudies_Skill_Data = buildSkillConfig({
       vi: "Nhận biết mối tương quan cho thấy điều gì và không thể chứng minh điều gì.",
       ta: "தொடர்புறவுகள் எதைக் காட்டுகின்றன, எதை நிரூபிக்க முடியாது என்பதை அறிந்துகொள்.",
       te: "సహసంబంధాలు ఏమి చూపుతాయో, ఏమి నిరూపించలేవో గుర్తించండి.",
-      mr: "सहसंबंध काय दाखवतात आणि काय सिद्ध करू शकत नाहीत हे ओळख.",
+      mr: "सहसंबंध काय दाखवतात आणि काय सिद्ध करू शकत नाहीत हे ओळखा.",
       ms: "Kenali perkara yang ditunjukkan oleh korelasi dan perkara yang tidak dapat dibuktikannya.",
       he: "זהו מה מתאמים מראים ומה הם אינם יכולים להוכיח.",
       pl: "Rozpoznaj, co pokazują korelacje, a czego nie mogą dowieść.",

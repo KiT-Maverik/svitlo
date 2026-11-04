@@ -42,7 +42,7 @@ export const emotionalAppraisal_Skill_Data = buildSkillConfig({
       hi: "जानें कि परिस्थिति को समझने का तरीका भावनात्मक प्रतिक्रिया कैसे बदलता है।",
       es: "Explora cómo la interpretación de una situación influye en la respuesta emocional.",
       ar: "استكشف كيف يؤثر تفسير الموقف في الاستجابة الانفعالية.",
-      fr: "Explore comment interpréter une situation influence la réponse émotionnelle.",
+      fr: "Explore comment l’interprétation d’une situation influence la réponse émotionnelle.",
       bn: "পরিস্থিতির ব্যাখ্যা আবেগীয় প্রতিক্রিয়াকে কীভাবে প্রভাবিত করে তা জানো।",
       pt: "Explore como interpretar uma situação influencia a reação emocional.",
       ur: "جانیں کہ کسی صورتِ حال کی تشریح جذباتی ردِعمل کیسے بدلتی ہے۔",

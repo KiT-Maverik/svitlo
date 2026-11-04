@@ -45,7 +45,7 @@ export const stimulusGeneralization_Skill_Data = buildSkillConfig({
       fr: "Explique pourquoi des signaux similaires peuvent déclencher une réponse apprise.",
       bn: "একই রকম সংকেতও কেন শেখা প্রতিক্রিয়া সৃষ্টি করতে পারে তা ব্যাখ্যা করো।",
       pt: "Explique por que sinais semelhantes também podem provocar uma resposta aprendida.",
-      ur: "بتائیں کہ ملتے جلتے اشارے بھی سیکھی ہوئی ردعمل کیوں پیدا کر سکتے ہیں۔",
+      ur: "بتائیں کہ ملتے جلتے اشارے بھی سیکھا ہوا ردِعمل کیوں پیدا کر سکتے ہیں۔",
       id: "Jelaskan mengapa isyarat serupa juga dapat memicu respons yang dipelajari.",
       de: "Erkläre, warum ähnliche Signale ebenfalls eine gelernte Reaktion auslösen können.",
       ja: "似た合図でも学習した反応が起こる理由を説明しよう。",

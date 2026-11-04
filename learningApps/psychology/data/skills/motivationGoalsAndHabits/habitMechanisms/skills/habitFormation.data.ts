@@ -54,7 +54,7 @@ export const habitFormation_Skill_Data = buildSkillConfig({
       vi: "Khám phá cách lặp lại trong điều kiện ổn định làm hành động tự động hóa.",
       ta: "ஒரே மாதிரியான சூழலில் மீண்டும் செய்வது செயலை எவ்வாறு தானியங்கச் செய்கிறது என்பதை ஆராய்.",
       te: "స్థిరమైన పరిస్థితుల్లో పునరావృతంతో చర్యలు ఎలా స్వయంచాలకమవుతాయో తెలుసుకోండి.",
-      mr: "सारख्या परिस्थितीत कृतीची पुनरावृत्ती तिला आपोआप कशी घडवते ते समज.",
+      mr: "सारख्या परिस्थितीत कृतीची पुनरावृत्ती तिला आपोआप कशी घडवते ते समजून घ्या.",
       ms: "Terokai bagaimana pengulangan dalam keadaan stabil menjadikan tindakan automatik.",
       he: "חקרו כיצד חזרה בתנאים יציבים הופכת פעולות לאוטומטיות.",
       pl: "Sprawdź, jak powtarzanie w stałych warunkach może automatyzować działanie.",

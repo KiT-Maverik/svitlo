@@ -54,7 +54,7 @@ export const acuteStress_Skill_Data = buildSkillConfig({
       vi: "Hiểu các phản ứng tâm lý ngắn hạn trước thách thức tức thời.",
       ta: "உடனடி சவால்களுக்கு ஏற்படும் குறுகியகால மன எதிர்வினைகளைப் புரிந்துகொள்.",
       te: "తక్షణ సవాళ్లకు వచ్చే స్వల్పకాలిక మానసిక స్పందనలను అర్థం చేసుకోండి.",
-      mr: "तातडीच्या आव्हानांना येणाऱ्या अल्पकालीन मानसिक प्रतिक्रिया समजून घे.",
+      mr: "तातडीच्या आव्हानांना येणाऱ्या अल्पकालीन मानसिक प्रतिक्रिया समजून घ्या.",
       ms: "Fahami tindak balas psikologi jangka pendek terhadap cabaran segera.",
       he: "הבינו תגובות פסיכולוגיות קצרות לאתגרים מיידיים.",
       pl: "Zrozum krótkotrwałe reakcje psychiczne na nagłe wyzwania.",

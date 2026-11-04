@@ -54,7 +54,7 @@ export const expectationEffects_Skill_Data = buildSkillConfig({
       vi: "Nhận biết kỳ vọng có thể ảnh hưởng đến hành vi hoặc trải nghiệm được báo cáo như thế nào.",
       ta: "எதிர்பார்ப்புகள் நடத்தை அல்லது தெரிவிக்கப்படும் அனுபவத்தை எவ்வாறு பாதிக்கின்றன என்பதை அறிந்துகொள்.",
       te: "అంచనాలు ప్రవర్తనను లేదా చెప్పబడిన అనుభవాన్ని ఎలా ప్రభావితం చేస్తాయో గుర్తించండి.",
-      mr: "अपेक्षा वर्तनावर किंवा सांगितलेल्या अनुभवांवर कसा परिणाम करू शकतात ते ओळख.",
+      mr: "अपेक्षा वर्तनावर किंवा सांगितलेल्या अनुभवांवर कसा परिणाम करू शकतात ते ओळखा.",
       ms: "Kenali bagaimana jangkaan boleh mempengaruhi tingkah laku atau pengalaman yang dilaporkan.",
       he: "זהו כיצד ציפיות יכולות להשפיע על התנהגות או על חוויות מדווחות.",
       pl: "Rozpoznaj, jak oczekiwania mogą wpływać na zachowanie lub relacjonowane doświadczenia.",

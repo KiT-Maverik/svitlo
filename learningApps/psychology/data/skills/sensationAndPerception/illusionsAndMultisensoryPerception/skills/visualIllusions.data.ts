@@ -54,7 +54,7 @@ export const visualIllusions_Skill_Data = buildSkillConfig({
       vi: "Giải thích vì sao ảo ảnh thị giác có thể khác với đặc tính vật lý được đo.",
       ta: "காட்சி மாயத்தோற்றம் அளவிடப்பட்ட இயற்பியல் பண்பிலிருந்து ஏன் மாறுபடலாம் என்பதை விளக்கு.",
       te: "దృశ్య భ్రమ కొలిచిన భౌతిక లక్షణానికి భిన్నంగా ఎందుకు కనిపించవచ్చో వివరించండి.",
-      mr: "दृश्य भ्रम मोजलेल्या भौतिक वैशिष्ट्यापेक्षा वेगळा का भासू शकतो ते स्पष्ट कर.",
+      mr: "दृश्य भ्रम मोजलेल्या भौतिक वैशिष्ट्यापेक्षा वेगळा का भासू शकतो ते स्पष्ट करा.",
       ms: "Terangkan mengapa ilusi visual boleh berbeza daripada sifat fizikal yang diukur.",
       he: "הסבירו מדוע אשליה חזותית יכולה להיראות שונה מתכונה פיזיקלית שנמדדה.",
       pl: "Wyjaśnij, dlaczego iluzja wzrokowa może odbiegać od zmierzonej cechy fizycznej.",

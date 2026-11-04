@@ -54,7 +54,7 @@ export const expectancyAndValue_Skill_Data = buildSkillConfig({
       vi: "Giải thích vì sao kỳ vọng và giá trị cảm nhận ảnh hưởng đến mức nỗ lực.",
       ta: "எதிர்பார்ப்பும் உணரப்படும் மதிப்பும் முயற்சியை ஏன் பாதிக்கின்றன என்பதை விளக்குக.",
       te: "ఆశలు, గ్రహించిన విలువ కృషిని ఎందుకు ప్రభావితం చేస్తాయో వివరించండి.",
-      mr: "अपेक्षा व जाणवणारे महत्त्व प्रयत्नांवर कसा परिणाम करतात ते स्पष्ट कर.",
+      mr: "अपेक्षा व जाणवणारे महत्त्व प्रयत्नांवर कसा परिणाम करतात ते स्पष्ट करा.",
       ms: "Terangkan mengapa jangkaan dan nilai yang dirasakan mempengaruhi usaha.",
       he: "הסבירו מדוע ציפיות והערך הנתפס משפיעים על המאמץ.",
       pl: "Wyjaśnij, dlaczego oczekiwania i postrzegana wartość wpływają na wysiłek.",

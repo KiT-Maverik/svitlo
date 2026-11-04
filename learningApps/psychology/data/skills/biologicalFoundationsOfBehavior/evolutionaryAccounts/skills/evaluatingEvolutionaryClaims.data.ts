@@ -54,7 +54,7 @@ export const evaluatingEvolutionaryClaims_Skill_Data = buildSkillConfig({
       vi: "Đánh giá các giải thích tiến hóa bằng bằng chứng chứ không chỉ bằng câu chuyện nghe hợp lý.",
       ta: "நம்பத்தகுந்த கதைகளை மட்டும் அல்லாமல் சான்றுகளைக் கொண்டு பரிணாம விளக்கங்களை மதிப்பிடு.",
       te: "కేవలం నమ్మదగిన కథలతో కాకుండా ఆధారాలతో పరిణామ వివరణలను అంచనా వేయండి.",
-      mr: "केवळ पटणाऱ्या गोष्टींऐवजी पुराव्यांच्या आधारे उत्क्रांतीविषयक स्पष्टीकरणे तपास.",
+      mr: "केवळ पटणाऱ्या गोष्टींऐवजी पुराव्यांच्या आधारे उत्क्रांतीविषयक स्पष्टीकरणे तपासा.",
       ms: "Nilai penjelasan evolusi dengan bukti, bukan sekadar cerita yang munasabah.",
       he: "העריכו הסברים אבולוציוניים בעזרת ראיות, ולא רק סיפורים שנשמעים סבירים.",
       pl: "Oceniaj wyjaśnienia ewolucyjne na podstawie dowodów, a nie tylko wiarygodnie brzmiących historii.",

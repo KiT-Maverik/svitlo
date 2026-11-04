@@ -46,7 +46,7 @@ export const natureAndNurtureInAbility_Skill_Data = buildSkillConfig({
       bn: "জন্মগত বৈশিষ্ট্য ও পরিবেশ কীভাবে একসঙ্গে সক্ষমতাকে প্রভাবিত করে তা জানো।",
       pt: "Explore como características herdadas e ambientes influenciam as capacidades em conjunto.",
       ur: "جانیں کہ وراثتی خصوصیات اور ماحول مل کر صلاحیتوں پر کیسے اثر ڈالتے ہیں۔",
-      id: "Jelajahi bagaimana sifat bawaan dan lingkungan bersama-sama memengaruhi kemampuan.",
+      id: "Jelajahi bagaimana sifat yang diwariskan dan lingkungan bersama-sama memengaruhi kemampuan.",
       de: "Erkunde, wie erbliche Merkmale und Umwelten gemeinsam Fähigkeiten beeinflussen.",
       ja: "遺伝的な特徴と環境がともに能力へどう影響するか探ろう。",
       ko: "유전적 특성과 환경이 능력에 함께 어떤 영향을 주는지 알아보세요.",

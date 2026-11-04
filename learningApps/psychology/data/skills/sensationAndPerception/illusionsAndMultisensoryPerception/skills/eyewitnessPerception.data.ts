@@ -54,7 +54,7 @@ export const eyewitnessPerception_Skill_Data = buildSkillConfig({
       vi: "Cân nhắc giới hạn quan sát của nhân chứng trong các điều kiện gây phân tâm.",
       ta: "கவனம் சிதறும் சூழலில் நேரில் கண்டவரின் கவனிப்புக்குள்ள வரம்புகளைச் சிந்தி.",
       te: "దృష్టి మరల్చే పరిస్థితుల్లో ప్రత్యక్ష సాక్షి పరిశీలనల పరిమితులను పరిగణించండి.",
-      mr: "लक्ष विचलित होणाऱ्या परिस्थितीत प्रत्यक्षदर्शीच्या निरीक्षणांच्या मर्यादा विचारात घे.",
+      mr: "लक्ष विचलित होणाऱ्या परिस्थितीत प्रत्यक्षदर्शीच्या निरीक्षणांच्या मर्यादा विचारात घ्या.",
       ms: "Pertimbangkan had pemerhatian saksi mata dalam keadaan yang mengganggu tumpuan.",
       he: "חשבו על מגבלות תצפיות של עדי ראייה בתנאים מסיחי דעת.",
       pl: "Rozważ ograniczenia obserwacji świadków w warunkach rozproszenia uwagi.",

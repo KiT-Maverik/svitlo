@@ -54,7 +54,7 @@ export const perceptualExpectations_Skill_Data = buildSkillConfig({
       vi: "Nhận biết khi kiến thức trước đây làm thay đổi cách diễn giải một kích thích không đổi.",
       ta: "முந்தைய அறிவு மாறாத தூண்டுதலின் விளக்கத்தை எப்போது மாற்றுகிறது என்பதை அறி.",
       te: "మునుపటి జ్ఞానం మారని ఉద్దీపన అర్థాన్ని ఎప్పుడు మారుస్తుందో గుర్తించండి.",
-      mr: "आधीचे ज्ञान बदल न झालेल्या उत्तेजनेचा अर्थ कधी बदलते ते ओळख.",
+      mr: "आधीचे ज्ञान बदल न झालेल्या उत्तेजनेचा अर्थ कधी बदलते ते ओळखा.",
       ms: "Kenali bila pengetahuan terdahulu mengubah tafsiran rangsangan yang sebenarnya tidak berubah.",
       he: "זהו מתי ידע קודם משנה פירוש של גירוי שלא השתנה.",
       pl: "Rozpoznaj, kiedy wcześniejsza wiedza zmienia interpretację niezmienionego bodźca.",

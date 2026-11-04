@@ -54,7 +54,7 @@ export const controlledExperiments_Skill_Data = buildSkillConfig({
       vi: "Xác định yếu tố được thao tác, kết quả được đo và các điều kiện đối chứng trong thí nghiệm.",
       ta: "சோதனையில் மாற்றப்படும் காரணிகள், அளவிடப்படும் முடிவுகள், கட்டுப்பாடுகள் ஆகியவற்றைக் கண்டறி.",
       te: "ప్రయోగంలో మార్చిన అంశాలు, కొలిచిన ఫలితాలు, నియంత్రణలను గుర్తించండి.",
-      mr: "प्रयोगात बदललेले घटक, मोजलेले परिणाम आणि नियंत्रण अटी ओळख.",
+      mr: "प्रयोगात बदललेले घटक, मोजलेले परिणाम आणि नियंत्रण अटी ओळखा.",
       ms: "Kenal pasti faktor yang dimanipulasi, hasil yang diukur dan kawalan dalam eksperimen.",
       he: "זהו בניסוי את הגורמים שהחוקרים שינו, התוצאות שנמדדו ותנאי הבקרה.",
       pl: "Wskaż czynniki poddawane manipulacji, mierzone wyniki i warunki kontrolne eksperymentu.",

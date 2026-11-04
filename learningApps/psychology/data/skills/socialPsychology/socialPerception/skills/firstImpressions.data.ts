@@ -54,7 +54,7 @@ export const firstImpressions_Skill_Data = buildSkillConfig({
       vi: "Nhận biết ấn tượng đầu tiên hình thành ra sao và vì sao có thể gây hiểu lầm.",
       ta: "முதல் எண்ணம் எவ்வாறு உருவாகிறது, ஏன் தவறாக இருக்கலாம் என்பதை அறிக.",
       te: "మొదటి అభిప్రాయాలు ఎలా ఏర్పడి ఎందుకు తప్పుదారి పట్టించవచ్చో తెలుసుకోండి.",
-      mr: "पहिली छाप कशी तयार होते व ती कधी दिशाभूल का करते ते जाणून घे.",
+      mr: "पहिली छाप कशी तयार होते व ती कधी दिशाभूल का करते ते जाणून घ्या.",
       ms: "Kenali cara tanggapan pertama terbentuk dan mengapa ia boleh mengelirukan.",
       he: "זהו כיצד נוצר רושם ראשוני ומדוע הוא עלול להטעות.",
       pl: "Rozpoznaj, jak powstaje pierwsze wrażenie i dlaczego może mylić.",

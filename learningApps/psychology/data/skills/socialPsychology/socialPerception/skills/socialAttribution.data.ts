@@ -54,7 +54,7 @@ export const socialAttribution_Skill_Data = buildSkillConfig({
       vi: "Hiểu cách con người suy luận nguyên nhân hành vi của người khác.",
       ta: "மற்றவர்களின் நடத்தைக்கான காரணங்களை மக்கள் எவ்வாறு ஊகிக்கிறார்கள் என்பதைப் புரிந்துகொள்.",
       te: "ఇతరుల ప్రవర్తన కారణాలను మనుషులు ఎలా ఊహిస్తారో అర్థం చేసుకోండి.",
-      mr: "इतरांच्या वर्तनाची कारणे लोक कशी ओळखतात ते समज.",
+      mr: "इतरांच्या वर्तनाची कारणे लोक कशी ओळखतात ते समजून घ्या.",
       ms: "Fahami cara orang menyimpulkan punca tingkah laku orang lain.",
       he: "הבינו כיצד אנשים מסיקים סיבות להתנהגות של אחרים.",
       pl: "Zrozum, jak ludzie wnioskują o przyczynach zachowania innych.",

@@ -54,7 +54,7 @@ export const selfEfficacy_Skill_Data = buildSkillConfig({
       vi: "Nhận biết niềm tin vào khả năng của mình ảnh hưởng nỗ lực và kiên trì ra sao.",
       ta: "தன் திறனில் நம்பிக்கை முயற்சியையும் விடாமுயற்சியையும் எவ்வாறு பாதிக்கிறது என்பதை அறிக.",
       te: "తన సామర్థ్యంపై నమ్మకం కృషి, పట్టుదలను ఎలా ప్రభావితం చేస్తుందో తెలుసుకోండి.",
-      mr: "स्वतःवरचा विश्वास प्रयत्न आणि चिकाटी कशी बदलतो ते ओळख.",
+      mr: "स्वतःवरचा विश्वास प्रयत्न आणि चिकाटी कशी बदलतो ते ओळखा.",
       ms: "Kenali bagaimana keyakinan pada kemampuan diri mempengaruhi usaha dan ketekunan.",
       he: "זהו כיצד אמונה ביכולת האישית משפיעה על מאמץ והתמדה.",
       pl: "Rozpoznaj, jak wiara we własne możliwości wpływa na wysiłek i wytrwałość.",

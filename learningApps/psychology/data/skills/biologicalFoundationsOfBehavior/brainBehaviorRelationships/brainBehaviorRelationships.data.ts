@@ -63,7 +63,7 @@ export const brainBehaviorRelationships_SkillGroup_Data = buildSkillGroupConfig(
       vi: "Tìm hiểu cách các hệ thống não tương tác hỗ trợ những hành vi khác nhau.",
       ta: "ஒன்றிணைந்து செயல்படும் மூளை அமைப்புகள் பல்வேறு நடத்தைகளை எவ்வாறு ஆதரிக்கின்றன என்பதை அறிந்துகொள்.",
       te: "కలిసి పనిచేసే మెదడు వ్యవస్థలు వేర్వేరు ప్రవర్తనలకు ఎలా తోడ్పడతాయో తెలుసుకోండి.",
-      mr: "परस्पर जोडलेल्या मेंदूतील प्रणाली वेगवेगळ्या वर्तनांना कसा आधार देतात ते जाणून घे.",
+      mr: "परस्पर जोडलेल्या मेंदूतील प्रणाली वेगवेगळ्या वर्तनांना कसा आधार देतात ते जाणून घ्या.",
       ms: "Ketahui bagaimana sistem otak yang saling berhubung menyokong pelbagai tingkah laku.",
       he: "למדו כיצד מערכות מוח הפועלות יחד תומכות בהתנהגויות שונות.",
       pl: "Dowiedz się, jak współdziałające układy mózgowe wspierają różne zachowania.",

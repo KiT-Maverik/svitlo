@@ -54,7 +54,7 @@ export const normativeSocialInfluence_Skill_Data = buildSkillConfig({
       vi: "Nhận biết khi mong muốn hòa nhập nhóm làm thay đổi hành vi.",
       ta: "குழுவில் சேர விரும்புவது எப்போது நடத்தையை மாற்றுகிறது என்பதை அறிக.",
       te: "గుంపులో కలవాలనే కోరిక ప్రవర్తనను ఎప్పుడు మార్చుతుందో గుర్తించండి.",
-      mr: "गटात मिसळण्याची इच्छा वर्तन कधी बदलते ते ओळख.",
+      mr: "गटात मिसळण्याची इच्छा वर्तन कधी बदलते ते ओळखा.",
       ms: "Kenali masa keinginan diterima kumpulan mengubah tingkah laku.",
       he: "זהו מתי הרצון להשתלב בקבוצה משנה התנהגות.",
       pl: "Rozpoznaj, kiedy chęć przynależności do grupy zmienia zachowanie.",

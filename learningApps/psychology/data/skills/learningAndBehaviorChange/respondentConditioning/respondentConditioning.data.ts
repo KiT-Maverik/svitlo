@@ -55,7 +55,7 @@ export const respondentConditioning_SkillGroup_Data = buildSkillGroupConfig({
       fr: "Découvre comment les associations entre stimuli peuvent provoquer des réponses apprises.",
       bn: "উদ্দীপকগুলোর সম্পর্ক থেকে শেখা প্রতিক্রিয়া কীভাবে তৈরি হয় তা জানো।",
       pt: "Descubra como associações entre estímulos podem produzir respostas aprendidas.",
-      ur: "جانیں کہ محرکات کے درمیان تعلقات سیکھی ہوئی ردعمل کیسے پیدا کر سکتے ہیں۔",
+      ur: "جانیں کہ محرکات کے درمیان تعلقات سیکھا ہوا ردِعمل کیسے پیدا کر سکتے ہیں۔",
       id: "Temukan bagaimana hubungan antarstimulus dapat menghasilkan respons yang dipelajari.",
       de: "Entdecke, wie Verknüpfungen zwischen Reizen erlernte Reaktionen auslösen können.",
       ja: "刺激同士の結びつきから学習された反応が生まれる仕組みを知ろう。",

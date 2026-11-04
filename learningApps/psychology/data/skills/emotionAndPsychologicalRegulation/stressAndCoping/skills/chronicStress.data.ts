@@ -54,7 +54,7 @@ export const chronicStress_Skill_Data = buildSkillConfig({
       vi: "Phân biệt căng thẳng kéo dài với một sự kiện gây căng thẳng ngắn.",
       ta: "தொடர்ந்து நீடிக்கும் அழுத்தத்தைச் சிறிய அழுத்த நிகழ்விலிருந்து வேறுபடுத்து.",
       te: "కొనసాగుతున్న ఒత్తిడిని స్వల్పకాలిక ఒత్తిడి ఘటనతో వేరు చేయండి.",
-      mr: "सततचा ताण आणि थोड्या वेळची तणावपूर्ण घटना यात फरक ओळख.",
+      mr: "सततचा ताण आणि थोड्या वेळची तणावपूर्ण घटना यात फरक ओळखा.",
       ms: "Bezakan tekanan yang berterusan daripada peristiwa singkat yang menekan.",
       he: "הבחינו בין לחץ מתמשך לאירוע מלחיץ קצר.",
       pl: "Odróżnij długo utrzymujący się stres od krótkiego stresującego zdarzenia.",

@@ -54,7 +54,7 @@ export const attentionalRegulation_Skill_Data = buildSkillConfig({
       vi: "Chủ động chuyển hướng chú ý khi việc đổi trọng tâm có ích.",
       ta: "பயனுள்ளதாக இருந்தால் கவனத்தைத் திட்டமிட்டு வேறு திசைக்கு மாற்று.",
       te: "ఉపయోగపడే సమయంలో శ్రద్ధను ఉద్దేశపూర్వకంగా వేరే దిశకు మళ్లించండి.",
-      mr: "दुसरीकडे लक्ष देणे उपयोगी असेल तेव्हा जाणीवपूर्वक लक्ष वळव.",
+      mr: "दुसरीकडे लक्ष देणे उपयोगी असेल तेव्हा जाणीवपूर्वक लक्ष वळवा.",
       ms: "Alihkan perhatian secara sengaja apabila tumpuan lain membantu.",
       he: "הפנו קשב במכוון למוקד אחר כשזה עשוי לעזור.",
       pl: "Świadomie przenieś uwagę, jeśli skupienie się na czymś innym pomaga.",

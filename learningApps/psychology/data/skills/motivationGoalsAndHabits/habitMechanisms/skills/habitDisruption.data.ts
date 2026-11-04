@@ -54,7 +54,7 @@ export const habitDisruption_Skill_Data = buildSkillConfig({
       vi: "Hiểu cách thay đổi tín hiệu có thể làm gián đoạn thói quen sẵn có.",
       ta: "தூண்டுகுறிகளை மாற்றுவது பழைய பழக்கத்தை எவ்வாறு நிறுத்தக்கூடும் என்பதை அறிக.",
       te: "సంకేతాలు మార్చడం పాత అలవాటును ఎలా ఆపగలదో అర్థం చేసుకోండి.",
-      mr: "संकेत बदलल्याने जुनी सवय कशी खंडित होऊ शकते ते समज.",
+      mr: "संकेत बदलल्याने जुनी सवय कशी खंडित होऊ शकते ते समजून घ्या.",
       ms: "Fahami bagaimana perubahan petunjuk boleh menghentikan tabiat lama.",
       he: "הבינו כיצד שינוי רמזים יכול לקטוע הרגל מבוסס.",
       pl: "Zrozum, jak zmiana sygnałów może przerwać utrwalony nawyk.",

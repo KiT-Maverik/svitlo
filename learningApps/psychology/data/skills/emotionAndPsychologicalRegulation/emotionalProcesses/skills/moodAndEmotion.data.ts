@@ -54,7 +54,7 @@ export const moodAndEmotion_Skill_Data = buildSkillConfig({
       vi: "Phân biệt một cảm xúc ngắn với tâm trạng kéo dài hơn.",
       ta: "குறுகிய உணர்ச்சிக்கும் நீடித்த மனநிலைக்கும் உள்ள வேறுபாட்டை அறிக.",
       te: "తక్కువసేపు ఉండే భావోద్వేగాన్ని ఎక్కువసేపు ఉండే మానసిక స్థితితో వేరు చేయండి.",
-      mr: "अल्पकाळची भावना आणि अधिक वेळ टिकणारी मनःस्थिती यांत फरक ओळख.",
+      mr: "अल्पकाळची भावना आणि अधिक वेळ टिकणारी मनःस्थिती यांत फरक ओळखा.",
       ms: "Bezakan emosi singkat daripada suasana hati yang lebih lama.",
       he: "הבחינו בין אירוע רגשי קצר לבין מצב רוח ממושך יותר.",
       pl: "Odróżnij krótkotrwałą emocję od dłużej trwającego nastroju.",

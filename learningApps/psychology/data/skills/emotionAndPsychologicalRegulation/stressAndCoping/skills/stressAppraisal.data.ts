@@ -54,7 +54,7 @@ export const stressAppraisal_Skill_Data = buildSkillConfig({
       vi: "Nhận biết cách diễn giải yêu cầu ảnh hưởng tới phản ứng căng thẳng.",
       ta: "கோரிக்கைகளைப் புரியும் விதம் மன அழுத்தப் பதிலை எவ்வாறு மாற்றுகிறது என்பதை அறிக.",
       te: "అవసరాలను ఎలా అర్థం చేసుకోవడం ఒత్తిడి స్పందనపై ప్రభావం చూపుతుందో తెలుసుకోండి.",
-      mr: "मागण्यांचा अर्थ लावण्याने ताणाची प्रतिक्रिया कशी बदलते ते ओळख.",
+      mr: "मागण्यांचा अर्थ लावण्याने ताणाची प्रतिक्रिया कशी बदलते ते ओळखा.",
       ms: "Kenali bagaimana tafsiran tuntutan mempengaruhi tindak balas tekanan.",
       he: "הבינו כיצד פירוש הדרישות משפיע על תגובות לחץ.",
       pl: "Rozpoznaj, jak interpretacja wymagań wpływa na reakcję stresową.",

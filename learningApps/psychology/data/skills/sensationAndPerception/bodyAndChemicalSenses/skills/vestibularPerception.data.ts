@@ -54,7 +54,7 @@ export const vestibularPerception_Skill_Data = buildSkillConfig({
       vi: "Giải thích cách chuyển động và hướng đầu giúp giữ thăng bằng.",
       ta: "தலையின் இயக்கமும் திசையும் சமநிலையை எவ்வாறு பேண உதவுகின்றன என்பதை விளக்கு.",
       te: "తల కదలిక, దిశ సమతుల్యతను కాపాడటానికి ఎలా సహాయపడతాయో వివరించండి.",
-      mr: "डोक्याची हालचाल आणि दिशा संतुलन राखण्यास कशी मदत करतात ते स्पष्ट कर.",
+      mr: "डोक्याची हालचाल आणि दिशा संतुलन राखण्यास कशी मदत करतात ते स्पष्ट करा.",
       ms: "Terangkan bagaimana gerakan dan orientasi kepala membantu mengekalkan keseimbangan.",
       he: "הסבירו כיצד תנועת הראש וכיוונו עוזרים לשמור על שיווי משקל.",
       pl: "Wyjaśnij, jak ruch i orientacja głowy pomagają utrzymać równowagę.",

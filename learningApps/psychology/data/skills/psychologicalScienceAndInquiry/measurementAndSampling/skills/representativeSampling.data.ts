@@ -54,7 +54,7 @@ export const representativeSampling_Skill_Data = buildSkillConfig({
       vi: "Nhận biết cách tuyển chọn mẫu giới hạn kết luận về cả quần thể.",
       ta: "மாதிரித் தேர்வு முறை முழு மக்கள்தொகை பற்றிய முடிவுகளை எவ்வாறு கட்டுப்படுத்துகிறது என்பதை அறிந்துகொள்.",
       te: "నమూనా ఎంపిక మొత్తం జనాభాపై తీర్మానాలను ఎలా పరిమితం చేస్తుందో తెలుసుకోండి.",
-      mr: "नमुना निवडल्याची पद्धत संपूर्ण लोकसंख्येबद्दलचे निष्कर्ष कसे मर्यादित करते ते ओळख.",
+      mr: "नमुना निवडल्याची पद्धत संपूर्ण लोकसंख्येबद्दलचे निष्कर्ष कसे मर्यादित करते ते ओळखा.",
       ms: "Kenali bagaimana pemilihan sampel mengehadkan kesimpulan tentang populasi.",
       he: "זהו כיצד גיוס מדגם מגביל מסקנות על כלל האוכלוסייה.",
       pl: "Rozpoznaj, jak rekrutacja próby ogranicza wnioski o całej populacji.",

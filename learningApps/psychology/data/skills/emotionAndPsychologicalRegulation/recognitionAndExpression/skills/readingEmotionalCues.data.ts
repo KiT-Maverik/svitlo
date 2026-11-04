@@ -54,7 +54,7 @@ export const readingEmotionalCues_Skill_Data = buildSkillConfig({
       vi: "Diễn giải tín hiệu cảm xúc mà không xem biểu cảm là bằng chứng chắc chắn.",
       ta: "முகபாவனையை உணர்வின் உறுதியான சான்றாகக் கருதாமல் குறிப்புகளைப் புரிந்துகொள்.",
       te: "ముఖ కవళికలనే ఖచ్చితమైన రుజువుగా భావించకుండా సంకేతాలను అర్థం చేసుకోండి.",
-      mr: "चेहऱ्यावरील भावांना खात्रीचा पुरावा न मानता भावनिक संकेत समजून घे.",
+      mr: "चेहऱ्यावरील भावांना खात्रीचा पुरावा न मानता भावनिक संकेत समजून घ्या.",
       ms: "Tafsir petunjuk emosi tanpa menganggap ekspresi sebagai bukti pasti perasaan.",
       he: "פרשו רמזים בלי לראות בהבעות פנים הוכחה ודאית לרגשות.",
       pl: "Interpretuj sygnały, nie traktując wyrazu twarzy jako pewnego dowodu uczuć.",

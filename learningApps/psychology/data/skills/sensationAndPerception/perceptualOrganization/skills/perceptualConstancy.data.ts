@@ -54,7 +54,7 @@ export const perceptualConstancy_Skill_Data = buildSkillConfig({
       vi: "Hiểu vì sao kích thước, hình dạng hay màu sắc có thể trông ổn định khi điều kiện thay đổi.",
       ta: "சூழல் மாறினாலும் அளவு, வடிவம், நிறம் ஏன் நிலையாகத் தோன்றலாம் என்பதைப் புரிந்துகொள்.",
       te: "పరిస్థితులు మారినా పరిమాణం, ఆకారం, రంగు ఒకేలా ఎందుకు కనిపిస్తాయో తెలుసుకోండి.",
-      mr: "परिस्थिती बदलली तरी आकारमान, आकार किंवा रंग स्थिर का भासू शकतात ते समजून घे.",
+      mr: "परिस्थिती बदलली तरी आकारमान, आकार किंवा रंग स्थिर का भासू शकतात ते समजून घ्या.",
       ms: "Fahami mengapa saiz, bentuk atau warna kelihatan stabil walaupun keadaan berubah.",
       he: "הבינו מדוע גודל, צורה או צבע עשויים להיראות יציבים כשהתנאים משתנים.",
       pl: "Zrozum, dlaczego wielkość, kształt lub kolor mogą wydawać się stałe mimo zmiany warunków.",

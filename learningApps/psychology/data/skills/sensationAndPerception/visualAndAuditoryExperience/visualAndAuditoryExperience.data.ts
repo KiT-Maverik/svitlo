@@ -62,7 +62,7 @@ export const visualAndAuditoryExperience_SkillGroup_Data = buildSkillGroupConfig
       vi: "Khám phá cách chúng ta diễn giải các mẫu hình nhìn thấy và nghe thấy.",
       ta: "காட்சி மற்றும் ஒலித் தகவல் வடிவங்களை நாம் எவ்வாறு புரிந்துகொள்கிறோம் என்பதை அறிந்துகொள்.",
       te: "కనిపించే, వినిపించే నమూనాలను మనం ఎలా అర్థం చేసుకుంటామో తెలుసుకోండి.",
-      mr: "आपण दिसणाऱ्या आणि ऐकू येणाऱ्या नमुन्यांचा अर्थ कसा लावतो ते जाणून घे.",
+      mr: "आपण दिसणाऱ्या आणि ऐकू येणाऱ्या नमुन्यांचा अर्थ कसा लावतो ते जाणून घ्या.",
       ms: "Terokai bagaimana kita mentafsir corak yang dilihat dan didengar.",
       he: "גלו כיצד אנחנו מפרשים דפוסים חזותיים ושמיעתיים.",
       pl: "Odkryj, jak interpretujemy wzorce wzrokowe i słuchowe.",

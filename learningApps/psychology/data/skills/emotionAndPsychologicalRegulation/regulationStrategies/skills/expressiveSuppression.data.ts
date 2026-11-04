@@ -54,7 +54,7 @@ export const expressiveSuppression_Skill_Data = buildSkillConfig({
       vi: "Nhận biết che giấu cảm xúc bên ngoài khác với thay đổi cảm giác bên trong.",
       ta: "வெளியில் உணர்ச்சியை மறைப்பதும் உள்ளுணர்வை மாற்றுவதும் வேறு என்பதை அறிக.",
       te: "బయట భావాలను దాచడం, లోపలి అనుభూతిని మార్చడం వేర్వేరని గుర్తించండి.",
-      mr: "बाहेरच्या भावना लपवणे आणि आतल्या भावना बदलणे वेगळे आहे हे ओळख.",
+      mr: "बाहेरच्या भावना लपवणे आणि आतल्या भावना बदलणे वेगळे आहे हे ओळखा.",
       ms: "Fahami bahawa menyembunyikan emosi luaran tidak sama dengan mengubah perasaan.",
       he: "הבחינו בין הסתרת ביטוי רגשי חיצוני לבין שינוי התחושה עצמה.",
       pl: "Rozpoznaj różnicę między ukrywaniem emocji na zewnątrz a zmianą uczuć.",

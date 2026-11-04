@@ -45,7 +45,7 @@ export const neuralPlasticity_Skill_Data = buildSkillConfig({
       fr: "Explore comment l’expérience peut modifier les connexions neuronales au fil du temps.",
       bn: "অভিজ্ঞতা সময়ের সঙ্গে স্নায়ুর সংযোগ কীভাবে বদলাতে পারে, তা জানো।",
       pt: "Explore como as experiências podem mudar as conexões neurais ao longo do tempo.",
-      ur: "جانیں کہ تجربے وقت کے ساتھ اعصابی روابط کیسے بدل سکتے ہیں۔",
+      ur: "جانیں کہ تجربات وقت کے ساتھ اعصابی روابط کو کیسے بدل سکتے ہیں۔",
       id: "Jelajahi bagaimana pengalaman dapat mengubah koneksi saraf seiring waktu.",
       de: "Erkunde, wie Erfahrungen neuronale Verbindungen im Laufe der Zeit verändern können.",
       ja: "経験によって神経のつながりが時間とともにどう変化するか探ろう。",

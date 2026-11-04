@@ -54,7 +54,7 @@ export const researchableHypotheses_Skill_Data = buildSkillConfig({
       vi: "Biến một nhận định hằng ngày về hành vi thành giả thuyết có thể kiểm tra bằng nghiên cứu.",
       ta: "நடத்தை பற்றிய அன்றாடக் கூற்றை ஆராய்ந்து சோதிக்கக்கூடிய கருதுகோளாக மாற்று.",
       te: "ప్రవర్తన గురించి రోజువారీ వాదనను పరిశోధనతో పరీక్షించగల పరికల్పనగా మార్చండి.",
-      mr: "वर्तनाबद्दलच्या रोजच्या दाव्याचे संशोधनातून तपासता येईल अशा गृहीतकात रूपांतर कर.",
+      mr: "वर्तनाबद्दलच्या रोजच्या दाव्याचे संशोधनातून तपासता येईल अशा गृहीतकात रूपांतर करा.",
       ms: "Tukar dakwaan harian tentang tingkah laku menjadi hipotesis yang boleh dikaji.",
       he: "הפכו טענה יומיומית על התנהגות להשערה שאפשר לבדוק במחקר.",
       pl: "Zmień codzienne twierdzenie o zachowaniu w hipotezę, którą można sprawdzić badawczo.",

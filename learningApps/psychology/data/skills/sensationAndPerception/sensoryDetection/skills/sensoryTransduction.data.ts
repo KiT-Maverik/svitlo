@@ -54,7 +54,7 @@ export const sensoryTransduction_Skill_Data = buildSkillConfig({
       vi: "Hiểu cách thụ thể giác quan biến kích thích thành tín hiệu thần kinh.",
       ta: "புலன் ஏற்பிகள் தூண்டுதலை நரம்புச் சமிக்ஞைகளாக எவ்வாறு மாற்றுகின்றன என்பதைப் புரிந்துகொள்.",
       te: "ఇంద్రియ గ్రాహకాలు ఉద్దీపనను నాడీ సంకేతాలుగా ఎలా మారుస్తాయో తెలుసుకోండి.",
-      mr: "संवेदी ग्राही उत्तेजनांचे मज्जासंकेतांत रूपांतर कसे करतात ते समजून घे.",
+      mr: "संवेदी ग्राही उत्तेजनांचे मज्जासंकेतांत रूपांतर कसे करतात ते समजून घ्या.",
       ms: "Fahami bagaimana reseptor deria menukar rangsangan menjadi isyarat saraf.",
       he: "הבינו כיצד קולטני החישה הופכים גירוי לאותות עצביים.",
       pl: "Zrozum, jak receptory zmysłowe przekształcają bodźce w sygnały nerwowe.",

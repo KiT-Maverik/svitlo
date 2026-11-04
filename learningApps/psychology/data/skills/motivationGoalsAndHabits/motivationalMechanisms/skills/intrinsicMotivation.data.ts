@@ -54,7 +54,7 @@ export const intrinsicMotivation_Skill_Data = buildSkillConfig({
       vi: "Nhận biết mong muốn làm việc gì đó vì sự hài lòng từ chính hoạt động.",
       ta: "ஒரு செயலின் சொந்த நிறைவுக்காக அதைச் செய்யும் விருப்பத்தை அறிக.",
       te: "పని చేయడం వల్లే సంతృప్తి కలిగి దాన్ని చేయాలనే కోరికను గుర్తించండి.",
-      mr: "एखादी क्रिया तिच्यातील आनंदासाठी करण्याची इच्छा ओळख.",
+      mr: "एखादी क्रिया तिच्यातील आनंदासाठी करण्याची इच्छा ओळखा.",
       ms: "Kenali keinginan melakukan aktiviti demi kepuasan aktiviti itu sendiri.",
       he: "זהו רצון לעשות פעילות בשל הסיפוק שהיא מספקת בעצמה.",
       pl: "Rozpoznaj chęć działania dla satysfakcji płynącej z samego zajęcia.",

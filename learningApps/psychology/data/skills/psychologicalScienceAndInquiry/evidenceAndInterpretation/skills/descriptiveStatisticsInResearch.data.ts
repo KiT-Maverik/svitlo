@@ -54,7 +54,7 @@ export const descriptiveStatisticsInResearch_Skill_Data = buildSkillConfig({
       vi: "Đọc các giá trị điển hình và mức biến thiên mà không cho rằng ai cũng giống mức trung bình.",
       ta: "அனைவரும் சராசரியைப் போலவே இருப்பார்கள் என்று கருதாமல் வழக்கமான மதிப்புகளையும் மாறுபாட்டையும் புரிந்துகொள்.",
       te: "ప్రతి ఒక్కరూ సగటుకు సరిపోతారని అనుకోకుండా సాధారణ విలువలు, తేడాలను అర్థం చేసుకోండి.",
-      mr: "सगळेच सरासरीसारखे असतात असे न मानता सामान्य मूल्ये आणि त्यांतील फरक समजून घे.",
+      mr: "सगळेच सरासरीसारखे असतात असे न मानता सामान्य मूल्ये आणि त्यांतील फरक समजून घ्या.",
       ms: "Fahami nilai lazim dan variasi tanpa menganggap setiap orang sama dengan purata.",
       he: "פרשו ערכים אופייניים ושונות בלי להניח שכולם זהים לממוצע.",
       pl: "Interpretuj typowe wartości i zróżnicowanie, nie zakładając, że wszyscy odpowiadają średniej.",

@@ -67,7 +67,7 @@ export const psychologicalScienceAndInquiry_SkillDomain_Data = buildSkillDomainC
       vi: "Khám phá cách các nhà tâm lý học nghiên cứu hành vi và quá trình tinh thần bằng những phương pháp cẩn trọng.",
       ta: "உளவியலாளர்கள் கவனமான ஆராய்ச்சியின் மூலம் நடத்தை மற்றும் மனச் செயல்முறைகளை எவ்வாறு ஆராய்கிறார்கள் என்பதை அறிந்துகொள்.",
       te: "మనస్తత్వ శాస్త్రవేత్తలు జాగ్రత్తగా చేసే పరిశోధనల ద్వారా ప్రవర్తనను, మానసిక ప్రక్రియలను ఎలా అధ్యయనం చేస్తారో తెలుసుకోండి.",
-      mr: "मानसशास्त्रज्ञ काळजीपूर्वक संशोधन करून वर्तन आणि मानसिक प्रक्रिया कशा अभ्यासतात ते जाणून घे.",
+      mr: "मानसशास्त्रज्ञ काळजीपूर्वक संशोधन करून वर्तन आणि मानसिक प्रक्रिया कशा अभ्यासतात ते जाणून घ्या.",
       ms: "Terokai cara ahli psikologi mengkaji tingkah laku dan proses mental melalui penyelidikan yang teliti.",
       he: "גלו כיצד פסיכולוגים חוקרים התנהגות ותהליכים נפשיים באמצעות מחקר קפדני.",
       pl: "Odkryj, jak psychologowie badają zachowanie i procesy umysłowe za pomocą rzetelnych badań.",

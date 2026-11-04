@@ -54,7 +54,7 @@ export const informedConsent_Skill_Data = buildSkillConfig({
       vi: "Nhận biết người tham gia cần biết gì trước khi đồng ý vào một nghiên cứu.",
       ta: "ஆய்வில் பங்கேற்க ஒப்புக்கொள்ளும் முன் பங்கேற்பாளர்கள் என்ன தெரிந்துகொள்ள வேண்டும் என்பதை அறி.",
       te: "అధ్యయనంలో పాల్గొనడానికి అంగీకరించే ముందు పాల్గొనేవారు ఏమి తెలుసుకోవాలో గుర్తించండి.",
-      mr: "अभ्यासात सहभागी होण्यास मान्यता देण्यापूर्वी सहभागींना काय माहीत असावे ते ओळख.",
+      mr: "अभ्यासात सहभागी होण्यास मान्यता देण्यापूर्वी सहभागींना काय माहीत असावे ते ओळखा.",
       ms: "Kenali perkara yang perlu diketahui peserta sebelum bersetuju menyertai kajian.",
       he: "זהו מה על המשתתפים לדעת לפני שהם מסכימים להצטרף למחקר.",
       pl: "Rozpoznaj, co uczestnicy powinni wiedzieć przed wyrażeniem zgody na udział w badaniu.",

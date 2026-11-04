@@ -54,7 +54,7 @@ export const avoidanceMotivation_Skill_Data = buildSkillConfig({
       vi: "Nhận biết động lực tránh kết quả không mong muốn.",
       ta: "விரும்பாத விளைவைத் தவிர்க்கும் உந்துதலை அறிக.",
       te: "ఇష్టంలేని ఫలితాన్ని నివారించాలనే ప్రేరణను గుర్తించండి.",
-      mr: "नको असलेला परिणाम टाळण्याची प्रेरणा ओळख.",
+      mr: "नको असलेला परिणाम टाळण्याची प्रेरणा ओळखा.",
       ms: "Kenali dorongan menghindari hasil yang tidak diingini.",
       he: "זהו דחף להימנע מתוצאה לא רצויה.",
       pl: "Rozpoznaj motywację do unikania niechcianego wyniku.",

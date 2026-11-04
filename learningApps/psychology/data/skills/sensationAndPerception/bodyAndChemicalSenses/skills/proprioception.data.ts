@@ -54,7 +54,7 @@ export const proprioception_Skill_Data = buildSkillConfig({
       vi: "Hiểu cách cơ thể cảm nhận vị trí tay chân mà không cần nhìn.",
       ta: "பார்க்காமலேயே கை கால்களின் நிலையை உடல் எவ்வாறு உணர்கிறது என்பதைப் புரிந்துகொள்.",
       te: "చూడకుండానే చేతులు, కాళ్ల స్థానాన్ని శరీరం ఎలా తెలుసుకుంటుందో అర్థం చేసుకోండి.",
-      mr: "न पाहताही शरीराला हातपायांची स्थिती कशी कळते ते समजून घे.",
+      mr: "न पाहताही शरीराला हातपायांची स्थिती कशी कळते ते समजून घ्या.",
       ms: "Fahami bagaimana badan mengesan kedudukan anggota tanpa melihat.",
       he: "הבינו כיצד הגוף חש את מיקום הגפיים גם בלי להסתכל.",
       pl: "Zrozum, jak ciało wyczuwa położenie kończyn bez patrzenia.",

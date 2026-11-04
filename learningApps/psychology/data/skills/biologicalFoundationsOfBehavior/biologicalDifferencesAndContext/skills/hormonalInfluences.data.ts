@@ -54,7 +54,7 @@ export const hormonalInfluences_Skill_Data = buildSkillConfig({
       vi: "Nhận biết hormone có thể ảnh hưởng đến mức kích hoạt và hành vi tùy theo bối cảnh.",
       ta: "சூழலுக்கு ஏற்ப ஹார்மோன்கள் விழிப்புநிலையையும் நடத்தையையும் எவ்வாறு பாதிக்கக்கூடும் என்பதை அறி.",
       te: "పరిస్థితిని బట్టి హార్మోన్లు ఉద్రేకం, ప్రవర్తనను ఎలా ప్రభావితం చేస్తాయో గుర్తించండి.",
-      mr: "परिस्थितीनुसार संप्रेरके जागरूकता आणि वर्तनावर कसा परिणाम करू शकतात ते जाणून घे.",
+      mr: "परिस्थितीनुसार संप्रेरके जागरूकता आणि वर्तनावर कसा परिणाम करू शकतात ते जाणून घ्या.",
       ms: "Kenali bagaimana hormon boleh mempengaruhi rangsangan dan tingkah laku mengikut konteks.",
       he: "זהו כיצד הורמונים יכולים להשפיע על עוררות והתנהגות בהתאם להקשר.",
       pl: "Rozpoznaj, jak hormony mogą wpływać na pobudzenie i zachowanie zależnie od kontekstu.",

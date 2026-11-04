@@ -54,7 +54,7 @@ export const compassion_Skill_Data = buildSkillConfig({
       vi: "Phân biệt quan tâm, muốn giúp đỡ với chỉ hiểu cảm xúc của người khác.",
       ta: "பிறருக்கு உதவ விரும்பும் கருணையையும் அவர்களின் உணர்வை மட்டும் புரிதலையும் வேறுபடுத்து.",
       te: "ఇతరుల భావాలను అర్థం చేసుకోవడం, వారికి సహాయం చేయాలనే కరుణ మధ్య తేడా గుర్తించండి.",
-      mr: "दुसऱ्याला मदत करण्याची कळकळ आणि फक्त भावना समजणे यात फरक कर.",
+      mr: "दुसऱ्याला मदत करण्याची कळकळ आणि फक्त भावना समजणे यात फरक करा.",
       ms: "Bezakan keprihatinan penuh kasih daripada sekadar memahami perasaan orang.",
       he: "הבחינו בין דאגה חומלת לזולת לבין הבנת רגשותיו בלבד.",
       pl: "Odróżnij troskę o drugą osobę od samego rozumienia jej uczuć.",

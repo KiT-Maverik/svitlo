@@ -54,7 +54,7 @@ export const differenceThresholds_Skill_Data = buildSkillConfig({
       vi: "Nhận biết khi nào sự khác biệt giữa hai kích thích trở nên có thể nhận thấy.",
       ta: "இரண்டு தூண்டுதல்களுக்கிடையேயான வேறுபாடு எப்போது உணரப்படுகிறது என்பதை அறிந்துகொள்.",
       te: "రెండు ఉద్దీపనల మధ్య తేడా ఎప్పుడు గమనించగలమో గుర్తించండి.",
-      mr: "दोन उत्तेजनांमधील फरक कधी जाणवू लागतो ते ओळख.",
+      mr: "दोन उत्तेजनांमधील फरक कधी जाणवू लागतो ते ओळखा.",
       ms: "Kenali bila perbezaan antara dua rangsangan mula dapat dirasai.",
       he: "זהו מתי הבדל בין שני גירויים נעשה מורגש.",
       pl: "Rozpoznaj, kiedy różnica między dwoma bodźcami staje się zauważalna.",
