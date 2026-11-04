@@ -1348,7 +1348,7 @@ Skills: 7
 
 **User-friendly description (te):** తప్పుదారి పట్టించే సమాచారం తర్వాతి జ్ఞాపకాలను ఎలా మార్చవచ్చో తెలుసుకోండి.
 
-##### ముందస్తు జోక్యం
+##### పురోగమన అవరోధం
 
 [proactiveInterference.data.ts](../../../learningApps/psychology/data/skills/memoryAndMetacognition/retrievalAndDistortion/skills/proactiveInterference.data.ts)
 
@@ -1364,7 +1364,7 @@ Skills: 7
 
 **User-friendly description (te):** నిల్వ ఉన్న సమాచారాన్ని గుర్తుచేసేందుకు సందర్భ సూచనలను ఉపయోగించండి.
 
-##### వెనుకటి జ్ఞాపకాలపై తరువాతి జోక్యం
+##### తిరోగమన అవరోధం
 
 [retroactiveInterference.data.ts](../../../learningApps/psychology/data/skills/memoryAndMetacognition/retrievalAndDistortion/skills/retroactiveInterference.data.ts)
 
