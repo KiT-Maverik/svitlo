@@ -65,7 +65,7 @@ export const researchableHypotheses_Skill_Data = buildSkillConfig({
       be: "Ператвары штодзённае цьверджаньне пра паводзіны ў гіпотэзу, якую можна праверыць.",
       ka: "ქცევის შესახებ ყოველდღიური მტკიცება კვლევით შესამოწმებელ ჰიპოთეზად აქციე.",
       kk: "Мінез-құлық туралы күнделікті пікірді зерттеумен тексеруге болатын гипотезаға айналдыр.",
-      qm: "Davranış aqqında künlik iddianı tetqiqatta sınap olğanı mümkün faraziyegе çevir.",
+      qm: "Davranış aqqında künlik iddianı tetqiqatta sınap olğanı mümkün faraziyege çevir.",
     },
   },
 });
