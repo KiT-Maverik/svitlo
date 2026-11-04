@@ -50,7 +50,7 @@ export const wellbeingAndImpairment_SkillGroup_Data = buildSkillGroupConfig({
       hi: "समझें कि मानसिक कल्याण और परेशानी, नैदानिक रूप से महत्वपूर्ण बाधा से कैसे अलग हैं।",
       es: "Aprende cómo el bienestar y el malestar difieren del deterioro clínicamente significativo.",
       ar: "تعلّم كيف يختلف الرفاه والضيق النفسي عن ضعف الأداء السريري.",
-      fr: "Découvre ce qui distingue bien-être, détresse et atteinte du fonctionnement clinique.",
+      fr: "Découvre ce qui distingue bien-être, détresse et altération cliniquement significative du fonctionnement.",
       bn: "মানসিক সুস্থতা ও কষ্ট কীভাবে চিকিৎসাগতভাবে গুরুত্বপূর্ণ প্রতিবন্ধকতা থেকে আলাদা তা জানো।",
       pt: "Aprenda como bem-estar e sofrimento diferem de prejuízo funcional clínico.",
       ur: "جانیں کہ ذہنی بہبود اور پریشانی طبی طور پر اہم عملی رکاوٹ سے کیسے مختلف ہیں۔",

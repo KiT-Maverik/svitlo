@@ -43,7 +43,7 @@ export const humanErrorAndSystemDesign_Skill_Data = buildSkillConfig({
       es: "Reconoce cómo los sistemas confusos aumentan los errores incluso de usuarios atentos.",
       ar: "تعرّف كيف تزيد الأنظمة المربكة احتمال الخطأ حتى لدى المستخدمين الحذرين.",
       fr: "Reconnais comment des systèmes déroutants favorisent les erreurs, même chez les utilisateurs attentifs.",
-      bn: "জটিল ও বিভ্রান্তিকর ব্যবস্থা সতর্ক ব্যবহারকারীকেও কীভাবে ভুলে ফেলতে পারে তা জানো।",
+      bn: "জটিল ও বিভ্রান্তিকর ব্যবস্থা সতর্ক ব্যবহারকারীরও ভুল করার সম্ভাবনা কীভাবে বাড়ায় তা জানো।",
       pt: "Reconheça como sistemas confusos aumentam erros mesmo entre usuários cuidadosos.",
       ur: "سمجھیں کہ الجھے ہوئے نظام محتاط صارفین سے بھی غلطیاں کیوں کروا سکتے ہیں۔",
       id: "Kenali bagaimana sistem membingungkan meningkatkan risiko kesalahan meskipun pengguna berhati-hati.",

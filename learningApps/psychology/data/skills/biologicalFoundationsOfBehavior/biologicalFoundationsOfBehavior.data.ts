@@ -57,7 +57,7 @@ export const biologicalFoundationsOfBehavior_SkillDomain_Data = buildSkillDomain
       bn: "মস্তিষ্ক, হরমোন, উত্তরাধিকারসূত্রে পাওয়া বৈশিষ্ট্য ও পরিবেশ কীভাবে আচরণে প্রভাব ফেলে, তা জানো।",
       pt: "Explore como cérebro, hormônios, características herdadas e ambiente influenciam o comportamento.",
       ur: "جانیے کہ دماغ، ہارمون، موروثی خصوصیات اور ماحول رویّے پر کیسے اثر ڈالتے ہیں۔",
-      id: "Jelajahi bagaimana otak, hormon, sifat bawaan, dan lingkungan memengaruhi perilaku.",
+      id: "Jelajahi bagaimana otak, hormon, sifat yang diwariskan, dan lingkungan memengaruhi perilaku.",
       de: "Erkunde, wie Gehirn, Hormone, vererbte Merkmale und Umwelt das Verhalten beeinflussen.",
       ja: "脳、ホルモン、遺伝的な特徴、環境が行動にどう影響するか探ろう。",
       ko: "뇌, 호르몬, 유전적 특성, 환경이 행동에 어떻게 영향을 미치는지 알아보세요.",

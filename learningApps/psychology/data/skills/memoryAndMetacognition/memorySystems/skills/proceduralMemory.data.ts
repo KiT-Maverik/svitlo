@@ -12,7 +12,7 @@ export const proceduralMemory_Skill_Data = buildSkillConfig({
     fr: "Mémoire procédurale",
     bn: "প্রক্রিয়াগত স্মৃতি",
     pt: "Memória procedural",
-    ur: "عملی یادداشت",
+    ur: "طریقۂ کار کی یادداشت",
     id: "Memori Prosedural",
     de: "Prozedurales Gedächtnis",
     ja: "手続き記憶",
