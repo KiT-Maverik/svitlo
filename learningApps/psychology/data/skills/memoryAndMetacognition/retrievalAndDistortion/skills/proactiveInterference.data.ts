@@ -20,7 +20,7 @@ export const proactiveInterference_Skill_Data = buildSkillConfig({
     tr: "İleriye Dönük Girişim",
     vi: "Nhiễu xuôi",
     ta: "முன்செயற்பாட்டு இடையூறு",
-    te: "ముందస్తు జోక్యం",
+    te: "పురోగమన అవరోధం",
     mr: "पूर्वसक्रिय हस्तक्षेप",
     ms: "Gangguan Proaktif",
     he: "הפרעה פרואקטיבית",

@@ -30,7 +30,7 @@ export const needsAndDrives_Skill_Data = buildSkillConfig({
     lv: "Vajadzības un dziņas",
     et: "Vajadused ja ajendid",
     be: "Патрэбы і памкненьні",
-    ka: "საჭიროებები და მისწრაფებები",
+    ka: "მოთხოვნილებები და ლტოლვები",
     kk: "Қажеттіліктер мен түрткілер",
     qm: "İhtiyaçlar ve areketke iterici küçler",
   },
