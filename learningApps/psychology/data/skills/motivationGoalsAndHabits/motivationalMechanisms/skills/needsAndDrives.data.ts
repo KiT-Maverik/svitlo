@@ -32,7 +32,7 @@ export const needsAndDrives_Skill_Data = buildSkillConfig({
     be: "Патрэбы і памкненьні",
     ka: "საჭიროებები და მისწრაფებები",
     kk: "Қажеттіліктер мен түрткілер",
-    qm: "İhtiyaçlar ve isteklär",
+    qm: "İhtiyaçlar ve areketke iterici küçler",
   },
   description: {
     methodological: "Explain how physiological and psychological needs can influence the direction and intensity of behavior.",
