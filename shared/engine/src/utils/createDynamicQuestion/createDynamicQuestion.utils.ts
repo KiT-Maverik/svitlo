@@ -1,3 +1,4 @@
+import type { Locale_Languages } from '@svitlo/contracts/content';
 import type {
   DynamicQuestion,
   DynamicQuestion_ArgumentProposal,
@@ -110,8 +111,11 @@ const isValidVariant = <TArguments extends DynamicQuestion_Arguments>(
   });
 };
 
-export function createDynamicQuestion<TArguments extends DynamicQuestion_Arguments>(
-  config: DynamicQuestion_Config<TArguments>,
+export function createDynamicQuestion<
+  TArguments extends DynamicQuestion_Arguments,
+  SupportedLanguages extends Locale_Languages,
+>(
+  config: DynamicQuestion_Config<TArguments, SupportedLanguages>,
 ): DynamicQuestion<TArguments> {
   const defaultArgs = config.arguments;
   let args: DynamicQuestion_Variant<TArguments> | undefined;
