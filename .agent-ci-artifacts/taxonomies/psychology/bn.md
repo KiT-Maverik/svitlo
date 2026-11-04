@@ -140,7 +140,7 @@ Skills: 4
 
 **Methodological description (English):** Analyze how confusing feedback and task demands create foreseeable mistakes rather than attributing all failure to careless users.
 
-**User-friendly description (bn):** জটিল ও বিভ্রান্তিকর ব্যবস্থা সতর্ক ব্যবহারকারীকেও কীভাবে ভুলে ফেলতে পারে তা জানো।
+**User-friendly description (bn):** জটিল ও বিভ্রান্তিকর ব্যবস্থা সতর্ক ব্যবহারকারীরও ভুল করার সম্ভাবনা কীভাবে বাড়ায় তা জানো।
 
 ##### ব্যবহারযোগ্যতা গবেষণার পদ্ধতি
 
@@ -2722,7 +2722,7 @@ Groups: 5 · Skills: 27
 
 **Methodological description (English):** Cognitive processes create concepts, guide inferences, solve problems, and select actions under limited information. The focus is what people actually do, not whether their reasoning satisfies a formal philosophical standard.
 
-**User-friendly description (bn):** মানুষ কীভাবে ধারণা গঠন করে, সমস্যা সমাধান করে এবং কখনো অসম্পূর্ণ সিদ্ধান্ত নেয় তা জানো।
+**User-friendly description (bn):** মানুষ কীভাবে ধারণা গঠন করে, সমস্যা সমাধান করে এবং কখনো নিখুঁত নয় এমন সিদ্ধান্ত নেয় তা জানো।
 
 #### অনিশ্চয়তায় সিদ্ধান্ত
 

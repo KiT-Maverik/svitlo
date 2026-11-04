@@ -390,7 +390,7 @@ Skills: 4
 
 **User-friendly description (ur):** جانیے کہ موروثی عوامل، ہارمون اور ماحول مل کر رویّے کو کیسے تشکیل دیتے ہیں۔
 
-##### جین اور ماحول کی باہمی تعامل
+##### جین اور ماحول کا باہمی تعامل
 
 [geneEnvironmentInteraction.data.ts](../../../learningApps/psychology/data/skills/biologicalFoundationsOfBehavior/biologicalDifferencesAndContext/skills/geneEnvironmentInteraction.data.ts)
 
@@ -504,7 +504,7 @@ Skills: 3
 
 **Methodological description (English):** Explain how inherited variation and differential reproduction could change behavioral predispositions across generations.
 
-**User-friendly description (ur):** بیان کریں کہ موروثی رویّے کی رجحانات نسل در نسل کیسے بدل سکتی ہیں۔
+**User-friendly description (ur):** بیان کریں کہ رویّے کے موروثی رجحانات نسل در نسل کیسے بدل سکتے ہیں۔
 
 #### اعصابی رابطہ
 
@@ -538,7 +538,7 @@ Skills: 5
 
 **Methodological description (English):** Relate experience-dependent changes in neural connections to learning and adaptation without claiming unlimited voluntary control.
 
-**User-friendly description (ur):** جانیں کہ تجربے وقت کے ساتھ اعصابی روابط کیسے بدل سکتے ہیں۔
+**User-friendly description (ur):** جانیں کہ تجربات وقت کے ساتھ اعصابی روابط کو کیسے بدل سکتے ہیں۔
 
 ##### اعصابی اشاروں کی ترسیل
 
@@ -902,7 +902,7 @@ Skills: 5
 
 **Methodological description (English):** Stress is shaped by demands and perceived resources, with psychological consequences depending partly on duration and opportunities for recovery.
 
-**User-friendly description (ur):** جانیں کہ لوگ ذہنی دباؤ کو کیسے پرکھتے، محسوس اور اس کا سامنا کرتے ہیں۔
+**User-friendly description (ur):** جانیں کہ لوگ ذہنی دباؤ کا اندازہ کیسے لگاتے، اسے محسوس کرتے اور اس سے کیسے نمٹتے ہیں۔
 
 ##### شدید عارضی ذہنی دباؤ
 
@@ -1020,7 +1020,7 @@ Skills: 6
 
 **Methodological description (English):** Previously neutral cues can acquire the capacity to elicit responses through repeated relationships with consequential events.
 
-**User-friendly description (ur):** جانیں کہ محرکات کے درمیان تعلقات سیکھی ہوئی ردعمل کیسے پیدا کر سکتے ہیں۔
+**User-friendly description (ur):** جانیں کہ محرکات کے درمیان تعلقات سیکھا ہوا ردِعمل کیسے پیدا کر سکتے ہیں۔
 
 ##### کلاسیکی شرطی تعلّم
 
@@ -1028,7 +1028,7 @@ Skills: 6
 
 **Methodological description (English):** Identify conditioned and unconditioned stimuli and responses within a learned predictive association.
 
-**User-friendly description (ur):** سمجھیں کہ پہلے غیر جانبدار اشارہ سیکھی ہوئی ردعمل کیسے پیدا کرنے لگتا ہے۔
+**User-friendly description (ur):** سمجھیں کہ پہلے غیر جانبدار اشارہ سیکھا ہوا ردِعمل کیسے پیدا کرنے لگتا ہے۔
 
 ##### مشروط ردعمل کا حصول
 
@@ -1044,7 +1044,7 @@ Skills: 6
 
 **Methodological description (English):** Explain reduced responding when a predictive cue no longer forecasts the expected event, without assuming the original association is erased.
 
-**User-friendly description (ur):** جانیں کہ محرکات کا ساتھ آنا بند ہونے پر سیکھی ہوئی ردعمل کیوں کمزور پڑ سکتی ہے۔
+**User-friendly description (ur):** جانیں کہ محرکات کا ساتھ آنا بند ہونے پر سیکھا ہوا ردِعمل کیوں کمزور پڑ سکتا ہے۔
 
 ##### اچانک خودبخود بحالی
 
@@ -1052,7 +1052,7 @@ Skills: 6
 
 **Methodological description (English):** Explain why a previously weakened conditioned response may reappear after a delay.
 
-**User-friendly description (ur):** سمجھیں کہ ختم شدہ مشروط ردعمل کبھی دوبارہ کیوں ظاہر ہو سکتی ہے۔
+**User-friendly description (ur):** سمجھیں کہ ختم شدہ مشروط ردِعمل کبھی دوبارہ کیوں ظاہر ہو سکتا ہے۔
 
 ##### محرکات میں امتیاز
 
@@ -1068,7 +1068,7 @@ Skills: 6
 
 **Methodological description (English):** Explain why a response acquired for one cue may also occur with similar but untrained cues.
 
-**User-friendly description (ur):** بتائیں کہ ملتے جلتے اشارے بھی سیکھی ہوئی ردعمل کیوں پیدا کر سکتے ہیں۔
+**User-friendly description (ur):** بتائیں کہ ملتے جلتے اشارے بھی سیکھا ہوا ردِعمل کیوں پیدا کر سکتے ہیں۔
 
 #### سماجی سیکھنا
 
@@ -1224,7 +1224,7 @@ Skills: 6
 
 **User-friendly description (ur):** جانیں کہ معلومات زیادہ عرصے تک یادداشت میں کیسے محفوظ رہ سکتی ہیں۔
 
-##### عملی یادداشت
+##### طریقۂ کار کی یادداشت
 
 [proceduralMemory.data.ts](../../../learningApps/psychology/data/skills/memoryAndMetacognition/memorySystems/skills/proceduralMemory.data.ts)
 
@@ -2722,7 +2722,7 @@ Groups: 5 · Skills: 27
 
 **Methodological description (English):** Cognitive processes create concepts, guide inferences, solve problems, and select actions under limited information. The focus is what people actually do, not whether their reasoning satisfies a formal philosophical standard.
 
-**User-friendly description (ur):** جانیں کہ لوگ تصورات کیسے بناتے، مسائل کیسے حل کرتے اور کبھی نامکمل فیصلے کیسے کرتے ہیں۔
+**User-friendly description (ur):** جانیں کہ لوگ تصورات کیسے بناتے، مسائل کیسے حل کرتے اور کبھی غیر مثالی فیصلے کیسے کرتے ہیں۔
 
 #### غیر یقینی حالت میں انتخاب
 

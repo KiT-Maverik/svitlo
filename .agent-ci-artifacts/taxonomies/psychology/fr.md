@@ -784,7 +784,7 @@ Skills: 5
 
 **Methodological description (English):** Analyze how interpretations of an event influence feelings when the physical event is otherwise unchanged.
 
-**User-friendly description (fr):** Explore comment interpréter une situation influence la réponse émotionnelle.
+**User-friendly description (fr):** Explore comment l’interprétation d’une situation influence la réponse émotionnelle.
 
 ##### Humeur et émotion
 
@@ -1524,7 +1524,7 @@ Skills: 4
 
 **Methodological description (English):** Psychological wellbeing is multidimensional, and the presence of an unpleasant emotion alone is not evidence of a disorder.
 
-**User-friendly description (fr):** Découvre ce qui distingue bien-être, détresse et atteinte du fonctionnement clinique.
+**User-friendly description (fr):** Découvre ce qui distingue bien-être, détresse et altération cliniquement significative du fonctionnement.
 
 ##### Détresse ou trouble
 

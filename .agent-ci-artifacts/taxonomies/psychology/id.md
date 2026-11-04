@@ -378,7 +378,7 @@ Groups: 4 · Skills: 17
 
 **Methodological description (English):** Neural, endocrine, genetic, and evolved processes influence experience and action through interaction with environments. This field emphasizes explanatory mechanisms rather than rote anatomical detail or biological determinism.
 
-**User-friendly description (id):** Jelajahi bagaimana otak, hormon, sifat bawaan, dan lingkungan memengaruhi perilaku.
+**User-friendly description (id):** Jelajahi bagaimana otak, hormon, sifat yang diwariskan, dan lingkungan memengaruhi perilaku.
 
 #### Perbedaan Biologis dan Konteks
 
@@ -1768,7 +1768,7 @@ Skills: 5
 
 **Methodological description (English):** Analyze interplay among heredity, learning opportunities, and environmental conditions in measured performance.
 
-**User-friendly description (id):** Jelajahi bagaimana sifat bawaan dan lingkungan bersama-sama memengaruhi kemampuan.
+**User-friendly description (id):** Jelajahi bagaimana sifat yang diwariskan dan lingkungan bersama-sama memengaruhi kemampuan.
 
 ##### Keberagaman Perkembangan Saraf
 

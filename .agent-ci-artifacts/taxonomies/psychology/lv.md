@@ -268,7 +268,7 @@ Skills: 5
 
 **Methodological description (English):** Describe failing to notice an unexpected event while engaged in a demanding task.
 
-**User-friendly description (lv):** Izproti, kāpēc koncentrējies cilvēks var nepamanīt negaidītu, kaut arī redzamu notikumu.
+**User-friendly description (lv):** Izproti, kāpēc cilvēks, kas koncentrējas uz uzdevumu, var nepamanīt negaidītu, kaut arī redzamu notikumu.
 
 ##### Selektīvā uzmanība
 
@@ -304,7 +304,7 @@ Skills: 4
 
 **User-friendly description (lv):** Izpēti, kā apziņas pārmaiņas pēta ar cilvēku ziņojumu un uzvedības palīdzību.
 
-##### Piepesli prasoša un automātiska apstrāde
+##### Piepūli prasoša un automātiska apstrāde
 
 [effortfulAndAutomaticProcessing.data.ts](../../../learningApps/psychology/data/skills/attentionAndConsciousness/awarenessAndAutomaticity/skills/effortfulAndAutomaticProcessing.data.ts)
 

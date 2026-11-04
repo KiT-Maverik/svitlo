@@ -132,7 +132,7 @@ Skills: 4
 
 **Methodological description (English):** Explain how limited working memory and divided attention influence task performance with complex controls.
 
-**User-friendly description (ar):** استكشف كيف يؤثر محدودية الانتباه والذاكرة في استخدام الواجهات المعقدة.
+**User-friendly description (ar):** استكشف كيف تؤثر محدودية الانتباه والذاكرة في استخدام الواجهات المعقدة.
 
 ##### الخطأ البشري وتصميم الأنظمة
 
@@ -304,7 +304,7 @@ Skills: 4
 
 **User-friendly description (ar):** استكشف كيف تُدرس تغيّرات الوعي من خلال التقارير الذاتية والسلوك.
 
-##### المعالجة المجهدة والتلقائية
+##### المعالجة التي تتطلب جهدًا والمعالجة التلقائية
 
 [effortfulAndAutomaticProcessing.data.ts](../../../learningApps/psychology/data/skills/attentionAndConsciousness/awarenessAndAutomaticity/skills/effortfulAndAutomaticProcessing.data.ts)
 

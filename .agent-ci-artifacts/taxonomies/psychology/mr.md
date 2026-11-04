@@ -378,7 +378,7 @@ Groups: 4 · Skills: 17
 
 **Methodological description (English):** Neural, endocrine, genetic, and evolved processes influence experience and action through interaction with environments. This field emphasizes explanatory mechanisms rather than rote anatomical detail or biological determinism.
 
-**User-friendly description (mr):** मेंदू, संप्रेरके, आनुवंशिक गुणधर्म आणि वातावरण वर्तनावर कसा परिणाम करतात ते जाणून घे.
+**User-friendly description (mr):** मेंदू, संप्रेरके, आनुवंशिक गुणधर्म आणि वातावरण वर्तनावर कसा परिणाम करतात ते जाणून घ्या.
 
 #### जैविक फरक आणि संदर्भ
 
@@ -404,7 +404,7 @@ Skills: 4
 
 **Methodological description (English):** Distinguish statistical variation within a studied population from a fixed percentage of one individual's trait attributed to genes.
 
-**User-friendly description (mr):** आनुवंशिकतेचा मापदंड हा लोकसंख्येचा सांख्यिकीय गुणधर्म आहे, एखाद्या व्यक्तीची टक्केवारी नाही हे समजून घे.
+**User-friendly description (mr):** आनुवंशिकतेचा मापदंड हा लोकसंख्येचा सांख्यिकीय गुणधर्म आहे, एखाद्या व्यक्तीची टक्केवारी नाही हे समजून घ्या.
 
 ##### संप्रेरकांचा प्रभाव
 
@@ -412,7 +412,7 @@ Skills: 4
 
 **Methodological description (English):** Explain how endocrine signals can change arousal or behavior without implying that their effects are universal or direct.
 
-**User-friendly description (mr):** परिस्थितीनुसार संप्रेरके जागरूकता आणि वर्तनावर कसा परिणाम करू शकतात ते जाणून घे.
+**User-friendly description (mr):** परिस्थितीनुसार संप्रेरके जागरूकता आणि वर्तनावर कसा परिणाम करू शकतात ते जाणून घ्या.
 
 ##### शारीरिक ताण प्रतिक्रिया
 
@@ -430,7 +430,7 @@ Skills: 5
 
 **Methodological description (English):** Distributed neural systems support specific psychological functions; brain scans and localized damage require cautious interpretation.
 
-**User-friendly description (mr):** परस्पर जोडलेल्या मेंदूतील प्रणाली वेगवेगळ्या वर्तनांना कसा आधार देतात ते जाणून घे.
+**User-friendly description (mr):** परस्पर जोडलेल्या मेंदूतील प्रणाली वेगवेगळ्या वर्तनांना कसा आधार देतात ते जाणून घ्या.
 
 ##### कार्यकारी नियंत्रण जाळी
 
@@ -446,7 +446,7 @@ Skills: 5
 
 **Methodological description (English):** Explain distinctive contributions of brain regions while rejecting the idea that complex experience lives in one isolated location.
 
-**User-friendly description (mr):** गुंतागुंतीचे विचार एका जागेशी न जोडता मेंदूची विशिष्ट कार्ये ओळख.
+**User-friendly description (mr):** गुंतागुंतीचे विचार एका जागेशी न जोडता मेंदूची विशिष्ट कार्ये ओळखा.
 
 ##### चालक मज्जामार्ग
 
@@ -454,7 +454,7 @@ Skills: 5
 
 **Methodological description (English):** Relate commands from central nervous processing to coordinated bodily movement and action.
 
-**User-friendly description (mr):** मज्जासंस्था हालचालींचा समन्वय कसा साधते ते स्पष्ट कर.
+**User-friendly description (mr):** मज्जासंस्था हालचालींचा समन्वय कसा साधते ते स्पष्ट करा.
 
 ##### मेंदूच्या प्रतिमांमधून अनुमान
 
@@ -462,7 +462,7 @@ Skills: 5
 
 **Methodological description (English):** Distinguish an imaged physiological signal from an inferred thought and identify the limits of reverse inference.
 
-**User-friendly description (mr):** मेंदूच्या क्रियेच्या प्रतिमांतून विशिष्ट विचार थेट का दिसत नाहीत ते समजून घे.
+**User-friendly description (mr):** मेंदूच्या क्रियेच्या प्रतिमांतून विशिष्ट विचार थेट का दिसत नाहीत ते समजून घ्या.
 
 ##### संवेदनात्मक मज्जामार्ग
 
@@ -480,7 +480,7 @@ Skills: 3
 
 **Methodological description (English):** Evolutionary explanations generate testable hypotheses about behavior but require evidence beyond a plausible adaptation story.
 
-**User-friendly description (mr):** उत्क्रांतीचे सिद्धांत वर्तनाबद्दल तपासता येण्याजोगी गृहीतके कशी मांडतात ते जाणून घे.
+**User-friendly description (mr):** उत्क्रांतीचे सिद्धांत वर्तनाबद्दल तपासता येण्याजोगी गृहीतके कशी मांडतात ते जाणून घ्या.
 
 ##### अनुकूलनातील तडजोडी
 
@@ -488,7 +488,7 @@ Skills: 3
 
 **Methodological description (English):** Explain why a tendency advantageous in one context may impose costs in another rather than treating all traits as optimal.
 
-**User-friendly description (mr):** एका वातावरणात फायदेशीर असलेली प्रवृत्ती दुसऱ्यात खर्चिक का ठरू शकते ते समजून घे.
+**User-friendly description (mr):** एका वातावरणात फायदेशीर असलेली प्रवृत्ती दुसऱ्यात खर्चिक का ठरू शकते ते समजून घ्या.
 
 ##### उत्क्रांतीविषयक दाव्यांचे मूल्यमापन
 
@@ -496,7 +496,7 @@ Skills: 3
 
 **Methodological description (English):** Assess behavioral adaptation hypotheses against comparative evidence and plausible developmental or cultural alternatives.
 
-**User-friendly description (mr):** केवळ पटणाऱ्या गोष्टींऐवजी पुराव्यांच्या आधारे उत्क्रांतीविषयक स्पष्टीकरणे तपास.
+**User-friendly description (mr):** केवळ पटणाऱ्या गोष्टींऐवजी पुराव्यांच्या आधारे उत्क्रांतीविषयक स्पष्टीकरणे तपासा.
 
 ##### नैसर्गिक निवड आणि वर्तनातील विविधता
 
@@ -504,7 +504,7 @@ Skills: 3
 
 **Methodological description (English):** Explain how inherited variation and differential reproduction could change behavioral predispositions across generations.
 
-**User-friendly description (mr):** आनुवंशिक वर्तनप्रवृत्ती पिढ्यानपिढ्या कशा बदलू शकतात ते स्पष्ट कर.
+**User-friendly description (mr):** आनुवंशिक वर्तनप्रवृत्ती पिढ्यानपिढ्या कशा बदलू शकतात ते स्पष्ट करा.
 
 #### मज्जासंस्थेतील संदेशवहन
 
@@ -522,7 +522,7 @@ Skills: 5
 
 **Methodological description (English):** Explain how excitatory signals raise the probability of a target neuron or circuit becoming active under relevant conditions.
 
-**User-friendly description (mr):** उद्दीपक संकेत मज्जापेशींची क्रियाशीलता वाढण्याची शक्यता कशी वाढवतात ते जाणून घे.
+**User-friendly description (mr):** उद्दीपक संकेत मज्जापेशींची क्रियाशीलता वाढण्याची शक्यता कशी वाढवतात ते जाणून घ्या.
 
 ##### मज्जापेशींचे अवरोधन
 
@@ -530,7 +530,7 @@ Skills: 5
 
 **Methodological description (English):** Explain how inhibitory signals reduce or regulate activation within a circuit without implying that inhibition means absence of information processing.
 
-**User-friendly description (mr):** अवरोधक संकेत मज्जापेशींच्या क्रियाशीलतेचे नियमन कसे करतात ते स्पष्ट कर.
+**User-friendly description (mr):** अवरोधक संकेत मज्जापेशींच्या क्रियाशीलतेचे नियमन कसे करतात ते स्पष्ट करा.
 
 ##### मज्जापेशींची लवचिकता
 
@@ -546,7 +546,7 @@ Skills: 5
 
 **Methodological description (English):** Connect electrical impulses and synaptic transmission with communication between neurons and the timing of responses.
 
-**User-friendly description (mr):** मज्जापेशी विद्युत आणि रासायनिक संकेत कसे पाठवतात ते स्पष्ट कर.
+**User-friendly description (mr):** मज्जापेशी विद्युत आणि रासायनिक संकेत कसे पाठवतात ते स्पष्ट करा.
 
 ##### मज्जारसायनांचे कार्य
 
@@ -554,7 +554,7 @@ Skills: 5
 
 **Methodological description (English):** Explain modulatory chemical signaling without the misleading claim that a single neurotransmitter directly causes one emotion.
 
-**User-friendly description (mr):** एकच न्यूरोट्रान्समीटर एकाच विशिष्ट भावना का ठरवत नाही ते समजून घे.
+**User-friendly description (mr):** एकच न्यूरोट्रान्समीटर एकाच विशिष्ट भावना का ठरवत नाही ते समजून घ्या.
 
 ### संपूर्ण आयुष्यभरचा विकास
 
@@ -760,7 +760,7 @@ Skills: 5
 
 **Methodological description (English):** Emotions emerge from interpretations, physiological changes, and situational information that interact in complex ways.
 
-**User-friendly description (mr):** भावनांची कार्ये, शारीरिक प्रतिक्रिया आणि अर्थलागू प्रक्रिया जाणून घे.
+**User-friendly description (mr):** भावनांची कार्ये, शारीरिक प्रतिक्रिया आणि अर्थलागू प्रक्रिया जाणून घ्या.
 
 ##### भावनांची कार्ये
 
@@ -768,7 +768,7 @@ Skills: 5
 
 **Methodological description (English):** Explain how emotion can signal needs, orient attention, and prepare action while avoiding fixed rules for every person.
 
-**User-friendly description (mr):** भावना गरजा, धोके आणि संधी कशा दाखवतात ते समज.
+**User-friendly description (mr):** भावना गरजा, धोके आणि संधी कशा दाखवतात ते समजून घ्या.
 
 ##### भावनांचे सिद्धांत
 
@@ -776,7 +776,7 @@ Skills: 5
 
 **Methodological description (English):** Compare explanatory accounts of the relationship among bodily changes, appraisal, and conscious experience.
 
-**User-friendly description (mr):** भावना व शारीरिक प्रतिसाद यांचे नाते सांगणाऱ्या सिद्धांतांची तुलना कर.
+**User-friendly description (mr):** भावना व शारीरिक प्रतिसाद यांचे नाते सांगणाऱ्या सिद्धांतांची तुलना करा.
 
 ##### भावनिक मूल्यमापन
 
@@ -792,7 +792,7 @@ Skills: 5
 
 **Methodological description (English):** Distinguish relatively persistent affective states from briefer reactions focused on a specific event.
 
-**User-friendly description (mr):** अल्पकाळची भावना आणि अधिक वेळ टिकणारी मनःस्थिती यांत फरक ओळख.
+**User-friendly description (mr):** अल्पकाळची भावना आणि अधिक वेळ टिकणारी मनःस्थिती यांत फरक ओळखा.
 
 ##### भावनांचे शरीरविज्ञान
 
@@ -800,7 +800,7 @@ Skills: 5
 
 **Methodological description (English):** Relate changes in arousal and bodily responses to experienced emotion without assuming a unique bodily signature for each state.
 
-**User-friendly description (mr):** वेगवेगळ्या भावनांसोबत होणारे शारीरिक बदल ओळख.
+**User-friendly description (mr):** वेगवेगळ्या भावनांसोबत होणारे शारीरिक बदल ओळखा.
 
 #### ओळख आणि अभिव्यक्ती
 
@@ -810,7 +810,7 @@ Skills: 4
 
 **Methodological description (English):** Emotional information is conveyed through multiple channels, but neither facial expression nor tone is an infallible window into another mind.
 
-**User-friendly description (mr):** विविध परिस्थितीत भावना कशा ओळखायच्या व व्यक्त करायच्या ते शिक.
+**User-friendly description (mr):** विविध परिस्थितीत भावना कशा ओळखायच्या व व्यक्त करायच्या ते शिका.
 
 ##### भावना व्यक्त करण्यातील सांस्कृतिक फरक
 
@@ -818,7 +818,7 @@ Skills: 4
 
 **Methodological description (English):** Explain how social norms can influence whether and how feelings are displayed.
 
-**User-friendly description (mr):** सामाजिक व सांस्कृतिक नियम भावना व्यक्त करण्यावर कसा परिणाम करतात ते ओळख.
+**User-friendly description (mr):** सामाजिक व सांस्कृतिक नियम भावना व्यक्त करण्यावर कसा परिणाम करतात ते ओळखा.
 
 ##### भावनांचा शब्दसंग्रह
 
@@ -826,7 +826,7 @@ Skills: 4
 
 **Methodological description (English):** Differentiate related affective states to communicate distinctions in intensity, quality, or cause.
 
-**User-friendly description (mr):** भावनिक अनुभव अचूक सांगणारे शब्द वापर.
+**User-friendly description (mr):** भावनिक अनुभव अचूक सांगणारे शब्द वापरा.
 
 ##### स्वतःच्या भावनांची जाणीव
 
@@ -834,7 +834,7 @@ Skills: 4
 
 **Methodological description (English):** Identify feelings, accompanying sensations, and possible triggers without assuming a single interpretation is certain.
 
-**User-friendly description (mr):** कारण गृहित न धरता स्वतःची भावनिक स्थिती पाहा आणि वर्णन कर.
+**User-friendly description (mr):** कारण गृहित न धरता स्वतःची भावनिक स्थिती पाहा आणि वर्णन करा.
 
 ##### भावनिक संकेत समजून घेणे
 
@@ -842,7 +842,7 @@ Skills: 4
 
 **Methodological description (English):** Interpret facial, vocal, and contextual signals cautiously rather than equating one expression with a definite inner state.
 
-**User-friendly description (mr):** चेहऱ्यावरील भावांना खात्रीचा पुरावा न मानता भावनिक संकेत समजून घे.
+**User-friendly description (mr):** चेहऱ्यावरील भावांना खात्रीचा पुरावा न मानता भावनिक संकेत समजून घ्या.
 
 #### भावना नियमनाच्या पद्धती
 
@@ -860,7 +860,7 @@ Skills: 5
 
 **Methodological description (English):** Explain how directing focus alters emotional intensity or persistence, including limits of distraction.
 
-**User-friendly description (mr):** दुसरीकडे लक्ष देणे उपयोगी असेल तेव्हा जाणीवपूर्वक लक्ष वळव.
+**User-friendly description (mr):** दुसरीकडे लक्ष देणे उपयोगी असेल तेव्हा जाणीवपूर्वक लक्ष वळवा.
 
 ##### संज्ञानात्मक पुनर्मूल्यांकन
 
@@ -868,7 +868,7 @@ Skills: 5
 
 **Methodological description (English):** Explain how reconsidering an event's meaning can change the emotional response without denying the event.
 
-**User-friendly description (mr):** भावनिक प्रतिक्रिया बदलण्यासाठी परिस्थितीचा अर्थ पुन्हा विचारात घे.
+**User-friendly description (mr):** भावनिक प्रतिक्रिया बदलण्यासाठी परिस्थितीचा अर्थ पुन्हा विचारात घ्या.
 
 ##### भावना व्यक्त करणे दडपणे
 
@@ -876,7 +876,7 @@ Skills: 5
 
 **Methodological description (English):** Evaluate potential immediate and interpersonal costs of withholding outward emotional expression.
 
-**User-friendly description (mr):** बाहेरच्या भावना लपवणे आणि आतल्या भावना बदलणे वेगळे आहे हे ओळख.
+**User-friendly description (mr):** बाहेरच्या भावना लपवणे आणि आतल्या भावना बदलणे वेगळे आहे हे ओळखा.
 
 ##### भावना नियमनातील लवचिकता
 
@@ -884,7 +884,7 @@ Skills: 5
 
 **Methodological description (English):** Select and justify possible responses to changing situations instead of treating one technique as universally best.
 
-**User-friendly description (mr):** विशिष्ट परिस्थितीला योग्य भावनानियमन पद्धत निवड.
+**User-friendly description (mr):** विशिष्ट परिस्थितीला योग्य भावनानियमन पद्धत निवडा.
 
 ##### योग्य पाठिंबा शोधणे
 
@@ -892,7 +892,7 @@ Skills: 5
 
 **Methodological description (English):** Distinguish self-management from situations in which trusted or qualified assistance is an appropriate response.
 
-**User-friendly description (mr):** विश्वासू व्यक्तीकडून मदत घेणे कधी योग्य आहे ते ओळख.
+**User-friendly description (mr):** विश्वासू व्यक्तीकडून मदत घेणे कधी योग्य आहे ते ओळखा.
 
 #### ताण आणि त्याचा सामना
 
@@ -910,7 +910,7 @@ Skills: 5
 
 **Methodological description (English):** Explain a relatively short-lived response to demands or threat and how recovery may follow the event.
 
-**User-friendly description (mr):** तातडीच्या आव्हानांना येणाऱ्या अल्पकालीन मानसिक प्रतिक्रिया समजून घे.
+**User-friendly description (mr):** तातडीच्या आव्हानांना येणाऱ्या अल्पकालीन मानसिक प्रतिक्रिया समजून घ्या.
 
 ##### दीर्घकालीन ताण
 
@@ -918,7 +918,7 @@ Skills: 5
 
 **Methodological description (English):** Explain sustained exposure to stressors and why duration and available resources affect psychological consequences.
 
-**User-friendly description (mr):** सततचा ताण आणि थोड्या वेळची तणावपूर्ण घटना यात फरक ओळख.
+**User-friendly description (mr):** सततचा ताण आणि थोड्या वेळची तणावपूर्ण घटना यात फरक ओळखा.
 
 ##### भावनाकेंद्रित सामना
 
@@ -942,7 +942,7 @@ Skills: 5
 
 **Methodological description (English):** Explain how a person's interpretation of demands and resources shapes experienced strain.
 
-**User-friendly description (mr):** मागण्यांचा अर्थ लावण्याने ताणाची प्रतिक्रिया कशी बदलते ते ओळख.
+**User-friendly description (mr):** मागण्यांचा अर्थ लावण्याने ताणाची प्रतिक्रिया कशी बदलते ते ओळखा.
 
 ### अध्ययन आणि वर्तनबदल
 
@@ -1576,7 +1576,7 @@ Skills: 5
 
 **Methodological description (English):** Persistent action requires monitoring progress, choosing responses, and adapting goals to changing conditions.
 
-**User-friendly description (mr):** लोक ध्येये कशी ठरवतात, टिकवतात व परिस्थितीनुसार बदलतात ते शिक.
+**User-friendly description (mr):** लोक ध्येये कशी ठरवतात, टिकवतात व परिस्थितीनुसार बदलतात ते शिका.
 
 ##### ध्येय बदलणे आणि सोडणे
 
@@ -1584,7 +1584,7 @@ Skills: 5
 
 **Methodological description (English):** Evaluate when adjusting or abandoning an unattainable objective may be more adaptive than persisting.
 
-**User-friendly description (mr):** ध्येय बदलणे किंवा सोडणे कधी परिस्थितीशी जुळवून घेण्यास मदत करते ते समज.
+**User-friendly description (mr):** ध्येय बदलणे किंवा सोडणे कधी परिस्थितीशी जुळवून घेण्यास मदत करते ते समजून घ्या.
 
 ##### ध्येयाची स्पष्टता
 
@@ -1592,7 +1592,7 @@ Skills: 5
 
 **Methodological description (English):** Explain how a clearly defined target can guide action and progress monitoring differently from a vague intention.
 
-**User-friendly description (mr):** स्पष्ट आणि नेमकी ध्येये कृतीला कशी दिशा देतात ते समज.
+**User-friendly description (mr):** स्पष्ट आणि नेमकी ध्येये कृतीला कशी दिशा देतात ते समजून घ्या.
 
 ##### अंमलबजावणीचे हेतू
 
@@ -1600,7 +1600,7 @@ Skills: 5
 
 **Methodological description (English):** Explain how linking a situational cue to a planned response can bridge an intention–action gap.
 
-**User-friendly description (mr):** परिस्थिती आणि ठरलेली कृती जोडण्यासाठी «जर… तर…» योजना वापर.
+**User-friendly description (mr):** परिस्थिती आणि ठरलेली कृती जोडण्यासाठी «जर… तर…» योजना वापरा.
 
 ##### आत्मनियंत्रण आणि आवेग रोखणे
 
@@ -1616,7 +1616,7 @@ Skills: 5
 
 **Methodological description (English):** Explain how beliefs about one's capability influence attempts, persistence, and response to setbacks without guaranteeing outcomes.
 
-**User-friendly description (mr):** स्वतःवरचा विश्वास प्रयत्न आणि चिकाटी कशी बदलतो ते ओळख.
+**User-friendly description (mr):** स्वतःवरचा विश्वास प्रयत्न आणि चिकाटी कशी बदलतो ते ओळखा.
 
 #### सवयींची यंत्रणा
 
@@ -1634,7 +1634,7 @@ Skills: 4
 
 **Methodological description (English):** Identify environmental or internal signals that trigger a learned routine.
 
-**User-friendly description (mr):** सवयीची प्रतिक्रिया सुरू करणारे परिसरातील संकेत ओळख.
+**User-friendly description (mr):** सवयीची प्रतिक्रिया सुरू करणारे परिसरातील संकेत ओळखा.
 
 ##### सवयीमध्ये खंड पाडणे
 
@@ -1642,7 +1642,7 @@ Skills: 4
 
 **Methodological description (English):** Explain how changed surroundings or interruption of familiar cues can alter routine behavior.
 
-**User-friendly description (mr):** संकेत बदलल्याने जुनी सवय कशी खंडित होऊ शकते ते समज.
+**User-friendly description (mr):** संकेत बदलल्याने जुनी सवय कशी खंडित होऊ शकते ते समजून घ्या.
 
 ##### सवय तयार होणे
 
@@ -1650,7 +1650,7 @@ Skills: 4
 
 **Methodological description (English):** Relate repetition in stable contexts and reinforcing outcomes to increasing automaticity.
 
-**User-friendly description (mr):** सारख्या परिस्थितीत कृतीची पुनरावृत्ती तिला आपोआप कशी घडवते ते समज.
+**User-friendly description (mr):** सारख्या परिस्थितीत कृतीची पुनरावृत्ती तिला आपोआप कशी घडवते ते समजून घ्या.
 
 ##### सवयीचा पर्याय
 
@@ -1668,7 +1668,7 @@ Skills: 7
 
 **Methodological description (English):** Behavior is influenced by internal states and external incentives, with competing explanations and substantial individual variation.
 
-**User-friendly description (mr):** मानवी कृतीमागील प्रेरणेचे वेगवेगळे स्रोत जाणून घे.
+**User-friendly description (mr):** मानवी कृतीमागील प्रेरणेचे वेगवेगळे स्रोत जाणून घ्या.
 
 ##### उद्दिष्टाकडे जाणारी प्रेरणा
 
@@ -1676,7 +1676,7 @@ Skills: 7
 
 **Methodological description (English):** Explain initiation of actions aimed at obtaining anticipated positive outcomes.
 
-**User-friendly description (mr):** हवे असलेल्या परिणामाकडे जाण्याची प्रेरणा ओळख.
+**User-friendly description (mr):** हवे असलेल्या परिणामाकडे जाण्याची प्रेरणा ओळखा.
 
 ##### टाळण्याची प्रेरणा
 
@@ -1684,7 +1684,7 @@ Skills: 7
 
 **Methodological description (English):** Explain actions aimed at preventing or escaping an anticipated undesirable outcome.
 
-**User-friendly description (mr):** नको असलेला परिणाम टाळण्याची प्रेरणा ओळख.
+**User-friendly description (mr):** नको असलेला परिणाम टाळण्याची प्रेरणा ओळखा.
 
 ##### अपेक्षा आणि मूल्य
 
@@ -1692,7 +1692,7 @@ Skills: 7
 
 **Methodological description (English):** Analyze how anticipated success and the perceived value of an outcome jointly influence effort.
 
-**User-friendly description (mr):** अपेक्षा व जाणवणारे महत्त्व प्रयत्नांवर कसा परिणाम करतात ते स्पष्ट कर.
+**User-friendly description (mr):** अपेक्षा व जाणवणारे महत्त्व प्रयत्नांवर कसा परिणाम करतात ते स्पष्ट करा.
 
 ##### बाह्य प्रेरणा
 
@@ -1708,7 +1708,7 @@ Skills: 7
 
 **Methodological description (English):** Explain engaging in an activity because it is personally interesting or satisfying in itself.
 
-**User-friendly description (mr):** एखादी क्रिया तिच्यातील आनंदासाठी करण्याची इच्छा ओळख.
+**User-friendly description (mr):** एखादी क्रिया तिच्यातील आनंदासाठी करण्याची इच्छा ओळखा.
 
 ##### बाह्य बक्षिसामुळे प्रेरणा कमी होणे
 
@@ -1724,7 +1724,7 @@ Skills: 7
 
 **Methodological description (English):** Explain how physiological and psychological needs can influence the direction and intensity of behavior.
 
-**User-friendly description (mr):** मानसिक व शारीरिक गरजा वर्तन कसे घडवतात ते समज.
+**User-friendly description (mr):** मानसिक व शारीरिक गरजा वर्तन कसे घडवतात ते समजून घ्या.
 
 ### व्यक्तिमत्त्व आणि वैयक्तिक भिन्नता
 
@@ -1928,7 +1928,7 @@ Groups: 5 · Skills: 31
 
 **Methodological description (English):** Psychology explains behavior and mental processes through empirical evidence, multiple levels of analysis, and ethical inquiry. Its explanations are provisional and require stronger support than anecdote or authority.
 
-**User-friendly description (mr):** मानसशास्त्रज्ञ काळजीपूर्वक संशोधन करून वर्तन आणि मानसिक प्रक्रिया कशा अभ्यासतात ते जाणून घे.
+**User-friendly description (mr):** मानसशास्त्रज्ञ काळजीपूर्वक संशोधन करून वर्तन आणि मानसिक प्रक्रिया कशा अभ्यासतात ते जाणून घ्या.
 
 #### पुरावे आणि त्यांचा अर्थ
 
@@ -1938,7 +1938,7 @@ Skills: 6
 
 **Methodological description (English):** Quantitative summaries and research transparency help discriminate robust patterns from noise and misleading causal stories.
 
-**User-friendly description (mr):** पुरावे आणि पारदर्शक विश्लेषण संशोधनातील निष्कर्षांना कसा आधार देतात ते जाणून घे.
+**User-friendly description (mr):** पुरावे आणि पारदर्शक विश्लेषण संशोधनातील निष्कर्षांना कसा आधार देतात ते जाणून घ्या.
 
 ##### विश्लेषणाची पुनरुत्पादकता
 
@@ -1946,7 +1946,7 @@ Skills: 6
 
 **Methodological description (English):** Explain why access to reported methods, data, and analytic decisions allows independent verification of a result.
 
-**User-friendly description (mr):** स्पष्ट पद्धती आणि विश्लेषण निर्णयांमुळे स्वतंत्र पडताळणी कशी शक्य होते ते जाणून घे.
+**User-friendly description (mr):** स्पष्ट पद्धती आणि विश्लेषण निर्णयांमुळे स्वतंत्र पडताळणी कशी शक्य होते ते जाणून घ्या.
 
 ##### गोंधळ निर्माण करणारी चल
 
@@ -1954,7 +1954,7 @@ Skills: 6
 
 **Methodological description (English):** Identify background factors that move with a proposed cause and could produce an observed group difference.
 
-**User-friendly description (mr):** गटांतील फरक स्पष्ट करू शकणारे इतर घटक ओळख.
+**User-friendly description (mr):** गटांतील फरक स्पष्ट करू शकणारे इतर घटक ओळखा.
 
 ##### सहसंबंध आणि कारणसंबंध
 
@@ -1962,7 +1962,7 @@ Skills: 6
 
 **Methodological description (English):** Consider reversed direction and third-variable explanations when two psychological measures vary together.
 
-**User-friendly description (mr):** दोन मानसशास्त्रीय घटकांचा संबंध आणि एक घटक दुसऱ्यास कारणीभूत असल्याचा पुरावा यांतील फरक ओळख.
+**User-friendly description (mr):** दोन मानसशास्त्रीय घटकांचा संबंध आणि एक घटक दुसऱ्यास कारणीभूत असल्याचा पुरावा यांतील फरक ओळखा.
 
 ##### संशोधनातील वर्णनात्मक सांख्यिकी
 
@@ -1970,7 +1970,7 @@ Skills: 6
 
 **Methodological description (English):** Interpret distributions, typical values, and variability without treating a group average as every participant's experience.
 
-**User-friendly description (mr):** सगळेच सरासरीसारखे असतात असे न मानता सामान्य मूल्ये आणि त्यांतील फरक समजून घे.
+**User-friendly description (mr):** सगळेच सरासरीसारखे असतात असे न मानता सामान्य मूल्ये आणि त्यांतील फरक समजून घ्या.
 
 ##### पुराव्याची गुणवत्ता
 
@@ -1978,7 +1978,7 @@ Skills: 6
 
 **Methodological description (English):** Weigh converging studies, effect magnitude, uncertainty, and publication bias instead of relying on one striking result.
 
-**User-friendly description (mr):** संशोधन निष्कर्षांची ताकद, अनिश्चितता आणि संभाव्य पक्षपात यांच्या आधारे तुलना कर.
+**User-friendly description (mr):** संशोधन निष्कर्षांची ताकद, अनिश्चितता आणि संभाव्य पक्षपात यांच्या आधारे तुलना करा.
 
 ##### अभ्यासाची पुनरावृत्ती
 
@@ -1986,7 +1986,7 @@ Skills: 6
 
 **Methodological description (English):** Explain why repeating a psychological investigation with new observations helps assess the robustness and generality of a result.
 
-**User-friendly description (mr):** अभ्यास पुन्हा केल्याने निष्कर्ष किती भक्कम आहे हे कसे तपासता येते ते समजून घे.
+**User-friendly description (mr):** अभ्यास पुन्हा केल्याने निष्कर्ष किती भक्कम आहे हे कसे तपासता येते ते समजून घ्या.
 
 #### पाया आणि दृष्टिकोन
 
@@ -1996,7 +1996,7 @@ Skills: 4
 
 **Methodological description (English):** Scientific accounts distinguish description, prediction, and causal explanation while combining cognitive, biological, behavioral, and sociocultural perspectives.
 
-**User-friendly description (mr):** मानसशास्त्रातील विविध दृष्टिकोन आणि वैज्ञानिक उद्दिष्टे जाणून घे.
+**User-friendly description (mr):** मानसशास्त्रातील विविध दृष्टिकोन आणि वैज्ञानिक उद्दिष्टे जाणून घ्या.
 
 ##### स्पष्टीकरण आणि भाकीत
 
@@ -2004,7 +2004,7 @@ Skills: 4
 
 **Methodological description (English):** Separate a description of observed behavior, a forecast about future behavior, and a proposed mechanism responsible for it.
 
-**User-friendly description (mr):** वर्तनाचे वर्णन करणे, भाकीत करणे आणि कारणे स्पष्ट करणे यातला फरक ओळख.
+**User-friendly description (mr):** वर्तनाचे वर्णन करणे, भाकीत करणे आणि कारणे स्पष्ट करणे यातला फरक ओळखा.
 
 ##### मानसशास्त्रातील ऐतिहासिक दृष्टिकोन
 
@@ -2028,7 +2028,7 @@ Skills: 4
 
 **Methodological description (English):** Distinguish the empirical study of behavior and experience from philosophical evaluation of arguments and from medical diagnosis or treatment.
 
-**User-friendly description (mr):** मानसशास्त्रीय संशोधन, तत्त्वज्ञान आणि वैद्यकीय उपचार यांतील फरक ओळख.
+**User-friendly description (mr):** मानसशास्त्रीय संशोधन, तत्त्वज्ञान आणि वैद्यकीय उपचार यांतील फरक ओळखा.
 
 #### मापन आणि नमुना निवड
 
@@ -2038,7 +2038,7 @@ Skills: 5
 
 **Methodological description (English):** Operational measures offer imperfect indicators of psychological constructs, and recruitment choices limit generalization.
 
-**User-friendly description (mr):** मानसशास्त्रज्ञ संकल्पना कशा मोजतात आणि संशोधनासाठी सहभागी कसे निवडतात ते जाणून घे.
+**User-friendly description (mr):** मानसशास्त्रज्ञ संकल्पना कशा मोजतात आणि संशोधनासाठी सहभागी कसे निवडतात ते जाणून घ्या.
 
 ##### संकल्पना वैधता
 
@@ -2046,7 +2046,7 @@ Skills: 5
 
 **Methodological description (English):** Assess whether a test actually captures the intended psychological attribute rather than a convenient proxy.
 
-**User-friendly description (mr):** चाचणी ज्या संकल्पनेचे मापन करते असा दावा करते, तीच संकल्पना खरोखर मोजते का हे तपास.
+**User-friendly description (mr):** चाचणी ज्या संकल्पनेचे मापन करते असा दावा करते, तीच संकल्पना खरोखर मोजते का हे तपासा.
 
 ##### मापनातील पक्षपात
 
@@ -2062,7 +2062,7 @@ Skills: 5
 
 **Methodological description (English):** Translate an abstract concept such as stress or attention into an observable indicator and identify what it leaves out.
 
-**User-friendly description (mr):** अमूर्त मानसशास्त्रीय कल्पनेचे निरीक्षण करता येतील अशा मापनांत रूपांतर कर.
+**User-friendly description (mr):** अमूर्त मानसशास्त्रीय कल्पनेचे निरीक्षण करता येतील अशा मापनांत रूपांतर करा.
 
 ##### मापनाची विश्वसनीयता
 
@@ -2070,7 +2070,7 @@ Skills: 5
 
 **Methodological description (English):** Evaluate whether repeated or equivalent measurements are consistent enough for their intended interpretation.
 
-**User-friendly description (mr):** मानसशास्त्रीय मापन सातत्यपूर्ण परिणाम देते का ते तपास.
+**User-friendly description (mr):** मानसशास्त्रीय मापन सातत्यपूर्ण परिणाम देते का ते तपासा.
 
 ##### प्रातिनिधिक नमुना निवड
 
@@ -2078,7 +2078,7 @@ Skills: 5
 
 **Methodological description (English):** Explain how sampling, recruitment, and nonresponse affect the generalizability of findings.
 
-**User-friendly description (mr):** नमुना निवडल्याची पद्धत संपूर्ण लोकसंख्येबद्दलचे निष्कर्ष कसे मर्यादित करते ते ओळख.
+**User-friendly description (mr):** नमुना निवडल्याची पद्धत संपूर्ण लोकसंख्येबद्दलचे निष्कर्ष कसे मर्यादित करते ते ओळखा.
 
 #### संशोधन नैतिकता
 
@@ -2088,7 +2088,7 @@ Skills: 7
 
 **Methodological description (English):** Studies involving people must respect autonomy, dignity, safety, and confidentiality, including additional safeguards for vulnerable participants.
 
-**User-friendly description (mr):** संशोधनातून लोकांच्या स्वायत्ततेचा, सन्मानाचा आणि सुरक्षिततेचा आदर कसा करता येतो ते जाणून घे.
+**User-friendly description (mr):** संशोधनातून लोकांच्या स्वायत्ततेचा, सन्मानाचा आणि सुरक्षिततेचा आदर कसा करता येतो ते जाणून घ्या.
 
 ##### संशोधनातील फसवणूक
 
@@ -2096,7 +2096,7 @@ Skills: 7
 
 **Methodological description (English):** Evaluate the rare conditions under which incomplete disclosure might be ethically defensible given oversight, scientific necessity, and risks.
 
-**User-friendly description (mr):** संशोधनात काही माहिती लपवणे कोणत्या परिस्थितीत नैतिकदृष्ट्या योग्य असू शकते ते विचार कर.
+**User-friendly description (mr):** संशोधनात काही माहिती लपवणे कोणत्या परिस्थितीत नैतिकदृष्ट्या योग्य असू शकते ते विचार करा.
 
 ##### माहितीपूर्ण संमती
 
@@ -2104,7 +2104,7 @@ Skills: 7
 
 **Methodological description (English):** Identify the information required for a voluntary decision to participate, including procedures, foreseeable risks, and withdrawal.
 
-**User-friendly description (mr):** अभ्यासात सहभागी होण्यास मान्यता देण्यापूर्वी सहभागींना काय माहीत असावे ते ओळख.
+**User-friendly description (mr):** अभ्यासात सहभागी होण्यास मान्यता देण्यापूर्वी सहभागींना काय माहीत असावे ते ओळखा.
 
 ##### संशोधनातील अनामिकता
 
@@ -2112,7 +2112,7 @@ Skills: 7
 
 **Methodological description (English):** Explain when collected data cannot be linked to a participant and why this differs from merely promising confidentiality.
 
-**User-friendly description (mr):** अनामिक संशोधन माहिती आणि गोपनीय ठेवलेली माहिती यांतील फरक ओळख.
+**User-friendly description (mr):** अनामिक संशोधन माहिती आणि गोपनीय ठेवलेली माहिती यांतील फरक ओळखा.
 
 ##### संशोधनातील गोपनीयता
 
@@ -2120,7 +2120,7 @@ Skills: 7
 
 **Methodological description (English):** Explain how identifiable participant information may be protected through access restrictions and careful reporting.
 
-**User-friendly description (mr):** ओळख पटू शकणाऱ्या सहभागींच्या माहितीचे संशोधक कसे संरक्षण करतात ते समजून घे.
+**User-friendly description (mr):** ओळख पटू शकणाऱ्या सहभागींच्या माहितीचे संशोधक कसे संरक्षण करतात ते समजून घ्या.
 
 ##### संशोधनानंतरचे स्पष्टीकरण
 
@@ -2128,7 +2128,7 @@ Skills: 7
 
 **Methodological description (English):** Explain the purpose of a meaningful post-participation explanation and support when a study withheld important information.
 
-**User-friendly description (mr):** अभ्यासानंतर संशोधकांना सहभागींना माहिती का द्यावी लागू शकते ते स्पष्ट कर.
+**User-friendly description (mr):** अभ्यासानंतर संशोधकांना सहभागींना माहिती का द्यावी लागू शकते ते स्पष्ट करा.
 
 ##### असुरक्षित स्थितीतील सहभागींसोबत संशोधन
 
@@ -2136,7 +2136,7 @@ Skills: 7
 
 **Methodological description (English):** Explain additional assent, consent, power-balance, and accessibility considerations involving children or dependent groups.
 
-**User-friendly description (mr):** मुले आणि असुरक्षित स्थितीतील सहभागी यांच्यासाठी आवश्यक अतिरिक्त संरक्षणे ओळख.
+**User-friendly description (mr):** मुले आणि असुरक्षित स्थितीतील सहभागी यांच्यासाठी आवश्यक अतिरिक्त संरक्षणे ओळखा.
 
 ##### जोखीम–लाभ मूल्यमापन
 
@@ -2144,7 +2144,7 @@ Skills: 7
 
 **Methodological description (English):** Identify possible distress, coercion, stigma, and privacy harms and consider less intrusive alternatives.
 
-**User-friendly description (mr):** संशोधनाचे संभाव्य फायदे आणि त्रास, हानी किंवा दबाव यांच्या जोखमींची तुलना कर.
+**User-friendly description (mr):** संशोधनाचे संभाव्य फायदे आणि त्रास, हानी किंवा दबाव यांच्या जोखमींची तुलना करा.
 
 #### संशोधन आराखडे
 
@@ -2154,7 +2154,7 @@ Skills: 9
 
 **Methodological description (English):** Different ways of collecting evidence answer different questions and support different levels of causal inference.
 
-**User-friendly description (mr):** वेगवेगळ्या संशोधन आराखड्यांमधून वेगवेगळे निष्कर्ष का काढता येतात ते जाणून घे.
+**User-friendly description (mr):** वेगवेगळ्या संशोधन आराखड्यांमधून वेगवेगळे निष्कर्ष का काढता येतात ते जाणून घ्या.
 
 ##### संशोधनातील अंध पद्धत
 
@@ -2162,7 +2162,7 @@ Skills: 9
 
 **Methodological description (English):** Explain how keeping condition assignments unknown to participants or evaluators can reduce some sources of bias, and why blinding is not universally possible.
 
-**User-friendly description (mr):** सहभागींना किंवा मूल्यांकनकर्त्यांना गटवाटप माहीत नसल्यास काही पक्षपात कसे कमी होतात ते स्पष्ट कर.
+**User-friendly description (mr):** सहभागींना किंवा मूल्यांकनकर्त्यांना गटवाटप माहीत नसल्यास काही पक्षपात कसे कमी होतात ते स्पष्ट करा.
 
 ##### नियंत्रित प्रयोग
 
@@ -2170,7 +2170,7 @@ Skills: 9
 
 **Methodological description (English):** Identify manipulated variables, outcome measures, comparison conditions, and the logic of an experimental contrast.
 
-**User-friendly description (mr):** प्रयोगात बदललेले घटक, मोजलेले परिणाम आणि नियंत्रण अटी ओळख.
+**User-friendly description (mr):** प्रयोगात बदललेले घटक, मोजलेले परिणाम आणि नियंत्रण अटी ओळखा.
 
 ##### सहसंबंधात्मक अभ्यास
 
@@ -2178,7 +2178,7 @@ Skills: 9
 
 **Methodological description (English):** Determine what an association between measured variables reveals without treating co-occurrence as proof of cause.
 
-**User-friendly description (mr):** सहसंबंध काय दाखवतात आणि काय सिद्ध करू शकत नाहीत हे ओळख.
+**User-friendly description (mr):** सहसंबंध काय दाखवतात आणि काय सिद्ध करू शकत नाहीत हे ओळखा.
 
 ##### अपेक्षांचे परिणाम
 
@@ -2186,7 +2186,7 @@ Skills: 9
 
 **Methodological description (English):** Explain how beliefs about an intervention or condition can change reported experience or behavior independently of its specific mechanism.
 
-**User-friendly description (mr):** अपेक्षा वर्तनावर किंवा सांगितलेल्या अनुभवांवर कसा परिणाम करू शकतात ते ओळख.
+**User-friendly description (mr):** अपेक्षा वर्तनावर किंवा सांगितलेल्या अनुभवांवर कसा परिणाम करू शकतात ते ओळखा.
 
 ##### प्रश्नावली संशोधन
 
@@ -2202,7 +2202,7 @@ Skills: 9
 
 **Methodological description (English):** Explain how chance allocation to conditions reduces systematic differences without confusing it with population sampling.
 
-**User-friendly description (mr):** यादृच्छिक वाटपामुळे संशोधनातील गट अधिक तुलनीय कसे होतात ते समजून घे.
+**User-friendly description (mr):** यादृच्छिक वाटपामुळे संशोधनातील गट अधिक तुलनीय कसे होतात ते समजून घ्या.
 
 ##### संशोधन मुलाखती
 
@@ -2218,7 +2218,7 @@ Skills: 9
 
 **Methodological description (English):** Transform a broad statement about human behavior into a claim with observable variables and possible disconfirming evidence.
 
-**User-friendly description (mr):** वर्तनाबद्दलच्या रोजच्या दाव्याचे संशोधनातून तपासता येईल अशा गृहीतकात रूपांतर कर.
+**User-friendly description (mr):** वर्तनाबद्दलच्या रोजच्या दाव्याचे संशोधनातून तपासता येईल अशा गृहीतकात रूपांतर करा.
 
 ##### पद्धतशीर निरीक्षण
 
@@ -2226,7 +2226,7 @@ Skills: 9
 
 **Methodological description (English):** Use predefined behavioral categories to distinguish structured observations from informal personal impressions.
 
-**User-friendly description (mr):** केवळ छापांऐवजी ठरावीक निरीक्षण नियम वापरून वर्तनाची नोंद कर.
+**User-friendly description (mr):** केवळ छापांऐवजी ठरावीक निरीक्षण नियम वापरून वर्तनाची नोंद करा.
 
 ### संवेदना आणि प्रत्यक्षज्ञान
 
@@ -2236,7 +2236,7 @@ Groups: 5 · Skills: 23
 
 **Methodological description (English):** Sensory information is detected, selected, organized, and interpreted into an experienced world. Psychological perception differs from simple measurement of physical stimuli or anatomy of sense organs.
 
-**User-friendly description (mr):** इंद्रियांचे संकेत आपल्या आसपासच्या जगाच्या अनुभवात कसे बदलतात ते जाणून घे.
+**User-friendly description (mr):** इंद्रियांचे संकेत आपल्या आसपासच्या जगाच्या अनुभवात कसे बदलतात ते जाणून घ्या.
 
 #### शारीरिक आणि रासायनिक संवेदना
 
@@ -2262,7 +2262,7 @@ Skills: 6
 
 **Methodological description (English):** Explain how information about muscle and joint state supports awareness of limb position and movement even without vision.
 
-**User-friendly description (mr):** न पाहताही शरीराला हातपायांची स्थिती कशी कळते ते समजून घे.
+**User-friendly description (mr):** न पाहताही शरीराला हातपायांची स्थिती कशी कळते ते समजून घ्या.
 
 ##### वासाचे प्रत्यक्षज्ञान
 
@@ -2270,7 +2270,7 @@ Skills: 6
 
 **Methodological description (English):** Describe how patterns of odorant stimulation contribute to identifying smells and why learning, adaptation, and context can alter odor judgments.
 
-**User-friendly description (mr):** आधीचे अनुभव आणि परिस्थिती वास ओळखण्यावर कसा परिणाम करतात ते जाणून घे.
+**User-friendly description (mr):** आधीचे अनुभव आणि परिस्थिती वास ओळखण्यावर कसा परिणाम करतात ते जाणून घ्या.
 
 ##### चवीचे प्रत्यक्षज्ञान
 
@@ -2286,7 +2286,7 @@ Skills: 6
 
 **Methodological description (English):** Explain how contact, pressure, vibration, and texture are discriminated through somatosensory processing, and why perceived touch depends on stimulus location and context.
 
-**User-friendly description (mr):** दाब आणि कंपन स्पर्शाच्या अनुभवात कसे बदलतात ते समजून घे.
+**User-friendly description (mr):** दाब आणि कंपन स्पर्शाच्या अनुभवात कसे बदलतात ते समजून घ्या.
 
 ##### संतुलनाचे प्रत्यक्षज्ञान
 
@@ -2294,7 +2294,7 @@ Skills: 6
 
 **Methodological description (English):** Explain how sensed head motion and orientation contribute to balance and spatial perception, including interactions with vision and proprioception.
 
-**User-friendly description (mr):** डोक्याची हालचाल आणि दिशा संतुलन राखण्यास कशी मदत करतात ते स्पष्ट कर.
+**User-friendly description (mr):** डोक्याची हालचाल आणि दिशा संतुलन राखण्यास कशी मदत करतात ते स्पष्ट करा.
 
 #### भ्रम आणि बहुसंवेदी प्रत्यक्षज्ञान
 
@@ -2320,7 +2320,7 @@ Skills: 4
 
 **Methodological description (English):** Assess the effects of attention, conditions, and later interpretation on the reliability of witnessed events.
 
-**User-friendly description (mr):** लक्ष विचलित होणाऱ्या परिस्थितीत प्रत्यक्षदर्शीच्या निरीक्षणांच्या मर्यादा विचारात घे.
+**User-friendly description (mr):** लक्ष विचलित होणाऱ्या परिस्थितीत प्रत्यक्षदर्शीच्या निरीक्षणांच्या मर्यादा विचारात घ्या.
 
 ##### प्रत्यक्षज्ञानातील अपेक्षा
 
@@ -2328,7 +2328,7 @@ Skills: 4
 
 **Methodological description (English):** Analyze the influence of prior knowledge or priming while distinguishing interpretation from the actual stimulus.
 
-**User-friendly description (mr):** आधीचे ज्ञान बदल न झालेल्या उत्तेजनेचा अर्थ कधी बदलते ते ओळख.
+**User-friendly description (mr):** आधीचे ज्ञान बदल न झालेल्या उत्तेजनेचा अर्थ कधी बदलते ते ओळखा.
 
 ##### दृश्य भ्रम
 
@@ -2336,7 +2336,7 @@ Skills: 4
 
 **Methodological description (English):** Explain how contextual cues create reliable differences between an object's measured property and its appearance.
 
-**User-friendly description (mr):** दृश्य भ्रम मोजलेल्या भौतिक वैशिष्ट्यापेक्षा वेगळा का भासू शकतो ते स्पष्ट कर.
+**User-friendly description (mr):** दृश्य भ्रम मोजलेल्या भौतिक वैशिष्ट्यापेक्षा वेगळा का भासू शकतो ते स्पष्ट करा.
 
 #### प्रत्यक्षज्ञानाची संघटना
 
@@ -2346,7 +2346,7 @@ Skills: 4
 
 **Methodological description (English):** The mind uses grouping cues and expectations to construct coherent objects from ambiguous sensory input.
 
-**User-friendly description (mr):** मन संवेदनांची माहिती ओळखता येतील अशा वस्तूंमध्ये कशी एकत्र करते ते जाणून घे.
+**User-friendly description (mr):** मन संवेदनांची माहिती ओळखता येतील अशा वस्तूंमध्ये कशी एकत्र करते ते जाणून घ्या.
 
 ##### तळापासून वर आणि वरून खाली प्रक्रिया
 
@@ -2362,7 +2362,7 @@ Skills: 4
 
 **Methodological description (English):** Identify how context changes which part of a scene is experienced as a foreground object.
 
-**User-friendly description (mr):** दृश्यातील कोणते भाग पुढे आणि कोणते पार्श्वभूमीत दिसतात ते ओळख.
+**User-friendly description (mr):** दृश्यातील कोणते भाग पुढे आणि कोणते पार्श्वभूमीत दिसतात ते ओळखा.
 
 ##### गेस्टाल्ट गटबांधणी
 
@@ -2370,7 +2370,7 @@ Skills: 4
 
 **Methodological description (English):** Apply similarity, proximity, closure, and continuity to explain grouping of visible elements.
 
-**User-friendly description (mr):** जवळीक, साम्य आणि सातत्य वापरून दृश्य घटकांचे गट कसे तयार होतात ते स्पष्ट कर.
+**User-friendly description (mr):** जवळीक, साम्य आणि सातत्य वापरून दृश्य घटकांचे गट कसे तयार होतात ते स्पष्ट करा.
 
 ##### प्रत्यक्षज्ञानातील स्थिरता
 
@@ -2378,7 +2378,7 @@ Skills: 4
 
 **Methodological description (English):** Explain relatively stable perceived size, shape, or color across changing sensory conditions.
 
-**User-friendly description (mr):** परिस्थिती बदलली तरी आकारमान, आकार किंवा रंग स्थिर का भासू शकतात ते समजून घे.
+**User-friendly description (mr):** परिस्थिती बदलली तरी आकारमान, आकार किंवा रंग स्थिर का भासू शकतात ते समजून घ्या.
 
 #### संवेदनांचा शोध
 
@@ -2396,7 +2396,7 @@ Skills: 5
 
 **Methodological description (English):** Explain how signal strength and competing noise affect the likelihood of noticing a stimulus.
 
-**User-friendly description (mr):** गोंगाटात अधिक तीव्र संकेत सहज का जाणवू शकतात ते स्पष्ट कर.
+**User-friendly description (mr):** गोंगाटात अधिक तीव्र संकेत सहज का जाणवू शकतात ते स्पष्ट करा.
 
 ##### फरक ओळखण्याची मर्यादा
 
@@ -2404,7 +2404,7 @@ Skills: 5
 
 **Methodological description (English):** Relate the detectable difference between stimuli to their starting intensity and context.
 
-**User-friendly description (mr):** दोन उत्तेजनांमधील फरक कधी जाणवू लागतो ते ओळख.
+**User-friendly description (mr):** दोन उत्तेजनांमधील फरक कधी जाणवू लागतो ते ओळखा.
 
 ##### संवेदना आणि प्रत्यक्षज्ञान यांतील फरक
 
@@ -2412,7 +2412,7 @@ Skills: 5
 
 **Methodological description (English):** Distinguish sensory encoding of stimulation from the interpretation of what that stimulation represents.
 
-**User-friendly description (mr):** उत्तेजना ओळखणे आणि तिचा अर्थ लावणे यांतला फरक समजून घे.
+**User-friendly description (mr):** उत्तेजना ओळखणे आणि तिचा अर्थ लावणे यांतला फरक समजून घ्या.
 
 ##### संवेदी अनुकूलन
 
@@ -2428,7 +2428,7 @@ Skills: 5
 
 **Methodological description (English):** Explain how sensory receptors transform light, mechanical stimulation, or chemical signals into neural activity, distinguishing this initial encoding from later perception.
 
-**User-friendly description (mr):** संवेदी ग्राही उत्तेजनांचे मज्जासंकेतांत रूपांतर कसे करतात ते समजून घे.
+**User-friendly description (mr):** संवेदी ग्राही उत्तेजनांचे मज्जासंकेतांत रूपांतर कसे करतात ते समजून घ्या.
 
 #### दृश्य आणि श्राव्य अनुभव
 
@@ -2438,7 +2438,7 @@ Skills: 4
 
 **Methodological description (English):** Spatial, chromatic, and speech experiences emerge from interpreting patterns of visual or acoustic information.
 
-**User-friendly description (mr):** आपण दिसणाऱ्या आणि ऐकू येणाऱ्या नमुन्यांचा अर्थ कसा लावतो ते जाणून घे.
+**User-friendly description (mr):** आपण दिसणाऱ्या आणि ऐकू येणाऱ्या नमुन्यांचा अर्थ कसा लावतो ते जाणून घ्या.
 
 ##### रंगाचे प्रत्यक्षज्ञान
 
@@ -2454,7 +2454,7 @@ Skills: 4
 
 **Methodological description (English):** Explain the contributions of binocular and monocular cues to estimating distance.
 
-**User-friendly description (mr):** वस्तू किती दूर आहे हे ठरवायला मदत करणारे दृश्य संकेत ओळख.
+**User-friendly description (mr):** वस्तू किती दूर आहे हे ठरवायला मदत करणारे दृश्य संकेत ओळखा.
 
 ##### आवाजाचे स्थान ठरवणे
 
@@ -2462,7 +2462,7 @@ Skills: 4
 
 **Methodological description (English):** Explain how timing and level differences between ears contribute to perceived sound direction.
 
-**User-friendly description (mr):** दोन कानांतील फरकांमुळे आवाजाची दिशा ओळखण्यास कशी मदत होते ते समजून घे.
+**User-friendly description (mr):** दोन कानांतील फरकांमुळे आवाजाची दिशा ओळखण्यास कशी मदत होते ते समजून घ्या.
 
 ##### बोलीचे प्रत्यक्षज्ञान
 
@@ -2470,7 +2470,7 @@ Skills: 4
 
 **Methodological description (English):** Analyze how acoustic cues, noise, and language expectations shape understanding of spoken messages.
 
-**User-friendly description (mr):** ध्वनी आणि भाषिक अपेक्षा बोलणे समजण्यावर कसा परिणाम करतात ते ओळख.
+**User-friendly description (mr):** ध्वनी आणि भाषिक अपेक्षा बोलणे समजण्यावर कसा परिणाम करतात ते ओळखा.
 
 ### सामाजिक मानसशास्त्र
 
@@ -2480,7 +2480,7 @@ Groups: 4 · Skills: 24
 
 **Methodological description (English):** Thought and behavior change in the actual or imagined presence of others. Social processes involve interpretation, group membership, influence, and relationships without assuming all people respond alike.
 
-**User-friendly description (mr):** इतर लोक आपल्या विश्वास, कृती व नातेसंबंधांवर कसा परिणाम करतात ते जाणून घे.
+**User-friendly description (mr):** इतर लोक आपल्या विश्वास, कृती व नातेसंबंधांवर कसा परिणाम करतात ते जाणून घ्या.
 
 #### गटाची गतिशीलता
 
@@ -2506,7 +2506,7 @@ Skills: 5
 
 **Methodological description (English):** Describe how discussion among similarly inclined people can shift collective judgments toward more extreme positions.
 
-**User-friendly description (mr):** गटचर्चेमुळे समान मते अधिक टोकाची का होऊ शकतात ते समज.
+**User-friendly description (mr):** गटचर्चेमुळे समान मते अधिक टोकाची का होऊ शकतात ते समजून घ्या.
 
 ##### गटविचार
 
@@ -2514,7 +2514,7 @@ Skills: 5
 
 **Methodological description (English):** Identify pressures toward unanimity that discourage dissent and reduce the scrutiny of alternatives.
 
-**User-friendly description (mr):** एकमताच्या दबावामुळे चिकित्सक मूल्यांकन कधी थांबते ते ओळख.
+**User-friendly description (mr):** एकमताच्या दबावामुळे चिकित्सक मूल्यांकन कधी थांबते ते ओळखा.
 
 ##### स्वतःच्या व इतर गटांविषयी पूर्वग्रह
 
@@ -2522,7 +2522,7 @@ Skills: 5
 
 **Methodological description (English):** Analyze unequal evaluation of people based on group membership even without direct personal experience.
 
-**User-friendly description (mr):** विनाकारण स्वतःच्या गटाची बाजू घेणे ओळख.
+**User-friendly description (mr):** विनाकारण स्वतःच्या गटाची बाजू घेणे ओळखा.
 
 ##### सामाजिक ओळख
 
@@ -2530,7 +2530,7 @@ Skills: 5
 
 **Methodological description (English):** Explain how membership in meaningful groups contributes to self-description and intergroup interpretation.
 
-**User-friendly description (mr):** गटाचा सदस्य असल्याने सामाजिक ओळखीवर कसा परिणाम होतो ते समज.
+**User-friendly description (mr):** गटाचा सदस्य असल्याने सामाजिक ओळखीवर कसा परिणाम होतो ते समजून घ्या.
 
 #### प्रभाव आणि मन वळवणे
 
@@ -2548,7 +2548,7 @@ Skills: 6
 
 **Methodological description (English):** Explain changes in expressed judgments or behavior under perceived group pressure.
 
-**User-friendly description (mr):** गटाच्या अपेक्षांशी जुळण्यासाठी वर्तन बदलणे ओळख.
+**User-friendly description (mr):** गटाच्या अपेक्षांशी जुळण्यासाठी वर्तन बदलणे ओळखा.
 
 ##### माहितीवर आधारित सामाजिक प्रभाव
 
@@ -2556,7 +2556,7 @@ Skills: 6
 
 **Methodological description (English):** Explain adopting others' judgments when they appear to provide useful evidence about uncertainty.
 
-**User-friendly description (mr):** इतरांनी दिलेली माहिती निर्णय घेण्यासाठी कधी वापरतो ते समज.
+**User-friendly description (mr):** इतरांनी दिलेली माहिती निर्णय घेण्यासाठी कधी वापरतो ते समजून घ्या.
 
 ##### सामाजिक नियमांचा प्रभाव
 
@@ -2564,7 +2564,7 @@ Skills: 6
 
 **Methodological description (English):** Explain compliance motivated by social approval or avoidance of rejection.
 
-**User-friendly description (mr):** गटात मिसळण्याची इच्छा वर्तन कधी बदलते ते ओळख.
+**User-friendly description (mr):** गटात मिसळण्याची इच्छा वर्तन कधी बदलते ते ओळखा.
 
 ##### अधिकाराचे पालन
 
@@ -2572,7 +2572,7 @@ Skills: 6
 
 **Methodological description (English):** Analyze how authority cues and situational pressures influence compliance, including ethical limits of classic research.
 
-**User-friendly description (mr):** अधिकार निर्णय बदलू शकतो पण ते बरोबर आहेतच असे नाही हे समज.
+**User-friendly description (mr):** अधिकार निर्णय बदलू शकतो पण ते बरोबर आहेतच असे नाही हे समजून घ्या.
 
 ##### मन वळवण्याचे मार्ग
 
@@ -2580,7 +2580,7 @@ Skills: 6
 
 **Methodological description (English):** Compare careful evaluation of arguments with reliance on source or presentation cues.
 
-**User-friendly description (mr):** संदेश वेगवेगळ्या मार्गांनी दृष्टिकोन कसे बदलतात यांची तुलना कर.
+**User-friendly description (mr):** संदेश वेगवेगळ्या मार्गांनी दृष्टिकोन कसे बदलतात यांची तुलना करा.
 
 ##### मानसिक हाताळणी ओळखणे
 
@@ -2588,7 +2588,7 @@ Skills: 6
 
 **Methodological description (English):** Identify exploitative uses of urgency, isolation, guilt, or unequal power without teaching techniques to manipulate others.
 
-**User-friendly description (mr):** भीती, अपराधभावना किंवा सामाजिक अपेक्षांचा वापर करणारे दबावाचे उपाय ओळख.
+**User-friendly description (mr):** भीती, अपराधभावना किंवा सामाजिक अपेक्षांचा वापर करणारे दबावाचे उपाय ओळखा.
 
 #### नाती आणि संवाद
 
@@ -2598,7 +2598,7 @@ Skills: 7
 
 **Methodological description (English):** Relationships develop through mutual interpretation, reciprocal actions, boundaries, and social context rather than perfect reading of another's intentions.
 
-**User-friendly description (mr):** निरोगी संवाद, वैयक्तिक मर्यादा आणि नात्यातील अडचणी ओळखायला शिक.
+**User-friendly description (mr):** निरोगी संवाद, वैयक्तिक मर्यादा आणि नात्यातील अडचणी ओळखायला शिका.
 
 ##### सक्रिय ऐकणे
 
@@ -2606,7 +2606,7 @@ Skills: 7
 
 **Methodological description (English):** Distinguish checking understanding and attending to another person's meaning from merely waiting to reply.
 
-**User-friendly description (mr):** लक्षपूर्वक ऐकणे व समोरच्याचे म्हणणे स्पष्ट करून घेण्याचा सराव कर.
+**User-friendly description (mr):** लक्षपूर्वक ऐकणे व समोरच्याचे म्हणणे स्पष्ट करून घेण्याचा सराव करा.
 
 ##### नात्यांमधील जिव्हाळा
 
@@ -2630,7 +2630,7 @@ Skills: 7
 
 **Methodological description (English):** Interpret gesture, tone, and interpersonal distance in cultural and situational context rather than through universal decoding rules.
 
-**User-friendly description (mr):** चेहऱ्यावरील भाव, हावभाव आणि आवाजाचा सूर माहिती कसा देतात ते जाणून घे.
+**User-friendly description (mr):** चेहऱ्यावरील भाव, हावभाव आणि आवाजाचा सूर माहिती कसा देतात ते जाणून घ्या.
 
 ##### वैयक्तिक मर्यादा
 
@@ -2638,7 +2638,7 @@ Skills: 7
 
 **Methodological description (English):** Explain how individuals express limits about interactions, information, and bodily or emotional space, and how those limits merit respect.
 
-**User-friendly description (mr):** स्वतःचे शरीर, वेळ आणि माहिती यांबद्दल व्यक्ती ठरवलेल्या मर्यादा ओळख.
+**User-friendly description (mr):** स्वतःचे शरीर, वेळ आणि माहिती यांबद्दल व्यक्ती ठरवलेल्या मर्यादा ओळखा.
 
 ##### नाती सुधारण्याची प्रक्रिया
 
@@ -2646,7 +2646,7 @@ Skills: 7
 
 **Methodological description (English):** Explain how acknowledgment, apology, changed behavior, and negotiated expectations can help restore trust after interpersonal harm without assuming reconciliation is always safe or obligatory.
 
-**User-friendly description (mr):** मतभेदानंतर विश्वास परत मिळवायला काय मदत करते ते समज.
+**User-friendly description (mr):** मतभेदानंतर विश्वास परत मिळवायला काय मदत करते ते समजून घ्या.
 
 ##### स्वेच्छेने दिलेली संमती
 
@@ -2654,7 +2654,7 @@ Skills: 7
 
 **Methodological description (English):** Distinguish an informed, freely given and revocable agreement from silence, coercion, or assumed permission.
 
-**User-friendly description (mr):** संमती स्वेच्छेने दिली पाहिजे आणि ती मागे घेता येते हे समज.
+**User-friendly description (mr):** संमती स्वेच्छेने दिली पाहिजे आणि ती मागे घेता येते हे समजून घ्या.
 
 #### सामाजिक आकलन
 
@@ -2672,7 +2672,7 @@ Skills: 6
 
 **Methodological description (English):** Explain concern for another person's suffering accompanied by motivation to offer appropriate help, distinct from understanding alone.
 
-**User-friendly description (mr):** दुसऱ्याला मदत करण्याची कळकळ आणि फक्त भावना समजणे यात फरक कर.
+**User-friendly description (mr):** दुसऱ्याला मदत करण्याची कळकळ आणि फक्त भावना समजणे यात फरक करा.
 
 ##### सहानुभूतीपूर्ण समज
 
@@ -2680,7 +2680,7 @@ Skills: 6
 
 **Methodological description (English):** Explain understanding or affectively responding to another person's possible experience while recognizing that one cannot know it with certainty.
 
-**User-friendly description (mr):** इतरांच्या अनुभवातील काही भाग समजणे व जाणवणे म्हणजे सहानुभूती हे समज.
+**User-friendly description (mr):** इतरांच्या अनुभवातील काही भाग समजणे व जाणवणे म्हणजे सहानुभूती हे समजून घ्या.
 
 ##### पहिली छाप
 
@@ -2688,7 +2688,7 @@ Skills: 6
 
 **Methodological description (English):** Explain how early information can disproportionately influence expectations about a person.
 
-**User-friendly description (mr):** पहिली छाप कशी तयार होते व ती कधी दिशाभूल का करते ते जाणून घे.
+**User-friendly description (mr):** पहिली छाप कशी तयार होते व ती कधी दिशाभूल का करते ते जाणून घ्या.
 
 ##### दुसऱ्याचा दृष्टिकोन घेणे
 
@@ -2696,7 +2696,7 @@ Skills: 6
 
 **Methodological description (English):** Explain inferring another person's possible viewpoint while recognizing that their actual experience remains uncertain.
 
-**User-friendly description (mr):** परिस्थितीकडे दुसऱ्या व्यक्तीच्या नजरेतून पाहण्याचा सराव कर.
+**User-friendly description (mr):** परिस्थितीकडे दुसऱ्या व्यक्तीच्या नजरेतून पाहण्याचा सराव करा.
 
 ##### सामाजिक कारणनिश्चिती
 
@@ -2704,7 +2704,7 @@ Skills: 6
 
 **Methodological description (English):** Distinguish explanations invoking a person's dispositions from those emphasizing circumstances and available choices.
 
-**User-friendly description (mr):** इतरांच्या वर्तनाची कारणे लोक कशी ओळखतात ते समज.
+**User-friendly description (mr):** इतरांच्या वर्तनाची कारणे लोक कशी ओळखतात ते समजून घ्या.
 
 ##### साचेबद्ध कल्पना सक्रिय होणे
 
@@ -2722,7 +2722,7 @@ Groups: 5 · Skills: 27
 
 **Methodological description (English):** Cognitive processes create concepts, guide inferences, solve problems, and select actions under limited information. The focus is what people actually do, not whether their reasoning satisfies a formal philosophical standard.
 
-**User-friendly description (mr):** लोक संकल्पना कशा बनवतात, समस्या कशा सोडवतात आणि कधी अपूर्ण निर्णय कसे घेतात ते शोधा.
+**User-friendly description (mr):** लोक संकल्पना कशा बनवतात, समस्या कशा सोडवतात आणि नेहमीच परिपूर्ण नसलेले निर्णय कसे घेतात ते शोधा.
 
 #### अनिश्चिततेतील निवडी
 
