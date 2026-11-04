@@ -34,7 +34,7 @@ export const motivationalMechanisms_SkillGroup_Data = buildSkillGroupConfig({
     be: "Мэханізмы матывацыі",
     ka: "მოტივაციის მექანიზმები",
     kk: "Мотивация тетіктері",
-    qm: "İlham berici sebepler",
+    qm: "Motivatsiya mexanizmleri",
   },
   skills: {
     approachMotivation: approachMotivation_Skill_Data,
@@ -76,7 +76,7 @@ export const motivationalMechanisms_SkillGroup_Data = buildSkillGroupConfig({
       be: "Даведайся пра розныя крыніцы матывацыі чалавечых дзеяньняў.",
       ka: "გაიგე ადამიანის ქმედებების უკან არსებული მოტივაციის სხვადასხვა წყარო.",
       kk: "Адам әрекетінің артындағы әртүрлі ынта көздерін біл.",
-      qm: "İnsan areketiniñ artındaki çeşit ilham qaynaqlarını ögren.",
+      qm: "İnsan areketiniñ artındaki çeşit motivatsiya qaynaqlarını ögren.",
     },
   },
 });
