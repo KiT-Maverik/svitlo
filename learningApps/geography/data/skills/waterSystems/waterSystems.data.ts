@@ -15,7 +15,7 @@ export const waterSystems_SkillDomain_Data = buildSkillDomainConfig({
     es: "Sistemas hídricos",
     ar: "الأنظمة المائية",
     fr: "Systèmes hydrologiques",
-    bn: "পানির ব্যবস্থা",
+    bn: "পৃথিবীর জলব্যবস্থা",
     pt: "Sistemas hídricos",
     ur: "آبی نظام",
     id: "Sistem perairan",
