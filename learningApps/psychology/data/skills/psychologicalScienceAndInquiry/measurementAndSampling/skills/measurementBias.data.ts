@@ -52,7 +52,7 @@ export const measurementBias_Skill_Data = buildSkillConfig({
       ko: "측정이 특정 사람들에게 체계적으로 불리하거나 잘못된 결과를 낼 수 있는 이유를 찾아보세요.",
       tr: "Bir ölçümün insanları sistematik biçimde nasıl yanlış temsil edebileceğini veya dezavantajlı bırakabileceğini bul.",
       vi: "Tìm hiểu cách một phép đo có thể gây bất lợi hoặc mô tả sai lệch một nhóm người có hệ thống.",
-      ta: "ஒரு அளவீடு மக்களை முறையாகத் தவறாகச் சித்தரிக்கவோ பாதிக்கவோ செய்யும் வழிகளைக் கண்டறி.",
+      ta: "ஒரு அளவீடு மக்களை முறையாகத் தவறாகச் சித்தரிக்கவோ பாதிக்கவோ செய்யும் வழிகளைக் கண்டறியுங்கள்.",
       te: "ఒక కొలత వ్యక్తులను క్రమబద్ధంగా తప్పుగా చూపడం లేదా అన్యాయం చేయడం ఎలా జరుగుతుందో గుర్తించండి.",
       mr: "मापन काही लोकांवर पद्धतशीरपणे अन्याय कसा करू शकते किंवा त्यांचे चुकीचे चित्र कसे देऊ शकते ते शोध.",
       ms: "Cari cara ukuran boleh merugikan atau menggambarkan seseorang secara salah dengan sistematik.",

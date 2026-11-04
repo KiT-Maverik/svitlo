@@ -63,7 +63,7 @@ export const researchEthics_SkillGroup_Data = buildSkillGroupConfig({
       ko: "연구에서 사람들의 자율성, 존엄성, 안전을 존중하는 방법을 알아보세요.",
       tr: "Araştırmanın insanların özerkliğine, onuruna ve güvenliğine nasıl saygı gösterebileceğini keşfet.",
       vi: "Khám phá cách nghiên cứu tôn trọng quyền tự chủ, phẩm giá và sự an toàn của con người.",
-      ta: "ஆராய்ச்சி மனிதர்களின் சுயாட்சியையும் கண்ணியத்தையும் பாதுகாப்பையும் எவ்வாறு மதிக்க முடியும் என்பதை அறிந்துகொள்.",
+      ta: "ஆராய்ச்சி மனிதர்களின் சுயாட்சியையும் கண்ணியத்தையும் பாதுகாப்பையும் எவ்வாறு மதிக்க முடியும் என்பதை அறிந்துகொள்ளுங்கள்.",
       te: "పరిశోధన మనుషుల స్వయంప్రతిపత్తి, గౌరవం, భద్రతను ఎలా గౌరవించగలదో తెలుసుకోండి.",
       mr: "संशोधनातून लोकांच्या स्वायत्ततेचा, सन्मानाचा आणि सुरक्षिततेचा आदर कसा करता येतो ते जाणून घे.",
       ms: "Terokai bagaimana penyelidikan menghormati autonomi, maruah dan keselamatan manusia.",

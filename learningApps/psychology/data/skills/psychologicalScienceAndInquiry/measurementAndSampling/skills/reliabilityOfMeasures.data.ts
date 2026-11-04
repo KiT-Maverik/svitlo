@@ -52,7 +52,7 @@ export const reliabilityOfMeasures_Skill_Data = buildSkillConfig({
       ko: "심리 측정이 일관된 결과를 내는지 확인해 보세요.",
       tr: "Psikolojik bir ölçümün tutarlı sonuçlar verip vermediğini kontrol et.",
       vi: "Kiểm tra xem phép đo tâm lý có cho kết quả nhất quán hay không.",
-      ta: "உளவியல் அளவீடு தொடர்ச்சியாக ஒரே மாதிரியான முடிவுகளைத் தருகிறதா எனச் சரிபார்.",
+      ta: "உளவியல் அளவீடு தொடர்ச்சியாக ஒரே மாதிரியான முடிவுகளைத் தருகிறதா எனச் சரிபாருங்கள்.",
       te: "మనస్తత్వ కొలత ఒకే విధమైన ఫలితాలు ఇస్తుందో లేదో పరీక్షించండి.",
       mr: "मानसशास्त्रीय मापन सातत्यपूर्ण परिणाम देते का ते तपास.",
       ms: "Semak sama ada ukuran psikologi memberikan keputusan yang konsisten.",

@@ -52,7 +52,7 @@ export const deceptionInResearch_Skill_Data = buildSkillConfig({
       ko: "연구 정보를 숨기는 것이 언제 윤리적으로 정당화될 수 있는지 생각해 보세요.",
       tr: "Araştırmada bazı bilgileri saklamanın hangi durumlarda etik açıdan savunulabileceğini düşün.",
       vi: "Cân nhắc khi nào việc giấu thông tin trong nghiên cứu có thể được biện minh về đạo đức.",
-      ta: "ஆராய்ச்சித் தகவலை மறைப்பது எந்தச் சூழலில் நெறிமுறையாக நியாயமானதாக இருக்கலாம் என்பதைச் சிந்தி.",
+      ta: "ஆராய்ச்சித் தகவலை மறைப்பது எந்தச் சூழலில் நெறிமுறையாக நியாயமானதாக இருக்கலாம் என்பதைச் சிந்தியுங்கள்.",
       te: "పరిశోధనలో సమాచారం దాచడం ఏ పరిస్థితుల్లో నైతికంగా సమర్థనీయమో ఆలోచించండి.",
       mr: "संशोधनात काही माहिती लपवणे कोणत्या परिस्थितीत नैतिकदृष्ट्या योग्य असू शकते ते विचार कर.",
       ms: "Pertimbangkan bila menyembunyikan maklumat dalam penyelidikan mungkin wajar dari segi etika.",

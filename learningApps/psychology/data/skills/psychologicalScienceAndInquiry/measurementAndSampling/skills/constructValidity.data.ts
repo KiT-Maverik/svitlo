@@ -52,7 +52,7 @@ export const constructValidity_Skill_Data = buildSkillConfig({
       ko: "검사가 측정한다고 주장하는 개념을 실제로 측정하는지 평가해 보세요.",
       tr: "Bir testin ölçtüğünü iddia ettiği kavramı gerçekten ölçüp ölçmediğini değerlendir.",
       vi: "Đánh giá liệu bài kiểm tra có thực sự đo đúng khái niệm mà nó tuyên bố đo hay không.",
-      ta: "ஒரு சோதனை தான் அளப்பதாகக் கூறும் கருத்தையே உண்மையில் அளக்கிறதா என்று மதிப்பிடு.",
+      ta: "ஒரு சோதனை தான் அளப்பதாகக் கூறும் கருத்தையே உண்மையில் அளக்கிறதா என்று மதிப்பிடுங்கள்.",
       te: "ఒక పరీక్ష తాను కొలుస్తానన్న భావననే నిజంగా కొలుస్తుందో లేదో అంచనా వేయండి.",
       mr: "चाचणी ज्या संकल्पनेचे मापन करते असा दावा करते, तीच संकल्पना खरोखर मोजते का हे तपास.",
       ms: "Nilai sama ada ujian benar-benar mengukur konsep yang didakwanya.",

@@ -52,7 +52,7 @@ export const operationalDefinitions_Skill_Data = buildSkillConfig({
       ko: "추상적인 심리학 개념을 관찰 가능한 측정 지표로 바꿔 보세요.",
       tr: "Soyut bir psikolojik fikri gözlemlenebilir ölçümlere dönüştür.",
       vi: "Biến một ý tưởng tâm lý trừu tượng thành các chỉ số có thể quan sát và đo lường.",
-      ta: "அருவமான உளவியல் கருத்தை கவனிக்கக்கூடிய அளவீடுகளாக மாற்று.",
+      ta: "அருவமான உளவியல் கருத்தை கவனிக்கக்கூடிய அளவீடுகளாக மாற்றுங்கள்.",
       te: "అమూర్తమైన మానసిక భావనను గమనించగల కొలతలుగా మార్చండి.",
       mr: "अमूर्त मानसशास्त्रीय कल्पनेचे निरीक्षण करता येतील अशा मापनांत रूपांतर कर.",
       ms: "Tukar idea psikologi yang abstrak menjadi ukuran yang boleh diperhatikan.",
