@@ -1,11 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/nextjs';
-import type { Question_SelectMultipleAnswers } from '@svitlo/engine/content';
+import type { Question_SelectMultipleAnswers, Locale_Languages } from '@svitlo/engine/content';
 import { SelectMultipleAnswers } from './SelectMultipleAnswers';
 
-const locale = { code: 'en' as const };
-const text = (id: string, value: string) => ({ id, type: 'text' as const, locale, value });
-const response: Question_SelectMultipleAnswers<'response'> = {
-  type: 'selectMultipleAnswers', id: 'multiple-story', locale,
+const text = (id: string, value: string) => ({ id, type: 'text' as const, value });
+const response: Question_SelectMultipleAnswers<'response', Locale_Languages> = {
+  type: 'selectMultipleAnswers', id: 'multiple-story',
   assessmentMethod: 'retrieval', restrictions: [],
   question: [text('prompt', 'Select the prime numbers.')],
   answers: {

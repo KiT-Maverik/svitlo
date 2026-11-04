@@ -1,11 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/nextjs';
-import type { Question_SelectOneAnswer } from '@svitlo/engine/content';
+import type { Question_SelectOneAnswer, Locale_Languages } from '@svitlo/engine/content';
 import { SelectOneAnswer } from './SelectOneAnswer';
 
-const locale = { code: 'en' as const };
-const text = (id: string, value: string) => ({ id, type: 'text' as const, locale, value });
-const response: Question_SelectOneAnswer<'response'> = {
-  type: 'selectOneAnswer', id: 'one-story', locale,
+const text = (id: string, value: string) => ({ id, type: 'text' as const, value });
+const response: Question_SelectOneAnswer<'response', Locale_Languages> = {
+  type: 'selectOneAnswer', id: 'one-story',
   assessmentMethod: 'retrieval', restrictions: [],
   question: [text('prompt', 'Which planet is closest to the Sun?')],
   answers: {

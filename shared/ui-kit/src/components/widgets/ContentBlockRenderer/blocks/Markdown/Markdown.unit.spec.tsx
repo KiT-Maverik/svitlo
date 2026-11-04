@@ -4,11 +4,11 @@ import { describe, expect, it } from 'vitest';
 import type { ContentBlock_Markdown_Response } from '@svitlo/engine/content';
 
 import { Markdown } from './Markdown';
+import { ContentLanguageContext } from '../../ContentLanguageContext';
 
 const response: ContentBlock_Markdown_Response = {
   id: 'markdown-example',
   type: 'markdown',
-  locale: { code: 'en' },
   text: '# Lesson title\n\n[Reference](https://example.org/lesson)',
 };
 
@@ -36,8 +36,8 @@ describe('Markdown content block', () => {
     expect(article.querySelector('pre code')).toHaveTextContent('const answer = 42;');
   });
 
-  it('derives language and RTL direction from the response locale', () => {
-    render(<Markdown {...response} locale={{ code: 'ar' }} text={'# عنوان الدرس\n\nنص عربي'} />);
+  it('derives language and RTL direction from the selected lesson language', () => {
+    render(<ContentLanguageContext.Provider value="ar"><Markdown {...response} text={'# عنوان الدرس\n\nنص عربي'} /></ContentLanguageContext.Provider>);
     const article = screen.getByRole('article');
     expect(article).toHaveAttribute('lang', 'ar-SA');
     expect(article).toHaveAttribute('dir', 'rtl');

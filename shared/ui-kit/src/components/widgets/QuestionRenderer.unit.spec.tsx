@@ -1,16 +1,15 @@
 import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import type { Question } from '@svitlo/engine/content';
+import type { Question, Locale_Languages } from '@svitlo/engine/content';
 import { QuestionRenderer } from './questions/response/QuestionRenderer';
 import { parseQuestionNumber } from './questions/AnswerWithNumber/AnswerWithNumber';
 
-const locale = { code: 'en' as const };
-const text = (id: string, value: string) => ({ id, type: 'text' as const, locale, value });
+const text = (id: string, value: string) => ({ id, type: 'text' as const, value });
 const common = {
-  id: 'question-1', locale, assessmentMethod: 'retrieval' as const, restrictions: [],
+  id: 'question-1', assessmentMethod: 'retrieval' as const, restrictions: [],
   question: [text('prompt', 'What is the answer?')] as [ReturnType<typeof text>],
 };
-const one: Question<'response'> = {
+const one: Question<'response', Locale_Languages> = {
   ...common, type: 'selectOneAnswer',
   answers: {
     correct: { yes: text('yes', 'Yes') },
@@ -43,7 +42,7 @@ describe('QuestionRenderer — contract responses', () => {
 
   it('renders every contract question type and keeps attempts independent', () => {
     const block = text('answer', 'Answer');
-    const definitions: Question<'response'>[] = [
+    const definitions: Question<'response', Locale_Languages>[] = [
       one,
       { ...common, type: 'selectMultipleAnswers',
         answers: { correct: { a: block }, incorrect: {}, distractors: {} } },
@@ -65,7 +64,7 @@ describe('QuestionRenderer — contract responses', () => {
 
   it('signals completion only after every contract response has been checked', async () => {
     const onComplete = vi.fn();
-    const another: Question<'response'> = {
+    const another: Question<'response', Locale_Languages> = {
       ...one,
       id: 'question-2',
       question: [text('second-prompt', 'Another question')],

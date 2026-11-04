@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs';
 import { Youtube } from './Youtube';
+import { ContentLanguageContext } from '../../ContentLanguageContext';
 
 const meta = {
   title: 'Content blocks/YouTube',
@@ -11,7 +12,7 @@ const meta = {
   args: {
     id: 'youtube-example',
     type: 'youtube',
-    locale: { code: 'en' },
+
     href: 'https://www.youtube.com/watch?v=M7lc1UVf-VE',
     mode: 'link',
     title: 'YouTube IFrame API demonstration',
@@ -39,9 +40,10 @@ export const Embedded: Story = {
 };
 
 export const WithLocalizedFallback: Story = {
+  decorators: [(StoryComponent) => <ContentLanguageContext.Provider value="uk"><StoryComponent /></ContentLanguageContext.Provider>],
   args: {
     mode: 'embed',
-    locale: { code: 'uk' },
+
     title: 'Відеодемонстрація',
     hint: 'Для завантаження потрібне з’єднання.',
     fallback: { offline: 'Немає доступу до інтернету.', unavailable: 'Відео недоступне.', retry: 'Повторити' },

@@ -11,7 +11,7 @@ const meta = {
   args: {
     id: 'text-example',
     type: 'text',
-    locale: { code: 'en' },
+
     value: 'Light travels in a straight line.',
   },
   argTypes: { id: { control: false }, type: { control: false }, styling: { control: 'object' }, wrap: { control: 'object' } },

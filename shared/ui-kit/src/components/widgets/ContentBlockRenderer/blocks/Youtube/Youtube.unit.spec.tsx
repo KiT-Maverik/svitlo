@@ -9,7 +9,7 @@ const response: ContentBlock_Youtube_Response = {
   id: 'youtube-1',
   type: 'youtube',
   mode: 'embed',
-  locale: { code: 'uk' },
+
   href: 'https://youtu.be/M7lc1UVf-VE',
   title: 'Приклад відео',
   fallback: {
