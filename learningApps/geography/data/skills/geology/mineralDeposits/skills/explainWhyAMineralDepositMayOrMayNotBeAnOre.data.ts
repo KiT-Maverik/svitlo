@@ -50,7 +50,7 @@ export const explainWhyAMineralDepositMayOrMayNotBeAnOre_Skill_Data = buildSkill
       de: "Erkläre, warum manche Lagerstätten praktisch abbaubar sind und andere nicht.",
       ja: "採掘に適した鉱床と適さない鉱床がある理由を説明しよう。",
       ko: "어떤 광상은 채굴할 수 있고 다른 광상은 어려운 이유를 설명해 보세요.",
-      tr: "Bazı maden yataklarından çıkarımın neden uygulanabilir, bazılarından ise neden olmadığını açıkla.",
+      tr: "Bazı yataklardan cevher çıkarılmasının hangi koşullarda uygulanabilir ve ekonomik olduğunu, hangilerinde olmadığını açıkla.",
       vi: "Giải thích vì sao có mỏ khai thác được trong thực tế còn mỏ khác thì không.",
       ta: "சில கனிமப் படிவுகளை எடுப்பது நடைமுறையில் ஏன் சாத்தியமாகிறது, மற்றவற்றை ஏன் முடியவில்லை என்பதை விளக்குங்கள்.",
       te: "కొన్ని నిక్షేపాలను తవ్వడం సాధ్యం కాగా మరికొన్నింటిని ఎందుకు తవ్వలేమో వివరించండి.",

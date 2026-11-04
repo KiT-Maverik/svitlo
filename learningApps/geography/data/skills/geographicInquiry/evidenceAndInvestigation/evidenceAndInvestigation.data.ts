@@ -71,7 +71,7 @@ export const evidenceAndInvestigation_SkillGroup_Data = buildSkillGroupConfig({
       et: "Avasta, kuidas uurida ruumilisi mustreid usaldusväärsete ja asukohaga seotud vaatluste abil.",
       be: "Даведайся, як дасьледаваць прасторавыя заканамернасьці праз надзейныя назіраньні з вызначаным месцам.",
       ka: "გაიგე, როგორ გამოიკვლიო სივრცითი კანონზომიერებები სანდო, მდებარეობით განსაზღვრული დაკვირვებებით.",
-      kk: "Орыны көрсетілген сенімді бақылаулар арқылы кеңістіктік заңдылықтарды қалай зерттеуге болатынын біл.",
+      kk: "Орны көрсетілген сенімді бақылаулар арқылы кеңістіктік заңдылықтарды қалай зерттеуге болатынын біл.",
       qm: "İnanımlı ve yeri belli baqımlar yardımınen mekân örneklerini nasıl araştırmaq mümkün olğanını ögren.",
     },
   },

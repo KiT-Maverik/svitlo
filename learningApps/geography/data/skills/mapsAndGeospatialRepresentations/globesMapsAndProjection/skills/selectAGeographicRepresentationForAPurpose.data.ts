@@ -29,7 +29,7 @@ export const selectAGeographicRepresentationForAPurpose_Skill_Data = buildSkillC
     lt: "Pasirinkti tikslui tinkamą geografinį vaizdavimą",
     lv: "Izvēlēties mērķim atbilstošu ģeogrāfisku attēlojumu",
     et: "Eesmärgile vastava geograafilise esituse valimine",
-    be: "Абіраць геаграфічны выяўленьне паводле мэты",
+    be: "Абіраць геаграфічнае адлюстраваньне паводле мэты",
     ka: "მიზნისთვის შესაბამისი გეოგრაფიული გამოსახულების არჩევა",
     kk: "Мақсатқа сай географиялық бейнелеуді таңдау",
     qm: "Maqsatqa uygun coğrafiy tasvirni saylamaq",

@@ -25,7 +25,7 @@ export const environmentalGradients_SkillGroup_Data = buildSkillGroupConfig({
     te: "పర్యావరణ ప్రవణతలు",
     mr: "पर्यावरणीय प्रवणता",
     ms: "Kecerunan Alam Sekitar",
-    he: "מִפלָגים סביבתיים",
+    he: "מפלים סביבתיים",
     pl: "Gradienty środowiskowe",
     uk: "Екологічні градієнти",
     lt: "Aplinkos gradientai",
