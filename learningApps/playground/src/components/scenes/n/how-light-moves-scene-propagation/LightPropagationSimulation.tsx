@@ -4,7 +4,7 @@ import { useState, useSyncExternalStore } from 'react';
 import { Box, Button, Paper, Slider, Typography } from '@mui/material';
 import styles from './LightPropagationSimulation.module.css';
 import { getLocaleDirection } from '@svitlo/engine/localization';
-import { useSceneLocales } from '@/components/pages/Lesson/SceneLocaleContext';
+import { useLocale } from '@/i18n/LocaleProvider/LocaleProvider';
 import type { LightPropagationSimulation_Locale } from './LightPropagationSimulation.types';
 
 const reducedMotionQuery = '(prefers-reduced-motion: reduce)';
@@ -19,9 +19,8 @@ function getReducedMotion() {
   return window.matchMedia(reducedMotionQuery).matches;
 }
 
-export function LightPropagationSimulation() {
-  const { locale, scenes } = useSceneLocales<{ simulation: LightPropagationSimulation_Locale }>();
-  const messages = scenes.simulation;
+export function LightPropagationSimulation({ messages }: { messages: LightPropagationSimulation_Locale }) {
+  const { locale } = useLocale();
   const reducedMotion = useSyncExternalStore(subscribeToReducedMotion, getReducedMotion, () => false);
   const [playbackOverride, setPlaybackOverride] = useState<boolean | null>(null);
   const [speed, setSpeed] = useState(1);

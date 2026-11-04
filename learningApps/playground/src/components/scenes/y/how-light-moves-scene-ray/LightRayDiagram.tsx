@@ -2,12 +2,11 @@
 
 import styles from './LightRayDiagram.module.css';
 import { getLocaleDirection } from '@svitlo/engine/localization';
-import { useSceneLocales } from '@/components/pages/Lesson/SceneLocaleContext';
+import { useLocale } from '@/i18n/LocaleProvider/LocaleProvider';
 import type { LightRayDiagram_Locale } from './LightRayDiagram.types';
 
-export function LightRayDiagram() {
-  const { locale, scenes } = useSceneLocales<{ ray: LightRayDiagram_Locale }>();
-  const messages = scenes.ray;
+export function LightRayDiagram({ messages }: { messages: LightRayDiagram_Locale }) {
+  const { locale } = useLocale();
   const rtl = getLocaleDirection(locale) === 'rtl';
 
   return (

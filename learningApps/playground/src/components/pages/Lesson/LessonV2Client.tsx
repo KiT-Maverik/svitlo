@@ -6,7 +6,7 @@ import { QuestionRenderer } from '@svitlo/ui-kit/questions';
 import type { LessonResponse } from '@/lib/lessons/assembleLessonResponse';
 import { useLessonProgress } from './LessonProgress/LessonProgress';
 import { LessonSteps } from './LessonSteps/LessonSteps';
-import { howLightMovesSceneRegistry } from './scenes/sceneRegistry';
+import { resolveScene } from '@/components/scenes/sceneLoader';
 import styles from './Lesson.module.css';
 
 export default function LessonV2Client({ response }: { response: LessonResponse }) {
@@ -32,11 +32,11 @@ export default function LessonV2Client({ response }: { response: LessonResponse 
             <QuestionRenderer
               questions={current.questions}
               language={response.locale.code}
-              sceneRegistry={howLightMovesSceneRegistry}
+              sceneRegistry={resolveScene}
               onComplete={() => dispatch({ type: 'testDone' })}
             />
           ) : (
-            <ContentBlockRenderer blocks={current.blocks} sceneRegistry={howLightMovesSceneRegistry} language={response.locale.code} />
+            <ContentBlockRenderer blocks={current.blocks} sceneRegistry={resolveScene} language={response.locale.code} />
           )}
         </Container>
       </div>

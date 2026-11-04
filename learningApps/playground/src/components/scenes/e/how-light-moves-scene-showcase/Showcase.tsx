@@ -4,12 +4,11 @@ import { useState, type CSSProperties } from 'react';
 import { LIGHT_SPEED_KM_S, media } from './Showcase.constants';
 import styles from './Showcase.module.css';
 import { getLocaleDirection } from '@svitlo/engine/localization';
-import { useSceneLocales } from '@/components/pages/Lesson/SceneLocaleContext';
+import { useLocale } from '@/i18n/LocaleProvider/LocaleProvider';
 import type { Showcase_Locale } from './Showcase.types';
 
-export function Showcase() {
-  const { locale, scenes } = useSceneLocales<{ practice: Showcase_Locale }>();
-  const messages = scenes.practice;
+export function Showcase({ messages }: { messages: Showcase_Locale }) {
+  const { locale } = useLocale();
   const [selected, setSelected] = useState(0);
   const [paused, setPaused] = useState(true);
   const medium = media[selected];
