@@ -66,7 +66,7 @@ export const marineAndCoastalProcesses_SkillGroup_Data = buildSkillGroupConfig({
       he: "גלו כיצד גלים, גאות ושפל וזרמי ים משפיעים על החופים והאוקיינוסים.",
       pl: "Poznaj, jak fale, pływy i prądy oddziałują na wybrzeża i oceany.",
       uk: "Досліди, як хвилі, припливи та течії впливають на моря й узбережжя.",
-      lt: "Sužinok, kaip bangos, potvyniai ir srovės veikia krantus bei vandenynus.",
+      lt: "Sužinok, kaip bangos, potvyniai ir atoslūgiai bei srovės veikia krantus ir vandenynus.",
       lv: "Izpēti, kā viļņi, plūdmaiņas un straumes ietekmē krastus un okeānus.",
       et: "Uuri, kuidas lained, looded ja hoovused rannikut ning ookeane mõjutavad.",
       be: "Дасьледуй, як хвалі, прылівы й цячэньні ўплываюць на ўзьбярэжжы і акіяны.",
