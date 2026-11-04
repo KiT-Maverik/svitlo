@@ -10,7 +10,7 @@ export const explainWhatConstitutesAMineralDeposit_Skill_Data = buildSkillConfig
     es: "Explicar qué constituye un yacimiento mineral",
     ar: "شرح ما الذي يشكّل رواسب معدنية",
     fr: "Expliquer ce qui constitue un gisement minéral",
-    bn: "খনিজ সঞ্চয় কীভাবে গঠিত হয় তা ব্যাখ্যা করা",
+    bn: "খনিজ সঞ্চয় বলতে কী বোঝায় তা ব্যাখ্যা করা",
     pt: "Explicar o que constitui um depósito mineral",
     ur: "معدنی ذخیرہ کیا ہوتا ہے، سمجھانا",
     id: "Menjelaskan apa yang disebut endapan mineral",

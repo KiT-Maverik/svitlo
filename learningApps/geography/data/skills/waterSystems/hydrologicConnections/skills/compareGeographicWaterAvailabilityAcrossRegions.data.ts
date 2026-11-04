@@ -9,7 +9,7 @@ export const compareGeographicWaterAvailabilityAcrossRegions_Skill_Data = buildS
     hi: "क्षेत्रों में जल उपलब्धता की तुलना करना",
     es: "Comparar la disponibilidad de agua entre regiones",
     ar: "مقارنة توافر المياه بين المناطق",
-    fr: "Comparer l’accès à l’eau selon les régions",
+    fr: "Comparer la disponibilité de l’eau douce selon les régions",
     bn: "অঞ্চলভেদে পানির প্রাপ্যতা তুলনা",
     pt: "Comparar a disponibilidade de água entre regiões",
     ur: "مختلف خطوں میں پانی کی دستیابی کا موازنہ",

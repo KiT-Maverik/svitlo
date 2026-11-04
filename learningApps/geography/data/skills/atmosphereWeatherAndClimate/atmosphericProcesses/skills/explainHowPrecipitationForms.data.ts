@@ -41,7 +41,7 @@ export const explainHowPrecipitationForms_Skill_Data = buildSkillConfig({
       zh: "了解水滴或冰晶如何长大并降落成为降水。",
       hi: "जानें कि बूँदें या बर्फ़ के कण बढ़कर वर्षण के रूप में कैसे गिरते हैं।",
       es: "Descubre cómo crecen gotas o cristales de hielo y caen como precipitación.",
-      ar: "اكتشف كيف تكبر قطرات الماء أو بلورات الجليد وتهبط كهطول.",
+      ar: "اكتشف كيف تنمو قطرات الماء أو بلورات الجليد ثم تسقط مطرًا أو ثلجًا.",
       fr: "Découvre comment les gouttes ou cristaux grossissent et tombent en précipitations.",
       bn: "পানির ফোঁটা বা বরফকণা বড় হয়ে কীভাবে নিচে পড়ে তা জানো।",
       pt: "Veja como gotas ou cristais crescem e caem como precipitação.",

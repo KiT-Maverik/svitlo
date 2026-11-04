@@ -13,7 +13,7 @@ export const collectAndRecordGeographicallyReferencedObservations_Skill_Data = b
     bn: "ভৌগোলিক অবস্থানযুক্ত পর্যবেক্ষণ সংগ্রহ ও নথিভুক্ত করা",
     pt: "Coletar e registrar observações georreferenciadas",
     ur: "جغرافیائی حوالہ والے مشاہدات جمع اور درج کرنا",
-    id: "Mengumpulkan dan mencatat pengamatan berlokasi geografis",
+    id: "Mengumpulkan dan mencatat pengamatan dengan acuan lokasi geografis",
     de: "Georeferenzierte Beobachtungen sammeln und dokumentieren",
     ja: "位置情報付きの観測結果を集めて記録する",
     ko: "지리적 위치가 표시된 관찰 자료 수집·기록하기",

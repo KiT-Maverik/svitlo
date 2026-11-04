@@ -45,7 +45,7 @@ export const selectAGeographicRepresentationForAPurpose_Skill_Data = buildSkillC
       fr: "Choisis un globe, une carte d’ensemble ou un plan détaillé selon ton objectif géographique.",
       bn: "ভৌগোলিক কাজের জন্য গ্লোব, বড় এলাকার মানচিত্র বা বিস্তারিত নকশা বেছে নাও।",
       pt: "Escolha entre um globo, um mapa de área ampla e uma planta detalhada conforme o objetivo.",
-      ur: "جغرافیائی مقصد کے مطابق گلوب، بڑے علاقے کے نقشے یا تفصیلی منصوبے میں سے انتخاب کریں۔",
+      ur: "جغرافیائی مقصد کے مطابق گلوب، وسیع علاقے کا نقشہ یا سڑکوں کا تفصیلی نقشہ منتخب کریں۔",
       id: "Pilih antara globe, peta wilayah luas, dan denah rinci sesuai kebutuhan geografis.",
       de: "Wähle für eine geografische Aufgabe zwischen Globus, Übersichtskarte und detailliertem Plan.",
       ja: "目的に合わせて地球儀、広域地図、詳しい平面図を使い分けよう。",

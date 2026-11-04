@@ -42,7 +42,7 @@ export const explainUrbanizationAsGeographicChange_Skill_Data = buildSkillConfig
       hi: "समझें कि बढ़ती शहरी आबादी भूमि उपयोग और बस्तियों को कैसे बदल सकती है।",
       es: "Comprende cómo el crecimiento de la población urbana puede transformar el uso del suelo y los asentamientos.",
       ar: "افهم كيف يمكن لنمو السكان الحضريين أن يغيّر استخدام الأراضي والمستوطنات.",
-      fr: "Comprends comment la croissance de la population urbaine peut modifier l’occupation des sols et les établissements.",
+      fr: "Comprends comment la croissance de la population urbaine peut modifier l’occupation des sols et les zones habitées.",
       bn: "শহরের জনসংখ্যা বাড়লে ভূমি ব্যবহার ও বসতি কীভাবে বদলাতে পারে তা বোঝো।",
       pt: "Entenda como o aumento da população urbana pode transformar o uso do solo e os assentamentos.",
       ur: "سمجھیں کہ بڑھتی شہری آبادی زمین کے استعمال اور بستیوں کو کیسے بدل سکتی ہے۔",

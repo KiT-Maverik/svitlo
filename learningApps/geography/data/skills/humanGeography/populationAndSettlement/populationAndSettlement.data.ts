@@ -51,7 +51,7 @@ export const populationAndSettlement_SkillGroup_Data = buildSkillGroupConfig({
       hi: "जानें कि जनसंख्या और बस्तियाँ अलग-अलग क्षेत्रों में असमान रूप से क्यों फैली हैं।",
       es: "Descubre por qué la población y los asentamientos se distribuyen de forma desigual entre regiones.",
       ar: "اكتشف لماذا يتوزع السكان والمستوطنات بشكل غير متساوٍ بين الأقاليم.",
-      fr: "Découvre pourquoi les populations et les établissements sont répartis inégalement entre les régions.",
+      fr: "Découvre pourquoi les populations et les lieux habités sont répartis inégalement entre les régions.",
       bn: "কেন জনসংখ্যা ও বসতি বিভিন্ন অঞ্চলে অসমভাবে ছড়িয়ে আছে তা জানো।",
       pt: "Descubra por que populações e assentamentos se distribuem de modo desigual entre regiões.",
       ur: "جانیں کہ مختلف خطوں میں آبادی اور بستیاں غیر مساوی طور پر کیوں پھیلی ہیں۔",

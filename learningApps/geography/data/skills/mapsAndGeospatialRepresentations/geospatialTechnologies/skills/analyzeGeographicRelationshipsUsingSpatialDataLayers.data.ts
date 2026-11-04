@@ -60,7 +60,7 @@ export const analyzeGeographicRelationshipsUsingSpatialDataLayers_Skill_Data = b
       pl: "Łącz warstwy danych przestrzennych, badając wzorce, ale nie uznawaj korelacji za dowód przyczynowości.",
       uk: "Поєднуй шари просторових даних для вивчення закономірностей, не плутаючи кореляцію з причиною.",
       lt: "Derink erdvinių duomenų sluoksnius modeliams tirti, bet nelaikyk koreliacijos priežasties įrodymu.",
-      lv: "Apvieno telpisko datu slāņus, lai pētītu rakstus, taču nejauc korelāciju ar cēloņsakarību.",
+      lv: "Apvieno telpisko datu slāņus, lai pētītu telpiskās likumsakarības, taču nejauc korelāciju ar cēloņsakarību.",
       et: "Ühenda ruumiandmete kihte mustrite uurimiseks, kuid ära pea korrelatsiooni põhjuslikkuse tõendiks.",
       be: "Спалучай прасторавыя пласты для вывучэньня заканамернасьцяў, але не блытай карэляцыю з прычынай.",
       ka: "გააერთიანე სივრცითი ფენები კანონზომიერებების შესასწავლად, მაგრამ კორელაცია მიზეზობრიობის მტკიცებულებად არ ჩათვალო.",

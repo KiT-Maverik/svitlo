@@ -45,7 +45,7 @@ export const locateContinentsOnAGlobe_Skill_Data = buildSkillConfig({
       fr: "Situe les principales masses continentales selon la convention géographique indiquée.",
       bn: "উল্লিখিত ভৌগোলিক নিয়মে গ্লোবে প্রধান মহাদেশীয় ভূভাগ খুঁজে বের করো।",
       pt: "Localize as principais massas continentais segundo a convenção indicada.",
-      ur: "دیے گئے جغرافیائی طریقے کے مطابق گلوب پر بڑے براعظمی زمینی حصے تلاش کریں۔",
+      ur: "متعین جغرافیائی درجہ بندی کے مطابق گلوب پر بڑے براعظمی زمینی حصے تلاش کریں۔",
       id: "Temukan daratan benua utama sesuai konvensi geografis yang ditetapkan.",
       de: "Finde die großen kontinentalen Landmassen nach der angegebenen geografischen Einteilung.",
       ja: "指定された地理区分に従って地球儀上の主な大陸を見つけよう。",
