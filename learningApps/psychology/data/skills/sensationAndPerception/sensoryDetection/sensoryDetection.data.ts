@@ -34,7 +34,7 @@ export const sensoryDetection_SkillGroup_Data = buildSkillGroupConfig({
     be: "Выяўленьне стымулаў",
     ka: "სენსორული გამოვლენა",
     kk: "Сезімдік анықтау",
-    qm: "Duyğu işaretini añlav",
+    qm: "Duyğu işaretini sezmek",
   },
   skills: {
     detectionThresholds: detectionThresholds_Skill_Data,
