@@ -67,7 +67,7 @@ export const mapTypesAndThematicLayers_SkillGroup_Data = buildSkillGroupConfig({
       pl: "Odkryj, jak różne mapy pokazują granice, formy terenu, pogodę, ludzi i inne zjawiska.",
       uk: "Дізнайся, як різні карти показують межі, форми рельєфу, погоду, населення та інше.",
       lt: "Sužinok, kaip skirtingi žemėlapiai vaizduoja ribas, reljefą, orus, gyventojus ir kita.",
-      lv: "Uzzini, kā dažādas kartes rāda robežas, reljefu, laikapstākļus, cilvēkus un citu.",
+      lv: "Uzzini, kā dažādas kartes rāda robežas, reljefu, laikapstākļus, iedzīvotāju izvietojumu un citus datus.",
       et: "Uuri, kuidas eri kaardid näitavad piire, pinnavorme, ilma, inimesi ja muud.",
       be: "Даведайся, як розныя мапы паказваюць межы, рэльеф, надвор'е, людзей і іншае.",
       ka: "გაიგე, როგორ აჩვენებს სხვადასხვა რუკა საზღვრებს, რელიეფს, ამინდს, ადამიანებს და სხვა მონაცემებს.",
