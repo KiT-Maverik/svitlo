@@ -25,7 +25,7 @@ export const evaluatingTreatmentClaims_Skill_Data = buildSkillConfig({
     ms: "Menilai Dakwaan Rawatan",
     he: "הערכת טענות על טיפול",
     pl: "Oceniać twierdzenia dotyczące terapii",
-    uk: "Оцінювати твердження про лікування",
+    uk: "Оцінювання тверджень про лікування",
     lt: "Vertinti teiginius apie gydymą",
     lv: "Novērtēt ārstēšanas apgalvojumus",
     et: "Hinnata raviväiteid",
