@@ -22,7 +22,7 @@ Groups: 4 · Skills: 16
 
 **Methodological description (English):** Weather describes atmospheric conditions at a place and time, whereas climate characterizes their long-term distributions and change. Geographic inquiry examines how clouds, precipitation, air motion and circulation vary across places, and how hazards and climate trends influence regions.
 
-**User-friendly description (lv):** Izpēti atmosfēras stāvokli, ilgtermiņa klimata rakstus un laikapstākļu draudus.
+**User-friendly description (lv):** Izpēti atmosfēras stāvokli, ilgtermiņa klimata likumsakarības un laikapstākļu radītos apdraudējumus.
 
 #### Atmosfēras draudi
 
@@ -132,7 +132,7 @@ Skills: 5
 
 **Methodological description (English):** Describe climate through long-term patterns, variability and typical ranges of weather conditions in a region. A short cold spell is an event and does not by itself define climate or overturn a documented long-term trend.
 
-**User-friendly description (lv):** Atšķir ilgtermiņa klimata rakstus no vienas dienas laikapstākļiem.
+**User-friendly description (lv):** Atšķir ilgtermiņa klimata likumsakarības no vienas dienas laikapstākļiem.
 
 ##### Vienkāršas klimata diagrammas skaidrošana
 
@@ -1226,7 +1226,7 @@ Skills: 3
 
 **Methodological description (English):** Combine separately mapped geographic properties to investigate co-occurrence, proximity or spatial variation, taking account of registration, resolution and the risk of mistaking correlation for causation. GIS is a possible tool rather than the definition of the Skill.
 
-**User-friendly description (lv):** Apvieno telpisko datu slāņus, lai pētītu rakstus, taču nejauc korelāciju ar cēloņsakarību.
+**User-friendly description (lv):** Apvieno telpisko datu slāņus, lai pētītu telpiskās likumsakarības, taču nejauc korelāciju ar cēloņsakarību.
 
 ##### Interpretēt attālās izpētes attēlus
 
@@ -1328,7 +1328,7 @@ Skills: 3
 
 **Methodological description (English):** Maps may emphasize general reference features, political territories, physical relief, topography or specific themes such as geology, population, climate, weather, transport and resources. Categories overlap: for example, a geological or population map is thematic, and many maps combine layers. Choosing the relevant content is distinct from choosing a globe or map scale.
 
-**User-friendly description (lv):** Uzzini, kā dažādas kartes rāda robežas, reljefu, laikapstākļus, cilvēkus un citu.
+**User-friendly description (lv):** Uzzini, kā dažādas kartes rāda robežas, reljefu, laikapstākļus, iedzīvotāju izvietojumu un citus datus.
 
 ##### Atpazīt izplatītus karšu veidus pēc to satura
 
@@ -1576,7 +1576,7 @@ Skills: 3
 
 **Methodological description (English):** Compare objects gathered in a small area with objects spread across a larger one while considering the observation scale.
 
-**User-friendly description (lv):** Apraksti, vai objekti ir sapulcējušies grupās vai izkaisīti.
+**User-friendly description (lv):** Apraksti, vai objekti izvietoti ciešās grupās vai izkliedēti plašākā teritorijā.
 
 ##### Atšķirt saskari no tuvuma
 
@@ -1660,7 +1660,7 @@ Groups: 4 · Skills: 13
 
 **Methodological description (English):** Water connects landscapes through drainage networks, oceans, atmosphere, and underground storage. Geographic questions center on where water moves and accumulates, how its distribution varies, and how water features shape places.
 
-**User-friendly description (lv):** Izpēti, kur glabājas Zemes ūdens, kā tas pārvietojas un veido ainavas.
+**User-friendly description (lv):** Izpēti, kur uzkrājas ūdens uz Zemes, kā tas pārvietojas un kā veido ainavas.
 
 #### Sasalušais un pazemes ūdens
 

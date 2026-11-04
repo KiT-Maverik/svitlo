@@ -306,7 +306,7 @@ Skills: 3
 
 **User-friendly description (id):** Bandingkan pilihan lokasi berdasarkan kebutuhan geografis yang ditentukan dengan jelas.
 
-##### Menjelaskan pertukaran manfaat dan biaya keputusan spasial yang diusulkan
+##### Menjelaskan kompromi manfaat dan biaya dalam keputusan spasial yang diusulkan
 
 [explainTradeOffsOfAProposedSpatialDecision.data.ts](../../../learningApps/geography/data/skills/geographicInquiry/decisionsAndCommunication/skills/explainTradeOffsOfAProposedSpatialDecision.data.ts)
 
@@ -332,7 +332,7 @@ Skills: 3
 
 **User-friendly description (id):** Kenali kapan peta atau kumpulan data geografis tidak lengkap, usang, atau bias.
 
-##### Mengumpulkan dan mencatat pengamatan berlokasi geografis
+##### Mengumpulkan dan mencatat pengamatan dengan acuan lokasi geografis
 
 [collectAndRecordGeographicallyReferencedObservations.data.ts](../../../learningApps/geography/data/skills/geographicInquiry/evidenceAndInvestigation/skills/collectAndRecordGeographicallyReferencedObservations.data.ts)
 

@@ -312,7 +312,7 @@ Skills: 3
 
 **Methodological description (English):** Show how a new road, park, settlement, or conservation area might benefit some needs while creating other costs.
 
-**User-friendly description (fr):** Explique les avantages et les coûts de décisions concernant les routes, les parcs ou les établissements.
+**User-friendly description (fr):** Explique les avantages et les coûts de décisions concernant des routes, des parcs ou des zones d’habitation.
 
 #### Preuves et investigation
 
@@ -406,7 +406,7 @@ Skills: 5
 
 **Methodological description (English):** Recognize that changing the defining variable or classification threshold can redraw a region without moving any physical feature.
 
-**User-friendly description (fr):** Explique pourquoi plusieurs cartes peuvent tracer différemment la frontière d’une même région.
+**User-friendly description (fr):** Explique pourquoi plusieurs cartes peuvent tracer différemment les limites d’une même région.
 
 #### Grandes divisions géographiques du monde
 
@@ -860,7 +860,7 @@ Groups: 4 · Skills: 17
 
 **Methodological description (English):** Settlement, mobility, culture, political territories, livelihoods and economic connections create spatial patterns across inhabited places. The focus is geographic distribution, diffusion, regional relationships and the effects of place, not national political history or business accounting.
 
-**User-friendly description (fr):** Explore comment les populations, les établissements, les cultures et les activités économiques se répartissent dans l’espace.
+**User-friendly description (fr):** Explore comment les populations, les lieux habités, les cultures et les activités économiques se répartissent dans l’espace.
 
 #### Géographie culturelle
 
@@ -996,7 +996,7 @@ Skills: 5
 
 **Methodological description (English):** Population counts, density, migration, and settlement forms show how human presence is unevenly distributed. The same total population can occupy very different spatial patterns.
 
-**User-friendly description (fr):** Découvre pourquoi les populations et les établissements sont répartis inégalement entre les régions.
+**User-friendly description (fr):** Découvre pourquoi les populations et les lieux habités sont répartis inégalement entre les régions.
 
 ##### Décrire la migration comme déplacement entre lieux
 
@@ -1028,7 +1028,7 @@ Skills: 5
 
 **Methodological description (English):** Describe how the relative concentration of population and activity in urban areas can grow and reshape settlement networks, land use and infrastructure, without treating all urban growth as the same process.
 
-**User-friendly description (fr):** Comprends comment la croissance de la population urbaine peut modifier l’occupation des sols et les établissements.
+**User-friendly description (fr):** Comprends comment la croissance de la population urbaine peut modifier l’occupation des sols et les zones habitées.
 
 ##### Lire une carte de densité de population
 
@@ -1636,13 +1636,13 @@ Skills: 6
 
 **User-friendly description (fr):** Explique pourquoi le midi solaire arrive à des moments différents selon la longitude.
 
-##### Interpréter le changement de date au passage de la ligne internationale
+##### Interpréter le franchissement de la ligne internationale de changement de date
 
 [interpretCalendarDateChangesAcrossTheInternationalDateLine.data.ts](../../../learningApps/geography/data/skills/spatialOrientation/timeZones/skills/interpretCalendarDateChangesAcrossTheInternationalDateLine.data.ts)
 
 **Methodological description (English):** Determine why adjacent locations on opposite sides of the approximate Pacific date boundary can have different calendar dates, noting that its actual course follows regional civil-time choices rather than a perfectly straight meridian.
 
-**User-friendly description (fr):** Explique pourquoi le passage de la ligne internationale peut changer la date du calendrier.
+**User-friendly description (fr):** Explique pourquoi franchir la ligne internationale de changement de date peut modifier la date du calendrier.
 
 ##### Interpréter les fuseaux horaires sur une carte
 
@@ -1714,7 +1714,7 @@ Skills: 4
 
 **User-friendly description (fr):** Découvre comment l’eau circule entre l’air, les terres, les organismes et les réserves souterraines.
 
-##### Comparer l’accès à l’eau selon les régions
+##### Comparer la disponibilité de l’eau douce selon les régions
 
 [compareGeographicWaterAvailabilityAcrossRegions.data.ts](../../../learningApps/geography/data/skills/waterSystems/hydrologicConnections/skills/compareGeographicWaterAvailabilityAcrossRegions.data.ts)
 

@@ -34,7 +34,7 @@ Skills: 3
 
 **User-friendly description (ur):** جانیں کہ خطرناک موسم مختلف جگہوں اور لوگوں پر الگ اثر کیوں ڈالتا ہے۔
 
-##### موسمی خطروں کا خطرہ گھٹانے کے طریقوں کا موازنہ
+##### مقارنة طرق الحد من مخاطر الطقس
 
 [compareWaysToReduceWeatherHazardRisk.data.ts](../../../learningApps/geography/data/skills/atmosphereWeatherAndClimate/atmosphericHazards/skills/compareWaysToReduceWeatherHazardRisk.data.ts)
 
@@ -202,7 +202,7 @@ Groups: 2 · Skills: 6
 
 **User-friendly description (ur):** جانیں کہ قدرتی وسائل، مقامی حالات اور انسانی فیصلے ایک دوسرے پر کیسے اثر انداز ہوتے ہیں۔
 
-#### انسان اور ماحول کی باہمی تعاملات
+#### انسان اور ماحول کے باہمی تعاملات
 
 Skills: 4
 
@@ -464,7 +464,7 @@ Skills: 8
 
 **Methodological description (English):** Identify the global positions and relative arrangement of major continental landmasses according to a specified classification system, using their forms and geographic relationships rather than a rote list of example coordinates.
 
-**User-friendly description (ur):** دیے گئے جغرافیائی طریقے کے مطابق گلوب پر بڑے براعظمی زمینی حصے تلاش کریں۔
+**User-friendly description (ur):** متعین جغرافیائی درجہ بندی کے مطابق گلوب پر بڑے براعظمی زمینی حصے تلاش کریں۔
 
 ##### گلوب پر بڑے سمندر تلاش کرنا
 
@@ -1014,7 +1014,7 @@ Skills: 5
 
 **User-friendly description (ur):** جانیں کہ لوگ خطوں کے درمیان کیوں منتقل ہو سکتے ہیں، اس کی جغرافیائی وجوہات کیا ہیں۔
 
-##### آبادی کے نمونے بنانے والے جغرافیائی عوامل سمجھانا
+##### آبادکاری کے نمونوں پر اثر انداز ہونے والے جغرافیائی عوامل سمجھانا
 
 [explainGeographicFactorsShapingSettlementPatterns.data.ts](../../../learningApps/geography/data/skills/humanGeography/populationAndSettlement/skills/explainGeographicFactorsShapingSettlementPatterns.data.ts)
 
@@ -1276,7 +1276,7 @@ Skills: 3
 
 **Methodological description (English):** Choose a globe, world or regional map, or detailed street plan according to the required spatial extent, scale and projection properties. This concerns the _representation and coverage_; choosing the subject matter of a political, geological or population map is a separate Skill.
 
-**User-friendly description (ur):** جغرافیائی مقصد کے مطابق گلوب، بڑے علاقے کے نقشے یا تفصیلی منصوبے میں سے انتخاب کریں۔
+**User-friendly description (ur):** جغرافیائی مقصد کے مطابق گلوب، وسیع علاقے کا نقشہ یا سڑکوں کا تفصیلی نقشہ منتخب کریں۔
 
 #### نقشے کا ڈیزائن اور رائج علامتیں
 

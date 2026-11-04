@@ -82,7 +82,7 @@ Skills: 4
 
 **Methodological description (English):** Recognize how condensed water or ice particles can grow and fall to the surface as rain, snow or other precipitation under suitable atmospheric conditions.
 
-**User-friendly description (ar):** اكتشف كيف تكبر قطرات الماء أو بلورات الجليد وتهبط كهطول.
+**User-friendly description (ar):** اكتشف كيف تنمو قطرات الماء أو بلورات الجليد ثم تسقط مطرًا أو ثلجًا.
 
 ##### شرح تكوّن الرياح
 
@@ -166,7 +166,7 @@ Skills: 4
 
 **Methodological description (English):** Describe weather as the atmospheric conditions experienced at a particular place and time, including temperature, moisture, wind, cloud and precipitation. Individual observations can change rapidly and do not alone characterize a regional climate.
 
-**User-friendly description (ar):** افهم الطقس بوصفه حالة الغلاف الجوي في لحظة معينة.
+**User-friendly description (ar):** افهم الطقس بوصفه حالة الغلاف الجوي في مكان وزمان محددين.
 
 ##### تحديد متغيرات رصد الطقس
 

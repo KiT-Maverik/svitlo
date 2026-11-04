@@ -254,7 +254,7 @@ Skills: 2
 
 **User-friendly description (bn):** প্রাকৃতিক পদার্থ ও প্রক্রিয়া কীভাবে মানুষের জন্য মূল্যবান সম্পদ হয়ে ওঠে তা জানো।
 
-##### প্রাকৃতিক সম্পদের পুনর্গঠন ও নিঃশেষ হওয়া ব্যাখ্যা করা
+##### প্রাকৃতিক সম্পদের পুনরায় পূরণ হওয়া ও নিঃশেষ হওয়া ব্যাখ্যা করা
 
 [explainReplenishmentAndDepletionOfNaturalResources.data.ts](../../../learningApps/geography/data/skills/environmentAndSociety/naturalResources/skills/explainReplenishmentAndDepletionOfNaturalResources.data.ts)
 
@@ -602,7 +602,7 @@ Skills: 5
 
 **User-friendly description (bn):** মানচিত্রে ভূমিকম্প বলয় ও পাতের সীমানার সম্পর্ক শনাক্ত করো।
 
-##### ভূতাত্ত্বিক বিপদের ভৌগোলিক সংস্পর্শ ব্যাখ্যা করা
+##### ভূতাত্ত্বিক বিপদের সংস্পর্শে থাকা অঞ্চল বিশ্লেষণ করা
 
 [interpretGeographicExposureToGeologicalHazards.data.ts](../../../learningApps/geography/data/skills/geology/earthquakesAndVolcanism/skills/interpretGeographicExposureToGeologicalHazards.data.ts)
 
@@ -720,7 +720,7 @@ Skills: 5
 
 **User-friendly description (bn):** উপকারী খনিজ সম্পদ কেন নির্দিষ্ট স্থানে বেশি পাওয়া যায় তা জানো।
 
-##### খনিজ সঞ্চয় কীভাবে গঠিত হয় তা ব্যাখ্যা করা
+##### খনিজ সঞ্চয় বলতে কী বোঝায় তা ব্যাখ্যা করা
 
 [explainWhatConstitutesAMineralDeposit.data.ts](../../../learningApps/geography/data/skills/geology/mineralDeposits/skills/explainWhatConstitutesAMineralDeposit.data.ts)
 
@@ -1652,7 +1652,7 @@ Skills: 6
 
 **User-friendly description (bn):** মানচিত্রে সময় অঞ্চলের সীমানা ও ইউটিসি পার্থক্য পড়ো।
 
-### পানির ব্যবস্থা
+### পৃথিবীর জলব্যবস্থা
 
 Groups: 4 · Skills: 13
 
@@ -1688,7 +1688,7 @@ Skills: 4
 
 **User-friendly description (bn):** হিমবাহ কেটে তৈরি বা ফেলে যাওয়া ভূমিরূপ চেনো।
 
-##### ভূগর্ভস্থ জলাধার ধারণা ব্যাখ্যা
+##### ভূগর্ভস্থ জলধারক স্তরের ধারণা ব্যাখ্যা করা
 
 [explainTheConceptOfAGroundwaterAquifer.data.ts](../../../learningApps/geography/data/skills/waterSystems/frozenAndSubsurfaceWater/skills/explainTheConceptOfAGroundwaterAquifer.data.ts)
 
@@ -1702,7 +1702,7 @@ Skills: 4
 
 **Methodological description (English):** Compare places in which ice, aquifers, lakes or rivers hold accessible freshwater, recognizing differences in replenishment, seasonal availability and extraction limits.
 
-**User-friendly description (bn):** বিভিন্ন অঞ্চলে বরফ, ভূগর্ভস্থ জলাধার, হ্রদ ও নদীর সঞ্চয় তুলনা করো।
+**User-friendly description (bn):** বিভিন্ন অঞ্চলে বরফ, জলধারক স্তর, হ্রদ ও নদীতে সঞ্চিত মিঠাপানির তুলনা করো।
 
 #### জলচক্রের সংযোগ
 

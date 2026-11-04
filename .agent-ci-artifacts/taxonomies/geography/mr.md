@@ -602,7 +602,7 @@ Skills: 5
 
 **User-friendly description (mr):** नकाशांवर भूकंपपट्टे आणि प्लेट सीमांशी त्यांचा संबंध ओळखा.
 
-##### भूवैज्ञानिक धोक्यांना भौगोलिक उघडेपणा समजून घेणे
+##### भूवैज्ञानिक धोक्यांना सामोरे जाणाऱ्या क्षेत्रांचे भौगोलिक विश्लेषण करणे
 
 [interpretGeographicExposureToGeologicalHazards.data.ts](../../../learningApps/geography/data/skills/geology/earthquakesAndVolcanism/skills/interpretGeographicExposureToGeologicalHazards.data.ts)
 
