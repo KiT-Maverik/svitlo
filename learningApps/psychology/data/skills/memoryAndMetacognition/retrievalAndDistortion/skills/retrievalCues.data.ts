@@ -15,7 +15,7 @@ export const retrievalCues_Skill_Data = buildSkillConfig({
     ur: "یاد کرنے کے اشارے",
     id: "Petunjuk Pengingat",
     de: "Abrufhinweise",
-    ja: "想起す手がかり",
+    ja: "想起の手がかり",
     ko: "인출 단서",
     tr: "Hatırlama İpuçları",
     vi: "Gợi ý truy xuất trí nhớ",

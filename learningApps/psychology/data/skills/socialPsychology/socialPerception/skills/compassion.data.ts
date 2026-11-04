@@ -59,7 +59,7 @@ export const compassion_Skill_Data = buildSkillConfig({
       he: "הבחינו בין דאגה חומלת לזולת לבין הבנת רגשותיו בלבד.",
       pl: "Odróżnij troskę o drugą osobę od samego rozumienia jej uczuć.",
       uk: "Відрізняй співчутливе піклування від простого розуміння чужих почуттів.",
-      lt: "Atskirk atjautų rūpestį kitu nuo vien jo jausmų supratimo.",
+      lt: "Atskirk atjautą ir norą padėti nuo vien kito žmogaus jausmų supratimo.",
       lv: "Atšķir līdzjūtīgas rūpes no tikai cita cilvēka jūtu izpratnes.",
       et: "Erista teise vastu hoolivust tema tunnete pelgast mõistmisest.",
       be: "Адрозьнівай спачувальны клопат ад простага разуменьня пачуцьцяў іншага.",

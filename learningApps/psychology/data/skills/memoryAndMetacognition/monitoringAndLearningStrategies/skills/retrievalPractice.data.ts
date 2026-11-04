@@ -15,7 +15,7 @@ export const retrievalPractice_Skill_Data = buildSkillConfig({
     ur: "یاد سے معلومات نکالنے کی مشق",
     id: "Latihan Mengingat Kembali",
     de: "Abrufübungen",
-    ja: "想起す練習",
+    ja: "想起練習",
     ko: "인출 연습",
     tr: "Hatırlama Alıştırması",
     vi: "Luyện tập truy xuất trí nhớ",

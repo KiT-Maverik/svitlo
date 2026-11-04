@@ -16,7 +16,7 @@ export const perceptualConstancy_Skill_Data = buildSkillConfig({
     id: "Konstansi Persepsi",
     de: "Wahrnehmungskonstanz",
     ja: "知覚の恒常性",
-    ko: "지각 항등성",
+    ko: "지각 항상성",
     tr: "Algısal Değişmezlik",
     vi: "Tính hằng định của tri giác",
     ta: "புலனறிதல் நிலைத்தன்மை",

@@ -26,7 +26,7 @@ export const sustainedAttention_Skill_Data = buildSkillConfig({
     he: "קשב מתמשך",
     pl: "Uwaga podtrzymywana",
     uk: "Стійка увага",
-    lt: "Tvarus dėmesys",
+    lt: "Dėmesio išlaikymas",
     lv: "Noturīga uzmanība",
     et: "Püsiv tähelepanu",
     be: "Устойлівая ўвага",

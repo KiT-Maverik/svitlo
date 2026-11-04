@@ -5,7 +5,7 @@ export const hindsightBias_Skill_Data = buildSkillConfig({
   id: "5331abcc-5937-48b3-8c32-1dcb47c9c1f1",
   name: {
     en: "Hindsight Bias",
-    zh: "事后偏差",
+    zh: "后见之明偏差",
     hi: "पश्चदृष्टि पूर्वाग्रह",
     es: "Sesgo retrospectivo",
     ar: "انحياز الإدراك المتأخر",

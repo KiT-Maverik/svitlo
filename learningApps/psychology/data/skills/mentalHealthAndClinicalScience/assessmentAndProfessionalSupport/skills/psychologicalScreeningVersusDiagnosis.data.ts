@@ -26,7 +26,7 @@ export const psychologicalScreeningVersusDiagnosis_Skill_Data = buildSkillConfig
     he: "סקר פסיכולוגי לעומת אבחון",
     pl: "Badanie przesiewowe a diagnoza psychologiczna",
     uk: "Психологічний скринінг та діагностика",
-    lt: "Psichologinė atranka ir diagnozė",
+    lt: "Psichologinė patikra ir diagnozė",
     lv: "Psiholoģiskā skrīninga pārbaude un diagnoze",
     et: "Psühholoogiline sõeluuring ja diagnoos",
     be: "Псыхалягічны скрынінг і дыягностыка",
