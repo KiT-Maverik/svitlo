@@ -60,7 +60,7 @@ export const explainTheConceptOfClimate_Skill_Data = buildSkillConfig({
       pl: "Odróżnij wieloletnie wzorce klimatu od pogody w pojedynczym dniu.",
       uk: "Відрізняй довготривалі закономірності клімату від погоди окремого дня.",
       lt: "Atskirk ilgalaikius klimato dėsningumus nuo vienos dienos orų.",
-      lv: "Atšķir ilgtermiņa klimata rakstus no vienas dienas laikapstākļiem.",
+      lv: "Atšķir ilgtermiņa klimata likumsakarības no vienas dienas laikapstākļiem.",
       et: "Erista pikaajalisi kliimamustreid ühe kindla päeva ilmast.",
       be: "Адрозьнівай доўгатэрміновы клімат ад надвор’я аднаго дня.",
       ka: "განასხვავე ხანგრძლივი კლიმატური კანონზომიერებები ერთი დღის ამინდისგან.",
