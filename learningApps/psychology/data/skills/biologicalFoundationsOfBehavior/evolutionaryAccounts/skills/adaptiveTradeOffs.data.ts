@@ -52,7 +52,7 @@ export const adaptiveTradeOffs_Skill_Data = buildSkillConfig({
       ko: "한 환경에서 유용한 경향이 다른 환경에서는 비용을 가져올 수 있는 이유를 알아보세요.",
       tr: "Bir ortamda yararlı bir eğilimin başka bir ortamda neden bedelleri olabileceğini anla.",
       vi: "Hiểu vì sao xu hướng có lợi ở môi trường này có thể gây bất lợi ở môi trường khác.",
-      ta: "ஒரு சூழலில் பயனுள்ள போக்கு மற்றொரு சூழலில் ஏன் இழப்பை ஏற்படுத்தலாம் என்பதைப் புரிந்துகொள்.",
+      ta: "ஒரு சூழலில் பயனுள்ள போக்கு மற்றொரு சூழலில் ஏன் இழப்பை ஏற்படுத்தலாம் என்பதைப் புரிந்துகொள்ளுங்கள்.",
       te: "ఒక పరిస్థితిలో ఉపయోగకరమైన ప్రవృత్తి మరొక పరిస్థితిలో నష్టాన్ని ఎందుకు కలిగించవచ్చో అర్థం చేసుకోండి.",
       mr: "एका वातावरणात फायदेशीर असलेली प्रवृत्ती दुसऱ्यात खर्चिक का ठरू शकते ते समजून घे.",
       ms: "Fahami mengapa kecenderungan yang berguna dalam satu persekitaran mungkin membawa kos dalam persekitaran lain.",

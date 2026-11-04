@@ -52,7 +52,7 @@ export const neuralInhibition_Skill_Data = buildSkillConfig({
       ko: "억제성 신호가 신경 활동 조절에 어떻게 기여하는지 설명해 보세요.",
       tr: "Engelleyici sinyallerin sinirsel etkinliği düzenlemeye nasıl yardımcı olduğunu açıkla.",
       vi: "Giải thích cách tín hiệu ức chế giúp điều hòa hoạt động thần kinh.",
-      ta: "தடுக்கும் சமிக்ஞைகள் நரம்புச் செயல்பாட்டைக் கட்டுப்படுத்த எவ்வாறு உதவுகின்றன என்பதை விளக்கு.",
+      ta: "தடுக்கும் சமிக்ஞைகள் நரம்புச் செயல்பாட்டைக் கட்டுப்படுத்த எவ்வாறு உதவுகின்றன என்பதை விளக்குங்கள்.",
       te: "నిరోధక సంకేతాలు నాడీ కార్యకలాపాల నియంత్రణకు ఎలా సహాయపడతాయో వివరించండి.",
       mr: "अवरोधक संकेत मज्जापेशींच्या क्रियाशीलतेचे नियमन कसे करतात ते स्पष्ट कर.",
       ms: "Terangkan bagaimana isyarat perencat membantu mengawal aktiviti saraf.",
