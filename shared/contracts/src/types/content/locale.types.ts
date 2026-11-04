@@ -27,8 +27,8 @@ export type Locale_ResponseParams = {
 
 export type Locale_Config = Locales_All | Locales_Subset<LanguageCode> | Locales_Single | Locales_Partial;
 
-type New_Locale_Config<Languages extends LanguageCode = LanguageCode> =
-  Record<Languages, string>;
+type New_Locale_Config<SupportedLanguages extends LanguageCode = LanguageCode> =
+  Record<SupportedLanguages, string>;
 
 /**
  * Language-independent text.
@@ -45,4 +45,4 @@ type New_NonLocalizable = string;
  * - Fully localized for all supported languages.
  * - Intentionally language-independent.
  */
-type New_Locale_Options<T extends LanguageCode> = New_Locale_Config<T> | New_NonLocalizable;
+export type New_Locale_Options<SupportedLanguages extends LanguageCode> = New_Locale_Config<SupportedLanguages> | New_NonLocalizable;
