@@ -14,7 +14,7 @@ export function sceneLocalesToData<SupportedLanguages extends Locale_Languages, 
       return Object.fromEntries(
         languages.map((language) => [
           language,
-          path.reduce<unknown>((value, key) => (value as Record<string, unknown>)[key], byLanguage[language]),
+          path.reduce<unknown>((value, key) => (value as Record<string, unknown>)[key], byLanguage[language as SupportedLanguages[number]]),
         ]),
       );
     }
@@ -23,5 +23,5 @@ export function sceneLocalesToData<SupportedLanguages extends Locale_Languages, 
         .map(([key, child]) => [key, walk(child, [...path, key])]),
     );
   }
-  return walk(byLanguage[languages[0]], []) as LocalizedLeaves<Shape, SupportedLanguages>;
+  return walk(byLanguage[languages[0] as SupportedLanguages[number]], []) as LocalizedLeaves<Shape, SupportedLanguages>;
 }

@@ -1,19 +1,18 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Container, Stack } from '@mui/material';
-import type { Question } from '@svitlo/engine/content';
+import type { Question, Locale_Languages } from '@svitlo/engine/content';
 import { QuestionsDemo } from '@/components/pages/QuestionsDemo/QuestionsDemo';
 
 export const metadata: Metadata = { title: 'Інтерактивні запитання — Світло' };
 
-const locale = { code: 'uk' as const };
-const text = (id: string, value: string) => ({ id, type: 'text' as const, locale, value });
+const text = (id: string, value: string) => ({ id, type: 'text' as const, value });
 const base = (id: string, prompt: string) => ({
-  id, locale, assessmentMethod: 'retrieval' as const, restrictions: [],
+  id, assessmentMethod: 'retrieval' as const, restrictions: [],
   question: [text(id + '-prompt', prompt)] as [ReturnType<typeof text>],
 });
 
-const questions: Question<'response'>[] = [
+const questions: Question<'response', Locale_Languages>[] = [
   {
     ...base('one', 'Яка планета найближча до Сонця?'), type: 'selectOneAnswer',
     answers: { correct: { mercury: text('mercury', 'Меркурій') },
