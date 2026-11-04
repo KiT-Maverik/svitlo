@@ -62,7 +62,7 @@ export const foundationsAndPerspectives_SkillGroup_Data = buildSkillGroupConfig(
       vi: "Tìm hiểu các góc nhìn và mục tiêu khoa học khác nhau trong tâm lý học.",
       ta: "உளவியலின் வெவ்வேறு கண்ணோட்டங்களையும் அறிவியல் நோக்கங்களையும் அறிந்துகொள்.",
       te: "మనస్తత్వ శాస్త్రంలోని వివిధ దృక్కోణాలను, శాస్త్రీయ లక్ష్యాలను తెలుసుకోండి.",
-      mr: "मानसशास्त्रातील विविध दृष्टिकोन आणि वैज्ञानिक उद्दिष्टे जाणून घे.",
+      mr: "मानसशास्त्रातील विविध दृष्टिकोन आणि वैज्ञानिक उद्दिष्टे जाणून घ्या.",
       ms: "Kenali pelbagai perspektif dan matlamat saintifik dalam psikologi.",
       he: "הכירו נקודות מבט שונות ומטרות מדעיות בפסיכולוגיה.",
       pl: "Poznaj różne perspektywy i cele naukowe psychologii.",

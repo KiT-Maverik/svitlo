@@ -54,7 +54,7 @@ export const studyReplication_Skill_Data = buildSkillConfig({
       vi: "Hiểu vì sao lặp lại một nghiên cứu giúp kiểm tra mức độ vững chắc của phát hiện.",
       ta: "ஒரு ஆய்வை மீண்டும் செய்வது முடிவின் உறுதித்தன்மையை எவ்வாறு சோதிக்க உதவுகிறது என்பதை அறிந்துகொள்.",
       te: "అధ్యయనాన్ని మళ్లీ చేయడం ఫలిత బలాన్ని పరీక్షించడానికి ఎలా ఉపయోగపడుతుందో తెలుసుకోండి.",
-      mr: "अभ्यास पुन्हा केल्याने निष्कर्ष किती भक्कम आहे हे कसे तपासता येते ते समजून घे.",
+      mr: "अभ्यास पुन्हा केल्याने निष्कर्ष किती भक्कम आहे हे कसे तपासता येते ते समजून घ्या.",
       ms: "Fahami mengapa mengulang kajian membantu menguji keteguhan sesuatu penemuan.",
       he: "הבינו מדוע חזרה על מחקר עוזרת לבחון עד כמה הממצא יציב.",
       pl: "Zrozum, dlaczego powtórzenie badania pomaga sprawdzić trwałość wyniku.",

@@ -54,7 +54,7 @@ export const scopeOfPsychologicalScience_Skill_Data = buildSkillConfig({
       vi: "Phân biệt nghiên cứu tâm lý học với triết học và điều trị lâm sàng.",
       ta: "உளவியல் ஆராய்ச்சியைத் தத்துவம் மற்றும் மருத்துவச் சிகிச்சையிலிருந்து வேறுபடுத்து.",
       te: "మనస్తత్వ పరిశోధనను తత్వశాస్త్రం, వైద్య చికిత్స నుంచి వేరు చేసి గుర్తించండి.",
-      mr: "मानसशास्त्रीय संशोधन, तत्त्वज्ञान आणि वैद्यकीय उपचार यांतील फरक ओळख.",
+      mr: "मानसशास्त्रीय संशोधन, तत्त्वज्ञान आणि वैद्यकीय उपचार यांतील फरक ओळखा.",
       ms: "Bezakan penyelidikan psikologi daripada falsafah dan rawatan klinikal.",
       he: "הבחינו בין מחקר פסיכולוגי לבין פילוסופיה וטיפול קליני.",
       pl: "Odróżniaj badania psychologiczne od filozofii i leczenia klinicznego.",

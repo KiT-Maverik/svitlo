@@ -63,7 +63,7 @@ export const measurementAndSampling_SkillGroup_Data = buildSkillGroupConfig({
       vi: "Tìm hiểu cách nhà tâm lý học đo lường các khái niệm và chọn người tham gia nghiên cứu.",
       ta: "உளவியலாளர்கள் கருத்துகளை எவ்வாறு அளவிடுகிறார்கள், ஆய்வுப் பங்கேற்பாளர்களை எவ்வாறு தேர்ந்தெடுக்கிறார்கள் என்பதை அறிந்துகொள்.",
       te: "మనస్తత్వ శాస్త్రవేత్తలు భావనలను ఎలా కొలుస్తారో, పరిశోధనలో పాల్గొనేవారిని ఎలా ఎంచుకుంటారో తెలుసుకోండి.",
-      mr: "मानसशास्त्रज्ञ संकल्पना कशा मोजतात आणि संशोधनासाठी सहभागी कसे निवडतात ते जाणून घे.",
+      mr: "मानसशास्त्रज्ञ संकल्पना कशा मोजतात आणि संशोधनासाठी सहभागी कसे निवडतात ते जाणून घ्या.",
       ms: "Terokai cara ahli psikologi mengukur konsep dan memilih peserta penyelidikan.",
       he: "גלו כיצד פסיכולוגים מודדים מושגים ובוחרים משתתפים למחקר.",
       pl: "Odkryj, jak psychologowie mierzą konstrukty i wybierają uczestników badań.",

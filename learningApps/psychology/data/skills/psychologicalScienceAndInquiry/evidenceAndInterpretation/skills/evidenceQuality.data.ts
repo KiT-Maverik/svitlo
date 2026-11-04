@@ -54,7 +54,7 @@ export const evidenceQuality_Skill_Data = buildSkillConfig({
       vi: "So sánh kết quả nghiên cứu theo độ mạnh, sự không chắc chắn và các thiên lệch có thể có.",
       ta: "ஆராய்ச்சி முடிவுகளை அவற்றின் வலிமை, நிச்சயமின்மை, சாத்தியமான சார்புகள் ஆகியவற்றால் ஒப்பிடு.",
       te: "పరిశోధన ఫలితాలను వాటి బలం, అనిశ్చితి, సాధ్యమైన పక్షపాతాల ఆధారంగా పోల్చండి.",
-      mr: "संशोधन निष्कर्षांची ताकद, अनिश्चितता आणि संभाव्य पक्षपात यांच्या आधारे तुलना कर.",
+      mr: "संशोधन निष्कर्षांची ताकद, अनिश्चितता आणि संभाव्य पक्षपात यांच्या आधारे तुलना करा.",
       ms: "Bandingkan dapatan penyelidikan berdasarkan kekuatan, ketidakpastian dan kemungkinan bias.",
       he: "השוו ממצאי מחקר לפי חוזק, אי-ודאות והטיות אפשריות.",
       pl: "Porównuj wyniki badań pod względem siły, niepewności i możliwych błędów.",
