@@ -12,7 +12,7 @@ export const explainGeographicFactorsShapingSettlementPatterns_Skill_Data = buil
     fr: "Expliquer les facteurs géographiques du peuplement",
     bn: "বসতির ধরন গঠনের ভৌগোলিক কারণ ব্যাখ্যা করা",
     pt: "Explicar fatores geográficos que moldam os assentamentos",
-    ur: "آبادی کے نمونے بنانے والے جغرافیائی عوامل سمجھانا",
+    ur: "آبادکاری کے نمونوں پر اثر انداز ہونے والے جغرافیائی عوامل سمجھانا",
     id: "Menjelaskan faktor geografis pembentuk pola permukiman",
     de: "Geografische Faktoren von Siedlungsmustern erklären",
     ja: "集落の分布を形作る地理的要因を説明する",
