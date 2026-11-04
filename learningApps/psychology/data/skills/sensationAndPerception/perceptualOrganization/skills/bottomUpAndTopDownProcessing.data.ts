@@ -52,7 +52,7 @@ export const bottomUpAndTopDownProcessing_Skill_Data = buildSkillConfig({
       ko: "기대와 새로 들어오는 감각이 함께 지각을 어떻게 형성하는지 살펴보세요.",
       tr: "Beklentilerin ve gelen duyumların algıyı nasıl birlikte şekillendirdiğini keşfet.",
       vi: "Khám phá cách kỳ vọng và cảm giác đầu vào cùng định hình tri giác.",
-      ta: "எதிர்பார்ப்புகளும் வரும் புலன் தகவலும் சேர்ந்து புலனறிதலை எவ்வாறு உருவாக்குகின்றன என்பதை ஆராய்.",
+      ta: "எதிர்பார்ப்புகளும் வரும் புலன் தகவலும் சேர்ந்து புலனறிதலை எவ்வாறு உருவாக்குகின்றன என்பதை ஆராயுங்கள்.",
       te: "అంచనాలు, కొత్త ఇంద్రియ సమాచారం కలిసి గ్రహణాన్ని ఎలా రూపొందిస్తాయో పరిశీలించండి.",
       mr: "अपेक्षा आणि येणाऱ्या संवेदना मिळून प्रत्यक्षज्ञान कसे घडवतात ते पाहा.",
       ms: "Terokai bagaimana jangkaan dan sensasi masuk bersama-sama membentuk persepsi.",

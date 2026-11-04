@@ -52,7 +52,7 @@ export const detectionThresholds_Skill_Data = buildSkillConfig({
       ko: "잡음 속에서 강한 신호를 더 쉽게 알아챌 수 있는 이유를 설명해 보세요.",
       tr: "Daha güçlü sinyallerin gürültü içinde neden daha kolay fark edilebildiğini açıkla.",
       vi: "Giải thích vì sao tín hiệu mạnh hơn có thể dễ nhận thấy hơn giữa nhiễu.",
-      ta: "இரைச்சலின் நடுவே வலுவான சமிக்ஞைகளை ஏன் எளிதில் கவனிக்கலாம் என்பதை விளக்கு.",
+      ta: "இரைச்சலின் நடுவே வலுவான சமிக்ஞைகளை ஏன் எளிதில் கவனிக்கலாம் என்பதை விளக்குங்கள்.",
       te: "శబ్దం మధ్య బలమైన సంకేతాలను ఎందుకు సులభంగా గుర్తించవచ్చో వివరించండి.",
       mr: "गोंगाटात अधिक तीव्र संकेत सहज का जाणवू शकतात ते स्पष्ट कर.",
       ms: "Terangkan mengapa isyarat yang lebih kuat lebih mudah dikesan di tengah gangguan.",

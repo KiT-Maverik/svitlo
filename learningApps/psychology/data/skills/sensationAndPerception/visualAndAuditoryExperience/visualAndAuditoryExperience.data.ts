@@ -60,7 +60,7 @@ export const visualAndAuditoryExperience_SkillGroup_Data = buildSkillGroupConfig
       ko: "시각적·청각적 패턴을 어떻게 해석하는지 알아보세요.",
       tr: "Görsel ve işitsel örüntüleri nasıl yorumladığımızı keşfet.",
       vi: "Khám phá cách chúng ta diễn giải các mẫu hình nhìn thấy và nghe thấy.",
-      ta: "காட்சி மற்றும் ஒலித் தகவல் வடிவங்களை நாம் எவ்வாறு புரிந்துகொள்கிறோம் என்பதை அறிந்துகொள்.",
+      ta: "காட்சி மற்றும் ஒலித் தகவல் வடிவங்களை நாம் எவ்வாறு புரிந்துகொள்கிறோம் என்பதை அறிந்துகொள்ளுங்கள்.",
       te: "కనిపించే, వినిపించే నమూనాలను మనం ఎలా అర్థం చేసుకుంటామో తెలుసుకోండి.",
       mr: "आपण दिसणाऱ्या आणि ऐकू येणाऱ्या नमुन्यांचा अर्थ कसा लावतो ते जाणून घे.",
       ms: "Terokai bagaimana kita mentafsir corak yang dilihat dan didengar.",
