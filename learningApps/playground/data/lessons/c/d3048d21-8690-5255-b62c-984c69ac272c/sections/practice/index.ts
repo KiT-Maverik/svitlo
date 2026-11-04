@@ -1,5 +1,5 @@
 import type { HowLightMoves_Languages } from '../../constants';
-import { defineContentBlockCatalog, type Section } from '@svitlo/engine/content';
+import type { Section } from '@svitlo/engine/content';
 import { showcaseData } from './scenes/showcase';
 
 const title = {
@@ -41,11 +41,12 @@ export const practice_Section = {
   title,
   navigationLabel: title,
   skippable: true,
-  order: [{ type: 'text', slug: 'task' }, { type: 'scene', slug: 'showcase' }],
-  content: defineContentBlockCatalog<HowLightMoves_Languages>()({
-    scene: { showcase: showcaseData },
-    text: {
-      task: { id: 'practice-task', slug: 'task' as const, value: {
+  content: [
+    {
+      type: 'text',
+      id: 'practice-task',
+      slug: 'task',
+      value: {
           ar: 'قارِن سرعة الضوء في الفراغ والهواء والماء.',
           be: 'Параўнай хуткасьць сьвятла ў вакуўме, паветры і вадзе.',
           bn: 'শূন্যস্থান, বায়ু ও পানিতে আলোর গতির তুলনা করো।',
@@ -75,7 +76,8 @@ export const practice_Section = {
           ur: 'خلا، ہوا اور پانی میں روشنی کی رفتار کا موازنہ کریں۔',
           vi: 'So sánh tốc độ ánh sáng trong chân không, không khí và nước.',
           zh: '比较光在真空、空气和水中的传播速度。',
-        }, },
+        },
     },
-  }),
+    showcaseData,
+  ],
 } satisfies Section<'data', HowLightMoves_Languages>;

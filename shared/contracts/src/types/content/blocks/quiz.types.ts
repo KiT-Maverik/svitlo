@@ -39,7 +39,7 @@ type Quiz_Settings<ConfigType extends 'data' | 'response', SupportedLanguages ex
 
 type ContentBlock_Quiz_Definition = ContentBlock_Definition_Meta<'quiz'>;
 
-type ContentBlock_Quiz_Data<SupportedLanguages extends Locale_Languages> = ContentBlock_Data_Meta &
+type ContentBlock_Quiz_Data<SupportedLanguages extends Locale_Languages> = ContentBlock_Data_Meta<'quiz'> &
   Quiz_Settings<'data', SupportedLanguages> & {
     welcome: Locale_Options<SupportedLanguages>;
     questions: Record<string, Question_SelectOneAnswer<'data', SupportedLanguages>>;

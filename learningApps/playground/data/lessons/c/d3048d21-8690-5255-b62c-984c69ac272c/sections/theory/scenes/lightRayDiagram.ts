@@ -388,6 +388,7 @@ export type LightRayDiagram_ContentBlock<ConfigType extends 'definition' | 'data
   ContentBlock_Scene<ConfigType, HowLightMoves_Languages, Locale>;
 
 export const lightRayDiagramData = {
+  type: 'scene',
   id: 'how-light-moves-scene-ray',
   slug: 'lightRayDiagram' as const,
   locales: sceneLocalesToData(howLightMoves_languages, lightRayDiagram_Locale),

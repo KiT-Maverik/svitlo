@@ -99,7 +99,7 @@ export function renderLessonMarkdown({ lesson, locale, languages, packagePath, s
     throw new Error('Duplicate or unsupported lesson languages');
   }
   if (!lesson.parameters.languages.includes(locale)) throw new Error(`Lesson ${relative} does not support locale ${locale}`);
-  if (!isRecord(lesson.sections) || !Object.keys(lesson.sections).length || !isRecord(lesson.questions) || !Array.isArray(lesson.flashcards)) {
+  if (!Array.isArray(lesson.sections) || !lesson.sections.length || !isRecord(lesson.questions) || !Array.isArray(lesson.flashcards)) {
     throw new Error(`Lesson ${relative} is missing sections, questions, or flashcards`);
   }
   const { value: localized, sources } = localizeReviewValue(lesson, locale, lesson.parameters.languages);
@@ -154,7 +154,8 @@ export function renderLessonMarkdown({ lesson, locale, languages, packagePath, s
         const textPath = [...parts, field];
         if (parts[0] === 'sections' && parts[2] === 'content') {
           const origin = sources[pointer(textPath)];
-          const markdownFile = `${lessonPath}/sections/${parts[1]}/markdown/${parts[4]}/${origin?.code ?? locale}.md`;
+          const sectionSlug = localized.sections[Number(parts[1])]?.slug;
+          const markdownFile = `${lessonPath}/sections/${sectionSlug}/markdown/${block.slug}/${origin?.code ?? locale}.md`;
           if (sourceFiles?.hasFile?.(markdownFile)) add(`- Localized Markdown file: [${origin?.code ?? locale}.md](${link(markdownFile)})`, '');
         }
         emitText('Markdown', block.text ?? block.locales, textPath, true);
@@ -178,10 +179,10 @@ export function renderLessonMarkdown({ lesson, locale, languages, packagePath, s
         break;
       }
       case 'scene': {
-        const texts = block.locales ?? block.locale;
+        const texts = block.locales;
         if (!isRecord(texts)) throw new Error(`Missing scene localized data at ${pointer(parts)}`);
         add('Custom scene: implementation referenced in canonical definition; JSX is intentionally not rendered.', '');
-        listSceneTexts(texts, [...parts, block.locales ? 'locales' : 'locale']);
+        listSceneTexts(texts, [...parts, 'locales']);
         metadata(block, ['id', 'slug', 'locales', 'locale', 'type']);
         break;
       }
@@ -237,18 +238,20 @@ export function renderLessonMarkdown({ lesson, locale, languages, packagePath, s
   add(`- Source languages: ${fallbackCodes.length ? fallbackCodes.map(v => `\`${v}\` (explicit fallback)`).join(', ') : `\`${locale}\` (no fallbacks)`}`, '');
   if (sources['/title']?.isFallback) add(`> Lesson title fallback: ${sources['/title'].code}`, '');
   heading(2, 'Sections');
-  for (const [sectionKey, section] of Object.entries(localized.sections)) {
-    if (!isRecord(section) || !isRecord(section.content)) throw new Error(`Invalid section ${sectionKey}`);
+  for (const [sectionIndex, section] of localized.sections.entries()) {
+    if (!isRecord(section) || !Array.isArray(section.content)) throw new Error(`Invalid section ${sectionIndex}`);
+    const sectionKey = required(section.slug, 'section slug');
     required(section.id, `section ${sectionKey} id`);
-    const sp = ['sections', sectionKey];
+    const sp = ['sections', sectionIndex];
     heading(3, `${phrase(section.title, [...sp, 'title'])} · ${sectionKey}`);
-    add(`- ID: \`${inline(section.id)}\``, `- Slug: \`${inline(section.slug ?? sectionKey)}\``, `- Canonical: ${source(section.id, `${lessonPath}/sections/${sectionKey}/${sectionKey}.data.ts`)}`, `- Navigation label: ${phrase(section.navigationLabel, [...sp, 'navigationLabel'])}`, '');
-    let index = 0;
-    for (const [type, catalog] of Object.entries(section.content)) {
-      if (!isRecord(catalog)) throw new Error(`Invalid ${type} catalog in ${sectionKey}`);
-      for (const [blockKey, block] of Object.entries(catalog)) {
-        emitBlock(block, type, [...sp, 'content', type, blockKey], `${++index}. ${blockKey}`, `${lessonPath}/sections/${sectionKey}/${sectionKey}.data.ts`);
-      }
+    add(`- ID: \`${inline(section.id)}\``, `- Slug: \`${inline(sectionKey)}\``,
+      `- Canonical: ${source(section.id, `${lessonPath}/sections/${sectionKey}/${sectionKey}.data.ts`)}`,
+      `- Navigation label: ${phrase(section.navigationLabel, [...sp, 'navigationLabel'])}`, '');
+    for (const [blockIndex, block] of section.content.entries()) {
+      const type = inferBlockType(block);
+      const key = required(block.slug, 'block slug');
+      emitBlock(block, type, [...sp, 'content', blockIndex], `${blockIndex + 1}. ${key}`,
+        `${lessonPath}/sections/${sectionKey}/${sectionKey}.data.ts`);
     }
   }
   if (Object.keys(localized.questions).length) {
@@ -277,18 +280,8 @@ export function renderLessonMarkdown({ lesson, locale, languages, packagePath, s
 }
 
 export function inferBlockType(block) {
-  if (!isRecord(block)) throw new Error('Invalid nested content block');
-  if (typeof block.type === 'string') return block.type;
-  if (typeof block.blockType === 'string') return block.blockType;
-  if (Object.hasOwn(block, 'value')) return 'text';
-  if (Object.hasOwn(block, 'items')) return 'checkpoint';
-  if (Object.hasOwn(block, 'welcome') && Object.hasOwn(block, 'questions')) return 'quiz';
-  if (Object.hasOwn(block, 'text')) return 'markdown';
-  if (Object.hasOwn(block, 'href')) return 'youtube';
-  if (Object.hasOwn(block, 'codeParams')) return 'code';
-  if (Object.hasOwn(block, 'fileLocation') && Object.hasOwn(block, 'poster')) return 'video';
-  if (Object.hasOwn(block, 'fileLocation') && Object.hasOwn(block, 'title')) return 'audio';
-  if (Object.hasOwn(block, 'alt') && (Object.hasOwn(block, 'locales') || Object.hasOwn(block, 'src'))) return 'image';
-  if (Object.hasOwn(block, 'locales') || Object.hasOwn(block, 'locale')) return 'scene';
-  throw new Error(`Cannot infer nested content block type: ${block.id ?? '(no id)'}`);
+  if (!isRecord(block) || typeof block.type !== 'string') {
+    throw new Error('Content blocks must declare a type discriminant');
+  }
+  return block.type;
 }

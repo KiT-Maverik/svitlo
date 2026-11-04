@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { assembleLessonResponse } from './assembleLessonResponse';
+
 const id = 'd3048d21-8690-5255-b62c-984c69ac272c';
 
 function fixture() {
@@ -15,81 +16,94 @@ function fixture() {
           languages: ['uk', 'en'],
           sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
         },
-        sectionOrder: ['theory', 'quiz'],
-        sections: {
-          theory: {
+        sections: [
+          {
             id: 'section-id', slug: 'theory', type: 'theory', title: 'Теорія', navigationLabel: 'Теорія',
-            order: [{ type: 'markdown', slug: 'p1' }, { type: 'scene', slug: 'ray' }, { type: 'checkpoint', slug: 'checkpoint' }],
-            content: {
-              markdown: { p1: { id: 'markdown-id', slug: 'p1', locales: '# Світло' } },
-              scene: { ray: { id: 'scene-id', slug: 'ray', messages: { scene: { title: 'Промінь' } } } },
-              checkpoint: { checkpoint: { id: 'check-id', slug: 'checkpoint', title: 'Перевірка', items: [] } },
-            },
+            content: [
+              { type: 'markdown', id: 'markdown-id', slug: 'p1', locales: '# Світло' },
+              { type: 'scene', id: 'scene-id', slug: 'ray', locales: { scene: { title: 'Промінь' } } },
+              { type: 'checkpoint', id: 'check-id', slug: 'checkpoint', title: 'Перевірка', items: [] },
+            ],
           },
-          quiz: {
+          {
             id: 'quiz-section', slug: 'quiz', type: 'quiz', title: 'Тест', navigationLabel: 'Тест',
-            order: [{ type: 'quiz', slug: 'quiz' }],
-            content: { quiz: { quiz: { id: 'quiz-id', slug: 'quiz', questionSlugs: ['q1'] } } },
+            content: [{ type: 'quiz', id: 'quiz-id', slug: 'quiz', questionSlugs: ['q1'] }],
           },
-        },
+        ],
       },
     },
     flashcards: { localeSources: {}, data: [{ id: 'card-id' }] },
     questions: { localeSources: {}, data: { selectOneAnswer: {
-      q1: { id: 'question-id', slug: 'q1', type: 'selectOneAnswer', question: [{ value: 'Запитання' }] },
+      q1: {
+        id: 'question-id', slug: 'q1', type: 'selectOneAnswer',
+        question: [{ id: 'prompt-id', slug: 'prompt', type: 'text', value: 'Запитання' }],
+      },
     } } },
   };
 }
 
 describe('assembleLessonResponse', () => {
-  it('preserves ordering, locale sources, markdown, scene identity and resolved questions', () => {
+  it('retains array ordering, locale sources, markdown, scene messages and quiz references', () => {
     const lesson = assembleLessonResponse(id, 'uk', fixture());
-    expect(Object.keys(lesson.sections)).toEqual(['theory', 'quiz']);
-    expect(lesson.sections.theory.order).toEqual([{ type: 'markdown', slug: 'p1' }, { type: 'scene', slug: 'ray' }, { type: 'checkpoint', slug: 'checkpoint' }]);
-    expect(lesson.sections.theory.blocks.map(block => block.type)).toEqual(['markdown', 'scene', 'checkpoint']);
-    expect(lesson.sections.quiz.blocks).toEqual([]);
-    expect(lesson.sections.quiz.questions.map(question => question.id)).toEqual(['question-id']);
-    expect(lesson.sections.theory.questions).toEqual([]);
-    expect(lesson.sectionOrder).toEqual(['theory', 'quiz']);
-    expect(lesson.sections.theory.type).toBe('theory');
-    expect(lesson.sections.quiz.type).toBe('quiz');
-    expect(lesson.sections.theory.content.markdown.p1.text).toEqual('# Світло');
-    expect(lesson.sections.theory.content.scene.ray.sceneId).toEqual('c/'+id+'/theory/scene/ray');
-    expect(lesson.sections.theory.content.scene.ray.locale).toEqual({ code: 'uk' });
-    expect(lesson.sections.theory.content.scene.ray.messages).toEqual({ scene: { title: 'Промінь' } });
-    expect(lesson.sections.theory.content.checkpoint.checkpoint).toBeDefined();
-    expect(lesson.sections.quiz.content.quiz.quiz.questions?.q1.id).toEqual('question-id');
+    expect(lesson.sections.map(section => section.slug)).toEqual(['theory', 'quiz']);
+    expect(lesson.sections[0].content.map(block => block.type)).toEqual(['markdown', 'scene', 'checkpoint']);
+    expect(lesson.sections[1].content.map(block => block.type)).toEqual(['quiz']);
+    expect(lesson.sections[1].questions.map(question => question.id)).toEqual(['question-id']);
+    expect(lesson.sections[0].questions).toEqual([]);
+    expect(lesson.sections[0].type).toBe('theory');
+    expect(lesson.sections[1].type).toBe('quiz');
+    const markdown = lesson.sections[0].content[0];
+    expect(markdown.type).toBe('markdown');
+    if (markdown.type === 'markdown') expect(markdown.text).toBe('# Світло');
+    const scene = lesson.sections[0].content[1];
+    expect(scene.type).toBe('scene');
+    if (scene.type === 'scene') {
+      expect(scene.rendererKey).toBe('scene-id');
+      expect(scene.messages).toEqual({ scene: { title: 'Промінь' } });
+    }
+    const quiz = lesson.sections[1].content[0];
+    expect(quiz.type).toBe('quiz');
+    if (quiz.type === 'quiz') expect(quiz.questionSlugs).toEqual(['q1']);
     expect(lesson.localeSources.config['/title']).toEqual({ code: 'uk' });
     expect(lesson.flashcards).toHaveLength(1);
   });
+
   it('rejects contradictory locale fallback provenance', () => {
     const raw = fixture();
     (raw.config.localeSources as Record<string, { code: string }>)['/title'].code = 'en';
     expect(() => assembleLessonResponse(id, 'uk', raw)).toThrow(/Contradictory fallback metadata/);
   });
-  it('rejects inconsistent section ordering', () => {
+
+  it('rejects duplicate section identity rather than silently overwriting a section', () => {
     const raw = fixture();
-    raw.config.data.sectionOrder = ['quiz', 'missing'];
-    expect(() => assembleLessonResponse(id, 'uk', raw)).toThrow(/sectionOrder/);
+    raw.config.data.sections[1].slug = 'theory';
+    expect(() => assembleLessonResponse(id, 'uk', raw)).toThrow(/Duplicate section identity/);
   });
+
   it('rejects a dangling quiz reference', () => {
     const raw = fixture();
-    raw.config.data.sections.quiz.content.quiz.quiz.questionSlugs = ['missing'];
+    (raw.config.data.sections[1].content[0] as { questionSlugs: string[] }).questionSlugs = ['missing'];
     expect(() => assembleLessonResponse(id, 'uk', raw)).toThrow(/missing or ambiguous question/);
   });
+
   it('rejects an unknown section type or a quiz section without quiz content', () => {
     const invalidType = fixture();
-    invalidType.config.data.sections.theory.type = 'unknown';
+    invalidType.config.data.sections[0].type = 'unknown';
     expect(() => assembleLessonResponse(id, 'uk', invalidType)).toThrow(/Unsupported section type/);
     const mismatchedQuiz = fixture();
-    mismatchedQuiz.config.data.sections.quiz.type = 'theory';
+    mismatchedQuiz.config.data.sections[1].type = 'theory';
     expect(() => assembleLessonResponse(id, 'uk', mismatchedQuiz)).toThrow(/Quiz section type and content disagree/);
   });
-  it('rejects an invalid order rather than silently dropping blocks', () => {
-    const raw = fixture();
-    raw.config.data.sections.theory.order = [{ type: 'markdown', slug: 'p1' }];
-    expect(() => assembleLessonResponse(id, 'uk', raw)).toThrow(/content order/);
+
+  it('rejects duplicate or undiscriminated blocks', () => {
+    const duplicate = fixture();
+    duplicate.config.data.sections[0].content.push({ ...duplicate.config.data.sections[0].content[0] });
+    expect(() => assembleLessonResponse(id, 'uk', duplicate)).toThrow(/Duplicate content block/);
+    const missingType = fixture();
+    (missingType.config.data.sections[0].content[0] as { type?: string }).type = undefined;
+    expect(() => assembleLessonResponse(id, 'uk', missingType)).toThrow(/Invalid lesson resource.*type/);
   });
+
   it('rejects the wrong identity or an unsupported locale', () => {
     expect(() => assembleLessonResponse('00000000-0000-5000-8000-000000000002', 'uk', fixture())).toThrow(/identity mismatch/);
     const unsupported = fixture();

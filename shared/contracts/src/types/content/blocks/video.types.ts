@@ -11,7 +11,7 @@ type Video_Fallback<Value> = {
   retry?: Value;
 };
 
-type ContentBlock_Video_Data<SupportedLanguages extends Locale_Languages> = ContentBlock_Data_Meta & {
+type ContentBlock_Video_Data<SupportedLanguages extends Locale_Languages> = ContentBlock_Data_Meta<'video'> & {
   fileLocation: Locale_Options<SupportedLanguages>;
   poster: Locale_Options<SupportedLanguages>;
   title?: Locale_Options<SupportedLanguages>;

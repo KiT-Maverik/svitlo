@@ -7,6 +7,7 @@ export const airVacuumSpeed_Question_Data = {
       slowerInAir: {
         id: '8c031b64-fcae-5197-9ba4-0b0f42d4b386',
         slug: 'slowerInAir',
+        type: 'text',
         value: {
           ar: 'لا، هي أبطأ قليلًا في الهواء.',
           be: 'Не, у паветры яна крыху меншая.',
@@ -44,6 +45,7 @@ export const airVacuumSpeed_Question_Data = {
       fasterInAir: {
         id: '68d0a7e2-8813-5a2b-b620-a7ccf562e703',
         slug: 'fasterInAir',
+        type: 'text',
         value: {
           ar: 'لا، هي أسرع بمرتين في الهواء.',
           be: 'Не, у паветры яна ўдвая большая.',
@@ -81,6 +83,7 @@ export const airVacuumSpeed_Question_Data = {
       sameSpeed: {
         id: '76e70b25-0fef-519e-89df-6350c8feea41',
         slug: 'sameSpeed',
+        type: 'text',
         value: {
           ar: 'نعم، متساوية تمامًا.',
           be: 'Так, хуткасьць дакладна аднолькавая.',
@@ -120,6 +123,7 @@ export const airVacuumSpeed_Question_Data = {
     {
       id: 'e83e3897-1eac-532f-bc5c-6639bf5d29e9',
       slug: 'slowerInAir',
+      type: 'text',
       value: {
         ar: 'ينتشر الضوء في الهواء أبطأ قليلًا مما ينتشر في الفراغ.',
         be: 'У паветры сьвятло пашыраецца крыху павольней, чым у вакуўме.',
@@ -159,6 +163,7 @@ export const airVacuumSpeed_Question_Data = {
     {
       id: '4a239502-091e-59a4-b57f-0c4c059de468',
       slug: 'question',
+      type: 'text',
       value: {
         ar: 'هل سرعة الضوء في الهواء والفراغ متساوية؟',
         be: 'Ці аднолькавая хуткасьць сьвятла ў паветры і вакуўме?',

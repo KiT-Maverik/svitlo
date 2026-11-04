@@ -3,7 +3,7 @@
 import { Container } from '@mui/material';
 import { ContentBlockRenderer } from './ContentBlockRenderer/ContentBlockRenderer';
 import { QuestionRenderer } from '@svitlo/ui-kit/questions';
-import type { LessonResponse } from '@/lib/lessons/assembleLessonResponse';
+import type { LessonRenderableBlock, LessonResponse } from '@/lib/lessons/assembleLessonResponse';
 import { useLessonProgress } from './LessonProgress/LessonProgress';
 import { LessonSteps } from './LessonSteps/LessonSteps';
 import { howLightMovesSceneRegistry } from './scenes/sceneRegistry';
@@ -11,7 +11,7 @@ import styles from './Lesson.module.css';
 
 export default function LessonV2Client({ response }: { response: LessonResponse }) {
   const { progress, dispatch } = useLessonProgress();
-  const sections = response.sectionOrder.map(slug => response.sections[slug]);
+  const sections = response.sections;
   const current = sections[progress.step];
   if (!progress.ready || !current) return <div className={styles.lesson} />;
   const isQuiz = current.type === 'quiz';
@@ -36,7 +36,7 @@ export default function LessonV2Client({ response }: { response: LessonResponse 
               onComplete={() => dispatch({ type: 'testDone' })}
             />
           ) : (
-            <ContentBlockRenderer blocks={current.blocks} sceneRegistry={howLightMovesSceneRegistry} language={response.locale.code} />
+            <ContentBlockRenderer blocks={current.content.filter((block): block is LessonRenderableBlock => block.type !== 'quiz')} sceneRegistry={howLightMovesSceneRegistry} language={response.locale.code} />
           )}
         </Container>
       </div>

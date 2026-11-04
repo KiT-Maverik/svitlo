@@ -24,7 +24,7 @@ type ContentBlock_Scene_Locales_Data<TLocales, SupportedLanguages extends Locale
     ? { [Key in keyof TLocales]: ContentBlock_Scene_Locales_Data<TLocales[Key], SupportedLanguages> }
     : never;
 
-type ContentBlock_Scene_Data<TLocales extends object, SupportedLanguages extends Locale_Languages> = ContentBlock_Data_Meta & {
+type ContentBlock_Scene_Data<TLocales extends object, SupportedLanguages extends Locale_Languages> = ContentBlock_Data_Meta<'scene'> & {
   locales: ContentBlock_Scene_Locales_Data<ContentBlock_Scene_Locales_Strings<TLocales>, SupportedLanguages>;
 };
 

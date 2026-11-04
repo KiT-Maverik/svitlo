@@ -7,6 +7,7 @@ export const lightRayDirection_Question_Data = {
       direction: {
         id: '1c7f5a04-96e4-5ffa-9f50-7f92b20a78cb',
         slug: 'direction',
+        type: 'text',
         value: {
           ar: 'اتجاه انتشار الضوء.',
           be: 'Кірунак пашырэньня сьвятла.',
@@ -44,6 +45,7 @@ export const lightRayDirection_Question_Data = {
       particleSize: {
         id: '9bf58589-f3c2-523c-8d9e-5900989b3711',
         slug: 'particleSize',
+        type: 'text',
         value: {
           ar: 'حجم جسيم الضوء.',
           be: 'Памер часьцінкі сьвятла.',
@@ -81,6 +83,7 @@ export const lightRayDirection_Question_Data = {
       sourceTemperature: {
         id: 'a718aef4-1ea6-5ac8-ba77-84aa4417a5db',
         slug: 'sourceTemperature',
+        type: 'text',
         value: {
           ar: 'درجة حرارة المصدر.',
           be: 'Тэмпэратуру крыніцы.',
@@ -120,6 +123,7 @@ export const lightRayDirection_Question_Data = {
     {
       id: 'a0954fb2-7acf-5943-bafe-7d0b3e4b784e',
       slug: 'direction',
+      type: 'text',
       value: {
         ar: 'يُظهر الشعاع الضوئي الاتجاه الذي ينتشر فيه الضوء.',
         be: 'Сьветлавы прамень паказвае кірунак пашырэньня сьвятла.',
@@ -159,6 +163,7 @@ export const lightRayDirection_Question_Data = {
     {
       id: '8fbda15a-7184-519c-a6c1-a7da64575a05',
       slug: 'question',
+      type: 'text',
       value: {
         ar: 'ماذا يُظهر الشعاع الضوئي؟',
         be: 'Што паказвае сьветлавы прамень?',

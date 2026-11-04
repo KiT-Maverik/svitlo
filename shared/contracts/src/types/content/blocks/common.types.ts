@@ -4,9 +4,11 @@ export type ContentBlock_Definition_Meta<T extends ContentBlock_Type> = {
   type: T;
 }
 
-export type ContentBlock_Data_Meta = {
+export type ContentBlock_Data_Meta<T extends ContentBlock_Type> = {
   id: string;
   slug: string;
+  /** Discriminant identifying the authored block without an external catalog key. */
+  type: T;
 }
 
 export type ContentBlock_Response_Meta<T extends ContentBlock_Type> = {

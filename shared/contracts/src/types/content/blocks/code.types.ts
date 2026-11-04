@@ -9,7 +9,7 @@ type ContentBlock_Code_Source<SupportedLanguages extends Locale_Languages> =
   | { fileLocation: Locale_Options<SupportedLanguages>; code?: never }
   | { code: Locale_Options<SupportedLanguages>; fileLocation?: never };
 
-type ContentBlock_Code_Data<SupportedLanguages extends Locale_Languages> = ContentBlock_Data_Meta & ContentBlock_Code_Source<SupportedLanguages> & {
+type ContentBlock_Code_Data<SupportedLanguages extends Locale_Languages> = ContentBlock_Data_Meta<'code'> & ContentBlock_Code_Source<SupportedLanguages> & {
   language: string;
   title?: Locale_Options<SupportedLanguages>;
   variables?: { id: string; value: Locale_Options<SupportedLanguages> }[];

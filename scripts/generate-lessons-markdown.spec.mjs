@@ -7,34 +7,36 @@ import { discoverLessons, generate, parseArguments } from './generate-lessons-ma
 import { inferBlockType, localizeReviewValue, renderLessonMarkdown, sourceIndex, supportedLanguages } from './lib/lesson-markdown.mjs';
 
 const T = (en, uk) => uk === undefined ? { fallback: 'en', en } : { en, uk };
-const text = (id, en, uk) => ({ id, slug: id, value: T(en, uk) });
+const text = (id, en, uk) => ({ type: 'text', id, slug: id, value: T(en, uk) });
 const fixture = () => ({
   id: 'd3048d21-8690-5255-b62c-984c69ac272c', slug: 'light', title: T('Light', 'Світло'),
   parameters: { languages: ['en', 'uk'] },
-  sections: {
-    theory: {
-      id: 'section-theory', slug: 'theory', title: T('Theory', 'Теорія'), navigationLabel: T('Theory', 'Теорія'),
-      content: {
-        markdown: { intro: { id: 'md-1', slug: 'intro', locales: T('**Light** travels.', '**Світло** рухається.') } },
-        checkpoint: { check: {
-          id: 'check-1', slug: 'check', title: T('Check', 'Перевірка'),
+  sections: [
+    {
+      id: 'section-theory', slug: 'theory', type: 'theory',
+      title: T('Theory', 'Теорія'), navigationLabel: T('Theory', 'Теорія'),
+      content: [
+        { type: 'markdown', id: 'md-1', slug: 'intro', locales: T('**Light** travels.', '**Світло** рухається.') },
+        {
+          type: 'checkpoint', id: 'check-1', slug: 'check', title: T('Check', 'Перевірка'),
           items: [{ question: T('Where?', 'Де?'), answer: [text('nested-1', 'Here', 'Тут')] }],
-        } },
-        scene: { lamp: { id: 'scene-1', slug: 'lamp', locales: { header: { title: T('Lamp', 'Лампа') }, buttons: { reset: T('Reset') } } } },
-      },
+        },
+        { type: 'scene', id: 'scene-1', slug: 'lamp', locales: { header: { title: T('Lamp', 'Лампа') }, buttons: { reset: T('Reset') } } },
+      ],
     },
-    quiz: {
-      id: 'section-quiz', slug: 'quiz', title: T('Quiz', 'Тест'), navigationLabel: T('Quiz', 'Тест'),
-      content: { quiz: { quiz: {
-        id: 'quiz-1', slug: 'quiz', welcome: T('Welcome', 'Вітаємо'), questions: {
+    {
+      id: 'section-quiz', slug: 'quiz', type: 'quiz',
+      title: T('Quiz', 'Тест'), navigationLabel: T('Quiz', 'Тест'),
+      content: [{
+        type: 'quiz', id: 'quiz-1', slug: 'quiz', welcome: T('Welcome', 'Вітаємо'), questions: {
           q1: { id: 'q1-id', slug: 'q1', type: 'selectOneAnswer', question: [text('prompt-1', 'Which?', 'Який?')],
             answers: { correct: { a: text('answer-1', 'Correct', 'Правильно') }, incorrect: { b: text('answer-2', 'Wrong', 'Неправильно') } },
             explanation: [text('explain-1', 'Explanation', 'Пояснення')],
           },
         },
-      } } },
+      }],
     },
-  },
+  ],
   flashcards: [{ id: 'card-1', front: [text('front-1', 'Front', 'Перед')], back: [text('back-1', 'Back', 'Назад')], hint: [], tags: ['light'], flags: [] }],
   questions: { selectOneAnswer: { q1: { id: 'q1-id', slug: 'q1' } } },
 });
@@ -87,13 +89,13 @@ describe('Lesson → Markdown review projection', () => {
 
   it('fails on missing required lesson data, unknown blocks, malformed quiz answers', () => {
     const missing = fixture();
-    delete missing.sections.theory.content.markdown.intro.locales.uk;
+    delete missing.sections[0].content[0].locales.uk;
     assert.throws(() => renderLessonMarkdown({ lesson: missing, locale: 'uk', languages: ['en', 'uk'], packagePath: 'learningApps/playground' }), /Missing uk locale/);
     const bad = fixture();
-    bad.sections.theory.content.checkpoint.check.items[0].answer = [];
+    bad.sections[0].content[1].items[0].answer = [];
     assert.throws(() => renderLessonMarkdown({ lesson: bad, locale: 'uk', languages: ['en', 'uk'], packagePath: 'learningApps/playground' }), /Invalid checkpoint answer/);
     const unknown = fixture();
-    unknown.sections.theory.content.what = { mystery: { id: 'mystery', slug: 'mystery' } };
+    unknown.sections[0].content.push({ type: 'what', id: 'mystery', slug: 'mystery' });
     assert.throws(() => renderLessonMarkdown({ lesson: unknown, locale: 'uk', languages: ['en', 'uk'], packagePath: 'learningApps/playground' }), /Unsupported content block type/);
   });
 
@@ -126,12 +128,11 @@ describe('Lesson → Markdown review projection', () => {
     } finally { tmp.cleanup(); }
   });
 
-  it('recognizes nested media and scenes without rendering them', () => {
-    assert.equal(inferBlockType({ id: 'i', locales: T('asset.png', 'asset.png'), alt: T('Lamp', 'Лампа') }), 'image');
-    assert.equal(inferBlockType({ id: 'a', fileLocation: T('audio.mp3'), title: T('Track'), description: T('About') }), 'audio');
-    assert.equal(inferBlockType({ id: 'v', fileLocation: T('video.mp4'), poster: T('poster.png') }), 'video');
-    assert.equal(inferBlockType({ id: 'y', href: T('https://youtu.be/example') }), 'youtube');
-    assert.equal(inferBlockType({ id: 's', locales: { labels: { start: T('Start') } } }), 'scene');
+  it('uses the explicit discriminant for nested content blocks', () => {
+    for (const type of ['image', 'audio', 'video', 'youtube', 'scene', 'text']) {
+      assert.equal(inferBlockType({ id: 'x', type }), type);
+    }
+    assert.throws(() => inferBlockType({ id: 'missing-type', value: T('Hello') }), /type discriminant/);
   });
 
   it('rejects symlink sources instead of traversing them', () => {

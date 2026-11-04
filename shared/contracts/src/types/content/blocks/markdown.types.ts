@@ -4,7 +4,7 @@ import type { Locale_Languages, Locale_Options } from '../locale.types';
 
 type ContentBlock_Markdown_Definition = ContentBlock_Definition_Meta<'markdown'>;
 
-type ContentBlock_Markdown_Data<SupportedLanguages extends Locale_Languages> = ContentBlock_Data_Meta & {
+type ContentBlock_Markdown_Data<SupportedLanguages extends Locale_Languages> = ContentBlock_Data_Meta<'markdown'> & {
   locales: Locale_Options<SupportedLanguages>;
 };
 
