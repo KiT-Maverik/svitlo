@@ -52,7 +52,7 @@ export const stereotypeActivation_Skill_Data = buildSkillConfig({
       ko: "의식적으로 생각하기 전에 고정관념이 판단에 미치는 영향을 살펴보세요.",
       tr: "Kalıp yargıların bilinçli düşünmeden önce kararları nasıl etkilediğini keşfet.",
       vi: "Khám phá định kiến khuôn mẫu ảnh hưởng phán đoán trước khi suy nghĩ có ý thức.",
-      ta: "தெளிவாகச் சிந்திக்கும் முன்பே முன்கருத்துகள் தீர்ப்பை எவ்வாறு பாதிக்கின்றன என்பதை ஆராய்.",
+      ta: "தெளிவாகச் சிந்திக்கும் முன்பே முன்கருத்துகள் தீர்ப்பை எவ்வாறு பாதிக்கின்றன என்பதை ஆராயுங்கள்.",
       te: "స్పృహతో ఆలోచించే ముందే మూస అభిప్రాయాలు తీర్పులను ఎలా ప్రభావితం చేస్తాయో తెలుసుకోండి.",
       mr: "जाणीवपूर्वक विचार करण्याआधी साचेबद्ध कल्पना निर्णय कसे बदलतात ते पाहा.",
       ms: "Terokai bagaimana stereotaip mempengaruhi penilaian sebelum pemikiran sedar.",

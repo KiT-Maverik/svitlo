@@ -45,7 +45,7 @@ export const classicalConditioning_Skill_Data = buildSkillConfig({
       fr: "Comprends comment un signal initialement neutre peut déclencher une réponse apprise.",
       bn: "আগে নিরপেক্ষ কোনো সংকেত কীভাবে শেখা প্রতিক্রিয়া সৃষ্টি করতে পারে তা বোঝো।",
       pt: "Entenda como um sinal inicialmente neutro pode desencadear uma resposta aprendida.",
-      ur: "سمجھیں کہ پہلے غیر جانبدار اشارہ سیکھی ہوئی ردعمل کیسے پیدا کرنے لگتا ہے۔",
+      ur: "سمجھیں کہ پہلے غیر جانبدار اشارہ سیکھا ہوا ردِعمل کیسے پیدا کرنے لگتا ہے۔",
       id: "Pahami bagaimana isyarat yang semula netral dapat memicu respons yang dipelajari.",
       de: "Verstehe, wie ein zunächst neutraler Reiz eine erlernte Reaktion auslösen kann.",
       ja: "中立だった合図が、学習によって反応を引き起こすようになる仕組みを知ろう。",

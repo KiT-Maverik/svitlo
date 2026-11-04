@@ -63,7 +63,7 @@ export const emotionAndPsychologicalRegulation_SkillDomain_Data = buildSkillDoma
       ko: "감정이 생기고 정보를 전하며 조절되는 방식을 알아보세요.",
       tr: "Duyguların nasıl doğduğunu, bilgi verdiğini ve düzenlenebildiğini keşfet.",
       vi: "Khám phá cảm xúc hình thành, truyền đạt thông tin và được điều hòa như thế nào.",
-      ta: "உணர்ச்சிகள் எவ்வாறு தோன்றி, தகவல் தந்து, ஒழுங்குபடுத்தப்படுகின்றன என்பதை அறிக.",
+      ta: "உணர்ச்சிகள் எவ்வாறு தோன்றி, தகவல் தந்து, ஒழுங்குபடுத்தப்படுகின்றன என்பதை அறியுங்கள்.",
       te: "భావోద్వేగాలు ఎలా పుడతాయి, సమాచారం ఇస్తాయి, నియంత్రించబడతాయో తెలుసుకోండి.",
       mr: "भावना कशा निर्माण होतात, माहिती देतात आणि सांभाळल्या जातात ते पाहा.",
       ms: "Terokai cara emosi timbul, menyampaikan maklumat dan dapat dikawal.",

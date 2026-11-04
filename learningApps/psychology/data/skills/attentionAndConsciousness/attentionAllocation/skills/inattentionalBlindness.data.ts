@@ -60,7 +60,7 @@ export const inattentionalBlindness_Skill_Data = buildSkillConfig({
       pl: "Zrozum, dlaczego skupiona osoba może przeoczyć nieoczekiwane, widoczne zdarzenie.",
       uk: "Зрозумій, чому людина, зосереджена на завданні, може не помітити несподіваної видимої події.",
       lt: "Suprask, kodėl susikaupęs žmogus gali nepastebėti netikėto, nors matomo įvykio.",
-      lv: "Izproti, kāpēc koncentrējies cilvēks var nepamanīt negaidītu, kaut arī redzamu notikumu.",
+      lv: "Izproti, kāpēc cilvēks, kas koncentrējas uz uzdevumu, var nepamanīt negaidītu, kaut arī redzamu notikumu.",
       et: "Mõista, miks keskendunud inimene võib ootamatut nähtavat sündmust mitte märgata.",
       be: "Зразумей, чаму чалавек, засяроджаны на заданьні, можа не заўважыць нечаканую бачную падзею.",
       ka: "გაიგე, რატომ შეიძლება საქმეზე კონცენტრირებულმა ადამიანმა თვალსაჩინო მოულოდნელი მოვლენა ვერ შეამჩნიოს.",

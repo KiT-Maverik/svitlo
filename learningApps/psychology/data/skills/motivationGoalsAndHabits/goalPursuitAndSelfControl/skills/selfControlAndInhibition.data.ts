@@ -52,7 +52,7 @@ export const selfControlAndInhibition_Skill_Data = buildSkillConfig({
       ko: "충동을 참으려면 왜 주의와 인지 조절이 필요한지 살펴보세요.",
       tr: "Dürtüye direnmenin neden dikkat ve düşünce denetimi gerektirdiğini keşfet.",
       vi: "Khám phá vì sao kháng lại xung động cần kiểm soát chú ý và nhận thức.",
-      ta: "திடீர் உந்துதலை அடக்க கவனமும் சிந்தனைக் கட்டுப்பாடும் ஏன் தேவை என்பதை ஆராய்.",
+      ta: "திடீர் உந்துதலை அடக்க கவனமும் சிந்தனைக் கட்டுப்பாடும் ஏன் தேவை என்பதை ஆராயுங்கள்.",
       te: "ఆవేశాన్ని అణచటానికి శ్రద్ధ, ఆలోచన నియంత్రణ ఎందుకు అవసరమో తెలుసుకోండి.",
       mr: "आवेग रोखताना लक्ष आणि विचारांवर नियंत्रण का लागते ते पाहा.",
       ms: "Terokai mengapa menahan dorongan memerlukan kawalan perhatian dan pemikiran.",

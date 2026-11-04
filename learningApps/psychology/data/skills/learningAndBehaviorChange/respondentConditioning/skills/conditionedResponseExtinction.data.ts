@@ -45,7 +45,7 @@ export const conditionedResponseExtinction_Skill_Data = buildSkillConfig({
       fr: "Découvre pourquoi une réponse apprise peut s'affaiblir si les stimuli ne sont plus associés.",
       bn: "উদ্দীপক একসঙ্গে না এলে শেখা প্রতিক্রিয়া কেন কমতে পারে তা জানো।",
       pt: "Explore por que uma resposta aprendida pode enfraquecer quando os estímulos deixam de ser associados.",
-      ur: "جانیں کہ محرکات کا ساتھ آنا بند ہونے پر سیکھی ہوئی ردعمل کیوں کمزور پڑ سکتی ہے۔",
+      ur: "جانیں کہ محرکات کا ساتھ آنا بند ہونے پر سیکھا ہوا ردِعمل کیوں کمزور پڑ سکتا ہے۔",
       id: "Jelajahi mengapa respons yang dipelajari bisa melemah ketika stimulus tak lagi dipasangkan.",
       de: "Erkunde, warum eine gelernte Reaktion schwächer werden kann, wenn Reize nicht mehr gemeinsam auftreten.",
       ja: "刺激を組み合わせなくなると、学習した反応が弱まる理由を探ろう。",

@@ -61,7 +61,7 @@ export const groupDynamics_SkillGroup_Data = buildSkillGroupConfig({
       ko: "집단 정체성과 토론이 행동에 미치는 영향을 살펴보세요.",
       tr: "Grup kimliklerinin ve tartışmaların davranışı nasıl şekillendirdiğini keşfet.",
       vi: "Khám phá bản sắc nhóm và thảo luận định hình hành vi ra sao.",
-      ta: "குழு அடையாளங்களும் விவாதங்களும் நடத்தையை எவ்வாறு வடிவமைக்கின்றன என்பதை ஆராய்.",
+      ta: "குழு அடையாளங்களும் விவாதங்களும் நடத்தையை எவ்வாறு வடிவமைக்கின்றன என்பதை ஆராயுங்கள்.",
       te: "గుంపు గుర్తింపులు, చర్చలు ప్రవర్తనను ఎలా మలుస్తాయో తెలుసుకోండి.",
       mr: "गटाची ओळख व चर्चा वर्तन कसे घडवतात ते पाहा.",
       ms: "Terokai bagaimana identiti kumpulan dan perbincangan membentuk tingkah laku.",

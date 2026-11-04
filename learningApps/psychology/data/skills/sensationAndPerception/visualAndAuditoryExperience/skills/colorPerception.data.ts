@@ -52,7 +52,7 @@ export const colorPerception_Skill_Data = buildSkillConfig({
       ko: "보이는 색이 맥락과 신경 처리에 따라 달라지는 이유를 알아보세요.",
       tr: "Algılanan rengin neden bağlama ve sinirsel işlemeye bağlı olduğunu keşfet.",
       vi: "Tìm hiểu vì sao màu sắc được cảm nhận phụ thuộc vào bối cảnh và xử lý thần kinh.",
-      ta: "நாம் உணரும் நிறம் சூழலையும் நரம்புச் செயலாக்கத்தையும் ஏன் சார்ந்துள்ளது என்பதை ஆராய்.",
+      ta: "நாம் உணரும் நிறம் சூழலையும் நரம்புச் செயலாக்கத்தையும் ஏன் சார்ந்துள்ளது என்பதை ஆராயுங்கள்.",
       te: "కనిపించే రంగు సందర్భం, నాడీ ప్రాసెసింగ్‌పై ఎందుకు ఆధారపడుతుందో తెలుసుకోండి.",
       mr: "जाणवणारा रंग संदर्भ आणि मज्जाप्रक्रियेवर का अवलंबून असतो ते पाहा.",
       ms: "Terokai mengapa warna yang dilihat bergantung pada konteks dan pemprosesan saraf.",

@@ -52,7 +52,7 @@ export const psychologicalPerspectives_Skill_Data = buildSkillConfig({
       ko: "서로 다른 심리학적 접근이 같은 행동을 어떻게 설명하는지 비교해 보세요.",
       tr: "Farklı psikoloji yaklaşımlarının aynı davranışı nasıl açıkladığını karşılaştır.",
       vi: "So sánh cách những trường phái tâm lý học khác nhau giải thích cùng một hành vi.",
-      ta: "ஒரே நடத்தையை வெவ்வேறு உளவியல் அணுகுமுறைகள் எவ்வாறு விளக்குகின்றன என்பதை ஒப்பிடு.",
+      ta: "ஒரே நடத்தையை வெவ்வேறு உளவியல் அணுகுமுறைகள் எவ்வாறு விளக்குகின்றன என்பதை ஒப்பிடுங்கள்.",
       te: "ఒకే ప్రవర్తనను వేర్వేరు మనస్తత్వ విధానాలు ఎలా వివరిస్తాయో పోల్చండి.",
       mr: "वेगवेगळे मानसशास्त्रीय दृष्टिकोन त्याच वर्तनाचे स्पष्टीकरण कसे देतात ते तुलना करून पाहा.",
       ms: "Bandingkan cara pendekatan psikologi yang berbeza menjelaskan tingkah laku yang sama.",

@@ -51,7 +51,7 @@ export const semanticMemory_Skill_Data = buildSkillConfig({
       ja: "事実や概念、意味に関する記憶を見分けよう。",
       ko: "사실, 개념, 의미를 기억하는 방식을 알아보세요.",
       tr: "Olguların, kavramların ve anlamların bellekte tutulmasını tanı.",
-      vi: "Nhận biết trí nhớ về sự kiện, khái niệm và ý nghĩa.",
+      vi: "Nhận biết trí nhớ về các dữ kiện, khái niệm và ý nghĩa.",
       ta: "உண்மைகள், கருத்துகள், அர்த்தங்கள் பற்றிய நினைவுகளை அறியுங்கள்.",
       te: "వాస్తవాలు, భావనలు, అర్థాల జ్ఞాపకాన్ని గుర్తించండి.",
       mr: "तथ्ये, संकल्पना आणि अर्थ यांची स्मृती ओळखा.",

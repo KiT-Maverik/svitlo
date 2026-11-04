@@ -52,7 +52,7 @@ export const bystanderEffect_Skill_Data = buildSkillConfig({
       ko: "주변에 사람이 많을 때 도움을 망설일 수 있는 이유를 살펴보세요.",
       tr: "Başka birçok kişi varken insanların yardıma neden çekinebildiğini keşfet.",
       vi: "Khám phá vì sao mọi người có thể ngần ngại giúp khi có nhiều người xung quanh.",
-      ta: "பலர் இருக்கும்போது உதவ மக்கள் ஏன் தயங்கலாம் என்பதை ஆராய்.",
+      ta: "பலர் இருக்கும்போது உதவ மக்கள் ஏன் தயங்கலாம் என்பதை ஆராயுங்கள்.",
       te: "చుట్టూ చాలామంది ఉన్నప్పుడు సహాయం చేయడంలో సంకోచం ఎందుకు పెరుగుతుందో తెలుసుకోండి.",
       mr: "अनेक जण उपस्थित असताना मदत करायला लोक का कचरतात ते पाहा.",
       ms: "Terokai mengapa orang teragak-agak membantu apabila ramai orang lain hadir.",

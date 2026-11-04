@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - feat/psychology-skills-integration
+      - review/psychology-skills-ai-review
     types: [opened, synchronize, reopened, ready_for_review]
     paths:
       - 'learningApps/psychology/data/skills/**'
@@ -13,6 +14,7 @@ on:
   push:
     branches:
       - feat/psychology-skills-integration
+      - review/psychology-skills-ai-review
     paths:
       - 'learningApps/psychology/data/skills/**'
       - '.github/workflows/psychology-skills-validation.yml'
@@ -76,8 +78,8 @@ jobs:
           NODE
           npx tsc --noEmit --project learningApps/psychology/tsconfig.agent-check.tmp.json
       - name: Full Psychology TypeScript (all authored data)
-        if: github.event_name == 'push' || github.base_ref == 'main'
+        if: github.event_name == 'push' || github.base_ref == 'main' || github.base_ref == 'review/psychology-skills-ai-review'
         run: npm run typecheck --workspace @svitlo/psychology
       - name: Psychology app build (integrated corpus)
-        if: github.event_name == 'push' || github.base_ref == 'main'
+        if: github.event_name == 'push' || github.base_ref == 'main' || github.base_ref == 'review/psychology-skills-ai-review'
         run: npm run build --workspace @svitlo/psychology

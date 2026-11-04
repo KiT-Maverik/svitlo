@@ -52,7 +52,7 @@ export const physiologicalStressResponses_Skill_Data = buildSkillConfig({
       ko: "몸이 요구에 어떻게 반응하고 회복해 가는지 살펴보세요.",
       tr: "Vücudun taleplere nasıl yanıt verdiğini ve ardından nasıl toparlandığını keşfet.",
       vi: "Khám phá cách cơ thể phản ứng với yêu cầu và dần hồi phục.",
-      ta: "உடல் தேவைகளுக்கு எவ்வாறு பதிலளித்து மீள்கிறது என்பதை ஆராய்.",
+      ta: "உடல் தேவைகளுக்கு எவ்வாறு பதிலளித்து மீள்கிறது என்பதை ஆராயுங்கள்.",
       te: "శరీరం అవసరాలకు ఎలా స్పందించి తిరిగి కోలుకుంటుందో పరిశీలించండి.",
       mr: "शरीर मागण्यांना कसा प्रतिसाद देते आणि नंतर कसे सावरते ते पाहा.",
       ms: "Terokai cara tubuh bertindak balas terhadap tuntutan dan kembali pulih.",

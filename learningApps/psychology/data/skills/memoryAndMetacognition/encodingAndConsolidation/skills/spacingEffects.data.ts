@@ -58,7 +58,7 @@ export const spacingEffects_Skill_Data = buildSkillConfig({
       ms: "Fahami mengapa menyebarkan latihan mengikut masa boleh meningkatkan ingatan jangka panjang.",
       he: "הבינו מדוע פיזור התרגול לאורך זמן יכול לשפר את השימור בזיכרון.",
       pl: "Zrozum, dlaczego rozłożenie ćwiczeń w czasie może poprawić zapamiętywanie.",
-      uk: "Зрозумій, чому вправляння з інтервалами може покращувати тривалість запам'ятовування.",
+      uk: "Зрозумій, чому вправляння з інтервалами допомагає довше зберігати вивчене в пам’яті.",
       lt: "Suprask, kodėl praktikos paskirstymas laike gali pagerinti išlaikymą atmintyje.",
       lv: "Izproti, kāpēc vingrināšanās ar laika intervāliem var uzlabot saglabāšanu atmiņā.",
       et: "Mõista, miks harjutamise jaotamine ajas võib parandada meelespidamist.",

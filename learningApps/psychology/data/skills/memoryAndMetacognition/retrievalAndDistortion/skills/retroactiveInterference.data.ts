@@ -20,7 +20,7 @@ export const retroactiveInterference_Skill_Data = buildSkillConfig({
     tr: "Geriye Dönük Girişim",
     vi: "Nhiễu ngược",
     ta: "பின்செயற்பாட்டு இடையூறு",
-    te: "వెనుకటి జ్ఞాపకాలపై తరువాతి జోక్యం",
+    te: "తిరోగమన అవరోధం",
     mr: "उत्तरप्रभावी हस्तक्षेप",
     ms: "Gangguan Retroaktif",
     he: "הפרעה רטרואקטיבית",

@@ -62,7 +62,7 @@ export const socialPerception_SkillGroup_Data = buildSkillGroupConfig({
       ko: "타인의 행동, 의도, 감정을 어떻게 해석하는지 살펴보세요.",
       tr: "Başkalarının davranışlarını, niyetlerini ve hislerini nasıl yorumladığımızı öğren.",
       vi: "Tìm hiểu cách ta diễn giải hành động, ý định và cảm xúc của người khác.",
-      ta: "மற்றவர்களின் செயல்கள், நோக்கங்கள், உணர்வுகளை நாம் எவ்வாறு பொருள்கொள்கிறோம் என்பதை ஆராய்.",
+      ta: "மற்றவர்களின் செயல்கள், நோக்கங்கள், உணர்வுகளை நாம் எவ்வாறு பொருள்கொள்கிறோம் என்பதை ஆராயுங்கள்.",
       te: "ఇతరుల చర్యలు, ఉద్దేశాలు, భావాలను మనం ఎలా అర్థం చేసుకుంటామో తెలుసుకోండి.",
       mr: "आपण इतरांचे वागणे, हेतू व भावना कशा समजतो ते पाहा.",
       ms: "Ketahui cara kita mentafsir tindakan, niat dan perasaan orang lain.",

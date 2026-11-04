@@ -52,7 +52,7 @@ export const habitSubstitution_Skill_Data = buildSkillConfig({
       ko: "원하지 않는 습관을 다른 반응으로 바꾸는 방법을 알아보세요.",
       tr: "İstenmeyen rutini başka bir tepkiyle değiştirmeyi keşfet.",
       vi: "Khám phá cách thay thói quen không mong muốn bằng phản ứng khác.",
-      ta: "விரும்பாத வழக்கத்துக்குப் பதிலாக வேறொரு செயலைப் பயன்படுத்தும் வழியை ஆராய்.",
+      ta: "விரும்பாத வழக்கத்துக்குப் பதிலாக வேறொரு செயலைப் பயன்படுத்தும் வழியை ஆராயுங்கள்.",
       te: "ఇష్టంలేని దినచర్య స్థానంలో వేరే స్పందనను పెట్టడం నేర్చుకోండి.",
       mr: "नको असलेल्या सवयीऐवजी दुसरी प्रतिक्रिया वापरण्याचे मार्ग पाहा.",
       ms: "Terokai cara menggantikan rutin tidak diingini dengan tindak balas lain.",

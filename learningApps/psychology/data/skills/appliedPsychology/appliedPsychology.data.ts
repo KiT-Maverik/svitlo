@@ -53,7 +53,7 @@ export const appliedPsychology_SkillDomain_Data = buildSkillDomainConfig({
       en: "Explore how psychological evidence informs education, workplaces, health and communities.",
       zh: "探索心理学证据如何为教育、职场、健康和社区提供参考。",
       hi: "जानें कि मनोवैज्ञानिक साक्ष्य शिक्षा, काम, स्वास्थ्य और समुदायों को कैसे दिशा देते हैं।",
-      es: "Explora cómo las pruebas psicológicas orientan la educación, el trabajo, la salud y las comunidades.",
+      es: "Explora cómo los hallazgos de la investigación psicológica orientan la educación, el trabajo, la salud y las comunidades.",
       ar: "استكشف كيف تسترشد مجالات التعليم والعمل والصحة والمجتمع بالأدلة النفسية.",
       fr: "Explore comment les preuves psychologiques éclairent l'éducation, le travail, la santé et les communautés.",
       bn: "মনস্তাত্ত্বিক প্রমাণ শিক্ষা, কর্মক্ষেত্র, স্বাস্থ্য ও সমাজে কীভাবে কাজে লাগে তা জানো।",

@@ -8,7 +8,7 @@ export const operantLearning_SkillGroup_Data = buildSkillGroupConfig({
   name: {
     en: "Operant Learning",
     zh: "操作性学习",
-    hi: "सक्रिय अनुबंधन द्वारा सीखना",
+    hi: "क्रियाप्रसूत अधिगम",
     es: "Aprendizaje operante",
     ar: "التعلم الإجرائي",
     fr: "Apprentissage opérant",
