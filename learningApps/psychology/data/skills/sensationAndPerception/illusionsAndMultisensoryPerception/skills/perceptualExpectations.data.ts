@@ -52,7 +52,7 @@ export const perceptualExpectations_Skill_Data = buildSkillConfig({
       ko: "사전 지식이 변하지 않은 자극의 해석을 바꾸는 경우를 알아보세요.",
       tr: "Önceki bilginin değişmeyen bir uyarıcıyı yorumlamayı ne zaman etkilediğini fark et.",
       vi: "Nhận biết khi kiến thức trước đây làm thay đổi cách diễn giải một kích thích không đổi.",
-      ta: "முந்தைய அறிவு மாறாத தூண்டுதலின் விளக்கத்தை எப்போது மாற்றுகிறது என்பதை அறி.",
+      ta: "முந்தைய அறிவு மாறாத தூண்டுதலின் விளக்கத்தை எப்போது மாற்றுகிறது என்பதை அறியுங்கள்.",
       te: "మునుపటి జ్ఞానం మారని ఉద్దీపన అర్థాన్ని ఎప్పుడు మారుస్తుందో గుర్తించండి.",
       mr: "आधीचे ज्ञान बदल न झालेल्या उत्तेजनेचा अर्थ कधी बदलते ते ओळख.",
       ms: "Kenali bila pengetahuan terdahulu mengubah tafsiran rangsangan yang sebenarnya tidak berubah.",

@@ -60,7 +60,7 @@ export const illusionsAndMultisensoryPerception_SkillGroup_Data = buildSkillGrou
       ko: "감각 착각이 지각의 작동 방식에 대해 알려 주는 것을 살펴보세요.",
       tr: "Duyusal yanılsamaların algının işleyişi hakkında neler gösterdiğini keşfet.",
       vi: "Khám phá những hiện tượng đánh lừa giác quan cho biết gì về cách tri giác hoạt động.",
-      ta: "புலன் மாயத்தோற்றங்கள் புலனறிதல் செயல்முறையைப் பற்றி என்ன கூறுகின்றன என்பதை அறிந்துகொள்.",
+      ta: "புலன் மாயத்தோற்றங்கள் புலனறிதல் செயல்முறையைப் பற்றி என்ன கூறுகின்றன என்பதை அறிந்துகொள்ளுங்கள்.",
       te: "ఇంద్రియ భ్రమలు గ్రహణం ఎలా పనిచేస్తుందో ఏమి తెలియజేస్తాయో తెలుసుకోండి.",
       mr: "संवेदनांच्या भ्रमांमुळे प्रत्यक्षज्ञान कसे काम करते याबद्दल काय समजते ते पाहा.",
       ms: "Terokai apa yang didedahkan oleh ilusi deria tentang cara persepsi berfungsi.",

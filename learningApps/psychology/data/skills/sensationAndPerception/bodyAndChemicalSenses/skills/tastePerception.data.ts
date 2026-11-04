@@ -52,7 +52,7 @@ export const tastePerception_Skill_Data = buildSkillConfig({
       ko: "맛과 냄새가 결합하여 풍미를 형성하는 방법을 알아보세요.",
       tr: "Tat ve koku duyularının lezzeti oluşturmak için nasıl birleştiğini keşfet.",
       vi: "Khám phá cách vị giác và khứu giác kết hợp để tạo nên hương vị.",
-      ta: "சுவையும் மணமும் சேர்ந்து உணவின் முழுச் சுவையை எவ்வாறு உருவாக்குகின்றன என்பதை ஆராய்.",
+      ta: "சுவையும் மணமும் சேர்ந்து உணவின் முழுச் சுவையை எவ்வாறு உருவாக்குகின்றன என்பதை ஆராயுங்கள்.",
       te: "రుచి, వాసన కలిసి ఆహారపు రుచిని ఎలా ఏర్పరుస్తాయో పరిశీలించండి.",
       mr: "चव आणि वास मिळून स्वाद कसा निर्माण होतो ते पाहा.",
       ms: "Terokai bagaimana rasa dan bau bergabung untuk menghasilkan perisa.",
