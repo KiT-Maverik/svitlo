@@ -9,12 +9,14 @@ on:
     paths:
       - 'learningApps/psychology/data/skills/**'
       - '.github/workflows/psychology-skills-validation.yml'
+      - 'learningApps/psychology/docs/skills/issue-201-coordination.md'
   push:
     branches:
       - feat/psychology-skills-integration
     paths:
       - 'learningApps/psychology/data/skills/**'
       - '.github/workflows/psychology-skills-validation.yml'
+      - 'learningApps/psychology/docs/skills/issue-201-coordination.md'
 
 permissions:
   contents: read
