@@ -10,7 +10,7 @@ export const explainTheConceptOfAGroundwaterAquifer_Skill_Data = buildSkillConfi
     es: "Explicar qué es un acuífero",
     ar: "شرح مفهوم الخزان الجوفي للمياه",
     fr: "Expliquer ce qu’est un aquifère",
-    bn: "ভূগর্ভস্থ জলাধার ধারণা ব্যাখ্যা",
+    bn: "ভূগর্ভস্থ জলধারক স্তরের ধারণা ব্যাখ্যা করা",
     pt: "Explicar o conceito de aquífero",
     ur: "زیرِ زمین آبی تہہ کا تصور سمجھانا",
     id: "Menjelaskan konsep akuifer air tanah",
