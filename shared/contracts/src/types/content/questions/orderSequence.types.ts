@@ -12,9 +12,9 @@ type Content<Mode extends 'data' | 'response', SupportedLanguages extends Langua
 
 type Question_OrderSequence_Definition = Question_Definition_Meta<'orderSequence'>;
 type Question_OrderSequence_Data<SupportedLanguages extends LanguageCode> = Question_Data_Meta<'orderSequence'> & Content<'data', SupportedLanguages> & { sequence: NonEmptyArray<ContentBlock<'data', SupportedLanguages>> };
-type Question_OrderSequence_Response = Question_Response_Meta<'orderSequence'> & Content<'response', LanguageCode> & { sequence: NonEmptyArray<ContentBlock<'response'>> };
+type Question_OrderSequence_Response = Question_Response_Meta<'orderSequence'> & Content<'response', LanguageCode> & { sequence: NonEmptyArray<ContentBlock<'response', LanguageCode>> };
 
-export type Question_OrderSequence<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode = LanguageCode> = {
+export type Question_OrderSequence<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode> = {
   definition: Question_OrderSequence_Definition;
   data: Question_OrderSequence_Data<SupportedLanguages>;
   response: Question_OrderSequence_Response;

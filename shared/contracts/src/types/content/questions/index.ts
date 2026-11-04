@@ -12,7 +12,7 @@ import type { Question_OrderSequence } from './orderSequence.types';
 import type { Question_SelectMultipleAnswers } from './selectMultipleAnswers.types';
 import type { Question_SelectOneAnswer } from './selectOneAnswer.types';
 
-export type Question_Map<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode = LanguageCode> = {
+export type Question_Map<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode> = {
   answerWithNumber: Question_AnswerWithNumber<ConfigType, SupportedLanguages>;
   answerWithText: Question_AnswerWithText<ConfigType, SupportedLanguages>;
   buildAnswerWithBlocks: Question_BuildAnswerWithBlocks<ConfigType, SupportedLanguages>;
@@ -24,19 +24,19 @@ export type Question_Map<ConfigType extends ContentEntity_ConfigType, SupportedL
   selectOneAnswer: Question_SelectOneAnswer<ConfigType, SupportedLanguages>;
 };
 
-export type Question<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode = LanguageCode> = Question_Map<ConfigType, SupportedLanguages>[Question_Type];
+export type Question<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode> = Question_Map<ConfigType, SupportedLanguages>[Question_Type];
 
-export type Question_Catalog<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode = LanguageCode> = {
+export type Question_Catalog<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode> = {
   [Type in Question_Type]?: Record<string, Question_Map<ConfigType, SupportedLanguages>[Type]>;
 };
 
-export type Question_Catalog_DataFor<Definition extends Question_Catalog<'definition'>, SupportedLanguages extends LanguageCode = LanguageCode> = {
+export type Question_Catalog_DataFor<Definition extends Question_Catalog<'definition', LanguageCode>, SupportedLanguages extends LanguageCode> = {
   [Type in keyof Definition]: Type extends Question_Type
     ? Record<keyof Definition[Type] & string, Question_Map<'data', SupportedLanguages>[Type]>
     : never;
 };
 
-export type Question_Catalog_ValidSlugs<Catalog extends Question_Catalog<'data', SupportedLanguages>, SupportedLanguages extends LanguageCode = LanguageCode> = {
+export type Question_Catalog_ValidSlugs<Catalog extends Question_Catalog<'data', SupportedLanguages>, SupportedLanguages extends LanguageCode> = {
   [Type in keyof Catalog]: Type extends Question_Type
     ? DefineValidKeysFromSlugs<keyof NonNullable<Catalog[Type]> & string, Question_Map<'data', SupportedLanguages>[Type]>
     : never;

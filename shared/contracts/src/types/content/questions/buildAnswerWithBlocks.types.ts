@@ -13,9 +13,9 @@ type Content<Mode extends 'data' | 'response', SupportedLanguages extends Langua
 
 type Question_BuildAnswerWithBlocks_Definition = Question_Definition_Meta<'buildAnswerWithBlocks'>;
 type Question_BuildAnswerWithBlocks_Data<SupportedLanguages extends LanguageCode> = Question_Data_Meta<'buildAnswerWithBlocks'> & Content<'data', SupportedLanguages> & { correctSequence: NonEmptyArray<ContentBlock<'data', SupportedLanguages>>; distractors: readonly ContentBlock<'data', SupportedLanguages>[]; placeholder: Locale_Options<SupportedLanguages> };
-type Question_BuildAnswerWithBlocks_Response = Question_Response_Meta<'buildAnswerWithBlocks'> & Content<'response', LanguageCode> & { correctSequence: NonEmptyArray<ContentBlock<'response'>>; distractors: readonly ContentBlock<'response'>[]; placeholder: string };
+type Question_BuildAnswerWithBlocks_Response = Question_Response_Meta<'buildAnswerWithBlocks'> & Content<'response', LanguageCode> & { correctSequence: NonEmptyArray<ContentBlock<'response', LanguageCode>>; distractors: readonly ContentBlock<'response', LanguageCode>[]; placeholder: string };
 
-export type Question_BuildAnswerWithBlocks<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode = LanguageCode> = {
+export type Question_BuildAnswerWithBlocks<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode> = {
   definition: Question_BuildAnswerWithBlocks_Definition;
   data: Question_BuildAnswerWithBlocks_Data<SupportedLanguages>;
   response: Question_BuildAnswerWithBlocks_Response;

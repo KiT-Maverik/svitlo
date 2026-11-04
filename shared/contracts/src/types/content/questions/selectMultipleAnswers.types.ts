@@ -12,9 +12,9 @@ type Content<Mode extends 'data' | 'response', SupportedLanguages extends Langua
 
 type Question_SelectMultipleAnswers_Definition = Question_Definition_Meta<'selectMultipleAnswers'>;
 type Question_SelectMultipleAnswers_Data<SupportedLanguages extends LanguageCode> = Question_Data_Meta<'selectMultipleAnswers'> & Content<'data', SupportedLanguages> & { answers: { correct: Readonly<Record<string, ContentBlock<'data', SupportedLanguages>>>; incorrect: Readonly<Record<string, ContentBlock<'data', SupportedLanguages>>>; distractors: Readonly<Record<string, ContentBlock<'data', SupportedLanguages>>> } };
-type Question_SelectMultipleAnswers_Response = Question_Response_Meta<'selectMultipleAnswers'> & Content<'response', LanguageCode> & { answers: { correct: Readonly<Record<string, ContentBlock<'response'>>>; incorrect: Readonly<Record<string, ContentBlock<'response'>>>; distractors: Readonly<Record<string, ContentBlock<'response'>>> } };
+type Question_SelectMultipleAnswers_Response = Question_Response_Meta<'selectMultipleAnswers'> & Content<'response', LanguageCode> & { answers: { correct: Readonly<Record<string, ContentBlock<'response', LanguageCode>>>; incorrect: Readonly<Record<string, ContentBlock<'response', LanguageCode>>>; distractors: Readonly<Record<string, ContentBlock<'response', LanguageCode>>> } };
 
-export type Question_SelectMultipleAnswers<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode = LanguageCode> = {
+export type Question_SelectMultipleAnswers<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode> = {
   definition: Question_SelectMultipleAnswers_Definition;
   data: Question_SelectMultipleAnswers_Data<SupportedLanguages>;
   response: Question_SelectMultipleAnswers_Response;

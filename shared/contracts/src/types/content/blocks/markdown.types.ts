@@ -13,7 +13,7 @@ export type ContentBlock_Markdown_Response = ContentBlock_Response_Meta<'markdow
   text: string;
 };
 
-export type ContentBlock_Markdown<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode = LanguageCode> = {
+export type ContentBlock_Markdown<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode> = {
   definition: ContentBlock_Markdown_Definition;
   data: ContentBlock_Markdown_Data<SupportedLanguages>;
   response: ContentBlock_Markdown_Response;

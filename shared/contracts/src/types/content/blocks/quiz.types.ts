@@ -6,7 +6,7 @@ import type { Question_SelectOneAnswer } from '../questions/selectOneAnswer.type
 import type { ContentBlock } from './index';
 import type { ContentBlock_Data_Meta, ContentBlock_Definition_Meta, ContentBlock_Response_Meta } from './common.types';
 
-export type ContentBlock_Quiz_Screen<ConfigType extends 'data' | 'response', SupportedLanguages extends LanguageCode = LanguageCode> =
+export type ContentBlock_Quiz_Screen<ConfigType extends 'data' | 'response', SupportedLanguages extends LanguageCode> =
   | { showDefaultContent: true; content?: readonly ContentBlock<ConfigType, SupportedLanguages>[] }
   | { showDefaultContent?: false; content: NonEmptyArray<ContentBlock<ConfigType, SupportedLanguages>> };
 
@@ -53,7 +53,7 @@ type ContentBlock_Quiz_Response = ContentBlock_Response_Meta<'quiz'> &
     questionSlugs: readonly string[];
   };
 
-export type ContentBlock_Quiz<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode = LanguageCode> = {
+export type ContentBlock_Quiz<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode> = {
   definition: ContentBlock_Quiz_Definition;
   data: ContentBlock_Quiz_Data<SupportedLanguages>;
   response: ContentBlock_Quiz_Response;

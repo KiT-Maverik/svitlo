@@ -33,7 +33,7 @@ export type ContentBlock_Image_Response = ContentBlock_Response_Meta<'image'> & 
   fallback?: Image_Fallback<string>;
 };
 
-export type ContentBlock_Image<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode = LanguageCode> = {
+export type ContentBlock_Image<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode> = {
   definition: ContentBlock_Image_Definition;
   data: ContentBlock_Image_Data<SupportedLanguages>;
   response: ContentBlock_Image_Response;

@@ -15,7 +15,7 @@ type Question_AnswerWithText_Definition = Question_Definition_Meta<'answerWithTe
 type Question_AnswerWithText_Data<SupportedLanguages extends LanguageCode> = Question_Data_Meta<'answerWithText'> & Content<'data', SupportedLanguages> & { correctAnswers: readonly Locale_Options<SupportedLanguages>[]; placeholder: Locale_Options<SupportedLanguages> };
 type Question_AnswerWithText_Response = Question_Response_Meta<'answerWithText'> & Content<'response', LanguageCode> & { correctAnswers: readonly string[]; placeholder: string };
 
-export type Question_AnswerWithText<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode = LanguageCode> = {
+export type Question_AnswerWithText<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode> = {
   definition: Question_AnswerWithText_Definition;
   data: Question_AnswerWithText_Data<SupportedLanguages>;
   response: Question_AnswerWithText_Response;

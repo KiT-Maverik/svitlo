@@ -26,7 +26,7 @@ export type ContentBlock_Video_Response = ContentBlock_Response_Meta<'video'> & 
   fallback?: Video_Fallback<string>;
 };
 
-export type ContentBlock_Video<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode = LanguageCode> = {
+export type ContentBlock_Video<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode> = {
   definition: ContentBlock_Video_Definition;
   data: ContentBlock_Video_Data<SupportedLanguages>;
   response: ContentBlock_Video_Response;

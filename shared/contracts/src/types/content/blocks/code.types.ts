@@ -24,7 +24,7 @@ export type ContentBlock_Code_Response = ContentBlock_Response_Meta<'code'> & {
   variables?: { id: string; value: string }[];
 };
 
-export type ContentBlock_Code<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode = LanguageCode> = {
+export type ContentBlock_Code<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode> = {
   definition: ContentBlock_Code_Definition;
   data: ContentBlock_Code_Data<SupportedLanguages>;
   response: ContentBlock_Code_Response;

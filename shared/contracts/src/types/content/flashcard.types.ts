@@ -19,14 +19,14 @@ type Flashcard_Data<SupportedLanguages extends LanguageCode> = {
 type Flashcard_Response = {
   id: string;
   isDefault?: true;
-  front: readonly ContentBlock<'response'>[];
-  back: readonly ContentBlock<'response'>[];
-  hint: readonly ContentBlock<'response'>[];
+  front: readonly ContentBlock<'response', LanguageCode>[];
+  back: readonly ContentBlock<'response', LanguageCode>[];
+  hint: readonly ContentBlock<'response', LanguageCode>[];
   tags: readonly string[];
   flags: readonly string[];
 };
 
-export type Flashcard<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode = LanguageCode> = {
+export type Flashcard<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode> = {
   definition: Flashcard_Definition;
   data: Flashcard_Data<SupportedLanguages>;
   response: Flashcard_Response;

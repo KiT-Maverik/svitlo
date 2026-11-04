@@ -28,7 +28,7 @@ export type ContentBlock_Youtube_Response = ContentBlock_Response_Meta<'youtube'
   fallback?: Youtube_Fallback<string>;
 } & Youtube_Display<string>;
 
-export type ContentBlock_Youtube<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode = LanguageCode> = {
+export type ContentBlock_Youtube<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode> = {
   definition: ContentBlock_Youtube_Definition;
   data: ContentBlock_Youtube_Data<SupportedLanguages>;
   response: ContentBlock_Youtube_Response;

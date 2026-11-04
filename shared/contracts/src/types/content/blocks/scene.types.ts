@@ -37,8 +37,8 @@ type ContentBlock_Scene_Response<TLocales extends object> = ContentBlock_Respons
 
 export type ContentBlock_Scene<
   ConfigType extends ContentEntity_ConfigType,
+  SupportedLanguages extends LanguageCode,
   TLocales extends object = ContentBlock_Scene_LocaleShape,
-  SupportedLanguages extends LanguageCode = LanguageCode,
 > = {
   definition: ContentBlock_Scene_Definition;
   data: ContentBlock_Scene_Data<TLocales, SupportedLanguages>;

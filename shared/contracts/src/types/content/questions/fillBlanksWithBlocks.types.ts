@@ -13,9 +13,9 @@ type Content<Mode extends 'data' | 'response', SupportedLanguages extends Langua
 
 type Question_FillBlanksWithBlocks_Definition = Question_Definition_Meta<'fillBlanksWithBlocks'>;
 type Question_FillBlanksWithBlocks_Data<SupportedLanguages extends LanguageCode> = Question_Data_Meta<'fillBlanksWithBlocks'> & Content<'data', SupportedLanguages> & { slots: readonly { selector: string; correctAnswer: ContentBlock<'data', SupportedLanguages> }[]; distractors: readonly ContentBlock<'data', SupportedLanguages>[]; placeholder: Locale_Options<SupportedLanguages> };
-type Question_FillBlanksWithBlocks_Response = Question_Response_Meta<'fillBlanksWithBlocks'> & Content<'response', LanguageCode> & { slots: readonly { selector: string; correctAnswer: ContentBlock<'response'> }[]; distractors: readonly ContentBlock<'response'>[]; placeholder: string };
+type Question_FillBlanksWithBlocks_Response = Question_Response_Meta<'fillBlanksWithBlocks'> & Content<'response', LanguageCode> & { slots: readonly { selector: string; correctAnswer: ContentBlock<'response', LanguageCode> }[]; distractors: readonly ContentBlock<'response', LanguageCode>[]; placeholder: string };
 
-export type Question_FillBlanksWithBlocks<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode = LanguageCode> = {
+export type Question_FillBlanksWithBlocks<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode> = {
   definition: Question_FillBlanksWithBlocks_Definition;
   data: Question_FillBlanksWithBlocks_Data<SupportedLanguages>;
   response: Question_FillBlanksWithBlocks_Response;

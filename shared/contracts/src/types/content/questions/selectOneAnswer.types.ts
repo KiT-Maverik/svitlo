@@ -20,13 +20,13 @@ type Question_SelectOneAnswer_Data<SupportedLanguages extends LanguageCode> = Qu
 };
 
 type Question_SelectOneAnswer_Response = Question_Response_Meta<'selectOneAnswer'> & {
-  question: NonEmptyArray<ContentBlock<'response'>>;
-  explanation?: NonEmptyArray<ContentBlock<'response'>>;
-  hint?: NonEmptyArray<ContentBlock<'response'>>;
+  question: NonEmptyArray<ContentBlock<'response', LanguageCode>>;
+  explanation?: NonEmptyArray<ContentBlock<'response', LanguageCode>>;
+  hint?: NonEmptyArray<ContentBlock<'response', LanguageCode>>;
   answers: Question_SelectOneAnswer_Answers<'response', LanguageCode>;
 };
 
-export type Question_SelectOneAnswer<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode = LanguageCode> = {
+export type Question_SelectOneAnswer<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode> = {
   definition: Question_SelectOneAnswer_Definition;
   data: Question_SelectOneAnswer_Data<SupportedLanguages>;
   response: Question_SelectOneAnswer_Response;

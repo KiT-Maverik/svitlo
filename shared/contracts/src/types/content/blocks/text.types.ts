@@ -19,7 +19,7 @@ export type ContentBlock_Text_Presentation = {
   wrap?: ContentBlock_Text_Wrap;
 };
 
-export type ContentBlock_Text_Data<SupportedLanguages extends LanguageCode = LanguageCode> = ContentBlock_Data_Meta & ContentBlock_Text_Presentation & {
+export type ContentBlock_Text_Data<SupportedLanguages extends LanguageCode> = ContentBlock_Data_Meta & ContentBlock_Text_Presentation & {
   value: Locale_Options<SupportedLanguages>;
 };
 
@@ -27,7 +27,7 @@ export type ContentBlock_Text_Response = ContentBlock_Response_Meta<'text'> & Co
   value: string;
 };
 
-export type ContentBlock_Text<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode = LanguageCode> = {
+export type ContentBlock_Text<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode> = {
   definition: ContentBlock_Text_Definition;
   data: ContentBlock_Text_Data<SupportedLanguages>;
   response: ContentBlock_Text_Response;

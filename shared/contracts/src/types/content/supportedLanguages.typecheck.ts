@@ -7,6 +7,7 @@ import type {
 import { defineContentBlockCatalog } from './blocks';
 import { defineLessonData, type Lesson } from './lesson.types';
 import type { Question_AnswerWithText, Question_SelectOneAnswer } from './questions';
+import type { LanguageCode } from '../languages';
 
 type SupportedLanguages = 'en' | 'uk';
 
@@ -55,8 +56,10 @@ const sectionKey: 'intro' = '' as keyof typeof definedLesson.sections;
 const missingText: ContentBlock_Text<'data', SupportedLanguages> = { id: 'missing', slug: 'missing', value: { en: 'Hello' } };
 // @ts-expect-error Nested question values use the same selected language set.
 const missingAnswer: Question_AnswerWithText<'data', SupportedLanguages>['correctAnswers'][number] = { en: 'yes' };
-// @ts-expect-error The default language set includes more languages than en and uk.
-const incompleteDefault: ContentBlock_Text<'data'> = { id: 'default', slug: 'default', value: { en: 'Hello', uk: 'Привіт' } };
+// @ts-expect-error The language set must be provided explicitly.
+type MissingLanguages = ContentBlock_Text<'data'>;
+// @ts-expect-error LanguageCode includes more languages than en and uk.
+const incompleteFull: ContentBlock_Text<'data', LanguageCode> = { id: 'default', slug: 'default', value: { en: 'Hello', uk: 'Привіт' } };
 
 void checkpointAnswer;
 void quizScreen;
@@ -69,4 +72,4 @@ void definedLesson;
 void sectionKey;
 void missingText;
 void missingAnswer;
-void incompleteDefault;
+void incompleteFull;

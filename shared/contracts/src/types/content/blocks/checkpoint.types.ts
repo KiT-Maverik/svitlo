@@ -14,7 +14,7 @@ import type { ContentBlock_Youtube } from './youtube.types';
 
 type OtherContentBlocks<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode> =
   | ContentBlock_Text<ConfigType, SupportedLanguages>
-  | ContentBlock_Scene<ConfigType, ContentBlock_Scene_LocaleShape, SupportedLanguages>
+  | ContentBlock_Scene<ConfigType, SupportedLanguages, ContentBlock_Scene_LocaleShape>
   | ContentBlock_Markdown<ConfigType, SupportedLanguages>
   | ContentBlock_Code<ConfigType, SupportedLanguages>
   | ContentBlock_Audio<ConfigType, SupportedLanguages>
@@ -57,7 +57,7 @@ export type ContentBlock_Checkpoint_Response = ContentBlock_Response_Meta<'check
     }[];
   };
 
-export type ContentBlock_Checkpoint<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode = LanguageCode> = {
+export type ContentBlock_Checkpoint<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode> = {
   definition: ContentBlock_Checkpoint_Definition;
   data: ContentBlock_Checkpoint_Data<SupportedLanguages>;
   response: ContentBlock_Checkpoint_Response;

@@ -18,7 +18,7 @@ export type Section_Type = (typeof SECTION_TYPES)[number];
 
 type Section_Definition = {
   type: Section_Type;
-  content: ContentBlock_Catalog<'definition'>;
+  content: ContentBlock_Catalog<'definition', LanguageCode>;
   order?: readonly ContentBlock_Reference[];
 };
 
@@ -40,7 +40,7 @@ type Section_Response = {
   title: string;
   navigationLabel: string;
   skippable?: true;
-  content: ContentBlock_Catalog<'response'>;
+  content: ContentBlock_Catalog<'response', LanguageCode>;
   order?: readonly ContentBlock_Reference[];
 };
 

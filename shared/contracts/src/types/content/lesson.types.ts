@@ -1,14 +1,14 @@
 import type { LanguageCode } from '../languages';
-import type { DefineValidKeysFromSlugs, NonEmptyArray } from '../misc.types';
+import type { DefineValidKeysFromSlugs } from '../misc.types';
 import type { ContentEntity_ConfigType } from './entity.types';
 import type { Flashcard } from './flashcard.types';
-import type { Locale_Options } from './locale.types';
+import type { Lesson_Locale, Locale_Options } from './locale.types';
 import type { Question_Catalog, Question_Catalog_ValidSlugs } from './questions';
 import type { Section } from './section.types';
 
 type Lesson_Parameters<SupportedLanguages extends LanguageCode> = {
   requireQuiz: boolean;
-  languages: NonEmptyArray<SupportedLanguages>;
+  languages: Lesson_Locale<SupportedLanguages>;
   sections: {
     allowNavigation: boolean;
     allowSkipping: boolean;
@@ -20,7 +20,7 @@ type Lesson_Definition = {
   type: 'lesson';
   /** Optional key to a registered runtime icon, never JSX. */
   iconKey?: string;
-  sections: Record<string, Section<'definition'>>;
+  sections: Record<string, Section<'definition', LanguageCode>>;
   /** Explicit presentation order, independent of record insertion. */
   sectionOrder?: readonly string[];
 };
@@ -40,10 +40,10 @@ type Lesson_Response = {
   id: string;
   slug: string;
   title: string;
-  flashcards: Flashcard<'response'>[];
+  flashcards: Flashcard<'response', LanguageCode>[];
   parameters: Lesson_Parameters<LanguageCode>;
-  questions: Question_Catalog<'response'>;
-  sections: Record<string, Section<'response'>>;
+  questions: Question_Catalog<'response', LanguageCode>;
+  sections: Record<string, Section<'response', LanguageCode>>;
   sectionOrder?: readonly string[];
 };
 
@@ -53,19 +53,11 @@ export type Lesson<ConfigType extends ContentEntity_ConfigType, SupportedLanguag
   response: Lesson_Response;
 }[ConfigType];
 
-export function defineLessonData<SupportedLanguages extends LanguageCode>():
-  <const T extends Lesson<'data', SupportedLanguages>>(
+export function defineLessonData<SupportedLanguages extends LanguageCode>() {
+  return <const T extends Lesson<'data', SupportedLanguages>>(
     lesson: T & {
       questions: Question_Catalog_ValidSlugs<T['questions'], SupportedLanguages>;
       sections: DefineValidKeysFromSlugs<keyof T['sections'] & string, Section<'data', SupportedLanguages>>;
     },
-  ) => T;
-export function defineLessonData<const T extends Lesson<'data'>>(
-  lesson: T & {
-    questions: Question_Catalog_ValidSlugs<T['questions'], LanguageCode>;
-    sections: DefineValidKeysFromSlugs<keyof T['sections'] & string, Section<'data'>>;
-  },
-): T;
-export function defineLessonData(lesson?: unknown): unknown {
-  return lesson === undefined ? <T>(value: T): T => value : lesson;
+  ): T => lesson;
 }
