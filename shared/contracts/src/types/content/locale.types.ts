@@ -30,20 +30,6 @@ export type Locale_Config = Locales_All | Locales_Subset<LanguageCode> | Locales
 type New_Locale_Config<Languages extends LanguageCode = LanguageCode> =
   Record<Languages, string>;
 
-type NonLocalizable = string;
+type New_NonLocalizable = string;
 
-type Locale_Options<T extends LanguageCode> = New_Locale_Config<T> | NonLocalizable;
-
-const buildLocaleConfig = (
-  config: New_Locale_Config<LanguageCode>,
-  fallback: LanguageCode = 'en'
-) => {
-  if (typeof config === 'string') {
-    return config;
-  }
-
-  return {
-    ...config,
-    fallback,
-  };
-}
+type New_Locale_Options<T extends LanguageCode> = New_Locale_Config<T> | New_NonLocalizable;
