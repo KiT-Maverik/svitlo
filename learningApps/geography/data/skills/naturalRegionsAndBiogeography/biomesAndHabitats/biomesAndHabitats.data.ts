@@ -20,7 +20,7 @@ export const biomesAndHabitats_SkillGroup_Data = buildSkillGroupConfig({
     ja: "バイオームと生息地",
     ko: "생물군계와 서식지",
     tr: "Biyomlar ve Yaşam Alanları",
-    vi: "Quần xã sinh vật và môi trường sống",
+    vi: "Khu sinh học và môi trường sống",
     ta: "உயிரினப் பெரும்பகுதிகளும் வாழிடங்களும்",
     te: "జీవావరణ ప్రాంతాలు మరియు ఆవాసాలు",
     mr: "जीवप्रदेश आणि अधिवास",
