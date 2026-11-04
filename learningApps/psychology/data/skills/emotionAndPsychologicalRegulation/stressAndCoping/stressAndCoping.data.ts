@@ -54,7 +54,7 @@ export const stressAndCoping_SkillGroup_Data = buildSkillGroupConfig({
       fr: "Découvre comment les personnes évaluent, ressentent et gèrent le stress.",
       bn: "মানুষ কীভাবে চাপকে বিচার, অনুভব ও মোকাবিলা করে তা জানো।",
       pt: "Descubra como as pessoas avaliam, vivenciam e enfrentam o estresse.",
-      ur: "جانیں کہ لوگ ذہنی دباؤ کو کیسے پرکھتے، محسوس اور اس کا سامنا کرتے ہیں۔",
+      ur: "جانیں کہ لوگ ذہنی دباؤ کا اندازہ کیسے لگاتے، اسے محسوس کرتے اور اس سے کیسے نمٹتے ہیں۔",
       id: "Pelajari bagaimana orang menilai, mengalami, dan mengatasi stres.",
       de: "Erkunde, wie Menschen Stress einschätzen, erleben und bewältigen.",
       ja: "人がストレスをどう捉え、経験し、対処するか探ろう。",

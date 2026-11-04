@@ -45,7 +45,7 @@ export const selectionAndBehavioralVariation_Skill_Data = buildSkillConfig({
       fr: "Explique comment des tendances comportementales héréditaires peuvent évoluer au fil des générations.",
       bn: "বংশগত আচরণের প্রবণতা কীভাবে প্রজন্মে প্রজন্মে বদলাতে পারে, তা ব্যাখ্যা করো।",
       pt: "Explique como tendências comportamentais herdadas podem mudar entre gerações.",
-      ur: "بیان کریں کہ موروثی رویّے کی رجحانات نسل در نسل کیسے بدل سکتی ہیں۔",
+      ur: "بیان کریں کہ رویّے کے موروثی رجحانات نسل در نسل کیسے بدل سکتے ہیں۔",
       id: "Jelaskan bagaimana kecenderungan perilaku yang diwariskan dapat berubah antargenerasi.",
       de: "Erkläre, wie vererbbare Verhaltenstendenzen sich über Generationen verändern können.",
       ja: "遺伝する行動傾向が世代を重ねてどう変わり得るか説明しよう。",

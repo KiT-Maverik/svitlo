@@ -45,7 +45,7 @@ export const spontaneousRecovery_Skill_Data = buildSkillConfig({
       fr: "Comprends pourquoi une réponse éteinte peut parfois réapparaître.",
       bn: "বিলুপ্ত হয়ে যাওয়া প্রতিক্রিয়া কেন কখনো আবার দেখা দিতে পারে তা বোঝো।",
       pt: "Entenda por que uma resposta extinta pode às vezes reaparecer.",
-      ur: "سمجھیں کہ ختم شدہ مشروط ردعمل کبھی دوبارہ کیوں ظاہر ہو سکتی ہے۔",
+      ur: "سمجھیں کہ ختم شدہ مشروط ردِعمل کبھی دوبارہ کیوں ظاہر ہو سکتا ہے۔",
       id: "Pahami mengapa respons yang sudah padam kadang bisa muncul kembali.",
       de: "Verstehe, warum eine gelöschte Reaktion manchmal erneut auftreten kann.",
       ja: "消去された反応がときどき再び現れる理由を理解しよう。",

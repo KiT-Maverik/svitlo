@@ -41,7 +41,7 @@ export const cognitiveLoadInInterfaces_Skill_Data = buildSkillConfig({
       zh: "探索有限的注意力和记忆如何影响复杂界面的使用。",
       hi: "जानें कि सीमित ध्यान और स्मृति जटिल इंटरफ़ेस के उपयोग को कैसे प्रभावित करते हैं।",
       es: "Explora cómo la atención y la memoria limitadas afectan el uso de interfaces complejas.",
-      ar: "استكشف كيف يؤثر محدودية الانتباه والذاكرة في استخدام الواجهات المعقدة.",
+      ar: "استكشف كيف تؤثر محدودية الانتباه والذاكرة في استخدام الواجهات المعقدة.",
       fr: "Explore comment l'attention et la mémoire limitées influencent l'utilisation d'interfaces complexes.",
       bn: "সীমিত মনোযোগ ও স্মৃতি জটিল ইন্টারফেস ব্যবহারে কীভাবে প্রভাব ফেলে তা জানো।",
       pt: "Explore como atenção e memória limitadas afetam o uso de interfaces complexas.",

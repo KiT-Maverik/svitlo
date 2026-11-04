@@ -12,7 +12,7 @@ export const geneEnvironmentInteraction_Skill_Data = buildSkillConfig({
     fr: "Interaction entre gènes et environnement",
     bn: "জিন ও পরিবেশের পারস্পরিক প্রভাব",
     pt: "Interação gene–ambiente",
-    ur: "جین اور ماحول کی باہمی تعامل",
+    ur: "جین اور ماحول کا باہمی تعامل",
     id: "Interaksi Gen dan Lingkungan",
     de: "Gen-Umwelt-Interaktion",
     ja: "遺伝子と環境の相互作用",
