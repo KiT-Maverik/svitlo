@@ -42,7 +42,7 @@ export const explainWhyRegionalBoundariesMayDifferBetweenMaps_Skill_Data = build
       hi: "समझाएँ कि अलग-अलग मानचित्र एक ही क्षेत्र की सीमा अलग क्यों दिखा सकते हैं।",
       es: "Explica por qué distintos mapas pueden trazar de forma diferente el límite de una misma región.",
       ar: "اشرح لماذا قد ترسم خرائط مختلفة حدود الإقليم نفسه بطرق مختلفة.",
-      fr: "Explique pourquoi plusieurs cartes peuvent tracer différemment la frontière d’une même région.",
+      fr: "Explique pourquoi plusieurs cartes peuvent tracer différemment les limites d’une même région.",
       bn: "একই অঞ্চলের সীমানা বিভিন্ন মানচিত্রে কেন আলাদা আঁকা হয় তা বোঝাও।",
       pt: "Explique por que mapas diferentes podem traçar de formas distintas os limites da mesma região.",
       ur: "سمجھائیں کہ مختلف نقشے ایک ہی خطے کی حد مختلف طرح کیوں دکھاتے ہیں۔",

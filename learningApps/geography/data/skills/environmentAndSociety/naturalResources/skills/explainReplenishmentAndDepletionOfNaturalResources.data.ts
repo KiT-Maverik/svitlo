@@ -10,7 +10,7 @@ export const explainReplenishmentAndDepletionOfNaturalResources_Skill_Data = bui
     es: "Explicar la renovación y el agotamiento de los recursos naturales",
     ar: "شرح تجدد الموارد الطبيعية واستنزافها",
     fr: "Expliquer le renouvellement et l’épuisement des ressources naturelles",
-    bn: "প্রাকৃতিক সম্পদের পুনর্গঠন ও নিঃশেষ হওয়া ব্যাখ্যা করা",
+    bn: "প্রাকৃতিক সম্পদের পুনরায় পূরণ হওয়া ও নিঃশেষ হওয়া ব্যাখ্যা করা",
     pt: "Explicar a reposição e o esgotamento dos recursos naturais",
     ur: "قدرتی وسائل کی تجدید اور خاتمے کو سمجھانا",
     id: "Menjelaskan pemulihan dan pengurasan sumber daya alam",

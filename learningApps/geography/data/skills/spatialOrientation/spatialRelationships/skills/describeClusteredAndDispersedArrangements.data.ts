@@ -60,7 +60,7 @@ export const describeClusteredAndDispersedArrangements_Skill_Data = buildSkillCo
       pl: "Opisz, czy obiekty leżą w skupiskach, czy są rozproszone.",
       uk: "Опиши, чи об'єкти зосереджені разом, чи розкидані.",
       lt: "Apibūdink, ar objektai susitelkę, ar išsibarstę.",
-      lv: "Apraksti, vai objekti ir sapulcējušies grupās vai izkaisīti.",
+      lv: "Apraksti, vai objekti izvietoti ciešās grupās vai izkliedēti plašākā teritorijā.",
       et: "Kirjelda, kas objektid on koondunud või hajali.",
       be: "Апішы, ці аб'екты сабраныя разам, ці разьмешчаныя паасобку.",
       ka: "აღწერე, ობიექტები თავმოყრილია თუ გაფანტული.",

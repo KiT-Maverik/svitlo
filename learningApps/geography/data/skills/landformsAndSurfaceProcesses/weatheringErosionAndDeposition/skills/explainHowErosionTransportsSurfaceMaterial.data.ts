@@ -62,7 +62,7 @@ export const explainHowErosionTransportsSurfaceMaterial_Skill_Data = buildSkillC
       lt: "Apibūdink, kaip vanduo, vėjas, ledas ir gravitacija pašalina bei perneša birias medžiagas.",
       lv: "Apraksti, kā ūdens, vējš, ledus un gravitācija noārda un pārvieto irdenus materiālus.",
       et: "Kirjelda, kuidas vesi, tuul, jää ja gravitatsioon lahtist materjali eemaldavad ja kannavad.",
-      be: "Апішу, як вада, вецер, лёд і сіла цяжару зрываюць ды пераносяць рыхлы матэрыял.",
+      be: "Апішы, як вада, вецер, лёд і сіла цяжару зрываюць ды пераносяць рыхлы матэрыял.",
       ka: "აღწერე, როგორ შლის და გადააქვს წყალს, ქარს, ყინულსა და მიზიდულობას ფხვიერი მასალა.",
       kk: "Су, жел, мұз және ауырлық күші борпылдақ материалдарды қалай бұзып, тасымалдайтынын сипатта.",
       qm: "Suv, yel, buz ve yer çekimi gevşek maddelerni nasıl alıp taşığanını tarif et.",

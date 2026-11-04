@@ -41,7 +41,7 @@ export const explainTheConceptOfWeather_Skill_Data = buildSkillConfig({
       zh: "理解天气是某一时刻的大气状况。",
       hi: "समझें कि मौसम किसी विशेष समय की वायुमंडलीय दशा है।",
       es: "Comprende el tiempo como el estado de la atmósfera en un instante concreto.",
-      ar: "افهم الطقس بوصفه حالة الغلاف الجوي في لحظة معينة.",
+      ar: "افهم الطقس بوصفه حالة الغلاف الجوي في مكان وزمان محددين.",
       fr: "Comprends le temps comme l’état de l’atmosphère à un instant donné.",
       bn: "আবহাওয়া যে নির্দিষ্ট মুহূর্তে বায়ুমণ্ডলের অবস্থা তা বোঝো।",
       pt: "Entenda o tempo como o estado da atmosfera em certo momento.",

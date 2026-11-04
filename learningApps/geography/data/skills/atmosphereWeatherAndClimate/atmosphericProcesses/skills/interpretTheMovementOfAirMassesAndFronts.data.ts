@@ -56,7 +56,7 @@ export const interpretTheMovementOfAirMassesAndFronts_Skill_Data = buildSkillCon
       te: "కదిలే వాయు రాశులు, ఫ్రంట్లు ప్రాంతీయ వాతావరణాన్ని ఎలా మారుస్తాయో తెలుసుకోండి.",
       mr: "हलणाऱ्या वायुराशी व आघाड्यांमुळे प्रादेशिक हवामान कसे बदलते ते ओळख.",
       ms: "Kenali cara jisim udara dan front yang bergerak mengubah cuaca kawasan.",
-      he: "זהו כיצד גושי אוויר וחזיתות נעים משנים את מזג האוויר באזור.",
+      he: "פרשו את תנועת גושי האוויר והחזיתות ואת השפעתה על מזג האוויר באזור.",
       pl: "Rozpoznaj, jak masy powietrza i fronty zmieniają pogodę w regionie.",
       uk: "Розпізнавай, як рухомі повітряні маси та фронти змінюють погоду регіону.",
       lt: "Atpažink, kaip judančios oro masės ir frontai keičia regiono orus.",
