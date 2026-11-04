@@ -1,19 +1,20 @@
-import type { LanguageCode } from '@svitlo/engine/localization';
+import type { Locale_Languages } from '@svitlo/engine/content';
 
-type LocalizedLeaves<Shape> =
-  Shape extends string ? Record<LanguageCode, string> :
-  Shape extends object ? { [Key in keyof Shape]: LocalizedLeaves<Shape[Key]> } : never;
+type LocalizedLeaves<Shape, SupportedLanguages extends Locale_Languages> =
+  Shape extends string ? Record<SupportedLanguages[number], string> :
+  Shape extends object ? { [Key in keyof Shape]: LocalizedLeaves<Shape[Key], SupportedLanguages> } : never;
 
-/** Transpose complete authored scene translations into contract-native data. */
-export function sceneLocalesToData<Shape extends object>(
-  byLanguage: Record<LanguageCode, Shape>,
-): LocalizedLeaves<Shape> {
+/** Transpose authored scene translations for only the languages supported by the lesson. */
+export function sceneLocalesToData<SupportedLanguages extends Locale_Languages, Shape extends object>(
+  languages: SupportedLanguages,
+  byLanguage: Record<SupportedLanguages[number], Shape>,
+): LocalizedLeaves<Shape, SupportedLanguages> {
   function walk(sample: unknown, path: readonly string[]): unknown {
     if (typeof sample === 'string') {
       return Object.fromEntries(
-        Object.entries(byLanguage).map(([language, tree]) => [
+        languages.map((language) => [
           language,
-          path.reduce<unknown>((value, key) => (value as Record<string, unknown>)[key], tree),
+          path.reduce<unknown>((value, key) => (value as Record<string, unknown>)[key], byLanguage[language]),
         ]),
       );
     }
@@ -22,5 +23,5 @@ export function sceneLocalesToData<Shape extends object>(
         .map(([key, child]) => [key, walk(child, [...path, key])]),
     );
   }
-  return walk(byLanguage.en, []) as LocalizedLeaves<Shape>;
+  return walk(byLanguage[languages[0]], []) as LocalizedLeaves<Shape, SupportedLanguages>;
 }

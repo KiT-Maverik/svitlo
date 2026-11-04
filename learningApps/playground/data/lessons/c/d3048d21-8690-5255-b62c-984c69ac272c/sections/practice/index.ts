@@ -1,3 +1,4 @@
+import type { HowLightMoves_Languages } from '../../constants';
 import { defineContentBlockCatalog, type Section } from '@svitlo/engine/content';
 import { showcaseData } from './scenes/showcase';
 
@@ -41,7 +42,7 @@ export const practice_Section = {
   navigationLabel: title,
   skippable: true,
   order: [{ type: 'text', slug: 'task' }, { type: 'scene', slug: 'showcase' }],
-  content: defineContentBlockCatalog({
+  content: defineContentBlockCatalog<HowLightMoves_Languages>()({
     scene: { showcase: showcaseData },
     text: {
       task: { id: 'practice-task', slug: 'task' as const, value: {
@@ -77,4 +78,4 @@ export const practice_Section = {
         }, },
     },
   }),
-} satisfies Section<'data'>;
+} satisfies Section<'data', HowLightMoves_Languages>;

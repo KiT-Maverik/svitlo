@@ -1,3 +1,4 @@
+import type { HowLightMoves_Languages } from '../../constants';
 import {
   defineContentBlockCatalog,
   type Section,
@@ -63,7 +64,7 @@ export const quiz_Section = {
   navigationLabel: title,
   skippable: true,
   order: [{ type: 'quiz', slug: 'quiz' }],
-  content: defineContentBlockCatalog({
+  content: defineContentBlockCatalog<HowLightMoves_Languages>()({
     quiz: { quiz: quizBlock },
   }),
-} satisfies Section<'data'>;
+} satisfies Section<'data', HowLightMoves_Languages>;
