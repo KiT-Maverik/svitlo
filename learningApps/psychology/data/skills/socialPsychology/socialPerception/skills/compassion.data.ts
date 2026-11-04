@@ -65,7 +65,7 @@ export const compassion_Skill_Data = buildSkillConfig({
       be: "Адрозьнівай спачувальны клопат ад простага разуменьня пачуцьцяў іншага.",
       ka: "განასხვავე სხვის მიმართ მზრუნველობა მისი გრძნობების უბრალოდ გაგებისგან.",
       kk: "Өзгені түсінуден бөлек оған көмектескің келетін жанашырлықты ажырат.",
-      qm: "Başqanıñ duyğularını añlamaqnen oña meramet kösterip yardım istemekni ayır.",
+      qm: "Başqanıñ duyğularını añlamaqnen oña meramet kösterip yardım etüvni ayır.",
     },
   },
 });
