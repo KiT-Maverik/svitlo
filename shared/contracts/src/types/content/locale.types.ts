@@ -1,4 +1,5 @@
 import type { LanguageCode } from '../languages';
+import {NonEmptyArray} from "@/types/misc.types";
 
 type Locale_Config<SupportedLanguages extends LanguageCode = LanguageCode> =
   Record<SupportedLanguages, string>;
@@ -20,4 +21,4 @@ type NonLocalizable = string;
  */
 export type Locale_Options<SupportedLanguages extends LanguageCode> = Locale_Config<SupportedLanguages> | NonLocalizable;
 
-export type Locale_Subset<SupportedLanguages extends LanguageCode> = Record<SupportedLanguages, string>;
+export type Lesson_Locale<SupportedLanguages extends LanguageCode> = NonEmptyArray<SupportedLanguages>
