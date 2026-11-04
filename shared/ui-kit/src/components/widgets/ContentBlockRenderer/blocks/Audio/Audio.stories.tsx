@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs';
 import { Audio } from './Audio';
+import { ContentLanguageContext } from '../../ContentLanguageContext';
 
 const meta = {
   title: 'Content blocks/Audio',
@@ -11,7 +12,7 @@ const meta = {
   args: {
     id: 'audio-example',
     type: 'audio',
-    locale: { code: 'en' },
+
     fileLocation: 'https://interactive-examples.mdn.mozilla.net/media/cc0-audio/t-rex-roar.mp3',
     title: 'Animal sounds',
     description: 'Play the audio recording.',
@@ -19,7 +20,7 @@ const meta = {
   argTypes: {
     id: { control: false },
     type: { control: false },
-    locale: { control: 'object' },
+
     fileLocation: { control: 'text' },
     fallback: { control: 'object' },
   },
@@ -31,7 +32,8 @@ type Story = StoryObj<typeof meta>;
 export const Playground: Story = {};
 
 export const Localized: Story = {
-  args: { locale: { code: 'uk' }, title: 'Звуки тварин', description: 'Прослухайте аудіозапис.' },
+  decorators: [(StoryComponent) => <ContentLanguageContext.Provider value="uk"><StoryComponent /></ContentLanguageContext.Provider>],
+  args: { title: 'Звуки тварин', description: 'Прослухайте аудіозапис.' },
 };
 
 export const MissingFile: Story = {

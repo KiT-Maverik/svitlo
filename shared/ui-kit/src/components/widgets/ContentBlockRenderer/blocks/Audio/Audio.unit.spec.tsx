@@ -7,7 +7,7 @@ import { Audio } from './Audio';
 const response: ContentBlock_Audio_Response = {
   id: 'audio-1',
   type: 'audio',
-  locale: { code: 'uk' },
+
   fileLocation: '/lesson.mp3',
   title: 'Запис уроку',
   description: 'Прослухайте пояснення',
@@ -98,7 +98,7 @@ describe('Audio fallback lifecycle', () => {
 
   it('uses the built-in English fallback without author overrides', () => {
     setOnline(true);
-    const { container } = render(<Audio {...response} locale={{ code: 'en' }} fallback={undefined} />);
+    const { container } = render(<Audio {...response} fallback={undefined} />);
     failAudio(container.querySelector('audio')!, 4);
     expect(screen.getByRole('alert')).toHaveTextContent('This audio is unavailable.');
     expect(screen.getByRole('button', { name: 'Try again' })).toBeVisible();

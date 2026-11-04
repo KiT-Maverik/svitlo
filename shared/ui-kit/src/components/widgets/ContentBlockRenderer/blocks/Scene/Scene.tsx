@@ -6,5 +6,5 @@ export const Scene = ({ response, sceneRegistry }: {
 }) => {
   const Scene = sceneRegistry?.[response.id];
   if (!Scene) throw new Error('Unregistered scene id: ' + response.id);
-  return <Scene locale={response.locale} />;
+  return <Scene />;
 };

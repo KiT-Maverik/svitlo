@@ -1,4 +1,5 @@
 import type { Question_SelectOneAnswer } from '@svitlo/engine/content';
+import type { HowLightMoves_Languages } from '../constants';
 
 export const fastestMedium_Question_Data = {
   answers: {
@@ -193,4 +194,4 @@ export const fastestMedium_Question_Data = {
   ],
   restrictions: [],
   type: 'selectOneAnswer',
-} satisfies Question_SelectOneAnswer<'data'>;
+} satisfies Question_SelectOneAnswer<'data', HowLightMoves_Languages>;

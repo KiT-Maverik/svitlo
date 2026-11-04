@@ -1,7 +1,8 @@
 'use client';
 import { TextField } from '@mui/material';
-import type { Question_AnswerWithNumber } from '@svitlo/engine/content';
+import type { Question_AnswerWithNumber, Locale_Languages } from '@svitlo/engine/content';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
+import { useContentLanguage } from '../../ContentBlockRenderer/ContentLanguageContext';
 import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
 
 export function parseQuestionNumber(value: string): number | null {
@@ -12,9 +13,10 @@ export function parseQuestionNumber(value: string): number | null {
 }
 
 export function AnswerWithNumber({ response, sceneRegistry }: {
-  response: Question_AnswerWithNumber<'response'>;
+  response: Question_AnswerWithNumber<'response', Locale_Languages>;
   sceneRegistry?: SceneRegistry;
 }) {
+  const language = useContentLanguage();
   const attempt = useQuestionAttempt(
     () => '',
     value => {
@@ -25,7 +27,7 @@ export function AnswerWithNumber({ response, sceneRegistry }: {
   );
   return (
     <QuestionFrame response={response} sceneRegistry={sceneRegistry} attempt={attempt}>
-      <TextField fullWidth label={response.locale.code === 'uk' ? 'Ваша відповідь' : 'Your answer'}
+      <TextField fullWidth label={language === 'uk' ? 'Ваша відповідь' : 'Your answer'}
         placeholder={response.placeholder} value={attempt.value}
         onChange={event => attempt.setValue(event.target.value)}
         disabled={attempt.checked} error={attempt.checked && !attempt.correct}

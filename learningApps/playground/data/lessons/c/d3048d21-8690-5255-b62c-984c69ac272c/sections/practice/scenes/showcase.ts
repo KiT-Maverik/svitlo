@@ -1,6 +1,6 @@
+import { howLightMoves_languages, type HowLightMoves_Languages } from '../../../constants';
 import { sceneLocalesToData } from '../../../sceneLocales';
 import type {ContentBlock_Scene} from "@svitlo/engine/content";
-import {LanguageCode} from "@svitlo/engine/localization";
 
 const en = {
   header: {
@@ -932,7 +932,7 @@ const zh: Locale = {
   },
 };
 
-export const showcase_Locale: Record<LanguageCode, Locale> = {
+export const showcase_Locale: Record<HowLightMoves_Languages[number], Locale> = {
   en,
   ar,
   be,
@@ -965,10 +965,10 @@ export const showcase_Locale: Record<LanguageCode, Locale> = {
 };
 
 export type Showcase_ContentBlock<ConfigType extends 'definition' | 'data' | 'response'> =
-  ContentBlock_Scene<ConfigType, Locale>;
+  ContentBlock_Scene<ConfigType, HowLightMoves_Languages, Locale>;
 
 export const showcaseData = {
   id: 'how-light-moves-scene-showcase',
   slug: 'showcase' as const,
-  locales: sceneLocalesToData(showcase_Locale),
+  locales: sceneLocalesToData(howLightMoves_languages, showcase_Locale),
 } satisfies Showcase_ContentBlock<'data'>;

@@ -12,6 +12,7 @@ import { Video } from './blocks/Video/Video';
 import { Youtube } from './blocks/Youtube/Youtube';
 import type { ContentBlockRendererProps, ContentBlockResponse, SceneRegistry } from '#types/content-blocks';
 import { assertNever, requireTaggedResponse } from './utils';
+import { ContentLanguageContext, useContentLanguage } from './ContentLanguageContext';
 
 export type {
   ContentBlockRendererProps,
@@ -40,9 +41,14 @@ function renderBlock(response: ContentBlockResponse, sceneRegistry?: SceneRegist
 }
 
 /** Render an ordered array of serialized content blocks. */
-export function ContentBlockRenderer({ blocks, sceneRegistry }: ContentBlockRendererProps): ReactNode {
+export function ContentBlockRenderer({ blocks, sceneRegistry, language }: ContentBlockRendererProps): ReactNode {
+  const inheritedLanguage = useContentLanguage();
   if (!blocks?.length) return null;
-  return blocks.map(block => (
-    <Fragment key={`${block.type}:${block.id}`}>{renderBlock(block, sceneRegistry)}</Fragment>
-  ));
+  return (
+    <ContentLanguageContext.Provider value={language ?? inheritedLanguage}>
+      {blocks.map(block => (
+        <Fragment key={`${block.type}:${block.id}`}>{renderBlock(block, sceneRegistry)}</Fragment>
+      ))}
+    </ContentLanguageContext.Provider>
+  );
 }

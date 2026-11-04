@@ -9,7 +9,7 @@ const textResponse = (
   value: string,
   styling?: ContentBlock_Text_Response['styling'],
   wrap?: ContentBlock_Text_Response['wrap'],
-): ContentBlock_Text_Response => ({ id: 'text-id', type: 'text', locale: { code: 'en' }, value, styling, wrap });
+): ContentBlock_Text_Response => ({ id: 'text-id', type: 'text', value, styling, wrap });
 
 describe('Text', () => {
   it('renders marker values without service syntax when no styling is supplied', () => {

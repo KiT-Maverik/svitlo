@@ -1,5 +1,4 @@
-import type { ContentBlock, Locale_Config } from '@svitlo/contracts/content';
-import type { NonEmptyArray } from '@svitlo/contracts/content';
+import type { ContentBlock, Locale_Languages, Locale_Options, NonEmptyArray } from '@svitlo/contracts/content';
 
 export type DynamicQuestion_ArgumentType = 'string' | 'number' | 'boolean';
 
@@ -71,16 +70,19 @@ export interface DynamicQuestion_ArgumentValidation {
   constraints: Record<string, boolean>;
 }
 
-export interface DynamicQuestion_Config<TArguments extends DynamicQuestion_Arguments = DynamicQuestion_Arguments> {
+export interface DynamicQuestion_Config<
+  TArguments extends DynamicQuestion_Arguments,
+  SupportedLanguages extends Locale_Languages,
+> {
   arguments: TArguments;
-  buildVariants: (config: DynamicQuestion_Config<TArguments>) => DynamicQuestion_Variant<TArguments>[];
+  buildVariants: (config: DynamicQuestion_Config<TArguments, SupportedLanguages>) => DynamicQuestion_Variant<TArguments>[];
   checkConstraints: (variant: DynamicQuestion_Variant<TArguments>) => boolean;
   content: {
-    question: NonEmptyArray<ContentBlock<'data'>[]>;
-    explanation: NonEmptyArray<ContentBlock<'data'>[]>;
-    answer: NonEmptyArray<ContentBlock<'data'>[]>;
+    question: NonEmptyArray<ContentBlock<'data', SupportedLanguages>[]>;
+    explanation: NonEmptyArray<ContentBlock<'data', SupportedLanguages>[]>;
+    answer: NonEmptyArray<ContentBlock<'data', SupportedLanguages>[]>;
   };
-  name: Locale_Config;
+  name: Locale_Options<SupportedLanguages>;
 }
 
 export interface DynamicQuestion<TArguments extends DynamicQuestion_Arguments = DynamicQuestion_Arguments> {

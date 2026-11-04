@@ -1,18 +1,18 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import type { ContentBlock_Checkpoint_Response } from '@svitlo/engine/content';
+import type { ContentBlock_Checkpoint_Response, Locale_Languages } from '@svitlo/engine/content';
+import { ContentLanguageContext } from '../../ContentLanguageContext';
 
 import { Checkpoint } from './Checkpoint';
 
-const response: ContentBlock_Checkpoint_Response = {
+const response: ContentBlock_Checkpoint_Response<Locale_Languages> = {
   id: 'checkpoint-1',
   type: 'checkpoint',
-  locale: { code: 'en' },
   title: 'Check your knowledge',
   headingLevel: 3,
   items: [{
     question: 'What is light?',
-    answer: [{ id: 'answer-1', type: 'text', locale: { code: 'en' }, value: 'Electromagnetic radiation' }],
+    answer: [{ id: 'answer-1', type: 'text', value: 'Electromagnetic radiation' }],
     check: true,
   }],
 };
@@ -42,7 +42,7 @@ describe('Checkpoint configuration and accessibility', () => {
       enableChecks
       items={[
         { ...response.items[0], check: undefined },
-        { question: 'What is a ray?', answer: [{ id: 'answer-2', type: 'text', locale: { code: 'en' }, value: 'A model of light' }] },
+        { question: 'What is a ray?', answer: [{ id: 'answer-2', type: 'text', value: 'A model of light' }] },
       ]}
       renderNested={block => <span>{block.id}</span>}
     />);
@@ -56,9 +56,8 @@ describe('Checkpoint configuration and accessibility', () => {
   });
 
   it('uses right-to-left direction and clamps the item heading level at six', () => {
-    render(<Checkpoint
+    render(<ContentLanguageContext.Provider value="ar"><Checkpoint
       {...response}
-      locale={{ code: 'ar' }}
       title="اختبر معلوماتك"
       headingLevel={6}
       showIndices={false}
@@ -66,7 +65,7 @@ describe('Checkpoint configuration and accessibility', () => {
       showIcon
       renderAsGroup={false}
       renderNested={() => null}
-    />);
+    /></ContentLanguageContext.Provider>);
     const title = screen.getByRole('heading', { name: 'اختبر معلوماتك', level: 6 });
     expect(title.closest('section')).toHaveAttribute('dir', 'rtl');
     expect(screen.queryByText('01')).toBeNull();

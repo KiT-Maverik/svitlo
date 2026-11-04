@@ -1,13 +1,13 @@
 'use client';
 import { Stack } from '@mui/material';
-import type { Question_SelectMultipleAnswers } from '@svitlo/engine/content';
+import type { Question_SelectMultipleAnswers, Locale_Languages } from '@svitlo/engine/content';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
 import { QuestionChoice } from '../response/QuestionChoice';
 import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
 import { questionLabel } from '../response/QuestionContent';
 
 export function SelectMultipleAnswers({ response, sceneRegistry }: {
-  response: Question_SelectMultipleAnswers<'response'>;
+  response: Question_SelectMultipleAnswers<'response', Locale_Languages>;
   sceneRegistry?: SceneRegistry;
 }) {
   const options = [

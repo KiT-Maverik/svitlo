@@ -1,12 +1,12 @@
 'use client';
 import { Stack, TextField } from '@mui/material';
-import type { Question_FillBlanksWithText } from '@svitlo/engine/content';
+import type { Question_FillBlanksWithText, Locale_Languages } from '@svitlo/engine/content';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
 import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
 import { normalizedAnswer } from '../response/QuestionContent';
 
 export function FillBlanksWithText({ response, sceneRegistry }: {
-  response: Question_FillBlanksWithText<'response'>;
+  response: Question_FillBlanksWithText<'response', Locale_Languages>;
   sceneRegistry?: SceneRegistry;
 }) {
   const attempt = useQuestionAttempt<Record<string, string>>(

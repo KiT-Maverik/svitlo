@@ -3,11 +3,12 @@ import { afterEach, describe, expect, it } from 'vitest';
 
 import type { ContentBlock_Image_Response } from '@svitlo/engine/content';
 import { Image } from './Image';
+import { ContentLanguageContext } from '../../ContentLanguageContext';
 
 const response: ContentBlock_Image_Response = {
   id: 'image-1',
   type: 'image',
-  locale: { code: 'uk' },
+
   src: '/diagram.png',
   alt: 'Схема руху світла',
   caption: 'Напрямок променя',
@@ -33,7 +34,7 @@ afterEach(() => {
 describe('Image content block', () => {
   it('renders a responsive Next image with authored intrinsic dimensions', () => {
     setOnline(true);
-    render(<Image {...response} />);
+    render(<ContentLanguageContext.Provider value="uk"><Image {...response} /></ContentLanguageContext.Provider>);
     const image = screen.getByAltText('Схема руху світла');
     expect(image).toHaveAttribute('width', '800');
     expect(image).toHaveAttribute('height', '450');
@@ -53,7 +54,6 @@ describe('Image content block', () => {
     const fillResponse: ContentBlock_Image_Response = {
       id: response.id,
       type: 'image',
-      locale: response.locale,
       src: response.src,
       alt: response.alt,
       fill: true,
@@ -115,7 +115,7 @@ describe('Image fallback lifecycle', () => {
 
   it('uses its built-in fallback when localized overrides are absent', () => {
     setOnline(true);
-    render(<Image {...response} locale={{ code: 'en' }} fallback={undefined} />);
+    render(<Image {...response} fallback={undefined} />);
     fireEvent.error(screen.getByAltText('Схема руху світла'));
     expect(screen.getByRole('alert')).toHaveTextContent('This image is unavailable.');
     expect(screen.getByRole('button', { name: 'Try again' })).toBeVisible();

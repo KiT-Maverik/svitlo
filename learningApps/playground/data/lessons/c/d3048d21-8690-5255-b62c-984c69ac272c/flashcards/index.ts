@@ -1,4 +1,5 @@
 import type { Flashcard } from '@svitlo/engine/content';
+import type { HowLightMoves_Languages } from '../constants';
 import { fastestMedium_Question_Data } from '../questions/fastestMedium';
 import { lightTravelsStraight_Question_Data } from '../questions/lightTravelsStraight';
 import { opaqueObjectShadow_Question_Data } from '../questions/opaqueObjectShadow';
@@ -67,4 +68,4 @@ export const howLightMoves_Flashcards = [
     tags: ['shadow'],
     flags: [],
   },
-] satisfies Flashcard<'data'>[];
+] satisfies Flashcard<'data', HowLightMoves_Languages>[];

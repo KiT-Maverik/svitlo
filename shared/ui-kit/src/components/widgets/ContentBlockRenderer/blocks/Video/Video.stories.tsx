@@ -18,7 +18,7 @@ const meta = {
   args: {
     id: 'video-example',
     type: 'video',
-    locale: { code: 'en' },
+
     fileLocation: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
     poster,
     title: 'Flower video',

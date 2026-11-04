@@ -3,12 +3,13 @@ import { describe, expect, it } from 'vitest';
 import type { ContentBlock_Code_Response } from '@svitlo/engine/content';
 
 import { Code } from './Code';
+import { ContentLanguageContext } from '../../ContentLanguageContext';
 import { resolveCodeVariables } from './Code.utils';
 
 const response: ContentBlock_Code_Response = {
   id: 'code-1',
   type: 'code',
-  locale: { code: 'uk' },
+
   language: 'typescript',
   title: 'Приклад',
   code: 'const greeting = "{{greeting}}";\nconsole.log(greeting);',
@@ -17,7 +18,7 @@ const response: ContentBlock_Code_Response = {
 
 describe('Code content block', () => {
   it('substitutes localized variables and highlights the declared language', () => {
-    const { container } = render(<Code {...response} />);
+    const { container } = render(<ContentLanguageContext.Provider value="uk"><Code {...response} /></ContentLanguageContext.Provider>);
     expect(screen.getByText('typescript')).toBeVisible();
     expect(screen.getByText('Приклад')).toBeVisible();
     expect(container.querySelector('code')?.textContent).toBe('const greeting = "Привіт";\nconsole.log(greeting);');
@@ -54,7 +55,7 @@ describe('Code variables and localization', () => {
   });
 
   it('marks code figures with the locale direction and keeps the language label', () => {
-    const { container } = render(<Code {...response} locale={{ code: 'ar' }} />);
+    const { container } = render(<ContentLanguageContext.Provider value="ar"><Code {...response} /></ContentLanguageContext.Provider>);
     expect(container.querySelector('figure')).toHaveAttribute('dir', 'rtl');
     expect(screen.getByText('typescript')).toBeVisible();
   });

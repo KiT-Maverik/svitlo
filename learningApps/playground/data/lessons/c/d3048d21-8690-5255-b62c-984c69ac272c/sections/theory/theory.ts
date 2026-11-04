@@ -1,3 +1,4 @@
+import type { HowLightMoves_Languages } from '../../constants';
 import { defineContentBlockCatalog, type Section } from '@svitlo/engine/content';
 import { checkpointData } from './checkpoints/checkpoint';
 import { lightPropagationSimulationData } from './scenes/lightPropagationSimulation';
@@ -50,7 +51,7 @@ export const theory_Section = {
     { type: 'markdown', slug: 'p3' },
     { type: 'checkpoint', slug: 'checkpoint' },
   ],
-  content: defineContentBlockCatalog({
+  content: defineContentBlockCatalog<HowLightMoves_Languages>()({
     checkpoint: { checkpoint: checkpointData },
     markdown: {
       p1: { id: 'how-light-moves-p1', slug: 'p1', locales: getMarkdownLocale(new URL('./markdown/p1/', import.meta.url)) },
@@ -62,4 +63,4 @@ export const theory_Section = {
       lightRayDiagram: lightRayDiagramData,
     },
   }),
-} satisfies Section<'data'>;
+} satisfies Section<'data', HowLightMoves_Languages>;

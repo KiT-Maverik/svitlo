@@ -1,3 +1,4 @@
+import type { Locale_Languages } from '../locale.types';
 import type { ContentBlock_Audio } from './audio.types';
 import type { ContentBlock_Checkpoint } from './checkpoint.types';
 import type { ContentBlock_Code } from './code.types';
@@ -7,61 +8,61 @@ import type { ContentEntity_ConfigType } from '../entity.types';
 import type { ContentBlock_Image } from './image.types';
 import type { ContentBlock_Markdown } from './markdown.types';
 import type { ContentBlock_Quiz, ContentBlock_Quiz_Screen } from './quiz.types';
-import type { ContentBlock_Scene } from './scene.types';
+import type { ContentBlock_Scene, ContentBlock_Scene_LocaleShape } from './scene.types';
 import type { ContentBlock_Text } from './text.types';
 import type { ContentBlock_Video } from './video.types';
 import type { ContentBlock_Youtube } from './youtube.types';
 
-export type ContentBlock<ConfigType extends ContentEntity_ConfigType> =
-  | ContentBlock_Text<ConfigType>
-  | ContentBlock_Checkpoint<ConfigType>
-  | ContentBlock_Scene<ConfigType>
-  | ContentBlock_Markdown<ConfigType>
-  | ContentBlock_Code<ConfigType>
-  | ContentBlock_Audio<ConfigType>
-  | ContentBlock_Video<ConfigType>
-  | ContentBlock_Youtube<ConfigType>
-  | ContentBlock_Image<ConfigType>
-  | ContentBlock_Quiz<ConfigType>;
+export type ContentBlock<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends Locale_Languages> =
+  | ContentBlock_Text<ConfigType, SupportedLanguages>
+  | ContentBlock_Checkpoint<ConfigType, SupportedLanguages>
+  | ContentBlock_Scene<ConfigType, SupportedLanguages, ContentBlock_Scene_LocaleShape>
+  | ContentBlock_Markdown<ConfigType, SupportedLanguages>
+  | ContentBlock_Code<ConfigType, SupportedLanguages>
+  | ContentBlock_Audio<ConfigType, SupportedLanguages>
+  | ContentBlock_Video<ConfigType, SupportedLanguages>
+  | ContentBlock_Youtube<ConfigType, SupportedLanguages>
+  | ContentBlock_Image<ConfigType, SupportedLanguages>
+  | ContentBlock_Quiz<ConfigType, SupportedLanguages>;
 
-export interface ContentBlock_Map<ConfigType extends ContentEntity_ConfigType> {
-  text: ContentBlock_Text<ConfigType>;
-  checkpoint: ContentBlock_Checkpoint<ConfigType>;
-  scene: ContentBlock_Scene<ConfigType>;
-  markdown: ContentBlock_Markdown<ConfigType>;
-  code: ContentBlock_Code<ConfigType>;
-  audio: ContentBlock_Audio<ConfigType>;
-  video: ContentBlock_Video<ConfigType>;
-  youtube: ContentBlock_Youtube<ConfigType>;
-  image: ContentBlock_Image<ConfigType>;
-  quiz: ContentBlock_Quiz<ConfigType>;
+export interface ContentBlock_Map<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends Locale_Languages> {
+  text: ContentBlock_Text<ConfigType, SupportedLanguages>;
+  checkpoint: ContentBlock_Checkpoint<ConfigType, SupportedLanguages>;
+  scene: ContentBlock_Scene<ConfigType, SupportedLanguages, ContentBlock_Scene_LocaleShape>;
+  markdown: ContentBlock_Markdown<ConfigType, SupportedLanguages>;
+  code: ContentBlock_Code<ConfigType, SupportedLanguages>;
+  audio: ContentBlock_Audio<ConfigType, SupportedLanguages>;
+  video: ContentBlock_Video<ConfigType, SupportedLanguages>;
+  youtube: ContentBlock_Youtube<ConfigType, SupportedLanguages>;
+  image: ContentBlock_Image<ConfigType, SupportedLanguages>;
+  quiz: ContentBlock_Quiz<ConfigType, SupportedLanguages>;
 }
 
-export type ContentBlock_Catalog<ConfigType extends ContentEntity_ConfigType> = {
-  [Type in ContentBlock_Type & keyof ContentBlock_Map<ConfigType>]?: Readonly<Record<string, ContentBlock_Map<ConfigType>[Type]>>;
+export type ContentBlock_Catalog<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends Locale_Languages> = {
+  [Type in ContentBlock_Type & keyof ContentBlock_Map<ConfigType, SupportedLanguages>]?: Readonly<Record<string, ContentBlock_Map<ConfigType, SupportedLanguages>[Type]>>;
 };
 
 /** Ordered references to blocks in a Section catalog. */
 export type ContentBlock_Reference = {
-  [Type in keyof ContentBlock_Map<'response'>]: { type: Type; slug: string };
-}[keyof ContentBlock_Map<'response'>];
+  [Type in keyof ContentBlock_Map<'response', Locale_Languages>]: { type: Type; slug: string };
+}[keyof ContentBlock_Map<'response', Locale_Languages>];
 
-export type ContentBlock_Catalog_DataFor<Definition extends ContentBlock_Catalog<'definition'>> = {
-  [Type in keyof Definition]: Type extends keyof ContentBlock_Map<'data'>
-    ? Record<keyof Definition[Type] & string, ContentBlock_Map<'data'>[Type]>
+export type ContentBlock_Catalog_DataFor<Definition extends ContentBlock_Catalog<'definition', Locale_Languages>, SupportedLanguages extends Locale_Languages> = {
+  [Type in keyof Definition]: Type extends keyof ContentBlock_Map<'data', SupportedLanguages>
+    ? Record<keyof Definition[Type] & string, ContentBlock_Map<'data', SupportedLanguages>[Type]>
     : never;
 };
 
-type ContentBlock_Catalog_ValidSlugs<T extends ContentBlock_Catalog<'data'>> = {
-  [Type in keyof T]: Type extends keyof ContentBlock_Map<'data'>
-    ? DefineValidKeysFromSlugs<keyof NonNullable<T[Type]> & string, ContentBlock_Map<'data'>[Type]>
+type ContentBlock_Catalog_ValidSlugs<T extends ContentBlock_Catalog<'data', SupportedLanguages>, SupportedLanguages extends Locale_Languages> = {
+  [Type in keyof T]: Type extends keyof ContentBlock_Map<'data', SupportedLanguages>
+    ? DefineValidKeysFromSlugs<keyof NonNullable<T[Type]> & string, ContentBlock_Map<'data', SupportedLanguages>[Type]>
     : never;
 };
 
-export function defineContentBlockCatalog<const T extends ContentBlock_Catalog<'data'>>(
-  catalog: T & ContentBlock_Catalog_ValidSlugs<T>,
-): T {
-  return catalog;
+export function defineContentBlockCatalog<SupportedLanguages extends Locale_Languages>() {
+  return <const T extends ContentBlock_Catalog<'data', SupportedLanguages>>(
+    catalog: T & ContentBlock_Catalog_ValidSlugs<T, SupportedLanguages>,
+  ): T => catalog;
 }
 
 export type {

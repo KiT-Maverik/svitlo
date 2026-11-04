@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs';
 import { Code } from './Code';
+import { ContentLanguageContext } from '../../ContentLanguageContext';
 
 const meta = {
   title: 'Content blocks/Code',
@@ -11,7 +12,7 @@ const meta = {
   args: {
     id: 'code-example',
     type: 'code',
-    locale: { code: 'en' },
+
     title: 'Greeting',
     language: 'typescript',
     code: 'const greeting = "{{greeting}}";\nconsole.log(greeting);',
@@ -26,7 +27,8 @@ type Story = StoryObj<typeof meta>;
 export const Playground: Story = {};
 
 export const LocalizedVariables: Story = {
-  args: { locale: { code: 'uk' }, title: 'Привітання', variables: [{ id: 'greeting', value: 'Привіт!' }] },
+  decorators: [(StoryComponent) => <ContentLanguageContext.Provider value="uk"><StoryComponent /></ContentLanguageContext.Provider>],
+  args: { title: 'Привітання', variables: [{ id: 'greeting', value: 'Привіт!' }] },
 };
 
 export const UnknownLanguage: Story = {

@@ -7,7 +7,7 @@ import { Video } from './Video';
 const response: ContentBlock_Video_Response = {
   id: 'video-1',
   type: 'video',
-  locale: { code: 'uk' },
+
   fileLocation: '/lesson.mp4',
   poster: '/poster.png',
   title: 'Приклад відео',
@@ -99,7 +99,7 @@ describe('Video fallback lifecycle', () => {
 
   it('shows default English fallback copy when no custom fallback exists', () => {
     setOnline(true);
-    const { container } = render(<Video {...response} locale={{ code: 'en' }} fallback={undefined} />);
+    const { container } = render(<Video {...response} fallback={undefined} />);
     failVideo(container.querySelector('video')!, 4);
     expect(screen.getByRole('alert')).toHaveTextContent('This video is unavailable.');
     expect(screen.getByRole('button', { name: 'Try again' })).toBeVisible();

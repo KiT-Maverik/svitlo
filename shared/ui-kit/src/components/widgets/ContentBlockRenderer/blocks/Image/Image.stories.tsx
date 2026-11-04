@@ -21,7 +21,7 @@ const meta = {
   args: {
     id: 'image-example',
     type: 'image',
-    locale: { code: 'en' },
+
     src: diagram,
     alt: 'A ray of light travels from a yellow source to the right.',
     caption: 'Diagram: straight-line propagation of light.',

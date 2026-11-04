@@ -1,14 +1,15 @@
 'use client';
 import { Stack, Typography } from '@mui/material';
-import type { Question_BuildAnswerWithBlocks } from '@svitlo/engine/content';
+import type { Question_BuildAnswerWithBlocks, Locale_Languages } from '@svitlo/engine/content';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
+import { useContentLanguage } from '../../ContentBlockRenderer/ContentLanguageContext';
 import { QuestionChoice } from '../response/QuestionChoice';
 import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
 import { type QuestionItem, shuffleItems } from '../response/QuestionContent';
 import { QuestionSortable } from '../response/QuestionSortable';
 
 export function BuildAnswerWithBlocks({ response, sceneRegistry }: {
-  response: Question_BuildAnswerWithBlocks<'response'>;
+  response: Question_BuildAnswerWithBlocks<'response', Locale_Languages>;
   sceneRegistry?: SceneRegistry;
 }) {
   const correct: QuestionItem[] = response.correctSequence.map((block, index) => ({
@@ -19,6 +20,7 @@ export function BuildAnswerWithBlocks({ response, sceneRegistry }: {
   }));
   const items = shuffleItems([...correct, ...distractors], response.id);
   const expected = correct.map(item => item.id);
+  const language = useContentLanguage();
   const attempt = useQuestionAttempt<string[]>(
     () => [],
     value => value.length === expected.length && expected.every((id, index) => value[index] === id),
@@ -32,7 +34,7 @@ export function BuildAnswerWithBlocks({ response, sceneRegistry }: {
           locked={attempt.checked} sceneRegistry={sceneRegistry}
           onRemove={id => attempt.setValue(attempt.value.filter(value => value !== id))} />
         <Stack spacing={1} role="group"
-          aria-label={response.locale.code === 'uk' ? 'Доступні блоки' : 'Available blocks'}>
+          aria-label={language === 'uk' ? 'Доступні блоки' : 'Available blocks'}>
           {items.filter(item => !attempt.value.includes(item.id)).map(item => (
             <QuestionChoice key={item.id} block={item.block} selected={false}
               disabled={attempt.checked} sceneRegistry={sceneRegistry}
