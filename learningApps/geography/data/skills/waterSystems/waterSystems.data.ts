@@ -71,7 +71,7 @@ export const waterSystems_SkillDomain_Data = buildSkillDomainConfig({
       pl: "Odkryj, gdzie magazynowana jest woda na Ziemi, jak krąży i kształtuje krajobraz.",
       uk: "Досліди, де зберігається вода Землі, як вона рухається й формує місцевості.",
       lt: "Sužinok, kur Žemėje kaupiamas vanduo, kaip jis juda ir keičia vietoves.",
-      lv: "Izpēti, kur glabājas Zemes ūdens, kā tas pārvietojas un veido ainavas.",
+      lv: "Izpēti, kur uzkrājas ūdens uz Zemes, kā tas pārvietojas un kā veido ainavas.",
       et: "Uuri, kus Maa vesi talletub, kuidas see liigub ja maastikku kujundab.",
       be: "Дасьледуй, дзе захоўваецца вада Зямлі, як яна рухаецца й фармуе мясьціны.",
       ka: "გამოიკვლიე, სად ინახება დედამიწის წყალი, როგორ მოძრაობს და ცვლის ადგილებს.",
