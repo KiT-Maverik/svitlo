@@ -12,7 +12,7 @@ export const cognitiveBehavioralInterventions_Skill_Data = buildSkillConfig({
     fr: "Interventions cognitivo-comportementales",
     bn: "চিন্তা ও আচরণভিত্তিক হস্তক্ষেপ",
     pt: "Intervenções cognitivo-comportamentais",
-    ur: "سنج्ञानی اور رویہ جاتی مداخلتیں",
+    ur: "ادراکی اور رویہ جاتی مداخلتیں",
     id: "Intervensi Kognitif-Perilaku",
     de: "Kognitiv-verhaltenstherapeutische Interventionen",
     ja: "認知行動的介入",
