@@ -54,7 +54,7 @@ export const nonverbalCommunication_Skill_Data = buildSkillConfig({
       vi: "Nhận biết nét mặt, cử chỉ và giọng điệu truyền thông tin như thế nào.",
       ta: "முகபாவனை, சைகை, குரல் தொனி தகவலை எவ்வாறு தெரிவிக்கின்றன என்பதை அறிக.",
       te: "ముఖ కవళికలు, హావభావాలు, స్వరధోరణి సమాచారం ఎలా ఇస్తాయో తెలుసుకోండి.",
-      mr: "चेहऱ्यावरील भाव, हावभाव आणि आवाजाचा सूर माहिती कसा देतात ते जाणून घे.",
+      mr: "चेहऱ्यावरील भाव, हावभाव आणि आवाजाचा सूर माहिती कसा देतात ते जाणून घ्या.",
       ms: "Kenali bagaimana ekspresi muka, gerak isyarat dan nada suara menyampaikan maklumat.",
       he: "זהו כיצד הבעות פנים, מחוות וטון הדיבור מעבירים מידע.",
       pl: "Rozpoznaj, jak mimika, gesty i ton głosu przekazują informacje.",

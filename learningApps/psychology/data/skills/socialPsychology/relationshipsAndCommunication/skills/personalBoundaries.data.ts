@@ -54,7 +54,7 @@ export const personalBoundaries_Skill_Data = buildSkillConfig({
       vi: "Nhận biết giới hạn mỗi người đặt ra với cơ thể, thời gian và thông tin của mình.",
       ta: "தன் உடல், நேரம், தகவல் குறித்து ஒருவர் அமைக்கும் எல்லைகளை அறிக.",
       te: "తన శరీరం, సమయం, సమాచారం గురించి వ్యక్తి పెట్టుకునే హద్దులను గుర్తించండి.",
-      mr: "स्वतःचे शरीर, वेळ आणि माहिती यांबद्दल व्यक्ती ठरवलेल्या मर्यादा ओळख.",
+      mr: "स्वतःचे शरीर, वेळ आणि माहिती यांबद्दल व्यक्ती ठरवलेल्या मर्यादा ओळखा.",
       ms: "Kenali had yang seseorang tetapkan bagi tubuh, masa dan maklumatnya.",
       he: "זהו גבולות שאדם קובע לגבי גופו, זמנו והמידע האישי שלו.",
       pl: "Rozpoznaj granice dotyczące własnego ciała, czasu i informacji.",
