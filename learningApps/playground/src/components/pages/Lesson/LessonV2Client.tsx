@@ -1,7 +1,7 @@
 'use client';
 
 import { Container } from '@mui/material';
-import { ContentBlockRenderer } from './ContentBlockRenderer/ContentBlockRenderer';
+import { ContentBlockRenderer } from '@svitlo/ui-kit/widgets';
 import { QuestionRenderer } from '@svitlo/ui-kit/questions';
 import type { LessonResponse } from '@/lib/lessons/assembleLessonResponse';
 import { useLessonProgress } from './LessonProgress/LessonProgress';
