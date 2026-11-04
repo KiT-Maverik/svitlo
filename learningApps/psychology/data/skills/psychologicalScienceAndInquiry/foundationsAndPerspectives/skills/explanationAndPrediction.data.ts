@@ -52,7 +52,7 @@ export const explanationAndPrediction_Skill_Data = buildSkillConfig({
       ko: "행동을 기술하는 것과 예측하거나 원인을 설명하는 것의 차이를 구분해 보세요.",
       tr: "Davranışı betimlemek, öngörmek ve nedenlerini açıklamak arasındaki farkı öğren.",
       vi: "Phân biệt việc mô tả hành vi với dự đoán hành vi hoặc giải thích nguyên nhân của nó.",
-      ta: "நடத்தையை விவரித்தல், முன்னறிவித்தல், அதன் காரணங்களை விளக்குதல் ஆகியவற்றின் வேறுபாட்டை அறிந்துகொள்.",
+      ta: "நடத்தையை விவரித்தல், முன்னறிவித்தல், அதன் காரணங்களை விளக்குதல் ஆகியவற்றின் வேறுபாட்டை அறிந்துகொள்ளுங்கள்.",
       te: "ప్రవర్తనను వర్ణించడం, ముందుగా అంచనా వేయడం, కారణాలను వివరించడం మధ్య తేడాను తెలుసుకోండి.",
       mr: "वर्तनाचे वर्णन करणे, भाकीत करणे आणि कारणे स्पष्ट करणे यातला फरक ओळख.",
       ms: "Bezakan antara menghuraikan tingkah laku dengan meramal atau menjelaskan puncanya.",

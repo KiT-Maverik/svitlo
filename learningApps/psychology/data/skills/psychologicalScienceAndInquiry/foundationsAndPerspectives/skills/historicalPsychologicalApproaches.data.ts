@@ -52,7 +52,7 @@ export const historicalPsychologicalApproaches_Skill_Data = buildSkillConfig({
       ko: "증거가 축적되면서 초기 심리학 이론이 어떻게 발전했는지 살펴보세요.",
       tr: "Kanıtlar geliştikçe ilk psikoloji kuramlarının nasıl değiştiğini keşfet.",
       vi: "Khám phá cách những lý thuyết tâm lý học ban đầu thay đổi khi bằng chứng ngày càng tốt hơn.",
-      ta: "சான்றுகள் மேம்பட்டபோது தொடக்ககால உளவியல் கோட்பாடுகள் எவ்வாறு மாறின என்பதை ஆராய்.",
+      ta: "சான்றுகள் மேம்பட்டபோது தொடக்ககால உளவியல் கோட்பாடுகள் எவ்வாறு மாறின என்பதை ஆராயுங்கள்.",
       te: "కొత్త ఆధారాలు లభించినప్పుడు తొలి మనస్తత్వ సిద్ధాంతాలు ఎలా మారాయో పరిశీలించండి.",
       mr: "पुरावे सुधारत गेल्यावर सुरुवातीचे मानसशास्त्रीय सिद्धांत कसे बदलले ते पाहा.",
       ms: "Terokai bagaimana teori psikologi awal berkembang apabila bukti semakin kukuh.",
