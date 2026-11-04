@@ -18,7 +18,7 @@ export const environmentalGradients_SkillGroup_Data = buildSkillGroupConfig({
     id: "Gradien Lingkungan",
     de: "Umweltgradienten",
     ja: "環境の勾配",
-    ko: "환경 경도",
+    ko: "환경 구배",
     tr: "Çevresel Gradyanlar",
     vi: "Các gradient môi trường",
     ta: "சுற்றுச்சூழல் படிநிலை மாற்றங்கள்",
