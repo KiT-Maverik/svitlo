@@ -34,7 +34,7 @@ export const motivationalMechanisms_SkillGroup_Data = buildSkillGroupConfig({
     be: "Мэханізмы матывацыі",
     ka: "მოტივაციის მექანიზმები",
     kk: "Мотивация тетіктері",
-    qm: "Motivatsiya mexanizmleri",
+    qm: "Motivatsiya mekanizmleri",
   },
   skills: {
     approachMotivation: approachMotivation_Skill_Data,
