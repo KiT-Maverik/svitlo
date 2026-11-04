@@ -1,4 +1,3 @@
-import type { LanguageCode } from '../languages';
 import type { DefineValidKeysFromSlugs } from '../misc.types';
 import type { ContentEntity_ConfigType } from './entity.types';
 import type { Flashcard } from './flashcard.types';
@@ -6,9 +5,9 @@ import type { Lesson_Locale, Locale_Options } from './locale.types';
 import type { Question_Catalog, Question_Catalog_ValidSlugs } from './questions';
 import type { Section } from './section.types';
 
-type Lesson_Parameters<SupportedLanguages extends LanguageCode> = {
+type Lesson_Parameters<SupportedLanguages extends Lesson_Locale> = {
   requireQuiz: boolean;
-  languages: Lesson_Locale<SupportedLanguages>;
+  languages: SupportedLanguages;
   sections: {
     allowNavigation: boolean;
     allowSkipping: boolean;
@@ -16,16 +15,16 @@ type Lesson_Parameters<SupportedLanguages extends LanguageCode> = {
   };
 };
 
-type Lesson_Definition = {
+type Lesson_Definition<SupportedLanguages extends Lesson_Locale> = {
   type: 'lesson';
   /** Optional key to a registered runtime icon, never JSX. */
   iconKey?: string;
-  sections: Record<string, Section<'definition', LanguageCode>>;
+  sections: Record<string, Section<'definition', SupportedLanguages>>;
   /** Explicit presentation order, independent of record insertion. */
   sectionOrder?: readonly string[];
 };
 
-type Lesson_Data<SupportedLanguages extends LanguageCode> = {
+type Lesson_Data<SupportedLanguages extends Lesson_Locale> = {
   id: string;
   slug: string;
   title: Locale_Options<SupportedLanguages>;
@@ -36,24 +35,24 @@ type Lesson_Data<SupportedLanguages extends LanguageCode> = {
   sectionOrder?: readonly string[];
 };
 
-type Lesson_Response = {
+type Lesson_Response<SupportedLanguages extends Lesson_Locale> = {
   id: string;
   slug: string;
   title: string;
-  flashcards: Flashcard<'response', LanguageCode>[];
-  parameters: Lesson_Parameters<LanguageCode>;
-  questions: Question_Catalog<'response', LanguageCode>;
-  sections: Record<string, Section<'response', LanguageCode>>;
+  flashcards: Flashcard<'response', SupportedLanguages>[];
+  parameters: Lesson_Parameters<SupportedLanguages>;
+  questions: Question_Catalog<'response', SupportedLanguages>;
+  sections: Record<string, Section<'response', SupportedLanguages>>;
   sectionOrder?: readonly string[];
 };
 
-export type Lesson<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode> = {
-  definition: Lesson_Definition;
+export type Lesson<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends Lesson_Locale> = {
+  definition: Lesson_Definition<SupportedLanguages>;
   data: Lesson_Data<SupportedLanguages>;
-  response: Lesson_Response;
+  response: Lesson_Response<SupportedLanguages>;
 }[ConfigType];
 
-export function defineLessonData<SupportedLanguages extends LanguageCode>() {
+export function defineLessonData<SupportedLanguages extends Lesson_Locale>() {
   return <const T extends Lesson<'data', SupportedLanguages>>(
     lesson: T & {
       questions: Question_Catalog_ValidSlugs<T['questions'], SupportedLanguages>;

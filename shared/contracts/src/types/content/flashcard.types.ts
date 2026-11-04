@@ -1,12 +1,12 @@
+import type { Locale_Languages } from './locale.types';
 import type { ContentBlock } from './blocks';
 import type { ContentEntity_ConfigType } from './entity.types';
-import type { LanguageCode } from '../languages';
 
 type Flashcard_Definition = {
   type: 'flashcard';
 };
 
-type Flashcard_Data<SupportedLanguages extends LanguageCode> = {
+type Flashcard_Data<SupportedLanguages extends Locale_Languages> = {
   id: string;
   isDefault?: true;
   front: readonly ContentBlock<'data', SupportedLanguages>[];
@@ -16,18 +16,18 @@ type Flashcard_Data<SupportedLanguages extends LanguageCode> = {
   flags: readonly string[];
 };
 
-type Flashcard_Response = {
+type Flashcard_Response<SupportedLanguages extends Locale_Languages> = {
   id: string;
   isDefault?: true;
-  front: readonly ContentBlock<'response', LanguageCode>[];
-  back: readonly ContentBlock<'response', LanguageCode>[];
-  hint: readonly ContentBlock<'response', LanguageCode>[];
+  front: readonly ContentBlock<'response', SupportedLanguages>[];
+  back: readonly ContentBlock<'response', SupportedLanguages>[];
+  hint: readonly ContentBlock<'response', SupportedLanguages>[];
   tags: readonly string[];
   flags: readonly string[];
 };
 
-export type Flashcard<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode> = {
+export type Flashcard<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends Locale_Languages> = {
   definition: Flashcard_Definition;
   data: Flashcard_Data<SupportedLanguages>;
-  response: Flashcard_Response;
+  response: Flashcard_Response<SupportedLanguages>;
 }[ConfigType];

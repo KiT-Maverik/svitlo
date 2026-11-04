@@ -7,9 +7,10 @@ import type {
 import { defineContentBlockCatalog } from './blocks';
 import { defineLessonData, type Lesson } from './lesson.types';
 import type { Question_AnswerWithText, Question_SelectOneAnswer } from './questions';
-import type { LanguageCode } from '../languages';
+import type { Locale_Languages } from './locale.types';
 
-type SupportedLanguages = 'en' | 'uk';
+const languages = ['en', 'uk'] as const;
+type SupportedLanguages = typeof languages;
 
 const text: ContentBlock_Text<'data', SupportedLanguages> = {
   id: 'text-id',
@@ -35,7 +36,7 @@ const definedLesson = defineLessonData<SupportedLanguages>()({
   flashcards: [],
   parameters: {
     requireQuiz: false,
-    languages: ['en', 'uk'],
+    languages,
     sections: { allowNavigation: true, allowSkipping: false, showIndexes: true },
   },
   questions: {},
@@ -51,6 +52,7 @@ const definedLesson = defineLessonData<SupportedLanguages>()({
   },
 });
 const sectionKey: 'intro' = '' as keyof typeof definedLesson.sections;
+const responseLanguages: Lesson<'response', SupportedLanguages>['parameters']['languages'] = ['en', 'uk'];
 
 // @ts-expect-error A localized value needs every selected language.
 const missingText: ContentBlock_Text<'data', SupportedLanguages> = { id: 'missing', slug: 'missing', value: { en: 'Hello' } };
@@ -58,8 +60,16 @@ const missingText: ContentBlock_Text<'data', SupportedLanguages> = { id: 'missin
 const missingAnswer: Question_AnswerWithText<'data', SupportedLanguages>['correctAnswers'][number] = { en: 'yes' };
 // @ts-expect-error The language set must be provided explicitly.
 type MissingLanguages = ContentBlock_Text<'data'>;
-// @ts-expect-error LanguageCode includes more languages than en and uk.
-const incompleteFull: ContentBlock_Text<'data', LanguageCode> = { id: 'default', slug: 'default', value: { en: 'Hello', uk: 'Привіт' } };
+// @ts-expect-error Content units receive the language tuple, not a union of codes.
+type InvalidUnion = ContentBlock_Text<'data', 'en' | 'uk'>;
+// @ts-expect-error A language outside the lesson tuple is not accepted.
+const extraLanguage: ContentBlock_Text<'data', SupportedLanguages> = { id: 'extra', slug: 'extra', value: { en: 'Hello', uk: 'Привіт', fr: 'Bonjour' } };
+// @ts-expect-error A broad language tuple includes more languages than en and uk.
+const incompleteFull: ContentBlock_Text<'data', Locale_Languages> = { id: 'default', slug: 'default', value: { en: 'Hello', uk: 'Привіт' } };
+// @ts-expect-error Lesson data must list every supported language in its declared order.
+const incompleteLessonLanguages: Lesson<'data', SupportedLanguages>['parameters']['languages'] = ['en'];
+// @ts-expect-error Lesson responses must carry the same complete list.
+const incompleteResponseLanguages: Lesson<'response', SupportedLanguages>['parameters']['languages'] = ['en'];
 
 void checkpointAnswer;
 void quizScreen;
@@ -70,6 +80,10 @@ void catalogKey;
 void lessonTitle;
 void definedLesson;
 void sectionKey;
+void responseLanguages;
 void missingText;
 void missingAnswer;
+void extraLanguage;
 void incompleteFull;
+void incompleteLessonLanguages;
+void incompleteResponseLanguages;

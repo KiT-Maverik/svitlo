@@ -1,7 +1,6 @@
 import type { ContentBlock_Data_Meta, ContentBlock_Definition_Meta, ContentBlock_Response_Meta } from './common.types';
 import type { ContentEntity_ConfigType } from '../entity.types';
-import type { LanguageCode } from '../../languages';
-import type { Locale_Options } from '../locale.types';
+import type { Locale_Languages, Locale_Options } from '../locale.types';
 
 type ContentBlock_Video_Definition = ContentBlock_Definition_Meta<'video'>;
 
@@ -12,7 +11,7 @@ type Video_Fallback<Value> = {
   retry?: Value;
 };
 
-type ContentBlock_Video_Data<SupportedLanguages extends LanguageCode> = ContentBlock_Data_Meta & {
+type ContentBlock_Video_Data<SupportedLanguages extends Locale_Languages> = ContentBlock_Data_Meta & {
   fileLocation: Locale_Options<SupportedLanguages>;
   poster: Locale_Options<SupportedLanguages>;
   title?: Locale_Options<SupportedLanguages>;
@@ -26,7 +25,7 @@ export type ContentBlock_Video_Response = ContentBlock_Response_Meta<'video'> & 
   fallback?: Video_Fallback<string>;
 };
 
-export type ContentBlock_Video<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends LanguageCode> = {
+export type ContentBlock_Video<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends Locale_Languages> = {
   definition: ContentBlock_Video_Definition;
   data: ContentBlock_Video_Data<SupportedLanguages>;
   response: ContentBlock_Video_Response;
