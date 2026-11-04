@@ -16,7 +16,7 @@ export const distinguishFormalAndFunctionalRegions_Skill_Data = buildSkillConfig
     id: "Membedakan wilayah formal dan fungsional",
     de: "Formale und funktionale Regionen unterscheiden",
     ja: "等質地域と機能地域を区別する",
-    ko: "형식 지역과 기능 지역 구분하기",
+    ko: "동질 지역과 기능 지역 구분하기",
     tr: "Biçimsel ve işlevsel bölgeleri ayırt etmek",
     vi: "Phân biệt vùng đồng nhất và vùng chức năng",
     ta: "ஒருமைப் பகுதிகளையும் செயற்பாட்டுப் பகுதிகளையும் வேறுபடுத்துதல்",

@@ -59,7 +59,7 @@ export const classifyUnconsolidatedSedimentByGrainSize_Skill_Data = buildSkillCo
       he: "הבחינו בין חצץ, חול, סילט וחרסית לפי גודל החלקיקים.",
       pl: "Rozróżniaj żwir, piasek, pył i ił na podstawie wielkości cząstek.",
       uk: "Розрізняй гравій, пісок, пилуваті частинки й глину за розміром зерен.",
-      lt: "Pagal dalelių dydį atskirk žvyrą, smėlį, dulkes ir molį.",
+      lt: "Pagal dalelių dydį atskirk žvyrą, smėlį, aleuritą ir molį.",
       lv: "Atšķir granti, smiltis, putekļus un mālu pēc daļiņu lieluma.",
       et: "Erista kruusa, liiva, aleuriiti ja savi osakeste suuruse järgi.",
       be: "Адрозьнівай жвір, пясок, пыл і гліну паводле памеру часьцінак.",

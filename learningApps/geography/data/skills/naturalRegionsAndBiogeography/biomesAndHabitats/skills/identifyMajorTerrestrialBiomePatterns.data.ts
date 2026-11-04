@@ -18,7 +18,7 @@ export const identifyMajorTerrestrialBiomePatterns_Skill_Data = buildSkillConfig
     ja: "主要な陸上バイオームの分布パターンを見つける",
     ko: "주요 육상 생물군계의 분포 양상 파악하기",
     tr: "Başlıca karasal biyomların dağılış örüntülerini belirlemek",
-    vi: "Nhận diện quy luật phân bố các quần xã sinh vật trên cạn chủ yếu",
+    vi: "Nhận diện quy luật phân bố các khu sinh học trên cạn chủ yếu",
     ta: "முக்கிய நிலவாழ் உயிர்மண்டலங்களின் பரவல் வடிவங்களை அறிதல்",
     te: "ప్రధాన భూస్థిత జీవావరణ ప్రాంతాల విస్తరణ నమూనాలను గుర్తించడం",
     mr: "प्रमुख स्थलीय जीवप्रदेशांचे वितरण नमुने ओळखणे",
