@@ -74,7 +74,7 @@ export const stressAndCoping_SkillGroup_Data = buildSkillGroupConfig({
       be: "Даведайся, як людзі ацэньваюць, перажываюць і пераадольваюць стрэс.",
       ka: "გამოიკვლიე, როგორ აფასებენ, განიცდიან და უმკლავდებიან ადამიანები სტრესს.",
       kk: "Адамдардың стрессті қалай бағалап, сезініп, жеңетінін зертте.",
-      qm: "Adamlar stressni nasıl baalağanını, keç irgenini ve onnen nasıl küreşkenini ögren.",
+      qm: "Adamlar stressni nasıl baalağanını, nasıl yaşağanını ve onnen nasıl küreşkenini ögren.",
     },
   },
 });
