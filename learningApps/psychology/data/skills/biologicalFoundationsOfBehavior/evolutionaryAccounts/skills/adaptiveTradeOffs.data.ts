@@ -65,7 +65,7 @@ export const adaptiveTradeOffs_Skill_Data = buildSkillConfig({
       be: "Зразумей, чаму карысная ў адным асяродзьдзі схільнасьць можа мець выдаткі ў іншым.",
       ka: "გაიგე, რატომ შეიძლება ერთ გარემოში სასარგებლო მიდრეკილებას მეორეში უარყოფითი შედეგები მოჰყვეს.",
       kk: "Бір ортада пайдалы бейімділік басқа ортада неге зиян әкелуі мүмкін екенін түсін.",
-      qm: "Bir muіtte faydalı olğan meyil başqa muіtte ne içün zarar ketire bilgenini añla.",
+      qm: "Bir mühitte faydalı olğan meyil başqa mühitte ne içün zarar ketire bilgenini añla.",
     },
   },
 });
