@@ -75,7 +75,7 @@ export const personalBoundariesAndViolencePrevention_SkillDomain_Data = buildSki
       be: "Распазнавай прымус і гвалт ды даведайся, як бараніць сваю бясьпеку й межы.",
       ka: "ამოიცანი იძულება და ძალადობა და ისწავლე უსაფრთხოებისა და პირადი საზღვრების დაცვა.",
       kk: "Мәжбүрлеу мен зорлықты танып, өз қауіпсіздігің мен шекараларыңды қорғауды үйрен.",
-      qm: "Mecburiylik ve zulum­nı tanıp, öz emniyetiñni ve şahsiy sıñırlarıñnı qorumağa ögren.",
+      qm: "Mecburiylik ve zulumnı tanıp, öz emniyetiñni ve şahsiy sıñırlarıñnı qorumağa ögren.",
     },
   },
 });
