@@ -175,11 +175,9 @@ function runGate(changed) {
       built.add(name);
     }
     exec('npm', ['run', 'typecheck', '--workspace', name]);
-  }
-  for (const name of targets) {
-    const pkg = all.get(name);
-    if (pkg?.path.startsWith('shared/') && pkg.scripts?.test) {
-      ensureSharedDependencies(name);
+    // Validate shared package behavior before unrelated textbooks can fail on
+    // incomplete authored data. Dependencies are built in the same pass.
+    if (pkg.path.startsWith('shared/') && pkg.scripts?.test) {
       exec('npm', ['run', 'test', '--workspace', name]);
     }
   }
