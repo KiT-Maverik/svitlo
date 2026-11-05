@@ -47,7 +47,7 @@ export const characteristicProperties_SkillGroup_Data = buildSkillGroupConfig({
     frontend: {
       en: "Explore measurable properties that help describe and identify substances.",
       zh: "探索有助于描述和识别物质的可测量性质。",
-      hi: "पदार्थों को वर्णित और पहचाने में सहायक मापनीय गुणों को जानें।",
+      hi: "पदार्थों का वर्णन करने और उन्हें पहचानने में सहायक मापनीय गुणों को जानें।",
       es: "Explora propiedades medibles que ayudan a describir e identificar sustancias.",
       ar: "استكشف خواص قابلة للقياس تساعد على وصف المواد والتعرف عليها.",
       fr: "Explore les propriétés mesurables qui permettent de décrire et d’identifier les substances.",

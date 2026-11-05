@@ -39,7 +39,7 @@ export const carbohydrateChemistry_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Recognize how sugars join together to form different carbohydrates.",
       zh: "认识糖分子如何连接，形成不同的碳水化合物。",
-      hi: "जानो कि शर्करा की इकाइयाँ मिलकर विभिन्न कार्बोहाइड्रेट कैसे बनाती हैं।",
+      hi: "जानें कि शर्करा की इकाइयाँ मिलकर विभिन्न कार्बोहाइड्रेट कैसे बनाती हैं।",
       es: "Reconoce cómo los azúcares se enlazan para formar diferentes carbohidratos.",
       ar: "تعرّف كيف ترتبط وحدات السكر لتكوّن أنواعاً مختلفة من الكربوهيدرات.",
       fr: "Reconnais comment les sucres se lient pour former différents glucides.",

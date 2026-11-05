@@ -58,7 +58,7 @@ export const molecularFormulas_Skill_Data = buildSkillConfig({
       ms: "Baca formula molekul untuk mengenal pasti atom dalam satu molekul.",
       he: "קראו נוסחה מולקולרית כדי לזהות את האטומים במולקולה אחת.",
       pl: "Odczytaj wzór cząsteczkowy, by określić atomy w jednej cząsteczce.",
-      uk: "Прочитай молекулярну формулу, щоб визначити атоми однієї молекули.",
+      uk: "Визнач за молекулярною формулою, скільки атомів кожного елемента містить одна молекула.",
       lt: "Pagal molekulinę formulę nustatyk vienos molekulės atomus.",
       lv: "Nolasi molekulāro formulu, lai noteiktu atomus vienā molekulā.",
       et: "Loe molekulivalemist, millised aatomid on ühes molekulis.",

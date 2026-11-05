@@ -39,7 +39,7 @@ export const metalReactivity_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Explain why different metals react differently under comparable conditions.",
       zh: "解释为什么不同金属在相同条件下的反应程度不同。",
-      hi: "समझाओ कि समान परिस्थितियों में अलग धातुएँ अलग तरह से अभिक्रिया क्यों करती हैं।",
+      hi: "समझाएँ कि समान परिस्थितियों में अलग धातुएँ अलग तरह से अभिक्रिया क्यों करती हैं।",
       es: "Explica por qué distintos metales reaccionan de manera diferente en condiciones comparables.",
       ar: "اشرح لماذا تتفاعل الفلزات المختلفة بطرق مختلفة في ظروف متشابهة.",
       fr: "Explique pourquoi des métaux différents réagissent différemment dans des conditions comparables.",

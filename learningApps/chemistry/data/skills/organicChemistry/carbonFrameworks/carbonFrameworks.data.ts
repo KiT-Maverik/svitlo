@@ -50,7 +50,7 @@ export const carbonFrameworks_SkillGroup_Data = buildSkillGroupConfig({
     frontend: {
       en: "Understand how carbon forms chains, rings and varied molecular structures.",
       zh: "理解碳如何形成链、环和多样的分子结构。",
-      hi: "समझो कि कार्बन कैसे शृंखलाएँ, वलय और अलग-अलग आणविक संरचनाएँ बनाता है।",
+      hi: "समझें कि कार्बन कैसे शृंखलाएँ, वलय और अलग-अलग आणविक संरचनाएँ बनाता है।",
       es: "Comprende cómo el carbono forma cadenas, anillos y diversas estructuras moleculares.",
       ar: "افهم كيف يشكّل الكربون سلاسل وحلقات وتراكيب جزيئية متنوعة.",
       fr: "Comprends comment le carbone forme des chaînes, des cycles et des structures moléculaires variées.",

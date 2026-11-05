@@ -48,7 +48,7 @@ export const inorganicChemistry_SkillDomain_Data = buildSkillDomainConfig({
     frontend: {
       en: "Explore the properties and behavior of elements, inorganic compounds and dissolved ions.",
       zh: "探索元素、无机化合物和溶解离子的性质与行为。",
-      hi: "तत्वों, अकार्बनिक यौगिकों और घुले हुए आयनों के गुणों और व्यवहार का अध्ययन करो।",
+      hi: "तत्वों, अकार्बनिक यौगिकों और घुले हुए आयनों के गुणों और व्यवहार का अध्ययन करें।",
       es: "Explora las propiedades y el comportamiento de los elementos, los compuestos inorgánicos y los iones disueltos.",
       ar: "استكشف خصائص العناصر والمركبات غير العضوية والأيونات الذائبة وسلوكها.",
       fr: "Explore les propriétés et le comportement des éléments, des composés inorganiques et des ions dissous.",

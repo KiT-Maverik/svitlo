@@ -39,7 +39,7 @@ export const nucleicAcidChemistry_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Understand the chemical building blocks and backbone of DNA and RNA.",
       zh: "了解 DNA 和 RNA 的化学组成单元及其骨架结构。",
-      hi: "DNA और RNA के रासायनिक निर्माण खंडों और मुख्य ढाँचे को समझो।",
+      hi: "DNA और RNA के रासायनिक निर्माण खंडों और मुख्य ढाँचे को समझें।",
       es: "Comprende los componentes químicos y la estructura central del ADN y ARN.",
       ar: "افهم وحدات البناء الكيميائية والهيكل الأساسي للحمضين النوويين DNA وRNA.",
       fr: "Comprends les constituants chimiques et l'ossature de l'ADN et de l'ARN.",

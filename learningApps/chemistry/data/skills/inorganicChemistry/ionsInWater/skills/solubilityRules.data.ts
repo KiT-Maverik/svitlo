@@ -39,7 +39,7 @@ export const solubilityRules_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Use solubility patterns to anticipate precipitates while checking exceptions.",
       zh: "利用溶解性规律预测沉淀，同时检查例外情况。",
-      hi: "अवक्षेप बनने का अनुमान लगाने के लिए विलेयता के पैटर्न उपयोग करो, लेकिन अपवाद भी जाँचो।",
+      hi: "अवक्षेप बनने का अनुमान लगाने के लिए विलेयता के पैटर्न उपयोग करें, लेकिन अपवाद भी जाँचें।",
       es: "Usa patrones de solubilidad para prever precipitados y comprueba las excepciones.",
       ar: "استخدم أنماط الذوبانية لتوقّع تكوّن الراسب مع التحقق من الاستثناءات.",
       fr: "Utilise les tendances de solubilité pour prévoir les précipités tout en vérifiant les exceptions.",

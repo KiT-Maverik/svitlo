@@ -39,7 +39,7 @@ export const plastics_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Understand how polymers and processing influence the properties of plastics.",
       zh: "理解聚合物结构和加工过程如何影响塑料的性质。",
-      hi: "समझो कि बहुलक और निर्माण की विधियाँ प्लास्टिक के गुणों को कैसे प्रभावित करती हैं।",
+      hi: "समझें कि बहुलक और निर्माण की विधियाँ प्लास्टिक के गुणों को कैसे प्रभावित करती हैं।",
       es: "Comprende cómo los polímeros y el procesamiento influyen en las propiedades de los plásticos.",
       ar: "افهم كيف تؤثر البوليمرات وطرق معالجتها في خصائص البلاستيك.",
       fr: "Comprends comment les polymères et leur mise en forme influencent les propriétés des plastiques.",

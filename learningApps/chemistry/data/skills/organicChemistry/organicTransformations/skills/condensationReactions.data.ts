@@ -39,7 +39,7 @@ export const condensationReactions_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Explore how two organic partners join while releasing a small molecule.",
       zh: "探索两个有机反应物如何结合并释放小分子。",
-      hi: "जानो कि दो कार्बनिक अभिकारक छोटे अणु को निकालते हुए कैसे जुड़ते हैं।",
+      hi: "जानें कि दो कार्बनिक अभिकारक छोटे अणु को निकालते हुए कैसे जुड़ते हैं।",
       es: "Explora cómo dos reactivos orgánicos se unen liberando una molécula pequeña.",
       ar: "استكشف كيف يرتبط متفاعلان عضويان مع انطلاق جزيء صغير.",
       fr: "Explore comment deux réactifs organiques s'unissent en libérant une petite molécule.",

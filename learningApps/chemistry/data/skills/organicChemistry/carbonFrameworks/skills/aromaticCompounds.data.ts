@@ -39,7 +39,7 @@ export const aromaticCompounds_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Distinguish aromatic molecular structures from ordinary carbon rings.",
       zh: "区分芳香族分子结构与普通的含碳环结构。",
-      hi: "ऐरोमैटिक आणविक संरचनाओं को सामान्य कार्बन वलयों से अलग पहचानो।",
+      hi: "ऐरोमैटिक आणविक संरचनाओं को सामान्य कार्बन वलयों से अलग पहचानें।",
       es: "Distingue las estructuras moleculares aromáticas de los anillos de carbono corrientes.",
       ar: "ميّز البنى الجزيئية العطرية من الحلقات الكربونية العادية.",
       fr: "Distingue les structures moléculaires aromatiques des simples cycles carbonés.",

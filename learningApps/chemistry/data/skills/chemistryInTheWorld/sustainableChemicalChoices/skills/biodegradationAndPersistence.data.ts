@@ -39,7 +39,7 @@ export const biodegradationAndPersistence_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Understand when substances break down in the environment and when they persist.",
       zh: "理解物质何时会在环境中分解，何时会长期存在。",
-      hi: "समझो कि पदार्थ पर्यावरण में कब टूटते हैं और कब लंबे समय तक बने रहते हैं।",
+      hi: "समझें कि पदार्थ पर्यावरण में कब टूटते हैं और कब लंबे समय तक बने रहते हैं।",
       es: "Comprende cuándo las sustancias se degradan en el ambiente y cuándo permanecen.",
       ar: "افهم متى تتحلل المواد في البيئة ومتى تبقى فيها مدة طويلة.",
       fr: "Comprends dans quelles conditions des substances se dégradent dans l'environnement ou persistent.",

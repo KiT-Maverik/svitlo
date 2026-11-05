@@ -39,7 +39,7 @@ export const alkynes_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Identify alkynes by their carbon–carbon triple bonds.",
       zh: "通过碳碳三键识别炔烃。",
-      hi: "कार्बन–कार्बन त्रिबंध के आधार पर ऐल्काइन पहचानो।",
+      hi: "कार्बन–कार्बन त्रिबंध के आधार पर ऐल्काइन पहचानें।",
       es: "Identifica los alquinos por sus enlaces triples carbono-carbono.",
       ar: "تعرّف الألكاينات من روابطها الثلاثية بين ذرات الكربون.",
       fr: "Reconnais les alcynes à leur triple liaison carbone-carbone.",

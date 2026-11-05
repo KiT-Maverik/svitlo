@@ -39,7 +39,7 @@ export const hydroxides_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Recognize hydroxide compounds and how they behave in chemical reactions.",
       zh: "识别氢氧化物及其在化学反应中的行为。",
-      hi: "हाइड्रॉक्साइड यौगिकों और उनकी रासायनिक अभिक्रियाओं को पहचानो।",
+      hi: "हाइड्रॉक्साइड यौगिकों और उनकी रासायनिक अभिक्रियाओं को पहचानें।",
       es: "Reconoce los compuestos hidróxidos y cómo se comportan en las reacciones químicas.",
       ar: "تعرّف مركبات الهيدروكسيد وكيفية تفاعلها في التفاعلات الكيميائية.",
       fr: "Reconnais les composés hydroxydes et leur comportement dans les réactions chimiques.",

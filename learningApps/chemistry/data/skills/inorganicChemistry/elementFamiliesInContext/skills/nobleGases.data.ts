@@ -39,7 +39,7 @@ export const nobleGases_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Understand why noble gases are usually unreactive but not completely incapable of bonding.",
       zh: "理解稀有气体通常不活泼，但有些也能够形成化学键。",
-      hi: "समझो कि उत्कृष्ट गैसें सामान्यतः कम अभिक्रियाशील होती हैं, लेकिन कुछ बंध बना सकती हैं।",
+      hi: "समझें कि उत्कृष्ट गैसें सामान्यतः कम अभिक्रियाशील होती हैं, लेकिन कुछ बंध बना सकती हैं।",
       es: "Comprende por qué los gases nobles suelen reaccionar poco, aunque algunos pueden formar enlaces.",
       ar: "افهم لماذا تكون الغازات النبيلة قليلة التفاعل عادةً رغم قدرة بعضها على تكوين روابط.",
       fr: "Comprends pourquoi les gaz nobles sont habituellement peu réactifs, même si certains peuvent former des liaisons.",

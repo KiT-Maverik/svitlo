@@ -27,7 +27,7 @@ export const sustainableChemicalChoices_SkillGroup_Data = buildSkillGroupConfig(
     ms: "Pilihan Kimia Mampan",
     he: "בחירות כימיות מקיימות",
     pl: "Zrównoważone wybory chemiczne",
-    uk: "Сталий вибір у хімії",
+    uk: "Екологічно відповідальні рішення в хімії",
     lt: "Tvarūs cheminiai pasirinkimai",
     lv: "Ilgtspējīgas ķīmiskās izvēles",
     et: "Kestlikud keemilised valikud",
@@ -47,7 +47,7 @@ export const sustainableChemicalChoices_SkillGroup_Data = buildSkillGroupConfig(
     frontend: {
       en: "Use chemical evidence to make better decisions about materials, waste and resources.",
       zh: "依据化学证据对材料、废弃物和资源作出更明智的决定。",
-      hi: "पदार्थों, कचरे और संसाधनों के बारे में बेहतर निर्णय लेने के लिए रासायनिक साक्ष्य का उपयोग करो।",
+      hi: "पदार्थों, कचरे और संसाधनों के बारे में बेहतर निर्णय लेने के लिए रासायनिक साक्ष्य का उपयोग करें।",
       es: "Usa pruebas químicas para tomar mejores decisiones sobre materiales, residuos y recursos.",
       ar: "استخدم الأدلة الكيميائية لاتخاذ قرارات أفضل بشأن المواد والنفايات والموارد.",
       fr: "Utilise des données chimiques pour mieux décider en matière de matériaux, de déchets et de ressources.",

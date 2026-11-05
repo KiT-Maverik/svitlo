@@ -39,7 +39,7 @@ export const nonmetals_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Explore how oxygen, nitrogen, sulfur and other nonmetals behave chemically.",
       zh: "探索氧、氮、硫和其他非金属的化学行为。",
-      hi: "ऑक्सीजन, नाइट्रोजन, सल्फर और अन्य अधातुओं के रासायनिक व्यवहार को समझो।",
+      hi: "ऑक्सीजन, नाइट्रोजन, सल्फर और अन्य अधातुओं के रासायनिक व्यवहार को समझें।",
       es: "Explora el comportamiento químico del oxígeno, nitrógeno, azufre y otros no metales.",
       ar: "استكشف السلوك الكيميائي للأكسجين والنيتروجين والكبريت وغيرها من اللافلزات.",
       fr: "Explore le comportement chimique de l'oxygène, de l'azote, du soufre et des autres non-métaux.",

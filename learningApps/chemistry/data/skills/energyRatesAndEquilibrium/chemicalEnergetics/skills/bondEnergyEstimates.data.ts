@@ -47,7 +47,7 @@ export const bondEnergyEstimates_Skill_Data = buildSkillConfig({
       pt: "Estime energia da reação pelas ligações rompidas e formadas, reconhecendo limites do modelo.",
       ur: "ٹوٹنے اور بننے والے بندوں سے تعامل کی توانائی کا اندازہ لگائیں، حدود جانیں۔",
       id: "Perkirakan energi reaksi dari ikatan yang putus dan terbentuk sambil memahami batas model.",
-      de: "Schätze Reaktionsenergie aus gelösten und gebildeten Bindungen ab und beachte Modellgrenzen.",
+      de: "Schätze die Reaktionsenergie anhand gebrochener und gebildeter Bindungen ab und beachte die Grenzen des Modells.",
       ja: "切れる結合とできる結合から反応エネルギーを見積もり、限界も理解しよう。",
       ko: "끊어지고 형성되는 결합으로 반응 에너지를 추정하며 모형의 한계를 이해하세요.",
       tr: "Kırılan ve oluşan bağlardan tepkime enerjisini tahmin et, modelin sınırlarını bil.",

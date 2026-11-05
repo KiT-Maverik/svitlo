@@ -39,7 +39,7 @@ export const greenChemistryPrinciples_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Compare chemical processes by waste, safety, energy needs and material efficiency.",
       zh: "从废弃物、安全性、能源需求和材料效率等方面比较化学过程。",
-      hi: "कचरे, सुरक्षा, ऊर्जा की आवश्यकता और सामग्री दक्षता के आधार पर रासायनिक प्रक्रियाओं की तुलना करो।",
+      hi: "कचरे, सुरक्षा, ऊर्जा की आवश्यकता और सामग्री दक्षता के आधार पर रासायनिक प्रक्रियाओं की तुलना करें।",
       es: "Compara procesos químicos según los residuos, la seguridad, la energía necesaria y la eficiencia de materiales.",
       ar: "قارن العمليات الكيميائية من حيث النفايات والسلامة والطاقة وكفاءة المواد.",
       fr: "Compare les procédés chimiques selon les déchets, la sécurité, l'énergie nécessaire et l'efficacité matérielle.",

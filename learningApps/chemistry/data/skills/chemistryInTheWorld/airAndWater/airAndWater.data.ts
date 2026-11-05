@@ -48,7 +48,7 @@ export const airAndWater_SkillGroup_Data = buildSkillGroupConfig({
     frontend: {
       en: "Investigate the chemistry of air and water, including pollutants and dissolved materials.",
       zh: "研究空气和水的化学性质，包括污染物和溶解的物质。",
-      hi: "प्रदूषकों और घुले पदार्थों सहित हवा और पानी की रासायनिक विशेषताओं की जाँच करो।",
+      hi: "प्रदूषकों और घुले पदार्थों सहित हवा और पानी की रासायनिक विशेषताओं की जाँच करें।",
       es: "Investiga la química del aire y del agua, incluidos los contaminantes y las sustancias disueltas.",
       ar: "ادرس كيمياء الهواء والماء بما في ذلك الملوثات والمواد الذائبة.",
       fr: "Étudie la chimie de l'air et de l'eau, notamment les polluants et les substances dissoutes.",

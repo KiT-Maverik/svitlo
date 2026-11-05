@@ -39,7 +39,7 @@ export const chemicalLifeCycles_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Trace a chemical substance through production, use and waste rather than examining one step.",
       zh: "追踪化学物质从生产、使用到废弃的全过程，而不仅仅观察一个环节。",
-      hi: "किसी एक चरण के बजाय उत्पादन, उपयोग और कचरे तक पदार्थ का पूरा मार्ग देखो।",
+      hi: "किसी एक चरण के बजाय उत्पादन, उपयोग और कचरे तक पदार्थ का पूरा मार्ग देखें।",
       es: "Sigue una sustancia por su producción, uso y desecho, en vez de mirar solo una etapa.",
       ar: "تتبّع المادة عبر الإنتاج والاستخدام والنفايات بدلاً من دراسة مرحلة واحدة فقط.",
       fr: "Suis une substance de sa production à son usage puis à ses déchets, plutôt qu'une seule étape.",

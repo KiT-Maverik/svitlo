@@ -58,7 +58,7 @@ export const distillation_Skill_Data = buildSkillConfig({
       ms: "Terokai bagaimana perbezaan sifat pendidihan membolehkan bahan diasingkan melalui penyulingan.",
       he: "גלו כיצד הבדלים בהתנהגות הרתיחה מאפשרים להפריד חומרים באמצעות זיקוק.",
       pl: "Odkryj, jak różnice w zachowaniu podczas wrzenia pozwalają rozdzielać substancje przez destylację.",
-      uk: "Досліди, як відмінності температур і особливостей кипіння дають змогу розділяти речовини дистиляцією.",
+      uk: "Досліджуй, як відмінності леткості дають змогу розділяти речовини дистиляцією.",
       lt: "Sužinok, kaip skirtingos virimo savybės leidžia atskirti medžiagas distiliuojant.",
       lv: "Izpēti, kā atšķirīgas viršanas īpašības ļauj atdalīt vielas destilējot.",
       et: "Uuri, kuidas erinevad keemisomadused võimaldavad aineid destilleerimise teel eraldada.",
