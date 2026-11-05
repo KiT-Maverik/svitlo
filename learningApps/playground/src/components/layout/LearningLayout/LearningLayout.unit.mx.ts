@@ -7,7 +7,7 @@ import type { LearningLayoutProgress } from '@svitlo/ui-kit/learning-layout';
 export const LearningLayout_mx = {
   prepare: (options: { locale?: 'uk-UA' | 'ar-SA'; progress?: Partial<LearningLayoutProgress> } = {}) => {
     const dispatch = vi.fn();
-    vi.mocked(usePathname).mockReturnValue('/topics/demo');
+    vi.mocked(usePathname).mockReturnValue('/lesson/d3048d21-8690-5255-b62c-984c69ac272c');
     vi.mocked(useLocale).mockReturnValue({
       locale: options.locale ?? 'uk-UA',
       setLocale: vi.fn(),
