@@ -32,6 +32,7 @@ jobs:
       - run: npm run typecheck --workspace @svitlo/contracts
       - run: npm run typecheck --workspace @svitlo/engine
       - run: npm run typecheck --workspace @svitlo/math
-      - run: npm run test --workspace @svitlo/math
+      - run: node --test scripts/check-skills-taxonomy-structure.spec.mjs
+      - run: node scripts/check-skills-taxonomy-structure.mjs
       - run: npm run lint --workspace @svitlo/math
       - run: npm run build --workspace @svitlo/math
