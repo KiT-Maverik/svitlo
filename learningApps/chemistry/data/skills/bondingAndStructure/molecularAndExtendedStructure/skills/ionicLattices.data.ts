@@ -45,7 +45,7 @@ export const ionicLattices_Skill_Data = buildSkillConfig({
       fr: "Relie les réseaux ioniques répétitifs à la fragilité, la fusion et la conduction électrique.",
       bn: "পুনরাবৃত্ত আয়নিক গঠনের সঙ্গে ভঙ্গুরতা, গলন ও বিদ্যুৎ পরিবাহিতার সম্পর্ক করো।",
       pt: "Relacione estruturas iônicas repetitivas à fragilidade, à fusão e à condução elétrica.",
-      ur: "دہراتی ہوئی آئنی ساختوں کو بھربھرے پن، پگھلنے اور برقی موصلیت سے جوڑیں۔",
+      ur: "دہراتی ہوئی آئنی ساختوں کو بھربھرے پن، پگھلنے اور برقی ترسیل سے جوڑیں۔",
       id: "Hubungkan struktur ion yang berulang dengan kerapuhan, pelelehan, dan hantaran listrik.",
       de: "Verbinde regelmäßige Ionengitter mit Sprödigkeit, Schmelzen und elektrischer Leitfähigkeit.",
       ja: "規則的なイオン配列と、もろさ・融解・電気伝導の関係を考えよう。",
