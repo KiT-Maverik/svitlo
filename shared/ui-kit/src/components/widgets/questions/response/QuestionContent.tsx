@@ -1,6 +1,6 @@
 import type { ContentBlock, Locale_Languages } from '@svitlo/engine/content';
 import { ContentBlockRenderer } from '../../ContentBlockRenderer';
-import type { UiKit_Global } from '@svitlo/contracts/ui-kit';
+import type { UiKit_Global } from '@svitlo/engine/content';
 import type { ContentBlockResponse, SceneRegistry } from '../../ContentBlockRenderer';
 
 export type QuestionBlock = ContentBlock<'response', Locale_Languages>;

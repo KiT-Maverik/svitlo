@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import NextImage from 'next/image';
 
 import type { ContentBlock_Image_Response } from '@svitlo/engine/content';
-import type { UiKit_Component } from '@svitlo/contracts/ui-kit';
+import type { UiKit_Component } from '@svitlo/engine/content';
 
 import { localizedAttributes } from '../../utils';
 import { useContentLanguage } from '../../ContentLanguageContext';

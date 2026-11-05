@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 
 import type { ContentBlock_Youtube_Response } from '@svitlo/engine/content';
-import type { UiKit_Component } from '@svitlo/contracts/ui-kit';
+import type { UiKit_Component } from '@svitlo/engine/content';
 import { localizedAttributes } from '../../utils';
 import { useContentLanguage } from '../../ContentLanguageContext';
 import {

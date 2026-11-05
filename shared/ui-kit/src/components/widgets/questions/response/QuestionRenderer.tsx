@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { Question, Locale_Languages } from '@svitlo/engine/content';
 import type { LanguageCode } from '@svitlo/engine/localization';
-import type { UiKit_Global } from '@svitlo/contracts/ui-kit';
+import type { UiKit_Global } from '@svitlo/engine/content';
 import { ContentLanguageContext, useContentLanguage } from '../../ContentBlockRenderer/ContentLanguageContext';
 import { QuestionCompletionContext } from './QuestionCompletion';
 import type { SceneRegistry } from '../../ContentBlockRenderer';

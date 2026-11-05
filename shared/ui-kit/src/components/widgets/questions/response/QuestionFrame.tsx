@@ -4,7 +4,7 @@ import { useContext, useId, useState, type ReactNode } from 'react';
 import { Box, Button, Paper, Stack, Typography } from '@mui/material';
 import type { Question, Locale_Languages } from '@svitlo/engine/content';
 import { useContentLanguage } from '../../ContentBlockRenderer/ContentLanguageContext';
-import type { UiKit_Global } from '@svitlo/contracts/ui-kit';
+import type { UiKit_Global } from '@svitlo/engine/content';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
 import { QuestionContent } from './QuestionContent';
 import { QuestionCompletionContext } from './QuestionCompletion';

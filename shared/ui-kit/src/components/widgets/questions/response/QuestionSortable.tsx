@@ -8,7 +8,7 @@ import { closestCenter, DndContext, KeyboardSensor, MouseSensor, TouchSensor, us
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
-import type { UiKit_Global } from '@svitlo/contracts/ui-kit';
+import type { UiKit_Global } from '@svitlo/engine/content';
 import { QuestionContent, type QuestionItem } from './QuestionContent';
 
 function Row({
