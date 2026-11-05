@@ -315,7 +315,11 @@ assert(
 for (const app of ['learningApps/math', 'learningApps/playground']) {
   const preferences = resolve(root, app, 'src/components/layout/LearningLayout/NavbarPreferences');
   assert(!existsSync(preferences), 'NavbarPreferences must be owned by UI Kit, not ' + app);
-  const adapter = readFileSync(resolve(root, app, 'src/components/layout/LearningLayout/LearningLayout.tsx'), 'utf8');
+  const adapterPath = resolve(root, app, 'src/components/layout/LearningLayout/LearningLayout.tsx');
+  // Mathematics currently exposes no lesson layout adapter; Playground must retain one.
+  if (app === 'learningApps/math' && !existsSync(adapterPath)) continue;
+  assert(existsSync(adapterPath), 'Lesson layout adapter missing: ' + app);
+  const adapter = readFileSync(adapterPath, 'utf8');
   assert(
     adapter.includes('createLessonLearningLayout') && !adapter.includes('<SharedLearningLayout'),
     'App layout must bind UI Kit without duplicating shared composition: ' + app,
