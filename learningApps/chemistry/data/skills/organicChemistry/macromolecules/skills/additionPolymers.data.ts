@@ -39,7 +39,7 @@ export const additionPolymers_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Recognize polymers formed by joining suitable unsaturated monomers.",
       zh: "识别由适当的不饱和单体连接形成的聚合物。",
-      hi: "ऐसे बहुलक पहचानो जो उपयुक्त असंतृप्त एकलकों को जोड़ने से बनते हैं।",
+      hi: "ऐसे बहुलक पहचानें जो उपयुक्त असंतृप्त एकलकों को जोड़ने से बनते हैं।",
       es: "Reconoce polímeros formados al unir monómeros insaturados adecuados.",
       ar: "تعرّف البوليمرات الناتجة عن اتحاد مونومرات غير مشبعة مناسبة.",
       fr: "Reconnais les polymères formés par l'assemblage de monomères insaturés adaptés.",

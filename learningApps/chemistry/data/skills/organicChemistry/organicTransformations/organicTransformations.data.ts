@@ -47,7 +47,7 @@ export const organicTransformations_SkillGroup_Data = buildSkillGroupConfig({
     frontend: {
       en: "Discover common patterns of change in organic reactions.",
       zh: "认识有机化学反应中常见的变化模式。",
-      hi: "कार्बनिक अभिक्रियाओं में बदलाव के सामान्य रूपों को जानो।",
+      hi: "कार्बनिक अभिक्रियाओं में बदलाव के सामान्य रूपों को जानें।",
       es: "Descubre patrones habituales de cambio en las reacciones orgánicas.",
       ar: "اكتشف الأنماط الشائعة للتغير في التفاعلات العضوية.",
       fr: "Découvre les changements caractéristiques des réactions organiques.",
