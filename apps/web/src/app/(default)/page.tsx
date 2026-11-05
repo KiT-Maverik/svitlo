@@ -1,5 +1,6 @@
 import { Box, Button, Container, Stack, Typography } from '@mui/material';
 import { textbook } from '@/generated/textbook';
+import { questionsDemo } from '@/generated/textbookDemo';
 
 export default function Home() {
   return (
@@ -14,15 +15,21 @@ export default function Home() {
           </Typography>
         </Box>
         <Stack direction="row" sx={{ gap: 2, flexWrap: 'wrap' }}>
-          <Button variant="contained" href={`/uk/lesson/${textbook.featuredLessonId}`}>
-            {textbook.featuredLessonLabel}
-          </Button>
-          <Button variant="outlined" href="/questions">
-            Інтерактивні запитання
-          </Button>
-          <Button variant="contained" color="secondary" href="/skillAnalytics">
-            Аналітика навичок
-          </Button>
+          {textbook.featuredLessonId && textbook.featuredLessonLabel && (
+            <Button variant="contained" href={`/uk/lesson/${textbook.featuredLessonId}`}>
+              {textbook.featuredLessonLabel}
+            </Button>
+          )}
+          {questionsDemo && (
+            <Button variant="outlined" href="/questions">
+              Інтерактивні запитання
+            </Button>
+          )}
+          {!!textbook.skillAnalyticsDomains?.length && (
+            <Button variant="contained" color="secondary" href="/skillAnalytics">
+              Аналітика навичок
+            </Button>
+          )}
         </Stack>
       </Stack>
     </Container>
