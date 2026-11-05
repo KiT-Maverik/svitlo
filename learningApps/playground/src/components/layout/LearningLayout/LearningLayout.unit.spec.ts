@@ -10,8 +10,9 @@ vi.mock('@/components/pages/Lesson/LessonProgress/LessonProgress', async importO
 import { screen, within } from '@testing-library/react';
 import { LearningLayout_fx } from './LearningLayout.unit.fx';
 import { LearningLayout_mx } from './LearningLayout.unit.mx';
-import { aria } from '@svitlo/ui-kit/learning-layout/constants';
-import { locale } from '@svitlo/ui-kit/learning-layout/locales/uk-UA';
+import { ukUiKitMessages } from '../../../../../../shared/ui-kit/src/testing/uiKitMessages.unit.fx';
+const aria = ukUiKitMessages.learningLayout;
+const locale = aria;
 
 describe('Layouts', () => {
   describe('LearningLayout', () => {
