@@ -12,6 +12,7 @@ const math = readJson('learningApps/math/package.json');
 const biology = readJson('learningApps/biology/package.json');
 const physics = readJson('learningApps/physics/package.json');
 const uiKit = readJson('shared/ui-kit/package.json');
+const nextAdapter = readJson('shared/nextjs-adapter/package.json');
 
 function walk(dir) {
   return readdirSync(dir, { withFileTypes: true }).flatMap(entry => {
@@ -195,6 +196,12 @@ for (const file of engineSources) {
     );
   }
 }
+assert(nextAdapter.name === '@svitlo/nextjs-adapter', 'Unexpected Next.js adapter package name');
+assert(playground.dependencies?.[nextAdapter.name] === nextAdapter.version,
+  'Playground must use the shared Next.js adapter');
+assert(nextAdapter.dependencies?.[uiKit.name] === uiKit.version,
+  'Next.js adapter must consume the UI Kit via public exports');
+assert(!uiKit.peerDependencies?.next, 'Framework-agnostic UI Kit must not require Next.js');
 const kitSourceRoot = resolve(root, 'shared/ui-kit/src');
 if (existsSync(kitSourceRoot)) {
   for (const file of walk(kitSourceRoot).filter(file => /\.(ts|tsx)$/.test(file))) {
@@ -204,7 +211,7 @@ if (existsSync(kitSourceRoot)) {
     const guardedSource = source.replace(/from\s*['"]next\/image['"]/g, '');
     assert(
       !/from\s*['"](?:@\/|@layout|@pages|next\/|\.\.\/\.\.\/\.\.\/\.\.\/learningApps\/)/.test(guardedSource),
-      'UI Kit must not import application or unsupported Next.js sources: ' + relative(root, file),
+      'UI Kit must not import application or Next.js sources: ' + relative(root, file),
     );
   }
 }
