@@ -180,6 +180,17 @@ function runGate(changed) {
     if (pkg.path.startsWith('shared/') && pkg.scripts?.test) {
       exec('npm', ['run', 'test', '--workspace', name]);
     }
+    // A Lesson/App Router extraction needs a real Next.js production build, not
+    // only TypeScript. Run it before unrelated textbook data checks can block CI.
+    if (name === '@svitlo/playground' && changed.some(file =>
+      file.startsWith('shared/nextjs-adapter/') ||
+      file.startsWith('shared/ui-kit/src/components/lesson/') ||
+      file.startsWith('shared/ui-kit/src/components/widgets/ContentBlockRenderer/blocks/Image/') ||
+      file.startsWith('learningApps/playground/src/app/[language]/lesson/')
+    )) {
+      exec('npm', ['run', 'build', '--workspace', name]);
+      exec('npm', ['run', 'test:components', '--workspace', name]);
+    }
   }
   if (changed.some(file =>
     file.startsWith('scripts/generate-lessons-markdown.') ||
