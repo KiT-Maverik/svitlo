@@ -43,7 +43,7 @@ export const identifyFactorsAffectingHealth_Skill_Data = buildSkillConfig({
       hi: 'समझें कि आदतें और वातावरण अन्य कारकों के साथ स्वास्थ्य को कैसे प्रभावित करते हैं।',
       es: 'Identifica cómo los hábitos y el entorno influyen en la salud junto con otros factores.',
       ar: 'حدّد كيف تؤثر العادات والبيئة في الصحة إلى جانب عوامل أخرى.',
-      fr: 'Repère comment les habitudes et l\'environnement influencent la santé avec d\'autres facteurs.',
+      fr: "Repère comment les habitudes et l'environnement influencent la santé avec d'autres facteurs.",
       bn: 'অভ্যাস ও পরিবেশ অন্যান্য কারণের সঙ্গে কীভাবে স্বাস্থ্যে প্রভাব ফেলে তা বোঝো।',
       pt: 'Identifique como hábitos e ambientes afetam a saúde junto a outros fatores.',
       ur: 'جانیں کہ عادات اور ماحول دوسرے عوامل کے ساتھ صحت پر کیسے اثر ڈالتے ہیں۔',

@@ -43,7 +43,7 @@ export const chooseAnAppropriateLevelOfHealthcare_Skill_Data = buildSkillConfig(
       hi: 'पहचानें कि कब सामान्य चिकित्सा और कब तत्काल सहायता ज़रूरी है।',
       es: 'Reconoce cuándo un problema necesita atención rutinaria o ayuda urgente.',
       ar: 'ميّز متى يلزم موعد عادي ومتى تُطلب مساعدة عاجلة.',
-      fr: 'Reconnais quand une difficulté relève des soins courants ou d\'une aide urgente.',
+      fr: "Reconnais quand une difficulté relève des soins courants ou d'une aide urgente.",
       bn: 'কখন সাধারণ চিকিৎসা আর কখন জরুরি সাহায্য দরকার তা চেনো।',
       pt: 'Reconheça quando um problema pede cuidados de rotina ou ajuda urgente.',
       ur: 'پہچانیں کہ کب معمول کی دیکھ بھال اور کب فوری مدد ضروری ہے۔',

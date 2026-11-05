@@ -9,7 +9,7 @@ export const manageFoodAllergyRisks_Skill_Data = buildSkillConfig({
     hi: 'खाद्य एलर्जी का जोखिम संभालना',
     es: 'Gestionar riesgos de alergias alimentarias',
     ar: 'إدارة مخاطر حساسية الطعام',
-    fr: 'Gérer les risques d\'allergie alimentaire',
+    fr: "Gérer les risques d'allergie alimentaire",
     bn: 'খাদ্য অ্যালার্জির ঝুঁকি সামলানো',
     pt: 'Gerir riscos de alergia alimentar',
     ur: 'غذائی الرجی کے خطرات سنبھالنا',

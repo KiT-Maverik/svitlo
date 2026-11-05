@@ -43,7 +43,7 @@ export const understandSleepNeeds_Skill_Data = buildSkillConfig({
       hi: 'जानें कि उम्र और परिस्थितियों के साथ नींद की ज़रूरतें कैसे बदलती हैं।',
       es: 'Reconoce cómo cambian las necesidades de sueño con la edad y las circunstancias.',
       ar: 'تعرّف كيف تتغير احتياجات النوم مع العمر والظروف.',
-      fr: 'Reconnais comment les besoins de sommeil évoluent selon l\'âge et la situation.',
+      fr: "Reconnais comment les besoins de sommeil évoluent selon l'âge et la situation.",
       bn: 'বয়স ও পরিস্থিতি অনুযায়ী ঘুমের চাহিদা কীভাবে বদলায় তা জানো।',
       pt: 'Reconheça como as necessidades de sono variam com a idade e as circunstâncias.',
       ur: 'سمجھیں کہ عمر اور حالات کے ساتھ نیند کی ضرورت کیسے بدلتی ہے۔',

@@ -43,7 +43,7 @@ export const indoorAirAndVentilation_Skill_Data = buildSkillConfig({
       hi: 'बाहरी खतरों को ध्यान में रखते हुए कमरे में हवा का आवागमन बढ़ाएँ।',
       es: 'Ventila para reducir la exposición en interiores sin olvidar los peligros exteriores.',
       ar: 'استخدم التهوية لتقليل التعرض داخل المكان مع مراعاة أخطار الخارج.',
-      fr: 'Aère pour réduire l\'exposition à l\'intérieur en tenant compte des dangers extérieurs.',
+      fr: "Aère pour réduire l'exposition à l'intérieur en tenant compte des dangers extérieurs.",
       bn: 'বাইরের বিপদ মাথায় রেখে ঘরের বায়ু চলাচল বাড়াও।',
       pt: 'Use a ventilação para reduzir a exposição interior, considerando riscos externos.',
       ur: 'باہر کے خطرات کا خیال رکھتے ہوئے اندر کی ہوا بہتر بنائیں۔',

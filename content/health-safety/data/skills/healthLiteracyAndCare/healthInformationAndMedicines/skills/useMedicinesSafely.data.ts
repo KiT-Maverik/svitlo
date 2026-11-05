@@ -43,7 +43,7 @@ export const useMedicinesSafely_Skill_Data = buildSkillConfig({
       hi: 'दवा के निर्देश मानें, दवाएँ साझा न करें और खुराक का अनुमान न लगाएँ।',
       es: 'Sigue las indicaciones de medicación; no compartas fármacos ni adivines dosis.',
       ar: 'اتبع تعليمات الدواء ولا تشاركه مع غيرك أو تخمّن الجرعات.',
-      fr: 'Suis les consignes de prise, ne partage pas les médicaments et n\'improvise pas les doses.',
+      fr: "Suis les consignes de prise, ne partage pas les médicaments et n'improvise pas les doses.",
       bn: 'ওষুধের নির্দেশ মেনে চলো; ওষুধ ভাগ কোরো না বা মাত্রা আন্দাজ কোরো না।',
       pt: 'Siga as orientações dos medicamentos; não os partilhe nem adivinhe doses.',
       ur: 'دوا کی ہدایات مانیں، دوا کسی کو نہ دیں اور خوراک کا اندازہ نہ لگائیں۔',

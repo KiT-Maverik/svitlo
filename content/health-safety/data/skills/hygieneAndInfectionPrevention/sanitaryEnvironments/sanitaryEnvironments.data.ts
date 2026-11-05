@@ -54,7 +54,7 @@ export const sanitaryEnvironments_SkillGroup_Data = buildSkillGroupConfig({
       hi: 'जानें कि सुरक्षित पानी, हवा और सतहें संक्रमण जोखिम को कैसे प्रभावित करती हैं।',
       es: 'Explora cómo el agua segura, el aire y las superficies afectan al riesgo de infección.',
       ar: 'اكتشف كيف يؤثر الماء المأمون والهواء والأسطح في خطر العدوى.',
-      fr: 'Découvre comment l\'eau sûre, l\'air et les surfaces influencent le risque d\'infection.',
+      fr: "Découvre comment l'eau sûre, l'air et les surfaces influencent le risque d'infection.",
       bn: 'নিরাপদ পানি, বায়ু ও পৃষ্ঠ সংক্রমণের ঝুঁকিকে কীভাবে প্রভাবিত করে তা জানো।',
       pt: 'Explore como água potável, ar e superfícies afetam o risco de infeção.',
       ur: 'جانیں کہ محفوظ پانی، ہوا اور سطحیں انفیکشن کے خطرے کو کیسے بدلتی ہیں۔',

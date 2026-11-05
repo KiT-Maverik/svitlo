@@ -9,7 +9,7 @@ export const maintainHygieneDuringFoodPreparation_Skill_Data = buildSkillConfig(
     hi: 'भोजन तैयार करते समय स्वच्छता बनाए रखना',
     es: 'Mantener la higiene al preparar alimentos',
     ar: 'الحفاظ على النظافة أثناء إعداد الطعام',
-    fr: 'Maintenir l\'hygiène pendant la préparation des aliments',
+    fr: "Maintenir l'hygiène pendant la préparation des aliments",
     bn: 'খাবার তৈরির সময় পরিচ্ছন্নতা বজায় রাখা',
     pt: 'Manter a higiene ao preparar alimentos',
     ur: 'کھانا تیار کرتے وقت صفائی برقرار رکھنا',

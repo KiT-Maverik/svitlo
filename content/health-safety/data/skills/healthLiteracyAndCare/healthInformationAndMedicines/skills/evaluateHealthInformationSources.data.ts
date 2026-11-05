@@ -9,7 +9,7 @@ export const evaluateHealthInformationSources_Skill_Data = buildSkillConfig({
     hi: 'स्वास्थ्य सूचना स्रोतों का मूल्यांकन',
     es: 'Evaluar fuentes de información sanitaria',
     ar: 'تقييم مصادر المعلومات الصحية',
-    fr: 'Évaluer les sources d\'information sanitaire',
+    fr: "Évaluer les sources d'information sanitaire",
     bn: 'স্বাস্থ্যতথ্যের উৎস যাচাই করা',
     pt: 'Avaliar fontes de informação de saúde',
     ur: 'صحت کی معلومات کے ذرائع کا جائزہ لینا',

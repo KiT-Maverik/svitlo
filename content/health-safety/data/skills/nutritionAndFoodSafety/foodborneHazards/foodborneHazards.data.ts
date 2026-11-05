@@ -17,7 +17,7 @@ export const foodborneHazards_SkillGroup_Data = buildSkillGroupConfig({
     hi: 'खाद्यजनित खतरे',
     es: 'Peligros transmitidos por alimentos',
     ar: 'المخاطر المنقولة بالغذاء',
-    fr: 'Dangers d\'origine alimentaire',
+    fr: "Dangers d'origine alimentaire",
     bn: 'খাদ্যবাহিত বিপদ',
     pt: 'Perigos alimentares',
     ur: 'خوراک سے پھیلنے والے خطرات',

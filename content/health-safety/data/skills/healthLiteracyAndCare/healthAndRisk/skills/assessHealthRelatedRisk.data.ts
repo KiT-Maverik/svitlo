@@ -43,7 +43,7 @@ export const assessHealthRelatedRisk_Skill_Data = buildSkillConfig({
       hi: 'स्वास्थ्य जोखिम की संभावना और उसके संभावित परिणामों पर विचार करें।',
       es: 'Considera la probabilidad de un riesgo para la salud y sus posibles consecuencias.',
       ar: 'فكّر في احتمال وقوع خطر صحي وآثاره المحتملة.',
-      fr: 'Réfléchis à la probabilité d\'un risque pour la santé et à ses conséquences possibles.',
+      fr: "Réfléchis à la probabilité d'un risque pour la santé et à ses conséquences possibles.",
       bn: 'স্বাস্থ্যঝুঁকির সম্ভাবনা ও তার সম্ভাব্য ফলাফল বিবেচনা করো।',
       pt: 'Considere a probabilidade e as possíveis consequências de um risco para a saúde.',
       ur: 'صحت کے خطرے کے امکان اور ممکنہ اثرات پر غور کریں۔',

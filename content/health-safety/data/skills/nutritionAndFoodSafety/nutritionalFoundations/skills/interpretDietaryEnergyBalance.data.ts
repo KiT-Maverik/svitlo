@@ -43,7 +43,7 @@ export const interpretDietaryEnergyBalance_Skill_Data = buildSkillConfig({
       hi: 'ऊर्जा के सेवन और खर्च को पूरे आहार की गुणवत्ता से अलग समझें।',
       es: 'Distingue la energía que comes y gastas de la calidad general de tu dieta.',
       ar: 'ميّز بين الطاقة المتناولة والمستهلكة وجودة الغذاء عمومًا.',
-      fr: 'Distingue l\'énergie consommée et dépensée de la qualité globale de l\'alimentation.',
+      fr: "Distingue l'énergie consommée et dépensée de la qualité globale de l'alimentation.",
       bn: 'শক্তি গ্রহণ ও খরচকে খাদ্যের সামগ্রিক মান থেকে আলাদা করে বোঝো।',
       pt: 'Distinga a energia ingerida e gasta da qualidade geral da alimentação.',
       ur: 'توانائی کے استعمال اور خرچ کو مجموعی غذائی معیار سے الگ سمجھیں۔',

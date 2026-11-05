@@ -43,7 +43,7 @@ export const hydration_Skill_Data = buildSkillConfig({
       hi: 'जानें कि गतिविधि और मौसम शरीर की पानी की ज़रूरत को कैसे बदलते हैं।',
       es: 'Comprende cómo la actividad y el entorno cambian tus necesidades de líquidos.',
       ar: 'افهم كيف يؤثر النشاط والبيئة في حاجة الجسم إلى السوائل.',
-      fr: 'Comprends comment l\'activité et l\'environnement modifient les besoins en eau.',
+      fr: "Comprends comment l'activité et l'environnement modifient les besoins en eau.",
       bn: 'কাজকর্ম ও পরিবেশ শরীরের পানির চাহিদা কীভাবে বদলায় তা বোঝো।',
       pt: 'Entenda como a atividade e o ambiente afetam a necessidade de líquidos.',
       ur: 'جانیں کہ سرگرمی اور ماحول جسم کی پانی کی ضرورت کو کیسے بدلتے ہیں۔',

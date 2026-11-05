@@ -9,7 +9,7 @@ export const respondToSignsOfInfectiousIllness_Skill_Data = buildSkillConfig({
     hi: 'संक्रामक बीमारी के संकेतों पर कार्रवाई',
     es: 'Responder a signos de enfermedad infecciosa',
     ar: 'الاستجابة لعلامات المرض المعدي',
-    fr: 'Réagir aux signes d\'une maladie infectieuse',
+    fr: "Réagir aux signes d'une maladie infectieuse",
     bn: 'সংক্রামক অসুখের লক্ষণে সাড়া দেওয়া',
     pt: 'Responder a sinais de doença infecciosa',
     ur: 'متعدی بیماری کی علامات پر ردعمل',

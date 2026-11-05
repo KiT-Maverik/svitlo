@@ -43,7 +43,7 @@ export const adaptAnErgonomicWorkspace_Skill_Data = buildSkillConfig({
       hi: 'काम की जगह में पहुँच, रोशनी और मुद्रा बदलने की सुविधा सुधारें।',
       es: 'Ajusta el área de trabajo para alcanzar objetos, tener buena luz y cambiar de postura cómodamente.',
       ar: 'اضبط مكان العمل لتسهيل الوصول والإضاءة وتغيير وضعية الجسم براحة.',
-      fr: 'Aménage le poste de travail pour atteindre les objets, bien s\'éclairer et changer de posture.',
+      fr: "Aménage le poste de travail pour atteindre les objets, bien s'éclairer et changer de posture.",
       bn: 'স্বাচ্ছন্দ্যে হাত পৌঁছানো, আলো ও ভঙ্গি বদলের জন্য কর্মস্থল সাজাও।',
       pt: 'Ajuste o local de trabalho para alcançar objetos, ter boa iluminação e mudar de postura.',
       ur: 'کام کی جگہ اس طرح بدلیں کہ ہاتھ پہنچے، روشنی ہو اور بیٹھنے کی حالت بدل سکیں۔',

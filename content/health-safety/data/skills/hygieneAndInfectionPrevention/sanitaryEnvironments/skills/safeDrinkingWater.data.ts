@@ -43,7 +43,7 @@ export const safeDrinkingWater_Skill_Data = buildSkillConfig({
       hi: 'पहचानें कि पेयजल स्रोत कब असुरक्षित हो सकता है।',
       es: 'Reconoce cuándo una fuente de agua puede no ser segura para beber.',
       ar: 'تعرّف متى قد يكون مصدر الماء غير آمن للشرب.',
-      fr: 'Reconnais quand une source d\'eau peut être impropre à la consommation.',
+      fr: "Reconnais quand une source d'eau peut être impropre à la consommation.",
       bn: 'পানীয় জলের উৎস কখন অনিরাপদ হতে পারে তা চেনো।',
       pt: 'Reconheça quando uma fonte de água pode não ser segura para beber.',
       ur: 'پہچانیں کہ پینے کا پانی کب غیر محفوظ ہو سکتا ہے۔',
