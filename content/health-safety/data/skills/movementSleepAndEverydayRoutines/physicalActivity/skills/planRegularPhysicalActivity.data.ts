@@ -45,7 +45,7 @@ export const planRegularPhysicalActivity_Skill_Data = buildSkillConfig({
       ar: 'خطط لحركة قابلة للتحقيق تناسب احتياجاتك وظروفك.',
       fr: 'Prévois des activités réalisables selon tes besoins et ta situation.',
       bn: 'নিজের প্রয়োজন ও পরিস্থিতি অনুযায়ী সম্ভবপর চলাফেরার পরিকল্পনা করো।',
-      pt: 'Planeje movimentos possíveis de acordo com as suas necessidades e condições.',
+      pt: 'Planeje movimentos possíveis de acordo com suas necessidades e condições.',
       ur: 'اپنی ضرورت اور حالات کے مطابق قابل عمل سرگرمی کی منصوبہ بندی کریں۔',
       id: 'Rencanakan gerakan yang realistis sesuai kebutuhan dan keadaanmu.',
       de: 'Plane erreichbare Bewegung passend zu deinen Bedürfnissen und Umständen.',
