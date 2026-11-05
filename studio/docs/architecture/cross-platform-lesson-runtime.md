@@ -2,6 +2,29 @@
 
 **Status:** **Partially implemented.** Playground now supplies a framework-independent textbook package to the build-selected `apps/web` Next.js host. Other textbooks remain standalone applications. Capacitor, Electron, offline delivery and the proposed session operations architecture remain future work. See [Monorepo & Independent Textbooks](./monorepo-and-textbook.md) for the repository map; do not assume proposed APIs already exist.
 
+
+## Compiled textbook distribution contract (Playground)
+
+Playground's source build now emits compiled ESM, TypeScript declarations, lazy Scene
+chunks, CSS Modules, localized lesson and Skills Analytics JSON and book-owned assets
+under `content/playground/dist/`. The package exports `@svitlo/playground`,
+`@svitlo/playground/scenes`, `/demo-questions` and `/styles`; hosts use the
+compiled npm exports instead of the textbook's source TypeScript paths.
+
+After `npm run build --workspace @svitlo/playground`, an installed host invokes
+`svitlo-playground publish --output <directory>` via npm. Publish reads the
+package-local manifest and copies prebuilt `/data/pages/lessons/…` and
+`/data/pages/skillAnalytics/…` plus optional `/textbooks/playground/…` assets.
+It never runs generators. An ownership manifest in the destination prevents
+stale-file deletion from affecting UI Kit, host, or other textbook resources.
+UI Kit flags and global UI Kit translation JSON remain host-owned staging.
+
+The source build still uses shared, repository-level generators and Engine APIs;
+the *installed distribution and publisher* do not require the authoring source
+tree, compiler aliases or Next.js. Independent React DOM tarball consumption is
+tested with esbuild; actual native packaging, offline chunk precaching and device
+verification are separate responsibilities of Electron/Capacitor hosts.
+
 ## Goal
 
 Write the Lesson UI, its React Context providers, session operations, question widgets and interactive Scenes **once**, then compile them into multiple distribution targets. Prefer one monorepo and one source package per textbook, **not** a repository or independent React implementation per textbook/platform combination.

@@ -14,6 +14,16 @@ resides at `shared/adapters/nextjs` but keeps its stable npm identity
 table below document the prior baseline and should not be treated as current
 Playground ownership.
 
+
+**Compiled distribution (Playground):** `npm run build --workspace @svitlo/playground`
+produces `content/playground/dist/` including ESM + declarations, Scene styles,
+localized lesson and Skills Analytics JSON and textbook assets. Consuming hosts
+import compiled exports and invoke the npm `svitlo-playground publish --output <dir>`
+CLI to stage prebuilt textbook-owned resources. The Web host no longer owns the
+textbook generator orchestration. UI Kit static assets remain host-staged.
+See [Playground README](../../../content/playground/README.md) for commands,
+resource URLs and isolated tarball/React DOM portability checks.
+
 ## Purpose and non-negotiable extraction constraint
 
 Svitlo **currently** combines independently deployable Next.js apps with explicit reusable library packages. A textbook has its **own package root**, curriculum, `docs/`, data, assets, configuration and tests. It must remain possible to move a textbook to a separate repository without copying another app's code or globally rewriting imports. Extracted shared packages must be installable through declared public APIs; a green monorepo build does not, on its own, prove isolated registry/tarball consumption.

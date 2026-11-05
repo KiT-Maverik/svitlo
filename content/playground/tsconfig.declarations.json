@@ -1,0 +1,23 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "incremental": false,
+    "rootDir": ".",
+    "outDir": "./dist/.declarations"
+  },
+  "include": [
+    "src/textbook/index.ts",
+    "src/textbook/questionsDemo.ts",
+    "src/components/scenes/index.ts",
+    "src/components/scenes/sceneLoader.ts",
+    "src/types/css-modules.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    ".test-build"
+  ]
+}
