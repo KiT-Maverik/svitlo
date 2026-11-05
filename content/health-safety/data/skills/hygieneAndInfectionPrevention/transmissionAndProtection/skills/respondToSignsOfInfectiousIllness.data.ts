@@ -45,7 +45,7 @@ export const respondToSignsOfInfectiousIllness_Skill_Data = buildSkillConfig({
       ar: 'تعرّف متى ينبغي تقليل المخالطة أو طلب نصيحة طبية عند المرض.',
       fr: 'Reconnais quand limiter les contacts ou demander un avis médical en cas de maladie.',
       bn: 'অসুস্থ হলে কখন অন্যদের সংস্পর্শ কমাতে বা চিকিৎসকের পরামর্শ নিতে হবে তা জানো।',
-      pt: 'Saiba quando reduzir contactos ou procurar orientação médica ao adoecer.',
+      pt: 'Saiba quando reduzir contatos ou procurar orientação médica ao adoecer.',
       ur: 'جانیں کہ بیمار ہونے پر کب میل جول کم کریں یا طبی مشورہ لیں۔',
       id: 'Kenali kapan perlu mengurangi kontak atau meminta saran medis saat sakit.',
       de: 'Erkenne, wann du bei Krankheit Kontakte verringern oder ärztlichen Rat holen solltest.',
