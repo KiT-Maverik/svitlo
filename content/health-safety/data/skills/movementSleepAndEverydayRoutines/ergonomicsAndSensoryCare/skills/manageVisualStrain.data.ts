@@ -45,7 +45,7 @@ export const manageVisualStrain_Skill_Data = buildSkillConfig({
       ar: 'خفف إجهاد العين عند القراءة الطويلة أو العمل أمام الشاشات.',
       fr: "Réduis la fatigue des yeux pendant les longues lectures ou l'utilisation d'écrans.",
       bn: 'দীর্ঘ সময় পড়া বা স্ক্রিন দেখার সময় চোখের চাপ কমাও।',
-      pt: 'Reduza a fadiga ocular durante leituras prolongadas ou uso de ecrãs.',
+      pt: 'Reduza a fadiga ocular durante leituras prolongadas ou uso de telas.',
       ur: 'طویل مطالعے یا اسکرین کے استعمال کے دوران آنکھوں کی تھکن کم کریں۔',
       id: 'Kurangi kelelahan mata saat membaca lama atau bekerja di depan layar.',
       de: 'Verringere die Augenbelastung bei langem Lesen und Arbeiten am Bildschirm.',
