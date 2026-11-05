@@ -14,7 +14,7 @@ export type LessonLearningLayoutBindings = {
   /** Supplied by the consuming app; the UI Kit never imports Next.js hooks. */
   usePathname: () => string;
   useLocale: () => { locale: Locale; setLocale: (locale: Locale) => void };
-  useLessonProgress: () => {
+  useLessonNavigation: () => {
     progress: LearningLayoutProgress;
     dispatch: (action: { type: 'back' | 'next' | 'skip' }) => void;
   };
@@ -32,7 +32,7 @@ export function createLessonLearningLayout(bindings: LessonLearningLayoutBinding
   function LessonLearningLayout({ children, topics, skippableSteps, quizStep }: LessonLearningLayoutProps) {
     const { locale, setLocale } = bindings.useLocale();
     const pathname = bindings.usePathname();
-    const { progress, dispatch } = bindings.useLessonProgress();
+    const { progress, dispatch } = bindings.useLessonNavigation();
     const { mode, systemMode, setMode } = bindings.useColorScheme();
 
     return (

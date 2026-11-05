@@ -4,13 +4,13 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useColorScheme } from '@mui/material/styles';
 import { createLessonLearningLayout } from '@svitlo/ui-kit/learning-layout';
-import { useLessonProgress } from '@/components/pages/Lesson/LessonProgress/LessonProgress';
+import { useLessonNavigation } from '@/components/pages/Lesson/LessonNavigation';
 import { useLocale } from '@/i18n/LocaleProvider/LocaleProvider';
 
 /** Next.js hooks/providers stay app-owned; the UI Kit owns all layout behavior. */
 const LessonLearningLayout = createLessonLearningLayout({
   usePathname,
-  useLessonProgress,
+  useLessonNavigation,
   useLocale,
   useColorScheme,
   linkComponent: Link,
