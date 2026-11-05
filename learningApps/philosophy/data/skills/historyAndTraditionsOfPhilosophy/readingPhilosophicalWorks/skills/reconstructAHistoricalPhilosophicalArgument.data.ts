@@ -46,7 +46,7 @@ export const reconstructAHistoricalPhilosophicalArgument_Skill_Data = buildSkill
       fr: 'Reconstitue l’argument à partir des écrits réels du philosophe.',
       bn: 'দার্শনিক সত্যিই যা লিখেছেন তা ব্যবহার করে যুক্তি পুনর্গঠন করো।',
       pt: 'Reconstrua o argumento a partir do que o filósofo realmente escreveu.',
-      ur: 'فلسفی کی اصل تحریر کی بنیاد پر دلیل دوبارہ بناؤ۔',
+      ur: 'فلسفی کی اصل تحریر کی بنیاد پر دلیل دوبارہ بنائیں۔',
       id: 'Susun kembali argumen berdasarkan tulisan asli filsuf.',
       de: 'Rekonstruiere das Argument anhand dessen, was der Philosoph tatsächlich schrieb.',
       ja: '哲学者が実際に書いた内容をもとに議論を組み立て直そう。',

@@ -59,7 +59,7 @@ export const readingPhilosophicalWorks_SkillGroup_Data = buildSkillGroupConfig({
       fr: 'Apprends à lire des œuvres philosophiques en tenant compte de leurs questions et de leur contexte.',
       bn: 'দার্শনিক লেখা পড়ার সময় তার প্রশ্ন ও প্রেক্ষাপটে মনোযোগ দিতে শেখো।',
       pt: 'Aprenda a ler obras filosóficas considerando suas questões e seu contexto.',
-      ur: 'فلسفیانہ تحریریں ان کے سوالات اور سیاق کو سمجھتے ہوئے پڑھنا سیکھو۔',
+      ur: 'فلسفیانہ تحریریں ان کے سوالات اور سیاق کو سمجھتے ہوئے پڑھنا سیکھیں۔',
       id: 'Belajar membaca karya filsafat dengan memperhatikan pertanyaan dan konteksnya.',
       de: 'Lerne, philosophische Werke mit Blick auf ihre Fragen und ihren Kontext zu lesen.',
       ja: '哲学書を読み、問いと背景に注意を向ける方法を学ぼう。',

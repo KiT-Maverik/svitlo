@@ -46,7 +46,7 @@ export const compareExistentialistAndAnalyticApproachesToAProblem_Skill_Data = b
       fr: 'Compare les deux approches sans simplifier excessivement l’une ou l’autre.',
       bn: 'কোনো ধারাকে অতিসরল না করে দুই পদ্ধতি তুলনা করো।',
       pt: 'Compare as abordagens sem simplificar demais nenhuma tradição.',
-      ur: 'دونوں روایتوں کو حد سے زیادہ سادہ بنائے بغیر موازنہ کرو۔',
+      ur: 'دونوں روایتوں کو حد سے زیادہ سادہ بنائے بغیر موازنہ کریں۔',
       id: 'Bandingkan kedua pendekatan tanpa menyederhanakan salah satunya secara berlebihan.',
       de: 'Vergleiche beide Ansätze, ohne eine Tradition zu stark zu vereinfachen.',
       ja: 'どちらの伝統も単純化しすぎずに比較しよう。',

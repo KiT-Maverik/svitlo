@@ -46,7 +46,7 @@ export const analyzeAnEnlightenmentPhilosophicalArgument_Skill_Data = buildSkill
       fr: 'Explore les arguments des Lumières sur la raison, l’autorité et la liberté.',
       bn: 'যুক্তিবোধ, কর্তৃত্ব ও স্বাধীনতা নিয়ে আলোকায়নের যুক্তি বোঝো।',
       pt: 'Explore argumentos iluministas sobre razão, autoridade e liberdade.',
-      ur: 'عقل، اختیار اور آزادی کے بارے میں روشن خیالی کے دلائل دیکھو۔',
+      ur: 'عقل، اختیار اور آزادی کے بارے میں روشن خیالی کے دلائل دیکھیں۔',
       id: 'Jelajahi argumen Pencerahan tentang akal, otoritas, dan kebebasan.',
       de: 'Untersuche Argumente der Aufklärung über Vernunft, Autorität und Freiheit.',
       ja: '理性、権威、自由について啓蒙思想が示す議論を探ろう。',
