@@ -200,9 +200,12 @@ const kitSourceRoot = resolve(root, 'shared/ui-kit/src');
 if (existsSync(kitSourceRoot)) {
   for (const file of walk(kitSourceRoot).filter(file => /\.(ts|tsx)$/.test(file))) {
     const source = readFileSync(file, 'utf8');
+    // next/image is the framework image primitive used by the UI Kit Image renderer,
+    // and Next.js is an explicit UI Kit peer dependency. Other Next/app imports stay forbidden.
+    const guardedSource = source.replace(/from\s*['"]next\/image['"]/g, '');
     assert(
-      !/from\s*['"](?:@\/|@layout|@pages|next\/|\.\.\/\.\.\/\.\.\/\.\.\/learningApps\/)/.test(source),
-      'UI Kit must not import application or Next.js sources: ' + relative(root, file),
+      !/from\s*['"](?:@\/|@layout|@pages|next\/|\.\.\/\.\.\/\.\.\/\.\.\/learningApps\/)/.test(guardedSource),
+      'UI Kit must not import application or unsupported Next.js sources: ' + relative(root, file),
     );
   }
 }
