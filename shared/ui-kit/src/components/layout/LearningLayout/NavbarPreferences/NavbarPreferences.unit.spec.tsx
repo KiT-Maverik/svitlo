@@ -5,6 +5,8 @@ import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/localization';
 import NavbarPreferences from './NavbarPreferences';
 import { ukUiKitMessages } from '../../../../testing/uiKitMessages.unit.fx';
 import { locale as lt } from '../../../../../data/components/NavbarPreferences/lt-LT.data';
+import { locale as ar } from '../../../../../data/components/NavbarPreferences/ar-SA.data';
+import { locale as en } from '../../../../../data/components/NavbarPreferences/en-US.data';
 const uk = ukUiKitMessages.navbarPreferences;
 const aria = { locale: uk.language, theme: uk.theme.dark };
 
@@ -64,6 +66,28 @@ describe('NavbarPreferences in shared UI Kit', () => {
     renderPreferences('lt-LT');
     await userEvent.hover(theme('lt-LT'));
     expect(await screen.findByText(lt.theme.light)).toBeVisible();
+  });
+
+  it('uses authored Arabic controls for an RTL language', () => {
+    const setArabic = vi.fn();
+    render(<div dir="rtl" lang="ar-SA">
+      <NavbarPreferences
+        locale="ar-SA"
+        messages={ar}
+        onLocaleChange={setArabic}
+        mode="dark"
+        onThemeChange={setMode}
+      />
+    </div>);
+    expect(screen.getByRole('combobox', { name: ar.language })).toBeVisible();
+    expect(screen.getByRole('switch', { name: ar.theme.dark })).toBeChecked();
+    expect(ar.language).not.toEqual(uk.language);
+  });
+
+  it('uses the language-specific English labels, not Ukrainian fallback', () => {
+    expect(en.language).toBe('Language');
+    expect(en.theme.dark).toBe('Dark theme');
+    expect(en.theme.light).toBe('Light theme');
   });
 
   it('uses the explicitly supplied messages without a runtime locale fallback', () => {
