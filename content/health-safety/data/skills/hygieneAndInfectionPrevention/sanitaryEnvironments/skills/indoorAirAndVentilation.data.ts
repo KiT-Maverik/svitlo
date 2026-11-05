@@ -53,7 +53,7 @@ export const indoorAirAndVentilation_Skill_Data = buildSkillConfig({
       ko: '실외 위험을 고려하면서 환기로 실내 노출을 줄여 보세요.',
       tr: 'Dış tehlikeleri gözeterek içerideki maruziyeti havalandırmayla azalt.',
       vi: 'Thông gió để giảm phơi nhiễm trong nhà, đồng thời chú ý nguy cơ bên ngoài.',
-      ta: 'வெளிப்புற ஆபத்துகளை கவனித்து காற்றோட்டம் மூலம் உள்ளே பாதிப்பைக் குறை.',
+      ta: 'வெளிப்புற ஆபத்துகளை கவனித்து காற்றோட்டம் மூலம் உள்ளே பாதிப்பைக் குறைக்கவும்.',
       te: 'బయటి ప్రమాదాలను పరిగణిస్తూ గాలి ప్రసరణతో ఇంట్లోని హానికర పరిచయాన్ని తగ్గించండి.',
       mr: 'बाहेरील धोके लक्षात घेऊन घरात हवा खेळती ठेव आणि संपर्क कमी कर.',
       ms: 'Gunakan pengudaraan untuk mengurangkan pendedahan dalam rumah sambil menilai bahaya luar.',

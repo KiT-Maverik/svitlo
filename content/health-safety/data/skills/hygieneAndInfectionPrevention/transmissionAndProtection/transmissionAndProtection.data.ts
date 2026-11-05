@@ -68,7 +68,7 @@ export const transmissionAndProtection_SkillGroup_Data = buildSkillGroupConfig({
       ko: '감염이 전파되는 경로와 경로별 적절한 예방책을 알아보세요.',
       tr: 'Enfeksiyonların nasıl yayıldığını ve her yol için uygun önlemleri öğren.',
       vi: 'Tìm hiểu đường lây nhiễm và biện pháp phòng ngừa phù hợp từng đường.',
-      ta: 'தொற்று எவ்வாறு பரவுகிறது, ஒவ்வொரு வழிக்கும் எந்தத் தடுப்பு முறை ஏற்றது என அறி.',
+      ta: 'தொற்று எவ்வாறு பரவுகிறது, ஒவ்வொரு வழிக்கும் எந்தத் தடுப்பு முறை ஏற்றது என அறியுங்கள்.',
       te: 'సంక్రమణ ఎలా వ్యాపిస్తుందో, ప్రతి మార్గానికి ఏ జాగ్రత్తలు తగినవో తెలుసుకోండి.',
       mr: 'संसर्ग कसा पसरतो आणि प्रत्येक मार्गासाठी कोणती खबरदारी योग्य ते पाहा.',
       ms: 'Ketahui bagaimana jangkitan merebak dan langkah berjaga-jaga bagi setiap laluan.',

@@ -53,7 +53,7 @@ export const respondToSignsOfInfectiousIllness_Skill_Data = buildSkillConfig({
       ko: '아플 때 언제 사람과의 접촉을 줄이거나 진료를 받아야 할지 알아보세요.',
       tr: 'Hastayken ne zaman teması azaltman veya tıbbi görüş alman gerektiğini öğren.',
       vi: 'Biết khi nào nên hạn chế tiếp xúc hoặc hỏi ý kiến bác sĩ khi ốm.',
-      ta: 'நோயின்போது எப்போது தொடர்பைக் குறைக்க அல்லது மருத்துவ ஆலோசனை பெற வேண்டும் என அறி.',
+      ta: 'நோயின்போது எப்போது தொடர்பைக் குறைக்க அல்லது மருத்துவ ஆலோசனை பெற வேண்டும் என அறியுங்கள்.',
       te: 'అనారోగ్యంలో ఎప్పుడు ఇతరులతో కలవడం తగ్గించాలి లేదా వైద్య సలహా తీసుకోవాలో గుర్తించండి.',
       mr: 'आजारी असताना संपर्क कधी कमी करायचा किंवा वैद्यकीय सल्ला घ्यायचा ते ओळख.',
       ms: 'Kenal pasti bila perlu mengurangkan pergaulan atau mendapatkan nasihat perubatan ketika sakit.',

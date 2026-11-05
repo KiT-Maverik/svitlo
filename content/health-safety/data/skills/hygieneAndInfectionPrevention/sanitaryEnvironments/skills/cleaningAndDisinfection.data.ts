@@ -53,7 +53,7 @@ export const cleaningAndDisinfection_Skill_Data = buildSkillConfig({
       ko: '일상 청소와 필요한 소독을 구별하고 세제를 잘못 사용하지 마세요.',
       tr: 'Günlük temizliği hedefli dezenfeksiyondan ayır ve kimyasalları yanlış kullanma.',
       vi: 'Phân biệt lau dọn hằng ngày với khử khuẩn chuyên biệt và tránh dùng sai hóa chất.',
-      ta: 'வழக்கமான சுத்தம் மற்றும் இலக்கு கிருமிநீக்கத்தை வேறுபடுத்து; இரசாயனத்தைத் தவறாகப் பயன்படுத்தாதே.',
+      ta: 'வழக்கமான சுத்தம் மற்றும் இலக்கு கிருமிநீக்கத்தை வேறுபடுத்துங்கள்; இரசாயனத்தைத் தவறாகப் பயன்படுத்த வேண்டாம்.',
       te: 'సాధారణ శుభ్రత, అవసరమైన క్రిమిసంహారం వేరు చేసి రసాయనాలను తప్పుగా వాడకండి.',
       mr: 'रोजची सफाई आणि खास निर्जंतुकीकरण यांत फरक कर; रसायने चुकीची वापरू नकोस.',
       ms: 'Bezakan pembersihan biasa daripada nyahkuman khusus dan elakkan salah guna bahan kimia.',

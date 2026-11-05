@@ -53,7 +53,7 @@ export const recognizeInfectionTransmissionRoutes_Skill_Data = buildSkillConfig(
       ko: '접촉, 호흡기, 음식 등 감염 전파 경로를 알아보세요.',
       tr: 'Temas, solunum, gıda ve diğer bulaşma yollarını tanı.',
       vi: 'Nhận biết lây nhiễm qua tiếp xúc, hô hấp, thực phẩm và các đường khác.',
-      ta: 'தொடுதல், சுவாசம், உணவு மற்றும் பிற தொற்றுப் பாதைகளை அறி.',
+      ta: 'தொடுதல், சுவாசம், உணவு மற்றும் பிற தொற்றுப் பாதைகளை அறியுங்கள்.',
       te: 'స్పర్శ, శ్వాస, ఆహారం, ఇతర మార్గాల ద్వారా సంక్రమణను గుర్తించండి.',
       mr: 'स्पर्श, श्वसन, अन्न आणि इतर संसर्गमार्ग ओळख.',
       ms: 'Kenal pasti penularan melalui sentuhan, pernafasan, makanan dan laluan lain.',

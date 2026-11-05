@@ -53,7 +53,7 @@ export const safeContactWithBloodAndBodyFluids_Skill_Data = buildSkillConfig({
       ko: '혈액과 체액을 다룰 때 보호 조치가 필요한 이유를 알아보세요.',
       tr: 'Kan ve vücut sıvılarıyla uğraşırken neden korunmak gerektiğini anla.',
       vi: 'Hiểu vì sao cần biện pháp bảo vệ khi xử lý máu và dịch cơ thể.',
-      ta: 'இரத்தத்தையும் உடல்திரவங்களையும் கையாளும்போது ஏன் பாதுகாப்பு தேவை என அறி.',
+      ta: 'இரத்தத்தையும் உடல்திரவங்களையும் கையாளும்போது ஏன் பாதுகாப்பு தேவை என அறியுங்கள்.',
       te: 'రక్తం, శరీర ద్రవాలను నిర్వహించేటప్పుడు రక్షణ ఎందుకు అవసరమో అర్థం చేసుకోండి.',
       mr: 'रक्त व शरीरद्रव हाताळताना संरक्षण का आवश्यक आहे ते समज.',
       ms: 'Fahami mengapa darah dan cecair badan memerlukan langkah perlindungan.',

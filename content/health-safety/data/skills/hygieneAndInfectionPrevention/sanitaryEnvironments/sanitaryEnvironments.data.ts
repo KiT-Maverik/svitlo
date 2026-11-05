@@ -64,7 +64,7 @@ export const sanitaryEnvironments_SkillGroup_Data = buildSkillGroupConfig({
       ko: '안전한 물, 공기, 표면이 감염 위험에 미치는 영향을 알아보세요.',
       tr: 'Güvenli suyun, havanın ve yüzeylerin enfeksiyon riskini nasıl etkilediğini keşfet.',
       vi: 'Tìm hiểu nước sạch, không khí và bề mặt ảnh hưởng nguy cơ nhiễm trùng ra sao.',
-      ta: 'பாதுகாப்பான குடிநீர், காற்று, பரப்புகள் தொற்று அபாயத்தை எவ்வாறு மாற்றுகின்றன என அறி.',
+      ta: 'பாதுகாப்பான குடிநீர், காற்று, பரப்புகள் தொற்று அபாயத்தை எவ்வாறு மாற்றுகின்றன என அறியுங்கள்.',
       te: 'సురక్షిత నీరు, గాలి, ఉపరితలాలు సంక్రమణ ప్రమాదాన్ని ఎలా ప్రభావితం చేస్తాయో తెలుసుకోండి.',
       mr: 'सुरक्षित पाणी, हवा आणि पृष्ठभाग संसर्गाची जोखीम कशी बदलतात ते पाहा.',
       ms: 'Terokai bagaimana air selamat, udara dan permukaan mempengaruhi risiko jangkitan.',
