@@ -1,152 +1,490 @@
 import type { LanguageCode } from '@svitlo/engine/localization';
 import type { UiKit_Component } from '@svitlo/engine/content';
 
-/** Author-time only. Publish selected messages as a per-locale JSON response. */
-export const data = {
-  "en": {
-    "steps": {
-      "navigation": "Lesson steps"
-    }
-  },
-  "zh": {
-    "steps": {
-      "navigation": "课程步骤"
-    }
-  },
-  "hi": {
-    "steps": {
-      "navigation": "पाठ के चरण"
-    }
-  },
-  "es": {
-    "steps": {
-      "navigation": "Etapas de la lección"
-    }
-  },
-  "ar": {
-    "steps": {
-      "navigation": "مراحل الدرس"
-    }
-  },
-  "fr": {
-    "steps": {
-      "navigation": "Étapes de la leçon"
-    }
-  },
-  "bn": {
-    "steps": {
-      "navigation": "পাঠের ধাপ"
-    }
-  },
-  "pt": {
-    "steps": {
-      "navigation": "Etapas da aula"
-    }
-  },
-  "ur": {
-    "steps": {
-      "navigation": "سبق کے مراحل"
-    }
-  },
-  "id": {
-    "steps": {
-      "navigation": "Tahapan pelajaran"
-    }
-  },
-  "de": {
-    "steps": {
-      "navigation": "Lektionsschritte"
-    }
-  },
-  "ja": {
-    "steps": {
-      "navigation": "レッスンのステップ"
-    }
-  },
-  "ko": {
-    "steps": {
-      "navigation": "수업 단계"
-    }
-  },
-  "tr": {
-    "steps": {
-      "navigation": "Ders aşamaları"
-    }
-  },
-  "vi": {
-    "steps": {
-      "navigation": "Các bước của bài học"
-    }
-  },
-  "ta": {
-    "steps": {
-      "navigation": "பாடத்தின் படிகள்"
-    }
-  },
-  "te": {
-    "steps": {
-      "navigation": "పాఠం దశలు"
-    }
-  },
-  "mr": {
-    "steps": {
-      "navigation": "धड्याचे टप्पे"
-    }
-  },
-  "ms": {
-    "steps": {
-      "navigation": "Langkah pelajaran"
-    }
-  },
-  "he": {
-    "steps": {
-      "navigation": "שלבי השיעור"
-    }
-  },
-  "pl": {
-    "steps": {
-      "navigation": "Etapy lekcji"
-    }
-  },
-  "uk": {
-    "steps": {
-      "navigation": "Етапи уроку"
-    }
-  },
-  "lt": {
-    "steps": {
-      "navigation": "Pamokos etapai"
-    }
-  },
-  "lv": {
-    "steps": {
-      "navigation": "Stundas posmi"
-    }
-  },
-  "et": {
-    "steps": {
-      "navigation": "Tunni etapid"
-    }
-  },
-  "be": {
-    "steps": {
-      "navigation": "Этапы ўроку"
-    }
-  },
-  "ka": {
-    "steps": {
-      "navigation": "გაკვეთილის ეტაპები"
-    }
-  },
-  "kk": {
-    "steps": {
-      "navigation": "Сабақ кезеңдері"
-    }
-  },
-  "qm": {
-    "steps": {
-      "navigation": "Dersniñ basqıçları"
-    }
-  }
+/** Complete authored Lesson UI labels. These are build-time only; no runtime TS imports. */
+function dictionary([navigation, title, description, correctAnswers, scoreTemplate, note, home,
+  questionNavigation, correct, incorrect, unanswered, deferred]: readonly [
+    string, string, string, string, string, string, string, string, string, string, string, string
+  ]) {
+  return {
+    steps: { navigation },
+    celebration: { title, description, correctAnswers, scoreTemplate, note, home },
+    questionProgress: {
+      navigation: questionNavigation,
+      status: { correct, incorrect, unanswered, deferred },
+    },
+  };
 }
-  satisfies UiKit_Component<'lesson', 'data', LanguageCode>;
+
+const uk = {
+  steps: { navigation: 'Етапи уроку' },
+  celebration: {
+    title: 'Вітаємо, ви завершили роботу з цим уроком!',
+    description: 'Теорія, практика, флеш-картки та тест — усі етапи позаду.',
+    correctAnswers: 'Правильних відповідей:',
+    scoreTemplate: "{score} із {total}",
+    note: 'Завершення уроку не означає, що всі відповіді були правильними — до матеріалу завжди можна повернутися.',
+    home: 'До головної',
+  },
+  questionProgress: {
+    navigation: 'Статус запитань',
+    status: {
+      correct: 'Правильна відповідь',
+      incorrect: 'Неправильна відповідь',
+      unanswered: 'Ще не відповіли',
+      deferred: 'Відкладено',
+    },
+  },
+} as const;
+
+const lt = {
+  steps: { navigation: 'Pamokos etapai' },
+  celebration: {
+    title: 'Sveikiname! Baigėte šią pamoką!',
+    description: 'Teorija, praktika, mokymosi kortelės ir testas — visi etapai baigti.',
+    correctAnswers: 'Teisingų atsakymų:',
+    scoreTemplate: "{score} iš {total}",
+    note: 'Pamokos baigimas nereiškia, kad visi atsakymai buvo teisingi — visada galite grįžti prie medžiagos.',
+    home: 'Į pradžią',
+  },
+  questionProgress: {
+    navigation: 'Klausimų būsena',
+    status: {
+      correct: 'Teisingas atsakymas',
+      incorrect: 'Neteisingas atsakymas',
+      unanswered: 'Dar neatsakyta',
+      deferred: 'Atidėta',
+    },
+  },
+} as const;
+
+const lv = {
+  steps: { navigation: 'Nodarbības posmi' },
+  celebration: {
+    title: 'Apsveicam! Nodarbība pabeigta!',
+    description: 'Teorija, prakse, mācību kartītes un tests — visi posmi ir aiz muguras.',
+    correctAnswers: 'Pareizās atbildes:',
+    scoreTemplate: "{score} no {total}",
+    note: 'Nodarbības pabeigšana nenozīmē, ka visas atbildes bija pareizas — pie materiāla vienmēr var atgriezties.',
+    home: 'Uz sākumu',
+  },
+  questionProgress: {
+    navigation: 'Jautājumu statuss',
+    status: {
+      correct: 'Pareiza atbilde',
+      incorrect: 'Nepareiza atbilde',
+      unanswered: 'Vēl nav atbildēts',
+      deferred: 'Atlikts',
+    },
+  },
+} as const;
+
+const et = {
+  steps: { navigation: 'Tunni etapid' },
+  celebration: {
+    title: 'Palju õnne! Olete selle tunni lõpetanud!',
+    description: 'Teooria, praktika, õppekaardid ja test — kõik etapid on läbitud.',
+    correctAnswers: 'Õigeid vastuseid:',
+    scoreTemplate: "{score} / {total}",
+    note: 'Tunni lõpetamine ei tähenda, et kõik vastused olid õiged — materjali juurde saab alati tagasi tulla.',
+    home: 'Avalehele',
+  },
+  questionProgress: {
+    navigation: 'Küsimuste olek',
+    status: {
+      correct: 'Õige vastus',
+      incorrect: 'Vale vastus',
+      unanswered: 'Veel vastamata',
+      deferred: 'Edasi lükatud',
+    },
+  },
+} as const;
+
+const be = {
+  steps: { navigation: 'Этапы ўроку' },
+  celebration: {
+    title: 'Віншуем! Вы скончылі гэты ўрок!',
+    description: 'Тэорыя, практыка, навучальныя карткі і тэст — усе этапы пройдзеныя.',
+    correctAnswers: 'Правільных адказаў:',
+    scoreTemplate: "{score} з {total}",
+    note: 'Завяршэньне ўроку не азначае, што ўсе адказы былі правільнымі — да матэрыялу заўсёды можна вярнуцца.',
+    home: 'На галоўную',
+  },
+  questionProgress: {
+    navigation: 'Стан пытаньняў',
+    status: {
+      correct: 'Правільны адказ',
+      incorrect: 'Няправільны адказ',
+      unanswered: 'Яшчэ няма адказу',
+      deferred: 'Адкладзена',
+    },
+  },
+} as const;
+
+const ka = {
+  steps: { navigation: 'გაკვეთილის ეტაპები' },
+  celebration: {
+    title: 'გილოცავთ! თქვენ დაასრულეთ ეს გაკვეთილი!',
+    description: 'თეორია, პრაქტიკა, სასწავლო ბარათები და ტესტი — ყველა ეტაპი დასრულებულია.',
+    correctAnswers: 'სწორი პასუხები:',
+    scoreTemplate: "{score} / {total}",
+    note: 'გაკვეთილის დასრულება არ ნიშნავს, რომ ყველა პასუხი სწორი იყო — მასალას ყოველთვის შეგიძლიათ დაუბრუნდეთ.',
+    home: 'მთავარზე დაბრუნება',
+  },
+  questionProgress: {
+    navigation: 'კითხვების სტატუსი',
+    status: {
+      correct: 'სწორი პასუხი',
+      incorrect: 'არასწორი პასუხი',
+      unanswered: 'პასუხი ჯერ არ არის',
+      deferred: 'გადადებულია',
+    },
+  },
+} as const;
+
+const kk = {
+  steps: { navigation: 'Сабақ кезеңдері' },
+  celebration: {
+    title: 'Құттықтаймыз! Сіз бұл сабақты аяқтадыңыз!',
+    description: 'Теория, практика, оқу карточкалары мен тест — барлық кезеңдер аяқталды.',
+    correctAnswers: 'Дұрыс жауаптар:',
+    scoreTemplate: "{score} / {total}",
+    note: 'Сабақты аяқтау барлық жауап дұрыс болды дегенді білдірмейді — материалға әрқашан қайта орала аласыз.',
+    home: 'Басты бетке',
+  },
+  questionProgress: {
+    navigation: 'Сұрақтар күйі',
+    status: {
+      correct: 'Дұрыс жауап',
+      incorrect: 'Қате жауап',
+      unanswered: 'Әлі жауап берілмеген',
+      deferred: 'Кейінге қалдырылған',
+    },
+  },
+} as const;
+
+const qm = {
+  steps: { navigation: 'Dersniñ basamaqları' },
+  celebration: {
+    title: 'Tebrikler, sen bu dersni bitirdiñ!',
+    description: 'Nazariye, ameliyat, bilgi kartları ve sınav — bütün basamaqlar artında qaldı.',
+    correctAnswers: 'Doğru cevaplarnıñ sayısı:',
+    scoreTemplate: "{score} / {total}",
+    note: 'Dersni bitirüv bütün cevaplarnıñ doğru olğanını bildirmey. Malümatqa er vaqıt qaytıp ola bilirsiñ.',
+    home: 'Baş saifege',
+  },
+  questionProgress: {
+    navigation: 'Suallerniñ alı',
+    status: {
+      correct: 'Doğru cevap',
+      incorrect: 'Yañlış cevap',
+      unanswered: 'Cevap berilmedi',
+      deferred: 'Soñrağa qaldırıldı',
+    },
+  },
+} as const;
+
+export const data = {
+  en: dictionary([
+    "Lesson steps",
+    "Congratulations! You have completed this lesson!",
+    "Theory, practice, flashcards and quiz — every stage is complete.",
+    "Correct answers:",
+    "{score} of {total}",
+    "Completing the lesson does not mean every answer was correct — you can always revisit the material.",
+    "Home",
+    "Question status",
+    "Correct answer",
+    "Incorrect answer",
+    "Not answered yet",
+    "Deferred"
+  ]),
+  zh: dictionary([
+    "课程步骤",
+    "恭喜！你已经完成本课！",
+    "理论、练习、学习卡和测验——所有环节都已完成。",
+    "正确答案数：",
+    "{score} / {total}",
+    "完成课程并不代表每道题都答对了——你随时可以回来复习。",
+    "首页",
+    "题目状态",
+    "回答正确",
+    "回答错误",
+    "尚未回答",
+    "稍后回答"
+  ]),
+  hi: dictionary([
+    "पाठ के चरण",
+    "बधाई हो! आपने यह पाठ पूरा कर लिया है!",
+    "सिद्धांत, अभ्यास, फ्लैशकार्ड और परीक्षा — सभी चरण पूरे हो गए हैं।",
+    "सही उत्तर:",
+    "{total} में से {score}",
+    "पाठ पूरा करने का अर्थ यह नहीं है कि सभी उत्तर सही थे — आप सामग्री को फिर से पढ़ सकते हैं।",
+    "मुख्य पृष्ठ",
+    "प्रश्नों की स्थिति",
+    "सही उत्तर",
+    "गलत उत्तर",
+    "अभी उत्तर नहीं दिया",
+    "स्थगित"
+  ]),
+  es: dictionary([
+    "Etapas de la lección",
+    "¡Enhorabuena! ¡Has terminado esta lección!",
+    "Teoría, práctica, tarjetas didácticas y prueba: has completado todas las etapas.",
+    "Respuestas correctas:",
+    "{score} de {total}",
+    "Terminar la lección no significa que todas las respuestas fueran correctas; siempre puedes repasar el material.",
+    "Inicio",
+    "Estado de las preguntas",
+    "Respuesta correcta",
+    "Respuesta incorrecta",
+    "Aún sin responder",
+    "Aplazada"
+  ]),
+  ar: dictionary([
+    "مراحل الدرس",
+    "تهانينا! لقد أكملت هذا الدرس!",
+    "النظرية والتطبيق وبطاقات المراجعة والاختبار — لقد أكملت جميع المراحل.",
+    "الإجابات الصحيحة:",
+    "{score} من {total}",
+    "إكمال الدرس لا يعني أن جميع إجاباتك كانت صحيحة — يمكنك دائمًا مراجعة المادة.",
+    "الصفحة الرئيسية",
+    "حالة الأسئلة",
+    "إجابة صحيحة",
+    "إجابة خاطئة",
+    "لم تتم الإجابة بعد",
+    "مؤجل"
+  ]),
+  fr: dictionary([
+    "Étapes de la leçon",
+    "Félicitations ! Vous avez terminé cette leçon !",
+    "Théorie, pratique, fiches de révision et quiz : toutes les étapes sont terminées.",
+    "Bonnes réponses :",
+    "{score} sur {total}",
+    "Terminer la leçon ne signifie pas que toutes les réponses étaient correctes ; vous pouvez toujours revoir le contenu.",
+    "Accueil",
+    "Statut des questions",
+    "Bonne réponse",
+    "Mauvaise réponse",
+    "Pas encore de réponse",
+    "Reportée"
+  ]),
+  bn: dictionary([
+    "পাঠের ধাপ",
+    "অভিনন্দন! আপনি এই পাঠটি শেষ করেছেন!",
+    "তত্ত্ব, অনুশীলন, ফ্ল্যাশকার্ড ও কুইজ — সব ধাপ সম্পন্ন হয়েছে।",
+    "সঠিক উত্তর:",
+    "{total}টির মধ্যে {score}টি",
+    "পাঠ শেষ করার অর্থ এই নয় যে সব উত্তর সঠিক ছিল — আপনি সব সময় আবার বিষয়বস্তু পড়তে পারেন।",
+    "মূল পাতা",
+    "প্রশ্নের অবস্থা",
+    "সঠিক উত্তর",
+    "ভুল উত্তর",
+    "এখনও উত্তর দেওয়া হয়নি",
+    "পরে উত্তর দেওয়া হবে"
+  ]),
+  pt: dictionary([
+    "Etapas da aula",
+    "Parabéns! Você concluiu esta aula!",
+    "Teoria, prática, cartões de estudo e teste — todas as etapas foram concluídas.",
+    "Respostas corretas:",
+    "{score} de {total}",
+    "Concluir a aula não significa que todas as respostas estavam corretas — você sempre pode revisar o conteúdo.",
+    "Início",
+    "Status das questões",
+    "Resposta correta",
+    "Resposta incorreta",
+    "Ainda não respondida",
+    "Adiada"
+  ]),
+  ur: dictionary([
+    "سبق کے مراحل",
+    "مبارک ہو! آپ نے یہ سبق مکمل کر لیا ہے!",
+    "نظریہ، مشق، فلیش کارڈز اور امتحان — تمام مراحل مکمل ہو گئے ہیں۔",
+    "درست جوابات:",
+    "{total} میں سے {score}",
+    "سبق مکمل کرنے کا مطلب یہ نہیں کہ ہر جواب درست تھا — آپ مواد کو دوبارہ پڑھ سکتے ہیں۔",
+    "مرکزی صفحہ",
+    "سوالات کی حالت",
+    "درست جواب",
+    "غلط جواب",
+    "ابھی جواب نہیں دیا",
+    "بعد کے لیے مؤخر"
+  ]),
+  id: dictionary([
+    "Tahapan pelajaran",
+    "Selamat! Kamu telah menyelesaikan pelajaran ini!",
+    "Teori, latihan, kartu belajar, dan kuis — semua tahap telah selesai.",
+    "Jawaban benar:",
+    "{score} dari {total}",
+    "Menyelesaikan pelajaran bukan berarti semua jawaban benar — kamu selalu dapat mempelajari materinya kembali.",
+    "Beranda",
+    "Status pertanyaan",
+    "Jawaban benar",
+    "Jawaban salah",
+    "Belum dijawab",
+    "Ditunda"
+  ]),
+  de: dictionary([
+    "Lektionsschritte",
+    "Herzlichen Glückwunsch! Du hast diese Lektion abgeschlossen!",
+    "Theorie, Praxis, Lernkarten und Test – alle Schritte sind geschafft.",
+    "Richtige Antworten:",
+    "{score} von {total}",
+    "Der Abschluss der Lektion bedeutet nicht, dass alle Antworten richtig waren – du kannst den Stoff jederzeit wiederholen.",
+    "Startseite",
+    "Fragenstatus",
+    "Richtige Antwort",
+    "Falsche Antwort",
+    "Noch nicht beantwortet",
+    "Zurückgestellt"
+  ]),
+  ja: dictionary([
+    "レッスンのステップ",
+    "おめでとうございます！このレッスンを修了しました！",
+    "理論、練習、フラッシュカード、クイズのすべての段階が完了しました。",
+    "正解数：",
+    "{total}問中{score}問",
+    "レッスンを終えても、すべての答えが正しかったとは限りません。いつでも復習できます。",
+    "ホーム",
+    "問題の状態",
+    "正解",
+    "不正解",
+    "未回答",
+    "後回し"
+  ]),
+  ko: dictionary([
+    "수업 단계",
+    "축하합니다! 이 수업을 완료했습니다!",
+    "이론, 연습, 학습 카드, 퀴즈까지 모든 단계를 마쳤습니다.",
+    "정답 수:",
+    "{total}개 중 {score}개",
+    "수업을 마쳤다고 모든 답이 정답인 것은 아닙니다. 언제든지 내용을 복습할 수 있습니다.",
+    "홈",
+    "문항 상태",
+    "정답",
+    "오답",
+    "아직 답하지 않음",
+    "보류"
+  ]),
+  tr: dictionary([
+    "Ders aşamaları",
+    "Tebrikler! Bu dersi tamamladın!",
+    "Teori, uygulama, bilgi kartları ve sınav — tüm aşamalar tamamlandı.",
+    "Doğru yanıtlar:",
+    "{total} sorudan {score} doğru",
+    "Dersi bitirmek tüm yanıtlarının doğru olduğu anlamına gelmez; istediğin zaman konuları yeniden çalışabilirsin.",
+    "Ana sayfa",
+    "Soru durumu",
+    "Doğru yanıt",
+    "Yanlış yanıt",
+    "Henüz yanıtlanmadı",
+    "Ertelendi"
+  ]),
+  vi: dictionary([
+    "Các bước của bài học",
+    "Chúc mừng! Bạn đã hoàn thành bài học này!",
+    "Lý thuyết, thực hành, thẻ ghi nhớ và bài kiểm tra — tất cả các bước đã hoàn tất.",
+    "Số câu trả lời đúng:",
+    "{score} trên {total}",
+    "Hoàn thành bài học không có nghĩa là mọi câu trả lời đều đúng — bạn luôn có thể ôn tập lại.",
+    "Trang chủ",
+    "Trạng thái câu hỏi",
+    "Câu trả lời đúng",
+    "Câu trả lời sai",
+    "Chưa trả lời",
+    "Để sau"
+  ]),
+  ta: dictionary([
+    "பாடத்தின் படிகள்",
+    "வாழ்த்துகள்! இந்தப் பாடத்தை முடித்துவிட்டீர்கள்!",
+    "கோட்பாடு, பயிற்சி, நினைவுக் கார்டுகள் மற்றும் வினாடி வினா — அனைத்துப் படிகளும் முடிந்துவிட்டன.",
+    "சரியான பதில்கள்:",
+    "{total} இல் {score}",
+    "பாடத்தை முடித்ததால் எல்லாப் பதில்களும் சரியாக இருந்தன என்று அர்த்தமில்லை — உள்ளடக்கத்தை மீண்டும் படிக்கலாம்.",
+    "முகப்புப் பக்கம்",
+    "கேள்விகளின் நிலை",
+    "சரியான பதில்",
+    "தவறான பதில்",
+    "இன்னும் பதிலளிக்கவில்லை",
+    "ஒத்திவைக்கப்பட்டது"
+  ]),
+  te: dictionary([
+    "పాఠం దశలు",
+    "అభినందనలు! మీరు ఈ పాఠాన్ని పూర్తి చేశారు!",
+    "సిద్ధాంతం, సాధన, ఫ్లాష్‌కార్డులు, క్విజ్ — అన్ని దశలూ పూర్తయ్యాయి.",
+    "సరైన సమాధానాలు:",
+    "{total}లో {score}",
+    "పాఠం పూర్తయిందంటే అన్ని సమాధానాలూ సరైనవని కాదు — మీరు ఎప్పుడైనా విషయాన్ని మళ్లీ చదవవచ్చు.",
+    "హోమ్",
+    "ప్రశ్నల స్థితి",
+    "సరైన సమాధానం",
+    "తప్పు సమాధానం",
+    "ఇంకా సమాధానం ఇవ్వలేదు",
+    "వాయిదా వేయబడింది"
+  ]),
+  mr: dictionary([
+    "धड्याचे टप्पे",
+    "अभिनंदन! तुम्ही हा धडा पूर्ण केला आहे!",
+    "सिद्धांत, सराव, फ्लॅशकार्ड आणि चाचणी — सर्व टप्पे पूर्ण झाले आहेत.",
+    "बरोबर उत्तरे:",
+    "{total} पैकी {score}",
+    "धडा पूर्ण केल्याचा अर्थ सर्व उत्तरे बरोबर होती असे नाही — तुम्ही साहित्य पुन्हा पाहू शकता.",
+    "मुख्यपृष्ठ",
+    "प्रश्नांची स्थिती",
+    "बरोबर उत्तर",
+    "चुकीचे उत्तर",
+    "अजून उत्तर दिले नाही",
+    "पुढे ढकलले"
+  ]),
+  ms: dictionary([
+    "Langkah pelajaran",
+    "Tahniah! Anda telah menamatkan pelajaran ini!",
+    "Teori, latihan, kad imbas dan kuiz — semua langkah telah selesai.",
+    "Jawapan betul:",
+    "{score} daripada {total}",
+    "Menamatkan pelajaran tidak bermakna semua jawapan betul — anda boleh mengulang kaji bahan pada bila-bila masa.",
+    "Laman utama",
+    "Status soalan",
+    "Jawapan betul",
+    "Jawapan salah",
+    "Belum dijawab",
+    "Ditangguhkan"
+  ]),
+  he: dictionary([
+    "שלבי השיעור",
+    "כל הכבוד! סיימת את השיעור הזה!",
+    "תיאוריה, תרגול, כרטיסיות ובוחן — כל השלבים הושלמו.",
+    "תשובות נכונות:",
+    "{score} מתוך {total}",
+    "סיום השיעור לא אומר שכל התשובות היו נכונות — תמיד אפשר לחזור לחומר ולתרגל.",
+    "דף הבית",
+    "מצב השאלות",
+    "תשובה נכונה",
+    "תשובה שגויה",
+    "טרם נענה",
+    "נדחה"
+  ]),
+  pl: dictionary([
+    "Etapy lekcji",
+    "Gratulacje! Ukończono tę lekcję!",
+    "Teoria, ćwiczenia, fiszki i test — wszystkie etapy za Tobą.",
+    "Poprawne odpowiedzi:",
+    "{score} z {total}",
+    "Ukończenie lekcji nie oznacza, że wszystkie odpowiedzi były poprawne — zawsze możesz wrócić do materiału.",
+    "Strona główna",
+    "Stan pytań",
+    "Poprawna odpowiedź",
+    "Niepoprawna odpowiedź",
+    "Jeszcze bez odpowiedzi",
+    "Odłożone"
+  ]),
+  uk,
+  lt,
+  lv,
+  et,
+  be,
+  ka,
+  kk,
+  qm,
+} satisfies UiKit_Component<'lesson', 'data', LanguageCode>;
