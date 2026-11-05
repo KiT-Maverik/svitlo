@@ -55,7 +55,7 @@ export const distinguishDeductiveCertaintyFromProbabilisticSupport_Skill_Data = 
       vi: 'Phân biệt kết luận chắc chắn theo logic với kết luận chỉ được xác suất hỗ trợ.',
       ta: 'தருக்கரீதியாக உறுதியான முடிவுகளையும் நிகழ்தகவு மட்டுமே ஆதரிக்கும் முடிவுகளையும் வேறுபடுத்து.',
       te: 'తార్కికంగా ఖచ్చితమైన నిగమనాలను, సంభావ్యత ఆధారంగా మాత్రమే సమర్థించబడే నిర్ణయాల నుంచి వేరు చేయండి.',
-      mr: 'तार्किकदृष्ट्या निश्चित निष्कर्ष आणि संभाव्यतेने समर्थित निष्कर्ष वेगळे ओळख.',
+      mr: 'तार्किकदृष्ट्या निश्चित निष्कर्ष आणि संभाव्यतेने समर्थित निष्कर्ष वेगळे ओळखा.',
       ms: 'Bezakan deduksi yang pasti secara logik daripada kesimpulan yang disokong kebarangkalian.',
       he: 'הבחינו בין מסקנות דדוקטיביות ודאיות למסקנות הנתמכות בהסתברות בלבד.',
       pl: 'Odróżnij wnioski konieczne logicznie od wniosków wspieranych jedynie prawdopodobieństwem.',

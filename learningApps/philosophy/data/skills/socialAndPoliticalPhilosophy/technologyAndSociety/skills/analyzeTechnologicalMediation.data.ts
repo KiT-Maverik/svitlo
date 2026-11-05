@@ -46,7 +46,7 @@ export const analyzeTechnologicalMediation_Skill_Data = buildSkillConfig({
       fr: 'Examine comment la technologie modifie les choix et les relations accessibles aux personnes.',
       bn: 'প্রযুক্তি মানুষের বিকল্প ও সম্পর্কের সুযোগ কীভাবে বদলে দেয় তা দেখো।',
       pt: 'Examine como a tecnologia muda as escolhas e relações disponíveis às pessoas.',
-      ur: 'دیکھو کہ ٹیکنالوجی لوگوں کے لیے دستیاب انتخاب اور تعلقات کیسے بدلتی ہے۔',
+      ur: 'دیکھیں کہ ٹیکنالوجی لوگوں کے لیے دستیاب انتخاب اور تعلقات کیسے بدلتی ہے۔',
       id: 'Periksa bagaimana teknologi mengubah pilihan dan hubungan yang tersedia bagi manusia.',
       de: 'Untersuche, wie Technik die verfügbaren Möglichkeiten und Beziehungen von Menschen verändert.',
       ja: '技術によって人々が選べることや築ける関係がどう変わるか考えよう。',

@@ -55,7 +55,7 @@ export const analyzeTheScopeOfAQuantifier_Skill_Data = buildSkillConfig({
       vi: 'Nhận biết vị trí lượng từ thay đổi nghĩa của câu như thế nào.',
       ta: 'அளவையுருவின் இடம் ஒரு கூற்றின் பொருளை எவ்வாறு மாற்றுகிறது என்பதை அறி.',
       te: 'పరిమాణకం స్థానం ప్రకటన అర్థాన్ని ఎలా మార్చుతుందో గుర్తించండి.',
-      mr: 'परिमाणचिन्ह कुठे आहे याने विधानाचा अर्थ कसा बदलतो ते ओळख.',
+      mr: 'परिमाणचिन्ह कुठे आहे याने विधानाचा अर्थ कसा बदलतो ते ओळखा.',
       ms: 'Kenal pasti bagaimana kedudukan pengkuantiti mengubah makna pernyataan.',
       he: 'זהו כיצד מיקום הכמת משנה את משמעות הטענה.',
       pl: 'Rozpoznaj, jak położenie kwantyfikatora zmienia znaczenie zdania.',

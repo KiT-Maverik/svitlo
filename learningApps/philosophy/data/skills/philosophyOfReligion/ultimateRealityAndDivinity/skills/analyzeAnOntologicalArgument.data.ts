@@ -44,7 +44,7 @@ export const analyzeAnOntologicalArgument_Skill_Data = buildSkillConfig({
       es: 'Explora argumentos que intentan deducir la existencia divina a partir de una definición.',
       ar: 'استكشف الحجج التي تحاول استنتاج الوجود الإلهي من تعريف.',
       fr: "Explore les arguments qui cherchent à déduire l'existence divine d'une définition.",
-      bn: 'একটি সংজ্ঞা থেকে ঈশ্বরীয় অস্তিত্ব প্রমাণ করতে চায় এমন যুক্তিগুলো অনুসন্ধান করো।',
+      bn: 'কোনো সংজ্ঞা থেকে ঐশ্বরিক অস্তিত্ব অনুমান করতে চায় এমন যুক্তিগুলো অনুসন্ধান করো।',
       pt: 'Explore argumentos que tentam deduzir a existência divina a partir de uma definição.',
       ur: 'ان دلائل کو جانیں جو کسی تعریف سے خدائی وجود اخذ کرنے کی کوشش کرتے ہیں۔',
       id: 'Telusuri argumen yang mencoba menyimpulkan keberadaan ilahi dari sebuah definisi.',

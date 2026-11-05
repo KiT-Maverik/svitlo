@@ -46,7 +46,7 @@ export const analyzeTheRuleOfLaw_Skill_Data = buildSkillConfig({
       fr: 'Explore les principes qui rendent la loi publique, prévisible et protègent contre le pouvoir arbitraire.',
       bn: 'আইনকে প্রকাশ্য ও পূর্বানুমেয় রেখে স্বেচ্ছাচারী ক্ষমতা সীমিত করে এমন নীতি জানো।',
       pt: 'Explore princípios que tornam as leis públicas, previsíveis e protegidas do poder arbitrário.',
-      ur: 'ان اصولوں کو جان لو جو قوانین کو واضح، قابل پیش بینی اور من مانے اختیار سے محفوظ بناتے ہیں۔',
+      ur: 'ان اصولوں کو جان لیں جو قوانین کو واضح، قابل پیش بینی اور من مانے اختیار سے محفوظ بناتے ہیں۔',
       id: 'Jelajahi prinsip yang membuat hukum terbuka, dapat diprediksi, dan bebas dari kekuasaan sewenang-wenang.',
       de: 'Erkunde Grundsätze, die Gesetze öffentlich, vorhersehbar und frei von willkürlicher Machtausübung halten.',
       ja: '法を公開され予測できるものにし、恣意的な権力を抑える原則を探ろう。',

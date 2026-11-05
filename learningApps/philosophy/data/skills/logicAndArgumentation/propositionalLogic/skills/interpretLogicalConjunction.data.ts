@@ -55,7 +55,7 @@ export const interpretLogicalConjunction_Skill_Data = buildSkillConfig({
       vi: "Nhận biết khi nào mệnh đề logic 'VÀ' đúng.",
       ta: "தருக்க 'மற்றும்' கூற்று எப்போது உண்மை என்பதை அறி.",
       te: "తార్కిక 'మరియు' వాక్యం ఎప్పుడు నిజమో గుర్తించండి.",
-      mr: "तार्किक 'आणि' असलेले विधान कधी खरे असते ते ओळख.",
+      mr: "तार्किक 'आणि' असलेले विधान कधी खरे असते ते ओळखा.",
       ms: "Kenal pasti bila pernyataan logik 'DAN' benar.",
       he: "זהו מתי טענת 'וגם' לוגית נכונה.",
       pl: 'Rozpoznaj, kiedy zdanie logiczne z „i” jest prawdziwe.',

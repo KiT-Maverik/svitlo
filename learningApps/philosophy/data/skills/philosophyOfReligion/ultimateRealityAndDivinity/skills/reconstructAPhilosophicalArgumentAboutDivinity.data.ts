@@ -42,7 +42,7 @@ export const reconstructAPhilosophicalArgumentAboutDivinity_Skill_Data = buildSk
       zh: '找出支持或反对神性存在的论证中所提出的理由。',
       hi: 'दिव्यता के पक्ष या विपक्ष में दिए गए तर्क के आधारों की पहचान करें।',
       es: 'Identifica las razones presentadas en un argumento a favor o en contra de lo divino.',
-      ar: 'حدّد الأسباب المقدمة في حجة تؤيد وجود الإلهي أو تعارضه.',
+      ar: 'حدّد الأسباب المقدّمة في حجة تؤيد وجود حقيقة إلهية أو تنفي وجودها.',
       fr: 'Repère les raisons avancées dans un argument pour ou contre le divin.',
       bn: 'ঐশ্বরিকতার পক্ষে বা বিপক্ষে যুক্তিতে দেওয়া কারণগুলো চিহ্নিত করো।',
       pt: 'Identifique as razões apresentadas em um argumento a favor ou contra o divino.',

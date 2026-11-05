@@ -12,7 +12,7 @@ export const compareFaithAndReasonAsSourcesOfJustification_Skill_Data = buildSki
     fr: 'Comparer foi et raison comme sources de justification',
     bn: 'ন্যায্যতার ভিত্তি হিসেবে বিশ্বাস ও যুক্তির তুলনা করো',
     pt: 'Comparar fé e razão como fontes de justificação',
-    ur: 'جواز کے ذرائع کے طور پر ایمان اور عقل کا موازنہ کریں',
+    ur: 'جواز کے ذرائع کے طور پر ایمان اور عقل کا موازنہ',
     id: 'Membandingkan iman dan nalar sebagai sumber pembenaran',
     de: 'Glaube und Vernunft als Begründungsquellen vergleichen',
     ja: '正当化の根拠として信仰と理性を比較する',

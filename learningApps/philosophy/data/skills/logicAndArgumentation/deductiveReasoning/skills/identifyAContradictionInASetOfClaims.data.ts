@@ -54,7 +54,7 @@ export const identifyAContradictionInASetOfClaims_Skill_Data = buildSkillConfig(
       vi: 'Nhận biết những nhận định không thể cùng đúng trong cùng điều kiện.',
       ta: 'ஒரே சூழலில் எல்லாம் ஒரே நேரத்தில் உண்மையாக இருக்க முடியாத கூற்றுகளை அறி.',
       te: 'ఒకే పరిస్థితుల్లో అన్నీ ఒకేసారి నిజం కాలేని ప్రకటనలను గుర్తించండి.',
-      mr: 'एकाच परिस्थितीत सर्व खरी असू शकत नाहीत अशी विधानं ओळख.',
+      mr: 'एकाच परिस्थितीत सर्व खरी असू शकत नाहीत अशी विधानं ओळखा.',
       ms: 'Kenal pasti dakwaan yang tidak mungkin semuanya benar dalam keadaan yang sama.',
       he: 'זהו טענות שלא יכולות להיות כולן נכונות באותם תנאים.',
       pl: 'Rozpoznaj twierdzenia, które nie mogą być jednocześnie prawdziwe w tych samych warunkach.',

@@ -21,7 +21,7 @@ export const analyzeReligiousPluralismAsAPhilosophicalProblem_Skill_Data = build
     vi: 'Phân tích đa nguyên tôn giáo như vấn đề triết học',
     ta: 'சமயப் பன்மைத்துவத்தைத் தத்துவச் சிக்கலாகப் பகுப்பாய்வு செய்தல்',
     te: 'మత బహుళత్వాన్ని తాత్విక సమస్యగా విశ్లేషించడం',
-    mr: 'धार्मिक बहुलवादाचे तत्त्वज्ञानातील समस्या म्हणून विश्लेषण',
+    mr: 'धार्मिक बहुलवादाचे तात्त्विक प्रश्न म्हणून विश्लेषण',
     ms: 'Menganalisis pluralisme agama sebagai masalah falsafah',
     he: 'ניתוח פלורליזם דתי כבעיה פילוסופית',
     pl: 'Analiza pluralizmu religijnego jako problemu filozoficznego',

@@ -55,7 +55,7 @@ export const evaluateAnInferenceWithQuantifiers_Skill_Data = buildSkillConfig({
       vi: 'Kiểm tra các tiền đề có lượng từ có thật sự kéo theo kết luận đề xuất không.',
       ta: 'அளவையுரு கொண்ட முன்கோள்கள் முன்வைக்கப்பட்ட முடிவை உண்மையில் விளைவிக்கின்றனவா எனச் சரிபார்.',
       te: 'పరిమాణకాలతో కూడిన ఆధార వాక్యాల నుంచి ప్రతిపాదిత నిర్ధారణ నిజంగా వస్తుందో పరిశీలించండి.',
-      mr: 'परिमाणचिन्ह असलेल्या पूर्वाधारांतून सुचवलेला निष्कर्ष खरोखर निघतो का ते तपास.',
+      mr: 'परिमाणचिन्ह असलेल्या पूर्वाधारांतून सुचवलेला निष्कर्ष खरोखर निघतो का ते तपासा.',
       ms: 'Semak sama ada premis berkuantiti benar-benar membawa kepada kesimpulan yang dicadangkan.',
       he: 'בדקו אם הנחות מכומתות אכן גוררות את המסקנה המוצעת.',
       pl: 'Sprawdź, czy przesłanki z kwantyfikatorami rzeczywiście implikują proponowany wniosek.',

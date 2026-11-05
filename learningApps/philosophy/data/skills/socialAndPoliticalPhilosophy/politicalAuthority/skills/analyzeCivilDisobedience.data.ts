@@ -46,7 +46,7 @@ export const analyzeCivilDisobedience_Skill_Data = buildSkillConfig({
       fr: 'Discute des raisons morales de désobéir aux lois, par principe et sans violence.',
       bn: 'নীতির ভিত্তিতে অহিংসভাবে আইন অমান্যের নৈতিক যুক্তি আলোচনা করো।',
       pt: 'Discuta argumentos morais sobre desobedecer leis por princípio e sem violência.',
-      ur: 'اصولی اور پُرامن قانون شکنی کے اخلاقی دلائل پر بات کرو۔',
+      ur: 'اصولی اور پُرامن قانون شکنی کے اخلاقی دلائل پر بات کریں۔',
       id: 'Bahas alasan moral untuk melanggar hukum secara berprinsip dan tanpa kekerasan.',
       de: 'Diskutiere moralische Gründe für prinzipientreuen, gewaltfreien Gesetzesbruch.',
       ja: '信念に基づく非暴力の法令違反をめぐる道徳的な議論を考えよう。',

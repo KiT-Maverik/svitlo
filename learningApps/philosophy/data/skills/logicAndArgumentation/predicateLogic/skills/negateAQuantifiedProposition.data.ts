@@ -55,7 +55,7 @@ export const negateAQuantifiedProposition_Skill_Data = buildSkillConfig({
       vi: "Phủ định câu có 'mọi' hoặc 'một số' mà không làm sai nghĩa.",
       ta: "'அனைத்தும்' அல்லது 'சில' கொண்ட கூற்றுகளைப் பொருள் தவறாமல் மறுத்து எழுது.",
       te: "'అన్ని' లేదా 'కొన్ని' ఉన్న ప్రకటనలను అర్థం తప్పకుండా నిరాకరించండి.",
-      mr: "'सर्व' किंवा 'काही' असलेल्या विधानांचा अर्थ न बदलता योग्य निषेध कर.",
+      mr: "'सर्व' किंवा 'काही' असलेल्या विधानांचा अर्थ न बदलता योग्य निषेध करा.",
       ms: "Nafikan pernyataan dengan 'semua' atau 'sebahagian' tanpa mengubah makna secara salah.",
       he: "שללו טענות עם 'כל' או 'חלק' בלי לשנות בטעות את משמעותן.",
       pl: 'Neguj zdania z „wszystkie” lub „niektóre” bez zniekształcania ich znaczenia.',

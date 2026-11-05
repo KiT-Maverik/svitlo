@@ -46,7 +46,7 @@ export const analyzeLegalPositivism_Skill_Data = buildSkillConfig({
       fr: 'Examine la thèse selon laquelle la validité du droit dépend de sources sociales plutôt que de sa valeur morale.',
       bn: 'আইনের বৈধতা নৈতিক গুণের বদলে সামাজিক উৎসের ওপর নির্ভর করে—এই মতটি পরীক্ষা করো।',
       pt: 'Examine a visão de que a validade da lei depende de fontes sociais, não de seu mérito moral.',
-      ur: 'اس تصور کا جائزہ لو کہ قانون کی درست حیثیت اخلاقی خوبی نہیں بلکہ سماجی ذرائع پر منحصر ہے۔',
+      ur: 'اس تصور کا جائزہ لیں کہ قانون کی درست حیثیت اخلاقی خوبی نہیں بلکہ سماجی ذرائع پر منحصر ہے۔',
       id: 'Telaah pandangan bahwa keabsahan hukum bergantung pada sumber sosial, bukan nilai moralnya.',
       de: 'Prüfe die Auffassung, dass die Geltung von Recht von sozialen Quellen und nicht von seinem moralischen Wert abhängt.',
       ja: '法の有効性は道徳的な良し悪しでなく社会的な成立過程によるという考えを調べよう。',

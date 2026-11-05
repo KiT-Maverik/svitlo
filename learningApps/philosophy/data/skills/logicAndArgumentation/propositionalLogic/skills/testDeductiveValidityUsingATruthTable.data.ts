@@ -55,7 +55,7 @@ export const testDeductiveValidityUsingATruthTable_Skill_Data = buildSkillConfig
       vi: 'Kiểm tra phép suy diễn bằng cách tìm trường hợp tiền đề đúng nhưng kết luận sai.',
       ta: 'முன்கோள்கள் உண்மையாகவும் முடிவு பொய்யாகவும் இருக்கும் நிலையைத் தேடிக் கழித்தறியைச் சோதி.',
       te: 'ఆధార వాక్యాలు నిజం కాగా నిర్ధారణ అబద్ధమయ్యే పరిస్థితిని వెతికి నిగమనాన్ని పరీక్షించండి.',
-      mr: 'पूर्वाधार खरे पण निष्कर्ष खोटा असलेली स्थिती शोधून निगमन तपास.',
+      mr: 'पूर्वाधार खरे पण निष्कर्ष खोटा असलेली स्थिती शोधून निगमन तपासा.',
       ms: 'Uji deduksi dengan mencari keadaan premis benar tetapi kesimpulan salah.',
       he: 'בדקו דדוקציה באמצעות חיפוש מצב שבו כל ההנחות נכונות והמסקנה שגויה.',
       pl: 'Sprawdź dedukcję, szukając sytuacji z prawdziwymi przesłankami i fałszywym wnioskiem.',

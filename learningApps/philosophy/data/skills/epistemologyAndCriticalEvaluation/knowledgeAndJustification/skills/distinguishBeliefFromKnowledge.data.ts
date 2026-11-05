@@ -61,7 +61,7 @@ export const distinguishBeliefFromKnowledge_Skill_Data = buildSkillConfig({
       pl: 'Zrozum, dlaczego szczere przekonanie o prawdziwości twierdzenia nie oznacza jeszcze wiedzy.',
       uk: 'Зрозумій, чому щира віра у твердження сама собою не означає знання.',
       lt: 'Suprask, kodėl nuoširdus tikėjimas teiginiu savaime nėra žinojimas.',
-      lv: 'Saproti, kāpēc patiesa ticība apgalvojumam pati par sevi vēl nav zināšanas.',
+      lv: 'Saproti, kāpēc pat tad, ja cilvēks patiesi tic apgalvojumam, tas vēl nenozīmē, ka viņam ir zināšanas.',
       et: 'Mõista, miks väite siiras uskumine ei tähenda automaatselt selle teadmist.',
       be: 'Зразумей, чаму шчырая вера ў сьцьверджаньне сама па сабе яшчэ ня ёсьць ведамі.',
       ka: 'გაიგე, რატომ არ ნიშნავს მტკიცების გულწრფელად დაჯერება მის ცოდნას.',

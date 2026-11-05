@@ -46,7 +46,7 @@ export const analyzeDemocraticLegitimacy_Skill_Data = buildSkillConfig({
       fr: 'Examine comment la participation, la représentation et la responsabilité justifient la démocratie.',
       bn: 'অংশগ্রহণ, প্রতিনিধিত্ব ও জবাবদিহি গণতন্ত্রকে কীভাবে বৈধ করে তা বিবেচনা করো।',
       pt: 'Considere como participação, representação e prestação de contas justificam a democracia.',
-      ur: 'سوچو کہ شرکت، نمائندگی اور جوابدہی جمہوریت کو کیسے جائز بناتے ہیں۔',
+      ur: 'سوچیں کہ شرکت، نمائندگی اور جوابدہی جمہوریت کو کیسے جائز بناتے ہیں۔',
       id: 'Pertimbangkan bagaimana partisipasi, perwakilan, dan akuntabilitas membenarkan demokrasi.',
       de: 'Überlege, wie Beteiligung, Repräsentation und Rechenschaftspflicht Demokratie rechtfertigen.',
       ja: '参加、代表、説明責任が民主主義をどう正当化するか考えよう。',

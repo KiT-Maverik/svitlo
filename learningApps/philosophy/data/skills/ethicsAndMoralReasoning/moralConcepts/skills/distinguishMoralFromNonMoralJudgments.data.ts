@@ -10,7 +10,7 @@ export const distinguishMoralFromNonMoralJudgments_Skill_Data = buildSkillConfig
     es: 'Distinguir juicios morales de no morales',
     ar: 'التمييز بين الأحكام الأخلاقية وغير الأخلاقية',
     fr: 'Distinguer jugements moraux et non moraux',
-    bn: 'নৈতিক ও অনৈতিক নয় এমন বিচারের পার্থক্য',
+    bn: 'নৈতিক ও নৈতিকতার সঙ্গে সম্পর্কহীন বিচারের পার্থক্য',
     pt: 'Distinguir juízos morais de não morais',
     ur: 'اخلاقی اور غیر اخلاقی نوعیت کے فیصلوں میں فرق',
     id: 'Membedakan penilaian moral dan nonmoral',

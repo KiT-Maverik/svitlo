@@ -46,7 +46,7 @@ export const analyzeTheEthicalEvaluationOfArt_Skill_Data = buildSkillConfig({
       fr: 'Examine si des préoccupations morales devraient influencer le jugement artistique.',
       bn: 'নৈতিক বিষয়গুলো শিল্পবিচারকে প্রভাবিত করা উচিত কি না তা পরীক্ষা করো।',
       pt: 'Examine se preocupações morais devem influenciar o julgamento artístico.',
-      ur: 'دیکھو کہ اخلاقی مسائل فن کی جانچ پر اثر انداز ہونے چاہییں یا نہیں۔',
+      ur: 'دیکھیں کہ اخلاقی مسائل فن کی جانچ پر اثر انداز ہونے چاہییں یا نہیں۔',
       id: 'Periksa apakah pertimbangan moral seharusnya memengaruhi penilaian seni.',
       de: 'Prüfe, ob moralische Fragen das künstlerische Urteil beeinflussen sollten.',
       ja: '道徳的な問題が芸術の評価に影響すべきか考えよう。',

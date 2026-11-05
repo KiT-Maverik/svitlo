@@ -55,7 +55,7 @@ export const clarifyAContestedConcept_Skill_Data = buildSkillConfig({
       vi: 'Làm rõ nghĩa của một thuật ngữ khi mọi người bất đồng về cách sử dụng nó.',
       ta: 'ஒரு சொல்லின் பயன்பாட்டில் கருத்து வேறுபாடு ஏற்பட்டால் அதன் பொருளைத் தெளிவுபடுத்து.',
       te: 'ఒక పదాన్ని ఎలా ఉపయోగించాలనే విషయంలో విభేదం ఉంటే దాని అర్థాన్ని స్పష్టం చేయండి.',
-      mr: 'एखाद्या शब्दाच्या वापरावर मतभेद असतील तर त्याचा अर्थ स्पष्ट कर.',
+      mr: 'एखाद्या शब्दाच्या वापरावर मतभेद असतील तर त्याचा अर्थ स्पष्ट करा.',
       ms: 'Jelaskan makna sesuatu istilah apabila orang tidak sependapat tentang penggunaannya.',
       he: 'הבהירו משמעות של מונח כשיש מחלוקת על אופן השימוש בו.',
       pl: 'Wyjaśnij znaczenie terminu, gdy ludzie nie zgadzają się co do jego użycia.',

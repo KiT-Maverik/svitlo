@@ -46,7 +46,7 @@ export const identifySemanticAmbiguity_Skill_Data = buildSkillConfig({
       fr: 'Trouve des phrases qui peuvent avoir plusieurs sens.',
       bn: 'একাধিক সম্ভাব্য অর্থ আছে এমন বাক্য খুঁজে বের করো।',
       pt: 'Encontre frases com mais de um significado possível.',
-      ur: 'ایسے جملے تلاش کرو جن کے ایک سے زیادہ معنی ہو سکتے ہیں۔',
+      ur: 'ایسے جملے تلاش کریں جن کے ایک سے زیادہ معنی ہو سکتے ہیں۔',
       id: 'Temukan kalimat yang memiliki lebih dari satu kemungkinan makna.',
       de: 'Finde Sätze, die mehr als eine mögliche Bedeutung haben.',
       ja: '複数の意味に解釈できる文を見つけよう。',

@@ -55,7 +55,7 @@ export const applyModusPonens_Skill_Data = buildSkillConfig({
       vi: 'Áp dụng quy tắc: nếu A kéo theo B và A đúng, thì B đúng.',
       ta: 'A என்பது B-ஐக் குறித்தால், A உண்மையானபோது B-உம் பின்தொடரும் என்ற விதியைப் பயன்படுத்து.',
       te: 'A వల్ల B వస్తూ, A నిజమైతే B కూడా వస్తుందనే నియమాన్ని వర్తింపజేయండి.',
-      mr: 'A मुळे B येतो आणि A खरे असेल, तर B निष्पन्न होतो हा नियम वापर.',
+      mr: 'A मुळे B येतो आणि A खरे असेल, तर B निष्पन्न होतो हा नियम वापरा.',
       ms: 'Gunakan peraturan: jika A membawa kepada B dan A benar, maka B menyusul.',
       he: 'החילו את הכלל: אם A גורר B ו-A נכון, אז B נובע.',
       pl: 'Zastosuj regułę: jeśli A implikuje B i A zachodzi, to B wynika.',

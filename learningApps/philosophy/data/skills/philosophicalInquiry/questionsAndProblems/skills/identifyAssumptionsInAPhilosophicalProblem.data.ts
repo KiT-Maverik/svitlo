@@ -55,7 +55,7 @@ export const identifyAssumptionsInAPhilosophicalProblem_Skill_Data = buildSkillC
       vi: 'Tìm các giả định ẩn sau một câu hỏi triết học hoặc câu trả lời được đề xuất.',
       ta: 'தத்துவக் கேள்வி அல்லது முன்வைக்கப்பட்ட பதிலின் பின்னுள்ள மறைந்த முன்கருத்துகளைக் கண்டுபிடி.',
       te: 'తాత్విక ప్రశ్న లేదా సూచించిన సమాధానం వెనుక ఉన్న దాగిన ఊహలను కనుగొనండి.',
-      mr: 'तत्त्वज्ञानविषयक प्रश्न किंवा सुचवलेल्या उत्तरामागील लपलेली गृहीतके शोध.',
+      mr: 'तत्त्वज्ञानविषयक प्रश्न किंवा सुचवलेल्या उत्तरामागील लपलेली गृहीतके शोधा.',
       ms: 'Cari andaian tersembunyi di sebalik soalan falsafah atau jawapan yang dicadangkan.',
       he: 'מצאו את ההנחות הסמויות מאחורי שאלה פילוסופית או תשובה מוצעת.',
       pl: 'Znajdź ukryte założenia stojące za pytaniem filozoficznym lub proponowaną odpowiedzią.',

@@ -46,7 +46,7 @@ export const evaluateAClaimAboutDiscrimination_Skill_Data = buildSkillConfig({
       fr: 'Examine si des différences de traitement sont justifiées ou discriminatoires.',
       bn: 'ভিন্ন আচরণের ন্যায্য কারণ আছে, নাকি তা বৈষম্যমূলক, পরীক্ষা করো।',
       pt: 'Examine se diferenças de tratamento são justificadas ou discriminatórias.',
-      ur: 'جانچو کہ مختلف برتاؤ جائز ہے یا امتیازی۔',
+      ur: 'جانچیں کہ مختلف برتاؤ جائز ہے یا امتیازی۔',
       id: 'Periksa apakah perbedaan perlakuan dibenarkan atau diskriminatif.',
       de: 'Prüfe, ob unterschiedliche Behandlung gerechtfertigt oder diskriminierend ist.',
       ja: '扱いの違いに正当な理由があるか、差別に当たるかを考えよう。',

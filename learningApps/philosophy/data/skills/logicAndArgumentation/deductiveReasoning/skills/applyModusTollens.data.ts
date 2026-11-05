@@ -55,7 +55,7 @@ export const applyModusTollens_Skill_Data = buildSkillConfig({
       vi: 'Dùng mệnh đề điều kiện và sự phủ định kết quả để bác bỏ tiền kiện.',
       ta: 'நிபந்தனைக்கும் அதன் விளைவின் மறுப்புக்கும் அடிப்படையாக முன்னிலையை மறுத்து முடிவு செய்.',
       te: 'షరతు వాక్యం, దాని ఫలితం తప్పని సమాచారం ఆధారంగా పూర్వభాగాన్ని తిరస్కరించండి.',
-      mr: 'अट आणि तिच्या परिणामाचा निषेध वापरून पूर्वपक्ष नाकार.',
+      mr: 'अट आणि तिच्या परिणामाचा निषेध वापरून पूर्वपक्ष नाकारा.',
       ms: 'Gunakan pernyataan bersyarat dan penafian akibatnya untuk menolak anteseden.',
       he: 'השתמשו בתנאי ובשלילת התוצאה שלו כדי לשלול את התנאי המקדים.',
       pl: 'Użyj warunku i zaprzeczenia jego następstwa, by odrzucić poprzednik.',

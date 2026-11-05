@@ -46,7 +46,7 @@ export const interpretAPhilosopherInHistoricalContext_Skill_Data = buildSkillCon
       fr: 'Interprète ses idées à la lumière des débats de son époque.',
       bn: 'নিজ যুগের বিতর্কের আলোকে দার্শনিকের মতামত ব্যাখ্যা করো।',
       pt: 'Interprete suas ideias à luz dos debates de sua época.',
-      ur: 'فلسفی کے خیالات کو اس کے زمانے کی بحثوں کی روشنی میں سمجھو۔',
+      ur: 'فلسفی کے خیالات کو اس کے زمانے کی بحثوں کی روشنی میں سمجھیں۔',
       id: 'Pahami pemikiran filsuf berdasarkan perdebatan zamannya.',
       de: 'Deute philosophische Ansichten im Licht der Debatten ihrer Zeit.',
       ja: '哲学者の考えを当時の論争を踏まえて解釈しよう。',

@@ -69,7 +69,7 @@ export const questionsAndProblems_SkillGroup_Data = buildSkillGroupConfig({
       vi: 'Học cách biến ý tưởng khó hiểu thành câu hỏi có thể thảo luận thấu đáo.',
       ta: 'புதிராகத் தோன்றும் கருத்துகளை ஆழ்ந்து விவாதிக்கக்கூடிய கேள்விகளாக மாற்றக் கற்றுக்கொள்.',
       te: 'అయోమయంగా ఉన్న ఆలోచనలను ఆలోచనాత్మకంగా చర్చించగల ప్రశ్నలుగా మార్చడం నేర్చుకోండి.',
-      mr: 'गोंधळात टाकणाऱ्या कल्पनांचे विचारपूर्वक चर्चा करता येतील अशा प्रश्नांत रूपांतर करायला शीक.',
+      mr: 'गोंधळात टाकणाऱ्या कल्पनांचे विचारपूर्वक चर्चा करता येतील अशा प्रश्नांत रूपांतर करायला शिका.',
       ms: 'Belajar menukar idea yang mengelirukan menjadi soalan yang boleh dibincangkan dengan teliti.',
       he: 'למדו להפוך רעיונות מעוררי תהייה לשאלות שאפשר לדון בהן לעומק.',
       pl: 'Naucz się zmieniać zagadkowe pomysły w pytania nadające się do przemyślanej dyskusji.',

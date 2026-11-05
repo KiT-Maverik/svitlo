@@ -55,7 +55,7 @@ export const distinguishPhilosophicalQuestionsFromEmpiricalQuestions_Skill_Data 
       vi: 'Nhận ra câu hỏi triết học khác với câu hỏi có thể trả lời bằng phép đo như thế nào.',
       ta: 'தத்துவக் கேள்விகள் அளவீட்டால் பதிலளிக்கப்படும் கேள்விகளிலிருந்து எவ்வாறு மாறுபடுகின்றன என்பதை அறி.',
       te: 'కొలతలతో సమాధానం చెప్పగల ప్రశ్నల నుంచి తాత్విక ప్రశ్నలు ఎలా భిన్నంగా ఉంటాయో గుర్తించండి.',
-      mr: 'तत्त्वज्ञानविषयक प्रश्न मोजमापाने उत्तर मिळणाऱ्या प्रश्नांपेक्षा कसे वेगळे आहेत ते ओळख.',
+      mr: 'तत्त्वज्ञानविषयक प्रश्न मोजमापाने उत्तर मिळणाऱ्या प्रश्नांपेक्षा कसे वेगळे आहेत ते ओळखा.',
       ms: 'Kenal pasti bagaimana soalan falsafah berbeza daripada soalan yang dijawab melalui pengukuran.',
       he: 'זהו כיצד שאלות פילוסופיות נבדלות משאלות שאפשר לענות עליהן במדידה.',
       pl: 'Rozpoznaj, czym pytania filozoficzne różnią się od pytań, na które odpowiada pomiar.',

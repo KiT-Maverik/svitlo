@@ -46,7 +46,7 @@ export const analyzeAPhilosophicalArgumentFromAnIslamicTradition_Skill_Data = bu
       fr: 'Examine un débat de philosophie islamique dans son contexte historique.',
       bn: 'ঐতিহাসিক প্রেক্ষাপটে ইসলামি দর্শনের একটি বিতর্ক বিশ্লেষণ করো।',
       pt: 'Examine um debate na filosofia islâmica em seu contexto histórico.',
-      ur: 'اسلامی فلسفے کی بحث کو اس کے تاریخی تناظر میں جانچو۔',
+      ur: 'اسلامی فلسفے کی بحث کو اس کے تاریخی تناظر میں جانچیں۔',
       id: 'Periksa perdebatan dalam filsafat Islam berdasarkan konteks sejarahnya.',
       de: 'Untersuche eine Debatte der islamischen Philosophie im historischen Zusammenhang.',
       ja: '歴史的背景を踏まえてイスラーム哲学の論争を考察しよう。',

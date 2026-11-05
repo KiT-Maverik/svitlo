@@ -72,7 +72,7 @@ export const deductiveReasoning_SkillGroup_Data = buildSkillGroupConfig({
       vi: 'Tìm hiểu khi nào kết luận tất yếu suy ra từ các tiền đề đã cho.',
       ta: 'கொடுக்கப்பட்ட முன்கோள்களிலிருந்து முடிவு எப்போது கட்டாயமாகப் பின்தொடர்கிறது என்பதை ஆராய்.',
       te: 'ఇచ్చిన ఆధార వాక్యాల నుంచి నిర్ధారణ ఎప్పుడు తప్పనిసరిగా వస్తుందో తెలుసుకోండి.',
-      mr: 'दिलेल्या पूर्वाधारांमधून निष्कर्ष अपरिहार्यपणे कधी निघतो ते समजून घे.',
+      mr: 'दिलेल्या पूर्वाधारांमधून निष्कर्ष अपरिहार्यपणे कधी निघतो ते समजून घ्या.',
       ms: 'Terokai bila kesimpulan semestinya menyusul daripada premis yang diberi.',
       he: 'גלו מתי מסקנה נובעת בהכרח מהנחות נתונות.',
       pl: 'Zbadaj, kiedy wniosek wynika koniecznie z danych przesłanek.',

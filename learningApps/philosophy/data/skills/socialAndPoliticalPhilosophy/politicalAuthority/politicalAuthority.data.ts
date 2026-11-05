@@ -59,7 +59,7 @@ export const politicalAuthority_SkillGroup_Data = buildSkillGroupConfig({
       fr: "Examine ce qui rend l'autorité politique légitime, au-delà de sa seule puissance.",
       bn: 'শুধু ক্ষমতাশালী হওয়া নয়, রাজনৈতিক কর্তৃত্ব কীভাবে বৈধ হয় তা পরীক্ষা করো।',
       pt: 'Examine o que torna a autoridade política legítima, e não apenas poderosa.',
-      ur: 'دیکھو کہ سیاسی اختیار محض طاقتور ہونے کے بجائے جائز کیسے بنتا ہے۔',
+      ur: 'دیکھیں کہ سیاسی اختیار محض طاقتور ہونے کے بجائے جائز کیسے بنتا ہے۔',
       id: 'Telaah apa yang menjadikan otoritas politik sah, bukan sekadar kuat.',
       de: 'Untersuche, was politische Herrschaft legitim macht und nicht nur mächtig.',
       ja: '政治的権威は単に強いだけでなく、何によって正当になるのか考えよう。',

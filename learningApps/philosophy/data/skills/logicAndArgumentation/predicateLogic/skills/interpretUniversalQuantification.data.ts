@@ -55,7 +55,7 @@ export const interpretUniversalQuantification_Skill_Data = buildSkillConfig({
       vi: 'Hiểu phát biểu áp dụng cho mọi thành viên của nhóm đã xác định.',
       ta: 'குறிப்பிட்ட குழுவின் ஒவ்வொரு உறுப்பினருக்கும் பொருந்தும் கூற்றைப் புரிந்துகொள்.',
       te: 'నిర్దిష్ట సమూహంలోని ప్రతి సభ్యుడికి వర్తించే ప్రకటనను అర్థం చేసుకోండి.',
-      mr: 'निश्चित गटातील प्रत्येक सदस्याला लागू होणारे विधान समजून घे.',
+      mr: 'निश्चित गटातील प्रत्येक सदस्याला लागू होणारे विधान समजून घ्या.',
       ms: 'Fahami pernyataan yang terpakai kepada setiap ahli kumpulan tertentu.',
       he: 'קראו טענה שחלה על כל איבר בקבוצה מוגדרת.',
       pl: 'Odczytaj zdanie dotyczące każdego członka określonego zbioru.',

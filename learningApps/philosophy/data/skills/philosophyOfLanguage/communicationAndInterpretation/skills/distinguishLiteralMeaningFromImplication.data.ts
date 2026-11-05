@@ -46,7 +46,7 @@ export const distinguishLiteralMeaningFromImplication_Skill_Data = buildSkillCon
       fr: "Distingue le sens littéral d'un énoncé de ce qu'il suggère.",
       bn: 'বক্তব্যের সরাসরি অর্থ আর তার ইঙ্গিতের মধ্যে পার্থক্য করো।',
       pt: 'Diferencie o significado literal de uma afirmação daquilo que ela sugere.',
-      ur: 'کسی بیان کے سیدھے معنی اور اس سے نکلنے والے اشارے میں فرق کرو۔',
+      ur: 'کسی بیان کے سیدھے معنی اور اس سے نکلنے والے اشارے میں فرق کریں۔',
       id: 'Bedakan makna langsung suatu pernyataan dari hal yang disiratkannya.',
       de: 'Unterscheide den wörtlichen Sinn einer Aussage von dem, was sie nahelegt.',
       ja: '発言がそのまま意味することと暗に示すことを区別しよう。',

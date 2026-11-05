@@ -55,7 +55,7 @@ export const identifyPremisesInAnArgument_Skill_Data = buildSkillConfig({
       vi: 'Tìm các phát biểu được đưa ra làm lý do ủng hộ một nhận định.',
       ta: 'ஒரு கூற்றை ஆதரிக்கும் காரணங்களாகக் கூறப்படும் வாக்கியங்களைக் கண்டுபிடி.',
       te: 'ఒక వాదనకు కారణాలుగా ఇచ్చిన ప్రకటనలను గుర్తించండి.',
-      mr: 'एखाद्या दाव्याच्या समर्थनार्थ दिलेली विधानं शोध.',
+      mr: 'एखाद्या दाव्याच्या समर्थनार्थ दिलेली विधानं शोधा.',
       ms: 'Cari pernyataan yang dikemukakan sebagai alasan untuk menyokong sesuatu dakwaan.',
       he: 'מצאו את המשפטים המוצגים כנימוקים לטענה.',
       pl: 'Znajdź zdania podane jako racje na poparcie twierdzenia.',

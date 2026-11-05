@@ -46,7 +46,7 @@ export const evaluateTheRoleOfExpertiseInAestheticJudgment_Skill_Data = buildSki
       fr: "Réfléchis à la manière dont l'expertise éclaire les jugements sans rendre les experts infaillibles.",
       bn: 'বিশেষজ্ঞ জ্ঞান কীভাবে বিচারকে সাহায্য করে, অথচ বিশেষজ্ঞরাও ভুল করতে পারেন, তা ভাবো।',
       pt: 'Considere como o conhecimento especializado ajuda a julgar sem tornar especialistas infalíveis.',
-      ur: 'سوچو کہ مہارت فیصلہ کرنے میں کیسے مدد دیتی ہے، مگر ماہرین بھی غلط ہو سکتے ہیں۔',
+      ur: 'سوچیں کہ مہارت فیصلہ کرنے میں کیسے مدد دیتی ہے، مگر ماہرین بھی غلط ہو سکتے ہیں۔',
       id: 'Pertimbangkan bagaimana keahlian membantu penilaian tanpa membuat ahli selalu benar.',
       de: 'Überlege, wie Fachwissen Urteile bereichert, ohne Experten unfehlbar zu machen.',
       ja: '専門知識は判断の助けになるが、専門家も間違うことを考えよう。',

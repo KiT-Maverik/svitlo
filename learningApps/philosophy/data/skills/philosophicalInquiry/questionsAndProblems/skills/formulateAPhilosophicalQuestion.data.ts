@@ -55,7 +55,7 @@ export const formulateAPhilosophicalQuestion_Skill_Data = buildSkillConfig({
       vi: 'Đặt câu hỏi mở về lý do, ý nghĩa hoặc giá trị thay vì chỉ hỏi sở thích.',
       ta: 'வெறும் விருப்பத்தைக் கேட்பதற்குப் பதிலாக காரணம், பொருள் அல்லது மதிப்புகள் பற்றிய திறந்த கேள்வியைக் கேள்.',
       te: 'కేవలం అభిరుచిని అడగకుండా కారణాలు, అర్థం లేదా విలువల గురించి ఓపెన్ ప్రశ్న అడగండి.',
-      mr: 'केवळ आवड विचारण्याऐवजी कारणे, अर्थ किंवा मूल्यांवर खुला प्रश्न विचार.',
+      mr: 'केवळ आवड विचारण्याऐवजी कारणे, अर्थ किंवा मूल्यांवर खुला प्रश्न विचारा.',
       ms: 'Ajukan soalan terbuka tentang alasan, makna atau nilai, bukan sekadar pilihan peribadi.',
       he: 'שאלו שאלה פתוחה על נימוקים, משמעות או ערכים ולא רק על העדפה.',
       pl: 'Zadaj otwarte pytanie o racje, znaczenie lub wartości, a nie tylko o upodobanie.',

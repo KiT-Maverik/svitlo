@@ -55,7 +55,7 @@ export const reviseAPositionInLightOfReasons_Skill_Data = buildSkillConfig({
       vi: 'Thay đổi niềm tin hoặc lập luận khi lý do vững hơn cho thấy cần xem xét lại.',
       ta: 'மேலும் வலுவான காரணம் திருத்தம் தேவை என்பதைக் காட்டினால் நம்பிக்கையையோ வாதத்தையோ மாற்று.',
       te: 'బలమైన కారణం సవరణ అవసరమని చూపితే నమ్మకాన్ని లేదా వాదనను మార్చండి.',
-      mr: 'अधिक मजबूत कारण बदल सुचवत असेल तर आपला विश्वास किंवा युक्तिवाद बदल.',
+      mr: 'अधिक मजबूत कारण बदल सुचवत असेल तर आपला विश्वास किंवा युक्तिवाद बदला.',
       ms: 'Ubah kepercayaan atau hujah apabila alasan lebih kukuh menunjukkan ia perlu disemak.',
       he: 'שנו אמונה או טיעון כשנימוק חזק יותר מראה שיש צורך לתקן אותם.',
       pl: 'Zmień przekonanie lub argument, gdy mocniejsza racja pokaże potrzebę korekty.',

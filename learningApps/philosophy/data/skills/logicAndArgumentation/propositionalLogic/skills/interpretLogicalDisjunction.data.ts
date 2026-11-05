@@ -55,7 +55,7 @@ export const interpretLogicalDisjunction_Skill_Data = buildSkillConfig({
       vi: "Hiểu 'HOẶC' bao hàm mà không cho rằng chỉ một lựa chọn được đúng.",
       ta: "ஒரே ஒரு வாய்ப்புதான் உண்மை என்று கருதாமல் உள்ளடக்கும் 'அல்லது' என்பதை விளக்கு.",
       te: "రెండింటిలో ఒకటే నిజమని అనుకోకుండా, రెండూ నిజమవగల 'లేదా'ను అర్థం చేసుకోండి.",
-      mr: "फक्त एकच पर्याय खरा असेल असे न मानता समावेशक 'किंवा' समज.",
+      mr: "फक्त एकच पर्याय खरा असेल असे न मानता समावेशक 'किंवा' समजा.",
       ms: 'Tafsir ATAU inklusif tanpa menganggap hanya satu pilihan boleh benar.',
       he: "פרשו 'או' כולל בלי להניח שרק אפשרות אחת יכולה להיות נכונה.",
       pl: 'Rozumiej alternatywę niewykluczającą bez zakładania, że tylko jedna opcja jest prawdziwa.',
