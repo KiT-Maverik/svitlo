@@ -1828,7 +1828,7 @@ Skills: 8
 
 **Methodological description (English):** Examine whether order or complexity supports an inference to a designer, considering the evidential relevance of natural alternatives.
 
-**User-friendly description (fr):** Demande-toi si la complexité ou l'ordre peuvent prouver l'existence d'un dessein intelligent.
+**User-friendly description (fr):** Demande-toi si la complexité ou l'ordre peuvent constituer des indices d'un dessein intelligent.
 
 ##### Analyser un argument du mal
 

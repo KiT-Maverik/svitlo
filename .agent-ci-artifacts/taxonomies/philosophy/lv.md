@@ -234,7 +234,7 @@ Skills: 5
 
 **Methodological description (English):** Recognize that sincerely accepting a proposition does not by itself establish that it is known, even when the speaker is confident.
 
-**User-friendly description (lv):** Saproti, kāpēc patiesa ticība apgalvojumam pati par sevi vēl nav zināšanas.
+**User-friendly description (lv):** Saproti, kāpēc pat tad, ja cilvēks patiesi tic apgalvojumam, tas vēl nenozīmē, ka viņam ir zināšanas.
 
 ##### Atšķirt patiesumu no pamatojuma
 
@@ -370,7 +370,7 @@ Skills: 5
 
 **Methodological description (English):** Assess whether a decision is adequately informed, voluntary, and within the decision-maker's authority.
 
-**User-friendly description (lv):** Pārbaudi, vai piekrišana ir informēta, brīvprātīga un dota no atbilstošās personas.
+**User-friendly description (lv):** Pārbaudi, vai piekrišana ir informēta, brīvprātīga un to devusi persona, kurai ir tiesības piekrist.
 
 ##### Novērtēt pienākumus pret dzīvniekiem, kas nav cilvēki
 
@@ -872,7 +872,7 @@ Skills: 4
 
 **Methodological description (English):** Arrange its relevant premises and conclusion explicitly while preserving the original reasoning rather than improving it silently.
 
-**User-friendly description (lv):** Pārraksti argumentu skaidru premisu un tai sekojoša secinājuma veidā.
+**User-friendly description (lv):** Pārraksti argumentu skaidru premisu un tām sekojoša secinājuma veidā.
 
 #### Deduktīvā spriešana
 
@@ -900,7 +900,7 @@ Skills: 6
 
 **User-friendly description (lv):** Izmanto nosacījumu un tā seku noliegumu, lai noliegtu priekšnosacījumu.
 
-##### Deduktīvās derīguma izvērtēšana
+##### Deduktīva argumenta derīguma izvērtēšana
 
 [assessDeductiveValidity.data.ts](../../../learningApps/philosophy/data/skills/logicAndArgumentation/deductiveReasoning/skills/assessDeductiveValidity.data.ts)
 
@@ -914,7 +914,7 @@ Skills: 6
 
 **Methodological description (English):** Recognize that a sound deductive argument requires both a valid inference and true premises.
 
-**User-friendly description (lv):** Saprot, kāpēc loģiski derīgam argumentam tomēr var būt aplamas premisas.
+**User-friendly description (lv):** Saproti, kāpēc loģiski derīgam argumentam tomēr var būt aplamas premisas.
 
 ##### Kategoriska siloģisma izvērtēšana
 
@@ -940,7 +940,7 @@ Skills: 4
 
 **Methodological description (English):** Many reasonable arguments support conclusions without guaranteeing them. Their strength depends on evidence, alternatives, sampling, or explanatory power rather than formal certainty.
 
-**User-friendly description (lv):** Mācies vērtēt spriešanu, kas pamato secinājumu, taču negarantē drošību.
+**User-friendly description (lv):** Mācies vērtēt spriešanu, kas pamato secinājumu, taču negarantē noteiktību.
 
 ##### Deduktīvas noteiktības un varbūtiska atbalsta atšķiršana
 
@@ -1014,7 +1014,7 @@ Skills: 6
 
 **Methodological description (English):** Determine what it means for at least one element of a specified domain to satisfy a property, without implying uniqueness.
 
-**User-friendly description (lv):** Saprot, ka „eksistē“ nozīmē vismaz vienu nosacījumam atbilstošu piemēru.
+**User-friendly description (lv):** Saproti, ka „eksistē“ nozīmē vismaz vienu nosacījumam atbilstošu piemēru.
 
 ##### Universālās kvantifikācijas interpretēšana
 
@@ -1072,7 +1072,7 @@ Skills: 9
 
 **Methodological description (English):** Assess 'if and only if' statements as two-way conditional relationships, rather than treating either one-way conditional as sufficient.
 
-**User-friendly description (lv):** Saprot, ka „tad un tikai tad, ja“ prasa implikāciju abos virzienos.
+**User-friendly description (lv):** Saproti, ka „tad un tikai tad, ja“ prasa implikāciju abos virzienos.
 
 ##### Loģiskās konjunkcijas interpretēšana
 
@@ -1096,7 +1096,7 @@ Skills: 9
 
 **Methodological description (English):** Determine when the denial of a proposition is true and distinguish negation from a stronger contrary statement.
 
-**User-friendly description (lv):** Saprot, kā apgalvojuma noliegums maina tā patiesuma nosacījumus.
+**User-friendly description (lv):** Saproti, kā apgalvojuma noliegums maina tā patiesuma nosacījumus.
 
 ##### Materiālās implikācijas interpretēšana
 
@@ -1104,7 +1104,7 @@ Skills: 9
 
 **Methodological description (English):** Determine when a conditional is true in classical propositional logic without confusing logical implication with causation.
 
-**User-friendly description (lv):** Saprot, kad nosacījuma izteikums ir patiess klasiskajā izteikumu loģikā.
+**User-friendly description (lv):** Saproti, kad nosacījuma izteikums ir patiess klasiskajā izteikumu loģikā.
 
 ##### Deduktīvā derīguma pārbaude ar patiesumtabulu
 

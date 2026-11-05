@@ -538,7 +538,7 @@ Skills: 4
 
 **User-friendly description (bn):** কোনো কাজের উদ্দেশ্য এবং তার প্রভাব আলাদাভাবে মূল্যায়ন করো।
 
-##### নৈতিক ও অনৈতিক নয় এমন বিচারের পার্থক্য
+##### নৈতিক ও নৈতিকতার সঙ্গে সম্পর্কহীন বিচারের পার্থক্য
 
 [distinguishMoralFromNonMoralJudgments.data.ts](../../../learningApps/philosophy/data/skills/ethicsAndMoralReasoning/moralConcepts/skills/distinguishMoralFromNonMoralJudgments.data.ts)
 
@@ -1286,7 +1286,7 @@ Groups: 4 · Skills: 17
 
 **User-friendly description (bn):** চেতনা, ব্যক্তিগত পরিচয়, স্বাধীনতা ও জীবনের অর্থ নিয়ে দার্শনিক প্রশ্নগুলো অনুসন্ধান করো।
 
-#### কর্তৃত্বশীলতা ও স্বাধীন ইচ্ছা
+#### কর্মক্ষমতা ও স্বাধীন ইচ্ছা
 
 Skills: 5
 
@@ -1844,7 +1844,7 @@ Skills: 8
 
 **Methodological description (English):** Evaluate an a priori argument that moves from a proposed concept of God or maximal greatness toward existence, examining whether its logical premises and modal assumptions warrant the conclusion.
 
-**User-friendly description (bn):** একটি সংজ্ঞা থেকে ঈশ্বরীয় অস্তিত্ব প্রমাণ করতে চায় এমন যুক্তিগুলো অনুসন্ধান করো।
+**User-friendly description (bn):** কোনো সংজ্ঞা থেকে ঐশ্বরিক অস্তিত্ব অনুমান করতে চায় এমন যুক্তিগুলো অনুসন্ধান করো।
 
 ##### নিরীশ্বরবাদী ধর্মীয় বাস্তবতার ধারণা বিশ্লেষণ
 

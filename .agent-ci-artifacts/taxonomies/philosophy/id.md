@@ -2172,7 +2172,7 @@ Skills: 4
 
 **User-friendly description (id):** Nilai apakah sumber daya sebaiknya dibagikan menurut kebutuhan, prestasi, hak, atau kesetaraan.
 
-##### Membedakan kesamaan dan keadilan yang proporsional
+##### Membedakan kesetaraan dan keadilan yang mempertimbangkan perbedaan
 
 [distinguishEqualityFromEquity.data.ts](../../../learningApps/philosophy/data/skills/socialAndPoliticalPhilosophy/justiceAndEquality/skills/distinguishEqualityFromEquity.data.ts)
 

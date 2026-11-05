@@ -772,7 +772,7 @@ Groups: 6 · Skills: 35
 
 **Methodological description (English):** The central question is whether reasons support a conclusion and in what way. Formal entailment, defeasible inference, and argumentative defects are distinguished from psychological causes of belief, which belong chiefly to Psychology.
 
-**User-friendly description (mr):** कारणे निष्कर्षाला आधार देतात का हे तपासायला आणि चुकीचा तर्क ओळखायला शीक.
+**User-friendly description (mr):** कारणे निष्कर्षाला आधार देतात का हे तपासायला आणि चुकीचा तर्क ओळखायला शिका.
 
 #### युक्तिवादातील तर्कदोष
 
@@ -782,7 +782,7 @@ Skills: 6
 
 **Methodological description (English):** A flaw concerns the relation between claims and reasons, not necessarily the speaker's motives or a named cognitive bias. Context matters: surface wording alone rarely proves fallaciousness.
 
-**User-friendly description (mr):** दाव्यांच्या समर्थनार्थ दिलेल्या कारणांमधील सामान्य चुका ओळखायला शीक.
+**User-friendly description (mr):** दाव्यांच्या समर्थनार्थ दिलेल्या कारणांमधील सामान्य चुका ओळखायला शिका.
 
 ##### खोटा द्विधा पर्याय ओळखणे
 
@@ -790,7 +790,7 @@ Skills: 6
 
 **Methodological description (English):** Identify a purported exhaustive choice that overlooks meaningful alternatives or combined possibilities.
 
-**User-friendly description (mr):** फसव्या 'हे की ते' पर्यायामागे लपलेले महत्त्वाचे इतर पर्याय शोध.
+**User-friendly description (mr):** फसव्या 'हे की ते' पर्यायामागे लपलेले महत्त्वाचे इतर पर्याय शोधा.
 
 ##### पेंढापुतळा तर्कदोष ओळखणे
 
@@ -798,7 +798,7 @@ Skills: 6
 
 **Methodological description (English):** Show where a position is distorted into an easier target and recover the actual view before evaluating it.
 
-**User-friendly description (mr):** एखाद्याची भूमिका सहज हल्ला करता यावी म्हणून विकृत केली जाते ते ओळख.
+**User-friendly description (mr):** एखाद्याची भूमिका सहज हल्ला करता यावी म्हणून विकृत केली जाते ते ओळखा.
 
 ##### व्यक्तीवर हल्ला करणारा तर्कदोष ओळखणे
 
@@ -806,7 +806,7 @@ Skills: 6
 
 **Methodological description (English):** Identify when a personal attack substitutes for addressing reasons, while distinguishing relevant credibility evidence from irrelevant insults.
 
-**User-friendly description (mr):** संबंधित कारणांऐवजी व्यक्तीवर हल्ला केला जातो तेव्हा ओळख.
+**User-friendly description (mr):** संबंधित कारणांऐवजी व्यक्तीवर हल्ला केला जातो तेव्हा ओळखा.
 
 ##### शब्दार्थ बदलण्याचा तर्कदोष ओळखणे
 
@@ -814,7 +814,7 @@ Skills: 6
 
 **Methodological description (English):** Trace a shift between meanings of the same expression that makes an inference appear stronger than it is.
 
-**User-friendly description (mr):** युक्तिवादात एखाद्या शब्दाचा अर्थ बदलतो ते ओळख.
+**User-friendly description (mr):** युक्तिवादात एखाद्या शब्दाचा अर्थ बदलतो ते ओळखा.
 
 ##### चक्रीय युक्तिवाद ओळखणे
 
@@ -822,7 +822,7 @@ Skills: 6
 
 **Methodological description (English):** Recognize when the offered support presupposes the very claim at issue without independent justification.
 
-**User-friendly description (mr):** सिद्ध करायचा निष्कर्ष आधीच गृहीत धरणारा युक्तिवाद ओळख.
+**User-friendly description (mr):** सिद्ध करायचा निष्कर्ष आधीच गृहीत धरणारा युक्तिवाद ओळखा.
 
 ##### तज्ज्ञतेच्या आधारावरील युक्तिवाद तपासणे
 
@@ -830,7 +830,7 @@ Skills: 6
 
 **Methodological description (English):** Examine whether expertise is relevant and reliable evidence in context, rather than assuming that invoking any authority proves a conclusion.
 
-**User-friendly description (mr):** उद्धृत तज्ज्ञता संबंधित पुरावा आहे का, की तिलाच अंतिम सिद्धता मानली जाते ते ठरव.
+**User-friendly description (mr):** उद्धृत तज्ज्ञता संबंधित पुरावा आहे का, की तिलाच अंतिम सिद्धता मानली जाते ते ठरवा.
 
 #### युक्तिवाद आणि अनुमान
 
@@ -848,7 +848,7 @@ Skills: 4
 
 **Methodological description (English):** Tell reasoning intended to establish a claim from an account of why an already accepted event or fact occurred.
 
-**User-friendly description (mr):** एखादी गोष्ट मानण्याचे कारण आणि मान्य केलेल्या तथ्याचे स्पष्टीकरण यात फरक कर.
+**User-friendly description (mr):** एखादी गोष्ट मानण्याचे कारण आणि मान्य केलेल्या तथ्याचे स्पष्टीकरण यात फरक करा.
 
 ##### युक्तिवादाचा निष्कर्ष ओळखणे
 
@@ -856,7 +856,7 @@ Skills: 4
 
 **Methodological description (English):** Determine which proposition is supposed to follow or gain support, regardless of its position in a passage.
 
-**User-friendly description (mr):** युक्तिवाद सिद्ध करू पाहत असलेला मुख्य दावा ओळख.
+**User-friendly description (mr):** युक्तिवाद सिद्ध करू पाहत असलेला मुख्य दावा ओळखा.
 
 ##### युक्तिवादातील पूर्वाधार ओळखणे
 
@@ -864,7 +864,7 @@ Skills: 4
 
 **Methodological description (English):** Locate the reasons offered in support of a conclusion, including unstated propositions when context makes them indispensable.
 
-**User-friendly description (mr):** एखाद्या दाव्याच्या समर्थनार्थ दिलेली विधानं शोध.
+**User-friendly description (mr):** एखाद्या दाव्याच्या समर्थनार्थ दिलेली विधानं शोधा.
 
 ##### युक्तिवादाची मानक रूपात पुनर्मांडणी करणे
 
@@ -872,7 +872,7 @@ Skills: 4
 
 **Methodological description (English):** Arrange its relevant premises and conclusion explicitly while preserving the original reasoning rather than improving it silently.
 
-**User-friendly description (mr):** युक्तिवाद स्पष्ट पूर्वाधार आणि त्यानंतर निष्कर्ष अशा स्वरूपात पुन्हा लिही.
+**User-friendly description (mr):** युक्तिवाद स्पष्ट पूर्वाधार आणि त्यानंतर निष्कर्ष अशा स्वरूपात पुन्हा लिहा.
 
 #### निगमनात्मक तर्क
 
@@ -882,7 +882,7 @@ Skills: 6
 
 **Methodological description (English):** Deduction concerns whether it is possible for premises to be true while a conclusion is false. Logical form is evaluated separately from whether the premises describe the world correctly.
 
-**User-friendly description (mr):** दिलेल्या पूर्वाधारांमधून निष्कर्ष अपरिहार्यपणे कधी निघतो ते समजून घे.
+**User-friendly description (mr):** दिलेल्या पूर्वाधारांमधून निष्कर्ष अपरिहार्यपणे कधी निघतो ते समजून घ्या.
 
 ##### मोडस पोनेन्स लागू करणे
 
@@ -890,7 +890,7 @@ Skills: 6
 
 **Methodological description (English):** Infer a consequent from a conditional and its antecedent without treating the inverse conditional as equivalent.
 
-**User-friendly description (mr):** A मुळे B येतो आणि A खरे असेल, तर B निष्पन्न होतो हा नियम वापर.
+**User-friendly description (mr):** A मुळे B येतो आणि A खरे असेल, तर B निष्पन्न होतो हा नियम वापरा.
 
 ##### मोडस टोलन्स लागू करणे
 
@@ -898,7 +898,7 @@ Skills: 6
 
 **Methodological description (English):** Reject the antecedent of a conditional from the denial of its consequent, under the conditional as stated.
 
-**User-friendly description (mr):** अट आणि तिच्या परिणामाचा निषेध वापरून पूर्वपक्ष नाकार.
+**User-friendly description (mr):** अट आणि तिच्या परिणामाचा निषेध वापरून पूर्वपक्ष नाकारा.
 
 ##### निगमनात्मक वैधता तपासणे
 
@@ -906,7 +906,7 @@ Skills: 6
 
 **Methodological description (English):** Determine whether a conclusion must hold if the premises hold, using logical structure rather than agreement with the conclusion.
 
-**User-friendly description (mr):** सर्व पूर्वाधार खरे असूनही निष्कर्ष खोटा असू शकतो का ते तपास.
+**User-friendly description (mr):** सर्व पूर्वाधार खरे असूनही निष्कर्ष खोटा असू शकतो का ते तपासा.
 
 ##### वैधता आणि ठोसपणा यांत फरक करणे
 
@@ -914,7 +914,7 @@ Skills: 6
 
 **Methodological description (English):** Recognize that a sound deductive argument requires both a valid inference and true premises.
 
-**User-friendly description (mr):** तार्किकदृष्ट्या वैध युक्तिवादातही खोटे पूर्वाधार का असू शकतात ते समज.
+**User-friendly description (mr):** तार्किकदृष्ट्या वैध युक्तिवादातही खोटे पूर्वाधार का असू शकतात ते समजा.
 
 ##### वर्गीय न्यायवाक्य तपासणे
 
@@ -922,7 +922,7 @@ Skills: 6
 
 **Methodological description (English):** Examine whether relations among classes support the proposed conclusion, rather than relying on familiar subject matter.
 
-**User-friendly description (mr):** वर्गांबद्दलची विधानं निष्कर्षाला तार्किक आधार देतात का ते ठरव.
+**User-friendly description (mr):** वर्गांबद्दलची विधानं निष्कर्षाला तार्किक आधार देतात का ते ठरवा.
 
 ##### विधानांच्या समूहातील विरोधाभास ओळखणे
 
@@ -930,7 +930,7 @@ Skills: 6
 
 **Methodological description (English):** Show where commitments cannot all be true together under the same meanings and conditions.
 
-**User-friendly description (mr):** एकाच परिस्थितीत सर्व खरी असू शकत नाहीत अशी विधानं ओळख.
+**User-friendly description (mr):** एकाच परिस्थितीत सर्व खरी असू शकत नाहीत अशी विधानं ओळखा.
 
 #### अनिगमनात्मक तर्क
 
@@ -940,7 +940,7 @@ Skills: 4
 
 **Methodological description (English):** Many reasonable arguments support conclusions without guaranteeing them. Their strength depends on evidence, alternatives, sampling, or explanatory power rather than formal certainty.
 
-**User-friendly description (mr):** निश्चितता न देता निष्कर्षाला आधार देणारा तर्क तपासायला शीक.
+**User-friendly description (mr):** निश्चितता न देता निष्कर्षाला आधार देणारा तर्क तपासायला शिका.
 
 ##### निगमनात्मक निश्चितता आणि संभाव्य आधार यांत फरक करणे
 
@@ -948,7 +948,7 @@ Skills: 4
 
 **Methodological description (English):** Recognize that a well-supported conclusion can remain revisable when the reasoning is non-deductive.
 
-**User-friendly description (mr):** तार्किकदृष्ट्या निश्चित निष्कर्ष आणि संभाव्यतेने समर्थित निष्कर्ष वेगळे ओळख.
+**User-friendly description (mr):** तार्किकदृष्ट्या निश्चित निष्कर्ष आणि संभाव्यतेने समर्थित निष्कर्ष वेगळे ओळखा.
 
 ##### आगमनात्मक सामान्यीकरण तपासणे
 
@@ -956,7 +956,7 @@ Skills: 4
 
 **Methodological description (English):** Judge how well observed cases support a claim about a broader population, including the relevance of selection and variation.
 
-**User-friendly description (mr):** पाहिलेली उदाहरणे व्यापक सामान्यीकरणाला किती आधार देतात ते तपास.
+**User-friendly description (mr):** पाहिलेली उदाहरणे व्यापक सामान्यीकरणाला किती आधार देतात ते तपासा.
 
 ##### सर्वोत्तम स्पष्टीकरणाकडे जाणारे अनुमान तपासणे
 
@@ -964,7 +964,7 @@ Skills: 4
 
 **Methodological description (English):** Compare hypotheses by how well they explain evidence, their assumptions, and their fit with alternative explanations.
 
-**User-friendly description (mr):** पुरावे आणि गृहीतके पाहून शक्य स्पष्टीकरणांमधून निवड कर.
+**User-friendly description (mr):** पुरावे आणि गृहीतके पाहून शक्य स्पष्टीकरणांमधून निवड करा.
 
 ##### साधर्म्याधारित तर्क तपासणे
 
@@ -972,7 +972,7 @@ Skills: 4
 
 **Methodological description (English):** Check whether compared cases share features relevant to the proposed conclusion rather than merely superficial similarities.
 
-**User-friendly description (mr):** निष्कर्षासाठी खरोखर महत्त्वाच्या साधर्म्यांवरून उदाहरणांची तुलना कर.
+**User-friendly description (mr):** निष्कर्षासाठी खरोखर महत्त्वाच्या साधर्म्यांवरून उदाहरणांची तुलना करा.
 
 #### विधेय तर्कशास्त्र
 
@@ -990,7 +990,7 @@ Skills: 6
 
 **Methodological description (English):** Identify which variables and expressions are governed by a quantifier and how scope changes the meaning of a formula.
 
-**User-friendly description (mr):** परिमाणचिन्ह कुठे आहे याने विधानाचा अर्थ कसा बदलतो ते ओळख.
+**User-friendly description (mr):** परिमाणचिन्ह कुठे आहे याने विधानाचा अर्थ कसा बदलतो ते ओळखा.
 
 ##### विधेय आणि विधान यांत फरक करणे
 
@@ -998,7 +998,7 @@ Skills: 6
 
 **Methodological description (English):** Recognize a predicate with an unbound variable as an open expression and a proposition as a statement with specified truth conditions.
 
-**User-friendly description (mr):** चल असलेली खुली अभिव्यक्ती आणि पूर्ण विधान यात फरक कर.
+**User-friendly description (mr):** चल असलेली खुली अभिव्यक्ती आणि पूर्ण विधान यात फरक करा.
 
 ##### परिमाणचिन्हांसह अनुमान तपासणे
 
@@ -1006,7 +1006,7 @@ Skills: 6
 
 **Methodological description (English):** Check whether a conclusion about all or some members of a domain follows from quantified premises under a stated interpretation.
 
-**User-friendly description (mr):** परिमाणचिन्ह असलेल्या पूर्वाधारांतून सुचवलेला निष्कर्ष खरोखर निघतो का ते तपास.
+**User-friendly description (mr):** परिमाणचिन्ह असलेल्या पूर्वाधारांतून सुचवलेला निष्कर्ष खरोखर निघतो का ते तपासा.
 
 ##### अस्तित्वदर्शक परिमाणीकरण समजणे
 
@@ -1014,7 +1014,7 @@ Skills: 6
 
 **Methodological description (English):** Determine what it means for at least one element of a specified domain to satisfy a property, without implying uniqueness.
 
-**User-friendly description (mr):** 'अस्तित्वात आहे' म्हणजे अट पूर्ण करणारे किमान एक उदाहरण आहे हे समज.
+**User-friendly description (mr):** 'अस्तित्वात आहे' म्हणजे अट पूर्ण करणारे किमान एक उदाहरण आहे हे समजा.
 
 ##### सार्वत्रिक परिमाणीकरण समजणे
 
@@ -1022,7 +1022,7 @@ Skills: 6
 
 **Methodological description (English):** Determine what it means for a property to hold for every element of a specified domain and how one counterexample would matter.
 
-**User-friendly description (mr):** निश्चित गटातील प्रत्येक सदस्याला लागू होणारे विधान समजून घे.
+**User-friendly description (mr):** निश्चित गटातील प्रत्येक सदस्याला लागू होणारे विधान समजून घ्या.
 
 ##### परिमाणित विधानाचा निषेध करणे
 
@@ -1030,7 +1030,7 @@ Skills: 6
 
 **Methodological description (English):** Use the relationships between not-all and some-not, and between none and there-exists, to interpret negation accurately.
 
-**User-friendly description (mr):** 'सर्व' किंवा 'काही' असलेल्या विधानांचा अर्थ न बदलता योग्य निषेध कर.
+**User-friendly description (mr):** 'सर्व' किंवा 'काही' असलेल्या विधानांचा अर्थ न बदलता योग्य निषेध करा.
 
 #### विधान तर्कशास्त्र
 
@@ -1040,7 +1040,7 @@ Skills: 9
 
 **Methodological description (English):** Truth-functional connections between propositions determine the logical properties of compound statements. Symbolic operators and truth tables clarify implications independent of the subject matter used in examples.
 
-**User-friendly description (mr):** तार्किक संयोजकांनी जोडलेल्या विधानांच्या सत्यतेच्या अटी समजून घे.
+**User-friendly description (mr):** तार्किक संयोजकांनी जोडलेल्या विधानांच्या सत्यतेच्या अटी समजून घ्या.
 
 ##### सत्यता सारणीने विधानाचे वर्गीकरण करणे
 
@@ -1048,7 +1048,7 @@ Skills: 9
 
 **Methodological description (English):** Distinguish tautological, contradictory, and contingent expressions through their truth values under all assignments.
 
-**User-friendly description (mr):** सत्यता सारणीने नेहमी खरी, नेहमी खोटी आणि परिस्थितीनुसार बदलणारी विधानं ओळख.
+**User-friendly description (mr):** सत्यता सारणीने नेहमी खरी, नेहमी खोटी आणि परिस्थितीनुसार बदलणारी विधानं ओळखा.
 
 ##### सत्यता सारणी तयार करणे
 
@@ -1056,7 +1056,7 @@ Skills: 9
 
 **Methodological description (English):** Enumerate truth-value combinations for atomic propositions and systematically compute outcomes of logical expressions.
 
-**User-friendly description (mr):** तार्किक विधानाच्या शक्य सत्य-असत्य मूल्यांची सारणी तयार कर.
+**User-friendly description (mr):** तार्किक विधानाच्या शक्य सत्य-असत्य मूल्यांची सारणी तयार करा.
 
 ##### साधे आणि संयुक्त विधान वेगळे ओळखणे
 
@@ -1064,7 +1064,7 @@ Skills: 9
 
 **Methodological description (English):** A proposition can stand alone or form part of a statement built with logical connectives; truth-functional structure differs from the number of words in an ordinary sentence.
 
-**User-friendly description (mr):** एक स्वतंत्र विधान आणि तार्किक संयोजकांनी बनलेले विधान यात फरक कर.
+**User-friendly description (mr):** एक स्वतंत्र विधान आणि तार्किक संयोजकांनी बनलेले विधान यात फरक करा.
 
 ##### तार्किक द्विशर्तीय विधान समजणे
 
@@ -1072,7 +1072,7 @@ Skills: 9
 
 **Methodological description (English):** Assess 'if and only if' statements as two-way conditional relationships, rather than treating either one-way conditional as sufficient.
 
-**User-friendly description (mr):** 'तेव्हाच आणि तेव्हाच फक्त' यासाठी दोन्ही दिशांनी अंतर्भाव लागतो हे ओळख.
+**User-friendly description (mr):** 'तेव्हाच आणि तेव्हाच फक्त' यासाठी दोन्ही दिशांनी अंतर्भाव लागतो हे ओळखा.
 
 ##### तार्किक संयोग समजणे
 
@@ -1080,7 +1080,7 @@ Skills: 9
 
 **Methodological description (English):** Apply the truth conditions of logical 'and' while distinguishing conjunction from a chronological or causal relationship.
 
-**User-friendly description (mr):** तार्किक 'आणि' असलेले विधान कधी खरे असते ते ओळख.
+**User-friendly description (mr):** तार्किक 'आणि' असलेले विधान कधी खरे असते ते ओळखा.
 
 ##### तार्किक विकल्प समजणे
 
@@ -1088,7 +1088,7 @@ Skills: 9
 
 **Methodological description (English):** Apply the truth conditions of inclusive 'or' and distinguish these from interpretations that require exactly one alternative.
 
-**User-friendly description (mr):** फक्त एकच पर्याय खरा असेल असे न मानता समावेशक 'किंवा' समज.
+**User-friendly description (mr):** फक्त एकच पर्याय खरा असेल असे न मानता समावेशक 'किंवा' समजा.
 
 ##### तार्किक निषेध समजणे
 
@@ -1096,7 +1096,7 @@ Skills: 9
 
 **Methodological description (English):** Determine when the denial of a proposition is true and distinguish negation from a stronger contrary statement.
 
-**User-friendly description (mr):** एखादे विधान नाकारल्यावर सत्यतेच्या अटी कशा बदलतात ते समज.
+**User-friendly description (mr):** एखादे विधान नाकारल्यावर सत्यतेच्या अटी कशा बदलतात ते समजा.
 
 ##### भौतिक अंतर्भाव समजणे
 
@@ -1104,7 +1104,7 @@ Skills: 9
 
 **Methodological description (English):** Determine when a conditional is true in classical propositional logic without confusing logical implication with causation.
 
-**User-friendly description (mr):** परंपरागत विधान तर्कात अट असलेले विधान कधी खरे असते ते समज.
+**User-friendly description (mr):** परंपरागत विधान तर्कात अट असलेले विधान कधी खरे असते ते समजा.
 
 ##### सत्यता सारणीने निगमनात्मक वैधता तपासणे
 
@@ -1112,7 +1112,7 @@ Skills: 9
 
 **Methodological description (English):** Search for a case in which all premises are true but the conclusion false to determine propositional validity.
 
-**User-friendly description (mr):** पूर्वाधार खरे पण निष्कर्ष खोटा असलेली स्थिती शोधून निगमन तपास.
+**User-friendly description (mr):** पूर्वाधार खरे पण निष्कर्ष खोटा असलेली स्थिती शोधून निगमन तपासा.
 
 ### अधिभौतिकशास्त्र
 
@@ -1488,7 +1488,7 @@ Skills: 4
 
 **Methodological description (English):** Specify relevant conditions or uses of a term such as freedom so interlocutors can determine what their disagreement concerns.
 
-**User-friendly description (mr):** एखाद्या शब्दाच्या वापरावर मतभेद असतील तर त्याचा अर्थ स्पष्ट कर.
+**User-friendly description (mr):** एखाद्या शब्दाच्या वापरावर मतभेद असतील तर त्याचा अर्थ स्पष्ट करा.
 
 ##### आवश्यक आणि पुरेशा अटींमधील फरक ओळखणे
 
@@ -1496,7 +1496,7 @@ Skills: 4
 
 **Methodological description (English):** Determine whether a proposed property is required for a concept to apply, enough for it to apply, or both; a condition can fail one test and pass the other.
 
-**User-friendly description (mr):** एखादी अट आवश्यक आहे, पुरेशी आहे, दोन्ही आहे की कोणतीच नाही ते ठरव.
+**User-friendly description (mr):** एखादी अट आवश्यक आहे, पुरेशी आहे, दोन्ही आहे की कोणतीच नाही ते ठरवा.
 
 ##### प्रतिउदाहरणाने व्याख्या तपासणे
 
@@ -1504,7 +1504,7 @@ Skills: 4
 
 **Methodological description (English):** Find a case included or excluded incorrectly by a proposed definition and explain what the case reveals about its limits.
 
-**User-friendly description (mr):** एखाद्या व्याख्येत चुकीने बसणारे उदाहरण शोधून तिला आव्हान दे.
+**User-friendly description (mr):** एखाद्या व्याख्येत चुकीने बसणारे उदाहरण शोधून तिला आव्हान द्या.
 
 ##### विचारप्रयोगातून संकल्पना तपासणे
 
@@ -1530,7 +1530,7 @@ Skills: 4
 
 **Methodological description (English):** Request a reason, distinction, implication, or counterexample that can advance inquiry without demanding personal disclosure.
 
-**User-friendly description (mr):** दुसऱ्याची कारणे तपासणारा किंवा त्याचे मत स्पष्ट करणारा प्रश्न विचार.
+**User-friendly description (mr):** दुसऱ्याची कारणे तपासणारा किंवा त्याचे मत स्पष्ट करणारा प्रश्न विचारा.
 
 ##### दुसऱ्याची भूमिका न्याय्यपणे पुन्हा मांडणे
 
@@ -1538,7 +1538,7 @@ Skills: 4
 
 **Methodological description (English):** Restate an interlocutor's strongest contextually plausible position accurately and charitably, rather than attacking a weaker caricature; fair reconstruction does not require overlooking genuine contradictions or unsupported claims.
 
-**User-friendly description (mr):** टीका करण्यापूर्वी दुसऱ्याची भूमिका अचूकपणे मांड.
+**User-friendly description (mr):** टीका करण्यापूर्वी दुसऱ्याची भूमिका अचूकपणे मांडा.
 
 ##### तत्त्वज्ञानविषयक आक्षेपाला उत्तर देणे
 
@@ -1546,7 +1546,7 @@ Skills: 4
 
 **Methodological description (English):** Address the actual challenge to a claim, rather than diverting to the objector's identity or motives.
 
-**User-friendly description (mr):** आक्षेप घेणाऱ्या व्यक्तीवर हल्ला करण्याऐवजी आक्षेपातील मुद्द्याला उत्तर दे.
+**User-friendly description (mr):** आक्षेप घेणाऱ्या व्यक्तीवर हल्ला करण्याऐवजी आक्षेपातील मुद्द्याला उत्तर द्या.
 
 ##### कारणांच्या आधारे भूमिका बदलणे
 
@@ -1554,7 +1554,7 @@ Skills: 4
 
 **Methodological description (English):** Identify which premise or conclusion should change when a cogent objection defeats an earlier commitment.
 
-**User-friendly description (mr):** अधिक मजबूत कारण बदल सुचवत असेल तर आपला विश्वास किंवा युक्तिवाद बदल.
+**User-friendly description (mr):** अधिक मजबूत कारण बदल सुचवत असेल तर आपला विश्वास किंवा युक्तिवाद बदला.
 
 #### प्रश्न आणि समस्या
 
@@ -1564,7 +1564,7 @@ Skills: 4
 
 **Methodological description (English):** A productive philosophical problem can be examined through competing answers, explicit concepts, and reasons. The object is to make a question discussable without assuming that every question has a single empirical test.
 
-**User-friendly description (mr):** गोंधळात टाकणाऱ्या कल्पनांचे विचारपूर्वक चर्चा करता येतील अशा प्रश्नांत रूपांतर करायला शीक.
+**User-friendly description (mr):** गोंधळात टाकणाऱ्या कल्पनांचे विचारपूर्वक चर्चा करता येतील अशा प्रश्नांत रूपांतर करायला शिका.
 
 ##### तत्त्वज्ञानविषयक समस्या आणि उदाहरण यांत फरक करणे
 
@@ -1572,7 +1572,7 @@ Skills: 4
 
 **Methodological description (English):** Separate the general issue, such as whether promises create obligations, from the particular story used to make it vivid.
 
-**User-friendly description (mr):** सर्वसाधारण तत्त्वज्ञानविषयक समस्या आणि ती दाखवणारी गोष्ट यांत फरक कर.
+**User-friendly description (mr):** सर्वसाधारण तत्त्वज्ञानविषयक समस्या आणि ती दाखवणारी गोष्ट यांत फरक करा.
 
 ##### तत्त्वज्ञानविषयक आणि अनुभवाधारित प्रश्न वेगळे ओळखणे
 
@@ -1580,7 +1580,7 @@ Skills: 4
 
 **Methodological description (English):** Identify when an issue asks what a concept means, what ought to be done, or what ultimately explains something, rather than only requesting a measurable fact; many questions have both aspects.
 
-**User-friendly description (mr):** तत्त्वज्ञानविषयक प्रश्न मोजमापाने उत्तर मिळणाऱ्या प्रश्नांपेक्षा कसे वेगळे आहेत ते ओळख.
+**User-friendly description (mr):** तत्त्वज्ञानविषयक प्रश्न मोजमापाने उत्तर मिळणाऱ्या प्रश्नांपेक्षा कसे वेगळे आहेत ते ओळखा.
 
 ##### तत्त्वज्ञानविषयक प्रश्न मांडणे
 
@@ -1588,7 +1588,7 @@ Skills: 4
 
 **Methodological description (English):** Turn an ordinary puzzlement into an open question about meaning, reasons, values, or assumptions that admits more than a yes-or-no preference.
 
-**User-friendly description (mr):** केवळ आवड विचारण्याऐवजी कारणे, अर्थ किंवा मूल्यांवर खुला प्रश्न विचार.
+**User-friendly description (mr):** केवळ आवड विचारण्याऐवजी कारणे, अर्थ किंवा मूल्यांवर खुला प्रश्न विचारा.
 
 ##### तत्त्वज्ञानविषयक समस्येतील गृहीतके ओळखणे
 
@@ -1596,7 +1596,7 @@ Skills: 4
 
 **Methodological description (English):** Expose propositions that a question or proposed answer takes for granted, such as what counts as a person or what makes an action fair.
 
-**User-friendly description (mr):** तत्त्वज्ञानविषयक प्रश्न किंवा सुचवलेल्या उत्तरामागील लपलेली गृहीतके शोध.
+**User-friendly description (mr):** तत्त्वज्ञानविषयक प्रश्न किंवा सुचवलेल्या उत्तरामागील लपलेली गृहीतके शोधा.
 
 ### भाषेचे तत्त्वज्ञान
 
@@ -1738,7 +1738,7 @@ Skills: 3
 
 **User-friendly description (mr):** धर्म, अविश्वास आणि जीवनाचा अर्थ यांतील मतभेदांवर आदरपूर्वक चर्चा करायला शिका.
 
-##### धार्मिक बहुलवादाचे तत्त्वज्ञानातील समस्या म्हणून विश्लेषण
+##### धार्मिक बहुलवादाचे तात्त्विक प्रश्न म्हणून विश्लेषण
 
 [analyzeReligiousPluralismAsAPhilosophicalProblem.data.ts](../../../learningApps/philosophy/data/skills/philosophyOfReligion/diversityAndMeaning/skills/analyzeReligiousPluralismAsAPhilosophicalProblem.data.ts)
 

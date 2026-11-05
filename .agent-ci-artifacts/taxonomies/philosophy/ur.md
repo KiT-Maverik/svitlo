@@ -40,7 +40,7 @@ Skills: 4
 
 **Methodological description (English):** Explain how setting, background knowledge, and cultural conventions can alter interpretation while the object remains unchanged.
 
-**User-friendly description (ur):** دیکھو کہ حالات اور پس منظر کا علم جمالیاتی تجربے کو کیسے بدلتا ہے۔
+**User-friendly description (ur):** دیکھیں کہ حالات اور پس منظر کا علم جمالیاتی تجربے کو کیسے بدلتا ہے۔
 
 ##### حسن کے معروضی اور موضوعی نظریات کا موازنہ
 
@@ -48,7 +48,7 @@ Skills: 4
 
 **Methodological description (English):** Examine whether aesthetic assessments can be reasoned about beyond individual preference without assuming universal consensus.
 
-**User-friendly description (ur):** دیکھو کہ خوبصورتی کا فیصلہ ذاتی پسند سے ہٹ کر ہو سکتا ہے یا نہیں۔
+**User-friendly description (ur):** دیکھیں کہ خوبصورتی کا فیصلہ ذاتی پسند سے ہٹ کر ہو سکتا ہے یا نہیں۔
 
 ##### جمالیاتی اور عملی قدر میں فرق
 
@@ -56,7 +56,7 @@ Skills: 4
 
 **Methodological description (English):** Explain why something may be appreciated for its appearance or experience rather than its practical usefulness.
 
-**User-friendly description (ur):** کسی چیز کی خوبصورتی یا اظہار کی قدر کو اس کے عملی فائدے سے الگ کرو۔
+**User-friendly description (ur):** کسی چیز کی خوبصورتی یا اظہار کی قدر کو اس کے عملی فائدے سے الگ کریں۔
 
 ##### جمالیاتی فیصلے کا جواز دینا
 
@@ -64,7 +64,7 @@ Skills: 4
 
 **Methodological description (English):** Support an appraisal with relevant features and criteria rather than simply reporting that one likes or dislikes an object.
 
-**User-friendly description (ur):** صرف ذاتی پسند نہیں بلکہ متعلقہ خصوصیات سے جمالیاتی رائے کی وضاحت کرو۔
+**User-friendly description (ur):** صرف ذاتی پسند نہیں بلکہ متعلقہ خصوصیات سے جمالیاتی رائے کی وضاحت کریں۔
 
 #### فن اور تعبیر
 
@@ -74,7 +74,7 @@ Skills: 4
 
 **Methodological description (English):** A work can bear meanings and values that are not reducible to the creator's stated intent or a viewer's immediate reaction.
 
-**User-friendly description (ur):** غور کرو کہ فن پارے اپنے بنانے والوں کی نیت سے آگے بھی معنی کیسے پہنچا سکتے ہیں۔
+**User-friendly description (ur):** غور کریں کہ فن پارے اپنے بنانے والوں کی نیت سے آگے بھی معنی کیسے پہنچا سکتے ہیں۔
 
 ##### فن کے اخلاقی جائزے کا تجزیہ
 
@@ -82,7 +82,7 @@ Skills: 4
 
 **Methodological description (English):** Explore whether and how moral concerns about content, production, or reception bear on artistic appraisal.
 
-**User-friendly description (ur):** دیکھو کہ اخلاقی مسائل فن کی جانچ پر اثر انداز ہونے چاہییں یا نہیں۔
+**User-friendly description (ur):** دیکھیں کہ اخلاقی مسائل فن کی جانچ پر اثر انداز ہونے چاہییں یا نہیں۔
 
 ##### فن پارے کی تعبیروں کا موازنہ
 
@@ -90,7 +90,7 @@ Skills: 4
 
 **Methodological description (English):** Evaluate rival readings by their attention to the work's features and context rather than assuming every reading is equally supported.
 
-**User-friendly description (ur):** فن پارے کی خصوصیات اور تاریخ کے شواہد سے مختلف تعبیرات کی جانچ کرو۔
+**User-friendly description (ur):** فن پارے کی خصوصیات اور تاریخ کے شواہد سے مختلف تعبیرات کی جانچ کریں۔
 
 ##### فنکار کی نیت اور فن پارے کی تعبیر میں فرق
 
@@ -98,7 +98,7 @@ Skills: 4
 
 **Methodological description (English):** Assess what a creator reportedly intended separately from meanings supported by the work and its reception.
 
-**User-friendly description (ur):** فنکار کی نیت کو ان معنوں سے الگ کرو جن کی تائید فن پارہ خود کرتا ہے۔
+**User-friendly description (ur):** فنکار کی نیت کو ان معنوں سے الگ کریں جن کی تائید فن پارہ خود کرتا ہے۔
 
 ##### فن کی تعریف کا جائزہ
 
@@ -106,7 +106,7 @@ Skills: 4
 
 **Methodological description (English):** Test a proposed criterion against borderline cases, changing practices, and works that challenge established categories.
 
-**User-friendly description (ur):** غیر معمولی یا سرحدی مثالوں سے فن کی تعریفیں جانچو۔
+**User-friendly description (ur):** غیر معمولی یا سرحدی مثالوں سے فن کی تعریفیں جانچیں۔
 
 #### قدر اور ذوق
 
@@ -124,7 +124,7 @@ Skills: 3
 
 **Methodological description (English):** Examine how multiple traditions can sustain meaningful standards without requiring one global ranking of their forms.
 
-**User-friendly description (ur):** دیکھو کہ فن کی مختلف روایات کے اپنے بامعنی معیار کیسے ہو سکتے ہیں۔
+**User-friendly description (ur):** دیکھیں کہ فن کی مختلف روایات کے اپنے بامعنی معیار کیسے ہو سکتے ہیں۔
 
 ##### ذوق اور مدلل جائزے میں فرق
 
@@ -132,7 +132,7 @@ Skills: 3
 
 **Methodological description (English):** Recognize that a personal reaction and a defensible public judgment may overlap but require different kinds of support.
 
-**User-friendly description (ur):** کسی چیز کو پسند کرنے اور اس کے جائزے کے حق میں دلیل دینے کا فرق جان لو۔
+**User-friendly description (ur):** کسی چیز کو پسند کرنے اور اس کے جائزے کے حق میں دلیل دینے کا فرق جان لیں۔
 
 ##### جمالیاتی فیصلے میں مہارت کا کردار
 
@@ -140,7 +140,7 @@ Skills: 3
 
 **Methodological description (English):** Consider how practiced perception and historical knowledge may inform an assessment without making expert preferences infallible.
 
-**User-friendly description (ur):** سوچو کہ مہارت فیصلہ کرنے میں کیسے مدد دیتی ہے، مگر ماہرین بھی غلط ہو سکتے ہیں۔
+**User-friendly description (ur):** سوچیں کہ مہارت فیصلہ کرنے میں کیسے مدد دیتی ہے، مگر ماہرین بھی غلط ہو سکتے ہیں۔
 
 ### علمِ معرفت اور تنقیدی جانچ
 
@@ -612,7 +612,7 @@ Groups: 3 · Skills: 15
 
 **Methodological description (English):** Historically situated philosophical arguments develop through schools, intellectual movements, and traditions across cultures. Interpretation requires understanding both what a thinker argued and the debate that shaped the argument, without privileging one lineage as philosophy's default.
 
-**User-friendly description (ur):** مختلف ثقافتوں اور زمانوں کے فلسفیانہ خیالات کو ان کے دلائل کے ذریعے سمجھو۔
+**User-friendly description (ur):** مختلف ثقافتوں اور زمانوں کے فلسفیانہ خیالات کو ان کے دلائل کے ذریعے سمجھیں۔
 
 #### فلسفیانہ روایات
 
@@ -622,7 +622,7 @@ Skills: 8
 
 **Methodological description (English):** Intellectual traditions developed across many cultures through original arguments and sustained exchanges. Greek, Indian, Chinese, Islamic, African, Latin American, and particular Indigenous lineages are examined as philosophical sources in their own right, without treating a region as a single doctrine.
 
-**User-friendly description (ur):** مختلف ثقافتی روایتوں میں پیش کیے گئے فلسفیانہ دلائل کا مطالعہ کرو۔
+**User-friendly description (ur):** مختلف ثقافتی روایتوں میں پیش کیے گئے فلسفیانہ دلائل کا مطالعہ کریں۔
 
 ##### چینی روایت کے فلسفیانہ استدلال کا تجزیہ
 
@@ -630,7 +630,7 @@ Skills: 8
 
 **Methodological description (English):** Interpret a position in a specific Chinese philosophical lineage, such as Confucian or Daoist thinking, without conflating them.
 
-**User-friendly description (ur):** چینی فلسفیانہ روایت کے کسی دعوے کو اس کے مناسب پس منظر میں سمجھو۔
+**User-friendly description (ur):** چینی فلسفیانہ روایت کے کسی دعوے کو اس کے مناسب پس منظر میں سمجھیں۔
 
 ##### لاطینی امریکی روایت کے فلسفیانہ استدلال کا تجزیہ
 
@@ -638,7 +638,7 @@ Skills: 8
 
 **Methodological description (English):** Reconstruct an argument from a specific Latin American current, such as liberation or decolonial philosophy, in its intellectual and social context without reducing the region to one doctrine.
 
-**User-friendly description (ur):** لاطینی امریکی فلسفے کے دلائل کو سماجی اور فکری پس منظر میں سمجھو۔
+**User-friendly description (ur):** لاطینی امریکی فلسفے کے دلائل کو سماجی اور فکری پس منظر میں سمجھیں۔
 
 ##### افریقی روایت کے فلسفیانہ استدلال کا تجزیہ
 
@@ -646,7 +646,7 @@ Skills: 8
 
 **Methodological description (English):** Examine a representative argument concerning persons, community, knowledge, or values while avoiding claims that Africa has a single philosophy.
 
-**User-friendly description (ur):** کسی خاص افریقی روایت کے فلسفیانہ دلیل کا تجزیہ کرو۔
+**User-friendly description (ur):** کسی مخصوص افریقی روایت سے تعلق رکھنے والی فلسفیانہ دلیل کا تجزیہ کریں۔
 
 ##### ہندوستانی فلسفیانہ روایت کی دلیل کا تجزیہ
 
@@ -654,7 +654,7 @@ Skills: 8
 
 **Methodological description (English):** Identify claims and reasons in a specific Indian philosophical school while preserving its distinctive terms and internal disagreements.
 
-**User-friendly description (ur):** کسی خاص ہندوستانی فلسفیانہ مکتب کی دلیل کا جائزہ لو۔
+**User-friendly description (ur):** کسی خاص ہندوستانی فلسفیانہ مکتب کی دلیل کا جائزہ لیں۔
 
 ##### مقامی باشندوں کی فلسفیانہ روایت کی دلیل کا تجزیہ
 
@@ -662,7 +662,7 @@ Skills: 8
 
 **Methodological description (English):** Interpret philosophical claims from a particular Indigenous people or intellectual tradition on their own conceptual terms, recognizing differences among communities and avoiding a generic 'Indigenous worldview'.
 
-**User-friendly description (ur):** مقامی روایت کے فلسفیانہ خیالات کو اسی کے تناظر میں سمجھو۔
+**User-friendly description (ur):** مقامی روایت کے فلسفیانہ خیالات کو اسی کے تناظر میں سمجھیں۔
 
 ##### اسلامی فلسفیانہ روایت کی دلیل کا تجزیہ
 
@@ -670,7 +670,7 @@ Skills: 8
 
 **Methodological description (English):** Explain a selected debate in Islamic philosophy using its intellectual context rather than assuming theology and philosophy are identical.
 
-**User-friendly description (ur):** اسلامی فلسفے کی بحث کو اس کے تاریخی تناظر میں جانچو۔
+**User-friendly description (ur):** اسلامی فلسفے کی بحث کو اس کے تاریخی تناظر میں جانچیں۔
 
 ##### قدیم یونانی فلسفیانہ طریقوں کا موازنہ
 
@@ -678,7 +678,7 @@ Skills: 8
 
 **Methodological description (English):** Contrast representative methods or commitments in Socratic, Platonic, and Aristotelian arguments without collapsing them into one doctrine.
 
-**User-friendly description (ur):** سقراط، افلاطون اور ارسطو کے خیالات کا موازنہ کرو۔
+**User-friendly description (ur):** سقراط، افلاطون اور ارسطو کے خیالات کا موازنہ کریں۔
 
 ##### فلسفیانہ روایات کے مؤقفوں کا موازنہ
 
@@ -686,7 +686,7 @@ Skills: 8
 
 **Methodological description (English):** Identify a genuine shared problem and meaningful conceptual differences without forcing one tradition's categories onto another.
 
-**User-friendly description (ur):** مختلف روایات یکساں فلسفیانہ سوالات کو کیسے لیتی ہیں، اس کا موازنہ کرو۔
+**User-friendly description (ur):** مختلف روایات یکساں فلسفیانہ سوالات کو کیسے لیتی ہیں، اس کا موازنہ کریں۔
 
 #### فلسفیانہ تصانیف کا مطالعہ
 
@@ -696,7 +696,7 @@ Skills: 4
 
 **Methodological description (English):** Texts require interpreting claims, their argumentative context, and the questions the author sought to answer; historical wording cannot always be mapped directly to modern categories.
 
-**User-friendly description (ur):** فلسفیانہ تحریریں ان کے سوالات اور سیاق کو سمجھتے ہوئے پڑھنا سیکھو۔
+**User-friendly description (ur):** فلسفیانہ تحریریں ان کے سوالات اور سیاق کو سمجھتے ہوئے پڑھنا سیکھیں۔
 
 ##### فلسفیانہ متن کا تنقیدی جائزہ
 
@@ -704,7 +704,7 @@ Skills: 4
 
 **Methodological description (English):** Assess reasons offered in a source rather than accepting or rejecting a view solely because of the author's reputation.
 
-**User-friendly description (ur):** قدیم فلسفیانہ متن کی دلیلیں جانچو، صرف مصنف کی شہرت نہیں۔
+**User-friendly description (ur):** قدیم فلسفیانہ متن کی دلیلیں جانچیں، صرف مصنف کی شہرت نہیں۔
 
 ##### فلسفیانہ متن کا بنیادی مسئلہ پہچاننا
 
@@ -712,7 +712,7 @@ Skills: 4
 
 **Methodological description (English):** Determine which issue motivates an argument rather than treating every illustrative passage as the main thesis.
 
-**User-friendly description (ur):** وہ اہم مسئلہ شناخت کرو جس کا حل فلسفی تلاش کرتا ہے۔
+**User-friendly description (ur):** وہ اہم مسئلہ شناخت کریں جس کا حل فلسفی تلاش کرتا ہے۔
 
 ##### فلسفی کو تاریخی تناظر میں سمجھنا
 
@@ -720,7 +720,7 @@ Skills: 4
 
 **Methodological description (English):** Use contemporaneous debates and available concepts to avoid attributing later assumptions to an earlier author.
 
-**User-friendly description (ur):** فلسفی کے خیالات کو اس کے زمانے کی بحثوں کی روشنی میں سمجھو۔
+**User-friendly description (ur):** فلسفی کے خیالات کو اس کے زمانے کی بحثوں کی روشنی میں سمجھیں۔
 
 ##### تاریخی فلسفیانہ دلیل کی تشکیل نو
 
@@ -728,7 +728,7 @@ Skills: 4
 
 **Methodological description (English):** Extract claims and reasons from a source while distinguishing a philosopher's stated position from later summaries.
 
-**User-friendly description (ur):** فلسفی کی اصل تحریر کی بنیاد پر دلیل دوبارہ بناؤ۔
+**User-friendly description (ur):** فلسفی کی اصل تحریر کی بنیاد پر دلیل دوبارہ بنائیں۔
 
 #### فلسفیانہ مکاتب اور تحریکیں
 
@@ -746,7 +746,7 @@ Skills: 3
 
 **Methodological description (English):** Place a claim about reason, liberty, or authority in its intellectual context while acknowledging diverse and conflicting Enlightenment positions.
 
-**User-friendly description (ur):** عقل، اختیار اور آزادی کے بارے میں روشن خیالی کے دلائل دیکھو۔
+**User-friendly description (ur):** عقل، اختیار اور آزادی کے بارے میں روشن خیالی کے دلائل دیکھیں۔
 
 ##### وجودی اور تجزیاتی فلسفیانہ طریقوں کا موازنہ
 
@@ -754,7 +754,7 @@ Skills: 3
 
 **Methodological description (English):** Identify differences in methods and questions without claiming that either broad family has one uniform answer.
 
-**User-friendly description (ur):** دونوں روایتوں کو حد سے زیادہ سادہ بنائے بغیر موازنہ کرو۔
+**User-friendly description (ur):** دونوں روایتوں کو حد سے زیادہ سادہ بنائے بغیر موازنہ کریں۔
 
 ##### جدید نظریہ علم کے بڑے طریقوں کا موازنہ
 
@@ -762,7 +762,7 @@ Skills: 3
 
 **Methodological description (English):** Explain the distinct emphases of rationalist, empiricist, and critical traditions through representative arguments.
 
-**User-friendly description (ur):** عقلیت پسندی، تجربیت اور تنقیدی فلسفے کے علم سے متعلق نظریات کا موازنہ کرو۔
+**User-friendly description (ur):** عقلیت پسندی، تجربیت اور تنقیدی فلسفے کے علم سے متعلق نظریات کا موازنہ کریں۔
 
 ### منطق اور استدلال
 
@@ -1624,7 +1624,7 @@ Skills: 3
 
 **Methodological description (English):** Identify content explicitly expressed versus a reasonable conversational inference that could be cancelled or revised.
 
-**User-friendly description (ur):** کسی بیان کے سیدھے معنی اور اس سے نکلنے والے اشارے میں فرق کرو۔
+**User-friendly description (ur):** کسی بیان کے سیدھے معنی اور اس سے نکلنے والے اشارے میں فرق کریں۔
 
 ##### سیاقی تعبیرات کا جائزہ
 
@@ -1632,7 +1632,7 @@ Skills: 3
 
 **Methodological description (English):** Compare readings of an utterance using the speaker's context, conventions, and available evidence.
 
-**User-friendly description (ur):** حالات اور دستیاب شواہد دیکھ کر مختلف تعبیروں میں سے انتخاب کرو۔
+**User-friendly description (ur):** حالات اور دستیاب شواہد دیکھ کر مختلف تعبیروں میں سے انتخاب کریں۔
 
 ##### گفتاری عمل کی شناخت
 
@@ -1640,7 +1640,7 @@ Skills: 3
 
 **Methodological description (English):** Recognize how an utterance functions as a promise, request, warning, or assertion beyond its sentence structure.
 
-**User-friendly description (ur):** پہچانو کہ کچھ کہنا کب وعدہ کرنے یا درخواست کرنے جیسا عمل بن جاتا ہے۔
+**User-friendly description (ur):** پہچانیں کہ کچھ کہنا کب وعدہ کرنے یا درخواست کرنے جیسا عمل بن جاتا ہے۔
 
 #### زبان، سچائی اور طاقت
 
@@ -1658,7 +1658,7 @@ Skills: 4
 
 **Methodological description (English):** Explain how alternate labels foreground different aspects of one issue and test what evidence each framing leaves out.
 
-**User-friendly description (ur):** ایک ہی مسئلے کے مختلف پہلو نمایاں کرنے والے الفاظ کا موازنہ کرو۔
+**User-friendly description (ur):** ایک ہی مسئلے کے مختلف پہلو نمایاں کرنے والے الفاظ کا موازنہ کریں۔
 
 ##### صداقت کی شرطوں والے دعوے کا تجزیہ
 
@@ -1666,7 +1666,7 @@ Skills: 4
 
 **Methodological description (English):** Identify circumstances under which an assertion would count as true or false while recognizing context-dependent expressions.
 
-**User-friendly description (ur):** پہچانو کہ کن حالات میں کوئی بیان سچ یا جھوٹ ہوگا۔
+**User-friendly description (ur):** پہچانیں کہ کن حالات میں کوئی بیان سچ یا جھوٹ ہوگا۔
 
 ##### وضاحتی اور قدرپیمائی زبان میں فرق
 
@@ -1674,7 +1674,7 @@ Skills: 4
 
 **Methodological description (English):** Identify how apparently factual wording can also express approval, disapproval, or a contested standard.
 
-**User-friendly description (ur):** پہچانو کہ بظاہر حقائق بیان کرنے والے الفاظ کب رائے بھی ظاہر کرتے ہیں۔
+**User-friendly description (ur):** پہچانیں کہ بظاہر حقائق بیان کرنے والے الفاظ کب رائے بھی ظاہر کرتے ہیں۔
 
 ##### لسانی نمائندگی کے دعوے کا جائزہ
 
@@ -1682,7 +1682,7 @@ Skills: 4
 
 **Methodological description (English):** Assess whether a label fairly describes people or phenomena without equating linguistic conventions with objective essences.
 
-**User-friendly description (ur):** سوچو کہ لوگوں اور چیزوں کی وضاحت منصفانہ اور شواہد سے ثابت ہے یا نہیں۔
+**User-friendly description (ur):** سوچیں کہ لوگوں اور چیزوں کی وضاحت منصفانہ اور شواہد سے ثابت ہے یا نہیں۔
 
 #### معنی اور حوالہ
 
@@ -1692,7 +1692,7 @@ Skills: 3
 
 **Methodological description (English):** Words and sentences can express meanings beyond identifying objects; context, concepts, and the distinction between expression and referent affect analysis.
 
-**User-friendly description (ur):** لفظ، اس کے معنی اور جس چیز کی طرف وہ اشارہ کرتا ہے ان میں فرق جان لو۔
+**User-friendly description (ur):** لفظ، اس کے معنی اور جس چیز کی طرف وہ اشارہ کرتا ہے ان میں فرق جان لیں۔
 
 ##### لفظ اور اس کے مرجع میں فرق
 
@@ -1700,7 +1700,7 @@ Skills: 3
 
 **Methodological description (English):** Explain why a linguistic expression and the person, object, or kind it denotes are not identical.
 
-**User-friendly description (ur):** لفظ کو اس چیز یا شخص سے الگ پہچانو جس کا وہ نام ہے۔
+**User-friendly description (ur):** لفظ کو اس چیز یا شخص سے الگ پہچانیں جس کا وہ نام ہے۔
 
 ##### مفہوم اور حوالہ میں فرق
 
@@ -1708,7 +1708,7 @@ Skills: 3
 
 **Methodological description (English):** Analyze how different expressions can pick out the same entity while presenting it in different ways.
 
-**User-friendly description (ur):** سمجھو کہ مختلف اظہار ایک ہی وجود کی طرف مختلف انداز میں اشارہ کیسے کرتے ہیں۔
+**User-friendly description (ur):** سمجھیں کہ مختلف اظہار ایک ہی وجود کی طرف مختلف انداز میں اشارہ کیسے کرتے ہیں۔
 
 ##### معنوی ابہام کی شناخت
 
@@ -1716,7 +1716,7 @@ Skills: 3
 
 **Methodological description (English):** Recognize when a sentence admits multiple readings due to a word or syntactic structure rather than simply lacking evidence.
 
-**User-friendly description (ur):** ایسے جملے تلاش کرو جن کے ایک سے زیادہ معنی ہو سکتے ہیں۔
+**User-friendly description (ur):** ایسے جملے تلاش کریں جن کے ایک سے زیادہ معنی ہو سکتے ہیں۔
 
 ### فلسفۂ مذہب
 
@@ -1772,7 +1772,7 @@ Skills: 4
 
 **User-friendly description (ur):** جانیں کہ مذہبی دعووں کو درست ثابت کرنے کے لیے ایمان، استدلال اور تجربے کو کیسے استعمال کیا جاتا ہے۔
 
-##### جواز کے ذرائع کے طور پر ایمان اور عقل کا موازنہ کریں
+##### جواز کے ذرائع کے طور پر ایمان اور عقل کا موازنہ
 
 [compareFaithAndReasonAsSourcesOfJustification.data.ts](../../../learningApps/philosophy/data/skills/philosophyOfReligion/faithReasonAndExperience/skills/compareFaithAndReasonAsSourcesOfJustification.data.ts)
 
@@ -1780,7 +1780,7 @@ Skills: 4
 
 **User-friendly description (ur):** موازنہ کریں کہ ایمان اور استدلال ایک دوسرے کی تائید یا مخالفت کیسے کرتے ہیں۔
 
-##### فلسفیانہ تحقیق اور مذہبی عمل میں فرق کریں
+##### فلسفیانہ تحقیق اور مذہبی عمل میں فرق
 
 [distinguishPhilosophicalInquiryFromReligiousPractice.data.ts](../../../learningApps/philosophy/data/skills/philosophyOfReligion/faithReasonAndExperience/skills/distinguishPhilosophicalInquiryFromReligiousPractice.data.ts)
 
@@ -2144,7 +2144,7 @@ Groups: 6 · Skills: 23
 
 **Methodological description (English):** Political and social philosophy examines the justification of collective rules, institutions, authority, rights, and distributions of benefits and burdens. It asks normative questions rather than describing the chronology of regimes or the mechanics of markets.
 
-**User-friendly description (ur):** قوانین، حقوق، اقتدار اور مشترکہ سماجی فیصلوں کی اخلاقی بنیادوں کا جائزہ لو۔
+**User-friendly description (ur):** قوانین، حقوق، اقتدار اور مشترکہ سماجی فیصلوں کی اخلاقی بنیادوں کا جائزہ لیں۔
 
 #### انصاف اور مساوات
 
@@ -2162,7 +2162,7 @@ Skills: 4
 
 **Methodological description (English):** Assess the transparency, consistency, and opportunity to contest a decision independent of who benefits from its outcome.
 
-**User-friendly description (ur):** نتیجے پر اختلاف ہو تب بھی دیکھو کہ فیصلہ کرنے کا طریقہ منصفانہ تھا یا نہیں۔
+**User-friendly description (ur):** نتیجے پر اختلاف ہو تب بھی دیکھیں کہ فیصلہ کرنے کا طریقہ منصفانہ تھا یا نہیں۔
 
 ##### تقسیم کے اصولوں کا موازنہ
 
@@ -2170,7 +2170,7 @@ Skills: 4
 
 **Methodological description (English):** Evaluate allocation by need, merit, equality, entitlement, or sufficiency and identify conflicts between principles.
 
-**User-friendly description (ur):** جائزو کہ وسائل ضرورت، اہلیت، حقوق یا برابری کے تحت تقسیم ہونے چاہییں۔
+**User-friendly description (ur):** جائزہ لیں کہ وسائل ضرورت، اہلیت، حقوق یا برابری کے تحت تقسیم ہونے چاہییں۔
 
 ##### برابری اور منصفانہ برتاؤ میں فرق
 
@@ -2178,7 +2178,7 @@ Skills: 4
 
 **Methodological description (English):** Compare giving identical treatment with responding to relevant differences in needs or disadvantage, without assuming one always settles justice.
 
-**User-friendly description (ur):** سب کے ساتھ یکساں سلوک اور متعلقہ فرق کو مدنظر رکھنے کا موازنہ کرو۔
+**User-friendly description (ur):** سب کے ساتھ یکساں سلوک اور متعلقہ فرق کو مدنظر رکھنے کا موازنہ کریں۔
 
 ##### امتیازی سلوک کے دعوے کا جائزہ
 
@@ -2186,7 +2186,7 @@ Skills: 4
 
 **Methodological description (English):** Examine whether a distinction in treatment is relevantly justified or imposes an unfair burden on a protected or vulnerable group.
 
-**User-friendly description (ur):** جانچو کہ مختلف برتاؤ جائز ہے یا امتیازی۔
+**User-friendly description (ur):** جانچیں کہ مختلف برتاؤ جائز ہے یا امتیازی۔
 
 #### فلسفۂ قانون
 
@@ -2196,7 +2196,7 @@ Skills: 4
 
 **Methodological description (English):** Jurisprudence considers what makes a norm legally valid, why legal institutions claim authority, and how rules should be interpreted. These questions are not limited to any country's current statutes or to political legitimacy in general.
 
-**User-friendly description (ur):** دیکھو کہ قانونی اصولوں کو اختیار کہاں سے ملتا ہے اور ان کی تشریح کیسے ہونی چاہیے۔
+**User-friendly description (ur):** دیکھیں کہ قانونی اصولوں کو اختیار کہاں سے ملتا ہے اور ان کی تشریح کیسے ہونی چاہیے۔
 
 ##### قانونی اثباتیت کا تجزیہ
 
@@ -2204,7 +2204,7 @@ Skills: 4
 
 **Methodological description (English):** Evaluate accounts that identify valid law through social sources or institutional practices rather than making moral correctness a necessary condition of legal validity.
 
-**User-friendly description (ur):** اس تصور کا جائزہ لو کہ قانون کی درست حیثیت اخلاقی خوبی نہیں بلکہ سماجی ذرائع پر منحصر ہے۔
+**User-friendly description (ur):** اس تصور کا جائزہ لیں کہ قانون کی درست حیثیت اخلاقی خوبی نہیں بلکہ سماجی ذرائع پر منحصر ہے۔
 
 ##### فطری قانون کے نظریے کا تجزیہ
 
@@ -2212,7 +2212,7 @@ Skills: 4
 
 **Methodological description (English):** Evaluate theories that understand legal authority or validity as importantly connected to morality, distinguishing different versions of this connection.
 
-**User-friendly description (ur):** ان نظریات کا موازنہ کرو جو قانون کے اختیار کو اخلاقی اصولوں سے جوڑتے ہیں۔
+**User-friendly description (ur):** ان نظریات کا موازنہ کریں جو قانون کے اختیار کو اخلاقی اصولوں سے جوڑتے ہیں۔
 
 ##### قانون کی حکمرانی کا تجزیہ
 
@@ -2220,7 +2220,7 @@ Skills: 4
 
 **Methodological description (English):** Examine principles such as generality, accessibility, prospectivity, consistent application, and constraints on arbitrary power as grounds for evaluating a legal order.
 
-**User-friendly description (ur):** ان اصولوں کو جان لو جو قوانین کو واضح، قابل پیش بینی اور من مانے اختیار سے محفوظ بناتے ہیں۔
+**User-friendly description (ur):** ان اصولوں کو جان لیں جو قوانین کو واضح، قابل پیش بینی اور من مانے اختیار سے محفوظ بناتے ہیں۔
 
 ##### قانونی تشریح کے نظریات کا جائزہ
 
@@ -2228,7 +2228,7 @@ Skills: 4
 
 **Methodological description (English):** Assess how text, legislative purpose, precedent, and institutional role support competing interpretations of a legal provision without deciding a real legal dispute.
 
-**User-friendly description (ur):** سوچو کہ متن، مقصد اور سابقہ عدالتی فیصلے کسی قانونی قاعدے کی تشریح پر کیسے اثر ڈالتے ہیں۔
+**User-friendly description (ur):** سوچیں کہ متن، مقصد اور سابقہ عدالتی فیصلے کسی قانونی قاعدے کی تشریح پر کیسے اثر ڈالتے ہیں۔
 
 #### سیاسی اختیار
 
@@ -2238,7 +2238,7 @@ Skills: 4
 
 **Methodological description (English):** Institutions exercise collective power that requires justification. Political legitimacy, coercion, and obedience are distinct concepts.
 
-**User-friendly description (ur):** دیکھو کہ سیاسی اختیار محض طاقتور ہونے کے بجائے جائز کیسے بنتا ہے۔
+**User-friendly description (ur):** دیکھیں کہ سیاسی اختیار محض طاقتور ہونے کے بجائے جائز کیسے بنتا ہے۔
 
 ##### شہری نافرمانی کا تجزیہ
 
@@ -2246,7 +2246,7 @@ Skills: 4
 
 **Methodological description (English):** Consider the moral conditions, aims, and limits of nonviolent principled lawbreaking without equating legality with morality.
 
-**User-friendly description (ur):** اصولی اور پُرامن قانون شکنی کے اخلاقی دلائل پر بات کرو۔
+**User-friendly description (ur):** اصولی اور پُرامن قانون شکنی کے اخلاقی دلائل پر بات کریں۔
 
 ##### سماجی معاہدے کے دلائل کا موازنہ
 
@@ -2254,15 +2254,15 @@ Skills: 4
 
 **Methodological description (English):** Explain how alternative accounts use consent, cooperation, security, or fairness to justify political obligations.
 
-**User-friendly description (ur):** سرکاری اداروں کو اصول بنانے کا اختیار دینے کے لیے پیش کیے گئے دلائل کا جائزہ لو۔
+**User-friendly description (ur):** سرکاری اداروں کو اصول بنانے کا اختیار دینے کے لیے پیش کیے گئے دلائل کا جائزہ لیں۔
 
-##### سیاسی اختیار کی قانونی حیثیت کا جائزہ
+##### سیاسی اختیار کے جواز کا جائزہ
 
 [evaluateTheLegitimacyOfPoliticalAuthority.data.ts](../../../learningApps/philosophy/data/skills/socialAndPoliticalPhilosophy/politicalAuthority/skills/evaluateTheLegitimacyOfPoliticalAuthority.data.ts)
 
 **Methodological description (English):** Examine reasons offered to justify the right to make binding public decisions, not merely whether an institution controls force.
 
-**User-friendly description (ur):** رضامندی، سلامتی یا تعاون کی بنیاد پر حکومت کو جائز قرار دینے والے دلائل کا موازنہ کرو۔
+**User-friendly description (ur):** رضامندی، سلامتی یا تعاون کی بنیاد پر حکومت کو جائز قرار دینے والے دلائل کا موازنہ کریں۔
 
 ##### ریاستی جبر کی حدود کا جائزہ
 
@@ -2270,7 +2270,7 @@ Skills: 4
 
 **Methodological description (English):** Assess competing grounds for restricting individual actions, such as preventing harm or protecting rights.
 
-**User-friendly description (ur):** سوچو کہ ذاتی آزادی محدود کرنا کب جائز ہو سکتا ہے۔
+**User-friendly description (ur):** سوچیں کہ ذاتی آزادی محدود کرنا کب جائز ہو سکتا ہے۔
 
 #### عوامی استدلال اور شہری زندگی
 
@@ -2288,15 +2288,15 @@ Skills: 4
 
 **Methodological description (English):** Evaluate the roles of participation, representation, minority protections, and accountability in justifying collective decisions.
 
-**User-friendly description (ur):** سوچو کہ شرکت، نمائندگی اور جوابدہی جمہوریت کو کیسے جائز بناتے ہیں۔
+**User-friendly description (ur):** سوچیں کہ شرکت، نمائندگی اور جوابدہی جمہوریت کو کیسے جائز بناتے ہیں۔
 
-##### مشترکہ بھلائی کے دلیل کا جائزہ
+##### مشترکہ بھلائی کی دلیل کا جائزہ
 
 [assessAnArgumentAboutTheCommonGood.data.ts](../../../learningApps/philosophy/data/skills/socialAndPoliticalPhilosophy/publicReasonAndCivicLife/skills/assessAnArgumentAboutTheCommonGood.data.ts)
 
 **Methodological description (English):** Examine who benefits, who bears costs, and whether a proposed collective interest disregards legitimate dissent.
 
-**User-friendly description (ur):** دیکھو کہ اجتماعی بھلائی کا دعویٰ دراصل کس کے مفادات کی نمائندگی کرتا ہے۔
+**User-friendly description (ur):** دیکھیں کہ اجتماعی بھلائی کا دعویٰ دراصل کس کے مفادات کی نمائندگی کرتا ہے۔
 
 ##### عوامی دلائل اور ذاتی ترجیحات میں فرق
 
@@ -2304,7 +2304,7 @@ Skills: 4
 
 **Methodological description (English):** Identify justifications aimed at principles others can evaluate, rather than asserting that a personal desire must settle collective policy.
 
-**User-friendly description (ur):** ایسے عوامی دلائل کو ذاتی پسند سے الگ کرو جسے دوسروں کے لیے ماننا ضروری نہیں۔
+**User-friendly description (ur):** ایسے عوامی دلائل کو ذاتی پسند سے الگ کریں جسے دوسروں کے لیے ماننا ضروری نہیں۔
 
 ##### سیاسی ذمہ داری کے مختلف تصورات کا جائزہ
 
@@ -2330,7 +2330,7 @@ Skills: 4
 
 **Methodological description (English):** Identify whose claims compete and evaluate justified limits without assuming one right automatically cancels all others.
 
-**User-friendly description (ur):** سوچو کہ اہم حقوق کے درمیان ٹکراؤ کیسے حل ہو سکتا ہے۔
+**User-friendly description (ur):** سوچیں کہ اہم حقوق کے درمیان ٹکراؤ کیسے حل ہو سکتا ہے۔
 
 ##### منفی اور مثبت آزادی میں فرق
 
@@ -2338,7 +2338,7 @@ Skills: 4
 
 **Methodological description (English):** Contrast freedom from interference with capacities or opportunities to act, while recognizing debates about their relationship.
 
-**User-friendly description (ur):** مداخلت سے آزادی اور مؤثر طور پر عمل کرنے کی صلاحیت کا موازنہ کرو۔
+**User-friendly description (ur):** مداخلت سے آزادی اور مؤثر طور پر عمل کرنے کی صلاحیت کا موازنہ کریں۔
 
 ##### حقوق اور مراعات میں فرق
 
@@ -2346,7 +2346,7 @@ Skills: 4
 
 **Methodological description (English):** Identify whether a claim concerns an entitlement owed to a person or an advantage conditional on discretionary permission.
 
-**User-friendly description (ur):** کسی شخص کے جائز حق کو شرطوں پر دی جانے والی رعایت سے الگ کرو۔
+**User-friendly description (ur):** کسی شخص کے جائز حق کو شرطوں پر دی جانے والی رعایت سے الگ کریں۔
 
 ##### ضمیر کی آزادی کی وضاحت
 
@@ -2372,7 +2372,7 @@ Skills: 3
 
 **Methodological description (English):** Evaluate when reliance on automated or networked systems enhances or constrains meaningful choice and control, separate from the narrower ethics of individual algorithmic decisions.
 
-**User-friendly description (ur):** دیکھو کہ ٹیکنالوجی کب اپنے فیصلوں پر انسان کا اختیار بڑھاتی یا کم کرتی ہے۔
+**User-friendly description (ur):** دیکھیں کہ ٹیکنالوجی کب اپنے فیصلوں پر انسان کا اختیار بڑھاتی یا کم کرتی ہے۔
 
 ##### تکنیکی واسطے کا تجزیہ
 
@@ -2380,13 +2380,13 @@ Skills: 3
 
 **Methodological description (English):** Examine how a technological artifact changes the available actions, relationships, or choices through which people engage the world, without reducing the issue to the device's technical operation.
 
-**User-friendly description (ur):** دیکھو کہ ٹیکنالوجی لوگوں کے لیے دستیاب انتخاب اور تعلقات کیسے بدلتی ہے۔
+**User-friendly description (ur):** دیکھیں کہ ٹیکنالوجی لوگوں کے لیے دستیاب انتخاب اور تعلقات کیسے بدلتی ہے۔
 
-##### تکنیکی جبر کا جائزہ
+##### تکنیکی تعینیت کا جائزہ
 
 [evaluateTechnologicalDeterminism.data.ts](../../../learningApps/philosophy/data/skills/socialAndPoliticalPhilosophy/technologyAndSociety/skills/evaluateTechnologicalDeterminism.data.ts)
 
 **Methodological description (English):** Assess arguments that technological development determines social arrangements, including objections based on political choice, design, and historical contingency.
 
-**User-friendly description (ur):** سوال اٹھاؤ کہ کیا ٹیکنالوجی کی تبدیلی اکیلے معاشرے کی ترقی کی سمت طے کرتی ہے۔
+**User-friendly description (ur):** سوال اٹھائیں کہ کیا صرف تکنیکی تبدیلی معاشروں کی ترقی کا رخ متعین کرتی ہے۔
 

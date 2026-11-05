@@ -1846,7 +1846,7 @@ Skills: 8
 
 **User-friendly description (ar):** استكشف الحجج التي تحاول استنتاج الوجود الإلهي من تعريف.
 
-##### تحليل تصورات دينية غير إلهية للواقع
+##### تحليل تصورات دينية للواقع لا تفترض وجود إله خالق
 
 [analyzeNontheisticReligiousAccountsOfReality.data.ts](../../../learningApps/philosophy/data/skills/philosophyOfReligion/ultimateRealityAndDivinity/skills/analyzeNontheisticReligiousAccountsOfReality.data.ts)
 
@@ -1860,7 +1860,7 @@ Skills: 8
 
 **Methodological description (English):** Distinguish personal, impersonal, and plural conceptions of ultimate reality while recognizing significant diversity within traditions.
 
-**User-friendly description (ar):** قارن الفهم الشخصي وغير الشخصي والتعددي للحقيقة القصوى.
+**User-friendly description (ar):** قارن بين تصورات الحقيقة القصوى بوصفها شخصية أو غير شخصية أو متعددة.
 
 ##### تقييم تفسير نهائي مقترح
 
@@ -1876,7 +1876,7 @@ Skills: 8
 
 **Methodological description (English):** Identify premises and conclusion in a theistic, atheistic, or agnostic argument without treating the position as settled by its name.
 
-**User-friendly description (ar):** حدّد الأسباب المقدمة في حجة تؤيد وجود الإلهي أو تعارضه.
+**User-friendly description (ar):** حدّد الأسباب المقدّمة في حجة تؤيد وجود حقيقة إلهية أو تنفي وجودها.
 
 ### فلسفة العلم
 
