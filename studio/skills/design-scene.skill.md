@@ -42,7 +42,7 @@ If an approved Scene specification calls for programmable motion design, video-s
 
 Use these **current architectural examples**, not mandatory source files to duplicate:
 
-| Example                       | Actual location under `content/playground/src/data/howLightMoves/sections/`                                                | Lessons to extract                                                                                                               |
+| Example                       | Actual location under `content/playground/src/data/howLightMoves/sections/`                                                     | Lessons to extract                                                                                                               |
 | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | `LightRayDiagram`             | `theory/resources/scenes/LightRayDiagram/LightRayDiagram.tsx` and `LightRayDiagram.module.css`                                  | SVG illustration, localized `<title>`/`<desc>`, directional graphic geometry, **separate readable labels**                       |
 | `LightPropagationSimulation`  | `theory/resources/scenes/LightPropagationSimulation/LightPropagationSimulation.tsx` and `LightPropagationSimulation.module.css` | Local state, playback/speed controls, reduced-motion preference, CSS logical properties, accessible labels                       |
