@@ -68,7 +68,7 @@ export const personalSafetyInPublicPlaces_SkillGroup_Data = buildSkillGroupConfi
       uk: 'Навчися реагувати на небажані контакти та розлуку із супутниками в громадських місцях.',
       lt: 'Mokykis reaguoti į nemalonius susitikimus ir atsiskyrimą nuo lydinčiųjų viešose vietose.',
       lv: 'Mācies rīkoties satraucošās tikšanās reizēs un atšķiršanās gadījumā publiskā vietā.',
-      et: 'Õpi reageerima ebameeldivatele lähenemistele ja kaaslastest eraldumisele avalikus kohtades.',
+      et: 'Õpi reageerima ebameeldivatele lähenemistele ja kaaslastest eraldumisele avalikes kohtades.',
       be: 'Навучыся рэагаваць на непрыемныя кантакты і разлуку з суправаджаючымі ў грамадзкіх месцах.',
       ka: 'ისწავლე საჯარო სივრცეში არასასიამოვნო მიახლოების ან თანმხლები პირის დაკარგვის დროს მოქმედება.',
       kk: 'Қоғамдық жерде жайсыз жақындасуға не серіктерден адасуға қалай әрекет ету керегін үйрен.',
