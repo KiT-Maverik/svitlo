@@ -6,6 +6,8 @@ on:
     paths:
       - 'shared/indexdb/**'
       - 'shared/contracts/**'
+      # This workflow also runs the Playground Playwright suite.
+      - 'learningApps/playground/src/app/topics/light/light.e2e.spec.ts'
       - '.github/workflows/db-controllers-e2e.yml'
       - 'package.json'
       - 'package-lock.json'
