@@ -16,7 +16,7 @@ export const interpretLogicalConjunction_Skill_Data = buildSkillConfig({
     id: "Menafsirkan Konjungsi Logis",
     de: "Logische Konjunktion interpretieren",
     ja: "論理積を解釈する",
-    ko: "논리적 논리곱 해석하기",
+    ko: "논리곱 해석하기",
     tr: "Mantıksal Ve Bağlacını Yorumlama",
     vi: "Diễn giải phép hội logic",
     ta: "தருக்க இணைப்பைப் புரிந்துகொள்ளுதல்",
