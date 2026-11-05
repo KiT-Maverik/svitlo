@@ -8,7 +8,7 @@ export const analyzeNontheisticReligiousAccountsOfReality_Skill_Data = buildSkil
     zh: '分析非有神论宗教的实在观',
     hi: 'अनिश्वरवादी धार्मिक वास्तविकता-दृष्टियों का विश्लेषण',
     es: 'Analizar concepciones religiosas no teístas de la realidad',
-    ar: 'تحليل تصورات دينية غير إلهية للواقع',
+    ar: 'تحليل تصورات دينية للواقع لا تفترض وجود إله خالق',
     fr: 'Analyser des conceptions religieuses non théistes de la réalité',
     bn: 'নিরীশ্বরবাদী ধর্মীয় বাস্তবতার ধারণা বিশ্লেষণ',
     pt: 'Analisar concepções religiosas não teístas da realidade',

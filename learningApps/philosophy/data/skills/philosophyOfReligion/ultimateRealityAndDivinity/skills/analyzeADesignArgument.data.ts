@@ -43,7 +43,7 @@ export const analyzeADesignArgument_Skill_Data = buildSkillConfig({
       hi: 'विचार करें कि क्या जटिलता या व्यवस्था बुद्धिमान रचना का प्रमाण है।',
       es: 'Considera si la complejidad o el orden son pruebas de un diseño inteligente.',
       ar: 'فكّر فيما إذا كان التعقيد أو النظام دليلًا على تصميم ذكي.',
-      fr: "Demande-toi si la complexité ou l'ordre peuvent prouver l'existence d'un dessein intelligent.",
+      fr: "Demande-toi si la complexité ou l'ordre peuvent constituer des indices d'un dessein intelligent.",
       bn: 'জটিলতা বা শৃঙ্খলা বুদ্ধিমান পরিকল্পনার প্রমাণ কি না তা বিবেচনা করো।',
       pt: 'Considere se a complexidade ou a ordem são evidências de um projeto inteligente.',
       ur: 'غور کریں کہ پیچیدگی یا نظم کسی ذہین تخلیق کا ثبوت ہے یا نہیں۔',
