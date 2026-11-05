@@ -87,7 +87,6 @@ function MobileContent() {
     let disposeNative: (() => void) | undefined;
     void registerNativeBackButton(() => {
       if (window.location.pathname !== '/') navigate('/');
-      else if (window.history.length > 1) window.history.back();
       else void exitNativeApp();
     }).then(dispose => { if (disposed) dispose(); else disposeNative = dispose; });
     return () => {
