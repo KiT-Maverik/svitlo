@@ -76,7 +76,7 @@ export const nutritionalFoundations_SkillGroup_Data = buildSkillGroupConfig({
       lt: 'Mitybą vertink kaip ilgalaikius pasirinkimus, o ne vieną tobulą patiekalą.',
       lv: 'Uztver uzturu kā ilgtermiņa izvēļu kopumu, nevis vienu ideālu maltīti.',
       et: 'Käsitle toitumist pikaajaliste valikutena, mitte ühe täiusliku einena.',
-      be: 'Спрыняй харчаваньне як сукупнасьць штодзённых рашэньняў, а не адну ідэальную страву.',
+      be: 'Успрымай харчаваньне як сукупнасьць штодзённых рашэньняў, а не адну ідэальную страву.',
       ka: 'კვება გრძელვადიან არჩევანად აღიქვი და არა ერთ სრულყოფილ კერძად.',
       kk: 'Тамақтануды бір тамаша ас емес, ұзақ мерзімді таңдау үлгісі деп түсін.',
       qm: 'Beslenüvni bir mükemmel aş degil, uzun müddetli saylavlar olaraq añla.',

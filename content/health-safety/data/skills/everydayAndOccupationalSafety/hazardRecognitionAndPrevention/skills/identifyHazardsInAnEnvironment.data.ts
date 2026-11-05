@@ -57,7 +57,7 @@ export const identifyHazardsInAnEnvironment_Skill_Data = buildSkillConfig({
       te: 'చుట్టూ ఉన్న అసురక్షిత విద్యుత్, రసాయన, భౌతిక పరిస్థితులను గుర్తించండి.',
       mr: 'जवळील असुरक्षित विद्युत, रासायनिक आणि भौतिक परिस्थिती ओळखा.',
       ms: 'Kenal pasti keadaan elektrik, kimia dan fizikal yang berbahaya di sekitar.',
-      he: 'זהו בסביבה תנאי חשמל, כימיקלים וסיכונים פיזיים בלתי בטוחים.',
+      he: 'זהו בסביבתכם מפגעים חשמליים, כימיים ופיזיים מסוכנים.',
       pl: 'Dostrzegaj niebezpieczne warunki elektryczne, chemiczne i fizyczne w otoczeniu.',
       uk: 'Помічай небезпечні електричні, хімічні та фізичні умови поруч.',
       lt: 'Pastebėk nesaugias elektrines, chemines ir fizines sąlygas aplink save.',
