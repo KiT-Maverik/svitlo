@@ -147,6 +147,7 @@ function runGate(changed) {
     '@svitlo/ui-kit',
     '@svitlo/nextjs-adapter',
     '@svitlo/playground',
+    '@svitlo/web',
   ];
   const rank = name => {
     const index = priority.indexOf(name);
@@ -186,28 +187,19 @@ function runGate(changed) {
     // A Lesson/App Router extraction needs a real Next.js production build, not
     // only TypeScript. Run it before unrelated textbook data checks can block CI.
     if (
-      name === '@svitlo/playground' &&
+      name === '@svitlo/web' &&
       changed.some(
         file =>
           file.startsWith('shared/nextjs-adapter/') ||
           file.startsWith('shared/ui-kit/src/components/lesson/') ||
           file.startsWith('shared/ui-kit/src/components/widgets/ContentBlockRenderer/blocks/Image/') ||
-          file.startsWith('content/playground/src/app/[language]/lesson/'),
+          file.startsWith('content/playground/src/components/scenes/') ||
+          file.startsWith('apps/web/'),
       )
     ) {
       exec('npm', ['run', 'build', '--workspace', name]);
-      // FastGate checks the changed Lesson route/bindings; the full Playground
-      // components suite also contains independent SkillsMindMap tests.
-      exec('npm', [
-        'run',
-        'test:components',
-        '--workspace',
-        name,
-        '--',
-        'src/components/layout/LearningLayout/LearningLayout.unit.spec.ts',
-        'src/lib/lessons/assembleLessonResponse.unit.spec.ts',
-        'src/i18n/useLessonLocale.unit.spec.tsx',
-      ]);
+      exec('npm', ['run', 'test:selection', '--workspace', name]);
+      exec('npm', ['run', 'test:components', '--workspace', name]);
     }
   }
   if (

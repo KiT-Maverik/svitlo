@@ -7,6 +7,7 @@ const root = process.cwd();
 const readJson = name => JSON.parse(readFileSync(resolve(root, name), 'utf8'));
 const builtins = new Set(builtinModules.map(name => name.replace(/^node:/, '')));
 const workspaces = [
+  ['apps/web', readJson('apps/web/package.json')],
   ['shared/contracts', readJson('shared/contracts/package.json')],
   ['shared/engine', readJson('shared/engine/package.json')],
   ['shared/indexdb', readJson('shared/indexdb/package.json')],
@@ -100,7 +101,7 @@ for (const [path, pkg] of workspaces) {
       }
       if (specifier.startsWith('@/') || Object.hasOwn(localAliases, specifier)) {
         assert(
-          path.startsWith('content/') || path.startsWith('frontend/'),
+          path.startsWith('content/') || path.startsWith('frontend/') || path.startsWith('apps/'),
           'Unrewritten shared source alias: ' + description,
         );
         continue;
@@ -108,7 +109,7 @@ for (const [path, pkg] of workspaces) {
       if (specifier.startsWith('node:') || builtins.has(specifier)) continue;
       // Next.js compile-time markers are not standalone runtime dependencies.
       if (
-        (path.startsWith('content/') || path.startsWith('frontend/')) &&
+        (path.startsWith('content/') || path.startsWith('frontend/') || path.startsWith('apps/')) &&
         (specifier === 'server-only' || specifier === 'client-only')
       )
         continue;

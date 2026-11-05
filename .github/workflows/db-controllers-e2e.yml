@@ -35,8 +35,9 @@ jobs:
       - run: npm run typecheck --workspace @svitlo/playground
       - run: npm run test --workspace @svitlo/indexdb
       - run: npm run test --workspace @svitlo/ui-kit
-      - run: npm run lint --workspace @svitlo/playground
+      - run: npm run lint --workspace @svitlo/web
       - run: npm run build --workspace @svitlo/playground
+      - run: npm run build --workspace @svitlo/web
       - run: npx playwright install chromium
       - name: Native IndexedDB Chromium
         run: npm run test:e2e:db
@@ -51,5 +52,5 @@ jobs:
           path: |
             shared/indexdb/test-results/
             shared/indexdb/playwright-report/
-            content/playground/test-results/
-            content/playground/playwright-report/
+            apps/web/test-results/
+            apps/web/playwright-report/

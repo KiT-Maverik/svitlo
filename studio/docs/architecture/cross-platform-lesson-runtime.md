@@ -1,6 +1,6 @@
 # Cross-Platform Lesson Runtime & Build-Time Textbook Composition
 
-**Status:** **Target architecture / approved direction**, not an implemented multi-platform migration. The current repository still contains independent Next.js textbook applications; see [Monorepo & Independent Textbooks](./monorepo-and-textbook.md) for the live repository map. This document describes the intended boundaries for future changes, not new APIs to assume are available now.
+**Status:** **Partially implemented.** Playground now supplies a framework-independent textbook package to the build-selected `apps/web` Next.js host. Other textbooks remain standalone applications. Capacitor, Electron, offline delivery and the proposed session operations architecture remain future work. See [Monorepo & Independent Textbooks](./monorepo-and-textbook.md) for the repository map; do not assume proposed APIs already exist.
 
 ## Goal
 

@@ -68,3 +68,4 @@ next-env.d.ts
 
 # Generated textbook data: rebuilt from canonical authoring configs before dev/build
 **/public/data/
+apps/web/src/generated/

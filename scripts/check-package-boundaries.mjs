@@ -7,6 +7,8 @@ const contracts = readJson('shared/contracts/package.json');
 const engine = readJson('shared/engine/package.json');
 const indexdb = readJson('shared/indexdb/package.json');
 const playground = readJson('content/playground/package.json');
+const web = readJson('apps/web/package.json');
+const selectableTextbooks = new Set(Object.values(readJson('apps/web/textbooks.json')).map(entry => entry.package));
 const platform = readJson('frontend/platform/package.json');
 const math = readJson('content/math/package.json');
 const biology = readJson('content/biology/package.json');
@@ -69,7 +71,7 @@ for (const subpath of ['.', './content', './taxonomy', './localization', './stat
 }
 assert(playground.dependencies?.[engine.name] === engine.version, 'Playground must use a versioned engine dependency');
 assert(playground.dependencies?.[uiKit.name] === uiKit.version, 'Playground must use a versioned UI Kit dependency');
-assert(playground.dependencies?.[indexdb.name] === indexdb.version, 'Playground must use public IndexedDB dependency');
+assert(web.dependencies?.[indexdb.name] === indexdb.version, 'Web must use public IndexedDB dependency');
 assert(math.dependencies?.[indexdb.name] === indexdb.version, 'Math must use public IndexedDB dependency');
 assert(biology.name === '@svitlo/biology', 'Unexpected Biology package name');
 for (const name of ['content/math', 'content/playground']) {
@@ -108,9 +110,13 @@ assert(
   'Playground cannot contain authored textbook content',
 );
 assert(
-  existsSync(resolve(root, 'content/playground/src/app/[language]/lesson/[lessonId]/page.tsx')),
-  'Playground must host the UUID-addressed lesson route',
+  existsSync(resolve(root, 'apps/web/src/app/[language]/lesson/[lessonId]/page.tsx')),
+  'Web must host the UUID-addressed lesson route',
 );
+assert(!existsSync(resolve(root, 'content/playground/src/app')) && !playground.dependencies?.next,
+  'Playground must be a framework-independent textbook package');
+assert(playground.exports?.['./scenes'] && web.dependencies?.[playground.name] === playground.version,
+  'Web must consume the public Playground Scene registry');
 assert(
   !existsSync(resolve(root, 'content/playground/src/fixtures')),
   'Obsolete Playground fixtures directory must be removed',
@@ -195,8 +201,8 @@ for (const file of engineSources) {
 }
 assert(nextAdapter.name === '@svitlo/nextjs-adapter', 'Unexpected Next.js adapter package name');
 assert(
-  playground.dependencies?.[nextAdapter.name] === nextAdapter.version,
-  'Playground must use the shared Next.js adapter',
+  web.dependencies?.[nextAdapter.name] === nextAdapter.version,
+  'Web must use the shared Next.js adapter',
 );
 assert(
   nextAdapter.dependencies?.[uiKit.name] === uiKit.version,
@@ -245,7 +251,7 @@ if (existsSync(appSourceRoot)) {
   }
 }
 const applicationSourceRoots = [
-  'content/playground/src',
+  'apps/web/src',
   'content/math/src',
   'content/biology/src',
   'content/physics/src',
@@ -270,7 +276,7 @@ for (const applicationRoot of applicationSourceRoots) {
     for (const match of code.matchAll(/\bfrom\s*['"]([^'"]+)['"]/g)) {
       const specifier = match[1];
       assert(
-        !/^@svitlo\/(?:playground|math|biology|physics|informatics|geography|language-literature|ukrainian|chemistry|astronomy|history|philosophy|psychology|economics|art|health-safety|engineering|platform)(?:\/|$)/.test(
+        (applicationRoot === resolve(root, 'apps/web/src') && selectableTextbooks.has(specifier.split('/').slice(0, 2).join('/'))) || !/^@svitlo\/(?:playground|math|biology|physics|informatics|geography|language-literature|ukrainian|chemistry|astronomy|history|philosophy|psychology|economics|art|health-safety|engineering|platform)(?:\/|$)/.test(
           specifier,
         ),
         'Applications must not import another application by package name: ' + relative(root, file),
@@ -286,7 +292,7 @@ for (const applicationRoot of applicationSourceRoots) {
     }
   }
 }
-for (const app of ['content/math', 'content/playground']) {
+for (const app of ['content/math', 'apps/web']) {
   for (const old of [
     'DbBrowserHarness.tsx',
     'db-browser-commands.ts',
@@ -318,11 +324,11 @@ assert(
   existsSync(resolve(root, 'shared/indexdb/playwright.config.ts')),
   'IndexedDB must own the native browser Playwright configuration',
 );
-for (const app of ['content/math', 'content/playground']) {
+for (const app of ['content/math', 'apps/web']) {
   const preferences = resolve(root, app, 'src/components/layout/LearningLayout/NavbarPreferences');
   assert(!existsSync(preferences), 'NavbarPreferences must be owned by UI Kit, not ' + app);
   const adapterPath = resolve(root, app, 'src/components/layout/LearningLayout/LearningLayout.tsx');
-  // Mathematics currently exposes no lesson layout adapter; Playground must retain one.
+  // Mathematics currently exposes no lesson layout adapter; Web must retain one.
   if (app === 'content/math' && !existsSync(adapterPath)) continue;
   assert(existsSync(adapterPath), 'Lesson layout adapter missing: ' + app);
   const adapter = readFileSync(adapterPath, 'utf8');
