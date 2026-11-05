@@ -32,7 +32,7 @@ export const recognizeDomesticAndSexualViolence_Skill_Data = buildSkillConfig({
     be: "Распазнаваць хатні й сэксуальны гвалт",
     ka: "ოჯახური და სექსუალური ძალადობის ამოცნობა",
     kk: "Тұрмыстық және жыныстық зорлықты тану",
-    qm: "Ev içi ve cinsiy zulum­nı tanımaq",
+    qm: "Ev içi ve cinsiy zulumnı tanımaq",
   },
   description: {
     methodological:
