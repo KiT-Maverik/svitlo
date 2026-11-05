@@ -454,7 +454,7 @@ Skills: 5
 
 **Methodological description (English):** Reduce access to hazardous chemicals, use original labelled containers, and avoid unsafe storage near food or medicine.
 
-**User-friendly description (es):** Etiqueta correctamente las sustancias domésticas peligrosas y mantenlas lejos de los niños.
+**User-friendly description (es):** Conserva las sustancias domésticas peligrosas en sus envases originales etiquetados y fuera del alcance de los niños.
 
 ##### Manipulación segura de superficies y líquidos calientes
 
@@ -608,7 +608,7 @@ Skills: 5
 
 **Methodological description (English):** Limit movement and provide appropriate support without attempting to straighten a suspected fracture or dislocation.
 
-**User-friendly description (es):** Sujeta un hueso posiblemente roto sin intentar recolocarlo.
+**User-friendly description (es):** Inmoviliza con cuidado la zona de una posible fractura sin intentar recolocar el hueso.
 
 ##### Reconocer el peligro de lesiones craneales y vertebrales
 
@@ -1132,7 +1132,7 @@ Skills: 3
 
 **Methodological description (English):** Offer calm, practical, non-intrusive support, immediate needs assessment, and connection with services without forcing disclosure of traumatic experiences.
 
-**User-friendly description (es):** Ofrece ayuda práctica y serena sin presionar a nadie para que reviva experiencias traumáticas.
+**User-friendly description (es):** Ofrece ayuda práctica y serena sin presionar a nadie para que relate experiencias traumáticas.
 
 ##### Reconocer una crisis psicológica aguda
 
@@ -1832,7 +1832,7 @@ Skills: 3
 
 **Methodological description (English):** Drowning can occur quickly and silently; preventing entry into danger and using non-contact rescue options are distinct from trained water rescue.
 
-**User-friendly description (es):** Aprende a prevenir ahogamientos y ayudar sin poner en peligro a otra persona.
+**User-friendly description (es):** Aprende a prevenir ahogamientos y ayudar sin ponerte ni poner a otras personas en peligro.
 
 ##### Evaluar riesgos al nadar y bañarse
 

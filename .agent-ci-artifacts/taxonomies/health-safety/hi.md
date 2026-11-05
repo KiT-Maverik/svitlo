@@ -346,7 +346,7 @@ Skills: 5
 
 **Methodological description (English):** Understand that carbon monoxide from combustion may be invisible and odorless, recognize alarm or exposure concerns, and prioritize getting to safety and obtaining emergency evaluation rather than relying on smell.
 
-**User-friendly description (hi):** जानें कि बिना गंध की चेतावनी के भी कार्बन मोनोऑक्साइड खतरनाक क्यों होता है।
+**User-friendly description (hi):** समझें कि कार्बन मोनोऑक्साइड बिना गंध के भी खतरनाक क्यों है।
 
 ##### बिजली से सुरक्षा
 
@@ -454,7 +454,7 @@ Skills: 5
 
 **Methodological description (English):** Reduce access to hazardous chemicals, use original labelled containers, and avoid unsafe storage near food or medicine.
 
-**User-friendly description (hi):** खतरनाक घरेलू पदार्थों पर सही लेबल लगाएँ और बच्चों से दूर रखें।
+**User-friendly description (hi):** खतरनाक घरेलू रसायनों को उनके मूल, लेबल लगे डिब्बों में और बच्चों की पहुँच से दूर रखें।
 
 ##### गर्म सतहों और तरल पदार्थों को सुरक्षित संभालना
 
@@ -1832,7 +1832,7 @@ Skills: 3
 
 **Methodological description (English):** Drowning can occur quickly and silently; preventing entry into danger and using non-contact rescue options are distinct from trained water rescue.
 
-**User-friendly description (hi):** जानें कि डूबने से कैसे बचें और किसी और को जोखिम में डाले बिना मदद कैसे करें।
+**User-friendly description (hi):** जानें कि डूबने से कैसे बचें और खुद को या दूसरों को जोखिम में डाले बिना मदद कैसे करें।
 
 ##### तैराकी और स्नान के खतरों का आकलन
 

@@ -404,7 +404,7 @@ Skills: 4
 
 **Methodological description (English):** Evaluate how an identifiable hazard could cause immediate accidental injury, who may be exposed and how reliably existing controls reduce that danger; chronic disease-risk estimation belongs to Health and Risk.
 
-**User-friendly description (qm):** Telükeniñ tezden nasıl yaralanmağa sebep olacağını qıymetlendır.
+**User-friendly description (qm):** Telükeniñ tezden nasıl yaralanmağa sebep olacağını qıymetlendir.
 
 ##### Etrafdaki telükelerni tanımaq
 
@@ -454,7 +454,7 @@ Skills: 5
 
 **Methodological description (English):** Reduce access to hazardous chemicals, use original labelled containers, and avoid unsafe storage near food or medicine.
 
-**User-friendly description (qm):** Telükeli ev kimyeviy maddelerine doğru etiket qoy ve balalardan uzaq saqla.
+**User-friendly description (qm):** Telükeli ev kimyeviy maddelerini öz etiketli qablarında ve balalardan uzaq saqla.
 
 ##### Sıcaq yüzler ve suyuqlıqlarnen havfsız davranmaq
 
@@ -480,7 +480,7 @@ Skills: 2
 
 **Methodological description (English):** Being approached by unknown people or separated from familiar companions calls for independent judgement about safe distance, exit options and trustworthy assistance, without assuming every unfamiliar person is dangerous.
 
-**User-friendly description (qm):** Cemaat yerinde raatsız etken yaqınlaşuvlarğa ya da yol taşlarından ayrıluvğa nasıl cevap bermege ögren.
+**User-friendly description (qm):** Cemaat yerinde raatsız etken yaqınlaşuvlarğa ya da yoldaşlarıñdan ayrıluvğa nasıl cevap bermege ögren.
 
 ##### Cemaat yerinde telükeli yaqınlaşuvlarğa cevap bermek
 
@@ -1840,7 +1840,7 @@ Skills: 3
 
 **Methodological description (English):** Assess water-specific conditions such as depth, currents, temperature, supervision, safe access and local warnings before entering; this applies general hazard judgment to an environment with distinct drowning risks.
 
-**User-friendly description (qm):** Suvğa kirmeden evel aqıntı, terenlik ve nezaretni qıymetlendır.
+**User-friendly description (qm):** Suvğa kirmeden evel aqıntı, terenlik ve nezaretni qıymetlendir.
 
 ##### Suvda telükede olğan insanğa yardım etmek
 
@@ -1874,7 +1874,7 @@ Skills: 6
 
 **Methodological description (English):** Account for wet clothing, wind, duration, suitable insulation, and warning signs of harmful cooling.
 
-**User-friendly description (qm):** Suqluq, yel ve issılıqnı nezaret etip, suvuqnıñ zararını azayt.
+**User-friendly description (qm):** Kiyimni quru tutıp, yelden qorunıp ve issılıqnı saqlap, suvuq tesiriniñ zararını azayt.
 
 ##### Sıcaqtan kelgen hastalıqlarnıñ ögüni almaq
 

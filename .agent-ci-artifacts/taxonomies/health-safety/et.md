@@ -234,7 +234,7 @@ Skills: 3
 
 **Methodological description (English):** Recognize suitable protected locations and conditions under which a shelter becomes unsafe.
 
-**User-friendly description (et):** Vahetu ohu korral vali sobiv varjupaik.
+**User-friendly description (et):** Vahetu ohu korral vali sobiv varjumiskoht.
 
 #### Loodus- ja tehnoloogilised katastroofid
 
@@ -454,7 +454,7 @@ Skills: 5
 
 **Methodological description (English):** Reduce access to hazardous chemicals, use original labelled containers, and avoid unsafe storage near food or medicine.
 
-**User-friendly description (et):** Märgista ohtlikud kodukeemiatooted õigesti ja hoia need laste käeulatusest eemal.
+**User-friendly description (et):** Hoia ohtlikke kodukeemiatooteid originaalpakendis koos etiketiga ja laste käeulatusest eemal.
 
 ##### Käsitseda kuumi pindu ja vedelikke ohutult
 
@@ -480,9 +480,9 @@ Skills: 2
 
 **Methodological description (English):** Being approached by unknown people or separated from familiar companions calls for independent judgement about safe distance, exit options and trustworthy assistance, without assuming every unfamiliar person is dangerous.
 
-**User-friendly description (et):** Õpi reageerima ebameeldivatele lähenemistele ja kaaslastest eraldumisele avalikus kohtades.
+**User-friendly description (et):** Õpi reageerima ebameeldivatele lähenemistele ja kaaslastest eraldumisele avalikes kohtades.
 
-##### Reageerida ohtlikele lähenemistele avalikus kohtades
+##### Reageerida ohtlikele lähenemistele avalikes kohtades
 
 [respondToUnsafeApproachesInPublic.data.ts](../../../content/health-safety/data/skills/everydayAndOccupationalSafety/personalSafetyInPublicPlaces/skills/respondToUnsafeApproachesInPublic.data.ts)
 
@@ -1142,7 +1142,7 @@ Skills: 3
 
 **User-friendly description (et):** Tunne ära olukorrad, kus kohe on vaja täiskasvanu või spetsialisti abi.
 
-##### Reageerida enesevigastamise või enesetapuohtu
+##### Reageerida enesevigastamise või enesetapu ohule
 
 [respondToSelfHarmOrSuicideRisk.data.ts](../../../content/health-safety/data/skills/mentalWellBeingAndSupport/mentalHealthCrises/skills/respondToSelfHarmOrSuicideRisk.data.ts)
 
@@ -1832,7 +1832,7 @@ Skills: 3
 
 **Methodological description (English):** Drowning can occur quickly and silently; preventing entry into danger and using non-contact rescue options are distinct from trained water rescue.
 
-**User-friendly description (et):** Õpi uppumist ennetama ja aitama teisi ise kedagi ohtu seadmata.
+**User-friendly description (et):** Õpi uppumist ennetama ja teisi aitama, seadmata ennast ega kedagi teist ohtu.
 
 ##### Hinnata ujumise ja suplemise ohte
 

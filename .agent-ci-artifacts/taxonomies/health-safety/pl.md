@@ -150,7 +150,7 @@ Groups: 4 · Skills: 16
 
 **Methodological description (English):** Collective hazards can overwhelm normal routines and require verified alerts, protective shelter, evacuation, and coordination with responders. Local regulations and emergency numbers belong to contextual lessons, not permanent country-specific Skill identities.
 
-**User-friendly description (pl):** Naucz się przygotowywać do sytuacji kryzysowych, stosować do wiarygodnych ostrzeżeń i bezpiecznie chronić innych.
+**User-friendly description (pl):** Naucz się przygotowywać do sytuacji kryzysowych, stosować się do wiarygodnych ostrzeżeń i bezpiecznie chronić innych.
 
 #### Zagrożenia związane z konfliktem
 
@@ -454,7 +454,7 @@ Skills: 5
 
 **Methodological description (English):** Reduce access to hazardous chemicals, use original labelled containers, and avoid unsafe storage near food or medicine.
 
-**User-friendly description (pl):** Właściwie oznaczaj niebezpieczne substancje domowe i trzymaj je z dala od dzieci.
+**User-friendly description (pl):** Przechowuj niebezpieczne substancje domowe w oryginalnych, oznakowanych opakowaniach, poza zasięgiem dzieci.
 
 ##### Bezpieczne obchodzenie się z gorącymi powierzchniami i cieczami
 
@@ -710,7 +710,7 @@ Skills: 4
 
 **User-friendly description (pl):** Sprawdź, czy zbliżenie się do osoby rannej nie narazi cię na niebezpieczeństwo.
 
-##### Opiekować się nieprzytomnym prawidłowo oddychającym
+##### Opiekować się osobą nieprzytomną, która oddycha prawidłowo
 
 [careForAnUnresponsivePersonWhoIsBreathingNormally.data.ts](../../../content/health-safety/data/skills/firstAidAndImmediateResponse/initialAssessmentAndHelp/skills/careForAnUnresponsivePersonWhoIsBreathingNormally.data.ts)
 

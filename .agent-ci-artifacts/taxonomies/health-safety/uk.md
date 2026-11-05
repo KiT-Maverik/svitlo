@@ -150,7 +150,7 @@ Groups: 4 · Skills: 16
 
 **Methodological description (English):** Collective hazards can overwhelm normal routines and require verified alerts, protective shelter, evacuation, and coordination with responders. Local regulations and emergency numbers belong to contextual lessons, not permanent country-specific Skill identities.
 
-**User-friendly description (uk):** Навчися готуватися до надзвичайних ситуацій, виконувати перевірені попередження й безпечно захищати інших.
+**User-friendly description (uk):** Навчися готуватися до надзвичайних ситуацій, дотримуватися перевірених попереджень і вказівок та безпечно захищати інших.
 
 #### Небезпеки, пов’язані з воєнними діями
 
@@ -346,7 +346,7 @@ Skills: 5
 
 **Methodological description (English):** Understand that carbon monoxide from combustion may be invisible and odorless, recognize alarm or exposure concerns, and prioritize getting to safety and obtaining emergency evaluation rather than relying on smell.
 
-**User-friendly description (uk):** Зрозумій, чому чадний газ небезпечний, навіть якщо не має запаху-попередження.
+**User-friendly description (uk):** Зрозумій, чому чадний газ небезпечний, навіть якщо його неможливо розпізнати за запахом.
 
 ##### Електробезпека
 
@@ -454,7 +454,7 @@ Skills: 5
 
 **Methodological description (English):** Reduce access to hazardous chemicals, use original labelled containers, and avoid unsafe storage near food or medicine.
 
-**User-friendly description (uk):** Правильно маркуй небезпечні побутові речовини та тримай їх подалі від дітей.
+**User-friendly description (uk):** Зберігай небезпечні побутові речовини в оригінальних промаркованих упаковках і подалі від дітей.
 
 ##### Безпечно поводитися з гарячими поверхнями та рідинами
 
@@ -766,7 +766,7 @@ Skills: 8
 
 **Methodological description (English):** Recognize major difficulty breathing, severe respiratory distress or rapidly worsening symptoms as reasons to activate emergency assistance and support a safe position while awaiting qualified care.
 
-**User-friendly description (uk):** Негайно звертайся по допомогу при тяжкому або дедалі гіршому диханні.
+**User-friendly description (uk):** Негайно звертайся по допомогу при тяжкому утрудненні дихання або його швидкому погіршенні.
 
 ##### Реагувати на підозру щодо гіпоглікемії
 
@@ -1524,7 +1524,7 @@ Skills: 4
 
 **Methodological description (English):** Use refusal, disengagement, and supportive allies when a group promotes hazardous or humiliating behaviour.
 
-**User-friendly description (uk):** Знаходь безпечні способи відмовляти на шкідливі прохання однолітків.
+**User-friendly description (uk):** Знаходь безпечні способи відмовлятися виконувати шкідливі прохання однолітків.
 
 ##### Установлювати межі в нерівних стосунках
 
@@ -1832,7 +1832,7 @@ Skills: 3
 
 **Methodological description (English):** Drowning can occur quickly and silently; preventing entry into danger and using non-contact rescue options are distinct from trained water rescue.
 
-**User-friendly description (uk):** Навчися запобігати утопленню й допомагати, не наражаючи інших на небезпеку.
+**User-friendly description (uk):** Навчися запобігати утопленню й допомагати, не наражаючи себе чи інших на небезпеку.
 
 ##### Оцінювати небезпеки під час плавання й купання
 

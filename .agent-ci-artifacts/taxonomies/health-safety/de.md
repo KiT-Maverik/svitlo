@@ -294,7 +294,7 @@ Skills: 4
 
 **Methodological description (English):** Communicate location, type of emergency, persons affected and critical changes clearly, including during medical first aid, while following dispatcher instructions and ensuring the caller's own safety.
 
-**User-friendly description (de):** Schildern Sie den Notfall klar der Leitstelle und folgen Sie ihren Anweisungen.
+**User-friendly description (de):** Schilder der Leitstelle den Notfall klar und folge ihren Anweisungen.
 
 ##### Einen Notfallplan erstellen
 
@@ -454,7 +454,7 @@ Skills: 5
 
 **Methodological description (English):** Reduce access to hazardous chemicals, use original labelled containers, and avoid unsafe storage near food or medicine.
 
-**User-friendly description (de):** Beschrifte gefährliche Haushaltsstoffe korrekt und bewahre sie kindersicher auf.
+**User-friendly description (de):** Bewahre gefährliche Haushaltschemikalien in ihren original beschrifteten Behältern außerhalb der Reichweite von Kindern auf.
 
 ##### Sicherer Umgang mit heißen Oberflächen und Flüssigkeiten
 
@@ -658,7 +658,7 @@ Skills: 5
 
 **Methodological description (English):** Recognize the special urgency of impaired breathing after submersion, arrange emergency response and apply appropriate current resuscitation and monitoring guidance within training; do not delay vital assistance for nonessential actions.
 
-**User-friendly description (de):** Erkenne dringende Atemrisiken nach dem Ertrinken und die Notwendigkeit schneller Hilfe.
+**User-friendly description (de):** Erkenne akute Atemprobleme nach einem Ertrinkungsunfall und die Notwendigkeit sofortiger Notfallhilfe.
 
 ##### Auf schwere Hitzeerkrankungen reagieren
 
@@ -774,7 +774,7 @@ Skills: 8
 
 **Methodological description (English):** Recognize possible low blood glucose and distinguish safe assistance for a person who is fully alert and can swallow from the need for urgent help when consciousness or swallowing is impaired.
 
-**User-friendly description (de):** Erkenne mögliche niedrige Blutzuckerwerte und wann orale Hilfe wegen unsicheren Schluckens gefährlich ist.
+**User-friendly description (de):** Erkenne eine mögliche Unterzuckerung und warum es gefährlich ist, einer Person etwas über den Mund zu geben, wenn sie nicht sicher schlucken kann.
 
 ##### Bei vermuteter Opioidüberdosis reagieren
 
