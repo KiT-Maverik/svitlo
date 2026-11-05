@@ -13,7 +13,7 @@ import {
 import { renderSkillAnalyticsFiles, measureSkillAnalyticsFiles } from './generate-skill-analytics.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../..');
-const source = path.join(root, 'learningApps/playground/data/skills');
+const source = path.join(root, 'content/playground/data/skills');
 
 test('one self-contained Skill Analytics page payload per supported language', () => {
   const codes = languageCodes();

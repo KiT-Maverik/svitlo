@@ -49,11 +49,11 @@ function localesFromCode() {
   return locales;
 }
 function packagesFromCode() {
-  const apps = path.join(root, 'learningApps');
+  const apps = path.join(root, 'content');
   return fs
     .readdirSync(apps, { withFileTypes: true })
     .filter(x => x.isDirectory() && fs.existsSync(path.join(apps, x.name, 'data/skills')))
-    .map(x => ({ name: x.name, package: 'learningApps/' + x.name }))
+    .map(x => ({ name: x.name, package: 'content/' + x.name }))
     .sort((a, b) => a.name.localeCompare(b.name));
 }
 function commitSha() {
@@ -67,10 +67,10 @@ function commitSha() {
 function canonicalLinks(markdown, appName, destination) {
   // Original generated links are relative to <textbook>/docs/generated/skills/.
   // Relocate links to the committed artifact's own directory.
-  const originalDir = path.join(root, 'learningApps', appName, 'docs/generated/skills');
+  const originalDir = path.join(root, 'content', appName, 'docs/generated/skills');
   return markdown.replace(/\[([^\]]+\.data\.ts)\]\(([^)]+)\)/g, (_, label, url) => {
     const target = path.resolve(originalDir, decodeURI(url));
-    const prefix = path.join(root, 'learningApps', appName, 'data/skills') + path.sep;
+    const prefix = path.join(root, 'content', appName, 'data/skills') + path.sep;
     if (!target.startsWith(prefix) || !target.endsWith('.data.ts')) {
       throw new Error('Invalid generated canonical link: ' + url);
     }

@@ -8,11 +8,11 @@ const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../
 
 async function main(args) {
   if (args.length !== 3 || args[0] !== '--package' || !['--write', '--check'].includes(args[2])) {
-    throw new Error('Usage: --package learningApps/<textbook> --write|--check');
+    throw new Error('Usage: --package content/<textbook> --write|--check');
   }
   const packageDirectory = path.resolve(repoRoot, args[1]);
   if (
-    !packageDirectory.startsWith(path.join(repoRoot, 'learningApps') + path.sep) ||
+    !packageDirectory.startsWith(path.join(repoRoot, 'content') + path.sep) ||
     !fs.existsSync(path.join(packageDirectory, 'package.json'))
   ) {
     throw new Error('Invalid textbook package');

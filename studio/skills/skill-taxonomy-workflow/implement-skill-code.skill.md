@@ -21,7 +21,7 @@ This implementation must also follow [Git-First Typed Content & AI Authoring](..
    - `skillDomain.types.ts` — `SkillDomain_Config`, required `groups` and optional direct `skills`.
    - `shared/contracts/src/types/languages.ts` — `LanguageCode`; verify the current supported-language list through the published localization contract.
 5. **Authoritative builders:** inspect `shared/engine/src/utils/builders/config/buildSkillConfig.utils.ts`, `buildSkillGroupConfig.utils.ts`, `buildSkillDomainConfig.utils.ts`, and `validateSkillChildren.utils.ts`. Prefer their public exports from `@svitlo/engine/taxonomy` instead of copying builders into the textbook.
-6. **Reference implementation (read-only example):** inspect the current Mathematics taxonomy in `learningApps/math/data/skills/`:
+6. **Reference implementation (read-only example):** inspect the current Mathematics taxonomy in `content/math/data/skills/`:
    - Root `index.ts` exports Domain Data only.
    - `geometry/geometry.data.ts` imports Group Data directly from `./<group>/<group>.data`.
    - `geometry/angles/angles.data.ts` imports Skills from `./skills`.
@@ -149,7 +149,7 @@ Before reporting success, run the target package's available checks and add/fix 
 - **Localization:** each `name` has **exactly** the current required language-code keys (two-letter unquoted wherever legal), no gaps, duplicates, unexpected keys, empty/placeholder/copy-pasted language values.
 - **Identity:** UUID syntax and stability; check uniqueness and immediate-child mappings against the in-scope files and approved hierarchy. The existing builders **cannot** resolve IDs to actual entity types/registrations; full repo-wide reference validation is deferred to a separate build-time script. Mark unverified items explicitly rather than claiming a builder-level guarantee.
 - **Direct composition:** parent configurations import immediate child Data, embedding full entities without duplicated ID dictionaries or Domain-/Group-level indexes.
-- **Export boundaries:** root `index.ts` exports Domains only; Domain and Group Data files each export their own entity; `skills/index.ts` exports immediate Skills. Verify imports resolve and no `export *` or recursive barrels appear. Adapt the structural checks exemplified by `learningApps/math/src/utils/builders/config/skillTaxonomyIndex.spec.ts`.
+- **Export boundaries:** root `index.ts` exports Domains only; Domain and Group Data files each export their own entity; `skills/index.ts` exports immediate Skills. Verify imports resolve and no `export *` or recursive barrels appear. Adapt the structural checks exemplified by `content/math/src/utils/builders/config/skillTaxonomyIndex.spec.ts`.
 - **Topology:** physical paths and entries match the approved taxonomy and slugs (including textbook-wide slug uniqueness), with no accidental duplicate or missing entities. All non-placeholder taxonomy Code links resolve to matching implemented files and counts reconcile; the staging descriptions and approved hierarchy remain unchanged until separately verified promotion.
 - **Tests:** run available package TypeScript, lint, builder, translation and index tests; cite commands/results. Run registry validation only if a real registry/test exists; `fileLocation` and global ID resolution remain separate planned infrastructure, not automatically finished by producing Data files. If tooling is unavailable, mark checks **not run**.
 

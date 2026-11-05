@@ -2,7 +2,7 @@
 
 ## Purpose and authoritative source
 
-Coordinate five independent language-review agents for the Biology Skills taxonomy under `learningApps/biology/data/skills/`, checking all registered non-English language keys against the canonical English methodological meaning and skill hierarchy.
+Coordinate five independent language-review agents for the Biology Skills taxonomy under `content/biology/data/skills/`, checking all registered non-English language keys against the canonical English methodological meaning and skill hierarchy.
 
 At setup, source contains **11 SkillDomains, 26 SkillGroups, 147 Skills = 184 entity files**, and the live language registry lists **28 non-English language keys**. That is 184 × 28 = 5,152 entity-language reviews; re-inventory current source and supported locales before editing. Actual Code is the source of truth. **Warning:** Biology `README.md` and the header of `docs/skills/taxonomy.md` still claim Code is not implemented, but canonical `*.data.ts` files are present. Use Code rather than this outdated editorial-status statement. The editorial taxonomy may aid context only.
 
@@ -13,7 +13,7 @@ Consult in order:
 - `studio/skills/translation-workflow/review-translation.skill.md`;
 - `studio/skills/translation-workflow/technical-translation.skill.md` when making authorized fixes;
 - `shared/contracts/src/types/languages.ts` for the **current** roster;
-- `learningApps/biology/docs/skills/taxonomy.md` and the relevant methodological English descriptions only as editorial/semantic context.
+- `content/biology/docs/skills/taxonomy.md` and the relevant methodological English descriptions only as editorial/semantic context.
 
 ## Integration topology
 
@@ -38,9 +38,9 @@ Consult in order:
 3. **Actually read all 184 entities in each assigned language** and compare localized title and frontend description with English methodological text, hierarchy, and subject meaning. Inspect all 11 domains and 26 groups, including direct Skills. Keep a per-locale glossary and actionable issue log with paths, current/proposed text, field, rationale, severity/confidence and any consulted authorities. Automation can prioritize, but cannot replace a full linguistic read-through.
 4. Biological semantic distinctions to preserve: living vs dead vs never alive; remains vs actual organisms; animal vs plant vs fungi; bacteria vs archaea vs viruses; DNA, genes, genetic modification vs selective breeding; population-level evolution vs individual development; producer/consumer/decomposer food webs, biodiversity and invasive species; anatomy, organ systems, processes and physiology; biotechnology's purpose/risk without unsupported value judgments. Avoid misrepresenting geographic or Health & Safety domain boundaries. Scientific register must be accurate without unnecessary jargon.
 5. `qm`: genuine Crimean Tatar, Latin `crh-Latn-UA`, approved 2025 orthography; **Crimean Tatar → international scientific terminology → Turkish terminology** in that order; Turkish prose is not accepted. `be`: Taraškievica only; `kk`: Kazakh Cyrillic; `zh`: Simplified Chinese; `pt`: Brazilian Portuguese. `ar`, `ur`, `he`: correct RTL script, punctuation and terminology. Preserve names, equations, scientific symbols, units, taxa and nomenclature where required.
-6. Read-only `Review Translation` identifies problems. User authorizes applying translation corrections: switch to `Technical Translation`. Edit **only** `name.<assigned-language>` and `description.frontend.<assigned-language>` inside `learningApps/biology/data/skills/**/*.data.ts`; preserve `en`, `description.methodological`, IDs, slugs, hierarchy, scientific meaning, imports, file paths, builders and all other agents' locales. Never change Code just to make a compiler check green. Commit in ordered, clearly labeled per-locale checkpoints.
+6. Read-only `Review Translation` identifies problems. User authorizes applying translation corrections: switch to `Technical Translation`. Edit **only** `name.<assigned-language>` and `description.frontend.<assigned-language>` inside `content/biology/data/skills/**/*.data.ts`; preserve `en`, `description.methodological`, IDs, slugs, hierarchy, scientific meaning, imports, file paths, builders and all other agents' locales. Never change Code just to make a compiler check green. Commit in ordered, clearly labeled per-locale checkpoints.
 7. After reviewing/fixing each language, record reviewed count vs expected count, files/fields changed, unresolved semantic issues, confidence, citation evidence and actual tests. Proceed to next assigned language without waiting for user `next/go`.
-8. Run the actual Biology TypeScript gate `npm run typecheck --workspace @svitlo/biology` after `npm ci` as appropriate and verify `learningApps/biology/tsconfig.json` includes `data/**/*.ts` (current config does). Verify other relevant CI/tests when available. Do not report an unrun gate as passed. If no local execution environment, flag verification as pending and leave Draft.
+8. Run the actual Biology TypeScript gate `npm run typecheck --workspace @svitlo/biology` after `npm ci` as appropriate and verify `content/biology/tsconfig.json` includes `data/**/*.ts` (current config does). Verify other relevant CI/tests when available. Do not report an unrun gate as passed. If no local execution environment, flag verification as pending and leave Draft.
 9. Once review is done, request `/agent-artifacts cleanup`, verify workflow success and that no `.agent-ci-artifacts/` files remain in the **agent PR diff**. This must be finished before integration. Never merge artifacts into integration or `main`.
 10. Agent posts final per-language coverage, changed fields, unresolved questions, source commit/manifest provenance, actual CI/test outcomes, and Draft PR URL. Leave unverified/broken work as Draft; never self-merge.
 

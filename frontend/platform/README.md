@@ -23,4 +23,4 @@ Only Mathematics has a configurable external URL, via NEXT_PUBLIC_MATH_APP_URL i
 
 Team photos are temporary Unsplash images served from the external image host and **do not depict the named team members**. Replace them with consented portraits before launch. The Hall of Fame contains invented demonstration names; it must not be presented as a list of real donors. The scholarship proposals are **not launched programs**; no application form, entitlement rules, donor roster or funding claim is implemented.
 
-Keep this package independent from learningApps/* source and from runtime configuration objects in other packages.
+Keep this package independent from content/* source and from runtime configuration objects in other packages.

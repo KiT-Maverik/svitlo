@@ -6,7 +6,7 @@ import process from 'node:process';
 import { spawnSync } from 'node:child_process';
 
 const root = path.resolve(import.meta.dirname, '..');
-const fixture = fs.mkdtempSync(path.join(root, 'learningApps', '.taxonomy-code-markdown-'));
+const fixture = fs.mkdtempSync(path.join(root, 'content', '.taxonomy-code-markdown-'));
 const taxonomy = path.join(fixture, 'data/skills');
 const generator = path.join(root, 'scripts/generate-skills-taxonomy.mjs');
 const languages = fs.readFileSync(path.join(root, 'shared/contracts/src/types/languages.ts'), 'utf8');

@@ -7,23 +7,23 @@ Svitlo is a modular interactive-learning project. Each textbook is a **standalon
 | Workspace                     | Folder                             | Purpose                                                                            |
 | ----------------------------- | ---------------------------------- | ---------------------------------------------------------------------------------- |
 | `@svitlo/platform`            | `frontend/platform`                | Next.js web platform and external textbook catalog                                 |
-| `@svitlo/math`                | `learningApps/math`                | Mathematics textbook; owns taxonomy and curriculum                                 |
-| `@svitlo/biology`             | `learningApps/biology`             | Biology textbook scaffold                                                          |
-| `@svitlo/geography`           | `learningApps/geography`           | Geography textbook scaffold                                                        |
-| `@svitlo/informatics`         | `learningApps/informatics`         | Informatics textbook scaffold                                                      |
-| `@svitlo/physics`             | `learningApps/physics`             | Physics textbook scaffold                                                          |
-| `@svitlo/language-literature` | `learningApps/language-literature` | Language and Literature textbook scaffold                                          |
-| `@svitlo/ukrainian`           | `learningApps/languages/ukrainian` | Ukrainian language textbook scaffold (under Languages)                             |
-| `@svitlo/chemistry`           | `learningApps/chemistry`           | Chemistry textbook scaffold                                                        |
-| `@svitlo/astronomy`           | `learningApps/astronomy`           | Astronomy textbook scaffold                                                        |
-| `@svitlo/history`             | `learningApps/history`             | History textbook scaffold                                                          |
-| `@svitlo/philosophy`          | `learningApps/philosophy`          | Philosophy textbook scaffold                                                       |
-| `@svitlo/psychology`          | `learningApps/psychology`          | Psychology textbook scaffold                                                       |
-| `@svitlo/economics`           | `learningApps/economics`           | Economics textbook scaffold                                                        |
-| `@svitlo/art`                 | `learningApps/art`                 | Art textbook scaffold                                                              |
-| `@svitlo/health-safety`       | `learningApps/health-safety`       | Health and Safety textbook scaffold                                                |
-| `@svitlo/engineering`         | `learningApps/engineering`         | Engineering textbook scaffold                                                      |
-| `@svitlo/playground`          | `learningApps/playground`          | Subject-neutral widget/lesson demonstration application                            |
+| `@svitlo/math`                | `content/math`                | Mathematics textbook; owns taxonomy and curriculum                                 |
+| `@svitlo/biology`             | `content/biology`             | Biology textbook scaffold                                                          |
+| `@svitlo/geography`           | `content/geography`           | Geography textbook scaffold                                                        |
+| `@svitlo/informatics`         | `content/informatics`         | Informatics textbook scaffold                                                      |
+| `@svitlo/physics`             | `content/physics`             | Physics textbook scaffold                                                          |
+| `@svitlo/language-literature` | `content/language-literature` | Language and Literature textbook scaffold                                          |
+| `@svitlo/ukrainian`           | `content/languages/ukrainian` | Ukrainian language textbook scaffold (under Languages)                             |
+| `@svitlo/chemistry`           | `content/chemistry`           | Chemistry textbook scaffold                                                        |
+| `@svitlo/astronomy`           | `content/astronomy`           | Astronomy textbook scaffold                                                        |
+| `@svitlo/history`             | `content/history`             | History textbook scaffold                                                          |
+| `@svitlo/philosophy`          | `content/philosophy`          | Philosophy textbook scaffold                                                       |
+| `@svitlo/psychology`          | `content/psychology`          | Psychology textbook scaffold                                                       |
+| `@svitlo/economics`           | `content/economics`           | Economics textbook scaffold                                                        |
+| `@svitlo/art`                 | `content/art`                 | Art textbook scaffold                                                              |
+| `@svitlo/health-safety`       | `content/health-safety`       | Health and Safety textbook scaffold                                                |
+| `@svitlo/engineering`         | `content/engineering`         | Engineering textbook scaffold                                                      |
+| `@svitlo/playground`          | `content/playground`          | Subject-neutral widget/lesson demonstration application                            |
 | `@svitlo/contracts`           | `shared/contracts`                 | Shared types, stable IDs, localization descriptors and persisted-state contracts   |
 | `@svitlo/engine`              | `shared/engine`                    | Framework-independent builders, validation, generation and Assessment Methods      |
 | `@svitlo/indexdb`             | `shared/indexdb`                   | Browser IndexedDB persistence, schemas and native integration tests                |
@@ -60,6 +60,6 @@ The Platform only links to a published Math textbook when its **real** `NEXT_PUB
 - [Final migration audit and known duplicate-source debt](studio/docs/architecture/migration-stage-8-audit.md)
 - [Architecture/documentation index](studio/docs/architecture/README.md)
 - [Historical migration notes](studio/Monorepo%20Migration.md)
-- [Math textbook](learningApps/math/README.md), [Playground](learningApps/playground/README.md), [Platform](frontend/platform/README.md)
+- [Math textbook](content/math/README.md), [Playground](content/playground/README.md), [Platform](frontend/platform/README.md)
 
 **Known remaining debt:** the Stage 8 audit records 67 byte-identical source files across Math and Playground. The new architecture guard prevents **additional** exact-path duplication while existing copied lesson/page implementations await a separately scoped extraction. Successful monorepo CI alone does not prove independent npm package publishing or clean-room repository extraction.

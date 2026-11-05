@@ -8,7 +8,7 @@
 
 Review one or more Svitlo localizations **by reading generated Markdown reference documents** derived from canonical typed entities. These documents contain domain/group/skill hierarchy, localized names, any localized user-facing descriptions, **canonical English methodological meaning**, and links back to the original `*.data.ts` files.
 
-**Source of truth:** `learningApps/<textbook>/data/skills/`. Generated Markdown is temporary, disposable, **not** an editorial source and must never be manually corrected in place.
+**Source of truth:** `content/<textbook>/data/skills/`. Generated Markdown is temporary, disposable, **not** an editorial source and must never be manually corrected in place.
 
 ## ONE CANONICAL GENERATED LIBRARY
 
@@ -32,7 +32,7 @@ All agents share the repository-level temporary folder:
 
 One generation always attempts **every available textbook taxonomy in every registered language**. There is **no user-facing option to generate one book, one domain, or one locale**. The agent simply picks the documents it needs from this complete reference library, according to its assigned scope. **Generating all languages does not mean reviewing or altering all languages.** If the task is to review Crimean Tatar Astronomy, read `.agent-ci-artifacts/taxonomies/astronomy/qm.md`; use other Markdown files only when they materially help terminology comparison.
 
-The generator reads `shared/contracts/src/types/languages.ts` for the real language roster and auto-discovers textbooks with `learningApps/*/data/skills`. It uses the established read-only [Code → Markdown generator](../../../scripts/generate-skills-taxonomy.mjs) in `--stdout` mode, then rewrites canonical source links for the temporary directory. `manifest.json` records which files were actually generated, which failed, and the exact source commit. **Do not assume 100% generation coverage if the manifest contains failures.** Never fabricate missing artifacts.
+The generator reads `shared/contracts/src/types/languages.ts` for the real language roster and auto-discovers textbooks with `content/*/data/skills`. It uses the established read-only [Code → Markdown generator](../../../scripts/generate-skills-taxonomy.mjs) in `--stdout` mode, then rewrites canonical source links for the temporary directory. `manifest.json` records which files were actually generated, which failed, and the exact source commit. **Do not assume 100% generation coverage if the manifest contains failures.** Never fabricate missing artifacts.
 
 ## GET OR REFRESH THE LIBRARY (ON DEMAND)
 

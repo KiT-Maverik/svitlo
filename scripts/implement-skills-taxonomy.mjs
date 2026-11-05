@@ -34,11 +34,11 @@ function cli() {
       opts[key] = args[++i];
     } else throw Error('Unknown argument: ' + arg);
   }
-  if (!opts.package) throw Error('Usage: --package learningApps/<textbook> [--translations <reviewed.json>] [--apply]');
-  const apps = path.join(root, 'learningApps') + path.sep;
+  if (!opts.package) throw Error('Usage: --package content/<textbook> [--translations <reviewed.json>] [--apply]');
+  const apps = path.join(root, 'content') + path.sep;
   const pkg = path.resolve(root, opts.package);
   if (!pkg.startsWith(apps) || !fs.existsSync(path.join(pkg, 'package.json')))
-    throw Error('Expected existing textbook package under learningApps/');
+    throw Error('Expected existing textbook package under content/');
   opts.packageRoot = pkg;
   opts.markdown = path.join(pkg, 'docs/skills/taxonomy.md');
   opts.targetRoot = path.join(pkg, 'data/skills');

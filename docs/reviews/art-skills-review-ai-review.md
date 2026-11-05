@@ -1,6 +1,6 @@
 # Art Skills Review — AI Integration
 
-This document coordinates the Art Skills translation review across four independent agent PRs. The canonical source remains `learningApps/art/data/skills/` and the final umbrella PR targets `main`.
+This document coordinates the Art Skills translation review across four independent agent PRs. The canonical source remains `content/art/data/skills/` and the final umbrella PR targets `main`.
 
 ## Agent contributions
 

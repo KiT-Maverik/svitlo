@@ -4,8 +4,8 @@
  * Markdown to existing Skill/Group/Domain *.data.ts files.
  *
  * Usage:
- *   node scripts/import-taxonomy-descriptions.mjs --package learningApps/math
- *   node scripts/import-taxonomy-descriptions.mjs --package learningApps/math --write
+ *   node scripts/import-taxonomy-descriptions.mjs --package content/math
+ *   node scripts/import-taxonomy-descriptions.mjs --package content/math --write
  *
  * Dry-run is the default. No translation, ID generation, file creation,
  * export rewrites, hierarchy changes, or frontend localization is performed.
@@ -25,11 +25,11 @@ let write = false;
 for (let i = 0; i < args.length; i++) {
   if (args[i] === '--package' && args[++i] && !packageName) packageName = args[i];
   else if (args[i] === '--write' && !write) write = true;
-  else fail('Usage: --package learningApps/<textbook> [--write]');
+  else fail('Usage: --package content/<textbook> [--write]');
 }
 if (!packageName) fail('--package is required');
 const packageRoot = path.resolve(root, packageName);
-if (!packageRoot.startsWith(path.join(root, 'learningApps') + path.sep)) fail('Package must be in learningApps/');
+if (!packageRoot.startsWith(path.join(root, 'content') + path.sep)) fail('Package must be in content/');
 const markdownPath = path.join(packageRoot, 'docs/skills/taxonomy.md');
 if (!fs.existsSync(markdownPath)) fail('Taxonomy Markdown not found: ' + markdownPath);
 

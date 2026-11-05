@@ -31,7 +31,7 @@ function directories(directory) {
 }
 
 export function discoverLessons(root) {
-  const applications = path.join(root, 'learningApps');
+  const applications = path.join(root, 'content');
   const lessons = [];
   for (const app of directories(applications)) {
     if (!appNamePattern.test(app)) continue;
@@ -47,7 +47,7 @@ export function discoverLessons(root) {
         if (candidates.length !== 1) throw new Error('Ambiguous Lesson data in ' + directory);
         const source = path.join(directory, candidates[0]);
         if (!fs.lstatSync(source).isFile()) continue;
-        lessons.push({ textbook: app, package: `learningApps/${app}`, id, relative, source });
+        lessons.push({ textbook: app, package: `content/${app}`, id, relative, source });
       }
     }
   }
@@ -56,7 +56,7 @@ export function discoverLessons(root) {
 
 /**
  * Markdown generator contract (Agent 4):
- * node scripts/generate-lessons-markdown.mjs --package learningApps/<book>
+ * node scripts/generate-lessons-markdown.mjs --package content/<book>
  *   --lesson <uuid> --locale <code> --stdout
  */
 export function generateLessonReviewArtifacts({ root, output, languages, manifest, saveManifest, run = spawnSync }) {
