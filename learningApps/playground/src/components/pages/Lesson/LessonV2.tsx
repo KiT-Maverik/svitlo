@@ -15,6 +15,7 @@ export default async function LessonV2({ response, locale, href }: {
   const messages = await loadUiKitMessages(locale);
   const sections = response.sections;
   const quizIndex = sections.findIndex(section => section.type === 'quiz');
+
   return (
     <LessonNavigationProvider
       key={response.id}
