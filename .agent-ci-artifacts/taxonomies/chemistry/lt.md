@@ -234,7 +234,7 @@ Skills: 4
 
 **Methodological description (English):** Account for changes in proton and nucleon number across nuclear reactions and decays.
 
-**User-friendly description (lt):** Stebėk protonų ir nukleonų skaičiaus pokyčius vykstant branduolinėms virsmams.
+**User-friendly description (lt):** Stebėk protonų ir nukleonų skaičiaus pokyčius vykstant branduoliniams virsmams.
 
 ##### Radioaktyvusis skilimas
 
@@ -484,7 +484,7 @@ Skills: 6
 
 **User-friendly description (lt):** Sužinok, kaip chemikai nustato medžiagas ir išmatuoja jų kiekius mėginiuose.
 
-##### Analitinės trukdžių priežastys
+##### Analizės trukdžiai
 
 [analyticalInterferences.data.ts](../../../learningApps/chemistry/data/skills/chemicalInquiry/analyticalChemistry/skills/analyticalInterferences.data.ts)
 
@@ -572,7 +572,7 @@ Skills: 4
 
 **Methodological description (English):** Distinguish the manipulated chemical condition, observed response and controlled conditions in an investigation.
 
-**User-friendly description (lt):** Nustatyk, kuri cheminė sąlyga keičiama ir kas matuojama sąžiningame eksperimente.
+**User-friendly description (lt):** Kontroliuojamame eksperimente nustatyk, kuri cheminė sąlyga keičiama, kas matuojama ir kurios sąlygos palaikomos pastovios.
 
 #### Matavimai ir įrodymai
 
@@ -708,7 +708,7 @@ Skills: 6
 
 **Methodological description (English):** Connect formula composition to mass per mole using atomic masses.
 
-**User-friendly description (lt):** Naudok molinę masę, siekdamas cheminę formulę su vieno molio mase.
+**User-friendly description (lt):** Naudok molinę masę, kad susietum cheminę formulę su vieno molio mase.
 
 ##### Reakcijos išeiga
 
@@ -2148,7 +2148,7 @@ Skills: 9
 
 **Methodological description (English):** Relate stable shape and structure to constrained particle motion without assuming every solid is crystalline.
 
-**User-friendly description (lt):** Paaiškink, kodėl kietosios medžiagos išlaiko formą, nors jų dalelės nejuda ne visai.
+**User-friendly description (lt):** Paaiškink, kodėl kietosios medžiagos išlaiko formą, nors jų dalelės nuolat juda.
 
 ##### Sublimacija
 
@@ -2200,7 +2200,7 @@ Skills: 3
 
 **Methodological description (English):** Account for matter in physical and chemical processes, including gases that cross an open-system boundary.
 
-**User-friendly description (lt):** Paaiškink, kaip medžiaga išlieka, net kai dujos patenka į indą ar iš jo išeina.
+**User-friendly description (lt):** Paaiškink masės tvermę atsižvelgdamas ir į dujų masę, patenkančią į atvirą sistemą ar iš jos išeinančią.
 
 ##### Fizikiniai pokyčiai
 

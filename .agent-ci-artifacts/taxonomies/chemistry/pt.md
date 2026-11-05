@@ -2200,7 +2200,7 @@ Skills: 3
 
 **Methodological description (English):** Account for matter in physical and chemical processes, including gases that cross an open-system boundary.
 
-**User-friendly description (pt):** Explique como a matéria se conserva mesmo quando gases entram ou saem de um recipiente.
+**User-friendly description (pt):** Explique a conservação da massa considerando também a massa dos gases que entram ou saem de um sistema aberto.
 
 ##### Mudanças físicas
 

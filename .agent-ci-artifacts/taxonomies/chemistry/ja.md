@@ -572,7 +572,7 @@ Skills: 4
 
 **Methodological description (English):** Distinguish the manipulated chemical condition, observed response and controlled conditions in an investigation.
 
-**User-friendly description (ja):** 公平な実験で変える化学的条件と測定するものを特定しよう。
+**User-friendly description (ja):** 条件をそろえた実験で、変える化学的条件、測る結果、一定に保つ条件を見分けよう。
 
 #### 測定と証拠
 
@@ -2200,7 +2200,7 @@ Skills: 3
 
 **Methodological description (English):** Account for matter in physical and chemical processes, including gases that cross an open-system boundary.
 
-**User-friendly description (ja):** 気体が容器に出入りしても物質が保存される仕組みを説明しよう。
+**User-friendly description (ja):** 開放系に出入りする気体の質量も考慮して、質量保存を説明しよう。
 
 ##### 物理変化
 

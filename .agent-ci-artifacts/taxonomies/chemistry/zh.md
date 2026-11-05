@@ -572,7 +572,7 @@ Skills: 4
 
 **Methodological description (English):** Distinguish the manipulated chemical condition, observed response and controlled conditions in an investigation.
 
-**User-friendly description (zh):** 在公平实验中确定改变的化学条件和测量的结果。
+**User-friendly description (zh):** 在控制变量的实验中，找出主动改变的化学条件、测量的结果以及保持不变的条件。
 
 #### 测量与证据
 
@@ -2200,7 +2200,7 @@ Skills: 3
 
 **Methodological description (English):** Account for matter in physical and chemical processes, including gases that cross an open-system boundary.
 
-**User-friendly description (zh):** 解释即使气体进出容器，物质的总量仍如何守恒。
+**User-friendly description (zh):** 将进出开放体系的气体质量也计入，解释质量守恒。
 
 ##### 物理变化
 

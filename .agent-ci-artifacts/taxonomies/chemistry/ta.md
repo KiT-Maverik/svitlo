@@ -572,7 +572,7 @@ Skills: 4
 
 **Methodological description (English):** Distinguish the manipulated chemical condition, observed response and controlled conditions in an investigation.
 
-**User-friendly description (ta):** நியாயமான ஆய்வில் எந்த வேதியியல் நிலை மாறுகிறது, எது அளவிடப்படுகிறது என்பதை அடையாளம் காண்.
+**User-friendly description (ta):** கட்டுப்படுத்தப்பட்ட ஆய்வில் எந்த வேதியியல் நிலை மாற்றப்படுகிறது, எது அளவிடப்படுகிறது, எவை மாறாமல் வைக்கப்படுகின்றன என்பதை அடையாளம் காண்.
 
 #### அளவீடுகளும் சான்றுகளும்
 
@@ -2060,13 +2060,13 @@ Skills: 9
 
 **User-friendly description (ta):** அழுத்தம் மாறாமல் இருக்கும்போது வாயுவின் கனஅளவை முழுமை வெப்பநிலையுடன் தொடர்புபடுத்து.
 
-##### இயல்பான வாயு மாதிரி
+##### நல்லியல்பு வாயு மாதிரி
 
 [idealGasModel.data.ts](../../../learningApps/chemistry/data/skills/particlesAndStates/particleBehavior/skills/idealGasModel.data.ts)
 
 **Methodological description (English):** Use the ideal-gas equation as an approximation and identify conditions in which real gases deviate.
 
-**User-friendly description (ta):** இயல்பான வாயு மாதிரியைப் பயன்படுத்தி அது எப்போது துல்லியமற்றதாகிறது என்பதையும் அறி.
+**User-friendly description (ta):** நல்லியல்பு வாயு மாதிரியைப் பயன்படுத்தி அது எப்போது துல்லியமற்றதாகிறது என்பதையும் அறி.
 
 ##### துகள்களின் இயக்கம்
 
@@ -2200,7 +2200,7 @@ Skills: 3
 
 **Methodological description (English):** Account for matter in physical and chemical processes, including gases that cross an open-system boundary.
 
-**User-friendly description (ta):** வாயுக்கள் கொள்கலனுக்குள் வந்தாலும் வெளியேறினாலும் பொருள் எவ்வாறு பாதுகாக்கப்படுகிறது என்பதை விளக்கு.
+**User-friendly description (ta):** வாயுக்கள் திறந்த அமைப்பிற்குள் நுழையும்போதும் வெளியேறும்போதும் அவற்றின் நிறையையும் கணக்கில் கொண்டு நிறை மாறாமையை விளக்கு.
 
 ##### இயற்பியல் மாற்றங்கள்
 

@@ -572,7 +572,7 @@ Skills: 4
 
 **Methodological description (English):** Distinguish the manipulated chemical condition, observed response and controlled conditions in an investigation.
 
-**User-friendly description (ko):** 공정한 실험에서 어떤 화학 조건을 바꾸고 무엇을 측정하는지 찾아보세요.
+**User-friendly description (ko):** 변인을 통제한 실험에서 바꾸는 화학 조건, 측정하는 결과, 일정하게 유지하는 조건을 구별해 보세요.
 
 #### 측정과 증거
 
@@ -2200,7 +2200,7 @@ Skills: 3
 
 **Methodological description (English):** Account for matter in physical and chemical processes, including gases that cross an open-system boundary.
 
-**User-friendly description (ko):** 기체가 용기를 드나들어도 물질이 보존되는 이유를 설명해 보세요.
+**User-friendly description (ko):** 열린계로 들어오거나 나가는 기체의 질량도 고려해 질량 보존을 설명해 보세요.
 
 ##### 물리 변화
 

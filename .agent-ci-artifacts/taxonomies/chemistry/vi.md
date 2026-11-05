@@ -572,7 +572,7 @@ Skills: 4
 
 **Methodological description (English):** Distinguish the manipulated chemical condition, observed response and controlled conditions in an investigation.
 
-**User-friendly description (vi):** Xác định điều kiện hóa học nào thay đổi và đại lượng nào được đo trong thí nghiệm công bằng.
+**User-friendly description (vi):** Trong thí nghiệm có kiểm soát, xác định điều kiện hóa học được thay đổi, kết quả được đo và các điều kiện được giữ cố định.
 
 #### Đo lường và bằng chứng
 
@@ -716,7 +716,7 @@ Skills: 6
 
 **Methodological description (English):** Distinguish theoretical yield, observed yield and percentage yield without attributing every shortfall to one cause.
 
-**User-friendly description (vi):** So sánh hiệu suất lý thuyết và thực tế, giải thích hiệu suất phần trăm.
+**User-friendly description (vi):** So sánh lượng sản phẩm theo lý thuyết với lượng sản phẩm thực tế và giải thích hiệu suất phản ứng tính theo phần trăm.
 
 ##### Tỉ lệ theo phương trình hóa học
 
@@ -2200,7 +2200,7 @@ Skills: 3
 
 **Methodological description (English):** Account for matter in physical and chemical processes, including gases that cross an open-system boundary.
 
-**User-friendly description (vi):** Giải thích cách vật chất được bảo toàn dù khí ra vào bình chứa.
+**User-friendly description (vi):** Giải thích sự bảo toàn khối lượng khi tính cả khối lượng khí ra vào một hệ mở.
 
 ##### Biến đổi vật lý
 
