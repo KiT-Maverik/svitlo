@@ -59,7 +59,7 @@ export const carbonMonoxideSafety_Skill_Data = buildSkillConfig({
       ms: 'Fahami mengapa karbon monoksida berbahaya walaupun tiada bau amaran.',
       he: 'הבינו מדוע פחמן חד־חמצני מסוכן גם בלי ריח שמתריע עליו.',
       pl: 'Zrozum, dlaczego tlenek węgla jest niebezpieczny mimo braku zapachu ostrzegawczego.',
-      uk: 'Зрозумій, чому чадний газ небезпечний, навіть якщо не має запаху-попередження.',
+      uk: 'Зрозумій, чому чадний газ небезпечний, навіть якщо його неможливо розпізнати за запахом.',
       lt: 'Suprask, kodėl anglies monoksidas pavojingas net be įspėjamojo kvapo.',
       lv: 'Saproti, kāpēc oglekļa monoksīds ir bīstams bez brīdinošas smakas.',
       et: 'Mõista, miks vingugaas on ohtlik ka ilma hoiatava lõhnata.',
