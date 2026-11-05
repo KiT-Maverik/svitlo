@@ -38,7 +38,7 @@ function createHtml(result) {
   const entryOutput = Object.entries(result.metafile.outputs).find(([, meta]) => meta.entryPoint?.endsWith('src/main.tsx'));
   if (!entryOutput) throw new Error('esbuild did not emit the React entrypoint');
   const [js, meta] = entryOutput;
-  const url = path => './' + relative(dist, resolve(mobileRoot, path)).replaceAll('\\', '/');
+  const url = path => '/' + relative(dist, resolve(mobileRoot, path)).replaceAll('\\', '/');
   const css = meta.cssBundle ? '<link rel="stylesheet" href="' + url(meta.cssBundle) + '">' : '';
   const html = '<!doctype html><html><head><meta charset="UTF-8">' +
     '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">' +
