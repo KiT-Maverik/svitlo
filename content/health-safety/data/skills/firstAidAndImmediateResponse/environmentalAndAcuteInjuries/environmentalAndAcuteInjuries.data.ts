@@ -54,7 +54,7 @@ export const environmentalAndAcuteInjuries_SkillGroup_Data = buildSkillGroupConf
       "Temperature, substances, and water exposure can rapidly worsen an individual's condition and demand hazard-specific first aid.",
     frontend: {
       en: 'Discover safer responses to burns, exposure, temperature emergencies and drowning.',
-      zh: '探索应对烧伤、暴露、温度危机和溺水的更安全方式。',
+      zh: '了解如何更安全地应对烧伤、有害物质暴露、极端温度造成的急症和溺水。',
       hi: 'जलने, हानिकारक संपर्क, तापमान संकट और डूबने पर सुरक्षित प्रतिक्रिया के तरीके जानो।',
       es: 'Descubre respuestas más seguras a quemaduras, exposiciones, emergencias térmicas y ahogamiento.',
       ar: 'اكتشف استجابات أكثر أماناً للحروق والتعرض للمواد وطوارئ الحرارة والغرق.',
