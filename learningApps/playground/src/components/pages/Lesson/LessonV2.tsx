@@ -1,4 +1,5 @@
 import type { Locale } from '@svitlo/engine/localization';
+import { loadUiKitMessages } from '@/lib/uiKit/loadUiKitMessages';
 import type { LessonResponse } from '@/lib/lessons/assembleLessonResponse';
 import { LocaleProvider } from '@/i18n/LocaleProvider/LocaleProvider';
 import LessonLearningLayout from '@/components/layout/LearningLayout/LearningLayout';
@@ -6,11 +7,12 @@ import { LessonProgressProvider } from './LessonProgress/LessonProgress';
 import LessonV2Client from './LessonV2Client';
 import { SceneLocaleProvider } from './SceneLocaleContext';
 
-export default function LessonV2({ response, locale, href }: {
+export default async function LessonV2({ response, locale, href }: {
   response: LessonResponse;
   locale: Locale;
   href: string;
 }) {
+  const messages = await loadUiKitMessages(locale);
   const sections = response.sections;
   const quizIndex = sections.findIndex(section => section.type === 'quiz');
   const sceneMessages = (sectionSlug: string, blockSlug: string) =>
@@ -33,11 +35,12 @@ export default function LessonV2({ response, locale, href }: {
         requireQuiz={response.parameters.requireQuiz}
       >
         <LessonLearningLayout
+          messages={messages}
           topics={[{ id: response.id, title: response.title, href }]}
           skippableSteps={sections.map(section => response.parameters.sections.allowSkipping && !!section.skippable)}
           quizStep={quizIndex < 0 ? undefined : quizIndex}
         >
-          <LessonV2Client response={response} />
+          <LessonV2Client response={response} messages={messages} />
         </LessonLearningLayout>
       </LessonProgressProvider>
       </SceneLocaleProvider>
