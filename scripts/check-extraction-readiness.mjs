@@ -105,6 +105,9 @@ for (const [path, pkg] of workspaces) {
         continue;
       }
       if (specifier.startsWith('node:') || builtins.has(specifier)) continue;
+      // Next.js compile-time markers are not standalone runtime dependencies.
+      if ((path.startsWith('learningApps/') || path.startsWith('frontend/')) &&
+          (specifier === 'server-only' || specifier === 'client-only')) continue;
       const name = packageName(specifier);
       if (byName.has(name)) {
         assert(name !== pkg.name, 'Self-import through workspace resolver: ' + description);
