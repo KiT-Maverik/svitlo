@@ -111,24 +111,27 @@ try {
       const details = Object.entries(missing).map(([name, codes]) => name + ': ' + codes.join(', ')).join('; ');
       throw new Error('UI Kit translations incomplete (' + missingCount + '): ' + details);
     }
-    mkdirSync(output, { recursive: true });
+    // Preflight all language/key structures before publishing the first file.
     const defaults = Object.fromEntries(components.map(c => [c, message(c, 'uk-UA', 'uk')]));
-    let count = 0;
-    for (const { locale, language } of DEFAULT_SUPPORTED_LANGUAGES) {
+    const published = DEFAULT_SUPPORTED_LANGUAGES.map(({ locale, language }) => {
       const messages = Object.fromEntries(components.map(c => {
         const value = message(c, locale, language);
         if (!value) throw new Error(`Missing ${c} translations for ${locale}`);
         assertShape(c, defaults[c], value, locale);
         return [c, value];
       }));
+      return { locale, messages };
+    });
+
+    mkdirSync(output, { recursive: true });
+    for (const { locale, messages } of published) {
       writeFileSync(join(output, locale + '.json'), JSON.stringify(messages, null, 2) + '\n');
-      count += 1;
     }
     writeFileSync(
       join(output, 'meta.json'),
-      JSON.stringify({ scope: 'global', components, locales: DEFAULT_SUPPORTED_LANGUAGES.map(l => l.locale) }, null, 2) + '\n',
+      JSON.stringify({ scope: 'global', components, locales: published.map(item => item.locale) }, null, 2) + '\n',
     );
-    console.log(`Generated ${count} global UI Kit locale JSON resources in ${output}`);
+    console.log(`Generated ${published.length} global UI Kit locale JSON resources in ${output}`);
   }
 } finally {
   rmSync(tmp, { recursive: true, force: true });
