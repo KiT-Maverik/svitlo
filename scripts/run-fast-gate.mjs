@@ -154,6 +154,18 @@ function runGate(changed) {
     return index < 0 ? priority.length : index;
   };
   const targets = [...plan.affected].sort((a, b) => rank(a) - rank(b) || a.localeCompare(b));
+  // A non-Next React DOM browser bundle proves that textbook exports and lazy
+  // Scenes work without the Next.js compiler. Run before unrelated typechecks.
+  if (changed.some(file =>
+    file.startsWith('apps/web/') ||
+    file.startsWith('content/playground/src/components/scenes/') ||
+    file.startsWith('content/playground/scripts/check-react-dom-portability') ||
+    file === 'content/playground/package.json' ||
+    file === 'shared/ui-kit/src/scene-locale.tsx'
+  )) {
+    exec('npm', ['run', 'test:portability', '--workspace', '@svitlo/playground']);
+  }
+
   // Authored textbook taxonomy imports @svitlo/engine/taxonomy. Its exported declarations
   // exist only after the shared Engine build; data/ is now included in textbook tsconfigs.
   // Build this prerequisite for affected textbooks even when their manifests have not
