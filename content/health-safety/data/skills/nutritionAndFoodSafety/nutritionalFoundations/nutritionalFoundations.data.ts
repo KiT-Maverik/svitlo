@@ -68,7 +68,7 @@ export const nutritionalFoundations_SkillGroup_Data = buildSkillGroupConfig({
       vi: 'Hiểu dinh dưỡng là cách lựa chọn ăn uống lâu dài, không phải một bữa hoàn hảo.',
       ta: 'ஓர் உணவு முழுமையாக இருப்பதற்குப் பதிலாக நீண்டகால உணவுத் தேர்வாக ஊட்டச்சத்தைப் பாருங்கள்.',
       te: 'పోషణను ఒక్క పరిపూర్ణ భోజనంగా కాకుండా దీర్ఘకాలిక ఆహార ఎంపికలుగా చూడండి.',
-      mr: 'पोषण म्हणजे एक परिपूर्ण जेवण नव्हे, तर दीर्घकालीन आहारनिवडी हे समज.',
+      mr: 'पोषण म्हणजे एक परिपूर्ण जेवण नव्हे, तर दीर्घकालीन आहारनिवडी हे समजून घ्या.',
       ms: 'Lihat pemakanan sebagai corak pilihan jangka panjang, bukan satu hidangan sempurna.',
       he: 'ראו בתזונה דפוס בחירות לאורך זמן, ולא ארוחה מושלמת אחת.',
       pl: 'Traktuj odżywianie jako wzorzec długoterminowych wyborów, nie jeden idealny posiłek.',

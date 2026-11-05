@@ -55,7 +55,7 @@ export const balancedDietaryPatterns_Skill_Data = buildSkillConfig({
       vi: 'Xây dựng chế độ ăn đa dạng phù hợp với nhu cầu của bạn.',
       ta: 'உங்கள் தேவைக்கு ஏற்ற பலவகை உணவுப் பழக்கத்தை உருவாக்குங்கள்.',
       te: 'మీ అవసరాలకు తగిన వైవిధ్యమైన ఆహార పద్ధతిని అలవరచుకోండి.',
-      mr: 'तुझ्या गरजांना साजेशी विविध आहारपद्धती तयार कर.',
+      mr: 'तुमच्या गरजांना साजेशी विविध आहारपद्धती तयार करा.',
       ms: 'Bina corak pemakanan pelbagai yang sesuai dengan keperluanmu.',
       he: 'בנו דפוס אכילה מגוון שמתאים לצרכים האישיים.',
       pl: 'Buduj różnorodny sposób żywienia dopasowany do własnych potrzeb.',

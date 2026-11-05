@@ -55,7 +55,7 @@ export const safeFoodStorage_Skill_Data = buildSkillConfig({
       vi: 'Bảo quản thực phẩm dễ hỏng trong điều kiện phù hợp.',
       ta: 'எளிதில் கெடும் உணவுகளை ஏற்ற சூழலில் சேமியுங்கள்.',
       te: 'త్వరగా చెడిపోయే ఆహారాన్ని తగిన పరిస్థితుల్లో నిల్వ చేయండి.',
-      mr: 'लवकर खराब होणारे पदार्थ योग्य परिस्थितीत साठव.',
+      mr: 'लवकर खराब होणारे पदार्थ योग्य परिस्थितीत साठवा.',
       ms: 'Simpan makanan mudah rosak dalam keadaan yang sesuai.',
       he: 'אחסנו מזון מתכלה בתנאים מתאימים.',
       pl: 'Przechowuj łatwo psującą się żywność w odpowiednich warunkach.',
