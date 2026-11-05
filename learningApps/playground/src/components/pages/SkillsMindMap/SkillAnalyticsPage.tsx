@@ -30,30 +30,33 @@ function SkillAnalyticsContent({ domainSlugs, initialMessages }: {
   const [resource, setResource] = useState<{ locale: Locale; messages: UiKit_Global<'response'> }>(
     () => ({ locale: 'uk-UA', messages: initialMessages }),
   );
-  const [resourceError, setResourceError] = useState<string | null>(null);
+  const [resourceError, setResourceError] = useState<{ locale: Locale; message: string } | null>(null);
 
   useEffect(() => {
     if (resource.locale === locale) return;
     const controller = new AbortController();
-    setResourceError(null);
     void fetch('/data/ui-kit/' + encodeURIComponent(locale) + '.json', { signal: controller.signal })
       .then(response => {
         if (!response.ok) throw new Error('HTTP ' + response.status);
         return response.json() as Promise<UiKit_Global<'response'>>;
       })
       .then(messages => {
-        if (!controller.signal.aborted) setResource({ locale, messages });
+        if (!controller.signal.aborted) {
+          setResource({ locale, messages });
+          setResourceError(null);
+        }
       })
       .catch(error => {
         if (!controller.signal.aborted)
-          setResourceError(error instanceof Error ? error.message : String(error));
+          setResourceError({ locale, message: error instanceof Error ? error.message : String(error) });
       });
     return () => controller.abort();
   }, [locale, resource.locale]);
 
   if (resource.locale !== locale) {
-    return <Box role={resourceError ? 'alert' : 'status'} aria-busy={!resourceError}>
-      {resourceError ? 'Не вдалося завантажити переклад інтерфейсу: ' + resourceError : 'Завантаження інтерфейсу…'}
+    const currentError = resourceError?.locale === locale ? resourceError.message : null;
+    return <Box role={currentError ? 'alert' : 'status'} aria-busy={!currentError}>
+      {currentError ? 'Не вдалося завантажити переклад інтерфейсу: ' + currentError : 'Завантаження інтерфейсу…'}
     </Box>;
   }
   const messages = resource.messages;

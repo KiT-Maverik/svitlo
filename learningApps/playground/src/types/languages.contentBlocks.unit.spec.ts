@@ -1,4 +1,4 @@
-import { readdirSync, readFileSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/localization';
@@ -17,12 +17,6 @@ const layouts = { 'lt-LT': ltLayout, 'lv-LV': lvLayout, 'et-EE': etLayout, 'be-t
 const root = process.cwd();
 const lessonRoot = join(root, 'data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c');
 const newLanguages = ['lt', 'lv', 'et', 'be', 'ka', 'kk', 'qm'] as const;
-function collectFiles(folder: string): string[] {
-  return readdirSync(folder, { withFileTypes: true }).flatMap(entry => {
-    const path = join(folder, entry.name);
-    return entry.isDirectory() ? collectFiles(path) : [path];
-  });
-}
 function countLanguageEntries(source: string, language: string): number {
   return [...source.matchAll(new RegExp(`(?:^|\\s)["']?${language}["']?\\s*:`, 'gm'))].length;
 }
