@@ -7,7 +7,7 @@ on:
       - feat/philosophy-skills-integration
     types: [opened, synchronize, reopened, ready_for_review]
     paths:
-      - 'learningApps/philosophy/data/skills/**'
+      - 'content/philosophy/data/skills/**'
       - '.github/workflows/philosophy-skills-validation.yml'
 
 permissions:
@@ -35,7 +35,7 @@ jobs:
       - name: Validate workspace manifests
         run: node scripts/check-workspaces.mjs
       - name: Validate Philosophy taxonomy graph
-        run: node scripts/check-skills-taxonomy-structure.mjs learningApps/philosophy/data/skills
+        run: node scripts/check-skills-taxonomy-structure.mjs content/philosophy/data/skills
       - name: Build real contracts and engine
         run: |
           npm run build --workspace @svitlo/contracts
@@ -62,11 +62,11 @@ jobs:
             include,
             exclude: [],
           };
-          const path = 'learningApps/philosophy/tsconfig.agent-validation.tmp.json';
+          const path = 'content/philosophy/tsconfig.agent-validation.tmp.json';
           fs.writeFileSync(path, JSON.stringify(cfg, null, 2) + '\n');
           console.log('Validating full assigned domain source:', include);
           NODE
-          npx tsc --noEmit --project learningApps/philosophy/tsconfig.agent-validation.tmp.json
+          npx tsc --noEmit --project content/philosophy/tsconfig.agent-validation.tmp.json
       - name: Diagnose full workspace TypeScript on agent PR (may fail on other unfinished domains)
         if: github.base_ref == 'feat/philosophy-skills-integration'
         continue-on-error: true
