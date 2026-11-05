@@ -75,7 +75,7 @@ export const nonDeductiveReasoning_SkillGroup_Data = buildSkillGroupConfig({
       pl: 'Naucz się oceniać rozumowanie wspierające wniosek bez gwarancji pewności.',
       uk: 'Навчись оцінювати міркування, які підтримують висновок, але не гарантують певності.',
       lt: 'Išmok vertinti samprotavimus, kurie pagrindžia išvadą, bet neužtikrina tikrumo.',
-      lv: 'Mācies vērtēt spriešanu, kas pamato secinājumu, taču negarantē drošību.',
+      lv: 'Mācies vērtēt spriešanu, kas pamato secinājumu, taču negarantē noteiktību.',
       et: 'Õpi hindama arutlust, mis toetab järeldust, kuid ei taga kindlust.',
       be: 'Навучыся ацэньваць разважаньні, якія падтрымліваюць выснову, але не гарантуюць пэўнасьці.',
       ka: 'ისწავლე მსჯელობის შეფასება, რომელიც დასკვნას ამყარებს, მაგრამ სიზუსტის გარანტიას არ იძლევა.',

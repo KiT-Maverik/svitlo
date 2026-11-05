@@ -61,7 +61,7 @@ export const reconstructAnArgumentInStandardForm_Skill_Data = buildSkillConfig({
       pl: 'Zapisz argument jako jasno sformułowane przesłanki, po których następuje wniosek.',
       uk: 'Перепиши аргумент як чіткі засновки, за якими йде висновок.',
       lt: 'Perrašyk argumentą kaip aiškias prielaidas, po kurių pateikiama išvada.',
-      lv: 'Pārraksti argumentu skaidru premisu un tai sekojoša secinājuma veidā.',
+      lv: 'Pārraksti argumentu skaidru premisu un tām sekojoša secinājuma veidā.',
       et: 'Kirjuta argument ümber selgete eelduste ja neile järgneva järeldusena.',
       be: 'Перапішы аргумэнт як выразныя засновы, пасьля якіх ідзе выснова.',
       ka: 'გადაწერე არგუმენტი მკაფიო წინაპირობებად, რომლებსაც დასკვნა მოსდევს.',

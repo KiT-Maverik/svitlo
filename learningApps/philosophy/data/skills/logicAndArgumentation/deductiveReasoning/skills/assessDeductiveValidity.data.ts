@@ -27,7 +27,7 @@ export const assessDeductiveValidity_Skill_Data = buildSkillConfig({
     pl: 'Ocena poprawności dedukcyjnej',
     uk: 'Оцінювання дедуктивної правильності',
     lt: 'Dedukcinio pagrįstumo vertinimas',
-    lv: 'Deduktīvās derīguma izvērtēšana',
+    lv: 'Deduktīva argumenta derīguma izvērtēšana',
     et: 'Deduktiivse kehtivuse hindamine',
     be: 'Ацэнка дэдуктыўнай слушнасьці',
     ka: 'დედუქციური ვალიდურობის შეფასება',

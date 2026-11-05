@@ -60,7 +60,7 @@ export const distinguishValidityFromSoundness_Skill_Data = buildSkillConfig({
       pl: 'Zrozum, dlaczego logicznie poprawny argument może mieć fałszywe przesłanki.',
       uk: 'Зрозумій, чому логічно правильний аргумент може мати хибні засновки.',
       lt: 'Suprask, kodėl logiškai galiojantis argumentas vis tiek gali turėti klaidingų prielaidų.',
-      lv: 'Saprot, kāpēc loģiski derīgam argumentam tomēr var būt aplamas premisas.',
+      lv: 'Saproti, kāpēc loģiski derīgam argumentam tomēr var būt aplamas premisas.',
       et: 'Mõista, miks loogiliselt kehtival argumendil võivad siiski olla väärad eeldused.',
       be: 'Зразумей, чаму лёгічна слушны аргумэнт усё адно можа мець памылковыя засновы.',
       ka: 'გაიგე, რატომ შეიძლება ლოგიკურად ვალიდურ არგუმენტსაც ჰქონდეს მცდარი წინაპირობები.',
