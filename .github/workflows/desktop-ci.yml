@@ -1,0 +1,37 @@
+name: Electron Desktop quality
+on:
+  pull_request:
+    paths:
+      - 'apps/desktop/**'
+      - 'shared/adapters/electron/**'
+      - 'package-lock.json'
+      - '.github/workflows/desktop-ci.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  desktop:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install workspaces
+        run: npm ci --no-audit --no-fund
+      - name: Build adapter and renderer
+        run: npm run build --workspace @svitlo/desktop
+      - name: Typecheck adapter and Desktop
+        run: |
+          npm run typecheck --workspace @svitlo/adapter-electron
+          npm run typecheck --workspace @svitlo/desktop
+      - name: Lint Desktop
+        run: npm run lint --workspace @svitlo/desktop
+      - name: Validate packaged resources
+        run: npm run test --workspace @svitlo/desktop
+      - name: Run Electron smoke test under virtual display
+        run: xvfb-run -a npm run test:smoke --workspace @svitlo/desktop
+      - name: Package for Linux
+        run: npm run package --workspace @svitlo/desktop
