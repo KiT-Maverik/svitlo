@@ -41,7 +41,7 @@ export const analyzeCivilDisobedience_Skill_Data = buildSkillConfig({
       en: 'Discuss moral arguments about principled, nonviolent disobedience of laws.',
       zh: '讨论基于原则、非暴力地违反法律的道德理由。',
       hi: 'सिद्धांतों के आधार पर अहिंसक रूप से कानून न मानने के नैतिक तर्कों पर चर्चा करो।',
-      es: 'Debate los argumentos morales a favor de desobedecer las leyes de manera no violenta y por principios.'
+      es: 'Debate los argumentos morales a favor de desobedecer las leyes de manera no violenta y por principios.',
       ar: 'ناقش الحجج الأخلاقية للعصيان غير العنيف القائم على المبادئ.',
       fr: 'Discute des raisons morales de désobéir aux lois, par principe et sans violence.',
       bn: 'নীতির ভিত্তিতে অহিংসভাবে আইন অমান্যের নৈতিক যুক্তি আলোচনা করো।',
@@ -58,7 +58,7 @@ export const analyzeCivilDisobedience_Skill_Data = buildSkillConfig({
       mr: 'तत्त्वनिष्ठ व अहिंसक कायदेभंगाच्या नैतिक कारणांवर चर्चा करा.',
       ms: 'Bincangkan hujah moral tentang pelanggaran undang-undang secara berprinsip dan tanpa keganasan.',
       he: 'דונו בנימוקים מוסריים להפרת חוק עקרונית ובלתי אלימה.',
-      pl: 'Rozważ moralne argumenty za pokojowym łamaniem prawa w imię zasad.'
+      pl: 'Rozważ moralne argumenty za pokojowym łamaniem prawa w imię zasad.',
       uk: 'Обговорюй моральні аргументи щодо принципового ненасильницького порушення законів.',
       lt: 'Aptark moralinius argumentus dėl principingo, nesmurtinio įstatymų nesilaikymo.',
       lv: 'Apspried morālus argumentus par principiālu un nevardarbīgu likumu neievērošanu.',
