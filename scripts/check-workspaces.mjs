@@ -137,8 +137,13 @@ for (const { path, name } of expected) {
   const pkg = readJson(pkgPath);
   const tsconfig = readJson(tsconfigPath);
   assert(pkg.name === name && pkg.private === true, 'Invalid workspace manifest: ' + pkgPath);
-  if (name !== '@svitlo/playground') {
+  if (!['@svitlo/playground', ...['math','physics','psychology','philosophy','language-literature','ukrainian'].map(id => '@svitlo/' + id)].includes(name)) {
     assert(tsconfig.compilerOptions?.paths?.['@/*']?.[0] === 'src/*', 'Missing local alias in ' + tsconfigPath);
+  }
+  if (['@svitlo/math', '@svitlo/physics', '@svitlo/psychology', '@svitlo/philosophy', '@svitlo/language-literature', '@svitlo/ukrainian'].includes(name)) {
+    assert(!pkg.dependencies?.next && !existsSync(resolve(root, path, 'src/app')), 'Migrated textbook still depends on Next.js: ' + path);
+    assert(pkg.exports?.['.']?.default === './dist/textbook/index.js' && pkg.bin?.['svitlo-' + name.slice(8)] === './scripts/publish.mjs', 'Missing textbook compiled export or Publish CLI: ' + path);
+    assert(!tsconfig.compilerOptions?.paths?.['@/*'], 'Migrated textbook retains a host alias: ' + path);
   }
   assert(lock.packages[path]?.name === name, 'Missing workspace lockfile package: ' + name);
   assert(lock.packages['node_modules/' + name]?.resolved === path, 'Missing workspace lockfile link: ' + name);

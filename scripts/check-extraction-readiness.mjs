@@ -83,7 +83,10 @@ for (const [path, pkg] of workspaces) {
   }
   const declared = new Set(Object.keys({ ...(pkg.dependencies || {}), ...(pkg.peerDependencies || {}) }));
   const localAliases = readJson(path + '/tsconfig.json').compilerOptions?.paths || {};
-  for (const file of walk(join(packageRoot, 'src')).filter(isProductionSource)) {
+  // Compiled textbook packages may not own any src/ tree. Their authored data/
+  // is consumed by build-time Engine generators, never by runtime entrypoints.
+  const sourceRoot = join(packageRoot, 'src');
+  for (const file of (existsSync(sourceRoot) ? walk(sourceRoot) : []).filter(isProductionSource)) {
     for (const specifier of importedModules(readFileSync(file, 'utf8'), file)) {
       const description = relative(root, file) + ' -> ' + specifier;
       if (specifier.startsWith('.')) {

@@ -12,6 +12,12 @@ const packages = [
   'shared/ui-kit',
   'shared/adapters/nextjs',
   'content/playground',
+  'content/math',
+  'content/physics',
+  'content/psychology',
+  'content/philosophy',
+  'content/language-literature',
+  'content/languages/ukrainian',
 ];
 
 let checked = 0;
@@ -53,6 +59,19 @@ for (const path of packages) {
     );
     for (const file of manifest.files) {
       assert(existsSync(resolve(root, path, 'dist/static', file)), 'Missing built textbook resource: ' + file);
+    }
+  }
+  if (['math', 'physics', 'psychology', 'philosophy', 'language-literature', 'ukrainian'].includes(name)) {
+    assert(pkg.bin?.['svitlo-' + name] === './scripts/publish.mjs', 'Publish CLI missing: ' + pkg.name);
+    assert(existsSync(resolve(root, path, 'scripts/publish.mjs')), 'Publish script missing: ' + path);
+    const manifest = JSON.parse(readFileSync(resolve(root, path, 'dist/manifest.json'), 'utf8'));
+    assert(manifest.version === 1 && manifest.textbook === name && Array.isArray(manifest.files), 'Invalid manifest: ' + path);
+    assert(new Set(manifest.files).size === manifest.files.length, 'Duplicate published resource: ' + path);
+    if (['math', 'physics', 'psychology', 'philosophy'].includes(name)) {
+      assert(manifest.files.some(file => file.startsWith('data/pages/skillAnalytics/')), 'Authored taxonomy not published: ' + path);
+    } else assert(manifest.files.length === 0, 'Metadata-only package must not fabricate resources: ' + path);
+    for (const file of manifest.files) {
+      assert(!file.includes('..') && existsSync(resolve(root, path, 'dist/static', file)), 'Missing owned resource: ' + path + '/' + file);
     }
   }
   if (name === 'ui-kit') {

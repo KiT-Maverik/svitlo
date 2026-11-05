@@ -43,10 +43,9 @@ for (const [workspace, compiled] of [
   if (!existsSync(join(repoRoot, compiled))) run('npm', ['run', 'build', '--workspace', workspace]);
 }
 rmSync(dist, { recursive: true, force: true });
-mkdirSync(dist, { recursive: true });
+mkdirSync(resources, { recursive: true });
 
-// Compile metadata separately: Next.js Server Components may import it safely.
-// Compiled Scenes must retain a client directive at their module boundary.
+// Compile book metadata with browser-safe ESM; no authored Scene sources exist yet.
 const common = {
   absWorkingDir: packageRoot,
   outdir: dist,
@@ -62,27 +61,6 @@ const common = {
   assetNames: 'assets/[name]-[hash]',
   metafile: true,
   logLevel: 'warning',
-  plugins: [
-    {
-      name: 'textbook-css-modules',
-      setup(builder) {
-        builder.onLoad({ filter: /\.module\.css$/ }, async args => ({
-          contents: readFileSync(args.path, 'utf8'),
-          resolveDir: dirname(args.path),
-          loader: 'local-css',
-        }));
-      },
-    },
-  ],
-  loader: {
-    '.svg': 'file',
-    '.png': 'file',
-    '.jpg': 'file',
-    '.jpeg': 'file',
-    '.webp': 'file',
-    '.gif': 'file',
-    '.woff2': 'file',
-  },
 };
 const metadata = await build({
   ...common,
