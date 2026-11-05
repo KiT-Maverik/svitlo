@@ -66,7 +66,7 @@ export const roadAndTransportSafety_SkillGroup_Data = buildSkillGroupConfig({
       ko: '보행자, 승객, 운전자마다 다른 도로 위험을 알아보세요.',
       tr: 'Yayalar, yolcular ve araç kullanıcıları için yol risklerinin farkını öğren.',
       vi: 'Tìm hiểu rủi ro đường bộ khác nhau đối với người đi bộ, hành khách và người lái xe.',
-      ta: 'பாதசாரிகள், பயணிகள், வாகன ஓட்டிகளுக்கு ஏற்ப சாலை ஆபத்துகள் எவ்வாறு வேறுபடுகின்றன என்பதை அறிக.',
+      ta: 'பாதசாரிகள், பயணிகள், வாகன ஓட்டிகளுக்கு ஏற்ப சாலை ஆபத்துகள் எவ்வாறு வேறுபடுகின்றன என்பதை அறியுங்கள்.',
       te: 'పాదచారులు, ప్రయాణికులు, వాహనదారులకు రోడ్డు ప్రమాదాలు ఎలా భిన్నంగా ఉంటాయో తెలుసుకోండి.',
       mr: 'पादचारी, प्रवासी आणि वाहनचालकांचे रस्त्यावरील धोके कसे वेगळे असतात ते जाणून घ्या.',
       ms: 'Ketahui perbezaan risiko jalan raya bagi pejalan kaki, penumpang dan pengguna kenderaan.',

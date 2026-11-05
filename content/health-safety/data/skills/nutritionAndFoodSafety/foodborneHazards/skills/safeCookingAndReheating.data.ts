@@ -53,7 +53,7 @@ export const safeCookingAndReheating_Skill_Data = buildSkillConfig({
       ko: '음식을 충분히 익히고 다시 데우는 것이 중요한 이유를 알아보세요.',
       tr: 'Gıdaları doğru pişirmenin ve yeniden ısıtmanın neden önemli olduğunu öğren.',
       vi: 'Hiểu vì sao cần nấu chín và hâm nóng thực phẩm đúng cách.',
-      ta: 'உணவை நன்றாகச் சமைப்பதும் மீண்டும் சரியாகச் சூடாக்குவதும் ஏன் முக்கியம் என அறி.',
+      ta: 'உணவை நன்றாகச் சமைப்பதும் மீண்டும் சரியாகச் சூடாக்குவதும் ஏன் முக்கியம் என அறியுங்கள்.',
       te: 'ఆహారాన్ని సరిగ్గా వండడం, మళ్లీ వేడి చేయడం ఎందుకు ముఖ్యమో తెలుసుకోండి.',
       mr: 'अन्न नीट शिजवणे आणि पुन्हा गरम करणे का महत्त्वाचे आहे ते समज.',
       ms: 'Fahami mengapa memasak dan memanaskan semula dengan betul itu penting.',

@@ -62,7 +62,7 @@ export const transportWaterAndOutdoorSafety_SkillDomain_Data = buildSkillDomainC
       ko: '이동하거나 수영하거나 야외에 있을 때 안전한 선택을 알아보세요.',
       tr: 'Yolculukta, yüzerken ve açık havada güvenli kararları keşfet.',
       vi: 'Khám phá cách đưa ra quyết định an toàn khi đi lại, bơi lội và ở ngoài trời.',
-      ta: 'பயணம், நீச்சல் மற்றும் வெளிப்புறச் செயல்பாடுகளில் பாதுகாப்பான முடிவுகளை அறிக.',
+      ta: 'பயணம், நீச்சல் மற்றும் வெளிப்புறச் செயல்பாடுகளில் பாதுகாப்பான முடிவுகளை அறியுங்கள்.',
       te: 'ప్రయాణం, ఈత, బహిరంగ కార్యకలాపాల్లో సురక్షిత నిర్ణయాలను తెలుసుకోండి.',
       mr: 'प्रवास, पोहणे आणि बाहेरील उपक्रमांमध्ये सुरक्षित निर्णय कसे घ्यायचे ते शिका.',
       ms: 'Terokai pilihan selamat semasa perjalanan, berenang dan berada di luar.',

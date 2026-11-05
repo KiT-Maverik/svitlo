@@ -66,7 +66,7 @@ export const nutritionalFoundations_SkillGroup_Data = buildSkillGroupConfig({
       ko: '영양을 한 끼의 완벽함이 아닌 지속적인 식사 선택으로 이해해 보세요.',
       tr: 'Beslenmeyi tek bir kusursuz öğün değil, zaman içindeki seçimler olarak düşün.',
       vi: 'Hiểu dinh dưỡng là cách lựa chọn ăn uống lâu dài, không phải một bữa hoàn hảo.',
-      ta: 'ஓர் உணவு முழுமையாக இருப்பதற்குப் பதிலாக நீண்டகால உணவுத் தேர்வாக ஊட்டச்சத்தைப் பார்.',
+      ta: 'ஓர் உணவு முழுமையாக இருப்பதற்குப் பதிலாக நீண்டகால உணவுத் தேர்வாக ஊட்டச்சத்தைப் பாருங்கள்.',
       te: 'పోషణను ఒక్క పరిపూర్ణ భోజనంగా కాకుండా దీర్ఘకాలిక ఆహార ఎంపికలుగా చూడండి.',
       mr: 'पोषण म्हणजे एक परिपूर्ण जेवण नव्हे, तर दीर्घकालीन आहारनिवडी हे समज.',
       ms: 'Lihat pemakanan sebagai corak pilihan jangka panjang, bukan satu hidangan sempurna.',
