@@ -15,7 +15,7 @@ export const healthLiteracyAndCare_SkillDomain_Data = buildSkillDomainConfig({
     ar: 'المعرفة الصحية والرعاية',
     fr: 'Culture sanitaire et soins',
     bn: 'স্বাস্থ্যজ্ঞান ও পরিচর্যা',
-    pt: 'Literacia em saúde e cuidados',
+    pt: 'Conhecimento em saúde e cuidados',
     ur: 'صحت سے آگاہی اور دیکھ بھال',
     id: 'Literasi Kesehatan dan Perawatan',
     de: 'Gesundheitskompetenz und Versorgung',
