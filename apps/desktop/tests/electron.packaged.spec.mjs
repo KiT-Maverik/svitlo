@@ -20,7 +20,7 @@ test('packaged Linux executable opens the lesson with zero external network', as
     const page = await app.firstWindow();
     await page.route(/^https?:\/\//, route => route.abort());
     await expect(page.locator('#learning-content')).toBeVisible({ timeout: 30000 });
-    await expect(page.getByText('Як рухається світло', { exact: false })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Як рухається світло' })).toBeVisible();
     await page.reload();
     await expect(page.locator('#learning-content')).toBeVisible();
     expect(page.url()).toMatch(/^svitlo:\/\/app\/uk\/lesson\//);
