@@ -1,8 +1,5 @@
 name: Electron Desktop quality
 on:
-  push:
-    branches:
-      - feature/electron-desktop-app
   pull_request:
     paths:
       - 'apps/desktop/**'
@@ -30,6 +27,8 @@ jobs:
         run: |
           npm run typecheck --workspace @svitlo/adapter-electron
           npm run typecheck --workspace @svitlo/desktop
+      - name: Validate Electron adapter resource confinement
+        run: npm run test --workspace @svitlo/adapter-electron
       - name: Lint Desktop
         run: npm run lint --workspace @svitlo/desktop
       - name: Validate packaged resources
