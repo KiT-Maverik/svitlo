@@ -32,7 +32,7 @@ export const interpretDietaryEnergyBalance_Skill_Data = buildSkillConfig({
     be: 'Разуменьне энэргетычнага балянсу харчаваньня',
     ka: 'კვების ენერგეტიკული ბალანსის გაგება',
     kk: 'Тамақ энергиясының теңгерімін түсіну',
-    qm: 'Beslenüv enerģiya balansını añlav',
+    qm: 'Beslenüv energiya balansını añlav',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const interpretDietaryEnergyBalance_Skill_Data = buildSkillConfig({
       be: 'Адрозьнівай балянс атрыманай і выдаткаванай энэргіі ад якасьці рацыёну.',
       ka: 'გაარჩიე მიღებული და დახარჯული ენერგია კვების საერთო ხარისხისგან.',
       kk: 'Қабылданған және жұмсалған энергияны жалпы тамақ сапасынан ажырат.',
-      qm: 'Alınğan ve sarf etilgen enerģiyanı umumiy aş sıfatından ayır.',
+      qm: 'Alınğan ve sarf etilgen energiyanı umumiy aş sıfatından ayır.',
     },
   },
 });
