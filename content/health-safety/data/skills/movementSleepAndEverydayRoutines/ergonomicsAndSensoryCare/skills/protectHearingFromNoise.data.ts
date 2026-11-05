@@ -53,7 +53,7 @@ export const protectHearingFromNoise_Skill_Data = buildSkillConfig({
       ko: '소리 크기와 듣는 시간이 모두 청력 건강에 영향을 주는 이유를 알아보세요.',
       tr: 'Ses düzeyinin ve dinleme süresinin işitme sağlığını neden etkilediğini anla.',
       vi: 'Hiểu vì sao cả âm lượng và thời gian nghe đều ảnh hưởng đến an toàn thính giác.',
-      ta: 'ஒலியின் அளவும் கேட்கும் நேரமும் செவித்திறன் பாதுகாப்பை ஏன் பாதிக்கின்றன என அறி.',
+      ta: 'ஒலியின் அளவும் கேட்கும் நேரமும் செவித்திறன் பாதுகாப்பை ஏன் பாதிக்கின்றன என அறியுங்கள்.',
       te: 'శబ్ద తీవ్రత, వినే వ్యవధి రెండూ వినికిడి భద్రతను ఎందుకు ప్రభావితం చేస్తాయో తెలుసుకోండి.',
       mr: 'आवाजाची तीव्रता आणि ऐकण्याचा कालावधी दोन्ही श्रवणसुरक्षेवर का परिणाम करतात ते समज.',
       ms: 'Fahami mengapa kekuatan bunyi dan tempoh mendengar mempengaruhi keselamatan pendengaran.',

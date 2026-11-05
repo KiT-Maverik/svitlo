@@ -53,7 +53,7 @@ export const planRegularPhysicalActivity_Skill_Data = buildSkillConfig({
       ko: '자신의 필요와 상황에 맞는 실현 가능한 활동 계획을 세워 보세요.',
       tr: 'İhtiyaçlarına ve koşullarına uygun, uygulanabilir hareket planla.',
       vi: 'Lên kế hoạch vận động khả thi phù hợp nhu cầu và hoàn cảnh.',
-      ta: 'உன் தேவைகளுக்கும் சூழலுக்கும் ஏற்ற செயல்படக்கூடிய இயக்கத்தைத் திட்டமிடு.',
+      ta: 'உங்கள் தேவைகளுக்கும் சூழலுக்கும் ஏற்ற செயல்படக்கூடிய இயக்கத்தைத் திட்டமிடுங்கள்.',
       te: 'నీ అవసరాలు, పరిస్థితులకు తగిన సాధ్యమైన శారీరక చలనం ప్రణాళిక చేయండి.',
       mr: 'गरजा व परिस्थितीनुसार शक्य असलेल्या हालचालींचे नियोजन कर.',
       ms: 'Rancang pergerakan yang mampu dilakukan mengikut keperluan dan keadaanmu.',

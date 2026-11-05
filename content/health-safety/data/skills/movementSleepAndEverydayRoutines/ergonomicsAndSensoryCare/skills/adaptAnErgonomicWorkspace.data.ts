@@ -53,7 +53,7 @@ export const adaptAnErgonomicWorkspace_Skill_Data = buildSkillConfig({
       ko: '편하게 손이 닿고 조명이 적절하며 자세를 바꿀 수 있도록 작업 공간을 조절하세요.',
       tr: 'Çalışma alanını rahat erişim, uygun ışık ve duruş değişikliği için düzenle.',
       vi: 'Điều chỉnh chỗ làm để dễ với tới, đủ ánh sáng và thay đổi tư thế thoải mái.',
-      ta: 'எளிதாக எட்டவும் நல்ல வெளிச்சம் பெறவும் உடல் நிலையை மாற்றவும் பணியிடத்தைச் சரிசெய்.',
+      ta: 'எளிதாக எட்டவும் நல்ல வெளிச்சம் பெறவும் உடல் நிலையை மாற்றவும் பணியிடத்தைச் சரிசெய்யுங்கள்.',
       te: 'సులభంగా అందుకోవడం, మంచి వెలుతురు, భంగిమ మార్పులకు అనుగుణంగా పని ప్రదేశాన్ని సర్దుకోండి.',
       mr: 'सहज पोहोच, योग्य प्रकाश आणि मुद्रा बदलण्यासाठी कामाची जागा जुळव.',
       ms: 'Laraskan ruang kerja untuk mudah mencapai barang, pencahayaan baik dan menukar postur dengan selesa.',

@@ -53,7 +53,7 @@ export const manageVisualStrain_Skill_Data = buildSkillConfig({
       ko: '오래 읽거나 화면을 볼 때 눈의 피로를 줄여 보세요.',
       tr: 'Uzun süre okurken veya ekrana bakarken göz yorgunluğunu azalt.',
       vi: 'Giảm mỏi mắt khi đọc lâu hoặc làm việc với màn hình.',
-      ta: 'நீண்ட நேரம் படிக்கும்போதும் திரை பயன்படுத்தும்போதும் கண் சோர்வைக் குறை.',
+      ta: 'நீண்ட நேரம் படிக்கும்போதும் திரை பயன்படுத்தும்போதும் கண் சோர்வைக் குறைக்கவும்.',
       te: 'ఎక్కువసేపు చదివేటప్పుడు, స్క్రీన్ చూసేటప్పుడు కంటి అలసట తగ్గించండి.',
       mr: 'दीर्घकाळ वाचताना किंवा स्क्रीन पाहताना डोळ्यांवरील ताण कमी कर.',
       ms: 'Kurangkan keletihan mata ketika membaca lama atau menggunakan skrin.',
