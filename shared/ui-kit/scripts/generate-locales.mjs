@@ -22,9 +22,10 @@ if (targetRelative.startsWith('..' + sep) || targetRelative === '..' || targetRe
   throw new Error('Target package must be inside this repository');
 }
 const outputFlag = process.argv.indexOf('--output');
-const output = outputFlag >= 0 && process.argv[outputFlag + 1]
-  ? resolve(repoRoot, process.argv[outputFlag + 1])
-  : join(target, 'public/data/ui-kit');
+const output =
+  outputFlag >= 0 && process.argv[outputFlag + 1]
+    ? resolve(repoRoot, process.argv[outputFlag + 1])
+    : join(target, 'public/data/ui-kit');
 if (!output.startsWith(resolve(repoRoot) + sep)) throw new Error('Output must stay inside the repository');
 const { DEFAULT_SUPPORTED_LANGUAGES } = require('@svitlo/contracts/localization');
 const tmp = mkdtempSync(join(tmpdir(), 'svitlo-ui-kit-'));

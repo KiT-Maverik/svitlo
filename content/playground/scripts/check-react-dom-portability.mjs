@@ -37,10 +37,16 @@ const result = await build({
   logLevel: 'warning',
 });
 const inputs = Object.keys(result.metafile.inputs);
-assert(inputs.some(file => file.includes('/scenes/sceneLoader.ts')), 'Non-Next build did not bundle Scene registry');
-assert(inputs.some(file => file.includes('/scenes/e/how-light-moves-scene-showcase/Showcase.tsx')),
-  'Non-Next build did not include the authored Scene');
-assert(Object.values(result.metafile.outputs).some(output =>
-  output.imports.some(entry => entry.kind === 'dynamic-import')),
-'Non-Next build did not preserve statically analyzable lazy Scene chunks');
+assert(
+  inputs.some(file => file.includes('/scenes/sceneLoader.ts')),
+  'Non-Next build did not bundle Scene registry',
+);
+assert(
+  inputs.some(file => file.includes('/scenes/e/how-light-moves-scene-showcase/Showcase.tsx')),
+  'Non-Next build did not include the authored Scene',
+);
+assert(
+  Object.values(result.metafile.outputs).some(output => output.imports.some(entry => entry.kind === 'dynamic-import')),
+  'Non-Next build did not preserve statically analyzable lazy Scene chunks',
+);
 console.log('Playground Scene registry and React DOM compile with esbuild without Next.js');

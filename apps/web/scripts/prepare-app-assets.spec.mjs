@@ -18,8 +18,12 @@ test('common Web asset preparation copies canonical UI Kit flags independent of 
   });
   assert.equal(result.status, 0, result.stderr);
 
-  const expected = readdirSync(source).filter(name => name.endsWith('.svg')).sort();
-  const actual = readdirSync(published).filter(name => name.endsWith('.svg')).sort();
+  const expected = readdirSync(source)
+    .filter(name => name.endsWith('.svg'))
+    .sort();
+  const actual = readdirSync(published)
+    .filter(name => name.endsWith('.svg'))
+    .sort();
   assert(expected.length > 0);
   assert.deepEqual(actual, expected);
   for (const filename of expected) {

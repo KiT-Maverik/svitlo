@@ -32,13 +32,16 @@ export function syncFlags(targetRoot) {
 const scriptPath = fileURLToPath(import.meta.url);
 const invokedDirectly = process.argv[1] && resolve(process.argv[1]) === scriptPath;
 const preloaded = process.execArgv.some((arg, index) => {
-  const specifier = arg === '--import'
-    ? process.execArgv[index + 1]
-    : arg.startsWith('--import=')
-      ? arg.slice('--import='.length)
-      : undefined;
-  return specifier === '@svitlo/ui-kit/sync-flags' ||
+  const specifier =
+    arg === '--import'
+      ? process.execArgv[index + 1]
+      : arg.startsWith('--import=')
+        ? arg.slice('--import='.length)
+        : undefined;
+  return (
+    specifier === '@svitlo/ui-kit/sync-flags' ||
     specifier === import.meta.url ||
-    (specifier?.startsWith('/') && resolve(specifier) === scriptPath);
+    (specifier?.startsWith('/') && resolve(specifier) === scriptPath)
+  );
 });
 if (invokedDirectly || preloaded) syncFlags(process.cwd());

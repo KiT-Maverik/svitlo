@@ -16,7 +16,13 @@ export default defineConfig({
         ...(process.env.PLAYWRIGHT_CHANNEL === 'chrome' ? { channel: 'chrome' as const } : {}),
       },
     },
-    { name: 'mobile', use: { ...devices['Pixel 7'], ...(process.env.PLAYWRIGHT_CHANNEL === 'chrome' ? { channel: 'chrome' as const } : {}) } },
+    {
+      name: 'mobile',
+      use: {
+        ...devices['Pixel 7'],
+        ...(process.env.PLAYWRIGHT_CHANNEL === 'chrome' ? { channel: 'chrome' as const } : {}),
+      },
+    },
   ],
   webServer: {
     command: `npm run start -- --hostname 127.0.0.1 --port ${port}`,

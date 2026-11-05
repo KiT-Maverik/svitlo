@@ -51,7 +51,8 @@ test('legacy Node --import preload still synchronizes standalone workspace flags
 test('normal imports have no implicit asset-copy side effects', () => {
   const target = mkdtempSync(join(tmpdir(), 'svitlo-import-flags-'));
   try {
-    const command = spawnSync(process.execPath,
+    const command = spawnSync(
+      process.execPath,
       ['--input-type=module', '--eval', `await import(${JSON.stringify(pathToFileURL(script).href)})`],
       { cwd: target, encoding: 'utf8' },
     );

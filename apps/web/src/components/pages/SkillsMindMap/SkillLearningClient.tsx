@@ -96,7 +96,8 @@ export function SkillLearningClient({ skillId, domainSlugs }: SkillLearningClien
           Поки немає пов&apos;язаних матеріалів
         </Typography>
         <Typography color="text.secondary" sx={{ mt: 1 }}>
-          {textbook.skillLearningEmptyMessage ?? 'Пов’язані навчальні матеріали поки відсутні.'} Коли такі зв&apos;язки з&apos;являться, тут можна буде показувати матеріали саме для цієї навички.
+          {textbook.skillLearningEmptyMessage ?? 'Пов’язані навчальні матеріали поки відсутні.'} Коли такі зв&apos;язки
+          з&apos;являться, тут можна буде показувати матеріали саме для цієї навички.
         </Typography>
         <Box sx={{ mt: 3 }}>
           <Link href={returnHref}>← Повернутися до аналітики навичок</Link>

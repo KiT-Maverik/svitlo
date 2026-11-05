@@ -82,4 +82,3 @@ export const questionsDemo: Question<'response', Locale_Languages>[] = [
     placeholder: 'Введіть слово',
   },
 ];
-

@@ -96,15 +96,9 @@ for (const [label, manifest] of [
   assert(manifest.dependencies?.[engine.name] === engine.version, label + ' must use public Engine dependency');
   assert(manifest.dependencies?.[uiKit.name] === uiKit.version, label + ' must use public UI Kit dependency');
 }
-assert(
-  existsSync(resolve(root, 'content/math/data/skills')),
-  'Math textbook is missing its canonical Skills taxonomy',
-);
+assert(existsSync(resolve(root, 'content/math/data/skills')), 'Math textbook is missing its canonical Skills taxonomy');
 assert(existsSync(resolve(root, 'content/math/docs')), 'Math textbook is missing package-local educational docs');
-assert(
-  !existsSync(resolve(root, 'content/playground/src/math')),
-  'Playground cannot own mathematics skills taxonomy',
-);
+assert(!existsSync(resolve(root, 'content/playground/src/math')), 'Playground cannot own mathematics skills taxonomy');
 assert(
   !existsSync(resolve(root, 'content/playground/src/content')),
   'Playground cannot contain authored textbook content',
@@ -113,10 +107,14 @@ assert(
   existsSync(resolve(root, 'apps/web/src/app/[language]/lesson/[lessonId]/page.tsx')),
   'Web must host the UUID-addressed lesson route',
 );
-assert(!existsSync(resolve(root, 'content/playground/src/app')) && !playground.dependencies?.next,
-  'Playground must be a framework-independent textbook package');
-assert(playground.exports?.['./scenes'] && web.dependencies?.[playground.name] === playground.version,
-  'Web must consume the public Playground Scene registry');
+assert(
+  !existsSync(resolve(root, 'content/playground/src/app')) && !playground.dependencies?.next,
+  'Playground must be a framework-independent textbook package',
+);
+assert(
+  playground.exports?.['./scenes'] && web.dependencies?.[playground.name] === playground.version,
+  'Web must consume the public Playground Scene registry',
+);
 assert(
   !existsSync(resolve(root, 'content/playground/src/fixtures')),
   'Obsolete Playground fixtures directory must be removed',
@@ -200,10 +198,7 @@ for (const file of engineSources) {
   }
 }
 assert(nextAdapter.name === '@svitlo/nextjs-adapter', 'Unexpected Next.js adapter package name');
-assert(
-  web.dependencies?.[nextAdapter.name] === nextAdapter.version,
-  'Web must use the shared Next.js adapter',
-);
+assert(web.dependencies?.[nextAdapter.name] === nextAdapter.version, 'Web must use the shared Next.js adapter');
 assert(
   nextAdapter.dependencies?.[uiKit.name] === uiKit.version,
   'Next.js adapter must consume the UI Kit via public exports',
@@ -276,9 +271,11 @@ for (const applicationRoot of applicationSourceRoots) {
     for (const match of code.matchAll(/\bfrom\s*['"]([^'"]+)['"]/g)) {
       const specifier = match[1];
       assert(
-        (applicationRoot === resolve(root, 'apps/web/src') && selectableTextbooks.has(specifier.split('/').slice(0, 2).join('/'))) || !/^@svitlo\/(?:playground|math|biology|physics|informatics|geography|language-literature|ukrainian|chemistry|astronomy|history|philosophy|psychology|economics|art|health-safety|engineering|platform)(?:\/|$)/.test(
-          specifier,
-        ),
+        (applicationRoot === resolve(root, 'apps/web/src') &&
+          selectableTextbooks.has(specifier.split('/').slice(0, 2).join('/'))) ||
+          !/^@svitlo\/(?:playground|math|biology|physics|informatics|geography|language-literature|ukrainian|chemistry|astronomy|history|philosophy|psychology|economics|art|health-safety|engineering|platform)(?:\/|$)/.test(
+            specifier,
+          ),
         'Applications must not import another application by package name: ' + relative(root, file),
       );
       if (!specifier.startsWith('.')) continue;
