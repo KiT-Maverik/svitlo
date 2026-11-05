@@ -3,8 +3,10 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/localization';
 import NavbarPreferences from './NavbarPreferences';
-import { aria } from './NavbarPreferences.constants';
-import { getNavbarPreferencesMessages } from './locales';
+import { ukUiKitMessages } from '../../../../testing/uiKitMessages.unit.fx';
+import { locale as lt } from '../../../../../data/components/NavbarPreferences/lt-LT.data';
+const uk = ukUiKitMessages.navbarPreferences;
+const aria = { locale: uk.language, theme: uk.theme.dark };
 
 describe('NavbarPreferences in shared UI Kit', () => {
   const setLocale = vi.fn();
@@ -13,6 +15,7 @@ describe('NavbarPreferences in shared UI Kit', () => {
     render(
       <NavbarPreferences
         locale={locale}
+        messages={locale === 'lt-LT' ? lt : uk}
         onLocaleChange={setLocale}
         mode={mode ?? undefined}
         systemMode="light"
@@ -59,15 +62,12 @@ describe('NavbarPreferences in shared UI Kit', () => {
   it('uses localized theme tooltip text', async () => {
     renderPreferences('lt-LT');
     await userEvent.hover(theme());
-    expect(await screen.findByText(getNavbarPreferencesMessages('lt-LT').theme.light)).toBeVisible();
+    expect(await screen.findByText(lt.theme.light)).toBeVisible();
   });
 
-  it('keeps every legacy translation and Ukrainian fallback', () => {
-    for (const code of ['uk-UA', 'lt-LT', 'lv-LV', 'et-EE', 'be-tarask', 'ka-GE', 'kk-Cyrl-KZ'] as const) {
-      expect(getNavbarPreferencesMessages(code).language).toBeTruthy();
-      expect(getNavbarPreferencesMessages(code).theme.dark).toBeTruthy();
-      expect(getNavbarPreferencesMessages(code).theme.light).toBeTruthy();
-    }
-    expect(getNavbarPreferencesMessages('ar-SA')).toEqual(getNavbarPreferencesMessages('uk-UA'));
+  it('uses the explicitly supplied messages without a runtime locale fallback', () => {
+    expect(uk.language).toBe('Мова');
+    expect(lt.theme.light).toBeTruthy();
+    expect(lt.theme.dark).toBeTruthy();
   });
 });

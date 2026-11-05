@@ -3,20 +3,21 @@ import { describe, expect, it } from 'vitest';
 
 import type { ContentBlockResponse, SceneRegistry } from './types';
 import { ContentBlockRenderer } from './ContentBlockRenderer';
+import { enUiKitMessages } from '../../../testing/uiKitMessages.unit.fx';
 
 const first: ContentBlockResponse = { id: 'first', type: 'text', value: 'First block' };
 const last: ContentBlockResponse = { id: 'last', type: 'text', value: 'Last block' };
 
 describe('ContentBlockRenderer', () => {
   it('renders nothing when blocks are absent or empty', () => {
-    const { container, rerender } = render(<ContentBlockRenderer />);
+    const { container, rerender } = render(<ContentBlockRenderer messages={enUiKitMessages} />);
     expect(container).toBeEmptyDOMElement();
-    rerender(<ContentBlockRenderer blocks={[]} />);
+    rerender(<ContentBlockRenderer messages={enUiKitMessages} blocks={[]} />);
     expect(container).toBeEmptyDOMElement();
   });
 
   it('dispatches each block in array order', () => {
-    const { container } = render(<ContentBlockRenderer blocks={[first, {
+    const { container } = render(<ContentBlockRenderer messages={enUiKitMessages} blocks={[first, {
       id: 'middle', type: 'markdown', text: '**Middle block**',
     }, last]} />);
     expect([...container.querySelectorAll('p')].map(element => element.textContent))
@@ -24,7 +25,7 @@ describe('ContentBlockRenderer', () => {
   });
 
   it('renders Markdown responses through the dispatcher with their locale direction', () => {
-    render(<ContentBlockRenderer language="ar" blocks={[{
+    render(<ContentBlockRenderer messages={enUiKitMessages} language="ar" blocks={[{
       id: 'rtl-markdown', type: 'markdown',
       text: '# عنوان الدرس\n\n**نص عربي**',
     }]} />);
@@ -35,7 +36,7 @@ describe('ContentBlockRenderer', () => {
   });
 
   it('renders checkpoint answers through the same dispatcher', () => {
-    render(<ContentBlockRenderer blocks={[{
+    render(<ContentBlockRenderer messages={enUiKitMessages} blocks={[{
       id: 'checkpoint', type: 'checkpoint', title: 'Review',
       items: [{ question: 'What is first?', answer: [first] }],
     }]} />);
@@ -47,7 +48,7 @@ describe('ContentBlockRenderer', () => {
     const sceneRegistry: SceneRegistry = {
       diagram: () => <div role="img" aria-label="diagram" />,
     };
-    render(<ContentBlockRenderer blocks={[{
+    render(<ContentBlockRenderer messages={enUiKitMessages} blocks={[{
       id: 'diagram', type: 'scene', rendererKey: 'diagram',
       messages: { title: 'Diagram' },
     }]} sceneRegistry={sceneRegistry} />);
@@ -56,7 +57,7 @@ describe('ContentBlockRenderer', () => {
 
   it('does not dispatch quiz entries as content blocks', () => {
     const quiz = { id: 'quiz', type: 'quiz' } as unknown as ContentBlockResponse;
-    expect(() => render(<ContentBlockRenderer blocks={[quiz]} />)).toThrow('requires a supported response.type');
+    expect(() => render(<ContentBlockRenderer messages={enUiKitMessages} blocks={[quiz]} />)).toThrow('requires a supported response.type');
   });
 });
 
@@ -64,7 +65,7 @@ describe('ContentBlockRenderer', () => {
 describe('ContentBlockRenderer guard and state coverage', () => {
   it('rejects a response without a type discriminator', () => {
     const untagged = { id: 'untagged', value: 'Ambiguous content' } as unknown as ContentBlockResponse;
-    expect(() => render(<ContentBlockRenderer blocks={[untagged]} />))
+    expect(() => render(<ContentBlockRenderer messages={enUiKitMessages} blocks={[untagged]} />))
       .toThrow('requires a supported response.type discriminator');
   });
 
@@ -74,12 +75,12 @@ describe('ContentBlockRenderer guard and state coverage', () => {
       enableChecks: true,
       items: [{ question: 'What did you learn?', answer: [last] }],
     };
-    const { rerender } = render(<ContentBlockRenderer blocks={[first, checkpoint]} />);
+    const { rerender } = render(<ContentBlockRenderer messages={enUiKitMessages} blocks={[first, checkpoint]} />);
     fireEvent.click(screen.getByText('What did you learn?'));
     fireEvent.click(screen.getByRole('button', { name: 'Check' }));
     expect(screen.getByRole('button', { name: 'Checked' })).toBeDisabled();
 
-    rerender(<ContentBlockRenderer blocks={[{ ...first, value: 'Updated opening' }, checkpoint]} />);
+    rerender(<ContentBlockRenderer messages={enUiKitMessages} blocks={[{ ...first, value: 'Updated opening' }, checkpoint]} />);
     expect(screen.getByText('Updated opening')).toBeVisible();
     expect(screen.getByRole('button', { name: 'Checked' })).toBeDisabled();
   });

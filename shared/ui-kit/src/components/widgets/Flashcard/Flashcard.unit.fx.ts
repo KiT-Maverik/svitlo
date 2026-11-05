@@ -2,13 +2,13 @@ import { createElement } from 'react';
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Flashcard, type FlashcardProps } from './Flashcard';
-import { aria } from './Flashcard.constants';
-import { locales } from './Flashcard.locale';
+import { ukUiKitMessages } from '../../../testing/uiKitMessages.unit.fx';
 
-const locale = locales.uk;
+const locale = ukUiKitMessages.flashcard;
+const aria = locale.flashcard;
 
 export const Flashcard_fx = {
-  defaults: { question: 'What is light?', answer: 'Electromagnetic radiation' } satisfies FlashcardProps,
+  defaults: { question: 'What is light?', answer: 'Electromagnetic radiation', messages: locale } satisfies FlashcardProps,
   render: (props: Partial<FlashcardProps> = {}) =>
     render(createElement(Flashcard, { ...Flashcard_fx.defaults, ...props })),
   selectors: {
