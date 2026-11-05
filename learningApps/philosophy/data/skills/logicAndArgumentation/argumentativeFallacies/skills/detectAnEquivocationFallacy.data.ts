@@ -55,7 +55,7 @@ export const detectAnEquivocationFallacy_Skill_Data = buildSkillConfig({
       vi: 'Phát hiện khi nghĩa của từ thay đổi trong cùng một lập luận.',
       ta: 'வாதத்தின் நடுவில் ஒரு சொல்லின் பொருள் மாறுவதைப் பார்.',
       te: 'వాదనలో ఒక పదం అర్థం మారుతున్న సందర్భాన్ని గుర్తించండి.',
-      mr: 'युक्तिवादात एखाद्या शब्दाचा अर्थ बदलतो ते ओळख.',
+      mr: 'युक्तिवादात एखाद्या शब्दाचा अर्थ बदलतो ते ओळखा.',
       ms: 'Kenal pasti apabila makna sesuatu perkataan berubah dalam satu hujah.',
       he: 'שימו לב כשמשמעותה של מילה משתנה במהלך טיעון.',
       pl: 'Zauważ, kiedy znaczenie słowa zmienia się w toku argumentu.',
