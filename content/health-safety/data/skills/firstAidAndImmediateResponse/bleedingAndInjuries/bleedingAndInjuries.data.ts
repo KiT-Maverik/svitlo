@@ -61,7 +61,7 @@ export const bleedingAndInjuries_SkillGroup_Data = buildSkillGroupConfig({
       fr: 'Apprends à limiter les blessures et les saignements externes en attendant les secours.',
       bn: 'পেশাদার চিকিৎসা আসা পর্যন্ত আঘাত ও বাহ্যিক রক্তপাত কমানোর উপায় শেখো।',
       pt: 'Aprenda a limitar lesões e sangramentos externos enquanto aguarda atendimento profissional.',
-      ur: 'ماہر مدد کے انتظار میں چوٹ اور بیرونی خون بہنے کو محدود کرنے کے طریقے سیکھو۔',
+      ur: 'ماہر مدد کے انتظار میں چوٹ اور بیرونی خون بہنے کو محدود کرنے کے طریقے سیکھیں۔',
       id: 'Pelajari cara membatasi cedera dan perdarahan luar sambil menunggu pertolongan medis.',
       de: 'Lerne, Verletzungen und äußere Blutungen bis zum Eintreffen fachlicher Hilfe zu begrenzen.',
       ja: '専門的な救護を待つ間、けがの悪化や外出血を抑える方法を学ぼう。',

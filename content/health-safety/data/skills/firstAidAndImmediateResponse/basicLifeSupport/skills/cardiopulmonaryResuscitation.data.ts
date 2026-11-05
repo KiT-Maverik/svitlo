@@ -46,7 +46,7 @@ export const cardiopulmonaryResuscitation_Skill_Data = buildSkillConfig({
       fr: "Reconnais quand des compressions thoraciques et d'autres gestes de RCP peuvent être nécessaires.",
       bn: 'কখন বুক চাপ ও অন্যান্য CPR পদক্ষেপ দরকার হতে পারে তা শনাক্ত করো।',
       pt: 'Reconheça quando compressões torácicas e outras medidas de RCP podem ser necessárias.',
-      ur: 'پہچانو کہ سینے کے دباؤ اور CPR کے دیگر اقدامات کب درکار ہو سکتے ہیں۔',
+      ur: 'پہچانیں کہ سینے کے دباؤ اور CPR کے دیگر اقدامات کب درکار ہو سکتے ہیں۔',
       id: 'Kenali kapan kompresi dada dan langkah RJP lainnya mungkin diperlukan.',
       de: 'Erkenne, wann Herzdruckmassage und weitere Wiederbelebungsmaßnahmen nötig sein könnten.',
       ja: '胸骨圧迫などの心肺蘇生が必要になる状況を見分けよう。',

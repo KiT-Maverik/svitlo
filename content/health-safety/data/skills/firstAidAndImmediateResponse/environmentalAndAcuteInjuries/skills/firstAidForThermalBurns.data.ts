@@ -46,7 +46,7 @@ export const firstAidForThermalBurns_Skill_Data = buildSkillConfig({
       fr: 'Comprends le refroidissement initial et quand une brûlure nécessite des soins urgents.',
       bn: 'পোড়া স্থানে প্রাথমিক শীতলীকরণ এবং কখন জরুরি চিকিৎসা দরকার বোঝো।',
       pt: 'Entenda o resfriamento inicial e quando procurar cuidados urgentes por queimaduras.',
-      ur: 'جلنے پر ابتدائی ٹھنڈک اور کب فوری طبی مدد درکار ہے، سمجھو۔',
+      ur: 'جلنے پر ابتدائی ٹھنڈک اور کب فوری طبی مدد درکار ہے، سمجھیں۔',
       id: 'Pahami pendinginan awal dan kapan luka bakar perlu penanganan medis segera.',
       de: 'Verstehe die anfängliche Kühlung und wann Verbrennungen dringende medizinische Hilfe erfordern.',
       ja: 'やけどの初期冷却と緊急受診が必要な場合を理解しよう。',

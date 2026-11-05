@@ -46,7 +46,7 @@ export const careForMinorWounds_Skill_Data = buildSkillConfig({
       fr: "Nettoie et protège les petites plaies et reconnais quand un examen médical s'impose.",
       bn: 'ছোট ক্ষত পরিষ্কার ও সুরক্ষিত রাখো, কখন চিকিৎসকের মূল্যায়ন দরকার বোঝো।',
       pt: 'Limpe e proteja pequenos ferimentos e reconheça quando é necessária avaliação médica.',
-      ur: 'چھوٹے زخم صاف اور محفوظ رکھو اور پہچانو کہ طبی معائنہ کب چاہیے۔',
+      ur: 'چھوٹے زخم صاف اور محفوظ رکھیں اور پہچانیں کہ طبی معائنہ کب چاہیے۔',
       id: 'Bersihkan dan lindungi luka ringan serta kenali kapan pemeriksaan medis diperlukan.',
       de: 'Reinige und schütze kleine Wunden und erkenne, wann eine ärztliche Beurteilung nötig ist.',
       ja: '小さな傷を清潔に保護し、診察が必要な場合を見分けよう。',

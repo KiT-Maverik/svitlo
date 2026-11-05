@@ -46,7 +46,7 @@ export const firstAidForChemicalExposure_Skill_Data = buildSkillConfig({
       fr: 'Protège-toi et demande des conseils précis après une exposition à un produit chimique dangereux.',
       bn: 'রাসায়নিকের ক্ষতিকর সংস্পর্শের পর নিজেকে নিরাপদ রাখো এবং নির্দিষ্ট পরামর্শ নাও।',
       pt: 'Proteja-se e procure orientação específica após exposição a substâncias químicas nocivas.',
-      ur: 'نقصان دہ کیمیائی مادے کے بعد خود کو محفوظ رکھو اور مناسب ہدایات حاصل کرو۔',
+      ur: 'نقصان دہ کیمیائی مادے کے بعد خود کو محفوظ رکھیں اور مناسب ہدایات حاصل کریں۔',
       id: 'Lindungi diri dan cari panduan khusus setelah paparan bahan kimia berbahaya.',
       de: 'Schütze dich und hole gezielte Anweisungen nach Kontakt mit schädlichen Chemikalien ein.',
       ja: '有害な化学物質にさらされた場合は、自分の安全を確保し、状況に応じた専門的な指示を求めよう。',
