@@ -55,7 +55,7 @@ export const detectAnAdHominemFallacy_Skill_Data = buildSkillConfig({
       vi: 'Nhận biết khi công kích cá nhân thay thế cho lập luận liên quan.',
       ta: 'பொருத்தமான காரணத்திற்குப் பதிலாக தனிநபர் தாக்குதல் பயன்படுத்தப்படுவதை அறி.',
       te: 'సంబంధిత కారణాలకు బదులుగా వ్యక్తిగత దాడి చేసే సందర్భాన్ని గుర్తించండి.',
-      mr: 'संबंधित कारणांऐवजी व्यक्तीवर हल्ला केला जातो तेव्हा ओळख.',
+      mr: 'संबंधित कारणांऐवजी व्यक्तीवर हल्ला केला जातो तेव्हा ओळखा.',
       ms: 'Kenal pasti apabila serangan peribadi menggantikan alasan yang berkaitan.',
       he: 'זהו מתי התקפה אישית מחליפה נימוק רלוונטי.',
       pl: 'Rozpoznaj, kiedy atak na osobę zastępuje rzeczowe argumenty.',

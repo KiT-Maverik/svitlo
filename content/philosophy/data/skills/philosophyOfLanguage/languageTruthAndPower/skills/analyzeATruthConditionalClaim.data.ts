@@ -46,7 +46,7 @@ export const analyzeATruthConditionalClaim_Skill_Data = buildSkillConfig({
       fr: 'Détermine les circonstances dans lesquelles une affirmation serait vraie ou fausse.',
       bn: 'কোন অবস্থায় কোনো বক্তব্য সত্য বা মিথ্যা হবে তা শনাক্ত করো।',
       pt: 'Identifique em quais circunstâncias uma afirmação seria verdadeira ou falsa.',
-      ur: 'پہچانو کہ کن حالات میں کوئی بیان سچ یا جھوٹ ہوگا۔',
+      ur: 'پہچانیں کہ کن حالات میں کوئی بیان سچ یا جھوٹ ہوگا۔',
       id: 'Kenali keadaan yang membuat pernyataan benar atau salah.',
       de: 'Bestimme, unter welchen Umständen eine Aussage wahr oder falsch wäre.',
       ja: 'どのような状況なら発言が真または偽になるか考えよう。',

@@ -46,7 +46,7 @@ export const distinguishTasteFromAnArguedEvaluation_Skill_Data = buildSkillConfi
       fr: 'Reconnais la différence entre aimer une chose et justifier son évaluation.',
       bn: 'কোনো কিছু পছন্দ করা আর তার মূল্যায়নের যুক্তি দেওয়ার পার্থক্য বোঝো।',
       pt: 'Reconheça a diferença entre gostar de algo e justificar sua avaliação.',
-      ur: 'کسی چیز کو پسند کرنے اور اس کے جائزے کے حق میں دلیل دینے کا فرق جان لو۔',
+      ur: 'کسی چیز کو پسند کرنے اور اس کے جائزے کے حق میں دلیل دینے کا فرق جان لیں۔',
       id: 'Kenali perbedaan antara menyukai sesuatu dan membela penilaian dengan alasan.',
       de: 'Erkenne den Unterschied zwischen etwas mögen und ein Urteil darüber begründen.',
       ja: '何かを好きなことと、その評価を理由を挙げて説明することを区別しよう。',

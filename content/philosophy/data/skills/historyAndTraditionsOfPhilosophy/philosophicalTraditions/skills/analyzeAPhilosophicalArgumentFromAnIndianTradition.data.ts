@@ -46,7 +46,7 @@ export const analyzeAPhilosophicalArgumentFromAnIndianTradition_Skill_Data = bui
       fr: 'Explore un argument d’une école philosophique indienne précise.',
       bn: 'ভারতের নির্দিষ্ট এক দার্শনিক ধারার যুক্তি অনুসন্ধান করো।',
       pt: 'Explore um argumento de uma escola filosófica indiana específica.',
-      ur: 'کسی خاص ہندوستانی فلسفیانہ مکتب کی دلیل کا جائزہ لو۔',
+      ur: 'کسی خاص ہندوستانی فلسفیانہ مکتب کی دلیل کا جائزہ لیں۔',
       id: 'Jelajahi argumen dari suatu aliran filsafat India tertentu.',
       de: 'Untersuche ein Argument aus einer bestimmten indischen Philosophieschule.',
       ja: '特定のインド哲学の学派が示す議論を探ろう。',

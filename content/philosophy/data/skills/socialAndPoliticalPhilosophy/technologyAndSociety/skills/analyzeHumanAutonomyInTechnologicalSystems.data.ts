@@ -46,7 +46,7 @@ export const analyzeHumanAutonomyInTechnologicalSystems_Skill_Data = buildSkillC
       fr: "Explore quand la technologie augmente ou réduit la maîtrise d'une personne sur ses décisions.",
       bn: 'প্রযুক্তি কখন নিজের সিদ্ধান্তের ওপর নিয়ন্ত্রণ বাড়ায় বা কমায় তা জানো।',
       pt: 'Explore quando a tecnologia amplia ou reduz o controle pessoal sobre decisões.',
-      ur: 'دیکھو کہ ٹیکنالوجی کب اپنے فیصلوں پر انسان کا اختیار بڑھاتی یا کم کرتی ہے۔',
+      ur: 'دیکھیں کہ ٹیکنالوجی کب اپنے فیصلوں پر انسان کا اختیار بڑھاتی یا کم کرتی ہے۔',
       id: 'Jelajahi kapan teknologi menambah atau mengurangi kendali seseorang atas keputusannya.',
       de: 'Erkunde, wann Technik die Kontrolle eines Menschen über eigene Entscheidungen stärkt oder schwächt.',
       ja: '技術が自分の決定を制御する力を高めたり弱めたりする場合を考えよう。',

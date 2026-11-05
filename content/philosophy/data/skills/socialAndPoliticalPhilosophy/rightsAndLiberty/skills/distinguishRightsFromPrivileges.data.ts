@@ -46,7 +46,7 @@ export const distinguishRightsFromPrivileges_Skill_Data = buildSkillConfig({
       fr: "Distingue un droit dû à une personne d'un privilège accordé sous condition.",
       bn: 'ব্যক্তির প্রাপ্য দাবি আর শর্তসাপেক্ষে দেওয়া সুবিধা আলাদা করো।',
       pt: 'Diferencie um direito devido a alguém de um privilégio concedido sob condições.',
-      ur: 'کسی شخص کے جائز حق کو شرطوں پر دی جانے والی رعایت سے الگ کرو۔',
+      ur: 'کسی شخص کے جائز حق کو شرطوں پر دی جانے والی رعایت سے الگ کریں۔',
       id: 'Bedakan tuntutan yang menjadi hak seseorang dari keistimewaan bersyarat.',
       de: 'Unterscheide einen berechtigten Anspruch von einem nur unter Bedingungen gewährten Vorteil.',
       ja: '当然認められる権利と条件付きで与えられる特別な利益を区別しよう。',

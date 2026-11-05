@@ -55,7 +55,7 @@ export const detectAStrawManArgument_Skill_Data = buildSkillConfig({
       vi: 'Nhận ra khi quan điểm của ai đó bị bóp méo để dễ công kích hơn.',
       ta: 'ஒருவரின் நிலைப்பாட்டைத் தாக்க எளிதாகத் திரித்துக் காட்டுவதை அறி.',
       te: 'ఇతరుల అభిప్రాయాన్ని దాడి చేయడం సులభమయ్యేలా వక్రీకరించే సందర్భాన్ని గుర్తించండి.',
-      mr: 'एखाद्याची भूमिका सहज हल्ला करता यावी म्हणून विकृत केली जाते ते ओळख.',
+      mr: 'एखाद्याची भूमिका सहज हल्ला करता यावी म्हणून विकृत केली जाते ते ओळखा.',
       ms: 'Perhatikan apabila pendirian seseorang diputarbelitkan supaya lebih mudah diserang.',
       he: 'שימו לב כשמסלפים עמדה של אדם כדי שיהיה קל יותר לתקוף אותה.',
       pl: 'Zauważ, kiedy czyjeś stanowisko jest zniekształcane, by łatwiej je zaatakować.',

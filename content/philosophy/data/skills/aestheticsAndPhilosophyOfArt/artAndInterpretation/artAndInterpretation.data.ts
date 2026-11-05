@@ -59,7 +59,7 @@ export const artAndInterpretation_SkillGroup_Data = buildSkillGroupConfig({
       fr: 'Réfléchis à la manière dont les œuvres transmettent des sens au-delà des intentions de leurs créateurs.',
       bn: 'শিল্পকর্ম কীভাবে স্রষ্টার উদ্দেশ্যের বাইরেও অর্থ প্রকাশ করতে পারে তা ভাবো।',
       pt: 'Considere como obras de arte podem transmitir sentidos além das intenções dos criadores.',
-      ur: 'غور کرو کہ فن پارے اپنے بنانے والوں کی نیت سے آگے بھی معنی کیسے پہنچا سکتے ہیں۔',
+      ur: 'غور کریں کہ فن پارے اپنے بنانے والوں کی نیت سے آگے بھی معنی کیسے پہنچا سکتے ہیں۔',
       id: 'Pertimbangkan bagaimana karya seni menyampaikan makna di luar maksud penciptanya.',
       de: 'Überlege, wie Kunstwerke Bedeutungen vermitteln können, die ihre Schöpfer nicht beabsichtigten.',
       ja: '作品が作者の意図を超えた意味を伝えることについて考えよう。',

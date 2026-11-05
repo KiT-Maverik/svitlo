@@ -42,7 +42,7 @@ export const comparePhilosophicalConceptionsOfDivinity_Skill_Data = buildSkillCo
       zh: '比较对终极实在的个人性、非个人性和多元性理解。',
       hi: 'परम वास्तविकता की व्यक्तिगत, अवैयक्तिक और बहुल अवधारणाओं की तुलना करें।',
       es: 'Compara ideas personales, impersonales y plurales de la realidad última.',
-      ar: 'قارن الفهم الشخصي وغير الشخصي والتعددي للحقيقة القصوى.',
+      ar: 'قارن بين تصورات الحقيقة القصوى بوصفها شخصية أو غير شخصية أو متعددة.',
       fr: 'Compare les conceptions personnelles, impersonnelles et plurielles de la réalité ultime.',
       bn: 'চূড়ান্ত বাস্তবতার ব্যক্তিসত্তামূলক, অব্যক্তিগত ও বহুবিধ ধারণা তুলনা করো।',
       pt: 'Compare concepções pessoais, impessoais e plurais da realidade última.',

@@ -46,7 +46,7 @@ export const compareMajorModernEpistemologicalApproaches_Skill_Data = buildSkill
       fr: 'Compare comment rationalisme, empirisme et philosophie critique abordent la connaissance.',
       bn: 'যুক্তিবাদ, অভিজ্ঞতাবাদ ও সমালোচনামূলক দর্শন জ্ঞানকে কীভাবে দেখে তা তুলনা করো।',
       pt: 'Compare como racionalismo, empirismo e filosofia crítica tratam o conhecimento.',
-      ur: 'عقلیت پسندی، تجربیت اور تنقیدی فلسفے کے علم سے متعلق نظریات کا موازنہ کرو۔',
+      ur: 'عقلیت پسندی، تجربیت اور تنقیدی فلسفے کے علم سے متعلق نظریات کا موازنہ کریں۔',
       id: 'Bandingkan cara rasionalisme, empirisme, dan filsafat kritis memahami pengetahuan.',
       de: 'Vergleiche, wie Rationalismus, Empirismus und kritische Philosophie Wissen verstehen.',
       ja: '合理論、経験論、批判哲学が知識をどう考えるか比較しよう。',

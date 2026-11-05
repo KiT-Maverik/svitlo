@@ -60,7 +60,7 @@ export const applyConsequentialistReasoning_Skill_Data = buildSkillConfig({
       he: 'שקלו תוצאות צפויות ואת כל מי שיושפע מהן בעת הערכת בחירה.',
       pl: 'Oceniając wybór, weź pod uwagę prawdopodobne skutki i wszystkich zainteresowanych.',
       uk: 'Оцінюючи вибір, враховуй імовірні наслідки та всіх, на кого він вплине.',
-      lt: 'Vertindama pasirinkimą, apsvarstyk tikėtinas pasekmes ir visus paveiktus asmenis.',
+      lt: 'Apsvarstyk tikėtinas pasirinkimo pasekmes ir visus, kuriuos jis gali paveikti.',
       lv: 'Vērtējot izvēli, ņem vērā iespējamās sekas un visus, kurus tā skar.',
       et: 'Valikut hinnates arvesta tõenäolisi tagajärgi ja kõiki mõjutatud osapooli.',
       be: 'Ацэньваючы выбар, улічвай імаверныя наступствы і ўсіх, на каго ён паўплывае.',

@@ -60,7 +60,7 @@ export const evaluateACausalConclusionFromAStudy_Skill_Data = buildSkillConfig({
       he: 'העריכו טענות סיבתיות לפי תכנון המחקר, הראיות והסברים חלופיים.',
       pl: 'Oceń twierdzenie o przyczynie, badając projekt, dowody i możliwe wyjaśnienia alternatywne.',
       uk: 'Оцінюй причинні твердження з огляду на дизайн дослідження, докази й альтернативні пояснення.',
-      lt: 'Vertink priežastinį teiginį nagrinėdamas tyrimo planą, įrodymus ir galimus kitus paaiškinimus.',
+      lt: 'Vertink priežastinį teiginį: išnagrinėk tyrimo planą, įrodymus ir galimus kitus paaiškinimus.',
       lv: 'Vērtē cēloņsakarību apgalvojumus pēc pētījuma plāna, pierādījumiem un alternatīviem skaidrojumiem.',
       et: 'Hinda põhjuslikke väiteid uuringukava, tõendite ja võimalike muude selgituste põhjal.',
       be: 'Ацэньвай прычынныя сьцьверджаньні паводле пляну дасьледаваньня, доказаў і іншых тлумачэньняў.',

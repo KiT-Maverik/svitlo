@@ -55,7 +55,7 @@ export const evaluateAnInferenceToTheBestExplanation_Skill_Data = buildSkillConf
       vi: 'Chọn giữa các lời giải thích có thể dựa trên bằng chứng và giả định.',
       ta: 'ஆதாரங்களையும் முன்கருத்துகளையும் கொண்டு சாத்தியமான விளக்கங்களில் ஒன்றைத் தேர்ந்தெடு.',
       te: 'ఆధారాలు, ఊహల ఆధారంగా సాధ్యమైన వివరణలలో ఉత్తమమైనదాన్ని ఎంచుకోండి.',
-      mr: 'पुरावे आणि गृहीतके पाहून शक्य स्पष्टीकरणांमधून निवड कर.',
+      mr: 'पुरावे आणि गृहीतके पाहून शक्य स्पष्टीकरणांमधून निवड करा.',
       ms: 'Pilih antara penjelasan yang mungkin berdasarkan bukti dan andaian.',
       he: 'בחרו בין הסברים אפשריים על סמך ראיות והנחות.',
       pl: 'Wybierz spośród możliwych wyjaśnień na podstawie dowodów i założeń.',

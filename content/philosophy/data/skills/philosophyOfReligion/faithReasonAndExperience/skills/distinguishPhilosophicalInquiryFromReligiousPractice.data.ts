@@ -12,7 +12,7 @@ export const distinguishPhilosophicalInquiryFromReligiousPractice_Skill_Data = b
     fr: 'Distinguer la réflexion philosophique de la pratique religieuse',
     bn: 'দার্শনিক অনুসন্ধান ও ধর্মীয় অনুশীলনের পার্থক্য করো',
     pt: 'Distinguir investigação filosófica de prática religiosa',
-    ur: 'فلسفیانہ تحقیق اور مذہبی عمل میں فرق کریں',
+    ur: 'فلسفیانہ تحقیق اور مذہبی عمل میں فرق',
     id: 'Membedakan penyelidikan filosofis dari praktik keagamaan',
     de: 'Philosophische Untersuchung von religiöser Praxis unterscheiden',
     ja: '哲学的探究と宗教実践を区別する',

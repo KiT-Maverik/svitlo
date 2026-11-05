@@ -46,7 +46,7 @@ export const analyzeAPhilosophicalArgumentFromAnIndigenousTradition_Skill_Data =
       fr: 'Considère les idées d’une tradition autochtone selon ses propres concepts.',
       bn: 'আদিবাসী ঐতিহ্যের দার্শনিক ধারণা তার নিজস্ব প্রেক্ষাপটে বোঝো।',
       pt: 'Considere as ideias de uma tradição indígena em seus próprios termos.',
-      ur: 'مقامی روایت کے فلسفیانہ خیالات کو اسی کے تناظر میں سمجھو۔',
+      ur: 'مقامی روایت کے فلسفیانہ خیالات کو اسی کے تناظر میں سمجھیں۔',
       id: 'Pahami gagasan filosofis suatu tradisi masyarakat adat menurut konteksnya.',
       de: 'Betrachte die Ideen einer indigenen Tradition in ihrem eigenen Kontext.',
       ja: '先住民の伝統の思想を、その伝統自身の視点で考えよう。',

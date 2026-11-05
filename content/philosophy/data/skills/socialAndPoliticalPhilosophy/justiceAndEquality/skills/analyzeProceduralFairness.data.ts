@@ -46,7 +46,7 @@ export const analyzeProceduralFairness_Skill_Data = buildSkillConfig({
       fr: 'Détermine si la procédure de décision est juste, même lorsque son résultat est contesté.',
       bn: 'ফল নিয়ে বিতর্ক থাকলেও সিদ্ধান্ত নেওয়ার প্রক্রিয়াটি ন্যায্য কি না বিচার করো।',
       pt: 'Avalie se o processo de decisão é justo, mesmo quando seu resultado é contestado.',
-      ur: 'نتیجے پر اختلاف ہو تب بھی دیکھو کہ فیصلہ کرنے کا طریقہ منصفانہ تھا یا نہیں۔',
+      ur: 'نتیجے پر اختلاف ہو تب بھی دیکھیں کہ فیصلہ کرنے کا طریقہ منصفانہ تھا یا نہیں۔',
       id: 'Nilai apakah proses pengambilan keputusan adil meski hasilnya diperdebatkan.',
       de: 'Beurteile, ob ein Entscheidungsverfahren fair ist, auch wenn sein Ergebnis umstritten ist.',
       ja: '結果に異論があっても、決定までの手続きが公正だったか考えよう。',

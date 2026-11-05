@@ -24,7 +24,7 @@ export const evaluateAReportedMiracleClaim_Skill_Data = buildSkillConfig({
     mr: 'कथित चमत्काराविषयीच्या दाव्याचे मूल्यांकन करणे',
     ms: 'Menilai dakwaan tentang keajaiban yang dilaporkan',
     he: 'הערכת טענה על נס שדווח',
-    pl: 'Ocena twierdzenia o rzekomym cudzie',
+    pl: 'Ocena doniesienia o cudzie',
     uk: 'Оцінювати твердження про повідомлене диво',
     lt: 'Vertinti teiginį apie praneštą stebuklą',
     lv: 'Novērtēt apgalvojumu par ziņotu brīnumu',
@@ -32,7 +32,7 @@ export const evaluateAReportedMiracleClaim_Skill_Data = buildSkillConfig({
     be: 'Ацэньваць сьцьверджаньне пра паведамлены цуд',
     ka: 'მოთხრობილი სასწაულის შესახებ მტკიცების შეფასება',
     kk: 'Айтылған ғажайып туралы тұжырымды бағалау',
-    qm: 'Haber etilgen mucize aqqındaki iddianı qıymetlendirmek',
+    qm: 'Haber etilgen mücize aqqındaki iddianı qıymetlendirmek',
   },
   description: {
     methodological:
@@ -60,7 +60,7 @@ export const evaluateAReportedMiracleClaim_Skill_Data = buildSkillConfig({
       he: 'העריכו טענה על אירוע חריג תוך שקילת עדויות והסברים חלופיים.',
       pl: 'Oceń twierdzenie o niezwykłym zdarzeniu, rozważając świadectwa i alternatywne wyjaśnienia.',
       uk: 'Оцінюй твердження про надзвичайну подію, зважуючи свідчення та альтернативні пояснення.',
-      lt: 'Vertink teiginį apie nepaprastą įvykį, pasverdama liudijimus ir alternatyvius paaiškinimus.',
+      lt: 'Vertink teiginį apie nepaprastą įvykį: pasverk liudijimus ir alternatyvius paaiškinimus.',
       lv: 'Izvērtē apgalvojumu par neparastu notikumu, salīdzinot liecības un alternatīvus skaidrojumus.',
       et: 'Hinda erakordse sündmuse väidet, kaaludes tunnistusi ja alternatiivseid seletusi.',
       be: 'Ацэньвай сьцьверджаньне пра незвычайную падзею, узважваючы сьведчаньні і альтэрнатыўныя тлумачэньні.',

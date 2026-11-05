@@ -46,7 +46,7 @@ export const compareInterpretationsOfAnArtwork_Skill_Data = buildSkillConfig({
       fr: "Compare les interprétations à partir des caractéristiques et de l'histoire de l'œuvre.",
       bn: 'শিল্পকর্মের বৈশিষ্ট্য ও ইতিহাসের প্রমাণ দিয়ে বিভিন্ন ব্যাখ্যা তুলনা করো।',
       pt: 'Compare leituras de uma obra usando evidências de suas características e história.',
-      ur: 'فن پارے کی خصوصیات اور تاریخ کے شواہد سے مختلف تعبیرات کی جانچ کرو۔',
+      ur: 'فن پارے کی خصوصیات اور تاریخ کے شواہد سے مختلف تعبیرات کی جانچ کریں۔',
       id: 'Bandingkan tafsiran berdasarkan ciri-ciri karya dan sejarahnya.',
       de: 'Vergleiche Deutungen anhand von Merkmalen und Geschichte des Kunstwerks.',
       ja: '作品の特徴や歴史的背景を証拠に、異なる解釈を比べよう。',

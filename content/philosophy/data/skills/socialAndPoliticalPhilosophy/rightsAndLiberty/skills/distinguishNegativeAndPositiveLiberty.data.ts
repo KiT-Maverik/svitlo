@@ -46,7 +46,7 @@ export const distinguishNegativeAndPositiveLiberty_Skill_Data = buildSkillConfig
       fr: "Compare l'absence d'ingérence avec la capacité d'agir efficacement.",
       bn: 'হস্তক্ষেপ থেকে মুক্তি আর কার্যকরভাবে কাজ করার ক্ষমতার তুলনা করো।',
       pt: 'Compare a liberdade de interferências com a capacidade de agir de modo eficaz.',
-      ur: 'مداخلت سے آزادی اور مؤثر طور پر عمل کرنے کی صلاحیت کا موازنہ کرو۔',
+      ur: 'مداخلت سے آزادی اور مؤثر طور پر عمل کرنے کی صلاحیت کا موازنہ کریں۔',
       id: 'Bandingkan kebebasan dari campur tangan dengan kemampuan bertindak efektif.',
       de: 'Vergleiche Freiheit von Eingriffen mit der Fähigkeit, wirksam zu handeln.',
       ja: '干渉されない自由と自分で行動できる力を比較しよう。',

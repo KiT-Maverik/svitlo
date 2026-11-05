@@ -60,7 +60,7 @@ export const evaluateResearchEthics_Skill_Data = buildSkillConfig({
       he: 'שקלו הסכמה, בטיחות ודיווח אמין בבחינת מחקר מוצע.',
       pl: 'Uwzględnij zgodę, bezpieczeństwo i rzetelne raportowanie przy ocenie proponowanego badania.',
       uk: 'Оцінюй запропоноване дослідження з огляду на згоду, безпеку й чесне звітування.',
-      lt: 'Vertindamas siūlomą tyrimą apsvarstyk sutikimą, saugą ir sąžiningą ataskaitų teikimą.',
+      lt: 'Vertink siūlomą tyrimą ir apsvarstyk sutikimą, saugą bei sąžiningą rezultatų pateikimą.',
       lv: 'Vērtējot plānoto pētījumu, apsver piekrišanu, drošību un godīgu ziņošanu.',
       et: 'Kavandatavat uuringut hinnates arvesta nõusoleku, ohutuse ja ausa aruandlusega.',
       be: 'Пры ацэнцы прапанаванага дасьледаваньня ўлічвай згоду, бясьпеку й сумленную справаздачнасьць.',

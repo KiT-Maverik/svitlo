@@ -46,7 +46,7 @@ export const distinguishSenseFromReference_Skill_Data = buildSkillConfig({
       fr: 'Reconnais comment différentes expressions peuvent désigner la même entité de manières distinctes.',
       bn: 'ভিন্ন অভিব্যক্তি কীভাবে একই সত্তাকে ভিন্নভাবে নির্দেশ করে তা বোঝো।',
       pt: 'Reconheça como expressões distintas se referem à mesma entidade de modos diferentes.',
-      ur: 'سمجھو کہ مختلف اظہار ایک ہی وجود کی طرف مختلف انداز میں اشارہ کیسے کرتے ہیں۔',
+      ur: 'سمجھیں کہ مختلف اظہار ایک ہی وجود کی طرف مختلف انداز میں اشارہ کیسے کرتے ہیں۔',
       id: 'Kenali bagaimana ungkapan berbeda merujuk hal yang sama dengan cara berbeda.',
       de: 'Erkenne, wie verschiedene Ausdrücke auf unterschiedliche Weise dasselbe bezeichnen können.',
       ja: '異なる表現が同じ対象を別の仕方で指す場合を考えよう。',

@@ -30,7 +30,7 @@ export const distinguishAClaimFromItsEvidence_Skill_Data = buildSkillConfig({
     lv: 'Atšķirt apgalvojumu no tā pierādījumiem',
     et: 'Eristada väidet selle tõenditest',
     be: 'Адрозьніваць сьцьверджаньне ад доказаў',
-    ka: 'მტკიცების მისი მტკიცებულებებისგან გამორჩევა',
+    ka: 'მტკიცებისა და მისი მტკიცებულებების გარჩევა',
     kk: 'Тұжырым мен оның дәлелін ажырату',
     qm: 'İddianı onıñ delillerinden ayırmaq',
   },

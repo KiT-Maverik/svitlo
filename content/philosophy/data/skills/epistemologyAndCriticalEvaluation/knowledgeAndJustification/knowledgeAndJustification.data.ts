@@ -74,7 +74,7 @@ export const knowledgeAndJustification_SkillGroup_Data = buildSkillGroupConfig({
       ms: 'Ketahui bagaimana kepercayaan, kebenaran, bukti dan pengetahuan saling berkait tetapi berbeza.',
       he: 'גלו כיצד אמונה, אמת, ראיות וידע קשורים זה לזה אך שונים זה מזה.',
       pl: 'Odkryj, jak przekonanie, prawda, dowody i wiedza wiążą się ze sobą, ale się różnią.',
-      uk: 'З’ясуй, як віра в твердження, істина, докази й знання пов’язані між собою, але відрізняються.',
+      uk: 'З’ясуй, як переконання, істина, докази й знання пов’язані між собою, але відрізняються.',
       lt: 'Sužinok, kaip tikėjimas, tiesa, įrodymai ir žinojimas siejasi, bet skiriasi.',
       lv: 'Uzzini, kā pārliecība, patiesība, pierādījumi un zināšanas ir saistīti, tomēr atšķiras.',
       et: 'Avasta, kuidas uskumused, tõde, tõendid ja teadmised on seotud, kuid erinevad.',

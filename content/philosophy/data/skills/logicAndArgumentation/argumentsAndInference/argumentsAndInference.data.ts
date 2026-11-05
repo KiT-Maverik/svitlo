@@ -67,7 +67,7 @@ export const argumentsAndInference_SkillGroup_Data = buildSkillGroupConfig({
       tr: 'Öncüllerin ve sonuçların nasıl bir argüman oluşturduğunu keşfet.',
       vi: 'Khám phá cách tiền đề và kết luận tạo thành một lập luận.',
       ta: 'முன்கோள்களும் முடிவுகளும் சேர்ந்து வாதத்தை எவ்வாறு உருவாக்குகின்றன என்பதை அறி.',
-      te: 'పూర్వపక్షాలు, నిర్ధారణలు కలిసి వాదనను ఎలా నిర్మిస్తాయో తెలుసుకోండి.',
+      te: 'ఆధార వాక్యాలు, నిర్ధారణలు కలిసి వాదనను ఎలా నిర్మిస్తాయో తెలుసుకోండి.',
       mr: 'पूर्वाधार आणि निष्कर्ष मिळून युक्तिवाद कसा तयार होतो ते पाहा.',
       ms: 'Ketahui bagaimana premis dan kesimpulan membentuk hujah.',
       he: 'גלו כיצד הנחות ומסקנה יוצרות טיעון.',

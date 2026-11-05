@@ -46,7 +46,7 @@ export const analyzeAFramingChoice_Skill_Data = buildSkillConfig({
       fr: "Compare les termes qui mettent en avant différents aspects d'un même problème.",
       bn: 'একই বিষয়ের ভিন্ন দিক তুলে ধরা নামগুলো তুলনা করো।',
       pt: 'Compare rótulos que destacam aspectos diferentes do mesmo assunto.',
-      ur: 'ایک ہی مسئلے کے مختلف پہلو نمایاں کرنے والے الفاظ کا موازنہ کرو۔',
+      ur: 'ایک ہی مسئلے کے مختلف پہلو نمایاں کرنے والے الفاظ کا موازنہ کریں۔',
       id: 'Bandingkan label yang menonjolkan sisi berbeda dari persoalan yang sama.',
       de: 'Vergleiche Bezeichnungen, die verschiedene Seiten desselben Themas hervorheben.',
       ja: '同じ問題の異なる面を強調する呼び名を比べよう。',

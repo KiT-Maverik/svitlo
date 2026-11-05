@@ -55,7 +55,7 @@ export const detectAFalseDilemma_Skill_Data = buildSkillConfig({
       vi: 'Tìm những lựa chọn có ý nghĩa bị che khuất bởi cách đặt vấn đề chỉ có hai phương án.',
       ta: "தவறான 'இதுவா அதுவா' தேர்வால் மறைக்கப்படும் பிற பொருத்தமான வாய்ப்புகளைக் கண்டுபிடி.",
       te: 'రెండు మార్గాలే ఉన్నట్లుగా చూపే తప్పుదారి పట్టించే ఎంపిక వెనుక ఉన్న ఇతర అవకాశాలను కనుగొనండి.',
-      mr: "फसव्या 'हे की ते' पर्यायामागे लपलेले महत्त्वाचे इतर पर्याय शोध.",
+      mr: "फसव्या 'हे की ते' पर्यायामागे लपलेले महत्त्वाचे इतर पर्याय शोधा.",
       ms: 'Cari pilihan lain yang bermakna di sebalik pilihan palsu seolah-olah hanya dua kemungkinan.',
       he: 'מצאו חלופות משמעותיות שמוסתרות מאחורי בחירה מטעה בין שתי אפשרויות בלבד.',
       pl: 'Znajdź istotne możliwości ukryte przez mylący wybór „albo–albo”.',

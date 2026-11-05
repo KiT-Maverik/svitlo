@@ -55,7 +55,7 @@ export const evaluateAnInductiveGeneralization_Skill_Data = buildSkillConfig({
       vi: 'Đánh giá mức độ những ví dụ quan sát được hỗ trợ một khái quát rộng hơn.',
       ta: 'கவனித்த எடுத்துக்காட்டுகள் பெரிய பொதுமைப்படுத்தலை எவ்வளவு ஆதரிக்கின்றன என மதிப்பிடு.',
       te: 'గమనించిన ఉదాహరణలు విస్తృత సాధారణీకరణకు ఎంత మద్దతిస్తున్నాయో అంచనా వేయండి.',
-      mr: 'पाहिलेली उदाहरणे व्यापक सामान्यीकरणाला किती आधार देतात ते तपास.',
+      mr: 'पाहिलेली उदाहरणे व्यापक सामान्यीकरणाला किती आधार देतात ते तपासा.',
       ms: 'Nilai sejauh mana contoh diperhatikan menyokong generalisasi lebih luas.',
       he: 'העריכו עד כמה דוגמאות שנצפו תומכות בהכללה רחבה יותר.',
       pl: 'Oceń, na ile zaobserwowane przykłady uzasadniają szersze uogólnienie.',

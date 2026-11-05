@@ -60,7 +60,7 @@ export const applyCareEthicalReasoning_Skill_Data = buildSkillConfig({
       he: 'שקלו פגיעות, מערכות יחסים ודאגה לאחרים בעת הערכת חובות.',
       pl: 'Oceniając obowiązki, uwzględnij podatność na zranienie, relacje i troskę.',
       uk: 'Оцінюючи обов’язки, враховуй вразливість, стосунки й турботу.',
-      lt: 'Vertindama pareigas, atsižvelk į pažeidžiamumą, santykius ir rūpestį.',
+      lt: 'Vertink pareigas, atsižvelk į pažeidžiamumą, santykius ir rūpestį.',
       lv: 'Vērtējot pienākumus, ņem vērā ievainojamību, attiecības un rūpes.',
       et: 'Kohustusi hinnates arvesta haavatavust, suhteid ja hoolitsust.',
       be: 'Ацэньваючы абавязкі, улічвай уразьлівасьць, стасункі і клопат.',

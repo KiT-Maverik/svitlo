@@ -46,7 +46,7 @@ export const compareClassicalGreekPhilosophicalApproaches_Skill_Data = buildSkil
       fr: 'Compare les idées de Socrate, Platon et Aristote.',
       bn: 'সক্রেটিস, প্লেটো ও অ্যারিস্টটলের ধারণা তুলনা করো।',
       pt: 'Compare ideias de Sócrates, Platão e Aristóteles.',
-      ur: 'سقراط، افلاطون اور ارسطو کے خیالات کا موازنہ کرو۔',
+      ur: 'سقراط، افلاطون اور ارسطو کے خیالات کا موازنہ کریں۔',
       id: 'Bandingkan gagasan Socrates, Plato, dan Aristoteles.',
       de: 'Vergleiche Gedanken von Sokrates, Platon und Aristoteles.',
       ja: 'ソクラテス、プラトン、アリストテレスの考えを比較しよう。',

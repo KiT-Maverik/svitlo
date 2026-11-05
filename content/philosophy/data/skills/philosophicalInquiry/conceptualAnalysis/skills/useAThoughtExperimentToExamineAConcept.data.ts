@@ -60,7 +60,7 @@ export const useAThoughtExperimentToExamineAConcept_Skill_Data = buildSkillConfi
       he: 'השתמשו בתרחיש דמיוני כדי לבחון רעיון תוך הבהרת ההנחות שלו.',
       pl: 'Sprawdź pomysł za pomocą wyobrażonej sytuacji, jasno określając jej założenia.',
       uk: 'Використай уявну ситуацію, щоб перевірити ідею, чітко визначивши припущення.',
-      lt: 'Naudok įsivaizduojamą situaciją idėjai patikrinti, aiškiai nurodydamas prielaidas.',
+      lt: 'Naudok įsivaizduojamą situaciją idėjai patikrinti ir aiškiai įvardyk prielaidas.',
       lv: 'Izmanto iztēlotu situāciju idejas pārbaudei, skaidri nosaucot pieņēmumus.',
       et: 'Kasuta mõttelist olukorda idee proovimiseks, hoides eeldused selged.',
       be: 'Выкарыстай уяўную сытуацыю, каб праверыць ідэю, выразна назваўшы дапушчэньні.',

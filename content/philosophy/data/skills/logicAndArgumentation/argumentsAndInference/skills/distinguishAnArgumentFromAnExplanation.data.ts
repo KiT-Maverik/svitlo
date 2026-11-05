@@ -55,7 +55,7 @@ export const distinguishAnArgumentFromAnExplanation_Skill_Data = buildSkillConfi
       vi: 'Phân biệt lý do tin điều gì với lời giải thích cho một sự thật đã được chấp nhận.',
       ta: 'ஒன்றை நம்புவதற்கான காரணத்தையும் ஏற்கப்பட்ட உண்மையின் விளக்கத்தையும் வேறுபடுத்து.',
       te: 'ఏదైనా నమ్మడానికి కారణాన్ని, అంగీకరించిన వాస్తవాన్ని వివరించడం నుంచి వేరు చేయండి.',
-      mr: 'एखादी गोष्ट मानण्याचे कारण आणि मान्य केलेल्या तथ्याचे स्पष्टीकरण यात फरक कर.',
+      mr: 'एखादी गोष्ट मानण्याचे कारण आणि मान्य केलेल्या तथ्याचे स्पष्टीकरण यात फरक करा.',
       ms: 'Bezakan alasan untuk mempercayai sesuatu daripada penjelasan bagi fakta yang diterima.',
       he: 'הבחינו בין נימוק להאמין במשהו לבין הסבר לעובדה מקובלת.',
       pl: 'Odróżnij rację przemawiającą za przekonaniem od wyjaśnienia uznanego faktu.',

@@ -55,7 +55,7 @@ export const distinguishPredicatesFromPropositions_Skill_Data = buildSkillConfig
       vi: 'Phân biệt biểu thức mở có biến với mệnh đề hoàn chỉnh.',
       ta: 'மாறியைக் கொண்ட திறந்த வெளிப்பாட்டையும் முழுமையான கூற்றையும் வேறுபடுத்து.',
       te: 'చరరాశి ఉన్న ఓపెన్ వ్యక్తీకరణను సంపూర్ణ ప్రతిపాదన నుంచి వేరు చేయండి.',
-      mr: 'चल असलेली खुली अभिव्यक्ती आणि पूर्ण विधान यात फरक कर.',
+      mr: 'चल असलेली खुली अभिव्यक्ती आणि पूर्ण विधान यात फरक करा.',
       ms: 'Bezakan ungkapan terbuka yang mengandungi pemboleh ubah daripada proposisi lengkap.',
       he: 'הבחינו בין ביטוי פתוח עם משתנה לבין פסוק שלם.',
       pl: 'Odróżnij wyrażenie otwarte ze zmienną od pełnego zdania logicznego.',

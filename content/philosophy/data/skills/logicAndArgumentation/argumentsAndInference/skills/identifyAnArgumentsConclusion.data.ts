@@ -55,7 +55,7 @@ export const identifyAnArgumentsConclusion_Skill_Data = buildSkillConfig({
       vi: 'Xác định luận điểm chính mà lập luận muốn chứng minh.',
       ta: 'ஒரு வாதம் நிறுவ முயலும் முக்கியக் கூற்றைக் கண்டறி.',
       te: 'వాదన నిరూపించడానికి ప్రయత్నించే ప్రధాన వాదనను గుర్తించండి.',
-      mr: 'युक्तिवाद सिद्ध करू पाहत असलेला मुख्य दावा ओळख.',
+      mr: 'युक्तिवाद सिद्ध करू पाहत असलेला मुख्य दावा ओळखा.',
       ms: 'Kenal pasti dakwaan utama yang ingin dibuktikan oleh sesuatu hujah.',
       he: 'זהו את הטענה המרכזית שהטיעון מנסה לבסס.',
       pl: 'Wskaż główne twierdzenie, które argument ma uzasadnić.',

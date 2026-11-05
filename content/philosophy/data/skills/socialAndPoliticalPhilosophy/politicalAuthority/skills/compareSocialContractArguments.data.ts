@@ -46,7 +46,7 @@ export const compareSocialContractArguments_Skill_Data = buildSkillConfig({
       fr: "Évalue les raisons avancées pour justifier le pouvoir des institutions publiques d'établir des règles.",
       bn: 'সরকারি প্রতিষ্ঠান কেন নিয়ম প্রণয়নের কর্তৃত্ব পায়, সেই যুক্তিগুলো বিচার করো।',
       pt: 'Avalie as razões que justificam a autoridade das instituições públicas para criar regras.',
-      ur: 'سرکاری اداروں کو اصول بنانے کا اختیار دینے کے لیے پیش کیے گئے دلائل کا جائزہ لو۔',
+      ur: 'سرکاری اداروں کو اصول بنانے کا اختیار دینے کے لیے پیش کیے گئے دلائل کا جائزہ لیں۔',
       id: 'Nilai alasan yang membenarkan kewenangan lembaga publik menetapkan aturan.',
       de: 'Bewerte Begründungen dafür, dass öffentliche Institutionen verbindliche Regeln festlegen dürfen.',
       ja: '公的な制度が規則を作る権威を持つ理由を評価しよう。',

@@ -46,7 +46,7 @@ export const compareObjectiveAndSubjectiveAccountsOfBeauty_Skill_Data = buildSki
       fr: 'Compare les idées sur la possibilité de juger la beauté au-delà du goût personnel.',
       bn: 'ব্যক্তিগত পছন্দ ছাড়াও সৌন্দর্যের বিচার করা যায় কি না সেই মতগুলো তুলনা করো।',
       pt: 'Compare visões sobre julgar a beleza além do gosto individual.',
-      ur: 'دیکھو کہ خوبصورتی کا فیصلہ ذاتی پسند سے ہٹ کر ہو سکتا ہے یا نہیں۔',
+      ur: 'دیکھیں کہ خوبصورتی کا فیصلہ ذاتی پسند سے ہٹ کر ہو سکتا ہے یا نہیں۔',
       id: 'Bandingkan pendapat apakah keindahan dapat dinilai melampaui selera pribadi.',
       de: 'Vergleiche Ansichten darüber, ob Schönheit über persönlichen Geschmack hinaus beurteilt werden kann.',
       ja: '美しさは個人の好みを超えて判断できるか、異なる考えを比べよう。',
