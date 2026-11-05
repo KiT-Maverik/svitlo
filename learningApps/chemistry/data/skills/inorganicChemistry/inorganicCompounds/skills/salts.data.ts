@@ -21,7 +21,7 @@ export const salts_Skill_Data = buildSkillConfig({
     vi: "Muối",
     ta: "உப்புகள்",
     te: "లవణాలు",
-    mr: "क्षार किंवा लवणे",
+    mr: "लवणे",
     ms: "Garam",
     he: "מלחים",
     pl: "Sole",

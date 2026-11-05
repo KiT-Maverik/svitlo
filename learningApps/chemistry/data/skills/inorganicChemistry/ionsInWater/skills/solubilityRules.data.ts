@@ -32,7 +32,7 @@ export const solubilityRules_Skill_Data = buildSkillConfig({
     be: "Правілы растваральнасьці",
     ka: "ხსნადობის წესები",
     kk: "Ерігіштік ережелері",
-    qm: "İrigilik qaйdeleri",
+    qm: "İrigilik qaydeleri",
   },
   description: {
     methodological: "Use empirical patterns to anticipate precipitation while checking exceptions and conditions.",

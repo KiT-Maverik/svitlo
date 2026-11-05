@@ -22,7 +22,7 @@ export const polymerStructureAndProperties_Skill_Data = buildSkillConfig({
     ta: "பலபடிகளின் அமைப்பும் பண்புகளும்",
     te: "పాలిమర్ నిర్మాణం మరియు లక్షణాలు",
     mr: "बहुवारिकांची रचना आणि गुणधर्म",
-    ms: "Struktur dan Sifat Polimer",
+    ms: "Struktur serta Sifat Polimer",
     he: "מבנה ותכונות של פולימרים",
     pl: "Struktura i właściwości polimerów",
     uk: "Будова та властивості полімерів",
