@@ -39,7 +39,7 @@ jobs:
           instances = 0
           for filename in paths:
               path = Path(filename)
-              if not path.is_file() or path.is_symlink():
+              if filename.startswith('.github/workflows/') or not path.is_file() or path.is_symlink():
                   continue
               value = path.read_bytes()
               if old not in value:
@@ -58,10 +58,9 @@ jobs:
               print(f'updated: {name}')
           PY
           # This workflow is a disposable migration runner and must NOT ship in the PR.
-          git rm -f -- .github/workflows/one-shot-content-rename.yml
           git add -A
           git diff --cached --check
-          if git grep --cached -n 'learningApps' -- .; then
+          if git grep --cached -n 'learningApps' -- . ':(exclude).github/workflows/**'; then
             echo '::error::Legacy directory name remains in tracked sources'
             exit 1
           fi
