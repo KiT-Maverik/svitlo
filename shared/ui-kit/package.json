@@ -51,6 +51,10 @@
     "./learning-layout/preferences": {
       "types": "./dist/components/layout/LearningLayout/NavbarPreferences/NavbarPreferences.d.ts",
       "default": "./dist/components/layout/LearningLayout/NavbarPreferences/NavbarPreferences.js"
+    },
+    "./lesson": {
+      "types": "./dist/components/lesson/index.d.ts",
+      "default": "./dist/components/lesson/index.js"
     }
   },
   "files": [
@@ -80,7 +84,6 @@
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^9.5.0",
     "@mui/material": "^9.5.0",
-    "next": "16.4.2",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "react-markdown": "^10.1.0",
