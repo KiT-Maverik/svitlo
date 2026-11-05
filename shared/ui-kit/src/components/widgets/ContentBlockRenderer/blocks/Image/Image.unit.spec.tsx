@@ -33,7 +33,7 @@ afterEach(() => {
 });
 
 describe('Image content block', () => {
-  it('renders a responsive Next image with authored intrinsic dimensions', () => {
+  it('renders a responsive native image with authored intrinsic dimensions', () => {
     setOnline(true);
     render(<ContentLanguageContext.Provider value="uk"><Image messages={enUiKitMessages.image} {...response} /></ContentLanguageContext.Provider>);
     const image = screen.getByAltText('Схема руху світла');
