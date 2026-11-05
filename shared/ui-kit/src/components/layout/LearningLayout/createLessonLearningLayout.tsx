@@ -10,21 +10,19 @@ import { useLessonNavigation } from '../../lesson/LessonNavigation';
 
 export type LessonLearningLayoutProps = Pick<
   LearningLayoutProps,
-  'children' | 'topics' | 'skippableSteps' | 'quizStep'
+  'children' | 'topics' | 'skippableSteps' | 'quizStep' | 'pathname'
 > & { messages: UiKit_Global<'response'> };
 
 export type LessonLearningLayoutBindings = {
   /** Supplied by the consuming app; the UI Kit never imports Next.js hooks. */
-  usePathname: () => string;
   useLocale: () => { locale: Locale; setLocale: (locale: Locale) => void };
   linkComponent?: ElementType;
 };
 
 /** Bind app-owned hooks once, without duplicating layout and navigation logic. */
 export function createLessonLearningLayout(bindings: LessonLearningLayoutBindings) {
-  function LessonLearningLayout({ children, topics, skippableSteps, quizStep, messages }: LessonLearningLayoutProps) {
+  function LessonLearningLayout({ children, topics, skippableSteps, quizStep, pathname, messages }: LessonLearningLayoutProps) {
     const { locale, setLocale } = bindings.useLocale();
-    const pathname = bindings.usePathname();
     const { progress, dispatch } = useLessonNavigation();
     const { mode, systemMode, setMode } = useColorScheme();
 
