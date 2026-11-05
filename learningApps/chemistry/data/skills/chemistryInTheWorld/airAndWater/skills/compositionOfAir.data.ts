@@ -39,7 +39,7 @@ export const compositionOfAir_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Recognize the major gases in air and distinguish them from trace pollutants.",
       zh: "识别空气中的主要气体，并将其与微量污染物区分开。",
-      hi: "हवा की प्रमुख गैसों को पहचानो और उन्हें अल्प मात्रा के प्रदूषकों से अलग करो।",
+      hi: "हवा की प्रमुख गैसों को पहचानें और उन्हें अल्प मात्रा के प्रदूषकों से अलग करें।",
       es: "Reconoce los gases principales del aire y distínguelos de los contaminantes presentes en trazas.",
       ar: "تعرّف الغازات الرئيسية في الهواء وميّزها من الملوثات النزرة.",
       fr: "Reconnais les principaux gaz de l'air et distingue-les des polluants présents à l'état de traces.",

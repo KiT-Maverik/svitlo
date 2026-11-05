@@ -39,7 +39,7 @@ export const alloysInUse_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Learn why alloys can have different properties from the metals they contain.",
       zh: "了解合金为什么可能具有不同于组成金属的性质。",
-      hi: "जानो कि मिश्रधातुओं के गुण उनमें मौजूद शुद्ध धातुओं से अलग क्यों हो सकते हैं।",
+      hi: "जानें कि मिश्रधातुओं के गुण उनमें मौजूद शुद्ध धातुओं से अलग क्यों हो सकते हैं।",
       es: "Aprende por qué las aleaciones pueden tener propiedades diferentes de los metales que las forman.",
       ar: "تعلّم لماذا قد تختلف خصائص السبائك عن خصائص الفلزات المكوّنة لها.",
       fr: "Découvre pourquoi les alliages peuvent avoir des propriétés différentes des métaux qui les composent.",

@@ -39,7 +39,7 @@ export const atmosphericChemicalChanges_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Connect atmospheric chemical reactions with smog and acid deposition.",
       zh: "联系大气化学反应与烟雾及酸沉降现象。",
-      hi: "वायुमंडल की रासायनिक अभिक्रियाओं को धूम-कोहरे और अम्लीय निक्षेपण से जोड़ो।",
+      hi: "वायुमंडल की रासायनिक अभिक्रियाओं को धूम-कोहरे और अम्लीय निक्षेपण से जोड़ें।",
       es: "Relaciona las reacciones químicas atmosféricas con el esmog y la deposición ácida.",
       ar: "اربط التفاعلات الكيميائية الجوية بالضباب الدخاني والترسب الحمضي.",
       fr: "Relie les réactions chimiques atmosphériques au smog et aux dépôts acides.",

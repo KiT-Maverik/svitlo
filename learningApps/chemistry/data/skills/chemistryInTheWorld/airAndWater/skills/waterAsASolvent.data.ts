@@ -39,7 +39,7 @@ export const waterAsASolvent_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Explore why water dissolves many substances through its molecular interactions.",
       zh: "探索分子间相互作用为何使水能溶解许多物质。",
-      hi: "जानो कि अणुओं के परस्पर आकर्षण से पानी अनेक पदार्थों को क्यों घोल सकता है।",
+      hi: "जानें कि अणुओं के परस्पर आकर्षण से पानी अनेक पदार्थों को क्यों घोल सकता है।",
       es: "Explora por qué el agua disuelve muchas sustancias gracias a sus interacciones moleculares.",
       ar: "استكشف كيف تساعد التفاعلات الجزيئية الماء على إذابة كثير من المواد.",
       fr: "Explore pourquoi les interactions moléculaires permettent à l'eau de dissoudre de nombreuses substances.",

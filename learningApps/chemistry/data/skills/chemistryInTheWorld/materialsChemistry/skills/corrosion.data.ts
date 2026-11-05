@@ -39,7 +39,7 @@ export const corrosion_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Explain how electrochemical reactions cause corrosion and how protection works.",
       zh: "解释电化学反应如何导致腐蚀，以及防护措施如何发挥作用。",
-      hi: "समझाओ कि विद्युत् रासायनिक अभिक्रियाएँ संक्षारण कैसे करती हैं और उससे बचाव कैसे होता है।",
+      hi: "समझाएँ कि विद्युत् रासायनिक अभिक्रियाएँ संक्षारण कैसे करती हैं और उससे बचाव कैसे होता है।",
       es: "Explica cómo las reacciones electroquímicas causan corrosión y cómo funcionan las medidas de protección.",
       ar: "اشرح كيف تسبب التفاعلات الكهروكيميائية التآكل وكيف تعمل وسائل الحماية.",
       fr: "Explique comment les réactions électrochimiques causent la corrosion et comment agit la protection.",

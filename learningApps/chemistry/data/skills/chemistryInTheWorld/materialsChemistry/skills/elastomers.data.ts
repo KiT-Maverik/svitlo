@@ -39,7 +39,7 @@ export const elastomers_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Explore why some linked polymer networks can stretch and return to shape.",
       zh: "探索为什么某些交联聚合物网络能够拉伸并恢复形状。",
-      hi: "जानो कि कुछ जुड़े हुए बहुलक जाल खिंचने के बाद फिर आकार में कैसे लौटते हैं।",
+      hi: "जानें कि कुछ जुड़े हुए बहुलक जाल खिंचने के बाद फिर आकार में कैसे लौटते हैं।",
       es: "Explora por qué algunas redes poliméricas enlazadas pueden estirarse y recuperar su forma.",
       ar: "استكشف لماذا يمكن لبعض شبكات البوليمر المترابطة أن تتمدد ثم تستعيد شكلها.",
       fr: "Explore pourquoi certains réseaux polymères réticulés s'étirent et reprennent leur forme.",
