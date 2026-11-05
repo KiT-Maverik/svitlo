@@ -14,10 +14,13 @@ import { DEFAULT_SUPPORTED_LANGUAGES, getLocaleDirection } from '@svitlo/engine/
 
 import type { RenderNested } from '../../types';
 import { useContentLanguage } from '../../ContentLanguageContext';
-import { locales } from './Checkpoint.locale';
+import type { UiKit_Component } from '@svitlo/contracts/ui-kit';
 import styles from './Checkpoint.module.css';
 
-type CheckpointProps = ContentBlock_Checkpoint_Response<Locale_Languages> & { renderNested: RenderNested };
+type CheckpointProps = ContentBlock_Checkpoint_Response<Locale_Languages> & {
+  messages: UiKit_Component<'checkpoint', 'response'>;
+  renderNested: RenderNested;
+};
 
 export const Checkpoint = ({
   id,
@@ -33,6 +36,7 @@ export const Checkpoint = ({
   enableChecks = false,
   renderAsGroup = true,
   renderNested,
+  messages,
 }: CheckpointProps) => {
   const languageCode = useContentLanguage();
   const domId = useId();
@@ -40,7 +44,6 @@ export const Checkpoint = ({
   const [checkedIds, setCheckedIds] = useState<Set<string>>(() => new Set());
   const language = DEFAULT_SUPPORTED_LANGUAGES.find(item => item.language === languageCode)?.locale ?? 'en-US';
   const direction = getLocaleDirection(language);
-  const messages = locales[languageCode] ?? locales.en;
   const accordionHeading = `h${Math.min(headingLevel + 1, 6)}` as 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 
   return (

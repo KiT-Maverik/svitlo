@@ -22,32 +22,32 @@ export type {
   SceneRegistry,
 } from '#types/content-blocks';
 
-function renderBlock(response: ContentBlockResponse, sceneRegistry?: SceneRegistry): ReactNode {
+function renderBlock(response: ContentBlockResponse, messages: ContentBlockRendererProps['messages'], sceneRegistry?: SceneRegistry): ReactNode {
   requireTaggedResponse(response);
-  const nested = (block: ContentBlockResponse) => renderBlock(block, sceneRegistry);
+  const nested = (block: ContentBlockResponse) => renderBlock(block, messages, sceneRegistry);
 
   switch (response.type) {
     case 'text': return <ContentBlock_Text {...response} />;
     case 'markdown': return <Markdown {...response} />;
-    case 'checkpoint': return <Checkpoint {...response} renderNested={nested} />;
+    case 'checkpoint': return <Checkpoint {...response} messages={messages.checkpoint} renderNested={nested} />;
     case 'scene': return <Scene response={response} sceneRegistry={sceneRegistry} />;
     case 'code': return <Code {...response} />;
-    case 'audio': return <Audio {...response} />;
-    case 'video': return <Video {...response} />;
-    case 'youtube': return <Youtube {...response} />;
-    case 'image': return <Image {...response} />;
+    case 'audio': return <Audio {...response} messages={messages.audio} />;
+    case 'video': return <Video {...response} messages={messages.video} />;
+    case 'youtube': return <Youtube {...response} messages={messages.youtube} />;
+    case 'image': return <Image {...response} messages={messages.image} />;
     default: return assertNever(response);
   }
 }
 
 /** Render an ordered array of serialized content blocks. */
-export function ContentBlockRenderer({ blocks, sceneRegistry, language }: ContentBlockRendererProps): ReactNode {
+export function ContentBlockRenderer({ blocks, sceneRegistry, language, messages }: ContentBlockRendererProps): ReactNode {
   const inheritedLanguage = useContentLanguage();
   if (!blocks?.length) return null;
   return (
     <ContentLanguageContext.Provider value={language ?? inheritedLanguage}>
       {blocks.map(block => (
-        <Fragment key={`${block.type}:${block.id}`}>{renderBlock(block, sceneRegistry)}</Fragment>
+        <Fragment key={`${block.type}:${block.id}`}>{renderBlock(block, messages, sceneRegistry)}</Fragment>
       ))}
     </ContentLanguageContext.Provider>
   );

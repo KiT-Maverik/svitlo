@@ -5,16 +5,17 @@ import Button from '@mui/material/Button';
 import NextImage from 'next/image';
 
 import type { ContentBlock_Image_Response } from '@svitlo/engine/content';
+import type { UiKit_Component } from '@svitlo/contracts/ui-kit';
 
 import { localizedAttributes } from '../../utils';
 import { useContentLanguage } from '../../ContentLanguageContext';
-import { imageFallbackText, imageUnoptimized, type ImageFailureKind } from './Image.utils';
+import { imageUnoptimized, type ImageFailureKind } from './Image.utils';
 import styles from './Image.module.css';
 
 type ImageFailure = { source: string; kind: ImageFailureKind };
 
-export const Image = (props: ContentBlock_Image_Response) => {
-  const { src, alt, caption, sizes, unoptimized, fallback } = props;
+export const Image = (props: ContentBlock_Image_Response & { messages: UiKit_Component<'image', 'response'> }) => {
+  const { src, alt, caption, sizes, unoptimized, fallback, messages } = props;
   const contentLanguage = useContentLanguage();
   const imageRef = useRef<HTMLImageElement>(null);
   const [failure, setFailure] = useState<ImageFailure | null>(null);
@@ -49,9 +50,9 @@ export const Image = (props: ContentBlock_Image_Response) => {
       {failureKind ? (
         <div className={styles.placeholder} role="alert" style={{ aspectRatio: props.fill ? props.aspectRatio : `${props.width} / ${props.height}` }}>
           {alt && <strong>{alt}</strong>}
-          <span>{fallback?.[failureKind] || imageFallbackText(contentLanguage, failureKind)}</span>
+          <span>{fallback?.[failureKind] || messages[failureKind]}</span>
           <Button type="button" variant="outlined" onClick={retry}>
-            {fallback?.retry || imageFallbackText(contentLanguage, 'retry')}
+            {fallback?.retry || messages['retry']}
           </Button>
         </div>
       ) : props.fill ? (
