@@ -27,7 +27,7 @@ export const distinguishConcreteFromAbstractEntities_Skill_Data = buildSkillConf
     pl: "Odróżniać byty konkretne od abstrakcyjnych",
     uk: "Розрізняти конкретні та абстрактні сутності",
     lt: "Atskirti konkrečias ir abstrakčias esybes",
-    lv: "Atšķirt konkrētas un abstraktas būtnes",
+    lv: "Atšķirt konkrētas un abstraktas entītijas",
     et: "Eristada konkreetseid ja abstraktseid entiteete",
     be: "Адрозьніваць канкрэтныя й абстрактныя сутнасьці",
     ka: "კონკრეტული და აბსტრაქტული არსებულების გარჩევა",
