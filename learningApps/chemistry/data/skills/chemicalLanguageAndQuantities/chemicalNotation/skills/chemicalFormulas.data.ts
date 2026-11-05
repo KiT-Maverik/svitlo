@@ -56,7 +56,7 @@ export const chemicalFormulas_Skill_Data = buildSkillConfig({
       te: "కింది అంకెలు వివిధ పరమాణువుల నిష్పత్తులను ఎలా సూచిస్తాయో అర్థం చేసుకోండి.",
       mr: "सूत्रांतील पादांक वेगवेगळ्या अणूंचे प्रमाण कसे दाखवतात ते समज.",
       ms: "Fahami bagaimana nombor subskrip menunjukkan nisbah atom yang berbeza.",
-      he: "הבינו כיצד מספרים תחיליים תחתונים מראים את היחס בין אטומים.",
+      he: "הבחינו בין מספרים קטנים בתחתית הסמלים, המציינים את הרכב הנוסחה, לבין מקדמים במשוואת תגובה.",
       pl: "Zrozum, jak indeksy dolne oznaczają proporcje różnych atomów.",
       uk: "Зрозумій, як нижні індекси позначають співвідношення різних атомів.",
       lt: "Suprask, kaip apatiniai indeksai nurodo skirtingų atomų santykį.",
