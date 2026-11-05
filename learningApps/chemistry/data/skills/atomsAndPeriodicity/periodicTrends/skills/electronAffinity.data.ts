@@ -57,7 +57,7 @@ export const electronAffinity_Skill_Data = buildSkillConfig({
       mr: "इलेक्ट्रॉन जोडल्यावर होणारा ऊर्जाबदल इतर अणुगुणधर्मांच्या कलांपासून वेगळा ओळखा.",
       ms: "Bezakan perubahan tenaga apabila elektron diterima daripada trend atom yang lain.",
       he: "הבחינו בין שינוי האנרגיה בעת הוספת אלקטרון לבין מגמות אטומיות אחרות.",
-      pl: "Odliš zmianę energii przy przyłączaniu elektronu od innych trendów atomowych.",
+      pl: "Odróżnij zmianę energii przy przyłączaniu elektronu od innych trendów atomowych.",
       uk: "Відрізняй зміну енергії під час приєднання електрона від інших атомних тенденцій.",
       lt: "Atskirk energijos pokytį prisijungus elektronui nuo kitų atominių tendencijų.",
       lv: "Atšķir enerģijas izmaiņas, pievienojoties elektronam, no citām atomu tendencēm.",
