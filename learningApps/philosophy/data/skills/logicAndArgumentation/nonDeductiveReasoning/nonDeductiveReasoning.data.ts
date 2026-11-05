@@ -69,7 +69,7 @@ export const nonDeductiveReasoning_SkillGroup_Data = buildSkillGroupConfig({
       vi: 'Học đánh giá suy luận hỗ trợ kết luận nhưng không bảo đảm chắc chắn.',
       ta: 'உறுதியை உத்தரவாதமளிக்காமல் முடிவை ஆதரிக்கும் தருக்கத்தை மதிப்பிடக் கற்றுக்கொள்.',
       te: 'నిశ్చితత్వం లేకుండానే నిర్ధారణకు మద్దతిచ్చే తర్కాన్ని అంచనా వేయడం నేర్చుకోండి.',
-      mr: 'निश्चितता न देता निष्कर्षाला आधार देणारा तर्क तपासायला शीक.',
+      mr: 'निश्चितता न देता निष्कर्षाला आधार देणारा तर्क तपासायला शिका.',
       ms: 'Belajar menilai penaakulan yang menyokong kesimpulan tanpa menjamin kepastian.',
       he: 'למדו להעריך היסקים התומכים במסקנה בלי להבטיח ודאות.',
       pl: 'Naucz się oceniać rozumowanie wspierające wniosek bez gwarancji pewności.',

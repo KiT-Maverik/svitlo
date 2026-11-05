@@ -55,7 +55,7 @@ export const evaluateACategoricalSyllogism_Skill_Data = buildSkillConfig({
       vi: 'Xác định liệu các phát biểu về các nhóm có hỗ trợ kết luận về logic hay không.',
       ta: 'வகைகளைப் பற்றிய கூற்றுகள் முடிவைத் தருக்கரீதியாக ஆதரிக்கின்றனவா எனத் தீர்மானி.',
       te: 'వర్గాల గురించిన ప్రకటనలు నిర్ధారణను తార్కికంగా సమర్థిస్తాయో లేదో గుర్తించండి.',
-      mr: 'वर्गांबद्दलची विधानं निष्कर्षाला तार्किक आधार देतात का ते ठरव.',
+      mr: 'वर्गांबद्दलची विधानं निष्कर्षाला तार्किक आधार देतात का ते ठरवा.',
       ms: 'Tentukan sama ada pernyataan tentang kategori menyokong kesimpulan secara logik.',
       he: 'בדקו אם טענות על קבוצות תומכות במסקנה מבחינה לוגית.',
       pl: 'Ustal, czy zdania o kategoriach logicznie wspierają wniosek.',

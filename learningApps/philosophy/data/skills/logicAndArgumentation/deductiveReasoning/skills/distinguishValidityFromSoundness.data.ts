@@ -54,7 +54,7 @@ export const distinguishValidityFromSoundness_Skill_Data = buildSkillConfig({
       vi: 'Hiểu vì sao lập luận hợp lệ về logic vẫn có thể có tiền đề sai.',
       ta: 'தருக்கரீதியாகச் செல்லுபடியாகும் வாதத்திலும் பொய்யான முன்கோள்கள் இருக்கலாம் என்பதைப் புரிந்துகொள்.',
       te: 'తార్కికంగా చెల్లుబాటయ్యే వాదనలో కూడా తప్పు పూర్వపక్షాలు ఎందుకు ఉండవచ్చో తెలుసుకోండి.',
-      mr: 'तार्किकदृष्ट्या वैध युक्तिवादातही खोटे पूर्वाधार का असू शकतात ते समज.',
+      mr: 'तार्किकदृष्ट्या वैध युक्तिवादातही खोटे पूर्वाधार का असू शकतात ते समजा.',
       ms: 'Fahami mengapa hujah yang sah dari segi logik masih boleh mempunyai premis palsu.',
       he: 'הבינו מדוע גם טיעון תקף מבחינה לוגית עשוי לכלול הנחות שגויות.',
       pl: 'Zrozum, dlaczego logicznie poprawny argument może mieć fałszywe przesłanki.',
