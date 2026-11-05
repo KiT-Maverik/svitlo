@@ -2,7 +2,6 @@
   "src/app/favicon.ico",
   "src/app/globals.css",
   "src/app/page.module.css",
-  "src/components/layout/LearningLayout/LearningLayout.tsx",
   "src/components/pages/ApiDemo/ApiDemo.constants.ts",
   "src/components/pages/ApiDemo/ApiDemo.e2e.spec.ts",
   "src/components/pages/ApiDemo/ApiDemo.tsx",
