@@ -1,3 +1,4 @@
+import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 
@@ -40,7 +41,7 @@ afterEach(() => {
 describe('Video content block', () => {
   it('keeps a potentially cached video available while offline, then shows a fallback if loading fails', () => {
     setOnline(false);
-    const { container } = render(<Video {...response} />);
+    const { container } = render(<Video messages={enUiKitMessages.video} {...response} />);
     const video = container.querySelector('video');
     expect(video).toHaveAttribute('src', '/lesson.mp4');
     expect(video).toHaveAttribute('poster', '/poster.png');
@@ -55,11 +56,11 @@ describe('Video content block', () => {
 
   it('distinguishes an unavailable source from a decoding error', () => {
     setOnline(true);
-    const { container, rerender } = render(<Video {...response} />);
+    const { container, rerender } = render(<Video messages={enUiKitMessages.video} {...response} />);
     failVideo(container.querySelector('video')!, 4);
     expect(screen.getByRole('alert')).toHaveTextContent('Відео не знайдено');
 
-    rerender(<Video {...response} fileLocation="/other.mp4" />);
+    rerender(<Video messages={enUiKitMessages.video} {...response} fileLocation="/other.mp4" />);
     failVideo(container.querySelector('video')!, 3);
     expect(screen.getByRole('alert')).toHaveTextContent('Помилка відтворення');
   });
@@ -67,7 +68,7 @@ describe('Video content block', () => {
   it('detects a media error that happened before React attached the error handler', () => {
     setOnline(true);
     Object.defineProperty(HTMLVideoElement.prototype, 'error', { configurable: true, get: () => ({ code: 4 }) });
-    render(<Video {...response} />);
+    render(<Video messages={enUiKitMessages.video} {...response} />);
     expect(screen.getByRole('alert')).toHaveTextContent('Відео не знайдено');
   });
 });
@@ -76,7 +77,7 @@ describe('Video content block', () => {
 describe('Video fallback lifecycle', () => {
   it('automatically retries an offline waiting player when connectivity returns', () => {
     setOnline(false);
-    const { container } = render(<Video {...response} />);
+    const { container } = render(<Video messages={enUiKitMessages.video} {...response} />);
     fireEvent.waiting(container.querySelector('video')!);
     expect(screen.getByRole('alert')).toHaveTextContent('Відео недоступне без мережі');
 
@@ -88,18 +89,18 @@ describe('Video fallback lifecycle', () => {
 
   it('discards a previous source failure after changing the file location', () => {
     setOnline(true);
-    const { container, rerender } = render(<Video {...response} />);
+    const { container, rerender } = render(<Video messages={enUiKitMessages.video} {...response} />);
     failVideo(container.querySelector('video')!, 4);
     expect(screen.getByRole('alert')).toBeInTheDocument();
 
-    rerender(<Video {...response} fileLocation="/another.mp4" />);
+    rerender(<Video messages={enUiKitMessages.video} {...response} fileLocation="/another.mp4" />);
     expect(screen.queryByRole('alert')).toBeNull();
     expect(container.querySelector('video')).toHaveAttribute('src', '/another.mp4');
   });
 
   it('shows default English fallback copy when no custom fallback exists', () => {
     setOnline(true);
-    const { container } = render(<Video {...response} fallback={undefined} />);
+    const { container } = render(<Video messages={enUiKitMessages.video} {...response} fallback={undefined} />);
     failVideo(container.querySelector('video')!, 4);
     expect(screen.getByRole('alert')).toHaveTextContent('This video is unavailable.');
     expect(screen.getByRole('button', { name: 'Try again' })).toBeVisible();
@@ -107,7 +108,7 @@ describe('Video fallback lifecycle', () => {
 
   it('ignores errors from an aborted video request', () => {
     setOnline(true);
-    const { container } = render(<Video {...response} />);
+    const { container } = render(<Video messages={enUiKitMessages.video} {...response} />);
     failVideo(container.querySelector('video')!, 1);
     expect(screen.queryByRole('alert')).toBeNull();
   });

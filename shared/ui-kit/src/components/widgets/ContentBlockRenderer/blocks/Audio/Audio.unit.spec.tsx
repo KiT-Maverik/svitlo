@@ -1,3 +1,4 @@
+import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 
@@ -40,7 +41,7 @@ afterEach(() => {
 describe('Audio content block', () => {
   it('renders the player and caption, then offers a retry if the file fails offline', () => {
     setOnline(false);
-    const { container } = render(<Audio {...response} />);
+    const { container } = render(<Audio messages={enUiKitMessages.audio} {...response} />);
     const audio = container.querySelector('audio');
     expect(audio).toHaveAttribute('src', '/lesson.mp3');
     expect(audio).toHaveAttribute('aria-label', 'Запис уроку');
@@ -54,11 +55,11 @@ describe('Audio content block', () => {
 
   it('distinguishes unavailable audio from a decoding error', () => {
     setOnline(true);
-    const { container, rerender } = render(<Audio {...response} />);
+    const { container, rerender } = render(<Audio messages={enUiKitMessages.audio} {...response} />);
     failAudio(container.querySelector('audio')!, 4);
     expect(screen.getByRole('alert')).toHaveTextContent('Аудіо не знайдено');
 
-    rerender(<Audio {...response} fileLocation="/other.mp3" />);
+    rerender(<Audio messages={enUiKitMessages.audio} {...response} fileLocation="/other.mp3" />);
     failAudio(container.querySelector('audio')!, 3);
     expect(screen.getByRole('alert')).toHaveTextContent('Помилка відтворення');
   });
@@ -66,7 +67,7 @@ describe('Audio content block', () => {
   it('detects a media error that happened before the handler was attached', () => {
     setOnline(true);
     Object.defineProperty(HTMLAudioElement.prototype, 'error', { configurable: true, get: () => ({ code: 4 }) });
-    render(<Audio {...response} />);
+    render(<Audio messages={enUiKitMessages.audio} {...response} />);
     expect(screen.getByRole('alert')).toHaveTextContent('Аудіо не знайдено');
   });
 });
@@ -75,7 +76,7 @@ describe('Audio content block', () => {
 describe('Audio fallback lifecycle', () => {
   it('automatically retries an offline stalled player when connectivity returns', () => {
     setOnline(false);
-    const { container } = render(<Audio {...response} />);
+    const { container } = render(<Audio messages={enUiKitMessages.audio} {...response} />);
     fireEvent.waiting(container.querySelector('audio')!);
     expect(screen.getByRole('alert')).toHaveTextContent('Аудіо недоступне без мережі');
 
@@ -87,18 +88,18 @@ describe('Audio fallback lifecycle', () => {
 
   it('does not retain an unavailable fallback when the source changes', () => {
     setOnline(true);
-    const { container, rerender } = render(<Audio {...response} />);
+    const { container, rerender } = render(<Audio messages={enUiKitMessages.audio} {...response} />);
     failAudio(container.querySelector('audio')!, 4);
     expect(screen.getByRole('alert')).toBeInTheDocument();
 
-    rerender(<Audio {...response} fileLocation="/new-lesson.mp3" />);
+    rerender(<Audio messages={enUiKitMessages.audio} {...response} fileLocation="/new-lesson.mp3" />);
     expect(screen.queryByRole('alert')).toBeNull();
     expect(container.querySelector('audio')).toHaveAttribute('src', '/new-lesson.mp3');
   });
 
   it('uses the built-in English fallback without author overrides', () => {
     setOnline(true);
-    const { container } = render(<Audio {...response} fallback={undefined} />);
+    const { container } = render(<Audio messages={enUiKitMessages.audio} {...response} fallback={undefined} />);
     failAudio(container.querySelector('audio')!, 4);
     expect(screen.getByRole('alert')).toHaveTextContent('This audio is unavailable.');
     expect(screen.getByRole('button', { name: 'Try again' })).toBeVisible();
@@ -106,7 +107,7 @@ describe('Audio fallback lifecycle', () => {
 
   it('ignores media errors caused by an aborted load', () => {
     setOnline(true);
-    const { container } = render(<Audio {...response} />);
+    const { container } = render(<Audio messages={enUiKitMessages.audio} {...response} />);
     failAudio(container.querySelector('audio')!, 1);
     expect(screen.queryByRole('alert')).toBeNull();
     expect(container.querySelector('audio')).toBeInTheDocument();

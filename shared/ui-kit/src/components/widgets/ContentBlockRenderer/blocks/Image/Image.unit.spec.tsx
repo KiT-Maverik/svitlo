@@ -1,3 +1,4 @@
+import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 
@@ -34,7 +35,7 @@ afterEach(() => {
 describe('Image content block', () => {
   it('renders a responsive Next image with authored intrinsic dimensions', () => {
     setOnline(true);
-    render(<ContentLanguageContext.Provider value="uk"><Image {...response} /></ContentLanguageContext.Provider>);
+    render(<ContentLanguageContext.Provider value="uk"><Image messages={enUiKitMessages.image} {...response} /></ContentLanguageContext.Provider>);
     const image = screen.getByAltText('Схема руху світла');
     expect(image).toHaveAttribute('width', '800');
     expect(image).toHaveAttribute('height', '450');
@@ -45,7 +46,7 @@ describe('Image content block', () => {
 
   it('preserves external image URLs unless their host is configured for optimization', () => {
     setOnline(true);
-    render(<Image {...response} src="https://cdn.example.com/diagram.png" />);
+    render(<Image messages={enUiKitMessages.image} {...response} src="https://cdn.example.com/diagram.png" />);
     expect(screen.getByAltText('Схема руху світла')).toHaveAttribute('src', 'https://cdn.example.com/diagram.png');
   });
 
@@ -60,7 +61,7 @@ describe('Image content block', () => {
       aspectRatio: 16 / 9,
       objectFit: 'cover',
     };
-    render(<Image {...fillResponse} />);
+    render(<Image messages={enUiKitMessages.image} {...fillResponse} />);
     const image = screen.getByAltText('Схема руху світла');
     expect(image).not.toHaveAttribute('width');
     expect(image).toHaveStyle({ objectFit: 'cover' });
@@ -69,7 +70,7 @@ describe('Image content block', () => {
 
   it('attempts a cached image offline before showing the fallback', () => {
     setOnline(false);
-    render(<Image {...response} />);
+    render(<Image messages={enUiKitMessages.image} {...response} />);
     const image = screen.getByAltText('Схема руху світла');
     expect(image).toBeInTheDocument();
     fireEvent.error(image);
@@ -82,7 +83,7 @@ describe('Image content block', () => {
 
   it('shows the unavailable fallback when loading fails online', () => {
     setOnline(true);
-    render(<Image {...response} />);
+    render(<Image messages={enUiKitMessages.image} {...response} />);
     fireEvent.error(screen.getByAltText('Схема руху світла'));
     expect(screen.getByRole('alert')).toHaveTextContent('Зображення не знайдено');
   });
@@ -92,7 +93,7 @@ describe('Image content block', () => {
 describe('Image fallback lifecycle', () => {
   it('retries an offline failure automatically when the connection returns', () => {
     setOnline(false);
-    render(<Image {...response} />);
+    render(<Image messages={enUiKitMessages.image} {...response} />);
     fireEvent.error(screen.getByAltText('Схема руху світла'));
     expect(screen.getByRole('alert')).toHaveTextContent('Зображення не збережено офлайн');
 
@@ -104,18 +105,18 @@ describe('Image fallback lifecycle', () => {
 
   it('does not carry a failed state across image source changes', () => {
     setOnline(true);
-    const { rerender } = render(<Image {...response} />);
+    const { rerender } = render(<Image messages={enUiKitMessages.image} {...response} />);
     fireEvent.error(screen.getByAltText('Схема руху світла'));
     expect(screen.getByRole('alert')).toBeInTheDocument();
 
-    rerender(<Image {...response} src="/alternate-diagram.png" />);
+    rerender(<Image messages={enUiKitMessages.image} {...response} src="/alternate-diagram.png" />);
     expect(screen.queryByRole('alert')).toBeNull();
     expect(screen.getByAltText('Схема руху світла').getAttribute('src')).toContain('alternate-diagram.png');
   });
 
   it('uses its built-in fallback when localized overrides are absent', () => {
     setOnline(true);
-    render(<Image {...response} fallback={undefined} />);
+    render(<Image messages={enUiKitMessages.image} {...response} fallback={undefined} />);
     fireEvent.error(screen.getByAltText('Схема руху світла'));
     expect(screen.getByRole('alert')).toHaveTextContent('This image is unavailable.');
     expect(screen.getByRole('button', { name: 'Try again' })).toBeVisible();

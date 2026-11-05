@@ -1,3 +1,4 @@
+import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import type { ContentBlock_Checkpoint_Response, Locale_Languages } from '@svitlo/engine/content';
@@ -19,7 +20,7 @@ const response: ContentBlock_Checkpoint_Response<Locale_Languages> = {
 
 describe('Checkpoint content block', () => {
   it('renders a nested answer and confirms a checked item', () => {
-    render(<Checkpoint {...response} renderNested={block => <span>{block.type}: {block.id}</span>} />);
+    render(<Checkpoint messages={enUiKitMessages.checkpoint} {...response} renderNested={block => <span>{block.type}: {block.id}</span>} />);
     expect(screen.getByRole('heading', { name: 'Check your knowledge', level: 3 })).toBeInTheDocument();
     fireEvent.click(screen.getByText('What is light?'));
     expect(screen.getByText('text: answer-1')).toBeVisible();
@@ -28,7 +29,7 @@ describe('Checkpoint content block', () => {
   });
 
   it('does not show confirmation when checks are disabled', () => {
-    render(<Checkpoint {...response} items={[{ ...response.items[0], check: undefined }]} renderNested={() => null} />);
+    render(<Checkpoint messages={enUiKitMessages.checkpoint} {...response} items={[{ ...response.items[0], check: undefined }]} renderNested={() => null} />);
     fireEvent.click(screen.getByText('What is light?'));
     expect(screen.queryByRole('button', { name: 'Check' })).toBeNull();
   });
@@ -37,7 +38,7 @@ describe('Checkpoint content block', () => {
 
 describe('Checkpoint configuration and accessibility', () => {
   it('enables confirmation for all items and keeps their state independent', () => {
-    render(<Checkpoint
+    render(<Checkpoint messages={enUiKitMessages.checkpoint}
       {...response}
       enableChecks
       items={[
@@ -56,7 +57,7 @@ describe('Checkpoint configuration and accessibility', () => {
   });
 
   it('uses right-to-left direction and clamps the item heading level at six', () => {
-    render(<ContentLanguageContext.Provider value="ar"><Checkpoint
+    render(<ContentLanguageContext.Provider value="ar"><Checkpoint messages={enUiKitMessages.checkpoint}
       {...response}
       title="اختبر معلوماتك"
       headingLevel={6}
