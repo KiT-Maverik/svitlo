@@ -61,7 +61,7 @@ export const interpretExistentialQuantification_Skill_Data = buildSkillConfig({
       pl: 'Zrozum, że „istnieje” oznacza co najmniej jeden przykład spełniający warunek.',
       uk: 'Зрозумій, що «існує» означає принаймні один відповідний приклад.',
       lt: 'Suprask, kad „egzistuoja“ reiškia bent vieną sąlygą atitinkantį atvejį.',
-      lv: 'Saprot, ka „eksistē“ nozīmē vismaz vienu nosacījumam atbilstošu piemēru.',
+      lv: 'Saproti, ka „eksistē“ nozīmē vismaz vienu nosacījumam atbilstošu piemēru.',
       et: 'Mõista, et „leidub“ tähendab vähemalt üht tingimusele vastavat näidet.',
       be: 'Зразумей, што «існуе» азначае прынамсі адзін адпаведны прыклад.',
       ka: 'გაიგე, რომ „არსებობს“ ნიშნავს პირობის დამაკმაყოფილებელ სულ მცირე ერთ მაგალითს.',

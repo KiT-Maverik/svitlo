@@ -61,7 +61,7 @@ export const interpretLogicalNegation_Skill_Data = buildSkillConfig({
       pl: 'Zrozum, jak zaprzeczenie twierdzenia zmienia jego warunki prawdziwości.',
       uk: 'Зрозумій, як заперечення твердження змінює умови його істинності.',
       lt: 'Suprask, kaip teiginio neigimas pakeičia jo teisingumo sąlygas.',
-      lv: 'Saprot, kā apgalvojuma noliegums maina tā patiesuma nosacījumus.',
+      lv: 'Saproti, kā apgalvojuma noliegums maina tā patiesuma nosacījumus.',
       et: 'Mõista, kuidas väite eitamine muudab selle tõetingimusi.',
       be: 'Зразумей, як адмаўленьне сьцьверджаньня зьмяняе ўмовы яго праўдзівасьці.',
       ka: 'გაიგე, როგორ ცვლის მტკიცების უარყოფა მისი ჭეშმარიტების პირობებს.',

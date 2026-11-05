@@ -61,7 +61,7 @@ export const interpretMaterialImplication_Skill_Data = buildSkillConfig({
       pl: 'Zrozum, kiedy implikacja jest prawdziwa w klasycznym rachunku zdań.',
       uk: 'Зрозумій, коли умовне висловлювання істинне в класичній логіці висловлювань.',
       lt: 'Suprask, kada sąlyginis teiginys teisingas klasikinėje teiginių logikoje.',
-      lv: 'Saprot, kad nosacījuma izteikums ir patiess klasiskajā izteikumu loģikā.',
+      lv: 'Saproti, kad nosacījuma izteikums ir patiess klasiskajā izteikumu loģikā.',
       et: 'Mõista, millal tingimuslause on klassikalises lausearvutuses tõene.',
       be: 'Зразумей, калі ўмоўнае выказваньне праўдзівае ў клясычнай лёгіцы выказваньняў.',
       ka: 'გაიგე, როდის არის პირობითი წინადადება ჭეშმარიტი კლასიკურ გამონათქვამთა ლოგიკაში.',

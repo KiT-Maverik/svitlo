@@ -61,7 +61,7 @@ export const interpretLogicalBiconditional_Skill_Data = buildSkillConfig({
       pl: 'Rozpoznaj, że „wtedy i tylko wtedy, gdy” wymaga implikacji w obu kierunkach.',
       uk: 'Зрозумій, що «тоді й лише тоді» вимагає імплікації в обох напрямах.',
       lt: 'Suprask, kad „tada ir tik tada“ reikalauja implikacijos abiem kryptimis.',
-      lv: 'Saprot, ka „tad un tikai tad, ja“ prasa implikāciju abos virzienos.',
+      lv: 'Saproti, ka „tad un tikai tad, ja“ prasa implikāciju abos virzienos.',
       et: 'Mõista, et „siis ja ainult siis“ nõuab järeldumist mõlemas suunas.',
       be: 'Зразумей, што «тады й толькі тады» патрабуе імплікацыі ў абодвух кірунках.',
       ka: 'გაიგე, რომ „მაშინ და მხოლოდ მაშინ“ ორივე მიმართულებით იმპლიკაციას მოითხოვს.',
