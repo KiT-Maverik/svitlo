@@ -61,7 +61,7 @@ export const safeContactWithBloodAndBodyFluids_Skill_Data = buildSkillConfig({
       pl: 'Zrozum, dlaczego kontakt z krwią i płynami ustrojowymi wymaga ochrony.',
       uk: 'Зрозумій, чому під час контакту з кров’ю та біологічними рідинами потрібен захист.',
       lt: 'Suprask, kodėl tvarkant kraują ir kūno skysčius būtina apsauga.',
-      lv: 'Saprot, kāpēc darbā ar asinīm un ķermeņa šķidrumiem vajadzīga aizsardzība.',
+      lv: 'Saproti, kāpēc darbā ar asinīm un ķermeņa šķidrumiem vajadzīga aizsardzība.',
       et: 'Mõista, miks vere ja kehavedelike käsitsemisel on vaja kaitset.',
       be: 'Зразумей, чаму пры кантакце з крывёю й біялягічнымі вадкасьцямі патрэбна абарона.',
       ka: 'გაიგე, რატომ არის საჭირო დაცვა სისხლთან და სხეულის სითხეებთან შეხებისას.',

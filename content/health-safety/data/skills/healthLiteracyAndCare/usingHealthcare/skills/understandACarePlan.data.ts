@@ -61,7 +61,7 @@ export const understandACarePlan_Skill_Data = buildSkillConfig({
       pl: 'Zrozum cel, harmonogram i środki ostrożności uzgodnionego planu opieki.',
       uk: 'Зрозумій мету, графік і застереження погодженого плану лікування.',
       lt: 'Suprask suderinto gydymo plano tikslą, tvarkaraštį ir atsargumo priemones.',
-      lv: 'Saprot saskaņotā ārstēšanas plāna mērķi, grafiku un piesardzības pasākumus.',
+      lv: 'Saproti saskaņotā ārstēšanas plāna mērķi, grafiku un piesardzības pasākumus.',
       et: 'Mõista kokkulepitud raviplaani eesmärki, ajakava ja ettevaatusabinõusid.',
       be: 'Зразумей мэту, расклад і засьцярогі ўзгодненага пляну лячэньня.',
       ka: 'გაიგე შეთანხმებული მკურნალობის გეგმის მიზანი, განრიგი და სიფრთხილის ზომები.',
