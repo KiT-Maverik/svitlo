@@ -7,6 +7,10 @@ import { fileURLToPath } from 'node:url';
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const dist = join(root, 'dist');
 const index = JSON.parse(readFileSync(join(dist, 'data/lesson-index.json'), 'utf8'));
+const publication = JSON.parse(readFileSync(join(dist, '.svitlo/publish-playground.json'), 'utf8'));
+assert.equal(publication.textbook, 'playground');
+assert.ok(publication.files.some(name => name.startsWith('data/pages/lessons/')));
+assert.ok(publication.files.includes('data/pages/skillAnalytics/uk.json'));
 assert.ok(index.lessons.length > 0, 'The offline textbook has no lessons');
 for (const lesson of index.lessons) {
   const base = join(dist, 'data/pages/lessons', lesson.id.at(-1), lesson.id);
