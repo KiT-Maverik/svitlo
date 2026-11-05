@@ -45,7 +45,7 @@ export const hygieneOfPersonalItems_Skill_Data = buildSkillConfig({
       ar: 'حافظ على نظافة أغراضك وتجنّب مشاركة ما قد ينقل العدوى.',
       fr: 'Garde tes objets propres et évite de partager ceux qui transmettent des infections.',
       bn: 'ব্যক্তিগত জিনিস পরিষ্কার রাখো এবং সংক্রমণ ছড়াতে পারে এমন জিনিস ভাগ কোরো না।',
-      pt: 'Mantenha os objetos pessoais limpos e evite partilhar os que possam transmitir infeções.',
+      pt: 'Mantenha os objetos pessoais limpos e evite compartilhar os que possam transmitir infecções.',
       ur: 'ذاتی اشیا صاف رکھیں اور انفیکشن پھیلانے والی چیزیں مشترک استعمال نہ کریں۔',
       id: 'Jaga kebersihan barang pribadi dan hindari berbagi barang yang bisa menularkan infeksi.',
       de: 'Halte persönliche Dinge sauber und teile keine Gegenstände, die Infektionen übertragen können.',
