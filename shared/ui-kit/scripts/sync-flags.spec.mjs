@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { existsSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -19,10 +19,15 @@ test('flag synchronization still works from a target workspace', () => {
   const target = mkdtempSync(join(tmpdir(), 'svitlo-flags-'));
   try {
     writeFileSync(join(target, 'package.json'), JSON.stringify({ name: '@svitlo/flag-test' }));
+    mkdirSync(join(target, 'public/flags'), { recursive: true });
+    writeFileSync(join(target, 'public/flags/stale.svg'), '<svg />');
+    writeFileSync(join(target, 'public/robots.txt'), 'host-owned');
     const command = spawnSync(process.execPath, [script], { cwd: target, encoding: 'utf8' });
     assert.equal(command.status, 0, command.stderr);
     assert(existsSync(join(target, 'public/flags')));
     assert(readdirSync(join(target, 'public/flags')).some(file => file.endsWith('.svg')));
+    assert(!existsSync(join(target, 'public/flags/stale.svg')), 'stale UI Kit flags must be removed');
+    assert.equal(readFileSync(join(target, 'public/robots.txt'), 'utf8'), 'host-owned');
   } finally {
     rmSync(target, { recursive: true, force: true });
   }
