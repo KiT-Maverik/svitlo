@@ -9,6 +9,10 @@ export default defineConfig(({ command }) => ({
     emptyOutDir: true,
     target: 'es2022',
     modulePreload: true,
+    // Workspace symlinks resolve to shared/*/dist outside node_modules.
+    // The existing Engine/Contracts/UI Kit build produces CommonJS, so
+    // Rollup must transform those paths instead of assuming ESM exports.
+    commonjsOptions: { include: [/node_modules/, /shared[\\/](?:engine|contracts|ui-kit)[\\/]dist/] },
   },
   plugins: [
     {
