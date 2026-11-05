@@ -1,3 +1,4 @@
+import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import type { Meta, StoryObj } from '@storybook/nextjs';
 import { Image } from './Image';
 
@@ -19,6 +20,7 @@ const meta = {
     docs: { description: { component: 'Next.js image block with intrinsic or fill layout, accessible alt text, captions, and a retry state when loading fails.' } },
   },
   args: {
+    messages: enUiKitMessages.image,
     id: 'image-example',
     type: 'image',
 

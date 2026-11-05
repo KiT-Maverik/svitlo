@@ -22,11 +22,12 @@ type State =
  * UUIDs, so no matching content can be honestly displayed yet.
  */
 export function SkillLearningClient({ skillId, domainSlugs }: SkillLearningClientProps) {
-  const [state, setState] = useState<State>({ status: 'loading' });
+  const requestKey = skillId + ':' + domainSlugs.join('|');
+  const [loaded, setLoaded] = useState<State & { requestKey: string }>({ status: 'loading', requestKey });
+  const state: State = loaded.requestKey === requestKey ? loaded : { status: 'loading' };
 
   useEffect(() => {
     const controller = new AbortController();
-    setState({ status: 'loading' });
     void (async () => {
       try {
         const language = resolveSkillLanguage(
@@ -35,17 +36,18 @@ export function SkillLearningClient({ skillId, domainSlugs }: SkillLearningClien
         const domains = await loadSkillAnalyticsPage(language, controller.signal, domainSlugs);
         const match = flattenSkillNodes(domains).find(node => node.kind === 'skill' && node.id === skillId);
         if (!match) throw new Error('Скіл із таким UUID не знайдено в каталозі.');
-        if (!controller.signal.aborted) setState({ status: 'ready', node: match, language });
+        if (!controller.signal.aborted) setLoaded({ status: 'ready', node: match, language, requestKey });
       } catch (error) {
         if (!controller.signal.aborted)
-          setState({
+          setLoaded({
+            requestKey,
             status: 'error',
             message: error instanceof Error ? error.message : 'Помилка завантаження скіла.',
           });
       }
     })();
     return () => controller.abort();
-  }, [skillId, domainSlugs]);
+  }, [skillId, domainSlugs, requestKey]);
 
   if (state.status === 'loading') {
     return (
@@ -91,11 +93,11 @@ export function SkillLearningClient({ skillId, domainSlugs }: SkillLearningClien
       </Typography>
       <Paper variant="outlined" sx={{ borderRadius: 3, p: { xs: 3, sm: 4 } }}>
         <Typography variant="h6" sx={{ fontWeight: 700 }}>
-          Поки немає пов'язаних матеріалів
+          Поки немає пов&apos;язаних матеріалів
         </Typography>
         <Typography color="text.secondary" sx={{ mt: 1 }}>
-          У цьому тестовому Playground ще не створено зв'язків між UUID навички та уроками або програмами. Коли такі
-          зв'язки з'являться, тут можна буде показувати матеріали саме для цієї навички.
+          У цьому тестовому Playground ще не створено зв&apos;язків між UUID навички та уроками або програмами. Коли такі
+          зв&apos;язки з&apos;являться, тут можна буде показувати матеріали саме для цієї навички.
         </Typography>
         <Box sx={{ mt: 3 }}>
           <Link href={returnHref}>← Повернутися до аналітики навичок</Link>

@@ -3,6 +3,7 @@ import { describe, expect, it, vi } from 'vitest';
 import type { Question, Locale_Languages } from '@svitlo/engine/content';
 import { QuestionRenderer } from './questions/response/QuestionRenderer';
 import { parseQuestionNumber } from './questions/AnswerWithNumber/AnswerWithNumber';
+import { enUiKitMessages } from '../../testing/uiKitMessages.unit.fx';
 
 const text = (id: string, value: string) => ({ id, type: 'text' as const, value });
 const common = {
@@ -21,12 +22,12 @@ const one: Question<'response', Locale_Languages> = {
 
 describe('QuestionRenderer — contract responses', () => {
   it('renders nothing for an empty array', () => {
-    const { container } = render(<QuestionRenderer questions={[]} />);
+    const { container } = render(<QuestionRenderer messages={enUiKitMessages} questions={[]} />);
     expect(container).toBeEmptyDOMElement();
   });
 
   it('renders prompts, hints, choices and explanations without converting to legacy questions', () => {
-    render(<QuestionRenderer questions={[one]} />);
+    render(<QuestionRenderer messages={enUiKitMessages} questions={[one]} />);
     expect(screen.getByText('What is the answer?')).toBeVisible();
     const hint = screen.getByText('Hint');
     fireEvent.click(hint);
@@ -57,7 +58,7 @@ describe('QuestionRenderer — contract responses', () => {
         slots: [{ selector: 'first', correctAnswers: ['Answer'] }], placeholder: 'Fill' },
     ];
     const questions = definitions.map((question, index) => ({ ...question, id: 'question-' + index }));
-    const { container } = render(<QuestionRenderer questions={questions} />);
+    const { container } = render(<QuestionRenderer messages={enUiKitMessages} questions={questions} />);
     expect(within(container).getAllByRole('region')).toHaveLength(9);
     expect(within(container).getAllByRole('button', { name: 'Check' })).toHaveLength(9);
   });
@@ -69,7 +70,7 @@ describe('QuestionRenderer — contract responses', () => {
       id: 'question-2',
       question: [text('second-prompt', 'Another question')],
     };
-    render(<QuestionRenderer questions={[one, another]} onComplete={onComplete} />);
+    render(<QuestionRenderer messages={enUiKitMessages} questions={[one, another]} onComplete={onComplete} />);
     const yesButtons = screen.getAllByRole('button', { name: 'Yes' });
     fireEvent.click(yesButtons[0]);
     fireEvent.click(screen.getAllByRole('button', { name: 'Check' })[0]);
@@ -80,9 +81,9 @@ describe('QuestionRenderer — contract responses', () => {
   });
 
   it('resets attempt state when a question ID changes', () => {
-    const { rerender } = render(<QuestionRenderer questions={[one]} />);
+    const { rerender } = render(<QuestionRenderer messages={enUiKitMessages} questions={[one]} />);
     fireEvent.click(screen.getByRole('button', { name: 'Yes' }));
-    rerender(<QuestionRenderer questions={[{ ...one, id: 'another-id',
+    rerender(<QuestionRenderer messages={enUiKitMessages} questions={[{ ...one, id: 'another-id',
       question: [text('other', 'Replacement prompt')] }]} />);
     expect(screen.queryByText('What is the answer?')).toBeNull();
     expect(screen.getByText('Replacement prompt')).toBeVisible();

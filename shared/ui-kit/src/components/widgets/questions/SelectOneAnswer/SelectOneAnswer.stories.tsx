@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs';
 import type { Question_SelectOneAnswer, Locale_Languages } from '@svitlo/engine/content';
+import { enUiKitMessages } from '../../../../testing/uiKitMessages.unit.fx';
 import { SelectOneAnswer } from './SelectOneAnswer';
 
 const text = (id: string, value: string) => ({ id, type: 'text' as const, value });
@@ -20,7 +21,7 @@ const meta = {
   title: 'Questions/Select one answer',
   component: SelectOneAnswer,
   tags: ['autodocs'],
-  args: { response },
+  args: { response, messages: enUiKitMessages },
 } satisfies Meta<typeof SelectOneAnswer>;
 
 export default meta;

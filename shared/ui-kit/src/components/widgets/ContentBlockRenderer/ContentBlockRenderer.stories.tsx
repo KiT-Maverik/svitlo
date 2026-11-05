@@ -1,3 +1,4 @@
+import { enUiKitMessages } from '../../../testing/uiKitMessages.unit.fx';
 import type { Meta, StoryObj } from '@storybook/nextjs';
 import { ContentBlockRenderer } from './ContentBlockRenderer';
 import type { ContentBlockRendererProps } from './types';
@@ -21,7 +22,7 @@ const meta = {
       },
     },
   },
-  args: { blocks: mixedBlocks },
+  args: { messages: enUiKitMessages, blocks: mixedBlocks },
   argTypes: {
     blocks: { control: 'object', description: 'Ordered, tagged content-block responses.' },
     sceneRegistry: { control: false, table: { disable: true } },

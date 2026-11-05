@@ -1,3 +1,4 @@
+import type { UiKit_Component } from '@svitlo/engine/content';
 const uk = {
   flashcard: {
     region: 'Флешкартка',
@@ -98,4 +99,4 @@ const qm = {
   },
 } satisfies Flashcard_Locale;
 
-export const locales = { uk, lt, lv, et, be, ka, kk, qm } as const;
+export const data = { uk, lt, lv, et, be, ka, kk, qm } satisfies UiKit_Component<'flashcard', 'data', 'uk' | 'lt' | 'lv' | 'et' | 'be' | 'ka' | 'kk' | 'qm'>;

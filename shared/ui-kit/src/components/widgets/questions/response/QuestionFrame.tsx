@@ -4,6 +4,7 @@ import { useContext, useId, useState, type ReactNode } from 'react';
 import { Box, Button, Paper, Stack, Typography } from '@mui/material';
 import type { Question, Locale_Languages } from '@svitlo/engine/content';
 import { useContentLanguage } from '../../ContentBlockRenderer/ContentLanguageContext';
+import type { UiKit_Global } from '@svitlo/engine/content';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
 import { QuestionContent } from './QuestionContent';
 import { QuestionCompletionContext } from './QuestionCompletion';
@@ -35,19 +36,14 @@ export function useQuestionAttempt<Value>(
 
 export type QuestionAttemptState<Value> = ReturnType<typeof useQuestionAttempt<Value>>;
 
-const copy = {
-  en: { check: 'Check', retry: 'Try again', hint: 'Hint', explanation: 'Explanation',
-    correct: 'Correct!', incorrect: 'Not quite. Try again.' },
-  uk: { check: 'Перевірити', retry: 'Спробувати ще раз', hint: 'Підказка', explanation: 'Пояснення',
-    correct: 'Правильно!', incorrect: 'Неправильно. Спробуйте ще раз.' },
-};
-
 export function QuestionFrame<Value>({
   response,
   sceneRegistry,
   attempt,
   children,
+  messages,
 }: {
+  messages: UiKit_Global<'response'>;
   response: QuestionResponse;
   sceneRegistry?: SceneRegistry;
   attempt: QuestionAttemptState<Value>;
@@ -57,7 +53,7 @@ export function QuestionFrame<Value>({
   const completion = useContext(QuestionCompletionContext);
   const trackingId = response.type + ':' + response.id;
   const lang = useContentLanguage();
-  const t = lang === 'uk' ? copy.uk : copy.en;
+  const t = messages.questionFrame;
   return (
     <Paper
       component="section"
@@ -67,12 +63,12 @@ export function QuestionFrame<Value>({
       sx={{ p: { xs: 2, sm: 3 }, minWidth: 0, display: 'flex', flexDirection: 'column', gap: 2 }}
     >
       <Box id={headingId} role="heading" aria-level={2} sx={{ typography: 'h6', textAlign: 'center' }}>
-        <QuestionContent blocks={response.question} sceneRegistry={sceneRegistry} />
+        <QuestionContent blocks={response.question} sceneRegistry={sceneRegistry} messages={messages} />
       </Box>
       {response.hint?.length ? (
         <Box component="details">
           <Box component="summary" sx={{ cursor: 'pointer' }}>{t.hint}</Box>
-          <QuestionContent blocks={response.hint} sceneRegistry={sceneRegistry} />
+          <QuestionContent blocks={response.hint} sceneRegistry={sceneRegistry} messages={messages} />
         </Box>
       ) : null}
       <Box sx={{ minWidth: 0, width: '100%' }}>{children}</Box>
@@ -84,7 +80,7 @@ export function QuestionFrame<Value>({
       {attempt.checked && response.explanation?.length ? (
         <Box component="details">
           <Box component="summary" sx={{ cursor: 'pointer' }}>{t.explanation}</Box>
-          <QuestionContent blocks={response.explanation} sceneRegistry={sceneRegistry} />
+          <QuestionContent blocks={response.explanation} sceneRegistry={sceneRegistry} messages={messages} />
         </Box>
       ) : null}
       <Stack direction="row" sx={{ justifyContent: 'center' }}>

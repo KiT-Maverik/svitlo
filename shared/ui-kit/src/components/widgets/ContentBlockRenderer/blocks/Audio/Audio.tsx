@@ -3,15 +3,18 @@
 import { useEffect, useRef, useState, type SyntheticEvent } from 'react';
 import Button from '@mui/material/Button';
 import type { ContentBlock_Audio_Response } from '@svitlo/engine/content';
+import type { UiKit_Component } from '@svitlo/engine/content';
 
 import { localizedAttributes } from '../../utils';
 import { useContentLanguage } from '../../ContentLanguageContext';
-import { audioFallbackText, classifyAudioError, type AudioFailureKind } from './Audio.utils';
+import { classifyAudioError, type AudioFailureKind } from './Audio.utils';
 import styles from './Audio.module.css';
 
 type AudioFailure = { source: string; kind: AudioFailureKind };
 
-export const Audio = ({ fileLocation, title, description, fallback }: ContentBlock_Audio_Response) => {
+export const Audio = ({ fileLocation, title, description, fallback, messages }: ContentBlock_Audio_Response & {
+  messages: UiKit_Component<'audio', 'response'>;
+}) => {
   const contentLanguage = useContentLanguage();
   const audioRef = useRef<HTMLAudioElement>(null);
   const [failure, setFailure] = useState<AudioFailure | null>(null);
@@ -51,9 +54,9 @@ export const Audio = ({ fileLocation, title, description, fallback }: ContentBlo
       {failureKind ? (
         <div className={styles.placeholder} role="alert">
           <strong>{title}</strong>
-          <span>{fallback?.[failureKind] || audioFallbackText(contentLanguage, failureKind)}</span>
+          <span>{fallback?.[failureKind] || messages[failureKind]}</span>
           <Button type="button" variant="outlined" onClick={retry}>
-            {fallback?.retry || audioFallbackText(contentLanguage, 'retry')}
+            {fallback?.retry || messages['retry']}
           </Button>
         </div>
       ) : (

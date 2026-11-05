@@ -45,32 +45,12 @@
       "types": "./dist/components/layout/LearningLayout/index.d.ts",
       "default": "./dist/components/layout/LearningLayout/index.js"
     },
-    "./learning-layout/constants": {
-      "types": "./dist/components/layout/LearningLayout/LearningLayout.constants.d.ts",
-      "default": "./dist/components/layout/LearningLayout/LearningLayout.constants.js"
-    },
-    "./learning-layout/locales/*": {
-      "types": "./dist/components/layout/LearningLayout/locales/*.d.ts",
-      "default": "./dist/components/layout/LearningLayout/locales/*.js"
-    },
     "./sync-flags": {
       "default": "./scripts/sync-flags.mjs"
-    },
-    "./learning-layout/locales": {
-      "types": "./dist/components/layout/LearningLayout/locales/index.d.ts",
-      "default": "./dist/components/layout/LearningLayout/locales/index.js"
     },
     "./learning-layout/preferences": {
       "types": "./dist/components/layout/LearningLayout/NavbarPreferences/NavbarPreferences.d.ts",
       "default": "./dist/components/layout/LearningLayout/NavbarPreferences/NavbarPreferences.js"
-    },
-    "./learning-layout/preferences/constants": {
-      "types": "./dist/components/layout/LearningLayout/NavbarPreferences/NavbarPreferences.constants.d.ts",
-      "default": "./dist/components/layout/LearningLayout/NavbarPreferences/NavbarPreferences.constants.js"
-    },
-    "./learning-layout/preferences/locales": {
-      "types": "./dist/components/layout/LearningLayout/NavbarPreferences/locales/index.d.ts",
-      "default": "./dist/components/layout/LearningLayout/NavbarPreferences/locales/index.js"
     }
   },
   "files": [
@@ -80,7 +60,7 @@
   ],
   "scripts": {
     "build": "tsc -p tsconfig.build.json && node scripts/copy-assets.mjs",
-    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.data.json --noEmit",
     "test:logic": "npm run typecheck",
     "test:components": "vitest run",
     "test": "npm run test:logic && npm run test:components",

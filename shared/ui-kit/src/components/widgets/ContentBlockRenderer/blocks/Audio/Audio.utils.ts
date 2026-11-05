@@ -9,21 +9,3 @@ export function classifyAudioError(error: MediaError | null, online: boolean): A
   return 'playbackError';
 }
 
-const fallbackText = {
-  en: {
-    offline: 'This audio is not available offline.',
-    unavailable: 'This audio is unavailable.',
-    playbackError: 'The audio could not be played.',
-    retry: 'Try again',
-  },
-  uk: {
-    offline: 'Це аудіо недоступне без інтернету.',
-    unavailable: 'Це аудіо недоступне.',
-    playbackError: 'Не вдалося відтворити аудіо.',
-    retry: 'Спробувати ще раз',
-  },
-} as const;
-
-export function audioFallbackText(locale: string, kind: AudioFailureKind | 'retry'): string {
-  return (locale === 'uk' ? fallbackText.uk : fallbackText.en)[kind];
-}

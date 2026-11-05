@@ -9,21 +9,3 @@ export function classifyVideoError(error: MediaError | null, online: boolean): V
   return 'playbackError';
 }
 
-const fallbackText = {
-  en: {
-    offline: 'This video is not available offline.',
-    unavailable: 'This video is unavailable.',
-    playbackError: 'The video could not be played.',
-    retry: 'Try again',
-  },
-  uk: {
-    offline: 'Це відео недоступне без інтернету.',
-    unavailable: 'Це відео недоступне.',
-    playbackError: 'Не вдалося відтворити відео.',
-    retry: 'Спробувати ще раз',
-  },
-} as const;
-
-export function videoFallbackText(locale: string, kind: VideoFailureKind | 'retry'): string {
-  return (locale === 'uk' ? fallbackText.uk : fallbackText.en)[kind];
-}

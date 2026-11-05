@@ -2,7 +2,7 @@
 import { TextField } from '@mui/material';
 import type { Question_AnswerWithNumber, Locale_Languages } from '@svitlo/engine/content';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
-import { useContentLanguage } from '../../ContentBlockRenderer/ContentLanguageContext';
+import type { UiKit_Global } from '@svitlo/engine/content';
 import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
 
 export function parseQuestionNumber(value: string): number | null {
@@ -12,11 +12,11 @@ export function parseQuestionNumber(value: string): number | null {
   return Number.isFinite(number) ? number : null;
 }
 
-export function AnswerWithNumber({ response, sceneRegistry }: {
+export function AnswerWithNumber({ response, sceneRegistry, messages }: {
   response: Question_AnswerWithNumber<'response', Locale_Languages>;
   sceneRegistry?: SceneRegistry;
+  messages: UiKit_Global<'response'>;
 }) {
-  const language = useContentLanguage();
   const attempt = useQuestionAttempt(
     () => '',
     value => {
@@ -26,8 +26,8 @@ export function AnswerWithNumber({ response, sceneRegistry }: {
     value => parseQuestionNumber(value) !== null,
   );
   return (
-    <QuestionFrame response={response} sceneRegistry={sceneRegistry} attempt={attempt}>
-      <TextField fullWidth label={language === 'uk' ? 'Ваша відповідь' : 'Your answer'}
+    <QuestionFrame response={response} sceneRegistry={sceneRegistry} messages={messages} attempt={attempt}>
+      <TextField fullWidth label={messages.questionFrame.answerLabel}
         placeholder={response.placeholder} value={attempt.value}
         onChange={event => attempt.setValue(event.target.value)}
         disabled={attempt.checked} error={attempt.checked && !attempt.correct}

@@ -6,6 +6,7 @@ import ListOutlined from '@mui/icons-material/ListOutlined';
 import PriorityHighOutlined from '@mui/icons-material/PriorityHighOutlined';
 import ChatBubbleOutlineOutlined from '@mui/icons-material/ChatBubbleOutlineOutlined';
 import { Flashcard, type FlashcardProps } from './Flashcard';
+import { ukUiKitMessages } from '../../../testing/uiKitMessages.unit.fx';
 
 type StoryProps = Omit<FlashcardProps, 'revealed' | 'onReveal' | 'onRate'> & { initialRevealed?: boolean };
 
@@ -47,6 +48,7 @@ const meta = {
     disabled: { control: 'boolean' },
   },
   args: {
+    messages: ukUiKitMessages.flashcard,
     question: 'Як поширюється світло в прозорому однорідному середовищі?',
     answer: 'Прямолінійно.',
     labels: [

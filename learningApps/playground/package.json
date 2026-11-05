@@ -17,8 +17,8 @@
     "test:e2e:db": "npm run test:e2e:db --workspace @svitlo/indexdb",
     "test:components": "vitest run",
     "test:components:coverage": "vitest run --coverage",
-    "prebuild": "node --import @svitlo/ui-kit/sync-flags --eval \"\" && node ../../scripts/generators/pages/skillAnalytics/generate-skill-analytics.mjs --package learningApps/playground --write && npm run build --workspace @svitlo/contracts && npm run build --workspace @svitlo/engine && npm run build --workspace @svitlo/ui-kit && node ../../scripts/generators/pages/lessons/generate-lessons.mjs --package learningApps/playground --write",
-    "predev": "node --import @svitlo/ui-kit/sync-flags --eval \"\" && node ../../scripts/generators/pages/skillAnalytics/generate-skill-analytics.mjs --package learningApps/playground --write && npm run build --workspace @svitlo/contracts && npm run build --workspace @svitlo/engine && npm run build --workspace @svitlo/ui-kit && node ../../scripts/generators/pages/lessons/generate-lessons.mjs --package learningApps/playground --write"
+    "prebuild": "node --import @svitlo/ui-kit/sync-flags --eval \"\" && node ../../scripts/generators/pages/skillAnalytics/generate-skill-analytics.mjs --package learningApps/playground --write && npm run build --workspace @svitlo/contracts && npm run build --workspace @svitlo/engine && npm run build --workspace @svitlo/ui-kit && node ../../scripts/generators/pages/lessons/generate-lessons.mjs --package learningApps/playground --write && node ../../shared/ui-kit/scripts/generate-locales.mjs --package learningApps/playground",
+    "predev": "node --import @svitlo/ui-kit/sync-flags --eval \"\" && node ../../scripts/generators/pages/skillAnalytics/generate-skill-analytics.mjs --package learningApps/playground --write && npm run build --workspace @svitlo/contracts && npm run build --workspace @svitlo/engine && npm run build --workspace @svitlo/ui-kit && node ../../scripts/generators/pages/lessons/generate-lessons.mjs --package learningApps/playground --write && node ../../shared/ui-kit/scripts/generate-locales.mjs --package learningApps/playground"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",

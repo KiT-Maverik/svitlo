@@ -1,3 +1,4 @@
+import type { UiKit_Component } from '@svitlo/engine/content';
 import type { DefaultSupportedLanguage } from '@svitlo/engine/localization';
 
 export type Checkpoint_Locale = { title: string; check: string; checked: string };
@@ -123,7 +124,7 @@ const kk = { title: 'Біліміңді тексер', check: 'Тексеру', 
 
 const qm = { title: 'Bilgiñni tekşer', check: 'Tekşer', checked: 'Tekşirildi' } satisfies Checkpoint_Locale;
 
-export const locales = {
+export const data = {
   en,
   zh,
   hi,
@@ -153,4 +154,4 @@ export const locales = {
   ka,
   kk,
   qm,
-} satisfies Record<DefaultSupportedLanguage['language'], Checkpoint_Locale>;
+} satisfies UiKit_Component<'checkpoint', 'data', DefaultSupportedLanguage['language']>;
