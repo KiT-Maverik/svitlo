@@ -60,7 +60,7 @@ export const safeNavigationInUnfamiliarTerrain_Skill_Data = buildSkillConfig({
       he: 'תכננו מסלולים תוך התחשבות במזג אוויר, בתקשורת ובמגבלות האישיות.',
       pl: 'Planuj trasy z uwzględnieniem pogody, łączności i własnych ograniczeń.',
       uk: 'Плануй маршрути з урахуванням погоди, зв’язку та власних можливостей.',
-      lt: 'Planuok maršrutus atsižvelgdama į orus, ryšį ir savo galimybių ribas.',
+      lt: 'Planuok maršrutus pagal orus, ryšio galimybes ir savo pajėgumą.',
       lv: 'Plāno maršrutus, ņemot vērā laikapstākļus, sakarus un savas spējas.',
       et: 'Planeeri teekonda ilma, sidevõimaluste ja enda piirangute järgi.',
       be: 'Плянуй маршруты з улікам надвор’я, сувязі і ўласных магчымасьцяў.',

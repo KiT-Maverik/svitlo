@@ -73,7 +73,7 @@ export const roadAndTransportSafety_SkillGroup_Data = buildSkillGroupConfig({
       he: 'הכירו את הסיכונים השונים בדרכים להולכי רגל, נוסעים ונהגים.',
       pl: 'Poznaj różnice w zagrożeniach drogowych dla pieszych, pasażerów i kierowców.',
       uk: 'Дізнайся, чим різняться дорожні ризики для пішоходів, пасажирів і водіїв.',
-      lt: 'Sužinok, kuo skiriasi kelių pavojai pėstiesiems, keleiviams ir vairuotojams.',
+      lt: 'Sužinok, kuo skiriasi kelių pavojai pėstiesiems, keleiviams ir transporto priemonių naudotojams.',
       lv: 'Uzzini, kā ceļu riski atšķiras gājējiem, pasažieriem un vadītājiem.',
       et: 'Õpi tundma jalakäijate, reisijate ja sõidukijuhtide erinevaid liiklusohte.',
       be: 'Даведайся, чым адрозьніваюцца дарожныя рызыкі для пешаходаў, пасажыраў і кіроўцаў.',

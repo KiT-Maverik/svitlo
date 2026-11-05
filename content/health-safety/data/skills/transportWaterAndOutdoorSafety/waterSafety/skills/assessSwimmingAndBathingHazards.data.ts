@@ -60,7 +60,7 @@ export const assessSwimmingAndBathingHazards_Skill_Data = buildSkillConfig({
       he: 'לפני כניסה למים בדקו זרמים, עומק והשגחה.',
       pl: 'Przed wejściem do wody oceń nurt, głębokość i nadzór.',
       uk: 'Перед входом у воду оцінюй течію, глибину й наявність нагляду.',
-      lt: 'Prieš lipdama į vandenį įvertink srovę, gylį ir priežiūrą.',
+      lt: 'Prieš lipant į vandenį įvertink srovę, gylį ir priežiūrą.',
       lv: 'Pirms iešanas ūdenī novērtē straumi, dziļumu un uzraudzību.',
       et: 'Enne vette minekut hinda hoovust, sügavust ja järelevalvet.',
       be: 'Перад уваходам у ваду ацэньвай плынь, глыбіню і нагляд.',
