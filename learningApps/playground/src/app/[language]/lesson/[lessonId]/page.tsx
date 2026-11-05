@@ -4,15 +4,13 @@ import { notFound } from 'next/navigation';
 import { Container } from '@mui/material';
 import { resolveEntityPath } from '@svitlo/engine';
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/localization';
-import type { Locale } from '@svitlo/engine/localization';
-import { resolveLocale } from '@/i18n/resolveLocale';
 import { loadLessonResponse } from '@/lib/lessons/loadLessonResponse';
 import LessonV2 from '@/components/pages/Lesson/LessonV2';
 
-type LessonPageProps = PageProps<'/lesson/[lessonId]'>;
+type LessonPageProps = PageProps<'/[language]/lesson/[lessonId]'>;
 
-async function localizedLesson({ params, searchParams }: LessonPageProps) {
-  const { lessonId } = await params;
+async function localizedLesson({ params }: LessonPageProps) {
+  const { language: code, lessonId } = await params;
   let canonicalId: string;
   try {
     canonicalId = resolveEntityPath(lessonId).split('/')[1];
@@ -20,14 +18,9 @@ async function localizedLesson({ params, searchParams }: LessonPageProps) {
     notFound();
   }
 
-  const locale = resolveLocale(
-    (await searchParams).lang,
-    DEFAULT_SUPPORTED_LANGUAGES.map(language => language.locale),
-    'uk-UA',
-  ) as Locale;
-  const language = DEFAULT_SUPPORTED_LANGUAGES.find(entry => entry.locale === locale);
-  if (!language) throw new Error('No language mapping for ' + locale);
-  return { locale, response: await loadLessonResponse(canonicalId, language.language) };
+  const language = DEFAULT_SUPPORTED_LANGUAGES.find(entry => entry.language === code);
+  if (!language) notFound();
+  return { locale: language.locale, response: await loadLessonResponse(canonicalId, language.language) };
 }
 
 export async function generateMetadata(props: LessonPageProps): Promise<Metadata> {
@@ -48,5 +41,5 @@ export default function LessonPage(props: LessonPageProps) {
 
 async function LocalizedLesson(props: LessonPageProps) {
   const { locale, response } = await localizedLesson(props);
-  return <LessonV2 response={response} locale={locale} href={`/lesson/${response.id}`} />;
+  return <LessonV2 response={response} locale={locale} href={`/${response.locale.code}/lesson/${response.id}`} />;
 }

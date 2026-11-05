@@ -2,15 +2,21 @@
 
 import type { ReactNode } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import type { TextDirection } from '@svitlo/engine/localization';
 
-const theme = createTheme({
+const options = {
   cssVariables: { colorSchemeSelector: 'data' },
   colorSchemes: {
     light: true,
     dark: { palette: { primary: { main: '#1976d2', contrastText: '#fff' } } },
   },
-});
+} as const;
 
-export default function MuiThemeProvider({ children }: { children: ReactNode }) {
-  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+const themes = {
+  ltr: createTheme({ ...options, direction: 'ltr' }),
+  rtl: createTheme({ ...options, direction: 'rtl' }),
+};
+
+export default function MuiThemeProvider({ children, direction }: { children: ReactNode; direction: TextDirection }) {
+  return <ThemeProvider theme={themes[direction]}>{children}</ThemeProvider>;
 }

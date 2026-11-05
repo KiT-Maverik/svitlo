@@ -1,9 +1,8 @@
 'use client';
 
-import { createContext, useCallback, useContext, useEffect, useMemo, type ReactNode } from 'react';
+import { createContext, useCallback, useContext, useMemo, type ReactNode } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { ThemeProvider, useTheme } from '@mui/material/styles';
-import { getLocaleDirection } from '@svitlo/engine/localization';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/localization';
 import type { Locale } from '@svitlo/engine/localization';
 
 type LocaleContextValue = {
@@ -14,36 +13,23 @@ type LocaleContextValue = {
 const LocaleContext = createContext<LocaleContextValue | null>(null);
 
 export function LocaleProvider({ locale, children }: { locale: Locale; children: ReactNode }) {
-  const theme = useTheme();
-  const direction = getLocaleDirection(locale);
-  const directionalTheme = useMemo(() => ({ ...theme, direction }), [theme, direction]);
-  useEffect(() => {
-    const previousDirection = document.documentElement.dir;
-    const previousLanguage = document.documentElement.lang;
-    document.documentElement.dir = direction;
-    document.documentElement.lang = locale;
-    return () => {
-      document.documentElement.dir = previousDirection;
-      document.documentElement.lang = previousLanguage;
-    };
-  }, [direction, locale]);
   const pathname = usePathname();
   const router = useRouter();
   const setLocale = useCallback(
     (nextLocale: Locale) => {
+      const language = DEFAULT_SUPPORTED_LANGUAGES.find(entry => entry.locale === nextLocale);
+      if (!language) throw new Error('Unsupported lesson locale: ' + nextLocale);
       const params = new URLSearchParams(window.location.search);
-      params.set('lang', nextLocale);
-      router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+      params.delete('lang');
+      const query = params.toString();
+      const nextPathname = pathname.replace(/^\/[^/]+(?=\/|$)/, `/${language.language}`);
+      router.replace(nextPathname + (query ? `?${query}` : ''), { scroll: false });
     },
     [pathname, router],
   );
   const value = useMemo(() => ({ locale, setLocale }), [locale, setLocale]);
 
-  return (
-    <LocaleContext.Provider value={value}>
-      <ThemeProvider theme={directionalTheme}>{children}</ThemeProvider>
-    </LocaleContext.Provider>
-  );
+  return <LocaleContext.Provider value={value}>{children}</LocaleContext.Provider>;
 }
 
 export function useLocale() {

@@ -3,7 +3,6 @@
 import { useState, type CSSProperties } from 'react';
 import { LIGHT_SPEED_KM_S, media } from './Showcase.constants';
 import styles from './Showcase.module.css';
-import { getLocaleDirection } from '@svitlo/engine/localization';
 import { useLocale } from '@/i18n/LocaleProvider/LocaleProvider';
 import type { Showcase_ContentBlock } from '../../../../../data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/sections/practice/scenes/showcase';
 
@@ -15,8 +14,6 @@ export function Showcase({ locales }: Pick<Showcase_ContentBlock<'response'>, 'l
   return (
     <section
       className={styles.showcase}
-      lang={locale}
-      dir={getLocaleDirection(locale)}
       aria-labelledby="showcase-title"
     >
       <p className={styles.eyebrow}>{locales.header.eyebrow}</p>

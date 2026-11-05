@@ -14,34 +14,12 @@ describe('Components', () => {
       expect(LocaleProvider_fx.selectors.current()).toHaveTextContent('en-US');
     });
 
-    it('should synchronize the document language and direction for LTR locales', () => {
-      LocaleProvider_fx.render({ locale: 'uk-UA' });
-      expect(document.documentElement).toHaveAttribute('lang', 'uk-UA');
-      expect(document.documentElement).toHaveAttribute('dir', 'ltr');
-    });
-
-    it('should synchronize the document direction for right-to-left locales', () => {
-      LocaleProvider_fx.render({ locale: 'ar-SA' });
-      expect(document.documentElement).toHaveAttribute('lang', 'ar-SA');
-      expect(document.documentElement).toHaveAttribute('dir', 'rtl');
-    });
-
     it('should navigate without discarding unrelated query parameters when changing locale', async () => {
       const { replace } = LocaleProvider_mx.prepare();
-      window.history.replaceState({}, '', '/lesson/d3048d21-8690-5255-b62c-984c69ac272c?ref=abc&lang=uk-UA');
+      window.history.replaceState({}, '', '/uk/lesson/d3048d21-8690-5255-b62c-984c69ac272c?ref=abc&lang=uk-UA');
       LocaleProvider_fx.render();
       await LocaleProvider_fx.actions.change();
-      expect(replace).toHaveBeenCalledWith('/lesson/d3048d21-8690-5255-b62c-984c69ac272c?ref=abc&lang=en-US', { scroll: false });
-    });
-
-    it('should restore the original document locale on unmount', () => {
-      document.documentElement.lang = 'en-US';
-      document.documentElement.dir = 'ltr';
-      const view = LocaleProvider_fx.render({ locale: 'ar-SA' });
-      expect(document.documentElement.dir).toBe('rtl');
-      view.unmount();
-      expect(document.documentElement.lang).toBe('en-US');
-      expect(document.documentElement.dir).toBe('ltr');
+      expect(replace).toHaveBeenCalledWith('/en/lesson/d3048d21-8690-5255-b62c-984c69ac272c?ref=abc', { scroll: false });
     });
   });
 });

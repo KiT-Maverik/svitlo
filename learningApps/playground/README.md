@@ -5,7 +5,7 @@
 
 - `/questions`: shared question widgets
 - `/questions/api`: question events, slots and controller usage
-- `/lesson/d3048d21-8690-5255-b62c-984c69ac272c`: interactive How Light Moves demonstration with scenes and quiz,
+- `/uk/lesson/d3048d21-8690-5255-b62c-984c69ac272c`: interactive How Light Moves demonstration with scenes and quiz,
   authored in `data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c`
 
 Authored subject content, static skill taxonomies and learning-method documentation
