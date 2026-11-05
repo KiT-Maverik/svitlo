@@ -43,7 +43,7 @@ export const recognizeFinancialFraudPatterns_Skill_Data = buildSkillConfig({
       hi: 'नकली इनाम, पैसे माँगने के बहाने और झूठी बिक्री पेशकश पहचानो।',
       es: 'Identifica premios falsos, exigencias de pago y ofertas de venta fraudulentas.',
       ar: 'تعرّف الجوائز الوهمية وطلبات الدفع والعروض البيعية الاحتيالية.',
-      fr: 'Repère les faux prix, les demandes de paiement et les offres de vente frauduleuses.',
+      fr: 'Repère les faux lots à gagner, les demandes de paiement et les offres de vente frauduleuses.',
       bn: 'ভুয়া পুরস্কার, টাকা দেওয়ার দাবি ও প্রতারণামূলক বিক্রির প্রস্তাব চিনে নাও।',
       pt: 'Identifique prêmios falsos, exigências de pagamento e ofertas de venda fraudulentas.',
       ur: 'جعلی انعام، رقم دینے کے مطالبے اور دھوکے والی فروخت کی پیشکش پہچانو۔',

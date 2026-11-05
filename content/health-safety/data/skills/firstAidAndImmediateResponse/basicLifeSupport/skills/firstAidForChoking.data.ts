@@ -10,7 +10,7 @@ export const firstAidForChoking_Skill_Data = buildSkillConfig({
     es: 'Primeros auxilios ante atragantamiento',
     ar: 'الإسعاف الأولي للاختناق بجسم غريب',
     fr: "Premiers secours en cas d'étouffement",
-    bn: 'গলায় খাবার আটকে গেলে প্রাথমিক চিকিৎসা',
+    bn: 'শ্বাসনালি আটকে গেলে প্রাথমিক চিকিৎসা',
     pt: 'Primeiros socorros em caso de engasgo',
     ur: 'سانس کی نالی بند ہونے پر ابتدائی امداد',
     id: 'Pertolongan pertama saat tersedak',
