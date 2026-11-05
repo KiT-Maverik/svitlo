@@ -67,12 +67,12 @@ export function chooseChecks(changed, workspaces) {
     lockChange ||
     changed.some(
       f =>
-        f.startsWith('learningApps/math/data/skills/') ||
+        f.startsWith('content/math/data/skills/') ||
         f.startsWith('scripts/check-skills-taxonomy-structure') ||
         f.startsWith('shared/contracts/') ||
         f.startsWith('shared/engine/'),
     );
-  const mathComponents = changed.some(f => f.startsWith('learningApps/math/src/') && /\.(ts|tsx|js|jsx)$/.test(f));
+  const mathComponents = changed.some(f => f.startsWith('content/math/src/') && /\.(ts|tsx|js|jsx)$/.test(f));
   const jsFiles = changed.filter(f => /\.(?:mjs|cjs|js)$/.test(f) && fs.existsSync(path.join(repoRoot, f)));
   const jsonFiles = changed.filter(f => f.endsWith('.json') && fs.existsSync(path.join(repoRoot, f)));
   return { affected, taxonomy, mathComponents, jsFiles, jsonFiles };
@@ -95,14 +95,14 @@ function runGate(changed) {
     changed.some(
       f =>
         f.startsWith('scripts/generators/pages/skillAnalytics/') ||
-        f.startsWith('learningApps/playground/data/skills/'),
+        f.startsWith('content/playground/data/skills/'),
     )
   ) {
     exec('node', ['--test', 'scripts/generators/pages/skillAnalytics/generate-skill-analytics.spec.mjs']);
     exec('node', [
       'scripts/generators/pages/skillAnalytics/generate-skill-analytics.mjs',
       '--package',
-      'learningApps/playground',
+      'content/playground',
       '--measure',
     ]);
   }
@@ -159,7 +159,7 @@ function runGate(changed) {
   // yet declared an explicit Engine dependency.
   const textbookTaxonomyChanged = targets.some(name => {
     const pkg = all.get(name);
-    return pkg?.path.startsWith('learningApps/') && fs.existsSync(path.join(repoRoot, pkg.path, 'data/skills'));
+    return pkg?.path.startsWith('content/') && fs.existsSync(path.join(repoRoot, pkg.path, 'data/skills'));
   });
   if (textbookTaxonomyChanged) {
     ensureSharedDependencies('@svitlo/engine');
@@ -192,7 +192,7 @@ function runGate(changed) {
           file.startsWith('shared/nextjs-adapter/') ||
           file.startsWith('shared/ui-kit/src/components/lesson/') ||
           file.startsWith('shared/ui-kit/src/components/widgets/ContentBlockRenderer/blocks/Image/') ||
-          file.startsWith('learningApps/playground/src/app/[language]/lesson/'),
+          file.startsWith('content/playground/src/app/[language]/lesson/'),
       )
     ) {
       exec('npm', ['run', 'build', '--workspace', name]);
@@ -217,7 +217,7 @@ function runGate(changed) {
         file.startsWith('scripts/generate-lesson-review-artifacts.') ||
         file.startsWith('scripts/lib/lesson-markdown.') ||
         file.startsWith('shared/engine/src/utils/generators/lessons/') ||
-        file.startsWith('learningApps/playground/data/lessons/'),
+        file.startsWith('content/playground/data/lessons/'),
     )
   ) {
     ensureSharedDependencies('@svitlo/engine');
@@ -242,7 +242,7 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   try {
     const args = process.argv.slice(2);
     if (args.length === 1 && args[0] === '--all') {
-      runGate(['package.json', 'learningApps/math/data/skills/index.ts']);
+      runGate(['package.json', 'content/math/data/skills/index.ts']);
     } else if (args.length === 2) {
       runGate(changedFiles(args[0], args[1]));
     } else throw new Error('Usage: node scripts/run-fast-gate.mjs <base-sha> <head-sha> | --all');

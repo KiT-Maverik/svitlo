@@ -7,7 +7,7 @@ on:
       - feat/chemistry-skills-integration
     types: [opened, synchronize, reopened, ready_for_review]
     paths:
-      - 'learningApps/chemistry/data/skills/**'
+      - 'content/chemistry/data/skills/**'
       - '.github/workflows/chemistry-skills-validation.yml'
 
 permissions:
@@ -35,7 +35,7 @@ jobs:
       - name: Validate workspace manifests
         run: node scripts/check-workspaces.mjs
       - name: Validate Chemistry taxonomy graph
-        run: node scripts/check-skills-taxonomy-structure.mjs learningApps/chemistry/data/skills
+        run: node scripts/check-skills-taxonomy-structure.mjs content/chemistry/data/skills
       - name: Build real contracts and engine
         run: |
           npm run build --workspace @svitlo/contracts
@@ -62,11 +62,11 @@ jobs:
             include,
             exclude: [],
           };
-          const path = 'learningApps/chemistry/tsconfig.agent-validation.tmp.json';
+          const path = 'content/chemistry/tsconfig.agent-validation.tmp.json';
           fs.writeFileSync(path, JSON.stringify(cfg, null, 2) + '\n');
           console.log('Validating full assigned domain source:', include);
           NODE
-          npx tsc --noEmit --project learningApps/chemistry/tsconfig.agent-validation.tmp.json
+          npx tsc --noEmit --project content/chemistry/tsconfig.agent-validation.tmp.json
       - name: Full Chemistry TypeScript with all authored data
         if: github.base_ref == 'main'
         run: npm run typecheck --workspace @svitlo/chemistry

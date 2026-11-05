@@ -8,17 +8,17 @@ on:
       - review/psychology-skills-ai-review
     types: [opened, synchronize, reopened, ready_for_review]
     paths:
-      - 'learningApps/psychology/data/skills/**'
+      - 'content/psychology/data/skills/**'
       - '.github/workflows/psychology-skills-validation.yml'
-      - 'learningApps/psychology/docs/skills/issue-201-coordination.md'
+      - 'content/psychology/docs/skills/issue-201-coordination.md'
   push:
     branches:
       - feat/psychology-skills-integration
       - review/psychology-skills-ai-review
     paths:
-      - 'learningApps/psychology/data/skills/**'
+      - 'content/psychology/data/skills/**'
       - '.github/workflows/psychology-skills-validation.yml'
-      - 'learningApps/psychology/docs/skills/issue-201-coordination.md'
+      - 'content/psychology/docs/skills/issue-201-coordination.md'
 
 permissions:
   contents: read
@@ -45,7 +45,7 @@ jobs:
       - name: Validate workspace manifests
         run: node scripts/check-workspaces.mjs
       - name: Validate canonical Psychology Skill graph
-        run: node scripts/check-skills-taxonomy-structure.mjs learningApps/psychology/data/skills
+        run: node scripts/check-skills-taxonomy-structure.mjs content/psychology/data/skills
       - name: Build real contracts and engine
         run: |
           npm run build --workspace @svitlo/contracts
@@ -72,11 +72,11 @@ jobs:
             include,
             exclude: [],
           };
-          const path = 'learningApps/psychology/tsconfig.agent-check.tmp.json';
+          const path = 'content/psychology/tsconfig.agent-check.tmp.json';
           fs.writeFileSync(path, JSON.stringify(tsconfig, null, 2) + '\n');
           console.log('Scoped strict TS includes:', include.join(', '));
           NODE
-          npx tsc --noEmit --project learningApps/psychology/tsconfig.agent-check.tmp.json
+          npx tsc --noEmit --project content/psychology/tsconfig.agent-check.tmp.json
       - name: Full Psychology TypeScript (all authored data)
         if: github.event_name == 'push' || github.base_ref == 'main' || github.base_ref == 'review/psychology-skills-ai-review'
         run: npm run typecheck --workspace @svitlo/psychology

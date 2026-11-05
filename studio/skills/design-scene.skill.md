@@ -13,7 +13,7 @@ Read the relevant [Lesson](../docs/entities/lesson.md), [Section](../docs/entiti
 1. **Hard prerequisite: locate and read the approved, written Scene specification prepared by the Educational Screenwriter** for the exact Scene being implemented. A general Lesson brief, taxonomy entry, verbal description or existing Scene example does **not** replace this document. **If it is missing, unavailable, unapproved, or does not cover the requested Scene, STOP: do not design, scaffold or implement the Scene.** Report the missing specification and request the correct document. Do not invent or author it yourself.
 2. Identify the **actual standalone textbook package root** (`<PackageRoot>`), target Lesson and Section, Scene name and learning purpose from the approved specification. Do not presume the playground is the destination or the monorepo root is the package root.
 3. Read the [Svitlo Architecture & Product Principles](../docs/architecture/README.md), especially [Internationalization & Accessibility](../docs/architecture/internationalization-and-accessibility.md), [Offline/Device Compatibility](../docs/architecture/offline-first-and-device-compatibility.md) and [Git-First Typed Content](../docs/architecture/git-first-typed-content.md). Read the current target Lesson/Section/resource configurations, content types, Scene locale infrastructure, tests, asset conventions, CSS/theme, accessibility and app instructions. Respect the repository's real paths and available APIs rather than copying an example blindly.
-4. Read the **existing reference Scenes** in `learningApps/playground/src/data/howLightMoves/sections/` (see concrete files below) and identify which patterns remain compatible with the target textbook's current contracts.
+4. Read the **existing reference Scenes** in `content/playground/src/data/howLightMoves/sections/` (see concrete files below) and identify which patterns remain compatible with the target textbook's current contracts.
 5. If the specification leaves scientific/pedagogical behavior, narrative sequence, learner actions or interaction constraints ambiguous, **stop the affected implementation and request a clarification from the Educational Screenwriter/editor**. Do not fill narrative gaps with invented activities or domain facts. A bounded Scene implementation must not trigger unrelated Lesson/Program refactors.
 
 ## SCREENWRITER SPECIFICATION — SOURCE OF SCENE BEHAVIOR
@@ -42,7 +42,7 @@ If an approved Scene specification calls for programmable motion design, video-s
 
 Use these **current architectural examples**, not mandatory source files to duplicate:
 
-| Example                       | Actual location under `learningApps/playground/src/data/howLightMoves/sections/`                                                | Lessons to extract                                                                                                               |
+| Example                       | Actual location under `content/playground/src/data/howLightMoves/sections/`                                                | Lessons to extract                                                                                                               |
 | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | `LightRayDiagram`             | `theory/resources/scenes/LightRayDiagram/LightRayDiagram.tsx` and `LightRayDiagram.module.css`                                  | SVG illustration, localized `<title>`/`<desc>`, directional graphic geometry, **separate readable labels**                       |
 | `LightPropagationSimulation`  | `theory/resources/scenes/LightPropagationSimulation/LightPropagationSimulation.tsx` and `LightPropagationSimulation.module.css` | Local state, playback/speed controls, reduced-motion preference, CSS logical properties, accessible labels                       |
@@ -52,15 +52,15 @@ Use these **current architectural examples**, not mandatory source files to dupl
 
 Also inspect the exact runtime wiring:
 
-- `learningApps/math/src/components/pages/Lesson/SceneLocaleContext.tsx` — `SceneLocaleProvider` and `useSceneLocales<T>()`. The **provider** takes props; the **Scene** does not.
-- `learningApps/playground/src/data/howLightMoves/howLightMoves.data.ts` — registers the per-Scene translated dictionaries under distinct keys in `sceneLocales`.
+- `content/math/src/components/pages/Lesson/SceneLocaleContext.tsx` — `SceneLocaleProvider` and `useSceneLocales<T>()`. The **provider** takes props; the **Scene** does not.
+- `content/playground/src/data/howLightMoves/howLightMoves.data.ts` — registers the per-Scene translated dictionaries under distinct keys in `sceneLocales`.
 - `shared/engine/src/utils/builders/buildLesson/buildLesson.utils.ts` — selects one language's messages on the **server** before rendering the Lesson.
-- `learningApps/math/src/components/pages/Lesson/Lesson.tsx` — provides selected Scene messages and locale via `SceneLocaleProvider`.
-- `learningApps/math/src/components/pages/Lesson/LessonSectionContent/LessonSectionContent.tsx` — renders a `blockType: 'scene'` resource's prepared React element without passing Scene props.
+- `content/math/src/components/pages/Lesson/Lesson.tsx` — provides selected Scene messages and locale via `SceneLocaleProvider`.
+- `content/math/src/components/pages/Lesson/LessonSectionContent/LessonSectionContent.tsx` — renders a `blockType: 'scene'` resource's prepared React element without passing Scene props.
 - `shared/engine/src/types/content/resource.types.ts` and `lesson.types.ts` — authoritative `SceneResource_Config` and `Lesson_Config.sceneLocales` contracts; inspect the actual engine version in the target package.
 - Existing `*.unit.spec.ts` and `*.unit.fx.ts` beside the reference Scenes — patterns for provider-based scene tests, accessibility, localization, interaction and RTL.
 
-**Package rule:** the reference demo Scenes now live in `learningApps/playground`; production Scenes belong to the **selected textbook application**. Reuse shared engine types and existing lesson infrastructure; avoid a runtime dependency on playground or another textbook. If a target app lacks a required provider/renderer, report the actual integration gap instead of inventing undocumented props for the Scene.
+**Package rule:** the reference demo Scenes now live in `content/playground`; production Scenes belong to the **selected textbook application**. Reuse shared engine types and existing lesson infrastructure; avoid a runtime dependency on playground or another textbook. If a target app lacks a required provider/renderer, report the actual integration gap instead of inventing undocumented props for the Scene.
 
 ## 1. PROP-FREE COMPONENT AND LESSON INTEGRATION
 
@@ -183,7 +183,7 @@ The TODO must appear **after the main Scene implementation at the end of its own
 
 ## RESULT
 
-Deliver a reviewable code change inside the **actual textbook application** (not `studio/` or `learningApps/playground/` unless that application was expressly requested), including:
+Deliver a reviewable code change inside the **actual textbook application** (not `studio/` or `content/playground/` unless that application was expressly requested), including:
 
 - `<SceneName>/<SceneName>.tsx`: named, prop-free Scene root with any local interactive state.
 - `<SceneName>/<SceneName>.locale.ts`: complete typed translations where visible or accessible text exists.

@@ -7,6 +7,8 @@ on:
     branches: [main, new-lesson]
     types: [opened, reopened, synchronize, ready_for_review]
   merge_group:
+  # Lets PR Auto-format re-run this required guard on the formatting commit.
+  workflow_dispatch:
 
 permissions:
   contents: read

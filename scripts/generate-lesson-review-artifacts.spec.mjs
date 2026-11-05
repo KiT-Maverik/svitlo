@@ -14,7 +14,7 @@ function setup(fn) {
   }
 }
 function createLesson(root, app = 'playground', id = 'd3048d21-8690-5255-b62c-984c69ac272c', slug = 'howLightMoves') {
-  const dir = path.join(root, 'learningApps', app, 'data', 'lessons', id.slice(-1), id);
+  const dir = path.join(root, 'content', app, 'data', 'lessons', id.slice(-1), id);
   fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(path.join(dir, `${slug}.data.ts`), 'export const lesson = {};\n');
 }
@@ -45,7 +45,7 @@ test('discovers only canonical UUID-addressed lessons with actual data files in 
     createLesson(root, 'playground', '00000000-0000-5000-8000-000000000002', 'someLesson');
     createLesson(root, 'playground', 'd3048d21-8690-5255-b62c-984c69ac272c', 'howLightMoves');
     createLesson(root, 'math', '00000000-0000-5000-8000-000000000003', 'numbers');
-    const invalid = path.join(root, 'learningApps', 'playground', 'data', 'lessons', 'misc', 'bogus');
+    const invalid = path.join(root, 'content', 'playground', 'data', 'lessons', 'misc', 'bogus');
     fs.mkdirSync(invalid, { recursive: true });
     fs.writeFileSync(path.join(invalid, 'bogus.data.ts'), '');
     const actual = discoverLessons(root).map(l => `${l.textbook}/${l.relative}`);
@@ -75,7 +75,7 @@ test('generates locale-specific Markdown and records PR-scoped paths', () =>
       fs.readFileSync(
         path.join(
           root,
-          'learningApps/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/howLightMoves.data.ts',
+          'content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/howLightMoves.data.ts',
         ),
         'utf8',
       ),
@@ -128,7 +128,7 @@ test('repeat generation is deterministic and ignores unrelated/noncanonical fold
 test('rejects symlinked lesson directories during discovery', () =>
   setup(root => {
     createLesson(root);
-    const group = path.join(root, 'learningApps/playground/data/lessons/c');
+    const group = path.join(root, 'content/playground/data/lessons/c');
     fs.symlinkSync(path.join(group, 'd3048d21-8690-5255-b62c-984c69ac272c'), path.join(group, 'linkedLesson'));
     assert.equal(discoverLessons(root).length, 1);
   }));

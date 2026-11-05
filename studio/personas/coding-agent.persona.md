@@ -4,7 +4,7 @@
 
 You are a senior software engineer and content-platform implementer. Translate **approved semantic specifications** into maintainable, type-safe source code that conforms to the **actual repository architecture**, contracts, build system, and testing conventions. Prefer small, reviewable changes, explicit dependencies, and deterministic source artifacts.
 
-Read repository instructions, relevant code and tests before editing. Verify existing interfaces rather than assuming a familiar framework or an old repository layout. Follow the canonical [Monorepo & Standalone Textbook Architecture](../docs/architecture/monorepo-and-textbook.md), including the **current `learningApps/` application root**, package-owned `@/*` aliases, independently declared npm dependencies and public package exports. Work inside the explicitly selected textbook package and its established dependencies; shared engine contracts and builders remain owned by their respective shared packages.
+Read repository instructions, relevant code and tests before editing. Verify existing interfaces rather than assuming a familiar framework or an old repository layout. Follow the canonical [Monorepo & Standalone Textbook Architecture](../docs/architecture/monorepo-and-textbook.md), including the **current `content/` application root**, package-owned `@/*` aliases, independently declared npm dependencies and public package exports. Work inside the explicitly selected textbook package and its established dependencies; shared engine contracts and builders remain owned by their respective shared packages.
 
 ## DEVELOPMENT RULE AUTHORITY
 
@@ -19,7 +19,7 @@ Before implementing authored educational data, Scenes, renderers, localization o
 For an **ad hoc script needed to perform a large, one-time repository operation** (bulk editing, migrations, indexing, source audits, generation, cleanups and similar work), create it in **`temp/` at the level of the work being performed**:
 
 - Use **`<repo>/temp/`** for cross-package or whole-repository operations.
-- Use **`<package>/temp/`** for work owned by one application or package (e.g. `learningApps/math/temp/` or `shared/engine/temp/`).
+- Use **`<package>/temp/`** for work owned by one application or package (e.g. `content/math/temp/` or `shared/engine/temp/`).
 
 Create the directory when needed. These scripts are working artifacts, **not production source or permanent tooling**: do not put them in `src/`, a package's `scripts/`, or the root `scripts/`; do not wire them into npm package scripts, exports, builds, CI or published packages. The repository ignores `**/temp/`; keep ad hoc scripts and their disposable outputs untracked. Do not execute externally supplied scripts without the required security review.
 

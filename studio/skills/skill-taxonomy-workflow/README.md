@@ -37,14 +37,14 @@ For newly authored or deliberately migrated staging taxonomies, `Slug: lowerCame
 For the fully migrated `data/skills/` Code taxonomy:
 
 ```sh
-node scripts/generate-skills-taxonomy.mjs --package learningApps/math
-node scripts/generate-skills-taxonomy.mjs --package learningApps/math --locale uk
-node scripts/generate-skills-taxonomy.mjs --package learningApps/math --locale uk --stdout
-node scripts/generate-skills-taxonomy.mjs --package learningApps/math --locale uk --check
+node scripts/generate-skills-taxonomy.mjs --package content/math
+node scripts/generate-skills-taxonomy.mjs --package content/math --locale uk
+node scripts/generate-skills-taxonomy.mjs --package content/math --locale uk --stdout
+node scripts/generate-skills-taxonomy.mjs --package content/math --locale uk --check
 npm run test:taxonomy-generator
 ```
 
-The generator **fails** for missing localized names or English methodology and for missing or incomplete Skill frontend descriptions; Group/Domain frontend dictionaries remain optional but must be complete when present. Mathematics now has **13 Domains, 60 Groups and 277 Skills** in Code; its staging `learningApps/math/docs/skills/taxonomy.md` was removed following the approved editorial migration and must not be recreated. The generator statically reads `*.data.ts` source without executing textbook modules and validates entity slugs against their filenames. `--stdout` previews without writes, `--check` compares a previously generated file byte-for-byte and fails on drift, and normal generation writes only changed content. They cannot be used together. The regression suite checks the real Code catalog for each supported locale, correct counts, hierarchy, source links, labels, methodological meaning and user-friendly copy. It does not prove translated semantic quality or full UUID graph integrity.
+The generator **fails** for missing localized names or English methodology and for missing or incomplete Skill frontend descriptions; Group/Domain frontend dictionaries remain optional but must be complete when present. Mathematics now has **13 Domains, 60 Groups and 277 Skills** in Code; its staging `content/math/docs/skills/taxonomy.md` was removed following the approved editorial migration and must not be recreated. The generator statically reads `*.data.ts` source without executing textbook modules and validates entity slugs against their filenames. `--stdout` previews without writes, `--check` compares a previously generated file byte-for-byte and fails on drift, and normal generation writes only changed content. They cannot be used together. The regression suite checks the real Code catalog for each supported locale, correct counts, hierarchy, source links, labels, methodological meaning and user-friendly copy. It does not prove translated semantic quality or full UUID graph integrity.
 
 ## NO-LOSS RULES
 
@@ -57,8 +57,8 @@ Before changing any staging taxonomy record: preserve exact approved semantic me
 The permanent [Markdown → Code generator](../../../scripts/implement-skills-taxonomy.mjs) consumes the approved, editable `docs/skills/taxonomy.md` and optionally a separately reviewed JSON localization dictionary keyed by scoped entity path (for example `domain/group/skill`). It targets only `<PackageRoot>/data/skills/` with directly composed typed Data entities. UUIDs belong to each entity's own `*.data.ts`; successful updates preserve them. It emits required runtime `slug` fields and complete child entities; it never emits separate ID files or ID-only membership maps.
 
 ```sh
-node scripts/implement-skills-taxonomy.mjs --package learningApps/<textbook> --translations <reviewed-locales.json>
-node scripts/implement-skills-taxonomy.mjs --package learningApps/<textbook> --translations <reviewed-locales.json> --apply
+node scripts/implement-skills-taxonomy.mjs --package content/<textbook> --translations <reviewed-locales.json>
+node scripts/implement-skills-taxonomy.mjs --package content/<textbook> --translations <reviewed-locales.json> --apply
 node --test scripts/implement-skills-taxonomy.spec.mjs
 ```
 
@@ -69,8 +69,8 @@ Dry-run is the default; `--apply` is required for writes. Generated changes are 
 The [description importer](../../../scripts/import-taxonomy-descriptions.mjs) reads the **new, labeled** `Methodological description: ` and `User-friendly description: ` fields of every Domain, Group and Skill. It uses verified standalone implementation links to update **existing** `*.data.ts` configs in a safe, dry-run-first process. The first field must already be approved English; the second is working-language frontend draft copy **only**, never automatically mapped to `description.frontend`. The importer has **not** been updated to parse `Slug:`, `Action:` or `Status:`; those fields currently cause unknown-content errors. Do not run it on the new template. Generator/parser/runtime changes are deferred to separate work. For legacy structured inputs, it rejects unknown fields, legacy free-form descriptions, incomplete Code links and conflicting values rather than guessing or overwriting. It does not create missing UUIDs, translate material or generate new Skill files.
 
 ```sh
-node scripts/import-taxonomy-descriptions.mjs --package learningApps/math
-node scripts/import-taxonomy-descriptions.mjs --package learningApps/math --write
+node scripts/import-taxonomy-descriptions.mjs --package content/math
+node scripts/import-taxonomy-descriptions.mjs --package content/math --write
 npm run test:taxonomy-import
 ```
 

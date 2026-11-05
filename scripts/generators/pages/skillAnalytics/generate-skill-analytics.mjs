@@ -114,10 +114,10 @@ function options(args) {
       action = token;
     } else throw new Error('Unknown argument: ' + token);
   }
-  assert(packageName && action, 'Usage: --package learningApps/<textbook> --write|--check|--measure');
+  assert(packageName && action, 'Usage: --package content/<textbook> --write|--check|--measure');
   const pkg = path.resolve(repoRoot, packageName);
   assert(
-    pkg.startsWith(path.join(repoRoot, 'learningApps') + path.sep) && fs.existsSync(path.join(pkg, 'package.json')),
+    pkg.startsWith(path.join(repoRoot, 'content') + path.sep) && fs.existsSync(path.join(pkg, 'package.json')),
     'Invalid textbook package',
   );
   return { pkg, action };
