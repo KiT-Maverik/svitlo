@@ -22,7 +22,7 @@ export const distinguishDirectEvidenceFromHearsay_Skill_Data = buildSkillConfig(
     ta: 'நேரடி சான்றையும் கேள்விப்பட்ட தகவலையும் வேறுபடுத்துதல்',
     te: 'ప్రత్యక్ష సాక్ష్యాన్ని విన్న మాటల నుంచి వేరు చేయడం',
     mr: 'थेट पुरावा आणि ऐकीव माहिती यांतील फरक',
-    ms: 'Membezakan bukti langsung daripada khabar angin',
+    ms: 'Membezakan bukti langsung daripada keterangan dengar cakap',
     he: 'להבחין בין ראיה ישירה לעדות שמיעה',
     pl: 'Odróżniać dowody bezpośrednie od pogłosek',
     uk: 'Розрізняти безпосередні докази й перекази',

@@ -20,7 +20,7 @@ export const identifyPremisesInAnArgument_Skill_Data = buildSkillConfig({
     tr: 'Bir Argümandaki Öncülleri Belirleme',
     vi: 'Xác định tiền đề trong lập luận',
     ta: 'வாதத்தின் முன்கோள்களைக் கண்டறிதல்',
-    te: 'వాదనలో పూర్వపక్షాలను గుర్తించడం',
+    te: 'వాదనలో పూర్వధారణలను గుర్తించడం',
     mr: 'युक्तिवादातील पूर्वाधार ओळखणे',
     ms: 'Mengenal Pasti Premis dalam Hujah',
     he: 'זיהוי הנחות בטיעון',
