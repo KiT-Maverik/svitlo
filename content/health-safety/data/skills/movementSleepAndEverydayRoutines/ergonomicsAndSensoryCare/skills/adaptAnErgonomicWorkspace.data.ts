@@ -11,7 +11,7 @@ export const adaptAnErgonomicWorkspace_Skill_Data = buildSkillConfig({
     ar: 'تهيئة مكان عمل مريح للجسم',
     fr: 'Adapter un poste de travail ergonomique',
     bn: 'শরীরের উপযোগী কর্মস্থল সাজানো',
-    pt: 'Adaptar um espaço de trabalho ergonómico',
+    pt: 'Adaptar um espaço de trabalho ergonômico',
     ur: 'جسم کے موافق کام کی جگہ بنانا',
     id: 'Menyesuaikan Ruang Kerja Ergonomis',
     de: 'Einen ergonomischen Arbeitsplatz einrichten',
