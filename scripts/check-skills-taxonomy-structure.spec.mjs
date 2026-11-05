@@ -46,6 +46,8 @@ test('allows a separate root review file while rejecting other root files', t =>
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
   write('review.ts', 'export const skillsReview = {};\n');
   assert.deepEqual(checkTaxonomy(root), { domains: 1, groups: 1, skills: 1 });
+  write('_review.ts', 'export const skillsReview = {};\n');
+  assert.deepEqual(checkTaxonomy(root), { domains: 1, groups: 1, skills: 1 });
   write('unexpected.ts', 'export {};\n');
   assert.throws(() => checkTaxonomy(root), /Root index surface/);
 });

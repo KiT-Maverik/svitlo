@@ -30,8 +30,6 @@ export type LearningLayoutProgress = {
   step: number;
   lastStep: number;
   testDone: boolean;
-  skipped: readonly string[];
-  quizSectionId?: string;
 };
 export interface LearningLayoutProps {
   children: ReactNode;
@@ -295,9 +293,7 @@ export default function LearningLayout({
                   disabled={
                     !progress.ready ||
                     progress.step >= progress.lastStep ||
-                    (progress.step === quizStep &&
-                      !progress.testDone &&
-                      !progress.skipped.includes(progress.quizSectionId ?? ''))
+                    (progress.step === quizStep && !progress.testDone)
                   }
                   onClick={actions.next}
                 >
@@ -310,10 +306,8 @@ export default function LearningLayout({
                 variant="outlined"
                 disabled={
                   !progress.ready ||
-                  !skippableSteps[progress.step] ||
-                  (progress.step === (quizStep ?? progress.lastStep) &&
-                    (progress.testDone ||
-                      Boolean(progress.quizSectionId && progress.skipped.includes(progress.quizSectionId))))
+                  progress.step >= progress.lastStep ||
+                  !skippableSteps[progress.step]
                 }
                 onClick={actions.skip}
               >

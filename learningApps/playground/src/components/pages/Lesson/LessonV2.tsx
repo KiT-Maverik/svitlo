@@ -1,10 +1,11 @@
 import type { Locale } from '@svitlo/engine/localization';
 import type { LessonResponse } from '@/lib/lessons/assembleLessonResponse';
+import { Container } from '@mui/material';
 import { LocaleProvider } from '@/i18n/LocaleProvider/LocaleProvider';
 import LessonLearningLayout from '@/components/layout/LearningLayout/LearningLayout';
-import { LessonProgressProvider } from './LessonProgress/LessonProgress';
-import LessonV2Client from './LessonV2Client';
-import { SceneLocaleProvider } from './SceneLocaleContext';
+import { LessonNavigationProvider, LessonStepNavigation } from './LessonNavigation';
+import { LessonSectionBlocks } from './LessonSectionBlocks';
+import styles from './Lesson.module.css';
 
 export default function LessonV2({ response, locale, href }: {
   response: LessonResponse;
@@ -13,34 +14,34 @@ export default function LessonV2({ response, locale, href }: {
 }) {
   const sections = response.sections;
   const quizIndex = sections.findIndex(section => section.type === 'quiz');
-  const sceneMessages = (sectionSlug: string, blockSlug: string) =>
-    sections.find(section => section.slug === sectionSlug)?.content
-      .map(block => block.type === 'scene' && block.slug === blockSlug ? block.messages : undefined)
-      .find(messages => messages !== undefined);
-  const scenes = {
-    simulation: sceneMessages('theory', 'lightPropagationSimulation'),
-    ray: sceneMessages('theory', 'lightRayDiagram'),
-    practice: sceneMessages('practice', 'showcase'),
-  };
   return (
     <LocaleProvider locale={locale}>
-      <SceneLocaleProvider locale={locale} scenes={scenes}>
-      <LessonProgressProvider
+      <LessonNavigationProvider
         key={response.id}
-        lessonId={response.id}
-        sectionIds={sections.map(section => section.id)}
-        quizSectionId={quizIndex < 0 ? undefined : sections[quizIndex].id}
-        requireQuiz={response.parameters.requireQuiz}
+        sectionCount={sections.length}
       >
         <LessonLearningLayout
           topics={[{ id: response.id, title: response.title, href }]}
-          skippableSteps={sections.map(section => response.parameters.sections.allowSkipping && !!section.skippable)}
+          skippableSteps={sections.map((section, index) => index !== quizIndex && response.parameters.sections.allowSkipping && !!section.skippable)}
           quizStep={quizIndex < 0 ? undefined : quizIndex}
         >
-          <LessonV2Client response={response} />
+          <div className={styles.lesson}>
+            <LessonStepNavigation
+              steps={sections.map(section => ({ id: section.id, title: section.navigationLabel }))}
+              showStepNumbers={response.parameters.sections.showIndexes}
+              allowNavigation={response.parameters.sections.allowNavigation}
+            />
+            <div className={styles.stage}>
+              <Container maxWidth="md" sx={{ py: { xs: 3, md: 6 } }}>
+                <LessonSectionBlocks
+                  sections={sections.map(({ id, type, content, questions }) => ({ id, type, content, questions }))}
+                  language={response.locale.code}
+                />
+              </Container>
+            </div>
+          </div>
         </LessonLearningLayout>
-      </LessonProgressProvider>
-      </SceneLocaleProvider>
+      </LessonNavigationProvider>
     </LocaleProvider>
   );
 }

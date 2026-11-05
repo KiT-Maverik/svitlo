@@ -1,22 +1,19 @@
 import { vi } from 'vitest';
 import { usePathname } from 'next/navigation';
 import { useLocale } from '@/i18n/LocaleProvider/LocaleProvider';
-import {
-  useLessonProgress,
-  initialProgress,
-  type Progress,
-} from '@/components/pages/Lesson/LessonProgress/LessonProgress';
+import { useLessonNavigation } from '@/components/pages/Lesson/LessonNavigation';
+import type { LearningLayoutProgress } from '@svitlo/ui-kit/learning-layout';
 
 export const LearningLayout_mx = {
-  prepare: (options: { locale?: 'uk-UA' | 'ar-SA'; progress?: Partial<Progress> } = {}) => {
+  prepare: (options: { locale?: 'uk-UA' | 'ar-SA'; progress?: Partial<LearningLayoutProgress> } = {}) => {
     const dispatch = vi.fn();
     vi.mocked(usePathname).mockReturnValue('/topics/demo');
     vi.mocked(useLocale).mockReturnValue({
       locale: options.locale ?? 'uk-UA',
       setLocale: vi.fn(),
     });
-    vi.mocked(useLessonProgress).mockReturnValue({
-      progress: { ...initialProgress, ready: true, lastStep: 2, ...options.progress },
+    vi.mocked(useLessonNavigation).mockReturnValue({
+      progress: { ready: true, step: 0, lastStep: 2, testDone: false, ...options.progress } as ReturnType<typeof useLessonNavigation>['progress'],
       dispatch,
     });
     return { dispatch };

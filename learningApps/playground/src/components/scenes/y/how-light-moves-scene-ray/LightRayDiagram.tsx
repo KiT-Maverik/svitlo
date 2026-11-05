@@ -2,12 +2,11 @@
 
 import styles from './LightRayDiagram.module.css';
 import { getLocaleDirection } from '@svitlo/engine/localization';
-import { useSceneLocales } from '@/components/pages/Lesson/SceneLocaleContext';
-import type { LightRayDiagram_Locale } from './LightRayDiagram.types';
+import { useLocale } from '@/i18n/LocaleProvider/LocaleProvider';
+import type { LightRayDiagram_ContentBlock } from '../../../../../data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/sections/theory/scenes/lightRayDiagram';
 
-export function LightRayDiagram() {
-  const { locale, scenes } = useSceneLocales<{ ray: LightRayDiagram_Locale }>();
-  const messages = scenes.ray;
+export function LightRayDiagram({ locales }: Pick<LightRayDiagram_ContentBlock<'response'>, 'locales'>) {
+  const { locale } = useLocale();
   const rtl = getLocaleDirection(locale) === 'rtl';
 
   return (
@@ -15,13 +14,13 @@ export function LightRayDiagram() {
       className={styles.scene}
       viewBox="0 0 960 340"
       role="img"
-      aria-label={messages.scene.title}
+      aria-label={locales.scene.title}
       lang={locale}
       direction={rtl ? 'rtl' : 'ltr'}
       xmlns="http://www.w3.org/2000/svg"
     >
-      <title>{messages.scene.title}</title>
-      <desc>{messages.scene.description}</desc>
+      <title>{locales.scene.title}</title>
+      <desc>{locales.scene.description}</desc>
       <rect className={styles.background} width="960" height="340" rx="24" />
       <g transform={rtl ? 'translate(960 0) scale(-1 1)' : undefined}>
         <path className={styles.beam} d="M215 160 805 105 805 225 215 180Z" />
@@ -33,13 +32,13 @@ export function LightRayDiagram() {
       </g>
       <g className={styles.labels} textAnchor="middle">
         <text x={rtl ? 800 : 160} y="285">
-          {messages.labels.source}
+          {locales.labels.source}
         </text>
         <text x="500" y="115">
-          {messages.labels.direction}
+          {locales.labels.direction}
         </text>
         <text x={rtl ? 153 : 807} y="305">
-          {messages.labels.screen}
+          {locales.labels.screen}
         </text>
       </g>
     </svg>

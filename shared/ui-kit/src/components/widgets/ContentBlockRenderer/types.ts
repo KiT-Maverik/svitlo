@@ -7,8 +7,8 @@ export type ContentBlockResponse = Exclude<ContentBlock<'response', Locale_Langu
 export type ContentBlockType = ContentBlockResponse['type'];
 export type ResponseOf<Type extends ContentBlockType> = Extract<ContentBlockResponse, { type: Type }>;
 
-/** Scenes read their translated messages from the lesson-level provider. */
-export type SceneRegistry = Readonly<Record<string, ComponentType>>;
+/** Resolve a scene by its stable content ID. */
+export type SceneRegistry = (id: string) => ComponentType<{ locales: ResponseOf<'scene'>['locales'] }> | undefined;
 
 export type ContentBlockRendererProps = {
   blocks?: readonly ContentBlockResponse[];
