@@ -19,7 +19,7 @@ export const resistManipulativeOffers_Skill_Data = buildSkillConfig({
     ko: '조작적인 제안에 휘둘리지 않기',
     tr: 'Manipülatif tekliflere direnmek',
     vi: 'Chống lại lời đề nghị thao túng',
-    ta: 'கையாளும் சலுகைகளை எதிர்த்தல்',
+    ta: 'மனதை மாற்ற வற்புறுத்தும் சலுகைகளை மறுத்தல்',
     te: 'మోసపూరిత ఒత్తిడి ఆఫర్లను నిరోధించడం',
     mr: 'दबाव आणणाऱ्या आमिषांना नकार देणे',
     ms: 'Menolak Tawaran Manipulatif',
