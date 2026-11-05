@@ -41,7 +41,7 @@ export const preventHouseholdPoisoning_Skill_Data = buildSkillConfig({
       en: 'Keep hazardous household substances properly labeled and away from children.',
       zh: '给危险的家用化学品贴好标签，并放在儿童接触不到的地方。',
       hi: 'खतरनाक घरेलू पदार्थों पर सही लेबल लगाएँ और बच्चों से दूर रखें।',
-      es: 'Etiqueta correctamente las sustancias domésticas peligrosas y mantenlas lejos de los niños.',
+      es: 'Conserva las sustancias domésticas peligrosas en sus envases originales etiquetados y fuera del alcance de los niños.',
       ar: 'ضع ملصقات واضحة على المواد المنزلية الخطرة وأبعدها عن الأطفال.',
       fr: 'Étiquette clairement les produits ménagers dangereux et garde-les hors de portée des enfants.',
       bn: 'বিপজ্জনক গৃহস্থালি পদার্থে ঠিকমতো লেবেল দাও এবং শিশুদের নাগালের বাইরে রাখো।',
