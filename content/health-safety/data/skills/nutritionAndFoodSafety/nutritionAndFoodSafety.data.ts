@@ -54,7 +54,7 @@ export const nutritionAndFoodSafety_SkillDomain_Data = buildSkillDomainConfig({
       ar: 'تعلّم كيف يدعم الغذاء والتعامل الآمن مع الطعام صحتك.',
       fr: "Découvre comment l'alimentation et la manipulation sûre des aliments protègent la santé.",
       bn: 'পুষ্টি ও নিরাপদ খাদ্য ব্যবস্থাপনা কীভাবে স্বাস্থ্য রক্ষা করে তা জানো।',
-      pt: 'Aprenda como a alimentação e o manuseamento seguro dos alimentos favorecem a saúde.',
+      pt: 'Aprenda como a alimentação e o manuseio seguro dos alimentos favorecem a saúde.',
       ur: 'جانیں کہ غذائیت اور خوراک کی محفوظ تیاری صحت کو کیسے بہتر بناتی ہیں۔',
       id: 'Pelajari bagaimana gizi dan penanganan makanan yang aman mendukung kesehatan.',
       de: 'Erfahre, wie Ernährung und sorgfältiger Umgang mit Lebensmitteln die Gesundheit fördern.',
