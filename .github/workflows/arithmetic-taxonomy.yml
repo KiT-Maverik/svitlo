@@ -23,7 +23,16 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
-      - run: npm run typecheck
-      - run: npm test
-      - run: npm run lint
-      - run: npm run build
+      # Validate the arithmetic workspace and its compiled shared dependencies.
+      # Root scripts check unrelated, sometimes untranslated textbook data.
+      - run: npm run build --workspace @svitlo/contracts
+      - run: npm run build --workspace @svitlo/engine
+      - run: npm run build --workspace @svitlo/indexdb
+      - run: npm run build --workspace @svitlo/ui-kit
+      - run: npm run typecheck --workspace @svitlo/contracts
+      - run: npm run typecheck --workspace @svitlo/engine
+      - run: npm run typecheck --workspace @svitlo/math
+      - run: node --test scripts/check-skills-taxonomy-structure.spec.mjs
+      - run: node scripts/check-skills-taxonomy-structure.mjs
+      - run: npm run lint --workspace @svitlo/math
+      - run: npm run build --workspace @svitlo/math

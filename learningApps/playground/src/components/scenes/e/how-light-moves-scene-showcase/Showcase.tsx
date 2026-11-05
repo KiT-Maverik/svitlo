@@ -4,12 +4,11 @@ import { useState, type CSSProperties } from 'react';
 import { LIGHT_SPEED_KM_S, media } from './Showcase.constants';
 import styles from './Showcase.module.css';
 import { getLocaleDirection } from '@svitlo/engine/localization';
-import { useSceneLocales } from '@/components/pages/Lesson/SceneLocaleContext';
-import type { Showcase_Locale } from './Showcase.types';
+import { useLocale } from '@/i18n/LocaleProvider/LocaleProvider';
+import type { Showcase_ContentBlock } from '../../../../../data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/sections/practice/scenes/showcase';
 
-export function Showcase() {
-  const { locale, scenes } = useSceneLocales<{ practice: Showcase_Locale }>();
-  const messages = scenes.practice;
+export function Showcase({ locales }: Pick<Showcase_ContentBlock<'response'>, 'locales'>) {
+  const { locale } = useLocale();
   const [selected, setSelected] = useState(0);
   const [paused, setPaused] = useState(true);
   const medium = media[selected];
@@ -20,27 +19,27 @@ export function Showcase() {
       dir={getLocaleDirection(locale)}
       aria-labelledby="showcase-title"
     >
-      <p className={styles.eyebrow}>{messages.header.eyebrow}</p>
-      <h1 id="showcase-title">{messages.header.title}</h1>
-      <p>{messages.header.description}</p>
-      <div className={styles.media} role="group" aria-label={messages.selector.label}>
+      <p className={styles.eyebrow}>{locales.header.eyebrow}</p>
+      <h1 id="showcase-title">{locales.header.title}</h1>
+      <p>{locales.header.description}</p>
+      <div className={styles.media} role="group" aria-label={locales.selector.label}>
         {media.map((item, index) => (
           <button key={item.id} aria-pressed={index === selected} onClick={() => setSelected(index)}>
-            {messages.selector.media[item.key]}
+            {locales.selector.media[item.key]}
           </button>
         ))}
       </div>
       <div className={styles.experiment} style={{ '--travel-time': `${2 * medium.index}s` } as CSSProperties}>
         <div className={styles.readout} aria-live="polite">
-          <strong>{messages.selector.media[medium.key]}</strong>
+          <strong>{locales.selector.media[medium.key]}</strong>
           <span>
-            ≈ {Math.round(LIGHT_SPEED_KM_S / medium.index).toLocaleString(locale)} {messages.simulation.speedUnit}
+            ≈ {Math.round(LIGHT_SPEED_KM_S / medium.index).toLocaleString(locale)} {locales.simulation.speedUnit}
           </span>
         </div>
         <div
           className={styles.track}
           role="img"
-          aria-label={`${messages.simulation.trackPrefix}${messages.selector.media[medium.key]}.`}
+          aria-label={`${locales.simulation.trackPrefix}${locales.selector.media[medium.key]}.`}
         >
           <div className={styles.source} />
           <div className={styles.beam} />
@@ -50,23 +49,23 @@ export function Showcase() {
           <div className={styles.screen} />
         </div>
         <div className={styles.trackLabels}>
-          <span>{messages.simulation.source}</span>
-          <span>{messages.simulation.screen}</span>
+          <span>{locales.simulation.source}</span>
+          <span>{locales.simulation.screen}</span>
         </div>
         <button className={styles.play} onClick={() => setPaused(value => !value)}>
-          {paused ? messages.simulation.play : messages.simulation.pause}
+          {paused ? locales.simulation.play : locales.simulation.pause}
         </button>
       </div>
-      <blockquote className={styles.quote}>{messages.insight.quote}</blockquote>
-      <p className={styles.caption}>{messages.notes.caption}</p>
+      <blockquote className={styles.quote}>{locales.insight.quote}</blockquote>
+      <p className={styles.caption}>{locales.notes.caption}</p>
       <p className={styles.caption}>
-        {messages.notes.model}{' '}
+        {locales.notes.model}{' '}
         <a
           href="https://openstax.org/books/university-physics-volume-3/pages/1-1-the-propagation-of-light"
           target="_blank"
           rel="noreferrer"
         >
-          {messages.notes.sourceLink}
+          {locales.notes.sourceLink}
         </a>
         .
       </p>

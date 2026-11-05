@@ -44,7 +44,9 @@ function isProductionSource(file) {
   return (
     /\.(ts|tsx)$/.test(file) &&
     !/\.(spec|test|e2e|stories|typecheck|unit\.fx|unit\.mx)\.(ts|tsx)$/.test(file) &&
-    !file.includes(sep + 'testing' + sep)
+    !file.includes(sep + 'testing' + sep) &&
+    // Generation utilities run only while publishing authored textbook data.
+    !file.includes(sep + 'utils' + sep + 'generators' + sep)
   );
 }
 function packageName(specifier) {
@@ -103,6 +105,9 @@ for (const [path, pkg] of workspaces) {
         continue;
       }
       if (specifier.startsWith('node:') || builtins.has(specifier)) continue;
+      // Next.js compile-time markers are not standalone runtime dependencies.
+      if ((path.startsWith('learningApps/') || path.startsWith('frontend/')) &&
+          (specifier === 'server-only' || specifier === 'client-only')) continue;
       const name = packageName(specifier);
       if (byName.has(name)) {
         assert(name !== pkg.name, 'Self-import through workspace resolver: ' + description);
@@ -115,7 +120,8 @@ for (const [path, pkg] of workspaces) {
           path !== 'shared/engine' && path !== 'shared/contracts',
           'Engine and Contracts cannot depend on external runtime modules: ' + description,
         );
-        assert(path !== 'shared/ui-kit' || name !== 'next', 'UI Kit depends on Next.js: ' + description);
+        assert(path !== 'shared/ui-kit' || name !== 'next' || specifier === 'next/image',
+          'UI Kit depends on unsupported Next.js runtime: ' + description);
       }
     }
   }

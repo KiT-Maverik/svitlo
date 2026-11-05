@@ -14,7 +14,6 @@ export const LessonSteps_fx = {
       { id: 'quiz', title: 'Quiz' },
     ],
     currentStep: 0,
-    unlocked: 0,
   } satisfies Props,
   render: (props: Partial<Props> = {}) => render(createElement(LessonSteps, { ...LessonSteps_fx.defaults, ...props })),
   selectors: {

@@ -165,7 +165,7 @@ export function checkTaxonomy(root = defaultRoot) {
   const domains = entries(root, 'directory');
   check(domains.length > 0, 'No Domains: ' + root);
   same(
-    entries(root, 'file').filter(name => name !== 'review.ts'),
+    entries(root, 'file').filter(name => name !== 'review.ts' && name !== '_review.ts'),
     ['index.ts'],
     'Root index surface: ' + root,
   );

@@ -2,10 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 vi.mock('next/navigation', () => ({ usePathname: vi.fn(), useRouter: vi.fn() }));
 vi.mock('@/i18n/LocaleProvider/LocaleProvider', () => ({ useLocale: vi.fn() }));
-vi.mock('@/components/pages/Lesson/LessonProgress/LessonProgress', async importOriginal => ({
-  ...(await importOriginal<typeof import('@/components/pages/Lesson/LessonProgress/LessonProgress')>()),
-  useLessonProgress: vi.fn(),
-}));
+vi.mock('@/components/pages/Lesson/LessonNavigation', () => ({ useLessonNavigation: vi.fn() }));
 
 import { screen, within } from '@testing-library/react';
 import { LearningLayout_fx } from './LearningLayout.unit.fx';

@@ -77,8 +77,7 @@ function decorateResponse(value: unknown): unknown {
     return { ...rest, text };
   }
   if (source.type === 'scene' && source.locales && typeof source.locales === 'object') {
-    const { locales: messages, ...rest } = children;
-    return { ...rest, messages, rendererKey: source.id };
+    return { ...children, rendererKey: source.id };
   }
   return children;
 }
@@ -101,7 +100,7 @@ function assembleBlocks(content: unknown, location: string): LessonContentBlock[
     if (seen.has(key)) throw new Error('Duplicate content block ' + key + ' at ' + location);
     seen.add(key);
     if (type === 'markdown') string(block.text, where + '.text');
-    if (type === 'scene') record(block.messages, where + '.messages');
+    if (type === 'scene') record(block.locales, where + '.locales');
     return { ...block, id, slug, type } as LessonContentBlock;
   });
 }

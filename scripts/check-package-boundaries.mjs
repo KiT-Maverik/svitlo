@@ -131,10 +131,10 @@ assert(
   existsSync(
     resolve(
       root,
-      'learningApps/playground/src/components/pages/Lesson/ContentBlockRenderer/ContentBlockRenderer.unit.spec.tsx',
+      'shared/ui-kit/src/components/widgets/ContentBlockRenderer/ContentBlockRenderer.unit.spec.tsx',
     ),
   ),
-  'Checkpoint renderer must own its unit coverage',
+  'Shared content block renderer must own its unit coverage',
 );
 assert(!existsSync(resolve(root, 'math')), 'Root mathematics docs must be inside the textbook package');
 assert(uiKit.dependencies?.[engine.name] === engine.version, 'UI Kit must consume the published Engine API');
@@ -188,7 +188,10 @@ for (const file of engineSources) {
   const imports = [...content.matchAll(/\b(?:from\s*|import\s*\(\s*)['"]([^'"]+)['"]/g)];
   for (const match of imports) {
     assert(
-      match[1].startsWith('.') || match[1].startsWith('@svitlo/contracts'),
+      match[1].startsWith('.') ||
+      match[1].startsWith('@svitlo/contracts') ||
+      (relative(root, file).startsWith('shared/engine/src/utils/generators/') &&
+        (match[1].startsWith('node:') || match[1] === 'esbuild')),
       'Engine must not import runtime, UI or application packages: ' + relative(root, file) + ' -> ' + match[1],
     );
   }
@@ -197,9 +200,12 @@ const kitSourceRoot = resolve(root, 'shared/ui-kit/src');
 if (existsSync(kitSourceRoot)) {
   for (const file of walk(kitSourceRoot).filter(file => /\.(ts|tsx)$/.test(file))) {
     const source = readFileSync(file, 'utf8');
+    // next/image is the framework image primitive used by the UI Kit Image renderer,
+    // and Next.js is an explicit UI Kit peer dependency. Other Next/app imports stay forbidden.
+    const guardedSource = source.replace(/from\s*['"]next\/image['"]/g, '');
     assert(
-      !/from\s*['"](?:@\/|@layout|@pages|next\/|\.\.\/\.\.\/\.\.\/\.\.\/learningApps\/)/.test(source),
-      'UI Kit must not import application or Next.js sources: ' + relative(root, file),
+      !/from\s*['"](?:@\/|@layout|@pages|next\/|\.\.\/\.\.\/\.\.\/\.\.\/learningApps\/)/.test(guardedSource),
+      'UI Kit must not import application or unsupported Next.js sources: ' + relative(root, file),
     );
   }
 }
@@ -309,7 +315,11 @@ assert(
 for (const app of ['learningApps/math', 'learningApps/playground']) {
   const preferences = resolve(root, app, 'src/components/layout/LearningLayout/NavbarPreferences');
   assert(!existsSync(preferences), 'NavbarPreferences must be owned by UI Kit, not ' + app);
-  const adapter = readFileSync(resolve(root, app, 'src/components/layout/LearningLayout/LearningLayout.tsx'), 'utf8');
+  const adapterPath = resolve(root, app, 'src/components/layout/LearningLayout/LearningLayout.tsx');
+  // Mathematics currently exposes no lesson layout adapter; Playground must retain one.
+  if (app === 'learningApps/math' && !existsSync(adapterPath)) continue;
+  assert(existsSync(adapterPath), 'Lesson layout adapter missing: ' + app);
+  const adapter = readFileSync(adapterPath, 'utf8');
   assert(
     adapter.includes('createLessonLearningLayout') && !adapter.includes('<SharedLearningLayout'),
     'App layout must bind UI Kit without duplicating shared composition: ' + app,

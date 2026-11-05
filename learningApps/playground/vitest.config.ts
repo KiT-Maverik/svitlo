@@ -22,7 +22,7 @@ export default defineConfig({
         'src/components/layout/LearningLayout/LearningLayout.tsx',
         'src/components/layout/LearningLayout/NavbarPreferences/NavbarPreferences.tsx',
         'src/components/pages/Lesson/LessonSteps/LessonSteps.tsx',
-        'src/components/pages/Lesson/LessonProgress/LessonProgress.tsx',
+        'src/components/pages/Lesson/LessonNavigation.tsx',
         'src/components/pages/Lesson/QuestionProgress/QuestionProgress.tsx',
         'src/components/pages/Lesson/LessonSectionContent/LessonSectionContent.tsx',
         'src/components/pages/Lesson/Celebration/Celebration.tsx',
