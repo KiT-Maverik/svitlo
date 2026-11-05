@@ -65,7 +65,7 @@ export const stoichiometricRatios_Skill_Data = buildSkillConfig({
       be: "Паводле ўраўнаванага раўнаньня параўноўвай колькасьці рэагентаў і прадуктаў.",
       ka: "გათანაბრებული განტოლებით შეადარე რეაგენტებისა და პროდუქტების რაოდენობები.",
       kk: "Теңестірілген теңдеумен реагенттер мен өнімдердің мөлшерлерін салыстыр.",
-      qm: "Muvazenetlenген teńlemeden reaktsiyadaki maddeler miqdarlarını teñeştir.",
+      qm: "Muvazenetlengen teñlemeden reaktsiyadaki maddeler miqdarlarını teñeştir.",
     },
   },
 });
