@@ -55,7 +55,7 @@ export const bondingAndStructure_SkillDomain_Data = buildSkillDomainConfig({
       bn: "রাসায়নিক বন্ধন এবং কণার মধ্যকার আকর্ষণ পদার্থের ধর্ম কীভাবে গড়ে তোলে তা জানো।",
       pt: "Descubra como ligações químicas e atrações entre partículas influenciam as propriedades dos materiais.",
       ur: "جانیں کہ کیمیائی بندشیں اور ذرات کی باہمی کشش مواد کی خصوصیات کو کیسے متاثر کرتی ہیں۔",
-      id: "Pelajari bagaimana ikatan kimia dan tarikan antarpasrtikel membentuk sifat bahan.",
+      id: "Pelajari bagaimana ikatan kimia dan tarikan antarpartikel membentuk sifat bahan.",
       de: "Entdecke, wie chemische Bindungen und Anziehungen zwischen Teilchen die Materialeigenschaften prägen.",
       ja: "化学結合や粒子間の引力が物質の性質をどう形づくるか調べよう。",
       ko: "화학 결합과 입자 사이의 인력이 물질의 성질을 어떻게 결정하는지 알아보세요.",
