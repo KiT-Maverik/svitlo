@@ -11,7 +11,7 @@ export const distinguishDirectEvidenceFromHearsay_Skill_Data = buildSkillConfig(
     ar: 'التمييز بين الدليل المباشر والسماع المنقول',
     fr: 'Distinguer preuve directe et ouï-dire',
     bn: 'প্রত্যক্ষ প্রমাণ ও শোনা কথার পার্থক্য',
-    pt: 'Distinguir evidência direta de boatos',
+    pt: 'Distinguir evidência direta de relatos de segunda mão',
     ur: 'براہِ راست ثبوت اور سنی سنائی بات میں فرق',
     id: 'Membedakan bukti langsung dari kabar orang lain',
     de: 'Direkte Belege von Hörensagen unterscheiden',

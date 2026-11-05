@@ -73,7 +73,7 @@ export const readingPhilosophicalWorks_SkillGroup_Data = buildSkillGroupConfig({
       he: 'למדו לקרוא יצירות פילוסופיות תוך שימת לב לשאלות ולהקשר שלהן.',
       pl: 'Ucz się czytać dzieła filozoficzne, uwzględniając ich pytania i kontekst.',
       uk: 'Навчися читати філософські твори, зважаючи на їхні питання й контекст.',
-      lt: 'Mokykis skaityti filosofinius kūrinius, atsižvelgdamas į jų klausimus ir kontekstą.',
+      lt: 'Mokykis skaityti filosofinius kūrinius ir atkreipti dėmesį į jų klausimus bei kontekstą.',
       lv: 'Mācies lasīt filozofiskus darbus, pievēršot uzmanību jautājumiem un kontekstam.',
       et: 'Õpi lugema filosoofilisi teoseid, pöörates tähelepanu nende küsimustele ja kontekstile.',
       be: 'Вучыся чытаць філязофскія творы, улічваючы іхныя пытаньні й кантэкст.',

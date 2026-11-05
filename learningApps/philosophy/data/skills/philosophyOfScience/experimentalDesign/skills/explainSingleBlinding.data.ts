@@ -45,7 +45,7 @@ export const explainSingleBlinding_Skill_Data = buildSkillConfig({
       ar: 'افهم كيف يقلل إخفاء تخصيص العلاج عن طرف واحد آثار التوقعات.',
       fr: "Comprends comment cacher la condition attribuée à une partie peut limiter l'effet des attentes.",
       bn: 'এক পক্ষের কাছ থেকে বরাদ্দ করা শর্ত গোপন রাখলে প্রত্যাশার প্রভাব কেন কমে তা বোঝো।',
-      pt: 'Entenda como ocultar a condição atribuída de uma parte pode limitar efeitos de expectativas.',
+      pt: 'Entenda por que ocultar de participantes ou pesquisadores qual condição foi atribuída pode reduzir efeitos de expectativa.',
       ur: 'سمجھیں کہ ایک فریق سے مقررہ حالت چھپانا توقعات کے اثرات کیسے کم کرتا ہے۔',
       id: 'Pahami bagaimana menyembunyikan kondisi yang diterima dari satu pihak dapat mengurangi pengaruh harapan.',
       de: 'Verstehe, wie das Verbergen der Zuteilung vor einer Seite Erwartungseffekte begrenzen kann.',

@@ -60,7 +60,7 @@ export const negateAQuantifiedProposition_Skill_Data = buildSkillConfig({
       he: "שללו טענות עם 'כל' או 'חלק' בלי לשנות בטעות את משמעותן.",
       pl: 'Neguj zdania z „wszystkie” lub „niektóre” bez zniekształcania ich znaczenia.',
       uk: 'Заперечуй твердження з «усі» або «деякі», не спотворюючи їхній зміст.',
-      lt: 'Neik teiginius su „visi“ ar „kai kurie“ neiškraipydamas jų reikšmės.',
+      lt: 'Sudaryk teiginių su „visi“ ar „kai kurie“ neiginius taip, kad jų reikšmė nebūtų iškraipyta.',
       lv: 'Noliedz izteikumus ar „visi“ vai „daži“, nekļūdaini saglabājot nozīmi.',
       et: 'Eita „kõik“ või „mõned“ sisaldavaid väiteid ilma tähendust moonutamata.',
       be: 'Адмаўляй сьцьверджаньні з «усе» або «некаторыя», не скажаючы іх сэнсу.',

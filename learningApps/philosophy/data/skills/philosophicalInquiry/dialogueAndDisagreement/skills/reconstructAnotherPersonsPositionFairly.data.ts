@@ -60,7 +60,7 @@ export const reconstructAnotherPersonsPositionFairly_Skill_Data = buildSkillConf
       he: 'הציגו במדויק את עמדת הזולת לפני שמבקרים אותה.',
       pl: 'Przed krytyką dokładnie przedstaw stanowisko drugiej osoby.',
       uk: 'Перш ніж критикувати чужу позицію, точно відтвори її.',
-      lt: 'Prieš kritikuodamas tiksliai perteik kito žmogaus poziciją.',
+      lt: 'Pirmiausia tiksliai perteik kito žmogaus poziciją, tik tada ją kritikuok.',
       lv: 'Pirms kritizēt, precīzi atstāsti otra cilvēka nostāju.',
       et: 'Esita teise inimese seisukoht täpselt, enne kui seda kritiseerid.',
       be: 'Перш чым крытыкаваць чужую пазыцыю, дакладна ўзнаві яе.',

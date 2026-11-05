@@ -60,7 +60,7 @@ export const compareExistentialistAndAnalyticApproachesToAProblem_Skill_Data = b
       he: 'השוו בין הגישות בלי לפשט יתר על המידה אף אחת מהמסורות.',
       pl: 'Porównaj oba podejścia bez nadmiernego upraszczania którejkolwiek tradycji.',
       uk: 'Порівняй обидва підходи, не спрощуючи надмірно жодну традицію.',
-      lt: 'Palygink abu požiūrius pernelyg nesupaprastindamas nė vienos tradicijos.',
+      lt: 'Palygink abu požiūrius ir nė vienos tradicijos pernelyg nesupaprastink.',
       lv: 'Salīdzini abas pieejas, pārmērīgi nevienkāršojot nevienu tradīciju.',
       et: 'Võrdle mõlemat lähenemist, lihtsustamata kumbagi traditsiooni liigselt.',
       be: 'Параўнай абодва падыходы, не спрашчаючы празьмерна ніводную традыцыю.',

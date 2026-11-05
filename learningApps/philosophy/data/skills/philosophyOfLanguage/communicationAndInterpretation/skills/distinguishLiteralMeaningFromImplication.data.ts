@@ -11,7 +11,7 @@ export const distinguishLiteralMeaningFromImplication_Skill_Data = buildSkillCon
     ar: 'التمييز بين المعنى الحرفي والإيحاء',
     fr: 'Distinguer sens littéral et sous-entendu',
     bn: 'আক্ষরিক অর্থ ও ইঙ্গিত আলাদা করা',
-    pt: 'Distinguir sentido literal e implicação',
+    pt: 'Distinguir sentido literal e sentido implícito',
     ur: 'لفظی معنی اور اشارے میں فرق',
     id: 'Membedakan makna harfiah dan implikasi',
     de: 'Wörtliche Bedeutung und Andeutung unterscheiden',

@@ -60,7 +60,7 @@ export const testDeductiveValidityUsingATruthTable_Skill_Data = buildSkillConfig
       he: 'בדקו דדוקציה באמצעות חיפוש מצב שבו כל ההנחות נכונות והמסקנה שגויה.',
       pl: 'Sprawdź dedukcję, szukając sytuacji z prawdziwymi przesłankami i fałszywym wnioskiem.',
       uk: 'Перевір дедукцію, шукаючи випадок із істинними засновками й хибним висновком.',
-      lt: 'Tikrink dedukciją ieškodamas atvejo, kai prielaidos teisingos, o išvada klaidinga.',
+      lt: 'Tikrink dedukciją: ieškok atvejo, kai prielaidos teisingos, o išvada klaidinga.',
       lv: 'Pārbaudi dedukciju, meklējot gadījumu ar patiesām premisām un aplamu secinājumu.',
       et: 'Kontrolli deduktsiooni, otsides tõeseid eeldusi koos väära järeldusega.',
       be: 'Правер дэдукцыю, шукаючы выпадак з праўдзівымі засновамі й памылковай высновай.',
