@@ -1,8 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-vi.mock('next/navigation', () => ({ usePathname: vi.fn(), useRouter: vi.fn() }));
-vi.mock('@/i18n/LocaleProvider/LocaleProvider', () => ({ useLocale: vi.fn() }));
-vi.mock('@/components/pages/Lesson/LessonNavigation', () => ({ useLessonNavigation: vi.fn() }));
+vi.mock('@/i18n/useLessonLocale', () => ({ useLessonLocale: vi.fn() }));
 
 import { screen, within } from '@testing-library/react';
 import { LearningLayout_fx } from './LearningLayout.unit.fx';
@@ -26,20 +24,19 @@ describe('Layouts', () => {
       );
     });
 
-    it('should enable progression only when the supplied progress permits it', async () => {
-      const { dispatch } = LearningLayout_mx.prepare({ progress: { step: 0, ready: true, lastStep: 2 } });
+    it('should enable progression and update the UI Kit-owned navigation state', async () => {
       LearningLayout_fx.render();
       expect(LearningLayout_fx.selectors.bottomAction(locale.actions.previous)).toBeDisabled();
       expect(LearningLayout_fx.selectors.bottomAction(locale.actions.next)).toBeEnabled();
       await LearningLayout_fx.actions.next();
-      expect(dispatch).toHaveBeenCalledWith({ type: 'next' });
+      expect(LearningLayout_fx.selectors.bottomAction(locale.actions.previous)).toBeEnabled();
     });
 
-    it('should dispatch skip for a skippable lesson section', async () => {
-      const { dispatch } = LearningLayout_mx.prepare();
+    it('should advance to the next section when skipping an eligible section', async () => {
       LearningLayout_fx.render();
       await LearningLayout_fx.actions.skip();
-      expect(dispatch).toHaveBeenCalledWith({ type: 'skip' });
+      expect(LearningLayout_fx.selectors.bottomAction(locale.actions.previous)).toBeEnabled();
+      expect(LearningLayout_fx.selectors.bottomAction(locale.actions.skip)).toBeDisabled();
     });
 
     it('should open the topics navigation and close it via Escape', async () => {
@@ -73,10 +70,11 @@ describe('Layouts', () => {
       expect(container.firstElementChild).toHaveAttribute('lang', 'ar-SA');
     });
 
-    it('should disable backward and skip actions while progress is loading', () => {
-      LearningLayout_mx.prepare({ progress: { ready: false } });
+    it('should refuse forward navigation past the final section', async () => {
       LearningLayout_fx.render();
-      expect(LearningLayout_fx.selectors.bottomAction(locale.actions.previous)).toBeDisabled();
+      await LearningLayout_fx.actions.next();
+      await LearningLayout_fx.actions.next();
+      expect(LearningLayout_fx.selectors.bottomAction(locale.actions.next)).toBeDisabled();
       expect(LearningLayout_fx.selectors.bottomAction(locale.actions.skip)).toBeDisabled();
     });
   });

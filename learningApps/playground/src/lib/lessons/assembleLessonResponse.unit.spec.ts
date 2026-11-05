@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { assembleLessonResponse } from './assembleLessonResponse';
+import { assembleLessonResponse } from '@svitlo/engine/lesson';
 
 const id = 'd3048d21-8690-5255-b62c-984c69ac272c';
 

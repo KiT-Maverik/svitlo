@@ -42,6 +42,7 @@ function readData(component, file) {
 }
 
 const whole = Object.freeze({
+  lesson: readData('Lesson', 'messages.data.ts'),
   flashcard: readData('Flashcard', 'messages.data.ts'),
   checkpoint: readData('Checkpoint', 'messages.data.ts'),
   audio: readData('Audio', 'messages.data.ts'),
@@ -52,21 +53,16 @@ const whole = Object.freeze({
 });
 
 function message(component, locale, language) {
-  if (component === 'learningLayout' || component === 'navbarPreferences') {
-    const folder = component === 'learningLayout' ? 'LearningLayout' : 'NavbarPreferences';
-    // Existing layout/prefs dictionaries cover eight locales; retain their prior
-    // Ukrainian copy for other languages until authored translations are added.
-    return readData(folder, locale + '.data.ts') ?? readData(folder, 'uk-UA.data.ts');
-  }
-  const translations = whole[component];
-  // Legacy UI used Ukrainian flashcards and English media/question copy for gaps.
-  // This compatibility choice happens only at build time, never inside UI widgets.
-  const fallback = component === 'flashcard' ? 'uk' : 'en';
-  return translations[language] ?? translations[fallback];
+  if (component === 'learningLayout') return readData('LearningLayout', locale + '.data.ts');
+  if (component === 'navbarPreferences') return readData('NavbarPreferences', locale + '.data.ts');
+  return whole[component]?.[language];
 }
 
 function shapeOf(value) {
-  if (typeof value === 'string') return 'string';
+  if (typeof value === 'string') {
+    if (!value.trim()) throw new Error('UI Kit translation contains an empty string');
+    return 'string';
+  }
   if (value && !Array.isArray(value) && typeof value === 'object') {
     return Object.fromEntries(Object.entries(value).sort(([a], [b]) => a.localeCompare(b))
       .map(([key, v]) => [key, shapeOf(v)]));
@@ -79,23 +75,64 @@ function assertShape(component, reference, data, locale) {
   }
 }
 
-try {
-  mkdirSync(output, { recursive: true });
-  const components = ['learningLayout', 'navbarPreferences', 'flashcard', 'checkpoint', 'audio', 'image', 'video', 'youtube', 'questionFrame'];
-  const defaults = Object.fromEntries(components.map(c => [c, message(c, 'uk-UA', 'uk')]));
-  let count = 0;
-  for (const { locale, language } of DEFAULT_SUPPORTED_LANGUAGES) {
-    const messages = Object.fromEntries(components.map(c => {
-      const value = message(c, locale, language);
-      if (!value) throw new Error(`Missing ${c} translations for ${locale}`);
-      assertShape(c, defaults[c], value, locale);
-      return [c, value];
-    }));
-    writeFileSync(join(output, locale + '.json'), JSON.stringify(messages, null, 2) + '\n');
-    count += 1;
+/**
+ * Audit authored coverage without consulting message() fallback behavior.
+ * --audit prints missing language codes without publishing files.
+ * Normal generation requires all canonical component/locale dictionaries.
+ */
+function auditMissingTranslations(components) {
+  const missing = {};
+  for (const component of components) {
+    const absent = [];
+    for (const { locale, language } of DEFAULT_SUPPORTED_LANGUAGES) {
+      const value = component === 'learningLayout' || component === 'navbarPreferences'
+        ? readData(component === 'learningLayout' ? 'LearningLayout' : 'NavbarPreferences', locale + '.data.ts')
+        : whole[component]?.[language];
+      if (!value) absent.push(language);
+    }
+    if (absent.length) missing[component] = absent;
   }
-  writeFileSync(join(output, 'meta.json'), JSON.stringify({ scope: 'global', components, locales: DEFAULT_SUPPORTED_LANGUAGES.map(l => l.locale) }, null, 2) + '\n');
-  console.log(`Generated ${count} global UI Kit locale JSON resources in ${output}`);
+  return missing;
+}
+
+try {
+  const components = ['lesson', 'learningLayout', 'navbarPreferences', 'flashcard', 'checkpoint', 'audio', 'image', 'video', 'youtube', 'questionFrame'];
+  const missing = auditMissingTranslations(components);
+  const missingCount = Object.values(missing).reduce((count, codes) => count + codes.length, 0);
+  if (process.argv.includes('--audit')) {
+    console.log(JSON.stringify({
+      languages: DEFAULT_SUPPORTED_LANGUAGES.length,
+      componentCount: components.length,
+      missing,
+      missingCount,
+    }, null, 2));
+  } else {
+    if (missingCount > 0) {
+      const details = Object.entries(missing).map(([name, codes]) => name + ': ' + codes.join(', ')).join('; ');
+      throw new Error('UI Kit translations incomplete (' + missingCount + '): ' + details);
+    }
+    // Preflight all language/key structures before publishing the first file.
+    const defaults = Object.fromEntries(components.map(c => [c, message(c, 'uk-UA', 'uk')]));
+    const published = DEFAULT_SUPPORTED_LANGUAGES.map(({ locale, language }) => {
+      const messages = Object.fromEntries(components.map(c => {
+        const value = message(c, locale, language);
+        if (!value) throw new Error(`Missing ${c} translations for ${locale}`);
+        assertShape(c, defaults[c], value, locale);
+        return [c, value];
+      }));
+      return { locale, messages };
+    });
+
+    mkdirSync(output, { recursive: true });
+    for (const { locale, messages } of published) {
+      writeFileSync(join(output, locale + '.json'), JSON.stringify(messages, null, 2) + '\n');
+    }
+    writeFileSync(
+      join(output, 'meta.json'),
+      JSON.stringify({ scope: 'global', components, locales: published.map(item => item.locale) }, null, 2) + '\n',
+    );
+    console.log(`Generated ${published.length} global UI Kit locale JSON resources in ${output}`);
+  }
 } finally {
   rmSync(tmp, { recursive: true, force: true });
 }

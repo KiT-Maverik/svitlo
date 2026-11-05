@@ -138,7 +138,17 @@ function runGate(changed) {
       }
     }
   }
-  const targets = [...plan.affected].sort();
+  // Validate the foundational runtime first. An unrelated textbook's unfinished
+  // content translations must not hide failures in a changed shared package.
+  const priority = [
+    '@svitlo/contracts', '@svitlo/engine', '@svitlo/indexdb',
+    '@svitlo/ui-kit', '@svitlo/nextjs-adapter', '@svitlo/playground',
+  ];
+  const rank = name => {
+    const index = priority.indexOf(name);
+    return index < 0 ? priority.length : index;
+  };
+  const targets = [...plan.affected].sort((a, b) => rank(a) - rank(b) || a.localeCompare(b));
   // Authored textbook taxonomy imports @svitlo/engine/taxonomy. Its exported declarations
   // exist only after the shared Engine build; data/ is now included in textbook tsconfigs.
   // Build this prerequisite for affected textbooks even when their manifests have not
@@ -165,12 +175,27 @@ function runGate(changed) {
       built.add(name);
     }
     exec('npm', ['run', 'typecheck', '--workspace', name]);
-  }
-  for (const name of targets) {
-    const pkg = all.get(name);
-    if (pkg?.path.startsWith('shared/') && pkg.scripts?.test) {
-      ensureSharedDependencies(name);
+    // Validate shared package behavior before unrelated textbooks can fail on
+    // incomplete authored data. Dependencies are built in the same pass.
+    if (pkg.path.startsWith('shared/') && pkg.scripts?.test) {
       exec('npm', ['run', 'test', '--workspace', name]);
+    }
+    // A Lesson/App Router extraction needs a real Next.js production build, not
+    // only TypeScript. Run it before unrelated textbook data checks can block CI.
+    if (name === '@svitlo/playground' && changed.some(file =>
+      file.startsWith('shared/nextjs-adapter/') ||
+      file.startsWith('shared/ui-kit/src/components/lesson/') ||
+      file.startsWith('shared/ui-kit/src/components/widgets/ContentBlockRenderer/blocks/Image/') ||
+      file.startsWith('learningApps/playground/src/app/[language]/lesson/')
+    )) {
+      exec('npm', ['run', 'build', '--workspace', name]);
+      // FastGate checks the changed Lesson route/bindings; the full Playground
+      // components suite also contains independent SkillsMindMap tests.
+      exec('npm', ['run', 'test:components', '--workspace', name, '--',
+        'src/components/layout/LearningLayout/LearningLayout.unit.spec.ts',
+        'src/lib/lessons/assembleLessonResponse.unit.spec.ts',
+        'src/i18n/useLessonLocale.unit.spec.tsx',
+      ]);
     }
   }
   if (changed.some(file =>

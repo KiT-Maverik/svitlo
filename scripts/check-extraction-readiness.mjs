@@ -11,6 +11,7 @@ const workspaces = [
   ['shared/engine', readJson('shared/engine/package.json')],
   ['shared/indexdb', readJson('shared/indexdb/package.json')],
   ['shared/ui-kit', readJson('shared/ui-kit/package.json')],
+  ['shared/nextjs-adapter', readJson('shared/nextjs-adapter/package.json')],
   ['learningApps/playground', readJson('learningApps/playground/package.json')],
   ['learningApps/math', readJson('learningApps/math/package.json')],
   ['learningApps/physics', readJson('learningApps/physics/package.json')],
@@ -120,7 +121,7 @@ for (const [path, pkg] of workspaces) {
           path !== 'shared/engine' && path !== 'shared/contracts',
           'Engine and Contracts cannot depend on external runtime modules: ' + description,
         );
-        assert(path !== 'shared/ui-kit' || name !== 'next' || specifier === 'next/image',
+        assert(path !== 'shared/ui-kit' || name !== 'next',
           'UI Kit depends on unsupported Next.js runtime: ' + description);
       }
     }

@@ -24,7 +24,8 @@ Svitlo combines independently deployable Next.js apps with explicit reusable lib
 │   ├── contracts/        # @svitlo/contracts — framework-free types, IDs, locales
 │   ├── engine/           # @svitlo/engine — builders, validation, generators, data
 │   ├── indexdb/          # @svitlo/indexdb — IndexedDB CRUD, schemas, persistence
-│   └── ui-kit/           # @svitlo/ui-kit — reusable React/MUI UI and LearningLayout
+│   ├── ui-kit/           # @svitlo/ui-kit — reusable framework-agnostic React/MUI UI and Lesson
+│   └── nextjs-adapter/   # @svitlo/nextjs-adapter — Next.js lesson SSR and routing
 ├── scripts/              # package boundary, duplicate and artifact checks
 ├── studio/               # cross-cutting architecture, workflow and product docs
 ├── package.json          # npm workspaces (authoritative)
@@ -57,13 +58,14 @@ Arrows above summarize **allowed consumption**, not a promise that every app imp
 | Contracts                     | Common content/state/taxonomy types, stable IDs and language descriptors           | No runtime dependencies on Engine, UI, Next.js or apps                                          |
 | Engine                        | Builders, generation, assessment methods, localization logic                       | Depends on Contracts; no React, Next, MUI or app imports                                        |
 | IndexDB                       | `svitlo-progress` v1 persistence, Zod state validation, browser controllers        | Depends on Contracts and Zod; production does not depend on Engine/React/Next                   |
-| UI Kit                        | Components, Flag assets, LearningLayout, NavbarPreferences and locale dictionaries | Depends on Engine and UI peer dependencies; no Next.js/application imports in production source |
+| UI Kit                        | Framework-independent React UI, Lesson, Flag assets, LearningLayout and locale dictionaries | Depends on Engine and React/MUI peer dependencies; no Next.js/application imports in production source |
+| Next.js Adapter               | Next.js App Router integration, lesson SSR composition and metadata | Depends on public Engine and UI Kit APIs; injects app-owned lesson loader and renderer |
 | Informatics / Physics         | Standalone Next.js textbook scaffolds, subject content in separate reviews         | No application-to-application imports                                                           |
 | Geography / Math / Playground | Route handlers, progress/locale providers, subject content or demo fixtures        | Declared public shared exports only; **no app-to-app imports**                                  |
 | Platform                      | Standalone public site and external textbook catalog links                         | Next.js/React/MUI; does not embed Math or Playground                                            |
 | Server                        | Future backend                                                                     | Placeholder package only; do not claim build/API/test capabilities                              |
 
-Framework-specific links, `usePathname`, lesson progress and `useColorScheme` remain in app adapters. `createLessonLearningLayout` in UI Kit accepts injected host bindings; the UI Kit itself must not import Next.js. `NavbarPreferences` and its seven specialized dictionaries are owned by UI Kit; each app supplies locale/theme state via props and hooks.
+Next.js routing, SSR metadata, and the published-JSON loading integration belong to `@svitlo/nextjs-adapter`, a separate framework-specific package. Its reusable `createLessonPage` takes application data/rendering bindings. `@svitlo/ui-kit` owns the framework-independent `Lesson` React UI, including lesson navigation and localized UI messages. The UI Kit cannot import any `next/*` modules; Next links/navigation are injected by consuming applications. Framework-specific links and locale switching remain injected by the host; the reusable Lesson owns its navigation state and passes its current pathname as a prop, while the UI Kit reads MUI color-scheme context directly. Neither Next.js pathname hooks nor MUI theme hooks need to be injected by every textbook. `createLessonLearningLayout` in UI Kit accepts injected host bindings; the UI Kit itself must not import Next.js. `NavbarPreferences` and its seven specialized dictionaries are owned by UI Kit; each app supplies locale/theme state via props and hooks.
 
 The canonical native IndexedDB browser harness, commands and Playwright suite live in `shared/indexdb/testing` and use a temporary standalone browser test host. App-local `src/testing/setup.ts` remains Vitest setup; it is **not** IndexedDB duplication. The persisted database name/version/store structure was retained across migration.
 

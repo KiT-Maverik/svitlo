@@ -1,0 +1,29 @@
+export const locale = {
+  "brand": "Svitlo",
+  "navigation": {
+    "top": "Navigasi pembelajaran atas",
+    "bottom": "Navigasi pembelajaran bawah",
+    "topics": "Senarai topik",
+    "settings": "Tetapan"
+  },
+  "actions": {
+    "openTopics": "Buka senarai topik",
+    "closeTopics": "Tutup senarai topik",
+    "openSettings": "Buka tetapan",
+    "closeSettings": "Tutup tetapan",
+    "closeSidebar": "Tutup bar sisi",
+    "closeSettingsPanel": "Tutup panel tetapan",
+    "previous": "Kembali",
+    "next": "Seterusnya",
+    "skip": "Langkau",
+    "profile": "Profil",
+    "logout": "Log keluar"
+  },
+  "tooltips": {
+    "profile": "Profil akan tersedia apabila log masuk diaktifkan",
+    "logout": "Log keluar akan tersedia apabila log masuk diaktifkan"
+  },
+  "topicsTitle": "TOPIK",
+  "settingsTitle": "Tetapan",
+  "settingsDescription": "Tetapan pembelajaran akan dipaparkan di sini."
+} as const;

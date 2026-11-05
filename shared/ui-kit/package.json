@@ -51,6 +51,10 @@
     "./learning-layout/preferences": {
       "types": "./dist/components/layout/LearningLayout/NavbarPreferences/NavbarPreferences.d.ts",
       "default": "./dist/components/layout/LearningLayout/NavbarPreferences/NavbarPreferences.js"
+    },
+    "./lesson": {
+      "types": "./dist/components/lesson/index.d.ts",
+      "default": "./dist/components/lesson/index.js"
     }
   },
   "files": [
@@ -61,12 +65,13 @@
   "scripts": {
     "build": "tsc -p tsconfig.build.json && node scripts/copy-assets.mjs",
     "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.data.json --noEmit",
-    "test:logic": "npm run typecheck",
+    "test:logic": "npm run typecheck && npm run test:locales",
     "test:components": "vitest run",
     "test": "npm run test:logic && npm run test:components",
     "prepack": "npm run build",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "test:locales": "node --test scripts/generate-locales.spec.mjs"
   },
   "dependencies": {
     "@svitlo/engine": "0.0.0",
@@ -80,7 +85,6 @@
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^9.5.0",
     "@mui/material": "^9.5.0",
-    "next": "16.4.2",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "react-markdown": "^10.1.0",
