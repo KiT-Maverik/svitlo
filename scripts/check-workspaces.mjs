@@ -5,6 +5,10 @@ const root = process.cwd();
 const readJson = path => JSON.parse(readFileSync(resolve(root, path), 'utf8'));
 const expected = [
   {
+    path: 'apps/web',
+    name: '@svitlo/web',
+  },
+  {
     path: 'backend/server',
     name: '@svitlo/server',
   },
@@ -103,7 +107,7 @@ const expected = [
 ];
 const manifest = readJson('package.json');
 const lock = readJson('package-lock.json');
-const patterns = ['backend/*', 'frontend/*', 'content/*', 'content/languages/*', 'shared/*'];
+const patterns = ['apps/*', 'backend/*', 'frontend/*', 'content/*', 'content/languages/*', 'shared/*'];
 
 function assert(ok, description) {
   if (!ok) throw new Error(description);

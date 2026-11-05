@@ -1,30 +1,17 @@
-# Playground
+# Playground textbook
 
-`@svitlo/playground` is a standalone Next.js sandbox for experimenting with
-`@svitlo/engine` and `@svitlo/ui-kit`. It deliberately contains **no curriculum**.
+`@svitlo/playground` owns the authored How Light Moves lesson, demonstration Skills,
+interactive React Scenes, static Scene registry, and published textbook resources.
+It has no Next.js routes or standalone server. `apps/web` hosts the textbook.
 
-- `/questions`: shared question widgets
-- `/questions/api`: question events, slots and controller usage
-- `/uk/lesson/d3048d21-8690-5255-b62c-984c69ac272c`: interactive How Light Moves demonstration with scenes and quiz,
-  authored in `data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c`
-
-Authored subject content, static skill taxonomies and learning-method documentation
-belong to the corresponding textbook (currently `content/math`).
-
-Development and checks from repository root:
+Authored content lives in `data/`. The Web build runs the existing generators
+against this package, then publishes its JSON and assets into the selected
+Web build. Runtime code imports `@svitlo/playground/scenes`, never authored
+`*.data.ts` modules.
 
 ```bash
-npm ci
-npm run dev
-npm run typecheck
-npm run test:components
-npm run test:e2e
+npm run generate:scenes --workspace @svitlo/playground
+npm run check:scenes --workspace @svitlo/playground
+npm run typecheck --workspace @svitlo/playground
+SVITLO_TEXTBOOK=playground npm run build --workspace @svitlo/web
 ```
-
-The Playground only imports other packages through their public npm exports.
-
-Generic builder and localization tests are owned by `@svitlo/engine`; Playground contains demonstration data and application-specific tests only.
-
-IndexedDB controllers, schemas and transaction utilities are owned by `@svitlo/indexdb`. The native IndexedDB Playwright suite and isolated Next.js test fixture live in `shared/indexdb/testing`. Local `src/testing/setup.ts` is only the Vitest component-test setup.
-
-Stage 6: navigation and preferences implementations, translations, and behavior tests are centralized in `@svitlo/ui-kit`. The app's minimal `createLessonLearningLayout` binding only injects Next.js hooks, lesson-progress context and locale provider; no shared layout code or localization is copied into the app.

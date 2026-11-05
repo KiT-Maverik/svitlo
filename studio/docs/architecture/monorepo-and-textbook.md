@@ -2,6 +2,16 @@
 
 **Canonical implementation guide (Stage 8, 2026-10-29).** Always check manifests and CI for the commit under review. [Historical migration log](../../Monorepo%20Migration.md) is **not** a current directory map. [Final audit and remaining debt](./migration-stage-8-audit.md).
 
+**2026-11-05 implementation update:** `apps/web` is the universal Next.js host for the
+build-selected textbook. `learningApps/playground` is now a React DOM textbook
+package with authored `data/`, Scenes, generated static registry and explicit
+`@svitlo/playground` exports. `apps/web/textbooks.json` selects a declared
+workspace dependency before compilation; its build publishes textbook JSON,
+UI Kit locales and assets into the host. Other textbooks and `frontend/platform`
+retain their existing application architecture. The Stage 8 map and dependency
+table below document the prior baseline and should not be treated as current
+Playground ownership.
+
 ## Purpose and non-negotiable extraction constraint
 
 Svitlo **currently** combines independently deployable Next.js apps with explicit reusable library packages. A textbook has its **own package root**, curriculum, `docs/`, data, assets, configuration and tests. It must remain possible to move a textbook to a separate repository without copying another app's code or globally rewriting imports. Extracted shared packages must be installable through declared public APIs; a green monorepo build does not, on its own, prove isolated registry/tarball consumption.

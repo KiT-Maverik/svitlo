@@ -93,9 +93,7 @@ function runGate(changed) {
   exec('node', ['--test', 'scripts/check-skills-taxonomy-structure.spec.mjs', 'scripts/run-fast-gate.spec.mjs']);
   if (
     changed.some(
-      f =>
-        f.startsWith('scripts/generators/pages/skillAnalytics/') ||
-        f.startsWith('content/playground/data/skills/'),
+      f => f.startsWith('scripts/generators/pages/skillAnalytics/') || f.startsWith('content/playground/data/skills/'),
     )
   ) {
     exec('node', ['--test', 'scripts/generators/pages/skillAnalytics/generate-skill-analytics.spec.mjs']);
@@ -147,12 +145,28 @@ function runGate(changed) {
     '@svitlo/ui-kit',
     '@svitlo/nextjs-adapter',
     '@svitlo/playground',
+    '@svitlo/web',
   ];
   const rank = name => {
     const index = priority.indexOf(name);
     return index < 0 ? priority.length : index;
   };
   const targets = [...plan.affected].sort((a, b) => rank(a) - rank(b) || a.localeCompare(b));
+  // A non-Next React DOM browser bundle proves that textbook exports and lazy
+  // Scenes work without the Next.js compiler. Run before unrelated typechecks.
+  if (
+    changed.some(
+      file =>
+        file.startsWith('apps/web/') ||
+        file.startsWith('content/playground/src/components/scenes/') ||
+        file.startsWith('content/playground/scripts/check-react-dom-portability') ||
+        file === 'content/playground/package.json' ||
+        file === 'shared/ui-kit/src/scene-locale.tsx',
+    )
+  ) {
+    exec('npm', ['run', 'test:portability', '--workspace', '@svitlo/playground']);
+  }
+
   // Authored textbook taxonomy imports @svitlo/engine/taxonomy. Its exported declarations
   // exist only after the shared Engine build; data/ is now included in textbook tsconfigs.
   // Build this prerequisite for affected textbooks even when their manifests have not
@@ -186,28 +200,19 @@ function runGate(changed) {
     // A Lesson/App Router extraction needs a real Next.js production build, not
     // only TypeScript. Run it before unrelated textbook data checks can block CI.
     if (
-      name === '@svitlo/playground' &&
+      name === '@svitlo/web' &&
       changed.some(
         file =>
           file.startsWith('shared/nextjs-adapter/') ||
           file.startsWith('shared/ui-kit/src/components/lesson/') ||
           file.startsWith('shared/ui-kit/src/components/widgets/ContentBlockRenderer/blocks/Image/') ||
-          file.startsWith('content/playground/src/app/[language]/lesson/'),
+          file.startsWith('content/playground/src/components/scenes/') ||
+          file.startsWith('apps/web/'),
       )
     ) {
       exec('npm', ['run', 'build', '--workspace', name]);
-      // FastGate checks the changed Lesson route/bindings; the full Playground
-      // components suite also contains independent SkillsMindMap tests.
-      exec('npm', [
-        'run',
-        'test:components',
-        '--workspace',
-        name,
-        '--',
-        'src/components/layout/LearningLayout/LearningLayout.unit.spec.ts',
-        'src/lib/lessons/assembleLessonResponse.unit.spec.ts',
-        'src/i18n/useLessonLocale.unit.spec.tsx',
-      ]);
+      exec('npm', ['run', 'test:selection', '--workspace', name]);
+      exec('npm', ['run', 'test:components', '--workspace', name]);
     }
   }
   if (

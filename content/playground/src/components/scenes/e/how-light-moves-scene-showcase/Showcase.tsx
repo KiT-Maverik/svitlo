@@ -3,11 +3,11 @@
 import { useState, type CSSProperties } from 'react';
 import { LIGHT_SPEED_KM_S, media } from './Showcase.constants';
 import styles from './Showcase.module.css';
-import { useLessonLanguage } from '@/i18n/useLessonLocale';
+import { useSceneLocale } from '@svitlo/ui-kit/scene-locale';
 import type { Showcase_ContentBlock } from '../../../../../data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/sections/practice/scenes/showcase';
 
 export function Showcase({ locales }: Pick<Showcase_ContentBlock<'response'>, 'locales'>) {
-  const { locale } = useLessonLanguage();
+  const locale = useSceneLocale();
   const [selected, setSelected] = useState(0);
   const [paused, setPaused] = useState(true);
   const medium = media[selected];
