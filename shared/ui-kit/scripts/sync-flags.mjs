@@ -27,7 +27,18 @@ export function syncFlags(targetRoot) {
   return destination;
 }
 
-// Retain the package's CLI for existing standalone hosts.
-if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  syncFlags(process.cwd());
-}
+// Retain the direct CLI and the existing Node --import preload used by
+// standalone textbook hosts. Normal module imports stay side-effect-free.
+const scriptPath = fileURLToPath(import.meta.url);
+const invokedDirectly = process.argv[1] && resolve(process.argv[1]) === scriptPath;
+const preloaded = process.execArgv.some((arg, index) => {
+  const specifier = arg === '--import'
+    ? process.execArgv[index + 1]
+    : arg.startsWith('--import=')
+      ? arg.slice('--import='.length)
+      : undefined;
+  return specifier === '@svitlo/ui-kit/sync-flags' ||
+    specifier === import.meta.url ||
+    (specifier?.startsWith('/') && resolve(specifier) === scriptPath);
+});
+if (invokedDirectly || preloaded) syncFlags(process.cwd());
