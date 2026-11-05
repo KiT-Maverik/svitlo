@@ -12,7 +12,8 @@
     "test:portability": "node scripts/check-react-dom-portability.mjs",
     "prepack": "npm run build",
     "test": "vitest run src/types/languages.unit.spec.ts src/types/languages.contentBlocks.unit.spec.ts",
-    "test:types": "tsc -p tsconfig.types.json --noEmit"
+    "test:types": "tsc -p tsconfig.types.json --noEmit",
+    "test:components": "vitest run src/types/languages.unit.spec.ts src/types/languages.contentBlocks.unit.spec.ts"
   },
   "bin": {
     "svitlo-math": "./scripts/publish.mjs"
