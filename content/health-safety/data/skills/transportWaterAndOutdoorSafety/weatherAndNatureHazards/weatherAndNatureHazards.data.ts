@@ -70,7 +70,7 @@ export const weatherAndNatureHazards_SkillGroup_Data = buildSkillGroupConfig({
       ko: '변하는 날씨와 지형이 야외 안전에 어떻게 영향을 주는지 알아보세요.',
       tr: 'Değişen hava koşulları ve arazinin açık hava güvenliğini nasıl etkilediğini öğren.',
       vi: 'Tìm hiểu thời tiết thay đổi và địa hình ảnh hưởng an toàn ngoài trời thế nào.',
-      ta: 'மாறும் வானிலையும் நிலப்பரப்பும் வெளிப்புறப் பாதுகாப்பை எவ்வாறு பாதிக்கின்றன என்பதை அறிக.',
+      ta: 'மாறும் வானிலையும் நிலப்பரப்பும் வெளிப்புறப் பாதுகாப்பை எவ்வாறு பாதிக்கின்றன என்பதை அறியுங்கள்.',
       te: 'మారుతున్న వాతావరణం, భూభాగం బహిరంగ భద్రతను ఎలా ప్రభావితం చేస్తాయో తెలుసుకోండి.',
       mr: 'बदलते हवामान आणि भूभागाचा बाहेरील सुरक्षिततेवर कसा परिणाम होतो ते जाणून घ्या.',
       ms: 'Ketahui bagaimana perubahan cuaca dan rupa bumi mempengaruhi keselamatan di luar.',

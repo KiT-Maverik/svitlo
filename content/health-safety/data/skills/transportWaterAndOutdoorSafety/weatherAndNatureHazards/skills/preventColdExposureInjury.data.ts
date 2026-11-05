@@ -53,7 +53,7 @@ export const preventColdExposureInjury_Skill_Data = buildSkillConfig({
       ko: '젖음, 바람, 보온을 관리하여 추위 피해를 줄이세요.',
       tr: 'Islaklık, rüzgâr ve yalıtımı yöneterek soğuk zararını azalt.',
       vi: 'Giảm tác hại của lạnh bằng cách tránh ướt, chắn gió và giữ ấm.',
-      ta: 'ஈரம், காற்று, வெப்பப் பாதுகாப்பை கவனித்து குளிரால் ஏற்படும் பாதிப்பைக் குறையுங்கள்.',
+      ta: 'ஈரம், காற்று, வெப்பப் பாதுகாப்பை கவனித்து குளிரால் ஏற்படும் பாதிப்பைக் குறைக்கவும்.',
       te: 'తడవకుండా, గాలి తగలకుండా, వెచ్చగా ఉండి చలి హానిని తగ్గించండి.',
       mr: 'ओलावा, वारा आणि उबदार कपड्यांची काळजी घेऊन थंडीचा त्रास कमी करा.',
       ms: 'Kurangkan mudarat sejuk dengan mengurus kebasahan, angin dan penebatan.',
