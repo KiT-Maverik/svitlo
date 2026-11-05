@@ -51,9 +51,6 @@ run('node', [
   'shared/ui-kit/scripts/generate-locales.mjs',
   '--package', selection.directory, '--output', 'apps/web/public/data/ui-kit',
 ]);
-// The flag sync script uses cwd/public/flags; never invoke it from repo root.
-run('node', ['--import', '@svitlo/ui-kit/sync-flags', '--eval', ''], webRoot);
-
 // Book-owned legacy public assets, if any, are placed in a reserved namespace,
 // so they cannot overwrite the Web host's favicon or other public resources.
 // Future textbook asset URLs should use /textbooks/<id>/... for these files.
