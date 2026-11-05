@@ -32,7 +32,7 @@ export const diagnoseRestrictedFluidFlow_Skill_Data = buildSkillConfig({
     be: "Дыягнаставаць абмежаваньне патоку вадкасьці",
     ka: "შეზღუდული სითხის ნაკადის დიაგნოსტიკა",
     kk: "Сұйықтық ағынының шектелуін анықтау",
-    qm: "Sıyıqlıq aqımındaki sıñırlav­nı teşhislemek",
+    qm: "Sıyıqlıq aqımındaki sıñırlavnı teşhislemek",
   },
   description: {
     methodological: 'Relate blocked filters, closed valves or narrow passages to delivery problems.',
