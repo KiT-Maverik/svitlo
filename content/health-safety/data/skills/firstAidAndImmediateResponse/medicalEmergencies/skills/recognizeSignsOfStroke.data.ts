@@ -46,7 +46,7 @@ export const recognizeSignsOfStroke_Skill_Data = buildSkillConfig({
       fr: 'Reconnais les symptômes soudains pouvant indiquer un accident vasculaire cérébral.',
       bn: 'হঠাৎ দেখা দেওয়া স্ট্রোকের সম্ভাব্য উপসর্গ চিনে নাও।',
       pt: 'Reconheça sintomas súbitos que podem indicar um acidente vascular cerebral.',
-      ur: 'اچانک ظاہر ہونے والی علامات پہچانو جو فالج کا اشارہ ہو سکتی ہیں۔',
+      ur: 'اچانک ظاہر ہونے والی علامات پہچانیں جو فالج کا اشارہ ہو سکتی ہیں۔',
       id: 'Kenali gejala mendadak yang dapat menunjukkan stroke.',
       de: 'Erkenne plötzlich auftretende Symptome, die auf einen Schlaganfall hinweisen können.',
       ja: '脳卒中の可能性を示す突然の症状に気づこう。',

@@ -46,7 +46,7 @@ export const respondToSevereBreathingDifficulty_Skill_Data = buildSkillConfig({
       fr: "Demande une aide urgente en cas de difficulté respiratoire intense ou qui s'aggrave.",
       bn: 'গুরুতর বা বেড়ে চলা শ্বাসকষ্টে দ্রুত জরুরি সাহায্য চাও।',
       pt: 'Procure ajuda urgente para dificuldades respiratórias graves ou que pioram.',
-      ur: 'سانس لینے میں شدید یا بڑھتی دشواری پر فوری مدد حاصل کرو۔',
+      ur: 'سانس لینے میں شدید یا بڑھتی دشواری پر فوری مدد حاصل کریں۔',
       id: 'Cari bantuan segera saat sesak napas berat atau makin memburuk.',
       de: 'Hole dringend Hilfe, wenn Atemprobleme schwer sind oder sich verschlimmern.',
       ja: '呼吸がひどく苦しい、または悪化しているときは緊急の助けを求めよう。',

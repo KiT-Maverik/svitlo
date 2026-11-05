@@ -46,7 +46,7 @@ export const recognizeSignsOfAHeartAttack_Skill_Data = buildSkillConfig({
       fr: 'Reconnais les symptômes pouvant signaler un infarctus.',
       bn: 'হার্ট অ্যাটাকের ইঙ্গিত দিতে পারে এমন উপসর্গ শনাক্ত করো।',
       pt: 'Reconheça sintomas que podem indicar um ataque cardíaco.',
-      ur: 'ایسی علامات پہچانو جو دل کے دورے کا اشارہ ہو سکتی ہیں۔',
+      ur: 'ایسی علامات پہچانیں جو دل کے دورے کا اشارہ ہو سکتی ہیں۔',
       id: 'Kenali gejala yang dapat menunjukkan serangan jantung.',
       de: 'Erkenne Beschwerden, die auf einen Herzinfarkt hinweisen können.',
       ja: '心臓発作の可能性を示す症状を知ろう。',
