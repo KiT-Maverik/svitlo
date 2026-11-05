@@ -66,7 +66,7 @@ export const evaluateBiomimeticPerformance_Skill_Data = buildSkillConfig({
       be: "Правер, ці сапраўды канструкцыя, натхнёная прыродай, дасягае зададзенай эфэктыўнасьці.",
       ka: "შეამოწმე, ნამდვილად აღწევს თუ არა ბუნებით შთაგონებული კონსტრუქცია დასახულ ეფექტიანობას.",
       kk: "Табиғаттан шабыт алған құрылым белгіленген өнімділік мақсатына шынымен жете ме, соны тексер.",
-      qm: "Tabiattan ilham alğan leyha belgilengен performans maqsadına aqiqaten irişkenini sına.",
+      qm: "Tabiattan ilham alğan leyha belgilengen performans maqsadına aqiqaten irişkenini sına.",
     },
   },
 });
