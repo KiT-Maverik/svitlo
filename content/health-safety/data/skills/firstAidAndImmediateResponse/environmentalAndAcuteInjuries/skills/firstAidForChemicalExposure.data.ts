@@ -49,7 +49,7 @@ export const firstAidForChemicalExposure_Skill_Data = buildSkillConfig({
       ur: 'نقصان دہ کیمیائی مادے کے بعد خود کو محفوظ رکھو اور مناسب ہدایات حاصل کرو۔',
       id: 'Lindungi diri dan cari panduan khusus setelah paparan bahan kimia berbahaya.',
       de: 'Schütze dich und hole gezielte Anweisungen nach Kontakt mit schädlichen Chemikalien ein.',
-      ja: '有害な化学物質に触れたら自分の安全を守り、適切な専門指示を求めよう。',
+      ja: '有害な化学物質にさらされた場合は、自分の安全を確保し、状況に応じた専門的な指示を求めよう。',
       ko: '유해 화학 물질에 노출된 뒤 자신을 보호하고 구체적인 전문 지침을 구하세요.',
       tr: 'Zararlı kimyasala maruz kaldıktan sonra kendini koru ve özel rehberlik iste.',
       vi: 'Tự bảo vệ và tìm hướng dẫn cụ thể sau khi tiếp xúc hóa chất nguy hại.',

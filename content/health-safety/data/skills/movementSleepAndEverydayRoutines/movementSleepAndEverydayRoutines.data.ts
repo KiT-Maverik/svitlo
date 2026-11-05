@@ -15,7 +15,7 @@ export const movementSleepAndEverydayRoutines_SkillDomain_Data = buildSkillDomai
     ar: 'الحركة والنوم والعادات اليومية',
     fr: 'Mouvement, sommeil et habitudes quotidiennes',
     bn: 'চলাফেরা, ঘুম ও দৈনন্দিন অভ্যাস',
-    pt: 'Movimento, sono e rotinas di todos os dias',
+    pt: 'Movimento, sono e rotinas do dia a dia',
     ur: 'جسمانی حرکت، نیند اور روزمرہ معمولات',
     id: 'Gerak, Tidur, dan Rutinitas Sehari-hari',
     de: 'Bewegung, Schlaf und Alltagsroutinen',
