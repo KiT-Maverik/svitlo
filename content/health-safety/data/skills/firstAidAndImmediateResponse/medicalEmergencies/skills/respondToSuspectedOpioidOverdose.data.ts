@@ -46,7 +46,7 @@ export const respondToSuspectedOpioidOverdose_Skill_Data = buildSkillConfig({
       fr: 'Reconnais une possible surdose et le besoin de secours et de naloxone.',
       bn: 'ওপিওয়েড অতিমাত্রার সন্দেহ ও জরুরি সাহায্য এবং নালোক্সোনের প্রয়োজন চিনে নাও।',
       pt: 'Reconheça a suspeita de overdose e a necessidade de socorro e naloxona.',
-      ur: 'اوپیئڈ اوورڈوز کی علامات اور ہنگامی مدد و نالوکسون کی ضرورت پہچانو۔',
+      ur: 'اوپیئڈ اوورڈوز کی علامات اور ہنگامی مدد و نالوکسون کی ضرورت پہچانیں۔',
       id: 'Kenali dugaan overdosis opioid serta perlunya bantuan darurat dan nalokson.',
       de: 'Erkenne eine mögliche Überdosis und den Bedarf an Notfallhilfe und Naloxon.',
       ja: 'オピオイド過剰摂取の疑いと救急支援、ナロキソンの必要性を理解しよう。',
