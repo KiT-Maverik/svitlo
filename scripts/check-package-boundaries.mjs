@@ -14,7 +14,7 @@ const math = readJson('content/math/package.json');
 const biology = readJson('content/biology/package.json');
 const physics = readJson('content/physics/package.json');
 const uiKit = readJson('shared/ui-kit/package.json');
-const nextAdapter = readJson('shared/nextjs-adapter/package.json');
+const nextAdapter = readJson('shared/adapters/nextjs/package.json');
 
 function walk(dir) {
   return readdirSync(dir, { withFileTypes: true }).flatMap(entry => {

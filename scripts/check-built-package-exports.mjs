@@ -5,11 +5,11 @@ const root = process.cwd();
 function assert(ok, detail) {
   if (!ok) throw new Error(detail);
 }
-const packages = ['contracts', 'engine', 'indexdb', 'ui-kit', 'nextjs-adapter'];
+const packages = ['shared/contracts', 'shared/engine', 'shared/indexdb', 'shared/ui-kit', 'shared/adapters/nextjs'];
 
 let checked = 0;
-for (const name of packages) {
-  const path = 'shared/' + name;
+for (const path of packages) {
+  const name = path.split('/').at(-1);
   const pkg = JSON.parse(readFileSync(resolve(root, path, 'package.json'), 'utf8'));
   for (const [subpath, entry] of Object.entries(pkg.exports ?? {})) {
     if (subpath.includes('*') || subpath === './sync-flags') continue;

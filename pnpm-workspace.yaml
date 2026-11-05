@@ -5,3 +5,4 @@ packages:
   - 'content/*'
   - 'content/languages/*'
   - 'shared/*'
+  - 'shared/adapters/*'

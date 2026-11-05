@@ -12,7 +12,7 @@ const workspaces = [
   ['shared/engine', readJson('shared/engine/package.json')],
   ['shared/indexdb', readJson('shared/indexdb/package.json')],
   ['shared/ui-kit', readJson('shared/ui-kit/package.json')],
-  ['shared/nextjs-adapter', readJson('shared/nextjs-adapter/package.json')],
+  ['shared/adapters/nextjs', readJson('shared/adapters/nextjs/package.json')],
   ['content/playground', readJson('content/playground/package.json')],
   ['content/math', readJson('content/math/package.json')],
   ['content/physics', readJson('content/physics/package.json')],

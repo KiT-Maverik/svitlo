@@ -95,6 +95,7 @@
     "frontend/*",
     "content/*",
     "content/languages/*",
-    "shared/*"
+    "shared/*",
+    "shared/adapters/*"
   ]
 }
