@@ -2,9 +2,9 @@
 /**
  * Read-only LessonV2 data → review Markdown. No published JSON or authored data changes.
  *
- * node scripts/generate-lessons-markdown.mjs --package learningApps/playground \
+ * node scripts/generate-lessons-markdown.mjs --package content/playground \
  *   --lesson d3048d21-8690-5255-b62c-984c69ac272c --locale uk --stdout
- * node scripts/generate-lessons-markdown.mjs --package learningApps/playground \
+ * node scripts/generate-lessons-markdown.mjs --package content/playground \
  *   --locale uk --output .agent-ci-artifacts/lessons
  */
 import fs from 'node:fs';
@@ -17,7 +17,7 @@ import { resolveEntityPath } from '@svitlo/engine/utils';
 
 const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const usage =
-  'Usage: --package learningApps/<textbook> [--lesson <uuid>] --locale <language> (--stdout | --output <directory>)';
+  'Usage: --package content/<textbook> [--lesson <uuid>] --locale <language> (--stdout | --output <directory>)';
 
 export function parseArguments(argv) {
   const options = {};
@@ -36,8 +36,8 @@ export function parseArguments(argv) {
   if (!options.package || !options.locale || Boolean(options.stdout) === Boolean(options.output))
     throw new Error(usage);
   if (options.stdout && !options.lesson) throw new Error('--stdout requires --lesson to select exactly one document');
-  if (!/^learningApps\/[a-z][a-z0-9-]*$/.test(options.package))
-    throw new Error('Invalid --package: expected learningApps/<textbook>');
+  if (!/^content\/[a-z][a-z0-9-]*$/.test(options.package))
+    throw new Error('Invalid --package: expected content/<textbook>');
   if (options.lesson) resolveEntityPath(options.lesson);
   return options;
 }
@@ -128,8 +128,8 @@ export async function loadLesson(entry, packageDirectory) {
 
 export async function generate(options, { root = repositoryRoot, loader = loadLesson } = {}) {
   const packageDirectory = path.join(root, options.package);
-  realDirectory(path.join(root, 'learningApps'), root);
-  realDirectory(packageDirectory, path.join(root, 'learningApps'));
+  realDirectory(path.join(root, 'content'), root);
+  realDirectory(packageDirectory, path.join(root, 'content'));
   const locales = supportedLanguages(root);
   if (!locales.includes(options.locale))
     throw new Error(`Unsupported locale ${options.locale}; expected one of ${locales.join(', ')}`);

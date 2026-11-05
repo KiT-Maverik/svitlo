@@ -61,4 +61,4 @@ Svitlo's scale requires **AI-compatible, deterministic, machine-checkable struct
 - Do not duplicate factual truth across a Git catalog and a separately editable runtime entity store.
 - Mark `approved`, `draft`, `implemented`, `blocked` and `planned` distinctly; file presence is not editorial approval, and source ID presence is not proof of runtime registration.
 
-**References:** [Engine Resource types](../../../shared/engine/src/types/content/resource.types.ts), [Lesson types](../../../shared/engine/src/types/content/lesson.types.ts), [current Lesson data](../../../learningApps/playground/src/data/howLightMoves/howLightMoves.data.ts), [System Boundaries](./system-boundaries.md), [Long Chat Overture](../../Long%20Chat%20Overture.md).
+**References:** [Engine Resource types](../../../shared/engine/src/types/content/resource.types.ts), [Lesson types](../../../shared/engine/src/types/content/lesson.types.ts), [current Lesson data](../../../content/playground/src/data/howLightMoves/howLightMoves.data.ts), [System Boundaries](./system-boundaries.md), [Long Chat Overture](../../Long%20Chat%20Overture.md).

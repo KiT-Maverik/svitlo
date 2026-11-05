@@ -18,6 +18,7 @@ Svitlo intends to render **the same React DOM components** in a Next.js web host
 8. **Accessibility and responsiveness everywhere.** Preserve semantic LTR/RTL, all required localizations, keyboard/touch/pointer use, screen-reader support, reduced motion, accessible fallbacks, and equivalent learning on small/weak devices. Do not depend on hover, viewport shape or a particular desktop browser.
 9. **Keep security boundaries explicit.** UI props and client code are inspectable; UI Kit must not embed private content keys, licensed material, secrets, or entitlement decisions as trusted client-side authority. Host-side delivery/licensing are separate concerns.
 10. **Use public exports and supported bundling.** Declare necessary peers, keep imports package-local or through public `@svitlo/*` exports, and ensure styles/assets can be bundled by different clients. Do not introduce Next.js-required build transforms into published runtime modules without a platform-neutral fallback.
+11. **Shared static assets belong to UI Kit, deployment copies belong to each host.** Canonical SVG flags live in `shared/ui-kit/assets/flags/`; a host's build/development preparation copies them into its own public assets (`apps/web/public/flags/` for Web). Textbook packages do not seed or duplicate shared flags. The Web host's `prepare:assets` phase is independent of `SVITLO_TEXTBOOK`. Future mobile/desktop hosts should use the same packaged UI Kit assets through their own build pipelines, not assume access to a Web-only URL.
 
 ## Review and verification
 

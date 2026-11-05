@@ -47,87 +47,87 @@
   {
     "name": "area: art",
     "color": "2563EB",
-    "description": "Changes to learningApps/art/"
+    "description": "Changes to content/art/"
   },
   {
     "name": "area: astronomy",
     "color": "2563EB",
-    "description": "Changes to learningApps/astronomy/"
+    "description": "Changes to content/astronomy/"
   },
   {
     "name": "area: biology",
     "color": "2563EB",
-    "description": "Changes to learningApps/biology/"
+    "description": "Changes to content/biology/"
   },
   {
     "name": "area: chemistry",
     "color": "2563EB",
-    "description": "Changes to learningApps/chemistry/"
+    "description": "Changes to content/chemistry/"
   },
   {
     "name": "area: economics",
     "color": "2563EB",
-    "description": "Changes to learningApps/economics/"
+    "description": "Changes to content/economics/"
   },
   {
     "name": "area: engineering",
     "color": "2563EB",
-    "description": "Changes to learningApps/engineering/"
+    "description": "Changes to content/engineering/"
   },
   {
     "name": "area: geography",
     "color": "2563EB",
-    "description": "Changes to learningApps/geography/"
+    "description": "Changes to content/geography/"
   },
   {
     "name": "area: health-safety",
     "color": "2563EB",
-    "description": "Changes to learningApps/health-safety/"
+    "description": "Changes to content/health-safety/"
   },
   {
     "name": "area: history",
     "color": "2563EB",
-    "description": "Changes to learningApps/history/"
+    "description": "Changes to content/history/"
   },
   {
     "name": "area: informatics",
     "color": "2563EB",
-    "description": "Changes to learningApps/informatics/"
+    "description": "Changes to content/informatics/"
   },
   {
     "name": "area: language-literature",
     "color": "2563EB",
-    "description": "Changes to learningApps/language-literature/"
+    "description": "Changes to content/language-literature/"
   },
   {
     "name": "area: languages",
     "color": "2563EB",
-    "description": "Changes to learningApps/languages/"
+    "description": "Changes to content/languages/"
   },
   {
     "name": "area: math",
     "color": "2563EB",
-    "description": "Changes to learningApps/math/"
+    "description": "Changes to content/math/"
   },
   {
     "name": "area: philosophy",
     "color": "2563EB",
-    "description": "Changes to learningApps/philosophy/"
+    "description": "Changes to content/philosophy/"
   },
   {
     "name": "area: physics",
     "color": "2563EB",
-    "description": "Changes to learningApps/physics/"
+    "description": "Changes to content/physics/"
   },
   {
     "name": "area: playground",
     "color": "2563EB",
-    "description": "Changes to learningApps/playground/"
+    "description": "Changes to content/playground/"
   },
   {
     "name": "area: psychology",
     "color": "2563EB",
-    "description": "Changes to learningApps/psychology/"
+    "description": "Changes to content/psychology/"
   },
   {
     "name": "work: feature",

@@ -55,6 +55,10 @@
     "./lesson": {
       "types": "./dist/components/lesson/index.d.ts",
       "default": "./dist/components/lesson/index.js"
+    },
+    "./scene-locale": {
+      "types": "./dist/scene-locale.d.ts",
+      "default": "./dist/scene-locale.js"
     }
   },
   "files": [
@@ -71,7 +75,7 @@
     "prepack": "npm run build",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "test:locales": "node --test scripts/generate-locales.spec.mjs"
+    "test:locales": "node --test scripts/generate-locales.spec.mjs scripts/sync-flags.spec.mjs"
   },
   "dependencies": {
     "@svitlo/engine": "0.0.0",

@@ -62,7 +62,7 @@ module.exports = async function backfill({ github, context, core, shard, shards 
     const first = prefix ? prefix[1] : title.split(/[\s:—-]/)[0];
     const key = aliases.get(first) || first;
     if (allAreaKeys.has(key)) return [allAreaKeys.get(key)];
-    const candidate = (issue.body || '').match(/(?:learningApps|shared|backend|frontend)\/[a-z-]+\//);
+    const candidate = (issue.body || '').match(/(?:content|shared|backend|frontend)\/[a-z-]+\//);
     if (candidate) return getAreas([candidate[0]]);
     return ['area: repo'];
   }

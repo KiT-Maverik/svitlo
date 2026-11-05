@@ -5,6 +5,10 @@ const root = process.cwd();
 const readJson = path => JSON.parse(readFileSync(resolve(root, path), 'utf8'));
 const expected = [
   {
+    path: 'apps/web',
+    name: '@svitlo/web',
+  },
+  {
     path: 'backend/server',
     name: '@svitlo/server',
   },
@@ -13,71 +17,71 @@ const expected = [
     name: '@svitlo/platform',
   },
   {
-    path: 'learningApps/informatics',
+    path: 'content/informatics',
     name: '@svitlo/informatics',
   },
   {
-    path: 'learningApps/biology',
+    path: 'content/biology',
     name: '@svitlo/biology',
   },
   {
-    path: 'learningApps/geography',
+    path: 'content/geography',
     name: '@svitlo/geography',
   },
   {
-    path: 'learningApps/math',
+    path: 'content/math',
     name: '@svitlo/math',
   },
   {
-    path: 'learningApps/physics',
+    path: 'content/physics',
     name: '@svitlo/physics',
   },
   {
-    path: 'learningApps/playground',
+    path: 'content/playground',
     name: '@svitlo/playground',
   },
   {
-    path: 'learningApps/language-literature',
+    path: 'content/language-literature',
     name: '@svitlo/language-literature',
   },
   {
-    path: 'learningApps/languages/ukrainian',
+    path: 'content/languages/ukrainian',
     name: '@svitlo/ukrainian',
   },
   {
-    path: 'learningApps/chemistry',
+    path: 'content/chemistry',
     name: '@svitlo/chemistry',
   },
   {
-    path: 'learningApps/astronomy',
+    path: 'content/astronomy',
     name: '@svitlo/astronomy',
   },
   {
-    path: 'learningApps/history',
+    path: 'content/history',
     name: '@svitlo/history',
   },
   {
-    path: 'learningApps/philosophy',
+    path: 'content/philosophy',
     name: '@svitlo/philosophy',
   },
   {
-    path: 'learningApps/psychology',
+    path: 'content/psychology',
     name: '@svitlo/psychology',
   },
   {
-    path: 'learningApps/economics',
+    path: 'content/economics',
     name: '@svitlo/economics',
   },
   {
-    path: 'learningApps/art',
+    path: 'content/art',
     name: '@svitlo/art',
   },
   {
-    path: 'learningApps/health-safety',
+    path: 'content/health-safety',
     name: '@svitlo/health-safety',
   },
   {
-    path: 'learningApps/engineering',
+    path: 'content/engineering',
     name: '@svitlo/engineering',
   },
   {
@@ -93,8 +97,8 @@ const expected = [
     name: '@svitlo/engine',
   },
   {
-    path: 'shared/nextjs-adapter',
-    name: '@svitlo/nextjs-adapter',
+    path: 'shared/adapters/nextjs',
+    name: '@svitlo/adapter-nextjs',
   },
   {
     path: 'shared/ui-kit',
@@ -103,7 +107,7 @@ const expected = [
 ];
 const manifest = readJson('package.json');
 const lock = readJson('package-lock.json');
-const patterns = ['backend/*', 'frontend/*', 'learningApps/*', 'learningApps/languages/*', 'shared/*'];
+const patterns = ['apps/*', 'backend/*', 'frontend/*', 'content/*', 'content/languages/*', 'shared/*', 'shared/adapters/*'];
 
 function assert(ok, description) {
   if (!ok) throw new Error(description);

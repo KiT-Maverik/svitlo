@@ -3,8 +3,8 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join, relative, resolve, sep } from 'node:path';
 
 const root = process.cwd();
-const math = resolve(root, 'learningApps/math/src');
-const playground = resolve(root, 'learningApps/playground/src');
+const math = resolve(root, 'content/math/src');
+const playground = resolve(root, 'content/playground/src');
 const allowlist = JSON.parse(readFileSync(resolve(root, 'scripts/known-app-duplicates.json'), 'utf8'));
 function assert(ok, message) {
   if (!ok) throw new Error(message);
@@ -41,7 +41,7 @@ assert(
 );
 
 const extractedFiles = ['src/db', 'src/components/layout/LearningLayout/NavbarPreferences', 'playwright.db.config.ts'];
-for (const app of ['learningApps/math', 'learningApps/playground']) {
+for (const app of ['content/math', 'content/playground']) {
   for (const legacy of extractedFiles) {
     assert(!existsSync(resolve(root, app, legacy)), `Duplicate ownership regression: ${app}/${legacy}`);
   }
@@ -59,7 +59,7 @@ const expectedShared = [
   'shared/ui-kit/src/components/layout/LearningLayout/createLessonLearningLayout.tsx',
   'shared/ui-kit/src/components/lesson/Lesson.tsx',
   'shared/ui-kit/data/components/Lesson/messages.data.ts',
-  'shared/nextjs-adapter/src/lesson.ts',
+  'shared/adapters/nextjs/src/lesson.ts',
   'shared/ui-kit/src/components/layout/LearningLayout/NavbarPreferences/NavbarPreferences.tsx',
 ];
 for (const path of expectedShared) assert(existsSync(resolve(root, path)), 'Owner missing: ' + path);
@@ -83,8 +83,8 @@ for (const subject of [
   'shared/contracts',
   'shared/indexdb',
   'frontend/platform',
-  'learningApps/math',
-  'learningApps/informatics',
+  'content/math',
+  'content/informatics',
 ]) {
   assert(canonical.includes(subject), 'Canonical architecture docs omit: ' + subject);
 }

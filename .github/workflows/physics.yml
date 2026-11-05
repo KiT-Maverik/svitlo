@@ -3,7 +3,7 @@ name: Physics textbook checks
 on:
   pull_request:
     paths:
-      - 'learningApps/physics/**'
+      - 'content/physics/**'
       - 'package.json'
       - 'package-lock.json'
       - 'scripts/check-workspaces.mjs'
@@ -23,7 +23,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: node scripts/check-workspaces.mjs
-      - run: node scripts/check-skills-taxonomy-structure.mjs learningApps/physics/data/skills
+      - run: node scripts/check-skills-taxonomy-structure.mjs content/physics/data/skills
       - run: npm run build --workspace @svitlo/contracts
       - run: npm run build --workspace @svitlo/engine
       - run: npm run typecheck:physics

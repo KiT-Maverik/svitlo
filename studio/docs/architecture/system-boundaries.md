@@ -25,7 +25,7 @@ A Quiz question can cite multiple Skill IDs. That does not create an extra integ
 
 - [Lesson types](../../../shared/contracts/src/types/content/lesson.types.ts) include a `Lesson_Config` and array-based ordered `sections.content`, `LessonState`, and a Lesson/Section vs Quiz distinction.
 - [Resource types](../../../shared/contracts/src/types/content/resource.types.ts) distinguish typed content resources; full renderer support **does not follow from TypeScript declarations**.
-- The current [Lesson renderer](../../../learningApps/playground/src/components/pages/Lesson/LessonSectionContent/LessonSectionContent.tsx) directly handles `text`, `markdown`, `scene` for generic Sections; other declared resource configs need additional verification/integration.
+- The current [Lesson renderer](../../../shared/ui-kit/src/components/lesson/Lesson.tsx) delegates content blocks to the shared UI Kit; verify each declared resource kind against its actual widget before claiming rendering support.
 - The [Question types](../../../shared/contracts/src/types/content/question.types.ts) include a `Disability[]` restriction and multiple Question kinds; their actual UI support differs by widget/adapter.
 - [Engine languages](../../../shared/engine/src/types/languages.ts) include locale and `ltr`/`rtl` definitions; complete translation and semantic RTL still require implementation/testing per component.
 

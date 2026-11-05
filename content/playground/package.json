@@ -1,0 +1,52 @@
+{
+  "name": "@svitlo/playground",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "generate:scenes": "node scripts/generate-scenes.mjs --write",
+    "check:scenes": "node scripts/generate-scenes.mjs --check",
+    "build": "tsc -p tsconfig.json --noEmit",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.types.json --noEmit",
+    "test:components": "vitest run",
+    "test:components:coverage": "vitest run --coverage",
+    "pretest:portability": "npm run build --workspace @svitlo/contracts && npm run build --workspace @svitlo/engine && npm run build --workspace @svitlo/ui-kit",
+    "test:portability": "node scripts/check-react-dom-portability.mjs"
+  },
+  "dependencies": {
+    "@mui/material": "^9.5.0",
+    "react": "19.3.0",
+    "@svitlo/engine": "0.0.0",
+    "@svitlo/ui-kit": "0.0.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.8",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitest/coverage-v8": "^3.2.4",
+    "eslint": "^9",
+    "fake-indexeddb": "^6.2.6",
+    "jsdom": "^26.1.0",
+    "prettier": "3.9.10",
+    "typescript": "^5",
+    "vitest": "^3.2.4",
+    "esbuild": "^0.28.2",
+    "react-dom": "19.3.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./src/textbook/index.ts",
+      "default": "./src/textbook/index.ts"
+    },
+    "./scenes": {
+      "types": "./src/components/scenes/index.ts",
+      "default": "./src/components/scenes/index.ts"
+    },
+    "./demo-questions": {
+      "types": "./src/textbook/questionsDemo.ts",
+      "default": "./src/textbook/questionsDemo.ts"
+    }
+  }
+}

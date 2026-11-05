@@ -1,6 +1,6 @@
 # Cross-Platform Lesson Runtime & Build-Time Textbook Composition
 
-**Status:** **Target architecture / approved direction**, not an implemented multi-platform migration. The current repository still contains independent Next.js textbook applications; see [Monorepo & Independent Textbooks](./monorepo-and-textbook.md) for the live repository map. This document describes the intended boundaries for future changes, not new APIs to assume are available now.
+**Status:** **Partially implemented.** Playground now supplies a framework-independent textbook package to the build-selected `apps/web` Next.js host. Other textbooks remain standalone applications. Capacitor, Electron, offline delivery and the proposed session operations architecture remain future work. See [Monorepo & Independent Textbooks](./monorepo-and-textbook.md) for the repository map; do not assume proposed APIs already exist.
 
 ## Goal
 
@@ -25,6 +25,7 @@ A release can select **one textbook** or **a catalog of textbooks** at build tim
 - UI Kit renders using **React DOM** in all three targets (Next.js browser, Capacitor WebView, Electron Chromium). This design intentionally **does not promise compatibility with React Native's native component renderer**.
 - There is no requirement to split a textbook into separate `definition` and `runtime` repositories/packages. Distinguish **authoring/build inputs** from **runtime deliverables** within a single independently extractable textbook package.
 - Keep platform-specific bootstrapping and framework tooling in the host. UI Kit and Scenes must not import app-local `@/*` aliases or app-owned context providers. Shared locale/session providers may be supplied explicitly where required.
+- **Shared UI static assets:** UI Kit is the source of truth for flags and other reusable static UI assets. Each host stages its own deployable copy during app preparation, independently of the selected textbook. For Web, `npm run prepare:assets --workspace @svitlo/web` puts flags in `apps/web/public/flags/` (served as `/flags/*.svg`); `prepare-textbook.mjs` handles selected-book data and does not copy these files. Capacitor/Electron will require their own packaging adapters when implemented.
 
 ## Build-time composition and offline behavior
 
@@ -69,6 +70,6 @@ Server-assembled props remove an extra client API fetch for Lesson configuration
 4. Validate one textbook under Web and one ordinary React DOM bundler before creating the full Capacitor/Electron packaging pipeline. Add offline, hydration, locale/RTL, accessible navigation and persistent-session tests.
 5. Plan migration of independently deployed textbooks to content+Scene packages only after parity checks; do not delete existing Next.js apps or replace their routes as an undocumented side effect.
 
-**Observed example to preserve and generalize:** [Playground `sceneLoader.ts`](../../../learningApps/playground/src/components/scenes/sceneLoader.ts) uses a static registry, `React.lazy` and a cache. Individual Scenes may still import Playground-specific providers; that is migration debt, not a reason to introduce a parallel loader.
+**Observed example to preserve and generalize:** [Playground `sceneLoader.ts`](../../../content/playground/src/components/scenes/sceneLoader.ts) uses a static registry, `React.lazy` and a cache. Individual Scenes may still import Playground-specific providers; that is migration debt, not a reason to introduce a parallel loader.
 
 **Related:** [System Boundaries](./system-boundaries.md), [Offline & Device Compatibility](./offline-first-and-device-compatibility.md), [Git-First Typed Content](./git-first-typed-content.md), [Internationalization & Inclusive Access](./internationalization-and-accessibility.md), [Monorepo](./monorepo-and-textbook.md), [UI Kit agent instructions](../../../shared/ui-kit/AGENTS.md).

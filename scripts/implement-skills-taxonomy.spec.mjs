@@ -52,7 +52,7 @@ const original =
   section(3, 'Music', 'music', 'create', 'pending', 'direct') +
   section(4, 'Hear Rhythm', 'hearRhythm');
 function fixture() {
-  const pkg = fs.mkdtempSync(path.join(root, 'learningApps', '.direct-skill-code-'));
+  const pkg = fs.mkdtempSync(path.join(root, 'content', '.direct-skill-code-'));
   const md = path.join(pkg, 'docs/skills/taxonomy.md');
   fs.mkdirSync(path.dirname(md), { recursive: true });
   fs.writeFileSync(path.join(pkg, 'package.json'), '{"name":"fixture","private":true}');
@@ -103,10 +103,10 @@ const source = (f, p) => fs.readFileSync(path.join(data(f), p), 'utf8');
 const uuid = body => body.match(/\bid: "([0-9a-f-]{36})"/)?.[1];
 
 test('real Art taxonomy completes English-only dry-run without writing source', () => {
-  const art = path.join(root, 'learningApps/art');
+  const art = path.join(root, 'content/art');
   const markdown = path.join(art, 'docs/skills/taxonomy.md');
   const originalMarkdown = fs.readFileSync(markdown, 'utf8');
-  const run = spawnSync(process.execPath, [script, '--package', 'learningApps/art'], {
+  const run = spawnSync(process.execPath, [script, '--package', 'content/art'], {
     cwd: root,
     encoding: 'utf8',
     maxBuffer: 16 * 1024 * 1024,

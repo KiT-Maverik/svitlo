@@ -7,7 +7,7 @@ on:
       - feat/health-safety-skills-integration
     types: [opened, synchronize, reopened, ready_for_review]
     paths:
-      - 'learningApps/health-safety/data/skills/**'
+      - 'content/health-safety/data/skills/**'
       - '.github/workflows/health-safety-skills-validation.yml'
 
 permissions:
@@ -35,7 +35,7 @@ jobs:
       - name: Validate workspace manifests
         run: node scripts/check-workspaces.mjs
       - name: Validate Health and Safety taxonomy graph
-        run: node scripts/check-skills-taxonomy-structure.mjs learningApps/health-safety/data/skills
+        run: node scripts/check-skills-taxonomy-structure.mjs content/health-safety/data/skills
       - name: Build real contracts and engine
         run: |
           npm run build --workspace @svitlo/contracts
@@ -62,11 +62,11 @@ jobs:
             include,
             exclude: [],
           };
-          const path = 'learningApps/health-safety/tsconfig.agent-validation.tmp.json';
+          const path = 'content/health-safety/tsconfig.agent-validation.tmp.json';
           fs.writeFileSync(path, JSON.stringify(cfg, null, 2) + '\n');
           console.log('Validating complete assigned domain source:', include);
           NODE
-          npx tsc --noEmit --project learningApps/health-safety/tsconfig.agent-validation.tmp.json
+          npx tsc --noEmit --project content/health-safety/tsconfig.agent-validation.tmp.json
       - name: Full workspace TypeScript diagnostic on agent PR
         if: github.base_ref == 'feat/health-safety-skills-integration'
         continue-on-error: true

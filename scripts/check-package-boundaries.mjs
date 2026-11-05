@@ -6,13 +6,15 @@ const readJson = path => JSON.parse(readFileSync(resolve(root, path), 'utf8'));
 const contracts = readJson('shared/contracts/package.json');
 const engine = readJson('shared/engine/package.json');
 const indexdb = readJson('shared/indexdb/package.json');
-const playground = readJson('learningApps/playground/package.json');
+const playground = readJson('content/playground/package.json');
+const web = readJson('apps/web/package.json');
+const selectableTextbooks = new Set(Object.values(readJson('apps/web/textbooks.json')).map(entry => entry.package));
 const platform = readJson('frontend/platform/package.json');
-const math = readJson('learningApps/math/package.json');
-const biology = readJson('learningApps/biology/package.json');
-const physics = readJson('learningApps/physics/package.json');
+const math = readJson('content/math/package.json');
+const biology = readJson('content/biology/package.json');
+const physics = readJson('content/physics/package.json');
 const uiKit = readJson('shared/ui-kit/package.json');
-const nextAdapter = readJson('shared/nextjs-adapter/package.json');
+const nextAdapter = readJson('shared/adapters/nextjs/package.json');
 
 function walk(dir) {
   return readdirSync(dir, { withFileTypes: true }).flatMap(entry => {
@@ -29,7 +31,7 @@ assert(
   'Physics must declare independent Next.js/React runtime dependencies',
 );
 for (const file of ['src/app/layout.tsx', 'src/app/page.tsx']) {
-  assert(existsSync(resolve(root, 'learningApps/physics', file)), 'Physics scaffold missing: ' + file);
+  assert(existsSync(resolve(root, 'content/physics', file)), 'Physics scaffold missing: ' + file);
 }
 assert(platform.name === '@svitlo/platform', 'Unexpected Platform package name');
 assert(
@@ -69,10 +71,10 @@ for (const subpath of ['.', './content', './taxonomy', './localization', './stat
 }
 assert(playground.dependencies?.[engine.name] === engine.version, 'Playground must use a versioned engine dependency');
 assert(playground.dependencies?.[uiKit.name] === uiKit.version, 'Playground must use a versioned UI Kit dependency');
-assert(playground.dependencies?.[indexdb.name] === indexdb.version, 'Playground must use public IndexedDB dependency');
+assert(web.dependencies?.[indexdb.name] === indexdb.version, 'Web must use public IndexedDB dependency');
 assert(math.dependencies?.[indexdb.name] === indexdb.version, 'Math must use public IndexedDB dependency');
 assert(biology.name === '@svitlo/biology', 'Unexpected Biology package name');
-for (const name of ['learningApps/math', 'learningApps/playground']) {
+for (const name of ['content/math', 'content/playground']) {
   assert(!existsSync(resolve(root, name, 'src/db')), name + ' must not own duplicate IndexedDB controllers');
 }
 assert(
@@ -94,37 +96,39 @@ for (const [label, manifest] of [
   assert(manifest.dependencies?.[engine.name] === engine.version, label + ' must use public Engine dependency');
   assert(manifest.dependencies?.[uiKit.name] === uiKit.version, label + ' must use public UI Kit dependency');
 }
+assert(existsSync(resolve(root, 'content/math/data/skills')), 'Math textbook is missing its canonical Skills taxonomy');
+assert(existsSync(resolve(root, 'content/math/docs')), 'Math textbook is missing package-local educational docs');
+assert(!existsSync(resolve(root, 'content/playground/src/math')), 'Playground cannot own mathematics skills taxonomy');
 assert(
-  existsSync(resolve(root, 'learningApps/math/data/skills')),
-  'Math textbook is missing its canonical Skills taxonomy',
-);
-assert(existsSync(resolve(root, 'learningApps/math/docs')), 'Math textbook is missing package-local educational docs');
-assert(
-  !existsSync(resolve(root, 'learningApps/playground/src/math')),
-  'Playground cannot own mathematics skills taxonomy',
-);
-assert(
-  !existsSync(resolve(root, 'learningApps/playground/src/content')),
+  !existsSync(resolve(root, 'content/playground/src/content')),
   'Playground cannot contain authored textbook content',
 );
 assert(
-  existsSync(resolve(root, 'learningApps/playground/src/app/[language]/lesson/[lessonId]/page.tsx')),
-  'Playground must host the UUID-addressed lesson route',
+  existsSync(resolve(root, 'apps/web/src/app/[language]/lesson/[lessonId]/page.tsx')),
+  'Web must host the UUID-addressed lesson route',
 );
 assert(
-  !existsSync(resolve(root, 'learningApps/playground/src/fixtures')),
+  !existsSync(resolve(root, 'content/playground/src/app')) && !playground.dependencies?.next,
+  'Playground must be a framework-independent textbook package',
+);
+assert(
+  playground.exports?.['./scenes'] && web.dependencies?.[playground.name] === playground.version,
+  'Web must consume the public Playground Scene registry',
+);
+assert(
+  !existsSync(resolve(root, 'content/playground/src/fixtures')),
   'Obsolete Playground fixtures directory must be removed',
 );
 assert(
-  !existsSync(resolve(root, 'learningApps/math/src/content/howLightMoves')),
+  !existsSync(resolve(root, 'content/math/src/content/howLightMoves')),
   'Math cannot own light demonstration content',
 );
 assert(
-  !existsSync(resolve(root, 'learningApps/math/src/components/widgets/KnowledgeCheckpoint')),
+  !existsSync(resolve(root, 'content/math/src/components/widgets/KnowledgeCheckpoint')),
   'Math cannot own scene-specific checkpoint tests',
 );
 assert(
-  !existsSync(resolve(root, 'learningApps/playground/src/components/widgets/KnowledgeCheckpoint')),
+  !existsSync(resolve(root, 'content/playground/src/components/widgets/KnowledgeCheckpoint')),
   'Scene checkpoint tests must live with their authored scene',
 );
 assert(
@@ -148,19 +152,19 @@ assert(
   'Engine must own the canonical Assessment Method Taxonomy',
 );
 assert(
-  !existsSync(resolve(root, 'learningApps/math/src/data/assessmentMethodTaxonomy')),
+  !existsSync(resolve(root, 'content/math/src/data/assessmentMethodTaxonomy')),
   'Math must not own shared Assessment Method Taxonomy',
 );
 assert(
-  !existsSync(resolve(root, 'learningApps/math/src/utils')),
+  !existsSync(resolve(root, 'content/math/src/utils')),
   'Math utility duplicates must be removed after extraction',
 );
 assert(
-  !existsSync(resolve(root, 'learningApps/playground/src/utils')),
+  !existsSync(resolve(root, 'content/playground/src/utils')),
   'Playground utility duplicates must be removed after extraction',
 );
 assert(
-  existsSync(resolve(root, 'learningApps/math/data/skills/index.ts')),
+  existsSync(resolve(root, 'content/math/data/skills/index.ts')),
   'Math textbook must export its canonical Skills taxonomy',
 );
 assert(
@@ -193,11 +197,8 @@ for (const file of engineSources) {
     );
   }
 }
-assert(nextAdapter.name === '@svitlo/nextjs-adapter', 'Unexpected Next.js adapter package name');
-assert(
-  playground.dependencies?.[nextAdapter.name] === nextAdapter.version,
-  'Playground must use the shared Next.js adapter',
-);
+assert(nextAdapter.name === '@svitlo/adapter-nextjs', 'Unexpected Next.js adapter package name');
+assert(web.dependencies?.[nextAdapter.name] === nextAdapter.version, 'Web must use the shared Next.js adapter');
 assert(
   nextAdapter.dependencies?.[uiKit.name] === uiKit.version,
   'Next.js adapter must consume the UI Kit via public exports',
@@ -210,13 +211,13 @@ if (existsSync(kitSourceRoot)) {
     // UI Kit must remain independent of application and Next.js modules.
     const guardedSource = source;
     assert(
-      !/from\s*['"](?:@\/|@layout|@pages|next\/|\.\.\/\.\.\/\.\.\/\.\.\/learningApps\/)/.test(guardedSource),
+      !/from\s*['"](?:@\/|@layout|@pages|next\/|\.\.\/\.\.\/\.\.\/\.\.\/content\/)/.test(guardedSource),
       'UI Kit must not import application or Next.js sources: ' + relative(root, file),
     );
   }
 }
-const appSourceRoot = resolve(root, 'learningApps/playground/src');
-const playgroundManifest = readJson('learningApps/playground/tsconfig.json');
+const appSourceRoot = resolve(root, 'content/playground/src');
+const playgroundManifest = readJson('content/playground/tsconfig.json');
 assert(
   !playgroundManifest.compilerOptions?.paths?.['@layout'] && !playgroundManifest.compilerOptions?.paths?.['@pages'],
   'Playground must not retain deprecated @layout or @pages aliases',
@@ -245,23 +246,23 @@ if (existsSync(appSourceRoot)) {
   }
 }
 const applicationSourceRoots = [
-  'learningApps/playground/src',
-  'learningApps/math/src',
-  'learningApps/biology/src',
-  'learningApps/physics/src',
-  'learningApps/informatics/src',
-  'learningApps/geography/src',
-  'learningApps/language-literature/src',
-  'learningApps/languages/ukrainian/src',
-  'learningApps/chemistry/src',
-  'learningApps/astronomy/src',
-  'learningApps/history/src',
-  'learningApps/philosophy/src',
-  'learningApps/psychology/src',
-  'learningApps/economics/src',
-  'learningApps/art/src',
-  'learningApps/health-safety/src',
-  'learningApps/engineering/src',
+  'apps/web/src',
+  'content/math/src',
+  'content/biology/src',
+  'content/physics/src',
+  'content/informatics/src',
+  'content/geography/src',
+  'content/language-literature/src',
+  'content/languages/ukrainian/src',
+  'content/chemistry/src',
+  'content/astronomy/src',
+  'content/history/src',
+  'content/philosophy/src',
+  'content/psychology/src',
+  'content/economics/src',
+  'content/art/src',
+  'content/health-safety/src',
+  'content/engineering/src',
   'frontend/platform/src',
 ].map(path => resolve(root, path));
 for (const applicationRoot of applicationSourceRoots) {
@@ -270,9 +271,11 @@ for (const applicationRoot of applicationSourceRoots) {
     for (const match of code.matchAll(/\bfrom\s*['"]([^'"]+)['"]/g)) {
       const specifier = match[1];
       assert(
-        !/^@svitlo\/(?:playground|math|biology|physics|informatics|geography|language-literature|ukrainian|chemistry|astronomy|history|philosophy|psychology|economics|art|health-safety|engineering|platform)(?:\/|$)/.test(
-          specifier,
-        ),
+        (applicationRoot === resolve(root, 'apps/web/src') &&
+          selectableTextbooks.has(specifier.split('/').slice(0, 2).join('/'))) ||
+          !/^@svitlo\/(?:playground|math|biology|physics|informatics|geography|language-literature|ukrainian|chemistry|astronomy|history|philosophy|psychology|economics|art|health-safety|engineering|platform)(?:\/|$)/.test(
+            specifier,
+          ),
         'Applications must not import another application by package name: ' + relative(root, file),
       );
       if (!specifier.startsWith('.')) continue;
@@ -286,7 +289,7 @@ for (const applicationRoot of applicationSourceRoots) {
     }
   }
 }
-for (const app of ['learningApps/math', 'learningApps/playground']) {
+for (const app of ['content/math', 'apps/web']) {
   for (const old of [
     'DbBrowserHarness.tsx',
     'db-browser-commands.ts',
@@ -318,12 +321,12 @@ assert(
   existsSync(resolve(root, 'shared/indexdb/playwright.config.ts')),
   'IndexedDB must own the native browser Playwright configuration',
 );
-for (const app of ['learningApps/math', 'learningApps/playground']) {
+for (const app of ['content/math', 'apps/web']) {
   const preferences = resolve(root, app, 'src/components/layout/LearningLayout/NavbarPreferences');
   assert(!existsSync(preferences), 'NavbarPreferences must be owned by UI Kit, not ' + app);
   const adapterPath = resolve(root, app, 'src/components/layout/LearningLayout/LearningLayout.tsx');
-  // Mathematics currently exposes no lesson layout adapter; Playground must retain one.
-  if (app === 'learningApps/math' && !existsSync(adapterPath)) continue;
+  // Mathematics currently exposes no lesson layout adapter; Web must retain one.
+  if (app === 'content/math' && !existsSync(adapterPath)) continue;
   assert(existsSync(adapterPath), 'Lesson layout adapter missing: ' + app);
   const adapter = readFileSync(adapterPath, 'utf8');
   assert(

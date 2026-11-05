@@ -1,0 +1,87 @@
+import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+
+import { argumentativeFallacies_SkillGroup_Data } from './argumentativeFallacies/argumentativeFallacies.data';
+import { argumentsAndInference_SkillGroup_Data } from './argumentsAndInference/argumentsAndInference.data';
+import { deductiveReasoning_SkillGroup_Data } from './deductiveReasoning/deductiveReasoning.data';
+import { nonDeductiveReasoning_SkillGroup_Data } from './nonDeductiveReasoning/nonDeductiveReasoning.data';
+import { predicateLogic_SkillGroup_Data } from './predicateLogic/predicateLogic.data';
+import { propositionalLogic_SkillGroup_Data } from './propositionalLogic/propositionalLogic.data';
+
+export const logicAndArgumentation_SkillDomain_Data = buildSkillDomainConfig({
+  slug: 'logicAndArgumentation',
+  id: 'ad30ef0a-43a4-449a-9b2f-c37e41b7d5a4',
+  name: {
+    en: 'Logic and Argumentation',
+    zh: '逻辑与论证',
+    hi: 'तर्कशास्त्र और युक्तिवाद',
+    es: 'Lógica y argumentación',
+    ar: 'المنطق والحجاج',
+    fr: 'Logique et argumentation',
+    bn: 'যুক্তিবিদ্যা ও তর্ক',
+    pt: 'Lógica e argumentação',
+    ur: 'منطق اور استدلال',
+    id: 'Logika dan Argumentasi',
+    de: 'Logik und Argumentation',
+    ja: '論理と議論',
+    ko: '논리와 논증',
+    tr: 'Mantık ve Argümantasyon',
+    vi: 'Logic và lập luận',
+    ta: 'தருக்கமும் வாதமும்',
+    te: 'తర్కశాస్త్రం మరియు వాదన',
+    mr: 'तर्कशास्त्र आणि युक्तिवाद',
+    ms: 'Logik dan Penghujahan',
+    he: 'לוגיקה וטיעון',
+    pl: 'Logika i argumentacja',
+    uk: 'Логіка та аргументація',
+    lt: 'Logika ir argumentavimas',
+    lv: 'Loģika un argumentācija',
+    et: 'Loogika ja argumentatsioon',
+    be: 'Лёгіка й аргумэнтацыя',
+    ka: 'ლოგიკა და არგუმენტაცია',
+    kk: 'Логика және дәлелдеу',
+    qm: 'Mantıq ve delillendirme',
+  },
+  groups: {
+    argumentativeFallacies: argumentativeFallacies_SkillGroup_Data,
+    argumentsAndInference: argumentsAndInference_SkillGroup_Data,
+    deductiveReasoning: deductiveReasoning_SkillGroup_Data,
+    nonDeductiveReasoning: nonDeductiveReasoning_SkillGroup_Data,
+    predicateLogic: predicateLogic_SkillGroup_Data,
+    propositionalLogic: propositionalLogic_SkillGroup_Data,
+  },
+  description: {
+    methodological:
+      'The central question is whether reasons support a conclusion and in what way. Formal entailment, defeasible inference, and argumentative defects are distinguished from psychological causes of belief, which belong chiefly to Psychology.',
+    frontend: {
+      en: 'Learn to evaluate whether reasons support a conclusion and recognize faulty reasoning.',
+      zh: '学习评价理由是否支持结论，并识别有缺陷的推理。',
+      hi: 'जानें कि कारण किसी निष्कर्ष का समर्थन करते हैं या नहीं और त्रुटिपूर्ण तर्क को कैसे पहचानें।',
+      es: 'Aprende a evaluar si las razones respaldan una conclusión y a reconocer razonamientos defectuosos.',
+      ar: 'تعلّم تقييم مدى دعم الأسباب للنتيجة والتعرّف على الاستدلال المعيب.',
+      fr: 'Apprends à évaluer si des raisons soutiennent une conclusion et à repérer les raisonnements fautifs.',
+      bn: 'কারণগুলো সিদ্ধান্তকে সমর্থন করে কি না তা যাচাই করতে এবং ভুল যুক্তি চিনতে শেখো।',
+      pt: 'Aprenda a avaliar se as razões sustentam uma conclusão e a reconhecer raciocínios falhos.',
+      ur: 'جانیں کہ دلائل کسی نتیجے کی تائید کرتے ہیں یا نہیں اور غلط استدلال کیسے پہچانیں۔',
+      id: 'Pelajari cara menilai apakah alasan mendukung kesimpulan dan mengenali penalaran yang keliru.',
+      de: 'Lerne zu prüfen, ob Gründe eine Schlussfolgerung stützen, und fehlerhaftes Schließen zu erkennen.',
+      ja: '理由が結論を支えているかを評価し、誤った推論を見分けよう。',
+      ko: '근거가 결론을 뒷받침하는지 평가하고 잘못된 추론을 알아보세요.',
+      tr: 'Gerekçelerin bir sonucu destekleyip desteklemediğini değerlendirmeyi ve hatalı akıl yürütmeyi tanımayı öğren.',
+      vi: 'Học đánh giá xem lý do có hỗ trợ kết luận hay không và nhận biết lập luận sai.',
+      ta: 'காரணங்கள் முடிவை ஆதரிக்கின்றனவா என்பதை மதிப்பிட்டு தவறான தருக்கத்தை அறியக் கற்றுக்கொள்.',
+      te: 'కారణాలు ఒక నిర్ణయాన్ని సమర్థిస్తున్నాయో లేదో అంచనా వేసి తప్పు తర్కాన్ని గుర్తించడం నేర్చుకోండి.',
+      mr: 'कारणे निष्कर्षाला आधार देतात का हे तपासायला आणि चुकीचा तर्क ओळखायला शिका.',
+      ms: 'Belajar menilai sama ada alasan menyokong kesimpulan dan mengenali penaakulan yang salah.',
+      he: 'למדו להעריך אם נימוקים תומכים במסקנה ולזהות היסק פגום.',
+      pl: 'Naucz się oceniać, czy przesłanki wspierają wniosek, i rozpoznawać błędne rozumowanie.',
+      uk: 'Навчись оцінювати, чи підстави підтримують висновок, і помічати помилки міркування.',
+      lt: 'Išmok vertinti, ar argumentai pagrindžia išvadą, ir atpažinti klaidingą samprotavimą.',
+      lv: 'Mācies vērtēt, vai pamatojums atbalsta secinājumu, un atpazīt kļūdainu spriešanu.',
+      et: 'Õpi hindama, kas põhjendused toetavad järeldust, ning ära tundma vigast arutluskäiku.',
+      be: 'Навучыся ацэньваць, ці падставы падтрымліваюць выснову, і заўважаць памылкі разважаньня.',
+      ka: 'ისწავლე, როგორ შეაფასო, ამყარებს თუ არა მიზეზები დასკვნას და როგორ ამოიცნო მცდარი მსჯელობა.',
+      kk: 'Негіздер қорытындыны қолдай ма, соны бағалауды және қате пайымдауды тануды үйрен.',
+      qm: 'Sebebler neticeni qollap-quvetleymi, onı baalamaqnı ve yañlış fikir yürsetüvni tanımaqnı ögren.',
+    },
+  },
+});

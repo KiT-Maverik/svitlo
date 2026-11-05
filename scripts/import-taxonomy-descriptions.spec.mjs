@@ -6,7 +6,7 @@ import { spawnSync } from 'node:child_process';
 import process from 'node:process';
 
 const root = path.resolve(import.meta.dirname, '..');
-const fixture = fs.mkdtempSync(path.join(root, 'learningApps', '.taxonomy-import-fixture-'));
+const fixture = fs.mkdtempSync(path.join(root, 'content', '.taxonomy-import-fixture-'));
 const docs = path.join(fixture, 'docs/skills/taxonomy.md');
 const entity = path.join(fixture, 'src/data/skillsTaxonomy/a/a.data.ts');
 const put = (p, value) => {

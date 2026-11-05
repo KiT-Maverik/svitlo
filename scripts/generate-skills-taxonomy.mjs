@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Generate a localized-name, read-only Markdown view from typed taxonomy source.
- * Usage: node scripts/generate-skills-taxonomy.mjs --package learningApps/math
+ * Usage: node scripts/generate-skills-taxonomy.mjs --package content/math
  *   [--locale en] [--check | --stdout]
  *
  * Deliberately parses TypeScript source without executing textbook code.
@@ -42,8 +42,8 @@ function options(args) {
 const repositoryRoot = path.resolve(import.meta.dirname, '..');
 const opts = options(process.argv.slice(2));
 const packageRoot = path.resolve(repositoryRoot, opts.package);
-if (!packageRoot.startsWith(path.join(repositoryRoot, 'learningApps') + path.sep))
-  fail('Package must be within learningApps/');
+if (!packageRoot.startsWith(path.join(repositoryRoot, 'content') + path.sep))
+  fail('Package must be within content/');
 const taxonomyRoot = path.join(packageRoot, 'data/skills');
 if (!fs.existsSync(taxonomyRoot) || !fs.statSync(taxonomyRoot).isDirectory()) {
   fail('No code taxonomy: ' + taxonomyRoot);

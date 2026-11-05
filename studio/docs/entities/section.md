@@ -26,7 +26,7 @@ The existing [`KnowledgeCheckpoint`](../../../shared/ui-kit/src/components/widge
 - Present a prompt/question in an accordion header. The learner can expand it to reveal explanatory content, think before revealing and optionally mark it as reviewed/checked.
 - The widget tracks which prompts have been acknowledged via `onProgressChange`; it does **not** verify the learner's answer. A `complete` callback means items have been marked, **not** that understanding or mastery was demonstrated.
 - Insert where a deliberate pause adds understanding, e.g. after a Theory explanation, model, comparison or interaction. **Do not require one per Section**, infer correctness, or award scores from clicks.
-- **Existing integration:** in `learningApps/playground/src/data/howLightMoves`, a prop-free `Checkpoint` Scene wraps the widget and is placed as a `blockType: 'scene'` Resource in the Theory Section. `KnowledgeCheckpoint` itself is not a `Resource_Config.blockType` and not a `Quiz_Config`.
+- **Existing integration:** in `content/playground/src/data/howLightMoves`, a prop-free `Checkpoint` Scene wraps the widget and is placed as a `blockType: 'scene'` Resource in the Theory Section. `KnowledgeCheckpoint` itself is not a `Resource_Config.blockType` and not a `Quiz_Config`.
 - The Screenwriter must specify meaningful questions, reveal content and placement; a Coding Agent verifies actual integration, locale, keyboard/RTL and progress semantics before implementation.
 
 Related: [Lesson](./lesson.md), [Lesson Content](./lesson-content.md), [Program](./program.md).

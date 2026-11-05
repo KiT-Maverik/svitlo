@@ -43,12 +43,9 @@ jobs:
       - name: Mathematics UI E2E (desktop and mobile)
         if: ${{ !cancelled() }}
         run: npm run test:e2e --workspace @svitlo/math
-      - name: Light lesson and scene checkpoint E2E (Playground)
+      - name: Universal Web lesson E2E (desktop and mobile)
         if: ${{ !cancelled() }}
-        run: npm run test:e2e --workspace @svitlo/playground -- src/data/howLightMoves/LightLesson.e2e.spec.ts src/data/howLightMoves/sections/theory/resources/scenes/Checkpoint/Checkpoint.e2e.spec.ts
-      - name: Lesson page E2E (desktop and mobile)
-        if: ${{ !cancelled() }}
-        run: npm run test:e2e --workspace @svitlo/playground -- src/components/pages/Lesson/Lesson.e2e.spec.ts
+        run: npm run test:e2e --workspace @svitlo/web
       - run: npm run test:e2e
         if: ${{ !cancelled() }}
       - name: Platform catalog smoke E2E (desktop and mobile)
@@ -59,6 +56,6 @@ jobs:
         with:
           name: questions-test-results
           path: |
-            learningApps/playground/test-results/
-            learningApps/math/test-results/
+            apps/web/test-results/
+            content/math/test-results/
             frontend/platform/test-results/

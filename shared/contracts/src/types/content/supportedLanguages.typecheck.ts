@@ -46,11 +46,11 @@ const definedLesson = defineLessonData<SupportedLanguages>()({
 const sectionSlug: 'intro' = definedLesson.sections[0].slug;
 const responseLanguages: Lesson<'response', SupportedLanguages>['parameters']['languages'] = ['en', 'uk'];
 
-// @ts-expect-error A localized value needs every selected language.
 const missingText: ContentBlock_Text<'data', SupportedLanguages> = {
   id: 'missing',
   slug: 'missing',
   type: 'text',
+  // @ts-expect-error A localized value needs every selected language.
   value: { en: 'Hello' },
 };
 // @ts-expect-error Nested question values use the same selected language set.
@@ -59,18 +59,18 @@ const missingAnswer: Question_AnswerWithText<'data', SupportedLanguages>['correc
 type MissingLanguages = ContentBlock_Text<'data'>;
 // @ts-expect-error Content units receive the language tuple, not a union of codes.
 type InvalidUnion = ContentBlock_Text<'data', 'en' | 'uk'>;
-// @ts-expect-error A language outside the lesson tuple is not accepted.
 const extraLanguage: ContentBlock_Text<'data', SupportedLanguages> = {
   id: 'extra',
   slug: 'extra',
   type: 'text',
+  // @ts-expect-error A language outside the lesson tuple is not accepted.
   value: { en: 'Hello', uk: 'Привіт', fr: 'Bonjour' },
 };
-// @ts-expect-error A broad language tuple includes more languages than en and uk.
 const incompleteFull: ContentBlock_Text<'data', Locale_Languages> = {
   id: 'default',
   slug: 'default',
   type: 'text',
+  // @ts-expect-error A broad language tuple includes more languages than en and uk.
   value: { en: 'Hello', uk: 'Привіт' },
 };
 // @ts-expect-error Lesson data must list every supported language in its declared order.

@@ -7,7 +7,7 @@ import { spawnSync } from 'node:child_process';
 import ts from 'typescript';
 
 const root = path.resolve(import.meta.dirname, '..');
-const packageRoot = path.join(root, 'learningApps/math');
+const packageRoot = path.join(root, 'content/math');
 const taxonomyRoot = path.join(packageRoot, 'data/skills');
 const outputPath = path.join(packageRoot, 'docs/generated/skills/taxonomy.en.md');
 const source = fs.readFileSync(path.join(root, 'shared/contracts/src/types/languages.ts'), 'utf8');
@@ -90,7 +90,7 @@ function generate(locale) {
     [
       path.join(root, 'scripts/generate-skills-taxonomy.mjs'),
       '--package',
-      'learningApps/math',
+      'content/math',
       '--locale',
       locale,
       '--stdout',

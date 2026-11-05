@@ -1,6 +1,8 @@
 packages:
+  - 'apps/*'
   - 'backend/*'
   - 'frontend/*'
-  - 'learningApps/*'
-  - 'learningApps/languages/*'
+  - 'content/*'
+  - 'content/languages/*'
   - 'shared/*'
+  - 'shared/adapters/*'

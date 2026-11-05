@@ -10,7 +10,7 @@ const root = fileURLToPath(new URL('../../../', import.meta.url));
 const require = createRequire(import.meta.url);
 const { DEFAULT_SUPPORTED_LANGUAGES } = require('@svitlo/contracts/localization');
 const script = path.join(root, 'shared/ui-kit/scripts/generate-locales.mjs');
-const target = 'learningApps/playground';
+const target = 'content/playground';
 const output = path.join(root, target, 'public/data/ui-kit');
 
 function generate(...flags) {

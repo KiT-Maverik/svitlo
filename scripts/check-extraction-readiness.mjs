@@ -7,28 +7,29 @@ const root = process.cwd();
 const readJson = name => JSON.parse(readFileSync(resolve(root, name), 'utf8'));
 const builtins = new Set(builtinModules.map(name => name.replace(/^node:/, '')));
 const workspaces = [
+  ['apps/web', readJson('apps/web/package.json')],
   ['shared/contracts', readJson('shared/contracts/package.json')],
   ['shared/engine', readJson('shared/engine/package.json')],
   ['shared/indexdb', readJson('shared/indexdb/package.json')],
   ['shared/ui-kit', readJson('shared/ui-kit/package.json')],
-  ['shared/nextjs-adapter', readJson('shared/nextjs-adapter/package.json')],
-  ['learningApps/playground', readJson('learningApps/playground/package.json')],
-  ['learningApps/math', readJson('learningApps/math/package.json')],
-  ['learningApps/physics', readJson('learningApps/physics/package.json')],
-  ['learningApps/biology', readJson('learningApps/biology/package.json')],
-  ['learningApps/geography', readJson('learningApps/geography/package.json')],
-  ['learningApps/informatics', readJson('learningApps/informatics/package.json')],
-  ['learningApps/language-literature', readJson('learningApps/language-literature/package.json')],
-  ['learningApps/languages/ukrainian', readJson('learningApps/languages/ukrainian/package.json')],
-  ['learningApps/chemistry', readJson('learningApps/chemistry/package.json')],
-  ['learningApps/astronomy', readJson('learningApps/astronomy/package.json')],
-  ['learningApps/history', readJson('learningApps/history/package.json')],
-  ['learningApps/philosophy', readJson('learningApps/philosophy/package.json')],
-  ['learningApps/psychology', readJson('learningApps/psychology/package.json')],
-  ['learningApps/economics', readJson('learningApps/economics/package.json')],
-  ['learningApps/art', readJson('learningApps/art/package.json')],
-  ['learningApps/health-safety', readJson('learningApps/health-safety/package.json')],
-  ['learningApps/engineering', readJson('learningApps/engineering/package.json')],
+  ['shared/adapters/nextjs', readJson('shared/adapters/nextjs/package.json')],
+  ['content/playground', readJson('content/playground/package.json')],
+  ['content/math', readJson('content/math/package.json')],
+  ['content/physics', readJson('content/physics/package.json')],
+  ['content/biology', readJson('content/biology/package.json')],
+  ['content/geography', readJson('content/geography/package.json')],
+  ['content/informatics', readJson('content/informatics/package.json')],
+  ['content/language-literature', readJson('content/language-literature/package.json')],
+  ['content/languages/ukrainian', readJson('content/languages/ukrainian/package.json')],
+  ['content/chemistry', readJson('content/chemistry/package.json')],
+  ['content/astronomy', readJson('content/astronomy/package.json')],
+  ['content/history', readJson('content/history/package.json')],
+  ['content/philosophy', readJson('content/philosophy/package.json')],
+  ['content/psychology', readJson('content/psychology/package.json')],
+  ['content/economics', readJson('content/economics/package.json')],
+  ['content/art', readJson('content/art/package.json')],
+  ['content/health-safety', readJson('content/health-safety/package.json')],
+  ['content/engineering', readJson('content/engineering/package.json')],
   ['frontend/platform', readJson('frontend/platform/package.json')],
 ];
 const byName = new Map(workspaces.map(([path, pkg]) => [pkg.name, { path, pkg }]));
@@ -100,7 +101,7 @@ for (const [path, pkg] of workspaces) {
       }
       if (specifier.startsWith('@/') || Object.hasOwn(localAliases, specifier)) {
         assert(
-          path.startsWith('learningApps/') || path.startsWith('frontend/'),
+          path.startsWith('content/') || path.startsWith('frontend/') || path.startsWith('apps/'),
           'Unrewritten shared source alias: ' + description,
         );
         continue;
@@ -108,7 +109,7 @@ for (const [path, pkg] of workspaces) {
       if (specifier.startsWith('node:') || builtins.has(specifier)) continue;
       // Next.js compile-time markers are not standalone runtime dependencies.
       if (
-        (path.startsWith('learningApps/') || path.startsWith('frontend/')) &&
+        (path.startsWith('content/') || path.startsWith('frontend/') || path.startsWith('apps/')) &&
         (specifier === 'server-only' || specifier === 'client-only')
       )
         continue;
@@ -173,7 +174,7 @@ console.log('Stage 5 extraction readiness: source imports, dependencies, public 
 // Storybook is owned by UI Kit, not coupled to either Next.js application.
 const storybookMain = readFileSync(resolve(root, 'shared/ui-kit/.storybook/main.ts'), 'utf8');
 assert(
-  !/\b(?:apps|learningApps)\/|\.\.\/\.\.\/shared\/|\.\.\/\.\.\/(?:apps|learningApps)\//.test(storybookMain),
+  !/\b(?:apps|content)\/|\.\.\/\.\.\/shared\/|\.\.\/\.\.\/(?:apps|content)\//.test(storybookMain),
   'UI Kit Storybook must not read application or monorepo source paths',
 );
 assert(
@@ -181,23 +182,23 @@ assert(
   'UI Kit must own the Storybook build command',
 );
 for (const application of [
-  'learningApps/playground',
-  'learningApps/math',
-  'learningApps/physics',
-  'learningApps/geography',
-  'learningApps/informatics',
-  'learningApps/biology',
-  'learningApps/language-literature',
-  'learningApps/languages/ukrainian',
-  'learningApps/chemistry',
-  'learningApps/astronomy',
-  'learningApps/history',
-  'learningApps/philosophy',
-  'learningApps/psychology',
-  'learningApps/economics',
-  'learningApps/art',
-  'learningApps/health-safety',
-  'learningApps/engineering',
+  'content/playground',
+  'content/math',
+  'content/physics',
+  'content/geography',
+  'content/informatics',
+  'content/biology',
+  'content/language-literature',
+  'content/languages/ukrainian',
+  'content/chemistry',
+  'content/astronomy',
+  'content/history',
+  'content/philosophy',
+  'content/psychology',
+  'content/economics',
+  'content/art',
+  'content/health-safety',
+  'content/engineering',
 ]) {
   assert(
     !existsSync(resolve(root, application, '.storybook')),

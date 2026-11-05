@@ -27,7 +27,7 @@ const publishedDirectory = `public/data/pages/lessons/${relative}`;
 ## Lesson convention
 
 ```text
-learningApps/<book>/data/lessons/<last-hex-digit>/<uuid>/
+content/<book>/data/lessons/<last-hex-digit>/<uuid>/
   <slug>.data.ts                 # when implemented
   <slug>.definition.ts           # when implemented
   lesson.identity.json           # editorial-only drafts without typed Lesson data

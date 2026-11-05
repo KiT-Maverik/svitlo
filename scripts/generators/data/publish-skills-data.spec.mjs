@@ -13,7 +13,7 @@ import {
 } from './publish-skills-data.mjs';
 
 const repo = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
-const fixture = path.join(repo, 'learningApps/playground/data/skills');
+const fixture = path.join(repo, 'content/playground/data/skills');
 
 function resources() {
   const codes = languageCodes();
