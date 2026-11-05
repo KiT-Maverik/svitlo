@@ -53,7 +53,7 @@ export const safeDrinkingWater_Skill_Data = buildSkillConfig({
       ko: '마실 물이 안전하지 않을 수 있는 상황을 알아보세요.',
       tr: 'Bir su kaynağının ne zaman içmek için güvensiz olabileceğini öğren.',
       vi: 'Nhận biết khi nguồn nước có thể không an toàn để uống.',
-      ta: 'குடிநீர் மூலம் எப்போது பாதுகாப்பற்றதாக இருக்கலாம் என அறியுங்கள்.',
+      ta: 'ஒரு நீர் ஆதாரம் குடிப்பதற்குப் பாதுகாப்பற்றதாக இருக்கக்கூடிய சூழல்களை அறியுங்கள்.',
       te: 'తాగునీటి మూలం ఎప్పుడు సురక్షితం కాకపోవచ్చో గుర్తించండి.',
       mr: 'पाण्याचा स्रोत पिण्यासाठी कधी असुरक्षित असू शकतो ते ओळख.',
       ms: 'Kenal pasti bila sumber air mungkin tidak selamat diminum.',
