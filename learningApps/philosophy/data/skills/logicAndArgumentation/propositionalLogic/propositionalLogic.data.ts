@@ -78,7 +78,7 @@ export const propositionalLogic_SkillGroup_Data = buildSkillGroupConfig({
       vi: 'Khám phá điều kiện đúng sai của các mệnh đề nối bằng toán tử logic.',
       ta: 'தருக்க இணைப்பிகளால் சேர்ந்த கூற்றுகளின் உண்மை நிபந்தனைகள் எவ்வாறு இயங்குகின்றன என அறி.',
       te: 'తార్కిక ఆపరేటర్లతో కలిసిన ప్రకటనల సత్య షరతులు ఎలా పనిచేస్తాయో తెలుసుకోండి.',
-      mr: 'तार्किक संयोजकांनी जोडलेल्या विधानांच्या सत्यतेच्या अटी समजून घे.',
+      mr: 'तार्किक संयोजकांनी जोडलेल्या विधानांच्या सत्यतेच्या अटी समजून घ्या.',
       ms: 'Ketahui syarat kebenaran pernyataan yang digabungkan dengan pengendali logik.',
       he: 'גלו כיצד נקבעים תנאי האמת של פסוקים המחוברים בקשרים לוגיים.',
       pl: 'Poznaj warunki prawdziwości zdań połączonych operatorami logicznymi.',

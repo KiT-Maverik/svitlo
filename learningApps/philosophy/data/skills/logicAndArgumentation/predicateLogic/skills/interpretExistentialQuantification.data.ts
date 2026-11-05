@@ -55,7 +55,7 @@ export const interpretExistentialQuantification_Skill_Data = buildSkillConfig({
       vi: "Hiểu 'tồn tại' nghĩa là có ít nhất một ví dụ thỏa điều kiện.",
       ta: "'உள்ளது' என்றால் நிபந்தனையை நிறைவேற்றும் குறைந்தது ஓர் எடுத்துக்காட்டு இருப்பதை அறி.",
       te: "'ఉంది' అనేది షరతుకు సరిపోయే కనీసం ఒక ఉదాహరణ ఉందని అర్థం చేసుకోండి.",
-      mr: "'अस्तित्वात आहे' म्हणजे अट पूर्ण करणारे किमान एक उदाहरण आहे हे समज.",
+      mr: "'अस्तित्वात आहे' म्हणजे अट पूर्ण करणारे किमान एक उदाहरण आहे हे समजा.",
       ms: "Fahami bahawa 'wujud' bermaksud sekurang-kurangnya satu contoh memenuhi syarat.",
       he: "הבינו ש'קיים' פירושו שיש לפחות דוגמה אחת המקיימת את התנאי.",
       pl: 'Zrozum, że „istnieje” oznacza co najmniej jeden przykład spełniający warunek.',

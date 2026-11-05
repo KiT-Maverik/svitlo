@@ -55,7 +55,7 @@ export const classifyAPropositionUsingATruthTable_Skill_Data = buildSkillConfig(
       vi: 'Dùng bảng chân trị nhận biết mệnh đề luôn đúng, luôn sai hoặc tùy trường hợp.',
       ta: 'உண்மை அட்டவணையால் எப்போதும் உண்மை, எப்போதும் பொய், சூழலுக்கேற்ப மாறும் கூற்றுகளை அறி.',
       te: 'సత్య పట్టికతో ఎల్లప్పుడూ నిజం, ఎల్లప్పుడూ అబద్ధం లేదా పరిస్థితిపై ఆధారపడే వాక్యాలను గుర్తించండి.',
-      mr: 'सत्यता सारणीने नेहमी खरी, नेहमी खोटी आणि परिस्थितीनुसार बदलणारी विधानं ओळख.',
+      mr: 'सत्यता सारणीने नेहमी खरी, नेहमी खोटी आणि परिस्थितीनुसार बदलणारी विधानं ओळखा.',
       ms: 'Gunakan jadual kebenaran untuk mengenal pasti pernyataan yang sentiasa benar, sentiasa palsu atau bergantung keadaan.',
       he: 'השתמשו בטבלאות אמת לזיהוי פסוקים שתמיד נכונים, תמיד שגויים או תלויי השמה.',
       pl: 'Użyj tabel prawdy, by odróżnić tautologie, sprzeczności i zdania przygodne.',
