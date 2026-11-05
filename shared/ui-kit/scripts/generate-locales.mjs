@@ -14,7 +14,7 @@ const repoRoot = fileURLToPath(new URL('../../../', import.meta.url));
 const dataRoot = join(repoRoot, 'shared/ui-kit/data/components');
 const targetFlag = process.argv.indexOf('--package');
 if (targetFlag < 0 || !process.argv[targetFlag + 1]) {
-  throw new Error('Usage: node generate-locales.mjs --package learningApps/<textbook>');
+  throw new Error('Usage: node generate-locales.mjs --package content/<textbook>');
 }
 const target = resolve(repoRoot, process.argv[targetFlag + 1]);
 const targetRelative = relative(repoRoot, target);

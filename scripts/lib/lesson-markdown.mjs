@@ -83,7 +83,7 @@ export function sourceIndex(repositoryRoot, lessonRelativePath) {
   if (lessonRelativePath.split(/[\\/]/).includes('..') || path.isAbsolute(lessonRelativePath))
     throw new Error('Invalid lesson source directory');
   const lessonRoot = path.resolve(repositoryRoot, lessonRelativePath);
-  if (!lessonRoot.startsWith(path.resolve(repositoryRoot, 'learningApps') + path.sep))
+  if (!lessonRoot.startsWith(path.resolve(repositoryRoot, 'content') + path.sep))
     throw new Error('Invalid lesson source directory');
   const files = [];
   function walk(directory) {
@@ -120,7 +120,7 @@ export function renderLessonMarkdown({
 }) {
   if (!isRecord(lesson)) throw new Error('Lesson must be an object');
   const textbook = segment(packagePath.split('/')[1], 'textbook');
-  if (packagePath !== `learningApps/${textbook}`) throw new Error('Invalid package path');
+  if (packagePath !== `content/${textbook}`) throw new Error('Invalid package path');
   const relative = resolveEntityPath(required(lesson.id, 'lesson id'));
   const slug = segment(lesson.slug, 'lesson slug');
   if (

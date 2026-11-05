@@ -93,7 +93,7 @@ function temporaryRepo() {
     languageFile,
     "export const DEFAULT_SUPPORTED_LANGUAGES = [{ language: 'en' }, { language: 'uk' }] as const;\n",
   );
-  const lessonDir = path.join(root, 'learningApps/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c');
+  const lessonDir = path.join(root, 'content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c');
   fs.mkdirSync(lessonDir, { recursive: true });
   fs.writeFileSync(
     path.join(lessonDir, 'light.data.ts'),
@@ -109,13 +109,13 @@ describe('Lesson → Markdown review projection', () => {
       lesson,
       locale: 'en',
       languages: ['en', 'uk'],
-      packagePath: 'learningApps/playground',
+      packagePath: 'content/playground',
     });
     const uk = renderLessonMarkdown({
       lesson,
       locale: 'uk',
       languages: ['en', 'uk'],
-      packagePath: 'learningApps/playground',
+      packagePath: 'content/playground',
     });
     assert.match(en, /^# Light\n/);
     assert.match(uk, /^# Світло\n/);
@@ -140,10 +140,10 @@ describe('Lesson → Markdown review projection', () => {
     );
     assert.match(
       uk,
-      /blob\/new-lesson\/learningApps\/playground\/data\/lessons\/c\/d3048d21-8690-5255-b62c-984c69ac272c\/light.data.ts/,
+      /blob\/new-lesson\/content\/playground\/data\/lessons\/c\/d3048d21-8690-5255-b62c-984c69ac272c\/light.data.ts/,
     );
     assert.equal(
-      renderLessonMarkdown({ lesson, locale: 'uk', languages: ['en', 'uk'], packagePath: 'learningApps/playground' }),
+      renderLessonMarkdown({ lesson, locale: 'uk', languages: ['en', 'uk'], packagePath: 'content/playground' }),
       uk,
     );
     assert.doesNotMatch(uk, /undefined|object Object|Date\(/);
@@ -171,7 +171,7 @@ describe('Lesson → Markdown review projection', () => {
           lesson: missing,
           locale: 'uk',
           languages: ['en', 'uk'],
-          packagePath: 'learningApps/playground',
+          packagePath: 'content/playground',
         }),
       /Missing uk locale/,
     );
@@ -183,7 +183,7 @@ describe('Lesson → Markdown review projection', () => {
           lesson: bad,
           locale: 'uk',
           languages: ['en', 'uk'],
-          packagePath: 'learningApps/playground',
+          packagePath: 'content/playground',
         }),
       /Invalid checkpoint answer/,
     );
@@ -195,7 +195,7 @@ describe('Lesson → Markdown review projection', () => {
           lesson: unknown,
           locale: 'uk',
           languages: ['en', 'uk'],
-          packagePath: 'learningApps/playground',
+          packagePath: 'content/playground',
         }),
       /Unsupported content block type/,
     );
@@ -205,7 +205,7 @@ describe('Lesson → Markdown review projection', () => {
     assert.deepEqual(
       parseArguments([
         '--package',
-        'learningApps/playground',
+        'content/playground',
         '--lesson',
         'd3048d21-8690-5255-b62c-984c69ac272c',
         '--locale',
@@ -213,7 +213,7 @@ describe('Lesson → Markdown review projection', () => {
         '--stdout',
       ]),
       {
-        package: 'learningApps/playground',
+        package: 'content/playground',
         lesson: 'd3048d21-8690-5255-b62c-984c69ac272c',
         locale: 'uk',
         stdout: true,
@@ -223,7 +223,7 @@ describe('Lesson → Markdown review projection', () => {
       () =>
         parseArguments([
           '--package',
-          'learningApps/../secrets',
+          'content/../secrets',
           '--lesson',
           'd3048d21-8690-5255-b62c-984c69ac272c',
           '--locale',
@@ -236,7 +236,7 @@ describe('Lesson → Markdown review projection', () => {
       () =>
         parseArguments([
           '--package',
-          'learningApps/playground',
+          'content/playground',
           '--lesson',
           '../secrets',
           '--locale',
@@ -246,7 +246,7 @@ describe('Lesson → Markdown review projection', () => {
       /canonical UUID/,
     );
     assert.throws(
-      () => parseArguments(['--package', 'learningApps/playground', '--locale', 'uk', '--stdout']),
+      () => parseArguments(['--package', 'content/playground', '--locale', 'uk', '--stdout']),
       /requires --lesson/,
     );
   });
@@ -254,7 +254,7 @@ describe('Lesson → Markdown review projection', () => {
   it('discovers UUID buckets, writes the requested structure, and generates deterministically', async () => {
     const tmp = temporaryRepo();
     try {
-      const root = path.join(tmp.root, 'learningApps/playground');
+      const root = path.join(tmp.root, 'content/playground');
       fs.mkdirSync(path.join(root, 'data/lessons/not-a-number/ignored'), { recursive: true });
       assert.deepEqual(
         discoverLessons(root).map(item => item.relative),
@@ -262,7 +262,7 @@ describe('Lesson → Markdown review projection', () => {
       );
       assert.deepEqual(supportedLanguages(tmp.root), ['en', 'uk']);
       const opts = {
-        package: 'learningApps/playground',
+        package: 'content/playground',
         lesson: 'd3048d21-8690-5255-b62c-984c69ac272c',
         locale: 'uk',
         stdout: true,
@@ -303,12 +303,12 @@ describe('Lesson → Markdown review projection', () => {
     try {
       fs.symlinkSync(tmp.lessonDir, path.join(tmp.lessonDir, 'linked'));
       assert.throws(
-        () => sourceIndex(tmp.root, 'learningApps/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c'),
+        () => sourceIndex(tmp.root, 'content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c'),
         /Symlink|Invalid/,
       );
       assert.throws(
         () =>
-          sourceIndex(tmp.root, 'learningApps/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/../light'),
+          sourceIndex(tmp.root, 'content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/../light'),
         /Invalid/,
       );
     } finally {

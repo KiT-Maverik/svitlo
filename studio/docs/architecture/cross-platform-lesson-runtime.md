@@ -69,6 +69,6 @@ Server-assembled props remove an extra client API fetch for Lesson configuration
 4. Validate one textbook under Web and one ordinary React DOM bundler before creating the full Capacitor/Electron packaging pipeline. Add offline, hydration, locale/RTL, accessible navigation and persistent-session tests.
 5. Plan migration of independently deployed textbooks to content+Scene packages only after parity checks; do not delete existing Next.js apps or replace their routes as an undocumented side effect.
 
-**Observed example to preserve and generalize:** [Playground `sceneLoader.ts`](../../../learningApps/playground/src/components/scenes/sceneLoader.ts) uses a static registry, `React.lazy` and a cache. Individual Scenes may still import Playground-specific providers; that is migration debt, not a reason to introduce a parallel loader.
+**Observed example to preserve and generalize:** [Playground `sceneLoader.ts`](../../../content/playground/src/components/scenes/sceneLoader.ts) uses a static registry, `React.lazy` and a cache. Individual Scenes may still import Playground-specific providers; that is migration debt, not a reason to introduce a parallel loader.
 
 **Related:** [System Boundaries](./system-boundaries.md), [Offline & Device Compatibility](./offline-first-and-device-compatibility.md), [Git-First Typed Content](./git-first-typed-content.md), [Internationalization & Inclusive Access](./internationalization-and-accessibility.md), [Monorepo](./monorepo-and-textbook.md), [UI Kit agent instructions](../../../shared/ui-kit/AGENTS.md).

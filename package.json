@@ -92,8 +92,8 @@
   "workspaces": [
     "backend/*",
     "frontend/*",
-    "learningApps/*",
-    "learningApps/languages/*",
+    "content/*",
+    "content/languages/*",
     "shared/*"
   ]
 }

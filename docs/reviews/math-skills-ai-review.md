@@ -2,7 +2,7 @@
 
 ## Scope
 
-Umbrella integration branch for the linguistic/terminological review of canonical Mathematics Skills taxonomy in `learningApps/math/data/skills/`. Review every current SkillDomain, SkillGroup and Skill in each of the **28 non-English** supported language keys, using English methodological meaning as the baseline. The live language registry is `shared/contracts/src/types/languages.ts`; re-check it at execution time and document changes.
+Umbrella integration branch for the linguistic/terminological review of canonical Mathematics Skills taxonomy in `content/math/data/skills/`. Review every current SkillDomain, SkillGroup and Skill in each of the **28 non-English** supported language keys, using English methodological meaning as the baseline. The live language registry is `shared/contracts/src/types/languages.ts`; re-check it at execution time and document changes.
 
 The review must follow:
 

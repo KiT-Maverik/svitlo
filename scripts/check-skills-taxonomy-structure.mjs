@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 import ts from 'typescript';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const defaultRoot = path.join(repoRoot, 'learningApps/math/data/skills');
+const defaultRoot = path.join(repoRoot, 'content/math/data/skills');
 const identifier = /^[a-z][a-zA-Z0-9]*$/;
 const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 function check(ok, message) {

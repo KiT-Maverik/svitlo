@@ -3,7 +3,7 @@ name: Informatics skills taxonomy quality
 on:
   pull_request:
     paths:
-      - 'learningApps/informatics/**'
+      - 'content/informatics/**'
       - 'shared/contracts/**'
       - 'shared/engine/**'
       - '.github/workflows/informatics-skills.yml'
@@ -26,7 +26,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: node scripts/check-workspaces.mjs
-      - run: node scripts/check-skills-taxonomy-structure.mjs learningApps/informatics/data/skills
+      - run: node scripts/check-skills-taxonomy-structure.mjs content/informatics/data/skills
       - run: npm run build --workspace @svitlo/contracts
       - run: npm run build --workspace @svitlo/engine
       - run: npm run typecheck --workspace @svitlo/informatics

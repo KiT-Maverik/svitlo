@@ -19,7 +19,7 @@ future data generators; additions should be recorded here before implementation.
 
 ## 2. Generated directory convention
 
-- Generated resources belong under `learningApps/<textbook>/public/data/`.
+- Generated resources belong under `content/<textbook>/public/data/`.
   **Always use lower-case `data` and `skills` in paths**.
 - The entire `**/public/data/` subtree is Git-ignored and must contain no tracked
   files. It is regenerated for `predev` and `prebuild`.

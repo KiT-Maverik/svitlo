@@ -22,7 +22,7 @@ See the canonical [Cross-Platform Lesson Runtime](./cross-platform-lesson-runtim
 │   └── server/           # @svitlo/server — manifest-only backend placeholder
 ├── frontend/
 │   └── platform/         # @svitlo/platform — independent Next.js catalog app
-├── learningApps/
+├── content/
 │   ├── geography/        # @svitlo/geography — standalone textbook scaffold
 │   ├── informatics/      # @svitlo/informatics — standalone textbook scaffold
 │   ├── physics/          # @svitlo/physics — standalone textbook scaffold
@@ -42,9 +42,9 @@ See the canonical [Cross-Platform Lesson Runtime](./cross-platform-lesson-runtim
 └── turbo.json            # task graph reference; not used by GitHub Actions
 ```
 
-**Concrete source roots:** `shared/contracts`, `shared/engine`, `shared/indexdb`, `shared/ui-kit`, `learningApps/geography`, `learningApps/informatics`, `learningApps/physics`, `learningApps/math`, `learningApps/playground`, `frontend/platform`, `backend/server`. These paths are actual package folders; diagrams above use abbreviated names.
+**Concrete source roots:** `shared/contracts`, `shared/engine`, `shared/indexdb`, `shared/ui-kit`, `content/geography`, `content/informatics`, `content/physics`, `content/math`, `content/playground`, `frontend/platform`, `backend/server`. These paths are actual package folders; diagrams above use abbreviated names.
 
-The **eleven** current workspaces are `@svitlo/server`, `@svitlo/platform`, `@svitlo/geography`, `@svitlo/informatics`, `@svitlo/physics`, `@svitlo/math`, `@svitlo/playground`, `@svitlo/contracts`, `@svitlo/engine`, `@svitlo/indexdb`, `@svitlo/ui-kit`. Patterns in root `package.json` and lockfile: `backend/*`, `frontend/*`, `learningApps/*`, `shared/*`. The server is deliberately not claimed to be executable yet.
+The **eleven** current workspaces are `@svitlo/server`, `@svitlo/platform`, `@svitlo/geography`, `@svitlo/informatics`, `@svitlo/physics`, `@svitlo/math`, `@svitlo/playground`, `@svitlo/contracts`, `@svitlo/engine`, `@svitlo/indexdb`, `@svitlo/ui-kit`. Patterns in root `package.json` and lockfile: `backend/*`, `frontend/*`, `content/*`, `shared/*`. The server is deliberately not claimed to be executable yet.
 
 ## Dependency direction and ownership
 
@@ -79,7 +79,7 @@ The canonical native IndexedDB browser harness, commands and Playwright suite li
 
 ## Canonical editorial Skills Taxonomy
 
-For Mathematics, [`learningApps/math/docs/skills/taxonomy.md`](../../../learningApps/math/docs/skills/taxonomy.md) is the **single reviewed editorial source of truth** for the Domain → Group → Skill hierarchy. Its descriptions must explain the competencies in substance, not merely repeat their titles. The linked `learningApps/math/src/data/skillsTaxonomy/` modules are the typed, machine-readable representation; curriculum documentation points to this canonical taxonomy rather than duplicating definitions in parallel Skill files or legacy inventory reports. The separate per-Skill definition template was retired as part of the taxonomy consolidation; do not restore it or the former `src/data/skills-inventory*.md`, `skills-taxonomy-review.md` or `UUID-MIGRATION.md` documents.
+For Mathematics, [`content/math/docs/skills/taxonomy.md`](../../../content/math/docs/skills/taxonomy.md) is the **single reviewed editorial source of truth** for the Domain → Group → Skill hierarchy. Its descriptions must explain the competencies in substance, not merely repeat their titles. The linked `content/math/src/data/skillsTaxonomy/` modules are the typed, machine-readable representation; curriculum documentation points to this canonical taxonomy rather than duplicating definitions in parallel Skill files or legacy inventory reports. The separate per-Skill definition template was retired as part of the taxonomy consolidation; do not restore it or the former `src/data/skills-inventory*.md`, `skills-taxonomy-review.md` or `UUID-MIGRATION.md` documents.
 
 Informatics and Physics have independent Next.js application shells. Informatics Skills Taxonomy is reviewed separately in Draft PR #48; no implemented Informatics Skills, lessons or curricula are implied.
 
@@ -87,7 +87,7 @@ Geography has its own independently configured application shell and localized l
 
 ## Standalone textbook package contract
 
-**Current implementation (before the proposed host/module migration):** Each `learningApps/<subject>` owns its own `package.json`, `tsconfig.json`, Next.js config, `src/app` routes, `src/data` authored content, `public` media where required, package-owned `docs/` and tests. Reusable code is accessed through declared public `@svitlo/*` exports, never `shared/*/src`, another app's `src`, aliases resolved outside the package, or `../` paths crossing package roots. The `@/*` alias is local to that package.
+**Current implementation (before the proposed host/module migration):** Each `content/<subject>` owns its own `package.json`, `tsconfig.json`, Next.js config, `src/app` routes, `src/data` authored content, `public` media where required, package-owned `docs/` and tests. Reusable code is accessed through declared public `@svitlo/*` exports, never `shared/*/src`, another app's `src`, aliases resolved outside the package, or `../` paths crossing package roots. The `@/*` alias is local to that package.
 
 Git-backed typed content and authoring IDs are **not** stored in runtime user databases. `@svitlo/contracts/content` defines structural contracts; Engine supplies operations, UI Kit presentation, IndexDB persistence, each textbook its curriculum. See [Git-first typed content](./git-first-typed-content.md), [system boundaries](./system-boundaries.md), [accessibility/localization](./internationalization-and-accessibility.md) and [offline roadmap](./offline-first-and-device-compatibility.md). Do not claim offline/PWA or backend account features are implemented merely because planned in Studio.
 

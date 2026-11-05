@@ -1,6 +1,6 @@
 # Svitlo Monorepo Migration
 
-> **Historical log, not the current architecture.** This file retains dated paths and stage names from earlier, separately numbered migrations. For the canonical 2026-10-29 layout and final audit use [Monorepo & Textbook](./docs/architecture/monorepo-and-textbook.md) and [Stage 8 Audit](./docs/architecture/migration-stage-8-audit.md). Current workspaces are `learningApps/{math,playground}`, `frontend/platform`, `shared/{contracts,engine,indexdb,ui-kit}`, and `backend/server`. The formerly pending IndexedDB browser harness consolidation was completed in Stage 5; Stage 6 centralized preferences, Stage 7 bootstrapped Platform.
+> **Historical log, not the current architecture.** This file retains dated paths and stage names from earlier, separately numbered migrations. For the canonical 2026-10-29 layout and final audit use [Monorepo & Textbook](./docs/architecture/monorepo-and-textbook.md) and [Stage 8 Audit](./docs/architecture/migration-stage-8-audit.md). Current workspaces are `content/{math,playground}`, `frontend/platform`, `shared/{contracts,engine,indexdb,ui-kit}`, and `backend/server`. The formerly pending IndexedDB browser harness consolidation was completed in Stage 5; Stage 6 centralized preferences, Stage 7 bootstrapped Platform.
 
 ## Phase 01 — Workspace foundation (complete)
 
@@ -125,4 +125,4 @@ Live workspace paths are now `apps/playground` and `apps/textbooks/math`. `apps/
 
 ## Stage 4 — IndexedDB package
 
-The canonical browser persistence implementation is `shared/indexdb` (`@svitlo/indexdb`), with public controllers, utils, schemas and configuration exports. Both `learningApps/math` and `learningApps/playground` consume the compiled package instead of owning `src/db`. The database name `svitlo-progress`, schema version `1`, store keys and indexes are unchanged. Browser harnesses remain in each app's `src/testing` pending Stage 5 centralization. If standalone apps share one browser origin, identical database names continue to share the same storage scope; extraction does not change that behavior.
+The canonical browser persistence implementation is `shared/indexdb` (`@svitlo/indexdb`), with public controllers, utils, schemas and configuration exports. Both `content/math` and `content/playground` consume the compiled package instead of owning `src/db`. The database name `svitlo-progress`, schema version `1`, store keys and indexes are unchanged. Browser harnesses remain in each app's `src/testing` pending Stage 5 centralization. If standalone apps share one browser origin, identical database names continue to share the same storage scope; extraction does not change that behavior.

@@ -27,54 +27,54 @@
       - any-glob-to-any-file: 'studio/**'
 'area: art':
   - changed-files:
-      - any-glob-to-any-file: 'learningApps/art/**'
+      - any-glob-to-any-file: 'content/art/**'
 'area: astronomy':
   - changed-files:
-      - any-glob-to-any-file: 'learningApps/astronomy/**'
+      - any-glob-to-any-file: 'content/astronomy/**'
 'area: biology':
   - changed-files:
-      - any-glob-to-any-file: 'learningApps/biology/**'
+      - any-glob-to-any-file: 'content/biology/**'
 'area: chemistry':
   - changed-files:
-      - any-glob-to-any-file: 'learningApps/chemistry/**'
+      - any-glob-to-any-file: 'content/chemistry/**'
 'area: economics':
   - changed-files:
-      - any-glob-to-any-file: 'learningApps/economics/**'
+      - any-glob-to-any-file: 'content/economics/**'
 'area: engineering':
   - changed-files:
-      - any-glob-to-any-file: 'learningApps/engineering/**'
+      - any-glob-to-any-file: 'content/engineering/**'
 'area: geography':
   - changed-files:
-      - any-glob-to-any-file: 'learningApps/geography/**'
+      - any-glob-to-any-file: 'content/geography/**'
 'area: health-safety':
   - changed-files:
-      - any-glob-to-any-file: 'learningApps/health-safety/**'
+      - any-glob-to-any-file: 'content/health-safety/**'
 'area: history':
   - changed-files:
-      - any-glob-to-any-file: 'learningApps/history/**'
+      - any-glob-to-any-file: 'content/history/**'
 'area: informatics':
   - changed-files:
-      - any-glob-to-any-file: 'learningApps/informatics/**'
+      - any-glob-to-any-file: 'content/informatics/**'
 'area: language-literature':
   - changed-files:
-      - any-glob-to-any-file: 'learningApps/language-literature/**'
+      - any-glob-to-any-file: 'content/language-literature/**'
 'area: languages':
   - changed-files:
-      - any-glob-to-any-file: 'learningApps/languages/**'
+      - any-glob-to-any-file: 'content/languages/**'
 'area: math':
   - changed-files:
-      - any-glob-to-any-file: 'learningApps/math/**'
+      - any-glob-to-any-file: 'content/math/**'
 'area: philosophy':
   - changed-files:
-      - any-glob-to-any-file: 'learningApps/philosophy/**'
+      - any-glob-to-any-file: 'content/philosophy/**'
 'area: physics':
   - changed-files:
-      - any-glob-to-any-file: 'learningApps/physics/**'
+      - any-glob-to-any-file: 'content/physics/**'
 'area: playground':
   - changed-files:
-      - any-glob-to-any-file: 'learningApps/playground/**'
+      - any-glob-to-any-file: 'content/playground/**'
 'area: psychology':
   - changed-files:
-      - any-glob-to-any-file: 'learningApps/psychology/**'
+      - any-glob-to-any-file: 'content/psychology/**'
 'pr: agent-subtask':
   - head-branch: '(^|[-_/])agent[-_/]?[0-9]+($|[-_/])'

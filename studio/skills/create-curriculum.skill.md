@@ -23,7 +23,7 @@ If a required input is absent or taxonomy files cannot be inspected, **stop Curr
 
 ### Editorial briefing — required fields
 
-- **Package root:** root of the **specific standalone textbook application** being authored (for example, `<MonorepoRoot>/learningApps/<textbook>/`). The app directory is the package root; the monorepo root, its root-level `backend/`, and shared libraries are not. Use the actual app path from the repository/briefing rather than assuming a fixed monorepo layout.
+- **Package root:** root of the **specific standalone textbook application** being authored (for example, `<MonorepoRoot>/content/<textbook>/`). The app directory is the package root; the monorepo root, its root-level `backend/`, and shared libraries are not. Use the actual app path from the repository/briefing rather than assuming a fixed monorepo layout.
 - **Learning resource:** title or working title of the textbook/course/learning program, discipline or interdisciplinary theme, and requested scope (whole resource, level, module, or lesson).
 - **Audience:** learner category and approximate age or professional stage when relevant; prior knowledge, literacy and language proficiency; learning context and meaningful accessibility needs. School grades are optional, not universal.
 - **Intent:** desired educational outcomes, depth, boundaries, mandatory source materials, and whether alignment with a specified local standard or accreditation is required.

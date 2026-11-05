@@ -21,12 +21,12 @@ This implementation must also follow [Git-First Typed Content & AI Authoring](..
    - `skillDomain.types.ts` — `SkillDomain_Config`, required `groupIds` and optional direct `skillIds`.
    - `shared/contracts/src/types/languages.ts` — `LanguageCode`; verify the current supported-language list through the published localization contract.
 5. **Authoritative builders:** inspect `shared/engine/src/utils/builders/config/buildSkillConfig.utils.ts`, `buildSkillGroupConfig.utils.ts`, `buildSkillDomainConfig.utils.ts`, and `validateSkillReferences.utils.ts`. Prefer their public exports from `@svitlo/engine/taxonomy` instead of copying builders into the textbook.
-6. **Reference implementation (read-only example):** inspect the **existing Mathematics taxonomy** in `learningApps/math/src/data/skillsTaxonomy/`, especially:
+6. **Reference implementation (read-only example):** inspect the **existing Mathematics taxonomy** in `content/math/src/data/skillsTaxonomy/`, especially:
    - `index.ts` and `index.ids.ts`;
    - `arithmetic/arithmetic.data.ts`, `arithmetic/arithmetic.ids.ts`, `arithmetic/index.data.ts`, `arithmetic/index.ids.ts`;
    - `arithmetic/addition/addition.data.ts`, `addition.ids.ts`, `index.ts`;
    - `arithmetic/addition/skills/addMeaning.data.ts`, `index.ts`, `index.ids.ts`;
-   - `learningApps/math/src/utils/builders/config/skillTaxonomyIndex.spec.ts` and the taxonomy builder/translation tests.
+   - `content/math/src/utils/builders/config/skillTaxonomyIndex.spec.ts` and the taxonomy builder/translation tests.
 
 **Distinguish the two paths:** Math textbook's `src/math/skillsTaxonomy/` is an **existing working reference**, not the destination for a new textbook. The canonical destination for this Skill is **`<PackageRoot>/src/data/skillsTaxonomy/`** (camelCase). Do not copy a stale playground import alias or modify the playground merely because it contains the examples. If a current shared-engine contract differs from a textbook example, the current contract wins; explain a material incompatibility.
 
@@ -161,7 +161,7 @@ Before reporting success, run the target package's available checks and add/fix 
 - **Localization:** each `name` has **exactly** the current required language-code keys (two-letter unquoted wherever legal), no gaps, duplicates, unexpected keys, empty/placeholder/copy-pasted language values.
 - **Identity:** UUID syntax and stability; check uniqueness and immediate-child mappings against the in-scope files and approved hierarchy. The existing builders **cannot** resolve IDs to actual entity types/registrations; full repo-wide reference validation is deferred to a separate build-time script. Mark unverified items explicitly rather than claiming a builder-level guarantee.
 - **Data/IDs isolation:** `*.ids.ts` modules never import Data or builders; importing a parent Data config does not require importing child Data solely to access child IDs.
-- **Export boundaries:** root Data exports Domains only, Domain Data exports its own Domain only, Group Data exports its Group only, Skills Data exports only that Group's Skills. Verify no nested/re-exported Data from higher levels and no `export *`. Adapt the structural checks exemplified by `learningApps/math/src/utils/builders/config/skillTaxonomyIndex.spec.ts`.
+- **Export boundaries:** root Data exports Domains only, Domain Data exports its own Domain only, Group Data exports its Group only, Skills Data exports only that Group's Skills. Verify no nested/re-exported Data from higher levels and no `export *`. Adapt the structural checks exemplified by `content/math/src/utils/builders/config/skillTaxonomyIndex.spec.ts`.
 - **Topology:** physical paths and entries match the approved taxonomy, with no accidental duplicate or missing entities. All non-placeholder taxonomy Code links resolve to matching implemented files and counts reconcile; the permanent descriptions and approved hierarchy remain unchanged.
 - **Tests:** run available package TypeScript, lint, builder, translation and index tests; cite commands/results. Run registry validation only if a real registry/test exists; `fileLocation` and global ID resolution remain separate planned infrastructure, not automatically finished by producing Data files. If tooling is unavailable, mark checks **not run**.
 
