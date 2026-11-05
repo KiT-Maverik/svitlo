@@ -1,0 +1,42 @@
+name: Temporary Agent 3 Philosophy typed validation
+on:
+  pull_request:
+    branches: [review/philosophy-skills-ai-review]
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths:
+      - 'learningApps/philosophy/data/skills/**'
+      - '.github/workflows/philosophy-agent3-temporary-validation.yml'
+permissions:
+  contents: read
+jobs:
+  philosophy-agent-3-validation:
+    name: Philosophy Agent 3 / strict taxonomy and typecheck
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install exact dependencies
+        run: npm ci
+      - name: Check workspaces
+        run: node scripts/check-workspaces.mjs
+      - name: Validate complete Philosophy taxonomy graph
+        run: node scripts/check-skills-taxonomy-structure.mjs learningApps/philosophy/data/skills
+      - name: Build shared contracts
+        run: npm run build --workspace @svitlo/contracts
+      - name: Build shared engine
+        run: npm run build --workspace @svitlo/engine
+      - name: Verify authored skills included in TypeScript
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const tsconfig = fs.readFileSync('learningApps/philosophy/tsconfig.json', 'utf8');
+          if (!tsconfig.includes('data/**/*.ts')) throw Error('Authored data/**/*.ts excluded from workspace');
+          NODE
+      - name: Strict full Philosophy TypeScript check
+        run: npm run typecheck --workspace @svitlo/philosophy
