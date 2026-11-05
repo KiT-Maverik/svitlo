@@ -32,7 +32,7 @@ export const vaporization_Skill_Data = buildSkillConfig({
     be: "Параўтварэньне",
     ka: "აორთქლება",
     kk: "Булану",
-    qm: "Buharlanma",
+    qm: "Buharğa aylanuv",
   },
   description: {
     methodological: "Explain transformation of liquid to gas, distinguishing surface evaporation from boiling within a liquid under suitable pressure.",
