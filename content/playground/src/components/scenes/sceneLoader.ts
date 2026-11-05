@@ -7,9 +7,7 @@ type SceneModule = { default: SceneComponent };
 
 const sceneImports: Readonly<Record<string, () => Promise<SceneModule>>> = {
   'how-light-moves-scene-propagation': () =>
-    import('./n/how-light-moves-scene-propagation').then(mod => ({
-      default: mod.default as unknown as SceneComponent,
-    })),
+    import('./n/how-light-moves-scene-propagation').then(mod => ({ default: mod.default as unknown as SceneComponent })),
   'how-light-moves-scene-ray': () =>
     import('./y/how-light-moves-scene-ray').then(mod => ({ default: mod.default as unknown as SceneComponent })),
   'how-light-moves-scene-showcase': () =>
