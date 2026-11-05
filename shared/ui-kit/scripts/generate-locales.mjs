@@ -42,6 +42,7 @@ function readData(component, file) {
 }
 
 const whole = Object.freeze({
+  lesson: readData('Lesson', 'messages.data.ts'),
   flashcard: readData('Flashcard', 'messages.data.ts'),
   checkpoint: readData('Checkpoint', 'messages.data.ts'),
   audio: readData('Audio', 'messages.data.ts'),
@@ -61,6 +62,8 @@ function message(component, locale, language) {
   const translations = whole[component];
   // Legacy UI used Ukrainian flashcards and English media/question copy for gaps.
   // This compatibility choice happens only at build time, never inside UI widgets.
+  // Lesson translations are complete and deliberately have no fallback.
+  if (component === 'lesson') return translations[language];
   const fallback = component === 'flashcard' ? 'uk' : 'en';
   return translations[language] ?? translations[fallback];
 }
@@ -81,7 +84,7 @@ function assertShape(component, reference, data, locale) {
 
 try {
   mkdirSync(output, { recursive: true });
-  const components = ['learningLayout', 'navbarPreferences', 'flashcard', 'checkpoint', 'audio', 'image', 'video', 'youtube', 'questionFrame'];
+  const components = ['lesson', 'learningLayout', 'navbarPreferences', 'flashcard', 'checkpoint', 'audio', 'image', 'video', 'youtube', 'questionFrame'];
   const defaults = Object.fromEntries(components.map(c => [c, message(c, 'uk-UA', 'uk')]));
   let count = 0;
   for (const { locale, language } of DEFAULT_SUPPORTED_LANGUAGES) {
