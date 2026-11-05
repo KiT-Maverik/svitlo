@@ -7,7 +7,7 @@ export const distinguishDirectEvidenceFromHearsay_Skill_Data = buildSkillConfig(
     en: 'Distinguish direct evidence from hearsay',
     zh: '区分直接证据与传闻',
     hi: 'प्रत्यक्ष साक्ष्य और सुनी-सुनाई बात में अंतर',
-    es: 'Distinguir pruebas directas de información de oídas'
+    es: 'Distinguir pruebas directas de información de oídas',
     ar: 'التمييز بين الدليل المباشر والسماع المنقول',
     fr: 'Distinguer preuve directe et ouï-dire',
     bn: 'প্রত্যক্ষ প্রমাণ ও শোনা কথার পার্থক্য',
@@ -24,7 +24,7 @@ export const distinguishDirectEvidenceFromHearsay_Skill_Data = buildSkillConfig(
     mr: 'थेट पुरावा आणि ऐकीव माहिती यांतील फरक',
     ms: 'Membezakan bukti langsung daripada khabar angin',
     he: 'להבחין בין ראיה ישירה לעדות שמיעה',
-    pl: 'Odróżniać dowody bezpośrednie od informacji zasłyszanych'
+    pl: 'Odróżniać dowody bezpośrednie od informacji zasłyszanych',
     uk: 'Розрізняти безпосередні докази й перекази',
     lt: 'Atskirti tiesioginius įrodymus nuo nuogirdų',
     lv: 'Atšķirt tiešus pierādījumus no atstāstiem',
