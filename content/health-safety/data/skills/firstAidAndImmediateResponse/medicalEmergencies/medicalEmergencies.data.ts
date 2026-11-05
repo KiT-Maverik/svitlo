@@ -67,7 +67,7 @@ export const medicalEmergencies_SkillGroup_Data = buildSkillGroupConfig({
       fr: "Apprends les signes d'alerte nécessitant une intervention médicale rapide.",
       bn: 'যেসব সতর্কসংকেতে দ্রুত জরুরি চিকিৎসা দরকার তা শনাক্ত করো।',
       pt: 'Aprenda a reconhecer sinais de alerta que exigem resposta médica rápida.',
-      ur: 'ایسی خطرے کی علامتیں پہچانو جن میں فوری طبی مدد ضروری ہے۔',
+      ur: 'ایسی خطرے کی علامتیں پہچانیں جن میں فوری طبی مدد ضروری ہے۔',
       id: 'Kenali tanda bahaya yang memerlukan respons medis darurat segera.',
       de: 'Lerne Warnzeichen zu erkennen, die rasche medizinische Notfallhilfe erfordern.',
       ja: '迅速な救急医療が必要な危険の兆候を学ぼう。',

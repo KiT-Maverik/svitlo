@@ -46,7 +46,7 @@ export const careForAnUnresponsivePersonWhoIsBreathingNormally_Skill_Data = buil
       fr: 'Aide et surveille une personne qui ne répond pas mais respire en attendant les secours.',
       bn: 'সাহায্য আসা পর্যন্ত তাকে সহায়তা দাও ও শ্বাস পর্যবেক্ষণ করো।',
       pt: 'Ajude e monitore quem não responde mas respira enquanto aguarda assistência.',
-      ur: 'مدد پہنچنے تک سانس لینے والے بے جواب شخص کی مدد اور نگرانی کرو۔',
+      ur: 'مدد پہنچنے تک سانس لینے والے بے جواب شخص کی مدد اور نگرانی کریں۔',
       id: 'Bantu dan pantau orang yang tidak merespons tetapi bernapas sambil menunggu pertolongan.',
       de: 'Hilf einer nicht ansprechbaren, atmenden Person und überwache sie bis Hilfe eintrifft.',
       ja: '呼吸している無反応の人を支え、救助が来るまで観察を続けよう。',

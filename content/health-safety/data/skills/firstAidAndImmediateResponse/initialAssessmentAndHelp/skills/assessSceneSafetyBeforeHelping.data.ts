@@ -46,7 +46,7 @@ export const assessSceneSafetyBeforeHelping_Skill_Data = buildSkillConfig({
       fr: "Vérifie si t'approcher d'une personne blessée te mettrait en danger.",
       bn: 'আহত ব্যক্তির কাছে গেলে নিজে বিপদে পড়বে কি না যাচাই করো।',
       pt: 'Verifique se aproximar-se de uma pessoa ferida colocaria você em perigo.',
-      ur: 'دیکھو کہ زخمی شخص کے قریب جانا تمھارے لیے خطرناک تو نہیں۔',
+      ur: 'دیکھیں کہ زخمی شخص کے قریب جانا آپ کے لیے خطرناک تو نہیں۔',
       id: 'Periksa apakah mendekati orang cedera akan membahayakan dirimu.',
       de: 'Prüfe, ob du dich selbst gefährdest, wenn du dich einer verletzten Person näherst.',
       ja: 'けがをした人に近づくことで自分が危険にさらされないか確かめよう。',

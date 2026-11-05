@@ -46,7 +46,7 @@ export const respondToHypothermia_Skill_Data = buildSkillConfig({
       fr: "Limite les pertes de chaleur et demande une évaluation en cas d'exposition dangereuse au froid.",
       bn: 'শরীরের তাপক্ষয় কমাও ও বিপজ্জনক শীতের সংস্পর্শে চিকিৎসা মূল্যায়ন চাও।',
       pt: 'Reduza a perda adicional de calor e procure avaliação após exposição perigosa ao frio.',
-      ur: 'مزید حرارت ضائع ہونے سے بچاؤ اور خطرناک سردی لگنے پر طبی معائنہ کراؤ۔',
+      ur: 'مزید جسمانی حرارت کے ضیاع کو روکیں اور خطرناک سردی لگنے پر طبی معائنہ کروائیں۔',
       id: 'Kurangi kehilangan panas lebih lanjut dan cari pemeriksaan saat terpapar dingin berbahaya.',
       de: 'Verhindere weiteren Wärmeverlust und hole bei gefährlicher Kälteeinwirkung medizinische Abklärung ein.',
       ja: '体温がさらに奪われないようにし、危険な寒さにさらされた場合は医療評価を受けよう。',
