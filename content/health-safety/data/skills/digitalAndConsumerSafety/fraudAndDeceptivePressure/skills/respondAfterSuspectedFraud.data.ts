@@ -46,7 +46,7 @@ export const respondAfterSuspectedFraud_Skill_Data = buildSkillConfig({
       fr: 'Sécurise tes comptes et cherche une aide adaptée après une fraude présumée.',
       bn: 'প্রতারণা হয়েছে মনে হলে অ্যাকাউন্ট নিরাপদ করো এবং উপযুক্ত সহায়তা নাও।',
       pt: 'Proteja suas contas e busque ajuda adequada após suspeita de golpe.',
-      ur: 'ٹھگی کا شک ہونے پر اپنے اکاؤنٹس محفوظ کرو اور مناسب مدد لو۔',
+      ur: 'ٹھگی کا شک ہونے پر اپنے اکاؤنٹس محفوظ کریں اور مناسب مدد لیں۔',
       id: 'Amankan akun dan cari bantuan yang tepat bila menduga penipuan.',
       de: 'Sichere deine Konten und suche passende Hilfe, wenn du Betrug vermutest.',
       ja: '詐欺が疑われたらアカウントを守り、適切な支援を求めよう。',

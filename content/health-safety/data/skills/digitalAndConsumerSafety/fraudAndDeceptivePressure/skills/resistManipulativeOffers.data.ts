@@ -46,7 +46,7 @@ export const resistManipulativeOffers_Skill_Data = buildSkillConfig({
       fr: 'Prends le temps de vérifier indépendamment les offres exigeant une décision immédiate.',
       bn: 'অবিলম্বে সিদ্ধান্তের চাপ থাকলে থামো ও স্বাধীনভাবে প্রস্তাব যাচাই করো।',
       pt: 'Faça uma pausa e verifique por conta própria ofertas que exigem ação imediata.',
-      ur: 'فوری قدم اٹھانے کا مطالبہ کرنے والی پیشکش روک کر آزادانہ تصدیق کرو۔',
+      ur: 'فوری قدم اٹھانے کا مطالبہ کرنے والی پیشکش روک کر آزادانہ تصدیق کریں۔',
       id: 'Berhenti sejenak dan periksa secara mandiri tawaran yang menuntut tindakan segera.',
       de: 'Halte inne und prüfe Angebote mit Handlungsdruck unabhängig nach.',
       ja: 'すぐ決断を迫る申し出は一度止まり、自分で確かめよう。',

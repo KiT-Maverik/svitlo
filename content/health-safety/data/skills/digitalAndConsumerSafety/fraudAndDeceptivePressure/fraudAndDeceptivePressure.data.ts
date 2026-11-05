@@ -59,7 +59,7 @@ export const fraudAndDeceptivePressure_SkillGroup_Data = buildSkillGroupConfig({
       fr: "Apprends à reconnaître les escroqueries fondées sur l'usurpation d'identité, l'urgence et la pression financière.",
       bn: 'ছদ্মপরিচয়, তাড়া ও অর্থনৈতিক চাপ দিয়ে প্রতারণা চেনো।',
       pt: 'Aprenda a reconhecer golpes baseadas em falsificação de identidade, urgência e pressão financeira.',
-      ur: 'جعلی شناخت، جلدی اور مالی دباؤ والی ٹھگی پہچانو۔',
+      ur: 'جعلی شناخت، جلدی اور مالی دباؤ والی ٹھگی پہچانیں۔',
       id: 'Kenali penipuan yang memakai penyamaran identitas, desakan waktu, dan tekanan keuangan.',
       de: 'Lerne Betrug durch Identitätsvortäuschung, künstliche Eile und finanziellen Druck zu erkennen.',
       ja: 'なりすまし、急かす言葉、金銭的圧力を利用する詐欺を見分けよう。',

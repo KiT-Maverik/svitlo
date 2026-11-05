@@ -46,7 +46,7 @@ export const recognizeTechnologyFacilitatedHarassment_Skill_Data = buildSkillCon
       fr: 'Repère le harcèlement répété et la traque menés sur les plateformes en ligne.',
       bn: 'অনলাইন প্ল্যাটফর্মে বারবার হয়রানি ও পিছু নেওয়ার আচরণ শনাক্ত করো।',
       pt: 'Reconheça assédio persistente e perseguição por plataformas online.',
-      ur: 'آن لائن پلیٹ فارموں پر مسلسل ہراسانی اور پیچھا کرنے کو پہچانو۔',
+      ur: 'آن لائن پلیٹ فارموں پر مسلسل ہراسانی اور پیچھا کرنے کو پہچانیں۔',
       id: 'Kenali pelecehan berulang dan penguntitan melalui platform daring.',
       de: 'Erkenne anhaltende Belästigung und Nachstellung über Online-Plattformen.',
       ja: 'オンラインの場で繰り返される嫌がらせやつきまといを見分けよう。',
