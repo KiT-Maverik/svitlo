@@ -65,7 +65,7 @@ export const compareDesignAlternatives_Skill_Data = buildSkillConfig({
       be: 'Параўнай праектныя варыянты паводле выразна вызначаных крытэраў.',
       ka: 'შეადარე პროექტის ვარიანტები მკაფიოდ განსაზღვრული კრიტერიუმებით.',
       kk: 'Жоба нұсқаларын нақты белгіленген өлшемдер бойынша салыстыр.',
-      qm: 'Layiha variantlarını açıq belgilengен ölçülerge köre qıyasla.',
+      qm: 'Layiha variantlarını açıq belgilengen ölçülerge köre qıyasla.',
     },
   },
 });
