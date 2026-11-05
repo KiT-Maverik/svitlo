@@ -11,7 +11,7 @@ export const respondToSevereAllergicReaction_Skill_Data = buildSkillConfig({
     ar: 'الاستجابة لتفاعل تحسسي شديد',
     fr: 'Réagir à une réaction allergique grave',
     bn: 'তীব্র অ্যালার্জিতে সাড়া',
-    pt: 'Responder a reação alérgica grave',
+    pt: 'Responder a uma reação alérgica grave',
     ur: 'شدید الرجی پر مدد',
     id: 'Menangani Reaksi Alergi Berat',
     de: 'Bei schweren allergischen Reaktionen helfen',

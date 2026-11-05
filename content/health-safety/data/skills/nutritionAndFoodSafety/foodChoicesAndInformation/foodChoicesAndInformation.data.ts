@@ -66,7 +66,7 @@ export const foodChoicesAndInformation_SkillGroup_Data = buildSkillGroupConfig({
       ko: '식품을 고를 때 표시와 믿을 만한 근거를 활용하는 법을 배워 보세요.',
       tr: 'Gıda seçerken etiketleri ve güvenilir bilgileri kullanmayı öğren.',
       vi: 'Học dùng nhãn và bằng chứng đáng tin khi chọn thực phẩm.',
-      ta: 'உணவு தேர்வின்போது லேபிளையும் நம்பகமான ஆதாரங்களையும் பயன்படுத்தக் கற்றுக்கொள்.',
+      ta: 'உணவு தேர்வின்போது லேபிளையும் நம்பகமான ஆதாரங்களையும் பயன்படுத்தக் கற்றுக்கொள்ளுங்கள்.',
       te: 'ఆహారం ఎంచుకునేటప్పుడు లేబుల్‌లు, నమ్మదగిన ఆధారాలు వాడడం నేర్చుకోండి.',
       mr: 'अन्न निवडताना लेबल आणि विश्वसनीय पुरावे वापरायला शिका.',
       ms: 'Belajar menggunakan label dan bukti dipercayai ketika memilih makanan.',

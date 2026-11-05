@@ -53,7 +53,7 @@ export const vaccinationLiteracy_Skill_Data = buildSkillConfig({
       ko: '예방접종이 무엇을 예방할 수 있고 한계는 무엇인지 알아보세요.',
       tr: 'Aşıların hangi risklere karşı koruduğunu ve sınırlarını öğren.',
       vi: 'Hiểu tiêm chủng bảo vệ khỏi điều gì và có những giới hạn nào.',
-      ta: 'தடுப்பூசி எதிலிருந்து பாதுகாக்கிறது, அதன் வரம்புகள் என்ன எனப் புரிந்துகொள்.',
+      ta: 'தடுப்பூசி எதிலிருந்து பாதுகாக்கிறது, அதன் வரம்புகள் என்ன எனப் புரிந்துகொள்ளுங்கள்.',
       te: 'టీకాలు దేని నుంచి రక్షిస్తాయి, వాటి పరిమితులు ఏమిటో తెలుసుకోండి.',
       mr: 'लसीकरण कशापासून संरक्षण देते आणि त्याच्या मर्यादा काय आहेत ते समज.',
       ms: 'Fahami perlindungan vaksinasi dan batas keberkesanannya.',

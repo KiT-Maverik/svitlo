@@ -53,7 +53,7 @@ export const assessHealthRelatedRisk_Skill_Data = buildSkillConfig({
       ko: '건강 위험의 발생 가능성과 그 영향을 함께 생각해 보세요.',
       tr: 'Bir sağlık riskinin olasılığını ve muhtemel sonuçlarını düşün.',
       vi: 'Xem xét khả năng xảy ra và hậu quả có thể có của nguy cơ sức khỏe.',
-      ta: 'உடல்நல ஆபத்து நிகழும் வாய்ப்பையும் அதன் விளைவுகளையும் கருத்தில் கொள்.',
+      ta: 'உடல்நல ஆபத்து நிகழும் வாய்ப்பையும் அதன் விளைவுகளையும் கருத்தில் கொள்ளுங்கள்.',
       te: 'ఆరోగ్య ప్రమాదం సంభవించే అవకాశం, దాని ప్రభావాలను పరిగణించండి.',
       mr: 'आरोग्याच्या जोखमीची शक्यता आणि संभाव्य परिणाम विचारात घे.',
       ms: 'Pertimbangkan kemungkinan serta kesan sesuatu risiko kesihatan.',

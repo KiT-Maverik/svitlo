@@ -53,7 +53,7 @@ export const recognizeExplosiveOrdnanceRisk_Skill_Data = buildSkillConfig({
       ko: '정체불명의 탄약과 버려진 장치가 치명적일 수 있음을 알아두세요.',
       tr: 'Bilinmeyen mühimmatın ve terk edilmiş aygıtların ölümcül olabileceğini bil.',
       vi: 'Nhận biết đạn dược không rõ nguồn gốc và thiết bị bị bỏ lại có thể gây chết người.',
-      ta: 'அறியப்படாத வெடிபொருட்களும் கைவிடப்பட்ட சாதனங்களும் உயிருக்கு ஆபத்தானவை என்பதை அறிக.',
+      ta: 'அறியப்படாத வெடிபொருட்களும் கைவிடப்பட்ட சாதனங்களும் உயிருக்கு ஆபத்தானவை என்பதை அறியுங்கள்.',
       te: 'తెలియని ఆయుధ సామగ్రి, వదిలేసిన పరికరాలు ప్రాణాంతకం కావచ్చని తెలుసుకోండి.',
       mr: 'अज्ञात दारुगोळा आणि सोडून दिलेली उपकरणे जीवघेणी असू शकतात हे जाणून घ्या.',
       ms: 'Ketahui bahawa bahan letupan perang yang tidak dikenal pasti dan peranti terbiar boleh membawa maut.',

@@ -66,7 +66,7 @@ export const preparednessAndAlerts_SkillGroup_Data = buildSkillGroupConfig({
       ko: '공식 경보와 사전 계획이 비상 대비에 어떻게 도움이 되는지 알아보세요.',
       tr: 'Resmî uyarılar ve önceden planlamanın acil durum hazırlığına katkısını öğren.',
       vi: 'Tìm hiểu cảnh báo chính thức và kế hoạch từ trước giúp sẵn sàng cho khẩn cấp thế nào.',
-      ta: 'அதிகாரப்பூர்வ எச்சரிக்கைகளும் முன்திட்டமிடலும் அவசரத் தயார்நிலைக்கு எவ்வாறு உதவுகின்றன என்பதை அறிக.',
+      ta: 'அதிகாரப்பூர்வ எச்சரிக்கைகளும் முன்திட்டமிடலும் அவசரத் தயார்நிலைக்கு எவ்வாறு உதவுகின்றன என்பதை அறியுங்கள்.',
       te: 'అధికారిక హెచ్చరికలు, ముందస్తు ప్రణాళికలు అత్యవసర సన్నద్ధతకు ఎలా తోడ్పడతాయో తెలుసుకోండి.',
       mr: 'अधिकृत इशारे व आगाऊ नियोजन आपत्कालीन तयारीत कसे मदत करतात ते जाणून घ्या.',
       ms: 'Ketahui bagaimana amaran rasmi dan perancangan awal membantu persediaan kecemasan.',

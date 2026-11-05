@@ -53,7 +53,7 @@ export const communicateSymptomsToAClinician_Skill_Data = buildSkillConfig({
       ko: '증상과 언제 시작됐는지 의료진에게 정확히 설명해 보세요.',
       tr: 'Belirtileri ve ne zaman başladıklarını sağlık uzmanına açıkça anlat.',
       vi: 'Mô tả rõ triệu chứng và thời điểm xuất hiện cho nhân viên y tế.',
-      ta: 'அறிகுறிகளையும் அவை எப்போது தொடங்கின என்பதையும் மருத்துவரிடம் தெளிவாகச் சொல்.',
+      ta: 'அறிகுறிகளையும் அவை எப்போது தொடங்கின என்பதையும் மருத்துவரிடம் தெளிவாகச் சொல்லுங்கள்.',
       te: 'లక్షణాలు, అవి ఎప్పుడు మొదలయ్యాయో వైద్య నిపుణులకు స్పష్టంగా చెప్పండి.',
       mr: 'लक्षणे आणि ती कधी सुरू झाली हे आरोग्यतज्ज्ञांना स्पष्ट सांग.',
       ms: 'Terangkan gejala serta masa bermulanya dengan jelas kepada petugas kesihatan.',

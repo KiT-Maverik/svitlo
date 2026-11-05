@@ -53,7 +53,7 @@ export const respiratoryHygiene_Skill_Data = buildSkillConfig({
       ko: '기침 예절과 환기, 아플 때의 적절한 예방 수칙을 실천해 보세요.',
       tr: 'Öksürürken, havalandırırken ve hastayken uygun önlemleri uygula.',
       vi: 'Thực hiện che miệng khi ho, thông gió và phòng ngừa phù hợp khi ốm.',
-      ta: 'இருமல், காற்றோட்டம், நோய்க்கால முன்னெச்சரிக்கைகளைச் சரியாகப் பின்பற்று.',
+      ta: 'இருமல், காற்றோட்டம், நோய்க்கால முன்னெச்சரிக்கைகளைச் சரியாகப் பின்பற்றுங்கள்.',
       te: 'దగ్గు మర్యాదలు, గాలి ప్రసరణ, అనారోగ్యంలో తగిన జాగ్రత్తలు పాటించండి.',
       mr: 'खोकताना योग्य शिष्टाचार, हवा खेळती ठेवणे आणि आजारात खबरदारी पाळ.',
       ms: 'Amalkan etika batuk, pengudaraan dan langkah berjaga-jaga semasa sakit.',

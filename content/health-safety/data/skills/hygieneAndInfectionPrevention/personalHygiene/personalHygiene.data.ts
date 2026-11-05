@@ -66,7 +66,7 @@ export const personalHygiene_SkillGroup_Data = buildSkillGroupConfig({
       ko: '손과 일상용품의 오염을 줄이는 위생 습관을 익혀 보세요.',
       tr: 'Ellerde ve günlük eşyalarda bulaşmayı azaltan alışkanlıklar geliştir.',
       vi: 'Xây dựng thói quen giảm nhiễm bẩn tay và đồ vật hằng ngày.',
-      ta: 'கைகளும் தினசரி பொருட்களும் மாசுபடுவதைக் குறைக்கும் பழக்கங்களை உருவாக்கு.',
+      ta: 'கைகளும் தினசரி பொருட்களும் மாசுபடுவதைக் குறைக்கும் பழக்கங்களை உருவாக்குங்கள்.',
       te: 'చేతులు, రోజువారీ వస్తువుల కలుషితాన్ని తగ్గించే అలవాట్లు అలవరచుకోండి.',
       mr: 'हात आणि रोजच्या वस्तूंचे दूषण कमी करणाऱ्या सवयी लावून घे.',
       ms: 'Bina tabiat yang mengurangkan pencemaran tangan dan barang harian.',

@@ -53,7 +53,7 @@ export const recognizeWarningSignsDuringActivity_Skill_Data = buildSkillConfig({
       ko: '활동을 중단해야 하는 증상을 알아보세요.',
       tr: 'Etkinliği durdurman gerektiğini gösteren belirtileri fark et.',
       vi: 'Nhận biết triệu chứng cho thấy cần dừng hoạt động.',
-      ta: 'செயற்பாட்டை நிறுத்த வேண்டிய அறிகுறிகளை அறி.',
+      ta: 'செயற்பாட்டை நிறுத்த வேண்டிய அறிகுறிகளை அறியுங்கள்.',
       te: 'కార్యకలాపాన్ని ఆపాల్సిన లక్షణాలను గుర్తించండి.',
       mr: 'कृती थांबवावी लागेल अशी लक्षणे ओळख.',
       ms: 'Kenal pasti gejala yang menunjukkan aktiviti perlu dihentikan.',

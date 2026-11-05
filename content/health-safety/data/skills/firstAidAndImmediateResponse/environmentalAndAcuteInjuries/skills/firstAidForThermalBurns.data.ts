@@ -39,7 +39,7 @@ export const firstAidForThermalBurns_Skill_Data = buildSkillConfig({
       'End thermal exposure when safe, cool a heat burn appropriately and recognize features that require urgent medical assessment; chemical injuries require different hazard-specific precautions.',
     frontend: {
       en: 'Understand initial cooling and escalation for thermal burns.',
-      zh: '了解热烧伤的初步冷却方法及何时需要升级医疗救助。',
+      zh: '了解热烧伤的初步冷却方法，以及何时需要进一步就医。',
       hi: 'जलने पर शुरुआती ठंडक और चिकित्सा मदद कब बढ़ानी है, समझो।',
       es: 'Comprende el enfriamiento inicial y cuándo solicitar atención más urgente por quemaduras.',
       ar: 'افهم التبريد الأولي ومتى تستلزم الحروق تصعيد الرعاية الطبية.',

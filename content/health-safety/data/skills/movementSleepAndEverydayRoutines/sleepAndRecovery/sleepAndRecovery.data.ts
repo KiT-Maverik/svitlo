@@ -64,7 +64,7 @@ export const sleepAndRecovery_SkillGroup_Data = buildSkillGroupConfig({
       ko: '수면과 규칙적인 휴식이 일상생활에 어떤 영향을 주는지 알아보세요.',
       tr: 'Uyku ve düzenli dinlenmenin günlük yaşamı nasıl etkilediğini keşfet.',
       vi: 'Tìm hiểu giấc ngủ và nghỉ ngơi đều đặn ảnh hưởng sinh hoạt hằng ngày ra sao.',
-      ta: 'தூக்கமும் ஒழுங்கான ஓய்வும் தினசரி செயல்பாட்டை எவ்வாறு பாதிக்கின்றன என அறி.',
+      ta: 'தூக்கமும் ஒழுங்கான ஓய்வும் தினசரி செயல்பாட்டை எவ்வாறு பாதிக்கின்றன என அறியுங்கள்.',
       te: 'నిద్ర, క్రమమైన విశ్రాంతి రోజువారీ పనితీరును ఎలా ప్రభావితం చేస్తాయో తెలుసుకోండి.',
       mr: 'झोप आणि नियमित विश्रांती दैनंदिन कामांवर कसा परिणाम करतात ते पाहा.',
       ms: 'Ketahui bagaimana tidur dan rehat teratur mempengaruhi kehidupan harian.',

@@ -60,7 +60,7 @@ export const immobilizeSuspectedFractures_Skill_Data = buildSkillConfig({
       he: 'תמכו בעצם שעשויה להיות שבורה בלי לנסות ליישר אותה.',
       pl: 'Podeprzyj kość, która może być złamana, nie próbując jej nastawiać.',
       uk: 'Підтримуй ділянку ймовірного перелому, не намагаючись самостійно вправити кістку.',
-      lt: 'Prilaikyk galbūt lūžusį kaulą, nebandydamas jo atstatyti.',
+      lt: 'Prilaikyk galbūt lūžusį kaulą ir nebandyk jo atstatyti.',
       lv: 'Atbalsti iespējami lauztu kaulu, nemēģinot to ievirzīt vietā.',
       et: 'Toeta võimalikku murdu ja ära püüa luud ise paika sättida.',
       be: 'Падтрымлівай месца магчымага пералому, не спрабуючы самастойна ўпраўляць косьць.',

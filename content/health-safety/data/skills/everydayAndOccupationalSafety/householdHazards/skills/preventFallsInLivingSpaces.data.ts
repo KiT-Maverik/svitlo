@@ -53,7 +53,7 @@ export const preventFallsInLivingSpaces_Skill_Data = buildSkillConfig({
       ko: '미끄러운 바닥이나 불안정하게 올라서는 행동이 낙상을 일으키는 이유를 알아보세요.',
       tr: 'Kaygan zeminlerin ve dengesiz tırmanmanın düşmelere nasıl yol açtığını fark et.',
       vi: 'Nhận biết sàn trơn hay leo trèo thiếu vững chắc có thể gây ngã thế nào.',
-      ta: 'வழுக்கும் தரை அல்லது நிலையற்ற ஏறுதல் எவ்வாறு விழுவதற்கு வழிவகுக்கிறது என்பதை அறிக.',
+      ta: 'வழுக்கும் தரை அல்லது நிலையற்ற ஏறுதல் எவ்வாறு விழுவதற்கு வழிவகுக்கிறது என்பதை அறியுங்கள்.',
       te: 'జారే నేలలు లేదా అస్థిరంగా ఎక్కడం వల్ల ఎలా పడిపోవచ్చో గుర్తించండి.',
       mr: 'निसरडे मजले किंवा अस्थिर चढाईमुळे पडणे कसे घडते ते ओळखा.',
       ms: 'Kenali bagaimana lantai licin atau memanjat tempat tidak stabil menyebabkan jatuh.',

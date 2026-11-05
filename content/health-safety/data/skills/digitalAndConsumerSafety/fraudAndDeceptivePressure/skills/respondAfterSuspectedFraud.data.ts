@@ -60,7 +60,7 @@ export const respondAfterSuspectedFraud_Skill_Data = buildSkillConfig({
       he: 'אבטחו את חשבונותיכם ופנו לעזרה מתאימה לאחר חשד להונאה.',
       pl: 'Zabezpiecz konta i poszukaj odpowiedniej pomocy po podejrzeniu oszustwa.',
       uk: 'Захисти свої облікові записи й звернися по відповідну допомогу, якщо підозрюєш шахрайство.',
-      lt: 'Apsaugok savo paskyras ir kreipkis tinkamos pagalbos įtaręs sukčiavimą.',
+      lt: 'Jei įtari sukčiavimą, apsaugok savo paskyras ir kreipkis tinkamos pagalbos.',
       lv: 'Aizsargā kontus un meklē atbilstošu palīdzību, ja ir aizdomas par krāpšanu.',
       et: 'Turva oma kontod ja otsi sobivat abi, kui kahtlustad pettust.',
       be: 'Абарані свае ўліковыя запісы й зьвярніся па адпаведную дапамогу пры падазрэньні махлярства.',

@@ -60,7 +60,7 @@ export const respondToAnImmediateAttack_Skill_Data = buildSkillConfig({
       he: 'אם מתחילה תקיפה ללא התרעה, חפשו מיד מחסה או מיגון.',
       pl: 'Gdy atak zaczyna się bez ostrzeżenia, natychmiast szukaj osłony lub schronienia.',
       uk: 'Якщо атака починається без попередження, негайно шукай прикриття або укриття.',
-      lt: 'Jei ataka prasideda be perspėjimo, nedelsdama ieškok priedangos ar slėptuvės.',
+      lt: 'Jei ataka prasideda be perspėjimo, nedelsiant ieškok priedangos ar slėptuvės.',
       lv: 'Ja uzbrukums sākas bez brīdinājuma, nekavējoties meklē aizsegu vai patvērumu.',
       et: 'Kui rünnak algab hoiatuseta, otsi kohe varju või kaitset.',
       be: 'Калі напад пачынаецца без папярэджаньня, неадкладна шукай прыкрыцьцё або сховішча.',

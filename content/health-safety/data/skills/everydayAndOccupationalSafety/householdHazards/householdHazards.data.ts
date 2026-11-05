@@ -68,7 +68,7 @@ export const householdHazards_SkillGroup_Data = buildSkillGroupConfig({
       ko: '일반적인 가정에서 예방할 수 있는 위험을 알아보세요.',
       tr: 'Sıradan ev ortamlarında önlenebilecek tehlikeleri keşfet.',
       vi: 'Tìm hiểu các nguy cơ có thể phòng tránh trong nhà.',
-      ta: 'வழக்கமான வீட்டு சூழலில் தடுக்கக்கூடிய ஆபத்துகளை அறிக.',
+      ta: 'வழக்கமான வீட்டு சூழலில் தடுக்கக்கூடிய ஆபத்துகளை அறியுங்கள்.',
       te: 'సాధారణ ఇంటి వాతావరణంలో నివారించగల ప్రమాదాలను తెలుసుకోండి.',
       mr: 'सामान्य घरगुती वातावरणातील टाळता येणारे धोके समजून घ्या.',
       ms: 'Terokai bahaya yang boleh dicegah dalam persekitaran rumah.',

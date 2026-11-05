@@ -53,7 +53,7 @@ export const evaluateHealthInformationSources_Skill_Data = buildSkillConfig({
       ko: '건강 조언이 신뢰할 만한 근거 중심 출처에서 왔는지 확인해 보세요.',
       tr: 'Sağlık önerilerinin güvenilir, kanıta dayalı kaynaklardan gelip gelmediğini denetle.',
       vi: 'Kiểm tra lời khuyên sức khỏe có từ nguồn đáng tin và dựa trên chứng cứ không.',
-      ta: 'சுகாதார ஆலோசனை நம்பகமான ஆதாரமுள்ள மூலத்திலிருந்து வந்ததா எனச் சரிபார்.',
+      ta: 'சுகாதார ஆலோசனை நம்பகமான ஆதாரமுள்ள மூலத்திலிருந்து வந்ததா எனச் சரிபாருங்கள்.',
       te: 'ఆరోగ్య సలహా నమ్మదగిన ఆధారాలున్న మూలాల నుంచి వచ్చిందో చూడండి.',
       mr: 'आरोग्यसल्ला विश्वसनीय व पुरावाधारित स्रोतांकडून येतो का ते तपास.',
       ms: 'Semak sama ada nasihat kesihatan datang daripada sumber dipercayai dan berasaskan bukti.',

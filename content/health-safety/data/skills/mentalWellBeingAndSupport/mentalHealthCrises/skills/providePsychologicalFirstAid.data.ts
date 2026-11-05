@@ -60,7 +60,7 @@ export const providePsychologicalFirstAid_Skill_Data = buildSkillConfig({
       he: 'הציעו עזרה רגועה ומעשית בלי ללחוץ על אדם לספר מחדש חוויה טראומטית.',
       pl: 'Zapewnij spokojne, praktyczne wsparcie bez naciskania na opowiadanie o traumie.',
       uk: 'Пропонуй спокійну практичну підтримку, не примушуючи людину переповідати травматичний досвід.',
-      lt: 'Ramiai suteik praktinę pagalbą, nespausdamas žmogaus pasakoti apie traumą.',
+      lt: 'Ramiai suteik praktinę pagalbą ir neversk žmogaus pasakoti apie traumą.',
       lv: 'Sniedz mierīgu praktisku palīdzību, nespiežot cilvēku atstāstīt traumatisko pieredzi.',
       et: 'Paku rahulikku ja praktilist abi, sundimata inimest traumaatilisi kogemusi meenutama.',
       be: 'Прапануй спакойную практычную падтрымку, не прымушаючы чалавека пераказваць траўматычны досьвед.',

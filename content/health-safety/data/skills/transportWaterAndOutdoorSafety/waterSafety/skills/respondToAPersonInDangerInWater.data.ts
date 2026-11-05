@@ -60,7 +60,7 @@ export const respondToAPersonInDangerInWater_Skill_Data = buildSkillConfig({
       he: 'הזעיקו עזרה והעדיפו סיוע בטוח בלי להיכנס למים.',
       pl: 'Wezwij pomoc i pomagaj bezpiecznie bez wchodzenia do wody.',
       uk: 'Поклич допомогу й насамперед допомагай безпечно, не заходячи у воду.',
-      lt: 'Kviesk pagalbą ir pirmiausia padėk saugiai, nelipdama į vandenį.',
+      lt: 'Kviesk pagalbą ir pirmiausia padėk saugiai nuo kranto, nelipk į vandenį.',
       lv: 'Izsauc palīdzību un priekšroku dod drošai palīdzībai, neieejot ūdenī.',
       et: 'Kutsu abi ja eelista turvalist aitamist vette minemata.',
       be: 'Пакліч дапамогу і найперш дапамагай бясьпечна, не заходзячы ў ваду.',

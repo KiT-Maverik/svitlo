@@ -53,7 +53,7 @@ export const understandACarePlan_Skill_Data = buildSkillConfig({
       ko: '합의한 치료 계획의 목적, 일정, 주의사항을 이해해 보세요.',
       tr: 'Kararlaştırılan bakım planının amacını, zamanlamasını ve önlemlerini anla.',
       vi: 'Hiểu mục đích, lịch trình và lưu ý của kế hoạch chăm sóc đã thống nhất.',
-      ta: 'ஒப்புக்கொண்ட சிகிச்சைத் திட்டத்தின் நோக்கம், நேரம், முன்னெச்சரிக்கைகளைப் புரிந்துகொள்.',
+      ta: 'ஒப்புக்கொண்ட சிகிச்சைத் திட்டத்தின் நோக்கம், நேரம், முன்னெச்சரிக்கைகளைப் புரிந்துகொள்ளுங்கள்.',
       te: 'అంగీకరించిన చికిత్స ప్రణాళిక లక్ష్యం, సమయం, జాగ్రత్తలను అర్థం చేసుకోండి.',
       mr: 'मान्य उपचार योजनेचा उद्देश, वेळापत्रक आणि खबरदारी समज.',
       ms: 'Fahami tujuan, jadual dan langkah berjaga-jaga dalam pelan rawatan dipersetujui.',

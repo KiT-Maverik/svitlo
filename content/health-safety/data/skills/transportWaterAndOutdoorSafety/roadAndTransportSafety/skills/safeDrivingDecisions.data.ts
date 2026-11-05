@@ -53,7 +53,7 @@ export const safeDrivingDecisions_Skill_Data = buildSkillConfig({
       ko: '주의 분산, 과속, 운전 능력 저하가 위험한 이유를 알아보세요.',
       tr: 'Dikkat dağınıklığı, hız ve yetersiz sürüş yetisinin neden tehlikeli olduğunu öğren.',
       vi: 'Nhận biết vì sao mất tập trung, tốc độ cao và suy giảm năng lực khiến lái xe nguy hiểm.',
-      ta: 'கவனச் சிதறல், வேகம், திறன் குறைவு ஏன் ஓட்டுதலை ஆபத்தாக்குகின்றன என்பதை அறிக.',
+      ta: 'கவனச் சிதறல், வேகம், திறன் குறைவு ஏன் ஓட்டுதலை ஆபத்தாக்குகின்றன என்பதை அறியுங்கள்.',
       te: 'దృష్టి మళ్లడం, అధిక వేగం, సామర్థ్య లోపం డ్రైవింగ్‌ను ఎందుకు ప్రమాదకరంగా చేస్తాయో తెలుసుకోండి.',
       mr: 'लक्ष विचलित होणे, वेग आणि क्षमता कमी होणे वाहनचालन धोकादायक का बनवतात ते जाणून घ्या.',
       ms: 'Fahami sebab gangguan perhatian, laju dan keupayaan terjejas menjadikan pemanduan berbahaya.',

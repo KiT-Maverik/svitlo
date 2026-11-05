@@ -53,7 +53,7 @@ export const chooseAnAppropriateLevelOfHealthcare_Skill_Data = buildSkillConfig(
       ko: '일반 진료가 필요한 경우와 긴급 도움이 필요한 경우를 구분해 보세요.',
       tr: 'Bir sorunun rutin bakım mı yoksa acil yardım mı gerektirdiğini fark et.',
       vi: 'Nhận biết khi nào cần khám thông thường và khi nào cần trợ giúp khẩn cấp.',
-      ta: 'வழக்கமான பராமரிப்பு போதுமா அல்லது அவசர உதவி தேவையா என்பதை அறி.',
+      ta: 'வழக்கமான பராமரிப்பு போதுமா அல்லது அவசர உதவி தேவையா என்பதை அறியுங்கள்.',
       te: 'సాధారణ వైద్యసేవ సరిపోతుందా, అత్యవసర సహాయం కావాలా గుర్తించండి.',
       mr: 'सामान्य तपासणी आणि तातडीची मदत यांपैकी काय गरजेचे आहे ते ओळख.',
       ms: 'Kenal pasti bila rawatan biasa mencukupi atau bantuan segera diperlukan.',

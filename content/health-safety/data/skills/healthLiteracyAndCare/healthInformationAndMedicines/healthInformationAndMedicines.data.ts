@@ -64,7 +64,7 @@ export const healthInformationAndMedicines_SkillGroup_Data = buildSkillGroupConf
       ko: '건강 조언을 평가하고 의약품을 안전하게 다루는 법을 배워 보세요.',
       tr: 'Sağlık önerilerini değerlendirmeyi ve ilaçları güvenle kullanmayı öğren.',
       vi: 'Học đánh giá lời khuyên về sức khỏe và sử dụng thuốc an toàn.',
-      ta: 'சுகாதார ஆலோசனையை மதிப்பிடவும் மருந்துகளைப் பாதுகாப்பாகக் கையாளவும் கற்றுக்கொள்.',
+      ta: 'சுகாதார ஆலோசனையை மதிப்பிடவும் மருந்துகளைப் பாதுகாப்பாகக் கையாளவும் கற்றுக்கொள்ளுங்கள்.',
       te: 'ఆరోగ్య సలహాను అంచనా వేసి మందులను సురక్షితంగా వాడడం నేర్చుకోండి.',
       mr: 'आरोग्यसल्ला तपासणे आणि औषधे सुरक्षित वापरणे शीक.',
       ms: 'Belajar menilai nasihat kesihatan dan menggunakan ubat dengan selamat.',

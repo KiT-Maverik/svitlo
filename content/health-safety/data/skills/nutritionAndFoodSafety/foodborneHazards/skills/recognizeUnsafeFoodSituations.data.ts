@@ -53,7 +53,7 @@ export const recognizeUnsafeFoodSituations_Skill_Data = buildSkillConfig({
       ko: '음식이 멀쩡해 보여도 안전상의 위험이 있는지 살펴보세요.',
       tr: 'Yiyecek normal görünse bile gıda güvenliği sorunlarını fark et.',
       vi: 'Nhận biết nguy cơ an toàn thực phẩm dù đồ ăn trông bình thường.',
-      ta: 'உணவு வழக்கம்போலத் தோன்றினாலும் பாதுகாப்பு அபாயங்களைக் கண்டறி.',
+      ta: 'உணவு வழக்கம்போலத் தோன்றினாலும் பாதுகாப்பு அபாயங்களைக் கண்டறியுங்கள்.',
       te: 'ఆహారం మామూలుగా కనిపించినా ఆహార భద్రతా ప్రమాదాలను గుర్తించండి.',
       mr: 'अन्न ठीक दिसत असले तरी अन्नसुरक्षेचे धोके ओळखा.',
       ms: 'Kenal pasti risiko keselamatan makanan walaupun makanan kelihatan biasa.',

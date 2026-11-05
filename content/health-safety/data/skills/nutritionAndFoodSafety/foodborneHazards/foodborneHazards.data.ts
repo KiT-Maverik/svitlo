@@ -68,7 +68,7 @@ export const foodborneHazards_SkillGroup_Data = buildSkillGroupConfig({
       ko: '식품 준비와 보관이 질병을 예방하는 데 어떻게 도움이 되는지 알아보세요.',
       tr: 'Yiyecekleri hazırlama ve saklamanın hastalığı nasıl önlediğini öğren.',
       vi: 'Tìm hiểu chế biến và bảo quản thực phẩm giúp ngăn bệnh như thế nào.',
-      ta: 'உணவைத் தயாரிப்பதும் சேமிப்பதும் நோயை எவ்வாறு தடுக்கின்றன என்பதை அறி.',
+      ta: 'உணவைத் தயாரிப்பதும் சேமிப்பதும் நோயை எவ்வாறு தடுக்கின்றன என்பதை அறியுங்கள்.',
       te: 'ఆహారాన్ని సిద్ధం చేసి నిల్వ చేయడం అనారోగ్యాన్ని ఎలా నివారిస్తుందో తెలుసుకోండి.',
       mr: 'अन्नाची तयारी व साठवण आजार कसे टाळतात ते पाहा.',
       ms: 'Ketahui bagaimana penyediaan dan penyimpanan makanan membantu mencegah penyakit.',

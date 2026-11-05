@@ -53,7 +53,7 @@ export const interpretFoodLabels_Skill_Data = buildSkillConfig({
       ko: '원재료, 1회 제공량, 영양 정보를 읽어 보세요.',
       tr: 'İçindekileri, porsiyon miktarlarını ve besin değerlerini oku.',
       vi: 'Đọc thành phần, khẩu phần và thông tin dinh dưỡng.',
-      ta: 'சேர்வுகள், உணவு அளவு, ஊட்டச்சத்து விவரங்களைப் படி.',
+      ta: 'சேர்வுகள், உணவு அளவு, ஊட்டச்சத்து விவரங்களைப் படியுங்கள்.',
       te: 'పదార్థాలు, వడ్డించే పరిమాణం, పోషక సమాచారాన్ని చదవండి.',
       mr: 'घटक, एका वेळी खाण्याचे प्रमाण आणि पोषणमाहिती वाचा.',
       ms: 'Baca ramuan, saiz hidangan dan maklumat pemakanan.',

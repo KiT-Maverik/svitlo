@@ -53,7 +53,7 @@ export const choosePreventiveHealthMeasures_Skill_Data = buildSkillConfig({
       ko: '신뢰할 수 있는 건강 근거를 바탕으로 알맞은 예방 조치를 선택해 보세요.',
       tr: 'Güvenilir sağlık kanıtlarına dayanarak uygun önlemleri seç.',
       vi: 'Chọn cách phòng ngừa phù hợp dựa trên bằng chứng sức khỏe đáng tin.',
-      ta: 'நம்பகமான உடல்நல ஆதாரங்களைப் பயன்படுத்தி உரிய தடுப்பு முறைகளைத் தேர்ந்தெடு.',
+      ta: 'நம்பகமான உடல்நல ஆதாரங்களைப் பயன்படுத்தி உரிய தடுப்பு முறைகளைத் தேர்ந்தெடுங்கள்.',
       te: 'నమ్మదగిన ఆరోగ్య ఆధారాలతో తగిన నివారణ చర్యలను ఎంచుకోండి.',
       mr: 'विश्वसनीय आरोग्य पुराव्यांवरून योग्य प्रतिबंधात्मक उपाय निवड.',
       ms: 'Pilih langkah pencegahan sesuai berdasarkan bukti kesihatan yang boleh dipercayai.',

@@ -68,7 +68,7 @@ export const electricityFireAndGas_SkillGroup_Data = buildSkillGroupConfig({
       ko: '전기, 화재, 가스, 연소 기기의 서로 다른 위험을 알아보세요.',
       tr: 'Elektrik, ateş, gaz ve yakıt yakan cihazların farklı tehlikelerini tanı.',
       vi: 'Tìm hiểu các nguy cơ khác nhau từ điện, lửa, khí đốt và thiết bị đốt nhiên liệu.',
-      ta: 'மின்சாரம், தீ, எரிவாயு, எரிபொருள் எரிக்கும் சாதனங்களின் தனித்தனி ஆபத்துகளை அறிக.',
+      ta: 'மின்சாரம், தீ, எரிவாயு, எரிபொருள் எரிக்கும் சாதனங்களின் தனித்தனி ஆபத்துகளை அறியுங்கள்.',
       te: 'విద్యుత్తు, అగ్ని, గ్యాస్, ఇంధనం మండే పరికరాల వేర్వేరు ప్రమాదాలను తెలుసుకోండి.',
       mr: 'वीज, आग, गॅस आणि ज्वलन उपकरणांचे वेगवेगळे धोके समजून घ्या.',
       ms: 'Kenali risiko berbeza daripada elektrik, api, gas dan peralatan pembakaran.',

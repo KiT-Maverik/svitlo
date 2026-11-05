@@ -11,7 +11,7 @@ export const respondToSevereBreathingDifficulty_Skill_Data = buildSkillConfig({
     ar: 'الاستجابة لصعوبة التنفس الشديدة',
     fr: 'Réagir à une difficulté respiratoire grave',
     bn: 'তীব্র শ্বাসকষ্টে সাড়া',
-    pt: 'Responder a dificuldade respiratória grave',
+    pt: 'Responder à dificuldade respiratória grave',
     ur: 'شدید سانس کی تکلیف پر مدد',
     id: 'Menangani Kesulitan Bernapas Berat',
     de: 'Bei schwerer Atemnot reagieren',

@@ -60,7 +60,7 @@ export const assessSceneSafetyBeforeHelping_Skill_Data = buildSkillConfig({
       he: 'בדקו אם התקרבות לפצוע תסכן אתכם.',
       pl: 'Sprawdź, czy zbliżenie się do osoby rannej nie narazi cię na niebezpieczeństwo.',
       uk: 'Перевір, чи не наражатиме тебе на небезпеку наближення до постраждалої людини.',
-      lt: 'Patikrink, ar artėdamas prie sužeisto žmogaus nesukelsi sau pavojaus.',
+      lt: 'Patikrink, ar saugu artėti prie sužeisto žmogaus.',
       lv: 'Pārbaudi, vai tuvošanās cietušajam neapdraudēs tevi.',
       et: 'Kontrolli, kas vigastatud inimesele lähenemine ei sea sind ohtu.',
       be: 'Правер, ці не пагражае табе небясьпека пры набліжэньні да пацярпелага.',

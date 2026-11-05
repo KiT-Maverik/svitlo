@@ -45,7 +45,7 @@ export const preventSexuallyTransmittedInfections_Skill_Data = buildSkillConfig(
       ar: 'تعرّف على طرق تقليل خطر العدوى المنقولة جنسيًا.',
       fr: "Découvre des moyens de réduire le risque d'infections sexuellement transmissibles.",
       bn: 'যৌনবাহিত সংক্রমণের ঝুঁকি কমানোর উপায় সম্পর্কে জানো।',
-      pt: 'Conheça maneiras de reduzir os riscos de infecções sexualmente transmissíveis.',
+      pt: 'Conheça formas de reduzir os riscos de infecções sexualmente transmissíveis.',
       ur: 'جنسی طور پر منتقل ہونے والے انفیکشن کے خطرے گھٹانے کے طریقے جانیں۔',
       id: 'Kenali cara mengurangi risiko infeksi menular seksual.',
       de: 'Lerne Wege kennen, das Risiko sexuell übertragbarer Infektionen zu senken.',
