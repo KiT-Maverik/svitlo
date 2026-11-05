@@ -66,7 +66,7 @@ export const compareDistributivePrinciples_Skill_Data = buildSkillConfig({
       be: 'Ацані, ці варта разьмяркоўваць рэсурсы паводле патрэбаў, заслугаў, правоў ці роўнасьці.',
       ka: 'შეაფასე, უნდა ნაწილდებოდეს თუ არა რესურსები საჭიროების, დამსახურების, უფლებების ან თანასწორობის მიხედვით.',
       kk: 'Ресурстар қажеттілік, еңбек сіңіру, құқық не теңдік бойынша бөлінуі тиіс пе, бағала.',
-      qm: 'Resurslarnı ihtiyaç, izmet, aqlar ya da teñlik boyunca paylaştırmaq kerekmi, baala.'
+      qm: 'Resurslarnı ihtiyaç, izmet, aqlar ya da teñlik boyunca paylaştırmaq kerekmi, baala.',
     },
   },
 });
