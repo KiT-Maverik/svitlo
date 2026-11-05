@@ -3,7 +3,7 @@ import { test } from 'node:test';
 import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { spawnSync } from 'node:child_process';
 
 const script = fileURLToPath(new URL('./sync-flags.mjs', import.meta.url));
@@ -28,6 +28,35 @@ test('flag synchronization still works from a target workspace', () => {
     assert(readdirSync(join(target, 'public/flags')).some(file => file.endsWith('.svg')));
     assert(!existsSync(join(target, 'public/flags/stale.svg')), 'stale UI Kit flags must be removed');
     assert.equal(readFileSync(join(target, 'public/robots.txt'), 'utf8'), 'host-owned');
+  } finally {
+    rmSync(target, { recursive: true, force: true });
+  }
+});
+
+test('legacy Node --import preload still synchronizes standalone workspace flags', () => {
+  const target = mkdtempSync(join(tmpdir(), 'svitlo-standalone-flags-'));
+  try {
+    writeFileSync(join(target, 'package.json'), JSON.stringify({ name: '@svitlo/standalone-test' }));
+    const command = spawnSync(process.execPath, ['--import', pathToFileURL(script).href, '--eval', ''], {
+      cwd: target,
+      encoding: 'utf8',
+    });
+    assert.equal(command.status, 0, command.stderr);
+    assert(readdirSync(join(target, 'public/flags')).some(file => file.endsWith('.svg')));
+  } finally {
+    rmSync(target, { recursive: true, force: true });
+  }
+});
+
+test('normal imports have no implicit asset-copy side effects', () => {
+  const target = mkdtempSync(join(tmpdir(), 'svitlo-import-flags-'));
+  try {
+    const command = spawnSync(process.execPath,
+      ['--input-type=module', '--eval', `await import(${JSON.stringify(pathToFileURL(script).href)})`],
+      { cwd: target, encoding: 'utf8' },
+    );
+    assert.equal(command.status, 0, command.stderr);
+    assert(!existsSync(join(target, 'public')), 'importing the module should not create public assets');
   } finally {
     rmSync(target, { recursive: true, force: true });
   }
