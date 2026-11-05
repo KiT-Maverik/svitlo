@@ -60,7 +60,7 @@ export const applyModusTollens_Skill_Data = buildSkillConfig({
       he: 'השתמשו בתנאי ובשלילת התוצאה שלו כדי לשלול את התנאי המקדים.',
       pl: 'Użyj warunku i zaprzeczenia jego następstwa, by odrzucić poprzednik.',
       uk: 'Використай умовне твердження та заперечення його наслідку, щоб відкинути передумову.',
-      lt: 'Naudok sąlyginį teiginį ir jo pasekmės neigimą, kad atmestum prielaidą.',
+      lt: 'Remkis sąlyginiu teiginiu ir jo pasekmės neigimu, kad paneigtum antecedentą (pradinę sąlygą).',
       lv: 'Izmanto nosacījumu un tā seku noliegumu, lai noliegtu priekšnosacījumu.',
       et: 'Kasuta tingimuslauset ja selle tagajärje eitust, et eitada eeldust.',
       be: 'Выкарыстай умоўнае цьверджаньне й адмаўленьне выніку, каб адкінуць перадумову.',

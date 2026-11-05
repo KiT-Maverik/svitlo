@@ -49,7 +49,7 @@ export const interpretUniversalQuantification_Skill_Data = buildSkillConfig({
       ur: 'مقررہ گروہ کے ہر فرد پر لاگو ہونے والے بیان کو سمجھیں۔',
       id: 'Baca pernyataan yang berlaku bagi setiap anggota kelompok tertentu.',
       de: 'Verstehe eine Aussage, die für jedes Mitglied einer festgelegten Gruppe gilt.',
-      ja: '指定された集団の全員に当てはまる文を読み取ろう。',
+      ja: '指定された集合のすべての要素に当てはまる文を読み取ろう。',
       ko: '지정된 집단의 모든 구성원에게 적용되는 진술을 이해해 보세요.',
       tr: 'Belirli bir grubun her üyesi için geçerli olan ifadeyi oku.',
       vi: 'Hiểu phát biểu áp dụng cho mọi thành viên của nhóm đã xác định.',
