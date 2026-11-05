@@ -59,7 +59,7 @@ export const respondToSevereBreathingDifficulty_Skill_Data = buildSkillConfig({
       ms: 'Dapatkan bantuan segera untuk masalah pernafasan teruk atau semakin memburuk.',
       he: 'פנו לעזרה דחופה במקרה של קשיי נשימה חמורים או מחמירים.',
       pl: 'Szukaj pilnej pomocy przy ciężkich lub nasilających się problemach z oddychaniem.',
-      uk: 'Негайно звертайся по допомогу при тяжкому або дедалі гіршому диханні.',
+      uk: 'Негайно звертайся по допомогу при тяжкому утрудненні дихання або його швидкому погіршенні.',
       lt: 'Skubiai kreipkis pagalbos esant sunkiems ar blogėjantiems kvėpavimo sunkumams.',
       lv: 'Meklē neatliekamu palīdzību smagu vai pasliktinošos elpošanas traucējumu gadījumā.',
       et: 'Otsi kiiresti abi raske või süveneva hingamisraskuse korral.',
