@@ -8,13 +8,17 @@ export type NativeBackHandler = (canGoBack: boolean) => void;
 export async function registerNativeBackButton(handler: NativeBackHandler): Promise<() => void> {
   if (!Capacitor.isNativePlatform()) return () => undefined;
   const listener = await App.addListener('backButton', ({ canGoBack }) => handler(canGoBack));
-  return () => { void listener.remove(); };
+  return () => {
+    void listener.remove();
+  };
 }
 
 export async function registerAppResume(handler: () => void): Promise<() => void> {
   if (!Capacitor.isNativePlatform()) return () => undefined;
   const listener = await App.addListener('resume', handler);
-  return () => { void listener.remove(); };
+  return () => {
+    void listener.remove();
+  };
 }
 
 /** No-op on Web, native exit when the Android back stack is exhausted. */

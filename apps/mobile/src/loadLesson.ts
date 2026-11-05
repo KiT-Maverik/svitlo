@@ -14,8 +14,8 @@ export async function loadLesson(id: string, language: LanguageCode): Promise<Le
   const base = '/data/pages/lessons/' + resolveEntityPath(id);
   const [config, flashcards, questions] = await Promise.all(
     (['config', 'flashcards', 'questions'] as const).map(kind =>
-      fetchLocalJson(base + '/' + kind + '/' + language + '.json')
-    )
+      fetchLocalJson(base + '/' + kind + '/' + language + '.json'),
+    ),
   );
   return assembleLessonResponse(id, language, { config, flashcards, questions });
 }

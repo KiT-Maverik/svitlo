@@ -1,6 +1,12 @@
 import {
-  createContext, forwardRef, useContext, useEffect, useMemo, useState,
-  type AnchorHTMLAttributes, type MouseEvent
+  createContext,
+  forwardRef,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+  type AnchorHTMLAttributes,
+  type MouseEvent,
 } from 'react';
 import { CssBaseline, Button, Container, Typography, CircularProgress, Box, List, ListItemButton } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -27,19 +33,27 @@ export function navigate(path: string, replace = false) {
   else window.history.pushState(null, '', path);
   window.dispatchEvent(new PopStateEvent('popstate'));
 }
-const MobileLink = forwardRef<HTMLAnchorElement, AnchorHTMLAttributes<HTMLAnchorElement>>(
-  function MobileLink({ onClick, href, ...props }, ref) {
-    const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
-      onClick?.(event);
-      if (!event.defaultPrevented && event.button === 0 && !event.metaKey && !event.ctrlKey &&
-        !event.altKey && !event.shiftKey && href?.startsWith('/')) {
-        event.preventDefault();
-        navigate(href);
-      }
-    };
-    return <a {...props} href={href} ref={ref} onClick={handleClick} />;
-  }
-);
+const MobileLink = forwardRef<HTMLAnchorElement, AnchorHTMLAttributes<HTMLAnchorElement>>(function MobileLink(
+  { onClick, href, ...props },
+  ref,
+) {
+  const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    onClick?.(event);
+    if (
+      !event.defaultPrevented &&
+      event.button === 0 &&
+      !event.metaKey &&
+      !event.ctrlKey &&
+      !event.altKey &&
+      !event.shiftKey &&
+      href?.startsWith('/')
+    ) {
+      event.preventDefault();
+      navigate(href);
+    }
+  };
+  return <a {...props} href={href} ref={ref} onClick={handleClick} />;
+});
 const MobileLessonLayout = createLessonLearningLayout({ useLocale: useLocaleBinding, linkComponent: MobileLink });
 function PersistingLessonLayout(props: LessonLearningLayoutProps) {
   const { progress, dispatch } = useLessonNavigation();
@@ -52,31 +66,46 @@ function PersistingLessonLayout(props: LessonLearningLayoutProps) {
         const saved: unknown = JSON.parse(value);
         if (saved && typeof saved === 'object') {
           const data = saved as { step?: unknown; testDone?: unknown };
-          if (typeof data.step === 'number' && Number.isInteger(data.step) &&
-              data.step >= 0 && data.step <= progress.lastStep) {
+          if (
+            typeof data.step === 'number' &&
+            Number.isInteger(data.step) &&
+            data.step >= 0 &&
+            data.step <= progress.lastStep
+          ) {
             dispatch({ type: 'visit', step: data.step });
           }
           if (data.testDone === true) dispatch({ type: 'testDone' });
         }
       }
-    } catch { /* Storage may be disabled by the host; learning remains available. */ }
+    } catch {
+      /* Storage may be disabled by the host; learning remains available. */
+    }
     setRestored(true);
   }, [key, dispatch, progress.lastStep]);
   useEffect(() => {
     if (!restored) return;
     try {
       localStorage.setItem(key, JSON.stringify({ step: progress.step, testDone: progress.testDone }));
-    } catch { /* Non-fatal local persistence failure. */ }
+    } catch {
+      /* Non-fatal local persistence failure. */
+    }
   }, [key, progress.step, progress.testDone, restored]);
-  return restored
-    ? <MobileLessonLayout {...props} />
-    : <Box role="status" aria-busy="true">Restoring lesson progress…</Box>;
+  return restored ? (
+    <MobileLessonLayout {...props} />
+  ) : (
+    <Box role="status" aria-busy="true">
+      Restoring lesson progress…
+    </Box>
+  );
 }
 const theme = createTheme({ cssVariables: true });
 
 type LessonData = { response: LessonResponse; messages: UiKit_Global<'response'> };
-type LoadState = { status: 'loading' } | { status: 'error'; message: string } |
-  { status: 'home'; index: LessonIndex } | { status: 'lesson'; data: LessonData };
+type LoadState =
+  | { status: 'loading' }
+  | { status: 'error'; message: string }
+  | { status: 'home'; index: LessonIndex }
+  | { status: 'lesson'; data: LessonData };
 
 function MobileContent() {
   const [pathname, setPathname] = useState(() => window.location.pathname);
@@ -88,7 +117,10 @@ function MobileContent() {
     void registerNativeBackButton(() => {
       if (window.location.pathname !== '/') navigate('/');
       else void exitNativeApp();
-    }).then(dispose => { if (disposed) dispose(); else disposeNative = dispose; });
+    }).then(dispose => {
+      if (disposed) dispose();
+      else disposeNative = dispose;
+    });
     return () => {
       disposed = true;
       disposeNative?.();
@@ -105,57 +137,99 @@ function MobileContent() {
       setState({ status: 'error', message: 'This lesson route was not found.' });
       return;
     }
-    const task: Promise<LoadState> = route.type === 'home'
-      ? loadLessonIndex().then(index => ({ status: 'home', index }))
-      : Promise.all([
-          loadLesson(route.id, route.language),
-          loadMessages(localeForLanguage(route.language)!)
-        ]).then(([response, messages]) => ({ status: 'lesson', data: { response, messages } }));
-    void task.then(data => { if (live) setState(data); })
-      .catch(error => { if (live) setState({ status: 'error', message: String(error) }); });
-    return () => { live = false; };
+    const task: Promise<LoadState> =
+      route.type === 'home'
+        ? loadLessonIndex().then(index => ({ status: 'home', index }))
+        : Promise.all([loadLesson(route.id, route.language), loadMessages(localeForLanguage(route.language)!)]).then(
+            ([response, messages]) => ({ status: 'lesson', data: { response, messages } }),
+          );
+    void task
+      .then(data => {
+        if (live) setState(data);
+      })
+      .catch(error => {
+        if (live) setState({ status: 'error', message: String(error) });
+      });
+    return () => {
+      live = false;
+    };
   }, [routeKey]);
   const activeLocale = localeForLanguage(route.type === 'lesson' ? route.language : defaultLanguage)!;
   useEffect(() => {
     document.documentElement.lang = activeLocale;
     document.documentElement.dir = getLocaleDirection(activeLocale);
   }, [activeLocale]);
-  const localeBinding = useMemo<LocaleBinding>(() => ({
-    locale: activeLocale,
-    setLocale(next: Locale) {
-      if (route.type !== 'lesson') return;
-      navigate(lessonHref(languageForLocale(next), route.id), true);
-    }
-  }), [activeLocale, routeKey]);
+  const localeBinding = useMemo<LocaleBinding>(
+    () => ({
+      locale: activeLocale,
+      setLocale(next: Locale) {
+        if (route.type !== 'lesson') return;
+        navigate(lessonHref(languageForLocale(next), route.id), true);
+      },
+    }),
+    [activeLocale, routeKey],
+  );
   if (state.status === 'loading') {
-    return <Box role="status" aria-busy="true" sx={{ display: 'grid', placeItems: 'center', height: '100%' }}>
-      <CircularProgress aria-label="Loading textbook" />
-    </Box>;
+    return (
+      <Box role="status" aria-busy="true" sx={{ display: 'grid', placeItems: 'center', height: '100%' }}>
+        <CircularProgress aria-label="Loading textbook" />
+      </Box>
+    );
   }
   if (state.status === 'error') {
-    return <Container sx={{ pt: 5 }}><Typography role="alert">{state.message}</Typography>
-      <Button onClick={() => navigate('/')}>Back to lessons</Button></Container>;
+    return (
+      <Container sx={{ pt: 5 }}>
+        <Typography role="alert">{state.message}</Typography>
+        <Button onClick={() => navigate('/')}>Back to lessons</Button>
+      </Container>
+    );
   }
   if (state.status === 'home') {
-    return <Container sx={{ py: 4, height: '100%', overflowY: 'auto' }}>
-      <Typography variant="h4" component="h1">{textbook.title}</Typography>
-      <Typography sx={{ my: 2 }}>Choose a lesson</Typography>
-      <List>{state.index.lessons.map(lesson => (
-        <ListItemButton key={lesson.id} component={MobileLink} href={lessonHref(lesson.languages.includes(defaultLanguage) ? defaultLanguage : lesson.languages[0], lesson.id)}>
-          {lesson.title}
-        </ListItemButton>
-      ))}</List>
-    </Container>;
+    return (
+      <Container sx={{ py: 4, height: '100%', overflowY: 'auto' }}>
+        <Typography variant="h4" component="h1">
+          {textbook.title}
+        </Typography>
+        <Typography sx={{ my: 2 }}>Choose a lesson</Typography>
+        <List>
+          {state.index.lessons.map(lesson => (
+            <ListItemButton
+              key={lesson.id}
+              component={MobileLink}
+              href={lessonHref(
+                lesson.languages.includes(defaultLanguage) ? defaultLanguage : lesson.languages[0],
+                lesson.id,
+              )}
+            >
+              {lesson.title}
+            </ListItemButton>
+          ))}
+        </List>
+      </Container>
+    );
   }
   const { response, messages } = state.data;
-  return <LocaleContext.Provider value={localeBinding}>
-    <SceneLocaleProvider locale={activeLocale}>
-      <Lesson key={routeKey} response={response} href={lessonHref(response.locale.code, response.id)}
-        messages={messages} layout={PersistingLessonLayout} sceneRegistry={resolveScene} />
-    </SceneLocaleProvider>
-  </LocaleContext.Provider>;
+  return (
+    <LocaleContext.Provider value={localeBinding}>
+      <SceneLocaleProvider locale={activeLocale}>
+        <Lesson
+          key={routeKey}
+          response={response}
+          href={lessonHref(response.locale.code, response.id)}
+          messages={messages}
+          layout={PersistingLessonLayout}
+          sceneRegistry={resolveScene}
+        />
+      </SceneLocaleProvider>
+    </LocaleContext.Provider>
+  );
 }
 
 export default function App() {
-  return <ThemeProvider theme={theme} defaultMode="system"><CssBaseline /><MobileContent /></ThemeProvider>;
+  return (
+    <ThemeProvider theme={theme} defaultMode="system">
+      <CssBaseline />
+      <MobileContent />
+    </ThemeProvider>
+  );
 }

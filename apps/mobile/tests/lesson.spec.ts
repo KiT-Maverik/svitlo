@@ -11,7 +11,7 @@ test('a real Playground lesson opens from the index on a phone-sized screen', as
   await expect(page.locator('#learning-content')).toContainText(/\S+/);
   const sizes = await page.evaluate(() => ({
     scrollWidth: document.documentElement.scrollWidth,
-    viewportWidth: window.innerWidth
+    viewportWidth: window.innerWidth,
   }));
   expect(sizes.scrollWidth).toBeLessThanOrEqual(sizes.viewportWidth + 1);
 });

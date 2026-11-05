@@ -13,13 +13,18 @@ export function languageForLocale(locale: Locale): LanguageCode {
   return descriptor.language;
 }
 
-export type MobileRoute = { type: 'home' } | { type: 'lesson'; id: string; language: LanguageCode } | { type: 'not-found' };
+export type MobileRoute =
+  { type: 'home' } | { type: 'lesson'; id: string; language: LanguageCode } | { type: 'not-found' };
 
 export function parseRoute(pathname: string): MobileRoute {
   if (pathname === '/' || pathname === '/index.html') return { type: 'home' };
   const match = /^\/([a-z]{2})\/lesson\/([0-9a-f-]+)\/?$/.exec(pathname);
   if (!match || !localeForLanguage(match[1])) return { type: 'not-found' };
-  try { resolveEntityPath(match[2]); } catch { return { type: 'not-found' }; }
+  try {
+    resolveEntityPath(match[2]);
+  } catch {
+    return { type: 'not-found' };
+  }
   return { type: 'lesson', language: match[1] as LanguageCode, id: match[2] };
 }
 

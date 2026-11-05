@@ -14,7 +14,9 @@ test('Playground is explicitly selected from a build-time catalog', () => {
 
 test('unknown textbook fails before generating or touching Web assets', () => {
   const result = spawnSync(process.execPath, ['apps/mobile/scripts/prepare.mjs'], {
-    cwd: root, env: { ...process.env, SVITLO_TEXTBOOK: 'not-a-textbook' }, encoding: 'utf8'
+    cwd: root,
+    env: { ...process.env, SVITLO_TEXTBOOK: 'not-a-textbook' },
+    encoding: 'utf8',
   });
   assert.notEqual(result.status, 0);
   assert.match(result.stderr, /Unknown SVITLO_TEXTBOOK/);

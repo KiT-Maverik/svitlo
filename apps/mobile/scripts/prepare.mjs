@@ -28,7 +28,13 @@ function run(command, args, cwd = repoRoot) {
     throw new Error(command + ' ' + args.join(' ') + ' failed: ' + (result.error?.message ?? result.status));
   }
 }
-for (const workspace of ['@svitlo/contracts', '@svitlo/engine', '@svitlo/indexdb', '@svitlo/ui-kit', '@svitlo/adapter-capacitor']) {
+for (const workspace of [
+  '@svitlo/contracts',
+  '@svitlo/engine',
+  '@svitlo/indexdb',
+  '@svitlo/ui-kit',
+  '@svitlo/adapter-capacitor',
+]) {
   run('npm', ['run', 'build', '--workspace', workspace]);
 }
 run('npm', ['run', 'check:scenes', '--workspace', selection.package]);
@@ -38,15 +44,26 @@ for (const suffix of ['data/pages/lessons', 'data/ui-kit', 'textbooks']) {
 }
 run(process.execPath, [
   'scripts/generators/pages/lessons/generate-lessons.mjs',
-  '--package', selection.directory, '--output', 'apps/mobile/public/data/pages/lessons', '--write'
+  '--package',
+  selection.directory,
+  '--output',
+  'apps/mobile/public/data/pages/lessons',
+  '--write',
 ]);
 run(process.execPath, [
   'scripts/generators/pages/lessons/generate-lessons.mjs',
-  '--package', selection.directory, '--output', 'apps/mobile/public/data/pages/lessons', '--check'
+  '--package',
+  selection.directory,
+  '--output',
+  'apps/mobile/public/data/pages/lessons',
+  '--check',
 ]);
 run(process.execPath, [
   'shared/ui-kit/scripts/generate-locales.mjs',
-  '--package', selection.directory, '--output', 'apps/mobile/public/data/ui-kit'
+  '--package',
+  selection.directory,
+  '--output',
+  'apps/mobile/public/data/ui-kit',
 ]);
 run(process.execPath, [join(repoRoot, 'shared/ui-kit/scripts/sync-flags.mjs')], mobileRoot);
 
@@ -57,7 +74,7 @@ if (existsSync(sourcePublic)) {
     filter: source => {
       const within = relative(sourcePublic, source);
       return !within || !['data', 'flags'].includes(within.split(sep)[0]);
-    }
+    },
   });
 }
 const lessonsRoot = join(publicRoot, 'data/pages/lessons');
@@ -69,7 +86,9 @@ for (const bucket of readdirSync(lessonsRoot, { withFileTypes: true })) {
     if (!lesson.isDirectory()) continue;
     const configDir = join(lessonsRoot, bucket.name, lesson.name, 'config');
     if (!existsSync(configDir)) continue;
-    const locales = readdirSync(configDir).filter(name => name.endsWith('.json')).map(name => basename(name, '.json'));
+    const locales = readdirSync(configDir)
+      .filter(name => name.endsWith('.json'))
+      .map(name => basename(name, '.json'));
     if (!locales.length) continue;
     const first = locales.includes('uk') ? 'uk' : locales[0];
     const config = JSON.parse(readFileSync(join(configDir, first + '.json'), 'utf8')).data;
@@ -84,8 +103,14 @@ const generated = join(mobileRoot, 'src/generated');
 mkdirSync(generated, { recursive: true });
 writeFileSync(
   join(generated, 'textbook.ts'),
-  '// Generated from the selected textbook for SVITLO_TEXTBOOK=' + id + '\n' +
-  "export { textbook } from '" + selection.package + "';\n" +
-  "export { resolveScene } from '" + selection.package + "/scenes';\n"
+  '// Generated from the selected textbook for SVITLO_TEXTBOOK=' +
+    id +
+    '\n' +
+    "export { textbook } from '" +
+    selection.package +
+    "';\n" +
+    "export { resolveScene } from '" +
+    selection.package +
+    "/scenes';\n",
 );
 console.log('Prepared offline mobile content: ' + id + ' (' + index.length + ' lessons)');

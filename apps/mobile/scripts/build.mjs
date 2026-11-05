@@ -28,31 +28,52 @@ const config = {
   platform: 'browser',
   target: ['es2022', 'chrome100', 'safari15'],
   jsx: 'automatic',
-  loader: { '.svg': 'file', '.png': 'file', '.jpg': 'file', '.jpeg': 'file', '.webp': 'file', '.gif': 'file', '.woff2': 'file' },
+  loader: {
+    '.svg': 'file',
+    '.png': 'file',
+    '.jpg': 'file',
+    '.jpeg': 'file',
+    '.webp': 'file',
+    '.gif': 'file',
+    '.woff2': 'file',
+  },
   metafile: true,
   logLevel: 'info',
   minify: !serve,
-  sourcemap: serve ? 'inline' : false
+  sourcemap: serve ? 'inline' : false,
 };
 function createHtml(result) {
-  const entryOutput = Object.entries(result.metafile.outputs).find(([, meta]) => meta.entryPoint?.endsWith('src/main.tsx'));
+  const entryOutput = Object.entries(result.metafile.outputs).find(([, meta]) =>
+    meta.entryPoint?.endsWith('src/main.tsx'),
+  );
   if (!entryOutput) throw new Error('esbuild did not emit the React entrypoint');
   const [js, meta] = entryOutput;
   const url = path => '/' + relative(dist, resolve(mobileRoot, path)).replaceAll('\\', '/');
   const css = meta.cssBundle ? '<link rel="stylesheet" href="' + url(meta.cssBundle) + '">' : '';
-  const html = '<!doctype html><html><head><meta charset="UTF-8">' +
+  const html =
+    '<!doctype html><html><head><meta charset="UTF-8">' +
     '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">' +
     '<meta name="theme-color" content="#fff">' +
-    '<title>Svitlo</title>' + css + '</head><body><div id="root"></div>' +
-    '<script type="module" src="' + url(js) + '"></script></body></html>';
+    '<title>Svitlo</title>' +
+    css +
+    '</head><body><div id="root"></div>' +
+    '<script type="module" src="' +
+    url(js) +
+    '"></script></body></html>';
   writeFileSync(join(dist, 'index.html'), html);
-  if (!existsSync(join(dist, 'data/lesson-index.json'))) throw new Error('Offline lesson index missing from distribution');
+  if (!existsSync(join(dist, 'data/lesson-index.json')))
+    throw new Error('Offline lesson index missing from distribution');
 }
 if (serve) {
   const context = await esbuild.context(config);
   createHtml(await context.rebuild());
   await context.watch();
-  const server = await context.serve({ servedir: dist, host: '127.0.0.1', port: 5173, fallback: join(dist, 'index.html') });
+  const server = await context.serve({
+    servedir: dist,
+    host: '127.0.0.1',
+    port: 5173,
+    fallback: join(dist, 'index.html'),
+  });
   console.log('Mobile browser preview: ' + server.host + ':' + server.port);
 } else {
   createHtml(await esbuild.build(config));

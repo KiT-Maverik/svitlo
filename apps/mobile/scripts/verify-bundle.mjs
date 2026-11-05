@@ -28,6 +28,17 @@ const html = readFileSync(join(dist, 'index.html'), 'utf8');
 assert.match(html, /type="module"/);
 const chunks = readdirSync(join(dist, 'assets')).filter(name => name.endsWith('.js'));
 assert.ok(chunks.length > 1, 'Expected statically bundled Scene dynamic import chunks');
-assert.ok(chunks.some(name => html.includes(name)), 'HTML must reference a compiled entry chunk');
+assert.ok(
+  chunks.some(name => html.includes(name)),
+  'HTML must reference a compiled entry chunk',
+);
 for (const name of chunks) assert.ok(readFileSync(join(dist, 'assets', name)).length > 0);
-console.log('Verified offline distribution: ' + index.lessons.length + ' lessons; ' + locales.length + ' UI locales; ' + chunks.length + ' JS chunks');
+console.log(
+  'Verified offline distribution: ' +
+    index.lessons.length +
+    ' lessons; ' +
+    locales.length +
+    ' UI locales; ' +
+    chunks.length +
+    ' JS chunks',
+);
