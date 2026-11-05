@@ -23,7 +23,7 @@ export const centrifugation_Skill_Data = buildSkillConfig({
     te: "అపకేంద్రణం",
     mr: "अपकेंद्रीकरण",
     ms: "Pengemparan",
-    he: "צנטריפוגה",
+    he: "צנטריפוגציה",
     pl: "Wirowanie",
     uk: "Центрифугування",
     lt: "Centrifugavimas",
