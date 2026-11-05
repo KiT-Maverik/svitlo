@@ -29,6 +29,7 @@ export const enUiKitMessages: UiKit_Global<'response'> = {
   ...ukUiKitMessages,
   lesson: lesson.en,
   navbarPreferences: enPreferences,
+  flashcard: flashcard.en,
   checkpoint: checkpoint.en,
   audio: audio.en,
   image: image.en,
