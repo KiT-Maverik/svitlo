@@ -23,7 +23,7 @@ test('build bundles the real lesson and localized config, flashcards and questio
     assert.ok(JSON.parse(readFileSync(filename, 'utf8')).data !== undefined);
   }
   assert.ok(existsSync(join(renderer, 'data/ui-kit/uk-UA.json')));
-  assert.ok(existsSync(join(renderer, 'flags/uk.svg')));
+  assert.ok(existsSync(join(renderer, 'flags/ua.svg')));
 });
 test('statically registered Scene modules are emitted as local JavaScript chunks', () => {
   const assets = join(renderer, 'assets');
