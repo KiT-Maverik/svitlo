@@ -1,10 +1,10 @@
 # Offline-First & Device Compatibility
 
-**Status:** **complete offline learning and installable PWA delivery are required target capabilities**, not a claim of currently implemented service-worker, cache, download, install or sync flows. Existing local storage controllers do not by themselves establish a complete offline application.
+**Status:** **offline-capable learning across selected distribution targets is a product objective**; a PWA install experience is **optional**, not an architectural requirement. This is not a claim that working Service Workers, native download packages, cache, install, license or sync flows already exist. Existing local storage controllers do not establish a complete offline application.
 
 ## Product invariant: complete educational content, online and offline
 
-Svitlo is a web application designed to be **installable/downloadable as a Progressive Web App**. A learner should be able to **download the selected educational package/lesson and then study it fully offline**, including all **necessary instructional resources**, interactive behavior, locally available exercises/feedback and access to previously unlocked review materials. Online availability must not be required simply to load a previously downloaded lesson.
+Svitlo targets a **Next.js Web host**, an optional installable **PWA experience** for that Web host, and planned **Capacitor mobile** and **Electron desktop** clients. A learner should be able to **download the selected offline-eligible educational package/lesson and study it offline**, including all **necessary instructional resources**, interactive behavior, locally available exercises/feedback and legitimately available review materials. The exact licensed-content eligibility and expiry policy remains to be decided; do not promise perpetual paid access. Downloaded free/entitled lessons must not depend on an unrelated live content request just to render.
 
 - **Offline must be designed across the complete dependency graph**: application shell, selected locales, text/Markdown, images/fonts, audio/video needed for the selected package, Scene code and assets, exercise data, models and any computation required by the chosen lesson.
 - If a learning experience truly requires an online service (live collaboration, remote AI inference, externally embedded video or cloud-backed grading), it **cannot be represented as fully offline without a defined local alternative**. Disclose the gap and seek an architectural decision; do not mislabel an online-only activity as fully available offline.
@@ -15,11 +15,11 @@ Svitlo is a web application designed to be **installable/downloadable as a Progr
 
 - **Git:** canonical authored educational content and media source, as documented in [Git-First Content](./git-first-typed-content.md).
 - **Local repository / IndexedDB (planned direction with existing partial code):** versioned educational entity metadata and learner-related activity/progress/notes that must survive reloads and offline use. Keep data models normalized and keyed by stable IDs where appropriate.
-- **Service Worker / Cache API (planned):** caching the app shell, static bundles, downloaded content assets and especially large media. Do not automatically store every video/blob in IndexedDB.
+- **Web Service Worker / Cache API (optional, planned):** caching the browser app shell, static bundles, downloaded content and especially large media when PWA/offline Web is selected. Native packaged assets and platform storage/cache adapters can fulfill corresponding needs on mobile/desktop. Do not automatically store every video/blob in IndexedDB.
 - **Sync layer / remote database (planned):** optional multi-device progress/account sync and conflict resolution when online. Do not put sync side effects inside every read method. **Offline availability must not be contingent on a cloud account or round-trip**.
 - Local browser data can be evicted or cleared; offline guarantee needs documented storage quotas, readiness checks, update/retry behavior and a recovery strategy. Do not promise permanent preservation that browser storage cannot guarantee.
 
-**Implementation maturity:** inspect the target app for a working PWA manifest, Service Worker registration, precache/download flow, cache invalidation, offline router, asset bundling, IndexedDB persistence and actual offline test **before** claiming offline readiness. These capabilities are separate from having `LessonState` types or a local DB controller.
+**Implementation maturity:** inspect the **chosen target** for complete shell/Scene chunk/media packaging, download/install flow, cache invalidation, local persistence, licensing behavior and real airplane-mode tests. Only require a PWA manifest and Service Worker where optional Web/PWA support is actually in scope; native packaging requires its own verification **before** claiming offline readiness. These capabilities are separate from having `LessonState` types or a local DB controller.
 
 ## Weak devices: preserve learning, not just animations
 
@@ -39,6 +39,6 @@ If a feature cannot feasibly run on a particular device while preserving the equ
 
 ## Acceptance and future work
 
-A complete offline-capable textbook will ultimately need **installation, package-download management, locale-aware caching, media strategies, offline-local progress, optional sync, storage-eviction resilience and real airplane-mode E2E testing**. All are requirements/gates for later implementation, not software that this document creates.
+A complete offline-capable textbook will ultimately need **target-specific installation or Web access, package-download management, locale-aware caching, media strategies, offline-local progress, optional sync, storage-eviction resilience, licensing policy and real airplane-mode E2E testing**. All are requirements/gates for later implementation, not software that this document creates.
 
-**Related:** [Localization & Accessibility](./internationalization-and-accessibility.md), [Learning Philosophy](./learning-experience-philosophy.md), [Notes](./lesson-notes.md), [System Boundaries](./system-boundaries.md).
+**Related:** [Cross-Platform Lesson Runtime](./cross-platform-lesson-runtime.md), [Localization & Accessibility](./internationalization-and-accessibility.md), [Learning Philosophy](./learning-experience-philosophy.md), [Notes](./lesson-notes.md), [System Boundaries](./system-boundaries.md).

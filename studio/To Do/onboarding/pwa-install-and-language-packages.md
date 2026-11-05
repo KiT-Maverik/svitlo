@@ -1,11 +1,11 @@
-# PWA Install & Selected-Language Download
+# Optional PWA Install & Selected-Language Download
 
-**Status:** Proposed — not implemented by this document.
+**Status:** Optional Web/PWA feature proposal — not implemented or required by this document.
 **Area:** onboarding
 
 ## Goal
 
-Offer an install/download step after onboarding for an offline-capable textbook or platform.
+If an installable Web/PWA experience is offered, provide an install/download step after onboarding for an offline-capable textbook or platform. **PWA installation is optional**; the main cross-platform offline goal may be delivered through the planned Capacitor/Electron applications. Language-package completeness applies to whichever offline host is selected.
 
 ## Intended scope
 
@@ -21,4 +21,4 @@ Decide exact app install flow, package manifest, update strategy, whether Englis
 
 **Implementation note:** This is a product-backlog specification, not approval to edit runtime contracts, add dependencies or claim the feature exists.
 
-**Architectural references:** [offline-first-and-device-compatibility.md](../../docs/architecture/offline-first-and-device-compatibility.md); [internationalization-and-accessibility.md](../../docs/architecture/internationalization-and-accessibility.md)
+**Architectural references:** [Cross-Platform Lesson Runtime](../../docs/architecture/cross-platform-lesson-runtime.md); [offline-first-and-device-compatibility.md](../../docs/architecture/offline-first-and-device-compatibility.md); [internationalization-and-accessibility.md](../../docs/architecture/internationalization-and-accessibility.md)
