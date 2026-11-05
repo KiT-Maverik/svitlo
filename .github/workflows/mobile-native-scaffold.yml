@@ -1,0 +1,56 @@
+name: Generate Capacitor native projects
+
+on:
+  push:
+    branches:
+      - feature/capacitor-mobile-app
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mobile-native-scaffold
+  cancel-in-progress: false
+
+jobs:
+  scaffold:
+    name: Generate Android/iOS with Capacitor CLI
+    if: "!contains(github.event.head_commit.message, 'Generate Capacitor native projects and lockfile')"
+    runs-on: macos-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/capacitor-mobile-app
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Resolve workspace dependencies and synchronize npm lockfile
+        run: npm install --package-lock-only --ignore-scripts
+      - name: Install from the synchronized lockfile
+        run: npm ci
+      - name: Build the bundled offline React textbook
+        run: npm run build --workspace @svitlo/mobile
+      - name: Check bundle completeness
+        run: npm run verify:bundle --workspace @svitlo/mobile
+      - name: Typecheck mobile application
+        run: npm run typecheck --workspace @svitlo/mobile
+      - name: Run mobile unit tests
+        run: npm run test --workspace @svitlo/mobile
+      - name: Generate native Android project using Capacitor
+        run: npm exec --workspace @svitlo/mobile -- cap add android
+      - name: Generate native iOS project using Capacitor
+        run: npm exec --workspace @svitlo/mobile -- cap add ios
+      - name: Synchronize locally built web resources with native projects
+        run: npm exec --workspace @svitlo/mobile -- cap sync
+      - name: Commit generated native source and npm lockfile
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package-lock.json apps/mobile/android apps/mobile/ios
+          if ! git diff --cached --quiet; then
+            git commit -m "Generate Capacitor native projects and lockfile"
+            git push origin HEAD:feature/capacitor-mobile-app
+          fi
