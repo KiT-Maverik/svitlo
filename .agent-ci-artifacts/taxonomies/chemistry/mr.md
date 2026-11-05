@@ -624,7 +624,7 @@ Skills: 5
 
 **User-friendly description (mr):** अंदाजे कारणांशी गल्लत न करता दिसणारे गुणधर्म नोंदव.
 
-#### प्रश्न आणि प्रारूपे
+#### प्रश्न आणि मॉडेल
 
 Skills: 4
 
@@ -632,9 +632,9 @@ Skills: 4
 
 **Methodological description (English):** Chemical claims can be examined by specifying substances, observable properties, conditions and possible particle-level explanations.
 
-**User-friendly description (mr):** रसायनशास्त्रातील प्रश्न पुरावे व प्रारूपांच्या मदतीने कसे मांडले आणि समजावले जातात ते शिक.
+**User-friendly description (mr):** रसायनशास्त्रातील प्रश्न पुरावे व मॉडेलच्या मदतीने कसे मांडले आणि समजावले जातात ते शिक.
 
-##### रासायनिक प्रारूपे
+##### रासायनिक मॉडेल
 
 [chemicalModels.data.ts](../../../learningApps/chemistry/data/skills/chemicalInquiry/questionsAndModels/skills/chemicalModels.data.ts)
 
@@ -686,7 +686,7 @@ Skills: 6
 
 **User-friendly description (mr):** कणांची संख्या मोजता येणाऱ्या वस्तुमानाशी व अभिक्रियेतील प्रमाणाशी जोड.
 
-##### मर्यादित अभिक्रियाकारक
+##### मर्यादा ठरवणारा अभिक्रियाकारक
 
 [limitingReactants.data.ts](../../../learningApps/chemistry/data/skills/chemicalLanguageAndQuantities/amountOfSubstance/skills/limitingReactants.data.ts)
 
@@ -2060,13 +2060,13 @@ Skills: 9
 
 **User-friendly description (mr):** दाब स्थिर असताना वायूचे घनफळ निरपेक्ष तापमानाशी जोड.
 
-##### आदर्श वायू प्रारूप
+##### आदर्श वायू मॉडेल
 
 [idealGasModel.data.ts](../../../learningApps/chemistry/data/skills/particlesAndStates/particleBehavior/skills/idealGasModel.data.ts)
 
 **Methodological description (English):** Use the ideal-gas equation as an approximation and identify conditions in which real gases deviate.
 
-**User-friendly description (mr):** आदर्श वायू प्रारूप वापर आणि कोणत्या परिस्थितीत ते अचूक नसते ते ओळख.
+**User-friendly description (mr):** आदर्श वायू मॉडेल वापर आणि कोणत्या परिस्थितीत ते अचूक नसते ते ओळख.
 
 ##### कणांची हालचाल
 

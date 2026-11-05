@@ -152,7 +152,7 @@ Skills: 4
 
 **User-friendly description (bn):** প্রোটনের সংখ্যা ব্যবহার করে কোনো মৌল শনাক্ত করো।
 
-#### ইলেকট্রন বিন্যাস
+#### ইলেকট্রনীয় গঠন
 
 Skills: 5
 
@@ -936,7 +936,7 @@ Skills: 6
 
 **User-friendly description (bn):** একটি রাসায়নিক পদার্থ ভেঙে কখন একাধিক উৎপাদ তৈরি করে তা চেনো।
 
-##### প্রতিস্থাপন বিক্রিয়া
+##### একক প্রতিস্থাপন বিক্রিয়া
 
 [displacementReactions.data.ts](../../../learningApps/chemistry/data/skills/chemicalReactions/reactionPatterns/skills/displacementReactions.data.ts)
 

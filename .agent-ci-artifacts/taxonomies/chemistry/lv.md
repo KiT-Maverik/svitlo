@@ -1152,7 +1152,7 @@ Skills: 4
 
 **Methodological description (English):** Identify nucleotide components and the covalent framework of nucleic acids without teaching genetic inheritance as the primary competency.
 
-**User-friendly description (lv):** Izproti DNS un RNS ķīmiskos veidojošos elementus un mugurkaulu.
+**User-friendly description (lv):** Izproti DNS un RNS nukleotīdu sastāvdaļas un cukura–fosfāta karkasa uzbūvi.
 
 ##### Olbaltumvielu ķīmija
 
@@ -1204,7 +1204,7 @@ Skills: 4
 
 **User-friendly description (lv):** Izpēti, kā materiālu sastāvs ietekmē pārstrādi un atgūšanu.
 
-### Enerģija, ātrums un līdzsvars
+### Enerģija, reakciju ātrumi un ķīmiskais līdzsvars
 
 Groups: 3 · Skills: 19
 
@@ -1336,7 +1336,7 @@ Skills: 5
 
 **Methodological description (English):** Interpret precipitation and dissolution in terms of competing ionic concentrations and an equilibrium threshold.
 
-**User-friendly description (lv):** Izpēti līdzsvaru starp izšķīdušu jonu šķīšanu un cietvielu nogulsnēšanos.
+**User-friendly description (lv):** Izpēti līdzsvaru starp cietvielu šķīšanu un izšķīdušo jonu nogulsnēšanos.
 
 #### Reakciju ātrumi
 

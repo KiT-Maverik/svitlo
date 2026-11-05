@@ -572,7 +572,7 @@ Skills: 4
 
 **Methodological description (English):** Distinguish the manipulated chemical condition, observed response and controlled conditions in an investigation.
 
-**User-friendly description (id):** Tentukan kondisi kimia yang diubah dan hal yang diukur dalam penyelidikan yang adil.
+**User-friendly description (id):** Tentukan kondisi kimia yang diubah dan hal yang diukur dalam percobaan terkontrol.
 
 #### Pengukuran dan Bukti
 
@@ -1270,7 +1270,7 @@ Skills: 8
 
 **Methodological description (English):** Relate enthalpy, temperature and entropy to the direction of spontaneous change at constant temperature and pressure.
 
-**User-friendly description (id):** Gunakan energi Gibbs untuk menilai apakah perubahan kimia menguntungkan dalam kondisi tertentu.
+**User-friendly description (id):** Gunakan energi Gibbs untuk menilai apakah perubahan kimia cenderung berlangsung spontan dalam kondisi tertentu.
 
 ##### Hukum Hess
 

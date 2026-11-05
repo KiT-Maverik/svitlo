@@ -48,7 +48,7 @@ Skills: 3
 
 **Methodological description (English):** Describe how strongly an acid tends to donate a proton under specified conditions. A stronger acid transfers protons more readily in a comparable system; this does not mean the solution is necessarily more concentrated or more hazardous.
 
-**User-friendly description (ur):** تیزاب کی طاقت کو محلول کی ارتکاز یا خطرناک ہونے سے الگ سمجھیں۔
+**User-friendly description (ur):** تیزاب کی طاقت کو محلول کے ارتکاز یا اس کے خطرناک ہونے سے الگ سمجھیں۔
 
 ##### پی ایچ
 
@@ -572,7 +572,7 @@ Skills: 4
 
 **Methodological description (English):** Distinguish the manipulated chemical condition, observed response and controlled conditions in an investigation.
 
-**User-friendly description (ur):** منصفانہ تحقیق میں طے کریں کہ کون سی کیمیائی حالت بدلتی ہے اور کیا ناپا جاتا ہے۔
+**User-friendly description (ur):** کنٹرول شدہ تجربے میں طے کریں کہ کون سی کیمیائی حالت بدلی جاتی ہے اور کیا ناپا جاتا ہے۔
 
 #### پیمائش اور شواہد
 
@@ -936,7 +936,7 @@ Skills: 6
 
 **User-friendly description (ur):** پہچانیں کہ ایک کیمیائی مادّہ کب کئی مصنوعات میں ٹوٹتا ہے۔
 
-##### تبادلی تعاملات
+##### عنصری بے دخلی کے تعاملات
 
 [displacementReactions.data.ts](../../../learningApps/chemistry/data/skills/chemicalReactions/reactionPatterns/skills/displacementReactions.data.ts)
 
@@ -1214,7 +1214,7 @@ Groups: 3 · Skills: 19
 
 **User-friendly description (ur):** توانائی کی تبدیلی، تعامل کی رفتار اور آگے و الٹے تعامل کے توازن کو جانیں۔
 
-#### کیمیائی حرکی توانائی
+#### کیمیائی توانائیات
 
 Skills: 8
 

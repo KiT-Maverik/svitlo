@@ -572,7 +572,7 @@ Skills: 4
 
 **Methodological description (English):** Distinguish the manipulated chemical condition, observed response and controlled conditions in an investigation.
 
-**User-friendly description (fr):** Identifie la condition chimique modifiée et ce qui est mesuré dans une expérience équitable.
+**User-friendly description (fr):** Identifie la condition chimique modifiée et ce qui est mesuré dans une expérience contrôlée.
 
 #### Mesures et preuves
 
@@ -1204,7 +1204,7 @@ Skills: 4
 
 **User-friendly description (fr):** Explore comment la composition des matériaux influence le recyclage et la récupération.
 
-### Énergie, vitesses et équilibre
+### Énergie, vitesses de réaction et équilibre chimique
 
 Groups: 3 · Skills: 19
 
