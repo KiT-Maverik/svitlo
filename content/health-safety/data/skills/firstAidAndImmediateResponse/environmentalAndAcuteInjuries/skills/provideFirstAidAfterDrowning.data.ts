@@ -46,7 +46,7 @@ export const provideFirstAidAfterDrowning_Skill_Data = buildSkillConfig({
       fr: 'Reconnais les risques respiratoires urgents après une noyade et la nécessité de secours immédiats.',
       bn: 'পানিতে ডোবার পর জরুরি শ্বাসের ঝুঁকি ও দ্রুত সাহায্যের প্রয়োজন বোঝো।',
       pt: 'Reconheça riscos respiratórios urgentes após afogamento e a necessidade de socorro.',
-      ur: 'ڈوبنے کے بعد سانس کے فوری خطرات اور ہنگامی مدد کی ضرورت پہچانو۔',
+      ur: 'ڈوبنے کے بعد سانس کے فوری خطرات اور ہنگامی مدد کی ضرورت پہچانیں۔',
       id: 'Kenali risiko pernapasan darurat setelah tenggelam dan perlunya bantuan segera.',
       de: 'Erkenne dringende Atemrisiken nach dem Ertrinken und die Notwendigkeit schneller Hilfe.',
       ja: '溺水後の呼吸の危険と緊急救護の必要性を理解しよう。',

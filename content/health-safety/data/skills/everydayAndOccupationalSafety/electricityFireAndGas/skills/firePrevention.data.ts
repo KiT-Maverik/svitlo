@@ -61,7 +61,7 @@ export const firePrevention_Skill_Data = buildSkillConfig({
       pl: 'Ogranicz ryzyko pożaru, rozpoznając materiały łatwopalne i niebezpieczne praktyki.',
       uk: 'Зменшуй ризик займання, розпізнаючи горючі матеріали й небезпечні дії.',
       lt: 'Mažink gaisro pavojų atpažindama degias medžiagas ir nesaugias praktikas.',
-      lv: 'Mazina ugunsgrēka risku, atpazīstot uzliesmojošus materiālus un nedrošu rīcību.',
+      lv: 'Mazini ugunsgrēka risku, atpazīstot uzliesmojošus materiālus un nedrošu rīcību.',
       et: 'Vähenda tuleohtu, tundes ära süttivad materjalid ja ohtlikud tegevused.',
       be: 'Зьмяншай рызыку ўзгараньня, распазнаючы гаручыя матэрыялы і небясьпечныя дзеяньні.',
       ka: 'შეამცირე ხანძრის რისკი აალებადი მასალებისა და სახიფათო ქმედებების ამოცნობით.',

@@ -61,7 +61,7 @@ export const vaccinationLiteracy_Skill_Data = buildSkillConfig({
       pl: 'Zrozum, przed czym chronią szczepienia i jakie mają ograniczenia.',
       uk: 'Зрозумій, від чого захищають щеплення і які межі цього захисту.',
       lt: 'Suprask, nuo ko saugo skiepai ir kokios jų apsaugos ribos.',
-      lv: 'Saprot, no kā vakcīnas aizsargā un kādi ir aizsardzības ierobežojumi.',
+      lv: 'Saproti, no kā vakcīnas aizsargā un kādi ir aizsardzības ierobežojumi.',
       et: 'Mõista, mille eest vaktsiinid kaitsevad ja mis on kaitse piirid.',
       be: 'Зразумей, ад чаго абараняюць прышчэпкі й якія межы гэтай абароны.',
       ka: 'გაიგე, რისგან იცავს ვაქცინაცია და რა არის მისი შეზღუდვები.',

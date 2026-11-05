@@ -55,7 +55,7 @@ export const understandTheRolesOfNutrients_Skill_Data = buildSkillConfig({
       vi: 'Nhận biết vai trò khác nhau của dưỡng chất và chất xơ.',
       ta: 'பல்வேறு ஊட்டச்சத்துகளும் நார்ச்சத்தும் செய்யும் பணிகளை அறி.',
       te: 'వివిధ పోషకాలు, పీచుపదార్థం పనులను గుర్తించండి.',
-      mr: 'वेगवेगळी पोषकतत्त्वे व तंतू यांची कामे ओळख.',
+      mr: 'वेगवेगळी पोषकतत्त्वे व तंतू यांची कामे ओळखा.',
       ms: 'Kenal pasti pelbagai peranan nutrien dan serat.',
       he: 'זהו את התפקידים השונים של רכיבי תזונה וסיבים.',
       pl: 'Rozpoznaj różne funkcje składników odżywczych i błonnika.',

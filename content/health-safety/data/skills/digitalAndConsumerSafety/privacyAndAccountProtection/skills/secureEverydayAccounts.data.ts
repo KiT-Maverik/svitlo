@@ -46,7 +46,7 @@ export const secureEverydayAccounts_Skill_Data = buildSkillConfig({
       fr: "Utilise des identifiants robustes et des méthodes de récupération pour protéger l'accès.",
       bn: 'শক্তিশালী পাসওয়ার্ড ও অ্যাকাউন্ট পুনরুদ্ধার ব্যবস্থা ব্যবহার করে প্রবেশাধিকার সুরক্ষিত করো।',
       pt: 'Use credenciais fortes e opções de recuperação de conta para proteger o acesso.',
-      ur: 'مضبوط پاس ورڈ اور اکاؤنٹ بحالی کے طریقوں سے رسائی محفوظ رکھو۔',
+      ur: 'مضبوط پاس ورڈ اور اکاؤنٹ بحالی کے طریقوں سے رسائی محفوظ رکھیں۔',
       id: 'Gunakan kredensial kuat dan langkah pemulihan akun untuk menjaga akses.',
       de: 'Schütze den Zugriff mit starken Zugangsdaten und sicheren Wiederherstellungsverfahren.',
       ja: '強い認証情報とアカウント復旧手段でアクセスを守ろう。',

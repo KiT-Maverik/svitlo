@@ -46,7 +46,7 @@ export const recognizeUnsafeAccessRequests_Skill_Data = buildSkillConfig({
       fr: 'Repère les demandes suspectes de mots de passe ou de codes de vérification.',
       bn: 'পাসওয়ার্ড বা যাচাইকরণ কোড চাওয়া সন্দেহজনক অনুরোধ শনাক্ত করো।',
       pt: 'Reconheça solicitações suspeitas de senhas ou códigos de verificação.',
-      ur: 'پاس ورڈ یا تصدیقی کوڈ مانگنے کی مشکوک درخواستیں پہچانو۔',
+      ur: 'پاس ورڈ یا تصدیقی کوڈ مانگنے کی مشکوک درخواستیں پہچانیں۔',
       id: 'Kenali permintaan mencurigakan untuk kata sandi atau kode verifikasi.',
       de: 'Erkenne verdächtige Anfragen nach Passwörtern oder Bestätigungscodes.',
       ja: 'パスワードや認証コードを求める不審な要求を見分けよう。',

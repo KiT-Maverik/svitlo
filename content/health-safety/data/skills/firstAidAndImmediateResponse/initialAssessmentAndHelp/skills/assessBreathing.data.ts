@@ -45,7 +45,7 @@ export const assessBreathing_Skill_Data = buildSkillConfig({
       fr: 'Reconnais une respiration anormale ou absente nécessitant une intervention urgente.',
       bn: 'জরুরি ব্যবস্থা দরকার এমন অস্বাভাবিক বা বন্ধ শ্বাস শনাক্ত করো।',
       pt: 'Reconheça respiração anormal ou ausente que exige ação de emergência.',
-      ur: 'غیر معمولی یا بند سانس کو پہچانو جس میں فوری قدم ضروری ہے۔',
+      ur: 'غیر معمولی یا بند سانس کو پہچانیں جس میں فوری قدم ضروری ہے۔',
       id: 'Kenali pernapasan tidak normal atau tidak ada yang memerlukan tindakan darurat.',
       de: 'Erkenne fehlende oder auffällige Atmung, die sofortige Notfallmaßnahmen erfordert.',
       ja: '異常な呼吸や呼吸停止など緊急対応が必要な状態を見分けよう。',

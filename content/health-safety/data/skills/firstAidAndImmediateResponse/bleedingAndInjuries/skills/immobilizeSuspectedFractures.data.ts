@@ -46,7 +46,7 @@ export const immobilizeSuspectedFractures_Skill_Data = buildSkillConfig({
       fr: 'Soutiens un os peut-être cassé sans essayer de le remettre en place.',
       bn: 'হাড় ভেঙে থাকতে পারে এমন অংশে সমর্থন দাও, নিজে সোজা করার চেষ্টা কোরো না।',
       pt: 'Apoie um osso possivelmente quebrado sem tentar realinhá-lo.',
-      ur: 'ممکنہ ٹوٹی ہڈی کو سہارا دو، اسے سیدھا کرنے کی کوشش نہ کرو۔',
+      ur: 'ممکنہ ٹوٹی ہڈی کو سہارا دیں، اسے سیدھا کرنے کی کوشش نہ کریں۔',
       id: 'Sangga tulang yang mungkin patah tanpa mencoba meluruskannya.',
       de: 'Stütze einen möglicherweise gebrochenen Knochen, ohne ihn selbst auszurichten.',
       ja: '折れた可能性がある骨を支え、元の位置に戻そうとしないようにしよう。',

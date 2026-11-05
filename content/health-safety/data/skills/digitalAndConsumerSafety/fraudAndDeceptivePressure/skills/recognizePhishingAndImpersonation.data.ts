@@ -46,7 +46,7 @@ export const recognizePhishingAndImpersonation_Skill_Data = buildSkillConfig({
       fr: 'Vérifie les liens et messages suspects plutôt que de te fier à leur apparence.',
       bn: 'সন্দেহজনক লিংক ও বার্তা যাচাই করো; শুধু দেখতে বিশ্বাসযোগ্য বলে ভরসা কোরো না।',
       pt: 'Verifique links e mensagens suspeitas em vez de confiar na aparência.',
-      ur: 'مشکوک لنکس اور پیغامات کی جانچ کرو، صرف شکل دیکھ کر اعتماد نہ کرو۔',
+      ur: 'مشکوک لنکس اور پیغامات کی جانچ کریں، صرف شکل دیکھ کر اعتماد نہ کریں۔',
       id: 'Periksa tautan dan pesan mencurigakan, jangan percaya hanya karena tampilannya.',
       de: 'Prüfe verdächtige Links und Nachrichten, statt ihrem Aussehen zu vertrauen.',
       ja: '見た目を信じず、不審なリンクやメッセージを確認しよう。',

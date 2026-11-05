@@ -46,7 +46,7 @@ export const respondToSuspectedHypoglycaemia_Skill_Data = buildSkillConfig({
       fr: "Reconnais une possible baisse de glycémie et quand l'aide par voie orale devient dangereuse.",
       bn: 'রক্তে শর্করা কমার লক্ষণ চেনো এবং গিলতে না পারলে মুখে কিছু দেওয়া বিপজ্জনক তা বোঝো।',
       pt: 'Reconheça possível baixa glicose e quando oferecer algo pela boca é inseguro.',
-      ur: 'کم خون کی شکر پہچانو اور سمجھو کہ نگلنا غیر محفوظ ہو تو منہ سے کچھ دینا خطرناک ہے۔',
+      ur: 'کم خون کی شکر پہچانیں اور سمجھیں کہ نگلنا غیر محفوظ ہو تو منہ سے کچھ دینا خطرناک ہے۔',
       id: 'Kenali kemungkinan gula darah rendah dan kapan bantuan lewat mulut tidak aman karena sulit menelan.',
       de: 'Erkenne mögliche niedrige Blutzuckerwerte und wann orale Hilfe wegen unsicheren Schluckens gefährlich ist.',
       ja: '低血糖の可能性と、安全に飲み込めない場合は口から与えるのが危険なことを理解しよう。',

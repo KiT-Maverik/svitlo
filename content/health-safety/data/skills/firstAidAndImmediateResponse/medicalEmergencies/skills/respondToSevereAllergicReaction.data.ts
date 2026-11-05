@@ -46,7 +46,7 @@ export const respondToSevereAllergicReaction_Skill_Data = buildSkillConfig({
       fr: 'Reconnais une réaction allergique grave comme une urgence nécessitant des soins rapides.',
       bn: 'গুরুতর অ্যালার্জি দ্রুত চিকিৎসা দরকার এমন জরুরি অবস্থা বলে শনাক্ত করো।',
       pt: 'Reconheça uma reação alérgica grave como emergência que exige atendimento rápido.',
-      ur: 'شدید الرجی کو فوری علاج درکار ہنگامی حالت کے طور پر پہچانو۔',
+      ur: 'شدید الرجی کو فوری علاج درکار ہنگامی حالت کے طور پر پہچانیں۔',
       id: 'Kenali reaksi alergi berat sebagai keadaan darurat yang memerlukan pertolongan cepat.',
       de: 'Erkenne eine schwere Allergiereaktion als Notfall, der schnelle Hilfe erfordert.',
       ja: '重いアレルギー反応は迅速な救急医療が必要だと理解しよう。',

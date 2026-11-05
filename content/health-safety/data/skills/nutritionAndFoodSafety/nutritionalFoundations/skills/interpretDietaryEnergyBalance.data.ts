@@ -55,7 +55,7 @@ export const interpretDietaryEnergyBalance_Skill_Data = buildSkillConfig({
       vi: 'Phân biệt năng lượng nạp vào, tiêu hao với chất lượng dinh dưỡng tổng thể.',
       ta: 'உட்கொள்ளும் மற்றும் செலவாகும் ஆற்றலை உணவின் ஒட்டுமொத்த தரத்திலிருந்து வேறுபடுத்து.',
       te: 'తీసుకునే, ఖర్చయ్యే శక్తిని మొత్తం ఆహార నాణ్యత నుంచి వేరు చేయండి.',
-      mr: 'ऊर्जेचे सेवन व खर्च आणि आहाराची एकूण गुणवत्ता यांत फरक कर.',
+      mr: 'ऊर्जेचे सेवन व खर्च आणि आहाराची एकूण गुणवत्ता यांत फरक करा.',
       ms: 'Bezakan tenaga dimakan dan dibelanjakan daripada mutu keseluruhan diet.',
       he: 'הבחינו בין צריכת אנרגיה והוצאתה לבין איכות התזונה הכללית.',
       pl: 'Odróżnij ilość dostarczanej i zużywanej energii od jakości całej diety.',

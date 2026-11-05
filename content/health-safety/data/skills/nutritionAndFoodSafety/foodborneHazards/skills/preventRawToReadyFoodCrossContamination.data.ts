@@ -55,7 +55,7 @@ export const preventRawToReadyFoodCrossContamination_Skill_Data = buildSkillConf
       vi: 'Để thực phẩm sống nguồn gốc động vật tách khỏi thức ăn sẵn.',
       ta: 'பச்சை விலங்கு சார்ந்த உணவுகளை உண்ணத் தயாரான உணவிலிருந்து தனியே வை.',
       te: 'పచ్చి జంతు ఉత్పత్తులను నేరుగా తినే ఆహారాల నుంచి వేరుగా ఉంచండి.',
-      mr: 'कच्चे प्राणिजन्य पदार्थ खाण्यास तयार अन्नापासून वेगळे ठेव.',
+      mr: 'कच्चे प्राणिजन्य पदार्थ खाण्यास तयार अन्नापासून वेगळे ठेवा.',
       ms: 'Asingkan produk haiwan mentah daripada makanan sedia dimakan.',
       he: 'הפרידו מוצרים מהחי שאינם מבושלים ממזון מוכן לאכילה.',
       pl: 'Oddzielaj surowe produkty zwierzęce od żywności gotowej do spożycia.',
