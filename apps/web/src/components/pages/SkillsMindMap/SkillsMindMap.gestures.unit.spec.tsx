@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { SkillsMindMap } from './SkillsMindMap';
 import { SkillsPageSettingsProvider } from './SkillsPageSettingsContext';
 import { fixtureJsonForSkillUrl, TEST_SKILLS_DOMAIN_SLUGS } from './skillsData.fixture';
@@ -50,6 +50,8 @@ describe('Skills mind-map touch gestures', () => {
     );
     await screen.findByTestId('skill-node-testRed');
     const viewport = screen.getByTestId('skills-map-viewport');
+    const world = screen.getByTestId('skills-map-world');
+    await waitFor(() => expect(Number(world.getAttribute('data-zoom'))).not.toBe(0.65));
     const captured = new Set<number>();
     Object.defineProperties(viewport, {
       setPointerCapture: {
@@ -70,7 +72,7 @@ describe('Skills mind-map touch gestures', () => {
         value: () => ({ left: 0, top: 0, right: 800, bottom: 600, width: 800, height: 600 }),
       },
     });
-    return { viewport, world: screen.getByTestId('skills-map-world'), captured };
+    return { viewport, world, captured };
   }
 
   it('pinches to zoom around the two fingers, then switches to one-finger dragging', async () => {

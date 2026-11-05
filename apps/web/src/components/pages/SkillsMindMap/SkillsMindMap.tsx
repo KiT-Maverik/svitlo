@@ -256,9 +256,8 @@ export function SkillsMindMap({ domainSlugs }: { domainSlugs: readonly string[] 
     const width = viewportRef.current?.clientWidth || viewport.width || 960;
     const height = viewportRef.current?.clientHeight || viewport.height || 640;
     const result = fitVisibleSkillNodes(layout, expandedSkills, width, height);
-    setZoom(result.zoom);
-    setPan(result.pan);
-  }, [layout, expandedSkills, viewport.width, viewport.height]);
+    applyView(result);
+  }, [applyView, layout, expandedSkills, viewport.width, viewport.height]);
 
   // Automatically fit the first loaded graph; subsequent manual pans and zooms
   // are preserved until an explicit "Вмістити в екран" request.
