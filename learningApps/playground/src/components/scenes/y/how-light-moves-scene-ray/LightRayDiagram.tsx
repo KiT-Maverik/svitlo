@@ -3,9 +3,9 @@
 import styles from './LightRayDiagram.module.css';
 import { getLocaleDirection } from '@svitlo/engine/localization';
 import { useLocale } from '@/i18n/LocaleProvider/LocaleProvider';
-import type { LightRayDiagram_Locale } from './LightRayDiagram.types';
+import type { LightRayDiagram_ContentBlock } from '../../../../../data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/sections/theory/scenes/lightRayDiagram';
 
-export function LightRayDiagram({ locales }: { locales: LightRayDiagram_Locale }) {
+export function LightRayDiagram({ locales }: Pick<LightRayDiagram_ContentBlock<'response'>, 'locales'>) {
   const { locale } = useLocale();
   const rtl = getLocaleDirection(locale) === 'rtl';
 

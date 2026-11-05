@@ -5,7 +5,7 @@ import { Box, Button, Paper, Slider, Typography } from '@mui/material';
 import styles from './LightPropagationSimulation.module.css';
 import { getLocaleDirection } from '@svitlo/engine/localization';
 import { useLocale } from '@/i18n/LocaleProvider/LocaleProvider';
-import type { LightPropagationSimulation_Locale } from './LightPropagationSimulation.types';
+import type { LightPropagationSimulation_ContentBlock } from '../../../../../data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/sections/theory/scenes/lightPropagationSimulation';
 
 const reducedMotionQuery = '(prefers-reduced-motion: reduce)';
 
@@ -19,7 +19,7 @@ function getReducedMotion() {
   return window.matchMedia(reducedMotionQuery).matches;
 }
 
-export function LightPropagationSimulation({ locales }: { locales: LightPropagationSimulation_Locale }) {
+export function LightPropagationSimulation({ locales }: Pick<LightPropagationSimulation_ContentBlock<'response'>, 'locales'>) {
   const { locale } = useLocale();
   const reducedMotion = useSyncExternalStore(subscribeToReducedMotion, getReducedMotion, () => false);
   const [playbackOverride, setPlaybackOverride] = useState<boolean | null>(null);

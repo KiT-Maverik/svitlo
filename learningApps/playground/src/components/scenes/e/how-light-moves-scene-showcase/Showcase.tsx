@@ -5,9 +5,9 @@ import { LIGHT_SPEED_KM_S, media } from './Showcase.constants';
 import styles from './Showcase.module.css';
 import { getLocaleDirection } from '@svitlo/engine/localization';
 import { useLocale } from '@/i18n/LocaleProvider/LocaleProvider';
-import type { Showcase_Locale } from './Showcase.types';
+import type { Showcase_ContentBlock } from '../../../../../data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/sections/practice/scenes/showcase';
 
-export function Showcase({ locales }: { locales: Showcase_Locale }) {
+export function Showcase({ locales }: Pick<Showcase_ContentBlock<'response'>, 'locales'>) {
   const { locale } = useLocale();
   const [selected, setSelected] = useState(0);
   const [paused, setPaused] = useState(true);
