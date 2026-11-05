@@ -55,7 +55,7 @@ export const reconstructAnotherPersonsPositionFairly_Skill_Data = buildSkillConf
       vi: 'Trình bày chính xác quan điểm của người khác trước khi phê bình.',
       ta: 'விமர்சிப்பதற்கு முன் மற்றொருவரின் நிலைப்பாட்டைத் துல்லியமாக மீண்டும் கூறு.',
       te: 'విమర్శించే ముందు ఇతరుల అభిప్రాయాన్ని కచ్చితంగా తిరిగి వివరించండి.',
-      mr: 'टीका करण्यापूर्वी दुसऱ्याची भूमिका अचूकपणे मांड.',
+      mr: 'टीका करण्यापूर्वी दुसऱ्याची भूमिका अचूकपणे मांडा.',
       ms: 'Nyatakan semula pendirian orang lain dengan tepat sebelum mengkritiknya.',
       he: 'הציגו במדויק את עמדת הזולת לפני שמבקרים אותה.',
       pl: 'Przed krytyką dokładnie przedstaw stanowisko drugiej osoby.',
