@@ -30,7 +30,7 @@ export const limitingReactants_Skill_Data = buildSkillConfig({
     lv: "Ierobežojošie reaģenti",
     et: "Piiravad lähteained",
     be: "Лімітуючыя рэагенты",
-    ka: "მალიმიტირებელი რეაგენტები",
+    ka: "ლიმიტირებელი რეაგენტები",
     kk: "Шектеуші реагенттер",
     qm: "Çekleyici reaktsiya maddeleri",
   },

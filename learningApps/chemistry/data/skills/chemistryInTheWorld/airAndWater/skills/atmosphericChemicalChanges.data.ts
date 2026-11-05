@@ -53,7 +53,7 @@ export const atmosphericChemicalChanges_Skill_Data = buildSkillConfig({
       tr: "Atmosferdeki kimyasal tepkimeleri smog ve asit birikimiyle ilişkilendir.",
       vi: "Liên hệ phản ứng hóa học khí quyển với khói mù và lắng đọng axit.",
       ta: "வளிமண்டல வினைகளை புகைமூட்டம் மற்றும் அமிலப் படிவுடன் தொடர்புபடுத்துங்கள்.",
-      te: "వాతావరణ చర్యలను పొగమంచు, ఆమ్ల నిక్షేపణతో అనుసంధానించండి.",
+      te: "వాతావరణంలోని కాలుష్యకారకాల రసాయన చర్యలను ఫోటోకెమికల్ స్మాగ్, ఆమ్ల నిక్షేపణ వంటి ఘటనలతో అనుసంధానించండి.",
       mr: "वातावरणातील अभिक्रिया धुरकट धुके आणि आम्लीय निक्षेपणाशी जोडा.",
       ms: "Hubungkan tindak balas kimia atmosfera dengan jerebu asap dan pemendapan asid.",
       he: "קשרו תגובות כימיות באטמוספרה לערפיח ולשקיעה חומצית.",
