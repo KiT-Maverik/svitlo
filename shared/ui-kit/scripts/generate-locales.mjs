@@ -53,11 +53,12 @@ const whole = Object.freeze({
 });
 
 function message(component, locale, language) {
-  if (component === 'learningLayout' || component === 'navbarPreferences') {
-    const folder = component === 'learningLayout' ? 'LearningLayout' : 'NavbarPreferences';
-    // Existing layout/prefs dictionaries cover eight locales; retain their prior
-    // Ukrainian copy for other languages until authored translations are added.
-    return readData(folder, locale + '.data.ts') ?? readData(folder, 'uk-UA.data.ts');
+  // NavbarPreferences is fully authored in the canonical locale set: never fall back.
+  if (component === 'navbarPreferences') return readData('NavbarPreferences', locale + '.data.ts');
+  // Legacy LearningLayout still needs translation coverage before removing fallback.
+  if (component === 'learningLayout') {
+    return readData('LearningLayout', locale + '.data.ts') ??
+      readData('LearningLayout', 'uk-UA.data.ts');
   }
   const translations = whole[component];
   // Legacy UI used Ukrainian flashcards and English media/question copy for gaps.
