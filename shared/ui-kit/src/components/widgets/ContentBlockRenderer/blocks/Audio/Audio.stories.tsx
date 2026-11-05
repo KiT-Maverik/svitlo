@@ -1,3 +1,4 @@
+import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import type { Meta, StoryObj } from '@storybook/nextjs';
 import { Audio } from './Audio';
 import { ContentLanguageContext } from '../../ContentLanguageContext';
@@ -10,6 +11,7 @@ const meta = {
     docs: { description: { component: 'Native audio playback, optional caption, and localized error/retry states. Audio files may be cached for offline playback.' } },
   },
   args: {
+    messages: enUiKitMessages.audio,
     id: 'audio-example',
     type: 'audio',
 
