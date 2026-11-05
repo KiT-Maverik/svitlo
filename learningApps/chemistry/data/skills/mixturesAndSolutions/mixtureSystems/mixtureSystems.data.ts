@@ -53,7 +53,7 @@ export const mixtureSystems_SkillGroup_Data = buildSkillGroupConfig({
       fr: "Reconnais les types de mélanges selon leurs composants et leurs phases.",
       bn: "উপাদান ও দশার ভিত্তিতে বিভিন্ন ধরনের মিশ্রণ শনাক্ত করো।",
       pt: "Reconheça tipos de misturas segundo seus componentes e suas fases.",
-      ur: "اجزا اور مراحل کی بنیاد پر مختلف آمیزوں کی شناخت کریں۔",
+      ur: "اجزا اور فیزوں کی بنیاد پر مختلف آمیزوں کی شناخت کریں۔",
       id: "Kenali berbagai jenis campuran berdasarkan komponen dan fasenya.",
       de: "Erkenne verschiedene Gemischarten anhand ihrer Bestandteile und Phasen.",
       ja: "成分と相の状態から混合物の種類を見分けよう。",
