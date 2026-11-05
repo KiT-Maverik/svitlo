@@ -61,12 +61,10 @@ function message(component, locale, language) {
       readData('LearningLayout', 'uk-UA.data.ts');
   }
   const translations = whole[component];
-  // Legacy UI used Ukrainian flashcards and English media/question copy for gaps.
-  // This compatibility choice happens only at build time, never inside UI widgets.
-  // Lesson translations are complete and deliberately have no fallback.
-  if (component === 'lesson') return translations[language];
-  const fallback = component === 'flashcard' ? 'uk' : 'en';
-  return translations[language] ?? translations[fallback];
+  // Lesson, NavbarPreferences and Flashcard have full authored coverage.
+  if (component === 'lesson' || component === 'flashcard') return translations[language];
+  // Legacy media/question dictionaries must be completed before removing fallback.
+  return translations[language] ?? translations.en;
 }
 
 function shapeOf(value) {
