@@ -66,7 +66,7 @@ export const preventColdExposureInjury_Skill_Data = buildSkillConfig({
       be: 'Зьмяншай шкоду ад холаду, кантралюючы вільгаць, вецер і ўцяпленьне.',
       ka: 'შეამცირე სიცივის ზიანი სიმშრალის, ქარისგან დაცვისა და სითბოს შენარჩუნებით.',
       kk: 'Ылғалдық, жел мен жылуды ескеріп, суықтың зиянын азайт.',
-      qm: 'Suqluq, yel ve issılıqnı nezaret etip, suvuqnıñ zararını azayt.',
+      qm: 'Kiyimni quru tutıp, yelden qorunıp ve issılıqnı saqlap, suvuq tesiriniñ zararını azayt.',
     },
   },
 });
