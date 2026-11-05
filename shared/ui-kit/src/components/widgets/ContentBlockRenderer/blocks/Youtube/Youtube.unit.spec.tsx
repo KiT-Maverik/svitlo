@@ -1,3 +1,4 @@
+import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 
@@ -34,7 +35,7 @@ afterEach(() => {
 describe('YouTube content block', () => {
   it('shows the offline placeholder without creating an iframe', () => {
     setOnline(false);
-    const { container } = render(<Youtube {...response} />);
+    const { container } = render(<Youtube messages={enUiKitMessages.youtube} {...response} />);
     expect(screen.getByRole('status')).toHaveTextContent('Немає з’єднання');
     expect(container.querySelector('iframe')).toBeNull();
   });
@@ -42,7 +43,7 @@ describe('YouTube content block', () => {
   it('shows a link only while online', () => {
     setOnline(false);
     const linkResponse: ContentBlock_Youtube_Response = { ...response, mode: 'link' };
-    render(<Youtube {...linkResponse} />);
+    render(<Youtube messages={enUiKitMessages.youtube} {...linkResponse} />);
     expect(screen.queryByRole('link')).toBeNull();
     expect(screen.getByRole('status')).toHaveTextContent('Немає з’єднання');
 
@@ -63,7 +64,7 @@ describe('YouTube content block', () => {
       },
     };
 
-    const { container } = render(<Youtube {...response} />);
+    const { container } = render(<Youtube messages={enUiKitMessages.youtube} {...response} />);
     await waitFor(() => expect(reportError).toBeTypeOf('function'));
     expect(container.querySelector('iframe')).toHaveAttribute('title', 'Приклад відео');
 
@@ -85,7 +86,7 @@ describe('YouTube content block', () => {
 describe('YouTube links, validation, and retry', () => {
   it('opens external links safely and uses a hint when no title is supplied', () => {
     setOnline(true);
-    render(<Youtube {...response} mode="link" title={undefined} hint="Watch the example" />);
+    render(<Youtube messages={enUiKitMessages.youtube} {...response} mode="link" title={undefined} hint="Watch the example" />);
     const link = screen.getByRole('link', { name: 'Watch the example' });
     expect(link).toHaveAttribute('target', '_blank');
     expect(link).toHaveAttribute('rel', 'noopener noreferrer');
@@ -114,7 +115,7 @@ describe('YouTube links, validation, and retry', () => {
         destroy() { destroyedCount += 1; }
       },
     };
-    const { container } = render(<Youtube {...response} />);
+    const { container } = render(<Youtube messages={enUiKitMessages.youtube} {...response} />);
     await waitFor(() => expect(playerCount).toBe(1));
 
     act(() => reportError?.({ data: 100 }));

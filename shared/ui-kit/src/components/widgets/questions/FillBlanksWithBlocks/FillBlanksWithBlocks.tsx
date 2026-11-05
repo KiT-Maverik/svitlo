@@ -3,16 +3,16 @@
 import { Box, ButtonBase, Stack, Typography } from '@mui/material';
 import type { Question_FillBlanksWithBlocks, Locale_Languages } from '@svitlo/engine/content';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
-import { useContentLanguage } from '../../ContentBlockRenderer/ContentLanguageContext';
+import type { UiKit_Global } from '@svitlo/engine/content';
 import { QuestionChoice } from '../response/QuestionChoice';
 import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
 import { QuestionContent, type QuestionItem, shuffleItems } from '../response/QuestionContent';
 
-export function FillBlanksWithBlocks({ response, sceneRegistry }: {
+export function FillBlanksWithBlocks({ response, sceneRegistry, messages }: {
   response: Question_FillBlanksWithBlocks<'response', Locale_Languages>;
   sceneRegistry?: SceneRegistry;
+  messages: UiKit_Global<'response'>;
 }) {
-  const language = useContentLanguage();
   const correct: QuestionItem[] = response.slots.map(slot => ({
     id: 'correct:' + slot.selector, block: slot.correctAnswer,
   }));
@@ -32,10 +32,10 @@ export function FillBlanksWithBlocks({ response, sceneRegistry }: {
     attempt.setValue({ ...attempt.value, [nextEmpty.selector]: id });
   };
   return (
-    <QuestionFrame response={response} sceneRegistry={sceneRegistry} attempt={attempt}>
+    <QuestionFrame response={response} sceneRegistry={sceneRegistry} messages={messages} attempt={attempt}>
       <Stack spacing={2}>
         <Stack direction="row" useFlexGap spacing={1} sx={{ flexWrap: 'wrap', justifyContent: 'center' }}
-          role="group" aria-label={language === 'uk' ? 'Пропуски' : 'Blanks'}>
+          role="group" aria-label={messages.questionFrame.blanks}>
           {response.slots.map(slot => {
             const selected = items.find(item => item.id === attempt.value[slot.selector]);
             const correctSlot = selected?.id === 'correct:' + slot.selector;
@@ -48,17 +48,17 @@ export function FillBlanksWithBlocks({ response, sceneRegistry }: {
                   borderColor: attempt.checked ? correctSlot ? 'success.main' : 'error.main' : 'divider',
                   bgcolor: 'background.paper', textAlign: 'center',
                   '&.Mui-disabled': { opacity: 1 } }}>
-                {selected ? <QuestionContent blocks={[selected.block]} sceneRegistry={sceneRegistry} /> :
+                {selected ? <QuestionContent blocks={[selected.block]} sceneRegistry={sceneRegistry} messages={messages} /> :
                   <Typography color="text.secondary">{response.placeholder}</Typography>}
               </ButtonBase>
             );
           })}
         </Stack>
-        <Box role="group" aria-label={language === 'uk' ? 'Доступні блоки' : 'Available blocks'}>
+        <Box role="group" aria-label={messages.questionFrame.availableBlocks}>
           <Stack spacing={1}>
             {items.filter(item => !used.has(item.id)).map(item => (
               <QuestionChoice key={item.id} block={item.block} selected={false}
-                sceneRegistry={sceneRegistry} disabled={attempt.checked || !nextEmpty}
+                sceneRegistry={sceneRegistry} messages={messages} disabled={attempt.checked || !nextEmpty}
                 onToggle={() => place(item.id)} />
             ))}
           </Stack>

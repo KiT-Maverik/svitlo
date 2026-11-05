@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { Question, Locale_Languages } from '@svitlo/engine/content';
 import type { LanguageCode } from '@svitlo/engine/localization';
+import type { UiKit_Global } from '@svitlo/engine/content';
 import { ContentLanguageContext, useContentLanguage } from '../../ContentBlockRenderer/ContentLanguageContext';
 import { QuestionCompletionContext } from './QuestionCompletion';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
@@ -19,6 +20,7 @@ import { SelectOneAnswer } from '../SelectOneAnswer/SelectOneAnswer';
 export type QuestionResponse = Question<'response', Locale_Languages>;
 
 export type QuestionRendererProps = {
+  messages: UiKit_Global<'response'>;
   questions?: readonly QuestionResponse[];
   sceneRegistry?: SceneRegistry;
   language?: LanguageCode;
@@ -26,17 +28,17 @@ export type QuestionRendererProps = {
   onComplete?: () => void;
 };
 
-function QuestionBlock({ response, sceneRegistry }: { response: QuestionResponse; sceneRegistry?: SceneRegistry }) {
+function QuestionBlock({ response, sceneRegistry, messages }: { response: QuestionResponse; sceneRegistry?: SceneRegistry; messages: UiKit_Global<'response'> }) {
   switch (response.type) {
-    case 'selectOneAnswer': return <SelectOneAnswer response={response} sceneRegistry={sceneRegistry} />;
-    case 'selectMultipleAnswers': return <SelectMultipleAnswers response={response} sceneRegistry={sceneRegistry} />;
-    case 'matchBlocks': return <MatchBlocks response={response} sceneRegistry={sceneRegistry} />;
-    case 'answerWithText': return <AnswerWithText response={response} sceneRegistry={sceneRegistry} />;
-    case 'answerWithNumber': return <AnswerWithNumber response={response} sceneRegistry={sceneRegistry} />;
-    case 'orderSequence': return <OrderSequence response={response} sceneRegistry={sceneRegistry} />;
-    case 'buildAnswerWithBlocks': return <BuildAnswerWithBlocks response={response} sceneRegistry={sceneRegistry} />;
-    case 'fillBlanksWithBlocks': return <FillBlanksWithBlocks response={response} sceneRegistry={sceneRegistry} />;
-    case 'fillBlanksWithText': return <FillBlanksWithText response={response} sceneRegistry={sceneRegistry} />;
+    case 'selectOneAnswer': return <SelectOneAnswer response={response} sceneRegistry={sceneRegistry} messages={messages} />;
+    case 'selectMultipleAnswers': return <SelectMultipleAnswers response={response} sceneRegistry={sceneRegistry} messages={messages} />;
+    case 'matchBlocks': return <MatchBlocks response={response} sceneRegistry={sceneRegistry} messages={messages} />;
+    case 'answerWithText': return <AnswerWithText response={response} sceneRegistry={sceneRegistry} messages={messages} />;
+    case 'answerWithNumber': return <AnswerWithNumber response={response} sceneRegistry={sceneRegistry} messages={messages} />;
+    case 'orderSequence': return <OrderSequence response={response} sceneRegistry={sceneRegistry} messages={messages} />;
+    case 'buildAnswerWithBlocks': return <BuildAnswerWithBlocks response={response} sceneRegistry={sceneRegistry} messages={messages} />;
+    case 'fillBlanksWithBlocks': return <FillBlanksWithBlocks response={response} sceneRegistry={sceneRegistry} messages={messages} />;
+    case 'fillBlanksWithText': return <FillBlanksWithText response={response} sceneRegistry={sceneRegistry} messages={messages} />;
     default: {
       const unreachable: never = response;
       throw new Error('Unsupported question type: ' + String(unreachable));
@@ -45,7 +47,7 @@ function QuestionBlock({ response, sceneRegistry }: { response: QuestionResponse
 }
 
 /** Consume the server-assembled responses directly; no legacy question model. */
-export function QuestionRenderer({ questions = [], sceneRegistry, language, onComplete }: QuestionRendererProps) {
+export function QuestionRenderer({ questions = [], sceneRegistry, language, onComplete, messages }: QuestionRendererProps) {
   const inheritedLanguage = useContentLanguage();
   const [checkedIds, setCheckedIds] = useState<ReadonlySet<string>>(() => new Set());
   const completed = useRef<string | null>(null);
@@ -80,7 +82,7 @@ export function QuestionRenderer({ questions = [], sceneRegistry, language, onCo
     <ContentLanguageContext.Provider value={language ?? inheritedLanguage}>
       <QuestionCompletionContext.Provider value={context}>
         {questions.map(response => (
-          <QuestionBlock key={response.type + ':' + response.id} response={response} sceneRegistry={sceneRegistry} />
+          <QuestionBlock key={response.type + ':' + response.id} response={response} sceneRegistry={sceneRegistry} messages={messages} />
         ))}
       </QuestionCompletionContext.Provider>
     </ContentLanguageContext.Provider>

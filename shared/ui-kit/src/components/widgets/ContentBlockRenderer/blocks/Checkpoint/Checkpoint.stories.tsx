@@ -1,3 +1,4 @@
+import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import type { Meta, StoryObj } from '@storybook/nextjs';
 import type { ContentBlock_Checkpoint_Response, Locale_Languages } from '@svitlo/engine/content';
 import { ContentLanguageContext } from '../../ContentLanguageContext';
@@ -5,7 +6,7 @@ import { ContentBlockRenderer } from '../../ContentBlockRenderer';
 
 function CheckpointStory(props: ContentBlock_Checkpoint_Response<Locale_Languages>) {
   // Use the real dispatcher so the answers render as regular content blocks.
-  return <ContentBlockRenderer blocks={[props]} />;
+  return <ContentBlockRenderer messages={enUiKitMessages} blocks={[props]} />;
 }
 
 const meta = {

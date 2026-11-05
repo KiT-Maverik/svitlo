@@ -29,8 +29,8 @@ type ContentBlock_Scene_Data<TLocales extends object, SupportedLanguages extends
 };
 
 type ContentBlock_Scene_Response<TLocales extends object> = ContentBlock_Response_Meta<'scene'> & {
-    /** Translated scene props. */
-    messages: ContentBlock_Scene_Locales_Strings<TLocales>;
+    /** Localized scene props supplied directly to the renderer. */
+    locales: ContentBlock_Scene_Locales_Strings<TLocales>;
     rendererKey: string;
   };
 

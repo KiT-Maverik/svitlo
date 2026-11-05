@@ -121,21 +121,3 @@ export function subscribeConnectionChange(listener: () => void): () => void {
 export const getConnectionSnapshot = () => navigator.onLine;
 export const getServerConnectionSnapshot = (): null => null;
 
-const fallbackText = {
-  en: {
-    loading: 'Loading video…',
-    offline: 'This video needs an internet connection.',
-    unavailable: 'This video is unavailable.',
-    retry: 'Try again',
-  },
-  uk: {
-    loading: 'Завантаження відео…',
-    offline: 'Для перегляду відео потрібен інтернет.',
-    unavailable: 'Це відео недоступне.',
-    retry: 'Спробувати ще раз',
-  },
-} as const;
-
-export function youtubeFallbackText(locale: string, kind: keyof typeof fallbackText.en): string {
-  return (locale === 'uk' ? fallbackText.uk : fallbackText.en)[kind];
-}

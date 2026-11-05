@@ -28,10 +28,10 @@ describe('Components', () => {
 
     it('should navigate without discarding unrelated query parameters when changing locale', async () => {
       const { replace } = LocaleProvider_mx.prepare();
-      window.history.replaceState({}, '', '/topics/demo?ref=abc&lang=uk-UA');
+      window.history.replaceState({}, '', '/lesson/d3048d21-8690-5255-b62c-984c69ac272c?ref=abc&lang=uk-UA');
       LocaleProvider_fx.render();
       await LocaleProvider_fx.actions.change();
-      expect(replace).toHaveBeenCalledWith('/topics/demo?ref=abc&lang=en-US', { scroll: false });
+      expect(replace).toHaveBeenCalledWith('/lesson/d3048d21-8690-5255-b62c-984c69ac272c?ref=abc&lang=en-US', { scroll: false });
     });
 
     it('should restore the original document locale on unmount', () => {

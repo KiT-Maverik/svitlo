@@ -1,3 +1,4 @@
+import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import type { Meta, StoryObj } from '@storybook/nextjs';
 import { Youtube } from './Youtube';
 import { ContentLanguageContext } from '../../ContentLanguageContext';
@@ -10,6 +11,7 @@ const meta = {
     docs: { description: { component: 'A validated HTTPS YouTube link or privacy-enhanced embedded player. Embeds require an accessible title or hint and an internet connection.' } },
   },
   args: {
+    messages: enUiKitMessages.youtube,
     id: 'youtube-example',
     type: 'youtube',
 

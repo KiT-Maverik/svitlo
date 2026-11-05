@@ -2,16 +2,14 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 vi.mock('next/navigation', () => ({ usePathname: vi.fn(), useRouter: vi.fn() }));
 vi.mock('@/i18n/LocaleProvider/LocaleProvider', () => ({ useLocale: vi.fn() }));
-vi.mock('@/components/pages/Lesson/LessonProgress/LessonProgress', async importOriginal => ({
-  ...(await importOriginal<typeof import('@/components/pages/Lesson/LessonProgress/LessonProgress')>()),
-  useLessonProgress: vi.fn(),
-}));
+vi.mock('@/components/pages/Lesson/LessonNavigation', () => ({ useLessonNavigation: vi.fn() }));
 
 import { screen, within } from '@testing-library/react';
 import { LearningLayout_fx } from './LearningLayout.unit.fx';
 import { LearningLayout_mx } from './LearningLayout.unit.mx';
-import { aria } from '@svitlo/ui-kit/learning-layout/constants';
-import { locale } from '@svitlo/ui-kit/learning-layout/locales/uk-UA';
+import { ukUiKitMessages } from '../../../../../../shared/ui-kit/src/testing/uiKitMessages.unit.fx';
+const aria = ukUiKitMessages.learningLayout;
+const locale = aria;
 
 describe('Layouts', () => {
   describe('LearningLayout', () => {

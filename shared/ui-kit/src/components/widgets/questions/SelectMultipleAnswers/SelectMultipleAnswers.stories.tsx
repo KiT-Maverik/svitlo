@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs';
 import type { Question_SelectMultipleAnswers, Locale_Languages } from '@svitlo/engine/content';
+import { enUiKitMessages } from '../../../../testing/uiKitMessages.unit.fx';
 import { SelectMultipleAnswers } from './SelectMultipleAnswers';
 
 const text = (id: string, value: string) => ({ id, type: 'text' as const, value });
@@ -19,7 +20,7 @@ const meta = {
   title: 'Questions/Select multiple answers',
   component: SelectMultipleAnswers,
   tags: ['autodocs'],
-  args: { response },
+  args: { response, messages: enUiKitMessages },
 } satisfies Meta<typeof SelectMultipleAnswers>;
 
 export default meta;

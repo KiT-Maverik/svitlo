@@ -43,7 +43,7 @@ function fixture() {
 }
 
 describe('assembleLessonResponse', () => {
-  it('retains array ordering, locale sources, markdown, scene messages and quiz references', () => {
+  it('retains array ordering, locale sources, markdown, scene locales and quiz references', () => {
     const lesson = assembleLessonResponse(id, 'uk', fixture());
     expect(lesson.sections.map(section => section.slug)).toEqual(['theory', 'quiz']);
     expect(lesson.sections[0].content.map(block => block.type)).toEqual(['markdown', 'scene', 'checkpoint']);
@@ -59,7 +59,7 @@ describe('assembleLessonResponse', () => {
     expect(scene.type).toBe('scene');
     if (scene.type === 'scene') {
       expect(scene.rendererKey).toBe('scene-id');
-      expect(scene.messages).toEqual({ scene: { title: 'Промінь' } });
+      expect(scene.locales).toEqual({ scene: { title: 'Промінь' } });
     }
     const quiz = lesson.sections[1].content[0];
     expect(quiz.type).toBe('quiz');

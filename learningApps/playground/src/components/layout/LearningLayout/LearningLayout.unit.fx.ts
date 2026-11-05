@@ -21,17 +21,18 @@ const VerticalSpace_fx = {
       (scope ? within(scope) : screen).queryByTestId(spaceTestId.slots[name]),
   },
 };
-import { aria } from '@svitlo/ui-kit/learning-layout/constants';
+import { ukUiKitMessages } from '../../../../../../shared/ui-kit/src/testing/uiKitMessages.unit.fx';
+const aria = ukUiKitMessages.learningLayout;
 
 type Props = ComponentProps<typeof LearningLayout>;
 
 const topics = [
-  { id: 'demo', title: 'Example topic', href: '/topics/demo' },
-  { id: 'other', title: 'Another topic', href: '/topics/other' },
+  { id: 'demo', title: 'Example topic', href: '/lesson/d3048d21-8690-5255-b62c-984c69ac272c' },
+  { id: 'other', title: 'Another topic', href: '/lesson/00000000-0000-5000-8000-000000000001' },
 ] as const;
 
 export const LearningLayout_fx = {
-  defaults: { topics, skippableSteps: [true, false, false] } satisfies Omit<Props, 'children'>,
+  defaults: { topics, skippableSteps: [true, false, false], messages: ukUiKitMessages } satisfies Omit<Props, 'children'>,
   render: (props: Partial<Props> = {}) => {
     const { children = 'Lesson content', ...overrides } = props;
     return render(createElement(LearningLayout, { ...LearningLayout_fx.defaults, ...overrides } as Props, children));

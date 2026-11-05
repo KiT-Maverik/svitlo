@@ -12,7 +12,6 @@ export interface LessonStepItem {
 export interface LessonStepsProps {
   steps: readonly LessonStepItem[];
   currentStep: number;
-  unlocked: number;
   completedStep?: number;
   showStepNumbers?: boolean;
   allowNavigation?: boolean;
@@ -22,7 +21,6 @@ export interface LessonStepsProps {
 export function LessonSteps({
   steps,
   currentStep,
-  unlocked,
   completedStep,
   showStepNumbers = true,
   allowNavigation = false,
@@ -35,9 +33,9 @@ export function LessonSteps({
           component="button"
           key={step.id}
           type="button"
-          disabled={!allowNavigation || index > unlocked}
+          disabled={!allowNavigation}
           aria-current={index === currentStep ? 'step' : undefined}
-          data-complete={index < unlocked || index === completedStep || undefined}
+          data-complete={index === completedStep || undefined}
           onClick={() => onNavigate?.(index)}
         >
           <span className={styles.segment} />

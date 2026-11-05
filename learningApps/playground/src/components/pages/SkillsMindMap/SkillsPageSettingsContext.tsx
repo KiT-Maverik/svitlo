@@ -58,6 +58,7 @@ export function SkillsPageSettingsProvider({ children }: { children: ReactNode }
     actionsRef.current?.[action]();
   }, []);
 
+  /* eslint-disable react-hooks/set-state-in-effect -- The initial language is URL/document state available only after hydration. */
   useEffect(() => {
     const requested = new URLSearchParams(window.location.search).get('lang');
     const parsed = requested ? supportedLocale(requested) : supportedLocale(document.documentElement.lang);
@@ -69,6 +70,7 @@ export function SkillsPageSettingsProvider({ children }: { children: ReactNode }
     }
     setReady(true);
   }, []);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   useEffect(() => {
     if (!ready || localeError) return;

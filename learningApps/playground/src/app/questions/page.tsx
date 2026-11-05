@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Container, Stack } from '@mui/material';
 import type { Question, Locale_Languages } from '@svitlo/engine/content';
 import { QuestionsDemo } from '@/components/pages/QuestionsDemo/QuestionsDemo';
+import { loadUiKitMessages } from '@/lib/uiKit/loadUiKitMessages';
 
 export const metadata: Metadata = { title: 'Інтерактивні запитання — Світло' };
 
@@ -61,12 +62,13 @@ const questions: Question<'response', Locale_Languages>[] = [
   },
 ];
 
-export default function QuestionsPage() {
+export default async function QuestionsPage() {
+  const messages = await loadUiKitMessages('uk-UA');
   return (
     <Container component="main" maxWidth="md" sx={{ py: { xs: 2, sm: 4 } }}>
       <Stack spacing={3}>
         <Link href="/">← Світло</Link>
-        <QuestionsDemo questions={questions} />
+        <QuestionsDemo questions={questions} messages={messages} />
       </Stack>
     </Container>
   );

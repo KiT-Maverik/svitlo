@@ -3,15 +3,18 @@
 import { useEffect, useRef, useState, type SyntheticEvent } from 'react';
 import Button from '@mui/material/Button';
 import type { ContentBlock_Video_Response } from '@svitlo/engine/content';
+import type { UiKit_Component } from '@svitlo/engine/content';
 
 import { localizedAttributes } from '../../utils';
 import { useContentLanguage } from '../../ContentLanguageContext';
-import { classifyVideoError, videoFallbackText, type VideoFailureKind } from './Video.utils';
+import { classifyVideoError, type VideoFailureKind } from './Video.utils';
 import styles from './Video.module.css';
 
 type VideoFailure = { source: string; kind: VideoFailureKind };
 
-export const Video = ({ fileLocation, poster, title, fallback }: ContentBlock_Video_Response) => {
+export const Video = ({ fileLocation, poster, title, fallback, messages }: ContentBlock_Video_Response & {
+  messages: UiKit_Component<'video', 'response'>;
+}) => {
   const contentLanguage = useContentLanguage();
   const videoRef = useRef<HTMLVideoElement>(null);
   const [failure, setFailure] = useState<VideoFailure | null>(null);
@@ -52,9 +55,9 @@ export const Video = ({ fileLocation, poster, title, fallback }: ContentBlock_Vi
       {failureKind ? (
         <div className={styles.placeholder} role="alert">
           {title && <strong>{title}</strong>}
-          <span>{fallback?.[failureKind] || videoFallbackText(contentLanguage, failureKind)}</span>
+          <span>{fallback?.[failureKind] || messages[failureKind]}</span>
           <Button type="button" variant="outlined" onClick={retry}>
-            {fallback?.retry || videoFallbackText(contentLanguage, 'retry')}
+            {fallback?.retry || messages['retry']}
           </Button>
         </div>
       ) : (

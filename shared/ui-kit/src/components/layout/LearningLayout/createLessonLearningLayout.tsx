@@ -2,19 +2,20 @@
 
 import type { ElementType } from 'react';
 import type { Locale } from '@svitlo/engine/localization';
+import type { UiKit_Global } from '@svitlo/engine/content';
 import LearningLayout, { type LearningLayoutProgress, type LearningLayoutProps } from './LearningLayout';
 import NavbarPreferences from './NavbarPreferences/NavbarPreferences';
 
 export type LessonLearningLayoutProps = Pick<
   LearningLayoutProps,
   'children' | 'topics' | 'skippableSteps' | 'quizStep'
->;
+> & { messages: UiKit_Global<'response'> };
 
 export type LessonLearningLayoutBindings = {
   /** Supplied by the consuming app; the UI Kit never imports Next.js hooks. */
   usePathname: () => string;
   useLocale: () => { locale: Locale; setLocale: (locale: Locale) => void };
-  useLessonProgress: () => {
+  useLessonNavigation: () => {
     progress: LearningLayoutProgress;
     dispatch: (action: { type: 'back' | 'next' | 'skip' }) => void;
   };
@@ -29,15 +30,16 @@ export type LessonLearningLayoutBindings = {
 
 /** Bind app-owned hooks once, without duplicating layout and navigation logic. */
 export function createLessonLearningLayout(bindings: LessonLearningLayoutBindings) {
-  function LessonLearningLayout({ children, topics, skippableSteps, quizStep }: LessonLearningLayoutProps) {
+  function LessonLearningLayout({ children, topics, skippableSteps, quizStep, messages }: LessonLearningLayoutProps) {
     const { locale, setLocale } = bindings.useLocale();
     const pathname = bindings.usePathname();
-    const { progress, dispatch } = bindings.useLessonProgress();
+    const { progress, dispatch } = bindings.useLessonNavigation();
     const { mode, systemMode, setMode } = bindings.useColorScheme();
 
     return (
       <LearningLayout
         locale={locale}
+        messages={messages.learningLayout}
         pathname={pathname}
         progress={progress}
         topics={topics}
@@ -50,6 +52,7 @@ export function createLessonLearningLayout(bindings: LessonLearningLayoutBinding
         }}
         preferences={
           <NavbarPreferences
+            messages={messages.navbarPreferences}
             locale={locale}
             onLocaleChange={setLocale}
             mode={mode}

@@ -1,3 +1,4 @@
+import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import type { Meta, StoryObj } from '@storybook/nextjs';
 import { Video } from './Video';
 
@@ -16,6 +17,7 @@ const meta = {
     docs: { description: { component: 'Native video playback with an optional title, poster, and localized fallback/retry behavior.' } },
   },
   args: {
+    messages: enUiKitMessages.video,
     id: 'video-example',
     type: 'video',
 
