@@ -22,7 +22,8 @@ describe('NavbarPreferences in shared UI Kit', () => {
         onThemeChange={setMode}
       />,
     );
-  const theme = () => screen.getByRole('switch', { name: aria.theme });
+  const theme = (language: 'uk-UA' | 'lt-LT' = 'uk-UA') =>
+    screen.getByRole('switch', { name: language === 'lt-LT' ? lt.theme.dark : aria.theme });
   const locale = () => screen.getByRole('combobox', { name: aria.locale });
 
   afterEach(() => vi.clearAllMocks());
@@ -61,7 +62,7 @@ describe('NavbarPreferences in shared UI Kit', () => {
 
   it('uses localized theme tooltip text', async () => {
     renderPreferences('lt-LT');
-    await userEvent.hover(theme());
+    await userEvent.hover(theme('lt-LT'));
     expect(await screen.findByText(lt.theme.light)).toBeVisible();
   });
 
