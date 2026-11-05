@@ -59,7 +59,7 @@ export const recognizeDrugRelatedRisks_Skill_Data = buildSkillConfig({
       ms: "Kenal pasti risiko gangguan keupayaan, dos berlebihan dan interaksi antara bahan.",
       he: "זהו סיכונים של פגיעה בתפקוד, מנת יתר ותגובות בין חומרים.",
       pl: "Rozpoznawaj ryzyko upośledzenia sprawności, przedawkowania i interakcji między substancjami.",
-      uk: "Виявляй ризики порушення дієздатності, передозування й взаємодій речовин.",
+      uk: "Виявляй ризики погіршення фізичних і розумових функцій, передозування й взаємодії речовин.",
       lt: "Atpažink sutrikusių gebėjimų, perdozavimo ir medžiagų sąveikos riziką.",
       lv: "Atpazīsti spēju pasliktināšanās, pārdozēšanas un vielu mijiedarbības riskus.",
       et: "Tunne ära võimekuse halvenemise, üleannustamise ja ainete koostoime ohud.",
