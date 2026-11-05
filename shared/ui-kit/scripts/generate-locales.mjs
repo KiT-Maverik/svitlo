@@ -82,9 +82,47 @@ function assertShape(component, reference, data, locale) {
   }
 }
 
+/**
+ * Audit authored coverage without consulting message() fallback behavior.
+ * --audit prints missing language codes without publishing files;
+ * --strict fails on any missing required dictionary.
+ */
+function auditMissingTranslations(components) {
+  const missing = {};
+  for (const component of components) {
+    const absent = [];
+    for (const { locale, language } of DEFAULT_SUPPORTED_LANGUAGES) {
+      const value = component === 'learningLayout' || component === 'navbarPreferences'
+        ? readData(component === 'learningLayout' ? 'LearningLayout' : 'NavbarPreferences', locale + '.data.ts')
+        : whole[component]?.[language];
+      if (!value) absent.push(language);
+    }
+    if (absent.length) missing[component] = absent;
+  }
+  return missing;
+}
+
 try {
-  mkdirSync(output, { recursive: true });
   const components = ['lesson', 'learningLayout', 'navbarPreferences', 'flashcard', 'checkpoint', 'audio', 'image', 'video', 'youtube', 'questionFrame'];
+  const missing = auditMissingTranslations(components);
+  const missingCount = Object.values(missing).reduce((count, codes) => count + codes.length, 0);
+  if (process.argv.includes('--audit')) {
+    console.log(JSON.stringify({
+      languages: DEFAULT_SUPPORTED_LANGUAGES.length,
+      componentCount: components.length,
+      missing,
+      missingCount,
+    }, null, 2));
+  } else {
+    if (missingCount > 0) {
+      const details = Object.entries(missing).map(([name, codes]) => name + ': ' + codes.join(', ')).join('; ');
+      if (process.argv.includes('--strict')) {
+        throw new Error('UI Kit translations incomplete (' + missingCount + '): ' + details);
+      }
+      console.warn('[UI Kit localization debt] ' + missingCount +
+        ' required component/locale dictionaries are missing. Existing build-time fallback remains: ' + details);
+    }
+    mkdirSync(output, { recursive: true });
   const defaults = Object.fromEntries(components.map(c => [c, message(c, 'uk-UA', 'uk')]));
   let count = 0;
   for (const { locale, language } of DEFAULT_SUPPORTED_LANGUAGES) {
@@ -99,6 +137,7 @@ try {
   }
   writeFileSync(join(output, 'meta.json'), JSON.stringify({ scope: 'global', components, locales: DEFAULT_SUPPORTED_LANGUAGES.map(l => l.locale) }, null, 2) + '\n');
   console.log(`Generated ${count} global UI Kit locale JSON resources in ${output}`);
+  }
 } finally {
   rmSync(tmp, { recursive: true, force: true });
 }
