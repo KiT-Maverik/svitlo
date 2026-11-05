@@ -6,7 +6,7 @@ export const analyzeAPersonhoodCriterion_Skill_Data = buildSkillConfig({
   name: {
     en: 'Analyze a personhood criterion',
     zh: '分析人格资格的判准',
-    hi: 'व्यक्तित्व की कसौटी का विश्लेषण',
+    hi: 'व्यक्ति माने जाने की कसौटी का विश्लेषण',
     es: 'Analizar un criterio de condición de persona',
     ar: 'تحليل معيار صفة الشخص',
     fr: 'Analyser un critère de personnalité morale',
@@ -40,7 +40,7 @@ export const analyzeAPersonhoodCriterion_Skill_Data = buildSkillConfig({
     frontend: {
       en: 'Test ideas about personhood against difficult cases without denying human dignity.',
       zh: '用困难案例检验人格资格的标准，同时不否定人的尊严。',
-      hi: 'मानवीय गरिमा को नकारे बिना कठिन उदाहरणों से व्यक्तित्व की कसौटियों को परखें।',
+      hi: 'मानवीय गरिमा को नकारे बिना कठिन उदाहरणों से व्यक्ति माने जाने की कसौटियों को परखें।',
       es: 'Pon a prueba criterios sobre quién es persona mediante casos difíciles, sin negar la dignidad humana.',
       ar: 'اختبر معايير صفة الشخص بحالات صعبة من دون إنكار الكرامة الإنسانية.',
       fr: "Mets à l'épreuve les critères du statut de personne face à des cas difficiles, sans nier la dignité humaine.",

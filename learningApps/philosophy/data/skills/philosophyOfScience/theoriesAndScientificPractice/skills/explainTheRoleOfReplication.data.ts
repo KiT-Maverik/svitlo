@@ -48,7 +48,7 @@ export const explainTheRoleOfReplication_Skill_Data = buildSkillConfig({
       pt: 'Entenda por que repetir uma pesquisa ajuda a verificar os resultados.',
       ur: 'سمجھیں کہ تحقیق دوبارہ کرنے سے نتائج کی تصدیق کیوں آسان ہوتی ہے۔',
       id: 'Pahami mengapa mengulang penelitian membantu memeriksa hasilnya.',
-      de: 'Verstehe, warum das Wiederholen von Untersuchungen Ergebnisse überprüfen hilft.',
+      de: 'Verstehe, warum die Wiederholung von Untersuchungen hilft, Ergebnisse zu überprüfen.',
       ja: '研究を繰り返すことが発見の検証に役立つ理由を理解しよう。',
       ko: '연구를 반복하면 결과를 확인하는 데 왜 도움이 되는지 이해해 보세요.',
       tr: 'Bir araştırmayı tekrarlamanın bulguları kontrol etmeye neden yardımcı olduğunu anla.',

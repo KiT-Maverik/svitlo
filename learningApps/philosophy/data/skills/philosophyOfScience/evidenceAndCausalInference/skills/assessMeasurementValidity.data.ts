@@ -32,7 +32,7 @@ export const assessMeasurementValidity_Skill_Data = buildSkillConfig({
     be: 'Ацэньваць валіднасьць вымярэньня',
     ka: 'გაზომვის ვალიდურობის შეფასება',
     kk: 'Өлшеу валидтілігін бағалау',
-    qm: 'Ölçüvniñ doğrulığını baalamaq',
+    qm: 'Ölçüvniñ keçerliligini baalamaq',
   },
   description: {
     methodological:

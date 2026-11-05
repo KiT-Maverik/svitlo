@@ -32,7 +32,7 @@ export const analyzeReligiousToleranceAsAnEthicalPrinciple_Skill_Data = buildSki
     be: 'Аналізаваць рэлігійную талерантнасьць як этычны прынцып',
     ka: 'რელიგიური ტოლერანტობის ეთიკურ პრინციპად ანალიზი',
     kk: 'Діни төзімділікті этикалық қағида ретінде талдау',
-    qm: 'Dinîy hoşgörüni etik qaidə olaraq tahlil etmek',
+    qm: 'Dinîy hoşgörüni etik qaide olaraq tahlil etmek',
   },
   description: {
     methodological:
