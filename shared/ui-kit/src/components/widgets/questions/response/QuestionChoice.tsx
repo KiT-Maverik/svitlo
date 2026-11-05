@@ -31,7 +31,7 @@ export function QuestionChoice({
       role="button"
       aria-label={questionBlockLabel(block) || block.id}
       aria-pressed={selected}
-      aria-description={feedback}
+      aria-description={feedback === 'correct' ? messages.questionFrame.correctChoice : feedback === 'incorrect' ? messages.questionFrame.incorrectChoice : feedback === 'missed' ? messages.questionFrame.missedChoice : undefined}
       data-feedback={feedback}
       disabled={disabled}
       onClick={onToggle}

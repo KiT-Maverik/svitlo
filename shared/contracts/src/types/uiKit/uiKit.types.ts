@@ -31,6 +31,7 @@ export type UiKit_ComponentMessages = {
     correct: string; incorrect: string; answerLabel: string;
     matchInstructions: string; left: string; right: string;
     availableBlocks: string; blanks: string; moveItem: string; removeItem: string;
+    correctChoice: string; incorrectChoice: string; missedChoice: string;
   };
 };
 export type UiKit_ComponentName = keyof UiKit_ComponentMessages;
