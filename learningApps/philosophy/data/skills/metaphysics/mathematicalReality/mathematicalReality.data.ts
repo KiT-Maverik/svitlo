@@ -72,7 +72,7 @@ export const mathematicalReality_SkillGroup_Data = buildSkillGroupConfig({
       be: "Дасьледуй спрэчку, ці існуюць матэматычныя аб’екты незалежна ад людзей.",
       ka: "შეისწავლე კამათი, არსებობს თუ არა მათემატიკური ობიექტები ადამიანებისგან დამოუკიდებლად.",
       kk: "Математикалық нысандар адамдардан тәуелсіз бар ма деген пікірталасты зертте.",
-      qm: "Matematik nesneler insanlardan mustaqil olaraq bar mı degен muzaкерени ögren.",
+      qm: "Matematik nesneler insanlardan mustaqil olaraq bar mı degen muzakereni ögren.",
     },
   },
 });
