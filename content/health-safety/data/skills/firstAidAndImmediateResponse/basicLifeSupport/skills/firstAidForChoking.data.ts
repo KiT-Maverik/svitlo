@@ -5,7 +5,7 @@ export const firstAidForChoking_Skill_Data = buildSkillConfig({
   id: '21638ae7-dea5-4a53-84b6-5a7f566d3fd2',
   name: {
     en: 'First aid for choking',
-    zh: '噎食急救',
+    zh: '气道异物梗阻急救',
     hi: 'दम घुटने पर प्राथमिक उपचार',
     es: 'Primeros auxilios ante atragantamiento',
     ar: 'الإسعاف الأولي للاختناق بجسم غريب',
