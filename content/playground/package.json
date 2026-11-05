@@ -8,7 +8,9 @@
     "build": "tsc -p tsconfig.json --noEmit",
     "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.types.json --noEmit",
     "test:components": "vitest run",
-    "test:components:coverage": "vitest run --coverage"
+    "test:components:coverage": "vitest run --coverage",
+    "pretest:portability": "npm run build --workspace @svitlo/contracts && npm run build --workspace @svitlo/engine && npm run build --workspace @svitlo/ui-kit",
+    "test:portability": "node scripts/check-react-dom-portability.mjs"
   },
   "dependencies": {
     "@mui/material": "^9.5.0",
@@ -29,7 +31,9 @@
     "jsdom": "^26.1.0",
     "prettier": "3.9.10",
     "typescript": "^5",
-    "vitest": "^3.2.4"
+    "vitest": "^3.2.4",
+    "esbuild": "^0.28.2",
+    "react-dom": "19.3.0"
   },
   "exports": {
     ".": {
