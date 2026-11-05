@@ -90,7 +90,7 @@ Skills: 4
 
 **Methodological description (English):** Recognize coercive requests for intimate images, grooming, and image-based threats and identify safe reporting options.
 
-**User-friendly description (mr):** खाजगी निकटवर्तीय चित्रे किंवा ऑनलाइन शोषणाशी संबंधित धमक्या ओळखा आणि मदत घ्या.
+**User-friendly description (mr):** खाजगी अंतरंग छायाचित्रे किंवा ऑनलाइन शोषणाशी संबंधित धमक्या ओळखा आणि मदत घ्या.
 
 ##### तंत्रज्ञानाधारित छळ ओळखणे
 
@@ -1322,7 +1322,7 @@ Skills: 4
 
 **Methodological description (English):** Marketing, accessibility, food labels, allergies, and personal circumstances shape real-life nutritional decisions.
 
-**User-friendly description (mr):** अन्न निवडताना लेबल आणि विश्वसनीय पुरावे वापरायला शीक.
+**User-friendly description (mr):** अन्न निवडताना लेबल आणि विश्वसनीय पुरावे वापरायला शिका.
 
 ##### आहाराच्या गरजांनुसार अन्ननिवड बदलणे
 
@@ -1330,7 +1330,7 @@ Skills: 4
 
 **Methodological description (English):** Select suitable alternatives for medical, nutritional, ethical or cultural dietary requirements, distinguishing individual preference from a potentially dangerous allergen exposure.
 
-**User-friendly description (mr):** खऱ्या आहारगरजा आणि आवडींनुसार अन्न निवड.
+**User-friendly description (mr):** खऱ्या आहारगरजा आणि आवडींनुसार अन्न निवडा.
 
 ##### अन्नपदार्थांचे लेबल वाचणे
 
@@ -1338,7 +1338,7 @@ Skills: 4
 
 **Methodological description (English):** Use ingredient lists, nutritional information, serving quantities, and date markings without treating a marketing slogan as evidence.
 
-**User-friendly description (mr):** घटक, एका वेळी खाण्याचे प्रमाण आणि पोषणमाहिती वाच.
+**User-friendly description (mr):** घटक, एका वेळी खाण्याचे प्रमाण आणि पोषणमाहिती वाचा.
 
 ##### अन्न अ‍ॅलर्जीच्या जोखमी सांभाळणे
 
@@ -1346,7 +1346,7 @@ Skills: 4
 
 **Methodological description (English):** Identify allergens and cross-contact warnings, verify ingredients, take appropriate avoidance precautions and understand when an allergic reaction requires urgent care.
 
-**User-friendly description (mr):** अ‍ॅलर्जीकारक ओळख आणि घटकांमधील धोकादायक संपर्क टाळ.
+**User-friendly description (mr):** अ‍ॅलर्जीकारक ओळखा आणि घटकांमधील धोकादायक संपर्क टाळा.
 
 ##### आहाराबद्दल चुकीची माहिती ओळखणे
 
@@ -1354,7 +1354,7 @@ Skills: 4
 
 **Methodological description (English):** Distinguish evidence-based nutritional advice from detox claims, extreme restrictions, and unsupported promises of rapid results.
 
-**User-friendly description (mr):** डाएट, डिटॉक्स आणि झटपट परिणाम यांचे निराधार दावे ओळख.
+**User-friendly description (mr):** डाएट, डिटॉक्स आणि झटपट परिणाम यांचे निराधार दावे ओळखा.
 
 #### अन्नजन्य धोके
 
@@ -1372,7 +1372,7 @@ Skills: 5
 
 **Methodological description (English):** Maintain clean hands, utensils and work surfaces while preparing meals, limiting microbial contamination without subsuming the distinct task of keeping raw foods separate from ready-to-eat foods.
 
-**User-friendly description (mr):** अन्न बनवताना हात आणि स्वयंपाकघरातील पृष्ठभाग स्वच्छ ठेव.
+**User-friendly description (mr):** अन्न बनवताना हात आणि स्वयंपाकघरातील पृष्ठभाग स्वच्छ ठेवा.
 
 ##### कच्च्या अन्नातून तयार अन्नात दूषण टाळणे
 
@@ -1380,7 +1380,7 @@ Skills: 5
 
 **Methodological description (English):** Keep raw animal products and their juices from contaminating ready-to-eat food through separate equipment, storage and handling; this concerns foodborne pathogens rather than allergen cross-contact.
 
-**User-friendly description (mr):** कच्चे प्राणिजन्य पदार्थ खाण्यास तयार अन्नापासून वेगळे ठेव.
+**User-friendly description (mr):** कच्चे प्राणिजन्य पदार्थ खाण्यास तयार अन्नापासून वेगळे ठेवा.
 
 ##### असुरक्षित अन्नस्थिती ओळखणे
 
@@ -1388,7 +1388,7 @@ Skills: 5
 
 **Methodological description (English):** Identify spoilage, damaged packaging, unsafe water, and uncertain storage histories while understanding that some hazards are invisible.
 
-**User-friendly description (mr):** अन्न ठीक दिसत असले तरी अन्नसुरक्षेचे धोके ओळख.
+**User-friendly description (mr):** अन्न ठीक दिसत असले तरी अन्नसुरक्षेचे धोके ओळखा.
 
 ##### सुरक्षित शिजवणे आणि पुन्हा गरम करणे
 
@@ -1396,7 +1396,7 @@ Skills: 5
 
 **Methodological description (English):** Relate sufficient heating to reducing specified foodborne hazards rather than relying only on colour or texture.
 
-**User-friendly description (mr):** अन्न नीट शिजवणे आणि पुन्हा गरम करणे का महत्त्वाचे आहे ते समज.
+**User-friendly description (mr):** अन्न नीट शिजवणे आणि पुन्हा गरम करणे का महत्त्वाचे आहे ते समजून घ्या.
 
 ##### अन्नाची सुरक्षित साठवण
 
@@ -1404,7 +1404,7 @@ Skills: 5
 
 **Methodological description (English):** Select appropriate storage conditions and time limits, distinguishing shelf-stable from perishable foods.
 
-**User-friendly description (mr):** लवकर खराब होणारे पदार्थ योग्य परिस्थितीत साठव.
+**User-friendly description (mr):** लवकर खराब होणारे पदार्थ योग्य परिस्थितीत साठवा.
 
 #### पोषणाची मूलतत्त्वे
 
@@ -1414,7 +1414,7 @@ Skills: 4
 
 **Methodological description (English):** Food supplies energy and essential nutrients; dietary adequacy depends on patterns over time rather than judging a single meal as healthy or unhealthy.
 
-**User-friendly description (mr):** पोषण म्हणजे एक परिपूर्ण जेवण नव्हे, तर दीर्घकालीन आहारनिवडी हे समज.
+**User-friendly description (mr):** पोषण म्हणजे एक परिपूर्ण जेवण नव्हे, तर दीर्घकालीन आहारनिवडी हे समजून घ्या.
 
 ##### संतुलित आहारपद्धती
 
@@ -1422,7 +1422,7 @@ Skills: 4
 
 **Methodological description (English):** Consider variety, food groups, nutrient adequacy, and individual needs without assuming one fixed menu fits everyone.
 
-**User-friendly description (mr):** तुझ्या गरजांना साजेशी विविध आहारपद्धती तयार कर.
+**User-friendly description (mr):** तुमच्या गरजांना साजेशी विविध आहारपद्धती तयार करा.
 
 ##### शरीरातील पाण्याचे संतुलन
 
@@ -1430,7 +1430,7 @@ Skills: 4
 
 **Methodological description (English):** Recognize fluid needs and common signs of insufficient intake while accounting for activity, climate, and health circumstances.
 
-**User-friendly description (mr):** हालचाल आणि वातावरणामुळे पाण्याची गरज कशी बदलते ते समज.
+**User-friendly description (mr):** हालचाल आणि वातावरणामुळे पाण्याची गरज कशी बदलते ते समजून घ्या.
 
 ##### आहारातील ऊर्जासंतुलन समजणे
 
@@ -1438,7 +1438,7 @@ Skills: 4
 
 **Methodological description (English):** Relate energy intake to expenditure and changing individual needs while distinguishing energy balance from dietary quality and avoiding unsupported conclusions about a person's health from body size.
 
-**User-friendly description (mr):** ऊर्जेचे सेवन व खर्च आणि आहाराची एकूण गुणवत्ता यांत फरक कर.
+**User-friendly description (mr):** ऊर्जेचे सेवन व खर्च आणि आहाराची एकूण गुणवत्ता यांत फरक करा.
 
 ##### पोषकतत्त्वांची भूमिका समजून घेणे
 
@@ -1446,7 +1446,7 @@ Skills: 4
 
 **Methodological description (English):** Relate macronutrients, vitamins, minerals and fibre to their major physiological roles and distinguish nutritional adequacy from the amount of food alone, without reproducing biochemical mechanisms.
 
-**User-friendly description (mr):** वेगवेगळी पोषकतत्त्वे व तंतू यांची कामे ओळख.
+**User-friendly description (mr):** वेगवेगळी पोषकतत्त्वे व तंतू यांची कामे ओळखा.
 
 ### वैयक्तिक मर्यादा आणि हिंसाचार प्रतिबंध
 

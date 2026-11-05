@@ -362,7 +362,7 @@ Skills: 5
 
 **Methodological description (English):** Identify ignition sources, flammable materials, and preventive practices appropriate to the setting.
 
-**User-friendly description (lv):** Mazina ugunsgrēka risku, atpazīstot uzliesmojošus materiālus un nedrošu rīcību.
+**User-friendly description (lv):** Mazini ugunsgrēka risku, atpazīstot uzliesmojošus materiālus un nedrošu rīcību.
 
 ##### Drošība gāzes noplūdes gadījumā
 
@@ -926,7 +926,7 @@ Skills: 4
 
 **Methodological description (English):** Interpret the purpose, timing, follow-up, and precautions of a clinician's instructions and clarify uncertainty before acting.
 
-**User-friendly description (lv):** Saprot saskaņotā ārstēšanas plāna mērķi, grafiku un piesardzības pasākumus.
+**User-friendly description (lv):** Saproti saskaņotā ārstēšanas plāna mērķi, grafiku un piesardzības pasākumus.
 
 ### Higiēna un infekciju profilakse
 
@@ -1054,7 +1054,7 @@ Skills: 5
 
 **Methodological description (English):** Avoid direct unprotected exposure and understand when barriers, handwashing, and professional assistance are necessary.
 
-**User-friendly description (lv):** Saprot, kāpēc darbā ar asinīm un ķermeņa šķidrumiem vajadzīga aizsardzība.
+**User-friendly description (lv):** Saproti, kāpēc darbā ar asinīm un ķermeņa šķidrumiem vajadzīga aizsardzība.
 
 ##### Izpratne par vakcināciju
 
@@ -1062,7 +1062,7 @@ Skills: 5
 
 **Methodological description (English):** Distinguish how immunization reduces specified disease risks from claims of absolute protection and recognize the role of recommended schedules.
 
-**User-friendly description (lv):** Saprot, no kā vakcīnas aizsargā un kādi ir aizsardzības ierobežojumi.
+**User-friendly description (lv):** Saproti, no kā vakcīnas aizsargā un kādi ir aizsardzības ierobežojumi.
 
 ### Psihiskā labklājība un atbalsts
 
@@ -1218,7 +1218,7 @@ Skills: 3
 
 **Methodological description (English):** Use suitable lighting, viewing distance, breaks, and symptom awareness during sustained near or screen work.
 
-**User-friendly description (lv):** Mazina acu nogurumu, ilgstoši lasot vai lietojot ekrānu.
+**User-friendly description (lv):** Mazini acu nogurumu, ilgstoši lasot vai lietojot ekrānu.
 
 ##### Dzirdes aizsardzība pret troksni
 
@@ -1226,7 +1226,7 @@ Skills: 3
 
 **Methodological description (English):** Relate loudness and exposure time to hearing risk, including personal listening devices and noisy environments.
 
-**User-friendly description (lv):** Saprot, kāpēc gan skaļums, gan klausīšanās ilgums ietekmē dzirdes drošību.
+**User-friendly description (lv):** Saproti, kāpēc gan skaļums, gan klausīšanās ilgums ietekmē dzirdes drošību.
 
 #### Fiziskās aktivitātes
 
@@ -1396,7 +1396,7 @@ Skills: 5
 
 **Methodological description (English):** Relate sufficient heating to reducing specified foodborne hazards rather than relying only on colour or texture.
 
-**User-friendly description (lv):** Saprot, kāpēc svarīgi ēdienu kārtīgi pagatavot un atkārtoti uzsildīt.
+**User-friendly description (lv):** Saproti, kāpēc svarīgi ēdienu kārtīgi pagatavot un atkārtoti uzsildīt.
 
 ##### Droša pārtikas uzglabāšana
 
@@ -1430,7 +1430,7 @@ Skills: 4
 
 **Methodological description (English):** Recognize fluid needs and common signs of insufficient intake while accounting for activity, climate, and health circumstances.
 
-**User-friendly description (lv):** Saprot, kā aktivitātes un vide ietekmē šķidruma vajadzības.
+**User-friendly description (lv):** Saproti, kā aktivitātes un vide ietekmē šķidruma vajadzības.
 
 ##### Uztura enerģijas bilances izpratne
 
@@ -1822,7 +1822,7 @@ Skills: 4
 
 **Methodological description (English):** Recognize how fatigue, impairment, speed, distraction, and environmental conditions affect driving risk and the duty not to drive unsafely.
 
-**User-friendly description (lv):** Saprot, kāpēc novērsta uzmanība, ātrums un pasliktinātas spējas padara braukšanu bīstamu.
+**User-friendly description (lv):** Saproti, kāpēc novērsta uzmanība, ātrums un pasliktinātas spējas padara braukšanu bīstamu.
 
 #### Drošība uz ūdens
 
@@ -1874,7 +1874,7 @@ Skills: 6
 
 **Methodological description (English):** Account for wet clothing, wind, duration, suitable insulation, and warning signs of harmful cooling.
 
-**User-friendly description (lv):** Mazina aukstuma kaitējumu, izvairoties no slapjuma, vēja un uzturot siltumu.
+**User-friendly description (lv):** Mazini aukstuma kaitējumu, izvairoties no slapjuma, vēja un uzturot siltumu.
 
 ##### Novērst ar karstumu saistītas slimības
 

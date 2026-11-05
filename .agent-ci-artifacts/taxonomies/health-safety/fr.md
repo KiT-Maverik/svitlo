@@ -40,7 +40,7 @@ Skills: 4
 
 **Methodological description (English):** Identify advance-fee demands, fake prizes, fraudulent marketplaces, and requests to transfer funds outside trusted channels.
 
-**User-friendly description (fr):** Repère les faux prix, les demandes de paiement et les offres de vente frauduleuses.
+**User-friendly description (fr):** Repère les faux lots à gagner, les demandes de paiement et les offres de vente frauduleuses.
 
 ##### Reconnaître l'hameçonnage et l'usurpation d'identité
 

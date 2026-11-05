@@ -568,7 +568,7 @@ Skills: 3
 
 **User-friendly description (bn):** কখন বুক চাপ ও অন্যান্য CPR পদক্ষেপ দরকার হতে পারে তা শনাক্ত করো।
 
-##### গলায় খাবার আটকে গেলে প্রাথমিক চিকিৎসা
+##### শ্বাসনালি আটকে গেলে প্রাথমিক চিকিৎসা
 
 [firstAidForChoking.data.ts](../../../content/health-safety/data/skills/firstAidAndImmediateResponse/basicLifeSupport/skills/firstAidForChoking.data.ts)
 

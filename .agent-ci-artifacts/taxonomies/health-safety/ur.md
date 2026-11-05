@@ -22,7 +22,7 @@ Groups: 3 · Skills: 11
 
 **Methodological description (English):** Online environments expose people to privacy breaches, coercion, deception, and financial or personal exploitation. Computer security mechanisms belong primarily to Informatics; this domain concerns a person's protective decisions and recourse.
 
-**User-friendly description (ur):** ذاتی معلومات محفوظ رکھنا اور آن لائن دھوکے کا سامنا کرنا سیکھو۔
+**User-friendly description (ur):** ذاتی معلومات محفوظ رکھنا اور آن لائن دھوکے کا سامنا کرنا سیکھیں۔
 
 #### دھوکا دہی اور فریب پر مبنی دباؤ
 
@@ -32,7 +32,7 @@ Skills: 4
 
 **Methodological description (English):** Scams often combine impersonation, urgency, emotional leverage, and requests for information or money; persuasive framing is not proof of legitimacy.
 
-**User-friendly description (ur):** جعلی شناخت، جلدی اور مالی دباؤ والی ٹھگی پہچانو۔
+**User-friendly description (ur):** جعلی شناخت، جلدی اور مالی دباؤ والی ٹھگی پہچانیں۔
 
 ##### مالی دھوکے کے طریقے پہچاننا
 
@@ -40,7 +40,7 @@ Skills: 4
 
 **Methodological description (English):** Identify advance-fee demands, fake prizes, fraudulent marketplaces, and requests to transfer funds outside trusted channels.
 
-**User-friendly description (ur):** جعلی انعام، رقم دینے کے مطالبے اور دھوکے والی فروخت کی پیشکش پہچانو۔
+**User-friendly description (ur):** جعلی انعام، رقم دینے کے مطالبے اور دھوکے والی فروخت کی پیشکش پہچانیں۔
 
 ##### فشنگ اور جعلی شناخت پہچاننا
 
@@ -48,7 +48,7 @@ Skills: 4
 
 **Methodological description (English):** Inspect suspicious messages, sender claims, and links rather than trusting apparent identity or familiar branding.
 
-**User-friendly description (ur):** مشکوک لنکس اور پیغامات کی جانچ کرو، صرف شکل دیکھ کر اعتماد نہ کرو۔
+**User-friendly description (ur):** مشکوک لنکس اور پیغامات کی جانچ کریں، صرف شکل دیکھ کر اعتماد نہ کریں۔
 
 ##### دباؤ والے فریبی سودوں سے بچنا
 
@@ -56,7 +56,7 @@ Skills: 4
 
 **Methodological description (English):** When pressured by an urgent, secretive or fear-based offer, pause the requested action, decline unsafe disclosure or payment, seek independent verification through a known channel and disengage if the pressure continues.
 
-**User-friendly description (ur):** فوری قدم اٹھانے کا مطالبہ کرنے والی پیشکش روک کر آزادانہ تصدیق کرو۔
+**User-friendly description (ur):** فوری قدم اٹھانے کا مطالبہ کرنے والی پیشکش روک کر آزادانہ تصدیق کریں۔
 
 ##### دھوکے کے شبہے کے بعد قدم
 
@@ -64,7 +64,7 @@ Skills: 4
 
 **Methodological description (English):** Stop further interaction, secure affected access, preserve relevant evidence safely, and contact appropriate providers or authorities.
 
-**User-friendly description (ur):** ٹھگی کا شک ہونے پر اپنے اکاؤنٹس محفوظ کرو اور مناسب مدد لو۔
+**User-friendly description (ur):** ٹھگی کا شک ہونے پر اپنے اکاؤنٹس محفوظ کریں اور مناسب مدد لیں۔
 
 #### آن لائن رابطوں میں حفاظت
 
@@ -74,7 +74,7 @@ Skills: 4
 
 **Methodological description (English):** Digital abuse can extend beyond the screen; protective responses should prioritize personal safety, consent, and trustworthy reporting channels.
 
-**User-friendly description (ur):** ڈیجیٹل جگہوں پر نقصان دہ گفتگو سے نمٹنا سیکھو۔
+**User-friendly description (ur):** ڈیجیٹل جگہوں پر نقصان دہ گفتگو سے نمٹنا سیکھیں۔
 
 ##### ڈیجیٹل نقش قدم سنبھالنا
 
@@ -82,7 +82,7 @@ Skills: 4
 
 **Methodological description (English):** Consider persistence, redistribution, and audience of posted information, including the limits of deleting content after sharing.
 
-**User-friendly description (ur):** سمجھو کہ شیئر کی ہوئی معلومات حذف کرنے کے بعد بھی باقی رہ سکتی ہیں۔
+**User-friendly description (ur):** سمجھیں کہ شیئر کی ہوئی معلومات حذف کرنے کے بعد بھی باقی رہ سکتی ہیں۔
 
 ##### آن لائن جنسی استحصال سے بچاؤ
 
@@ -90,7 +90,7 @@ Skills: 4
 
 **Methodological description (English):** Recognize coercive requests for intimate images, grooming, and image-based threats and identify safe reporting options.
 
-**User-friendly description (ur):** نجی تصاویر یا آن لائن استحصال کی دھمکیاں پہچانو اور مدد مانگو۔
+**User-friendly description (ur):** نجی تصاویر یا آن لائن استحصال کی دھمکیاں پہچانیں اور مدد مانگیں۔
 
 ##### ٹیکنالوجی کے ذریعے ہراسانی پہچاننا
 
@@ -98,7 +98,7 @@ Skills: 4
 
 **Methodological description (English):** Identify the distinctive risks of persistent unwanted online contact, coordinated targeting, cross-platform stalking and harmful redistribution of content, including online forms of bullying, without duplicating the general recognition of harassment.
 
-**User-friendly description (ur):** آن لائن پلیٹ فارموں پر مسلسل ہراسانی اور پیچھا کرنے کو پہچانو۔
+**User-friendly description (ur):** آن لائن پلیٹ فارموں پر مسلسل ہراسانی اور پیچھا کرنے کو پہچانیں۔
 
 ##### نقصان دہ آن لائن رابطے پر ردعمل
 
@@ -106,7 +106,7 @@ Skills: 4
 
 **Methodological description (English):** Disengage, avoid retaliation or additional disclosure, and use appropriate blocking, reporting, or trusted-person support.
 
-**User-friendly description (ur):** نقصان دہ رابطہ ختم کرو اور مناسب شکایت کے راستے استعمال کرو۔
+**User-friendly description (ur):** نقصان دہ رابطہ ختم کریں اور مناسب شکایت کے راستے استعمال کریں۔
 
 #### رازداری اور اکاؤنٹ کا تحفظ
 
@@ -124,7 +124,7 @@ Skills: 3
 
 **Methodological description (English):** Identify sensitive details and consider audience, persistence, and consequences before sharing location, documents, or images.
 
-**User-friendly description (ur):** حساس معلومات پوسٹ کرنے سے پہلے سوچو انہیں کون دیکھ سکتا ہے۔
+**User-friendly description (ur):** حساس معلومات پوسٹ کرنے سے پہلے سوچیں انہیں کون دیکھ سکتا ہے۔
 
 ##### غیر محفوظ رسائی کی درخواستیں پہچاننا
 
@@ -132,7 +132,7 @@ Skills: 3
 
 **Methodological description (English):** Distinguish legitimate authentication from requests for passwords, verification codes, or remote access by untrusted parties.
 
-**User-friendly description (ur):** پاس ورڈ یا تصدیقی کوڈ مانگنے کی مشکوک درخواستیں پہچانو۔
+**User-friendly description (ur):** پاس ورڈ یا تصدیقی کوڈ مانگنے کی مشکوک درخواستیں پہچانیں۔
 
 ##### روزمرہ اکاؤنٹس محفوظ بنانا
 
@@ -140,7 +140,7 @@ Skills: 3
 
 **Methodological description (English):** Apply unique credentials, available multifactor authentication, and safe recovery practices without requiring implementation of security systems.
 
-**User-friendly description (ur):** مضبوط پاس ورڈ اور اکاؤنٹ بحالی کے طریقوں سے رسائی محفوظ رکھو۔
+**User-friendly description (ur):** مضبوط پاس ورڈ اور اکاؤنٹ بحالی کے طریقوں سے رسائی محفوظ رکھیں۔
 
 ### ہنگامی حالات اور شہری تحفظ
 
@@ -540,7 +540,7 @@ Groups: 5 · Skills: 25
 
 **Methodological description (English):** Immediate assistance aims to recognize danger, activate professional help, and provide appropriate basic interventions within training and scene safety. Clinical treatment and invasive procedures are not implied by inclusion in the taxonomy.
 
-**User-friendly description (ur):** فوری خطرے کو پہچاننا، مدد بلانا اور مناسب بنیادی امداد دینا سیکھو۔
+**User-friendly description (ur):** فوری خطرے کو پہچاننا، مدد بلانا اور مناسب بنیادی امداد دینا سیکھیں۔
 
 #### بنیادی زندگی بچانے کی امداد
 
@@ -558,7 +558,7 @@ Skills: 3
 
 **Methodological description (English):** Recognize an AED, follow its prompts, and coordinate its use with resuscitation while maintaining scene safety.
 
-**User-friendly description (ur):** احیا کے دوران AED کی ہدایات پر عمل کرنا سمجھو۔
+**User-friendly description (ur):** احیا کے دوران AED کی ہدایات پر عمل کرنا سمجھیں۔
 
 ##### قلبی و تنفسی احیا
 
@@ -566,7 +566,7 @@ Skills: 3
 
 **Methodological description (English):** Recognize when CPR is indicated and apply current age-appropriate basic life support principles within the responder's training.
 
-**User-friendly description (ur):** پہچانو کہ سینے کے دباؤ اور CPR کے دیگر اقدامات کب درکار ہو سکتے ہیں۔
+**User-friendly description (ur):** پہچانیں کہ سینے کے دباؤ اور CPR کے دیگر اقدامات کب درکار ہو سکتے ہیں۔
 
 ##### سانس کی نالی بند ہونے پر ابتدائی امداد
 
@@ -574,7 +574,7 @@ Skills: 3
 
 **Methodological description (English):** Distinguish effective coughing from severe airway obstruction and follow appropriate age-specific first-aid guidance rather than improvising.
 
-**User-friendly description (ur):** سانس کی نالی میں رکاوٹ کی ہنگامی حالت اور عمر کے مطابق مناسب ردعمل پہچانو۔
+**User-friendly description (ur):** سانس کی نالی میں رکاوٹ کی ہنگامی حالت اور عمر کے مطابق مناسب ردعمل پہچانیں۔
 
 #### خون بہنا اور چوٹیں
 
@@ -584,7 +584,7 @@ Skills: 5
 
 **Methodological description (English):** First aid aims to prevent immediate deterioration while avoiding unnecessary manipulation or delay in definitive medical care.
 
-**User-friendly description (ur):** ماہر مدد کے انتظار میں چوٹ اور بیرونی خون بہنے کو محدود کرنے کے طریقے سیکھو۔
+**User-friendly description (ur):** ماہر مدد کے انتظار میں چوٹ اور بیرونی خون بہنے کو محدود کرنے کے طریقے سیکھیں۔
 
 ##### معمولی زخموں کی دیکھ بھال
 
@@ -592,7 +592,7 @@ Skills: 5
 
 **Methodological description (English):** Reduce contamination, control minor bleeding, and recognize wounds requiring professional evaluation.
 
-**User-friendly description (ur):** چھوٹے زخم صاف اور محفوظ رکھو اور پہچانو کہ طبی معائنہ کب چاہیے۔
+**User-friendly description (ur):** چھوٹے زخم صاف اور محفوظ رکھیں اور پہچانیں کہ طبی معائنہ کب چاہیے۔
 
 ##### بیرونی خون بہنا روکنا
 
@@ -600,7 +600,7 @@ Skills: 5
 
 **Methodological description (English):** Apply appropriate direct pressure and escalation when bleeding is severe, while protecting the responder from body-fluid exposure.
 
-**User-friendly description (ur):** اپنی حفاظت کرتے ہوئے مناسب دباؤ سے خون بہنے کو قابو کرو۔
+**User-friendly description (ur):** اپنی حفاظت کرتے ہوئے مناسب دباؤ سے خون بہنے کو قابو کریں۔
 
 ##### ممکنہ ہڈی ٹوٹنے پر اسے بے حرکت رکھنا
 
@@ -608,7 +608,7 @@ Skills: 5
 
 **Methodological description (English):** Limit movement and provide appropriate support without attempting to straighten a suspected fracture or dislocation.
 
-**User-friendly description (ur):** ممکنہ ٹوٹی ہڈی کو سہارا دو، اسے سیدھا کرنے کی کوشش نہ کرو۔
+**User-friendly description (ur):** ممکنہ ٹوٹی ہڈی کو سہارا دیں، اسے سیدھا کرنے کی کوشش نہ کریں۔
 
 ##### سر اور ریڑھ کی چوٹ کا خطرہ پہچاننا
 
@@ -616,7 +616,7 @@ Skills: 5
 
 **Methodological description (English):** Identify concerning mechanisms or symptoms and avoid unnecessary movement while arranging urgent evaluation.
 
-**User-friendly description (ur):** سمجھو کہ سر یا ریڑھ کی ممکنہ چوٹ میں احتیاط کیوں ضروری ہے۔
+**User-friendly description (ur):** سمجھیں کہ سر یا ریڑھ کی ممکنہ چوٹ میں احتیاط کیوں ضروری ہے۔
 
 ##### ضرورت ہو تو ٹورنیکیٹ استعمال کرنا
 
@@ -624,7 +624,7 @@ Skills: 5
 
 **Methodological description (English):** Recognize life-threatening limb bleeding and the need for a correctly applied tourniquet according to current training and guidance.
 
-**User-friendly description (ur):** سمجھو کہ بازو یا ٹانگ سے شدید خون بہنے پر تربیت یافتہ فرد کو ٹورنیکیٹ کب لگانا چاہیے۔
+**User-friendly description (ur):** سمجھیں کہ بازو یا ٹانگ سے شدید خون بہنے پر تربیت یافتہ فرد کو ٹورنیکیٹ کب لگانا چاہیے۔
 
 #### ماحولیاتی اور اچانک چوٹیں
 
@@ -642,7 +642,7 @@ Skills: 5
 
 **Methodological description (English):** Prioritize rescuer protection, interruption of exposure when safe and appropriate professional or poison-service instructions for skin, eye or inhalation contact; avoid improvised neutralization or hazardous handling.
 
-**User-friendly description (ur):** نقصان دہ کیمیائی مادے کے بعد خود کو محفوظ رکھو اور مناسب ہدایات حاصل کرو۔
+**User-friendly description (ur):** نقصان دہ کیمیائی مادے کے بعد خود کو محفوظ رکھیں اور مناسب ہدایات حاصل کریں۔
 
 ##### گرمی سے جلنے پر ابتدائی امداد
 
@@ -650,7 +650,7 @@ Skills: 5
 
 **Methodological description (English):** End thermal exposure when safe, cool a heat burn appropriately and recognize features that require urgent medical assessment; chemical injuries require different hazard-specific precautions.
 
-**User-friendly description (ur):** جلنے پر ابتدائی ٹھنڈک اور کب فوری طبی مدد درکار ہے، سمجھو۔
+**User-friendly description (ur):** جلنے پر ابتدائی ٹھنڈک اور کب فوری طبی مدد درکار ہے، سمجھیں۔
 
 ##### ڈوبنے کے بعد ابتدائی امداد
 
@@ -658,7 +658,7 @@ Skills: 5
 
 **Methodological description (English):** Recognize the special urgency of impaired breathing after submersion, arrange emergency response and apply appropriate current resuscitation and monitoring guidance within training; do not delay vital assistance for nonessential actions.
 
-**User-friendly description (ur):** ڈوبنے کے بعد سانس کے فوری خطرات اور ہنگامی مدد کی ضرورت پہچانو۔
+**User-friendly description (ur):** ڈوبنے کے بعد سانس کے فوری خطرات اور ہنگامی مدد کی ضرورت پہچانیں۔
 
 ##### گرمی سے بیماری میں مدد
 
@@ -666,7 +666,7 @@ Skills: 5
 
 **Methodological description (English):** Distinguish concerning heat-related symptoms and prioritize safe cooling and escalation for severe illness.
 
-**User-friendly description (ur):** شدید گرمی کی بیماری اور ٹھنڈک و فوری طبی مدد کی ضرورت پہچانو۔
+**User-friendly description (ur):** شدید گرمی کی بیماری اور ٹھنڈک و فوری طبی مدد کی ضرورت پہچانیں۔
 
 ##### جسم کا درجہ حرارت بہت کم ہونے پر مدد
 
@@ -674,7 +674,7 @@ Skills: 5
 
 **Methodological description (English):** Limit further cooling, handle an affected person carefully, and recognize that severe cold exposure needs urgent assessment.
 
-**User-friendly description (ur):** مزید حرارت ضائع ہونے سے بچاؤ اور خطرناک سردی لگنے پر طبی معائنہ کراؤ۔
+**User-friendly description (ur):** مزید جسمانی حرارت کے ضیاع کو روکیں اور خطرناک سردی لگنے پر طبی معائنہ کروائیں۔
 
 #### ابتدائی جانچ اور مدد
 
@@ -692,7 +692,7 @@ Skills: 4
 
 **Methodological description (English):** Recognize absent or abnormal breathing as a medical emergency without delaying the call for help.
 
-**User-friendly description (ur):** غیر معمولی یا بند سانس کو پہچانو جس میں فوری قدم ضروری ہے۔
+**User-friendly description (ur):** غیر معمولی یا بند سانس کو پہچانیں جس میں فوری قدم ضروری ہے۔
 
 ##### ردعمل کی جانچ
 
@@ -700,7 +700,7 @@ Skills: 4
 
 **Methodological description (English):** Check whether a person responds and recognize when reduced responsiveness requires immediate escalation.
 
-**User-friendly description (ur):** پہچانو کہ کوئی شخص معمول کے مطابق جواب نہیں دے رہا۔
+**User-friendly description (ur):** پہچانیں کہ کوئی شخص معمول کے مطابق جواب نہیں دے رہا۔
 
 ##### مدد سے پہلے جگہ کی حفاظت جانچنا
 
@@ -708,7 +708,7 @@ Skills: 4
 
 **Methodological description (English):** Identify traffic, fire, electricity, violence, contamination, or unstable surroundings before approaching an affected person.
 
-**User-friendly description (ur):** دیکھو کہ زخمی شخص کے قریب جانا تمھارے لیے خطرناک تو نہیں۔
+**User-friendly description (ur):** دیکھیں کہ زخمی شخص کے قریب جانا آپ کے لیے خطرناک تو نہیں۔
 
 ##### بے ہوش مگر معمول کے مطابق سانس لینے والے کی دیکھ بھال
 
@@ -716,7 +716,7 @@ Skills: 4
 
 **Methodological description (English):** Provide appropriate positioning and continuous monitoring while arranging urgent help for an unresponsive person who breathes normally; account for possible trauma and avoid unnecessary movement.
 
-**User-friendly description (ur):** مدد پہنچنے تک سانس لینے والے بے جواب شخص کی مدد اور نگرانی کرو۔
+**User-friendly description (ur):** مدد پہنچنے تک سانس لینے والے بے جواب شخص کی مدد اور نگرانی کریں۔
 
 #### طبی ہنگامی حالات
 
@@ -726,7 +726,7 @@ Skills: 8
 
 **Methodological description (English):** Prompt recognition and appropriate escalation are more important than attempting diagnosis or administering unfamiliar medication.
 
-**User-friendly description (ur):** ایسی خطرے کی علامتیں پہچانو جن میں فوری طبی مدد ضروری ہے۔
+**User-friendly description (ur):** ایسی خطرے کی علامتیں پہچانیں جن میں فوری طبی مدد ضروری ہے۔
 
 ##### دل کے دورے کی علامات پہچاننا
 
@@ -734,7 +734,7 @@ Skills: 8
 
 **Methodological description (English):** Identify concerning chest discomfort and associated symptoms as possible medical emergencies requiring timely assistance.
 
-**User-friendly description (ur):** ایسی علامات پہچانو جو دل کے دورے کا اشارہ ہو سکتی ہیں۔
+**User-friendly description (ur):** ایسی علامات پہچانیں جو دل کے دورے کا اشارہ ہو سکتی ہیں۔
 
 ##### فالج کی علامات پہچاننا
 
@@ -742,7 +742,7 @@ Skills: 8
 
 **Methodological description (English):** Use sudden neurological changes as reasons for urgent emergency response, even if symptoms appear to improve.
 
-**User-friendly description (ur):** اچانک ظاہر ہونے والی علامات پہچانو جو فالج کا اشارہ ہو سکتی ہیں۔
+**User-friendly description (ur):** اچانک ظاہر ہونے والی علامات پہچانیں جو فالج کا اشارہ ہو سکتی ہیں۔
 
 ##### دوروں کے دوران مدد
 
@@ -750,7 +750,7 @@ Skills: 8
 
 **Methodological description (English):** Protect the person from surrounding injury, avoid harmful restraint, and recognize conditions requiring urgent assistance.
 
-**User-friendly description (ur):** دورہ پڑنے والے شخص کو محفوظ رکھو مگر زبردستی نہ پکڑو۔
+**User-friendly description (ur):** دورہ پڑنے والے شخص کو محفوظ رکھیں مگر زبردستی نہ پکڑیں۔
 
 ##### شدید الرجی پر مدد
 
@@ -758,7 +758,7 @@ Skills: 8
 
 **Methodological description (English):** Recognize possible anaphylaxis and the need for rapid emergency help and appropriate trained use of prescribed rescue medication.
 
-**User-friendly description (ur):** شدید الرجی کو فوری علاج درکار ہنگامی حالت کے طور پر پہچانو۔
+**User-friendly description (ur):** شدید الرجی کو فوری علاج درکار ہنگامی حالت کے طور پر پہچانیں۔
 
 ##### شدید سانس کی تکلیف پر مدد
 
@@ -766,7 +766,7 @@ Skills: 8
 
 **Methodological description (English):** Recognize major difficulty breathing, severe respiratory distress or rapidly worsening symptoms as reasons to activate emergency assistance and support a safe position while awaiting qualified care.
 
-**User-friendly description (ur):** سانس لینے میں شدید یا بڑھتی دشواری پر فوری مدد حاصل کرو۔
+**User-friendly description (ur):** سانس لینے میں شدید یا بڑھتی دشواری پر فوری مدد حاصل کریں۔
 
 ##### ممکنہ کم بلڈ شوگر پر مدد
 
@@ -774,7 +774,7 @@ Skills: 8
 
 **Methodological description (English):** Recognize possible low blood glucose and distinguish safe assistance for a person who is fully alert and can swallow from the need for urgent help when consciousness or swallowing is impaired.
 
-**User-friendly description (ur):** کم خون کی شکر پہچانو اور سمجھو کہ نگلنا غیر محفوظ ہو تو منہ سے کچھ دینا خطرناک ہے۔
+**User-friendly description (ur):** کم خون کی شکر پہچانیں اور سمجھیں کہ نگلنا غیر محفوظ ہو تو منہ سے کچھ دینا خطرناک ہے۔
 
 ##### ممکنہ اوپیئڈ کی زائد خوراک پر مدد
 
@@ -782,7 +782,7 @@ Skills: 8
 
 **Methodological description (English):** Recognize dangerous respiratory depression or unresponsiveness following possible opioid exposure, activate emergency services and understand the role of naloxone and basic life support where available and within training.
 
-**User-friendly description (ur):** اوپیئڈ اوورڈوز کی علامات اور ہنگامی مدد و نالوکسون کی ضرورت پہچانو۔
+**User-friendly description (ur):** اوپیئڈ اوورڈوز کی علامات اور ہنگامی مدد و نالوکسون کی ضرورت پہچانیں۔
 
 ##### ممکنہ زہر خورانی پر مدد
 
@@ -790,7 +790,7 @@ Skills: 8
 
 **Methodological description (English):** Identify possible toxic exposures, prevent further exposure without risking the helper and seek poison-service or emergency guidance; do not induce vomiting or improvise remedies. Opioid-specific response is addressed separately.
 
-**User-friendly description (ur):** اپنے طور پر علاج کرنے کے بجائے زہریلے مادوں یا ایمرجنسی ماہر کی ہدایت لو۔
+**User-friendly description (ur):** اپنے طور پر علاج کرنے کے بجائے زہریلے مادوں یا ایمرجنسی ماہر کی ہدایت لیں۔
 
 ### صحت سے آگاہی اور دیکھ بھال
 
