@@ -64,7 +64,7 @@ export const respondToAPhilosophicalObjection_Skill_Data = buildSkillConfig({
       lv: 'Atbildi uz iebilduma būtību, nevis uzbrūc tā autoram.',
       et: 'Vasta vastuväite sisule, mitte ära ründa selle esitajat.',
       be: 'Адказвай на сутнасьць пярэчаньня, а не нападай на таго, хто яго выказаў.',
-      ka: 'უპასუხე წინააღმდეგობის არსს და არა მის ავტორს შეუტიო.',
+      ka: 'უპასუხე წინააღმდეგობის არსს და მის ავტორს ნუ დაესხმები თავს.',
       kk: 'Қарсылық білдірген адамға тиісудің орнына, қарсылықтың мәніне жауап бер.',
       qm: 'İtiraz etken adamğa hücüm etmeden, itiraznıñ özüne cevap ber.',
     },
