@@ -7,10 +7,19 @@ import { renderTextbookLessonFiles, writeLessonFiles } from '@svitlo/engine/util
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../..');
 
 async function main(args) {
-  if (args.length !== 3 || args[0] !== '--package' || !['--write', '--check'].includes(args[2])) {
-    throw new Error('Usage: --package content/<textbook> --write|--check');
+  let packageName;
+  let outputOverride;
+  let action;
+  for (let i = 0; i < args.length; i++) {
+    if (args[i] === '--package' && !packageName) packageName = args[++i];
+    else if (args[i] === '--output' && !outputOverride) outputOverride = args[++i];
+    else if (['--write', '--check'].includes(args[i]) && !action) action = args[i];
+    else throw new Error('Usage: --package content/<textbook> [--output <repo-relative-dir>] --write|--check');
   }
-  const packageDirectory = path.resolve(repoRoot, args[1]);
+  if (!packageName || !action || (outputOverride !== undefined && !outputOverride)) {
+    throw new Error('Usage: --package content/<textbook> [--output <repo-relative-dir>] --write|--check');
+  }
+  const packageDirectory = path.resolve(repoRoot, packageName);
   if (
     !packageDirectory.startsWith(path.join(repoRoot, 'content') + path.sep) ||
     !fs.existsSync(path.join(packageDirectory, 'package.json'))
@@ -18,8 +27,11 @@ async function main(args) {
     throw new Error('Invalid textbook package');
   }
   const files = await renderTextbookLessonFiles(packageDirectory);
-  const output = path.join(packageDirectory, 'public/data/pages/lessons');
-  if (args[2] === '--write') {
+  const output = outputOverride
+    ? path.resolve(repoRoot, outputOverride)
+    : path.join(packageDirectory, 'public/data/pages/lessons');
+  if (!output.startsWith(repoRoot + path.sep)) throw new Error('Output must stay inside the repository');
+  if (action === '--write') {
     writeLessonFiles(output, files);
     console.log(`Published ${files.size} lesson files in ${output}`);
     return;
