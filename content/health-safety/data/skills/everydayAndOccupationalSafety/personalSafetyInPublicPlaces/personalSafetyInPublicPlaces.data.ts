@@ -72,7 +72,7 @@ export const personalSafetyInPublicPlaces_SkillGroup_Data = buildSkillGroupConfi
       be: 'Навучыся рэагаваць на непрыемныя кантакты і разлуку з суправаджаючымі ў грамадзкіх месцах.',
       ka: 'ისწავლე საჯარო სივრცეში არასასიამოვნო მიახლოების ან თანმხლები პირის დაკარგვის დროს მოქმედება.',
       kk: 'Қоғамдық жерде жайсыз жақындасуға не серіктерден адасуға қалай әрекет ету керегін үйрен.',
-      qm: 'Cemaat yerinde raatsız etken yaqınlaşuvlarğa ya da yol taşlarından ayrıluvğa nasıl cevap bermege ögren.',
+      qm: 'Cemaat yerinde raatsız etken yaqınlaşuvlarğa ya da yoldaşlarıñdan ayrıluvğa nasıl cevap bermege ögren.',
     },
   },
 });
