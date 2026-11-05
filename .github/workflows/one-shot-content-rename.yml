@@ -1,0 +1,78 @@
+name: One-shot textbook directory migration
+
+on:
+  push:
+    branches:
+      - refactor/rename-learningapps-to-content
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Move packages and update all tracked path references
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import os
+          import subprocess
+          from pathlib import Path
+
+          if not Path('learningApps').is_dir() or Path('content').exists():
+              raise SystemExit('Unexpected source/destination directory; aborting migration')
+          subprocess.run(['git', 'mv', 'learningApps', 'content'], check=True)
+          paths = [os.fsdecode(p) for p in subprocess.check_output(['git', 'ls-files', '-z']).split(b'\0') if p]
+          old = b'learningApps'
+          changed = []
+          instances = 0
+          for filename in paths:
+              path = Path(filename)
+              if not path.is_file() or path.is_symlink():
+                  continue
+              value = path.read_bytes()
+              if old not in value:
+                  continue
+              if b'\0' in value:
+                  raise SystemExit(f'Unexpected legacy directory bytes in binary file: {filename}')
+              try:
+                  value.decode('utf-8')
+              except UnicodeDecodeError:
+                  raise SystemExit(f'Unexpected non-UTF-8 legacy directory reference: {filename}')
+              instances += value.count(old)
+              path.write_bytes(value.replace(old, b'content'))
+              changed.append(filename)
+          print(f'Renamed textbook root; updated {instances} literal occurrences across {len(changed)} tracked UTF-8 files')
+          for name in changed:
+              print(f'updated: {name}')
+          PY
+          # This workflow is a disposable migration runner and must NOT ship in the PR.
+          git rm -- .github/workflows/one-shot-content-rename.yml
+          git add -A
+          git diff --cached --check
+          if git grep --cached -n 'learningApps' -- .; then
+            echo '::error::Legacy directory name remains in tracked sources'
+            exit 1
+          fi
+          node scripts/check-workspaces.mjs
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m "refactor: move textbook packages to content and update paths"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+      - name: Install and validate workspace migration
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci
+          npm run packages:check
+          npm run test:taxonomy-generator
+          npm run typecheck
