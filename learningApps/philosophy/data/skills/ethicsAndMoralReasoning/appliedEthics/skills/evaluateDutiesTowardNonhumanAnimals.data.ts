@@ -25,7 +25,7 @@ export const evaluateDutiesTowardNonhumanAnimals_Skill_Data = buildSkillConfig({
     ms: 'Menilai kewajipan terhadap haiwan bukan manusia',
     he: 'הערכת חובות כלפי בעלי חיים שאינם בני אדם',
     pl: 'Ocena obowiązków wobec zwierząt innych niż ludzie',
-    uk: 'Оцінювати моральні обов’язки щодо інших тварин'
+    uk: 'Оцінювати моральні обов’язки щодо інших тварин',
     lt: 'Vertinti pareigas nežmogiškųjų gyvūnų atžvilgiu',
     lv: 'Novērtēt pienākumus pret dzīvniekiem, kas nav cilvēki',
     et: 'Hinnata kohustusi teiste loomade ees',
@@ -59,7 +59,7 @@ export const evaluateDutiesTowardNonhumanAnimals_Skill_Data = buildSkillConfig({
       ms: 'Teliti sebab moral untuk mempertimbangkan kebajikan haiwan bukan manusia.',
       he: 'בחנו נימוקים מוסריים להתחשבות ברווחת בעלי חיים שאינם בני אדם.',
       pl: 'Zbadaj moralne powody uwzględniania dobrostanu zwierząt innych niż ludzie.',
-      uk: 'Досліджуй моральні підстави враховувати добробут інших тварин.'
+      uk: 'Досліджуй моральні підстави враховувати добробут інших тварин.',
       lt: 'Nagrinėk moralinius argumentus, kodėl svarbu atsižvelgti į gyvūnų gerovę.',
       lv: 'Izpēti morālus iemeslus ņemt vērā dzīvnieku labklājību.',
       et: 'Uuri moraalseid põhjuseid arvestada teiste loomade heaoluga.',
