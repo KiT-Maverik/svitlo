@@ -65,7 +65,7 @@ export const additiveManufacturing_Skill_Data = buildSkillConfig({
       be: "Зразумей, як адытыўныя працэсы ствараюць дэталі пласт за пластом.",
       ka: "გაიგე, როგორ ქმნის ადიტიური პროცესი დეტალებს ფენა-ფენა.",
       kk: "Аддитивті үдерістердің бөлшектерді қабат-қабат қалай жасайтынын түсін.",
-      qm: "Qatlamlı imal usullarınıñ parçalar­nı qat-qat nasıl qurğanını añla.",
+      qm: "Qatlamlı imal usullarınıñ parçalarnı qat-qat nasıl qurğanını añla.",
     },
   },
 });
