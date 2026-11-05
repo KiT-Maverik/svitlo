@@ -1,0 +1,79 @@
+name: Philosophy Skills strict validation
+
+on:
+  pull_request:
+    branches:
+      - main
+      - feat/philosophy-skills-integration
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths:
+      - 'learningApps/philosophy/data/skills/**'
+      - '.github/workflows/philosophy-skills-validation.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: philosophy-skills-validation-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Philosophy Skills / real taxonomy and strict TypeScript
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install exact locked dependencies
+        run: npm ci
+      - name: Validate workspace manifests
+        run: node scripts/check-workspaces.mjs
+      - name: Validate Philosophy taxonomy graph
+        run: node scripts/check-skills-taxonomy-structure.mjs learningApps/philosophy/data/skills
+      - name: Build real contracts and engine
+        run: |
+          npm run build --workspace @svitlo/contracts
+          npm run build --workspace @svitlo/engine
+      - name: Strict scoped TypeScript over every assigned agent entity
+        if: github.base_ref == 'feat/philosophy-skills-integration'
+        env:
+          AGENT_BRANCH: ${{ github.head_ref }}
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const assignments = {
+            'feat/philosophy-skills-agent-1': ['philosophicalInquiry', 'logicAndArgumentation'],
+            'feat/philosophy-skills-agent-2': ['epistemologyAndCriticalEvaluation', 'philosophyOfScience', 'metaphysics'],
+            'feat/philosophy-skills-agent-3': ['philosophyOfReligion', 'mindSelfAndHumanExistence', 'ethicsAndMoralReasoning'],
+            'feat/philosophy-skills-agent-4': ['socialAndPoliticalPhilosophy', 'philosophyOfLanguage', 'aestheticsAndPhilosophyOfArt', 'historyAndTraditionsOfPhilosophy'],
+          };
+          const assigned = assignments[process.env.AGENT_BRANCH];
+          if (!assigned) throw new Error('Unknown Philosophy agent branch: ' + process.env.AGENT_BRANCH);
+          const include = assigned.map(domain => 'data/skills/' + domain + '/**/*.ts');
+          const cfg = {
+            extends: './tsconfig.json',
+            compilerOptions: { strict: true, incremental: false },
+            include,
+            exclude: [],
+          };
+          const path = 'learningApps/philosophy/tsconfig.agent-validation.tmp.json';
+          fs.writeFileSync(path, JSON.stringify(cfg, null, 2) + '\n');
+          console.log('Validating full assigned domain source:', include);
+          NODE
+          npx tsc --noEmit --project learningApps/philosophy/tsconfig.agent-validation.tmp.json
+      - name: Diagnose full workspace TypeScript on agent PR (may fail on other unfinished domains)
+        if: github.base_ref == 'feat/philosophy-skills-integration'
+        continue-on-error: true
+        run: npm run typecheck --workspace @svitlo/philosophy
+      - name: Full Philosophy TypeScript with all authored data
+        if: github.base_ref == 'main'
+        run: npm run typecheck --workspace @svitlo/philosophy
+      - name: Philosophy app build after integration
+        if: github.base_ref == 'main'
+        run: npm run build --workspace @svitlo/philosophy
