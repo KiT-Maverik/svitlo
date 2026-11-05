@@ -46,7 +46,7 @@ export const firstAidForChoking_Skill_Data = buildSkillConfig({
       fr: "Reconnais une obstruction des voies respiratoires et la réponse adaptée à l'âge.",
       bn: 'শ্বাসনালি আটকে যাওয়ার জরুরি অবস্থা ও বয়স অনুযায়ী ব্যবস্থা চিনে নাও।',
       pt: 'Reconheça emergências por obstrução das vias aéreas e a resposta adequada à idade.',
-      ur: 'سانس کی نالی میں رکاوٹ کی ہنگامی حالت اور عمر کے مطابق مناسب ردعمل پہچانو۔',
+      ur: 'سانس کی نالی میں رکاوٹ کی ہنگامی حالت اور عمر کے مطابق مناسب ردعمل پہچانیں۔',
       id: 'Kenali keadaan darurat akibat tersedak dan penanganan yang sesuai usia.',
       de: 'Erkenne eine akute Atemwegsverlegung und die altersgerechte Reaktion.',
       ja: '気道が詰まる緊急事態と年齢に応じた対応を見分けよう。',

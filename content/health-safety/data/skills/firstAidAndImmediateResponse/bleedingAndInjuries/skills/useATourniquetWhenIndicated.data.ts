@@ -46,7 +46,7 @@ export const useATourniquetWhenIndicated_Skill_Data = buildSkillConfig({
       fr: "Comprends quand un saignement grave d'un membre peut nécessiter un garrot posé par une personne formée.",
       bn: 'হাত-পায়ে গুরুতর রক্তপাত হলে প্রশিক্ষিতভাবে টুর্নিকেট কখন দরকার হতে পারে বোঝো।',
       pt: 'Entenda quando um sangramento grave em membro pode exigir torniquete aplicado por pessoa treinada.',
-      ur: 'سمجھو کہ بازو یا ٹانگ سے شدید خون بہنے پر تربیت یافتہ فرد کو ٹورنیکیٹ کب لگانا چاہیے۔',
+      ur: 'سمجھیں کہ بازو یا ٹانگ سے شدید خون بہنے پر تربیت یافتہ فرد کو ٹورنیکیٹ کب لگانا چاہیے۔',
       id: 'Pahami kapan perdarahan hebat pada anggota tubuh memerlukan penggunaan torniket oleh orang terlatih.',
       de: 'Verstehe, wann bei starker Blutung an Armen oder Beinen ein geschulter Tourniquet-Einsatz nötig sein kann.',
       ja: '手足の大量出血で訓練を受けた人による止血帯の使用が必要になる場合を理解しよう。',

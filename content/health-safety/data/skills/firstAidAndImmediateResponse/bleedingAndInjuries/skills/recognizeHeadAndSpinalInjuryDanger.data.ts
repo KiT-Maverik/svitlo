@@ -46,7 +46,7 @@ export const recognizeHeadAndSpinalInjuryDanger_Skill_Data = buildSkillConfig({
       fr: 'Comprends pourquoi une blessure présumée à la tête ou à la colonne exige des précautions.',
       bn: 'মাথা বা মেরুদণ্ডে আঘাতের সন্দেহ হলে সাবধানে সামলানো কেন জরুরি বোঝো।',
       pt: 'Entenda por que possíveis lesões na cabeça ou coluna exigem cuidados.',
-      ur: 'سمجھو کہ سر یا ریڑھ کی ممکنہ چوٹ میں احتیاط کیوں ضروری ہے۔',
+      ur: 'سمجھیں کہ سر یا ریڑھ کی ممکنہ چوٹ میں احتیاط کیوں ضروری ہے۔',
       id: 'Pahami mengapa dugaan cedera kepala atau tulang belakang memerlukan penanganan hati-hati.',
       de: 'Verstehe, warum vermutete Kopf- oder Wirbelsäulenverletzungen besonders vorsichtig behandelt werden müssen.',
       ja: '頭や背骨のけがが疑われる場合に慎重な対応が必要な理由を理解しよう。',

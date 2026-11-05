@@ -46,7 +46,7 @@ export const controlExternalBleeding_Skill_Data = buildSkillConfig({
       fr: 'Exerce une pression adaptée pour réduire le saignement tout en te protégeant.',
       bn: 'নিজেকে নিরাপদ রেখে উপযুক্ত চাপ দিয়ে রক্তপাত নিয়ন্ত্রণ করো।',
       pt: 'Use pressão adequada para controlar o sangramento enquanto protege a si mesmo.',
-      ur: 'اپنی حفاظت کرتے ہوئے مناسب دباؤ سے خون بہنے کو قابو کرو۔',
+      ur: 'اپنی حفاظت کرتے ہوئے مناسب دباؤ سے خون بہنے کو قابو کریں۔',
       id: 'Gunakan tekanan yang tepat untuk mengurangi perdarahan sambil melindungi diri.',
       de: 'Übe geeigneten Druck aus, um Blutungen zu begrenzen, und schütze dich dabei selbst.',
       ja: '自分の安全を守りつつ適切に圧迫して出血を抑えよう。',
