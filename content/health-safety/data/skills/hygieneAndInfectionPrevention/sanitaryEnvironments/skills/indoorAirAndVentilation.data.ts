@@ -60,7 +60,7 @@ export const indoorAirAndVentilation_Skill_Data = buildSkillConfig({
       he: 'אווררו כדי לצמצם חשיפה בתוך הבית, תוך התחשבות בסיכונים בחוץ.',
       pl: 'Wietrz pomieszczenia, by zmniejszać narażenie, uwzględniając zagrożenia na zewnątrz.',
       uk: 'Провітрюй приміщення, зважаючи на небезпеки зовні, щоб зменшувати вплив забруднень.',
-      lt: 'Vėdink patalpas, kad mažintum poveikį, atsižvelgdamas į lauko pavojus.',
+      lt: 'Vėdink patalpas, kad sumažintum poveikį, bet įvertink ir lauko pavojus.',
       lv: 'Vēdini telpas, lai mazinātu iedarbību, ņemot vērā āra apdraudējumus.',
       et: 'Tuuluta ruume, arvestades väliste ohtudega, et vähendada kokkupuudet.',
       be: 'Праветрывай памяшканьні, улічваючы небясьпекі звонку, каб зьмяншаць узьдзеяньне.',

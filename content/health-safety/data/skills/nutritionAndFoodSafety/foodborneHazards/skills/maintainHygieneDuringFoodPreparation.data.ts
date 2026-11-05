@@ -60,7 +60,7 @@ export const maintainHygieneDuringFoodPreparation_Skill_Data = buildSkillConfig(
       he: 'שמרו על ידיים ומשטחי מטבח נקיים בזמן הכנת מזון.',
       pl: 'Podczas przygotowywania jedzenia dbaj o czystość rąk i powierzchni kuchennych.',
       uk: 'Під час приготування їжі тримай руки та кухонні поверхні чистими.',
-      lt: 'Ruošdamas maistą laikyk rankas ir virtuvės paviršius švarius.',
+      lt: 'Ruošk maistą švariomis rankomis ir palaikyk švarius virtuvės paviršius.',
       lv: 'Gatavojot ēdienu, uzturi rokas un virtuves virsmas tīras.',
       et: 'Hoia toitu valmistades käed ja köögipinnad puhtad.',
       be: 'Падчас прыгатаваньня ежы трымай рукі й кухонныя паверхні чыстымі.',

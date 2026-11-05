@@ -60,7 +60,7 @@ export const respondSafelyToBullying_Skill_Data = buildSkillConfig({
       he: 'בחרו בבקשת עזרה ובדיווח בטוח במקום בנקמה.',
       pl: 'Zamiast odwetu wybierz bezpieczne szukanie pomocy i zgłoszenie sytuacji.',
       uk: 'Замість помсти обирай безпечне звернення по допомогу й повідомлення про цькування.',
-      lt: 'Užuot keršijęs, saugiai kreipkis pagalbos ir pranešk apie patyčias.',
+      lt: 'Nekeršyk – saugiai kreipkis pagalbos ir pranešk apie patyčias.',
       lv: 'Atriebības vietā izvēlies droši meklēt palīdzību un ziņot par notikušo.',
       et: 'Kättemaksu asemel otsi turvaliselt abi ja teavita juhtunust.',
       be: 'Замест помсты выбірай бясьпечны зварот па дапамогу й паведамленьне пра цкаваньне.',
