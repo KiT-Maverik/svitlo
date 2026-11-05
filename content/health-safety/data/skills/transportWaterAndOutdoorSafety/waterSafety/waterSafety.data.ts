@@ -73,7 +73,7 @@ export const waterSafety_SkillGroup_Data = buildSkillGroupConfig({
       uk: 'Навчися запобігати утопленню й допомагати, не наражаючи себе чи інших на небезпеку.',
       lt: 'Mokykis užkirsti kelią skendimui ir padėti nesukeliant pavojaus kitiems.',
       lv: 'Mācies novērst slīkšanu un palīdzēt, neapdraudot citus.',
-      et: 'Õpi uppumist ennetama ja aitama teisi ise kedagi ohtu seadmata.',
+      et: 'Õpi uppumist ennetama ja teisi aitama, seadmata ennast ega kedagi teist ohtu.',
       be: 'Навучыся прадухіляць утапленьне і дапамагаць, не падвяргаючы іншых небясьпецы.',
       ka: 'ისწავლე დახრჩობის პრევენცია და დახმარება ისე, რომ სხვა არავინ აღმოჩნდეს საფრთხეში.',
       kk: 'Суға батудың алдын алуды және өзгелерге қауіп төндірмей көмектесуді үйрен.',
