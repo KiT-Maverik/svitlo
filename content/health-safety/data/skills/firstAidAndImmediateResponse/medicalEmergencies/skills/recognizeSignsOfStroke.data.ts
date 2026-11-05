@@ -39,7 +39,7 @@ export const recognizeSignsOfStroke_Skill_Data = buildSkillConfig({
       'Use sudden neurological changes as reasons for urgent emergency response, even if symptoms appear to improve.',
     frontend: {
       en: 'Recognize sudden symptoms that may indicate a stroke.',
-      zh: '识别可能提示中风的突然出现的症状。',
+      zh: '识别可能提示中风的突发症状。',
       hi: 'ऐसे अचानक लक्षण पहचानो जो स्ट्रोक का संकेत दे सकते हैं।',
       es: 'Reconoce síntomas repentinos que pueden indicar un ictus.',
       ar: 'تعرّف الأعراض المفاجئة التي قد تشير إلى سكتة دماغية.',
