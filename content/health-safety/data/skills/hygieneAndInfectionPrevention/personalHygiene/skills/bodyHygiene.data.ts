@@ -53,7 +53,7 @@ export const bodyHygiene_Skill_Data = buildSkillConfig({
       ko: '피부와 몸을 돌보는 적절한 위생 습관을 선택해 보세요.',
       tr: 'Cildine ve bedenine uygun temizlik alışkanlıkları seç.',
       vi: 'Chọn thói quen phù hợp để chăm sóc da và cơ thể.',
-      ta: 'தோலையும் உடலையும் பராமரிக்க ஏற்ற சுத்தமான பழக்கங்களைத் தேர்ந்தெடு.',
+      ta: 'தோலையும் உடலையும் பராமரிக்க ஏற்ற சுத்தமான பழக்கங்களைத் தேர்ந்தெடுங்கள்.',
       te: 'చర్మం, శరీర సంరక్షణకు తగిన పరిశుభ్రత అలవాట్లు ఎంచుకోండి.',
       mr: 'त्वचा व शरीराची काळजी घेण्यासाठी योग्य स्वच्छतेच्या सवयी निवड.',
       ms: 'Pilih rutin sesuai untuk menjaga kulit dan badan.',

@@ -53,7 +53,7 @@ export const hygieneOfPersonalItems_Skill_Data = buildSkillConfig({
       ko: '개인 물품을 깨끗이 하고 감염을 옮길 수 있는 물건은 함께 쓰지 마세요.',
       tr: 'Kişisel eşyalarını temiz tut ve enfeksiyon bulaştırabilecek eşyaları paylaşma.',
       vi: 'Giữ đồ dùng cá nhân sạch và tránh dùng chung đồ có thể lây nhiễm.',
-      ta: 'தனிப்பட்ட பொருட்களைச் சுத்தமாக வை; தொற்று பரப்பக்கூடியவற்றைப் பகிராதே.',
+      ta: 'தனிப்பட்ட பொருட்களைச் சுத்தமாக வையுங்கள்; தொற்று பரப்பக்கூடியவற்றைப் பகிர வேண்டாம்.',
       te: 'వ్యక్తిగత వస్తువులను శుభ్రంగా ఉంచండి; సంక్రమణ వ్యాప్తి చేసే వస్తువులను పంచుకోకండి.',
       mr: 'वैयक्तिक वस्तू स्वच्छ ठेव आणि संसर्ग पसरवणाऱ्या वस्तू वाटू नकोस.',
       ms: 'Pastikan barang peribadi bersih dan elakkan berkongsi barang yang boleh menyebarkan jangkitan.',

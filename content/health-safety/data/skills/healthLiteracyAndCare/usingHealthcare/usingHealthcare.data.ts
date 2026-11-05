@@ -66,7 +66,7 @@ export const usingHealthcare_SkillGroup_Data = buildSkillGroupConfig({
       ko: '진료를 받고 의료 전문가와 협력하는 방법을 알아보세요.',
       tr: 'Bakım almayı ve sağlık uzmanlarıyla işbirliği yapmayı öğren.',
       vi: 'Tìm hiểu cách tiếp cận chăm sóc và phối hợp với nhân viên y tế.',
-      ta: 'மருத்துவச் சேவையைப் பெறவும் நிபுணர்களுடன் ஒத்துழைக்கவும் கற்றுக்கொள்.',
+      ta: 'மருத்துவச் சேவையைப் பெறவும் நிபுணர்களுடன் ஒத்துழைக்கவும் கற்றுக்கொள்ளுங்கள்.',
       te: 'వైద్యసేవలు పొందడం, ఆరోగ్య నిపుణులతో కలిసి పనిచేయడం తెలుసుకోండి.',
       mr: 'वैद्यकीय सेवा मिळवणे आणि आरोग्यतज्ज्ञांसोबत काम करणे शीक.',
       ms: 'Ketahui cara mendapatkan rawatan dan bekerjasama dengan petugas kesihatan.',

@@ -53,7 +53,7 @@ export const handHygiene_Skill_Data = buildSkillConfig({
       ko: '언제 손을 씻고 어떻게 효과적으로 씻는지 알아보세요.',
       tr: 'Ellerini ne zaman ve nasıl etkili biçimde temizleyeceğini öğren.',
       vi: 'Biết khi nào và cách vệ sinh tay hiệu quả.',
-      ta: 'எப்போது கைகளைச் சுத்தம் செய்ய வேண்டும், எப்படி சரியாகச் செய்வது என அறி.',
+      ta: 'எப்போது கைகளைச் சுத்தம் செய்ய வேண்டும், எப்படி சரியாகச் செய்வது என அறியுங்கள்.',
       te: 'చేతులను ఎప్పుడు, ఎలా సమర్థంగా శుభ్రం చేయాలో తెలుసుకోండి.',
       mr: 'हात कधी आणि प्रभावीपणे कसे स्वच्छ करायचे ते ओळख.',
       ms: 'Ketahui bila dan cara membersihkan tangan dengan berkesan.',

@@ -62,7 +62,7 @@ export const hygieneAndInfectionPrevention_SkillDomain_Data = buildSkillDomainCo
       ko: '위생 습관과 안전한 환경으로 감염 위험을 줄이는 법을 알아보세요.',
       tr: 'Hijyen ve daha güvenli ortamlarla enfeksiyonların nasıl azaltılacağını keşfet.',
       vi: 'Khám phá cách vệ sinh và môi trường an toàn hơn giúp giảm nhiễm trùng.',
-      ta: 'சுகாதாரப் பழக்கங்களும் பாதுகாப்பான சூழலும் தொற்றைக் குறைப்பதை அறி.',
+      ta: 'சுகாதாரப் பழக்கங்களும் பாதுகாப்பான சூழலும் தொற்றைக் குறைப்பதை அறியுங்கள்.',
       te: 'పరిశుభ్రత, సురక్షిత పరిసరాలతో సంక్రమణలు ఎలా తగ్గుతాయో తెలుసుకోండి.',
       mr: 'स्वच्छता आणि सुरक्षित परिसराने संसर्ग कसा कमी होतो ते पाहा.',
       ms: 'Terokai cara kebersihan dan persekitaran selamat mengurangkan jangkitan.',
