@@ -50,7 +50,7 @@ export const evaluateSamplingUncertainty_Skill_Data = buildSkillConfig({
       id: 'Pelajari bagaimana pemilihan dan variasi sampel memengaruhi ketepatan estimasi.',
       de: 'Erkunde, wie Stichprobenauswahl und Streuung die Genauigkeit einer Schätzung beeinflussen.',
       ja: '標本の選び方やばらつきが推定の精度にどう影響するか考えよう。',
-      ko: '표본 선정과 변동이 추정의 정확도에 어떤 영향을 주는지 알아보세요.',
+      ko: '표본 선정과 변동이 추정의 정밀도에 어떤 영향을 주는지 알아보세요.',
       tr: 'Örnekleme tercihleri ve değişkenliğin bir tahminin kesinliğini nasıl etkilediğini keşfet.',
       vi: 'Tìm hiểu cách chọn mẫu và biến động ảnh hưởng đến độ chính xác của ước lượng.',
       ta: 'மாதிரித் தேர்வும் மாறுபாடும் மதிப்பீட்டின் துல்லியத்தை எவ்வாறு பாதிக்கின்றன என அறியுங்கள்.',
