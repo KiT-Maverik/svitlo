@@ -39,7 +39,7 @@ export const glass_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Discover why glass behaves differently from crystalline solids.",
       zh: "了解为什么玻璃与晶体固体具有不同的性质。",
-      hi: "जानो कि काँच का व्यवहार क्रिस्टलीय ठोस पदार्थों से अलग क्यों होता है।",
+      hi: "जानें कि काँच का व्यवहार क्रिस्टलीय ठोस पदार्थों से अलग क्यों होता है।",
       es: "Descubre por qué el vidrio se comporta de forma distinta de los sólidos cristalinos.",
       ar: "اكتشف لماذا يختلف سلوك الزجاج عن المواد الصلبة البلورية.",
       fr: "Découvre pourquoi le verre se comporte différemment des solides cristallins.",

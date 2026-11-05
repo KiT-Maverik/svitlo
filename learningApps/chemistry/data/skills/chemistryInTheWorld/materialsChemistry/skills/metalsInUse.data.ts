@@ -39,7 +39,7 @@ export const metalsInUse_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Connect the structure and processing of metals with their everyday behavior.",
       zh: "联系金属的结构和加工方式与日常使用中的性质。",
-      hi: "धातुओं की संरचना और प्रसंस्करण को उनके रोज़मर्रा के गुणों से जोड़ो।",
+      hi: "धातुओं की संरचना और प्रसंस्करण को उनके रोज़मर्रा के गुणों से जोड़ें।",
       es: "Relaciona la estructura y el procesamiento de los metales con su comportamiento cotidiano.",
       ar: "اربط بنية الفلزات وطرق معالجتها بخصائصها في الاستخدام اليومي.",
       fr: "Relie la structure et le traitement des métaux à leurs propriétés courantes.",

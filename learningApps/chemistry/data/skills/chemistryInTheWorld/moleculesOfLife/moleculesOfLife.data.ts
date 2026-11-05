@@ -47,7 +47,7 @@ export const moleculesOfLife_SkillGroup_Data = buildSkillGroupConfig({
     frontend: {
       en: "Explore the molecular structures behind important biological materials.",
       zh: "探索重要生物物质背后的分子结构。",
-      hi: "महत्त्वपूर्ण जैविक पदार्थों की आणविक संरचनाओं का अध्ययन करो।",
+      hi: "महत्त्वपूर्ण जैविक पदार्थों की आणविक संरचनाओं का अध्ययन करें।",
       es: "Explora las estructuras moleculares de importantes sustancias biológicas.",
       ar: "استكشف البنى الجزيئية للمواد الحيوية المهمة.",
       fr: "Explore les structures moléculaires de substances biologiques importantes.",
