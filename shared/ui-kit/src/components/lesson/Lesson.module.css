@@ -1,0 +1,346 @@
+.lesson {
+  color: var(--mui-palette-text-primary);
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  padding: 20px clamp(12px, 4vw, 48px);
+  background-color: var(--mui-palette-background-paper);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+.steps button {
+  position: relative;
+  min-height: 24px;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: var(--mui-palette-text-secondary);
+  cursor: pointer;
+  font-size: 13px;
+  padding: 0;
+  text-align: center;
+}
+.segment {
+  display: block;
+  height: 8px;
+  border-radius: 10px;
+  background: var(--mui-palette-action-disabledBackground);
+  transition: background 0.25s;
+}
+.stepLabel {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  max-width: calc(100% - 8px);
+  padding: 3px 8px;
+  overflow: hidden;
+  border: 1px solid var(--mui-palette-divider);
+  border-radius: 999px;
+  background-color: var(--mui-palette-background-paper);
+  color: var(--mui-palette-text-secondary);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  transition:
+    background-color 0.2s,
+    border-color 0.2s,
+    box-shadow 0.2s,
+    color 0.2s,
+    transform 0.2s;
+}
+.steps button[data-complete='true'] .segment {
+  background: var(--mui-palette-success-main);
+}
+.steps button[aria-current='step'] {
+  color: var(--mui-palette-primary-main);
+  font-weight: 700;
+}
+.steps button[aria-current='step'] .segment {
+  background: var(--mui-palette-warning-main);
+}
+.steps button[aria-current='step'] .stepLabel {
+  border-color: var(--mui-palette-warning-main);
+  background-color: var(--mui-palette-warning-main);
+  color: var(--mui-palette-warning-contrastText);
+  font-weight: 700;
+}
+.steps button:not(:disabled):hover .stepLabel {
+  border-color: var(--mui-palette-primary-main);
+  box-shadow: 0 2px 10px rgb(var(--mui-palette-primary-mainChannel) / 0.13);
+  color: var(--mui-palette-text-secondary);
+  transform: translate(-50%, -50%) scale(1.03);
+}
+.steps button:not(:disabled):focus-visible .stepLabel {
+  outline: 2px solid var(--mui-palette-primary-main);
+  outline-offset: 2px;
+}
+.steps button:disabled {
+  cursor: default;
+  opacity: 0.65;
+}
+.stage {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  animation: appear 0.35s ease both;
+}
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.quiz {
+  width: min(900px, 100%);
+  margin: auto;
+  padding: clamp(24px, 5vw, 56px);
+}
+.questionProgress {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  width: min(100%, 914px);
+  margin: 0 auto 24px;
+  padding: 0;
+  list-style: none;
+}
+.questionProgress button {
+  display: block;
+  flex: 0 0 28px;
+  height: 10px;
+  min-width: 0;
+  border: 0;
+  border-radius: 3px;
+  padding: 0;
+  background: var(--mui-palette-action-disabledBackground);
+  cursor: default;
+  user-select: none;
+  transition:
+    background-color 0.2s,
+    box-shadow 0.2s;
+}
+.questionProgress button:not(:disabled) {
+  cursor: pointer;
+}
+.questionProgress button[data-status='correct'] {
+  background: var(--mui-palette-success-main);
+}
+.questionProgress button[data-status='incorrect'] {
+  background: var(--mui-palette-error-main);
+}
+.questionProgress button[data-status='deferred'] {
+  background: var(--mui-palette-warning-main);
+}
+.questionProgress button[data-current='true'] {
+  box-shadow: 0 0 0 2px var(--mui-palette-primary-main);
+}
+.questionProgress button:not(:disabled):hover {
+  box-shadow: 0 0 0 4px rgb(var(--mui-palette-primary-mainChannel) / 0.2);
+}
+.questionProgress button:not(:disabled):focus-visible {
+  outline: 2px solid var(--mui-palette-primary-main);
+  outline-offset: 2px;
+}
+@media (min-width: 601px) {
+  .questionProgress button {
+    flex: 0 0 40px;
+  }
+}
+@media (max-width: 600px) {
+  .steps {
+    gap: 6px;
+  }
+  .steps button {
+    font-size: 11px;
+  }
+}
+.counter {
+  font-size: 13px;
+  color: var(--mui-palette-text-secondary);
+}
+.hint {
+  font-size: 14px;
+  color: var(--mui-palette-text-secondary);
+}
+.finish {
+  flex: 1;
+  width: min(850px, 100%);
+  margin: auto;
+  text-align: center;
+  padding: 48px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  animation: appear 0.5s ease both;
+}
+.badge {
+  display: grid;
+  place-items: center;
+  font-size: 48px;
+  color: var(--mui-palette-success-main);
+  background: rgb(var(--mui-palette-success-mainChannel) / 0.12);
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+}
+.primary {
+  display: inline-block;
+  border: 0;
+  border-radius: 24px;
+  padding: 13px 25px;
+  background: var(--mui-palette-primary-main);
+  color: var(--mui-palette-primary-contrastText);
+  font: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  margin-top: 20px;
+}
+.primary:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.choices {
+  display: grid;
+  gap: 12px;
+  margin: 28px 0;
+}
+.choices button {
+  padding: 18px 22px;
+  border: 1px solid var(--mui-palette-divider);
+  border-radius: 14px;
+  color: var(--mui-palette-text-primary);
+  background: var(--mui-palette-background-paper);
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+.choices button[data-selected='true'] {
+  border: 2px solid var(--mui-palette-warning-main);
+  background: rgb(var(--mui-palette-warning-mainChannel) / 0.12);
+}
+.choices button[data-correct='true'] {
+  border: 2px solid var(--mui-palette-success-main);
+  background: rgb(var(--mui-palette-success-mainChannel) / 0.12);
+}
+.choices button:disabled {
+  cursor: default;
+  color: var(--mui-palette-text-primary);
+}
+.feedback {
+  border-radius: 12px;
+  background: var(--mui-palette-background-paper);
+  padding: 18px;
+  animation: appear 0.25s;
+}
+.feedback p {
+  margin-bottom: 0;
+}
+.sound {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 24px;
+  font-size: 14px;
+}
+.confetti {
+  position: fixed;
+  inset: 64px 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 10;
+}
+.confetti i {
+  position: absolute;
+  left: var(--origin);
+  top: 45%;
+  width: 10px;
+  height: 16px;
+  animation: burst 2.5s ease-out both;
+}
+.confetti i:nth-child(4n + 1) {
+  background: var(--mui-palette-warning-main);
+}
+.confetti i:nth-child(4n + 2) {
+  background: var(--mui-palette-info-main);
+}
+.confetti i:nth-child(4n + 3) {
+  background: var(--mui-palette-success-main);
+}
+.confetti i:nth-child(4n + 4) {
+  background: var(--mui-palette-secondary-main);
+}
+@keyframes burst {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) rotate(0);
+  }
+  12% {
+    opacity: 1;
+  }
+  65% {
+    opacity: 1;
+    transform: translate(var(--dx), var(--dy)) rotate(var(--spin));
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--dx), 65vh) rotate(var(--spin));
+  }
+}
+.lesson button:focus-visible,
+.primary:focus-visible {
+  outline: 3px solid var(--mui-palette-primary-main);
+  outline-offset: 4px;
+}
+.quiz h1,
+.finish h1 {
+  font-size: clamp(26px, 4vw, 40px);
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+}
+.quiz p,
+.finish p {
+  line-height: 1.75;
+}
+@media (max-width: 600px) {
+  .steps {
+    gap: 6px;
+  }
+  .steps button {
+    font-size: 11px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .stage,
+  .answer,
+  .finish,
+  .feedback {
+    animation: none;
+  }
+  .confetti {
+    display: none;
+  }
+  .segment,
+  .rating,
+  .rating span,
+  .rating strong {
+    transition: none;
+  }
+}
