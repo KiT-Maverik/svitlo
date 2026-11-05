@@ -55,7 +55,7 @@ export const interpretFoodLabels_Skill_Data = buildSkillConfig({
       vi: 'Đọc thành phần, khẩu phần và thông tin dinh dưỡng.',
       ta: 'சேர்வுகள், உணவு அளவு, ஊட்டச்சத்து விவரங்களைப் படி.',
       te: 'పదార్థాలు, వడ్డించే పరిమాణం, పోషక సమాచారాన్ని చదవండి.',
-      mr: 'घटक, एका वेळी खाण्याचे प्रमाण आणि पोषणमाहिती वाच.',
+      mr: 'घटक, एका वेळी खाण्याचे प्रमाण आणि पोषणमाहिती वाचा.',
       ms: 'Baca ramuan, saiz hidangan dan maklumat pemakanan.',
       he: 'קראו רכיבים, גדלי מנה ומידע תזונתי.',
       pl: 'Czytaj składniki, wielkości porcji i informacje o wartościach odżywczych.',
