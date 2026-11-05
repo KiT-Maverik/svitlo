@@ -7,7 +7,7 @@ export const distinguishMisinformationFromDeliberateDeceptionClaims_Skill_Data =
     en: 'Distinguish misinformation from deliberate deception claims',
     zh: '区分错误信息与蓄意欺骗指控',
     hi: 'गलत सूचना और जानबूझकर धोखे के आरोप में अंतर',
-    es: 'Distinguir desinformación errónea de acusaciones de engaño deliberado',
+    es: 'Distinguir la información errónea de las acusaciones de engaño deliberado',
     ar: 'التمييز بين المعلومات الخاطئة وادعاءات الخداع المتعمد',
     fr: 'Distinguer les fausses informations des accusations de tromperie volontaire',
     bn: 'ভুল তথ্য ও ইচ্ছাকৃত প্রতারণার অভিযোগ আলাদা করা',
