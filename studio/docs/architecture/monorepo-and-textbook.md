@@ -4,7 +4,15 @@
 
 ## Purpose and non-negotiable extraction constraint
 
-Svitlo combines independently deployable Next.js apps with explicit reusable library packages. A textbook has its **own package root**, curriculum, `docs/`, data, assets, configuration and tests. It must remain possible to move a textbook to a separate repository without copying another app's code or globally rewriting imports. Extracted shared packages must be installable through declared public APIs; a green monorepo build does not, on its own, prove isolated registry/tarball consumption.
+Svitlo **currently** combines independently deployable Next.js apps with explicit reusable library packages. A textbook has its **own package root**, curriculum, `docs/`, data, assets, configuration and tests. It must remain possible to move a textbook to a separate repository without copying another app's code or globally rewriting imports. Extracted shared packages must be installable through declared public APIs; a green monorepo build does not, on its own, prove isolated registry/tarball consumption.
+
+## Planned direction: shared platform hosts and textbook modules
+
+**Target architecture, not the implemented Stage 8 layout:** move toward a thin Next.js Web host, one React + Capacitor mobile host (iOS and Android), and one React + Electron desktop host. Each textbook will be a single independently extractable package holding authored `*.data.ts`, assets, Scenes and its generated static Scene registry, rather than a separately maintained Next.js app per target. **There is no requirement to split textbook definitions and runtime registries into different repositories or packages.**
+
+At build time a host selects one or more textbook packages and statically bundles their registries/Scenes. Build-time authored-data publishing produces runtime JSON, not runtime imports of `*.data.ts`. The actual migration requires defined public package exports, stable build selection, parity tests, and review of existing server/provider coupling; no new `apps/web`, `apps/mobile`, `apps/desktop`, or `books/` directories are claimed to exist here. SSR/SSG can remain in the Web host; interactive Lesson UI belongs in reusable React DOM code.
+
+See the canonical [Cross-Platform Lesson Runtime](./cross-platform-lesson-runtime.md) for target dependency/DI, licensing, PWA, offline, and client-state rules. The map, dependencies, scripts and Stage 8 audit below remain a **snapshot of the current standalone-app architecture** until a separate migration changes them.
 
 ## Current repository map
 
@@ -79,7 +87,7 @@ Geography has its own independently configured application shell and localized l
 
 ## Standalone textbook package contract
 
-Each `learningApps/<subject>` owns its own `package.json`, `tsconfig.json`, Next.js config, `src/app` routes, `src/data` authored content, `public` media where required, package-owned `docs/` and tests. Reusable code is accessed through declared public `@svitlo/*` exports, never `shared/*/src`, another app's `src`, aliases resolved outside the package, or `../` paths crossing package roots. The `@/*` alias is local to that package.
+**Current implementation (before the proposed host/module migration):** Each `learningApps/<subject>` owns its own `package.json`, `tsconfig.json`, Next.js config, `src/app` routes, `src/data` authored content, `public` media where required, package-owned `docs/` and tests. Reusable code is accessed through declared public `@svitlo/*` exports, never `shared/*/src`, another app's `src`, aliases resolved outside the package, or `../` paths crossing package roots. The `@/*` alias is local to that package.
 
 Git-backed typed content and authoring IDs are **not** stored in runtime user databases. `@svitlo/contracts/content` defines structural contracts; Engine supplies operations, UI Kit presentation, IndexDB persistence, each textbook its curriculum. See [Git-first typed content](./git-first-typed-content.md), [system boundaries](./system-boundaries.md), [accessibility/localization](./internationalization-and-accessibility.md) and [offline roadmap](./offline-first-and-device-compatibility.md). Do not claim offline/PWA or backend account features are implemented merely because planned in Studio.
 
