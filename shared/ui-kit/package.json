@@ -84,7 +84,7 @@
   ],
   "scripts": {
     "build": "tsc -p tsconfig.build.json && node scripts/copy-assets.mjs",
-    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.data.json --noEmit",
     "test:logic": "npm run typecheck",
     "test:components": "vitest run",
     "test": "npm run test:logic && npm run test:components",
