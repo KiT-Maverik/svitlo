@@ -191,7 +191,7 @@ for (const file of engineSources) {
       match[1].startsWith('.') ||
       match[1].startsWith('@svitlo/contracts') ||
       (relative(root, file).startsWith('shared/engine/src/utils/generators/') &&
-        ['node:fs', 'node:path', 'node:url'].includes(match[1])),
+        match[1].startsWith('node:')),
       'Engine must not import runtime, UI or application packages: ' + relative(root, file) + ' -> ' + match[1],
     );
   }
