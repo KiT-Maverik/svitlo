@@ -60,7 +60,7 @@ export const interpretAPhilosopherInHistoricalContext_Skill_Data = buildSkillCon
       he: 'פרשו את השקפות הפילוסוף לאור הוויכוחים של תקופתו.',
       pl: 'Interpretuj poglądy w świetle debat z epoki filozofa.',
       uk: 'Пояснюй філософські погляди з огляду на дискусії їхньої епохи.',
-      lt: 'Aiškink filosofines pažiūras atsižvelgdamas į jų epochos diskusijas.',
+      lt: 'Aiškink filosofines pažiūras jų epochos diskusijų kontekste.',
       lv: 'Skaidro filozofiskus uzskatus, ņemot vērā laikmeta diskusijas.',
       et: 'Tõlgenda filosoofilisi seisukohti nende ajastu vaidluste valguses.',
       be: 'Тлумач філязофскія погляды з улікам дыскусіяў іхнай эпохі.',

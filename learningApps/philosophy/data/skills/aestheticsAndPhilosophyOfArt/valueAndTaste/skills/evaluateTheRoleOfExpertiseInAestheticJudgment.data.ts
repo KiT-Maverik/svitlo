@@ -63,7 +63,7 @@ export const evaluateTheRoleOfExpertiseInAestheticJudgment_Skill_Data = buildSki
       lt: 'Apsvarstyk, kaip žinios padeda vertinti, nors ekspertai gali klysti.',
       lv: 'Apsver, kā zināšanas palīdz vērtēt, kaut arī eksperti var kļūdīties.',
       et: 'Mõtle, kuidas teadmised toetavad hinnanguid, kuigi ka eksperdid võivad eksida.',
-      be: 'Падумай, як фаховыя веды дапамагаюць ацэньваць, не робячы экспэртаў бязгрэшнымі.',
+      be: 'Падумай, як фаховыя веды дапамагаюць ацэньваць, не робячы экспэртаў беспамылковымі.',
       ka: 'დაფიქრდი, როგორ ეხმარება ცოდნა შეფასებას, თუმცა ექსპერტებიც შეიძლება შეცდნენ.',
       kk: 'Біліктілік бағалауға көмектессе де, сарапшылар қателесуі мүмкін екенін ескер.',
       qm: 'Ustalığınıñ baalavğa yardım etkenini, amma ustalarnıñ da yañlışa bilgenini tüşün.',

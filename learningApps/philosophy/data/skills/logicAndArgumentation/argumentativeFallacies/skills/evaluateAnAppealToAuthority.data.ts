@@ -22,7 +22,7 @@ export const evaluateAnAppealToAuthority_Skill_Data = buildSkillConfig({
     ta: 'அதிகாரத்தை மேற்கோள் காட்டும் வாதத்தை மதிப்பிடுதல்',
     te: 'అధికారాన్ని ఆశ్రయించే వాదనను అంచనా వేయడం',
     mr: 'तज्ज्ञतेच्या आधारावरील युक्तिवाद तपासणे',
-    ms: 'Menilai Rayuan kepada Pihak Berkuasa',
+    ms: 'Menilai Hujah Bersandarkan Autoriti',
     he: 'הערכת פנייה לסמכות',
     pl: 'Ocena odwołania do autorytetu',
     uk: 'Оцінювання апеляції до авторитету',

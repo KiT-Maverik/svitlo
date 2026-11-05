@@ -54,7 +54,7 @@ export const reconstructAnArgumentInStandardForm_Skill_Data = buildSkillConfig({
       tr: 'Bir argümanı açık öncüller ve ardından gelen sonuç şeklinde yeniden yaz.',
       vi: 'Viết lại lập luận thành các tiền đề rõ ràng, tiếp theo là kết luận.',
       ta: 'ஒரு வாதத்தைத் தெளிவான முன்கோள்களையும் அவற்றுக்குப் பின் முடிவையும் கொண்டதாக மீளெழுது.',
-      te: 'స్పష్టమైన పూర్వపక్షాలు, ఆ తరువాత నిర్ధారణ ఉండేలా వాదనను తిరిగి రాయండి.',
+      te: 'స్పష్టమైన ఆధార వాక్యాలు, ఆ తరువాత నిర్ధారణ ఉండేలా వాదనను తిరిగి రాయండి.',
       mr: 'युक्तिवाद स्पष्ट पूर्वाधार आणि त्यानंतर निष्कर्ष अशा स्वरूपात पुन्हा लिहा.',
       ms: 'Tulis semula hujah sebagai premis yang jelas diikuti kesimpulannya.',
       he: 'כתבו מחדש טיעון כהנחות ברורות ולאחריהן מסקנה.',

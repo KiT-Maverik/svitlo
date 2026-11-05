@@ -59,7 +59,7 @@ export const evaluateADefinitionOfArt_Skill_Data = buildSkillConfig({
       ms: 'Uji takrif seni dengan contoh luar biasa atau sukar dikelaskan.',
       he: 'בחנו הגדרות לאמנות באמצעות דוגמאות חריגות או גבוליות.',
       pl: 'Sprawdzaj definicje sztuki na nietypowych lub granicznych przykładach.',
-      uk: 'Перевіряй визначення мистецтва на незвичних і пограничних прикладах.',
+      uk: 'Перевіряй визначення мистецтва на незвичних або межових прикладах.',
       lt: 'Tikrink meno apibrėžimus neįprastais ar ribiniais pavyzdžiais.',
       lv: 'Pārbaudi mākslas definīcijas ar neparastiem vai robežgadījumu piemēriem.',
       et: 'Katseta kunstimääratlusi ebatavaliste või piiripealsete näidete peal.',

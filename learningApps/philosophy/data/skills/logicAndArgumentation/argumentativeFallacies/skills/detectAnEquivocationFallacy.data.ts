@@ -16,7 +16,7 @@ export const detectAnEquivocationFallacy_Skill_Data = buildSkillConfig({
     id: 'Mendeteksi Kekeliruan Ekuivokasi',
     de: 'Äquivokationsfehlschluss erkennen',
     ja: '語義のすり替えの誤謬を見つける',
-    ko: '동음이의어 혼동 오류 찾기',
+    ko: '단어 의미를 바꿔 쓰는 오류 찾기',
     tr: 'Çok Anlamlılık Safsatasını Saptama',
     vi: 'Phát hiện ngụy biện đánh tráo nghĩa',
     ta: 'ஒரே சொல்லின் பொருள் மாறும் வாதப்பிழையைக் கண்டறிதல்',
