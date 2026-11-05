@@ -40,7 +40,7 @@ export const carbonMonoxideSafety_Skill_Data = buildSkillConfig({
     frontend: {
       en: 'Recognize why carbon monoxide can be dangerous without warning smells.',
       zh: '了解无气味预警的一氧化碳为何也十分危险。',
-      hi: 'जानें कि बिना गंध की चेतावनी के भी कार्बन मोनोऑक्साइड खतरनाक क्यों होता है।',
+      hi: 'समझें कि कार्बन मोनोऑक्साइड बिना गंध के भी खतरनाक क्यों है।',
       es: 'Entiende por qué el monóxido de carbono es peligroso aunque no tenga olor que avise.',
       ar: 'افهم لماذا يكون أول أكسيد الكربون خطيرًا دون رائحة تحذيرية.',
       fr: "Comprends pourquoi le monoxyde de carbone est dangereux sans odeur d'alerte.",
