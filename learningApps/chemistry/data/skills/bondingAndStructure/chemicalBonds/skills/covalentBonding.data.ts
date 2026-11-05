@@ -54,7 +54,7 @@ export const covalentBonding_Skill_Data = buildSkillConfig({
       vi: "Hiểu cách nguyên tử dùng chung electron trong liên kết cộng hóa trị đơn và bội.",
       ta: "அணுக்கள் எலக்ட்ரான்களைப் பகிர்ந்து ஒற்றை மற்றும் பன்மடங்கு சகப்பிணைப்புகளை எவ்வாறு உருவாக்குகின்றன என்பதை அறிக.",
       te: "పరమాణువులు ఎలక్ట్రాన్లను పంచుకుని ఏక, బహుళ సమయోజనీయ బంధాలను ఎలా ఏర్పరుస్తాయో తెలుసుకోండి.",
-      mr: "अणू इलेक्ट्रॉन सामायिक करून एकेरी व बहेरी सहसंयुज बंध कसे तयार करतात ते समजून घ्या.",
+      mr: "अणू इलेक्ट्रॉन सामायिक करून एकेरी व बहुविध सहसंयुज बंध कसे तयार करतात ते समजून घ्या.",
       ms: "Fahami cara atom berkongsi elektron dalam ikatan kovalen tunggal dan berganda.",
       he: "הבינו כיצד אטומים משתפים אלקטרונים בקשרים קוולנטיים יחידים וכפולים.",
       pl: "Zrozum, jak atomy współdzielą elektrony w pojedynczych i wielokrotnych wiązaniach kowalencyjnych.",
