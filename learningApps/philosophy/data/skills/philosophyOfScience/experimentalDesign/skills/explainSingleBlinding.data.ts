@@ -40,7 +40,7 @@ export const explainSingleBlinding_Skill_Data = buildSkillConfig({
     frontend: {
       en: 'Understand why hiding assigned conditions from one group can limit expectations.',
       zh: '理解让一方不知道其分配条件为何能减少预期影响。',
-      hi: 'समझें कि एक समूह से आवंटित स्थिति छिपाने से अपेक्षाओं का असर कैसे घटता है।',
+      hi: 'समझें कि अध्ययन की शर्त की जानकारी किसी एक पक्ष से छिपाने पर अपेक्षाओं का प्रभाव कैसे कम होता है।'
       es: 'Comprende cómo ocultar la condición asignada a una parte puede limitar el efecto de las expectativas.',
       ar: 'افهم كيف يقلل إخفاء تخصيص العلاج عن طرف واحد آثار التوقعات.',
       fr: "Comprends comment cacher la condition attribuée à une partie peut limiter l'effet des attentes.",
