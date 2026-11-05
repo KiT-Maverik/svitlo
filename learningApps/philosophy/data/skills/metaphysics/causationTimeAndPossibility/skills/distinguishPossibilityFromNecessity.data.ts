@@ -59,7 +59,7 @@ export const distinguishPossibilityFromNecessity_Skill_Data = buildSkillConfig({
       he: "הבחינו בין מה שיכול לקרות לבין מה שחייב להיות נכון.",
       pl: "Odróżnij to, co mogłoby się zdarzyć, od tego, co musi być prawdziwe.",
       uk: "Відрізняй те, що може статися, від того, що обов’язково має бути істинним.",
-      lt: "Atskirk tai, kas gali nutikti, nuo tego, kas būtinai turi būti tiesa.",
+      lt: "Atskirk tai, kas gali nutikti, nuo to, kas būtinai turi būti tiesa.",
       lv: "Atšķir to, kas varētu notikt, no tā, kam obligāti jābūt patiesam.",
       et: "Erista seda, mis võib juhtuda, sellest, mis peab tingimata tõene olema.",
       be: "Адрозьнівай тое, што можа адбыцца, ад таго, што абавязкова мусіць быць праўдай.",
