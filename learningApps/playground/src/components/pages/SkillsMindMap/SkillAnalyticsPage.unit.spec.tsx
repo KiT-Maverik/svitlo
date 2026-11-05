@@ -1,7 +1,8 @@
 import { beforeEach, afterEach, describe, expect, it, vi } from 'vitest';
 import { fireEvent, render, screen, within } from '@testing-library/react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { aria } from '@svitlo/ui-kit/learning-layout/constants';
+import { ukUiKitMessages } from '../../../../../../shared/ui-kit/src/testing/uiKitMessages.unit.fx';
+const aria = ukUiKitMessages.learningLayout;
 import { SkillAnalyticsPage } from './SkillAnalyticsPage';
 import { fixtureJsonForSkillUrl, TEST_SKILLS_DOMAIN_SLUGS } from './skillsData.fixture';
 
@@ -27,7 +28,7 @@ describe('Skills page in shared LearningLayout', () => {
   it('opens the existing navbar settings drawer and changes page-owned Skill cards', async () => {
     render(
       <ThemeProvider theme={theme}>
-        <SkillAnalyticsPage domainSlugs={TEST_SKILLS_DOMAIN_SLUGS} />
+        <SkillAnalyticsPage domainSlugs={TEST_SKILLS_DOMAIN_SLUGS} initialMessages={ukUiKitMessages} />
       </ThemeProvider>,
     );
     const card = await screen.findByTestId('skill-node-testRed');

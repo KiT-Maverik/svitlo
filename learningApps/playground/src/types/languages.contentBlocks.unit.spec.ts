@@ -2,11 +2,18 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/localization';
-import { getLearningLayoutMessages } from '@svitlo/ui-kit/learning-layout/locales';
+import { locale as ltLayout } from '../../../../shared/ui-kit/data/components/LearningLayout/lt-LT.data';
+import { locale as lvLayout } from '../../../../shared/ui-kit/data/components/LearningLayout/lv-LV.data';
+import { locale as etLayout } from '../../../../shared/ui-kit/data/components/LearningLayout/et-EE.data';
+import { locale as beLayout } from '../../../../shared/ui-kit/data/components/LearningLayout/be-tarask.data';
+import { locale as kaLayout } from '../../../../shared/ui-kit/data/components/LearningLayout/ka-GE.data';
+import { locale as kkLayout } from '../../../../shared/ui-kit/data/components/LearningLayout/kk-Cyrl-KZ.data';
+import { locale as qmLayout } from '../../../../shared/ui-kit/data/components/LearningLayout/crh-Latn-UA.data';
 
 const additionalLocales = ['lt-LT', 'lv-LV', 'et-EE', 'be-tarask', 'ka-GE', 'kk-Cyrl-KZ', 'crh-Latn-UA'] as const;
 const languages = ['lt', 'lv', 'et', 'be', 'ka', 'kk', 'qm'] as const;
 
+const layouts = { 'lt-LT': ltLayout, 'lv-LV': lvLayout, 'et-EE': etLayout, 'be-tarask': beLayout, 'ka-GE': kaLayout, 'kk-Cyrl-KZ': kkLayout, 'crh-Latn-UA': qmLayout };
 const root = process.cwd();
 const newLanguages = ['lt', 'lv', 'et', 'be', 'ka', 'kk', 'qm'] as const;
 function collectFiles(folder: string): string[] {
@@ -54,6 +61,6 @@ describe('Playground internationalization', () => {
   });
 
   it('resolves reusable layout labels for extended locales', () => {
-    for (const locale of additionalLocales) expect(getLearningLayoutMessages(locale).brand).toBeTruthy();
+    for (const locale of additionalLocales) expect(layouts[locale].brand).toBeTruthy();
   });
 });

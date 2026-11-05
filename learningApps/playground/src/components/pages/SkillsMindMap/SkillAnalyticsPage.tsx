@@ -1,5 +1,8 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+import type { Locale } from '@svitlo/engine/localization';
+import type { UiKit_Global } from '@svitlo/ui-kit';
 import Link from 'next/link';
 import { Box, Container } from '@mui/material';
 import { useColorScheme } from '@mui/material/styles';
@@ -18,14 +21,48 @@ const idleProgress = {
 } as const;
 const unusedActions = { back: () => {}, next: () => {}, skip: () => {} };
 
-function SkillAnalyticsContent({ domainSlugs }: { domainSlugs: readonly string[] }) {
+function SkillAnalyticsContent({ domainSlugs, initialMessages }: {
+  domainSlugs: readonly string[];
+  initialMessages: UiKit_Global<'response'>;
+}) {
   const { locale, setLocale, ready, localeError } = useSkillsPageSettings();
   const { mode, systemMode, setMode } = useColorScheme();
+  const [resource, setResource] = useState<{ locale: Locale; messages: UiKit_Global<'response'> }>(
+    () => ({ locale: 'uk-UA', messages: initialMessages }),
+  );
+  const [resourceError, setResourceError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (resource.locale === locale) return;
+    const controller = new AbortController();
+    setResourceError(null);
+    void fetch('/data/ui-kit/' + encodeURIComponent(locale) + '.json', { signal: controller.signal })
+      .then(response => {
+        if (!response.ok) throw new Error('HTTP ' + response.status);
+        return response.json() as Promise<UiKit_Global<'response'>>;
+      })
+      .then(messages => {
+        if (!controller.signal.aborted) setResource({ locale, messages });
+      })
+      .catch(error => {
+        if (!controller.signal.aborted)
+          setResourceError(error instanceof Error ? error.message : String(error));
+      });
+    return () => controller.abort();
+  }, [locale, resource.locale]);
+
+  if (resource.locale !== locale) {
+    return <Box role={resourceError ? 'alert' : 'status'} aria-busy={!resourceError}>
+      {resourceError ? 'Не вдалося завантажити переклад інтерфейсу: ' + resourceError : 'Завантаження інтерфейсу…'}
+    </Box>;
+  }
+  const messages = resource.messages;
 
   // The page-scoped provider owns the switches and the active locale, while
   // the existing LearningLayout owns the navbar and right settings drawer.
   return (
     <LearningLayout
+      messages={messages.learningLayout}
       locale={locale}
       pathname="/skillAnalytics"
       progress={idleProgress}
@@ -35,6 +72,7 @@ function SkillAnalyticsContent({ domainSlugs }: { domainSlugs: readonly string[]
       showBottomNavbar={false}
       preferences={
         <NavbarPreferences
+          messages={messages.navbarPreferences}
           locale={locale}
           onLocaleChange={setLocale}
           mode={mode}
@@ -56,12 +94,14 @@ function SkillAnalyticsContent({ domainSlugs }: { domainSlugs: readonly string[]
 
 export function SkillAnalyticsPage({
   domainSlugs = PLAYGROUND_SKILL_ANALYTICS_DOMAINS,
+  initialMessages,
 }: {
   domainSlugs?: readonly string[];
-} = {}) {
+  initialMessages: UiKit_Global<'response'>;
+}) {
   return (
     <SkillsPageSettingsProvider>
-      <SkillAnalyticsContent domainSlugs={domainSlugs} />
+      <SkillAnalyticsContent domainSlugs={domainSlugs} initialMessages={initialMessages} />
     </SkillsPageSettingsProvider>
   );
 }

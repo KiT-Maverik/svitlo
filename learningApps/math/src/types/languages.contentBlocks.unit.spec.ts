@@ -70,10 +70,10 @@ describe('Extended locale contentBlock coverage', () => {
   it('provides locale dictionaries for the shared learner interface', () => {
     for (const locale of newLocales) expect(layouts[locale].brand).toBeTruthy();
     for (const locale of newLocales) {
-      const preferences = preferences[locale];
-      expect(preferences.language).toBeTruthy();
-      expect(preferences.theme.dark).toBeTruthy();
-      expect(preferences.theme.light).toBeTruthy();
+      const messages = preferences[locale];
+      expect(messages.language).toBeTruthy();
+      expect(messages.theme.dark).toBeTruthy();
+      expect(messages.theme.light).toBeTruthy();
     }
   });
 });
