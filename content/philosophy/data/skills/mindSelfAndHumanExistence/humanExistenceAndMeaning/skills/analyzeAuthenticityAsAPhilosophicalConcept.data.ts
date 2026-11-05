@@ -54,7 +54,7 @@ export const analyzeAuthenticityAsAPhilosophicalConcept_Skill_Data = buildSkillC
       tr: 'Sahici davranmanın toplumsal beklentilerden bağımsız olmayı gerektirip gerektirmediğini araştır.',
       vi: 'Khám phá liệu hành động chân thực có đòi hỏi độc lập với kỳ vọng xã hội hay không.',
       ta: 'உண்மைத்தன்மையுடன் செயல்பட சமூக எதிர்பார்ப்புகளிலிருந்து சுதந்திரம் தேவைப்படுமா என்று ஆராயுங்கள்.',
-      te: 'నిజాయితీగా వ్యవహరించడానికి సామాజిక అంచనాల నుంచి స్వతంత్రత అవసరమా పరిశీలించండి.',
+      te: 'తన నిజ స్వరూపానికి అనుగుణంగా ప్రవర్తించడానికి సామాజిక అంచనాల నుంచి స్వతంత్రత అవసరమా పరిశీలించండి.',
       mr: 'अस्सलपणे वागण्यासाठी सामाजिक अपेक्षांपासून स्वतंत्र असणे आवश्यक आहे का ते शोधा.',
       ms: 'Terokai sama ada bertindak secara tulen memerlukan kebebasan daripada jangkaan masyarakat.',
       he: 'בחנו אם פעולה אותנטית מחייבת עצמאות מציפיות חברתיות.',

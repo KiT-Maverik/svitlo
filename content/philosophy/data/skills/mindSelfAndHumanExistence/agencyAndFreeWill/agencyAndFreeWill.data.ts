@@ -18,7 +18,7 @@ export const agencyAndFreeWill_SkillGroup_Data = buildSkillGroupConfig({
     es: 'Agencia y libre albedrío',
     ar: 'الفاعلية والإرادة الحرة',
     fr: "Capacité d'agir et libre arbitre",
-    bn: 'কর্তৃত্বশীলতা ও স্বাধীন ইচ্ছা',
+    bn: 'কর্মক্ষমতা ও স্বাধীন ইচ্ছা',
     pt: 'Agência e livre-arbítrio',
     ur: 'فعل کی صلاحیت اور آزاد ارادہ',
     id: 'Keagenan dan kehendak bebas',

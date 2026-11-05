@@ -14,7 +14,7 @@ export const explainTheProblemOfOtherMinds_Skill_Data = buildSkillConfig({
     pt: 'Explicar o problema das outras mentes',
     ur: 'دوسرے ذہنوں کے مسئلے کی وضاحت',
     id: 'Menjelaskan masalah pikiran orang lain',
-    de: 'Das Fremdpsychische-Problem erklären',
+    de: 'Das Problem des Fremdpsychischen erklären',
     ja: '他我問題を説明する',
     ko: '타자의 마음 문제 설명하기',
     tr: 'Başka zihinler problemini açıklama',

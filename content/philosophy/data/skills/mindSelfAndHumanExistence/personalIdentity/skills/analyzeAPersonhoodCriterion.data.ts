@@ -6,7 +6,7 @@ export const analyzeAPersonhoodCriterion_Skill_Data = buildSkillConfig({
   name: {
     en: 'Analyze a personhood criterion',
     zh: '分析人格资格的判准',
-    hi: 'व्यक्तित्व की कसौटी का विश्लेषण',
+    hi: 'व्यक्ति माने जाने की कसौटी का विश्लेषण',
     es: 'Analizar un criterio de condición de persona',
     ar: 'تحليل معيار صفة الشخص',
     fr: 'Analyser un critère de personnalité morale',
@@ -40,7 +40,7 @@ export const analyzeAPersonhoodCriterion_Skill_Data = buildSkillConfig({
     frontend: {
       en: 'Test ideas about personhood against difficult cases without denying human dignity.',
       zh: '用困难案例检验人格资格的标准，同时不否定人的尊严。',
-      hi: 'मानवीय गरिमा को नकारे बिना कठिन उदाहरणों से व्यक्तित्व की कसौटियों को परखें।',
+      hi: 'मानवीय गरिमा को नकारे बिना कठिन उदाहरणों से व्यक्ति माने जाने की कसौटियों को परखें।',
       es: 'Pon a prueba criterios sobre quién es persona mediante casos difíciles, sin negar la dignidad humana.',
       ar: 'اختبر معايير صفة الشخص بحالات صعبة من دون إنكار الكرامة الإنسانية.',
       fr: "Mets à l'épreuve les critères du statut de personne face à des cas difficiles, sans nier la dignité humaine.",
@@ -60,7 +60,7 @@ export const analyzeAPersonhoodCriterion_Skill_Data = buildSkillConfig({
       he: 'בחנו קריטריונים למעמד של אדם מול מקרים קשים, בלי לשלול כבוד אנושי.',
       pl: 'Sprawdź kryteria bycia osobą na trudnych przypadkach, nie podważając godności ludzkiej.',
       uk: 'Перевіряй критерії статусу особи на складних прикладах, не заперечуючи людської гідності.',
-      lt: 'Tikrink asmens statuso kriterijus sudėtingais atvejais, neneigdama žmogaus orumo.',
+      lt: 'Tikrink asmens statuso kriterijus sudėtingais atvejais ir neprarask pagarbos žmogaus orumui.',
       lv: 'Pārbaudi personas statusa kritērijus sarežģītos gadījumos, nenoliedzot cilvēka cieņu.',
       et: 'Katseta isikuks olemise kriteeriume keeruliste juhtumite abil, eitamata inimväärikust.',
       be: 'Правярай крытэры асобаснага статусу на складаных прыкладах, не адмаўляючы чалавечай годнасьці.',

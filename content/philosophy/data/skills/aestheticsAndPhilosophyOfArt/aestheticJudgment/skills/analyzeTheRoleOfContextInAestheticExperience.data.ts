@@ -46,7 +46,7 @@ export const analyzeTheRoleOfContextInAestheticExperience_Skill_Data = buildSkil
       fr: "Explore comment le contexte ou les connaissances préalables transforment l'expérience esthétique.",
       bn: 'প্রেক্ষাপট বা আগের জ্ঞান কীভাবে নান্দনিক অভিজ্ঞতা বদলে দেয় তা জানো।',
       pt: 'Explore como o contexto e o conhecimento prévio transformam a experiência estética.',
-      ur: 'دیکھو کہ حالات اور پس منظر کا علم جمالیاتی تجربے کو کیسے بدلتا ہے۔',
+      ur: 'دیکھیں کہ حالات اور پس منظر کا علم جمالیاتی تجربے کو کیسے بدلتا ہے۔',
       id: 'Jelajahi bagaimana konteks atau pengetahuan awal mengubah pengalaman estetis.',
       de: 'Erkunde, wie Umgebung und Vorwissen eine ästhetische Erfahrung verändern.',
       ja: '背景や知識によって美的体験がどう変わるか探ろう。',

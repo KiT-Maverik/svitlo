@@ -46,7 +46,7 @@ export const identifyASpeechAct_Skill_Data = buildSkillConfig({
       fr: 'Reconnais quand dire quelque chose accomplit une action, comme promettre ou demander.',
       bn: 'কিছু বলা কখন প্রতিশ্রুতি দেওয়া বা অনুরোধ করার মতো কাজ হয় তা চেনো।',
       pt: 'Reconheça quando falar também realiza uma ação, como prometer ou pedir.',
-      ur: 'پہچانو کہ کچھ کہنا کب وعدہ کرنے یا درخواست کرنے جیسا عمل بن جاتا ہے۔',
+      ur: 'پہچانیں کہ کچھ کہنا کب وعدہ کرنے یا درخواست کرنے جیسا عمل بن جاتا ہے۔',
       id: 'Kenali saat mengatakan sesuatu juga berarti bertindak, seperti berjanji atau meminta.',
       de: 'Erkenne, wann eine Äußerung eine Handlung wie Versprechen oder Bitten vollzieht.',
       ja: '何かを言うことが、約束や依頼という行為にもなる場合を見分けよう。',

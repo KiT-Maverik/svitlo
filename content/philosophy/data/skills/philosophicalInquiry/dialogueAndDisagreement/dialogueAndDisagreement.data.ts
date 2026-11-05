@@ -72,7 +72,7 @@ export const dialogueAndDisagreement_SkillGroup_Data = buildSkillGroupConfig({
       ms: 'Ketahui bagaimana perbezaan pendapat secara hormat membantu kita menilai semula idea.',
       he: 'גלו כיצד מחלוקת מכבדת יכולה לעזור לנו לשקול מחדש רעיונות.',
       pl: 'Dowiedz się, jak pełna szacunku różnica zdań pomaga przemyśleć poglądy na nowo.',
-      uk: 'Дізнайся, як поважна незгода допомагає нам переосмислювати ідеї.',
+      uk: 'Дізнайся, як шанобливе висловлення незгоди допомагає нам переосмислювати ідеї.',
       lt: 'Sužinok, kaip pagarbus nesutarimas padeda iš naujo apsvarstyti idėjas.',
       lv: 'Uzzini, kā cieņpilnas domstarpības palīdz pārdomāt idejas no jauna.',
       et: 'Uuri, kuidas lugupidav eriarvamus aitab meil oma mõtteid ümber hinnata.',

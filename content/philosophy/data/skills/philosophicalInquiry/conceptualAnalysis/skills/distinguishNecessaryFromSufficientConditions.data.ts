@@ -55,7 +55,7 @@ export const distinguishNecessaryFromSufficientConditions_Skill_Data = buildSkil
       vi: 'Xác định một điều kiện là cần, đủ, cả hai hay không phải điều kiện nào.',
       ta: 'ஒரு நிபந்தனை அவசியமானதா, போதுமானதா, இரண்டுமா அல்லது இரண்டுமே இல்லையா என்பதைத் தீர்மானி.',
       te: 'ఒక షరతు అవసరమా, సరిపోతుందా, రెండూనా, లేక రెండూ కాదా నిర్ణయించండి.',
-      mr: 'एखादी अट आवश्यक आहे, पुरेशी आहे, दोन्ही आहे की कोणतीच नाही ते ठरव.',
+      mr: 'एखादी अट आवश्यक आहे, पुरेशी आहे, दोन्ही आहे की कोणतीच नाही ते ठरवा.',
       ms: 'Tentukan sama ada sesuatu syarat itu perlu, mencukupi, kedua-duanya atau bukan kedua-duanya.',
       he: 'קבעו אם תנאי הוא הכרחי, מספיק, שניהם או אף אחד מהם.',
       pl: 'Ustal, czy warunek jest konieczny, wystarczający, jednym i drugim czy żadnym.',

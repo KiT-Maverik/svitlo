@@ -57,7 +57,7 @@ export const meaningAndReference_SkillGroup_Data = buildSkillGroupConfig({
       fr: "Découvre la différence entre un mot, son sens et ce qu'il désigne.",
       bn: 'একটি শব্দ, তার অর্থ এবং সেটি যে বস্তুকে নির্দেশ করে—এগুলোর পার্থক্য জানো।',
       pt: 'Descubra a diferença entre uma palavra, seu sentido e aquilo a que se refere.',
-      ur: 'لفظ، اس کے معنی اور جس چیز کی طرف وہ اشارہ کرتا ہے ان میں فرق جان لو۔',
+      ur: 'لفظ، اس کے معنی اور جس چیز کی طرف وہ اشارہ کرتا ہے ان میں فرق جان لیں۔',
       id: 'Temukan perbedaan antara kata, maknanya, dan hal yang dirujuknya.',
       de: 'Entdecke den Unterschied zwischen einem Wort, seiner Bedeutung und dem, worauf es sich bezieht.',
       ja: '言葉そのもの、意味、指し示す対象の違いを学ぼう。',

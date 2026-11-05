@@ -46,7 +46,7 @@ export const distinguishArtisticIntentionFromInterpretation_Skill_Data = buildSk
       fr: "Sépare les intentions de l'artiste des interprétations appuyées par l'œuvre.",
       bn: 'শিল্পীর উদ্দেশ্যকে শিল্পকর্মসমর্থিত ব্যাখ্যা থেকে আলাদা করো।',
       pt: 'Separe as intenções do artista das interpretações sustentadas pela obra.',
-      ur: 'فنکار کی نیت کو ان معنوں سے الگ کرو جن کی تائید فن پارہ خود کرتا ہے۔',
+      ur: 'فنکار کی نیت کو ان معنوں سے الگ کریں جن کی تائید فن پارہ خود کرتا ہے۔',
       id: 'Pisahkan maksud seniman dari tafsiran yang didukung karya itu sendiri.',
       de: 'Trenne die Absicht des Künstlers von Deutungen, die das Werk stützt.',
       ja: '作者が意図したことと作品から読み取れる意味を分けて考えよう。',

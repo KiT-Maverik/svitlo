@@ -55,7 +55,7 @@ export const distinguishAPhilosophicalProblemFromAnExample_Skill_Data = buildSki
       vi: 'Phân biệt vấn đề triết học khái quát với câu chuyện minh họa nó.',
       ta: 'பொதுவான தத்துவச் சிக்கலையும் அதை விளக்கும் கதையையும் வேறுபடுத்து.',
       te: 'సాధారణ తాత్విక సమస్యను దాన్ని వివరించే కథ నుంచి వేరు చేయండి.',
-      mr: 'सर्वसाधारण तत्त्वज्ञानविषयक समस्या आणि ती दाखवणारी गोष्ट यांत फरक कर.',
+      mr: 'सर्वसाधारण तत्त्वज्ञानविषयक समस्या आणि ती दाखवणारी गोष्ट यांत फरक करा.',
       ms: 'Bezakan persoalan falsafah umum daripada cerita yang menggambarkannya.',
       he: 'הבחינו בין בעיה פילוסופית כללית לבין הסיפור שממחיש אותה.',
       pl: 'Odróżnij ogólny problem filozoficzny od historii, która go ilustruje.',

@@ -70,7 +70,7 @@ export const logicAndArgumentation_SkillDomain_Data = buildSkillDomainConfig({
       vi: 'Học đánh giá xem lý do có hỗ trợ kết luận hay không và nhận biết lập luận sai.',
       ta: 'காரணங்கள் முடிவை ஆதரிக்கின்றனவா என்பதை மதிப்பிட்டு தவறான தருக்கத்தை அறியக் கற்றுக்கொள்.',
       te: 'కారణాలు ఒక నిర్ణయాన్ని సమర్థిస్తున్నాయో లేదో అంచనా వేసి తప్పు తర్కాన్ని గుర్తించడం నేర్చుకోండి.',
-      mr: 'कारणे निष्कर्षाला आधार देतात का हे तपासायला आणि चुकीचा तर्क ओळखायला शीक.',
+      mr: 'कारणे निष्कर्षाला आधार देतात का हे तपासायला आणि चुकीचा तर्क ओळखायला शिका.',
       ms: 'Belajar menilai sama ada alasan menyokong kesimpulan dan mengenali penaakulan yang salah.',
       he: 'למדו להעריך אם נימוקים תומכים במסקנה ולזהות היסק פגום.',
       pl: 'Naucz się oceniać, czy przesłanki wspierają wniosek, i rozpoznawać błędne rozumowanie.',

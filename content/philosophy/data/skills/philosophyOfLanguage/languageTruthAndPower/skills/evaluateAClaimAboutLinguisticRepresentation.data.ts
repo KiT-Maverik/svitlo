@@ -46,7 +46,7 @@ export const evaluateAClaimAboutLinguisticRepresentation_Skill_Data = buildSkill
       fr: 'Examine si les descriptions des personnes et des choses sont justes et bien étayées.',
       bn: 'মানুষ ও জিনিসের বর্ণনা ন্যায্য এবং প্রমাণসমর্থিত কি না বিবেচনা করো।',
       pt: 'Considere se descrições de pessoas e coisas são justas e bem fundamentadas.',
-      ur: 'سوچو کہ لوگوں اور چیزوں کی وضاحت منصفانہ اور شواہد سے ثابت ہے یا نہیں۔',
+      ur: 'سوچیں کہ لوگوں اور چیزوں کی وضاحت منصفانہ اور شواہد سے ثابت ہے یا نہیں۔',
       id: 'Pertimbangkan apakah gambaran orang dan benda itu adil serta didukung bukti.',
       de: 'Überlege, ob Beschreibungen von Menschen und Dingen fair und gut begründet sind.',
       ja: '人や物事の描写が公平で、根拠に基づいているか考えよう。',

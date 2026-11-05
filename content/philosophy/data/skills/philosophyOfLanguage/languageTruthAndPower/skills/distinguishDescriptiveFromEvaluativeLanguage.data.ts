@@ -46,7 +46,7 @@ export const distinguishDescriptiveFromEvaluativeLanguage_Skill_Data = buildSkil
       fr: 'Reconnais quand une formulation apparemment factuelle exprime aussi un jugement.',
       bn: 'নিরপেক্ষ মনে হওয়া কথায়ও কখন মূল্যায়ন থাকে তা চিনে নাও।',
       pt: 'Reconheça quando palavras aparentemente factuais também expressam uma avaliação.',
-      ur: 'پہچانو کہ بظاہر حقائق بیان کرنے والے الفاظ کب رائے بھی ظاہر کرتے ہیں۔',
+      ur: 'پہچانیں کہ بظاہر حقائق بیان کرنے والے الفاظ کب رائے بھی ظاہر کرتے ہیں۔',
       id: 'Kenali saat kata-kata yang tampak faktual juga menyatakan penilaian.',
       de: 'Erkenne, wann scheinbar sachliche Formulierungen zugleich eine Wertung enthalten.',
       ja: '事実だけに見える表現にも評価が含まれる場合を見分けよう。',

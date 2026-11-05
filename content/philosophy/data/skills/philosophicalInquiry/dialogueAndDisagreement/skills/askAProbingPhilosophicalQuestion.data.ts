@@ -55,7 +55,7 @@ export const askAProbingPhilosophicalQuestion_Skill_Data = buildSkillConfig({
       vi: 'Đặt câu hỏi để kiểm tra lý do của người khác hoặc làm rõ quan điểm của họ.',
       ta: 'மற்றொருவரின் காரணங்களைச் சோதிக்க அல்லது அவரது கருத்தைத் தெளிவுபடுத்த ஒரு கேள்வி கேள்.',
       te: 'ఇతరుల కారణాలను పరీక్షించే లేదా వారి అభిప్రాయాన్ని స్పష్టం చేసే ప్రశ్న అడగండి.',
-      mr: 'दुसऱ्याची कारणे तपासणारा किंवा त्याचे मत स्पष्ट करणारा प्रश्न विचार.',
+      mr: 'दुसऱ्याची कारणे तपासणारा किंवा त्याचे मत स्पष्ट करणारा प्रश्न विचारा.',
       ms: 'Tanya soalan yang menguji alasan seseorang atau menjelaskan pandangannya.',
       he: 'שאלו שאלה שבוחנת את נימוקיו של אדם אחר או מבהירה את עמדתו.',
       pl: 'Zadaj pytanie sprawdzające czyjeś racje lub wyjaśniające jego pogląd.',

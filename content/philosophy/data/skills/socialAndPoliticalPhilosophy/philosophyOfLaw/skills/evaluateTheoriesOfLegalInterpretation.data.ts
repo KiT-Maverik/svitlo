@@ -46,7 +46,7 @@ export const evaluateTheoriesOfLegalInterpretation_Skill_Data = buildSkillConfig
       fr: "Examine comment le texte, l'objectif et les précédents influencent l'interprétation d'une règle juridique.",
       bn: 'আইনের ভাষা, উদ্দেশ্য ও পূর্বনজির ব্যাখ্যাকে কীভাবে প্রভাবিত করে তা বিবেচনা করো।',
       pt: 'Considere como texto, finalidade e precedentes afetam a interpretação de uma norma jurídica.',
-      ur: 'سوچو کہ متن، مقصد اور سابقہ عدالتی فیصلے کسی قانونی قاعدے کی تشریح پر کیسے اثر ڈالتے ہیں۔',
+      ur: 'سوچیں کہ متن، مقصد اور سابقہ عدالتی فیصلے کسی قانونی قاعدے کی تشریح پر کیسے اثر ڈالتے ہیں۔',
       id: 'Pertimbangkan bagaimana teks, tujuan, dan preseden memengaruhi penafsiran aturan hukum.',
       de: 'Überlege, wie Wortlaut, Zweck und Präzedenzfälle die Auslegung einer Rechtsnorm beeinflussen.',
       ja: '条文、目的、判例が法の規則の解釈にどう影響するか考えよう。',

@@ -45,7 +45,7 @@ export const distinguishAWordFromItsReferent_Skill_Data = buildSkillConfig({
       fr: "Distingue un mot de la chose ou de la personne qu'il nomme.",
       bn: 'শব্দটিকে সে যে বস্তু বা ব্যক্তির নাম বোঝায়, তার থেকে আলাদা করো।',
       pt: 'Diferencie uma palavra da coisa ou pessoa que ela nomeia.',
-      ur: 'لفظ کو اس چیز یا شخص سے الگ پہچانو جس کا وہ نام ہے۔',
+      ur: 'لفظ کو اس چیز یا شخص سے الگ پہچانیں جس کا وہ نام ہے۔',
       id: 'Bedakan sebuah kata dari benda atau orang yang dinamainya.',
       de: 'Unterscheide das Wort von der Sache oder Person, die es bezeichnet.',
       ja: '言葉と、それが名前として指す人や物を区別しよう。',

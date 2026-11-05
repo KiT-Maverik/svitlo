@@ -55,7 +55,7 @@ export const evaluateAnalogicalReasoning_Skill_Data = buildSkillConfig({
       vi: 'So sánh các trường hợp theo điểm tương đồng thật sự liên quan đến kết luận.',
       ta: 'முடிவுக்கு உண்மையில் முக்கியமான ஒற்றுமைகளைக் கொண்டு நிகழ்வுகளை ஒப்பிடு.',
       te: 'నిర్ధారణకు నిజంగా ముఖ్యమైన పోలికల ఆధారంగా సందర్భాలను సరిపోల్చండి.',
-      mr: 'निष्कर्षासाठी खरोखर महत्त्वाच्या साधर्म्यांवरून उदाहरणांची तुलना कर.',
+      mr: 'निष्कर्षासाठी खरोखर महत्त्वाच्या साधर्म्यांवरून उदाहरणांची तुलना करा.',
       ms: 'Bandingkan kes berdasarkan persamaan yang benar-benar berkaitan dengan kesimpulan.',
       he: 'השוו מקרים לפי קווי דמיון שחשובים באמת למסקנה.',
       pl: 'Porównuj przypadki według podobieństw rzeczywiście istotnych dla wniosku.',

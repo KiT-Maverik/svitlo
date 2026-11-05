@@ -46,7 +46,7 @@ export const distinguishAestheticFromInstrumentalValue_Skill_Data = buildSkillCo
       fr: "Distingue la beauté ou la force expressive d'un objet de son utilité pratique.",
       bn: 'বস্তুর সৌন্দর্য বা প্রকাশক্ষমতাকে তার ব্যবহারিক কাজ থেকে আলাদা করো।',
       pt: 'Diferencie a beleza ou expressão de um objeto de sua utilidade prática.',
-      ur: 'کسی چیز کی خوبصورتی یا اظہار کی قدر کو اس کے عملی فائدے سے الگ کرو۔',
+      ur: 'کسی چیز کی خوبصورتی یا اظہار کی قدر کو اس کے عملی فائدے سے الگ کریں۔',
       id: 'Bedakan keindahan atau nilai ekspresif benda dari kegunaan praktisnya.',
       de: 'Unterscheide Schönheit oder Ausdruckskraft eines Objekts von seinem praktischen Nutzen.',
       ja: '物の美しさや表現力と実用性を区別しよう。',

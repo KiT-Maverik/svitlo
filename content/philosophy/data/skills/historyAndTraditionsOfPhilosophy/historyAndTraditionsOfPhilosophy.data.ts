@@ -55,7 +55,7 @@ export const historyAndTraditionsOfPhilosophy_SkillDomain_Data = buildSkillDomai
       fr: 'Explore des idées philosophiques de différentes cultures et époques à travers leurs arguments.',
       bn: 'বিভিন্ন সংস্কৃতি ও যুগের দার্শনিক চিন্তা তাদের যুক্তির মাধ্যমে অনুসন্ধান করো।',
       pt: 'Explore ideias filosóficas de várias culturas e épocas por meio de seus argumentos.',
-      ur: 'مختلف ثقافتوں اور زمانوں کے فلسفیانہ خیالات کو ان کے دلائل کے ذریعے سمجھو۔',
+      ur: 'مختلف ثقافتوں اور زمانوں کے فلسفیانہ خیالات کو ان کے دلائل کے ذریعے سمجھیں۔',
       id: 'Jelajahi gagasan filsafat lintas budaya dan zaman melalui argumennya.',
       de: 'Erkunde philosophische Ideen verschiedener Kulturen und Epochen anhand ihrer Argumente.',
       ja: 'さまざまな文化や時代の哲学的思想を、その議論を通して探ろう。',

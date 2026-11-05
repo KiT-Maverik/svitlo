@@ -66,7 +66,7 @@ export const applyVirtueEthicalReasoning_Skill_Data = buildSkillConfig({
       be: 'Запытай, што ўчынак сьведчыць пра характар і практычную мудрасьць.',
       ka: 'იკითხე, რას აჩვენებს ქმედება ხასიათისა და პრაქტიკული სიბრძნის შესახებ.',
       kk: 'Әрекет мінез бен практикалық даналық туралы нені көрсететінін сұра.',
-      qm: 'Areketniñ xarakter ve ameliy ikmet aqqında neni köstergeni aqqında sora.',
+      qm: 'Areketniñ harakter ve ameliy ikmet aqqında neni köstergeni aqqında sora.',
     },
   },
 });

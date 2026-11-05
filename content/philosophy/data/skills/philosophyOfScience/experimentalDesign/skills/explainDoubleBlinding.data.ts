@@ -45,7 +45,7 @@ export const explainDoubleBlinding_Skill_Data = buildSkillConfig({
       ar: 'استكشف كيف يقلل إخفاء التخصيص عن المشاركين والباحثين بعض أنواع التحيز.',
       fr: "Explore comment l'insu des participants et des chercheurs peut réduire certains biais.",
       bn: 'অংশগ্রহণকারী ও গবেষক উভয়ের কাছে বরাদ্দ গোপন রাখলে পক্ষপাত কীভাবে কমতে পারে তা জানো।',
-      pt: 'Explore como ocultar a distribuição de participantes e pesquisadores pode reduzir alguns vieses.',
+      pt: 'Explore como ocultar de participantes e pesquisadores a informação sobre qual condição foi atribuída pode reduzir alguns vieses.',
       ur: 'جانیں کہ شرکا اور محققین دونوں سے گروپ کی تقسیم چھپانے سے بعض تعصبات کیسے کم ہوتے ہیں۔',
       id: 'Pelajari bagaimana menyembunyikan alokasi dari peserta dan peneliti dapat mengurangi bias tertentu.',
       de: 'Erkunde, wie Unwissen über die Zuteilung bei Teilnehmenden und Forschenden manche Verzerrungen verringert.',

@@ -72,7 +72,7 @@ export const argumentativeFallacies_SkillGroup_Data = buildSkillGroupConfig({
       vi: 'Học nhận biết các lỗi thường gặp trong lý lẽ hỗ trợ một nhận định.',
       ta: 'கூற்றுகளுக்கு அளிக்கப்படும் ஆதாரங்களில் உள்ள பொதுவான குறைகளை அறியக் கற்றுக்கொள்.',
       te: 'వాదనలకు ఇచ్చే కారణాల్లో సాధారణంగా కనిపించే లోపాలను గుర్తించడం నేర్చుకోండి.',
-      mr: 'दाव्यांच्या समर्थनार्थ दिलेल्या कारणांमधील सामान्य चुका ओळखायला शीक.',
+      mr: 'दाव्यांच्या समर्थनार्थ दिलेल्या कारणांमधील सामान्य चुका ओळखायला शिका.',
       ms: 'Belajar mengenal pasti kelemahan biasa dalam alasan yang menyokong sesuatu dakwaan.',
       he: 'למדו לזהות פגמים נפוצים בנימוקים שמוצגים לתמיכה בטענות.',
       pl: 'Naucz się rozpoznawać częste błędy w uzasadnianiu twierdzeń.',

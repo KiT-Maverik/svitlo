@@ -25,7 +25,7 @@ export const evaluateEvidenceBehindAHeadline_Skill_Data = buildSkillConfig({
     ms: 'Menilai bukti di sebalik tajuk berita',
     he: 'להעריך את הראיות שמאחורי כותרת',
     pl: 'Oceniać dowody stojące za nagłówkiem',
-    uk: 'Оцінювати докази за газетним заголовком',
+    uk: 'Оцінювати докази, на яких ґрунтується заголовок',
     lt: 'Vertinti antraštės pagrindą',
     lv: 'Izvērtēt pierādījumus aiz virsraksta',
     et: 'Hinnata pealkirja taga olevaid tõendeid',

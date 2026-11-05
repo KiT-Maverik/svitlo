@@ -46,7 +46,7 @@ export const identifyTheCentralProblemInAPhilosophicalText_Skill_Data = buildSki
       fr: 'Repère le problème principal qu’un philosophe cherche à traiter.',
       bn: 'দার্শনিক যে প্রধান সমস্যা সমাধান করতে চান তা শনাক্ত করো।',
       pt: 'Identifique a questão principal que o filósofo procura abordar.',
-      ur: 'وہ اہم مسئلہ شناخت کرو جس کا حل فلسفی تلاش کرتا ہے۔',
+      ur: 'وہ اہم مسئلہ شناخت کریں جس کا حل فلسفی تلاش کرتا ہے۔',
       id: 'Kenali masalah utama yang ingin dibahas filsuf.',
       de: 'Erkenne das Hauptproblem, das ein Philosoph behandeln möchte.',
       ja: '哲学者が取り組もうとしている主な問題を見つけよう。',

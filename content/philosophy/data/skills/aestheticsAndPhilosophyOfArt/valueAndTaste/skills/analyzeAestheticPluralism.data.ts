@@ -46,7 +46,7 @@ export const analyzeAestheticPluralism_Skill_Data = buildSkillConfig({
       fr: 'Explore comment différentes traditions artistiques peuvent disposer de critères de valeur pertinents.',
       bn: 'বিভিন্ন শিল্পঐতিহ্যে কীভাবে নিজস্ব অর্থবহ মূল্যমানদণ্ড থাকতে পারে তা জানো।',
       pt: 'Explore como diferentes tradições artísticas podem ter padrões de valor significativos.',
-      ur: 'دیکھو کہ فن کی مختلف روایات کے اپنے بامعنی معیار کیسے ہو سکتے ہیں۔',
+      ur: 'دیکھیں کہ فن کی مختلف روایات کے اپنے بامعنی معیار کیسے ہو سکتے ہیں۔',
       id: 'Jelajahi bagaimana tradisi seni berbeda memiliki standar nilai yang bermakna.',
       de: 'Erkunde, wie unterschiedliche Kunsttraditionen eigene sinnvolle Wertmaßstäbe haben können.',
       ja: '異なる芸術の伝統にそれぞれ意味ある価値基準がある理由を探ろう。',

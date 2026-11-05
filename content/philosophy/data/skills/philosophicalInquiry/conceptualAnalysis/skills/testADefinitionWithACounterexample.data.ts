@@ -55,7 +55,7 @@ export const testADefinitionWithACounterexample_Skill_Data = buildSkillConfig({
       vi: 'Thử thách một định nghĩa bằng cách tìm trường hợp mà nó phân loại sai.',
       ta: 'ஒரு வரையறை தவறாகக் கையாளும் நிலையைப் கண்டுபிடித்து அதைச் சோதித்துப் பார்.',
       te: 'ఒక నిర్వచనం తప్పుగా వర్గీకరించే సందర్భాన్ని కనుగొని దాన్ని సవాలు చేయండి.',
-      mr: 'एखाद्या व्याख्येत चुकीने बसणारे उदाहरण शोधून तिला आव्हान दे.',
+      mr: 'एखाद्या व्याख्येत चुकीने बसणारे उदाहरण शोधून तिला आव्हान द्या.',
       ms: 'Cabar takrif dengan mencari keadaan yang dikelaskannya secara salah.',
       he: 'אתגרו הגדרה באמצעות מציאת מקרה שהיא מסווגת באופן שגוי.',
       pl: 'Podważ definicję, znajdując przypadek, który błędnie klasyfikuje.',

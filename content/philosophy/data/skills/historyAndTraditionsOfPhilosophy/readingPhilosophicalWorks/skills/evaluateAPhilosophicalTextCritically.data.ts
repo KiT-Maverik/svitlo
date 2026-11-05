@@ -46,7 +46,7 @@ export const evaluateAPhilosophicalTextCritically_Skill_Data = buildSkillConfig(
       fr: 'Évalue les raisons d’un texte classique, pas seulement la réputation de son auteur.',
       bn: 'শুধু লেখকের খ্যাতি নয়, ধ্রুপদি দার্শনিক লেখার যুক্তি বিচার করো।',
       pt: 'Avalie os argumentos de um texto clássico, não apenas a fama do autor.',
-      ur: 'قدیم فلسفیانہ متن کی دلیلیں جانچو، صرف مصنف کی شہرت نہیں۔',
+      ur: 'قدیم فلسفیانہ متن کی دلیلیں جانچیں، صرف مصنف کی شہرت نہیں۔',
       id: 'Nilai alasan dalam teks klasik, bukan sekadar reputasi penulisnya.',
       de: 'Prüfe die Gründe eines klassischen Textes, nicht nur den Ruf seines Autors.',
       ja: '著者の名声だけでなく古典的な哲学書の根拠を検討しよう。',

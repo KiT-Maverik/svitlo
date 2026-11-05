@@ -55,7 +55,7 @@ export const detectCircularReasoning_Skill_Data = buildSkillConfig({
       vi: 'Nhận biết lập luận giả định sẵn chính kết luận mà nó muốn chứng minh.',
       ta: 'நிரூபிக்க வேண்டிய முடிவையே முன்கோளாகக் கொள்ளும் வாதத்தை அறி.',
       te: 'నిరూపించాలనుకున్న నిర్ణయాన్నే ముందుగా నిజమని భావించే వాదనను గుర్తించండి.',
-      mr: 'सिद्ध करायचा निष्कर्ष आधीच गृहीत धरणारा युक्तिवाद ओळख.',
+      mr: 'सिद्ध करायचा निष्कर्ष आधीच गृहीत धरणारा युक्तिवाद ओळखा.',
       ms: 'Kenal pasti hujah yang terlebih dahulu mengandaikan kesimpulan yang ingin dibuktikannya.',
       he: 'זהו טיעונים שמניחים מראש את המסקנה שהם מתיימרים להוכיח.',
       pl: 'Rozpoznaj argumenty, które zakładają wniosek, jaki rzekomo mają dowieść.',

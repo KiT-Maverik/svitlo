@@ -69,7 +69,7 @@ export const philosophicalTraditions_SkillGroup_Data = buildSkillGroupConfig({
       fr: 'Examine les arguments philosophiques élaborés dans différentes traditions culturelles.',
       bn: 'নানা সাংস্কৃতিক ধারায় বিকশিত দার্শনিক যুক্তিগুলো পরীক্ষা করো।',
       pt: 'Examine argumentos filosóficos desenvolvidos em diversas tradições culturais.',
-      ur: 'مختلف ثقافتی روایتوں میں پیش کیے گئے فلسفیانہ دلائل کا مطالعہ کرو۔',
+      ur: 'مختلف ثقافتی روایتوں میں پیش کیے گئے فلسفیانہ دلائل کا مطالعہ کریں۔',
       id: 'Telaah argumen filosofis yang berkembang dalam beragam tradisi budaya.',
       de: 'Untersuche philosophische Argumente, die sich in unterschiedlichen kulturellen Traditionen entwickelt haben.',
       ja: '多様な文化的伝統の中で生まれた哲学的議論を調べよう。',

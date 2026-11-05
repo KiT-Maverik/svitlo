@@ -46,7 +46,7 @@ export const evaluateTheLimitsOfStateCoercion_Skill_Data = buildSkillConfig({
       fr: 'Réfléchis aux situations où limiter la liberté personnelle pourrait être justifié.',
       bn: 'ব্যক্তিস্বাধীনতা সীমিত করা কখন ন্যায্য হতে পারে তা বিবেচনা করো।',
       pt: 'Considere quando restringir a liberdade individual pode ser justificável.',
-      ur: 'سوچو کہ ذاتی آزادی محدود کرنا کب جائز ہو سکتا ہے۔',
+      ur: 'سوچیں کہ ذاتی آزادی محدود کرنا کب جائز ہو سکتا ہے۔',
       id: 'Pertimbangkan kapan pembatasan kebebasan pribadi dapat dibenarkan.',
       de: 'Überlege, wann Einschränkungen persönlicher Freiheit gerechtfertigt sein könnten.',
       ja: '個人の自由を制限することがどんな場合に正当化されるか考えよう。',
