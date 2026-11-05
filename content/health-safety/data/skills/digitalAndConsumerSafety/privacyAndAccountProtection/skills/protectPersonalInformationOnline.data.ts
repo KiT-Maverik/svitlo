@@ -46,7 +46,7 @@ export const protectPersonalInformationOnline_Skill_Data = buildSkillConfig({
       fr: 'Réfléchis à qui pourrait accéder aux données sensibles avant de les publier.',
       bn: 'সংবেদনশীল তথ্য পোস্টের আগে ভাবো কারা তা দেখতে পাবে।',
       pt: 'Pense quem pode acessar dados sensíveis antes de publicá-los.',
-      ur: 'حساس معلومات پوسٹ کرنے سے پہلے سوچو انہیں کون دیکھ سکتا ہے۔',
+      ur: 'حساس معلومات پوسٹ کرنے سے پہلے سوچیں انہیں کون دیکھ سکتا ہے۔',
       id: 'Pertimbangkan siapa yang dapat melihat informasi sensitif sebelum mengunggahnya.',
       de: 'Überlege vor der Veröffentlichung, wer auf sensible Daten zugreifen könnte.',
       ja: '機密性の高い情報を投稿する前に、誰が見られるか考えよう。',
