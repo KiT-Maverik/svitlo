@@ -46,7 +46,7 @@ export const gibbsEnergy_Skill_Data = buildSkillConfig({
       bn: "নির্দিষ্ট অবস্থায় রাসায়নিক পরিবর্তন অনুকূল কি না গিবস শক্তি দিয়ে বিচার করো।",
       pt: "Use a energia de Gibbs para avaliar se uma transformação é favorável sob certas condições.",
       ur: "مخصوص حالات میں تبدیلی موافق ہے یا نہیں، گبس توانائی سے جانچیں۔",
-      id: "Gunakan energi Gibbs untuk menilai apakah perubahan kimia menguntungkan dalam kondisi tertentu.",
+      id: "Gunakan energi Gibbs untuk menilai apakah perubahan kimia cenderung berlangsung spontan dalam kondisi tertentu.",
       de: "Beurteile mit der Gibbs-Energie, ob eine chemische Änderung unter bestimmten Bedingungen begünstigt ist.",
       ja: "特定の条件で化学変化が起こりやすいかをギブズエネルギーで判断しよう。",
       ko: "정해진 조건에서 화학 변화가 유리한지 깁스 에너지로 판단하세요.",
