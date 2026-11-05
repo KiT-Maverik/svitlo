@@ -51,7 +51,7 @@ export const waterSafety_SkillGroup_Data = buildSkillGroupConfig({
     frontend: {
       en: 'Discover how to prevent drowning and respond without creating another casualty.',
       zh: '了解如何预防溺水，并在不增加伤亡的情况下帮助遇险者。',
-      hi: 'जानें कि डूबने से कैसे बचें और किसी और को जोखिम में डाले बिना मदद कैसे करें।',
+      hi: 'जानें कि डूबने से कैसे बचें और खुद को या दूसरों को जोखिम में डाले बिना मदद कैसे करें।',
       es: 'Aprende a prevenir ahogamientos y ayudar sin ponerte ni poner a otras personas en peligro.',
       ar: 'تعلّم الوقاية من الغرق والمساعدة دون تعريض شخص آخر للخطر.',
       fr: 'Apprends à prévenir la noyade et à aider sans mettre une autre personne en danger.',
