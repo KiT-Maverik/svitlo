@@ -6,6 +6,8 @@ import { useColorScheme } from '@mui/material/styles';
 import type { Locale } from '@svitlo/engine/localization';
 import type { UiKit_Global } from '@svitlo/ui-kit';
 import { Lesson, useLessonNavigation } from '@svitlo/ui-kit/lesson';
+import { ImageRendererProvider } from '@svitlo/ui-kit/widgets';
+import { NextImageRenderer } from '@svitlo/nextjs-adapter/image';
 import { createLessonLearningLayout } from '@svitlo/ui-kit/learning-layout';
 import { resolveScene } from '@/components/scenes/sceneLoader';
 import { useLessonLocale } from '@/i18n/useLessonLocale';
@@ -26,6 +28,10 @@ export default function PlaygroundLesson({ response, locale: _locale, href, mess
   href: string;
   messages: UiKit_Global<'response'>;
 }) {
-  return <Lesson response={response} href={href} messages={messages}
-    layout={Layout} sceneRegistry={resolveScene} />;
+  return (
+    <ImageRendererProvider renderer={NextImageRenderer}>
+      <Lesson response={response} href={href} messages={messages}
+        layout={Layout} sceneRegistry={resolveScene} />
+    </ImageRendererProvider>
+  );
 }
