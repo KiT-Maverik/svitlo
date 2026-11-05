@@ -21,7 +21,7 @@ export const chemicalModels_Skill_Data = buildSkillConfig({
     vi: "Mô hình hóa học",
     ta: "வேதியியல் மாதிரிகள்",
     te: "రసాయన నమూనాలు",
-    mr: "रासायनिक प्रारूपे",
+    mr: "रासायनिक मॉडेल",
     ms: "Model Kimia",
     he: "מודלים כימיים",
     pl: "Modele chemiczne",
