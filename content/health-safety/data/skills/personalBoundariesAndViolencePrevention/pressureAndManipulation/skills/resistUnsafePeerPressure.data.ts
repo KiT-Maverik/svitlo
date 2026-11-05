@@ -63,7 +63,7 @@ export const resistUnsafePeerPressure_Skill_Data = buildSkillConfig({
       lt: 'Rask saugių būdų atsisakyti žalingų bendraamžių prašymų.',
       lv: 'Atrodi drošus veidus, kā atteikt vienaudžu kaitīgajiem lūgumiem.',
       et: 'Leia ohutuid viise keelduda eakaaslaste kahjulikest palvetest.',
-      be: 'Знаходзь бясьпечныя спосабы адмаўляць на шкодныя просьбы аднагодкаў.',
+      be: 'Знаходзь бясьпечныя спосабы адмаўляцца ад шкодных просьбаў аднагодкаў.',
       ka: 'იპოვე უსაფრთხო გზა, უარი თქვა თანატოლების საზიანო მოთხოვნებზე.',
       kk: 'Құрдастардың зиянды өтініштерінен қауіпсіз бас тарту жолын тап.',
       qm: 'Yaşıtlarıñnıñ zararlı isteklerine emniyetli yoq deme yollarını tap.',
