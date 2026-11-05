@@ -61,9 +61,11 @@ UI Kit global message JSON and SVG flags remain host-staged from the UI Kit pack
 
 The pack/React DOM portability harness creates a real npm tarball, extracts it
 into an isolated consumer, and bundles its compiled exports with esbuild without
-textbook source aliases or a Next.js compiler. Web uses the same package API
-in `apps/web/scripts/prepare-textbook.mjs` while selecting a textbook at build time.
+textbook source aliases or a Next.js compiler. Web (`apps/web`), Electron
+(`apps/desktop`) and Capacitor (`apps/mobile`) build the selected package,
+run its Publish CLI for book-owned JSON/media, import its compiled Scene
+registry and stylesheet, and stage UI Kit translations/flags independently.
 
-This does not yet prove real Electron/Capacitor device behavior or offline chunk
-precaching. Those hosts must package their own browser chunks and assets, then
-verify a cold offline launch and device-specific accessibility.
+Build/bundle tests do not alone prove all installed Electron/Capacitor devices
+work, or that the Web host precaches lazy chunks. Offline content packaging and
+real-device accessibility/launch checks remain host-specific release gates.
