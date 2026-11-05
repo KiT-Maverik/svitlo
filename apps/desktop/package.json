@@ -17,10 +17,11 @@
     "lint": "eslint .",
     "test": "node --test tests/packaged-content.spec.mjs",
     "test:smoke": "playwright test",
-    "package": "npm run build && electron-builder --dir",
-    "package:win": "npm run build && electron-builder --win",
-    "package:mac": "npm run build && electron-builder --mac",
-    "package:linux": "npm run build && electron-builder --linux"
+    "package": "npm run build && electron-builder --dir --publish never",
+    "package:win": "npm run build && electron-builder --win --publish never",
+    "package:mac": "npm run build && electron-builder --mac --publish never",
+    "package:linux": "npm run build && electron-builder --linux --publish never",
+    "test:packaged": "playwright test tests/electron.packaged.spec.mjs"
   },
   "dependencies": {
     "@svitlo/adapter-electron": "0.0.0",

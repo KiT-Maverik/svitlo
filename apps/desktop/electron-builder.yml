@@ -10,6 +10,7 @@ files:
   - package.json
   - '!**/*.map'
 linux:
+  executableName: svitlo
   target:
     - AppImage
 mac:

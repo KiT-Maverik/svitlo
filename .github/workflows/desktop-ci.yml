@@ -38,3 +38,5 @@ jobs:
         run: xvfb-run -a npm run test:smoke --workspace @svitlo/desktop
       - name: Package for Linux
         run: npm run package --workspace @svitlo/desktop
+      - name: Start the packaged Linux executable without network
+        run: xvfb-run -a npm run test:packaged --workspace @svitlo/desktop

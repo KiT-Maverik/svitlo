@@ -22,6 +22,10 @@ test('cold-start desktop opens its packaged Playground lesson without remote acc
     const page = await app.firstWindow();
     await page.route(/^https?:\/\//, route => route.abort());
     await expect(page.locator('#learning-content')).toBeVisible({ timeout: 30000 });
+    const steps = page.locator('nav').filter({ has: page.locator('button[aria-current="step"]') });
+    await expect(steps).toHaveCount(1);
+    await steps.locator('button').last().click();
+    await expect(page.getByText('Як поширюється світло в прозорому однорідному середовищі?')).toBeVisible();
     await expect(page.getByText('Could not open the packaged lesson')).toHaveCount(0);
     await page.reload();
     await expect(page.locator('#learning-content')).toBeVisible();
