@@ -45,7 +45,7 @@ export const cleaningAndDisinfection_Skill_Data = buildSkillConfig({
       ar: 'ميّز بين التنظيف العادي والتطهير الموجّه وتجنّب إساءة استخدام المواد الكيميائية.',
       fr: 'Distingue le nettoyage courant de la désinfection ciblée et évite les mauvais mélanges.',
       bn: 'দৈনন্দিন পরিষ্কার ও বিশেষ জীবাণুনাশের পার্থক্য করো, রাসায়নিক ভুলভাবে ব্যবহার কোরো না।',
-      pt: 'Distinga limpeza comum de desinfeção específica e evite o uso incorreto de produtos químicos.',
+      pt: 'Distinga limpeza comum de desinfecção específica e evite o uso incorreto de produtos químicos.',
       ur: 'عام صفائی اور مخصوص جراثیم کشی میں فرق کریں اور کیمیکل کا غلط استعمال نہ کریں۔',
       id: 'Bedakan pembersihan rutin dari disinfeksi khusus dan hindari penyalahgunaan bahan kimia.',
       de: 'Unterscheide Alltagsreinigung von gezielter Desinfektion und vermeide den Missbrauch von Chemikalien.',
