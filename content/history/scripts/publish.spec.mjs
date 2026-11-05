@@ -29,6 +29,10 @@ test('publishes only history authored Skills JSON and exact manifest ownership',
   assert.equal(manifest.textbook, 'history');
   assert.equal(new Set(manifest.files).size, manifest.files.length);
   assert.ok(manifest.files.some(path => path.startsWith('data/pages/skillAnalytics/') && path.endsWith('.json')));
+  const locales = manifest.files.filter(path => path.startsWith('data/pages/skillAnalytics/') && path.endsWith('.json'));
+  assert.equal(locales.length, 29, 'All supported localized Skills must be published');
+  assert.ok(locales.some(path => path.endsWith('/qm.json')), 'Crimean Tatar must be included');
+  assert.ok(locales.some(path => path.endsWith('/uk.json')), 'Ukrainian must be included');
   assert.ok(!manifest.files.some(path => path.startsWith('data/pages/lessons/')));
   const result = run('publish', '--output', out);
   assert.equal(result.status, 0, result.stderr);
@@ -56,6 +60,21 @@ test('repeat publishing removes stale owned JSON but retains host assets', t => 
   assert.equal(after.status, 0, after.stderr);
   assert.equal(existsSync(join(out, stale)), false);
   assert.equal(readFileSync(join(out, 'images/host.svg'), 'utf8'), 'untouched');
+});
+test('metadata-only publication is an intentional safe no-op', t => {
+  const { pkg, out, run } = fixture(t);
+  mkdirSync(join(out, 'images'), { recursive: true });
+  writeFileSync(join(out, 'images/host.svg'), 'untouched');
+  const manifestFile = join(pkg, 'dist/manifest.json');
+  const manifest = JSON.parse(readFileSync(manifestFile, 'utf8'));
+  manifest.files = [];
+  writeFileSync(manifestFile, JSON.stringify(manifest));
+  const first = run('publish', '--output', out);
+  assert.equal(first.status, 0, first.stderr);
+  const second = run('publish', '--output', out);
+  assert.equal(second.status, 0, second.stderr);
+  assert.equal(readFileSync(join(out, 'images/host.svg'), 'utf8'), 'untouched');
+  assert.deepEqual(JSON.parse(readFileSync(join(out, '.svitlo/publish-history.json'), 'utf8')).files, []);
 });
 test('rejects unbuilt package, invalid arguments and path traversal', t => {
   const missing = fixture(t, false);

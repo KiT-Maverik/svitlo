@@ -31,7 +31,7 @@ try {
   command('tar', ['-xzf', join(temp, details.filename), '-C', packageRoot, '--strip-components=1'], temp);
   const manifest = JSON.parse(readFileSync(join(packageRoot, 'dist/manifest.json'), 'utf8'));
   assert.equal(manifest.textbook, 'biology');
-  const { textbook } = await import(pathToFileURL(join(packageRoot, 'dist/textbook/index.js')));
+  const { textbook } = await import(pathToFileURL(join(packageRoot, 'dist/textbook/index.js')).href);
   assert.equal(textbook.id, 'biology');
   assert.equal(textbook.skillAnalyticsDomains.length, 11);
   const input = join(temp, 'consumer.mjs');
