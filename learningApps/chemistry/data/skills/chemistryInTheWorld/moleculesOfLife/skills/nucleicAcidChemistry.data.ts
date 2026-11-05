@@ -60,7 +60,7 @@ export const nucleicAcidChemistry_Skill_Data = buildSkillConfig({
       pl: "Zrozum budowę chemiczną i szkielet DNA oraz RNA.",
       uk: "Зрозумій хімічні будівельні блоки та остов ДНК і РНК.",
       lt: "Suprask DNR ir RNR cheminius statybinius vienetus ir karkasą.",
-      lv: "Izproti DNS un RNS ķīmiskos veidojošos elementus un mugurkaulu.",
+      lv: "Izproti DNS un RNS nukleotīdu sastāvdaļas un cukura–fosfāta karkasa uzbūvi.",
       et: "Mõista DNA ja RNA keemilisi ehitusüksusi ning põhiskeleti ehitust.",
       be: "Зразумей хімічныя будаўнічыя блёкі й каркас ДНК і РНК.",
       ka: "გაიგე DNA-სა და RNA-ს ქიმიური შემადგენელი ერთეულები და ძირითადი ჩონჩხი.",
