@@ -1,9 +1,10 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { screen } from '@testing-library/react';
-import { useLocale } from '@/i18n/LocaleProvider/LocaleProvider';
+import { useLessonLanguage } from '@/i18n/useLessonLocale';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/localization';
 import { getLessonMessages } from '../locales';
 
-vi.mock('@/i18n/LocaleProvider/LocaleProvider', () => ({ useLocale: vi.fn() }));
+vi.mock('@/i18n/useLessonLocale', () => ({ useLessonLanguage: vi.fn() }));
 import { act } from 'react';
 import { playCelebration } from './Celebration';
 import { Celebration_fx } from './Celebration.unit.fx';
@@ -12,7 +13,7 @@ import { locale } from '../locales/uk-UA';
 describe('Components', () => {
   describe('Celebration', () => {
     beforeEach(() => {
-      vi.mocked(useLocale).mockReturnValue({ locale: 'uk-UA', setLocale: vi.fn() });
+      vi.mocked(useLessonLanguage).mockReturnValue(DEFAULT_SUPPORTED_LANGUAGES.find(entry => entry.language === 'uk')!);
     });
     it('should show the localized completion heading and score', () => {
       Celebration_fx.render({ score: 2, total: 4 });
@@ -47,7 +48,7 @@ describe('Components', () => {
     });
 
     it('should render the active Belarusian Taraškievica completion heading', () => {
-      vi.mocked(useLocale).mockReturnValue({ locale: 'be-tarask', setLocale: vi.fn() });
+      vi.mocked(useLessonLanguage).mockReturnValue(DEFAULT_SUPPORTED_LANGUAGES.find(entry => entry.language === 'be')!);
       Celebration_fx.render();
       expect(screen.getByRole('heading', { name: getLessonMessages('be-tarask').celebration.title })).toBeVisible();
     });

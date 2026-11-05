@@ -1,16 +1,17 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { screen } from '@testing-library/react';
-import { useLocale } from '@/i18n/LocaleProvider/LocaleProvider';
+import { useLessonLanguage } from '@/i18n/useLessonLocale';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/localization';
 import { getLessonMessages } from '../locales';
 
-vi.mock('@/i18n/LocaleProvider/LocaleProvider', () => ({ useLocale: vi.fn() }));
+vi.mock('@/i18n/useLessonLocale', () => ({ useLessonLanguage: vi.fn() }));
 import { QuestionProgress_fx } from './QuestionProgress.unit.fx';
 import { aria } from './QuestionProgress.constants';
 
 describe('Components', () => {
   describe('QuestionProgress', () => {
     beforeEach(() => {
-      vi.mocked(useLocale).mockReturnValue({ locale: 'uk-UA', setLocale: vi.fn() });
+      vi.mocked(useLessonLanguage).mockReturnValue(DEFAULT_SUPPORTED_LANGUAGES.find(entry => entry.language === 'uk')!);
     });
     it('should expose a localized accessible list label', () => {
       QuestionProgress_fx.render();
@@ -49,7 +50,7 @@ describe('Components', () => {
     });
 
     it('should use the active Lithuanian locale for status labels', () => {
-      vi.mocked(useLocale).mockReturnValue({ locale: 'lt-LT', setLocale: vi.fn() });
+      vi.mocked(useLessonLanguage).mockReturnValue(DEFAULT_SUPPORTED_LANGUAGES.find(entry => entry.language === 'lt')!);
       QuestionProgress_fx.render({ statuses: ['unanswered'], currentIndex: 0 });
       const title = getLessonMessages('lt-LT').questionProgress.status.unanswered;
       expect(screen.getByRole('button', { name: `1. ${title}` })).toBeVisible();

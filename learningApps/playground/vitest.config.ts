@@ -33,7 +33,7 @@ export default defineConfig({
         'src/data/howLightMoves/sections/practice/contentBlocks/scenes/Practice/Practice.tsx',
         'src/data/howLightMoves/sections/theory/contentBlocks/scenes/LightRayDiagram/LightRayDiagram.tsx',
         'src/data/howLightMoves/sections/theory/contentBlocks/scenes/LightPropagationSimulation/LightPropagationSimulation.tsx',
-        'src/i18n/LocaleProvider/LocaleProvider.tsx',
+        'src/i18n/useLessonLocale.ts',
       ],
     },
   },

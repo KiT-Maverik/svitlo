@@ -4,7 +4,7 @@ import { useEffect, useState, type CSSProperties } from 'react';
 import Link from 'next/link';
 import styles from '../Lesson.module.css';
 import { getLessonMessages } from '../locales';
-import { useLocale } from '@/i18n/LocaleProvider/LocaleProvider';
+import { useLessonLanguage } from '@/i18n/useLessonLocale';
 import { aria } from './Celebration.constants';
 
 export async function playCelebration() {
@@ -35,7 +35,7 @@ export async function playCelebration() {
 }
 
 export default function Celebration({ score, total }: { score: number; total: number }) {
-  const { locale: activeLocale } = useLocale();
+  const { locale: activeLocale } = useLessonLanguage();
   const locale = getLessonMessages(activeLocale);
   const [showConfetti, setShowConfetti] = useState(true);
   useEffect(() => {
