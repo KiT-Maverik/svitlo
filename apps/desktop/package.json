@@ -16,7 +16,7 @@
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "lint": "eslint .",
     "test": "node --test tests/packaged-content.spec.mjs",
-    "test:smoke": "playwright test",
+    "test:smoke": "playwright test tests/electron.smoke.spec.mjs",
     "package": "npm run build && electron-builder --dir --publish never",
     "package:win": "npm run build && electron-builder --win --publish never",
     "package:mac": "npm run build && electron-builder --mac --publish never",
