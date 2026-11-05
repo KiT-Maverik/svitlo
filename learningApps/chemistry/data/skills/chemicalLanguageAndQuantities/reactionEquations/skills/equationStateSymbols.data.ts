@@ -32,7 +32,7 @@ export const equationStateSymbols_Skill_Data = buildSkillConfig({
     be: "Абазначэньні агрэгатнага стану ў раўнаньнях",
     ka: "მდგომარეობის ნიშნები განტოლებებში",
     kk: "Теңдеудегі күй белгілері",
-    qm: "Teńlemelerde al işaretleri",
+    qm: "Teñlemelerde al işaretleri",
   },
   description: {
     methodological: "Interpret notation for solid, liquid, gas and aqueous species as information about conditions or phases.",
