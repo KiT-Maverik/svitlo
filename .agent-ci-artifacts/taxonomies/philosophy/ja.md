@@ -1022,7 +1022,7 @@ Skills: 6
 
 **Methodological description (English):** Determine what it means for a property to hold for every element of a specified domain and how one counterexample would matter.
 
-**User-friendly description (ja):** 指定された集団の全員に当てはまる文を読み取ろう。
+**User-friendly description (ja):** 指定された集合のすべての要素に当てはまる文を読み取ろう。
 
 ##### 量化命題を否定する
 

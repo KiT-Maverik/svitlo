@@ -808,7 +808,7 @@ Skills: 6
 
 **User-friendly description (ko):** 관련 근거 대신 인신공격을 사용하는 경우를 알아보세요.
 
-##### 동음이의어 혼동 오류 찾기
+##### 단어 의미를 바꿔 쓰는 오류 찾기
 
 [detectAnEquivocationFallacy.data.ts](../../../learningApps/philosophy/data/skills/logicAndArgumentation/argumentativeFallacies/skills/detectAnEquivocationFallacy.data.ts)
 
@@ -1936,7 +1936,7 @@ Skills: 6
 
 **Methodological description (English):** Assess how sample size, observed variation, and sampling processes affect the precision of an estimate, distinguishing imprecision from whether the sample represents its target population.
 
-**User-friendly description (ko):** 표본 선정과 변동이 추정의 정확도에 어떤 영향을 주는지 알아보세요.
+**User-friendly description (ko):** 표본 선정과 변동이 추정의 정밀도에 어떤 영향을 주는지 알아보세요.
 
 ##### 교란 요인 파악하기
 

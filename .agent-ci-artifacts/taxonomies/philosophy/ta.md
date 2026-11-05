@@ -352,7 +352,7 @@ Groups: 5 · Skills: 25
 
 **Methodological description (English):** Ethics studies what ought to be done, what makes actions right or wrong, and how moral reasons apply to individuals and institutions. It evaluates normative standards rather than describing the psychological development of moral feelings.
 
-**User-friendly description (ta):** செயல்கள் சரியா தவறா என்பதை எது தீர்மானிக்கிறது, அறநெறித் தீர்ப்புகளை எவ்வாறு நியாயப்படுத்தலாம் என்பதைக் ஆராயுங்கள்.
+**User-friendly description (ta):** செயல்கள் சரியா தவறா என்பதை எது தீர்மானிக்கிறது, அறநெறித் தீர்ப்புகளை எவ்வாறு நியாயப்படுத்தலாம் என்பதை ஆராயுங்கள்.
 
 #### பயன்பாட்டு அறவியல்
 
@@ -486,7 +486,7 @@ Skills: 6
 
 **Methodological description (English):** Separate questions about which actions are right from questions about what moral claims mean and whether their truth is objective.
 
-**User-friendly description (ta):** எது சரி என்று கேட்பதற்கும் அறநெறித் தீர்ப்பின் பொருள் என்ன என்று கேட்பதற்கும் உள்ள வேறுபாட்டை அறிக.
+**User-friendly description (ta):** எது சரி என்று கேட்பதற்கும் அறநெறித் தீர்ப்பின் பொருள் என்ன என்று கேட்பதற்கும் உள்ள வேறுபாட்டை அறியுங்கள்.
 
 ##### அற அறிவுவாதத்தையும் அறிவுசாராமையையும் வேறுபடுத்துதல்
 
@@ -1846,7 +1846,7 @@ Skills: 8
 
 **User-friendly description (ta):** ஒரு வரையறையிலிருந்து தெய்வ இருப்பை நிரூபிக்க முயலும் வாதங்களை ஆராயுங்கள்.
 
-##### கடவுள் நம்பிக்கையற்ற சமயங்களின் மெய்மைக் கருத்துகளைப் பகுப்பாய்வு செய்தல்
+##### படைப்புக் கடவுள் நம்பிக்கையைச் சாராத சமயங்களின் மெய்மைக் கருத்துகளைப் பகுப்பாய்வு செய்தல்
 
 [analyzeNontheisticReligiousAccountsOfReality.data.ts](../../../learningApps/philosophy/data/skills/philosophyOfReligion/ultimateRealityAndDivinity/skills/analyzeNontheisticReligiousAccountsOfReality.data.ts)
 

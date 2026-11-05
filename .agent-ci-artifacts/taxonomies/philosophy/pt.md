@@ -186,7 +186,7 @@ Skills: 5
 
 **User-friendly description (pt):** Separe o que é afirmado das evidências usadas para sustentar a afirmação.
 
-##### Distinguir evidência direta de boatos
+##### Distinguir evidência direta de relatos de segunda mão
 
 [distinguishDirectEvidenceFromHearsay.data.ts](../../../learningApps/philosophy/data/skills/epistemologyAndCriticalEvaluation/evidenceAndTestimony/skills/distinguishDirectEvidenceFromHearsay.data.ts)
 
@@ -1618,7 +1618,7 @@ Skills: 3
 
 **User-friendly description (pt):** Aprenda como o contexto influencia o que as pessoas dizem e comunicam.
 
-##### Distinguir sentido literal e implicação
+##### Distinguir sentido literal e sentido implícito
 
 [distinguishLiteralMeaningFromImplication.data.ts](../../../learningApps/philosophy/data/skills/philosophyOfLanguage/communicationAndInterpretation/skills/distinguishLiteralMeaningFromImplication.data.ts)
 
@@ -1986,7 +1986,7 @@ Skills: 9
 
 **Methodological description (English):** Identify when both participants and interacting researchers or outcome assessors are kept unaware of allocation, and why such a design is neither always feasible nor universally required.
 
-**User-friendly description (pt):** Explore como ocultar a distribuição de participantes e pesquisadores pode reduzir alguns vieses.
+**User-friendly description (pt):** Explore como ocultar de participantes e pesquisadores a informação sobre qual condição foi atribuída pode reduzir alguns vieses.
 
 ##### Explicar a distribuição aleatória
 
@@ -2002,7 +2002,7 @@ Skills: 9
 
 **Methodological description (English):** Identify which party is kept unaware of assigned conditions and how that may reduce particular expectation-related effects.
 
-**User-friendly description (pt):** Entenda como ocultar a condição atribuída de uma parte pode limitar efeitos de expectativas.
+**User-friendly description (pt):** Entenda por que ocultar de participantes ou pesquisadores qual condição foi atribuída pode reduzir efeitos de expectativa.
 
 ##### Explicar a finalidade de um grupo de controle
 

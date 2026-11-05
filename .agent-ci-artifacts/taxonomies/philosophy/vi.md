@@ -2070,7 +2070,7 @@ Skills: 5
 
 **User-friendly description (vi):** Đề xuất lời giải thích có thể kiểm tra bằng quan sát.
 
-##### Đặt câu hỏi có thể nghiên cứu bằng thực nghiệm
+##### Đặt câu hỏi có thể khảo sát dựa trên quan sát và bằng chứng
 
 [formulateAnEmpiricallyInvestigableQuestion.data.ts](../../../learningApps/philosophy/data/skills/philosophyOfScience/questionsAndHypotheses/skills/formulateAnEmpiricallyInvestigableQuestion.data.ts)
 

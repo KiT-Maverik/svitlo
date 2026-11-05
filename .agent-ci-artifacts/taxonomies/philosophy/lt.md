@@ -420,7 +420,7 @@ Skills: 5
 
 **Methodological description (English):** Evaluate obligations arising from dependence, relationships, vulnerability, and context without treating care as the absence of principles.
 
-**User-friendly description (lt):** Vertindama pareigas, atsižvelk į pažeidžiamumą, santykius ir rūpestį.
+**User-friendly description (lt):** Vertink pareigas, atsižvelk į pažeidžiamumą, santykius ir rūpestį.
 
 ##### Taikyti konsekvencialistinį samprotavimą
 
@@ -428,7 +428,7 @@ Skills: 5
 
 **Methodological description (English):** Evaluate an action by outcomes and the welfare or values its consequences affect, accounting for affected parties.
 
-**User-friendly description (lt):** Vertindama pasirinkimą, apsvarstyk tikėtinas pasekmes ir visus paveiktus asmenis.
+**User-friendly description (lt):** Apsvarstyk tikėtinas pasirinkimo pasekmes ir visus, kuriuos jis gali paveikti.
 
 ##### Taikyti pareigomis grindžiamą samprotavimą
 
@@ -696,7 +696,7 @@ Skills: 4
 
 **Methodological description (English):** Texts require interpreting claims, their argumentative context, and the questions the author sought to answer; historical wording cannot always be mapped directly to modern categories.
 
-**User-friendly description (lt):** Mokykis skaityti filosofinius kūrinius, atsižvelgdamas į jų klausimus ir kontekstą.
+**User-friendly description (lt):** Mokykis skaityti filosofinius kūrinius ir atkreipti dėmesį į jų klausimus bei kontekstą.
 
 ##### Kritiškai vertinti filosofinį tekstą
 
@@ -720,7 +720,7 @@ Skills: 4
 
 **Methodological description (English):** Use contemporaneous debates and available concepts to avoid attributing later assumptions to an earlier author.
 
-**User-friendly description (lt):** Aiškink filosofines pažiūras atsižvelgdamas į jų epochos diskusijas.
+**User-friendly description (lt):** Aiškink filosofines pažiūras jų epochos diskusijų kontekste.
 
 ##### Atkurti istorinį filosofinį argumentą
 
@@ -754,7 +754,7 @@ Skills: 3
 
 **Methodological description (English):** Identify differences in methods and questions without claiming that either broad family has one uniform answer.
 
-**User-friendly description (lt):** Palygink abu požiūrius pernelyg nesupaprastindamas nė vienos tradicijos.
+**User-friendly description (lt):** Palygink abu požiūrius ir nė vienos tradicijos pernelyg nesupaprastink.
 
 ##### Lyginti pagrindinius modernios epistemologijos požiūrius
 
@@ -898,7 +898,7 @@ Skills: 6
 
 **Methodological description (English):** Reject the antecedent of a conditional from the denial of its consequent, under the conditional as stated.
 
-**User-friendly description (lt):** Naudok sąlyginį teiginį ir jo pasekmės neigimą, kad atmestum prielaidą.
+**User-friendly description (lt):** Remkis sąlyginiu teiginiu ir jo pasekmės neigimu, kad paneigtum antecedentą (pradinę sąlygą).
 
 ##### Dedukcinio pagrįstumo vertinimas
 
@@ -1030,7 +1030,7 @@ Skills: 6
 
 **Methodological description (English):** Use the relationships between not-all and some-not, and between none and there-exists, to interpret negation accurately.
 
-**User-friendly description (lt):** Neik teiginius su „visi“ ar „kai kurie“ neiškraipydamas jų reikšmės.
+**User-friendly description (lt):** Sudaryk teiginių su „visi“ ar „kai kurie“ neiginius taip, kad jų reikšmė nebūtų iškraipyta.
 
 #### Teiginių logika
 
@@ -1112,7 +1112,7 @@ Skills: 9
 
 **Methodological description (English):** Search for a case in which all premises are true but the conclusion false to determine propositional validity.
 
-**User-friendly description (lt):** Tikrink dedukciją ieškodamas atvejo, kai prielaidos teisingos, o išvada klaidinga.
+**User-friendly description (lt):** Tikrink dedukciją: ieškok atvejo, kai prielaidos teisingos, o išvada klaidinga.
 
 ### Metafizika
 
@@ -1436,7 +1436,7 @@ Skills: 4
 
 **Methodological description (English):** Test a proposed condition of being a person against borderline cases without assigning anyone lesser real-world dignity.
 
-**User-friendly description (lt):** Tikrink asmens statuso kriterijus sudėtingais atvejais, neneigdama žmogaus orumo.
+**User-friendly description (lt):** Tikrink asmens statuso kriterijus sudėtingais atvejais ir neprarask pagarbos žmogaus orumui.
 
 ##### Palyginti kūniško ir psichologinio tęstinumo teorijas
 
@@ -1470,7 +1470,7 @@ Groups: 3 · Skills: 12
 
 **Methodological description (English):** Philosophy investigates conceptual, normative, and foundational questions whose answers require reasons rather than observation alone. This domain concerns the practices used to formulate, refine, and discuss such questions; it is distinct from the formal evaluation of arguments in Logic.
 
-**User-friendly description (lt):** Nagrinėk prasmės, vertybių ir prielaidų klausimus pagrįstai diskutuodamas.
+**User-friendly description (lt):** Nagrinėk prasmės, vertybių ir prielaidų klausimus per argumentuotą diskusiją.
 
 #### Sąvokų analizė
 
@@ -1512,7 +1512,7 @@ Skills: 4
 
 **Methodological description (English):** Vary features of an imagined situation to isolate a philosophical principle; make clear which assumptions are stipulated rather than observed.
 
-**User-friendly description (lt):** Naudok įsivaizduojamą situaciją idėjai patikrinti, aiškiai nurodydamas prielaidas.
+**User-friendly description (lt):** Naudok įsivaizduojamą situaciją idėjai patikrinti ir aiškiai įvardyk prielaidas.
 
 #### Dialogas ir nesutarimas
 
@@ -1538,7 +1538,7 @@ Skills: 4
 
 **Methodological description (English):** Restate an interlocutor's strongest contextually plausible position accurately and charitably, rather than attacking a weaker caricature; fair reconstruction does not require overlooking genuine contradictions or unsupported claims.
 
-**User-friendly description (lt):** Prieš kritikuodamas tiksliai perteik kito žmogaus poziciją.
+**User-friendly description (lt):** Pirmiausia tiksliai perteik kito žmogaus poziciją, tik tada ją kritikuok.
 
 ##### Atsakymas į filosofinį prieštaravimą
 
@@ -1632,7 +1632,7 @@ Skills: 3
 
 **Methodological description (English):** Compare readings of an utterance using the speaker's context, conventions, and available evidence.
 
-**User-friendly description (lt):** Rinkis iš aiškinimų atsižvelgdamas į kontekstą ir turimus įrodymus.
+**User-friendly description (lt):** Rinkis iš aiškinimų pagal kontekstą ir turimus įrodymus.
 
 ##### Kalbos akto atpažinimas
 
@@ -1794,7 +1794,7 @@ Skills: 4
 
 **Methodological description (English):** Weigh testimony, background assumptions, and plausible alternative explanations when assessing an extraordinary event claim without prejudging its truth.
 
-**User-friendly description (lt):** Vertink teiginį apie nepaprastą įvykį, pasverdama liudijimus ir alternatyvius paaiškinimus.
+**User-friendly description (lt):** Vertink teiginį apie nepaprastą įvykį: pasverk liudijimus ir alternatyvius paaiškinimus.
 
 ##### Vertinti religinę patirtį kaip įrodymą
 
@@ -1928,7 +1928,7 @@ Skills: 6
 
 **Methodological description (English):** Judge how design, alternative explanations, limitations, and observed evidence jointly support or weaken a causal claim.
 
-**User-friendly description (lt):** Vertink priežastinį teiginį nagrinėdamas tyrimo planą, įrodymus ir galimus kitus paaiškinimus.
+**User-friendly description (lt):** Vertink priežastinį teiginį: išnagrinėk tyrimo planą, įrodymus ir galimus kitus paaiškinimus.
 
 ##### Vertinti imties neapibrėžtumą
 
@@ -1970,7 +1970,7 @@ Skills: 9
 
 **Methodological description (English):** Assess informed consent, voluntary participation, proportionality of risk, participant protection, and integrity of reporting in proposed research; distinguish ethical permissibility from whether a study can yield valid data.
 
-**User-friendly description (lt):** Vertindamas siūlomą tyrimą apsvarstyk sutikimą, saugą ir sąžiningą ataskaitų teikimą.
+**User-friendly description (lt):** Vertink siūlomą tyrimą ir apsvarstyk sutikimą, saugą bei sąžiningą rezultatų pateikimą.
 
 ##### Paaiškinti placebo kontrolę
 
@@ -2298,13 +2298,13 @@ Skills: 4
 
 **User-friendly description (lt):** Patikrink, kieno interesams atstovauja teiginys apie bendrąjį gėrį.
 
-##### Viešų argumentų ir asmeninių pasirinkimų skirtumas
+##### Viešų argumentų ir asmeninių pageidavimų skirtumas
 
 [distinguishPublicReasonsFromPrivatePreferences.data.ts](../../../learningApps/philosophy/data/skills/socialAndPoliticalPhilosophy/publicReasonAndCivicLife/skills/distinguishPublicReasonsFromPrivatePreferences.data.ts)
 
 **Methodological description (English):** Identify justifications aimed at principles others can evaluate, rather than asserting that a personal desire must settle collective policy.
 
-**User-friendly description (lt):** Atskirk viešus argumentus nuo privačių nuostatų, kurių kiti neprivalo laikytis.
+**User-friendly description (lt):** Atskirk viešai pagrindžiamus argumentus nuo asmeninių pageidavimų, kuriais kiti neturi priežasties dalytis.
 
 ##### Požiūrių į politinę pareigą vertinimas
 
