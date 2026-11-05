@@ -59,7 +59,7 @@ export const evaluateAnInferenceWithQuantifiers_Skill_Data = buildSkillConfig({
       ms: 'Semak sama ada premis berkuantiti benar-benar membawa kepada kesimpulan yang dicadangkan.',
       he: 'בדקו אם הנחות מכומתות אכן גוררות את המסקנה המוצעת.',
       pl: 'Sprawdź, czy przesłanki z kwantyfikatorami rzeczywiście implikują proponowany wniosek.',
-      uk: 'Перевір, чи засновки з кванторами справді передбачають запропонований висновок.',
+      uk: 'Перевір, чи запропонований висновок справді випливає із засновків, що містять квантори.',
       lt: 'Patikrink, ar prielaidos su kvantoriais iš tiesų leidžia padaryti siūlomą išvadą.',
       lv: 'Pārbaudi, vai premisas ar kvantoriem tiešām nozīmē piedāvāto secinājumu.',
       et: 'Kontrolli, kas kvantoritega eeldustest tõesti järeldub pakutud järeldus.',
