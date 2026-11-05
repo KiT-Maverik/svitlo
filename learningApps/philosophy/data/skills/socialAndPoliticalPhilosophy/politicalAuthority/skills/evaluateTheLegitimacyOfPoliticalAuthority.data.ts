@@ -12,7 +12,7 @@ export const evaluateTheLegitimacyOfPoliticalAuthority_Skill_Data = buildSkillCo
     fr: "Évaluer la légitimité de l'autorité politique",
     bn: 'রাজনৈতিক কর্তৃত্বের বৈধতা মূল্যায়ন',
     pt: 'Avaliar a legitimidade da autoridade política',
-    ur: 'سیاسی اختیار کی قانونی حیثیت کا جائزہ',
+    ur: 'سیاسی اختیار کے جواز کا جائزہ',
     id: 'Menilai legitimasi otoritas politik',
     de: 'Legitimität politischer Autorität bewerten',
     ja: '政治的権威の正当性を評価する',

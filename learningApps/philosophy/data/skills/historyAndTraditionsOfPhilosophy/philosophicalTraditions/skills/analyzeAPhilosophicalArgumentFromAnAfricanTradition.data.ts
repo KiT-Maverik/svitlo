@@ -46,7 +46,7 @@ export const analyzeAPhilosophicalArgumentFromAnAfricanTradition_Skill_Data = bu
       fr: "Analyse un argument philosophique issu d'une tradition africaine particulière.",
       bn: 'নির্দিষ্ট একটি আফ্রিকান ঐতিহ্যের দার্শনিক যুক্তি বিশ্লেষণ করো।',
       pt: 'Analise um argumento filosófico de uma tradição africana específica.',
-      ur: 'کسی خاص افریقی روایت کے فلسفیانہ دلیل کا تجزیہ کرو۔',
+      ur: 'کسی مخصوص افریقی روایت سے تعلق رکھنے والی فلسفیانہ دلیل کا تجزیہ کریں۔',
       id: 'Analisis argumen filosofis dari tradisi Afrika tertentu.',
       de: 'Analysiere ein philosophisches Argument aus einer bestimmten afrikanischen Tradition.',
       ja: '特定のアフリカの伝統から生まれた哲学的議論を分析しよう。',

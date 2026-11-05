@@ -46,7 +46,7 @@ export const compareDistributivePrinciples_Skill_Data = buildSkillConfig({
       fr: "Évalue si les ressources doivent être réparties selon le besoin, le mérite, les droits ou l'égalité.",
       bn: 'সম্পদ প্রয়োজন, কৃতিত্ব, অধিকার না সমতার ভিত্তিতে বণ্টন করা উচিত তা বিচার করো।',
       pt: 'Avalie se recursos devem ser distribuídos por necessidade, mérito, direitos ou igualdade.',
-      ur: 'جائزو کہ وسائل ضرورت، اہلیت، حقوق یا برابری کے تحت تقسیم ہونے چاہییں۔',
+      ur: 'جائزہ لیں کہ وسائل ضرورت، اہلیت، حقوق یا برابری کے تحت تقسیم ہونے چاہییں۔',
       id: 'Nilai apakah sumber daya sebaiknya dibagikan menurut kebutuhan, prestasi, hak, atau kesetaraan.',
       de: 'Bewerte, ob Ressourcen nach Bedarf, Verdienst, Rechten oder Gleichheit verteilt werden sollten.',
       ja: '資源を必要、功績、権利、平等のどれに基づいて分配すべきか考えよう。',
