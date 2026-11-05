@@ -1,0 +1,10 @@
+html, body, #root { margin: 0; height: 100%; width: 100%; }
+* { box-sizing: border-box; }
+body { font-family: Arial, Helvetica, sans-serif; overscroll-behavior: none; }
+#root { overflow: hidden; }
+a { color: inherit; }
+img, video { max-width: 100%; }
+input, textarea, select { font-size: max(16px, 1rem); }
+@supports (padding: env(safe-area-inset-top)) {
+  #root { padding-top: env(safe-area-inset-top); padding-right: env(safe-area-inset-right); padding-bottom: env(safe-area-inset-bottom); padding-left: env(safe-area-inset-left); }
+}
