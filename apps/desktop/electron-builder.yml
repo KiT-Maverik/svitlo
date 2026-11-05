@@ -1,0 +1,21 @@
+appId: org.svitlo.desktop
+productName: Svitlo
+asar: true
+npmRebuild: false
+directories:
+  output: release
+files:
+  - dist-main/**/*
+  - dist-renderer/**/*
+  - package.json
+  - '!**/*.map'
+linux:
+  executableName: svitlo
+  target:
+    - AppImage
+mac:
+  target:
+    - dmg
+win:
+  target:
+    - nsis
