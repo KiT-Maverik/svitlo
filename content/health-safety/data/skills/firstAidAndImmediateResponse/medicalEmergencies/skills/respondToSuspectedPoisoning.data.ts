@@ -46,7 +46,7 @@ export const respondToSuspectedPoisoning_Skill_Data = buildSkillConfig({
       fr: "Demande conseil à un centre antipoison ou aux secours plutôt que d'improviser des remèdes.",
       bn: 'নিজের মতো প্রতিকার না করে বিষবিষয়ক বা জরুরি বিশেষজ্ঞের নির্দেশনা নাও।',
       pt: 'Busque orientação toxicológica ou de emergência, em vez de improvisar tratamentos.',
-      ur: 'اپنے طور پر علاج کرنے کے بجائے زہریلے مادوں یا ایمرجنسی ماہر کی ہدایت لو۔',
+      ur: 'اپنے طور پر علاج کرنے کے بجائے زہریلے مادوں یا ایمرجنسی ماہر کی ہدایت لیں۔',
       id: 'Cari panduan pusat racun atau bantuan darurat alih-alih mencoba obat seadanya.',
       de: 'Hole Rat bei der Giftnotrufzentrale oder dem Rettungsdienst, statt selbst Mittel auszuprobieren.',
       ja: '自己流の解毒法を試さず、中毒相談窓口や救急の指示を求めよう。',

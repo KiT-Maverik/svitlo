@@ -28,7 +28,7 @@ export const respondToUnsafeApproachesInPublic_Skill_Data = buildSkillConfig({
     uk: 'Реагувати на небезпечні звернення в громадських місцях',
     lt: 'Reaguoti į nesaugius priėjimus viešumoje',
     lv: 'Reaģēt uz nedrošu uzrunāšanu publiskās vietās',
-    et: 'Reageerida ohtlikele lähenemistele avalikus kohtades',
+    et: 'Reageerida ohtlikele lähenemistele avalikes kohtades',
     be: 'Рэагаваць на небясьпечныя звароты ў грамадзкіх месцах',
     ka: 'საზოგადოებაში სახიფათო მიახლოებებზე რეაგირება',
     kk: 'Қоғамдық жерде қауіпті жақындасуға әрекет ету',

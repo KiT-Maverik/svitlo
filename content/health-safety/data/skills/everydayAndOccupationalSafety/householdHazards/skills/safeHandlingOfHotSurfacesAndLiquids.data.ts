@@ -52,7 +52,7 @@ export const safeHandlingOfHotSurfacesAndLiquids_Skill_Data = buildSkillConfig({
       ko: '뜨거운 물건과 액체로 인한 화상 위험을 알아보세요.',
       tr: 'Sıcak nesne ve sıvıların yanık riskini fark et.',
       vi: 'Nhận biết nguy cơ bỏng từ vật và chất lỏng nóng.',
-      ta: 'சூடான பொருட்களும் திரவங்களும் ஏற்படுத்தும் தீக்காய ஆபத்தை அறிக.',
+      ta: 'சூடான பொருட்களும் திரவங்களும் ஏற்படுத்தும் தீக்காய ஆபத்தை அறியுங்கள்.',
       te: 'వేడి వస్తువులు, ద్రవాల వల్ల కాలిన గాయాల ప్రమాదాన్ని గుర్తించండి.',
       mr: 'गरम वस्तू व द्रवांमुळे भाजण्याचा धोका ओळखा.',
       ms: 'Kenali risiko melecur daripada objek dan cecair panas.',

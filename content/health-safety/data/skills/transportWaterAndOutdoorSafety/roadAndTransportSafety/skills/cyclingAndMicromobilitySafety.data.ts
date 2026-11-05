@@ -60,7 +60,7 @@ export const cyclingAndMicromobilitySafety_Skill_Data = buildSkillConfig({
       he: 'השתמשו במיגון מתאים ודאגו שיראו אתכם ברכיבה על אופניים או כלי ניידות קטנים.',
       pl: 'Stosuj odpowiednią ochronę i dbaj o widoczność podczas jazdy rowerem lub małym pojazdem.',
       uk: 'Користуйся належним захистом і подбай про помітність під час їзди велосипедом чи мікротранспортом.',
-      lt: 'Važiuodama dviračiu ar maža transporto priemone dėvėk apsaugas ir būk matoma.',
+      lt: 'Naudok tinkamas apsaugos priemones ir pasirūpink, kad važiuojant dviračiu ar mažąja transporto priemone tave aiškiai matytų.',
       lv: 'Braucot ar velosipēdu vai mazo transportlīdzekli, lieto aizsardzību un esi pamanāms.',
       et: 'Kasuta rattaga või kergliikuriga sõites sobivat kaitset ja ole nähtav.',
       be: 'Карыстайся адпаведнай абаронай і будзь заўважны на ровары ці мікратранспарце.',

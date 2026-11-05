@@ -66,7 +66,7 @@ export const naturalAndTechnologicalDisasters_SkillGroup_Data = buildSkillGroupC
       ko: '홍수, 지진, 오염 사고마다 다른 대응이 필요한 이유를 배우세요.',
       tr: 'Sel, deprem ve kirlenmenin neden farklı tepkiler gerektirdiğini öğren.',
       vi: 'Hiểu vì sao lũ lụt, động đất và ô nhiễm cần cách ứng phó khác nhau.',
-      ta: 'வெள்ளம், நிலநடுக்கம், மாசுபாடு ஏன் வெவ்வேறு நடவடிக்கைகளைத் தேவைப்படுத்துகின்றன என்பதை அறிக.',
+      ta: 'வெள்ளம், நிலநடுக்கம், மாசுபாடு ஏன் வெவ்வேறு நடவடிக்கைகளைத் தேவைப்படுத்துகின்றன என்பதை அறியுங்கள்.',
       te: 'వరదలు, భూకంపాలు, కాలుష్యానికి వేర్వేరు ప్రతిస్పందనలు ఎందుకు అవసరమో తెలుసుకోండి.',
       mr: 'पूर, भूकंप आणि दूषितीकरणासाठी वेगवेगळ्या कृती का आवश्यक असतात ते जाणून घ्या.',
       ms: 'Fahami mengapa banjir, gempa bumi dan pencemaran memerlukan tindakan berbeza.',

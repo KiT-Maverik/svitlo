@@ -53,7 +53,7 @@ export const respondSafelyToAnEarthquake_Skill_Data = buildSkillConfig({
       ko: '흔들리는 동안 몸을 보호하고 이후 손상된 건물을 조심하세요.',
       tr: 'Sarsıntı sırasında kendini koru, sonrasında hasarlı yapılara dikkat et.',
       vi: 'Tự bảo vệ khi rung lắc và chú ý công trình hư hại sau đó.',
-      ta: 'நிலநடுக்க அதிர்வின்போது உங்களைப் பாதுகாத்து, பின்னர் சேதமடைந்த கட்டிடங்களை எச்சரிக்கையுடன் அணுகுங்கள்.',
+      ta: 'நிலநடுக்க அதிர்வின்போது உங்களைப் பாதுகாத்து, பின்னர் சேதமடைந்த கட்டிடங்களால் ஏற்படும் ஆபத்துகளை கவனத்தில் கொள்ளுங்கள்.',
       te: 'భూకంపం సమయంలో రక్షించుకుని తర్వాత దెబ్బతిన్న భవనాల పట్ల జాగ్రత్తగా ఉండండి.',
       mr: 'भूकंपाच्या धक्क्यांत स्वतःचे रक्षण करा आणि नंतर नुकसान झालेल्या इमारतींपासून सावध राहा.',
       ms: 'Lindungi diri ketika gegaran dan awasi bangunan rosak selepas itu.',

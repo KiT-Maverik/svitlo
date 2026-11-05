@@ -46,7 +46,7 @@ export const manageADigitalFootprint_Skill_Data = buildSkillConfig({
       fr: 'Comprends que les informations partagées peuvent persister après leur suppression.',
       bn: 'বোঝো যে শেয়ার করা তথ্য মুছে ফেলার পরও থেকে যেতে পারে।',
       pt: 'Entenda que informações digitais compartilhadas podem permanecer após a exclusão.',
-      ur: 'سمجھو کہ شیئر کی ہوئی معلومات حذف کرنے کے بعد بھی باقی رہ سکتی ہیں۔',
+      ur: 'سمجھیں کہ شیئر کی ہوئی معلومات حذف کرنے کے بعد بھی باقی رہ سکتی ہیں۔',
       id: 'Pahami bahwa informasi yang dibagikan bisa tetap ada meski sudah dihapus.',
       de: 'Verstehe, dass geteilte Informationen auch nach dem Löschen bestehen bleiben können.',
       ja: '投稿した情報は削除しても残る場合があると理解しよう。',

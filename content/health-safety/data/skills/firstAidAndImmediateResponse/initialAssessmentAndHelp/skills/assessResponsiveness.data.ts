@@ -46,7 +46,7 @@ export const assessResponsiveness_Skill_Data = buildSkillConfig({
       fr: "Reconnais lorsqu'une personne ne réagit pas normalement.",
       bn: 'ব্যক্তি স্বাভাবিকভাবে সাড়া না দিলে তা শনাক্ত করো।',
       pt: 'Reconheça quando uma pessoa não responde normalmente.',
-      ur: 'پہچانو کہ کوئی شخص معمول کے مطابق جواب نہیں دے رہا۔',
+      ur: 'پہچانیں کہ کوئی شخص معمول کے مطابق جواب نہیں دے رہا۔',
       id: 'Kenali ketika seseorang tidak merespons secara normal.',
       de: 'Erkenne, wenn eine Person nicht normal reagiert.',
       ja: '人が正常に反応していないことを見分けよう。',

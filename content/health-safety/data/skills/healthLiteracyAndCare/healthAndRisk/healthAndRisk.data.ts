@@ -68,7 +68,7 @@ export const healthAndRisk_SkillGroup_Data = buildSkillGroupConfig({
       ko: '다양한 환경과 선택이 건강 위험에 어떻게 영향을 주는지 알아보세요.',
       tr: 'Farklı koşulların ve seçimlerin sağlık risklerini nasıl etkilediğini keşfet.',
       vi: 'Khám phá cách điều kiện và lựa chọn khác nhau ảnh hưởng đến nguy cơ sức khỏe.',
-      ta: 'வெவ்வேறு சூழ்நிலைகளும் தேர்வுகளும் உடல்நல ஆபத்துகளை எப்படி பாதிக்கின்றன என ஆராய்.',
+      ta: 'வெவ்வேறு சூழ்நிலைகளும் தேர்வுகளும் உடல்நல ஆபத்துகளை எப்படி பாதிக்கின்றன என ஆராயுங்கள்.',
       te: 'వేర్వేరు పరిస్థితులు, ఎంపికలు ఆరోగ్య ప్రమాదాలను ఎలా ప్రభావితం చేస్తాయో తెలుసుకోండి.',
       mr: 'वेगवेगळ्या परिस्थिती आणि निवडी आरोग्याच्या जोखमीवर कसा परिणाम करतात ते पाहा.',
       ms: 'Terokai bagaimana keadaan dan pilihan berbeza mempengaruhi risiko kesihatan.',

@@ -59,7 +59,7 @@ export const onlineInteractionSafety_SkillGroup_Data = buildSkillGroupConfig({
       fr: 'Découvre comment réagir aux échanges nuisibles dans les espaces numériques.',
       bn: 'ডিজিটাল পরিসরে ক্ষতিকর যোগাযোগে কীভাবে সাড়া দিতে হয় জানো।',
       pt: 'Descubra como reagir a interações prejudiciais nos ambientes digitais.',
-      ur: 'ڈیجیٹل جگہوں پر نقصان دہ گفتگو سے نمٹنا سیکھو۔',
+      ur: 'ڈیجیٹل جگہوں پر نقصان دہ گفتگو سے نمٹنا سیکھیں۔',
       id: 'Pelajari cara menanggapi interaksi berbahaya di ruang digital.',
       de: 'Entdecke, wie du auf schädliche Kontakte im digitalen Raum reagierst.',
       ja: 'ネット上の有害なやり取りに対処する方法を学ぼう。',

@@ -46,7 +46,7 @@ export const respondToSeizures_Skill_Data = buildSkillConfig({
       fr: "Protège la personne pendant une crise sans essayer de l'immobiliser de force.",
       bn: 'খিঁচুনি হওয়া ব্যক্তিকে নিরাপদ রাখো, জোর করে আটকে রেখো না।',
       pt: 'Mantenha a pessoa em convulsão segura sem restringir seus movimentos à força.',
-      ur: 'دورہ پڑنے والے شخص کو محفوظ رکھو مگر زبردستی نہ پکڑو۔',
+      ur: 'دورہ پڑنے والے شخص کو محفوظ رکھیں مگر زبردستی نہ پکڑیں۔',
       id: 'Jaga keselamatan orang yang sedang kejang tanpa menahan gerakannya.',
       de: 'Schütze eine Person während eines Anfalls, ohne sie festzuhalten.',
       ja: '発作中の人を安全に守り、無理に押さえつけないようにしよう。',

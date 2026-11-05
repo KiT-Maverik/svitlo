@@ -53,7 +53,7 @@ export const recognizeProblematicSleepPatterns_Skill_Data = buildSkillConfig({
       ko: '지속되는 수면 문제에 전문가의 도움이 필요한 때를 알아보세요.',
       tr: 'Süregelen uyku sorunlarının ne zaman uzman görüşü gerektirdiğini fark et.',
       vi: 'Nhận biết khi vấn đề ngủ kéo dài cần được tư vấn chuyên môn.',
-      ta: 'நீடிக்கும் தூக்கப் பிரச்சினைகளுக்கு எப்போது நிபுணர் உதவி தேவை என அறி.',
+      ta: 'நீடிக்கும் தூக்கப் பிரச்சினைகளுக்கு எப்போது நிபுணர் உதவி தேவை என அறியுங்கள்.',
       te: 'నిరంతరం నిద్ర సమస్యలు ఉంటే ఎప్పుడు నిపుణుల సాయం అవసరమో గుర్తించండి.',
       mr: 'झोपेची समस्या सतत राहिल्यास तज्ज्ञांचा सल्ला कधी घ्यावा ते ओळख.',
       ms: 'Ketahui bila masalah tidur berterusan memerlukan nasihat pakar.',

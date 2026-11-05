@@ -60,7 +60,7 @@ export const evacuateSafely_Skill_Data = buildSkillConfig({
       he: 'זהו דרכי פינוי בטוחות בלי להיכנס לאזורים מסוכנים.',
       pl: 'Rozpoznawaj bezpieczne drogi ewakuacji bez wchodzenia w niebezpieczne obszary.',
       uk: 'Визначай безпечні маршрути евакуації, не заходячи в небезпечні райони.',
-      lt: 'Rask saugius evakuacijos maršrutus neįeidama į pavojingas zonas.',
+      lt: 'Rask saugius evakuacijos maršrutus ir neik į pavojingas zonas.',
       lv: 'Atrodi drošus evakuācijas ceļus, neieejot bīstamās zonās.',
       et: 'Leia ohutud evakuatsiooniteed ilma ohtlikesse piirkondadesse sisenemata.',
       be: 'Вызначай бясьпечныя шляхі эвакуацыі, не заходзячы ў небясьпечныя зоны.',

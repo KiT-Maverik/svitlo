@@ -49,7 +49,7 @@ export const recognizeReproductiveHealthConcerns_Skill_Data = buildSkillConfig({
       ur: 'ایسی تبدیلیاں پہچانیں جن کے لیے رازداری کے ساتھ ماہر سے مشورہ لینا چاہیے۔',
       id: 'Kenali perubahan yang memerlukan saran profesional secara rahasia.',
       de: 'Erkenne Veränderungen, für die vertraulicher fachlicher Rat sinnvoll ist.',
-      ja: '専門家への秘密が守られる相談を検討すべき変化に気づこう。',
+      ja: '秘密が守られる形で専門家に相談すべき身体の変化に気づこう。',
       ko: '비밀이 보장되는 전문가 상담이 필요한 생식 건강 변화를 알아보세요.',
       tr: 'Gizli uzman danışmanlığı gerektiren üreme sağlığı değişikliklerini fark et.',
       vi: 'Nhận ra các thay đổi cần được tư vấn chuyên môn và bảo mật.',

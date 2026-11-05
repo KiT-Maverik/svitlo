@@ -53,7 +53,7 @@ export const oralHygiene_Skill_Data = buildSkillConfig({
       ko: '치아와 잇몸을 보호하는 일상 습관을 배워 보세요.',
       tr: 'Dişlerini ve diş etlerini koruyan günlük alışkanlıkları öğren.',
       vi: 'Học thói quen hằng ngày giúp bảo vệ răng và nướu.',
-      ta: 'பற்களையும் ஈறுகளையும் பாதுகாக்கும் தினசரி பழக்கங்களைக் கற்றுக்கொள்.',
+      ta: 'பற்களையும் ஈறுகளையும் பாதுகாக்கும் தினசரி பழக்கங்களைக் கற்றுக்கொள்ளுங்கள்.',
       te: 'పళ్లు, చిగుళ్లను కాపాడే రోజువారీ అలవాట్లు నేర్చుకోండి.',
       mr: 'दात आणि हिरड्या जपणाऱ्या दैनंदिन सवयी शीक.',
       ms: 'Pelajari tabiat harian yang melindungi gigi dan gusi.',

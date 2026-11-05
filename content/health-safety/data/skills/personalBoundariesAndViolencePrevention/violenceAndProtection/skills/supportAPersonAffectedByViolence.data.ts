@@ -60,7 +60,7 @@ export const supportAPersonAffectedByViolence_Skill_Data = buildSkillConfig({
       he: 'הציעו תמיכה ללא האשמה וללא חקירה עצמאית שעלולה לסכן אותו.',
       pl: 'Wspieraj bez obwiniania i bez podejmowania niebezpiecznego dochodzenia na własną rękę.',
       uk: 'Підтримуй без звинувачень і без небезпечного самостійного розслідування.',
-      lt: 'Palaikyk nekaltindamas ir neatlikdamas pavojingo savarankiško tyrimo.',
+      lt: 'Palaikyk žmogų, jo nekaltink ir neatlik pavojingo savarankiško tyrimo.',
       lv: 'Atbalsti bez vainošanas un bīstamas patvaļīgas izmeklēšanas.',
       et: 'Toeta süüdistamata ja ohtlikke iseseisvaid uurimisi tegemata.',
       be: 'Падтрымлівай без абвінавачаньняў і бязь небясьпечнага самастойнага расьсьледаваньня.',

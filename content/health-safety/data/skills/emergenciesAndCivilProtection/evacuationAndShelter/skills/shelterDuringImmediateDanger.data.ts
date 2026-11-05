@@ -61,7 +61,7 @@ export const shelterDuringImmediateDanger_Skill_Data = buildSkillConfig({
       uk: 'Під час безпосередньої загрози обирай належне укриття.',
       lt: 'Tiesioginės grėsmės metu pasirink tinkamą slėptuvę.',
       lv: 'Tiešu draudu gadījumā izvēlies piemērotu patvērumu.',
-      et: 'Vahetu ohu korral vali sobiv varjupaik.',
+      et: 'Vahetu ohu korral vali sobiv varjumiskoht.',
       be: 'Пры непасрэднай пагрозе выбірай адпаведнае сховішча.',
       ka: 'უშუალო საფრთხის დროს აირჩიე შესაბამისი თავშესაფარი.',
       kk: 'Тікелей қатер төнгенде қолайлы баспананы таңда.',
