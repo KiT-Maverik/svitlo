@@ -17,7 +17,9 @@ test('catalog entries are declared workspace packages with a public Scene regist
     const textbook = JSON.parse(readFileSync(join(repoRoot, entry.directory, 'package.json'), 'utf8'));
     assert.equal(textbook.name, entry.package);
     assert.equal(host.dependencies[entry.package], textbook.version);
-    assert.ok(textbook.exports['./scenes']);
+    assert.match(textbook.exports['./scenes']?.default ?? '', /^\.\/dist\//);
+    assert.match(textbook.exports['.']?.default ?? '', /^\.\/dist\//);
+    assert.equal(typeof textbook.bin?.['svitlo-' + id], 'string');
   }
 });
 

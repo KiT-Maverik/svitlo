@@ -6,7 +6,7 @@ import { Lesson } from '@svitlo/ui-kit/lesson';
 import { ImageRendererProvider } from '@svitlo/ui-kit/widgets';
 import { SceneLocaleProvider } from '@svitlo/ui-kit/scene-locale';
 import { NextImageRenderer } from '@svitlo/adapter-nextjs/image';
-import { resolveScene } from '@/generated/textbook';
+import { resolveScene } from '@/generated/textbookScenes';
 import type { LessonResponse } from '@svitlo/engine/lesson';
 import Layout from '@/components/layout/LearningLayout/LearningLayout';
 

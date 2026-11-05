@@ -2,7 +2,7 @@
 
 import styles from './LightRayDiagram.module.css';
 import { useTheme } from '@mui/material/styles';
-import type { LightRayDiagram_ContentBlock } from '../../../../../data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/sections/theory/scenes/lightRayDiagram';
+import type { LightRayDiagram_ContentBlock } from '../../../data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/sections/theory/scenes/lightRayDiagram';
 
 export function LightRayDiagram({ locales }: Pick<LightRayDiagram_ContentBlock<'response'>, 'locales'>) {
   const rtl = useTheme().direction === 'rtl';

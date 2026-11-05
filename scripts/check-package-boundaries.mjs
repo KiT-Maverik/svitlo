@@ -116,6 +116,16 @@ assert(
   'Web must consume the public Playground Scene registry',
 );
 assert(
+  ['.', './scenes'].every(
+    key =>
+      playground.exports?.[key]?.default?.startsWith('./dist/') &&
+      playground.exports?.[key]?.types?.startsWith('./dist/'),
+  ) &&
+    playground.exports?.['./styles']?.default === './dist/styles.css' &&
+    playground.bin?.['svitlo-playground'] === './scripts/publish.mjs',
+  'Playground must expose compiled JS, declarations, styles and a Publish CLI',
+);
+assert(
   !existsSync(resolve(root, 'content/playground/src/fixtures')),
   'Obsolete Playground fixtures directory must be removed',
 );

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-/** Publish a selected textbook into Desktop's own public directory (never into content/). */
-import { cpSync, existsSync, mkdirSync, readFileSync, rmSync } from 'node:fs';
-import { join, resolve, relative, sep } from 'node:path';
+/** Stage the selected textbook's prebuilt resources for the Electron host. */
+import { existsSync, readFileSync, rmSync } from 'node:fs';
+import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
 import { syncFlags } from '@svitlo/ui-kit/sync-flags';
@@ -17,11 +17,14 @@ if (!selected || textbookId !== 'playground') {
 if (selected.package !== '@svitlo/playground' || selected.directory !== 'content/playground') {
   throw new Error('Desktop textbook manifest does not match the reviewed Playground package');
 }
-const bookRoot = join(repoRoot, selected.directory);
-const bookManifest = JSON.parse(readFileSync(join(bookRoot, 'package.json'), 'utf8'));
+const bookManifest = JSON.parse(readFileSync(join(repoRoot, selected.directory, 'package.json'), 'utf8'));
 const hostManifest = JSON.parse(readFileSync(join(desktopRoot, 'package.json'), 'utf8'));
 if (bookManifest.name !== selected.package || hostManifest.dependencies[bookManifest.name] !== bookManifest.version) {
   throw new Error('Selected textbook must be a declared, version-matched Desktop dependency');
+}
+const publish = bookManifest.bin?.['svitlo-' + textbookId];
+if (!publish || !bookManifest.exports?.['./scenes']?.default?.startsWith('./dist/')) {
+  throw new Error('Selected textbook must expose its compiled Scene registry and Publish CLI');
 }
 const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
 function run(command, args) {
@@ -33,32 +36,15 @@ function run(command, args) {
 for (const workspace of ['@svitlo/contracts', '@svitlo/engine', '@svitlo/ui-kit', '@svitlo/adapter-electron']) {
   run(npm, ['run', 'build', '--workspace', workspace]);
 }
-// Reuse the committed static Scene Registry. Its generator's --check currently compares
-// raw (unformatted) output to a Prettier-formatted registry, producing a false failure.
-// Scene resolution and lazy chunks are verified by Desktop's compiled-bundle tests.
+run(npm, ['run', 'build', '--workspace', selected.package]);
 
 const publicRoot = join(desktopRoot, 'public');
-const lessonOutput = join(publicRoot, 'data/pages/lessons');
-const localeOutput = join(publicRoot, 'data/ui-kit');
-for (const directory of [lessonOutput, localeOutput]) rmSync(directory, { recursive: true, force: true });
+run(npm, ['exec', '--workspace', '@svitlo/desktop', '--', 'svitlo-' + textbookId, 'publish', '--output', publicRoot]);
 
-run('node', [
-  'scripts/generators/pages/lessons/generate-lessons.mjs',
-  '--package',
-  selected.directory,
-  '--output',
-  'apps/desktop/public/data/pages/lessons',
-  '--write',
-]);
-run('node', [
-  'scripts/generators/pages/lessons/generate-lessons.mjs',
-  '--package',
-  selected.directory,
-  '--output',
-  'apps/desktop/public/data/pages/lessons',
-  '--check',
-]);
-run('node', [
+// UI Kit-owned global strings and flags are independent of textbook publication.
+const localeOutput = join(publicRoot, 'data/ui-kit');
+rmSync(localeOutput, { recursive: true, force: true });
+run(process.execPath, [
   'shared/ui-kit/scripts/generate-locales.mjs',
   '--package',
   selected.directory,
@@ -66,20 +52,7 @@ run('node', [
   'apps/desktop/public/data/ui-kit',
 ]);
 syncFlags(desktopRoot);
-const sourceAssets = join(bookRoot, 'public');
-const targetAssets = join(publicRoot, 'textbooks', textbookId);
-rmSync(join(publicRoot, 'textbooks'), { force: true, recursive: true });
-if (existsSync(sourceAssets)) {
-  mkdirSync(join(publicRoot, 'textbooks'), { recursive: true });
-  cpSync(sourceAssets, targetAssets, {
-    recursive: true,
-    filter(source) {
-      const nested = relative(sourceAssets, source);
-      return nested === '' || !['data', 'flags'].includes(nested.split(sep)[0]);
-    },
-  });
-}
-if (!existsSync(lessonOutput) || !existsSync(join(localeOutput, 'uk-UA.json'))) {
+if (!existsSync(join(publicRoot, 'data/pages/lessons')) || !existsSync(join(localeOutput, 'uk-UA.json'))) {
   throw new Error('Desktop lesson or UI Kit localization output is missing');
 }
-console.log('Desktop content prepared for ' + textbookId + ' without changing the textbook package');
+console.log('Desktop content prepared from compiled package ' + selected.package);

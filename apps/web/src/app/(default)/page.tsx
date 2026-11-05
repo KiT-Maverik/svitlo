@@ -1,6 +1,5 @@
 import { Box, Button, Container, Stack, Typography } from '@mui/material';
 import { textbook } from '@/generated/textbook';
-import { questionsDemo } from '@/generated/textbookDemo';
 
 export default function Home() {
   return (
@@ -18,11 +17,6 @@ export default function Home() {
           {textbook.featuredLessonId && textbook.featuredLessonLabel && (
             <Button variant="contained" href={`/uk/lesson/${textbook.featuredLessonId}`}>
               {textbook.featuredLessonLabel}
-            </Button>
-          )}
-          {questionsDemo && (
-            <Button variant="outlined" href="/questions">
-              Інтерактивні запитання
             </Button>
           )}
           {!!textbook.skillAnalyticsDomains?.length && (

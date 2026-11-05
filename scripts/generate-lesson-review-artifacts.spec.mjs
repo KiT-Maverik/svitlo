@@ -73,10 +73,7 @@ test('generates locale-specific Markdown and records PR-scoped paths', () =>
     );
     assert.equal(
       fs.readFileSync(
-        path.join(
-          root,
-          'content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/howLightMoves.data.ts',
-        ),
+        path.join(root, 'content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/howLightMoves.data.ts'),
         'utf8',
       ),
       'export const lesson = {};\n',

@@ -21,7 +21,6 @@ export default defineConfig({
       include: [
         'src/components/layout/LearningLayout/LearningLayout.tsx',
         'src/components/pages/Lesson/Lesson.tsx',
-        'src/components/pages/QuestionsDemo/QuestionsDemo.tsx',
         'src/components/pages/SkillsMindMap/SkillAnalyticsPage.tsx',
         'src/components/pages/SkillsMindMap/SkillLearningClient.tsx',
         'src/components/pages/SkillsMindMap/SkillsMindMap.tsx',
