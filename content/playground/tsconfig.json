@@ -15,6 +15,6 @@
     "jsx": "react-jsx",
     "incremental": true
   },
-  "include": ["data/**/*.ts", "scenes/**/*.ts", "scenes/**/*.tsx"],
+  "include": ["textbook.ts", "data/**/*.ts", "scenes/**/*.ts", "scenes/**/*.tsx"],
   "exclude": ["node_modules", ".test-build", "test-results", "playwright-report"]
 }

@@ -26,7 +26,7 @@ export default defineConfig({
   ],
   webServer: {
     command: `npm run start -- --hostname 127.0.0.1 --port ${port}`,
-    url: `http://127.0.0.1:${port}/questions`,
+    url: `http://127.0.0.1:${port}/`,
     reuseExistingServer: !process.env.CI,
   },
 });

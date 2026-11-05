@@ -32,16 +32,12 @@
   },
   "exports": {
     ".": {
-      "types": "./src/textbook/index.ts",
-      "default": "./src/textbook/index.ts"
+      "types": "./textbook.ts",
+      "default": "./textbook.ts"
     },
     "./scenes": {
       "types": "./scenes/index.ts",
       "default": "./scenes/index.ts"
-    },
-    "./demo-questions": {
-      "types": "./src/textbook/questionsDemo.ts",
-      "default": "./src/textbook/questionsDemo.ts"
     }
   }
 }

@@ -29,7 +29,7 @@ for (const workspace of [
   '@svitlo/engine',
   '@svitlo/indexdb',
   '@svitlo/ui-kit',
-  '@svitlo/nextjs-adapter',
+  '@svitlo/adapter-nextjs',
 ]) {
   run('npm', ['run', 'build', '--workspace', workspace]);
 }
@@ -98,11 +98,5 @@ writeFileSync(
     `import { textbook as selectedTextbook } from '${selection.package}';\n` +
     `export const textbook: TextbookDescriptor = selectedTextbook;\n` +
     `export { resolveScene } from '${selection.package}/scenes';\n`,
-);
-writeFileSync(
-  join(generated, 'textbookDemo.ts'),
-  manifest.exports?.['./demo-questions']
-    ? `export { questionsDemo } from '${selection.package}/demo-questions';\n`
-    : 'export const questionsDemo: null = null;\n',
 );
 console.log(`Prepared ${id} for the Web build`);
