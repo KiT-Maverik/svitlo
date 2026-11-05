@@ -60,7 +60,7 @@ export const evaluateContextualInterpretations_Skill_Data = buildSkillConfig({
       he: 'בחרו בין פרשנויות לפי ההקשר והראיות הזמינות.',
       pl: 'Wybieraj między interpretacjami, uwzględniając kontekst i dostępne dowody.',
       uk: 'Обирай між тлумаченнями, враховуючи контекст і наявні докази.',
-      lt: 'Rinkis iš aiškinimų atsižvelgdamas į kontekstą ir turimus įrodymus.',
+      lt: 'Rinkis iš aiškinimų pagal kontekstą ir turimus įrodymus.',
       lv: 'Izvēlies starp interpretācijām, ņemot vērā kontekstu un pieejamos pierādījumus.',
       et: 'Vali tõlgenduste vahel konteksti ja olemasolevate tõendite põhjal.',
       be: 'Выбірай паміж тлумачэньнямі, улічваючы кантэкст і наяўныя доказы.',

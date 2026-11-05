@@ -20,7 +20,7 @@ export const analyzeAnOntologicalArgument_Skill_Data = buildSkillConfig({
     tr: 'Ontolojik bir argümanı çözümleme',
     vi: 'Phân tích lập luận bản thể luận',
     ta: 'இருப்பியல் வாதத்தைப் பகுப்பாய்வு செய்தல்',
-    te: 'అస్తిత్వవాద తాత్విక వాదనను విశ్లేషించడం',
+    te: 'అస్తిత్వశాస్త్రీయ వాదనను విశ్లేషించడం',
     mr: 'अस्तित्वतत्त्वविषयक युक्तिवादाचे विश्लेषण',
     ms: 'Menganalisis hujah ontologi',
     he: 'ניתוח טיעון אונטולוגי',

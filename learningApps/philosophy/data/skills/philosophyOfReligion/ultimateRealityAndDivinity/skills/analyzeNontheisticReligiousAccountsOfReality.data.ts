@@ -19,7 +19,7 @@ export const analyzeNontheisticReligiousAccountsOfReality_Skill_Data = buildSkil
     ko: '비유신론적 종교의 실재관 분석하기',
     tr: 'Gerçekliğe ilişkin tanrıcı olmayan dinî anlayışları çözümleme',
     vi: 'Phân tích quan niệm tôn giáo phi hữu thần về thực tại',
-    ta: 'கடவுள் நம்பிக்கையற்ற சமயங்களின் மெய்மைக் கருத்துகளைப் பகுப்பாய்வு செய்தல்',
+    ta: 'படைப்புக் கடவுள் நம்பிக்கையைச் சாராத சமயங்களின் மெய்மைக் கருத்துகளைப் பகுப்பாய்வு செய்தல்',
     te: 'దైవవాదం కాని మతపరమైన వాస్తవికత వివరణలను విశ్లేషించడం',
     mr: 'अनिरीश्वरवादी धार्मिक वास्तवविषयक मतांचे विश्लेषण',
     ms: 'Menganalisis pandangan agama bukan teistik tentang realiti',

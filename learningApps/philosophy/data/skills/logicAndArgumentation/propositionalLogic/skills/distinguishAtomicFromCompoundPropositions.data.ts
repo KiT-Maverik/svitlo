@@ -59,7 +59,7 @@ export const distinguishAtomicFromCompoundPropositions_Skill_Data = buildSkillCo
       ms: 'Bezakan satu proposisi dengan proposisi yang dibina menggunakan penghubung logik.',
       he: 'הבחינו בין פסוק יחיד לפסוק המורכב מפסוקים באמצעות קשרים לוגיים.',
       pl: 'Odróżnij pojedyncze zdanie od zdania złożonego ze spójników logicznych.',
-      uk: 'Відрізняй просте висловлювання від складеного за допомогою логічних зв’язок.',
+      uk: 'Відрізняй просте висловлювання від складного, утвореного за допомогою логічних зв’язок.',
       lt: 'Atskirk vieną teiginį nuo teiginio, sudaryto loginiais jungtukais.',
       lv: 'Atšķir atsevišķu izteikumu no izteikuma, kas veidots ar loģiskām saiknēm.',
       et: 'Erista üksik väide loogiliste sidenditega moodustatud liitväitest.',
