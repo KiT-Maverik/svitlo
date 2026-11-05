@@ -2,20 +2,19 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Button from '@mui/material/Button';
-import NextImage from 'next/image';
 
 import type { ContentBlock_Image_Response } from '@svitlo/engine/content';
 import type { UiKit_Component } from '@svitlo/engine/content';
 
 import { localizedAttributes } from '../../utils';
 import { useContentLanguage } from '../../ContentLanguageContext';
-import { imageUnoptimized, type ImageFailureKind } from './Image.utils';
+import type { ImageFailureKind } from './Image.utils';
 import styles from './Image.module.css';
 
 type ImageFailure = { source: string; kind: ImageFailureKind };
 
 export const Image = (props: ContentBlock_Image_Response & { messages: UiKit_Component<'image', 'response'> }) => {
-  const { src, alt, caption, sizes, unoptimized, fallback, messages } = props;
+  const { src, alt, caption, sizes, fallback, messages } = props;
   const contentLanguage = useContentLanguage();
   const imageRef = useRef<HTMLImageElement>(null);
   const [failure, setFailure] = useState<ImageFailure | null>(null);
@@ -57,21 +56,25 @@ export const Image = (props: ContentBlock_Image_Response & { messages: UiKit_Com
         </div>
       ) : props.fill ? (
         <div className={styles.fillFrame} style={{ aspectRatio: props.aspectRatio }}>
-          <NextImage
+          <img
             key={`${src}:${attempt}`}
             ref={imageRef}
             className={styles.fillImage}
             src={src}
             alt={alt}
-            fill
+            width={1}
+            height={1}
             sizes={sizes ?? '100vw'}
-            style={{ objectFit: props.objectFit ?? 'contain' }}
-            unoptimized={imageUnoptimized(src, unoptimized)}
-            onError={onError}
+            style={{ objectFit: props.objectFit ?? 'contain', width: '100%', height: '100%' }}
+            loading="lazy"
+            decoding="async"
+            loading="lazy"
+          decoding="async"
+          onError={onError}
           />
         </div>
       ) : (
-        <NextImage
+        <img
           key={`${src}:${attempt}`}
           ref={imageRef}
           className={styles.image}
@@ -80,7 +83,6 @@ export const Image = (props: ContentBlock_Image_Response & { messages: UiKit_Com
           width={props.width}
           height={props.height}
           sizes={sizes ?? `(max-width: ${props.width}px) 100vw, ${props.width}px`}
-          unoptimized={imageUnoptimized(src, unoptimized)}
           onError={onError}
         />
       )}
