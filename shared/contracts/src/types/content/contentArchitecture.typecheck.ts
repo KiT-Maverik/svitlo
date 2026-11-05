@@ -5,7 +5,6 @@ import type {
   ContentBlock_Image,
   ContentBlock_Quiz,
   ContentBlock_Quiz_Screen,
-  ContentBlock_Reference,
   ContentBlock_Scene,
   ContentBlock_Text,
   ContentBlock_Type,
@@ -32,7 +31,9 @@ type _RuntimeKinds = Assert<Equal<ContentBlock<'response', TestLanguages>['type'
 type _QuestionKinds = Assert<Equal<Question<'response', TestLanguages>['type'], Question_Type>>;
 type _SceneDiscriminator = Assert<Equal<ContentBlock_Scene<'response', TestLanguages>['type'], 'scene'>>;
 type _SceneUsesRegistryKey = Assert<Equal<ContentBlock_Scene<'response', TestLanguages>['rendererKey'], string>>;
-type _OrderedBlockReference = Assert<Equal<ContentBlock_Reference['type'], ContentBlock_Type>>;
+type _OrderedSectionContent = Assert<Equal<Section<'data', TestLanguages>['content'][number]['type'], ContentBlock_Type>>;
+type _OrderedLessonSections = Assert<Equal<Lesson<'data', TestLanguages>['sections'][number]['type'], Section_Type>>;
+type _AuthoredKinds = Assert<Equal<ContentBlock<'data', TestLanguages>['type'], ContentBlock_Type>>;
 type _QuizReferencesQuestions = Assert<Equal<ContentBlock_Quiz<'response', TestLanguages>['questionSlugs'][number], string>>;
 type _QuizStartScreen = Assert<Equal<
   NonNullable<ContentBlock_Quiz<'data', TestLanguages>['screen']['starting']>,
@@ -58,6 +59,7 @@ const runtimeText: ContentBlock_Text<'response', TestLanguages> = {
 const authoredText: ContentBlock_Text<'data', TestLanguages> = {
   id: 'text-id',
   slug: 'intro',
+  type: 'text',
   value: 'hello {{id: name; value: John}}',
   styling: [{ id: 'name', applyStyle: ['highlight'], tone: 'warning' }],
   wrap: { typographyProps: { component: 'p', align: 'center' } },
@@ -65,6 +67,7 @@ const authoredText: ContentBlock_Text<'data', TestLanguages> = {
 const authoredYoutube: ContentBlock_Youtube<'data', TestLanguages> = {
   id: 'youtube-id',
   slug: 'video',
+  type: 'youtube',
   mode: 'embed',
   href: 'https://youtu.be/M7lc1UVf-VE',
   title: 'Lesson video',
@@ -76,6 +79,7 @@ const authoredYoutube: ContentBlock_Youtube<'data', TestLanguages> = {
 const authoredImage: ContentBlock_Image<'data', TestLanguages> = {
   id: 'image-id',
   slug: 'diagram',
+  type: 'image',
   src: '/diagram.png',
   alt: 'Light ray diagram',
   caption: 'Path of a light ray',
@@ -86,6 +90,7 @@ const authoredImage: ContentBlock_Image<'data', TestLanguages> = {
 const authoredCode: ContentBlock_Code<'data', TestLanguages> = {
   id: 'code-id',
   slug: 'greeting',
+  type: 'code',
   fileLocation: '/examples/greeting.ts',
   language: 'typescript',
   variables: [{ id: 'greeting', value: 'Hello' }],
@@ -100,6 +105,7 @@ const runtimeCode: ContentBlock_Code<'response', TestLanguages> = {
 const authoredFillImage: ContentBlock_Image<'data', TestLanguages> = {
   id: 'image-fill-id',
   slug: 'responsive-diagram',
+  type: 'image',
   src: '/diagram.png',
   alt: 'Responsive light ray diagram',
   fill: true,

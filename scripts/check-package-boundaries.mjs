@@ -131,10 +131,10 @@ assert(
   existsSync(
     resolve(
       root,
-      'learningApps/playground/src/components/pages/Lesson/ContentBlockRenderer/ContentBlockRenderer.unit.spec.tsx',
+      'shared/ui-kit/src/components/widgets/ContentBlockRenderer/ContentBlockRenderer.unit.spec.tsx',
     ),
   ),
-  'Checkpoint renderer must own its unit coverage',
+  'Shared content block renderer must own its unit coverage',
 );
 assert(!existsSync(resolve(root, 'math')), 'Root mathematics docs must be inside the textbook package');
 assert(uiKit.dependencies?.[engine.name] === engine.version, 'UI Kit must consume the published Engine API');
