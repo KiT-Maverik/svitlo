@@ -46,7 +46,7 @@ export const automatedExternalDefibrillatorUse_Skill_Data = buildSkillConfig({
       fr: 'Comprends comment suivre les consignes du DAE pendant la réanimation.',
       bn: 'পুনরুজ্জীবনের সময় AED-এর নির্দেশনা অনুসরণ করা শিখো।',
       pt: 'Entenda como seguir as instruções do DEA durante a reanimação.',
-      ur: 'احیا کے دوران AED کی ہدایات پر عمل کرنا سمجھو۔',
+      ur: 'احیا کے دوران AED کی ہدایات پر عمل کرنا سمجھیں۔',
       id: 'Pahami cara mengikuti petunjuk AED saat resusitasi.',
       de: 'Verstehe, wie du bei einer Wiederbelebung den Anweisungen eines AED folgst.',
       ja: '蘇生時にAEDの音声指示に従う方法を理解しよう。',

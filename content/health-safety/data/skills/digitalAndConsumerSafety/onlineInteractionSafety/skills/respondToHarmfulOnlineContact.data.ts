@@ -46,7 +46,7 @@ export const respondToHarmfulOnlineContact_Skill_Data = buildSkillConfig({
       fr: 'Cesse les échanges avec les contacts dangereux et utilise les voies de signalement adaptées.',
       bn: 'ক্ষতিকর যোগাযোগ থেকে সরে আসো ও যথাযথ রিপোর্ট করার পথ ব্যবহার করো।',
       pt: 'Interrompa contatos prejudiciais e use os canais adequados para denunciar.',
-      ur: 'نقصان دہ رابطہ ختم کرو اور مناسب شکایت کے راستے استعمال کرو۔',
+      ur: 'نقصان دہ رابطہ ختم کریں اور مناسب شکایت کے راستے استعمال کریں۔',
       id: 'Hentikan interaksi merugikan dan gunakan saluran pelaporan yang tepat.',
       de: 'Beende schädliche Kontakte und nutze geeignete Meldewege.',
       ja: '有害な相手とのやり取りをやめ、適切な窓口に報告しよう。',
