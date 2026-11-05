@@ -15,7 +15,8 @@
     "prebuild": "node scripts/prepare-textbook.mjs",
     "predev": "node scripts/prepare-textbook.mjs",
     "pretypecheck": "node scripts/prepare-textbook.mjs",
-    "test:selection": "node --test scripts/prepare-textbook.spec.mjs"
+    "test:selection": "node --test scripts/prepare-textbook.spec.mjs",
+    "pretest:components:coverage": "node scripts/prepare-textbook.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",
