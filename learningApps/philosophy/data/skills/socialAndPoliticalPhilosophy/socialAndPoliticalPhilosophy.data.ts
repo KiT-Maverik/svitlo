@@ -61,7 +61,7 @@ export const socialAndPoliticalPhilosophy_SkillDomain_Data = buildSkillDomainCon
       fr: "Examine les fondements moraux des lois, des droits, de l'autorité et des décisions collectives.",
       bn: 'আইন, অধিকার, কর্তৃত্ব ও সম্মিলিত সামাজিক সিদ্ধান্তের নৈতিক ভিত্তি পরীক্ষা করো।',
       pt: 'Examine os fundamentos morais das leis, dos direitos, da autoridade e das decisões sociais coletivas.',
-      ur: 'قوانین، حقوق، اقتدار اور مشترکہ سماجی فیصلوں کی اخلاقی بنیادوں کا جائزہ لو۔',
+      ur: 'قوانین، حقوق، اقتدار اور مشترکہ سماجی فیصلوں کی اخلاقی بنیادوں کا جائزہ لیں۔',
       id: 'Telaah dasar moral hukum, hak, wewenang, dan keputusan bersama dalam masyarakat.',
       de: 'Untersuche die moralischen Grundlagen von Gesetzen, Rechten, Autorität und gemeinsamen gesellschaftlichen Entscheidungen.',
       ja: '法律、権利、権威、社会での共同決定の道徳的な根拠を考えよう。',

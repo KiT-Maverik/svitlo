@@ -59,7 +59,7 @@ export const philosophyOfLaw_SkillGroup_Data = buildSkillGroupConfig({
       fr: 'Explore ce qui donne autorité aux règles juridiques et comment les interpréter.',
       bn: 'আইনের বিধি কেন কর্তৃত্বপূর্ণ এবং কীভাবে সেগুলোর ব্যাখ্যা হওয়া উচিত তা অনুসন্ধান করো।',
       pt: 'Explore o que confere autoridade às normas jurídicas e como interpretá-las.',
-      ur: 'دیکھو کہ قانونی اصولوں کو اختیار کہاں سے ملتا ہے اور ان کی تشریح کیسے ہونی چاہیے۔',
+      ur: 'دیکھیں کہ قانونی اصولوں کو اختیار کہاں سے ملتا ہے اور ان کی تشریح کیسے ہونی چاہیے۔',
       id: 'Jelajahi apa yang membuat aturan hukum berwenang dan bagaimana menafsirkannya.',
       de: 'Erkunde, was Rechtsregeln verbindlich macht und wie sie ausgelegt werden sollten.',
       ja: '法の規則は何に基づいて権威を持ち、どう解釈すべきか考えよう。',

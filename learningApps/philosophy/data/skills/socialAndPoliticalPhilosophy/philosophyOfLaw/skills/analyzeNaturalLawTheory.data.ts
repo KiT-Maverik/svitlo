@@ -46,7 +46,7 @@ export const analyzeNaturalLawTheory_Skill_Data = buildSkillConfig({
       fr: "Compare les conceptions reliant l'autorité du droit à des principes moraux.",
       bn: 'আইনের কর্তৃত্বকে নৈতিক নীতির সঙ্গে যুক্ত করে এমন মতগুলো তুলনা করো।',
       pt: 'Compare visões que associam a autoridade do direito a princípios morais.',
-      ur: 'ان نظریات کا موازنہ کرو جو قانون کے اختیار کو اخلاقی اصولوں سے جوڑتے ہیں۔',
+      ur: 'ان نظریات کا موازنہ کریں جو قانون کے اختیار کو اخلاقی اصولوں سے جوڑتے ہیں۔',
       id: 'Bandingkan pandangan yang mengaitkan kewenangan hukum dengan prinsip moral.',
       de: 'Vergleiche Auffassungen, die die Autorität des Rechts mit moralischen Grundsätzen verbinden.',
       ja: '法の権威を道徳的原則と結びつけるさまざまな考えを比べよう。',
