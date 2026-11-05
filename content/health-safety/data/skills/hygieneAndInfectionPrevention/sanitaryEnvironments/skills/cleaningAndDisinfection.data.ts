@@ -50,7 +50,7 @@ export const cleaningAndDisinfection_Skill_Data = buildSkillConfig({
       id: 'Bedakan pembersihan rutin dari disinfeksi khusus dan hindari penyalahgunaan bahan kimia.',
       de: 'Unterscheide Alltagsreinigung von gezielter Desinfektion und vermeide den Missbrauch von Chemikalien.',
       ja: '普段の清掃と必要時の消毒を区別し、薬品を誤用しないようにしよう。',
-      ko: '일상 청소와 필요한 소독을 구별하고 세제를 잘못 사용하지 마세요.',
+      ko: '일상적인 청소와 필요한 소독을 구별하고 청소·소독용 화학제품을 잘못 사용하지 마세요.',
       tr: 'Günlük temizliği hedefli dezenfeksiyondan ayır ve kimyasalları yanlış kullanma.',
       vi: 'Phân biệt lau dọn hằng ngày với khử khuẩn chuyên biệt và tránh dùng sai hóa chất.',
       ta: 'வழக்கமான சுத்தம் மற்றும் இலக்கு கிருமிநீக்கத்தை வேறுபடுத்துங்கள்; இரசாயனத்தைத் தவறாகப் பயன்படுத்த வேண்டாம்.',
