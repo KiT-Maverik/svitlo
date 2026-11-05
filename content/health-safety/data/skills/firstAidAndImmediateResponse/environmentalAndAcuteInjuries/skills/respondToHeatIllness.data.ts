@@ -46,7 +46,7 @@ export const respondToHeatIllness_Skill_Data = buildSkillConfig({
       fr: "Reconnais les atteintes graves dues à la chaleur et la nécessité de refroidir et d'obtenir des soins urgents.",
       bn: 'গুরুতর তাপজনিত অসুস্থতা এবং ঠান্ডা করা ও জরুরি চিকিৎসার প্রয়োজন বোঝো।',
       pt: 'Reconheça quadros graves por calor e a necessidade de resfriamento e atendimento urgente.',
-      ur: 'شدید گرمی کی بیماری اور ٹھنڈک و فوری طبی مدد کی ضرورت پہچانو۔',
+      ur: 'شدید گرمی کی بیماری اور ٹھنڈک و فوری طبی مدد کی ضرورت پہچانیں۔',
       id: 'Kenali kondisi serius akibat panas dan kebutuhan pendinginan serta perawatan segera.',
       de: 'Erkenne gefährliche Hitzeschäden und den Bedarf an Kühlung und dringender Versorgung.',
       ja: '重い熱中症と冷却や緊急医療が必要な兆候を見分けよう。',
