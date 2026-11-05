@@ -1,27 +1,15 @@
 'use client';
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useColorScheme } from '@mui/material/styles';
 import type { Locale } from '@svitlo/engine/localization';
 import type { UiKit_Global } from '@svitlo/ui-kit';
-import { Lesson, useLessonNavigation } from '@svitlo/ui-kit/lesson';
+import { Lesson } from '@svitlo/ui-kit/lesson';
 import { ImageRendererProvider } from '@svitlo/ui-kit/widgets';
 import { NextImageRenderer } from '@svitlo/nextjs-adapter/image';
-import { createLessonLearningLayout } from '@svitlo/ui-kit/learning-layout';
 import { resolveScene } from '@/components/scenes/sceneLoader';
-import { useLessonLocale } from '@/i18n/useLessonLocale';
-import type { LessonResponse } from '@/lib/lessons/assembleLessonResponse';
+import type { LessonResponse } from '@svitlo/engine/lesson';
+import Layout from '@/components/layout/LearningLayout/LearningLayout';
 
 /** Next.js bindings and textbook-owned scene registry: no reusable UI lives here. */
-const Layout = createLessonLearningLayout({
-  usePathname,
-  useLessonNavigation,
-  useLocale: useLessonLocale,
-  useColorScheme,
-  linkComponent: Link,
-});
-
 export default function PlaygroundLesson({ response, locale: _locale, href, messages }: {
   response: LessonResponse;
   locale: Locale;
