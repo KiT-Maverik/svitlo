@@ -14,7 +14,7 @@ const math = readJson('content/math/package.json');
 const biology = readJson('content/biology/package.json');
 const physics = readJson('content/physics/package.json');
 const uiKit = readJson('shared/ui-kit/package.json');
-const nextAdapter = readJson('shared/adapters/package.json');
+const nextAdapter = readJson('shared/adapters/nextjs/package.json');
 
 function walk(dir) {
   return readdirSync(dir, { withFileTypes: true }).flatMap(entry => {
@@ -197,11 +197,7 @@ for (const file of engineSources) {
     );
   }
 }
-assert(nextAdapter.name === '@svitlo/adapter', 'Unexpected shared adapter package name');
-assert(
-  nextAdapter.exports?.['./nextjs']?.default === './dist/nextjs/index.js',
-  'Next.js adapter must be publicly exported under @svitlo/adapter/nextjs',
-);
+assert(nextAdapter.name === '@svitlo/adapter-nextjs', 'Unexpected Next.js adapter package name');
 assert(web.dependencies?.[nextAdapter.name] === nextAdapter.version, 'Web must use the shared Next.js adapter');
 assert(
   nextAdapter.dependencies?.[uiKit.name] === uiKit.version,

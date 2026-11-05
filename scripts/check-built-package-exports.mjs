@@ -5,7 +5,7 @@ const root = process.cwd();
 function assert(ok, detail) {
   if (!ok) throw new Error(detail);
 }
-const packages = ['shared/contracts', 'shared/engine', 'shared/indexdb', 'shared/ui-kit', 'shared/adapters'];
+const packages = ['shared/contracts', 'shared/engine', 'shared/indexdb', 'shared/ui-kit', 'shared/adapters/nextjs'];
 
 let checked = 0;
 for (const path of packages) {

@@ -3,13 +3,10 @@
   "compilerOptions": {
     "module": "commonjs",
     "moduleResolution": "node",
-    "rootDir": "./nextjs/src",
-    "outDir": "./dist/nextjs",
+    "rootDir": "./src",
+    "outDir": "./dist",
     "declaration": true,
     "noEmit": false
   },
-  "include": [
-    "nextjs/src/**/*.ts",
-    "nextjs/src/**/*.tsx"
-  ]
+  "include": ["src/**/*.ts", "src/**/*.tsx"]
 }

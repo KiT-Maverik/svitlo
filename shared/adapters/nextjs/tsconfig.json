@@ -1,10 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "lib": [
-      "es2022",
-      "dom"
-    ],
+    "lib": ["es2022", "dom"],
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "strict": true,
@@ -13,17 +10,8 @@
     "jsx": "react-jsx",
     "noEmit": true,
     "baseUrl": ".",
-    "paths": {
-      "@/*": [
-        "nextjs/src/*"
-      ]
-    },
-    "types": [
-      "node"
-    ]
+    "paths": { "@/*": ["src/*"] },
+    "types": ["node"]
   },
-  "include": [
-    "nextjs/src/**/*.ts",
-    "nextjs/src/**/*.tsx"
-  ]
+  "include": ["src/**/*.ts", "src/**/*.tsx"]
 }

@@ -1,20 +1,22 @@
 {
-  "name": "@svitlo/adapter",
+  "name": "@svitlo/adapter-nextjs",
   "version": "0.0.0",
   "private": true,
   "type": "commonjs",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    "./nextjs": {
-      "types": "./dist/nextjs/index.d.ts",
-      "default": "./dist/nextjs/index.js"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     },
-    "./nextjs/lesson": {
-      "types": "./dist/nextjs/lesson.d.ts",
-      "default": "./dist/nextjs/lesson.js"
+    "./lesson": {
+      "types": "./dist/lesson.d.ts",
+      "default": "./dist/lesson.js"
     },
-    "./nextjs/image": {
-      "types": "./dist/nextjs/image.d.ts",
-      "default": "./dist/nextjs/image.js"
+    "./image": {
+      "types": "./dist/image.d.ts",
+      "default": "./dist/image.js"
     }
   },
   "files": [
@@ -39,10 +41,5 @@
     "next": "16.4.2",
     "react": "19.3.0",
     "typescript": "^5"
-  },
-  "peerDependenciesMeta": {
-    "next": {
-      "optional": true
-    }
   }
 }

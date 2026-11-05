@@ -143,7 +143,7 @@ function runGate(changed) {
     '@svitlo/engine',
     '@svitlo/indexdb',
     '@svitlo/ui-kit',
-    '@svitlo/adapter',
+    '@svitlo/adapter-nextjs',
     '@svitlo/playground',
     '@svitlo/web',
   ];

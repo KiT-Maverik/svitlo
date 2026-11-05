@@ -97,8 +97,8 @@ const expected = [
     name: '@svitlo/engine',
   },
   {
-    path: 'shared/adapters',
-    name: '@svitlo/adapter',
+    path: 'shared/adapters/nextjs',
+    name: '@svitlo/adapter-nextjs',
   },
   {
     path: 'shared/ui-kit',
@@ -107,7 +107,7 @@ const expected = [
 ];
 const manifest = readJson('package.json');
 const lock = readJson('package-lock.json');
-const patterns = ['apps/*', 'backend/*', 'frontend/*', 'content/*', 'content/languages/*', 'shared/*'];
+const patterns = ['apps/*', 'backend/*', 'frontend/*', 'content/*', 'content/languages/*', 'shared/*', 'shared/adapters/*'];
 
 function assert(ok, description) {
   if (!ok) throw new Error(description);
@@ -129,11 +129,7 @@ for (const { path, name } of expected) {
   const pkg = readJson(pkgPath);
   const tsconfig = readJson(tsconfigPath);
   assert(pkg.name === name && pkg.private === true, 'Invalid workspace manifest: ' + pkgPath);
-  assert(
-    tsconfig.compilerOptions?.paths?.['@/*']?.[0] ===
-      (path === 'shared/adapters' ? 'nextjs/src/*' : 'src/*'),
-    'Missing local alias in ' + tsconfigPath,
-  );
+  assert(tsconfig.compilerOptions?.paths?.['@/*']?.[0] === 'src/*', 'Missing local alias in ' + tsconfigPath);
   assert(lock.packages[path]?.name === name, 'Missing workspace lockfile package: ' + name);
   assert(lock.packages['node_modules/' + name]?.resolved === path, 'Missing workspace lockfile link: ' + name);
 }
