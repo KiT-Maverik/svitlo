@@ -18,7 +18,7 @@ export const usingHealthcare_SkillGroup_Data = buildSkillGroupConfig({
     ar: 'الاستفادة من الرعاية الصحية',
     fr: 'Recourir aux soins de santé',
     bn: 'স্বাস্থ্যসেবা গ্রহণ',
-    pt: 'Utilização dos cuidados de saúde',
+    pt: 'Acesso aos serviços de saúde',
     ur: 'صحت کی خدمات سے فائدہ اٹھانا',
     id: 'Mengakses Layanan Kesehatan',
     de: 'Gesundheitsversorgung nutzen',
