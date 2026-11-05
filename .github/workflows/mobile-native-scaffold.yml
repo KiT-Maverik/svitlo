@@ -11,7 +11,7 @@ permissions:
 
 concurrency:
   group: mobile-native-scaffold
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   scaffold:
@@ -40,9 +40,11 @@ jobs:
       - name: Run mobile unit tests
         run: npm run test --workspace @svitlo/mobile
       - name: Generate native Android project using Capacitor
-        run: npm exec --workspace @svitlo/mobile -- cap add android
+        run: |
+          if [ ! -d apps/mobile/android ]; then npm exec --workspace @svitlo/mobile -- cap add android; fi
       - name: Generate native iOS project using Capacitor
-        run: npm exec --workspace @svitlo/mobile -- cap add ios
+        run: |
+          if [ ! -d apps/mobile/ios ]; then npm exec --workspace @svitlo/mobile -- cap add ios; fi
       - name: Synchronize locally built web resources with native projects
         run: npm exec --workspace @svitlo/mobile -- cap sync
       - name: Commit generated native source and npm lockfile

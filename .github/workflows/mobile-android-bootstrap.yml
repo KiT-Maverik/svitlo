@@ -1,0 +1,47 @@
+name: Generate Android project
+
+on:
+  push:
+    branches: [feature/capacitor-mobile-app]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mobile-android-bootstrap
+  cancel-in-progress: true
+
+jobs:
+  scaffold:
+    name: Generate Android from Capacitor CLI
+    if: "!contains(github.event.head_commit.message, 'Generate Capacitor Android project')"
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/capacitor-mobile-app
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm run build --workspace @svitlo/mobile
+      - run: npm run verify:bundle --workspace @svitlo/mobile
+      - name: Scaffold Android
+        run: |
+          if [ ! -d apps/mobile/android ]; then
+            npm exec --workspace @svitlo/mobile -- cap add android
+          fi
+      - run: npm exec --workspace @svitlo/mobile -- cap sync android
+      - name: Commit Android source and native configuration
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add apps/mobile/android
+          if ! git diff --cached --quiet; then
+            git commit -m "Generate Capacitor Android project"
+            git push origin HEAD:feature/capacitor-mobile-app
+          fi
