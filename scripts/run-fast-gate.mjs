@@ -138,7 +138,17 @@ function runGate(changed) {
       }
     }
   }
-  const targets = [...plan.affected].sort();
+  // Validate the foundational runtime first. An unrelated textbook's unfinished
+  // content translations must not hide failures in a changed shared package.
+  const priority = [
+    '@svitlo/contracts', '@svitlo/engine', '@svitlo/indexdb',
+    '@svitlo/ui-kit', '@svitlo/nextjs-adapter', '@svitlo/playground',
+  ];
+  const rank = name => {
+    const index = priority.indexOf(name);
+    return index < 0 ? priority.length : index;
+  };
+  const targets = [...plan.affected].sort((a, b) => rank(a) - rank(b) || a.localeCompare(b));
   // Authored textbook taxonomy imports @svitlo/engine/taxonomy. Its exported declarations
   // exist only after the shared Engine build; data/ is now included in textbook tsconfigs.
   // Build this prerequisite for affected textbooks even when their manifests have not
