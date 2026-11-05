@@ -48,7 +48,7 @@ export const contactEmergencyServices_Skill_Data = buildSkillConfig({
       pt: 'Explique claramente a emergência ao atendente e siga suas instruções.',
       ur: 'آپریٹر کو ہنگامی صورتحال واضح بتائیں اور ان کی ہدایات پر عمل کریں۔',
       id: 'Jelaskan keadaan darurat kepada operator dan ikuti petunjuknya.',
-      de: 'Schildern Sie den Notfall klar der Leitstelle und folgen Sie ihren Anweisungen.',
+      de: 'Schilder der Leitstelle den Notfall klar und folge ihren Anweisungen.',
       ja: '緊急事態を通報担当者にはっきり伝え、指示に従おう。',
       ko: '신고 접수자에게 긴급 상황을 명확히 설명하고 지시를 따르세요.',
       tr: 'Acil durumu görevliye açıkça anlat ve talimatlarını izle.',
