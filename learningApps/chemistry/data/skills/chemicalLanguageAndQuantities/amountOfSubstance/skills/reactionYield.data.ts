@@ -51,7 +51,7 @@ export const reactionYield_Skill_Data = buildSkillConfig({
       ja: "理論収率と実際の収率を比較し、百分率収率を説明しよう。",
       ko: "이론 수득량과 실제 수득량을 비교하고 백분율 수득률을 설명하세요.",
       tr: "Kuramsal ve gerçek verimi karşılaştır, yüzde verimi açıkla.",
-      vi: "So sánh hiệu suất lý thuyết và thực tế, giải thích hiệu suất phần trăm.",
+      vi: "So sánh lượng sản phẩm theo lý thuyết với lượng sản phẩm thực tế và giải thích hiệu suất phản ứng tính theo phần trăm.",
       ta: "கோட்பாட்டு, உண்மையான விளைச்சலை ஒப்பிட்டு சதவீத விளைச்சலை விளக்கு.",
       te: "సిద్ధాంత, వాస్తవ దిగుబడులను పోల్చి శాతం దిగుబడిని వివరించండి.",
       mr: "सैद्धांतिक व प्रत्यक्ष उत्पन्नाची तुलना करून टक्केवारी उत्पन्न समजाव.",
