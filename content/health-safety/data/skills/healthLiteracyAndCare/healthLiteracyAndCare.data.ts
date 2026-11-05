@@ -62,7 +62,7 @@ export const healthLiteracyAndCare_SkillDomain_Data = buildSkillDomainConfig({
       ko: '건강 상태의 변화를 알아차리고 믿을 만한 정보를 활용하며 적절한 진료를 받는 법을 배워 보세요.',
       tr: 'Sağlık değişikliklerini fark etmeyi, güvenilir bilgi kullanmayı ve uygun bakım almayı öğren.',
       vi: 'Học nhận biết thay đổi sức khỏe, dùng thông tin đáng tin cậy và tìm chăm sóc phù hợp.',
-      ta: 'உடல்நல மாற்றங்களை அறியவும் நம்பகமான தகவலைப் பயன்படுத்தி உரிய மருத்துவ உதவியைப் பெறவும் கற்றுக்கொள்.',
+      ta: 'உடல்நல மாற்றங்களை அறியவும் நம்பகமான தகவலைப் பயன்படுத்தி உரிய மருத்துவ உதவியைப் பெறவும் கற்றுக்கொள்ளுங்கள்.',
       te: 'ఆరోగ్య మార్పులను గుర్తించడం, నమ్మదగిన సమాచారం వాడటం, తగిన వైద్యసాయం పొందడం నేర్చుకోండి.',
       mr: 'आरोग्यातील बदल ओळखणे, विश्वसनीय माहिती वापरणे आणि योग्य उपचार घेणे शीक.',
       ms: 'Belajar mengenali perubahan kesihatan, menggunakan maklumat dipercayai dan mendapatkan rawatan sesuai.',

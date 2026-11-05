@@ -53,7 +53,7 @@ export const recognizeChangesInHealthStatus_Skill_Data = buildSkillConfig({
       ko: '몸에 새로운 변화가 생겼을 때 언제 주의하거나 전문가와 상담해야 하는지 알아보세요.',
       tr: 'Bedendeki yeni bir değişimin ne zaman dikkat veya uzman görüşü gerektirdiğini fark et.',
       vi: 'Nhận biết khi thay đổi mới của cơ thể cần chú ý hoặc hỏi chuyên gia.',
-      ta: 'உடலில் புதிய மாற்றம் ஏற்பட்டால் எப்போது கவனம் செலுத்தவோ நிபுணரிடம் ஆலோசனை பெறவோ வேண்டும் என்பதை அறி.',
+      ta: 'உடலில் புதிய மாற்றம் ஏற்பட்டால் எப்போது கவனம் செலுத்தவோ நிபுணரிடம் ஆலோசனை பெறவோ வேண்டும் என்பதை அறியுங்கள்.',
       te: 'శరీరంలో కొత్త మార్పుకు ఎప్పుడు శ్రద్ధ లేదా వైద్య సలహా అవసరమో గుర్తించండి.',
       mr: 'शरीरातील नव्या बदलांकडे कधी लक्ष द्यावे किंवा तज्ज्ञांचा सल्ला घ्यावा ते ओळख.',
       ms: 'Kenal pasti bila perubahan baharu pada tubuh perlu perhatian atau nasihat profesional.',

@@ -53,7 +53,7 @@ export const useMedicinesSafely_Skill_Data = buildSkillConfig({
       ko: '복약 지침을 따르고 약을 나누거나 용량을 추측하지 마세요.',
       tr: 'İlaç talimatlarına uy; ilaç paylaşma ve doz tahmin etme.',
       vi: 'Làm theo hướng dẫn dùng thuốc; không chia sẻ thuốc hay đoán liều.',
-      ta: 'மருந்து வழிமுறையைப் பின்பற்று; பிறருக்குப் பகிராதே, அளவை ஊகிக்காதே.',
+      ta: 'மருந்து வழிமுறையைப் பின்பற்றுங்கள்; பிறருக்குப் பகிர வேண்டாம், அளவை ஊகிக்க வேண்டாம்.',
       te: 'మందుల సూచనలు పాటించండి; పంచుకోకండి, మోతాదును ఊహించకండి.',
       mr: 'औषधांच्या सूचना पाळ; औषधे वाटू नकोस आणि मात्रा अंदाजाने ठरवू नकोस.',
       ms: 'Patuhi arahan ubat; jangan kongsi ubat atau teka dos.',

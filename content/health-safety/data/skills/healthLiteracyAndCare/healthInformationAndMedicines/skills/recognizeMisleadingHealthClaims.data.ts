@@ -53,7 +53,7 @@ export const recognizeMisleadingHealthClaims_Skill_Data = buildSkillConfig({
       ko: '근거 없는 기적의 치료법과 오해를 부르는 의료 광고를 알아보세요.',
       tr: 'Kanıtsız mucize tedavileri ve yanıltıcı tıbbi reklamları fark et.',
       vi: 'Phát hiện cách chữa bệnh thần kỳ thiếu chứng cứ và quảng cáo y tế sai lệch.',
-      ta: 'ஆதாரமற்ற அதிசய சிகிச்சைகளையும் தவறான மருத்துவ விளம்பரங்களையும் அறி.',
+      ta: 'ஆதாரமற்ற அதிசய சிகிச்சைகளையும் தவறான மருத்துவ விளம்பரங்களையும் அறியுங்கள்.',
       te: 'ఆధారంలేని అద్భుత చికిత్సల వాదనలు, తప్పుదారి పట్టించే ప్రకటనలను గుర్తించండి.',
       mr: 'पुराव्याविना चमत्कारी उपचाराचे दावे आणि फसव्या जाहिराती ओळख.',
       ms: 'Kenal pasti dakwaan rawatan ajaib tanpa bukti dan iklan perubatan mengelirukan.',

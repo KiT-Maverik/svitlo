@@ -53,7 +53,7 @@ export const identifyFactorsAffectingHealth_Skill_Data = buildSkillConfig({
       ko: '습관과 환경이 다른 요인과 함께 건강에 미치는 영향을 알아보세요.',
       tr: 'Alışkanlıkların ve çevrenin diğer etkenlerle birlikte sağlığı nasıl etkilediğini fark et.',
       vi: 'Tìm hiểu thói quen và môi trường cùng các yếu tố khác ảnh hưởng sức khỏe ra sao.',
-      ta: 'பழக்கங்களும் சூழலும் மற்ற காரணிகளுடன் சேர்ந்து உடல்நலத்தை எவ்வாறு பாதிக்கின்றன என அறி.',
+      ta: 'பழக்கங்களும் சூழலும் மற்ற காரணிகளுடன் சேர்ந்து உடல்நலத்தை எவ்வாறு பாதிக்கின்றன என அறியுங்கள்.',
       te: 'అలవాట్లు, పరిసరాలు ఇతర అంశాలతో కలిసి ఆరోగ్యాన్ని ఎలా ప్రభావితం చేస్తాయో తెలుసుకోండి.',
       mr: 'सवयी आणि परिसर इतर घटकांसह आरोग्यावर कसा परिणाम करतात ते ओळख.',
       ms: 'Kenal pasti bagaimana tabiat dan persekitaran bersama faktor lain mempengaruhi kesihatan.',
