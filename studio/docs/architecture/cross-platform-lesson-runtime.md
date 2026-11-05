@@ -25,6 +25,7 @@ A release can select **one textbook** or **a catalog of textbooks** at build tim
 - UI Kit renders using **React DOM** in all three targets (Next.js browser, Capacitor WebView, Electron Chromium). This design intentionally **does not promise compatibility with React Native's native component renderer**.
 - There is no requirement to split a textbook into separate `definition` and `runtime` repositories/packages. Distinguish **authoring/build inputs** from **runtime deliverables** within a single independently extractable textbook package.
 - Keep platform-specific bootstrapping and framework tooling in the host. UI Kit and Scenes must not import app-local `@/*` aliases or app-owned context providers. Shared locale/session providers may be supplied explicitly where required.
+- **Shared UI static assets:** UI Kit is the source of truth for flags and other reusable static UI assets. Each host stages its own deployable copy during app preparation, independently of the selected textbook. For Web, `npm run prepare:assets --workspace @svitlo/web` puts flags in `apps/web/public/flags/` (served as `/flags/*.svg`); `prepare-textbook.mjs` handles selected-book data and does not copy these files. Capacitor/Electron will require their own packaging adapters when implemented.
 
 ## Build-time composition and offline behavior
 
