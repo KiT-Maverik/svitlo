@@ -59,7 +59,7 @@ export const analyzeReligiousPluralismAsAPhilosophicalProblem_Skill_Data = build
       ms: 'Terokai respons falsafah terhadap dakwaan kebenaran agama yang saling bersaing.',
       he: 'בחנו תגובות פילוסופיות לטענות דתיות מתחרות בדבר אמת.',
       pl: 'Poznaj filozoficzne odpowiedzi na konkurencyjne religijne roszczenia do prawdy.',
-      uk: 'Досліджуй філософські відповіді на суперечливі релігійні претензії на істину.',
+      uk: 'Досліджуй філософські відповіді на конкуруючі релігійні твердження про істину.'
       lt: 'Nagrinėk filosofinius atsakymus į konkuruojančius religinius teiginius apie tiesą.',
       lv: 'Izpēti filozofiskas atbildes uz konkurējošiem reliģiskiem patiesības apgalvojumiem.',
       et: 'Uuri filosoofilisi vastuseid omavahel konkureerivatele religioossetele tõeväidetele.',
