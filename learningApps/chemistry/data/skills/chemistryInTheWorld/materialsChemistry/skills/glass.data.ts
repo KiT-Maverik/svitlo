@@ -32,7 +32,7 @@ export const glass_Skill_Data = buildSkillConfig({
     be: "Шкло",
     ka: "მინა",
     kk: "Шыны",
-    qm: "Şişe",
+    qm: "Cam",
   },
   description: {
     methodological: "Explain the amorphous structure and glass-transition behavior of glass-forming materials, distinguishing them from ordinary crystalline solids.",
@@ -65,7 +65,7 @@ export const glass_Skill_Data = buildSkillConfig({
       be: "Даведайся, чаму шкло паводзіцца іначай, чым крышталічныя цьвёрдыя рэчывы.",
       ka: "გაიგე, რატომ განსხვავდება მინის თვისებები კრისტალური მყარი ნივთიერებებისგან.",
       kk: "Шынының кристалдық қатты заттардан неліктен өзгеше қасиеттері барын біл.",
-      qm: "Şişe kristallı qattı maddelerden niçün başqa türlü hususiyetlerge saip olğanını ögren.",
+      qm: "Cam kristallı qattı maddelerden niçün başqa türlü hususiyetlerge saip olğanını ögren.",
     },
   },
 });
