@@ -40,7 +40,7 @@ export const explainRandomAssignment_Skill_Data = buildSkillConfig({
     frontend: {
       en: 'Explain how assigning groups by chance can reduce pre-existing differences.',
       zh: '说明随机分组如何减少原本存在的群体差异。',
-      hi: 'बताएँ कि संयोग से समूहों में बाँटना पहले से मौजूद अंतर कैसे कम कर सकता है।',
+      hi: 'बताएँ कि प्रतिभागियों को यादृच्छिक रूप से समूहों में बाँटने से पहले से मौजूद अंतर कैसे कम हो सकते हैं।'
       es: 'Explica cómo asignar al azar a las personas a distintos grupos puede reducir las diferencias iniciales.',
       ar: 'اشرح كيف يمكن لتوزيع المشاركين عشوائيًا أن يقلل الفروق الموجودة مسبقًا.',
       fr: 'Explique comment répartir les participants au hasard peut limiter les différences préexistantes.',
