@@ -1,13 +1,11 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { createLessonLearningLayout } from '@svitlo/ui-kit/learning-layout';
 import { useLessonLocale } from '@/i18n/useLessonLocale';
 
 /** Next.js hooks/providers stay app-owned; the UI Kit owns all layout behavior. */
 const LessonLearningLayout = createLessonLearningLayout({
-  usePathname,
   useLocale: useLessonLocale,
   linkComponent: Link,
 });
