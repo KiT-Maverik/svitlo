@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 vi.mock('next/navigation', () => ({ usePathname: vi.fn(), useRouter: vi.fn() }));
 vi.mock('@/i18n/useLessonLocale', () => ({ useLessonLocale: vi.fn() }));
-vi.mock('@/components/pages/Lesson/LessonNavigation', () => ({ useLessonNavigation: vi.fn() }));
+vi.mock('@svitlo/ui-kit/lesson', () => ({ useLessonNavigation: vi.fn() }));
 
 import { screen, within } from '@testing-library/react';
 import { LearningLayout_fx } from './LearningLayout.unit.fx';
