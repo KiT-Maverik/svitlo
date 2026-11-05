@@ -7,10 +7,10 @@ import { electronicComponents_SkillGroup_Data } from './electronicComponents/ele
 import { embeddedHardware_SkillGroup_Data } from './embeddedHardware/embeddedHardware.data';
 
 export const electricalAndElectronicEngineering_SkillDomain_Data = buildSkillDomainConfig({
-  slug: "electricalAndElectronicEngineering",
-  id: "797f3dc0-f168-4e96-9322-cb552a2a868b",
+  slug: 'electricalAndElectronicEngineering',
+  id: '797f3dc0-f168-4e96-9322-cb552a2a868b',
   name: {
-    en: "Electrical and Electronic Engineering",
+    en: 'Electrical and Electronic Engineering',
   },
   groups: {
     circuitConstruction: circuitConstruction_SkillGroup_Data,
@@ -20,9 +20,10 @@ export const electricalAndElectronicEngineering_SkillDomain_Data = buildSkillDom
     embeddedHardware: embeddedHardware_SkillGroup_Data,
   },
   description: {
-    methodological: "Circuits and electronic hardware distribute power, process signals and connect physical controls to useful outputs. The subject here is device architecture and correct component integration, not the scientific derivation of electromagnetic laws.",
+    methodological:
+      'Circuits and electronic hardware distribute power, process signals and connect physical controls to useful outputs. The subject here is device architecture and correct component integration, not the scientific derivation of electromagnetic laws.',
     frontend: {
-      en: "Explore how electrical and electronic hardware is built, measured and protected.",
+      en: 'Explore how electrical and electronic hardware is built, measured and protected.',
     },
   },
 });

@@ -141,8 +141,12 @@ function runGate(changed) {
   // Validate the foundational runtime first. An unrelated textbook's unfinished
   // content translations must not hide failures in a changed shared package.
   const priority = [
-    '@svitlo/contracts', '@svitlo/engine', '@svitlo/indexdb',
-    '@svitlo/ui-kit', '@svitlo/nextjs-adapter', '@svitlo/playground',
+    '@svitlo/contracts',
+    '@svitlo/engine',
+    '@svitlo/indexdb',
+    '@svitlo/ui-kit',
+    '@svitlo/nextjs-adapter',
+    '@svitlo/playground',
   ];
   const rank = name => {
     const index = priority.indexOf(name);
@@ -155,8 +159,7 @@ function runGate(changed) {
   // yet declared an explicit Engine dependency.
   const textbookTaxonomyChanged = targets.some(name => {
     const pkg = all.get(name);
-    return pkg?.path.startsWith('learningApps/') &&
-      fs.existsSync(path.join(repoRoot, pkg.path, 'data/skills'));
+    return pkg?.path.startsWith('learningApps/') && fs.existsSync(path.join(repoRoot, pkg.path, 'data/skills'));
   });
   if (textbookTaxonomyChanged) {
     ensureSharedDependencies('@svitlo/engine');
@@ -182,35 +185,48 @@ function runGate(changed) {
     }
     // A Lesson/App Router extraction needs a real Next.js production build, not
     // only TypeScript. Run it before unrelated textbook data checks can block CI.
-    if (name === '@svitlo/playground' && changed.some(file =>
-      file.startsWith('shared/nextjs-adapter/') ||
-      file.startsWith('shared/ui-kit/src/components/lesson/') ||
-      file.startsWith('shared/ui-kit/src/components/widgets/ContentBlockRenderer/blocks/Image/') ||
-      file.startsWith('learningApps/playground/src/app/[language]/lesson/')
-    )) {
+    if (
+      name === '@svitlo/playground' &&
+      changed.some(
+        file =>
+          file.startsWith('shared/nextjs-adapter/') ||
+          file.startsWith('shared/ui-kit/src/components/lesson/') ||
+          file.startsWith('shared/ui-kit/src/components/widgets/ContentBlockRenderer/blocks/Image/') ||
+          file.startsWith('learningApps/playground/src/app/[language]/lesson/'),
+      )
+    ) {
       exec('npm', ['run', 'build', '--workspace', name]);
       // FastGate checks the changed Lesson route/bindings; the full Playground
       // components suite also contains independent SkillsMindMap tests.
-      exec('npm', ['run', 'test:components', '--workspace', name, '--',
+      exec('npm', [
+        'run',
+        'test:components',
+        '--workspace',
+        name,
+        '--',
         'src/components/layout/LearningLayout/LearningLayout.unit.spec.ts',
         'src/lib/lessons/assembleLessonResponse.unit.spec.ts',
         'src/i18n/useLessonLocale.unit.spec.tsx',
       ]);
     }
   }
-  if (changed.some(file =>
-    file.startsWith('scripts/generate-lessons-markdown.') ||
-    file.startsWith('scripts/generate-lesson-review-artifacts.') ||
-    file.startsWith('scripts/lib/lesson-markdown.') ||
-    file.startsWith('shared/engine/src/utils/generators/lessons/') ||
-    file.startsWith('learningApps/playground/data/lessons/')
-  )) {
+  if (
+    changed.some(
+      file =>
+        file.startsWith('scripts/generate-lessons-markdown.') ||
+        file.startsWith('scripts/generate-lesson-review-artifacts.') ||
+        file.startsWith('scripts/lib/lesson-markdown.') ||
+        file.startsWith('shared/engine/src/utils/generators/lessons/') ||
+        file.startsWith('learningApps/playground/data/lessons/'),
+    )
+  ) {
     ensureSharedDependencies('@svitlo/engine');
     if (!built.has('@svitlo/engine')) {
       exec('npm', ['run', 'build', '--workspace', '@svitlo/engine']);
       built.add('@svitlo/engine');
     }
-    exec('node', ['--test',
+    exec('node', [
+      '--test',
       'scripts/generate-lessons-markdown.spec.mjs',
       'scripts/generate-lesson-review-artifacts.spec.mjs',
     ]);

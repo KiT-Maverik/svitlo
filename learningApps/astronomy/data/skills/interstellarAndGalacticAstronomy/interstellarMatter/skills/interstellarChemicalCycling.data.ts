@@ -44,7 +44,7 @@ export const interstellarChemicalCycling_Skill_Data = buildSkillConfig({
       hi: 'जानें कि मरते हुए तारे नई पीढ़ी के तारों के लिए पदार्थ अंतरिक्ष में कैसे लौटाते हैं।',
       es: 'Descubre cómo las estrellas moribundas devuelven materia al espacio para formar nuevas generaciones de estrellas.',
       ar: 'اكتشف كيف تعيد النجوم المحتضرة المادة إلى الفضاء لتكوين أجيال جديدة من النجوم.',
-      fr: 'Découvre comment les étoiles en fin de vie renvoient de la matière dans l\'espace pour les générations suivantes.',
+      fr: "Découvre comment les étoiles en fin de vie renvoient de la matière dans l'espace pour les générations suivantes.",
       bn: 'মৃত্যুপথযাত্রী তারা নতুন প্রজন্মের তারা তৈরির জন্য মহাকাশে কীভাবে পদার্থ ফিরিয়ে দেয় তা জানো।',
       pt: 'Descubra como estrelas no fim da vida devolvem matéria ao espaço para novas gerações de estrelas.',
       ur: 'جانیں کہ مرتے ہوئے ستارے نئی نسل کے ستاروں کے لیے مادّہ خلا میں کیسے واپس کرتے ہیں۔',

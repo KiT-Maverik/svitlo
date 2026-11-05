@@ -44,7 +44,7 @@ export const cosmicHorizons_Skill_Data = buildSkillConfig({
       hi: 'जानें कि संकेत कितनी दूर से हम तक पहुँच सकते हैं या दूसरे क्षेत्रों को प्रभावित कर सकते हैं।',
       es: 'Explora los límites de hasta dónde pueden llegarnos señales o influir en otras regiones.',
       ar: 'استكشف حدود وصول الإشارات إلينا أو تأثيرها في مناطق أخرى.',
-      fr: 'Explore les limites de la portée des signaux qui nous parviennent ou influencent d\'autres régions.',
+      fr: "Explore les limites de la portée des signaux qui nous parviennent ou influencent d'autres régions.",
       bn: 'সংকেত কত দূর থেকে আমাদের কাছে পৌঁছাতে পারে বা অন্য অঞ্চলকে প্রভাবিত করতে পারে তার সীমা জানো।',
       pt: 'Explore os limites de até onde sinais podem chegar a nós ou influenciar outras regiões.',
       ur: 'جانیں کہ اشارے کتنی دور سے ہم تک پہنچ سکتے ہیں یا دوسرے علاقوں پر اثر ڈال سکتے ہیں۔',

@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const relateOrgansToTheirFunctions_Skill_Data = buildSkillConfig({
-  slug: "relateOrgansToTheirFunctions",
-  id: "ee9958e9-74cc-4158-8119-c9cefe975712",
+  slug: 'relateOrgansToTheirFunctions',
+  id: 'ee9958e9-74cc-4158-8119-c9cefe975712',
   name: {
-    en: "Relate Organs to Their Functions",
+    en: 'Relate Organs to Their Functions',
     zh: '将器官与功能联系起来',
     hi: 'अंगों को उनके कार्यों से जोड़ना',
     es: 'Relacionar los órganos con sus funciones',
@@ -25,7 +25,7 @@ export const relateOrgansToTheirFunctions_Skill_Data = buildSkillConfig({
     ms: 'Mengaitkan organ dengan fungsinya',
     he: 'קישור איברים לתפקידיהם',
     pl: 'Łączenie narządów z ich funkcjami',
-    uk: 'Пов\'язувати органи з їхніми функціями',
+    uk: "Пов'язувати органи з їхніми функціями",
     lt: 'Organų siejimas su jų funkcijomis',
     lv: 'Orgānu sasaistīšana ar to funkcijām',
     et: 'Elundite seostamine nende ülesannetega',
@@ -35,9 +35,10 @@ export const relateOrgansToTheirFunctions_Skill_Data = buildSkillConfig({
     qm: 'Organlarnı vazifelerinen bağlamaq',
   },
   description: {
-    methodological: "Associate the lungs with gas exchange, the heart with blood movement, and the stomach and intestines with food processing.",
+    methodological:
+      'Associate the lungs with gas exchange, the heart with blood movement, and the stomach and intestines with food processing.',
     frontend: {
-      en: "Connect organs such as the lungs, heart and intestines with their functions.",
+      en: 'Connect organs such as the lungs, heart and intestines with their functions.',
       zh: '将肺、心脏和肠道等器官与各自的功能联系起来。',
       hi: 'फेफड़ों, हृदय और आँतों जैसे अंगों को उनके कार्यों से जोड़ें।',
       es: 'Relaciona órganos como los pulmones, el corazón y los intestinos con sus funciones.',
@@ -58,7 +59,7 @@ export const relateOrgansToTheirFunctions_Skill_Data = buildSkillConfig({
       ms: 'Padankan organ seperti paru-paru, jantung dan usus dengan fungsinya.',
       he: 'התאימו איברים כגון ריאות, לב ומעיים לתפקידיהם.',
       pl: 'Połącz narządy takie jak płuca, serce i jelita z ich funkcjami.',
-      uk: 'Пов\'язуйте легені, серце й кишківник з їхніми функціями.',
+      uk: "Пов'язуйте легені, серце й кишківник з їхніми функціями.",
       lt: 'Susiekite tokius organus kaip plaučiai, širdis ir žarnynas su jų funkcijomis.',
       lv: 'Saistiet tādus orgānus kā plaušas, sirdi un zarnas ar to funkcijām.',
       et: 'Seosta kopsude, südame ja soolestiku ülesanded vastavate elunditega.',

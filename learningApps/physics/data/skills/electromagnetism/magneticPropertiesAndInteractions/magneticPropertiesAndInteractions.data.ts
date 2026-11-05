@@ -1,12 +1,19 @@
 import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
 
-import { classifyObjectsByMagneticInteraction_Skill_Data, explainMagneticActionWithoutContact_Skill_Data, identifyMaterialsAttractedToAMagnet_Skill_Data, predictInteractionsBetweenMagneticPoles_Skill_Data, recognizeMagneticAttraction_Skill_Data, recognizeMagneticRepulsion_Skill_Data } from './skills';
+import {
+  classifyObjectsByMagneticInteraction_Skill_Data,
+  explainMagneticActionWithoutContact_Skill_Data,
+  identifyMaterialsAttractedToAMagnet_Skill_Data,
+  predictInteractionsBetweenMagneticPoles_Skill_Data,
+  recognizeMagneticAttraction_Skill_Data,
+  recognizeMagneticRepulsion_Skill_Data,
+} from './skills';
 
 export const magneticPropertiesAndInteractions_SkillGroup_Data = buildSkillGroupConfig({
-  slug: "magneticPropertiesAndInteractions",
-  id: "8e0d45e9-e2cd-49ed-8798-a0fac3a7a5cb",
+  slug: 'magneticPropertiesAndInteractions',
+  id: '8e0d45e9-e2cd-49ed-8798-a0fac3a7a5cb',
   name: {
-    en: "Magnetic Properties and Interactions",
+    en: 'Magnetic Properties and Interactions',
     qm: 'Magnit hususiyetleri ve tesirleşüvler',
     zh: '磁性与磁相互作用',
     hi: 'चुंबकीय गुण और अंतःक्रियाएँ',
@@ -45,9 +52,10 @@ export const magneticPropertiesAndInteractions_SkillGroup_Data = buildSkillGroup
     recognizeMagneticRepulsion: recognizeMagneticRepulsion_Skill_Data,
   },
   description: {
-    methodological: "Materials and pole orientation affect interactions; direct contact between magnets is not required.",
+    methodological:
+      'Materials and pole orientation affect interactions; direct contact between magnets is not required.',
     frontend: {
-      en: "Discover how magnetic materials and poles interact.",
+      en: 'Discover how magnetic materials and poles interact.',
       qm: 'Magnit malzemeleri ve magnit qutupları bir-birinen nasıl tesirleşkenini araştır.',
       zh: '了解磁性材料和磁极如何相互作用。',
       hi: 'जानें कि चुंबकीय पदार्थ और चुंबक के ध्रुव कैसे परस्पर क्रिया करते हैं।',

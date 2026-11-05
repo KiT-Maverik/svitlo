@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const modelTheSensorToActionRelationship_Skill_Data = buildSkillConfig({
-  slug: "modelTheSensorToActionRelationship",
-  id: "6c5356a3-c0fb-4f30-b08a-84b04410822d",
+  slug: 'modelTheSensorToActionRelationship',
+  id: '6c5356a3-c0fb-4f30-b08a-84b04410822d',
   name: {
-    en: "Model the Sensor-to-Action Relationship",
+    en: 'Model the Sensor-to-Action Relationship',
     zh: '建立传感器到动作的关系模型',
     hi: 'सेंसर से क्रिया तक संबंध का मॉडल बनाना',
     es: 'Modelar la relación entre sensor y acción',
@@ -35,9 +35,10 @@ export const modelTheSensorToActionRelationship_Skill_Data = buildSkillConfig({
     qm: 'Sensordan areketke bağnı modellemek',
   },
   description: {
-    methodological: "Relate a measured condition, a controller rule, and an actuator command, such as 'stop the motor if distance falls below the threshold.' Distinguish the sensor reading from the programmed decision.",
+    methodological:
+      "Relate a measured condition, a controller rule, and an actuator command, such as 'stop the motor if distance falls below the threshold.' Distinguish the sensor reading from the programmed decision.",
     frontend: {
-      en: "Link a sensor measurement, a decision rule and an actuator response.",
+      en: 'Link a sensor measurement, a decision rule and an actuator response.',
       zh: '将传感器测量结果、决策规则和执行器反应联系起来。',
       hi: 'सेंसर की माप, निर्णय नियम और एक्चुएटर की प्रतिक्रिया को जोड़ें।',
       es: 'Relaciona una medición del sensor, una regla de decisión y la respuesta del actuador.',

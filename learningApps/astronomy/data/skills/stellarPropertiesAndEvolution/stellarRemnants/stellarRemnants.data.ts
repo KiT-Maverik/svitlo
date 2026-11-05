@@ -60,7 +60,7 @@ export const stellarRemnants_SkillGroup_Data = buildSkillGroupConfig({
       hi: 'जानें कि विभिन्न प्रकार के तारों का अंत विस्फोटों और सघन अवशेषों के रूप में कैसे होता है।',
       es: 'Explora los restos compactos y los finales explosivos de distintos tipos de estrellas.',
       ar: 'استكشف البقايا الكثيفة والنهايات الانفجارية لأنواع مختلفة من النجوم.',
-      fr: 'Découvrez les restes compacts et les fins explosives de différents types d\'étoiles.',
+      fr: "Découvrez les restes compacts et les fins explosives de différents types d'étoiles.",
       bn: 'বিভিন্ন ধরনের নক্ষত্রের বিস্ফোরণময় শেষ পর্যায় ও ঘন অবশেষ সম্পর্কে জানো।',
       pt: 'Explore os remanescentes compactos e os finais explosivos de diferentes tipos de estrelas.',
       ur: 'مختلف اقسام کے ستاروں کی دھماکہ خیز آخری حالتیں اور ان کی کثیف باقیات جانیں۔',

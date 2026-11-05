@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const distinguishEvaporationFromBoiling_Skill_Data = buildSkillConfig({
-  slug: "distinguishEvaporationFromBoiling",
-  id: "06f53641-deed-48d2-a42d-7a30d3799491",
+  slug: 'distinguishEvaporationFromBoiling',
+  id: '06f53641-deed-48d2-a42d-7a30d3799491',
   name: {
-    en: "Distinguish evaporation from boiling",
+    en: 'Distinguish evaporation from boiling',
     qm: 'Buvlanuvnı qaynavdan ayırmaq',
     zh: '区分蒸发与沸腾',
     hi: 'वाष्पीकरण और उबलने में अंतर करना',
@@ -35,9 +35,10 @@ export const distinguishEvaporationFromBoiling_Skill_Data = buildSkillConfig({
     kk: 'Булану мен қайнауды ажырату',
   },
   description: {
-    methodological: "Boiling produces vapor bubbles throughout the volume of a liquid, whereas evaporation occurs at its surface.",
+    methodological:
+      'Boiling produces vapor bubbles throughout the volume of a liquid, whereas evaporation occurs at its surface.',
     frontend: {
-      en: "Distinguish bubbles formed during boiling from surface evaporation.",
+      en: 'Distinguish bubbles formed during boiling from surface evaporation.',
       qm: 'Qaynav vaqtında suyuqlıqnıñ içinde qabarcıqlar peyda olmasını yuzadan buvlanuvdan ayır.',
       zh: '区分沸腾时液体内部形成气泡和表面蒸发。',
       hi: 'उबलने पर द्रव में बनने वाले बुलबुलों और सतह से होने वाले वाष्पीकरण में अंतर करें।',

@@ -20,5 +20,11 @@ export const Completed: Story = {};
 export const PerfectScore: Story = { args: { score: 9, total: 9 } };
 export const RightToLeft: Story = {
   args: { messages: lesson.ar, homeHref: '/ar' },
-  decorators: [Story => <div dir="rtl" lang="ar-SA"><Story /></div>],
+  decorators: [
+    Story => (
+      <div dir="rtl" lang="ar-SA">
+        <Story />
+      </div>
+    ),
+  ],
 };

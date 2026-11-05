@@ -1,12 +1,18 @@
 import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
 
-import { evaluateEcologicalRisksOfBiotechnologyUse_Skill_Data, explainThePrincipleOfGeneticModification_Skill_Data, explainThePrincipleOfSelectiveBreeding_Skill_Data, explainThePurposeOfASimpleBiotechnologicalProcedure_Skill_Data, recognizeHumanUsesOfMicroorganisms_Skill_Data } from './skills';
+import {
+  evaluateEcologicalRisksOfBiotechnologyUse_Skill_Data,
+  explainThePrincipleOfGeneticModification_Skill_Data,
+  explainThePrincipleOfSelectiveBreeding_Skill_Data,
+  explainThePurposeOfASimpleBiotechnologicalProcedure_Skill_Data,
+  recognizeHumanUsesOfMicroorganisms_Skill_Data,
+} from './skills';
 
 export const biotechnology_SkillDomain_Data = buildSkillDomainConfig({
-  slug: "biotechnology",
-  id: "6e041ba0-2fb9-48c6-a0eb-ee92ba9d03f1",
+  slug: 'biotechnology',
+  id: '6e041ba0-2fb9-48c6-a0eb-ee92ba9d03f1',
   name: {
-    en: "Biotechnology",
+    en: 'Biotechnology',
     zh: '生物技术',
     hi: 'जैव प्रौद्योगिकी',
     es: 'Biotecnología',
@@ -36,8 +42,7 @@ export const biotechnology_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Биотехнология',
     qm: 'Biotehnologiya',
   },
-  groups: {
-  },
+  groups: {},
   skills: {
     evaluateEcologicalRisksOfBiotechnologyUse: evaluateEcologicalRisksOfBiotechnologyUse_Skill_Data,
     explainThePrincipleOfGeneticModification: explainThePrincipleOfGeneticModification_Skill_Data,
@@ -46,9 +51,10 @@ export const biotechnology_SkillDomain_Data = buildSkillDomainConfig({
     recognizeHumanUsesOfMicroorganisms: recognizeHumanUsesOfMicroorganisms_Skill_Data,
   },
   description: {
-    methodological: "Use of properties of organisms, cells, enzymes, and hereditary information to obtain products and intentionally change traits. Includes selective breeding, genetic modification, and analysis of potential ecological consequences of interventions; natural ecosystem interactions belong to Ecology, while engineering applications of biological principles belong to the separate subject Engineering.",
+    methodological:
+      'Use of properties of organisms, cells, enzymes, and hereditary information to obtain products and intentionally change traits. Includes selective breeding, genetic modification, and analysis of potential ecological consequences of interventions; natural ecosystem interactions belong to Ecology, while engineering applications of biological principles belong to the separate subject Engineering.',
     frontend: {
-      en: "Explore how people use organisms, cells and biological processes to make useful products.",
+      en: 'Explore how people use organisms, cells and biological processes to make useful products.',
       zh: '探索人们如何利用生物、细胞和生物过程制造有用的产品。',
       hi: 'जानें कि लोग उपयोगी उत्पाद बनाने के लिए जीवों, कोशिकाओं और जैविक प्रक्रियाओं का उपयोग कैसे करते हैं।',
       es: 'Explora cómo las personas utilizan organismos, células y procesos biológicos para crear productos útiles.',

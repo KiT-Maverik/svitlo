@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const distinguishDigitalContentLicenses_Skill_Data = buildSkillConfig({
-  slug: "distinguishDigitalContentLicenses",
-  id: "16f2346c-7488-44f2-a4e6-69da203ee88d",
+  slug: 'distinguishDigitalContentLicenses',
+  id: '16f2346c-7488-44f2-a4e6-69da203ee88d',
   name: {
-    en: "Distinguish Digital Content Licenses",
+    en: 'Distinguish Digital Content Licenses',
     zh: '区分数字内容的许可证',
     hi: 'डिजिटल सामग्री के लाइसेंस में अंतर करना',
     es: 'Distinguir licencias de contenido digital',
@@ -35,9 +35,10 @@ export const distinguishDigitalContentLicenses_Skill_Data = buildSkillConfig({
     qm: 'Raqamlı içerik litsenziyalarını ayırmaq',
   },
   description: {
-    methodological: "Read basic permissions and restrictions for copying, changing, and sharing text, images, sounds, or programs. Free access, the public domain, and open licenses are different legal conditions.",
+    methodological:
+      'Read basic permissions and restrictions for copying, changing, and sharing text, images, sounds, or programs. Free access, the public domain, and open licenses are different legal conditions.',
     frontend: {
-      en: "Distinguish copyright restrictions, open licenses and public-domain content.",
+      en: 'Distinguish copyright restrictions, open licenses and public-domain content.',
       zh: '区分版权限制、开放许可和公有领域内容。',
       hi: 'कॉपीराइट प्रतिबंधों, खुले लाइसेंस और सार्वजनिक डोमेन की सामग्री में अंतर करें।',
       es: 'Distingue restricciones de derechos de autor, licencias abiertas y contenido de dominio público.',

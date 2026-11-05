@@ -51,7 +51,7 @@ export const oceanTides_Skill_Data = buildSkillConfig({
       de: 'Verstehe, wie Mond und Sonne zur Entstehung der Gezeiten in den Ozeanen beitragen.',
       ja: '月と太陽が海の潮の満ち引きを引き起こす仕組みを理解しましょう。',
       ko: '달과 태양이 바다의 밀물과 썰물을 일으키는 데 어떻게 관여하는지 알아보세요.',
-      tr: 'Ay ve Güneş\'in okyanuslardaki gelgitlerin oluşumuna nasıl katkıda bulunduğunu anlayın.',
+      tr: "Ay ve Güneş'in okyanuslardaki gelgitlerin oluşumuna nasıl katkıda bulunduğunu anlayın.",
       vi: 'Hiểu cách Mặt Trăng và Mặt Trời góp phần tạo ra thủy triều đại dương.',
       ta: 'நிலவும் சூரியனும் பெருங்கடலில் ஓதங்களை உருவாக்க எவ்வாறு காரணமாகின்றன என்பதைப் புரிந்துகொள்ளுங்கள்.',
       te: 'చంద్రుడు, సూర్యుడు సముద్రపు ఆటుపోట్లకు ఎలా కారణమవుతారో అర్థం చేసుకోండి.',

@@ -6,10 +6,10 @@ import { stabilityAndTesting_SkillGroup_Data } from './stabilityAndTesting/stabi
 import { structuralElements_SkillGroup_Data } from './structuralElements/structuralElements.data';
 
 export const structuresAndConstruction_SkillDomain_Data = buildSkillDomainConfig({
-  slug: "structuresAndConstruction",
-  id: "80389a13-4d86-40a2-b177-43a2b21c4741",
+  slug: 'structuresAndConstruction',
+  id: '80389a13-4d86-40a2-b177-43a2b21c4741',
   name: {
-    en: "Structures and Construction",
+    en: 'Structures and Construction',
   },
   groups: {
     buildings: buildings_SkillGroup_Data,
@@ -18,9 +18,10 @@ export const structuresAndConstruction_SkillDomain_Data = buildSkillDomainConfig
     structuralElements: structuralElements_SkillGroup_Data,
   },
   description: {
-    methodological: "Load-bearing works transfer applied actions into suitable supports while satisfying functional, environmental and construction constraints. This domain treats the built solution rather than architectural style.",
+    methodological:
+      'Load-bearing works transfer applied actions into suitable supports while satisfying functional, environmental and construction constraints. This domain treats the built solution rather than architectural style.',
     frontend: {
-      en: "Explore how buildings, bridges and civil works safely carry loads.",
+      en: 'Explore how buildings, bridges and civil works safely carry loads.',
     },
   },
 });

@@ -44,7 +44,7 @@ export const stellarProperMotion_Skill_Data = buildSkillConfig({
       hi: 'अधिक दूर के तारों की तुलना में किसी तारे की बहुत धीमी गति पहचानें।',
       es: 'Reconoce el movimiento muy lento de una estrella respecto a otras más lejanas.',
       ar: 'تعرّف على الحركة البطيئة جدًا لنجم بالنسبة إلى نجوم أبعد منه.',
-      fr: 'Reconnais le déplacement très lent d\'une étoile par rapport à d\'autres plus éloignées.',
+      fr: "Reconnais le déplacement très lent d'une étoile par rapport à d'autres plus éloignées.",
       bn: 'আরও দূরের তারার তুলনায় একটি তারার অত্যন্ত ধীর গতি শনাক্ত করো।',
       pt: 'Reconheça o movimento muito lento de uma estrela em relação a outras mais distantes.',
       ur: 'زیادہ دور کے ستاروں کی نسبت کسی ستارے کی انتہائی سست حرکت کو پہچانیں۔',

@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const recognizeDecomposers_Skill_Data = buildSkillConfig({
-  slug: "recognizeDecomposers",
-  id: "3301f858-7bb1-4afb-8df9-fbf100c4ce98",
+  slug: 'recognizeDecomposers',
+  id: '3301f858-7bb1-4afb-8df9-fbf100c4ce98',
   name: {
-    en: "Recognize Decomposers",
+    en: 'Recognize Decomposers',
     zh: '识别分解者',
     hi: 'अपघटकों को पहचानना',
     es: 'Reconocer descomponedores',
@@ -35,9 +35,9 @@ export const recognizeDecomposers_Skill_Data = buildSkillConfig({
     qm: 'Çürüticilerni tanımaq',
   },
   description: {
-    methodological: "Identify the role of bacteria, fungi, and other decomposers in transforming dead organic remains.",
+    methodological: 'Identify the role of bacteria, fungi, and other decomposers in transforming dead organic remains.',
     frontend: {
-      en: "Identify how decomposers break down organic material.",
+      en: 'Identify how decomposers break down organic material.',
       zh: '识别分解者如何分解有机物。',
       hi: 'जानें कि अपघटक कार्बनिक पदार्थ को कैसे विघटित करते हैं।',
       es: 'Identifica cómo los descomponedores degradan la materia orgánica.',

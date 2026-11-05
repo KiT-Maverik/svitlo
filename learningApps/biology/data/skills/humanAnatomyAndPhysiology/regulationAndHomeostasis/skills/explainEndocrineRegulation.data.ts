@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainEndocrineRegulation_Skill_Data = buildSkillConfig({
-  slug: "explainEndocrineRegulation",
-  id: "8a171e67-c25f-4c83-9457-11e315d0b961",
+  slug: 'explainEndocrineRegulation',
+  id: '8a171e67-c25f-4c83-9457-11e315d0b961',
   name: {
-    en: "Explain Endocrine Regulation",
+    en: 'Explain Endocrine Regulation',
     zh: '解释内分泌调节',
     hi: 'अंतःस्रावी नियमन समझाना',
     es: 'Explicar la regulación endocrina',
@@ -35,14 +35,15 @@ export const explainEndocrineRegulation_Skill_Data = buildSkillConfig({
     qm: 'Endokrin idare etüvni añlatmaq',
   },
   description: {
-    methodological: "Explain how hormones secreted by endocrine glands affect cells and organs, including metabolism, growth, and responses to environmental changes; compare the duration of hormonal and neural signals without claiming that these always act independently.",
+    methodological:
+      'Explain how hormones secreted by endocrine glands affect cells and organs, including metabolism, growth, and responses to environmental changes; compare the duration of hormonal and neural signals without claiming that these always act independently.',
     frontend: {
-      en: "Explore how hormones send signals that affect growth and other body processes.",
+      en: 'Explore how hormones send signals that affect growth and other body processes.',
       zh: '探索激素如何传递信号并影响生长和其他身体过程。',
       hi: 'जानें कि हार्मोन संकेत भेजकर वृद्धि और अन्य शारीरिक प्रक्रियाओं को कैसे प्रभावित करते हैं।',
       es: 'Explora cómo las hormonas transmiten señales que influyen en el crecimiento y otros procesos corporales.',
       ar: 'استكشف كيف ترسل الهرمونات إشارات تؤثر في النمو وعمليات الجسم الأخرى.',
-      fr: 'Découvrez comment les hormones transmettent des signaux qui influencent la croissance et d\'autres processus corporels.',
+      fr: "Découvrez comment les hormones transmettent des signaux qui influencent la croissance et d'autres processus corporels.",
       bn: 'হরমোন কীভাবে সংকেত পাঠিয়ে বৃদ্ধি ও দেহের অন্যান্য প্রক্রিয়াকে প্রভাবিত করে, তা জানো।',
       pt: 'Explore como hormônios transmitem sinais que afetam o crescimento e outros processos do corpo.',
       ur: 'جانیں کہ ہارمون اشارے بھیج کر نشوونما اور دیگر جسمانی عملوں کو کیسے متاثر کرتے ہیں۔',

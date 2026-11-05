@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainGasExchangeInTheLungs_Skill_Data = buildSkillConfig({
-  slug: "explainGasExchangeInTheLungs",
-  id: "c9484602-c122-429c-b758-cf5ae3b8ec7c",
+  slug: 'explainGasExchangeInTheLungs',
+  id: 'c9484602-c122-429c-b758-cf5ae3b8ec7c',
   name: {
-    en: "Explain Gas Exchange in the Lungs",
+    en: 'Explain Gas Exchange in the Lungs',
     zh: '解释肺部气体交换',
     hi: 'फेफड़ों में गैस विनिमय समझाना',
     es: 'Explicar el intercambio de gases en los pulmones',
@@ -35,14 +35,14 @@ export const explainGasExchangeInTheLungs_Skill_Data = buildSkillConfig({
     qm: 'Aqciğerlerde gaz alıp berüvni añlatmaq',
   },
   description: {
-    methodological: "Explain the exchange of oxygen and carbon dioxide between the alveoli and blood.",
+    methodological: 'Explain the exchange of oxygen and carbon dioxide between the alveoli and blood.',
     frontend: {
-      en: "Understand how oxygen and carbon dioxide move between lung air spaces and blood.",
+      en: 'Understand how oxygen and carbon dioxide move between lung air spaces and blood.',
       zh: '理解氧气和二氧化碳如何在肺泡中的空气与血液之间交换。',
       hi: 'समझें कि ऑक्सीजन और कार्बन डाइऑक्साइड फेफड़ों की वायुकोषिकाओं की हवा और रक्त के बीच कैसे आते-जाते हैं।',
       es: 'Comprende cómo el oxígeno y el dióxido de carbono pasan entre el aire de los alvéolos pulmonares y la sangre.',
       ar: 'افهم كيف ينتقل الأكسجين وثاني أكسيد الكربون بين الهواء في الحويصلات الرئوية والدم.',
-      fr: 'Comprenez comment l\'oxygène et le dioxyde de carbone passent entre l\'air des alvéoles et le sang.',
+      fr: "Comprenez comment l'oxygène et le dioxyde de carbone passent entre l'air des alvéoles et le sang.",
       bn: 'ফুসফুসের বায়ুথলির বাতাস ও রক্তের মধ্যে অক্সিজেন ও কার্বন ডাই-অক্সাইড কীভাবে বিনিময় হয়, তা বোঝো।',
       pt: 'Entenda como o oxigênio e o dióxido de carbono passam entre o ar dos alvéolos e o sangue.',
       ur: 'سمجھیں کہ آکسیجن اور کاربن ڈائی آکسائیڈ پھیپھڑوں کی ہوائی تھیلیوں اور خون کے درمیان کیسے منتقل ہوتے ہیں۔',
@@ -58,7 +58,7 @@ export const explainGasExchangeInTheLungs_Skill_Data = buildSkillConfig({
       ms: 'Fahami bagaimana oksigen dan karbon dioksida bergerak antara udara dalam alveolus dan darah.',
       he: 'הבינו כיצד חמצן ופחמן דו־חמצני עוברים בין האוויר בנאדיות הריאה לבין הדם.',
       pl: 'Zrozum, jak tlen i dwutlenek węgla przemieszczają się między powietrzem w pęcherzykach płucnych a krwią.',
-      uk: 'Зрозумійте, як кисень і вуглекислий газ переходять між повітрям в альвеолах легень і кров\'ю.',
+      uk: "Зрозумійте, як кисень і вуглекислий газ переходять між повітрям в альвеолах легень і кров'ю.",
       lt: 'Supraskite, kaip deguonis ir anglies dioksidas juda tarp oro plaučių alveolėse ir kraujo.',
       lv: 'Izprotiet, kā skābeklis un ogļskābā gāze pārvietojas starp plaušu alveolu gaisu un asinīm.',
       et: 'Mõista, kuidas hapnik ja süsihappegaas liiguvad kopsualveoolide õhu ning vere vahel.',

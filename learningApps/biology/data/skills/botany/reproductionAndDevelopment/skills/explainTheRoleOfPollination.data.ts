@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainTheRoleOfPollination_Skill_Data = buildSkillConfig({
-  slug: "explainTheRoleOfPollination",
-  id: "4181ef8b-cdc8-4fd7-9a46-bc2e1bed6631",
+  slug: 'explainTheRoleOfPollination',
+  id: '4181ef8b-cdc8-4fd7-9a46-bc2e1bed6631',
   name: {
-    en: "Explain the Role of Pollination",
+    en: 'Explain the Role of Pollination',
     zh: '解释传粉的作用',
     hi: 'परागण की भूमिका समझाना',
     es: 'Explicar la función de la polinización',
@@ -35,9 +35,10 @@ export const explainTheRoleOfPollination_Skill_Data = buildSkillConfig({
     qm: 'Tozlanmanıñ rolüni añlatmaq',
   },
   description: {
-    methodological: "Explain transfer of pollen to a stigma or another receptive structure as a step preceding fertilization.",
+    methodological:
+      'Explain transfer of pollen to a stigma or another receptive structure as a step preceding fertilization.',
     frontend: {
-      en: "Explain the part pollination plays before fertilization.",
+      en: 'Explain the part pollination plays before fertilization.',
       zh: '说明传粉在受精之前起什么作用。',
       hi: 'समझाएँ कि निषेचन से पहले परागण की क्या भूमिका होती है।',
       es: 'Explica qué papel desempeña la polinización antes de la fecundación.',

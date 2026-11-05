@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const recognizeDefensiveBehavior_Skill_Data = buildSkillConfig({
-  slug: "recognizeDefensiveBehavior",
-  id: "f0b5a1bb-a72b-4b0e-85de-aed764100045",
+  slug: 'recognizeDefensiveBehavior',
+  id: 'f0b5a1bb-a72b-4b0e-85de-aed764100045',
   name: {
-    en: "Recognize Defensive Behavior",
+    en: 'Recognize Defensive Behavior',
     zh: '识别防御行为',
     hi: 'रक्षात्मक व्यवहार पहचानना',
     es: 'Reconocer comportamientos defensivos',
@@ -35,14 +35,15 @@ export const recognizeDefensiveBehavior_Skill_Data = buildSkillConfig({
     qm: 'Qorçalanuv davranışını tanımaq',
   },
   description: {
-    methodological: "Determine whether fleeing, freezing, distraction, or attacking reduces a threat in a given situation.",
+    methodological:
+      'Determine whether fleeing, freezing, distraction, or attacking reduces a threat in a given situation.',
     frontend: {
-      en: "Recognize behaviors animals use when threatened.",
+      en: 'Recognize behaviors animals use when threatened.',
       zh: '识别动物在受到威胁时采取的行为。',
       hi: 'खतरा महसूस होने पर जानवर जो व्यवहार करते हैं, उन्हें पहचानें।',
       es: 'Reconoce los comportamientos que utilizan los animales cuando se sienten amenazados.',
       ar: 'تعرّف على السلوكيات التي تستخدمها الحيوانات عند التعرّض للتهديد.',
-      fr: 'Reconnais les comportements adoptés par les animaux lorsqu\'ils sont menacés.',
+      fr: "Reconnais les comportements adoptés par les animaux lorsqu'ils sont menacés.",
       bn: 'বিপদের মুখে প্রাণীরা যেসব আচরণ করে তা চিনে নাও।',
       pt: 'Reconheça os comportamentos que os animais usam quando estão ameaçados.',
       ur: 'خطرے کے وقت جانوروں کے اختیار کردہ رویوں کو پہچانیں۔',

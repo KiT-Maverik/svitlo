@@ -1,15 +1,15 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const identifyTheRoleOfASeed_Skill_Data = buildSkillConfig({
-  slug: "identifyTheRoleOfASeed",
-  id: "4563391d-fa54-4096-a8f4-871c31b5f460",
+  slug: 'identifyTheRoleOfASeed',
+  id: '4563391d-fa54-4096-a8f4-871c31b5f460',
   name: {
-    en: "Identify the Role of a Seed",
+    en: 'Identify the Role of a Seed',
     zh: '识别种子的作用',
     hi: 'बीज की भूमिका पहचानना',
     es: 'Identificar la función de una semilla',
     ar: 'تحديد دور البذرة',
-    fr: 'Identifier le rôle d\'une graine',
+    fr: "Identifier le rôle d'une graine",
     bn: 'বীজের ভূমিকা চেনা',
     pt: 'Identificar o papel de uma semente',
     ur: 'بیج کا کردار پہچاننا',
@@ -35,14 +35,14 @@ export const identifyTheRoleOfASeed_Skill_Data = buildSkillConfig({
     qm: 'Tohumnıñ rolüni belgilemek',
   },
   description: {
-    methodological: "Understand that a seed contains an embryo and a store or source of nutrients for initial growth.",
+    methodological: 'Understand that a seed contains an embryo and a store or source of nutrients for initial growth.',
     frontend: {
       en: "Explore how a seed supports the first stage of a new plant's growth.",
       zh: '探索种子如何支持新植物初期的生长。',
       hi: 'जानें कि बीज नए पौधे की शुरुआती वृद्धि में कैसे सहायता करता है।',
       es: 'Explora cómo una semilla sostiene la primera etapa de crecimiento de una nueva planta.',
       ar: 'استكشف كيف تدعم البذرة المرحلة الأولى من نمو نبات جديد.',
-      fr: 'Explore comment la graine soutient la première phase de croissance d\'une nouvelle plante.',
+      fr: "Explore comment la graine soutient la première phase de croissance d'une nouvelle plante.",
       bn: 'নতুন উদ্ভিদের প্রাথমিক বৃদ্ধিতে বীজ কীভাবে সাহায্য করে তা জানো।',
       pt: 'Explore como uma semente sustenta o início do crescimento de uma nova planta.',
       ur: 'جانیں کہ بیج نئے پودے کی ابتدائی بڑھوتری میں کیسے مدد دیتا ہے۔',

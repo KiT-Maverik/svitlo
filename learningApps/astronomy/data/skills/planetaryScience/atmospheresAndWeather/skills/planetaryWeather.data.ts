@@ -51,7 +51,7 @@ export const planetaryWeather_Skill_Data = buildSkillConfig({
       de: 'Erkenne Stürme, Winde und Wolken auf Himmelskörpern mit Bedingungen, die sich von denen der Erde unterscheiden.',
       ja: '地球とは異なる環境を持つ天体で、嵐や風、雲を見分けます。',
       ko: '지구와 환경이 다른 천체에서 폭풍, 바람, 구름을 알아봅니다.',
-      tr: 'Dünya\'dakinden farklı koşullara sahip gök cisimlerindeki fırtınaları, rüzgârları ve bulutları tanıyın.',
+      tr: "Dünya'dakinden farklı koşullara sahip gök cisimlerindeki fırtınaları, rüzgârları ve bulutları tanıyın.",
       vi: 'Nhận biết bão, gió và mây trên những thế giới có điều kiện khác với Trái Đất.',
       ta: 'பூமியிலிருந்து மாறுபட்ட சூழலுடைய உலகங்களில் புயல்கள், காற்று, மேகங்கள் ஆகியவற்றை அடையாளம் காணுங்கள்.',
       te: 'భూమికి భిన్నమైన పరిస్థితులు ఉన్న గ్రహాలపై తుఫానులు, గాలులు, మేఘాలను గుర్తించండి.',

@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const distinguishStagesOfHumanDevelopment_Skill_Data = buildSkillConfig({
-  slug: "distinguishStagesOfHumanDevelopment",
-  id: "b5994fde-81c7-45cf-beb6-9992cb2a8bcc",
+  slug: 'distinguishStagesOfHumanDevelopment',
+  id: 'b5994fde-81c7-45cf-beb6-9992cb2a8bcc',
   name: {
-    en: "Distinguish Stages of Human Development",
+    en: 'Distinguish Stages of Human Development',
     zh: '区分人类发育的不同阶段',
     hi: 'मानव विकास के चरणों में अंतर करना',
     es: 'Distinguir las etapas del desarrollo humano',
@@ -35,9 +35,10 @@ export const distinguishStagesOfHumanDevelopment_Skill_Data = buildSkillConfig({
     qm: 'İnsan inkişafınıñ devrilerini ayırmaq',
   },
   description: {
-    methodological: "Relate observable growth and pubertal changes to the main stages of human life, without making normative judgments about a 'correct' developmental pace.",
+    methodological:
+      "Relate observable growth and pubertal changes to the main stages of human life, without making normative judgments about a 'correct' developmental pace.",
     frontend: {
-      en: "Recognize stages of human development without assuming everyone develops at the same pace.",
+      en: 'Recognize stages of human development without assuming everyone develops at the same pace.',
       zh: '认识人类发展的不同阶段，同时理解每个人的发育速度并不相同。',
       hi: 'मानव विकास के चरण पहचानें और समझें कि हर व्यक्ति एक ही गति से विकसित नहीं होता।',
       es: 'Reconoce las etapas del desarrollo humano sin suponer que todos se desarrollan al mismo ritmo.',

@@ -17,15 +17,29 @@ describe('LessonSteps', () => {
 
   it('injects navigation events instead of relying on a framework router', () => {
     const onNavigate = vi.fn();
-    render(<LessonSteps navigationLabel="Lesson steps" steps={steps}
-      currentStep={0} allowNavigation onNavigate={onNavigate} />);
+    render(
+      <LessonSteps
+        navigationLabel="Lesson steps"
+        steps={steps}
+        currentStep={0}
+        allowNavigation
+        onNavigate={onNavigate}
+      />,
+    );
     fireEvent.click(screen.getByRole('button', { name: '2. Practice' }));
     expect(onNavigate).toHaveBeenCalledWith(1);
   });
 
   it('marks the selected and completed steps without changing their order', () => {
-    render(<LessonSteps navigationLabel="Lesson steps" steps={steps} currentStep={1}
-      completedStep={0} showStepNumbers={false} />);
+    render(
+      <LessonSteps
+        navigationLabel="Lesson steps"
+        steps={steps}
+        currentStep={1}
+        completedStep={0}
+        showStepNumbers={false}
+      />,
+    );
     expect(screen.getByRole('button', { name: 'Practice' })).toHaveAttribute('aria-current', 'step');
     expect(screen.getByRole('button', { name: 'Theory' })).toHaveAttribute('data-complete', 'true');
   });

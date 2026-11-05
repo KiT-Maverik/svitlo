@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainThermalExpansionThroughParticleMotionAndInteractions_Skill_Data = buildSkillConfig({
-  slug: "explainThermalExpansionThroughParticleMotionAndInteractions",
-  id: "8f9fb656-8308-464f-82ac-885b2b690611",
+  slug: 'explainThermalExpansionThroughParticleMotionAndInteractions',
+  id: '8f9fb656-8308-464f-82ac-885b2b690611',
   name: {
-    en: "Explain thermal expansion through particle motion and interactions",
+    en: 'Explain thermal expansion through particle motion and interactions',
     qm: 'Termik keñleşüvni parçacıqlar areketinen añlatmaq',
     zh: '用粒子运动和相互作用解释热膨胀',
     hi: 'कणों की गति व अंतःक्रिया से तापीय प्रसार समझाना',
@@ -35,9 +35,10 @@ export const explainThermalExpansionThroughParticleMotionAndInteractions_Skill_D
     kk: 'Жылулық ұлғаюды бөлшектер қозғалысы мен әрекеттесуімен түсіндіру',
   },
   description: {
-    methodological: "Heating often changes the average distances between particles, not the sizes of the molecules themselves.",
+    methodological:
+      'Heating often changes the average distances between particles, not the sizes of the molecules themselves.',
     frontend: {
-      en: "Recognize why expansion usually changes particle spacing, not particle size.",
+      en: 'Recognize why expansion usually changes particle spacing, not particle size.',
       qm: 'Qızdırğanda parçacıqlarnıñ öz ölçüsi degil, olarnıñ arasındaki mesafe neden deñişkenini añla.',
       zh: '理解为什么热膨胀通常改变的是粒子间距，而不是粒子的大小。',
       hi: 'समझें कि गर्म होने पर सामान्यतः कणों की दूरी बदलती है, उनका आकार नहीं।',

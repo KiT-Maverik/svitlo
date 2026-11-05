@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const recognizeNaturalCommunitiesOfUkraine_Skill_Data = buildSkillConfig({
-  slug: "recognizeNaturalCommunitiesOfUkraine",
-  id: "0fcc05ba-075e-4019-9858-06bec9268fc2",
+  slug: 'recognizeNaturalCommunitiesOfUkraine',
+  id: '0fcc05ba-075e-4019-9858-06bec9268fc2',
   name: {
-    en: "Recognize Natural Communities of Ukraine",
+    en: 'Recognize Natural Communities of Ukraine',
     zh: '认识乌克兰的自然群落',
     hi: 'यूक्रेन के प्राकृतिक समुदाय पहचानना',
     es: 'Reconocer comunidades naturales de Ucrania',
@@ -17,7 +17,7 @@ export const recognizeNaturalCommunitiesOfUkraine_Skill_Data = buildSkillConfig(
     de: 'Natürliche Lebensgemeinschaften der Ukraine erkennen',
     ja: 'ウクライナの自然の生物群集を見分ける',
     ko: '우크라이나의 자연 군집 알아보기',
-    tr: 'Ukrayna\'nın doğal topluluklarını tanımak',
+    tr: "Ukrayna'nın doğal topluluklarını tanımak",
     vi: 'Nhận biết các quần xã tự nhiên của Ukraina',
     ta: 'உக்ரைனின் இயற்கை உயிர்ச் சமூகங்களை அறிதல்',
     te: 'ఉక్రెయిన్ సహజ జీవ సముదాయాలను గుర్తించడం',
@@ -35,9 +35,10 @@ export const recognizeNaturalCommunitiesOfUkraine_Skill_Data = buildSkillConfig(
     qm: 'Ukrainanıñ tabiiy canlı toplulıqlarını tanımaq',
   },
   description: {
-    methodological: "Identify characteristic combinations of plants, animals, and conditions in Ukrainian forests, steppes, meadows, or bodies of water.",
+    methodological:
+      'Identify characteristic combinations of plants, animals, and conditions in Ukrainian forests, steppes, meadows, or bodies of water.',
     frontend: {
-      en: "Recognize characteristic living communities in Ukrainian forests, steppes and waters.",
+      en: 'Recognize characteristic living communities in Ukrainian forests, steppes and waters.',
       zh: '辨认乌克兰森林、草原和水域中典型的生物群落。',
       hi: 'यूक्रेन के जंगलों, स्तेपी घासभूमियों और जलक्षेत्रों के विशिष्ट जीव समुदाय पहचानें।',
       es: 'Reconoce comunidades vivas características de bosques, estepas y aguas de Ucrania.',
@@ -50,7 +51,7 @@ export const recognizeNaturalCommunitiesOfUkraine_Skill_Data = buildSkillConfig(
       de: 'Erkenne typische Lebensgemeinschaften in ukrainischen Wäldern, Steppen und Gewässern.',
       ja: 'ウクライナの森、ステップ、水辺に見られる代表的な生物群集を知ろう。',
       ko: '우크라이나의 숲, 초원 지대, 수역에서 볼 수 있는 대표적인 생물 군집을 알아보세요.',
-      tr: 'Ukrayna\'nın ormanlarında, bozkırlarında ve sularında görülen canlı topluluklarını tanı.',
+      tr: "Ukrayna'nın ormanlarında, bozkırlarında ve sularında görülen canlı topluluklarını tanı.",
       vi: 'Nhận biết quần xã sinh vật đặc trưng trong rừng, thảo nguyên và vùng nước Ukraina.',
       ta: 'உக்ரைனின் காடுகள், புல்வெளிகள் மற்றும் நீர்நிலைகளில் உள்ள வழக்கமான உயிர்ச் சமூகங்களை அறியுங்கள்.',
       te: 'ఉక్రెయిన్ అడవులు, స్టెప్పీలు, జల ప్రాంతాల ప్రత్యేక జీవ సముదాయాలను గుర్తించండి.',

@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainCompleteMetamorphosisInInsects_Skill_Data = buildSkillConfig({
-  slug: "explainCompleteMetamorphosisInInsects",
-  id: "4fc41bc2-a024-4702-9446-842305bdef5d",
+  slug: 'explainCompleteMetamorphosisInInsects',
+  id: '4fc41bc2-a024-4702-9446-842305bdef5d',
   name: {
-    en: "Explain Complete Metamorphosis in Insects",
+    en: 'Explain Complete Metamorphosis in Insects',
     zh: '解释昆虫的完全变态',
     hi: 'कीटों में पूर्ण कायांतरण समझाना',
     es: 'Explicar la metamorfosis completa en insectos',
@@ -35,14 +35,15 @@ export const explainCompleteMetamorphosisInInsects_Skill_Data = buildSkillConfig
     qm: 'İnsektlerde tam metamorfoznı añlatmaq',
   },
   description: {
-    methodological: "Explain the four developmental stages of insects with complete metamorphosis: egg, larva, pupa, and imago; using butterflies, beetles, or flies as examples, distinguish the markedly different functions and structures of larvae and adults.",
+    methodological:
+      'Explain the four developmental stages of insects with complete metamorphosis: egg, larva, pupa, and imago; using butterflies, beetles, or flies as examples, distinguish the markedly different functions and structures of larvae and adults.',
     frontend: {
-      en: "Follow the egg, larva, pupa and adult stages of complete insect metamorphosis.",
+      en: 'Follow the egg, larva, pupa and adult stages of complete insect metamorphosis.',
       zh: '了解昆虫完全变态经历的卵、幼虫、蛹和成虫四个阶段。',
       hi: 'कीटों के पूर्ण कायांतरण के अंडा, लार्वा, प्यूपा और वयस्क चरणों को समझें।',
       es: 'Sigue las etapas de huevo, larva, pupa y adulto de la metamorfosis completa de los insectos.',
       ar: 'تتبّع مراحل البيضة واليرقة والعذراء والحشرة البالغة في التحوّل الكامل.',
-      fr: 'Suis les étapes de l\'œuf, de la larve, de la nymphe et de l\'adulte lors de la métamorphose complète.',
+      fr: "Suis les étapes de l'œuf, de la larve, de la nymphe et de l'adulte lors de la métamorphose complète.",
       bn: 'পতঙ্গের পূর্ণ রূপান্তরের ডিম, লার্ভা, পিউপা ও পূর্ণাঙ্গ পর্যায়গুলো অনুসরণ করো।',
       pt: 'Acompanhe os estágios de ovo, larva, pupa e adulto na metamorfose completa dos insetos.',
       ur: 'حشرات کی مکمل کایا پلٹ میں انڈے، لاروا، پیوپا اور بالغ ہونے کے مراحل جانیں۔',

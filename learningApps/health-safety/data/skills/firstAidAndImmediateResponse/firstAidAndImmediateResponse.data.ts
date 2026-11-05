@@ -7,10 +7,10 @@ import { initialAssessmentAndHelp_SkillGroup_Data } from './initialAssessmentAnd
 import { medicalEmergencies_SkillGroup_Data } from './medicalEmergencies/medicalEmergencies.data';
 
 export const firstAidAndImmediateResponse_SkillDomain_Data = buildSkillDomainConfig({
-  slug: "firstAidAndImmediateResponse",
-  id: "d5869e78-d660-4634-99a8-a7b05e8ce81b",
+  slug: 'firstAidAndImmediateResponse',
+  id: 'd5869e78-d660-4634-99a8-a7b05e8ce81b',
   name: {
-    en: "First Aid and Immediate Response",
+    en: 'First Aid and Immediate Response',
   },
   groups: {
     basicLifeSupport: basicLifeSupport_SkillGroup_Data,
@@ -20,9 +20,10 @@ export const firstAidAndImmediateResponse_SkillDomain_Data = buildSkillDomainCon
     medicalEmergencies: medicalEmergencies_SkillGroup_Data,
   },
   description: {
-    methodological: "Immediate assistance aims to recognize danger, activate professional help, and provide appropriate basic interventions within training and scene safety. Clinical treatment and invasive procedures are not implied by inclusion in the taxonomy.",
+    methodological:
+      'Immediate assistance aims to recognize danger, activate professional help, and provide appropriate basic interventions within training and scene safety. Clinical treatment and invasive procedures are not implied by inclusion in the taxonomy.',
     frontend: {
-      en: "Learn to recognize urgent danger, call for help and give appropriate basic assistance.",
+      en: 'Learn to recognize urgent danger, call for help and give appropriate basic assistance.',
     },
   },
 });

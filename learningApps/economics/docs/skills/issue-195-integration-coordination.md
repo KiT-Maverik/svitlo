@@ -9,13 +9,13 @@
 
 ## Four-agent nonoverlapping ownership
 
-| Agent | Owned Domain subtrees | Planned entities |
-| --- | --- | ---: |
-| 1 | `economicThinking`; `consumerBehavior`; `marketsAndCompetition`; `productionAndEntrepreneurship` | 84 |
-| 2 | `laborAndEmployment`; `marketingAndTrade`; `personalFinance`; `moneyAndFinancialSystem` | 93 |
-| 3 | `macroeconomics`; `governmentAndEconomicPolicy`; `internationalEconomics`; `developmentWellbeingAndInstitutions` | 84 |
-| 4 | `environmentalAndResourceEconomics`; `economicDataAndResearch`; `economicHistoryAndIdeas`; `digitalEconomy`; `appliedEconomics` | 84 |
-| **Total** | 17 Domain roots | **345** |
+| Agent     | Owned Domain subtrees                                                                                                           | Planned entities |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------- | ---------------: |
+| 1         | `economicThinking`; `consumerBehavior`; `marketsAndCompetition`; `productionAndEntrepreneurship`                                |               84 |
+| 2         | `laborAndEmployment`; `marketingAndTrade`; `personalFinance`; `moneyAndFinancialSystem`                                         |               93 |
+| 3         | `macroeconomics`; `governmentAndEconomicPolicy`; `internationalEconomics`; `developmentWellbeingAndInstitutions`                |               84 |
+| 4         | `environmentalAndResourceEconomics`; `economicDataAndResearch`; `economicHistoryAndIdeas`; `digitalEconomy`; `appliedEconomics` |               84 |
+| **Total** | 17 Domain roots                                                                                                                 |          **345** |
 
 Agents must branch from `feat/economics-skills-integration` and change only owned `data/skills/<domain>/**` name and frontend locale dictionaries. Preserve English source, methodological descriptions, IDs, slugs, imports/exports and hierarchy. Crimean Tatar `qm` uses its approved Latin orthography; Belarusian `be` uses Taraškievica. No synthetic/fallback translations.
 

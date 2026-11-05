@@ -9,7 +9,11 @@ export const Text = ({ value, styling, wrap }: ContentBlock_Text_Response) => {
 
   const typographyProps = wrap?.typographyProps as Omit<TypographyProps, 'children'> | undefined;
 
-  return <Typography component="p" {...typographyProps}>{rendered}</Typography>;
+  return (
+    <Typography component="p" {...typographyProps}>
+      {rendered}
+    </Typography>
+  );
 };
 
 export const ContentBlock_Text = Text;

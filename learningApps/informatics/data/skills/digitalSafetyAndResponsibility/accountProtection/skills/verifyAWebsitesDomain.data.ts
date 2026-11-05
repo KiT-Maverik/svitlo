@@ -1,8 +1,8 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const verifyAWebsitesDomain_Skill_Data = buildSkillConfig({
-  slug: "verifyAWebsitesDomain",
-  id: "41659055-755a-46d0-ac1d-090c651e8f11",
+  slug: 'verifyAWebsitesDomain',
+  id: '41659055-755a-46d0-ac1d-090c651e8f11',
   name: {
     en: "Verify a Website's Domain",
     zh: '核实网站域名',
@@ -35,9 +35,10 @@ export const verifyAWebsitesDomain_Skill_Data = buildSkillConfig({
     qm: 'Veb-saytnıñ domenini teşkermek',
   },
   description: {
-    methodological: "Determine the actual domain in a link, separating it from subdomains, paths, and button labels, and detect impersonation through minor spelling changes or lookalike characters. In `facebook.com.example.org` the domain is `example.org`; visual similarity or HTTPS does not prove that an operator is trustworthy.",
+    methodological:
+      'Determine the actual domain in a link, separating it from subdomains, paths, and button labels, and detect impersonation through minor spelling changes or lookalike characters. In `facebook.com.example.org` the domain is `example.org`; visual similarity or HTTPS does not prove that an operator is trustworthy.',
     frontend: {
-      en: "Read the real domain in a website address and spot misleading lookalikes.",
+      en: 'Read the real domain in a website address and spot misleading lookalikes.',
       zh: '读出网址中的真实域名，并识别易混淆的仿冒地址。',
       hi: 'वेबसाइट के पते में असली डोमेन पढ़ें और मिलते-जुलते नकली पते पहचानें।',
       es: 'Lee el dominio real de una dirección web y detecta imitaciones engañosas.',

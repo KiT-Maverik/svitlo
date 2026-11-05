@@ -22,7 +22,10 @@ export async function playCelebration() {
       gain.connect(context.destination);
       oscillator.start(start);
       oscillator.stop(start + 0.5);
-      if (index === 3) oscillator.onended = () => { void context.close(); };
+      if (index === 3)
+        oscillator.onended = () => {
+          void context.close();
+        };
     });
   } catch {
     /* A blocked audio device must not interrupt lesson completion. */
@@ -54,21 +57,32 @@ export function Celebration({ score, total, messages, homeHref = '/', linkCompon
       {showConfetti && (
         <div className={styles.confetti} aria-hidden="true">
           {Array.from({ length: 48 }, (_, i) => (
-            <i key={i} style={{
-              '--origin': i % 2 ? '100%' : '0%',
-              '--dx': `${(i % 2 ? -1 : 1) * (180 + i * 7)}px`,
-              '--dy': `${-240 + (i % 12) * 48}px`,
-              '--spin': `${180 + i * 31}deg`,
-              animationDelay: `${(i % 8) * 45}ms`,
-            } as CSSProperties} />
+            <i
+              key={i}
+              style={
+                {
+                  '--origin': i % 2 ? '100%' : '0%',
+                  '--dx': `${(i % 2 ? -1 : 1) * (180 + i * 7)}px`,
+                  '--dy': `${-240 + (i % 12) * 48}px`,
+                  '--spin': `${180 + i * 31}deg`,
+                  animationDelay: `${(i % 8) * 45}ms`,
+                } as CSSProperties
+              }
+            />
           ))}
         </div>
       )}
-      <span className={styles.badge} aria-hidden="true">✦</span>
+      <span className={styles.badge} aria-hidden="true">
+        ✦
+      </span>
       <h1 id="lesson-complete">{celebration.title}</h1>
       <p>{celebration.description}</p>
-      <p>{celebration.correctAnswers} <strong>{displayScore}</strong>. {celebration.note}</p>
-      <Link className={styles.primary} href={homeHref}>{celebration.home}</Link>
+      <p>
+        {celebration.correctAnswers} <strong>{displayScore}</strong>. {celebration.note}
+      </p>
+      <Link className={styles.primary} href={homeHref}>
+        {celebration.home}
+      </Link>
     </section>
   );
 }

@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const configureMultiFactorAuthentication_Skill_Data = buildSkillConfig({
-  slug: "configureMultiFactorAuthentication",
-  id: "fba32eb8-3602-4dc5-b496-1354721f8b7a",
+  slug: 'configureMultiFactorAuthentication',
+  id: 'fba32eb8-3602-4dc5-b496-1354721f8b7a',
   name: {
-    en: "Configure Multi-Factor Authentication",
+    en: 'Configure Multi-Factor Authentication',
     zh: '配置多因素身份验证',
     hi: 'बहु-कारक प्रमाणीकरण सेट करना',
     es: 'Configurar la autenticación multifactor',
@@ -35,9 +35,10 @@ export const configureMultiFactorAuthentication_Skill_Data = buildSkillConfig({
     qm: 'Çoq faktorlı autentifikatsiyanı sazlamaq',
   },
   description: {
-    methodological: "In a safe practice or personal environment, choose and activate a supported additional factor and plan account recovery. Distinguish configuring protection from merely explaining it; never require disclosure of secret codes.",
+    methodological:
+      'In a safe practice or personal environment, choose and activate a supported additional factor and plan account recovery. Distinguish configuring protection from merely explaining it; never require disclosure of secret codes.',
     frontend: {
-      en: "Set up an additional sign-in factor and plan how to recover access safely.",
+      en: 'Set up an additional sign-in factor and plan how to recover access safely.',
       zh: '设置额外的登录验证因素，并规划安全恢复账户访问的方法。',
       hi: 'एक अतिरिक्त साइन-इन कारक चालू करें और सुरक्षित खाता पुनर्प्राप्ति की योजना बनाएँ।',
       es: 'Activa un factor adicional para iniciar sesión y prepara una recuperación segura.',

@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const recognizeHumanUsesOfMicroorganisms_Skill_Data = buildSkillConfig({
-  slug: "recognizeHumanUsesOfMicroorganisms",
-  id: "d8c1427d-2705-477b-99e2-7e33bb0d33fa",
+  slug: 'recognizeHumanUsesOfMicroorganisms',
+  id: 'd8c1427d-2705-477b-99e2-7e33bb0d33fa',
   name: {
-    en: "Recognize Human Uses of Microorganisms",
+    en: 'Recognize Human Uses of Microorganisms',
     zh: '识别人类对微生物的利用',
     hi: 'सूक्ष्मजीवों के मानवीय उपयोग पहचानना',
     es: 'Reconocer los usos humanos de los microorganismos',
@@ -35,14 +35,14 @@ export const recognizeHumanUsesOfMicroorganisms_Skill_Data = buildSkillConfig({
     qm: 'Mikroorganizmalarnıñ insanlar tarafından qullanıluvını tanımaq',
   },
   description: {
-    methodological: "Identify how yeasts or bacteria are used to produce food or other products.",
+    methodological: 'Identify how yeasts or bacteria are used to produce food or other products.',
     frontend: {
-      en: "Recognize ways bacteria and yeasts are used to produce foods and other materials.",
+      en: 'Recognize ways bacteria and yeasts are used to produce foods and other materials.',
       zh: '认识细菌和酵母如何用于制造食品及其他材料。',
       hi: 'जानें कि खाद्य पदार्थ और दूसरी सामग्री बनाने में जीवाणुओं और यीस्ट का उपयोग कैसे होता है।',
       es: 'Reconoce cómo se utilizan las bacterias y las levaduras para producir alimentos y otros materiales.',
       ar: 'تعرّف كيف تُستخدم البكتيريا والخمائر لإنتاج الأغذية ومواد أخرى.',
-      fr: 'Découvre comment les bactéries et les levures servent à produire des aliments et d\'autres matières.',
+      fr: "Découvre comment les bactéries et les levures servent à produire des aliments et d'autres matières.",
       bn: 'খাদ্য ও অন্য উপাদান তৈরিতে ব্যাকটেরিয়া ও ইস্ট কীভাবে ব্যবহৃত হয় তা চেনো।',
       pt: 'Reconheça como bactérias e leveduras são usadas para produzir alimentos e outros materiais.',
       ur: 'جانیں کہ غذائیں اور دیگر مواد بنانے میں بیکٹیریا اور خمیر کیسے استعمال ہوتے ہیں۔',

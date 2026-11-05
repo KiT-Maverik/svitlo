@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainEnergyFlowInAnEcosystem_Skill_Data = buildSkillConfig({
-  slug: "explainEnergyFlowInAnEcosystem",
-  id: "2bfe50a6-5774-4e7d-906b-08bebd3b3db7",
+  slug: 'explainEnergyFlowInAnEcosystem',
+  id: '2bfe50a6-5774-4e7d-906b-08bebd3b3db7',
   name: {
-    en: "Explain Energy Flow in an Ecosystem",
+    en: 'Explain Energy Flow in an Ecosystem',
     zh: '解释生态系统中的能量流动',
     hi: 'पारितंत्र में ऊर्जा प्रवाह समझाना',
     es: 'Explicar el flujo de energía en un ecosistema',
@@ -35,9 +35,10 @@ export const explainEnergyFlowInAnEcosystem_Skill_Data = buildSkillConfig({
     qm: 'Ekosistemada energiya aqımını añlatmaq',
   },
   description: {
-    methodological: "Explain one-way energy transfer through producers, consumers, and decomposers, energy transformations, and dissipation as heat; do not confuse energy flow with matter cycling.",
+    methodological:
+      'Explain one-way energy transfer through producers, consumers, and decomposers, energy transformations, and dissipation as heat; do not confuse energy flow with matter cycling.',
     frontend: {
-      en: "Explain why energy moves through an ecosystem while matter is reused.",
+      en: 'Explain why energy moves through an ecosystem while matter is reused.',
       zh: '解释为什么能量沿生态系统单向流动，而物质可以循环利用。',
       hi: 'समझाएँ कि पारितंत्र में ऊर्जा एक दिशा में क्यों बहती है जबकि पदार्थ का पुनः उपयोग होता है।',
       es: 'Explica por qué la energía fluye por el ecosistema mientras la materia se reutiliza.',

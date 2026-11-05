@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainTheImmuneSystemsProtectiveRole_Skill_Data = buildSkillConfig({
-  slug: "explainTheImmuneSystemsProtectiveRole",
-  id: "b5d1648c-cd91-4d57-85e6-90a757216ca0",
+  slug: 'explainTheImmuneSystemsProtectiveRole',
+  id: 'b5d1648c-cd91-4d57-85e6-90a757216ca0',
   name: {
-    en: "Explain the Immune System’s Protective Role",
+    en: 'Explain the Immune System’s Protective Role',
     zh: '解释免疫系统的保护作用',
     hi: 'प्रतिरक्षा तंत्र की सुरक्षात्मक भूमिका समझाना',
     es: 'Explicar la función protectora del sistema inmunitario',
@@ -35,9 +35,10 @@ export const explainTheImmuneSystemsProtectiveRole_Skill_Data = buildSkillConfig
     qm: 'İmmun sistemasınıñ qoruyıcı rolüni añlatmaq',
   },
   description: {
-    methodological: "Explain how the body recognizes foreign agents and initiates a protective response without confusing this with absolute protection against disease.",
+    methodological:
+      'Explain how the body recognizes foreign agents and initiates a protective response without confusing this with absolute protection against disease.',
     frontend: {
-      en: "Explain how the immune system detects and responds to potentially harmful agents.",
+      en: 'Explain how the immune system detects and responds to potentially harmful agents.',
       zh: '解释免疫系统如何识别潜在有害的物质和病原体并作出反应。',
       hi: 'समझाएँ कि प्रतिरक्षा तंत्र संभावित हानिकारक कारकों को कैसे पहचानकर प्रतिक्रिया करता है।',
       es: 'Explica cómo el sistema inmunitario detecta y responde a agentes potencialmente dañinos.',

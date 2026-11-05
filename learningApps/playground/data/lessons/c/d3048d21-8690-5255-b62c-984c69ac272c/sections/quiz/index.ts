@@ -1,7 +1,5 @@
 import type { HowLightMoves_Languages } from '../../constants';
-import {
-  type Section,
-} from '@svitlo/engine/content';
+import { type Section } from '@svitlo/engine/content';
 import { howLightMoves_Questions } from '../../questions';
 
 const title = {
@@ -34,7 +32,7 @@ const title = {
   ur: 'آزمائش',
   vi: 'Bài kiểm tra',
   zh: '测验',
-}
+};
 
 const quizBlock = {
   type: 'quiz' as const,

@@ -43,7 +43,7 @@ export const stellarHydrostaticEquilibrium_Skill_Data = buildSkillConfig({
       hi: 'समझें कि गुरुत्वाकर्षण और आंतरिक दबाव तारे का संतुलन कैसे बनाए रखते हैं।',
       es: 'Comprende cómo la gravedad y la presión interna mantienen una estrella en equilibrio.',
       ar: 'افهم كيف تحافظ الجاذبية والضغط الداخلي على توازن النجم.',
-      fr: 'Comprenez comment la gravité et la pression interne maintiennent l\'équilibre d\'une étoile.',
+      fr: "Comprenez comment la gravité et la pression interne maintiennent l'équilibre d'une étoile.",
       bn: 'মহাকর্ষ ও ভেতরের চাপ কীভাবে নক্ষত্রকে ভারসাম্যে রাখে, তা বোঝো।',
       pt: 'Entenda como a gravidade e a pressão interna mantêm uma estrela em equilíbrio.',
       ur: 'سمجھیں کہ کششِ ثقل اور اندرونی دباؤ ستارے کا توازن کیسے برقرار رکھتے ہیں۔',

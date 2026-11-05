@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const recognizeMammalCharacteristics_Skill_Data = buildSkillConfig({
-  slug: "recognizeMammalCharacteristics",
-  id: "0392f183-e04a-430c-8d94-ec09f60e1838",
+  slug: 'recognizeMammalCharacteristics',
+  id: '0392f183-e04a-430c-8d94-ec09f60e1838',
   name: {
-    en: "Recognize Mammal Characteristics",
+    en: 'Recognize Mammal Characteristics',
     zh: '识别哺乳动物的特征',
     hi: 'स्तनधारियों की विशेषताएँ पहचानना',
     es: 'Reconocer las características de los mamíferos',
@@ -35,14 +35,15 @@ export const recognizeMammalCharacteristics_Skill_Data = buildSkillConfig({
     qm: 'Süt emizici ayvanlarnıñ belgilerini tanımaq',
   },
   description: {
-    methodological: "Identify members by mammary glands and characteristic body coverings without assuming that every mammal gives birth to live young.",
+    methodological:
+      'Identify members by mammary glands and characteristic body coverings without assuming that every mammal gives birth to live young.',
     frontend: {
-      en: "Identify mammals by their defining features without assuming all give live birth.",
+      en: 'Identify mammals by their defining features without assuming all give live birth.',
       zh: '识别哺乳动物的关键特征，不要认为所有哺乳动物都产下活的幼崽。',
       hi: 'स्तनधारियों को उनकी प्रमुख विशेषताओं से पहचानें; यह न मानें कि सभी जीवित बच्चे ही जन्म देते हैं।',
       es: 'Identifica mamíferos por sus rasgos definitorios sin suponer que todos paren crías vivas.',
       ar: 'حدّد الثدييات من خلال سماتها المميزة دون افتراض أنها جميعًا تلد صغارًا أحياء.',
-      fr: 'Identifie les mammifères grâce à leurs caractères distinctifs, sans supposer qu\'ils mettent tous au monde des petits vivants.',
+      fr: "Identifie les mammifères grâce à leurs caractères distinctifs, sans supposer qu'ils mettent tous au monde des petits vivants.",
       bn: 'স্তন্যপায়ীদের মূল বৈশিষ্ট্য দেখে চিনে নাও; সবাই জীবন্ত বাচ্চা প্রসব করে বলে ধরে নিও না।',
       pt: 'Identifique mamíferos por suas características definidoras sem supor que todos dão à luz filhotes vivos.',
       ur: 'ممالیہ جانوروں کو بنیادی خصوصیات سے پہچانیں؛ یہ فرض نہ کریں کہ سب زندہ بچے جنتے ہیں۔',

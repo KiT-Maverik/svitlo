@@ -43,7 +43,7 @@ export const protostars_Skill_Data = buildSkillConfig({
       hi: 'तारे के विकास की उस शुरुआती अवस्था को पहचानें जब स्थिर हाइड्रोजन संलयन शुरू नहीं हुआ है।',
       es: 'Reconoce la fase inicial de una estrella, antes de que comience la fusión estable de hidrógeno.',
       ar: 'تعرّف المرحلة المبكرة من عمر النجم قبل بدء اندماج الهيدروجين المنتظم.',
-      fr: 'Reconnaissez la phase précoce d\'une étoile avant le début de la fusion stable de l\'hydrogène.',
+      fr: "Reconnaissez la phase précoce d'une étoile avant le début de la fusion stable de l'hydrogène.",
       bn: 'স্থিতিশীল হাইড্রোজেন সংযোজন শুরু হওয়ার আগের তরুণ নক্ষত্রের দশা চিনে নাও।',
       pt: 'Identifique a fase inicial de uma estrela, antes do começo da fusão estável de hidrogênio.',
       ur: 'نوجوان ستارے کی وہ ابتدائی حالت پہچانیں جب ہائیڈروجن کا مستقل جوہری انضمام شروع نہیں ہوا۔',

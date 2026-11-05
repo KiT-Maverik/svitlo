@@ -1,12 +1,18 @@
 import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
 
-import { constructASimpleFoodChain_Skill_Data, distinguishProducersAndConsumers_Skill_Data, explainEnergyFlowInAnEcosystem_Skill_Data, explainFoodWebs_Skill_Data, recognizeDecomposers_Skill_Data } from './skills';
+import {
+  constructASimpleFoodChain_Skill_Data,
+  distinguishProducersAndConsumers_Skill_Data,
+  explainEnergyFlowInAnEcosystem_Skill_Data,
+  explainFoodWebs_Skill_Data,
+  recognizeDecomposers_Skill_Data,
+} from './skills';
 
 export const feedingRelationships_SkillGroup_Data = buildSkillGroupConfig({
-  slug: "feedingRelationships",
-  id: "68f19202-48b2-407f-8a10-12a4de57359d",
+  slug: 'feedingRelationships',
+  id: '68f19202-48b2-407f-8a10-12a4de57359d',
   name: {
-    en: "Feeding Relationships",
+    en: 'Feeding Relationships',
     qm: 'Beslenüv alâqaları',
     zh: '食物关系',
     hi: 'आहार संबंध',
@@ -44,9 +50,10 @@ export const feedingRelationships_SkillGroup_Data = buildSkillGroupConfig({
     recognizeDecomposers: recognizeDecomposers_Skill_Data,
   },
   description: {
-    methodological: "Matter and energy pass between organisms, and decomposers return matter to the environment; a disrupted relationship affects subsequent links.",
+    methodological:
+      'Matter and energy pass between organisms, and decomposers return matter to the environment; a disrupted relationship affects subsequent links.',
     frontend: {
-      en: "Explore how food relationships transfer matter and energy through ecosystems.",
+      en: 'Explore how food relationships transfer matter and energy through ecosystems.',
       qm: 'Beslenüv alâqaları vastasınen madde ve energiyanıñ ekosistemada nasıl keçkenini ögreniñiz.',
       zh: '探索物质和能量如何通过生态系统中的食物关系传递。',
       hi: 'जानें कि आहार संबंध पारितंत्रों में पदार्थ और ऊर्जा का स्थानांतरण कैसे करते हैं।',

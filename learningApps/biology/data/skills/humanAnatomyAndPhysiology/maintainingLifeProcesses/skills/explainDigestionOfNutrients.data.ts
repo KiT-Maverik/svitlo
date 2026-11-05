@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainDigestionOfNutrients_Skill_Data = buildSkillConfig({
-  slug: "explainDigestionOfNutrients",
-  id: "f3e6fbe0-736a-45ab-a638-03ca178b3122",
+  slug: 'explainDigestionOfNutrients',
+  id: 'f3e6fbe0-736a-45ab-a638-03ca178b3122',
   name: {
-    en: "Explain Digestion of Nutrients",
+    en: 'Explain Digestion of Nutrients',
     zh: '解释营养物质的消化',
     hi: 'पोषक तत्वों के पाचन को समझाना',
     es: 'Explicar la digestión de nutrientes',
@@ -35,9 +35,10 @@ export const explainDigestionOfNutrients_Skill_Data = buildSkillConfig({
     qm: 'Azıq maddeleriniñ siñdirilüvini añlatmaq',
   },
   description: {
-    methodological: "Explain the mechanical and enzymatic processing of food in the digestive tract and the role of digestive juices in breaking large molecules into components available for absorption.",
+    methodological:
+      'Explain the mechanical and enzymatic processing of food in the digestive tract and the role of digestive juices in breaking large molecules into components available for absorption.',
     frontend: {
-      en: "Discover how digestive processes break food into smaller usable substances.",
+      en: 'Discover how digestive processes break food into smaller usable substances.',
       zh: '了解消化过程如何将食物分解成更小、可供身体利用的物质。',
       hi: 'जानें कि पाचन भोजन को छोटे, उपयोगी पदार्थों में कैसे तोड़ता है।',
       es: 'Descubre cómo la digestión descompone los alimentos en sustancias más pequeñas que el cuerpo puede aprovechar.',

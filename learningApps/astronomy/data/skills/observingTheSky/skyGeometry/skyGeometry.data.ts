@@ -65,7 +65,7 @@ export const skyGeometry_SkillGroup_Data = buildSkillGroupConfig({
       de: 'Beschreibe mit Winkeln und Himmelskoordinaten die Richtung, in der Objekte von der Erde aus zu sehen sind.',
       ja: '角度と天球座標を使って、地球から見た天体の方向を説明しよう。',
       ko: '각도와 천구 좌표를 사용해 지구에서 보이는 천체의 방향을 설명해 보세요.',
-      tr: 'Dünya\'dan görülen gök cisimlerinin yönünü açıları ve gök koordinatlarını kullanarak tanımla.',
+      tr: "Dünya'dan görülen gök cisimlerinin yönünü açıları ve gök koordinatlarını kullanarak tanımla.",
       vi: 'Dùng góc và tọa độ thiên cầu để mô tả hướng của các thiên thể nhìn từ Trái Đất.',
       ta: 'பூமியிலிருந்து தெரியும் விண்பொருள்களின் திசைகளை விவரிக்கக் கோணங்களையும் வானியல் ஆயங்களையும் பயன்படுத்து.',
       te: 'భూమి నుంచి కనిపించే ఖగోళ వస్తువుల దిశలను వివరించడానికి కోణాలను, ఖగోళ నిర్దేశాంకాలను ఉపయోగించండి.',

@@ -1,12 +1,16 @@
 import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
 
-import { distinguishAttractionFromRepulsionBetweenElectricCharges_Skill_Data, explainConservationOfElectricCharge_Skill_Data, recognizeTheChargingOfObjectsByFriction_Skill_Data } from './skills';
+import {
+  distinguishAttractionFromRepulsionBetweenElectricCharges_Skill_Data,
+  explainConservationOfElectricCharge_Skill_Data,
+  recognizeTheChargingOfObjectsByFriction_Skill_Data,
+} from './skills';
 
 export const electricChargesAndInteractions_SkillGroup_Data = buildSkillGroupConfig({
-  slug: "electricChargesAndInteractions",
-  id: "6675b50e-4ced-4075-afd3-3d8831b023dd",
+  slug: 'electricChargesAndInteractions',
+  id: '6675b50e-4ced-4075-afd3-3d8831b023dd',
   name: {
-    en: "Electric Charges and Interactions",
+    en: 'Electric Charges and Interactions',
     qm: 'Elektrik yükleri ve tesirleşüvler',
     zh: '电荷与相互作用',
     hi: 'विद्युत आवेश और अंतःक्रियाएँ',
@@ -37,14 +41,16 @@ export const electricChargesAndInteractions_SkillGroup_Data = buildSkillGroupCon
     kk: 'Электр зарядтары және өзара әрекеттесу',
   },
   skills: {
-    distinguishAttractionFromRepulsionBetweenElectricCharges: distinguishAttractionFromRepulsionBetweenElectricCharges_Skill_Data,
+    distinguishAttractionFromRepulsionBetweenElectricCharges:
+      distinguishAttractionFromRepulsionBetweenElectricCharges_Skill_Data,
     explainConservationOfElectricCharge: explainConservationOfElectricCharge_Skill_Data,
     recognizeTheChargingOfObjectsByFriction: recognizeTheChargingOfObjectsByFriction_Skill_Data,
   },
   description: {
-    methodological: "Electrification, interactions between charged bodies, and charge transfer obey conservation of electric charge. Electric interaction can occur without direct contact.",
+    methodological:
+      'Electrification, interactions between charged bodies, and charge transfer obey conservation of electric charge. Electric interaction can occur without direct contact.',
     frontend: {
-      en: "Learn how electric charges are transferred and exert forces.",
+      en: 'Learn how electric charges are transferred and exert forces.',
       qm: 'Elektrik yükleriniñ nasıl berilgenini ve quvetnen nasıl tesir etkenini ögren.',
       zh: '了解电荷如何转移，以及如何产生相互作用力。',
       hi: 'जानें कि विद्युत आवेश कैसे स्थानांतरित होते और बल लगाते हैं।',

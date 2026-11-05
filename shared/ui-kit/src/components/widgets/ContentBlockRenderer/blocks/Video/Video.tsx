@@ -12,7 +12,13 @@ import styles from './Video.module.css';
 
 type VideoFailure = { source: string; kind: VideoFailureKind };
 
-export const Video = ({ fileLocation, poster, title, fallback, messages }: ContentBlock_Video_Response & {
+export const Video = ({
+  fileLocation,
+  poster,
+  title,
+  fallback,
+  messages,
+}: ContentBlock_Video_Response & {
   messages: UiKit_Component<'video', 'response'>;
 }) => {
   const contentLanguage = useContentLanguage();

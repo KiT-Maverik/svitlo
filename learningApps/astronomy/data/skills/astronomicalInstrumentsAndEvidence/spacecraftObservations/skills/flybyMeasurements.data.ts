@@ -55,7 +55,7 @@ export const flybyMeasurements_Skill_Data = buildSkillConfig({
       uk: 'Дізнайся, що може показати короткий проліт космічного апарата повз небесне тіло — і що залишиться непоміченим.',
       pl: 'Zobacz, co może ujawnić krótki przelot sondy kosmicznej obok ciała niebieskiego — i co może zostać pominięte.',
       es: 'Descubre qué puede revelar el breve sobrevuelo de una sonda espacial y qué puede pasar por alto.',
-      fr: 'Découvre ce qu\'un bref survol par une sonde spatiale peut révéler et ce qui peut lui échapper.',
+      fr: "Découvre ce qu'un bref survol par une sonde spatiale peut révéler et ce qui peut lui échapper.",
       de: 'Erfahre, was ein kurzer Vorbeiflug einer Raumsonde zeigen kann – und was dabei unentdeckt bleiben könnte.',
       pt: 'Veja o que uma breve passagem de uma sonda espacial pode revelar — e o que pode deixar de detectar.',
       id: 'Cari tahu apa yang dapat diungkap oleh lintasan singkat wahana antariksa di dekat benda langit—dan apa yang mungkin terlewat.',

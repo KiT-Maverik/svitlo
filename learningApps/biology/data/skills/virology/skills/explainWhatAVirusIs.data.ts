@@ -1,15 +1,15 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainWhatAVirusIs_Skill_Data = buildSkillConfig({
-  slug: "explainWhatAVirusIs",
-  id: "7ca389ef-0006-4ae3-b7c2-dbddcf7e9907",
+  slug: 'explainWhatAVirusIs',
+  id: '7ca389ef-0006-4ae3-b7c2-dbddcf7e9907',
   name: {
-    en: "Explain What a Virus Is",
+    en: 'Explain What a Virus Is',
     zh: '解释什么是病毒',
     hi: 'विषाणु क्या है, यह समझाना',
     es: 'Explicar qué es un virus',
     ar: 'شرح ما هو الفيروس',
-    fr: 'Expliquer ce qu\'est un virus',
+    fr: "Expliquer ce qu'est un virus",
     bn: 'ভাইরাস কী তা ব্যাখ্যা করা',
     pt: 'Explicar o que é um vírus',
     ur: 'وضاحت کرنا کہ وائرس کیا ہے',
@@ -35,9 +35,10 @@ export const explainWhatAVirusIs_Skill_Data = buildSkillConfig({
     qm: 'Virus ne olğanını añlatmaq',
   },
   description: {
-    methodological: "Explain that a virus is a noncellular infectious agent containing genetic material; it lacks its own protein-synthesis machinery and reproduces using a host cell.",
+    methodological:
+      'Explain that a virus is a noncellular infectious agent containing genetic material; it lacks its own protein-synthesis machinery and reproduces using a host cell.',
     frontend: {
-      en: "Explain why viruses need living cells to make more viruses.",
+      en: 'Explain why viruses need living cells to make more viruses.',
       zh: '解释为什么病毒需要活细胞才能产生更多病毒。',
       hi: 'समझाएँ कि अधिक विषाणु बनाने के लिए विषाणुओं को जीवित कोशिकाओं की आवश्यकता क्यों होती है।',
       es: 'Explica por qué los virus necesitan células vivas para producir más virus.',

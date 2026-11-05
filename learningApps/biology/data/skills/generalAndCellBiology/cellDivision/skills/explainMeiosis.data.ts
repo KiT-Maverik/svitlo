@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainMeiosis_Skill_Data = buildSkillConfig({
-  slug: "explainMeiosis",
-  id: "161a72c9-8440-471c-a517-20cb8cfb6f5f",
+  slug: 'explainMeiosis',
+  id: '161a72c9-8440-471c-a517-20cb8cfb6f5f',
   name: {
-    en: "Explain Meiosis",
+    en: 'Explain Meiosis',
     zh: '解释减数分裂',
     hi: 'अर्धसूत्री विभाजन की व्याख्या',
     es: 'Explicar la meiosis',
@@ -35,9 +35,10 @@ export const explainMeiosis_Skill_Data = buildSkillConfig({
     qm: 'Meyoznı añlatmaq',
   },
   description: {
-    methodological: "Explain successive divisions following a single round of DNA replication, the halving of chromosome number, recombination, and independent chromosome assortment. Distinguish meiotic products in animals and plants: in plants, meiosis may produce spores rather than gametes directly.",
+    methodological:
+      'Explain successive divisions following a single round of DNA replication, the halving of chromosome number, recombination, and independent chromosome assortment. Distinguish meiotic products in animals and plants: in plants, meiosis may produce spores rather than gametes directly.',
     frontend: {
-      en: "Learn how meiosis produces cells with fewer chromosomes and creates genetic variation.",
+      en: 'Learn how meiosis produces cells with fewer chromosomes and creates genetic variation.',
       zh: '了解减数分裂如何产生染色体数目减少的细胞，并形成遗传变异。',
       hi: 'जानें कि अर्धसूत्री विभाजन से कम गुणसूत्रों वाली कोशिकाएँ कैसे बनती हैं और आनुवंशिक विविधता कैसे उत्पन्न होती है।',
       es: 'Aprende cómo la meiosis produce células con menos cromosomas y genera variación genética.',

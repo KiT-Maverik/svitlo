@@ -15,7 +15,9 @@ const lesson = {
   questions: { selectOneAnswer: { q1: { id: 'question-id', slug: 'q1', title: { en: 'What?', uk: 'Що?' } } } },
   sections: [
     {
-      id: 'quiz-section', slug: 'quiz', type: 'quiz',
+      id: 'quiz-section',
+      slug: 'quiz',
+      type: 'quiz',
       title: { language: 'en', value: 'Quiz' },
       content: [{ type: 'quiz', id: 'quiz-block', slug: 'quiz', questions: { q1: { id: 'question-id', slug: 'q1' } } }],
     },
@@ -52,7 +54,10 @@ describe('renderLessonFiles', () => {
       const files = renderLessonFiles(lesson);
       writeLessonFiles(temp, files);
       assert.equal(fs.existsSync(path.join(temp, 'stale.json')), false);
-      assert.equal(fs.readFileSync(path.join(temp, `c/${id}/config/uk.json`), 'utf8'), files.get(`c/${id}/config/uk.json`));
+      assert.equal(
+        fs.readFileSync(path.join(temp, `c/${id}/config/uk.json`), 'utf8'),
+        files.get(`c/${id}/config/uk.json`),
+      );
     } finally {
       fs.rmSync(temp, { recursive: true, force: true });
     }

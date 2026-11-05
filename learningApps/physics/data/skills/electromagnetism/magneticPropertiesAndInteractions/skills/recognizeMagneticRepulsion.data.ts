@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const recognizeMagneticRepulsion_Skill_Data = buildSkillConfig({
-  slug: "recognizeMagneticRepulsion",
-  id: "3ac1e362-af0e-4204-9d9f-db58a48394de",
+  slug: 'recognizeMagneticRepulsion',
+  id: '3ac1e362-af0e-4204-9d9f-db58a48394de',
   name: {
-    en: "Recognize magnetic repulsion",
+    en: 'Recognize magnetic repulsion',
     qm: 'Magnit itilüvini tanımaq',
     zh: '识别磁排斥',
     hi: 'चुंबकीय प्रतिकर्षण पहचानना',
@@ -35,9 +35,9 @@ export const recognizeMagneticRepulsion_Skill_Data = buildSkillConfig({
     kk: 'Магниттік тебілуді тану',
   },
   description: {
-    methodological: "Identify a situation in which magnets move apart due to their interaction.",
+    methodological: 'Identify a situation in which magnets move apart due to their interaction.',
     frontend: {
-      en: "Recognize situations in which magnets repel each other.",
+      en: 'Recognize situations in which magnets repel each other.',
       qm: 'Magnitler bir-birini itken vaziyetlerni tanı.',
       zh: '识别磁铁相互排斥的情境。',
       hi: 'ऐसी स्थितियाँ पहचानें जिनमें चुंबक एक-दूसरे को दूर धकेलते हैं।',

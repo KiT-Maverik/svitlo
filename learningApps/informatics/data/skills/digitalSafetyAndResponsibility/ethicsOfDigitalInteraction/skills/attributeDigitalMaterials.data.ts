@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const attributeDigitalMaterials_Skill_Data = buildSkillConfig({
-  slug: "attributeDigitalMaterials",
-  id: "5461db5b-a384-4bfa-b0c1-27c3d32317a6",
+  slug: 'attributeDigitalMaterials',
+  id: '5461db5b-a384-4bfa-b0c1-27c3d32317a6',
   name: {
-    en: "Attribute Digital Materials",
+    en: 'Attribute Digital Materials',
     zh: '标注数字材料的出处',
     hi: 'डिजिटल सामग्री का श्रेय देना',
     es: 'Atribuir materiales digitales',
@@ -35,9 +35,10 @@ export const attributeDigitalMaterials_Skill_Data = buildSkillConfig({
     qm: 'Raqamlı materiallarnıñ müellifini köstermek',
   },
   description: {
-    methodological: "When using another person's text, images, sound, or code, credit the creator and original source in an appropriate format. Attribution does not replace permission and does not override licensing terms.",
+    methodological:
+      "When using another person's text, images, sound, or code, credit the creator and original source in an appropriate format. Attribution does not replace permission and does not override licensing terms.",
     frontend: {
-      en: "Credit the original creators of digital content you use.",
+      en: 'Credit the original creators of digital content you use.',
       zh: '在使用数字内容时注明原始创作者。',
       hi: 'इस्तेमाल की गई डिजिटल सामग्री के मूल रचनाकार को श्रेय दें।',
       es: 'Reconoce la autoría de los creadores originales del contenido digital que utilizas.',

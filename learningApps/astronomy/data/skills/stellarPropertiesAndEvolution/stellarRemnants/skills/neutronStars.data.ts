@@ -43,7 +43,7 @@ export const neutronStars_Skill_Data = buildSkillConfig({
       hi: 'जानें कि तारे के केंद्र के ढहने से न्यूट्रॉन तारा कैसे बन सकता है।',
       es: 'Descubre cómo el colapso del núcleo de una estrella puede formar una estrella de neutrones.',
       ar: 'اكتشف كيف قد يؤدي انهيار نواة نجم إلى تكوين نجم نيوتروني.',
-      fr: 'Découvrez comment l\'effondrement du cœur d\'une étoile peut former une étoile à neutrons.',
+      fr: "Découvrez comment l'effondrement du cœur d'une étoile peut former une étoile à neutrons.",
       bn: 'নক্ষত্রের কেন্দ্র সংকুচিত হয়ে কীভাবে নিউট্রন নক্ষত্র হতে পারে, তা জানো।',
       pt: 'Descubra como o colapso do núcleo de uma estrela pode formar uma estrela de nêutrons.',
       ur: 'جانیں کہ ستارے کے مرکز کے منہدم ہونے سے نیوٹران ستارہ کیسے بن سکتا ہے۔',

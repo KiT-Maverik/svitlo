@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainElectricalPower_Skill_Data = buildSkillConfig({
-  slug: "explainElectricalPower",
-  id: "3f128865-51ed-46b9-b5d2-9b55dcf37c85",
+  slug: 'explainElectricalPower',
+  id: '3f128865-51ed-46b9-b5d2-9b55dcf37c85',
   name: {
-    en: "Explain electrical power",
+    en: 'Explain electrical power',
     qm: 'Elektrik quvetini añlatmaq',
     zh: '解释电功率',
     hi: 'विद्युत शक्ति समझाना',
@@ -35,9 +35,9 @@ export const explainElectricalPower_Skill_Data = buildSkillConfig({
     kk: 'Электр қуатын түсіндіру',
   },
   description: {
-    methodological: "Electrical power describes the rate of electrical energy transfer or transformation.",
+    methodological: 'Electrical power describes the rate of electrical energy transfer or transformation.',
     frontend: {
-      en: "Understand electrical power as the rate of energy transfer.",
+      en: 'Understand electrical power as the rate of energy transfer.',
       qm: 'Elektrik quveti energiyanıñ vaqıt birliginde berilüv süratini köstergenini añla.',
       zh: '理解电功率是能量传递的速率。',
       hi: 'समझें कि विद्युत शक्ति ऊर्जा के स्थानांतरण की दर है।',

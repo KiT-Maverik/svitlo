@@ -62,10 +62,15 @@ export const Checkpoint = ({
                 </span>
               )}
               {showIcon && iconPosition === position && (
-                <span className={styles.icon} aria-hidden="true"><LightbulbOutlineRounded fontSize="small" /></span>
+                <span className={styles.icon} aria-hidden="true">
+                  <LightbulbOutlineRounded fontSize="small" />
+                </span>
               )}
               {showChevron && chevronPosition === position && (
-                <span className={[styles.chevron, expanded === index ? styles.chevronOpen : ''].join(' ')} aria-hidden="true">
+                <span
+                  className={[styles.chevron, expanded === index ? styles.chevronOpen : ''].join(' ')}
+                  aria-hidden="true"
+                >
                   <ExpandMoreRounded fontSize="small" />
                 </span>
               )}
@@ -89,12 +94,18 @@ export const Checkpoint = ({
               >
                 <span className={styles.summaryRow}>
                   <span className={styles.adornment}>{side('left')}</span>
-                  <span className={styles.question} dir={direction}>{item.question}</span>
+                  <span className={styles.question} dir={direction}>
+                    {item.question}
+                  </span>
                   <span className={styles.adornment}>
                     {side('right')}
                     {needsCheck && (
                       <span className={isChecked ? styles.checked : styles.unchecked} aria-hidden="true">
-                        {isChecked ? <CheckCircleRounded fontSize="small" /> : <RadioButtonUncheckedRounded fontSize="small" />}
+                        {isChecked ? (
+                          <CheckCircleRounded fontSize="small" />
+                        ) : (
+                          <RadioButtonUncheckedRounded fontSize="small" />
+                        )}
                       </span>
                     )}
                   </span>

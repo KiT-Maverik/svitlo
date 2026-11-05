@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainHumanResponsibilityForAIAssistedDecisions_Skill_Data = buildSkillConfig({
-  slug: "explainHumanResponsibilityForAIAssistedDecisions",
-  id: "4340c77a-1771-4b87-aafb-b4970d14a8a4",
+  slug: 'explainHumanResponsibilityForAIAssistedDecisions',
+  id: '4340c77a-1771-4b87-aafb-b4970d14a8a4',
   name: {
-    en: "Explain Human Responsibility for AI-Assisted Decisions",
+    en: 'Explain Human Responsibility for AI-Assisted Decisions',
     zh: '解释人工智能辅助决策中的人类责任',
     hi: 'एआई-सहायता प्राप्त निर्णयों में मानवीय ज़िम्मेदारी समझाना',
     es: 'Explicar la responsabilidad humana en decisiones asistidas por IA',
@@ -35,9 +35,10 @@ export const explainHumanResponsibilityForAIAssistedDecisions_Skill_Data = build
     qm: 'Suniy intellekt yardımınen alınğan qararlarda insan mesuliyetini añlatmaq',
   },
   description: {
-    methodological: "Distinguish an automatically generated recommendation from a decision for which a person or organization is accountable. Verification of grounds, the ability to contest results, and control over final action matter.",
+    methodological:
+      'Distinguish an automatically generated recommendation from a decision for which a person or organization is accountable. Verification of grounds, the ability to contest results, and control over final action matter.',
     frontend: {
-      en: "Understand why people remain accountable for decisions assisted by AI.",
+      en: 'Understand why people remain accountable for decisions assisted by AI.',
       zh: '理解为什么人们仍须对人工智能辅助的决定负责。',
       hi: 'समझें कि एआई की मदद से लिए गए निर्णयों की जवाबदेही लोगों की ही क्यों रहती है।',
       es: 'Comprende por qué las personas siguen siendo responsables de las decisiones apoyadas por IA.',

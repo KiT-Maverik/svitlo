@@ -44,7 +44,7 @@ export const cosmicInflation_Skill_Data = buildSkillConfig({
       hi: 'ब्रह्मांडीय स्फीति की परिकल्पना जानें और उसकी भविष्यवाणियों तथा प्रेक्षणीय प्रमाणों में अंतर करें।',
       es: 'Explora la idea de la inflación cósmica y distingue sus predicciones de las pruebas confirmadas.',
       ar: 'استكشف فكرة التضخم الكوني وميّز تنبؤاته من الأدلة المؤكدة.',
-      fr: 'Explore l\'idée d\'inflation cosmique en distinguant les prédictions des preuves confirmées.',
+      fr: "Explore l'idée d'inflation cosmique en distinguant les prédictions des preuves confirmées.",
       bn: 'মহাজাগতিক স্ফীতির ধারণা জানো এবং পূর্বাভাস ও নিশ্চিত প্রমাণের পার্থক্য করো।',
       pt: 'Explore a ideia da inflação cósmica e diferencie previsões de evidências confirmadas.',
       ur: 'کائناتی افراطی پھیلاؤ کے تصور کو جانیں اور پیش گوئیوں اور تصدیق شدہ شواہد میں فرق کریں۔',

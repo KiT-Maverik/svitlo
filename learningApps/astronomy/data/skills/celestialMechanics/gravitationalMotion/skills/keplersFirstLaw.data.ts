@@ -17,7 +17,7 @@ export const keplersFirstLaw_Skill_Data = buildSkillConfig({
     de: 'Keplers erstes Gesetz',
     ja: 'ケプラーの第一法則',
     ko: '케플러의 제1법칙',
-    tr: 'Kepler\'in birinci yasası',
+    tr: "Kepler'in birinci yasası",
     vi: 'Định luật Kepler thứ nhất',
     ta: 'கெப்லரின் முதல் விதி',
     te: 'కెప్లర్ మొదటి నియమం',

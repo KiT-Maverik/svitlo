@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainTheParticulateStructureOfMatter_Skill_Data = buildSkillConfig({
-  slug: "explainTheParticulateStructureOfMatter",
-  id: "b72aa0c8-ae85-4516-b426-0a734b1204bc",
+  slug: 'explainTheParticulateStructureOfMatter',
+  id: 'b72aa0c8-ae85-4516-b426-0a734b1204bc',
   name: {
-    en: "Explain the particulate structure of matter",
+    en: 'Explain the particulate structure of matter',
     qm: 'Maddeniñ parçacıqlı qurulışını añlatmaq',
     zh: '解释物质的粒子结构',
     hi: 'पदार्थ की कणीय संरचना समझाना',
@@ -35,9 +35,10 @@ export const explainTheParticulateStructureOfMatter_Skill_Data = buildSkillConfi
     kk: 'Заттың бөлшектік құрылысын түсіндіру',
   },
   description: {
-    methodological: "Demonstrate that even water in a transparent glass consists of particles invisible to the naked eye.",
+    methodological:
+      'Demonstrate that even water in a transparent glass consists of particles invisible to the naked eye.',
     frontend: {
-      en: "Explain why ordinary matter is made of particles too small to see directly.",
+      en: 'Explain why ordinary matter is made of particles too small to see directly.',
       qm: 'Adiy maddeniñ neden köznen körülmegen pek ufaq parçacıqlardan ibaret olğanını añlat.',
       zh: '解释为什么日常物质由肉眼看不见的微小粒子组成。',
       hi: 'समझाएँ कि साधारण पदार्थ ऐसे छोटे कणों से क्यों बना है जिन्हें सीधे नहीं देख सकते।',

@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const verifyFactsInAnAIResponse_Skill_Data = buildSkillConfig({
-  slug: "verifyFactsInAnAIResponse",
-  id: "4f039591-11ed-4341-90ab-7389f7ce8efe",
+  slug: 'verifyFactsInAnAIResponse',
+  id: '4f039591-11ed-4341-90ab-7389f7ce8efe',
   name: {
-    en: "Verify Facts in an AI Response",
+    en: 'Verify Facts in an AI Response',
     zh: '核实人工智能回答中的事实',
     hi: 'एआई के उत्तर में तथ्यों की जाँच करना',
     es: 'Verificar hechos en una respuesta de IA',
@@ -35,9 +35,10 @@ export const verifyFactsInAnAIResponse_Skill_Data = buildSkillConfig({
     qm: 'Suniy intellekt cevabındaki faktlarnı teşkermek',
   },
   description: {
-    methodological: "Identify verifiable claims from model output and compare them with independent trustworthy sources, checking provenance, date, and context. An AI response cannot confirm itself or another retelling of the same response.",
+    methodological:
+      'Identify verifiable claims from model output and compare them with independent trustworthy sources, checking provenance, date, and context. An AI response cannot confirm itself or another retelling of the same response.',
     frontend: {
-      en: "Check factual claims from an AI response using reliable independent sources.",
+      en: 'Check factual claims from an AI response using reliable independent sources.',
       zh: '使用可靠、独立的信息来源核查人工智能回答中的事实性说法。',
       hi: 'एआई के जवाब के तथ्यात्मक दावों को विश्वसनीय स्वतंत्र स्रोतों से जाँचें।',
       es: 'Comprueba las afirmaciones de una respuesta de IA con fuentes independientes y fiables.',

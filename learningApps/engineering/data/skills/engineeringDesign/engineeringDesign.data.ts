@@ -6,10 +6,10 @@ import { representationsAndPrototypes_SkillGroup_Data } from './representationsA
 import { testingAndIteration_SkillGroup_Data } from './testingAndIteration/testingAndIteration.data';
 
 export const engineeringDesign_SkillDomain_Data = buildSkillDomainConfig({
-  slug: "engineeringDesign",
-  id: "cf069b94-4637-47c7-ae74-b0de20cd0998",
+  slug: 'engineeringDesign',
+  id: 'cf069b94-4637-47c7-ae74-b0de20cd0998',
   name: {
-    en: "Engineering Design",
+    en: 'Engineering Design',
   },
   groups: {
     conceptSelection: conceptSelection_SkillGroup_Data,
@@ -18,9 +18,10 @@ export const engineeringDesign_SkillDomain_Data = buildSkillDomainConfig({
     testingAndIteration: testingAndIteration_SkillGroup_Data,
   },
   description: {
-    methodological: "A design must respond to an actual need, not merely demonstrate a technology. This domain concerns converting uncertain problems into requirements, selecting feasible concepts, communicating designs and improving them using evidence.",
+    methodological:
+      'A design must respond to an actual need, not merely demonstrate a technology. This domain concerns converting uncertain problems into requirements, selecting feasible concepts, communicating designs and improving them using evidence.',
     frontend: {
-      en: "Learn to develop, test and improve technical solutions to practical needs.",
+      en: 'Learn to develop, test and improve technical solutions to practical needs.',
     },
   },
 });

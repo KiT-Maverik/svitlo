@@ -6,10 +6,10 @@ import { motionConversion_SkillGroup_Data } from './motionConversion/motionConve
 import { transmissions_SkillGroup_Data } from './transmissions/transmissions.data';
 
 export const mechanismsAndMachines_SkillDomain_Data = buildSkillDomainConfig({
-  slug: "mechanismsAndMachines",
-  id: "88d67d4b-b09b-485e-a0ff-bea7bbb47d58",
+  slug: 'mechanismsAndMachines',
+  id: '88d67d4b-b09b-485e-a0ff-bea7bbb47d58',
   name: {
-    en: "Mechanisms and Machines",
+    en: 'Mechanisms and Machines',
   },
   groups: {
     guidanceAndRetention: guidanceAndRetention_SkillGroup_Data,
@@ -18,9 +18,10 @@ export const mechanismsAndMachines_SkillDomain_Data = buildSkillDomainConfig({
     transmissions: transmissions_SkillGroup_Data,
   },
   description: {
-    methodological: "Moving assemblies redirect or transmit force, torque and motion to achieve tasks. This domain investigates how real mechanical arrangements work, not the underlying laws of mechanics as an independent science.",
+    methodological:
+      'Moving assemblies redirect or transmit force, torque and motion to achieve tasks. This domain investigates how real mechanical arrangements work, not the underlying laws of mechanics as an independent science.',
     frontend: {
-      en: "Discover how mechanical components transmit force and transform movement.",
+      en: 'Discover how mechanical components transmit force and transform movement.',
     },
   },
 });

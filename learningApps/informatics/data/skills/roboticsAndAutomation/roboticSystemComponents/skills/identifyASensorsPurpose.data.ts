@@ -1,8 +1,8 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const identifyASensorsPurpose_Skill_Data = buildSkillConfig({
-  slug: "identifyASensorsPurpose",
-  id: "aa2009f8-66f0-411e-b007-876b9360e813",
+  slug: 'identifyASensorsPurpose',
+  id: 'aa2009f8-66f0-411e-b007-876b9360e813',
   name: {
     en: "Identify a Sensor's Purpose",
     zh: '识别传感器的用途',
@@ -35,9 +35,10 @@ export const identifyASensorsPurpose_Skill_Data = buildSkillConfig({
     qm: 'Sensornıñ vazifesini tanımaq',
   },
   description: {
-    methodological: "Determine which physical quantity or environmental state a sensor converts into a signal for the controller, such as distance, light, or temperature. A sensor supplies information but does not itself make control decisions.",
+    methodological:
+      'Determine which physical quantity or environmental state a sensor converts into a signal for the controller, such as distance, light, or temperature. A sensor supplies information but does not itself make control decisions.',
     frontend: {
-      en: "Recognize sensors that measure light, distance, temperature or other conditions.",
+      en: 'Recognize sensors that measure light, distance, temperature or other conditions.',
       zh: '识别测量光线、距离、温度或其他条件的传感器。',
       hi: 'प्रकाश, दूरी, तापमान या अन्य स्थितियाँ मापने वाले सेंसर पहचानें।',
       es: 'Reconoce sensores que miden luz, distancia, temperatura u otras condiciones.',

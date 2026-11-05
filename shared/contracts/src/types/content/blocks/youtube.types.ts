@@ -12,10 +12,7 @@ type Youtube_Fallback<Value> = {
 
 type Youtube_Display<Value> =
   | { mode: 'link'; title?: Value; hint?: Value }
-  | ({ mode: 'embed' } & (
-      | { title: Value; hint?: Value }
-      | { title?: Value; hint: Value }
-    ));
+  | ({ mode: 'embed' } & ({ title: Value; hint?: Value } | { title?: Value; hint: Value }));
 
 type ContentBlock_Youtube_Data<SupportedLanguages extends Locale_Languages> = ContentBlock_Data_Meta<'youtube'> & {
   href: Locale_Options<SupportedLanguages>;
@@ -27,7 +24,10 @@ export type ContentBlock_Youtube_Response = ContentBlock_Response_Meta<'youtube'
   fallback?: Youtube_Fallback<string>;
 } & Youtube_Display<string>;
 
-export type ContentBlock_Youtube<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends Locale_Languages> = {
+export type ContentBlock_Youtube<
+  ConfigType extends ContentEntity_ConfigType,
+  SupportedLanguages extends Locale_Languages,
+> = {
   definition: ContentBlock_Youtube_Definition;
   data: ContentBlock_Youtube_Data<SupportedLanguages>;
   response: ContentBlock_Youtube_Response;

@@ -59,7 +59,7 @@ export const extremophileAnalogues_Skill_Data = buildSkillConfig({
       de: 'Nutze Organismen, die an extremen Orten der Erde leben, um mögliche außerirdische Lebensräume zu untersuchen.',
       pt: 'Use exemplos de vida em ambientes extremos da Terra para investigar possíveis habitats extraterrestres.',
       id: 'Gunakan contoh kehidupan di lingkungan ekstrem di Bumi untuk menyelidiki kemungkinan habitat di luar Bumi.',
-      tr: 'Dünya\'daki aşırı koşullarda yaşayan canlılardan yola çıkarak olası Dünya dışı yaşam ortamlarını araştır.',
+      tr: "Dünya'daki aşırı koşullarda yaşayan canlılardan yola çıkarak olası Dünya dışı yaşam ortamlarını araştır.",
       zh: '借助地球上能在极端环境中生存的生物，研究可能存在的地外栖息环境。',
       ja: '地球の過酷な環境で生きる生物を手がかりに、地球外の生息環境の可能性を調べよう。',
       ko: '지구의 극한 환경에서 살아가는 생물을 바탕으로 외계 생명체가 살 수 있는 환경을 탐구해 보세요.',

@@ -73,7 +73,6 @@ describe('Video content block', () => {
   });
 });
 
-
 describe('Video fallback lifecycle', () => {
   it('automatically retries an offline waiting player when connectivity returns', () => {
     setOnline(false);

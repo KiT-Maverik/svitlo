@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainCurrentBalanceAtACircuitNode_Skill_Data = buildSkillConfig({
-  slug: "explainCurrentBalanceAtACircuitNode",
-  id: "a726f77b-a9cc-4223-b567-ea73eb169b2a",
+  slug: 'explainCurrentBalanceAtACircuitNode',
+  id: 'a726f77b-a9cc-4223-b567-ea73eb169b2a',
   name: {
-    en: "Explain current balance at a circuit node",
+    en: 'Explain current balance at a circuit node',
     qm: 'Devre birleşüv noqtasında aqımlar teñligini añlatmaq',
     zh: '解释电路节点处的电流平衡',
     hi: 'परिपथ के जंक्शन पर धारा संतुलन समझाना',
@@ -35,9 +35,10 @@ export const explainCurrentBalanceAtACircuitNode_Skill_Data = buildSkillConfig({
     kk: 'Тізбек түйініндегі ток теңгерімін түсіндіру',
   },
   description: {
-    methodological: "Under steady current, charge does not accumulate at a node; the total current entering equals the total current leaving.",
+    methodological:
+      'Under steady current, charge does not accumulate at a node; the total current entering equals the total current leaving.',
     frontend: {
-      en: "Explain why current entering a steady circuit junction equals current leaving.",
+      en: 'Explain why current entering a steady circuit junction equals current leaving.',
       qm: 'Sabit aqım vaziyetinde birleşüv noqtasına kirgen aqımlarnıñ toplamı çıqqan aqımlarnıñ toplamına neden teñ olğanını añlat.',
       zh: '解释为什么稳定状态下流入节点的电流等于流出节点的电流。',
       hi: 'समझाएँ कि स्थिर परिपथ में जंक्शन में आने वाली धारा बाहर जाने वाली धारा के बराबर क्यों होती है।',

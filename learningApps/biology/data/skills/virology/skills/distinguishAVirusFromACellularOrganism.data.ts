@@ -1,15 +1,15 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const distinguishAVirusFromACellularOrganism_Skill_Data = buildSkillConfig({
-  slug: "distinguishAVirusFromACellularOrganism",
-  id: "ee9b2f42-01af-4e9a-994e-94e5d85f8e45",
+  slug: 'distinguishAVirusFromACellularOrganism',
+  id: 'ee9b2f42-01af-4e9a-994e-94e5d85f8e45',
   name: {
-    en: "Distinguish a Virus from a Cellular Organism",
+    en: 'Distinguish a Virus from a Cellular Organism',
     zh: '区分病毒与细胞生物',
     hi: 'विषाणु और कोशिकीय जीव में अंतर करना',
     es: 'Distinguir un virus de un organismo celular',
     ar: 'التمييز بين الفيروس والكائن الخلوي',
-    fr: 'Distinguer un virus d\'un organisme cellulaire',
+    fr: "Distinguer un virus d'un organisme cellulaire",
     bn: 'ভাইরাস ও কোষীয় জীবের পার্থক্য নির্ণয়',
     pt: 'Distinguir um vírus de um organismo celular',
     ur: 'وائرس اور خلیاتی جاندار میں فرق کرنا',
@@ -35,9 +35,10 @@ export const distinguishAVirusFromACellularOrganism_Skill_Data = buildSkillConfi
     qm: 'Virusnı üceyreli canlıdan farqlamaq',
   },
   description: {
-    methodological: "Compare cellular organisms' cell membranes, cytoplasm, and independent metabolism with the absence of this cellular organization in a virus particle.",
+    methodological:
+      "Compare cellular organisms' cell membranes, cytoplasm, and independent metabolism with the absence of this cellular organization in a virus particle.",
     frontend: {
-      en: "Understand how viruses differ from organisms made of cells.",
+      en: 'Understand how viruses differ from organisms made of cells.',
       zh: '了解病毒与由细胞构成的生物有何不同。',
       hi: 'समझें कि विषाणु कोशिकाओं से बने जीवों से कैसे अलग हैं।',
       es: 'Comprende en qué se diferencian los virus de los organismos formados por células.',

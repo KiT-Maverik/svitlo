@@ -6,10 +6,10 @@ import { privacy_SkillGroup_Data } from './privacy/privacy.data';
 import { socialAndEnvironmentalImpactOfComputing_SkillGroup_Data } from './socialAndEnvironmentalImpactOfComputing/socialAndEnvironmentalImpactOfComputing.data';
 
 export const digitalSafetyAndResponsibility_SkillDomain_Data = buildSkillDomainConfig({
-  slug: "digitalSafetyAndResponsibility",
-  id: "dc767f18-884a-4ab2-94ba-78444383a3fd",
+  slug: 'digitalSafetyAndResponsibility',
+  id: 'dc767f18-884a-4ab2-94ba-78444383a3fd',
   name: {
-    en: "Digital Safety and Responsibility",
+    en: 'Digital Safety and Responsibility',
     zh: '数字安全与责任',
     hi: 'डिजिटल सुरक्षा और ज़िम्मेदारी',
     es: 'Seguridad y responsabilidad digital',
@@ -46,7 +46,8 @@ export const digitalSafetyAndResponsibility_SkillDomain_Data = buildSkillDomainC
     socialAndEnvironmentalImpactOfComputing: socialAndEnvironmentalImpactOfComputing_SkillGroup_Data,
   },
   description: {
-    methodological: "Protection of personal information and accounts, respect for others, and the consequences of digital technologies. Designing and testing digital interface UX belongs to a separate Informatics domain.",
+    methodological:
+      'Protection of personal information and accounts, respect for others, and the consequences of digital technologies. Designing and testing digital interface UX belongs to a separate Informatics domain.',
     frontend: {
       en: "Learn to protect information, respect other people and understand digital technology's effects.",
       zh: '学习保护信息、尊重他人并理解数字技术的影响。',

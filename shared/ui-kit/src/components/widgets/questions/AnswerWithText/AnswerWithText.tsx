@@ -6,7 +6,11 @@ import type { UiKit_Global } from '@svitlo/engine/content';
 import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
 import { normalizedAnswer } from '../response/QuestionContent';
 
-export function AnswerWithText({ response, sceneRegistry, messages }: {
+export function AnswerWithText({
+  response,
+  sceneRegistry,
+  messages,
+}: {
   response: Question_AnswerWithText<'response', Locale_Languages>;
   sceneRegistry?: SceneRegistry;
   messages: UiKit_Global<'response'>;
@@ -18,12 +22,17 @@ export function AnswerWithText({ response, sceneRegistry, messages }: {
   );
   return (
     <QuestionFrame response={response} sceneRegistry={sceneRegistry} messages={messages} attempt={attempt}>
-      <TextField fullWidth label={messages.questionFrame.answerLabel}
-        placeholder={response.placeholder} value={attempt.value}
+      <TextField
+        fullWidth
+        label={messages.questionFrame.answerLabel}
+        placeholder={response.placeholder}
+        value={attempt.value}
         onChange={event => attempt.setValue(event.target.value)}
-        disabled={attempt.checked} error={attempt.checked && !attempt.correct}
+        disabled={attempt.checked}
+        error={attempt.checked && !attempt.correct}
         color={attempt.checked && attempt.correct ? 'success' : 'primary'}
-        sx={{ display: 'block', maxWidth: 480, mx: 'auto' }} />
+        sx={{ display: 'block', maxWidth: 480, mx: 'auto' }}
+      />
     </QuestionFrame>
   );
 }

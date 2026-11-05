@@ -52,11 +52,6 @@ export type { ContentBlock_Audio_Response } from './audio.types';
 export type { ContentBlock_Code_Response } from './code.types';
 export type { ContentBlock_Markdown_Response } from './markdown.types';
 
-export type {
-  HighlightTone,
-  StyledText_Rule,
-  StyledText_Rules,
-  StyledTextStyle,
-} from '../../text.types';
+export type { HighlightTone, StyledText_Rule, StyledText_Rules, StyledTextStyle } from '../../text.types';
 
 export type { ContentBlock_Type } from './common.types';

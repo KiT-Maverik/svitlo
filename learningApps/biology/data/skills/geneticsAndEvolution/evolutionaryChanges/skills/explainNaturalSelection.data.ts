@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainNaturalSelection_Skill_Data = buildSkillConfig({
-  slug: "explainNaturalSelection",
-  id: "9f24316d-aeea-4728-8ecc-4022755c2a78",
+  slug: 'explainNaturalSelection',
+  id: '9f24316d-aeea-4728-8ecc-4022755c2a78',
   name: {
-    en: "Explain Natural Selection",
+    en: 'Explain Natural Selection',
     zh: '解释自然选择',
     hi: 'प्राकृतिक वरण समझाना',
     es: 'Explicar la selección natural',
@@ -35,9 +35,10 @@ export const explainNaturalSelection_Skill_Data = buildSkillConfig({
     qm: 'Tabiiy saylavnı añlatmaq',
   },
   description: {
-    methodological: "Explain how inherited differences in survival and reproductive success change the frequencies of hereditary variants in a population over generations; selection is neither a conscious choice by organisms nor progress toward predetermined perfection.",
+    methodological:
+      'Explain how inherited differences in survival and reproductive success change the frequencies of hereditary variants in a population over generations; selection is neither a conscious choice by organisms nor progress toward predetermined perfection.',
     frontend: {
-      en: "Understand how natural selection can change inherited traits across generations.",
+      en: 'Understand how natural selection can change inherited traits across generations.',
       zh: '理解自然选择如何在多个世代中改变种群内可遗传性状的分布。',
       hi: 'समझें कि प्राकृतिक वरण पीढ़ियों के दौरान आबादी में वंशानुगत लक्षणों की आवृत्ति कैसे बदल सकता है।',
       es: 'Comprende cómo la selección natural puede cambiar la frecuencia de rasgos heredados a lo largo de las generaciones.',

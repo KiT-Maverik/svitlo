@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const identifyAnOrganismsHabitat_Skill_Data = buildSkillConfig({
-  slug: "identifyAnOrganismsHabitat",
-  id: "b012b1f7-2fdf-457d-99ba-0bc951b7a0f7",
+  slug: 'identifyAnOrganismsHabitat',
+  id: 'b012b1f7-2fdf-457d-99ba-0bc951b7a0f7',
   name: {
-    en: "Identify an Organism’s Habitat",
+    en: 'Identify an Organism’s Habitat',
     zh: '识别生物的栖息地',
     hi: 'किसी जीव का आवास पहचानना',
     es: 'Identificar el hábitat de un organismo',
@@ -35,9 +35,9 @@ export const identifyAnOrganismsHabitat_Skill_Data = buildSkillConfig({
     qm: 'Canlınıñ yaşayış yerini belgilemek',
   },
   description: {
-    methodological: "Describe typical conditions in which a species finds essential resources and can reproduce.",
+    methodological: 'Describe typical conditions in which a species finds essential resources and can reproduce.',
     frontend: {
-      en: "Identify the conditions and resources a species needs in its habitat.",
+      en: 'Identify the conditions and resources a species needs in its habitat.',
       zh: '识别某物种在栖息地中需要的环境条件和资源。',
       hi: 'पहचानें कि किसी प्रजाति को अपने आवास में किन परिस्थितियों और संसाधनों की आवश्यकता होती है।',
       es: 'Identifica las condiciones y los recursos que necesita una especie en su hábitat.',

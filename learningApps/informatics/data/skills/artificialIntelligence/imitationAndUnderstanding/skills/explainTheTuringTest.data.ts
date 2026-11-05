@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainTheTuringTest_Skill_Data = buildSkillConfig({
-  slug: "explainTheTuringTest",
-  id: "f2ecc296-cf43-45d6-827f-0375b4f93b64",
+  slug: 'explainTheTuringTest',
+  id: 'f2ecc296-cf43-45d6-827f-0375b4f93b64',
   name: {
-    en: "Explain the Turing Test",
+    en: 'Explain the Turing Test',
     zh: '解释图灵测试',
     hi: 'ट्यूरिंग परीक्षण समझाना',
     es: 'Explicar la prueba de Turing',
@@ -29,15 +29,16 @@ export const explainTheTuringTest_Skill_Data = buildSkillConfig({
     lt: 'Paaiškinti Tiuringo testą',
     lv: 'Izskaidrot Tjūringa testu',
     et: 'Selgitada Turingi testi',
-    be: 'Тлумачыць тэст Т\'юрынга',
+    be: "Тлумачыць тэст Т'юрынга",
     ka: 'ტიურინგის ტესტის ახსნა',
     kk: 'Тьюринг тестін түсіндіру',
     qm: 'Turing sınavını añlatmaq',
   },
   description: {
-    methodological: "Explain Alan Turing's proposed approach to evaluating whether a machine can produce dialogue that a person cannot distinguish from human responses under test conditions. Successful imitation does not establish consciousness or comprehensive understanding.",
+    methodological:
+      "Explain Alan Turing's proposed approach to evaluating whether a machine can produce dialogue that a person cannot distinguish from human responses under test conditions. Successful imitation does not establish consciousness or comprehensive understanding.",
     frontend: {
-      en: "Understand what the Turing Test evaluates and what it cannot establish.",
+      en: 'Understand what the Turing Test evaluates and what it cannot establish.',
       zh: '理解图灵测试评估什么，以及它无法证明什么。',
       hi: 'समझें कि ट्यूरिंग परीक्षण क्या परखता है और क्या सिद्ध नहीं कर सकता।',
       es: 'Comprende qué evalúa la prueba de Turing y qué no puede demostrar.',
@@ -62,7 +63,7 @@ export const explainTheTuringTest_Skill_Data = buildSkillConfig({
       lt: 'Suprask, ką vertina Tiuringo testas ir ko jis negali įrodyti.',
       lv: 'Izproti, ko vērtē Tjūringa tests un ko tas nespēj pierādīt.',
       et: 'Mõista, mida Turingi test hindab ja mida see ei saa tõestada.',
-      be: 'Зразумей, што правярае тэст Т\'юрынга і чаго ён ня можа даказаць.',
+      be: "Зразумей, што правярае тэст Т'юрынга і чаго ён ня можа даказаць.",
       ka: 'გაიგე, რას ამოწმებს ტიურინგის ტესტი და რის დამტკიცება არ შეუძლია.',
       kk: 'Тьюринг тесті нені бағалайтынын және нені дәлелдей алмайтынын түсін.',
       qm: 'Turing sınavı neni teşkerip, neni isbatlayamağanını añla.',

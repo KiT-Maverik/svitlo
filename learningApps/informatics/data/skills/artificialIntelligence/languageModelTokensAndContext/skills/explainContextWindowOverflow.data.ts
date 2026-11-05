@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainContextWindowOverflow_Skill_Data = buildSkillConfig({
-  slug: "explainContextWindowOverflow",
-  id: "27c90d7d-a28f-477f-bca4-8e8d8038113f",
+  slug: 'explainContextWindowOverflow',
+  id: '27c90d7d-a28f-477f-bca4-8e8d8038113f',
   name: {
-    en: "Explain Context Window Overflow",
+    en: 'Explain Context Window Overflow',
     zh: '解释上下文窗口溢出',
     hi: 'संदर्भ सीमा पार होने की व्याख्या करना',
     es: 'Explicar el desbordamiento de la ventana de contexto',
@@ -35,7 +35,8 @@ export const explainContextWindowOverflow_Skill_Data = buildSkillConfig({
     qm: 'Kontekst penceresiniñ sıñırından aşılmasını añlatmaq',
   },
   description: {
-    methodological: "Explain that when the limit is exceeded, a service may reject the request, truncate earlier content, or summarize parts of it.",
+    methodological:
+      'Explain that when the limit is exceeded, a service may reject the request, truncate earlier content, or summarize parts of it.',
     frontend: {
       en: "Explore what can happen when a request exceeds a model's context limit.",
       zh: '探索请求超过模型上下文长度限制时可能发生什么。',

@@ -18,7 +18,11 @@ const response: ContentBlock_Code_Response = {
 
 describe('Code content block', () => {
   it('substitutes localized variables and highlights the declared language', () => {
-    const { container } = render(<ContentLanguageContext.Provider value="uk"><Code {...response} /></ContentLanguageContext.Provider>);
+    const { container } = render(
+      <ContentLanguageContext.Provider value="uk">
+        <Code {...response} />
+      </ContentLanguageContext.Provider>,
+    );
     expect(screen.getByText('typescript')).toBeVisible();
     expect(screen.getByText('Приклад')).toBeVisible();
     expect(container.querySelector('code')?.textContent).toBe('const greeting = "Привіт";\nconsole.log(greeting);');
@@ -33,29 +37,36 @@ describe('Code content block', () => {
   });
 
   it('never treats substituted code as markup', () => {
-    expect(resolveCodeVariables('const value = "{{value}}";', [{ id: 'value', value: '<script>alert(1)</script>' }]))
-      .toBe('const value = "<script>alert(1)</script>";');
-    const { container } = render(<Code {...response} variables={[{ id: 'greeting', value: '<script>alert(1)</script>' }]} />);
+    expect(
+      resolveCodeVariables('const value = "{{value}}";', [{ id: 'value', value: '<script>alert(1)</script>' }]),
+    ).toBe('const value = "<script>alert(1)</script>";');
+    const { container } = render(
+      <Code {...response} variables={[{ id: 'greeting', value: '<script>alert(1)</script>' }]} />,
+    );
     expect(container.querySelector('script')).toBeNull();
     expect(container.querySelector('code')).toHaveTextContent('<script>alert(1)</script>');
   });
 
   it('preserves ordinary closing braces in source code', () => {
-    expect(resolveCodeVariables('const value = { nested: { count: 1 }};')).toBe('const value = { nested: { count: 1 }};');
+    expect(resolveCodeVariables('const value = { nested: { count: 1 }};')).toBe(
+      'const value = { nested: { count: 1 }};',
+    );
   });
 });
 
-
 describe('Code variables and localization', () => {
   it('replaces repeated short markers without altering ordinary object braces', () => {
-    expect(resolveCodeVariables(
-      'const item = { first: "{{word}}", second: "{{word}}" };',
-      [{ id: 'word', value: 'light' }],
-    )).toBe('const item = { first: "light", second: "light" };');
+    expect(
+      resolveCodeVariables('const item = { first: "{{word}}", second: "{{word}}" };', [{ id: 'word', value: 'light' }]),
+    ).toBe('const item = { first: "light", second: "light" };');
   });
 
   it('marks code figures with the locale direction and keeps the language label', () => {
-    const { container } = render(<ContentLanguageContext.Provider value="ar"><Code {...response} /></ContentLanguageContext.Provider>);
+    const { container } = render(
+      <ContentLanguageContext.Provider value="ar">
+        <Code {...response} />
+      </ContentLanguageContext.Provider>,
+    );
     expect(container.querySelector('figure')).toHaveAttribute('dir', 'rtl');
     expect(screen.getByText('typescript')).toBeVisible();
   });

@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const identifyMajorPlantOrgans_Skill_Data = buildSkillConfig({
-  slug: "identifyMajorPlantOrgans",
-  id: "05903430-3ad0-4905-aec1-57d0e994b356",
+  slug: 'identifyMajorPlantOrgans',
+  id: '05903430-3ad0-4905-aec1-57d0e994b356',
   name: {
-    en: "Identify Major Plant Organs",
+    en: 'Identify Major Plant Organs',
     zh: '识别植物的主要器官',
     hi: 'पौधों के प्रमुख अंग पहचानना',
     es: 'Identificar los principales órganos de las plantas',
@@ -35,14 +35,15 @@ export const identifyMajorPlantOrgans_Skill_Data = buildSkillConfig({
     qm: 'Ösümlikniñ esas organlarını tanımaq',
   },
   description: {
-    methodological: "On a plant or model, distinguish roots, stems, leaves, and reproductive organs, including flowers, by their position and distinguishing characteristics.",
+    methodological:
+      'On a plant or model, distinguish roots, stems, leaves, and reproductive organs, including flowers, by their position and distinguishing characteristics.',
     frontend: {
-      en: "Identify the major structures of a plant and where they are found.",
+      en: 'Identify the major structures of a plant and where they are found.',
       zh: '识别植物的主要结构及其所在位置。',
       hi: 'पौधे के मुख्य भागों और उनके स्थानों को पहचानें।',
       es: 'Reconoce las principales estructuras de una planta y dónde se encuentran.',
       ar: 'حدّد التراكيب الرئيسية للنبات ومواضعها.',
-      fr: 'Identifie les structures principales d\'une plante et leurs emplacements.',
+      fr: "Identifie les structures principales d'une plante et leurs emplacements.",
       bn: 'উদ্ভিদের প্রধান গঠন ও তাদের অবস্থান শনাক্ত করো।',
       pt: 'Identifique as estruturas principais de uma planta e onde estão localizadas.',
       ur: 'پودے کی اہم ساختوں اور ان کی جگہوں کو پہچانیں۔',

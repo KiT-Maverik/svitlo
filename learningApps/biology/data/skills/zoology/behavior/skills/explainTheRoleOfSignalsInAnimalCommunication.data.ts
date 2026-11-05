@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainTheRoleOfSignalsInAnimalCommunication_Skill_Data = buildSkillConfig({
-  slug: "explainTheRoleOfSignalsInAnimalCommunication",
-  id: "a93646a6-a95a-4426-bffd-98465bb3eba4",
+  slug: 'explainTheRoleOfSignalsInAnimalCommunication',
+  id: 'a93646a6-a95a-4426-bffd-98465bb3eba4',
   name: {
-    en: "Explain the Role of Signals in Animal Communication",
+    en: 'Explain the Role of Signals in Animal Communication',
     zh: '解释信号在动物交流中的作用',
     hi: 'प्राणियों के संचार में संकेतों की भूमिका समझाना',
     es: 'Explicar la función de las señales en la comunicación animal',
@@ -35,14 +35,14 @@ export const explainTheRoleOfSignalsInAnimalCommunication_Skill_Data = buildSkil
     qm: 'Ayvanlarnıñ haberleşüvinde signallarnıñ rolüni añlatmaq',
   },
   description: {
-    methodological: "Relate sound, smell, movement, or coloration to information received by another individual.",
+    methodological: 'Relate sound, smell, movement, or coloration to information received by another individual.',
     frontend: {
-      en: "Explain how animals communicate using sounds, movement and other signals.",
+      en: 'Explain how animals communicate using sounds, movement and other signals.',
       zh: '解释动物如何利用声音、动作和其他信号交流。',
       hi: 'समझाएँ कि जानवर ध्वनियों, हरकतों और अन्य संकेतों से कैसे संवाद करते हैं।',
       es: 'Explica cómo se comunican los animales mediante sonidos, movimientos y otras señales.',
       ar: 'اشرح كيف تتواصل الحيوانات باستخدام الأصوات والحركات والإشارات الأخرى.',
-      fr: 'Explique comment les animaux communiquent grâce aux sons, aux mouvements et à d\'autres signaux.',
+      fr: "Explique comment les animaux communiquent grâce aux sons, aux mouvements et à d'autres signaux.",
       bn: 'প্রাণীরা শব্দ, নড়াচড়া ও অন্যান্য সংকেত ব্যবহার করে কীভাবে যোগাযোগ করে তা ব্যাখ্যা করো।',
       pt: 'Explique como os animais se comunicam usando sons, movimentos e outros sinais.',
       ur: 'بتائیں کہ جانور آوازوں، حرکات اور دیگر اشاروں کے ذریعے کیسے رابطہ کرتے ہیں۔',

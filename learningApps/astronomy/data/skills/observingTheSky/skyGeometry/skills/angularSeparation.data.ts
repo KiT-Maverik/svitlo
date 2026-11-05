@@ -44,7 +44,7 @@ export const angularSeparation_Skill_Data = buildSkillConfig({
       hi: 'आकाश में खगोलीय पिंड एक-दूसरे से कितने दूर दिखाई देते हैं, इसकी तुलना किलोमीटर के बजाय कोणों से करें।',
       es: 'Compara lo separados que parecen estar los astros en el cielo usando ángulos en lugar de kilómetros.',
       ar: 'قارن المسافة الظاهرية بين الأجرام في السماء باستخدام الزوايا بدلًا من الكيلومترات.',
-      fr: 'Compare l\'écart apparent entre les objets dans le ciel à l\'aide d\'angles plutôt que de kilomètres.',
+      fr: "Compare l'écart apparent entre les objets dans le ciel à l'aide d'angles plutôt que de kilomètres.",
       bn: 'কিলোমিটারের বদলে কোণ ব্যবহার করে আকাশে বস্তুগুলোকে কত দূরে মনে হয়, তা তুলনা করো।',
       pt: 'Compare a distância aparente entre os astros no céu usando ângulos em vez de quilômetros.',
       ur: 'آسمان میں اجرام ایک دوسرے سے کتنے فاصلے پر دکھائی دیتے ہیں، اس کا موازنہ کلومیٹر کے بجائے زاویوں سے کریں۔',

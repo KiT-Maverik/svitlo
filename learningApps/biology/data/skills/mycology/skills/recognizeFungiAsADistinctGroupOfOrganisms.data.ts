@@ -1,15 +1,15 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const recognizeFungiAsADistinctGroupOfOrganisms_Skill_Data = buildSkillConfig({
-  slug: "recognizeFungiAsADistinctGroupOfOrganisms",
-  id: "dfb632e0-bfef-4c75-b3ee-a7f9f4de954e",
+  slug: 'recognizeFungiAsADistinctGroupOfOrganisms',
+  id: 'dfb632e0-bfef-4c75-b3ee-a7f9f4de954e',
   name: {
-    en: "Recognize Fungi as a Distinct Group of Organisms",
+    en: 'Recognize Fungi as a Distinct Group of Organisms',
     zh: '认识真菌是独立的生物类群',
     hi: 'कवकों को जीवों का अलग समूह मानकर पहचानना',
     es: 'Reconocer los hongos como un grupo distinto de organismos',
     ar: 'التعرّف على الفطريات بوصفها مجموعة مستقلة من الكائنات',
-    fr: 'Reconnaître les champignons comme un groupe distinct d\'organismes',
+    fr: "Reconnaître les champignons comme un groupe distinct d'organismes",
     bn: 'ছত্রাককে জীবের একটি স্বতন্ত্র গোষ্ঠী হিসেবে চেনা',
     pt: 'Reconhecer os fungos como um grupo distinto de organismos',
     ur: 'فطر کو جانداروں کے الگ گروہ کے طور پر پہچاننا',
@@ -35,9 +35,10 @@ export const recognizeFungiAsADistinctGroupOfOrganisms_Skill_Data = buildSkillCo
     qm: 'Mantarlarnı canlılarnıñ ayrı gruppası olaraq tanımaq',
   },
   description: {
-    methodological: "Distinguish fungi, plants, and animals by how they obtain organic substances and by structural characteristics.",
+    methodological:
+      'Distinguish fungi, plants, and animals by how they obtain organic substances and by structural characteristics.',
     frontend: {
-      en: "Distinguish fungi from plants and animals using how they feed and how they are built.",
+      en: 'Distinguish fungi from plants and animals using how they feed and how they are built.',
       zh: '根据真菌的营养获取方式和身体结构，将其与植物和动物区分开。',
       hi: 'कवकों को पोषण पाने के तरीके और शरीर की बनावट के आधार पर पौधों और जंतुओं से अलग पहचानें।',
       es: 'Distingue los hongos de plantas y animales por cómo se alimentan y cómo están constituidos.',

@@ -1,15 +1,15 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainFunctionsOfTheHumanReproductiveSystem_Skill_Data = buildSkillConfig({
-  slug: "explainFunctionsOfTheHumanReproductiveSystem",
-  id: "c67cc462-d90b-480d-9934-2571a7379cc6",
+  slug: 'explainFunctionsOfTheHumanReproductiveSystem',
+  id: 'c67cc462-d90b-480d-9934-2571a7379cc6',
   name: {
-    en: "Explain Functions of the Human Reproductive System",
+    en: 'Explain Functions of the Human Reproductive System',
     zh: '解释人类生殖系统的功能',
     hi: 'मानव प्रजनन तंत्र के कार्य समझाना',
     es: 'Explicar las funciones del sistema reproductor humano',
     ar: 'شرح وظائف الجهاز التناسلي للإنسان',
-    fr: 'Expliquer les fonctions de l\'appareil reproducteur humain',
+    fr: "Expliquer les fonctions de l'appareil reproducteur humain",
     bn: 'মানব প্রজননতন্ত্রের কাজ ব্যাখ্যা করা',
     pt: 'Explicar as funções do sistema reprodutor humano',
     ur: 'انسانی تولیدی نظام کے افعال کی وضاحت',
@@ -35,9 +35,10 @@ export const explainFunctionsOfTheHumanReproductiveSystem_Skill_Data = buildSkil
     qm: 'İnsannıñ üreme sistemasınıñ vazifelerini añlatmaq',
   },
   description: {
-    methodological: "Explain the biological functions of reproductive organs, production of sex cells, and the role of fertilization in human sexual reproduction, distinguishing physiological facts from individual differences in development.",
+    methodological:
+      'Explain the biological functions of reproductive organs, production of sex cells, and the role of fertilization in human sexual reproduction, distinguishing physiological facts from individual differences in development.',
     frontend: {
-      en: "Understand the biological functions of human reproductive organs and processes.",
+      en: 'Understand the biological functions of human reproductive organs and processes.',
       zh: '理解人类生殖器官和生殖过程的生物学功能。',
       hi: 'मानव प्रजनन अंगों और प्रक्रियाओं के जैविक कार्यों को समझें।',
       es: 'Comprende las funciones biológicas de los órganos y procesos reproductivos humanos.',

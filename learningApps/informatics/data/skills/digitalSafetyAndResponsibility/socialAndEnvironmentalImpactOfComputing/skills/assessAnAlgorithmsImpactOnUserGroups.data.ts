@@ -1,8 +1,8 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const assessAnAlgorithmsImpactOnUserGroups_Skill_Data = buildSkillConfig({
-  slug: "assessAnAlgorithmsImpactOnUserGroups",
-  id: "0dc61117-ff0c-4434-92db-942f95611079",
+  slug: 'assessAnAlgorithmsImpactOnUserGroups',
+  id: '0dc61117-ff0c-4434-92db-942f95611079',
   name: {
     en: "Assess an Algorithm's Impact on User Groups",
     zh: '评估算法对用户群体的影响',
@@ -35,7 +35,8 @@ export const assessAnAlgorithmsImpactOnUserGroups_Skill_Data = buildSkillConfig(
     qm: 'Algoritmniñ qullanıcı gruppalarğa tesirini qıymetlemek',
   },
   description: {
-    methodological: "Compare whether an automated rule produces different consequences for people with different characteristics or needs, and explain potential reasons. An identical formal rule does not necessarily yield an equally fair outcome.",
+    methodological:
+      'Compare whether an automated rule produces different consequences for people with different characteristics or needs, and explain potential reasons. An identical formal rule does not necessarily yield an equally fair outcome.',
     frontend: {
       en: "Consider whether an algorithm's outcomes differ unfairly between user groups.",
       zh: '考虑算法给不同用户群体带来的结果是否存在不公平差异。',

@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const recognizeSpongeCharacteristics_Skill_Data = buildSkillConfig({
-  slug: "recognizeSpongeCharacteristics",
-  id: "26a46619-577c-4447-9435-e2e308e8711b",
+  slug: 'recognizeSpongeCharacteristics',
+  id: '26a46619-577c-4447-9435-e2e308e8711b',
   name: {
-    en: "Recognize Sponge Characteristics",
+    en: 'Recognize Sponge Characteristics',
     zh: '识别海绵动物的特征',
     hi: 'स्पंज की विशेषताएँ पहचानना',
     es: 'Reconocer las características de las esponjas',
@@ -35,9 +35,10 @@ export const recognizeSpongeCharacteristics_Skill_Data = buildSkillConfig({
     qm: 'Deñiz süngerleriniñ belgilerini tanımaq',
   },
   description: {
-    methodological: "Recognize the porous body structure and filter-feeding of sponges, explaining that they lack true tissues and organs.",
+    methodological:
+      'Recognize the porous body structure and filter-feeding of sponges, explaining that they lack true tissues and organs.',
     frontend: {
-      en: "Recognize sponges by their porous bodies and filter-feeding.",
+      en: 'Recognize sponges by their porous bodies and filter-feeding.',
       zh: '通过多孔的身体和滤食方式识别海绵动物。',
       hi: 'स्पंज को उनके छिद्रयुक्त शरीर और जल छानकर भोजन लेने की विधि से पहचानें।',
       es: 'Reconoce las esponjas por sus cuerpos porosos y su alimentación por filtración.',

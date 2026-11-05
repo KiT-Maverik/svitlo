@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const predictTheDirectionOfHeatTransfer_Skill_Data = buildSkillConfig({
-  slug: "predictTheDirectionOfHeatTransfer",
-  id: "f256429d-bbdd-42e3-adf2-600c0a375361",
+  slug: 'predictTheDirectionOfHeatTransfer',
+  id: 'f256429d-bbdd-42e3-adf2-600c0a375361',
   name: {
-    en: "Predict the direction of heat transfer",
+    en: 'Predict the direction of heat transfer',
     qm: 'Sıcaqlıq berilüviniñ yönüni evelden bilmek',
     zh: '预测热量传递的方向',
     hi: 'ऊष्मा स्थानांतरण की दिशा का अनुमान लगाना',
@@ -35,9 +35,10 @@ export const predictTheDirectionOfHeatTransfer_Skill_Data = buildSkillConfig({
     kk: 'Жылу берілу бағытын болжау',
   },
   description: {
-    methodological: "In the absence of external work, heat spontaneously flows from a warmer body to a colder one until thermal equilibrium is reached.",
+    methodological:
+      'In the absence of external work, heat spontaneously flows from a warmer body to a colder one until thermal equilibrium is reached.',
     frontend: {
-      en: "Predict which way thermal energy flows between objects at different temperatures.",
+      en: 'Predict which way thermal energy flows between objects at different temperatures.',
       qm: 'Temperaturaları farqlı cisimler arasında sıcaqlıq energiyası qaysı yönge keçecegini ayt.',
       zh: '预测不同温度的物体之间热能会向哪个方向传递。',
       hi: 'अनुमान लगाएँ कि अलग-अलग तापमान की वस्तुओं के बीच ऊष्मीय ऊर्जा किस दिशा में जाएगी।',

@@ -1,15 +1,15 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainNutrientAbsorption_Skill_Data = buildSkillConfig({
-  slug: "explainNutrientAbsorption",
-  id: "7e7c3a74-7ad7-4b55-9acc-23c3ff67b6da",
+  slug: 'explainNutrientAbsorption',
+  id: '7e7c3a74-7ad7-4b55-9acc-23c3ff67b6da',
   name: {
-    en: "Explain Nutrient Absorption",
+    en: 'Explain Nutrient Absorption',
     zh: '解释营养物质吸收',
     hi: 'पोषक तत्वों का अवशोषण समझाना',
     es: 'Explicar la absorción de nutrientes',
     ar: 'شرح امتصاص المغذيات',
-    fr: 'Expliquer l\'absorption des nutriments',
+    fr: "Expliquer l'absorption des nutriments",
     bn: 'পুষ্টি উপাদানের শোষণ ব্যাখ্যা করা',
     pt: 'Explicar a absorção de nutrientes',
     ur: 'غذائی اجزا کے جذب کی وضاحت',
@@ -35,14 +35,15 @@ export const explainNutrientAbsorption_Skill_Data = buildSkillConfig({
     qm: 'Azıq maddeleriniñ emilüvini añlatmaq',
   },
   description: {
-    methodological: "Explain how digestive products pass through the intestinal epithelium into blood and lymph; distinguish chemical digestion from transport of already broken-down nutrients.",
+    methodological:
+      'Explain how digestive products pass through the intestinal epithelium into blood and lymph; distinguish chemical digestion from transport of already broken-down nutrients.',
     frontend: {
-      en: "Learn how digested nutrients move from the intestine into the body.",
+      en: 'Learn how digested nutrients move from the intestine into the body.',
       zh: '了解已消化的营养物质如何从肠道进入人体内部。',
       hi: 'जानें कि पचे हुए पोषक तत्व आँत से शरीर के भीतर कैसे पहुँचते हैं।',
       es: 'Aprende cómo los nutrientes digeridos pasan del intestino al interior del cuerpo.',
       ar: 'تعرّف كيف تنتقل المغذيات المهضومة من الأمعاء إلى داخل الجسم.',
-      fr: 'Découvrez comment les nutriments digérés passent de l\'intestin vers l\'organisme.',
+      fr: "Découvrez comment les nutriments digérés passent de l'intestin vers l'organisme.",
       bn: 'হজম হওয়া পুষ্টি উপাদান কীভাবে অন্ত্র থেকে দেহের ভেতরে যায়, তা জানো।',
       pt: 'Aprenda como os nutrientes digeridos passam do intestino para o organismo.',
       ur: 'جانیں کہ ہضم شدہ غذائی اجزا آنت سے جسم کے اندر کیسے پہنچتے ہیں۔',

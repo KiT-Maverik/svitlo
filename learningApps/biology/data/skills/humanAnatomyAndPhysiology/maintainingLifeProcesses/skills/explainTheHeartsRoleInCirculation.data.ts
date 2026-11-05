@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainTheHeartsRoleInCirculation_Skill_Data = buildSkillConfig({
-  slug: "explainTheHeartsRoleInCirculation",
-  id: "6c8bb57b-341d-41b8-a449-e0b6721b81da",
+  slug: 'explainTheHeartsRoleInCirculation',
+  id: '6c8bb57b-341d-41b8-a449-e0b6721b81da',
   name: {
-    en: "Explain the Heart’s Role in Circulation",
+    en: 'Explain the Heart’s Role in Circulation',
     zh: '解释心脏在血液循环中的作用',
     hi: 'रक्त संचार में हृदय की भूमिका समझाना',
     es: 'Explicar el papel del corazón en la circulación',
@@ -35,9 +35,9 @@ export const explainTheHeartsRoleInCirculation_Skill_Data = buildSkillConfig({
     qm: 'Yürekniñ qan aylanuvındaki rolüni añlatmaq',
   },
   description: {
-    methodological: "Describe the heart as a pump that drives blood through vessels to organs and back.",
+    methodological: 'Describe the heart as a pump that drives blood through vessels to organs and back.',
     frontend: {
-      en: "Explore how the heart pumps blood around the body.",
+      en: 'Explore how the heart pumps blood around the body.',
       zh: '探索心脏如何将血液泵送到全身。',
       hi: 'जानें कि हृदय शरीर में रक्त कैसे पंप करता है।',
       es: 'Explora cómo el corazón bombea sangre por todo el cuerpo.',

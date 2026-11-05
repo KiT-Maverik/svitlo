@@ -32,7 +32,9 @@ function readData(component, file) {
   if (!existsSync(path)) return undefined;
   if (!cache.has(path)) {
     const source = readFileSync(path, 'utf8');
-    const js = ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText;
+    const js = ts.transpileModule(source, {
+      compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
+    }).outputText;
     const temporary = join(tmp, cache.size + '.cjs');
     writeFileSync(temporary, js);
     const authored = require(temporary);
@@ -64,8 +66,11 @@ function shapeOf(value) {
     return 'string';
   }
   if (value && !Array.isArray(value) && typeof value === 'object') {
-    return Object.fromEntries(Object.entries(value).sort(([a], [b]) => a.localeCompare(b))
-      .map(([key, v]) => [key, shapeOf(v)]));
+    return Object.fromEntries(
+      Object.entries(value)
+        .sort(([a], [b]) => a.localeCompare(b))
+        .map(([key, v]) => [key, shapeOf(v)]),
+    );
   }
   throw new Error('UI Kit message data must contain only string values or nested records');
 }
@@ -85,9 +90,10 @@ function auditMissingTranslations(components) {
   for (const component of components) {
     const absent = [];
     for (const { locale, language } of DEFAULT_SUPPORTED_LANGUAGES) {
-      const value = component === 'learningLayout' || component === 'navbarPreferences'
-        ? readData(component === 'learningLayout' ? 'LearningLayout' : 'NavbarPreferences', locale + '.data.ts')
-        : whole[component]?.[language];
+      const value =
+        component === 'learningLayout' || component === 'navbarPreferences'
+          ? readData(component === 'learningLayout' ? 'LearningLayout' : 'NavbarPreferences', locale + '.data.ts')
+          : whole[component]?.[language];
       if (!value) absent.push(language);
     }
     if (absent.length) missing[component] = absent;
@@ -96,30 +102,51 @@ function auditMissingTranslations(components) {
 }
 
 try {
-  const components = ['lesson', 'learningLayout', 'navbarPreferences', 'flashcard', 'checkpoint', 'audio', 'image', 'video', 'youtube', 'questionFrame'];
+  const components = [
+    'lesson',
+    'learningLayout',
+    'navbarPreferences',
+    'flashcard',
+    'checkpoint',
+    'audio',
+    'image',
+    'video',
+    'youtube',
+    'questionFrame',
+  ];
   const missing = auditMissingTranslations(components);
   const missingCount = Object.values(missing).reduce((count, codes) => count + codes.length, 0);
   if (process.argv.includes('--audit')) {
-    console.log(JSON.stringify({
-      languages: DEFAULT_SUPPORTED_LANGUAGES.length,
-      componentCount: components.length,
-      missing,
-      missingCount,
-    }, null, 2));
+    console.log(
+      JSON.stringify(
+        {
+          languages: DEFAULT_SUPPORTED_LANGUAGES.length,
+          componentCount: components.length,
+          missing,
+          missingCount,
+        },
+        null,
+        2,
+      ),
+    );
   } else {
     if (missingCount > 0) {
-      const details = Object.entries(missing).map(([name, codes]) => name + ': ' + codes.join(', ')).join('; ');
+      const details = Object.entries(missing)
+        .map(([name, codes]) => name + ': ' + codes.join(', '))
+        .join('; ');
       throw new Error('UI Kit translations incomplete (' + missingCount + '): ' + details);
     }
     // Preflight all language/key structures before publishing the first file.
     const defaults = Object.fromEntries(components.map(c => [c, message(c, 'uk-UA', 'uk')]));
     const published = DEFAULT_SUPPORTED_LANGUAGES.map(({ locale, language }) => {
-      const messages = Object.fromEntries(components.map(c => {
-        const value = message(c, locale, language);
-        if (!value) throw new Error(`Missing ${c} translations for ${locale}`);
-        assertShape(c, defaults[c], value, locale);
-        return [c, value];
-      }));
+      const messages = Object.fromEntries(
+        components.map(c => {
+          const value = message(c, locale, language);
+          if (!value) throw new Error(`Missing ${c} translations for ${locale}`);
+          assertShape(c, defaults[c], value, locale);
+          return [c, value];
+        }),
+      );
       return { locale, messages };
     });
 

@@ -1,12 +1,22 @@
 import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
 
-import { assessAnEmailSendersAuthenticity_Skill_Data, assessTheRiskOfFollowingALink_Skill_Data, configureMultiFactorAuthentication_Skill_Data, createAStrongPassphrase_Skill_Data, explainMultiFactorAuthentication_Skill_Data, explainWhySoftwareUpdatesMatter_Skill_Data, recognizeAPhishingMessage_Skill_Data, respondToSuspiciousDigitalContact_Skill_Data, verifyAWebsitesDomain_Skill_Data } from './skills';
+import {
+  assessAnEmailSendersAuthenticity_Skill_Data,
+  assessTheRiskOfFollowingALink_Skill_Data,
+  configureMultiFactorAuthentication_Skill_Data,
+  createAStrongPassphrase_Skill_Data,
+  explainMultiFactorAuthentication_Skill_Data,
+  explainWhySoftwareUpdatesMatter_Skill_Data,
+  recognizeAPhishingMessage_Skill_Data,
+  respondToSuspiciousDigitalContact_Skill_Data,
+  verifyAWebsitesDomain_Skill_Data,
+} from './skills';
 
 export const accountProtection_SkillGroup_Data = buildSkillGroupConfig({
-  slug: "accountProtection",
-  id: "2f427b97-a872-4c05-a2bb-72e839f8fb87",
+  slug: 'accountProtection',
+  id: '2f427b97-a872-4c05-a2bb-72e839f8fb87',
   name: {
-    en: "Account Protection",
+    en: 'Account Protection',
     zh: '账户保护',
     hi: 'खाते की सुरक्षा',
     es: 'Protección de cuentas',
@@ -48,9 +58,10 @@ export const accountProtection_SkillGroup_Data = buildSkillGroupConfig({
     verifyAWebsitesDomain: verifyAWebsitesDomain_Skill_Data,
   },
   description: {
-    methodological: "Reducing unauthorized access involves strong passwords, independent authentication factors, phishing detection, link risk assessment, address verification, and safe responses to contacts. Technical security settings and behavioral choices reinforce one another.",
+    methodological:
+      'Reducing unauthorized access involves strong passwords, independent authentication factors, phishing detection, link risk assessment, address verification, and safe responses to contacts. Technical security settings and behavioral choices reinforce one another.',
     frontend: {
-      en: "Explore how to protect accounts and respond to suspicious messages.",
+      en: 'Explore how to protect accounts and respond to suspicious messages.',
       zh: '了解如何保护账户并应对可疑信息。',
       hi: 'जानें कि खातों की रक्षा कैसे करें और संदिग्ध संदेशों पर सुरक्षित प्रतिक्रिया कैसे दें।',
       es: 'Explora cómo proteger cuentas y responder a mensajes sospechosos.',

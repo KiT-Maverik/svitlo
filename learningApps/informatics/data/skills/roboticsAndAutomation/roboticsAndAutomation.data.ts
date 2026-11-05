@@ -4,10 +4,10 @@ import { robotControl_SkillGroup_Data } from './robotControl/robotControl.data';
 import { roboticSystemComponents_SkillGroup_Data } from './roboticSystemComponents/roboticSystemComponents.data';
 
 export const roboticsAndAutomation_SkillDomain_Data = buildSkillDomainConfig({
-  slug: "roboticsAndAutomation",
-  id: "ed451cc0-6d3a-44d2-8dba-ad0b89441519",
+  slug: 'roboticsAndAutomation',
+  id: 'ed451cc0-6d3a-44d2-8dba-ad0b89441519',
   name: {
-    en: "Robotics and Automation",
+    en: 'Robotics and Automation',
     zh: '机器人技术与自动化',
     hi: 'रोबोटिक्स और स्वचालन',
     es: 'Robótica y automatización',
@@ -42,9 +42,10 @@ export const roboticsAndAutomation_SkillDomain_Data = buildSkillDomainConfig({
     roboticSystemComponents: roboticSystemComponents_SkillGroup_Data,
   },
   description: {
-    methodological: "Programming the control logic of physical or simulated actuators in response to sensor readings. Engineering may also study mechanical design; this taxonomy emphasizes the relationship among information, rules, and actions.",
+    methodological:
+      'Programming the control logic of physical or simulated actuators in response to sensor readings. Engineering may also study mechanical design; this taxonomy emphasizes the relationship among information, rules, and actions.',
     frontend: {
-      en: "Explore how sensors, programming and actuators allow robots to respond to their surroundings.",
+      en: 'Explore how sensors, programming and actuators allow robots to respond to their surroundings.',
       zh: '探索传感器、程序和执行器如何让机器人对周围环境作出反应。',
       hi: 'जानें कि सेंसर, प्रोग्रामिंग और एक्चुएटर रोबोट को वातावरण के अनुसार कैसे प्रतिक्रिया करने देते हैं।',
       es: 'Explora cómo los sensores, la programación y los actuadores permiten a los robots responder a su entorno.',

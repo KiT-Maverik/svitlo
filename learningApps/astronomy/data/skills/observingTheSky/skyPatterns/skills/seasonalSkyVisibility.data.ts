@@ -43,7 +43,7 @@ export const seasonalSkyVisibility_Skill_Data = buildSkillConfig({
       hi: 'समझाएँ कि अलग-अलग ऋतुओं में तारों की अलग आकृतियाँ क्यों दिखाई देती हैं।',
       es: 'Explica por qué se ven diferentes patrones de estrellas en distintas estaciones.',
       ar: 'اشرح لماذا تظهر أنماط مختلفة من النجوم في فصول مختلفة.',
-      fr: 'Explique pourquoi différents motifs d\'étoiles sont visibles selon les saisons.',
+      fr: "Explique pourquoi différents motifs d'étoiles sont visibles selon les saisons.",
       bn: 'বিভিন্ন ঋতুতে তারার বিভিন্ন বিন্যাস কেন দেখা যায়, তা ব্যাখ্যা করো।',
       pt: 'Explique por que diferentes padrões de estrelas são visíveis em diferentes estações.',
       ur: 'وضاحت کریں کہ مختلف موسموں میں ستاروں کے مختلف نقش کیوں نظر آتے ہیں۔',

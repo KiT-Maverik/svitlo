@@ -44,7 +44,7 @@ export const expansionVersusBoundSystems_Skill_Data = buildSkillConfig({
       hi: 'समझें कि अंतरिक्ष के विस्तार से ग्रह, तारे या आकाशगंगाएँ सीधे खिंचकर अलग क्यों नहीं होतीं।',
       es: 'Comprende por qué el espacio en expansión no separa simplemente planetas, estrellas o galaxias.',
       ar: 'افهم لماذا لا يؤدي تمدد الفضاء إلى إبعاد الكواكب والنجوم والمجرات المرتبطة ببساطة.',
-      fr: 'Comprends pourquoi l\'expansion de l\'espace n\'écarte pas simplement les planètes, les étoiles ou les galaxies.',
+      fr: "Comprends pourquoi l'expansion de l'espace n'écarte pas simplement les planètes, les étoiles ou les galaxies.",
       bn: 'স্থান প্রসারিত হলেও গ্রহ, তারা বা ছায়াপথগুলো সরাসরি আলাদা হয়ে যায় না কেন তা বোঝো।',
       pt: 'Entenda por que a expansão do espaço não afasta simplesmente planetas, estrelas ou galáxias.',
       ur: 'سمجھیں کہ خلا کا پھیلاؤ سیاروں، ستاروں یا کہکشاؤں کو سیدھا کیوں نہیں کھینچتا۔',

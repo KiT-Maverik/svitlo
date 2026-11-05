@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const relateFruitCharacteristicsToSeedDispersalMethods_Skill_Data = buildSkillConfig({
-  slug: "relateFruitCharacteristicsToSeedDispersalMethods",
-  id: "9dba3430-d028-4a0f-a0ee-ec8624a6b7d6",
+  slug: 'relateFruitCharacteristicsToSeedDispersalMethods',
+  id: '9dba3430-d028-4a0f-a0ee-ec8624a6b7d6',
   name: {
-    en: "Relate Fruit Characteristics to Seed Dispersal Methods",
+    en: 'Relate Fruit Characteristics to Seed Dispersal Methods',
     zh: '将果实特征与种子传播方式联系起来',
     hi: 'फल की विशेषताओं को बीज प्रसार से जोड़ना',
     es: 'Relacionar las características de los frutos con la dispersión',
@@ -35,9 +35,9 @@ export const relateFruitCharacteristicsToSeedDispersalMethods_Skill_Data = build
     qm: 'Meyva belgilerini tohum yayılmasınıñ usullarınen bağlaştırmaq',
   },
   description: {
-    methodological: "Compare adaptations of fruits and seeds to transport by wind, water, or animals.",
+    methodological: 'Compare adaptations of fruits and seeds to transport by wind, water, or animals.',
     frontend: {
-      en: "Connect the shapes of fruits and seeds with the ways they spread.",
+      en: 'Connect the shapes of fruits and seeds with the ways they spread.',
       zh: '将果实和种子的形状与其传播方式联系起来。',
       hi: 'फलों और बीजों की आकृतियों को उनके फैलने के तरीकों से जोड़ें।',
       es: 'Relaciona las formas de frutos y semillas con sus métodos de dispersión.',

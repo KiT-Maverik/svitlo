@@ -8,16 +8,22 @@ import { QuestionChoice } from '../response/QuestionChoice';
 import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
 import { QuestionContent, type QuestionItem, shuffleItems } from '../response/QuestionContent';
 
-export function FillBlanksWithBlocks({ response, sceneRegistry, messages }: {
+export function FillBlanksWithBlocks({
+  response,
+  sceneRegistry,
+  messages,
+}: {
   response: Question_FillBlanksWithBlocks<'response', Locale_Languages>;
   sceneRegistry?: SceneRegistry;
   messages: UiKit_Global<'response'>;
 }) {
   const correct: QuestionItem[] = response.slots.map(slot => ({
-    id: 'correct:' + slot.selector, block: slot.correctAnswer,
+    id: 'correct:' + slot.selector,
+    block: slot.correctAnswer,
   }));
   const distractors: QuestionItem[] = response.distractors.map((block, index) => ({
-    id: 'distractor:' + index + ':' + block.id, block,
+    id: 'distractor:' + index + ':' + block.id,
+    block,
   }));
   const items = shuffleItems([...correct, ...distractors], response.id);
   const attempt = useQuestionAttempt<Record<string, string | null>>(
@@ -34,33 +40,62 @@ export function FillBlanksWithBlocks({ response, sceneRegistry, messages }: {
   return (
     <QuestionFrame response={response} sceneRegistry={sceneRegistry} messages={messages} attempt={attempt}>
       <Stack spacing={2}>
-        <Stack direction="row" useFlexGap spacing={1} sx={{ flexWrap: 'wrap', justifyContent: 'center' }}
-          role="group" aria-label={messages.questionFrame.blanks}>
+        <Stack
+          direction="row"
+          useFlexGap
+          spacing={1}
+          sx={{ flexWrap: 'wrap', justifyContent: 'center' }}
+          role="group"
+          aria-label={messages.questionFrame.blanks}
+        >
           {response.slots.map(slot => {
             const selected = items.find(item => item.id === attempt.value[slot.selector]);
             const correctSlot = selected?.id === 'correct:' + slot.selector;
             return (
-              <ButtonBase key={slot.selector} component="div" role="button"
-                aria-label={slot.selector} disabled={attempt.checked}
+              <ButtonBase
+                key={slot.selector}
+                component="div"
+                role="button"
+                aria-label={slot.selector}
+                disabled={attempt.checked}
                 onClick={() => attempt.setValue({ ...attempt.value, [slot.selector]: null })}
-                sx={{ display: 'flex', minWidth: 100, minHeight: 50, p: 1,
-                  border: '1px dashed', borderRadius: 1,
-                  borderColor: attempt.checked ? correctSlot ? 'success.main' : 'error.main' : 'divider',
-                  bgcolor: 'background.paper', textAlign: 'center',
-                  '&.Mui-disabled': { opacity: 1 } }}>
-                {selected ? <QuestionContent blocks={[selected.block]} sceneRegistry={sceneRegistry} messages={messages} /> :
-                  <Typography color="text.secondary">{response.placeholder}</Typography>}
+                sx={{
+                  display: 'flex',
+                  minWidth: 100,
+                  minHeight: 50,
+                  p: 1,
+                  border: '1px dashed',
+                  borderRadius: 1,
+                  borderColor: attempt.checked ? (correctSlot ? 'success.main' : 'error.main') : 'divider',
+                  bgcolor: 'background.paper',
+                  textAlign: 'center',
+                  '&.Mui-disabled': { opacity: 1 },
+                }}
+              >
+                {selected ? (
+                  <QuestionContent blocks={[selected.block]} sceneRegistry={sceneRegistry} messages={messages} />
+                ) : (
+                  <Typography color="text.secondary">{response.placeholder}</Typography>
+                )}
               </ButtonBase>
             );
           })}
         </Stack>
         <Box role="group" aria-label={messages.questionFrame.availableBlocks}>
           <Stack spacing={1}>
-            {items.filter(item => !used.has(item.id)).map(item => (
-              <QuestionChoice key={item.id} block={item.block} selected={false}
-                sceneRegistry={sceneRegistry} messages={messages} disabled={attempt.checked || !nextEmpty}
-                onToggle={() => place(item.id)} />
-            ))}
+            {items
+              .filter(item => !used.has(item.id))
+              .map(item => (
+                <QuestionChoice
+                  key={item.id}
+                  block={item.block}
+                  selected={false}
+                  sceneRegistry={sceneRegistry}
+                  messages={messages}
+                  disabled={attempt.checked || !nextEmpty}
+                  onToggle={() => place(item.id)}
+                />
+              ))}
           </Stack>
         </Box>
       </Stack>

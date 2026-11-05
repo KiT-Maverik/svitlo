@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const recognizeFishCharacteristics_Skill_Data = buildSkillConfig({
-  slug: "recognizeFishCharacteristics",
-  id: "fe493158-2c89-4ca5-9e85-08e6ec99da38",
+  slug: 'recognizeFishCharacteristics',
+  id: 'fe493158-2c89-4ca5-9e85-08e6ec99da38',
   name: {
-    en: "Recognize Fish Characteristics",
+    en: 'Recognize Fish Characteristics',
     zh: '识别鱼类的特征',
     hi: 'मछलियों की विशेषताएँ पहचानना',
     es: 'Reconocer las características de los peces',
@@ -35,9 +35,10 @@ export const recognizeFishCharacteristics_Skill_Data = buildSkillConfig({
     qm: 'Balıqlarnıñ belgilerini tanımaq',
   },
   description: {
-    methodological: "Identify typical traits of aquatic vertebrates with gill respiration and fins while accounting for the diversity of fish.",
+    methodological:
+      'Identify typical traits of aquatic vertebrates with gill respiration and fins while accounting for the diversity of fish.',
     frontend: {
-      en: "Identify typical features of fish while recognizing their diversity.",
+      en: 'Identify typical features of fish while recognizing their diversity.',
       zh: '识别鱼类的典型特征，同时认识鱼类的多样性。',
       hi: 'मछलियों की विविधता को ध्यान में रखते हुए उनकी सामान्य विशेषताएँ पहचानें।',
       es: 'Identifica los rasgos típicos de los peces teniendo en cuenta su diversidad.',

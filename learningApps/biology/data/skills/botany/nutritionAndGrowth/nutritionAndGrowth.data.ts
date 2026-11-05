@@ -1,12 +1,18 @@
 import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
 
-import { explainPlantsNeedForWater_Skill_Data, explainTheRoleOfAir_Skill_Data, explainTheRoleOfLight_Skill_Data, identifyTheRoleOfMineralNutrition_Skill_Data, predictEffectsOfChangingConditionsOnPlantGrowth_Skill_Data } from './skills';
+import {
+  explainPlantsNeedForWater_Skill_Data,
+  explainTheRoleOfAir_Skill_Data,
+  explainTheRoleOfLight_Skill_Data,
+  identifyTheRoleOfMineralNutrition_Skill_Data,
+  predictEffectsOfChangingConditionsOnPlantGrowth_Skill_Data,
+} from './skills';
 
 export const nutritionAndGrowth_SkillGroup_Data = buildSkillGroupConfig({
-  slug: "nutritionAndGrowth",
-  id: "78aecc9a-264f-447e-a7a1-a28febffe2df",
+  slug: 'nutritionAndGrowth',
+  id: '78aecc9a-264f-447e-a7a1-a28febffe2df',
   name: {
-    en: "Nutrition and Growth",
+    en: 'Nutrition and Growth',
     zh: '营养与生长',
     hi: 'पोषण और वृद्धि',
     es: 'Nutrición y crecimiento',
@@ -44,14 +50,15 @@ export const nutritionAndGrowth_SkillGroup_Data = buildSkillGroupConfig({
     predictEffectsOfChangingConditionsOnPlantGrowth: predictEffectsOfChangingConditionsOnPlantGrowth_Skill_Data,
   },
   description: {
-    methodological: "Water, light, atmospheric gases, and minerals play different roles; deviations in environmental conditions change the rate and pattern of plant development.",
+    methodological:
+      'Water, light, atmospheric gases, and minerals play different roles; deviations in environmental conditions change the rate and pattern of plant development.',
     frontend: {
-      en: "Explore how water, light, air and minerals support plant growth.",
+      en: 'Explore how water, light, air and minerals support plant growth.',
       zh: '了解水、光、空气和矿物质如何支持植物生长。',
       hi: 'जानें कि जल, प्रकाश, वायु और खनिज पौधों की वृद्धि में कैसे मदद करते हैं।',
       es: 'Descubre cómo el agua, la luz, el aire y los minerales favorecen el crecimiento vegetal.',
       ar: 'اكتشف كيف يدعم الماء والضوء والهواء والمعادن نمو النباتات.',
-      fr: 'Explore comment l\'eau, la lumière, l\'air et les minéraux favorisent la croissance des plantes.',
+      fr: "Explore comment l'eau, la lumière, l'air et les minéraux favorisent la croissance des plantes.",
       bn: 'জল, আলো, বায়ু ও খনিজ কীভাবে উদ্ভিদের বৃদ্ধিতে সাহায্য করে তা জানো।',
       pt: 'Explore como água, luz, ar e minerais sustentam o crescimento das plantas.',
       ur: 'جانیں کہ پانی، روشنی، ہوا اور معدنیات پودوں کی بڑھوتری میں کیسے مدد دیتے ہیں۔',

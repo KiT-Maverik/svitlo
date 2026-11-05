@@ -5,7 +5,11 @@ import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 import type { TextDirection } from '@svitlo/engine/localization';
 import MuiThemeProvider from './MuiThemeProvider';
 
-export default function AppDocument({ children, lang, direction }: {
+export default function AppDocument({
+  children,
+  lang,
+  direction,
+}: {
   children: ReactNode;
   lang: string;
   direction: TextDirection;

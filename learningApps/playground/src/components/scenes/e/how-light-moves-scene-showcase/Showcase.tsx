@@ -12,10 +12,7 @@ export function Showcase({ locales }: Pick<Showcase_ContentBlock<'response'>, 'l
   const [paused, setPaused] = useState(true);
   const medium = media[selected];
   return (
-    <section
-      className={styles.showcase}
-      aria-labelledby="showcase-title"
-    >
+    <section className={styles.showcase} aria-labelledby="showcase-title">
       <p className={styles.eyebrow}>{locales.header.eyebrow}</p>
       <h1 id="showcase-title">{locales.header.title}</h1>
       <p>{locales.header.description}</p>

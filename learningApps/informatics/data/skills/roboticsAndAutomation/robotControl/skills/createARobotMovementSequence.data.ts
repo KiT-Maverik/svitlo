@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const createARobotMovementSequence_Skill_Data = buildSkillConfig({
-  slug: "createARobotMovementSequence",
-  id: "468dfb56-ac58-4d9a-818b-adf644de4c53",
+  slug: 'createARobotMovementSequence',
+  id: '468dfb56-ac58-4d9a-818b-adf644de4c53',
   name: {
-    en: "Create a Robot Movement Sequence",
+    en: 'Create a Robot Movement Sequence',
     zh: '创建机器人移动序列',
     hi: 'रोबोट की गति का क्रम बनाना',
     es: 'Crear una secuencia de movimientos de robot',
@@ -35,9 +35,10 @@ export const createARobotMovementSequence_Skill_Data = buildSkillConfig({
     qm: 'Robotnıñ areketler sırasını yaratmaq',
   },
   description: {
-    methodological: "Plan the ordered movement, orientation, and stopping commands that take a robot from its initial to its target state, accounting for direction. This is a motion-control problem, not simply a sequence of abstract words.",
+    methodological:
+      'Plan the ordered movement, orientation, and stopping commands that take a robot from its initial to its target state, accounting for direction. This is a motion-control problem, not simply a sequence of abstract words.',
     frontend: {
-      en: "Plan the ordered commands that move a robot to its destination.",
+      en: 'Plan the ordered commands that move a robot to its destination.',
       zh: '规划让机器人到达目的地的有序移动指令。',
       hi: 'रोबोट को लक्ष्य तक पहुँचाने के लिए क्रमबद्ध गति निर्देश तैयार करें।',
       es: 'Planifica órdenes de movimiento en el orden necesario para llevar un robot a su destino.',

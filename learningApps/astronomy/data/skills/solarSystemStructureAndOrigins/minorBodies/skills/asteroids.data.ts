@@ -59,7 +59,7 @@ export const asteroids_Skill_Data = buildSkillConfig({
       ms: 'Terokai kepelbagaian asteroid berbatu dan kaya logam serta orbitnya.',
       he: 'גלו את מגוון האסטרואידים הסלעיים והעשירים במתכות ואת מסלוליהם.',
       pl: 'Poznaj różnorodność skalistych i bogatych w metale planetoid oraz ich orbity.',
-      uk: 'Дослідіть різноманітність кам\'янистих і багатих на метали астероїдів та їхні орбіти.',
+      uk: "Дослідіть різноманітність кам'янистих і багатих на метали астероїдів та їхні орбіти.",
       lt: 'Tyrinėkite uolinių ir daug metalų turinčių asteroidų įvairovę bei jų orbitas.',
       lv: 'Izpētiet akmeņaino un ar metāliem bagāto asteroīdu daudzveidību un to orbītas.',
       et: 'Uuri kiviste ja metallirikaste asteroidide mitmekesisust ning nende orbiite.',

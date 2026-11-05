@@ -42,7 +42,7 @@ export const stellarRadius_Skill_Data = buildSkillConfig({
       hi: 'जानें कि खगोलविद तारों की रोशनी और अन्य अवलोकनों से उनकी त्रिज्या का अनुमान कैसे लगाते हैं।',
       es: 'Descubre cómo los astrónomos deducen el radio de una estrella a partir de su luz y otras observaciones.',
       ar: 'اكتشف كيف يستنتج الفلكيون نصف قطر النجم من ضوئه ومشاهدات أخرى.',
-      fr: 'Découvrez comment les astronomes déduisent le rayon d\'une étoile de sa lumière et d\'autres observations.',
+      fr: "Découvrez comment les astronomes déduisent le rayon d'une étoile de sa lumière et d'autres observations.",
       bn: 'তারার আলো ও অন্যান্য পর্যবেক্ষণ থেকে জ্যোতির্বিজ্ঞানীরা নক্ষত্রের ব্যাসার্ধ কীভাবে নির্ণয় করেন, তা জানো।',
       pt: 'Descubra como os astrônomos inferem o raio de uma estrela a partir de sua luz e outras observações.',
       ur: 'جانیں کہ ماہرینِ فلکیات ستارے کی روشنی اور دوسرے مشاہدات سے اس کا نصف قطر کیسے اخذ کرتے ہیں۔',

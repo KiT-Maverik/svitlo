@@ -237,11 +237,13 @@ export const checkpointData = {
   title: checkpoint.title,
   items: checkpoint.items.map(({ question, answer }, index) => ({
     question,
-    answer: [{
-      id: `light-explanation-answer-${index + 1}`,
-      slug: `lightExplanationAnswer${index + 1}`,
-      type: 'text',
-      value: answer,
-    }] satisfies CheckpointAnswer,
+    answer: [
+      {
+        id: `light-explanation-answer-${index + 1}`,
+        slug: `lightExplanationAnswer${index + 1}`,
+        type: 'text',
+        value: answer,
+      },
+    ] satisfies CheckpointAnswer,
   })),
 } satisfies Checkpoint_ContentBlock<'data'>;

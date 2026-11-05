@@ -17,11 +17,13 @@ export type LessonView = {
   id: string;
   title: string;
   locale: { code: LanguageCode };
-  parameters: { sections: {
-    allowNavigation: boolean;
-    allowSkipping: boolean;
-    showIndexes: boolean;
-  } };
+  parameters: {
+    sections: {
+      allowNavigation: boolean;
+      allowSkipping: boolean;
+      showIndexes: boolean;
+    };
+  };
   sections: readonly {
     id: string;
     type: Section_Type;
@@ -42,7 +44,11 @@ export type LessonProps = {
   sceneRegistry?: SceneRegistry;
 };
 
-function LessonBody({ response, messages, sceneRegistry }: Pick<LessonProps, 'response' | 'messages' | 'sceneRegistry'>) {
+function LessonBody({
+  response,
+  messages,
+  sceneRegistry,
+}: Pick<LessonProps, 'response' | 'messages' | 'sceneRegistry'>) {
   const { progress, dispatch } = useLessonNavigation();
   const section = response.sections[progress.step];
   if (!section) return null;
@@ -62,22 +68,24 @@ function LessonBody({ response, messages, sceneRegistry }: Pick<LessonProps, 're
       />
       <div className={styles.stage}>
         <Container maxWidth="md" sx={{ py: { xs: 3, md: 6 } }}>
-          {section.type === 'quiz'
-            ? <QuestionRenderer
-                key={section.id}
-                questions={section.questions}
-                language={response.locale.code}
-                sceneRegistry={sceneRegistry}
-                messages={messages}
-                onComplete={() => dispatch({ type: 'testDone' })}
-              />
-            : <ContentBlockRenderer
-                key={section.id}
-                blocks={blocks}
-                language={response.locale.code}
-                sceneRegistry={sceneRegistry}
-                messages={messages}
-              />}
+          {section.type === 'quiz' ? (
+            <QuestionRenderer
+              key={section.id}
+              questions={section.questions}
+              language={response.locale.code}
+              sceneRegistry={sceneRegistry}
+              messages={messages}
+              onComplete={() => dispatch({ type: 'testDone' })}
+            />
+          ) : (
+            <ContentBlockRenderer
+              key={section.id}
+              blocks={blocks}
+              language={response.locale.code}
+              sceneRegistry={sceneRegistry}
+              messages={messages}
+            />
+          )}
         </Container>
       </div>
     </>
@@ -92,8 +100,9 @@ export function Lesson({ response, href, messages, layout: Layout, sceneRegistry
         messages={messages}
         topics={[{ id: response.id, title: response.title, href }]}
         pathname={href}
-        skippableSteps={response.sections.map((section, index) =>
-          index !== quizIndex && response.parameters.sections.allowSkipping && !!section.skippable)}
+        skippableSteps={response.sections.map(
+          (section, index) => index !== quizIndex && response.parameters.sections.allowSkipping && !!section.skippable,
+        )}
         quizStep={quizIndex < 0 ? undefined : quizIndex}
       >
         <div className={styles.lesson}>

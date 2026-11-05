@@ -8,7 +8,12 @@ const meta = {
   component: Audio,
   tags: ['autodocs'],
   parameters: {
-    docs: { description: { component: 'Native audio playback, optional caption, and localized error/retry states. Audio files may be cached for offline playback.' } },
+    docs: {
+      description: {
+        component:
+          'Native audio playback, optional caption, and localized error/retry states. Audio files may be cached for offline playback.',
+      },
+    },
   },
   args: {
     messages: enUiKitMessages.audio,
@@ -34,7 +39,13 @@ type Story = StoryObj<typeof meta>;
 export const Playground: Story = {};
 
 export const Localized: Story = {
-  decorators: [(StoryComponent) => <ContentLanguageContext.Provider value="uk"><StoryComponent /></ContentLanguageContext.Provider>],
+  decorators: [
+    StoryComponent => (
+      <ContentLanguageContext.Provider value="uk">
+        <StoryComponent />
+      </ContentLanguageContext.Provider>
+    ),
+  ],
   args: { title: 'Звуки тварин', description: 'Прослухайте аудіозапис.' },
 };
 

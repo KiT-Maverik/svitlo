@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const distinguishGymnospermsAndAngiosperms_Skill_Data = buildSkillConfig({
-  slug: "distinguishGymnospermsAndAngiosperms",
-  id: "a75ac475-5459-4ac2-bd24-39cf53c03326",
+  slug: 'distinguishGymnospermsAndAngiosperms',
+  id: 'a75ac475-5459-4ac2-bd24-39cf53c03326',
   name: {
-    en: "Distinguish Gymnosperms and Angiosperms",
+    en: 'Distinguish Gymnosperms and Angiosperms',
     zh: '区分裸子植物与被子植物',
     hi: 'अनावृतबीजी और आवृतबीजी पौधों में अंतर करना',
     es: 'Distinguir gimnospermas y angiospermas',
@@ -35,9 +35,10 @@ export const distinguishGymnospermsAndAngiosperms_Skill_Data = buildSkillConfig(
     qm: 'Açıq tohumlı ve qapalı tohumlı ösümliklerni farqlamaq',
   },
   description: {
-    methodological: "Explain the difference between seed plants with exposed ovules and flowering plants whose seeds develop inside a fruit; do not equate this division with evergreen habit or leaf shape.",
+    methodological:
+      'Explain the difference between seed plants with exposed ovules and flowering plants whose seeds develop inside a fruit; do not equate this division with evergreen habit or leaf shape.',
     frontend: {
-      en: "Distinguish gymnosperms from flowering plants by their seed structures.",
+      en: 'Distinguish gymnosperms from flowering plants by their seed structures.',
       zh: '根据种子的形成结构区分裸子植物和开花植物。',
       hi: 'बीज की संरचना के आधार पर अनावृतबीजी और फूल वाले पौधों में अंतर करें।',
       es: 'Distingue las gimnospermas de las plantas con flores por sus estructuras reproductoras y semillas.',

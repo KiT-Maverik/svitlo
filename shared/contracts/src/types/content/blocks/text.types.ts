@@ -17,15 +17,20 @@ export type ContentBlock_Text_Presentation = {
   wrap?: ContentBlock_Text_Wrap;
 };
 
-export type ContentBlock_Text_Data<SupportedLanguages extends Locale_Languages> = ContentBlock_Data_Meta<'text'> & ContentBlock_Text_Presentation & {
-  value: Locale_Options<SupportedLanguages>;
-};
+export type ContentBlock_Text_Data<SupportedLanguages extends Locale_Languages> = ContentBlock_Data_Meta<'text'> &
+  ContentBlock_Text_Presentation & {
+    value: Locale_Options<SupportedLanguages>;
+  };
 
-export type ContentBlock_Text_Response = ContentBlock_Response_Meta<'text'> & ContentBlock_Text_Presentation & {
-  value: string;
-};
+export type ContentBlock_Text_Response = ContentBlock_Response_Meta<'text'> &
+  ContentBlock_Text_Presentation & {
+    value: string;
+  };
 
-export type ContentBlock_Text<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends Locale_Languages> = {
+export type ContentBlock_Text<
+  ConfigType extends ContentEntity_ConfigType,
+  SupportedLanguages extends Locale_Languages,
+> = {
   definition: ContentBlock_Text_Definition;
   data: ContentBlock_Text_Data<SupportedLanguages>;
   response: ContentBlock_Text_Response;

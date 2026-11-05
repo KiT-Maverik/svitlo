@@ -67,7 +67,7 @@ export const astronomicalTime_SkillGroup_Data = buildSkillGroupConfig({
       de: 'Erkunde, wie die wiederkehrenden Bewegungen von Sonne, Mond und Sternen zur Zeitmessung genutzt werden.',
       ja: '太陽、月、星の繰り返される動きが、時間を測るためにどのように利用されるかを探ろう。',
       ko: '태양, 달, 별의 반복되는 움직임을 이용해 시간을 측정하는 방법을 알아보세요.',
-      tr: 'Güneş\'in, Ay\'ın ve yıldızların tekrarlanan hareketlerinin zamanı ölçmek için nasıl kullanıldığını keşfet.',
+      tr: "Güneş'in, Ay'ın ve yıldızların tekrarlanan hareketlerinin zamanı ölçmek için nasıl kullanıldığını keşfet.",
       vi: 'Khám phá cách các chuyển động lặp lại của Mặt Trời, Mặt Trăng và các ngôi sao được dùng để đo thời gian.',
       ta: 'சூரியன், நிலவு, விண்மீன்கள் ஆகியவற்றின் மீண்டும் மீண்டும் நிகழும் இயக்கங்கள் நேரத்தை அளக்க எவ்வாறு பயன்படுகின்றன என்பதை அறிந்துகொள்.',
       te: 'సూర్యుడు, చంద్రుడు, నక్షత్రాల పునరావృత కదలికలను కాలాన్ని కొలవడానికి ఎలా ఉపయోగిస్తారో తెలుసుకోండి.',

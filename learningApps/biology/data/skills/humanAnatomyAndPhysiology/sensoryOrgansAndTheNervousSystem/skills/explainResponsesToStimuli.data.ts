@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainResponsesToStimuli_Skill_Data = buildSkillConfig({
-  slug: "explainResponsesToStimuli",
-  id: "2d4043a7-a9a7-48b1-ad12-d579a25ae6f4",
+  slug: 'explainResponsesToStimuli',
+  id: '2d4043a7-a9a7-48b1-ad12-d579a25ae6f4',
   name: {
-    en: "Explain Responses to Stimuli",
+    en: 'Explain Responses to Stimuli',
     zh: '解释对刺激的反应',
     hi: 'उद्दीपनों के प्रति प्रतिक्रियाएँ समझाना',
     es: 'Explicar las respuestas a los estímulos',
@@ -35,9 +35,9 @@ export const explainResponsesToStimuli_Skill_Data = buildSkillConfig({
     qm: 'Taşqı tesirlerge cevapnı añlatmaq',
   },
   description: {
-    methodological: "Explain how a sensory signal can trigger a muscle response or a change in behavior.",
+    methodological: 'Explain how a sensory signal can trigger a muscle response or a change in behavior.',
     frontend: {
-      en: "Explore how sensed information can lead to movement or changes in behavior.",
+      en: 'Explore how sensed information can lead to movement or changes in behavior.',
       zh: '探索感知到的信息如何引发运动或行为变化。',
       hi: 'जानें कि इंद्रियों से मिली सूचना गति या व्यवहार में बदलाव कैसे ला सकती है।',
       es: 'Explora cómo la información percibida puede provocar movimiento o cambios de conducta.',

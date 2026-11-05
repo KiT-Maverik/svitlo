@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const distinguishDeciduousAndEvergreenPlants_Skill_Data = buildSkillConfig({
-  slug: "distinguishDeciduousAndEvergreenPlants",
-  id: "13ed897f-a7ae-44dc-bd0e-ba0846381fc5",
+  slug: 'distinguishDeciduousAndEvergreenPlants',
+  id: '13ed897f-a7ae-44dc-bd0e-ba0846381fc5',
   name: {
-    en: "Distinguish Deciduous and Evergreen Plants",
+    en: 'Distinguish Deciduous and Evergreen Plants',
     zh: '区分落叶植物与常绿植物',
     hi: 'पर्णपाती और सदाबहार पौधों में अंतर करना',
     es: 'Distinguir plantas caducifolias y perennifolias',
@@ -35,9 +35,10 @@ export const distinguishDeciduousAndEvergreenPlants_Skill_Data = buildSkillConfi
     qm: 'Yapraq tüşürgen ve daim yeşil ösümliklerni farqlamaq',
   },
   description: {
-    methodological: "Distinguish annual leaf shedding from retaining foliage throughout the year; this is not equivalent to the distinction between conifers and broadleaf plants.",
+    methodological:
+      'Distinguish annual leaf shedding from retaining foliage throughout the year; this is not equivalent to the distinction between conifers and broadleaf plants.',
     frontend: {
-      en: "Recognize how evergreen and deciduous plants differ in leaf retention.",
+      en: 'Recognize how evergreen and deciduous plants differ in leaf retention.',
       zh: '根据植物是否全年保留叶片来区分常绿植物和落叶植物。',
       hi: 'पत्तियों के वर्ष भर बने रहने या झड़ने के आधार पर सदाबहार और पर्णपाती पौधों को पहचानें।',
       es: 'Reconoce cómo difieren las plantas perennifolias y caducifolias en la permanencia de sus hojas.',

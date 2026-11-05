@@ -8,7 +8,11 @@ const locale = ukUiKitMessages.flashcard;
 const aria = locale.flashcard;
 
 export const Flashcard_fx = {
-  defaults: { question: 'What is light?', answer: 'Electromagnetic radiation', messages: locale } satisfies FlashcardProps,
+  defaults: {
+    question: 'What is light?',
+    answer: 'Electromagnetic radiation',
+    messages: locale,
+  } satisfies FlashcardProps,
   render: (props: Partial<FlashcardProps> = {}) =>
     render(createElement(Flashcard, { ...Flashcard_fx.defaults, ...props })),
   selectors: {

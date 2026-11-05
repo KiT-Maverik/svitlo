@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainGenerativeAI_Skill_Data = buildSkillConfig({
-  slug: "explainGenerativeAI",
-  id: "33ea7fe5-82a5-41b3-bbf3-8de0b807a8a7",
+  slug: 'explainGenerativeAI',
+  id: '33ea7fe5-82a5-41b3-bbf3-8de0b807a8a7',
   name: {
-    en: "Explain Generative AI",
+    en: 'Explain Generative AI',
     zh: '解释生成式人工智能',
     hi: 'जनरेटिव एआई समझाना',
     es: 'Explicar la IA generativa',
@@ -35,9 +35,10 @@ export const explainGenerativeAI_Skill_Data = buildSkillConfig({
     qm: 'Yaratıcı suniy intellektni añlatmaq',
   },
   description: {
-    methodological: "Describe how models create new text, images, or other content based on input context and patterns learned during training.",
+    methodological:
+      'Describe how models create new text, images, or other content based on input context and patterns learned during training.',
     frontend: {
-      en: "Understand how generative models create text, images or other content.",
+      en: 'Understand how generative models create text, images or other content.',
       zh: '理解生成模型如何创作文本、图像或其他内容。',
       hi: 'समझें कि जनरेटिव मॉडल पाठ, चित्र और अन्य सामग्री कैसे बनाते हैं।',
       es: 'Comprende cómo los modelos generativos crean textos, imágenes y otros contenidos.',

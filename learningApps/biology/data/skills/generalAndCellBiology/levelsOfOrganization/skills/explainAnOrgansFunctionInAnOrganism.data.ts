@@ -1,15 +1,15 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainAnOrgansFunctionInAnOrganism_Skill_Data = buildSkillConfig({
-  slug: "explainAnOrgansFunctionInAnOrganism",
-  id: "e3dc428a-09ea-4a1d-8eb9-eeb89f5d64d1",
+  slug: 'explainAnOrgansFunctionInAnOrganism',
+  id: 'e3dc428a-09ea-4a1d-8eb9-eeb89f5d64d1',
   name: {
-    en: "Explain an Organ’s Function in an Organism",
+    en: 'Explain an Organ’s Function in an Organism',
     zh: '说明器官在生物体中的作用',
     hi: 'जीव में अंग के कार्य को समझाना',
     es: 'Explicar la función de un órgano en un organismo',
     ar: 'شرح وظيفة عضو في الكائن الحي',
-    fr: 'Expliquer la fonction d\'un organe dans un organisme',
+    fr: "Expliquer la fonction d'un organe dans un organisme",
     bn: 'জীবদেহে অঙ্গের কাজ ব্যাখ্যা করা',
     pt: 'Explicar a função de um órgão no organismo',
     ur: 'جاندار میں عضو کا کام سمجھانا',
@@ -35,14 +35,15 @@ export const explainAnOrgansFunctionInAnOrganism_Skill_Data = buildSkillConfig({
     qm: 'Organnıñ canlı bedenindeki vazifesini añlatmaq',
   },
   description: {
-    methodological: "Explain how a particular structure contributes to overall life processes, such as absorbing or transporting substances.",
+    methodological:
+      'Explain how a particular structure contributes to overall life processes, such as absorbing or transporting substances.',
     frontend: {
-      en: "Explain how a particular organ helps the entire organism function.",
+      en: 'Explain how a particular organ helps the entire organism function.',
       zh: '解释某个器官如何帮助整个生物体维持生命活动。',
       hi: 'समझाएँ कि एक विशेष अंग पूरे जीव के काम में कैसे योगदान देता है।',
       es: 'Explica cómo un órgano concreto contribuye al funcionamiento de todo el organismo.',
       ar: 'اشرح كيف يسهم عضو معين في عمل الكائن الحي بأكمله.',
-      fr: 'Explique comment un organe particulier contribue au fonctionnement de l\'organisme entier.',
+      fr: "Explique comment un organe particulier contribue au fonctionnement de l'organisme entier.",
       bn: 'একটি বিশেষ অঙ্গ কীভাবে পুরো জীবের কাজে সাহায্য করে তা ব্যাখ্যা করো।',
       pt: 'Explique como um órgão específico contribui para o funcionamento de todo o organismo.',
       ur: 'بتائیں کہ کوئی خاص عضو پورے جاندار کے کام میں کس طرح مدد دیتا ہے۔',

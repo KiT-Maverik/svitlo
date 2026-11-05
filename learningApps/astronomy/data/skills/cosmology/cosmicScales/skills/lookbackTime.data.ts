@@ -43,7 +43,7 @@ export const lookbackTime_Skill_Data = buildSkillConfig({
       hi: 'जानें कि अंतरिक्ष में अधिक दूर देखना अतीत में देखना भी क्यों है।',
       es: 'Descubre por qué mirar más lejos en el espacio significa también mirar hacia el pasado.',
       ar: 'اكتشف لماذا تعني رؤية مسافات أبعد في الفضاء النظر إلى الماضي أيضًا.',
-      fr: 'Découvre pourquoi regarder plus loin dans l\'espace revient aussi à regarder dans le passé.',
+      fr: "Découvre pourquoi regarder plus loin dans l'espace revient aussi à regarder dans le passé.",
       bn: 'মহাকাশে আরও দূরে তাকানো মানে অতীতের দিকেও তাকানো কেন তা জানো।',
       pt: 'Descubra por que observar mais longe no espaço também significa olhar para o passado.',
       ur: 'جانیں کہ خلا میں زیادہ دور دیکھنے کا مطلب ماضی میں دیکھنا کیوں ہے۔',

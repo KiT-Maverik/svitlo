@@ -42,7 +42,7 @@ export const stellarMass_Skill_Data = buildSkillConfig({
       hi: 'कक्षीय माप और मॉडलों का उपयोग करके तारे के द्रव्यमान का अनुमान लगाएँ।',
       es: 'Utiliza mediciones orbitales y modelos para estimar la masa de una estrella.',
       ar: 'استخدم قياسات المدارات والنماذج لتقدير كتلة نجم.',
-      fr: 'Utilisez des mesures orbitales et des modèles pour estimer la masse d\'une étoile.',
+      fr: "Utilisez des mesures orbitales et des modèles pour estimer la masse d'une étoile.",
       bn: 'কক্ষপথের পরিমাপ ও মডেল দিয়ে নক্ষত্রের ভর অনুমান করো।',
       pt: 'Use medições orbitais e modelos para estimar a massa de uma estrela.',
       ur: 'مداری پیمائشوں اور ماڈلوں کی مدد سے ستارے کی کمیت کا اندازہ لگائیں۔',

@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainMatterCyclingInEcosystems_Skill_Data = buildSkillConfig({
-  slug: "explainMatterCyclingInEcosystems",
-  id: "9e464e7a-6f16-4e07-b171-10188a24e7b9",
+  slug: 'explainMatterCyclingInEcosystems',
+  id: '9e464e7a-6f16-4e07-b171-10188a24e7b9',
   name: {
-    en: "Explain Matter Cycling in Ecosystems",
+    en: 'Explain Matter Cycling in Ecosystems',
     zh: '解释生态系统中的物质循环',
     hi: 'पारितंत्र में पदार्थ चक्रण समझाना',
     es: 'Explicar el ciclo de la materia en los ecosistemas',
@@ -35,9 +35,10 @@ export const explainMatterCyclingInEcosystems_Skill_Data = buildSkillConfig({
     qm: 'Ekosistemalarda madde devridaimini añlatmaq',
   },
   description: {
-    methodological: "Explain the repeated transfer and reuse of chemical elements and compounds between organisms and the abiotic environment through uptake, feeding, excretion, and decomposition; distinguish cyclical matter movement from one-way energy flow.",
+    methodological:
+      'Explain the repeated transfer and reuse of chemical elements and compounds between organisms and the abiotic environment through uptake, feeding, excretion, and decomposition; distinguish cyclical matter movement from one-way energy flow.',
     frontend: {
-      en: "Discover how matter passes between organisms and the nonliving environment.",
+      en: 'Discover how matter passes between organisms and the nonliving environment.',
       zh: '了解物质如何在生物与非生物环境之间不断流转。',
       hi: 'जानें कि पदार्थ जीवों और निर्जीव पर्यावरण के बीच कैसे चक्रित होता है।',
       es: 'Descubre cómo la materia circula entre los organismos y el entorno no vivo.',

@@ -43,7 +43,7 @@ export const variableStars_Skill_Data = buildSkillConfig({
       hi: 'जानें कि तारों की चमक किन अलग-अलग कारणों से बदल सकती है।',
       es: 'Reconoce las distintas causas de los cambios de brillo de una estrella.',
       ar: 'تعرّف الأسباب المختلفة لتغير سطوع النجم.',
-      fr: 'Reconnaissez les différentes causes des variations de l\'éclat d\'une étoile.',
+      fr: "Reconnaissez les différentes causes des variations de l'éclat d'une étoile.",
       bn: 'নক্ষত্রের উজ্জ্বলতা বদলানোর বিভিন্ন কারণ চিনে নাও।',
       pt: 'Reconheça as diferentes causas das variações no brilho de uma estrela.',
       ur: 'جانیں کہ ستارے کی چمک مختلف وجوہ سے کیسے بدل سکتی ہے۔',

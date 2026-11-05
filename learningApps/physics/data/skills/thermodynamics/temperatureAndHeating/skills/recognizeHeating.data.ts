@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const recognizeHeating_Skill_Data = buildSkillConfig({
-  slug: "recognizeHeating",
-  id: "2450cde5-4854-40ac-96e8-7138f35bdaa5",
+  slug: 'recognizeHeating',
+  id: '2450cde5-4854-40ac-96e8-7138f35bdaa5',
   name: {
-    en: "Recognize heating",
+    en: 'Recognize heating',
     qm: 'Qızdırıluvnı tanımaq',
     zh: '识别加热现象',
     hi: 'गर्म होने की प्रक्रिया पहचानना',
@@ -35,9 +35,10 @@ export const recognizeHeating_Skill_Data = buildSkillConfig({
     kk: 'Қыздыруды тану',
   },
   description: {
-    methodological: "An increase in temperature reflects a change in thermal state, but energy input does not always increase temperature during a phase transition.",
+    methodological:
+      'An increase in temperature reflects a change in thermal state, but energy input does not always increase temperature during a phase transition.',
     frontend: {
-      en: "Recognize changes in thermal state during heating.",
+      en: 'Recognize changes in thermal state during heating.',
       qm: 'Qızdırıluv vaqtında cisimniñ termik alında olğan deñişmelerni tanı.',
       zh: '识别加热过程中物体热状态的变化。',
       hi: 'गर्म करते समय ऊष्मीय अवस्था में होने वाले बदलाव पहचानें।',

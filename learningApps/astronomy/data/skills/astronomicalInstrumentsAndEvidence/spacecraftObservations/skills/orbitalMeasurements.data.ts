@@ -55,7 +55,7 @@ export const orbitalMeasurements_Skill_Data = buildSkillConfig({
       uk: 'Зрозумій, як повторні спостереження з орбіти допомагають створювати карти небесних тіл і стежити за їхніми змінами.',
       pl: 'Zrozum, jak powtarzane obserwacje z orbity pomagają tworzyć mapy ciał niebieskich i śledzić zachodzące na nich zmiany.',
       es: 'Comprende cómo las observaciones repetidas desde la órbita ayudan a crear mapas y seguir los cambios de otros mundos.',
-      fr: 'Comprends comment des observations répétées depuis l\'orbite permettent de cartographier des mondes et de suivre leurs changements.',
+      fr: "Comprends comment des observations répétées depuis l'orbite permettent de cartographier des mondes et de suivre leurs changements.",
       de: 'Verstehe, wie wiederholte Beobachtungen aus einer Umlaufbahn helfen, Himmelskörper zu kartieren und ihre Veränderungen zu verfolgen.',
       pt: 'Entenda como observações repetidas em órbita ajudam a mapear outros mundos e acompanhar suas mudanças.',
       id: 'Pahami bagaimana pengamatan berulang dari orbit membantu memetakan benda langit dan memantau perubahannya.',

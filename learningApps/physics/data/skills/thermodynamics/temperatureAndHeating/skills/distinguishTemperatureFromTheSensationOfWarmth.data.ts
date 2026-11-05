@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const distinguishTemperatureFromTheSensationOfWarmth_Skill_Data = buildSkillConfig({
-  slug: "distinguishTemperatureFromTheSensationOfWarmth",
-  id: "d38935af-72be-4728-bd55-dae223d738ff",
+  slug: 'distinguishTemperatureFromTheSensationOfWarmth',
+  id: 'd38935af-72be-4728-bd55-dae223d738ff',
   name: {
-    en: "Distinguish temperature from the sensation of warmth",
+    en: 'Distinguish temperature from the sensation of warmth',
     qm: 'Temperaturanı sıcaqlıq duyğusından ayırmaq',
     zh: '区分温度与温暖的感觉',
     hi: 'तापमान और गर्माहट की अनुभूति में अंतर करना',
@@ -35,9 +35,9 @@ export const distinguishTemperatureFromTheSensationOfWarmth_Skill_Data = buildSk
     kk: 'Температура мен жылу сезімін ажырату',
   },
   description: {
-    methodological: "Explain why the sensation of touch is not always an accurate measure of temperature.",
+    methodological: 'Explain why the sensation of touch is not always an accurate measure of temperature.',
     frontend: {
-      en: "Explain why two objects at the same temperature can feel different.",
+      en: 'Explain why two objects at the same temperature can feel different.',
       qm: 'Bir temperaturada olğan eki cisimniñ toqunğanda neden çeşit türlü sezilgenini añlat.',
       zh: '解释为什么两个温度相同的物体摸起来可能感觉不同。',
       hi: 'समझाएँ कि समान तापमान की दो वस्तुएँ छूने पर अलग क्यों महसूस हो सकती हैं।',

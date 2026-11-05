@@ -58,7 +58,7 @@ export const earthMoonInteractions_SkillGroup_Data = buildSkillGroupConfig({
       de: 'Erkunde, wie sich Mond und Erde durch die Schwerkraft gegenseitig beeinflussen.',
       ja: '月と地球が重力によって互いにどのような影響を及ぼすか調べましょう。',
       ko: '달과 지구가 중력으로 서로 어떤 영향을 주는지 알아보세요.',
-      tr: 'Ay ile Dünya\'nın kütleçekimi yoluyla birbirini nasıl etkilediğini keşfedin.',
+      tr: "Ay ile Dünya'nın kütleçekimi yoluyla birbirini nasıl etkilediğini keşfedin.",
       vi: 'Khám phá cách Mặt Trăng và Trái Đất tác động lẫn nhau thông qua lực hấp dẫn.',
       ta: 'நிலவும் பூமியும் ஈர்ப்பு விசையால் ஒன்றையொன்று எவ்வாறு பாதிக்கின்றன என்பதை ஆராயுங்கள்.',
       te: 'చంద్రుడు, భూమి గురుత్వాకర్షణ ద్వారా ఒకదానిపై మరొకటి ఎలా ప్రభావం చూపుతాయో తెలుసుకోండి.',

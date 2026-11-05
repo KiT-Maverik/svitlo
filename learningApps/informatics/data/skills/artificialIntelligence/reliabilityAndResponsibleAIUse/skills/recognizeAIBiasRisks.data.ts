@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const recognizeAIBiasRisks_Skill_Data = buildSkillConfig({
-  slug: "recognizeAIBiasRisks",
-  id: "c6ec71b6-d08f-4840-adb2-bd25f71746d5",
+  slug: 'recognizeAIBiasRisks',
+  id: 'c6ec71b6-d08f-4840-adb2-bd25f71746d5',
   name: {
-    en: "Recognize AI Bias Risks",
+    en: 'Recognize AI Bias Risks',
     zh: '识别人工智能偏见风险',
     hi: 'एआई में पक्षपात के जोखिम पहचानना',
     es: 'Reconocer riesgos de sesgo en la IA',
@@ -35,9 +35,10 @@ export const recognizeAIBiasRisks_Skill_Data = buildSkillConfig({
     qm: 'Suniy intellektniñ tarafkârlıq havflarını tanımaq',
   },
   description: {
-    methodological: "Notice how training data or deployment rules may produce systematically different outcomes for groups or individuals. One erroneous output does not necessarily establish systematic bias.",
+    methodological:
+      'Notice how training data or deployment rules may produce systematically different outcomes for groups or individuals. One erroneous output does not necessarily establish systematic bias.',
     frontend: {
-      en: "Recognize when AI systems might treat groups or individuals unfairly.",
+      en: 'Recognize when AI systems might treat groups or individuals unfairly.',
       zh: '识别人工智能系统可能不公平对待群体或个人的情况。',
       hi: 'पहचानें कि एआई प्रणाली कब समूहों या व्यक्तियों के साथ अन्याय कर सकती है।',
       es: 'Reconoce cuándo los sistemas de IA podrían tratar injustamente a grupos o personas.',

@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainRandomThermalMotionOfParticles_Skill_Data = buildSkillConfig({
-  slug: "explainRandomThermalMotionOfParticles",
-  id: "45620736-e248-44d5-b084-b48305f4c113",
+  slug: 'explainRandomThermalMotionOfParticles',
+  id: '45620736-e248-44d5-b084-b48305f4c113',
   name: {
-    en: "Explain random thermal motion of particles",
+    en: 'Explain random thermal motion of particles',
     qm: 'Parçacıqlarnıñ tertipsiz termik areketini añlatmaq',
     zh: '解释粒子的无规则热运动',
     hi: 'कणों की अनियमित ऊष्मीय गति समझाना',
@@ -35,9 +35,10 @@ export const explainRandomThermalMotionOfParticles_Skill_Data = buildSkillConfig
     kk: 'Бөлшектердің ретсіз жылулық қозғалысын түсіндіру',
   },
   description: {
-    methodological: "Particles of matter are constantly moving, but not all at the same speed; the type of motion depends on the physical state.",
+    methodological:
+      'Particles of matter are constantly moving, but not all at the same speed; the type of motion depends on the physical state.',
     frontend: {
-      en: "Understand why particles continually move in different ways and speeds.",
+      en: 'Understand why particles continually move in different ways and speeds.',
       qm: 'Parçacıqlar neden daima çeşit süratlerde ve çeşit yönlerde areket etkenini añla.',
       zh: '理解粒子为什么持续以不同的方式和速度运动。',
       hi: 'समझें कि कण अलग-अलग तरीकों और चाल से लगातार क्यों चलते रहते हैं।',

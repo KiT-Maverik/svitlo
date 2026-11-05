@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const distinguishTreesShrubsAndHerbaceousPlants_Skill_Data = buildSkillConfig({
-  slug: "distinguishTreesShrubsAndHerbaceousPlants",
-  id: "ab0fe3e7-2bd8-4550-a4c6-df4133fff2d9",
+  slug: 'distinguishTreesShrubsAndHerbaceousPlants',
+  id: 'ab0fe3e7-2bd8-4550-a4c6-df4133fff2d9',
   name: {
-    en: "Distinguish Trees, Shrubs, and Herbaceous Plants",
+    en: 'Distinguish Trees, Shrubs, and Herbaceous Plants',
     zh: '区分乔木、灌木与草本植物',
     hi: 'वृक्ष, झाड़ी और शाकीय पौधों में अंतर करना',
     es: 'Distinguir árboles, arbustos y plantas herbáceas',
@@ -35,9 +35,9 @@ export const distinguishTreesShrubsAndHerbaceousPlants_Skill_Data = buildSkillCo
     qm: 'Ağaçlar, çalılar ve ot ösümliklerini farqlamaq',
   },
   description: {
-    methodological: "Determine growth form from the type and branching pattern of woody or herbaceous stems.",
+    methodological: 'Determine growth form from the type and branching pattern of woody or herbaceous stems.',
     frontend: {
-      en: "Distinguish trees, shrubs and herbaceous plants by how their stems grow.",
+      en: 'Distinguish trees, shrubs and herbaceous plants by how their stems grow.',
       zh: '根据茎的生长和分枝方式区分乔木、灌木和草本植物。',
       hi: 'तनों की वृद्धि के आधार पर वृक्षों, झाड़ियों और शाकीय पौधों को अलग पहचानें।',
       es: 'Distingue árboles, arbustos y herbáceas según cómo crecen sus tallos.',

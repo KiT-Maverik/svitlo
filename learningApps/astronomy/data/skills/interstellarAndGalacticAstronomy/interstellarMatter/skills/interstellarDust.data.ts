@@ -43,7 +43,7 @@ export const interstellarDust_Skill_Data = buildSkillConfig({
       hi: 'जानें कि अंतरतारकीय धूल तारों के प्रकाश को मंद और लाल कैसे करती है तथा अवरक्त विकिरण कैसे उत्सर्जित करती है।',
       es: 'Descubre cómo el polvo interestelar atenúa y enrojece la luz estelar y emite radiación infrarroja.',
       ar: 'اعرف كيف يخفت الغبار بين النجوم ضوءها ويجعله أكثر احمرارًا ثم يعيد إشعاعه.',
-      fr: 'Découvre comment la poussière interstellaire atténue et rougit la lumière des étoiles, puis réémet de l\'énergie.',
+      fr: "Découvre comment la poussière interstellaire atténue et rougit la lumière des étoiles, puis réémet de l'énergie.",
       bn: 'তারার মধ্যবর্তী ধূলিকণা কীভাবে তারার আলো কমায়, লাল করে ও আবার বিকিরণ করে তা জানো।',
       pt: 'Veja como a poeira interestelar atenua e avermelha a luz das estrelas e emite radiação infravermelha.',
       ur: 'جانیں کہ گرد ستاروں کی روشنی کو کیسے مدھم اور سرخ کرتی اور پھر دوبارہ خارج کرتی ہے۔',

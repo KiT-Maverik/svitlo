@@ -72,7 +72,7 @@ export const heliosphericEffects_SkillGroup_Data = buildSkillGroupConfig({
       de: 'Untersuche, wie Teilchen von der Sonne und Magnetfelder den umgebenden Weltraum beeinflussen.',
       pt: 'Investigue como as partículas solares e os campos magnéticos afetam o espaço ao redor.',
       id: 'Selidiki bagaimana partikel dari Matahari dan medan magnet memengaruhi ruang angkasa di sekitarnya.',
-      tr: 'Güneş\'ten gelen parçacıkların ve manyetik alanların çevredeki uzayı nasıl etkilediğini araştır.',
+      tr: "Güneş'ten gelen parçacıkların ve manyetik alanların çevredeki uzayı nasıl etkilediğini araştır.",
       zh: '研究太阳粒子和磁场如何影响周围的太空环境。',
       ja: '太陽からの粒子や磁場が周囲の宇宙空間にどう影響するか調べよう。',
       ko: '태양에서 나오는 입자와 자기장이 주변 우주 공간에 어떤 영향을 미치는지 알아보세요.',

@@ -18,7 +18,11 @@ function fixture() {
         },
         sections: [
           {
-            id: 'section-id', slug: 'theory', type: 'theory', title: 'Теорія', navigationLabel: 'Теорія',
+            id: 'section-id',
+            slug: 'theory',
+            type: 'theory',
+            title: 'Теорія',
+            navigationLabel: 'Теорія',
             content: [
               { type: 'markdown', id: 'markdown-id', slug: 'p1', locales: '# Світло' },
               { type: 'scene', id: 'scene-id', slug: 'ray', locales: { scene: { title: 'Промінь' } } },
@@ -26,19 +30,30 @@ function fixture() {
             ],
           },
           {
-            id: 'quiz-section', slug: 'quiz', type: 'quiz', title: 'Тест', navigationLabel: 'Тест',
+            id: 'quiz-section',
+            slug: 'quiz',
+            type: 'quiz',
+            title: 'Тест',
+            navigationLabel: 'Тест',
             content: [{ type: 'quiz', id: 'quiz-id', slug: 'quiz', questionSlugs: ['q1'] }],
           },
         ],
       },
     },
     flashcards: { localeSources: {}, data: [{ id: 'card-id' }] },
-    questions: { localeSources: {}, data: { selectOneAnswer: {
-      q1: {
-        id: 'question-id', slug: 'q1', type: 'selectOneAnswer',
-        question: [{ id: 'prompt-id', slug: 'prompt', type: 'text', value: 'Запитання' }],
+    questions: {
+      localeSources: {},
+      data: {
+        selectOneAnswer: {
+          q1: {
+            id: 'question-id',
+            slug: 'q1',
+            type: 'selectOneAnswer',
+            question: [{ id: 'prompt-id', slug: 'prompt', type: 'text', value: 'Запитання' }],
+          },
+        },
       },
-    } } },
+    },
   };
 }
 
@@ -106,11 +121,15 @@ describe('assembleLessonResponse', () => {
   });
 
   it('rejects the wrong identity or an unsupported locale', () => {
-    expect(() => assembleLessonResponse('00000000-0000-5000-8000-000000000002', 'uk', fixture())).toThrow(/identity mismatch/);
+    expect(() => assembleLessonResponse('00000000-0000-5000-8000-000000000002', 'uk', fixture())).toThrow(
+      /identity mismatch/,
+    );
     const unsupported = fixture();
-    expect(() => assembleLessonResponse(id, 'fr', {
-      ...unsupported,
-      config: { ...unsupported.config, localeSources: {} },
-    })).toThrow(/does not support language/);
+    expect(() =>
+      assembleLessonResponse(id, 'fr', {
+        ...unsupported,
+        config: { ...unsupported.config, localeSources: {} },
+      }),
+    ).toThrow(/does not support language/);
   });
 });

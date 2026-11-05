@@ -21,7 +21,14 @@ export type LessonLearningLayoutBindings = {
 
 /** Bind app-owned hooks once, without duplicating layout and navigation logic. */
 export function createLessonLearningLayout(bindings: LessonLearningLayoutBindings) {
-  function LessonLearningLayout({ children, topics, skippableSteps, quizStep, pathname, messages }: LessonLearningLayoutProps) {
+  function LessonLearningLayout({
+    children,
+    topics,
+    skippableSteps,
+    quizStep,
+    pathname,
+    messages,
+  }: LessonLearningLayoutProps) {
     const { locale, setLocale } = bindings.useLocale();
     const { progress, dispatch } = useLessonNavigation();
     const { mode, systemMode, setMode } = useColorScheme();

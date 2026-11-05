@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const recognizeAmphibianCharacteristics_Skill_Data = buildSkillConfig({
-  slug: "recognizeAmphibianCharacteristics",
-  id: "8ef5ace8-ab51-4f31-9564-7f56fe98b7e3",
+  slug: 'recognizeAmphibianCharacteristics',
+  id: '8ef5ace8-ab51-4f31-9564-7f56fe98b7e3',
   name: {
-    en: "Recognize Amphibian Characteristics",
+    en: 'Recognize Amphibian Characteristics',
     zh: '识别两栖动物的特征',
     hi: 'उभयचरों की विशेषताएँ पहचानना',
     es: 'Reconocer las características de los anfibios',
@@ -35,9 +35,10 @@ export const recognizeAmphibianCharacteristics_Skill_Data = buildSkillConfig({
     qm: 'Amfibiyalarnıñ belgilerini tanımaq',
   },
   description: {
-    methodological: "Identify characteristic features of a group in which development is often associated with water and adults may use lungs and skin for respiration.",
+    methodological:
+      'Identify characteristic features of a group in which development is often associated with water and adults may use lungs and skin for respiration.',
     frontend: {
-      en: "Recognize common features of amphibians and their development.",
+      en: 'Recognize common features of amphibians and their development.',
       zh: '识别两栖动物及其发育过程的共同特征。',
       hi: 'उभयचरों और उनके विकास की सामान्य विशेषताएँ पहचानें।',
       es: 'Reconoce los rasgos comunes de los anfibios y de su desarrollo.',

@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainMechanismsOfTraitInheritance_Skill_Data = buildSkillConfig({
-  slug: "explainMechanismsOfTraitInheritance",
-  id: "d26699ca-8595-4e62-8d15-035c2262fe7f",
+  slug: 'explainMechanismsOfTraitInheritance',
+  id: 'd26699ca-8595-4e62-8d15-035c2262fe7f',
   name: {
-    en: "Explain Mechanisms of Trait Inheritance",
+    en: 'Explain Mechanisms of Trait Inheritance',
     zh: '解释性状遗传的机制',
     hi: 'लक्षणों की वंशागति के तरीके समझाना',
     es: 'Explicar los mecanismos de herencia de los rasgos',
@@ -35,9 +35,10 @@ export const explainMechanismsOfTraitInheritance_Skill_Data = buildSkillConfig({
     qm: 'Belgilerniñ irsiy keçüv mehanizmlerini añlatmaq',
   },
   description: {
-    methodological: "Explain the roles of genes, alleles, and chromosomes, segregation of alleles, and formation of their combinations in offspring. Apply Mendelian patterns where appropriate and distinguish them from polygenic and environmentally influenced traits.",
+    methodological:
+      'Explain the roles of genes, alleles, and chromosomes, segregation of alleles, and formation of their combinations in offspring. Apply Mendelian patterns where appropriate and distinguish them from polygenic and environmentally influenced traits.',
     frontend: {
-      en: "Explore how genes and their variants are inherited across generations.",
+      en: 'Explore how genes and their variants are inherited across generations.',
       zh: '探索基因及其不同变体如何代代遗传。',
       hi: 'जानें कि जीन और उनके विभिन्न रूप पीढ़ी-दर-पीढ़ी कैसे विरासत में मिलते हैं।',
       es: 'Explora cómo los genes y sus variantes se heredan de una generación a otra.',

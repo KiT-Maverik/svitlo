@@ -44,7 +44,7 @@ export const cosmologicalModels_Skill_Data = buildSkillConfig({
       hi: 'ब्रह्मांड के विस्तार के मॉडल और उनकी धारणाओं तथा भविष्यवाणियों की तुलना करें।',
       es: 'Compara modelos de expansión del Universo, sus supuestos y predicciones.',
       ar: 'قارن نماذج تمدد الكون من حيث افتراضاتها وتنبؤاتها.',
-      fr: 'Compare les modèles de l\'expansion cosmique, leurs hypothèses et leurs prédictions.',
+      fr: "Compare les modèles de l'expansion cosmique, leurs hypothèses et leurs prédictions.",
       bn: 'মহাবিশ্বের প্রসারণের বিভিন্ন মডেল, তাদের অনুমান ও পূর্বাভাস তুলনা করো।',
       pt: 'Compare modelos de expansão do Universo, suas hipóteses e previsões.',
       ur: 'کائناتی پھیلاؤ کے نمونوں، ان کے مفروضوں اور پیش گوئیوں کا موازنہ کریں۔',

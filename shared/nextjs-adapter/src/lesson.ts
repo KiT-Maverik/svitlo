@@ -86,9 +86,9 @@ export { loadPublishedLesson } from './publishedLesson';
  * A host still owns its scene registry, navigation bindings and client renderer.
  * Custom data sources may override either loader explicitly.
  */
-export function createPublishedLessonPage(bindings:
-  Pick<LessonPageBindings<LessonResponse>, 'renderLesson'> &
-  Partial<Pick<LessonPageBindings<LessonResponse>, 'loadLesson' | 'loadMessages'>>
+export function createPublishedLessonPage(
+  bindings: Pick<LessonPageBindings<LessonResponse>, 'renderLesson'> &
+    Partial<Pick<LessonPageBindings<LessonResponse>, 'loadLesson' | 'loadMessages'>>,
 ) {
   return createLessonPage<LessonResponse>({
     loadLesson: bindings.loadLesson ?? loadPublishedLesson,

@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const recognizeInsectCharacteristics_Skill_Data = buildSkillConfig({
-  slug: "recognizeInsectCharacteristics",
-  id: "93bd329c-0834-43a0-8b63-51058c855ea9",
+  slug: 'recognizeInsectCharacteristics',
+  id: '93bd329c-0834-43a0-8b63-51058c855ea9',
   name: {
-    en: "Recognize Insect Characteristics",
+    en: 'Recognize Insect Characteristics',
     zh: '识别昆虫的特征',
     hi: 'कीटों की विशेषताएँ पहचानना',
     es: 'Reconocer las características de los insectos',
@@ -35,9 +35,9 @@ export const recognizeInsectCharacteristics_Skill_Data = buildSkillConfig({
     qm: 'İnsektlerniñ belgilerini tanımaq',
   },
   description: {
-    methodological: "Identify six legs, three main body regions, and other characteristic features of adult insects.",
+    methodological: 'Identify six legs, three main body regions, and other characteristic features of adult insects.',
     frontend: {
-      en: "Recognize insects by their six legs and three main body regions.",
+      en: 'Recognize insects by their six legs and three main body regions.',
       zh: '根据六条腿和三个主要身体部分识别昆虫。',
       hi: 'कीटों को उनके छह पैरों और शरीर के तीन प्रमुख भागों से पहचानें।',
       es: 'Reconoce los insectos por sus seis patas y tres regiones principales del cuerpo.',

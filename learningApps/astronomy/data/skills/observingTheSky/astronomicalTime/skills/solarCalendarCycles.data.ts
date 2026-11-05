@@ -52,7 +52,7 @@ export const solarCalendarCycles_Skill_Data = buildSkillConfig({
       de: 'Entdecke den Zusammenhang zwischen der jährlichen Bewegung der Erde und den Zyklen des Sonnenkalenders.',
       ja: '地球の年周運動と太陽暦の周期のつながりを学ぼう。',
       ko: '지구의 연간 운동과 태양력의 주기가 어떻게 연결되는지 알아보세요.',
-      tr: 'Dünya\'nın yıllık hareketiyle güneş takviminin döngüleri arasındaki ilişkiyi keşfet.',
+      tr: "Dünya'nın yıllık hareketiyle güneş takviminin döngüleri arasındaki ilişkiyi keşfet.",
       vi: 'Tìm hiểu mối liên hệ giữa chuyển động hằng năm của Trái Đất và các chu kỳ dương lịch.',
       ta: 'பூமியின் ஆண்டு இயக்கத்துக்கும் சூரிய நாட்காட்டியின் சுழற்சிகளுக்கும் உள்ள தொடர்பை அறிந்துகொள்.',
       te: 'భూమి వార్షిక చలనానికి, సౌర క్యాలెండర్ చక్రాలకు మధ్య సంబంధాన్ని తెలుసుకోండి.',

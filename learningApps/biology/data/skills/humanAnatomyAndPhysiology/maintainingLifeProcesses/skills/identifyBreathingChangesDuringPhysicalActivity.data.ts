@@ -1,15 +1,15 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const identifyBreathingChangesDuringPhysicalActivity_Skill_Data = buildSkillConfig({
-  slug: "identifyBreathingChangesDuringPhysicalActivity",
-  id: "7704b6a9-1337-49cb-bb19-7e5fab73f96d",
+  slug: 'identifyBreathingChangesDuringPhysicalActivity',
+  id: '7704b6a9-1337-49cb-bb19-7e5fab73f96d',
   name: {
-    en: "Identify Breathing Changes During Physical Activity",
+    en: 'Identify Breathing Changes During Physical Activity',
     zh: '识别身体活动时呼吸的变化',
     hi: 'शारीरिक गतिविधि के दौरान श्वसन में बदलाव पहचानना',
     es: 'Identificar cambios en la respiración durante la actividad física',
     ar: 'تحديد تغيرات التنفس أثناء النشاط البدني',
-    fr: 'Identifier les changements de respiration pendant l\'activité physique',
+    fr: "Identifier les changements de respiration pendant l'activité physique",
     bn: 'শারীরিক পরিশ্রমে শ্বাসপ্রশ্বাসের পরিবর্তন শনাক্ত করা',
     pt: 'Identificar mudanças na respiração durante atividade física',
     ur: 'جسمانی سرگرمی کے دوران سانس میں تبدیلیاں پہچاننا',
@@ -35,14 +35,15 @@ export const identifyBreathingChangesDuringPhysicalActivity_Skill_Data = buildSk
     qm: 'Fizik faallik vaqtında nefes aluv deñişmelerini belgilemek',
   },
   description: {
-    methodological: "Relate faster and deeper breathing to the increased need of working muscles for oxygen and removal of CO₂.",
+    methodological:
+      'Relate faster and deeper breathing to the increased need of working muscles for oxygen and removal of CO₂.',
     frontend: {
-      en: "Explain why breathing changes during physical activity.",
+      en: 'Explain why breathing changes during physical activity.',
       zh: '解释为什么身体活动时呼吸会发生变化。',
       hi: 'शारीरिक गतिविधि के दौरान साँस लेने की दर और गहराई में होने वाले बदलावों को पहचानें।',
       es: 'Identifica cómo cambian la frecuencia y la profundidad de la respiración durante la actividad física.',
       ar: 'اشرح لماذا يتغير التنفس أثناء النشاط البدني.',
-      fr: 'Expliquez pourquoi la respiration change pendant l\'activité physique.',
+      fr: "Expliquez pourquoi la respiration change pendant l'activité physique.",
       bn: 'শারীরিক পরিশ্রমে শ্বাসপ্রশ্বাস কেন বদলে যায়, তা ব্যাখ্যা করো।',
       pt: 'Explique por que a respiração muda durante a atividade física.',
       ur: 'وضاحت کریں کہ جسمانی سرگرمی کے دوران سانس کیوں بدلتی ہے۔',

@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const identifyTheHeatTransferMechanismFromAPhysicalSituation_Skill_Data = buildSkillConfig({
-  slug: "identifyTheHeatTransferMechanismFromAPhysicalSituation",
-  id: "d26f04f8-7e59-46f1-8f45-d3e7479e98db",
+  slug: 'identifyTheHeatTransferMechanismFromAPhysicalSituation',
+  id: 'd26f04f8-7e59-46f1-8f45-d3e7479e98db',
   name: {
-    en: "Identify the heat-transfer mechanism from a physical situation",
+    en: 'Identify the heat-transfer mechanism from a physical situation',
     qm: 'Bir fizik vaziyette sıcaqlıq berilüv yolunı belgilemek',
     zh: '从物理情境中识别传热机制',
     hi: 'भौतिक स्थिति में ऊष्मा स्थानांतरण की विधि पहचानना',
@@ -35,9 +35,10 @@ export const identifyTheHeatTransferMechanismFromAPhysicalSituation_Skill_Data =
     kk: 'Физикалық жағдайда жылу берілу механизмін анықтау',
   },
   description: {
-    methodological: "For a hot spoon, heated water, or sunlight, select and justify conduction, convection, radiation, or a combination of them. This is an integrative competency, not three separate tests combined in one task.",
+    methodological:
+      'For a hot spoon, heated water, or sunlight, select and justify conduction, convection, radiation, or a combination of them. This is an integrative competency, not three separate tests combined in one task.',
     frontend: {
-      en: "Identify which heat-transfer processes operate in a given situation.",
+      en: 'Identify which heat-transfer processes operate in a given situation.',
       qm: 'Bu vaziyette sıcaqlıq keçirilişi, konvektsiya ya da nurlanuvdan qaysıları olğanını belgile.',
       zh: '判断某一情境中发生了哪些热传递过程。',
       hi: 'पहचानें कि किसी स्थिति में ऊष्मा स्थानांतरण की कौन-सी प्रक्रियाएँ काम कर रही हैं।',

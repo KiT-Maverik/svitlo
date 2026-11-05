@@ -18,8 +18,24 @@ import { locale as kkPreferences } from '../../../../shared/ui-kit/data/componen
 import { locale as qmPreferences } from '../../../../shared/ui-kit/data/components/NavbarPreferences/crh-Latn-UA.data';
 
 const root = process.cwd();
-const layouts = { 'lt-LT': ltLayout, 'lv-LV': lvLayout, 'et-EE': etLayout, 'be-tarask': beLayout, 'ka-GE': kaLayout, 'kk-Cyrl-KZ': kkLayout, 'crh-Latn-UA': qmLayout };
-const preferences = { 'lt-LT': ltPreferences, 'lv-LV': lvPreferences, 'et-EE': etPreferences, 'be-tarask': bePreferences, 'ka-GE': kaPreferences, 'kk-Cyrl-KZ': kkPreferences, 'crh-Latn-UA': qmPreferences };
+const layouts = {
+  'lt-LT': ltLayout,
+  'lv-LV': lvLayout,
+  'et-EE': etLayout,
+  'be-tarask': beLayout,
+  'ka-GE': kaLayout,
+  'kk-Cyrl-KZ': kkLayout,
+  'crh-Latn-UA': qmLayout,
+};
+const preferences = {
+  'lt-LT': ltPreferences,
+  'lv-LV': lvPreferences,
+  'et-EE': etPreferences,
+  'be-tarask': bePreferences,
+  'ka-GE': kaPreferences,
+  'kk-Cyrl-KZ': kkPreferences,
+  'crh-Latn-UA': qmPreferences,
+};
 const newLanguages = ['lt', 'lv', 'et', 'be', 'ka', 'kk'] as const;
 const newLocales = ['lt-LT', 'lv-LV', 'et-EE', 'be-tarask', 'ka-GE', 'kk-Cyrl-KZ'] as const;
 

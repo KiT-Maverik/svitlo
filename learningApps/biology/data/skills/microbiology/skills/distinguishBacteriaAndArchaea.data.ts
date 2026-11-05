@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const distinguishBacteriaAndArchaea_Skill_Data = buildSkillConfig({
-  slug: "distinguishBacteriaAndArchaea",
-  id: "a3ec9c81-141b-4595-ad58-e3dc6ee9409c",
+  slug: 'distinguishBacteriaAndArchaea',
+  id: 'a3ec9c81-141b-4595-ad58-e3dc6ee9409c',
   name: {
-    en: "Distinguish Bacteria and Archaea",
+    en: 'Distinguish Bacteria and Archaea',
     zh: '区分细菌与古菌',
     hi: 'जीवाणुओं और आर्किया में अंतर करना',
     es: 'Distinguir bacterias y arqueas',
@@ -35,14 +35,15 @@ export const distinguishBacteriaAndArchaea_Skill_Data = buildSkillConfig({
     qm: 'Bakteriyalar ve arheyalarnı bir-birinden ayırmaq',
   },
   description: {
-    methodological: "Explain that bacteria and archaea are separate evolutionary lineages of cellular organisms without a membrane-bound nucleus; molecular structural differences, including membrane lipids and cell envelopes, cannot be reduced to external cell shape.",
+    methodological:
+      'Explain that bacteria and archaea are separate evolutionary lineages of cellular organisms without a membrane-bound nucleus; molecular structural differences, including membrane lipids and cell envelopes, cannot be reduced to external cell shape.',
     frontend: {
-      en: "Distinguish bacteria and archaea as different groups of cellular organisms.",
+      en: 'Distinguish bacteria and archaea as different groups of cellular organisms.',
       zh: '认识细菌和古菌是两类不同的细胞生物。',
       hi: 'जीवाणुओं और आर्किया को कोशिकीय जीवों के दो अलग समूहों के रूप में पहचानें।',
       es: 'Distingue bacterias y arqueas como dos grupos distintos de organismos celulares.',
       ar: 'ميّز البكتيريا والعتائق بوصفهما مجموعتين مختلفتين من الكائنات الخلوية.',
-      fr: 'Distinguez les bactéries et les archées comme deux groupes distincts d\'organismes cellulaires.',
+      fr: "Distinguez les bactéries et les archées comme deux groupes distincts d'organismes cellulaires.",
       bn: 'ব্যাকটেরিয়া ও আর্কিয়াকে কোষবিশিষ্ট জীবের দুটি স্বতন্ত্র গোষ্ঠী হিসেবে চেনো।',
       pt: 'Distinga bactérias e arqueias como dois grupos distintos de organismos celulares.',
       ur: 'بیکٹیریا اور آرکیا کو خلیاتی جانداروں کے دو الگ گروہوں کے طور پر پہچانیں۔',

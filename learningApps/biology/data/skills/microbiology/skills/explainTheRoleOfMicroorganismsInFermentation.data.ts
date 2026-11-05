@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainTheRoleOfMicroorganismsInFermentation_Skill_Data = buildSkillConfig({
-  slug: "explainTheRoleOfMicroorganismsInFermentation",
-  id: "6f3ae271-f262-4af5-9239-3a00c348f271",
+  slug: 'explainTheRoleOfMicroorganismsInFermentation',
+  id: '6f3ae271-f262-4af5-9239-3a00c348f271',
   name: {
-    en: "Explain the Role of Microorganisms in Fermentation",
+    en: 'Explain the Role of Microorganisms in Fermentation',
     zh: '解释微生物在发酵中的作用',
     hi: 'किण्वन में सूक्ष्मजीवों की भूमिका समझाना',
     es: 'Explicar el papel de los microorganismos en la fermentación',
@@ -35,9 +35,10 @@ export const explainTheRoleOfMicroorganismsInFermentation_Skill_Data = buildSkil
     qm: 'Fermentatsiyada mikroorganizmlerniñ rolüni añlatmaq',
   },
   description: {
-    methodological: "Relate microbial transformations of sugars to the production of new products in food technologies.",
+    methodological:
+      'Relate microbial transformations of sugars to the production of new products in food technologies.',
     frontend: {
-      en: "Explain how microorganisms transform ingredients during fermentation.",
+      en: 'Explain how microorganisms transform ingredients during fermentation.',
       zh: '解释微生物如何在发酵过程中改变食材。',
       hi: 'समझाएँ कि सूक्ष्मजीव किण्वन के दौरान खाद्य सामग्री को कैसे बदलते हैं।',
       es: 'Explica cómo los microorganismos transforman los ingredientes durante la fermentación.',

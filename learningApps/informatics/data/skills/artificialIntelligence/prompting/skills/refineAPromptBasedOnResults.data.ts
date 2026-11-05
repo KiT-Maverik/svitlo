@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const refineAPromptBasedOnResults_Skill_Data = buildSkillConfig({
-  slug: "refineAPromptBasedOnResults",
-  id: "058e7465-1cff-43db-a856-613fa36df599",
+  slug: 'refineAPromptBasedOnResults',
+  id: '058e7465-1cff-43db-a856-613fa36df599',
   name: {
-    en: "Refine a Prompt Based on Results",
+    en: 'Refine a Prompt Based on Results',
     zh: '根据结果改进提示词',
     hi: 'परिणाम देखकर प्रॉम्प्ट सुधारना',
     es: 'Mejorar un prompt según los resultados',
@@ -35,9 +35,10 @@ export const refineAPromptBasedOnResults_Skill_Data = buildSkillConfig({
     qm: 'Neticelerge köre soravnı yahşılaştırmaq',
   },
   description: {
-    methodological: "Compare output with the original goal and adjust specific parts of a prompt responsible for discrepancies. Rewording cannot substitute for fact-checking the model's claims.",
+    methodological:
+      "Compare output with the original goal and adjust specific parts of a prompt responsible for discrepancies. Rewording cannot substitute for fact-checking the model's claims.",
     frontend: {
-      en: "Improve an AI request after checking what its previous response missed.",
+      en: 'Improve an AI request after checking what its previous response missed.',
       zh: '检查之前的回答遗漏了什么，再改进人工智能请求。',
       hi: 'पिछले उत्तर में क्या छूटा, यह जाँचकर एआई से अपना अनुरोध बेहतर बनाएँ।',
       es: 'Mejora tu solicitud a la IA tras comprobar qué faltó en la respuesta anterior.',

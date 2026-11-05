@@ -43,7 +43,7 @@ export const supernovae_Skill_Data = buildSkillConfig({
       hi: 'सुपरनोवा विस्फोट पैदा करने वाली विभिन्न प्रक्रियाओं की तुलना करें।',
       es: 'Compara los distintos procesos que producen explosiones de supernova.',
       ar: 'قارن بين العمليات المختلفة التي تؤدي إلى انفجارات المستعرات العظمى.',
-      fr: 'Comparez les différents processus à l\'origine des explosions de supernovae.',
+      fr: "Comparez les différents processus à l'origine des explosions de supernovae.",
       bn: 'অতিনবতারা বিস্ফোরণ ঘটানোর বিভিন্ন প্রক্রিয়ার তুলনা করো।',
       pt: 'Compare os diferentes processos que provocam explosões de supernova.',
       ur: 'سپرنووا دھماکے پیدا کرنے والے مختلف عملوں کا موازنہ کریں۔',

@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainThePrincipleOfGeneticModification_Skill_Data = buildSkillConfig({
-  slug: "explainThePrincipleOfGeneticModification",
-  id: "6350e09a-4fc8-48de-89a1-6ce047c2db6b",
+  slug: 'explainThePrincipleOfGeneticModification',
+  id: '6350e09a-4fc8-48de-89a1-6ce047c2db6b',
   name: {
-    en: "Explain the Principle of Genetic Modification",
+    en: 'Explain the Principle of Genetic Modification',
     zh: '解释基因改造的原理',
     hi: 'आनुवंशिक संशोधन का सिद्धांत समझाना',
     es: 'Explicar el principio de la modificación genética',
@@ -35,14 +35,15 @@ export const explainThePrincipleOfGeneticModification_Skill_Data = buildSkillCon
     qm: 'Genetik deñiştirüv printsipini añlatmaq',
   },
   description: {
-    methodological: "Define genetic modification as the intentional alteration of genetic material by biotechnological methods. Distinguish changing DNA from simply selecting organisms by traits without assuming that every genetic change automatically brings benefits or harm.",
+    methodological:
+      'Define genetic modification as the intentional alteration of genetic material by biotechnological methods. Distinguish changing DNA from simply selecting organisms by traits without assuming that every genetic change automatically brings benefits or harm.',
     frontend: {
-      en: "Explain how genetic modification changes DNA, unlike choosing parents for breeding.",
+      en: 'Explain how genetic modification changes DNA, unlike choosing parents for breeding.',
       zh: '解释基因改造如何改变 DNA，以及它与为育种选择亲本有何不同。',
       hi: 'समझाएँ कि आनुवंशिक संशोधन डीएनए में कैसे बदलाव करता है, जबकि चयनात्मक प्रजनन में वांछित गुणों वाले जनक जीव चुने जाते हैं।',
       es: 'Explica cómo la modificación genética cambia el ADN, a diferencia de elegir progenitores para la cría.',
       ar: 'اشرح كيف يغيّر التعديل الوراثي الحمض النووي، بخلاف اختيار الكائنات الأبوية للتربية الانتقائية.',
-      fr: 'Explique comment la modification génétique change l\'ADN, contrairement à la sélection d\'organismes reproducteurs pour l\'élevage ou la culture.',
+      fr: "Explique comment la modification génétique change l'ADN, contrairement à la sélection d'organismes reproducteurs pour l'élevage ou la culture.",
       bn: 'প্রজননের জন্য জনক জীব নির্বাচন করার পরিবর্তে জিনগত পরিবর্তন কীভাবে সরাসরি ডিএনএ বদলায়, তা ব্যাখ্যা করো।',
       pt: 'Explique como a modificação genética altera o DNA, diferentemente da escolha dos progenitores para reprodução.',
       ur: 'وضاحت کریں کہ جینیاتی ترمیم ڈی این اے کو کیسے بدلتی ہے اور یہ افزائش کے لیے والدینی جانداروں کے انتخاب سے کیسے مختلف ہے۔',
@@ -50,7 +51,7 @@ export const explainThePrincipleOfGeneticModification_Skill_Data = buildSkillCon
       de: 'Erkläre, wie genetische Veränderung die DNA verändert, anders als die Auswahl von Elterntieren oder Elternpflanzen für die Zucht.',
       ja: '交配のために親を選ぶこととは異なり、遺伝子改変がどのようにDNAを変えるか説明しよう。',
       ko: '교배할 부모 개체를 선택하는 것과 달리 유전자 변형이 DNA를 어떻게 바꾸는지 설명해 보세요.',
-      tr: 'Genetik değiştirmenin DNA\'yı nasıl değiştirdiğini ve bunun yetiştirme için ebeveyn seçmekten farkını açıkla.',
+      tr: "Genetik değiştirmenin DNA'yı nasıl değiştirdiğini ve bunun yetiştirme için ebeveyn seçmekten farkını açıkla.",
       vi: 'Giải thích biến đổi gen làm thay đổi ADN như thế nào, khác với việc chọn bố mẹ để nhân giống.',
       ta: 'இனப்பெருக்கத்திற்குப் பெற்றோர் உயிரினங்களைத் தேர்ந்தெடுப்பதிலிருந்து வேறுபட்டு, மரபணு மாற்றம் டிஎன்ஏவை எவ்வாறு மாற்றுகிறது என்பதை விளக்கு.',
       te: 'సంతానోత్పత్తికి తల్లిదండ్రులను ఎంచుకోవడంలా కాకుండా, జన్యు మార్పిడి DNAను ఎలా మారుస్తుందో వివరించండి.',

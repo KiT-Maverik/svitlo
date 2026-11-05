@@ -4,4 +4,3 @@ export type ImageFailureKind = 'offline' | 'unavailable';
 export function imageUnoptimized(src: string, configured?: boolean): boolean {
   return configured ?? /^https?:\/\//i.test(src);
 }
-

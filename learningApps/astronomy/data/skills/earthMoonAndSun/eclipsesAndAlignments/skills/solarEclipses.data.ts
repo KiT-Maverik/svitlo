@@ -43,7 +43,7 @@ export const solarEclipses_Skill_Data = buildSkillConfig({
       hi: 'समझाएँ कि सूर्य ग्रहण कब होता है और अलग-अलग स्थानों से उसका रूप अलग क्यों दिखाई देता है।',
       es: 'Explica cuándo ocurre un eclipse solar y por qué se ve de manera distinta según el lugar.',
       ar: 'اشرح متى يحدث كسوف الشمس ولماذا يختلف مظهره باختلاف موقع الراصد.',
-      fr: 'Expliquez quand une éclipse solaire se produit et pourquoi son apparence varie selon le lieu d\'observation.',
+      fr: "Expliquez quand une éclipse solaire se produit et pourquoi son apparence varie selon le lieu d'observation.",
       bn: 'সূর্যগ্রহণ কখন ঘটে এবং স্থানভেদে সেটিকে আলাদা রকম কেন দেখা যায়, তা ব্যাখ্যা করো।',
       pt: 'Explique quando ocorre um eclipse solar e por que sua aparência varia conforme o local de observação.',
       ur: 'وضاحت کریں کہ سورج گرہن کب ہوتا ہے اور مختلف جگہوں سے اس کی شکل مختلف کیوں نظر آتی ہے۔',

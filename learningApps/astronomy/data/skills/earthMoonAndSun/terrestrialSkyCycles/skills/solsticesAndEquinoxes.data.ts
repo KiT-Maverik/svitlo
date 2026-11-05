@@ -43,7 +43,7 @@ export const solsticesAndEquinoxes_Skill_Data = buildSkillConfig({
       hi: 'समझें कि अयनांत और विषुव वर्ष के खास समय क्यों होते हैं।',
       es: 'Comprende por qué los solsticios y los equinoccios son momentos especiales del año.',
       ar: 'افهم ما الذي يجعل الانقلابين والاعتدالين محطات مميزة خلال السنة.',
-      fr: 'Comprenez ce qui fait des solstices et des équinoxes des moments particuliers de l\'année.',
+      fr: "Comprenez ce qui fait des solstices et des équinoxes des moments particuliers de l'année.",
       bn: 'অয়নান্ত ও বিষুব কেন বছরের বিশেষ সময়, তা বোঝো।',
       pt: 'Entenda por que os solstícios e os equinócios são momentos especiais do ano.',
       ur: 'سمجھیں کہ انقلابِ شمس اور اعتدالِ شب و روز سال کے خاص مواقع کیوں ہیں۔',

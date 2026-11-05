@@ -12,7 +12,13 @@ import styles from './Audio.module.css';
 
 type AudioFailure = { source: string; kind: AudioFailureKind };
 
-export const Audio = ({ fileLocation, title, description, fallback, messages }: ContentBlock_Audio_Response & {
+export const Audio = ({
+  fileLocation,
+  title,
+  description,
+  fallback,
+  messages,
+}: ContentBlock_Audio_Response & {
   messages: UiKit_Component<'audio', 'response'>;
 }) => {
   const contentLanguage = useContentLanguage();
@@ -45,7 +51,8 @@ export const Audio = ({ fileLocation, title, description, fallback, messages }: 
   };
   const handleError = (event: SyntheticEvent<HTMLAudioElement>) => {
     const error = event.currentTarget.error;
-    const kind = classifyAudioError(error, navigator.onLine) ?? (error ? null : navigator.onLine ? 'playbackError' : 'offline');
+    const kind =
+      classifyAudioError(error, navigator.onLine) ?? (error ? null : navigator.onLine ? 'playbackError' : 'offline');
     if (kind) setFailure({ source: fileLocation, kind });
   };
 

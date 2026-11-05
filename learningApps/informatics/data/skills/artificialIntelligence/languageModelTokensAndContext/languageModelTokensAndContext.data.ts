@@ -1,12 +1,19 @@
 import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
 
-import { distinguishSamplingFromChoosingTheMostLikelyToken_Skill_Data, distinguishTokensCharactersAndWords_Skill_Data, explainALanguageModelsContextWindow_Skill_Data, explainContextWindowOverflow_Skill_Data, explainNextTokenSelection_Skill_Data, explainTokens_Skill_Data } from './skills';
+import {
+  distinguishSamplingFromChoosingTheMostLikelyToken_Skill_Data,
+  distinguishTokensCharactersAndWords_Skill_Data,
+  explainALanguageModelsContextWindow_Skill_Data,
+  explainContextWindowOverflow_Skill_Data,
+  explainNextTokenSelection_Skill_Data,
+  explainTokens_Skill_Data,
+} from './skills';
 
 export const languageModelTokensAndContext_SkillGroup_Data = buildSkillGroupConfig({
-  slug: "languageModelTokensAndContext",
-  id: "eacbce78-8a3b-416e-8119-5fe49906f53a",
+  slug: 'languageModelTokensAndContext',
+  id: 'eacbce78-8a3b-416e-8119-5fe49906f53a',
   name: {
-    en: "Language Model Tokens and Context",
+    en: 'Language Model Tokens and Context',
     zh: '语言模型的词元与上下文',
     hi: 'भाषा मॉडल के टोकन और संदर्भ',
     es: 'Tokens y contexto de los modelos de lenguaje',
@@ -45,9 +52,10 @@ export const languageModelTokensAndContext_SkillGroup_Data = buildSkillGroupConf
     explainTokens: explainTokens_Skill_Data,
   },
   description: {
-    methodological: "Language models process tokens, evaluate possible continuations, and operate within a limited context window; model parameter count does not determine context length.",
+    methodological:
+      'Language models process tokens, evaluate possible continuations, and operate within a limited context window; model parameter count does not determine context length.',
     frontend: {
-      en: "Discover how language models divide text into tokens and use context.",
+      en: 'Discover how language models divide text into tokens and use context.',
       zh: '探索语言模型如何将文本划分为词元并利用上下文。',
       hi: 'जानें कि भाषा मॉडल पाठ को टोकन में कैसे बाँटते और संदर्भ का उपयोग कैसे करते हैं।',
       es: 'Descubre cómo los modelos de lenguaje dividen el texto en tokens y utilizan el contexto.',

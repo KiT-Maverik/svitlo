@@ -11,10 +11,25 @@ type Content<Mode extends 'data' | 'response', SupportedLanguages extends Locale
 };
 
 type Question_FillBlanksWithBlocks_Definition = Question_Definition_Meta<'fillBlanksWithBlocks'>;
-type Question_FillBlanksWithBlocks_Data<SupportedLanguages extends Locale_Languages> = Question_Data_Meta<'fillBlanksWithBlocks'> & Content<'data', SupportedLanguages> & { slots: readonly { selector: string; correctAnswer: ContentBlock<'data', SupportedLanguages> }[]; distractors: readonly ContentBlock<'data', SupportedLanguages>[]; placeholder: Locale_Options<SupportedLanguages> };
-type Question_FillBlanksWithBlocks_Response<SupportedLanguages extends Locale_Languages> = Question_Response_Meta<'fillBlanksWithBlocks'> & Content<'response', SupportedLanguages> & { slots: readonly { selector: string; correctAnswer: ContentBlock<'response', SupportedLanguages> }[]; distractors: readonly ContentBlock<'response', SupportedLanguages>[]; placeholder: string };
+type Question_FillBlanksWithBlocks_Data<SupportedLanguages extends Locale_Languages> =
+  Question_Data_Meta<'fillBlanksWithBlocks'> &
+    Content<'data', SupportedLanguages> & {
+      slots: readonly { selector: string; correctAnswer: ContentBlock<'data', SupportedLanguages> }[];
+      distractors: readonly ContentBlock<'data', SupportedLanguages>[];
+      placeholder: Locale_Options<SupportedLanguages>;
+    };
+type Question_FillBlanksWithBlocks_Response<SupportedLanguages extends Locale_Languages> =
+  Question_Response_Meta<'fillBlanksWithBlocks'> &
+    Content<'response', SupportedLanguages> & {
+      slots: readonly { selector: string; correctAnswer: ContentBlock<'response', SupportedLanguages> }[];
+      distractors: readonly ContentBlock<'response', SupportedLanguages>[];
+      placeholder: string;
+    };
 
-export type Question_FillBlanksWithBlocks<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends Locale_Languages> = {
+export type Question_FillBlanksWithBlocks<
+  ConfigType extends ContentEntity_ConfigType,
+  SupportedLanguages extends Locale_Languages,
+> = {
   definition: Question_FillBlanksWithBlocks_Definition;
   data: Question_FillBlanksWithBlocks_Data<SupportedLanguages>;
   response: Question_FillBlanksWithBlocks_Response<SupportedLanguages>;

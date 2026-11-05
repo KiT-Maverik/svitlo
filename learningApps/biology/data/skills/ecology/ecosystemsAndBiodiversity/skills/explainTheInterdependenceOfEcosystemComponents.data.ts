@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainTheInterdependenceOfEcosystemComponents_Skill_Data = buildSkillConfig({
-  slug: "explainTheInterdependenceOfEcosystemComponents",
-  id: "0b16d7ee-db54-4216-adfa-2c9f051aae5e",
+  slug: 'explainTheInterdependenceOfEcosystemComponents',
+  id: '0b16d7ee-db54-4216-adfa-2c9f051aae5e',
   name: {
-    en: "Explain the Interdependence of Ecosystem Components",
+    en: 'Explain the Interdependence of Ecosystem Components',
     zh: '解释生态系统各组成部分的相互依赖',
     hi: 'पारितंत्र के घटकों की परस्पर निर्भरता समझाना',
     es: 'Explicar la interdependencia de los componentes de un ecosistema',
@@ -35,9 +35,10 @@ export const explainTheInterdependenceOfEcosystemComponents_Skill_Data = buildSk
     qm: 'Ekosistema qısımlarınıñ karşılıqlı bağlılığını añlatmaq',
   },
   description: {
-    methodological: "Explain how organisms, populations, and nonliving ecosystem factors are linked by feeding and other interactions: a change in species abundance, disappearance of a predator, arrival of an invasive organism, or shortage of a resource may affect other participants and the system as a whole. Describe both direct and indirect consequences in particular examples without declaring a species 'beneficial' or 'harmful' merely because of what it eats.",
+    methodological:
+      "Explain how organisms, populations, and nonliving ecosystem factors are linked by feeding and other interactions: a change in species abundance, disappearance of a predator, arrival of an invasive organism, or shortage of a resource may affect other participants and the system as a whole. Describe both direct and indirect consequences in particular examples without declaring a species 'beneficial' or 'harmful' merely because of what it eats.",
     frontend: {
-      en: "Explore how changes to one part of an ecosystem can affect many others.",
+      en: 'Explore how changes to one part of an ecosystem can affect many others.',
       zh: '探索生态系统某一部分发生变化时，其他部分为何也会受到影响。',
       hi: 'जानें कि पारितंत्र के एक हिस्से में बदलाव कई अन्य हिस्सों को कैसे प्रभावित कर सकता है।',
       es: 'Explora cómo un cambio en una parte del ecosistema puede afectar a muchas otras.',

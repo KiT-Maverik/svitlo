@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainTheRoleOfMusclesInMovement_Skill_Data = buildSkillConfig({
-  slug: "explainTheRoleOfMusclesInMovement",
-  id: "2c2472d9-f288-4e66-8f13-a37b5ba1a58d",
+  slug: 'explainTheRoleOfMusclesInMovement',
+  id: '2c2472d9-f288-4e66-8f13-a37b5ba1a58d',
   name: {
-    en: "Explain the Role of Muscles in Movement",
+    en: 'Explain the Role of Muscles in Movement',
     zh: '解释肌肉在运动中的作用',
     hi: 'गति में मांसपेशियों की भूमिका समझाना',
     es: 'Explicar el papel de los músculos en el movimiento',
@@ -25,7 +25,7 @@ export const explainTheRoleOfMusclesInMovement_Skill_Data = buildSkillConfig({
     ms: 'Menjelaskan peranan otot dalam pergerakan',
     he: 'הסבר תפקיד השרירים בתנועה',
     pl: 'Wyjaśnianie roli mięśni w ruchu',
-    uk: 'Пояснювати роль м\'язів у русі',
+    uk: "Пояснювати роль м'язів у русі",
     lt: 'Raumenų vaidmens judėjime paaiškinimas',
     lv: 'Muskuļu lomas kustībās skaidrošana',
     et: 'Lihaste rolli selgitamine liikumisel',
@@ -35,9 +35,10 @@ export const explainTheRoleOfMusclesInMovement_Skill_Data = buildSkillConfig({
     qm: 'Adalelerniñ areketteki rolüni añlatmaq',
   },
   description: {
-    methodological: "Relate contraction of muscle tissue to the generation of force that changes the positions of body parts.",
+    methodological:
+      'Relate contraction of muscle tissue to the generation of force that changes the positions of body parts.',
     frontend: {
-      en: "Connect muscle contractions with the forces needed to move.",
+      en: 'Connect muscle contractions with the forces needed to move.',
       zh: '将肌肉收缩与产生运动所需的力量联系起来。',
       hi: 'मांसपेशियों के संकुचन को गति के लिए आवश्यक बल से जोड़ें।',
       es: 'Relaciona las contracciones musculares con la fuerza necesaria para moverse.',
@@ -58,7 +59,7 @@ export const explainTheRoleOfMusclesInMovement_Skill_Data = buildSkillConfig({
       ms: 'Kaitkan pengecutan otot dengan daya yang diperlukan untuk bergerak.',
       he: 'קשרו בין התכווצות השרירים לכוח הדרוש לתנועה.',
       pl: 'Powiąż skurcze mięśni z siłą potrzebną do ruchu.',
-      uk: 'Пов\'язуйте скорочення м\'язів із силою, необхідною для руху.',
+      uk: "Пов'язуйте скорочення м'язів із силою, необхідною для руху.",
       lt: 'Susiekite raumenų susitraukimą su judėjimui reikalinga jėga.',
       lv: 'Saistiet muskuļu saraušanos ar kustībai vajadzīgo spēku.',
       et: 'Seosta lihaste kokkutõmbumine liikumiseks vajaliku jõuga.',

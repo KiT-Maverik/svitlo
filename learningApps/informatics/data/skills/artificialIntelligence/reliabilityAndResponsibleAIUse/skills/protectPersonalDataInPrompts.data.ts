@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const protectPersonalDataInPrompts_Skill_Data = buildSkillConfig({
-  slug: "protectPersonalDataInPrompts",
-  id: "42bbcb35-f4d0-496b-b90c-495b08683e32",
+  slug: 'protectPersonalDataInPrompts',
+  id: '42bbcb35-f4d0-496b-b90c-495b08683e32',
   name: {
-    en: "Protect Personal Data in Prompts",
+    en: 'Protect Personal Data in Prompts',
     zh: '保护提示词中的个人数据',
     hi: 'प्रॉम्प्ट में निजी डेटा सुरक्षित रखना',
     es: 'Proteger datos personales en prompts',
@@ -35,9 +35,10 @@ export const protectPersonalDataInPrompts_Skill_Data = buildSkillConfig({
     qm: 'Soravlarda şahsiy malümatnı qorumaq',
   },
   description: {
-    methodological: "Identify information about individuals that should not be disclosed to an external AI service and remove or generalize it without defeating the task objective. Public access to a model does not imply that submitted data stays private.",
+    methodological:
+      'Identify information about individuals that should not be disclosed to an external AI service and remove or generalize it without defeating the task objective. Public access to a model does not imply that submitted data stays private.',
     frontend: {
-      en: "Remove unnecessary personal information before submitting an AI request.",
+      en: 'Remove unnecessary personal information before submitting an AI request.',
       zh: '提交人工智能请求前删除不必要的个人信息。',
       hi: 'एआई को अनुरोध भेजने से पहले अनावश्यक व्यक्तिगत जानकारी हटा दें।',
       es: 'Elimina información personal innecesaria antes de enviar una solicitud a la IA.',

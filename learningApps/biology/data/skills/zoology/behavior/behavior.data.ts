@@ -1,12 +1,16 @@
 import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
 
-import { explainBenefitsOfGroupBehavior_Skill_Data, explainTheRoleOfSignalsInAnimalCommunication_Skill_Data, recognizeDefensiveBehavior_Skill_Data } from './skills';
+import {
+  explainBenefitsOfGroupBehavior_Skill_Data,
+  explainTheRoleOfSignalsInAnimalCommunication_Skill_Data,
+  recognizeDefensiveBehavior_Skill_Data,
+} from './skills';
 
 export const behavior_SkillGroup_Data = buildSkillGroupConfig({
-  slug: "behavior",
-  id: "59114693-ede5-4e1f-af01-366f42656347",
+  slug: 'behavior',
+  id: '59114693-ede5-4e1f-af01-366f42656347',
   name: {
-    en: "Behavior",
+    en: 'Behavior',
     zh: '动物行为',
     hi: 'प्राणियों का व्यवहार',
     es: 'Comportamiento animal',
@@ -42,9 +46,10 @@ export const behavior_SkillGroup_Data = buildSkillGroupConfig({
     recognizeDefensiveBehavior: recognizeDefensiveBehavior_Skill_Data,
   },
   description: {
-    methodological: "Animal actions arise in response to signals and needs; observation makes it possible to identify defense, communication, and benefits of living in groups.",
+    methodological:
+      'Animal actions arise in response to signals and needs; observation makes it possible to identify defense, communication, and benefits of living in groups.',
     frontend: {
-      en: "Explore how animal behavior supports communication, protection and group life.",
+      en: 'Explore how animal behavior supports communication, protection and group life.',
       zh: '探索动物的行为如何帮助它们交流、自卫和群居。',
       hi: 'जानें कि जानवरों का व्यवहार संचार, सुरक्षा और समूह में रहने में कैसे मदद करता है।',
       es: 'Explora cómo el comportamiento animal favorece la comunicación, la protección y la vida en grupo.',

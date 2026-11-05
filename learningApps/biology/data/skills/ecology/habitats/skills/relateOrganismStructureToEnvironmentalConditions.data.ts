@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const relateOrganismStructureToEnvironmentalConditions_Skill_Data = buildSkillConfig({
-  slug: "relateOrganismStructureToEnvironmentalConditions",
-  id: "e8ac8beb-7d61-4df4-b4f8-5c787508f8d5",
+  slug: 'relateOrganismStructureToEnvironmentalConditions',
+  id: 'e8ac8beb-7d61-4df4-b4f8-5c787508f8d5',
   name: {
-    en: "Relate Organism Structure to Environmental Conditions",
+    en: 'Relate Organism Structure to Environmental Conditions',
     zh: '联系生物结构与环境条件',
     hi: 'जीव की संरचना को पर्यावरण से जोड़ना',
     es: 'Relacionar la estructura de un organismo con su entorno',
@@ -35,7 +35,8 @@ export const relateOrganismStructureToEnvironmentalConditions_Skill_Data = build
     qm: 'Canlınıñ quruluşunı müit şartlarınen bağlaştırmaq',
   },
   description: {
-    methodological: "Explain, at the level of ecological niches, how organisms’ structures affect resource use and survival under particular environmental factors. Unlike botanical analysis of individual plant organs, this competency assesses how an organism fits its environment and ecological role.",
+    methodological:
+      'Explain, at the level of ecological niches, how organisms’ structures affect resource use and survival under particular environmental factors. Unlike botanical analysis of individual plant organs, this competency assesses how an organism fits its environment and ecological role.',
     frontend: {
       en: "Explain how an organism's structure helps it survive and use resources in its environment.",
       zh: '解释生物的结构如何帮助它在环境中生存并利用资源。',

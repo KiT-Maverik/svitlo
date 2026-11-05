@@ -24,21 +24,36 @@ export type Question_Map<ConfigType extends ContentEntity_ConfigType, SupportedL
   selectOneAnswer: Question_SelectOneAnswer<ConfigType, SupportedLanguages>;
 };
 
-export type Question<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends Locale_Languages> = Question_Map<ConfigType, SupportedLanguages>[Question_Type];
+export type Question<
+  ConfigType extends ContentEntity_ConfigType,
+  SupportedLanguages extends Locale_Languages,
+> = Question_Map<ConfigType, SupportedLanguages>[Question_Type];
 
-export type Question_Catalog<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends Locale_Languages> = {
+export type Question_Catalog<
+  ConfigType extends ContentEntity_ConfigType,
+  SupportedLanguages extends Locale_Languages,
+> = {
   [Type in Question_Type]?: Record<string, Question_Map<ConfigType, SupportedLanguages>[Type]>;
 };
 
-export type Question_Catalog_DataFor<Definition extends Question_Catalog<'definition', Locale_Languages>, SupportedLanguages extends Locale_Languages> = {
+export type Question_Catalog_DataFor<
+  Definition extends Question_Catalog<'definition', Locale_Languages>,
+  SupportedLanguages extends Locale_Languages,
+> = {
   [Type in keyof Definition]: Type extends Question_Type
     ? Record<keyof Definition[Type] & string, Question_Map<'data', SupportedLanguages>[Type]>
     : never;
 };
 
-export type Question_Catalog_ValidSlugs<Catalog extends Question_Catalog<'data', SupportedLanguages>, SupportedLanguages extends Locale_Languages> = {
+export type Question_Catalog_ValidSlugs<
+  Catalog extends Question_Catalog<'data', SupportedLanguages>,
+  SupportedLanguages extends Locale_Languages,
+> = {
   [Type in keyof Catalog]: Type extends Question_Type
-    ? DefineValidKeysFromSlugs<keyof NonNullable<Catalog[Type]> & string, Question_Map<'data', SupportedLanguages>[Type]>
+    ? DefineValidKeysFromSlugs<
+        keyof NonNullable<Catalog[Type]> & string,
+        Question_Map<'data', SupportedLanguages>[Type]
+      >
     : never;
 };
 

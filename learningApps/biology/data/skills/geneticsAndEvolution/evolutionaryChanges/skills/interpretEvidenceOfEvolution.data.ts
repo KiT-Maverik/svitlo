@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const interpretEvidenceOfEvolution_Skill_Data = buildSkillConfig({
-  slug: "interpretEvidenceOfEvolution",
-  id: "6c94e310-5d8b-4abd-9352-8350e98390f8",
+  slug: 'interpretEvidenceOfEvolution',
+  id: '6c94e310-5d8b-4abd-9352-8350e98390f8',
   name: {
-    en: "Interpret Evidence of Evolution",
+    en: 'Interpret Evidence of Evolution',
     zh: '解读进化的证据',
     hi: 'विकास के प्रमाणों की व्याख्या करना',
     es: 'Interpretar las pruebas de la evolución',
@@ -35,9 +35,10 @@ export const interpretEvidenceOfEvolution_Skill_Data = buildSkillConfig({
     qm: 'Evolütsiyanıñ delillerini talil etmek',
   },
   description: {
-    methodological: "Explain convergent evidence for life's history from fossils, comparative anatomy, biogeography, embryology, and molecular data, taking into account the limitations of each type of evidence.",
+    methodological:
+      "Explain convergent evidence for life's history from fossils, comparative anatomy, biogeography, embryology, and molecular data, taking into account the limitations of each type of evidence.",
     frontend: {
-      en: "Explore how fossils, anatomy and DNA provide evidence for evolution.",
+      en: 'Explore how fossils, anatomy and DNA provide evidence for evolution.',
       zh: '探索化石、解剖结构和 DNA 如何为进化提供证据。',
       hi: 'जानें कि जीवाश्म, शारीरिक संरचना और डीएनए विकास के प्रमाण कैसे देते हैं।',
       es: 'Explora cómo los fósiles, la anatomía y el ADN aportan pruebas de la evolución.',
@@ -50,7 +51,7 @@ export const interpretEvidenceOfEvolution_Skill_Data = buildSkillConfig({
       de: 'Erkunde, wie Fossilien, Anatomie und DNA Belege für Evolution liefern.',
       ja: '化石、体のつくり、DNA が進化の証拠となる理由を調べよう。',
       ko: '화석, 해부학적 구조, DNA가 어떻게 진화의 증거가 되는지 알아보세요.',
-      tr: 'Fosillerin, anatominin ve DNA\'nın evrime nasıl kanıt sağladığını keşfet.',
+      tr: "Fosillerin, anatominin ve DNA'nın evrime nasıl kanıt sağladığını keşfet.",
       vi: 'Khám phá cách hóa thạch, giải phẫu và ADN cung cấp bằng chứng cho tiến hóa.',
       ta: 'புதைபடிவங்கள், உடற்கூறியல் மற்றும் டிஎன்ஏ ஆகியவை பரிணாமத்திற்கான சான்றுகளை எவ்வாறு அளிக்கின்றன என்பதை ஆராயுங்கள்.',
       te: 'శిలాజాలు, శరీర నిర్మాణ శాస్త్రం, డీఎన్‌ఏ పరిణామానికి ఎలా ఆధారాలుగా నిలుస్తాయో తెలుసుకోండి.',

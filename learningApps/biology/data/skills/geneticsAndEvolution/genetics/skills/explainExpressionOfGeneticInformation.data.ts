@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainExpressionOfGeneticInformation_Skill_Data = buildSkillConfig({
-  slug: "explainExpressionOfGeneticInformation",
-  id: "2210cfe4-5068-4101-8410-7814cec116da",
+  slug: 'explainExpressionOfGeneticInformation',
+  id: '2210cfe4-5068-4101-8410-7814cec116da',
   name: {
-    en: "Explain Expression of Genetic Information",
+    en: 'Explain Expression of Genetic Information',
     zh: '解释遗传信息的表达',
     hi: 'आनुवंशिक सूचना की अभिव्यक्ति समझाना',
     es: 'Explicar la expresión de la información genética',
@@ -35,9 +35,10 @@ export const explainExpressionOfGeneticInformation_Skill_Data = buildSkillConfig
     qm: 'Genetik malümatnıñ faal oluvını añlatmaq',
   },
   description: {
-    methodological: "Explain how DNA information can be transcribed into RNA and realized through protein synthesis and regulation of gene activity; do not equate an individual gene with a ready-made phenotypic trait.",
+    methodological:
+      'Explain how DNA information can be transcribed into RNA and realized through protein synthesis and regulation of gene activity; do not equate an individual gene with a ready-made phenotypic trait.',
     frontend: {
-      en: "Follow how DNA information is used and regulated within cells.",
+      en: 'Follow how DNA information is used and regulated within cells.',
       zh: '了解细胞如何利用 DNA 中的信息，以及如何调控这一过程。',
       hi: 'जानें कि कोशिकाएँ डीएनए की जानकारी का उपयोग कैसे करती हैं और इसे कैसे नियंत्रित करती हैं।',
       es: 'Sigue cómo las células utilizan y regulan la información del ADN.',

@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const distinguishVertebratesAndInvertebrates_Skill_Data = buildSkillConfig({
-  slug: "distinguishVertebratesAndInvertebrates",
-  id: "13808999-8f3d-4959-b221-6e501005d489",
+  slug: 'distinguishVertebratesAndInvertebrates',
+  id: '13808999-8f3d-4959-b221-6e501005d489',
   name: {
-    en: "Distinguish Vertebrates and Invertebrates",
+    en: 'Distinguish Vertebrates and Invertebrates',
     zh: '区分脊椎动物与无脊椎动物',
     hi: 'कशेरुकी और अकशेरुकी प्राणियों में अंतर करना',
     es: 'Distinguir vertebrados e invertebrados',
@@ -35,14 +35,15 @@ export const distinguishVertebratesAndInvertebrates_Skill_Data = buildSkillConfi
     qm: 'Omurtqalı ve omurtqasız ayvanlarnı farqlamaq',
   },
   description: {
-    methodological: "Use the presence of a vertebral column as the anatomical dividing line between these two broad groups.",
+    methodological:
+      'Use the presence of a vertebral column as the anatomical dividing line between these two broad groups.',
     frontend: {
-      en: "Distinguish animals with a backbone from those without one.",
+      en: 'Distinguish animals with a backbone from those without one.',
       zh: '区分有脊柱的动物和没有脊柱的动物。',
       hi: 'रीढ़ की हड्डी वाले और बिना रीढ़ की हड्डी वाले प्राणियों में अंतर पहचानें।',
       es: 'Distingue los animales que tienen columna vertebral de los que no la tienen.',
       ar: 'ميّز الحيوانات التي لها عمود فقري من الحيوانات التي ليس لها عمود فقري.',
-      fr: 'Distingue les animaux dotés d\'une colonne vertébrale de ceux qui n\'en ont pas.',
+      fr: "Distingue les animaux dotés d'une colonne vertébrale de ceux qui n'en ont pas.",
       bn: 'যেসব প্রাণীর মেরুদণ্ড আছে এবং যাদের নেই, তাদের পার্থক্য করো।',
       pt: 'Diferencie os animais que têm coluna vertebral daqueles que não têm.',
       ur: 'ریڑھ کی ہڈی والے جانوروں اور اس کے بغیر جانوروں میں فرق کریں۔',

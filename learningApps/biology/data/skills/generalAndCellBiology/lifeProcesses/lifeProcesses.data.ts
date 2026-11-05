@@ -1,12 +1,18 @@
 import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
 
-import { explainCellularRespiration_Skill_Data, explainPhotosynthesis_Skill_Data, identifyExamplesOfNutrition_Skill_Data, recognizeGrowthAndDevelopment_Skill_Data, recognizeResponsesToStimuli_Skill_Data } from './skills';
+import {
+  explainCellularRespiration_Skill_Data,
+  explainPhotosynthesis_Skill_Data,
+  identifyExamplesOfNutrition_Skill_Data,
+  recognizeGrowthAndDevelopment_Skill_Data,
+  recognizeResponsesToStimuli_Skill_Data,
+} from './skills';
 
 export const lifeProcesses_SkillGroup_Data = buildSkillGroupConfig({
-  slug: "lifeProcesses",
-  id: "776f42c8-d35e-43e9-81a3-4471c5cc62be",
+  slug: 'lifeProcesses',
+  id: '776f42c8-d35e-43e9-81a3-4471c5cc62be',
   name: {
-    en: "Life Processes",
+    en: 'Life Processes',
     zh: '生命活动',
     hi: 'जीवन प्रक्रियाएँ',
     es: 'Procesos vitales',
@@ -44,9 +50,10 @@ export const lifeProcesses_SkillGroup_Data = buildSkillGroupConfig({
     recognizeResponsesToStimuli: recognizeResponsesToStimuli_Skill_Data,
   },
   description: {
-    methodological: "Exchange of matter and energy, increases in size, changes in form, and responses to conditions are manifestations of life that can be observed or modeled.",
+    methodological:
+      'Exchange of matter and energy, increases in size, changes in form, and responses to conditions are manifestations of life that can be observed or modeled.',
     frontend: {
-      en: "Discover how organisms obtain resources, grow and respond to their surroundings.",
+      en: 'Discover how organisms obtain resources, grow and respond to their surroundings.',
       zh: '了解生物如何获取资源、生长并对周围环境作出反应。',
       hi: 'जानें कि जीव संसाधन कैसे प्राप्त करते हैं, बढ़ते हैं और परिवेश पर प्रतिक्रिया देते हैं।',
       es: 'Descubre cómo los organismos obtienen recursos, crecen y responden a su entorno.',

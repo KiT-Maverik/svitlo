@@ -1,15 +1,15 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainTheInterdependenceOfOrgans_Skill_Data = buildSkillConfig({
-  slug: "explainTheInterdependenceOfOrgans",
-  id: "26e91acf-d978-4093-90e0-f9eca123e589",
+  slug: 'explainTheInterdependenceOfOrgans',
+  id: '26e91acf-d978-4093-90e0-f9eca123e589',
   name: {
-    en: "Explain the Interdependence of Organs",
+    en: 'Explain the Interdependence of Organs',
     zh: '说明器官之间的相互依赖',
     hi: 'अंगों की परस्पर निर्भरता समझाना',
     es: 'Explicar la interdependencia de los órganos',
     ar: 'شرح الاعتماد المتبادل بين الأعضاء',
-    fr: 'Expliquer l\'interdépendance des organes',
+    fr: "Expliquer l'interdépendance des organes",
     bn: 'অঙ্গগুলোর পারস্পরিক নির্ভরতা ব্যাখ্যা করা',
     pt: 'Explicar a interdependência dos órgãos',
     ur: 'اعضا کے باہمی انحصار کی وضاحت کرنا',
@@ -35,9 +35,9 @@ export const explainTheInterdependenceOfOrgans_Skill_Data = buildSkillConfig({
     qm: 'Organlarnıñ qarşılıqlı bağlılığını añlatmaq',
   },
   description: {
-    methodological: "Show why a disruption in one system can alter the functioning of another.",
+    methodological: 'Show why a disruption in one system can alter the functioning of another.',
     frontend: {
-      en: "Explore why different organs depend on one another.",
+      en: 'Explore why different organs depend on one another.',
       zh: '探索不同器官为什么需要相互配合。',
       hi: 'जानें कि विभिन्न अंग एक-दूसरे पर क्यों निर्भर होते हैं।',
       es: 'Explora por qué los distintos órganos dependen unos de otros.',

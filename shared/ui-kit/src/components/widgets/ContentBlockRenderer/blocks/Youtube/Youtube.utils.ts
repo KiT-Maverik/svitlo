@@ -3,8 +3,11 @@ const VIDEO_ID = /^[A-Za-z0-9_-]{11}$/;
 
 export function validateYoutubeUrl(href: string): URL {
   let url: URL;
-  try { url = new URL(href); }
-  catch { throw new Error('Invalid YouTube URL'); }
+  try {
+    url = new URL(href);
+  } catch {
+    throw new Error('Invalid YouTube URL');
+  }
   if (url.protocol !== 'https:') throw new Error('YouTube URL must use HTTPS');
   const allowed = ['youtu.be', 'youtube.com', 'www.youtube.com', 'm.youtube.com', 'www.youtube-nocookie.com'];
   if (!allowed.includes(url.hostname.toLowerCase())) throw new Error('URL is not a supported YouTube host');
@@ -47,12 +50,15 @@ export interface YoutubePlayer {
 }
 
 export interface YoutubeApi {
-  Player: new (iframe: HTMLIFrameElement, options: {
-    events: {
-      onReady: () => void;
-      onError: (event: { data: number }) => void;
-    };
-  }) => YoutubePlayer;
+  Player: new (
+    iframe: HTMLIFrameElement,
+    options: {
+      events: {
+        onReady: () => void;
+        onError: (event: { data: number }) => void;
+      };
+    },
+  ) => YoutubePlayer;
 }
 
 declare global {
@@ -85,7 +91,9 @@ export function loadYoutubeApi(): Promise<YoutubeApi> {
       if (!existingScript) script.remove();
       reject(error);
     }
-    function onError() { fail(new Error('YouTube player script failed to load')); }
+    function onError() {
+      fail(new Error('YouTube player script failed to load'));
+    }
     function onReady() {
       previousReady?.();
       const api = window.YT;
@@ -120,4 +128,3 @@ export function subscribeConnectionChange(listener: () => void): () => void {
 
 export const getConnectionSnapshot = () => navigator.onLine;
 export const getServerConnectionSnapshot = (): null => null;
-

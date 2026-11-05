@@ -1,12 +1,15 @@
 import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
 
-import { compareMaterialsThermalInsulationProperties_Skill_Data, selectAMaterialForMaintainingTemperature_Skill_Data } from './skills';
+import {
+  compareMaterialsThermalInsulationProperties_Skill_Data,
+  selectAMaterialForMaintainingTemperature_Skill_Data,
+} from './skills';
 
 export const thermalInsulation_SkillGroup_Data = buildSkillGroupConfig({
-  slug: "thermalInsulation",
-  id: "c6848cf3-7068-430a-a06c-def5689a40c5",
+  slug: 'thermalInsulation',
+  id: 'c6848cf3-7068-430a-a06c-def5689a40c5',
   name: {
-    en: "Thermal Insulation",
+    en: 'Thermal Insulation',
     qm: 'Sıcaqlıq izolâtsiyası',
     zh: '隔热',
     hi: 'ऊष्मा रोधन',
@@ -41,9 +44,10 @@ export const thermalInsulation_SkillGroup_Data = buildSkillGroupConfig({
     selectAMaterialForMaintainingTemperature: selectAMaterialForMaintainingTemperature_Skill_Data,
   },
   description: {
-    methodological: "Insulating materials slow down energy transfer but do not create energy themselves; this differs from describing the three mechanisms of heat exchange.",
+    methodological:
+      'Insulating materials slow down energy transfer but do not create energy themselves; this differs from describing the three mechanisms of heat exchange.',
     frontend: {
-      en: "Explore how insulation slows the transfer of heat.",
+      en: 'Explore how insulation slows the transfer of heat.',
       qm: 'İzolâtsiya sıcaqlıqnıñ berilüvini nasıl yavaşlatqanını araştır.',
       zh: '探索隔热材料如何减缓热量传递。',
       hi: 'जानें कि ऊष्मा रोधन से ऊष्मा का स्थानांतरण धीमा कैसे होता है।',

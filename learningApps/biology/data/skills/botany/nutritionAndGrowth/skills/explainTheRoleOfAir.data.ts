@@ -1,15 +1,15 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainTheRoleOfAir_Skill_Data = buildSkillConfig({
-  slug: "explainTheRoleOfAir",
-  id: "93955ebd-9fc3-4ba2-acfa-99d4782ea693",
+  slug: 'explainTheRoleOfAir',
+  id: '93955ebd-9fc3-4ba2-acfa-99d4782ea693',
   name: {
-    en: "Explain the Role of Air",
+    en: 'Explain the Role of Air',
     zh: '解释空气的作用',
     hi: 'वायु की भूमिका समझाना',
     es: 'Explicar la función del aire',
     ar: 'شرح دور الهواء',
-    fr: 'Expliquer le rôle de l\'air',
+    fr: "Expliquer le rôle de l'air",
     bn: 'বায়ুর ভূমিকা ব্যাখ্যা করা',
     pt: 'Explicar o papel do ar',
     ur: 'ہوا کا کردار سمجھانا',
@@ -35,14 +35,15 @@ export const explainTheRoleOfAir_Skill_Data = buildSkillConfig({
     qm: 'Avanıñ rolüni añlatmaq',
   },
   description: {
-    methodological: "Distinguish the use of carbon dioxide during photosynthesis from the use of oxygen during cellular respiration.",
+    methodological:
+      'Distinguish the use of carbon dioxide during photosynthesis from the use of oxygen during cellular respiration.',
     frontend: {
       en: "Distinguish plants' use of carbon dioxide and oxygen in different processes.",
       zh: '区分植物在不同过程中对二氧化碳和氧气的利用。',
       hi: 'पौधों द्वारा अलग-अलग प्रक्रियाओं में कार्बन डाइऑक्साइड और ऑक्सीजन के उपयोग में अंतर करें।',
       es: 'Distingue cómo utilizan las plantas el dióxido de carbono y el oxígeno en distintos procesos.',
       ar: 'ميّز استخدام النباتات لثاني أكسيد الكربون والأكسجين في عمليات مختلفة.',
-      fr: 'Distingue l\'utilisation du dioxyde de carbone et de l\'oxygène par les plantes selon les processus.',
+      fr: "Distingue l'utilisation du dioxyde de carbone et de l'oxygène par les plantes selon les processus.",
       bn: 'উদ্ভিদ বিভিন্ন প্রক্রিয়ায় কার্বন ডাই-অক্সাইড ও অক্সিজেন কীভাবে ব্যবহার করে তা আলাদা করো।',
       pt: 'Distinga o uso de dióxido de carbono e oxigênio pelas plantas em processos diferentes.',
       ur: 'پودوں کے مختلف عمل میں کاربن ڈائی آکسائیڈ اور آکسیجن کے استعمال کا فرق سمجھیں۔',

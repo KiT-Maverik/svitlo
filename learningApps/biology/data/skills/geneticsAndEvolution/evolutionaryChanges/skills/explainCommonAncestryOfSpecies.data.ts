@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainCommonAncestryOfSpecies_Skill_Data = buildSkillConfig({
-  slug: "explainCommonAncestryOfSpecies",
-  id: "1bea58bb-ae36-4d03-ae87-4953590b135f",
+  slug: 'explainCommonAncestryOfSpecies',
+  id: '1bea58bb-ae36-4d03-ae87-4953590b135f',
   name: {
-    en: "Explain Common Ancestry of Species",
+    en: 'Explain Common Ancestry of Species',
     zh: '解释不同物种的共同祖先',
     hi: 'प्रजातियों की समान पूर्वजता समझाना',
     es: 'Explicar la ascendencia común de las especies',
@@ -35,9 +35,10 @@ export const explainCommonAncestryOfSpecies_Skill_Data = buildSkillConfig({
     qm: 'Türlerniñ ortaq ecdadını añlatmaq',
   },
   description: {
-    methodological: "Explain that different species may descend from common ancestors and that an evolutionary tree represents branching lineages; distinguish a common ancestor from a modern species supposedly transforming directly into another.",
+    methodological:
+      'Explain that different species may descend from common ancestors and that an evolutionary tree represents branching lineages; distinguish a common ancestor from a modern species supposedly transforming directly into another.',
     frontend: {
-      en: "Explain how different species can share ancestors in a branching family history.",
+      en: 'Explain how different species can share ancestors in a branching family history.',
       zh: '解释不同物种如何拥有共同祖先，并形成不断分支的演化谱系。',
       hi: 'समझाएँ कि अलग-अलग प्रजातियों के साझा पूर्वज कैसे हो सकते हैं और उनकी वंशावली कैसे शाखाओं में बँटती है।',
       es: 'Explica cómo distintas especies pueden compartir antepasados en una historia evolutiva ramificada.',

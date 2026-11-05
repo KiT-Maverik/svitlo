@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const distinguishPlantAndAnimalCellsByStructuralFeatures_Skill_Data = buildSkillConfig({
-  slug: "distinguishPlantAndAnimalCellsByStructuralFeatures",
-  id: "b3b06ffe-0a3b-4b18-9731-a9bf9128a505",
+  slug: 'distinguishPlantAndAnimalCellsByStructuralFeatures',
+  id: 'b3b06ffe-0a3b-4b18-9731-a9bf9128a505',
   name: {
-    en: "Distinguish Plant and Animal Cells by Structural Features",
+    en: 'Distinguish Plant and Animal Cells by Structural Features',
     zh: '根据结构特征区分植物细胞和动物细胞',
     hi: 'संरचनात्मक विशेषताओं से पादप और जंतु कोशिकाओं में अंतर करना',
     es: 'Distinguir células vegetales y animales por su estructura',
@@ -35,9 +35,10 @@ export const distinguishPlantAndAnimalCellsByStructuralFeatures_Skill_Data = bui
     qm: 'Ösümlik ve ayvan üceyrelerini quruluşuna köre farqlamaq',
   },
   description: {
-    methodological: "Distinguish characteristic cell features: the cell wall and plastids in plant cells and the absence of these structures in animal cells. Do not assume that all plant cells contain chloroplasts (many root cells, for instance, do not). An illustration, a textual description, or an interactive model are alternative ways of assessing the competency, not part of the Skill name.",
+    methodological:
+      'Distinguish characteristic cell features: the cell wall and plastids in plant cells and the absence of these structures in animal cells. Do not assume that all plant cells contain chloroplasts (many root cells, for instance, do not). An illustration, a textual description, or an interactive model are alternative ways of assessing the competency, not part of the Skill name.',
     frontend: {
-      en: "Recognize key features of plant and animal cells without assuming every cell looks the same.",
+      en: 'Recognize key features of plant and animal cells without assuming every cell looks the same.',
       zh: '识别植物细胞和动物细胞的主要特征，不要认为所有细胞看起来都一样。',
       hi: 'पादप और जंतु कोशिकाओं की प्रमुख विशेषताएँ पहचानें, बिना यह माने कि सभी कोशिकाएँ एक जैसी दिखती हैं।',
       es: 'Reconoce las características principales de las células vegetales y animales sin suponer que todas las células tienen el mismo aspecto.',

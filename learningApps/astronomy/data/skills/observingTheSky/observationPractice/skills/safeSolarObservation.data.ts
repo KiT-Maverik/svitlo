@@ -52,7 +52,7 @@ export const safeSolarObservation_Skill_Data = buildSkillConfig({
       de: 'Erkenne sichere Methoden zur Beobachtung der Sonne und vermeide Vorgehensweisen, die die Augen schädigen können.',
       ja: '太陽を安全に観測する方法を知り、視力を傷つけるおそれのある方法を避けよう。',
       ko: '태양을 안전하게 관측하는 방법을 알아보고 시력을 해칠 수 있는 방법은 피하세요.',
-      tr: 'Güneş\'i güvenli biçimde gözlemleme yöntemlerini öğren ve görme yetisine zarar verebilecek yöntemlerden kaçın.',
+      tr: "Güneş'i güvenli biçimde gözlemleme yöntemlerini öğren ve görme yetisine zarar verebilecek yöntemlerden kaçın.",
       vi: 'Nhận biết những cách quan sát Mặt Trời an toàn và tránh các phương pháp có thể gây hại cho thị lực.',
       ta: 'சூரியனைப் பாதுகாப்பாகக் கண்காணிக்கும் முறைகளை அறிந்து, கண்பார்வையைப் பாதிக்கக்கூடிய முறைகளைத் தவிர்க்கக் கற்றுக்கொள்.',
       te: 'సూర్యుడిని సురక్షితంగా పరిశీలించే పద్ధతులను గుర్తించి, కంటి చూపుకు హాని కలిగించే పద్ధతులను నివారించడం నేర్చుకోండి.',

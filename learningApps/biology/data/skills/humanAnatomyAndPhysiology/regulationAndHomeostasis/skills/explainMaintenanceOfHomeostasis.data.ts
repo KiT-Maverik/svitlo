@@ -1,15 +1,15 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainMaintenanceOfHomeostasis_Skill_Data = buildSkillConfig({
-  slug: "explainMaintenanceOfHomeostasis",
-  id: "413155b3-2284-4d1b-bfd1-ed9f04c4f304",
+  slug: 'explainMaintenanceOfHomeostasis',
+  id: '413155b3-2284-4d1b-bfd1-ed9f04c4f304',
   name: {
-    en: "Explain Maintenance of Homeostasis",
+    en: 'Explain Maintenance of Homeostasis',
     zh: '解释稳态的维持',
     hi: 'समस्थिति बनाए रखने की प्रक्रिया समझाना',
     es: 'Explicar el mantenimiento de la homeostasis',
     ar: 'شرح الحفاظ على الاتزان الداخلي',
-    fr: 'Expliquer le maintien de l\'homéostasie',
+    fr: "Expliquer le maintien de l'homéostasie",
     bn: 'সমস্থিতি বজায় রাখা ব্যাখ্যা করা',
     pt: 'Explicar a manutenção da homeostase',
     ur: 'داخلی توازن برقرار رکھنے کی وضاحت',
@@ -35,9 +35,10 @@ export const explainMaintenanceOfHomeostasis_Skill_Data = buildSkillConfig({
     qm: 'Gomeostaznıñ saqlanuvını añlatmaq',
   },
   description: {
-    methodological: "Explain how temperature, water balance, and blood glucose are maintained through regulation and negative feedback; distinguish dynamic stability of the internal environment from a total absence of change.",
+    methodological:
+      'Explain how temperature, water balance, and blood glucose are maintained through regulation and negative feedback; distinguish dynamic stability of the internal environment from a total absence of change.',
     frontend: {
-      en: "Understand how the body keeps internal conditions within workable ranges.",
+      en: 'Understand how the body keeps internal conditions within workable ranges.',
       zh: '理解人体如何将内部环境维持在适宜的范围内。',
       hi: 'समझें कि शरीर आंतरिक स्थितियों को उपयुक्त सीमाओं में कैसे बनाए रखता है।',
       es: 'Comprende cómo el cuerpo mantiene sus condiciones internas dentro de rangos adecuados.',

@@ -52,7 +52,7 @@ export const solarTime_Skill_Data = buildSkillConfig({
       de: 'Verstehe, wie die Position der Sonne mit der Sonnenzeit zusammenhängt.',
       ja: '太陽の位置が太陽時とどう関係するかを理解しよう。',
       ko: '태양의 위치와 태양시가 어떤 관계인지 알아보세요.',
-      tr: 'Güneş\'in konumunun güneş zamanıyla nasıl ilişkili olduğunu anla.',
+      tr: "Güneş'in konumunun güneş zamanıyla nasıl ilişkili olduğunu anla.",
       vi: 'Tìm hiểu vị trí của Mặt Trời liên quan đến giờ Mặt Trời như thế nào.',
       ta: 'சூரியனின் நிலைக்கும் சூரிய நேரத்துக்கும் உள்ள தொடர்பைப் புரிந்துகொள்.',
       te: 'సూర్యుని స్థానానికి సౌర కాలానికి ఉన్న సంబంధాన్ని అర్థం చేసుకోండి.',

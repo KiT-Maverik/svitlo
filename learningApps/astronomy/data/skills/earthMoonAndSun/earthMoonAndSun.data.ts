@@ -62,7 +62,7 @@ export const earthMoonAndSun_SkillDomain_Data = buildSkillDomainConfig({
       de: 'Verstehe, wie die Bewegungen und Positionen von Erde, Mond und Sonne vertraute Abläufe am Himmel entstehen lassen.',
       ja: '地球・月・太陽の動きと位置関係が、空で見られる身近な周期的変化をどのように生み出すか理解しましょう。',
       ko: '지구, 달, 태양의 움직임과 위치가 하늘에서 익숙한 주기적 변화를 어떻게 만들어 내는지 알아보세요.',
-      tr: 'Dünya, Ay ve Güneş\'in hareketlerinin ve konumlarının gökyüzünde tanıdık döngüleri nasıl oluşturduğunu anlayın.',
+      tr: "Dünya, Ay ve Güneş'in hareketlerinin ve konumlarının gökyüzünde tanıdık döngüleri nasıl oluşturduğunu anlayın.",
       vi: 'Tìm hiểu cách chuyển động và vị trí của Trái Đất, Mặt Trăng và Mặt Trời tạo nên những chu kỳ quen thuộc trên bầu trời.',
       ta: 'பூமி, நிலா, சூரியன் ஆகியவற்றின் இயக்கங்களும் நிலைகளும் வானில் காணும் பழக்கமான சுழற்சி நிகழ்வுகளை எவ்வாறு உருவாக்குகின்றன என்பதைப் புரிந்துகொள்ளுங்கள்.',
       te: 'భూమి, చంద్రుడు, సూర్యుడి కదలికలు మరియు స్థానాలు ఆకాశంలో మనకు తెలిసిన పునరావృత మార్పులను ఎలా సృష్టిస్తాయో అర్థం చేసుకోండి.',

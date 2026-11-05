@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainTheirRoleInDecomposition_Skill_Data = buildSkillConfig({
-  slug: "explainTheirRoleInDecomposition",
-  id: "62f24b4f-4656-4d83-aab3-44ba153cb24c",
+  slug: 'explainTheirRoleInDecomposition',
+  id: '62f24b4f-4656-4d83-aab3-44ba153cb24c',
   name: {
-    en: "Explain Their Role in Decomposition",
+    en: 'Explain Their Role in Decomposition',
     zh: '解释微生物在分解过程中的作用',
     hi: 'अपघटन में सूक्ष्मजीवों की भूमिका समझाना',
     es: 'Explicar el papel de los microorganismos en la descomposición',
@@ -35,9 +35,10 @@ export const explainTheirRoleInDecomposition_Skill_Data = buildSkillConfig({
     qm: 'Mikroorganizmlerniñ çürüvdeki rolüni añlatmaq',
   },
   description: {
-    methodological: "Show how bacteria and other microorganisms break down organic residues and return substances to circulation.",
+    methodological:
+      'Show how bacteria and other microorganisms break down organic residues and return substances to circulation.',
     frontend: {
-      en: "Explore how microscopic organisms break down dead organic matter.",
+      en: 'Explore how microscopic organisms break down dead organic matter.',
       zh: '了解微小的生物如何分解死亡的有机物。',
       hi: 'जानें कि सूक्ष्म जीव मृत जैविक पदार्थ को कैसे विघटित करते हैं।',
       es: 'Explora cómo los organismos microscópicos descomponen la materia orgánica muerta.',

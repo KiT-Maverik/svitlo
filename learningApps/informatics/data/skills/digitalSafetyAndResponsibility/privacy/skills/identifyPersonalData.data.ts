@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const identifyPersonalData_Skill_Data = buildSkillConfig({
-  slug: "identifyPersonalData",
-  id: "cadaea6e-bd81-441e-82f3-73389d1373bf",
+  slug: 'identifyPersonalData',
+  id: 'cadaea6e-bd81-441e-82f3-73389d1373bf',
   name: {
-    en: "Identify Personal Data",
+    en: 'Identify Personal Data',
     zh: '识别个人数据',
     hi: 'व्यक्तिगत डेटा पहचानना',
     es: 'Identificar datos personales',
@@ -35,9 +35,10 @@ export const identifyPersonalData_Skill_Data = buildSkillConfig({
     qm: 'Şahsiy malümatnı tanımaq',
   },
   description: {
-    methodological: "Recognize information that identifies a person directly or in combination: name with address, photograph, contact details, or location. Even a seemingly harmless fact may be personal in context.",
+    methodological:
+      'Recognize information that identifies a person directly or in combination: name with address, photograph, contact details, or location. Even a seemingly harmless fact may be personal in context.',
     frontend: {
-      en: "Recognize information that can identify a person, even when combined with other details.",
+      en: 'Recognize information that can identify a person, even when combined with other details.',
       zh: '识别可直接或与其他线索结合后识别一个人的信息。',
       hi: 'ऐसी जानकारी पहचानें जो अकेले या दूसरी जानकारी के साथ किसी व्यक्ति की पहचान बता सके।',
       es: 'Reconoce información que puede identificar a una persona, incluso combinada con otros datos.',

@@ -7,10 +7,10 @@ import { plantStructure_SkillGroup_Data } from './plantStructure/plantStructure.
 import { reproductionAndDevelopment_SkillGroup_Data } from './reproductionAndDevelopment/reproductionAndDevelopment.data';
 
 export const botany_SkillDomain_Data = buildSkillDomainConfig({
-  slug: "botany",
-  id: "c481fc73-e032-4de3-864b-bfe44beeaab5",
+  slug: 'botany',
+  id: 'c481fc73-e032-4de3-864b-bfe44beeaab5',
   name: {
-    en: "Botany",
+    en: 'Botany',
     zh: '植物学',
     hi: 'वनस्पति विज्ञान',
     es: 'Botánica',
@@ -48,9 +48,10 @@ export const botany_SkillDomain_Data = buildSkillDomainConfig({
     reproductionAndDevelopment: reproductionAndDevelopment_SkillGroup_Data,
   },
   description: {
-    methodological: "Study of plants as organisms capable of photosynthesis: vegetative and reproductive organ structure, life cycles, and the dependence of growth on environmental conditions. Unlike Ecology, the focus is on the plant rather than interactions within a community.",
+    methodological:
+      'Study of plants as organisms capable of photosynthesis: vegetative and reproductive organ structure, life cycles, and the dependence of growth on environmental conditions. Unlike Ecology, the focus is on the plant rather than interactions within a community.',
     frontend: {
-      en: "Explore how plants are built, grow, reproduce and respond to their environments.",
+      en: 'Explore how plants are built, grow, reproduce and respond to their environments.',
       zh: '探索植物的结构、生长、繁殖及其对环境的反应。',
       hi: 'पौधों की संरचना, वृद्धि, प्रजनन और पर्यावरण पर प्रतिक्रिया का अध्ययन करें।',
       es: 'Explora cómo están formadas las plantas, cómo crecen, se reproducen y responden a su entorno.',

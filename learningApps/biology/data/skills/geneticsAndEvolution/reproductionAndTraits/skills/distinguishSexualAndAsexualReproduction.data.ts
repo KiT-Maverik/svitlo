@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const distinguishSexualAndAsexualReproduction_Skill_Data = buildSkillConfig({
-  slug: "distinguishSexualAndAsexualReproduction",
-  id: "15ee1731-bf7b-4a88-90fd-e751cf94f679",
+  slug: 'distinguishSexualAndAsexualReproduction',
+  id: '15ee1731-bf7b-4a88-90fd-e751cf94f679',
   name: {
-    en: "Distinguish Sexual and Asexual Reproduction",
+    en: 'Distinguish Sexual and Asexual Reproduction',
     zh: '区分有性生殖与无性生殖',
     hi: 'लैंगिक और अलैंगिक प्रजनन में अंतर करना',
     es: 'Distinguir reproducción sexual y asexual',
@@ -35,9 +35,10 @@ export const distinguishSexualAndAsexualReproduction_Skill_Data = buildSkillConf
     qm: 'Cinsiy ve cinsiy olmağan çoğaluvnı farqlamaq',
   },
   description: {
-    methodological: "Distinguish the fusion of sex cells from reproduction without their fusion, regardless of how offspring outwardly appear.",
+    methodological:
+      'Distinguish the fusion of sex cells from reproduction without their fusion, regardless of how offspring outwardly appear.',
     frontend: {
-      en: "Distinguish reproduction with sex-cell fusion from reproduction without it.",
+      en: 'Distinguish reproduction with sex-cell fusion from reproduction without it.',
       zh: '区分有生殖细胞融合和没有这种融合的繁殖方式。',
       hi: 'यौन कोशिकाओं के संलयन वाले और उनके संलयन के बिना होने वाले प्रजनन में अंतर करें।',
       es: 'Distingue la reproducción con fusión de células sexuales de la reproducción sin ella.',

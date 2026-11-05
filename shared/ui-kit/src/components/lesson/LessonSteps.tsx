@@ -19,8 +19,13 @@ export type LessonStepsProps = {
 };
 
 export function LessonSteps({
-  steps, currentStep, completedStep, showStepNumbers = true,
-  allowNavigation = false, onNavigate, navigationLabel,
+  steps,
+  currentStep,
+  completedStep,
+  showStepNumbers = true,
+  allowNavigation = false,
+  onNavigate,
+  navigationLabel,
 }: LessonStepsProps) {
   return (
     <Box component="nav" className={styles.steps} aria-label={navigationLabel}>
@@ -36,7 +41,8 @@ export function LessonSteps({
         >
           <span className={styles.segment} />
           <span className={styles.stepLabel}>
-            {showStepNumbers ? `${index + 1}. ` : ''}{step.title}
+            {showStepNumbers ? `${index + 1}. ` : ''}
+            {step.title}
           </span>
         </Box>
       ))}

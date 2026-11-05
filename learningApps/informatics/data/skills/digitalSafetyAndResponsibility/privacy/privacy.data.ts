@@ -1,12 +1,18 @@
 import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
 
-import { chooseSafeDataSharingMethods_Skill_Data, distinguishAPrivateChatFromAPublicLink_Skill_Data, explainDataReIdentification_Skill_Data, identifyPersonalData_Skill_Data, recognizeADigitalFootprint_Skill_Data } from './skills';
+import {
+  chooseSafeDataSharingMethods_Skill_Data,
+  distinguishAPrivateChatFromAPublicLink_Skill_Data,
+  explainDataReIdentification_Skill_Data,
+  identifyPersonalData_Skill_Data,
+  recognizeADigitalFootprint_Skill_Data,
+} from './skills';
 
 export const privacy_SkillGroup_Data = buildSkillGroupConfig({
-  slug: "privacy",
-  id: "d423d3ee-86b0-4df8-9541-fe6dd83cb0ba",
+  slug: 'privacy',
+  id: 'd423d3ee-86b0-4df8-9541-fe6dd83cb0ba',
   name: {
-    en: "Privacy",
+    en: 'Privacy',
     zh: '隐私',
     hi: 'निजता',
     es: 'Privacidad',
@@ -44,9 +50,10 @@ export const privacy_SkillGroup_Data = buildSkillGroupConfig({
     recognizeADigitalFootprint: recognizeADigitalFootprint_Skill_Data,
   },
   description: {
-    methodological: "Identifying personal information, deciding who may receive it, and evaluating long-term consequences of disclosure. Privacy is not identical to password protection or responding to fraud.",
+    methodological:
+      'Identifying personal information, deciding who may receive it, and evaluating long-term consequences of disclosure. Privacy is not identical to password protection or responding to fraud.',
     frontend: {
-      en: "Discover how sharing information online can affect privacy.",
+      en: 'Discover how sharing information online can affect privacy.',
       zh: '了解在网上分享信息会如何影响隐私。',
       hi: 'जानें कि इंटरनेट पर जानकारी साझा करने से निजता कैसे प्रभावित होती है।',
       es: 'Descubre cómo compartir información en internet puede afectar a la privacidad.',

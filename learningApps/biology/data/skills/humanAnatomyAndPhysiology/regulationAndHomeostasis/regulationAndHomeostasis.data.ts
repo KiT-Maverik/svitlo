@@ -3,10 +3,10 @@ import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
 import { explainEndocrineRegulation_Skill_Data, explainMaintenanceOfHomeostasis_Skill_Data } from './skills';
 
 export const regulationAndHomeostasis_SkillGroup_Data = buildSkillGroupConfig({
-  slug: "regulationAndHomeostasis",
-  id: "dd9f31e0-6af3-43cc-a4c2-9887ceea1b07",
+  slug: 'regulationAndHomeostasis',
+  id: 'dd9f31e0-6af3-43cc-a4c2-9887ceea1b07',
   name: {
-    en: "Regulation and Homeostasis",
+    en: 'Regulation and Homeostasis',
     zh: '调节与稳态',
     hi: 'नियमन और समस्थिति',
     es: 'Regulación y homeostasis',
@@ -41,9 +41,10 @@ export const regulationAndHomeostasis_SkillGroup_Data = buildSkillGroupConfig({
     explainMaintenanceOfHomeostasis: explainMaintenanceOfHomeostasis_Skill_Data,
   },
   description: {
-    methodological: "Nervous and hormonal signals coordinate organ functions, while feedback mechanisms maintain key internal conditions within viable ranges.",
+    methodological:
+      'Nervous and hormonal signals coordinate organ functions, while feedback mechanisms maintain key internal conditions within viable ranges.',
     frontend: {
-      en: "Discover how hormones, nerves and feedback help regulate body functions.",
+      en: 'Discover how hormones, nerves and feedback help regulate body functions.',
       zh: '探索激素、神经和反馈机制如何调节身体功能。',
       hi: 'जानें कि हार्मोन, तंत्रिकाएँ और प्रतिपुष्टि शरीर के कार्यों को कैसे नियंत्रित करते हैं।',
       es: 'Descubre cómo las hormonas, los nervios y la retroalimentación regulan las funciones corporales.',
@@ -64,7 +65,7 @@ export const regulationAndHomeostasis_SkillGroup_Data = buildSkillGroupConfig({
       ms: 'Terokai bagaimana hormon, saraf dan mekanisme maklum balas mengawal fungsi badan.',
       he: 'גלו כיצד הורמונים, עצבים ומנגנוני משוב מווסתים את תפקודי הגוף.',
       pl: 'Poznaj sposób, w jaki hormony, nerwy i sprzężenie zwrotne regulują funkcje organizmu.',
-      uk: 'Дослідіть, як гормони, нерви та механізми зворотного зв\'язку регулюють функції організму.',
+      uk: "Дослідіть, як гормони, нерви та механізми зворотного зв'язку регулюють функції організму.",
       lt: 'Sužinokite, kaip hormonai, nervai ir grįžtamojo ryšio mechanizmai reguliuoja kūno veiklą.',
       lv: 'Izpētiet, kā hormoni, nervi un atgriezeniskās saites mehānismi regulē ķermeņa funkcijas.',
       et: 'Uuri, kuidas hormoonid, närvid ja tagasiside reguleerivad keha talitlust.',

@@ -1,12 +1,17 @@
 import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
 
-import { distinguishHereditaryAndAcquiredTraits_Skill_Data, distinguishSexualAndAsexualReproduction_Skill_Data, explainDifferencesAmongOffspringOfTheSameSpecies_Skill_Data, identifyHereditaryTraitsInExamples_Skill_Data } from './skills';
+import {
+  distinguishHereditaryAndAcquiredTraits_Skill_Data,
+  distinguishSexualAndAsexualReproduction_Skill_Data,
+  explainDifferencesAmongOffspringOfTheSameSpecies_Skill_Data,
+  identifyHereditaryTraitsInExamples_Skill_Data,
+} from './skills';
 
 export const reproductionAndTraits_SkillGroup_Data = buildSkillGroupConfig({
-  slug: "reproductionAndTraits",
-  id: "ce59653f-c5dc-4275-8ebe-1c46e4774fe0",
+  slug: 'reproductionAndTraits',
+  id: 'ce59653f-c5dc-4275-8ebe-1c46e4774fe0',
   name: {
-    en: "Reproduction and Traits",
+    en: 'Reproduction and Traits',
     qm: 'Çoğaluv ve hususiyetler',
     zh: '繁殖与性状',
     hi: 'प्रजनन और लक्षण',
@@ -43,9 +48,10 @@ export const reproductionAndTraits_SkillGroup_Data = buildSkillGroupConfig({
     identifyHereditaryTraitsInExamples: identifyHereditaryTraitsInExamples_Skill_Data,
   },
   description: {
-    methodological: "Inherited characteristics can recur in offspring, but individuals of one species are not exact copies; reproductive mode affects variation.",
+    methodological:
+      'Inherited characteristics can recur in offspring, but individuals of one species are not exact copies; reproductive mode affects variation.',
     frontend: {
-      en: "Discover why offspring resemble their relatives but are not always identical.",
+      en: 'Discover why offspring resemble their relatives but are not always identical.',
       qm: 'Canlılarnıñ balaları ana-babalarına neden benzeseler de er vaqıt aynı olmaylar? Bunı ögreniñiz.',
       zh: '探索为什么子代与亲代相似，却不一定完全相同。',
       hi: 'जानें कि संतान अपने संबंधियों से मिलती-जुलती क्यों होती है, पर हमेशा एक जैसी क्यों नहीं होती।',

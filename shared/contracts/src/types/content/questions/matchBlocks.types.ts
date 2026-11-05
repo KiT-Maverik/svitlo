@@ -11,10 +11,30 @@ type Content<Mode extends 'data' | 'response', SupportedLanguages extends Locale
 };
 
 type Question_MatchBlocks_Definition = Question_Definition_Meta<'matchBlocks'>;
-type Question_MatchBlocks_Data<SupportedLanguages extends Locale_Languages> = Question_Data_Meta<'matchBlocks'> & Content<'data', SupportedLanguages> & { pairs: Readonly<Record<string, { left: ContentBlock<'data', SupportedLanguages>; right: ContentBlock<'data', SupportedLanguages> }>> };
-type Question_MatchBlocks_Response<SupportedLanguages extends Locale_Languages> = Question_Response_Meta<'matchBlocks'> & Content<'response', SupportedLanguages> & { pairs: Readonly<Record<string, { left: ContentBlock<'response', SupportedLanguages>; right: ContentBlock<'response', SupportedLanguages> }>> };
+type Question_MatchBlocks_Data<SupportedLanguages extends Locale_Languages> = Question_Data_Meta<'matchBlocks'> &
+  Content<'data', SupportedLanguages> & {
+    pairs: Readonly<
+      Record<
+        string,
+        { left: ContentBlock<'data', SupportedLanguages>; right: ContentBlock<'data', SupportedLanguages> }
+      >
+    >;
+  };
+type Question_MatchBlocks_Response<SupportedLanguages extends Locale_Languages> =
+  Question_Response_Meta<'matchBlocks'> &
+    Content<'response', SupportedLanguages> & {
+      pairs: Readonly<
+        Record<
+          string,
+          { left: ContentBlock<'response', SupportedLanguages>; right: ContentBlock<'response', SupportedLanguages> }
+        >
+      >;
+    };
 
-export type Question_MatchBlocks<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends Locale_Languages> = {
+export type Question_MatchBlocks<
+  ConfigType extends ContentEntity_ConfigType,
+  SupportedLanguages extends Locale_Languages,
+> = {
   definition: Question_MatchBlocks_Definition;
   data: Question_MatchBlocks_Data<SupportedLanguages>;
   response: Question_MatchBlocks_Response<SupportedLanguages>;

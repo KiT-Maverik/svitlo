@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const recognizeCrustaceanCharacteristics_Skill_Data = buildSkillConfig({
-  slug: "recognizeCrustaceanCharacteristics",
-  id: "0f1d2ac9-650b-4e2b-aa68-f6881de2b575",
+  slug: 'recognizeCrustaceanCharacteristics',
+  id: '0f1d2ac9-650b-4e2b-aa68-f6881de2b575',
   name: {
-    en: "Recognize Crustacean Characteristics",
+    en: 'Recognize Crustacean Characteristics',
     zh: '识别甲壳动物的特征',
     hi: 'क्रस्टेशियाई प्राणियों की विशेषताएँ पहचानना',
     es: 'Reconocer las características de los crustáceos',
@@ -35,14 +35,15 @@ export const recognizeCrustaceanCharacteristics_Skill_Data = buildSkillConfig({
     qm: 'Krustatseyalarnıñ belgilerini tanımaq',
   },
   description: {
-    methodological: "Recognize diverse crustaceans by jointed appendages, antennae, and characteristic structural traits; do not treat ten legs as a universal characteristic of crustaceans.",
+    methodological:
+      'Recognize diverse crustaceans by jointed appendages, antennae, and characteristic structural traits; do not treat ten legs as a universal characteristic of crustaceans.',
     frontend: {
-      en: "Recognize the varied structures of crustaceans without assuming all have ten legs.",
+      en: 'Recognize the varied structures of crustaceans without assuming all have ten legs.',
       zh: '识别甲壳动物多样的身体结构，不要以为所有甲壳动物都有十条腿。',
       hi: 'क्रस्टेशियाई प्राणियों की विविध शारीरिक संरचनाएँ पहचानें; सभी के दस पैर होते हैं, ऐसा न मानें।',
       es: 'Reconoce las diversas estructuras de los crustáceos sin suponer que todos tienen diez patas.',
       ar: 'تعرّف على تنوع تراكيب القشريات دون افتراض أن لها جميعًا عشر أرجل.',
-      fr: 'Reconnais la diversité des structures des crustacés sans supposer qu\'ils ont tous dix pattes.',
+      fr: "Reconnais la diversité des structures des crustacés sans supposer qu'ils ont tous dix pattes.",
       bn: 'ক্রাস্টেশিয়ানদের বিভিন্ন দেহগঠন চিনে নাও; সবার দশটি পা আছে বলে ধরে নিও না।',
       pt: 'Reconheça as diversas estruturas dos crustáceos sem supor que todos têm dez patas.',
       ur: 'قشری جانوروں کی متنوع جسمانی ساختیں پہچانیں؛ یہ فرض نہ کریں کہ سب کی دس ٹانگیں ہوتی ہیں۔',

@@ -51,7 +51,7 @@ export const stellarLuminosity_Skill_Data = buildSkillConfig({
       de: 'Unterscheide die gesamte Strahlungsleistung eines Sterns von seiner scheinbaren Helligkeit am Himmel.',
       ja: '星が単位時間あたりに放出するエネルギーの総量と、地球から見た明るさを区別しましょう。',
       ko: '별이 방출하는 에너지와 지구에서 보이는 겉보기 밝기를 구분해 보세요.',
-      tr: 'Bir yıldızın yaydığı toplam enerji ile Dünya\'dan görünen parlaklığını ayırt edin.',
+      tr: "Bir yıldızın yaydığı toplam enerji ile Dünya'dan görünen parlaklığını ayırt edin.",
       vi: 'Phân biệt năng lượng mà sao phát ra với độ sáng quan sát được từ Trái Đất.',
       ta: 'விண்மீன் வெளியிடும் ஆற்றலுக்கும் பூமியிலிருந்து தெரியும் பிரகாசத்திற்கும் உள்ள வேறுபாட்டை அறியுங்கள்.',
       te: 'నక్షత్రం విడుదల చేసే శక్తిని, భూమి నుంచి కనిపించే వెలుగు తీవ్రతను వేరుగా గుర్తించండి.',

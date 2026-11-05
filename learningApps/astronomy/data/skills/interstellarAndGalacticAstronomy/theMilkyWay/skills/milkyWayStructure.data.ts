@@ -18,7 +18,7 @@ export const milkyWayStructure_Skill_Data = buildSkillConfig({
     de: 'Aufbau der Milchstraße',
     ja: '天の川銀河の構造',
     ko: '우리 은하의 구조',
-    tr: 'Samanyolu\'nun Yapısı',
+    tr: "Samanyolu'nun Yapısı",
     vi: 'Cấu trúc Ngân Hà',
     ta: 'பால்வெளியின் அமைப்பு',
     te: 'పాలపుంత నిర్మాణం',

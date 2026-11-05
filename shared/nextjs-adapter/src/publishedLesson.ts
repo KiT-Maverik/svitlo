@@ -14,24 +14,28 @@ import type { LanguageCode } from '@svitlo/engine/localization';
 export async function loadPublishedLesson(id: string, language: LanguageCode): Promise<LessonResponse> {
   if (!/^[a-z]{2}$/.test(language)) throw new Error('Invalid lesson locale');
   const relativePath = resolveEntityPath(id);
-  const directory = path.join(
-    process.cwd(), 'public', 'data', 'pages', 'lessons', ...relativePath.split('/'),
-  );
+  const directory = path.join(process.cwd(), 'public', 'data', 'pages', 'lessons', ...relativePath.split('/'));
   const kinds = ['config', 'flashcards', 'questions'] as const;
-  const [config, flashcards, questions] = await Promise.all(kinds.map(async kind => {
-    const filename = path.join(directory, kind, language + '.json');
-    let source: string;
-    try {
-      source = await readFile(filename, 'utf8');
-    } catch (error) {
-      throw new Error('Missing published lesson resource ' + filename +
-        '. Run the lessons generator for this textbook before dev/build.', { cause: error });
-    }
-    try {
-      return JSON.parse(source) as unknown;
-    } catch (error) {
-      throw new Error('Malformed published lesson JSON: ' + filename, { cause: error });
-    }
-  }));
+  const [config, flashcards, questions] = await Promise.all(
+    kinds.map(async kind => {
+      const filename = path.join(directory, kind, language + '.json');
+      let source: string;
+      try {
+        source = await readFile(filename, 'utf8');
+      } catch (error) {
+        throw new Error(
+          'Missing published lesson resource ' +
+            filename +
+            '. Run the lessons generator for this textbook before dev/build.',
+          { cause: error },
+        );
+      }
+      try {
+        return JSON.parse(source) as unknown;
+      } catch (error) {
+        throw new Error('Malformed published lesson JSON: ' + filename, { cause: error });
+      }
+    }),
+  );
   return assembleLessonResponse(id, language, { config, flashcards, questions });
 }

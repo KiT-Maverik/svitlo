@@ -1,15 +1,15 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainPlantsNeedForWater_Skill_Data = buildSkillConfig({
-  slug: "explainPlantsNeedForWater",
-  id: "07c93377-44af-40ac-aa6f-7e3874f433c5",
+  slug: 'explainPlantsNeedForWater',
+  id: '07c93377-44af-40ac-aa6f-7e3874f433c5',
   name: {
-    en: "Explain Plants’ Need for Water",
+    en: 'Explain Plants’ Need for Water',
     zh: '解释植物为什么需要水',
     hi: 'पौधों को जल की आवश्यकता समझाना',
     es: 'Explicar por qué las plantas necesitan agua',
     ar: 'شرح حاجة النباتات إلى الماء',
-    fr: 'Expliquer pourquoi les plantes ont besoin d\'eau',
+    fr: "Expliquer pourquoi les plantes ont besoin d'eau",
     bn: 'উদ্ভিদের পানির প্রয়োজন ব্যাখ্যা করা',
     pt: 'Explicar por que as plantas precisam de água',
     ur: 'پودوں کو پانی کی ضرورت سمجھانا',
@@ -35,14 +35,15 @@ export const explainPlantsNeedForWater_Skill_Data = buildSkillConfig({
     qm: 'Ösümliklerge suv ne içün kerek olğanını añlatmaq',
   },
   description: {
-    methodological: "Explain water’s involvement in substance transport, cell maintenance, and photosynthesis rather than treating water merely as a plant’s 'drink'.",
+    methodological:
+      "Explain water’s involvement in substance transport, cell maintenance, and photosynthesis rather than treating water merely as a plant’s 'drink'.",
     frontend: {
-      en: "Understand why plants need water for transport, cell function and photosynthesis.",
+      en: 'Understand why plants need water for transport, cell function and photosynthesis.',
       zh: '了解植物为什么需要水来运输物质、维持细胞功能和进行光合作用。',
       hi: 'जानें कि परिवहन, कोशिका कार्य और प्रकाश संश्लेषण के लिए पौधों को पानी क्यों चाहिए।',
       es: 'Comprende por qué las plantas necesitan agua para transportar sustancias, mantener las células y realizar fotosíntesis.',
       ar: 'افهم لماذا تحتاج النباتات إلى الماء لنقل المواد ووظائف الخلايا والبناء الضوئي.',
-      fr: 'Comprends pourquoi les plantes ont besoin d\'eau pour le transport des substances, le fonctionnement cellulaire et la photosynthèse.',
+      fr: "Comprends pourquoi les plantes ont besoin d'eau pour le transport des substances, le fonctionnement cellulaire et la photosynthèse.",
       bn: 'পদার্থ পরিবহন, কোষের কাজ ও সালোকসংশ্লেষণের জন্য উদ্ভিদের পানি কেন দরকার তা জানো।',
       pt: 'Entenda por que as plantas precisam de água para transporte, funcionamento celular e fotossíntese.',
       ur: 'جانیں کہ مادّوں کی ترسیل، خلوی عمل اور ضیائی تالیف کے لیے پودوں کو پانی کیوں چاہیے۔',

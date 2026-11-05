@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const recognizeTheBrainsRoleInPerception_Skill_Data = buildSkillConfig({
-  slug: "recognizeTheBrainsRoleInPerception",
-  id: "70ec7147-b764-4969-9ba9-aa83e22c4962",
+  slug: 'recognizeTheBrainsRoleInPerception',
+  id: '70ec7147-b764-4969-9ba9-aa83e22c4962',
   name: {
-    en: "Recognize the Brain’s Role in Perception",
+    en: 'Recognize the Brain’s Role in Perception',
     zh: '认识大脑在感知中的作用',
     hi: 'संवेदी अनुभूति में मस्तिष्क की भूमिका पहचानना',
     es: 'Reconocer el papel del cerebro en la percepción',
@@ -35,14 +35,15 @@ export const recognizeTheBrainsRoleInPerception_Skill_Data = buildSkillConfig({
     qm: 'Miy sezgilerni añlavda ne rol oynağanını tanımaq',
   },
   description: {
-    methodological: "Understand that nerve signals from the sense organs are processed in the brain rather than being turned into conscious sensations by the eyes or ears themselves.",
+    methodological:
+      'Understand that nerve signals from the sense organs are processed in the brain rather than being turned into conscious sensations by the eyes or ears themselves.',
     frontend: {
-      en: "Explain why the brain plays a central role in interpreting sensory information.",
+      en: 'Explain why the brain plays a central role in interpreting sensory information.',
       zh: '解释为什么大脑在理解感觉信息时起着核心作用。',
       hi: 'समझाएँ कि इंद्रियों से मिली जानकारी को समझने में मस्तिष्क की केंद्रीय भूमिका क्यों है।',
       es: 'Explica por qué el cerebro tiene un papel central al interpretar la información sensorial.',
       ar: 'اشرح لماذا يؤدي الدماغ دورًا محوريًا في تفسير المعلومات الحسية.',
-      fr: 'Expliquez pourquoi le cerveau joue un rôle central dans l\'interprétation des informations sensorielles.',
+      fr: "Expliquez pourquoi le cerveau joue un rôle central dans l'interprétation des informations sensorielles.",
       bn: 'ইন্দ্রিয় থেকে পাওয়া তথ্য বোঝায় মস্তিষ্ক কেন প্রধান ভূমিকা রাখে, তা ব্যাখ্যা করো।',
       pt: 'Explique por que o cérebro tem papel central na interpretação das informações sensoriais.',
       ur: 'وضاحت کریں کہ حسی معلومات سمجھنے میں دماغ مرکزی کردار کیوں ادا کرتا ہے۔',

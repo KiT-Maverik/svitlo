@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const distinguishSamplingFromChoosingTheMostLikelyToken_Skill_Data = buildSkillConfig({
-  slug: "distinguishSamplingFromChoosingTheMostLikelyToken",
-  id: "5f2b4a96-a6e8-46d0-aeeb-a8c84da9ada5",
+  slug: 'distinguishSamplingFromChoosingTheMostLikelyToken',
+  id: '5f2b4a96-a6e8-46d0-aeeb-a8c84da9ada5',
   name: {
-    en: "Distinguish Sampling from Choosing the Most Likely Token",
+    en: 'Distinguish Sampling from Choosing the Most Likely Token',
     zh: '区分采样与选择最可能的词元',
     hi: 'नमूना चयन और सबसे संभावित टोकन चुनने में अंतर करना',
     es: 'Distinguir muestreo y elección del token más probable',
@@ -35,9 +35,10 @@ export const distinguishSamplingFromChoosingTheMostLikelyToken_Skill_Data = buil
     qm: 'Eñ ihtimallı token saylavını tasadufiy saylavdan ayırmaq',
   },
   description: {
-    methodological: "Compare decoding by sampling from a probability distribution with deterministically selecting its highest-probability continuation.",
+    methodological:
+      'Compare decoding by sampling from a probability distribution with deterministically selecting its highest-probability continuation.',
     frontend: {
-      en: "Compare choosing the most likely token with sampling other possible continuations.",
+      en: 'Compare choosing the most likely token with sampling other possible continuations.',
       zh: '比较总选概率最高的词元与从其他可能的后续词元中采样。',
       hi: 'सबसे संभावित टोकन चुनने और दूसरे संभावित विकल्पों से नमूना लेने की तुलना करें।',
       es: 'Compara elegir siempre el token más probable con muestrear otras continuaciones posibles.',

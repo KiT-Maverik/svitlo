@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const recognizeCommonLocalAnimals_Skill_Data = buildSkillConfig({
-  slug: "recognizeCommonLocalAnimals",
-  id: "7f014a54-5825-46f8-88b5-6df5d5969ce5",
+  slug: 'recognizeCommonLocalAnimals',
+  id: '7f014a54-5825-46f8-88b5-6df5d5969ce5',
   name: {
-    en: "Recognize Common Local Animals",
+    en: 'Recognize Common Local Animals',
     zh: '识别当地常见动物',
     hi: 'स्थानीय सामान्य प्राणियों को पहचानना',
     es: 'Reconocer animales locales comunes',
@@ -35,9 +35,10 @@ export const recognizeCommonLocalAnimals_Skill_Data = buildSkillConfig({
     qm: 'Yerli yayğın ayvanlarnı tanımaq',
   },
   description: {
-    methodological: "Identify familiar local species from a characteristic combination of body structure, coverings, and modes of movement.",
+    methodological:
+      'Identify familiar local species from a characteristic combination of body structure, coverings, and modes of movement.',
     frontend: {
-      en: "Identify familiar animals using characteristic body structures and coverings.",
+      en: 'Identify familiar animals using characteristic body structures and coverings.',
       zh: '通过典型的身体结构和体表覆盖物识别熟悉的动物。',
       hi: 'परिचित प्राणियों को उनकी विशिष्ट शारीरिक संरचनाओं और शरीर के आवरण से पहचानें।',
       es: 'Identifica animales conocidos por sus estructuras corporales y cubiertas características.',

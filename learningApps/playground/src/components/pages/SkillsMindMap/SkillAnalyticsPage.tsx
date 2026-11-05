@@ -21,15 +21,19 @@ const idleProgress = {
 } as const;
 const unusedActions = { back: () => {}, next: () => {}, skip: () => {} };
 
-function SkillAnalyticsContent({ domainSlugs, initialMessages }: {
+function SkillAnalyticsContent({
+  domainSlugs,
+  initialMessages,
+}: {
   domainSlugs: readonly string[];
   initialMessages: UiKit_Global<'response'>;
 }) {
   const { locale, setLocale, ready, localeError } = useSkillsPageSettings();
   const { mode, systemMode, setMode } = useColorScheme();
-  const [resource, setResource] = useState<{ locale: Locale; messages: UiKit_Global<'response'> }>(
-    () => ({ locale: 'uk-UA', messages: initialMessages }),
-  );
+  const [resource, setResource] = useState<{ locale: Locale; messages: UiKit_Global<'response'> }>(() => ({
+    locale: 'uk-UA',
+    messages: initialMessages,
+  }));
   const [resourceError, setResourceError] = useState<{ locale: Locale; message: string } | null>(null);
 
   useEffect(() => {
@@ -55,9 +59,11 @@ function SkillAnalyticsContent({ domainSlugs, initialMessages }: {
 
   if (resource.locale !== locale) {
     const currentError = resourceError?.locale === locale ? resourceError.message : null;
-    return <Box role={currentError ? 'alert' : 'status'} aria-busy={!currentError}>
-      {currentError ? 'Не вдалося завантажити переклад інтерфейсу: ' + currentError : 'Завантаження інтерфейсу…'}
-    </Box>;
+    return (
+      <Box role={currentError ? 'alert' : 'status'} aria-busy={!currentError}>
+        {currentError ? 'Не вдалося завантажити переклад інтерфейсу: ' + currentError : 'Завантаження інтерфейсу…'}
+      </Box>
+    );
   }
   const messages = resource.messages;
 

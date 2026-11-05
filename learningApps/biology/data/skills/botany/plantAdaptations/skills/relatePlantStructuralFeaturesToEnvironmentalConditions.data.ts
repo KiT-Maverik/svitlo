@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const relatePlantStructuralFeaturesToEnvironmentalConditions_Skill_Data = buildSkillConfig({
-  slug: "relatePlantStructuralFeaturesToEnvironmentalConditions",
-  id: "3cdaa305-6e70-437d-8b8d-c9be07a35bae",
+  slug: 'relatePlantStructuralFeaturesToEnvironmentalConditions',
+  id: '3cdaa305-6e70-437d-8b8d-c9be07a35bae',
   name: {
-    en: "Relate Plant Structural Features to Environmental Conditions",
+    en: 'Relate Plant Structural Features to Environmental Conditions',
     zh: '将植物结构特征与环境条件联系起来',
     hi: 'पौधों की संरचनात्मक विशेषताओं को पर्यावरण से जोड़ना',
     es: 'Relacionar características estructurales con el ambiente',
@@ -35,9 +35,10 @@ export const relatePlantStructuralFeaturesToEnvironmentalConditions_Skill_Data =
     qm: 'Ösümlikniñ quruluş belgilerini müit şartlarınen bağlaştırmaq',
   },
   description: {
-    methodological: "Explain causal links between root, leaf, and shoot structure and environmental resources or limitations; compare how different structural solutions affect water balance, access to light, and survival. The central competency is functional explanation rather than merely identifying an adaptation.",
+    methodological:
+      'Explain causal links between root, leaf, and shoot structure and environmental resources or limitations; compare how different structural solutions affect water balance, access to light, and survival. The central competency is functional explanation rather than merely identifying an adaptation.',
     frontend: {
-      en: "Explain why roots, leaves and shoots have forms suited to different conditions.",
+      en: 'Explain why roots, leaves and shoots have forms suited to different conditions.',
       zh: '解释根、叶和茎的结构如何帮助植物适应不同的环境条件。',
       hi: 'समझाएँ कि जड़ों, पत्तियों और प्ररोहों के आकार अलग-अलग परिस्थितियों के अनुकूल क्यों होते हैं।',
       es: 'Explica por qué las raíces, hojas y brotes presentan formas adecuadas a distintas condiciones.',

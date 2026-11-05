@@ -8,7 +8,11 @@ import { QuestionChoice } from '../response/QuestionChoice';
 import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
 import { shuffleItems } from '../response/QuestionContent';
 
-export function MatchBlocks({ response, sceneRegistry, messages }: {
+export function MatchBlocks({
+  response,
+  sceneRegistry,
+  messages,
+}: {
   response: Question_MatchBlocks<'response', Locale_Languages>;
   sceneRegistry?: SceneRegistry;
   messages: UiKit_Global<'response'>;
@@ -29,8 +33,18 @@ export function MatchBlocks({ response, sceneRegistry, messages }: {
     setPending(null);
   };
   return (
-    <QuestionFrame response={response} sceneRegistry={sceneRegistry} messages={messages}
-      attempt={{ ...attempt, retry: () => { attempt.retry(); setPending(null); } }}>
+    <QuestionFrame
+      response={response}
+      sceneRegistry={sceneRegistry}
+      messages={messages}
+      attempt={{
+        ...attempt,
+        retry: () => {
+          attempt.retry();
+          setPending(null);
+        },
+      }}
+    >
       <Typography variant="body2" sx={{ mb: 1, textAlign: 'center' }}>
         {messages.questionFrame.matchInstructions}
       </Typography>
@@ -38,19 +52,37 @@ export function MatchBlocks({ response, sceneRegistry, messages }: {
         <Stack spacing={1} role="group" aria-label={messages.questionFrame.left}>
           {pairs.map(pair => {
             const assigned = attempt.value[pair.id];
-            const feedback = attempt.checked ? assigned === pair.id ? 'correct' : 'incorrect' : undefined;
-            return <QuestionChoice key={pair.id} block={pair.left} sceneRegistry={sceneRegistry} messages={messages}
-              selected={pending === pair.id || Boolean(assigned)} disabled={attempt.checked}
-              feedback={feedback} onToggle={() => setPending(pending === pair.id ? null : pair.id)} />;
+            const feedback = attempt.checked ? (assigned === pair.id ? 'correct' : 'incorrect') : undefined;
+            return (
+              <QuestionChoice
+                key={pair.id}
+                block={pair.left}
+                sceneRegistry={sceneRegistry}
+                messages={messages}
+                selected={pending === pair.id || Boolean(assigned)}
+                disabled={attempt.checked}
+                feedback={feedback}
+                onToggle={() => setPending(pending === pair.id ? null : pair.id)}
+              />
+            );
           })}
         </Stack>
         <Stack spacing={1} role="group" aria-label={messages.questionFrame.right}>
           {right.map(pair => {
             const left = Object.keys(attempt.value).find(id => attempt.value[id] === pair.id);
-            const feedback = attempt.checked && left ? left === pair.id ? 'correct' : 'incorrect' : undefined;
-            return <QuestionChoice key={pair.id} block={pair.right} sceneRegistry={sceneRegistry} messages={messages}
-              selected={Boolean(left)} disabled={attempt.checked} feedback={feedback}
-              onToggle={() => chooseRight(pair.id)} />;
+            const feedback = attempt.checked && left ? (left === pair.id ? 'correct' : 'incorrect') : undefined;
+            return (
+              <QuestionChoice
+                key={pair.id}
+                block={pair.right}
+                sceneRegistry={sceneRegistry}
+                messages={messages}
+                selected={Boolean(left)}
+                disabled={attempt.checked}
+                feedback={feedback}
+                onToggle={() => chooseRight(pair.id)}
+              />
+            );
           })}
         </Stack>
       </Box>

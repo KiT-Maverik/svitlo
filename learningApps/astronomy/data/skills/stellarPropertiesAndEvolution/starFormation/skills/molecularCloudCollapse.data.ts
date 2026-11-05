@@ -43,7 +43,7 @@ export const molecularCloudCollapse_Skill_Data = buildSkillConfig({
       hi: 'समझाएँ कि गैस के घने क्षेत्र संकुचित होकर तारों के बनने की शुरुआत कैसे करते हैं।',
       es: 'Explica cómo las regiones densas de gas pueden colapsar y comenzar a formar estrellas.',
       ar: 'اشرح كيف تنهار المناطق الكثيفة من الغاز لتبدأ عملية تكوّن النجوم.',
-      fr: 'Expliquez comment des régions denses de gaz peuvent s\'effondrer et amorcer la formation d\'étoiles.',
+      fr: "Expliquez comment des régions denses de gaz peuvent s'effondrer et amorcer la formation d'étoiles.",
       bn: 'গ্যাসের ঘন অঞ্চল সংকুচিত হয়ে কীভাবে নক্ষত্র গঠনের সূচনা করে, তা ব্যাখ্যা করো।',
       pt: 'Explique como regiões densas de gás podem colapsar e iniciar a formação de estrelas.',
       ur: 'وضاحت کریں کہ گیس کے گھنے حصے سکڑ کر ستاروں کی تشکیل کیسے شروع کرتے ہیں۔',

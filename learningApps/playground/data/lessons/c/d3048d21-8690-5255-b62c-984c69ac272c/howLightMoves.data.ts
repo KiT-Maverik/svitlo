@@ -9,7 +9,7 @@ import { theory_Section } from './sections/theory/theory';
 export const howLightMoves_Data = defineLessonData<HowLightMoves_Languages>()({
   id: 'd3048d21-8690-5255-b62c-984c69ac272c',
   slug: 'howLightMoves',
-  title:  {
+  title: {
     en: 'How Light Travels',
     qm: 'Yarıq nasıl yayıla?',
     lt: 'Kaip sklinda šviesa',
@@ -53,4 +53,3 @@ export const howLightMoves_Data = defineLessonData<HowLightMoves_Languages>()({
   questions: howLightMoves_Questions,
   sections: [theory_Section, practice_Section, quiz_Section],
 } satisfies Lesson<'data', HowLightMoves_Languages>);
-

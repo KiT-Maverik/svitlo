@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const describeGermination_Skill_Data = buildSkillConfig({
-  slug: "describeGermination",
-  id: "3069a90c-6804-4565-9d83-e1602f66554c",
+  slug: 'describeGermination',
+  id: '3069a90c-6804-4565-9d83-e1602f66554c',
   name: {
-    en: "Describe Germination",
+    en: 'Describe Germination',
     zh: '描述种子萌发',
     hi: 'अंकुरण का वर्णन करना',
     es: 'Describir la germinación',
@@ -35,9 +35,10 @@ export const describeGermination_Skill_Data = buildSkillConfig({
     qm: 'Tohumnıñ çimlenüvini tasvir etmek',
   },
   description: {
-    methodological: "Establish the order in which the embryonic root and shoot emerge, as well as the roles of water and an appropriate temperature.",
+    methodological:
+      'Establish the order in which the embryonic root and shoot emerge, as well as the roles of water and an appropriate temperature.',
     frontend: {
-      en: "Describe how a seed begins growing roots and shoots.",
+      en: 'Describe how a seed begins growing roots and shoots.',
       zh: '描述种子如何开始长出根和芽。',
       hi: 'बताएँ कि बीज से जड़ और प्ररोह निकलना कैसे शुरू होता है।',
       es: 'Describe cómo una semilla comienza a desarrollar raíces y brotes.',

@@ -10,7 +10,8 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: 'Renders a localized Markdown response directly, including sanitized authored HTML, links, lists, and code. Supports RTL languages.',
+        component:
+          'Renders a localized Markdown response directly, including sanitized authored HTML, links, lists, and code. Supports RTL languages.',
       },
     },
   },
@@ -44,7 +45,13 @@ export const AuthoredHtml: Story = {
 };
 
 export const RightToLeft: Story = {
-  decorators: [(StoryComponent) => <ContentLanguageContext.Provider value="ar"><StoryComponent /></ContentLanguageContext.Provider>],
+  decorators: [
+    StoryComponent => (
+      <ContentLanguageContext.Provider value="ar">
+        <StoryComponent />
+      </ContentLanguageContext.Provider>
+    ),
+  ],
   args: {
     text: '# كيف ينتقل الضوء؟\n\nينتقل الضوء في **خطوط مستقيمة** في وسط متجانس.\n\n- انظر إلى الشعاع\n- حدد اتجاهه',
   },

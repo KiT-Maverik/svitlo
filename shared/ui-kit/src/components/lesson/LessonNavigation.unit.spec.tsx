@@ -4,21 +4,27 @@ import { LessonNavigationProvider, useLessonNavigation } from './LessonNavigatio
 
 function Actions() {
   const { progress, dispatch } = useLessonNavigation();
-  return <>
-    <span>Section {progress.step}</span>
-    <button onClick={() => dispatch({ type: 'next' })}>Next</button>
-    <button onClick={() => dispatch({ type: 'back' })}>Back</button>
-    <button onClick={() => dispatch({ type: 'visit', step: 2 })}>Quiz</button>
-    <button onClick={() => dispatch({ type: 'skip' })}>Skip</button>
-    <button onClick={() => dispatch({ type: 'visit', step: -1 })}>Invalid</button>
-    <button onClick={() => dispatch({ type: 'testDone' })}>Complete</button>
-    <span>Completed: {String(progress.testDone)}</span>
-  </>;
+  return (
+    <>
+      <span>Section {progress.step}</span>
+      <button onClick={() => dispatch({ type: 'next' })}>Next</button>
+      <button onClick={() => dispatch({ type: 'back' })}>Back</button>
+      <button onClick={() => dispatch({ type: 'visit', step: 2 })}>Quiz</button>
+      <button onClick={() => dispatch({ type: 'skip' })}>Skip</button>
+      <button onClick={() => dispatch({ type: 'visit', step: -1 })}>Invalid</button>
+      <button onClick={() => dispatch({ type: 'testDone' })}>Complete</button>
+      <span>Completed: {String(progress.testDone)}</span>
+    </>
+  );
 }
 
 describe('lesson section navigation', () => {
   it('opens the first section and navigates only in memory', () => {
-    render(<LessonNavigationProvider sectionCount={3}><Actions /></LessonNavigationProvider>);
+    render(
+      <LessonNavigationProvider sectionCount={3}>
+        <Actions />
+      </LessonNavigationProvider>,
+    );
     expect(screen.getByText('Section 0')).toBeVisible();
     fireEvent.click(screen.getByRole('button', { name: 'Next' }));
     expect(screen.getByText('Section 1')).toBeVisible();
@@ -29,7 +35,11 @@ describe('lesson section navigation', () => {
   });
 
   it('clamps next/back/skip and rejects invalid visits', () => {
-    render(<LessonNavigationProvider sectionCount={3}><Actions /></LessonNavigationProvider>);
+    render(
+      <LessonNavigationProvider sectionCount={3}>
+        <Actions />
+      </LessonNavigationProvider>,
+    );
     fireEvent.click(screen.getByRole('button', { name: 'Back' }));
     expect(screen.getByText('Section 0')).toBeVisible();
     fireEvent.click(screen.getByRole('button', { name: 'Skip' }));
@@ -43,7 +53,11 @@ describe('lesson section navigation', () => {
   });
 
   it('records quiz completion without moving beyond the final section', () => {
-    render(<LessonNavigationProvider sectionCount={3}><Actions /></LessonNavigationProvider>);
+    render(
+      <LessonNavigationProvider sectionCount={3}>
+        <Actions />
+      </LessonNavigationProvider>,
+    );
     fireEvent.click(screen.getByRole('button', { name: 'Quiz' }));
     fireEvent.click(screen.getByRole('button', { name: 'Complete' }));
     expect(screen.getByText('Completed: true')).toBeVisible();

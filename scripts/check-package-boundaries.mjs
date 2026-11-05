@@ -129,10 +129,7 @@ assert(
 );
 assert(
   existsSync(
-    resolve(
-      root,
-      'shared/ui-kit/src/components/widgets/ContentBlockRenderer/ContentBlockRenderer.unit.spec.tsx',
-    ),
+    resolve(root, 'shared/ui-kit/src/components/widgets/ContentBlockRenderer/ContentBlockRenderer.unit.spec.tsx'),
   ),
   'Shared content block renderer must own its unit coverage',
 );
@@ -189,18 +186,22 @@ for (const file of engineSources) {
   for (const match of imports) {
     assert(
       match[1].startsWith('.') ||
-      match[1].startsWith('@svitlo/contracts') ||
-      (relative(root, file).startsWith('shared/engine/src/utils/generators/') &&
-        (match[1].startsWith('node:') || match[1] === 'esbuild')),
+        match[1].startsWith('@svitlo/contracts') ||
+        (relative(root, file).startsWith('shared/engine/src/utils/generators/') &&
+          (match[1].startsWith('node:') || match[1] === 'esbuild')),
       'Engine must not import runtime, UI or application packages: ' + relative(root, file) + ' -> ' + match[1],
     );
   }
 }
 assert(nextAdapter.name === '@svitlo/nextjs-adapter', 'Unexpected Next.js adapter package name');
-assert(playground.dependencies?.[nextAdapter.name] === nextAdapter.version,
-  'Playground must use the shared Next.js adapter');
-assert(nextAdapter.dependencies?.[uiKit.name] === uiKit.version,
-  'Next.js adapter must consume the UI Kit via public exports');
+assert(
+  playground.dependencies?.[nextAdapter.name] === nextAdapter.version,
+  'Playground must use the shared Next.js adapter',
+);
+assert(
+  nextAdapter.dependencies?.[uiKit.name] === uiKit.version,
+  'Next.js adapter must consume the UI Kit via public exports',
+);
 assert(!uiKit.peerDependencies?.next, 'Framework-agnostic UI Kit must not require Next.js');
 const kitSourceRoot = resolve(root, 'shared/ui-kit/src');
 if (existsSync(kitSourceRoot)) {

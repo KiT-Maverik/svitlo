@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const distinguishHereditaryAndAcquiredTraits_Skill_Data = buildSkillConfig({
-  slug: "distinguishHereditaryAndAcquiredTraits",
-  id: "2e649482-c54b-43bc-82a8-f5b2c1a3129f",
+  slug: 'distinguishHereditaryAndAcquiredTraits',
+  id: '2e649482-c54b-43bc-82a8-f5b2c1a3129f',
   name: {
-    en: "Distinguish Hereditary and Acquired Traits",
+    en: 'Distinguish Hereditary and Acquired Traits',
     zh: '区分遗传性状与后天获得的性状',
     hi: 'वंशानुगत और अर्जित लक्षणों में अंतर करना',
     es: 'Distinguir rasgos hereditarios y adquiridos',
@@ -35,9 +35,10 @@ export const distinguishHereditaryAndAcquiredTraits_Skill_Data = buildSkillConfi
     qm: 'İrsiy ve ömür devamında qazanılğan belgilerni farqlamaq',
   },
   description: {
-    methodological: "Distinguish changes that can be passed to offspring through genetic information from changes acquired by an individual through experience, injury, or training. Explain that most phenotypic traits arise from interactions between genotype and environment, so a rigid binary classification is not universally applicable.",
+    methodological:
+      'Distinguish changes that can be passed to offspring through genetic information from changes acquired by an individual through experience, injury, or training. Explain that most phenotypic traits arise from interactions between genotype and environment, so a rigid binary classification is not universally applicable.',
     frontend: {
-      en: "Explore how genes and environments contribute to traits, without relying on a strict either-or rule.",
+      en: 'Explore how genes and environments contribute to traits, without relying on a strict either-or rule.',
       zh: '探索基因和环境如何共同影响性状，而不把两者简单对立。',
       hi: 'जानें कि जीन और पर्यावरण मिलकर लक्षणों को कैसे प्रभावित करते हैं; इसे सख्त दो श्रेणियों में न बाँटें।',
       es: 'Explora cómo los genes y el entorno contribuyen a los rasgos, sin reducirlos a dos categorías rígidas.',

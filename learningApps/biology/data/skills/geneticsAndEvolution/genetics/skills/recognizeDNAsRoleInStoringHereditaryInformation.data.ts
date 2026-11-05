@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const recognizeDNAsRoleInStoringHereditaryInformation_Skill_Data = buildSkillConfig({
-  slug: "recognizeDNAsRoleInStoringHereditaryInformation",
-  id: "06e6dc45-e3ce-42f2-949b-3bbca155dde9",
+  slug: 'recognizeDNAsRoleInStoringHereditaryInformation',
+  id: '06e6dc45-e3ce-42f2-949b-3bbca155dde9',
   name: {
-    en: "Recognize DNA’s Role in Storing Hereditary Information",
+    en: 'Recognize DNA’s Role in Storing Hereditary Information',
     zh: '认识 DNA 储存遗传信息的作用',
     hi: 'वंशानुगत सूचना के भंडारण में डीएनए की भूमिका पहचानना',
     es: 'Reconocer el papel del ADN en el almacenamiento de información hereditaria',
@@ -17,7 +17,7 @@ export const recognizeDNAsRoleInStoringHereditaryInformation_Skill_Data = buildS
     de: 'Die Rolle der DNA als Speicher der Erbinformation erkennen',
     ja: '遺伝情報の保存におけるDNAの役割を知る',
     ko: '유전 정보 저장에서 DNA의 역할 알아보기',
-    tr: 'Kalıtsal bilgiyi depolamada DNA\'nın rolünü tanımak',
+    tr: "Kalıtsal bilgiyi depolamada DNA'nın rolünü tanımak",
     vi: 'Nhận biết vai trò lưu trữ thông tin di truyền của ADN',
     ta: 'மரபுத் தகவலைச் சேமிப்பதில் டிஎன்ஏவின் பங்கை அறிதல்',
     te: 'వారసత్వ సమాచార నిల్వలో డీఎన్‌ఏ పాత్రను గుర్తించడం',
@@ -35,9 +35,10 @@ export const recognizeDNAsRoleInStoringHereditaryInformation_Skill_Data = buildS
     qm: 'İrsiy malümatnı saqlavda DNKnıñ rolüni tanımaq',
   },
   description: {
-    methodological: "Explain the role of DNA sequences in storing information about the construction and regulation of cellular structures.",
+    methodological:
+      'Explain the role of DNA sequences in storing information about the construction and regulation of cellular structures.',
     frontend: {
-      en: "Explain how DNA stores information used by living cells.",
+      en: 'Explain how DNA stores information used by living cells.',
       zh: '解释 DNA 如何储存活细胞所需的信息。',
       hi: 'समझाएँ कि डीएनए जीवित कोशिकाओं द्वारा उपयोग की जाने वाली जानकारी कैसे संचित रखता है।',
       es: 'Explica cómo el ADN almacena información utilizada por las células vivas.',
@@ -50,7 +51,7 @@ export const recognizeDNAsRoleInStoringHereditaryInformation_Skill_Data = buildS
       de: 'Erkläre, wie die DNA Informationen speichert, die lebende Zellen nutzen.',
       ja: '生きた細胞が使う情報をDNAがどう保存しているか説明しよう。',
       ko: 'DNA가 살아 있는 세포에서 사용하는 정보를 어떻게 저장하는지 설명해 보세요.',
-      tr: 'DNA\'nın canlı hücrelerin kullandığı bilgiyi nasıl sakladığını açıkla.',
+      tr: "DNA'nın canlı hücrelerin kullandığı bilgiyi nasıl sakladığını açıkla.",
       vi: 'Giải thích cách ADN lưu giữ thông tin mà tế bào sống sử dụng.',
       ta: 'உயிரணுக்கள் பயன்படுத்தும் தகவலை டிஎன்ஏ எவ்வாறு சேமிக்கிறது என்பதை விளக்குங்கள்.',
       te: 'జీవ కణాలు ఉపయోగించే సమాచారాన్ని డీఎన్‌ఏ ఎలా నిల్వ చేస్తుందో వివరించండి.',

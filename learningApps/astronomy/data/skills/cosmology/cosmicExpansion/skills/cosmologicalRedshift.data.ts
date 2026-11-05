@@ -44,7 +44,7 @@ export const cosmologicalRedshift_Skill_Data = buildSkillConfig({
       hi: 'समझें कि फैलता अंतरिक्ष यात्रा करती रोशनी की तरंगदैर्घ्य कैसे बढ़ाता है।',
       es: 'Comprende cómo la expansión del espacio estira la longitud de onda de la luz que viaja.',
       ar: 'افهم كيف يؤدي تمدد الفضاء إلى استطالة أطوال موجات الضوء المسافر.',
-      fr: 'Comprends comment l\'expansion de l\'espace étire les longueurs d\'onde de la lumière en voyage.',
+      fr: "Comprends comment l'expansion de l'espace étire les longueurs d'onde de la lumière en voyage.",
       bn: 'প্রসারিত স্থান কীভাবে চলমান আলোর তরঙ্গদৈর্ঘ্য বাড়ায় তা বোঝো।',
       pt: 'Entenda como a expansão do espaço alonga os comprimentos de onda da luz em viagem.',
       ur: 'سمجھیں کہ پھیلتا خلا سفر کرتی روشنی کی طولِ موج کیسے بڑھاتا ہے۔',

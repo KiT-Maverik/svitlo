@@ -51,7 +51,11 @@ describe('Image content block', () => {
 
   it('renders a responsive native image with authored intrinsic dimensions', () => {
     setOnline(true);
-    render(<ContentLanguageContext.Provider value="uk"><Image messages={enUiKitMessages.image} {...response} /></ContentLanguageContext.Provider>);
+    render(
+      <ContentLanguageContext.Provider value="uk">
+        <Image messages={enUiKitMessages.image} {...response} />
+      </ContentLanguageContext.Provider>,
+    );
     const image = screen.getByAltText('Схема руху світла');
     expect(image).toHaveAttribute('width', '800');
     expect(image).toHaveAttribute('height', '450');
@@ -104,7 +108,6 @@ describe('Image content block', () => {
     expect(screen.getByRole('alert')).toHaveTextContent('Зображення не знайдено');
   });
 });
-
 
 describe('Image fallback lifecycle', () => {
   it('retries an offline failure automatically when the connection returns', () => {

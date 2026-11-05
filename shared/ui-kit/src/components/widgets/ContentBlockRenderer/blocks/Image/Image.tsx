@@ -49,7 +49,11 @@ export const Image = (props: ContentBlock_Image_Response & { messages: UiKit_Com
   return (
     <figure {...localizedAttributes({ locale: { code: contentLanguage } })} className={styles.figure}>
       {failureKind ? (
-        <div className={styles.placeholder} role="alert" style={{ aspectRatio: props.fill ? props.aspectRatio : `${props.width} / ${props.height}` }}>
+        <div
+          className={styles.placeholder}
+          role="alert"
+          style={{ aspectRatio: props.fill ? props.aspectRatio : `${props.width} / ${props.height}` }}
+        >
           {alt && <strong>{alt}</strong>}
           <span>{fallback?.[failureKind] || messages[failureKind]}</span>
           <Button type="button" variant="outlined" onClick={retry}>

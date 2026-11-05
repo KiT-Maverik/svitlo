@@ -1,12 +1,16 @@
 import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
 
-import { distinguishAnOrganFromAnOrganSystem_Skill_Data, identifyMajorBodyParts_Skill_Data, relateOrgansToTheirFunctions_Skill_Data } from './skills';
+import {
+  distinguishAnOrganFromAnOrganSystem_Skill_Data,
+  identifyMajorBodyParts_Skill_Data,
+  relateOrgansToTheirFunctions_Skill_Data,
+} from './skills';
 
 export const bodyStructure_SkillGroup_Data = buildSkillGroupConfig({
-  slug: "bodyStructure",
-  id: "89ff6336-56ca-4763-8058-5b9f999946ee",
+  slug: 'bodyStructure',
+  id: '89ff6336-56ca-4763-8058-5b9f999946ee',
   name: {
-    en: "Body Structure",
+    en: 'Body Structure',
     zh: '人体结构',
     hi: 'शरीर की संरचना',
     es: 'Estructura del cuerpo',
@@ -42,14 +46,15 @@ export const bodyStructure_SkillGroup_Data = buildSkillGroupConfig({
     relateOrgansToTheirFunctions: relateOrgansToTheirFunctions_Skill_Data,
   },
   description: {
-    methodological: "External and internal body parts form organs and systems, each performing a particular function in the organism.",
+    methodological:
+      'External and internal body parts form organs and systems, each performing a particular function in the organism.',
     frontend: {
-      en: "Learn how body parts, organs and systems fit together.",
+      en: 'Learn how body parts, organs and systems fit together.',
       zh: '了解身体部位、器官和器官系统如何相互组成整体。',
       hi: 'जानें कि शरीर के भाग, अंग और अंग-तंत्र आपस में कैसे जुड़े हैं।',
       es: 'Aprende cómo se organizan las partes del cuerpo, los órganos y los sistemas de órganos.',
       ar: 'تعرّف كيف تنتظم أجزاء الجسم والأعضاء والأجهزة معًا.',
-      fr: 'Découvrez comment les parties du corps, les organes et les systèmes s\'organisent ensemble.',
+      fr: "Découvrez comment les parties du corps, les organes et les systèmes s'organisent ensemble.",
       bn: 'দেহের বিভিন্ন অংশ, অঙ্গ ও অঙ্গতন্ত্র কীভাবে একসঙ্গে গঠিত হয়, তা জানো।',
       pt: 'Aprenda como partes do corpo, órgãos e sistemas se organizam.',
       ur: 'جانیں کہ جسم کے حصے، اعضا اور نظام کس طرح ایک دوسرے سے جڑے ہیں۔',

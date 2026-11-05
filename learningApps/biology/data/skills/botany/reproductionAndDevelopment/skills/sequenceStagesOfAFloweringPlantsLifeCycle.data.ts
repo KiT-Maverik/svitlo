@@ -1,15 +1,15 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const sequenceStagesOfAFloweringPlantsLifeCycle_Skill_Data = buildSkillConfig({
-  slug: "sequenceStagesOfAFloweringPlantsLifeCycle",
-  id: "9141011f-abf0-42fb-90f3-5da7a0802bf3",
+  slug: 'sequenceStagesOfAFloweringPlantsLifeCycle',
+  id: '9141011f-abf0-42fb-90f3-5da7a0802bf3',
   name: {
-    en: "Sequence Stages of a Flowering Plant’s Life Cycle",
+    en: 'Sequence Stages of a Flowering Plant’s Life Cycle',
     zh: '排列开花植物的生命周期阶段',
     hi: 'पुष्पी पौधे के जीवन चक्र के चरण क्रम में रखना',
     es: 'Ordenar las etapas del ciclo de vida de una planta con flores',
     ar: 'ترتيب مراحل دورة حياة النبات الزهري',
-    fr: 'Classer les étapes du cycle d\'une plante à fleurs',
+    fr: "Classer les étapes du cycle d'une plante à fleurs",
     bn: 'সপুষ্পক উদ্ভিদের জীবনচক্রের ধাপ সাজানো',
     pt: 'Ordenar as etapas do ciclo de vida de uma planta com flores',
     ur: 'پھول دار پودے کے دورِ حیات کی ترتیب',
@@ -35,9 +35,9 @@ export const sequenceStagesOfAFloweringPlantsLifeCycle_Skill_Data = buildSkillCo
     qm: 'Çeçekli ösümlikniñ yaşayış devri basamaqlarını sıralamaq',
   },
   description: {
-    methodological: "Order stages from seed to mature plant, flowering, and formation of new seeds.",
+    methodological: 'Order stages from seed to mature plant, flowering, and formation of new seeds.',
     frontend: {
-      en: "Follow the stages from seed to mature flowering plant and new seeds.",
+      en: 'Follow the stages from seed to mature flowering plant and new seeds.',
       zh: '追踪从种子到成熟开花植物并产生新种子的各阶段。',
       hi: 'बीज से परिपक्व पुष्पी पौधे और फिर नए बीज बनने तक के चरणों का क्रम देखें।',
       es: 'Sigue las etapas desde la semilla hasta la planta madura con flores y las nuevas semillas.',

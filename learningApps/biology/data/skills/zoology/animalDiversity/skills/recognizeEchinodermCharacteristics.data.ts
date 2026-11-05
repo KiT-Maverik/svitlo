@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const recognizeEchinodermCharacteristics_Skill_Data = buildSkillConfig({
-  slug: "recognizeEchinodermCharacteristics",
-  id: "1cefe1e9-e3f7-4803-bba1-dc5435afe41e",
+  slug: 'recognizeEchinodermCharacteristics',
+  id: '1cefe1e9-e3f7-4803-bba1-dc5435afe41e',
   name: {
-    en: "Recognize Echinoderm Characteristics",
+    en: 'Recognize Echinoderm Characteristics',
     zh: '识别棘皮动物的特征',
     hi: 'शूलचर्मियों की विशेषताएँ पहचानना',
     es: 'Reconocer las características de los equinodermos',
@@ -35,9 +35,10 @@ export const recognizeEchinodermCharacteristics_Skill_Data = buildSkillConfig({
     qm: 'İynederililerniñ belgilerini tanımaq',
   },
   description: {
-    methodological: "Identify marine invertebrates with a water vascular system and characteristic adult symmetry, distinguishing sea stars, sea urchins, and other representatives.",
+    methodological:
+      'Identify marine invertebrates with a water vascular system and characteristic adult symmetry, distinguishing sea stars, sea urchins, and other representatives.',
     frontend: {
-      en: "Identify sea stars and other echinoderms by their distinctive structures.",
+      en: 'Identify sea stars and other echinoderms by their distinctive structures.',
       zh: '根据独特的身体结构识别海星和其他棘皮动物。',
       hi: 'तारामछली और अन्य शूलचर्मियों को उनकी विशिष्ट शारीरिक संरचनाओं से पहचानें।',
       es: 'Identifica estrellas de mar y otros equinodermos por sus estructuras distintivas.',

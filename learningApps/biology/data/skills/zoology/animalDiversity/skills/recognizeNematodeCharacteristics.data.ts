@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const recognizeNematodeCharacteristics_Skill_Data = buildSkillConfig({
-  slug: "recognizeNematodeCharacteristics",
-  id: "b69b5b59-0a80-4cc5-bb4c-866d223dc68d",
+  slug: 'recognizeNematodeCharacteristics',
+  id: 'b69b5b59-0a80-4cc5-bb4c-866d223dc68d',
   name: {
-    en: "Recognize Nematode Characteristics",
+    en: 'Recognize Nematode Characteristics',
     zh: '识别线虫的特征',
     hi: 'सूत्रकृमियों की विशेषताएँ पहचानना',
     es: 'Reconocer las características de los nematodos',
@@ -35,14 +35,15 @@ export const recognizeNematodeCharacteristics_Skill_Data = buildSkillConfig({
     qm: 'Nematodlarnıñ belgilerini tanımaq',
   },
   description: {
-    methodological: "Recognize the unsegmented elongated bodies of roundworms and features of their lifestyles, including free-living and parasitic forms.",
+    methodological:
+      'Recognize the unsegmented elongated bodies of roundworms and features of their lifestyles, including free-living and parasitic forms.',
     frontend: {
-      en: "Recognize roundworms by their unsegmented bodies and other traits.",
+      en: 'Recognize roundworms by their unsegmented bodies and other traits.',
       zh: '通过不分节的身体和其他特征识别线虫。',
       hi: 'सूत्रकृमियों को उनके अखंडित शरीर और अन्य लक्षणों से पहचानें।',
       es: 'Reconoce los nematodos por sus cuerpos no segmentados y otros rasgos.',
       ar: 'تعرّف على الديدان الأسطوانية من خلال أجسامها غير المقسمة وسماتها الأخرى.',
-      fr: 'Reconnais les vers ronds grâce à leur corps non segmenté et à d\'autres caractères.',
+      fr: "Reconnais les vers ronds grâce à leur corps non segmenté et à d'autres caractères.",
       bn: 'খণ্ডহীন দেহ ও অন্যান্য বৈশিষ্ট্য দেখে গোলকৃমি চিনে নাও।',
       pt: 'Reconheça nematódeos por seus corpos não segmentados e outras características.',
       ur: 'گول کیڑوں کو ان کے غیر منقسم جسم اور دوسری خصوصیات سے پہچانیں۔',

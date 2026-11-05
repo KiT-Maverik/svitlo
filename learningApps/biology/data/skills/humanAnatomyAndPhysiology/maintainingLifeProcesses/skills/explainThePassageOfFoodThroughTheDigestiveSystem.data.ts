@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainThePassageOfFoodThroughTheDigestiveSystem_Skill_Data = buildSkillConfig({
-  slug: "explainThePassageOfFoodThroughTheDigestiveSystem",
-  id: "dbc56243-9c7f-4786-81f4-a930ac4af342",
+  slug: 'explainThePassageOfFoodThroughTheDigestiveSystem',
+  id: 'dbc56243-9c7f-4786-81f4-a930ac4af342',
   name: {
-    en: "Explain the Passage of Food Through the Digestive System",
+    en: 'Explain the Passage of Food Through the Digestive System',
     zh: '解释食物通过消化系统的过程',
     hi: 'पाचन तंत्र से भोजन के गुजरने की प्रक्रिया समझाना',
     es: 'Explicar el paso del alimento por el sistema digestivo',
@@ -35,9 +35,10 @@ export const explainThePassageOfFoodThroughTheDigestiveSystem_Skill_Data = build
     qm: 'Yemekniñ azıq siñdirüv sistemasından keçüvini añlatmaq',
   },
   description: {
-    methodological: "Explain the sequential passage of food through the mouth, esophagus, stomach, and intestines, the role of peristalsis, and the difference between food movement, digestion, and nutrient absorption.",
+    methodological:
+      'Explain the sequential passage of food through the mouth, esophagus, stomach, and intestines, the role of peristalsis, and the difference between food movement, digestion, and nutrient absorption.',
     frontend: {
-      en: "Follow the path food travels through the digestive tract and distinguish its different functions.",
+      en: 'Follow the path food travels through the digestive tract and distinguish its different functions.',
       zh: '追踪食物在消化道中的移动路径，并区分不同环节的功能。',
       hi: 'पाचन नली से भोजन के रास्ते को समझें और विभिन्न चरणों के कार्य अलग-अलग पहचानें।',
       es: 'Sigue el recorrido de los alimentos por el tubo digestivo y distingue sus distintas funciones.',

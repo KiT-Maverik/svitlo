@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const identifyAPotentialAIError_Skill_Data = buildSkillConfig({
-  slug: "identifyAPotentialAIError",
-  id: "f93aa878-a1ad-4820-82a3-30f4b182f147",
+  slug: 'identifyAPotentialAIError',
+  id: 'f93aa878-a1ad-4820-82a3-30f4b182f147',
   name: {
-    en: "Identify a Potential AI Error",
+    en: 'Identify a Potential AI Error',
     zh: '识别潜在的人工智能错误',
     hi: 'एआई की संभावित गलती पहचानना',
     es: 'Identificar un posible error de IA',
@@ -35,9 +35,10 @@ export const identifyAPotentialAIError_Skill_Data = buildSkillConfig({
     qm: 'Suniy intellektniñ mümkün olğan hatasını tanımaq',
   },
   description: {
-    methodological: "Recognize signs of an unreliable response, such as implausibly specific details, contradictions with context, or unverifiable references. A confident tone is not evidence of truth; material claims need independent verification.",
+    methodological:
+      'Recognize signs of an unreliable response, such as implausibly specific details, contradictions with context, or unverifiable references. A confident tone is not evidence of truth; material claims need independent verification.',
     frontend: {
-      en: "Spot warning signs that an AI answer may need independent checking.",
+      en: 'Spot warning signs that an AI answer may need independent checking.',
       zh: '发现人工智能回答可能需要独立核查的警示信号。',
       hi: 'ऐसे संकेत पहचानें जो बताते हैं कि एआई के उत्तर की स्वतंत्र जाँच ज़रूरी हो सकती है।',
       es: 'Detecta señales de alerta que indiquen que una respuesta de IA necesita comprobación independiente.',

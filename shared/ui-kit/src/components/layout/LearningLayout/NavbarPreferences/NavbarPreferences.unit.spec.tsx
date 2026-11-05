@@ -70,15 +70,17 @@ describe('NavbarPreferences in shared UI Kit', () => {
 
   it('uses authored Arabic controls for an RTL language', () => {
     const setArabic = vi.fn();
-    render(<div dir="rtl" lang="ar-SA">
-      <NavbarPreferences
-        locale="ar-SA"
-        messages={ar}
-        onLocaleChange={setArabic}
-        mode="dark"
-        onThemeChange={setMode}
-      />
-    </div>);
+    render(
+      <div dir="rtl" lang="ar-SA">
+        <NavbarPreferences
+          locale="ar-SA"
+          messages={ar}
+          onLocaleChange={setArabic}
+          mode="dark"
+          onThemeChange={setMode}
+        />
+      </div>,
+    );
     expect(screen.getByRole('combobox', { name: ar.language })).toBeVisible();
     expect(screen.getByRole('switch', { name: ar.theme.dark })).toBeChecked();
     expect(ar.language).not.toEqual(uk.language);

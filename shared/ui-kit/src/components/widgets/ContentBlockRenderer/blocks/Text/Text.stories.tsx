@@ -6,7 +6,11 @@ const meta = {
   component: Text,
   tags: ['autodocs'],
   parameters: {
-    docs: { description: { component: 'Text with optional inline markers, styled fragments and a configurable MUI Typography wrapper.' } },
+    docs: {
+      description: {
+        component: 'Text with optional inline markers, styled fragments and a configurable MUI Typography wrapper.',
+      },
+    },
   },
   args: {
     id: 'text-example',
@@ -14,7 +18,12 @@ const meta = {
 
     value: 'Light travels in a straight line.',
   },
-  argTypes: { id: { control: false }, type: { control: false }, styling: { control: 'object' }, wrap: { control: 'object' } },
+  argTypes: {
+    id: { control: false },
+    type: { control: false },
+    styling: { control: 'object' },
+    wrap: { control: 'object' },
+  },
 } satisfies Meta<typeof Text>;
 
 export default meta;

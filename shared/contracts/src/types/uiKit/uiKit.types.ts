@@ -23,12 +23,22 @@ export type UiKit_ComponentMessages = {
     brand: string;
     navigation: { top: string; bottom: string; topics: string; settings: string };
     actions: {
-      openTopics: string; closeTopics: string; openSettings: string; closeSettings: string;
-      closeSidebar: string; closeSettingsPanel: string; previous: string; next: string;
-      skip: string; profile: string; logout: string;
+      openTopics: string;
+      closeTopics: string;
+      openSettings: string;
+      closeSettings: string;
+      closeSidebar: string;
+      closeSettingsPanel: string;
+      previous: string;
+      next: string;
+      skip: string;
+      profile: string;
+      logout: string;
     };
     tooltips: { profile: string; logout: string };
-    topicsTitle: string; settingsTitle: string; settingsDescription: string;
+    topicsTitle: string;
+    settingsTitle: string;
+    settingsDescription: string;
   };
   navbarPreferences: { language: string; theme: { dark: string; light: string } };
   flashcard: {
@@ -43,11 +53,23 @@ export type UiKit_ComponentMessages = {
   video: { offline: string; unavailable: string; playbackError: string; retry: string };
   youtube: { loading: string; offline: string; unavailable: string; retry: string };
   questionFrame: {
-    check: string; retry: string; hint: string; explanation: string;
-    correct: string; incorrect: string; answerLabel: string;
-    matchInstructions: string; left: string; right: string;
-    availableBlocks: string; blanks: string; moveItem: string; removeItem: string;
-    correctChoice: string; incorrectChoice: string; missedChoice: string;
+    check: string;
+    retry: string;
+    hint: string;
+    explanation: string;
+    correct: string;
+    incorrect: string;
+    answerLabel: string;
+    matchInstructions: string;
+    left: string;
+    right: string;
+    availableBlocks: string;
+    blanks: string;
+    moveItem: string;
+    removeItem: string;
+    correctChoice: string;
+    incorrectChoice: string;
+    missedChoice: string;
   };
 };
 export type UiKit_ComponentName = keyof UiKit_ComponentMessages;
@@ -64,10 +86,7 @@ export type UiKit_Component<
 }[ConfigType];
 
 /** One selected-language resource for all global UI Kit components. */
-export type UiKit_Global<
-  ConfigType extends ContentEntity_ConfigType,
-  SupportedLocales extends string = Locale,
-> = {
+export type UiKit_Global<ConfigType extends ContentEntity_ConfigType, SupportedLocales extends string = Locale> = {
   definition: { type: 'ui-kit'; scope: 'global'; components: readonly UiKit_ComponentName[] };
   data: Readonly<Record<SupportedLocales, UiKit_ComponentMessages>>;
   response: UiKit_ComponentMessages;

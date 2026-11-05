@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const classifyAITasks_Skill_Data = buildSkillConfig({
-  slug: "classifyAITasks",
-  id: "573cc148-e6f3-4f3f-871c-a5b1f733f2b0",
+  slug: 'classifyAITasks',
+  id: '573cc148-e6f3-4f3f-871c-a5b1f733f2b0',
   name: {
-    en: "Classify AI Tasks",
+    en: 'Classify AI Tasks',
     zh: '对人工智能任务分类',
     hi: 'एआई कार्यों का वर्गीकरण करना',
     es: 'Clasificar tareas de IA',
@@ -35,9 +35,10 @@ export const classifyAITasks_Skill_Data = buildSkillConfig({
     qm: 'Suniy intellekt vazifelerini tasnif etmek',
   },
   description: {
-    methodological: "Determine whether a task aims to recognize a category or property of existing data, predict an unknown or future value, or generate new content. Object recognition in a photo, demand forecasting, and image generation have distinct desired outcomes. A generative language model also predicts successive tokens internally, so its mechanism is not identical to the task's objective.",
+    methodological:
+      "Determine whether a task aims to recognize a category or property of existing data, predict an unknown or future value, or generate new content. Object recognition in a photo, demand forecasting, and image generation have distinct desired outcomes. A generative language model also predicts successive tokens internally, so its mechanism is not identical to the task's objective.",
     frontend: {
-      en: "Recognize whether an AI task classifies, predicts or generates content.",
+      en: 'Recognize whether an AI task classifies, predicts or generates content.',
       zh: '识别人工智能任务是在分类、预测还是生成内容。',
       hi: 'पहचानें कि कोई एआई कार्य वर्गीकरण करता है, अनुमान लगाता है या सामग्री बनाता है।',
       es: 'Reconoce si una tarea de IA clasifica, predice o genera contenido.',

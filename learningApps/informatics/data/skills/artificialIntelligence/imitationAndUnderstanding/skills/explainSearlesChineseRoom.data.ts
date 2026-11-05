@@ -1,8 +1,8 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainSearlesChineseRoom_Skill_Data = buildSkillConfig({
-  slug: "explainSearlesChineseRoom",
-  id: "8a77d93a-7440-4aa2-81d4-6c52d65c38ed",
+  slug: 'explainSearlesChineseRoom',
+  id: '8a77d93a-7440-4aa2-81d4-6c52d65c38ed',
   name: {
     en: "Explain Searle's Chinese Room",
     zh: '解释塞尔的中文房间',
@@ -17,7 +17,7 @@ export const explainSearlesChineseRoom_Skill_Data = buildSkillConfig({
     de: 'Searles chinesisches Zimmer erklären',
     ja: 'サールの中国語の部屋を説明する',
     ko: '설의 중국어 방 설명하기',
-    tr: 'Searle\'ün Çin odasını açıklamak',
+    tr: "Searle'ün Çin odasını açıklamak",
     vi: 'Giải thích căn phòng tiếng Trung của Searle',
     ta: 'சியர்லின் சீன அறையை விளக்குதல்',
     te: 'సెర్ల్ చైనీస్ గదిని వివరించడం',
@@ -26,18 +26,19 @@ export const explainSearlesChineseRoom_Skill_Data = buildSkillConfig({
     he: 'הסבר על החדר הסיני של סרל',
     pl: 'Wyjaśnianie chińskiego pokoju Searle’a',
     uk: 'Пояснювати «Китайську кімнату» Серла',
-    lt: 'Paaiškinti Searle\'o kinų kambarį',
+    lt: "Paaiškinti Searle'o kinų kambarį",
     lv: 'Izskaidrot Sērla ķīniešu istabu',
-    et: 'Selgitada Searle\'i hiina tuba',
+    et: "Selgitada Searle'i hiina tuba",
     be: 'Тлумачыць «Кітайскі пакой» Сэрла',
     ka: 'სერლის ჩინური ოთახის ახსნა',
     kk: 'Серлдің қытай бөлмесін түсіндіру',
-    qm: 'Searle\'niñ «Çin odası»nı añlatmaq',
+    qm: "Searle'niñ «Çin odası»nı añlatmaq",
   },
   description: {
-    methodological: "Analyze John Searle's thought experiment about rule-based symbol manipulation without necessarily understanding their meaning. Distinguish a debated philosophical argument from a proven fact about the internal states of all AI systems.",
+    methodological:
+      "Analyze John Searle's thought experiment about rule-based symbol manipulation without necessarily understanding their meaning. Distinguish a debated philosophical argument from a proven fact about the internal states of all AI systems.",
     frontend: {
-      en: "Explore the Chinese Room thought experiment and the debate it raises.",
+      en: 'Explore the Chinese Room thought experiment and the debate it raises.',
       zh: '探索中文房间思想实验及其引发的争论。',
       hi: 'चीनी कमरे के विचार प्रयोग और उससे उठी बहस को समझें।',
       es: 'Explora el experimento mental de la habitación china y el debate que plantea.',

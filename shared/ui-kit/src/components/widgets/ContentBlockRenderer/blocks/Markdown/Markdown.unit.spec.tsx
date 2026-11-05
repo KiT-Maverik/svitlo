@@ -17,16 +17,21 @@ describe('Markdown content block', () => {
     render(<Markdown {...response} />);
     const article = screen.getByRole('article');
     expect(within(article).getByRole('heading', { name: 'Lesson title', level: 1 })).toBeVisible();
-    expect(within(article).getByRole('link', { name: 'Reference' }))
-      .toHaveAttribute('href', 'https://example.org/lesson');
+    expect(within(article).getByRole('link', { name: 'Reference' })).toHaveAttribute(
+      'href',
+      'https://example.org/lesson',
+    );
     expect(article).toHaveAttribute('lang', 'en-US');
     expect(article).toHaveAttribute('dir', 'ltr');
   });
 
   it('renders Markdown lists, emphasis, inline code and fenced code', () => {
-    render(<Markdown {...response} text={
-      '## Practice\n\n- **First** point\n- *Second* point\n\nUse `const`.\n\n```js\nconst answer = 42;\n```'
-    } />);
+    render(
+      <Markdown
+        {...response}
+        text={'## Practice\n\n- **First** point\n- *Second* point\n\nUse `const`.\n\n```js\nconst answer = 42;\n```'}
+      />,
+    );
     const article = screen.getByRole('article');
     expect(within(article).getByRole('heading', { name: 'Practice', level: 2 })).toBeVisible();
     expect(article.querySelectorAll('li')).toHaveLength(2);
@@ -37,7 +42,11 @@ describe('Markdown content block', () => {
   });
 
   it('derives language and RTL direction from the selected lesson language', () => {
-    render(<ContentLanguageContext.Provider value="ar"><Markdown {...response} text={'# عنوان الدرس\n\nنص عربي'} /></ContentLanguageContext.Provider>);
+    render(
+      <ContentLanguageContext.Provider value="ar">
+        <Markdown {...response} text={'# عنوان الدرس\n\nنص عربي'} />
+      </ContentLanguageContext.Provider>,
+    );
     const article = screen.getByRole('article');
     expect(article).toHaveAttribute('lang', 'ar-SA');
     expect(article).toHaveAttribute('dir', 'rtl');
@@ -46,14 +55,18 @@ describe('Markdown content block', () => {
 
   it('supports the authored mark and aside elements', () => {
     render(<Markdown {...response} text="<aside><mark>Highlighted lesson</mark></aside>" />);
-    expect(screen.getByRole('article').querySelector('aside mark'))
-      .toHaveTextContent('Highlighted lesson');
+    expect(screen.getByRole('article').querySelector('aside mark')).toHaveTextContent('Highlighted lesson');
   });
 
   it('sanitizes scripts and inline event handlers without removing safe content', () => {
-    render(<Markdown {...response} text={
-      '<p onclick="alert(1)">Safe content</p><script>alert(1)</script><img src="image.png" onerror="alert(1)" alt="Example" />'
-    } />);
+    render(
+      <Markdown
+        {...response}
+        text={
+          '<p onclick="alert(1)">Safe content</p><script>alert(1)</script><img src="image.png" onerror="alert(1)" alt="Example" />'
+        }
+      />,
+    );
     const article = screen.getByRole('article');
     expect(article).toHaveTextContent('Safe content');
     expect(article.querySelector('script')).toBeNull();
@@ -62,14 +75,16 @@ describe('Markdown content block', () => {
   });
 
   it('removes executable URLs from authored links', () => {
-    render(<Markdown {...response} text={
-      '<a href="javascript:alert(1)">Unsafe URL</a> and [safe URL](https://example.org)'
-    } />);
+    render(
+      <Markdown
+        {...response}
+        text={'<a href="javascript:alert(1)">Unsafe URL</a> and [safe URL](https://example.org)'}
+      />,
+    );
     const article = screen.getByRole('article');
     expect(within(article).getByText('Unsafe URL')).not.toHaveAttribute('href', 'javascript:alert(1)');
     expect(article.querySelector('a[href^="javascript:"]')).toBeNull();
-    expect(within(article).getByRole('link', { name: 'safe URL' }))
-      .toHaveAttribute('href', 'https://example.org');
+    expect(within(article).getByRole('link', { name: 'safe URL' })).toHaveAttribute('href', 'https://example.org');
   });
 
   it('updates the rendered content when a response changes', () => {

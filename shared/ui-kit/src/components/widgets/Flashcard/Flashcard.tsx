@@ -102,11 +102,11 @@ export const Flashcard = forwardRef<HTMLButtonElement, FlashcardProps>(function 
               <div className={styles.flashControls}>
                 <Stack direction="row" spacing={2} sx={{ justifyContent: 'space-between' }}>
                   <Button variant="outlined" disabled={disabled} onClick={() => onRate(false)}>
-                      {messages.flashcard.actions.forgot}
-                    </Button>
+                    {messages.flashcard.actions.forgot}
+                  </Button>
                   <Button variant="outlined" disabled={disabled} onClick={() => onRate(true)}>
-                      {messages.flashcard.actions.remembered}
-                    </Button>
+                    {messages.flashcard.actions.remembered}
+                  </Button>
                 </Stack>
               </div>
             </>

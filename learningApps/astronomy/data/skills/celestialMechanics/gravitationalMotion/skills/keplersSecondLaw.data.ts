@@ -17,7 +17,7 @@ export const keplersSecondLaw_Skill_Data = buildSkillConfig({
     de: 'Keplers zweites Gesetz',
     ja: 'ケプラーの第二法則',
     ko: '케플러의 제2법칙',
-    tr: 'Kepler\'in ikinci yasası',
+    tr: "Kepler'in ikinci yasası",
     vi: 'Định luật Kepler thứ hai',
     ta: 'கெப்லரின் இரண்டாம் விதி',
     te: 'కెప్లర్ రెండవ నియమం',

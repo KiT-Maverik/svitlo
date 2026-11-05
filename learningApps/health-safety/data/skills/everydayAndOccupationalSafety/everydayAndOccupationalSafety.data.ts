@@ -7,10 +7,10 @@ import { personalSafetyInPublicPlaces_SkillGroup_Data } from './personalSafetyIn
 import { toolsAndWorkplaces_SkillGroup_Data } from './toolsAndWorkplaces/toolsAndWorkplaces.data';
 
 export const everydayAndOccupationalSafety_SkillDomain_Data = buildSkillDomainConfig({
-  slug: "everydayAndOccupationalSafety",
-  id: "49caa4a6-5c6a-4991-b835-737798296f1a",
+  slug: 'everydayAndOccupationalSafety',
+  id: '49caa4a6-5c6a-4991-b835-737798296f1a',
   name: {
-    en: "Everyday and Occupational Safety",
+    en: 'Everyday and Occupational Safety',
   },
   groups: {
     electricityFireAndGas: electricityFireAndGas_SkillGroup_Data,
@@ -20,9 +20,10 @@ export const everydayAndOccupationalSafety_SkillDomain_Data = buildSkillDomainCo
     toolsAndWorkplaces: toolsAndWorkplaces_SkillGroup_Data,
   },
   description: {
-    methodological: "Injuries often arise from foreseeable hazards in homes, workplaces, educational spaces, and public facilities. Preventive controls and safe equipment use take priority over reacting after an incident.",
+    methodological:
+      'Injuries often arise from foreseeable hazards in homes, workplaces, educational spaces, and public facilities. Preventive controls and safe equipment use take priority over reacting after an incident.',
     frontend: {
-      en: "Learn to identify and prevent everyday hazards at home, school and work.",
+      en: 'Learn to identify and prevent everyday hazards at home, school and work.',
     },
   },
 });

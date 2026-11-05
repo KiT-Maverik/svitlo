@@ -1,12 +1,20 @@
 import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
 
-import { breakAComplexPromptIntoSubtasks_Skill_Data, providePromptContext_Skill_Data, refineAPromptBasedOnResults_Skill_Data, specifyAnOutputFormat_Skill_Data, specifyAPromptObjective_Skill_Data, specifyARoleInAPrompt_Skill_Data, specifyPromptConstraints_Skill_Data } from './skills';
+import {
+  breakAComplexPromptIntoSubtasks_Skill_Data,
+  providePromptContext_Skill_Data,
+  refineAPromptBasedOnResults_Skill_Data,
+  specifyAnOutputFormat_Skill_Data,
+  specifyAPromptObjective_Skill_Data,
+  specifyARoleInAPrompt_Skill_Data,
+  specifyPromptConstraints_Skill_Data,
+} from './skills';
 
 export const prompting_SkillGroup_Data = buildSkillGroupConfig({
-  slug: "prompting",
-  id: "b1ca0627-ec01-4c90-9e78-d3e54acaf01f",
+  slug: 'prompting',
+  id: 'b1ca0627-ec01-4c90-9e78-d3e54acaf01f',
   name: {
-    en: "Prompting",
+    en: 'Prompting',
     zh: '提示词编写',
     hi: 'प्रॉम्प्ट लिखना',
     es: 'Redacción de instrucciones para IA',
@@ -46,9 +54,10 @@ export const prompting_SkillGroup_Data = buildSkillGroupConfig({
     specifyPromptConstraints: specifyPromptConstraints_Skill_Data,
   },
   description: {
-    methodological: "Specifying requirements for an AI request: objective, context, constraints, desired output format, and iterative refinement. Prompt components can vary independently; checking whether answers are true belongs to AI reliability.",
+    methodological:
+      'Specifying requirements for an AI request: objective, context, constraints, desired output format, and iterative refinement. Prompt components can vary independently; checking whether answers are true belongs to AI reliability.',
     frontend: {
-      en: "Learn to give AI systems clearer instructions, context and constraints.",
+      en: 'Learn to give AI systems clearer instructions, context and constraints.',
       zh: '学习如何向人工智能系统提供更清晰的指令、背景信息和限制条件。',
       hi: 'एआई प्रणालियों को स्पष्ट निर्देश, संदर्भ और सीमाएँ देना सीखें।',
       es: 'Aprende a dar a los sistemas de IA instrucciones, contexto y restricciones más claros.',

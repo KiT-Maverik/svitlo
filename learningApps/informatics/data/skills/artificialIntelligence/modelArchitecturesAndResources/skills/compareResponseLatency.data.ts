@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const compareResponseLatency_Skill_Data = buildSkillConfig({
-  slug: "compareResponseLatency",
-  id: "9b2f8f6c-617a-4f84-b6e3-7a659a211f7c",
+  slug: 'compareResponseLatency',
+  id: '9b2f8f6c-617a-4f84-b6e3-7a659a211f7c',
   name: {
-    en: "Compare Response Latency",
+    en: 'Compare Response Latency',
     zh: '比较响应延迟',
     hi: 'उत्तर की देरी की तुलना करना',
     es: 'Comparar la latencia de respuesta',
@@ -35,9 +35,10 @@ export const compareResponseLatency_Skill_Data = buildSkillConfig({
     qm: 'Cevap gecikmesini qıyaslamaq',
   },
   description: {
-    methodological: "Compare the time between submitting a request and receiving the first useful output under consistent conditions. Time to first token is different from subsequent generation speed: a short initial delay does not guarantee that a long response finishes quickly.",
+    methodological:
+      'Compare the time between submitting a request and receiving the first useful output under consistent conditions. Time to first token is different from subsequent generation speed: a short initial delay does not guarantee that a long response finishes quickly.',
     frontend: {
-      en: "Compare the delay before an AI response begins separately from generation speed.",
+      en: 'Compare the delay before an AI response begins separately from generation speed.',
       zh: '分别比较人工智能开始回答前的等待时间与之后的生成速度。',
       hi: 'एआई उत्तर शुरू होने की देरी की तुलना उसके आगे लिखने की गति से अलग करें।',
       es: 'Compara la espera antes de que empiece una respuesta de IA por separado de la velocidad de generación.',

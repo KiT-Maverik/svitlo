@@ -1,15 +1,15 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const classifyObjectsAsLivingDeadOrNeverAlive_Skill_Data = buildSkillConfig({
-  slug: "classifyObjectsAsLivingDeadOrNeverAlive",
-  id: "5b92ed2d-af5d-47ff-b7f1-71209407050c",
+  slug: 'classifyObjectsAsLivingDeadOrNeverAlive',
+  id: '5b92ed2d-af5d-47ff-b7f1-71209407050c',
   name: {
-    en: "Classify objects as living, dead, or never alive",
+    en: 'Classify objects as living, dead, or never alive',
     zh: '将物体分为活的、死亡的或从未有过生命的',
     hi: 'वस्तुओं को जीवित, मृत या कभी जीवित न रही वस्तुओं के रूप में वर्गीकृत करना',
     es: 'Clasificar objetos como vivos, muertos o que nunca estuvieron vivos',
     ar: 'تصنيف الأشياء إلى حية أو ميتة أو لم تكن حية قط',
-    fr: 'Classer les objets en vivants, morts ou n\'ayant jamais été vivants',
+    fr: "Classer les objets en vivants, morts ou n'ayant jamais été vivants",
     bn: 'বস্তুকে জীবিত, মৃত বা কখনো জীবিত ছিল না—এভাবে শ্রেণিবদ্ধ করা',
     pt: 'Classificar objetos como vivos, mortos ou que nunca tiveram vida',
     ur: 'اشیا کو زندہ، مردہ یا کبھی زندہ نہ رہی اشیا میں تقسیم کرنا',
@@ -35,14 +35,15 @@ export const classifyObjectsAsLivingDeadOrNeverAlive_Skill_Data = buildSkillConf
     qm: 'Nesnelerni canlı, ölü ya da iç bir vaqıt canlı olmağan olaraq sınıflandırmaq',
   },
   description: {
-    methodological: "Use evidence of life processes and origin to classify an object and justify the decision through diagnostic features. A living tree carries out life processes, a dead leaf once belonged to a living organism, and a stone has no biological origin. Do not equate dead organisms with their remains or with products of biological origin.",
+    methodological:
+      'Use evidence of life processes and origin to classify an object and justify the decision through diagnostic features. A living tree carries out life processes, a dead leaf once belonged to a living organism, and a stone has no biological origin. Do not equate dead organisms with their remains or with products of biological origin.',
     frontend: {
-      en: "Use evidence to decide whether something is living, dead or has never been alive.",
+      en: 'Use evidence to decide whether something is living, dead or has never been alive.',
       zh: '根据证据判断某物是活的、已经死亡的，还是从未有过生命。',
       hi: 'प्रमाणों के आधार पर तय करें कि कोई चीज़ जीवित है, मर चुकी है या कभी जीवित नहीं थी।',
       es: 'Usa pruebas para decidir si algo está vivo, está muerto o nunca estuvo vivo.',
       ar: 'استخدم الأدلة لتقرر إن كان الشيء حيًا أو ميتًا أو لم يكن حيًا قط.',
-      fr: 'Appuie-toi sur des indices pour déterminer si quelque chose est vivant, mort ou n\'a jamais été vivant.',
+      fr: "Appuie-toi sur des indices pour déterminer si quelque chose est vivant, mort ou n'a jamais été vivant.",
       bn: 'প্রমাণের ভিত্তিতে নির্ধারণ করো কোনো কিছু জীবিত, মৃত, নাকি কখনোই জীবিত ছিল না।',
       pt: 'Use evidências para decidir se algo está vivo, está morto ou nunca teve vida.',
       ur: 'شواہد کی مدد سے طے کریں کہ کوئی چیز زندہ ہے، مر چکی ہے یا کبھی زندہ نہیں تھی۔',
