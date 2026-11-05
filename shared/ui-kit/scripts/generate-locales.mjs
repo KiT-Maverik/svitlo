@@ -116,15 +116,18 @@ try {
     let count = 0;
     for (const { locale, language } of DEFAULT_SUPPORTED_LANGUAGES) {
       const messages = Object.fromEntries(components.map(c => {
-      const value = message(c, locale, language);
-      if (!value) throw new Error(`Missing ${c} translations for ${locale}`);
-      assertShape(c, defaults[c], value, locale);
-      return [c, value];
-    }));
+        const value = message(c, locale, language);
+        if (!value) throw new Error(`Missing ${c} translations for ${locale}`);
+        assertShape(c, defaults[c], value, locale);
+        return [c, value];
+      }));
       writeFileSync(join(output, locale + '.json'), JSON.stringify(messages, null, 2) + '\n');
       count += 1;
     }
-    writeFileSync(join(output, 'meta.json'), JSON.stringify({ scope: 'global', components, locales: DEFAULT_SUPPORTED_LANGUAGES.map(l => l.locale) }, null, 2) + '\n');
+    writeFileSync(
+      join(output, 'meta.json'),
+      JSON.stringify({ scope: 'global', components, locales: DEFAULT_SUPPORTED_LANGUAGES.map(l => l.locale) }, null, 2) + '\n',
+    );
     console.log(`Generated ${count} global UI Kit locale JSON resources in ${output}`);
   }
 } finally {
