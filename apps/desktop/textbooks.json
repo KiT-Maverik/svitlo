@@ -1,0 +1,6 @@
+{
+  "playground": {
+    "package": "@svitlo/playground",
+    "directory": "content/playground"
+  }
+}
