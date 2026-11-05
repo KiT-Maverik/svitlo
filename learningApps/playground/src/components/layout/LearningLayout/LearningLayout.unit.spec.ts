@@ -1,6 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-vi.mock('next/navigation', () => ({ usePathname: vi.fn(), useRouter: vi.fn() }));
 vi.mock('@/i18n/useLessonLocale', () => ({ useLessonLocale: vi.fn() }));
 
 import { screen, within } from '@testing-library/react';
