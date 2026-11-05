@@ -54,7 +54,7 @@ export const healthLiteracyAndCare_SkillDomain_Data = buildSkillDomainConfig({
       ar: 'تعلّم ملاحظة التغيرات الصحية واستخدام معلومات موثوقة وطلب الرعاية المناسبة.',
       fr: 'Apprends à repérer les changements de santé, à utiliser des sources fiables et à chercher les soins adaptés.',
       bn: 'স্বাস্থ্যের পরিবর্তন চিনতে, নির্ভরযোগ্য তথ্য ব্যবহার করতে ও সঠিক সেবা নিতে শেখো।',
-      pt: 'Aprenda a reconhecer alterações de saúde, usar informação fiável e procurar cuidados adequados.',
+      pt: 'Aprenda a reconhecer alterações de saúde, usar informações confiáveis e buscar atendimento adequado.',
       ur: 'صحت میں تبدیلی پہچاننا، معتبر معلومات استعمال کرنا اور مناسب علاج لینا سیکھیں۔',
       id: 'Pelajari cara mengenali perubahan kesehatan, memakai informasi tepercaya, dan mencari perawatan yang tepat.',
       de: 'Lerne gesundheitliche Veränderungen zu erkennen, verlässliche Informationen zu nutzen und passende Hilfe zu suchen.',
