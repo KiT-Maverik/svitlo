@@ -2,7 +2,8 @@ name: PR Auto-format
 
 on:
   pull_request:
-    types: [opened, reopened, synchronize, ready_for_review, edited]
+    # Avoid running Prettier on every agent commit while the PR is a draft.
+    types: [ready_for_review]
   # A GITHUB_TOKEN push does not emit another pull_request workflow run.
   # The same token can explicitly dispatch a check on the formatted commit.
   workflow_dispatch:
