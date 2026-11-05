@@ -24,7 +24,7 @@ export const evaluateAReportedMiracleClaim_Skill_Data = buildSkillConfig({
     mr: 'कथित चमत्काराविषयीच्या दाव्याचे मूल्यांकन करणे',
     ms: 'Menilai dakwaan tentang keajaiban yang dilaporkan',
     he: 'הערכת טענה על נס שדווח',
-    pl: 'Ocena twierdzenia o rzekomym cudzie',
+    pl: 'Ocena doniesienia o cudzie'
     uk: 'Оцінювати твердження про повідомлене диво',
     lt: 'Vertinti teiginį apie praneštą stebuklą',
     lv: 'Novērtēt apgalvojumu par ziņotu brīnumu',
