@@ -2,6 +2,7 @@ import { createElement, type ComponentProps } from 'react';
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import LearningLayout from './LearningLayout';
+import { LessonNavigationProvider } from '@svitlo/ui-kit/lesson';
 import { testId as navbarTestId } from '@svitlo/ui-kit/navigation/Navbar.constants';
 import { testId as spaceTestId } from '@svitlo/ui-kit/widgets/VerticalSpace/VerticalSpace.constants';
 
@@ -35,7 +36,8 @@ export const LearningLayout_fx = {
   defaults: { topics, skippableSteps: [true, false, false], messages: ukUiKitMessages } satisfies Omit<Props, 'children'>,
   render: (props: Partial<Props> = {}) => {
     const { children = 'Lesson content', ...overrides } = props;
-    return render(createElement(LearningLayout, { ...LearningLayout_fx.defaults, ...overrides } as Props, children));
+    return render(createElement(LessonNavigationProvider, { sectionCount: 3 },
+      createElement(LearningLayout, { ...LearningLayout_fx.defaults, ...overrides } as Props, children)));
   },
   navbar: Navbar_fx.selectors,
   child: { verticalSpace: VerticalSpace_fx.selectors },
