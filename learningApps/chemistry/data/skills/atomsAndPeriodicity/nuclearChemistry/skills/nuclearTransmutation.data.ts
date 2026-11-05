@@ -59,7 +59,7 @@ export const nuclearTransmutation_Skill_Data = buildSkillConfig({
       he: "עקבו אחר השינויים במספר הפרוטונים והנוקלאונים בזמן התמרות גרעיניות.",
       pl: "Śledź zmiany liczby protonów i nukleonów podczas przemian jądrowych.",
       uk: "Відстежуй зміну кількості протонів і нуклонів під час ядерних перетворень.",
-      lt: "Stebėk protonų ir nukleonų skaičiaus pokyčius vykstant branduolinėms virsmams.",
+      lt: "Stebėk protonų ir nukleonų skaičiaus pokyčius vykstant branduoliniams virsmams.",
       lv: "Seko protonu un nuklonu skaita izmaiņām kodolu pārvērtību laikā.",
       et: "Jälgi prootonite ja nukleonide arvu muutusi tuumamuundumistes.",
       be: "Адсочвай зьмену колькасьці пратонаў і нуклёнаў падчас ядзерных ператварэньняў.",
