@@ -47,7 +47,7 @@ export const elementFamiliesInContext_SkillGroup_Data = buildSkillGroupConfig({
     frontend: {
       en: "Compare chemical behavior among common families of elements.",
       zh: "比较常见元素族之间的化学行为。",
-      hi: "तत्वों के सामान्य समूहों के रासायनिक व्यवहार की तुलना करो।",
+      hi: "तत्वों के सामान्य समूहों के रासायनिक व्यवहार की तुलना करें।",
       es: "Compara el comportamiento químico de familias comunes de elementos.",
       ar: "قارن السلوك الكيميائي للعائلات الشائعة من العناصر.",
       fr: "Compare le comportement chimique des familles courantes d'éléments.",

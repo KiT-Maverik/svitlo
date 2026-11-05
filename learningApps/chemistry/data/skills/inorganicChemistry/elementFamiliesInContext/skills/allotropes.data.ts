@@ -39,7 +39,7 @@ export const allotropes_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Discover how one element can form materials with different atomic arrangements.",
       zh: "了解同一种元素如何因原子排列不同而形成不同材料。",
-      hi: "जानो कि एक ही तत्व परमाणुओं की अलग व्यवस्था से अलग पदार्थ कैसे बना सकता है।",
+      hi: "जानें कि एक ही तत्व परमाणुओं की अलग व्यवस्था से अलग पदार्थ कैसे बना सकता है।",
       es: "Descubre cómo un mismo elemento forma materiales distintos según la disposición de sus átomos.",
       ar: "اكتشف كيف يشكّل العنصر نفسه مواد مختلفة بترتيبات ذرية مختلفة.",
       fr: "Découvre comment un même élément peut former des matériaux différents selon l'organisation de ses atomes.",

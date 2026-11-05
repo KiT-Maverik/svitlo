@@ -39,7 +39,7 @@ export const minerals_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Connect mineral compositions and crystal structures with their classification.",
       zh: "联系矿物的化学组成、晶体结构及其分类方式。",
-      hi: "खनिजों की रासायनिक संरचना और क्रिस्टल व्यवस्था को उनके वर्गीकरण से जोड़ो।",
+      hi: "खनिजों की रासायनिक संरचना और क्रिस्टल व्यवस्था को उनके वर्गीकरण से जोड़ें।",
       es: "Relaciona la composición y las estructuras cristalinas de los minerales con su clasificación.",
       ar: "اربط تركيب المعادن وبنيتها البلورية بطريقة تصنيفها.",
       fr: "Relie la composition et la structure cristalline des minéraux à leur classification.",
