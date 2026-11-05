@@ -59,7 +59,7 @@ const expectedShared = [
   'shared/ui-kit/src/components/layout/LearningLayout/createLessonLearningLayout.tsx',
   'shared/ui-kit/src/components/lesson/Lesson.tsx',
   'shared/ui-kit/data/components/Lesson/messages.data.ts',
-  'shared/nextjs-adapter/src/lesson.ts',
+  'shared/adapters/nextjs/src/lesson.ts',
   'shared/ui-kit/src/components/layout/LearningLayout/NavbarPreferences/NavbarPreferences.tsx',
 ];
 for (const path of expectedShared) assert(existsSync(resolve(root, path)), 'Owner missing: ' + path);

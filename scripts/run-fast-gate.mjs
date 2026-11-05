@@ -143,7 +143,7 @@ function runGate(changed) {
     '@svitlo/engine',
     '@svitlo/indexdb',
     '@svitlo/ui-kit',
-    '@svitlo/nextjs-adapter',
+    '@svitlo/adapter-nextjs',
     '@svitlo/playground',
     '@svitlo/web',
   ];
@@ -203,7 +203,7 @@ function runGate(changed) {
       name === '@svitlo/web' &&
       changed.some(
         file =>
-          file.startsWith('shared/nextjs-adapter/') ||
+          file.startsWith('shared/adapters/nextjs/') ||
           file.startsWith('shared/ui-kit/src/components/lesson/') ||
           file.startsWith('shared/ui-kit/src/components/widgets/ContentBlockRenderer/blocks/Image/') ||
           file.startsWith('content/playground/src/components/scenes/') ||

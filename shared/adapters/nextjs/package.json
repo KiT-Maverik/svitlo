@@ -1,5 +1,5 @@
 {
-  "name": "@svitlo/nextjs-adapter",
+  "name": "@svitlo/adapter-nextjs",
   "version": "0.0.0",
   "private": true,
   "type": "commonjs",

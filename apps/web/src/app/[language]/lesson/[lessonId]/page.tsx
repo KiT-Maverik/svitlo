@@ -1,4 +1,4 @@
-import { createPublishedLessonPage } from '@svitlo/nextjs-adapter/lesson';
+import { createPublishedLessonPage } from '@svitlo/adapter-nextjs/lesson';
 import WebLesson from '@/components/pages/Lesson/Lesson';
 
 const lessonPage = createPublishedLessonPage({

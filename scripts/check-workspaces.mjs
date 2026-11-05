@@ -97,8 +97,8 @@ const expected = [
     name: '@svitlo/engine',
   },
   {
-    path: 'shared/nextjs-adapter',
-    name: '@svitlo/nextjs-adapter',
+    path: 'shared/adapters/nextjs',
+    name: '@svitlo/adapter-nextjs',
   },
   {
     path: 'shared/ui-kit',
@@ -107,7 +107,7 @@ const expected = [
 ];
 const manifest = readJson('package.json');
 const lock = readJson('package-lock.json');
-const patterns = ['apps/*', 'backend/*', 'frontend/*', 'content/*', 'content/languages/*', 'shared/*'];
+const patterns = ['apps/*', 'backend/*', 'frontend/*', 'content/*', 'content/languages/*', 'shared/*', 'shared/adapters/*'];
 
 function assert(ok, description) {
   if (!ok) throw new Error(description);
