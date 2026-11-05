@@ -8,13 +8,15 @@ import type { UiKit_Component } from '@svitlo/engine/content';
 
 import { localizedAttributes } from '../../utils';
 import { useContentLanguage } from '../../ContentLanguageContext';
-import type { ImageFailureKind } from './Image.utils';
+import { imageUnoptimized, type ImageFailureKind } from './Image.utils';
+import { useImageRenderer } from './ImageRenderer';
 import styles from './Image.module.css';
 
 type ImageFailure = { source: string; kind: ImageFailureKind };
 
 export const Image = (props: ContentBlock_Image_Response & { messages: UiKit_Component<'image', 'response'> }) => {
-  const { src, alt, caption, sizes, fallback, messages } = props;
+  const { src, alt, caption, sizes, unoptimized, fallback, messages } = props;
+  const Renderer = useImageRenderer();
   const contentLanguage = useContentLanguage();
   const imageRef = useRef<HTMLImageElement>(null);
   const [failure, setFailure] = useState<ImageFailure | null>(null);
@@ -56,9 +58,11 @@ export const Image = (props: ContentBlock_Image_Response & { messages: UiKit_Com
         </div>
       ) : props.fill ? (
         <div className={styles.fillFrame} style={{ aspectRatio: props.aspectRatio }}>
-          <img
+          <Renderer
             key={`${src}:${attempt}`}
             ref={imageRef}
+            fill
+            unoptimized={imageUnoptimized(src, unoptimized)}
             className={styles.fillImage}
             src={src}
             alt={alt}
@@ -70,9 +74,10 @@ export const Image = (props: ContentBlock_Image_Response & { messages: UiKit_Com
           />
         </div>
       ) : (
-        <img
+        <Renderer
           key={`${src}:${attempt}`}
           ref={imageRef}
+          unoptimized={imageUnoptimized(src, unoptimized)}
           className={styles.image}
           src={src}
           alt={alt}
