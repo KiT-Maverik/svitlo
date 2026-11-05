@@ -188,7 +188,10 @@ for (const file of engineSources) {
   const imports = [...content.matchAll(/\b(?:from\s*|import\s*\(\s*)['"]([^'"]+)['"]/g)];
   for (const match of imports) {
     assert(
-      match[1].startsWith('.') || match[1].startsWith('@svitlo/contracts'),
+      match[1].startsWith('.') ||
+      match[1].startsWith('@svitlo/contracts') ||
+      (relative(root, file).startsWith('shared/engine/src/utils/generators/') &&
+        ['node:fs', 'node:path', 'node:url'].includes(match[1])),
       'Engine must not import runtime, UI or application packages: ' + relative(root, file) + ' -> ' + match[1],
     );
   }
