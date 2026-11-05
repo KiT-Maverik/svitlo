@@ -12,6 +12,11 @@ const packages = [
   'shared/ui-kit',
   'shared/adapters/nextjs',
   'content/playground',
+  'content/art',
+  'content/chemistry',
+  'content/economics',
+  'content/engineering',
+  'content/health-safety',
 ];
 
 let checked = 0;
@@ -53,6 +58,18 @@ for (const path of packages) {
     );
     for (const file of manifest.files) {
       assert(existsSync(resolve(root, path, 'dist/static', file)), 'Missing built textbook resource: ' + file);
+    }
+  }
+  if (['art', 'chemistry', 'economics', 'engineering', 'health-safety'].includes(name)) {
+    assert(pkg.bin?.['svitlo-' + name] === './scripts/publish.mjs', 'Missing Publish CLI: ' + name);
+    assert(existsSync(resolve(root, path, 'scripts/publish.mjs')), 'Missing CLI executable: ' + name);
+    const manifestPath = resolve(root, path, 'dist/manifest.json');
+    assert(existsSync(manifestPath), 'Missing published manifest: ' + name);
+    const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
+    assert(manifest.version === 1 && manifest.textbook === name && Array.isArray(manifest.files), 'Invalid textbook manifest: ' + name);
+    assert(manifest.files.some(file => file.startsWith('data/pages/skillAnalytics/')), 'Missing authored Skills JSON: ' + name);
+    for (const file of manifest.files) {
+      assert(existsSync(resolve(root, path, 'dist/static', file)), 'Missing built ' + name + ' resource: ' + file);
     }
   }
   if (name === 'ui-kit') {
