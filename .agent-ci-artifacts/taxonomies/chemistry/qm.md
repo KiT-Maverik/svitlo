@@ -378,7 +378,7 @@ Skills: 4
 
 **Methodological description (English):** Relate delocalized electrons and ordered metal atoms to common metallic properties.
 
-**User-friendly description (qm):** Metallardaki areketli elektronlarnı olarnıñ hususiy hususiyetlerinen bağla.
+**User-friendly description (qm):** Metallardaki areketli elektronlarnı olarnıñ özüne has hususiyetlerinen bağla.
 
 #### Zerreler arası tesirleşmeler
 
@@ -422,7 +422,7 @@ Skills: 4
 
 **User-friendly description (qm):** Bağlar ve zerreler arası tesirleşmeler yardımınen materiallarnıñ farqlarını añlat.
 
-#### Molekulalı ve uzaqlaşqan qurulışlar
+#### Molekulalı ve şebekeli qurulışlar
 
 Skills: 4
 
@@ -1096,13 +1096,13 @@ Skills: 7
 
 **User-friendly description (qm):** Bağlanğan polimer ağları niçün çekilip soñra öz şeklini qaytara bilgenini araştır.
 
-##### Şişe
+##### Cam
 
 [glass.data.ts](../../../learningApps/chemistry/data/skills/chemistryInTheWorld/materialsChemistry/skills/glass.data.ts)
 
 **Methodological description (English):** Explain the amorphous structure and glass-transition behavior of glass-forming materials, distinguishing them from ordinary crystalline solids.
 
-**User-friendly description (qm):** Şişe kristallı qattı maddelerden niçün başqa türlü hususiyetlerge saip olğanını ögren.
+**User-friendly description (qm):** Cam kristallı qattı maddelerden niçün başqa türlü hususiyetlerge saip olğanını ögren.
 
 ##### Metallarnı qullanuv
 

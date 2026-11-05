@@ -82,7 +82,7 @@ Skills: 4
 
 **Methodological description (English):** Use a measured equivalence relationship to infer an unknown amount or concentration.
 
-**User-friendly description (uk):** Використовуй вимірювання титрування, щоб визначити невідому кількість речовини.
+**User-friendly description (uk):** Використовуй результати титрування, щоб визначити невідому кількість речовини.
 
 ##### Буферні розчини
 
@@ -694,7 +694,7 @@ Skills: 6
 
 **User-friendly description (uk):** Визнач, який реагент обмежує максимально можливу кількість продукту.
 
-##### Перетворення маси на молі
+##### Перетворення між масою та молями
 
 [massMoleConversion.data.ts](../../../learningApps/chemistry/data/skills/chemicalLanguageAndQuantities/amountOfSubstance/skills/massMoleConversion.data.ts)
 
@@ -790,7 +790,7 @@ Skills: 8
 
 **Methodological description (English):** Interpret how many atoms of each element are present in a specified discrete molecule.
 
-**User-friendly description (uk):** Прочитай молекулярну формулу, щоб визначити атоми однієї молекули.
+**User-friendly description (uk):** Визнач за молекулярною формулою, скільки атомів кожного елемента містить одна молекула.
 
 ##### Номенклатура органічних сполук
 
@@ -1162,7 +1162,7 @@ Skills: 4
 
 **User-friendly description (uk):** Дізнайся, як амінокислоти та їхні взаємодії формують будову білків.
 
-#### Сталий вибір у хімії
+#### Екологічно відповідальні рішення в хімії
 
 Skills: 4
 
@@ -1278,7 +1278,7 @@ Skills: 8
 
 **Methodological description (English):** Combine known reaction equations and associated enthalpy changes to determine an overall enthalpy change using the state-function character of enthalpy.
 
-**User-friendly description (uk):** Поєднуй відомі зміни енергії реакцій, щоб обчислити ентальпію іншої реакції.
+**User-friendly description (uk):** Поєднуй відомі зміни ентальпії реакцій, щоб обчислити зміну ентальпії іншої реакції.
 
 ##### Ентальпія реакції
 
@@ -1748,7 +1748,7 @@ Skills: 7
 
 **Methodological description (English):** Explain selective vaporization and condensation using differences in volatility.
 
-**User-friendly description (uk):** Досліди, як відмінності температур і особливостей кипіння дають змогу розділяти речовини дистиляцією.
+**User-friendly description (uk):** Досліджуй, як відмінності леткості дають змогу розділяти речовини дистиляцією.
 
 ##### Розділення випарюванням
 

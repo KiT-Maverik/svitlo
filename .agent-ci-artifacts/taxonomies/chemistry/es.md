@@ -212,7 +212,7 @@ Skills: 4
 
 **User-friendly description (es):** Explora cómo los cambios de los núcleos atómicos difieren de las reacciones químicas habituales.
 
-##### Vida media de desintegración
+##### Período de semidesintegración
 
 [halfLife.data.ts](../../../learningApps/chemistry/data/skills/atomsAndPeriodicity/nuclearChemistry/skills/halfLife.data.ts)
 
@@ -1278,7 +1278,7 @@ Skills: 8
 
 **Methodological description (English):** Combine known reaction equations and associated enthalpy changes to determine an overall enthalpy change using the state-function character of enthalpy.
 
-**User-friendly description (es):** Combina cambios de energía conocidos para calcular la entalpía de otra reacción.
+**User-friendly description (es):** Combina cambios de entalpía conocidos para calcular el cambio de entalpía de otra reacción.
 
 ##### Entalpía de reacción
 

@@ -1230,7 +1230,7 @@ Skills: 8
 
 **Methodological description (English):** Approximate enthalpy changes from bonds broken and formed while recognizing average bond-energy limitations.
 
-**User-friendly description (de):** Schätze Reaktionsenergie aus gelösten und gebildeten Bindungen ab und beachte Modellgrenzen.
+**User-friendly description (de):** Schätze die Reaktionsenergie anhand gebrochener und gebildeter Bindungen ab und beachte die Grenzen des Modells.
 
 ##### Kalorimetrie
 
@@ -1916,7 +1916,7 @@ Skills: 4
 
 **Methodological description (English):** Repeated subunits and molecular architecture create materials with behaviors not predicted by monomer identities alone.
 
-**User-friendly description (de):** Verstehe, wie sich wiederholende Bausteine große Moleküle mit besonderen Eigenschaften bilden.
+**User-friendly description (de):** Verstehe, wie sich aus wiederholenden Bausteinen große Moleküle mit besonderen Eigenschaften bilden.
 
 ##### Additionspolymere
 

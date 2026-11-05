@@ -24,7 +24,7 @@ Groups: 2 · Skills: 7
 
 **User-friendly description (et):** Uuri hapete ja aluste koostoimet ning happesuse kirjeldamist ja mõõtmist.
 
-#### Hapete ja aluste alused
+#### Happe-aluse keemia põhialused
 
 Skills: 3
 
@@ -1278,7 +1278,7 @@ Skills: 8
 
 **Methodological description (English):** Combine known reaction equations and associated enthalpy changes to determine an overall enthalpy change using the state-function character of enthalpy.
 
-**User-friendly description (et):** Ühenda teadaolevaid reaktsioonienergia muutusi teise reaktsiooni entalpia arvutamiseks.
+**User-friendly description (et):** Ühenda teadaolevaid reaktsioonide entalpiamuutusi, et arvutada teise reaktsiooni entalpiamuutus.
 
 ##### Reaktsioonientalpia
 
@@ -1286,7 +1286,7 @@ Skills: 8
 
 **Methodological description (English):** Relate heat at constant pressure to the difference in enthalpy between states.
 
-**User-friendly description (et):** Võrdle energiat enne ja pärast reaktsiooni entalpianihke abil.
+**User-friendly description (et):** Võrdle energiat enne ja pärast reaktsiooni entalpia muutuse abil.
 
 #### Keemiline tasakaal
 

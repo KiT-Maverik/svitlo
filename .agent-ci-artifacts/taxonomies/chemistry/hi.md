@@ -1002,7 +1002,7 @@ Groups: 4 · Skills: 20
 
 **Methodological description (English):** Chemical concepts support understanding of manufactured materials, environmental systems and molecules associated with life. The emphasis is composition, transformation and evidence—not industrial process engineering, clinical advice or organism-level biology.
 
-**User-friendly description (hi):** जानो कि रसायन विज्ञान रोज़मर्रा के पदार्थों, पर्यावरण और जीवन के अणुओं की व्याख्या कैसे करता है।
+**User-friendly description (hi):** जानें कि रसायन विज्ञान रोज़मर्रा के पदार्थों, पर्यावरण और जीवन के अणुओं की व्याख्या कैसे करता है।
 
 #### वायु और जल
 
@@ -1012,7 +1012,7 @@ Skills: 5
 
 **Methodological description (English):** Environmental samples contain reacting or partitioning chemical species whose measurements require attention to concentration and chemical form.
 
-**User-friendly description (hi):** प्रदूषकों और घुले पदार्थों सहित हवा और पानी की रासायनिक विशेषताओं की जाँच करो।
+**User-friendly description (hi):** प्रदूषकों और घुले पदार्थों सहित हवा और पानी की रासायनिक विशेषताओं की जाँच करें।
 
 ##### वायुमंडलीय रासायनिक परिवर्तन
 
@@ -1020,7 +1020,7 @@ Skills: 5
 
 **Methodological description (English):** Relate pollutant reactions and transformations to phenomena such as acid deposition or photochemical smog.
 
-**User-friendly description (hi):** वायुमंडल की रासायनिक अभिक्रियाओं को धूम-कोहरे और अम्लीय निक्षेपण से जोड़ो।
+**User-friendly description (hi):** वायुमंडल की रासायनिक अभिक्रियाओं को धूम-कोहरे और अम्लीय निक्षेपण से जोड़ें।
 
 ##### पर्यावरण में कार्बन का रसायन
 
@@ -1028,7 +1028,7 @@ Skills: 5
 
 **Methodological description (English):** Track carbon among carbon dioxide, dissolved carbonate species and organic matter without conflating chemistry with whole-ecosystem modeling.
 
-**User-friendly description (hi):** कार्बन डाइऑक्साइड, घुले कार्बन यौगिकों और जैविक पदार्थ में कार्बन का मार्ग खोजो।
+**User-friendly description (hi):** कार्बन डाइऑक्साइड, घुले कार्बन यौगिकों और जैविक पदार्थ में कार्बन का मार्ग खोजें।
 
 ##### वायु का संघटन
 
@@ -1036,7 +1036,7 @@ Skills: 5
 
 **Methodological description (English):** Distinguish major atmospheric components from variable traces and pollutants.
 
-**User-friendly description (hi):** हवा की प्रमुख गैसों को पहचानो और उन्हें अल्प मात्रा के प्रदूषकों से अलग करो।
+**User-friendly description (hi):** हवा की प्रमुख गैसों को पहचानें और उन्हें अल्प मात्रा के प्रदूषकों से अलग करें।
 
 ##### विलायक के रूप में जल
 
@@ -1044,7 +1044,7 @@ Skills: 5
 
 **Methodological description (English):** Explain polarity and hydrogen bonding behind water's distinctive solvent behavior.
 
-**User-friendly description (hi):** जानो कि अणुओं के परस्पर आकर्षण से पानी अनेक पदार्थों को क्यों घोल सकता है।
+**User-friendly description (hi):** जानें कि अणुओं के परस्पर आकर्षण से पानी अनेक पदार्थों को क्यों घोल सकता है।
 
 ##### जल प्रदूषक
 
@@ -1052,7 +1052,7 @@ Skills: 5
 
 **Methodological description (English):** Classify dissolved and particulate contaminants by chemical identity and behavior without assuming visible clarity proves safety.
 
-**User-friendly description (hi):** पानी में अलग-अलग प्रदूषक पहचानो; साफ दिखने वाले पानी को ज़रूरी नहीं कि सुरक्षित मानो।
+**User-friendly description (hi):** पानी में अलग-अलग प्रदूषक पहचानें; साफ दिखने वाले पानी को ज़रूरी नहीं कि सुरक्षित मानें।
 
 #### पदार्थों का रसायन
 
@@ -1062,7 +1062,7 @@ Skills: 7
 
 **Methodological description (English):** A product's useful behavior depends on composition, microscopic structure and conditions of use, not merely its everyday material label.
 
-**User-friendly description (hi):** जानो कि रासायनिक संरचना किसी पदार्थ के उपयोगी गुण कैसे तय करती है।
+**User-friendly description (hi):** जानें कि रासायनिक संरचना किसी पदार्थ के उपयोगी गुण कैसे तय करती है।
 
 ##### उपयोगी मिश्रधातुएँ
 
@@ -1070,7 +1070,7 @@ Skills: 7
 
 **Methodological description (English):** Explain how composition and phase structure can change mechanical or corrosion properties relative to constituent metals.
 
-**User-friendly description (hi):** जानो कि मिश्रधातुओं के गुण उनमें मौजूद शुद्ध धातुओं से अलग क्यों हो सकते हैं।
+**User-friendly description (hi):** जानें कि मिश्रधातुओं के गुण उनमें मौजूद शुद्ध धातुओं से अलग क्यों हो सकते हैं।
 
 ##### सिरेमिक पदार्थ
 
@@ -1078,7 +1078,7 @@ Skills: 7
 
 **Methodological description (English):** Relate inorganic nonmetallic ceramic composition, microstructure and processing to characteristic mechanical and thermal behavior, recognizing that some ceramics contain glassy phases.
 
-**User-friendly description (hi):** जानो कि सिरेमिक की संरचना और संघटन से उसकी मजबूती और ताप-सहिष्णुता कैसे बदलती है।
+**User-friendly description (hi):** जानें कि सिरेमिक की संरचना और संघटन से उसकी मजबूती और ताप-सहिष्णुता कैसे बदलती है।
 
 ##### संक्षारण
 
@@ -1086,7 +1086,7 @@ Skills: 7
 
 **Methodological description (English):** Explain electrochemical deterioration and the chemical basis of common protective principles.
 
-**User-friendly description (hi):** समझाओ कि विद्युत् रासायनिक अभिक्रियाएँ संक्षारण कैसे करती हैं और उससे बचाव कैसे होता है।
+**User-friendly description (hi):** समझाएँ कि विद्युत् रासायनिक अभिक्रियाएँ संक्षारण कैसे करती हैं और उससे बचाव कैसे होता है।
 
 ##### इलास्टोमर
 
@@ -1094,7 +1094,7 @@ Skills: 7
 
 **Methodological description (English):** Explain recoverable deformation in rubberlike polymer networks through chain mobility and cross-linking, without treating all elastic substances as identical plastics.
 
-**User-friendly description (hi):** जानो कि कुछ जुड़े हुए बहुलक जाल खिंचने के बाद फिर आकार में कैसे लौटते हैं।
+**User-friendly description (hi):** जानें कि कुछ जुड़े हुए बहुलक जाल खिंचने के बाद फिर आकार में कैसे लौटते हैं।
 
 ##### काँच
 
@@ -1102,7 +1102,7 @@ Skills: 7
 
 **Methodological description (English):** Explain the amorphous structure and glass-transition behavior of glass-forming materials, distinguishing them from ordinary crystalline solids.
 
-**User-friendly description (hi):** जानो कि काँच का व्यवहार क्रिस्टलीय ठोस पदार्थों से अलग क्यों होता है।
+**User-friendly description (hi):** जानें कि काँच का व्यवहार क्रिस्टलीय ठोस पदार्थों से अलग क्यों होता है।
 
 ##### उपयोग में धातुएँ
 
@@ -1110,7 +1110,7 @@ Skills: 7
 
 **Methodological description (English):** Relate elemental metallic structure and processing to characteristic conductivity, deformation and corrosion.
 
-**User-friendly description (hi):** धातुओं की संरचना और प्रसंस्करण को उनके रोज़मर्रा के गुणों से जोड़ो।
+**User-friendly description (hi):** धातुओं की संरचना और प्रसंस्करण को उनके रोज़मर्रा के गुणों से जोड़ें।
 
 ##### प्लास्टिक
 
@@ -1118,7 +1118,7 @@ Skills: 7
 
 **Methodological description (English):** Relate polymer chemistry and processing to the shaping, durability and temperature-dependent behavior of plastic materials.
 
-**User-friendly description (hi):** समझो कि बहुलक और निर्माण की विधियाँ प्लास्टिक के गुणों को कैसे प्रभावित करती हैं।
+**User-friendly description (hi):** समझें कि बहुलक और निर्माण की विधियाँ प्लास्टिक के गुणों को कैसे प्रभावित करती हैं।
 
 #### जीवन के अणु
 
@@ -1128,7 +1128,7 @@ Skills: 4
 
 **Methodological description (English):** Chemical structure explains molecular behavior that biology may later place in cellular or organismal context.
 
-**User-friendly description (hi):** महत्त्वपूर्ण जैविक पदार्थों की आणविक संरचनाओं का अध्ययन करो।
+**User-friendly description (hi):** महत्त्वपूर्ण जैविक पदार्थों की आणविक संरचनाओं का अध्ययन करें।
 
 ##### कार्बोहाइड्रेट का रसायन
 
@@ -1136,7 +1136,7 @@ Skills: 4
 
 **Methodological description (English):** Relate sugar units, glycosidic connections and chemical properties in small and polymeric carbohydrates.
 
-**User-friendly description (hi):** जानो कि शर्करा की इकाइयाँ मिलकर विभिन्न कार्बोहाइड्रेट कैसे बनाती हैं।
+**User-friendly description (hi):** जानें कि शर्करा की इकाइयाँ मिलकर विभिन्न कार्बोहाइड्रेट कैसे बनाती हैं।
 
 ##### लिपिड का रसायन
 
@@ -1144,7 +1144,7 @@ Skills: 4
 
 **Methodological description (English):** Recognize characteristic structures and intermolecular behavior of fats, oils and other lipid families.
 
-**User-friendly description (hi):** वसा, तेल और अन्य लिपिड की संरचनाओं और रासायनिक व्यवहार की तुलना करो।
+**User-friendly description (hi):** वसा, तेल और अन्य लिपिड की संरचनाओं और रासायनिक व्यवहार की तुलना करें।
 
 ##### न्यूक्लिक अम्लों का रसायन
 
@@ -1152,7 +1152,7 @@ Skills: 4
 
 **Methodological description (English):** Identify nucleotide components and the covalent framework of nucleic acids without teaching genetic inheritance as the primary competency.
 
-**User-friendly description (hi):** DNA और RNA के रासायनिक निर्माण खंडों और मुख्य ढाँचे को समझो।
+**User-friendly description (hi):** DNA और RNA के रासायनिक निर्माण खंडों और मुख्य ढाँचे को समझें।
 
 ##### प्रोटीन का रसायन
 
@@ -1160,7 +1160,7 @@ Skills: 4
 
 **Methodological description (English):** Relate amino-acid connectivity and chemical interactions to protein structure.
 
-**User-friendly description (hi):** जानो कि अमीनो अम्ल और उनकी आपसी क्रियाएँ प्रोटीन की संरचना कैसे तय करती हैं।
+**User-friendly description (hi):** जानें कि अमीनो अम्ल और उनकी आपसी क्रियाएँ प्रोटीन की संरचना कैसे तय करती हैं।
 
 #### टिकाऊ रासायनिक विकल्प
 
@@ -1170,7 +1170,7 @@ Skills: 4
 
 **Methodological description (English):** Environmental and resource decisions benefit from chemical evidence about composition, persistence, transformations and alternatives.
 
-**User-friendly description (hi):** पदार्थों, कचरे और संसाधनों के बारे में बेहतर निर्णय लेने के लिए रासायनिक साक्ष्य का उपयोग करो।
+**User-friendly description (hi):** पदार्थों, कचरे और संसाधनों के बारे में बेहतर निर्णय लेने के लिए रासायनिक साक्ष्य का उपयोग करें।
 
 ##### जैव अपघटन और स्थायित्व
 
@@ -1178,7 +1178,7 @@ Skills: 4
 
 **Methodological description (English):** Distinguish chemically or biologically degradable compounds from persistent materials under actual environmental conditions.
 
-**User-friendly description (hi):** समझो कि पदार्थ पर्यावरण में कब टूटते हैं और कब लंबे समय तक बने रहते हैं।
+**User-friendly description (hi):** समझें कि पदार्थ पर्यावरण में कब टूटते हैं और कब लंबे समय तक बने रहते हैं।
 
 ##### रासायनिक पदार्थों का जीवन चक्र
 
@@ -1186,7 +1186,7 @@ Skills: 4
 
 **Methodological description (English):** Trace a substance through sourcing, use, chemical change and waste streams rather than evaluating one stage in isolation.
 
-**User-friendly description (hi):** किसी एक चरण के बजाय उत्पादन, उपयोग और कचरे तक पदार्थ का पूरा मार्ग देखो।
+**User-friendly description (hi):** किसी एक चरण के बजाय उत्पादन, उपयोग और कचरे तक पदार्थ का पूरा मार्ग देखें।
 
 ##### हरित रसायन के सिद्धांत
 
@@ -1194,7 +1194,7 @@ Skills: 4
 
 **Methodological description (English):** Evaluate a proposed chemical process by waste prevention, safer inputs, energy demand and material efficiency without assuming any process has zero impact.
 
-**User-friendly description (hi):** कचरे, सुरक्षा, ऊर्जा की आवश्यकता और सामग्री दक्षता के आधार पर रासायनिक प्रक्रियाओं की तुलना करो।
+**User-friendly description (hi):** कचरे, सुरक्षा, ऊर्जा की आवश्यकता और सामग्री दक्षता के आधार पर रासायनिक प्रक्रियाओं की तुलना करें।
 
 ##### पुनर्चक्रण का रसायन
 
@@ -1202,7 +1202,7 @@ Skills: 4
 
 **Methodological description (English):** Explain when chemical composition enables or limits separation, reprocessing and material recovery.
 
-**User-friendly description (hi):** जानो कि पदार्थों की रासायनिक संरचना पुनर्चक्रण और पुनर्प्राप्ति को कैसे प्रभावित करती है।
+**User-friendly description (hi):** जानें कि पदार्थों की रासायनिक संरचना पुनर्चक्रण और पुनर्प्राप्ति को कैसे प्रभावित करती है।
 
 ### ऊर्जा, अभिक्रिया दर और साम्य
 
@@ -1404,7 +1404,7 @@ Groups: 3 · Skills: 13
 
 **Methodological description (English):** The chemistry of elements and non-carbon-centered substance families provides a systematic account of familiar materials and dissolved ions. Organic chemistry handles carbon-based families in greater detail.
 
-**User-friendly description (hi):** तत्वों, अकार्बनिक यौगिकों और घुले हुए आयनों के गुणों और व्यवहार का अध्ययन करो।
+**User-friendly description (hi):** तत्वों, अकार्बनिक यौगिकों और घुले हुए आयनों के गुणों और व्यवहार का अध्ययन करें।
 
 #### तत्व परिवारों का संदर्भ
 
@@ -1414,7 +1414,7 @@ Skills: 4
 
 **Methodological description (English):** Elemental forms can vary in structure, oxidation state and behavior despite shared periodic classification.
 
-**User-friendly description (hi):** तत्वों के सामान्य समूहों के रासायनिक व्यवहार की तुलना करो।
+**User-friendly description (hi):** तत्वों के सामान्य समूहों के रासायनिक व्यवहार की तुलना करें।
 
 ##### अपररूप
 
@@ -1422,7 +1422,7 @@ Skills: 4
 
 **Methodological description (English):** Recognize distinct structural forms of one element, such as graphite and diamond, and their different properties.
 
-**User-friendly description (hi):** जानो कि एक ही तत्व परमाणुओं की अलग व्यवस्था से अलग पदार्थ कैसे बना सकता है।
+**User-friendly description (hi):** जानें कि एक ही तत्व परमाणुओं की अलग व्यवस्था से अलग पदार्थ कैसे बना सकता है।
 
 ##### धातुओं की अभिक्रियाशीलता
 
@@ -1430,7 +1430,7 @@ Skills: 4
 
 **Methodological description (English):** Compare how different metals undergo oxidation, form ions and participate in displacement reactions under relevant conditions, distinct from the detailed mechanisms of corrosion.
 
-**User-friendly description (hi):** समझाओ कि समान परिस्थितियों में अलग धातुएँ अलग तरह से अभिक्रिया क्यों करती हैं।
+**User-friendly description (hi):** समझाएँ कि समान परिस्थितियों में अलग धातुएँ अलग तरह से अभिक्रिया क्यों करती हैं।
 
 ##### उत्कृष्ट गैसें
 
@@ -1438,7 +1438,7 @@ Skills: 4
 
 **Methodological description (English):** Explain low typical reactivity from electron structure while recognizing that compounds of some noble gases exist.
 
-**User-friendly description (hi):** समझो कि उत्कृष्ट गैसें सामान्यतः कम अभिक्रियाशील होती हैं, लेकिन कुछ बंध बना सकती हैं।
+**User-friendly description (hi):** समझें कि उत्कृष्ट गैसें सामान्यतः कम अभिक्रियाशील होती हैं, लेकिन कुछ बंध बना सकती हैं।
 
 ##### अधातु
 
@@ -1446,7 +1446,7 @@ Skills: 4
 
 **Methodological description (English):** Relate elemental forms such as oxygen, nitrogen, sulfur and halogens to characteristic chemical behavior.
 
-**User-friendly description (hi):** ऑक्सीजन, नाइट्रोजन, सल्फर और अन्य अधातुओं के रासायनिक व्यवहार को समझो।
+**User-friendly description (hi):** ऑक्सीजन, नाइट्रोजन, सल्फर और अन्य अधातुओं के रासायनिक व्यवहार को समझें।
 
 #### अकार्बनिक यौगिक
 
@@ -1456,7 +1456,7 @@ Skills: 5
 
 **Methodological description (English):** Inorganic formulas and classes describe varied substances whose behavior is not determined by a class name alone.
 
-**User-friendly description (hi):** अकार्बनिक यौगिकों की बड़ी श्रेणियों को पहचानो, लेकिन यह मत मानो कि हर सदस्य एक जैसा व्यवहार करता है।
+**User-friendly description (hi):** अकार्बनिक यौगिकों की बड़ी श्रेणियों को पहचानें, लेकिन यह न मानें कि हर सदस्य एक जैसा व्यवहार करता है।
 
 ##### समन्वय यौगिक
 
@@ -1464,7 +1464,7 @@ Skills: 5
 
 **Methodological description (English):** Interpret a central metal species surrounded by ligands as a structure distinct from a simple ionic formula.
 
-**User-friendly description (hi):** समझो कि समन्वय यौगिकों में लिगैंड केंद्रीय धातु प्रजाति के चारों ओर कैसे होते हैं।
+**User-friendly description (hi):** समझें कि समन्वय यौगिकों में लिगैंड केंद्रीय धातु प्रजाति के चारों ओर कैसे होते हैं।
 
 ##### हाइड्रॉक्साइड
 
@@ -1472,7 +1472,7 @@ Skills: 5
 
 **Methodological description (English):** Interpret hydroxide-containing substances and their dissociation or reactivity in context.
 
-**User-friendly description (hi):** हाइड्रॉक्साइड यौगिकों और उनकी रासायनिक अभिक्रियाओं को पहचानो।
+**User-friendly description (hi):** हाइड्रॉक्साइड यौगिकों और उनकी रासायनिक अभिक्रियाओं को पहचानें।
 
 ##### खनिज
 
@@ -1480,7 +1480,7 @@ Skills: 5
 
 **Methodological description (English):** Explain how naturally occurring crystalline substances are classified by chemistry and structure.
 
-**User-friendly description (hi):** खनिजों की रासायनिक संरचना और क्रिस्टल व्यवस्था को उनके वर्गीकरण से जोड़ो।
+**User-friendly description (hi):** खनिजों की रासायनिक संरचना और क्रिस्टल व्यवस्था को उनके वर्गीकरण से जोड़ें।
 
 ##### ऑक्साइड
 
@@ -1488,7 +1488,7 @@ Skills: 5
 
 **Methodological description (English):** Distinguish oxide composition and broad acidic, basic or amphoteric chemical behavior.
 
-**User-friendly description (hi):** ऑक्साइडों की अलग-अलग श्रेणियों और उनके रासायनिक व्यवहार का अध्ययन करो।
+**User-friendly description (hi):** ऑक्साइडों की अलग-अलग श्रेणियों और उनके रासायनिक व्यवहार का अध्ययन करें।
 
 ##### लवण
 
@@ -1496,7 +1496,7 @@ Skills: 5
 
 **Methodological description (English):** Recognize ionic compounds and their compositional relationship to cations and anions.
 
-**User-friendly description (hi):** सकारात्मक और नकारात्मक आवेश वाले आयनों से बने यौगिकों को लवण के रूप में पहचानो।
+**User-friendly description (hi):** सकारात्मक और नकारात्मक आवेश वाले आयनों से बने यौगिकों को लवण के रूप में पहचानें।
 
 #### पानी में आयन
 
@@ -1506,7 +1506,7 @@ Skills: 4
 
 **Methodological description (English):** Water permits dissociation and characteristic aqueous reactions, but not every dissolved substance produces free ions.
 
-**User-friendly description (hi):** जानो कि पदार्थ पानी में घुलने पर किस तरह व्यवहार करते हैं।
+**User-friendly description (hi):** जानें कि पदार्थ पानी में घुलने पर किस तरह व्यवहार करते हैं।
 
 ##### विद्युत् अपघट्य
 
@@ -1514,7 +1514,7 @@ Skills: 4
 
 **Methodological description (English):** Distinguish strong, weak and nonelectrolyte behavior in solution.
 
-**User-friendly description (hi):** विलयन में उनके व्यवहार के आधार पर प्रबल, दुर्बल और गैर-विद्युत् अपघट्य में अंतर करो।
+**User-friendly description (hi):** विलयन में उनके व्यवहार के आधार पर प्रबल, दुर्बल और गैर-विद्युत् अपघट्य में अंतर करें।
 
 ##### आयनिक समीकरण
 
@@ -1522,7 +1522,7 @@ Skills: 4
 
 **Methodological description (English):** Represent only the species participating in a net aqueous chemical change.
 
-**User-friendly description (hi):** ऐसे समीकरण लिखो जो दिखाएँ कि जलीय अभिक्रिया में वास्तव में कौन-से आयन भाग लेते हैं।
+**User-friendly description (hi):** ऐसे समीकरण लिखें जो दिखाएँ कि जलीय अभिक्रिया में वास्तव में कौन-से आयन भाग लेते हैं।
 
 ##### विलेयता के नियम
 
@@ -1530,7 +1530,7 @@ Skills: 4
 
 **Methodological description (English):** Use empirical patterns to anticipate precipitation while checking exceptions and conditions.
 
-**User-friendly description (hi):** अवक्षेप बनने का अनुमान लगाने के लिए विलेयता के पैटर्न उपयोग करो, लेकिन अपवाद भी जाँचो।
+**User-friendly description (hi):** अवक्षेप बनने का अनुमान लगाने के लिए विलेयता के पैटर्न उपयोग करें, लेकिन अपवाद भी जाँचें।
 
 ##### जल की कठोरता
 
@@ -1538,7 +1538,7 @@ Skills: 4
 
 **Methodological description (English):** Relate dissolved calcium and magnesium species to characteristic reactions and practical effects.
 
-**User-friendly description (hi):** समझाओ कि पानी में घुले कैल्शियम और मैग्नीशियम से पानी कठोर क्यों होता है।
+**User-friendly description (hi):** समझाएँ कि पानी में घुले कैल्शियम और मैग्नीशियम से पानी कठोर क्यों होता है।
 
 ### मिश्रण और विलयन
 
@@ -1674,7 +1674,7 @@ Skills: 4
 
 **Methodological description (English):** Interpret metallic mixtures or solid solutions without assuming every alloy has a fixed compound formula.
 
-**User-friendly description (hi):** समझें कि धातुएँ नई यौगिक बनाए बिना भी मिश्रधातु कैसे बना सकती हैं।
+**User-friendly description (hi):** समझें कि धातुएँ नया यौगिक बनाए बिना भी मिश्रधातु कैसे बना सकती हैं।
 
 ##### कोलॉइड
 
@@ -1774,7 +1774,7 @@ Groups: 4 · Skills: 22
 
 **Methodological description (English):** Carbon compounds are organized by connectivity, functional groups and reaction pathways. This domain focuses on chemical structure and transformations, distinct from physiological roles discussed in biology.
 
-**User-friendly description (hi):** जानो कि कार्बन यौगिकों की संरचना, वर्गीकरण और परिवर्तन कैसे होते हैं।
+**User-friendly description (hi):** जानें कि कार्बन यौगिकों की संरचना, वर्गीकरण और परिवर्तन कैसे होते हैं।
 
 #### कार्बन ढाँचे
 
@@ -1784,7 +1784,7 @@ Skills: 7
 
 **Methodological description (English):** Carbon's bonding versatility permits chains, rings and varied structural representations for compounds containing carbon.
 
-**User-friendly description (hi):** समझो कि कार्बन कैसे शृंखलाएँ, वलय और अलग-अलग आणविक संरचनाएँ बनाता है।
+**User-friendly description (hi):** समझें कि कार्बन कैसे शृंखलाएँ, वलय और अलग-अलग आणविक संरचनाएँ बनाता है।
 
 ##### ऐल्केन
 
@@ -1792,7 +1792,7 @@ Skills: 7
 
 **Methodological description (English):** Recognize saturated acyclic hydrocarbon structure and characteristic substitution or combustion behavior.
 
-**User-friendly description (hi):** ऐल्केन और उनकी विशिष्ट संतृप्त कार्बन संरचनाओं को पहचानो।
+**User-friendly description (hi):** ऐल्केन और उनकी विशिष्ट संतृप्त कार्बन संरचनाओं को पहचानें।
 
 ##### ऐल्कीन
 
@@ -1800,7 +1800,7 @@ Skills: 7
 
 **Methodological description (English):** Relate carbon–carbon double bonds to connectivity and common addition chemistry.
 
-**User-friendly description (hi):** जानो कि कार्बन–कार्बन द्विबंध ऐल्कीन की अभिक्रियाओं को कैसे प्रभावित करता है।
+**User-friendly description (hi):** जानें कि कार्बन–कार्बन द्विबंध ऐल्कीन की अभिक्रियाओं को कैसे प्रभावित करता है।
 
 ##### ऐल्काइन
 
@@ -1808,7 +1808,7 @@ Skills: 7
 
 **Methodological description (English):** Relate carbon–carbon triple bonds to structure and chemical behavior.
 
-**User-friendly description (hi):** कार्बन–कार्बन त्रिबंध के आधार पर ऐल्काइन पहचानो।
+**User-friendly description (hi):** कार्बन–कार्बन त्रिबंध के आधार पर ऐल्काइन पहचानें।
 
 ##### ऐरोमैटिक यौगिक
 
@@ -1816,7 +1816,7 @@ Skills: 7
 
 **Methodological description (English):** Distinguish aromatic conjugated ring systems from any molecule that merely has a ring.
 
-**User-friendly description (hi):** ऐरोमैटिक आणविक संरचनाओं को सामान्य कार्बन वलयों से अलग पहचानो।
+**User-friendly description (hi):** ऐरोमैटिक आणविक संरचनाओं को सामान्य कार्बन वलयों से अलग पहचानें।
 
 ##### हाइड्रोकार्बन
 
@@ -1824,7 +1824,7 @@ Skills: 7
 
 **Methodological description (English):** Identify compounds containing only carbon and hydrogen and distinguish saturated from unsaturated connectivity.
 
-**User-friendly description (hi):** केवल कार्बन और हाइड्रोजन से बने यौगिकों को पहचानो।
+**User-friendly description (hi):** केवल कार्बन और हाइड्रोजन से बने यौगिकों को पहचानें।
 
 ##### त्रिविम समावयवता
 
@@ -1832,7 +1832,7 @@ Skills: 7
 
 **Methodological description (English):** Interpret three-dimensional arrangements that differ without changing atom connectivity.
 
-**User-friendly description (hi):** जानो कि अणु अपनी त्रि-आयामी व्यवस्था में कैसे अलग हो सकते हैं।
+**User-friendly description (hi):** जानें कि अणु अपनी त्रि-आयामी व्यवस्था में कैसे अलग हो सकते हैं।
 
 ##### संरचनात्मक समावयवता
 
@@ -1840,7 +1840,7 @@ Skills: 7
 
 **Methodological description (English):** Recognize compounds with the same molecular formula but different atomic connectivity.
 
-**User-friendly description (hi):** समझो कि समान आणविक सूत्र वाले यौगिकों में परमाणुओं के जुड़ाव कैसे अलग हो सकते हैं।
+**User-friendly description (hi):** समझें कि समान आणविक सूत्र वाले यौगिकों में परमाणुओं के जुड़ाव कैसे अलग हो सकते हैं।
 
 #### क्रियात्मक समूह
 
@@ -1850,7 +1850,7 @@ Skills: 7
 
 **Methodological description (English):** Different atom groups create families whose chemical behavior can be predicted more reliably than from molecular size alone.
 
-**User-friendly description (hi):** ऐसे क्रियात्मक समूह पहचानो जो कार्बनिक यौगिकों के व्यवहार को प्रभावित करते हैं।
+**User-friendly description (hi):** ऐसे क्रियात्मक समूह पहचानें जो कार्बनिक यौगिकों के व्यवहार को प्रभावित करते हैं।
 
 ##### ऐल्कोहॉल
 
@@ -1858,7 +1858,7 @@ Skills: 7
 
 **Methodological description (English):** Recognize a hydroxyl group attached to an appropriate carbon framework and its characteristic chemistry.
 
-**User-friendly description (hi):** ऐल्कोहॉल की संरचना और उनके हाइड्रॉक्सिल समूह से जुड़ी अभिक्रियाएँ पहचानो।
+**User-friendly description (hi):** ऐल्कोहॉल की संरचना और उनके हाइड्रॉक्सिल समूह से जुड़ी अभिक्रियाएँ पहचानें।
 
 ##### ऐल्डिहाइड
 
@@ -1866,7 +1866,7 @@ Skills: 7
 
 **Methodological description (English):** Relate terminal carbonyl connectivity to characteristic structure and oxidation behavior.
 
-**User-friendly description (hi):** कार्बोनिल समूह की स्थिति और व्यवहार से ऐल्डिहाइड पहचानो।
+**User-friendly description (hi):** कार्बोनिल समूह की स्थिति और व्यवहार से ऐल्डिहाइड पहचानें।
 
 ##### ऐमाइड
 
@@ -1874,7 +1874,7 @@ Skills: 7
 
 **Methodological description (English):** Recognize carbonyl–nitrogen connectivity and distinguish amides from amines.
 
-**User-friendly description (hi):** ऐमाइड पहचानो और उनके कार्बोनिल–नाइट्रोजन बंध को ऐमीन से अलग करो।
+**User-friendly description (hi):** ऐमाइड पहचानें और उनके कार्बोनिल–नाइट्रोजन बंध को ऐमीन से अलग करें।
 
 ##### ऐमीन
 
@@ -1882,7 +1882,7 @@ Skills: 7
 
 **Methodological description (English):** Relate nitrogen-containing organic groups to basicity and substitution.
 
-**User-friendly description (hi):** नाइट्रोजन युक्त ऐमीन समूहों के रासायनिक व्यवहार का अध्ययन करो।
+**User-friendly description (hi):** नाइट्रोजन युक्त ऐमीन समूहों के रासायनिक व्यवहार का अध्ययन करें।
 
 ##### कार्बोक्सिलिक अम्ल
 
@@ -1890,7 +1890,7 @@ Skills: 7
 
 **Methodological description (English):** Interpret carboxyl-group acidity and derivative formation.
 
-**User-friendly description (hi):** समझो कि कार्बोक्सिल समूह कार्बोक्सिलिक अम्लों का विशिष्ट व्यवहार कैसे तय करता है।
+**User-friendly description (hi):** समझें कि कार्बोक्सिल समूह कार्बोक्सिलिक अम्लों का विशिष्ट व्यवहार कैसे तय करता है।
 
 ##### एस्टर
 
@@ -1898,7 +1898,7 @@ Skills: 7
 
 **Methodological description (English):** Recognize the ester linkage and its formation or hydrolysis relationships.
 
-**User-friendly description (hi):** एस्टर बंध पहचानो और समझो कि एस्टर कैसे बनते या टूटते हैं।
+**User-friendly description (hi):** एस्टर बंध पहचानें और समझें कि एस्टर कैसे बनते या टूटते हैं।
 
 ##### कीटोन
 
@@ -1906,7 +1906,7 @@ Skills: 7
 
 **Methodological description (English):** Relate internal carbonyl connectivity to characteristic reactions and distinctions from aldehydes.
 
-**User-friendly description (hi):** कार्बोनिल समूह की संरचना के आधार पर कीटोन को ऐल्डिहाइड से अलग करो।
+**User-friendly description (hi):** कार्बोनिल समूह की संरचना के आधार पर कीटोन को ऐल्डिहाइड से अलग करें।
 
 #### महाअणु
 
@@ -1916,7 +1916,7 @@ Skills: 4
 
 **Methodological description (English):** Repeated subunits and molecular architecture create materials with behaviors not predicted by monomer identities alone.
 
-**User-friendly description (hi):** समझो कि दोहराई जाने वाली इकाइयाँ विशेष गुणों वाले बड़े अणु कैसे बनाती हैं।
+**User-friendly description (hi):** समझें कि दोहराई जाने वाली इकाइयाँ विशेष गुणों वाले बड़े अणु कैसे बनाती हैं।
 
 ##### योगज बहुलक
 
@@ -1924,7 +1924,7 @@ Skills: 4
 
 **Methodological description (English):** Recognize repeat-unit formation from suitable unsaturated monomers.
 
-**User-friendly description (hi):** ऐसे बहुलक पहचानो जो उपयुक्त असंतृप्त एकलकों को जोड़ने से बनते हैं।
+**User-friendly description (hi):** ऐसे बहुलक पहचानें जो उपयुक्त असंतृप्त एकलकों को जोड़ने से बनते हैं।
 
 ##### संघनन बहुलक
 
@@ -1932,7 +1932,7 @@ Skills: 4
 
 **Methodological description (English):** Recognize repeat-unit formation with elimination of small molecules.
 
-**User-friendly description (hi):** ऐसे बहुलक पहचानो जो छोटे अणु निकलने वाली अभिक्रियाओं से बनते हैं।
+**User-friendly description (hi):** ऐसे बहुलक पहचानें जो छोटे अणु निकलने वाली अभिक्रियाओं से बनते हैं।
 
 ##### बहुलक की संरचना और गुण
 
@@ -1940,7 +1940,7 @@ Skills: 4
 
 **Methodological description (English):** Relate chain length, branching and cross-linking to bulk material behavior.
 
-**User-friendly description (hi):** बहुलक शृंखलाओं के आकार और आपसी जुड़ाव को पदार्थ के गुणों से जोड़ो।
+**User-friendly description (hi):** बहुलक शृंखलाओं के आकार और आपसी जुड़ाव को पदार्थ के गुणों से जोड़ें।
 
 ##### बहुलकीकरण
 
@@ -1948,7 +1948,7 @@ Skills: 4
 
 **Methodological description (English):** Relate monomers and repeated units to formation of macromolecules.
 
-**User-friendly description (hi):** जानो कि छोटे एकलक मिलकर लंबी बहुलक शृंखलाएँ कैसे बनाते हैं।
+**User-friendly description (hi):** जानें कि छोटे एकलक मिलकर लंबी बहुलक शृंखलाएँ कैसे बनाते हैं।
 
 #### कार्बनिक रूपांतरण
 
@@ -1958,7 +1958,7 @@ Skills: 4
 
 **Methodological description (English):** Reaction family patterns link starting functional groups to plausible products while requiring mechanistic and condition-specific reasoning.
 
-**User-friendly description (hi):** कार्बनिक अभिक्रियाओं में बदलाव के सामान्य रूपों को जानो।
+**User-friendly description (hi):** कार्बनिक अभिक्रियाओं में बदलाव के सामान्य रूपों को जानें।
 
 ##### योगात्मक अभिक्रियाएँ
 
@@ -1966,7 +1966,7 @@ Skills: 4
 
 **Methodological description (English):** Reason about new bonds forming across unsaturated sites.
 
-**User-friendly description (hi):** ऐसी अभिक्रियाएँ पहचानो जिनमें असंतृप्त बंध के दोनों ओर परमाणु जुड़ते हैं।
+**User-friendly description (hi):** ऐसी अभिक्रियाएँ पहचानें जिनमें असंतृप्त बंध के दोनों ओर परमाणु जुड़ते हैं।
 
 ##### संघनन अभिक्रियाएँ
 
@@ -1974,7 +1974,7 @@ Skills: 4
 
 **Methodological description (English):** Explain bond formation between organic partners accompanied by removal of a small molecule.
 
-**User-friendly description (hi):** जानो कि दो कार्बनिक अभिकारक छोटे अणु को निकालते हुए कैसे जुड़ते हैं।
+**User-friendly description (hi):** जानें कि दो कार्बनिक अभिकारक छोटे अणु को निकालते हुए कैसे जुड़ते हैं।
 
 ##### विलोपन अभिक्रियाएँ
 
@@ -1982,7 +1982,7 @@ Skills: 4
 
 **Methodological description (English):** Recognize removal of atoms or groups with formation of additional unsaturation.
 
-**User-friendly description (hi):** समझाओ कि परमाणु या समूह हटाने से द्विबंध या त्रिबंध कैसे बन सकते हैं।
+**User-friendly description (hi):** समझाएँ कि परमाणु या समूह हटाने से द्विबंध या त्रिबंध कैसे बन सकते हैं।
 
 ##### प्रतिस्थापन अभिक्रियाएँ
 
@@ -1990,7 +1990,7 @@ Skills: 4
 
 **Methodological description (English):** Recognize replacement of one atom or group while retaining much of a carbon skeleton.
 
-**User-friendly description (hi):** ऐसी अभिक्रियाएँ पहचानो जिनमें कार्बनिक अणु का कोई परमाणु या समूह बदल दिया जाता है।
+**User-friendly description (hi):** ऐसी अभिक्रियाएँ पहचानें जिनमें कार्बनिक अणु का कोई परमाणु या समूह बदल दिया जाता है।
 
 ### कण और पदार्थ की अवस्थाएँ
 
@@ -2034,7 +2034,7 @@ Skills: 9
 
 **Methodological description (English):** Relate gas pressure to absolute temperature when volume and gas amount remain fixed under appropriate conditions.
 
-**User-friendly description (hi):** जानें कि बंद आयतन में गैस को गर्म करने से उसका दाब कैसे बदलता है।
+**User-friendly description (hi):** जानें कि स्थिर आयतन में गैस को गर्म करने से उसका दाब कैसे बदलता है।
 
 ##### गैस के दाब और आयतन का संबंध
 
@@ -2218,7 +2218,7 @@ Skills: 4
 
 **Methodological description (English):** Physical and chemical properties supply different evidence about substances, and measurements are meaningful only under stated conditions.
 
-**User-friendly description (hi):** पदार्थों को वर्णित और पहचाने में सहायक मापनीय गुणों को जानें।
+**User-friendly description (hi):** पदार्थों का वर्णन करने और उन्हें पहचानने में सहायक मापनीय गुणों को जानें।
 
 ##### रासायनिक गुण
 

@@ -694,7 +694,7 @@ Skills: 6
 
 **User-friendly description (pl):** Wskaż substrat, który ogranicza maksymalną możliwą ilość produktu.
 
-##### Przeliczanie masy na mole
+##### Przeliczanie między masą a molami
 
 [massMoleConversion.data.ts](../../../learningApps/chemistry/data/skills/chemicalLanguageAndQuantities/amountOfSubstance/skills/massMoleConversion.data.ts)
 
@@ -1278,7 +1278,7 @@ Skills: 8
 
 **Methodological description (English):** Combine known reaction equations and associated enthalpy changes to determine an overall enthalpy change using the state-function character of enthalpy.
 
-**User-friendly description (pl):** Połącz znane zmiany energii reakcji, by obliczyć entalpię innej reakcji.
+**User-friendly description (pl):** Połącz znane zmiany entalpii reakcji, by obliczyć zmianę entalpii innej reakcji.
 
 ##### Entalpia reakcji
 
@@ -1380,7 +1380,7 @@ Skills: 6
 
 **User-friendly description (pl):** Określ, jak rząd reakcji wpływa na zmiany jej szybkości.
 
-##### Szybkość pojedynczej reakcji
+##### Obliczanie szybkości reakcji
 
 [reactionRate.data.ts](../../../learningApps/chemistry/data/skills/energyRatesAndEquilibrium/reactionRates/skills/reactionRate.data.ts)
 
