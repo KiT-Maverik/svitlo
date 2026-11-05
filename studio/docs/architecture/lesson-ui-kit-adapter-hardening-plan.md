@@ -6,6 +6,44 @@
 > **Branch origin:** parent head `71cf9d8778f5dbfbc18b654b836f5307fd491ec7` (2026-11-05).
 > **This document is a work plan, not a claim of completed functionality.** Update the PR checklist as code is implemented.
 
+## Implementation checkpoint — November 5, 2026
+
+The following changes are **committed on this stacked branch**, but **the current
+head has not yet passed the complete build, tests, Storybook or E2E suite**.
+Treat test-related statements below as coverage added, not as green CI evidence.
+
+- **A / dependency injection:** `createLessonLearningLayout` now owns
+  `useLessonNavigation` and MUI `useColorScheme`; `Lesson` supplies its own
+  `pathname`. Only the host's `useLocale` and optional `linkComponent`
+  remain; Playground no longer instantiates the layout twice. Its layout tests
+  now mount the real `LessonNavigationProvider`, not a mocked hook.
+- **C / adapter:** `createPublishedLessonPage({ renderLesson })` is the standard
+  public API, with `loadLesson` and `loadMessages` override hooks. Shared
+  `loadPublishedLesson` and `loadPublishedUiKitMessages` read selected
+  published JSON. Playground has removed local duplicated Lesson loader and
+  assembler modules, with assembler tests importing `@svitlo/engine/lesson`.
+  The adapter README documents both standard and custom loaders.
+- **B / locale work:** Added all 21 missing `NavbarPreferences` locale files;
+  added all 21 missing `Flashcard` dictionaries. Both components now join
+  Lesson and Checkpoint in having 29/29 authored dictionaries with **no
+  generator fallback**. A `--audit` mode enumerates missing dictionaries in
+  the remaining components; `--strict` fails on missing required translations.
+  The default generator **still reports fallback debt** for LearningLayout,
+  Audio, Image, Video, Youtube and QuestionFrame; these are NOT finished.
+  Newly authored translations need independent linguistic review.
+- **D / tests:** Added navigation-boundary/completion/provider tests,
+  Arabic/English preferences cases, published-dictionary audit/strict tests,
+  and Storybook states for Celebration and QuestionProgress (including RTL).
+  A full Next.js production build, Storybook build, browser E2E and the new test
+  suite are still **unverified on this stacked branch**. Parent PR #303 has
+  separate Engineering and SkillsMindMap test blockers; do not conflate them
+  with successful verification of these changes.
+
+**Next action:** run targeted build/typecheck/tests (UI Kit + Engine + Next
+adapter + Playground) on this exact head, fix any resulting issues, complete
+the remaining six UI Kit component dictionaries using reviewed translations,
+then execute Storybook/E2E and update PR evidence.
+
 ## Why this follow-up exists
 
 PR #303 introduced a framework-agnostic React/MUI Lesson in `@svitlo/ui-kit` and a separate `@svitlo/nextjs-adapter` to own Next.js App Router/SSR/metadata. That extraction provides a reusable foundation for standalone textbooks and future React DOM shells such as Electron or Capacitor. The initial extraction intentionally prioritizes functionality; this follow-up cleans up host bindings, localization debt across the **rest** of UI Kit, and public API/test quality without expanding into native applications.
