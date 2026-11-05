@@ -13,6 +13,7 @@ From the repository root after `npm ci`:
 ```bash
 npm run build --workspace @svitlo/biology
 npm run typecheck --workspace @svitlo/biology
+npm run lint --workspace @svitlo/biology
 npm run test:publish --workspace @svitlo/biology
 npm run test:portability --workspace @svitlo/biology
 ```

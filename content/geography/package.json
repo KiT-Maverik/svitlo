@@ -6,7 +6,7 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "lint": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint textbook.ts scripts/*.mjs data/homeCopy.ts",
     "pretest:publish": "npm run build --workspace @svitlo/geography",
     "test:publish": "node --test scripts/publish.spec.mjs",
     "pretest:portability": "npm run build --workspace @svitlo/geography",
@@ -28,7 +28,10 @@
   "devDependencies": {
     "@types/node": "^20",
     "esbuild": "^0.28.2",
-    "typescript": "^5"
+    "typescript": "^5",
+    "eslint": "^9",
+    "@typescript-eslint/parser": "^8.72.0",
+    "@typescript-eslint/eslint-plugin": "^8.72.0"
   },
   "exports": {
     ".": {
