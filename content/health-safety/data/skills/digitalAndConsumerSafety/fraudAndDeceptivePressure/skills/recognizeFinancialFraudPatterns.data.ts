@@ -46,7 +46,7 @@ export const recognizeFinancialFraudPatterns_Skill_Data = buildSkillConfig({
       fr: 'Repère les faux lots à gagner, les demandes de paiement et les offres de vente frauduleuses.',
       bn: 'ভুয়া পুরস্কার, টাকা দেওয়ার দাবি ও প্রতারণামূলক বিক্রির প্রস্তাব চিনে নাও।',
       pt: 'Identifique prêmios falsos, exigências de pagamento e ofertas de venda fraudulentas.',
-      ur: 'جعلی انعام، رقم دینے کے مطالبے اور دھوکے والی فروخت کی پیشکش پہچانو۔',
+      ur: 'جعلی انعام، رقم دینے کے مطالبے اور دھوکے والی فروخت کی پیشکش پہچانیں۔',
       id: 'Kenali hadiah palsu, tuntutan pembayaran, dan tawaran penjualan curang.',
       de: 'Erkenne gefälschte Gewinne, Zahlungsforderungen und betrügerische Verkaufsangebote.',
       ja: '偽の当選通知、支払い要求、詐欺的な販売提案を見分けよう。',
