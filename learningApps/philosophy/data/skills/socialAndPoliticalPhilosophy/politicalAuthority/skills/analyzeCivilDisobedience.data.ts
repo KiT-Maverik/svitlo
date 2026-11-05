@@ -58,7 +58,7 @@ export const analyzeCivilDisobedience_Skill_Data = buildSkillConfig({
       mr: 'तत्त्वनिष्ठ व अहिंसक कायदेभंगाच्या नैतिक कारणांवर चर्चा करा.',
       ms: 'Bincangkan hujah moral tentang pelanggaran undang-undang secara berprinsip dan tanpa keganasan.',
       he: 'דונו בנימוקים מוסריים להפרת חוק עקרונית ובלתי אלימה.',
-      pl: 'Dyskutuj moralne argumenty za zasadniczym, pokojowym nieprzestrzeganiem prawa.',
+      pl: 'Rozważ moralne argumenty za pokojowym łamaniem prawa z pobudek zasadniczych.'
       uk: 'Обговорюй моральні аргументи щодо принципового ненасильницького порушення законів.',
       lt: 'Aptark moralinius argumentus dėl principingo, nesmurtinio įstatymų nesilaikymo.',
       lv: 'Apspried morālus argumentus par principiālu un nevardarbīgu likumu neievērošanu.',
