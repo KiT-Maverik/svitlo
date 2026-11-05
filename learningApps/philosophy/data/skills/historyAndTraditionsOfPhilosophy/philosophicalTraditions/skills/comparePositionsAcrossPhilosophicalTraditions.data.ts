@@ -46,7 +46,7 @@ export const comparePositionsAcrossPhilosophicalTraditions_Skill_Data = buildSki
       fr: 'Compare comment différentes traditions abordent des questions semblables.',
       bn: 'ভিন্ন ঐতিহ্য একই ধরনের দার্শনিক প্রশ্ন কীভাবে বিবেচনা করে তা তুলনা করো।',
       pt: 'Compare como diferentes tradições abordam perguntas filosóficas semelhantes.',
-      ur: 'مختلف روایات یکساں فلسفیانہ سوالات کو کیسے لیتی ہیں، اس کا موازنہ کرو۔',
+      ur: 'مختلف روایات یکساں فلسفیانہ سوالات کو کیسے لیتی ہیں، اس کا موازنہ کریں۔',
       id: 'Bandingkan cara tradisi berbeda membahas pertanyaan filosofis serupa.',
       de: 'Vergleiche, wie verschiedene Traditionen ähnliche Fragen behandeln.',
       ja: '異なる伝統が似た哲学的問いにどう答えるか比較しよう。',

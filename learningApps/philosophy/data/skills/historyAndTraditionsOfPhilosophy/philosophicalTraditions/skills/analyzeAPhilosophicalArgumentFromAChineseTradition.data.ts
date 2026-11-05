@@ -46,7 +46,7 @@ export const analyzeAPhilosophicalArgumentFromAChineseTradition_Skill_Data = bui
       fr: "Interprète une thèse d'une tradition chinoise dans son contexte propre.",
       bn: 'চীনা দার্শনিক ধারার একটি মত তার সঠিক প্রেক্ষাপটে ব্যাখ্যা করো।',
       pt: 'Interprete uma tese de uma tradição chinesa em seu contexto apropriado.',
-      ur: 'چینی فلسفیانہ روایت کے کسی دعوے کو اس کے مناسب پس منظر میں سمجھو۔',
+      ur: 'چینی فلسفیانہ روایت کے کسی دعوے کو اس کے مناسب پس منظر میں سمجھیں۔',
       id: 'Tafsirkan pandangan dari tradisi Tiongkok sesuai konteksnya.',
       de: 'Deute eine These aus einer chinesischen Tradition in ihrem eigenen Zusammenhang.',
       ja: '中国の哲学的伝統における主張をその背景に沿って解釈しよう。',

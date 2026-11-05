@@ -46,7 +46,7 @@ export const analyzeAPhilosophicalArgumentFromALatinAmericanTradition_Skill_Data
       fr: 'Explore des arguments latino-américains dans leur contexte social et intellectuel.',
       bn: 'লাতিন আমেরিকার দার্শনিক যুক্তি সামাজিক ও বৌদ্ধিক প্রেক্ষাপটে বোঝো।',
       pt: 'Explore argumentos filosóficos latino-americanos em seu contexto social e intelectual.',
-      ur: 'لاطینی امریکی فلسفے کے دلائل کو سماجی اور فکری پس منظر میں سمجھو۔',
+      ur: 'لاطینی امریکی فلسفے کے دلائل کو سماجی اور فکری پس منظر میں سمجھیں۔',
       id: 'Jelajahi argumen filsafat Amerika Latin dalam konteks sosial dan intelektualnya.',
       de: 'Erkunde lateinamerikanische philosophische Argumente in ihrem gesellschaftlichen und geistigen Kontext.',
       ja: 'ラテンアメリカの哲学的議論を社会的・思想的背景から考えよう。',
