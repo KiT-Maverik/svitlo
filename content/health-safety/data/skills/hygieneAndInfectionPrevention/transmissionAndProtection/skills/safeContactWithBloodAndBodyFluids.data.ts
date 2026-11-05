@@ -11,7 +11,7 @@ export const safeContactWithBloodAndBodyFluids_Skill_Data = buildSkillConfig({
     ar: 'التعامل الآمن مع الدم وسوائل الجسم',
     fr: 'Contact sûr avec le sang et les liquides biologiques',
     bn: 'রক্ত ও শরীরের তরলের নিরাপদ সংস্পর্শ',
-    pt: 'Contacto seguro com sangue e fluidos corporais',
+    pt: 'Contato seguro com sangue e fluidos corporais',
     ur: 'خون اور جسمانی رطوبتوں سے محفوظ رابطہ',
     id: 'Kontak Aman dengan Darah dan Cairan Tubuh',
     de: 'Sicherer Kontakt mit Blut und Körperflüssigkeiten',
