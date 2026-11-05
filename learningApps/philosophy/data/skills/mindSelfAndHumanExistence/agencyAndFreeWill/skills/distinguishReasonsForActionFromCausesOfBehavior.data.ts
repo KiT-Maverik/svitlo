@@ -6,7 +6,7 @@ export const distinguishReasonsForActionFromCausesOfBehavior_Skill_Data = buildS
   name: {
     en: 'Distinguish reasons for action from causes of behavior',
     zh: '区分行动理由与行为原因',
-    hi: 'कर्म के कारणों और व्यवहार के कारक कारणों में अंतर करना',
+    hi: 'कर्म के औचित्य और व्यवहार के कारणों में अंतर करना'
     es: 'Distinguir razones para actuar de causas del comportamiento',
     ar: 'التمييز بين مبررات الفعل وأسباب السلوك',
     fr: "Distinguer raisons d'agir et causes du comportement",
