@@ -19,7 +19,7 @@ export const respondSafelyToBullying_Skill_Data = buildSkillConfig({
     ko: '괴롭힘에 안전하게 대응하기',
     tr: 'Zorbalığa güvenle karşılık vermek',
     vi: 'Ứng phó an toàn với bắt nạt',
-    ta: 'புல்லியிங்கிற்கு பாதுகாப்பாகப் பதிலளித்தல்',
+    ta: 'துன்புறுத்தலுக்குப் பாதுகாப்பாகப் பதிலளித்தல்',
     te: 'వేధింపులకు సురక్షితంగా స్పందించడం',
     mr: 'छळवणुकीला सुरक्षित प्रतिसाद देणे',
     ms: 'Bertindak selamat terhadap buli',
