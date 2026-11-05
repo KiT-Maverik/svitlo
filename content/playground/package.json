@@ -39,6 +39,10 @@
     "./scenes": {
       "types": "./src/components/scenes/index.ts",
       "default": "./src/components/scenes/index.ts"
+    },
+    "./demo-questions": {
+      "types": "./src/textbook/questionsDemo.ts",
+      "default": "./src/textbook/questionsDemo.ts"
     }
   }
 }
