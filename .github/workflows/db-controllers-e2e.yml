@@ -23,10 +23,20 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run packages:check
-      - run: npm run typecheck
-      - run: npm test
-      - run: npm run lint
-      - run: npm run build
+      # Run only this workflow's browser dependencies. Root commands check all
+      # textbook workspaces, including unrelated in-progress authored translations.
+      - run: npm run build --workspace @svitlo/contracts
+      - run: npm run build --workspace @svitlo/engine
+      - run: npm run build --workspace @svitlo/indexdb
+      - run: npm run build --workspace @svitlo/ui-kit
+      - run: npm run typecheck --workspace @svitlo/contracts
+      - run: npm run typecheck --workspace @svitlo/indexdb
+      - run: npm run typecheck --workspace @svitlo/ui-kit
+      - run: npm run typecheck --workspace @svitlo/playground
+      - run: npm run test --workspace @svitlo/indexdb
+      - run: npm run test --workspace @svitlo/ui-kit
+      - run: npm run lint --workspace @svitlo/playground
+      - run: npm run build --workspace @svitlo/playground
       - run: npx playwright install chromium
       - name: Native IndexedDB Chromium
         run: npm run test:e2e:db
