@@ -2,6 +2,7 @@
 
 import { Box, ButtonBase } from '@mui/material';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
+import type { UiKit_Global } from '@svitlo/contracts/ui-kit';
 import { QuestionContent, questionBlockLabel, type QuestionBlock } from './QuestionContent';
 
 export type ChoiceFeedback = 'correct' | 'incorrect' | 'missed' | undefined;
@@ -13,7 +14,9 @@ export function QuestionChoice({
   onToggle,
   feedback,
   sceneRegistry,
+  messages,
 }: {
+  messages: UiKit_Global<'response'>;
   block: QuestionBlock;
   selected: boolean;
   disabled?: boolean;
@@ -44,7 +47,7 @@ export function QuestionChoice({
         {feedback === 'correct' ? '✓' : feedback === 'incorrect' ? '✕' : selected ? '●' : '○'}
       </Box>
       <Box component="div" sx={{ minWidth: 0, flex: 1 }}>
-        <QuestionContent blocks={[block]} sceneRegistry={sceneRegistry} />
+        <QuestionContent blocks={[block]} sceneRegistry={sceneRegistry} messages={messages} />
       </Box>
     </ButtonBase>
   );

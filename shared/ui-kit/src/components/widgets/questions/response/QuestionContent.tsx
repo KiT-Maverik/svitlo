@@ -1,5 +1,6 @@
 import type { ContentBlock, Locale_Languages } from '@svitlo/engine/content';
 import { ContentBlockRenderer } from '../../ContentBlockRenderer';
+import type { UiKit_Global } from '@svitlo/contracts/ui-kit';
 import type { ContentBlockResponse, SceneRegistry } from '../../ContentBlockRenderer';
 
 export type QuestionBlock = ContentBlock<'response', Locale_Languages>;
@@ -14,12 +15,14 @@ function renderable(block: QuestionBlock): ContentBlockResponse {
 export function QuestionContent({
   blocks,
   sceneRegistry,
+  messages,
 }: {
+  messages: UiKit_Global<'response'>;
   blocks?: readonly QuestionBlock[];
   sceneRegistry?: SceneRegistry;
 }) {
   if (!blocks?.length) return null;
-  return <ContentBlockRenderer blocks={blocks.map(renderable)} sceneRegistry={sceneRegistry} />;
+  return <ContentBlockRenderer blocks={blocks.map(renderable)} sceneRegistry={sceneRegistry} messages={messages} />;
 }
 
 /** Plain text is for accessible names only; visual content uses ContentBlockRenderer. */

@@ -29,6 +29,8 @@ export type UiKit_ComponentMessages = {
   questionFrame: {
     check: string; retry: string; hint: string; explanation: string;
     correct: string; incorrect: string; answerLabel: string;
+    matchInstructions: string; left: string; right: string;
+    availableBlocks: string; blanks: string; moveItem: string; removeItem: string;
   };
 };
 export type UiKit_ComponentName = keyof UiKit_ComponentMessages;
