@@ -16,7 +16,7 @@ export const interpretLogicalDisjunction_Skill_Data = buildSkillConfig({
     id: "Menafsirkan Disjungsi Logis",
     de: "Logische Disjunktion interpretieren",
     ja: "論理和を解釈する",
-    ko: "논리적 논리합 해석하기",
+    ko: "논리합 해석하기",
     tr: "Mantıksal Veya Bağlacını Yorumlama",
     vi: "Diễn giải phép tuyển logic",
     ta: "தருக்க மாற்றை விளக்குதல்",
