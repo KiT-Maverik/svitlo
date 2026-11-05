@@ -65,7 +65,7 @@ export const interpretStructuralDeformation_Skill_Data = buildSkillConfig({
       be: "Распазнавай прагін і асадку як прыкметы дэфармацыі канструкцыі.",
       ka: "გაიგე, რომ მოღუნვა და დაჯდომა კონსტრუქციის დეფორმაციის ნიშნებია.",
       kk: "Иілу мен шөгуді құрылым деформациясының белгісі деп түсін.",
-      qm: "Egilmесni ve çökmeni qurulış deformasiyasınıñ alâmetleri olaraq añla.",
+      qm: "Egilmeni ve çökmeni qurulış deformasiyasınıñ alâmetleri olaraq añla.",
     },
   },
 });
