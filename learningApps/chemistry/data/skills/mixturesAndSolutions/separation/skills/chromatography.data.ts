@@ -45,7 +45,7 @@ export const chromatography_Skill_Data = buildSkillConfig({
       fr: "Comprends comment la chromatographie sépare les composants selon leurs déplacements différents entre les phases.",
       bn: "বিভিন্ন দশার মধ্যে উপাদানগুলোর চলাচলের পার্থক্যে ক্রোমাটোগ্রাফি কীভাবে তাদের পৃথক করে তা বোঝো।",
       pt: "Entenda como a cromatografia separa componentes por suas diferentes movimentações entre fases.",
-      ur: "سمجھیں کہ مختلف مرحلوں کے درمیان اجزا کی حرکت کے فرق سے کرومیٹوگرافی انہیں کیسے الگ کرتی ہے۔",
+      ur: "سمجھیں کہ مختلف فیزوں کے درمیان اجزا کی حرکت کے فرق سے کرومیٹوگرافی انہیں کیسے الگ کرتی ہے۔",
       id: "Pahami bagaimana kromatografi memisahkan komponen berdasarkan perbedaan pergerakannya di antara fase.",
       de: "Verstehe, wie die Chromatografie Bestandteile anhand ihrer unterschiedlichen Bewegung zwischen den Phasen trennt.",
       ja: "成分が異なる相の間で移動する速さの違いを利用して分離されるしくみを理解しよう。",
