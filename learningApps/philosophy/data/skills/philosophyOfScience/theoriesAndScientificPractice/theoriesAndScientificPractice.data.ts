@@ -83,7 +83,7 @@ export const theoriesAndScientificPractice_SkillGroup_Data = buildSkillGroupConf
       be: 'Дасьледуй, як крытыка й новыя доказы дапамагаюць удасканальваць навуковыя тэорыі.',
       ka: 'შეისწავლე, როგორ აუმჯობესებს კრიტიკა და ახალი მტკიცებულებები მეცნიერულ თეორიებს.',
       kk: 'Сын мен жаңа дәлелдер ғылыми теорияларды қалай жетілдіретінін зертте.',
-      qm: 'Tenqit ve yañı deliller ilmiy nazariyelerni nasıl yaxşılata, ögren.',
+      qm: 'Tenqit ve yañı deliller ilmiy nazariyelerni nasıl yahşılata, ögren.'
     },
   },
 });
