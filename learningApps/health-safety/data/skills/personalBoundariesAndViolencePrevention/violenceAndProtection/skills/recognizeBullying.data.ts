@@ -66,7 +66,7 @@ export const recognizeBullying_Skill_Data = buildSkillConfig({
       be: "Адрозьнівай паўторны цкаваньне пры няроўнасьці сілаў ад звычайнага канфлікту.",
       ka: "განასხვავე ძალაუფლების უთანასწორობით განმეორებითი ჩაგვრა ჩვეულებრივი კონფლიქტისგან.",
       kk: "Күш теңсіздігі бар қайталанатын қорлауды қарапайым жанжалдан ажырат.",
-      qm: "Küç teñsizliginen tekrarlanan qorqutuvnı adiy dava­dan ayır.",
+      qm: "Küç teñsizliginen tekrarlanan qorqutuvnı adiy davadan ayır.",
     },
   },
 });
