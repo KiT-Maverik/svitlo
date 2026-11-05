@@ -46,7 +46,7 @@ export const evaluateTheLegitimacyOfPoliticalAuthority_Skill_Data = buildSkillCo
       fr: 'Compare les arguments justifiant le gouvernement par le consentement, la sécurité ou la coopération.',
       bn: 'সম্মতি, নিরাপত্তা বা সহযোগিতার ভিত্তিতে সরকারকে বৈধ বলা হয় এমন যুক্তি তুলনা করো।',
       pt: 'Compare argumentos que justificam o governo pelo consentimento, pela segurança ou pela cooperação.',
-      ur: 'رضامندی، سلامتی یا تعاون کی بنیاد پر حکومت کو جائز قرار دینے والے دلائل کا موازنہ کرو۔',
+      ur: 'رضامندی، سلامتی یا تعاون کی بنیاد پر حکومت کو جائز قرار دینے والے دلائل کا موازنہ کریں۔',
       id: 'Bandingkan alasan yang membenarkan pemerintah lewat persetujuan, keamanan, atau kerja sama.',
       de: 'Vergleiche Begründungen von Regierungsherrschaft durch Zustimmung, Sicherheit oder Zusammenarbeit.',
       ja: '同意、安全、協力を根拠に政府を正当化する議論を比べよう。',

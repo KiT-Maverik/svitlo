@@ -46,7 +46,7 @@ export const distinguishPublicReasonsFromPrivatePreferences_Skill_Data = buildSk
       fr: "Distingue les raisons publiques des préférences que les autres n'ont aucune raison de partager.",
       bn: 'অন্যেরা মূল্যায়ন করতে পারে এমন জনপরিসরের যুক্তি আর ব্যক্তিগত পছন্দ আলাদা করো।',
       pt: 'Diferencie razões públicas de preferências que outros não precisam compartilhar.',
-      ur: 'ایسے عوامی دلائل کو ذاتی پسند سے الگ کرو جسے دوسروں کے لیے ماننا ضروری نہیں۔',
+      ur: 'ایسے عوامی دلائل کو ذاتی پسند سے الگ کریں جسے دوسروں کے لیے ماننا ضروری نہیں۔',
       id: 'Bedakan alasan yang dapat dinilai bersama dari selera pribadi yang tidak harus dibagi orang lain.',
       de: 'Unterscheide öffentliche Begründungen von Vorlieben, die andere nicht teilen müssen.',
       ja: '誰もが検討できる理由と、他人が共有する必要のない個人的な好みを区別しよう。',
