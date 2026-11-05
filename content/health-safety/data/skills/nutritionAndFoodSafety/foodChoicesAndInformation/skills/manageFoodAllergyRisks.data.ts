@@ -55,7 +55,7 @@ export const manageFoodAllergyRisks_Skill_Data = buildSkillConfig({
       vi: 'Xác định chất gây dị ứng và tránh tiếp xúc chéo nguy hiểm giữa nguyên liệu.',
       ta: 'ஒவ்வாமைத் தூண்டிகளை அறிந்து பொருட்கள் ஒன்றுடன் ஒன்று ஆபத்தாகத் தொடுவதைத் தவிருங்கள்.',
       te: 'అలెర్జీ కారకాలను గుర్తించి పదార్థాల మధ్య ప్రమాదకర క్రాస్ కాంటాక్ట్‌ను నివారించండి.',
-      mr: 'अ‍ॅलर्जीकारक ओळख आणि घटकांमधील धोकादायक संपर्क टाळ.',
+      mr: 'अ‍ॅलर्जीकारक ओळखा आणि घटकांमधील धोकादायक संपर्क टाळा.',
       ms: 'Kenal pasti alergen dan elakkan sentuhan silang berbahaya antara ramuan.',
       he: 'זהו אלרגנים והימנעו ממגע צולב מסוכן בין רכיבי מזון.',
       pl: 'Identyfikuj alergeny i unikaj niebezpiecznego kontaktu krzyżowego składników.',

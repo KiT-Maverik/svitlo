@@ -55,7 +55,7 @@ export const recognizeDietaryMisinformation_Skill_Data = buildSkillConfig({
       vi: 'Nhận biết tuyên bố thiếu chứng cứ về ăn kiêng, thải độc và kết quả nhanh.',
       ta: 'உணவுக் கட்டுப்பாடு, நச்சுநீக்கம், விரைவுப் பலன் பற்றிய ஆதாரமற்ற கூற்றுகளை அறியுங்கள்.',
       te: 'ఆహార నియమాలు, డీటాక్స్, తక్షణ ఫలితాలపై ఆధారంలేని వాదనలను గుర్తించండి.',
-      mr: 'डाएट, डिटॉक्स आणि झटपट परिणाम यांचे निराधार दावे ओळख.',
+      mr: 'डाएट, डिटॉक्स आणि झटपट परिणाम यांचे निराधार दावे ओळखा.',
       ms: 'Kenal pasti dakwaan tanpa bukti tentang diet, detoks dan hasil cepat.',
       he: 'זהו טענות ללא ראיות על דיאטות, ניקוי רעלים ותוצאות מהירות.',
       pl: 'Rozpoznaj niepoparte dowodami obietnice diet, detoksu i szybkich efektów.',
