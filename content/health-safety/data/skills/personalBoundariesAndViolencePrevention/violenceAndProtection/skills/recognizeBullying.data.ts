@@ -17,7 +17,7 @@ export const recognizeBullying_Skill_Data = buildSkillConfig({
     de: 'Mobbing erkennen',
     ja: 'いじめを見分ける',
     ko: '괴롭힘 알아차리기',
-    tr: 'Akran zorbalığını tanımak',
+    tr: 'Zorbalığı tanımak',
     vi: 'Nhận biết bắt nạt',
     ta: 'புல்லியிங்கை அடையாளம் காணுதல்',
     te: 'బుల్లీయింగ్‌ను గుర్తించడం',

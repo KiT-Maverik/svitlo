@@ -56,7 +56,7 @@ export const provideFirstAidAfterDrowning_Skill_Data = buildSkillConfig({
       ta: 'நீரில் மூழ்கியபின் ஏற்படும் அவசர சுவாச ஆபத்தையும் உடனடி உதவி தேவையையும் அறியுங்கள்.',
       te: 'నీటిలో మునిగిన తర్వాత శ్వాస సంబంధ అత్యవసర ప్రమాదాలను, సహాయం అవసరాన్ని గుర్తించండి.',
       mr: 'बुडाल्यानंतर श्वासासंबंधी गंभीर धोके आणि तातडीच्या मदतीची गरज ओळखा.',
-      ms: 'Kenali risiko pernafasan segera selepas lemas dan perlunya bantuan kecemasan.',
+      ms: 'Kenali masalah pernafasan yang memerlukan tindakan segera selepas lemas dan keperluan mendapatkan bantuan kecemasan.',
       he: 'זהו סכנות נשימה דחופות לאחר טביעה ואת הצורך בסיוע חירום.',
       pl: 'Rozpoznawaj pilne zagrożenia oddechowe po podtopieniu i potrzebę pomocy ratunkowej.',
       uk: 'Розпізнавай невідкладні дихальні ризики після утоплення та потребу в екстреній допомозі.',

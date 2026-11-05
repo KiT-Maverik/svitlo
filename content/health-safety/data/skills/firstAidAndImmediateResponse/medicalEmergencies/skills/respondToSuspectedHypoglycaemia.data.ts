@@ -57,7 +57,7 @@ export const respondToSuspectedHypoglycaemia_Skill_Data = buildSkillConfig({
       te: 'రక్త చక్కెర తగ్గడాన్ని గుర్తించి మింగడం సురక్షితం కాకపోతే నోటిద్వారా ఇవ్వడం ప్రమాదమని తెలుసుకోండి.',
       mr: 'कमी रक्तातील साखर ओळखा; गिळणे असुरक्षित असल्यास तोंडावाटे काही देणे धोकादायक आहे हे समजा.',
       ms: 'Kenali kemungkinan gula darah rendah dan bila bantuan melalui mulut tidak selamat kerana sukar menelan.',
-      he: 'זהו אפשרות לסוכר נמוך ומתי מתן משהו דרך הפה אינו בטוח בשל קושי בבליעה.',
+      he: 'זהו סימנים אפשריים לרמת סוכר נמוכה בדם ומתי אין לתת דבר דרך הפה בגלל קושי בבליעה.',
       pl: 'Rozpoznawaj możliwy niski cukier i sytuacje, gdy podawanie czegokolwiek doustnie jest niebezpieczne.',
       uk: 'Розпізнавай можливе зниження цукру в крові та ситуації, коли ковтання робить допомогу через рот небезпечною.',
       lt: 'Atpažink galimą mažą gliukozės kiekį ir kada dėl nesaugaus rijimo pagalba per burną pavojinga.',

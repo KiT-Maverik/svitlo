@@ -63,7 +63,7 @@ export const recognizeTechnologyFacilitatedHarassment_Skill_Data = buildSkillCon
       lt: 'Atpažink nuolatinį priekabiavimą ir persekiojimą interneto platformose.',
       lv: 'Atpazīsti pastāvīgu vajāšanu un izsekošanu tiešsaistes platformās.',
       et: 'Tunne ära püsiv ahistamine ja jälitamine veebiplatvormidel.',
-      be: 'Распазнавай працяглы цкаваньне й сачэньне праз анлайн-плятформы.',
+      be: 'Распазнавай працяглае цкаваньне й сачэньне праз анлайн-плятформы.',
       ka: 'ამოიცანი მუდმივი შევიწროება და თვალთვალი ონლაინ პლატფორმებზე.',
       kk: 'Онлайн платформаларда үздіксіз қысым мен аңдуды таны.',
       qm: 'İnternet meydanlarında devamlı taciz ve izleme areketlerini tanı.',
