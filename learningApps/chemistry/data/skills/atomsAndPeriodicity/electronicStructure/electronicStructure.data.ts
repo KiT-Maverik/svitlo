@@ -12,7 +12,7 @@ export const electronicStructure_SkillGroup_Data = buildSkillGroupConfig({
     es: "Estructura electrónica",
     ar: "البنية الإلكترونية",
     fr: "Structure électronique",
-    bn: "ইলেকট্রন বিন্যাস",
+    bn: "ইলেকট্রনীয় গঠন",
     pt: "Estrutura eletrônica",
     ur: "الیکٹرانی ساخت",
     id: "Struktur elektron",
