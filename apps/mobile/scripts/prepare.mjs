@@ -1,6 +1,7 @@
 #!/usr/bin/env node
-import { cpSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
-import { basename, join, resolve, sep, relative } from 'node:path';
+/** Build and stage the selected textbook via its public package interfaces. */
+import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
+import { basename, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
 
@@ -13,17 +14,22 @@ if (!selection) throw new Error('Unknown SVITLO_TEXTBOOK "' + id + '". Available
 if (!/^@svitlo\/[a-z-]+$/.test(selection.package) || !/^content\/[a-z-]+$/.test(selection.directory)) {
   throw new Error('Invalid mobile textbook catalog entry: ' + id);
 }
-const textbookRoot = join(repoRoot, selection.directory);
-const manifest = JSON.parse(readFileSync(join(textbookRoot, 'package.json'), 'utf8'));
+const manifest = JSON.parse(readFileSync(join(repoRoot, selection.directory, 'package.json'), 'utf8'));
 const mobileManifest = JSON.parse(readFileSync(join(mobileRoot, 'package.json'), 'utf8'));
 if (manifest.name !== selection.package || mobileManifest.dependencies?.[manifest.name] !== manifest.version) {
   throw new Error('Selected textbook ' + id + ' must be a version-matched Mobile workspace dependency');
 }
-if (!manifest.exports?.['.'] || !manifest.exports?.['./scenes']) {
-  throw new Error('Selected textbook ' + id + ' must export metadata and Scene Registry');
+if (!manifest.exports?.['.']?.default?.startsWith('./dist/') ||
+    !manifest.exports?.['./scenes']?.default?.startsWith('./dist/') ||
+    !manifest.exports?.['./styles']?.default?.startsWith('./dist/')) {
+  throw new Error('Selected textbook ' + id + ' must export compiled metadata, Scenes and styles');
 }
-function run(command, args, cwd = repoRoot) {
-  const result = spawnSync(command, args, { cwd, env: process.env, stdio: 'inherit' });
+if (!manifest.bin?.['svitlo-' + id]) {
+  throw new Error('Selected textbook ' + id + ' must expose its Publish CLI');
+}
+const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
+function run(command, args) {
+  const result = spawnSync(command, args, { cwd: repoRoot, env: process.env, stdio: 'inherit' });
   if (result.error || result.status !== 0) {
     throw new Error(command + ' ' + args.join(' ') + ' failed: ' + (result.error?.message ?? result.status));
   }
@@ -35,48 +41,22 @@ for (const workspace of [
   '@svitlo/ui-kit',
   '@svitlo/adapter-capacitor',
 ]) {
-  run('npm', ['run', 'build', '--workspace', workspace]);
+  run(npm, ['run', 'build', '--workspace', workspace]);
 }
-run('npm', ['run', 'check:scenes', '--workspace', selection.package]);
+run(npm, ['run', 'build', '--workspace', selection.package]);
 const publicRoot = join(mobileRoot, 'public');
-for (const suffix of ['data/pages/lessons', 'data/ui-kit', 'textbooks']) {
-  rmSync(join(publicRoot, suffix), { recursive: true, force: true });
-}
-run(process.execPath, [
-  'scripts/generators/pages/lessons/generate-lessons.mjs',
-  '--package',
-  selection.directory,
-  '--output',
-  'apps/mobile/public/data/pages/lessons',
-  '--write',
-]);
-run(process.execPath, [
-  'scripts/generators/pages/lessons/generate-lessons.mjs',
-  '--package',
-  selection.directory,
-  '--output',
-  'apps/mobile/public/data/pages/lessons',
-  '--check',
-]);
+run(npm, ['exec', '--workspace', '@svitlo/mobile', '--', 'svitlo-' + id, 'publish', '--output', publicRoot]);
+
+// UI Kit owns global dictionaries and SVG flags. The textbook publisher must
+// not overwrite either, nor the Capacitor app's own static resources.
+rmSync(join(publicRoot, 'data/ui-kit'), { recursive: true, force: true });
 run(process.execPath, [
   'shared/ui-kit/scripts/generate-locales.mjs',
-  '--package',
-  selection.directory,
-  '--output',
-  'apps/mobile/public/data/ui-kit',
+  '--package', selection.directory,
+  '--output', 'apps/mobile/public/data/ui-kit',
 ]);
 run(process.execPath, [join(repoRoot, 'shared/ui-kit/scripts/sync-flags.mjs')], mobileRoot);
 
-const sourcePublic = join(textbookRoot, 'public');
-if (existsSync(sourcePublic)) {
-  cpSync(sourcePublic, join(publicRoot, 'textbooks', id), {
-    recursive: true,
-    filter: source => {
-      const within = relative(sourcePublic, source);
-      return !within || !['data', 'flags'].includes(within.split(sep)[0]);
-    },
-  });
-}
 const lessonsRoot = join(publicRoot, 'data/pages/lessons');
 if (!existsSync(lessonsRoot)) throw new Error('No published lessons for ' + id);
 const index = [];
@@ -99,18 +79,18 @@ for (const bucket of readdirSync(lessonsRoot, { withFileTypes: true })) {
 if (!index.length) throw new Error('No publishable lesson configurations for ' + id);
 index.sort((a, b) => a.title.localeCompare(b.title));
 writeFileSync(join(publicRoot, 'data/lesson-index.json'), JSON.stringify({ textbook: id, lessons: index }));
+
 const generated = join(mobileRoot, 'src/generated');
 mkdirSync(generated, { recursive: true });
 writeFileSync(
   join(generated, 'textbook.ts'),
-  '// Generated from the selected textbook for SVITLO_TEXTBOOK=' +
-    id +
-    '\n' +
-    "export { textbook } from '" +
-    selection.package +
-    "';\n" +
-    "export { resolveScene } from '" +
-    selection.package +
-    "/scenes';\n",
+  '// Generated from the compiled selected textbook for SVITLO_TEXTBOOK=' + id + '\n' +
+    "export { textbook } from '" + selection.package + "';\n" +
+    "export { resolveScene } from '" + selection.package + "/scenes';\n",
 );
-console.log('Prepared offline mobile content: ' + id + ' (' + index.length + ' lessons)');
+writeFileSync(
+  join(generated, 'textbookStyles.ts'),
+  '// Compiled textbook stylesheet for SVITLO_TEXTBOOK=' + id + '\n' +
+    "import '" + selection.package + "/styles';\n",
+);
+console.log('Prepared offline mobile content from compiled package: ' + id + ' (' + index.length + ' lessons)');

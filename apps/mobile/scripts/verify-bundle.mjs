@@ -18,6 +18,7 @@ for (const lesson of index.lessons) {
     }
   }
 }
+assert.ok(existsSync(join(dist, 'data/pages/skillAnalytics/uk.json')), 'Missing compiled Skills Analytics JSON');
 const locales = readdirSync(join(dist, 'data/ui-kit')).filter(name => name.endsWith('.json'));
 assert.ok(locales.length > 0, 'Missing UI Kit localizations');
 for (const locale of locales) JSON.parse(readFileSync(join(dist, 'data/ui-kit', locale), 'utf8'));
@@ -26,6 +27,7 @@ for (const flag of ['ua.svg', 'qm.svg']) {
 }
 const html = readFileSync(join(dist, 'index.html'), 'utf8');
 assert.match(html, /type="module"/);
+assert.match(html, /rel="stylesheet"/, 'Compiled textbook Scene styles must be included');
 const chunks = readdirSync(join(dist, 'assets')).filter(name => name.endsWith('.js'));
 assert.ok(chunks.length > 1, 'Expected statically bundled Scene dynamic import chunks');
 assert.ok(

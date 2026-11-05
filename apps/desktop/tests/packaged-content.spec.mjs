@@ -23,12 +23,15 @@ test('build bundles the real lesson and localized config, flashcards and questio
     assert.ok(JSON.parse(readFileSync(filename, 'utf8')).data !== undefined);
   }
   assert.ok(existsSync(join(renderer, 'data/ui-kit/uk-UA.json')));
+  assert.ok(existsSync(join(renderer, 'data/pages/skillAnalytics/uk.json')));
   assert.ok(existsSync(join(renderer, 'flags/ua.svg')));
 });
 test('statically registered Scene modules are emitted as local JavaScript chunks', () => {
   const assets = join(renderer, 'assets');
   const javascript = readdirSync(assets).filter(name => name.endsWith('.js'));
   assert.ok(javascript.length > 1, 'expected split Scene JavaScript chunks');
+  const styles = readdirSync(assets).filter(name => name.endsWith('.css'));
+  assert.ok(styles.length > 0, 'expected compiled textbook Scene styles');
   const content = javascript.map(name => readFileSync(join(assets, name), 'utf8')).join('\n');
   assert.match(content, /how-light-moves-scene/);
 });
