@@ -10,3 +10,7 @@ ios/DerivedData/
 ios/App/Pods/
 ios/App/build/
 *.xcuserstate
+android/app/src/main/assets/public/
+ios/App/App/public/
+android/app/src/main/assets/capacitor.config.json
+android/app/src/main/assets/capacitor.plugins.json

@@ -9,7 +9,11 @@ test('a real Playground lesson opens from the index on a phone-sized screen', as
   await expect(page).toHaveURL(/\/[a-z]{2}\/lesson\/[0-9a-f-]{36}$/);
   await expect(page.locator('#learning-content')).toBeVisible();
   await expect(page.locator('#learning-content')).toContainText(/\S+/);
-  await expect(page.locator('body')).not.toHaveJSProperty('scrollWidth', 10000);
+  const sizes = await page.evaluate(() => ({
+    scrollWidth: document.documentElement.scrollWidth,
+    viewportWidth: window.innerWidth
+  }));
+  expect(sizes.scrollWidth).toBeLessThanOrEqual(sizes.viewportWidth + 1);
 });
 
 test('the lesson has semantic section navigation and native-sized controls', async ({ page }) => {

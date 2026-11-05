@@ -16,3 +16,8 @@ export async function registerAppResume(handler: () => void): Promise<() => void
   const listener = await App.addListener('resume', handler);
   return () => { void listener.remove(); };
 }
+
+/** No-op on Web, native exit when the Android back stack is exhausted. */
+export async function exitNativeApp(): Promise<void> {
+  if (Capacitor.isNativePlatform()) await App.exitApp();
+}

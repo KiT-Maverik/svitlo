@@ -5,10 +5,10 @@ import {
 import { CssBaseline, Button, Container, Typography, CircularProgress, Box, List, ListItemButton } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { DEFAULT_SUPPORTED_LANGUAGES, getLocaleDirection, type Locale } from '@svitlo/engine/localization';
-import { Lesson } from '@svitlo/ui-kit/lesson';
+import { Lesson, useLessonNavigation } from '@svitlo/ui-kit/lesson';
 import { SceneLocaleProvider } from '@svitlo/ui-kit/scene-locale';
-import { createLessonLearningLayout } from '@svitlo/ui-kit/learning-layout';
-import { registerNativeBackButton } from '@svitlo/adapter-capacitor';
+import { createLessonLearningLayout, type LessonLearningLayoutProps } from '@svitlo/ui-kit/learning-layout';
+import { registerNativeBackButton, exitNativeApp } from '@svitlo/adapter-capacitor';
 import type { LessonResponse } from '@svitlo/engine/lesson';
 import type { UiKit_Global } from '@svitlo/ui-kit';
 import { textbook, resolveScene } from './generated/textbook';
@@ -41,6 +41,37 @@ const MobileLink = forwardRef<HTMLAnchorElement, AnchorHTMLAttributes<HTMLAnchor
   }
 );
 const MobileLessonLayout = createLessonLearningLayout({ useLocale: useLocaleBinding, linkComponent: MobileLink });
+function PersistingLessonLayout(props: LessonLearningLayoutProps) {
+  const { progress, dispatch } = useLessonNavigation();
+  const [restored, setRestored] = useState(false);
+  const key = 'svitlo:mobile:lesson:' + props.topics[0]?.id;
+  useEffect(() => {
+    try {
+      const value = localStorage.getItem(key);
+      if (value) {
+        const saved: unknown = JSON.parse(value);
+        if (saved && typeof saved === 'object') {
+          const data = saved as { step?: unknown; testDone?: unknown };
+          if (typeof data.step === 'number' && Number.isInteger(data.step) &&
+              data.step >= 0 && data.step <= progress.lastStep) {
+            dispatch({ type: 'visit', step: data.step });
+          }
+          if (data.testDone === true) dispatch({ type: 'testDone' });
+        }
+      }
+    } catch { /* Storage may be disabled by the host; learning remains available. */ }
+    setRestored(true);
+  }, [key, dispatch, progress.lastStep]);
+  useEffect(() => {
+    if (!restored) return;
+    try {
+      localStorage.setItem(key, JSON.stringify({ step: progress.step, testDone: progress.testDone }));
+    } catch { /* Non-fatal local persistence failure. */ }
+  }, [key, progress.step, progress.testDone, restored]);
+  return restored
+    ? <MobileLessonLayout {...props} />
+    : <Box role="status" aria-busy="true">Restoring lesson progress…</Box>;
+}
 const theme = createTheme({ cssVariables: true });
 
 type LessonData = { response: LessonResponse; messages: UiKit_Global<'response'> };
@@ -57,6 +88,7 @@ function MobileContent() {
     void registerNativeBackButton(() => {
       if (window.location.pathname !== '/') navigate('/');
       else if (window.history.length > 1) window.history.back();
+      else void exitNativeApp();
     }).then(dispose => { if (disposed) dispose(); else disposeNative = dispose; });
     return () => {
       disposed = true;
@@ -120,7 +152,7 @@ function MobileContent() {
   return <LocaleContext.Provider value={localeBinding}>
     <SceneLocaleProvider locale={activeLocale}>
       <Lesson key={routeKey} response={response} href={lessonHref(response.locale.code, response.id)}
-        messages={messages} layout={MobileLessonLayout} sceneRegistry={resolveScene} />
+        messages={messages} layout={PersistingLessonLayout} sceneRegistry={resolveScene} />
     </SceneLocaleProvider>
   </LocaleContext.Provider>;
 }
