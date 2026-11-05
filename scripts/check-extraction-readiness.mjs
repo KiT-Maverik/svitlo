@@ -12,7 +12,7 @@ const workspaces = [
   ['shared/engine', readJson('shared/engine/package.json')],
   ['shared/indexdb', readJson('shared/indexdb/package.json')],
   ['shared/ui-kit', readJson('shared/ui-kit/package.json')],
-  ['shared/adapters/nextjs', readJson('shared/adapters/nextjs/package.json')],
+  ['shared/adapters', readJson('shared/adapters/package.json')],
   ['content/playground', readJson('content/playground/package.json')],
   ['content/math', readJson('content/math/package.json')],
   ['content/physics', readJson('content/physics/package.json')],
@@ -83,7 +83,8 @@ for (const [path, pkg] of workspaces) {
   }
   const declared = new Set(Object.keys({ ...(pkg.dependencies || {}), ...(pkg.peerDependencies || {}) }));
   const localAliases = readJson(path + '/tsconfig.json').compilerOptions?.paths || {};
-  for (const file of walk(join(packageRoot, 'src')).filter(isProductionSource)) {
+  const productionSourceRoot = path === 'shared/adapters' ? 'nextjs/src' : 'src';
+  for (const file of walk(join(packageRoot, productionSourceRoot)).filter(isProductionSource)) {
     for (const specifier of importedModules(readFileSync(file, 'utf8'), file)) {
       const description = relative(root, file) + ' -> ' + specifier;
       if (specifier.startsWith('.')) {
@@ -146,7 +147,10 @@ for (const [path, pkg] of workspaces.filter(([name]) => name.startsWith('shared/
         target.startsWith('./dist/') && target.endsWith('.js'),
         'Invalid compiled entrypoint: ' + pkg.name + subpath,
       );
-      const sourcePath = target.replace('./dist/', 'src/').replace(/\.js$/, '');
+      const sourcePath = (path === 'shared/adapters'
+        ? target.replace(/^\.\/dist\/([^/]+)\//, '$1/src/')
+        : target.replace('./dist/', 'src/')
+      ).replace(/\.js$/, '');
       assert(
         ['.ts', '.tsx'].some(ext => existsSync(resolve(root, path, sourcePath + ext))),
         'Missing public entrypoint source: ' + pkg.name + subpath,

@@ -40,7 +40,7 @@
     "@svitlo/engine": "0.0.0",
     "@svitlo/ui-kit": "0.0.0",
     "@svitlo/indexdb": "0.0.0",
-    "@svitlo/nextjs-adapter": "0.0.0",
+    "@svitlo/adapter": "0.0.0",
     "@svitlo/playground": "0.0.0"
   },
   "devDependencies": {

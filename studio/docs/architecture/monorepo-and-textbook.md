@@ -9,8 +9,9 @@ package with authored `data/`, Scenes, generated static registry and explicit
 workspace dependency before compilation; its build publishes textbook JSON,
 UI Kit locales and assets into the host. Other textbooks and `frontend/platform`
 retain their existing application architecture. The Next.js integration package
-resides at `shared/adapters/nextjs` but keeps its stable npm identity
-`@svitlo/nextjs-adapter`. The Stage 8 map and dependency
+resides at `shared/adapters/nextjs`, within the `@svitlo/adapter`
+workspace rooted at `shared/adapters`. It is imported as
+`@svitlo/adapter/nextjs` (and its `/lesson` and `/image` subpaths). The Stage 8 map and dependency
 table below document the prior baseline and should not be treated as current
 Playground ownership.
 
@@ -45,7 +46,8 @@ See the canonical [Cross-Platform Lesson Runtime](./cross-platform-lesson-runtim
 │   ├── engine/           # @svitlo/engine — builders, validation, generators, data
 │   ├── indexdb/          # @svitlo/indexdb — IndexedDB CRUD, schemas, persistence
 │   ├── ui-kit/           # @svitlo/ui-kit — reusable framework-agnostic React/MUI UI and Lesson
-│   └── adapters/nextjs/  # @svitlo/nextjs-adapter — Next.js lesson SSR and routing
+│   └── adapters/         # @svitlo/adapter — framework integration package
+│       └── nextjs/       # /nextjs — Next.js lesson SSR and routing
 ├── scripts/              # package boundary, duplicate and artifact checks
 ├── studio/               # cross-cutting architecture, workflow and product docs
 ├── package.json          # npm workspaces (authoritative)
@@ -56,7 +58,7 @@ See the canonical [Cross-Platform Lesson Runtime](./cross-platform-lesson-runtim
 
 **Concrete source roots:** `shared/contracts`, `shared/engine`, `shared/indexdb`, `shared/ui-kit`, `content/geography`, `content/informatics`, `content/physics`, `content/math`, `content/playground`, `frontend/platform`, `backend/server`. These paths are actual package folders; diagrams above use abbreviated names.
 
-The **eleven** current workspaces are `@svitlo/server`, `@svitlo/platform`, `@svitlo/geography`, `@svitlo/informatics`, `@svitlo/physics`, `@svitlo/math`, `@svitlo/playground`, `@svitlo/contracts`, `@svitlo/engine`, `@svitlo/indexdb`, `@svitlo/ui-kit`. Patterns in root `package.json` and lockfile: `backend/*`, `frontend/*`, `content/*`, `shared/*`, `shared/adapters/*`. The server is deliberately not claimed to be executable yet.
+The **eleven** current workspaces are `@svitlo/server`, `@svitlo/platform`, `@svitlo/geography`, `@svitlo/informatics`, `@svitlo/physics`, `@svitlo/math`, `@svitlo/playground`, `@svitlo/contracts`, `@svitlo/engine`, `@svitlo/indexdb`, `@svitlo/ui-kit`. Patterns in root `package.json` and lockfile: `backend/*`, `frontend/*`, `content/*`, `shared/*`. The server is deliberately not claimed to be executable yet.
 
 ## Dependency direction and ownership
 
@@ -85,7 +87,7 @@ Arrows above summarize **allowed consumption**, not a promise that every app imp
 | Platform                      | Standalone public site and external textbook catalog links                                  | Next.js/React/MUI; does not embed Math or Playground                                                   |
 | Server                        | Future backend                                                                              | Placeholder package only; do not claim build/API/test capabilities                                     |
 
-Next.js routing, SSR metadata, and the published-JSON loading integration belong to `@svitlo/nextjs-adapter`, a separate framework-specific package. Its reusable `createLessonPage` takes application data/rendering bindings. `@svitlo/ui-kit` owns the framework-independent `Lesson` React UI, including lesson navigation and localized UI messages. The UI Kit cannot import any `next/*` modules; Next links/navigation are injected by consuming applications. Framework-specific links and locale switching remain injected by the host; the reusable Lesson owns its navigation state and passes its current pathname as a prop, while the UI Kit reads MUI color-scheme context directly. Neither Next.js pathname hooks nor MUI theme hooks need to be injected by every textbook. `createLessonLearningLayout` in UI Kit accepts injected host bindings; the UI Kit itself must not import Next.js. `NavbarPreferences` and its seven specialized dictionaries are owned by UI Kit; each app supplies locale/theme state via props and hooks.
+Next.js routing, SSR metadata, and the published-JSON loading integration belong to `@svitlo/adapter/nextjs`, a technology-specific export of `@svitlo/adapter`. Its reusable `createLessonPage` takes application data/rendering bindings. `@svitlo/ui-kit` owns the framework-independent `Lesson` React UI, including lesson navigation and localized UI messages. The UI Kit cannot import any `next/*` modules; Next links/navigation are injected by consuming applications. Framework-specific links and locale switching remain injected by the host; the reusable Lesson owns its navigation state and passes its current pathname as a prop, while the UI Kit reads MUI color-scheme context directly. Neither Next.js pathname hooks nor MUI theme hooks need to be injected by every textbook. `createLessonLearningLayout` in UI Kit accepts injected host bindings; the UI Kit itself must not import Next.js. `NavbarPreferences` and its seven specialized dictionaries are owned by UI Kit; each app supplies locale/theme state via props and hooks.
 
 The canonical native IndexedDB browser harness, commands and Playwright suite live in `shared/indexdb/testing` and use a temporary standalone browser test host. App-local `src/testing/setup.ts` remains Vitest setup; it is **not** IndexedDB duplication. The persisted database name/version/store structure was retained across migration.
 
