@@ -8,7 +8,6 @@ import { Box, Container } from '@mui/material';
 import { useColorScheme } from '@mui/material/styles';
 import { LearningLayout, NavbarPreferences } from '@svitlo/ui-kit/learning-layout';
 import { SkillsMindMap } from './SkillsMindMap';
-import { PLAYGROUND_SKILL_ANALYTICS_DOMAINS } from './skillsPageConfig';
 import { SkillsPagePreferences } from './SkillsPagePreferences';
 import { SkillsPageSettingsProvider, useSkillsPageSettings } from './SkillsPageSettingsContext';
 import { textbook } from '@/generated/textbook';
@@ -103,10 +102,10 @@ function SkillAnalyticsContent({
 }
 
 export function SkillAnalyticsPage({
-  domainSlugs = PLAYGROUND_SKILL_ANALYTICS_DOMAINS,
+  domainSlugs,
   initialMessages,
 }: {
-  domainSlugs?: readonly string[];
+  domainSlugs: readonly string[];
   initialMessages: UiKit_Global<'response'>;
 }) {
   return (
