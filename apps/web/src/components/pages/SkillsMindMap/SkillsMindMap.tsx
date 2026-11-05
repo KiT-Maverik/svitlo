@@ -184,7 +184,6 @@ export function SkillsMindMap({ domainSlugs }: { domainSlugs: readonly string[] 
     const controller = new AbortController();
     // eslint-disable-next-line react-hooks/set-state-in-effect -- Hide stale data immediately when the requested locale changes.
     setStatus('loading');
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- Clear the previous request's error before fetching.
     setError('');
     void (async () => {
       try {

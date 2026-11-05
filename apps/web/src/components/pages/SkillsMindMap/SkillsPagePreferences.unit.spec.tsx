@@ -113,6 +113,8 @@ describe('Skills page-scoped settings', () => {
     await screen.findByTestId('skill-node-testRed');
     const controls = screen.getByRole('region', { name: 'Керування мапою Skills' });
     const world = screen.getByTestId('skills-map-world');
+    await waitFor(() => expect(within(controls).getByRole('button', { name: 'Вмістити в екран' })).toBeEnabled());
+    await waitFor(() => expect(Number(world.getAttribute('data-zoom'))).not.toBe(0.65));
     const fitted = Number(world.getAttribute('data-zoom'));
     fireEvent.click(screen.getByRole('button', { name: 'Збільшити масштаб' }));
     expect(Number(world.getAttribute('data-zoom'))).toBeGreaterThan(fitted);
