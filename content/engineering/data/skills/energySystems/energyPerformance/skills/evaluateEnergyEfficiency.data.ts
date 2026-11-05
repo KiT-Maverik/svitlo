@@ -65,7 +65,7 @@ export const evaluateEnergyEfficiency_Skill_Data = buildSkillConfig({
       be: "Ацані, ці эфэктыўна сыстэма забясьпечвае карысны вынік.",
       ka: "შეაფასე, ეფექტიანად იძლევა თუ არა სისტემა სასარგებლო შედეგს.",
       kk: "Жүйе пайдалы нәтижені тиімді бере ме, соны бағала.",
-      qm: "Sistema faydalı neticeni yeterli derecede faydalı berе mi, onı baala.",
+      qm: "Sistema faydalı neticeni enerjiyanı israf etmeyip bere mi, onı baala.",
     },
   },
 });
