@@ -1,5 +1,8 @@
 name: Electron Desktop quality
 on:
+  push:
+    branches:
+      - feature/electron-desktop-app
   pull_request:
     paths:
       - 'apps/desktop/**'
