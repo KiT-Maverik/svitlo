@@ -68,9 +68,7 @@ export const Image = (props: ContentBlock_Image_Response & { messages: UiKit_Com
             style={{ objectFit: props.objectFit ?? 'contain', width: '100%', height: '100%' }}
             loading="lazy"
             decoding="async"
-            loading="lazy"
-          decoding="async"
-          onError={onError}
+            onError={onError}
           />
         </div>
       ) : (
@@ -83,6 +81,8 @@ export const Image = (props: ContentBlock_Image_Response & { messages: UiKit_Com
           width={props.width}
           height={props.height}
           sizes={sizes ?? `(max-width: ${props.width}px) 100vw, ${props.width}px`}
+          loading="lazy"
+          decoding="async"
           onError={onError}
         />
       )}
