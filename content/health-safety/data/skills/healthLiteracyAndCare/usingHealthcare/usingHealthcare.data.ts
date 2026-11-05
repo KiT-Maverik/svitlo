@@ -58,7 +58,7 @@ export const usingHealthcare_SkillGroup_Data = buildSkillGroupConfig({
       ar: 'تعرّف كيف تحصل على الرعاية وتتعاون مع المختصين الصحيين.',
       fr: 'Découvre comment accéder aux soins et coopérer avec les professionnels de santé.',
       bn: 'কীভাবে চিকিৎসাসেবা নিতে ও চিকিৎসাকর্মীদের সঙ্গে কাজ করতে হয় তা জানো।',
-      pt: 'Descubra como obter cuidados e colaborar com profissionais de saúde.',
+      pt: 'Descubra como receber atendimento e colaborar com profissionais de saúde.',
       ur: 'جانیں کہ طبی سہولت کیسے لیں اور طبی عملے سے کیسے تعاون کریں۔',
       id: 'Pelajari cara mengakses perawatan dan bekerja sama dengan tenaga kesehatan.',
       de: 'Entdecke, wie du Versorgung erhältst und mit Fachkräften zusammenarbeitest.',
