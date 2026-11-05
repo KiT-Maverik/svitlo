@@ -16,10 +16,7 @@ import MoreVert from '@mui/icons-material/MoreVert';
 import LockOpenOutlined from '@mui/icons-material/LockOpenOutlined';
 import Stack from '@mui/material/Stack';
 import styles from './Flashcard.module.css';
-import { aria } from './Flashcard.constants';
-import { locales } from './Flashcard.locale';
-
-const locale = locales.uk;
+import type { UiKit_Component } from '@svitlo/contracts/ui-kit';
 
 export interface FlashcardLabel {
   label: ReactNode;
@@ -28,6 +25,7 @@ export interface FlashcardLabel {
 }
 
 export interface FlashcardProps {
+  messages: UiKit_Component<'flashcard', 'response'>;
   question: ReactNode;
   answer: ReactNode;
   labels?: readonly FlashcardLabel[];
@@ -39,13 +37,13 @@ export interface FlashcardProps {
 }
 
 export const Flashcard = forwardRef<HTMLButtonElement, FlashcardProps>(function Flashcard(
-  { question, answer, labels = [], revealed = false, disabled = false, onReveal, onRate, onAddLabel },
+  { question, answer, messages, labels = [], revealed = false, disabled = false, onReveal, onRate, onAddLabel },
   ref,
 ) {
   const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);
   const closeMenu = () => setMenuAnchor(null);
   return (
-    <section className={styles.flashStage} aria-label={aria.region}>
+    <section className={styles.flashStage} aria-label={messages.flashcard.region}>
       <div className={styles.cardArea}>
         <Paper component="article" className={styles.flashCard} elevation={0}>
           <div className={styles.flashHeader}>
@@ -54,7 +52,7 @@ export const Flashcard = forwardRef<HTMLButtonElement, FlashcardProps>(function 
               className={styles.flashMenuButton}
               size="small"
               type="button"
-              aria-label={aria.actions.menu}
+              aria-label={messages.flashcard.actions.menu}
               aria-controls={menuAnchor ? 'flashcard-menu' : undefined}
               aria-haspopup="menu"
               aria-expanded={Boolean(menuAnchor)}
@@ -86,7 +84,7 @@ export const Flashcard = forwardRef<HTMLButtonElement, FlashcardProps>(function 
             disabled={disabled || revealed}
             onClick={onReveal}
             aria-expanded={revealed}
-            aria-label={aria.actions.reveal}
+            aria-label={messages.flashcard.actions.reveal}
           >
             {revealed ? (
               <p className={styles.answer}>{answer}</p>
@@ -104,10 +102,10 @@ export const Flashcard = forwardRef<HTMLButtonElement, FlashcardProps>(function 
               <div className={styles.flashControls}>
                 <Stack direction="row" spacing={2} sx={{ justifyContent: 'space-between' }}>
                   <Button variant="outlined" disabled={disabled} onClick={() => onRate(false)}>
-                      {locale.flashcard.actions.forgot}
+                      {messages.flashcard.actions.forgot}
                     </Button>
                   <Button variant="outlined" disabled={disabled} onClick={() => onRate(true)}>
-                      {locale.flashcard.actions.remembered}
+                      {messages.flashcard.actions.remembered}
                     </Button>
                 </Stack>
               </div>
@@ -130,7 +128,7 @@ export const Flashcard = forwardRef<HTMLButtonElement, FlashcardProps>(function 
               <ListItemIcon>
                 <LabelOutlined fontSize="small" />
               </ListItemIcon>
-              {locale.flashcard.actions.addLabel}
+              {messages.flashcard.actions.addLabel}
             </MenuItem>
           </Menu>
         </Paper>

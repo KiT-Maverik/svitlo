@@ -34,6 +34,10 @@
     "./state": {
       "types": "./dist/state.d.ts",
       "default": "./dist/state.js"
+    },
+    "./ui-kit": {
+      "types": "./dist/ui-kit.d.ts",
+      "default": "./dist/ui-kit.js"
     }
   },
   "files": [

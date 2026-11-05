@@ -21,8 +21,7 @@ import TopNavbar from '../Navigation/TopNavbar';
 import BottomNavbar from '../Navigation/BottomNavbar';
 import { getLocaleDirection, type Locale } from '@svitlo/engine/localization';
 import VerticalSpace from '#widgets/VerticalSpace/VerticalSpace';
-import { getLearningLayoutMessages } from './locales';
-import { aria } from './LearningLayout.constants';
+import type { UiKit_Component } from '@svitlo/contracts/ui-kit';
 
 export type Topic = { id: string; title: string; href: string };
 export type LearningLayoutProgress = {
@@ -39,6 +38,7 @@ export interface LearningLayoutProps {
   skippableSteps?: readonly boolean[];
   quizStep?: number;
   locale: Locale;
+  messages: UiKit_Component<'learningLayout', 'response'>;
   pathname: string;
   progress: LearningLayoutProgress;
   actions: { back: () => void; next: () => void; skip: () => void };
@@ -56,6 +56,7 @@ export default function LearningLayout({
   skippableSteps = [],
   quizStep,
   locale,
+  messages,
   pathname,
   progress,
   actions,
@@ -64,7 +65,6 @@ export default function LearningLayout({
   showBottomNavbar = true,
   linkComponent,
 }: LearningLayoutProps) {
-  const messages = getLearningLayoutMessages(locale);
   const direction = getLocaleDirection(locale);
   const [open, setOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
@@ -94,7 +94,7 @@ export default function LearningLayout({
       }}
     >
       <TopNavbar
-        aria-label={aria.navigation.top}
+        aria-label={messages.navigation.top}
         slots={{
           left: (
             <>
@@ -123,7 +123,7 @@ export default function LearningLayout({
               {preferences}
               <Tooltip title={messages.tooltips.profile}>
                 <Box component="span" sx={{ display: { xs: 'none', sm: 'inline-flex' } }}>
-                  <IconButton aria-label={aria.actions.profile} disabled>
+                  <IconButton aria-label={messages.actions.profile} disabled>
                     <AccountCircleOutlinedIcon />
                   </IconButton>
                 </Box>
@@ -141,7 +141,7 @@ export default function LearningLayout({
               </IconButton>
               <Tooltip title={messages.tooltips.logout}>
                 <Box component="span" sx={{ display: { xs: 'none', sm: 'inline-flex' } }}>
-                  <IconButton aria-label={aria.actions.logout} disabled>
+                  <IconButton aria-label={messages.actions.logout} disabled>
                     <LogoutIcon />
                   </IconButton>
                 </Box>
@@ -155,7 +155,7 @@ export default function LearningLayout({
         <Fade in={open || settingsOpen} timeout={{ enter: 225, exit: 195 }} unmountOnExit>
           <Box
             component="button"
-            aria-label={aria.actions.closeSidebar}
+            aria-label={messages.actions.closeSidebar}
             tabIndex={-1}
             onClick={() => {
               setOpen(false);
@@ -192,7 +192,7 @@ export default function LearningLayout({
           <Box
             id="learning-sidebar"
             component="nav"
-            aria-label={aria.navigation.topics}
+            aria-label={messages.navigation.topics}
             sx={{ display: 'flex', flexDirection: 'column', height: '100%', minHeight: 0 }}
           >
             <VerticalSpace
@@ -239,7 +239,7 @@ export default function LearningLayout({
           <Box
             id="settings-sidebar"
             component="aside"
-            aria-label={aria.navigation.settings}
+            aria-label={messages.navigation.settings}
             sx={{ display: 'flex', flexDirection: 'column', height: '100%', minHeight: 0 }}
           >
             <Box
@@ -255,7 +255,7 @@ export default function LearningLayout({
               <Typography component="h2" sx={{ flex: 1, px: 1, fontSize: 18, fontWeight: 700 }}>
                 {messages.settingsTitle}
               </Typography>
-              <IconButton aria-label={aria.actions.closeSettingsPanel} onClick={() => setSettingsOpen(false)}>
+              <IconButton aria-label={messages.actions.closeSettingsPanel} onClick={() => setSettingsOpen(false)}>
                 <CloseIcon />
               </IconButton>
             </Box>
@@ -283,7 +283,7 @@ export default function LearningLayout({
 
       {showBottomNavbar && (
         <BottomNavbar
-          aria-label={aria.navigation.bottom}
+          aria-label={messages.navigation.bottom}
           slots={{
             center: (
               <>

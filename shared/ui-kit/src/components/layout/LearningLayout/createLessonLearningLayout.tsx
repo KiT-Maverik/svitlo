@@ -2,13 +2,14 @@
 
 import type { ElementType } from 'react';
 import type { Locale } from '@svitlo/engine/localization';
+import type { UiKit_Global } from '@svitlo/contracts/ui-kit';
 import LearningLayout, { type LearningLayoutProgress, type LearningLayoutProps } from './LearningLayout';
 import NavbarPreferences from './NavbarPreferences/NavbarPreferences';
 
 export type LessonLearningLayoutProps = Pick<
   LearningLayoutProps,
   'children' | 'topics' | 'skippableSteps' | 'quizStep'
->;
+> & { messages: UiKit_Global<'response'> };
 
 export type LessonLearningLayoutBindings = {
   /** Supplied by the consuming app; the UI Kit never imports Next.js hooks. */
@@ -29,7 +30,7 @@ export type LessonLearningLayoutBindings = {
 
 /** Bind app-owned hooks once, without duplicating layout and navigation logic. */
 export function createLessonLearningLayout(bindings: LessonLearningLayoutBindings) {
-  function LessonLearningLayout({ children, topics, skippableSteps, quizStep }: LessonLearningLayoutProps) {
+  function LessonLearningLayout({ children, topics, skippableSteps, quizStep, messages }: LessonLearningLayoutProps) {
     const { locale, setLocale } = bindings.useLocale();
     const pathname = bindings.usePathname();
     const { progress, dispatch } = bindings.useLessonProgress();
@@ -38,6 +39,7 @@ export function createLessonLearningLayout(bindings: LessonLearningLayoutBinding
     return (
       <LearningLayout
         locale={locale}
+        messages={messages.learningLayout}
         pathname={pathname}
         progress={progress}
         topics={topics}
@@ -50,6 +52,7 @@ export function createLessonLearningLayout(bindings: LessonLearningLayoutBinding
         }}
         preferences={
           <NavbarPreferences
+            messages={messages.navbarPreferences}
             locale={locale}
             onLocaleChange={setLocale}
             mode={mode}
