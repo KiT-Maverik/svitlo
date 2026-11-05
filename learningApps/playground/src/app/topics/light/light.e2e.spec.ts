@@ -12,8 +12,12 @@ test('howLightMoves renders ordered sections, markdown, scenes and quiz from pub
   await next.click();
   await expect(page.getByRole('heading', { name: 'Одне світло. Різні середовища.' })).toBeVisible();
   await next.click();
-  await expect(page.getByText('Перевірмо, як рухається світло.')).toBeVisible();
-  await expect(page.locator('fieldset')).toHaveCount(7);
+  // Quiz screens render their authored question responses, not the retired
+  // quiz welcome message / fieldset wrapper from the previous architecture.
+  await expect(page.getByRole('heading', {
+    name: 'Як поширюється світло в прозорому однорідному середовищі?',
+  })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Перевірити', exact: true })).toHaveCount(6);
 });
 
 test('switching the requested locale selects localized JSON, including scene props', async ({ page }) => {
