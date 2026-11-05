@@ -21,7 +21,7 @@ export const distillation_Skill_Data = buildSkillConfig({
     vi: "Chưng cất",
     ta: "காய்ச்சி வடித்தல்",
     te: "స్వేదనం",
-    mr: "ऊर्ध्वपातनाद्वारे आसवन",
+    mr: "आसवन",
     ms: "Penyulingan",
     he: "זיקוק",
     pl: "Destylacja",
