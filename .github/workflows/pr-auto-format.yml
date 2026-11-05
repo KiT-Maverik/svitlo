@@ -1,0 +1,92 @@
+name: PR Auto-format
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, ready_for_review, edited]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pr-auto-format-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  format:
+    name: PR Auto-format / check
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out the exact PR head (not the merge ref)
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Install the repository's pinned Prettier
+        run: npm ci --ignore-scripts --no-audit --no-fund
+
+      - name: Format only files introduced or modified by this PR
+        shell: bash
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          set -euo pipefail
+          git diff --name-only --diff-filter=ACMR -z "$BASE_SHA...HEAD" \
+            | xargs -0 -r -n 100 ./node_modules/.bin/prettier --write --ignore-unknown --
+
+      - name: Stage formatting-only changes
+        id: changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -u
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "Changed PR files are already formatted."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            git diff --cached --stat
+          fi
+
+      - name: Check formatting on fork PRs (no write access)
+        if: steps.changes.outputs.changed == 'true' && github.event.pull_request.head.repo.full_name != github.repository
+        shell: bash
+        run: |
+          echo "::error::Formatting changes are required. Fork PRs must apply Prettier in their own branch."
+          exit 1
+
+      # The app needs only Contents: read/write on this repository. Unlike
+      # GITHUB_TOKEN, a GitHub App push triggers a fresh PR CI run on the new SHA.
+      - name: Create a formatter GitHub App token
+        if: steps.changes.outputs.changed == 'true' && github.event.pull_request.head.repo.full_name == github.repository
+        id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.FORMAT_BOT_CLIENT_ID }}
+          private-key: ${{ secrets.FORMAT_BOT_PRIVATE_KEY }}
+          permission-contents: write
+
+      - name: Commit fixes to the source branch of the PR
+        if: steps.changes.outputs.changed == 'true' && github.event.pull_request.head.repo.full_name == github.repository
+        shell: bash
+        env:
+          APP_TOKEN: ${{ steps.app-token.outputs.token }}
+          PR_HEAD_REF: ${{ github.event.pull_request.head.ref }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "style: auto-format changed PR files"
+
+          # A normal, non-force push: if an agent has updated the PR meanwhile,
+          # this run fails rather than overwriting any of their commits.
+          authorization=$(printf 'x-access-token:%s' "$APP_TOKEN" | base64 -w0)
+          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $authorization" \
+            push origin "HEAD:refs/heads/$PR_HEAD_REF"
