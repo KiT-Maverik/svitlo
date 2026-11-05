@@ -39,7 +39,7 @@ export const gasPressureTemperatureRelationship_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Explore how heating a confined gas changes its pressure.",
       zh: "探索加热密闭容器中的气体如何改变其压强。",
-      hi: "जानें कि बंद आयतन में गैस को गर्म करने से उसका दाब कैसे बदलता है।",
+      hi: "जानें कि स्थिर आयतन में गैस को गर्म करने से उसका दाब कैसे बदलता है।",
       es: "Explora cómo calentar un gas en un recipiente cerrado y rígido cambia su presión.",
       ar: "استكشف كيف يغيّر تسخين غاز في وعاء ثابت الحجم ضغطه.",
       fr: "Explore comment chauffer un gaz enfermé à volume constant modifie sa pression.",

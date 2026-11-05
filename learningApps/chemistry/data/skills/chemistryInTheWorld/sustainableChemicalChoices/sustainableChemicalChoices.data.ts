@@ -27,7 +27,7 @@ export const sustainableChemicalChoices_SkillGroup_Data = buildSkillGroupConfig(
     ms: "Pilihan Kimia Mampan",
     he: "בחירות כימיות מקיימות",
     pl: "Zrównoważone wybory chemiczne",
-    uk: "Сталий вибір у хімії",
+    uk: "Екологічно відповідальні рішення в хімії",
     lt: "Tvarūs cheminiai pasirinkimai",
     lv: "Ilgtspējīgas ķīmiskās izvēles",
     et: "Kestlikud keemilised valikud",

@@ -39,7 +39,7 @@ export const alloys_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Understand how metals combine to form alloys without always making a new compound.",
       zh: "理解金属如何结合形成合金，而不一定生成新的化合物。",
-      hi: "समझें कि धातुएँ नई यौगिक बनाए बिना भी मिश्रधातु कैसे बना सकती हैं।",
+      hi: "समझें कि धातुएँ नया यौगिक बनाए बिना भी मिश्रधातु कैसे बना सकती हैं।",
       es: "Comprende cómo se combinan los metales para formar aleaciones sin crear siempre un compuesto nuevo.",
       ar: "افهم كيف تتحد الفلزات لتكوين سبائك دون أن تنتج بالضرورة مركبًا جديدًا.",
       fr: "Comprends comment les métaux forment des alliages sans toujours créer un nouveau composé.",
