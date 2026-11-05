@@ -24,7 +24,8 @@ Svitlo combines independently deployable Next.js apps with explicit reusable lib
 │   ├── contracts/        # @svitlo/contracts — framework-free types, IDs, locales
 │   ├── engine/           # @svitlo/engine — builders, validation, generators, data
 │   ├── indexdb/          # @svitlo/indexdb — IndexedDB CRUD, schemas, persistence
-│   └── ui-kit/           # @svitlo/ui-kit — reusable React/MUI UI and LearningLayout
+│   ├── ui-kit/           # @svitlo/ui-kit — reusable framework-agnostic React/MUI UI and Lesson
+│   └── nextjs-adapter/   # @svitlo/nextjs-adapter — Next.js lesson SSR and routing
 ├── scripts/              # package boundary, duplicate and artifact checks
 ├── studio/               # cross-cutting architecture, workflow and product docs
 ├── package.json          # npm workspaces (authoritative)
@@ -57,7 +58,8 @@ Arrows above summarize **allowed consumption**, not a promise that every app imp
 | Contracts                     | Common content/state/taxonomy types, stable IDs and language descriptors           | No runtime dependencies on Engine, UI, Next.js or apps                                          |
 | Engine                        | Builders, generation, assessment methods, localization logic                       | Depends on Contracts; no React, Next, MUI or app imports                                        |
 | IndexDB                       | `svitlo-progress` v1 persistence, Zod state validation, browser controllers        | Depends on Contracts and Zod; production does not depend on Engine/React/Next                   |
-| UI Kit                        | Components, Flag assets, LearningLayout, NavbarPreferences and locale dictionaries | Depends on Engine and UI peer dependencies; no Next.js/application imports in production source |
+| UI Kit                        | Framework-independent React UI, Lesson, Flag assets, LearningLayout and locale dictionaries | Depends on Engine and React/MUI peer dependencies; no Next.js/application imports in production source |
+| Next.js Adapter               | Next.js App Router integration, lesson SSR composition and metadata | Depends on public Engine and UI Kit APIs; injects app-owned lesson loader and renderer |
 | Informatics / Physics         | Standalone Next.js textbook scaffolds, subject content in separate reviews         | No application-to-application imports                                                           |
 | Geography / Math / Playground | Route handlers, progress/locale providers, subject content or demo fixtures        | Declared public shared exports only; **no app-to-app imports**                                  |
 | Platform                      | Standalone public site and external textbook catalog links                         | Next.js/React/MUI; does not embed Math or Playground                                            |
