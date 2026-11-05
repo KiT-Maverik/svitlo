@@ -44,7 +44,7 @@ export const celestialSphere_Skill_Data = buildSkillConfig({
       hi: 'रात के आकाश का मानचित्र बनाने में इस्तेमाल होने वाले काल्पनिक खगोलीय गोले को समझें।',
       es: 'Comprende la esfera celeste imaginaria que se utiliza para representar el cielo nocturno.',
       ar: 'افهم الكرة السماوية التخيّلية المستخدمة لرسم خرائط السماء ليلًا.',
-      fr: 'Comprends ce qu\'est la sphère céleste imaginaire utilisée pour cartographier le ciel nocturne.',
+      fr: "Comprends ce qu'est la sphère céleste imaginaire utilisée pour cartographier le ciel nocturne.",
       bn: 'রাতের আকাশের মানচিত্র তৈরিতে ব্যবহৃত কাল্পনিক খগোলীয় গোলক সম্পর্কে জানো।',
       pt: 'Entenda a esfera celeste imaginária usada para mapear o céu noturno.',
       ur: 'رات کے آسمان کا نقشہ بنانے کے لیے استعمال ہونے والے خیالی فلکی کرے کو سمجھیں۔',

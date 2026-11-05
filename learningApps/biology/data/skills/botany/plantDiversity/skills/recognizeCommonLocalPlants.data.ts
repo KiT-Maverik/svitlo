@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const recognizeCommonLocalPlants_Skill_Data = buildSkillConfig({
-  slug: "recognizeCommonLocalPlants",
-  id: "c62f418f-749b-44d3-9afc-a20eba15217f",
+  slug: 'recognizeCommonLocalPlants',
+  id: 'c62f418f-749b-44d3-9afc-a20eba15217f',
   name: {
-    en: "Recognize Common Local Plants",
+    en: 'Recognize Common Local Plants',
     zh: '识别常见的本地植物',
     hi: 'स्थानीय आम पौधों को पहचानना',
     es: 'Reconocer plantas locales comunes',
@@ -35,9 +35,10 @@ export const recognizeCommonLocalPlants_Skill_Data = buildSkillConfig({
     qm: 'Yerli yayğın ösümliklerni tanımaq',
   },
   description: {
-    methodological: "Identify familiar local species by characteristic combinations of leaves, stems, flowers, or fruits, rather than color alone.",
+    methodological:
+      'Identify familiar local species by characteristic combinations of leaves, stems, flowers, or fruits, rather than color alone.',
     frontend: {
-      en: "Identify familiar local plants using combinations of leaves, stems and other features.",
+      en: 'Identify familiar local plants using combinations of leaves, stems and other features.',
       zh: '结合叶、茎和其他特征辨认身边熟悉的植物。',
       hi: 'पत्तियों, तनों और अन्य लक्षणों के मेल से आसपास के परिचित पौधों की पहचान करें।',
       es: 'Identifica plantas habituales de tu zona combinando características de hojas, tallos y otras partes.',

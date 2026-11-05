@@ -8,4 +8,3 @@ export function classifyAudioError(error: MediaError | null, online: boolean): A
   if (error.code === 4) return 'unavailable';
   return 'playbackError';
 }
-

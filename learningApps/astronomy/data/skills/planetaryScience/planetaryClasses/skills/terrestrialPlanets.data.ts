@@ -51,7 +51,7 @@ export const terrestrialPlanets_Skill_Data = buildSkillConfig({
       de: 'Erkunde, warum Merkur, Venus, Erde und Mars Gesteinsplaneten mit unterschiedlichen Bedingungen sind.',
       ja: '水星、金星、地球、火星が環境の異なる岩石惑星である理由を学びます。',
       ko: '수성, 금성, 지구, 화성이 환경이 서로 다른 암석 행성인 이유를 알아봅니다.',
-      tr: 'Merkür, Venüs, Dünya ve Mars\'ın neden farklı koşullara sahip kayalık gezegenler olduğunu keşfedin.',
+      tr: "Merkür, Venüs, Dünya ve Mars'ın neden farklı koşullara sahip kayalık gezegenler olduğunu keşfedin.",
       vi: 'Khám phá vì sao Sao Thủy, Sao Kim, Trái Đất và Sao Hỏa đều là hành tinh đá nhưng có điều kiện khác nhau.',
       ta: 'புதன், வெள்ளி, பூமி, செவ்வாய் ஆகியவை ஏன் வெவ்வேறு சூழல்களைக் கொண்ட பாறைக் கோள்களாக உள்ளன என்பதை அறியுங்கள்.',
       te: 'బుధుడు, శుక్రుడు, భూమి, అంగారకుడు రాతి గ్రహాలైనా వాటి పరిస్థితులు ఎందుకు భిన్నంగా ఉన్నాయో తెలుసుకోండి.',

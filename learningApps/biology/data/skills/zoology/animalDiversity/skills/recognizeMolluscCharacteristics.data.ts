@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const recognizeMolluscCharacteristics_Skill_Data = buildSkillConfig({
-  slug: "recognizeMolluscCharacteristics",
-  id: "0b776b55-4790-40f9-8e95-38cea90bacb8",
+  slug: 'recognizeMolluscCharacteristics',
+  id: '0b776b55-4790-40f9-8e95-38cea90bacb8',
   name: {
-    en: "Recognize Mollusc Characteristics",
+    en: 'Recognize Mollusc Characteristics',
     zh: '识别软体动物的特征',
     hi: 'मोलस्क की विशेषताएँ पहचानना',
     es: 'Reconocer las características de los moluscos',
@@ -35,14 +35,15 @@ export const recognizeMolluscCharacteristics_Skill_Data = buildSkillConfig({
     qm: 'Mollüskalarnıñ belgilerini tanımaq',
   },
   description: {
-    methodological: "Identify the soft body, mantle, and other characteristic features of gastropods, bivalves, and cephalopods, taking into account that not all molluscs have an external shell.",
+    methodological:
+      'Identify the soft body, mantle, and other characteristic features of gastropods, bivalves, and cephalopods, taking into account that not all molluscs have an external shell.',
     frontend: {
-      en: "Identify molluscs by their characteristic soft bodies and other structures.",
+      en: 'Identify molluscs by their characteristic soft bodies and other structures.',
       zh: '通过柔软的身体和其他典型结构识别软体动物。',
       hi: 'मोलस्क को उनके मुलायम शरीर और अन्य विशिष्ट संरचनाओं से पहचानें।',
       es: 'Identifica moluscos por sus cuerpos blandos y otras estructuras características.',
       ar: 'تعرّف على الرخويات من خلال أجسامها الرخوة وتراكيبها المميزة الأخرى.',
-      fr: 'Identifie les mollusques grâce à leur corps mou et à d\'autres structures caractéristiques.',
+      fr: "Identifie les mollusques grâce à leur corps mou et à d'autres structures caractéristiques.",
       bn: 'নরম দেহ ও অন্যান্য বিশেষ গঠন দেখে মোলাস্ক চিনে নাও।',
       pt: 'Identifique moluscos por seus corpos moles e outras estruturas características.',
       ur: 'نرم بدن جانوروں کو ان کے نرم جسم اور دیگر مخصوص ساختوں سے پہچانیں۔',
@@ -58,7 +59,7 @@ export const recognizeMolluscCharacteristics_Skill_Data = buildSkillConfig({
       ms: 'Kenal pasti moluska melalui badan lembut dan struktur khas yang lain.',
       he: 'זהו רכיכות לפי גופן הרך ומבנים אופייניים נוספים.',
       pl: 'Rozpoznawaj mięczaki po ich miękkim ciele i innych charakterystycznych strukturach.',
-      uk: 'Визначай молюсків за м\'яким тілом та іншими характерними особливостями будови.',
+      uk: "Визначай молюсків за м'яким тілом та іншими характерними особливостями будови.",
       lt: 'Atpažink moliuskus pagal minkštą kūną ir kitus būdingus sandaros bruožus.',
       lv: 'Atpazīsti gliemjus pēc mīkstā ķermeņa un citām raksturīgām uzbūves pazīmēm.',
       et: 'Tunne limused ära pehme keha ja muude iseloomulike ehitusjoonte järgi.',

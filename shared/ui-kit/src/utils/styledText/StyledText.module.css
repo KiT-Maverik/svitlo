@@ -4,15 +4,25 @@
   box-decoration-break: clone;
 }
 
-.highlightNeutral { --highlight-color: var(--mui-palette-text-primary); }
+.highlightNeutral {
+  --highlight-color: var(--mui-palette-text-primary);
+}
 
-.highlightInfo { --highlight-color: var(--mui-palette-info-main); }
+.highlightInfo {
+  --highlight-color: var(--mui-palette-info-main);
+}
 
-.highlightSuccess { --highlight-color: var(--mui-palette-success-main); }
+.highlightSuccess {
+  --highlight-color: var(--mui-palette-success-main);
+}
 
-.bold { font-weight: 700; }
+.bold {
+  font-weight: 700;
+}
 
-.cursive { font-style: italic; }
+.cursive {
+  font-style: italic;
+}
 
 .variable {
   border: 1px dashed currentColor;

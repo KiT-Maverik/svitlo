@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const identifyARobotController_Skill_Data = buildSkillConfig({
-  slug: "identifyARobotController",
-  id: "a3167d48-7eae-40a8-8a98-649512347f92",
+  slug: 'identifyARobotController',
+  id: 'a3167d48-7eae-40a8-8a98-649512347f92',
   name: {
-    en: "Identify a Robot Controller",
+    en: 'Identify a Robot Controller',
     zh: '识别机器人控制器',
     hi: 'रोबोट नियंत्रक पहचानना',
     es: 'Identificar un controlador de robot',
@@ -35,9 +35,10 @@ export const identifyARobotController_Skill_Data = buildSkillConfig({
     qm: 'Robotnıñ kontrol qurulışını tanımaq',
   },
   description: {
-    methodological: "Explain the component that reads inputs, executes programmed rules, and sends commands to actuators. The controller connects information with action and need not resemble a large standalone computer.",
+    methodological:
+      'Explain the component that reads inputs, executes programmed rules, and sends commands to actuators. The controller connects information with action and need not resemble a large standalone computer.',
     frontend: {
-      en: "Identify the controller that converts sensor inputs into programmed actions.",
+      en: 'Identify the controller that converts sensor inputs into programmed actions.',
       zh: '识别将传感器输入转换为预先编程动作的控制器。',
       hi: 'सेंसर इनपुट को प्रोग्राम किए गए कार्यों में बदलने वाला नियंत्रक पहचानें।',
       es: 'Identifica el controlador que convierte los datos de sensores en acciones programadas.',

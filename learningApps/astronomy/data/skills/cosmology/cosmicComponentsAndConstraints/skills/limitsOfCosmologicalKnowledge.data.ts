@@ -44,7 +44,7 @@ export const limitsOfCosmologicalKnowledge_Skill_Data = buildSkillConfig({
       hi: 'अवलोकनों से स्थापित तथ्यों और अभी अनुत्तरित बड़े सवालों में अंतर करें।',
       es: 'Distingue lo que las observaciones demuestran sobre el Universo de las grandes preguntas sin responder.',
       ar: 'ميّز ما تثبته الأرصاد عن الكون من الأسئلة الكبرى التي لا تزال بلا إجابة.',
-      fr: 'Distingue ce que les observations établissent sur l\'Univers des grandes questions encore ouvertes.',
+      fr: "Distingue ce que les observations établissent sur l'Univers des grandes questions encore ouvertes.",
       bn: 'পর্যবেক্ষণে প্রতিষ্ঠিত তথ্য ও এখনো উত্তর না পাওয়া বড় প্রশ্নের মধ্যে পার্থক্য করো।',
       pt: 'Distinga o que as observações estabelecem sobre o Universo das grandes questões ainda sem resposta.',
       ur: 'مشاہدات سے ثابت شدہ باتوں اور ابھی حل نہ ہونے والے بڑے سوالوں میں فرق کریں۔',

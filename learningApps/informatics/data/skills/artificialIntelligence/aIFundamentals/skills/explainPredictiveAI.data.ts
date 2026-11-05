@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainPredictiveAI_Skill_Data = buildSkillConfig({
-  slug: "explainPredictiveAI",
-  id: "c046a92d-b0b3-4d73-b3b8-d1a8810bd7a1",
+  slug: 'explainPredictiveAI',
+  id: 'c046a92d-b0b3-4d73-b3b8-d1a8810bd7a1',
   name: {
-    en: "Explain Predictive AI",
+    en: 'Explain Predictive AI',
     zh: '解释预测式人工智能',
     hi: 'पूर्वानुमान करने वाला एआई समझाना',
     es: 'Explicar la IA predictiva',
@@ -35,9 +35,10 @@ export const explainPredictiveAI_Skill_Data = buildSkillConfig({
     qm: 'Evelden aytqan suniy intellektni añlatmaq',
   },
   description: {
-    methodological: "Describe estimating a numerical value, category, or event probability from known features, for example forecasting rainfall.",
+    methodological:
+      'Describe estimating a numerical value, category, or event probability from known features, for example forecasting rainfall.',
     frontend: {
-      en: "Explore how predictive systems estimate values, categories or event chances.",
+      en: 'Explore how predictive systems estimate values, categories or event chances.',
       zh: '探索预测系统如何估计数值、类别或事件发生的概率。',
       hi: 'जानें कि पूर्वानुमान प्रणालियाँ मान, श्रेणियाँ या घटनाओं की संभावनाएँ कैसे आँकती हैं।',
       es: 'Explora cómo los sistemas predictivos estiman valores, categorías o probabilidades de eventos.',

@@ -3,10 +3,10 @@ import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
 import { classifyObjectsAsLivingDeadOrNeverAlive_Skill_Data } from './skills';
 
 export const characteristicsOfLivingThings_SkillDomain_Data = buildSkillDomainConfig({
-  slug: "characteristicsOfLivingThings",
-  id: "73cc6edd-aa56-4999-966f-0c647868cabc",
+  slug: 'characteristicsOfLivingThings',
+  id: '73cc6edd-aa56-4999-966f-0c647868cabc',
   name: {
-    en: "Characteristics of Living Things",
+    en: 'Characteristics of Living Things',
     zh: '生命的特征',
     hi: 'जीवित वस्तुओं की विशेषताएँ',
     es: 'Características de los seres vivos',
@@ -36,20 +36,20 @@ export const characteristicsOfLivingThings_SkillDomain_Data = buildSkillDomainCo
     kk: 'Тірі ағзалардың белгілері',
     qm: 'Canlılarnıñ hususiyetleri',
   },
-  groups: {
-  },
+  groups: {},
   skills: {
     classifyObjectsAsLivingDeadOrNeverAlive: classifyObjectsAsLivingDeadOrNeverAlive_Skill_Data,
   },
   description: {
-    methodological: "Life processes, biological origin, and the distinction between living organisms, dead remains, and things that have never been alive. This distinction requires consideration of actual life processes rather than appearance or movement alone.",
+    methodological:
+      'Life processes, biological origin, and the distinction between living organisms, dead remains, and things that have never been alive. This distinction requires consideration of actual life processes rather than appearance or movement alone.',
     frontend: {
-      en: "Discover what makes something alive, what was once alive, and what has never been living.",
+      en: 'Discover what makes something alive, what was once alive, and what has never been living.',
       zh: '探索什么是活的、什么曾经有生命，以及什么从未有过生命。',
       hi: 'जानें कि कोई चीज़ जीवित क्यों है, कौन-सी कभी जीवित थी और कौन-सी कभी जीवित नहीं रही।',
       es: 'Descubre qué hace que algo esté vivo, qué estuvo vivo alguna vez y qué nunca ha tenido vida.',
       ar: 'اكتشف ما الذي يجعل الشيء حيًا، وما الذي كان حيًا من قبل، وما الذي لم يكن حيًا قط.',
-      fr: 'Découvre ce qui rend une chose vivante, ce qui l\'a été autrefois et ce qui ne l\'a jamais été.',
+      fr: "Découvre ce qui rend une chose vivante, ce qui l'a été autrefois et ce qui ne l'a jamais été.",
       bn: 'কোনো কিছু কেন জীবিত, কোনটি একসময় জীবিত ছিল এবং কোনটি কখনোই জীবিত ছিল না, তা জানো।',
       pt: 'Descubra o que torna algo vivo, o que já foi vivo e o que nunca teve vida.',
       ur: 'جانیں کہ کوئی چیز زندہ کیوں ہے، کون سی کبھی زندہ تھی اور کون سی کبھی زندہ نہیں رہی۔',

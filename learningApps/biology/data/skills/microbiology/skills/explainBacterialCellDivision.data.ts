@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainBacterialCellDivision_Skill_Data = buildSkillConfig({
-  slug: "explainBacterialCellDivision",
-  id: "abe1fd36-849a-44b3-b907-a99ce7c84b34",
+  slug: 'explainBacterialCellDivision',
+  id: 'abe1fd36-849a-44b3-b907-a99ce7c84b34',
   name: {
-    en: "Explain Bacterial Cell Division",
+    en: 'Explain Bacterial Cell Division',
     zh: '解释细菌细胞分裂',
     hi: 'जीवाणु कोशिका विभाजन समझाना',
     es: 'Explicar la división celular bacteriana',
@@ -35,9 +35,10 @@ export const explainBacterialCellDivision_Skill_Data = buildSkillConfig({
     qm: 'Bakteriya üceyresiniñ bölünüvini añlatmaq',
   },
   description: {
-    methodological: "Explain bacterial binary fission through replication of genetic material and formation of daughter cells, without confusing it with eukaryotic mitosis.",
+    methodological:
+      'Explain bacterial binary fission through replication of genetic material and formation of daughter cells, without confusing it with eukaryotic mitosis.',
     frontend: {
-      en: "Explain how bacterial cells reproduce by dividing in two.",
+      en: 'Explain how bacterial cells reproduce by dividing in two.',
       zh: '解释细菌细胞如何通过一分为二进行繁殖。',
       hi: 'समझाएँ कि जीवाणु कोशिकाएँ दो भागों में बँटकर अपनी संख्या कैसे बढ़ाती हैं।',
       es: 'Explica cómo se reproducen las células bacterianas al dividirse en dos.',

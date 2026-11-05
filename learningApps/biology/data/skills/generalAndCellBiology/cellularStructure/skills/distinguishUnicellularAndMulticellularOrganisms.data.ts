@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const distinguishUnicellularAndMulticellularOrganisms_Skill_Data = buildSkillConfig({
-  slug: "distinguishUnicellularAndMulticellularOrganisms",
-  id: "066b9494-9c0f-412a-83e9-244d424c4302",
+  slug: 'distinguishUnicellularAndMulticellularOrganisms',
+  id: '066b9494-9c0f-412a-83e9-244d424c4302',
   name: {
-    en: "Distinguish Unicellular and Multicellular Organisms",
+    en: 'Distinguish Unicellular and Multicellular Organisms',
     zh: '区分单细胞生物和多细胞生物',
     hi: 'एककोशिकीय और बहुकोशिकीय जीवों में अंतर करना',
     es: 'Distinguir organismos unicelulares y pluricelulares',
@@ -35,14 +35,15 @@ export const distinguishUnicellularAndMulticellularOrganisms_Skill_Data = buildS
     qm: 'Bir üceyreli ve çoq üceyreli canlılarnı farqlamaq',
   },
   description: {
-    methodological: "Determine whether a single cell carries out all functions of an organism or many specialized cells work together.",
+    methodological:
+      'Determine whether a single cell carries out all functions of an organism or many specialized cells work together.',
     frontend: {
-      en: "Distinguish organisms made of one cell from those made of many specialized cells.",
+      en: 'Distinguish organisms made of one cell from those made of many specialized cells.',
       zh: '区分由一个细胞构成的生物和由许多特化细胞构成的生物。',
       hi: 'एक कोशिका से बने जीवों और अनेक विशिष्ट कोशिकाओं से बने जीवों में अंतर करें।',
       es: 'Distingue los organismos formados por una sola célula de los que tienen muchas células especializadas.',
       ar: 'ميّز الكائنات المكوّنة من خلية واحدة من تلك المكوّنة من خلايا متخصصة عديدة.',
-      fr: 'Distingue les organismes formés d\'une seule cellule de ceux constitués de nombreuses cellules spécialisées.',
+      fr: "Distingue les organismes formés d'une seule cellule de ceux constitués de nombreuses cellules spécialisées.",
       bn: 'একটি কোষ দিয়ে তৈরি জীব এবং অনেক বিশেষায়িত কোষ দিয়ে তৈরি জীবের পার্থক্য বোঝো।',
       pt: 'Diferencie organismos formados por uma célula daqueles constituídos por muitas células especializadas.',
       ur: 'ایک خلیے سے بنے جانداروں اور بہت سے مخصوص خلیوں سے بنے جانداروں میں فرق کریں۔',

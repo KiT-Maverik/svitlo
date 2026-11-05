@@ -1,12 +1,15 @@
 import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
 
-import { explainHowInducedCurrentArises_Skill_Data, explainTheMagneticEffectOfElectricCurrent_Skill_Data } from './skills';
+import {
+  explainHowInducedCurrentArises_Skill_Data,
+  explainTheMagneticEffectOfElectricCurrent_Skill_Data,
+} from './skills';
 
 export const electromagnetsAndInduction_SkillGroup_Data = buildSkillGroupConfig({
-  slug: "electromagnetsAndInduction",
-  id: "50849984-5ce8-499c-9f7a-2230ce7370f8",
+  slug: 'electromagnetsAndInduction',
+  id: '50849984-5ce8-499c-9f7a-2230ce7370f8',
   name: {
-    en: "Electromagnets and Induction",
+    en: 'Electromagnets and Induction',
     qm: 'Elektromagnitler ve induktsiya',
     zh: '电磁铁与电磁感应',
     hi: 'विद्युतचुंबक और विद्युतचुंबकीय प्रेरण',
@@ -41,9 +44,10 @@ export const electromagnetsAndInduction_SkillGroup_Data = buildSkillGroupConfig(
     explainTheMagneticEffectOfElectricCurrent: explainTheMagneticEffectOfElectricCurrent_Skill_Data,
   },
   description: {
-    methodological: "Electric current can create a magnetic field, and changing magnetic conditions can produce electrical effects, explaining many systems.",
+    methodological:
+      'Electric current can create a magnetic field, and changing magnetic conditions can produce electrical effects, explaining many systems.',
     frontend: {
-      en: "Discover how currents create magnetic fields and changing fields induce electricity.",
+      en: 'Discover how currents create magnetic fields and changing fields induce electricity.',
       qm: 'Elektrik aqımı magnit maydanını nasıl yarata, deñişken magnit maydanı ise aqımnı nasıl induktsiya ete — bunı ögren.',
       zh: '了解电流如何产生磁场，以及变化的磁场如何感应电流。',
       hi: 'जानें कि धारा चुंबकीय क्षेत्र कैसे बनाती है और बदलते क्षेत्र विद्युत कैसे प्रेरित करते हैं।',

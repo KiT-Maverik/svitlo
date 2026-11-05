@@ -67,7 +67,9 @@ export function QuestionFrame<Value>({
       </Box>
       {response.hint?.length ? (
         <Box component="details">
-          <Box component="summary" sx={{ cursor: 'pointer' }}>{t.hint}</Box>
+          <Box component="summary" sx={{ cursor: 'pointer' }}>
+            {t.hint}
+          </Box>
           <QuestionContent blocks={response.hint} sceneRegistry={sceneRegistry} messages={messages} />
         </Box>
       ) : null}
@@ -79,22 +81,35 @@ export function QuestionFrame<Value>({
       ) : null}
       {attempt.checked && response.explanation?.length ? (
         <Box component="details">
-          <Box component="summary" sx={{ cursor: 'pointer' }}>{t.explanation}</Box>
+          <Box component="summary" sx={{ cursor: 'pointer' }}>
+            {t.explanation}
+          </Box>
           <QuestionContent blocks={response.explanation} sceneRegistry={sceneRegistry} messages={messages} />
         </Box>
       ) : null}
       <Stack direction="row" sx={{ justifyContent: 'center' }}>
         {attempt.checked ? (
-          <Button variant="contained" onClick={() => {
-            completion.markUnchecked(trackingId);
-            attempt.retry();
-          }}>{t.retry}</Button>
+          <Button
+            variant="contained"
+            onClick={() => {
+              completion.markUnchecked(trackingId);
+              attempt.retry();
+            }}
+          >
+            {t.retry}
+          </Button>
         ) : (
-          <Button variant="contained" disabled={!attempt.canCheck} onClick={() => {
-            if (!attempt.canCheck) return;
-            attempt.check();
-            completion.markChecked(trackingId);
-          }}>{t.check}</Button>
+          <Button
+            variant="contained"
+            disabled={!attempt.canCheck}
+            onClick={() => {
+              if (!attempt.canCheck) return;
+              attempt.check();
+              completion.markChecked(trackingId);
+            }}
+          >
+            {t.check}
+          </Button>
         )}
       </Stack>
     </Paper>

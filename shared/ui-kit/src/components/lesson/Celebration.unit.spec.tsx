@@ -5,14 +5,20 @@ import { Celebration } from './Celebration';
 const messages = {
   steps: { navigation: 'Lesson steps' },
   celebration: {
-    title: 'Completed', description: 'All steps complete.', correctAnswers: 'Correct:',
-    scoreTemplate: '{score} of {total}', note: 'Review the material.', home: 'Home',
+    title: 'Completed',
+    description: 'All steps complete.',
+    correctAnswers: 'Correct:',
+    scoreTemplate: '{score} of {total}',
+    note: 'Review the material.',
+    home: 'Home',
   },
   questionProgress: {
     navigation: 'Question status',
     status: {
-      correct: 'Correct answer', incorrect: 'Incorrect answer',
-      unanswered: 'Not answered yet', deferred: 'Deferred',
+      correct: 'Correct answer',
+      incorrect: 'Incorrect answer',
+      unanswered: 'Not answered yet',
+      deferred: 'Deferred',
     },
   },
 };

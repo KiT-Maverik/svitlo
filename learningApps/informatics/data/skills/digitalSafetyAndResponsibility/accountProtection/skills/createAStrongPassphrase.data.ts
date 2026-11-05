@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const createAStrongPassphrase_Skill_Data = buildSkillConfig({
-  slug: "createAStrongPassphrase",
-  id: "a6c3728d-8d3d-4cf1-a5d9-d5494d64706a",
+  slug: 'createAStrongPassphrase',
+  id: 'a6c3728d-8d3d-4cf1-a5d9-d5494d64706a',
   name: {
-    en: "Create a Strong Passphrase",
+    en: 'Create a Strong Passphrase',
     zh: '创建强密码短语',
     hi: 'मज़बूत पासफ़्रेज़ बनाना',
     es: 'Crear una frase de contraseña segura',
@@ -35,9 +35,10 @@ export const createAStrongPassphrase_Skill_Data = buildSkillConfig({
     qm: 'Küçlü parol ibaresini yaratmaq',
   },
   description: {
-    methodological: "Select a sufficiently long, unpredictable, account-specific sequence of words or symbols without readily accessible personal details. Do not require daily password changes without a reason or mistake character variety for overall security.",
+    methodological:
+      'Select a sufficiently long, unpredictable, account-specific sequence of words or symbols without readily accessible personal details. Do not require daily password changes without a reason or mistake character variety for overall security.',
     frontend: {
-      en: "Create long, unpredictable passphrases that are different for each account.",
+      en: 'Create long, unpredictable passphrases that are different for each account.',
       zh: '为每个账户创建不同的、足够长且难以猜测的密码短语。',
       hi: 'हर खाते के लिए अलग, लंबे और अनुमान लगाना कठिन पासफ़्रेज़ बनाएँ।',
       es: 'Crea frases de contraseña largas, impredecibles y distintas para cada cuenta.',

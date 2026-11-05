@@ -8,4 +8,3 @@ export function classifyVideoError(error: MediaError | null, online: boolean): V
   if (error?.code === 4) return 'unavailable';
   return 'playbackError';
 }
-

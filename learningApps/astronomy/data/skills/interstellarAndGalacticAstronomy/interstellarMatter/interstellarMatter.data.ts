@@ -57,7 +57,7 @@ export const interstellarMatter_SkillGroup_Data = buildSkillGroupConfig({
       hi: 'जानें कि गैस, धूल और चुंबकीय क्षेत्र तारों के बीच के अंतरिक्ष को कैसे प्रभावित करते हैं।',
       es: 'Descubre cómo el gas, el polvo y los campos magnéticos influyen en el espacio entre las estrellas.',
       ar: 'اكتشف كيف يؤثر الغاز والغبار والمجالات المغناطيسية في الفضاء بين النجوم.',
-      fr: 'Découvre comment le gaz, la poussière et les champs magnétiques influencent l\'espace entre les étoiles.',
+      fr: "Découvre comment le gaz, la poussière et les champs magnétiques influencent l'espace entre les étoiles.",
       bn: 'গ্যাস, ধূলিকণা ও চৌম্বক ক্ষেত্র তারার মধ্যবর্তী স্থানকে কীভাবে প্রভাবিত করে তা জানো।',
       pt: 'Descubra como gás, poeira e campos magnéticos influenciam o espaço entre as estrelas.',
       ur: 'جانیں کہ گیس، گرد اور مقناطیسی میدان ستاروں کے درمیان خلا کو کیسے متاثر کرتے ہیں۔',

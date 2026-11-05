@@ -12,7 +12,11 @@ export function parseQuestionNumber(value: string): number | null {
   return Number.isFinite(number) ? number : null;
 }
 
-export function AnswerWithNumber({ response, sceneRegistry, messages }: {
+export function AnswerWithNumber({
+  response,
+  sceneRegistry,
+  messages,
+}: {
   response: Question_AnswerWithNumber<'response', Locale_Languages>;
   sceneRegistry?: SceneRegistry;
   messages: UiKit_Global<'response'>;
@@ -27,13 +31,18 @@ export function AnswerWithNumber({ response, sceneRegistry, messages }: {
   );
   return (
     <QuestionFrame response={response} sceneRegistry={sceneRegistry} messages={messages} attempt={attempt}>
-      <TextField fullWidth label={messages.questionFrame.answerLabel}
-        placeholder={response.placeholder} value={attempt.value}
+      <TextField
+        fullWidth
+        label={messages.questionFrame.answerLabel}
+        placeholder={response.placeholder}
+        value={attempt.value}
         onChange={event => attempt.setValue(event.target.value)}
-        disabled={attempt.checked} error={attempt.checked && !attempt.correct}
+        disabled={attempt.checked}
+        error={attempt.checked && !attempt.correct}
         color={attempt.checked && attempt.correct ? 'success' : 'primary'}
         slotProps={{ htmlInput: { inputMode: 'decimal' } }}
-        sx={{ display: 'block', maxWidth: 480, mx: 'auto' }} />
+        sx={{ display: 'block', maxWidth: 480, mx: 'auto' }}
+      />
     </QuestionFrame>
   );
 }

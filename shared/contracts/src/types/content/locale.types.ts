@@ -3,8 +3,7 @@ import type { LanguageCode } from '../languages';
 /** Non-empty tuple of language codes declared by a content source. */
 export type Locale_Languages = readonly [LanguageCode, ...LanguageCode[]];
 
-type Locale_Config<SupportedLanguages extends Locale_Languages> =
-  Record<SupportedLanguages[number], string>;
+type Locale_Config<SupportedLanguages extends Locale_Languages> = Record<SupportedLanguages[number], string>;
 
 /**
  * Language-independent text.
@@ -21,7 +20,8 @@ type NonLocalizable = string;
  * - Fully localized for all supported languages.
  * - Intentionally language-independent.
  */
-export type Locale_Options<SupportedLanguages extends Locale_Languages> = Locale_Config<SupportedLanguages> | NonLocalizable;
+export type Locale_Options<SupportedLanguages extends Locale_Languages> =
+  Locale_Config<SupportedLanguages> | NonLocalizable;
 
 /** Ordered, non-empty list of languages supported by a lesson. */
 export type Lesson_Locale = Locale_Languages;

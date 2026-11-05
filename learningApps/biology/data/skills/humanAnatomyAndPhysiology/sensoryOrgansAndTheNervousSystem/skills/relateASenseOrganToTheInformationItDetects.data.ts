@@ -1,15 +1,15 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const relateASenseOrganToTheInformationItDetects_Skill_Data = buildSkillConfig({
-  slug: "relateASenseOrganToTheInformationItDetects",
-  id: "ae445054-70dd-41ce-a4e4-f3a877b5fa2d",
+  slug: 'relateASenseOrganToTheInformationItDetects',
+  id: 'ae445054-70dd-41ce-a4e4-f3a877b5fa2d',
   name: {
-    en: "Relate a Sense Organ to the Information It Detects",
+    en: 'Relate a Sense Organ to the Information It Detects',
     zh: '将感觉器官与其检测的信息相联系',
     hi: 'इंद्रिय अंग को उसकी ग्रहण की जाने वाली जानकारी से जोड़ना',
     es: 'Relacionar cada órgano sensorial con la información que detecta',
     ar: 'ربط العضو الحسي بالمعلومات التي يلتقطها',
-    fr: 'Associer un organe sensoriel aux informations qu\'il détecte',
+    fr: "Associer un organe sensoriel aux informations qu'il détecte",
     bn: 'ইন্দ্রিয় অঙ্গকে তার গ্রহণ করা তথ্যের সঙ্গে মিলানো',
     pt: 'Relacionar um órgão sensorial à informação que detecta',
     ur: 'حسی عضو کو اس کی محسوس کردہ معلومات سے جوڑنا',
@@ -25,7 +25,7 @@ export const relateASenseOrganToTheInformationItDetects_Skill_Data = buildSkillC
     ms: 'Mengaitkan organ deria dengan maklumat yang dikesannya',
     he: 'קישור איבר חישה לסוג המידע שהוא קולט',
     pl: 'Łączenie narządu zmysłu z odbieranymi informacjami',
-    uk: 'Пов\'язувати орган чуття з інформацією, яку він сприймає',
+    uk: "Пов'язувати орган чуття з інформацією, яку він сприймає",
     lt: 'Jutimo organų siejimas su aptinkama informacija',
     lv: 'Maņu orgāna sasaistīšana ar uztverto informāciju',
     et: 'Meeleelundi seostamine tuvastatava teabega',
@@ -35,14 +35,14 @@ export const relateASenseOrganToTheInformationItDetects_Skill_Data = buildSkillC
     qm: 'Sezgi organını qabul etken malümatınen bağlamaq',
   },
   description: {
-    methodological: "Relate light, sound, smell, taste, and touch to receptors capable of detecting those signals.",
+    methodological: 'Relate light, sound, smell, taste, and touch to receptors capable of detecting those signals.',
     frontend: {
-      en: "Match each sense organ with the kinds of information it can detect.",
+      en: 'Match each sense organ with the kinds of information it can detect.',
       zh: '将每种感觉器官与它所能检测的信息类型相匹配。',
       hi: 'हर इंद्रिय अंग को उस जानकारी से मिलाएँ जिसे वह ग्रहण कर सकता है।',
       es: 'Relaciona cada órgano sensorial con los tipos de información que puede detectar.',
       ar: 'اربط كل عضو حسي بأنواع المعلومات التي يمكنه اكتشافها.',
-      fr: 'Associez chaque organe sensoriel aux types d\'informations qu\'il peut détecter.',
+      fr: "Associez chaque organe sensoriel aux types d'informations qu'il peut détecter.",
       bn: 'প্রতিটি ইন্দ্রিয় অঙ্গ কী ধরনের তথ্য গ্রহণ করে, তা মিলিয়ে দেখো।',
       pt: 'Associe cada órgão sensorial aos tipos de informação que pode detectar.',
       ur: 'ہر حسی عضو کو اس قسم کی معلومات سے ملائیں جو وہ محسوس کر سکتا ہے۔',

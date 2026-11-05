@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const breakAComplexPromptIntoSubtasks_Skill_Data = buildSkillConfig({
-  slug: "breakAComplexPromptIntoSubtasks",
-  id: "d6f91678-7346-4d54-aad0-b9382f0a0ef6",
+  slug: 'breakAComplexPromptIntoSubtasks',
+  id: 'd6f91678-7346-4d54-aad0-b9382f0a0ef6',
   name: {
-    en: "Break a Complex Prompt into Subtasks",
+    en: 'Break a Complex Prompt into Subtasks',
     zh: '将复杂提示词拆分为子任务',
     hi: 'जटिल प्रॉम्प्ट को छोटे कामों में बाँटना',
     es: 'Dividir un prompt complejo en subtareas',
@@ -35,9 +35,10 @@ export const breakAComplexPromptIntoSubtasks_Skill_Data = buildSkillConfig({
     qm: 'Mürekkep soravnı kiçik vazifelerge bölmek',
   },
   description: {
-    methodological: "Split a multi-stage request into sequential prompts with verifiable intermediate outcomes while preserving the original objective.",
+    methodological:
+      'Split a multi-stage request into sequential prompts with verifiable intermediate outcomes while preserving the original objective.',
     frontend: {
-      en: "Divide a complicated request into smaller steps with results you can verify.",
+      en: 'Divide a complicated request into smaller steps with results you can verify.',
       zh: '把复杂请求分成较小的步骤，以便逐步核查结果。',
       hi: 'मुश्किल अनुरोध को छोटे चरणों में बाँटें जिनके परिणाम जाँचे जा सकें।',
       es: 'Divide una solicitud complicada en pasos más pequeños con resultados verificables.',

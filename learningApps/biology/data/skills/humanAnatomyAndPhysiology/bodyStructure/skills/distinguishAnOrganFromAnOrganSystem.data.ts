@@ -1,15 +1,15 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const distinguishAnOrganFromAnOrganSystem_Skill_Data = buildSkillConfig({
-  slug: "distinguishAnOrganFromAnOrganSystem",
-  id: "dbd3d359-8944-493a-9404-35228706548b",
+  slug: 'distinguishAnOrganFromAnOrganSystem',
+  id: 'dbd3d359-8944-493a-9404-35228706548b',
   name: {
-    en: "Distinguish an Organ from an Organ System",
+    en: 'Distinguish an Organ from an Organ System',
     zh: '区分器官与器官系统',
     hi: 'अंग और अंग-तंत्र में अंतर करना',
     es: 'Distinguir un órgano de un sistema de órganos',
     ar: 'التمييز بين العضو والجهاز العضوي',
-    fr: 'Distinguer un organe d\'un système d\'organes',
+    fr: "Distinguer un organe d'un système d'organes",
     bn: 'অঙ্গ ও অঙ্গতন্ত্রের পার্থক্য নির্ণয়',
     pt: 'Distinguir um órgão de um sistema de órgãos',
     ur: 'عضو اور نظامِ اعضا میں فرق کرنا',
@@ -35,14 +35,14 @@ export const distinguishAnOrganFromAnOrganSystem_Skill_Data = buildSkillConfig({
     qm: 'Organ ile organ sistemasını ayırmaq',
   },
   description: {
-    methodological: "Distinguish a single anatomical structure from a functional association of several organs.",
+    methodological: 'Distinguish a single anatomical structure from a functional association of several organs.',
     frontend: {
-      en: "Distinguish an individual organ from a system of cooperating organs.",
+      en: 'Distinguish an individual organ from a system of cooperating organs.',
       zh: '区分单个器官与多个器官协同工作的系统。',
       hi: 'एक अंग और मिलकर काम करने वाले अनेक अंगों के तंत्र में अंतर करें।',
       es: 'Distingue un órgano individual de un sistema de órganos que trabajan juntos.',
       ar: 'ميّز بين عضو واحد وجهاز يتكون من أعضاء تتعاون في العمل.',
-      fr: 'Distinguez un organe individuel d\'un système d\'organes qui coopèrent.',
+      fr: "Distinguez un organe individuel d'un système d'organes qui coopèrent.",
       bn: 'একটি অঙ্গ এবং একসঙ্গে কাজ করা একাধিক অঙ্গের তন্ত্রের পার্থক্য করো।',
       pt: 'Diferencie um órgão individual de um sistema de órgãos que trabalham em conjunto.',
       ur: 'ایک عضو اور مل کر کام کرنے والے کئی اعضا کے نظام میں فرق کریں۔',

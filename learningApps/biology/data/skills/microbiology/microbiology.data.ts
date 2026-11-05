@@ -1,12 +1,22 @@
 import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
 
-import { distinguishBacteriaAndArchaea_Skill_Data, distinguishBeneficialAndHarmfulMicrobialInteractionsWithHumans_Skill_Data, explainBacterialCellDivision_Skill_Data, explainProkaryoticCellStructure_Skill_Data, explainTheirRoleInDecomposition_Skill_Data, explainTheRoleOfMicroorganismsInFermentation_Skill_Data, identifyBacterialHabitats_Skill_Data, recognizeMicroorganismsFromDescriptions_Skill_Data, recognizeMicroscopicEukaryotes_Skill_Data } from './skills';
+import {
+  distinguishBacteriaAndArchaea_Skill_Data,
+  distinguishBeneficialAndHarmfulMicrobialInteractionsWithHumans_Skill_Data,
+  explainBacterialCellDivision_Skill_Data,
+  explainProkaryoticCellStructure_Skill_Data,
+  explainTheirRoleInDecomposition_Skill_Data,
+  explainTheRoleOfMicroorganismsInFermentation_Skill_Data,
+  identifyBacterialHabitats_Skill_Data,
+  recognizeMicroorganismsFromDescriptions_Skill_Data,
+  recognizeMicroscopicEukaryotes_Skill_Data,
+} from './skills';
 
 export const microbiology_SkillDomain_Data = buildSkillDomainConfig({
-  slug: "microbiology",
-  id: "3ed25895-70bb-442b-b62f-218f92f1ccaf",
+  slug: 'microbiology',
+  id: '3ed25895-70bb-442b-b62f-218f92f1ccaf',
   name: {
-    en: "Microbiology",
+    en: 'Microbiology',
     zh: '微生物学',
     hi: 'सूक्ष्मजीवविज्ञान',
     es: 'Microbiología',
@@ -36,11 +46,11 @@ export const microbiology_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Микробиология',
     qm: 'Mikrobiologiya',
   },
-  groups: {
-  },
+  groups: {},
   skills: {
     distinguishBacteriaAndArchaea: distinguishBacteriaAndArchaea_Skill_Data,
-    distinguishBeneficialAndHarmfulMicrobialInteractionsWithHumans: distinguishBeneficialAndHarmfulMicrobialInteractionsWithHumans_Skill_Data,
+    distinguishBeneficialAndHarmfulMicrobialInteractionsWithHumans:
+      distinguishBeneficialAndHarmfulMicrobialInteractionsWithHumans_Skill_Data,
     explainBacterialCellDivision: explainBacterialCellDivision_Skill_Data,
     explainProkaryoticCellStructure: explainProkaryoticCellStructure_Skill_Data,
     explainTheirRoleInDecomposition: explainTheirRoleInDecomposition_Skill_Data,
@@ -50,9 +60,10 @@ export const microbiology_SkillDomain_Data = buildSkillDomainConfig({
     recognizeMicroscopicEukaryotes: recognizeMicroscopicEukaryotes_Skill_Data,
   },
   description: {
-    methodological: "Microscopic cellular life forms and their processes, including bacteria, fermentation, decomposition, and interactions with the human body. Microscopic size does not define a single taxon; this Domain considers the shared context of microbial processes.",
+    methodological:
+      'Microscopic cellular life forms and their processes, including bacteria, fermentation, decomposition, and interactions with the human body. Microscopic size does not define a single taxon; this Domain considers the shared context of microbial processes.',
     frontend: {
-      en: "Discover the diversity of microscopic cellular life and its roles in nature and human activities.",
+      en: 'Discover the diversity of microscopic cellular life and its roles in nature and human activities.',
       zh: '探索各种微小的细胞生物，以及它们在自然界和人类活动中的作用。',
       hi: 'सूक्ष्म कोशिकीय जीवों की विविधता और प्रकृति तथा मानव गतिविधियों में उनकी भूमिकाएँ जानें।',
       es: 'Descubre la diversidad de organismos celulares microscópicos y su papel en la naturaleza y las actividades humanas.',

@@ -1,12 +1,19 @@
 import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
 
-import { distinguishDeciduousAndEvergreenPlants_Skill_Data, distinguishGymnospermsAndAngiosperms_Skill_Data, distinguishTreesShrubsAndHerbaceousPlants_Skill_Data, recognizeBryophyteCharacteristics_Skill_Data, recognizeCommonLocalPlants_Skill_Data, recognizeFernAndFernAllyCharacteristics_Skill_Data } from './skills';
+import {
+  distinguishDeciduousAndEvergreenPlants_Skill_Data,
+  distinguishGymnospermsAndAngiosperms_Skill_Data,
+  distinguishTreesShrubsAndHerbaceousPlants_Skill_Data,
+  recognizeBryophyteCharacteristics_Skill_Data,
+  recognizeCommonLocalPlants_Skill_Data,
+  recognizeFernAndFernAllyCharacteristics_Skill_Data,
+} from './skills';
 
 export const plantDiversity_SkillGroup_Data = buildSkillGroupConfig({
-  slug: "plantDiversity",
-  id: "57abdae5-4627-4d50-9edd-56bad9b9c31e",
+  slug: 'plantDiversity',
+  id: '57abdae5-4627-4d50-9edd-56bad9b9c31e',
   name: {
-    en: "Plant Diversity",
+    en: 'Plant Diversity',
     zh: '植物多样性',
     hi: 'पौधों की विविधता',
     es: 'Diversidad vegetal',
@@ -45,9 +52,10 @@ export const plantDiversity_SkillGroup_Data = buildSkillGroupConfig({
     recognizeFernAndFernAllyCharacteristics: recognizeFernAndFernAllyCharacteristics_Skill_Data,
   },
   description: {
-    methodological: "External structure, branching patterns, and seasonality provide grounds for comparing familiar species without equating growth form with biological relatedness.",
+    methodological:
+      'External structure, branching patterns, and seasonality provide grounds for comparing familiar species without equating growth form with biological relatedness.',
     frontend: {
-      en: "Recognize the variety of plants using their distinctive features.",
+      en: 'Recognize the variety of plants using their distinctive features.',
       zh: '根据不同特征认识各种植物。',
       hi: 'पौधों की विविधता को उनकी विशिष्ट विशेषताओं से पहचानें।',
       es: 'Reconoce la variedad de plantas por sus características distintivas.',

@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const recognizeAISycophancy_Skill_Data = buildSkillConfig({
-  slug: "recognizeAISycophancy",
-  id: "ef1a569e-5f00-41ca-9055-8a2673cdb8a5",
+  slug: 'recognizeAISycophancy',
+  id: 'ef1a569e-5f00-41ca-9055-8a2673cdb8a5',
   name: {
-    en: "Recognize AI Sycophancy",
+    en: 'Recognize AI Sycophancy',
     zh: '识别人工智能的奉承倾向',
     hi: 'एआई की चापलूसी पहचानना',
     es: 'Reconocer la adulación de la IA',
@@ -35,9 +35,10 @@ export const recognizeAISycophancy_Skill_Data = buildSkillConfig({
     qm: 'Suniy intellektniñ yaranmasını tanımaq',
   },
   description: {
-    methodological: "Distinguish evidence-based support from unfounded praise and reinforcement of an incorrect belief; a positive tone does not establish correctness.",
+    methodological:
+      'Distinguish evidence-based support from unfounded praise and reinforcement of an incorrect belief; a positive tone does not establish correctness.',
     frontend: {
-      en: "Spot AI agreement or praise that is not supported by evidence.",
+      en: 'Spot AI agreement or praise that is not supported by evidence.',
       zh: '发现没有证据支持的人工智能赞同或赞美。',
       hi: 'ऐसी सहमति या प्रशंसा पहचानें जिसका सबूतों से समर्थन नहीं होता।',
       es: 'Detecta cuando la IA muestra acuerdo o elogia sin respaldo en pruebas.',

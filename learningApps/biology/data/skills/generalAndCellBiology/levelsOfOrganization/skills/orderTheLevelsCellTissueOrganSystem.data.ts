@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const orderTheLevelsCellTissueOrganSystem_Skill_Data = buildSkillConfig({
-  slug: "orderTheLevelsCellTissueOrganSystem",
-  id: "989b8b8c-7031-4951-be54-bf311192c4bc",
+  slug: 'orderTheLevelsCellTissueOrganSystem',
+  id: '989b8b8c-7031-4951-be54-bf311192c4bc',
   name: {
-    en: "Order the Levels “Cell → Tissue → Organ → System”",
+    en: 'Order the Levels “Cell → Tissue → Organ → System”',
     zh: '排列细胞、组织、器官和系统的层次',
     hi: 'कोशिका, ऊतक, अंग और तंत्र के स्तर क्रम में रखना',
     es: 'Ordenar los niveles célula, tejido, órgano y sistema',
@@ -35,14 +35,15 @@ export const orderTheLevelsCellTissueOrganSystem_Skill_Data = buildSkillConfig({
     qm: 'Üceyre, toqu, organ ve sistema seviyelerini sıralamaq',
   },
   description: {
-    methodological: "Establish how cells form tissues, tissues form organs, and organs can work together within a system.",
+    methodological:
+      'Establish how cells form tissues, tissues form organs, and organs can work together within a system.',
     frontend: {
-      en: "Arrange cells, tissues, organs and organ systems by their levels of organization.",
+      en: 'Arrange cells, tissues, organs and organ systems by their levels of organization.',
       zh: '按照结构层次排列细胞、组织、器官和器官系统。',
       hi: 'कोशिकाओं, ऊतकों, अंगों और अंग तंत्रों को संगठन के क्रम में रखें।',
       es: 'Ordena las células, los tejidos, los órganos y los sistemas según su nivel de organización.',
       ar: 'رتّب الخلايا والأنسجة والأعضاء والأجهزة وفق مستويات تنظيمها.',
-      fr: 'Classe les cellules, les tissus, les organes et les systèmes d\'organes selon leur niveau d\'organisation.',
+      fr: "Classe les cellules, les tissus, les organes et les systèmes d'organes selon leur niveau d'organisation.",
       bn: 'কোষ, কলা, অঙ্গ এবং অঙ্গতন্ত্রকে গঠনের স্তর অনুযায়ী সাজাও।',
       pt: 'Organize células, tecidos, órgãos e sistemas de órgãos por seus níveis de organização.',
       ur: 'خلیوں، بافتوں، اعضا اور اعضائی نظاموں کو تنظیم کی سطح کے مطابق ترتیب دیں۔',

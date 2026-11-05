@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const recognizeBirdCharacteristics_Skill_Data = buildSkillConfig({
-  slug: "recognizeBirdCharacteristics",
-  id: "774a8afe-32ef-429f-af0d-e9e0d48ff6cf",
+  slug: 'recognizeBirdCharacteristics',
+  id: '774a8afe-32ef-429f-af0d-e9e0d48ff6cf',
   name: {
-    en: "Recognize Bird Characteristics",
+    en: 'Recognize Bird Characteristics',
     zh: '识别鸟类的特征',
     hi: 'पक्षियों की विशेषताएँ पहचानना',
     es: 'Reconocer las características de las aves',
@@ -35,14 +35,15 @@ export const recognizeBirdCharacteristics_Skill_Data = buildSkillConfig({
     qm: 'Quşlarnıñ belgilerini tanımaq',
   },
   description: {
-    methodological: "Use feathers as the primary diagnostic characteristic of birds, regardless of their ability to fly.",
+    methodological:
+      'Use feathers as the primary diagnostic characteristic of birds, regardless of their ability to fly.',
     frontend: {
-      en: "Recognize birds by their feathers, even when they cannot fly.",
+      en: 'Recognize birds by their feathers, even when they cannot fly.',
       zh: '根据羽毛识别鸟类，即使它们不会飞。',
       hi: 'पक्षियों को उनके परों से पहचानें, भले ही वे उड़ न सकें।',
       es: 'Reconoce las aves por sus plumas, incluso cuando no pueden volar.',
       ar: 'تعرّف على الطيور من خلال ريشها، حتى إن كانت لا تستطيع الطيران.',
-      fr: 'Reconnais les oiseaux grâce à leurs plumes, même lorsqu\'ils ne peuvent pas voler.',
+      fr: "Reconnais les oiseaux grâce à leurs plumes, même lorsqu'ils ne peuvent pas voler.",
       bn: 'পালক দেখে পাখি চিনে নাও, এমনকি তারা উড়তে না পারলেও।',
       pt: 'Reconheça aves pelas penas, mesmo quando não conseguem voar.',
       ur: 'پرندوں کو ان کے پَر سے پہچانیں، چاہے وہ اُڑ نہ سکتے ہوں۔',
@@ -58,11 +59,11 @@ export const recognizeBirdCharacteristics_Skill_Data = buildSkillConfig({
       ms: 'Kenal pasti burung melalui bulunya, walaupun burung itu tidak boleh terbang.',
       he: 'זהו עופות לפי נוצותיהם, גם כשאינם מסוגלים לעוף.',
       pl: 'Rozpoznawaj ptaki po piórach, nawet jeśli nie potrafią latać.',
-      uk: 'Розпізнавай птахів за пір\'ям, навіть якщо вони не вміють літати.',
+      uk: "Розпізнавай птахів за пір'ям, навіть якщо вони не вміють літати.",
       lt: 'Atpažink paukščius pagal plunksnas, net jei jie negali skraidyti.',
       lv: 'Atpazīsti putnus pēc spalvām, arī tad, ja tie nespēj lidot.',
       et: 'Tunne linnud sulgede järgi ära ka siis, kui nad ei suuda lennata.',
-      be: 'Распазнавай птушак па пер\'і, нават калі яны ня ўмеюць лётаць.',
+      be: "Распазнавай птушак па пер'і, нават калі яны ня ўмеюць лётаць.",
       ka: 'ამოიცანი ფრინველები ბუმბულით, მაშინაც კი, თუ მათ ფრენა არ შეუძლიათ.',
       kk: 'Құстарды ұша алмаса да қауырсындары арқылы таны.',
       qm: 'Uçalmağan quşlar da dahil, quşlarnı bedenlerindeki tüylerge köre tanıñız.',

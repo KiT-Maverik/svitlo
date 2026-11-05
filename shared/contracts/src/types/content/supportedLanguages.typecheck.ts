@@ -1,8 +1,4 @@
-import type {
-  ContentBlock_Checkpoint,
-  ContentBlock_Quiz_Screen,
-  ContentBlock_Text,
-} from './blocks';
+import type { ContentBlock_Checkpoint, ContentBlock_Quiz_Screen, ContentBlock_Text } from './blocks';
 import { defineLessonData, type Lesson } from './lesson.types';
 import type { Question_AnswerWithText, Question_SelectOneAnswer } from './questions';
 import type { Locale_Languages } from './locale.types';
@@ -36,20 +32,27 @@ const definedLesson = defineLessonData<SupportedLanguages>()({
     sections: { allowNavigation: true, allowSkipping: false, showIndexes: true },
   },
   questions: {},
-  sections: [{
+  sections: [
+    {
       id: 'section-id',
       slug: 'intro',
       type: 'theory',
       title: { en: 'Introduction', uk: 'Вступ' },
       navigationLabel: 'Intro',
       content: [text],
-  }],
+    },
+  ],
 });
 const sectionSlug: 'intro' = definedLesson.sections[0].slug;
 const responseLanguages: Lesson<'response', SupportedLanguages>['parameters']['languages'] = ['en', 'uk'];
 
 // @ts-expect-error A localized value needs every selected language.
-const missingText: ContentBlock_Text<'data', SupportedLanguages> = { id: 'missing', slug: 'missing', type: 'text', value: { en: 'Hello' } };
+const missingText: ContentBlock_Text<'data', SupportedLanguages> = {
+  id: 'missing',
+  slug: 'missing',
+  type: 'text',
+  value: { en: 'Hello' },
+};
 // @ts-expect-error Nested question values use the same selected language set.
 const missingAnswer: Question_AnswerWithText<'data', SupportedLanguages>['correctAnswers'][number] = { en: 'yes' };
 // @ts-expect-error The language set must be provided explicitly.
@@ -57,9 +60,19 @@ type MissingLanguages = ContentBlock_Text<'data'>;
 // @ts-expect-error Content units receive the language tuple, not a union of codes.
 type InvalidUnion = ContentBlock_Text<'data', 'en' | 'uk'>;
 // @ts-expect-error A language outside the lesson tuple is not accepted.
-const extraLanguage: ContentBlock_Text<'data', SupportedLanguages> = { id: 'extra', slug: 'extra', type: 'text', value: { en: 'Hello', uk: 'Привіт', fr: 'Bonjour' } };
+const extraLanguage: ContentBlock_Text<'data', SupportedLanguages> = {
+  id: 'extra',
+  slug: 'extra',
+  type: 'text',
+  value: { en: 'Hello', uk: 'Привіт', fr: 'Bonjour' },
+};
 // @ts-expect-error A broad language tuple includes more languages than en and uk.
-const incompleteFull: ContentBlock_Text<'data', Locale_Languages> = { id: 'default', slug: 'default', type: 'text', value: { en: 'Hello', uk: 'Привіт' } };
+const incompleteFull: ContentBlock_Text<'data', Locale_Languages> = {
+  id: 'default',
+  slug: 'default',
+  type: 'text',
+  value: { en: 'Hello', uk: 'Привіт' },
+};
 // @ts-expect-error Lesson data must list every supported language in its declared order.
 const incompleteLessonLanguages: Lesson<'data', SupportedLanguages>['parameters']['languages'] = ['en'];
 // @ts-expect-error Lesson responses must carry the same complete list.

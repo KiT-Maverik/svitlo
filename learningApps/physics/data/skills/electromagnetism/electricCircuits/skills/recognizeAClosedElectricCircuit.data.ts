@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const recognizeAClosedElectricCircuit_Skill_Data = buildSkillConfig({
-  slug: "recognizeAClosedElectricCircuit",
-  id: "80bc9661-5536-4573-8798-51e5185014c4",
+  slug: 'recognizeAClosedElectricCircuit',
+  id: '80bc9661-5536-4573-8798-51e5185014c4',
   name: {
-    en: "Recognize a closed electric circuit",
+    en: 'Recognize a closed electric circuit',
     qm: 'Qapalı elektrik devresini tanımaq',
     zh: '识别闭合电路',
     hi: 'बंद विद्युत परिपथ पहचानना',
@@ -35,9 +35,10 @@ export const recognizeAClosedElectricCircuit_Skill_Data = buildSkillConfig({
     kk: 'Тұйық электр тізбегін тану',
   },
   description: {
-    methodological: "A closed circuit has a continuous conducting path; sustained current also requires a source of electromotive force.",
+    methodological:
+      'A closed circuit has a continuous conducting path; sustained current also requires a source of electromotive force.',
     frontend: {
-      en: "Recognize when a circuit has a continuous conducting path.",
+      en: 'Recognize when a circuit has a continuous conducting path.',
       qm: 'Devrede elektrik aqımı içün üzülmegen keçirgen yol olğanını tanı.',
       zh: '识别电流是否具有连续的导电通路。',
       hi: 'पहचानें कि परिपथ में धारा के लिए लगातार चालक रास्ता है या नहीं।',

@@ -35,7 +35,10 @@ describe('global UI Kit translation coverage', () => {
     const result = generate();
     assert.equal(result.status, 0, result.stderr);
     const meta = JSON.parse(readFileSync(path.join(output, 'meta.json'), 'utf8'));
-    assert.deepEqual(meta.locales, DEFAULT_SUPPORTED_LANGUAGES.map(({ locale }) => locale));
+    assert.deepEqual(
+      meta.locales,
+      DEFAULT_SUPPORTED_LANGUAGES.map(({ locale }) => locale),
+    );
     assert.equal(meta.components.length, 10);
 
     for (const { locale } of DEFAULT_SUPPORTED_LANGUAGES) {

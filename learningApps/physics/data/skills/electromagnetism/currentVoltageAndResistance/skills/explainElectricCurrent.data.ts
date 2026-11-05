@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainElectricCurrent_Skill_Data = buildSkillConfig({
-  slug: "explainElectricCurrent",
-  id: "4e6d86a6-85fa-4121-85e2-1549b44c31d7",
+  slug: 'explainElectricCurrent',
+  id: '4e6d86a6-85fa-4121-85e2-1549b44c31d7',
   name: {
-    en: "Explain electric current",
+    en: 'Explain electric current',
     qm: 'Elektrik aqımını añlatmaq',
     zh: '解释电流',
     hi: 'विद्युत धारा समझाना',
@@ -35,9 +35,10 @@ export const explainElectricCurrent_Skill_Data = buildSkillConfig({
     kk: 'Электр тогын түсіндіру',
   },
   description: {
-    methodological: "Electric current involves directed transport of charge, not merely random motion of charge carriers.",
+    methodological:
+      'Electric current involves directed transport of charge, not merely random motion of charge carriers.',
     frontend: {
-      en: "Understand electric current as the directed movement of charge.",
+      en: 'Understand electric current as the directed movement of charge.',
       qm: 'Elektrik aqımını yüklerniñ belli bir yönge areketi olaraq añla.',
       zh: '理解电流是电荷的定向移动。',
       hi: 'समझें कि विद्युत धारा आवेश का दिशात्मक प्रवाह है।',

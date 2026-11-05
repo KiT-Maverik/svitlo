@@ -1,12 +1,17 @@
 import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
 
-import { explainTheRoleOfPollinatorsInSpeciesInteractions_Skill_Data, recognizeCompetition_Skill_Data, recognizeMutuallyBeneficialRelationships_Skill_Data, recognizePredation_Skill_Data } from './skills';
+import {
+  explainTheRoleOfPollinatorsInSpeciesInteractions_Skill_Data,
+  recognizeCompetition_Skill_Data,
+  recognizeMutuallyBeneficialRelationships_Skill_Data,
+  recognizePredation_Skill_Data,
+} from './skills';
 
 export const interactionsAmongOrganisms_SkillGroup_Data = buildSkillGroupConfig({
-  slug: "interactionsAmongOrganisms",
-  id: "b6747083-f25f-4e46-91e9-2e8cf655f084",
+  slug: 'interactionsAmongOrganisms',
+  id: 'b6747083-f25f-4e46-91e9-2e8cf655f084',
   name: {
-    en: "Interactions Among Organisms",
+    en: 'Interactions Among Organisms',
     qm: 'Canlılar arasında alâqalar',
     zh: '生物之间的相互作用',
     hi: 'जीवों के बीच अंतःक्रियाएँ',
@@ -43,9 +48,10 @@ export const interactionsAmongOrganisms_SkillGroup_Data = buildSkillGroupConfig(
     recognizePredation: recognizePredation_Skill_Data,
   },
   description: {
-    methodological: "Organisms may use one another as resources, compete, or benefit one another; the nature of an interaction is determined by its consequences for those involved.",
+    methodological:
+      'Organisms may use one another as resources, compete, or benefit one another; the nature of an interaction is determined by its consequences for those involved.',
     frontend: {
-      en: "Explore how organisms compete, feed on one another or cooperate.",
+      en: 'Explore how organisms compete, feed on one another or cooperate.',
       qm: 'Canlılarnıñ nasıl yarışqanını, bir-birini aşağanını ya da beraber çalışqanını ögreniñiz.',
       zh: '探索生物如何竞争、捕食或相互合作。',
       hi: 'जानें कि जीव कैसे प्रतिस्पर्धा करते हैं, एक-दूसरे को खाते हैं या सहयोग करते हैं।',

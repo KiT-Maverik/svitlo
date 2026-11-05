@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainConductionAsEnergyTransferThroughMatter_Skill_Data = buildSkillConfig({
-  slug: "explainConductionAsEnergyTransferThroughMatter",
-  id: "33c36db2-6531-4858-a26b-d93793a16ee5",
+  slug: 'explainConductionAsEnergyTransferThroughMatter',
+  id: '33c36db2-6531-4858-a26b-d93793a16ee5',
   name: {
-    en: "Explain conduction as energy transfer through matter",
+    en: 'Explain conduction as energy transfer through matter',
     qm: 'Madde içinden sıcaqlıq keçişini añlatmaq',
     zh: '解释热传导是能量在物质中的传递',
     hi: 'पदार्थ के माध्यम से ऊष्मा चालन समझाना',
@@ -35,9 +35,10 @@ export const explainConductionAsEnergyTransferThroughMatter_Skill_Data = buildSk
     kk: 'Жылу өткізгіштікті зат арқылы энергия берілуі ретінде түсіндіру',
   },
   description: {
-    methodological: "Using a metal spoon heated in hot water, explain energy transfer without bulk movement of the entire substance.",
+    methodological:
+      'Using a metal spoon heated in hot water, explain energy transfer without bulk movement of the entire substance.',
     frontend: {
-      en: "Explain heat conduction without requiring the substance to flow.",
+      en: 'Explain heat conduction without requiring the substance to flow.',
       qm: 'Maddeniñ özüniñ aqmasına aceti olmayaraq, sıcaqlıqnıñ onıñ içinden nasıl keçkenini añlat.',
       zh: '解释不需要物质整体流动也能发生的热传导。',
       hi: 'समझाएँ कि बिना पदार्थ के सामूहिक प्रवाह के ऊष्मा चालन कैसे होता है।',

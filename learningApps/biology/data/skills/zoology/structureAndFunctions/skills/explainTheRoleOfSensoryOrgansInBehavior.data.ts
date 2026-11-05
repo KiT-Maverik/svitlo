@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainTheRoleOfSensoryOrgansInBehavior_Skill_Data = buildSkillConfig({
-  slug: "explainTheRoleOfSensoryOrgansInBehavior",
-  id: "d4a45b34-cffc-46cf-b36c-a32e6e70bfae",
+  slug: 'explainTheRoleOfSensoryOrgansInBehavior',
+  id: 'd4a45b34-cffc-46cf-b36c-a32e6e70bfae',
   name: {
-    en: "Explain the Role of Sensory Organs in Behavior",
+    en: 'Explain the Role of Sensory Organs in Behavior',
     zh: '解释感觉器官在动物行为中的作用',
     hi: 'व्यवहार में ज्ञानेन्द्रियों की भूमिका समझाना',
     es: 'Explicar el papel de los órganos sensoriales en el comportamiento',
@@ -35,14 +35,14 @@ export const explainTheRoleOfSensoryOrgansInBehavior_Skill_Data = buildSkillConf
     qm: 'Duyğu organlarınıñ davranıştaki rolüni añlatmaq',
   },
   description: {
-    methodological: "Connect perception of sounds, smells, light, or vibrations with orientation and finding food.",
+    methodological: 'Connect perception of sounds, smells, light, or vibrations with orientation and finding food.',
     frontend: {
-      en: "See how sensory organs help animals find food and orient themselves.",
+      en: 'See how sensory organs help animals find food and orient themselves.',
       zh: '了解感觉器官如何帮助动物寻找食物和辨别方向。',
       hi: 'जानें कि संवेदी अंग जानवरों को भोजन खोजने और दिशा पहचानने में कैसे मदद करते हैं।',
       es: 'Observa cómo los órganos sensoriales ayudan a los animales a encontrar alimento y orientarse.',
       ar: 'تعرّف كيف تساعد الأعضاء الحسية الحيوانات على العثور على الغذاء وتحديد الاتجاه.',
-      fr: 'Découvre comment les organes sensoriels aident les animaux à trouver de la nourriture et à s\'orienter.',
+      fr: "Découvre comment les organes sensoriels aident les animaux à trouver de la nourriture et à s'orienter.",
       bn: 'সংবেদী অঙ্গ প্রাণীদের খাদ্য খুঁজতে ও দিক নির্ণয় করতে কীভাবে সাহায্য করে তা জানো।',
       pt: 'Veja como os órgãos sensoriais ajudam os animais a encontrar alimentos e se orientar.',
       ur: 'جانیں کہ حسی اعضا جانوروں کو خوراک ڈھونڈنے اور سمت معلوم کرنے میں کیسے مدد دیتے ہیں۔',

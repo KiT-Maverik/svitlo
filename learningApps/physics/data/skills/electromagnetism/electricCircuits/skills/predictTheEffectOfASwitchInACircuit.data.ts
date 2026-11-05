@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const predictTheEffectOfASwitchInACircuit_Skill_Data = buildSkillConfig({
-  slug: "predictTheEffectOfASwitchInACircuit",
-  id: "e3b3291c-f917-4fb9-a52c-75998ca04469",
+  slug: 'predictTheEffectOfASwitchInACircuit',
+  id: 'e3b3291c-f917-4fb9-a52c-75998ca04469',
   name: {
-    en: "Predict the effect of a switch in a circuit",
+    en: 'Predict the effect of a switch in a circuit',
     qm: 'Elektrik devresinde açqıçnıñ tesirini evelden bilmek',
     zh: '预测开关对电路的影响',
     hi: 'परिपथ में स्विच का प्रभाव अनुमान लगाना',
@@ -35,9 +35,10 @@ export const predictTheEffectOfASwitchInACircuit_Skill_Data = buildSkillConfig({
     kk: 'Тізбектегі ажыратқыш әсерін болжау',
   },
   description: {
-    methodological: "The consequences of switching depend on where the switch is placed relative to the source, loads, and parallel paths.",
+    methodological:
+      'The consequences of switching depend on where the switch is placed relative to the source, loads, and parallel paths.',
     frontend: {
-      en: "Predict which circuit parts a switch will turn on or off.",
+      en: 'Predict which circuit parts a switch will turn on or off.',
       qm: 'Açqıçnıñ devreniñ qaysı qısımlarını açqanını ya da qapatqanını evelden ayt.',
       zh: '预测开关会接通或断开电路的哪些部分。',
       hi: 'अनुमान लगाएँ कि स्विच से परिपथ के कौन-से हिस्से चालू या बंद होंगे।',

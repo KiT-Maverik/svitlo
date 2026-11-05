@@ -1,15 +1,15 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const evaluateEcologicalRisksOfBiotechnologyUse_Skill_Data = buildSkillConfig({
-  slug: "evaluateEcologicalRisksOfBiotechnologyUse",
-  id: "d650d4af-5536-4e0f-a979-15552f965dab",
+  slug: 'evaluateEcologicalRisksOfBiotechnologyUse',
+  id: 'd650d4af-5536-4e0f-a979-15552f965dab',
   name: {
-    en: "Evaluate Ecological Risks of Biotechnology Use",
+    en: 'Evaluate Ecological Risks of Biotechnology Use',
     zh: '评估生物技术应用的生态风险',
     hi: 'जैव प्रौद्योगिकी के उपयोग के पारिस्थितिक जोखिमों का आकलन करना',
     es: 'Evaluar los riesgos ecológicos del uso de la biotecnología',
     ar: 'تقييم المخاطر البيئية لاستخدام التقنية الحيوية',
-    fr: 'Évaluer les risques écologiques liés à l\'utilisation de la biotechnologie',
+    fr: "Évaluer les risques écologiques liés à l'utilisation de la biotechnologie",
     bn: 'জীবপ্রযুক্তি ব্যবহারের পরিবেশগত ঝুঁকি মূল্যায়ন',
     pt: 'Avaliar os riscos ecológicos do uso da biotecnologia',
     ur: 'حیاتیاتی ٹیکنالوجی کے استعمال کے ماحولیاتی خطرات کا جائزہ لینا',
@@ -35,9 +35,10 @@ export const evaluateEcologicalRisksOfBiotechnologyUse_Skill_Data = buildSkillCo
     qm: 'Biotehnologiyanı qullanmağa bağlı ekologik risklerni baalamaq',
   },
   description: {
-    methodological: "Consider the likelihood of undesirable effects on nontarget species, ecosystem relationships, or the spread of organisms, distinguishing risk from demonstrated harm.",
+    methodological:
+      'Consider the likelihood of undesirable effects on nontarget species, ecosystem relationships, or the spread of organisms, distinguishing risk from demonstrated harm.',
     frontend: {
-      en: "Explore possible ecological risks of biotechnology without assuming every risk causes harm.",
+      en: 'Explore possible ecological risks of biotechnology without assuming every risk causes harm.',
       zh: '探索生物技术可能带来的生态风险，但不要认为每种风险都会造成损害。',
       hi: 'जैव प्रौद्योगिकी के संभावित पारिस्थितिक जोखिमों को समझें, लेकिन यह न मानें कि हर जोखिम से नुकसान होता ही है।',
       es: 'Explora los posibles riesgos ecológicos de la biotecnología sin suponer que todo riesgo causa daños.',
@@ -58,7 +59,7 @@ export const evaluateEcologicalRisksOfBiotechnologyUse_Skill_Data = buildSkillCo
       ms: 'Terokai kemungkinan risiko ekologi bioteknologi tanpa menganggap setiap risiko pasti mendatangkan kemudaratan.',
       he: 'בחנו סיכונים אקולוגיים אפשריים של ביוטכנולוגיה בלי להניח שכל סיכון בהכרח גורם לנזק.',
       pl: 'Poznaj możliwe zagrożenia ekologiczne związane z biotechnologią, nie zakładając, że każde ryzyko prowadzi do szkody.',
-      uk: 'Досліди можливі екологічні ризики біотехнології, не припускаючи, що кожен ризик обов\'язково спричиняє шкоду.',
+      uk: "Досліди можливі екологічні ризики біотехнології, не припускаючи, що кожен ризик обов'язково спричиняє шкоду.",
       lt: 'Išnagrinėk galimą biotechnologijų ekologinę riziką nemanydamas, kad kiekviena rizika būtinai sukelia žalą.',
       lv: 'Izpēti iespējamos biotehnoloģijas ekoloģiskos riskus, nepieņemot, ka katrs risks noteikti rada kaitējumu.',
       et: 'Uuri biotehnoloogia võimalikke ökoloogilisi riske, eeldamata, et iga risk põhjustab kindlasti kahju.',

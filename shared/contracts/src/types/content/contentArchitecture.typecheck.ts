@@ -18,9 +18,7 @@ import type {
 } from '../../content';
 type TestLanguages = readonly ['en', 'uk'];
 
-type Equal<A, B> =
-  (<T>() => T extends A ? 1 : 2) extends
-  (<T>() => T extends B ? 1 : 2) ? true : false;
+type Equal<A, B> = (<T>() => T extends A ? 1 : 2) extends <T>() => T extends B ? 1 : 2 ? true : false;
 type Assert<T extends true> = T;
 
 type _LessonIsCanonical = Assert<Equal<Lesson<'definition', readonly ['en']>['type'], 'lesson'>>;
@@ -31,18 +29,26 @@ type _RuntimeKinds = Assert<Equal<ContentBlock<'response', TestLanguages>['type'
 type _QuestionKinds = Assert<Equal<Question<'response', TestLanguages>['type'], Question_Type>>;
 type _SceneDiscriminator = Assert<Equal<ContentBlock_Scene<'response', TestLanguages>['type'], 'scene'>>;
 type _SceneUsesRegistryKey = Assert<Equal<ContentBlock_Scene<'response', TestLanguages>['rendererKey'], string>>;
-type _OrderedSectionContent = Assert<Equal<Section<'data', TestLanguages>['content'][number]['type'], ContentBlock_Type>>;
+type _OrderedSectionContent = Assert<
+  Equal<Section<'data', TestLanguages>['content'][number]['type'], ContentBlock_Type>
+>;
 type _OrderedLessonSections = Assert<Equal<Lesson<'data', TestLanguages>['sections'][number]['type'], Section_Type>>;
 type _AuthoredKinds = Assert<Equal<ContentBlock<'data', TestLanguages>['type'], ContentBlock_Type>>;
-type _QuizReferencesQuestions = Assert<Equal<ContentBlock_Quiz<'response', TestLanguages>['questionSlugs'][number], string>>;
-type _QuizStartScreen = Assert<Equal<
-  NonNullable<ContentBlock_Quiz<'data', TestLanguages>['screen']['starting']>,
-  ContentBlock_Quiz_Screen<'data', TestLanguages>
->>;
-type _QuizRetryScreen = Assert<Equal<
-  NonNullable<NonNullable<ContentBlock_Quiz<'response', TestLanguages>['screen']['ending']>['retry']>,
-  ContentBlock_Quiz_Screen<'response', TestLanguages>
->>;
+type _QuizReferencesQuestions = Assert<
+  Equal<ContentBlock_Quiz<'response', TestLanguages>['questionSlugs'][number], string>
+>;
+type _QuizStartScreen = Assert<
+  Equal<
+    NonNullable<ContentBlock_Quiz<'data', TestLanguages>['screen']['starting']>,
+    ContentBlock_Quiz_Screen<'data', TestLanguages>
+  >
+>;
+type _QuizRetryScreen = Assert<
+  Equal<
+    NonNullable<NonNullable<ContentBlock_Quiz<'response', TestLanguages>['screen']['ending']>['retry']>,
+    ContentBlock_Quiz_Screen<'response', TestLanguages>
+  >
+>;
 
 type CheckpointChild = ContentBlock_Checkpoint<'response', TestLanguages>['items'][number]['answer'][number];
 type _NestedBlocksRemainDiscriminated = Assert<
@@ -147,4 +153,19 @@ declare const quiz: ContentBlock_Quiz<'response', TestLanguages>;
 // @ts-expect-error Quiz question references are immutable.
 quiz.questionSlugs.push('another-question');
 
-void [runtimeText, authoredText, authoredYoutube, authoredImage, authoredFillImage, authoredCode, runtimeCode, unlabelledYoutube, runtimeScene, customQuizScreen, emptyQuizScreen, missingDiscriminator, quiz, flashcard];
+void [
+  runtimeText,
+  authoredText,
+  authoredYoutube,
+  authoredImage,
+  authoredFillImage,
+  authoredCode,
+  runtimeCode,
+  unlabelledYoutube,
+  runtimeScene,
+  customQuizScreen,
+  emptyQuizScreen,
+  missingDiscriminator,
+  quiz,
+  flashcard,
+];

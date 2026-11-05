@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const relateBodyCoveringsToTheirFunctions_Skill_Data = buildSkillConfig({
-  slug: "relateBodyCoveringsToTheirFunctions",
-  id: "4168cd90-7916-4e8f-9126-917525761ae6",
+  slug: 'relateBodyCoveringsToTheirFunctions',
+  id: '4168cd90-7916-4e8f-9126-917525761ae6',
   name: {
-    en: "Relate Body Coverings to Their Functions",
+    en: 'Relate Body Coverings to Their Functions',
     zh: '将动物的体表覆盖物与其功能联系起来',
     hi: 'शरीर के आवरण और उनके कार्यों का संबंध समझाना',
     es: 'Relacionar las cubiertas corporales con sus funciones',
@@ -25,7 +25,7 @@ export const relateBodyCoveringsToTheirFunctions_Skill_Data = buildSkillConfig({
     ms: 'Mengaitkan litupan badan dengan fungsinya',
     he: 'קישור בין כיסויי הגוף לתפקידיהם',
     pl: 'Łączenie pokryć ciała z ich funkcjami',
-    uk: 'Пов\'язувати покриви тіла з їхніми функціями',
+    uk: "Пов'язувати покриви тіла з їхніми функціями",
     lt: 'Susieti kūno dangas su jų funkcijomis',
     lv: 'Saistīt ķermeņa segumus ar to funkcijām',
     et: 'Kehakatete seostamine nende ülesannetega',
@@ -35,9 +35,10 @@ export const relateBodyCoveringsToTheirFunctions_Skill_Data = buildSkillConfig({
     qm: 'Beden örtüsini vazifelerinen bağlaştırmaq',
   },
   description: {
-    methodological: "Explain how feathers, fur, scales, and skin provide protection, thermal insulation, or water balance.",
+    methodological:
+      'Explain how feathers, fur, scales, and skin provide protection, thermal insulation, or water balance.',
     frontend: {
-      en: "Explain how fur, feathers, scales and skin protect animal bodies.",
+      en: 'Explain how fur, feathers, scales and skin protect animal bodies.',
       zh: '解释毛发、羽毛、鳞片和皮肤如何保护动物的身体。',
       hi: 'समझाएँ कि बाल, पंख, शल्क और त्वचा जानवरों के शरीर की रक्षा कैसे करते हैं।',
       es: 'Explica cómo el pelaje, las plumas, las escamas y la piel protegen el cuerpo de los animales.',
@@ -58,11 +59,11 @@ export const relateBodyCoveringsToTheirFunctions_Skill_Data = buildSkillConfig({
       ms: 'Terangkan bagaimana bulu, pelepah, sisik dan kulit melindungi badan haiwan.',
       he: 'הסבירו כיצד פרווה, נוצות, קשקשים ועור מגינים על גופם של בעלי חיים.',
       pl: 'Wyjaśnij, jak sierść, pióra, łuski i skóra chronią ciała zwierząt.',
-      uk: 'Поясни, як хутро, пір\'я, луска та шкіра захищають тіла тварин.',
+      uk: "Поясни, як хутро, пір'я, луска та шкіра захищають тіла тварин.",
       lt: 'Paaiškink, kaip kailis, plunksnos, žvynai ir oda saugo gyvūnų kūnus.',
       lv: 'Izskaidro, kā kažoks, spalvas, zvīņas un āda aizsargā dzīvnieku ķermeni.',
       et: 'Selgita, kuidas karvkate, suled, soomused ja nahk kaitsevad loomade keha.',
-      be: 'Растлумач, як поўсьць, пер\'е, луска і скура абараняюць цела жывёлаў.',
+      be: "Растлумач, як поўсьць, пер'е, луска і скура абараняюць цела жывёлаў.",
       ka: 'ახსენი, როგორ იცავს ბეწვი, ბუმბული, ქერცლი და კანი ცხოველების სხეულს.',
       kk: 'Жүн, қауырсын, қабыршақ және тері жануарлардың денесін қалай қорғайтынын түсіндір.',
       qm: 'Tük, quş tüyü, pul ve deri ayvanlarnıñ bedenini nasıl qorçalağanını añlatıñız.',

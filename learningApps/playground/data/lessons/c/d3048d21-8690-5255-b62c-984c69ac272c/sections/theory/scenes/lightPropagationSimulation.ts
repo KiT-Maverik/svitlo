@@ -9,7 +9,8 @@ const en = {
     accessibleName: 'Animation of light traveling from the source to the screen',
   },
   track: {
-    accessibleDescription: 'A yellow marker moves in a straight line from the source on the left to the screen on the right.',
+    accessibleDescription:
+      'A yellow marker moves in a straight line from the source on the left to the screen on the right.',
     source: 'Light source',
     screen: 'Screen',
   },
@@ -126,7 +127,8 @@ const es: Locale = {
     accessibleName: 'Animación de la propagación de la luz desde la fuente hasta la pantalla',
   },
   track: {
-    accessibleDescription: 'Un marcador amarillo se desplaza en línea recta desde la fuente situada a la izquierda hasta la pantalla situada a la derecha.',
+    accessibleDescription:
+      'Un marcador amarillo se desplaza en línea recta desde la fuente situada a la izquierda hasta la pantalla situada a la derecha.',
     source: 'Fuente de luz',
     screen: 'Pantalla',
   },
@@ -149,7 +151,8 @@ const et: Locale = {
     accessibleName: 'Animatsioon valguse levimisest allikast ekraanini',
   },
   track: {
-    accessibleDescription: 'Kollane tähis liigub sirgjooneliselt vasakul asuvast valgusallikast paremal oleva ekraanini.',
+    accessibleDescription:
+      'Kollane tähis liigub sirgjooneliselt vasakul asuvast valgusallikast paremal oleva ekraanini.',
     source: 'Valgusallikas',
     screen: 'Ekraan',
   },
@@ -172,7 +175,8 @@ const fr: Locale = {
     accessibleName: 'Animation de la propagation de la lumière de la source à l’écran',
   },
   track: {
-    accessibleDescription: 'Un repère jaune se déplace en ligne droite de la source située à gauche vers l’écran situé à droite.',
+    accessibleDescription:
+      'Un repère jaune se déplace en ligne droite de la source située à gauche vers l’écran situé à droite.',
     source: 'Source lumineuse',
     screen: 'Écran',
   },
@@ -241,7 +245,8 @@ const id: Locale = {
     accessibleName: 'Animasi perambatan cahaya dari sumber ke layar',
   },
   track: {
-    accessibleDescription: 'Penanda kuning bergerak dalam garis lurus dari sumber di sebelah kiri menuju layar di sebelah kanan.',
+    accessibleDescription:
+      'Penanda kuning bergerak dalam garis lurus dari sumber di sebelah kiri menuju layar di sebelah kanan.',
     source: 'Sumber cahaya',
     screen: 'Layar',
   },
@@ -287,7 +292,8 @@ const ka: Locale = {
     accessibleName: 'სინათლის წყაროდან ეკრანამდე გავრცელების ანიმაცია',
   },
   track: {
-    accessibleDescription: 'ყვითელი მაჩვენებელი სწორ ხაზზე გადაადგილდება მარცხნივ მდებარე წყაროდან მარჯვნივ მდებარე ეკრანამდე.',
+    accessibleDescription:
+      'ყვითელი მაჩვენებელი სწორ ხაზზე გადაადგილდება მარცხნივ მდებარე წყაროდან მარჯვნივ მდებარე ეკრანამდე.',
     source: 'სინათლის წყარო',
     screen: 'ეკრანი',
   },
@@ -310,7 +316,8 @@ const kk: Locale = {
     accessibleName: 'Жарықтың көзден экранға таралу анимациясы',
   },
   track: {
-    accessibleDescription: 'Сары белгі сол жақтағы жарық көзінен оң жақтағы экранға дейін түзу сызық бойымен қозғалады.',
+    accessibleDescription:
+      'Сары белгі сол жақтағы жарық көзінен оң жақтағы экранға дейін түзу сызық бойымен қозғалады.',
     source: 'Жарық көзі',
     screen: 'Экран',
   },
@@ -425,7 +432,8 @@ const ms: Locale = {
     accessibleName: 'Animasi perambatan cahaya dari sumber ke skrin',
   },
   track: {
-    accessibleDescription: 'Penanda kuning bergerak dalam garis lurus dari sumber di sebelah kiri ke skrin di sebelah kanan.',
+    accessibleDescription:
+      'Penanda kuning bergerak dalam garis lurus dari sumber di sebelah kiri ke skrin di sebelah kanan.',
     source: 'Sumber cahaya',
     screen: 'Skrin',
   },
@@ -448,7 +456,8 @@ const pl: Locale = {
     accessibleName: 'Animacja rozchodzenia się światła od źródła do ekranu',
   },
   track: {
-    accessibleDescription: 'Żółty znacznik porusza się po linii prostej od źródła po lewej stronie do ekranu po prawej stronie.',
+    accessibleDescription:
+      'Żółty znacznik porusza się po linii prostej od źródła po lewej stronie do ekranu po prawej stronie.',
     source: 'Źródło światła',
     screen: 'Ekran',
   },
@@ -517,7 +526,8 @@ const ta: Locale = {
     accessibleName: 'ஒளிமூலத்திலிருந்து திரை வரை ஒளி பரவுவதைக் காட்டும் அசைவூட்டம்',
   },
   track: {
-    accessibleDescription: 'மஞ்சள் நிறக் குறியொன்று இடப்புறத்தில் உள்ள ஒளிமூலத்திலிருந்து வலப்புறத்தில் உள்ள திரை வரை நேர்கோட்டில் நகர்கிறது.',
+    accessibleDescription:
+      'மஞ்சள் நிறக் குறியொன்று இடப்புறத்தில் உள்ள ஒளிமூலத்திலிருந்து வலப்புறத்தில் உள்ள திரை வரை நேர்கோட்டில் நகர்கிறது.',
     source: 'ஒளிமூலம்',
     screen: 'திரை',
   },
@@ -540,7 +550,8 @@ const te: Locale = {
     accessibleName: 'కాంతి మూలం నుంచి తెర వరకు కాంతి ప్రసరించే యానిమేషన్',
   },
   track: {
-    accessibleDescription: 'పసుపు రంగు గుర్తు ఎడమవైపు ఉన్న కాంతి మూలం నుంచి కుడివైపు ఉన్న తెర వరకు సరళరేఖలో కదులుతుంది.',
+    accessibleDescription:
+      'పసుపు రంగు గుర్తు ఎడమవైపు ఉన్న కాంతి మూలం నుంచి కుడివైపు ఉన్న తెర వరకు సరళరేఖలో కదులుతుంది.',
     source: 'కాంతి మూలం',
     screen: 'తెర',
   },
@@ -609,7 +620,8 @@ const ur: Locale = {
     accessibleName: 'منبع سے پردے تک روشنی کے پھیلاؤ کی اینیمیشن',
   },
   track: {
-    accessibleDescription: 'ایک پیلا نشان دائیں جانب موجود منبع سے بائیں جانب موجود پردے تک سیدھی لکیر میں حرکت کرتا ہے۔',
+    accessibleDescription:
+      'ایک پیلا نشان دائیں جانب موجود منبع سے بائیں جانب موجود پردے تک سیدھی لکیر میں حرکت کرتا ہے۔',
     source: 'روشنی کا منبع',
     screen: 'پردہ',
   },

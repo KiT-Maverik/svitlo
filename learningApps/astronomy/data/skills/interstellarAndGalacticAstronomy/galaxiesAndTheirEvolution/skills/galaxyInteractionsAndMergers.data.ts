@@ -43,7 +43,7 @@ export const galaxyInteractionsAndMergers_Skill_Data = buildSkillConfig({
       hi: 'जानें कि आकाशगंगाओं की पारस्परिक क्रियाएँ और विलय उनकी संरचना, गैस और तारा निर्माण को कैसे बदलते हैं।',
       es: 'Observa cómo los encuentros y las fusiones transforman galaxias y favorecen la formación de estrellas.',
       ar: 'اكتشف كيف يمكن للتقارب والاندماج إعادة تشكيل المجرات وتحفيز تكوّن نجوم جديدة.',
-      fr: 'Observe comment les rencontres et les fusions transforment les galaxies et déclenchent la formation d\'étoiles.',
+      fr: "Observe comment les rencontres et les fusions transforment les galaxies et déclenchent la formation d'étoiles.",
       bn: 'ছায়াপথের কাছাকাছি আসা ও মিলন কীভাবে তাদের আকৃতি বদলে নতুন তারা গঠন ঘটাতে পারে তা দেখো।',
       pt: 'Veja como encontros e fusões alteram a estrutura, o gás e a formação de estrelas nas galáxias.',
       ur: 'جانیں کہ ملاقاتیں اور انضمام کہکشاؤں کی شکل کیسے بدلتے اور نئے ستاروں کی تشکیل کیسے بڑھاتے ہیں۔',

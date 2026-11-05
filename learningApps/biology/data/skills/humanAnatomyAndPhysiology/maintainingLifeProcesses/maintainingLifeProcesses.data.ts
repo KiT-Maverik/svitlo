@@ -1,12 +1,21 @@
 import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
 
-import { explainDigestionOfNutrients_Skill_Data, explainGasExchangeInTheLungs_Skill_Data, explainLungVentilation_Skill_Data, explainNutrientAbsorption_Skill_Data, explainTheHeartsRoleInCirculation_Skill_Data, explainThePassageOfFoodThroughTheDigestiveSystem_Skill_Data, explainTheRoleOfTheKidneysInExcretion_Skill_Data, identifyBreathingChangesDuringPhysicalActivity_Skill_Data } from './skills';
+import {
+  explainDigestionOfNutrients_Skill_Data,
+  explainGasExchangeInTheLungs_Skill_Data,
+  explainLungVentilation_Skill_Data,
+  explainNutrientAbsorption_Skill_Data,
+  explainTheHeartsRoleInCirculation_Skill_Data,
+  explainThePassageOfFoodThroughTheDigestiveSystem_Skill_Data,
+  explainTheRoleOfTheKidneysInExcretion_Skill_Data,
+  identifyBreathingChangesDuringPhysicalActivity_Skill_Data,
+} from './skills';
 
 export const maintainingLifeProcesses_SkillGroup_Data = buildSkillGroupConfig({
-  slug: "maintainingLifeProcesses",
-  id: "135fbe86-2e20-4fdb-9e90-07e3c347fd0b",
+  slug: 'maintainingLifeProcesses',
+  id: '135fbe86-2e20-4fdb-9e90-07e3c347fd0b',
   name: {
-    en: "Maintaining Life Processes",
+    en: 'Maintaining Life Processes',
     zh: '维持生命的过程',
     hi: 'जीवन प्रक्रियाओं को बनाए रखना',
     es: 'Mantenimiento de los procesos vitales',
@@ -47,7 +56,8 @@ export const maintainingLifeProcesses_SkillGroup_Data = buildSkillGroupConfig({
     identifyBreathingChangesDuringPhysicalActivity: identifyBreathingChangesDuringPhysicalActivity_Skill_Data,
   },
   description: {
-    methodological: "Nutrients, oxygen, and blood travel along different pathways; their coordinated operation provides cells with resources.",
+    methodological:
+      'Nutrients, oxygen, and blood travel along different pathways; their coordinated operation provides cells with resources.',
     frontend: {
       en: "Investigate how digestion, breathing and circulation supply the body's cells.",
       zh: '研究消化、呼吸和血液循环如何为人体细胞提供所需物质。',

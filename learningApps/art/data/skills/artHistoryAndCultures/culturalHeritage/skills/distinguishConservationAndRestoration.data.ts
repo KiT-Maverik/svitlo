@@ -52,7 +52,7 @@ export const distinguishConservationAndRestoration_Skill_Data = buildSkillConfig
       ja: '元の素材を保存することと、失われた特徴を再現することの違いを理解する。',
       ko: '원래 재료를 보존하는 것과 사라진 특징을 재현하는 것의 차이를 이해합니다.',
       tr: 'Özgün malzemeyi korumanın kaybolan özellikleri yeniden oluşturmaktan nasıl farklı olduğunu anlayın.',
-      vi: "Hiểu sự khác biệt giữa việc bảo tồn vật liệu gốc còn lại và việc phục chế những đặc điểm đã mất.",
+      vi: 'Hiểu sự khác biệt giữa việc bảo tồn vật liệu gốc còn lại và việc phục chế những đặc điểm đã mất.',
       ta: 'அசல் பொருளைப் பாதுகாப்பது இழந்த அம்சங்களை மீண்டும் உருவாக்குவதிலிருந்து எவ்வாறு வேறுபடுகிறது என்பதைப் புரிந்துகொள்ளுங்கள்.',
       te: 'అసలు పదార్థాన్ని కాపాడటం, కోల్పోయిన లక్షణాలను మళ్లీ సృష్టించడం కంటే ఎలా భిన్నమో అర్థం చేసుకోండి.',
       mr: 'मूळ सामग्री जतन करणे आणि हरवलेली वैशिष्ट्ये पुन्हा तयार करणे यांतला फरक समजून घ्या.',

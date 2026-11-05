@@ -1,8 +1,8 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const assessAnEmailSendersAuthenticity_Skill_Data = buildSkillConfig({
-  slug: "assessAnEmailSendersAuthenticity",
-  id: "4bbfbe52-aecf-41ab-b745-9b3b94832c21",
+  slug: 'assessAnEmailSendersAuthenticity',
+  id: '4bbfbe52-aecf-41ab-b745-9b3b94832c21',
   name: {
     en: "Assess an Email Sender's Authenticity",
     zh: '评估电子邮件发件人的真实性',
@@ -35,7 +35,8 @@ export const assessAnEmailSendersAuthenticity_Skill_Data = buildSkillConfig({
     qm: 'Elektron mektüp yollağan şahsnıñ aqiqiyligini teşkermek',
   },
   description: {
-    methodological: "Recognize that a sender's displayed name and image do not prove identity; check the address and an independent communication channel.",
+    methodological:
+      "Recognize that a sender's displayed name and image do not prove identity; check the address and an independent communication channel.",
     frontend: {
       en: "Check an email sender's identity beyond the displayed name or picture.",
       zh: '核查发件人的身份，而不仅仅看显示名称或头像。',

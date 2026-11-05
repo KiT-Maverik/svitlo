@@ -1,12 +1,16 @@
 import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
 
-import { describeInteractionsBetweenBonesAndMuscles_Skill_Data, explainTheRoleOfMusclesInMovement_Skill_Data, explainTheRoleOfTheSkeleton_Skill_Data } from './skills';
+import {
+  describeInteractionsBetweenBonesAndMuscles_Skill_Data,
+  explainTheRoleOfMusclesInMovement_Skill_Data,
+  explainTheRoleOfTheSkeleton_Skill_Data,
+} from './skills';
 
 export const supportAndMovement_SkillGroup_Data = buildSkillGroupConfig({
-  slug: "supportAndMovement",
-  id: "42a106c2-cb21-46e3-b394-bbc199821b28",
+  slug: 'supportAndMovement',
+  id: '42a106c2-cb21-46e3-b394-bbc199821b28',
   name: {
-    en: "Support and Movement",
+    en: 'Support and Movement',
     zh: '支撑与运动',
     hi: 'सहारा और गति',
     es: 'Sostén y movimiento',
@@ -42,9 +46,10 @@ export const supportAndMovement_SkillGroup_Data = buildSkillGroupConfig({
     explainTheRoleOfTheSkeleton: explainTheRoleOfTheSkeleton_Skill_Data,
   },
   description: {
-    methodological: "Bones provide support and levers, muscles exert force, and joints determine the possible directions of movement.",
+    methodological:
+      'Bones provide support and levers, muscles exert force, and joints determine the possible directions of movement.',
     frontend: {
-      en: "Explore how bones, muscles and joints work together in movement.",
+      en: 'Explore how bones, muscles and joints work together in movement.',
       zh: '探索骨骼、肌肉和关节如何协同完成运动。',
       hi: 'जानें कि हड्डियाँ, मांसपेशियाँ और जोड़ मिलकर गति कैसे उत्पन्न करते हैं।',
       es: 'Explora cómo huesos, músculos y articulaciones trabajan juntos para producir movimiento.',
@@ -65,7 +70,7 @@ export const supportAndMovement_SkillGroup_Data = buildSkillGroupConfig({
       ms: 'Terokai bagaimana tulang, otot dan sendi bekerjasama menghasilkan pergerakan.',
       he: 'גלו כיצד עצמות, שרירים ומפרקים פועלים יחד ליצירת תנועה.',
       pl: 'Poznaj, jak kości, mięśnie i stawy współpracują, umożliwiając ruch.',
-      uk: 'Дослідіть, як кістки, м\'язи та суглоби спільно забезпечують рух.',
+      uk: "Дослідіть, як кістки, м'язи та суглоби спільно забезпечують рух.",
       lt: 'Sužinokite, kaip kaulai, raumenys ir sąnariai kartu sukuria judesį.',
       lv: 'Izpētiet, kā kauli, muskuļi un locītavas kopīgi nodrošina kustības.',
       et: 'Uuri, kuidas luud, lihased ja liigesed koos liikumist võimaldavad.',

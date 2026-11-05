@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainMagneticActionWithoutContact_Skill_Data = buildSkillConfig({
-  slug: "explainMagneticActionWithoutContact",
-  id: "202c5889-61e9-4f27-8104-bb1161388d2e",
+  slug: 'explainMagneticActionWithoutContact',
+  id: '202c5889-61e9-4f27-8104-bb1161388d2e',
   name: {
-    en: "Explain magnetic action without contact",
+    en: 'Explain magnetic action without contact',
     qm: 'Toqunmadan magnit tesirini añlatmaq',
     zh: '解释非接触磁力',
     hi: 'बिना संपर्क के चुंबकीय बल समझाना',
@@ -35,9 +35,9 @@ export const explainMagneticActionWithoutContact_Skill_Data = buildSkillConfig({
     kk: 'Жанаспай магниттік әсер етуді түсіндіру',
   },
   description: {
-    methodological: "Recognize magnetic force as an interaction that does not require direct contact.",
+    methodological: 'Recognize magnetic force as an interaction that does not require direct contact.',
     frontend: {
-      en: "Explain why a magnet can exert force without touching an object.",
+      en: 'Explain why a magnet can exert force without touching an object.',
       qm: 'Magnit cisimge toqunmadan nasıl quvetnen tesir etkenini añlat.',
       zh: '解释为什么磁铁不接触物体也能对其施力。',
       hi: 'समझाएँ कि चुंबक बिना छुए किसी वस्तु पर बल क्यों लगा सकता है।',

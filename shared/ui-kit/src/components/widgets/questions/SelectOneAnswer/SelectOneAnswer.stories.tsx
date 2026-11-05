@@ -5,8 +5,10 @@ import { SelectOneAnswer } from './SelectOneAnswer';
 
 const text = (id: string, value: string) => ({ id, type: 'text' as const, value });
 const response: Question_SelectOneAnswer<'response', Locale_Languages> = {
-  type: 'selectOneAnswer', id: 'one-story',
-  assessmentMethod: 'retrieval', restrictions: [],
+  type: 'selectOneAnswer',
+  id: 'one-story',
+  assessmentMethod: 'retrieval',
+  restrictions: [],
   question: [text('prompt', 'Which planet is closest to the Sun?')],
   answers: {
     correct: { mercury: text('mercury', 'Mercury') },

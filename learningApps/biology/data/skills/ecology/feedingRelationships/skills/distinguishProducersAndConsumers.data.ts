@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const distinguishProducersAndConsumers_Skill_Data = buildSkillConfig({
-  slug: "distinguishProducersAndConsumers",
-  id: "64b11b65-e588-4dbd-ac10-3b0345421006",
+  slug: 'distinguishProducersAndConsumers',
+  id: '64b11b65-e588-4dbd-ac10-3b0345421006',
   name: {
-    en: "Distinguish Producers and Consumers",
+    en: 'Distinguish Producers and Consumers',
     zh: '区分生产者和消费者',
     hi: 'उत्पादकों और उपभोक्ताओं में अंतर करना',
     es: 'Distinguir productores y consumidores',
@@ -35,9 +35,10 @@ export const distinguishProducersAndConsumers_Skill_Data = buildSkillConfig({
     qm: 'Produtsentler ve konsumentlerni farqlamaq',
   },
   description: {
-    methodological: "Determine which organisms produce organic substances from inorganic ones and which obtain them by consuming other organisms.",
+    methodological:
+      'Determine which organisms produce organic substances from inorganic ones and which obtain them by consuming other organisms.',
     frontend: {
-      en: "Recognize producers and consumers by how they obtain organic substances.",
+      en: 'Recognize producers and consumers by how they obtain organic substances.',
       zh: '根据生物获取有机物的方式，识别生产者和消费者。',
       hi: 'जीव कार्बनिक पदार्थ कैसे प्राप्त करते हैं, इसके आधार पर उत्पादक और उपभोक्ता पहचानें।',
       es: 'Identifica productores y consumidores por cómo obtienen sustancias orgánicas.',

@@ -7,14 +7,18 @@ import { enUiKitMessages } from '../../testing/uiKitMessages.unit.fx';
 
 const text = (id: string, value: string) => ({ id, type: 'text' as const, value });
 const common = {
-  id: 'question-1', assessmentMethod: 'retrieval' as const, restrictions: [],
+  id: 'question-1',
+  assessmentMethod: 'retrieval' as const,
+  restrictions: [],
   question: [text('prompt', 'What is the answer?')] as [ReturnType<typeof text>],
 };
 const one: Question<'response', Locale_Languages> = {
-  ...common, type: 'selectOneAnswer',
+  ...common,
+  type: 'selectOneAnswer',
   answers: {
     correct: { yes: text('yes', 'Yes') },
-    incorrect: { no: text('no', 'No') }, distractors: {},
+    incorrect: { no: text('no', 'No') },
+    distractors: {},
   },
   hint: [text('hint', 'Helpful hint')],
   explanation: [text('explanation', 'Because it is yes.')],
@@ -45,17 +49,25 @@ describe('QuestionRenderer — contract responses', () => {
     const block = text('answer', 'Answer');
     const definitions: Question<'response', Locale_Languages>[] = [
       one,
-      { ...common, type: 'selectMultipleAnswers',
-        answers: { correct: { a: block }, incorrect: {}, distractors: {} } },
+      { ...common, type: 'selectMultipleAnswers', answers: { correct: { a: block }, incorrect: {}, distractors: {} } },
       { ...common, type: 'matchBlocks', pairs: { first: { left: block, right: text('right', 'Right') } } },
       { ...common, type: 'answerWithText', correctAnswers: ['Answer'], placeholder: 'Write' },
       { ...common, type: 'answerWithNumber', correctAnswers: [1, 2], placeholder: 'Number' },
       { ...common, type: 'orderSequence', sequence: [block] },
       { ...common, type: 'buildAnswerWithBlocks', correctSequence: [block], distractors: [], placeholder: 'Build' },
-      { ...common, type: 'fillBlanksWithBlocks',
-        slots: [{ selector: 'first', correctAnswer: block }], distractors: [], placeholder: 'Choose' },
-      { ...common, type: 'fillBlanksWithText',
-        slots: [{ selector: 'first', correctAnswers: ['Answer'] }], placeholder: 'Fill' },
+      {
+        ...common,
+        type: 'fillBlanksWithBlocks',
+        slots: [{ selector: 'first', correctAnswer: block }],
+        distractors: [],
+        placeholder: 'Choose',
+      },
+      {
+        ...common,
+        type: 'fillBlanksWithText',
+        slots: [{ selector: 'first', correctAnswers: ['Answer'] }],
+        placeholder: 'Fill',
+      },
     ];
     const questions = definitions.map((question, index) => ({ ...question, id: 'question-' + index }));
     const { container } = render(<QuestionRenderer messages={enUiKitMessages} questions={questions} />);
@@ -83,8 +95,12 @@ describe('QuestionRenderer — contract responses', () => {
   it('resets attempt state when a question ID changes', () => {
     const { rerender } = render(<QuestionRenderer messages={enUiKitMessages} questions={[one]} />);
     fireEvent.click(screen.getByRole('button', { name: 'Yes' }));
-    rerender(<QuestionRenderer messages={enUiKitMessages} questions={[{ ...one, id: 'another-id',
-      question: [text('other', 'Replacement prompt')] }]} />);
+    rerender(
+      <QuestionRenderer
+        messages={enUiKitMessages}
+        questions={[{ ...one, id: 'another-id', question: [text('other', 'Replacement prompt')] }]}
+      />,
+    );
     expect(screen.queryByText('What is the answer?')).toBeNull();
     expect(screen.getByText('Replacement prompt')).toBeVisible();
     expect(screen.getByRole('button', { name: 'Yes' })).toHaveAttribute('aria-pressed', 'false');

@@ -35,7 +35,8 @@ export function localizeLessonValue(
       if (typeof code !== 'string' || !available.has(code as LanguageCode) || typeof value.value !== 'string') {
         throw new Error(`Invalid single-locale value at ${pointer(path)}`);
       }
-      sources[pointer(path)] = code === requested ? { code: code as LanguageCode } : { code: code as LanguageCode, isFallback: true };
+      sources[pointer(path)] =
+        code === requested ? { code: code as LanguageCode } : { code: code as LanguageCode, isFallback: true };
       return value.value;
     }
 
@@ -43,8 +44,7 @@ export function localizeLessonValue(
     const languageKeys = keys.filter(key => key !== 'fallback');
     const looksLocalized =
       hasFallback ||
-      (keys.length > 0 &&
-        keys.every(key => available.has(key as LanguageCode) && typeof value[key] === 'string'));
+      (keys.length > 0 && keys.every(key => available.has(key as LanguageCode) && typeof value[key] === 'string'));
     if (!looksLocalized) return undefined;
 
     if (
@@ -62,7 +62,8 @@ export function localizeLessonValue(
     if (typeof code !== 'string' || typeof value[code] !== 'string') {
       throw new Error(`Missing ${requested} locale at ${pointer(path)}`);
     }
-    sources[pointer(path)] = code === requested ? { code: code as LanguageCode } : { code: code as LanguageCode, isFallback: true };
+    sources[pointer(path)] =
+      code === requested ? { code: code as LanguageCode } : { code: code as LanguageCode, isFallback: true };
     return value[code];
   }
 

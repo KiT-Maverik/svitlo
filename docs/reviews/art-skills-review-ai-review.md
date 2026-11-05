@@ -4,12 +4,12 @@ This document coordinates the Art Skills translation review across four independ
 
 ## Agent contributions
 
-| Agent | Assigned languages | Pull request |
-| --- | --- | --- |
-| 1 | `qm`, `uk`, `pl`, `de`, `es`, `hi`, `et` | [#170](https://github.com/KiT-Maverik/svitlo-web/pull/170) |
-| 2 | `zh`, `ja`, `ko`, `vi`, `pt`, `ta`, `lt` | [#169](https://github.com/KiT-Maverik/svitlo-web/pull/169) |
-| 3 | `ar`, `ur`, `fr`, `bn`, `id`, `mr`, `lv` | [#167](https://github.com/KiT-Maverik/svitlo-web/pull/167) |
-| 4 | `he`, `te`, `be`, `ka`, `kk`, `tr`, `ms` | [#166](https://github.com/KiT-Maverik/svitlo-web/pull/166) |
+| Agent | Assigned languages                       | Pull request                                               |
+| ----- | ---------------------------------------- | ---------------------------------------------------------- |
+| 1     | `qm`, `uk`, `pl`, `de`, `es`, `hi`, `et` | [#170](https://github.com/KiT-Maverik/svitlo-web/pull/170) |
+| 2     | `zh`, `ja`, `ko`, `vi`, `pt`, `ta`, `lt` | [#169](https://github.com/KiT-Maverik/svitlo-web/pull/169) |
+| 3     | `ar`, `ur`, `fr`, `bn`, `id`, `mr`, `lv` | [#167](https://github.com/KiT-Maverik/svitlo-web/pull/167) |
+| 4     | `he`, `te`, `be`, `ka`, `kk`, `tr`, `ms` | [#166](https://github.com/KiT-Maverik/svitlo-web/pull/166) |
 
 All four PRs target `review/art-skills-review-ai-review` for integration. Keep the umbrella PR in draft until final verification.
 

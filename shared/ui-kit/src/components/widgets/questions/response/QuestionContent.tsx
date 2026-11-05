@@ -28,16 +28,26 @@ export function QuestionContent({
 /** Plain text is for accessible names only; visual content uses ContentBlockRenderer. */
 export function questionBlockLabel(block: QuestionBlock): string {
   switch (block.type) {
-    case 'text': return block.value;
-    case 'markdown': return block.text.replace(/[*_`#]/gu, '');
-    case 'image': return block.alt;
-    case 'audio': return block.title;
-    case 'video': return block.title ?? '';
-    case 'youtube': return block.title ?? block.hint ?? '';
-    case 'code': return block.title ?? block.language;
-    case 'checkpoint': return block.title;
-    case 'scene': return block.rendererKey;
-    case 'quiz': return '';
+    case 'text':
+      return block.value;
+    case 'markdown':
+      return block.text.replace(/[*_`#]/gu, '');
+    case 'image':
+      return block.alt;
+    case 'audio':
+      return block.title;
+    case 'video':
+      return block.title ?? '';
+    case 'youtube':
+      return block.title ?? block.hint ?? '';
+    case 'code':
+      return block.title ?? block.language;
+    case 'checkpoint':
+      return block.title;
+    case 'scene':
+      return block.rendererKey;
+    case 'quiz':
+      return '';
   }
 }
 

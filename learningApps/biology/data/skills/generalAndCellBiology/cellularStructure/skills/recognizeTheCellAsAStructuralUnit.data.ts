@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const recognizeTheCellAsAStructuralUnit_Skill_Data = buildSkillConfig({
-  slug: "recognizeTheCellAsAStructuralUnit",
-  id: "7dea0683-c420-47f6-b3bf-1ebba2c990ca",
+  slug: 'recognizeTheCellAsAStructuralUnit',
+  id: '7dea0683-c420-47f6-b3bf-1ebba2c990ca',
   name: {
-    en: "Recognize the Cell as a Structural Unit",
+    en: 'Recognize the Cell as a Structural Unit',
     zh: '认识细胞是结构的基本单位',
     hi: 'कोशिका को संरचनात्मक इकाई के रूप में पहचानना',
     es: 'Reconocer la célula como unidad estructural',
@@ -35,9 +35,10 @@ export const recognizeTheCellAsAStructuralUnit_Skill_Data = buildSkillConfig({
     qm: 'Üceyreni esas quruluş birlemi olaraq tanımaq',
   },
   description: {
-    methodological: "Understand that the tissues and bodies of cellular organisms consist of microscopic units, each with its own boundary.",
+    methodological:
+      'Understand that the tissues and bodies of cellular organisms consist of microscopic units, each with its own boundary.',
     frontend: {
-      en: "Understand why cells are the basic structural units of living organisms.",
+      en: 'Understand why cells are the basic structural units of living organisms.',
       zh: '理解为什么细胞是生物体结构的基本单位。',
       hi: 'समझें कि कोशिकाएँ जीवों की मूल संरचनात्मक इकाइयाँ क्यों हैं।',
       es: 'Comprende por qué las células son las unidades estructurales básicas de los seres vivos.',

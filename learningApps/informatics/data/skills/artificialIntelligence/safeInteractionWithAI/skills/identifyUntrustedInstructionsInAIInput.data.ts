@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const identifyUntrustedInstructionsInAIInput_Skill_Data = buildSkillConfig({
-  slug: "identifyUntrustedInstructionsInAIInput",
-  id: "fe0b7a24-27f7-407c-b56f-d69a0fa24192",
+  slug: 'identifyUntrustedInstructionsInAIInput',
+  id: 'fe0b7a24-27f7-407c-b56f-d69a0fa24192',
   name: {
-    en: "Identify Untrusted Instructions in AI Input",
+    en: 'Identify Untrusted Instructions in AI Input',
     zh: '识别人工智能输入中的不可信指令',
     hi: 'एआई इनपुट में अविश्वसनीय निर्देश पहचानना',
     es: 'Identificar instrucciones no confiables en entradas de IA',
@@ -35,9 +35,10 @@ export const identifyUntrustedInstructionsInAIInput_Skill_Data = buildSkillConfi
     qm: 'Suniy intellektke kirgen işançsız talimatlarnı tanımaq',
   },
   description: {
-    methodological: "Distinguish the content of an external document being analyzed from the user's instructions; third-party text should not automatically control system behavior.",
+    methodological:
+      "Distinguish the content of an external document being analyzed from the user's instructions; third-party text should not automatically control system behavior.",
     frontend: {
-      en: "Recognize instructions hidden in external material that should not control an assistant.",
+      en: 'Recognize instructions hidden in external material that should not control an assistant.',
       zh: '识别外部材料中不应控制助手行为的隐藏指令。',
       hi: 'बाहरी सामग्री में छिपे ऐसे निर्देश पहचानें जिन्हें सहायक पर हावी नहीं होना चाहिए।',
       es: 'Reconoce instrucciones ocultas en material externo que no deberían controlar al asistente.',

@@ -43,7 +43,7 @@ export const binaryAndMultipleStars_Skill_Data = buildSkillConfig({
       hi: 'जानें कि दो या अधिक तारे एक-दूसरे के चारों ओर कैसे परिक्रमा करते हैं।',
       es: 'Explora cómo parejas y grupos de estrellas orbitan unas alrededor de otras.',
       ar: 'استكشف كيف تدور أزواج النجوم ومجموعاتها حول بعضها بعضًا.',
-      fr: 'Découvrez comment des paires et des groupes d\'étoiles orbitent les uns autour des autres.',
+      fr: "Découvrez comment des paires et des groupes d'étoiles orbitent les uns autour des autres.",
       bn: 'দুই বা তার বেশি নক্ষত্র কীভাবে একে অন্যকে কেন্দ্র করে ঘোরে, তা জানো।',
       pt: 'Explore como pares e grupos de estrelas orbitam uns aos outros.',
       ur: 'جانیں کہ ستاروں کے جوڑے اور گروہ ایک دوسرے کے گرد کیسے گردش کرتے ہیں۔',

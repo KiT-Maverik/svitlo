@@ -37,16 +37,26 @@
 }
 
 .code :global(.hljs-comment),
-.code :global(.hljs-quote) { color: var(--mui-palette-text-secondary, #777); }
+.code :global(.hljs-quote) {
+  color: var(--mui-palette-text-secondary, #777);
+}
 .code :global(.hljs-keyword),
 .code :global(.hljs-selector-tag),
-.code :global(.hljs-type) { color: var(--mui-palette-secondary-main, #7b1fa2); }
+.code :global(.hljs-type) {
+  color: var(--mui-palette-secondary-main, #7b1fa2);
+}
 .code :global(.hljs-string),
 .code :global(.hljs-attr),
-.code :global(.hljs-addition) { color: var(--mui-palette-success-main, #2e7d32); }
+.code :global(.hljs-addition) {
+  color: var(--mui-palette-success-main, #2e7d32);
+}
 .code :global(.hljs-number),
 .code :global(.hljs-literal),
-.code :global(.hljs-built_in) { color: var(--mui-palette-warning-main, #ed6c02); }
+.code :global(.hljs-built_in) {
+  color: var(--mui-palette-warning-main, #ed6c02);
+}
 .code :global(.hljs-title),
 .code :global(.hljs-function),
-.code :global(.hljs-variable) { color: var(--mui-palette-info-main, #0288d1); }
+.code :global(.hljs-variable) {
+  color: var(--mui-palette-info-main, #0288d1);
+}

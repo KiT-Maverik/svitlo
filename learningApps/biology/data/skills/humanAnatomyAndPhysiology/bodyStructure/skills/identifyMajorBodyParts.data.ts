@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const identifyMajorBodyParts_Skill_Data = buildSkillConfig({
-  slug: "identifyMajorBodyParts",
-  id: "f7127c29-2cc2-40a6-bcd3-6a76ada392eb",
+  slug: 'identifyMajorBodyParts',
+  id: 'f7127c29-2cc2-40a6-bcd3-6a76ada392eb',
   name: {
-    en: "Identify Major Body Parts",
+    en: 'Identify Major Body Parts',
     zh: '识别人体主要部位',
     hi: 'शरीर के मुख्य भाग पहचानना',
     es: 'Identificar las principales partes del cuerpo',
@@ -35,9 +35,9 @@ export const identifyMajorBodyParts_Skill_Data = buildSkillConfig({
     qm: 'Bedenniñ esas qısımlarını belgilemek',
   },
   description: {
-    methodological: "Locate the head, trunk, limbs, and important external structures on a model of the human body.",
+    methodological: 'Locate the head, trunk, limbs, and important external structures on a model of the human body.',
     frontend: {
-      en: "Recognize the major external parts of the human body.",
+      en: 'Recognize the major external parts of the human body.',
       zh: '认识人体的主要外部部位。',
       hi: 'मानव शरीर के मुख्य बाहरी भागों को पहचानें।',
       es: 'Reconoce las principales partes externas del cuerpo humano.',

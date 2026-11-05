@@ -1,6 +1,4 @@
-export type TextPart =
-  | { kind: 'text'; value: string }
-  | { kind: 'fragment'; id: string; value: string };
+export type TextPart = { kind: 'text'; value: string } | { kind: 'fragment'; id: string; value: string };
 
 const marker = /^\s*id\s*:\s*([^;{}]+?)\s*;\s*value\s*:\s*([\s\S]*)$/u;
 const variableMarker = /^\s*([\p{L}_][\p{L}\p{N}_.-]*)\s*$/u;
@@ -35,11 +33,13 @@ export function parseText(text: string): TextPart[] {
     const source = text.slice(start + 2, end < 0 ? undefined : end);
     const parsed = marker.exec(source);
     const variable = variableMarker.exec(source);
-    parts.push(parsed && parsed[1].trim()
-      ? { kind: 'fragment', id: parsed[1].trim(), value: parsed[2].trim() }
-      : variable
-        ? { kind: 'fragment', id: variable[1], value: variable[1] }
-        : { kind: 'text', value: readableFallback(source) });
+    parts.push(
+      parsed && parsed[1].trim()
+        ? { kind: 'fragment', id: parsed[1].trim(), value: parsed[2].trim() }
+        : variable
+          ? { kind: 'fragment', id: variable[1], value: variable[1] }
+          : { kind: 'text', value: readableFallback(source) },
+    );
     if (end < 0) break;
     cursor = end + 2;
   }

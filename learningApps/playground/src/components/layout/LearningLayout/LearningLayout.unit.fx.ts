@@ -33,11 +33,21 @@ const topics = [
 ] as const;
 
 export const LearningLayout_fx = {
-  defaults: { topics, pathname: topics[0].href, skippableSteps: [true, false, false], messages: ukUiKitMessages } satisfies Omit<Props, 'children'>,
+  defaults: {
+    topics,
+    pathname: topics[0].href,
+    skippableSteps: [true, false, false],
+    messages: ukUiKitMessages,
+  } satisfies Omit<Props, 'children'>,
   render: (props: Partial<Props> = {}) => {
     const { children = 'Lesson content', ...overrides } = props;
-    return render(createElement(LessonNavigationProvider, { sectionCount: 3 },
-      createElement(LearningLayout, { ...LearningLayout_fx.defaults, ...overrides } as Props, children)));
+    return render(
+      createElement(
+        LessonNavigationProvider,
+        { sectionCount: 3 },
+        createElement(LearningLayout, { ...LearningLayout_fx.defaults, ...overrides } as Props, children),
+      ),
+    );
   },
   navbar: Navbar_fx.selectors,
   child: { verticalSpace: VerticalSpace_fx.selectors },

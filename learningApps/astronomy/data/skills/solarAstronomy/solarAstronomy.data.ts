@@ -68,7 +68,7 @@ export const solarAstronomy_SkillDomain_Data = buildSkillDomainConfig({
       de: 'Untersuche die Sonne als Stern und entdecke, wie ihre Energie und Aktivität das Sonnensystem beeinflussen.',
       pt: 'Estude o Sol como uma estrela e explore como sua energia e atividade influenciam o Sistema Solar.',
       id: 'Pelajari Matahari sebagai bintang dan jelajahi bagaimana energi serta aktivitasnya memengaruhi Tata Surya.',
-      tr: 'Güneş\'i bir yıldız olarak incele; enerjisinin ve etkinliğinin Güneş Sistemi\'ni nasıl etkilediğini keşfet.',
+      tr: "Güneş'i bir yıldız olarak incele; enerjisinin ve etkinliğinin Güneş Sistemi'ni nasıl etkilediğini keşfet.",
       zh: '把太阳作为一颗恒星来研究，探索它的能量和活动如何影响太阳系。',
       ja: '太陽を一つの恒星として学び、そのエネルギーや活動が太陽系にどう影響するか調べよう。',
       ko: '태양을 하나의 별로 탐구하고 태양의 에너지와 활동이 태양계에 어떤 영향을 미치는지 알아보세요.',

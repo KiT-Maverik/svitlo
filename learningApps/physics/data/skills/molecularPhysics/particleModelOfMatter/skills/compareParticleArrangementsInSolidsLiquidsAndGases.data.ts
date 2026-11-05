@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const compareParticleArrangementsInSolidsLiquidsAndGases_Skill_Data = buildSkillConfig({
-  slug: "compareParticleArrangementsInSolidsLiquidsAndGases",
-  id: "06aff371-2810-4a69-8a56-bec8d4fc4c8f",
+  slug: 'compareParticleArrangementsInSolidsLiquidsAndGases',
+  id: '06aff371-2810-4a69-8a56-bec8d4fc4c8f',
   name: {
-    en: "Compare particle arrangements in solids, liquids, and gases",
+    en: 'Compare particle arrangements in solids, liquids, and gases',
     qm: 'Qattı, suyuq ve gaz maddelerde parçacıqlarnıñ yerleşüvini qıyaslamaq',
     zh: '比较固体、液体和气体中的粒子排列',
     hi: 'ठोस, तरल और गैस में कणों की व्यवस्था की तुलना करना',
@@ -35,9 +35,10 @@ export const compareParticleArrangementsInSolidsLiquidsAndGases_Skill_Data = bui
     kk: 'Қатты, сұйық және газ күйлеріндегі бөлшектер орналасуын салыстыру',
   },
   description: {
-    methodological: "Particles in solids mostly oscillate around fixed positions; in liquids, particles can move relative to one another; and in gases they have much greater freedom of movement and characteristic interparticle distances.",
+    methodological:
+      'Particles in solids mostly oscillate around fixed positions; in liquids, particles can move relative to one another; and in gases they have much greater freedom of movement and characteristic interparticle distances.',
     frontend: {
-      en: "Compare particle arrangements in solids, liquids and gases.",
+      en: 'Compare particle arrangements in solids, liquids and gases.',
       qm: 'Qattı, suyuq ve gaz allarda parçacıqlar nasıl yerleşkenini qıyasla.',
       zh: '比较固体、液体和气体中粒子的不同排列方式。',
       hi: 'ठोस, तरल और गैस के कणों की व्यवस्था की तुलना करें।',

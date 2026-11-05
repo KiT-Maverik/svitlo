@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainThePropertiesOfStatesOfMatterThroughParticleMotion_Skill_Data = buildSkillConfig({
-  slug: "explainThePropertiesOfStatesOfMatterThroughParticleMotion",
-  id: "ac81314a-0180-490b-8c6c-da0f0c2c8012",
+  slug: 'explainThePropertiesOfStatesOfMatterThroughParticleMotion',
+  id: 'ac81314a-0180-490b-8c6c-da0f0c2c8012',
   name: {
-    en: "Explain the properties of states of matter through particle motion",
+    en: 'Explain the properties of states of matter through particle motion',
     qm: 'Madde alları hususiyetlerini parçacıqlar areketinen añlatmaq',
     zh: '通过粒子运动解释物态性质',
     hi: 'कणों की गति से पदार्थ की अवस्थाओं के गुण समझाना',
@@ -35,9 +35,10 @@ export const explainThePropertiesOfStatesOfMatterThroughParticleMotion_Skill_Dat
     kk: 'Зат күйлерінің қасиеттерін бөлшектер қозғалысымен түсіндіру',
   },
   description: {
-    methodological: "Differences in the arrangement, motion, and interactions of particles explain the properties of solids, liquids, and gases.",
+    methodological:
+      'Differences in the arrangement, motion, and interactions of particles explain the properties of solids, liquids, and gases.',
     frontend: {
-      en: "Use particle motion and interactions to explain the properties of states of matter.",
+      en: 'Use particle motion and interactions to explain the properties of states of matter.',
       qm: 'Qattı, suyuq ve gaz maddelerniñ hususiyetlerini parçacıqlarnıñ areketi ve tesirleşüvi vastasınen añlat.',
       zh: '利用粒子的运动和相互作用解释固体、液体、气体的性质。',
       hi: 'कणों की गति और अंतःक्रिया से ठोस, तरल और गैस के गुण समझाएँ।',

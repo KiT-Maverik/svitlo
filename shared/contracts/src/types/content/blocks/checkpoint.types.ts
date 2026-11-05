@@ -21,7 +21,10 @@ type OtherContentBlocks<ConfigType extends ContentEntity_ConfigType, SupportedLa
   | ContentBlock_Youtube<ConfigType, SupportedLanguages>
   | ContentBlock_Image<ConfigType, SupportedLanguages>;
 
-type CheckpointAnswer<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends Locale_Languages> = NonEmptyArray<OtherContentBlocks<ConfigType, SupportedLanguages>>;
+type CheckpointAnswer<
+  ConfigType extends ContentEntity_ConfigType,
+  SupportedLanguages extends Locale_Languages,
+> = NonEmptyArray<OtherContentBlocks<ConfigType, SupportedLanguages>>;
 
 type ContentBlock_Checkpoint_Settings = {
   headingLevel?: 1 | 2 | 3 | 4 | 5 | 6;
@@ -37,26 +40,31 @@ type ContentBlock_Checkpoint_Settings = {
 
 type ContentBlock_Checkpoint_Definition = ContentBlock_Definition_Meta<'checkpoint'>;
 
-type ContentBlock_Checkpoint_Data<SupportedLanguages extends Locale_Languages> = ContentBlock_Data_Meta<'checkpoint'> & ContentBlock_Checkpoint_Settings & {
-  title: Locale_Options<SupportedLanguages>;
-  items: {
-    question: Locale_Options<SupportedLanguages>;
-    answer: CheckpointAnswer<'data', SupportedLanguages>;
-    check?: true;
-  }[];
-};
-
-export type ContentBlock_Checkpoint_Response<SupportedLanguages extends Locale_Languages> = ContentBlock_Response_Meta<'checkpoint'> &
+type ContentBlock_Checkpoint_Data<SupportedLanguages extends Locale_Languages> = ContentBlock_Data_Meta<'checkpoint'> &
   ContentBlock_Checkpoint_Settings & {
-    title: string;
+    title: Locale_Options<SupportedLanguages>;
     items: {
-      question: string;
-      answer: CheckpointAnswer<'response', SupportedLanguages>;
+      question: Locale_Options<SupportedLanguages>;
+      answer: CheckpointAnswer<'data', SupportedLanguages>;
       check?: true;
     }[];
   };
 
-export type ContentBlock_Checkpoint<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends Locale_Languages> = {
+export type ContentBlock_Checkpoint_Response<SupportedLanguages extends Locale_Languages> =
+  ContentBlock_Response_Meta<'checkpoint'> &
+    ContentBlock_Checkpoint_Settings & {
+      title: string;
+      items: {
+        question: string;
+        answer: CheckpointAnswer<'response', SupportedLanguages>;
+        check?: true;
+      }[];
+    };
+
+export type ContentBlock_Checkpoint<
+  ConfigType extends ContentEntity_ConfigType,
+  SupportedLanguages extends Locale_Languages,
+> = {
   definition: ContentBlock_Checkpoint_Definition;
   data: ContentBlock_Checkpoint_Data<SupportedLanguages>;
   response: ContentBlock_Checkpoint_Response<SupportedLanguages>;

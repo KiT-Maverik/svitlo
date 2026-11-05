@@ -5,10 +5,10 @@ import { genetics_SkillGroup_Data } from './genetics/genetics.data';
 import { reproductionAndTraits_SkillGroup_Data } from './reproductionAndTraits/reproductionAndTraits.data';
 
 export const geneticsAndEvolution_SkillDomain_Data = buildSkillDomainConfig({
-  slug: "geneticsAndEvolution",
-  id: "4ae7ddb9-d4cc-4a6c-a102-9422b5ac6d43",
+  slug: 'geneticsAndEvolution',
+  id: '4ae7ddb9-d4cc-4a6c-a102-9422b5ac6d43',
   name: {
-    en: "Genetics and Evolution",
+    en: 'Genetics and Evolution',
     qm: 'Genetika ve evolütsiya',
     zh: '遗传学与进化',
     hi: 'आनुवंशिकी और विकासवाद',
@@ -44,9 +44,10 @@ export const geneticsAndEvolution_SkillDomain_Data = buildSkillDomainConfig({
     reproductionAndTraits: reproductionAndTraits_SkillGroup_Data,
   },
   description: {
-    methodological: "Transmission of hereditary information, reasons for similarities and differences among offspring, and changes in inherited traits within populations across generations. An individual's growth is not an evolutionary process.",
+    methodological:
+      "Transmission of hereditary information, reasons for similarities and differences among offspring, and changes in inherited traits within populations across generations. An individual's growth is not an evolutionary process.",
     frontend: {
-      en: "Explore how inherited information passes between generations and how populations evolve.",
+      en: 'Explore how inherited information passes between generations and how populations evolve.',
       qm: 'İrsiy malümatnıñ nesilden nesilge nasıl berilgenini ve populyatsiyalarnıñ nesiller devamında nasıl deñişkenini ögreniñiz.',
       zh: '探索遗传信息如何代代相传，以及种群如何随着世代更替而进化。',
       hi: 'जानें कि वंशानुगत जानकारी पीढ़ी-दर-पीढ़ी कैसे पहुँचती है और समष्टियाँ समय के साथ कैसे विकसित होती हैं।',

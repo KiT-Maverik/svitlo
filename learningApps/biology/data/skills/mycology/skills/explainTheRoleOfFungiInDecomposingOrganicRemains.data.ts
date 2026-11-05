@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainTheRoleOfFungiInDecomposingOrganicRemains_Skill_Data = buildSkillConfig({
-  slug: "explainTheRoleOfFungiInDecomposingOrganicRemains",
-  id: "eb91a925-c334-4474-89ab-baed59f92038",
+  slug: 'explainTheRoleOfFungiInDecomposingOrganicRemains',
+  id: 'eb91a925-c334-4474-89ab-baed59f92038',
   name: {
-    en: "Explain the Role of Fungi in Decomposing Organic Remains",
+    en: 'Explain the Role of Fungi in Decomposing Organic Remains',
     zh: '解释真菌在分解有机残骸中的作用',
     hi: 'जैविक अवशेषों के अपघटन में कवकों की भूमिका समझाना',
     es: 'Explicar el papel de los hongos en la descomposición de restos orgánicos',
@@ -35,9 +35,10 @@ export const explainTheRoleOfFungiInDecomposingOrganicRemains_Skill_Data = build
     qm: 'Mantarlar organik qaldıqlarnıñ çürüvinde ne rol oynağanını añlatmaq',
   },
   description: {
-    methodological: "Relate enzymes secreted by fungi to the breakdown of remains and the reuse of substances in an ecosystem.",
+    methodological:
+      'Relate enzymes secreted by fungi to the breakdown of remains and the reuse of substances in an ecosystem.',
     frontend: {
-      en: "Explain how fungi break down organic remains and return materials to ecosystems.",
+      en: 'Explain how fungi break down organic remains and return materials to ecosystems.',
       zh: '解释真菌如何分解有机残骸，使物质重新回到生态系统中。',
       hi: 'समझाएँ कि कवक जैविक अवशेषों को कैसे विघटित करते हैं और पदार्थों को पारितंत्र में वापस लौटाते हैं।',
       es: 'Explica cómo los hongos descomponen restos orgánicos y devuelven materiales a los ecosistemas.',

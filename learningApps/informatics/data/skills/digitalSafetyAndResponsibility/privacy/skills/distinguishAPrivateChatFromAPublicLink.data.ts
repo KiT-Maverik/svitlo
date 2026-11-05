@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const distinguishAPrivateChatFromAPublicLink_Skill_Data = buildSkillConfig({
-  slug: "distinguishAPrivateChatFromAPublicLink",
-  id: "cda01f72-5e9e-40a0-a12d-521db4611ec4",
+  slug: 'distinguishAPrivateChatFromAPublicLink',
+  id: 'cda01f72-5e9e-40a0-a12d-521db4611ec4',
   name: {
-    en: "Distinguish a Private Chat from a Public Link",
+    en: 'Distinguish a Private Chat from a Public Link',
     zh: '区分私人聊天与公开链接',
     hi: 'निजी चैट और सार्वजनिक लिंक में अंतर करना',
     es: 'Distinguir un chat privado de un enlace público',
@@ -23,7 +23,7 @@ export const distinguishAPrivateChatFromAPublicLink_Skill_Data = buildSkillConfi
     te: 'ప్రైవేట్ చాట్‌ను పబ్లిక్ లింక్ నుంచి వేరు చేయడం',
     mr: 'खाजगी चॅट आणि सार्वजनिक दुवा वेगळा ओळखणे',
     ms: 'Membezakan sembang peribadi daripada pautan awam',
-    he: 'הבחנה בין צ\'אט פרטי לקישור ציבורי',
+    he: "הבחנה בין צ'אט פרטי לקישור ציבורי",
     pl: 'Odróżnianie prywatnego czatu od publicznego linku',
     uk: 'Відрізняти приватний чат від публічного посилання',
     lt: 'Atskirti privatų pokalbį nuo viešos nuorodos',
@@ -35,9 +35,10 @@ export const distinguishAPrivateChatFromAPublicLink_Skill_Data = buildSkillConfi
     qm: 'Şahsiy sohbetni aleniy siltemeden ayırmaq',
   },
   description: {
-    methodological: "Check who can access a shared conversation or document; do not automatically assume a link is private.",
+    methodological:
+      'Check who can access a shared conversation or document; do not automatically assume a link is private.',
     frontend: {
-      en: "Check who can open a shared chat or document rather than assuming its link is private.",
+      en: 'Check who can open a shared chat or document rather than assuming its link is private.',
       zh: '确认谁能够打开分享的聊天或文档，不要假定链接是私密的。',
       hi: 'जाँचें कि साझा चैट या दस्तावेज़ कौन खोल सकता है; लिंक को अपने आप निजी न मानें।',
       es: 'Comprueba quién puede abrir un chat o documento compartido sin suponer que el enlace sea privado.',

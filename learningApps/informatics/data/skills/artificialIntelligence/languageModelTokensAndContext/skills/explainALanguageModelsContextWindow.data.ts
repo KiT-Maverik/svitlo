@@ -1,8 +1,8 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainALanguageModelsContextWindow_Skill_Data = buildSkillConfig({
-  slug: "explainALanguageModelsContextWindow",
-  id: "d4360ab9-32a7-4be5-8d74-40069809cf31",
+  slug: 'explainALanguageModelsContextWindow',
+  id: 'd4360ab9-32a7-4be5-8d74-40069809cf31',
   name: {
     en: "Explain a Language Model's Context Window",
     zh: '解释语言模型的上下文窗口',
@@ -35,9 +35,10 @@ export const explainALanguageModelsContextWindow_Skill_Data = buildSkillConfig({
     qm: 'Til modeliniñ kontekst penceresini añlatmaq',
   },
   description: {
-    methodological: "Identify the limit on how many tokens a system can use for a request and understand that different models have different limits.",
+    methodological:
+      'Identify the limit on how many tokens a system can use for a request and understand that different models have different limits.',
     frontend: {
-      en: "Understand why a language model can use only a limited amount of context.",
+      en: 'Understand why a language model can use only a limited amount of context.',
       zh: '理解语言模型为什么只能使用有限长度的上下文。',
       hi: 'समझें कि भाषा मॉडल सीमित मात्रा में ही संदर्भ क्यों उपयोग कर सकते हैं।',
       es: 'Comprende por qué un modelo de lenguaje solo puede utilizar una cantidad limitada de contexto.',

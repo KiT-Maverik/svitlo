@@ -58,7 +58,7 @@ export const stellarEvolution_SkillGroup_Data = buildSkillGroupConfig({
       hi: 'जानें कि नाभिकीय ईंधन खर्च होने पर तारे कैसे बदलते हैं।',
       es: 'Descubre cómo cambian las estrellas a medida que consumen su combustible nuclear.',
       ar: 'اكتشف كيف تتغير النجوم مع استهلاك وقودها النووي.',
-      fr: 'Découvrez comment les étoiles changent à mesure qu\'elles épuisent leur combustible nucléaire.',
+      fr: "Découvrez comment les étoiles changent à mesure qu'elles épuisent leur combustible nucléaire.",
       bn: 'পারমাণবিক জ্বালানি ফুরিয়ে আসার সঙ্গে নক্ষত্র কীভাবে বদলায়, তা জানো।',
       pt: 'Descubra como as estrelas mudam à medida que consomem seu combustível nuclear.',
       ur: 'جانیں کہ ستارے اپنا جوہری ایندھن استعمال کرتے ہوئے کیسے بدلتے ہیں۔',

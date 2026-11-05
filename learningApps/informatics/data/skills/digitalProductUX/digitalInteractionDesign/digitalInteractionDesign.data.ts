@@ -1,12 +1,17 @@
 import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
 
-import { designDigitalInterfaceFeedback_Skill_Data, designDigitalInterfaceNavigation_Skill_Data, identifyADigitalProductUsersGoal_Skill_Data, preventCommonDigitalInteractionErrors_Skill_Data } from './skills';
+import {
+  designDigitalInterfaceFeedback_Skill_Data,
+  designDigitalInterfaceNavigation_Skill_Data,
+  identifyADigitalProductUsersGoal_Skill_Data,
+  preventCommonDigitalInteractionErrors_Skill_Data,
+} from './skills';
 
 export const digitalInteractionDesign_SkillGroup_Data = buildSkillGroupConfig({
-  slug: "digitalInteractionDesign",
-  id: "74767923-3b47-4431-94cc-3168ccd2e73c",
+  slug: 'digitalInteractionDesign',
+  id: '74767923-3b47-4431-94cc-3168ccd2e73c',
   name: {
-    en: "Digital Interaction Design",
+    en: 'Digital Interaction Design',
     zh: '数字交互设计',
     hi: 'डिजिटल इंटरैक्शन डिज़ाइन',
     es: 'Diseño de interacción digital',
@@ -43,9 +48,10 @@ export const digitalInteractionDesign_SkillGroup_Data = buildSkillGroupConfig({
     preventCommonDigitalInteractionErrors: preventCommonDigitalInteractionErrors_Skill_Data,
   },
   description: {
-    methodological: "Designing user action flows in applications and digital devices, understandable transitions, status feedback, and safeguards against common errors.",
+    methodological:
+      'Designing user action flows in applications and digital devices, understandable transitions, status feedback, and safeguards against common errors.',
     frontend: {
-      en: "Explore how to plan intuitive actions and helpful responses in digital interfaces.",
+      en: 'Explore how to plan intuitive actions and helpful responses in digital interfaces.',
       zh: '探索如何规划直观的操作和数字界面中的有用反馈。',
       hi: 'जानें कि डिजिटल इंटरफ़ेस में सहज क्रियाएँ और मददगार प्रतिक्रियाएँ कैसे बनाएँ।',
       es: 'Explora cómo planificar acciones intuitivas y respuestas útiles en interfaces digitales.',

@@ -1,17 +1,22 @@
 import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
 
-import { distinguishAPartOfAnOrganismFromAWholeOrganism_Skill_Data, explainAnOrgansFunctionInAnOrganism_Skill_Data, explainTheInterdependenceOfOrgans_Skill_Data, orderTheLevelsCellTissueOrganSystem_Skill_Data } from './skills';
+import {
+  distinguishAPartOfAnOrganismFromAWholeOrganism_Skill_Data,
+  explainAnOrgansFunctionInAnOrganism_Skill_Data,
+  explainTheInterdependenceOfOrgans_Skill_Data,
+  orderTheLevelsCellTissueOrganSystem_Skill_Data,
+} from './skills';
 
 export const levelsOfOrganization_SkillGroup_Data = buildSkillGroupConfig({
-  slug: "levelsOfOrganization",
-  id: "453e1185-8dd1-439f-b8cf-34bd3c7a5e1c",
+  slug: 'levelsOfOrganization',
+  id: '453e1185-8dd1-439f-b8cf-34bd3c7a5e1c',
   name: {
-    en: "Levels of Organization",
+    en: 'Levels of Organization',
     zh: '生物体的结构层次',
     hi: 'संगठन के स्तर',
     es: 'Niveles de organización',
     ar: 'مستويات التنظيم',
-    fr: 'Niveaux d\'organisation',
+    fr: "Niveaux d'organisation",
     bn: 'গঠনের স্তর',
     pt: 'Níveis de organização',
     ur: 'تنظیم کی سطحیں',
@@ -43,14 +48,15 @@ export const levelsOfOrganization_SkillGroup_Data = buildSkillGroupConfig({
     orderTheLevelsCellTissueOrganSystem: orderTheLevelsCellTissueOrganSystem_Skill_Data,
   },
   description: {
-    methodological: "Parts of cellular organisms form nested levels; the functioning of a whole depends on the coordinated work of its structures.",
+    methodological:
+      'Parts of cellular organisms form nested levels; the functioning of a whole depends on the coordinated work of its structures.',
     frontend: {
-      en: "Explore how cells, tissues, organs and systems fit together in living organisms.",
+      en: 'Explore how cells, tissues, organs and systems fit together in living organisms.',
       zh: '探索细胞、组织、器官和器官系统如何在生物体内相互配合。',
       hi: 'जानें कि कोशिकाएँ, ऊतक, अंग और अंग तंत्र जीवों में कैसे जुड़े होते हैं।',
       es: 'Explora cómo se integran las células, los tejidos, los órganos y los sistemas en los seres vivos.',
       ar: 'استكشف كيف تتكامل الخلايا والأنسجة والأعضاء والأجهزة في الكائنات الحية.',
-      fr: 'Explore comment les cellules, les tissus, les organes et les systèmes s\'organisent chez les êtres vivants.',
+      fr: "Explore comment les cellules, les tissus, les organes et les systèmes s'organisent chez les êtres vivants.",
       bn: 'জীবদেহে কোষ, কলা, অঙ্গ ও অঙ্গতন্ত্র কীভাবে একসঙ্গে যুক্ত থাকে তা জানো।',
       pt: 'Explore como células, tecidos, órgãos e sistemas se integram nos organismos vivos.',
       ur: 'جانیں کہ خلیے، بافتیں، اعضا اور اعضائی نظام جانداروں میں کیسے ایک دوسرے سے جڑے ہوتے ہیں۔',

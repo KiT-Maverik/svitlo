@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const classifyAnimalsByDiet_Skill_Data = buildSkillConfig({
-  slug: "classifyAnimalsByDiet",
-  id: "556699c0-f7b9-4254-aa24-b157bbd4a28e",
+  slug: 'classifyAnimalsByDiet',
+  id: '556699c0-f7b9-4254-aa24-b157bbd4a28e',
   name: {
-    en: "Classify Animals by Diet",
+    en: 'Classify Animals by Diet',
     zh: '根据食性分类动物',
     hi: 'आहार के अनुसार प्राणियों का वर्गीकरण करना',
     es: 'Clasificar los animales según su dieta',
@@ -35,14 +35,15 @@ export const classifyAnimalsByDiet_Skill_Data = buildSkillConfig({
     qm: 'Ayvanlarnı aşayğan azığına köre sınıflandırmaq',
   },
   description: {
-    methodological: "Classify examples as herbivores, carnivores, or omnivores according to actual diets rather than animal names.",
+    methodological:
+      'Classify examples as herbivores, carnivores, or omnivores according to actual diets rather than animal names.',
     frontend: {
-      en: "Classify animals by what they actually eat.",
+      en: 'Classify animals by what they actually eat.',
       zh: '根据动物实际吃的食物对它们进行分类。',
       hi: 'प्राणियों को उनके वास्तविक भोजन के आधार पर वर्गीकृत करें।',
       es: 'Clasifica los animales según lo que realmente comen.',
       ar: 'صنّف الحيوانات وفقًا لما تأكله بالفعل.',
-      fr: 'Classe les animaux selon ce qu\'ils mangent réellement.',
+      fr: "Classe les animaux selon ce qu'ils mangent réellement.",
       bn: 'প্রাণীরা আসলে কী খায়, তার ভিত্তিতে তাদের শ্রেণিবদ্ধ করো।',
       pt: 'Classifique os animais de acordo com o que realmente comem.',
       ur: 'جانوروں کو اس بنیاد پر گروہوں میں بانٹیں کہ وہ حقیقت میں کیا کھاتے ہیں۔',

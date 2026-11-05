@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const identifyElectricallyInsulatingMaterials_Skill_Data = buildSkillConfig({
-  slug: "identifyElectricallyInsulatingMaterials",
-  id: "093fa5be-42e0-45c8-83b4-dc17b63cc586",
+  slug: 'identifyElectricallyInsulatingMaterials',
+  id: '093fa5be-42e0-45c8-83b4-dc17b63cc586',
   name: {
-    en: "Identify electrically insulating materials",
+    en: 'Identify electrically insulating materials',
     qm: 'Elektrik izolâtor malzemelerini tanımaq',
     zh: '识别电绝缘材料',
     hi: 'विद्युतरोधक पदार्थ पहचानना',
@@ -35,9 +35,9 @@ export const identifyElectricallyInsulatingMaterials_Skill_Data = buildSkillConf
     kk: 'Электр оқшаулағыш материалдарды анықтау',
   },
   description: {
-    methodological: "Determine experimentally which materials impede the flow of current.",
+    methodological: 'Determine experimentally which materials impede the flow of current.',
     frontend: {
-      en: "Identify materials that prevent or greatly limit electric current.",
+      en: 'Identify materials that prevent or greatly limit electric current.',
       qm: 'Elektrik aqımını keçirmegen ya da pek küçlü sıñırlağan malzemelerni tanı.',
       zh: '识别能阻止或大幅限制电流的材料。',
       hi: 'ऐसे पदार्थ पहचानें जो विद्युत धारा को रोकते या बहुत कम करते हैं।',

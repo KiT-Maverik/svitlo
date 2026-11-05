@@ -23,7 +23,8 @@ export function supportedLanguages(repositoryRoot) {
   const registry = source.match(/export\s+const\s+DEFAULT_SUPPORTED_LANGUAGES\s*=\s*\[([\s\S]*?)\]\s*as\s+const/);
   if (!registry) throw new Error('Cannot locate DEFAULT_SUPPORTED_LANGUAGES');
   const locales = [...registry[1].matchAll(/\blanguage:\s*['"]([^'"]+)['"]/g)].map(match => match[1]);
-  if (!locales.length || new Set(locales).size !== locales.length) throw new Error('Invalid supported language registry');
+  if (!locales.length || new Set(locales).size !== locales.length)
+    throw new Error('Invalid supported language registry');
   return locales;
 }
 
@@ -43,21 +44,32 @@ export function localizeReviewValue(input, requested, allowedLanguages) {
       if (!allowed.has(value.language) || typeof value.value !== 'string' || !value.value.trim()) {
         throw new Error(`Invalid single-language value at ${pointer(parts)}`);
       }
-      sources[pointer(parts)] = value.language === requested ? { code: requested } : { code: value.language, isFallback: true };
+      sources[pointer(parts)] =
+        value.language === requested ? { code: requested } : { code: value.language, isFallback: true };
       return value.value;
     }
     const fallbackPresent = Object.hasOwn(value, 'fallback');
     const localeKeys = keys.filter(key => key !== 'fallback');
-    const looksLocalized = fallbackPresent || (keys.length > 0 && keys.every(key => allowed.has(key) && typeof value[key] === 'string'));
+    const looksLocalized =
+      fallbackPresent || (keys.length > 0 && keys.every(key => allowed.has(key) && typeof value[key] === 'string'));
     if (looksLocalized) {
-      if (!localeKeys.length || localeKeys.some(key => !allowed.has(key) || typeof value[key] !== 'string' || !value[key].trim())) {
+      if (
+        !localeKeys.length ||
+        localeKeys.some(key => !allowed.has(key) || typeof value[key] !== 'string' || !value[key].trim())
+      ) {
         throw new Error(`Invalid locale dictionary at ${pointer(parts)}`);
       }
-      if (fallbackPresent && (typeof value.fallback !== 'string' || !allowed.has(value.fallback) || typeof value[value.fallback] !== 'string')) {
+      if (
+        fallbackPresent &&
+        (typeof value.fallback !== 'string' ||
+          !allowed.has(value.fallback) ||
+          typeof value[value.fallback] !== 'string')
+      ) {
         throw new Error(`Invalid fallback at ${pointer(parts)}`);
       }
       const code = Object.hasOwn(value, requested) ? requested : value.fallback;
-      if (typeof code !== 'string' || typeof value[code] !== 'string') throw new Error(`Missing ${requested} locale at ${pointer(parts)}`);
+      if (typeof code !== 'string' || typeof value[code] !== 'string')
+        throw new Error(`Missing ${requested} locale at ${pointer(parts)}`);
       sources[pointer(parts)] = code === requested ? { code } : { code, isFallback: true };
       return value[code];
     }
@@ -68,53 +80,93 @@ export function localizeReviewValue(input, requested, allowedLanguages) {
 
 /** Only search the lesson tree: no imports, eval, mutation, or JSX. */
 export function sourceIndex(repositoryRoot, lessonRelativePath) {
-  if (lessonRelativePath.split(/[\\/]/).includes('..') || path.isAbsolute(lessonRelativePath)) throw new Error('Invalid lesson source directory');
+  if (lessonRelativePath.split(/[\\/]/).includes('..') || path.isAbsolute(lessonRelativePath))
+    throw new Error('Invalid lesson source directory');
   const lessonRoot = path.resolve(repositoryRoot, lessonRelativePath);
-  if (!lessonRoot.startsWith(path.resolve(repositoryRoot, 'learningApps') + path.sep)) throw new Error('Invalid lesson source directory');
+  if (!lessonRoot.startsWith(path.resolve(repositoryRoot, 'learningApps') + path.sep))
+    throw new Error('Invalid lesson source directory');
   const files = [];
   function walk(directory) {
-    for (const entry of fs.readdirSync(directory, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name, 'en'))) {
+    for (const entry of fs
+      .readdirSync(directory, { withFileTypes: true })
+      .sort((a, b) => a.name.localeCompare(b.name, 'en'))) {
       if (entry.isSymbolicLink()) throw new Error(`Symlink in lesson source tree: ${entry.name}`);
       const full = path.join(directory, entry.name);
       if (entry.isDirectory()) walk(full);
       else if (entry.isFile() && /\.tsx?$/.test(entry.name) && !/\.spec\.tsx?$/.test(entry.name)) {
-        files.push({ relative: path.relative(repositoryRoot, full).replaceAll(path.sep, '/'), text: fs.readFileSync(full, 'utf8') });
+        files.push({
+          relative: path.relative(repositoryRoot, full).replaceAll(path.sep, '/'),
+          text: fs.readFileSync(full, 'utf8'),
+        });
       }
     }
   }
   walk(lessonRoot);
-  return { files, hasFile(relative) { return fs.existsSync(path.join(repositoryRoot, relative)); } };
+  return {
+    files,
+    hasFile(relative) {
+      return fs.existsSync(path.join(repositoryRoot, relative));
+    },
+  };
 }
 
-export function renderLessonMarkdown({ lesson, locale, languages, packagePath, sourceFiles, sourceRef = 'new-lesson' }) {
+export function renderLessonMarkdown({
+  lesson,
+  locale,
+  languages,
+  packagePath,
+  sourceFiles,
+  sourceRef = 'new-lesson',
+}) {
   if (!isRecord(lesson)) throw new Error('Lesson must be an object');
   const textbook = segment(packagePath.split('/')[1], 'textbook');
   if (packagePath !== `learningApps/${textbook}`) throw new Error('Invalid package path');
   const relative = resolveEntityPath(required(lesson.id, 'lesson id'));
   const slug = segment(lesson.slug, 'lesson slug');
-  if (!isRecord(lesson.parameters) || !Array.isArray(lesson.parameters.languages) || !lesson.parameters.languages.length) {
+  if (
+    !isRecord(lesson.parameters) ||
+    !Array.isArray(lesson.parameters.languages) ||
+    !lesson.parameters.languages.length
+  ) {
     throw new Error('Missing lesson parameters.languages');
   }
-  if (new Set(lesson.parameters.languages).size !== lesson.parameters.languages.length || lesson.parameters.languages.some(code => !languages.includes(code))) {
+  if (
+    new Set(lesson.parameters.languages).size !== lesson.parameters.languages.length ||
+    lesson.parameters.languages.some(code => !languages.includes(code))
+  ) {
     throw new Error('Duplicate or unsupported lesson languages');
   }
-  if (!lesson.parameters.languages.includes(locale)) throw new Error(`Lesson ${relative} does not support locale ${locale}`);
-  if (!Array.isArray(lesson.sections) || !lesson.sections.length || !isRecord(lesson.questions) || !Array.isArray(lesson.flashcards)) {
+  if (!lesson.parameters.languages.includes(locale))
+    throw new Error(`Lesson ${relative} does not support locale ${locale}`);
+  if (
+    !Array.isArray(lesson.sections) ||
+    !lesson.sections.length ||
+    !isRecord(lesson.questions) ||
+    !Array.isArray(lesson.flashcards)
+  ) {
     throw new Error(`Lesson ${relative} is missing sections, questions, or flashcards`);
   }
   const { value: localized, sources } = localizeReviewValue(lesson, locale, lesson.parameters.languages);
   const lessonPath = `${packagePath}/data/lessons/${relative}`;
   const entry = `${lessonPath}/${slug}.data.ts`;
   const files = sourceFiles?.files ?? [];
-  const link = file => `https://github.com/KiT-Maverik/svitlo-web/blob/${encodeURIComponent(sourceRef)}/${file.split('/').map(encodeURIComponent).join('/')}`;
+  const link = file =>
+    `https://github.com/KiT-Maverik/svitlo-web/blob/${encodeURIComponent(sourceRef)}/${file.split('/').map(encodeURIComponent).join('/')}`;
   const source = (id, fallback = entry) => {
-    const match = typeof id === 'string' ? files.find(file => file.text.includes(`'${id}'`) || file.text.includes(`"${id}"`)) : null;
+    const match =
+      typeof id === 'string'
+        ? files.find(file => file.text.includes(`'${id}'`) || file.text.includes(`"${id}"`))
+        : null;
     const file = match?.relative ?? fallback;
     return `[source](${link(file)})`;
   };
   const lines = [];
   const add = (...items) => lines.push(...items);
-  const inline = value => required(value, 'localized text').replaceAll('\r', '').replaceAll('\n', ' ').replace(/([\\`*_[\]<>|])/g, '\\$1');
+  const inline = value =>
+    required(value, 'localized text')
+      .replaceAll('\r', '')
+      .replaceAll('\n', ' ')
+      .replace(/([\\`*_[\]<>|])/g, '\\$1');
   const note = parts => {
     const origin = sources[pointer(parts)];
     if (!origin) throw new Error(`Missing localization source at ${pointer(parts)}`);
@@ -146,9 +198,17 @@ export function renderLessonMarkdown({ lesson, locale, languages, packagePath, s
     if (!isRecord(block)) throw new Error(`Invalid ${type} block at ${pointer(parts)}`);
     const id = required(block.id, `${type} id`);
     heading(4, `${title} · ${type}`);
-    add(`- ID: \`${inline(id)}\``, `- Slug: \`${inline(block.slug ?? title)}\``, `- Type: \`${type}\``, `- Canonical: ${source(id, fallback)}`, '');
+    add(
+      `- ID: \`${inline(id)}\``,
+      `- Slug: \`${inline(block.slug ?? title)}\``,
+      `- Type: \`${type}\``,
+      `- Canonical: ${source(id, fallback)}`,
+      '',
+    );
     switch (type) {
-      case 'text': emitText('Text', block.value, [...parts, 'value']); break;
+      case 'text':
+        emitText('Text', block.value, [...parts, 'value']);
+        break;
       case 'markdown': {
         const field = block.text === undefined ? 'locales' : 'text';
         const textPath = [...parts, field];
@@ -156,7 +216,8 @@ export function renderLessonMarkdown({ lesson, locale, languages, packagePath, s
           const origin = sources[pointer(textPath)];
           const sectionSlug = localized.sections[Number(parts[1])]?.slug;
           const markdownFile = `${lessonPath}/sections/${sectionSlug}/markdown/${block.slug}/${origin?.code ?? locale}.md`;
-          if (sourceFiles?.hasFile?.(markdownFile)) add(`- Localized Markdown file: [${origin?.code ?? locale}.md](${link(markdownFile)})`, '');
+          if (sourceFiles?.hasFile?.(markdownFile))
+            add(`- Localized Markdown file: [${origin?.code ?? locale}.md](${link(markdownFile)})`, '');
         }
         emitText('Markdown', block.text ?? block.locales, textPath, true);
         break;
@@ -165,16 +226,28 @@ export function renderLessonMarkdown({ lesson, locale, languages, packagePath, s
         emitText('Title', block.title, [...parts, 'title']);
         if (!Array.isArray(block.items)) throw new Error(`Invalid checkpoint items at ${pointer(parts)}`);
         block.items.forEach((item, i) => {
-          if (!isRecord(item) || !Array.isArray(item.answer) || !item.answer.length) throw new Error(`Invalid checkpoint answer at ${pointer([...parts, 'items', i])}`);
+          if (!isRecord(item) || !Array.isArray(item.answer) || !item.answer.length)
+            throw new Error(`Invalid checkpoint answer at ${pointer([...parts, 'items', i])}`);
           add(`**Item ${i + 1} — ${phrase(item.question, [...parts, 'items', i, 'question'])}**`, '');
-          item.answer.forEach((answer, j) => emitBlock(answer, inferBlockType(answer), [...parts, 'items', i, 'answer', j], `Answer ${i + 1}.${j + 1}`, fallback));
+          item.answer.forEach((answer, j) =>
+            emitBlock(
+              answer,
+              inferBlockType(answer),
+              [...parts, 'items', i, 'answer', j],
+              `Answer ${i + 1}.${j + 1}`,
+              fallback,
+            ),
+          );
         });
         break;
       }
       case 'quiz': {
         emitText('Welcome', block.welcome, [...parts, 'welcome']);
-        if (!isRecord(block.questions) || !Object.keys(block.questions).length) throw new Error(`Empty quiz questions at ${pointer(parts)}`);
-        Object.entries(block.questions).forEach(([key, q], index) => emitQuestion(q, key, [...parts, 'questions', key], index + 1, fallback));
+        if (!isRecord(block.questions) || !Object.keys(block.questions).length)
+          throw new Error(`Empty quiz questions at ${pointer(parts)}`);
+        Object.entries(block.questions).forEach(([key, q], index) =>
+          emitQuestion(q, key, [...parts, 'questions', key], index + 1, fallback),
+        );
         metadata(block, ['id', 'slug', 'welcome', 'questions', 'type', 'locale']);
         break;
       }
@@ -198,10 +271,24 @@ export function renderLessonMarkdown({ lesson, locale, languages, packagePath, s
             else add(`- ${field}: \`${inline(block[field])}\``);
           }
         }
-        metadata(block, ['id', 'slug', 'type', 'locale', 'title', 'description', 'hint', 'alt', 'src', 'href', 'fileLocation', 'poster']);
+        metadata(block, [
+          'id',
+          'slug',
+          'type',
+          'locale',
+          'title',
+          'description',
+          'hint',
+          'alt',
+          'src',
+          'href',
+          'fileLocation',
+          'poster',
+        ]);
         break;
       }
-      default: throw new Error(`Unsupported content block type: ${type}`);
+      default:
+        throw new Error(`Unsupported content block type: ${type}`);
     }
   }
   const seenQuestions = new Set();
@@ -212,30 +299,60 @@ export function renderLessonMarkdown({ lesson, locale, languages, packagePath, s
     if (seenQuestions.has(id)) return;
     seenQuestions.add(id);
     heading(5, `Question ${index}: ${key} · ${type}`);
-    add(`- ID: \`${inline(id)}\``, `- Slug: \`${inline(question.slug ?? key)}\``, `- Canonical: ${source(id, fallback)}`, '');
-    if (!Array.isArray(question.question) || !question.question.length) throw new Error(`Missing question content: ${key}`);
-    for (const [i, block] of question.question.entries()) emitBlock(block, inferBlockType(block), [...parts, 'question', i], `Prompt ${i + 1}`, fallback);
+    add(
+      `- ID: \`${inline(id)}\``,
+      `- Slug: \`${inline(question.slug ?? key)}\``,
+      `- Canonical: ${source(id, fallback)}`,
+      '',
+    );
+    if (!Array.isArray(question.question) || !question.question.length)
+      throw new Error(`Missing question content: ${key}`);
+    for (const [i, block] of question.question.entries())
+      emitBlock(block, inferBlockType(block), [...parts, 'question', i], `Prompt ${i + 1}`, fallback);
     if (isRecord(question.answers)) {
       for (const [category, answers] of Object.entries(question.answers)) {
         if (!isRecord(answers)) throw new Error(`Invalid answer category ${category}`);
         for (const [answerKey, block] of Object.entries(answers)) {
-          emitBlock(block, inferBlockType(block), [...parts, 'answers', category, answerKey], `${category} answer: ${answerKey}`, fallback);
+          emitBlock(
+            block,
+            inferBlockType(block),
+            [...parts, 'answers', category, answerKey],
+            `${category} answer: ${answerKey}`,
+            fallback,
+          );
         }
       }
     }
     for (const kind of ['explanation', 'hint']) {
       if (question[kind] !== undefined) {
         if (!Array.isArray(question[kind])) throw new Error(`Invalid ${kind} for question ${key}`);
-        question[kind].forEach((block, i) => emitBlock(block, inferBlockType(block), [...parts, kind, i], `${kind} ${i + 1}`, fallback));
+        question[kind].forEach((block, i) =>
+          emitBlock(block, inferBlockType(block), [...parts, kind, i], `${kind} ${i + 1}`, fallback),
+        );
       }
     }
     metadata(question, ['id', 'slug', 'type', 'question', 'answers', 'explanation', 'hint', 'locale']);
   }
 
   heading(1, inline(localized.title));
-  add(`- Entity: \`lesson\``, `- ID: \`${inline(lesson.id)}\``, `- Group / slug: \`${relative}\``, `- Requested language: \`${locale}\``, `- Canonical: ${source(lesson.id)}`);
-  const fallbackCodes = [...new Set(Object.values(sources).filter(v => v.isFallback).map(v => v.code))];
-  add(`- Source languages: ${fallbackCodes.length ? fallbackCodes.map(v => `\`${v}\` (explicit fallback)`).join(', ') : `\`${locale}\` (no fallbacks)`}`, '');
+  add(
+    `- Entity: \`lesson\``,
+    `- ID: \`${inline(lesson.id)}\``,
+    `- Group / slug: \`${relative}\``,
+    `- Requested language: \`${locale}\``,
+    `- Canonical: ${source(lesson.id)}`,
+  );
+  const fallbackCodes = [
+    ...new Set(
+      Object.values(sources)
+        .filter(v => v.isFallback)
+        .map(v => v.code),
+    ),
+  ];
+  add(
+    `- Source languages: ${fallbackCodes.length ? fallbackCodes.map(v => `\`${v}\` (explicit fallback)`).join(', ') : `\`${locale}\` (no fallbacks)`}`,
+    '',
+  );
   if (sources['/title']?.isFallback) add(`> Lesson title fallback: ${sources['/title'].code}`, '');
   heading(2, 'Sections');
   for (const [sectionIndex, section] of localized.sections.entries()) {
@@ -244,14 +361,23 @@ export function renderLessonMarkdown({ lesson, locale, languages, packagePath, s
     required(section.id, `section ${sectionKey} id`);
     const sp = ['sections', sectionIndex];
     heading(3, `${phrase(section.title, [...sp, 'title'])} · ${sectionKey}`);
-    add(`- ID: \`${inline(section.id)}\``, `- Slug: \`${inline(sectionKey)}\``,
+    add(
+      `- ID: \`${inline(section.id)}\``,
+      `- Slug: \`${inline(sectionKey)}\``,
       `- Canonical: ${source(section.id, `${lessonPath}/sections/${sectionKey}/${sectionKey}.data.ts`)}`,
-      `- Navigation label: ${phrase(section.navigationLabel, [...sp, 'navigationLabel'])}`, '');
+      `- Navigation label: ${phrase(section.navigationLabel, [...sp, 'navigationLabel'])}`,
+      '',
+    );
     for (const [blockIndex, block] of section.content.entries()) {
       const type = inferBlockType(block);
       const key = required(block.slug, 'block slug');
-      emitBlock(block, type, [...sp, 'content', blockIndex], `${blockIndex + 1}. ${key}`,
-        `${lessonPath}/sections/${sectionKey}/${sectionKey}.data.ts`);
+      emitBlock(
+        block,
+        type,
+        [...sp, 'content', blockIndex],
+        `${blockIndex + 1}. ${key}`,
+        `${lessonPath}/sections/${sectionKey}/${sectionKey}.data.ts`,
+      );
     }
   }
   if (Object.keys(localized.questions).length) {
@@ -259,7 +385,14 @@ export function renderLessonMarkdown({ lesson, locale, languages, packagePath, s
     for (const [type, catalog] of Object.entries(localized.questions)) {
       if (!isRecord(catalog)) throw new Error(`Invalid question catalog ${type}`);
       for (const [key, question] of Object.entries(catalog)) {
-        if (!seenQuestions.has(question?.id)) emitQuestion(question, key, ['questions', type, key], seenQuestions.size + 1, `${lessonPath}/questions/index.data.ts`);
+        if (!seenQuestions.has(question?.id))
+          emitQuestion(
+            question,
+            key,
+            ['questions', type, key],
+            seenQuestions.size + 1,
+            `${lessonPath}/questions/index.data.ts`,
+          );
       }
     }
   }
@@ -268,11 +401,23 @@ export function renderLessonMarkdown({ lesson, locale, languages, packagePath, s
     if (!isRecord(card)) throw new Error(`Invalid flashcard ${index}`);
     required(card.id, `flashcard ${index} id`);
     heading(3, `Flashcard ${index + 1}`);
-    add(`- ID: \`${inline(card.id)}\``, `- Canonical: ${source(card.id, `${lessonPath}/flashcards/index.data.ts`)}`, '');
+    add(
+      `- ID: \`${inline(card.id)}\``,
+      `- Canonical: ${source(card.id, `${lessonPath}/flashcards/index.data.ts`)}`,
+      '',
+    );
     for (const side of ['front', 'back', 'hint']) {
       if (!Array.isArray(card[side])) throw new Error(`Invalid flashcard ${side} at ${index}`);
       heading(4, side[0].toUpperCase() + side.slice(1));
-      card[side].forEach((block, i) => emitBlock(block, inferBlockType(block), ['flashcards', index, side, i], `${side} ${i + 1}`, `${lessonPath}/flashcards/index.data.ts`));
+      card[side].forEach((block, i) =>
+        emitBlock(
+          block,
+          inferBlockType(block),
+          ['flashcards', index, side, i],
+          `${side} ${i + 1}`,
+          `${lessonPath}/flashcards/index.data.ts`,
+        ),
+      );
     }
     metadata(card, ['id', 'front', 'back', 'hint']);
   }

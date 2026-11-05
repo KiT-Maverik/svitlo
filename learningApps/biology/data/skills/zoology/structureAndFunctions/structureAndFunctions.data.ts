@@ -1,12 +1,17 @@
 import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
 
-import { explainTheRoleOfSensoryOrgansInBehavior_Skill_Data, identifyProtectiveAdaptationsInAnimals_Skill_Data, relateBodyCoveringsToTheirFunctions_Skill_Data, relateLimbStructureToLocomotion_Skill_Data } from './skills';
+import {
+  explainTheRoleOfSensoryOrgansInBehavior_Skill_Data,
+  identifyProtectiveAdaptationsInAnimals_Skill_Data,
+  relateBodyCoveringsToTheirFunctions_Skill_Data,
+  relateLimbStructureToLocomotion_Skill_Data,
+} from './skills';
 
 export const structureAndFunctions_SkillGroup_Data = buildSkillGroupConfig({
-  slug: "structureAndFunctions",
-  id: "54861785-2bd9-424e-8249-ed2334755aab",
+  slug: 'structureAndFunctions',
+  id: '54861785-2bd9-424e-8249-ed2334755aab',
   name: {
-    en: "Structure and Functions",
+    en: 'Structure and Functions',
     zh: '结构与功能',
     hi: 'संरचना और कार्य',
     es: 'Estructura y funciones',
@@ -43,9 +48,10 @@ export const structureAndFunctions_SkillGroup_Data = buildSkillGroupConfig({
     relateLimbStructureToLocomotion: relateLimbStructureToLocomotion_Skill_Data,
   },
   description: {
-    methodological: "The forms of limbs, body coverings, and sensory structures are explained by their roles in locomotion, orientation, and protection against danger.",
+    methodological:
+      'The forms of limbs, body coverings, and sensory structures are explained by their roles in locomotion, orientation, and protection against danger.',
     frontend: {
-      en: "Explore how animal structures help them move, sense and protect themselves.",
+      en: 'Explore how animal structures help them move, sense and protect themselves.',
       zh: '探索动物的身体结构如何帮助它们运动、感知环境和保护自己。',
       hi: 'जानें कि जानवरों की शरीर संरचनाएँ चलने, परिवेश को महसूस करने और अपनी रक्षा करने में कैसे मदद करती हैं।',
       es: 'Explora cómo las estructuras del cuerpo de los animales les ayudan a moverse, percibir su entorno y protegerse.',

@@ -17,19 +17,16 @@ function getReducedMotion() {
   return window.matchMedia(reducedMotionQuery).matches;
 }
 
-export function LightPropagationSimulation({ locales }: Pick<LightPropagationSimulation_ContentBlock<'response'>, 'locales'>) {
+export function LightPropagationSimulation({
+  locales,
+}: Pick<LightPropagationSimulation_ContentBlock<'response'>, 'locales'>) {
   const reducedMotion = useSyncExternalStore(subscribeToReducedMotion, getReducedMotion, () => false);
   const [playbackOverride, setPlaybackOverride] = useState<boolean | null>(null);
   const [speed, setSpeed] = useState(1);
   const paused = playbackOverride ?? reducedMotion;
 
   return (
-    <Paper
-      component="section"
-      variant="outlined"
-      className={styles.scene}
-      aria-label={locales.scene.accessibleName}
-    >
+    <Paper component="section" variant="outlined" className={styles.scene} aria-label={locales.scene.accessibleName}>
       <Typography component="h3" variant="h6">
         {locales.scene.title}
       </Typography>

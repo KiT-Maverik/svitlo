@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const recognizeMicroorganismsFromDescriptions_Skill_Data = buildSkillConfig({
-  slug: "recognizeMicroorganismsFromDescriptions",
-  id: "dd035a02-2a2b-476e-8279-ddf59114fa52",
+  slug: 'recognizeMicroorganismsFromDescriptions',
+  id: 'dd035a02-2a2b-476e-8279-ddf59114fa52',
   name: {
-    en: "Recognize Microorganisms from Descriptions",
+    en: 'Recognize Microorganisms from Descriptions',
     zh: '根据描述识别微生物',
     hi: 'विवरण से सूक्ष्मजीवों को पहचानना',
     es: 'Reconocer microorganismos a partir de descripciones',
@@ -35,14 +35,15 @@ export const recognizeMicroorganismsFromDescriptions_Skill_Data = buildSkillConf
     qm: 'Mikroorganizmlerni tasvirlerine köre tanımaq',
   },
   description: {
-    methodological: "Distinguish microscopic scale from taxonomic membership: bacteria, unicellular eukaryotes, and other organisms may all be very small.",
+    methodological:
+      'Distinguish microscopic scale from taxonomic membership: bacteria, unicellular eukaryotes, and other organisms may all be very small.',
     frontend: {
-      en: "Recognize that many different kinds of living things can be microscopic.",
+      en: 'Recognize that many different kinds of living things can be microscopic.',
       zh: '认识到许多不同种类的生物都可能非常微小。',
       hi: 'समझें कि बहुत अलग प्रकार के जीव भी सूक्ष्म आकार के हो सकते हैं।',
       es: 'Reconoce que muchos tipos distintos de seres vivos pueden ser microscópicos.',
       ar: 'اكتشف أن أنواعًا كثيرة ومختلفة من الكائنات الحية قد تكون مجهرية.',
-      fr: 'Comprenez que de nombreux types d\'êtres vivants peuvent être microscopiques.',
+      fr: "Comprenez que de nombreux types d'êtres vivants peuvent être microscopiques.",
       bn: 'বিভিন্ন ধরনের অনেক জীবই যে অণুবীক্ষণিক হতে পারে, তা বুঝে নাও।',
       pt: 'Reconheça que muitos tipos diferentes de seres vivos podem ser microscópicos.',
       ur: 'سمجھیں کہ کئی مختلف قسم کے جاندار خردبینی ہو سکتے ہیں۔',

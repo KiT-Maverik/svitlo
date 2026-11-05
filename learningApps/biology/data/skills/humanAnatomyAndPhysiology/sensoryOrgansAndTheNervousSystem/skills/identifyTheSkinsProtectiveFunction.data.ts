@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const identifyTheSkinsProtectiveFunction_Skill_Data = buildSkillConfig({
-  slug: "identifyTheSkinsProtectiveFunction",
-  id: "86def35e-2241-4a18-b3a3-6784a8ead613",
+  slug: 'identifyTheSkinsProtectiveFunction',
+  id: '86def35e-2241-4a18-b3a3-6784a8ead613',
   name: {
-    en: "Identify the Skin’s Protective Function",
+    en: 'Identify the Skin’s Protective Function',
     zh: '识别皮肤的保护功能',
     hi: 'त्वचा के सुरक्षात्मक कार्य को पहचानना',
     es: 'Identificar la función protectora de la piel',
@@ -35,14 +35,14 @@ export const identifyTheSkinsProtectiveFunction_Skill_Data = buildSkillConfig({
     qm: 'Teriniñ qoruyıcı vazifesini belgilemek',
   },
   description: {
-    methodological: "Explain how intact skin reduces water loss and the penetration of harmful agents.",
+    methodological: 'Explain how intact skin reduces water loss and the penetration of harmful agents.',
     frontend: {
-      en: "Discover how healthy skin helps protect the body and retain moisture.",
+      en: 'Discover how healthy skin helps protect the body and retain moisture.',
       zh: '了解健康完整的皮肤如何保护身体并帮助保持水分。',
       hi: 'जानें कि स्वस्थ और साबुत त्वचा शरीर की रक्षा और नमी बनाए रखने में कैसे मदद करती है।',
       es: 'Descubre cómo la piel sana e intacta protege el cuerpo y ayuda a conservar la humedad.',
       ar: 'اكتشف كيف يحمي الجلد السليم الجسم ويساعد على الاحتفاظ بالماء.',
-      fr: 'Découvrez comment une peau saine et intacte protège le corps et limite la perte d\'eau.',
+      fr: "Découvrez comment une peau saine et intacte protège le corps et limite la perte d'eau.",
       bn: 'সুস্থ ও অক্ষত ত্বক কীভাবে দেহকে রক্ষা করে এবং জল ধরে রাখতে সাহায্য করে, তা জানো।',
       pt: 'Descubra como a pele saudável e intacta protege o corpo e ajuda a conservar água.',
       ur: 'جانیں کہ صحت مند اور سالم جلد جسم کی حفاظت اور نمی برقرار رکھنے میں کیسے مدد کرتی ہے۔',

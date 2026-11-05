@@ -5,8 +5,10 @@ import { SelectMultipleAnswers } from './SelectMultipleAnswers';
 
 const text = (id: string, value: string) => ({ id, type: 'text' as const, value });
 const response: Question_SelectMultipleAnswers<'response', Locale_Languages> = {
-  type: 'selectMultipleAnswers', id: 'multiple-story',
-  assessmentMethod: 'retrieval', restrictions: [],
+  type: 'selectMultipleAnswers',
+  id: 'multiple-story',
+  assessmentMethod: 'retrieval',
+  restrictions: [],
   question: [text('prompt', 'Select the prime numbers.')],
   answers: {
     correct: { two: text('two', '2'), five: text('five', '5') },

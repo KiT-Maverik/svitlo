@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainTokens_Skill_Data = buildSkillConfig({
-  slug: "explainTokens",
-  id: "b4e37008-55e5-413d-a832-e193f33dfff1",
+  slug: 'explainTokens',
+  id: 'b4e37008-55e5-413d-a832-e193f33dfff1',
   name: {
-    en: "Explain Tokens",
+    en: 'Explain Tokens',
     zh: '解释词元',
     hi: 'टोकन समझाना',
     es: 'Explicar los tokens',
@@ -35,9 +35,10 @@ export const explainTokens_Skill_Data = buildSkillConfig({
     qm: 'Tokenlerni añlatmaq',
   },
   description: {
-    methodological: "Understand a token as a unit defined by a tokenizer: single letters, word fragments, whole words, or punctuation may be encoded in different ways.",
+    methodological:
+      'Understand a token as a unit defined by a tokenizer: single letters, word fragments, whole words, or punctuation may be encoded in different ways.',
     frontend: {
-      en: "Understand tokens as model-specific units of text representation.",
+      en: 'Understand tokens as model-specific units of text representation.',
       zh: '将词元理解为模型特定的文本表示单位。',
       hi: 'टोकन को मॉडल के अनुसार तय की गई पाठ की इकाई के रूप में समझें।',
       es: 'Comprende los tokens como unidades de representación de texto específicas de cada modelo.',

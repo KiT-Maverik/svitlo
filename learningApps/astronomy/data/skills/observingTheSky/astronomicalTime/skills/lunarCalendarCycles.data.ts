@@ -52,7 +52,7 @@ export const lunarCalendarCycles_Skill_Data = buildSkillConfig({
       de: 'Entdecke den Zusammenhang zwischen den wechselnden Mondphasen und den Zyklen des Mondkalenders.',
       ja: '月の満ち欠けと太陰暦の周期がどのようにつながっているかを学ぼう。',
       ko: '달의 위상 변화가 음력의 주기와 어떻게 연결되는지 알아보세요.',
-      tr: 'Ay\'ın değişen evreleriyle ay takviminin döngüleri arasındaki ilişkiyi keşfet.',
+      tr: "Ay'ın değişen evreleriyle ay takviminin döngüleri arasındaki ilişkiyi keşfet.",
       vi: 'Tìm hiểu mối liên hệ giữa các pha thay đổi của Mặt Trăng và chu kỳ lịch âm.',
       ta: 'நிலவின் மாறும் பிறை நிலைகளுக்கும் நிலா நாட்காட்டியின் சுழற்சிகளுக்கும் உள்ள தொடர்பை அறிந்துகொள்.',
       te: 'చంద్రుని మారుతున్న కళలకు, చాంద్రమాన క్యాలెండర్ చక్రాలకు మధ్య సంబంధాన్ని తెలుసుకోండి.',

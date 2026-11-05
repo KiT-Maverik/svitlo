@@ -96,8 +96,8 @@ export function SkillLearningClient({ skillId, domainSlugs }: SkillLearningClien
           Поки немає пов&apos;язаних матеріалів
         </Typography>
         <Typography color="text.secondary" sx={{ mt: 1 }}>
-          У цьому тестовому Playground ще не створено зв&apos;язків між UUID навички та уроками або програмами. Коли такі
-          зв&apos;язки з&apos;являться, тут можна буде показувати матеріали саме для цієї навички.
+          У цьому тестовому Playground ще не створено зв&apos;язків між UUID навички та уроками або програмами. Коли
+          такі зв&apos;язки з&apos;являться, тут можна буде показувати матеріали саме для цієї навички.
         </Typography>
         <Box sx={{ mt: 3 }}>
           <Link href={returnHref}>← Повернутися до аналітики навичок</Link>

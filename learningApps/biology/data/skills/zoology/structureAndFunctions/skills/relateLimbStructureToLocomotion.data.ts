@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const relateLimbStructureToLocomotion_Skill_Data = buildSkillConfig({
-  slug: "relateLimbStructureToLocomotion",
-  id: "6f4ee2d9-cdd9-4512-8133-b1bf649f9d38",
+  slug: 'relateLimbStructureToLocomotion',
+  id: '6f4ee2d9-cdd9-4512-8133-b1bf649f9d38',
   name: {
-    en: "Relate Limb Structure to Locomotion",
+    en: 'Relate Limb Structure to Locomotion',
     zh: '将肢体结构与运动方式联系起来',
     hi: 'अंगों की बनावट को गति से जोड़ना',
     es: 'Relacionar la estructura de las extremidades con la locomoción',
@@ -25,7 +25,7 @@ export const relateLimbStructureToLocomotion_Skill_Data = buildSkillConfig({
     ms: 'Mengaitkan struktur anggota badan dengan pergerakan',
     he: 'קישור בין מבנה הגפיים לתנועה',
     pl: 'Powiązanie budowy kończyn ze sposobem poruszania się',
-    uk: 'Пов\'язувати будову кінцівок зі способом пересування',
+    uk: "Пов'язувати будову кінцівок зі способом пересування",
     lt: 'Susieti galūnių sandarą su judėjimu',
     lv: 'Saistīt ekstremitāšu uzbūvi ar pārvietošanos',
     et: 'Jäsemete ehituse seostamine liikumisega',
@@ -35,9 +35,10 @@ export const relateLimbStructureToLocomotion_Skill_Data = buildSkillConfig({
     qm: 'Ayaq ve qanat quruluşunı areket usullarınen bağlaştırmaq',
   },
   description: {
-    methodological: "Relate the shape of legs, fins, or wings to the requirements of walking, swimming, digging, or flying.",
+    methodological:
+      'Relate the shape of legs, fins, or wings to the requirements of walking, swimming, digging, or flying.',
     frontend: {
-      en: "Connect the shapes of limbs with walking, swimming, digging or flying.",
+      en: 'Connect the shapes of limbs with walking, swimming, digging or flying.',
       zh: '将肢体的形状与行走、游泳、挖掘或飞行联系起来。',
       hi: 'पैरों, पंखों या अन्य अंगों की बनावट को चलने, तैरने, खोदने या उड़ने से जोड़ें।',
       es: 'Relaciona las formas de las extremidades con caminar, nadar, excavar o volar.',
@@ -58,7 +59,7 @@ export const relateLimbStructureToLocomotion_Skill_Data = buildSkillConfig({
       ms: 'Kaitkan bentuk anggota badan dengan berjalan, berenang, menggali atau terbang.',
       he: 'קשרו בין צורות הגפיים לבין הליכה, שחייה, חפירה או תעופה.',
       pl: 'Powiąż kształt kończyn z chodzeniem, pływaniem, kopaniem lub lataniem.',
-      uk: 'Пов\'яжи форму кінцівок із ходінням, плаванням, риттям або польотом.',
+      uk: "Пов'яжи форму кінцівок із ходінням, плаванням, риттям або польотом.",
       lt: 'Susiek galūnių formas su ėjimu, plaukimu, kasimu ar skraidymu.',
       lv: 'Saisti ekstremitāšu formas ar iešanu, peldēšanu, rakšanu vai lidošanu.',
       et: 'Seosta jäsemete kuju kõndimise, ujumise, kaevamise või lendamisega.',

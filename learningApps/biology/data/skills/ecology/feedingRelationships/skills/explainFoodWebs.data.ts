@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainFoodWebs_Skill_Data = buildSkillConfig({
-  slug: "explainFoodWebs",
-  id: "d789c38d-bd56-40c5-ba8a-4a2c0d4e9106",
+  slug: 'explainFoodWebs',
+  id: 'd789c38d-bd56-40c5-ba8a-4a2c0d4e9106',
   name: {
-    en: "Explain Food Webs",
+    en: 'Explain Food Webs',
     zh: '解释食物网',
     hi: 'खाद्य जाल समझाना',
     es: 'Explicar las redes alimentarias',
@@ -35,9 +35,10 @@ export const explainFoodWebs_Skill_Data = buildSkillConfig({
     qm: 'Azıq ağlarını añlatmaq',
   },
   description: {
-    methodological: "Explain how interconnected food chains form a network with several food sources for one species and multiple paths for matter and energy transfer; distinguish a web from a single linear chain.",
+    methodological:
+      'Explain how interconnected food chains form a network with several food sources for one species and multiple paths for matter and energy transfer; distinguish a web from a single linear chain.',
     frontend: {
-      en: "Understand how connected food chains form a food web.",
+      en: 'Understand how connected food chains form a food web.',
       zh: '理解相互连接的多条食物链如何形成食物网。',
       hi: 'समझें कि आपस में जुड़ी खाद्य शृंखलाएँ मिलकर खाद्य जाल कैसे बनाती हैं।',
       es: 'Comprende cómo las cadenas alimentarias conectadas forman una red alimentaria.',

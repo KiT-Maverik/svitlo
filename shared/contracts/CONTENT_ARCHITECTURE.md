@@ -16,11 +16,11 @@ No public `LessonV2`, `QuestionV2`, `Lesson_Config`, `Quiz_Config`, `Question_Co
 
 ## Three representations
 
-| Representation | Purpose | Serializable? |
-| --- | --- | --- |
-| Definition | Structure, catalog selectors, explicit order, stable renderer registry keys | Renderer keys are strings; JSX must not be embedded |
-| Data | Canonical authored IDs, slugs, full locale maps, invariant settings and content | Build-time only |
-| Response | Selected locale, localized strings, question references, nested discriminated blocks | **Yes**; only this form reaches runtime |
+| Representation | Purpose                                                                              | Serializable?                                       |
+| -------------- | ------------------------------------------------------------------------------------ | --------------------------------------------------- |
+| Definition     | Structure, catalog selectors, explicit order, stable renderer registry keys          | Renderer keys are strings; JSX must not be embedded |
+| Data           | Canonical authored IDs, slugs, full locale maps, invariant settings and content      | Build-time only                                     |
+| Response       | Selected locale, localized strings, question references, nested discriminated blocks | **Yes**; only this form reaches runtime             |
 
 `ContentBlock<'response'>` always carries a discriminating `type`. Nested `checkpoint.items[].answer` also consists of discriminated Response blocks. Authored catalog types imply their kinds from their keys; the build-time serializer must inject `type` into the Response for every block, including nested blocks.
 

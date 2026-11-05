@@ -304,11 +304,7 @@ export default function LearningLayout({
             right: (
               <Button
                 variant="outlined"
-                disabled={
-                  !progress.ready ||
-                  progress.step >= progress.lastStep ||
-                  !skippableSteps[progress.step]
-                }
+                disabled={!progress.ready || progress.step >= progress.lastStep || !skippableSteps[progress.step]}
                 onClick={actions.skip}
               >
                 {messages.actions.skip}

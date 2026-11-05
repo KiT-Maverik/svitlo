@@ -1,12 +1,17 @@
 import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
 
-import { explainHumanResponsibilityForAIAssistedDecisions_Skill_Data, protectPersonalDataInPrompts_Skill_Data, recognizeAIBiasRisks_Skill_Data, verifyFactsInAnAIResponse_Skill_Data } from './skills';
+import {
+  explainHumanResponsibilityForAIAssistedDecisions_Skill_Data,
+  protectPersonalDataInPrompts_Skill_Data,
+  recognizeAIBiasRisks_Skill_Data,
+  verifyFactsInAnAIResponse_Skill_Data,
+} from './skills';
 
 export const reliabilityAndResponsibleAIUse_SkillGroup_Data = buildSkillGroupConfig({
-  slug: "reliabilityAndResponsibleAIUse",
-  id: "c598e274-63e6-4795-b822-66e0ef76e73b",
+  slug: 'reliabilityAndResponsibleAIUse',
+  id: 'c598e274-63e6-4795-b822-66e0ef76e73b',
   name: {
-    en: "Reliability and Responsible AI Use",
+    en: 'Reliability and Responsible AI Use',
     zh: '人工智能的可靠性与负责任使用',
     hi: 'एआई की विश्वसनीयता और ज़िम्मेदार उपयोग',
     es: 'Fiabilidad y uso responsable de la IA',
@@ -43,9 +48,10 @@ export const reliabilityAndResponsibleAIUse_SkillGroup_Data = buildSkillGroupCon
     verifyFactsInAnAIResponse: verifyFactsInAnAIResponse_Skill_Data,
   },
   description: {
-    methodological: "Protecting data and identifying unreliable results or unfair consequences of AI use. Fact-checking, bias assessment, and human accountability address different risks.",
+    methodological:
+      'Protecting data and identifying unreliable results or unfair consequences of AI use. Fact-checking, bias assessment, and human accountability address different risks.',
     frontend: {
-      en: "Learn to check AI outputs and consider their effects on people.",
+      en: 'Learn to check AI outputs and consider their effects on people.',
       zh: '学习核查人工智能输出并考虑它们对人的影响。',
       hi: 'एआई के उत्तर जाँचना और लोगों पर उनके प्रभावों के बारे में सोचना सीखें।',
       es: 'Aprende a comprobar los resultados de la IA y a considerar sus efectos en las personas.',

@@ -1,12 +1,15 @@
 import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
 
-import { identifyElectricallyConductiveMaterials_Skill_Data, identifyElectricallyInsulatingMaterials_Skill_Data } from './skills';
+import {
+  identifyElectricallyConductiveMaterials_Skill_Data,
+  identifyElectricallyInsulatingMaterials_Skill_Data,
+} from './skills';
 
 export const conductorsAndInsulators_SkillGroup_Data = buildSkillGroupConfig({
-  slug: "conductorsAndInsulators",
-  id: "2e1318e6-5678-474c-925b-967e0cad957f",
+  slug: 'conductorsAndInsulators',
+  id: '2e1318e6-5678-474c-925b-967e0cad957f',
   name: {
-    en: "Conductors and Insulators",
+    en: 'Conductors and Insulators',
     qm: 'Elektrik keçirgenleri ve izolâtorlar',
     zh: '导体与绝缘体',
     hi: 'चालक और कुचालक',
@@ -41,9 +44,10 @@ export const conductorsAndInsulators_SkillGroup_Data = buildSkillGroupConfig({
     identifyElectricallyInsulatingMaterials: identifyElectricallyInsulatingMaterials_Skill_Data,
   },
   description: {
-    methodological: "Materials differ in how readily they permit electric charge to move; distinguish an electrical property of a material from a device's purpose.",
+    methodological:
+      "Materials differ in how readily they permit electric charge to move; distinguish an electrical property of a material from a device's purpose.",
     frontend: {
-      en: "Explore why some materials let charges move more easily than others.",
+      en: 'Explore why some materials let charges move more easily than others.',
       qm: 'Elektrik yükleri bazı malzemeler içinden neden daa qolay areket etkenini araştır.',
       zh: '探索为什么电荷在某些材料中比在其他材料中更容易移动。',
       hi: 'जानें कि कुछ पदार्थ विद्युत आवेश को दूसरों की तुलना में आसानी से क्यों चलने देते हैं।',

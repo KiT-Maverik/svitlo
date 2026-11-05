@@ -44,7 +44,7 @@ export const hubbleLemaitreRelation_Skill_Data = buildSkillConfig({
       hi: 'आकाशगंगाओं की मापी गई दूरियों और लाल विस्थापनों को विस्तार के प्रमाणों से जोड़ें।',
       es: 'Relaciona las distancias medidas de galaxias y sus corrimientos al rojo con la expansión cósmica.',
       ar: 'اربط بين مسافات المجرات المقاسة وانزياحاتها الحمراء كأدلة على تمدد الكون.',
-      fr: 'Relie les distances mesurées des galaxies et leurs décalages vers le rouge aux preuves de l\'expansion cosmique.',
+      fr: "Relie les distances mesurées des galaxies et leurs décalages vers le rouge aux preuves de l'expansion cosmique.",
       bn: 'ছায়াপথের মাপা দূরত্ব ও লোহিত সরণকে মহাবিশ্বের প্রসারণের প্রমাণের সঙ্গে যুক্ত করো।',
       pt: 'Relacione distâncias e desvios para o vermelho medidos de galáxias com a expansão cósmica.',
       ur: 'کہکشاؤں کے ناپے گئے فاصلوں اور سرخ انتقال کو کائناتی پھیلاؤ کے شواہد سے جوڑیں۔',

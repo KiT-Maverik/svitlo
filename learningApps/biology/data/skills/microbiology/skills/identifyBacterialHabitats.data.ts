@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const identifyBacterialHabitats_Skill_Data = buildSkillConfig({
-  slug: "identifyBacterialHabitats",
-  id: "7fb1345b-0618-4b4a-ab59-7ecda42fd6ae",
+  slug: 'identifyBacterialHabitats',
+  id: '7fb1345b-0618-4b4a-ab59-7ecda42fd6ae',
   name: {
-    en: "Identify Bacterial Habitats",
+    en: 'Identify Bacterial Habitats',
     zh: '识别细菌的栖息环境',
     hi: 'जीवाणुओं के आवास पहचानना',
     es: 'Identificar hábitats de las bacterias',
@@ -35,9 +35,10 @@ export const identifyBacterialHabitats_Skill_Data = buildSkillConfig({
     qm: 'Bakteriyalarnıñ yaşağan yerlerini belgilemek',
   },
   description: {
-    methodological: "Use examples to explain why bacteria occur in soil, water, organisms, and even extreme environments.",
+    methodological:
+      'Use examples to explain why bacteria occur in soil, water, organisms, and even extreme environments.',
     frontend: {
-      en: "Discover why bacteria can live in many kinds of environments.",
+      en: 'Discover why bacteria can live in many kinds of environments.',
       zh: '了解细菌为何能够生活在多种不同的环境中。',
       hi: 'जानें कि जीवाणु कई तरह के वातावरण में क्यों रह सकते हैं।',
       es: 'Descubre por qué las bacterias pueden vivir en muchos tipos de ambientes.',

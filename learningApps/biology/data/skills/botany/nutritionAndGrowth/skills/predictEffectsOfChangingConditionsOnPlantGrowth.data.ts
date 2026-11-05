@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const predictEffectsOfChangingConditionsOnPlantGrowth_Skill_Data = buildSkillConfig({
-  slug: "predictEffectsOfChangingConditionsOnPlantGrowth",
-  id: "2468e942-b179-4056-96dd-1de593d6e194",
+  slug: 'predictEffectsOfChangingConditionsOnPlantGrowth',
+  id: '2468e942-b179-4056-96dd-1de593d6e194',
   name: {
-    en: "Predict Effects of Changing Conditions on Plant Growth",
+    en: 'Predict Effects of Changing Conditions on Plant Growth',
     zh: '预测条件变化对植物生长的影响',
     hi: 'बदलती परिस्थितियों का पौधों की वृद्धि पर प्रभाव बताना',
     es: 'Predecir los efectos de cambiar las condiciones en el crecimiento vegetal',
@@ -35,14 +35,15 @@ export const predictEffectsOfChangingConditionsOnPlantGrowth_Skill_Data = buildS
     qm: 'Şartlar deñişkende ösümlikniñ ösüvini ögünden aytmaq',
   },
   description: {
-    methodological: "Predict observable changes in growth when light, water, or minerals are insufficient, while accounting for other conditions held constant.",
+    methodological:
+      'Predict observable changes in growth when light, water, or minerals are insufficient, while accounting for other conditions held constant.',
     frontend: {
       en: "Predict how changes in resources affect a plant's growth.",
       zh: '预测资源条件改变会如何影响植物的生长。',
       hi: 'अनुमान लगाएँ कि संसाधनों में बदलाव पौधों की वृद्धि को कैसे प्रभावित करता है।',
       es: 'Predice cómo los cambios en los recursos afectan el crecimiento de una planta.',
       ar: 'تنبأ بكيفية تأثير تغير الموارد في نمو النبات.',
-      fr: 'Prévois comment la modification des ressources influence la croissance d\'une plante.',
+      fr: "Prévois comment la modification des ressources influence la croissance d'une plante.",
       bn: 'সম্পদের পরিবর্তন উদ্ভিদের বৃদ্ধিতে কী প্রভাব ফেলবে তা অনুমান করো।',
       pt: 'Preveja como mudanças nos recursos afetam o crescimento de uma planta.',
       ur: 'اندازہ لگائیں کہ وسائل میں تبدیلی پودے کی بڑھوتری کو کیسے متاثر کرتی ہے۔',

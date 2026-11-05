@@ -30,7 +30,6 @@ export type LessonState =
   /** All requirements, including a quiz when requireQuiz is true, are met. */
   | (LessonState_Progress & { status: 'finished'; contentCompletedAt: string; completedAt: string });
 
-
 /** An answer uses question and option IDs; numeric input keeps the entered text. */
 export type QuizAnswer =
   | { type: 'select-one-answer'; value: string }

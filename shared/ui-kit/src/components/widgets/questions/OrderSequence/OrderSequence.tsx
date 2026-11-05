@@ -6,7 +6,11 @@ import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
 import { type QuestionItem, shuffleItems } from '../response/QuestionContent';
 import { QuestionSortable } from '../response/QuestionSortable';
 
-export function OrderSequence({ response, sceneRegistry, messages }: {
+export function OrderSequence({
+  response,
+  sceneRegistry,
+  messages,
+}: {
   response: Question_OrderSequence<'response', Locale_Languages>;
   sceneRegistry?: SceneRegistry;
   messages: UiKit_Global<'response'>;
@@ -21,8 +25,14 @@ export function OrderSequence({ response, sceneRegistry, messages }: {
   );
   return (
     <QuestionFrame response={response} sceneRegistry={sceneRegistry} messages={messages} attempt={attempt}>
-      <QuestionSortable items={items} order={attempt.value} onChange={attempt.setValue}
-        locked={attempt.checked} sceneRegistry={sceneRegistry} messages={messages} />
+      <QuestionSortable
+        items={items}
+        order={attempt.value}
+        onChange={attempt.setValue}
+        locked={attempt.checked}
+        sceneRegistry={sceneRegistry}
+        messages={messages}
+      />
     </QuestionFrame>
   );
 }

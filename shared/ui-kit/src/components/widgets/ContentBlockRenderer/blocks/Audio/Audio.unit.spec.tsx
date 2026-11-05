@@ -72,7 +72,6 @@ describe('Audio content block', () => {
   });
 });
 
-
 describe('Audio fallback lifecycle', () => {
   it('automatically retries an offline stalled player when connectivity returns', () => {
     setOnline(false);

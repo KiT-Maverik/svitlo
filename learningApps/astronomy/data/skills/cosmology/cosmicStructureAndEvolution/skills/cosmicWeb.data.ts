@@ -43,7 +43,7 @@ export const cosmicWeb_Skill_Data = buildSkillConfig({
       hi: 'आकाशगंगाओं के तंतुओं, गुच्छों और खाली क्षेत्रों के विशाल जाल को जानें।',
       es: 'Explora la enorme red de filamentos galácticos, cúmulos y regiones vacías.',
       ar: 'استكشف الشبكة الهائلة من خيوط المجرات وعناقيدها والمناطق الخالية.',
-      fr: 'Explore le vaste réseau de filaments de galaxies, d\'amas et de régions vides.',
+      fr: "Explore le vaste réseau de filaments de galaxies, d'amas et de régions vides.",
       bn: 'ছায়াপথের তন্তু, গুচ্ছ ও ফাঁকা অঞ্চলের বিশাল জাল অনুসন্ধান করো।',
       pt: 'Explore a vasta rede de filamentos de galáxias, aglomerados e regiões vazias.',
       ur: 'کہکشانی دھاگوں، جھرمٹوں اور خالی علاقوں کے وسیع جال کا مطالعہ کریں۔',

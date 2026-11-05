@@ -1,17 +1,22 @@
 import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
 
-import { distinguishStagesOfHumanDevelopment_Skill_Data, explainFunctionsOfTheHumanReproductiveSystem_Skill_Data, explainTheImmuneSystemsProtectiveRole_Skill_Data, explainTheImportanceOfSleepForRecovery_Skill_Data } from './skills';
+import {
+  distinguishStagesOfHumanDevelopment_Skill_Data,
+  explainFunctionsOfTheHumanReproductiveSystem_Skill_Data,
+  explainTheImmuneSystemsProtectiveRole_Skill_Data,
+  explainTheImportanceOfSleepForRecovery_Skill_Data,
+} from './skills';
 
 export const developmentAndProtectionOfTheOrganism_SkillGroup_Data = buildSkillGroupConfig({
-  slug: "developmentAndProtectionOfTheOrganism",
-  id: "e64e4704-4951-4fa9-9fad-8f60a8c8f14f",
+  slug: 'developmentAndProtectionOfTheOrganism',
+  id: 'e64e4704-4951-4fa9-9fad-8f60a8c8f14f',
   name: {
-    en: "Development and Protection of the Organism",
+    en: 'Development and Protection of the Organism',
     zh: '人体的发育与保护',
     hi: 'शरीर का विकास और संरक्षण',
     es: 'Desarrollo y protección del organismo',
     ar: 'نمو الجسم وحمايته',
-    fr: 'Développement et protection de l\'organisme',
+    fr: "Développement et protection de l'organisme",
     bn: 'দেহের বিকাশ ও সুরক্ষা',
     pt: 'Desenvolvimento e proteção do organismo',
     ur: 'جسم کی نشوونما اور حفاظت',
@@ -43,9 +48,10 @@ export const developmentAndProtectionOfTheOrganism_SkillGroup_Data = buildSkillG
     explainTheImportanceOfSleepForRecovery: explainTheImportanceOfSleepForRecovery_Skill_Data,
   },
   description: {
-    methodological: "Changes from childhood to adulthood, immune mechanisms, and physiological recovery help maintain bodily functions over time.",
+    methodological:
+      'Changes from childhood to adulthood, immune mechanisms, and physiological recovery help maintain bodily functions over time.',
     frontend: {
-      en: "Explore how development, immune defenses and recovery help sustain the body.",
+      en: 'Explore how development, immune defenses and recovery help sustain the body.',
       zh: '探索发育、免疫防御和身体恢复如何帮助维持生命活动。',
       hi: 'जानें कि विकास, प्रतिरक्षा और स्वास्थ्य-लाभ शरीर को कैसे सहारा देते हैं।',
       es: 'Explora cómo el desarrollo, las defensas inmunitarias y la recuperación ayudan a mantener el organismo.',

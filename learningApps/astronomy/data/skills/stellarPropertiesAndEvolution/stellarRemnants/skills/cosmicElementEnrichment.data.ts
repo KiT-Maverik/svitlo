@@ -43,7 +43,7 @@ export const cosmicElementEnrichment_Skill_Data = buildSkillConfig({
       hi: 'जानें कि तारे और तारकीय विस्फोट आसपास के अंतरिक्ष में तत्व कैसे फैलाते हैं।',
       es: 'Observa cómo las estrellas y sus explosiones dispersan elementos por el espacio circundante.',
       ar: 'تعرّف كيف تنشر النجوم وانفجاراتها العناصر في الفضاء المحيط.',
-      fr: 'Découvrez comment les étoiles et leurs explosions dispersent des éléments dans l\'espace environnant.',
+      fr: "Découvrez comment les étoiles et leurs explosions dispersent des éléments dans l'espace environnant.",
       bn: 'নক্ষত্র ও তার বিস্ফোরণ কীভাবে চারপাশের মহাকাশে মৌল ছড়ায়, তা জানো।',
       pt: 'Veja como estrelas e explosões estelares espalham elementos pelo espaço ao redor.',
       ur: 'جانیں کہ ستارے اور ان کے دھماکے عناصر کو آس پاس کی خلا میں کیسے پھیلاتے ہیں۔',

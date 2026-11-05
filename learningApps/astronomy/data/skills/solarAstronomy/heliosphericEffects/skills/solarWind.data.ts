@@ -59,7 +59,7 @@ export const solarWind_Skill_Data = buildSkillConfig({
       de: 'Erkunde den Strom geladener Teilchen, der von der Sonne in den Weltraum strömt.',
       pt: 'Explore o fluxo de partículas carregadas que sai do Sol e se espalha pelo espaço.',
       id: 'Jelajahi aliran partikel bermuatan yang bergerak keluar dari Matahari menuju ruang angkasa.',
-      tr: 'Güneş\'ten uzaya doğru yayılan yüklü parçacık akışını keşfet.',
+      tr: "Güneş'ten uzaya doğru yayılan yüklü parçacık akışını keşfet.",
       zh: '探索从太阳向外流入太空的带电粒子流。',
       ja: '太陽から宇宙空間へ流れ出る荷電粒子の流れを調べよう。',
       ko: '태양에서 우주 공간으로 뻗어 나가는 하전 입자의 흐름을 알아보세요.',

@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainConvectionAsEnergyTransferByFluidFlow_Skill_Data = buildSkillConfig({
-  slug: "explainConvectionAsEnergyTransferByFluidFlow",
-  id: "79b6ca80-96e2-4770-b8d6-ca337df5bb4e",
+  slug: 'explainConvectionAsEnergyTransferByFluidFlow',
+  id: '79b6ca80-96e2-4770-b8d6-ca337df5bb4e',
   name: {
-    en: "Explain convection as energy transfer by fluid flow",
+    en: 'Explain convection as energy transfer by fluid flow',
     qm: 'Konvektsiyanı energiyanıñ aqımnen taşınuvı olaraq añlatmaq',
     zh: '解释对流是流体流动传递能量',
     hi: 'संवहन को द्रव या गैस के प्रवाह से ऊर्जा स्थानांतरण समझाना',
@@ -35,9 +35,10 @@ export const explainConvectionAsEnergyTransferByFluidFlow_Skill_Data = buildSkil
     kk: 'Конвекцияны сұйық пен газ ағыны арқылы энергия берілуі ретінде түсіндіру',
   },
   description: {
-    methodological: "Convection carries thermal energy with macroscopic motion of a liquid or gas; distinguish it from conduction without bulk material flow.",
+    methodological:
+      'Convection carries thermal energy with macroscopic motion of a liquid or gas; distinguish it from conduction without bulk material flow.',
     frontend: {
-      en: "Recognize how moving liquids and gases carry thermal energy.",
+      en: 'Recognize how moving liquids and gases carry thermal energy.',
       qm: 'Aqqan suyuqlıq ve gazlar sıcaqlıq energiyasını nasıl taşığanını añlat.',
       zh: '识别运动中的液体和气体如何携带热能。',
       hi: 'पहचानें कि बहते तरल और गैस ऊष्मीय ऊर्जा कैसे साथ ले जाते हैं।',

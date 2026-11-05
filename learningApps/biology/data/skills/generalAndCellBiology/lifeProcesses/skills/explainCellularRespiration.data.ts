@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainCellularRespiration_Skill_Data = buildSkillConfig({
-  slug: "explainCellularRespiration",
-  id: "b2ea43cb-f044-4ff8-841e-2bcfec153448",
+  slug: 'explainCellularRespiration',
+  id: 'b2ea43cb-f044-4ff8-841e-2bcfec153448',
   name: {
-    en: "Explain Cellular Respiration",
+    en: 'Explain Cellular Respiration',
     zh: '解释细胞呼吸',
     hi: 'कोशिकीय श्वसन समझाना',
     es: 'Explicar la respiración celular',
@@ -35,14 +35,15 @@ export const explainCellularRespiration_Skill_Data = buildSkillConfig({
     qm: 'Üceyrevi teneffüsni añlatmaq',
   },
   description: {
-    methodological: "Explain how cells obtain usable energy by breaking down organic compounds while synthesizing ATP. Distinguish aerobic and anaerobic pathways, and do not equate cellular respiration with lung ventilation or gas exchange in respiratory organs.",
+    methodological:
+      'Explain how cells obtain usable energy by breaking down organic compounds while synthesizing ATP. Distinguish aerobic and anaerobic pathways, and do not equate cellular respiration with lung ventilation or gas exchange in respiratory organs.',
     frontend: {
-      en: "Learn how cells release usable energy from organic substances.",
+      en: 'Learn how cells release usable energy from organic substances.',
       zh: '了解细胞如何从有机物中释放可利用的能量。',
       hi: 'जानें कि कोशिकाएँ कार्बनिक पदार्थों से उपयोगी ऊर्जा कैसे प्राप्त करती हैं।',
       es: 'Aprende cómo las células liberan energía utilizable de sustancias orgánicas.',
       ar: 'تعرّف كيف تحرر الخلايا الطاقة القابلة للاستخدام من المواد العضوية.',
-      fr: 'Découvre comment les cellules libèrent de l\'énergie utilisable à partir de substances organiques.',
+      fr: "Découvre comment les cellules libèrent de l'énergie utilisable à partir de substances organiques.",
       bn: 'কোষ কীভাবে জৈব পদার্থ থেকে ব্যবহারযোগ্য শক্তি মুক্ত করে তা শেখো।',
       pt: 'Aprenda como as células liberam energia utilizável de substâncias orgânicas.',
       ur: 'جانیں کہ خلیے نامیاتی مادّوں سے قابلِ استعمال توانائی کیسے حاصل کرتے ہیں۔',

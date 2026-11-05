@@ -44,7 +44,7 @@ export const darkMatterEvidence_Skill_Data = buildSkillConfig({
       hi: 'जानें कि गुरुत्वाकर्षण के प्रमाणों से खगोलविद अदृश्य पदार्थ का अनुमान क्यों लगाते हैं।',
       es: 'Explora por qué los astrónomos deducen la existencia de materia invisible mediante pruebas gravitatorias.',
       ar: 'استكشف لماذا يستنتج الفلكيون وجود مادة غير مرئية من أدلة الجاذبية.',
-      fr: 'Découvre pourquoi les astronomes déduisent l\'existence de matière invisible grâce à la gravitation.',
+      fr: "Découvre pourquoi les astronomes déduisent l'existence de matière invisible grâce à la gravitation.",
       bn: 'মহাকর্ষের প্রমাণ থেকে জ্যোতির্বিজ্ঞানীরা কেন অদৃশ্য পদার্থের অস্তিত্ব অনুমান করেন তা জানো।',
       pt: 'Explore por que os astrônomos deduzem a existência de matéria invisível a partir de evidências gravitacionais.',
       ur: 'جانیں کہ ماہرین فلکیات کششِ ثقل کے شواہد سے غیر مرئی مادّے کا اندازہ کیوں لگاتے ہیں۔',

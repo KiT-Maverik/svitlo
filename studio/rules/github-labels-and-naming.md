@@ -19,15 +19,15 @@
 
 ## 2. Label groups and responsibilities
 
-| Group | Purpose | Where and how to use |
-| --- | --- | --- |
-| `area: *` | Affected part of the monorepo, shared package, or textbook | Issues and PRs. Assign all materially affected areas; use `area: repo` for repository-wide concerns not attributable to a more precise area. |
-| `work: *` | Kind of activity or deliverable | Issues and PRs. Apply one or more when work genuinely spans categories, e.g., translation **and** review. |
-| `priority: *` | Urgency and impact | Primarily Issues; PRs only when priority adds meaningful information. At most one level: `critical`, `high`, `medium`, or `low`. `critical` is for immediate production/security/data-loss situations, not merely large tasks. |
-| `pr: *` | PR's role or special change characteristics | PRs only. `integration` identifies the parent PR; `agent-subtask` identifies an agent PR targeting the integration branch. These two **roles** are mutually exclusive. `breaking-change` and `migration` are independent flags that can accompany either role or a regular PR. |
-| `issue: *` | Issue intake or investigation status | Issues only: `needs-triage`, `needs-info`, `needs-reproduction`. Use only while the condition applies. |
-| `source: *` | Origin of the Issue | Issues only. Choose the factual source: `internal`, `expert-review`, `user-report`, `agent`, or `automation`. Do not confuse a project-owner request (`internal`) with a report submitted through the product's user-report UI (`user-report`). |
-| `attention: *` | Special action still required | Issues and PRs, only when applicable: `decision`, `blocked`, `manual-qa`. Remove a transient label after the underlying condition is resolved. |
+| Group          | Purpose                                                    | Where and how to use                                                                                                                                                                                                                                                           |
+| -------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `area: *`      | Affected part of the monorepo, shared package, or textbook | Issues and PRs. Assign all materially affected areas; use `area: repo` for repository-wide concerns not attributable to a more precise area.                                                                                                                                   |
+| `work: *`      | Kind of activity or deliverable                            | Issues and PRs. Apply one or more when work genuinely spans categories, e.g., translation **and** review.                                                                                                                                                                      |
+| `priority: *`  | Urgency and impact                                         | Primarily Issues; PRs only when priority adds meaningful information. At most one level: `critical`, `high`, `medium`, or `low`. `critical` is for immediate production/security/data-loss situations, not merely large tasks.                                                 |
+| `pr: *`        | PR's role or special change characteristics                | PRs only. `integration` identifies the parent PR; `agent-subtask` identifies an agent PR targeting the integration branch. These two **roles** are mutually exclusive. `breaking-change` and `migration` are independent flags that can accompany either role or a regular PR. |
+| `issue: *`     | Issue intake or investigation status                       | Issues only: `needs-triage`, `needs-info`, `needs-reproduction`. Use only while the condition applies.                                                                                                                                                                         |
+| `source: *`    | Origin of the Issue                                        | Issues only. Choose the factual source: `internal`, `expert-review`, `user-report`, `agent`, or `automation`. Do not confuse a project-owner request (`internal`) with a report submitted through the product's user-report UI (`user-report`).                                |
+| `attention: *` | Special action still required                              | Issues and PRs, only when applicable: `decision`, `blocked`, `manual-qa`. Remove a transient label after the underlying condition is resolved.                                                                                                                                 |
 
 For exact `area` choices, check the catalog: shared areas include `server`, `platform`, `scripts`, `contracts`, `engine`, `indexdb`, `ui-kit`, `studio`, and `repo`; the remaining `area` labels cover individual textbooks. The `work` values are `feature`, `fix`, `refactor`, `content`, `translation`, `review`, `tests`, `ci`, `docs`, and `tooling`.
 
@@ -42,12 +42,12 @@ For exact `area` choices, check the catalog: shared areas include `server`, `pla
 
 ## 4. Naming examples
 
-| Avoid (duplicates labels or adds filler) | Prefer | Metadata carried by labels |
-| --- | --- | --- |
-| `[Biology] Translation Review — Agent 1` | `Unify Crimean Tatar skill terminology` | `area: biology`, `work: translation`, `work: review`, `pr: agent-subtask` |
-| `[Physics] Skills taxonomy — Integration (4 Agents)` | `Localize skills taxonomy` | `area: physics`, `work: translation`, `pr: integration` |
-| `[Repo] Docs: Add GitHub rules` | `Document GitHub labeling conventions` | `area: repo`, `work: docs` |
-| `URGENT FIX: Quiz broken!` | `Restore keyboard navigation in quiz` | `work: fix`, appropriate `priority: *` |
+| Avoid (duplicates labels or adds filler)             | Prefer                                  | Metadata carried by labels                                                |
+| ---------------------------------------------------- | --------------------------------------- | ------------------------------------------------------------------------- |
+| `[Biology] Translation Review — Agent 1`             | `Unify Crimean Tatar skill terminology` | `area: biology`, `work: translation`, `work: review`, `pr: agent-subtask` |
+| `[Physics] Skills taxonomy — Integration (4 Agents)` | `Localize skills taxonomy`              | `area: physics`, `work: translation`, `pr: integration`                   |
+| `[Repo] Docs: Add GitHub rules`                      | `Document GitHub labeling conventions`  | `area: repo`, `work: docs`                                                |
+| `URGENT FIX: Quiz broken!`                           | `Restore keyboard navigation in quiz`   | `work: fix`, appropriate `priority: *`                                    |
 
 These are naming examples, not an instruction to rename existing PRs or replace established workflow-required branch names.
 

@@ -1,12 +1,30 @@
 import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
 
-import { distinguishVertebratesAndInvertebrates_Skill_Data, recognizeAmphibianCharacteristics_Skill_Data, recognizeAnnelidCharacteristics_Skill_Data, recognizeArachnidCharacteristics_Skill_Data, recognizeBirdCharacteristics_Skill_Data, recognizeCnidarianCharacteristics_Skill_Data, recognizeCommonLocalAnimals_Skill_Data, recognizeCrustaceanCharacteristics_Skill_Data, recognizeEchinodermCharacteristics_Skill_Data, recognizeFishCharacteristics_Skill_Data, recognizeFlatwormCharacteristics_Skill_Data, recognizeInsectCharacteristics_Skill_Data, recognizeMammalCharacteristics_Skill_Data, recognizeMolluscCharacteristics_Skill_Data, recognizeNematodeCharacteristics_Skill_Data, recognizeReptileCharacteristics_Skill_Data, recognizeSpongeCharacteristics_Skill_Data } from './skills';
+import {
+  distinguishVertebratesAndInvertebrates_Skill_Data,
+  recognizeAmphibianCharacteristics_Skill_Data,
+  recognizeAnnelidCharacteristics_Skill_Data,
+  recognizeArachnidCharacteristics_Skill_Data,
+  recognizeBirdCharacteristics_Skill_Data,
+  recognizeCnidarianCharacteristics_Skill_Data,
+  recognizeCommonLocalAnimals_Skill_Data,
+  recognizeCrustaceanCharacteristics_Skill_Data,
+  recognizeEchinodermCharacteristics_Skill_Data,
+  recognizeFishCharacteristics_Skill_Data,
+  recognizeFlatwormCharacteristics_Skill_Data,
+  recognizeInsectCharacteristics_Skill_Data,
+  recognizeMammalCharacteristics_Skill_Data,
+  recognizeMolluscCharacteristics_Skill_Data,
+  recognizeNematodeCharacteristics_Skill_Data,
+  recognizeReptileCharacteristics_Skill_Data,
+  recognizeSpongeCharacteristics_Skill_Data,
+} from './skills';
 
 export const animalDiversity_SkillGroup_Data = buildSkillGroupConfig({
-  slug: "animalDiversity",
-  id: "591a0c82-1daa-4be9-9393-1ce81a51152e",
+  slug: 'animalDiversity',
+  id: '591a0c82-1daa-4be9-9393-1ce81a51152e',
   name: {
-    en: "Animal Diversity",
+    en: 'Animal Diversity',
     zh: '动物多样性',
     hi: 'प्राणियों की विविधता',
     es: 'Diversidad animal',
@@ -56,14 +74,15 @@ export const animalDiversity_SkillGroup_Data = buildSkillGroupConfig({
     recognizeSpongeCharacteristics: recognizeSpongeCharacteristics_Skill_Data,
   },
   description: {
-    methodological: "Identifying major animal groups requires diagnostic characteristics, including skeletal structure, body coverings, limbs, and developmental patterns, rather than incidental external resemblance.",
+    methodological:
+      'Identifying major animal groups requires diagnostic characteristics, including skeletal structure, body coverings, limbs, and developmental patterns, rather than incidental external resemblance.',
     frontend: {
-      en: "Recognize major animal groups by reliable body features rather than superficial similarities.",
+      en: 'Recognize major animal groups by reliable body features rather than superficial similarities.',
       zh: '探索主要动物类群的不同特征。',
       hi: 'प्राणियों के प्रमुख समूहों की अलग-अलग विशेषताओं को जानें।',
       es: 'Explora las diferentes características de los principales grupos de animales.',
       ar: 'تعرّف إلى المجموعات الرئيسية من الحيوانات من خلال سمات جسمية موثوقة، لا أوجه الشبه السطحية.',
-      fr: 'Reconnais les grands groupes d\'animaux grâce à des caractères anatomiques fiables plutôt qu\'à des ressemblances superficielles.',
+      fr: "Reconnais les grands groupes d'animaux grâce à des caractères anatomiques fiables plutôt qu'à des ressemblances superficielles.",
       bn: 'শুধু বাহ্যিক মিল নয়, দেহের নির্ভরযোগ্য গঠনগত বৈশিষ্ট্য দেখে প্রাণীদের প্রধান দলগুলো চেনো।',
       pt: 'Explore as diferentes características dos principais grupos de animais.',
       ur: 'جانوروں کے بڑے گروہوں کو محض ظاہری مشابہت کے بجائے ان کی قابلِ اعتماد جسمانی خصوصیات سے پہچانیں۔',

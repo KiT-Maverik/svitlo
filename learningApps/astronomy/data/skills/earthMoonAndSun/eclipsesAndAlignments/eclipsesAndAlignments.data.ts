@@ -50,7 +50,7 @@ export const eclipsesAndAlignments_SkillGroup_Data = buildSkillGroupConfig({
       hi: 'जानें कि ग्रहण खगोलीय पिंडों की स्थिति और उनकी छायाओं पर कैसे निर्भर करते हैं।',
       es: 'Aprende cómo los eclipses dependen de la alineación de los cuerpos celestes y de sus sombras.',
       ar: 'تعلّم كيف يعتمد الكسوف والخسوف على اصطفاف الأجرام السماوية وظلالها.',
-      fr: 'Découvrez comment les éclipses dépendent de l\'alignement des astres et de leurs ombres.',
+      fr: "Découvrez comment les éclipses dépendent de l'alignement des astres et de leurs ombres.",
       bn: 'মহাজাগতিক বস্তুগুলির অবস্থান ও তাদের ছায়ার কারণে গ্রহণ কীভাবে ঘটে, তা জানো।',
       pt: 'Aprenda como os eclipses dependem do alinhamento dos corpos celestes e de suas sombras.',
       ur: 'جانیں کہ گرہن اجرامِ فلکی کی سیدھ اور ان کے سائے پر کیسے منحصر ہوتے ہیں۔',

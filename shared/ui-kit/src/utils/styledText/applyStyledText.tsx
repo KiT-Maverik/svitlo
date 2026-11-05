@@ -24,11 +24,12 @@ export function applyStyledText({ text, styling }: ApplyStyledTextOptions) {
       applied.has('bold') && styles.bold,
       applied.has('cursive') && styles.cursive,
       applied.has('variable') && styles.variable,
-    ].filter(Boolean).join(' ');
-    const decoration = [
-      applied.has('underscore') && 'underline',
-      applied.has('crossed') && 'line-through',
-    ].filter(Boolean).join(' ');
+    ]
+      .filter(Boolean)
+      .join(' ');
+    const decoration = [applied.has('underscore') && 'underline', applied.has('crossed') && 'line-through']
+      .filter(Boolean)
+      .join(' ');
 
     return (
       <span

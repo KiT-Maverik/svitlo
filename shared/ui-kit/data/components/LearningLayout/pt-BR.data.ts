@@ -1,29 +1,29 @@
 export const locale = {
-  "brand": "Svitlo",
-  "navigation": {
-    "top": "Navegação superior de aprendizagem",
-    "bottom": "Navegação inferior de aprendizagem",
-    "topics": "Lista de temas",
-    "settings": "Configurações"
+  brand: 'Svitlo',
+  navigation: {
+    top: 'Navegação superior de aprendizagem',
+    bottom: 'Navegação inferior de aprendizagem',
+    topics: 'Lista de temas',
+    settings: 'Configurações',
   },
-  "actions": {
-    "openTopics": "Abrir a lista de temas",
-    "closeTopics": "Fechar a lista de temas",
-    "openSettings": "Abrir configurações",
-    "closeSettings": "Fechar configurações",
-    "closeSidebar": "Fechar a barra lateral",
-    "closeSettingsPanel": "Fechar o painel de configurações",
-    "previous": "Voltar",
-    "next": "Próximo",
-    "skip": "Pular",
-    "profile": "Perfil",
-    "logout": "Sair"
+  actions: {
+    openTopics: 'Abrir a lista de temas',
+    closeTopics: 'Fechar a lista de temas',
+    openSettings: 'Abrir configurações',
+    closeSettings: 'Fechar configurações',
+    closeSidebar: 'Fechar a barra lateral',
+    closeSettingsPanel: 'Fechar o painel de configurações',
+    previous: 'Voltar',
+    next: 'Próximo',
+    skip: 'Pular',
+    profile: 'Perfil',
+    logout: 'Sair',
   },
-  "tooltips": {
-    "profile": "O perfil ficará disponível quando o login for ativado",
-    "logout": "A opção de sair ficará disponível quando o login for ativado"
+  tooltips: {
+    profile: 'O perfil ficará disponível quando o login for ativado',
+    logout: 'A opção de sair ficará disponível quando o login for ativado',
   },
-  "topicsTitle": "TEMAS",
-  "settingsTitle": "Configurações",
-  "settingsDescription": "As configurações de aprendizagem aparecerão aqui."
+  topicsTitle: 'TEMAS',
+  settingsTitle: 'Configurações',
+  settingsDescription: 'As configurações de aprendizagem aparecerão aqui.',
 } as const;

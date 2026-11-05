@@ -44,7 +44,7 @@ export const asterisms_Skill_Data = buildSkillConfig({
       hi: 'तारों के ऐसे परिचित पैटर्न पहचानें जो ज़रूरी नहीं कि आधिकारिक तारामंडल हों।',
       es: 'Identifica patrones conocidos de estrellas que no son necesariamente constelaciones oficiales.',
       ar: 'تعرّف على أنماط مألوفة من النجوم ليست بالضرورة كوكبات معتمدة رسميًا.',
-      fr: 'Identifie des figures d\'étoiles familières qui ne correspondent pas nécessairement à des constellations officielles.',
+      fr: "Identifie des figures d'étoiles familières qui ne correspondent pas nécessairement à des constellations officielles.",
       bn: 'তারার এমন পরিচিত বিন্যাস শনাক্ত করো, যেগুলো সব সময় আনুষ্ঠানিক নক্ষত্রমণ্ডল নয়।',
       pt: 'Identifique padrões conhecidos de estrelas que não são necessariamente constelações oficiais.',
       ur: 'ستاروں کے ایسے مانوس نقش پہچانیں جو ضروری نہیں کہ باضابطہ طور پر متعین برج ہوں۔',

@@ -50,7 +50,7 @@ export const cosmicStructureAndEvolution_SkillGroup_Data = buildSkillGroupConfig
       hi: 'जानें कि गुरुत्वाकर्षण ब्रह्मांड के इतिहास में पदार्थ से विशाल संरचनाएँ कैसे बनाता है।',
       es: 'Investiga cómo la gravedad da forma a grandes estructuras a lo largo de la historia cósmica.',
       ar: 'ادرس كيف تشكل الجاذبية المادة في بُنى ضخمة عبر تاريخ الكون.',
-      fr: 'Étudie comment la gravité organise la matière en grandes structures au fil de l\'histoire cosmique.',
+      fr: "Étudie comment la gravité organise la matière en grandes structures au fil de l'histoire cosmique.",
       bn: 'মহাবিশ্বের ইতিহাসে মহাকর্ষ কীভাবে পদার্থের বিশাল কাঠামো তৈরি করে তা দেখো।',
       pt: 'Investigue como a gravidade molda a matéria em grandes estruturas ao longo da história cósmica.',
       ur: 'دیکھیں کہ کششِ ثقل کائنات کی تاریخ میں مادّے سے بڑی ساختیں کیسے بناتی ہے۔',

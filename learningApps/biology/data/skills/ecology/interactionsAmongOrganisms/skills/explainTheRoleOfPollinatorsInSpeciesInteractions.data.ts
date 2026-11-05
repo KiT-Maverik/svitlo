@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainTheRoleOfPollinatorsInSpeciesInteractions_Skill_Data = buildSkillConfig({
-  slug: "explainTheRoleOfPollinatorsInSpeciesInteractions",
-  id: "f052071e-40e0-4ec6-a24b-f5d937f1ab4a",
+  slug: 'explainTheRoleOfPollinatorsInSpeciesInteractions',
+  id: 'f052071e-40e0-4ec6-a24b-f5d937f1ab4a',
   name: {
-    en: "Explain the Role of Pollinators in Species Interactions",
+    en: 'Explain the Role of Pollinators in Species Interactions',
     zh: '解释传粉者在物种相互作用中的作用',
     hi: 'प्रजातियों के संबंधों में परागणकों की भूमिका समझाना',
     es: 'Explicar el papel de los polinizadores en las interacciones entre especies',
@@ -35,9 +35,10 @@ export const explainTheRoleOfPollinatorsInSpeciesInteractions_Skill_Data = build
     qm: 'Türler arasındaki alâqalarda tozlandırıcılarnıñ rolüni añlatmaq',
   },
   description: {
-    methodological: "Explain how an animal’s transfer of pollen relates to plant reproduction and to the pollinator’s resources.",
+    methodological:
+      'Explain how an animal’s transfer of pollen relates to plant reproduction and to the pollinator’s resources.',
     frontend: {
-      en: "Explain how pollinators and flowering plants depend on one another.",
+      en: 'Explain how pollinators and flowering plants depend on one another.',
       zh: '解释传粉者与开花植物如何相互依赖。',
       hi: 'समझाएँ कि परागण करने वाले जीव और फूलदार पौधे एक-दूसरे पर कैसे निर्भर हैं।',
       es: 'Explica cómo los polinizadores y las plantas con flores dependen unos de otros.',

@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const compareDenseAndMoEModels_Skill_Data = buildSkillConfig({
-  slug: "compareDenseAndMoEModels",
-  id: "bb75c08c-c9a6-4ab2-9f63-9a2e0caf6ca3",
+  slug: 'compareDenseAndMoEModels',
+  id: 'bb75c08c-c9a6-4ab2-9f63-9a2e0caf6ca3',
   name: {
-    en: "Compare Dense and MoE Models",
+    en: 'Compare Dense and MoE Models',
     zh: '比较稠密模型与专家混合模型',
     hi: 'घने और विशेषज्ञ-मिश्रण मॉडलों की तुलना करना',
     es: 'Comparar modelos densos y de mezcla de expertos',
@@ -35,9 +35,10 @@ export const compareDenseAndMoEModels_Skill_Data = buildSkillConfig({
     qm: 'Tığız ve ekspertler qarışımı modellerini qıyaslamaq',
   },
   description: {
-    methodological: "Distinguish an architecture activating all relevant dense computation from a mixture-of-experts architecture where a router activates only some expert blocks. Total parameter count is not the same as the number of parameters active for each token.",
+    methodological:
+      'Distinguish an architecture activating all relevant dense computation from a mixture-of-experts architecture where a router activates only some expert blocks. Total parameter count is not the same as the number of parameters active for each token.',
     frontend: {
-      en: "Compare models that activate many parameters with models using selected experts.",
+      en: 'Compare models that activate many parameters with models using selected experts.',
       zh: '比较激活大量参数的模型与只使用选定专家模块的模型。',
       hi: 'अधिक पैरामीटर सक्रिय करने वाले मॉडलों की तुलना चुने हुए विशेषज्ञों का उपयोग करने वाले मॉडलों से करें।',
       es: 'Compara modelos que activan muchos parámetros con otros que utilizan solo expertos seleccionados.',

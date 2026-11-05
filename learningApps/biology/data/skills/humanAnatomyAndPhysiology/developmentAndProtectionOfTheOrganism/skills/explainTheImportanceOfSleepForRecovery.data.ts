@@ -1,15 +1,15 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainTheImportanceOfSleepForRecovery_Skill_Data = buildSkillConfig({
-  slug: "explainTheImportanceOfSleepForRecovery",
-  id: "5c341f9f-e5c2-409d-949b-77773ac572c7",
+  slug: 'explainTheImportanceOfSleepForRecovery',
+  id: '5c341f9f-e5c2-409d-949b-77773ac572c7',
   name: {
-    en: "Explain the Importance of Sleep for Recovery",
+    en: 'Explain the Importance of Sleep for Recovery',
     zh: '解释睡眠对身体恢复的重要性',
     hi: 'स्वास्थ्य-लाभ के लिए नींद का महत्व समझाना',
     es: 'Explicar la importancia del sueño para la recuperación',
     ar: 'شرح أهمية النوم للتعافي',
-    fr: 'Expliquer l\'importance du sommeil pour la récupération',
+    fr: "Expliquer l'importance du sommeil pour la récupération",
     bn: 'সেরে ওঠায় ঘুমের গুরুত্ব ব্যাখ্যা করা',
     pt: 'Explicar a importância do sono para a recuperação',
     ur: 'بحالی کے لیے نیند کی اہمیت کی وضاحت',
@@ -35,9 +35,10 @@ export const explainTheImportanceOfSleepForRecovery_Skill_Data = buildSkillConfi
     qm: 'Uyqunıñ tiklenüv içün emiyetini añlatmaq',
   },
   description: {
-    methodological: "Relate sleep to neural regulation, memory, and restoration of functions without replacing explanations of mechanisms with rules about sleep schedules.",
+    methodological:
+      'Relate sleep to neural regulation, memory, and restoration of functions without replacing explanations of mechanisms with rules about sleep schedules.',
     frontend: {
-      en: "Discover how sleep supports brain function, memory and recovery.",
+      en: 'Discover how sleep supports brain function, memory and recovery.',
       zh: '了解睡眠如何支持大脑工作、记忆和身体恢复。',
       hi: 'जानें कि नींद मस्तिष्क के काम, स्मृति और शरीर की रिकवरी में कैसे मदद करती है।',
       es: 'Descubre cómo el sueño favorece la función cerebral, la memoria y la recuperación.',
@@ -58,7 +59,7 @@ export const explainTheImportanceOfSleepForRecovery_Skill_Data = buildSkillConfi
       ms: 'Ketahui bagaimana tidur menyokong fungsi otak, ingatan dan pemulihan.',
       he: 'גלו כיצד השינה תומכת בפעילות המוח, בזיכרון ובהתאוששות.',
       pl: 'Dowiedz się, jak sen wspiera pracę mózgu, pamięć i regenerację.',
-      uk: 'Дізнайтеся, як сон підтримує роботу мозку, пам\'ять і відновлення.',
+      uk: "Дізнайтеся, як сон підтримує роботу мозку, пам'ять і відновлення.",
       lt: 'Sužinokite, kaip miegas palaiko smegenų veiklą, atmintį ir atsistatymą.',
       lv: 'Uzziniet, kā miegs atbalsta smadzeņu darbību, atmiņu un atjaunošanos.',
       et: 'Uuri, kuidas uni toetab aju tööd, mälu ja taastumist.',

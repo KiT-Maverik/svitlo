@@ -2,8 +2,15 @@ import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/localization';
 import type { ContentBlockResponse } from './types';
 
 export const supportedTypes = new Set<string>([
-  'text', 'markdown', 'checkpoint', 'scene', 'code',
-  'audio', 'video', 'youtube', 'image',
+  'text',
+  'markdown',
+  'checkpoint',
+  'scene',
+  'code',
+  'audio',
+  'video',
+  'youtube',
+  'image',
 ]);
 
 export function assertNever(value: never): never {

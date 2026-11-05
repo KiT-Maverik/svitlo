@@ -20,7 +20,14 @@ import styles from './Youtube.module.css';
 
 type FallbackKind = 'loading' | 'offline' | 'unavailable';
 
-export const Youtube = ({ href, mode, title, hint, fallback: fallbackMessages, messages }: ContentBlock_Youtube_Response & {
+export const Youtube = ({
+  href,
+  mode,
+  title,
+  hint,
+  fallback: fallbackMessages,
+  messages,
+}: ContentBlock_Youtube_Response & {
   messages: UiKit_Component<'youtube', 'response'>;
 }) => {
   const contentLanguage = useContentLanguage();
@@ -50,20 +57,22 @@ export const Youtube = ({ href, mode, title, hint, fallback: fallbackMessages, m
       if (active) setFailedHref(href);
     }, 20_000);
 
-    loadYoutubeApi().then(api => {
-      if (!active) return;
-      player = new api.Player(iframe, {
-        events: {
-          onReady: () => window.clearTimeout(timeout),
-          onError: () => {
-            window.clearTimeout(timeout);
-            if (active) setFailedHref(href);
+    loadYoutubeApi()
+      .then(api => {
+        if (!active) return;
+        player = new api.Player(iframe, {
+          events: {
+            onReady: () => window.clearTimeout(timeout),
+            onError: () => {
+              window.clearTimeout(timeout);
+              if (active) setFailedHref(href);
+            },
           },
-        },
+        });
+      })
+      .catch(() => {
+        if (active) setFailedHref(href);
       });
-    }).catch(() => {
-      if (active) setFailedHref(href);
-    });
 
     return () => {
       active = false;
@@ -73,12 +82,14 @@ export const Youtube = ({ href, mode, title, hint, fallback: fallbackMessages, m
     };
   }, [href, mode, label, online, unavailable]);
 
-  const fallbackKind: FallbackKind | null = online === null ? 'loading' : !online ? 'offline' : unavailable ? 'unavailable' : null;
-  const fallbackText = fallbackKind === 'loading'
-    ? messages['loading']
-    : fallbackKind
-      ? fallbackMessages?.[fallbackKind] || messages[fallbackKind]
-      : null;
+  const fallbackKind: FallbackKind | null =
+    online === null ? 'loading' : !online ? 'offline' : unavailable ? 'unavailable' : null;
+  const fallbackText =
+    fallbackKind === 'loading'
+      ? messages['loading']
+      : fallbackKind
+        ? fallbackMessages?.[fallbackKind] || messages[fallbackKind]
+        : null;
   const fallback = fallbackKind && (
     <div key="fallback" className={styles.placeholder} role="status">
       <strong>{label}</strong>
@@ -93,7 +104,9 @@ export const Youtube = ({ href, mode, title, hint, fallback: fallbackMessages, m
 
   if (mode === 'link') {
     return fallbackKind ? (
-      <div {...attributes} className={styles.linkFallback}>{fallback}</div>
+      <div {...attributes} className={styles.linkFallback}>
+        {fallback}
+      </div>
     ) : (
       <a {...attributes} href={href} rel="noopener noreferrer" target="_blank">
         {label}

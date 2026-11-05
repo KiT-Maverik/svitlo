@@ -22,14 +22,22 @@ const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
 
 function assertLesson(value: unknown): asserts value is LessonData {
-  if (!isRecord(value) || typeof value.id !== 'string' || typeof value.slug !== 'string' ||
-      !/^[a-z][A-Za-z0-9]*$/.test(value.slug)) {
+  if (
+    !isRecord(value) ||
+    typeof value.id !== 'string' ||
+    typeof value.slug !== 'string' ||
+    !/^[a-z][A-Za-z0-9]*$/.test(value.slug)
+  ) {
     throw new Error('Lesson must declare a canonical UUID id and camelCase slug');
   }
   const relativePath = resolveEntityPath(value.id);
   const parameters = value.parameters;
-  if (!isRecord(parameters) || !Array.isArray(parameters.languages) || parameters.languages.length === 0 ||
-      !parameters.languages.every(code => typeof code === 'string')) {
+  if (
+    !isRecord(parameters) ||
+    !Array.isArray(parameters.languages) ||
+    parameters.languages.length === 0 ||
+    !parameters.languages.every(code => typeof code === 'string')
+  ) {
     throw new Error(`Lesson ${relativePath} has no valid parameters.languages`);
   }
   if (!Array.isArray(value.flashcards) || !isRecord(value.questions) || !Array.isArray(value.sections)) {
@@ -44,8 +52,12 @@ function assertLesson(value: unknown): asserts value is LessonData {
     sectionSlugs.add(entry.slug);
     const blockKeys = new Set<string>();
     for (const [blockIndex, item] of entry.content.entries()) {
-      if (!isRecord(item) || typeof item.id !== 'string' || typeof item.slug !== 'string' ||
-          typeof item.type !== 'string') {
+      if (
+        !isRecord(item) ||
+        typeof item.id !== 'string' ||
+        typeof item.slug !== 'string' ||
+        typeof item.type !== 'string'
+      ) {
         throw new Error(`Invalid content block at ${relativePath}/sections[${index}]/content[${blockIndex}]`);
       }
       const key = item.type + '/' + item.slug;
@@ -69,16 +81,20 @@ export async function loadLessonData(entry: string): Promise<unknown> {
       packages: 'external',
       target: 'node20',
       logLevel: 'silent',
-      plugins: [{
-        name: 'preserve-import-meta-url',
-        setup(builder) {
-          builder.onLoad({ filter: /\.tsx?$/ }, async args => ({
-            contents: (await fs.promises.readFile(args.path, 'utf8'))
-              .replace(/\bimport\.meta\.url\b/g, JSON.stringify(pathToFileURL(args.path).href)),
-            loader: args.path.endsWith('.tsx') ? 'tsx' : 'ts',
-          }));
+      plugins: [
+        {
+          name: 'preserve-import-meta-url',
+          setup(builder) {
+            builder.onLoad({ filter: /\.tsx?$/ }, async args => ({
+              contents: (await fs.promises.readFile(args.path, 'utf8')).replace(
+                /\bimport\.meta\.url\b/g,
+                JSON.stringify(pathToFileURL(args.path).href),
+              ),
+              loader: args.path.endsWith('.tsx') ? 'tsx' : 'ts',
+            }));
+          },
         },
-      }],
+      ],
     });
     const exports = require(output) as Record<string, unknown>;
     const entries = Object.values(exports).filter(value => isRecord(value) && 'id' in value && 'slug' in value);
@@ -92,12 +108,18 @@ export async function loadLessonData(entry: string): Promise<unknown> {
 function compactQuizQuestions(value: unknown): unknown {
   if (Array.isArray(value)) return value.map(compactQuizQuestions);
   if (!isRecord(value)) return value;
-  return Object.fromEntries(Object.entries(value).map(([key, child]) => {
-    if (key === 'questions' && isRecord(child) && Object.values(child).every(item => isRecord(item) && typeof item.slug === 'string')) {
-      return ['questionSlugs', Object.values(child).map(item => (item as { slug: string }).slug)];
-    }
-    return [key, compactQuizQuestions(child)];
-  }));
+  return Object.fromEntries(
+    Object.entries(value).map(([key, child]) => {
+      if (
+        key === 'questions' &&
+        isRecord(child) &&
+        Object.values(child).every(item => isRecord(item) && typeof item.slug === 'string')
+      ) {
+        return ['questionSlugs', Object.values(child).map(item => (item as { slug: string }).slug)];
+      }
+      return [key, compactQuizQuestions(child)];
+    }),
+  );
 }
 
 /** Render three independently fetchable collections for every language of one lesson. */
@@ -120,7 +142,10 @@ export function renderLessonFiles(lesson: unknown): Map<string, string> {
     };
     for (const [kind, source] of Object.entries(collections)) {
       const { value, sources } = localizeLessonValue(source, language, languages);
-      files.set(`${relativePath}/${kind}/${language}.json`, JSON.stringify({ data: value, localeSources: sources }) + '\n');
+      files.set(
+        `${relativePath}/${kind}/${language}.json`,
+        JSON.stringify({ data: value, localeSources: sources }) + '\n',
+      );
     }
   }
   return files;
@@ -137,7 +162,8 @@ export async function renderTextbookLessonFiles(packageDirectory: string): Promi
     for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
       if (!entry.isDirectory()) continue;
       const relative = resolveEntityPath(entry.name);
-      if (relative !== `${bucket.name}/${entry.name}`) throw new Error(`Lesson path mismatch: ${bucket.name}/${entry.name}`);
+      if (relative !== `${bucket.name}/${entry.name}`)
+        throw new Error(`Lesson path mismatch: ${bucket.name}/${entry.name}`);
       const lessonDir = path.join(dir, entry.name);
       const candidates = fs.readdirSync(lessonDir).filter(name => name.endsWith('.data.ts'));
       if (!candidates.length) continue; // Editorial draft without authored TS.
@@ -157,8 +183,10 @@ export async function renderTextbookLessonFiles(packageDirectory: string): Promi
 export function writeLessonFiles(outputDirectory: string, files: ReadonlyMap<string, string>): void {
   const parent = path.dirname(outputDirectory);
   fs.mkdirSync(parent, { recursive: true });
-  if (fs.existsSync(outputDirectory) &&
-      (!fs.statSync(outputDirectory).isDirectory() || fs.lstatSync(outputDirectory).isSymbolicLink())) {
+  if (
+    fs.existsSync(outputDirectory) &&
+    (!fs.statSync(outputDirectory).isDirectory() || fs.lstatSync(outputDirectory).isSymbolicLink())
+  ) {
     throw new Error(`Refusing to replace non-directory or symlink: ${outputDirectory}`);
   }
   const staging = fs.mkdtempSync(path.join(parent, '.lessons-staging-'));

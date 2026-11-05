@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const recognizeMutuallyBeneficialRelationships_Skill_Data = buildSkillConfig({
-  slug: "recognizeMutuallyBeneficialRelationships",
-  id: "0cf1b018-c59b-4778-9431-e6adc564538a",
+  slug: 'recognizeMutuallyBeneficialRelationships',
+  id: '0cf1b018-c59b-4778-9431-e6adc564538a',
   name: {
-    en: "Recognize Mutually Beneficial Relationships",
+    en: 'Recognize Mutually Beneficial Relationships',
     zh: '识别互利关系',
     hi: 'दोनों को लाभ देने वाले संबंध पहचानना',
     es: 'Reconocer relaciones de beneficio mutuo',
@@ -35,9 +35,9 @@ export const recognizeMutuallyBeneficialRelationships_Skill_Data = buildSkillCon
     qm: 'İki tarafqa da faydalı alâqalarnı tanımaq',
   },
   description: {
-    methodological: "Identify interactions that increase the fitness of both species rather than only one.",
+    methodological: 'Identify interactions that increase the fitness of both species rather than only one.',
     frontend: {
-      en: "Recognize relationships that benefit both species involved.",
+      en: 'Recognize relationships that benefit both species involved.',
       zh: '识别让参与双方物种都受益的关系。',
       hi: 'ऐसे संबंध पहचानें जिनसे शामिल दोनों प्रजातियों को लाभ मिलता है।',
       es: 'Identifica relaciones que benefician a las dos especies participantes.',

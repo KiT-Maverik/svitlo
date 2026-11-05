@@ -56,7 +56,10 @@ describe('YouTube content block', () => {
     let reportError: ((event: { data: number }) => void) | undefined;
     window.YT = {
       Player: class {
-        constructor(_iframe: HTMLIFrameElement, options: { events: { onReady: () => void; onError: (event: { data: number }) => void } }) {
+        constructor(
+          _iframe: HTMLIFrameElement,
+          options: { events: { onReady: () => void; onError: (event: { data: number }) => void } },
+        ) {
           reportError = options.events.onError;
           options.events.onReady();
         }
@@ -82,11 +85,18 @@ describe('YouTube content block', () => {
   });
 });
 
-
 describe('YouTube links, validation, and retry', () => {
   it('opens external links safely and uses a hint when no title is supplied', () => {
     setOnline(true);
-    render(<Youtube messages={enUiKitMessages.youtube} {...response} mode="link" title={undefined} hint="Watch the example" />);
+    render(
+      <Youtube
+        messages={enUiKitMessages.youtube}
+        {...response}
+        mode="link"
+        title={undefined}
+        hint="Watch the example"
+      />,
+    );
     const link = screen.getByRole('link', { name: 'Watch the example' });
     expect(link).toHaveAttribute('target', '_blank');
     expect(link).toHaveAttribute('rel', 'noopener noreferrer');
@@ -107,12 +117,17 @@ describe('YouTube links, validation, and retry', () => {
     let destroyedCount = 0;
     window.YT = {
       Player: class {
-        constructor(_iframe: HTMLIFrameElement, options: { events: { onReady: () => void; onError: (event: { data: number }) => void } }) {
+        constructor(
+          _iframe: HTMLIFrameElement,
+          options: { events: { onReady: () => void; onError: (event: { data: number }) => void } },
+        ) {
           playerCount += 1;
           reportError = options.events.onError;
           options.events.onReady();
         }
-        destroy() { destroyedCount += 1; }
+        destroy() {
+          destroyedCount += 1;
+        }
       },
     };
     const { container } = render(<Youtube messages={enUiKitMessages.youtube} {...response} />);

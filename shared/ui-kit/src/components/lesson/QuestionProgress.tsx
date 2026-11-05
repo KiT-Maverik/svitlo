@@ -16,21 +16,28 @@ export type QuestionProgressProps = {
 };
 
 export function QuestionProgress({
-  statuses, currentIndex, messages, allowNavigation = false, onNavigate, className,
+  statuses,
+  currentIndex,
+  messages,
+  allowNavigation = false,
+  onNavigate,
+  className,
 }: QuestionProgressProps) {
   const labels = messages.questionProgress;
   return (
-    <Box component="ol" className={className ?? styles.questionProgress}
-      role="list" aria-label={labels.navigation}>
+    <Box component="ol" className={className ?? styles.questionProgress} role="list" aria-label={labels.navigation}>
       {statuses.map((status, index) => (
         <Box component="li" key={index} sx={{ display: 'contents' }}>
-          <Box component="button" type="button"
+          <Box
+            component="button"
+            type="button"
             disabled={!allowNavigation || index === currentIndex}
             aria-current={index === currentIndex ? 'step' : undefined}
             aria-label={`${index + 1}. ${labels.status[status]}`}
             data-status={status}
             data-current={index === currentIndex || undefined}
-            onClick={() => onNavigate?.(index)} />
+            onClick={() => onNavigate?.(index)}
+          />
         </Box>
       ))}
     </Box>

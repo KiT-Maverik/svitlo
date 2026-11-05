@@ -23,7 +23,8 @@ const bucketPattern = /^[0-9a-f]$/;
 
 function directories(directory) {
   if (!fs.existsSync(directory)) return [];
-  return fs.readdirSync(directory, { withFileTypes: true })
+  return fs
+    .readdirSync(directory, { withFileTypes: true })
     .filter(entry => entry.isDirectory())
     .map(entry => entry.name)
     .sort();
@@ -66,7 +67,10 @@ export function generateLessonReviewArtifacts({ root, output, languages, manifes
   fs.mkdirSync(path.join(output, 'lessons'), { recursive: true });
 
   if (lessons.length && !generatorAvailable) {
-    manifest.failures.push({ kind: 'lesson', error: 'Missing scripts/generate-lessons-markdown.mjs (Agent 4 dependency)' });
+    manifest.failures.push({
+      kind: 'lesson',
+      error: 'Missing scripts/generate-lessons-markdown.mjs (Agent 4 dependency)',
+    });
     saveManifest();
     result.failures++;
     return result;
@@ -77,18 +81,26 @@ export function generateLessonReviewArtifacts({ root, output, languages, manifes
       const name = `${lesson.textbook}/${lesson.relative}/${locale}`;
       const relative = path.join('lessons', lesson.textbook, lesson.relative, `${locale}.md`);
       const destination = path.join(output, relative);
-      const generated = run(process.execPath, [
-        generator, '--package', lesson.package,
-        '--lesson', `${lesson.relative}`,
-        '--locale', locale, '--stdout',
-      ], { cwd: root, encoding: 'utf8', timeout: 180_000, maxBuffer: 32 * 1024 * 1024 });
+      const generated = run(
+        process.execPath,
+        [generator, '--package', lesson.package, '--lesson', `${lesson.relative}`, '--locale', locale, '--stdout'],
+        { cwd: root, encoding: 'utf8', timeout: 180_000, maxBuffer: 32 * 1024 * 1024 },
+      );
 
       const markdown = generated.stdout || '';
       if (generated.error || generated.status !== 0 || !markdown.trim()) {
-        const error = String(generated.error?.message || generated.stderr ||
-          `Generator returned ${generated.status} or empty Markdown`).trim().slice(0, 1500);
-        manifest.failures.push({ kind: 'lesson', textbook: lesson.package,
-          lesson: `${lesson.relative}`, locale, error });
+        const error = String(
+          generated.error?.message || generated.stderr || `Generator returned ${generated.status} or empty Markdown`,
+        )
+          .trim()
+          .slice(0, 1500);
+        manifest.failures.push({
+          kind: 'lesson',
+          textbook: lesson.package,
+          lesson: `${lesson.relative}`,
+          locale,
+          error,
+        });
         saveManifest();
         process.stderr.write(`::warning::Lesson ${name}: ${error.replace(/\n/g, ' ')}\n`);
         result.failures++;
@@ -96,9 +108,13 @@ export function generateLessonReviewArtifacts({ root, output, languages, manifes
       }
       fs.mkdirSync(path.dirname(destination), { recursive: true });
       fs.writeFileSync(destination, markdown, 'utf8');
-      manifest.generated.push({ kind: 'lesson', textbook: lesson.package,
-        lesson: `${lesson.relative}`, locale,
-        path: `.agent-ci-artifacts/${relative.split(path.sep).join('/')}` });
+      manifest.generated.push({
+        kind: 'lesson',
+        textbook: lesson.package,
+        lesson: `${lesson.relative}`,
+        locale,
+        path: `.agent-ci-artifacts/${relative.split(path.sep).join('/')}`,
+      });
       saveManifest();
       result.generated++;
       process.stdout.write(`Generated .agent-ci-artifacts/${relative.split(path.sep).join('/')}\n`);

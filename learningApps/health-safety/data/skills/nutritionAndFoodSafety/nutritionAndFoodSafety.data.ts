@@ -5,10 +5,10 @@ import { foodChoicesAndInformation_SkillGroup_Data } from './foodChoicesAndInfor
 import { nutritionalFoundations_SkillGroup_Data } from './nutritionalFoundations/nutritionalFoundations.data';
 
 export const nutritionAndFoodSafety_SkillDomain_Data = buildSkillDomainConfig({
-  slug: "nutritionAndFoodSafety",
-  id: "dda753e6-e49c-4d4e-ae16-6ddae38a4bf8",
+  slug: 'nutritionAndFoodSafety',
+  id: 'dda753e6-e49c-4d4e-ae16-6ddae38a4bf8',
   name: {
-    en: "Nutrition and Food Safety",
+    en: 'Nutrition and Food Safety',
   },
   groups: {
     foodborneHazards: foodborneHazards_SkillGroup_Data,
@@ -16,9 +16,10 @@ export const nutritionAndFoodSafety_SkillDomain_Data = buildSkillDomainConfig({
     nutritionalFoundations: nutritionalFoundations_SkillGroup_Data,
   },
   description: {
-    methodological: "Eating and drinking support health through nutrients, adequate intake, and safe preparation. Nutritional choices and microbial or chemical food hazards are distinct competencies, even though the same meal can involve both.",
+    methodological:
+      'Eating and drinking support health through nutrients, adequate intake, and safe preparation. Nutritional choices and microbial or chemical food hazards are distinct competencies, even though the same meal can involve both.',
     frontend: {
-      en: "Learn how nourishment and careful food handling support health.",
+      en: 'Learn how nourishment and careful food handling support health.',
     },
   },
 });

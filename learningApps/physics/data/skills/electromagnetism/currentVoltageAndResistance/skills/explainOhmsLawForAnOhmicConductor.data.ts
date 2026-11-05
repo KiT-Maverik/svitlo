@@ -1,8 +1,8 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainOhmsLawForAnOhmicConductor_Skill_Data = buildSkillConfig({
-  slug: "explainOhmsLawForAnOhmicConductor",
-  id: "b0ec03a2-e1f8-478d-a5b4-6251451f97fc",
+  slug: 'explainOhmsLawForAnOhmicConductor',
+  id: 'b0ec03a2-e1f8-478d-a5b4-6251451f97fc',
   name: {
     en: "Explain Ohm's law for an ohmic conductor",
     qm: 'Om keçirgeni içün Om qanunını añlatmaq',
@@ -35,7 +35,8 @@ export const explainOhmsLawForAnOhmicConductor_Skill_Data = buildSkillConfig({
     kk: 'Омдық өткізгіш үшін Ом заңын түсіндіру',
   },
   description: {
-    methodological: "Under constant conditions, the current through an ohmic conductor is directly proportional to voltage; this law does not describe every component without exception.",
+    methodological:
+      'Under constant conditions, the current through an ohmic conductor is directly proportional to voltage; this law does not describe every component without exception.',
     frontend: {
       en: "Use Ohm's law for conductors that behave ohmically under constant conditions.",
       qm: 'Şarait deñişmegeni alda Om qanunına boysunğan keçirgenlerge Om qanunını tatbiq et.',

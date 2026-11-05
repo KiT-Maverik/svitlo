@@ -17,7 +17,7 @@ export const keplersThirdLaw_Skill_Data = buildSkillConfig({
     de: 'Keplers drittes Gesetz',
     ja: 'ケプラーの第三法則',
     ko: '케플러의 제3법칙',
-    tr: 'Kepler\'in üçüncü yasası',
+    tr: "Kepler'in üçüncü yasası",
     vi: 'Định luật Kepler thứ ba',
     ta: 'கெப்லரின் மூன்றாம் விதி',
     te: 'కెప్లర్ మూడవ నియమం',

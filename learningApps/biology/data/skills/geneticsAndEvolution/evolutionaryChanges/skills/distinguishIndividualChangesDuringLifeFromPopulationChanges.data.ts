@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const distinguishIndividualChangesDuringLifeFromPopulationChanges_Skill_Data = buildSkillConfig({
-  slug: "distinguishIndividualChangesDuringLifeFromPopulationChanges",
-  id: "a668c824-1686-4077-a867-6424734363e8",
+  slug: 'distinguishIndividualChangesDuringLifeFromPopulationChanges',
+  id: 'a668c824-1686-4077-a867-6424734363e8',
   name: {
-    en: "Distinguish Individual Changes During Life from Population Changes",
+    en: 'Distinguish Individual Changes During Life from Population Changes',
     zh: '区分个体一生中的变化与种群变化',
     hi: 'जीवनकाल में व्यक्तिगत परिवर्तन और आबादी में परिवर्तन में अंतर',
     es: 'Distinguir los cambios de un individuo durante su vida de los cambios de una población',
@@ -35,7 +35,8 @@ export const distinguishIndividualChangesDuringLifeFromPopulationChanges_Skill_D
     qm: 'Şahısnıñ ömründeki deñişüvlerni populyatsiya deñişüvlerinden farqlamaq',
   },
   description: {
-    methodological: "Distinguish changes in the growth or behavior of one individual from changes in the frequencies of inherited traits in a population.",
+    methodological:
+      'Distinguish changes in the growth or behavior of one individual from changes in the frequencies of inherited traits in a population.',
     frontend: {
       en: "Distinguish changes during an individual's life from evolution across generations.",
       zh: '区分一个生物个体一生中的变化与种群经历多个世代的进化。',

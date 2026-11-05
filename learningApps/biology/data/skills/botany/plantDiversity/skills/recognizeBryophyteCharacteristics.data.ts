@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const recognizeBryophyteCharacteristics_Skill_Data = buildSkillConfig({
-  slug: "recognizeBryophyteCharacteristics",
-  id: "bf0aa43b-af7a-4911-98d6-b171efb34eb0",
+  slug: 'recognizeBryophyteCharacteristics',
+  id: 'bf0aa43b-af7a-4911-98d6-b171efb34eb0',
   name: {
-    en: "Recognize Bryophyte Characteristics",
+    en: 'Recognize Bryophyte Characteristics',
     zh: '识别苔藓植物的特征',
     hi: 'ब्रायोफाइट पौधों के लक्षण पहचानना',
     es: 'Reconocer las características de las briofitas',
@@ -35,9 +35,10 @@ export const recognizeBryophyteCharacteristics_Skill_Data = buildSkillConfig({
     qm: 'Briofitlerniñ hususiyetlerini tanımaq',
   },
   description: {
-    methodological: "Recognize nonvascular land plants that produce spores and whose life cycle is dominated by the gametophyte; do not call rhizoids true roots.",
+    methodological:
+      'Recognize nonvascular land plants that produce spores and whose life cycle is dominated by the gametophyte; do not call rhizoids true roots.',
     frontend: {
-      en: "Learn the characteristic features and life cycles of mosses and related plants.",
+      en: 'Learn the characteristic features and life cycles of mosses and related plants.',
       zh: '了解苔藓及相关植物的典型特征和生活史。',
       hi: 'काई और संबंधित पौधों की विशिष्ट विशेषताओं तथा जीवन चक्र को जानें।',
       es: 'Aprende las características y los ciclos de vida de los musgos y plantas relacionadas.',

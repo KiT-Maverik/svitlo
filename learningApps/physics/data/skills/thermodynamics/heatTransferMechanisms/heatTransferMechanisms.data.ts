@@ -1,12 +1,18 @@
 import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
 
-import { explainConductionAsEnergyTransferThroughMatter_Skill_Data, explainConvectionAsEnergyTransferByFluidFlow_Skill_Data, explainRadiativeHeatTransfer_Skill_Data, identifyTheHeatTransferMechanismFromAPhysicalSituation_Skill_Data, predictTheDirectionOfHeatTransfer_Skill_Data } from './skills';
+import {
+  explainConductionAsEnergyTransferThroughMatter_Skill_Data,
+  explainConvectionAsEnergyTransferByFluidFlow_Skill_Data,
+  explainRadiativeHeatTransfer_Skill_Data,
+  identifyTheHeatTransferMechanismFromAPhysicalSituation_Skill_Data,
+  predictTheDirectionOfHeatTransfer_Skill_Data,
+} from './skills';
 
 export const heatTransferMechanisms_SkillGroup_Data = buildSkillGroupConfig({
-  slug: "heatTransferMechanisms",
-  id: "16a67cce-690b-47b9-bd61-79a3c147cec2",
+  slug: 'heatTransferMechanisms',
+  id: '16a67cce-690b-47b9-bd61-79a3c147cec2',
   name: {
-    en: "Heat-Transfer Mechanisms",
+    en: 'Heat-Transfer Mechanisms',
     qm: 'Sıcaqlıq berilüviniñ yolları',
     zh: '热传递机制',
     hi: 'ऊष्मा स्थानांतरण की विधियाँ',
@@ -40,13 +46,15 @@ export const heatTransferMechanisms_SkillGroup_Data = buildSkillGroupConfig({
     explainConductionAsEnergyTransferThroughMatter: explainConductionAsEnergyTransferThroughMatter_Skill_Data,
     explainConvectionAsEnergyTransferByFluidFlow: explainConvectionAsEnergyTransferByFluidFlow_Skill_Data,
     explainRadiativeHeatTransfer: explainRadiativeHeatTransfer_Skill_Data,
-    identifyTheHeatTransferMechanismFromAPhysicalSituation: identifyTheHeatTransferMechanismFromAPhysicalSituation_Skill_Data,
+    identifyTheHeatTransferMechanismFromAPhysicalSituation:
+      identifyTheHeatTransferMechanismFromAPhysicalSituation_Skill_Data,
     predictTheDirectionOfHeatTransfer: predictTheDirectionOfHeatTransfer_Skill_Data,
   },
   description: {
-    methodological: "Thermal energy is transferred through particle interactions, liquid or gas motion, or electromagnetic radiation. Several mechanisms may act simultaneously in a single process.",
+    methodological:
+      'Thermal energy is transferred through particle interactions, liquid or gas motion, or electromagnetic radiation. Several mechanisms may act simultaneously in a single process.',
     frontend: {
-      en: "Discover how heat transfers through matter, flowing fluids and radiation.",
+      en: 'Discover how heat transfers through matter, flowing fluids and radiation.',
       qm: 'Sıcaqlıqnıñ madde içinden, aqqan suyuqlıq ve gazlarnen, em de nurlanuv vastasınen nasıl berilgenini ögren.',
       zh: '了解热量如何通过物质、流动的流体和辐射传递。',
       hi: 'जानें कि ऊष्मा पदार्थ, बहते तरल या गैस और विकिरण द्वारा कैसे स्थानांतरित होती है।',

@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const recognizeReptileCharacteristics_Skill_Data = buildSkillConfig({
-  slug: "recognizeReptileCharacteristics",
-  id: "8aade40b-97db-4f89-aeb4-2454c27802c5",
+  slug: 'recognizeReptileCharacteristics',
+  id: '8aade40b-97db-4f89-aeb4-2454c27802c5',
   name: {
-    en: "Recognize Reptile Characteristics",
+    en: 'Recognize Reptile Characteristics',
     zh: '识别爬行动物的特征',
     hi: 'सरीसृपों की विशेषताएँ पहचानना',
     es: 'Reconocer las características de los reptiles',
@@ -35,9 +35,10 @@ export const recognizeReptileCharacteristics_Skill_Data = buildSkillConfig({
     qm: 'Sürüngenlerniñ belgilerini tanımaq',
   },
   description: {
-    methodological: "Identify members by characteristics of scaled skin and reproductive features of terrestrial amniotes.",
+    methodological:
+      'Identify members by characteristics of scaled skin and reproductive features of terrestrial amniotes.',
     frontend: {
-      en: "Identify reptile characteristics, including skin and reproduction.",
+      en: 'Identify reptile characteristics, including skin and reproduction.',
       zh: '识别爬行动物的皮肤和繁殖等特征。',
       hi: 'सरीसृपों की त्वचा और प्रजनन सहित उनकी विशेषताएँ पहचानें।',
       es: 'Identifica las características de los reptiles, incluidas la piel y la reproducción.',

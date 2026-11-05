@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const identifyThreatsToLocalSpecies_Skill_Data = buildSkillConfig({
-  slug: "identifyThreatsToLocalSpecies",
-  id: "cdd2fab0-ebdc-4e3c-9741-bc5a394ef19f",
+  slug: 'identifyThreatsToLocalSpecies',
+  id: 'cdd2fab0-ebdc-4e3c-9741-bc5a394ef19f',
   name: {
-    en: "Identify Threats to Local Species",
+    en: 'Identify Threats to Local Species',
     zh: '识别本地物种面临的威胁',
     hi: 'स्थानीय प्रजातियों के खतरों की पहचान करना',
     es: 'Identificar amenazas para las especies locales',
@@ -35,9 +35,10 @@ export const identifyThreatsToLocalSpecies_Skill_Data = buildSkillConfig({
     qm: 'Yerli türlerge olğan telükelerni tanımaq',
   },
   description: {
-    methodological: "Distinguish habitat loss, pollution, excessive harvesting or removal, and invasive species as threat factors.",
+    methodological:
+      'Distinguish habitat loss, pollution, excessive harvesting or removal, and invasive species as threat factors.',
     frontend: {
-      en: "Identify activities and environmental changes that threaten local species.",
+      en: 'Identify activities and environmental changes that threaten local species.',
       zh: '识别威胁本地物种的人类活动和环境变化。',
       hi: 'स्थानीय प्रजातियों को खतरे में डालने वाली गतिविधियों और पर्यावरणीय बदलावों को पहचानें।',
       es: 'Identifica actividades y cambios ambientales que amenazan a las especies locales.',

@@ -2,19 +2,25 @@ import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import type { Meta, StoryObj } from '@storybook/nextjs';
 import { Video } from './Video';
 
-const poster = 'data:image/svg+xml,' + encodeURIComponent(
-  '<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360">' +
-  '<rect width="640" height="360" fill="#173b61"/><circle cx="320" cy="180" r="60" fill="#ffffff"/>' +
-  '<path d="M303 142L365 180L303 218Z" fill="#173b61"/>' +
-  '</svg>',
-);
+const poster =
+  'data:image/svg+xml,' +
+  encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360">' +
+      '<rect width="640" height="360" fill="#173b61"/><circle cx="320" cy="180" r="60" fill="#ffffff"/>' +
+      '<path d="M303 142L365 180L303 218Z" fill="#173b61"/>' +
+      '</svg>',
+  );
 
 const meta = {
   title: 'Content blocks/Video',
   component: Video,
   tags: ['autodocs'],
   parameters: {
-    docs: { description: { component: 'Native video playback with an optional title, poster, and localized fallback/retry behavior.' } },
+    docs: {
+      description: {
+        component: 'Native video playback with an optional title, poster, and localized fallback/retry behavior.',
+      },
+    },
   },
   args: {
     messages: enUiKitMessages.video,

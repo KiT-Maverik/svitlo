@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const recognizeAdaptationsToTheEnvironment_Skill_Data = buildSkillConfig({
-  slug: "recognizeAdaptationsToTheEnvironment",
-  id: "1d45b370-a757-43cf-9429-0aefcccff499",
+  slug: 'recognizeAdaptationsToTheEnvironment',
+  id: '1d45b370-a757-43cf-9429-0aefcccff499',
   name: {
-    en: "Recognize Adaptations to the Environment",
+    en: 'Recognize Adaptations to the Environment',
     zh: '识别对环境的适应特征',
     hi: 'पर्यावरण के अनुकूलन पहचानना',
     es: 'Reconocer adaptaciones al entorno',
@@ -35,9 +35,10 @@ export const recognizeAdaptationsToTheEnvironment_Skill_Data = buildSkillConfig(
     qm: 'Müitke uyğunlaşuv belgilerini tanımaq',
   },
   description: {
-    methodological: "Identify particular morphological or physiological adaptations in plants, such as a waxy covering, water storage, or leaf shedding, and distinguish them from incidental characteristics. The central competency is recognizing an adaptation from its characteristic manifestations.",
+    methodological:
+      'Identify particular morphological or physiological adaptations in plants, such as a waxy covering, water storage, or leaf shedding, and distinguish them from incidental characteristics. The central competency is recognizing an adaptation from its characteristic manifestations.',
     frontend: {
-      en: "Recognize special features that help plants cope with their surroundings.",
+      en: 'Recognize special features that help plants cope with their surroundings.',
       zh: '识别帮助植物适应周围环境的特殊特征。',
       hi: 'ऐसी विशेषताएँ पहचानें जो पौधों को आसपास की परिस्थितियों में जीवित रहने में मदद करती हैं।',
       es: 'Reconoce características especiales que ayudan a las plantas a sobrevivir en su entorno.',

@@ -19,7 +19,7 @@ const publishedDirectory = `public/data/pages/lessons/${relative}`;
 - Accept **one UUID** and return a normalized POSIX-style `<bucket>/<uuid>` string.
 - Normalize uppercase hex digits to lowercase. Reject malformed UUIDs and path traversal; never silently search alternative folders.
 - **Bucket:** final **one** hexadecimal digit (`0-9, a-f`): 16 possible buckets. This avoids the timestamp-heavy UUIDv7 prefix and is also suitable for UUIDv4 and UUIDv5.
-- The entity folder name is the complete immutable UUID, *not* the slug. Slugs are human-readable metadata; they may change without moving the entity.
+- The entity folder name is the complete immutable UUID, _not_ the slug. Slugs are human-readable metadata; they may change without moving the entity.
 - The collection name and project root (`lessons`, `questions`, etc.) are supplied by the caller. The Engine knows neither entity type nor filesystem, API routes, Next.js or published resource formats.
 - The same algorithm works for build-time generators, server endpoints, runtime loaders and CLI tools. It **does not** replace catalog/query indexes for filtering by subject, status or Skills, or a compile-time registry for UI components.
 - Keep the bucket depth central and versioned. Moving from one to two trailing hex digits is deterministic but requires a single coordinated filesystem migration, source-reference updates, regeneration of published JSON, and cache/route compatibility review. Do not change the algorithm without migration.
@@ -38,7 +38,7 @@ learningApps/<book>/data/lessons/<last-hex-digit>/<uuid>/
 
 **Implemented Lesson:** `<slug>.data.ts` owns `id` and `slug`. The authored Lesson stores no `group`: `resolveEntityPath(id)` derives the bucket, and the source directory must match it. The build-time generator emits localized JSON at `public/data/pages/lessons/<bucket>/<uuid>/<collection>/<language>.json`; the runtime reads **published JSON only**.
 
-**Editorial draft (e.g. Math):** until a typed `<slug>.data.ts` exists, a `lesson.identity.json` file stores the permanent UUID and human-readable slug in each Lesson directory. It is *not* runtime data. On implementation, transfer that UUID into the typed Lesson data and remove the editorial identity file only when the canonical typed identity exists. Never regenerate an ID from a renamed slug.
+**Editorial draft (e.g. Math):** until a typed `<slug>.data.ts` exists, a `lesson.identity.json` file stores the permanent UUID and human-readable slug in each Lesson directory. It is _not_ runtime data. On implementation, transfer that UUID into the typed Lesson data and remove the editorial identity file only when the canonical typed identity exists. Never regenerate an ID from a renamed slug.
 
 The UUID is minted once upon creation (UUIDv4/v5/v7 supported); scripts may use deterministic UUIDv5 for a **one-time migration** only, then persist the result. The generator/validator must check that the path matches the declared ID, UUIDs are unique within the collection, slugs have expected shape, and files are well formed. Path uniqueness alone does **not** prove global UUID uniqueness.
 

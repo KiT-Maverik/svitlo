@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainLungVentilation_Skill_Data = buildSkillConfig({
-  slug: "explainLungVentilation",
-  id: "d92454c4-9472-401a-b58f-113d7f5f6e52",
+  slug: 'explainLungVentilation',
+  id: 'd92454c4-9472-401a-b58f-113d7f5f6e52',
   name: {
-    en: "Explain Lung Ventilation",
+    en: 'Explain Lung Ventilation',
     zh: '解释肺通气',
     hi: 'फुफ्फुसीय वायु-संचालन समझाना',
     es: 'Explicar la ventilación pulmonar',
@@ -35,14 +35,15 @@ export const explainLungVentilation_Skill_Data = buildSkillConfig({
     qm: 'Aqciğerlerniñ ava alış-verişini añlatmaq',
   },
   description: {
-    methodological: "Explain inhalation and exhalation as air movement caused by respiratory muscle activity, changes in thoracic cavity volume, and pressure differences; distinguish ventilation from alveolar gas exchange and cellular respiration.",
+    methodological:
+      'Explain inhalation and exhalation as air movement caused by respiratory muscle activity, changes in thoracic cavity volume, and pressure differences; distinguish ventilation from alveolar gas exchange and cellular respiration.',
     frontend: {
-      en: "Explain how breathing muscles move air into and out of the lungs.",
+      en: 'Explain how breathing muscles move air into and out of the lungs.',
       zh: '解释呼吸肌如何使空气进出肺部。',
       hi: 'समझाएँ कि श्वसन मांसपेशियाँ हवा को फेफड़ों के अंदर और बाहर कैसे ले जाती हैं।',
       es: 'Explica cómo los músculos respiratorios hacen entrar y salir aire de los pulmones.',
       ar: 'اشرح كيف تُدخل عضلات التنفس الهواء إلى الرئتين وتخرجه منهما.',
-      fr: 'Expliquez comment les muscles respiratoires font entrer et sortir l\'air des poumons.',
+      fr: "Expliquez comment les muscles respiratoires font entrer et sortir l'air des poumons.",
       bn: 'শ্বাসপেশি কীভাবে ফুসফুসে বাতাস ঢোকায় ও বের করে, তা ব্যাখ্যা করো।',
       pt: 'Explique como os músculos respiratórios movem o ar para dentro e para fora dos pulmões.',
       ur: 'وضاحت کریں کہ سانس لینے کے پٹھے پھیپھڑوں میں ہوا کیسے اندر لاتے اور باہر نکالتے ہیں۔',
@@ -58,7 +59,7 @@ export const explainLungVentilation_Skill_Data = buildSkillConfig({
       ms: 'Terangkan bagaimana otot pernafasan menggerakkan udara masuk dan keluar dari paru-paru.',
       he: 'הסבירו כיצד שרירי הנשימה מכניסים אוויר לריאות ומוציאים אותו מהן.',
       pl: 'Wyjaśnij, jak mięśnie oddechowe wprowadzają powietrze do płuc i usuwają je z nich.',
-      uk: 'Поясніть, як дихальні м\'язи забезпечують надходження повітря в легені та його вихід.',
+      uk: "Поясніть, як дихальні м'язи забезпечують надходження повітря в легені та його вихід.",
       lt: 'Paaiškinkite, kaip kvėpavimo raumenys įtraukia orą į plaučius ir išstumia iš jų.',
       lv: 'Izskaidrojiet, kā elpošanas muskuļi ievada gaisu plaušās un izvada to ārā.',
       et: 'Selgita, kuidas hingamislihased liigutavad õhku kopsudesse ja sealt välja.',

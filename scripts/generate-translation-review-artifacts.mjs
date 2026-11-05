@@ -50,14 +50,18 @@ function localesFromCode() {
 }
 function packagesFromCode() {
   const apps = path.join(root, 'learningApps');
-  return fs.readdirSync(apps, { withFileTypes: true })
+  return fs
+    .readdirSync(apps, { withFileTypes: true })
     .filter(x => x.isDirectory() && fs.existsSync(path.join(apps, x.name, 'data/skills')))
     .map(x => ({ name: x.name, package: 'learningApps/' + x.name }))
     .sort((a, b) => a.name.localeCompare(b.name));
 }
 function commitSha() {
   // Ignore artifact-only commits to keep the manifest stable across regeneration.
-  const r = spawnSync('git', ['log', '-1', '--format=%H', '--', '.', ':(exclude).agent-ci-artifacts/**'], { cwd: root, encoding: 'utf8' });
+  const r = spawnSync('git', ['log', '-1', '--format=%H', '--', '.', ':(exclude).agent-ci-artifacts/**'], {
+    cwd: root,
+    encoding: 'utf8',
+  });
   return r.status === 0 ? r.stdout.trim() : null;
 }
 function canonicalLinks(markdown, appName, destination) {
@@ -70,7 +74,9 @@ function canonicalLinks(markdown, appName, destination) {
     if (!target.startsWith(prefix) || !target.endsWith('.data.ts')) {
       throw new Error('Invalid generated canonical link: ' + url);
     }
-    return '[' + label + '](' + encodeURI(path.relative(path.dirname(destination), target).split(path.sep).join('/')) + ')';
+    return (
+      '[' + label + '](' + encodeURI(path.relative(path.dirname(destination), target).split(path.sep).join('/')) + ')'
+    );
   });
 }
 
@@ -95,16 +101,25 @@ function saveManifest() {
 saveManifest();
 for (const textbook of textbooks) {
   for (const locale of languages) {
-    const result = spawnSync(process.execPath, [
-      generator, '--package', textbook.package, '--locale', locale, '--stdout',
-    ], {
-      cwd: root, encoding: 'utf8', timeout: 180_000, maxBuffer: 32 * 1024 * 1024,
-    });
+    const result = spawnSync(
+      process.execPath,
+      [generator, '--package', textbook.package, '--locale', locale, '--stdout'],
+      {
+        cwd: root,
+        encoding: 'utf8',
+        timeout: 180_000,
+        maxBuffer: 32 * 1024 * 1024,
+      },
+    );
     const raw = result.stdout || '';
     if (result.error || result.status !== 0 || !raw.startsWith('<!-- GENERATED FROM CODE; DO NOT EDIT. -->')) {
-      const error = String(result.error?.message || result.stderr || 'No valid Markdown generated').trim().slice(0, 1500);
+      const error = String(result.error?.message || result.stderr || 'No valid Markdown generated')
+        .trim()
+        .slice(0, 1500);
       manifest.failures.push({ kind: 'taxonomy', textbook: textbook.package, locale, error });
-      process.stderr.write('::warning::Could not generate ' + textbook.name + '/' + locale + ': ' + error.replace(/\n/g, ' ') + '\n');
+      process.stderr.write(
+        '::warning::Could not generate ' + textbook.name + '/' + locale + ': ' + error.replace(/\n/g, ' ') + '\n',
+      );
       saveManifest();
       continue;
     }
@@ -136,13 +151,26 @@ manifest.summary = {
 };
 saveManifest();
 process.stdout.write(
-  'Lesson reference library: ' + lessonStats.generated + ' documents from ' +
-  lessonStats.discoveredLessons + ' lessons; ' + lessonStats.failures + ' failed\n',
+  'Lesson reference library: ' +
+    lessonStats.generated +
+    ' documents from ' +
+    lessonStats.discoveredLessons +
+    ' lessons; ' +
+    lessonStats.failures +
+    ' failed\n',
 );
 process.stdout.write(
-  'Agent review library: ' + manifest.generated.length + ' documents (Skills + Lessons), ' +
-  manifest.failures.length + ' failed, ' + textbooks.length + ' textbooks, ' +
-  languages.length + ' locales; source ' + manifest.sourceCommit + '\n',
+  'Agent review library: ' +
+    manifest.generated.length +
+    ' documents (Skills + Lessons), ' +
+    manifest.failures.length +
+    ' failed, ' +
+    textbooks.length +
+    ' textbooks, ' +
+    languages.length +
+    ' locales; source ' +
+    manifest.sourceCommit +
+    '\n',
 );
 if (!manifest.generated.length) {
   throw new Error('No review Markdown generated; inspect .agent-ci-artifacts/manifest.json');

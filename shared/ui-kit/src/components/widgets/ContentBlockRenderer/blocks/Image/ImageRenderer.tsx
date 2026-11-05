@@ -23,10 +23,7 @@ function NativeImage({ fill: _fill, unoptimized: _unoptimized, ...props }: Image
 }
 
 /** Framework adapters may supply optimized images without coupling the UI Kit to Next.js. */
-export function ImageRendererProvider({ children, renderer }: {
-  children: ReactNode;
-  renderer: ImageRenderer;
-}) {
+export function ImageRendererProvider({ children, renderer }: { children: ReactNode; renderer: ImageRenderer }) {
   return <Context.Provider value={renderer}>{children}</Context.Provider>;
 }
 

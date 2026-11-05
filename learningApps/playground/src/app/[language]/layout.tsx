@@ -10,5 +10,9 @@ export default async function LanguageLayout({ children, params }: LayoutProps<'
   const { language: code } = await params;
   const language = DEFAULT_SUPPORTED_LANGUAGES.find(entry => entry.language === code);
   if (!language) notFound();
-  return <AppDocument lang={language.locale} direction={language.direction}>{children}</AppDocument>;
+  return (
+    <AppDocument lang={language.locale} direction={language.direction}>
+      {children}
+    </AppDocument>
+  );
 }

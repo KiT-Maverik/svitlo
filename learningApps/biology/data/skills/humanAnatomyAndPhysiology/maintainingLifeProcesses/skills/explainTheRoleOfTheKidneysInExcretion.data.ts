@@ -1,15 +1,15 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainTheRoleOfTheKidneysInExcretion_Skill_Data = buildSkillConfig({
-  slug: "explainTheRoleOfTheKidneysInExcretion",
-  id: "557e8dd0-795f-4baa-9e73-7f5a2edeb43d",
+  slug: 'explainTheRoleOfTheKidneysInExcretion',
+  id: '557e8dd0-795f-4baa-9e73-7f5a2edeb43d',
   name: {
-    en: "Explain the Role of the Kidneys in Excretion",
+    en: 'Explain the Role of the Kidneys in Excretion',
     zh: '解释肾脏在排泄中的作用',
     hi: 'उत्सर्जन में गुर्दों की भूमिका समझाना',
     es: 'Explicar la función de los riñones en la excreción',
     ar: 'شرح دور الكليتين في الإخراج',
-    fr: 'Expliquer le rôle des reins dans l\'excrétion',
+    fr: "Expliquer le rôle des reins dans l'excrétion",
     bn: 'রেচনে কিডনির ভূমিকা ব্যাখ্যা করা',
     pt: 'Explicar o papel dos rins na excreção',
     ur: 'اخراج میں گردوں کے کردار کی وضاحت',
@@ -35,14 +35,15 @@ export const explainTheRoleOfTheKidneysInExcretion_Skill_Data = buildSkillConfig
     qm: 'Böbreklerniñ ifraz etüvdeki rolüni añlatmaq',
   },
   description: {
-    methodological: "Explain blood filtration, selective reabsorption of water and needed substances, and urine formation as means of removing metabolic waste and maintaining the internal environment.",
+    methodological:
+      'Explain blood filtration, selective reabsorption of water and needed substances, and urine formation as means of removing metabolic waste and maintaining the internal environment.',
     frontend: {
       en: "Explain how kidneys filter blood and help maintain the body's internal balance.",
       zh: '解释肾脏如何过滤血液并帮助维持体内环境的平衡。',
       hi: 'समझाएँ कि गुर्दे रक्त को कैसे छानते हैं और शरीर का आंतरिक संतुलन बनाए रखते हैं।',
       es: 'Explica cómo los riñones filtran la sangre y ayudan a mantener el equilibrio interno del cuerpo.',
       ar: 'اشرح كيف ترشح الكليتان الدم وتساعدان في الحفاظ على توازن البيئة الداخلية للجسم.',
-      fr: 'Expliquez comment les reins filtrent le sang et contribuent à l\'équilibre interne du corps.',
+      fr: "Expliquez comment les reins filtrent le sang et contribuent à l'équilibre interne du corps.",
       bn: 'কিডনি কীভাবে রক্ত ছেঁকে দেহের অভ্যন্তরীণ ভারসাম্য রক্ষা করে, তা ব্যাখ্যা করো।',
       pt: 'Explique como os rins filtram o sangue e ajudam a manter o equilíbrio interno do organismo.',
       ur: 'وضاحت کریں کہ گردے خون کو کیسے چھانتے ہیں اور جسم کا اندرونی توازن برقرار رکھنے میں مدد دیتے ہیں۔',

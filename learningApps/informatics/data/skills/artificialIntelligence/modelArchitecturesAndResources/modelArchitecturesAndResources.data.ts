@@ -1,12 +1,18 @@
 import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
 
-import { chooseAModelForATask_Skill_Data, compareDenseAndMoEModels_Skill_Data, compareModelMemoryRequirements_Skill_Data, compareResponseLatency_Skill_Data, explainQuantization_Skill_Data } from './skills';
+import {
+  chooseAModelForATask_Skill_Data,
+  compareDenseAndMoEModels_Skill_Data,
+  compareModelMemoryRequirements_Skill_Data,
+  compareResponseLatency_Skill_Data,
+  explainQuantization_Skill_Data,
+} from './skills';
 
 export const modelArchitecturesAndResources_SkillGroup_Data = buildSkillGroupConfig({
-  slug: "modelArchitecturesAndResources",
-  id: "40fb9d60-473d-49d7-a515-11a07e4944b3",
+  slug: 'modelArchitecturesAndResources',
+  id: '40fb9d60-473d-49d7-a515-11a07e4944b3',
   name: {
-    en: "Model Architectures and Resources",
+    en: 'Model Architectures and Resources',
     zh: '模型架构与资源',
     hi: 'मॉडल की संरचनाएँ और संसाधन',
     es: 'Arquitecturas de modelos y recursos',
@@ -44,9 +50,10 @@ export const modelArchitecturesAndResources_SkillGroup_Data = buildSkillGroupCon
     explainQuantization: explainQuantization_Skill_Data,
   },
   description: {
-    methodological: "Compare AI model characteristics: activation of components, numerical precision, latency, memory requirements, and fit for a task. These depend on the model and execution conditions, not on a universal AI ranking.",
+    methodological:
+      'Compare AI model characteristics: activation of components, numerical precision, latency, memory requirements, and fit for a task. These depend on the model and execution conditions, not on a universal AI ranking.',
     frontend: {
-      en: "Explore how different AI model architectures affect performance and resource needs.",
+      en: 'Explore how different AI model architectures affect performance and resource needs.',
       zh: '探索不同人工智能模型架构如何影响性能与资源需求。',
       hi: 'जानें कि एआई मॉडल की अलग-अलग संरचनाएँ प्रदर्शन और संसाधनों की ज़रूरतों को कैसे बदलती हैं।',
       es: 'Explora cómo las distintas arquitecturas de IA influyen en el rendimiento y los recursos necesarios.',

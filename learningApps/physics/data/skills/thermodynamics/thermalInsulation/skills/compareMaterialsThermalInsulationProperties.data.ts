@@ -1,8 +1,8 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const compareMaterialsThermalInsulationProperties_Skill_Data = buildSkillConfig({
-  slug: "compareMaterialsThermalInsulationProperties",
-  id: "eeee4637-f76a-4e77-b18b-93270bcbf39c",
+  slug: 'compareMaterialsThermalInsulationProperties',
+  id: 'eeee4637-f76a-4e77-b18b-93270bcbf39c',
   name: {
     en: "Compare materials' thermal-insulation properties",
     qm: 'Malzemelerniñ sıcaqlıq izolâtsiyası hususiyetlerini qıyaslamaq',
@@ -35,9 +35,9 @@ export const compareMaterialsThermalInsulationProperties_Skill_Data = buildSkill
     kk: 'Материалдардың жылу оқшаулау қасиеттерін салыстыру',
   },
   description: {
-    methodological: "Determine from experimental results which material slows heat transfer more effectively.",
+    methodological: 'Determine from experimental results which material slows heat transfer more effectively.',
     frontend: {
-      en: "Compare materials by how well they reduce unwanted heat transfer.",
+      en: 'Compare materials by how well they reduce unwanted heat transfer.',
       qm: 'Malzemeler sıcaqlıqnıñ istenmegen berilüvini nasıl yavaşlatqanına köre olarnı qıyasla.',
       zh: '根据材料减少不必要热量传递的效果进行比较。',
       hi: 'पदार्थ अनचाहे ऊष्मा स्थानांतरण को कितना कम करते हैं, इसके आधार पर तुलना करें।',

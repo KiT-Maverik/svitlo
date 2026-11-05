@@ -11,8 +11,10 @@ async function main(args) {
     throw new Error('Usage: --package learningApps/<textbook> --write|--check');
   }
   const packageDirectory = path.resolve(repoRoot, args[1]);
-  if (!packageDirectory.startsWith(path.join(repoRoot, 'learningApps') + path.sep) ||
-      !fs.existsSync(path.join(packageDirectory, 'package.json'))) {
+  if (
+    !packageDirectory.startsWith(path.join(repoRoot, 'learningApps') + path.sep) ||
+    !fs.existsSync(path.join(packageDirectory, 'package.json'))
+  ) {
     throw new Error('Invalid textbook package');
   }
   const files = await renderTextbookLessonFiles(packageDirectory);
@@ -33,8 +35,8 @@ async function main(args) {
     }
   }
   visit(output);
-  const differences = [...files].filter(([name, content]) =>
-    !actual.has(name) || fs.readFileSync(path.join(output, name), 'utf8') !== content)
+  const differences = [...files]
+    .filter(([name, content]) => !actual.has(name) || fs.readFileSync(path.join(output, name), 'utf8') !== content)
     .map(([name]) => name);
   const stale = [...actual].filter(name => !expected.has(name));
   if (differences.length || stale.length) throw new Error(JSON.stringify({ differences, stale }));

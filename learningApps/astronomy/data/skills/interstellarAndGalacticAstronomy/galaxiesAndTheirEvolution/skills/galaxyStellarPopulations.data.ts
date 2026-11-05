@@ -44,7 +44,7 @@ export const galaxyStellarPopulations_Skill_Data = buildSkillConfig({
       hi: 'आकाशगंगा के प्रकाश से उसके तारों और तारा निर्माण के इतिहास में अंतर जानें।',
       es: 'Utiliza la luz de una galaxia para deducir diferencias entre sus estrellas y su historia de formación estelar.',
       ar: 'استخدم ضوء المجرة لاستنتاج الاختلافات في نجومها وتاريخ تكوّنها.',
-      fr: 'Utilise la lumière d\'une galaxie pour déduire des différences entre ses étoiles et dans son histoire de formation stellaire.',
+      fr: "Utilise la lumière d'une galaxie pour déduire des différences entre ses étoiles et dans son histoire de formation stellaire.",
       bn: 'ছায়াপথের আলো থেকে তারার বৈশিষ্ট্য ও তারা গঠনের ইতিহাসের পার্থক্য বোঝার চেষ্টা করো।',
       pt: 'Use a luz de uma galáxia para inferir diferenças em suas estrelas e na história de formação estelar.',
       ur: 'کہکشاں کی روشنی سے اس کے ستاروں اور ستارہ سازی کی تاریخ میں فرق کا اندازہ لگائیں۔',

@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const describeInteractionsBetweenBonesAndMuscles_Skill_Data = buildSkillConfig({
-  slug: "describeInteractionsBetweenBonesAndMuscles",
-  id: "a0c53efb-58bb-40cc-849a-32f33557a02d",
+  slug: 'describeInteractionsBetweenBonesAndMuscles',
+  id: 'a0c53efb-58bb-40cc-849a-32f33557a02d',
   name: {
-    en: "Describe Interactions Between Bones and Muscles",
+    en: 'Describe Interactions Between Bones and Muscles',
     zh: '描述骨骼与肌肉的相互作用',
     hi: 'हड्डियों और मांसपेशियों की पारस्परिक क्रिया बताना',
     es: 'Describir la interacción entre huesos y músculos',
@@ -25,7 +25,7 @@ export const describeInteractionsBetweenBonesAndMuscles_Skill_Data = buildSkillC
     ms: 'Menghuraikan interaksi antara tulang dan otot',
     he: 'תיאור יחסי הגומלין בין עצמות לשרירים',
     pl: 'Opisywanie współpracy kości i mięśni',
-    uk: 'Описувати взаємодію кісток і м\'язів',
+    uk: "Описувати взаємодію кісток і м'язів",
     lt: 'Kaulų ir raumenų sąveikos apibūdinimas',
     lv: 'Kaulu un muskuļu mijiedarbības aprakstīšana',
     et: 'Luude ja lihaste koostöö kirjeldamine',
@@ -35,9 +35,10 @@ export const describeInteractionsBetweenBonesAndMuscles_Skill_Data = buildSkillC
     qm: 'Kemikler ve adalelerniñ qarşılıqlı tesirini tasvir etmek',
   },
   description: {
-    methodological: "Explain movement at a joint through muscle attachments to bones and the interaction of muscles acting in opposite directions.",
+    methodological:
+      'Explain movement at a joint through muscle attachments to bones and the interaction of muscles acting in opposite directions.',
     frontend: {
-      en: "Understand how muscles pull on bones to move joints.",
+      en: 'Understand how muscles pull on bones to move joints.',
       zh: '理解肌肉如何牵拉骨骼，使关节活动。',
       hi: 'समझें कि मांसपेशियाँ हड्डियों को खींचकर जोड़ों को कैसे चलाती हैं।',
       es: 'Comprende cómo los músculos tiran de los huesos para mover las articulaciones.',
@@ -58,7 +59,7 @@ export const describeInteractionsBetweenBonesAndMuscles_Skill_Data = buildSkillC
       ms: 'Fahami bagaimana otot menarik tulang untuk menggerakkan sendi.',
       he: 'הבינו כיצד שרירים מושכים עצמות כדי להניע מפרקים.',
       pl: 'Zrozum, jak mięśnie pociągają kości, aby poruszać stawami.',
-      uk: 'Зрозумійте, як м\'язи тягнуть кістки, спричиняючи рух у суглобах.',
+      uk: "Зрозумійте, як м'язи тягнуть кістки, спричиняючи рух у суглобах.",
       lt: 'Supraskite, kaip raumenys traukia kaulus ir judina sąnarius.',
       lv: 'Izprotiet, kā muskuļi velk kaulus, lai kustinātu locītavas.',
       et: 'Mõista, kuidas lihased tõmbavad luid ja liigutavad liigeseid.',

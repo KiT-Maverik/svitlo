@@ -384,8 +384,11 @@ export const lightRayDiagram_Locale: Record<HowLightMoves_Languages[number], Loc
   zh,
 };
 
-export type LightRayDiagram_ContentBlock<ConfigType extends 'definition' | 'data' | 'response'> =
-  ContentBlock_Scene<ConfigType, HowLightMoves_Languages, Locale>;
+export type LightRayDiagram_ContentBlock<ConfigType extends 'definition' | 'data' | 'response'> = ContentBlock_Scene<
+  ConfigType,
+  HowLightMoves_Languages,
+  Locale
+>;
 
 export const lightRayDiagramData = {
   type: 'scene',

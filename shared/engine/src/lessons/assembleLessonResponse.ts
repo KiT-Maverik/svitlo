@@ -1,5 +1,11 @@
 import type { LanguageCode } from '@svitlo/contracts/localization';
-import { SECTION_TYPES, type ContentBlock, type Locale_Languages, type Question, type Section_Type } from '@svitlo/contracts/content';
+import {
+  SECTION_TYPES,
+  type ContentBlock,
+  type Locale_Languages,
+  type Question,
+  type Section_Type,
+} from '@svitlo/contracts/content';
 import { resolveEntityPath } from '../utils/entityPath/resolveEntityPath.utils';
 
 export type LocaleSource = { code: LanguageCode; isFallback?: true };
@@ -83,7 +89,16 @@ function decorateResponse(value: unknown): unknown {
 }
 
 const supportedBlockTypes = new Set([
-  'text', 'markdown', 'checkpoint', 'scene', 'code', 'audio', 'video', 'youtube', 'image', 'quiz',
+  'text',
+  'markdown',
+  'checkpoint',
+  'scene',
+  'code',
+  'audio',
+  'video',
+  'youtube',
+  'image',
+  'quiz',
 ]);
 
 function assembleBlocks(content: unknown, location: string): LessonContentBlock[] {
@@ -117,8 +132,16 @@ export function assembleLessonResponse(
   for (const [kind, item] of Object.entries({ config, flashcards, questions })) {
     for (const [pointer, source] of Object.entries(item.localeSources)) {
       if (source.isFallback === true ? source.code === language : source.code !== language) {
-        throw new Error('Contradictory fallback metadata in ' + kind + ' at ' + pointer +
-          ': requested ' + language + ', source ' + source.code);
+        throw new Error(
+          'Contradictory fallback metadata in ' +
+            kind +
+            ' at ' +
+            pointer +
+            ': requested ' +
+            language +
+            ', source ' +
+            source.code,
+        );
       }
     }
   }
@@ -171,16 +194,22 @@ export function assembleLessonResponse(
     const sectionQuestions: Question<'response', Locale_Languages>[] = [];
     for (const block of quizBlocks) {
       const slugs = block.questionSlugs;
-      if (!Array.isArray(slugs) || slugs.some(value => typeof value !== 'string') ||
-          new Set(slugs).size !== slugs.length || slugs.length === 0) {
+      if (
+        !Array.isArray(slugs) ||
+        slugs.some(value => typeof value !== 'string') ||
+        new Set(slugs).size !== slugs.length ||
+        slugs.length === 0
+      ) {
         throw new Error('Invalid quiz questionSlugs in ' + relativePath + '/' + sectionSlug);
       }
       for (const questionSlug of slugs) {
         const matches = Object.values(indexedQuestions).flatMap(bank =>
-          bank[questionSlug] ? [bank[questionSlug]] : []);
+          bank[questionSlug] ? [bank[questionSlug]] : [],
+        );
         if (matches.length !== 1) {
-          throw new Error('Quiz references missing or ambiguous question ' + questionSlug +
-            ' in ' + relativePath + '/' + sectionSlug);
+          throw new Error(
+            'Quiz references missing or ambiguous question ' + questionSlug + ' in ' + relativePath + '/' + sectionSlug,
+          );
         }
         const response = matches[0];
         const responseType = string(response.type, 'questions.data.' + questionSlug + '.type');

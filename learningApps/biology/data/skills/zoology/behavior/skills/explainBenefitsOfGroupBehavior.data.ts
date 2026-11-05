@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainBenefitsOfGroupBehavior_Skill_Data = buildSkillConfig({
-  slug: "explainBenefitsOfGroupBehavior",
-  id: "c126a8fa-0e62-4645-8ddc-40ccd22bcf49",
+  slug: 'explainBenefitsOfGroupBehavior',
+  id: 'c126a8fa-0e62-4645-8ddc-40ccd22bcf49',
   name: {
-    en: "Explain Benefits of Group Behavior",
+    en: 'Explain Benefits of Group Behavior',
     zh: '解释群体行为的益处',
     hi: 'समूह व्यवहार के लाभ समझाना',
     es: 'Explicar los beneficios del comportamiento grupal',
@@ -35,9 +35,10 @@ export const explainBenefitsOfGroupBehavior_Skill_Data = buildSkillConfig({
     qm: 'Topar davranışınıñ faydalarını añlatmaq',
   },
   description: {
-    methodological: "Explain how cooperative foraging, defense, or care for offspring may improve the success of individuals.",
+    methodological:
+      'Explain how cooperative foraging, defense, or care for offspring may improve the success of individuals.',
     frontend: {
-      en: "Discover how group behavior may help animals feed, defend themselves and care for young.",
+      en: 'Discover how group behavior may help animals feed, defend themselves and care for young.',
       zh: '了解群体行为如何帮助动物觅食、自卫和照顾幼崽。',
       hi: 'जानें कि समूह में रहने और काम करने से प्राणियों को भोजन पाने, रक्षा करने और बच्चों की देखभाल में कैसे मदद मिल सकती है।',
       es: 'Descubre cómo el comportamiento grupal puede ayudar a los animales a alimentarse, defenderse y cuidar a sus crías.',

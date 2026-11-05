@@ -14,13 +14,13 @@ This is a planning and verification record for the approved History Skills Taxon
 
 ## Ownership — distinct subtrees
 
-| Agent | Domain roots | Expected entities |
-| --- | --- | ---: |
-| 1 | `historicalInquiry`; `humanPrehistory`; `ancientWesternAsia` | 69 |
-| 2 | `ancientAfrica`; `southAndSoutheastAsia` | 57 |
-| 3 | `eastAndCentralAsia`; `ancientMediterranean`; `ancientEuropeBeyondMediterranean` | 79 |
-| 4 | `ancientAmericas`; `ancientOceania`; `crossRegionalHistoricalProcesses` | 72 |
-| **Total** | **11 domain roots** | **277** |
+| Agent     | Domain roots                                                                     | Expected entities |
+| --------- | -------------------------------------------------------------------------------- | ----------------: |
+| 1         | `historicalInquiry`; `humanPrehistory`; `ancientWesternAsia`                     |                69 |
+| 2         | `ancientAfrica`; `southAndSoutheastAsia`                                         |                57 |
+| 3         | `eastAndCentralAsia`; `ancientMediterranean`; `ancientEuropeBeyondMediterranean` |                79 |
+| 4         | `ancientAmericas`; `ancientOceania`; `crossRegionalHistoricalProcesses`          |                72 |
+| **Total** | **11 domain roots**                                                              |           **277** |
 
 ## Shared acceptance and promotion
 

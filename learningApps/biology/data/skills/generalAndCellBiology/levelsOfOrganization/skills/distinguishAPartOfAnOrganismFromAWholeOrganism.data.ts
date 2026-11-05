@@ -1,15 +1,15 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const distinguishAPartOfAnOrganismFromAWholeOrganism_Skill_Data = buildSkillConfig({
-  slug: "distinguishAPartOfAnOrganismFromAWholeOrganism",
-  id: "eefd2408-9c6b-4c35-aacf-4030acaf6251",
+  slug: 'distinguishAPartOfAnOrganismFromAWholeOrganism',
+  id: 'eefd2408-9c6b-4c35-aacf-4030acaf6251',
   name: {
-    en: "Distinguish a Part of an Organism from a Whole Organism",
+    en: 'Distinguish a Part of an Organism from a Whole Organism',
     zh: '区分生物体的一部分与完整生物体',
     hi: 'जीव के किसी भाग और पूरे जीव में अंतर करना',
     es: 'Distinguir una parte de un organismo de un organismo completo',
     ar: 'التمييز بين جزء من الكائن الحي والكائن الكامل',
-    fr: 'Distinguer une partie d\'un organisme d\'un organisme entier',
+    fr: "Distinguer une partie d'un organisme d'un organisme entier",
     bn: 'জীবের একটি অংশ ও সম্পূর্ণ জীবের পার্থক্য করা',
     pt: 'Distinguir uma parte de um organismo do organismo completo',
     ur: 'جاندار کے ایک حصے اور مکمل جاندار میں فرق کرنا',
@@ -35,14 +35,15 @@ export const distinguishAPartOfAnOrganismFromAWholeOrganism_Skill_Data = buildSk
     qm: 'Canlınıñ bir qısmını bütün canlıdan farqlamaq',
   },
   description: {
-    methodological: "Identify the boundary between an individual organ, a part of that organ, and an organism as an independent living system.",
+    methodological:
+      'Identify the boundary between an individual organ, a part of that organ, and an organism as an independent living system.',
     frontend: {
-      en: "Distinguish a single organ or body part from a complete living organism.",
+      en: 'Distinguish a single organ or body part from a complete living organism.',
       zh: '区分单个器官或身体部位与完整的生命个体。',
       hi: 'किसी एक अंग या शरीर के भाग को पूरे जीवित जीव से अलग पहचानें।',
       es: 'Distingue un órgano o una parte del cuerpo de un organismo vivo completo.',
       ar: 'ميّز العضو أو الجزء من الجسم عن الكائن الحي الكامل.',
-      fr: 'Distingue un organe ou une partie du corps d\'un organisme vivant complet.',
+      fr: "Distingue un organe ou une partie du corps d'un organisme vivant complet.",
       bn: 'একটি অঙ্গ বা দেহের অংশকে সম্পূর্ণ জীবন্ত জীব থেকে আলাদা করে চিনতে শেখো।',
       pt: 'Diferencie um órgão ou parte do corpo de um organismo vivo completo.',
       ur: 'ایک عضو یا جسم کے حصے کو مکمل زندہ جاندار سے الگ پہچانیں۔',

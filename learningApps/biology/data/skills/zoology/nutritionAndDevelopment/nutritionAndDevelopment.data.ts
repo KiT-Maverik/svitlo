@@ -1,12 +1,17 @@
 import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
 
-import { classifyAnimalsByDiet_Skill_Data, compareDevelopmentWithAndWithoutMetamorphosis_Skill_Data, distinguishJuvenilesAndAdults_Skill_Data, explainCompleteMetamorphosisInInsects_Skill_Data } from './skills';
+import {
+  classifyAnimalsByDiet_Skill_Data,
+  compareDevelopmentWithAndWithoutMetamorphosis_Skill_Data,
+  distinguishJuvenilesAndAdults_Skill_Data,
+  explainCompleteMetamorphosisInInsects_Skill_Data,
+} from './skills';
 
 export const nutritionAndDevelopment_SkillGroup_Data = buildSkillGroupConfig({
-  slug: "nutritionAndDevelopment",
-  id: "3aec845c-956f-4dfd-9724-1d76bb243c6b",
+  slug: 'nutritionAndDevelopment',
+  id: '3aec845c-956f-4dfd-9724-1d76bb243c6b',
   name: {
-    en: "Nutrition and Development",
+    en: 'Nutrition and Development',
     zh: '营养与发育',
     hi: 'पोषण और विकास',
     es: 'Nutrición y desarrollo',
@@ -43,14 +48,15 @@ export const nutritionAndDevelopment_SkillGroup_Data = buildSkillGroupConfig({
     explainCompleteMetamorphosisInInsects: explainCompleteMetamorphosisInInsects_Skill_Data,
   },
   description: {
-    methodological: "Food sources differ among animal groups, while their life cycles may involve body transformations or development without a drastic change in form.",
+    methodological:
+      'Food sources differ among animal groups, while their life cycles may involve body transformations or development without a drastic change in form.',
     frontend: {
-      en: "Discover how diets and life cycles differ among animals.",
+      en: 'Discover how diets and life cycles differ among animals.',
       zh: '了解不同动物的食性和生命周期有何差异。',
       hi: 'जानें कि जानवरों के भोजन और जीवन चक्र कैसे अलग होते हैं।',
       es: 'Descubre cómo varían las dietas y los ciclos de vida entre los animales.',
       ar: 'اكتشف كيف تختلف أنماط التغذية ودورات الحياة بين الحيوانات.',
-      fr: 'Découvre comment l\'alimentation et les cycles de vie diffèrent selon les animaux.',
+      fr: "Découvre comment l'alimentation et les cycles de vie diffèrent selon les animaux.",
       bn: 'প্রাণীদের খাদ্যাভ্যাস ও জীবনচক্র কীভাবে আলাদা তা জানো।',
       pt: 'Descubra como a alimentação e os ciclos de vida variam entre os animais.',
       ur: 'جانیں کہ مختلف جانوروں کی غذا اور زندگی کے چکر کیسے مختلف ہوتے ہیں۔',

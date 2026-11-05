@@ -14,7 +14,12 @@ const meta = {
   component: CheckpointStory,
   tags: ['autodocs'],
   parameters: {
-    docs: { description: { component: 'Expandable questions with nested answers, optional confirmation buttons, and configurable indices, icons and layout.' } },
+    docs: {
+      description: {
+        component:
+          'Expandable questions with nested answers, optional confirmation buttons, and configurable indices, icons and layout.',
+      },
+    },
   },
   args: {
     id: 'checkpoint-example',
@@ -27,10 +32,14 @@ const meta = {
     enableChecks: false,
     renderAsGroup: true,
     items: [
-      { question: 'How does light travel?',
-        answer: [{ id: 'answer-light', type: 'text', value: 'In a straight line through a uniform medium.' }] },
-      { question: 'What can a prism do to white light?',
-        answer: [{ id: 'answer-prism', type: 'text', value: 'Separate it into different colors.' }] },
+      {
+        question: 'How does light travel?',
+        answer: [{ id: 'answer-light', type: 'text', value: 'In a straight line through a uniform medium.' }],
+      },
+      {
+        question: 'What can a prism do to white light?',
+        answer: [{ id: 'answer-prism', type: 'text', value: 'Separate it into different colors.' }],
+      },
     ],
   },
   argTypes: {
@@ -58,13 +67,21 @@ export const SeparateItems: Story = {
 };
 
 export const RightToLeft: Story = {
-  decorators: [(StoryComponent) => <ContentLanguageContext.Provider value="ar"><StoryComponent /></ContentLanguageContext.Provider>],
+  decorators: [
+    StoryComponent => (
+      <ContentLanguageContext.Provider value="ar">
+        <StoryComponent />
+      </ContentLanguageContext.Provider>
+    ),
+  ],
   args: {
     title: 'اختبر معلوماتك',
     enableChecks: true,
-    items: [{
-      question: 'كيف ينتقل الضوء في وسط متجانس؟',
-      answer: [{ id: 'arabic-answer', type: 'text', value: 'ينتقل الضوء في خطوط مستقيمة.' }],
-    }],
+    items: [
+      {
+        question: 'كيف ينتقل الضوء في وسط متجانس؟',
+        answer: [{ id: 'arabic-answer', type: 'text', value: 'ينتقل الضوء في خطوط مستقيمة.' }],
+      },
+    ],
   },
 };

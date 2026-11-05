@@ -16,9 +16,11 @@ export const Code = ({ code, language, title, variables }: ContentBlock_Code_Res
         {title && <span>{title}</span>}
         <span className={styles.language}>{language}</span>
       </figcaption>
-      <pre className={styles.pre}><code className={styles.code}>
-        {highlighted === null ? value : <span dangerouslySetInnerHTML={{ __html: highlighted }} />}
-      </code></pre>
+      <pre className={styles.pre}>
+        <code className={styles.code}>
+          {highlighted === null ? value : <span dangerouslySetInnerHTML={{ __html: highlighted }} />}
+        </code>
+      </pre>
     </figure>
   );
 };

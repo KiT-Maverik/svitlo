@@ -1,12 +1,22 @@
 import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
 
-import { explainAnOpenCircuit_Skill_Data, explainCurrentBalanceAtACircuitNode_Skill_Data, explainParallelConnectionsOfElectricCircuitComponents_Skill_Data, explainSeriesConnectionsOfElectricCircuitComponents_Skill_Data, identifyAConsumerOfElectricalEnergy_Skill_Data, identifyAnElectricalPowerSource_Skill_Data, identifyTheFunctionOfASwitch_Skill_Data, predictTheEffectOfASwitchInACircuit_Skill_Data, recognizeAClosedElectricCircuit_Skill_Data } from './skills';
+import {
+  explainAnOpenCircuit_Skill_Data,
+  explainCurrentBalanceAtACircuitNode_Skill_Data,
+  explainParallelConnectionsOfElectricCircuitComponents_Skill_Data,
+  explainSeriesConnectionsOfElectricCircuitComponents_Skill_Data,
+  identifyAConsumerOfElectricalEnergy_Skill_Data,
+  identifyAnElectricalPowerSource_Skill_Data,
+  identifyTheFunctionOfASwitch_Skill_Data,
+  predictTheEffectOfASwitchInACircuit_Skill_Data,
+  recognizeAClosedElectricCircuit_Skill_Data,
+} from './skills';
 
 export const electricCircuits_SkillGroup_Data = buildSkillGroupConfig({
-  slug: "electricCircuits",
-  id: "d5d2a4a4-8869-4481-a1b1-b72ada3ac6bb",
+  slug: 'electricCircuits',
+  id: 'd5d2a4a4-8869-4481-a1b1-b72ada3ac6bb',
   name: {
-    en: "Electric Circuits",
+    en: 'Electric Circuits',
     qm: 'Elektrik devreleri',
     zh: '电路',
     hi: 'विद्युत परिपथ',
@@ -39,7 +49,8 @@ export const electricCircuits_SkillGroup_Data = buildSkillGroupConfig({
   skills: {
     explainAnOpenCircuit: explainAnOpenCircuit_Skill_Data,
     explainCurrentBalanceAtACircuitNode: explainCurrentBalanceAtACircuitNode_Skill_Data,
-    explainParallelConnectionsOfElectricCircuitComponents: explainParallelConnectionsOfElectricCircuitComponents_Skill_Data,
+    explainParallelConnectionsOfElectricCircuitComponents:
+      explainParallelConnectionsOfElectricCircuitComponents_Skill_Data,
     explainSeriesConnectionsOfElectricCircuitComponents: explainSeriesConnectionsOfElectricCircuitComponents_Skill_Data,
     identifyAConsumerOfElectricalEnergy: identifyAConsumerOfElectricalEnergy_Skill_Data,
     identifyAnElectricalPowerSource: identifyAnElectricalPowerSource_Skill_Data,
@@ -48,9 +59,10 @@ export const electricCircuits_SkillGroup_Data = buildSkillGroupConfig({
     recognizeAClosedElectricCircuit: recognizeAClosedElectricCircuit_Skill_Data,
   },
   description: {
-    methodological: "An electric circuit needs a conducting path, a source, and components whose interactions determine the operation of a safe model.",
+    methodological:
+      'An electric circuit needs a conducting path, a source, and components whose interactions determine the operation of a safe model.',
     frontend: {
-      en: "Discover how sources, switches and loads work together in simple circuits.",
+      en: 'Discover how sources, switches and loads work together in simple circuits.',
       qm: 'Elektrik menbaları, açqıçlar ve sarf eticiler sade devrelerde beraber nasıl çalışqanını araştır.',
       zh: '探索电源、开关和用电器如何在简单电路中共同工作。',
       hi: 'जानें कि सरल परिपथ में स्रोत, स्विच और विद्युत उपभोक्ता कैसे साथ काम करते हैं।',

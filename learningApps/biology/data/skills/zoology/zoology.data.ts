@@ -6,10 +6,10 @@ import { nutritionAndDevelopment_SkillGroup_Data } from './nutritionAndDevelopme
 import { structureAndFunctions_SkillGroup_Data } from './structureAndFunctions/structureAndFunctions.data';
 
 export const zoology_SkillDomain_Data = buildSkillDomainConfig({
-  slug: "zoology",
-  id: "afaca13a-3925-4c2b-92ff-ff447bdc5f51",
+  slug: 'zoology',
+  id: 'afaca13a-3925-4c2b-92ff-ff447bdc5f51',
   name: {
-    en: "Zoology",
+    en: 'Zoology',
     zh: '动物学',
     hi: 'प्राणिविज्ञान',
     es: 'Zoología',
@@ -46,9 +46,10 @@ export const zoology_SkillDomain_Data = buildSkillDomainConfig({
     structureAndFunctions: structureAndFunctions_SkillGroup_Data,
   },
   description: {
-    methodological: "Comparison of major animal groups, relationships between structure and function, feeding patterns, development, and behavior. Food chains and interspecies networks as whole systems belong to Ecology.",
+    methodological:
+      'Comparison of major animal groups, relationships between structure and function, feeding patterns, development, and behavior. Food chains and interspecies networks as whole systems belong to Ecology.',
     frontend: {
-      en: "Discover how animals differ in structure, movement, growth and behavior.",
+      en: 'Discover how animals differ in structure, movement, growth and behavior.',
       zh: '探索动物在身体结构、运动、生长和行为方面的差异。',
       hi: 'जानें कि जानवरों की शारीरिक संरचना, गति, वृद्धि और व्यवहार में क्या अंतर होते हैं।',
       es: 'Descubre cómo varían los animales en su estructura, movimiento, crecimiento y comportamiento.',

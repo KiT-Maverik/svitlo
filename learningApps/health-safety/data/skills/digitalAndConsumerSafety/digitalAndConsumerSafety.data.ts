@@ -5,10 +5,10 @@ import { onlineInteractionSafety_SkillGroup_Data } from './onlineInteractionSafe
 import { privacyAndAccountProtection_SkillGroup_Data } from './privacyAndAccountProtection/privacyAndAccountProtection.data';
 
 export const digitalAndConsumerSafety_SkillDomain_Data = buildSkillDomainConfig({
-  slug: "digitalAndConsumerSafety",
-  id: "393ba847-2916-407a-bf88-3d3b408af530",
+  slug: 'digitalAndConsumerSafety',
+  id: '393ba847-2916-407a-bf88-3d3b408af530',
   name: {
-    en: "Digital and Consumer Safety",
+    en: 'Digital and Consumer Safety',
   },
   groups: {
     fraudAndDeceptivePressure: fraudAndDeceptivePressure_SkillGroup_Data,
@@ -16,9 +16,10 @@ export const digitalAndConsumerSafety_SkillDomain_Data = buildSkillDomainConfig(
     privacyAndAccountProtection: privacyAndAccountProtection_SkillGroup_Data,
   },
   description: {
-    methodological: "Online environments expose people to privacy breaches, coercion, deception, and financial or personal exploitation. Computer security mechanisms belong primarily to Informatics; this domain concerns a person's protective decisions and recourse.",
+    methodological:
+      "Online environments expose people to privacy breaches, coercion, deception, and financial or personal exploitation. Computer security mechanisms belong primarily to Informatics; this domain concerns a person's protective decisions and recourse.",
     frontend: {
-      en: "Discover how to protect personal information and respond to deceptive online behavior.",
+      en: 'Discover how to protect personal information and respond to deceptive online behavior.',
     },
   },
 });

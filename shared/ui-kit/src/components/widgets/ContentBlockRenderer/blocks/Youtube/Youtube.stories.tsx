@@ -8,7 +8,12 @@ const meta = {
   component: Youtube,
   tags: ['autodocs'],
   parameters: {
-    docs: { description: { component: 'A validated HTTPS YouTube link or privacy-enhanced embedded player. Embeds require an accessible title or hint and an internet connection.' } },
+    docs: {
+      description: {
+        component:
+          'A validated HTTPS YouTube link or privacy-enhanced embedded player. Embeds require an accessible title or hint and an internet connection.',
+      },
+    },
   },
   args: {
     messages: enUiKitMessages.youtube,
@@ -42,7 +47,13 @@ export const Embedded: Story = {
 };
 
 export const WithLocalizedFallback: Story = {
-  decorators: [(StoryComponent) => <ContentLanguageContext.Provider value="uk"><StoryComponent /></ContentLanguageContext.Provider>],
+  decorators: [
+    StoryComponent => (
+      <ContentLanguageContext.Provider value="uk">
+        <StoryComponent />
+      </ContentLanguageContext.Provider>
+    ),
+  ],
   args: {
     mode: 'embed',
 

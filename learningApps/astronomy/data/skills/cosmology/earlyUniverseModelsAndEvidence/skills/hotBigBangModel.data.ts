@@ -44,7 +44,7 @@ export const hotBigBangModel_Skill_Data = buildSkillConfig({
       hi: 'जानें कि गर्म बिग बैंग मॉडल क्या समझाता है और क्या स्थापित नहीं करता।',
       es: 'Descubre qué explica el modelo del Big Bang caliente y qué no demuestra.',
       ar: 'اكتشف ما يفسره نموذج الانفجار العظيم الساخن وما لا يثبته.',
-      fr: 'Découvre ce que le modèle du Big Bang chaud explique et ce qu\'il ne démontre pas.',
+      fr: "Découvre ce que le modèle du Big Bang chaud explique et ce qu'il ne démontre pas.",
       bn: 'উত্তপ্ত বিগ ব্যাং মডেল কী ব্যাখ্যা করে এবং কী প্রমাণ করে না তা জানো।',
       pt: 'Descubra o que o modelo do Big Bang quente explica e o que não estabelece.',
       ur: 'جانیں کہ گرم بگ بینگ ماڈل کیا سمجھاتا ہے اور کیا ثابت نہیں کرتا۔',

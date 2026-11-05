@@ -1,29 +1,29 @@
 export const locale = {
-  "brand": "Svitlo",
-  "navigation": {
-    "top": "상단 학습 탐색",
-    "bottom": "하단 학습 탐색",
-    "topics": "주제 목록",
-    "settings": "설정"
+  brand: 'Svitlo',
+  navigation: {
+    top: '상단 학습 탐색',
+    bottom: '하단 학습 탐색',
+    topics: '주제 목록',
+    settings: '설정',
   },
-  "actions": {
-    "openTopics": "주제 목록 열기",
-    "closeTopics": "주제 목록 닫기",
-    "openSettings": "설정 열기",
-    "closeSettings": "설정 닫기",
-    "closeSidebar": "사이드바 닫기",
-    "closeSettingsPanel": "설정 패널 닫기",
-    "previous": "뒤로",
-    "next": "다음",
-    "skip": "건너뛰기",
-    "profile": "프로필",
-    "logout": "로그아웃"
+  actions: {
+    openTopics: '주제 목록 열기',
+    closeTopics: '주제 목록 닫기',
+    openSettings: '설정 열기',
+    closeSettings: '설정 닫기',
+    closeSidebar: '사이드바 닫기',
+    closeSettingsPanel: '설정 패널 닫기',
+    previous: '뒤로',
+    next: '다음',
+    skip: '건너뛰기',
+    profile: '프로필',
+    logout: '로그아웃',
   },
-  "tooltips": {
-    "profile": "로그인 기능을 활성화하면 프로필을 사용할 수 있습니다",
-    "logout": "로그인 기능을 활성화하면 로그아웃할 수 있습니다"
+  tooltips: {
+    profile: '로그인 기능을 활성화하면 프로필을 사용할 수 있습니다',
+    logout: '로그인 기능을 활성화하면 로그아웃할 수 있습니다',
   },
-  "topicsTitle": "주제",
-  "settingsTitle": "설정",
-  "settingsDescription": "학습 설정이 여기에 표시됩니다."
+  topicsTitle: '주제',
+  settingsTitle: '설정',
+  settingsDescription: '학습 설정이 여기에 표시됩니다.',
 } as const;

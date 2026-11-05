@@ -13,7 +13,15 @@ import { locale as qmLayout } from '../../../../shared/ui-kit/data/components/Le
 const additionalLocales = ['lt-LT', 'lv-LV', 'et-EE', 'be-tarask', 'ka-GE', 'kk-Cyrl-KZ', 'crh-Latn-UA'] as const;
 const languages = ['lt', 'lv', 'et', 'be', 'ka', 'kk', 'qm'] as const;
 
-const layouts = { 'lt-LT': ltLayout, 'lv-LV': lvLayout, 'et-EE': etLayout, 'be-tarask': beLayout, 'ka-GE': kaLayout, 'kk-Cyrl-KZ': kkLayout, 'crh-Latn-UA': qmLayout };
+const layouts = {
+  'lt-LT': ltLayout,
+  'lv-LV': lvLayout,
+  'et-EE': etLayout,
+  'be-tarask': beLayout,
+  'ka-GE': kaLayout,
+  'kk-Cyrl-KZ': kkLayout,
+  'crh-Latn-UA': qmLayout,
+};
 const root = process.cwd();
 const lessonRoot = join(root, 'data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c');
 const newLanguages = ['lt', 'lv', 'et', 'be', 'ka', 'kk', 'qm'] as const;
@@ -23,11 +31,7 @@ function countLanguageEntries(source: string, language: string): number {
 
 describe('Playground internationalization', () => {
   it('includes extended-language values in authored lesson and checkpoint content', () => {
-    const files = [
-      'howLightMoves.data.ts',
-      'sections/theory/theory.ts',
-      'sections/theory/checkpoints/checkpoint.ts',
-    ];
+    const files = ['howLightMoves.data.ts', 'sections/theory/theory.ts', 'sections/theory/checkpoints/checkpoint.ts'];
     for (const file of files) {
       const source = readFileSync(join(lessonRoot, file), 'utf8');
       for (const language of newLanguages) {

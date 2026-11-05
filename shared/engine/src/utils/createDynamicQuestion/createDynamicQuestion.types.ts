@@ -75,7 +75,9 @@ export interface DynamicQuestion_Config<
   SupportedLanguages extends Locale_Languages,
 > {
   arguments: TArguments;
-  buildVariants: (config: DynamicQuestion_Config<TArguments, SupportedLanguages>) => DynamicQuestion_Variant<TArguments>[];
+  buildVariants: (
+    config: DynamicQuestion_Config<TArguments, SupportedLanguages>,
+  ) => DynamicQuestion_Variant<TArguments>[];
   checkConstraints: (variant: DynamicQuestion_Variant<TArguments>) => boolean;
   content: {
     question: NonEmptyArray<ContentBlock<'data', SupportedLanguages>[]>;

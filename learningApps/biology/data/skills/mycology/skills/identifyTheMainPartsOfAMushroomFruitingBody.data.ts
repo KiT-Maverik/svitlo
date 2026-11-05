@@ -1,15 +1,15 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const identifyTheMainPartsOfAMushroomFruitingBody_Skill_Data = buildSkillConfig({
-  slug: "identifyTheMainPartsOfAMushroomFruitingBody",
-  id: "e25e0cf7-e313-422a-8350-210143298faf",
+  slug: 'identifyTheMainPartsOfAMushroomFruitingBody',
+  id: 'e25e0cf7-e313-422a-8350-210143298faf',
   name: {
-    en: "Identify the Main Parts of a Mushroom Fruiting Body",
+    en: 'Identify the Main Parts of a Mushroom Fruiting Body',
     zh: '识别蘑菇子实体的主要部分',
     hi: 'मशरूम के फलनकाय के मुख्य भाग पहचानना',
     es: 'Identificar las partes principales del cuerpo fructífero de una seta',
     ar: 'تحديد الأجزاء الرئيسية للجسم الثمري للفطر',
-    fr: 'Identifier les principales parties du sporophore d\'un champignon',
+    fr: "Identifier les principales parties du sporophore d'un champignon",
     bn: 'মাশরুমের ফলদেহের প্রধান অংশ শনাক্ত করা',
     pt: 'Identificar as partes principais do corpo de frutificação de um cogumelo',
     ur: 'کھمبی کے ثمرآور جسم کے اہم حصے پہچاننا',
@@ -35,14 +35,15 @@ export const identifyTheMainPartsOfAMushroomFruitingBody_Skill_Data = buildSkill
     qm: 'Şapkalı mantarnıñ meyve cisminiñ esas qısımlarını belgilemek',
   },
   description: {
-    methodological: "Locate the cap, stalk, and spore-producing structures on a diagram of a typical cap-and-stalk mushroom.",
+    methodological:
+      'Locate the cap, stalk, and spore-producing structures on a diagram of a typical cap-and-stalk mushroom.',
     frontend: {
-      en: "Identify the cap, stalk and spore-producing structures of a familiar mushroom.",
+      en: 'Identify the cap, stalk and spore-producing structures of a familiar mushroom.',
       zh: '识别常见蘑菇的菌盖、菌柄和产生孢子的结构。',
       hi: 'परिचित मशरूम की टोपी, डंठल और बीजाणु बनाने वाली संरचनाओं को पहचानें।',
       es: 'Identifica el sombrero, el pie y las estructuras que producen esporas en una seta común.',
       ar: 'حدّد قبعة الفطر وساقه والتراكيب التي تنتج الأبواغ في فطر مألوف.',
-      fr: 'Repère le chapeau, le pied et les structures productrices de spores d\'un champignon courant.',
+      fr: "Repère le chapeau, le pied et les structures productrices de spores d'un champignon courant.",
       bn: 'পরিচিত মাশরুমের টুপি, ডাঁটি ও রেণু উৎপাদনকারী অংশ চিহ্নিত করো।',
       pt: 'Identifique o chapéu, o pé e as estruturas produtoras de esporos de um cogumelo comum.',
       ur: 'عام کھمبی کی ٹوپی، ڈنڈی اور تخمک پیدا کرنے والی ساختوں کو پہچانیں۔',

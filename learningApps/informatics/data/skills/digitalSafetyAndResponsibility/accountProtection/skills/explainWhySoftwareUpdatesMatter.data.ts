@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainWhySoftwareUpdatesMatter_Skill_Data = buildSkillConfig({
-  slug: "explainWhySoftwareUpdatesMatter",
-  id: "38b77d92-9304-484c-8c2e-d3a2aa695419",
+  slug: 'explainWhySoftwareUpdatesMatter',
+  id: '38b77d92-9304-484c-8c2e-d3a2aa695419',
   name: {
-    en: "Explain Why Software Updates Matter",
+    en: 'Explain Why Software Updates Matter',
     zh: '解释软件更新的重要性',
     hi: 'सॉफ़्टवेयर अपडेट का महत्व समझाना',
     es: 'Explicar por qué importan las actualizaciones',
@@ -35,9 +35,10 @@ export const explainWhySoftwareUpdatesMatter_Skill_Data = buildSkillConfig({
     qm: 'Programma yañılamaları neden müim olğanını añlatmaq',
   },
   description: {
-    methodological: "Explain how trusted updates can patch vulnerabilities and defects exploited by attackers; distinguish official updates from fake prompts to install unfamiliar files.",
+    methodological:
+      'Explain how trusted updates can patch vulnerabilities and defects exploited by attackers; distinguish official updates from fake prompts to install unfamiliar files.',
     frontend: {
-      en: "Learn why official software updates can help fix security weaknesses.",
+      en: 'Learn why official software updates can help fix security weaknesses.',
       zh: '了解正规软件更新为什么能帮助修复安全漏洞。',
       hi: 'समझें कि आधिकारिक सॉफ़्टवेयर अपडेट सुरक्षा की कमियाँ कैसे ठीक कर सकते हैं।',
       es: 'Aprende por qué las actualizaciones oficiales pueden corregir fallas de seguridad.',

@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const distinguishMyceliumFromAFruitingBody_Skill_Data = buildSkillConfig({
-  slug: "distinguishMyceliumFromAFruitingBody",
-  id: "7e1a9f06-8143-418b-8fc9-db3c3ecc8411",
+  slug: 'distinguishMyceliumFromAFruitingBody',
+  id: '7e1a9f06-8143-418b-8fc9-db3c3ecc8411',
   name: {
-    en: "Distinguish Mycelium from a Fruiting Body",
+    en: 'Distinguish Mycelium from a Fruiting Body',
     zh: '区分菌丝体与子实体',
     hi: 'कवकजाल और फलनकाय में अंतर करना',
     es: 'Distinguir el micelio del cuerpo fructífero',
@@ -35,14 +35,15 @@ export const distinguishMyceliumFromAFruitingBody_Skill_Data = buildSkillConfig(
     qm: 'Miseliy ve meyve cismini ayırmaq',
   },
   description: {
-    methodological: "Explain why an underground or concealed network of hyphae forms the main body of many fungi, while the visible mushroom cap is only a reproductive structure.",
+    methodological:
+      'Explain why an underground or concealed network of hyphae forms the main body of many fungi, while the visible mushroom cap is only a reproductive structure.',
     frontend: {
       en: "Discover how a fungus's hidden mycelium differs from its visible fruiting body.",
       zh: '了解真菌隐藏的菌丝体与可见的子实体有何不同。',
       hi: 'जानें कि कवक का छिपा कवकजाल दिखाई देने वाले फलनकाय से कैसे अलग है।',
       es: 'Descubre cómo el micelio oculto de un hongo se diferencia de su cuerpo fructífero visible.',
       ar: 'اكتشف كيف يختلف الغزل الفطري المخفي عن الجسم الثمري المرئي للفطر.',
-      fr: 'Découvre en quoi le mycélium caché d\'un champignon diffère de son sporophore visible.',
+      fr: "Découvre en quoi le mycélium caché d'un champignon diffère de son sporophore visible.",
       bn: 'ছত্রাকের আড়ালে থাকা মাইসেলিয়াম দৃশ্যমান ফলদেহ থেকে কীভাবে আলাদা, তা জানো।',
       pt: 'Descubra como o micélio oculto de um fungo difere de seu corpo de frutificação visível.',
       ur: 'جانیں کہ فطر کا پوشیدہ ریشوں کا جال اس کے نظر آنے والے ثمرآور جسم سے کیسے مختلف ہے۔',

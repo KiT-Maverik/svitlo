@@ -1,12 +1,15 @@
 import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
 
-import { explainGasCompressibility_Skill_Data, explainHowGasPressureDependsOnTemperatureAtConstantVolume_Skill_Data } from './skills';
+import {
+  explainGasCompressibility_Skill_Data,
+  explainHowGasPressureDependsOnTemperatureAtConstantVolume_Skill_Data,
+} from './skills';
 
 export const gasProperties_SkillGroup_Data = buildSkillGroupConfig({
-  slug: "gasProperties",
-  id: "370da89e-fa86-43b4-b7b3-231aa98ac394",
+  slug: 'gasProperties',
+  id: '370da89e-fa86-43b4-b7b3-231aa98ac394',
   name: {
-    en: "Gas Properties",
+    en: 'Gas Properties',
     qm: 'Gazlarnıñ hususiyetleri',
     zh: '气体的性质',
     hi: 'गैसों के गुण',
@@ -38,12 +41,14 @@ export const gasProperties_SkillGroup_Data = buildSkillGroupConfig({
   },
   skills: {
     explainGasCompressibility: explainGasCompressibility_Skill_Data,
-    explainHowGasPressureDependsOnTemperatureAtConstantVolume: explainHowGasPressureDependsOnTemperatureAtConstantVolume_Skill_Data,
+    explainHowGasPressureDependsOnTemperatureAtConstantVolume:
+      explainHowGasPressureDependsOnTemperatureAtConstantVolume_Skill_Data,
   },
   description: {
-    methodological: "The compressibility of gases and the dependence of their pressure on conditions follow from particle motion and the spaces between particles.",
+    methodological:
+      'The compressibility of gases and the dependence of their pressure on conditions follow from particle motion and the spaces between particles.',
     frontend: {
-      en: "Explore the physical properties of gases using the particle model.",
+      en: 'Explore the physical properties of gases using the particle model.',
       qm: 'Parçacıq modeli yardımınen gazlarnıñ fizik hususiyetlerini araştır.',
       zh: '利用粒子模型探索气体的物理性质。',
       hi: 'कण मॉडल की सहायता से गैसों के भौतिक गुणों का अध्ययन करें।',

@@ -1,12 +1,20 @@
 import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
 
-import { distinguishAnOrganismPopulationAndCommunity_Skill_Data, explainMatterCyclingInEcosystems_Skill_Data, explainTheImportanceOfBiodiversity_Skill_Data, explainTheInterdependenceOfEcosystemComponents_Skill_Data, identifyThreatsToLocalSpecies_Skill_Data, justifyProtectionOfSpeciesListedInRedDataBooks_Skill_Data, recognizeNaturalCommunitiesOfUkraine_Skill_Data } from './skills';
+import {
+  distinguishAnOrganismPopulationAndCommunity_Skill_Data,
+  explainMatterCyclingInEcosystems_Skill_Data,
+  explainTheImportanceOfBiodiversity_Skill_Data,
+  explainTheInterdependenceOfEcosystemComponents_Skill_Data,
+  identifyThreatsToLocalSpecies_Skill_Data,
+  justifyProtectionOfSpeciesListedInRedDataBooks_Skill_Data,
+  recognizeNaturalCommunitiesOfUkraine_Skill_Data,
+} from './skills';
 
 export const ecosystemsAndBiodiversity_SkillGroup_Data = buildSkillGroupConfig({
-  slug: "ecosystemsAndBiodiversity",
-  id: "d97c7695-6316-42e8-9647-fdb9b3303bf4",
+  slug: 'ecosystemsAndBiodiversity',
+  id: 'd97c7695-6316-42e8-9647-fdb9b3303bf4',
   name: {
-    en: "Ecosystems and Biodiversity",
+    en: 'Ecosystems and Biodiversity',
     qm: 'Ekosistemalar ve biologik çeşitlik',
     zh: '生态系统与生物多样性',
     hi: 'पारितंत्र और जैव विविधता',
@@ -46,9 +54,10 @@ export const ecosystemsAndBiodiversity_SkillGroup_Data = buildSkillGroupConfig({
     recognizeNaturalCommunitiesOfUkraine: recognizeNaturalCommunitiesOfUkraine_Skill_Data,
   },
   description: {
-    methodological: "Individual organisms, populations, and communities interact with one another and with nonliving factors. Changes in species composition or resource availability can have indirect consequences for an entire ecosystem, making these relationships and the role of biodiversity important to understand.",
+    methodological:
+      'Individual organisms, populations, and communities interact with one another and with nonliving factors. Changes in species composition or resource availability can have indirect consequences for an entire ecosystem, making these relationships and the role of biodiversity important to understand.',
     frontend: {
-      en: "Understand how populations, communities and environmental factors form ecosystems.",
+      en: 'Understand how populations, communities and environmental factors form ecosystems.',
       qm: 'Canlı toplulıqları, populyatsiyalar ve etraftaki müit şartları ekosistemalarnı nasıl teşkil etkenini ögreniñiz.',
       zh: '理解种群、生物群落和环境因素如何共同构成生态系统。',
       hi: 'समझें कि आबादियाँ, जीव समुदाय और पर्यावरणीय कारक मिलकर पारितंत्र कैसे बनाते हैं।',

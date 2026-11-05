@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const constructASimpleFoodChain_Skill_Data = buildSkillConfig({
-  slug: "constructASimpleFoodChain",
-  id: "52d7022f-bf92-46b5-bc2b-dcf27f823f31",
+  slug: 'constructASimpleFoodChain',
+  id: '52d7022f-bf92-46b5-bc2b-dcf27f823f31',
   name: {
-    en: "Construct a Simple Food Chain",
+    en: 'Construct a Simple Food Chain',
     zh: '构建简单的食物链',
     hi: 'सरल खाद्य शृंखला बनाना',
     es: 'Construir una cadena alimentaria sencilla',
@@ -35,9 +35,9 @@ export const constructASimpleFoodChain_Skill_Data = buildSkillConfig({
     qm: 'Adiy azıq zıncırı qurmaq',
   },
   description: {
-    methodological: "Correctly arrange the direction of matter and energy transfer between a producer and consumers.",
+    methodological: 'Correctly arrange the direction of matter and energy transfer between a producer and consumers.',
     frontend: {
-      en: "Build a food chain showing who obtains energy and matter from whom.",
+      en: 'Build a food chain showing who obtains energy and matter from whom.',
       zh: '构建一条食物链，表明生物从谁那里获得物质和能量。',
       hi: 'ऐसी खाद्य शृंखला बनाएँ जिसमें दिखे कि कौन किससे पदार्थ और ऊर्जा प्राप्त करता है।',
       es: 'Construye una cadena alimentaria que muestre quién obtiene materia y energía de quién.',

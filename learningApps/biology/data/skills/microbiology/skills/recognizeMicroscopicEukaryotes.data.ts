@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const recognizeMicroscopicEukaryotes_Skill_Data = buildSkillConfig({
-  slug: "recognizeMicroscopicEukaryotes",
-  id: "c3b920aa-3964-469d-8889-10111f03ec0d",
+  slug: 'recognizeMicroscopicEukaryotes',
+  id: 'c3b920aa-3964-469d-8889-10111f03ec0d',
   name: {
-    en: "Recognize Microscopic Eukaryotes",
+    en: 'Recognize Microscopic Eukaryotes',
     zh: '识别微小的真核生物',
     hi: 'सूक्ष्म यूकैरियोटिक जीवों को पहचानना',
     es: 'Reconocer eucariotas microscópicos',
@@ -35,9 +35,10 @@ export const recognizeMicroscopicEukaryotes_Skill_Data = buildSkillConfig({
     qm: 'Mikroskopik eukariotlarnı tanımaq',
   },
   description: {
-    methodological: "Recognize nucleated unicellular eukaryotes, including diverse protists, algae, and yeasts; do not treat 'microorganisms' as a single biological taxon.",
+    methodological:
+      "Recognize nucleated unicellular eukaryotes, including diverse protists, algae, and yeasts; do not treat 'microorganisms' as a single biological taxon.",
     frontend: {
-      en: "Recognize microscopic organisms whose cells contain nuclei.",
+      en: 'Recognize microscopic organisms whose cells contain nuclei.',
       zh: '识别细胞内含有细胞核的微小生物。',
       hi: 'ऐसे सूक्ष्म जीवों को पहचानें जिनकी कोशिकाओं में केंद्रक होता है।',
       es: 'Reconoce organismos microscópicos cuyas células tienen núcleo.',

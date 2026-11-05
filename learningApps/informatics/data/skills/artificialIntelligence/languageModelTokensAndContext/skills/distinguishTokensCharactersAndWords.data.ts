@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const distinguishTokensCharactersAndWords_Skill_Data = buildSkillConfig({
-  slug: "distinguishTokensCharactersAndWords",
-  id: "90cdf202-da8d-4d0e-a710-1cddf0de9c68",
+  slug: 'distinguishTokensCharactersAndWords',
+  id: '90cdf202-da8d-4d0e-a710-1cddf0de9c68',
   name: {
-    en: "Distinguish Tokens, Characters, and Words",
+    en: 'Distinguish Tokens, Characters, and Words',
     zh: '区分词元、字符和单词',
     hi: 'टोकन, अक्षर और शब्द में अंतर करना',
     es: 'Distinguir tokens, caracteres y palabras',
@@ -35,9 +35,10 @@ export const distinguishTokensCharactersAndWords_Skill_Data = buildSkillConfig({
     qm: 'Tokenlerni, ariflerni ve sözlerni ayırmaq',
   },
   description: {
-    methodological: "Show that a word may contain several tokens and a token may contain several characters; the segmentation depends on the model and language.",
+    methodological:
+      'Show that a word may contain several tokens and a token may contain several characters; the segmentation depends on the model and language.',
     frontend: {
-      en: "Recognize why characters, words and tokens are not the same thing.",
+      en: 'Recognize why characters, words and tokens are not the same thing.',
       zh: '理解为什么字符、单词和词元并不是同一种单位。',
       hi: 'समझें कि अक्षर, शब्द और टोकन एक ही चीज़ क्यों नहीं हैं।',
       es: 'Reconoce por qué los caracteres, las palabras y los tokens no son lo mismo.',

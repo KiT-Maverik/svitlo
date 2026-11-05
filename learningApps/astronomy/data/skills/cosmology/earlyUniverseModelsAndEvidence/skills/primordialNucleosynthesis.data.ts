@@ -44,7 +44,7 @@ export const primordialNucleosynthesis_Skill_Data = buildSkillConfig({
       hi: 'जानें कि आरंभिक ब्रह्मांड के मॉडल हल्के तत्वों की मात्रा का अनुमान कैसे लगाते हैं।',
       es: 'Descubre cómo los modelos del Universo temprano predicen las cantidades de elementos ligeros.',
       ar: 'تعرّف كيف تتنبأ نماذج الكون المبكر بوفرة العناصر الخفيفة.',
-      fr: 'Découvre comment les modèles de l\'Univers primordial prédisent l\'abondance des éléments légers.',
+      fr: "Découvre comment les modèles de l'Univers primordial prédisent l'abondance des éléments légers.",
       bn: 'আদি মহাবিশ্বের মডেল কীভাবে হালকা মৌলের পরিমাণ অনুমান করে তা দেখো।',
       pt: 'Veja como modelos do Universo primitivo preveem as quantidades de elementos leves.',
       ur: 'جانیں کہ ابتدائی کائنات کے ماڈل ہلکے عناصر کی مقدار کی پیش گوئی کیسے کرتے ہیں۔',

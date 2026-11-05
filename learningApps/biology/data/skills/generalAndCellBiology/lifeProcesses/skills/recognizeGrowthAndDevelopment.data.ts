@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const recognizeGrowthAndDevelopment_Skill_Data = buildSkillConfig({
-  slug: "recognizeGrowthAndDevelopment",
-  id: "492c4f54-5116-4a66-bcd6-4af38256484c",
+  slug: 'recognizeGrowthAndDevelopment',
+  id: '492c4f54-5116-4a66-bcd6-4af38256484c',
   name: {
-    en: "Recognize Growth and Development",
+    en: 'Recognize Growth and Development',
     zh: '识别生长与发育',
     hi: 'वृद्धि और विकास पहचानना',
     es: 'Reconocer el crecimiento y el desarrollo',
@@ -35,14 +35,15 @@ export const recognizeGrowthAndDevelopment_Skill_Data = buildSkillConfig({
     qm: 'Ösüv ve inkişafnı farqlamaq',
   },
   description: {
-    methodological: "Distinguish increases in mass or size from changes in structure and function during transitions between life stages.",
+    methodological:
+      'Distinguish increases in mass or size from changes in structure and function during transitions between life stages.',
     frontend: {
       en: "Distinguish an increase in size from changes in an organism's development.",
       zh: '区分体积或质量的增加与生物体结构和功能的变化。',
       hi: 'आकार या द्रव्यमान में वृद्धि को संरचना और कार्य में परिवर्तन से अलग समझें।',
       es: 'Distingue el aumento de tamaño de los cambios en la estructura y las funciones del organismo.',
       ar: 'ميّز زيادة الحجم عن التغيرات في بنية الكائن الحي ووظائفه.',
-      fr: 'Distingue l\'augmentation de taille des changements de structure et de fonction d\'un organisme.',
+      fr: "Distingue l'augmentation de taille des changements de structure et de fonction d'un organisme.",
       bn: 'আকার বা ভরের বৃদ্ধি এবং গঠন ও কাজের পরিবর্তনের পার্থক্য বোঝো।',
       pt: 'Diferencie o aumento de tamanho das mudanças na estrutura e na função de um organismo.',
       ur: 'جسامت میں اضافے اور ساخت و کام میں تبدیلی کا فرق سمجھیں۔',

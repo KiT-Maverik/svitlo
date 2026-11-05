@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const configureARepeatedRobotAction_Skill_Data = buildSkillConfig({
-  slug: "configureARepeatedRobotAction",
-  id: "80a463db-ee01-4900-a039-5a24f3711dda",
+  slug: 'configureARepeatedRobotAction',
+  id: '80a463db-ee01-4900-a039-5a24f3711dda',
   name: {
-    en: "Configure a Repeated Robot Action",
+    en: 'Configure a Repeated Robot Action',
     zh: '配置机器人重复动作',
     hi: 'रोबोट की दोहराई जाने वाली क्रिया तय करना',
     es: 'Configurar una acción repetida de un robot',
@@ -35,9 +35,10 @@ export const configureARepeatedRobotAction_Skill_Data = buildSkillConfig({
     qm: 'Robotnıñ tekrar etken areketini sazlamaq',
   },
   description: {
-    methodological: "Control the number of repetitions or termination condition of a physical or simulated operation, such as repeatedly checking a sensor while moving. Account for environmental changes between iterations.",
+    methodological:
+      'Control the number of repetitions or termination condition of a physical or simulated operation, such as repeatedly checking a sensor while moving. Account for environmental changes between iterations.',
     frontend: {
-      en: "Set how many times a robot repeats an action or when it should stop.",
+      en: 'Set how many times a robot repeats an action or when it should stop.',
       zh: '设定机器人重复某个动作的次数，或决定何时停止。',
       hi: 'निर्धारित करें कि रोबोट कोई क्रिया कितनी बार दोहराए या कब रुके।',
       es: 'Indica cuántas veces debe repetir una acción el robot o cuándo detenerse.',

@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainTheRoleOfTheSkeleton_Skill_Data = buildSkillConfig({
-  slug: "explainTheRoleOfTheSkeleton",
-  id: "e61345ae-f38e-42ff-bef8-08ca7b99aaba",
+  slug: 'explainTheRoleOfTheSkeleton',
+  id: 'e61345ae-f38e-42ff-bef8-08ca7b99aaba',
   name: {
-    en: "Explain the Role of the Skeleton",
+    en: 'Explain the Role of the Skeleton',
     zh: '解释骨骼的作用',
     hi: 'अस्थिपंजर की भूमिका समझाना',
     es: 'Explicar el papel del esqueleto',
@@ -35,9 +35,9 @@ export const explainTheRoleOfTheSkeleton_Skill_Data = buildSkillConfig({
     qm: 'İskeletniñ rolüni añlatmaq',
   },
   description: {
-    methodological: "Show how bones maintain body shape and provide some protection to internal organs.",
+    methodological: 'Show how bones maintain body shape and provide some protection to internal organs.',
     frontend: {
-      en: "Explain how the skeleton supports the body and protects some organs.",
+      en: 'Explain how the skeleton supports the body and protects some organs.',
       zh: '解释骨骼如何支撑身体并保护某些器官。',
       hi: 'समझाएँ कि अस्थिपंजर शरीर को सहारा देकर कुछ अंगों की रक्षा कैसे करता है।',
       es: 'Explica cómo el esqueleto sostiene el cuerpo y protege algunos órganos.',

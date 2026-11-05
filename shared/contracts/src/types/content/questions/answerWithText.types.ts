@@ -11,10 +11,19 @@ type Content<Mode extends 'data' | 'response', SupportedLanguages extends Locale
 };
 
 type Question_AnswerWithText_Definition = Question_Definition_Meta<'answerWithText'>;
-type Question_AnswerWithText_Data<SupportedLanguages extends Locale_Languages> = Question_Data_Meta<'answerWithText'> & Content<'data', SupportedLanguages> & { correctAnswers: readonly Locale_Options<SupportedLanguages>[]; placeholder: Locale_Options<SupportedLanguages> };
-type Question_AnswerWithText_Response<SupportedLanguages extends Locale_Languages> = Question_Response_Meta<'answerWithText'> & Content<'response', SupportedLanguages> & { correctAnswers: readonly string[]; placeholder: string };
+type Question_AnswerWithText_Data<SupportedLanguages extends Locale_Languages> = Question_Data_Meta<'answerWithText'> &
+  Content<'data', SupportedLanguages> & {
+    correctAnswers: readonly Locale_Options<SupportedLanguages>[];
+    placeholder: Locale_Options<SupportedLanguages>;
+  };
+type Question_AnswerWithText_Response<SupportedLanguages extends Locale_Languages> =
+  Question_Response_Meta<'answerWithText'> &
+    Content<'response', SupportedLanguages> & { correctAnswers: readonly string[]; placeholder: string };
 
-export type Question_AnswerWithText<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends Locale_Languages> = {
+export type Question_AnswerWithText<
+  ConfigType extends ContentEntity_ConfigType,
+  SupportedLanguages extends Locale_Languages,
+> = {
   definition: Question_AnswerWithText_Definition;
   data: Question_AnswerWithText_Data<SupportedLanguages>;
   response: Question_AnswerWithText_Response<SupportedLanguages>;

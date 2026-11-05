@@ -51,7 +51,7 @@ export const innerAndOuterSolarSystem_Skill_Data = buildSkillConfig({
       de: 'Vergleiche die inneren und äußeren Regionen des Sonnensystems und ihre typischen Bedingungen.',
       ja: '太陽系の内側と外側の領域と、それぞれの典型的な環境を比較しましょう。',
       ko: '태양계 안쪽과 바깥쪽 영역의 대표적인 환경을 비교해 보세요.',
-      tr: 'Güneş Sistemi\'nin iç ve dış bölgelerini ve bu bölgelerin tipik koşullarını karşılaştırın.',
+      tr: "Güneş Sistemi'nin iç ve dış bölgelerini ve bu bölgelerin tipik koşullarını karşılaştırın.",
       vi: 'So sánh các vùng trong và ngoài Hệ Mặt Trời cùng những điều kiện đặc trưng ở đó.',
       ta: 'சூரியக் குடும்பத்தின் உள் மற்றும் வெளிப் பகுதிகளையும் அவற்றின் வழக்கமான சூழல்களையும் ஒப்பிடுங்கள்.',
       te: 'సౌర వ్యవస్థ లోపలి, బయటి ప్రాంతాలను, వాటి సాధారణ పరిస్థితులను పోల్చండి.',

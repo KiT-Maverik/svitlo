@@ -20,5 +20,11 @@ export const MixedAnswers: Story = {};
 export const ReadOnly: Story = { args: { allowNavigation: false } };
 export const RightToLeft: Story = {
   args: { messages: lesson.ar },
-  decorators: [Story => <div dir="rtl" lang="ar-SA"><Story /></div>],
+  decorators: [
+    Story => (
+      <div dir="rtl" lang="ar-SA">
+        <Story />
+      </div>
+    ),
+  ],
 };

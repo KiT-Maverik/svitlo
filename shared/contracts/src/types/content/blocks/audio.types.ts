@@ -25,7 +25,10 @@ export type ContentBlock_Audio_Response = ContentBlock_Response_Meta<'audio'> & 
   fallback?: Audio_Fallback<string>;
 };
 
-export type ContentBlock_Audio<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends Locale_Languages> = {
+export type ContentBlock_Audio<
+  ConfigType extends ContentEntity_ConfigType,
+  SupportedLanguages extends Locale_Languages,
+> = {
   definition: ContentBlock_Audio_Definition;
   data: ContentBlock_Audio_Data<SupportedLanguages>;
   response: ContentBlock_Audio_Response;

@@ -1,15 +1,15 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainThePurposeOfASimpleBiotechnologicalProcedure_Skill_Data = buildSkillConfig({
-  slug: "explainThePurposeOfASimpleBiotechnologicalProcedure",
-  id: "daa3c9f3-2de4-4850-a467-349aecb9b3f6",
+  slug: 'explainThePurposeOfASimpleBiotechnologicalProcedure',
+  id: 'daa3c9f3-2de4-4850-a467-349aecb9b3f6',
   name: {
-    en: "Explain the Purpose of a Simple Biotechnological Procedure",
+    en: 'Explain the Purpose of a Simple Biotechnological Procedure',
     zh: '解释简单生物技术操作的目的',
     hi: 'एक सरल जैव प्रौद्योगिकीय प्रक्रिया का उद्देश्य समझाना',
     es: 'Explicar el propósito de un procedimiento biotecnológico sencillo',
     ar: 'شرح هدف إجراء بسيط في التقنية الحيوية',
-    fr: 'Expliquer le but d\'une procédure biotechnologique simple',
+    fr: "Expliquer le but d'une procédure biotechnologique simple",
     bn: 'একটি সহজ জীবপ্রযুক্তিগত পদ্ধতির উদ্দেশ্য ব্যাখ্যা করা',
     pt: 'Explicar a finalidade de um procedimento biotecnológico simples',
     ur: 'ایک سادہ حیاتیاتی ٹیکنالوجی کے عمل کا مقصد سمجھانا',
@@ -35,9 +35,10 @@ export const explainThePurposeOfASimpleBiotechnologicalProcedure_Skill_Data = bu
     qm: 'Adiy biotehnologik usulnıñ maqsadını añlatmaq',
   },
   description: {
-    methodological: "Relate organisms, cells, or enzymes used in a procedure to a specific product or expected transformation.",
+    methodological:
+      'Relate organisms, cells, or enzymes used in a procedure to a specific product or expected transformation.',
     frontend: {
-      en: "Connect the organisms or enzymes in a procedure with its intended product.",
+      en: 'Connect the organisms or enzymes in a procedure with its intended product.',
       zh: '将操作中使用的生物或酶与预期产品联系起来。',
       hi: 'प्रक्रिया में इस्तेमाल जीवों या एंजाइमों को उससे बनने वाले इच्छित उत्पाद से जोड़ें।',
       es: 'Relaciona los organismos o las enzimas utilizados en un procedimiento con el producto que se busca obtener.',
@@ -58,7 +59,7 @@ export const explainThePurposeOfASimpleBiotechnologicalProcedure_Skill_Data = bu
       ms: 'Hubungkan organisma atau enzim yang digunakan dalam prosedur dengan produk yang ingin dihasilkan.',
       he: 'קשרו בין היצורים או האנזימים המשמשים בתהליך לבין המוצר שרוצים להפיק.',
       pl: 'Powiąż organizmy lub enzymy używane w procesie z produktem, który ma powstać.',
-      uk: 'Пов\'яжи організми або ферменти, які використовують у процедурі, з продуктом, який прагнуть отримати.',
+      uk: "Пов'яжи організми або ферменти, які використовують у процедурі, з продуктом, який прагнуть отримати.",
       lt: 'Susiek procedūroje naudojamus organizmus ar fermentus su numatomu produktu.',
       lv: 'Saisti procedūrā izmantotos organismus vai enzīmus ar paredzēto produktu.',
       et: 'Seosta protseduuris kasutatavad organismid või ensüümid soovitud tootega.',

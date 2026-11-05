@@ -1,12 +1,18 @@
 import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
 
-import { describeGermination_Skill_Data, explainTheRoleOfPollination_Skill_Data, identifyTheRoleOfASeed_Skill_Data, relateFruitCharacteristicsToSeedDispersalMethods_Skill_Data, sequenceStagesOfAFloweringPlantsLifeCycle_Skill_Data } from './skills';
+import {
+  describeGermination_Skill_Data,
+  explainTheRoleOfPollination_Skill_Data,
+  identifyTheRoleOfASeed_Skill_Data,
+  relateFruitCharacteristicsToSeedDispersalMethods_Skill_Data,
+  sequenceStagesOfAFloweringPlantsLifeCycle_Skill_Data,
+} from './skills';
 
 export const reproductionAndDevelopment_SkillGroup_Data = buildSkillGroupConfig({
-  slug: "reproductionAndDevelopment",
-  id: "b7d6cd43-66fc-4986-bc5d-7354db0eb6a9",
+  slug: 'reproductionAndDevelopment',
+  id: 'b7d6cd43-66fc-4986-bc5d-7354db0eb6a9',
   name: {
-    en: "Reproduction and Development",
+    en: 'Reproduction and Development',
     zh: '繁殖与发育',
     hi: 'प्रजनन और विकास',
     es: 'Reproducción y desarrollo',
@@ -44,9 +50,10 @@ export const reproductionAndDevelopment_SkillGroup_Data = buildSkillGroupConfig(
     sequenceStagesOfAFloweringPlantsLifeCycle: sequenceStagesOfAFloweringPlantsLifeCycle_Skill_Data,
   },
   description: {
-    methodological: "A seed plant progresses from a seed through a seedling to producing the next generation; pollination and seed dispersal occur at different stages.",
+    methodological:
+      'A seed plant progresses from a seed through a seedling to producing the next generation; pollination and seed dispersal occur at different stages.',
     frontend: {
-      en: "Follow how plants reproduce and develop through their life cycles.",
+      en: 'Follow how plants reproduce and develop through their life cycles.',
       zh: '了解植物如何繁殖并经历其生命周期。',
       hi: 'जानें कि पौधे अपने जीवन चक्र में कैसे प्रजनन और विकास करते हैं।',
       es: 'Sigue cómo se reproducen y desarrollan las plantas durante sus ciclos de vida.',

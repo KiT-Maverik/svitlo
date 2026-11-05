@@ -56,7 +56,7 @@ export const starFormation_SkillGroup_Data = buildSkillGroupConfig({
       hi: 'जानें कि गैस और धूल के विशाल बादलों के भीतर तारे कैसे जन्म लेते हैं।',
       es: 'Investiga cómo nacen las estrellas dentro de enormes nubes de gas y polvo.',
       ar: 'ابحث كيف تولد النجوم داخل سحب ضخمة من الغاز والغبار.',
-      fr: 'Étudiez comment les étoiles naissent dans d\'immenses nuages de gaz et de poussière.',
+      fr: "Étudiez comment les étoiles naissent dans d'immenses nuages de gaz et de poussière.",
       bn: 'গ্যাস ও ধুলোর বিশাল মেঘের মধ্যে নক্ষত্র কীভাবে জন্মায়, তা খুঁজে দেখো।',
       pt: 'Investigue como as estrelas nascem em grandes nuvens de gás e poeira.',
       ur: 'دریافت کریں کہ گیس اور گرد کے بڑے بادلوں کے اندر ستارے کیسے بنتے ہیں۔',

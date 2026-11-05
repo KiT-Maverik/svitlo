@@ -43,7 +43,7 @@ export const stellarPopulations_Skill_Data = buildSkillConfig({
       hi: 'अलग-अलग आयु, रासायनिक संरचना और स्थान वाली तारकीय आबादियों की तुलना करें।',
       es: 'Compara poblaciones de estrellas de distintas edades, composiciones y ubicaciones.',
       ar: 'قارن مجموعات النجوم التي تختلف في أعمارها وتركيبها ومواقعها.',
-      fr: 'Comparez des populations d\'étoiles d\'âges, de compositions et de positions différents.',
+      fr: "Comparez des populations d'étoiles d'âges, de compositions et de positions différents.",
       bn: 'ভিন্ন বয়স, গঠন ও অবস্থানের নক্ষত্রের গোষ্ঠীগুলির তুলনা করো।',
       pt: 'Compare populações de estrelas com diferentes idades, composições e localizações.',
       ur: 'مختلف عمروں، ترکیبوں اور مقامات والے ستاروں کی آبادیوں کا موازنہ کریں۔',

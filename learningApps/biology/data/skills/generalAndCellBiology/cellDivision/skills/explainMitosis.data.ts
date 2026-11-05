@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const explainMitosis_Skill_Data = buildSkillConfig({
-  slug: "explainMitosis",
-  id: "2e0f52c6-8c66-46dc-b282-c7a9da886626",
+  slug: 'explainMitosis',
+  id: '2e0f52c6-8c66-46dc-b282-c7a9da886626',
   name: {
-    en: "Explain Mitosis",
+    en: 'Explain Mitosis',
     zh: '解释有丝分裂',
     hi: 'समसूत्री विभाजन की व्याख्या',
     es: 'Explicar la mitosis',
@@ -35,9 +35,10 @@ export const explainMitosis_Skill_Data = buildSkillConfig({
     qm: 'Mitoznı añlatmaq',
   },
   description: {
-    methodological: "Explain division of a eukaryotic cell nucleus while maintaining the chromosome number and distributing replicated DNA between daughter nuclei. Distinguish mitosis from cytokinesis and explain its roles in growth, tissue renewal, and asexual reproduction.",
+    methodological:
+      'Explain division of a eukaryotic cell nucleus while maintaining the chromosome number and distributing replicated DNA between daughter nuclei. Distinguish mitosis from cytokinesis and explain its roles in growth, tissue renewal, and asexual reproduction.',
     frontend: {
-      en: "Explore how mitosis divides genetic material between daughter nuclei.",
+      en: 'Explore how mitosis divides genetic material between daughter nuclei.',
       zh: '探索有丝分裂如何将遗传物质分配到两个子细胞核中。',
       hi: 'जानें कि समसूत्री विभाजन आनुवंशिक पदार्थ को पुत्री केंद्रकों के बीच कैसे बाँटता है।',
       es: 'Explora cómo la mitosis reparte el material genético entre los núcleos hijos.',

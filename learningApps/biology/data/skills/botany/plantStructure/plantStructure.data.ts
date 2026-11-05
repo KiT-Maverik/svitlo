@@ -3,10 +3,10 @@ import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
 import { identifyMajorPlantOrgans_Skill_Data, relatePlantOrgansToTheirFunctions_Skill_Data } from './skills';
 
 export const plantStructure_SkillGroup_Data = buildSkillGroupConfig({
-  slug: "plantStructure",
-  id: "3cc42c2d-d9ad-496b-87d3-6db367923025",
+  slug: 'plantStructure',
+  id: '3cc42c2d-d9ad-496b-87d3-6db367923025',
   name: {
-    en: "Plant Structure",
+    en: 'Plant Structure',
     zh: '植物结构',
     hi: 'पौधों की संरचना',
     es: 'Estructura vegetal',
@@ -41,9 +41,10 @@ export const plantStructure_SkillGroup_Data = buildSkillGroupConfig({
     relatePlantOrgansToTheirFunctions: relatePlantOrgansToTheirFunctions_Skill_Data,
   },
   description: {
-    methodological: "Plant organs perform different tasks: anchorage, absorption, transport, photosynthesis, and reproduction; their functions must be distinguished from their names.",
+    methodological:
+      'Plant organs perform different tasks: anchorage, absorption, transport, photosynthesis, and reproduction; their functions must be distinguished from their names.',
     frontend: {
-      en: "Learn how roots, stems, leaves and reproductive parts serve different purposes.",
+      en: 'Learn how roots, stems, leaves and reproductive parts serve different purposes.',
       zh: '了解根、茎、叶和生殖结构的不同作用。',
       hi: 'जानें कि जड़, तना, पत्ती और प्रजनन अंग अलग-अलग काम कैसे करते हैं।',
       es: 'Aprende cómo las raíces, los tallos, las hojas y las partes reproductoras cumplen distintas funciones.',

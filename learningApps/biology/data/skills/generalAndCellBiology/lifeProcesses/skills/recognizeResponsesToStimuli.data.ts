@@ -1,10 +1,10 @@
 import { buildSkillConfig } from '@svitlo/engine/taxonomy';
 
 export const recognizeResponsesToStimuli_Skill_Data = buildSkillConfig({
-  slug: "recognizeResponsesToStimuli",
-  id: "c5917777-664d-4800-8efc-7d2db2d4052f",
+  slug: 'recognizeResponsesToStimuli',
+  id: 'c5917777-664d-4800-8efc-7d2db2d4052f',
   name: {
-    en: "Recognize Responses to Stimuli",
+    en: 'Recognize Responses to Stimuli',
     zh: '识别对刺激的反应',
     hi: 'उद्दीपनों के प्रति प्रतिक्रियाएँ पहचानना',
     es: 'Reconocer respuestas a estímulos',
@@ -35,14 +35,15 @@ export const recognizeResponsesToStimuli_Skill_Data = buildSkillConfig({
     qm: 'Tesirlerge cevapnı tanımaq',
   },
   description: {
-    methodological: "Establish how light, touch, or a chemical signal elicits a change in an organism’s state or movement.",
+    methodological:
+      'Establish how light, touch, or a chemical signal elicits a change in an organism’s state or movement.',
     frontend: {
-      en: "Recognize how living things respond to light, touch and other signals.",
+      en: 'Recognize how living things respond to light, touch and other signals.',
       zh: '识别生物如何对光、触碰等信号作出反应。',
       hi: 'जानें कि जीव प्रकाश, स्पर्श और अन्य संकेतों के प्रति कैसे प्रतिक्रिया देते हैं।',
       es: 'Reconoce cómo los seres vivos responden a la luz, al contacto y a otras señales.',
       ar: 'تعرّف كيف تستجيب الكائنات الحية للضوء واللمس والإشارات الأخرى.',
-      fr: 'Reconnais comment les êtres vivants réagissent à la lumière, au toucher et à d\'autres signaux.',
+      fr: "Reconnais comment les êtres vivants réagissent à la lumière, au toucher et à d'autres signaux.",
       bn: 'জীব কীভাবে আলো, স্পর্শ ও অন্য সংকেতে সাড়া দেয় তা চিনে নাও।',
       pt: 'Reconheça como os seres vivos respondem à luz, ao toque e a outros sinais.',
       ur: 'جانیں کہ جاندار روشنی، چھونے اور دوسرے اشاروں پر کیسے ردعمل دیتے ہیں۔',

@@ -7,7 +7,11 @@ const meta = {
   component: Code,
   tags: ['autodocs'],
   parameters: {
-    docs: { description: { component: 'Read-only source code with language-aware syntax highlighting and localized variable substitution.' } },
+    docs: {
+      description: {
+        component: 'Read-only source code with language-aware syntax highlighting and localized variable substitution.',
+      },
+    },
   },
   args: {
     id: 'code-example',
@@ -27,12 +31,23 @@ type Story = StoryObj<typeof meta>;
 export const Playground: Story = {};
 
 export const LocalizedVariables: Story = {
-  decorators: [(StoryComponent) => <ContentLanguageContext.Provider value="uk"><StoryComponent /></ContentLanguageContext.Provider>],
+  decorators: [
+    StoryComponent => (
+      <ContentLanguageContext.Provider value="uk">
+        <StoryComponent />
+      </ContentLanguageContext.Provider>
+    ),
+  ],
   args: { title: 'Привітання', variables: [{ id: 'greeting', value: 'Привіт!' }] },
 };
 
 export const UnknownLanguage: Story = {
-  args: { language: 'custom-language', code: 'let value = 42;\nprint(value);', title: 'Plain-text fallback', variables: [] },
+  args: {
+    language: 'custom-language',
+    code: 'let value = 42;\nprint(value);',
+    title: 'Plain-text fallback',
+    variables: [],
+  },
 };
 
 export const WithoutTitle: Story = {
