@@ -91,6 +91,7 @@ export function Lesson({ response, href, messages, layout: Layout, sceneRegistry
       <Layout
         messages={messages}
         topics={[{ id: response.id, title: response.title, href }]}
+        pathname={href}
         skippableSteps={response.sections.map((section, index) =>
           index !== quizIndex && response.parameters.sections.allowSkipping && !!section.skippable)}
         quizStep={quizIndex < 0 ? undefined : quizIndex}
