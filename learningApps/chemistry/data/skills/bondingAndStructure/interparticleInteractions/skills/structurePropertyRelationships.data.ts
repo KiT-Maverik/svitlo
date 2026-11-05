@@ -46,7 +46,7 @@ export const structurePropertyRelationships_Skill_Data = buildSkillConfig({
       bn: "বন্ধন ও কণার মিথস্ক্রিয়া দিয়ে বিভিন্ন পদার্থের ধর্মের পার্থক্য ব্যাখ্যা করো।",
       pt: "Use ligações e interações entre partículas para explicar diferenças entre materiais.",
       ur: "بندشوں اور ذرات کے باہمی تعاملات سے مواد کی خصوصیات میں فرق سمجھائیں۔",
-      id: "Gunakan ikatan dan interaksi antarpasrtikel untuk menjelaskan perbedaan sifat bahan.",
+      id: "Gunakan ikatan dan interaksi antarpartikel untuk menjelaskan perbedaan sifat bahan.",
       de: "Erkläre Unterschiede zwischen Materialien anhand von Bindungen und Teilchenwechselwirkungen.",
       ja: "結合と粒子間相互作用から材料の性質の違いを説明しよう。",
       ko: "결합과 입자 사이 상호작용으로 물질의 성질 차이를 설명해 보세요.",
