@@ -39,7 +39,7 @@ export const waterHardness_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Explain how dissolved calcium and magnesium contribute to water hardness.",
       zh: "解释水中溶解的钙和镁如何导致水的硬度。",
-      hi: "समझाओ कि पानी में घुले कैल्शियम और मैग्नीशियम से पानी कठोर क्यों होता है।",
+      hi: "समझाएँ कि पानी में घुले कैल्शियम और मैग्नीशियम से पानी कठोर क्यों होता है।",
       es: "Explica cómo el calcio y el magnesio disueltos contribuyen a la dureza del agua.",
       ar: "اشرح كيف يساهم الكالسيوم والمغنيسيوم الذائبان في عسر الماء.",
       fr: "Explique comment le calcium et le magnésium dissous contribuent à la dureté de l'eau.",

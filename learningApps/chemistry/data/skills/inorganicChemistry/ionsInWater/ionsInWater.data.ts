@@ -47,7 +47,7 @@ export const ionsInWater_SkillGroup_Data = buildSkillGroupConfig({
     frontend: {
       en: "Learn how substances behave when dissolved in water.",
       zh: "了解物质溶解于水后会如何表现。",
-      hi: "जानो कि पदार्थ पानी में घुलने पर किस तरह व्यवहार करते हैं।",
+      hi: "जानें कि पदार्थ पानी में घुलने पर किस तरह व्यवहार करते हैं।",
       es: "Descubre cómo se comportan las sustancias cuando se disuelven en agua.",
       ar: "تعلّم كيف تتصرف المواد عندما تذوب في الماء.",
       fr: "Découvre comment les substances se comportent lorsqu'elles sont dissoutes dans l'eau.",
