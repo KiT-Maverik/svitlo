@@ -32,7 +32,7 @@ export const balancingEquations_Skill_Data = buildSkillConfig({
     be: "Ураўноўваньне раўнаньняў",
     ka: "განტოლებების გათანაბრება",
     kk: "Теңдеулерді теңестіру",
-    qm: "Teńlemelerni muvazenetlemek",
+    qm: "Teñlemelerni muvazenetlemek",
   },
   description: {
     methodological: "Choose coefficients that conserve the number of each element without altering chemical formulas.",
@@ -65,7 +65,7 @@ export const balancingEquations_Skill_Data = buildSkillConfig({
       be: "Ураўнуй хімічнае раўнаньне, не зьмяняючы формулы рэчываў.",
       ka: "გაათანაბრე ქიმიური განტოლება ფორმულების შეუცვლელად.",
       kk: "Химиялық формулаларды өзгертпей теңдеуді теңестір.",
-      qm: "Kimyeviy formulalarnı deñiştirmeden reaktsiya teńlemesini muvazenetle.",
+      qm: "Kimyeviy formulalarnı deñiştirmeden reaktsiya teñlemesini muvazenetle.",
     },
   },
 });
