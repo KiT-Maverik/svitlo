@@ -345,8 +345,7 @@ function options(args) {
   assert(packageName && action, 'Usage: --package content/<textbook> (--write | --check)');
   const pkg = path.resolve(repositoryRoot, packageName);
   assert(
-    pkg.startsWith(path.join(repositoryRoot, 'content') + path.sep) &&
-      fs.existsSync(path.join(pkg, 'package.json')),
+    pkg.startsWith(path.join(repositoryRoot, 'content') + path.sep) && fs.existsSync(path.join(pkg, 'package.json')),
     'Expected a textbook package under content/',
   );
   return { pkg, action };

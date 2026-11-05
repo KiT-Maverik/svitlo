@@ -1,5 +1,5 @@
-import { readFileSync, existsSync, rmSync, cpSync, mkdirSync, writeFileSync } from 'node:fs';
-import { resolve, join, relative, sep } from 'node:path';
+import { readFileSync, existsSync, rmSync, mkdirSync, writeFileSync } from 'node:fs';
+import { resolve, join } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
@@ -8,20 +8,29 @@ const repoRoot = resolve(webRoot, '../..');
 const catalog = JSON.parse(readFileSync(join(webRoot, 'textbooks.json'), 'utf8'));
 const id = process.env.SVITLO_TEXTBOOK ?? 'playground';
 const selection = catalog[id];
-if (!selection) throw new Error(`Unknown SVITLO_TEXTBOOK "${id}". Available: ${Object.keys(catalog).join(', ')}`);
+if (!selection) throw new Error('Unknown SVITLO_TEXTBOOK "' + id + '". Available: ' + Object.keys(catalog).join(', '));
 if (!/^@svitlo\/[a-z-]+$/.test(selection.package) || !/^content\/[a-z-]+$/.test(selection.directory)) {
-  throw new Error(`Invalid textbook catalog entry: ${id}`);
+  throw new Error('Invalid textbook catalog entry: ' + id);
 }
 const textbookRoot = join(repoRoot, selection.directory);
 const manifest = JSON.parse(readFileSync(join(textbookRoot, 'package.json'), 'utf8'));
 const webManifest = JSON.parse(readFileSync(join(webRoot, 'package.json'), 'utf8'));
 if (manifest.name !== selection.package || webManifest.dependencies?.[manifest.name] !== manifest.version) {
-  throw new Error(`Selected textbook ${id} is not a declared, version-matched Web dependency`);
+  throw new Error('Selected textbook ' + id + ' is not a declared, version-matched Web dependency');
 }
-function run(command, args, cwd = repoRoot) {
-  const result = spawnSync(command, args, { cwd, stdio: 'inherit', env: process.env });
+const cli = Object.keys(manifest.bin ?? {});
+if (cli.length !== 1 || !/^[a-z][a-z0-9-]*$/.test(cli[0])) {
+  throw new Error('Selected textbook must expose exactly one public Publish CLI');
+}
+for (const entry of ['.', './scenes']) {
+  if (!manifest.exports?.[entry]?.default?.startsWith('./dist/')) {
+    throw new Error('Selected textbook must export compiled modules: ' + entry);
+  }
+}
+function run(command, args) {
+  const result = spawnSync(command, args, { cwd: repoRoot, stdio: 'inherit', env: process.env });
   if (result.error || result.status !== 0) {
-    throw new Error(`${command} ${args.join(' ')} failed (${result.error?.message ?? result.status})`);
+    throw new Error(command + ' ' + args.join(' ') + ' failed (' + (result.error?.message ?? result.status) + ')');
   }
 }
 for (const workspace of [
@@ -29,42 +38,20 @@ for (const workspace of [
   '@svitlo/engine',
   '@svitlo/indexdb',
   '@svitlo/ui-kit',
-  '@svitlo/nextjs-adapter',
+  '@svitlo/adapter-nextjs',
 ]) {
   run('npm', ['run', 'build', '--workspace', workspace]);
 }
-run('npm', ['run', 'check:scenes', '--workspace', selection.package]);
+run('npm', ['run', 'build', '--workspace', selection.package]);
 
-// Only the Web host receives deployable artifacts. Never modify the authored
-// textbook package or delete host-owned files from apps/web/public.
 const targetPublic = join(webRoot, 'public');
-for (const generatedDirectory of ['data/pages/lessons', 'data/pages/skillAnalytics', 'data/ui-kit']) {
-  rmSync(join(targetPublic, generatedDirectory), { recursive: true, force: true });
-}
-run('node', [
-  'scripts/generators/pages/skillAnalytics/generate-skill-analytics.mjs',
-  '--package',
-  selection.directory,
-  '--output',
-  'apps/web/public/data/pages/skillAnalytics',
-  '--write',
-]);
-run('node', [
-  'scripts/generators/pages/lessons/generate-lessons.mjs',
-  '--package',
-  selection.directory,
-  '--output',
-  'apps/web/public/data/pages/lessons',
-  '--write',
-]);
-run('node', [
-  'scripts/generators/pages/lessons/generate-lessons.mjs',
-  '--package',
-  selection.directory,
-  '--output',
-  'apps/web/public/data/pages/lessons',
-  '--check',
-]);
+// Web only invokes the textbook's public executable. Build-only generators
+// and authored data layout are intentionally opaque to this application.
+run('npm', ['exec', '--workspace', '@svitlo/web', '--', cli[0], 'publish', '--output', targetPublic]);
+
+// The UI Kit owns global UI translations; Web stages them independently of
+// textbook resource ownership, just as it stages UI Kit flags.
+rmSync(join(targetPublic, 'data/ui-kit'), { recursive: true, force: true });
 run('node', [
   'shared/ui-kit/scripts/generate-locales.mjs',
   '--package',
@@ -72,37 +59,37 @@ run('node', [
   '--output',
   'apps/web/public/data/ui-kit',
 ]);
-// Book-owned legacy public assets, if any, are placed in a reserved namespace,
-// so they cannot overwrite the Web host's favicon or other public resources.
-// Future textbook asset URLs should use /textbooks/<id>/... for these files.
-const sourcePublic = join(textbookRoot, 'public');
-const targetAssets = join(targetPublic, 'textbooks');
-rmSync(targetAssets, { recursive: true, force: true });
-if (existsSync(sourcePublic)) {
-  cpSync(sourcePublic, join(targetAssets, id), {
-    recursive: true,
-    filter: source => {
-      const pathWithin = relative(sourcePublic, source);
-      return pathWithin === '' || !['data', 'flags'].includes(pathWithin.split(sep)[0]);
-    },
-  });
+if (!existsSync(join(targetPublic, 'data/pages/lessons'))) {
+  throw new Error('No published lessons for ' + id);
 }
-if (!existsSync(join(targetPublic, 'data/pages/lessons'))) throw new Error(`No published lessons for ${id}`);
 
 const generated = join(webRoot, 'src/generated');
 mkdirSync(generated, { recursive: true });
 writeFileSync(
   join(generated, 'textbook.ts'),
-  `// Generated by prepare-textbook.mjs for SVITLO_TEXTBOOK=${id}.\n` +
-    `import type { TextbookDescriptor } from '@/lib/textbookDescriptor';\n` +
-    `import { textbook as selectedTextbook } from '${selection.package}';\n` +
-    `export const textbook: TextbookDescriptor = selectedTextbook;\n` +
-    `export { resolveScene } from '${selection.package}/scenes';\n`,
+  '// Generated by prepare-textbook.mjs for SVITLO_TEXTBOOK=' +
+    id +
+    '.\n' +
+    "import type { TextbookDescriptor } from '@/lib/textbookDescriptor';\n" +
+    "import { textbook as selectedTextbook } from '" +
+    selection.package +
+    "';\n" +
+    'export const textbook: TextbookDescriptor = selectedTextbook;\n',
 );
 writeFileSync(
-  join(generated, 'textbookDemo.ts'),
-  manifest.exports?.['./demo-questions']
-    ? `export { questionsDemo } from '${selection.package}/demo-questions';\n`
-    : 'export const questionsDemo: null = null;\n',
+  join(generated, 'textbookScenes.ts'),
+  '// Generated client Scene Registry for SVITLO_TEXTBOOK=' +
+    id +
+    '.\n' +
+    "export { resolveScene } from '" +
+    selection.package +
+    "/scenes';\n",
 );
-console.log(`Prepared ${id} for the Web build`);
+writeFileSync(
+  join(generated, 'textbookStyles.ts'),
+  '// Generated by prepare-textbook.mjs. CSS is bundled and owned by the textbook.\n' +
+    "import '" +
+    selection.package +
+    "/styles';\n",
+);
+console.log('Prepared compiled textbook ' + id + ' for the Web build');

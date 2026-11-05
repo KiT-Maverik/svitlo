@@ -24,8 +24,16 @@ Android launch/build requires Android Studio, Android SDK and a configured emula
 
 ## Architecture
 
-SVITLO_TEXTBOOK selects a declared catalog entry in textbooks.json before build. Mobile preparation invokes existing lesson and UI Kit localization generators and publishes JSON into **apps/mobile/public/data**. The canonical UI Kit flags are copied into Mobile's own public resources. Authored data remains under content/<textbook>/data, never imported into the runtime; **apps/web/public is not touched**.
+SVITLO_TEXTBOOK selects a declared catalog entry in textbooks.json before build.
+Mobile preparation compiles the selected textbook distribution and invokes its
+public `svitlo-playground publish` CLI to copy **prebuilt** localized lesson,
+Skills Analytics and textbook-owned asset files into `apps/mobile/public`.
+UI Kit global translations and flags are staged independently. Authored source
+stays in `content/<textbook>/data`, never imported into the runtime;
+**apps/web/public is not touched**.
 
-esbuild packages the static textbook Scene Registry and its dynamic JS chunks into dist along with flags, localized lesson/question JSON and static assets. Capacitor webDir is dist, no remote server.url, and no PWA Service Worker. Native WebViews load content locally. Direct routes are / and /<language>/lesson/<uuid>, with host-level locale, back-button and local lesson step state. Shared UI Kit components retain all section, question, feedback and theme behavior.
+esbuild consumes the compiled textbook Scene Registry and stylesheet and packages
+its dynamic JS chunks into dist along with flags, localized lesson/question JSON
+and static assets. Capacitor webDir is dist, no remote server.url, and no PWA Service Worker. Native WebViews load content locally. Direct routes are / and /<language>/lesson/<uuid>, with host-level locale, back-button and local lesson step state. Shared UI Kit components retain all section, question, feedback and theme behavior.
 
 The browser/asset/build/TypeScript checks are automated; native runtime and screen-reader usability on physical devices still require manual QA. Accounts, subscriptions, paid content licensing, remote download and sync remain out of scope.

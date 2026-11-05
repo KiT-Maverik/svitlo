@@ -3,7 +3,7 @@
 import { useState, useSyncExternalStore } from 'react';
 import { Box, Button, Paper, Slider, Typography } from '@mui/material';
 import styles from './LightPropagationSimulation.module.css';
-import type { LightPropagationSimulation_ContentBlock } from '../../../../../data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/sections/theory/scenes/lightPropagationSimulation';
+import type { LightPropagationSimulation_ContentBlock } from '../../../data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/sections/theory/scenes/lightPropagationSimulation';
 
 const reducedMotionQuery = '(prefers-reduced-motion: reduce)';
 
