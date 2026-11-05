@@ -1,4 +1,4 @@
-import { cache, type ReactElement } from 'react';
+import { cache, createElement, Suspense, type ReactElement } from 'react';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { resolveEntityPath } from '@svitlo/engine';
@@ -53,7 +53,7 @@ export function createLessonPage<Response extends { id: string; title: string }>
     return { title: response.title, description: response.title };
   }
 
-  async function Page(props: LessonPageInput): Promise<ReactElement> {
+  async function LocalizedLesson(props: LessonPageInput): Promise<ReactElement> {
     const { response, messages, locale, code } = await load(props);
     return bindings.renderLesson({
       response,
@@ -61,6 +61,15 @@ export function createLessonPage<Response extends { id: string; title: string }>
       locale,
       href: `/${code}/lesson/${response.id}`,
     });
+  }
+
+  /** Stream dynamic lesson resources inside Suspense for Next.js Cache Components. */
+  function Page(props: LessonPageInput): ReactElement {
+    return createElement(
+      Suspense,
+      { fallback: createElement('div', { role: 'status', 'aria-busy': true, style: { minHeight: 120 } }) },
+      createElement(LocalizedLesson, props),
+    );
   }
 
   return { Page, generateMetadata };
