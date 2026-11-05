@@ -44,18 +44,14 @@ run('npm', ['run', 'check:scenes', '--workspace', '@svitlo/playground']);
 rmSync(dist, { recursive: true, force: true });
 mkdirSync(dist, { recursive: true });
 
-const bundling = await build({
+// Compile metadata separately: Next.js Server Components may import it safely.
+// Compiled Scenes must retain a client directive at their module boundary.
+const common = {
   absWorkingDir: packageRoot,
-  entryPoints: {
-    'textbook/index': 'src/textbook/index.ts',
-    'textbook/questionsDemo': 'src/textbook/questionsDemo.ts',
-    'scenes/index': 'src/components/scenes/index.ts',
-  },
   outdir: dist,
   bundle: true,
   platform: 'browser',
   format: 'esm',
-  splitting: true,
   target: ['es2020'],
   packages: 'external',
   jsx: 'automatic',
@@ -84,6 +80,21 @@ const bundling = await build({
     '.gif': 'file',
     '.woff2': 'file',
   },
+};
+const metadata = await build({
+  ...common,
+  entryPoints: {
+    'textbook/index': 'src/textbook/index.ts',
+    'textbook/questionsDemo': 'src/textbook/questionsDemo.ts',
+  },
+});
+const scenes = await build({
+  ...common,
+  splitting: true,
+  entryPoints: {
+    'scenes/index': 'src/components/scenes/index.ts',
+  },
+  banner: { js: '"use client";' },
 });
 
 // The public stylesheet imports the CSS bundles emitted for lazy Scenes.
@@ -141,4 +152,4 @@ for (const name of filesUnder(dist).filter(name => name.endsWith('.js'))) {
   }
 }
 console.log('Compiled Playground: ' + published.length + ' static resources; ' +
-  Object.keys(bundling.metafile.outputs).length + ' browser outputs');
+  (Object.keys(metadata.metafile.outputs).length + Object.keys(scenes.metafile.outputs).length) + ' browser outputs');

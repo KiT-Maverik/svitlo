@@ -5,7 +5,7 @@
  * access to the textbook source tree.
  */
 import assert from 'node:assert/strict';
-import { mkdtempSync, mkdirSync, readdirSync, rmSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -28,6 +28,7 @@ try {
   const archive = join(temp, details[0].filename);
   const shipped = details[0].files.map(file => file.path);
   assert(shipped.includes('dist/scenes/index.js'), 'Tarball missing compiled Scene export');
+  assert(/^['\"]use client['\"];/.test(readFileSync(join(root, 'dist/scenes/index.js'), 'utf8')), 'Compiled Scene Registry lost its client boundary');
   assert(shipped.includes('dist/scenes/index.d.ts'), 'Tarball missing Scene declarations');
   assert(shipped.includes('dist/styles.css'), 'Tarball missing Scene stylesheet');
   assert(shipped.includes('scripts/publish.mjs'), 'Tarball missing Publish CLI');
