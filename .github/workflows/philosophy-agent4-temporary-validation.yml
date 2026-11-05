@@ -1,11 +1,9 @@
 name: Temporary Agent 4 Philosophy typed validation
 
 on:
-  pull_request:
-    branches: [review/philosophy-skills-ai-review]
-    types: [opened, synchronize, reopened, ready_for_review]
+  push:
+    branches: [review/philosophy-skills-language-review-agent-4]
     paths:
-      - 'learningApps/philosophy/data/skills/**'
       - '.github/workflows/philosophy-agent4-temporary-validation.yml'
 
 permissions:
