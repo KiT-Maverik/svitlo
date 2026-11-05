@@ -53,22 +53,16 @@ const whole = Object.freeze({
 });
 
 function message(component, locale, language) {
-  // NavbarPreferences is fully authored in the canonical locale set: never fall back.
+  if (component === 'learningLayout') return readData('LearningLayout', locale + '.data.ts');
   if (component === 'navbarPreferences') return readData('NavbarPreferences', locale + '.data.ts');
-  // Legacy LearningLayout still needs translation coverage before removing fallback.
-  if (component === 'learningLayout') {
-    return readData('LearningLayout', locale + '.data.ts') ??
-      readData('LearningLayout', 'uk-UA.data.ts');
-  }
-  const translations = whole[component];
-  // Lesson, NavbarPreferences and Flashcard have full authored coverage.
-  if (component === 'lesson' || component === 'flashcard') return translations[language];
-  // Legacy media/question dictionaries must be completed before removing fallback.
-  return translations[language] ?? translations.en;
+  return whole[component]?.[language];
 }
 
 function shapeOf(value) {
-  if (typeof value === 'string') return 'string';
+  if (typeof value === 'string') {
+    if (!value.trim()) throw new Error('UI Kit translation contains an empty string');
+    return 'string';
+  }
   if (value && !Array.isArray(value) && typeof value === 'object') {
     return Object.fromEntries(Object.entries(value).sort(([a], [b]) => a.localeCompare(b))
       .map(([key, v]) => [key, shapeOf(v)]));
@@ -83,8 +77,8 @@ function assertShape(component, reference, data, locale) {
 
 /**
  * Audit authored coverage without consulting message() fallback behavior.
- * --audit prints missing language codes without publishing files;
- * --strict fails on any missing required dictionary.
+ * --audit prints missing language codes without publishing files.
+ * Normal generation requires all canonical component/locale dictionaries.
  */
 function auditMissingTranslations(components) {
   const missing = {};
@@ -115,27 +109,23 @@ try {
   } else {
     if (missingCount > 0) {
       const details = Object.entries(missing).map(([name, codes]) => name + ': ' + codes.join(', ')).join('; ');
-      if (process.argv.includes('--strict')) {
-        throw new Error('UI Kit translations incomplete (' + missingCount + '): ' + details);
-      }
-      console.warn('[UI Kit localization debt] ' + missingCount +
-        ' required component/locale dictionaries are missing. Existing build-time fallback remains: ' + details);
+      throw new Error('UI Kit translations incomplete (' + missingCount + '): ' + details);
     }
     mkdirSync(output, { recursive: true });
-  const defaults = Object.fromEntries(components.map(c => [c, message(c, 'uk-UA', 'uk')]));
-  let count = 0;
-  for (const { locale, language } of DEFAULT_SUPPORTED_LANGUAGES) {
-    const messages = Object.fromEntries(components.map(c => {
+    const defaults = Object.fromEntries(components.map(c => [c, message(c, 'uk-UA', 'uk')]));
+    let count = 0;
+    for (const { locale, language } of DEFAULT_SUPPORTED_LANGUAGES) {
+      const messages = Object.fromEntries(components.map(c => {
       const value = message(c, locale, language);
       if (!value) throw new Error(`Missing ${c} translations for ${locale}`);
       assertShape(c, defaults[c], value, locale);
       return [c, value];
     }));
-    writeFileSync(join(output, locale + '.json'), JSON.stringify(messages, null, 2) + '\n');
-    count += 1;
-  }
-  writeFileSync(join(output, 'meta.json'), JSON.stringify({ scope: 'global', components, locales: DEFAULT_SUPPORTED_LANGUAGES.map(l => l.locale) }, null, 2) + '\n');
-  console.log(`Generated ${count} global UI Kit locale JSON resources in ${output}`);
+      writeFileSync(join(output, locale + '.json'), JSON.stringify(messages, null, 2) + '\n');
+      count += 1;
+    }
+    writeFileSync(join(output, 'meta.json'), JSON.stringify({ scope: 'global', components, locales: DEFAULT_SUPPORTED_LANGUAGES.map(l => l.locale) }, null, 2) + '\n');
+    console.log(`Generated ${count} global UI Kit locale JSON resources in ${output}`);
   }
 } finally {
   rmSync(tmp, { recursive: true, force: true });
