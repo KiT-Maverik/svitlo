@@ -53,7 +53,7 @@ export const preventRawToReadyFoodCrossContamination_Skill_Data = buildSkillConf
       ko: '날고기나 생선 등은 바로 먹는 음식과 분리해 보관하세요.',
       tr: 'Çiğ hayvansal ürünleri yemeye hazır gıdalardan ayrı tut.',
       vi: 'Để thực phẩm sống nguồn gốc động vật tách khỏi thức ăn sẵn.',
-      ta: 'பச்சை விலங்கு சார்ந்த உணவுகளை உண்ணத் தயாரான உணவிலிருந்து தனியே வை.',
+      ta: 'பச்சை விலங்கு சார்ந்த உணவுகளை உண்ணத் தயாரான உணவிலிருந்து தனியே வையுங்கள்.',
       te: 'పచ్చి జంతు ఉత్పత్తులను నేరుగా తినే ఆహారాల నుంచి వేరుగా ఉంచండి.',
       mr: 'कच्चे प्राणिजन्य पदार्थ खाण्यास तयार अन्नापासून वेगळे ठेव.',
       ms: 'Asingkan produk haiwan mentah daripada makanan sedia dimakan.',

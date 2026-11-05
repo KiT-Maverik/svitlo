@@ -53,7 +53,7 @@ export const maintainHygieneDuringFoodPreparation_Skill_Data = buildSkillConfig(
       ko: '음식을 준비할 때 손과 주방 표면을 깨끗이 유지하세요.',
       tr: 'Yemek hazırlarken ellerini ve mutfak yüzeylerini temiz tut.',
       vi: 'Giữ tay và bề mặt bếp sạch khi chuẩn bị thức ăn.',
-      ta: 'உணவு தயாரிக்கும்போது கைகளையும் சமையலறை மேற்பரப்புகளையும் சுத்தமாக வை.',
+      ta: 'உணவு தயாரிக்கும்போது கைகளையும் சமையலறை மேற்பரப்புகளையும் சுத்தமாக வையுங்கள்.',
       te: 'ఆహారం తయారు చేసేటప్పుడు చేతులు, వంటగది ఉపరితలాలను శుభ్రంగా ఉంచండి.',
       mr: 'अन्न बनवताना हात आणि स्वयंपाकघरातील पृष्ठभाग स्वच्छ ठेव.',
       ms: 'Pastikan tangan dan permukaan dapur bersih ketika menyediakan makanan.',

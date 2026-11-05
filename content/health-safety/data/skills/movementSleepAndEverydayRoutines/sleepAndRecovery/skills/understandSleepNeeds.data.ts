@@ -53,7 +53,7 @@ export const understandSleepNeeds_Skill_Data = buildSkillConfig({
       ko: '나이와 상황에 따라 필요한 수면이 어떻게 달라지는지 알아보세요.',
       tr: 'Uyku ihtiyacının yaşa ve koşullara göre nasıl değiştiğini öğren.',
       vi: 'Nhận biết nhu cầu ngủ thay đổi theo tuổi và hoàn cảnh như thế nào.',
-      ta: 'வயதுக்கும் சூழ்நிலைக்கும் ஏற்ப தூக்கத் தேவைகள் எவ்வாறு மாறுகின்றன என அறி.',
+      ta: 'வயதுக்கும் சூழ்நிலைக்கும் ஏற்ப தூக்கத் தேவைகள் எவ்வாறு மாறுகின்றன என அறியுங்கள்.',
       te: 'వయస్సు, పరిస్థితులనుబట్టి నిద్ర అవసరాలు ఎలా మారుతాయో తెలుసుకోండి.',
       mr: 'वय आणि परिस्थितीनुसार झोपेची गरज कशी बदलते ते समज.',
       ms: 'Ketahui bagaimana keperluan tidur berubah mengikut umur dan keadaan.',

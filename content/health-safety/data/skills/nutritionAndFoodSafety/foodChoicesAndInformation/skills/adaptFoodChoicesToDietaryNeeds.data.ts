@@ -53,7 +53,7 @@ export const adaptFoodChoicesToDietaryNeeds_Skill_Data = buildSkillConfig({
       ko: '실제 식이 요구와 개인적 선호에 맞게 음식을 선택해 보세요.',
       tr: 'Yiyeceklerini gerçek beslenme ihtiyaçlarına ve tercihlerine göre seç.',
       vi: 'Điều chỉnh đồ ăn theo nhu cầu dinh dưỡng thực tế và sở thích.',
-      ta: 'உண்மையான உணவுத் தேவைகளுக்கும் விருப்பங்களுக்கும் ஏற்ப தேர்ந்தெடு.',
+      ta: 'உண்மையான உணவுத் தேவைகளுக்கும் விருப்பங்களுக்கும் ஏற்ப தேர்ந்தெடுங்கள்.',
       te: 'నిజమైన ఆహార అవసరాలు, అభిరుచులకు తగినట్లు ఎంపిక చేసుకోండి.',
       mr: 'खऱ्या आहारगरजा आणि आवडींनुसार अन्न निवड.',
       ms: 'Sesuaikan makanan dengan keperluan diet sebenar dan pilihan diri.',
