@@ -22,13 +22,15 @@ function run(program, args) {
 }
 function filesUnder(root, prefix = '') {
   if (!existsSync(root)) return [];
-  return readdirSync(root, { withFileTypes: true }).flatMap(entry => {
-    if (entry.isSymbolicLink()) throw new Error('Symlink in textbook artifacts: ' + entry.name);
-    const name = prefix ? prefix + '/' + entry.name : entry.name;
-    if (entry.isDirectory()) return filesUnder(join(root, entry.name), name);
-    if (!entry.isFile()) throw new Error('Unexpected textbook artifact: ' + name);
-    return [name];
-  }).sort();
+  return readdirSync(root, { withFileTypes: true })
+    .flatMap(entry => {
+      if (entry.isSymbolicLink()) throw new Error('Symlink in textbook artifacts: ' + entry.name);
+      const name = prefix ? prefix + '/' + entry.name : entry.name;
+      if (entry.isDirectory()) return filesUnder(join(root, entry.name), name);
+      if (!entry.isFile()) throw new Error('Unexpected textbook artifact: ' + name);
+      return [name];
+    })
+    .sort();
 }
 
 // Standalone workspace builds after npm ci must have compiled declarations from
@@ -61,16 +63,18 @@ const common = {
   assetNames: 'assets/[name]-[hash]',
   metafile: true,
   logLevel: 'warning',
-  plugins: [{
-    name: 'textbook-css-modules',
-    setup(builder) {
-      builder.onLoad({ filter: /\.module\.css$/ }, async args => ({
-        contents: readFileSync(args.path, 'utf8'),
-        resolveDir: dirname(args.path),
-        loader: 'local-css',
-      }));
+  plugins: [
+    {
+      name: 'textbook-css-modules',
+      setup(builder) {
+        builder.onLoad({ filter: /\.module\.css$/ }, async args => ({
+          contents: readFileSync(args.path, 'utf8'),
+          resolveDir: dirname(args.path),
+          loader: 'local-css',
+        }));
+      },
     },
-  }],
+  ],
   loader: {
     '.svg': 'file',
     '.png': 'file',
@@ -142,7 +146,10 @@ if (!published.some(name => name.startsWith('data/pages/lessons/') && name.endsW
 if (!published.some(name => name.startsWith('data/pages/skillAnalytics/') && name.endsWith('.json'))) {
   throw new Error('Playground build produced no Skills Analytics JSON');
 }
-writeFileSync(join(dist, 'manifest.json'), JSON.stringify({ version: 1, textbook: 'playground', files: published }, null, 2) + '\n');
+writeFileSync(
+  join(dist, 'manifest.json'),
+  JSON.stringify({ version: 1, textbook: 'playground', files: published }, null, 2) + '\n',
+);
 
 // Verify no private TypeScript alias or source authoring import escaped to JS.
 for (const name of filesUnder(dist).filter(name => name.endsWith('.js'))) {
@@ -151,5 +158,10 @@ for (const name of filesUnder(dist).filter(name => name.endsWith('.js'))) {
     throw new Error('Unresolved internal import in dist/' + name);
   }
 }
-console.log('Compiled Playground: ' + published.length + ' static resources; ' +
-  (Object.keys(metadata.metafile.outputs).length + Object.keys(scenes.metafile.outputs).length) + ' browser outputs');
+console.log(
+  'Compiled Playground: ' +
+    published.length +
+    ' static resources; ' +
+    (Object.keys(metadata.metafile.outputs).length + Object.keys(scenes.metafile.outputs).length) +
+    ' browser outputs',
+);

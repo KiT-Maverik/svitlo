@@ -167,9 +167,14 @@ function runGate(changed) {
     exec('npm', ['run', 'test:portability', '--workspace', '@svitlo/playground']);
   }
 
-  if (changed.some(file => file.startsWith('content/playground/scripts/') ||
-      file === 'content/playground/package.json' ||
-      file.startsWith('apps/web/scripts/prepare-textbook'))) {
+  if (
+    changed.some(
+      file =>
+        file.startsWith('content/playground/scripts/') ||
+        file === 'content/playground/package.json' ||
+        file.startsWith('apps/web/scripts/prepare-textbook'),
+    )
+  ) {
     exec('npm', ['run', 'test:publish', '--workspace', '@svitlo/playground']);
   }
 

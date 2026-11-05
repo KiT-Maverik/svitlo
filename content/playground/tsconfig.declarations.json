@@ -15,9 +15,5 @@
     "src/components/scenes/sceneLoader.ts",
     "src/types/css-modules.d.ts"
   ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    ".test-build"
-  ]
+  "exclude": ["node_modules", "dist", ".test-build"]
 }

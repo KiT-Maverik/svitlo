@@ -14,7 +14,6 @@ resides at `shared/adapters/nextjs` but keeps its stable npm identity
 table below document the prior baseline and should not be treated as current
 Playground ownership.
 
-
 **Compiled distribution (Playground):** `npm run build --workspace @svitlo/playground`
 produces `content/playground/dist/` including ESM + declarations, Scene styles,
 localized lesson and Skills Analytics JSON and textbook assets. Consuming hosts

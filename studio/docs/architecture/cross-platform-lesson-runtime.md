@@ -2,7 +2,6 @@
 
 **Status:** **Partially implemented.** Playground now builds a framework-independent compiled textbook package consumed by the build-selected `apps/web` Next.js host and the initial `apps/mobile` Capacitor and `apps/desktop` Electron hosts. Other textbooks remain standalone applications. Cross-device offline verification, content licensing and the proposed session operations architecture remain future work. See [Monorepo & Independent Textbooks](./monorepo-and-textbook.md) for the repository map; do not assume proposed APIs already exist.
 
-
 ## Compiled textbook distribution contract (Playground)
 
 Playground's source build now emits compiled ESM, TypeScript declarations, lazy Scene
@@ -20,7 +19,7 @@ stale-file deletion from affecting UI Kit, host, or other textbook resources.
 UI Kit flags and global UI Kit translation JSON remain host-owned staging.
 
 The source build still uses shared, repository-level generators and Engine APIs;
-the *installed distribution and publisher* do not require the authoring source
+the _installed distribution and publisher_ do not require the authoring source
 tree, compiler aliases or Next.js. Web, Capacitor and Electron hosts now stage
 book resources via the same CLI and import compiled Scenes/styles. Independent
 React DOM tarball consumption is tested with esbuild; installed native behavior,

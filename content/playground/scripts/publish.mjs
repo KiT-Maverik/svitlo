@@ -3,7 +3,16 @@
  * Framework-agnostic copier for already-built textbook resources.
  * A per-textbook manifest tracks ownership without deleting host resources.
  */
-import { existsSync, lstatSync, readFileSync, mkdirSync, copyFileSync, writeFileSync, renameSync, rmSync } from 'node:fs';
+import {
+  existsSync,
+  lstatSync,
+  readFileSync,
+  mkdirSync,
+  copyFileSync,
+  writeFileSync,
+  renameSync,
+  rmSync,
+} from 'node:fs';
 import { dirname, isAbsolute, join, parse, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -13,11 +22,16 @@ const staticRoot = join(dist, 'static');
 const manifestFile = join(dist, 'manifest.json');
 const ownerFile = '.svitlo/publish-playground.json';
 
-function fail(reason) { throw new Error('svitlo-playground: ' + reason); }
+function fail(reason) {
+  throw new Error('svitlo-playground: ' + reason);
+}
 function owned(name) {
-  return typeof name === 'string' && !isAbsolute(name) &&
+  return (
+    typeof name === 'string' &&
+    !isAbsolute(name) &&
     /^(?:data\/pages\/lessons|data\/pages\/skillAnalytics|textbooks\/playground)\/[a-zA-Z0-9_./-]+$/.test(name) &&
-    name.split('/').every(part => part !== '.' && part !== '..' && part.length > 0);
+    name.split('/').every(part => part !== '.' && part !== '..' && part.length > 0)
+  );
 }
 function safePath(path) {
   let cursor = parse(path).root;
@@ -28,12 +42,19 @@ function safePath(path) {
 }
 function readManifest(path) {
   let document;
-  try { document = JSON.parse(readFileSync(path, 'utf8')); }
-  catch (error) { fail('missing or invalid build manifest ' + path + ' (' + error.message + ')'); }
-  if (document?.version !== 1 || document.textbook !== 'playground' ||
-      !Array.isArray(document.files) || !document.files.length ||
-      document.files.some(name => !owned(name)) ||
-      new Set(document.files).size !== document.files.length) {
+  try {
+    document = JSON.parse(readFileSync(path, 'utf8'));
+  } catch (error) {
+    fail('missing or invalid build manifest ' + path + ' (' + error.message + ')');
+  }
+  if (
+    document?.version !== 1 ||
+    document.textbook !== 'playground' ||
+    !Array.isArray(document.files) ||
+    !document.files.length ||
+    document.files.some(name => !owned(name)) ||
+    new Set(document.files).size !== document.files.length
+  ) {
     fail('invalid Playground ownership manifest: ' + path);
   }
   return document.files;
@@ -47,23 +68,29 @@ function outputPath(root, name) {
   return target;
 }
 function publish(args) {
-  if (args.length !== 3 || args[0] !== 'publish' || args[1] !== '--output' ||
-      !args[2] || args[2].startsWith('--')) {
+  if (args.length !== 3 || args[0] !== 'publish' || args[1] !== '--output' || !args[2] || args[2].startsWith('--')) {
     fail('usage: svitlo-playground publish --output <directory>');
   }
   const output = resolve(process.cwd(), args[2]);
   safePath(output);
-  if (output === parse(output).root || output === resolve(process.cwd()) ||
-      output === packageRoot || packageRoot.startsWith(output + sep) ||
-      output === dist || output.startsWith(dist + sep)) {
+  if (
+    output === parse(output).root ||
+    output === resolve(process.cwd()) ||
+    output === packageRoot ||
+    packageRoot.startsWith(output + sep) ||
+    output === dist ||
+    output.startsWith(dist + sep)
+  ) {
     fail('unsafe output directory: ' + output);
   }
   if (!existsSync(staticRoot) || !existsSync(manifestFile)) {
     fail('textbook is not built; run npm run build --workspace @svitlo/playground first');
   }
   const files = readManifest(manifestFile);
-  if (!files.some(name => name.startsWith('data/pages/lessons/')) ||
-      !files.some(name => name.startsWith('data/pages/skillAnalytics/'))) {
+  if (
+    !files.some(name => name.startsWith('data/pages/lessons/')) ||
+    !files.some(name => name.startsWith('data/pages/skillAnalytics/'))
+  ) {
     fail('missing required lesson or analytics resources in build');
   }
   for (const name of files) {
@@ -95,5 +122,9 @@ function publish(args) {
   renameSync(temporary, ownership);
   console.log('Published ' + files.length + ' Playground resources to ' + output);
 }
-try { publish(process.argv.slice(2)); }
-catch (error) { console.error(error.message); process.exitCode = 1; }
+try {
+  publish(process.argv.slice(2));
+} catch (error) {
+  console.error(error.message);
+  process.exitCode = 1;
+}

@@ -19,9 +19,11 @@ const mobileManifest = JSON.parse(readFileSync(join(mobileRoot, 'package.json'),
 if (manifest.name !== selection.package || mobileManifest.dependencies?.[manifest.name] !== manifest.version) {
   throw new Error('Selected textbook ' + id + ' must be a version-matched Mobile workspace dependency');
 }
-if (!manifest.exports?.['.']?.default?.startsWith('./dist/') ||
-    !manifest.exports?.['./scenes']?.default?.startsWith('./dist/') ||
-    !manifest.exports?.['./styles']?.default?.startsWith('./dist/')) {
+if (
+  !manifest.exports?.['.']?.default?.startsWith('./dist/') ||
+  !manifest.exports?.['./scenes']?.default?.startsWith('./dist/') ||
+  !manifest.exports?.['./styles']?.default?.startsWith('./dist/')
+) {
   throw new Error('Selected textbook ' + id + ' must export compiled metadata, Scenes and styles');
 }
 if (!manifest.bin?.['svitlo-' + id]) {
@@ -52,8 +54,10 @@ run(npm, ['exec', '--workspace', '@svitlo/mobile', '--', 'svitlo-' + id, 'publis
 rmSync(join(publicRoot, 'data/ui-kit'), { recursive: true, force: true });
 run(process.execPath, [
   'shared/ui-kit/scripts/generate-locales.mjs',
-  '--package', selection.directory,
-  '--output', 'apps/mobile/public/data/ui-kit',
+  '--package',
+  selection.directory,
+  '--output',
+  'apps/mobile/public/data/ui-kit',
 ]);
 run(process.execPath, [join(repoRoot, 'shared/ui-kit/scripts/sync-flags.mjs')], mobileRoot);
 
@@ -84,13 +88,18 @@ const generated = join(mobileRoot, 'src/generated');
 mkdirSync(generated, { recursive: true });
 writeFileSync(
   join(generated, 'textbook.ts'),
-  '// Generated from the compiled selected textbook for SVITLO_TEXTBOOK=' + id + '\n' +
-    "export { textbook } from '" + selection.package + "';\n" +
-    "export { resolveScene } from '" + selection.package + "/scenes';\n",
+  '// Generated from the compiled selected textbook for SVITLO_TEXTBOOK=' +
+    id +
+    '\n' +
+    "export { textbook } from '" +
+    selection.package +
+    "';\n" +
+    "export { resolveScene } from '" +
+    selection.package +
+    "/scenes';\n",
 );
 writeFileSync(
   join(generated, 'textbookStyles.ts'),
-  '// Compiled textbook stylesheet for SVITLO_TEXTBOOK=' + id + '\n' +
-    "import '" + selection.package + "/styles';\n",
+  '// Compiled textbook stylesheet for SVITLO_TEXTBOOK=' + id + '\n' + "import '" + selection.package + "/styles';\n",
 );
 console.log('Prepared offline mobile content from compiled package: ' + id + ' (' + index.length + ' lessons)');

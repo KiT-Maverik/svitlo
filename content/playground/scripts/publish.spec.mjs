@@ -25,9 +25,11 @@ function fixture(t, built = true) {
     cpSync(join(root, 'dist/static'), join(pkg, 'dist/static'), { recursive: true });
     copyFileSync(join(root, 'dist/manifest.json'), join(pkg, 'dist/manifest.json'));
   }
-  const run = (...args) => spawnSync(process.execPath, [join(pkg, 'scripts/publish.mjs'), ...args], {
-    cwd: temp, encoding: 'utf8',
-  });
+  const run = (...args) =>
+    spawnSync(process.execPath, [join(pkg, 'scripts/publish.mjs'), ...args], {
+      cwd: temp,
+      encoding: 'utf8',
+    });
   return { temp, pkg, out, run };
 }
 
@@ -36,8 +38,12 @@ test('publish real localized JSON and assemble a valid Playground lesson respons
   const attempt = run('publish', '--output', out);
   assert.equal(attempt.status, 0, attempt.stderr);
   const folder = join(out, 'data/pages/lessons', bucket);
-  const collections = Object.fromEntries(['config', 'questions', 'flashcards'].map(name =>
-    [name, JSON.parse(readFileSync(join(folder, name, 'uk.json'), 'utf8'))]));
+  const collections = Object.fromEntries(
+    ['config', 'questions', 'flashcards'].map(name => [
+      name,
+      JSON.parse(readFileSync(join(folder, name, 'uk.json'), 'utf8')),
+    ]),
+  );
   const lesson = assembleLessonResponse(lessonId, 'uk', collections);
   assert.equal(lesson.id, lessonId);
   assert.ok(lesson.sections.length > 0);
@@ -109,7 +115,6 @@ test('publisher copies textbook-owned media without changing application assets'
   writeFileSync(join(out, 'flags/uk.svg'), 'UI Kit flag');
   const result = run('publish', '--output', out);
   assert.equal(result.status, 0, result.stderr);
-  assert.equal(readFileSync(join(out, relativeAsset), 'utf8'),
-    '<svg xmlns="http://www.w3.org/2000/svg"></svg>');
+  assert.equal(readFileSync(join(out, relativeAsset), 'utf8'), '<svg xmlns="http://www.w3.org/2000/svg"></svg>');
   assert.equal(readFileSync(join(out, 'flags/uk.svg'), 'utf8'), 'UI Kit flag');
 });

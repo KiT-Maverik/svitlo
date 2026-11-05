@@ -5,7 +5,14 @@ const root = process.cwd();
 function assert(ok, detail) {
   if (!ok) throw new Error(detail);
 }
-const packages = ['shared/contracts', 'shared/engine', 'shared/indexdb', 'shared/ui-kit', 'shared/adapters/nextjs', 'content/playground'];
+const packages = [
+  'shared/contracts',
+  'shared/engine',
+  'shared/indexdb',
+  'shared/ui-kit',
+  'shared/adapters/nextjs',
+  'content/playground',
+];
 
 let checked = 0;
 for (const path of packages) {
@@ -36,8 +43,14 @@ for (const path of packages) {
     assert(existsSync(manifestPath), 'Playground static resource manifest missing');
     const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
     assert(manifest.textbook === 'playground' && Array.isArray(manifest.files), 'Invalid textbook build manifest');
-    assert(manifest.files.some(file => file.startsWith('data/pages/lessons/')), 'Compiled lesson JSON missing');
-    assert(manifest.files.some(file => file.startsWith('data/pages/skillAnalytics/')), 'Compiled analytics JSON missing');
+    assert(
+      manifest.files.some(file => file.startsWith('data/pages/lessons/')),
+      'Compiled lesson JSON missing',
+    );
+    assert(
+      manifest.files.some(file => file.startsWith('data/pages/skillAnalytics/')),
+      'Compiled analytics JSON missing',
+    );
     for (const file of manifest.files) {
       assert(existsSync(resolve(root, path, 'dist/static', file)), 'Missing built textbook resource: ' + file);
     }

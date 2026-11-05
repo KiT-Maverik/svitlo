@@ -46,8 +46,10 @@ const localeOutput = join(publicRoot, 'data/ui-kit');
 rmSync(localeOutput, { recursive: true, force: true });
 run(process.execPath, [
   'shared/ui-kit/scripts/generate-locales.mjs',
-  '--package', selected.directory,
-  '--output', 'apps/desktop/public/data/ui-kit',
+  '--package',
+  selected.directory,
+  '--output',
+  'apps/desktop/public/data/ui-kit',
 ]);
 syncFlags(desktopRoot);
 if (!existsSync(join(publicRoot, 'data/pages/lessons')) || !existsSync(join(localeOutput, 'uk-UA.json'))) {
