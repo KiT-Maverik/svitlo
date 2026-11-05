@@ -63,7 +63,7 @@ export const recognizeBullying_Skill_Data = buildSkillConfig({
       lt: "Atskirk pasikartojančias patyčias su galios nelygybe nuo įprasto konflikto.",
       lv: "Atšķir atkārtotu aizskaršanu ar varas nevienlīdzību no parasta konflikta.",
       et: "Erista korduvat võimuerinevusega kiusamist tavalisest konfliktist.",
-      be: "Адрозьнівай паўторны цкаваньне пры няроўнасьці сілаў ад звычайнага канфлікту.",
+      be: "Адрозьнівай паўторнае цкаваньне пры няроўнасьці сілаў ад звычайнага канфлікту.",
       ka: "განასხვავე ძალაუფლების უთანასწორობით განმეორებითი ჩაგვრა ჩვეულებრივი კონფლიქტისგან.",
       kk: "Күш теңсіздігі бар қайталанатын қорлауды қарапайым жанжалдан ажырат.",
       qm: "Küç teñsizliginen tekrarlanan qorqutuvnı adiy davadan ayır.",
