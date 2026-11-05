@@ -66,7 +66,7 @@ export const assessSwimmingAndBathingHazards_Skill_Data = buildSkillConfig({
       be: 'Перад уваходам у ваду ацэньвай плынь, глыбіню і нагляд.',
       ka: 'წყალში შესვლამდე შეაფასე დინება, სიღრმე და მეთვალყურეობა.',
       kk: 'Суға түсер алдында ағыс, тереңдік пен бақылауды бағала.',
-      qm: 'Suvğa kirmeden evel aqıntı, terenlik ve nezaretni qıymetlendır.',
+      qm: 'Suvğa kirmeden evel aqıntı, terenlik ve nezaretni qıymetlendir.',
     },
   },
 });
