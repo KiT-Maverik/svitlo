@@ -1,5 +1,6 @@
 import type { UiKit_Global } from '@svitlo/engine/content';
 import { locale as layout } from '../../data/components/LearningLayout/uk-UA.data';
+import { locale as enLayout } from '../../data/components/LearningLayout/en-US.data';
 import { locale as preferences } from '../../data/components/NavbarPreferences/uk-UA.data';
 import { locale as enPreferences } from '../../data/components/NavbarPreferences/en-US.data';
 import { data as lesson } from '../../data/components/Lesson/messages.data';
@@ -28,6 +29,7 @@ export const ukUiKitMessages: UiKit_Global<'response'> = {
 export const enUiKitMessages: UiKit_Global<'response'> = {
   ...ukUiKitMessages,
   lesson: lesson.en,
+  learningLayout: enLayout,
   navbarPreferences: enPreferences,
   flashcard: flashcard.en,
   checkpoint: checkpoint.en,
