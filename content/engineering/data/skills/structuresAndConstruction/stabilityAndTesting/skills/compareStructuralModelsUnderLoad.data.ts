@@ -66,7 +66,7 @@ export const compareStructuralModelsUnderLoad_Skill_Data = buildSkillConfig({
       be: "Параўнай мадэлі пры аднолькавых нагрузках і ўмовах апоры.",
       ka: "შეადარე მოდელები ერთნაირი დატვირთვითა და საყრდენი პირობებით.",
       kk: "Модельдерді бірдей жүктеме мен тірек шартында салыстыр.",
-      qm: "Modeller­ni aynı yük ve dayanç şaraitinde qıyasla.",
+      qm: "Modellerni aynı yük ve dayanç şaraitinde qıyasla.",
     },
   },
 });
