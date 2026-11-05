@@ -55,7 +55,7 @@ export const hydration_Skill_Data = buildSkillConfig({
       vi: 'Hiểu hoạt động và môi trường ảnh hưởng nhu cầu nước như thế nào.',
       ta: 'செயல்பாடும் சூழலும் உடலின் நீர்த் தேவையை எப்படி மாற்றுகின்றன என அறி.',
       te: 'చర్యలు, వాతావరణం శరీరానికి అవసరమైన నీటిని ఎలా మార్చుతాయో అర్థం చేసుకోండి.',
-      mr: 'हालचाल आणि वातावरणामुळे पाण्याची गरज कशी बदलते ते समज.',
+      mr: 'हालचाल आणि वातावरणामुळे पाण्याची गरज कशी बदलते ते समजून घ्या.',
       ms: 'Fahami bagaimana aktiviti dan persekitaran mempengaruhi keperluan air.',
       he: 'הבינו כיצד פעילות והסביבה משפיעות על הצורך בנוזלים.',
       pl: 'Zrozum, jak aktywność i otoczenie wpływają na zapotrzebowanie na płyny.',

@@ -55,7 +55,7 @@ export const safeCookingAndReheating_Skill_Data = buildSkillConfig({
       vi: 'Hiểu vì sao cần nấu chín và hâm nóng thực phẩm đúng cách.',
       ta: 'உணவை நன்றாகச் சமைப்பதும் மீண்டும் சரியாகச் சூடாக்குவதும் ஏன் முக்கியம் என அறி.',
       te: 'ఆహారాన్ని సరిగ్గా వండడం, మళ్లీ వేడి చేయడం ఎందుకు ముఖ్యమో తెలుసుకోండి.',
-      mr: 'अन्न नीट शिजवणे आणि पुन्हा गरम करणे का महत्त्वाचे आहे ते समज.',
+      mr: 'अन्न नीट शिजवणे आणि पुन्हा गरम करणे का महत्त्वाचे आहे ते समजून घ्या.',
       ms: 'Fahami mengapa memasak dan memanaskan semula dengan betul itu penting.',
       he: 'הבינו מדוע חשוב לבשל ולחמם מחדש מזון בצורה מספקת.',
       pl: 'Zrozum, dlaczego ważne jest właściwe gotowanie i odgrzewanie żywności.',
