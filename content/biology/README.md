@@ -1,18 +1,39 @@
-# Biology — Svitlo standalone textbook
+# Biology textbook package
 
-Minimal Next.js App Router scaffold for `@svitlo/biology` in the `content/*` npm workspaces.
+`@svitlo/biology` is a **platform-neutral textbook distribution**, not a Next.js application.
+The canonical authoring sources are `data/skills/`; editorial documentation remains in `docs/`.
+The currently authored taxonomy has **11 Domains**. No Lessons or React Scenes are
+authored in this textbook yet, so no Scene registry, stylesheet or fabricated lesson JSON is
+exported. Build and publish only resources that actually exist.
 
-## Commands
+## Build and verify
 
-Run `npm ci` at the monorepo root first, then use:
+From the repository root after `npm ci`:
 
-- `npm run dev --workspace @svitlo/biology`
-- `npm run typecheck --workspace @svitlo/biology`
-- `npm run lint --workspace @svitlo/biology`
-- `npm run build --workspace @svitlo/biology`
+```bash
+npm run build --workspace @svitlo/biology
+npm run typecheck --workspace @svitlo/biology
+npm run test:publish --workspace @svitlo/biology
+npm run test:portability --workspace @svitlo/biology
+```
 
-## Editorial status
+`build` generates localized JSON using the shared Engine-based Skills Analytics generator,
+compiles `textbook.ts` to ESM and declarations, and writes `dist/manifest.json`.
+Existing Skills, translations, UUIDs, review metadata and editorial documents are not rewritten.
+The package exports only `@svitlo/biology` for compiled metadata. It does not require Next.js,
+UI Kit providers, app-local TypeScript aliases or access to authored `*.data.ts` at runtime.
 
-The [Biology Skills Taxonomy](docs/skills/taxonomy.md) is **approved as of October 29, 2026** and maintained in English (11 Domains, 26 Groups, 147 Skills). Approval is editorial only: **the taxonomy is not implemented**. The taxonomy remains the canonical pedagogical definition; no separate per-entity Definition files are needed. No taxonomy `*.ids.ts` or `*.data.ts`, curricula, lesson content, or question data have been authored. The dated [Skill Taxonomy Review](docs/history/skill-taxonomy-review.md) records agreed decisions, later revisions, and final approval without replacing the canonical taxonomy. Runtime Code generation is a separate stage.
+## Publish prebuilt resources
 
-Follow `studio/Subject Proposition.md`, `studio/personas/methodist.persona.md` and `studio/skills/create-skills-taxonomy.skill.md` for the editorial work; the Coding Agent Persona and `AGENTS.md` govern implementation. Keep the package independently deployable, and consume shared Engine/UI Kit only through published package exports when there is an approved integration task.
+```bash
+svitlo-biology publish --output /absolute/path/to/host/public
+```
+
+The public CLI is shipped in the npm package. It copies prebuilt
+`dist/static/data/pages/skillAnalytics/<language>.json` into the host's public directory
+and manages only its own `.svitlo/publish-biology.json` ownership manifest. Repeat runs clean
+stale owned files without erasing unrelated host resources. Publication does **not** compile
+TypeScript or regenerate Skills. The build also supports absent Lessons/Skills, including
+metadata-only distribution. A host owns routing, locale selection, UI Kit assets,
+Capacitor/Electron configuration and offline packaging.
+

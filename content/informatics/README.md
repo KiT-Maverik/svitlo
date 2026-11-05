@@ -1,16 +1,39 @@
-# Svitlo Informatics Textbook
+# Informatics textbook package
 
-Standalone minimal Next.js App Router application workspace: `@svitlo/informatics`.
+`@svitlo/informatics` is a **platform-neutral textbook distribution**, not a Next.js application.
+The canonical authoring sources are `data/skills/`; editorial documentation remains in `docs/`.
+The currently authored taxonomy has **15 Domains**. No Lessons or React Scenes are
+authored in this textbook yet, so no Scene registry, stylesheet or fabricated lesson JSON is
+exported. Build and publish only resources that actually exist.
 
-This package owns its application source under `src/` and will own its editorial content under `docs/`. The initial scaffold contains no lessons, implemented Skills, UI integrations, or locale dictionaries. **The Informatics Skills Taxonomy is being reviewed separately in draft PR #48** and is intentionally not introduced by this scaffold PR.
+## Build and verify
 
-From the monorepo root (after `npm ci`):
+From the repository root after `npm ci`:
 
 ```bash
-npm run dev:informatics
-npm run build:informatics
-npm run typecheck:informatics
-npm run lint --workspace @svitlo/informatics
+npm run build --workspace @svitlo/informatics
+npm run typecheck --workspace @svitlo/informatics
+npm run test:publish --workspace @svitlo/informatics
+npm run test:portability --workspace @svitlo/informatics
 ```
 
-Add shared Engine/UI Kit dependencies only when this package imports their public exports. Never import another textbook or Playground's source tree.
+`build` generates localized JSON using the shared Engine-based Skills Analytics generator,
+compiles `textbook.ts` to ESM and declarations, and writes `dist/manifest.json`.
+Existing Skills, translations, UUIDs, review metadata and editorial documents are not rewritten.
+The package exports only `@svitlo/informatics` for compiled metadata. It does not require Next.js,
+UI Kit providers, app-local TypeScript aliases or access to authored `*.data.ts` at runtime.
+
+## Publish prebuilt resources
+
+```bash
+svitlo-informatics publish --output /absolute/path/to/host/public
+```
+
+The public CLI is shipped in the npm package. It copies prebuilt
+`dist/static/data/pages/skillAnalytics/<language>.json` into the host's public directory
+and manages only its own `.svitlo/publish-informatics.json` ownership manifest. Repeat runs clean
+stale owned files without erasing unrelated host resources. Publication does **not** compile
+TypeScript or regenerate Skills. The build also supports absent Lessons/Skills, including
+metadata-only distribution. A host owns routing, locale selection, UI Kit assets,
+Capacitor/Electron configuration and offline packaging.
+

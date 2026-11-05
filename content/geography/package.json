@@ -2,32 +2,38 @@
   "name": "@svitlo/geography",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint .",
-    "typecheck": "next typegen && tsc --noEmit",
-    "test:e2e": "playwright test"
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "tsc -p tsconfig.json --noEmit",
+    "pretest:publish": "npm run build --workspace @svitlo/geography",
+    "test:publish": "node --test scripts/publish.spec.mjs",
+    "pretest:portability": "npm run build --workspace @svitlo/geography",
+    "test:portability": "node scripts/check-portability.mjs",
+    "test:locales": "node --test scripts/locales.spec.mjs",
+    "prepack": "npm run build"
   },
+  "bin": {
+    "svitlo-geography": "./scripts/publish.mjs"
+  },
+  "files": [
+    "dist",
+    "scripts/publish.mjs"
+  ],
   "dependencies": {
-    "@emotion/cache": "^11.14.0",
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.1",
-    "@mui/material": "^9.5.0",
-    "@mui/material-nextjs": "^9.5.0",
-    "@svitlo/contracts": "0.0.0",
-    "next": "16.4.2",
-    "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "@svitlo/engine": "0.0.0",
+    "@svitlo/contracts": "0.0.0"
   },
   "devDependencies": {
-    "@playwright/test": "^1.64.1",
     "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.4.2",
+    "esbuild": "^0.28.2",
     "typescript": "^5"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/textbook/index.d.ts",
+      "default": "./dist/textbook/index.js"
+    }
   }
 }
