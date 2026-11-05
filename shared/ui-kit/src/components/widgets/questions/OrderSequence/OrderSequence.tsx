@@ -1,7 +1,7 @@
 'use client';
 import type { Question_OrderSequence, Locale_Languages } from '@svitlo/engine/content';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
-import type { UiKit_Global } from '@svitlo/contracts/ui-kit';
+import type { UiKit_Global } from '@svitlo/engine/content';
 import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
 import { type QuestionItem, shuffleItems } from '../response/QuestionContent';
 import { QuestionSortable } from '../response/QuestionSortable';

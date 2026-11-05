@@ -1,4 +1,4 @@
-import type { UiKit_Component } from '@svitlo/contracts/ui-kit';
+import type { UiKit_Component } from '@svitlo/engine/content';
 import type { DefaultSupportedLanguage } from '@svitlo/engine/localization';
 
 export type Checkpoint_Locale = { title: string; check: string; checked: string };

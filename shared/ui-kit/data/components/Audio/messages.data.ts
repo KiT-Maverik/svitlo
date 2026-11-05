@@ -1,4 +1,4 @@
-import type { UiKit_Component } from '@svitlo/contracts/ui-kit';
+import type { UiKit_Component } from '@svitlo/engine/content';
 export const data = {
   en: {
     offline: 'This audio is not available offline.',

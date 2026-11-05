@@ -1,4 +1,4 @@
-import type { UiKit_Component } from '@svitlo/contracts/ui-kit';
+import type { UiKit_Component } from '@svitlo/engine/content';
 const uk = {
   flashcard: {
     region: 'Флешкартка',

@@ -1,4 +1,4 @@
-import type { UiKit_Component } from '@svitlo/contracts/ui-kit';
+import type { UiKit_Component } from '@svitlo/engine/content';
 export const data = {
   en: { check: 'Check', retry: 'Try again', hint: 'Hint', explanation: 'Explanation',
     correct: 'Correct!', incorrect: 'Not quite. Try again.', answerLabel: 'Your answer',
