@@ -13,7 +13,7 @@ export default function Home() {
           </Typography>
         </Box>
         <Stack direction="row" sx={{ gap: 2, flexWrap: 'wrap' }}>
-          <Button variant="contained" href="/topics/light">
+          <Button variant="contained" href="/lesson/d3048d21-8690-5255-b62c-984c69ac272c">
             Відкрити урок «Як рухається світло»
           </Button>
           <Button variant="outlined" href="/questions">

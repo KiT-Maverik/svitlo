@@ -6,7 +6,6 @@
   "src/app/page.module.css",
   "src/app/questions/api/page.tsx",
   "src/app/questions/page.tsx",
-  "src/app/topics/layout.tsx",
   "src/components/layout/LearningLayout/LearningLayout.tsx",
   "src/components/pages/ApiDemo/ApiDemo.constants.ts",
   "src/components/pages/ApiDemo/ApiDemo.e2e.spec.ts",

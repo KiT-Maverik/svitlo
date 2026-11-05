@@ -107,14 +107,13 @@ assert(
   'Playground cannot contain authored textbook content',
 );
 assert(
-  existsSync(resolve(root, 'learningApps/playground/src/app/topics/light/page.tsx')),
-  'Playground must host the moved light demonstration route',
+  existsSync(resolve(root, 'learningApps/playground/src/app/lesson/[lessonId]/page.tsx')),
+  'Playground must host the UUID-addressed lesson route',
 );
 assert(
   !existsSync(resolve(root, 'learningApps/playground/src/fixtures')),
   'Obsolete Playground fixtures directory must be removed',
 );
-assert(!existsSync(resolve(root, 'learningApps/math/src/app/topics/light')), 'Math cannot own Playground demo routes');
 assert(
   !existsSync(resolve(root, 'learningApps/math/src/content/howLightMoves')),
   'Math cannot own light demonstration content',
