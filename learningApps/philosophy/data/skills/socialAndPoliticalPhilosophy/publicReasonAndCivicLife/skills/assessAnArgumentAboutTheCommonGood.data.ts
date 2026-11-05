@@ -12,7 +12,7 @@ export const assessAnArgumentAboutTheCommonGood_Skill_Data = buildSkillConfig({
     fr: 'Évaluer un argument sur le bien commun',
     bn: 'সাধারণ কল্যাণের যুক্তি মূল্যায়ন',
     pt: 'Avaliar um argumento sobre o bem comum',
-    ur: 'مشترکہ بھلائی کے دلیل کا جائزہ',
+    ur: 'مشترکہ بھلائی کی دلیل کا جائزہ',
     id: 'Menilai argumen tentang kebaikan bersama',
     de: 'Argumente zum Gemeinwohl beurteilen',
     ja: '共通善に関する議論を評価する',
