@@ -1,11 +1,7 @@
-import { createLessonPage } from '@svitlo/nextjs-adapter/lesson';
-import { loadLessonResponse } from '@/lib/lessons/loadLessonResponse';
-import { loadUiKitMessages } from '@/lib/uiKit/loadUiKitMessages';
+import { createPublishedLessonPage } from '@svitlo/nextjs-adapter/lesson';
 import PlaygroundLesson from '@/components/pages/Lesson/Lesson';
 
-const lessonPage = createLessonPage({
-  loadLesson: loadLessonResponse,
-  loadMessages: loadUiKitMessages,
+const lessonPage = createPublishedLessonPage({
   renderLesson: props => <PlaygroundLesson {...props} />,
 });
 

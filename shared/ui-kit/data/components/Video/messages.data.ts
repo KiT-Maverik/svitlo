@@ -1,4 +1,5 @@
 import type { UiKit_Component } from '@svitlo/engine/content';
+import type { DefaultSupportedLanguage } from '@svitlo/engine/localization';
 export const data = {
   en: {
     offline: 'This video is not available offline.',
@@ -12,4 +13,31 @@ export const data = {
     playbackError: 'Не вдалося відтворити відео.',
     retry: 'Спробувати ще раз',
   },
-} satisfies UiKit_Component<'video', 'data', 'en' | 'uk'>;
+  zh: {"offline":"此视频无法离线观看。","unavailable":"此视频不可用。","playbackError":"无法播放此视频。","retry":"重试"},
+  hi: {"offline":"यह वीडियो ऑफ़लाइन उपलब्ध नहीं है।","unavailable":"यह वीडियो उपलब्ध नहीं है।","playbackError":"वीडियो चलाया नहीं जा सका।","retry":"फिर से प्रयास करें"},
+  es: {"offline":"Este video no está disponible sin conexión.","unavailable":"Este video no está disponible.","playbackError":"No se pudo reproducir el video.","retry":"Intentar de nuevo"},
+  ar: {"offline":"هذا الفيديو غير متاح دون اتصال بالإنترنت.","unavailable":"هذا الفيديو غير متاح.","playbackError":"تعذّر تشغيل الفيديو.","retry":"حاول مرة أخرى"},
+  fr: {"offline":"Cette vidéo n’est pas disponible hors ligne.","unavailable":"Cette vidéo est indisponible.","playbackError":"Impossible de lire cette vidéo.","retry":"Réessayer"},
+  bn: {"offline":"এই ভিডিওটি অফলাইনে পাওয়া যায় না।","unavailable":"এই ভিডিওটি পাওয়া যাচ্ছে না।","playbackError":"ভিডিওটি চালানো যায়নি।","retry":"আবার চেষ্টা করুন"},
+  pt: {"offline":"Este vídeo não está disponível offline.","unavailable":"Este vídeo não está disponível.","playbackError":"Não foi possível reproduzir o vídeo.","retry":"Tentar novamente"},
+  ur: {"offline":"یہ ویڈیو آف لائن دستیاب نہیں ہے۔","unavailable":"یہ ویڈیو دستیاب نہیں ہے۔","playbackError":"ویڈیو چلایا نہیں جا سکا۔","retry":"دوبارہ کوشش کریں"},
+  id: {"offline":"Video ini tidak tersedia saat offline.","unavailable":"Video ini tidak tersedia.","playbackError":"Video tidak dapat diputar.","retry":"Coba lagi"},
+  de: {"offline":"Dieses Video ist offline nicht verfügbar.","unavailable":"Dieses Video ist nicht verfügbar.","playbackError":"Das Video konnte nicht abgespielt werden.","retry":"Erneut versuchen"},
+  ja: {"offline":"この動画はオフラインでは利用できません。","unavailable":"この動画は利用できません。","playbackError":"動画を再生できませんでした。","retry":"再試行"},
+  ko: {"offline":"이 동영상은 오프라인에서 사용할 수 없습니다.","unavailable":"이 동영상을 사용할 수 없습니다.","playbackError":"동영상을 재생할 수 없습니다.","retry":"다시 시도"},
+  tr: {"offline":"Bu video çevrimdışı kullanılamaz.","unavailable":"Bu video kullanılamıyor.","playbackError":"Video oynatılamadı.","retry":"Yeniden dene"},
+  vi: {"offline":"Không thể xem video này khi ngoại tuyến.","unavailable":"Video này không khả dụng.","playbackError":"Không thể phát video.","retry":"Thử lại"},
+  ta: {"offline":"இந்தக் காணொளி இணையமின்றி கிடைக்காது.","unavailable":"இந்தக் காணொளி கிடைக்கவில்லை.","playbackError":"காணொளியை இயக்க முடியவில்லை.","retry":"மீண்டும் முயற்சி செய்"},
+  te: {"offline":"ఈ వీడియో ఆఫ్‌లైన్‌లో అందుబాటులో లేదు.","unavailable":"ఈ వీడియో అందుబాటులో లేదు.","playbackError":"వీడియోను ప్లే చేయడం సాధ్యం కాలేదు.","retry":"మళ్లీ ప్రయత్నించండి"},
+  mr: {"offline":"हा व्हिडिओ ऑफलाइन उपलब्ध नाही.","unavailable":"हा व्हिडिओ उपलब्ध नाही.","playbackError":"व्हिडिओ प्ले करता आला नाही.","retry":"पुन्हा प्रयत्न करा"},
+  ms: {"offline":"Video ini tidak tersedia di luar talian.","unavailable":"Video ini tidak tersedia.","playbackError":"Video tidak dapat dimainkan.","retry":"Cuba lagi"},
+  he: {"offline":"הסרטון הזה אינו זמין במצב לא מקוון.","unavailable":"הסרטון הזה אינו זמין.","playbackError":"לא ניתן להפעיל את הסרטון.","retry":"לנסות שוב"},
+  pl: {"offline":"Ten film jest niedostępny offline.","unavailable":"Ten film jest niedostępny.","playbackError":"Nie udało się odtworzyć filmu.","retry":"Spróbuj ponownie"},
+  lt: {"offline":"Šis vaizdo įrašas neprieinamas neprisijungus.","unavailable":"Šis vaizdo įrašas neprieinamas.","playbackError":"Nepavyko paleisti vaizdo įrašo.","retry":"Bandyti dar kartą"},
+  lv: {"offline":"Šis video nav pieejams bezsaistē.","unavailable":"Šis video nav pieejams.","playbackError":"Neizdevās atskaņot video.","retry":"Mēģināt vēlreiz"},
+  et: {"offline":"See video pole võrguühenduseta saadaval.","unavailable":"See video pole saadaval.","playbackError":"Videot ei õnnestunud esitada.","retry":"Proovi uuesti"},
+  be: {"offline":"Гэтае відэа недаступнае бяз інтэрнэту.","unavailable":"Гэтае відэа недаступнае.","playbackError":"Не ўдалося прайграць відэа.","retry":"Паспрабаваць яшчэ раз"},
+  ka: {"offline":"ეს ვიდეო ინტერნეტის გარეშე მიუწვდომელია.","unavailable":"ეს ვიდეო მიუწვდომელია.","playbackError":"ვიდეოს დაკვრა ვერ მოხერხდა.","retry":"ხელახლა ცდა"},
+  kk: {"offline":"Бұл бейне интернетсіз қолжетімсіз.","unavailable":"Бұл бейне қолжетімсіз.","playbackError":"Бейнені ойнату мүмкін болмады.","retry":"Қайта көру"},
+  qm: {"offline":"Bu video internetsiz körülemey.","unavailable":"Bu video körülemey.","playbackError":"Videonı oynatmaq mümkün olmadı.","retry":"Yañıdan deñe"},
+} satisfies UiKit_Component<'video', 'data', DefaultSupportedLanguage['language']>;
