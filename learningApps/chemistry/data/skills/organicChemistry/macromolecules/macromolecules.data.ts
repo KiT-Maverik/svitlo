@@ -47,7 +47,7 @@ export const macromolecules_SkillGroup_Data = buildSkillGroupConfig({
     frontend: {
       en: "Understand how repeated building blocks produce large molecules with distinctive properties.",
       zh: "理解重复的结构单元如何构成具有独特性质的大分子。",
-      hi: "समझो कि दोहराई जाने वाली इकाइयाँ विशेष गुणों वाले बड़े अणु कैसे बनाती हैं।",
+      hi: "समझें कि दोहराई जाने वाली इकाइयाँ विशेष गुणों वाले बड़े अणु कैसे बनाती हैं।",
       es: "Comprende cómo unidades repetidas forman moléculas grandes con propiedades particulares.",
       ar: "افهم كيف تكوّن الوحدات المتكررة جزيئات كبيرة ذات خصائص مميزة.",
       fr: "Comprends comment des unités répétées forment de grandes molécules aux propriétés particulières.",

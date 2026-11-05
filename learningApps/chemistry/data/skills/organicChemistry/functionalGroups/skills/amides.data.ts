@@ -39,7 +39,7 @@ export const amides_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Identify amides and distinguish their carbonyl–nitrogen linkages from amines.",
       zh: "识别酰胺，并区分其羰基—氮连接方式与胺。",
-      hi: "ऐमाइड पहचानो और उनके कार्बोनिल–नाइट्रोजन बंध को ऐमीन से अलग करो।",
+      hi: "ऐमाइड पहचानें और उनके कार्बोनिल–नाइट्रोजन बंध को ऐमीन से अलग करें।",
       es: "Identifica las amidas y distingue su enlace carbonilo-nitrógeno del de las aminas.",
       ar: "تعرّف الأميدات وميّز روابط الكربونيل والنيتروجين فيها عن الأمينات.",
       fr: "Reconnais les amides et distingue leur liaison carbonyle-azote de celles des amines.",

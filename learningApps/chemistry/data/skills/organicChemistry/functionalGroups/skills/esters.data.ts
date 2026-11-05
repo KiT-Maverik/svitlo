@@ -39,7 +39,7 @@ export const esters_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Recognize ester linkages and how esters form or break down.",
       zh: "识别酯键，并了解酯如何生成或分解。",
-      hi: "एस्टर बंध पहचानो और समझो कि एस्टर कैसे बनते या टूटते हैं।",
+      hi: "एस्टर बंध पहचानें और समझें कि एस्टर कैसे बनते या टूटते हैं।",
       es: "Reconoce los enlaces éster y cómo se forman o descomponen los ésteres.",
       ar: "تعرّف روابط الإستر وكيف تتكوّن الإسترات أو تتحلل.",
       fr: "Reconnais les liaisons ester et la manière dont les esters se forment ou se décomposent.",

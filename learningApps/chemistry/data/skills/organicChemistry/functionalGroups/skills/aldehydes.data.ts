@@ -39,7 +39,7 @@ export const aldehydes_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Recognize aldehydes by the position and behavior of their carbonyl group.",
       zh: "通过羰基的位置和化学行为识别醛。",
-      hi: "कार्बोनिल समूह की स्थिति और व्यवहार से ऐल्डिहाइड पहचानो।",
+      hi: "कार्बोनिल समूह की स्थिति और व्यवहार से ऐल्डिहाइड पहचानें।",
       es: "Reconoce los aldehídos por la posición y el comportamiento de su grupo carbonilo.",
       ar: "تعرّف الألدهيدات من موضع مجموعة الكربونيل وسلوكها.",
       fr: "Reconnais les aldéhydes grâce à la position et au comportement de leur groupe carbonyle.",

@@ -39,7 +39,7 @@ export const hydrocarbons_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Recognize compounds made only of carbon and hydrogen.",
       zh: "识别仅由碳和氢两种元素构成的化合物。",
-      hi: "केवल कार्बन और हाइड्रोजन से बने यौगिकों को पहचानो।",
+      hi: "केवल कार्बन और हाइड्रोजन से बने यौगिकों को पहचानें।",
       es: "Reconoce los compuestos formados únicamente por carbono e hidrógeno.",
       ar: "تعرّف المركبات المكوّنة من الكربون والهيدروجين فقط.",
       fr: "Reconnais les composés constitués uniquement de carbone et d'hydrogène.",

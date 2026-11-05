@@ -39,7 +39,7 @@ export const ketones_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Distinguish ketones from aldehydes by their carbonyl-group structure.",
       zh: "根据羰基的结构区分酮和醛。",
-      hi: "कार्बोनिल समूह की संरचना के आधार पर कीटोन को ऐल्डिहाइड से अलग करो।",
+      hi: "कार्बोनिल समूह की संरचना के आधार पर कीटोन को ऐल्डिहाइड से अलग करें।",
       es: "Distingue las cetonas de los aldehídos por la estructura de su grupo carbonilo.",
       ar: "ميّز الكيتونات من الألدهيدات وفق بنية مجموعة الكربونيل.",
       fr: "Distingue les cétones des aldéhydes grâce à la structure de leur groupe carbonyle.",
