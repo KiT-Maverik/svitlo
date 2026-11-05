@@ -45,7 +45,7 @@ export const manageFoodAllergyRisks_Skill_Data = buildSkillConfig({
       ar: 'حدّد مسببات الحساسية وتجنّب التلامس المتبادل الخطر بين المكونات.',
       fr: 'Repère les allergènes et évite les contacts croisés dangereux entre ingrédients.',
       bn: 'অ্যালার্জি সৃষ্টিকারী উপাদান চিনে বিপজ্জনক সংস্পর্শ এড়াও।',
-      pt: 'Identifique alergénios e evite o contacto cruzado perigoso entre ingredientes.',
+      pt: 'Identifique alérgenos e evite o contato cruzado perigoso entre ingredientes.',
       ur: 'الرجی پیدا کرنے والے اجزا پہچانیں اور ان کا خطرناک باہمی رابطہ روکیں۔',
       id: 'Kenali alergen dan hindari kontak silang bahan yang berbahaya.',
       de: 'Erkenne Allergene und vermeide gefährliche Kreuzkontakte von Zutaten.',
