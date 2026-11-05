@@ -3,12 +3,21 @@ name: PR Auto-format
 on:
   pull_request:
     types: [opened, reopened, synchronize, ready_for_review, edited]
+  # A GITHUB_TOKEN push does not emit another pull_request workflow run.
+  # The same token can explicitly dispatch a check on the formatted commit.
+  workflow_dispatch:
+    inputs:
+      base_sha:
+        description: PR base commit for a changed-files-only recheck
+        required: true
+        type: string
 
 permissions:
-  contents: read
+  contents: write
+  actions: write
 
 concurrency:
-  group: pr-auto-format-${{ github.event.pull_request.number }}
+  group: pr-auto-format-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -17,10 +26,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Check out the exact PR head (not the merge ref)
+      - name: Check out PR head or explicitly dispatched branch
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
           persist-credentials: false
 
@@ -29,10 +38,11 @@ jobs:
           node-version: '24'
           cache: npm
 
-      - name: Install the repository's pinned Prettier
+      - name: Install pinned Prettier without running package scripts
         run: npm ci --ignore-scripts --no-audit --no-fund
 
-      - name: Format only files introduced or modified by this PR
+      - name: Auto-format changed PR files
+        if: github.event_name == 'pull_request'
         shell: bash
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
@@ -41,7 +51,18 @@ jobs:
           git diff --name-only --diff-filter=ACMR -z "$BASE_SHA...HEAD" \
             | xargs -0 -r -n 100 ./node_modules/.bin/prettier --write --ignore-unknown --
 
-      - name: Stage formatting-only changes
+      - name: Independently check formatting on the latest commit
+        if: github.event_name == 'workflow_dispatch'
+        shell: bash
+        env:
+          BASE_SHA: ${{ inputs.base_sha }}
+        run: |
+          set -euo pipefail
+          git diff --name-only --diff-filter=ACMR -z "$BASE_SHA...HEAD" \
+            | xargs -0 -r -n 100 ./node_modules/.bin/prettier --check --ignore-unknown --
+
+      - name: Stage formatting fixes
+        if: github.event_name == 'pull_request'
         id: changes
         shell: bash
         run: |
@@ -49,44 +70,43 @@ jobs:
           git add -u
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
-            echo "Changed PR files are already formatted."
+            echo "Changed files are already formatted."
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
             git diff --cached --stat
           fi
 
-      - name: Check formatting on fork PRs (no write access)
-        if: steps.changes.outputs.changed == 'true' && github.event.pull_request.head.repo.full_name != github.repository
-        shell: bash
+      - name: Require fork contributors to format their own PRs
+        if: github.event_name == 'pull_request' && steps.changes.outputs.changed == 'true' && github.event.pull_request.head.repo.full_name != github.repository
         run: |
-          echo "::error::Formatting changes are required. Fork PRs must apply Prettier in their own branch."
+          echo "::error::Formatting changes needed; the workflow cannot push to a fork."
           exit 1
 
-      # The app needs only Contents: read/write on this repository. Unlike
-      # GITHUB_TOKEN, a GitHub App push triggers a fresh PR CI run on the new SHA.
-      - name: Create a formatter GitHub App token
-        if: steps.changes.outputs.changed == 'true' && github.event.pull_request.head.repo.full_name == github.repository
-        id: app-token
-        uses: actions/create-github-app-token@v3
-        with:
-          client-id: ${{ vars.FORMAT_BOT_CLIENT_ID }}
-          private-key: ${{ secrets.FORMAT_BOT_PRIVATE_KEY }}
-          permission-contents: write
-
-      - name: Commit fixes to the source branch of the PR
-        if: steps.changes.outputs.changed == 'true' && github.event.pull_request.head.repo.full_name == github.repository
+      - name: Commit formatting fixes to PR source branch
+        if: github.event_name == 'pull_request' && steps.changes.outputs.changed == 'true' && github.event.pull_request.head.repo.full_name == github.repository
         shell: bash
         env:
-          APP_TOKEN: ${{ steps.app-token.outputs.token }}
+          GH_TOKEN: ${{ github.token }}
           PR_HEAD_REF: ${{ github.event.pull_request.head.ref }}
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "style: auto-format changed PR files"
-
-          # A normal, non-force push: if an agent has updated the PR meanwhile,
-          # this run fails rather than overwriting any of their commits.
-          authorization=$(printf 'x-access-token:%s' "$APP_TOKEN" | base64 -w0)
+          authorization=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
           git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $authorization" \
             push origin "HEAD:refs/heads/$PR_HEAD_REF"
+
+      - name: Re-run required checks on formatted commit
+        if: github.event_name == 'pull_request' && steps.changes.outputs.changed == 'true' && github.event.pull_request.head.repo.full_name == github.repository
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_HEAD_REF: ${{ github.event.pull_request.head.ref }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          set -euo pipefail
+          # workflow_dispatch explicitly starts actions even for GITHUB_TOKEN writes.
+          # Both checks now attach to the latest branch SHA (no force push).
+          gh workflow run pr-auto-format.yml --repo "$GITHUB_REPOSITORY" --ref "$PR_HEAD_REF" -f base_sha="$BASE_SHA"
+          gh workflow run agent-ci-artifacts-guard.yml --repo "$GITHUB_REPOSITORY" --ref "$PR_HEAD_REF"
