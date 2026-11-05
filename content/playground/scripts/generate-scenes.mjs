@@ -2,6 +2,7 @@
 import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { format, resolveConfig } from 'prettier';
 
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const scenes = join(root, 'src/components/scenes');
@@ -42,9 +43,12 @@ const output =
   `  return component;\n` +
   `};\n`;
 const target = join(scenes, 'sceneLoader.ts');
-if (process.argv[2] === '--write') writeFileSync(target, output);
+// Match the same Prettier rules applied by the Ready-for-Review PR formatter.
+// Without this, auto-formatting makes a valid generated registry appear stale.
+const formatted = await format(output, { ...(await resolveConfig(target)), filepath: target });
+if (process.argv[2] === '--write') writeFileSync(target, formatted);
 else if (process.argv[2] === '--check') {
-  if (readFileSync(target, 'utf8') !== output)
+  if (readFileSync(target, 'utf8') !== formatted)
     throw new Error('Stale Scene registry; run npm run generate:scenes --workspace @svitlo/playground');
 } else throw new Error('Usage: generate-scenes.mjs --write|--check');
 console.log(`Verified ${entries.length} statically registered Scenes`);
