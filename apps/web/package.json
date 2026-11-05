@@ -10,13 +10,14 @@
     "typecheck": "next typegen && tsc --noEmit",
     "test:e2e": "playwright test",
     "test:components": "vitest run",
-    "pretest:components": "node scripts/prepare-textbook.mjs",
+    "pretest:components": "npm run prepare:assets && node scripts/prepare-textbook.mjs",
     "test:components:coverage": "vitest run --coverage",
-    "prebuild": "node scripts/prepare-textbook.mjs",
-    "predev": "node scripts/prepare-textbook.mjs",
-    "pretypecheck": "node scripts/prepare-textbook.mjs",
-    "test:selection": "node --test scripts/prepare-textbook.spec.mjs",
-    "pretest:components:coverage": "node scripts/prepare-textbook.mjs"
+    "prebuild": "npm run prepare:assets && node scripts/prepare-textbook.mjs",
+    "predev": "npm run prepare:assets && node scripts/prepare-textbook.mjs",
+    "pretypecheck": "npm run prepare:assets && node scripts/prepare-textbook.mjs",
+    "test:selection": "node --test scripts/prepare-textbook.spec.mjs scripts/prepare-app-assets.spec.mjs",
+    "pretest:components:coverage": "npm run prepare:assets && node scripts/prepare-textbook.mjs",
+    "prepare:assets": "node scripts/prepare-app-assets.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",
