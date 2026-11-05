@@ -2,19 +2,28 @@
   "name": "@svitlo/playground",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "generate:scenes": "node scripts/generate-scenes.mjs --write",
     "check:scenes": "node scripts/generate-scenes.mjs --check",
-    "build": "tsc -p tsconfig.json --noEmit",
+    "build": "node scripts/build.mjs",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test:components": "vitest run",
     "test:components:coverage": "vitest run --coverage",
-    "pretest:portability": "npm run build --workspace @svitlo/contracts && npm run build --workspace @svitlo/engine && npm run build --workspace @svitlo/ui-kit",
-    "test:portability": "node scripts/check-react-dom-portability.mjs"
+    "pretest:portability": "npm run build --workspace @svitlo/playground",
+    "test:portability": "node scripts/check-react-dom-portability.mjs",
+    "pretest:publish": "npm run build --workspace @svitlo/playground",
+    "test:publish": "node --test scripts/publish.spec.mjs",
+    "prepack": "npm run build"
   },
+  "bin": {
+    "svitlo-playground": "./scripts/publish.mjs"
+  },
+  "files": [
+    "dist",
+    "scripts/publish.mjs"
+  ],
   "dependencies": {
-    "@mui/material": "^9.5.0",
-    "react": "19.3.0",
     "@svitlo/engine": "0.0.0",
     "@svitlo/ui-kit": "0.0.0"
   },
@@ -28,16 +37,26 @@
     "typescript": "^5",
     "vitest": "^3.2.4",
     "esbuild": "^0.28.2",
-    "react-dom": "19.3.0"
+    "react-dom": "19.3.0",
+    "@mui/material": "^9.5.0",
+    "react": "19.3.0"
   },
   "exports": {
     ".": {
-      "types": "./textbook.ts",
-      "default": "./textbook.ts"
+      "types": "./dist/textbook/index.d.ts",
+      "default": "./dist/textbook/index.js"
     },
     "./scenes": {
-      "types": "./scenes/index.ts",
-      "default": "./scenes/index.ts"
+      "types": "./dist/scenes/index.d.ts",
+      "default": "./dist/scenes/index.js"
+    },
+    "./styles": {
+      "default": "./dist/styles.css"
     }
+  },
+  "peerDependencies": {
+    "@mui/material": "^9.5.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
   }
 }

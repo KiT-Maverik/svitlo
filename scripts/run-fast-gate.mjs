@@ -159,12 +159,23 @@ function runGate(changed) {
       file =>
         file.startsWith('apps/web/') ||
         file.startsWith('content/playground/scenes/') ||
-        file.startsWith('content/playground/scripts/check-react-dom-portability') ||
+        file.startsWith('content/playground/scripts/') ||
         file === 'content/playground/package.json' ||
         file === 'shared/ui-kit/src/scene-locale.tsx',
     )
   ) {
     exec('npm', ['run', 'test:portability', '--workspace', '@svitlo/playground']);
+  }
+
+  if (
+    changed.some(
+      file =>
+        file.startsWith('content/playground/scripts/') ||
+        file === 'content/playground/package.json' ||
+        file.startsWith('apps/web/scripts/prepare-textbook'),
+    )
+  ) {
+    exec('npm', ['run', 'test:publish', '--workspace', '@svitlo/playground']);
   }
 
   // Authored textbook taxonomy imports @svitlo/engine/taxonomy. Its exported declarations
@@ -207,6 +218,8 @@ function runGate(changed) {
           file.startsWith('shared/ui-kit/src/components/lesson/') ||
           file.startsWith('shared/ui-kit/src/components/widgets/ContentBlockRenderer/blocks/Image/') ||
           file.startsWith('content/playground/scenes/') ||
+          file.startsWith('content/playground/scripts/') ||
+          file === 'content/playground/package.json' ||
           file.startsWith('apps/web/'),
       )
     ) {
