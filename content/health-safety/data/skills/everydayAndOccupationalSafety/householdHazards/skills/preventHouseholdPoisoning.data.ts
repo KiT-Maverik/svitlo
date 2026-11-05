@@ -62,7 +62,7 @@ export const preventHouseholdPoisoning_Skill_Data = buildSkillConfig({
       uk: 'Зберігай небезпечні побутові речовини в оригінальних промаркованих упаковках і подалі від дітей.',
       lt: 'Pavojingas buities medžiagas tinkamai pažymėk ir laikyk vaikams nepasiekiamoje vietoje.',
       lv: 'Pareizi marķē bīstamas mājsaimniecības vielas un turi tās prom no bērniem.',
-      et: 'Märgista ohtlikud kodukeemiatooted õigesti ja hoia need laste käeulatusest eemal.',
+      et: 'Hoia ohtlikke kodukeemiatooteid originaalpakendis koos etiketiga ja laste käeulatusest eemal.',
       be: 'Правільна пазначай небясьпечныя побытавыя рэчывы і трымай іх далей ад дзяцей.',
       ka: 'სახიფათო საყოფაცხოვრებო ნივთიერებებს სწორად დააწერე ეტიკეტი და ბავშვებს მოარიდე.',
       kk: 'Қауіпті тұрмыстық заттарды дұрыс белгілеп, балалардан аулақ сақта.',
