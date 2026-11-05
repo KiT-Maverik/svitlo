@@ -56,7 +56,7 @@ export const distinguishLiteralMeaningFromImplication_Skill_Data = buildSkillCon
       ta: 'ஒரு கூற்றின் நேரடியான பொருளையும் அது உணர்த்தும் மறைபொருளையும் வேறுபடுத்துங்கள்.',
       te: 'ఒక ప్రకటన నేరుగా చెప్పే అర్థాన్ని అది సూచించే అర్థం నుంచి వేరు చేయండి.',
       mr: 'विधानाचा थेट अर्थ आणि त्यातून सूचित होणारे अर्थ वेगळे ओळखा.',
-      ms: 'Bezakan maksud literal pernyataan daripada apa yang dibayangkannya.',
+      ms: 'Bezakan makna harfiah sesuatu pernyataan daripada maksud yang disiratkannya.',
       he: 'הבחינו בין המשמעות המילולית של אמירה לבין מה שהיא מרמזת.',
       pl: 'Oddziel dosłowne znaczenie wypowiedzi od tego, co ona sugeruje.',
       uk: 'Відрізняй прямий зміст висловлювання від того, на що воно натякає.',

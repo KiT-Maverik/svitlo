@@ -64,7 +64,7 @@ export const applyModusPonens_Skill_Data = buildSkillConfig({
       lv: 'Lieto likumu: ja no A izriet B un A ir patiess, tad izriet B.',
       et: 'Rakenda reeglit: kui A-st järeldub B ja A on tõene, siis järeldub B.',
       be: 'Ужый правіла: калі з A вынікае B і A праўдзівае, то вынікае B.',
-      ka: 'გამოიყენე წესი: თუ A იწვევს B-ს და A ჭეშმარიტია, მაშინ B გამომდინარეობს.',
+      ka: 'გამოიყენე წესი: თუ A-დან B გამომდინარეობს და A ჭეშმარიტია, მაშინ B-ც ჭეშმარიტია.',
       kk: 'Ережені қолдан: A-дан B шықса және A шын болса, B де шығады.',
       qm: 'Qaidenı qullan: A-dan B çıqsa ve A doğru olsa, B de çıqa.',
     },

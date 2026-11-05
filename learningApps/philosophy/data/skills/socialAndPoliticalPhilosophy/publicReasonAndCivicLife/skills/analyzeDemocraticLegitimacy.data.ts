@@ -20,7 +20,7 @@ export const analyzeDemocraticLegitimacy_Skill_Data = buildSkillConfig({
     tr: 'Demokratik Meşruiyeti Analiz Etmek',
     vi: 'Phân tích tính chính đáng dân chủ',
     ta: 'ஜனநாயக நியாயத்தன்மையை ஆய்வு செய்தல்',
-    te: 'ప్రజాస్వామ్య చట్టబద్ధతను విశ్లేషించడం',
+    te: 'ప్రజాస్వామ్య న్యాయసమ్మతతను విశ్లేషించడం',
     mr: 'लोकशाही वैधतेचे विश्लेषण',
     ms: 'Menganalisis kesahan demokrasi',
     he: 'ניתוח הלגיטימיות הדמוקרטית',

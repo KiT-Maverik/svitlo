@@ -54,7 +54,7 @@ export const assessDeductiveValidity_Skill_Data = buildSkillConfig({
       tr: 'Tüm öncüller doğruyken sonucun yanlış olup olamayacağını denetle.',
       vi: 'Kiểm tra liệu tất cả tiền đề đều đúng mà kết luận vẫn có thể sai hay không.',
       ta: 'எல்லா முன்கோள்களும் உண்மையாக இருந்தாலும் முடிவு பொய்யாக இருக்க முடியுமா எனச் சரிபார்.',
-      te: 'అన్ని పూర్వపక్షాలు నిజమైనా నిర్ధారణ తప్పుగా ఉండగలదా పరిశీలించండి.',
+      te: 'అన్ని ఆధార వాక్యాలు నిజమైనా నిర్ధారణ తప్పుగా ఉండగలదా పరిశీలించండి.',
       mr: 'सर्व पूर्वाधार खरे असूनही निष्कर्ष खोटा असू शकतो का ते तपास.',
       ms: 'Semak sama ada semua premis boleh benar tetapi kesimpulannya salah.',
       he: 'בדקו אם ייתכן שכל ההנחות נכונות ובכל זאת המסקנה שגויה.',
