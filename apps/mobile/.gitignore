@@ -1,0 +1,12 @@
+dist/
+public/data/
+public/flags/
+public/textbooks/
+src/generated/
+android/.gradle/
+android/local.properties
+android/**/build/
+ios/DerivedData/
+ios/App/Pods/
+ios/App/build/
+*.xcuserstate

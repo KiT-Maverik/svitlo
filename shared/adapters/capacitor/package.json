@@ -1,0 +1,8 @@
+{
+  "name": "@svitlo/adapter-capacitor", "version": "0.0.0", "private": true,
+  "type": "module", "main": "./dist/index.js", "types": "./dist/index.d.ts",
+  "exports": {".": {"types": "./dist/index.d.ts", "default": "./dist/index.js"}},
+  "scripts": {"build": "tsc -p tsconfig.build.json", "typecheck": "tsc -p tsconfig.json --noEmit", "lint": "npm run typecheck"},
+  "peerDependencies": {"@capacitor/app": "^7.0.0", "@capacitor/core": "^7.4.4"},
+  "devDependencies": {"@capacitor/app": "^7.0.0", "@capacitor/core": "^7.4.4", "typescript": "^5"}
+}
