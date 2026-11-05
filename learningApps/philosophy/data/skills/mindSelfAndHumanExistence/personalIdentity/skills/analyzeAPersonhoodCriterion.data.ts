@@ -60,7 +60,7 @@ export const analyzeAPersonhoodCriterion_Skill_Data = buildSkillConfig({
       he: 'בחנו קריטריונים למעמד של אדם מול מקרים קשים, בלי לשלול כבוד אנושי.',
       pl: 'Sprawdź kryteria bycia osobą na trudnych przypadkach, nie podważając godności ludzkiej.',
       uk: 'Перевіряй критерії статусу особи на складних прикладах, не заперечуючи людської гідності.',
-      lt: 'Tikrink asmens statuso kriterijus sudėtingais atvejais, neneigdama žmogaus orumo.',
+      lt: 'Tikrink asmens statuso kriterijus sudėtingais atvejais ir neprarask pagarbos žmogaus orumui.',
       lv: 'Pārbaudi personas statusa kritērijus sarežģītos gadījumos, nenoliedzot cilvēka cieņu.',
       et: 'Katseta isikuks olemise kriteeriume keeruliste juhtumite abil, eitamata inimväärikust.',
       be: 'Правярай крытэры асобаснага статусу на складаных прыкладах, не адмаўляючы чалавечай годнасьці.',

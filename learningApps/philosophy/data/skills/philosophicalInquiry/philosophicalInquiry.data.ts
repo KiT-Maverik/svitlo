@@ -69,7 +69,7 @@ export const philosophicalInquiry_SkillDomain_Data = buildSkillDomainConfig({
       he: 'בחנו שאלות על משמעות, ערכים והנחות באמצעות דיון מנומק.',
       pl: 'Badaj pytania o znaczenie, wartości i założenia w rozmowie opartej na argumentach.',
       uk: 'Досліджуй питання про сенс, цінності та припущення через аргументовану розмову.',
-      lt: 'Nagrinėk prasmės, vertybių ir prielaidų klausimus pagrįstai diskutuodamas.',
+      lt: 'Nagrinėk prasmės, vertybių ir prielaidų klausimus per argumentuotą diskusiją.',
       lv: 'Izpēti jautājumus par jēgu, vērtībām un pieņēmumiem argumentētā sarunā.',
       et: 'Uuri põhjendatud arutelus küsimusi tähenduse, väärtuste ja eelduste kohta.',
       be: 'Дасьледуй пытаньні пра сэнс, каштоўнасьці й дапушчэньні праз абгрунтаваную размову.',

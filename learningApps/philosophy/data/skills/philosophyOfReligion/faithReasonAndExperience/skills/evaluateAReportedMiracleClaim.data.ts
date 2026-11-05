@@ -60,7 +60,7 @@ export const evaluateAReportedMiracleClaim_Skill_Data = buildSkillConfig({
       he: 'העריכו טענה על אירוע חריג תוך שקילת עדויות והסברים חלופיים.',
       pl: 'Oceń twierdzenie o niezwykłym zdarzeniu, rozważając świadectwa i alternatywne wyjaśnienia.',
       uk: 'Оцінюй твердження про надзвичайну подію, зважуючи свідчення та альтернативні пояснення.',
-      lt: 'Vertink teiginį apie nepaprastą įvykį, pasverdama liudijimus ir alternatyvius paaiškinimus.',
+      lt: 'Vertink teiginį apie nepaprastą įvykį: pasverk liudijimus ir alternatyvius paaiškinimus.',
       lv: 'Izvērtē apgalvojumu par neparastu notikumu, salīdzinot liecības un alternatīvus skaidrojumus.',
       et: 'Hinda erakordse sündmuse väidet, kaaludes tunnistusi ja alternatiivseid seletusi.',
       be: 'Ацэньвай сьцьверджаньне пра незвычайную падзею, узважваючы сьведчаньні і альтэрнатыўныя тлумачэньні.',
