@@ -78,7 +78,7 @@ export const nonDeductiveReasoning_SkillGroup_Data = buildSkillGroupConfig({
       lv: 'Mācies vērtēt spriešanu, kas pamato secinājumu, taču negarantē drošību.',
       et: 'Õpi hindama arutlust, mis toetab järeldust, kuid ei taga kindlust.',
       be: 'Навучыся ацэньваць разважаньні, якія падтрымліваюць выснову, але не гарантуюць пэўнасьці.',
-      ka: 'ისწავლე მსჯელობის შეფასება, რომელიც დასკვნას ამყარებს, მაგრამ სიზუსტის გარანტიას არ იძლევა.',
+      ka: 'ისწავლე მსჯელობის შეფასება, რომელიც დასკვნას ამყარებს, მაგრამ სრული უტყუარობის გარანტიას არ იძლევა.',
       kk: 'Анықтыққа кепіл бермесе де, қорытындыны қолдайтын пайымдауды бағалауды үйрен.',
       qm: 'Kesinlikni teminlemese de, neticeni qollap-quvetlegen fikir yürsetüvni baalamaqnı ögren.',
     },
