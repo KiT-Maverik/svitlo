@@ -103,12 +103,15 @@ export function measureSkillAnalyticsFiles(files) {
 }
 
 function options(args) {
-  let packageName, action;
+  let packageName, action, outputOverride;
   for (let i = 0; i < args.length; i++) {
     const token = args[i];
     if (token === '--package') {
       assert(!packageName && args[i + 1] && !args[i + 1].startsWith('--'), 'Missing or repeated --package');
       packageName = args[++i];
+    } else if (token === '--output') {
+      assert(!outputOverride && args[i + 1] && !args[i + 1].startsWith('--'), 'Missing or repeated --output');
+      outputOverride = args[++i];
     } else if (['--write', '--check', '--measure'].includes(token)) {
       assert(!action, 'Specify exactly one action');
       action = token;
@@ -120,15 +123,18 @@ function options(args) {
     pkg.startsWith(path.join(repoRoot, 'content') + path.sep) && fs.existsSync(path.join(pkg, 'package.json')),
     'Invalid textbook package',
   );
-  return { pkg, action };
+  const output = outputOverride
+    ? path.resolve(repoRoot, outputOverride)
+    : path.join(pkg, 'public/data/pages/skillAnalytics');
+  assert(output.startsWith(repoRoot + path.sep), 'Output must stay inside the repository');
+  return { pkg, action, output };
 }
 
 function main() {
-  const { pkg, action } = options(process.argv.slice(2));
+  const { pkg, action, output } = options(process.argv.slice(2));
   const codes = languageCodes();
   const graph = loadSkillGraph(path.join(pkg, 'data/skills'), codes);
   const files = renderSkillAnalyticsFiles(graph, codes);
-  const output = path.join(pkg, 'public/data/pages/skillAnalytics');
   if (action === '--measure') {
     const metrics = measureSkillAnalyticsFiles(files);
     console.log(JSON.stringify(metrics, null, 2));
