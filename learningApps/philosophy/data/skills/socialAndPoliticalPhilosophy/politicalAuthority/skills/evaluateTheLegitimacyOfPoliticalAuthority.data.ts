@@ -20,7 +20,7 @@ export const evaluateTheLegitimacyOfPoliticalAuthority_Skill_Data = buildSkillCo
     tr: 'Siyasi Otoritenin Meşruiyetini Değerlendirmek',
     vi: 'Đánh giá tính chính đáng của thẩm quyền chính trị',
     ta: 'அரசியல் அதிகாரத்தின் நியாயத்தன்மையை மதிப்பிடுதல்',
-    te: 'రాజకీయ అధికార చట్టబద్ధతను అంచనా వేయడం',
+    te: 'రాజకీయ అధికార న్యాయసమ్మతతను అంచనా వేయడం',
     mr: 'राजकीय अधिकारसत्तेच्या वैधतेचे मूल्यमापन',
     ms: 'Menilai kesahan kuasa politik',
     he: 'הערכת הלגיטימיות של סמכות פוליטית',

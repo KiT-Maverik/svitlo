@@ -21,7 +21,7 @@ export const socialAndPoliticalPhilosophy_SkillDomain_Data = buildSkillDomainCon
     pt: 'Filosofia social e política',
     ur: 'سماجی اور سیاسی فلسفہ',
     id: 'Filsafat Sosial dan Politik',
-    de: 'Sozial- und politische Philosophie',
+    de: 'Sozialphilosophie und politische Philosophie',
     ja: '社会哲学と政治哲学',
     ko: '사회·정치 철학',
     tr: 'Toplum ve Siyaset Felsefesi',
