@@ -46,7 +46,7 @@ export const justifyAnAestheticJudgment_Skill_Data = buildSkillConfig({
       fr: 'Explique une évaluation esthétique par des caractéristiques pertinentes plutôt que le seul goût personnel.',
       bn: 'শুধু ব্যক্তিগত পছন্দ নয়, প্রাসঙ্গিক বৈশিষ্ট্য দিয়ে নান্দনিক মূল্যায়ন ব্যাখ্যা করো।',
       pt: 'Explique uma avaliação estética por características relevantes, não apenas pelo gosto pessoal.',
-      ur: 'صرف ذاتی پسند نہیں بلکہ متعلقہ خصوصیات سے جمالیاتی رائے کی وضاحت کرو۔',
+      ur: 'صرف ذاتی پسند نہیں بلکہ متعلقہ خصوصیات سے جمالیاتی رائے کی وضاحت کریں۔',
       id: 'Jelaskan penilaian estetis memakai ciri yang relevan, bukan selera pribadi saja.',
       de: 'Erkläre eine ästhetische Bewertung anhand relevanter Merkmale statt nur des eigenen Geschmacks.',
       ja: '個人の好みだけでなく、具体的な特徴を使って美的評価を説明しよう。',

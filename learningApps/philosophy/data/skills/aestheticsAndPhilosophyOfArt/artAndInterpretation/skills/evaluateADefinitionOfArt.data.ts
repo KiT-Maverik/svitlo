@@ -46,7 +46,7 @@ export const evaluateADefinitionOfArt_Skill_Data = buildSkillConfig({
       fr: "Teste des définitions de l'art avec des exemples inhabituels ou difficiles à classer.",
       bn: 'অস্বাভাবিক বা সীমান্তবর্তী উদাহরণ দিয়ে শিল্পের সংজ্ঞা যাচাই করো।',
       pt: 'Teste definições de arte com exemplos incomuns ou difíceis de classificar.',
-      ur: 'غیر معمولی یا سرحدی مثالوں سے فن کی تعریفیں جانچو۔',
+      ur: 'غیر معمولی یا سرحدی مثالوں سے فن کی تعریفیں جانچیں۔',
       id: 'Uji definisi seni dengan contoh tidak biasa atau sulit dikategorikan.',
       de: 'Prüfe Kunstdefinitionen an ungewöhnlichen oder schwer einzuordnenden Beispielen.',
       ja: '珍しい例や境界的な作品を使って芸術の定義を確かめよう。',
