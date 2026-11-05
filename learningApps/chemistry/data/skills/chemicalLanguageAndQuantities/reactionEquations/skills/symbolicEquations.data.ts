@@ -32,7 +32,7 @@ export const symbolicEquations_Skill_Data = buildSkillConfig({
     be: "Сымбальныя раўнаньні",
     ka: "სიმბოლური განტოლებები",
     kk: "Таңбалық теңдеулер",
-    qm: "Remizli teńlemeler",
+    qm: "Remizli teñlemeler",
   },
   description: {
     methodological: "Translate a chemical transformation into formulas with correct reactant and product identities.",
