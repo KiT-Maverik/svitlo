@@ -48,7 +48,7 @@ export const preventHouseholdPoisoning_Skill_Data = buildSkillConfig({
       pt: 'Rotule produtos domésticos perigosos e mantenha-os longe das crianças.',
       ur: 'خطرناک گھریلو مادوں پر درست لیبل لگائیں اور بچوں سے دور رکھیں۔',
       id: 'Beri label yang benar pada bahan rumah tangga berbahaya dan jauhkan dari anak-anak.',
-      de: 'Beschrifte gefährliche Haushaltsstoffe korrekt und bewahre sie kindersicher auf.',
+      de: 'Bewahre gefährliche Haushaltschemikalien in ihren original beschrifteten Behältern außerhalb der Reichweite von Kindern auf.',
       ja: '危険な家庭用品には正しく表示し、子どもの手が届かない場所に置こう。',
       ko: '위험한 가정용 물질에 정확히 표시하고 아이들 손이 닿지 않는 곳에 두세요.',
       tr: 'Tehlikeli ev kimyasallarını doğru etiketle ve çocuklardan uzak tut.',
