@@ -58,7 +58,7 @@ jobs:
               print(f'updated: {name}')
           PY
           # This workflow is a disposable migration runner and must NOT ship in the PR.
-          git rm -- .github/workflows/one-shot-content-rename.yml
+          git rm -f -- .github/workflows/one-shot-content-rename.yml
           git add -A
           git diff --cached --check
           if git grep --cached -n 'learningApps' -- .; then
