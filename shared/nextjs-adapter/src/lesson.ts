@@ -1,4 +1,4 @@
-import { cache, type ReactNode } from 'react';
+import { cache, type ReactElement } from 'react';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { resolveEntityPath } from '@svitlo/engine';
@@ -19,7 +19,7 @@ export type LessonPageBindings<Response extends { id: string; title: string }> =
     locale: Locale;
     href: string;
     messages: UiKit_Global<'response'>;
-  }) => ReactNode;
+  }) => ReactElement;
 };
 
 /**
@@ -53,7 +53,7 @@ export function createLessonPage<Response extends { id: string; title: string }>
     return { title: response.title, description: response.title };
   }
 
-  async function Page(props: LessonPageInput): Promise<ReactNode> {
+  async function Page(props: LessonPageInput): Promise<ReactElement> {
     const { response, messages, locale, code } = await load(props);
     return bindings.renderLesson({
       response,
