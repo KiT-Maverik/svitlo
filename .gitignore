@@ -57,6 +57,9 @@ next-env.d.ts
 **/test-results/
 **/playwright-report/
 
+# The monorepo root is not a deployable application; it must not own public assets.
+/public/
+
 # UI Kit generated flag assets; sync from the dependency before dev/build
 **/public/flags/
 
