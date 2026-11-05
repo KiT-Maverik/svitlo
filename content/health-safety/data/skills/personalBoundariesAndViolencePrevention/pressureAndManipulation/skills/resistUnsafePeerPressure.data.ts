@@ -59,7 +59,7 @@ export const resistUnsafePeerPressure_Skill_Data = buildSkillConfig({
       ms: 'Cari cara selamat menolak permintaan memudaratkan daripada rakan sebaya.',
       he: 'מצאו דרכים בטוחות לסרב לבקשות מזיקות מצד בני גילכם.',
       pl: 'Znajdź bezpieczne sposoby odmawiania szkodliwym prośbom rówieśników.',
-      uk: 'Знаходь безпечні способи відмовляти на шкідливі прохання однолітків.',
+      uk: 'Знаходь безпечні способи відмовлятися виконувати шкідливі прохання однолітків.',
       lt: 'Rask saugių būdų atsisakyti žalingų bendraamžių prašymų.',
       lv: 'Atrodi drošus veidus, kā atteikt vienaudžu kaitīgajiem lūgumiem.',
       et: 'Leia ohutuid viise keelduda eakaaslaste kahjulikest palvetest.',

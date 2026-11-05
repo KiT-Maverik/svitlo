@@ -24,7 +24,7 @@ export const careForAnUnresponsivePersonWhoIsBreathingNormally_Skill_Data = buil
     mr: 'बेशुद्ध पण सामान्य श्वास घेणाऱ्या व्यक्तीची काळजी',
     ms: 'Menjaga Orang Tidak Responsif yang Bernafas Normal',
     he: 'טיפול באדם שאינו מגיב אך נושם כרגיל',
-    pl: 'Opiekować się nieprzytomnym prawidłowo oddychającym',
+    pl: 'Opiekować się osobą nieprzytomną, która oddycha prawidłowo',
     uk: 'Допомагати людині без свідомості зі збереженим нормальним диханням',
     lt: 'Rūpintis nereaguojančiu, bet normaliai kvėpuojančiu žmogumi',
     lv: 'Aprūpēt nereaģējošu cilvēku ar normālu elpošanu',

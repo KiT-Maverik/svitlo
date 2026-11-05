@@ -41,7 +41,7 @@ export const immobilizeSuspectedFractures_Skill_Data = buildSkillConfig({
       en: 'Support a possible broken bone without attempting to realign it.',
       zh: '支撑可能骨折的骨骼，不要尝试将其复位。',
       hi: 'संभावित टूटी हड्डी को सहारा दो, उसे सीधा करने का प्रयास मत करो।',
-      es: 'Sujeta un hueso posiblemente roto sin intentar recolocarlo.',
+      es: 'Inmoviliza con cuidado la zona de una posible fractura sin intentar recolocar el hueso.',
       ar: 'ادعم العظم الذي قد يكون مكسوراً دون محاولة إعادته إلى موضعه.',
       fr: 'Soutiens un os peut-être cassé sans essayer de le remettre en place.',
       bn: 'হাড় ভেঙে থাকতে পারে এমন অংশে সমর্থন দাও, নিজে সোজা করার চেষ্টা কোরো না।',

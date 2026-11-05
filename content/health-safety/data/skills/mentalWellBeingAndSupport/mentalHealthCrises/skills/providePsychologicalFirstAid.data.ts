@@ -41,7 +41,7 @@ export const providePsychologicalFirstAid_Skill_Data = buildSkillConfig({
       en: 'Offer calm practical assistance without pressuring someone to recount trauma.',
       zh: '提供冷静而实际的帮助，不强迫别人复述创伤经历。',
       hi: 'शांत और व्यावहारिक मदद दें, बिना किसी पर दुखद अनुभव दोहराने का दबाव डाले।',
-      es: 'Ofrece ayuda práctica y serena sin presionar a nadie para que reviva experiencias traumáticas.',
+      es: 'Ofrece ayuda práctica y serena sin presionar a nadie para que relate experiencias traumáticas.',
       ar: 'قدّم مساعدة هادئة وعملية دون الضغط على أحد لسرد التجربة المؤلمة.',
       fr: "Propose une aide calme et pratique sans pousser quelqu'un à raconter son traumatisme.",
       bn: 'শান্তভাবে বাস্তব সাহায্য দাও; কাউকে আঘাতের স্মৃতি বলতে চাপ দিও না।',

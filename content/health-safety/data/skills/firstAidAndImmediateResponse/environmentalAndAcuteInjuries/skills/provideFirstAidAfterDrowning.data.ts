@@ -48,7 +48,7 @@ export const provideFirstAidAfterDrowning_Skill_Data = buildSkillConfig({
       pt: 'Reconheça riscos respiratórios urgentes após afogamento e a necessidade de socorro.',
       ur: 'ڈوبنے کے بعد سانس کے فوری خطرات اور ہنگامی مدد کی ضرورت پہچانیں۔',
       id: 'Kenali risiko pernapasan darurat setelah tenggelam dan perlunya bantuan segera.',
-      de: 'Erkenne dringende Atemrisiken nach dem Ertrinken und die Notwendigkeit schneller Hilfe.',
+      de: 'Erkenne akute Atemprobleme nach einem Ertrinkungsunfall und die Notwendigkeit sofortiger Notfallhilfe.',
       ja: '溺水後の呼吸の危険と緊急救護の必要性を理解しよう。',
       ko: '물에 빠진 뒤 생길 수 있는 급박한 호흡 위험과 응급 지원의 필요성을 알아보세요.',
       tr: 'Boğulma sonrası acil solunum risklerini ve yardım çağırma gereğini tanı.',
