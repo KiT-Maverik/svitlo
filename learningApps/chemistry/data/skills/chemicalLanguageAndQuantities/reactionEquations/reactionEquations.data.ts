@@ -34,7 +34,7 @@ export const reactionEquations_SkillGroup_Data = buildSkillGroupConfig({
     be: "Раўнаньні рэакцыяў",
     ka: "რეაქციის განტოლებები",
     kk: "Реакция теңдеулері",
-    qm: "Reaktsiya teńlemeleri",
+    qm: "Reaktsiya teñlemeleri",
   },
   skills: {
     balancingEquations: balancingEquations_Skill_Data,
@@ -73,7 +73,7 @@ export const reactionEquations_SkillGroup_Data = buildSkillGroupConfig({
       be: "Дасьледуй, як раўнаньні паказваюць хімічныя ператварэньні й прапорцыі рэчываў.",
       ka: "გამოიკვლიე, როგორ ასახავს განტოლებები ქიმიურ ცვლილებებსა და თანაფარდობებს.",
       kk: "Теңдеулердің химиялық өзгерістерді және зат қатынастарын қалай көрсететінін зертте.",
-      qm: "Teńlemeler kimyeviy deñişüvlerni ve maddeler nisbetini nasıl köstergenini araştır.",
+      qm: "Teñlemeler kimyeviy deñişüvlerni ve maddeler nisbetini nasıl köstergenini araştır.",
     },
   },
 });
