@@ -61,7 +61,7 @@ export const safeCookingAndReheating_Skill_Data = buildSkillConfig({
       pl: 'Zrozum, dlaczego ważne jest właściwe gotowanie i odgrzewanie żywności.',
       uk: 'Зрозумій, чому важливо належно готувати й повторно розігрівати їжу.',
       lt: 'Suprask, kodėl svarbu tinkamai gaminti ir pašildyti maistą.',
-      lv: 'Saprot, kāpēc svarīgi ēdienu kārtīgi pagatavot un atkārtoti uzsildīt.',
+      lv: 'Saproti, kāpēc svarīgi ēdienu kārtīgi pagatavot un atkārtoti uzsildīt.',
       et: 'Mõista, miks on oluline toitu korralikult küpsetada ja uuesti kuumutada.',
       be: 'Зразумей, чаму важна належна гатаваць і паўторна разаграваць ежу.',
       ka: 'გაიგე, რატომაა მნიშვნელოვანი საკვების სათანადოდ მომზადება და ხელახლა გაცხელება.',

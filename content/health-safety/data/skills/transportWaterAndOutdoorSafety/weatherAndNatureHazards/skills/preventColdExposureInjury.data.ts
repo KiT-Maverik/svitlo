@@ -61,7 +61,7 @@ export const preventColdExposureInjury_Skill_Data = buildSkillConfig({
       pl: 'Ogranicz szkody z zimna, dbając o suchość, ochronę przed wiatrem i ocieplenie.',
       uk: 'Зменшуй шкоду від холоду, контролюючи вологість, вітер і теплоізоляцію.',
       lt: 'Mažink šalčio žalą išlikdama sausa, saugodamasi vėjo ir šiltai apsirengdama.',
-      lv: 'Mazina aukstuma kaitējumu, izvairoties no slapjuma, vēja un uzturot siltumu.',
+      lv: 'Mazini aukstuma kaitējumu, izvairoties no slapjuma, vēja un uzturot siltumu.',
       et: 'Vähenda külmakahju, hoides end kuivana, kaitstes tuule eest ja soojustades.',
       be: 'Зьмяншай шкоду ад холаду, кантралюючы вільгаць, вецер і ўцяпленьне.',
       ka: 'შეამცირე სიცივის ზიანი სიმშრალის, ქარისგან დაცვისა და სითბოს შენარჩუნებით.',

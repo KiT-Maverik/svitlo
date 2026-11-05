@@ -61,7 +61,7 @@ export const hydration_Skill_Data = buildSkillConfig({
       pl: 'Zrozum, jak aktywność i otoczenie wpływają na zapotrzebowanie na płyny.',
       uk: 'Зрозумій, як активність та умови довкілля впливають на потребу у воді.',
       lt: 'Suprask, kaip veikla ir aplinka keičia skysčių poreikį.',
-      lv: 'Saprot, kā aktivitātes un vide ietekmē šķidruma vajadzības.',
+      lv: 'Saproti, kā aktivitātes un vide ietekmē šķidruma vajadzības.',
       et: 'Mõista, kuidas aktiivsus ja keskkond mõjutavad vedelikuvajadust.',
       be: 'Зразумей, як актыўнасьць і ўмовы асяродзьдзя ўплываюць на патрэбу ў вадзе.',
       ka: 'გაიგე, როგორ ცვლის აქტივობა და გარემო სითხის საჭიროებას.',

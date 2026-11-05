@@ -61,7 +61,7 @@ export const protectHearingFromNoise_Skill_Data = buildSkillConfig({
       pl: 'Zrozum, dlaczego zarówno głośność, jak i czas słuchania wpływają na bezpieczeństwo słuchu.',
       uk: 'Зрозумій, чому і гучність, і тривалість прослуховування впливають на безпеку слуху.',
       lt: 'Suprask, kodėl tiek garsumas, tiek klausymosi trukmė veikia klausos saugą.',
-      lv: 'Saprot, kāpēc gan skaļums, gan klausīšanās ilgums ietekmē dzirdes drošību.',
+      lv: 'Saproti, kāpēc gan skaļums, gan klausīšanās ilgums ietekmē dzirdes drošību.',
       et: 'Mõista, miks nii heli tugevus kui ka kuulamise kestus mõjutavad kuulmise ohutust.',
       be: 'Зразумей, чаму і гучнасьць, і працягласьць слуханьня ўплываюць на бясьпеку слыху.',
       ka: 'გაიგე, რატომ მოქმედებს სმენის უსაფრთხოებაზე როგორც ხმის სიმაღლე, ისე მოსმენის ხანგრძლივობა.',

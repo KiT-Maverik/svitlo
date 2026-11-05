@@ -61,7 +61,7 @@ export const safeDrivingDecisions_Skill_Data = buildSkillConfig({
       pl: 'Rozpoznaj, dlaczego rozproszenie, prędkość i obniżona sprawność czynią jazdę niebezpieczną.',
       uk: 'Розпізнавай, чому відволікання, перевищення швидкості та погіршення стану роблять водіння небезпечним.',
       lt: 'Suprask, kodėl dėmesio blaškymas, greitis ir sutrikęs gebėjimas vairuoti yra pavojingi.',
-      lv: 'Saprot, kāpēc novērsta uzmanība, ātrums un pasliktinātas spējas padara braukšanu bīstamu.',
+      lv: 'Saproti, kāpēc novērsta uzmanība, ātrums un pasliktinātas spējas padara braukšanu bīstamu.',
       et: 'Mõista, miks tähelepanu hajumine, kiirus ja halvenenud juhtimisvõime on ohtlikud.',
       be: 'Распазнавай, чаму адцягваньне ўвагі, хуткасьць і пагаршэньне стану робяць кіраваньне небясьпечным.',
       ka: 'გაიგე, რატომ არის სახიფათო მართვისას ყურადღების გაფანტვა, სიჩქარე და დაქვეითებული უნარი.',

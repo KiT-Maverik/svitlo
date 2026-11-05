@@ -61,7 +61,7 @@ export const manageVisualStrain_Skill_Data = buildSkillConfig({
       pl: 'Zmniejszaj zmęczenie oczu podczas długiego czytania i pracy z ekranem.',
       uk: 'Зменшуй втому очей під час тривалого читання чи роботи з екраном.',
       lt: 'Mažink akių nuovargį ilgai skaitant ar dirbant prie ekrano.',
-      lv: 'Mazina acu nogurumu, ilgstoši lasot vai lietojot ekrānu.',
+      lv: 'Mazini acu nogurumu, ilgstoši lasot vai lietojot ekrānu.',
       et: 'Vähenda silmade väsimust pikalt lugedes või ekraaniga töötades.',
       be: 'Зьмяншай стому вачэй падчас доўгага чытаньня ці працы з экранам.',
       ka: 'შეამცირე თვალების დაღლილობა ხანგრძლივი კითხვის ან ეკრანთან მუშაობისას.',
