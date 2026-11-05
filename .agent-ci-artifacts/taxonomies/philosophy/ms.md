@@ -186,7 +186,7 @@ Skills: 5
 
 **User-friendly description (ms):** Asingkan pernyataan daripada bukti yang digunakan untuk menyokongnya.
 
-##### Membezakan bukti langsung daripada khabar angin
+##### Membezakan bukti langsung daripada keterangan dengar cakap
 
 [distinguishDirectEvidenceFromHearsay.data.ts](../../../learningApps/philosophy/data/skills/epistemologyAndCriticalEvaluation/evidenceAndTestimony/skills/distinguishDirectEvidenceFromHearsay.data.ts)
 
@@ -824,7 +824,7 @@ Skills: 6
 
 **User-friendly description (ms):** Kenal pasti hujah yang terlebih dahulu mengandaikan kesimpulan yang ingin dibuktikannya.
 
-##### Menilai Rayuan kepada Pihak Berkuasa
+##### Menilai Hujah Bersandarkan Autoriti
 
 [evaluateAnAppealToAuthority.data.ts](../../../learningApps/philosophy/data/skills/logicAndArgumentation/argumentativeFallacies/skills/evaluateAnAppealToAuthority.data.ts)
 
@@ -1624,7 +1624,7 @@ Skills: 3
 
 **Methodological description (English):** Identify content explicitly expressed versus a reasonable conversational inference that could be cancelled or revised.
 
-**User-friendly description (ms):** Bezakan maksud literal pernyataan daripada apa yang dibayangkannya.
+**User-friendly description (ms):** Bezakan makna harfiah sesuatu pernyataan daripada maksud yang disiratkannya.
 
 ##### Menilai tafsiran berdasarkan konteks
 

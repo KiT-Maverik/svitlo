@@ -840,7 +840,7 @@ Skills: 4
 
 **Methodological description (English):** Arguments connect propositions through an inferential claim; assertions, explanations, and rhetorical appeals may occur nearby without playing the same role.
 
-**User-friendly description (te):** పూర్వపక్షాలు, నిర్ధారణలు కలిసి వాదనను ఎలా నిర్మిస్తాయో తెలుసుకోండి.
+**User-friendly description (te):** ఆధార వాక్యాలు, నిర్ధారణలు కలిసి వాదనను ఎలా నిర్మిస్తాయో తెలుసుకోండి.
 
 ##### వాదనను వివరణ నుంచి వేరు చేయడం
 
@@ -858,7 +858,7 @@ Skills: 4
 
 **User-friendly description (te):** వాదన నిరూపించడానికి ప్రయత్నించే ప్రధాన వాదనను గుర్తించండి.
 
-##### వాదనలో పూర్వపక్షాలను గుర్తించడం
+##### వాదనలో ఆధార వాక్యాలను గుర్తించడం
 
 [identifyPremisesInAnArgument.data.ts](../../../learningApps/philosophy/data/skills/logicAndArgumentation/argumentsAndInference/skills/identifyPremisesInAnArgument.data.ts)
 
@@ -872,7 +872,7 @@ Skills: 4
 
 **Methodological description (English):** Arrange its relevant premises and conclusion explicitly while preserving the original reasoning rather than improving it silently.
 
-**User-friendly description (te):** స్పష్టమైన పూర్వపక్షాలు, ఆ తరువాత నిర్ధారణ ఉండేలా వాదనను తిరిగి రాయండి.
+**User-friendly description (te):** స్పష్టమైన ఆధార వాక్యాలు, ఆ తరువాత నిర్ధారణ ఉండేలా వాదనను తిరిగి రాయండి.
 
 #### నిగమన తర్కం
 
@@ -882,7 +882,7 @@ Skills: 6
 
 **Methodological description (English):** Deduction concerns whether it is possible for premises to be true while a conclusion is false. Logical form is evaluated separately from whether the premises describe the world correctly.
 
-**User-friendly description (te):** ఇచ్చిన పూర్వపక్షాల నుంచి నిర్ధారణ ఎప్పుడు తప్పనిసరిగా వస్తుందో తెలుసుకోండి.
+**User-friendly description (te):** ఇచ్చిన ఆధార వాక్యాల నుంచి నిర్ధారణ ఎప్పుడు తప్పనిసరిగా వస్తుందో తెలుసుకోండి.
 
 ##### మోడస్ పోనెన్స్‌ను వర్తింపజేయడం
 
@@ -906,7 +906,7 @@ Skills: 6
 
 **Methodological description (English):** Determine whether a conclusion must hold if the premises hold, using logical structure rather than agreement with the conclusion.
 
-**User-friendly description (te):** అన్ని పూర్వపక్షాలు నిజమైనా నిర్ధారణ తప్పుగా ఉండగలదా పరిశీలించండి.
+**User-friendly description (te):** అన్ని ఆధార వాక్యాలు నిజమైనా నిర్ధారణ తప్పుగా ఉండగలదా పరిశీలించండి.
 
 ##### చెల్లుబాటు మరియు సమర్థతను వేరు చేయడం
 
@@ -914,7 +914,7 @@ Skills: 6
 
 **Methodological description (English):** Recognize that a sound deductive argument requires both a valid inference and true premises.
 
-**User-friendly description (te):** తార్కికంగా చెల్లుబాటయ్యే వాదనలో కూడా తప్పు పూర్వపక్షాలు ఎందుకు ఉండవచ్చో తెలుసుకోండి.
+**User-friendly description (te):** తార్కికంగా చెల్లుబాటయ్యే వాదనలో కూడా తప్పు ఆధార వాక్యాలు ఎందుకు ఉండవచ్చో తెలుసుకోండి.
 
 ##### వర్గీకరణ న్యాయవాక్యాన్ని అంచనా వేయడం
 
@@ -1006,7 +1006,7 @@ Skills: 6
 
 **Methodological description (English):** Check whether a conclusion about all or some members of a domain follows from quantified premises under a stated interpretation.
 
-**User-friendly description (te):** పరిమాణకాలతో కూడిన పూర్వపక్షాలు సూచించిన నిర్ధారణను నిజంగా సూచిస్తున్నాయో పరిశీలించండి.
+**User-friendly description (te):** పరిమాణకాలతో కూడిన ఆధార వాక్యాల నుంచి ప్రతిపాదిత నిర్ధారణ నిజంగా వస్తుందో పరిశీలించండి.
 
 ##### అస్తిత్వ పరిమాణీకరణను అర్థం చేసుకోవడం
 
@@ -1112,7 +1112,7 @@ Skills: 9
 
 **Methodological description (English):** Search for a case in which all premises are true but the conclusion false to determine propositional validity.
 
-**User-friendly description (te):** పూర్వపక్షాలు నిజం కాగా నిర్ధారణ అబద్ధమయ్యే పరిస్థితిని వెతికి నిగమనాన్ని పరీక్షించండి.
+**User-friendly description (te):** ఆధార వాక్యాలు నిజం కాగా నిర్ధారణ అబద్ధమయ్యే పరిస్థితిని వెతికి నిగమనాన్ని పరీక్షించండి.
 
 ### అధిభౌతిక శాస్త్రం
 
@@ -1838,7 +1838,7 @@ Skills: 8
 
 **User-friendly description (te):** బాధ దైవత్వం గురించిన కొన్ని భావనలను ఎలా సవాలు చేస్తుందో అంచనా వేయండి.
 
-##### అస్తిత్వవాద తాత్విక వాదనను విశ్లేషించడం
+##### అస్తిత్వశాస్త్రీయ వాదనను విశ్లేషించడం
 
 [analyzeAnOntologicalArgument.data.ts](../../../learningApps/philosophy/data/skills/philosophyOfReligion/ultimateRealityAndDivinity/skills/analyzeAnOntologicalArgument.data.ts)
 

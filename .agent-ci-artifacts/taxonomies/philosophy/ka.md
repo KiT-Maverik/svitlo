@@ -178,7 +178,7 @@ Skills: 5
 
 **User-friendly description (ka):** შეამოწმე, თანხმობაში მყოფი წყაროები მართლაც დამოუკიდებელ მტკიცებულებებს გვთავაზობენ თუ არა.
 
-##### მტკიცების მისი მტკიცებულებებისგან გამორჩევა
+##### მტკიცებისა და მისი მტკიცებულებების გარჩევა
 
 [distinguishAClaimFromItsEvidence.data.ts](../../../learningApps/philosophy/data/skills/epistemologyAndCriticalEvaluation/evidenceAndTestimony/skills/distinguishAClaimFromItsEvidence.data.ts)
 
@@ -890,7 +890,7 @@ Skills: 6
 
 **Methodological description (English):** Infer a consequent from a conditional and its antecedent without treating the inverse conditional as equivalent.
 
-**User-friendly description (ka):** გამოიყენე წესი: თუ A იწვევს B-ს და A ჭეშმარიტია, მაშინ B გამომდინარეობს.
+**User-friendly description (ka):** გამოიყენე წესი: თუ A-დან B გამომდინარეობს და A ჭეშმარიტია, მაშინ B-ც ჭეშმარიტია.
 
 ##### მოდუს ტოლენსის გამოყენება
 
@@ -940,7 +940,7 @@ Skills: 4
 
 **Methodological description (English):** Many reasonable arguments support conclusions without guaranteeing them. Their strength depends on evidence, alternatives, sampling, or explanatory power rather than formal certainty.
 
-**User-friendly description (ka):** ისწავლე მსჯელობის შეფასება, რომელიც დასკვნას ამყარებს, მაგრამ სიზუსტის გარანტიას არ იძლევა.
+**User-friendly description (ka):** ისწავლე მსჯელობის შეფასება, რომელიც დასკვნას ამყარებს, მაგრამ სრული უტყუარობის გარანტიას არ იძლევა.
 
 ##### დედუქციური სიზუსტისა და ალბათური მხარდაჭერის გარჩევა
 

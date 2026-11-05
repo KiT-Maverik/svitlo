@@ -140,7 +140,7 @@ Skills: 3
 
 **Methodological description (English):** Consider how practiced perception and historical knowledge may inform an assessment without making expert preferences infallible.
 
-**User-friendly description (be):** Падумай, як фаховыя веды дапамагаюць ацэньваць, не робячы экспэртаў бязгрэшнымі.
+**User-friendly description (be):** Падумай, як фаховыя веды дапамагаюць ацэньваць, не робячы экспэртаў беспамылковымі.
 
 ### Эпістэмалёгія і крытычная ацэнка
 
