@@ -38,11 +38,11 @@ const result = await build({
 });
 const inputs = Object.keys(result.metafile.inputs);
 assert(
-  inputs.some(file => file.includes('/scenes/sceneLoader.ts')),
+  inputs.some(file => file.includes('scenes/sceneLoader.ts')),
   'Non-Next build did not bundle Scene registry',
 );
 assert(
-  inputs.some(file => file.includes('/scenes/e/how-light-moves-scene-showcase/Showcase.tsx')),
+  inputs.some(file => file.includes('scenes/e/how-light-moves-scene-showcase/Showcase.tsx')),
   'Non-Next build did not include the authored Scene',
 );
 assert(

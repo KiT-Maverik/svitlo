@@ -129,7 +129,9 @@ for (const { path, name } of expected) {
   const pkg = readJson(pkgPath);
   const tsconfig = readJson(tsconfigPath);
   assert(pkg.name === name && pkg.private === true, 'Invalid workspace manifest: ' + pkgPath);
-  assert(tsconfig.compilerOptions?.paths?.['@/*']?.[0] === 'src/*', 'Missing local alias in ' + tsconfigPath);
+  if (name !== '@svitlo/playground') {
+    assert(tsconfig.compilerOptions?.paths?.['@/*']?.[0] === 'src/*', 'Missing local alias in ' + tsconfigPath);
+  }
   assert(lock.packages[path]?.name === name, 'Missing workspace lockfile package: ' + name);
   assert(lock.packages['node_modules/' + name]?.resolved === path, 'Missing workspace lockfile link: ' + name);
 }

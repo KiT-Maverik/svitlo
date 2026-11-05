@@ -1,7 +1,7 @@
 # Playground textbook
 
 `@svitlo/playground` owns the authored How Light Moves lesson, demonstration Skills,
-interactive React Scenes, static Scene registry, and published textbook resources.
+interactive React Scenes in `scenes/`, a static Scene registry, and published textbook resources.
 It has no Next.js routes or standalone server. `apps/web` hosts the textbook.
 
 Authored content lives in `data/`. The Web build runs the existing generators

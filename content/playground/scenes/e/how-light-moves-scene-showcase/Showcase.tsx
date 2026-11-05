@@ -4,7 +4,7 @@ import { useState, type CSSProperties } from 'react';
 import { LIGHT_SPEED_KM_S, media } from './Showcase.constants';
 import styles from './Showcase.module.css';
 import { useSceneLocale } from '@svitlo/ui-kit/scene-locale';
-import type { Showcase_ContentBlock } from '../../../../../data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/sections/practice/scenes/showcase';
+import type { Showcase_ContentBlock } from '../../../data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/sections/practice/scenes/showcase';
 
 export function Showcase({ locales }: Pick<Showcase_ContentBlock<'response'>, 'locales'>) {
   const locale = useSceneLocale();

@@ -13,12 +13,8 @@
     "noEmit": true,
     "allowJs": true,
     "jsx": "react-jsx",
-    "incremental": true,
-    "paths": {
-      "@/*": ["src/*"]
-    },
-    "baseUrl": "."
+    "incremental": true
   },
-  "include": ["data/**/*.ts", "src/**/*.ts", "src/**/*.tsx"],
-  "exclude": ["node_modules", ".test-build", "test-results", "playwright-report", "src/**/*.typecheck.ts"]
+  "include": ["data/**/*.ts", "scenes/**/*.ts", "scenes/**/*.tsx"],
+  "exclude": ["node_modules", ".test-build", "test-results", "playwright-report"]
 }

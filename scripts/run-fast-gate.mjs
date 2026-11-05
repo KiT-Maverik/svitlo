@@ -158,7 +158,7 @@ function runGate(changed) {
     changed.some(
       file =>
         file.startsWith('apps/web/') ||
-        file.startsWith('content/playground/src/components/scenes/') ||
+        file.startsWith('content/playground/scenes/') ||
         file.startsWith('content/playground/scripts/check-react-dom-portability') ||
         file === 'content/playground/package.json' ||
         file === 'shared/ui-kit/src/scene-locale.tsx',
@@ -206,7 +206,7 @@ function runGate(changed) {
           file.startsWith('shared/adapters/nextjs/') ||
           file.startsWith('shared/ui-kit/src/components/lesson/') ||
           file.startsWith('shared/ui-kit/src/components/widgets/ContentBlockRenderer/blocks/Image/') ||
-          file.startsWith('content/playground/src/components/scenes/') ||
+          file.startsWith('content/playground/scenes/') ||
           file.startsWith('apps/web/'),
       )
     ) {
