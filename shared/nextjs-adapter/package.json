@@ -13,6 +13,10 @@
     "./lesson": {
       "types": "./dist/lesson.d.ts",
       "default": "./dist/lesson.js"
+    },
+    "./image": {
+      "types": "./dist/image.d.ts",
+      "default": "./dist/image.js"
     }
   },
   "files": [
