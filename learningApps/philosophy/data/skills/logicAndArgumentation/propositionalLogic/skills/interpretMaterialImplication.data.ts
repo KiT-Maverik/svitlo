@@ -55,7 +55,7 @@ export const interpretMaterialImplication_Skill_Data = buildSkillConfig({
       vi: 'Hiểu khi nào mệnh đề điều kiện đúng trong logic mệnh đề cổ điển.',
       ta: 'செவ்வியல் கூற்றுத் தருக்கத்தில் நிபந்தனைக் கூற்று எப்போது உண்மை எனப் புரிந்துகொள்.',
       te: 'సాంప్రదాయ ప్రతిపాదన తర్కంలో షరతు వాక్యం ఎప్పుడు నిజమో అర్థం చేసుకోండి.',
-      mr: 'परंपरागत विधान तर्कात अट असलेले विधान कधी खरे असते ते समज.',
+      mr: 'परंपरागत विधान तर्कात अट असलेले विधान कधी खरे असते ते समजा.',
       ms: 'Fahami bila pernyataan bersyarat benar dalam logik proposisi klasik.',
       he: 'הבינו מתי פסוק תנאי נכון בלוגיקה פסוקית קלאסית.',
       pl: 'Zrozum, kiedy implikacja jest prawdziwa w klasycznym rachunku zdań.',

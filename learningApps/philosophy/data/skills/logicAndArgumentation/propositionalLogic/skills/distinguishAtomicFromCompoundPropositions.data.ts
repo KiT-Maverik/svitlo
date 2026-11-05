@@ -55,7 +55,7 @@ export const distinguishAtomicFromCompoundPropositions_Skill_Data = buildSkillCo
       vi: 'Phân biệt mệnh đề đơn với mệnh đề ghép bằng các liên kết logic.',
       ta: 'ஒற்றைக் கூற்றையும் தருக்க இணைப்பிகளால் ஆன கூட்டுக் கூற்றையும் வேறுபடுத்து.',
       te: 'ఒకే ప్రతిపాదనను తార్కిక అనుసంధానాలతో కూడిన ప్రతిపాదన నుంచి వేరు చేయండి.',
-      mr: 'एक स्वतंत्र विधान आणि तार्किक संयोजकांनी बनलेले विधान यात फरक कर.',
+      mr: 'एक स्वतंत्र विधान आणि तार्किक संयोजकांनी बनलेले विधान यात फरक करा.',
       ms: 'Bezakan satu proposisi dengan proposisi yang dibina menggunakan penghubung logik.',
       he: 'הבחינו בין פסוק יחיד לפסוק המורכב מפסוקים באמצעות קשרים לוגיים.',
       pl: 'Odróżnij pojedyncze zdanie od zdania złożonego ze spójników logicznych.',

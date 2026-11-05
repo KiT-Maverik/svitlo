@@ -55,7 +55,7 @@ export const constructATruthTable_Skill_Data = buildSkillConfig({
       vi: 'Lập bảng các cách gán giá trị đúng sai có thể có cho biểu thức logic.',
       ta: 'தருக்க வெளிப்பாட்டின் சாத்தியமான எல்லா உண்மை மதிப்புகளையும் அட்டவணையாக்கு.',
       te: 'తార్కిక వ్యక్తీకరణకు సాధ్యమైన అన్ని సత్య విలువలతో పట్టిక తయారు చేయండి.',
-      mr: 'तार्किक विधानाच्या शक्य सत्य-असत्य मूल्यांची सारणी तयार कर.',
+      mr: 'तार्किक विधानाच्या शक्य सत्य-असत्य मूल्यांची सारणी तयार करा.',
       ms: 'Bina jadual semua kemungkinan nilai benar atau palsu bagi ungkapan logik.',
       he: 'בנו טבלה של כל ההשמות האפשריות לערכי אמת של ביטוי לוגי.',
       pl: 'Zbuduj tabelę możliwych przypisań wartości logicznych danemu wyrażeniu.',

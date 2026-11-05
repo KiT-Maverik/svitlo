@@ -55,7 +55,7 @@ export const interpretLogicalBiconditional_Skill_Data = buildSkillConfig({
       vi: "Hiểu 'khi và chỉ khi' đòi hỏi kéo theo theo cả hai chiều.",
       ta: "'அப்போது மட்டுமே' என்ற இருவழி நிபந்தனை இரண்டு திசைகளிலும் விளைவுறுதல் வேண்டும் என அறி.",
       te: "'అప్పుడూ, అప్పుడే మాత్రమే' అన్నది రెండు దిశలలోనూ అనుసరణ అవసరమని గుర్తించండి.",
-      mr: "'तेव्हाच आणि तेव्हाच फक्त' यासाठी दोन्ही दिशांनी अंतर्भाव लागतो हे ओळख.",
+      mr: "'तेव्हाच आणि तेव्हाच फक्त' यासाठी दोन्ही दिशांनी अंतर्भाव लागतो हे ओळखा.",
       ms: "Fahami bahawa 'jika dan hanya jika' memerlukan implikasi dalam kedua-dua arah.",
       he: "זהו ש'אם ורק אם' מחייב גרירה בשני הכיוונים.",
       pl: 'Rozpoznaj, że „wtedy i tylko wtedy, gdy” wymaga implikacji w obu kierunkach.',

@@ -55,7 +55,7 @@ export const interpretLogicalNegation_Skill_Data = buildSkillConfig({
       vi: 'Hiểu việc phủ định một nhận định làm thay đổi điều kiện đúng sai ra sao.',
       ta: 'ஒரு கூற்றை மறுப்பது அதன் உண்மை நிபந்தனைகளை எவ்வாறு மாற்றுகிறது எனப் புரிந்துகொள்.',
       te: 'ఒక వాదనను నిరాకరిస్తే దాని సత్య షరతులు ఎలా మారతాయో తెలుసుకోండి.',
-      mr: 'एखादे विधान नाकारल्यावर सत्यतेच्या अटी कशा बदलतात ते समज.',
+      mr: 'एखादे विधान नाकारल्यावर सत्यतेच्या अटी कशा बदलतात ते समजा.',
       ms: 'Fahami bagaimana penafian sesuatu dakwaan mengubah syarat kebenarannya.',
       he: 'הבינו כיצד שלילת טענה משנה את תנאי האמת שלה.',
       pl: 'Zrozum, jak zaprzeczenie twierdzenia zmienia jego warunki prawdziwości.',
