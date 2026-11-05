@@ -55,7 +55,7 @@ export const macromolecules_SkillGroup_Data = buildSkillGroupConfig({
       pt: "Entenda como unidades repetidas formam grandes moléculas com propriedades distintas.",
       ur: "سمجھو کہ دہرائی جانے والی ساختی اکائیاں مخصوص خصوصیات والے بڑے سالمے کیسے بناتی ہیں۔",
       id: "Pahami bagaimana unit berulang membentuk molekul besar dengan sifat khusus.",
-      de: "Verstehe, wie sich wiederholende Bausteine große Moleküle mit besonderen Eigenschaften bilden.",
+      de: "Verstehe, wie sich aus wiederholenden Bausteinen große Moleküle mit besonderen Eigenschaften bilden.",
       ja: "繰り返し単位が集まり、独特な性質の大きな分子ができるしくみを学ぼう。",
       ko: "반복되는 기본 단위가 독특한 성질의 큰 분자를 형성하는 원리를 이해해 보세요.",
       tr: "Tekrarlanan yapı birimlerinin kendine özgü özellikleri olan büyük molekülleri nasıl oluşturduğunu anla.",

@@ -65,7 +65,7 @@ export const metallicBonding_Skill_Data = buildSkillConfig({
       be: "Зьвяжы рухомыя электроны ў мэталах зь іх характэрнымі ўласьцівасьцямі.",
       ka: "დააკავშირე ლითონებში მოძრავი ელექტრონები მათ დამახასიათებელ თვისებებთან.",
       kk: "Металдардағы қозғалмалы электрондарды олардың тән қасиеттерімен байланыстыр.",
-      qm: "Metallardaki areketli elektronlarnı olarnıñ hususiy hususiyetlerinen bağla.",
+      qm: "Metallardaki areketli elektronlarnı olarnıñ özüne has hususiyetlerinen bağla.",
     },
   },
 });
