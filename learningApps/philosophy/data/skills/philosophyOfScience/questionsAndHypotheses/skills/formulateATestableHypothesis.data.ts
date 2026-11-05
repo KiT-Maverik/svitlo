@@ -32,7 +32,7 @@ export const formulateATestableHypothesis_Skill_Data = buildSkillConfig({
     be: 'Фармуляваць правяральную гіпотэзу',
     ka: 'შემოწმებადი ჰიპოთეზის ჩამოყალიბება',
     kk: 'Тексерілетін гипотеза тұжырымдау',
-    qm: 'Sınalğan faraziyeni qurmaq',
+    qm: 'Sınamaq mümkün olğan faraziyeni qurmaq',
   },
   description: {
     methodological:
