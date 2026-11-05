@@ -3,8 +3,11 @@ import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
+import { createRequire } from 'node:module';
 
 const root = fileURLToPath(new URL('../../../', import.meta.url));
+const require = createRequire(import.meta.url);
+const { DEFAULT_SUPPORTED_LANGUAGES } = require('@svitlo/contracts/localization');
 const script = path.join(root, 'shared/ui-kit/scripts/generate-locales.mjs');
 const args = ['--package', 'learningApps/playground'];
 
@@ -16,11 +19,11 @@ function generate(...flags) {
 }
 
 describe('global UI Kit translation coverage', () => {
-  it('audits all 29 required languages without writing generated files', () => {
+  it('audits every canonical language without writing generated files', () => {
     const result = generate('--audit');
     assert.equal(result.status, 0, result.stderr);
     const audit = JSON.parse(result.stdout);
-    assert.equal(audit.languages, 29);
+    assert.equal(audit.languages, DEFAULT_SUPPORTED_LANGUAGES.length);
     assert.equal(audit.componentCount, 10);
     assert.equal(audit.missing.lesson, undefined);
     assert.equal(audit.missing.navbarPreferences, undefined);
