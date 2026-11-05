@@ -66,7 +66,7 @@ export const ethicsAndMoralReasoning_SkillDomain_Data = buildSkillDomainConfig({
       ko: '행동을 옳거나 그르게 만드는 것이 무엇인지, 도덕적 판단을 어떻게 정당화하는지 탐구하세요.',
       tr: 'Eylemleri doğru ya da yanlış kılan şeyleri ve ahlaki yargıların nasıl gerekçelendirildiğini araştır.',
       vi: 'Khám phá điều gì khiến hành động đúng hay sai và cách biện minh cho các phán đoán đạo đức.',
-      ta: 'செயல்கள் சரியா தவறா என்பதை எது தீர்மானிக்கிறது, அறநெறித் தீர்ப்புகளை எவ்வாறு நியாயப்படுத்தலாம் என்பதைக் ஆராயுங்கள்.',
+      ta: 'செயல்கள் சரியா தவறா என்பதை எது தீர்மானிக்கிறது, அறநெறித் தீர்ப்புகளை எவ்வாறு நியாயப்படுத்தலாம் என்பதை ஆராயுங்கள்.',
       te: 'చర్యలు సరైనవో తప్పో నిర్ణయించేది ఏమిటో, నైతిక నిర్ణయాలను ఎలా సమర్థించవచ్చో పరిశీలించండి.',
       mr: 'कृती योग्य किंवा अयोग्य कशामुळे ठरतात आणि नैतिक निर्णयांचे समर्थन कसे करता येते ते शोधा.',
       ms: 'Terokai perkara yang menjadikan tindakan betul atau salah dan cara mewajarkan pertimbangan moral.',
