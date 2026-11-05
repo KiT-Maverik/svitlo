@@ -106,7 +106,7 @@ Skills: 4
 
 **Methodological description (English):** Test a proposed criterion against borderline cases, changing practices, and works that challenge established categories.
 
-**User-friendly description (uk):** Перевіряй визначення мистецтва на незвичних і пограничних прикладах.
+**User-friendly description (uk):** Перевіряй визначення мистецтва на незвичних або межових прикладах.
 
 #### Цінність і смак
 
@@ -210,7 +210,7 @@ Skills: 5
 
 **Methodological description (English):** Belief, truth, evidence, and knowledge have distinct roles in epistemic evaluation. Competing theories of knowledge can disagree about exactly how those roles connect.
 
-**User-friendly description (uk):** З’ясуй, як віра в твердження, істина, докази й знання пов’язані між собою, але відрізняються.
+**User-friendly description (uk):** З’ясуй, як переконання, істина, докази й знання пов’язані між собою, але відрізняються.
 
 ##### Аналізувати математичне доведення як обґрунтування
 
@@ -278,7 +278,7 @@ Skills: 5
 
 **User-friendly description (uk):** Відрізняй фактичний репортаж від тлумачення й обстоювання позиції.
 
-##### Оцінювати докази за газетним заголовком
+##### Оцінювати докази, на яких ґрунтується заголовок
 
 [evaluateEvidenceBehindAHeadline.data.ts](../../../learningApps/philosophy/data/skills/epistemologyAndCriticalEvaluation/mediaAndPublicInformation/skills/evaluateEvidenceBehindAHeadline.data.ts)
 
@@ -372,13 +372,13 @@ Skills: 5
 
 **User-friendly description (uk):** Перевіряй, чи згода є поінформованою, добровільною та наданою уповноваженою особою.
 
-##### Оцінювати обов’язки щодо нелюдських тварин
+##### Оцінювати моральні обов’язки щодо інших тварин
 
 [evaluateDutiesTowardNonhumanAnimals.data.ts](../../../learningApps/philosophy/data/skills/ethicsAndMoralReasoning/appliedEthics/skills/evaluateDutiesTowardNonhumanAnimals.data.ts)
 
 **Methodological description (English):** Compare grounds for considering animal welfare or moral status in choices that affect sentient beings.
 
-**User-friendly description (uk):** Досліджуй моральні підстави враховувати добробут нелюдських тварин.
+**User-friendly description (uk):** Досліджуй моральні підстави враховувати добробут інших тварин.
 
 ##### Оцінювати екологічні обов’язки
 
@@ -1006,7 +1006,7 @@ Skills: 6
 
 **Methodological description (English):** Check whether a conclusion about all or some members of a domain follows from quantified premises under a stated interpretation.
 
-**User-friendly description (uk):** Перевір, чи засновки з кванторами справді передбачають запропонований висновок.
+**User-friendly description (uk):** Перевір, чи запропонований висновок справді випливає із засновків, що містять квантори.
 
 ##### Тлумачення квантора існування
 
@@ -1064,7 +1064,7 @@ Skills: 9
 
 **Methodological description (English):** A proposition can stand alone or form part of a statement built with logical connectives; truth-functional structure differs from the number of words in an ordinary sentence.
 
-**User-friendly description (uk):** Відрізняй просте висловлювання від складеного за допомогою логічних зв’язок.
+**User-friendly description (uk):** Відрізняй просте висловлювання від складного, утвореного за допомогою логічних зв’язок.
 
 ##### Тлумачення логічної еквіваленції
 
@@ -1522,7 +1522,7 @@ Skills: 4
 
 **Methodological description (English):** Reasoned dialogue seeks understanding and justified revision, not simply winning assent. Participants must fairly represent alternatives and keep interpersonal respect separate from agreement.
 
-**User-friendly description (uk):** Дізнайся, як поважна незгода допомагає нам переосмислювати ідеї.
+**User-friendly description (uk):** Дізнайся, як шанобливе висловлення незгоди допомагає нам переосмислювати ідеї.
 
 ##### Постановка поглибленого філософського питання
 
@@ -1744,7 +1744,7 @@ Skills: 3
 
 **Methodological description (English):** Compare accounts of how conflicting ultimate-belief claims might be understood and evaluated while respecting freedom of conscience.
 
-**User-friendly description (uk):** Досліджуй філософські відповіді на суперечливі релігійні претензії на істину.
+**User-friendly description (uk):** Досліджуй філософські відповіді на конкуруючі релігійні твердження про істину.
 
 ##### Аналізувати релігійну толерантність як етичний принцип
 
@@ -1994,7 +1994,7 @@ Skills: 9
 
 **Methodological description (English):** Show how allocating participants or units by chance can reduce systematic pre-existing differences between comparison groups.
 
-**User-friendly description (uk):** Поясни, як випадковий розподіл на групи може зменшити попередні відмінності.
+**User-friendly description (uk):** Поясни, як випадковий розподіл учасників між групами може зменшити початкові відмінності.
 
 ##### Пояснювати одинарне засліплення
 

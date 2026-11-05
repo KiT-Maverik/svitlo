@@ -444,7 +444,7 @@ Skills: 5
 
 **Methodological description (English):** Consider the traits and practical judgment exemplified by an action rather than evaluating only isolated rules or outcomes.
 
-**User-friendly description (qm):** Areketniñ xarakter ve ameliy ikmet aqqında neni köstergeni aqqında sora.
+**User-friendly description (qm):** Areketniñ harakter ve ameliy ikmet aqqında neni köstergeni aqqında sora.
 
 ##### Bir dilemmada etik nazariyelerni qıyaslamaq
 
@@ -1746,7 +1746,7 @@ Skills: 3
 
 **User-friendly description (qm):** Bir-birine qarşı turğan dinîy aqiqat iddialarına felsefiy cevapları araştır.
 
-##### Dinîy hoşgörüni etik qaidə olaraq tahlil etmek
+##### Dinîy hoşgörüni etik qaide olaraq tahlil etmek
 
 [analyzeReligiousToleranceAsAnEthicalPrinciple.data.ts](../../../learningApps/philosophy/data/skills/philosophyOfReligion/diversityAndMeaning/skills/analyzeReligiousToleranceAsAnEthicalPrinciple.data.ts)
 
@@ -1788,7 +1788,7 @@ Skills: 4
 
 **User-friendly description (qm):** Dinîy fikirlerni muzakere etüv ile dinîy adetlerde iştirak etüv arasındaki farqnı ayır.
 
-##### Haber etilgen mucize aqqındaki iddianı qıymetlendirmek
+##### Haber etilgen mücize aqqındaki iddianı qıymetlendirmek
 
 [evaluateAReportedMiracleClaim.data.ts](../../../learningApps/philosophy/data/skills/philosophyOfReligion/faithReasonAndExperience/skills/evaluateAReportedMiracleClaim.data.ts)
 
@@ -1898,7 +1898,7 @@ Skills: 6
 
 **User-friendly description (qm):** Deliller sebep-netice bağları aqqında neni isbatlay ala, neni isbatlay almay, ögren.
 
-##### Ölçüvniñ doğrulığını baalamaq
+##### Ölçüvniñ keçerliligini baalamaq
 
 [assessMeasurementValidity.data.ts](../../../learningApps/philosophy/data/skills/philosophyOfScience/evidenceAndCausalInference/skills/assessMeasurementValidity.data.ts)
 
@@ -1994,7 +1994,7 @@ Skills: 9
 
 **Methodological description (English):** Show how allocating participants or units by chance can reduce systematic pre-existing differences between comparison groups.
 
-**User-friendly description (qm):** Gruppalarnı tesadüfen bölmek evelden olğan farqlarnı nasıl azaytqanını añlat.
+**User-friendly description (qm):** Qatnaşqanlarnı tesadüfen gruppalarğa taqsim etmek gruppalar arasında evelden olğan farqlarnı nasıl azayta bilgenini añlat.
 
 ##### Tek taraflı körlemeni añlatmaq
 
@@ -2062,7 +2062,7 @@ Skills: 5
 
 **User-friendly description (qm):** Qayd etilgen şeyni ve bir adam onı nasıl añlatqanını ayır.
 
-##### Sınalğan faraziyeni qurmaq
+##### Sınamaq mümkün olğan faraziyeni qurmaq
 
 [formulateATestableHypothesis.data.ts](../../../learningApps/philosophy/data/skills/philosophyOfScience/questionsAndHypotheses/skills/formulateATestableHypothesis.data.ts)
 
@@ -2086,7 +2086,7 @@ Skills: 6
 
 **Methodological description (English):** Scientific conclusions are provisional but not arbitrary: shared procedures, criticism, reproducibility, and explanatory success distinguish responsible inquiry from mere assertion.
 
-**User-friendly description (qm):** Tenqit ve yañı deliller ilmiy nazariyelerni nasıl yaxşılata, ögren.
+**User-friendly description (qm):** Tenqit ve yañı deliller ilmiy nazariyelerni nasıl yahşılata, ögren.
 
 ##### İlmiy nazariyeni faraziyeden ayırmaq
 
@@ -2170,7 +2170,7 @@ Skills: 4
 
 **Methodological description (English):** Evaluate allocation by need, merit, equality, entitlement, or sufficiency and identify conflicts between principles.
 
-**User-friendly description (qm):** Resurslarnı ihtiyaç, izmet, aqlar ya da teñlik boyunca paýlaştırmaq kerekmi, baala.
+**User-friendly description (qm):** Resurslarnı ihtiyaç, izmet, aqlar ya da teñlik boyunca paylaştırmaq kerekmi, baala.
 
 ##### Teñlik ve adil muamele farqı
 

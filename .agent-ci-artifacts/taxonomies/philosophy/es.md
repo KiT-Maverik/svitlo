@@ -186,7 +186,7 @@ Skills: 5
 
 **User-friendly description (es):** Separa lo que se afirma de las pruebas utilizadas para respaldarlo.
 
-##### Distinguir evidencia directa de rumores
+##### Distinguir pruebas directas de información de oídas
 
 [distinguishDirectEvidenceFromHearsay.data.ts](../../../learningApps/philosophy/data/skills/epistemologyAndCriticalEvaluation/evidenceAndTestimony/skills/distinguishDirectEvidenceFromHearsay.data.ts)
 
@@ -262,7 +262,7 @@ Skills: 5
 
 **User-friendly description (es):** Aprende a investigar noticias, opiniones y afirmaciones compartidas públicamente.
 
-##### Distinguir desinformación errónea de acusaciones de engaño deliberado
+##### Distinguir la información errónea de las acusaciones de engaño deliberado
 
 [distinguishMisinformationFromDeliberateDeceptionClaims.data.ts](../../../learningApps/philosophy/data/skills/epistemologyAndCriticalEvaluation/mediaAndPublicInformation/skills/distinguishMisinformationFromDeliberateDeceptionClaims.data.ts)
 
@@ -1994,7 +1994,7 @@ Skills: 9
 
 **Methodological description (English):** Show how allocating participants or units by chance can reduce systematic pre-existing differences between comparison groups.
 
-**User-friendly description (es):** Explica cómo repartir grupos al azar puede reducir diferencias previas.
+**User-friendly description (es):** Explica cómo asignar al azar a las personas a distintos grupos puede reducir las diferencias iniciales.
 
 ##### Explicar el enmascaramiento simple
 
@@ -2246,7 +2246,7 @@ Skills: 4
 
 **Methodological description (English):** Consider the moral conditions, aims, and limits of nonviolent principled lawbreaking without equating legality with morality.
 
-**User-friendly description (es):** Debate argumentos morales sobre el incumplimiento principista y no violento de las leyes.
+**User-friendly description (es):** Debate los argumentos morales a favor de desobedecer las leyes de manera no violenta y por principios.
 
 ##### Comparar argumentos del contrato social
 

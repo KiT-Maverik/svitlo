@@ -1412,7 +1412,7 @@ Skills: 4
 
 **User-friendly description (de):** Unterscheide Beschreibungen von Gefühlen und körperlichen Vorgängen im Gehirn.
 
-##### Das Fremdpsychische-Problem erklären
+##### Das Problem des Fremdpsychischen erklären
 
 [explainTheProblemOfOtherMinds.data.ts](../../../learningApps/philosophy/data/skills/mindSelfAndHumanExistence/mindAndConsciousness/skills/explainTheProblemOfOtherMinds.data.ts)
 
@@ -2126,7 +2126,7 @@ Skills: 6
 
 **Methodological description (English):** Show why repeating an investigation can expose chance results, context dependence, or methodological errors.
 
-**User-friendly description (de):** Verstehe, warum das Wiederholen von Untersuchungen Ergebnisse überprüfen hilft.
+**User-friendly description (de):** Verstehe, warum die Wiederholung von Untersuchungen hilft, Ergebnisse zu überprüfen.
 
 ##### Interessenkonflikte in der Forschung erkennen
 
@@ -2136,7 +2136,7 @@ Skills: 6
 
 **User-friendly description (de):** Erkenne Beziehungen, die beeinflussen könnten, wie Forschende Studien durchführen oder darüber berichten.
 
-### Sozial- und politische Philosophie
+### Sozialphilosophie und politische Philosophie
 
 Groups: 6 · Skills: 23
 

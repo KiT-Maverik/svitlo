@@ -186,7 +186,7 @@ Skills: 5
 
 **User-friendly description (pl):** Oddziel samo twierdzenie od dowodów przedstawianych na jego poparcie.
 
-##### Odróżniać dowody bezpośrednie od pogłosek
+##### Odróżniać dowody bezpośrednie od informacji zasłyszanych
 
 [distinguishDirectEvidenceFromHearsay.data.ts](../../../learningApps/philosophy/data/skills/epistemologyAndCriticalEvaluation/evidenceAndTestimony/skills/distinguishDirectEvidenceFromHearsay.data.ts)
 
@@ -1788,7 +1788,7 @@ Skills: 4
 
 **User-friendly description (pl):** Odróżnij omawianie idei religijnych od uczestnictwa w praktykach religijnych.
 
-##### Ocena twierdzenia o rzekomym cudzie
+##### Ocena doniesienia o cudzie
 
 [evaluateAReportedMiracleClaim.data.ts](../../../learningApps/philosophy/data/skills/philosophyOfReligion/faithReasonAndExperience/skills/evaluateAReportedMiracleClaim.data.ts)
 
@@ -2246,7 +2246,7 @@ Skills: 4
 
 **Methodological description (English):** Consider the moral conditions, aims, and limits of nonviolent principled lawbreaking without equating legality with morality.
 
-**User-friendly description (pl):** Dyskutuj moralne argumenty za zasadniczym, pokojowym nieprzestrzeganiem prawa.
+**User-friendly description (pl):** Rozważ moralne argumenty za pokojowym łamaniem prawa w imię zasad.
 
 ##### Porównanie argumentów umowy społecznej
 

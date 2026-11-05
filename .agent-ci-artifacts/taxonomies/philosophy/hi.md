@@ -1320,7 +1320,7 @@ Skills: 5
 
 **User-friendly description (hi):** इरादतन किए गए कार्य और केवल घट जाने वाली घटना में अंतर करें।
 
-##### कर्म के कारणों और व्यवहार के कारक कारणों में अंतर करना
+##### कर्म के औचित्य और व्यवहार के कारणों में अंतर करना
 
 [distinguishReasonsForActionFromCausesOfBehavior.data.ts](../../../learningApps/philosophy/data/skills/mindSelfAndHumanExistence/agencyAndFreeWill/skills/distinguishReasonsForActionFromCausesOfBehavior.data.ts)
 
@@ -1430,13 +1430,13 @@ Skills: 4
 
 **User-friendly description (hi):** समय के साथ बदलावों के बावजूद कोई व्यक्ति वही व्यक्ति कैसे बना रहता है, यह जानें।
 
-##### व्यक्तित्व की कसौटी का विश्लेषण
+##### व्यक्ति माने जाने की कसौटी का विश्लेषण
 
 [analyzeAPersonhoodCriterion.data.ts](../../../learningApps/philosophy/data/skills/mindSelfAndHumanExistence/personalIdentity/skills/analyzeAPersonhoodCriterion.data.ts)
 
 **Methodological description (English):** Test a proposed condition of being a person against borderline cases without assigning anyone lesser real-world dignity.
 
-**User-friendly description (hi):** मानवीय गरिमा को नकारे बिना कठिन उदाहरणों से व्यक्तित्व की कसौटियों को परखें।
+**User-friendly description (hi):** मानवीय गरिमा को नकारे बिना कठिन उदाहरणों से व्यक्ति माने जाने की कसौटियों को परखें।
 
 ##### शारीरिक और मनोवैज्ञानिक निरंतरता के सिद्धांतों की तुलना
 
@@ -1994,7 +1994,7 @@ Skills: 9
 
 **Methodological description (English):** Show how allocating participants or units by chance can reduce systematic pre-existing differences between comparison groups.
 
-**User-friendly description (hi):** बताएँ कि संयोग से समूहों में बाँटना पहले से मौजूद अंतर कैसे कम कर सकता है।
+**User-friendly description (hi):** बताएँ कि प्रतिभागियों को यादृच्छिक रूप से समूहों में बाँटने से पहले से मौजूद अंतर कैसे कम हो सकते हैं।
 
 ##### एकल अंध अध्ययन समझाएँ
 
@@ -2002,7 +2002,7 @@ Skills: 9
 
 **Methodological description (English):** Identify which party is kept unaware of assigned conditions and how that may reduce particular expectation-related effects.
 
-**User-friendly description (hi):** समझें कि एक समूह से आवंटित स्थिति छिपाने से अपेक्षाओं का असर कैसे घटता है।
+**User-friendly description (hi):** समझें कि अध्ययन की शर्त की जानकारी किसी एक पक्ष से छिपाने पर अपेक्षाओं का प्रभाव कैसे कम होता है।
 
 ##### नियंत्रण समूह का उद्देश्य समझाएँ
 
