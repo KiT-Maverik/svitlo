@@ -46,7 +46,7 @@ export const evaluateContextualInterpretations_Skill_Data = buildSkillConfig({
       fr: 'Choisis entre plusieurs interprétations en tenant compte du contexte et des preuves disponibles.',
       bn: 'প্রেক্ষাপট ও পাওয়া প্রমাণ বিবেচনা করে ব্যাখ্যাগুলোর মধ্যে বেছে নাও।',
       pt: 'Escolha entre interpretações considerando o contexto e as evidências disponíveis.',
-      ur: 'حالات اور دستیاب شواہد دیکھ کر مختلف تعبیروں میں سے انتخاب کرو۔',
+      ur: 'حالات اور دستیاب شواہد دیکھ کر مختلف تعبیروں میں سے انتخاب کریں۔',
       id: 'Pilih tafsiran dengan mempertimbangkan konteks dan bukti yang tersedia.',
       de: 'Wähle zwischen Deutungen anhand des Kontexts und verfügbarer Belege.',
       ja: '文脈と証拠を考えて複数の解釈を比べ、判断しよう。',
