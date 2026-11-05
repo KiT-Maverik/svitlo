@@ -40,7 +40,7 @@ export const explainRandomAssignment_Skill_Data = buildSkillConfig({
     frontend: {
       en: 'Explain how assigning groups by chance can reduce pre-existing differences.',
       zh: '说明随机分组如何减少原本存在的群体差异。',
-      hi: 'बताएँ कि प्रतिभागियों को यादृच्छिक रूप से समूहों में बाँटने से पहले से मौजूद अंतर कैसे कम हो सकते हैं।'
+      hi: 'बताएँ कि प्रतिभागियों को यादृच्छिक रूप से समूहों में बाँटने से पहले से मौजूद अंतर कैसे कम हो सकते हैं।',
       es: 'Explica cómo asignar al azar a las personas a distintos grupos puede reducir las diferencias iniciales.',
       ar: 'اشرح كيف يمكن لتوزيع المشاركين عشوائيًا أن يقلل الفروق الموجودة مسبقًا.',
       fr: 'Explique comment répartir les participants au hasard peut limiter les différences préexistantes.',
@@ -59,14 +59,14 @@ export const explainRandomAssignment_Skill_Data = buildSkillConfig({
       ms: 'Terangkan cara pengagihan kumpulan secara rawak boleh mengurangkan perbezaan sedia ada.',
       he: 'הסבירו כיצד חלוקה אקראית לקבוצות עשויה לצמצם הבדלים שהיו קיימים מראש.',
       pl: 'Wyjaśnij, jak losowy podział na grupy może ograniczyć wcześniejsze różnice.',
-      uk: 'Поясни, як випадковий розподіл учасників між групами може зменшити початкові відмінності.'
+      uk: 'Поясни, як випадковий розподіл учасників між групами може зменшити початкові відмінності.',
       lt: 'Paaiškink, kaip atsitiktinis paskirstymas į grupes gali sumažinti pradinius skirtumus.',
       lv: 'Izskaidro, kā nejaušs sadalījums grupās var mazināt sākotnējās atšķirības.',
       et: 'Selgita, kuidas juhuslik rühmadesse jaotamine võib vähendada algseid erinevusi.',
       be: 'Патлумач, як выпадковае разьмеркаваньне па групах можа зьменшыць першапачатковыя адрозьненьні.',
       ka: 'ახსენი, როგორ ამცირებს ჯგუფებში შემთხვევითი განაწილება თავდაპირველ განსხვავებებს.',
       kk: 'Топтарға кездейсоқ бөлудің бастапқы айырмашылықтарды қалай азайтатынын түсіндір.',
-      qm: 'Qatnaşqanlarnı tesadüfen gruppalarğa taqsim etmek gruppalar arasında evelden olğan farqlarnı nasıl azayta bilgenini añlat.'
+      qm: 'Qatnaşqanlarnı tesadüfen gruppalarğa taqsim etmek gruppalar arasında evelden olğan farqlarnı nasıl azayta bilgenini añlat.',
     },
   },
 });
