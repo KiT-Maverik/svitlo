@@ -74,3 +74,6 @@ export function createLessonPage<Response extends { id: string; title: string }>
 
   return { Page, generateMetadata };
 }
+
+/** Shared filesystem-backed loader for standalone Next.js textbooks. */
+export { loadPublishedLesson } from './publishedLesson';
