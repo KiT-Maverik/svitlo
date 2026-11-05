@@ -39,7 +39,7 @@ export const polymerization_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Explore how small monomers combine into long polymer molecules.",
       zh: "探索小单体如何连接形成长链聚合物分子。",
-      hi: "जानो कि छोटे एकलक मिलकर लंबी बहुलक शृंखलाएँ कैसे बनाते हैं।",
+      hi: "जानें कि छोटे एकलक मिलकर लंबी बहुलक शृंखलाएँ कैसे बनाते हैं।",
       es: "Explora cómo pequeños monómeros se unen para formar largas moléculas poliméricas.",
       ar: "استكشف كيف تتحد المونومرات الصغيرة لتكوّن جزيئات بوليمرية طويلة.",
       fr: "Explore comment de petits monomères s'assemblent pour former de longues molécules polymères.",

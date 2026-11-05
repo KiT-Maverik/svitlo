@@ -4,6 +4,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 
 import type { ContentBlock_Image_Response } from '@svitlo/engine/content';
 import { Image } from './Image';
+import { ImageRendererProvider, type ImageRendererProps } from './ImageRenderer';
 import { ContentLanguageContext } from '../../ContentLanguageContext';
 
 const response: ContentBlock_Image_Response = {
@@ -33,7 +34,22 @@ afterEach(() => {
 });
 
 describe('Image content block', () => {
-  it('renders a responsive Next image with authored intrinsic dimensions', () => {
+  it('accepts an injected host image renderer without importing a framework', () => {
+    let wasUnoptimized: boolean | undefined;
+    function HostImage({ unoptimized, fill: _fill, ...attrs }: ImageRendererProps) {
+      wasUnoptimized = unoptimized;
+      return <img data-testid="injected-image" {...attrs} />;
+    }
+    render(
+      <ImageRendererProvider renderer={HostImage}>
+        <Image messages={enUiKitMessages.image} {...response} />
+      </ImageRendererProvider>,
+    );
+    expect(screen.getByTestId('injected-image')).toHaveAttribute('src', '/diagram.png');
+    expect(wasUnoptimized).toBe(false);
+  });
+
+  it('renders a responsive native image with authored intrinsic dimensions', () => {
     setOnline(true);
     render(<ContentLanguageContext.Provider value="uk"><Image messages={enUiKitMessages.image} {...response} /></ContentLanguageContext.Provider>);
     const image = screen.getByAltText('Схема руху світла');

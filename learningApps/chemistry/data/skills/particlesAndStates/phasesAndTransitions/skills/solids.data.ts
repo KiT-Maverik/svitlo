@@ -59,7 +59,7 @@ export const solids_Skill_Data = buildSkillConfig({
       he: "הסבירו מדוע מוצקים שומרים על צורתם אף שחלקיקיהם אינם נייחים.",
       pl: "Wyjaśnij, dlaczego ciała stałe zachowują kształt, mimo że ich cząstki nie są nieruchome.",
       uk: "Поясни, чому тверді тіла зберігають форму, хоча їхні частинки не нерухомі.",
-      lt: "Paaiškink, kodėl kietosios medžiagos išlaiko formą, nors jų dalelės nejuda ne visai.",
+      lt: "Paaiškink, kodėl kietosios medžiagos išlaiko formą, nors jų dalelės nuolat juda.",
       lv: "Paskaidro, kāpēc cietvielas saglabā formu, lai gan to daļiņas nav nekustīgas.",
       et: "Selgita, miks tahked ained säilitavad kuju, kuigi osakesed ei seisa paigal.",
       be: "Растлумач, чаму цьвёрдыя целы захоўваюць форму, хоць іхныя часьцінкі не стаяць на месцы.",

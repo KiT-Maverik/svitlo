@@ -15,9 +15,9 @@ export const locale = {
     closeSettingsPanel: 'Закрити панель налаштувань',
     previous: 'Назад',
     next: 'Далі',
-    skip: 'Skip',
+    skip: 'Пропустити',
     profile: 'Профіль',
-    logout: 'Logout',
+    logout: 'Вийти',
   },
   tooltips: {
     profile: 'Профіль буде доступний після підключення авторизації',

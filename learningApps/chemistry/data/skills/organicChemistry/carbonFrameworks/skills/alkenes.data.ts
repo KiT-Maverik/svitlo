@@ -39,7 +39,7 @@ export const alkenes_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Explore how carbon–carbon double bonds affect reactions in alkenes.",
       zh: "探索碳碳双键如何影响烯烃的化学反应。",
-      hi: "जानो कि कार्बन–कार्बन द्विबंध ऐल्कीन की अभिक्रियाओं को कैसे प्रभावित करता है।",
+      hi: "जानें कि कार्बन–कार्बन द्विबंध ऐल्कीन की अभिक्रियाओं को कैसे प्रभावित करता है।",
       es: "Explora cómo los dobles enlaces carbono-carbono afectan las reacciones de los alquenos.",
       ar: "استكشف كيف تؤثر الروابط المزدوجة بين ذرات الكربون في تفاعلات الألكينات.",
       fr: "Explore comment les doubles liaisons carbone-carbone influencent les réactions des alcènes.",

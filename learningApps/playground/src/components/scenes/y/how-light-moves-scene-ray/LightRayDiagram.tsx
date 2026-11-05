@@ -1,13 +1,11 @@
 'use client';
 
 import styles from './LightRayDiagram.module.css';
-import { getLocaleDirection } from '@svitlo/engine/localization';
-import { useLocale } from '@/i18n/LocaleProvider/LocaleProvider';
+import { useTheme } from '@mui/material/styles';
 import type { LightRayDiagram_ContentBlock } from '../../../../../data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/sections/theory/scenes/lightRayDiagram';
 
 export function LightRayDiagram({ locales }: Pick<LightRayDiagram_ContentBlock<'response'>, 'locales'>) {
-  const { locale } = useLocale();
-  const rtl = getLocaleDirection(locale) === 'rtl';
+  const rtl = useTheme().direction === 'rtl';
 
   return (
     <svg
@@ -15,8 +13,6 @@ export function LightRayDiagram({ locales }: Pick<LightRayDiagram_ContentBlock<'
       viewBox="0 0 960 340"
       role="img"
       aria-label={locales.scene.title}
-      lang={locale}
-      direction={rtl ? 'rtl' : 'ltr'}
       xmlns="http://www.w3.org/2000/svg"
     >
       <title>{locales.scene.title}</title>

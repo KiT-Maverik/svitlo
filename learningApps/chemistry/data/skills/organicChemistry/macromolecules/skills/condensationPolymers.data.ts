@@ -39,7 +39,7 @@ export const condensationPolymers_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Recognize polymers made through reactions that release small molecules.",
       zh: "识别在形成过程中会释放小分子的聚合物。",
-      hi: "ऐसे बहुलक पहचानो जो छोटे अणु निकलने वाली अभिक्रियाओं से बनते हैं।",
+      hi: "ऐसे बहुलक पहचानें जो छोटे अणु निकलने वाली अभिक्रियाओं से बनते हैं।",
       es: "Reconoce polímeros formados mediante reacciones que liberan moléculas pequeñas.",
       ar: "تعرّف البوليمرات المتكوّنة بتفاعلات تُطلق جزيئات صغيرة.",
       fr: "Reconnais les polymères formés par des réactions qui libèrent de petites molécules.",

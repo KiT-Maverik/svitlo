@@ -3,6 +3,22 @@ import type { Locale } from '../languages';
 
 /** UI Kit translation resources mirror authored content's definition/data/response states. */
 export type UiKit_ComponentMessages = {
+  lesson: {
+    steps: { navigation: string };
+    celebration: {
+      title: string;
+      description: string;
+      correctAnswers: string;
+      /** Serialized template with {score} and {total} placeholders. */
+      scoreTemplate: string;
+      note: string;
+      home: string;
+    };
+    questionProgress: {
+      navigation: string;
+      status: { correct: string; incorrect: string; unanswered: string; deferred: string };
+    };
+  };
   learningLayout: {
     brand: string;
     navigation: { top: string; bottom: string; topics: string; settings: string };

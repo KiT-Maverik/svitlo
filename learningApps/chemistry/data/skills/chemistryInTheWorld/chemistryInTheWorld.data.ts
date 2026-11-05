@@ -50,7 +50,7 @@ export const chemistryInTheWorld_SkillDomain_Data = buildSkillDomainConfig({
     frontend: {
       en: "Discover how chemistry explains everyday materials, the environment and molecules of life.",
       zh: "了解化学如何解释日常材料、环境和生命分子。",
-      hi: "जानो कि रसायन विज्ञान रोज़मर्रा के पदार्थों, पर्यावरण और जीवन के अणुओं की व्याख्या कैसे करता है।",
+      hi: "जानें कि रसायन विज्ञान रोज़मर्रा के पदार्थों, पर्यावरण और जीवन के अणुओं की व्याख्या कैसे करता है।",
       es: "Descubre cómo la química explica materiales cotidianos, el entorno y las moléculas de la vida.",
       ar: "اكتشف كيف تفسر الكيمياء مواد الحياة اليومية والبيئة وجزيئات الحياة.",
       fr: "Découvre comment la chimie explique les matériaux du quotidien, l'environnement et les molécules du vivant.",

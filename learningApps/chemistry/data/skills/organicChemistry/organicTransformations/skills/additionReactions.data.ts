@@ -39,7 +39,7 @@ export const additionReactions_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Recognize when a reaction adds atoms across an unsaturated bond.",
       zh: "识别原子跨越不饱和键连接的反应。",
-      hi: "ऐसी अभिक्रियाएँ पहचानो जिनमें असंतृप्त बंध के दोनों ओर परमाणु जुड़ते हैं।",
+      hi: "ऐसी अभिक्रियाएँ पहचानें जिनमें असंतृप्त बंध के दोनों ओर परमाणु जुड़ते हैं।",
       es: "Reconoce cuándo una reacción agrega átomos a través de un enlace insaturado.",
       ar: "تعرّف التفاعلات التي تُضاف فيها الذرات عبر رابطة غير مشبعة.",
       fr: "Reconnais une réaction qui ajoute des atomes de part et d'autre d'une liaison insaturée.",

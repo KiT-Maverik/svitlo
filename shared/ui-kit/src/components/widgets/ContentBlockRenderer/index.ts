@@ -7,3 +7,5 @@ export type {
   ResponseOf,
   SceneRegistry,
 } from './ContentBlockRenderer';
+export { ImageRendererProvider } from './blocks/Image/ImageRenderer';
+export type { ImageRenderer, ImageRendererProps } from './blocks/Image/ImageRenderer';

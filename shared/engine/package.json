@@ -46,6 +46,10 @@
     "./assessment-methods": {
       "types": "./dist/assessment-methods.d.ts",
       "default": "./dist/assessment-methods.js"
+    },
+    "./lesson": {
+      "types": "./dist/lesson.d.ts",
+      "default": "./dist/lesson.js"
     }
   },
   "files": [
@@ -84,6 +88,9 @@
       ],
       "*": [
         "dist/index.d.ts"
+      ],
+      "lesson": [
+        "dist/lesson.d.ts"
       ]
     }
   },

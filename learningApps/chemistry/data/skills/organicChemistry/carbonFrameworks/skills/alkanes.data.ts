@@ -39,7 +39,7 @@ export const alkanes_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Identify alkanes and their characteristic saturated carbon frameworks.",
       zh: "识别烷烃及其典型的饱和碳骨架结构。",
-      hi: "ऐल्केन और उनकी विशिष्ट संतृप्त कार्बन संरचनाओं को पहचानो।",
+      hi: "ऐल्केन और उनकी विशिष्ट संतृप्त कार्बन संरचनाओं को पहचानें।",
       es: "Identifica los alcanos y sus características estructuras de carbono saturadas.",
       ar: "تعرّف الألكانات وهياكلها الكربونية المشبعة المميزة.",
       fr: "Reconnais les alcanes et leurs squelettes carbonés saturés caractéristiques.",

@@ -39,7 +39,7 @@ export const carboxylicAcids_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Explore how the carboxyl group gives carboxylic acids their characteristic behavior.",
       zh: "探索羧基如何赋予羧酸特有的化学行为。",
-      hi: "समझो कि कार्बोक्सिल समूह कार्बोक्सिलिक अम्लों का विशिष्ट व्यवहार कैसे तय करता है।",
+      hi: "समझें कि कार्बोक्सिल समूह कार्बोक्सिलिक अम्लों का विशिष्ट व्यवहार कैसे तय करता है।",
       es: "Explora cómo el grupo carboxilo determina el comportamiento característico de los ácidos carboxílicos.",
       ar: "استكشف كيف تمنح مجموعة الكربوكسيل الأحماض الكربوكسيلية سلوكها المميز.",
       fr: "Explore comment le groupe carboxyle donne aux acides carboxyliques leurs propriétés caractéristiques.",

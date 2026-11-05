@@ -39,7 +39,7 @@ export const stereoisomerism_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Explore how molecules can differ in their three-dimensional arrangement.",
       zh: "探索分子如何因三维空间排列不同而产生差异。",
-      hi: "जानो कि अणु अपनी त्रि-आयामी व्यवस्था में कैसे अलग हो सकते हैं।",
+      hi: "जानें कि अणु अपनी त्रि-आयामी व्यवस्था में कैसे अलग हो सकते हैं।",
       es: "Explora cómo las moléculas pueden diferir en su disposición tridimensional.",
       ar: "استكشف كيف تختلف الجزيئات في ترتيبها ثلاثي الأبعاد.",
       fr: "Explore comment des molécules peuvent différer par leur arrangement dans l'espace.",

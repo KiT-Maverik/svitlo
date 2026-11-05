@@ -39,7 +39,7 @@ export const eliminationReactions_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Explain how removing groups can create double or triple bonds.",
       zh: "解释移除原子或基团如何形成双键或三键。",
-      hi: "समझाओ कि परमाणु या समूह हटाने से द्विबंध या त्रिबंध कैसे बन सकते हैं।",
+      hi: "समझाएँ कि परमाणु या समूह हटाने से द्विबंध या त्रिबंध कैसे बन सकते हैं।",
       es: "Explica cómo eliminar átomos o grupos puede crear enlaces dobles o triples.",
       ar: "اشرح كيف يمكن لإزالة ذرات أو مجموعات أن تكوّن روابط مزدوجة أو ثلاثية.",
       fr: "Explique comment le retrait d'atomes ou de groupes peut créer des liaisons doubles ou triples.",

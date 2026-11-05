@@ -39,7 +39,7 @@ export const ionicEquations_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Write equations that show which ions actually take part in an aqueous reaction.",
       zh: "写出能表明哪些离子真正参与水溶液反应的方程式。",
-      hi: "ऐसे समीकरण लिखो जो दिखाएँ कि जलीय अभिक्रिया में वास्तव में कौन-से आयन भाग लेते हैं।",
+      hi: "ऐसे समीकरण लिखें जो दिखाएँ कि जलीय अभिक्रिया में वास्तव में कौन-से आयन भाग लेते हैं।",
       es: "Escribe ecuaciones que muestren qué iones participan realmente en una reacción acuosa.",
       ar: "اكتب معادلات توضّح أي الأيونات تشارك فعلياً في التفاعل المائي.",
       fr: "Écris des équations montrant quels ions participent réellement à une réaction en solution aqueuse.",

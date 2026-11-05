@@ -45,7 +45,7 @@ export const acidStrength_Skill_Data = buildSkillConfig({
       fr: "Distingue la force d’un acide de la concentration ou du danger de sa solution.",
       bn: "অম্লের শক্তিকে দ্রবণের ঘনত্ব বা বিপজ্জনকতার সঙ্গে গুলিয়ে ফেলো না।",
       pt: "Distinga a força de um ácido da concentração ou periculosidade de sua solução.",
-      ur: "تیزاب کی طاقت کو محلول کی ارتکاز یا خطرناک ہونے سے الگ سمجھیں۔",
+      ur: "تیزاب کی طاقت کو محلول کے ارتکاز یا اس کے خطرناک ہونے سے الگ سمجھیں۔",
       id: "Bedakan kekuatan asam dari konsentrasi atau bahaya larutannya.",
       de: "Unterscheide die Stärke einer Säure von der Konzentration oder Gefährlichkeit ihrer Lösung.",
       ja: "酸の強さと溶液の濃度や危険性を区別しよう。",

@@ -93,6 +93,10 @@ const expected = [
     name: '@svitlo/engine',
   },
   {
+    path: 'shared/nextjs-adapter',
+    name: '@svitlo/nextjs-adapter',
+  },
+  {
     path: 'shared/ui-kit',
     name: '@svitlo/ui-kit',
   },

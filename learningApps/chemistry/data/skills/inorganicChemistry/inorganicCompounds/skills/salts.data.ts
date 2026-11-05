@@ -39,7 +39,7 @@ export const salts_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Identify salts as compounds built from positively and negatively charged ions.",
       zh: "识别由带正电和负电的离子组成的盐。",
-      hi: "सकारात्मक और नकारात्मक आवेश वाले आयनों से बने यौगिकों को लवण के रूप में पहचानो।",
+      hi: "सकारात्मक और नकारात्मक आवेश वाले आयनों से बने यौगिकों को लवण के रूप में पहचानें।",
       es: "Identifica las sales como compuestos formados por iones de carga positiva y negativa.",
       ar: "تعرّف الأملاح باعتبارها مركبات مكوّنة من أيونات موجبة وأيونات سالبة.",
       fr: "Reconnais les sels comme des composés constitués d'ions positifs et négatifs.",

@@ -50,7 +50,7 @@ export const organicChemistry_SkillDomain_Data = buildSkillDomainConfig({
     frontend: {
       en: "Explore how carbon compounds are structured, classified and transformed.",
       zh: "探索碳化合物的结构、分类和转化方式。",
-      hi: "जानो कि कार्बन यौगिकों की संरचना, वर्गीकरण और परिवर्तन कैसे होते हैं।",
+      hi: "जानें कि कार्बन यौगिकों की संरचना, वर्गीकरण और परिवर्तन कैसे होते हैं।",
       es: "Explora cómo se estructuran, clasifican y transforman los compuestos de carbono.",
       ar: "استكشف بنية مركبات الكربون وتصنيفها وتحولاتها.",
       fr: "Explore la structure, la classification et les transformations des composés du carbone.",

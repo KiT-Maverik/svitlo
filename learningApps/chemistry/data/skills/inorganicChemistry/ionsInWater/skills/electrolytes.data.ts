@@ -39,7 +39,7 @@ export const electrolytes_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Distinguish strong, weak and nonelectrolytes by their behavior in solution.",
       zh: "根据物质在溶液中的行为区分强、弱电解质和非电解质。",
-      hi: "विलयन में उनके व्यवहार के आधार पर प्रबल, दुर्बल और गैर-विद्युत् अपघट्य में अंतर करो।",
+      hi: "विलयन में उनके व्यवहार के आधार पर प्रबल, दुर्बल और गैर-विद्युत् अपघट्य में अंतर करें।",
       es: "Distingue electrolitos fuertes, débiles y no electrolitos según su comportamiento en disolución.",
       ar: "ميّز بين الإلكتروليتات القوية والضعيفة والمواد غير الإلكتروليتية حسب سلوكها في المحلول.",
       fr: "Distingue électrolytes forts, faibles et non-électrolytes selon leur comportement en solution.",

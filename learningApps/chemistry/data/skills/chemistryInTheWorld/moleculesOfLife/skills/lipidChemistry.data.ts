@@ -39,7 +39,7 @@ export const lipidChemistry_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Compare the structures and chemical behavior of fats, oils and other lipids.",
       zh: "比较脂肪、油和其他脂质的结构及化学行为。",
-      hi: "वसा, तेल और अन्य लिपिड की संरचनाओं और रासायनिक व्यवहार की तुलना करो।",
+      hi: "वसा, तेल और अन्य लिपिड की संरचनाओं और रासायनिक व्यवहार की तुलना करें।",
       es: "Compara las estructuras y el comportamiento químico de grasas, aceites y otros lípidos.",
       ar: "قارن تراكيب الدهون والزيوت والليبيدات الأخرى وسلوكها الكيميائي.",
       fr: "Compare les structures et le comportement chimique des graisses, des huiles et d'autres lipides.",

@@ -14,7 +14,7 @@ export const chemicalEnergetics_SkillGroup_Data = buildSkillGroupConfig({
     fr: "Énergétique chimique",
     bn: "রাসায়নিক শক্তিতত্ত্ব",
     pt: "Energética química",
-    ur: "کیمیائی حرکی توانائی",
+    ur: "کیمیائی توانائیات",
     id: "Energetika kimia",
     de: "Chemische Energetik",
     ja: "化学エネルギー論",

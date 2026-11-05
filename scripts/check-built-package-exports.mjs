@@ -5,7 +5,7 @@ const root = process.cwd();
 function assert(ok, detail) {
   if (!ok) throw new Error(detail);
 }
-const packages = ['contracts', 'engine', 'indexdb', 'ui-kit'];
+const packages = ['contracts', 'engine', 'indexdb', 'ui-kit', 'nextjs-adapter'];
 
 let checked = 0;
 for (const name of packages) {

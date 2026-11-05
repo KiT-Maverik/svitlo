@@ -12,6 +12,7 @@ const math = readJson('learningApps/math/package.json');
 const biology = readJson('learningApps/biology/package.json');
 const physics = readJson('learningApps/physics/package.json');
 const uiKit = readJson('shared/ui-kit/package.json');
+const nextAdapter = readJson('shared/nextjs-adapter/package.json');
 
 function walk(dir) {
   return readdirSync(dir, { withFileTypes: true }).flatMap(entry => {
@@ -107,7 +108,7 @@ assert(
   'Playground cannot contain authored textbook content',
 );
 assert(
-  existsSync(resolve(root, 'learningApps/playground/src/app/lesson/[lessonId]/page.tsx')),
+  existsSync(resolve(root, 'learningApps/playground/src/app/[language]/lesson/[lessonId]/page.tsx')),
   'Playground must host the UUID-addressed lesson route',
 );
 assert(
@@ -195,16 +196,21 @@ for (const file of engineSources) {
     );
   }
 }
+assert(nextAdapter.name === '@svitlo/nextjs-adapter', 'Unexpected Next.js adapter package name');
+assert(playground.dependencies?.[nextAdapter.name] === nextAdapter.version,
+  'Playground must use the shared Next.js adapter');
+assert(nextAdapter.dependencies?.[uiKit.name] === uiKit.version,
+  'Next.js adapter must consume the UI Kit via public exports');
+assert(!uiKit.peerDependencies?.next, 'Framework-agnostic UI Kit must not require Next.js');
 const kitSourceRoot = resolve(root, 'shared/ui-kit/src');
 if (existsSync(kitSourceRoot)) {
   for (const file of walk(kitSourceRoot).filter(file => /\.(ts|tsx)$/.test(file))) {
     const source = readFileSync(file, 'utf8');
-    // next/image is the framework image primitive used by the UI Kit Image renderer,
-    // and Next.js is an explicit UI Kit peer dependency. Other Next/app imports stay forbidden.
-    const guardedSource = source.replace(/from\s*['"]next\/image['"]/g, '');
+    // UI Kit must remain independent of application and Next.js modules.
+    const guardedSource = source;
     assert(
       !/from\s*['"](?:@\/|@layout|@pages|next\/|\.\.\/\.\.\/\.\.\/\.\.\/learningApps\/)/.test(guardedSource),
-      'UI Kit must not import application or unsupported Next.js sources: ' + relative(root, file),
+      'UI Kit must not import application or Next.js sources: ' + relative(root, file),
     );
   }
 }

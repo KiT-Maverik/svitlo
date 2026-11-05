@@ -61,7 +61,7 @@ export const reactionEnthalpy_Skill_Data = buildSkillConfig({
       uk: "Порівнюй енергію до й після реакції за зміною ентальпії.",
       lt: "Palygink energiją prieš reakciją ir po jos pagal entalpijos pokytį.",
       lv: "Salīdzini enerģiju pirms un pēc reakcijas pēc entalpijas izmaiņas.",
-      et: "Võrdle energiat enne ja pärast reaktsiooni entalpianihke abil.",
+      et: "Võrdle energiat enne ja pärast reaktsiooni entalpia muutuse abil.",
       be: "Параўнай энэргію да і пасьля рэакцыі паводле зьмены энтальпіі.",
       ka: "შეადარე ენერგია რეაქციამდე და მის შემდეგ ენთალპიის ცვლილებით.",
       kk: "Энтальпия өзгерісі бойынша реакцияға дейінгі және кейінгі энергияны салыстыр.",

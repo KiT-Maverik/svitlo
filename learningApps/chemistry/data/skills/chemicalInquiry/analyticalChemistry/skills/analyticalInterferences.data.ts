@@ -26,7 +26,7 @@ export const analyticalInterferences_Skill_Data = buildSkillConfig({
     he: "הפרעות אנליטיות",
     pl: "Interferencje analityczne",
     uk: "Аналітичні перешкоди",
-    lt: "Analitinės trukdžių priežastys",
+    lt: "Analizės trukdžiai",
     lv: "Analītiskie traucējumi",
     et: "Analüütilised segavad mõjud",
     be: "Аналітычныя перашкоды",

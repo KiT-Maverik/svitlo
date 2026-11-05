@@ -48,7 +48,7 @@ export const inorganicCompounds_SkillGroup_Data = buildSkillGroupConfig({
     frontend: {
       en: "Recognize broad categories of inorganic compounds without assuming all members act alike.",
       zh: "认识无机化合物的主要类别，不要认为同类物质的行为一定相同。",
-      hi: "अकार्बनिक यौगिकों की बड़ी श्रेणियों को पहचानो, लेकिन यह मत मानो कि हर सदस्य एक जैसा व्यवहार करता है।",
+      hi: "अकार्बनिक यौगिकों की बड़ी श्रेणियों को पहचानें, लेकिन यह न मानें कि हर सदस्य एक जैसा व्यवहार करता है।",
       es: "Reconoce grandes categorías de compuestos inorgánicos sin suponer que todos sus miembros se comportan igual.",
       ar: "تعرّف الفئات العامة للمركبات غير العضوية دون افتراض أن جميع أفرادها يتصرفون بالطريقة نفسها.",
       fr: "Reconnais les grandes catégories de composés inorganiques sans supposer que leurs membres se comportent tous de la même façon.",

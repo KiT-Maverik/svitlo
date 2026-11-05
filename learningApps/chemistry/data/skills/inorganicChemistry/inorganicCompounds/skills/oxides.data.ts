@@ -39,7 +39,7 @@ export const oxides_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Explore the different types and chemical behavior of oxides.",
       zh: "探索氧化物的不同类型及其化学行为。",
-      hi: "ऑक्साइडों की अलग-अलग श्रेणियों और उनके रासायनिक व्यवहार का अध्ययन करो।",
+      hi: "ऑक्साइडों की अलग-अलग श्रेणियों और उनके रासायनिक व्यवहार का अध्ययन करें।",
       es: "Explora los distintos tipos de óxidos y su comportamiento químico.",
       ar: "استكشف أنواع الأكاسيد المختلفة وسلوكها الكيميائي.",
       fr: "Explore les différents types d'oxydes et leur comportement chimique.",

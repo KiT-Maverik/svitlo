@@ -4,7 +4,15 @@
 
 ## Purpose and non-negotiable extraction constraint
 
-Svitlo combines independently deployable Next.js apps with explicit reusable library packages. A textbook has its **own package root**, curriculum, `docs/`, data, assets, configuration and tests. It must remain possible to move a textbook to a separate repository without copying another app's code or globally rewriting imports. Extracted shared packages must be installable through declared public APIs; a green monorepo build does not, on its own, prove isolated registry/tarball consumption.
+Svitlo **currently** combines independently deployable Next.js apps with explicit reusable library packages. A textbook has its **own package root**, curriculum, `docs/`, data, assets, configuration and tests. It must remain possible to move a textbook to a separate repository without copying another app's code or globally rewriting imports. Extracted shared packages must be installable through declared public APIs; a green monorepo build does not, on its own, prove isolated registry/tarball consumption.
+
+## Planned direction: shared platform hosts and textbook modules
+
+**Target architecture, not the implemented Stage 8 layout:** move toward a thin Next.js Web host, one React + Capacitor mobile host (iOS and Android), and one React + Electron desktop host. Each textbook will be a single independently extractable package holding authored `*.data.ts`, assets, Scenes and its generated static Scene registry, rather than a separately maintained Next.js app per target. **There is no requirement to split textbook definitions and runtime registries into different repositories or packages.**
+
+At build time a host selects one or more textbook packages and statically bundles their registries/Scenes. Build-time authored-data publishing produces runtime JSON, not runtime imports of `*.data.ts`. The actual migration requires defined public package exports, stable build selection, parity tests, and review of existing server/provider coupling; no new `apps/web`, `apps/mobile`, `apps/desktop`, or `books/` directories are claimed to exist here. SSR/SSG can remain in the Web host; interactive Lesson UI belongs in reusable React DOM code.
+
+See the canonical [Cross-Platform Lesson Runtime](./cross-platform-lesson-runtime.md) for target dependency/DI, licensing, PWA, offline, and client-state rules. The map, dependencies, scripts and Stage 8 audit below remain a **snapshot of the current standalone-app architecture** until a separate migration changes them.
 
 ## Current repository map
 
@@ -24,7 +32,8 @@ Svitlo combines independently deployable Next.js apps with explicit reusable lib
 │   ├── contracts/        # @svitlo/contracts — framework-free types, IDs, locales
 │   ├── engine/           # @svitlo/engine — builders, validation, generators, data
 │   ├── indexdb/          # @svitlo/indexdb — IndexedDB CRUD, schemas, persistence
-│   └── ui-kit/           # @svitlo/ui-kit — reusable React/MUI UI and LearningLayout
+│   ├── ui-kit/           # @svitlo/ui-kit — reusable framework-agnostic React/MUI UI and Lesson
+│   └── nextjs-adapter/   # @svitlo/nextjs-adapter — Next.js lesson SSR and routing
 ├── scripts/              # package boundary, duplicate and artifact checks
 ├── studio/               # cross-cutting architecture, workflow and product docs
 ├── package.json          # npm workspaces (authoritative)
@@ -57,13 +66,14 @@ Arrows above summarize **allowed consumption**, not a promise that every app imp
 | Contracts                     | Common content/state/taxonomy types, stable IDs and language descriptors           | No runtime dependencies on Engine, UI, Next.js or apps                                          |
 | Engine                        | Builders, generation, assessment methods, localization logic                       | Depends on Contracts; no React, Next, MUI or app imports                                        |
 | IndexDB                       | `svitlo-progress` v1 persistence, Zod state validation, browser controllers        | Depends on Contracts and Zod; production does not depend on Engine/React/Next                   |
-| UI Kit                        | Components, Flag assets, LearningLayout, NavbarPreferences and locale dictionaries | Depends on Engine and UI peer dependencies; no Next.js/application imports in production source |
+| UI Kit                        | Framework-independent React UI, Lesson, Flag assets, LearningLayout and locale dictionaries | Depends on Engine and React/MUI peer dependencies; no Next.js/application imports in production source |
+| Next.js Adapter               | Next.js App Router integration, lesson SSR composition and metadata | Depends on public Engine and UI Kit APIs; injects app-owned lesson loader and renderer |
 | Informatics / Physics         | Standalone Next.js textbook scaffolds, subject content in separate reviews         | No application-to-application imports                                                           |
 | Geography / Math / Playground | Route handlers, progress/locale providers, subject content or demo fixtures        | Declared public shared exports only; **no app-to-app imports**                                  |
 | Platform                      | Standalone public site and external textbook catalog links                         | Next.js/React/MUI; does not embed Math or Playground                                            |
 | Server                        | Future backend                                                                     | Placeholder package only; do not claim build/API/test capabilities                              |
 
-Framework-specific links, `usePathname`, lesson progress and `useColorScheme` remain in app adapters. `createLessonLearningLayout` in UI Kit accepts injected host bindings; the UI Kit itself must not import Next.js. `NavbarPreferences` and its seven specialized dictionaries are owned by UI Kit; each app supplies locale/theme state via props and hooks.
+Next.js routing, SSR metadata, and the published-JSON loading integration belong to `@svitlo/nextjs-adapter`, a separate framework-specific package. Its reusable `createLessonPage` takes application data/rendering bindings. `@svitlo/ui-kit` owns the framework-independent `Lesson` React UI, including lesson navigation and localized UI messages. The UI Kit cannot import any `next/*` modules; Next links/navigation are injected by consuming applications. Framework-specific links and locale switching remain injected by the host; the reusable Lesson owns its navigation state and passes its current pathname as a prop, while the UI Kit reads MUI color-scheme context directly. Neither Next.js pathname hooks nor MUI theme hooks need to be injected by every textbook. `createLessonLearningLayout` in UI Kit accepts injected host bindings; the UI Kit itself must not import Next.js. `NavbarPreferences` and its seven specialized dictionaries are owned by UI Kit; each app supplies locale/theme state via props and hooks.
 
 The canonical native IndexedDB browser harness, commands and Playwright suite live in `shared/indexdb/testing` and use a temporary standalone browser test host. App-local `src/testing/setup.ts` remains Vitest setup; it is **not** IndexedDB duplication. The persisted database name/version/store structure was retained across migration.
 
@@ -77,7 +87,7 @@ Geography has its own independently configured application shell and localized l
 
 ## Standalone textbook package contract
 
-Each `learningApps/<subject>` owns its own `package.json`, `tsconfig.json`, Next.js config, `src/app` routes, `src/data` authored content, `public` media where required, package-owned `docs/` and tests. Reusable code is accessed through declared public `@svitlo/*` exports, never `shared/*/src`, another app's `src`, aliases resolved outside the package, or `../` paths crossing package roots. The `@/*` alias is local to that package.
+**Current implementation (before the proposed host/module migration):** Each `learningApps/<subject>` owns its own `package.json`, `tsconfig.json`, Next.js config, `src/app` routes, `src/data` authored content, `public` media where required, package-owned `docs/` and tests. Reusable code is accessed through declared public `@svitlo/*` exports, never `shared/*/src`, another app's `src`, aliases resolved outside the package, or `../` paths crossing package roots. The `@/*` alias is local to that package.
 
 Git-backed typed content and authoring IDs are **not** stored in runtime user databases. `@svitlo/contracts/content` defines structural contracts; Engine supplies operations, UI Kit presentation, IndexDB persistence, each textbook its curriculum. See [Git-first typed content](./git-first-typed-content.md), [system boundaries](./system-boundaries.md), [accessibility/localization](./internationalization-and-accessibility.md) and [offline roadmap](./offline-first-and-device-compatibility.md). Do not claim offline/PWA or backend account features are implemented merely because planned in Studio.
 

@@ -39,7 +39,7 @@ export const polymerStructureAndProperties_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Connect polymer chain shape and cross-links with material properties.",
       zh: "联系聚合物链的形状和交联结构与材料性质。",
-      hi: "बहुलक शृंखलाओं के आकार और आपसी जुड़ाव को पदार्थ के गुणों से जोड़ो।",
+      hi: "बहुलक शृंखलाओं के आकार और आपसी जुड़ाव को पदार्थ के गुणों से जोड़ें।",
       es: "Relaciona la forma de las cadenas y los enlaces cruzados con las propiedades del material.",
       ar: "اربط شكل سلاسل البوليمر والروابط المتشابكة بخصائص المادة.",
       fr: "Relie la forme des chaînes et les liaisons transversales aux propriétés des matériaux.",

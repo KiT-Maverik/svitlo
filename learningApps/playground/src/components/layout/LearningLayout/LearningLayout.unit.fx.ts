@@ -2,6 +2,7 @@ import { createElement, type ComponentProps } from 'react';
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import LearningLayout from './LearningLayout';
+import { LessonNavigationProvider } from '@svitlo/ui-kit/lesson';
 import { testId as navbarTestId } from '@svitlo/ui-kit/navigation/Navbar.constants';
 import { testId as spaceTestId } from '@svitlo/ui-kit/widgets/VerticalSpace/VerticalSpace.constants';
 
@@ -27,15 +28,16 @@ const aria = ukUiKitMessages.learningLayout;
 type Props = ComponentProps<typeof LearningLayout>;
 
 const topics = [
-  { id: 'demo', title: 'Example topic', href: '/lesson/d3048d21-8690-5255-b62c-984c69ac272c' },
-  { id: 'other', title: 'Another topic', href: '/lesson/00000000-0000-5000-8000-000000000001' },
+  { id: 'demo', title: 'Example topic', href: '/uk/lesson/d3048d21-8690-5255-b62c-984c69ac272c' },
+  { id: 'other', title: 'Another topic', href: '/uk/lesson/00000000-0000-5000-8000-000000000001' },
 ] as const;
 
 export const LearningLayout_fx = {
-  defaults: { topics, skippableSteps: [true, false, false], messages: ukUiKitMessages } satisfies Omit<Props, 'children'>,
+  defaults: { topics, pathname: topics[0].href, skippableSteps: [true, false, false], messages: ukUiKitMessages } satisfies Omit<Props, 'children'>,
   render: (props: Partial<Props> = {}) => {
     const { children = 'Lesson content', ...overrides } = props;
-    return render(createElement(LearningLayout, { ...LearningLayout_fx.defaults, ...overrides } as Props, children));
+    return render(createElement(LessonNavigationProvider, { sectionCount: 3 },
+      createElement(LearningLayout, { ...LearningLayout_fx.defaults, ...overrides } as Props, children)));
   },
   navbar: Navbar_fx.selectors,
   child: { verticalSpace: VerticalSpace_fx.selectors },

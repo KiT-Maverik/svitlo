@@ -39,7 +39,7 @@ export const structuralIsomerism_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Understand how compounds with the same formula can have different connections.",
       zh: "理解分子式相同的化合物如何具有不同的原子连接方式。",
-      hi: "समझो कि समान आणविक सूत्र वाले यौगिकों में परमाणुओं के जुड़ाव कैसे अलग हो सकते हैं।",
+      hi: "समझें कि समान आणविक सूत्र वाले यौगिकों में परमाणुओं के जुड़ाव कैसे अलग हो सकते हैं।",
       es: "Comprende cómo compuestos con la misma fórmula pueden tener conexiones entre átomos diferentes.",
       ar: "افهم كيف يمكن لمركبات لها الصيغة الجزيئية نفسها أن تختلف في ترابط الذرات.",
       fr: "Comprends comment des composés de même formule peuvent avoir des connexions atomiques différentes.",

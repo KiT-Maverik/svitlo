@@ -3,38 +3,28 @@
 import type { ElementType } from 'react';
 import type { Locale } from '@svitlo/engine/localization';
 import type { UiKit_Global } from '@svitlo/engine/content';
-import LearningLayout, { type LearningLayoutProgress, type LearningLayoutProps } from './LearningLayout';
+import LearningLayout, { type LearningLayoutProps } from './LearningLayout';
 import NavbarPreferences from './NavbarPreferences/NavbarPreferences';
+import { useColorScheme } from '@mui/material/styles';
+import { useLessonNavigation } from '../../lesson/LessonNavigation';
 
 export type LessonLearningLayoutProps = Pick<
   LearningLayoutProps,
-  'children' | 'topics' | 'skippableSteps' | 'quizStep'
+  'children' | 'topics' | 'skippableSteps' | 'quizStep' | 'pathname'
 > & { messages: UiKit_Global<'response'> };
 
 export type LessonLearningLayoutBindings = {
   /** Supplied by the consuming app; the UI Kit never imports Next.js hooks. */
-  usePathname: () => string;
   useLocale: () => { locale: Locale; setLocale: (locale: Locale) => void };
-  useLessonNavigation: () => {
-    progress: LearningLayoutProgress;
-    dispatch: (action: { type: 'back' | 'next' | 'skip' }) => void;
-  };
-  /** Resolve theme from the app's MUI provider instance, not the UI Kit bundle. */
-  useColorScheme: () => {
-    mode?: 'light' | 'dark' | 'system';
-    systemMode?: 'light' | 'dark';
-    setMode: (mode: 'light' | 'dark') => void;
-  };
   linkComponent?: ElementType;
 };
 
 /** Bind app-owned hooks once, without duplicating layout and navigation logic. */
 export function createLessonLearningLayout(bindings: LessonLearningLayoutBindings) {
-  function LessonLearningLayout({ children, topics, skippableSteps, quizStep, messages }: LessonLearningLayoutProps) {
+  function LessonLearningLayout({ children, topics, skippableSteps, quizStep, pathname, messages }: LessonLearningLayoutProps) {
     const { locale, setLocale } = bindings.useLocale();
-    const pathname = bindings.usePathname();
-    const { progress, dispatch } = bindings.useLessonNavigation();
-    const { mode, systemMode, setMode } = bindings.useColorScheme();
+    const { progress, dispatch } = useLessonNavigation();
+    const { mode, systemMode, setMode } = useColorScheme();
 
     return (
       <LearningLayout

@@ -209,7 +209,7 @@ export default function LearningLayout({
                       <ListItemButton
                         key={topic.id}
                         component={linkComponent ?? 'a'}
-                        href={`${topic.href}?lang=${locale}`}
+                        href={topic.href}
                         selected={pathname === topic.href}
                         aria-current={pathname === topic.href ? 'page' : undefined}
                         onClick={() => setOpen(false)}
