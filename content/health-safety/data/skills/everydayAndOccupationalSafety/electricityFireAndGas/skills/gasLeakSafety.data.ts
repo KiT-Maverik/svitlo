@@ -60,7 +60,7 @@ export const gasLeakSafety_Skill_Data = buildSkillConfig({
       he: 'זהו סימני דליפת גז והתרחקו למקום בטוח במקום לנסות לתקן לבד.',
       pl: 'Rozpoznaj objawy wycieku gazu i oddal się w bezpieczne miejsce zamiast naprawiać samemu.',
       uk: 'Розпізнавай ознаки витоку газу та переходь у безпечне місце, не намагайся ремонтувати.',
-      lt: 'Atpažink dujų nuotėkio požymius ir pasitrauk į saugią vietą, nebandydama taisyti.',
+      lt: 'Atpažink dujų nuotėkio požymius, nebandyk taisyti ir pasitrauk į saugią vietą.',
       lv: 'Atpazīsti gāzes noplūdes pazīmes un dodies drošībā, nevis mēģini labot pats.',
       et: 'Tunne ära gaasilekke tunnused ja mine turvalisse kohta, ära ürita ise parandada.',
       be: 'Распазнавай прыкметы ўцечкі газу і адыходзь у бясьпечнае месца, ня спрабуй рамантаваць сам.',

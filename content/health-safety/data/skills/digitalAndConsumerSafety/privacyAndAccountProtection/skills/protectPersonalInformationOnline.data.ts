@@ -60,7 +60,7 @@ export const protectPersonalInformationOnline_Skill_Data = buildSkillConfig({
       he: 'חשבו מי עשוי לגשת למידע רגיש לפני פרסומו.',
       pl: 'Zastanów się, kto może uzyskać dostęp do wrażliwych danych przed publikacją.',
       uk: 'Перш ніж публікувати чутливі дані, подумай, хто зможе отримати до них доступ.',
-      lt: 'Prieš skelbdamas jautrią informaciją pagalvok, kas ją galės pasiekti.',
+      lt: 'Prieš skelbiant jautrią informaciją pagalvok, kas galės ją pasiekti.',
       lv: 'Pirms sensitīvu datu publicēšanas apsver, kas tiem varēs piekļūt.',
       et: 'Mõtle enne tundliku teabe avaldamist, kes sellele ligi pääseb.',
       be: 'Перад публікацыяй чульлівых зьвестак падумай, хто зможа іх пабачыць.',
