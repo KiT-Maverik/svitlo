@@ -189,7 +189,13 @@ function runGate(changed) {
       file.startsWith('learningApps/playground/src/app/[language]/lesson/')
     )) {
       exec('npm', ['run', 'build', '--workspace', name]);
-      exec('npm', ['run', 'test:components', '--workspace', name]);
+      // FastGate checks the changed Lesson route/bindings; the full Playground
+      // components suite also contains independent SkillsMindMap tests.
+      exec('npm', ['run', 'test:components', '--workspace', name, '--',
+        'src/components/layout/LearningLayout/LearningLayout.unit.spec.ts',
+        'src/lib/lessons/assembleLessonResponse.unit.spec.ts',
+        'src/i18n/useLessonLocale.unit.spec.tsx',
+      ]);
     }
   }
   if (changed.some(file =>
