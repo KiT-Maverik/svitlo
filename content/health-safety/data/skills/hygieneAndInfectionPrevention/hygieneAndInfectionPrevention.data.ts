@@ -54,7 +54,7 @@ export const hygieneAndInfectionPrevention_SkillDomain_Data = buildSkillDomainCo
       ar: 'اكتشف طرق تقليل العدوى بالنظافة والبيئات الأكثر أمانًا.',
       fr: "Découvre comment l'hygiène et des environnements plus sûrs réduisent les infections.",
       bn: 'স্বাস্থ্যবিধি ও নিরাপদ পরিবেশে কীভাবে সংক্রমণ কমে তা জানো।',
-      pt: 'Explore como a higiene e ambientes seguros ajudam a reduzir infecções.',
+      pt: 'Explore como a higiene e os ambientes seguros ajudam a reduzir infecções.',
       ur: 'صفائی اور محفوظ ماحول سے انفیکشن کم کرنے کے طریقے جانیں۔',
       id: 'Pelajari cara mengurangi infeksi melalui kebersihan dan lingkungan yang lebih aman.',
       de: 'Entdecke, wie Hygiene und sichere Umgebungen Infektionen verringern.',
