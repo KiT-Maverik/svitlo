@@ -67,7 +67,7 @@ export const humanExistenceAndMeaning_SkillGroup_Data = buildSkillGroupConfig({
       tr: 'Anlamlı ve sahici bir yaşam sürmeye yönelik felsefi yaklaşımları araştır.',
       vi: 'Khám phá các cách tiếp cận triết học để sống có ý nghĩa và chân thực.',
       ta: 'அர்த்தமுள்ள, உண்மையான வாழ்க்கை வாழ்வதற்கான தத்துவ அணுகுமுறைகளை ஆராயுங்கள்.',
-      te: 'అర్థవంతమైన, నిజాయితీతో కూడిన జీవితం గడపడానికి తాత్విక దృక్పథాలను పరిశీలించండి.',
+      te: 'అర్థవంతమైన, తన నిజ స్వరూపానికి అనుగుణంగా జీవించేందుకు తాత్విక దృక్పథాలను పరిశీలించండి.',
       mr: 'अर्थपूर्ण आणि प्रामाणिक जीवन जगण्याचे तत्त्वज्ञानातील दृष्टिकोन शोधा.',
       ms: 'Terokai pendekatan falsafah untuk menjalani kehidupan yang bermakna dan tulen.',
       he: 'בחנו גישות פילוסופיות לחיים בעלי משמעות ונאמנות לעצמנו.',

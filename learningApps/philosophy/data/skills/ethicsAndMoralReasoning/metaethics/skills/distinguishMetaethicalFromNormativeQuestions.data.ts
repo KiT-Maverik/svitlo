@@ -53,7 +53,7 @@ export const distinguishMetaethicalFromNormativeQuestions_Skill_Data = buildSkil
       ko: '무엇이 옳은지 묻는 질문과 도덕적 판단의 의미를 묻는 질문을 구별하세요.',
       tr: 'Neyin doğru olduğunu sormakla ahlaki yargıların ne anlama geldiğini sormayı ayırt et.',
       vi: 'Phân biệt hỏi điều gì đúng với hỏi phán đoán đạo đức có nghĩa gì.',
-      ta: 'எது சரி என்று கேட்பதற்கும் அறநெறித் தீர்ப்பின் பொருள் என்ன என்று கேட்பதற்கும் உள்ள வேறுபாட்டை அறிக.',
+      ta: 'எது சரி என்று கேட்பதற்கும் அறநெறித் தீர்ப்பின் பொருள் என்ன என்று கேட்பதற்கும் உள்ள வேறுபாட்டை அறியுங்கள்.',
       te: 'ఏది సరైనదో అడగడాన్ని, నైతిక తీర్పుల అర్థం ఏమిటో అడగడాన్ని వేరు చేయండి.',
       mr: 'काय योग्य आहे हे विचारणे आणि नैतिक निर्णयांचा अर्थ विचारणे यांत फरक ओळखा.',
       ms: 'Bezakan soalan tentang apa yang betul dengan soalan tentang maksud pertimbangan moral.',

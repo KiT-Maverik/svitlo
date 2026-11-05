@@ -18,7 +18,7 @@ export const formulateAnEmpiricallyInvestigableQuestion_Skill_Data = buildSkillC
     ja: '経験的に調査可能な問いを立てる',
     ko: '경험적으로 조사할 수 있는 질문 만들기',
     tr: 'Ampirik olarak araştırılabilir bir soru oluşturmak',
-    vi: 'Đặt câu hỏi có thể nghiên cứu bằng thực nghiệm',
+    vi: 'Đặt câu hỏi có thể khảo sát dựa trên quan sát và bằng chứng',
     ta: 'அனுபவ ஆதாரத்தால் ஆராயக்கூடிய கேள்வியை உருவாக்குதல்',
     te: 'అనుభవాధారంగా పరిశోధించగల ప్రశ్నను రూపొందించడం',
     mr: 'अनुभवाधारित पद्धतीने तपासता येणारा प्रश्न मांडणे',
