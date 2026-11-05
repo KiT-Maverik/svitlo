@@ -39,7 +39,7 @@ export const recyclingChemistry_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Explore how material composition affects recycling and recovery.",
       zh: "探索材料的化学组成如何影响回收和再利用。",
-      hi: "जानो कि पदार्थों की रासायनिक संरचना पुनर्चक्रण और पुनर्प्राप्ति को कैसे प्रभावित करती है।",
+      hi: "जानें कि पदार्थों की रासायनिक संरचना पुनर्चक्रण और पुनर्प्राप्ति को कैसे प्रभावित करती है।",
       es: "Explora cómo la composición de los materiales afecta al reciclaje y la recuperación.",
       ar: "استكشف كيف يؤثر تركيب المواد في إعادة التدوير واسترجاع الموارد.",
       fr: "Explore comment la composition des matériaux influence le recyclage et la récupération.",

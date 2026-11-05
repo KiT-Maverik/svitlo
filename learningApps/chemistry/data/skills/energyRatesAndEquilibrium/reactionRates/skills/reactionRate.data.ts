@@ -24,7 +24,7 @@ export const reactionRate_Skill_Data = buildSkillConfig({
     mr: "अभिक्रियेचा दर",
     ms: "Kadar sesuatu tindak balas",
     he: "קצב התגובה",
-    pl: "Szybkość pojedynczej reakcji",
+    pl: "Obliczanie szybkości reakcji",
     uk: "Швидкість реакції",
     lt: "Reakcijos greitis",
     lv: "Reakcijas ātrums",

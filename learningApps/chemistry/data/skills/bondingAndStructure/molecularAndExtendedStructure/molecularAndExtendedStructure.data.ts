@@ -34,7 +34,7 @@ export const molecularAndExtendedStructure_SkillGroup_Data = buildSkillGroupConf
     be: "Малекулярная й працяглая будова",
     ka: "მოლეკულური და განვრცობილი სტრუქტურები",
     kk: "Молекулалық және кеңейтілген құрылым",
-    qm: "Molekulalı ve uzaqlaşqan qurulışlar",
+    qm: "Molekulalı ve şebekeli qurulışlar",
   },
   skills: {
     ionicLattices: ionicLattices_Skill_Data,

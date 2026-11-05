@@ -39,7 +39,7 @@ export const ceramics_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Explore how ceramic composition and structure influence strength and heat resistance.",
       zh: "探索陶瓷的组成和结构如何影响其强度和耐热性。",
-      hi: "जानो कि सिरेमिक की संरचना और संघटन से उसकी मजबूती और ताप-सहिष्णुता कैसे बदलती है।",
+      hi: "जानें कि सिरेमिक की संरचना और संघटन से उसकी मजबूती और ताप-सहिष्णुता कैसे बदलती है।",
       es: "Explora cómo la composición y la estructura de las cerámicas influyen en su resistencia y tolerancia al calor.",
       ar: "استكشف كيف يؤثر تركيب الخزف وبنيته في المتانة ومقاومة الحرارة.",
       fr: "Explore comment la composition et la structure des céramiques influencent leur résistance mécanique et thermique.",

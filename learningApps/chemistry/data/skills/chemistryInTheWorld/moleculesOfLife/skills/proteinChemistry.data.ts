@@ -39,7 +39,7 @@ export const proteinChemistry_Skill_Data = buildSkillConfig({
     frontend: {
       en: "See how amino acids and their interactions shape protein structure.",
       zh: "了解氨基酸及其相互作用如何决定蛋白质结构。",
-      hi: "जानो कि अमीनो अम्ल और उनकी आपसी क्रियाएँ प्रोटीन की संरचना कैसे तय करती हैं।",
+      hi: "जानें कि अमीनो अम्ल और उनकी आपसी क्रियाएँ प्रोटीन की संरचना कैसे तय करती हैं।",
       es: "Observa cómo los aminoácidos y sus interacciones determinan la estructura de las proteínas.",
       ar: "اكتشف كيف تشكّل الأحماض الأمينية وتفاعلاتها بنية البروتين.",
       fr: "Découvre comment les acides aminés et leurs interactions façonnent la structure des protéines.",

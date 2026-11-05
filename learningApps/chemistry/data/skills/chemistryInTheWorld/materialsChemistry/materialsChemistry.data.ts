@@ -50,7 +50,7 @@ export const materialsChemistry_SkillGroup_Data = buildSkillGroupConfig({
     frontend: {
       en: "Explore how chemical structure helps determine a material's useful properties.",
       zh: "探索化学结构如何决定材料的实用性质。",
-      hi: "जानो कि रासायनिक संरचना किसी पदार्थ के उपयोगी गुण कैसे तय करती है।",
+      hi: "जानें कि रासायनिक संरचना किसी पदार्थ के उपयोगी गुण कैसे तय करती है।",
       es: "Explora cómo la estructura química contribuye a determinar las propiedades útiles de un material.",
       ar: "استكشف كيف تساعد البنية الكيميائية على تحديد خصائص المادة المفيدة.",
       fr: "Explore comment la structure chimique détermine certaines propriétés utiles des matériaux.",

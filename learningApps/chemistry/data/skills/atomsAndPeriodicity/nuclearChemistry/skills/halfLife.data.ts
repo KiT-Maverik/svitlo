@@ -7,7 +7,7 @@ export const halfLife_Skill_Data = buildSkillConfig({
     en: "Half-Life",
     zh: "半衰期",
     hi: "अर्धायु",
-    es: "Vida media de desintegración",
+    es: "Período de semidesintegración",
     ar: "عمر النصف",
     fr: "Demi-vie radioactive",
     bn: "অর্ধায়ু",

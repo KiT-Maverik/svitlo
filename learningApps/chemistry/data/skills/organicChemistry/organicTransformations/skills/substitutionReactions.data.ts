@@ -39,7 +39,7 @@ export const substitutionReactions_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Recognize when an atom or group is replaced within an organic molecule.",
       zh: "识别有机分子中某个原子或基团被另一个取代的反应。",
-      hi: "ऐसी अभिक्रियाएँ पहचानो जिनमें कार्बनिक अणु का कोई परमाणु या समूह बदल दिया जाता है।",
+      hi: "ऐसी अभिक्रियाएँ पहचानें जिनमें कार्बनिक अणु का कोई परमाणु या समूह बदल दिया जाता है।",
       es: "Reconoce cuándo se reemplaza un átomo o grupo dentro de una molécula orgánica.",
       ar: "تعرّف التفاعلات التي يُستبدل فيها ذرة أو مجموعة داخل جزيء عضوي.",
       fr: "Reconnais une réaction où un atome ou un groupe est remplacé dans une molécule organique.",

@@ -39,7 +39,7 @@ export const alcohols_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Identify alcohol structures and the reactions associated with their hydroxyl group.",
       zh: "识别醇的结构及其羟基相关的化学反应。",
-      hi: "ऐल्कोहॉल की संरचना और उनके हाइड्रॉक्सिल समूह से जुड़ी अभिक्रियाएँ पहचानो।",
+      hi: "ऐल्कोहॉल की संरचना और उनके हाइड्रॉक्सिल समूह से जुड़ी अभिक्रियाएँ पहचानें।",
       es: "Identifica las estructuras de los alcoholes y las reacciones asociadas a su grupo hidroxilo.",
       ar: "تعرّف بنى الكحولات والتفاعلات المرتبطة بمجموعة الهيدروكسيل فيها.",
       fr: "Reconnais les structures des alcools et les réactions liées à leur groupe hydroxyle.",

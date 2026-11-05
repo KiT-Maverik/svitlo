@@ -60,7 +60,7 @@ export const solubilityEquilibrium_Skill_Data = buildSkillConfig({
       pl: "Poznaj równowagę między rozpuszczaniem i wytrącaniem jonów i ciał stałych.",
       uk: "Досліди, як йони в розчині й тверда речовина досягають балансу розчинення й осадження.",
       lt: "Tyrinėk pusiausvyrą tarp jonų tirpimo ir kietosios medžiagos nusodinimo.",
-      lv: "Izpēti līdzsvaru starp izšķīdušu jonu šķīšanu un cietvielu nogulsnēšanos.",
+      lv: "Izpēti līdzsvaru starp cietvielu šķīšanu un izšķīdušo jonu nogulsnēšanos.",
       et: "Uuri tasakaalu lahustunud ioonide ja tahkete ainete lahustumise ning sadestumise vahel.",
       be: "Дасьледуй баланс растварэньня й асаджэньня паміж іёнамі ў растворы й цьвёрдым рэчывам.",
       ka: "გამოიკვლიე იონების გახსნასა და მყარი ნივთიერების დალექვას შორის წონასწორობა.",

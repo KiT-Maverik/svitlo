@@ -39,7 +39,7 @@ export const waterContaminants_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Recognize different water contaminants without assuming clear water is safe.",
       zh: "识别不同的水污染物，不要把清澈的水误认为一定安全。",
-      hi: "पानी में अलग-अलग प्रदूषक पहचानो; साफ दिखने वाले पानी को ज़रूरी नहीं कि सुरक्षित मानो।",
+      hi: "पानी में अलग-अलग प्रदूषक पहचानें; साफ दिखने वाले पानी को ज़रूरी नहीं कि सुरक्षित मानें।",
       es: "Reconoce distintos contaminantes del agua sin asumir que el agua transparente es segura.",
       ar: "تعرّف أنواع ملوثات الماء ولا تفترض أن الماء الصافي آمن بالضرورة.",
       fr: "Reconnais différents polluants de l'eau sans supposer qu'une eau limpide est sans danger.",

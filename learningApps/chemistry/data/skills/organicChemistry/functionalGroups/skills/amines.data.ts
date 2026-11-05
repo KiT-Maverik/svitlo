@@ -39,7 +39,7 @@ export const amines_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Explore the behavior of nitrogen-containing amine groups.",
       zh: "探索含氮胺官能团的化学行为。",
-      hi: "नाइट्रोजन युक्त ऐमीन समूहों के रासायनिक व्यवहार का अध्ययन करो।",
+      hi: "नाइट्रोजन युक्त ऐमीन समूहों के रासायनिक व्यवहार का अध्ययन करें।",
       es: "Explora el comportamiento químico de los grupos amino que contienen nitrógeno.",
       ar: "استكشف السلوك الكيميائي لمجموعات الأمين المحتوية على النيتروجين.",
       fr: "Explore le comportement chimique des groupes amine contenant de l'azote.",

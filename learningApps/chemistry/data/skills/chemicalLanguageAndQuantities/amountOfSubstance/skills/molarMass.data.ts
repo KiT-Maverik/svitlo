@@ -59,7 +59,7 @@ export const molarMass_Skill_Data = buildSkillConfig({
       he: "השתמשו במסה מולרית כדי לקשר בין נוסחה למסה של מול.",
       pl: "Użyj masy molowej do powiązania wzoru z masą jednego mola.",
       uk: "Застосовуй молярну масу, щоб пов’язати хімічну формулу з масою одного моля.",
-      lt: "Naudok molinę masę, siekdamas cheminę formulę su vieno molio mase.",
+      lt: "Naudok molinę masę, kad susietum cheminę formulę su vieno molio mase.",
       lv: "Izmanto molmasu, lai saistītu ķīmisko formulu ar viena mola masu.",
       et: "Seo molaarmassi abil keemiline valem ühe mooli massiga.",
       be: "Ужывай малярную масу, каб зьвязаць формулу з масай аднаго моля.",

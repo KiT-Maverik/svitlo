@@ -30,7 +30,7 @@ export const acidBaseFundamentals_SkillGroup_Data = buildSkillGroupConfig({
     uk: "Основи кислотно-основної хімії",
     lt: "Rūgščių ir bazių pagrindai",
     lv: "Skābju un bāzu pamati",
-    et: "Hapete ja aluste alused",
+    et: "Happe-aluse keemia põhialused",
     be: "Асновы кіслотна-асноўнай хіміі",
     ka: "მჟავა-ფუძეების საფუძვლები",
     kk: "Қышқыл-негіз негіздері",

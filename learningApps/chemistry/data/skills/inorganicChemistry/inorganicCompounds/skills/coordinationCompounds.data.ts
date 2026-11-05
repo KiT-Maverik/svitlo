@@ -39,7 +39,7 @@ export const coordinationCompounds_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Understand how ligands surround a central metal species in coordination compounds.",
       zh: "理解配位化合物中配体如何围绕中心金属物种排列。",
-      hi: "समझो कि समन्वय यौगिकों में लिगैंड केंद्रीय धातु प्रजाति के चारों ओर कैसे होते हैं।",
+      hi: "समझें कि समन्वय यौगिकों में लिगैंड केंद्रीय धातु प्रजाति के चारों ओर कैसे होते हैं।",
       es: "Comprende cómo los ligandos rodean una especie metálica central en los compuestos de coordinación.",
       ar: "افهم كيف تحيط الربيطات بنوع فلزي مركزي في المركبات التناسقية.",
       fr: "Comprends comment les ligands entourent une espèce métallique centrale dans les composés de coordination.",

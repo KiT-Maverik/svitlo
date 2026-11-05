@@ -50,7 +50,7 @@ export const functionalGroups_SkillGroup_Data = buildSkillGroupConfig({
     frontend: {
       en: "Recognize functional groups that shape the behavior of organic compounds.",
       zh: "识别决定有机化合物化学行为的官能团。",
-      hi: "ऐसे क्रियात्मक समूह पहचानो जो कार्बनिक यौगिकों के व्यवहार को प्रभावित करते हैं।",
+      hi: "ऐसे क्रियात्मक समूह पहचानें जो कार्बनिक यौगिकों के व्यवहार को प्रभावित करते हैं।",
       es: "Reconoce grupos funcionales que determinan el comportamiento de compuestos orgánicos.",
       ar: "تعرّف المجموعات الوظيفية التي تحدد سلوك المركبات العضوية.",
       fr: "Reconnais les groupes fonctionnels qui déterminent le comportement des composés organiques.",

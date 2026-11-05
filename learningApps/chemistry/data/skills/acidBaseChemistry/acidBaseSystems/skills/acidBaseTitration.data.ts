@@ -58,7 +58,7 @@ export const acidBaseTitration_Skill_Data = buildSkillConfig({
       ms: "Gunakan ukuran pentitratan untuk menentukan kuantiti tidak diketahui.",
       he: "השתמשו במדידות טיטרציה כדי לקבוע כמות לא ידועה.",
       pl: "Użyj wyników miareczkowania do wyznaczenia nieznanej ilości.",
-      uk: "Використовуй вимірювання титрування, щоб визначити невідому кількість речовини.",
+      uk: "Використовуй результати титрування, щоб визначити невідому кількість речовини.",
       lt: "Naudok titravimo matavimus nežinomam kiekiui nustatyti.",
       lv: "Izmanto titrēšanas mērījumus nezināma daudzuma noteikšanai.",
       et: "Kasuta tiitrimismõõtmisi tundmatu ainehulga leidmiseks.",
