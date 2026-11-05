@@ -67,6 +67,10 @@ jobs:
           console.log('Validating full assigned domain source:', include);
           NODE
           npx tsc --noEmit --project learningApps/philosophy/tsconfig.agent-validation.tmp.json
+      - name: Diagnose full workspace TypeScript on agent PR (may fail on other unfinished domains)
+        if: github.base_ref == 'feat/philosophy-skills-integration'
+        continue-on-error: true
+        run: npm run typecheck --workspace @svitlo/philosophy
       - name: Full Philosophy TypeScript with all authored data
         if: github.base_ref == 'main'
         run: npm run typecheck --workspace @svitlo/philosophy
