@@ -191,7 +191,7 @@ for (const file of engineSources) {
       match[1].startsWith('.') ||
       match[1].startsWith('@svitlo/contracts') ||
       (relative(root, file).startsWith('shared/engine/src/utils/generators/') &&
-        match[1].startsWith('node:')),
+        (match[1].startsWith('node:') || match[1] === 'esbuild')),
       'Engine must not import runtime, UI or application packages: ' + relative(root, file) + ' -> ' + match[1],
     );
   }
