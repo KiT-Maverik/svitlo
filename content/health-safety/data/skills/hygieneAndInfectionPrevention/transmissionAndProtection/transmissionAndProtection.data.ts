@@ -60,7 +60,7 @@ export const transmissionAndProtection_SkillGroup_Data = buildSkillGroupConfig({
       ar: 'تعرّف كيف تنتقل العدوى وأي احتياطات تناسب كل طريق.',
       fr: 'Découvre comment les infections se propagent et quelles précautions conviennent à chaque voie.',
       bn: 'সংক্রমণ কীভাবে ছড়ায় এবং কোন পথে কী সতর্কতা দরকার তা জানো।',
-      pt: 'Descubra como as infeções se transmitem e que cuidados servem a cada via.',
+      pt: 'Descubra como as infecções são transmitidas e que cuidados servem a cada via.',
       ur: 'جانیں کہ انفیکشن کیسے پھیلتا ہے اور ہر راستے کے لیے کون سی احتیاط مناسب ہے۔',
       id: 'Pelajari cara infeksi menular dan tindakan pencegahan bagi tiap jalur.',
       de: 'Erfahre, wie Infektionen übertragen werden und welche Vorsichtsmaßnahmen zu welchem Weg passen.',
