@@ -22,7 +22,7 @@ export const networkSolids_Skill_Data = buildSkillConfig({
     ta: "சகப்பிணைப்பு வலைத் திடப்பொருள்கள்",
     te: "సమయోజనీయ జాలక ఘనాలు",
     mr: "सहसंयुज जाळी घनपदार्थ",
-    ms: "Pepejal kovalen",
+    ms: "Pepejal rangkaian kovalen",
     he: "מוצקים רשתיים קוולנטיים",
     pl: "Ciała stałe o sieci kowalencyjnej",
     uk: "Ковалентні сітчасті тверді тіла",
