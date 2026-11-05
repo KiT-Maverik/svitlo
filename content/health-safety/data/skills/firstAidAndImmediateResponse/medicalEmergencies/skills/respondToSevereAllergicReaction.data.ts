@@ -57,7 +57,7 @@ export const respondToSevereAllergicReaction_Skill_Data = buildSkillConfig({
       te: 'తీవ్ర అలెర్జీ వెంటనే చికిత్స అవసరమైన అత్యవసర పరిస్థితి అని గుర్తించండి.',
       mr: 'तीव्र अ‍ॅलर्जी ही तातडीच्या उपचारांची गरज असलेली आपत्कालीन स्थिती आहे हे ओळखा.',
       ms: 'Kenali reaksi alahan teruk sebagai kecemasan yang memerlukan rawatan segera.',
-      he: 'זהו תגובה אלרגית חמורה כמצב חירום המחייב טיפול מהיר.',
+      he: 'הכירו בתגובה אלרגית חמורה כמצב חירום המחייב טיפול דחוף.',
       pl: 'Rozpoznawaj ciężką reakcję alergiczną jako nagły stan wymagający szybkiej pomocy.',
       uk: 'Розпізнавай тяжку алергічну реакцію як невідкладний стан, що потребує швидкої допомоги.',
       lt: 'Atpažink sunkią alerginę reakciją kaip skubios pagalbos reikalaujančią būklę.',

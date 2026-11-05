@@ -67,7 +67,7 @@ export const physicalActivity_SkillGroup_Data = buildSkillGroupConfig({
       tr: 'Kendi kapasiteni gözeterek nasıl aktif kalacağını öğren.',
       vi: 'Tìm hiểu cách duy trì vận động phù hợp với khả năng của bản thân.',
       ta: 'உங்கள் திறன்களுக்கு ஏற்ப சுறுசுறுப்பாக இருப்பது எப்படி என அறியுங்கள்.',
-      te: 'నీ సామర్థ్యానికి అనుగుణంగా చురుకుగా ఎలా ఉండాలో తెలుసుకోండి.',
+      te: 'మీ సామర్థ్యానికి అనుగుణంగా చురుకుగా ఎలా ఉండాలో తెలుసుకోండి.',
       mr: 'स्वतःच्या क्षमतेचा विचार करून सक्रिय कसे राहायचे ते शीक.',
       ms: 'Ketahui cara kekal aktif mengikut kemampuan diri.',
       he: 'גלו איך להישאר פעילים תוך התחשבות ביכולות האישיות.',
