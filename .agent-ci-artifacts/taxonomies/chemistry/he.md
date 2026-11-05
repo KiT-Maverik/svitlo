@@ -750,7 +750,7 @@ Skills: 8
 
 **Methodological description (English):** Read subscripts as composition information rather than reaction coefficients.
 
-**User-friendly description (he):** הבינו כיצד מספרים תחיליים תחתונים מראים את היחס בין אטומים.
+**User-friendly description (he):** הבחינו בין מספרים קטנים בתחתית הסמלים, המציינים את הרכב הנוסחה, לבין מקדמים במשוואת תגובה.
 
 ##### סמלי היסודות
 

@@ -1020,7 +1020,7 @@ Skills: 5
 
 **Methodological description (English):** Relate pollutant reactions and transformations to phenomena such as acid deposition or photochemical smog.
 
-**User-friendly description (te):** వాతావరణ చర్యలను పొగమంచు, ఆమ్ల నిక్షేపణతో అనుసంధానించండి.
+**User-friendly description (te):** వాతావరణంలోని కాలుష్యకారకాల రసాయన చర్యలను ఫోటోకెమికల్ స్మాగ్, ఆమ్ల నిక్షేపణ వంటి ఘటనలతో అనుసంధానించండి.
 
 ##### పర్యావరణంలో కార్బన్ రసాయనం
 

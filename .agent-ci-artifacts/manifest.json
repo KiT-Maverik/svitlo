@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "kind": "pr-scoped-agent-ci-artifacts",
-  "sourceCommit": "6f8da38729a3ae44cb224515f613606fb1599626",
+  "sourceCommit": "750a6103a129b905b784e1308deef6423c301df8",
   "packages": [
     "learningApps/art",
     "learningApps/astronomy",

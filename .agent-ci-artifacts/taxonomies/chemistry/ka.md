@@ -686,7 +686,7 @@ Skills: 6
 
 **User-friendly description (ka):** დააკავშირე ნაწილაკების რიცხვი გასაზომ მასებთან და რეაქციაში რაოდენობებთან.
 
-##### მალიმიტირებელი რეაგენტები
+##### ლიმიტირებელი რეაგენტები
 
 [limitingReactants.data.ts](../../../learningApps/chemistry/data/skills/chemicalLanguageAndQuantities/amountOfSubstance/skills/limitingReactants.data.ts)
 
