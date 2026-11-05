@@ -11,7 +11,7 @@ export const recognizePhishingAndImpersonation_Skill_Data = buildSkillConfig({
     ar: 'التعرف على التصيد وانتحال الهوية',
     fr: "Reconnaître l'hameçonnage et l'usurpation d'identité",
     bn: 'ফিশিং ও পরিচয় জালিয়াতি চেনা',
-    pt: 'Reconhecer phishing e falsidade de identidade',
+    pt: 'Reconhecer phishing e usurpação de identidade',
     ur: 'فشنگ اور جعلی شناخت پہچاننا',
     id: 'Mengenali Phishing dan Penyamaran Identitas',
     de: 'Phishing und Identitätsvortäuschung erkennen',

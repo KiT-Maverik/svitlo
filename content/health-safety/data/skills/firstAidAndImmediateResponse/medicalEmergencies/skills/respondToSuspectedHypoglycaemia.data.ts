@@ -11,7 +11,7 @@ export const respondToSuspectedHypoglycaemia_Skill_Data = buildSkillConfig({
     ar: 'الاستجابة للاشتباه بانخفاض سكر الدم',
     fr: 'Réagir à une hypoglycémie présumée',
     bn: 'সম্ভাব্য রক্তে শর্করা কমে যাওয়ায় সাড়া',
-    pt: 'Responder a suspeita de hipoglicemia',
+    pt: 'Responder à suspeita de hipoglicemia',
     ur: 'ممکنہ کم بلڈ شوگر پر مدد',
     id: 'Menangani Dugaan Hipoglikemia',
     de: 'Bei vermuteter Unterzuckerung reagieren',
