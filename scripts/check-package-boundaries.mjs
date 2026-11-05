@@ -17,6 +17,7 @@ const uiKit = readJson('shared/ui-kit/package.json');
 const nextAdapter = readJson('shared/adapters/nextjs/package.json');
 
 function walk(dir) {
+  if (!existsSync(dir)) return []; // Compiled textbook packages intentionally omit src/.
   return readdirSync(dir, { withFileTypes: true }).flatMap(entry => {
     const path = join(dir, entry.name);
     return entry.isDirectory() ? walk(path) : entry.isFile() ? [path] : [];
@@ -74,6 +75,18 @@ assert(playground.dependencies?.[uiKit.name] === uiKit.version, 'Playground must
 assert(web.dependencies?.[indexdb.name] === indexdb.version, 'Web must use public IndexedDB dependency');
 assert(math.dependencies?.[indexdb.name] === indexdb.version, 'Math must use public IndexedDB dependency');
 assert(biology.name === '@svitlo/biology', 'Unexpected Biology package name');
+// Migrated textbooks own authored Skills and compiled metadata, not Next.js routes.
+for (const subject of ["astronomy","biology","geography","history","informatics"]) {
+  const directory = 'content/' + subject;
+  const manifest = readJson(directory + '/package.json');
+  assert(manifest.name === '@svitlo/' + subject, 'Textbook package name mismatch: ' + subject);
+  assert(!manifest.dependencies?.next, 'Migrated textbook cannot depend on Next.js: ' + subject);
+  assert(!existsSync(resolve(root, directory, 'src/app')), 'Legacy App Router still present: ' + subject);
+  assert(existsSync(resolve(root, directory, 'data/skills/index.ts')), 'Authored Skills missing: ' + subject);
+  assert(manifest.exports?.['.']?.default === './dist/textbook/index.js', 'Compiled metadata export missing: ' + subject);
+  assert(manifest.bin?.['svitlo-' + subject] === './scripts/publish.mjs', 'Publish CLI missing: ' + subject);
+}
+
 for (const name of ['content/math', 'content/playground']) {
   assert(!existsSync(resolve(root, name, 'src/db')), name + ' must not own duplicate IndexedDB controllers');
 }

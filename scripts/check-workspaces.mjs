@@ -137,7 +137,10 @@ for (const { path, name } of expected) {
   const pkg = readJson(pkgPath);
   const tsconfig = readJson(tsconfigPath);
   assert(pkg.name === name && pkg.private === true, 'Invalid workspace manifest: ' + pkgPath);
-  if (name !== '@svitlo/playground') {
+  if (['@svitlo/playground', '@svitlo/astronomy', '@svitlo/biology', '@svitlo/geography', '@svitlo/history', '@svitlo/informatics'].includes(name)) {
+    assert(!tsconfig.compilerOptions?.paths?.['@/*'], 'Compiled textbook must not require app-local aliases: ' + pkgPath);
+    assert(pkg.exports?.['.']?.default?.startsWith('./dist/'), 'Missing compiled textbook export: ' + pkgPath);
+  } else {
     assert(tsconfig.compilerOptions?.paths?.['@/*']?.[0] === 'src/*', 'Missing local alias in ' + tsconfigPath);
   }
   assert(lock.packages[path]?.name === name, 'Missing workspace lockfile package: ' + name);

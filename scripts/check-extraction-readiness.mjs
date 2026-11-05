@@ -37,6 +37,7 @@ function assert(ok, message) {
   if (!ok) throw new Error(message);
 }
 function walk(dir) {
+  if (!existsSync(dir)) return []; // Metadata-only packages have no src/ directory.
   return readdirSync(dir, { withFileTypes: true }).flatMap(entry => {
     const item = join(dir, entry.name);
     return entry.isDirectory() ? walk(item) : entry.isFile() ? [item] : [];
