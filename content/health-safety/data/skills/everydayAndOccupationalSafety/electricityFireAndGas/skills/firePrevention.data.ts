@@ -53,7 +53,7 @@ export const firePrevention_Skill_Data = buildSkillConfig({
       ko: '가연성 물질과 위험한 행동을 알아보고 화재 위험을 줄이세요.',
       tr: 'Yanıcı maddeleri ve güvensiz davranışları tanıyarak yangın riskini azalt.',
       vi: 'Giảm nguy cơ cháy khi nhận biết vật dễ bắt lửa và hành vi thiếu an toàn.',
-      ta: 'எளிதில் எரியும் பொருட்களையும் பாதுகாப்பற்ற செயல்களையும் கண்டறிந்து தீ ஆபத்தைக் குறையுங்கள்.',
+      ta: 'எளிதில் எரியும் பொருட்களையும் பாதுகாப்பற்ற செயல்களையும் கண்டறிந்து தீ ஆபத்தைக் குறைக்கவும்.',
       te: 'మండే పదార్థాలు, అసురక్షిత చర్యలను గుర్తించి అగ్నిప్రమాదాన్ని తగ్గించండి.',
       mr: 'ज्वलनशील वस्तू आणि असुरक्षित पद्धती ओळखून आगीचा धोका कमी करा.',
       ms: 'Kurangkan risiko kebakaran dengan mengenali bahan mudah terbakar dan amalan berbahaya.',

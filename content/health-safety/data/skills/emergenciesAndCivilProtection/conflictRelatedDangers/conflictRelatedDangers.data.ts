@@ -68,7 +68,7 @@ export const conflictRelatedDangers_SkillGroup_Data = buildSkillGroupConfig({
       ko: '분쟁 관련 위협으로부터 민간인을 보호하는 방법을 알아보세요.',
       tr: 'Çatışma kaynaklı tehditlerden sivilleri koruma yollarını öğren.',
       vi: 'Tìm hiểu cách bảo vệ dân thường trước các mối đe dọa liên quan xung đột.',
-      ta: 'மோதல் அச்சுறுத்தல்களிலிருந்து பொதுமக்களைப் பாதுகாக்கும் வழிகளை அறிக.',
+      ta: 'மோதல் அச்சுறுத்தல்களிலிருந்து பொதுமக்களைப் பாதுகாக்கும் வழிகளை அறியுங்கள்.',
       te: 'సంఘర్షణ సంబంధిత ముప్పుల నుంచి పౌరులను రక్షించే మార్గాలను తెలుసుకోండి.',
       mr: 'संघर्षाशी संबंधित धमक्यांपासून नागरिकांचे संरक्षण कसे करावे ते जाणून घ्या.',
       ms: 'Terokai cara melindungi orang awam daripada ancaman konflik.',

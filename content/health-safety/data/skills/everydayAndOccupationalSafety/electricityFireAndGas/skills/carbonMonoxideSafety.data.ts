@@ -53,7 +53,7 @@ export const carbonMonoxideSafety_Skill_Data = buildSkillConfig({
       ko: '일산화탄소는 경고하는 냄새가 없어도 위험한 이유를 알아보세요.',
       tr: 'Karbonmonoksitin uyarıcı kokusu olmadan neden tehlikeli olduğunu öğren.',
       vi: 'Hiểu vì sao carbon monoxide nguy hiểm dù không có mùi cảnh báo.',
-      ta: 'எச்சரிக்கும் மணம் இல்லாவிட்டாலும் கார்பன் மோனாக்சைடு ஏன் ஆபத்தானது என்பதை அறிக.',
+      ta: 'எச்சரிக்கும் மணம் இல்லாவிட்டாலும் கார்பன் மோனாக்சைடு ஏன் ஆபத்தானது என்பதை அறியுங்கள்.',
       te: 'హెచ్చరిక వాసన లేకపోయినా కార్బన్ మోనాక్సైడ్ ఎందుకు ప్రమాదకరమో తెలుసుకోండి.',
       mr: 'इशारा देणारा वास नसतानाही कार्बन मोनॉक्साइड का धोकादायक असतो ते जाणून घ्या.',
       ms: 'Fahami mengapa karbon monoksida berbahaya walaupun tiada bau amaran.',
