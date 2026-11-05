@@ -3,9 +3,11 @@
 import { createContext, useContext, type ComponentType, type ImgHTMLAttributes, type ReactNode, type Ref } from 'react';
 
 /** React-DOM image attributes plus optional host-specific optimization flags. */
-export type ImageRendererProps = Omit<ImgHTMLAttributes<HTMLImageElement>, 'src' | 'alt'> & {
+export type ImageRendererProps = Omit<ImgHTMLAttributes<HTMLImageElement>, 'src' | 'alt' | 'width' | 'height'> & {
   src: string;
   alt: string;
+  width?: number;
+  height?: number;
   fill?: boolean;
   unoptimized?: boolean;
   ref?: Ref<HTMLImageElement>;
