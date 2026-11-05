@@ -50,12 +50,7 @@ export const howLightMoves_Data = defineLessonData<HowLightMoves_Languages>()({
       showIndexes: true,
     },
   },
-  sectionOrder: ['theory', 'practice', 'quiz'],
   questions: howLightMoves_Questions,
-  sections: {
-    theory: theory_Section,
-    practice: practice_Section,
-    quiz: quiz_Section,
-  },
+  sections: [theory_Section, practice_Section, quiz_Section],
 } satisfies Lesson<'data', HowLightMoves_Languages>);
 

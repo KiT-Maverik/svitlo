@@ -14,7 +14,7 @@ type LessonData = {
   parameters: { languages: readonly LanguageCode[] };
   flashcards: unknown[];
   questions: Record<string, Record<string, unknown>>;
-  sections: Record<string, unknown>;
+  sections: unknown[];
   [key: string]: unknown;
 };
 
@@ -32,8 +32,26 @@ function assertLesson(value: unknown): asserts value is LessonData {
       !parameters.languages.every(code => typeof code === 'string')) {
     throw new Error(`Lesson ${relativePath} has no valid parameters.languages`);
   }
-  if (!Array.isArray(value.flashcards) || !isRecord(value.questions) || !isRecord(value.sections)) {
+  if (!Array.isArray(value.flashcards) || !isRecord(value.questions) || !Array.isArray(value.sections)) {
     throw new Error(`Lesson ${relativePath} is missing flashcards, questions, or sections`);
+  }
+  const sectionSlugs = new Set<string>();
+  for (const [index, entry] of value.sections.entries()) {
+    if (!isRecord(entry) || typeof entry.slug !== 'string' || !Array.isArray(entry.content)) {
+      throw new Error(`Invalid ordered section at ${relativePath}/sections[${index}]`);
+    }
+    if (sectionSlugs.has(entry.slug)) throw new Error(`Duplicate section slug: ${entry.slug}`);
+    sectionSlugs.add(entry.slug);
+    const blockKeys = new Set<string>();
+    for (const [blockIndex, item] of entry.content.entries()) {
+      if (!isRecord(item) || typeof item.id !== 'string' || typeof item.slug !== 'string' ||
+          typeof item.type !== 'string') {
+        throw new Error(`Invalid content block at ${relativePath}/sections[${index}]/content[${blockIndex}]`);
+      }
+      const key = item.type + '/' + item.slug;
+      if (blockKeys.has(key)) throw new Error(`Duplicate content block: ${key}`);
+      blockKeys.add(key);
+    }
   }
 }
 

@@ -1,6 +1,6 @@
 import type { ContentEntity_ConfigType } from './entity.types';
 import type { Locale_Languages, Locale_Options } from './locale.types';
-import type { ContentBlock_Catalog, ContentBlock_Reference } from './blocks';
+import type { ContentBlock } from './blocks';
 
 /** Presentation categories; individual sections still choose their content blocks. */
 export const SECTION_TYPES = [
@@ -17,8 +17,7 @@ export type Section_Type = (typeof SECTION_TYPES)[number];
 
 type Section_Definition<SupportedLanguages extends Locale_Languages> = {
   type: Section_Type;
-  content: ContentBlock_Catalog<'definition', SupportedLanguages>;
-  order?: readonly ContentBlock_Reference[];
+  content: readonly ContentBlock<'definition', SupportedLanguages>[];
 };
 
 type Section_Data<SupportedLanguages extends Locale_Languages> = {
@@ -28,8 +27,7 @@ type Section_Data<SupportedLanguages extends Locale_Languages> = {
   title: Locale_Options<SupportedLanguages>;
   navigationLabel: Locale_Options<SupportedLanguages>;
   skippable?: true;
-  content: ContentBlock_Catalog<'data', SupportedLanguages>;
-  order?: readonly ContentBlock_Reference[];
+  content: readonly ContentBlock<'data', SupportedLanguages>[];
 };
 
 type Section_Response<SupportedLanguages extends Locale_Languages> = {
@@ -39,8 +37,7 @@ type Section_Response<SupportedLanguages extends Locale_Languages> = {
   title: string;
   navigationLabel: string;
   skippable?: true;
-  content: ContentBlock_Catalog<'response', SupportedLanguages>;
-  order?: readonly ContentBlock_Reference[];
+  content: readonly ContentBlock<'response', SupportedLanguages>[];
 };
 
 export type Section<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends Locale_Languages> = {

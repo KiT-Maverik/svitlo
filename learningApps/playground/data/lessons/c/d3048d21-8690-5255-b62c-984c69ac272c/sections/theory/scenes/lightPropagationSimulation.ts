@@ -707,6 +707,7 @@ export type LightPropagationSimulation_ContentBlock<ConfigType extends 'definiti
   ContentBlock_Scene<ConfigType, HowLightMoves_Languages, Locale>;
 
 export const lightPropagationSimulationData = {
+  type: 'scene',
   id: 'how-light-moves-scene-propagation',
   slug: 'lightPropagationSimulation' as const,
   locales: sceneLocalesToData(howLightMoves_languages, lightPropagationSimulation_Locale),

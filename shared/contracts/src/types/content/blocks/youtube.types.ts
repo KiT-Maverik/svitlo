@@ -17,7 +17,7 @@ type Youtube_Display<Value> =
       | { title?: Value; hint: Value }
     ));
 
-type ContentBlock_Youtube_Data<SupportedLanguages extends Locale_Languages> = ContentBlock_Data_Meta & {
+type ContentBlock_Youtube_Data<SupportedLanguages extends Locale_Languages> = ContentBlock_Data_Meta<'youtube'> & {
   href: Locale_Options<SupportedLanguages>;
   fallback?: Youtube_Fallback<Locale_Options<SupportedLanguages>>;
 } & Youtube_Display<Locale_Options<SupportedLanguages>>;

@@ -1,6 +1,5 @@
 import type { HowLightMoves_Languages } from '../../constants';
 import {
-  defineContentBlockCatalog,
   type Section,
 } from '@svitlo/engine/content';
 import { howLightMoves_Questions } from '../../questions';
@@ -38,6 +37,7 @@ const title = {
 }
 
 const quizBlock = {
+  type: 'quiz' as const,
   id: 'd57aedcf-2381-527d-87e6-076bedcc9bd5',
   slug: 'quiz' as const,
   welcome: title,
@@ -63,8 +63,5 @@ export const quiz_Section = {
   title,
   navigationLabel: title,
   skippable: true,
-  order: [{ type: 'quiz', slug: 'quiz' }],
-  content: defineContentBlockCatalog<HowLightMoves_Languages>()({
-    quiz: { quiz: quizBlock },
-  }),
+  content: [quizBlock],
 } satisfies Section<'data', HowLightMoves_Languages>;

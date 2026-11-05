@@ -12,7 +12,7 @@ export default function LessonV2({ response, locale, href }: {
   locale: Locale;
   href: string;
 }) {
-  const sections = response.sectionOrder.map(slug => response.sections[slug]);
+  const sections = response.sections;
   const quizIndex = sections.findIndex(section => section.type === 'quiz');
   return (
     <LocaleProvider locale={locale}>
@@ -34,7 +34,7 @@ export default function LessonV2({ response, locale, href }: {
             <div className={styles.stage}>
               <Container maxWidth="md" sx={{ py: { xs: 3, md: 6 } }}>
                 <LessonSectionBlocks
-                  sections={sections.map(({ id, type, blocks, questions }) => ({ id, type, blocks, questions }))}
+                  sections={sections.map(({ id, type, content, questions }) => ({ id, type, content, questions }))}
                   language={response.locale.code}
                 />
               </Container>
