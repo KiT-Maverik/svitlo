@@ -32,7 +32,7 @@ export const evaluateAReportedMiracleClaim_Skill_Data = buildSkillConfig({
     be: 'Ацэньваць сьцьверджаньне пра паведамлены цуд',
     ka: 'მოთხრობილი სასწაულის შესახებ მტკიცების შეფასება',
     kk: 'Айтылған ғажайып туралы тұжырымды бағалау',
-    qm: 'Haber etilgen mucize aqqındaki iddianı qıymetlendirmek',
+    qm: 'Haber etilgen mücize aqqındaki iddianı qıymetlendirmek'
   },
   description: {
     methodological:
