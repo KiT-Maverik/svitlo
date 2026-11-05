@@ -46,7 +46,7 @@ export const analyzeAConflictBetweenRights_Skill_Data = buildSkillConfig({
       fr: 'Réfléchis à la manière de résoudre des conflits entre des droits importants.',
       bn: 'গুরুত্বপূর্ণ অধিকারের মধ্যে দ্বন্দ্ব কীভাবে মেটানো যায় তা বিবেচনা করো।',
       pt: 'Considere como resolver conflitos entre direitos importantes.',
-      ur: 'سوچو کہ اہم حقوق کے درمیان ٹکراؤ کیسے حل ہو سکتا ہے۔',
+      ur: 'سوچیں کہ اہم حقوق کے درمیان ٹکراؤ کیسے حل ہو سکتا ہے۔',
       id: 'Pertimbangkan bagaimana pertentangan antarhak penting dapat diselesaikan.',
       de: 'Überlege, wie Konflikte zwischen wichtigen Rechten gelöst werden können.',
       ja: '重要な権利がぶつかるとき、どう解決できるか考えよう。',
