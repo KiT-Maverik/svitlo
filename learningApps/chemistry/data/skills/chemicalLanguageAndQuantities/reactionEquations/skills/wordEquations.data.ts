@@ -32,7 +32,7 @@ export const wordEquations_Skill_Data = buildSkillConfig({
     be: "Слоўныя раўнаньні",
     ka: "სიტყვიერი განტოლებები",
     kk: "Сөздік теңдеулер",
-    qm: "Söznen teńlemeler",
+    qm: "Söznen teñlemeler",
   },
   description: {
     methodological: "Represent a described change by naming initial and resulting substances.",
