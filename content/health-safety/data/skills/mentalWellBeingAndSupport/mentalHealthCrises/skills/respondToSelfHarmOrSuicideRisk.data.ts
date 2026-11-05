@@ -28,7 +28,7 @@ export const respondToSelfHarmOrSuicideRisk_Skill_Data = buildSkillConfig({
     uk: 'Реагувати на ризик самоушкодження чи самогубства',
     lt: 'Reaguoti į savęs žalojimo ar savižudybės riziką',
     lv: 'Reaģēt uz paškaitējuma vai pašnāvības risku',
-    et: 'Reageerida enesevigastamise või enesetapuohtu',
+    et: 'Reageerida enesevigastamise või enesetapu ohule',
     be: 'Рэагаваць на рызыку самапашкоджаньня ці самагубства',
     ka: 'თვითდაზიანების ან თვითმკვლელობის რისკზე რეაგირება',
     kk: 'Өзіне зиян келтіру немесе суицид қаупіне әрекет ету',
