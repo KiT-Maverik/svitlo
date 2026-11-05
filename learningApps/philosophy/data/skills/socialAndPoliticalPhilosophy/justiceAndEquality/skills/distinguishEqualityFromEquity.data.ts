@@ -13,7 +13,7 @@ export const distinguishEqualityFromEquity_Skill_Data = buildSkillConfig({
     bn: 'সমতা ও ন্যায্যতার পার্থক্য',
     pt: 'Distinguir igualdade e equidade',
     ur: 'برابری اور منصفانہ برتاؤ میں فرق',
-    id: 'Membedakan kesamaan dan keadilan yang proporsional',
+    id: 'Membedakan kesetaraan dan keadilan yang mempertimbangkan perbedaan',
     de: 'Gleichheit und Bedarfsgerechtigkeit unterscheiden',
     ja: '平等と公平を区別する',
     ko: '평등과 형평성 구별하기',

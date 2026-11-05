@@ -61,7 +61,7 @@ export const evaluateConsentInAnEthicalScenario_Skill_Data = buildSkillConfig({
       pl: 'Sprawdź, czy zgoda jest świadoma, dobrowolna i wyrażona przez właściwą osobę.',
       uk: 'Перевіряй, чи згода є поінформованою, добровільною та наданою уповноваженою особою.',
       lt: 'Patikrink, ar sutikimas informuotas, savanoriškas ir duotas tinkamo asmens.',
-      lv: 'Pārbaudi, vai piekrišana ir informēta, brīvprātīga un dota no atbilstošās personas.',
+      lv: 'Pārbaudi, vai piekrišana ir informēta, brīvprātīga un to devusi persona, kurai ir tiesības piekrist.',
       et: 'Kontrolli, kas nõusolek on teadlik, vabatahtlik ja antud õigustatud isiku poolt.',
       be: 'Правярай, ці згода інфармаваная, добраахвотная і дадзеная ўпаўнаважанай асобай.',
       ka: 'შეამოწმე, თანხმობა ინფორმირებულია, ნებაყოფლობითია და უფლებამოსილი პირისგან მოდის თუ არა.',
