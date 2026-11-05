@@ -14,7 +14,7 @@ import { DEFAULT_SUPPORTED_LANGUAGES, getLocaleDirection } from '@svitlo/engine/
 
 import type { RenderNested } from '../../types';
 import { useContentLanguage } from '../../ContentLanguageContext';
-import type { UiKit_Component } from '@svitlo/contracts/ui-kit';
+import type { UiKit_Component } from '@svitlo/engine/content';
 import styles from './Checkpoint.module.css';
 
 type CheckpointProps = ContentBlock_Checkpoint_Response<Locale_Languages> & {

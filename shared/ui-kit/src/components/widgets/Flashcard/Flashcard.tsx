@@ -16,7 +16,7 @@ import MoreVert from '@mui/icons-material/MoreVert';
 import LockOpenOutlined from '@mui/icons-material/LockOpenOutlined';
 import Stack from '@mui/material/Stack';
 import styles from './Flashcard.module.css';
-import type { UiKit_Component } from '@svitlo/contracts/ui-kit';
+import type { UiKit_Component } from '@svitlo/engine/content';
 
 export interface FlashcardLabel {
   label: ReactNode;

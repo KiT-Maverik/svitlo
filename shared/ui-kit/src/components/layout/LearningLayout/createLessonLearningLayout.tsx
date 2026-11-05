@@ -2,7 +2,7 @@
 
 import type { ElementType } from 'react';
 import type { Locale } from '@svitlo/engine/localization';
-import type { UiKit_Global } from '@svitlo/contracts/ui-kit';
+import type { UiKit_Global } from '@svitlo/engine/content';
 import LearningLayout, { type LearningLayoutProgress, type LearningLayoutProps } from './LearningLayout';
 import NavbarPreferences from './NavbarPreferences/NavbarPreferences';
 
