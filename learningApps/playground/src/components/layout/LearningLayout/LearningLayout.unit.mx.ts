@@ -1,7 +1,7 @@
 import { vi } from 'vitest';
 import { usePathname } from 'next/navigation';
 import { useLessonLocale } from '@/i18n/useLessonLocale';
-import { useLessonNavigation } from '@/components/pages/Lesson/LessonNavigation';
+import { useLessonNavigation } from '@svitlo/ui-kit/lesson';
 import type { LearningLayoutProgress } from '@svitlo/ui-kit/learning-layout';
 
 export const LearningLayout_mx = {
