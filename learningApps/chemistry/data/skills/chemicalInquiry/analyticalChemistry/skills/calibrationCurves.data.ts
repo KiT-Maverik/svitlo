@@ -12,7 +12,7 @@ export const calibrationCurves_Skill_Data = buildSkillConfig({
     fr: "Courbes d’étalonnage",
     bn: "ক্রমাঙ্কন রেখা",
     pt: "Curvas de calibração",
-    ur: "درجہ بندی کے منحنی خطوط",
+    ur: "معیار بندی کے منحنی خطوط",
     id: "Kurva Kalibrasi",
     de: "Kalibrierkurven",
     ja: "検量線",
