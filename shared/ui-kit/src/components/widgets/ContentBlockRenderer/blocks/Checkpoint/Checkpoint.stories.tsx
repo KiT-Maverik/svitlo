@@ -6,7 +6,7 @@ import { ContentBlockRenderer } from '../../ContentBlockRenderer';
 
 function CheckpointStory(props: ContentBlock_Checkpoint_Response<Locale_Languages>) {
   // Use the real dispatcher so the answers render as regular content blocks.
-  return <ContentBlockRenderer messages={enUiKitMessages} messages={enUiKitMessages} blocks={[props]} />;
+  return <ContentBlockRenderer messages={enUiKitMessages} blocks={[props]} />;
 }
 
 const meta = {
