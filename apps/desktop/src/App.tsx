@@ -12,8 +12,16 @@ import { loadPublishedLesson, loadPublishedUiKitMessages } from '@svitlo/adapter
 import { changeLessonLocale, initialLessonRoute, lessonHref, type LessonRoute } from './routing';
 
 const themes = {
-  ltr: createTheme({ cssVariables: { colorSchemeSelector: 'data' }, colorSchemes: { light: true, dark: true }, direction: 'ltr' }),
-  rtl: createTheme({ cssVariables: { colorSchemeSelector: 'data' }, colorSchemes: { light: true, dark: true }, direction: 'rtl' }),
+  ltr: createTheme({
+    cssVariables: { colorSchemeSelector: 'data' },
+    colorSchemes: { light: true, dark: true },
+    direction: 'ltr',
+  }),
+  rtl: createTheme({
+    cssVariables: { colorSchemeSelector: 'data' },
+    colorSchemes: { light: true, dark: true },
+    direction: 'rtl',
+  }),
 };
 
 type RouteContextValue = { locale: Locale; setLocale: (locale: Locale) => void };
@@ -68,17 +76,23 @@ export default function App() {
         if (active) setData({ status: 'error', error: String(error) });
       },
     );
-    return () => { active = false; };
+    return () => {
+      active = false;
+    };
   }, [route?.language, route?.locale, route?.lessonId]);
 
-  const bindings = useMemo<RouteContextValue | null>(() => route && ({
-    locale: route.locale,
-    setLocale: (locale: Locale) => {
-      const next = changeLessonLocale(route, locale);
-      window.history.replaceState(null, '', lessonHref(next));
-      setRoute(next);
-    },
-  }), [route]);
+  const bindings = useMemo<RouteContextValue | null>(
+    () =>
+      route && {
+        locale: route.locale,
+        setLocale: (locale: Locale) => {
+          const next = changeLessonLocale(route, locale);
+          window.history.replaceState(null, '', lessonHref(next));
+          setRoute(next);
+        },
+      },
+    [route],
+  );
 
   const direction = route ? getLocaleDirection(route.locale) : 'ltr';
   useEffect(() => {
@@ -95,7 +109,9 @@ export default function App() {
           <a href="/">Open Playground</a>
         </main>
       ) : data.status === 'loading' ? (
-        <main role="status" aria-busy="true" className="desktop-message">Loading lesson…</main>
+        <main role="status" aria-busy="true" className="desktop-message">
+          Loading lesson…
+        </main>
       ) : data.status === 'error' ? (
         <main role="alert" className="desktop-message">
           <h1>Could not open the packaged lesson</h1>

@@ -14,7 +14,9 @@ export async function loadPublishedLesson(id: string, language: LanguageCode): P
   const location = resolveEntityPath(id);
   const base = '/data/pages/lessons/' + location;
   const [config, flashcards, questions] = await Promise.all(
-    (['config', 'flashcards', 'questions'] as const).map(kind => loadJson(base + '/' + kind + '/' + language + '.json')),
+    (['config', 'flashcards', 'questions'] as const).map(kind =>
+      loadJson(base + '/' + kind + '/' + language + '.json'),
+    ),
   );
   return assembleLessonResponse(id, language, { config, flashcards, questions });
 }

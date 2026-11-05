@@ -44,20 +44,26 @@ for (const directory of [lessonOutput, localeOutput]) rmSync(directory, { recurs
 
 run('node', [
   'scripts/generators/pages/lessons/generate-lessons.mjs',
-  '--package', selected.directory,
-  '--output', 'apps/desktop/public/data/pages/lessons',
+  '--package',
+  selected.directory,
+  '--output',
+  'apps/desktop/public/data/pages/lessons',
   '--write',
 ]);
 run('node', [
   'scripts/generators/pages/lessons/generate-lessons.mjs',
-  '--package', selected.directory,
-  '--output', 'apps/desktop/public/data/pages/lessons',
+  '--package',
+  selected.directory,
+  '--output',
+  'apps/desktop/public/data/pages/lessons',
   '--check',
 ]);
 run('node', [
   'shared/ui-kit/scripts/generate-locales.mjs',
-  '--package', selected.directory,
-  '--output', 'apps/desktop/public/data/ui-kit',
+  '--package',
+  selected.directory,
+  '--output',
+  'apps/desktop/public/data/ui-kit',
 ]);
 syncFlags(desktopRoot);
 const sourceAssets = join(bookRoot, 'public');

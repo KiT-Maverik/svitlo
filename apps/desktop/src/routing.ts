@@ -4,7 +4,9 @@ import { textbook } from '@svitlo/playground';
 export type LessonRoute = { language: LanguageCode; locale: Locale; lessonId: string };
 
 export function parseLessonRoute(pathname: string): LessonRoute | null {
-  const match = /^\/([a-z]{2})\/lesson\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\/?$/i.exec(pathname);
+  const match = /^\/([a-z]{2})\/lesson\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\/?$/i.exec(
+    pathname,
+  );
   if (!match) return null;
   const definition = DEFAULT_SUPPORTED_LANGUAGES.find(entry => entry.language === match[1]);
   if (!definition) return null;

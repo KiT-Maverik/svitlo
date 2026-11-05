@@ -8,7 +8,8 @@ const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
 const url = 'http://127.0.0.1:5173';
 const vite = spawn(npm, ['exec', '--', 'vite', '--host', '127.0.0.1', '--port', '5173', '--strictPort'], {
-  cwd: root, stdio: 'inherit',
+  cwd: root,
+  stdio: 'inherit',
 });
 let electron;
 function stop() {
@@ -23,8 +24,13 @@ try {
     if (vite.exitCode !== null) throw new Error('Vite exited before startup');
     try {
       const result = await fetch(url);
-      if (result.ok) { ready = true; break; }
-    } catch { /* Vite not ready yet. */ }
+      if (result.ok) {
+        ready = true;
+        break;
+      }
+    } catch {
+      /* Vite not ready yet. */
+    }
     await delay(200);
   }
   if (!ready) throw new Error('Vite did not start on 127.0.0.1:5173');
