@@ -28,6 +28,7 @@ export const Video = ({
   const volume = mediaSettings?.volume ?? 100;
   const muted = mediaSettings?.muted ?? false;
   const videoRef = useRef<HTMLVideoElement>(null);
+  const appliedSettingsRef = useRef<{ element: HTMLVideoElement; volume: number; muted: boolean } | null>(null);
   const [failure, setFailure] = useState<VideoFailure | null>(null);
   const [attempt, setAttempt] = useState(0);
   const failureKind = failure?.source === fileLocation ? failure.kind : null;
@@ -36,13 +37,20 @@ export const Video = ({
   useEffect(() => {
     const element = videoRef.current;
     if (!element) return;
-    element.volume = volume / 100;
-    element.muted = muted;
+    const nextVolume = volume / 100;
+    // Browser volumechange also fires for programmatic changes; ignore those echoes.
+    appliedSettingsRef.current = { element, volume: nextVolume, muted };
+    if (element.volume !== nextVolume) element.volume = nextVolume;
+    if (element.muted !== muted) element.muted = muted;
   }, [volume, muted, fileLocation, attempt, failureKind]);
 
   const handleVolumeChange = (event: SyntheticEvent<HTMLVideoElement>) => {
     if (!mediaSettings) return;
     const element = event.currentTarget;
+    const applied = appliedSettingsRef.current;
+    if (applied?.element === element && applied.volume === element.volume && applied.muted === element.muted) {
+      return;
+    }
     // Snapshot both properties before any context write can update the DOM.
     const nextVolume = Math.round(element.volume * 100);
     const nextMuted = element.muted;
