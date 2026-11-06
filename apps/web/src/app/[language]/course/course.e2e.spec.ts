@@ -35,9 +35,12 @@ test('Course navigation renders Modules and opens the overridden Lesson without 
   page,
 }) => {
   await page.goto('/uk/course/' + courseId);
-  await expect(page.getByRole('heading', { name: 'Playground · Light Journey' })).toBeVisible();
-  await expect(page.getByRole('navigation', { name: 'Course table of contents' })).toContainText(
-    'The Light Laboratory',
+  await expect(page.getByRole('heading', { name: 'Подорож світла', level: 1 })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Програма курсу', level: 2 })).toBeVisible();
+  await expect(page.getByText('Лабораторія світла')).toBeVisible();
+  await expect(page.getByRole('link', { name: /Як рухається світло/ })).toHaveAttribute(
+    'href',
+    '/uk/course/' + courseId + '/lesson/' + lessonId,
   );
   await page.goto('/uk/course/' + courseId + '/lesson/' + lessonId);
   await expect(page.getByText('Порівняй швидкість світла у вакуумі, повітрі та воді.')).toBeVisible();
@@ -58,4 +61,16 @@ test('Episode is navigable as a separate Course unit', async ({ page }) => {
 test('Unknown Course membership returns 404', async ({ request }) => {
   const response = await request.get('/uk/course/' + courseId + '/lesson/ffffffff-ffff-ffff-ffff-ffffffffffff');
   expect(response.status()).toBe(404);
+});
+
+test('Course catalog opens details and previews have no unpublished lesson links', async ({ page }) => {
+  await page.goto('/uk/courses');
+  await expect(page.getByRole('heading', { name: 'Обирай свою наступну пригоду', level: 1 })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Переглянути курс: Подорож світла' })).toBeVisible();
+  await page.getByRole('link', { name: 'Переглянути курс: Математика навколо нас' }).click();
+  await expect(page.getByRole('heading', { name: 'Математика навколо нас', level: 1 })).toBeVisible();
+  await expect(page.getByText('Це попередній перегляд. Уроки будуть доступні пізніше.')).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Почати навчання' })).toHaveCount(0);
+  await page.getByRole('link', { name: 'Усі курси' }).click();
+  await expect(page.getByRole('heading', { name: 'Обирай свою наступну пригоду' })).toBeVisible();
 });
