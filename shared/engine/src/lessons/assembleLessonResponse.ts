@@ -4,6 +4,7 @@ import {
   type ContentBlock,
   type Quiz_Parameters,
   type Section,
+  type SkillId,
   type Locale_Languages,
   type Section_Type,
   type ContentBlock_Scene,
@@ -29,7 +30,7 @@ export type LessonResponse = {
     sections: { allowNavigation: boolean; allowSkipping: boolean; showIndexes: boolean };
   };
   flashcards: unknown[];
-  skills: string[];
+  skills: SkillId[];
   questions: Record<string, Record<string, Record<string, unknown>>>;
   sections: LessonSectionResponse[];
   events?: Readonly<Record<string, ContentBlock_Scene<'response', Locale_Languages> | false>>;
@@ -265,7 +266,7 @@ export function assembleLessonResponse(
       sections: settings as LessonResponse['parameters']['sections'],
     },
     flashcards: flashcards.data,
-    skills: skills as string[],
+    skills: skills as SkillId[],
     questions: indexedQuestions,
     sections,
     ...(data.events !== undefined ? { events: eventScenes } : {}),
