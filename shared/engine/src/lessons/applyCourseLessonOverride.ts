@@ -34,11 +34,21 @@ function asBlock(authored: Record<string, unknown>): Block {
 }
 function normalizedSection(raw: Record<string, unknown>): Section {
   if (!Array.isArray(raw.content)) throw new Error('Invalid authored Course Section content');
+  if (typeof raw.id !== 'string' || typeof raw.slug !== 'string' ||
+      typeof raw.type !== 'string' || typeof raw.title !== 'string' ||
+      typeof raw.navigationLabel !== 'string') {
+    throw new Error('Invalid localized Course Section');
+  }
   return {
-    ...raw,
+    id: raw.id,
+    slug: raw.slug,
+    type: raw.type as Section['type'],
+    title: raw.title,
+    navigationLabel: raw.navigationLabel,
+    ...(raw.skippable === true ? { skippable: true as const } : {}),
     content: raw.content.map(value => asBlock(value as Record<string, unknown>)),
     questions: [],
-  } as Section;
+  };
 }
 function changedBlocks(blocks: readonly Block[], changes: Record<string, unknown>): Block[] {
   const items = new Map(blocks.map(block => [block.slug, block]));
@@ -118,6 +128,9 @@ export function applyCourseLessonOverride(response: LessonResponse, patch: Patch
     throw new Error('Course/Lesson ID mismatch');
   }
   const changes = patch.overrides;
+  if (changes.title !== undefined && typeof changes.title !== 'string') {
+    throw new Error('Course Lesson title must be localized');
+  }
   const parameters = changes.parameters?.sections
     ? {
         ...response.parameters,
