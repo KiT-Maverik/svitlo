@@ -55,7 +55,7 @@ describe('Layouts', () => {
       LearningLayout_fx.render();
       await LearningLayout_fx.actions.openTopics();
       await LearningLayout_fx.actions.openSettings();
-      expect(await screen.findByText(locale.settingsDescription)).toBeVisible();
+      expect(await screen.findByRole('heading', { name: locale.settingsTitle })).toBeVisible();
       expect(LearningLayout_fx.selectors.topAction(aria.actions.closeSettings)).toHaveAttribute(
         'aria-expanded',
         'true',
