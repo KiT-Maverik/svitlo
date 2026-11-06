@@ -126,7 +126,7 @@ export default function ProfileMenu({
       >
         <Box sx={{ px: 3, pt: 2, pb: 2, display: 'flex', alignItems: 'center', flexDirection: 'column', gap: 1 }}>
           {avatar(64)}
-          <Typography component="span" variant="subtitle1" fontWeight={700} sx={{ overflowWrap: 'anywhere', textAlign: 'center' }}>
+          <Typography component="span" variant="subtitle1" sx={{ fontWeight: 700, overflowWrap: 'anywhere', textAlign: 'center' }}>
             {displayName}
           </Typography>
         </Box>
