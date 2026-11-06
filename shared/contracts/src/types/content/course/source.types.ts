@@ -4,9 +4,7 @@ import type { Locale_Languages } from '../locale.types';
 import type { Section } from '../section.types';
 
 /** Authoring/renderer owner, not the source of the last data edit. */
-export type Course_ContentSource =
-  | { type: 'lesson'; lessonId: string }
-  | { type: 'course' };
+export type Course_ContentSource = { type: 'lesson'; lessonId: string } | { type: 'course' };
 
 export type Course_SectionAddition<Languages extends Locale_Languages> = {
   section: Section<'data', Languages>;
@@ -40,10 +38,7 @@ export type Course_SectionChanges<Languages extends Locale_Languages> = {
   removed?: readonly string[];
   /** Only changed existing section fields/blocks; new sections are in added. */
   bySlug?: Readonly<
-    Record<
-      string,
-      Omit<Section_Override<Languages>, 'content'> & { content?: Course_BlockChanges<Languages> }
-    >
+    Record<string, Omit<Section_Override<Languages>, 'content'> & { content?: Course_BlockChanges<Languages> }>
   >;
 };
 
@@ -53,10 +48,7 @@ export type Course_SectionChanges<Languages extends Locale_Languages> = {
  * ContentBlock collections require applying their explicit operations, NOT
  * generic index-based array merging. Original Lesson Data remains untouched.
  */
-export type Course_LessonOverride<
-  Languages extends Locale_Languages,
-  CustomEvents extends string = never,
-> = {
+export type Course_LessonOverride<Languages extends Locale_Languages, CustomEvents extends string = never> = {
   type: 'lessonOverride';
   lessonId: string;
   overrides: Omit<Lesson_Override<Languages, CustomEvents>, 'sections'> & {

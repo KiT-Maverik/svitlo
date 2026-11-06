@@ -10,28 +10,19 @@ export type Course_LessonId = string;
 
 /** Only authored Course Data may contain a build-time Lesson override. */
 type Course_LessonEntry<ConfigType extends ContentEntity_ConfigType, Languages extends Locale_Languages> =
-  | Course_LessonId
-  | (ConfigType extends 'data' ? Course_LessonOverride<Languages> : never);
+  Course_LessonId | (ConfigType extends 'data' ? Course_LessonOverride<Languages> : never);
 
 /** Top-level course content can contain any grouping or navigable unit. */
-export type Course_Content<
-  ConfigType extends ContentEntity_ConfigType,
-  SupportedLanguages extends Locale_Languages,
-> =
+export type Course_Content<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends Locale_Languages> =
   | Module<ConfigType, SupportedLanguages>
   | Chapter<ConfigType, SupportedLanguages>
   | Episode<ConfigType, SupportedLanguages>
   | Course_LessonEntry<ConfigType, SupportedLanguages>;
 
-export type Module_Content<
-  ConfigType extends ContentEntity_ConfigType,
-  SupportedLanguages extends Locale_Languages,
-> =
+export type Module_Content<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends Locale_Languages> =
   | Chapter<ConfigType, SupportedLanguages>
   | Episode<ConfigType, SupportedLanguages>
   | Course_LessonEntry<ConfigType, SupportedLanguages>;
 
-export type Chapter_Content<
-  ConfigType extends ContentEntity_ConfigType,
-  SupportedLanguages extends Locale_Languages,
-> = Episode<ConfigType, SupportedLanguages> | Course_LessonEntry<ConfigType, SupportedLanguages>;
+export type Chapter_Content<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends Locale_Languages> =
+  Episode<ConfigType, SupportedLanguages> | Course_LessonEntry<ConfigType, SupportedLanguages>;

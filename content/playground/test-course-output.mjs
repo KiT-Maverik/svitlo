@@ -22,32 +22,35 @@ test('Playground Course generates independent localized TOC, sparse override and
   assert.equal(toc.children[0].children[0].children[1].type, 'episode');
   assert.equal(patch.lessonId, lessonId);
   assert.deepEqual(patch.overrides.sections.order, ['practice', 'storyBridge', 'theory', 'quiz']);
-  assert.deepEqual(patch.overrides.sections.added.map(item => item.source.type), ['course']);
+  assert.deepEqual(
+    patch.overrides.sections.added.map(item => item.source.type),
+    ['course'],
+  );
   assert.deepEqual(patch.overrides.parameters.sections, { allowSkipping: false });
   assert.equal(Object.hasOwn(patch.overrides, 'questions'), false);
   assert.equal(Object.hasOwn(patch.overrides, 'flashcards'), false);
   assert.equal(episode.sections[0].type, 'scenario');
   assert.match(episode.sections[0].content[0].locales, /Lorem ipsum/);
-  for (const resource of [
-    'toc/uk.json',
-    'overrides/' + lessonId + '/uk.json',
-    'episodes/' + episodeId + '/uk.json',
-  ]) {
+  for (const resource of ['toc/uk.json', 'overrides/' + lessonId + '/uk.json', 'episodes/' + episodeId + '/uk.json']) {
     assert(files.includes('data/pages/courses/' + courseId + '/' + resource));
   }
 });
 
 test('The original standalone Lesson data retains its own Section order', () => {
-  const lessonBase = JSON.parse(readFileSync(
-    'dist/static/data/pages/lessons/c/' + lessonId + '/config/base.json', 'utf8',
-  ));
-  assert.deepEqual(lessonBase.data.sections.map(section => section.slug), ['theory', 'practice', 'quiz']);
+  const lessonBase = JSON.parse(
+    readFileSync('dist/static/data/pages/lessons/c/' + lessonId + '/config/base.json', 'utf8'),
+  );
+  assert.deepEqual(
+    lessonBase.data.sections.map(section => section.slug),
+    ['theory', 'practice', 'quiz'],
+  );
 });
 
 test('Course generator emits matching resource groups for every supported locale', () => {
   const prefix = 'data/pages/courses/' + courseId + '/';
   const paths = files.filter(name => name.startsWith(prefix));
-  const locales = paths.filter(name => name.includes('/toc/'))
+  const locales = paths
+    .filter(name => name.includes('/toc/'))
     .map(name => name.slice(name.lastIndexOf('/') + 1).replace(/\.json$/, ''));
   assert(locales.length > 1);
   for (const locale of locales) {

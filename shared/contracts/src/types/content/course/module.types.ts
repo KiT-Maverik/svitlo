@@ -4,10 +4,7 @@ import type { ContentBlock_Text } from '../blocks';
 import type { Module_Content } from './content.types';
 
 /** Modules may contain chapters, episodes and Lesson ID references. */
-export type Module<
-  ConfigType extends ContentEntity_ConfigType,
-  SupportedLanguages extends Locale_Languages,
-> = {
+export type Module<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends Locale_Languages> = {
   type: 'module';
   id: string;
   /** Optional registered icon key for course navigation; never JSX. */

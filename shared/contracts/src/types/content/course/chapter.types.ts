@@ -4,10 +4,7 @@ import type { ContentBlock_Text } from '../blocks';
 import type { Chapter_Content } from './content.types';
 
 /** Chapters are leaves of the course's grouping hierarchy. */
-export type Chapter<
-  ConfigType extends ContentEntity_ConfigType,
-  SupportedLanguages extends Locale_Languages,
-> = {
+export type Chapter<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends Locale_Languages> = {
   type: 'chapter';
   id: string;
   /** Optional registered icon key for course navigation; never JSX. */

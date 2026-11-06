@@ -36,30 +36,29 @@ type BlockFor<S extends AnySection, Slug extends string> = Extract<S['content'][
 type SlugOf<Item> = Item extends string ? Item : Item extends { slug: infer S extends string } ? S : never;
 type SlugsOf<Items extends readonly unknown[]> = SlugOf<Items[number]>;
 
-type DuplicateSlugs<Items extends readonly unknown[], Seen extends string = never> =
-  Items extends readonly [infer Head, ...infer Tail]
-    ? SlugOf<Head> extends Seen
-      ? SlugOf<Head>
-      : DuplicateSlugs<Tail, Seen | SlugOf<Head>>
-    : never;
+type DuplicateSlugs<Items extends readonly unknown[], Seen extends string = never> = Items extends readonly [
+  infer Head,
+  ...infer Tail,
+]
+  ? SlugOf<Head> extends Seen
+    ? SlugOf<Head>
+    : DuplicateSlugs<Tail, Seen | SlugOf<Head>>
+  : never;
 
 /** Compile-time full order and duplicate detection for literal tuples. Runtime checks all inputs. */
-type CheckOrder<Current extends string, Items extends readonly unknown[]> =
-  [Exclude<Current, SlugsOf<Items>>] extends [never]
-    ? [DuplicateSlugs<Items>] extends [never]
-      ? unknown
-      : { readonly __duplicateSlugs: DuplicateSlugs<Items> }
-    : { readonly __missingSlugs: Exclude<Current, SlugsOf<Items>> };
+type CheckOrder<Current extends string, Items extends readonly unknown[]> = [Exclude<Current, SlugsOf<Items>>] extends [
+  never,
+]
+  ? [DuplicateSlugs<Items>] extends [never]
+    ? unknown
+    : { readonly __duplicateSlugs: DuplicateSlugs<Items> }
+  : { readonly __missingSlugs: Exclude<Current, SlugsOf<Items>> };
 
 type OrderedSections<Old extends readonly AnySection[], Items extends readonly unknown[]> = {
-  readonly [Index in keyof Items]: Items[Index] extends string
-    ? SectionFor<Old, Items[Index]>
-    : Items[Index];
+  readonly [Index in keyof Items]: Items[Index] extends string ? SectionFor<Old, Items[Index]> : Items[Index];
 } & readonly AnySection[];
 type OrderedBlocks<Old extends AnySection, Items extends readonly unknown[]> = {
-  readonly [Index in keyof Items]: Items[Index] extends string
-    ? BlockFor<Old, Items[Index]>
-    : Items[Index];
+  readonly [Index in keyof Items]: Items[Index] extends string ? BlockFor<Old, Items[Index]> : Items[Index];
 } & readonly AnyBlock[];
 type DropSection<Sections extends readonly AnySection[], Slug extends string> = readonly Exclude<
   Sections[number],
@@ -69,19 +68,14 @@ type UpdatedSectionContent<
   Sections extends readonly AnySection[],
   Slug extends string,
   Content extends readonly AnyBlock[],
-> = readonly (
-  Sections[number] extends infer S
-    ? S extends AnySection
-      ? S['slug'] extends Slug
-        ? Omit<S, 'content'> & { readonly content: Content }
-        : S
-      : never
+> = readonly (Sections[number] extends infer S
+  ? S extends AnySection
+    ? S['slug'] extends Slug
+      ? Omit<S, 'content'> & { readonly content: Content }
+      : S
     : never
-)[];
-type DropBlock<S extends AnySection, Slug extends string> = readonly Exclude<
-  S['content'][number],
-  { slug: Slug }
->[];
+  : never)[];
+type DropBlock<S extends AnySection, Slug extends string> = readonly Exclude<S['content'][number], { slug: Slug }>[];
 
 type EditableBlock<Block extends AnyBlock, L extends AnyLesson> = Partial<
   Omit<Extract<ContentBlock<'data', LanguagesOf<L>>, { type: Block['type'] }>, 'id' | 'slug' | 'type'>
@@ -89,11 +83,7 @@ type EditableBlock<Block extends AnyBlock, L extends AnyLesson> = Partial<
 type EditableSection<L extends AnyLesson> = Omit<Section_Override<LanguagesOf<L>>, 'content'>;
 type EventsOf<L extends AnyLesson> = DefaultLessonEvent | Extract<keyof NonNullable<L['events']>, string>;
 type CustomEventsOf<L extends AnyLesson> = Exclude<EventsOf<L>, DefaultLessonEvent>;
-type EventChanges<L extends AnyLesson> = LessonEventOverrides<
-  CustomEventsOf<L>,
-  LanguagesOf<L>,
-  'data'
->;
+type EventChanges<L extends AnyLesson> = LessonEventOverrides<CustomEventsOf<L>, LanguagesOf<L>, 'data'>;
 
 type ContentAPI<
   L extends AnyLesson,
@@ -102,14 +92,13 @@ type ContentAPI<
 > = {
   readonly bySlug: {
     readonly [BlockKey in BlockSlug<SectionFor<Sections, SectionKey>>]: {
-      set(patch: EditableBlock<BlockFor<SectionFor<Sections, SectionKey>, BlockKey>, L>): LessonOverridesBuilder<L, Sections>;
+      set(
+        patch: EditableBlock<BlockFor<SectionFor<Sections, SectionKey>, BlockKey>, L>,
+      ): LessonOverridesBuilder<L, Sections>;
     };
   };
   setOrder<
-    const Items extends readonly (
-      | BlockSlug<SectionFor<Sections, SectionKey>>
-      | ContentBlock<'data', LanguagesOf<L>>
-    )[],
+    const Items extends readonly (BlockSlug<SectionFor<Sections, SectionKey>> | ContentBlock<'data', LanguagesOf<L>>)[],
   >(
     order: Items & CheckOrder<BlockSlug<SectionFor<Sections, SectionKey>>, Items>,
   ): LessonOverridesBuilder<
@@ -131,9 +120,7 @@ type SectionsAPI<L extends AnyLesson, Sections extends readonly AnySection[]> = 
       readonly content: ContentAPI<L, Sections, SectionKey>;
     };
   };
-  setOrder<
-    const Items extends readonly (SectionSlug<Sections> | Section<'data', LanguagesOf<L>>)[],
-  >(
+  setOrder<const Items extends readonly (SectionSlug<Sections> | Section<'data', LanguagesOf<L>>)[]>(
     order: Items & CheckOrder<SectionSlug<Sections>, Items>,
   ): LessonOverridesBuilder<L, OrderedSections<Sections, Items>>;
   remove<const SectionKey extends SectionSlug<Sections>>(
@@ -167,7 +154,11 @@ function assertUnique<T extends { slug: string; id: string }>(items: readonly T[
   }
 }
 
-function assertAllIncluded(items: readonly { slug: string }[], known: readonly { slug: string }[], label: string): void {
+function assertAllIncluded(
+  items: readonly { slug: string }[],
+  known: readonly { slug: string }[],
+  label: string,
+): void {
   const included = new Set(items.map(item => item.slug));
   for (const item of known) {
     if (!included.has(item.slug)) throw new Error(`Missing ${label}: ${item.slug}; remove it explicitly first`);
@@ -178,9 +169,12 @@ function assertAllIncluded(items: readonly { slug: string }[], known: readonly {
 function diffValue(previous: unknown, current: unknown): unknown {
   if (JSON.stringify(previous) === JSON.stringify(current)) return undefined;
   if (
-    previous && current
-    && typeof previous === 'object' && typeof current === 'object'
-    && !Array.isArray(previous) && !Array.isArray(current)
+    previous &&
+    current &&
+    typeof previous === 'object' &&
+    typeof current === 'object' &&
+    !Array.isArray(previous) &&
+    !Array.isArray(current)
   ) {
     const before = previous as Record<string, unknown>;
     const after = current as Record<string, unknown>;
@@ -263,11 +257,11 @@ function blocksAsSources(section: AnySection, source: Source): Readonly<Record<s
  * original Lesson and all its Definitions. The builder is never serialized;
  * build() produces the authored Course entry instead.
  */
-export class LessonOverridesBuilder<
-  L extends AnyLesson,
-  Sections extends readonly AnySection[] = L['sections'],
-> {
-  constructor(private readonly lesson: L, private readonly state: State) {}
+export class LessonOverridesBuilder<L extends AnyLesson, Sections extends readonly AnySection[] = L['sections']> {
+  constructor(
+    private readonly lesson: L,
+    private readonly state: State,
+  ) {}
 
   private next<NextSections extends readonly AnySection[]>(state: State): LessonOverridesBuilder<L, NextSections> {
     return new LessonOverridesBuilder<L, NextSections>(this.lesson, state);
@@ -277,7 +271,9 @@ export class LessonOverridesBuilder<
     return this.next<Sections>({ ...this.state, title });
   }
 
-  setParams(parameters: NonNullable<Lesson_Override<LanguagesOf<L>>['parameters']>): LessonOverridesBuilder<L, Sections> {
+  setParams(
+    parameters: NonNullable<Lesson_Override<LanguagesOf<L>>['parameters']>,
+  ): LessonOverridesBuilder<L, Sections> {
     const previous = this.state.parameters?.sections ?? {};
     return this.next<Sections>({
       ...this.state,
@@ -293,20 +289,24 @@ export class LessonOverridesBuilder<
   }
 
   get sections(): SectionsAPI<L, Sections> {
-    const bySlug = Object.fromEntries(this.state.sections.map(({ section }) => [
-      section.slug,
-      {
-        set: (patch: EditableSection<L>) => this.setSection(section.slug, patch),
-        content: {
-          bySlug: Object.fromEntries(section.content.map(block => [
-            block.slug,
-            { set: (patch: Record<string, unknown>) => this.setBlock(section.slug, block.slug, patch) },
-          ])),
-          setOrder: (order: readonly (string | AnyBlock)[]) => this.orderBlocks(section.slug, order),
-          remove: (slug: string) => this.removeBlock(section.slug, slug),
+    const bySlug = Object.fromEntries(
+      this.state.sections.map(({ section }) => [
+        section.slug,
+        {
+          set: (patch: EditableSection<L>) => this.setSection(section.slug, patch),
+          content: {
+            bySlug: Object.fromEntries(
+              section.content.map(block => [
+                block.slug,
+                { set: (patch: Record<string, unknown>) => this.setBlock(section.slug, block.slug, patch) },
+              ]),
+            ),
+            setOrder: (order: readonly (string | AnyBlock)[]) => this.orderBlocks(section.slug, order),
+            remove: (slug: string) => this.removeBlock(section.slug, slug),
+          },
         },
-      },
-    ]));
+      ]),
+    );
     return {
       bySlug,
       setOrder: (order: readonly (string | AnySection)[]) => this.orderSections(order),
@@ -321,7 +321,7 @@ export class LessonOverridesBuilder<
   }
 
   private replaceSection(slug: string, patch: (entry: SectionEntry) => SectionEntry): LessonOverridesBuilder<L, any> {
-    const sections = this.state.sections.map(entry => entry.section.slug === slug ? patch(entry) : entry);
+    const sections = this.state.sections.map(entry => (entry.section.slug === slug ? patch(entry) : entry));
     return this.next({ ...this.state, sections, sectionsChanged: true });
   }
 
@@ -338,7 +338,11 @@ export class LessonOverridesBuilder<
     }) as LessonOverridesBuilder<L, Sections>;
   }
 
-  private setBlock(sectionSlug: string, blockSlug: string, patch: Record<string, unknown>): LessonOverridesBuilder<L, Sections> {
+  private setBlock(
+    sectionSlug: string,
+    blockSlug: string,
+    patch: Record<string, unknown>,
+  ): LessonOverridesBuilder<L, Sections> {
     for (const key of Object.keys(patch)) {
       if (['id', 'slug', 'type'].includes(key)) {
         throw new Error(`Cannot override ContentBlock identity: ${key}`);
@@ -349,7 +353,7 @@ export class LessonOverridesBuilder<
         throw new Error(`Unknown ContentBlock: ${blockSlug}`);
       }
       const content = entry.section.content.map(block =>
-        block.slug === blockSlug ? { ...block, ...patch } as AnyBlock : block
+        block.slug === blockSlug ? ({ ...block, ...patch } as AnyBlock) : block,
       );
       return { ...entry, section: { ...entry.section, content } };
     }) as LessonOverridesBuilder<L, Sections>;
@@ -367,8 +371,15 @@ export class LessonOverridesBuilder<
       const source: Source = { type: 'course' };
       return { section: item, source, blockSources: blocksAsSources(item, source) };
     });
-    assertAllIncluded(sections.map(entry => entry.section), this.state.sections.map(entry => entry.section), 'Section');
-    assertUnique(sections.map(entry => entry.section), 'Section');
+    assertAllIncluded(
+      sections.map(entry => entry.section),
+      this.state.sections.map(entry => entry.section),
+      'Section',
+    );
+    assertUnique(
+      sections.map(entry => entry.section),
+      'Section',
+    );
     return this.next({ ...this.state, sections, sectionsChanged: true });
   }
 
@@ -425,10 +436,10 @@ export class LessonOverridesBuilder<
       overrides.title = this.state.title as NonNullable<typeof overrides.title>;
     }
 
-    const sectionParams = diffValue(
-      this.lesson.parameters.sections,
-      { ...this.lesson.parameters.sections, ...this.state.parameters?.sections },
-    ) as Record<string, boolean> | undefined;
+    const sectionParams = diffValue(this.lesson.parameters.sections, {
+      ...this.lesson.parameters.sections,
+      ...this.state.parameters?.sections,
+    }) as Record<string, boolean> | undefined;
     if (sectionParams !== undefined) {
       overrides.parameters = { sections: sectionParams } as NonNullable<typeof overrides.parameters>;
     }
@@ -448,7 +459,10 @@ export class LessonOverridesBuilder<
       const currentBySlug = new Map(current.map(entry => [entry.section.slug, entry]));
       const patch: Course_SectionChanges<Languages> = {};
 
-      assertUnique(current.map(entry => entry.section), 'Section');
+      assertUnique(
+        current.map(entry => entry.section),
+        'Section',
+      );
       const quizzes = current.filter(entry => entry.section.type === 'quiz');
       if (quizzes.length > 1 || (this.lesson.parameters.requireQuiz && quizzes.length !== 1)) {
         throw new Error(`Invalid quiz Section count in override for Lesson ${this.lesson.id}`);
@@ -531,7 +545,6 @@ export class LessonOverridesBuilder<
   ): Course_Resource<Course_LessonOverride<LanguagesOf<L>, CustomEventsOf<L>>, Course_TocLesson> {
     return { data: this.build(), toc: this.toToc(context) };
   }
-
 }
 
 /** Capture literal section/block slugs from authored Lesson Data, never from its Definition. */

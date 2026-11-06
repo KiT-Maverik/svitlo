@@ -1,6 +1,9 @@
 import { createChapter, createEpisode, createLessonOverrides, createModule } from '@svitlo/engine/builders';
 import type { Course, Section } from '@svitlo/engine/content';
-import { howLightMoves_languages, type HowLightMoves_Languages } from '../lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/constants';
+import {
+  howLightMoves_languages,
+  type HowLightMoves_Languages,
+} from '../lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/constants';
 import { howLightMoves_Data } from '../lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/howLightMoves.data';
 import { lightDiscovery_Data } from '../lessons/1/f760e7b7-9f77-5027-89ce-4e40d9d031a1/lightDiscovery.data';
 import { lightExploration_Data } from '../lessons/2/b256e7b2-9f7d-5a9a-a0cb-3f3c2734b8a2/lightExploration.data';
@@ -15,19 +18,24 @@ const episode = createEpisode<HowLightMoves_Languages>({
     type: 'text',
     value: 'The secret of light · Episode',
   },
-  sections: [{
-    id: '63a906a6-8360-50d0-b0a5-1d34ee242ccc',
-    slug: 'story',
-    type: 'scenario',
-    title: 'A short adventure',
-    navigationLabel: 'Story',
-    content: [{
-      id: 'episode-markdown',
-      slug: 'storyCopy',
-      type: 'markdown',
-      locales: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    }],
-  }],
+  sections: [
+    {
+      id: '63a906a6-8360-50d0-b0a5-1d34ee242ccc',
+      slug: 'story',
+      type: 'scenario',
+      title: 'A short adventure',
+      navigationLabel: 'Story',
+      content: [
+        {
+          id: 'episode-markdown',
+          slug: 'storyCopy',
+          type: 'markdown',
+          locales:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        },
+      ],
+    },
+  ],
 });
 
 const storyInsideLesson = {
@@ -36,12 +44,14 @@ const storyInsideLesson = {
   type: 'scenario',
   title: 'A surprise in the laboratory',
   navigationLabel: 'Story bridge',
-  content: [{
-    id: 'bridge-markdown',
-    slug: 'bridgeCopy',
-    type: 'markdown',
-    locales: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. A small story between lesson sections.',
-  }],
+  content: [
+    {
+      id: 'bridge-markdown',
+      slug: 'bridgeCopy',
+      type: 'markdown',
+      locales: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. A small story between lesson sections.',
+    },
+  ],
 } as const satisfies Section<'data', HowLightMoves_Languages>;
 
 const reorderedLesson = createLessonOverrides(howLightMoves_Data)
@@ -90,7 +100,8 @@ export const playgroundLightCourse_Data = {
     id: 'course-description',
     slug: 'courseDescription',
     type: 'markdown',
-    locales: 'A demonstration Course with modules, a chapter, a Lorem Ipsum Episode and a course-local Lesson override.',
+    locales:
+      'A demonstration Course with modules, a chapter, a Lorem Ipsum Episode and a course-local Lesson override.',
   },
   content: [module.getData()],
 } satisfies Course<'data', HowLightMoves_Languages>;

@@ -5,7 +5,9 @@ import { createChapter, createEpisode, createModule } from './createCourseEntiti
 
 const languages = ['en', 'uk'] as const;
 const title = {
-  id: 'nav-title', slug: 'title', type: 'text' as const,
+  id: 'nav-title',
+  slug: 'title',
+  type: 'text' as const,
   value: { en: 'Journey', uk: 'Подорож' },
 };
 const episodeData = {
@@ -13,14 +15,16 @@ const episodeData = {
   id: 'episode-1',
   title,
   iconKey: 'clapperboard',
-  sections: [{
-    id: 'scenario-1',
-    slug: 'scenario',
-    type: 'scenario' as const,
-    title: { en: 'Story', uk: 'Історія' },
-    navigationLabel: { en: 'Story', uk: 'Історія' },
-    content: [],
-  }],
+  sections: [
+    {
+      id: 'scenario-1',
+      slug: 'scenario',
+      type: 'scenario' as const,
+      title: { en: 'Story', uk: 'Історія' },
+      navigationLabel: { en: 'Story', uk: 'Історія' },
+      content: [],
+    },
+  ],
 } satisfies Episode<'data', typeof languages>;
 const context: Course_TocContext<typeof languages> = {
   language: 'uk',
@@ -33,11 +37,17 @@ describe('Course entity creators', () => {
   it('creates typed hierarchical TOC and serializable authoring resource data', () => {
     const episode = createEpisode<typeof languages>(episodeData);
     const chapter = createChapter<typeof languages>({
-      type: 'chapter', id: 'chapter-1', iconKey: 'bookmark', title,
+      type: 'chapter',
+      id: 'chapter-1',
+      iconKey: 'bookmark',
+      title,
       content: ['lesson-1', episode],
     });
     const module = createModule<typeof languages>({
-      type: 'module', id: 'module-1', iconKey: 'folder', title,
+      type: 'module',
+      id: 'module-1',
+      iconKey: 'folder',
+      title,
       content: [chapter, 'lesson-2', episode],
     });
 
@@ -45,10 +55,16 @@ describe('Course entity creators', () => {
     assert.equal(toc.type, 'module');
     assert.equal(toc.title, 'Подорож');
     assert.equal(toc.iconKey, 'folder');
-    assert.deepEqual(toc.children.map(item => item.type), ['chapter', 'lesson', 'episode']);
+    assert.deepEqual(
+      toc.children.map(item => item.type),
+      ['chapter', 'lesson', 'episode'],
+    );
     assert.equal(toc.children[0].type, 'chapter');
     if (toc.children[0].type === 'chapter') {
-      assert.deepEqual(toc.children[0].children.map(item => item.type), ['lesson', 'episode']);
+      assert.deepEqual(
+        toc.children[0].children.map(item => item.type),
+        ['lesson', 'episode'],
+      );
     }
     assert.equal(episode.toToc(context).iconKey, 'clapperboard');
 
@@ -57,19 +73,27 @@ describe('Course entity creators', () => {
     const firstChild = output.data.content[0];
     assert.equal(typeof firstChild === 'string' ? firstChild : firstChild.type, 'chapter');
     assert.equal(JSON.stringify(output).includes('getData'), false);
-    assert.deepEqual(chapter.getData().content.map(item => typeof item === 'string' ? item : item.type), [
-      'lesson-1', 'episode',
-    ]);
+    assert.deepEqual(
+      chapter.getData().content.map(item => (typeof item === 'string' ? item : item.type)),
+      ['lesson-1', 'episode'],
+    );
   });
 
   it('preserves references and validates requested locale', () => {
     const chapter = createChapter<typeof languages>({
-      type: 'chapter', id: 'c', title,
+      type: 'chapter',
+      id: 'c',
+      title,
       content: ['lesson-1'],
     });
     assert.deepEqual(chapter.getData().content, ['lesson-1']);
-    assert.throws(() => chapter.toToc({
-      ...context, language: 'de' as typeof languages[number],
-    }), /Missing title/);
+    assert.throws(
+      () =>
+        chapter.toToc({
+          ...context,
+          language: 'de' as (typeof languages)[number],
+        }),
+      /Missing title/,
+    );
   });
 });

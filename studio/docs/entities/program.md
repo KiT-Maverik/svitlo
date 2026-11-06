@@ -2,7 +2,6 @@
 
 **Current term: [Course](./course.md).** "Program" was the earlier name for the learning-journey container; the educational Curriculum remains a distinct editorial concept. The Course contract and builder API are now documented in the Course entity. The historical discussion below is retained as context.
 
-
 **Entity category:** learning-journey orchestration and contextual narrative around independent Lessons.
 
 A **Program** selects, sequences and provides context to reusable [Lessons](./lesson.md). It can define progression, optional story or characters, missions, rewards, contextual transitions and other learner-journey mechanics. These are **Program responsibilities**, not content that must be hard-coded into a Lesson or its [Lesson Content](./lesson-content.md).

@@ -12,8 +12,11 @@ async function Content({ params }: Props) {
   const descriptor = DEFAULT_SUPPORTED_LANGUAGES.find(item => item.language === language);
   if (!descriptor) notFound();
   let toc;
-  try { toc = await loadCourseToc(courseId, descriptor.language); }
-  catch { notFound(); }
+  try {
+    toc = await loadCourseToc(courseId, descriptor.language);
+  } catch {
+    notFound();
+  }
   if (!courseHasLesson(toc, lessonId)) notFound();
   const [lesson, messages] = await Promise.all([
     loadPublishedLesson(lessonId, descriptor.language),
@@ -32,5 +35,15 @@ async function Content({ params }: Props) {
   );
 }
 export default function CourseLessonPage(props: Props) {
-  return <Suspense fallback={<div role="status" aria-busy="true">Loading lesson…</div>}><Content {...props} /></Suspense>;
+  return (
+    <Suspense
+      fallback={
+        <div role="status" aria-busy="true">
+          Loading lesson…
+        </div>
+      }
+    >
+      <Content {...props} />
+    </Suspense>
+  );
 }
