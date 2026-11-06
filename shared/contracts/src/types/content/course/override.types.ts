@@ -10,10 +10,9 @@ import type { Section } from '../section.types';
  * remain owned by the canonical Lesson. Section order/content may be replaced.
  * A future build-time helper will apply this patch without mutating the source.
  */
-export type Lesson_Override<
-  SupportedLanguages extends Lesson_Locale,
-  CustomEvents extends string = never,
-> = Partial<Pick<Lesson<'data', SupportedLanguages, CustomEvents>, 'title' | 'sections'>> & {
+export type Lesson_Override<SupportedLanguages extends Lesson_Locale, CustomEvents extends string = never> = Partial<
+  Pick<Lesson<'data', SupportedLanguages, CustomEvents>, 'title' | 'sections'>
+> & {
   /** Only presentation/navigation controls are configurable per course. */
   parameters?: {
     sections?: Partial<Lesson<'data', SupportedLanguages, CustomEvents>['parameters']['sections']>;

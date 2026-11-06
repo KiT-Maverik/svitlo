@@ -28,9 +28,12 @@ export function createCourse<const Languages extends Locale_Languages>(
     const children = course.content.map((entry): Course_TocContent => {
       if (typeof entry === 'string') return context.resolveLesson(entry);
       switch (entry.type) {
-        case 'module': return createModule<Languages>(entry).toToc(context);
-        case 'chapter': return createChapter<Languages>(entry).toToc(context);
-        case 'episode': return createEpisode<Languages>(entry).toToc(context);
+        case 'module':
+          return createModule<Languages>(entry).toToc(context);
+        case 'chapter':
+          return createChapter<Languages>(entry).toToc(context);
+        case 'episode':
+          return createEpisode<Languages>(entry).toToc(context);
         case 'lessonOverride': {
           const lesson = context.resolveLesson(entry.lessonId);
           const title = entry.overrides.title;

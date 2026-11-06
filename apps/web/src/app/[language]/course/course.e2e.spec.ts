@@ -31,13 +31,18 @@ test('Course publishes independent localized TOC, override and Episode JSON reso
   expect(story.sections[0].content[0].locales).toContain('Lorem ipsum');
 });
 
-test('Course navigation renders Modules and opens the overridden Lesson without changing standalone route', async ({ page }) => {
+test('Course navigation renders Modules and opens the overridden Lesson without changing standalone route', async ({
+  page,
+}) => {
   await page.goto('/uk/course/' + courseId);
   await expect(page.getByRole('heading', { name: 'Playground · Light Journey' })).toBeVisible();
-  await expect(page.getByRole('navigation', { name: 'Course table of contents' })).toContainText('The Light Laboratory');
+  await expect(page.getByRole('navigation', { name: 'Course table of contents' })).toContainText(
+    'The Light Laboratory',
+  );
   await page.goto('/uk/course/' + courseId + '/lesson/' + lessonId);
   await expect(page.getByText('Порівняй швидкість світла у вакуумі, повітрі та воді.')).toBeVisible();
-  const next = page.getByRole('navigation', { name: 'Нижня навігація навчання' })
+  const next = page
+    .getByRole('navigation', { name: 'Нижня навігація навчання' })
     .getByRole('button', { name: 'Далі →' });
   await next.click();
   await expect(page.getByText(/A small story between lesson sections/)).toBeVisible();

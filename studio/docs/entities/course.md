@@ -30,9 +30,9 @@ const module = createModule({
   content: [chapter, lessonB.id],
 });
 
-chapter.getData();            // normalized, authoring-time Chapter Data
-chapter.toToc(context);       // localized, hierarchy-safe Course_TocChapter
-chapter.toResource(context);  // { data, toc }, JSON-compatible publisher input
+chapter.getData(); // normalized, authoring-time Chapter Data
+chapter.toToc(context); // localized, hierarchy-safe Course_TocChapter
+chapter.toResource(context); // { data, toc }, JSON-compatible publisher input
 ```
 
 Nested creators are unwrapped when producing `getData()`; no methods or closures enter published resource inputs. `toResource()` currently provides **prepared source data and the localized TOC**, not a fully localized Course Response. A subsequent publisher performs reference checks, full locale projection, static registry inclusion and file IO. Creator methods perform no IO.
@@ -48,9 +48,9 @@ const overridden = createLessonOverrides(lesson)
   .sections.bySlug.theory.content.setOrder(['intro', newHintBlock])
   .sections.setOrder(['theory', courseScenario, 'practice', 'quiz']);
 
-overridden.build();           // minimum changed-field patch
-overridden.getData();         // same authored patch
-overridden.toToc(context);    // Lesson TOC leaf, with possible title override
+overridden.build(); // minimum changed-field patch
+overridden.getData(); // same authored patch
+overridden.toToc(context); // Lesson TOC leaf, with possible title override
 overridden.toResource(context); // { data: patch, toc }
 ```
 

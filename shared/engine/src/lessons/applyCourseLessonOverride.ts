@@ -34,9 +34,13 @@ function asBlock(authored: Record<string, unknown>): Block {
 }
 function normalizedSection(raw: Record<string, unknown>): Section {
   if (!Array.isArray(raw.content)) throw new Error('Invalid authored Course Section content');
-  if (typeof raw.id !== 'string' || typeof raw.slug !== 'string' ||
-      typeof raw.type !== 'string' || typeof raw.title !== 'string' ||
-      typeof raw.navigationLabel !== 'string') {
+  if (
+    typeof raw.id !== 'string' ||
+    typeof raw.slug !== 'string' ||
+    typeof raw.type !== 'string' ||
+    typeof raw.title !== 'string' ||
+    typeof raw.navigationLabel !== 'string'
+  ) {
     throw new Error('Invalid localized Course Section');
   }
   return {
@@ -77,8 +81,8 @@ function changedBlocks(blocks: readonly Block[], changes: Record<string, unknown
     items.set(slug, mergeObject(previous, props) as Block);
   }
   const order = (changes.order ?? [...items.keys()]) as string[];
-  if (order.length !== items.size || new Set(order).size !== order.length ||
-      order.some(slug => !items.has(slug))) throw new Error('Incomplete Course ContentBlock order');
+  if (order.length !== items.size || new Set(order).size !== order.length || order.some(slug => !items.has(slug)))
+    throw new Error('Incomplete Course ContentBlock order');
   const result = order.map(slug => items.get(slug)!);
   const ids = result.map(block => block.id);
   if (new Set(ids).size !== ids.length) throw new Error('Duplicate Course ContentBlock ID');
@@ -106,12 +110,13 @@ function changedSections(sections: readonly Section[], changes: Record<string, u
     if (patch.navigationLabel !== undefined) next.navigationLabel = patch.navigationLabel as string;
     if (patch.skippable === false) delete next.skippable;
     if (patch.skippable === true) next.skippable = true;
-    if (patch.content !== undefined) next.content = changedBlocks(section.content, patch.content as Record<string, unknown>);
+    if (patch.content !== undefined)
+      next.content = changedBlocks(section.content, patch.content as Record<string, unknown>);
     items.set(slug, next);
   }
   const order = (changes.order ?? [...items.keys()]) as string[];
-  if (order.length !== items.size || new Set(order).size !== order.length ||
-      order.some(slug => !items.has(slug))) throw new Error('Incomplete Course Section order');
+  if (order.length !== items.size || new Set(order).size !== order.length || order.some(slug => !items.has(slug)))
+    throw new Error('Incomplete Course Section order');
   const result = order.map(slug => items.get(slug)!);
   const ids = result.map(section => section.id);
   if (new Set(ids).size !== ids.length) throw new Error('Duplicate Course Section ID');

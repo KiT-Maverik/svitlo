@@ -4,36 +4,70 @@ import type { LessonResponse } from './assembleLessonResponse';
 import { applyCourseLessonOverride } from './applyCourseLessonOverride';
 
 const base = {
-  id: 'lesson-id', slug: 'light', title: 'Light',
-  locale: { code: 'en' }, parameters: {
-    requireQuiz: false, languages: ['en'],
+  id: 'lesson-id',
+  slug: 'light',
+  title: 'Light',
+  locale: { code: 'en' },
+  parameters: {
+    requireQuiz: false,
+    languages: ['en'],
     sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
   },
-  flashcards: [], questions: {}, localeSources: { config: {}, flashcards: {}, questions: {} },
+  flashcards: [],
+  questions: {},
+  localeSources: { config: {}, flashcards: {}, questions: {} },
   sections: [
-    { id: 'theory-id', slug: 'theory', type: 'theory', title: 'Theory', navigationLabel: 'Theory', content: [], questions: [] },
-    { id: 'practice-id', slug: 'practice', type: 'practice', title: 'Practice', navigationLabel: 'Practice', content: [], questions: [] },
+    {
+      id: 'theory-id',
+      slug: 'theory',
+      type: 'theory',
+      title: 'Theory',
+      navigationLabel: 'Theory',
+      content: [],
+      questions: [],
+    },
+    {
+      id: 'practice-id',
+      slug: 'practice',
+      type: 'practice',
+      title: 'Practice',
+      navigationLabel: 'Practice',
+      content: [],
+      questions: [],
+    },
   ],
 } as LessonResponse;
 
 test('Course patch composes new Sections and reorders existing Sections without mutation', () => {
   const original = JSON.stringify(base);
   const patch = {
-    type: 'lessonOverride' as const, lessonId: 'lesson-id',
+    type: 'lessonOverride' as const,
+    lessonId: 'lesson-id',
     overrides: {
       parameters: { sections: { allowSkipping: false } },
       sections: {
         order: ['practice', 'story', 'theory'],
-        added: [{ source: { type: 'course' as const }, section: {
-          id: 'story-id', slug: 'story', type: 'scenario' as const, title: 'Story',
-          navigationLabel: 'Story',
-          content: [{ id: 'story-text', slug: 'storyText', type: 'markdown' as const, locales: 'Lorem ipsum' }],
-        } }],
+        added: [
+          {
+            source: { type: 'course' as const },
+            section: {
+              id: 'story-id',
+              slug: 'story',
+              type: 'scenario' as const,
+              title: 'Story',
+              navigationLabel: 'Story',
+              content: [{ id: 'story-text', slug: 'storyText', type: 'markdown' as const, locales: 'Lorem ipsum' }],
+            },
+          },
+        ],
       },
     },
   };
   const composed = applyCourseLessonOverride(base, patch);
-  assert.deepEqual(composed.sections.map(section => section.slug), ['practice', 'story', 'theory']);
+  assert.deepEqual(
+    composed.sections.map(section => section.slug),
+    ['practice', 'story', 'theory'],
+  );
   assert.equal(composed.sections[1].content[0].type, 'markdown');
   assert.equal((composed.sections[1].content[0] as { text: string }).text, 'Lorem ipsum');
   assert.equal(composed.parameters.sections.allowSkipping, false);
@@ -41,8 +75,13 @@ test('Course patch composes new Sections and reorders existing Sections without 
 });
 
 test('Course patch rejects missing order entries', () => {
-  assert.throws(() => applyCourseLessonOverride(base, {
-    type: 'lessonOverride', lessonId: 'lesson-id',
-    overrides: { sections: { order: ['theory'] } },
-  }), /Incomplete Course Section order/);
+  assert.throws(
+    () =>
+      applyCourseLessonOverride(base, {
+        type: 'lessonOverride',
+        lessonId: 'lesson-id',
+        overrides: { sections: { order: ['theory'] } },
+      }),
+    /Incomplete Course Section order/,
+  );
 });

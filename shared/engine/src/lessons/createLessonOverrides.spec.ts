@@ -73,9 +73,18 @@ describe('createLessonOverrides', () => {
     assert.deepEqual(result.overrides.parameters, { sections: { allowSkipping: false } });
     assert.deepEqual(result.overrides.events, { lessonCompleted: false });
     assert.deepEqual(result.overrides.sections?.order, ['theory', 'story', 'practice']);
-    assert.deepEqual(result.overrides.sections?.added?.map(entry => entry.section.slug), ['story']);
-    assert.deepEqual(result.overrides.sections?.added?.map(entry => entry.source.type), ['course']);
-    assert.deepEqual(result.overrides.sections?.bySlug?.theory?.content?.added?.map(entry => entry.source.type), ['course']);
+    assert.deepEqual(
+      result.overrides.sections?.added?.map(entry => entry.section.slug),
+      ['story'],
+    );
+    assert.deepEqual(
+      result.overrides.sections?.added?.map(entry => entry.source.type),
+      ['course'],
+    );
+    assert.deepEqual(
+      result.overrides.sections?.bySlug?.theory?.content?.added?.map(entry => entry.source.type),
+      ['course'],
+    );
     assert.deepEqual(result.overrides.sections?.bySlug?.theory?.content?.bySlug?.intro, {
       locales: { en: 'Changed', uk: 'Змінено' },
     });
@@ -95,7 +104,10 @@ describe('createLessonOverrides', () => {
     const sections = customized.build().overrides.sections;
     assert.deepEqual(sections?.order, ['theory', 'story']);
     assert.deepEqual(sections?.removed, ['practice']);
-    assert.deepEqual(sections?.added?.map(entry => entry.section.slug), ['story']);
+    assert.deepEqual(
+      sections?.added?.map(entry => entry.section.slug),
+      ['story'],
+    );
     assert.deepEqual(sections?.bySlug?.theory?.content?.removed, ['intro']);
   });
 
@@ -108,8 +120,7 @@ describe('createLessonOverrides', () => {
       .build();
     assert.deepEqual(unchanged.overrides, {});
 
-    const customized = original.sections.bySlug.theory
-      .set({ navigationLabel: 'Introduction' });
+    const customized = original.sections.bySlug.theory.set({ navigationLabel: 'Introduction' });
     assert.deepEqual(customized.getData().overrides, {
       sections: { bySlug: { theory: { navigationLabel: 'Introduction' } } },
     });
@@ -120,7 +131,10 @@ describe('createLessonOverrides', () => {
       },
     };
     assert.deepEqual(customized.toToc(context), {
-      type: 'lesson', id: lesson.id, title: 'Light', iconKey: 'book-open',
+      type: 'lesson',
+      id: lesson.id,
+      title: 'Light',
+      iconKey: 'book-open',
     });
     assert.deepEqual(customized.toResource(context), {
       data: customized.build(),
@@ -130,15 +144,16 @@ describe('createLessonOverrides', () => {
 
   it('rejects missing, duplicate or unknown order entries, including duplicate IDs', () => {
     const builder = createLessonOverrides(lesson);
-    const dynamicOrder = builder.sections.setOrder as unknown as (items: readonly (string | Section<'data', typeof languages>)[]) => unknown;
+    const dynamicOrder = builder.sections.setOrder as unknown as (
+      items: readonly (string | Section<'data', typeof languages>)[],
+    ) => unknown;
     assert.throws(() => dynamicOrder(['theory']), /Missing Section: practice/);
     assert.throws(() => dynamicOrder(['theory', 'theory', 'practice']), /Duplicate/);
     assert.throws(() => dynamicOrder(['missing', 'theory', 'practice']), /Unknown Section/);
-    assert.throws(
-      () => dynamicOrder(['theory', 'practice', { ...courseScenario, id: 'theory-id' }]),
-      /Duplicate/,
-    );
-    const contentOrder = builder.sections.bySlug.theory.content.setOrder as unknown as (items: readonly string[]) => unknown;
+    assert.throws(() => dynamicOrder(['theory', 'practice', { ...courseScenario, id: 'theory-id' }]), /Duplicate/);
+    const contentOrder = builder.sections.bySlug.theory.content.setOrder as unknown as (
+      items: readonly string[],
+    ) => unknown;
     assert.throws(() => contentOrder(['intro', 'intro']), /Duplicate/);
     assert.throws(() => contentOrder(['unknown', 'intro']), /Unknown ContentBlock/);
     assert.throws(() => builder.sections.bySlug.theory.content.remove('missing' as 'intro'), /Unknown ContentBlock/);
@@ -160,6 +175,9 @@ describe('createLessonOverrides', () => {
     } as unknown as Lesson<'data', typeof languages>;
     const builder = createLessonOverrides(requiredLesson);
     assert.throws(() => builder.sections.remove('quiz').build(), /Invalid quiz Section count/);
-    assert.throws(() => builder.sections.bySlug.quiz.content.remove('questions').build(), /Invalid quiz ContentBlock count/);
+    assert.throws(
+      () => builder.sections.bySlug.quiz.content.remove('questions').build(),
+      /Invalid quiz ContentBlock count/,
+    );
   });
 });

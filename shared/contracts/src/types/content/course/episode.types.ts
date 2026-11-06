@@ -9,10 +9,7 @@ export type Episode_ScenarioSection<
   SupportedLanguages extends Locale_Languages,
 > = Section<ConfigType, SupportedLanguages> & { type: 'scenario' };
 
-export type Episode<
-  ConfigType extends ContentEntity_ConfigType,
-  SupportedLanguages extends Locale_Languages,
-> = {
+export type Episode<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends Locale_Languages> = {
   type: 'episode';
   id: string;
   /** Optional registered icon key for course navigation; never JSX. */

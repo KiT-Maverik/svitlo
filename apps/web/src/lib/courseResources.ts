@@ -13,8 +13,7 @@ const assertUuid = (id: string) => {
   if (!UUID.test(id)) throw new Error('Invalid Course resource ID');
   return id;
 };
-const courseRoot = (id: string) =>
-  path.join(process.cwd(), 'public/data/pages/courses', assertUuid(id));
+const courseRoot = (id: string) => path.join(process.cwd(), 'public/data/pages/courses', assertUuid(id));
 
 async function loadJson(filename: string): Promise<unknown> {
   return JSON.parse(await readFile(filename, 'utf8'));
@@ -22,24 +21,38 @@ async function loadJson(filename: string): Promise<unknown> {
 
 export async function loadCourseToc(id: string, language: LanguageCode): Promise<Course_Toc> {
   const data = await loadJson(path.join(courseRoot(id), 'toc', language + '.json'));
-  if (!data || typeof data !== 'object' || !('type' in data) || data.type !== 'course' ||
-      !('id' in data) || data.id !== id) throw new Error('Invalid Course TOC');
+  if (
+    !data ||
+    typeof data !== 'object' ||
+    !('type' in data) ||
+    data.type !== 'course' ||
+    !('id' in data) ||
+    data.id !== id
+  )
+    throw new Error('Invalid Course TOC');
   return data as Course_Toc;
 }
 
 type Node = Course_TocContent;
-export function flattenCourseToc(toc: Course_Toc, language: string): {
-  id: string; title: string; href: string; depth: number;
+export function flattenCourseToc(
+  toc: Course_Toc,
+  language: string,
+): {
+  id: string;
+  title: string;
+  href: string;
+  depth: number;
 }[] {
   const result: { id: string; title: string; href: string; depth: number }[] = [];
   const root = '/' + language + '/course/' + toc.id;
   function walk(nodes: readonly Node[], depth: number) {
     for (const node of nodes) {
-      const href = node.type === 'lesson'
-        ? root + '/lesson/' + node.id
-        : node.type === 'episode'
-          ? root + '/episode/' + node.id
-          : root + '#' + node.id;
+      const href =
+        node.type === 'lesson'
+          ? root + '/lesson/' + node.id
+          : node.type === 'episode'
+            ? root + '/episode/' + node.id
+            : root + '#' + node.id;
       result.push({ id: node.id, title: node.title, href, depth });
       if ('children' in node) walk(node.children, depth + 1);
     }
@@ -48,7 +61,11 @@ export function flattenCourseToc(toc: Course_Toc, language: string): {
   return result;
 }
 
-function findNode(toc: Course_Toc, type: 'lesson' | 'episode', id: string): Course_TocLesson | Course_TocEpisode | undefined {
+function findNode(
+  toc: Course_Toc,
+  type: 'lesson' | 'episode',
+  id: string,
+): Course_TocLesson | Course_TocEpisode | undefined {
   let found: Course_TocLesson | Course_TocEpisode | undefined;
   function walk(nodes: readonly Node[]) {
     for (const node of nodes) {
@@ -73,17 +90,14 @@ export async function loadCourseLesson(
   assertUuid(lesson.id);
   const file = path.join(courseRoot(courseId), 'overrides', lesson.id, language + '.json');
   let data: unknown;
-  try { data = await loadJson(file); }
-  catch (error) {
+  try {
+    data = await loadJson(file);
+  } catch (error) {
     if ((error as NodeJS.ErrnoException).code === 'ENOENT') return lesson;
     throw error;
   }
   return applyCourseLessonOverride(lesson, data as Course_LessonOverride<Locale_Languages>);
 }
-export async function loadCourseEpisode(
-  courseId: string,
-  id: string,
-  language: LanguageCode,
-): Promise<unknown> {
+export async function loadCourseEpisode(courseId: string, id: string, language: LanguageCode): Promise<unknown> {
   return loadJson(path.join(courseRoot(courseId), 'episodes', assertUuid(id), language + '.json'));
 }

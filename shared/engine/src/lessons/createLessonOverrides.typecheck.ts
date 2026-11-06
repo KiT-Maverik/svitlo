@@ -22,7 +22,14 @@ const lesson = defineLessonData<typeof languages>()({
       navigationLabel: 'Theory',
       content: [{ id: 'block-id', slug: 'intro', type: 'markdown', locales: { en: 'First', uk: 'Перший' } }],
     },
-    { id: 'practice-id', slug: 'practice', type: 'practice', title: 'Practice', navigationLabel: 'Practice', content: [] },
+    {
+      id: 'practice-id',
+      slug: 'practice',
+      type: 'practice',
+      title: 'Practice',
+      navigationLabel: 'Practice',
+      content: [],
+    },
   ],
 });
 
@@ -55,7 +62,6 @@ const disabledCustom = createLessonOverrides(customOnly).setEvents({ lionAppeare
 // @ts-expect-error Undeclared custom events cannot be introduced by a course.
 createLessonOverrides(lesson).setEvents({ lionAppeared: false });
 void disabledCustom;
-
 
 // @ts-expect-error Missing a known Section in a complete order.
 customized.sections.setOrder(['theory', 'scenario']);

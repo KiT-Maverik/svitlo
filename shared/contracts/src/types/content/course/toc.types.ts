@@ -31,11 +31,7 @@ export type Course_TocModule = NavigationLabel & {
   children: readonly (Course_TocChapter | Course_TocLesson | Course_TocEpisode)[];
 };
 
-export type Course_TocContent =
-  | Course_TocModule
-  | Course_TocChapter
-  | Course_TocLesson
-  | Course_TocEpisode;
+export type Course_TocContent = Course_TocModule | Course_TocChapter | Course_TocLesson | Course_TocEpisode;
 
 export type Course_Toc = NavigationLabel & {
   type: Course<'data', Locale_Languages>['type'];
