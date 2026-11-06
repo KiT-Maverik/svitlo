@@ -24,7 +24,7 @@ import BottomNavbar from '../Navigation/BottomNavbar';
 import { getLocaleDirection, type Locale } from '@svitlo/engine/localization';
 import VerticalSpace from '#widgets/VerticalSpace/VerticalSpace';
 
-export type Topic = { id: string; title: string; href: string };
+export type Topic = { id: string; title: string; href: string; depth?: number };
 export type LearningLayoutProgress = {
   ready: boolean;
   step: number;
@@ -358,7 +358,7 @@ export default function LearningLayout({
                         selected={pathname === topic.href}
                         aria-current={pathname === topic.href ? 'page' : undefined}
                         onClick={() => setOpen(false)}
-                        sx={{ borderRadius: 2 }}
+                        sx={{ borderRadius: 2, ps: 2 + Math.min(topic.depth ?? 0, 4) * 2 }}
                       >
                         <ListItemText primary={topic.title} />
                       </ListItemButton>

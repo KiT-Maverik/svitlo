@@ -300,6 +300,7 @@ export function LessonController({
   response,
   href,
   messages,
+  topics: courseTopics,
   layout: Layout,
   sceneRegistry,
   contentLoading,
@@ -489,7 +490,8 @@ export function LessonController({
     [eventBus, effectiveEvents, sceneRegistry, eventReady],
   );
   const quizIndex = response.sections.findIndex(item => item.type === 'quiz');
-  const topics = useMemo(() => [{ id: response.id, title: response.title, href }], [response.id, response.title, href]);
+  const standaloneTopics = useMemo(() => [{ id: response.id, title: response.title, href }], [response.id, response.title, href]);
+  const topics = courseTopics ?? standaloneTopics;
   const skippableSteps = useMemo(
     () =>
       response.sections.map(

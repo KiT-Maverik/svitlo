@@ -37,6 +37,8 @@ export type LessonView = {
 export type LessonProps = {
   response: LessonView;
   href: string;
+  /** Optional Course navigation entries, instead of a single standalone Lesson entry. */
+  topics?: readonly { id: string; title: string; href: string; depth?: number }[];
   messages: UiKitMessages;
   /** Host binding: Next.js, Electron, or ordinary React can supply a layout. */
   layout: ComponentType<LessonLearningLayoutProps>;
