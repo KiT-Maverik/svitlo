@@ -18,10 +18,10 @@ const themes = {
 };
 
 export default function MuiThemeProvider({ children, direction }: { children: ReactNode; direction: TextDirection }) {
-  // CSS-variable mode changes selectors without refreshing consumers of theme.palette.mode.
-  // Keep the UI in sync when Quick Settings changes the active mode.
+  // MUI's CSS variables switch with data-light / data-dark. Forcing a theme rerender
+  // remounts the lesson tree and resets open drawers (including Quick Settings).
   return (
-    <ThemeProvider theme={themes[direction]} disableTransitionOnChange forceThemeRerender>
+    <ThemeProvider theme={themes[direction]} disableTransitionOnChange>
       {children}
     </ThemeProvider>
   );
