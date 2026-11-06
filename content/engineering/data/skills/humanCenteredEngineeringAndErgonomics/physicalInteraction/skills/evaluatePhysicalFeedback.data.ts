@@ -40,7 +40,7 @@ export const evaluatePhysicalFeedback_Skill_Data = buildSkillConfig({
       en: 'Check whether a product clearly communicates what its controls have done.',
       zh: '检查产品能否清楚地告知控制操作产生的结果。',
       hi: 'देखें कि उत्पाद स्पष्ट बताता है या नहीं कि उसके नियंत्रणों ने क्या किया है।',
-      es: 'Comprueba si un producto comunica claramente qué han hecho sus controles.',
+      es: 'Comprueba si un producto comunica claramente el resultado de accionar sus controles.',
       ar: 'تحقّق هل يوضح المنتج ما نتج عن استخدام أدوات التحكم الخاصة به.',
       fr: 'Vérifie si un produit indique clairement ce que ses commandes ont déclenché.',
       bn: 'নিয়ন্ত্রণ ব্যবহারে কী ঘটেছে তা পণ্যটি স্পষ্ট বোঝাচ্ছে কি না যাচাই করো।',
