@@ -17,7 +17,7 @@ export const reviseADesignUsingEvidence_Skill_Data = buildSkillConfig({
     de: 'Einen Entwurf anhand von Belegen überarbeiten',
     ja: '根拠に基づいて設計を修正する',
     ko: '근거를 바탕으로 설계 수정하기',
-    tr: 'Kanıta Dayalı Tasarımı Yenileme',
+    tr: 'Kanıtlara dayanarak tasarımı gözden geçirme',
     vi: 'Sửa thiết kế dựa trên bằng chứng',
     ta: 'ஆதாரங்களைக் கொண்டு வடிவமைப்பைத் திருத்துதல்',
     te: 'ఆధారాలతో రూపకల్పనను సవరించడం',

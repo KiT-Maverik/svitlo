@@ -26,7 +26,7 @@ export const accessibleEnvironments_SkillGroup_Data = buildSkillGroupConfig({
     tr: 'Erişilebilir Ortamlar',
     vi: 'Môi trường dễ tiếp cận',
     ta: 'அணுகக்கூடிய சூழல்கள்',
-    te: 'అందుబాటులో ఉన్న పరిసరాలు',
+    te: 'అందరికీ అందుబాటులో ఉండే పరిసరాలు',
     mr: 'सुलभ वातावरण',
     ms: 'Persekitaran Boleh Akses',
     he: 'סביבות נגישות',

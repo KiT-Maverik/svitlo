@@ -64,7 +64,7 @@ export const energySystems_SkillDomain_Data = buildSkillDomainConfig({
       vi: 'Khám phá cách hệ thống kỹ thuật tạo ra, lưu trữ, truyền tải và sử dụng năng lượng.',
       ta: 'பொறியியல் அமைப்புகள் ஆற்றலை எவ்வாறு உற்பத்தி, சேமிப்பு, கடத்தல், பயன்படுத்துதல் செய்கின்றன என அறியுங்கள்.',
       te: 'ఇంజినీరింగ్ వ్యవస్థలు శక్తిని ఎలా ఉత్పత్తి చేసి, నిల్వ చేసి, తరలించి, వాడతాయో తెలుసుకోండి.',
-      mr: 'अभियांत्रिकी प्रणाली ऊर्जा कशी निर्माण, साठवून, वाहून आणि वापरतात ते जाणून घ्या.',
+      mr: 'अभियांत्रिकी प्रणाली ऊर्जा कशी निर्माण करतात, साठवतात, वाहून नेतात आणि वापरतात ते जाणून घ्या.',
       ms: 'Terokai cara sistem kejuruteraan menjana, menyimpan, menyalur dan menggunakan tenaga.',
       he: 'גלו כיצד מערכות הנדסיות מפיקות, מאחסנות, מעבירות ומשתמשות באנרגיה.',
       pl: 'Poznaj, jak systemy techniczne wytwarzają, magazynują, przesyłają i wykorzystują energię.',

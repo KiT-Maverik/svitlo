@@ -45,7 +45,7 @@ export const planPreventiveMaintenance_Skill_Data = buildSkillConfig({
       ar: 'خطّط للفحص والصيانة لتقليل الأعطال المتوقعة.',
       fr: 'Planifie des inspections et un entretien pour réduire les pannes prévisibles.',
       bn: 'আশঙ্কাযোগ্য ত্রুটি কমাতে পরীক্ষা ও রক্ষণাবেক্ষণ পরিকল্পনা করো।',
-      pt: 'Planeie inspeções e manutenção para reduzir falhas previsíveis.',
+      pt: 'Planeje inspeções e manutenção para reduzir falhas previsíveis.',
       ur: 'متوقع خرابیوں کو کم کرنے کے لیے معائنہ اور دیکھ بھال طے کریں۔',
       id: 'Rencanakan pemeriksaan dan perawatan agar kerusakan yang diperkirakan berkurang.',
       de: 'Plane Inspektionen und Wartung, um vorhersehbare Ausfälle zu verringern.',
