@@ -41,6 +41,10 @@
       "types": "./dist/src/components/layout/Navigation/*.d.ts",
       "default": "./dist/src/components/layout/Navigation/*.js"
     },
+    "./user-cabinet": {
+      "types": "./dist/src/components/pages/UserCabinet/index.d.ts",
+      "default": "./dist/src/components/pages/UserCabinet/index.js"
+    },
     "./learning-layout": {
       "types": "./dist/src/components/layout/LearningLayout/index.d.ts",
       "default": "./dist/src/components/layout/LearningLayout/index.js"
