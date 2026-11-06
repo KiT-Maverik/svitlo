@@ -59,7 +59,7 @@ export const measureCircuitCurrent_Skill_Data = buildSkillConfig({
       he: 'מדדו זרם במעגל בלי לחבר את המכשיר באופן שגוי.',
       pl: 'Zmierz prąd w obwodzie bez nieprawidłowego podłączenia miernika.',
       uk: 'Вимірюй струм у колі, не підключаючи прилад неправильно.',
-      lt: 'Matuok srovę grandinėje neteisingai neprijungdama matuoklio.',
+      lt: 'Matuok grandinės srovę ir pasirūpink, kad matuoklis būtų prijungtas teisingai.',
       lv: 'Mēri strāvu ķēdē, nepareizi nepieslēdzot mēraparātu.',
       et: 'Mõõda voolu ahelas, ühendamata mõõteriista valesti.',
       be: 'Вымярай ток у коле, няправільна не падлучаючы прыбор.',
