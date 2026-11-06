@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /** Compile biology metadata and publish exactly the textbook's authored resources. */
 import { existsSync, readFileSync, readdirSync, mkdirSync, rmSync, copyFileSync, cpSync, writeFileSync } from 'node:fs';
-import { dirname, join, relative, resolve, sep } from 'node:path';
+import { join, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
 import { build } from 'esbuild';
