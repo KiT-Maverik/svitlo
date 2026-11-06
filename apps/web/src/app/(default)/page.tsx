@@ -19,6 +19,11 @@ export default function Home() {
               {textbook.featuredLessonLabel}
             </Button>
           )}
+          {textbook.featuredCourseId && textbook.featuredCourseLabel && (
+            <Button variant="contained" color="secondary" href={`/uk/course/${textbook.featuredCourseId}`}>
+              {textbook.featuredCourseLabel}
+            </Button>
+          )}
           {!!textbook.skillAnalyticsDomains?.length && (
             <Button variant="contained" color="secondary" href="/skillAnalytics">
               Аналітика навичок

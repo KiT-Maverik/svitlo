@@ -13,7 +13,7 @@
     "pretest:portability": "npm run build --workspace @svitlo/playground",
     "test:portability": "node ../../scripts/textbook-tooling/check-portability.mjs",
     "pretest:publish": "npm run build --workspace @svitlo/playground",
-    "test:publish": "node --test ../../scripts/textbook-tooling/test-publish.mjs",
+    "test:publish": "node --test ../../scripts/textbook-tooling/test-publish.mjs test-course-output.mjs",
     "prepack": "npm run build"
   },
   "bin": {
