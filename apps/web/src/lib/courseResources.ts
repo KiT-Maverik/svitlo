@@ -37,6 +37,7 @@ type Node = Course_TocContent;
 export function flattenCourseToc(
   toc: Course_Toc,
   language: string,
+  lessonLanguage: string = language,
 ): {
   id: string;
   title: string;
@@ -49,7 +50,7 @@ export function flattenCourseToc(
     for (const node of nodes) {
       const href =
         node.type === 'lesson'
-          ? root + '/lesson/' + node.id
+          ? root + '/lesson/' + lessonLanguage + '/' + node.id
           : node.type === 'episode'
             ? root + '/episode/' + node.id
             : root + '#' + node.id;

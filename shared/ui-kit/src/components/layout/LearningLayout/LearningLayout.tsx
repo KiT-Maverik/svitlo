@@ -374,7 +374,12 @@ export default function LearningLayout({
           open={settingsOpen}
           slotProps={{
             paper: {
-              sx: { position: 'absolute', width: 'min(320px, calc(100vw - 48px))', height: '100%', overflow: 'hidden' },
+              sx: {
+                position: 'absolute',
+                width: { xs: '100%', sm: 'min(320px, calc(100vw - 48px))' },
+                height: '100%',
+                overflow: 'hidden',
+              },
             },
           }}
         >
@@ -394,10 +399,14 @@ export default function LearningLayout({
                 flexShrink: 0,
               }}
             >
-              <Typography component="h2" sx={{ flex: 1, px: 1, fontSize: 18, fontWeight: 700 }}>
+              <Typography component="h2" sx={{ flex: 1, px: 1, fontSize: 18, fontWeight: 700, textAlign: 'start' }}>
                 {messages.settingsTitle}
               </Typography>
-              <IconButton aria-label={messages.actions.closeSettingsPanel} onClick={() => setSettingsOpen(false)}>
+              <IconButton
+                aria-label={messages.actions.closeSettingsPanel}
+                onClick={() => setSettingsOpen(false)}
+                sx={{ display: { xs: 'inline-flex', sm: 'none' } }}
+              >
                 <CloseIcon />
               </IconButton>
             </Box>
