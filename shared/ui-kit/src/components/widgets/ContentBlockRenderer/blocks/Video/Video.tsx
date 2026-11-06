@@ -43,9 +43,11 @@ export const Video = ({
   const handleVolumeChange = (event: SyntheticEvent<HTMLVideoElement>) => {
     if (!mediaSettings) return;
     const element = event.currentTarget;
+    // Snapshot both properties before any context write can update the DOM.
     const nextVolume = Math.round(element.volume * 100);
+    const nextMuted = element.muted;
     if (nextVolume !== volume) mediaSettings.setVolume(nextVolume);
-    if (element.muted !== muted) mediaSettings.setMuted(element.muted);
+    if (nextMuted !== muted) mediaSettings.setMuted(nextMuted);
   };
 
   useEffect(() => {

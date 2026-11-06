@@ -76,6 +76,7 @@ describe('Lesson media settings', () => {
     expect(audio.volume).toBe(0.4);
     audio.volume = 0.8;
     audio.muted = false;
+    expect(audio.muted).toBe(false);
     fireEvent.volumeChange(audio);
     expect(screen.getByTestId('media-state')).toHaveTextContent('80:false');
     expect(video.volume).toBe(0.8);
