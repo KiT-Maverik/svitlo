@@ -48,7 +48,7 @@ for (const path of migratedTextbookPaths) {
     !pkg.dependencies?.next && !existsSync(resolve(root, path, 'src/app')),
     'Standalone Next.js shell remains: ' + path,
   );
-  assert(pkg.bin?.['svitlo-' + id] === './scripts/publish.mjs', 'Missing textbook Publish CLI: ' + path);
+  assert(pkg.bin?.['svitlo-' + id] === './dist/publish.mjs', 'Missing textbook Publish CLI: ' + path);
   assert(
     pkg.exports?.['.']?.default === './dist/textbook/index.js' &&
       pkg.exports?.['.']?.types === './dist/textbook/index.d.ts',
@@ -149,7 +149,7 @@ assert(
       playground.exports?.[key]?.types?.startsWith('./dist/'),
   ) &&
     playground.exports?.['./styles']?.default === './dist/styles.css' &&
-    playground.bin?.['svitlo-playground'] === './scripts/publish.mjs',
+    playground.bin?.['svitlo-playground'] === './dist/publish.mjs',
   'Playground must expose compiled JS, declarations, styles and a Publish CLI',
 );
 assert(

@@ -15,6 +15,7 @@ on:
       - 'scripts/check-package-boundaries.mjs'
       - 'scripts/check-extraction-readiness.mjs'
       - 'scripts/check-built-package-exports.mjs'
+      - 'scripts/textbook-tooling/**'
       - '.github/workflows/content-packages-agent-3.yml'
   workflow_dispatch:
 
@@ -55,8 +56,8 @@ jobs:
             npm run build --workspace "@svitlo/$textbook"
             npm run typecheck --workspace "@svitlo/$textbook"
             npm run lint --workspace "@svitlo/$textbook"
-            node --test "content/$textbook/scripts/publish.spec.mjs"
-            node "content/$textbook/scripts/check-portability.mjs"
+            (cd "content/$textbook" && node --test ../../scripts/textbook-tooling/test-publish.mjs)
+            (cd "content/$textbook" && node ../../scripts/textbook-tooling/check-portability.mjs)
             echo "::endgroup::"
           done
           npm run test:locales --workspace @svitlo/geography
