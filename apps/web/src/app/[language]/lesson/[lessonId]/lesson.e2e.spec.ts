@@ -37,7 +37,7 @@ test('the requested lesson language selects localized published JSON and scene p
 
   await page.goto(`/uk/lesson/en/${id}`);
   await expect(page.locator('html')).toHaveAttribute('lang', 'uk-UA');
-  await expect(page.locator('#learning-content [lang="en-US"]')).toBeVisible();
+  await expect(page.locator('#learning-content [lang="en-US"]').first()).toBeVisible();
   await expect(page.getByRole('img', { name: 'Trace the path of light' })).toBeVisible();
   await expect(
     page.getByRole('region', { name: 'Animation of light traveling from the source to the screen' }),
@@ -64,7 +64,7 @@ test('lesson language selection does not change the interface language', async (
   await page.getByRole('option', { name: 'English' }).click();
   await expect(page).toHaveURL(`/uk/lesson/en/${id}`);
   await expect(page.locator('html')).toHaveAttribute('lang', 'uk-UA');
-  await expect(page.locator('#learning-content [lang="en-US"]')).toHaveAttribute('dir', 'ltr');
+  await expect(page.locator('#learning-content [lang="en-US"]').first()).toHaveAttribute('dir', 'ltr');
   await expect(page.getByRole('heading', { name: 'How light travels', exact: true })).toBeVisible();
   await expect(page.getByRole('navigation', { name: 'Верхня навігація навчання' })).toBeVisible();
 });
@@ -91,12 +91,12 @@ test('RTL interface and content directions remain independent', async ({ page })
   await page.goto(`/ar/lesson/en/${id}`);
   await expect(page.locator('html')).toHaveAttribute('lang', 'ar-SA');
   await expect(page.locator('html')).toHaveAttribute('dir', 'rtl');
-  await expect(page.locator('#learning-content [lang="en-US"]')).toHaveAttribute('dir', 'ltr');
+  await expect(page.locator('#learning-content [lang="en-US"]').first()).toHaveAttribute('dir', 'ltr');
 
   await page.goto(`/uk/lesson/ar/${id}`);
   await expect(page.locator('html')).toHaveAttribute('lang', 'uk-UA');
   await expect(page.locator('html')).toHaveAttribute('dir', 'ltr');
-  await expect(page.locator('#learning-content [lang="ar-SA"]')).toHaveAttribute('dir', 'rtl');
+  await expect(page.locator('#learning-content [lang="ar-SA"]').first()).toHaveAttribute('dir', 'rtl');
 
   await page.goto(`/qm/lesson/qm/${id}`);
   await expect(page.locator('html')).toHaveAttribute('lang', 'crh-Latn-UA');
