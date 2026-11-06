@@ -31,16 +31,18 @@ function sceneIds(value: unknown): string[] {
 export default function WebLesson({
   response,
   locale,
+  lessonLocale,
   href,
   messages,
 }: {
   response: LessonResponse;
   locale: Locale;
+  lessonLocale: Locale;
   href: string;
   messages: UiKitMessages;
 }) {
   const ids = useMemo(() => sceneIds([response.sections, response.events]), [response.sections, response.events]);
-  const requestKey = `${response.id}:${locale}`;
+  const requestKey = `${response.id}:${response.locale.code}`;
   const [prepared, setPrepared] = useState<{
     key: string;
     status: 'loading' | 'ready' | 'error';
@@ -71,7 +73,7 @@ export default function WebLesson({
   }, [ids, requestKey, current.attempt]);
 
   return (
-    <SceneLocaleProvider locale={locale}>
+    <SceneLocaleProvider locale={lessonLocale}>
       <ImageRendererProvider renderer={NextImageRenderer}>
         <Lesson
           response={response}
