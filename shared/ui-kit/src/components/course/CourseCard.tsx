@@ -1,6 +1,5 @@
 'use client';
 
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardContent from '@mui/material/CardContent';
@@ -9,16 +8,19 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import ArrowForwardRounded from '@mui/icons-material/ArrowForwardRounded';
 import AutoStoriesOutlined from '@mui/icons-material/AutoStoriesOutlined';
+import type { LanguageCode } from '@svitlo/engine/localization';
 import type { CourseMessages, CoursePreview } from './types';
+import { CourseLanguages } from './CourseLanguages';
 import { CourseArtwork } from './CourseArtwork';
 
 export type CourseCardProps = {
   course: CoursePreview;
   href: string;
-  messages: Pick<CourseMessages, 'explore' | 'lessons'>;
+  messages: Pick<CourseMessages, 'explore' | 'lessons' | 'languages'>;
+  interfaceLanguage?: LanguageCode;
 };
 
-export function CourseCard({ course, href, messages }: CourseCardProps) {
+export function CourseCard({ course, href, messages, interfaceLanguage }: CourseCardProps) {
   return (
     <Card
       component="article"
@@ -62,6 +64,14 @@ export function CourseCard({ course, href, messages }: CourseCardProps) {
           >
             {course.description}
           </Typography>
+          {!!course.languages?.length && (
+            <CourseLanguages
+              languages={course.languages}
+              interfaceLanguage={interfaceLanguage}
+              label={messages.languages}
+              compact
+            />
+          )}
           <Stack direction="row" sx={{ justifyContent: 'space-between', alignItems: 'center', mt: 'auto', pt: 1 }}>
             <Stack direction="row" spacing={0.75} sx={{ alignItems: 'center', color: 'text.secondary' }}>
               <AutoStoriesOutlined fontSize="small" aria-hidden="true" />

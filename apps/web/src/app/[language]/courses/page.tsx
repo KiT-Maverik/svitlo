@@ -8,14 +8,15 @@ type Props = { params: Promise<{ language: string }> };
 
 async function Content({ params }: Props) {
   const { language } = await params;
-  if (!DEFAULT_SUPPORTED_LANGUAGES.some(item => item.language === language)) notFound();
+  const interfaceLocale = DEFAULT_SUPPORTED_LANGUAGES.find(item => item.language === language);
+  if (!interfaceLocale) notFound();
 
   const courses = getMockCourses(language).map(({ preview }) => ({
     course: preview,
     href: `/${language}/course/${preview.id}`,
   }));
 
-  return <CoursesPage courses={courses} messages={getMockCourseMessages(language)} />;
+  return <CoursesPage courses={courses} messages={getMockCourseMessages(language)} interfaceLanguage={interfaceLocale.language} />;
 }
 export default function CourseCatalogRoute(props: Props) {
   return (

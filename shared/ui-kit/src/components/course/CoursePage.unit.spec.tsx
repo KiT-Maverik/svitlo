@@ -10,6 +10,7 @@ const messages: CourseMessages = {
   catalogDescription: 'Explore a course.',
   explore: 'Explore course',
   lessons: 'lessons',
+  languages: 'Languages',
   modules: 'modules',
   emptyCatalog: 'No courses available',
   backToCatalog: 'All courses',
@@ -33,6 +34,7 @@ const course: CoursePreview = {
   level: 'Beginner',
   lessons: 2,
   modules: 1,
+  languages: ['en', 'uk', 'qm', 'pl', 'de'],
   highlights: ['Light travels'],
 };
 
@@ -71,8 +73,16 @@ describe('course pages', () => {
   });
 
   it('renders the nested course outline and links to available lessons/episodes', () => {
-    render(<CoursePage course={course} outline={outline} catalogHref="/en/courses" messages={messages} />);
+    render(<CoursePage course={course} outline={outline} catalogHref="/en/courses" messages={messages} interfaceLanguage="qm" />);
     expect(screen.getByRole('heading', { name: 'Journey of Light', level: 1 })).toBeVisible();
+    const languageGroup = screen.getByRole('group', { name: 'Languages' });
+    expect(Array.from(languageGroup.querySelectorAll('[lang]')).map(item => item.getAttribute('lang'))).toEqual([
+      'crh-Latn-UA',
+      'en-US',
+      'uk-UA',
+      'pl-PL',
+      'de-DE',
+    ]);
     expect(screen.getByRole('heading', { name: 'Course outline', level: 2 })).toBeVisible();
     expect(screen.getByRole('heading', { name: 'Light Lab', level: 3 })).toBeVisible();
     expect(screen.getByRole('heading', { name: 'Introduction', level: 4 })).toBeVisible();

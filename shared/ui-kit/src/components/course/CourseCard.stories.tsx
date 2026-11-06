@@ -6,7 +6,8 @@ const meta = {
   component: CourseCard,
   args: {
     href: '/uk/course/demo',
-    messages: { explore: 'Переглянути курс', lessons: 'уроків' },
+    messages: { explore: 'Переглянути курс', lessons: 'уроків', languages: 'Мови курсу' },
+    interfaceLanguage: 'uk',
     course: {
       id: 'demo',
       title: 'Подорож світла',
@@ -15,6 +16,7 @@ const meta = {
       level: 'Для початківців',
       lessons: 4,
       modules: 1,
+      languages: ['en', 'uk', 'qm', 'pl', 'de'],
       tone: 'sky',
     },
   },
