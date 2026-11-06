@@ -14,6 +14,7 @@ on:
       - 'scripts/**'
       - '.agent-ci-artifacts/**'
       - '.github/workflows/**'
+      - '.github/labeler.yml'
   workflow_dispatch:
 
 permissions:
@@ -39,6 +40,10 @@ jobs:
             echo '::error::Remove .agent-ci-artifacts/ before merging into main.'
             exit 1
           fi
+      - name: Validate GitHub label catalogue, matchers and historical backfill
+        run: |
+          node .github/scripts/verify-labels.cjs
+          node --test .github/scripts/backfill-labels.test.cjs
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
