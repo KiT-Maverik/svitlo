@@ -9,7 +9,7 @@ import { lightRayDiagramData } from '../../lessons/c/d3048d21-8690-5255-b62c-984
  */
 export const contentBlockGallery_Section = {
   id: '4b60ac47-8d6e-55f1-8aaa-641abe18550d',
-  slug: 'contentBlockGallery',
+  slug: 'contentBlockGallery' as const,
   type: 'learningFlow',
   title: 'Content blocks · gallery',
   navigationLabel: 'Content blocks',
