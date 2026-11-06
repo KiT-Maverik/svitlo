@@ -119,3 +119,38 @@ test('unsupported and removed lesson URLs return 404', async ({ request }) => {
     expect(response.status()).toBe(404);
   }
 });
+
+test('Quick Settings switches the actual page colors and persists the theme', async ({ page }) => {
+  await page.goto('/');
+  await page.evaluate(() => window.localStorage.setItem('mui-mode', 'light'));
+  await page.goto(`/uk/lesson/uk/${id}`);
+
+  const html = page.locator('html');
+  const surface = page.locator('#learning-content').locator('..').locator('..');
+  const background = () => surface.evaluate(node => getComputedStyle(node).backgroundColor);
+
+  await expect(html).toHaveAttribute('data-light', '');
+  const lightBackground = await background();
+
+  await page.getByRole('button', { name: 'Профіль' }).click();
+  await page.getByRole('menuitem', { name: 'Швидкі налаштування' }).click();
+  const toggle = page.getByRole('switch', { name: 'Темна тема' });
+  await expect(toggle).not.toBeChecked();
+
+  await toggle.click();
+  await expect(toggle).toBeChecked();
+  await expect(html).toHaveAttribute('data-dark', '');
+  await expect.poll(background).not.toBe(lightBackground);
+
+  await page.reload();
+  await expect(html).toHaveAttribute('data-dark', '');
+  await expect.poll(background).not.toBe(lightBackground);
+
+  await page.getByRole('button', { name: 'Профіль' }).click();
+  await page.getByRole('menuitem', { name: 'Швидкі налаштування' }).click();
+  await expect(toggle).toBeChecked();
+  await toggle.click();
+  await expect(toggle).not.toBeChecked();
+  await expect(html).toHaveAttribute('data-light', '');
+  await expect.poll(background).toBe(lightBackground);
+});
