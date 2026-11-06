@@ -30,6 +30,28 @@ describe('LessonSteps', () => {
     expect(onNavigate).toHaveBeenCalledWith(1);
   });
 
+  it('keeps the active section visible when many steps overflow horizontally', () => {
+    const longSteps = Array.from({ length: 8 }, (_, index) => ({
+      id: `step-${index + 1}`,
+      title: `Step ${index + 1}`,
+    }));
+    const rectSpy = vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockImplementation(function (this: HTMLElement) {
+      if (this.tagName === 'NAV') return { left: 0, right: 320 } as DOMRect;
+      if (this.getAttribute('aria-current') === 'step') return { left: 620, right: 720 } as DOMRect;
+      return { left: 0, right: 0 } as DOMRect;
+    });
+
+    try {
+      render(<LessonSteps navigationLabel="Lesson steps" steps={longSteps} currentStep={6} />);
+      const navigation = screen.getByRole('navigation', { name: 'Lesson steps' });
+      expect(screen.getAllByRole('button')).toHaveLength(8);
+      expect(screen.getByRole('button', { name: '7. Step 7' })).toHaveAttribute('aria-current', 'step');
+      expect(navigation.scrollLeft).toBe(510);
+    } finally {
+      rectSpy.mockRestore();
+    }
+  });
+
   it('marks the selected and completed steps without changing their order', () => {
     render(
       <LessonSteps
