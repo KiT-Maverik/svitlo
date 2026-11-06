@@ -4,6 +4,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import type { ContentBlock_Audio_Response } from '@svitlo/engine/content';
 import { Audio } from './Audio';
+import { ContentLanguageContext } from '../../ContentLanguageContext';
 import { formatAudioTime } from './Audio.utils';
 
 const response: ContentBlock_Audio_Response = {
@@ -155,6 +156,23 @@ describe('Waveform audio player', () => {
 
     fireEvent.change(screen.getByRole('combobox', { name: 'Playback speed' }), { target: { value: '1.5' } });
     expect(media.playbackRate).toBe(1.5);
+  });
+
+  it('restores sound from zero volume and honors RTL lesson direction', () => {
+    const { container } = render(
+      <ContentLanguageContext.Provider value="ar">
+        <Audio messages={enUiKitMessages.audio} {...response} />
+      </ContentLanguageContext.Provider>,
+    );
+    expect(container.querySelector('figure')).toHaveAttribute('dir', 'rtl');
+    expect(screen.getByLabelText('العربية')).toBeInTheDocument();
+
+    const media = container.querySelector('audio')!;
+    fireEvent.change(screen.getByRole('slider', { name: 'Volume' }), { target: { value: '0' } });
+    expect(media.volume).toBe(0);
+    fireEvent.click(screen.getByRole('button', { name: 'Unmute' }));
+    expect(media.volume).toBe(1);
+    expect(media.muted).toBe(false);
   });
 
   it('resets stale timestamps when the source changes', () => {
