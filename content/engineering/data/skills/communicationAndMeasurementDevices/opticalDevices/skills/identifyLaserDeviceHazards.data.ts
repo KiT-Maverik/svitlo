@@ -58,7 +58,7 @@ export const identifyLaserDeviceHazards_Skill_Data = buildSkillConfig({
       ms: 'Kenal pasti bahaya peralatan laser yang tidak selamat.',
       he: 'זהו סכנות הקשורות לציוד לייזר לא בטוח.',
       pl: 'Rozpoznaj zagrożenia związane z niebezpiecznym sprzętem laserowym.',
-      uk: 'Розпізнавай небезпеки, пов’язані з небезпечним лазерним обладнанням.',
+      uk: 'Розпізнавай ризики, пов’язані з прямими та відбитими лазерними променями.',
       lt: 'Atpažink pavojus, susijusius su nesaugia lazerine įranga.',
       lv: 'Atpazīsti riskus, kas saistīti ar nedrošām lāzerierīcēm.',
       et: 'Tunne ära ohtliku laserseadme kasutamise riskid.',

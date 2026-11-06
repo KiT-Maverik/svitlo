@@ -70,7 +70,7 @@ export const engineeringDesign_SkillDomain_Data = buildSkillDomainConfig({
       ms: 'Belajar membangun, menguji dan menambah baik penyelesaian teknikal bagi keperluan sebenar.',
       he: 'למדו לפתח, לבדוק ולשפר פתרונות טכניים לצרכים מעשיים.',
       pl: 'Naucz się projektować, testować i ulepszać rozwiązania techniczne rzeczywistych potrzeb.',
-      uk: 'Навчись розробляти, випробовувати й удосконалювати технічні рішення практичних потреб.',
+      uk: 'Навчись розробляти, випробовувати й удосконалювати технічні рішення для практичних потреб.',
       lt: 'Mokykis kurti, bandyti ir tobulinti techninius sprendimus praktiniams poreikiams.',
       lv: 'Mācies veidot, pārbaudīt un uzlabot tehniskus risinājumus reālām vajadzībām.',
       et: 'Õpi praktiliste vajaduste jaoks tehnilisi lahendusi looma, katsetama ja täiustama.',
