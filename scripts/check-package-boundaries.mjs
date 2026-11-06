@@ -9,7 +9,7 @@ const indexdb = readJson('shared/indexdb/package.json');
 const playground = readJson('content/playground/package.json');
 const web = readJson('apps/web/package.json');
 const selectableTextbooks = new Set(Object.values(readJson('apps/web/textbooks.json')).map(entry => entry.package));
-const platform = readJson('frontend/platform/package.json');
+const platform = readJson('apps/platform/package.json');
 const math = readJson('content/math/package.json');
 const biology = readJson('content/biology/package.json');
 const physics = readJson('content/physics/package.json');
@@ -69,7 +69,7 @@ assert(
   'Platform scaffold must not depend on another Svitlo package',
 );
 for (const path of ['src/app/layout.tsx', 'src/app/page.tsx', 'playwright.config.ts', 'next.config.ts']) {
-  assert(existsSync(resolve(root, 'frontend/platform', path)), 'Platform scaffold missing: ' + path);
+  assert(existsSync(resolve(root, 'apps/platform', path)), 'Platform scaffold missing: ' + path);
 }
 assert(contracts.name === '@svitlo/contracts', 'Unexpected contracts package name');
 assert(engine.name === '@svitlo/engine', 'Unexpected engine package name');
@@ -300,7 +300,7 @@ const applicationSourceRoots = [
   'content/art/src',
   'content/health-safety/src',
   'content/engineering/src',
-  'frontend/platform/src',
+  'apps/platform/src',
 ].map(path => resolve(root, path));
 for (const applicationRoot of applicationSourceRoots) {
   if (!existsSync(applicationRoot)) continue;

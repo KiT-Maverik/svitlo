@@ -30,7 +30,7 @@ const workspaces = [
   ['content/art', readJson('content/art/package.json')],
   ['content/health-safety', readJson('content/health-safety/package.json')],
   ['content/engineering', readJson('content/engineering/package.json')],
-  ['frontend/platform', readJson('frontend/platform/package.json')],
+  ['apps/platform', readJson('apps/platform/package.json')],
 ];
 const byName = new Map(workspaces.map(([path, pkg]) => [pkg.name, { path, pkg }]));
 function assert(ok, message) {
@@ -105,7 +105,7 @@ for (const [path, pkg] of workspaces) {
       }
       if (specifier.startsWith('@/') || Object.hasOwn(localAliases, specifier)) {
         assert(
-          path.startsWith('content/') || path.startsWith('frontend/') || path.startsWith('apps/'),
+          path.startsWith('content/') || path.startsWith('apps/'),
           'Unrewritten shared source alias: ' + description,
         );
         continue;
@@ -113,7 +113,7 @@ for (const [path, pkg] of workspaces) {
       if (specifier.startsWith('node:') || builtins.has(specifier)) continue;
       // Next.js compile-time markers are not standalone runtime dependencies.
       if (
-        (path.startsWith('content/') || path.startsWith('frontend/') || path.startsWith('apps/')) &&
+        (path.startsWith('content/') || path.startsWith('apps/')) &&
         (specifier === 'server-only' || specifier === 'client-only')
       )
         continue;

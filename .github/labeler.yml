@@ -63,7 +63,6 @@
 'app: platform':
   - changed-files:
       - any-glob-to-any-file: 'apps/platform/**'
-      - any-glob-to-any-file: 'frontend/platform/**'
 'backend: server':
   - changed-files:
       - any-glob-to-any-file: 'backend/server/**'

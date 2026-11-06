@@ -1,8 +1,7 @@
-import { createElement, type ComponentProps } from 'react';
+import { createElement, useState, type ComponentProps } from 'react';
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import LearningLayout from './LearningLayout';
-import { LessonNavigationProvider } from '@svitlo/ui-kit/lesson';
 import { testId as navbarTestId } from '@svitlo/ui-kit/navigation/Navbar.constants';
 import { testId as spaceTestId } from '@svitlo/ui-kit/widgets/VerticalSpace/VerticalSpace.constants';
 
@@ -38,16 +37,30 @@ export const LearningLayout_fx = {
     pathname: topics[0].href,
     skippableSteps: [true, false, false],
     messages: ukUiKitMessages,
+    progress: { ready: true, step: 0, lastStep: 2, testDone: false },
+    actions: { back: () => {}, next: () => {}, skip: () => {} },
   } satisfies Omit<Props, 'children'>,
   render: (props: Partial<Props> = {}) => {
     const { children = 'Lesson content', ...overrides } = props;
-    return render(
-      createElement(
-        LessonNavigationProvider,
-        { sectionCount: 3 } as React.ComponentProps<typeof LessonNavigationProvider>,
-        createElement(LearningLayout, { ...LearningLayout_fx.defaults, ...overrides } as Props, children),
-      ),
-    );
+    function TestLayout() {
+      const [step, setStep] = useState(0);
+      const actions = {
+        back: () => setStep(current => Math.max(0, current - 1)),
+        next: () => setStep(current => Math.min(2, current + 1)),
+        skip: () => setStep(current => Math.min(2, current + 1)),
+      };
+      return createElement(
+        LearningLayout,
+        {
+          ...LearningLayout_fx.defaults,
+          progress: { ...LearningLayout_fx.defaults.progress, step },
+          actions,
+          ...overrides,
+        } as Props,
+        children,
+      );
+    }
+    return render(createElement(TestLayout));
   },
   navbar: Navbar_fx.selectors,
   child: { verticalSpace: VerticalSpace_fx.selectors },
