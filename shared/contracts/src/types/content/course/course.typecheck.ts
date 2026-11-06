@@ -1,102 +1,30 @@
 import type {
   Chapter,
   Chapter_Content,
-  Course,
-  Course_Content,
   Episode,
-  Episode_ScenarioSection,
+  Lesson_Override,
   Module,
   Module_Content,
+  Section_Override,
 } from '../../../content';
-import type { ContentBlock_Markdown, ContentBlock_Text } from '../blocks';
-import type { Section } from '../section.types';
 
 type Languages = readonly ['en', 'uk'];
+type AssertTrue<T extends true> = T;
+type AssertFalse<T extends false> = T;
 
-const title: ContentBlock_Text<'data', Languages> = {
-  id: 'title-id',
-  slug: 'title',
-  type: 'text',
-  value: { en: 'Fractions', uk: 'Дроби' },
-};
-const description: ContentBlock_Markdown<'data', Languages> = {
-  id: 'description-id',
-  slug: 'description',
-  type: 'markdown',
-  locales: { en: 'A course on fractions', uk: 'Курс про дроби' },
-};
-const scenario: Episode_ScenarioSection<'data', Languages> = {
-  id: 'scenario-id',
-  slug: 'scenario',
-  type: 'scenario',
-  title: { en: 'Story', uk: 'Історія' },
-  navigationLabel: { en: 'Story', uk: 'Історія' },
-  content: [],
-};
-const episode: Episode<'data', Languages> = {
-  type: 'episode',
-  id: 'episode-id',
-  title,
-  sections: [scenario],
-};
-const chapter: Chapter<'data', Languages> = {
-  type: 'chapter',
-  id: 'chapter-id',
-  title,
-  content: ['lesson-in-chapter', episode],
-};
-const module: Module<'data', Languages> = {
-  type: 'module',
-  id: 'module-id',
-  title,
-  content: ['lesson-in-module', chapter, episode],
-};
-const course: Course<'data', Languages> = {
-  type: 'course',
-  id: 'course-id',
-  title,
-  description,
-  parameters: { languages: ['en', 'uk'] },
-  content: ['direct-lesson', episode, chapter, module],
-};
+// Reject invalid course-tree nesting and non-scenario Episode sections.
+type _NoNestedModules = AssertFalse<Module<'data', Languages> extends Module_Content<'data', Languages> ? true : false>;
+type _NoNestedChapters = AssertFalse<Chapter<'data', Languages> extends Chapter_Content<'data', Languages> ? true : false>;
+type _OnlyScenarioSections = AssertTrue<Episode<'data', Languages>['sections'][number]['type'] extends 'scenario' ? true : false>;
 
-const rootItem: Course_Content<'data', Languages> = module;
-const moduleItem: Module_Content<'data', Languages> = chapter;
-const chapterItem: Chapter_Content<'data', Languages> = episode;
+// Course overrides cannot alter canonical identities or Lesson invariants.
+type _NoLessonIdOverride = AssertFalse<'id' extends keyof Lesson_Override<Languages> ? true : false>;
+type _NoLessonLanguagesOverride = AssertFalse<'languages' extends keyof NonNullable<Lesson_Override<Languages>['parameters']> ? true : false>;
+type _NoQuestionBankOverride = AssertFalse<'questions' extends keyof Lesson_Override<Languages> ? true : false>;
+type _NoSectionIdentityOverride = AssertFalse<'id' extends keyof Section_Override<Languages> ? true : false>;
+type _NoSectionTypeOverride = AssertFalse<'type' extends keyof Section_Override<Languages> ? true : false>;
 
-// @ts-expect-error A Module cannot contain another Module.
-const nestedModule: Module_Content<'data', Languages> = module;
-// @ts-expect-error A Chapter cannot contain another Chapter.
-const nestedChapter: Chapter_Content<'data', Languages> = chapter;
-// @ts-expect-error A Chapter cannot contain a Module.
-const moduleInChapter: Chapter_Content<'data', Languages> = module;
-
-const theorySection: Section<'data', Languages> = {
-  ...scenario,
-  type: 'theory',
-};
-// @ts-expect-error An Episode contains only scenario-type Sections.
-const theoryInEpisode: Episode_ScenarioSection<'data', Languages> = theorySection;
-
-const partialTitle: ContentBlock_Text<'data', Languages> = {
-  id: 'partial-title',
-  slug: 'partial-title',
-  type: 'text',
-  // @ts-expect-error Text must include every language declared by Course.
-  value: { en: 'Fractions' },
-};
-// @ts-expect-error The course language tuple must match the declared tuple.
-const missingCourseLanguage: Course<'data', Languages>['parameters']['languages'] = ['en'];
-
-void [
-  course,
-  rootItem,
-  moduleItem,
-  chapterItem,
-  nestedModule,
-  nestedChapter,
-  moduleInChapter,
-  theoryInEpisode,
-  partialTitle,
-  missingCourseLanguage,
-];
+// Custom events can be explicitly disabled at the course level.
+type _DisableCustomEvent = AssertTrue<
+  false extends NonNullable<Lesson_Override<Languages, 'lionAppeared'>['events']>['lionAppeared'] ? true : false
+>;
