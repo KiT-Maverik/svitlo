@@ -32,7 +32,7 @@ export const rechargeableBatterySystems_Skill_Data = buildSkillConfig({
     be: 'Акумулятарныя сыстэмы',
     ka: 'დამუხტვადი ბატარეების სისტემები',
     kk: 'Қайта зарядталатын аккумулятор жүйелері',
-    qm: 'Tekrar toldurılğan batareya sistemaları',
+    qm: 'Qayta zaryadlana bilgen batareya sistemaları',
   },
   description: {
     methodological: 'Identify cells, charging control and protective elements in practical energy storage.',
@@ -65,7 +65,7 @@ export const rechargeableBatterySystems_Skill_Data = buildSkillConfig({
       be: 'Вызначай складнікі й эксплюатацыйныя абмежаваньні акумулятарных сыстэмаў.',
       ka: 'ამოიცანი აკუმულატორული სისტემების ნაწილები და მუშაობის შეზღუდვები.',
       kk: 'Аккумулятор жүйесінің бөлшектері мен жұмыс шектеулерін таны.',
-      qm: 'Tekrar zarýadlana bilgen batareyalarnıñ parçalarını ve çalışma sıñırlarını tanı.',
+      qm: 'Qayta zaryadlana bilgen batareyalarnıñ parçalarını ve çalışma sıñırlarını tanı.',
     },
   },
 });

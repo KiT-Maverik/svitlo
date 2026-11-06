@@ -35,7 +35,7 @@ export const fluidMachines_SkillGroup_Data = buildSkillGroupConfig({
     uk: 'Гідравлічні та пневматичні машини',
     lt: 'Skysčių ir dujų mašinos',
     lv: 'Šķidrumu un gāzu mašīnas',
-    et: 'Vedelikumasinad',
+    et: 'Vedeliku- ja gaasimasinad',
     be: 'Гідраўлічныя й пнэўматычныя машыны',
     ka: 'სითხისა და აირის მანქანები',
     kk: 'Сұйықтық және газ машиналары',

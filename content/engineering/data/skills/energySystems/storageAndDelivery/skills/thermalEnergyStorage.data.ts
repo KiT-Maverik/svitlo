@@ -39,7 +39,7 @@ export const thermalEnergyStorage_Skill_Data = buildSkillConfig({
     frontend: {
       en: 'Compare ways of storing heat for use at another time.',
       zh: '比较把热量储存起来供以后使用的不同方法。',
-      hi: 'बाद में उपयोग के लिए ऊष्मा सहेजने के अलग-अलग तरीके तुलना करें।',
+      hi: 'बाद में उपयोग के लिए ऊष्मा सहेजने के अलग-अलग तरीकों की तुलना करें।',
       es: 'Compara maneras de almacenar calor para usarlo en otro momento.',
       ar: 'قارن طرق تخزين الحرارة لاستخدامها في وقت لاحق.',
       fr: 'Compare des moyens de stocker de la chaleur pour plus tard.',

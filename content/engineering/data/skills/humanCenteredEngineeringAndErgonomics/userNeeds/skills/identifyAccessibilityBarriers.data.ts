@@ -5,7 +5,7 @@ export const identifyAccessibilityBarriers_Skill_Data = buildSkillConfig({
   id: '13f0ad7a-679a-48a3-890d-0eb33a2906d5',
   name: {
     en: 'Identify accessibility barriers',
-    zh: '识别无障碍障碍',
+    zh: '识别妨碍无障碍使用的因素',
     hi: 'सुगम्यता की बाधाएँ पहचानना',
     es: 'Identificar barreras de accesibilidad',
     ar: 'تحديد عوائق إمكانية الوصول',

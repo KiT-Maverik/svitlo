@@ -6,7 +6,7 @@ export const evaluatePrototypePerformance_Skill_Data = buildSkillConfig({
   name: {
     en: 'Evaluate prototype performance',
     zh: '评估原型性能',
-    hi: 'प्रारूप के प्रदर्शन का मूल्यांकन',
+    hi: 'प्रोटोटाइप के प्रदर्शन का मूल्यांकन',
     es: 'Evaluar el rendimiento de un prototipo',
     ar: 'تقييم أداء النموذج الأولي',
     fr: "Évaluer les performances d'un prototype",
@@ -40,7 +40,7 @@ export const evaluatePrototypePerformance_Skill_Data = buildSkillConfig({
     frontend: {
       en: "Compare a prototype's measured performance with its expected performance.",
       zh: '将原型的实测性能与预期性能进行比较。',
-      hi: 'प्रारूप के मापे गए प्रदर्शन की अपेक्षित प्रदर्शन से तुलना करें।',
+      hi: 'प्रोटोटाइप के मापे गए परिणामों की अपेक्षित परिणामों से तुलना करें।',
       es: 'Compara el rendimiento medido de un prototipo con el previsto.',
       ar: 'قارن أداء النموذج الأولي المقاس بالأداء المتوقع.',
       fr: "Compare les performances mesurées d'un prototype aux performances attendues.",

@@ -6,7 +6,7 @@ export const evaluateMaterialDurability_Skill_Data = buildSkillConfig({
   name: {
     en: 'Evaluate material durability',
     zh: '评估材料耐久性',
-    hi: 'सामग्री की टिकाऊपन का मूल्यांकन',
+    hi: 'सामग्री के टिकाऊपन का मूल्यांकन',
     es: 'Evaluar la durabilidad de materiales',
     ar: 'تقييم متانة المواد',
     fr: 'Évaluer la durabilité des matériaux',

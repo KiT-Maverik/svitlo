@@ -58,7 +58,7 @@ export const columns_Skill_Data = buildSkillConfig({
       mr: 'स्तंभ दाब कसा पेलतात आणि ते का वाकू शकतात ते ओळखा.',
       ms: 'Fahami cara tiang menahan mampatan dan mengapa tiang langsing boleh mengalami lengkokan akibat mampatan.',
       he: 'זהו כיצד עמודים נושאים לחץ ומדוע הם עלולים לקרוס בכפיפה.',
-      pl: 'Rozpoznaj, jak słupy przenoszą ściskanie i dlaczego mogą wyboczyć się.',
+      pl: 'Rozpoznaj, jak słupy przenoszą siły ściskające i dlaczego mogą się wyboczyć.',
       uk: 'Зрозумій, як колони сприймають стискання та чому можуть втрачати стійкість через випучування.',
       lt: 'Sužinok, kaip kolonos atlaiko gniuždymą ir kodėl gali išklupti.',
       lv: 'Uzzini, kā kolonnas uzņem spiedi un kāpēc tās var izliekties.',
