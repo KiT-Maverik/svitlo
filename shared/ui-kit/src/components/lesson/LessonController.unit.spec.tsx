@@ -79,10 +79,10 @@ describe('LessonController scoped state and navigation', () => {
     showLesson();
     const bottom = screen.getByRole('navigation', { name: enUiKitMessages.learningLayout.navigation.bottom });
     const steps = screen.getByRole('navigation', { name: enUiKitMessages.lesson.steps.navigation });
-    const next = within(bottom).getByRole('button', {
+    const next = () => within(bottom).getByRole('button', {
       name: new RegExp(enUiKitMessages.learningLayout.actions.next, 'i'),
     });
-    expect(next).toBeDisabled();
+    expect(next()).toBeDisabled();
     expect(
       within(bottom).getByRole('button', { name: new RegExp(enUiKitMessages.learningLayout.actions.skip, 'i') }),
     ).toBeDisabled();
@@ -183,17 +183,17 @@ describe('multiple Quiz Sections', () => {
     const next = within(bottom).getByRole('button', {
       name: new RegExp(enUiKitMessages.learningLayout.actions.next, 'i'),
     });
-    expect(next).toBeDisabled();
+    expect(next()).toBeDisabled();
     fireEvent.click(screen.getByRole('button', { name: 'No' }));
     fireEvent.click(screen.getByRole('button', { name: 'Check' }));
-    await waitFor(() => expect(next).toBeEnabled());
-    fireEvent.click(next);
+    await waitFor(() => expect(next()).toBeEnabled());
+    fireEvent.click(next());
     expect(screen.getByText('Question quiz-second')).toBeVisible();
-    expect(next).toBeDisabled();
+    expect(next()).toBeDisabled();
     fireEvent.click(screen.getByRole('button', { name: 'Yes' }));
     fireEvent.click(screen.getByRole('button', { name: 'Check' }));
-    await waitFor(() => expect(next).toBeEnabled());
-    fireEvent.click(next);
+    await waitFor(() => expect(next()).toBeEnabled());
+    fireEvent.click(next());
     expect(screen.getByText('Quiz sections finished')).toBeVisible();
   });
 });
