@@ -14,6 +14,7 @@ function ThemeConsumer() {
     <>
       <output data-testid="mode">{mode}</output>
       <output data-testid="palette-background">{theme.vars?.palette.background.default}</output>
+      <output data-testid="palette-mode">{theme.palette.mode}</output>
       <output data-testid="local-state">{count}</output>
       <button type="button" onClick={() => setCount(value => value + 1)}>
         Keep state
@@ -33,7 +34,7 @@ describe('Web color scheme provider', () => {
     window.localStorage.removeItem('mui-mode');
   });
 
-  it('switches the actual CSS color scheme without remounting the page', async () => {
+  it('updates both the palette and CSS color scheme without losing page state', async () => {
     window.localStorage.removeItem('mui-mode');
     render(
       <MuiThemeProvider direction="ltr">
@@ -48,6 +49,7 @@ describe('Web color scheme provider', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Dark theme' }));
     await waitFor(() => {
       expect(screen.getByTestId('mode')).toHaveTextContent('dark');
+      expect(screen.getByTestId('palette-mode')).toHaveTextContent('dark');
       expect(document.documentElement).toHaveAttribute('data-dark');
       expect(screen.getByTestId('local-state')).toHaveTextContent('1');
     });
@@ -55,6 +57,7 @@ describe('Web color scheme provider', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Light theme' }));
     await waitFor(() => {
       expect(screen.getByTestId('mode')).toHaveTextContent('light');
+      expect(screen.getByTestId('palette-mode')).toHaveTextContent('light');
       expect(document.documentElement).toHaveAttribute('data-light');
       expect(screen.getByTestId('local-state')).toHaveTextContent('1');
     });
