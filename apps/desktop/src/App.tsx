@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider, useColorScheme } from '@mui/material/styles';
 import { getLocaleDirection, type Locale } from '@svitlo/engine/localization';
 import type { LessonResponse } from '@svitlo/engine/lesson';
 import type { UiKitMessages } from '@svitlo/ui-kit';
@@ -39,7 +39,7 @@ function useDesktopLocale(): RouteContextValue {
 }
 
 /** Exactly the same reusable Lesson UI/layout as Web, with only host-specific locale routing. */
-const LessonLayout = createLessonLearningLayout({ useLocale: useDesktopLocale });
+const LessonLayout = createLessonLearningLayout({ useLocale: useDesktopLocale, useColorScheme });
 
 type DataState =
   | { status: 'loading' }
