@@ -91,4 +91,32 @@ describe('assembleLessonResponse', () => {
       /must not contain ContentBlocks/,
     );
   });
+  it('preserves localized carousel slide payloads in ordered content sections', () => {
+    const carousel = {
+      id: 'gallery',
+      slug: 'gallery',
+      type: 'carousel',
+      title: 'Science gallery',
+      slides: [
+        { src: '/one.png', alt: 'First image' },
+        { src: '/two.png', alt: 'Second image', caption: 'Second caption' },
+      ],
+      autoplayIntervalMs: 3500,
+      transition: 'fade',
+    };
+    const data = { ...lesson, parameters: { ...lesson.parameters, requireQuiz: false }, sections: [
+      { id: 'intro-id', slug: 'intro', type: 'theory', title: 'Intro', navigationLabel: 'Intro', content: [carousel] },
+    ] };
+    const response = assembleLessonResponse(id, 'en', {
+      config: { data, localeSources: {} },
+      flashcards: { data: [], localeSources: {} },
+      questions,
+    });
+    const section = response.sections[0];
+    assert.equal(section.type, 'theory');
+    if (section.type === 'theory') {
+      assert.deepEqual(section.content[0], carousel);
+    }
+  });
+
 });
