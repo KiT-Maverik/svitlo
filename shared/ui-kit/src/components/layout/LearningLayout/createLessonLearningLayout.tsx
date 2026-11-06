@@ -39,10 +39,18 @@ export type LessonLearningLayoutBindings = {
     setLessonLocale?: (locale: Locale) => void;
   };
   linkComponent?: ElementType;
+  /** Host-provided hook must resolve the same MUI context instance as its ThemeProvider. */
+  useColorScheme?: () => {
+    mode: 'light' | 'dark' | 'system' | undefined;
+    systemMode: 'light' | 'dark' | undefined;
+    setMode: (mode: 'light' | 'dark') => void;
+  };
 };
 
 /** Bind app-owned hooks once, without duplicating layout and navigation logic. */
 export function createLessonLearningLayout(bindings: LessonLearningLayoutBindings) {
+  const useBoundColorScheme = bindings.useColorScheme ?? useColorScheme;
+
   function LessonLearningLayout({
     children,
     topics,
@@ -65,7 +73,7 @@ export function createLessonLearningLayout(bindings: LessonLearningLayoutBinding
     settingsContent,
   }: LessonLearningLayoutProps) {
     const { locale, setLocale, lessonLocale, setLessonLocale } = bindings.useLocale();
-    const { mode, systemMode, setMode } = useColorScheme();
+    const { mode, systemMode, setMode } = useBoundColorScheme();
 
     const preferences = useMemo(
       () => (
