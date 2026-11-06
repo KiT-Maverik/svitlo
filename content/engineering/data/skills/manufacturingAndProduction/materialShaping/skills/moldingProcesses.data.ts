@@ -23,7 +23,7 @@ export const moldingProcesses_Skill_Data = buildSkillConfig({
     te: 'అచ్చు తయారీ ప్రక్రియలు',
     mr: 'साच्यात घडवण्याच्या प्रक्रिया',
     ms: 'Proses Pengacuan',
-    he: 'תהליכי דפוס',
+    he: 'תהליכי עיצוב בתבניות',
     pl: 'Procesy formowania w formach',
     uk: 'Процеси формування у формах',
     lt: 'Formavimo liejimo formomis procesai',
