@@ -85,7 +85,7 @@ export const Audio = ({
   const togglePlayback = async () => {
     const audio = audioRef.current;
     if (!audio) return;
-    if (!audio.paused) {
+    if (playing || !audio.paused) {
       audio.pause();
       return;
     }
