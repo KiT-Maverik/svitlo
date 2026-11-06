@@ -45,6 +45,9 @@ jobs:
           done
           if [ "$failures" -eq 0 ]; then
             npm run build --workspace @svitlo/playground
-            npm run packages:artifacts:check
+            node --test scripts/check-built-package-exports.spec.mjs
+            npm run packages:artifacts:check -- --packages \
+              content/playground content/art content/chemistry content/economics \
+              content/engineering content/health-safety
           fi
           exit "$failures"

@@ -25,8 +25,17 @@ const packages = [
   'content/languages/ukrainian',
 ];
 
+const cli = process.argv.slice(2);
+let selected = packages;
+if (cli.length) {
+  assert(cli[0] === '--packages' && cli.length > 1, 'Usage: check-built-package-exports.mjs [--packages <workspace-path> ...]');
+  selected = cli.slice(1);
+  assert(selected.every(path => packages.includes(path)), 'Unknown workspace in artifact check: ' + selected.join(', '));
+  assert(new Set(selected).size === selected.length, 'Duplicate workspace in artifact check');
+}
+
 let checked = 0;
-for (const path of packages) {
+for (const path of selected) {
   const name = path.split('/').at(-1);
   const pkg = JSON.parse(readFileSync(resolve(root, path, 'package.json'), 'utf8'));
   for (const [subpath, entry] of Object.entries(pkg.exports ?? {})) {
@@ -99,4 +108,4 @@ for (const path of packages) {
     );
   }
 }
-console.log(`Built shared export entrypoints verified: ${checked} JavaScript/declaration paths`);
+console.log(`Built export entrypoints verified: ${checked} JavaScript/declaration paths across ${selected.length} workspaces`);
