@@ -55,7 +55,7 @@ export const evaluateStructuralStability_Skill_Data = buildSkillConfig({
       ta: 'அசைவு, கவிழ்தல், நெளிதல் ஏற்படுத்தும் நிலைகளை அறியுங்கள்.',
       te: 'ఊగడం, బోల్తా పడడం లేదా ఒత్తిడితో వంగి స్థిరత్వం కోల్పోవడానికి దారితీసే పరిస్థితులను గుర్తించండి.',
       mr: 'डोलणे, उलटणे किंवा वाकणे घडवू शकणाऱ्या स्थिती ओळखा.',
-      ms: 'Kenal pasti keadaan yang boleh menyebabkan ayunan, terbalik atau lengkokan akibat mampatan.'
+      ms: 'Kenal pasti keadaan yang boleh menyebabkan ayunan, terbalik atau lengkokan akibat mampatan.',
       he: 'זהו תנאים העלולים לגרום לנדנוד, להתהפכות או לקריסה בכפיפה.',
       pl: 'Rozpoznaj warunki sprzyjające kołysaniu, przewróceniu lub wyboczeniu.',
       uk: 'Визначай умови, за яких можливі хитання, перекидання чи втрата стійкості.',
