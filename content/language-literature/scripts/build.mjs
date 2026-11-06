@@ -103,8 +103,10 @@ for (const [directory, prefix] of [
   ['data/lessons', 'data/pages/lessons/'],
   ['data/skills', 'data/pages/skillAnalytics/'],
 ]) {
-  if (filesUnder(join(packageRoot, directory)).some(file => file.endsWith('.data.ts')) &&
-      !published.some(file => file.startsWith(prefix) && file.endsWith('.json'))) {
+  if (
+    filesUnder(join(packageRoot, directory)).some(file => file.endsWith('.data.ts')) &&
+    !published.some(file => file.startsWith(prefix) && file.endsWith('.json'))
+  ) {
     throw new Error('Authored ' + directory + ' did not produce published JSON');
   }
 }
