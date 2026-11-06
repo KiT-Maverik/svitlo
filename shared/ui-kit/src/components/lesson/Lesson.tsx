@@ -54,5 +54,5 @@ export type LessonProps = {
 };
 
 export function Lesson(props: LessonProps) {
-  return <LessonController key={props.response.id + ':' + props.response.locale.code} {...props} />;
+  return <LessonController key={props.href + ':' + props.response.id + ':' + props.response.locale.code} {...props} />;
 }

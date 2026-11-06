@@ -42,7 +42,7 @@ export default function WebLesson({
   topics?: readonly { id: string; title: string; href: string; depth?: number }[];
 }) {
   const ids = useMemo(() => sceneIds([response.sections, response.events]), [response.sections, response.events]);
-  const requestKey = `${response.id}:${locale}`;
+  const requestKey = `${href}:${response.id}:${locale}`;
   const [prepared, setPrepared] = useState<{
     key: string;
     status: 'loading' | 'ready' | 'error';
