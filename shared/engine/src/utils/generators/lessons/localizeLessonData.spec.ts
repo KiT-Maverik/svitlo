@@ -5,6 +5,7 @@ import { splitLessonValue } from './localizeLessonData.utils';
 describe('splitLessonValue', () => {
   it('puts invariant strings in base and translated text in sparse patches', () => {
     const input = {
+      id: 'entity-uuid',
       slug: 'light',
       title: { en: 'Light', uk: 'Світло' },
       sections: [{
@@ -16,6 +17,7 @@ describe('splitLessonValue', () => {
     };
     const { base, locales, pointers } = splitLessonValue(input, ['en', 'uk']);
     assert.deepEqual(base, {
+      id: 'entity-uuid',
       slug: 'light',
       sections: [{ id: 'one', content: [{ type: 'text', label: 'H₂O' }] }],
       statistics: { languages: { en: 143, uk: 144 } },

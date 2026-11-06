@@ -62,7 +62,8 @@ export function splitLessonValue(input: unknown, supportedLanguages: readonly La
       }
 
       // Numeric language-keyed maps are ordinary data, not text localization.
-      // Only an entire language-keyed record can be a locale dictionary.\n      // In particular, ordinary content has an 'id' property (Indonesian code).
+      // Only an entire language-keyed record can be a locale dictionary.
+      // In particular, ordinary content has an 'id' property (Indonesian code).
       const localized = keys.length > 0 &&
         keys.every(key => knownLanguages.has(key as LanguageCode)) &&
         Object.values(value).some(item => typeof item === 'string');
