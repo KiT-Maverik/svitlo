@@ -1,6 +1,6 @@
 'use client';
 
-import type { LearningLayoutMessages } from '../../../../data/locale/learningLayout';
+import type { LearningLayout_Locale } from '../../../../data/locale/learningLayout';
 
 import { useEffect, useState, type ReactNode, type ElementType } from 'react';
 import Box from '@mui/material/Box';
@@ -37,7 +37,7 @@ export interface LearningLayoutProps {
   skippableSteps?: readonly boolean[];
   quizStep?: number;
   locale: Locale;
-  messages: LearningLayoutMessages;
+  messages: LearningLayout_Locale;
   pathname: string;
   progress: LearningLayoutProgress;
   actions: { back: () => void; next: () => void; skip: () => void };

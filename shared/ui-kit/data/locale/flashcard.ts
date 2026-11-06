@@ -13,17 +13,16 @@ const en = {
   },
 };
 
-export type FlashcardMessages = typeof en;
-type Locale = FlashcardMessages;
+export type Flashcard_Locale = typeof en;
 
-const zh: Locale = {
+const zh: Flashcard_Locale = {
   flashcard: {
     region: '学习卡片',
     actions: { menu: '卡片操作', reveal: '显示答案', forgot: '不记得', remembered: '记得', addLabel: '添加标签' },
   },
 };
 
-const hi: Locale = {
+const hi: Flashcard_Locale = {
   flashcard: {
     region: 'फ्लैशकार्ड',
     actions: {
@@ -36,7 +35,7 @@ const hi: Locale = {
   },
 };
 
-const es: Locale = {
+const es: Flashcard_Locale = {
   flashcard: {
     region: 'Tarjeta didáctica',
     actions: {
@@ -49,7 +48,7 @@ const es: Locale = {
   },
 };
 
-const ar: Locale = {
+const ar: Flashcard_Locale = {
   flashcard: {
     region: 'بطاقة تعليمية',
     actions: {
@@ -62,7 +61,7 @@ const ar: Locale = {
   },
 };
 
-const fr: Locale = {
+const fr: Flashcard_Locale = {
   flashcard: {
     region: 'Carte mémoire',
     actions: {
@@ -75,7 +74,7 @@ const fr: Locale = {
   },
 };
 
-const bn: Locale = {
+const bn: Flashcard_Locale = {
   flashcard: {
     region: 'ফ্ল্যাশকার্ড',
     actions: {
@@ -88,7 +87,7 @@ const bn: Locale = {
   },
 };
 
-const pt: Locale = {
+const pt: Flashcard_Locale = {
   flashcard: {
     region: 'Cartão de estudo',
     actions: {
@@ -101,7 +100,7 @@ const pt: Locale = {
   },
 };
 
-const ur: Locale = {
+const ur: Flashcard_Locale = {
   flashcard: {
     region: 'فلیش کارڈ',
     actions: {
@@ -114,7 +113,7 @@ const ur: Locale = {
   },
 };
 
-const id: Locale = {
+const id: Flashcard_Locale = {
   flashcard: {
     region: 'Kartu belajar',
     actions: {
@@ -127,7 +126,7 @@ const id: Locale = {
   },
 };
 
-const de: Locale = {
+const de: Flashcard_Locale = {
   flashcard: {
     region: 'Lernkarte',
     actions: {
@@ -140,7 +139,7 @@ const de: Locale = {
   },
 };
 
-const ja: Locale = {
+const ja: Flashcard_Locale = {
   flashcard: {
     region: 'フラッシュカード',
     actions: {
@@ -153,7 +152,7 @@ const ja: Locale = {
   },
 };
 
-const ko: Locale = {
+const ko: Flashcard_Locale = {
   flashcard: {
     region: '학습 카드',
     actions: {
@@ -166,7 +165,7 @@ const ko: Locale = {
   },
 };
 
-const tr: Locale = {
+const tr: Flashcard_Locale = {
   flashcard: {
     region: 'Öğrenme kartı',
     actions: {
@@ -179,7 +178,7 @@ const tr: Locale = {
   },
 };
 
-const vi: Locale = {
+const vi: Flashcard_Locale = {
   flashcard: {
     region: 'Thẻ ghi nhớ',
     actions: {
@@ -192,7 +191,7 @@ const vi: Locale = {
   },
 };
 
-const ta: Locale = {
+const ta: Flashcard_Locale = {
   flashcard: {
     region: 'கற்றல் அட்டை',
     actions: {
@@ -205,7 +204,7 @@ const ta: Locale = {
   },
 };
 
-const te: Locale = {
+const te: Flashcard_Locale = {
   flashcard: {
     region: 'ఫ్లాష్‌కార్డ్',
     actions: {
@@ -218,7 +217,7 @@ const te: Locale = {
   },
 };
 
-const mr: Locale = {
+const mr: Flashcard_Locale = {
   flashcard: {
     region: 'फ्लॅशकार्ड',
     actions: {
@@ -231,7 +230,7 @@ const mr: Locale = {
   },
 };
 
-const ms: Locale = {
+const ms: Flashcard_Locale = {
   flashcard: {
     region: 'Kad imbas',
     actions: {
@@ -244,7 +243,7 @@ const ms: Locale = {
   },
 };
 
-const he: Locale = {
+const he: Flashcard_Locale = {
   flashcard: {
     region: 'כרטיסיית לימוד',
     actions: {
@@ -257,7 +256,7 @@ const he: Locale = {
   },
 };
 
-const pl: Locale = {
+const pl: Flashcard_Locale = {
   flashcard: {
     region: 'Fiszka',
     actions: {
@@ -270,7 +269,7 @@ const pl: Locale = {
   },
 };
 
-const uk: Locale = {
+const uk: Flashcard_Locale = {
   flashcard: {
     region: 'Флешкартка',
     actions: {
@@ -283,7 +282,7 @@ const uk: Locale = {
   },
 };
 
-const lt: Locale = {
+const lt: Flashcard_Locale = {
   flashcard: {
     region: 'Mokymosi kortelė',
     actions: {
@@ -296,7 +295,7 @@ const lt: Locale = {
   },
 };
 
-const lv: Locale = {
+const lv: Flashcard_Locale = {
   flashcard: {
     region: 'Mācību kartīte',
     actions: {
@@ -309,7 +308,7 @@ const lv: Locale = {
   },
 };
 
-const et: Locale = {
+const et: Flashcard_Locale = {
   flashcard: {
     region: 'Õppekaart',
     actions: {
@@ -322,7 +321,7 @@ const et: Locale = {
   },
 };
 
-const be: Locale = {
+const be: Flashcard_Locale = {
   flashcard: {
     region: 'Навучальная картка',
     actions: {
@@ -335,7 +334,7 @@ const be: Locale = {
   },
 };
 
-const ka: Locale = {
+const ka: Flashcard_Locale = {
   flashcard: {
     region: 'სასწავლო ბარათი',
     actions: {
@@ -348,7 +347,7 @@ const ka: Locale = {
   },
 };
 
-const kk: Locale = {
+const kk: Flashcard_Locale = {
   flashcard: {
     region: 'Оқу карточкасы',
     actions: {
@@ -361,7 +360,7 @@ const kk: Locale = {
   },
 };
 
-const qm: Locale = {
+const qm: Flashcard_Locale = {
   flashcard: {
     region: 'Bilgi kartı',
     actions: {
@@ -375,7 +374,7 @@ const qm: Locale = {
 };
 
 /** Complete framework-independent card messages; review translations editorially. */
-export const data: Readonly<Record<DefaultSupportedLanguage['language'], FlashcardMessages>> = {
+export const data: Readonly<Record<DefaultSupportedLanguage['language'], Flashcard_Locale>> = {
   en,
   zh,
   hi,

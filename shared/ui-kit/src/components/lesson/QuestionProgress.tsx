@@ -1,6 +1,6 @@
 'use client';
 
-import type { LessonMessages } from '../../../data/locale/lesson';
+import type { Lesson_Locale } from '../../../data/locale/lesson';
 
 import Box from '@mui/material/Box';
 import styles from './Lesson.module.css';
@@ -10,7 +10,7 @@ export type QuestionStatus = 'unanswered' | 'correct' | 'incorrect' | 'deferred'
 export type QuestionProgressProps = {
   statuses: readonly QuestionStatus[];
   currentIndex: number;
-  messages: LessonMessages;
+  messages: Lesson_Locale;
   allowNavigation?: boolean;
   onNavigate?: (index: number) => void;
   className?: string;

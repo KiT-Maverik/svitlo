@@ -1,6 +1,6 @@
 'use client';
 
-import type { NavbarPreferencesMessages } from '../../../../../data/locale/navbarPreferences';
+import type { NavbarPreferences_Locale } from '../../../../../data/locale/navbarPreferences';
 
 import Box from '@mui/material/Box';
 import MenuItem from '@mui/material/MenuItem';
@@ -18,7 +18,7 @@ const locales = DEFAULT_SUPPORTED_LANGUAGES.map(({ locale, language, nativeName 
 
 export type NavbarPreferencesProps = {
   locale: Locale;
-  messages: NavbarPreferencesMessages;
+  messages: NavbarPreferences_Locale;
   onLocaleChange: (locale: Locale) => void;
   mode?: 'light' | 'dark' | 'system';
   systemMode?: 'light' | 'dark';

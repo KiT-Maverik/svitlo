@@ -1,6 +1,6 @@
 'use client';
 
-import type { FlashcardMessages } from '../../../../data/locale/flashcard';
+import type { Flashcard_Locale } from '../../../../data/locale/flashcard';
 
 import { forwardRef, type ReactElement, type ReactNode } from 'react';
 import { useState } from 'react';
@@ -26,7 +26,7 @@ export interface FlashcardLabel {
 }
 
 export interface FlashcardProps {
-  messages: FlashcardMessages;
+  messages: Flashcard_Locale;
   question: ReactNode;
   answer: ReactNode;
   labels?: readonly FlashcardLabel[];

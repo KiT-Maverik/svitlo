@@ -31,10 +31,9 @@ const en = {
   settingsDescription: 'Learning settings will appear here.',
 };
 
-export type LearningLayoutMessages = typeof en;
-type Locale = LearningLayoutMessages;
+export type LearningLayout_Locale = typeof en;
 
-const zh: Locale = {
+const zh: LearningLayout_Locale = {
   preparingLesson: '正在准备您的课程…',
   brand: 'Svitlo',
   navigation: {
@@ -65,7 +64,7 @@ const zh: Locale = {
   settingsDescription: '学习设置将在此显示。',
 };
 
-const hi: Locale = {
+const hi: LearningLayout_Locale = {
   preparingLesson: 'आपका पाठ तैयार किया जा रहा है…',
   brand: 'Svitlo',
   navigation: {
@@ -96,7 +95,7 @@ const hi: Locale = {
   settingsDescription: 'अध्ययन की सेटिंग्स यहाँ दिखाई देंगी।',
 };
 
-const es: Locale = {
+const es: LearningLayout_Locale = {
   preparingLesson: 'Preparando tu lección…',
   brand: 'Svitlo',
   navigation: {
@@ -127,7 +126,7 @@ const es: Locale = {
   settingsDescription: 'Los ajustes de aprendizaje aparecerán aquí.',
 };
 
-const ar: Locale = {
+const ar: LearningLayout_Locale = {
   preparingLesson: 'جارٍ تجهيز درسك…',
   brand: 'Svitlo',
   navigation: {
@@ -158,7 +157,7 @@ const ar: Locale = {
   settingsDescription: 'ستظهر إعدادات التعلّم هنا.',
 };
 
-const fr: Locale = {
+const fr: LearningLayout_Locale = {
   preparingLesson: 'Préparation de votre leçon…',
   brand: 'Svitlo',
   navigation: {
@@ -189,7 +188,7 @@ const fr: Locale = {
   settingsDescription: 'Les paramètres d’apprentissage apparaîtront ici.',
 };
 
-const bn: Locale = {
+const bn: LearningLayout_Locale = {
   preparingLesson: 'আপনার পাঠ প্রস্তুত করা হচ্ছে…',
   brand: 'Svitlo',
   navigation: {
@@ -220,7 +219,7 @@ const bn: Locale = {
   settingsDescription: 'শেখার সেটিংস এখানে দেখা যাবে।',
 };
 
-const pt: Locale = {
+const pt: LearningLayout_Locale = {
   preparingLesson: 'Preparando sua lição…',
   brand: 'Svitlo',
   navigation: {
@@ -251,7 +250,7 @@ const pt: Locale = {
   settingsDescription: 'As configurações de aprendizagem aparecerão aqui.',
 };
 
-const ur: Locale = {
+const ur: LearningLayout_Locale = {
   preparingLesson: 'آپ کا سبق تیار کیا جا رہا ہے…',
   brand: 'Svitlo',
   navigation: {
@@ -282,7 +281,7 @@ const ur: Locale = {
   settingsDescription: 'سیکھنے کی ترتیبات یہاں ظاہر ہوں گی۔',
 };
 
-const id: Locale = {
+const id: LearningLayout_Locale = {
   preparingLesson: 'Menyiapkan pelajaran Anda…',
   brand: 'Svitlo',
   navigation: {
@@ -313,7 +312,7 @@ const id: Locale = {
   settingsDescription: 'Pengaturan belajar akan muncul di sini.',
 };
 
-const de: Locale = {
+const de: LearningLayout_Locale = {
   preparingLesson: 'Deine Lektion wird vorbereitet…',
   brand: 'Svitlo',
   navigation: {
@@ -344,7 +343,7 @@ const de: Locale = {
   settingsDescription: 'Die Lerneinstellungen werden hier angezeigt.',
 };
 
-const ja: Locale = {
+const ja: LearningLayout_Locale = {
   preparingLesson: 'レッスンを準備しています…',
   brand: 'Svitlo',
   navigation: {
@@ -375,7 +374,7 @@ const ja: Locale = {
   settingsDescription: '学習設定はここに表示されます。',
 };
 
-const ko: Locale = {
+const ko: LearningLayout_Locale = {
   preparingLesson: '수업을 준비하고 있어요…',
   brand: 'Svitlo',
   navigation: {
@@ -406,7 +405,7 @@ const ko: Locale = {
   settingsDescription: '학습 설정이 여기에 표시됩니다.',
 };
 
-const tr: Locale = {
+const tr: LearningLayout_Locale = {
   preparingLesson: 'Dersiniz hazırlanıyor…',
   brand: 'Svitlo',
   navigation: {
@@ -437,7 +436,7 @@ const tr: Locale = {
   settingsDescription: 'Öğrenme ayarları burada görünecek.',
 };
 
-const vi: Locale = {
+const vi: LearningLayout_Locale = {
   preparingLesson: 'Đang chuẩn bị bài học của bạn…',
   brand: 'Svitlo',
   navigation: {
@@ -468,7 +467,7 @@ const vi: Locale = {
   settingsDescription: 'Các tùy chọn học tập sẽ xuất hiện tại đây.',
 };
 
-const ta: Locale = {
+const ta: LearningLayout_Locale = {
   preparingLesson: 'உங்கள் பாடம் தயாராகிறது…',
   brand: 'Svitlo',
   navigation: {
@@ -499,7 +498,7 @@ const ta: Locale = {
   settingsDescription: 'கற்றல் அமைப்புகள் இங்கே தோன்றும்.',
 };
 
-const te: Locale = {
+const te: LearningLayout_Locale = {
   preparingLesson: 'మీ పాఠాన్ని సిద్ధం చేస్తున్నాం…',
   brand: 'Svitlo',
   navigation: {
@@ -530,7 +529,7 @@ const te: Locale = {
   settingsDescription: 'అభ్యాస సెట్టింగ్‌లు ఇక్కడ కనిపిస్తాయి.',
 };
 
-const mr: Locale = {
+const mr: LearningLayout_Locale = {
   preparingLesson: 'तुमचा धडा तयार होत आहे…',
   brand: 'Svitlo',
   navigation: {
@@ -561,7 +560,7 @@ const mr: Locale = {
   settingsDescription: 'अध्ययन सेटिंग्ज येथे दिसतील.',
 };
 
-const ms: Locale = {
+const ms: LearningLayout_Locale = {
   preparingLesson: 'Sedang menyediakan pelajaran anda…',
   brand: 'Svitlo',
   navigation: {
@@ -592,7 +591,7 @@ const ms: Locale = {
   settingsDescription: 'Tetapan pembelajaran akan dipaparkan di sini.',
 };
 
-const he: Locale = {
+const he: LearningLayout_Locale = {
   preparingLesson: 'מכינים את השיעור שלך…',
   brand: 'Svitlo',
   navigation: {
@@ -623,7 +622,7 @@ const he: Locale = {
   settingsDescription: 'הגדרות הלמידה יופיעו כאן.',
 };
 
-const pl: Locale = {
+const pl: LearningLayout_Locale = {
   preparingLesson: 'Przygotowujemy Twoją lekcję…',
   brand: 'Svitlo',
   navigation: {
@@ -654,7 +653,7 @@ const pl: Locale = {
   settingsDescription: 'Ustawienia nauki pojawią się tutaj.',
 };
 
-const uk: Locale = {
+const uk: LearningLayout_Locale = {
   preparingLesson: 'Готуємо ваш урок…',
   brand: 'Світло',
   navigation: {
@@ -685,7 +684,7 @@ const uk: Locale = {
   settingsDescription: 'Налаштування навчання з’являться тут.',
 };
 
-const lt: Locale = {
+const lt: LearningLayout_Locale = {
   preparingLesson: 'Ruošiame jūsų pamoką…',
   brand: 'Світло',
   navigation: {
@@ -716,7 +715,7 @@ const lt: Locale = {
   settingsDescription: 'Mokymosi nustatymai bus pateikti čia.',
 };
 
-const lv: Locale = {
+const lv: LearningLayout_Locale = {
   preparingLesson: 'Gatavojam jūsu nodarbību…',
   brand: 'Світло',
   navigation: {
@@ -747,7 +746,7 @@ const lv: Locale = {
   settingsDescription: 'Mācību iestatījumi parādīsies šeit.',
 };
 
-const et: Locale = {
+const et: LearningLayout_Locale = {
   preparingLesson: 'Valmistame teie õppetundi ette…',
   brand: 'Світло',
   navigation: {
@@ -778,7 +777,7 @@ const et: Locale = {
   settingsDescription: 'Õppeseaded ilmuvad siia.',
 };
 
-const be: Locale = {
+const be: LearningLayout_Locale = {
   preparingLesson: 'Рыхтуем ваш урок…',
   brand: 'Світло',
   navigation: {
@@ -809,7 +808,7 @@ const be: Locale = {
   settingsDescription: 'Налады навучаньня зьявяцца тут.',
 };
 
-const ka: Locale = {
+const ka: LearningLayout_Locale = {
   preparingLesson: 'ვამზადებთ თქვენს გაკვეთილს…',
   brand: 'Світло',
   navigation: {
@@ -840,7 +839,7 @@ const ka: Locale = {
   settingsDescription: 'სასწავლო პარამეტრები აქ გამოჩნდება.',
 };
 
-const kk: Locale = {
+const kk: LearningLayout_Locale = {
   preparingLesson: 'Сабағыңызды дайындап жатырмыз…',
   brand: 'Світло',
   navigation: {
@@ -872,7 +871,7 @@ const kk: Locale = {
 };
 
 /** Crimean Tatar (Svitlo qm), Latin script. Requires native-speaker linguistic review. */
-const qm: Locale = {
+const qm: LearningLayout_Locale = {
   preparingLesson: 'Dersinizi azırlaymız…',
   brand: 'Svitlo',
   navigation: {
@@ -904,7 +903,7 @@ const qm: Locale = {
 };
 
 /** Complete authored LearningLayout messages. Build-time only. */
-export const data: Readonly<Record<DefaultSupportedLanguage['language'], LearningLayoutMessages>> = {
+export const data: Readonly<Record<DefaultSupportedLanguage['language'], LearningLayout_Locale>> = {
   en,
   zh,
   hi,

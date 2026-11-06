@@ -1,6 +1,6 @@
 'use client';
 
-import type { VideoMessages } from '../../../../../../data/locale/video';
+import type { Video_Locale } from '../../../../../../data/locale/video';
 
 import { useEffect, useRef, useState, type SyntheticEvent } from 'react';
 import Button from '@mui/material/Button';
@@ -20,7 +20,7 @@ export const Video = ({
   fallback,
   messages,
 }: ContentBlock_Video_Response & {
-  messages: VideoMessages;
+  messages: Video_Locale;
 }) => {
   const contentLanguage = useContentLanguage();
   const videoRef = useRef<HTMLVideoElement>(null);

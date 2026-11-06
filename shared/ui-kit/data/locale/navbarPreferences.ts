@@ -5,134 +5,131 @@ const en = {
   theme: { dark: 'Dark theme', light: 'Light theme' },
 };
 
-export type NavbarPreferencesMessages = typeof en;
-type Locale = NavbarPreferencesMessages;
+export type NavbarPreferences_Locale = typeof en;
 
-const zh: Locale = {
+const zh: NavbarPreferences_Locale = {
   language: '语言',
   theme: { dark: '深色主题', light: '浅色主题' },
 };
 
-const hi: Locale = {
+const hi: NavbarPreferences_Locale = {
   language: 'भाषा',
   theme: { dark: 'गहरा थीम', light: 'हल्का थीम' },
 };
 
-const es: Locale = {
+const es: NavbarPreferences_Locale = {
   language: 'Idioma',
   theme: { dark: 'Tema oscuro', light: 'Tema claro' },
 };
 
-const ar: Locale = {
+const ar: NavbarPreferences_Locale = {
   language: 'اللغة',
   theme: { dark: 'السمة الداكنة', light: 'السمة الفاتحة' },
 };
 
-const fr: Locale = {
+const fr: NavbarPreferences_Locale = {
   language: 'Langue',
   theme: { dark: 'Thème sombre', light: 'Thème clair' },
 };
 
-const bn: Locale = {
+const bn: NavbarPreferences_Locale = {
   language: 'ভাষা',
   theme: { dark: 'গাঢ় থিম', light: 'হালকা থিম' },
 };
 
-const pt: Locale = {
+const pt: NavbarPreferences_Locale = {
   language: 'Idioma',
   theme: { dark: 'Tema escuro', light: 'Tema claro' },
 };
 
-const ur: Locale = {
+const ur: NavbarPreferences_Locale = {
   language: 'زبان',
   theme: { dark: 'گہری تھیم', light: 'ہلکی تھیم' },
 };
 
-const id: Locale = {
+const id: NavbarPreferences_Locale = {
   language: 'Bahasa',
   theme: { dark: 'Tema gelap', light: 'Tema terang' },
 };
 
-const de: Locale = {
+const de: NavbarPreferences_Locale = {
   language: 'Sprache',
   theme: { dark: 'Dunkles Design', light: 'Helles Design' },
 };
 
-const ja: Locale = {
+const ja: NavbarPreferences_Locale = {
   language: '言語',
   theme: { dark: 'ダークテーマ', light: 'ライトテーマ' },
 };
 
-const ko: Locale = {
+const ko: NavbarPreferences_Locale = {
   language: '언어',
   theme: { dark: '어두운 테마', light: '밝은 테마' },
 };
 
-const tr: Locale = {
+const tr: NavbarPreferences_Locale = {
   language: 'Dil',
   theme: { dark: 'Koyu tema', light: 'Açık tema' },
 };
 
-const vi: Locale = {
+const vi: NavbarPreferences_Locale = {
   language: 'Ngôn ngữ',
   theme: { dark: 'Giao diện tối', light: 'Giao diện sáng' },
 };
 
-const ta: Locale = {
+const ta: NavbarPreferences_Locale = {
   language: 'மொழி',
   theme: { dark: 'இருண்ட தீம்', light: 'வெளிர் தீம்' },
 };
 
-const te: Locale = {
+const te: NavbarPreferences_Locale = {
   language: 'భాష',
   theme: { dark: 'ముదురు థీమ్', light: 'లేత థీమ్' },
 };
 
-const mr: Locale = {
+const mr: NavbarPreferences_Locale = {
   language: 'भाषा',
   theme: { dark: 'गडद थीम', light: 'फिकट थीम' },
 };
 
-const ms: Locale = {
+const ms: NavbarPreferences_Locale = {
   language: 'Bahasa',
   theme: { dark: 'Tema gelap', light: 'Tema cerah' },
 };
 
-const he: Locale = {
+const he: NavbarPreferences_Locale = {
   language: 'שפה',
   theme: { dark: 'ערכת נושא כהה', light: 'ערכת נושא בהירה' },
 };
 
-const pl: Locale = {
+const pl: NavbarPreferences_Locale = {
   language: 'Język',
   theme: { dark: 'Ciemny motyw', light: 'Jasny motyw' },
 };
 
-const uk: Locale = {
+const uk: NavbarPreferences_Locale = {
   language: 'Мова',
   theme: { dark: 'Темна тема', light: 'Світла тема' },
 };
 
-const lt: Locale = { language: 'Kalba', theme: { dark: 'Tamsioji tema', light: 'Šviesioji tema' } };
+const lt: NavbarPreferences_Locale = { language: 'Kalba', theme: { dark: 'Tamsioji tema', light: 'Šviesioji tema' } };
 
-const lv: Locale = { language: 'Valoda', theme: { dark: 'Tumšais režīms', light: 'Gaišais režīms' } };
+const lv: NavbarPreferences_Locale = { language: 'Valoda', theme: { dark: 'Tumšais režīms', light: 'Gaišais režīms' } };
 
-const et: Locale = { language: 'Keel', theme: { dark: 'Tume teema', light: 'Hele teema' } };
+const et: NavbarPreferences_Locale = { language: 'Keel', theme: { dark: 'Tume teema', light: 'Hele teema' } };
 
-const be: Locale = { language: 'Мова', theme: { dark: 'Цёмная тэма', light: 'Сьветлая тэма' } };
+const be: NavbarPreferences_Locale = { language: 'Мова', theme: { dark: 'Цёмная тэма', light: 'Сьветлая тэма' } };
 
-const ka: Locale = { language: 'ენა', theme: { dark: 'მუქი თემა', light: 'ღია თემა' } };
+const ka: NavbarPreferences_Locale = { language: 'ენა', theme: { dark: 'მუქი თემა', light: 'ღია თემა' } };
 
-const kk: Locale = { language: 'Тіл', theme: { dark: 'Қараңғы тақырып', light: 'Ашық тақырып' } };
+const kk: NavbarPreferences_Locale = { language: 'Тіл', theme: { dark: 'Қараңғы тақырып', light: 'Ашық тақырып' } };
 
-/** Crimean Tatar (Svitlo qm), Latin script. Requires native-speaker linguistic review. */
-const qm: Locale = {
+const qm: NavbarPreferences_Locale = {
   language: 'Til',
   theme: { dark: 'Qaranlıq tema', light: 'Açıq tema' },
 };
 
-/** Complete authored NavbarPreferences messages. Build-time only. */
-export const data: Readonly<Record<DefaultSupportedLanguage['language'], NavbarPreferencesMessages>> = {
+export const data: Readonly<Record<DefaultSupportedLanguage['language'], NavbarPreferences_Locale>> = {
   en,
   zh,
   hi,

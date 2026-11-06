@@ -21,10 +21,9 @@ const en = {
   },
 };
 
-export type LessonMessages = typeof en;
-type Locale = LessonMessages;
+export type Lesson_Locale = typeof en;
 
-const zh: Locale = {
+const zh: Lesson_Locale = {
   steps: { navigation: '课程步骤' },
   celebration: {
     title: '恭喜！你已经完成本课！',
@@ -45,7 +44,7 @@ const zh: Locale = {
   },
 };
 
-const hi: Locale = {
+const hi: Lesson_Locale = {
   steps: { navigation: 'पाठ के चरण' },
   celebration: {
     title: 'बधाई हो! आपने यह पाठ पूरा कर लिया है!',
@@ -66,7 +65,7 @@ const hi: Locale = {
   },
 };
 
-const es: Locale = {
+const es: Lesson_Locale = {
   steps: { navigation: 'Etapas de la lección' },
   celebration: {
     title: '¡Enhorabuena! ¡Has terminado esta lección!',
@@ -87,7 +86,7 @@ const es: Locale = {
   },
 };
 
-const ar: Locale = {
+const ar: Lesson_Locale = {
   steps: { navigation: 'مراحل الدرس' },
   celebration: {
     title: 'تهانينا! لقد أكملت هذا الدرس!',
@@ -108,7 +107,7 @@ const ar: Locale = {
   },
 };
 
-const fr: Locale = {
+const fr: Lesson_Locale = {
   steps: { navigation: 'Étapes de la leçon' },
   celebration: {
     title: 'Félicitations ! Vous avez terminé cette leçon !',
@@ -129,7 +128,7 @@ const fr: Locale = {
   },
 };
 
-const bn: Locale = {
+const bn: Lesson_Locale = {
   steps: { navigation: 'পাঠের ধাপ' },
   celebration: {
     title: 'অভিনন্দন! আপনি এই পাঠটি শেষ করেছেন!',
@@ -150,7 +149,7 @@ const bn: Locale = {
   },
 };
 
-const pt: Locale = {
+const pt: Lesson_Locale = {
   steps: { navigation: 'Etapas da aula' },
   celebration: {
     title: 'Parabéns! Você concluiu esta aula!',
@@ -171,7 +170,7 @@ const pt: Locale = {
   },
 };
 
-const ur: Locale = {
+const ur: Lesson_Locale = {
   steps: { navigation: 'سبق کے مراحل' },
   celebration: {
     title: 'مبارک ہو! آپ نے یہ سبق مکمل کر لیا ہے!',
@@ -192,7 +191,7 @@ const ur: Locale = {
   },
 };
 
-const id: Locale = {
+const id: Lesson_Locale = {
   steps: { navigation: 'Tahapan pelajaran' },
   celebration: {
     title: 'Selamat! Kamu telah menyelesaikan pelajaran ini!',
@@ -213,7 +212,7 @@ const id: Locale = {
   },
 };
 
-const de: Locale = {
+const de: Lesson_Locale = {
   steps: { navigation: 'Lektionsschritte' },
   celebration: {
     title: 'Herzlichen Glückwunsch! Du hast diese Lektion abgeschlossen!',
@@ -234,7 +233,7 @@ const de: Locale = {
   },
 };
 
-const ja: Locale = {
+const ja: Lesson_Locale = {
   steps: { navigation: 'レッスンのステップ' },
   celebration: {
     title: 'おめでとうございます！このレッスンを修了しました！',
@@ -255,7 +254,7 @@ const ja: Locale = {
   },
 };
 
-const ko: Locale = {
+const ko: Lesson_Locale = {
   steps: { navigation: '수업 단계' },
   celebration: {
     title: '축하합니다! 이 수업을 완료했습니다!',
@@ -276,7 +275,7 @@ const ko: Locale = {
   },
 };
 
-const tr: Locale = {
+const tr: Lesson_Locale = {
   steps: { navigation: 'Ders aşamaları' },
   celebration: {
     title: 'Tebrikler! Bu dersi tamamladın!',
@@ -297,7 +296,7 @@ const tr: Locale = {
   },
 };
 
-const vi: Locale = {
+const vi: Lesson_Locale = {
   steps: { navigation: 'Các bước của bài học' },
   celebration: {
     title: 'Chúc mừng! Bạn đã hoàn thành bài học này!',
@@ -318,7 +317,7 @@ const vi: Locale = {
   },
 };
 
-const ta: Locale = {
+const ta: Lesson_Locale = {
   steps: { navigation: 'பாடத்தின் படிகள்' },
   celebration: {
     title: 'வாழ்த்துகள்! இந்தப் பாடத்தை முடித்துவிட்டீர்கள்!',
@@ -339,7 +338,7 @@ const ta: Locale = {
   },
 };
 
-const te: Locale = {
+const te: Lesson_Locale = {
   steps: { navigation: 'పాఠం దశలు' },
   celebration: {
     title: 'అభినందనలు! మీరు ఈ పాఠాన్ని పూర్తి చేశారు!',
@@ -360,7 +359,7 @@ const te: Locale = {
   },
 };
 
-const mr: Locale = {
+const mr: Lesson_Locale = {
   steps: { navigation: 'धड्याचे टप्पे' },
   celebration: {
     title: 'अभिनंदन! तुम्ही हा धडा पूर्ण केला आहे!',
@@ -381,7 +380,7 @@ const mr: Locale = {
   },
 };
 
-const ms: Locale = {
+const ms: Lesson_Locale = {
   steps: { navigation: 'Langkah pelajaran' },
   celebration: {
     title: 'Tahniah! Anda telah menamatkan pelajaran ini!',
@@ -402,7 +401,7 @@ const ms: Locale = {
   },
 };
 
-const he: Locale = {
+const he: Lesson_Locale = {
   steps: { navigation: 'שלבי השיעור' },
   celebration: {
     title: 'כל הכבוד! סיימת את השיעור הזה!',
@@ -423,7 +422,7 @@ const he: Locale = {
   },
 };
 
-const pl: Locale = {
+const pl: Lesson_Locale = {
   steps: { navigation: 'Etapy lekcji' },
   celebration: {
     title: 'Gratulacje! Ukończono tę lekcję!',
@@ -444,7 +443,7 @@ const pl: Locale = {
   },
 };
 
-const uk: Locale = {
+const uk: Lesson_Locale = {
   steps: { navigation: 'Етапи уроку' },
   celebration: {
     title: 'Вітаємо, ви завершили роботу з цим уроком!',
@@ -465,7 +464,7 @@ const uk: Locale = {
   },
 };
 
-const lt: Locale = {
+const lt: Lesson_Locale = {
   steps: { navigation: 'Pamokos etapai' },
   celebration: {
     title: 'Sveikiname! Baigėte šią pamoką!',
@@ -486,7 +485,7 @@ const lt: Locale = {
   },
 };
 
-const lv: Locale = {
+const lv: Lesson_Locale = {
   steps: { navigation: 'Nodarbības posmi' },
   celebration: {
     title: 'Apsveicam! Nodarbība pabeigta!',
@@ -507,7 +506,7 @@ const lv: Locale = {
   },
 };
 
-const et: Locale = {
+const et: Lesson_Locale = {
   steps: { navigation: 'Tunni etapid' },
   celebration: {
     title: 'Palju õnne! Olete selle tunni lõpetanud!',
@@ -528,7 +527,7 @@ const et: Locale = {
   },
 };
 
-const be: Locale = {
+const be: Lesson_Locale = {
   steps: { navigation: 'Этапы ўроку' },
   celebration: {
     title: 'Віншуем! Вы скончылі гэты ўрок!',
@@ -549,7 +548,7 @@ const be: Locale = {
   },
 };
 
-const ka: Locale = {
+const ka: Lesson_Locale = {
   steps: { navigation: 'გაკვეთილის ეტაპები' },
   celebration: {
     title: 'გილოცავთ! თქვენ დაასრულეთ ეს გაკვეთილი!',
@@ -570,7 +569,7 @@ const ka: Locale = {
   },
 };
 
-const kk: Locale = {
+const kk: Lesson_Locale = {
   steps: { navigation: 'Сабақ кезеңдері' },
   celebration: {
     title: 'Құттықтаймыз! Сіз бұл сабақты аяқтадыңыз!',
@@ -591,7 +590,7 @@ const kk: Locale = {
   },
 };
 
-const qm: Locale = {
+const qm: Lesson_Locale = {
   steps: { navigation: 'Dersniñ basamaqları' },
   celebration: {
     title: 'Tebrikler, sen bu dersni bitirdiñ!',
@@ -613,7 +612,7 @@ const qm: Locale = {
 };
 
 /** Complete authored Lesson UI labels. Build-time only. */
-export const data: Readonly<Record<DefaultSupportedLanguage['language'], LessonMessages>> = {
+export const data: Readonly<Record<DefaultSupportedLanguage['language'], Lesson_Locale>> = {
   en,
   zh,
   hi,

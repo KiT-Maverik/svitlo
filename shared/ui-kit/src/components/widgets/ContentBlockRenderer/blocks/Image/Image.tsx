@@ -1,6 +1,6 @@
 'use client';
 
-import type { ImageMessages } from '../../../../../../data/locale/image';
+import type { Image_Locale } from '../../../../../../data/locale/image';
 
 import { useEffect, useRef, useState } from 'react';
 import Button from '@mui/material/Button';
@@ -15,7 +15,7 @@ import styles from './Image.module.css';
 
 type ImageFailure = { source: string; kind: ImageFailureKind };
 
-export const Image = (props: ContentBlock_Image_Response & { messages: ImageMessages }) => {
+export const Image = (props: ContentBlock_Image_Response & { messages: Image_Locale }) => {
   const { src, alt, caption, sizes, unoptimized, fallback, messages } = props;
   const Renderer = useImageRenderer();
   const contentLanguage = useContentLanguage();

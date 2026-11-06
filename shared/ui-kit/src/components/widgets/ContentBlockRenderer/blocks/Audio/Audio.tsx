@@ -1,6 +1,6 @@
 'use client';
 
-import type { AudioMessages } from '../../../../../../data/locale/audio';
+import type { Audio_Locale } from '../../../../../../data/locale/audio';
 
 import { useEffect, useRef, useState, type SyntheticEvent } from 'react';
 import Button from '@mui/material/Button';
@@ -20,7 +20,7 @@ export const Audio = ({
   fallback,
   messages,
 }: ContentBlock_Audio_Response & {
-  messages: AudioMessages;
+  messages: Audio_Locale;
 }) => {
   const contentLanguage = useContentLanguage();
   const audioRef = useRef<HTMLAudioElement>(null);

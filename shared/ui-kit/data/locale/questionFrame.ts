@@ -20,10 +20,9 @@ const en = {
   missedChoice: 'Correct answer not selected',
 };
 
-export type QuestionFrameMessages = typeof en;
-type Locale = QuestionFrameMessages;
+export type QuestionFrame_Locale = typeof en;
 
-const uk: Locale = {
+const uk: QuestionFrame_Locale = {
   check: 'Перевірити',
   retry: 'Спробувати ще раз',
   hint: 'Підказка',
@@ -43,7 +42,7 @@ const uk: Locale = {
   missedChoice: 'Правильну відповідь не вибрано',
 };
 
-const zh: Locale = {
+const zh: QuestionFrame_Locale = {
   check: '检查',
   retry: '重试',
   hint: '提示',
@@ -63,7 +62,7 @@ const zh: Locale = {
   missedChoice: '未选中的正确答案',
 };
 
-const hi: Locale = {
+const hi: QuestionFrame_Locale = {
   check: 'जाँचें',
   retry: 'फिर से प्रयास करें',
   hint: 'संकेत',
@@ -83,7 +82,7 @@ const hi: Locale = {
   missedChoice: 'सही उत्तर चुना नहीं गया',
 };
 
-const es: Locale = {
+const es: QuestionFrame_Locale = {
   check: 'Comprobar',
   retry: 'Intentar de nuevo',
   hint: 'Pista',
@@ -103,7 +102,7 @@ const es: Locale = {
   missedChoice: 'Respuesta correcta no seleccionada',
 };
 
-const ar: Locale = {
+const ar: QuestionFrame_Locale = {
   check: 'تحقق',
   retry: 'حاول مرة أخرى',
   hint: 'تلميح',
@@ -123,7 +122,7 @@ const ar: Locale = {
   missedChoice: 'إجابة صحيحة لم تُحدَّد',
 };
 
-const fr: Locale = {
+const fr: QuestionFrame_Locale = {
   check: 'Vérifier',
   retry: 'Réessayer',
   hint: 'Indice',
@@ -143,7 +142,7 @@ const fr: Locale = {
   missedChoice: 'Bonne réponse non sélectionnée',
 };
 
-const bn: Locale = {
+const bn: QuestionFrame_Locale = {
   check: 'যাচাই করুন',
   retry: 'আবার চেষ্টা করুন',
   hint: 'ইঙ্গিত',
@@ -163,7 +162,7 @@ const bn: Locale = {
   missedChoice: 'সঠিক উত্তর বাছা হয়নি',
 };
 
-const pt: Locale = {
+const pt: QuestionFrame_Locale = {
   check: 'Verificar',
   retry: 'Tentar novamente',
   hint: 'Dica',
@@ -183,7 +182,7 @@ const pt: Locale = {
   missedChoice: 'Resposta correta não selecionada',
 };
 
-const ur: Locale = {
+const ur: QuestionFrame_Locale = {
   check: 'جانچیں',
   retry: 'دوبارہ کوشش کریں',
   hint: 'اشارہ',
@@ -203,7 +202,7 @@ const ur: Locale = {
   missedChoice: 'درست جواب منتخب نہیں ہوا',
 };
 
-const id: Locale = {
+const id: QuestionFrame_Locale = {
   check: 'Periksa',
   retry: 'Coba lagi',
   hint: 'Petunjuk',
@@ -223,7 +222,7 @@ const id: Locale = {
   missedChoice: 'Jawaban benar belum dipilih',
 };
 
-const de: Locale = {
+const de: QuestionFrame_Locale = {
   check: 'Prüfen',
   retry: 'Erneut versuchen',
   hint: 'Hinweis',
@@ -243,7 +242,7 @@ const de: Locale = {
   missedChoice: 'Richtige Antwort nicht ausgewählt',
 };
 
-const ja: Locale = {
+const ja: QuestionFrame_Locale = {
   check: '確認',
   retry: '再試行',
   hint: 'ヒント',
@@ -263,7 +262,7 @@ const ja: Locale = {
   missedChoice: '選択されなかった正解',
 };
 
-const ko: Locale = {
+const ko: QuestionFrame_Locale = {
   check: '확인',
   retry: '다시 시도',
   hint: '힌트',
@@ -283,7 +282,7 @@ const ko: Locale = {
   missedChoice: '선택하지 않은 정답',
 };
 
-const tr: Locale = {
+const tr: QuestionFrame_Locale = {
   check: 'Kontrol et',
   retry: 'Yeniden dene',
   hint: 'İpucu',
@@ -303,7 +302,7 @@ const tr: Locale = {
   missedChoice: 'Seçilmemiş doğru yanıt',
 };
 
-const vi: Locale = {
+const vi: QuestionFrame_Locale = {
   check: 'Kiểm tra',
   retry: 'Thử lại',
   hint: 'Gợi ý',
@@ -323,7 +322,7 @@ const vi: Locale = {
   missedChoice: 'Đáp án đúng chưa được chọn',
 };
 
-const ta: Locale = {
+const ta: QuestionFrame_Locale = {
   check: 'சரிபார்',
   retry: 'மீண்டும் முயற்சி செய்',
   hint: 'குறிப்பு',
@@ -344,7 +343,7 @@ const ta: Locale = {
   missedChoice: 'தேர்ந்தெடுக்கப்படாத சரியான பதில்',
 };
 
-const te: Locale = {
+const te: QuestionFrame_Locale = {
   check: 'తనిఖీ చేయండి',
   retry: 'మళ్లీ ప్రయత్నించండి',
   hint: 'సూచన',
@@ -364,7 +363,7 @@ const te: Locale = {
   missedChoice: 'ఎంచుకోని సరైన సమాధానం',
 };
 
-const mr: Locale = {
+const mr: QuestionFrame_Locale = {
   check: 'तपासा',
   retry: 'पुन्हा प्रयत्न करा',
   hint: 'सूचना',
@@ -384,7 +383,7 @@ const mr: Locale = {
   missedChoice: 'न निवडलेले बरोबर उत्तर',
 };
 
-const ms: Locale = {
+const ms: QuestionFrame_Locale = {
   check: 'Semak',
   retry: 'Cuba lagi',
   hint: 'Petunjuk',
@@ -404,7 +403,7 @@ const ms: Locale = {
   missedChoice: 'Jawapan betul yang tidak dipilih',
 };
 
-const he: Locale = {
+const he: QuestionFrame_Locale = {
   check: 'בדיקה',
   retry: 'לנסות שוב',
   hint: 'רמז',
@@ -424,7 +423,7 @@ const he: Locale = {
   missedChoice: 'תשובה נכונה שלא נבחרה',
 };
 
-const pl: Locale = {
+const pl: QuestionFrame_Locale = {
   check: 'Sprawdź',
   retry: 'Spróbuj ponownie',
   hint: 'Wskazówka',
@@ -444,7 +443,7 @@ const pl: Locale = {
   missedChoice: 'Nie zaznaczono poprawnej odpowiedzi',
 };
 
-const lt: Locale = {
+const lt: QuestionFrame_Locale = {
   check: 'Patikrinti',
   retry: 'Bandyti dar kartą',
   hint: 'Užuomina',
@@ -464,7 +463,7 @@ const lt: Locale = {
   missedChoice: 'Nepasirinktas teisingas atsakymas',
 };
 
-const lv: Locale = {
+const lv: QuestionFrame_Locale = {
   check: 'Pārbaudīt',
   retry: 'Mēģināt vēlreiz',
   hint: 'Padoms',
@@ -484,7 +483,7 @@ const lv: Locale = {
   missedChoice: 'Neizvēlēta pareizā atbilde',
 };
 
-const et: Locale = {
+const et: QuestionFrame_Locale = {
   check: 'Kontrolli',
   retry: 'Proovi uuesti',
   hint: 'Vihje',
@@ -504,7 +503,7 @@ const et: Locale = {
   missedChoice: 'Valimata õige vastus',
 };
 
-const be: Locale = {
+const be: QuestionFrame_Locale = {
   check: 'Праверыць',
   retry: 'Паспрабаваць яшчэ раз',
   hint: 'Падказка',
@@ -524,7 +523,7 @@ const be: Locale = {
   missedChoice: 'Правільны адказ не абраны',
 };
 
-const ka: Locale = {
+const ka: QuestionFrame_Locale = {
   check: 'შემოწმება',
   retry: 'ხელახლა ცდა',
   hint: 'მინიშნება',
@@ -544,7 +543,7 @@ const ka: Locale = {
   missedChoice: 'სწორი პასუხი არ არის არჩეული',
 };
 
-const kk: Locale = {
+const kk: QuestionFrame_Locale = {
   check: 'Тексеру',
   retry: 'Қайта көру',
   hint: 'Нұсқау',
@@ -564,7 +563,7 @@ const kk: Locale = {
   missedChoice: 'Дұрыс жауап таңдалмаған',
 };
 
-const qm: Locale = {
+const qm: QuestionFrame_Locale = {
   check: 'Tekşer',
   retry: 'Yañıdan deñe',
   hint: 'İşaret',
@@ -584,7 +583,7 @@ const qm: Locale = {
   missedChoice: 'Saylanmağan doğru cevap',
 };
 
-export const data: Readonly<Record<DefaultSupportedLanguage['language'], QuestionFrameMessages>> = {
+export const data: Readonly<Record<DefaultSupportedLanguage['language'], QuestionFrame_Locale>> = {
   en,
   uk,
   zh,

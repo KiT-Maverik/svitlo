@@ -1,6 +1,6 @@
 'use client';
 
-import type { CheckpointMessages } from '../../../../../../data/locale/checkpoint';
+import type { Checkpoint_Locale } from '../../../../../../data/locale/checkpoint';
 
 import { createElement, useId, useState } from 'react';
 import Accordion from '@mui/material/Accordion';
@@ -19,7 +19,7 @@ import { useContentLanguage } from '../../ContentLanguageContext';
 import styles from './Checkpoint.module.css';
 
 type CheckpointProps = ContentBlock_Checkpoint_Response<Locale_Languages> & {
-  messages: CheckpointMessages;
+  messages: Checkpoint_Locale;
   renderNested: RenderNested;
 };
 

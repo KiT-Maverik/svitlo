@@ -1,6 +1,6 @@
 'use client';
 
-import type { LessonMessages } from '../../../data/locale/lesson';
+import type { Lesson_Locale } from '../../../data/locale/lesson';
 
 import { useEffect, useState, type CSSProperties, type ElementType } from 'react';
 import styles from './Lesson.module.css';
@@ -36,7 +36,7 @@ export async function playCelebration() {
 export type CelebrationProps = {
   score: number;
   total: number;
-  messages: LessonMessages;
+  messages: Lesson_Locale;
   homeHref?: string;
   /** A Next Link, Electron link, or plain anchor supplied by the host. */
   linkComponent?: ElementType;

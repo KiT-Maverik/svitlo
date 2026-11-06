@@ -1,6 +1,6 @@
 'use client';
 
-import type { YoutubeMessages } from '../../../../../../data/locale/youtube';
+import type { Youtube_Locale } from '../../../../../../data/locale/youtube';
 
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 
@@ -29,7 +29,7 @@ export const Youtube = ({
   fallback: fallbackMessages,
   messages,
 }: ContentBlock_Youtube_Response & {
-  messages: YoutubeMessages;
+  messages: Youtube_Locale;
 }) => {
   const contentLanguage = useContentLanguage();
   const online = useSyncExternalStore(subscribeConnectionChange, getConnectionSnapshot, getServerConnectionSnapshot);

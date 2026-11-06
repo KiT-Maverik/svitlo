@@ -7,206 +7,205 @@ const en = {
   retry: 'Try again',
 };
 
-export type AudioMessages = typeof en;
-type Locale = AudioMessages;
+export type Audio_Locale = typeof en;
 
-const uk: Locale = {
+const uk: Audio_Locale = {
   offline: 'Це аудіо недоступне без інтернету.',
   unavailable: 'Це аудіо недоступне.',
   playbackError: 'Не вдалося відтворити аудіо.',
   retry: 'Спробувати ще раз',
 };
 
-const zh: Locale = {
+const zh: Audio_Locale = {
   offline: '此音频无法离线使用。',
   unavailable: '此音频不可用。',
   playbackError: '无法播放此音频。',
   retry: '重试',
 };
 
-const hi: Locale = {
+const hi: Audio_Locale = {
   offline: 'यह ऑडियो ऑफ़लाइन उपलब्ध नहीं है।',
   unavailable: 'यह ऑडियो उपलब्ध नहीं है।',
   playbackError: 'ऑडियो चलाया नहीं जा सका।',
   retry: 'फिर से प्रयास करें',
 };
 
-const es: Locale = {
+const es: Audio_Locale = {
   offline: 'Este audio no está disponible sin conexión.',
   unavailable: 'Este audio no está disponible.',
   playbackError: 'No se pudo reproducir el audio.',
   retry: 'Intentar de nuevo',
 };
 
-const ar: Locale = {
+const ar: Audio_Locale = {
   offline: 'هذا الصوت غير متاح دون اتصال بالإنترنت.',
   unavailable: 'هذا الصوت غير متاح.',
   playbackError: 'تعذّر تشغيل الصوت.',
   retry: 'حاول مرة أخرى',
 };
 
-const fr: Locale = {
+const fr: Audio_Locale = {
   offline: 'Cet audio n’est pas disponible hors ligne.',
   unavailable: 'Cet audio est indisponible.',
   playbackError: 'Impossible de lire cet audio.',
   retry: 'Réessayer',
 };
 
-const bn: Locale = {
+const bn: Audio_Locale = {
   offline: 'এই অডিওটি অফলাইনে পাওয়া যায় না।',
   unavailable: 'এই অডিওটি পাওয়া যাচ্ছে না।',
   playbackError: 'অডিওটি চালানো যায়নি।',
   retry: 'আবার চেষ্টা করুন',
 };
 
-const pt: Locale = {
+const pt: Audio_Locale = {
   offline: 'Este áudio não está disponível offline.',
   unavailable: 'Este áudio não está disponível.',
   playbackError: 'Não foi possível reproduzir o áudio.',
   retry: 'Tentar novamente',
 };
 
-const ur: Locale = {
+const ur: Audio_Locale = {
   offline: 'یہ آڈیو آف لائن دستیاب نہیں ہے۔',
   unavailable: 'یہ آڈیو دستیاب نہیں ہے۔',
   playbackError: 'آڈیو چلایا نہیں جا سکا۔',
   retry: 'دوبارہ کوشش کریں',
 };
 
-const id: Locale = {
+const id: Audio_Locale = {
   offline: 'Audio ini tidak tersedia saat offline.',
   unavailable: 'Audio ini tidak tersedia.',
   playbackError: 'Audio tidak dapat diputar.',
   retry: 'Coba lagi',
 };
 
-const de: Locale = {
+const de: Audio_Locale = {
   offline: 'Diese Audiodatei ist offline nicht verfügbar.',
   unavailable: 'Diese Audiodatei ist nicht verfügbar.',
   playbackError: 'Die Audiodatei konnte nicht abgespielt werden.',
   retry: 'Erneut versuchen',
 };
 
-const ja: Locale = {
+const ja: Audio_Locale = {
   offline: 'この音声はオフラインでは利用できません。',
   unavailable: 'この音声は利用できません。',
   playbackError: '音声を再生できませんでした。',
   retry: '再試行',
 };
 
-const ko: Locale = {
+const ko: Audio_Locale = {
   offline: '이 오디오는 오프라인에서 사용할 수 없습니다.',
   unavailable: '이 오디오를 사용할 수 없습니다.',
   playbackError: '오디오를 재생할 수 없습니다.',
   retry: '다시 시도',
 };
 
-const tr: Locale = {
+const tr: Audio_Locale = {
   offline: 'Bu ses kaydı çevrimdışı kullanılamaz.',
   unavailable: 'Bu ses kaydı kullanılamıyor.',
   playbackError: 'Ses kaydı oynatılamadı.',
   retry: 'Yeniden dene',
 };
 
-const vi: Locale = {
+const vi: Audio_Locale = {
   offline: 'Không thể dùng âm thanh này khi ngoại tuyến.',
   unavailable: 'Âm thanh này không khả dụng.',
   playbackError: 'Không thể phát âm thanh.',
   retry: 'Thử lại',
 };
 
-const ta: Locale = {
+const ta: Audio_Locale = {
   offline: 'இந்த ஒலி இணையமின்றி கிடைக்காது.',
   unavailable: 'இந்த ஒலி கிடைக்கவில்லை.',
   playbackError: 'ஒலியை இயக்க முடியவில்லை.',
   retry: 'மீண்டும் முயற்சி செய்',
 };
 
-const te: Locale = {
+const te: Audio_Locale = {
   offline: 'ఈ ఆడియో ఆఫ్‌లైన్‌లో అందుబాటులో లేదు.',
   unavailable: 'ఈ ఆడియో అందుబాటులో లేదు.',
   playbackError: 'ఆడియోను ప్లే చేయడం సాధ్యం కాలేదు.',
   retry: 'మళ్లీ ప్రయత్నించండి',
 };
 
-const mr: Locale = {
+const mr: Audio_Locale = {
   offline: 'हा ऑडिओ ऑफलाइन उपलब्ध नाही.',
   unavailable: 'हा ऑडिओ उपलब्ध नाही.',
   playbackError: 'ऑडिओ प्ले करता आला नाही.',
   retry: 'पुन्हा प्रयत्न करा',
 };
 
-const ms: Locale = {
+const ms: Audio_Locale = {
   offline: 'Audio ini tidak tersedia di luar talian.',
   unavailable: 'Audio ini tidak tersedia.',
   playbackError: 'Audio tidak dapat dimainkan.',
   retry: 'Cuba lagi',
 };
 
-const he: Locale = {
+const he: Audio_Locale = {
   offline: 'השמע הזה אינו זמין במצב לא מקוון.',
   unavailable: 'השמע הזה אינו זמין.',
   playbackError: 'לא ניתן להפעיל את השמע.',
   retry: 'לנסות שוב',
 };
 
-const pl: Locale = {
+const pl: Audio_Locale = {
   offline: 'To nagranie nie jest dostępne offline.',
   unavailable: 'To nagranie jest niedostępne.',
   playbackError: 'Nie udało się odtworzyć nagrania.',
   retry: 'Spróbuj ponownie',
 };
 
-const lt: Locale = {
+const lt: Audio_Locale = {
   offline: 'Šis garso įrašas neprieinamas neprisijungus.',
   unavailable: 'Šis garso įrašas neprieinamas.',
   playbackError: 'Nepavyko paleisti garso įrašo.',
   retry: 'Bandyti dar kartą',
 };
 
-const lv: Locale = {
+const lv: Audio_Locale = {
   offline: 'Šis audioieraksts nav pieejams bezsaistē.',
   unavailable: 'Šis audioieraksts nav pieejams.',
   playbackError: 'Neizdevās atskaņot audioierakstu.',
   retry: 'Mēģināt vēlreiz',
 };
 
-const et: Locale = {
+const et: Audio_Locale = {
   offline: 'See helifail pole võrguühenduseta saadaval.',
   unavailable: 'See helifail pole saadaval.',
   playbackError: 'Helifaili ei õnnestunud esitada.',
   retry: 'Proovi uuesti',
 };
 
-const be: Locale = {
+const be: Audio_Locale = {
   offline: 'Гэты аўдыязапіс недаступны бяз інтэрнэту.',
   unavailable: 'Гэты аўдыязапіс недаступны.',
   playbackError: 'Не ўдалося прайграць аўдыязапіс.',
   retry: 'Паспрабаваць яшчэ раз',
 };
 
-const ka: Locale = {
+const ka: Audio_Locale = {
   offline: 'ეს აუდიო ინტერნეტის გარეშე მიუწვდომელია.',
   unavailable: 'ეს აუდიო მიუწვდომელია.',
   playbackError: 'აუდიოს დაკვრა ვერ მოხერხდა.',
   retry: 'ხელახლა ცდა',
 };
 
-const kk: Locale = {
+const kk: Audio_Locale = {
   offline: 'Бұл аудио интернетсіз қолжетімсіз.',
   unavailable: 'Бұл аудио қолжетімсіз.',
   playbackError: 'Аудионы ойнату мүмкін болмады.',
   retry: 'Қайта көру',
 };
 
-const qm: Locale = {
+const qm: Audio_Locale = {
   offline: 'Bu ses yazısı internetsiz qullanılamay.',
   unavailable: 'Bu ses yazısı qullanılamay.',
   playbackError: 'Ses yazısını oynatmaq mümkün olmadı.',
   retry: 'Yañıdan deñe',
 };
 
-export const data: Readonly<Record<DefaultSupportedLanguage['language'], AudioMessages>> = {
+export const data: Readonly<Record<DefaultSupportedLanguage['language'], Audio_Locale>> = {
   en,
   uk,
   zh,
