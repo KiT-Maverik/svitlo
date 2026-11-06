@@ -73,7 +73,15 @@ describe('course pages', () => {
   });
 
   it('renders the nested course outline and links to available lessons/episodes', () => {
-    render(<CoursePage course={course} outline={outline} catalogHref="/en/courses" messages={messages} interfaceLanguage="qm" />);
+    render(
+      <CoursePage
+        course={course}
+        outline={outline}
+        catalogHref="/en/courses"
+        messages={messages}
+        interfaceLanguage="qm"
+      />,
+    );
     expect(screen.getByRole('heading', { name: 'Journey of Light', level: 1 })).toBeVisible();
     const languageGroup = screen.getByRole('group', { name: 'Languages' });
     expect(Array.from(languageGroup.querySelectorAll('[lang]')).map(item => item.getAttribute('lang'))).toEqual([

@@ -4,13 +4,7 @@ import { CourseLanguages, sortCourseLanguages } from './CourseLanguages';
 
 describe('CourseLanguages', () => {
   it('places the interface language first, then English, Ukrainian and Crimean Tatar', () => {
-    expect(sortCourseLanguages(['uk', 'de', 'en', 'qm', 'pl', 'pl'], 'pl')).toEqual([
-      'pl',
-      'en',
-      'uk',
-      'qm',
-      'de',
-    ]);
+    expect(sortCourseLanguages(['uk', 'de', 'en', 'qm', 'pl', 'pl'], 'pl')).toEqual(['pl', 'en', 'uk', 'qm', 'de']);
   });
 
   it('uses available fallback priorities when the interface language is not supported', () => {
