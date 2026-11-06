@@ -19,7 +19,9 @@ const themes = {
 
 export default function MuiThemeProvider({ children, direction }: { children: ReactNode; direction: TextDirection }) {
   return (
-    <ThemeProvider theme={themes[direction]} disableTransitionOnChange>
+    /* CSS-variable mode updates document selectors but normally leaves the theme object unchanged.
+        Refresh theme consumers that read palette.mode when users switch from Quick Settings. */
+    <ThemeProvider theme={themes[direction]} disableTransitionOnChange forceThemeRerender>
       {children}
     </ThemeProvider>
   );
