@@ -29,6 +29,31 @@ describe('LearningLayout preparation', () => {
     expect(screen.getByRole('button', { name: /Далі/ })).toBeDisabled();
   });
 
+  it('places preferences and page-specific controls inside quick settings, not the navbar', () => {
+    render(
+      <LearningLayout
+        locale="uk-UA"
+        messages={uk}
+        pathname="/uk/lesson/uk/test"
+        progress={{ ready: true, step: 0, lastStep: 1, testDone: false }}
+        topics={[]}
+        actions={{ back: vi.fn(), next: vi.fn(), skip: vi.fn() }}
+        preferences={<button type="button">Interface settings control</button>}
+        settingsContent={<p>Additional page control</p>}
+      >
+        <p>Вміст уроку</p>
+      </LearningLayout>,
+    );
+
+    expect(screen.queryByRole('button', { name: 'Interface settings control' })).not.toBeVisible();
+    fireEvent.click(screen.getByRole('button', { name: uk.actions.openSettings }));
+    expect(screen.getByRole('heading', { name: uk.settingsTitle })).toBeVisible();
+    expect(screen.getByRole('button', { name: 'Interface settings control' })).toBeVisible();
+    expect(screen.getByText('Additional page control')).toBeVisible();
+    fireEvent.click(screen.getByRole('button', { name: uk.actions.closeSidebar }));
+    expect(screen.getByRole('button', { name: uk.actions.openSettings })).toHaveAttribute('aria-expanded', 'false');
+  });
+
   it('shows an accessible error and offers retry while keeping lesson content inert', () => {
     const retry = vi.fn();
     render(
