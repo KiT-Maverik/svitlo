@@ -72,10 +72,15 @@ describe('createLessonOverrides', () => {
     assert.deepEqual(result.overrides.title, { en: 'Adventure', uk: 'Пригода' });
     assert.deepEqual(result.overrides.parameters, { sections: { allowSkipping: false } });
     assert.deepEqual(result.overrides.events, { lessonCompleted: false });
-    assert.deepEqual(result.overrides.sections?.map(entry => entry.section.slug), ['theory', 'story', 'practice']);
-    assert.deepEqual(result.overrides.sections?.map(entry => entry.source.type), ['lesson', 'course', 'lesson']);
-    assert.deepEqual(result.overrides.sections?.[0].blocks.map(block => block.source.type), ['lesson', 'course']);
-    assert.equal(result.overrides.sections?.[1].section.skippable, true);
+    assert.deepEqual(result.overrides.sections?.order, ['theory', 'story', 'practice']);
+    assert.deepEqual(result.overrides.sections?.added?.map(entry => entry.section.slug), ['story']);
+    assert.deepEqual(result.overrides.sections?.added?.map(entry => entry.source.type), ['course']);
+    assert.deepEqual(result.overrides.sections?.bySlug?.theory?.content?.added?.map(entry => entry.source.type), ['course']);
+    assert.deepEqual(result.overrides.sections?.bySlug?.theory?.content?.bySlug?.intro, {
+      locales: { en: 'Changed', uk: 'Змінено' },
+    });
+    assert.deepEqual(result.overrides.sections?.bySlug?.theory?.content?.order, ['intro', 'hint']);
+    assert.deepEqual(result.overrides.sections?.bySlug?.story, undefined);
     assert.equal(lesson.sections[0].content[0].locales.en, 'Original');
     assert.equal(lesson.sections.length, 2);
     assert.deepEqual(original.build().overrides, {});
@@ -88,10 +93,39 @@ describe('createLessonOverrides', () => {
       .sections.setOrder(['theory', courseScenario])
       .sections.bySlug.theory.content.remove('intro');
     const sections = customized.build().overrides.sections;
-    assert.deepEqual(sections?.map(entry => entry.section.slug), ['theory', 'story']);
-    assert.deepEqual(sections?.[0].blocks, []);
-    assert.deepEqual(sections?.[0].section.content, []);
-    assert.deepEqual(sections?.[1].blocks.map(block => block.source.type), ['course']);
+    assert.deepEqual(sections?.order, ['theory', 'story']);
+    assert.deepEqual(sections?.removed, ['practice']);
+    assert.deepEqual(sections?.added?.map(entry => entry.section.slug), ['story']);
+    assert.deepEqual(sections?.bySlug?.theory?.content?.removed, ['intro']);
+  });
+
+  it('emits only modified fields and supports common creator projections', () => {
+    const original = createLessonOverrides(lesson);
+    const unchanged = original
+      .setParams({ sections: { allowNavigation: true } })
+      .setTitle(lesson.title)
+      .sections.bySlug.theory.set({ title: 'Theory' })
+      .build();
+    assert.deepEqual(unchanged.overrides, {});
+
+    const customized = original.sections.bySlug.theory
+      .set({ navigationLabel: 'Introduction' });
+    assert.deepEqual(customized.getData().overrides, {
+      sections: { bySlug: { theory: { navigationLabel: 'Introduction' } } },
+    });
+    const context = {
+      language: 'en' as const,
+      resolveLesson(id: string) {
+        return { type: 'lesson' as const, id, title: 'From catalog', iconKey: 'book-open' };
+      },
+    };
+    assert.deepEqual(customized.toToc(context), {
+      type: 'lesson', id: lesson.id, title: 'Light', iconKey: 'book-open',
+    });
+    assert.deepEqual(customized.toResource(context), {
+      data: customized.build(),
+      toc: customized.toToc(context),
+    });
   });
 
   it('rejects missing, duplicate or unknown order entries, including duplicate IDs', () => {
