@@ -283,6 +283,7 @@ const applicationSourceRoots = [
   'frontend/platform/src',
 ].map(path => resolve(root, path));
 for (const applicationRoot of applicationSourceRoots) {
+  if (!existsSync(applicationRoot)) continue;
   for (const file of walk(applicationRoot).filter(path => /\.(ts|tsx)$/.test(path))) {
     const code = readFileSync(file, 'utf8');
     for (const match of code.matchAll(/\bfrom\s*['"]([^'"]+)['"]/g)) {
