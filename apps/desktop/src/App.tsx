@@ -9,7 +9,7 @@ import { createLessonLearningLayout } from '@svitlo/ui-kit/learning-layout';
 import { SceneLocaleProvider } from '@svitlo/ui-kit/scene-locale';
 import { resolveScene } from '@svitlo/playground/scenes';
 import { loadPublishedLesson, loadPublishedUiKitMessages } from '@svitlo/adapter-electron';
-import { changeLessonLocale, initialLessonRoute, lessonHref, type LessonRoute } from './routing';
+import { changeLessonLocale, changeContentLocale, initialLessonRoute, lessonHref, type LessonRoute } from './routing';
 
 const themes = {
   ltr: createTheme({
@@ -24,7 +24,12 @@ const themes = {
   }),
 };
 
-type RouteContextValue = { locale: Locale; setLocale: (locale: Locale) => void };
+type RouteContextValue = {
+  locale: Locale;
+  setLocale: (locale: Locale) => void;
+  lessonLocale: Locale;
+  setLessonLocale: (locale: Locale) => void;
+};
 const RouteContext = createContext<RouteContextValue | null>(null);
 
 function useDesktopLocale(): RouteContextValue {
@@ -66,7 +71,7 @@ export default function App() {
     let active = true;
     setData({ status: 'loading' });
     Promise.all([
-      loadPublishedLesson(route.lessonId, route.language),
+      loadPublishedLesson(route.lessonId, route.lessonLanguage),
       loadPublishedUiKitMessages<UiKitMessages>(route.locale),
     ]).then(
       ([response, messages]) => {
@@ -79,14 +84,20 @@ export default function App() {
     return () => {
       active = false;
     };
-  }, [route?.language, route?.locale, route?.lessonId]);
+  }, [route?.language, route?.locale, route?.lessonLanguage, route?.lessonId]);
 
   const bindings = useMemo<RouteContextValue | null>(
     () =>
       route && {
         locale: route.locale,
+        lessonLocale: route.lessonLocale,
         setLocale: (locale: Locale) => {
           const next = changeLessonLocale(route, locale);
+          window.history.replaceState(null, '', lessonHref(next));
+          setRoute(next);
+        },
+        setLessonLocale: (locale: Locale) => {
+          const next = changeContentLocale(route, locale);
           window.history.replaceState(null, '', lessonHref(next));
           setRoute(next);
         },
@@ -120,7 +131,7 @@ export default function App() {
         </main>
       ) : (
         <RouteContext.Provider value={bindings!}>
-          <SceneLocaleProvider locale={route.locale}>
+          <SceneLocaleProvider locale={route.lessonLocale}>
             <Lesson
               key={lessonHref(route)}
               response={data.response}
