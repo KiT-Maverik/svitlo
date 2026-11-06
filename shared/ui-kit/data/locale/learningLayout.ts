@@ -2,6 +2,7 @@ import type { UiKit_Component_Locale } from './locale.types';
 
 const en = {
   preparingLesson: 'Preparing your lesson…',
+  preparingLessonError: 'We couldn\'t prepare this lesson.',
   brand: 'Svitlo',
   navigation: {
     top: 'Top learning navigation',
@@ -19,6 +20,7 @@ const en = {
     previous: 'Back',
     next: 'Next',
     skip: 'Skip',
+    retry: 'Try again',
     profile: 'Profile',
     logout: 'Log out',
   },
@@ -35,6 +37,7 @@ export type LearningLayout_Locale = typeof en;
 
 const zh: LearningLayout_Locale = {
   preparingLesson: '正在准备您的课程…',
+  preparingLessonError: '无法准备此课程。',
   brand: 'Svitlo',
   navigation: {
     top: '顶部学习导航',
@@ -52,6 +55,7 @@ const zh: LearningLayout_Locale = {
     previous: '返回',
     next: '下一步',
     skip: '跳过',
+    retry: '重试',
     profile: '个人资料',
     logout: '退出登录',
   },
@@ -66,6 +70,7 @@ const zh: LearningLayout_Locale = {
 
 const hi: LearningLayout_Locale = {
   preparingLesson: 'आपका पाठ तैयार किया जा रहा है…',
+  preparingLessonError: 'यह पाठ तैयार नहीं हो सका।',
   brand: 'Svitlo',
   navigation: {
     top: 'ऊपरी अध्ययन नेविगेशन',
@@ -83,6 +88,7 @@ const hi: LearningLayout_Locale = {
     previous: 'पीछे',
     next: 'आगे',
     skip: 'छोड़ें',
+    retry: 'फिर कोशिश करें',
     profile: 'प्रोफ़ाइल',
     logout: 'साइन आउट',
   },
@@ -97,6 +103,7 @@ const hi: LearningLayout_Locale = {
 
 const es: LearningLayout_Locale = {
   preparingLesson: 'Preparando tu lección…',
+  preparingLessonError: 'No se pudo preparar esta lección.',
   brand: 'Svitlo',
   navigation: {
     top: 'Navegación superior de aprendizaje',
@@ -114,6 +121,7 @@ const es: LearningLayout_Locale = {
     previous: 'Atrás',
     next: 'Siguiente',
     skip: 'Omitir',
+    retry: 'Reintentar',
     profile: 'Perfil',
     logout: 'Cerrar sesión',
   },
@@ -128,6 +136,7 @@ const es: LearningLayout_Locale = {
 
 const ar: LearningLayout_Locale = {
   preparingLesson: 'جارٍ تجهيز درسك…',
+  preparingLessonError: 'تعذّر تجهيز هذا الدرس.',
   brand: 'Svitlo',
   navigation: {
     top: 'التنقل العلوي للتعلّم',
@@ -145,6 +154,7 @@ const ar: LearningLayout_Locale = {
     previous: 'رجوع',
     next: 'التالي',
     skip: 'تخطي',
+    retry: 'إعادة المحاولة',
     profile: 'الملف الشخصي',
     logout: 'تسجيل الخروج',
   },
@@ -159,6 +169,7 @@ const ar: LearningLayout_Locale = {
 
 const fr: LearningLayout_Locale = {
   preparingLesson: 'Préparation de votre leçon…',
+  preparingLessonError: 'Impossible de préparer cette leçon.',
   brand: 'Svitlo',
   navigation: {
     top: 'Navigation supérieure de l’apprentissage',
@@ -176,6 +187,7 @@ const fr: LearningLayout_Locale = {
     previous: 'Retour',
     next: 'Suivant',
     skip: 'Passer',
+    retry: 'Réessayer',
     profile: 'Profil',
     logout: 'Se déconnecter',
   },
@@ -190,6 +202,7 @@ const fr: LearningLayout_Locale = {
 
 const bn: LearningLayout_Locale = {
   preparingLesson: 'আপনার পাঠ প্রস্তুত করা হচ্ছে…',
+  preparingLessonError: 'এই পাঠটি প্রস্তুত করা যায়নি।',
   brand: 'Svitlo',
   navigation: {
     top: 'শেখার ওপরের নেভিগেশন',
@@ -207,6 +220,7 @@ const bn: LearningLayout_Locale = {
     previous: 'পেছনে',
     next: 'পরবর্তী',
     skip: 'এড়িয়ে যান',
+    retry: 'আবার চেষ্টা করুন',
     profile: 'প্রোফাইল',
     logout: 'সাইন আউট',
   },
@@ -221,6 +235,7 @@ const bn: LearningLayout_Locale = {
 
 const pt: LearningLayout_Locale = {
   preparingLesson: 'Preparando sua lição…',
+  preparingLessonError: 'Não foi possível preparar esta aula.',
   brand: 'Svitlo',
   navigation: {
     top: 'Navegação superior de aprendizagem',
@@ -238,6 +253,7 @@ const pt: LearningLayout_Locale = {
     previous: 'Voltar',
     next: 'Próximo',
     skip: 'Pular',
+    retry: 'Tentar novamente',
     profile: 'Perfil',
     logout: 'Sair',
   },
@@ -252,6 +268,7 @@ const pt: LearningLayout_Locale = {
 
 const ur: LearningLayout_Locale = {
   preparingLesson: 'آپ کا سبق تیار کیا جا رہا ہے…',
+  preparingLessonError: 'یہ سبق تیار نہیں ہو سکا۔',
   brand: 'Svitlo',
   navigation: {
     top: 'سیکھنے کی بالائی نیویگیشن',
@@ -269,6 +286,7 @@ const ur: LearningLayout_Locale = {
     previous: 'واپس',
     next: 'اگلا',
     skip: 'چھوڑ دیں',
+    retry: 'دوبارہ کوشش کریں',
     profile: 'پروفائل',
     logout: 'سائن آؤٹ',
   },
@@ -283,6 +301,7 @@ const ur: LearningLayout_Locale = {
 
 const id: LearningLayout_Locale = {
   preparingLesson: 'Menyiapkan pelajaran Anda…',
+  preparingLessonError: 'Pelajaran ini tidak dapat disiapkan.',
   brand: 'Svitlo',
   navigation: {
     top: 'Navigasi belajar atas',
@@ -300,6 +319,7 @@ const id: LearningLayout_Locale = {
     previous: 'Kembali',
     next: 'Berikutnya',
     skip: 'Lewati',
+    retry: 'Coba lagi',
     profile: 'Profil',
     logout: 'Keluar',
   },
@@ -314,6 +334,7 @@ const id: LearningLayout_Locale = {
 
 const de: LearningLayout_Locale = {
   preparingLesson: 'Deine Lektion wird vorbereitet…',
+  preparingLessonError: 'Diese Lektion konnte nicht vorbereitet werden.',
   brand: 'Svitlo',
   navigation: {
     top: 'Obere Lernnavigation',
@@ -331,6 +352,7 @@ const de: LearningLayout_Locale = {
     previous: 'Zurück',
     next: 'Weiter',
     skip: 'Überspringen',
+    retry: 'Erneut versuchen',
     profile: 'Profil',
     logout: 'Abmelden',
   },
@@ -345,6 +367,7 @@ const de: LearningLayout_Locale = {
 
 const ja: LearningLayout_Locale = {
   preparingLesson: 'レッスンを準備しています…',
+  preparingLessonError: 'このレッスンを準備できませんでした。',
   brand: 'Svitlo',
   navigation: {
     top: '上部の学習ナビゲーション',
@@ -362,6 +385,7 @@ const ja: LearningLayout_Locale = {
     previous: '戻る',
     next: '次へ',
     skip: 'スキップ',
+    retry: '再試行',
     profile: 'プロフィール',
     logout: 'ログアウト',
   },
@@ -376,6 +400,7 @@ const ja: LearningLayout_Locale = {
 
 const ko: LearningLayout_Locale = {
   preparingLesson: '수업을 준비하고 있어요…',
+  preparingLessonError: '이 수업을 준비할 수 없습니다.',
   brand: 'Svitlo',
   navigation: {
     top: '상단 학습 탐색',
@@ -393,6 +418,7 @@ const ko: LearningLayout_Locale = {
     previous: '뒤로',
     next: '다음',
     skip: '건너뛰기',
+    retry: '다시 시도',
     profile: '프로필',
     logout: '로그아웃',
   },
@@ -407,6 +433,7 @@ const ko: LearningLayout_Locale = {
 
 const tr: LearningLayout_Locale = {
   preparingLesson: 'Dersiniz hazırlanıyor…',
+  preparingLessonError: 'Bu ders hazırlanamadı.',
   brand: 'Svitlo',
   navigation: {
     top: 'Üst öğrenme gezintisi',
@@ -424,6 +451,7 @@ const tr: LearningLayout_Locale = {
     previous: 'Geri',
     next: 'İleri',
     skip: 'Atla',
+    retry: 'Tekrar dene',
     profile: 'Profil',
     logout: 'Çıkış yap',
   },
@@ -438,6 +466,7 @@ const tr: LearningLayout_Locale = {
 
 const vi: LearningLayout_Locale = {
   preparingLesson: 'Đang chuẩn bị bài học của bạn…',
+  preparingLessonError: 'Không thể chuẩn bị bài học này.',
   brand: 'Svitlo',
   navigation: {
     top: 'Thanh điều hướng học tập phía trên',
@@ -455,6 +484,7 @@ const vi: LearningLayout_Locale = {
     previous: 'Quay lại',
     next: 'Tiếp theo',
     skip: 'Bỏ qua',
+    retry: 'Thử lại',
     profile: 'Hồ sơ',
     logout: 'Đăng xuất',
   },
@@ -469,6 +499,7 @@ const vi: LearningLayout_Locale = {
 
 const ta: LearningLayout_Locale = {
   preparingLesson: 'உங்கள் பாடம் தயாராகிறது…',
+  preparingLessonError: 'இந்தப் பாடத்தைத் தயாரிக்க முடியவில்லை.',
   brand: 'Svitlo',
   navigation: {
     top: 'மேல் கற்றல் வழிசெலுத்தல்',
@@ -486,6 +517,7 @@ const ta: LearningLayout_Locale = {
     previous: 'பின்செல்',
     next: 'அடுத்து',
     skip: 'தவிர்',
+    retry: 'மீண்டும் முயற்சி',
     profile: 'சுயவிவரம்',
     logout: 'வெளியேறு',
   },
@@ -500,6 +532,7 @@ const ta: LearningLayout_Locale = {
 
 const te: LearningLayout_Locale = {
   preparingLesson: 'మీ పాఠాన్ని సిద్ధం చేస్తున్నాం…',
+  preparingLessonError: 'ఈ పాఠాన్ని సిద్ధం చేయలేకపోయాము.',
   brand: 'Svitlo',
   navigation: {
     top: 'ఎగువ అభ్యాస నావిగేషన్',
@@ -517,6 +550,7 @@ const te: LearningLayout_Locale = {
     previous: 'వెనుకకు',
     next: 'తదుపరి',
     skip: 'దాటవేయి',
+    retry: 'మళ్లీ ప్రయత్నించండి',
     profile: 'ప్రొఫైల్',
     logout: 'సైన్ అవుట్',
   },
@@ -531,6 +565,7 @@ const te: LearningLayout_Locale = {
 
 const mr: LearningLayout_Locale = {
   preparingLesson: 'तुमचा धडा तयार होत आहे…',
+  preparingLessonError: 'हा धडा तयार करता आला नाही.',
   brand: 'Svitlo',
   navigation: {
     top: 'वरचे अध्ययन नेव्हिगेशन',
@@ -548,6 +583,7 @@ const mr: LearningLayout_Locale = {
     previous: 'मागे',
     next: 'पुढे',
     skip: 'वगळा',
+    retry: 'पुन्हा प्रयत्न करा',
     profile: 'प्रोफाइल',
     logout: 'साइन आउट',
   },
@@ -562,6 +598,7 @@ const mr: LearningLayout_Locale = {
 
 const ms: LearningLayout_Locale = {
   preparingLesson: 'Sedang menyediakan pelajaran anda…',
+  preparingLessonError: 'Pelajaran ini tidak dapat disediakan.',
   brand: 'Svitlo',
   navigation: {
     top: 'Navigasi pembelajaran atas',
@@ -579,6 +616,7 @@ const ms: LearningLayout_Locale = {
     previous: 'Kembali',
     next: 'Seterusnya',
     skip: 'Langkau',
+    retry: 'Cuba lagi',
     profile: 'Profil',
     logout: 'Log keluar',
   },
@@ -593,6 +631,7 @@ const ms: LearningLayout_Locale = {
 
 const he: LearningLayout_Locale = {
   preparingLesson: 'מכינים את השיעור שלך…',
+  preparingLessonError: 'לא ניתן להכין את השיעור.',
   brand: 'Svitlo',
   navigation: {
     top: 'ניווט למידה עליון',
@@ -610,6 +649,7 @@ const he: LearningLayout_Locale = {
     previous: 'חזרה',
     next: 'הבא',
     skip: 'דילוג',
+    retry: 'לנסות שוב',
     profile: 'פרופיל',
     logout: 'התנתקות',
   },
@@ -624,6 +664,7 @@ const he: LearningLayout_Locale = {
 
 const pl: LearningLayout_Locale = {
   preparingLesson: 'Przygotowujemy Twoją lekcję…',
+  preparingLessonError: 'Nie udało się przygotować tej lekcji.',
   brand: 'Svitlo',
   navigation: {
     top: 'Górna nawigacja nauki',
@@ -641,6 +682,7 @@ const pl: LearningLayout_Locale = {
     previous: 'Wstecz',
     next: 'Dalej',
     skip: 'Pomiń',
+    retry: 'Spróbuj ponownie',
     profile: 'Profil',
     logout: 'Wyloguj się',
   },
@@ -655,6 +697,7 @@ const pl: LearningLayout_Locale = {
 
 const uk: LearningLayout_Locale = {
   preparingLesson: 'Готуємо ваш урок…',
+  preparingLessonError: 'Не вдалося підготувати урок.',
   brand: 'Світло',
   navigation: {
     top: 'Верхня навігація навчання',
@@ -672,6 +715,7 @@ const uk: LearningLayout_Locale = {
     previous: 'Назад',
     next: 'Далі',
     skip: 'Пропустити',
+    retry: 'Спробувати ще раз',
     profile: 'Профіль',
     logout: 'Вийти',
   },
@@ -686,6 +730,7 @@ const uk: LearningLayout_Locale = {
 
 const lt: LearningLayout_Locale = {
   preparingLesson: 'Ruošiame jūsų pamoką…',
+  preparingLessonError: 'Nepavyko paruošti pamokos.',
   brand: 'Світло',
   navigation: {
     top: 'Viršutinė mokymosi navigacija',
@@ -703,6 +748,7 @@ const lt: LearningLayout_Locale = {
     previous: 'Atgal',
     next: 'Toliau',
     skip: 'Praleisti',
+    retry: 'Bandyti dar kartą',
     profile: 'Profilis',
     logout: 'Atsijungti',
   },
@@ -717,6 +763,7 @@ const lt: LearningLayout_Locale = {
 
 const lv: LearningLayout_Locale = {
   preparingLesson: 'Gatavojam jūsu nodarbību…',
+  preparingLessonError: 'Neizdevās sagatavot nodarbību.',
   brand: 'Світло',
   navigation: {
     top: 'Augšējā mācību navigācija',
@@ -734,6 +781,7 @@ const lv: LearningLayout_Locale = {
     previous: 'Atpakaļ',
     next: 'Tālāk',
     skip: 'Izlaist',
+    retry: 'Mēģināt vēlreiz',
     profile: 'Profils',
     logout: 'Izrakstīties',
   },
@@ -748,6 +796,7 @@ const lv: LearningLayout_Locale = {
 
 const et: LearningLayout_Locale = {
   preparingLesson: 'Valmistame teie õppetundi ette…',
+  preparingLessonError: 'Tundi ei õnnestunud ette valmistada.',
   brand: 'Світло',
   navigation: {
     top: 'Ülemine õppenavigeerimine',
@@ -765,6 +814,7 @@ const et: LearningLayout_Locale = {
     previous: 'Tagasi',
     next: 'Edasi',
     skip: 'Jäta vahele',
+    retry: 'Proovi uuesti',
     profile: 'Profiil',
     logout: 'Logi välja',
   },
@@ -779,6 +829,7 @@ const et: LearningLayout_Locale = {
 
 const be: LearningLayout_Locale = {
   preparingLesson: 'Рыхтуем ваш урок…',
+  preparingLessonError: 'Не ўдалося падрыхтаваць урок.',
   brand: 'Світло',
   navigation: {
     top: 'Верхняя навігацыя навучаньня',
@@ -796,6 +847,7 @@ const be: LearningLayout_Locale = {
     previous: 'Назад',
     next: 'Далей',
     skip: 'Прапусьціць',
+    retry: 'Паспрабаваць яшчэ раз',
     profile: 'Профіль',
     logout: 'Выйсьці',
   },
@@ -810,6 +862,7 @@ const be: LearningLayout_Locale = {
 
 const ka: LearningLayout_Locale = {
   preparingLesson: 'ვამზადებთ თქვენს გაკვეთილს…',
+  preparingLessonError: 'გაკვეთილის მომზადება ვერ მოხერხდა.',
   brand: 'Світло',
   navigation: {
     top: 'სასწავლო ზედა ნავიგაცია',
@@ -827,6 +880,7 @@ const ka: LearningLayout_Locale = {
     previous: 'უკან',
     next: 'შემდეგი',
     skip: 'გამოტოვება',
+    retry: 'ხელახლა ცდა',
     profile: 'პროფილი',
     logout: 'გამოსვლა',
   },
@@ -841,6 +895,7 @@ const ka: LearningLayout_Locale = {
 
 const kk: LearningLayout_Locale = {
   preparingLesson: 'Сабағыңызды дайындап жатырмыз…',
+  preparingLessonError: 'Сабақты дайындау мүмкін болмады.',
   brand: 'Світло',
   navigation: {
     top: 'Жоғарғы оқу навигациясы',
@@ -858,6 +913,7 @@ const kk: LearningLayout_Locale = {
     previous: 'Артқа',
     next: 'Келесі',
     skip: 'Өткізіп жіберу',
+    retry: 'Қайталап көру',
     profile: 'Профиль',
     logout: 'Шығу',
   },
@@ -873,6 +929,7 @@ const kk: LearningLayout_Locale = {
 /** Crimean Tatar (Svitlo qm), Latin script. Requires native-speaker linguistic review. */
 const qm: LearningLayout_Locale = {
   preparingLesson: 'Dersinizi azırlaymız…',
+  preparingLessonError: 'Dersni azırlap olmadı.',
   brand: 'Svitlo',
   navigation: {
     top: 'Oquvnıñ yuqarı navigatsiyası',
@@ -890,6 +947,7 @@ const qm: LearningLayout_Locale = {
     previous: 'Artqa',
     next: 'İleri',
     skip: 'Atla',
+    retry: 'Yañıdan sıña',
     profile: 'Profil',
     logout: 'Çıqış',
   },
