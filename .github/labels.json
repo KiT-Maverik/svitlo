@@ -136,7 +136,7 @@
   },
   {
     "name": "studio",
-    "color": "8B5E83",
+    "color": "C026D3",
     "description": "Changes to studio/"
   },
   {
@@ -153,6 +153,11 @@
     "name": "work: feature",
     "color": "7C3AED",
     "description": "New product or technical functionality"
+  },
+  {
+    "name": "work: architecture",
+    "color": "7C3AED",
+    "description": "Design or change system architecture, module boundaries, contracts, and data flows"
   },
   {
     "name": "work: fix",
