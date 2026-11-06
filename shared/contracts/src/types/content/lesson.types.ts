@@ -1,5 +1,6 @@
 import type { ContentEntity_ConfigType } from './entity.types';
 import type { Flashcard } from './flashcard.types';
+import type { SkillId } from './skill.types';
 import type { Lesson_Locale, Locale_Options } from './locale.types';
 import type { Question_Catalog, Question_Catalog_ValidSlugs } from './questions';
 import type { Section } from './section.types';
@@ -19,6 +20,7 @@ type Lesson_Definition<SupportedLanguages extends Lesson_Locale> = {
   type: 'lesson';
   /** Optional key to a registered runtime icon, never JSX. */
   iconKey?: string;
+  skills?: readonly SkillId[];
   sections: readonly Section<'definition', SupportedLanguages>[];
 };
 
@@ -27,6 +29,7 @@ type Lesson_Data<SupportedLanguages extends Lesson_Locale, CustomEvents extends 
   slug: string;
   title: Locale_Options<SupportedLanguages>;
   flashcards: Flashcard<'data', SupportedLanguages>[];
+  skills: readonly SkillId[];
   parameters: Lesson_Parameters<SupportedLanguages>;
   questions: Question_Catalog<'data', SupportedLanguages>;
   sections: readonly Section<'data', SupportedLanguages>[];
@@ -37,6 +40,7 @@ type Lesson_Response<SupportedLanguages extends Lesson_Locale, CustomEvents exte
   slug: string;
   title: string;
   flashcards: Flashcard<'response', SupportedLanguages>[];
+  skills: readonly SkillId[];
   parameters: Lesson_Parameters<SupportedLanguages>;
   questions: Question_Catalog<'response', SupportedLanguages>;
   sections: readonly Section<'response', SupportedLanguages>[];

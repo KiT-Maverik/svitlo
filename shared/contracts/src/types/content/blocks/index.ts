@@ -5,7 +5,6 @@ import type { ContentBlock_Code } from './code.types';
 import type { ContentEntity_ConfigType } from '../entity.types';
 import type { ContentBlock_Image } from './image.types';
 import type { ContentBlock_Markdown } from './markdown.types';
-import type { ContentBlock_Quiz, ContentBlock_Quiz_Screen } from './quiz.types';
 import type { ContentBlock_Scene, ContentBlock_Scene_LocaleShape } from './scene.types';
 import type { ContentBlock_Text } from './text.types';
 import type { ContentBlock_Video } from './video.types';
@@ -20,8 +19,7 @@ export type ContentBlock<ConfigType extends ContentEntity_ConfigType, SupportedL
   | ContentBlock_Audio<ConfigType, SupportedLanguages>
   | ContentBlock_Video<ConfigType, SupportedLanguages>
   | ContentBlock_Youtube<ConfigType, SupportedLanguages>
-  | ContentBlock_Image<ConfigType, SupportedLanguages>
-  | ContentBlock_Quiz<ConfigType, SupportedLanguages>;
+  | ContentBlock_Image<ConfigType, SupportedLanguages>;
 
 export type {
   ContentBlock_Audio,
@@ -29,8 +27,6 @@ export type {
   ContentBlock_Code,
   ContentBlock_Image,
   ContentBlock_Markdown,
-  ContentBlock_Quiz,
-  ContentBlock_Quiz_Screen,
   ContentBlock_Scene,
   ContentBlock_Text,
   ContentBlock_Video,

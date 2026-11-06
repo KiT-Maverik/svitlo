@@ -34,11 +34,11 @@ const title = {
   zh: '测验',
 };
 
-const quizBlock = {
-  type: 'quiz' as const,
-  id: 'd57aedcf-2381-527d-87e6-076bedcc9bd5',
-  slug: 'quiz' as const,
-  welcome: title,
+const parameters = {
+  isBlocker: true,
+  timeLimitSeconds: 300,
+  selection: { mode: 'all' as const, questionSlugs: Object.keys(howLightMoves_Questions.selectOneAnswer) },
+  layout: { mode: 'stepper' as const, showProgress: true },
   feedbackMode: 'immediate' as const,
   interaction: {
     retries: 0,
@@ -51,7 +51,7 @@ const quizBlock = {
   },
   results: { visibility: 'after-review' as const, showScore: true },
   screen: {},
-  questions: howLightMoves_Questions.selectOneAnswer,
+  questionOptions: { selectOneAnswer: { incorrectCount: 1, includeDistractors: true, shuffleAnswers: true, correctVariant: 'random' as const } },
 };
 
 export const quiz_Section = {
@@ -61,5 +61,5 @@ export const quiz_Section = {
   title,
   navigationLabel: title,
   skippable: true,
-  content: [quizBlock],
+  parameters,
 } satisfies Section<'data', HowLightMoves_Languages>;

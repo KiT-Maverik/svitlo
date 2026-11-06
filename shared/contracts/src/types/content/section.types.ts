@@ -1,8 +1,9 @@
 import type { ContentEntity_ConfigType } from './entity.types';
 import type { Locale_Languages, Locale_Options } from './locale.types';
 import type { ContentBlock } from './blocks';
+import type { Question } from './questions';
+import type { Quiz_Parameters } from './quiz.types';
 
-/** Presentation categories; individual sections still choose their content blocks. */
 export const SECTION_TYPES = [
   'theory',
   'practice',
@@ -10,38 +11,45 @@ export const SECTION_TYPES = [
   'learningFlow',
   'quiz',
   'flashcards',
-  'scenario', // App-level scripted insertions; no renderer is defined yet.
+  'scenario',
 ] as const;
-
 export type Section_Type = (typeof SECTION_TYPES)[number];
+type RegularSection_Type = Exclude<Section_Type, 'quiz'>;
 
-type Section_Definition<SupportedLanguages extends Locale_Languages> = {
-  type: Section_Type;
-  content: readonly ContentBlock<'definition', SupportedLanguages>[];
-};
+type Section_Definition<Languages extends Locale_Languages> =
+  | { type: RegularSection_Type; content: readonly ContentBlock<'definition', Languages>[] }
+  | { type: 'quiz' };
 
-type Section_Data<SupportedLanguages extends Locale_Languages> = {
+type Section_Meta<Languages extends Locale_Languages> = {
   id: string;
   slug: string;
-  type: Section_Type;
-  title: Locale_Options<SupportedLanguages>;
-  navigationLabel: Locale_Options<SupportedLanguages>;
+  title: Locale_Options<Languages>;
+  navigationLabel: Locale_Options<Languages>;
   skippable?: true;
-  content: readonly ContentBlock<'data', SupportedLanguages>[];
 };
 
-type Section_Response<SupportedLanguages extends Locale_Languages> = {
-  id: string;
-  slug: string;
-  type: Section_Type;
-  title: string;
-  navigationLabel: string;
-  skippable?: true;
-  content: readonly ContentBlock<'response', SupportedLanguages>[];
-};
+type Section_Data<Languages extends Locale_Languages> = Section_Meta<Languages> &
+  (
+    | { type: RegularSection_Type; content: readonly ContentBlock<'data', Languages>[] }
+    | { type: 'quiz'; parameters: Quiz_Parameters<'data', Languages> }
+  );
 
-export type Section<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends Locale_Languages> = {
-  definition: Section_Definition<SupportedLanguages>;
-  data: Section_Data<SupportedLanguages>;
-  response: Section_Response<SupportedLanguages>;
-}[ConfigType];
+type Section_Response<Languages extends Locale_Languages> =
+  Omit<Section_Meta<Languages>, 'title' | 'navigationLabel'> & {
+    title: string;
+    navigationLabel: string;
+  } & (
+    | { type: RegularSection_Type; content: readonly ContentBlock<'response', Languages>[] }
+    | {
+        type: 'quiz';
+        parameters: Quiz_Parameters<'response', Languages>;
+        /** Fully assembled, ordered Question instances for this particular Quiz. */
+        questions: readonly Question<'response', Languages>[];
+      }
+  );
+
+export type Section<Mode extends ContentEntity_ConfigType, Languages extends Locale_Languages> = {
+  definition: Section_Definition<Languages>;
+  data: Section_Data<Languages>;
+  response: Section_Response<Languages>;
+}[Mode];
