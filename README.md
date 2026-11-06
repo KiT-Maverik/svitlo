@@ -6,7 +6,7 @@ Svitlo is a modular interactive-learning project. Each textbook is a **standalon
 
 | Workspace                     | Folder                        | Purpose                                                                            |
 | ----------------------------- | ----------------------------- | ---------------------------------------------------------------------------------- |
-| `@svitlo/platform`            | `apps/platform`           | Next.js web platform and external textbook catalog                                 |
+| `@svitlo/platform`            | `apps/platform`               | Next.js web platform and external textbook catalog                                 |
 | `@svitlo/math`                | `content/math`                | Mathematics textbook; owns taxonomy and curriculum                                 |
 | `@svitlo/biology`             | `content/biology`             | Biology textbook scaffold                                                          |
 | `@svitlo/geography`           | `content/geography`           | Geography textbook scaffold                                                        |
