@@ -21,6 +21,8 @@ import styles from './Checkpoint.module.css';
 type CheckpointProps = ContentBlock_Checkpoint_Response<Locale_Languages> & {
   messages: Checkpoint_Locale;
   renderNested: RenderNested;
+  onComplete?: () => void;
+  completed?: boolean;
 };
 
 export const Checkpoint = ({
@@ -35,9 +37,12 @@ export const Checkpoint = ({
   iconPosition = 'left',
   chevronPosition = 'right',
   enableChecks = false,
+  requireCompletion = false,
   renderAsGroup = true,
   renderNested,
   messages,
+  onComplete,
+  completed = false,
 }: CheckpointProps) => {
   const languageCode = useContentLanguage();
   const domId = useId();
@@ -54,7 +59,7 @@ export const Checkpoint = ({
         {items.map((item, index) => {
           const itemId = `${id}:${index}`;
           const needsCheck = item.check ?? enableChecks;
-          const isChecked = checkedIds.has(itemId);
+          const isChecked = completed || checkedIds.has(itemId);
           const side = (position: 'left' | 'right') => (
             <>
               {showIndices && indexPosition === position && (
@@ -131,7 +136,18 @@ export const Checkpoint = ({
                       color="success"
                       size="small"
                       disabled={isChecked}
-                      onClick={() => setCheckedIds(current => new Set(current).add(itemId))}
+                      onClick={() => {
+                        if (completed || checkedIds.has(itemId)) return;
+                        const next = new Set(checkedIds).add(itemId);
+                        setCheckedIds(next);
+                        if (
+                          requireCompletion &&
+                          items.every(
+                            (entry, position) => !(entry.check ?? enableChecks) || next.has(id + ':' + position),
+                          )
+                        )
+                          onComplete?.();
+                      }}
                       aria-pressed={isChecked}
                       dir={direction}
                     >

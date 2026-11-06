@@ -2,7 +2,7 @@
 
 import type { LearningLayout_Locale } from '../../../../data/locale/learningLayout';
 
-import { useEffect, useState, type ReactNode, type ElementType } from 'react';
+import { useEffect, useState, type ReactNode, type ElementType, type Dispatch, type SetStateAction } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Drawer from '@mui/material/Drawer';
@@ -50,6 +50,175 @@ export interface LearningLayoutProps {
   contentError?: boolean;
   onRetryContent?: () => void;
   linkComponent?: ElementType;
+  renderTopBar?: (props: LearningLayoutTopBarProps) => ReactNode;
+  renderBottomBar?: (props: LearningLayoutBottomBarProps) => ReactNode;
+}
+
+export type LearningLayoutTopBarProps = Pick<LearningLayoutProps, 'messages' | 'preferences' | 'linkComponent'> & {
+  open: boolean;
+  settingsOpen: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+  setSettingsOpen: Dispatch<SetStateAction<boolean>>;
+  lessonTitle?: string;
+};
+
+export type LearningLayoutBottomBarProps = Pick<
+  LearningLayoutProps,
+  'messages' | 'progress' | 'actions' | 'skippableSteps' | 'quizStep' | 'contentLoading'
+> & {
+  direction: 'ltr' | 'rtl';
+  nextDisabled?: boolean;
+  backDisabled?: boolean;
+  skipDisabled?: boolean;
+};
+
+/** Default chrome stays reusable outside lessons; controller-owned slots can wrap it in independent contexts. */
+export function LearningLayoutTopBar({
+  messages,
+  preferences,
+  linkComponent,
+  open,
+  settingsOpen,
+  setOpen,
+  setSettingsOpen,
+  lessonTitle,
+}: LearningLayoutTopBarProps) {
+  return (
+    <TopNavbar
+      aria-label={messages.navigation.top}
+      slots={{
+        left: (
+          <>
+            <IconButton
+              aria-label={open ? messages.actions.closeTopics : messages.actions.openTopics}
+              aria-expanded={open}
+              aria-controls={open ? 'learning-sidebar' : undefined}
+              onClick={() => {
+                setOpen(value => !value);
+                setSettingsOpen(false);
+              }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography
+              component={linkComponent ?? 'a'}
+              href="/"
+              sx={{ color: 'text.primary', fontWeight: 800, fontSize: 20, textDecoration: 'none' }}
+            >
+              {messages.brand}
+            </Typography>
+            {lessonTitle && (
+              <Typography
+                component="span"
+                variant="body2"
+                title={lessonTitle}
+                sx={{
+                  display: { xs: 'none', md: 'block' },
+                  maxWidth: 280,
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                {lessonTitle}
+              </Typography>
+            )}
+          </>
+        ),
+        right: (
+          <>
+            {preferences}
+            <Tooltip title={messages.tooltips.profile}>
+              <Box component="span" sx={{ display: { xs: 'none', sm: 'inline-flex' } }}>
+                <IconButton aria-label={messages.actions.profile} disabled>
+                  <AccountCircleOutlinedIcon />
+                </IconButton>
+              </Box>
+            </Tooltip>
+            <IconButton
+              aria-label={settingsOpen ? messages.actions.closeSettings : messages.actions.openSettings}
+              aria-expanded={settingsOpen}
+              aria-controls={settingsOpen ? 'settings-sidebar' : undefined}
+              onClick={() => {
+                setSettingsOpen(value => !value);
+                setOpen(false);
+              }}
+            >
+              <SettingsOutlinedIcon />
+            </IconButton>
+            <Tooltip title={messages.tooltips.logout}>
+              <Box component="span" sx={{ display: { xs: 'none', sm: 'inline-flex' } }}>
+                <IconButton aria-label={messages.actions.logout} disabled>
+                  <LogoutIcon />
+                </IconButton>
+              </Box>
+            </Tooltip>
+          </>
+        ),
+      }}
+    />
+  );
+}
+
+export function LearningLayoutBottomBar({
+  messages,
+  progress,
+  actions,
+  skippableSteps = [],
+  quizStep,
+  contentLoading = false,
+  direction,
+  nextDisabled = false,
+  backDisabled = false,
+  skipDisabled = false,
+}: LearningLayoutBottomBarProps) {
+  return (
+    <BottomNavbar
+      aria-label={messages.navigation.bottom}
+      slots={{
+        center: (
+          <>
+            <Button
+              variant="contained"
+              disabled={backDisabled || contentLoading || !progress.ready || progress.step === 0}
+              onClick={actions.back}
+            >
+              {direction === 'rtl' ? '→' : '←'} {messages.actions.previous}
+            </Button>
+            <Button
+              variant="contained"
+              disabled={
+                nextDisabled ||
+                contentLoading ||
+                !progress.ready ||
+                progress.step >= progress.lastStep ||
+                (progress.step === quizStep && !progress.testDone)
+              }
+              onClick={actions.next}
+            >
+              {messages.actions.next} {direction === 'rtl' ? '←' : '→'}
+            </Button>
+          </>
+        ),
+        right: (
+          <Button
+            variant="outlined"
+            disabled={
+              skipDisabled ||
+              contentLoading ||
+              !progress.ready ||
+              progress.step >= progress.lastStep ||
+              !skippableSteps[progress.step]
+            }
+            onClick={actions.skip}
+          >
+            {messages.actions.skip}
+          </Button>
+        ),
+      }}
+      slotProps={{ root: { sx: { px: { xs: 1, sm: 2 } } } }}
+    />
+  );
 }
 
 export default function LearningLayout({
@@ -69,6 +238,8 @@ export default function LearningLayout({
   contentError = false,
   onRetryContent,
   linkComponent,
+  renderTopBar,
+  renderBottomBar,
 }: LearningLayoutProps) {
   const direction = getLocaleDirection(locale);
   const [open, setOpen] = useState(false);
@@ -98,63 +269,27 @@ export default function LearningLayout({
         color: 'text.primary',
       }}
     >
-      <TopNavbar
-        aria-label={messages.navigation.top}
-        slots={{
-          left: (
-            <>
-              <IconButton
-                aria-label={open ? messages.actions.closeTopics : messages.actions.openTopics}
-                aria-expanded={open}
-                aria-controls={open ? 'learning-sidebar' : undefined}
-                onClick={() => {
-                  setOpen(value => !value);
-                  setSettingsOpen(false);
-                }}
-              >
-                <MenuIcon />
-              </IconButton>
-              <Typography
-                component={linkComponent ?? 'a'}
-                href="/"
-                sx={{ color: 'text.primary', fontWeight: 800, fontSize: 20, textDecoration: 'none' }}
-              >
-                {messages.brand}
-              </Typography>
-            </>
-          ),
-          right: (
-            <>
-              {preferences}
-              <Tooltip title={messages.tooltips.profile}>
-                <Box component="span" sx={{ display: { xs: 'none', sm: 'inline-flex' } }}>
-                  <IconButton aria-label={messages.actions.profile} disabled>
-                    <AccountCircleOutlinedIcon />
-                  </IconButton>
-                </Box>
-              </Tooltip>
-              <IconButton
-                aria-label={settingsOpen ? messages.actions.closeSettings : messages.actions.openSettings}
-                aria-expanded={settingsOpen}
-                aria-controls={settingsOpen ? 'settings-sidebar' : undefined}
-                onClick={() => {
-                  setSettingsOpen(value => !value);
-                  setOpen(false);
-                }}
-              >
-                <SettingsOutlinedIcon />
-              </IconButton>
-              <Tooltip title={messages.tooltips.logout}>
-                <Box component="span" sx={{ display: { xs: 'none', sm: 'inline-flex' } }}>
-                  <IconButton aria-label={messages.actions.logout} disabled>
-                    <LogoutIcon />
-                  </IconButton>
-                </Box>
-              </Tooltip>
-            </>
-          ),
-        }}
-      />
+      {renderTopBar ? (
+        renderTopBar({
+          messages,
+          preferences,
+          linkComponent,
+          open,
+          settingsOpen,
+          setOpen,
+          setSettingsOpen,
+        })
+      ) : (
+        <LearningLayoutTopBar
+          messages={messages}
+          preferences={preferences}
+          linkComponent={linkComponent}
+          open={open}
+          settingsOpen={settingsOpen}
+          setOpen={setOpen}
+          setSettingsOpen={setSettingsOpen}
+        />
+      )}
 
       <Box sx={{ position: 'relative', minHeight: 0, overflow: 'hidden' }}>
         <Fade in={open || settingsOpen} timeout={{ enter: 225, exit: 195 }} unmountOnExit>
@@ -343,51 +478,28 @@ export default function LearningLayout({
         </Fade>
       </Box>
 
-      {showBottomNavbar && (
-        <BottomNavbar
-          aria-label={messages.navigation.bottom}
-          slots={{
-            center: (
-              <>
-                <Button
-                  variant="contained"
-                  disabled={contentLoading || !progress.ready || progress.step === 0}
-                  onClick={actions.back}
-                >
-                  {direction === 'rtl' ? '→' : '←'} {messages.actions.previous}
-                </Button>
-                <Button
-                  variant="contained"
-                  disabled={
-                    contentLoading ||
-                    !progress.ready ||
-                    progress.step >= progress.lastStep ||
-                    (progress.step === quizStep && !progress.testDone)
-                  }
-                  onClick={actions.next}
-                >
-                  {messages.actions.next} {direction === 'rtl' ? '←' : '→'}
-                </Button>
-              </>
-            ),
-            right: (
-              <Button
-                variant="outlined"
-                disabled={
-                  contentLoading ||
-                  !progress.ready ||
-                  progress.step >= progress.lastStep ||
-                  !skippableSteps[progress.step]
-                }
-                onClick={actions.skip}
-              >
-                {messages.actions.skip}
-              </Button>
-            ),
-          }}
-          slotProps={{ root: { sx: { px: { xs: 1, sm: 2 } } } }}
-        />
-      )}
+      {showBottomNavbar &&
+        (renderBottomBar ? (
+          renderBottomBar({
+            messages,
+            progress,
+            actions,
+            skippableSteps,
+            quizStep,
+            contentLoading,
+            direction,
+          })
+        ) : (
+          <LearningLayoutBottomBar
+            messages={messages}
+            progress={progress}
+            actions={actions}
+            skippableSteps={skippableSteps}
+            quizStep={quizStep}
+            contentLoading={contentLoading}
+            direction={direction}
+          />
+        ))}
     </Box>
   );
 }
