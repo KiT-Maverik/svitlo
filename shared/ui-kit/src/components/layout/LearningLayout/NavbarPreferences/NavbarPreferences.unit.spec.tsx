@@ -58,6 +58,8 @@ describe('NavbarPreferences in shared UI Kit', () => {
     await userEvent.click(locale());
     expect(await screen.findByRole('option', { name: 'Беларуская' })).toBeInTheDocument();
     expect(screen.queryByText(/тарашкевіца/i)).not.toBeInTheDocument();
+    await userEvent.click(screen.getByRole('option', { name: 'Беларуская' }));
+    expect(setLocale).toHaveBeenCalledWith('be-tarask');
   });
 
   it('toggles between light and dark themes', async () => {
