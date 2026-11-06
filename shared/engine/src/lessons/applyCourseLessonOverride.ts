@@ -116,12 +116,15 @@ function changedSections(sections: readonly Section[], changes: Record<string, u
       ...(patch.skippable === true ? { skippable: true as const } : {}),
     };
     if (section.type === 'quiz') {
-      items.set(slug, metadata);
+      items.set(slug, metadata as Section);
     } else {
       items.set(slug, {
         ...metadata,
-        content: patch.content === undefined ? section.content : changedBlocks(section.content, patch.content as Record<string, unknown>),
-      });
+        content:
+          patch.content === undefined
+            ? section.content
+            : changedBlocks(section.content as readonly Block[], patch.content as Record<string, unknown>),
+      } as Section);
     }
   }
   const order = (changes.order ?? [...items.keys()]) as string[];
