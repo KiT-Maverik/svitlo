@@ -5,6 +5,8 @@ import {
   type Locale_Languages,
   type Question,
   type Section_Type,
+  type ContentBlock_Scene,
+  DEFAULT_LESSON_EVENTS,
 } from '@svitlo/contracts/content';
 import { resolveEntityPath } from '../utils/entityPath/resolveEntityPath.utils';
 
@@ -37,6 +39,7 @@ export type LessonResponse = {
   flashcards: unknown[];
   questions: Record<string, Record<string, Record<string, unknown>>>;
   sections: LessonSectionResponse[];
+  events?: Readonly<Record<string, ContentBlock_Scene<'response', Locale_Languages> | false>>;
   localeSources: {
     config: Record<string, LocaleSource>;
     flashcards: Record<string, LocaleSource>;
@@ -224,6 +227,27 @@ export function assembleLessonResponse(
       questions: sectionQuestions,
     });
   }
+  const defaultEvents: ReadonlySet<string> = new Set(DEFAULT_LESSON_EVENTS);
+  const eventScenes: Record<string, ContentBlock_Scene<'response', Locale_Languages> | false> = {};
+  if (data.events !== undefined) {
+    const configured = record(data.events, 'config.data.events');
+    for (const [eventId, raw] of Object.entries(configured)) {
+      if (!/^[a-z][A-Za-z0-9]*$/.test(eventId)) {
+        throw new Error('Invalid camelCase lesson event: ' + eventId);
+      }
+      if (raw === false) {
+        if (!defaultEvents.has(eventId)) throw new Error('Custom event cannot be disabled in Lesson Data: ' + eventId);
+        eventScenes[eventId] = false;
+        continue;
+      }
+      const block = record(decorateResponse(raw), 'config.data.events.' + eventId);
+      if (block.type !== 'scene') throw new Error('Event reaction must be a Scene: ' + eventId);
+      string(block.id, 'config.data.events.' + eventId + '.id');
+      string(block.slug, 'config.data.events.' + eventId + '.slug');
+      record(block.locales, 'config.data.events.' + eventId + '.locales');
+      eventScenes[eventId] = block as ContentBlock_Scene<'response', Locale_Languages>;
+    }
+  }
   const options = ['allowNavigation', 'allowSkipping', 'showIndexes'] as const;
   for (const option of options) {
     if (typeof settings[option] !== 'boolean') {
@@ -248,6 +272,7 @@ export function assembleLessonResponse(
     flashcards: flashcards.data,
     questions: indexedQuestions,
     sections,
+    ...(data.events !== undefined ? { events: eventScenes } : {}),
     localeSources: {
       config: config.localeSources,
       flashcards: flashcards.localeSources,

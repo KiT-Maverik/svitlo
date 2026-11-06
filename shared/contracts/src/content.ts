@@ -4,6 +4,8 @@ export type * from './types/readonly.types';
 export type * from './types/content/entity.types';
 export type * from './types/content/locale.types';
 export type * from './types/content/lesson.types';
+export type * from './types/content/lesson.events.types';
+export { DEFAULT_LESSON_EVENTS } from './types/content/lesson.events.types';
 export type * from './types/content/section.types';
 export type * from './types/content/flashcard.types';
 export type * from './types/content/review.types';

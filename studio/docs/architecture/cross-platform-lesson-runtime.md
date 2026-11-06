@@ -96,3 +96,27 @@ Server-assembled props remove an extra client API fetch for Lesson configuration
 **Observed example to preserve and generalize:** [Playground `sceneLoader.ts`](../../../content/playground/src/components/scenes/sceneLoader.ts) uses a static registry, `React.lazy` and a cache. Individual Scenes may still import Playground-specific providers; that is migration debt, not a reason to introduce a parallel loader.
 
 **Related:** [System Boundaries](./system-boundaries.md), [Offline & Device Compatibility](./offline-first-and-device-compatibility.md), [Git-First Typed Content](./git-first-typed-content.md), [Internationalization & Inclusive Access](./internationalization-and-accessibility.md), [Monorepo](./monorepo-and-textbook.md), [UI Kit agent instructions](../../../shared/ui-kit/AGENTS.md).
+
+
+## Lesson-local event reactions (implemented)
+
+The shared Lesson Controller provides a lesson-scoped Event Bus with the built-in
+`lessonStarted`, `lessonCompleted`, `quizCompleted` and `quizFailed` event names.
+Only the controller emits built-in lifecycle events; a Scene may emit a custom event
+declared in its own Lesson's `events` configuration via `LessonActions`.
+The generic QuestionRenderer only signals all questions checked: scoring is not
+implemented here, so `quizFailed` requires an explicit assessed failure rather
+than an inferred score. `lessonCompleted` indicates reaching and satisfying the
+last Section's navigation gate; it does **not** establish Skill mastery.
+
+Authoring `Lesson<'data', Languages, CustomEvents>` accepts optional standard
+event reactions and requires a Scene block for each declared custom event.
+Existing authored lessons may omit `events`. The sparse publisher localizes
+event Scene props and the Engine returns serializable Scene responses.
+Program/host-specific `eventOverrides` can replace or set any declared
+reaction to `false`, while events continue to publish for subscribers.
+
+The Event Bus is runtime-local, has no persistence, and does not replace the
+proposed Program Runtime or Program-wide narrative/event orchestration.
+The Event Scene host is a sibling UI region rendered through a portal; callers
+must keep scene UI accessible, localized, and keyboard operable.

@@ -43,6 +43,19 @@ function assertLesson(value: unknown): asserts value is LessonData {
   if (!Array.isArray(value.flashcards) || !isRecord(value.questions) || !Array.isArray(value.sections)) {
     throw new Error(`Lesson ${relativePath} is missing flashcards, questions, or sections`);
   }
+  // Validate authored event scenes before sparse publication. Custom event reactions cannot be false.
+  if (value.events !== undefined) {
+    if (!isRecord(value.events)) throw new Error('Lesson events must be a keyed object');
+    const standard = new Set(['lessonStarted', 'lessonCompleted', 'quizCompleted', 'quizFailed']);
+    for (const [eventId, reaction] of Object.entries(value.events)) {
+      if (!/^[a-z][A-Za-z0-9]*$/.test(eventId)) throw new Error('Invalid lesson event ID: ' + eventId);
+      if (reaction === false && standard.has(eventId)) continue;
+      if (!isRecord(reaction) || reaction.type !== 'scene' || typeof reaction.id !== 'string' ||
+          typeof reaction.slug !== 'string' || !isRecord(reaction.locales)) {
+        throw new Error('Lesson event reaction must be an authored Scene: ' + eventId);
+      }
+    }
+  }
   const sectionSlugs = new Set<string>();
   for (const [index, entry] of value.sections.entries()) {
     if (!isRecord(entry) || typeof entry.slug !== 'string' || !Array.isArray(entry.content)) {

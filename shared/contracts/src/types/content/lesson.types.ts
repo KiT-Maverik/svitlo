@@ -3,6 +3,7 @@ import type { Flashcard } from './flashcard.types';
 import type { Lesson_Locale, Locale_Options } from './locale.types';
 import type { Question_Catalog, Question_Catalog_ValidSlugs } from './questions';
 import type { Section } from './section.types';
+import type { LessonEventsField, LessonResponseEvents } from './lesson.events.types';
 
 type Lesson_Parameters<SupportedLanguages extends Lesson_Locale> = {
   requireQuiz: boolean;
@@ -21,7 +22,7 @@ type Lesson_Definition<SupportedLanguages extends Lesson_Locale> = {
   sections: readonly Section<'definition', SupportedLanguages>[];
 };
 
-type Lesson_Data<SupportedLanguages extends Lesson_Locale> = {
+type Lesson_Data<SupportedLanguages extends Lesson_Locale, CustomEvents extends string = never> = {
   id: string;
   slug: string;
   title: Locale_Options<SupportedLanguages>;
@@ -29,9 +30,9 @@ type Lesson_Data<SupportedLanguages extends Lesson_Locale> = {
   parameters: Lesson_Parameters<SupportedLanguages>;
   questions: Question_Catalog<'data', SupportedLanguages>;
   sections: readonly Section<'data', SupportedLanguages>[];
-};
+} & LessonEventsField<SupportedLanguages, CustomEvents>;
 
-type Lesson_Response<SupportedLanguages extends Lesson_Locale> = {
+type Lesson_Response<SupportedLanguages extends Lesson_Locale, CustomEvents extends string = never> = {
   id: string;
   slug: string;
   title: string;
@@ -39,16 +40,21 @@ type Lesson_Response<SupportedLanguages extends Lesson_Locale> = {
   parameters: Lesson_Parameters<SupportedLanguages>;
   questions: Question_Catalog<'response', SupportedLanguages>;
   sections: readonly Section<'response', SupportedLanguages>[];
+  events?: LessonResponseEvents<SupportedLanguages, CustomEvents>;
 };
 
-export type Lesson<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends Lesson_Locale> = {
+export type Lesson<
+  ConfigType extends ContentEntity_ConfigType,
+  SupportedLanguages extends Lesson_Locale,
+  CustomEvents extends string = never,
+> = {
   definition: Lesson_Definition<SupportedLanguages>;
-  data: Lesson_Data<SupportedLanguages>;
-  response: Lesson_Response<SupportedLanguages>;
+  data: Lesson_Data<SupportedLanguages, CustomEvents>;
+  response: Lesson_Response<SupportedLanguages, CustomEvents>;
 }[ConfigType];
 
-export function defineLessonData<SupportedLanguages extends Lesson_Locale>() {
-  return <const T extends Lesson<'data', SupportedLanguages>>(
+export function defineLessonData<SupportedLanguages extends Lesson_Locale, CustomEvents extends string = never>() {
+  return <const T extends Lesson<'data', SupportedLanguages, CustomEvents>>(
     lesson: T & {
       questions: Question_Catalog_ValidSlugs<T['questions'], SupportedLanguages>;
     },
