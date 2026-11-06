@@ -501,7 +501,6 @@ export function LessonController({
     () => <EventSceneHost bus={eventBus} events={effectiveEvents} sceneRegistry={sceneRegistry} enabled={eventReady} />,
     [eventBus, effectiveEvents, sceneRegistry, eventReady],
   );
-  const quizIndex = response.sections.findIndex(item => item.type === 'quiz');
   const topics = useMemo(() => [{ id: response.id, title: response.title, href }], [response.id, response.title, href]);
   const skippableSteps = useMemo(
     () =>
@@ -523,7 +522,6 @@ export function LessonController({
               topics={topics}
               pathname={href}
               skippableSteps={skippableSteps}
-              quizStep={quizIndex < 0 ? undefined : quizIndex}
               progress={progress}
               actions={navActions}
               renderTopBar={renderTopBar}
