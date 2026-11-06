@@ -158,8 +158,8 @@ function runGate(changed) {
     changed.some(
       file =>
         file.startsWith('apps/web/') ||
-        file.startsWith('content/playground/src/components/scenes/') ||
-        file.startsWith('content/playground/scripts/check-react-dom-portability') ||
+        file.startsWith('content/playground/scenes/') ||
+        file.startsWith('content/playground/scripts/') ||
         file === 'content/playground/package.json' ||
         file === 'shared/ui-kit/src/scene-locale.tsx',
     )
@@ -167,10 +167,32 @@ function runGate(changed) {
     exec('npm', ['run', 'test:portability', '--workspace', '@svitlo/playground']);
   }
 
+  if (
+    changed.some(
+      file =>
+        file.startsWith('content/playground/scripts/') ||
+        file === 'content/playground/package.json' ||
+        file.startsWith('apps/web/scripts/prepare-textbook'),
+    )
+  ) {
+    exec('npm', ['run', 'test:publish', '--workspace', '@svitlo/playground']);
+  }
+
   // Authored textbook taxonomy imports @svitlo/engine/taxonomy. Its exported declarations
   // exist only after the shared Engine build; data/ is now included in textbook tsconfigs.
   // Build this prerequisite for affected textbooks even when their manifests have not
   // yet declared an explicit Engine dependency.
+  // A textbook migration changes the packed npm contract, not only TypeScript.
+  // Run its build once and both package-scoped resource/consumer checks.
+  for (const subject of ['math', 'physics', 'psychology', 'philosophy', 'language-literature', 'ukrainian']) {
+    const pkg = all.get('@svitlo/' + subject);
+    if (!pkg || !changed.some(file => file.startsWith(pkg.path + '/'))) continue;
+    ensureSharedDependencies(pkg.name);
+    exec('npm', ['run', 'build', '--workspace', pkg.name]);
+    exec('node', ['--test', path.join(pkg.path, 'scripts/publish.spec.mjs')]);
+    exec('node', [path.join(pkg.path, 'scripts/check-react-dom-portability.mjs')]);
+  }
+
   const textbookTaxonomyChanged = targets.some(name => {
     const pkg = all.get(name);
     return pkg?.path.startsWith('content/') && fs.existsSync(path.join(repoRoot, pkg.path, 'data/skills'));
@@ -206,7 +228,9 @@ function runGate(changed) {
           file.startsWith('shared/adapters/nextjs/') ||
           file.startsWith('shared/ui-kit/src/components/lesson/') ||
           file.startsWith('shared/ui-kit/src/components/widgets/ContentBlockRenderer/blocks/Image/') ||
-          file.startsWith('content/playground/src/components/scenes/') ||
+          file.startsWith('content/playground/scenes/') ||
+          file.startsWith('content/playground/scripts/') ||
+          file === 'content/playground/package.json' ||
           file.startsWith('apps/web/'),
       )
     ) {

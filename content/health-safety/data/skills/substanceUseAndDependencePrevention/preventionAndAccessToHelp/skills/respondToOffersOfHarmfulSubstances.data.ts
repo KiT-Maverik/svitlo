@@ -51,7 +51,7 @@ export const respondToOffersOfHarmfulSubstances_Skill_Data = buildSkillConfig({
       ja: '有害な物質を勧められたら、安全に断ってその場を離れる方法を使おう。',
       ko: '해로운 물질을 권유받을 때 안전하게 거절하고 자리를 떠나는 방법을 사용하세요.',
       tr: 'Zararlı madde teklif edildiğinde güvenle reddetme ve ortamdan uzaklaşma yollarını kullan.',
-      vi: 'Từ chối và rời khỏi tình huống an toàn khi được mời dùng chất có hại.',
+      vi: 'Khi được mời dùng chất có hại, hãy từ chối một cách an toàn và rời khỏi tình huống đó.',
       ta: 'தீங்கு தரும் பொருளை வழங்கினால் பாதுகாப்பாக மறுத்து விலகும் வழிகளைப் பயன்படுத்துங்கள்.',
       te: 'హానికర పదార్థాలు ఇస్తామని చెప్పినప్పుడు సురక్షితంగా నిరాకరించి దూరమయ్యే మార్గాలు వాడండి.',
       mr: 'हानिकारक पदार्थ देऊ केल्यावर सुरक्षित नकार आणि तिथून निघण्याचे मार्ग वापरा.',

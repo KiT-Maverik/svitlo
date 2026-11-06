@@ -2,24 +2,39 @@
   "name": "@svitlo/astronomy",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint src",
-    "typecheck": "next typegen && tsc --noEmit"
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint textbook.ts scripts/*.mjs",
+    "pretest:publish": "npm run build --workspace @svitlo/astronomy",
+    "test:publish": "node --test scripts/publish.spec.mjs",
+    "pretest:portability": "npm run build --workspace @svitlo/astronomy",
+    "test:portability": "node scripts/check-portability.mjs",
+    "prepack": "npm run build"
   },
+  "bin": {
+    "svitlo-astronomy": "./scripts/publish.mjs"
+  },
+  "files": [
+    "dist",
+    "scripts/publish.mjs"
+  ],
   "dependencies": {
-    "next": "16.4.2",
-    "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "@svitlo/engine": "0.0.0"
   },
   "devDependencies": {
     "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
+    "esbuild": "^0.28.2",
+    "typescript": "^5",
     "eslint": "^9",
-    "eslint-config-next": "16.4.2",
-    "typescript": "^5"
+    "@typescript-eslint/parser": "^8.72.0",
+    "@typescript-eslint/eslint-plugin": "^8.72.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/textbook/index.d.ts",
+      "default": "./dist/textbook/index.js"
+    }
   }
 }

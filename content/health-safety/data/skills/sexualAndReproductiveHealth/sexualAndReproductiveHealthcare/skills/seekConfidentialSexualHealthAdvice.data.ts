@@ -15,7 +15,7 @@ export const seekConfidentialSexualHealthAdvice_Skill_Data = buildSkillConfig({
     ur: 'جنسی صحت کی رازداری کے ساتھ مشورہ لینا',
     id: 'Mencari nasihat kesehatan seksual yang rahasia',
     de: 'Vertrauliche Beratung zur sexuellen Gesundheit suchen',
-    ja: '性の健康について秘密が守られる相談をする',
+    ja: '秘密が守られる性の健康相談を利用する',
     ko: '비밀이 보장되는 성 건강 상담 구하기',
     tr: 'Gizli cinsel sağlık danışmanlığı almak',
     vi: 'Tìm tư vấn bảo mật về sức khỏe tình dục',

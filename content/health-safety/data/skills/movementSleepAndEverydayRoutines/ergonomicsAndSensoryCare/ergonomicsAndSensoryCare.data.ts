@@ -64,7 +64,7 @@ export const ergonomicsAndSensoryCare_SkillGroup_Data = buildSkillGroupConfig({
       ko: '작업 공간과 기기를 조절해 몸과 감각의 부담을 줄이는 법을 알아보세요.',
       tr: 'Çalışma alanını ve cihazları düzenleyerek bedensel ve duyusal zorlanmayı azaltmayı öğren.',
       vi: 'Học cách điều chỉnh nơi làm việc và thiết bị để giảm căng thẳng cơ thể và giác quan.',
-      ta: 'உடலுக்கும் புலன்களுக்கும் ஏற்படும் சுமையைக் குறைக்க பணியிடம், சாதனங்களை மாற்றியமைப்பதை அறி.',
+      ta: 'உடலுக்கும் புலன்களுக்கும் ஏற்படும் சுமையைக் குறைக்க பணியிடம், சாதனங்களை மாற்றியமைப்பதை அறியுங்கள்.',
       te: 'శరీరం, ఇంద్రియాలపై ఒత్తిడి తగ్గేందుకు పని ప్రదేశం, పరికరాలను సర్దుబాటు చేయడం తెలుసుకోండి.',
       mr: 'कामाची जागा व उपकरणे बदलून शरीर आणि इंद्रियांवरील ताण कसा कमी होतो ते शीक.',
       ms: 'Ketahui cara menyesuaikan ruang kerja dan peranti untuk mengurangkan ketegangan badan dan deria.',

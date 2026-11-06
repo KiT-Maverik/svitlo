@@ -7,7 +7,7 @@ on:
     paths:
       - 'apps/mobile/**'
       - 'shared/adapters/capacitor/**'
-      - 'content/playground/src/components/scenes/sceneLoader.ts'
+      - 'content/playground/scenes/**'
       - 'package-lock.json'
       - '.github/workflows/mobile.yml'
   workflow_dispatch:

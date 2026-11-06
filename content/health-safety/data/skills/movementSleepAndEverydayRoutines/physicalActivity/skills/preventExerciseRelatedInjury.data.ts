@@ -53,7 +53,7 @@ export const preventExerciseRelatedInjury_Skill_Data = buildSkillConfig({
       ko: '운동 중 예방 가능한 부상을 줄이는 방법을 배워 보세요.',
       tr: 'Egzersizde önlenebilir yaralanmaları azaltmanın yollarını öğren.',
       vi: 'Học cách giảm chấn thương có thể phòng tránh khi tập luyện.',
-      ta: 'உடற்பயிற்சியில் தவிர்க்கக்கூடிய காயங்களைக் குறைக்கும் வழிகளைக் கற்றுக்கொள்.',
+      ta: 'உடற்பயிற்சியில் தவிர்க்கக்கூடிய காயங்களைக் குறைக்கும் வழிகளைக் கற்றுக்கொள்ளுங்கள்.',
       te: 'వ్యాయామంలో నివారించగల గాయాలను తగ్గించే మార్గాలు నేర్చుకోండి.',
       mr: 'व्यायामात टाळता येणाऱ्या दुखापती कमी करण्याचे मार्ग शीक.',
       ms: 'Pelajari cara mengurangkan kecederaan yang boleh dielakkan ketika bersenam.',

@@ -2,10 +2,11 @@ name: Arithmetic taxonomy quality
 on:
   pull_request:
     paths:
-      - 'content/math/src/data/skillsTaxonomy/arithmetic/**'
-      - 'content/math/src/data/skillsTaxonomy/UUID-MIGRATION.md'
-      - 'content/math/docs/skills-inventory.md'
-      - 'content/math/src/data/skillsTaxonomy/__tests__/arithmeticTaxonomy.spec.ts'
+      - 'content/math/data/skills/arithmetic/**'
+      - 'content/math/data/skills/**'
+      - 'content/math/docs/skills/**'
+      - 'content/math/scripts/**'
+      - 'content/math/package.json'
       - 'shared/engine/**'
       - 'shared/contracts/**'
       - '.github/workflows/arithmetic-taxonomy.yml'
@@ -34,5 +35,7 @@ jobs:
       - run: npm run typecheck --workspace @svitlo/math
       - run: node --test scripts/check-skills-taxonomy-structure.spec.mjs
       - run: node scripts/check-skills-taxonomy-structure.mjs
-      - run: npm run lint --workspace @svitlo/math
+      - run: npm run test:components --workspace @svitlo/math
       - run: npm run build --workspace @svitlo/math
+      - run: node --test content/math/scripts/publish.spec.mjs
+      - run: node content/math/scripts/check-react-dom-portability.mjs

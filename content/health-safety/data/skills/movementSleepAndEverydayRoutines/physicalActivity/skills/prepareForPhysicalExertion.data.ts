@@ -52,7 +52,7 @@ export const prepareForPhysicalExertion_Skill_Data = buildSkillConfig({
       ko: '운동을 시작하기 전에 장비와 주변 환경을 확인하세요.',
       tr: 'Fiziksel efordan önce ekipmanı ve çevreni kontrol et.',
       vi: 'Chuẩn bị dụng cụ và kiểm tra môi trường trước khi vận động mạnh.',
-      ta: 'உடல் உழைப்புக்கு முன் உபகரணங்களையும் சுற்றுப்புறத்தையும் சரிபார்.',
+      ta: 'உடல் உழைப்புக்கு முன் உபகரணங்களையும் சுற்றுப்புறத்தையும் சரிபாருங்கள்.',
       te: 'శారీరక శ్రమకు ముందు పరికరాలు, పరిసరాలను పరిశీలించండి.',
       mr: 'शारीरिक श्रमाआधी साहित्य आणि परिसर तपास.',
       ms: 'Sediakan peralatan dan semak keadaan sekeliling sebelum aktiviti berat.',

@@ -60,7 +60,7 @@ export const respondToAttackWarnings_Skill_Data = buildSkillConfig({
       he: 'פעלו לפי התרעות תקיפה רשמיות והגיעו למקום בטוח שהוגדר מראש.',
       pl: 'Po oficjalnym alarmie o ataku udaj się do wcześniej wybranego bezpieczniejszego miejsca.',
       uk: 'За офіційним попередженням про атаку прямуй до заздалегідь визначеного безпечнішого місця.',
-      lt: 'Gavusi oficialų perspėjimą vyk į iš anksto numatytą saugesnę vietą.',
+      lt: 'Gavus oficialų perspėjimą, vyk į iš anksto numatytą saugesnę vietą.',
       lv: 'Pēc oficiāla uzbrukuma brīdinājuma dodies uz iepriekš izvēlētu drošāku vietu.',
       et: 'Ametliku rünnakuhoiatuse korral mine eelnevalt valitud ohutumasse kohta.',
       be: 'Паводле афіцыйнага папярэджаньня пра напад ідзі ў загадзя вызначанае бясьпечнейшае месца.',

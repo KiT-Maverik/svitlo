@@ -60,7 +60,7 @@ export const pedestrianRoadSafety_Skill_Data = buildSkillConfig({
       he: 'בחרו מקום חצייה בטוח תוך בדיקת התנועה, הרמזורים ושדה הראייה.',
       pl: 'Wybierz bezpieczniejsze przejście, obserwując ruch, sygnały i widoczność.',
       uk: 'Обирай безпечніший перехід, зважаючи на рух транспорту, сигнали та оглядовість.',
-      lt: 'Rinkis saugesnę perėją stebėdama eismą, signalus ir matomumą.',
+      lt: 'Stebėk eismą, signalus ir matomumą, kad pasirinktum saugesnę perėją.',
       lv: 'Izvēlies drošāku šķērsošanas vietu, vērojot satiksmi, signālus un redzamību.',
       et: 'Vali ohutum ülekäigukoht, jälgides liiklust, signaale ja nähtavust.',
       be: 'Выбірай бясьпечнейшы пераход, зважаючы на рух транспарту, сыгналы і бачнасць.',

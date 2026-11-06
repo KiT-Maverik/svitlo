@@ -2,24 +2,41 @@
   "name": "@svitlo/engineering",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint src",
-    "typecheck": "next typegen && tsc --noEmit"
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint scripts/*.mjs",
+    "pretest:portability": "npm run build --workspace @svitlo/engineering",
+    "test:portability": "node scripts/check-react-dom-portability.mjs",
+    "pretest:publish": "npm run build --workspace @svitlo/engineering",
+    "test:publish": "node --test scripts/publish.spec.mjs",
+    "prepack": "npm run build"
   },
+  "bin": {
+    "svitlo-engineering": "./scripts/publish.mjs"
+  },
+  "files": [
+    "dist",
+    "scripts/publish.mjs"
+  ],
   "dependencies": {
-    "next": "16.4.2",
-    "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "@svitlo/engine": "0.0.0"
   },
   "devDependencies": {
     "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.4.2",
-    "typescript": "^5"
+    "typescript": "^5",
+    "esbuild": "^0.28.2"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/textbook/index.d.ts",
+      "default": "./dist/textbook/index.js"
+    },
+    "./scenes": {
+      "types": "./dist/scenes/index.d.ts",
+      "default": "./dist/scenes/index.js"
+    }
   }
 }

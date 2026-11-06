@@ -66,7 +66,7 @@ export const evaluateInjuryRisk_Skill_Data = buildSkillConfig({
       be: 'Ацэньвай, як небясьпека можа прывесьці да неадкладнай траўмы.',
       ka: 'შეაფასე, როგორ შეიძლება საფრთხემ დაუყოვნებელი დაზიანება გამოიწვიოს.',
       kk: 'Қауіптің бірден жарақатқа қалай әкелетінін бағала.',
-      qm: 'Telükeniñ tezden nasıl yaralanmağa sebep olacağını qıymetlendır.',
+      qm: 'Telükeniñ tezden nasıl yaralanmağa sebep olacağını qıymetlendir.',
     },
   },
 });

@@ -4,9 +4,9 @@ Svitlo is a modular interactive-learning project. Each textbook is a **standalon
 
 ## Workspace map
 
-| Workspace                     | Folder                             | Purpose                                                                            |
-| ----------------------------- | ---------------------------------- | ---------------------------------------------------------------------------------- |
-| `@svitlo/platform`            | `frontend/platform`                | Next.js web platform and external textbook catalog                                 |
+| Workspace                     | Folder                        | Purpose                                                                            |
+| ----------------------------- | ----------------------------- | ---------------------------------------------------------------------------------- |
+| `@svitlo/platform`            | `frontend/platform`           | Next.js web platform and external textbook catalog                                 |
 | `@svitlo/math`                | `content/math`                | Mathematics textbook; owns taxonomy and curriculum                                 |
 | `@svitlo/biology`             | `content/biology`             | Biology textbook scaffold                                                          |
 | `@svitlo/geography`           | `content/geography`           | Geography textbook scaffold                                                        |
@@ -24,11 +24,11 @@ Svitlo is a modular interactive-learning project. Each textbook is a **standalon
 | `@svitlo/health-safety`       | `content/health-safety`       | Health and Safety textbook scaffold                                                |
 | `@svitlo/engineering`         | `content/engineering`         | Engineering textbook scaffold                                                      |
 | `@svitlo/playground`          | `content/playground`          | Subject-neutral widget/lesson demonstration application                            |
-| `@svitlo/contracts`           | `shared/contracts`                 | Shared types, stable IDs, localization descriptors and persisted-state contracts   |
-| `@svitlo/engine`              | `shared/engine`                    | Framework-independent builders, validation, generation and Assessment Methods      |
-| `@svitlo/indexdb`             | `shared/indexdb`                   | Browser IndexedDB persistence, schemas and native integration tests                |
-| `@svitlo/ui-kit`              | `shared/ui-kit`                    | Shared React/MUI widgets, navigation, themes/preferences composition and Storybook |
-| `@svitlo/server`              | `backend/server`                   | **Placeholder only**; no operational backend yet                                   |
+| `@svitlo/contracts`           | `shared/contracts`            | Shared types, stable IDs, localization descriptors and persisted-state contracts   |
+| `@svitlo/engine`              | `shared/engine`               | Framework-independent builders, validation, generation and Assessment Methods      |
+| `@svitlo/indexdb`             | `shared/indexdb`              | Browser IndexedDB persistence, schemas and native integration tests                |
+| `@svitlo/ui-kit`              | `shared/ui-kit`               | Shared React/MUI widgets, navigation, themes/preferences composition and Storybook |
+| `@svitlo/server`              | `backend/server`              | **Placeholder only**; no operational backend yet                                   |
 
 Node and npm workspaces are the current package/CI tools; `package-lock.json` is authoritative. `pnpm-workspace.yaml` and `turbo.json` are not used for this project's current GitHub Actions builds.
 

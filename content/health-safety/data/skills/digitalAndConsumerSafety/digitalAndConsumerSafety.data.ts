@@ -55,7 +55,7 @@ export const digitalAndConsumerSafety_SkillDomain_Data = buildSkillDomainConfig(
       fr: 'Découvre comment protéger les informations personnelles et réagir aux tromperies en ligne.',
       bn: 'ব্যক্তিগত তথ্য সুরক্ষিত রাখা ও অনলাইনের প্রতারণায় সাড়া দেওয়া শেখো।',
       pt: 'Descubra como proteger informações pessoais e reagir a comportamentos enganosos online.',
-      ur: 'ذاتی معلومات محفوظ رکھنا اور آن لائن دھوکے کا سامنا کرنا سیکھو۔',
+      ur: 'ذاتی معلومات محفوظ رکھنا اور آن لائن دھوکے کا سامنا کرنا سیکھیں۔',
       id: 'Pelajari cara melindungi informasi pribadi dan menanggapi penipuan daring.',
       de: 'Entdecke, wie du persönliche Daten schützt und auf Täuschung im Internet reagierst.',
       ja: '個人情報を守り、ネット上の欺瞞に対応する方法を学ぼう。',

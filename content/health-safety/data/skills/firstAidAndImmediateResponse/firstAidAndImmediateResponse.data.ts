@@ -59,7 +59,7 @@ export const firstAidAndImmediateResponse_SkillDomain_Data = buildSkillDomainCon
       fr: "Apprends à reconnaître un danger urgent, appeler à l'aide et fournir une assistance de base adaptée.",
       bn: 'জরুরি বিপদ চিনে সাহায্য ডাকতে ও উপযুক্ত প্রাথমিক সহায়তা দিতে শেখো।',
       pt: 'Aprenda a reconhecer perigo urgente, pedir ajuda e prestar assistência básica adequada.',
-      ur: 'فوری خطرے کو پہچاننا، مدد بلانا اور مناسب بنیادی امداد دینا سیکھو۔',
+      ur: 'فوری خطرے کو پہچاننا، مدد بلانا اور مناسب بنیادی امداد دینا سیکھیں۔',
       id: 'Pelajari cara mengenali bahaya mendesak, meminta bantuan, dan memberi pertolongan dasar yang sesuai.',
       de: 'Lerne, akute Gefahren zu erkennen, Hilfe zu rufen und angemessene grundlegende Unterstützung zu leisten.',
       ja: '緊急の危険を見分け、助けを呼び、適切な基本的援助を行う方法を学ぼう。',

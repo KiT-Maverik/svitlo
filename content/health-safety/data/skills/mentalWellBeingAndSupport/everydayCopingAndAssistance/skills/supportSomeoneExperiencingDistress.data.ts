@@ -29,7 +29,7 @@ export const supportSomeoneExperiencingDistress_Skill_Data = buildSkillConfig({
     lt: 'Palaikyti emocinį sunkumą patiriantį žmogų',
     lv: 'Atbalstīt cilvēku emocionālās grūtībās',
     et: 'Toetada emotsionaalses hädas inimest',
-    be: 'Падтрымліваць чалавека ў душэўным крызісе',
+    be: 'Падтрымліваць чалавека ў душэўнай скрусе',
     ka: 'ემოციურ გასაჭირში მყოფი ადამიანის მხარდაჭერა',
     kk: 'Эмоциялық күйзелістегі адамға қолдау көрсету',
     qm: 'Duyğu qıyınlığında olğan adamğa destek olmaq',

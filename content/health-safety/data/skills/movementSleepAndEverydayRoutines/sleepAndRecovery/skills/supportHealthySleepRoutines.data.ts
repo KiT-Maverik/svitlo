@@ -53,7 +53,7 @@ export const supportHealthySleepRoutines_Skill_Data = buildSkillConfig({
       ko: '더 잘 잘 수 있도록 생활 습관과 환경을 조절해 보세요.',
       tr: 'Daha iyi uyumak için alışkanlıklarını ve ortamını düzenle.',
       vi: 'Điều chỉnh thói quen và môi trường để ngủ tốt hơn.',
-      ta: 'நன்றாகத் தூங்க பழக்கங்களையும் சுற்றுப்புறத்தையும் மாற்றியமை.',
+      ta: 'நன்றாகத் தூங்க பழக்கங்களையும் சுற்றுப்புறத்தையும் மாற்றி அமைக்கவும்.',
       te: 'మంచి నిద్ర కోసం అలవాట్లు, పరిసరాలను సర్దుబాటు చేసుకోండి.',
       mr: 'चांगल्या झोपेसाठी सवयी आणि सभोवतालचे वातावरण बदल.',
       ms: 'Laraskan tabiat dan persekitaran untuk tidur dengan lebih baik.',

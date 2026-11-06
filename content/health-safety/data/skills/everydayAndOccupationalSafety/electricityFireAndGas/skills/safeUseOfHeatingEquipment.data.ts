@@ -53,7 +53,7 @@ export const safeUseOfHeatingEquipment_Skill_Data = buildSkillConfig({
       ko: '난방 기구는 충분히 환기하고 가연성 물질과 거리를 두고 사용하세요.',
       tr: 'Isıtıcıları yeterli havalandırmayla ve yanıcılardan uzak kullan.',
       vi: 'Dùng máy sưởi với thông gió phù hợp và cách xa vật dễ cháy.',
-      ta: 'வெப்பமூட்டிகளைத் தகுந்த காற்றோட்டத்துடன், எரிபொருட்களிலிருந்து விலகி பயன்படுத்துங்கள்.',
+      ta: 'வெப்பமூட்டும் சாதனங்களைத் தகுந்த காற்றோட்டத்துடன், எளிதில் தீப்பற்றக்கூடிய பொருட்களிலிருந்து விலகிப் பயன்படுத்துங்கள்.',
       te: 'హీటర్లను తగిన గాలి ప్రసరణతో, మండే వస్తువులకు దూరంగా ఉపయోగించండి.',
       mr: 'हीटर वापरताना योग्य वायुवीजन ठेवा आणि ज्वलनशील वस्तूंपासून अंतर राखा.',
       ms: 'Gunakan pemanas dengan pengudaraan sesuai dan jauh dari bahan mudah terbakar.',

@@ -17,6 +17,7 @@ const uiKit = readJson('shared/ui-kit/package.json');
 const nextAdapter = readJson('shared/adapters/nextjs/package.json');
 
 function walk(dir) {
+  if (!existsSync(dir)) return [];
   return readdirSync(dir, { withFileTypes: true }).flatMap(entry => {
     const path = join(dir, entry.name);
     return entry.isDirectory() ? walk(path) : entry.isFile() ? [path] : [];
@@ -25,13 +26,38 @@ function walk(dir) {
 function assert(condition, message) {
   if (!condition) throw new Error(message);
 }
-assert(physics.name === '@svitlo/physics', 'Unexpected Physics package name');
-assert(
-  physics.dependencies?.next && physics.dependencies?.react && physics.dependencies?.['react-dom'],
-  'Physics must declare independent Next.js/React runtime dependencies',
-);
-for (const file of ['src/app/layout.tsx', 'src/app/page.tsx']) {
-  assert(existsSync(resolve(root, 'content/physics', file)), 'Physics scaffold missing: ' + file);
+// Only the universal hosts are Next.js/Electron/Capacitor applications.
+const migratedTextbookPaths = [
+  'content/math',
+  'content/physics',
+  'content/psychology',
+  'content/philosophy',
+  'content/language-literature',
+  'content/languages/ukrainian',
+  'content/astronomy',
+  'content/biology',
+  'content/geography',
+  'content/history',
+  'content/informatics',
+];
+for (const path of migratedTextbookPaths) {
+  const pkg = readJson(path + '/package.json');
+  const id = pkg.name.slice('@svitlo/'.length);
+  assert(pkg.name === '@svitlo/' + id, 'Unexpected textbook package name: ' + path);
+  assert(
+    !pkg.dependencies?.next && !existsSync(resolve(root, path, 'src/app')),
+    'Standalone Next.js shell remains: ' + path,
+  );
+  assert(pkg.bin?.['svitlo-' + id] === './scripts/publish.mjs', 'Missing textbook Publish CLI: ' + path);
+  assert(
+    pkg.exports?.['.']?.default === './dist/textbook/index.js' &&
+      pkg.exports?.['.']?.types === './dist/textbook/index.d.ts',
+    'Book must expose compiled metadata: ' + path,
+  );
+  assert(
+    !pkg.exports?.['./scenes'] && !pkg.exports?.['./styles'],
+    'Do not publish fabricated Scenes or styles: ' + path,
+  );
 }
 assert(platform.name === '@svitlo/platform', 'Unexpected Platform package name');
 assert(
@@ -72,7 +98,7 @@ for (const subpath of ['.', './content', './taxonomy', './localization', './stat
 assert(playground.dependencies?.[engine.name] === engine.version, 'Playground must use a versioned engine dependency');
 assert(playground.dependencies?.[uiKit.name] === uiKit.version, 'Playground must use a versioned UI Kit dependency');
 assert(web.dependencies?.[indexdb.name] === indexdb.version, 'Web must use public IndexedDB dependency');
-assert(math.dependencies?.[indexdb.name] === indexdb.version, 'Math must use public IndexedDB dependency');
+assert(!math.dependencies?.[indexdb.name], 'Math may not carry legacy app-local IndexedDB dependencies');
 assert(biology.name === '@svitlo/biology', 'Unexpected Biology package name');
 for (const name of ['content/math', 'content/playground']) {
   assert(!existsSync(resolve(root, name, 'src/db')), name + ' must not own duplicate IndexedDB controllers');
@@ -94,7 +120,8 @@ for (const [label, manifest] of [
   ['Playground', playground],
 ]) {
   assert(manifest.dependencies?.[engine.name] === engine.version, label + ' must use public Engine dependency');
-  assert(manifest.dependencies?.[uiKit.name] === uiKit.version, label + ' must use public UI Kit dependency');
+  if (label === 'Playground')
+    assert(manifest.dependencies?.[uiKit.name] === uiKit.version, label + ' must use public UI Kit dependency');
 }
 assert(existsSync(resolve(root, 'content/math/data/skills')), 'Math textbook is missing its canonical Skills taxonomy');
 assert(existsSync(resolve(root, 'content/math/docs')), 'Math textbook is missing package-local educational docs');
@@ -114,6 +141,16 @@ assert(
 assert(
   playground.exports?.['./scenes'] && web.dependencies?.[playground.name] === playground.version,
   'Web must consume the public Playground Scene registry',
+);
+assert(
+  ['.', './scenes'].every(
+    key =>
+      playground.exports?.[key]?.default?.startsWith('./dist/') &&
+      playground.exports?.[key]?.types?.startsWith('./dist/'),
+  ) &&
+    playground.exports?.['./styles']?.default === './dist/styles.css' &&
+    playground.bin?.['svitlo-playground'] === './scripts/publish.mjs',
+  'Playground must expose compiled JS, declarations, styles and a Publish CLI',
 );
 assert(
   !existsSync(resolve(root, 'content/playground/src/fixtures')),
@@ -266,6 +303,7 @@ const applicationSourceRoots = [
   'frontend/platform/src',
 ].map(path => resolve(root, path));
 for (const applicationRoot of applicationSourceRoots) {
+  if (!existsSync(applicationRoot)) continue;
   for (const file of walk(applicationRoot).filter(path => /\.(ts|tsx)$/.test(path))) {
     const code = readFileSync(file, 'utf8');
     for (const match of code.matchAll(/\bfrom\s*['"]([^'"]+)['"]/g)) {
@@ -357,4 +395,4 @@ assert(
   !themeComponent.includes('useColorScheme'),
   'UI Kit NavbarPreferences must receive MUI theme state via props from the consuming app',
 );
-console.log('Package boundaries and both independent applications verified.');
+console.log('Package boundaries, compiled textbooks and independent hosts verified.');

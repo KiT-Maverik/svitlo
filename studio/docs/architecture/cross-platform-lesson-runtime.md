@@ -1,6 +1,29 @@
 # Cross-Platform Lesson Runtime & Build-Time Textbook Composition
 
-**Status:** **Partially implemented.** Playground now supplies a framework-independent textbook package to the build-selected `apps/web` Next.js host. Other textbooks remain standalone applications. Capacitor, Electron, offline delivery and the proposed session operations architecture remain future work. See [Monorepo & Independent Textbooks](./monorepo-and-textbook.md) for the repository map; do not assume proposed APIs already exist.
+**Status:** **Partially implemented.** Playground now builds a framework-independent compiled textbook package consumed by the build-selected `apps/web` Next.js host and the initial `apps/mobile` Capacitor and `apps/desktop` Electron hosts. Other textbooks remain standalone applications. Cross-device offline verification, content licensing and the proposed session operations architecture remain future work. See [Monorepo & Independent Textbooks](./monorepo-and-textbook.md) for the repository map; do not assume proposed APIs already exist.
+
+## Compiled textbook distribution contract (Playground)
+
+Playground's source build now emits compiled ESM, TypeScript declarations, lazy Scene
+chunks, CSS Modules, localized lesson and Skills Analytics JSON and book-owned assets
+under `content/playground/dist/`. The package exports `@svitlo/playground`,
+`@svitlo/playground/scenes`, `/demo-questions` and `/styles`; hosts use the
+compiled npm exports instead of the textbook's source TypeScript paths.
+
+After `npm run build --workspace @svitlo/playground`, an installed host invokes
+`svitlo-playground publish --output <directory>` via npm. Publish reads the
+package-local manifest and copies prebuilt `/data/pages/lessons/…` and
+`/data/pages/skillAnalytics/…` plus optional `/textbooks/playground/…` assets.
+It never runs generators. An ownership manifest in the destination prevents
+stale-file deletion from affecting UI Kit, host, or other textbook resources.
+UI Kit flags and global UI Kit translation JSON remain host-owned staging.
+
+The source build still uses shared, repository-level generators and Engine APIs;
+the _installed distribution and publisher_ do not require the authoring source
+tree, compiler aliases or Next.js. Web, Capacitor and Electron hosts now stage
+book resources via the same CLI and import compiled Scenes/styles. Independent
+React DOM tarball consumption is tested with esbuild; installed native behavior,
+Web offline precaching and device accessibility remain host-specific release gates.
 
 ## Goal
 
@@ -25,7 +48,7 @@ A release can select **one textbook** or **a catalog of textbooks** at build tim
 - UI Kit renders using **React DOM** in all three targets (Next.js browser, Capacitor WebView, Electron Chromium). This design intentionally **does not promise compatibility with React Native's native component renderer**.
 - There is no requirement to split a textbook into separate `definition` and `runtime` repositories/packages. Distinguish **authoring/build inputs** from **runtime deliverables** within a single independently extractable textbook package.
 - Keep platform-specific bootstrapping and framework tooling in the host. UI Kit and Scenes must not import app-local `@/*` aliases or app-owned context providers. Shared locale/session providers may be supplied explicitly where required.
-- **Shared UI static assets:** UI Kit is the source of truth for flags and other reusable static UI assets. Each host stages its own deployable copy during app preparation, independently of the selected textbook. For Web, `npm run prepare:assets --workspace @svitlo/web` puts flags in `apps/web/public/flags/` (served as `/flags/*.svg`); `prepare-textbook.mjs` handles selected-book data and does not copy these files. Capacitor/Electron will require their own packaging adapters when implemented.
+- **Shared UI static assets:** UI Kit is the source of truth for flags and other reusable static UI assets. Each host stages its own deployable copy during app preparation, independently of the selected textbook. For Web, `npm run prepare:assets --workspace @svitlo/web` puts flags in `apps/web/public/flags/` (served as `/flags/*.svg`); `prepare-textbook.mjs` handles selected-book data and does not copy these files. Mobile and Desktop stage UI Kit assets into their own public directories.
 
 ## Build-time composition and offline behavior
 

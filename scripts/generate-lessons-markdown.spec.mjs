@@ -233,16 +233,7 @@ describe('Lesson → Markdown review projection', () => {
       /Invalid --package/,
     );
     assert.throws(
-      () =>
-        parseArguments([
-          '--package',
-          'content/playground',
-          '--lesson',
-          '../secrets',
-          '--locale',
-          'uk',
-          '--stdout',
-        ]),
+      () => parseArguments(['--package', 'content/playground', '--lesson', '../secrets', '--locale', 'uk', '--stdout']),
       /canonical UUID/,
     );
     assert.throws(
@@ -307,8 +298,7 @@ describe('Lesson → Markdown review projection', () => {
         /Symlink|Invalid/,
       );
       assert.throws(
-        () =>
-          sourceIndex(tmp.root, 'content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/../light'),
+        () => sourceIndex(tmp.root, 'content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/../light'),
         /Invalid/,
       );
     } finally {

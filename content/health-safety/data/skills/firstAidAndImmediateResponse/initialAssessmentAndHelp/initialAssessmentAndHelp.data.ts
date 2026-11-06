@@ -77,7 +77,7 @@ export const initialAssessmentAndHelp_SkillGroup_Data = buildSkillGroupConfig({
       lv: 'Uzzini pirmos soļus cilvēka novērtēšanā, ja viņam var būt vajadzīga neatliekama palīdzība.',
       et: 'Õpi esimesi samme inimese seisundi hindamiseks, kui ta võib vajada hädaabi.',
       be: 'Даведайся пра першыя крокі ацэнкі стану чалавека, якому можа спатрэбіцца экстраная дапамога.',
-      ka: 'გაეცანი პირველი ნაბიჯებს ადამიანის შესაფასებლად, რომელსაც შესაძლოა სასწრაფო დახმარება სჭირდებოდეს.',
+      ka: 'გაეცანი პირველ ნაბიჯებს ადამიანის შესაფასებლად, რომელსაც შესაძლოა სასწრაფო დახმარება სჭირდებოდეს.',
       kk: 'Жедел көмек қажет болуы мүмкін адамның жағдайын бағалаудың алғашқы қадамдарын үйрен.',
       qm: 'Acele yardım kerek olabilgen adamnı baqmanın ilk adımlarını ögren.',
     },

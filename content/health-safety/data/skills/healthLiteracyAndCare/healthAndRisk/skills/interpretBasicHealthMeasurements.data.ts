@@ -53,7 +53,7 @@ export const interpretBasicHealthMeasurements_Skill_Data = buildSkillConfig({
       ko: '기본 건강 수치를 이해하되 한 번의 결과만으로 진단하지 마세요.',
       tr: 'Temel sağlık ölçümlerini tek bir sonucu tanı saymadan yorumla.',
       vi: 'Hiểu các chỉ số sức khỏe cơ bản mà không xem một kết quả là chẩn đoán.',
-      ta: 'ஒரு அளவீட்டை மட்டும் நோய் கண்டறிதலாகக் கருதாமல் அடிப்படை உடல்நல மதிப்புகளைப் புரிந்துகொள்.',
+      ta: 'ஒரு அளவீட்டை மட்டும் நோய் கண்டறிதலாகக் கருதாமல் அடிப்படை உடல்நல மதிப்புகளைப் புரிந்துகொள்ளுங்கள்.',
       te: 'ఒక్క కొలతనే వ్యాధి నిర్ధారణగా భావించకుండా ప్రాథమిక ఆరోగ్య విలువలను అర్థం చేసుకోండి.',
       mr: 'एकच मोजमाप म्हणजे निदान असे न समजता मूलभूत आरोग्य आकडे वाच.',
       ms: 'Fahami bacaan kesihatan asas tanpa menganggap satu keputusan sebagai diagnosis.',

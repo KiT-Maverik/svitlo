@@ -28,11 +28,13 @@ After npm ci at the monorepo root:
 Use package:win, package:mac or package:linux on the corresponding build OS.
 Only targets actually tested on that OS should be described as verified.
 
-predev and prebuild run the canonical Engine lesson publisher and UI Kit locale
-generator into apps/desktop/public. UI Kit flags and book-owned static assets
-are staged there too. Vite copies those resources and builds the textbook Scene
-chunks into dist-renderer. The main process is bundled to dist-main/main.cjs.
-No script modifies content/playground or needs apps/web during runtime.
+predev and prebuild compile `@svitlo/playground` into its own `dist/` once,
+then invoke the textbook's public `svitlo-playground publish` CLI to stage
+already-built book JSON and media in `apps/desktop/public`. UI Kit locales and
+flags remain independently host-staged. Vite bundles the compiled Scene registry,
+lazy chunks and published CSS into `dist-renderer`, while the Electron main
+process is bundled into `dist-main/main.cjs`. Desktop never imports authored
+`*.data.ts` at runtime or needs `apps/web`.
 
 ## Security and offline boundaries
 

@@ -64,7 +64,7 @@ export const evacuationAndShelter_SkillGroup_Data = buildSkillGroupConfig({
       ko: '대피소에 머무는 것이 이동하는 것보다 안전한 경우를 알아보세요.',
       tr: 'Sığınakta kalmanın tahliyeden daha güvenli olduğu durumları öğren.',
       vi: 'Tìm hiểu khi nào ở nơi trú ẩn an toàn hơn sơ tán.',
-      ta: 'வெளியேறுவதைவிட தஞ்சத்தில் தங்குவது எப்போது பாதுகாப்பானது என்பதை அறிக.',
+      ta: 'வெளியேறுவதைவிட தஞ்சத்தில் தங்குவது எப்போது பாதுகாப்பானது என்பதை அறியுங்கள்.',
       te: 'తరలిపోవడం కంటే ఆశ్రయంలో ఉండడం ఎప్పుడు సురక్షితమో తెలుసుకోండి.',
       mr: 'बाहेर पडण्यापेक्षा आश्रयात थांबणे कधी सुरक्षित असते ते जाणून घ्या.',
       ms: 'Ketahui bila berlindung di tempat lebih selamat daripada berpindah.',

@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { format, resolveConfig } from 'prettier';
 
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
-const scenes = join(root, 'src/components/scenes');
+const scenes = join(root, 'scenes');
 const entries = readdirSync(scenes, { withFileTypes: true })
   .filter(entry => entry.isDirectory() && /^[a-z]$/.test(entry.name))
   .flatMap(letter =>

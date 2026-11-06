@@ -53,7 +53,7 @@ export const participateInInformedHealthcareDecisions_Skill_Data = buildSkillCon
       ko: '진료 중 동의와 개인정보 보호, 질문할 권리를 알아보세요.',
       tr: 'Sağlık hizmetlerinde onamı, gizliliği ve soru sorma hakkını öğren.',
       vi: 'Tìm hiểu đồng ý điều trị, quyền riêng tư và quyền đặt câu hỏi khi khám chữa bệnh.',
-      ta: 'மருத்துவத்தில் ஒப்புதல், தனியுரிமை, கேள்வி கேட்கும் உரிமை பற்றி அறி.',
+      ta: 'மருத்துவத்தில் ஒப்புதல், தனியுரிமை, கேள்வி கேட்கும் உரிமை பற்றி அறியுங்கள்.',
       te: 'వైద్యంలో సమ్మతి, గోప్యత, ప్రశ్నలు అడిగే హక్కు గురించి తెలుసుకోండి.',
       mr: 'उपचारातील संमती, गोपनीयता आणि प्रश्न विचारण्याचा हक्क जाणून घे.',
       ms: 'Ketahui persetujuan, privasi dan hak untuk bertanya semasa rawatan.',
