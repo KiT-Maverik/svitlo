@@ -9,7 +9,10 @@ import { navbarPreferences } from '../../../../../data/locale/navbarPreferences'
 const { lt, ar, en } = navbarPreferences;
 const uk = ukUiKitMessages.navbarPreferences;
 const aria = { locale: uk.language, theme: uk.theme.dark };
-const muiTheme = createTheme({ cssVariables: { colorSchemeSelector: 'data' }, colorSchemes: { light: true, dark: true } });
+const muiTheme = createTheme({
+  cssVariables: { colorSchemeSelector: 'data' },
+  colorSchemes: { light: true, dark: true },
+});
 
 function ConnectedThemePreferences() {
   const { mode, systemMode, setMode } = useColorScheme();
@@ -50,7 +53,10 @@ describe('NavbarPreferences in shared UI Kit', () => {
     screen.getByRole('switch', { name: language === 'lt-LT' ? lt.theme.dark : aria.theme });
   const locale = () => screen.getByRole('combobox', { name: aria.locale });
 
-  afterEach(() => vi.clearAllMocks());
+  afterEach(() => {
+    vi.clearAllMocks();
+    window.localStorage.removeItem('mui-mode');
+  });
 
   it('exposes accessible locale and theme controls', () => {
     renderPreferences();
