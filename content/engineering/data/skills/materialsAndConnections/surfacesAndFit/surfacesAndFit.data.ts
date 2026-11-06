@@ -76,7 +76,7 @@ export const surfacesAndFit_SkillGroup_Data = buildSkillGroupConfig({
       be: "Дасьледуй, як уласьцівасьці паверхняў і малыя зазоры ўплываюць на мэханічныя злучэньні.",
       ka: "გაიგე, როგორ მოქმედებს ზედაპირის თვისებები და მცირე ღრეჩოები მექანიკურ შეერთებებზე.",
       kk: "Бет қасиеттері мен шағын саңылаулар механикалық қосылыстарға қалай әсер ететінін зертте.",
-      qm: "Yüz hususiyetleri ve kiçik boşluqlar mehanik birleşmelерge nasıl tesir etkenini ögren.",
+      qm: "Yüz hususiyetleri ve kiçik boşluqlar mehanik birleşmelerge nasıl tesir etkenini ögren.",
     },
   },
 });
