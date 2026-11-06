@@ -10,16 +10,16 @@ const matcher = fs.readFileSync(path.join(root, '.github/labeler.yml'), 'utf8');
 assert.ok(Array.isArray(labels) && labels.length > 0, 'Label catalogue must not be empty');
 const names = new Set();
 for (const { name, color, description } of labels) {
-  assert.ok(typeof name === 'string' && name.includes(': '), 'Malformed label name');
+  assert.ok(typeof name === 'string' && (name.includes(': ') || name === 'studio'), 'Malformed label name');
   assert.ok(!names.has(name.toLowerCase()), 'Duplicate label: ' + name);
   assert.match(color, /^[0-9a-f]{6}$/i, 'Invalid color: ' + name);
   assert.ok(description && description.length <= 100, 'Invalid description: ' + name);
   names.add(name.toLowerCase());
 }
-assert.ok(names.has('area: repo'), 'Missing fallback area: repo');
+assert.ok(names.has('repo: general'), 'Missing fallback repo: general');
 const ruleNames = [...matcher.matchAll(/^'([^']+)':\s*$/gm)].map(match => match[1]);
 const scopeLabels = labels.filter(label =>
-  /^(area|content|app|backend): /.test(label.name) && label.name !== 'area: repo'
+  (/^(shared|repo|content|app|backend): /.test(label.name) && label.name !== 'repo: general') || label.name === 'studio'
 );
 for (const label of scopeLabels) {
   assert.ok(ruleNames.includes(label.name), 'Missing auto-labeler rule: ' + label.name);
@@ -44,11 +44,12 @@ const scope = (prefix, dir) => {
 scope('content', 'content');
 scope('app', 'apps');
 scope('backend', 'backend');
-for (const name of ['adapters', 'contracts', 'engine', 'indexdb', 'ui-kit']) {
-  if (fs.existsSync(path.join(root, 'shared', name))) {
-    assert.ok(names.has('area: ' + name), 'Missing shared package area: ' + name);
-  }
-}
+scope('shared', 'shared');
+assert.ok(names.has('repo: scripts'), 'Missing repo: scripts');
+assert.ok(names.has('studio'), 'Missing standalone studio label');
+assert.ok(matcher.includes("'scripts/**'"), 'Missing repository scripts rule');
+assert.ok(matcher.includes("'studio/**'"), 'Missing Studio rule');
+assert.ok(!labels.some(label => label.name.startsWith('area: ')), 'Legacy area labels must be migrated');
 assert.ok(matcher.includes("'frontend/platform/**'"), 'Legacy platform path must be supported');
 console.log('Validated ' + labels.length + ' label definitions and ' +
   ruleNames.length + ' auto-labeler rules');

@@ -8,9 +8,11 @@ module.exports = async function backfill({ github, context, core, shard, shards 
   const knownLabels = new Set(catalogue.map(({ name }) => name));
   // Scope names determine paths; label descriptions are display text, not routing config.
   const scoped = catalogue.filter(label =>
-    /^(content|app|backend|area): /.test(label.name) && label.name !== 'area: repo'
+    (/(content|app|backend|shared|repo): /.test(label.name) && label.name !== 'repo: general') ||
+    label.name === 'studio'
   );
   const scopePaths = scoped.map(({ name }) => {
+    if (name === 'studio') return { name, prefixes: ['studio/'] };
     const [kind, slug] = name.split(': ');
     if (kind === 'content') return { name, prefixes: ['content/' + slug + '/'] };
     if (kind === 'app') {
@@ -19,8 +21,9 @@ module.exports = async function backfill({ github, context, core, shard, shards 
       return { name, prefixes };
     }
     if (kind === 'backend') return { name, prefixes: ['backend/' + slug + '/'] };
-    if (slug === 'scripts' || slug === 'studio') return { name, prefixes: [slug + '/'] };
-    return { name, prefixes: ['shared/' + slug + '/'] };
+    if (kind === 'shared') return { name, prefixes: ['shared/' + slug + '/'] };
+    if (name === 'repo: scripts') return { name, prefixes: ['scripts/'] };
+    throw new Error('Unsupported scope label: ' + name);
   });
   const scopeNames = new Set(scoped.map(label => label.name));
 
@@ -58,9 +61,10 @@ module.exports = async function backfill({ github, context, core, shard, shards 
     ['language & literature', 'content: language-literature'],
     ['language and literature', 'content: language-literature'],
     ['ukrainian language', 'content: languages'],
-    ['ui kit', 'area: ui-kit'],
+    ['ui kit', 'shared: ui-kit'],
     ['frontend', 'app: platform'],
     ['backend', 'backend: server'],
+    ['repo', 'repo: general'],
   ]);
   function getAreas(paths) {
     const found = new Set();
@@ -69,7 +73,7 @@ module.exports = async function backfill({ github, context, core, shard, shards 
         if (scope.prefixes.some(prefix => path.startsWith(prefix))) found.add(scope.name);
       }
     }
-    return found.size ? [...found] : ['area: repo'];
+    return found.size ? [...found] : ['repo: general'];
   }
   function getIssueAreas(issue) {
     const title = issue.title.toLowerCase();
@@ -79,7 +83,7 @@ module.exports = async function backfill({ github, context, core, shard, shards 
     if (named && knownLabels.has(named)) return [named];
     const candidates = (issue.body || '').match(/(?:content|shared|backend|frontend|apps|studio|scripts)\/[a-z-]+\//g);
     if (candidates) return getAreas(candidates);
-    return ['area: repo'];
+    return ['repo: general'];
   }
   function getWork(title) {
     const t = title.toLowerCase();
@@ -105,11 +109,11 @@ module.exports = async function backfill({ github, context, core, shard, shards 
     const existing = new Set(record.labels.map(label => label.name));
     const existingScoped = [...existing].some(label => scopeNames.has(label));
     // Do not add the repository fallback when the Issue/PR already has a specific scope.
-    const resolved = target.filter(label => label !== 'area: repo' || !existingScoped);
+    const resolved = target.filter(label => label !== 'repo: general' || !existingScoped);
     const toAdd = resolved.filter(label => knownLabels.has(label) && !existing.has(label));
     const removeRepo =
       (existingScoped || resolved.some(label => scopeNames.has(label))) &&
-      existing.has('area: repo');
+      existing.has('repo: general');
     const wrongRole = target.includes('pr: agent-subtask')
       ? 'pr: integration'
       : target.includes('pr: integration')
@@ -126,7 +130,7 @@ module.exports = async function backfill({ github, context, core, shard, shards 
         counters.added += toAdd.length;
       }
       for (const label of [
-        removeRepo ? 'area: repo' : null,
+        removeRepo ? 'repo: general' : null,
         wrongRole && existing.has(wrongRole) ? wrongRole : null,
       ].filter(Boolean)) {
         await github.rest.issues.removeLabel({

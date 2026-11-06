@@ -1,5 +1,5 @@
 # PR labels based on changed file paths and agent branch conventions.
-# Names and colors come from .github/labels.json; area: repo is the fallback.
+# Names and colors come from .github/labels.json; repo: general is the fallback.
 'content: art':
   - changed-files:
       - any-glob-to-any-file: 'content/art/**'
@@ -67,26 +67,26 @@
 'backend: server':
   - changed-files:
       - any-glob-to-any-file: 'backend/server/**'
-'area: scripts':
-  - changed-files:
-      - any-glob-to-any-file: 'scripts/**'
-'area: contracts':
+'shared: contracts':
   - changed-files:
       - any-glob-to-any-file: 'shared/contracts/**'
-'area: adapters':
+'shared: adapters':
   - changed-files:
       - any-glob-to-any-file: 'shared/adapters/**'
-'area: engine':
+'shared: engine':
   - changed-files:
       - any-glob-to-any-file: 'shared/engine/**'
-'area: indexdb':
+'shared: indexdb':
   - changed-files:
       - any-glob-to-any-file: 'shared/indexdb/**'
-'area: ui-kit':
+'shared: ui-kit':
   - changed-files:
       - any-glob-to-any-file: 'shared/ui-kit/**'
-'area: studio':
+'studio':
   - changed-files:
       - any-glob-to-any-file: 'studio/**'
+'repo: scripts':
+  - changed-files:
+      - any-glob-to-any-file: 'scripts/**'
 'pr: agent-subtask':
   - head-branch: '(^|[-_/])agent[-_/]?[0-9]+($|[-_/])'

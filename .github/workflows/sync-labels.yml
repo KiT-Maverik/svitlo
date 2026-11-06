@@ -46,8 +46,12 @@ jobs:
             // Update labels IN PLACE so that existing Issue/PR assignments survive.
             const legacyName = name => {
               if (name.startsWith('content: ')) return 'area: ' + name.slice(9);
+              if (name.startsWith('shared: ')) return 'area: ' + name.slice(8);
               if (name === 'app: platform') return 'area: platform';
               if (name === 'backend: server') return 'area: server';
+              if (name === 'repo: scripts') return 'area: scripts';
+              if (name === 'repo: general') return 'area: repo';
+              if (name === 'studio') return 'area: studio';
               return null;
             };
             const { owner, repo } = context.repo;

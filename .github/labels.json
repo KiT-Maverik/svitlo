@@ -1,87 +1,87 @@
 [
   {
     "name": "content: art",
-    "color": "D97706",
+    "color": "D9C48B",
     "description": "Changes to content/art/"
   },
   {
     "name": "content: astronomy",
-    "color": "D97706",
+    "color": "D9C48B",
     "description": "Changes to content/astronomy/"
   },
   {
     "name": "content: biology",
-    "color": "D97706",
+    "color": "D9C48B",
     "description": "Changes to content/biology/"
   },
   {
     "name": "content: chemistry",
-    "color": "D97706",
+    "color": "D9C48B",
     "description": "Changes to content/chemistry/"
   },
   {
     "name": "content: economics",
-    "color": "D97706",
+    "color": "D9C48B",
     "description": "Changes to content/economics/"
   },
   {
     "name": "content: engineering",
-    "color": "D97706",
+    "color": "D9C48B",
     "description": "Changes to content/engineering/"
   },
   {
     "name": "content: geography",
-    "color": "D97706",
+    "color": "D9C48B",
     "description": "Changes to content/geography/"
   },
   {
     "name": "content: health-safety",
-    "color": "D97706",
+    "color": "D9C48B",
     "description": "Changes to content/health-safety/"
   },
   {
     "name": "content: history",
-    "color": "D97706",
+    "color": "D9C48B",
     "description": "Changes to content/history/"
   },
   {
     "name": "content: informatics",
-    "color": "D97706",
+    "color": "D9C48B",
     "description": "Changes to content/informatics/"
   },
   {
     "name": "content: language-literature",
-    "color": "D97706",
+    "color": "D9C48B",
     "description": "Changes to content/language-literature/"
   },
   {
     "name": "content: languages",
-    "color": "D97706",
+    "color": "D9C48B",
     "description": "Changes to content/languages/"
   },
   {
     "name": "content: math",
-    "color": "D97706",
+    "color": "D9C48B",
     "description": "Changes to content/math/"
   },
   {
     "name": "content: philosophy",
-    "color": "D97706",
+    "color": "D9C48B",
     "description": "Changes to content/philosophy/"
   },
   {
     "name": "content: physics",
-    "color": "D97706",
+    "color": "D9C48B",
     "description": "Changes to content/physics/"
   },
   {
     "name": "content: playground",
-    "color": "D97706",
+    "color": "D9C48B",
     "description": "Changes to content/playground/"
   },
   {
     "name": "content: psychology",
-    "color": "D97706",
+    "color": "D9C48B",
     "description": "Changes to content/psychology/"
   },
   {
@@ -110,44 +110,44 @@
     "description": "Changes to backend/server/"
   },
   {
-    "name": "area: scripts",
-    "color": "2563EB",
-    "description": "Changes to scripts/"
-  },
-  {
-    "name": "area: contracts",
+    "name": "shared: contracts",
     "color": "2563EB",
     "description": "Changes to shared/contracts/"
   },
   {
-    "name": "area: adapters",
+    "name": "shared: adapters",
     "color": "2563EB",
     "description": "Changes to shared/adapters/"
   },
   {
-    "name": "area: engine",
+    "name": "shared: engine",
     "color": "2563EB",
     "description": "Changes to shared/engine/"
   },
   {
-    "name": "area: indexdb",
+    "name": "shared: indexdb",
     "color": "2563EB",
     "description": "Changes to shared/indexdb/"
   },
   {
-    "name": "area: ui-kit",
+    "name": "shared: ui-kit",
     "color": "2563EB",
     "description": "Changes to shared/ui-kit/"
   },
   {
-    "name": "area: studio",
-    "color": "2563EB",
+    "name": "studio",
+    "color": "8B5E83",
     "description": "Changes to studio/"
   },
   {
-    "name": "area: repo",
-    "color": "2563EB",
-    "description": "Repository-wide changes or files outside a specific area"
+    "name": "repo: scripts",
+    "color": "64748B",
+    "description": "Changes to scripts/"
+  },
+  {
+    "name": "repo: general",
+    "color": "64748B",
+    "description": "Repository-wide changes and files outside more specific scopes"
   },
   {
     "name": "work: feature",

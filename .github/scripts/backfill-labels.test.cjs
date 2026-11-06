@@ -23,7 +23,7 @@ test('historical backfill resolves all scoped paths and preserves existing scope
       title: 'Move platform',
       head: { ref: 'move-platform' },
       base: { ref: 'main' },
-      labels: [{ name: 'area: repo' }],
+      labels: [{ name: 'repo: general' }],
       files: ['frontend/platform/src/app.ts', 'apps/platform/src/app.ts'],
     },
     {
@@ -42,6 +42,22 @@ test('historical backfill resolves all scoped paths and preserves existing scope
       labels: [],
       files: ['.github/workflows/fast-gate.yml'],
     },
+    {
+      number: 105,
+      title: 'Update tooling scripts',
+      head: { ref: 'scripts-update' },
+      base: { ref: 'main' },
+      labels: [],
+      files: ['scripts/check-workspaces.mjs'],
+    },
+    {
+      number: 106,
+      title: 'Update studio guidance',
+      head: { ref: 'studio-guidance' },
+      base: { ref: 'main' },
+      labels: [],
+      files: ['studio/rules/github-labels-and-naming.md'],
+    },
   ];
   const issues = [
     { number: 201, title: '[Chemistry] Review skills', body: '', labels: [], user: { login: 'KiT-Maverik' } },
@@ -57,7 +73,7 @@ test('historical backfill resolves all scoped paths and preserves existing scope
       number: 204,
       title: 'Clarify assessment',
       body: '',
-      labels: [{ name: 'content: astronomy' }],
+      labels: [{ name: 'shared: engine' }],
       user: { login: 'external' },
     },
   ];
@@ -95,13 +111,15 @@ test('historical backfill resolves all scoped paths and preserves existing scope
   });
   const contains = (number, label) =>
     assert.ok((added.get(number) || []).includes(label), 'Missing ' + label + ' on #' + number);
-  for (const label of ['content: math', 'app: web', 'area: adapters']) contains(101, label);
+  for (const label of ['content: math', 'app: web', 'shared: adapters']) contains(101, label);
   contains(102, 'app: platform');
   contains(103, 'backend: server');
-  contains(104, 'area: repo');
+  contains(104, 'repo: general');
+  contains(105, 'repo: scripts');
+  contains(106, 'studio');
   contains(201, 'content: chemistry');
   contains(202, 'content: health-safety');
   contains(203, 'app: mobile');
-  assert.ok(removed.some(entry => entry.issue_number === 102 && entry.name === 'area: repo'));
-  assert.ok(!(added.get(204) || []).includes('area: repo'), 'Existing scope must suppress fallback');
+  assert.ok(removed.some(entry => entry.issue_number === 102 && entry.name === 'repo: general'));
+  assert.ok(!(added.get(204) || []).includes('repo: general'), 'Existing scope must suppress fallback');
 });
