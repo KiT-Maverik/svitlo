@@ -33,6 +33,7 @@ function ConnectedThemePreferences() {
 
 describe('NavbarPreferences in shared UI Kit', () => {
   const setLocale = vi.fn();
+  const setLessonLocale = vi.fn();
   const setMode = vi.fn();
   const renderPreferences = (
     locale: 'uk-UA' | 'lt-LT' = 'uk-UA',
@@ -44,6 +45,8 @@ describe('NavbarPreferences in shared UI Kit', () => {
         locale={locale}
         messages={locale === 'lt-LT' ? lt : uk}
         onLocaleChange={setLocale}
+        lessonLocale="en-US"
+        onLessonLocaleChange={setLessonLocale}
         mode={mode ?? undefined}
         systemMode={systemMode}
         onThemeChange={setMode}
@@ -52,6 +55,7 @@ describe('NavbarPreferences in shared UI Kit', () => {
   const theme = (language: 'uk-UA' | 'lt-LT' = 'uk-UA') =>
     screen.getByRole('switch', { name: language === 'lt-LT' ? lt.theme.dark : aria.theme });
   const locale = () => screen.getByRole('combobox', { name: aria.locale });
+  const lessonLocale = () => screen.getByRole('combobox', { name: uk.lessonLanguage });
 
   afterEach(() => {
     vi.clearAllMocks();
@@ -61,6 +65,7 @@ describe('NavbarPreferences in shared UI Kit', () => {
   it('exposes accessible locale and theme controls', () => {
     renderPreferences();
     expect(locale()).toBeVisible();
+    expect(lessonLocale()).toBeVisible();
     expect(theme()).toBeInTheDocument();
   });
 
@@ -70,6 +75,14 @@ describe('NavbarPreferences in shared UI Kit', () => {
     const english = DEFAULT_SUPPORTED_LANGUAGES.find(x => x.locale === 'en-US')!;
     await userEvent.click(await screen.findByRole('option', { name: new RegExp(english.nativeName) }));
     expect(setLocale).toHaveBeenCalledWith('en-US');
+  });
+
+  it('selects the lesson translation without calling the interface locale callback', async () => {
+    renderPreferences();
+    await userEvent.click(lessonLocale());
+    await userEvent.click(await screen.findByRole('option', { name: 'Français' }));
+    expect(setLessonLocale).toHaveBeenCalledWith('fr-FR');
+    expect(setLocale).not.toHaveBeenCalled();
   });
 
   it('sorts language options alphabetically by their native names', async () => {
@@ -151,7 +164,7 @@ describe('NavbarPreferences in shared UI Kit', () => {
   it('uses localized theme tooltip text', async () => {
     renderPreferences('lt-LT');
     await userEvent.hover(theme('lt-LT'));
-    expect(await screen.findByText(lt.theme.light)).toBeVisible();
+    expect(await screen.findByRole('tooltip')).toHaveTextContent(lt.theme.light);
   });
 
   it('uses authored Arabic controls for an RTL language', () => {
@@ -173,13 +186,15 @@ describe('NavbarPreferences in shared UI Kit', () => {
   });
 
   it('uses the language-specific English labels, not Ukrainian fallback', () => {
-    expect(en.language).toBe('Language');
+    expect(en.language).toBe('Interface language');
+    expect(en.lessonLanguage).toBe('Lesson language');
     expect(en.theme.dark).toBe('Dark theme');
     expect(en.theme.light).toBe('Light theme');
   });
 
   it('uses the explicitly supplied messages without a runtime locale fallback', () => {
-    expect(uk.language).toBe('Мова');
+    expect(uk.language).toBe('Мова інтерфейсу');
+    expect(uk.lessonLanguage).toBe('Мова уроку');
     expect(lt.theme.light).toBeTruthy();
     expect(lt.theme.dark).toBeTruthy();
   });

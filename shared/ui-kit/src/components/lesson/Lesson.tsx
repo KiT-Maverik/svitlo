@@ -4,13 +4,11 @@ import type { UiKitMessages } from '#types/uiKitMessages';
 
 import type { ComponentType } from 'react';
 import { LessonController, type EditableSectionParam } from './LessonController';
-import type { ContentBlock, Locale_Languages, Question, Section_Type } from '@svitlo/engine/content';
+import type { Locale_Languages, Section, SkillId } from '@svitlo/engine/content';
 import type { LessonEventSceneMap } from './LessonEvents';
 import type { LanguageCode } from '@svitlo/engine/localization';
 import type { SceneRegistry } from '../widgets/ContentBlockRenderer';
 import type { LessonLearningLayoutProps } from '../layout/LearningLayout/createLessonLearningLayout';
-
-export type LessonContentBlock = ContentBlock<'response', Locale_Languages> & { slug: string };
 
 export type LessonView = {
   id: string;
@@ -24,14 +22,8 @@ export type LessonView = {
     };
   };
   events?: LessonEventSceneMap;
-  sections: readonly {
-    id: string;
-    type: Section_Type;
-    navigationLabel: string;
-    skippable?: boolean;
-    content: readonly LessonContentBlock[];
-    questions: readonly Question<'response', Locale_Languages>[];
-  }[];
+  skills?: readonly SkillId[];
+  sections: readonly Section<'response', Locale_Languages>[];
 };
 
 export type LessonProps = {

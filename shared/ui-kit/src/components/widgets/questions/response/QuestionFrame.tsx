@@ -19,14 +19,20 @@ export function useQuestionAttempt<Value>(
 ) {
   const [value, setValue] = useState<Value>(initial);
   const [checked, setChecked] = useState(false);
+  const [attempts, setAttempts] = useState(0);
   return {
     value,
     setValue,
     checked,
     correct: checked && evaluate(value),
+    isCorrect: evaluate(value),
+    attempts,
     canCheck: !checked && complete(value),
     check: () => {
-      if (!checked && complete(value)) setChecked(true);
+      if (!checked && complete(value)) {
+        setChecked(true);
+        setAttempts(current => current + 1);
+      }
     },
     retry: () => {
       setValue(initial());
@@ -55,6 +61,12 @@ export function QuestionFrame<Value>({
   const trackingId = response.type + ':' + response.id;
   const lang = useContentLanguage();
   const t = messages.questionFrame;
+  const settings = completion.parameters;
+  const showFeedback = !settings || settings.feedbackMode === 'immediate' || completion.revealFeedback;
+  const showStatus =
+    showFeedback &&
+    (attempt.correct ? (settings?.interaction.showCorrectAnswers ?? true) : (settings?.interaction.showErrors ?? true));
+  const canRetry = !settings || (!attempt.correct && attempt.attempts <= settings.interaction.retries);
   return (
     <Paper
       component="section"
@@ -75,12 +87,15 @@ export function QuestionFrame<Value>({
         </Box>
       ) : null}
       <Box sx={{ minWidth: 0, width: '100%' }}>{children}</Box>
-      {attempt.checked ? (
+      {attempt.checked && showStatus ? (
         <Typography role="status" aria-live="polite" color={attempt.correct ? 'success.main' : 'error.main'}>
           {attempt.correct ? t.correct : t.incorrect}
         </Typography>
       ) : null}
-      {attempt.checked && response.explanation?.length ? (
+      {attempt.checked &&
+      showFeedback &&
+      (settings?.interaction.allowExplanations ?? true) &&
+      response.explanation?.length ? (
         <Box component="details">
           <Box component="summary" sx={{ cursor: 'pointer' }}>
             {t.explanation}
@@ -90,23 +105,25 @@ export function QuestionFrame<Value>({
       ) : null}
       <Stack direction="row" sx={{ justifyContent: 'center' }}>
         {attempt.checked ? (
-          <Button
-            variant="contained"
-            onClick={() => {
-              completion.markUnchecked(trackingId);
-              attempt.retry();
-            }}
-          >
-            {t.retry}
-          </Button>
+          canRetry && !completion.locked ? (
+            <Button
+              variant="contained"
+              onClick={() => {
+                completion.markUnchecked(trackingId);
+                attempt.retry();
+              }}
+            >
+              {t.retry}
+            </Button>
+          ) : null
         ) : (
           <Button
             variant="contained"
-            disabled={!attempt.canCheck}
+            disabled={!attempt.canCheck || completion.locked}
             onClick={() => {
               if (!attempt.canCheck) return;
               attempt.check();
-              completion.markChecked(trackingId);
+              completion.markChecked(trackingId, attempt.isCorrect);
             }}
           >
             {t.check}

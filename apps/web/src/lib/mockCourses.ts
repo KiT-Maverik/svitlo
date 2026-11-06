@@ -143,7 +143,7 @@ export function mockCourseOutline(course: MockCourse, language: string): readonl
     ...('children' in node
       ? { children: node.children.map(toItem) }
       : course.published
-        ? { href: `${root}/${node.type}/${node.id}` }
+        ? { href: node.type === 'lesson' ? `${root}/lesson/${language}/${node.id}` : `${root}/episode/${node.id}` }
         : {}),
   });
   return course.toc.children.map(toItem);

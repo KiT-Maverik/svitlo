@@ -21,7 +21,12 @@ import { textbook, resolveScene } from './generated/textbook';
 import { loadLesson, loadLessonIndex, loadMessages, type LessonIndex } from './loadLesson';
 import { defaultLanguage, languageForLocale, lessonHref, localeForLanguage, parseRoute } from './routes';
 
-type LocaleBinding = { locale: Locale; setLocale: (locale: Locale) => void };
+type LocaleBinding = {
+  locale: Locale;
+  setLocale: (locale: Locale) => void;
+  lessonLocale: Locale;
+  setLessonLocale: (locale: Locale) => void;
+};
 const LocaleContext = createContext<LocaleBinding | null>(null);
 function useLocaleBinding(): LocaleBinding {
   const value = useContext(LocaleContext);
@@ -99,7 +104,10 @@ function PersistingLessonLayout(props: LessonLearningLayoutProps) {
     </Box>
   );
 }
-const theme = createTheme({ cssVariables: true });
+const theme = createTheme({
+  cssVariables: { colorSchemeSelector: 'data' },
+  colorSchemes: { light: true, dark: true },
+});
 
 type LessonData = { response: LessonResponse; messages: UiKitMessages };
 type LoadState =
@@ -130,7 +138,7 @@ function MobileContent() {
   }, []);
   const route = parseRoute(pathname);
   const [state, setState] = useState<LoadState>({ status: 'loading' });
-  const routeKey = route.type === 'lesson' ? route.id + '/' + route.language : route.type;
+  const routeKey = route.type === 'lesson' ? route.id + '/' + route.language + '/' + route.lessonLanguage : route.type;
   useEffect(() => {
     let live = true;
     setState({ status: 'loading' });
@@ -141,9 +149,10 @@ function MobileContent() {
     const task: Promise<LoadState> =
       route.type === 'home'
         ? loadLessonIndex().then(index => ({ status: 'home', index }))
-        : Promise.all([loadLesson(route.id, route.language), loadMessages(localeForLanguage(route.language)!)]).then(
-            ([response, messages]) => ({ status: 'lesson', data: { response, messages } }),
-          );
+        : Promise.all([
+            loadLesson(route.id, route.lessonLanguage),
+            loadMessages(localeForLanguage(route.language)!),
+          ]).then(([response, messages]) => ({ status: 'lesson', data: { response, messages } }));
     void task
       .then(data => {
         if (live) setState(data);
@@ -163,9 +172,14 @@ function MobileContent() {
   const localeBinding = useMemo<LocaleBinding>(
     () => ({
       locale: activeLocale,
+      lessonLocale: localeForLanguage(route.type === 'lesson' ? route.lessonLanguage : defaultLanguage)!,
       setLocale(next: Locale) {
         if (route.type !== 'lesson') return;
-        navigate(lessonHref(languageForLocale(next), route.id), true);
+        navigate(lessonHref(languageForLocale(next), route.id, route.lessonLanguage), true);
+      },
+      setLessonLocale(next: Locale) {
+        if (route.type !== 'lesson') return;
+        navigate(lessonHref(route.language, route.id, languageForLocale(next)), true);
       },
     }),
     [activeLocale, routeKey],
@@ -209,14 +223,15 @@ function MobileContent() {
       </Container>
     );
   }
+  if (route.type !== 'lesson') return null;
   const { response, messages } = state.data;
   return (
     <LocaleContext.Provider value={localeBinding}>
-      <SceneLocaleProvider locale={activeLocale}>
+      <SceneLocaleProvider locale={localeForLanguage(route.lessonLanguage)!}>
         <Lesson
           key={routeKey}
           response={response}
-          href={lessonHref(response.locale.code, response.id)}
+          href={lessonHref(route.language, response.id, route.lessonLanguage)}
           messages={messages}
           layout={PersistingLessonLayout}
           sceneRegistry={resolveScene}
@@ -228,7 +243,7 @@ function MobileContent() {
 
 export default function App() {
   return (
-    <ThemeProvider theme={theme} defaultMode="system">
+    <ThemeProvider theme={theme} defaultMode="system" noSsr disableTransitionOnChange>
       <CssBaseline />
       <MobileContent />
     </ThemeProvider>

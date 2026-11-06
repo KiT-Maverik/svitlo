@@ -8,7 +8,7 @@ const en = {
     top: 'Top learning navigation',
     bottom: 'Bottom learning navigation',
     topics: 'Topic list',
-    settings: 'Settings',
+    settings: 'Quick settings',
   },
   actions: {
     openTopics: 'Open topic list',
@@ -21,6 +21,7 @@ const en = {
     next: 'Next',
     skip: 'Skip',
     retry: 'Try again',
+    switchProfile: 'Switch profile',
     profile: 'Profile',
     logout: 'Log out',
   },
@@ -29,7 +30,7 @@ const en = {
     logout: 'Signing out will be available when sign-in is enabled',
   },
   topicsTitle: 'TOPICS',
-  settingsTitle: 'Settings',
+  settingsTitle: 'Quick settings',
   settingsDescription: 'Learning settings will appear here.',
 };
 
@@ -43,7 +44,7 @@ const zh: LearningLayout_Locale = {
     top: '顶部学习导航',
     bottom: '底部学习导航',
     topics: '主题列表',
-    settings: '设置',
+    settings: '快捷设置',
   },
   actions: {
     openTopics: '打开主题列表',
@@ -56,6 +57,7 @@ const zh: LearningLayout_Locale = {
     next: '下一步',
     skip: '跳过',
     retry: '重试',
+    switchProfile: '切换个人资料',
     profile: '个人资料',
     logout: '退出登录',
   },
@@ -64,7 +66,7 @@ const zh: LearningLayout_Locale = {
     logout: '启用登录功能后即可退出登录',
   },
   topicsTitle: '主题',
-  settingsTitle: '设置',
+  settingsTitle: '快捷设置',
   settingsDescription: '学习设置将在此显示。',
 };
 
@@ -76,7 +78,7 @@ const hi: LearningLayout_Locale = {
     top: 'ऊपरी अध्ययन नेविगेशन',
     bottom: 'निचला अध्ययन नेविगेशन',
     topics: 'विषयों की सूची',
-    settings: 'सेटिंग्स',
+    settings: 'त्वरित सेटिंग्स',
   },
   actions: {
     openTopics: 'विषयों की सूची खोलें',
@@ -89,6 +91,7 @@ const hi: LearningLayout_Locale = {
     next: 'आगे',
     skip: 'छोड़ें',
     retry: 'फिर कोशिश करें',
+    switchProfile: 'प्रोफ़ाइल बदलें',
     profile: 'प्रोफ़ाइल',
     logout: 'साइन आउट',
   },
@@ -97,7 +100,7 @@ const hi: LearningLayout_Locale = {
     logout: 'साइन-इन सुविधा चालू होने पर साइन आउट उपलब्ध होगा',
   },
   topicsTitle: 'विषय',
-  settingsTitle: 'सेटिंग्स',
+  settingsTitle: 'त्वरित सेटिंग्स',
   settingsDescription: 'अध्ययन की सेटिंग्स यहाँ दिखाई देंगी।',
 };
 
@@ -109,7 +112,7 @@ const es: LearningLayout_Locale = {
     top: 'Navegación superior de aprendizaje',
     bottom: 'Navegación inferior de aprendizaje',
     topics: 'Lista de temas',
-    settings: 'Configuración',
+    settings: 'Ajustes rápidos',
   },
   actions: {
     openTopics: 'Abrir la lista de temas',
@@ -122,6 +125,7 @@ const es: LearningLayout_Locale = {
     next: 'Siguiente',
     skip: 'Omitir',
     retry: 'Reintentar',
+    switchProfile: 'Cambiar de perfil',
     profile: 'Perfil',
     logout: 'Cerrar sesión',
   },
@@ -130,7 +134,7 @@ const es: LearningLayout_Locale = {
     logout: 'Se podrá cerrar sesión cuando se habilite el inicio de sesión',
   },
   topicsTitle: 'TEMAS',
-  settingsTitle: 'Configuración',
+  settingsTitle: 'Ajustes rápidos',
   settingsDescription: 'Los ajustes de aprendizaje aparecerán aquí.',
 };
 
@@ -142,7 +146,7 @@ const ar: LearningLayout_Locale = {
     top: 'التنقل العلوي للتعلّم',
     bottom: 'التنقل السفلي للتعلّم',
     topics: 'قائمة الموضوعات',
-    settings: 'الإعدادات',
+    settings: 'الإعدادات السريعة',
   },
   actions: {
     openTopics: 'فتح قائمة الموضوعات',
@@ -155,6 +159,7 @@ const ar: LearningLayout_Locale = {
     next: 'التالي',
     skip: 'تخطي',
     retry: 'إعادة المحاولة',
+    switchProfile: 'تبديل الملف الشخصي',
     profile: 'الملف الشخصي',
     logout: 'تسجيل الخروج',
   },
@@ -163,7 +168,7 @@ const ar: LearningLayout_Locale = {
     logout: 'سيتوفر تسجيل الخروج عند تفعيل تسجيل الدخول',
   },
   topicsTitle: 'الموضوعات',
-  settingsTitle: 'الإعدادات',
+  settingsTitle: 'الإعدادات السريعة',
   settingsDescription: 'ستظهر إعدادات التعلّم هنا.',
 };
 
@@ -175,7 +180,7 @@ const fr: LearningLayout_Locale = {
     top: 'Navigation supérieure de l’apprentissage',
     bottom: 'Navigation inférieure de l’apprentissage',
     topics: 'Liste des sujets',
-    settings: 'Paramètres',
+    settings: 'Paramètres rapides',
   },
   actions: {
     openTopics: 'Ouvrir la liste des sujets',
@@ -188,6 +193,7 @@ const fr: LearningLayout_Locale = {
     next: 'Suivant',
     skip: 'Passer',
     retry: 'Réessayer',
+    switchProfile: 'Changer de profil',
     profile: 'Profil',
     logout: 'Se déconnecter',
   },
@@ -196,7 +202,7 @@ const fr: LearningLayout_Locale = {
     logout: 'La déconnexion sera disponible après l’activation de la connexion',
   },
   topicsTitle: 'SUJETS',
-  settingsTitle: 'Paramètres',
+  settingsTitle: 'Paramètres rapides',
   settingsDescription: 'Les paramètres d’apprentissage apparaîtront ici.',
 };
 
@@ -208,7 +214,7 @@ const bn: LearningLayout_Locale = {
     top: 'শেখার ওপরের নেভিগেশন',
     bottom: 'শেখার নিচের নেভিগেশন',
     topics: 'বিষয়ের তালিকা',
-    settings: 'সেটিংস',
+    settings: 'দ্রুত সেটিংস',
   },
   actions: {
     openTopics: 'বিষয়ের তালিকা খুলুন',
@@ -221,6 +227,7 @@ const bn: LearningLayout_Locale = {
     next: 'পরবর্তী',
     skip: 'এড়িয়ে যান',
     retry: 'আবার চেষ্টা করুন',
+    switchProfile: 'প্রোফাইল পরিবর্তন করুন',
     profile: 'প্রোফাইল',
     logout: 'সাইন আউট',
   },
@@ -229,7 +236,7 @@ const bn: LearningLayout_Locale = {
     logout: 'সাইন-ইন চালু হলে সাইন আউট করা যাবে',
   },
   topicsTitle: 'বিষয়সমূহ',
-  settingsTitle: 'সেটিংস',
+  settingsTitle: 'দ্রুত সেটিংস',
   settingsDescription: 'শেখার সেটিংস এখানে দেখা যাবে।',
 };
 
@@ -241,7 +248,7 @@ const pt: LearningLayout_Locale = {
     top: 'Navegação superior de aprendizagem',
     bottom: 'Navegação inferior de aprendizagem',
     topics: 'Lista de temas',
-    settings: 'Configurações',
+    settings: 'Configurações rápidas',
   },
   actions: {
     openTopics: 'Abrir a lista de temas',
@@ -254,6 +261,7 @@ const pt: LearningLayout_Locale = {
     next: 'Próximo',
     skip: 'Pular',
     retry: 'Tentar novamente',
+    switchProfile: 'Mudar de perfil',
     profile: 'Perfil',
     logout: 'Sair',
   },
@@ -262,7 +270,7 @@ const pt: LearningLayout_Locale = {
     logout: 'A opção de sair ficará disponível quando o login for ativado',
   },
   topicsTitle: 'TEMAS',
-  settingsTitle: 'Configurações',
+  settingsTitle: 'Configurações rápidas',
   settingsDescription: 'As configurações de aprendizagem aparecerão aqui.',
 };
 
@@ -274,7 +282,7 @@ const ur: LearningLayout_Locale = {
     top: 'سیکھنے کی بالائی نیویگیشن',
     bottom: 'سیکھنے کی زیریں نیویگیشن',
     topics: 'موضوعات کی فہرست',
-    settings: 'ترتیبات',
+    settings: 'فوری ترتیبات',
   },
   actions: {
     openTopics: 'موضوعات کی فہرست کھولیں',
@@ -287,6 +295,7 @@ const ur: LearningLayout_Locale = {
     next: 'اگلا',
     skip: 'چھوڑ دیں',
     retry: 'دوبارہ کوشش کریں',
+    switchProfile: 'پروفائل تبدیل کریں',
     profile: 'پروفائل',
     logout: 'سائن آؤٹ',
   },
@@ -295,7 +304,7 @@ const ur: LearningLayout_Locale = {
     logout: 'سائن اِن فعال ہونے پر سائن آؤٹ دستیاب ہوگا',
   },
   topicsTitle: 'موضوعات',
-  settingsTitle: 'ترتیبات',
+  settingsTitle: 'فوری ترتیبات',
   settingsDescription: 'سیکھنے کی ترتیبات یہاں ظاہر ہوں گی۔',
 };
 
@@ -307,7 +316,7 @@ const id: LearningLayout_Locale = {
     top: 'Navigasi belajar atas',
     bottom: 'Navigasi belajar bawah',
     topics: 'Daftar topik',
-    settings: 'Pengaturan',
+    settings: 'Pengaturan cepat',
   },
   actions: {
     openTopics: 'Buka daftar topik',
@@ -320,6 +329,7 @@ const id: LearningLayout_Locale = {
     next: 'Berikutnya',
     skip: 'Lewati',
     retry: 'Coba lagi',
+    switchProfile: 'Ganti profil',
     profile: 'Profil',
     logout: 'Keluar',
   },
@@ -328,7 +338,7 @@ const id: LearningLayout_Locale = {
     logout: 'Fitur keluar tersedia setelah fitur masuk diaktifkan',
   },
   topicsTitle: 'TOPIK',
-  settingsTitle: 'Pengaturan',
+  settingsTitle: 'Pengaturan cepat',
   settingsDescription: 'Pengaturan belajar akan muncul di sini.',
 };
 
@@ -340,7 +350,7 @@ const de: LearningLayout_Locale = {
     top: 'Obere Lernnavigation',
     bottom: 'Untere Lernnavigation',
     topics: 'Themenliste',
-    settings: 'Einstellungen',
+    settings: 'Schnelleinstellungen',
   },
   actions: {
     openTopics: 'Themenliste öffnen',
@@ -353,6 +363,7 @@ const de: LearningLayout_Locale = {
     next: 'Weiter',
     skip: 'Überspringen',
     retry: 'Erneut versuchen',
+    switchProfile: 'Profil wechseln',
     profile: 'Profil',
     logout: 'Abmelden',
   },
@@ -361,7 +372,7 @@ const de: LearningLayout_Locale = {
     logout: 'Abmelden ist möglich, sobald die Anmeldung aktiviert ist',
   },
   topicsTitle: 'THEMEN',
-  settingsTitle: 'Einstellungen',
+  settingsTitle: 'Schnelleinstellungen',
   settingsDescription: 'Die Lerneinstellungen werden hier angezeigt.',
 };
 
@@ -373,7 +384,7 @@ const ja: LearningLayout_Locale = {
     top: '上部の学習ナビゲーション',
     bottom: '下部の学習ナビゲーション',
     topics: 'トピック一覧',
-    settings: '設定',
+    settings: 'クイック設定',
   },
   actions: {
     openTopics: 'トピック一覧を開く',
@@ -386,6 +397,7 @@ const ja: LearningLayout_Locale = {
     next: '次へ',
     skip: 'スキップ',
     retry: '再試行',
+    switchProfile: 'プロフィールを切り替える',
     profile: 'プロフィール',
     logout: 'ログアウト',
   },
@@ -394,7 +406,7 @@ const ja: LearningLayout_Locale = {
     logout: 'ログイン機能が有効になるとログアウトできます',
   },
   topicsTitle: 'トピック',
-  settingsTitle: '設定',
+  settingsTitle: 'クイック設定',
   settingsDescription: '学習設定はここに表示されます。',
 };
 
@@ -406,7 +418,7 @@ const ko: LearningLayout_Locale = {
     top: '상단 학습 탐색',
     bottom: '하단 학습 탐색',
     topics: '주제 목록',
-    settings: '설정',
+    settings: '빠른 설정',
   },
   actions: {
     openTopics: '주제 목록 열기',
@@ -419,6 +431,7 @@ const ko: LearningLayout_Locale = {
     next: '다음',
     skip: '건너뛰기',
     retry: '다시 시도',
+    switchProfile: '프로필 전환',
     profile: '프로필',
     logout: '로그아웃',
   },
@@ -427,7 +440,7 @@ const ko: LearningLayout_Locale = {
     logout: '로그인 기능을 활성화하면 로그아웃할 수 있습니다',
   },
   topicsTitle: '주제',
-  settingsTitle: '설정',
+  settingsTitle: '빠른 설정',
   settingsDescription: '학습 설정이 여기에 표시됩니다.',
 };
 
@@ -439,7 +452,7 @@ const tr: LearningLayout_Locale = {
     top: 'Üst öğrenme gezintisi',
     bottom: 'Alt öğrenme gezintisi',
     topics: 'Konu listesi',
-    settings: 'Ayarlar',
+    settings: 'Hızlı ayarlar',
   },
   actions: {
     openTopics: 'Konu listesini aç',
@@ -452,6 +465,7 @@ const tr: LearningLayout_Locale = {
     next: 'İleri',
     skip: 'Atla',
     retry: 'Tekrar dene',
+    switchProfile: 'Profil değiştir',
     profile: 'Profil',
     logout: 'Çıkış yap',
   },
@@ -460,7 +474,7 @@ const tr: LearningLayout_Locale = {
     logout: 'Giriş özelliği etkinleştirildiğinde çıkış yapılabilecek',
   },
   topicsTitle: 'KONULAR',
-  settingsTitle: 'Ayarlar',
+  settingsTitle: 'Hızlı ayarlar',
   settingsDescription: 'Öğrenme ayarları burada görünecek.',
 };
 
@@ -472,7 +486,7 @@ const vi: LearningLayout_Locale = {
     top: 'Thanh điều hướng học tập phía trên',
     bottom: 'Thanh điều hướng học tập phía dưới',
     topics: 'Danh sách chủ đề',
-    settings: 'Cài đặt',
+    settings: 'Cài đặt nhanh',
   },
   actions: {
     openTopics: 'Mở danh sách chủ đề',
@@ -485,6 +499,7 @@ const vi: LearningLayout_Locale = {
     next: 'Tiếp theo',
     skip: 'Bỏ qua',
     retry: 'Thử lại',
+    switchProfile: 'Chuyển hồ sơ',
     profile: 'Hồ sơ',
     logout: 'Đăng xuất',
   },
@@ -493,7 +508,7 @@ const vi: LearningLayout_Locale = {
     logout: 'Có thể đăng xuất khi tính năng đăng nhập được bật',
   },
   topicsTitle: 'CHỦ ĐỀ',
-  settingsTitle: 'Cài đặt',
+  settingsTitle: 'Cài đặt nhanh',
   settingsDescription: 'Các tùy chọn học tập sẽ xuất hiện tại đây.',
 };
 
@@ -505,7 +520,7 @@ const ta: LearningLayout_Locale = {
     top: 'மேல் கற்றல் வழிசெலுத்தல்',
     bottom: 'கீழ் கற்றல் வழிசெலுத்தல்',
     topics: 'தலைப்புப் பட்டியல்',
-    settings: 'அமைப்புகள்',
+    settings: 'விரைவு அமைப்புகள்',
   },
   actions: {
     openTopics: 'தலைப்புப் பட்டியலைத் திற',
@@ -518,6 +533,7 @@ const ta: LearningLayout_Locale = {
     next: 'அடுத்து',
     skip: 'தவிர்',
     retry: 'மீண்டும் முயற்சி',
+    switchProfile: 'சுயவிவரத்தை மாற்று',
     profile: 'சுயவிவரம்',
     logout: 'வெளியேறு',
   },
@@ -526,7 +542,7 @@ const ta: LearningLayout_Locale = {
     logout: 'உள்நுழைவு இயக்கப்பட்ட பிறகு வெளியேறும் வசதி கிடைக்கும்',
   },
   topicsTitle: 'தலைப்புகள்',
-  settingsTitle: 'அமைப்புகள்',
+  settingsTitle: 'விரைவு அமைப்புகள்',
   settingsDescription: 'கற்றல் அமைப்புகள் இங்கே தோன்றும்.',
 };
 
@@ -538,7 +554,7 @@ const te: LearningLayout_Locale = {
     top: 'ఎగువ అభ్యాస నావిగేషన్',
     bottom: 'దిగువ అభ్యాస నావిగేషన్',
     topics: 'అంశాల జాబితా',
-    settings: 'సెట్టింగ్‌లు',
+    settings: 'శీఘ్ర సెట్టింగ్‌లు',
   },
   actions: {
     openTopics: 'అంశాల జాబితా తెరవండి',
@@ -551,6 +567,7 @@ const te: LearningLayout_Locale = {
     next: 'తదుపరి',
     skip: 'దాటవేయి',
     retry: 'మళ్లీ ప్రయత్నించండి',
+    switchProfile: 'ప్రొఫైల్ మార్చండి',
     profile: 'ప్రొఫైల్',
     logout: 'సైన్ అవుట్',
   },
@@ -559,7 +576,7 @@ const te: LearningLayout_Locale = {
     logout: 'సైన్ ఇన్ సదుపాయం ప్రారంభమైన తర్వాత సైన్ అవుట్ అందుబాటులో ఉంటుంది',
   },
   topicsTitle: 'అంశాలు',
-  settingsTitle: 'సెట్టింగ్‌లు',
+  settingsTitle: 'శీఘ్ర సెట్టింగ్‌లు',
   settingsDescription: 'అభ్యాస సెట్టింగ్‌లు ఇక్కడ కనిపిస్తాయి.',
 };
 
@@ -571,7 +588,7 @@ const mr: LearningLayout_Locale = {
     top: 'वरचे अध्ययन नेव्हिगेशन',
     bottom: 'खालचे अध्ययन नेव्हिगेशन',
     topics: 'विषयांची यादी',
-    settings: 'सेटिंग्ज',
+    settings: 'झटपट सेटिंग्ज',
   },
   actions: {
     openTopics: 'विषयांची यादी उघडा',
@@ -584,6 +601,7 @@ const mr: LearningLayout_Locale = {
     next: 'पुढे',
     skip: 'वगळा',
     retry: 'पुन्हा प्रयत्न करा',
+    switchProfile: 'प्रोफाइल बदला',
     profile: 'प्रोफाइल',
     logout: 'साइन आउट',
   },
@@ -592,7 +610,7 @@ const mr: LearningLayout_Locale = {
     logout: 'साइन इन सुरू झाल्यावर साइन आउट उपलब्ध होईल',
   },
   topicsTitle: 'विषय',
-  settingsTitle: 'सेटिंग्ज',
+  settingsTitle: 'झटपट सेटिंग्ज',
   settingsDescription: 'अध्ययन सेटिंग्ज येथे दिसतील.',
 };
 
@@ -604,7 +622,7 @@ const ms: LearningLayout_Locale = {
     top: 'Navigasi pembelajaran atas',
     bottom: 'Navigasi pembelajaran bawah',
     topics: 'Senarai topik',
-    settings: 'Tetapan',
+    settings: 'Tetapan pantas',
   },
   actions: {
     openTopics: 'Buka senarai topik',
@@ -617,6 +635,7 @@ const ms: LearningLayout_Locale = {
     next: 'Seterusnya',
     skip: 'Langkau',
     retry: 'Cuba lagi',
+    switchProfile: 'Tukar profil',
     profile: 'Profil',
     logout: 'Log keluar',
   },
@@ -625,7 +644,7 @@ const ms: LearningLayout_Locale = {
     logout: 'Log keluar akan tersedia apabila log masuk diaktifkan',
   },
   topicsTitle: 'TOPIK',
-  settingsTitle: 'Tetapan',
+  settingsTitle: 'Tetapan pantas',
   settingsDescription: 'Tetapan pembelajaran akan dipaparkan di sini.',
 };
 
@@ -637,7 +656,7 @@ const he: LearningLayout_Locale = {
     top: 'ניווט למידה עליון',
     bottom: 'ניווט למידה תחתון',
     topics: 'רשימת נושאים',
-    settings: 'הגדרות',
+    settings: 'הגדרות מהירות',
   },
   actions: {
     openTopics: 'פתיחת רשימת הנושאים',
@@ -650,6 +669,7 @@ const he: LearningLayout_Locale = {
     next: 'הבא',
     skip: 'דילוג',
     retry: 'לנסות שוב',
+    switchProfile: 'החלפת פרופיל',
     profile: 'פרופיל',
     logout: 'התנתקות',
   },
@@ -658,7 +678,7 @@ const he: LearningLayout_Locale = {
     logout: 'ההתנתקות תהיה זמינה לאחר הפעלת ההתחברות',
   },
   topicsTitle: 'נושאים',
-  settingsTitle: 'הגדרות',
+  settingsTitle: 'הגדרות מהירות',
   settingsDescription: 'הגדרות הלמידה יופיעו כאן.',
 };
 
@@ -670,7 +690,7 @@ const pl: LearningLayout_Locale = {
     top: 'Górna nawigacja nauki',
     bottom: 'Dolna nawigacja nauki',
     topics: 'Lista tematów',
-    settings: 'Ustawienia',
+    settings: 'Szybkie ustawienia',
   },
   actions: {
     openTopics: 'Otwórz listę tematów',
@@ -683,6 +703,7 @@ const pl: LearningLayout_Locale = {
     next: 'Dalej',
     skip: 'Pomiń',
     retry: 'Spróbuj ponownie',
+    switchProfile: 'Przełącz profil',
     profile: 'Profil',
     logout: 'Wyloguj się',
   },
@@ -691,7 +712,7 @@ const pl: LearningLayout_Locale = {
     logout: 'Wylogowanie będzie dostępne po włączeniu logowania',
   },
   topicsTitle: 'TEMATY',
-  settingsTitle: 'Ustawienia',
+  settingsTitle: 'Szybkie ustawienia',
   settingsDescription: 'Ustawienia nauki pojawią się tutaj.',
 };
 
@@ -703,7 +724,7 @@ const uk: LearningLayout_Locale = {
     top: 'Верхня навігація навчання',
     bottom: 'Нижня навігація навчання',
     topics: 'Список тем',
-    settings: 'Налаштування',
+    settings: 'Швидкі налаштування',
   },
   actions: {
     openTopics: 'Відкрити список тем',
@@ -716,6 +737,7 @@ const uk: LearningLayout_Locale = {
     next: 'Далі',
     skip: 'Пропустити',
     retry: 'Спробувати ще раз',
+    switchProfile: 'Перемкнути профіль',
     profile: 'Профіль',
     logout: 'Вийти',
   },
@@ -724,7 +746,7 @@ const uk: LearningLayout_Locale = {
     logout: 'Вихід буде доступний після підключення авторизації',
   },
   topicsTitle: 'ТЕМИ',
-  settingsTitle: 'Налаштування',
+  settingsTitle: 'Швидкі налаштування',
   settingsDescription: 'Налаштування навчання з’являться тут.',
 };
 
@@ -736,7 +758,7 @@ const lt: LearningLayout_Locale = {
     top: 'Viršutinė mokymosi navigacija',
     bottom: 'Apatinė mokymosi navigacija',
     topics: 'Temų sąrašas',
-    settings: 'Nustatymai',
+    settings: 'Spartieji nustatymai',
   },
   actions: {
     openTopics: 'Atverti temų sąrašą',
@@ -749,6 +771,7 @@ const lt: LearningLayout_Locale = {
     next: 'Toliau',
     skip: 'Praleisti',
     retry: 'Bandyti dar kartą',
+    switchProfile: 'Perjungti profilį',
     profile: 'Profilis',
     logout: 'Atsijungti',
   },
@@ -757,7 +780,7 @@ const lt: LearningLayout_Locale = {
     logout: 'Atsijungimas bus prieinamas įjungus prisijungimą',
   },
   topicsTitle: 'TEMOS',
-  settingsTitle: 'Nustatymai',
+  settingsTitle: 'Spartieji nustatymai',
   settingsDescription: 'Mokymosi nustatymai bus pateikti čia.',
 };
 
@@ -769,7 +792,7 @@ const lv: LearningLayout_Locale = {
     top: 'Augšējā mācību navigācija',
     bottom: 'Apakšējā mācību navigācija',
     topics: 'Tēmu saraksts',
-    settings: 'Iestatījumi',
+    settings: 'Ātrie iestatījumi',
   },
   actions: {
     openTopics: 'Atvērt tēmu sarakstu',
@@ -782,6 +805,7 @@ const lv: LearningLayout_Locale = {
     next: 'Tālāk',
     skip: 'Izlaist',
     retry: 'Mēģināt vēlreiz',
+    switchProfile: 'Pārslēgt profilu',
     profile: 'Profils',
     logout: 'Izrakstīties',
   },
@@ -790,7 +814,7 @@ const lv: LearningLayout_Locale = {
     logout: 'Izrakstīšanās būs pieejama pēc autentifikācijas pieslēgšanas',
   },
   topicsTitle: 'TĒMAS',
-  settingsTitle: 'Iestatījumi',
+  settingsTitle: 'Ātrie iestatījumi',
   settingsDescription: 'Mācību iestatījumi parādīsies šeit.',
 };
 
@@ -802,7 +826,7 @@ const et: LearningLayout_Locale = {
     top: 'Ülemine õppenavigeerimine',
     bottom: 'Alumine õppenavigeerimine',
     topics: 'Teemade loend',
-    settings: 'Seaded',
+    settings: 'Kiirseaded',
   },
   actions: {
     openTopics: 'Ava teemade loend',
@@ -815,6 +839,7 @@ const et: LearningLayout_Locale = {
     next: 'Edasi',
     skip: 'Jäta vahele',
     retry: 'Proovi uuesti',
+    switchProfile: 'Vaheta profiili',
     profile: 'Profiil',
     logout: 'Logi välja',
   },
@@ -823,7 +848,7 @@ const et: LearningLayout_Locale = {
     logout: 'Väljalogimine on saadaval pärast autentimise lisamist',
   },
   topicsTitle: 'TEEMAD',
-  settingsTitle: 'Seaded',
+  settingsTitle: 'Kiirseaded',
   settingsDescription: 'Õppeseaded ilmuvad siia.',
 };
 
@@ -835,7 +860,7 @@ const be: LearningLayout_Locale = {
     top: 'Верхняя навігацыя навучаньня',
     bottom: 'Ніжняя навігацыя навучаньня',
     topics: 'Сьпіс тэмаў',
-    settings: 'Налады',
+    settings: 'Хуткія налады',
   },
   actions: {
     openTopics: 'Адкрыць сьпіс тэмаў',
@@ -848,6 +873,7 @@ const be: LearningLayout_Locale = {
     next: 'Далей',
     skip: 'Прапусьціць',
     retry: 'Паспрабаваць яшчэ раз',
+    switchProfile: 'Пераключыць профіль',
     profile: 'Профіль',
     logout: 'Выйсьці',
   },
@@ -856,7 +882,7 @@ const be: LearningLayout_Locale = {
     logout: 'Выхад будзе даступны пасьля падлучэньня аўтарызацыі',
   },
   topicsTitle: 'ТЭМЫ',
-  settingsTitle: 'Налады',
+  settingsTitle: 'Хуткія налады',
   settingsDescription: 'Налады навучаньня зьявяцца тут.',
 };
 
@@ -868,7 +894,7 @@ const ka: LearningLayout_Locale = {
     top: 'სასწავლო ზედა ნავიგაცია',
     bottom: 'სასწავლო ქვედა ნავიგაცია',
     topics: 'თემების სია',
-    settings: 'პარამეტრები',
+    settings: 'სწრაფი პარამეტრები',
   },
   actions: {
     openTopics: 'თემების სიის გახსნა',
@@ -881,6 +907,7 @@ const ka: LearningLayout_Locale = {
     next: 'შემდეგი',
     skip: 'გამოტოვება',
     retry: 'ხელახლა ცდა',
+    switchProfile: 'პროფილის გადართვა',
     profile: 'პროფილი',
     logout: 'გამოსვლა',
   },
@@ -889,7 +916,7 @@ const ka: LearningLayout_Locale = {
     logout: 'გამოსვლა ხელმისაწვდომი იქნება ავტორიზაციის დამატების შემდეგ',
   },
   topicsTitle: 'თემები',
-  settingsTitle: 'პარამეტრები',
+  settingsTitle: 'სწრაფი პარამეტრები',
   settingsDescription: 'სასწავლო პარამეტრები აქ გამოჩნდება.',
 };
 
@@ -901,7 +928,7 @@ const kk: LearningLayout_Locale = {
     top: 'Жоғарғы оқу навигациясы',
     bottom: 'Төменгі оқу навигациясы',
     topics: 'Тақырыптар тізімі',
-    settings: 'Параметрлер',
+    settings: 'Жылдам параметрлер',
   },
   actions: {
     openTopics: 'Тақырыптар тізімін ашу',
@@ -914,6 +941,7 @@ const kk: LearningLayout_Locale = {
     next: 'Келесі',
     skip: 'Өткізіп жіберу',
     retry: 'Қайталап көру',
+    switchProfile: 'Профильді ауыстыру',
     profile: 'Профиль',
     logout: 'Шығу',
   },
@@ -922,7 +950,7 @@ const kk: LearningLayout_Locale = {
     logout: 'Шығу мүмкіндігі авторизация қосылғаннан кейін қолжетімді болады',
   },
   topicsTitle: 'ТАҚЫРЫПТАР',
-  settingsTitle: 'Параметрлер',
+  settingsTitle: 'Жылдам параметрлер',
   settingsDescription: 'Оқу параметрлері осы жерде пайда болады.',
 };
 
@@ -935,7 +963,7 @@ const qm: LearningLayout_Locale = {
     top: 'Oquvnıñ yuqarı navigatsiyası',
     bottom: 'Oquvnıñ aşağı navigatsiyası',
     topics: 'Mevzular cedveli',
-    settings: 'Ayarlamalar',
+    settings: 'Tez ayarlamalar',
   },
   actions: {
     openTopics: 'Mevzular cedvelini aç',
@@ -948,6 +976,7 @@ const qm: LearningLayout_Locale = {
     next: 'İleri',
     skip: 'Atla',
     retry: 'Yañıdan sıña',
+    switchProfile: 'Profilni deñiştir',
     profile: 'Profil',
     logout: 'Çıqış',
   },
@@ -956,7 +985,7 @@ const qm: LearningLayout_Locale = {
     logout: 'Çıqış giriş sistemasına bağlanğandan soñ mümkün olacaq',
   },
   topicsTitle: 'MEVZULAR',
-  settingsTitle: 'Ayarlamalar',
+  settingsTitle: 'Tez ayarlamalar',
   settingsDescription: 'Oquv ayarlamaları mında peyda olacaq.',
 };
 

@@ -40,7 +40,7 @@ test('Course navigation renders Modules and opens the overridden Lesson without 
   await expect(page.getByText('Лабораторія світла')).toBeVisible();
   await expect(page.getByRole('link', { name: /Як рухається світло/ })).toHaveAttribute(
     'href',
-    '/uk/course/' + courseId + '/lesson/' + lessonId,
+    '/uk/course/' + courseId + '/lesson/uk/' + lessonId,
   );
   await page.goto('/uk/course/' + courseId + '/lesson/' + lessonId);
   await expect(page.getByText('Порівняй швидкість світла у вакуумі, повітрі та воді.')).toBeVisible();
@@ -51,6 +51,18 @@ test('Course navigation renders Modules and opens the overridden Lesson without 
   await expect(page.getByText(/A small story between lesson sections/)).toBeVisible();
   await page.goto('/uk/lesson/' + lessonId);
   await expect(page.getByRole('heading', { name: 'Як рухається світло', exact: true })).toBeVisible();
+});
+
+test('Course lesson keeps the course context while interface and lesson languages differ', async ({ page }) => {
+  await page.goto('/uk/course/' + courseId + '/lesson/en/' + lessonId);
+  await expect(page.locator('html')).toHaveAttribute('lang', 'uk-UA');
+  await expect(page.locator('#learning-content [lang="en-US"]').first()).toHaveAttribute('dir', 'ltr');
+  await expect(page.getByRole('heading', { name: 'How light travels', exact: true })).toBeVisible();
+  await page.getByRole('button', { name: 'Профіль' }).click();
+  await page.getByRole('menuitem', { name: 'Швидкі налаштування' }).click();
+  await page.getByRole('combobox', { name: 'Мова інтерфейсу' }).click();
+  await page.getByRole('option', { name: 'English' }).click();
+  await expect(page).toHaveURL('/en/course/' + courseId + '/lesson/en/' + lessonId);
 });
 
 test('Episode is navigable as a separate Course unit', async ({ page }) => {

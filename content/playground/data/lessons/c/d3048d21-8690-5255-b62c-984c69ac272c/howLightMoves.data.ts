@@ -2,6 +2,7 @@ import { defineLessonData, type Lesson } from '@svitlo/engine/content';
 import { howLightMoves_languages, type HowLightMoves_Languages } from './constants';
 import { howLightMoves_Flashcards } from './flashcards';
 import { howLightMoves_Questions } from './questions';
+import { testExplainLightTravel_Skill_Data } from '../../../skills/testLight/testLightPropagation/skills';
 import { practice_Section } from './sections/practice';
 import { quiz_Section } from './sections/quiz';
 import { theory_Section } from './sections/theory/theory';
@@ -41,6 +42,7 @@ export const howLightMoves_Data = defineLessonData<HowLightMoves_Languages>()({
     uk: 'Як рухається світло',
   },
   flashcards: howLightMoves_Flashcards,
+  skills: [testExplainLightTravel_Skill_Data.id],
   parameters: {
     requireQuiz: true,
     languages: howLightMoves_languages,

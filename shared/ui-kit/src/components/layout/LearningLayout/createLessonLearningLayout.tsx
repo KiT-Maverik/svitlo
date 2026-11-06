@@ -13,7 +13,6 @@ export type LessonLearningLayoutProps = Pick<
   | 'children'
   | 'topics'
   | 'skippableSteps'
-  | 'quizStep'
   | 'pathname'
   | 'contentLoading'
   | 'contentError'
@@ -23,11 +22,21 @@ export type LessonLearningLayoutProps = Pick<
   | 'renderTopBar'
   | 'renderBottomBar'
   | 'renderEventHost'
+  | 'profile'
+  | 'profiles'
+  | 'onProfileChange'
+  | 'onLogout'
+  | 'settingsContent'
 > & { messages: UiKitMessages };
 
 export type LessonLearningLayoutBindings = {
   /** Supplied by the consuming app; the UI Kit never imports Next.js hooks. */
-  useLocale: () => { locale: Locale; setLocale: (locale: Locale) => void };
+  useLocale: () => {
+    locale: Locale;
+    setLocale: (locale: Locale) => void;
+    lessonLocale?: Locale;
+    setLessonLocale?: (locale: Locale) => void;
+  };
   linkComponent?: ElementType;
 };
 
@@ -37,7 +46,6 @@ export function createLessonLearningLayout(bindings: LessonLearningLayoutBinding
     children,
     topics,
     skippableSteps,
-    quizStep,
     pathname,
     messages,
     contentLoading,
@@ -48,8 +56,13 @@ export function createLessonLearningLayout(bindings: LessonLearningLayoutBinding
     renderTopBar,
     renderBottomBar,
     renderEventHost,
+    profile,
+    profiles,
+    onProfileChange,
+    onLogout,
+    settingsContent,
   }: LessonLearningLayoutProps) {
-    const { locale, setLocale } = bindings.useLocale();
+    const { locale, setLocale, lessonLocale, setLessonLocale } = bindings.useLocale();
     const { mode, systemMode, setMode } = useColorScheme();
 
     const preferences = useMemo(
@@ -58,12 +71,14 @@ export function createLessonLearningLayout(bindings: LessonLearningLayoutBinding
           messages={messages.navbarPreferences}
           locale={locale}
           onLocaleChange={setLocale}
+          lessonLocale={lessonLocale}
+          onLessonLocaleChange={setLessonLocale}
           mode={mode}
           systemMode={systemMode}
           onThemeChange={setMode}
         />
       ),
-      [messages.navbarPreferences, locale, setLocale, mode, systemMode, setMode],
+      [messages.navbarPreferences, locale, setLocale, lessonLocale, setLessonLocale, mode, systemMode, setMode],
     );
     return (
       <LearningLayout
@@ -76,12 +91,16 @@ export function createLessonLearningLayout(bindings: LessonLearningLayoutBinding
         onRetryContent={onRetryContent}
         topics={topics}
         skippableSteps={skippableSteps}
-        quizStep={quizStep}
         actions={actions}
         renderTopBar={renderTopBar}
         renderBottomBar={renderBottomBar}
         renderEventHost={renderEventHost}
         preferences={preferences}
+        profile={profile}
+        profiles={profiles}
+        onProfileChange={onProfileChange}
+        onLogout={onLogout}
+        settingsContent={settingsContent}
         linkComponent={bindings.linkComponent}
       >
         {children}

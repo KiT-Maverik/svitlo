@@ -7,6 +7,8 @@ export const LearningLayout_mx = {
     vi.mocked(useLessonLocale).mockReturnValue({
       locale: options.locale ?? 'uk-UA',
       setLocale: vi.fn(),
+      lessonLocale: options.locale ?? 'uk-UA',
+      setLessonLocale: vi.fn(),
     });
   },
   reset: () => vi.clearAllMocks(),

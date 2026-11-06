@@ -1,16 +1,27 @@
-import { fireEvent, render, screen, within } from '@testing-library/react';
+import { useEffect } from 'react';
+import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { enUiKitMessages } from '../../testing/uiKitMessages.unit.fx';
 import LearningLayout from '../layout/LearningLayout/LearningLayout';
 import type { LessonLearningLayoutProps } from '../layout/LearningLayout/createLessonLearningLayout';
 import { Lesson, type LessonView } from './Lesson';
 import { useLessonActions, type LessonActions } from './LessonController';
+import { useLessonEventBus } from './LessonEvents';
 
 const observed: LessonActions[] = [];
+const observedEvents: string[] = [];
 let releaseTestBlocker: (() => void) | undefined;
 
 function TestLayout({ messages, ...props }: LessonLearningLayoutProps) {
   const actions = useLessonActions();
+  const bus = useLessonEventBus();
+  useEffect(
+    () =>
+      bus.subscribe(id => {
+        observedEvents.push(id);
+      }),
+    [bus],
+  );
   observed.push(actions);
   return (
     <>
@@ -108,7 +119,7 @@ describe('LessonController scoped state and navigation', () => {
 
   it('allows skipping an unanswered checkpoint without leaking its gate to the next section', () => {
     const base = response(true);
-    const value: LessonView = {
+    const value = {
       ...base,
       sections: [
         ...base.sections,
@@ -120,11 +131,9 @@ describe('LessonController scoped state and navigation', () => {
           questions: [],
         },
       ],
-    };
+    } as unknown as LessonView;
     observed.length = 0;
-    render(
-      <Lesson response={value} href="/en/lesson/lesson-test" messages={enUiKitMessages} layout={TestLayout} />,
-    );
+    render(<Lesson response={value} href="/en/lesson/lesson-test" messages={enUiKitMessages} layout={TestLayout} />);
     const bottom = screen.getByRole('navigation', { name: enUiKitMessages.learningLayout.navigation.bottom });
     const next = within(bottom).getByRole('button', {
       name: new RegExp(enUiKitMessages.learningLayout.actions.next, 'i'),
@@ -153,7 +162,7 @@ describe('LessonController scoped state and navigation', () => {
 
   it('removes a checkpoint blocker when leaving its section backward', () => {
     const base = response(true);
-    const value: LessonView = {
+    const value = {
       ...base,
       sections: [
         {
@@ -165,16 +174,9 @@ describe('LessonController scoped state and navigation', () => {
         },
         ...base.sections,
       ],
-    };
+    } as unknown as LessonView;
     observed.length = 0;
-    render(
-      <Lesson
-        response={value}
-        href="/en/lesson/lesson-test"
-        messages={enUiKitMessages}
-        layout={TestLayout}
-      />,
-    );
+    render(<Lesson response={value} href="/en/lesson/lesson-test" messages={enUiKitMessages} layout={TestLayout} />);
     const bottom = screen.getByRole('navigation', { name: enUiKitMessages.learningLayout.navigation.bottom });
     const next = within(bottom).getByRole('button', {
       name: new RegExp(enUiKitMessages.learningLayout.actions.next, 'i'),
@@ -196,9 +198,11 @@ describe('LessonController scoped state and navigation', () => {
 
   it('keeps Next blocked until every required checkpoint releases its own gate', () => {
     const base = response(true);
-    const first = base.sections[0].content[0];
+    const firstSection = base.sections[0];
+    if (firstSection.type === 'quiz') throw new Error('Expected regular Section');
+    const first = firstSection.content[0];
     if (first.type !== 'checkpoint') throw new Error('Expected checkpoint fixture');
-    const value: LessonView = {
+    const value = {
       ...base,
       sections: [
         {
@@ -222,16 +226,9 @@ describe('LessonController scoped state and navigation', () => {
         },
         ...base.sections.slice(1),
       ],
-    };
+    } as unknown as LessonView;
     observed.length = 0;
-    render(
-      <Lesson
-        response={value}
-        href="/en/lesson/lesson-test"
-        messages={enUiKitMessages}
-        layout={TestLayout}
-      />,
-    );
+    render(<Lesson response={value} href="/en/lesson/lesson-test" messages={enUiKitMessages} layout={TestLayout} />);
     const bottom = screen.getByRole('navigation', { name: enUiKitMessages.learningLayout.navigation.bottom });
     const next = within(bottom).getByRole('button', {
       name: new RegExp(enUiKitMessages.learningLayout.actions.next, 'i'),
@@ -288,5 +285,106 @@ describe('LessonController scoped state and navigation', () => {
     expect(summary).toBeDisabled();
     fireEvent.click(screen.getByRole('button', { name: 'Enable navigation' }));
     expect(summary).toBeEnabled();
+  });
+});
+
+describe('multiple Quiz Sections', () => {
+  const question = (id: string) => ({
+    id: 'question-' + id,
+    type: 'selectOneAnswer' as const,
+    assessmentMethod: 'retrieval' as const,
+    restrictions: [],
+    question: [{ id: 'prompt-' + id, type: 'text' as const, value: 'Question ' + id }] as [
+      { id: string; type: 'text'; value: string },
+    ],
+    answers: {
+      correct: { yes: { id: 'yes-' + id, type: 'text' as const, value: 'Yes' } },
+      incorrect: { no: { id: 'no-' + id, type: 'text' as const, value: 'No' } },
+      distractors: {},
+    },
+  });
+  const params = (isBlocker: boolean) => ({
+    isBlocker,
+    selection: { mode: 'all' as const },
+    layout: { mode: 'stack' as const },
+    feedbackMode: 'immediate' as const,
+    interaction: {
+      retries: 0,
+      showErrors: true,
+      showCorrectAnswers: true,
+      allowExplanations: true,
+      allowDeferring: false,
+      allowQuestionNavigation: false,
+      skippable: false,
+    },
+    results: { visibility: 'immediate' as const, showScore: true },
+    screen: {},
+  });
+  const quiz = (id: string) => ({
+    id,
+    slug: id,
+    title: id,
+    navigationLabel: id,
+    type: 'quiz' as const,
+    parameters: params(true),
+    questions: [question(id)],
+  });
+  const fixture = {
+    id: 'multi-quiz-lesson',
+    title: 'Multiple quizzes',
+    locale: { code: 'en' as const },
+    parameters: { sections: { allowNavigation: true, allowSkipping: true, showIndexes: true } },
+    sections: [
+      quiz('quiz-first'),
+      quiz('quiz-second'),
+      {
+        id: 'summary',
+        slug: 'summary',
+        type: 'theory' as const,
+        title: 'Summary',
+        navigationLabel: 'Summary',
+        content: [{ type: 'text' as const, id: 'summary', value: 'Quiz sections finished' }],
+      },
+    ],
+  } as LessonView;
+
+  it('allows advancing past a nonblocking Quiz without completing it', () => {
+    const optional = { ...quiz('optional'), parameters: params(false) };
+    const view = { ...fixture, sections: [optional, quiz('required'), fixture.sections[2]] } as LessonView;
+    render(<Lesson response={view} href="/en/lesson/nonblocking" messages={enUiKitMessages} layout={TestLayout} />);
+    const bottom = screen.getByRole('navigation', { name: enUiKitMessages.learningLayout.navigation.bottom });
+    const next = () =>
+      within(bottom).getByRole('button', {
+        name: new RegExp(enUiKitMessages.learningLayout.actions.next, 'i'),
+      });
+    expect(next()).toBeEnabled();
+    fireEvent.click(next());
+    expect(screen.getByText('Question required')).toBeVisible();
+    expect(next()).toBeDisabled();
+  });
+
+  it('gates each Quiz independently until attempted, regardless of score', async () => {
+    observedEvents.length = 0;
+    render(
+      <Lesson response={fixture} href="/en/lesson/multi-quiz-lesson" messages={enUiKitMessages} layout={TestLayout} />,
+    );
+    const bottom = screen.getByRole('navigation', { name: enUiKitMessages.learningLayout.navigation.bottom });
+    const next = () =>
+      within(bottom).getByRole('button', {
+        name: new RegExp(enUiKitMessages.learningLayout.actions.next, 'i'),
+      });
+    expect(next()).toBeDisabled();
+    fireEvent.click(screen.getByRole('button', { name: 'No' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Check' }));
+    await waitFor(() => expect(observedEvents).toContain('quizCompleted'));
+    await waitFor(() => expect(next()).toBeEnabled());
+    fireEvent.click(next());
+    expect(screen.getByText('Question quiz-second')).toBeVisible();
+    expect(next()).toBeDisabled();
+    fireEvent.click(screen.getByRole('button', { name: 'Yes' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Check' }));
+    await waitFor(() => expect(next()).toBeEnabled());
+    fireEvent.click(next());
+    expect(screen.getByText('Quiz sections finished')).toBeVisible();
   });
 });

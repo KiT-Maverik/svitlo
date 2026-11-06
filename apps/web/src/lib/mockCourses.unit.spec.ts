@@ -14,7 +14,7 @@ describe('temporary course catalog adapters', () => {
     const chapter = module.children?.[0];
     expect(chapter?.type).toBe('chapter');
     expect(chapter?.children?.some(item => item.type === 'episode' && item.href?.includes('/episode/'))).toBe(true);
-    expect(chapter?.children?.some(item => item.type === 'lesson' && item.href?.includes('/lesson/'))).toBe(true);
+    expect(chapter?.children?.some(item => item.type === 'lesson' && item.href?.includes('/lesson/uk/'))).toBe(true);
   });
 
   it('does not link to lessons that have not been published', () => {

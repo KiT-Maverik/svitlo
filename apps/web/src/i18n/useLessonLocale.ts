@@ -4,33 +4,56 @@ import { useCallback } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { DEFAULT_SUPPORTED_LANGUAGES, type Locale } from '@svitlo/engine/localization';
 
-function lessonLanguage(pathname: string) {
-  const code = pathname.split('/')[1];
+function languageForCode(code: string) {
   const language = DEFAULT_SUPPORTED_LANGUAGES.find(entry => entry.language === code);
-  if (!language) throw new Error('Unsupported lesson language in path: ' + code);
+  if (!language) throw new Error('Unsupported language in lesson path: ' + code);
   return language;
 }
 
+function languageForLocale(locale: Locale) {
+  const language = DEFAULT_SUPPORTED_LANGUAGES.find(entry => entry.locale === locale);
+  if (!language) throw new Error('Unsupported lesson locale: ' + locale);
+  return language;
+}
+
+/** The first code is the UI language; the code after /lesson/ is the lesson language. */
+function lessonRoute(pathname: string) {
+  const match = /^\/([a-z]{2})(\/course\/[^/]+)?\/lesson\/(?:([a-z]{2})\/)?([^/]+)\/?$/.exec(pathname);
+  if (!match) throw new Error('Unsupported lesson path: ' + pathname);
+  const interfaceLanguage = languageForCode(match[1]);
+  const lessonLanguage = languageForCode(match[3] ?? match[1]);
+  return { interfaceLanguage, lessonLanguage, lessonId: match[4], routePrefix: match[2] ?? '' };
+}
+
 export function useLessonLanguage() {
-  return lessonLanguage(usePathname());
+  return lessonRoute(usePathname()).interfaceLanguage;
 }
 
 export function useLessonLocale() {
   const pathname = usePathname();
   const router = useRouter();
-  const { locale } = lessonLanguage(pathname);
-  const setLocale = useCallback(
-    (nextLocale: Locale) => {
-      const language = DEFAULT_SUPPORTED_LANGUAGES.find(entry => entry.locale === nextLocale);
-      if (!language) throw new Error('Unsupported lesson locale: ' + nextLocale);
+  const { interfaceLanguage, lessonLanguage, lessonId, routePrefix } = lessonRoute(pathname);
+
+  const navigate = useCallback(
+    (interfaceCode: string, lessonCode: string) => {
       const params = new URLSearchParams(window.location.search);
       params.delete('lang');
       const query = params.toString();
-      const nextPathname = pathname.replace(/^\/[^/]+(?=\/|$)/, `/${language.language}`);
-      router.replace(nextPathname + (query ? `?${query}` : ''), { scroll: false });
+      const nextPath = `/${interfaceCode}${routePrefix}/lesson/${lessonCode}/${lessonId}`;
+      router.replace(nextPath + (query ? `?${query}` : ''), { scroll: false });
     },
-    [pathname, router],
+    [lessonId, routePrefix, router],
   );
 
-  return { locale, setLocale };
+  const setLocale = useCallback(
+    (nextLocale: Locale) => navigate(languageForLocale(nextLocale).language, lessonLanguage.language),
+    [navigate, lessonLanguage.language],
+  );
+
+  const setLessonLocale = useCallback(
+    (nextLocale: Locale) => navigate(interfaceLanguage.language, languageForLocale(nextLocale).language),
+    [navigate, interfaceLanguage.language],
+  );
+
+  return { locale: interfaceLanguage.locale, setLocale, lessonLocale: lessonLanguage.locale, setLessonLocale };
 }

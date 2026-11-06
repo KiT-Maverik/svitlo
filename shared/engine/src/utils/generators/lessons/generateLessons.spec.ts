@@ -12,6 +12,7 @@ const lesson = {
   slug: 'howLightMoves',
   title: { en: 'Light', uk: 'Світло' },
   parameters: { languages: ['en', 'uk'] },
+  skills: ['00000000-0000-4000-8000-000000000015'],
   flashcards: [{ id: 'card-id', label: 'H₂O', front: [{ text: { en: 'Ray', uk: 'Промінь' } }] }],
   questions: { selectOneAnswer: { q1: { id: 'question-id', slug: 'q1', title: { en: 'What?', uk: 'Що?' } } } },
   sections: [
@@ -20,7 +21,7 @@ const lesson = {
       slug: 'quiz',
       type: 'quiz',
       title: { en: 'Quiz', uk: 'Тест' },
-      content: [{ type: 'quiz', id: 'quiz-block', slug: 'quiz', questions: { q1: { id: 'question-id', slug: 'q1' } } }],
+      parameters: { selection: { mode: 'all', questionSlugs: ['q1'] }, layout: { mode: 'stepper' }, isBlocker: true },
     },
   ],
 };
@@ -36,7 +37,8 @@ describe('renderLessonFiles', () => {
     assert.equal(base.data.title, undefined);
     assert.equal(localized.data.title, 'Світло');
     assert.equal(base.data.sections[0].title, undefined);
-    assert.deepEqual(base.data.sections[0].content[0].questionSlugs, ['q1']);
+    assert.deepEqual(base.data.sections[0].parameters.selection.questionSlugs, ['q1']);
+    assert.deepEqual(base.data.skills, ['00000000-0000-4000-8000-000000000015']);
     assert.equal(base.data.flashcards, undefined);
     assert.equal(base.data.questions, undefined);
     assert.deepEqual(localized.localeSources['/sections/0/title'], { code: 'uk' });

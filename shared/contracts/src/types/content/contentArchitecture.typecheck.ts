@@ -3,8 +3,6 @@ import type {
   ContentBlock_Checkpoint,
   ContentBlock_Code,
   ContentBlock_Image,
-  ContentBlock_Quiz,
-  ContentBlock_Quiz_Screen,
   ContentBlock_Scene,
   ContentBlock_Text,
   ContentBlock_Type,
@@ -15,6 +13,8 @@ import type {
   Question_Type,
   Section,
   Section_Type,
+  Quiz_Screen,
+  Quiz_Parameters,
 } from '../../content';
 type TestLanguages = readonly ['en', 'uk'];
 
@@ -30,23 +30,23 @@ type _QuestionKinds = Assert<Equal<Question<'response', TestLanguages>['type'], 
 type _SceneDiscriminator = Assert<Equal<ContentBlock_Scene<'response', TestLanguages>['type'], 'scene'>>;
 type _SceneUsesRegistryKey = Assert<Equal<ContentBlock_Scene<'response', TestLanguages>['rendererKey'], string>>;
 type _OrderedSectionContent = Assert<
-  Equal<Section<'data', TestLanguages>['content'][number]['type'], ContentBlock_Type>
+  Equal<
+    Extract<Section<'data', TestLanguages>, { content: readonly unknown[] }>['content'][number]['type'],
+    ContentBlock_Type
+  >
 >;
 type _OrderedLessonSections = Assert<Equal<Lesson<'data', TestLanguages>['sections'][number]['type'], Section_Type>>;
 type _AuthoredKinds = Assert<Equal<ContentBlock<'data', TestLanguages>['type'], ContentBlock_Type>>;
 type _QuizReferencesQuestions = Assert<
-  Equal<ContentBlock_Quiz<'response', TestLanguages>['questionSlugs'][number], string>
+  Equal<NonNullable<Quiz_Parameters<'response', TestLanguages>['selection']['questionSlugs']>[number], string>
 >;
 type _QuizStartScreen = Assert<
-  Equal<
-    NonNullable<ContentBlock_Quiz<'data', TestLanguages>['screen']['starting']>,
-    ContentBlock_Quiz_Screen<'data', TestLanguages>
-  >
+  Equal<NonNullable<Quiz_Parameters<'data', TestLanguages>['screen']['starting']>, Quiz_Screen<'data', TestLanguages>>
 >;
 type _QuizRetryScreen = Assert<
   Equal<
-    NonNullable<NonNullable<ContentBlock_Quiz<'response', TestLanguages>['screen']['ending']>['retry']>,
-    ContentBlock_Quiz_Screen<'response', TestLanguages>
+    NonNullable<NonNullable<Quiz_Parameters<'response', TestLanguages>['screen']['ending']>['retry']>,
+    Quiz_Screen<'response', TestLanguages>
   >
 >;
 
@@ -133,11 +133,11 @@ const runtimeScene: ContentBlock_Scene<'response', TestLanguages> = {
   locales: { title: 'Light ray' },
 };
 
-const customQuizScreen: ContentBlock_Quiz_Screen<'response', TestLanguages> = {
+const customQuizScreen: Quiz_Screen<'response', TestLanguages> = {
   content: [runtimeText],
 };
 // @ts-expect-error A custom screen requires at least one content block.
-const emptyQuizScreen: ContentBlock_Quiz_Screen<'response', TestLanguages> = { content: [] };
+const emptyQuizScreen: Quiz_Screen<'response', TestLanguages> = { content: [] };
 
 // @ts-expect-error A localized runtime content block must carry its discriminator.
 const missingDiscriminator: ContentBlock_Text<'response', TestLanguages> = {
@@ -149,9 +149,9 @@ declare const flashcard: Flashcard<'data', TestLanguages>;
 // @ts-expect-error Canonical authored card content arrays cannot be mutated.
 flashcard.front.push(runtimeText);
 
-declare const quiz: ContentBlock_Quiz<'response', TestLanguages>;
-// @ts-expect-error Quiz question references are immutable.
-quiz.questionSlugs.push('another-question');
+declare const quiz: Extract<Section<'response', TestLanguages>, { type: 'quiz' }>;
+// @ts-expect-error Quiz question selection references are immutable.
+quiz.parameters.selection.questionSlugs!.push('another-question');
 
 void [
   runtimeText,

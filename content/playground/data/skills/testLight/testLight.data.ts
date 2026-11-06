@@ -1,0 +1,40 @@
+// Synthetic Playground fixtures: locale-tagged placeholders, not translations.
+import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { testLightPropagation_SkillGroup_Data } from './testLightPropagation/testLightPropagation.data';
+
+export const testLight_SkillDomain_Data = buildSkillDomainConfig({
+  id: '00000000-0000-4000-8000-000000000017',
+  slug: 'testLight',
+  name: {
+    en: '[TEST en] Light',
+    zh: '[TEST zh] Light',
+    hi: '[TEST hi] Light',
+    es: '[TEST es] Light',
+    ar: '[TEST ar] Light',
+    fr: '[TEST fr] Light',
+    bn: '[TEST bn] Light',
+    pt: '[TEST pt] Light',
+    ur: '[TEST ur] Light',
+    id: '[TEST id] Light',
+    de: '[TEST de] Light',
+    ja: '[TEST ja] Light',
+    ko: '[TEST ko] Light',
+    tr: '[TEST tr] Light',
+    vi: '[TEST vi] Light',
+    ta: '[TEST ta] Light',
+    te: '[TEST te] Light',
+    mr: '[TEST mr] Light',
+    ms: '[TEST ms] Light',
+    he: '[TEST he] Light',
+    pl: '[TEST pl] Light',
+    uk: '[TEST uk] Light',
+    lt: '[TEST lt] Light',
+    lv: '[TEST lv] Light',
+    et: '[TEST et] Light',
+    be: '[TEST be] Light',
+    ka: '[TEST ka] Light',
+    kk: '[TEST kk] Light',
+    qm: '[TEST qm] Light',
+  },
+  groups: { testLightPropagation: testLightPropagation_SkillGroup_Data },
+});

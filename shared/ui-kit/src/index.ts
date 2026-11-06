@@ -7,3 +7,5 @@ export type { LearningLayoutProps } from './components/layout/LearningLayout';
 
 export type * from './types/uiKitMessages';
 export * from './components/lesson';
+
+export * from './components/pages/UserCabinet';
