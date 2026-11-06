@@ -1,4 +1,4 @@
-import type { Lesson, LessonEventOverrides, LessonEvents, SupportedLessonEvents } from '../../content';
+import { defineLessonData, type Lesson, type LessonEventOverrides, type LessonEvents, type SupportedLessonEvents } from '../../content';
 
 type Languages = readonly ['en'];
 type Custom = 'lightDiscovered' | 'lionAppeared';
@@ -43,3 +43,23 @@ void unknown;
 type DefaultLesson = Lesson<'data', Languages>;
 declare const defaultLesson: DefaultLesson;
 void defaultLesson;
+
+declare const baseLesson: Omit<Lesson<'data', Languages>, 'events' | 'questions'>;
+const defaultAuthoring = defineLessonData<Languages>()({
+  ...baseLesson, questions: {}, events: { lessonCompleted: false },
+});
+void defaultAuthoring;
+const customAuthoring = defineLessonData<Languages, 'lightDiscovered'>()({
+  ...baseLesson, questions: {}, events: { lightDiscovered: scene },
+});
+void customAuthoring;
+
+// @ts-expect-error Undeclared event IDs are not permitted by the authoring helper.
+defineLessonData<Languages>()({
+  ...baseLesson, questions: {}, events: { lessonCompleted: false, lightDiscovered: scene },
+});
+
+// @ts-expect-error An explicitly declared custom event must be configured.
+defineLessonData<Languages, 'lightDiscovered'>()({
+  ...baseLesson, questions: {}, events: { lessonCompleted: false },
+});

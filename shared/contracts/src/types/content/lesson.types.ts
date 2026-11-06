@@ -3,7 +3,7 @@ import type { Flashcard } from './flashcard.types';
 import type { Lesson_Locale, Locale_Options } from './locale.types';
 import type { Question_Catalog, Question_Catalog_ValidSlugs } from './questions';
 import type { Section } from './section.types';
-import type { LessonEventsField, LessonResponseEvents } from './lesson.events.types';
+import type { LessonEventsField, LessonResponseEvents, SupportedLessonEvents } from './lesson.events.types';
 
 type Lesson_Parameters<SupportedLanguages extends Lesson_Locale> = {
   requireQuiz: boolean;
@@ -53,10 +53,15 @@ export type Lesson<
   response: Lesson_Response<SupportedLanguages, CustomEvents>;
 }[ConfigType];
 
+/** Reject custom event IDs that are not declared in Lesson's third generic, even in helper calls without satisfies. */
+type LessonEventKeysValidated<T, CustomEvents extends string> = T extends { events: infer Events }
+  ? { events: Record<Exclude<keyof Events, SupportedLessonEvents<CustomEvents>>, never> }
+  : unknown;
+
 export function defineLessonData<SupportedLanguages extends Lesson_Locale, CustomEvents extends string = never>() {
   return <const T extends Lesson<'data', SupportedLanguages, CustomEvents>>(
     lesson: T & {
       questions: Question_Catalog_ValidSlugs<T['questions'], SupportedLanguages>;
-    },
+    } & LessonEventKeysValidated<T, CustomEvents>,
   ): T => lesson;
 }
