@@ -242,7 +242,7 @@ function MobileContent() {
 
 export default function App() {
   return (
-    <ThemeProvider theme={theme} defaultMode="system">
+    <ThemeProvider theme={theme} defaultMode="system" noSsr disableTransitionOnChange>
       <CssBaseline />
       <MobileContent />
     </ThemeProvider>
