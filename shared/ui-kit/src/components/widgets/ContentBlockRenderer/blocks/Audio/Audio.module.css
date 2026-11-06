@@ -32,7 +32,9 @@
   border-radius: 50%;
   color: var(--mui-palette-primary-contrastText, #fff);
   background: var(--mui-palette-primary-main, #4caf70);
-  transition: transform 160ms ease, background-color 160ms ease;
+  transition:
+    transform 160ms ease,
+    background-color 160ms ease;
 }
 
 .player .playButton:hover {
