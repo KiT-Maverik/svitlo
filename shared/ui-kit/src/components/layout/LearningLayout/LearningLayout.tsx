@@ -12,17 +12,14 @@ import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
-import Tooltip from '@mui/material/Tooltip';
 import { alpha } from '@mui/material/styles';
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import LogoutIcon from '@mui/icons-material/Logout';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import TopNavbar from '../Navigation/TopNavbar';
 import BottomNavbar from '../Navigation/BottomNavbar';
 import { getLocaleDirection, type Locale } from '@svitlo/engine/localization';
 import VerticalSpace from '#widgets/VerticalSpace/VerticalSpace';
+import ProfileMenu, { type LearningProfile } from './ProfileMenu';
 
 export type Topic = { id: string; title: string; href: string };
 export type LearningLayoutProgress = {
@@ -41,7 +38,12 @@ export interface LearningLayoutProps {
   pathname: string;
   progress: LearningLayoutProgress;
   actions: { back: () => void; next: () => void; skip: () => void };
+  /** Optional preference controls rendered in the settings drawer. */
   preferences?: ReactNode;
+  profile?: LearningProfile;
+  profiles?: readonly LearningProfile[];
+  onProfileChange?: (profileId: string) => void;
+  onLogout?: () => void;
   /** Optional page-specific controls inside the existing right settings drawer. */
   settingsContent?: ReactNode | ((actions: { closeSettings: () => void }) => ReactNode);
   /** Non-lesson pages can reuse the navbar and sidebars without lesson navigation. */
@@ -56,7 +58,10 @@ export interface LearningLayoutProps {
   renderEventHost?: () => ReactNode;
 }
 
-export type LearningLayoutTopBarProps = Pick<LearningLayoutProps, 'messages' | 'preferences' | 'linkComponent'> & {
+export type LearningLayoutTopBarProps = Pick<
+  LearningLayoutProps,
+  'messages' | 'preferences' | 'linkComponent' | 'profile' | 'profiles' | 'onProfileChange' | 'onLogout'
+> & {
   open: boolean;
   settingsOpen: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -77,8 +82,11 @@ export type LearningLayoutBottomBarProps = Pick<
 /** Default chrome stays reusable outside lessons; controller-owned slots can wrap it in independent contexts. */
 export function LearningLayoutTopBar({
   messages,
-  preferences,
   linkComponent,
+  profile,
+  profiles,
+  onProfileChange,
+  onLogout,
   open,
   settingsOpen,
   setOpen,
@@ -128,34 +136,21 @@ export function LearningLayoutTopBar({
           </>
         ),
         right: (
-          <>
-            {preferences}
-            <Tooltip title={messages.tooltips.profile}>
-              <Box component="span" sx={{ display: { xs: 'none', sm: 'inline-flex' } }}>
-                <IconButton aria-label={messages.actions.profile} disabled>
-                  <AccountCircleOutlinedIcon />
-                </IconButton>
-              </Box>
-            </Tooltip>
-            <IconButton
-              aria-label={settingsOpen ? messages.actions.closeSettings : messages.actions.openSettings}
-              aria-expanded={settingsOpen}
-              aria-controls={settingsOpen ? 'settings-sidebar' : undefined}
-              onClick={() => {
-                setSettingsOpen(value => !value);
-                setOpen(false);
-              }}
-            >
-              <SettingsOutlinedIcon />
-            </IconButton>
-            <Tooltip title={messages.tooltips.logout}>
-              <Box component="span" sx={{ display: { xs: 'none', sm: 'inline-flex' } }}>
-                <IconButton aria-label={messages.actions.logout} disabled>
-                  <LogoutIcon />
-                </IconButton>
-              </Box>
-            </Tooltip>
-          </>
+          <ProfileMenu
+            messages={messages}
+            profile={profile}
+            profiles={profiles}
+            onProfileChange={onProfileChange}
+            onLogout={onLogout}
+            onOpen={() => {
+              setOpen(false);
+              setSettingsOpen(false);
+            }}
+            onSettings={() => {
+              setOpen(false);
+              setSettingsOpen(true);
+            }}
+          />
         ),
       }}
     />
@@ -234,6 +229,10 @@ export default function LearningLayout({
   progress,
   actions,
   preferences,
+  profile,
+  profiles,
+  onProfileChange,
+  onLogout,
   settingsContent,
   showBottomNavbar = true,
   contentLoading = false,
@@ -277,6 +276,10 @@ export default function LearningLayout({
           messages,
           preferences,
           linkComponent,
+          profile,
+          profiles,
+          onProfileChange,
+          onLogout,
           open,
           settingsOpen,
           setOpen,
@@ -287,6 +290,10 @@ export default function LearningLayout({
           messages={messages}
           preferences={preferences}
           linkComponent={linkComponent}
+          profile={profile}
+          profiles={profiles}
+          onProfileChange={onProfileChange}
+          onLogout={onLogout}
           open={open}
           settingsOpen={settingsOpen}
           setOpen={setOpen}
@@ -405,7 +412,7 @@ export default function LearningLayout({
             <Box sx={{ flex: 1, minHeight: 0, overflowY: 'auto', p: 2 }}>
               {typeof settingsContent === 'function'
                 ? settingsContent({ closeSettings: () => setSettingsOpen(false) })
-                : (settingsContent ?? <Typography color="text.secondary">{messages.settingsDescription}</Typography>)}
+                : (settingsContent ?? preferences ?? <Typography color="text.secondary">{messages.settingsDescription}</Typography>)}
             </Box>
           </Box>
         </Drawer>
