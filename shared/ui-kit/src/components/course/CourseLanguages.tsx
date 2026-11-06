@@ -67,6 +67,7 @@ export function CourseLanguages({ languages, interfaceLanguage, label, compact =
             variant="outlined"
             label={'+' + hidden.length}
             title={hidden.map(languageName).join(', ')}
+            aria-label={label + ': ' + hidden.map(languageName).join(', ')}
           />
         )}
       </Stack>

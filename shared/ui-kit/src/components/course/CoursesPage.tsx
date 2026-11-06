@@ -48,7 +48,13 @@ export function CoursesPage({
           }}
         >
           {courses.map(({ course, href }) => (
-            <CourseCard key={course.id} course={course} href={href} messages={messages} interfaceLanguage={interfaceLanguage} />
+            <CourseCard
+              key={course.id}
+              course={course}
+              href={href}
+              messages={messages}
+              interfaceLanguage={interfaceLanguage}
+            />
           ))}
         </Box>
       )}

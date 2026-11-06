@@ -154,7 +154,11 @@ export function CoursePage({ course, outline, messages, catalogHref, interfaceLa
               {course.description}
             </Typography>
             {!!course.languages?.length && (
-              <CourseLanguages languages={course.languages} interfaceLanguage={interfaceLanguage} label={messages.languages} />
+              <CourseLanguages
+                languages={course.languages}
+                interfaceLanguage={interfaceLanguage}
+                label={messages.languages}
+              />
             )}
             <Stack direction="row" sx={{ gap: 2.5, flexWrap: 'wrap', color: 'text.secondary' }}>
               <Stack direction="row" sx={{ alignItems: 'center', gap: 1 }}>

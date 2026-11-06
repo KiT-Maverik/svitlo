@@ -16,7 +16,13 @@ async function Content({ params }: Props) {
     href: `/${language}/course/${preview.id}`,
   }));
 
-  return <CoursesPage courses={courses} messages={getMockCourseMessages(language)} interfaceLanguage={interfaceLocale.language} />;
+  return (
+    <CoursesPage
+      courses={courses}
+      messages={getMockCourseMessages(language)}
+      interfaceLanguage={interfaceLocale.language}
+    />
+  );
 }
 export default function CourseCatalogRoute(props: Props) {
   return (
