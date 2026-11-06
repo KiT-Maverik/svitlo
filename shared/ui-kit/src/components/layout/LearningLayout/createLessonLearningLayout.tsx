@@ -23,6 +23,11 @@ export type LessonLearningLayoutProps = Pick<
   | 'renderTopBar'
   | 'renderBottomBar'
   | 'renderEventHost'
+  | 'profile'
+  | 'profiles'
+  | 'onProfileChange'
+  | 'onLogout'
+  | 'settingsContent'
 > & { messages: UiKitMessages };
 
 export type LessonLearningLayoutBindings = {
@@ -48,6 +53,11 @@ export function createLessonLearningLayout(bindings: LessonLearningLayoutBinding
     renderTopBar,
     renderBottomBar,
     renderEventHost,
+    profile,
+    profiles,
+    onProfileChange,
+    onLogout,
+    settingsContent,
   }: LessonLearningLayoutProps) {
     const { locale, setLocale } = bindings.useLocale();
     const { mode, systemMode, setMode } = useColorScheme();
@@ -82,6 +92,11 @@ export function createLessonLearningLayout(bindings: LessonLearningLayoutBinding
         renderBottomBar={renderBottomBar}
         renderEventHost={renderEventHost}
         preferences={preferences}
+        profile={profile}
+        profiles={profiles}
+        onProfileChange={onProfileChange}
+        onLogout={onLogout}
+        settingsContent={settingsContent}
         linkComponent={bindings.linkComponent}
       >
         {children}
