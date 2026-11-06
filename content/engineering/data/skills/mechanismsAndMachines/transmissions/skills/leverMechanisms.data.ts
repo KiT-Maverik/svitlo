@@ -32,7 +32,7 @@ export const leverMechanisms_Skill_Data = buildSkillConfig({
     be: "Рычажныя мэханізмы",
     ka: "ბერკეტის მექანიზმები",
     kk: "Иінтіректі механизмдер",
-    qm: "Kürek mehanizmleri",
+    qm: "Kaldıraç mehanizmleri",
   },
   description: {
     methodological: 'Identify pivot, input and output arrangement in a lever-driven machine.',
@@ -43,7 +43,7 @@ export const leverMechanisms_Skill_Data = buildSkillConfig({
       es: "Identifica el punto de apoyo y las fuerzas de entrada y salida en una palanca.",
       ar: "حدّد نقطة الارتكاز وقوتي الإدخال والإخراج في الرافعة.",
       fr: "Repère le pivot et les forces d'entrée et de sortie d'un levier.",
-      bn: "লিভারের ভরকেন্দ্র, প্রয়োগ বল ও ফল বল শনাক্ত করো।",
+      bn: "লিভারের আলম্ববিন্দু, প্রয়োগ বল ও ফল বল শনাক্ত করো।",
       pt: "Identifique o apoio e as forças de entrada e saída de uma alavanca.",
       ur: "لیور میں محور اور داخل و خارج ہونے والی قوتیں پہچانیں۔",
       id: "Kenali titik tumpu serta gaya masukan dan keluaran pada tuas.",
@@ -65,7 +65,7 @@ export const leverMechanisms_Skill_Data = buildSkillConfig({
       be: "Вызнач пункт апоры, прыкладзеную й выходную сілы рычага.",
       ka: "განსაზღვრე ბერკეტის საყრდენი, შემავალი და გამომავალი ძალები.",
       kk: "Иінтіректің тірек нүктесін, кіріс және шығыс күштерін анықта.",
-      qm: "Kürekniñ tayanuv noqtasını, kirgen ve çıqqan küçlerni belgile.",
+      qm: "Kaldıracnıñ tayanuv noqtasını, kirgen ve çıqqan küçlerni belgile.",
     },
   },
 });
