@@ -9,7 +9,7 @@
 - **Titles and names describe the specific task, change, or result.**
 - **Labels classify the work** (area, work type, priority, PR role, issue state, origin, or attention).
 - Do not add redundant prefixes or suffixes to an Issue or PR title solely to repeat metadata already expressed by its labels.
-- Never prefix an Issue/PR title with a textbook name in square brackets (for example, `[Physics]`); the corresponding `area: *` label identifies the textbook.
+- Never prefix an Issue/PR title with a textbook name in square brackets (for example, `[Physics]`); the corresponding `content: *` label identifies the textbook.
 - Do not use Conventional Commit-style category prefixes in Issue or PR titles (`feat:`, `fix:`, `docs:`, `test:`, `ci:`, `chore:`, `refactor:`, `feat(math):`, etc.). The labels already encode work type and area. This restriction is for Issue/PR **titles**, not commit messages.
 - Do not include redundant `[Draft]`, `[WIP]`, `Integration`, or `(Integration)` markers in PR titles: draft/closed state and `pr: integration` are carried by GitHub metadata. Describe temporary blockers in the PR body and applicable attention labels.
 - Do not include routine agent-count suffixes (for example, `(4 Agents)`) in Issue/PR titles. Document the assignment count and agent workstreams in the Issue body. Keep an individual agent identifier in an agent PR title when it is needed to distinguish parallel workstreams; `pr: agent-subtask` does not encode which agent owns the change.
@@ -21,7 +21,10 @@
 
 | Group          | Purpose                                                    | Where and how to use                                                                                                                                                                                                                                                           |
 | -------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `area: *`      | Affected part of the monorepo, shared package, or textbook | Issues and PRs. Assign all materially affected areas; use `area: repo` for repository-wide concerns not attributable to a more precise area.                                                                                                                                   |
+| `content: *`   | Educational content package (one textbook)                      | Issues and PRs. Use `content: <folder>` for changes in `content/<folder>/`; multiple scopes are allowed when multiple packages change. |
+| `app: *`       | Deployable applications                                             | Issues and PRs. Use `app: desktop`, `app: mobile`, `app: web`, or `app: platform` based on the corresponding `apps/` folder. The legacy `frontend/platform/` also maps to `app: platform`. |
+| `backend: *`   | Backend services                                                    | Issues and PRs. Use `backend: server` for `backend/server/`. |
+| `area: *`      | Shared packages, tooling, Studio and repository-level fallback      | Issues and PRs. Use `area: adapters`, `contracts`, `engine`, `indexdb`, `ui-kit`, `scripts`, or `studio` as applicable; `area: repo` only when no more specific scope applies. |
 | `work: *`      | Kind of activity or deliverable                            | Issues and PRs. Apply one or more when work genuinely spans categories, e.g., translation **and** review.                                                                                                                                                                      |
 | `priority: *`  | Urgency and impact                                         | Primarily Issues; PRs only when priority adds meaningful information. At most one level: `critical`, `high`, `medium`, or `low`. `critical` is for immediate production/security/data-loss situations, not merely large tasks.                                                 |
 | `pr: *`        | PR's role or special change characteristics                | PRs only. `integration` identifies the parent PR; `agent-subtask` identifies an agent PR targeting the integration branch. These two **roles** are mutually exclusive. `breaking-change` and `migration` are independent flags that can accompany either role or a regular PR. |
@@ -29,23 +32,23 @@
 | `source: *`    | Origin of the Issue                                        | Issues only. Choose the factual source: `internal`, `expert-review`, `user-report`, `agent`, or `automation`. Do not confuse a project-owner request (`internal`) with a report submitted through the product's user-report UI (`user-report`).                                |
 | `attention: *` | Special action still required                              | Issues and PRs, only when applicable: `decision`, `blocked`, `manual-qa`. Remove a transient label after the underlying condition is resolved.                                                                                                                                 |
 
-For exact `area` choices, check the catalog: shared areas include `server`, `platform`, `scripts`, `contracts`, `engine`, `indexdb`, `ui-kit`, `studio`, and `repo`; the remaining `area` labels cover individual textbooks. The `work` values are `feature`, `fix`, `refactor`, `content`, `translation`, `review`, `tests`, `ci`, `docs`, and `tooling`.
+Consult the catalog for exact label names and colors. Content scopes are amber, application scopes teal, backend scopes rust, and shared/repository areas blue. The `work` values are `feature`, `fix`, `refactor`, `content`, `translation`, `review`, `tests`, `ci`, `docs`, and `tooling`.
 
 ## 3. Application requirements
 
-1. **At creation:** classify each new Issue and PR with the applicable `area: *` and `work: *` labels. Add relevant labels from other groups when appropriate. Creating labels in GitHub or adding names to the catalog does **not** apply them automatically to existing items.
+1. **At creation:** classify each new Issue and PR with the applicable scope label(s) (`content: *`, `app: *`, `backend: *`, `area: *`) and `work: *` labels. Add relevant labels from other groups when appropriate. Creating labels in GitHub or adding names to the catalog does **not** apply them automatically to existing items.
 2. **While updating:** re-evaluate labels when scope, status, blockers, or change characteristics evolve; remove stale labels. Never add mutually exclusive `priority: *` levels or both PR role labels.
 3. **For multi-agent work:** the central PR receives `pr: integration`; each agent's PR receives `pr: agent-subtask` and targets the integration branch. Preserve the mandated integration hierarchy. The actual scope/agent partition belongs in the PR body or work plan rather than boilerplate title prefixes.
 4. **For normal PRs:** omit `pr: integration` and `pr: agent-subtask`; they are not generic PR types. Assign `pr: migration` and/or `pr: breaking-change` only if the changes warrant them.
 5. **When labels cannot be applied:** report the limitation and the exact labels needed. Do not claim the Issue or PR is labeled until GitHub confirms the update.
-6. **For existing Issues/PRs:** these conventions apply when touching them, but this policy alone does not require a bulk historical relabel or rename.
+6. **For existing Issues/PRs:** the sync workflow renames the former `area: <textbook>`, `area: platform`, and `area: server` labels in place, retaining their Issue/PR assignments; it never deletes other labels. The backfill runs after a successful sync to add missing scope labels to historical Issues/PRs.
 
 ## 4. Naming examples
 
 | Avoid (duplicates labels or adds filler)             | Prefer                                  | Metadata carried by labels                                                |
 | ---------------------------------------------------- | --------------------------------------- | ------------------------------------------------------------------------- |
-| `[Biology] Translation Review — Agent 1`             | `Unify Crimean Tatar skill terminology` | `area: biology`, `work: translation`, `work: review`, `pr: agent-subtask` |
-| `[Physics] Skills taxonomy — Integration (4 Agents)` | `Localize skills taxonomy`              | `area: physics`, `work: translation`, `pr: integration`                   |
+| `[Biology] Translation Review — Agent 1`             | `Unify Crimean Tatar skill terminology` | `content: biology`, `work: translation`, `work: review`, `pr: agent-subtask` |
+| `[Physics] Skills taxonomy — Integration (4 Agents)` | `Localize skills taxonomy`              | `content: physics`, `work: translation`, `pr: integration`                |
 | `[Repo] Docs: Add GitHub rules`                      | `Document GitHub labeling conventions`  | `area: repo`, `work: docs`                                                |
 | `URGENT FIX: Quiz broken!`                           | `Restore keyboard navigation in quiz`   | `work: fix`, appropriate `priority: *`                                    |
 
@@ -59,4 +62,4 @@ These are naming examples, not an instruction to rename existing PRs or replace 
 - **Commit messages:** describe what the commit changes, not just generic labels or "updates". Keep established commit conventions if they exist.
 - **Repository entities and documentation headings:** use accurate, concise domain terms; do not encode status, origin, or priority in a name where structured metadata already captures it.
 
-**Pre-publication check:** Is the title specific and concise? Does it avoid duplicating GitHub labels? Are the actual (not hypothetical) labels applied? Are area and work labels accurate? Are PR roles and target branches correct? Are temporary labels up to date?
+**Pre-publication check:** Is the title specific and concise? Does it avoid duplicating GitHub labels? Are the actual (not hypothetical) labels applied? Are scope and work labels accurate? Are PR roles and target branches correct? Are temporary labels up to date?

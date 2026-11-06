@@ -28,7 +28,7 @@ jobs:
             });
             const labels = new Set(current.map(item => item.name));
             const hasSpecificArea = [...labels].some(name =>
-              name.startsWith('area: ') && name !== 'area: repo');
+              name !== 'area: repo' && /^(area|content|app|backend): /.test(name));
             if (!hasSpecificArea && !labels.has('area: repo')) {
               await github.rest.issues.addLabels({
                 owner, repo, issue_number, labels: ['area: repo']
