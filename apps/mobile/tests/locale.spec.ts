@@ -13,6 +13,21 @@ test('supported RTL lesson locale sets document direction', async ({ page }) => 
   await expect(page.locator('#learning-content')).toBeVisible();
 });
 
+test('mobile lesson language can differ from its interface language', async ({ page }) => {
+  await page.goto('/');
+  const catalog = await page.evaluate(async () => {
+    const response = await fetch('/data/lesson-index.json');
+    return response.json() as Promise<{ lessons: { id: string; languages: string[] }[] }>;
+  });
+  const supported = catalog.lessons.find(lesson => lesson.languages.includes('en'));
+  test.skip(!supported, 'The selected textbook has no English lesson');
+  await page.goto('/uk/lesson/en/' + supported!.id);
+  await expect(page.locator('html')).toHaveAttribute('lang', 'uk-UA');
+  await expect(page.locator('#learning-content [lang="en-US"]')).toBeVisible();
+  await page.getByRole('button', { name: 'Відкрити налаштування' }).click();
+  await expect(page.getByRole('combobox', { name: 'Мова уроку' })).toBeVisible();
+});
+
 test('local flags are packaged with mobile UI', async ({ page }) => {
   const response = await page.request.get('/flags/ua.svg');
   expect(response.ok()).toBeTruthy();
