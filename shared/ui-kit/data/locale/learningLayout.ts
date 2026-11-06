@@ -29,7 +29,7 @@ const en = {
     logout: 'Signing out will be available when sign-in is enabled',
   },
   topicsTitle: 'TOPICS',
-  settingsTitle: 'Settings',
+  settingsTitle: 'Quick settings',
   settingsDescription: 'Learning settings will appear here.',
 };
 
@@ -64,7 +64,7 @@ const zh: LearningLayout_Locale = {
     logout: '启用登录功能后即可退出登录',
   },
   topicsTitle: '主题',
-  settingsTitle: '设置',
+  settingsTitle: '快捷设置',
   settingsDescription: '学习设置将在此显示。',
 };
 
@@ -97,7 +97,7 @@ const hi: LearningLayout_Locale = {
     logout: 'साइन-इन सुविधा चालू होने पर साइन आउट उपलब्ध होगा',
   },
   topicsTitle: 'विषय',
-  settingsTitle: 'सेटिंग्स',
+  settingsTitle: 'त्वरित सेटिंग्स',
   settingsDescription: 'अध्ययन की सेटिंग्स यहाँ दिखाई देंगी।',
 };
 
@@ -130,7 +130,7 @@ const es: LearningLayout_Locale = {
     logout: 'Se podrá cerrar sesión cuando se habilite el inicio de sesión',
   },
   topicsTitle: 'TEMAS',
-  settingsTitle: 'Configuración',
+  settingsTitle: 'Ajustes rápidos',
   settingsDescription: 'Los ajustes de aprendizaje aparecerán aquí.',
 };
 
@@ -163,7 +163,7 @@ const ar: LearningLayout_Locale = {
     logout: 'سيتوفر تسجيل الخروج عند تفعيل تسجيل الدخول',
   },
   topicsTitle: 'الموضوعات',
-  settingsTitle: 'الإعدادات',
+  settingsTitle: 'الإعدادات السريعة',
   settingsDescription: 'ستظهر إعدادات التعلّم هنا.',
 };
 
@@ -196,7 +196,7 @@ const fr: LearningLayout_Locale = {
     logout: 'La déconnexion sera disponible après l’activation de la connexion',
   },
   topicsTitle: 'SUJETS',
-  settingsTitle: 'Paramètres',
+  settingsTitle: 'Paramètres rapides',
   settingsDescription: 'Les paramètres d’apprentissage apparaîtront ici.',
 };
 
@@ -229,7 +229,7 @@ const bn: LearningLayout_Locale = {
     logout: 'সাইন-ইন চালু হলে সাইন আউট করা যাবে',
   },
   topicsTitle: 'বিষয়সমূহ',
-  settingsTitle: 'সেটিংস',
+  settingsTitle: 'দ্রুত সেটিংস',
   settingsDescription: 'শেখার সেটিংস এখানে দেখা যাবে।',
 };
 
@@ -262,7 +262,7 @@ const pt: LearningLayout_Locale = {
     logout: 'A opção de sair ficará disponível quando o login for ativado',
   },
   topicsTitle: 'TEMAS',
-  settingsTitle: 'Configurações',
+  settingsTitle: 'Configurações rápidas',
   settingsDescription: 'As configurações de aprendizagem aparecerão aqui.',
 };
 
@@ -295,7 +295,7 @@ const ur: LearningLayout_Locale = {
     logout: 'سائن اِن فعال ہونے پر سائن آؤٹ دستیاب ہوگا',
   },
   topicsTitle: 'موضوعات',
-  settingsTitle: 'ترتیبات',
+  settingsTitle: 'فوری ترتیبات',
   settingsDescription: 'سیکھنے کی ترتیبات یہاں ظاہر ہوں گی۔',
 };
 
@@ -328,7 +328,7 @@ const id: LearningLayout_Locale = {
     logout: 'Fitur keluar tersedia setelah fitur masuk diaktifkan',
   },
   topicsTitle: 'TOPIK',
-  settingsTitle: 'Pengaturan',
+  settingsTitle: 'Pengaturan cepat',
   settingsDescription: 'Pengaturan belajar akan muncul di sini.',
 };
 
@@ -361,7 +361,7 @@ const de: LearningLayout_Locale = {
     logout: 'Abmelden ist möglich, sobald die Anmeldung aktiviert ist',
   },
   topicsTitle: 'THEMEN',
-  settingsTitle: 'Einstellungen',
+  settingsTitle: 'Schnelleinstellungen',
   settingsDescription: 'Die Lerneinstellungen werden hier angezeigt.',
 };
 
@@ -394,7 +394,7 @@ const ja: LearningLayout_Locale = {
     logout: 'ログイン機能が有効になるとログアウトできます',
   },
   topicsTitle: 'トピック',
-  settingsTitle: '設定',
+  settingsTitle: 'クイック設定',
   settingsDescription: '学習設定はここに表示されます。',
 };
 
@@ -427,7 +427,7 @@ const ko: LearningLayout_Locale = {
     logout: '로그인 기능을 활성화하면 로그아웃할 수 있습니다',
   },
   topicsTitle: '주제',
-  settingsTitle: '설정',
+  settingsTitle: '빠른 설정',
   settingsDescription: '학습 설정이 여기에 표시됩니다.',
 };
 
@@ -460,7 +460,7 @@ const tr: LearningLayout_Locale = {
     logout: 'Giriş özelliği etkinleştirildiğinde çıkış yapılabilecek',
   },
   topicsTitle: 'KONULAR',
-  settingsTitle: 'Ayarlar',
+  settingsTitle: 'Hızlı ayarlar',
   settingsDescription: 'Öğrenme ayarları burada görünecek.',
 };
 
@@ -493,7 +493,7 @@ const vi: LearningLayout_Locale = {
     logout: 'Có thể đăng xuất khi tính năng đăng nhập được bật',
   },
   topicsTitle: 'CHỦ ĐỀ',
-  settingsTitle: 'Cài đặt',
+  settingsTitle: 'Cài đặt nhanh',
   settingsDescription: 'Các tùy chọn học tập sẽ xuất hiện tại đây.',
 };
 
@@ -526,7 +526,7 @@ const ta: LearningLayout_Locale = {
     logout: 'உள்நுழைவு இயக்கப்பட்ட பிறகு வெளியேறும் வசதி கிடைக்கும்',
   },
   topicsTitle: 'தலைப்புகள்',
-  settingsTitle: 'அமைப்புகள்',
+  settingsTitle: 'விரைவு அமைப்புகள்',
   settingsDescription: 'கற்றல் அமைப்புகள் இங்கே தோன்றும்.',
 };
 
@@ -559,7 +559,7 @@ const te: LearningLayout_Locale = {
     logout: 'సైన్ ఇన్ సదుపాయం ప్రారంభమైన తర్వాత సైన్ అవుట్ అందుబాటులో ఉంటుంది',
   },
   topicsTitle: 'అంశాలు',
-  settingsTitle: 'సెట్టింగ్‌లు',
+  settingsTitle: 'శీఘ్ర సెట్టింగ్‌లు',
   settingsDescription: 'అభ్యాస సెట్టింగ్‌లు ఇక్కడ కనిపిస్తాయి.',
 };
 
@@ -592,7 +592,7 @@ const mr: LearningLayout_Locale = {
     logout: 'साइन इन सुरू झाल्यावर साइन आउट उपलब्ध होईल',
   },
   topicsTitle: 'विषय',
-  settingsTitle: 'सेटिंग्ज',
+  settingsTitle: 'झटपट सेटिंग्ज',
   settingsDescription: 'अध्ययन सेटिंग्ज येथे दिसतील.',
 };
 
@@ -625,7 +625,7 @@ const ms: LearningLayout_Locale = {
     logout: 'Log keluar akan tersedia apabila log masuk diaktifkan',
   },
   topicsTitle: 'TOPIK',
-  settingsTitle: 'Tetapan',
+  settingsTitle: 'Tetapan pantas',
   settingsDescription: 'Tetapan pembelajaran akan dipaparkan di sini.',
 };
 
@@ -658,7 +658,7 @@ const he: LearningLayout_Locale = {
     logout: 'ההתנתקות תהיה זמינה לאחר הפעלת ההתחברות',
   },
   topicsTitle: 'נושאים',
-  settingsTitle: 'הגדרות',
+  settingsTitle: 'הגדרות מהירות',
   settingsDescription: 'הגדרות הלמידה יופיעו כאן.',
 };
 
@@ -691,7 +691,7 @@ const pl: LearningLayout_Locale = {
     logout: 'Wylogowanie będzie dostępne po włączeniu logowania',
   },
   topicsTitle: 'TEMATY',
-  settingsTitle: 'Ustawienia',
+  settingsTitle: 'Szybkie ustawienia',
   settingsDescription: 'Ustawienia nauki pojawią się tutaj.',
 };
 
@@ -724,7 +724,7 @@ const uk: LearningLayout_Locale = {
     logout: 'Вихід буде доступний після підключення авторизації',
   },
   topicsTitle: 'ТЕМИ',
-  settingsTitle: 'Налаштування',
+  settingsTitle: 'Швидкі налаштування',
   settingsDescription: 'Налаштування навчання з’являться тут.',
 };
 
@@ -757,7 +757,7 @@ const lt: LearningLayout_Locale = {
     logout: 'Atsijungimas bus prieinamas įjungus prisijungimą',
   },
   topicsTitle: 'TEMOS',
-  settingsTitle: 'Nustatymai',
+  settingsTitle: 'Spartieji nustatymai',
   settingsDescription: 'Mokymosi nustatymai bus pateikti čia.',
 };
 
@@ -790,7 +790,7 @@ const lv: LearningLayout_Locale = {
     logout: 'Izrakstīšanās būs pieejama pēc autentifikācijas pieslēgšanas',
   },
   topicsTitle: 'TĒMAS',
-  settingsTitle: 'Iestatījumi',
+  settingsTitle: 'Ātrie iestatījumi',
   settingsDescription: 'Mācību iestatījumi parādīsies šeit.',
 };
 
@@ -823,7 +823,7 @@ const et: LearningLayout_Locale = {
     logout: 'Väljalogimine on saadaval pärast autentimise lisamist',
   },
   topicsTitle: 'TEEMAD',
-  settingsTitle: 'Seaded',
+  settingsTitle: 'Kiirseaded',
   settingsDescription: 'Õppeseaded ilmuvad siia.',
 };
 
@@ -856,7 +856,7 @@ const be: LearningLayout_Locale = {
     logout: 'Выхад будзе даступны пасьля падлучэньня аўтарызацыі',
   },
   topicsTitle: 'ТЭМЫ',
-  settingsTitle: 'Налады',
+  settingsTitle: 'Хуткія налады',
   settingsDescription: 'Налады навучаньня зьявяцца тут.',
 };
 
@@ -889,7 +889,7 @@ const ka: LearningLayout_Locale = {
     logout: 'გამოსვლა ხელმისაწვდომი იქნება ავტორიზაციის დამატების შემდეგ',
   },
   topicsTitle: 'თემები',
-  settingsTitle: 'პარამეტრები',
+  settingsTitle: 'სწრაფი პარამეტრები',
   settingsDescription: 'სასწავლო პარამეტრები აქ გამოჩნდება.',
 };
 
@@ -922,7 +922,7 @@ const kk: LearningLayout_Locale = {
     logout: 'Шығу мүмкіндігі авторизация қосылғаннан кейін қолжетімді болады',
   },
   topicsTitle: 'ТАҚЫРЫПТАР',
-  settingsTitle: 'Параметрлер',
+  settingsTitle: 'Жылдам параметрлер',
   settingsDescription: 'Оқу параметрлері осы жерде пайда болады.',
 };
 
@@ -956,7 +956,7 @@ const qm: LearningLayout_Locale = {
     logout: 'Çıqış giriş sistemasına bağlanğandan soñ mümkün olacaq',
   },
   topicsTitle: 'MEVZULAR',
-  settingsTitle: 'Ayarlamalar',
+  settingsTitle: 'Tez ayarlamalar',
   settingsDescription: 'Oquv ayarlamaları mında peyda olacaq.',
 };
 
