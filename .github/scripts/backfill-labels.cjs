@@ -73,11 +73,11 @@ module.exports = async function backfill({ github, context, core, shard, shards 
   }
   function getIssueAreas(issue) {
     const title = issue.title.toLowerCase();
-    const prefix = /^\\[([^\\]]+)\\]/.exec(title);
-    const first = prefix ? prefix[1] : title.split(/[\\s:—-]/)[0];
+    const prefix = /^\[([^\]]+)\]/.exec(title);
+    const first = prefix ? prefix[1] : title.split(/[\s:—-]/)[0];
     const named = scopeByName.get(first) || aliases.get(first) || scopeBySlug.get(first);
     if (named && knownLabels.has(named)) return [named];
-    const candidates = (issue.body || '').match(/(?:content|shared|backend|frontend|apps|studio|scripts)\\/[a-z-]+\\//g);
+    const candidates = (issue.body || '').match(/(?:content|shared|backend|frontend|apps|studio|scripts)\/[a-z-]+\//g);
     if (candidates) return getAreas(candidates);
     return ['area: repo'];
   }
