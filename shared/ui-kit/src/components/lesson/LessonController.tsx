@@ -327,7 +327,7 @@ export function LessonController({
         ? current
         : reduce(current, action, response, editableSectionParams),
     response,
-    value => ({
+    (value): Runtime => ({
       params: value.parameters,
       topBar: { title: value.title },
       stepper: { visible: true },
