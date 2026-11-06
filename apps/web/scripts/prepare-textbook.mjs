@@ -81,7 +81,7 @@ writeFileSync(
   '// Generated client Scene Registry for SVITLO_TEXTBOOK=' +
     id +
     '.\n' +
-    "export { resolveScene } from '" +
+    "export { resolveScene, preloadScene } from '" +
     selection.package +
     "/scenes';\n",
 );

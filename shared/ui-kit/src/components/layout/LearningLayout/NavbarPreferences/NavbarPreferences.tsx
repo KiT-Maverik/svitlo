@@ -1,5 +1,7 @@
 'use client';
 
+import type { NavbarPreferences_Locale } from '../../../../../data/locale/navbarPreferences';
+
 import Box from '@mui/material/Box';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
@@ -7,7 +9,6 @@ import Switch from '@mui/material/Switch';
 import Tooltip from '@mui/material/Tooltip';
 import { DEFAULT_SUPPORTED_LANGUAGES, type Locale } from '@svitlo/engine/localization';
 import { Flag } from '#widgets/Flag/Flag';
-import type { UiKit_Component } from '@svitlo/engine/content';
 
 const locales = DEFAULT_SUPPORTED_LANGUAGES.map(({ locale, language, nativeName }) => ({
   locale,
@@ -17,7 +18,7 @@ const locales = DEFAULT_SUPPORTED_LANGUAGES.map(({ locale, language, nativeName 
 
 export type NavbarPreferencesProps = {
   locale: Locale;
-  messages: UiKit_Component<'navbarPreferences', 'response'>;
+  messages: NavbarPreferences_Locale;
   onLocaleChange: (locale: Locale) => void;
   mode?: 'light' | 'dark' | 'system';
   systemMode?: 'light' | 'dark';

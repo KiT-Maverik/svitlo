@@ -1,5 +1,7 @@
 'use client';
 
+import type { UiKitMessages } from '#types/uiKitMessages';
+
 import { useId } from 'react';
 import { Box, IconButton, Stack } from '@mui/material';
 import DragIndicator from '@mui/icons-material/DragIndicator';
@@ -22,7 +24,6 @@ import {
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
-import type { UiKit_Global } from '@svitlo/engine/content';
 import { QuestionContent, type QuestionItem } from './QuestionContent';
 
 function Row({
@@ -36,7 +37,7 @@ function Row({
   locked: boolean;
   onRemove?: (id: string) => void;
   sceneRegistry?: SceneRegistry;
-  messages: UiKit_Global<'response'>;
+  messages: UiKitMessages;
 }) {
   const { attributes, listeners, setNodeRef, setActivatorNodeRef, transform, transition, isDragging } = useSortable({
     id: item.id,
@@ -94,7 +95,7 @@ export function QuestionSortable({
   sceneRegistry,
   messages,
 }: {
-  messages: UiKit_Global<'response'>;
+  messages: UiKitMessages;
   items: readonly QuestionItem[];
   order: readonly string[];
   onChange: (order: string[]) => void;

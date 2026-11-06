@@ -1,9 +1,10 @@
 'use client';
 
+import type { UiKitMessages } from '#types/uiKitMessages';
+
 import { Box, ButtonBase, Stack, Typography } from '@mui/material';
 import type { Question_FillBlanksWithBlocks, Locale_Languages } from '@svitlo/engine/content';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
-import type { UiKit_Global } from '@svitlo/engine/content';
 import { QuestionChoice } from '../response/QuestionChoice';
 import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
 import { QuestionContent, type QuestionItem, shuffleItems } from '../response/QuestionContent';
@@ -15,7 +16,7 @@ export function FillBlanksWithBlocks({
 }: {
   response: Question_FillBlanksWithBlocks<'response', Locale_Languages>;
   sceneRegistry?: SceneRegistry;
-  messages: UiKit_Global<'response'>;
+  messages: UiKitMessages;
 }) {
   const correct: QuestionItem[] = response.slots.map(slot => ({
     id: 'correct:' + slot.selector,

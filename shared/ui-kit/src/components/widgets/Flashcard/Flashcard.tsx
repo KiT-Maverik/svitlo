@@ -1,5 +1,7 @@
 'use client';
 
+import type { Flashcard_Locale } from '../../../../data/locale/flashcard';
+
 import { forwardRef, type ReactElement, type ReactNode } from 'react';
 import { useState } from 'react';
 import Button from '@mui/material/Button';
@@ -16,7 +18,6 @@ import MoreVert from '@mui/icons-material/MoreVert';
 import LockOpenOutlined from '@mui/icons-material/LockOpenOutlined';
 import Stack from '@mui/material/Stack';
 import styles from './Flashcard.module.css';
-import type { UiKit_Component } from '@svitlo/engine/content';
 
 export interface FlashcardLabel {
   label: ReactNode;
@@ -25,7 +26,7 @@ export interface FlashcardLabel {
 }
 
 export interface FlashcardProps {
-  messages: UiKit_Component<'flashcard', 'response'>;
+  messages: Flashcard_Locale;
   question: ReactNode;
   answer: ReactNode;
   labels?: readonly FlashcardLabel[];

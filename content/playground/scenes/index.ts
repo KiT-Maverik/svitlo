@@ -1,1 +1,1 @@
-export { resolveScene } from './sceneLoader';
+export { resolveScene, preloadScene } from './sceneLoader';

@@ -38,7 +38,7 @@ function filesUnder(root, prefix = '') {
 for (const [workspace, compiled] of [
   ['@svitlo/contracts', 'shared/contracts/dist/index.js'],
   ['@svitlo/engine', 'shared/engine/dist/index.js'],
-  ['@svitlo/ui-kit', 'shared/ui-kit/dist/index.js'],
+  ['@svitlo/ui-kit', 'shared/ui-kit/dist/src/index.js'],
 ]) {
   if (!existsSync(join(repoRoot, compiled))) run('npm', ['run', 'build', '--workspace', workspace]);
 }
@@ -103,8 +103,10 @@ for (const [directory, prefix] of [
   ['data/lessons', 'data/pages/lessons/'],
   ['data/skills', 'data/pages/skillAnalytics/'],
 ]) {
-  if (filesUnder(join(packageRoot, directory)).some(file => file.endsWith('.data.ts')) &&
-      !published.some(file => file.startsWith(prefix) && file.endsWith('.json'))) {
+  if (
+    filesUnder(join(packageRoot, directory)).some(file => file.endsWith('.data.ts')) &&
+    !published.some(file => file.startsWith(prefix) && file.endsWith('.json'))
+  ) {
     throw new Error('Authored ' + directory + ' did not produce published JSON');
   }
 }

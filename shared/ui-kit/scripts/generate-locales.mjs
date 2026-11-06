@@ -2,7 +2,7 @@
  * Build-time only: assemble global UI Kit translations into independent
  * per-locale JSON files for each textbook. UI Kit runtime imports no data/*.ts.
  */
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -11,7 +11,7 @@ import ts from 'typescript';
 
 const require = createRequire(import.meta.url);
 const repoRoot = fileURLToPath(new URL('../../../', import.meta.url));
-const dataRoot = join(repoRoot, 'shared/ui-kit/data/components');
+const dataRoot = join(repoRoot, 'shared/ui-kit/data/locale');
 const targetFlag = process.argv.indexOf('--package');
 if (targetFlag < 0 || !process.argv[targetFlag + 1]) {
   throw new Error('Usage: node generate-locales.mjs --package content/<textbook>');
@@ -29,40 +29,21 @@ const output =
 if (!output.startsWith(resolve(repoRoot) + sep)) throw new Error('Output must stay inside the repository');
 const { DEFAULT_SUPPORTED_LANGUAGES } = require('@svitlo/contracts/localization');
 const tmp = mkdtempSync(join(tmpdir(), 'svitlo-ui-kit-'));
-const cache = new Map();
 
 /** Compile authored data into temporary JS modules; never ship this code to the app. */
-function readData(component, file) {
-  const path = join(dataRoot, component, file);
-  if (!existsSync(path)) return undefined;
-  if (!cache.has(path)) {
-    const source = readFileSync(path, 'utf8');
+function loadLocaleIndex() {
+  for (const name of readdirSync(dataRoot).filter(name => name.endsWith('.ts'))) {
+    const source = readFileSync(join(dataRoot, name), 'utf8');
     const js = ts.transpileModule(source, {
       compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
     }).outputText;
-    const temporary = join(tmp, cache.size + '.cjs');
-    writeFileSync(temporary, js);
-    const authored = require(temporary);
-    cache.set(path, authored.data ?? authored.locale);
+    writeFileSync(join(tmp, name.replace(/\.ts$/, '.js')), js);
   }
-  return cache.get(path);
+  return Object.freeze(require(join(tmp, 'index.js')));
 }
 
-const whole = Object.freeze({
-  lesson: readData('Lesson', 'messages.data.ts'),
-  flashcard: readData('Flashcard', 'messages.data.ts'),
-  checkpoint: readData('Checkpoint', 'messages.data.ts'),
-  audio: readData('Audio', 'messages.data.ts'),
-  image: readData('Image', 'messages.data.ts'),
-  video: readData('Video', 'messages.data.ts'),
-  youtube: readData('Youtube', 'messages.data.ts'),
-  questionFrame: readData('QuestionFrame', 'messages.data.ts'),
-});
-
-function message(component, locale, language) {
-  if (component === 'learningLayout') return readData('LearningLayout', locale + '.data.ts');
-  if (component === 'navbarPreferences') return readData('NavbarPreferences', locale + '.data.ts');
-  return whole[component]?.[language];
+function message(dictionaries, component, language) {
+  return dictionaries[component]?.[language];
 }
 
 function shapeOf(value) {
@@ -90,15 +71,12 @@ function assertShape(component, reference, data, locale) {
  * --audit prints missing language codes without publishing files.
  * Normal generation requires all canonical component/locale dictionaries.
  */
-function auditMissingTranslations(components) {
+function auditMissingTranslations(dictionaries, components) {
   const missing = {};
   for (const component of components) {
     const absent = [];
-    for (const { locale, language } of DEFAULT_SUPPORTED_LANGUAGES) {
-      const value =
-        component === 'learningLayout' || component === 'navbarPreferences'
-          ? readData(component === 'learningLayout' ? 'LearningLayout' : 'NavbarPreferences', locale + '.data.ts')
-          : whole[component]?.[language];
+    for (const { language } of DEFAULT_SUPPORTED_LANGUAGES) {
+      const value = message(dictionaries, component, language);
       if (!value) absent.push(language);
     }
     if (absent.length) missing[component] = absent;
@@ -107,19 +85,9 @@ function auditMissingTranslations(components) {
 }
 
 try {
-  const components = [
-    'lesson',
-    'learningLayout',
-    'navbarPreferences',
-    'flashcard',
-    'checkpoint',
-    'audio',
-    'image',
-    'video',
-    'youtube',
-    'questionFrame',
-  ];
-  const missing = auditMissingTranslations(components);
+  const whole = loadLocaleIndex();
+  const components = Object.keys(whole);
+  const missing = auditMissingTranslations(whole, components);
   const missingCount = Object.values(missing).reduce((count, codes) => count + codes.length, 0);
   if (process.argv.includes('--audit')) {
     console.log(
@@ -142,11 +110,11 @@ try {
       throw new Error('UI Kit translations incomplete (' + missingCount + '): ' + details);
     }
     // Preflight all language/key structures before publishing the first file.
-    const defaults = Object.fromEntries(components.map(c => [c, message(c, 'uk-UA', 'uk')]));
+    const defaults = Object.fromEntries(components.map(c => [c, message(whole, c, 'uk')]));
     const published = DEFAULT_SUPPORTED_LANGUAGES.map(({ locale, language }) => {
       const messages = Object.fromEntries(
         components.map(c => {
-          const value = message(c, locale, language);
+          const value = message(whole, c, language);
           if (!value) throw new Error(`Missing ${c} translations for ${locale}`);
           assertShape(c, defaults[c], value, locale);
           return [c, value];

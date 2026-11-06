@@ -1,5 +1,7 @@
 'use client';
 
+import type { Checkpoint_Locale } from '../../../../../../data/locale/checkpoint';
+
 import { createElement, useId, useState } from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -14,11 +16,10 @@ import { DEFAULT_SUPPORTED_LANGUAGES, getLocaleDirection } from '@svitlo/engine/
 
 import type { RenderNested } from '../../types';
 import { useContentLanguage } from '../../ContentLanguageContext';
-import type { UiKit_Component } from '@svitlo/engine/content';
 import styles from './Checkpoint.module.css';
 
 type CheckpointProps = ContentBlock_Checkpoint_Response<Locale_Languages> & {
-  messages: UiKit_Component<'checkpoint', 'response'>;
+  messages: Checkpoint_Locale;
   renderNested: RenderNested;
 };
 
