@@ -81,7 +81,7 @@ export const jointsAndFasteners_SkillGroup_Data = buildSkillGroupConfig({
       be: 'Даведайся, як розныя злучэньні ўтрымліваюць дэталі й перадаюць нагрузку.',
       ka: 'გაიგე, როგორ აკავებს სხვადასხვა შეერთება ნაწილებს და გადასცემს დატვირთვას.',
       kk: 'Әртүрлі қосылыстар бөлшектерді қалай ұстап, жүктемені беретінін біл.',
-      qm: 'Çeşit bağlanışlar parçalarnı nasıl tutıp yükni nasıl ötker genini ögren.',
+      qm: 'Çeşit bağlanışlar parçalarnı nasıl tutıp yükni nasıl ötkergenini ögren.',
     },
   },
 });

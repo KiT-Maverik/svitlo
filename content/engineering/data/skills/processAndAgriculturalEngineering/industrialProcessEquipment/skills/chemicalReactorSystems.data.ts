@@ -10,7 +10,7 @@ export const chemicalReactorSystems_Skill_Data = buildSkillConfig({
     es: 'Sistemas de reactores químicos',
     ar: 'أنظمة المفاعلات الكيميائية',
     fr: 'Systèmes de réacteurs chimiques',
-    bn: 'রাসায়নিক বিক্রিয়ক ব্যবস্থা',
+    bn: 'রাসায়নিক রিঅ্যাক্টর ব্যবস্থা',
     pt: 'Sistemas de reatores químicos',
     ur: 'کیمیائی ری ایکٹر کے نظام',
     id: 'Sistem Reaktor Kimia',

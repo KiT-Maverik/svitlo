@@ -59,7 +59,7 @@ export const testingAndIteration_SkillGroup_Data = buildSkillGroupConfig({
     frontend: {
       en: 'Use evidence from testing to improve a prototype and check its purpose.',
       zh: '利用测试数据改进原型，并验证它是否符合目的。',
-      hi: 'परीक्षण के प्रमाण से प्रारूप सुधारें और जाँचें कि वह उद्देश्य पूरा करता है।',
+      hi: 'परीक्षण के प्रमाण से प्रोटोटाइप सुधारें और जाँचें कि वह उद्देश्य पूरा करता है।',
       es: 'Usa resultados de pruebas para mejorar un prototipo y comprobar su finalidad.',
       ar: 'استخدم أدلة الاختبار لتحسين النموذج الأولي والتحقق من أدائه لغرضه.',
       fr: 'Utilise les résultats des essais pour améliorer un prototype et vérifier son utilité.',

@@ -35,7 +35,7 @@ export const energyPerformance_SkillGroup_Data = buildSkillGroupConfig({
     lt: 'Energinis efektyvumas',
     lv: 'Energoefektivitāte',
     et: 'Energiatõhusus',
-    be: 'Энэргетычная эфэктыўнасьць',
+    be: 'Энэргетычныя паказьнікі',
     ka: 'ენერგეტიკული ეფექტიანობა',
     kk: 'Энергия тиімділігі',
     qm: 'Energiya faydalılığı',

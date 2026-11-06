@@ -10,7 +10,7 @@ export const safetySustainabilityAndResponsibility_SkillDomain_Data = buildSkill
   name: {
     en: 'Safety, Sustainability, and Responsibility',
     zh: '安全、可持续性与责任',
-    hi: 'सुरक्षा, स्थिरता और उत्तरदायित्व',
+    hi: 'सुरक्षा, सततता और उत्तरदायित्व',
     es: 'Seguridad, sostenibilidad y responsabilidad',
     ar: 'السلامة والاستدامة والمسؤولية',
     fr: 'Sécurité, durabilité et responsabilité',

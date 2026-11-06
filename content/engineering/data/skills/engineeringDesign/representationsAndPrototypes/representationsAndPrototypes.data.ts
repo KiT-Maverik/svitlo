@@ -14,7 +14,7 @@ export const representationsAndPrototypes_SkillGroup_Data = buildSkillGroupConfi
   name: {
     en: 'Representations and Prototypes',
     zh: '技术表达与原型',
-    hi: 'निरूपण और प्रारूप',
+    hi: 'निरूपण और प्रोटोटाइप',
     es: 'Representaciones y prototipos',
     ar: 'التمثيلات والنماذج الأولية',
     fr: 'Représentations et prototypes',
@@ -55,7 +55,7 @@ export const representationsAndPrototypes_SkillGroup_Data = buildSkillGroupConfi
     frontend: {
       en: 'Discover how drawings and prototypes communicate a technical concept.',
       zh: '了解图纸和原型如何传达技术方案。',
-      hi: 'जानें कि चित्र और प्रारूप तकनीकी विचार कैसे दिखाते हैं।',
+      hi: 'जानें कि चित्र और प्रोटोटाइप तकनीकी विचार कैसे दिखाते हैं।',
       es: 'Descubre cómo los planos y prototipos comunican un concepto técnico.',
       ar: 'اكتشف كيف توضح الرسومات والنماذج الأولية فكرة تقنية.',
       fr: 'Découvre comment les dessins et prototypes communiquent un concept technique.',

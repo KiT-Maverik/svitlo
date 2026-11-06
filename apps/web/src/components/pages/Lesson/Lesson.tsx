@@ -41,23 +41,34 @@ export default function WebLesson({
 }) {
   const ids = useMemo(() => sceneIds(response.sections), [response.sections]);
   const requestKey = `${response.id}:${locale}`;
-  const [prepared, setPrepared] = useState<{ key: string; ready: boolean }>({ key: requestKey, ready: false });
-  const ready = prepared.key === requestKey && prepared.ready;
+  const [prepared, setPrepared] = useState<{
+    key: string;
+    status: 'loading' | 'ready' | 'error';
+    attempt: number;
+  }>({ key: requestKey, status: 'loading', attempt: 0 });
+  const current = prepared.key === requestKey ? prepared : { status: 'loading' as const, attempt: 0 };
+  const retry = () => {
+    setPrepared(previous => ({
+      key: requestKey,
+      status: 'loading',
+      attempt: previous.key === requestKey ? previous.attempt + 1 : 1,
+    }));
+  };
 
   useEffect(() => {
     let active = true;
     Promise.all(ids.map(id => preloadScene(id))).then(
       () => {
-        if (active) setPrepared({ key: requestKey, ready: true });
+        if (active) setPrepared({ key: requestKey, status: 'ready', attempt: current.attempt });
       },
       () => {
-        if (active) setPrepared({ key: requestKey, ready: true });
+        if (active) setPrepared({ key: requestKey, status: 'error', attempt: current.attempt });
       },
     );
     return () => {
       active = false;
     };
-  }, [ids, requestKey]);
+  }, [ids, requestKey, current.attempt]);
 
   return (
     <SceneLocaleProvider locale={locale}>
@@ -68,7 +79,9 @@ export default function WebLesson({
           messages={messages}
           layout={Layout}
           sceneRegistry={resolveScene}
-          contentLoading={!ready}
+          contentLoading={current.status !== 'ready'}
+          contentError={current.status === 'error'}
+          onRetryContent={retry}
         />
       </ImageRendererProvider>
     </SceneLocaleProvider>

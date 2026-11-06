@@ -8,7 +8,7 @@ export const actuatorDriverCompatibility_Skill_Data = buildSkillConfig({
     zh: '执行器驱动兼容性',
     hi: 'प्रवर्तक चालक अनुकूलता',
     es: 'Compatibilidad de controladores de actuadores',
-    ar: 'توافق مشغلات المحركات',
+    ar: 'توافق دوائر قيادة المشغلات',
     fr: "Compatibilité des pilotes d'actionneurs",
     bn: 'অ্যাকচুয়েটর ড্রাইভারের সামঞ্জস্য',
     pt: 'Compatibilidade de drivers de atuadores',

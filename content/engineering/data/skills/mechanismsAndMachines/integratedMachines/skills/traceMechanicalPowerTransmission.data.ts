@@ -44,7 +44,7 @@ export const traceMechanicalPowerTransmission_Skill_Data = buildSkillConfig({
       ar: 'تتبّع الطاقة والحركة من مصدر الدفع إلى الجزء العامل من الآلة.',
       fr: "Suis l'énergie et le mouvement de l'entraînement à l'organe actif de la machine.",
       bn: 'চালক অংশ থেকে যন্ত্রের কার্যকর অংশ পর্যন্ত শক্তি ও গতি অনুসরণ করো।',
-      pt: 'Acompanhe a energia e o movimento do acionamento até ao componente de trabalho.',
+      pt: 'Acompanhe a energia e o movimento do acionamento até o componente de trabalho.',
       ur: 'ڈرائیو سے مشین کے کام کرنے والے حصے تک توانائی اور حرکت کا راستہ دیکھیں۔',
       id: 'Telusuri energi dan gerakan dari penggerak ke bagian kerja mesin.',
       de: 'Verfolge Energie und Bewegung vom Antrieb bis zum Arbeitsorgan der Maschine.',

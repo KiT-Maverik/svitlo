@@ -1,44 +1,49 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { localizeLessonValue } from './localizeLessonData.utils';
+import { splitLessonValue } from './localizeLessonData.utils';
 
-describe('localizeLessonValue', () => {
-  it('selects each nested field independently and records actual fallback languages', () => {
+describe('splitLessonValue', () => {
+  it('puts invariant strings in base and translated text in sparse patches', () => {
     const input = {
+      id: 'entity-uuid',
+      slug: 'light',
       title: { en: 'Light', uk: 'Світло' },
-      sections: [{ title: { fallback: 'en', en: 'Theory' }, description: { language: 'qm', value: 'Nazariye' } }],
+      sections: [{
+        id: 'one',
+        title: { en: 'Theory', uk: 'Теорія' },
+        content: [{ type: 'text', label: 'H₂O', text: { en: 'Water', uk: 'Вода' } }],
+      }],
       statistics: { languages: { en: 143, uk: 144 } },
     };
-
-    assert.deepEqual(localizeLessonValue(input, 'uk', ['en', 'uk', 'qm']), {
-      value: {
-        title: 'Світло',
-        sections: [{ title: 'Theory', description: 'Nazariye' }],
-        statistics: { languages: { en: 143, uk: 144 } },
-      },
-      sources: {
-        '/title': { code: 'uk' },
-        '/sections/0/title': { code: 'en', isFallback: true },
-        '/sections/0/description': { code: 'qm', isFallback: true },
-      },
+    const { base, locales, pointers } = splitLessonValue(input, ['en', 'uk']);
+    assert.deepEqual(base, {
+      id: 'entity-uuid',
+      slug: 'light',
+      sections: [{ id: 'one', content: [{ type: 'text', label: 'H₂O' }] }],
+      statistics: { languages: { en: 143, uk: 144 } },
     });
+    assert.deepEqual(locales.uk, {
+      title: 'Світло',
+      sections: { '0': { title: 'Теорія', content: { '0': { text: 'Вода' } } } },
+    });
+    assert.deepEqual(pointers, ['/title', '/sections/0/title', '/sections/0/content/0/text']);
   });
 
-  it('rejects a missing requested language without a declared fallback', () => {
-    assert.throws(
-      () => localizeLessonValue({ title: { en: 'Light' } }, 'uk', ['en', 'uk']),
-      /Missing uk locale at \/title/,
-    );
+  it('supports localized array elements without copying the arrays into each patch', () => {
+    const result = splitLessonValue([{ en: 'One', uk: 'Один' }, 'shared'], ['en', 'uk']);
+    assert.deepEqual(result.base, [null, 'shared']);
+    assert.deepEqual(result.locales.uk, { '0': 'Один' });
   });
 
-  it('rejects an invalid fallback target', () => {
-    assert.throws(
-      () => localizeLessonValue({ title: { fallback: 'en', uk: 'Світло' } }, 'uk', ['en', 'uk']),
-      /Invalid fallback at \/title/,
-    );
-  });
-
-  it('rejects an unsupported requested language', () => {
-    assert.throws(() => localizeLessonValue({}, 'qm', ['en', 'uk']), /Unsupported requested language: qm/);
+  it('rejects missing translations, extra languages, legacy fallback and single-language values', () => {
+    assert.throws(() => splitLessonValue({ title: { en: 'Light' } }, ['en', 'uk']),
+      /Incomplete locale dictionary at \/title/);
+    assert.throws(() => splitLessonValue({ title: { en: 'Light', uk: 'Світло', de: 'Licht' } }, ['en', 'uk']),
+      /unexpected: de/);
+    assert.throws(() => splitLessonValue({ title: { fallback: 'en', en: 'Light' } }, ['en', 'uk']),
+      /Field-level fallback is not allowed/);
+    assert.throws(() => splitLessonValue({ title: { language: 'en', value: 'Light' } }, ['en', 'uk']),
+      /Single-language fallback is not allowed/);
+    assert.throws(() => splitLessonValue({}, ['en', 'en']), /Invalid declared lesson languages/);
   });
 });

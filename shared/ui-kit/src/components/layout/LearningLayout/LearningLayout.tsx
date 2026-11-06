@@ -2,7 +2,7 @@
 
 import type { LearningLayout_Locale } from '../../../../data/locale/learningLayout';
 
-import { useEffect, useState, type ReactNode, type ElementType } from 'react';
+import { useEffect, useState, type ReactNode, type ElementType, type Dispatch, type SetStateAction } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Drawer from '@mui/material/Drawer';
@@ -47,53 +47,37 @@ export interface LearningLayoutProps {
   /** Non-lesson pages can reuse the navbar and sidebars without lesson navigation. */
   showBottomNavbar?: boolean;
   contentLoading?: boolean;
+  contentError?: boolean;
+  onRetryContent?: () => void;
   linkComponent?: ElementType;
+  renderTopBar?: (props: LearningLayoutTopBarProps) => ReactNode;
+  renderBottomBar?: (props: LearningLayoutBottomBarProps) => ReactNode;
 }
 
-export default function LearningLayout({
-  children,
-  topics,
-  skippableSteps = [],
-  quizStep,
-  locale,
-  messages,
-  pathname,
-  progress,
-  actions,
-  preferences,
-  settingsContent,
-  showBottomNavbar = true,
-  contentLoading = false,
-  linkComponent,
-}: LearningLayoutProps) {
-  const direction = getLocaleDirection(locale);
-  const [open, setOpen] = useState(false);
-  const [settingsOpen, setSettingsOpen] = useState(false);
-  useEffect(() => {
-    if (!open && !settingsOpen) return;
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setOpen(false);
-        setSettingsOpen(false);
-      }
-    };
-    document.addEventListener('keydown', onKeyDown);
-    return () => document.removeEventListener('keydown', onKeyDown);
-  }, [open, settingsOpen]);
 
+export type LearningLayoutTopBarProps = Pick<LearningLayoutProps, 'messages' | 'preferences' | 'linkComponent'> & {
+  open: boolean;
+  settingsOpen: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+  setSettingsOpen: Dispatch<SetStateAction<boolean>>;
+  lessonTitle?: string;
+};
+
+export type LearningLayoutBottomBarProps = Pick<
+  LearningLayoutProps,
+  'messages' | 'progress' | 'actions' | 'skippableSteps' | 'quizStep' | 'contentLoading'
+> & {
+  direction: 'ltr' | 'rtl';
+  nextDisabled?: boolean;
+  backDisabled?: boolean;
+  skipDisabled?: boolean;
+};
+
+/** Default chrome stays reusable outside lessons; controller-owned slots can wrap it in independent contexts. */
+export function LearningLayoutTopBar({
+  messages, preferences, linkComponent, open, settingsOpen, setOpen, setSettingsOpen, lessonTitle,
+}: LearningLayoutTopBarProps) {
   return (
-    <Box
-      dir={direction}
-      lang={locale}
-      sx={{
-        height: '100dvh',
-        display: 'grid',
-        gridTemplateRows: showBottomNavbar ? 'auto minmax(0, 1fr) auto' : 'auto minmax(0, 1fr)',
-        overflow: 'hidden',
-        bgcolor: 'background.default',
-        color: 'text.primary',
-      }}
-    >
       <TopNavbar
         aria-label={messages.navigation.top}
         slots={{
@@ -117,6 +101,12 @@ export default function LearningLayout({
               >
                 {messages.brand}
               </Typography>
+              {lessonTitle && (
+                <Typography component="span" variant="body2" title={lessonTitle}
+                  sx={{ display: { xs: 'none', md: 'block' }, maxWidth: 280, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                  {lessonTitle}
+                </Typography>
+              )}
             </>
           ),
           right: (
@@ -151,6 +141,118 @@ export default function LearningLayout({
           ),
         }}
       />
+  );
+}
+
+export function LearningLayoutBottomBar({
+  messages, progress, actions, skippableSteps = [], quizStep, contentLoading = false, direction,
+  nextDisabled = false, backDisabled = false, skipDisabled = false,
+}: LearningLayoutBottomBarProps) {
+  return (
+        <BottomNavbar
+          aria-label={messages.navigation.bottom}
+          slots={{
+            center: (
+              <>
+                <Button
+                  variant="contained"
+                  disabled={backDisabled || contentLoading || !progress.ready || progress.step === 0}
+                  onClick={actions.back}
+                >
+                  {direction === 'rtl' ? '→' : '←'} {messages.actions.previous}
+                </Button>
+                <Button
+                  variant="contained"
+                  disabled={
+                    nextDisabled ||
+                    contentLoading ||
+                    !progress.ready ||
+                    progress.step >= progress.lastStep ||
+                    (progress.step === quizStep && !progress.testDone)
+                  }
+                  onClick={actions.next}
+                >
+                  {messages.actions.next} {direction === 'rtl' ? '←' : '→'}
+                </Button>
+              </>
+            ),
+            right: (
+              <Button
+                variant="outlined"
+                disabled={
+                  skipDisabled ||
+                  contentLoading ||
+                  !progress.ready ||
+                  progress.step >= progress.lastStep ||
+                  !skippableSteps[progress.step]
+                }
+                onClick={actions.skip}
+              >
+                {messages.actions.skip}
+              </Button>
+            ),
+          }}
+          slotProps={{ root: { sx: { px: { xs: 1, sm: 2 } } } }}
+        />
+  );
+}
+
+export default function LearningLayout({
+  children,
+  topics,
+  skippableSteps = [],
+  quizStep,
+  locale,
+  messages,
+  pathname,
+  progress,
+  actions,
+  preferences,
+  settingsContent,
+  showBottomNavbar = true,
+  contentLoading = false,
+  contentError = false,
+  onRetryContent,
+  linkComponent,
+  renderTopBar,
+  renderBottomBar,
+}: LearningLayoutProps) {
+  const direction = getLocaleDirection(locale);
+  const [open, setOpen] = useState(false);
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  useEffect(() => {
+    if (!open && !settingsOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setOpen(false);
+        setSettingsOpen(false);
+      }
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, [open, settingsOpen]);
+
+  return (
+    <Box
+      dir={direction}
+      lang={locale}
+      sx={{
+        height: '100dvh',
+        display: 'grid',
+        gridTemplateRows: showBottomNavbar ? 'auto minmax(0, 1fr) auto' : 'auto minmax(0, 1fr)',
+        overflow: 'hidden',
+        bgcolor: 'background.default',
+        color: 'text.primary',
+      }}
+    >
+      {renderTopBar ? renderTopBar({
+        messages, preferences, linkComponent, open, settingsOpen, setOpen, setSettingsOpen,
+      }) : (
+        <LearningLayoutTopBar
+          messages={messages} preferences={preferences} linkComponent={linkComponent}
+          open={open} settingsOpen={settingsOpen} setOpen={setOpen} setSettingsOpen={setSettingsOpen}
+        />
+      )}
 
       <Box sx={{ position: 'relative', minHeight: 0, overflow: 'hidden' }}>
         <Fade in={open || settingsOpen} timeout={{ enter: 225, exit: 195 }} unmountOnExit>
@@ -284,8 +386,8 @@ export default function LearningLayout({
         </Box>
         <Fade in={contentLoading} timeout={{ enter: 0, exit: 350 }} unmountOnExit>
           <Box
-            role="status"
-            aria-live="polite"
+            role={contentError ? 'alert' : 'status'}
+            aria-live={contentError ? 'assertive' : 'polite'}
             sx={{
               position: 'absolute',
               inset: 0,
@@ -328,57 +430,25 @@ export default function LearningLayout({
               <span />
             </Box>
             <Typography variant="h6" component="span">
-              {messages.preparingLesson}
+              {contentError ? messages.preparingLessonError : messages.preparingLesson}
             </Typography>
+            {contentError && onRetryContent && (
+              <Button variant="contained" onClick={onRetryContent}>
+                {messages.actions.retry}
+              </Button>
+            )}
           </Box>
         </Fade>
       </Box>
 
-      {showBottomNavbar && (
-        <BottomNavbar
-          aria-label={messages.navigation.bottom}
-          slots={{
-            center: (
-              <>
-                <Button
-                  variant="contained"
-                  disabled={contentLoading || !progress.ready || progress.step === 0}
-                  onClick={actions.back}
-                >
-                  {direction === 'rtl' ? '→' : '←'} {messages.actions.previous}
-                </Button>
-                <Button
-                  variant="contained"
-                  disabled={
-                    contentLoading ||
-                    !progress.ready ||
-                    progress.step >= progress.lastStep ||
-                    (progress.step === quizStep && !progress.testDone)
-                  }
-                  onClick={actions.next}
-                >
-                  {messages.actions.next} {direction === 'rtl' ? '←' : '→'}
-                </Button>
-              </>
-            ),
-            right: (
-              <Button
-                variant="outlined"
-                disabled={
-                  contentLoading ||
-                  !progress.ready ||
-                  progress.step >= progress.lastStep ||
-                  !skippableSteps[progress.step]
-                }
-                onClick={actions.skip}
-              >
-                {messages.actions.skip}
-              </Button>
-            ),
-          }}
-          slotProps={{ root: { sx: { px: { xs: 1, sm: 2 } } } }}
+      {showBottomNavbar && (renderBottomBar ? renderBottomBar({
+        messages, progress, actions, skippableSteps, quizStep, contentLoading, direction,
+      }) : (
+        <LearningLayoutBottomBar
+          messages={messages} progress={progress} actions={actions} skippableSteps={skippableSteps}
+          quizStep={quizStep} contentLoading={contentLoading} direction={direction}
         />
-      )}
+      ))}
     </Box>
   );
 }

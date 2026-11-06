@@ -19,7 +19,7 @@ export const watercraft_SkillGroup_Data = buildSkillGroupConfig({
     de: 'Wasserfahrzeuge',
     ja: '船舶・水上乗り物',
     ko: '선박과 수상 운송수단',
-    tr: 'Deniz taşıtları',
+    tr: 'Su taşıtları',
     vi: 'Phương tiện thủy',
     ta: 'நீரூர்திகள்',
     te: 'జల వాహనాలు',

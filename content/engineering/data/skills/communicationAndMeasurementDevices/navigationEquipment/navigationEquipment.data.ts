@@ -16,7 +16,7 @@ export const navigationEquipment_SkillGroup_Data = buildSkillGroupConfig({
     es: 'Equipos de navegación',
     ar: 'معدات الملاحة',
     fr: 'Équipements de navigation',
-    bn: 'নৌচালনা ও দিকনির্ণয় যন্ত্র',
+    bn: 'দিকনির্দেশনা ও অবস্থান নির্ণয়ের যন্ত্র',
     pt: 'Equipamentos de navegação',
     ur: 'راہ نمائی کے آلات',
     id: 'Peralatan navigasi',

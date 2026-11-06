@@ -27,7 +27,7 @@ export const structuralBracing_Skill_Data = buildSkillConfig({
     pl: 'Stężenia konstrukcyjne',
     uk: 'Конструктивні зв’язки жорсткості',
     lt: 'Konstrukcijų ryšiai',
-    lv: 'Konstrukciju atsaistes',
+    lv: 'Konstrukciju diagonālās saites',
     et: 'Konstruktsioonide jäigastamine',
     be: 'Сувязі калянасьці канструкцыяў',
     ka: 'კონსტრუქციის დიაგონალური გამაგრება',

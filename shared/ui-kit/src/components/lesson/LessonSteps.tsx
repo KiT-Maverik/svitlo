@@ -14,6 +14,7 @@ export type LessonStepsProps = {
   completedStep?: number;
   showStepNumbers?: boolean;
   allowNavigation?: boolean;
+  canNavigateTo?: (step: number) => boolean;
   onNavigate?: (step: number) => void;
   navigationLabel: string;
 };
@@ -24,6 +25,7 @@ export function LessonSteps({
   completedStep,
   showStepNumbers = true,
   allowNavigation = false,
+  canNavigateTo,
   onNavigate,
   navigationLabel,
 }: LessonStepsProps) {
@@ -34,7 +36,7 @@ export function LessonSteps({
           component="button"
           key={step.id}
           type="button"
-          disabled={!allowNavigation}
+          disabled={!allowNavigation || (canNavigateTo ? !canNavigateTo(index) : false)}
           aria-current={index === currentStep ? 'step' : undefined}
           data-complete={index === completedStep || undefined}
           onClick={() => onNavigate?.(index)}

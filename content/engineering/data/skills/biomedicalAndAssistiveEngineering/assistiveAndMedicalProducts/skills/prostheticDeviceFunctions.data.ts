@@ -17,7 +17,7 @@ export const prostheticDeviceFunctions_Skill_Data = buildSkillConfig({
     de: 'Funktionen prothetischer Vorrichtungen',
     ja: '義肢装置の機能',
     ko: '의지 장치의 기능',
-    tr: 'Protez cihazların işlevleri',
+    tr: 'Protez cihazlarının işlevleri',
     vi: 'Chức năng của thiết bị giả chi',
     ta: 'செயற்கை உறுப்பு சாதனங்களின் செயல்பாடுகள்',
     te: 'కృత్రిమ అవయవ పరికరాల విధులు',
