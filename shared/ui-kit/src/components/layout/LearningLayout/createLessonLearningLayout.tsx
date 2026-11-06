@@ -26,6 +26,7 @@ export type LessonLearningLayoutProps = Pick<
   | 'profiles'
   | 'onProfileChange'
   | 'onLogout'
+  | 'profileSettingsHref'
   | 'settingsContent'
 > & { messages: UiKitMessages };
 
@@ -60,6 +61,7 @@ export function createLessonLearningLayout(bindings: LessonLearningLayoutBinding
     profiles,
     onProfileChange,
     onLogout,
+    profileSettingsHref,
     settingsContent,
   }: LessonLearningLayoutProps) {
     const { locale, setLocale, lessonLocale, setLessonLocale } = bindings.useLocale();
@@ -100,6 +102,7 @@ export function createLessonLearningLayout(bindings: LessonLearningLayoutBinding
         profiles={profiles}
         onProfileChange={onProfileChange}
         onLogout={onLogout}
+        profileSettingsHref={profileSettingsHref}
         settingsContent={settingsContent}
         linkComponent={bindings.linkComponent}
       >

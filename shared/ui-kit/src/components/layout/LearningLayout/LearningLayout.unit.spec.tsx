@@ -50,13 +50,34 @@ describe('LearningLayout preparation', () => {
         name: 'Interface settings control',
       }),
     ).not.toBeInTheDocument();
-    fireEvent.click(screen.getByRole('button', { name: uk.actions.profile }));
-    fireEvent.click(screen.getByRole('menuitem', { name: uk.settingsTitle }));
+    fireEvent.click(screen.getByRole('button', { name: uk.actions.openSettings }));
     expect(screen.getByRole('heading', { name: uk.settingsTitle })).toBeVisible();
     expect(screen.getByRole('button', { name: 'Interface settings control' })).toBeVisible();
     expect(screen.getByText('Additional page control')).toBeVisible();
     fireEvent.click(screen.getByRole('button', { name: uk.actions.closeSidebar }));
     expect(screen.getByRole('button', { name: uk.actions.profile })).toHaveAttribute('aria-expanded', 'false');
+  });
+
+  it('keeps profile settings separate from quick settings', () => {
+    render(
+      <LearningLayout
+        locale="uk-UA"
+        messages={uk}
+        pathname="/uk/lesson/uk/test"
+        progress={{ ready: true, step: 0, lastStep: 1, testDone: false }}
+        topics={[]}
+        actions={{ back: vi.fn(), next: vi.fn(), skip: vi.fn() }}
+        profileSettingsHref="#"
+      >
+        <p>Вміст уроку</p>
+      </LearningLayout>,
+    );
+
+    fireEvent.click(screen.getByRole('button', { name: uk.actions.profile }));
+    const profileSettings = screen.getByRole('menuitem', { name: uk.actions.profileSettings });
+    expect(profileSettings).toHaveAttribute('href', '#');
+    fireEvent.click(profileSettings);
+    expect(screen.getByRole('button', { name: uk.actions.openSettings })).toHaveAttribute('aria-expanded', 'false');
   });
 
   it('shows an accessible error and offers retry while keeping lesson content inert', () => {
