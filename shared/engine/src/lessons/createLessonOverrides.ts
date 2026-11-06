@@ -422,14 +422,16 @@ export class LessonOverridesBuilder<
     const titleChange = diffValue(this.lesson.title, this.state.title ?? this.lesson.title);
     if (titleChange !== undefined) {
       // Locale maps are authored as complete values, even when a subset changed.
-      overrides.title = this.state.title as L['title'];
+      overrides.title = this.state.title as NonNullable<typeof overrides.title>;
     }
 
     const sectionParams = diffValue(
       this.lesson.parameters.sections,
       { ...this.lesson.parameters.sections, ...this.state.parameters?.sections },
     ) as Record<string, boolean> | undefined;
-    if (sectionParams !== undefined) overrides.parameters = { sections: sectionParams };
+    if (sectionParams !== undefined) {
+      overrides.parameters = { sections: sectionParams } as NonNullable<typeof overrides.parameters>;
+    }
 
     const eventsChange = diffValue(this.lesson.events ?? {}, {
       ...((this.lesson.events ?? {}) as Record<string, unknown>),
