@@ -18,10 +18,10 @@ const themes = {
 };
 
 export default function MuiThemeProvider({ children, direction }: { children: ReactNode; direction: TextDirection }) {
-  // Recalculate JS palette consumers while MUI updates data-light / data-dark CSS variables.
-  // The shared layout must read useColorScheme from this host's MUI instance.
+  // CSS-variable palettes follow MUI's data-light / data-dark selectors.
+  // Quick Settings must use the host's MUI useColorScheme to read and change the mode.
   return (
-    <ThemeProvider theme={themes[direction]} disableTransitionOnChange forceThemeRerender>
+    <ThemeProvider theme={themes[direction]} disableTransitionOnChange>
       {children}
     </ThemeProvider>
   );
