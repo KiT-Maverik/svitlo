@@ -7,6 +7,7 @@ import { Lesson, type LessonView } from './Lesson';
 import { useLessonActions, type LessonActions } from './LessonController';
 
 const observed: LessonActions[] = [];
+let releaseTestBlocker: (() => void) | undefined;
 
 function TestLayout({ messages, ...props }: LessonLearningLayoutProps) {
   const actions = useLessonActions();
@@ -14,6 +15,8 @@ function TestLayout({ messages, ...props }: LessonLearningLayoutProps) {
   return (
     <>
       <button onClick={() => actions.updateTopBar({ title: 'Updated heading' })}>Update heading</button>
+      <button onClick={() => (releaseTestBlocker = actions.blockNext('test-owner'))}>Block Next</button>
+      <button onClick={() => releaseTestBlocker?.()}>Release Next</button>
       <button onClick={() => actions.updateSectionParams({ allowNavigation: true })}>Enable navigation</button>
       <LearningLayout {...props} locale="en-US" messages={messages.learningLayout} />
     </>
@@ -63,6 +66,7 @@ function response(required: boolean, allowNavigation = true): LessonView {
 
 function showLesson(required = true, allowNavigation = true, editableSectionParams: readonly 'allowNavigation'[] = []) {
   observed.length = 0;
+  releaseTestBlocker = undefined;
   return render(
     <Lesson
       response={response(required, allowNavigation)}
@@ -75,7 +79,7 @@ function showLesson(required = true, allowNavigation = true, editableSectionPara
 }
 
 describe('LessonController scoped state and navigation', () => {
-  it('blocks required checkpoints from Next, Skip, and direct step navigation until completed', () => {
+  it('blocks Next and direct forward navigation until required checkpoints are completed', () => {
     showLesson();
     const bottom = screen.getByRole('navigation', { name: enUiKitMessages.learningLayout.navigation.bottom });
     const steps = screen.getByRole('navigation', { name: enUiKitMessages.lesson.steps.navigation });
@@ -85,7 +89,7 @@ describe('LessonController scoped state and navigation', () => {
     expect(next).toBeDisabled();
     expect(
       within(bottom).getByRole('button', { name: new RegExp(enUiKitMessages.learningLayout.actions.skip, 'i') }),
-    ).toBeDisabled();
+    ).toBeEnabled();
     expect(within(steps).getByRole('button', { name: /Summary/i })).toBeDisabled();
 
     fireEvent.click(screen.getByText('What is light?'));
@@ -100,6 +104,164 @@ describe('LessonController scoped state and navigation', () => {
     );
     fireEvent.click(screen.getByText('What is light?'));
     expect(screen.getByRole('button', { name: enUiKitMessages.checkpoint.checked })).toBeDisabled();
+  });
+
+  it('allows skipping an unanswered checkpoint without leaking its gate to the next section', () => {
+    const base = response(true);
+    const value: LessonView = {
+      ...base,
+      sections: [
+        ...base.sections,
+        {
+          id: 'outro',
+          type: 'theory',
+          navigationLabel: 'Outro',
+          content: [{ type: 'text', id: 'outro-text', slug: 'outro-text', value: 'Final section' }],
+          questions: [],
+        },
+      ],
+    };
+    observed.length = 0;
+    render(
+      <Lesson response={value} href="/en/lesson/lesson-test" messages={enUiKitMessages} layout={TestLayout} />,
+    );
+    const bottom = screen.getByRole('navigation', { name: enUiKitMessages.learningLayout.navigation.bottom });
+    const next = within(bottom).getByRole('button', {
+      name: new RegExp(enUiKitMessages.learningLayout.actions.next, 'i'),
+    });
+    const skip = within(bottom).getByRole('button', {
+      name: new RegExp(enUiKitMessages.learningLayout.actions.skip, 'i'),
+    });
+    const back = within(bottom).getByRole('button', {
+      name: new RegExp(enUiKitMessages.learningLayout.actions.previous, 'i'),
+    });
+
+    expect(next).toBeDisabled();
+    expect(skip).toBeEnabled();
+    fireEvent.click(skip);
+    expect(screen.getByText('Second section content')).toBeVisible();
+    expect(next).toBeEnabled();
+    fireEvent.click(back);
+    expect(screen.getByText('What is light?')).toBeVisible();
+    expect(next).toBeDisabled();
+    expect(skip).toBeEnabled();
+    fireEvent.click(skip);
+    expect(next).toBeEnabled();
+    fireEvent.click(next);
+    expect(screen.getByText('Final section')).toBeVisible();
+  });
+
+  it('removes a checkpoint blocker when leaving its section backward', () => {
+    const base = response(true);
+    const value: LessonView = {
+      ...base,
+      sections: [
+        {
+          id: 'welcome',
+          type: 'theory',
+          navigationLabel: 'Welcome',
+          content: [{ type: 'text', id: 'welcome-text', slug: 'welcome-text', value: 'Welcome section' }],
+          questions: [],
+        },
+        ...base.sections,
+      ],
+    };
+    observed.length = 0;
+    render(
+      <Lesson
+        response={value}
+        href="/en/lesson/lesson-test"
+        messages={enUiKitMessages}
+        layout={TestLayout}
+      />,
+    );
+    const bottom = screen.getByRole('navigation', { name: enUiKitMessages.learningLayout.navigation.bottom });
+    const next = within(bottom).getByRole('button', {
+      name: new RegExp(enUiKitMessages.learningLayout.actions.next, 'i'),
+    });
+    const back = within(bottom).getByRole('button', {
+      name: new RegExp(enUiKitMessages.learningLayout.actions.previous, 'i'),
+    });
+
+    expect(next).toBeEnabled();
+    fireEvent.click(next);
+    expect(screen.getByText('What is light?')).toBeVisible();
+    expect(next).toBeDisabled();
+    fireEvent.click(back);
+    expect(screen.getByText('Welcome section')).toBeVisible();
+    expect(next).toBeEnabled();
+    fireEvent.click(next);
+    expect(next).toBeDisabled();
+  });
+
+  it('keeps Next blocked until every required checkpoint releases its own gate', () => {
+    const base = response(true);
+    const first = base.sections[0].content[0];
+    if (first.type !== 'checkpoint') throw new Error('Expected checkpoint fixture');
+    const value: LessonView = {
+      ...base,
+      sections: [
+        {
+          ...base.sections[0],
+          content: [
+            first,
+            {
+              ...first,
+              id: 'checkpoint-2',
+              slug: 'check-two',
+              title: 'Second checkpoint',
+              items: [
+                {
+                  question: 'What is a ray?',
+                  check: true,
+                  answer: [{ type: 'text', id: 'answer-2', value: 'A model of light' }],
+                },
+              ],
+            },
+          ],
+        },
+        ...base.sections.slice(1),
+      ],
+    };
+    observed.length = 0;
+    render(
+      <Lesson
+        response={value}
+        href="/en/lesson/lesson-test"
+        messages={enUiKitMessages}
+        layout={TestLayout}
+      />,
+    );
+    const bottom = screen.getByRole('navigation', { name: enUiKitMessages.learningLayout.navigation.bottom });
+    const next = within(bottom).getByRole('button', {
+      name: new RegExp(enUiKitMessages.learningLayout.actions.next, 'i'),
+    });
+    expect(next).toBeDisabled();
+
+    fireEvent.click(screen.getByText('What is light?'));
+    fireEvent.click(screen.getByRole('button', { name: 'Check' }));
+    expect(next).toBeDisabled();
+    fireEvent.click(screen.getByText('What is a ray?'));
+    fireEvent.click(screen.getByRole('button', { name: 'Check' }));
+    expect(next).toBeEnabled();
+  });
+
+  it('supports independently registered Next blockers through the lesson actions context', () => {
+    showLesson(false);
+    const bottom = screen.getByRole('navigation', { name: enUiKitMessages.learningLayout.navigation.bottom });
+    const next = within(bottom).getByRole('button', {
+      name: new RegExp(enUiKitMessages.learningLayout.actions.next, 'i'),
+    });
+    const skip = within(bottom).getByRole('button', {
+      name: new RegExp(enUiKitMessages.learningLayout.actions.skip, 'i'),
+    });
+
+    expect(next).toBeEnabled();
+    fireEvent.click(screen.getByRole('button', { name: 'Block Next' }));
+    expect(next).toBeDisabled();
+    expect(skip).toBeEnabled();
+    fireEvent.click(screen.getByRole('button', { name: 'Release Next' }));
+    expect(next).toBeEnabled();
   });
 
   it('keeps actions stable when a sibling state changes', () => {
