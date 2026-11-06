@@ -63,6 +63,10 @@
     "./scene-locale": {
       "types": "./dist/src/scene-locale.d.ts",
       "default": "./dist/src/scene-locale.js"
+    },
+    "./course": {
+      "types": "./dist/src/course.d.ts",
+      "default": "./dist/src/course.js"
     }
   },
   "files": [
