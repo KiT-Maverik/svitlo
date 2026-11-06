@@ -482,7 +482,7 @@ Skills: 5
 
 **Methodological description (English):** Optical components manipulate or detect light for imaging, sensing and transmission; lasers require particular source and exposure precautions.
 
-**User-friendly description (es):** Aprende cómo los dispositivos ópticos manipulan la luz para crear imágenes y comunicar.
+**User-friendly description (es):** Aprende cómo los dispositivos ópticos manipulan la luz para crear imágenes y transmitir información.
 
 ##### Componentes físicos de cámaras
 
@@ -506,7 +506,7 @@ Skills: 5
 
 **Methodological description (English):** Connect beam intensity and reflection paths with protective measures and controlled operation.
 
-**User-friendly description (es):** Reconoce los peligros de utilizar equipos láser sin seguridad.
+**User-friendly description (es):** Reconoce los riesgos de la exposición directa o reflejada al haz de un láser.
 
 ##### Arquitectura de dispositivos láser
 
@@ -1238,7 +1238,7 @@ Skills: 4
 
 **Methodological description (English):** Determine whether resistance, movement or another signal communicates that an action occurred.
 
-**User-friendly description (es):** Comprueba si un producto comunica claramente qué han hecho sus controles.
+**User-friendly description (es):** Comprueba si un producto comunica claramente el resultado de accionar sus controles.
 
 ##### Probar la usabilidad de un producto físico
 
@@ -2396,7 +2396,7 @@ Skills: 4
 
 **Methodological description (English):** Determine what must physically cross a boundary between connected assemblies.
 
-**User-friendly description (es):** Señala dónde se conectan mecánica, eléctrica u otras formas los componentes.
+**User-friendly description (es):** Señala dónde se conectan los componentes por medios mecánicos, eléctricos u otros.
 
 ##### Predecir efectos de cambios en componentes
 
@@ -2566,7 +2566,7 @@ Skills: 3
 
 **Methodological description (English):** Relate blocked filters, closed valves or narrow passages to delivery problems.
 
-**User-friendly description (es):** Diagnostica un flujo débil causado por filtros, válvulas o conductos estrechos.
+**User-friendly description (es):** Diagnostica un flujo débil causado por filtros obstruidos, válvulas cerradas o conductos estrechos.
 
 ##### Sistemas de ventilación
 

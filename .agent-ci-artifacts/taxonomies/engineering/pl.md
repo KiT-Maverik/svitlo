@@ -506,7 +506,7 @@ Skills: 5
 
 **Methodological description (English):** Connect beam intensity and reflection paths with protective measures and controlled operation.
 
-**User-friendly description (pl):** Rozpoznaj zagrożenia związane z niebezpiecznym sprzętem laserowym.
+**User-friendly description (pl):** Rozpoznaj zagrożenia związane z bezpośrednią i odbitą wiązką lasera.
 
 ##### Budowa urządzeń laserowych
 
@@ -690,7 +690,7 @@ Skills: 5
 
 **Methodological description (English):** Choose an appropriate sensing method and insertion point for a selected branch.
 
-**User-friendly description (pl):** Zmierz prąd w obwodzie bez nieprawidłowego podłączenia miernika.
+**User-friendly description (pl):** Zmierz natężenie prądu w wybranej gałęzi obwodu, prawidłowo podłączając miernik.
 
 ##### Pomiar napięcia w obwodzie
 
@@ -944,7 +944,7 @@ Groups: 4 · Skills: 22
 
 **Methodological description (English):** A design must respond to an actual need, not merely demonstrate a technology. This domain concerns converting uncertain problems into requirements, selecting feasible concepts, communicating designs and improving them using evidence.
 
-**User-friendly description (pl):** Naucz się projektować, testować i ulepszać rozwiązania techniczne rzeczywistych potrzeb.
+**User-friendly description (pl):** Naucz się projektować, testować i ulepszać rozwiązania techniczne odpowiadające na rzeczywiste potrzeby.
 
 #### Wybór koncepcji
 
@@ -1070,7 +1070,7 @@ Skills: 5
 
 **Methodological description (English):** Specify relevant sizes and geometric relations so another person could reproduce a part.
 
-**User-friendly description (pl):** Narysuj część z wymiarami wskazującymi planowaną wielkość.
+**User-friendly description (pl):** Narysuj część i podaj jej projektowane wymiary.
 
 ##### Tworzenie funkcjonalnego schematu blokowego
 
@@ -2278,7 +2278,7 @@ Skills: 6
 
 **Methodological description (English):** Recognize how primarily compression-loaded vertical members support loads and why slender members may become unstable.
 
-**User-friendly description (pl):** Rozpoznaj, jak słupy przenoszą ściskanie i dlaczego mogą wyboczyć się.
+**User-friendly description (pl):** Rozpoznaj, jak słupy przenoszą siły ściskające i dlaczego mogą się wyboczyć.
 
 ##### Fundamenty
 

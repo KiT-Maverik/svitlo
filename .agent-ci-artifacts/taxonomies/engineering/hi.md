@@ -320,7 +320,7 @@ Skills: 4
 
 **Methodological description (English):** Relate a biological shape to a proposed drag-reducing vehicle design requiring testing.
 
-**User-friendly description (hi):** पहचानें कि जैविक आकृतियाँ तकनीकी डिज़ाइन में घर्षणीय प्रतिरोध कैसे घटाती हैं।
+**User-friendly description (hi):** पहचानें कि जैविक आकृतियाँ तकनीकी डिज़ाइन में प्रवाह प्रतिरोध कैसे घटाती हैं।
 
 ##### हल्की जैव-प्रेरित संरचनाएँ
 
@@ -926,7 +926,7 @@ Skills: 4
 
 **Methodological description (English):** Describe how heat or cooling can be retained for later use.
 
-**User-friendly description (hi):** बाद में उपयोग के लिए ऊष्मा सहेजने के अलग-अलग तरीके तुलना करें।
+**User-friendly description (hi):** बाद में उपयोग के लिए ऊष्मा सहेजने के अलग-अलग तरीकों की तुलना करें।
 
 ##### ट्रांसफॉर्मर का उपयोग
 
@@ -1046,7 +1046,7 @@ Skills: 5
 
 **User-friendly description (hi):** तय करें कि कौन-सी आवश्यकताएँ अनिवार्य हैं और कौन-सी वैकल्पिक।
 
-#### निरूपण और प्रारूप
+#### निरूपण और प्रोटोटाइप
 
 Skills: 5
 
@@ -1054,7 +1054,7 @@ Skills: 5
 
 **Methodological description (English):** Technical representations communicate geometry, operation and interfaces. A model is useful when it preserves properties that matter to the question being investigated.
 
-**User-friendly description (hi):** जानें कि चित्र और प्रारूप तकनीकी विचार कैसे दिखाते हैं।
+**User-friendly description (hi):** जानें कि चित्र और प्रोटोटाइप तकनीकी विचार कैसे दिखाते हैं।
 
 ##### कार्यात्मक नमूना बनाना
 
@@ -1104,9 +1104,9 @@ Skills: 7
 
 **Methodological description (English):** A plausible prototype is not proof of performance. Measurement, failure analysis and controlled revisions provide a basis for improving the proposed product.
 
-**User-friendly description (hi):** परीक्षण के प्रमाण से प्रारूप सुधारें और जाँचें कि वह उद्देश्य पूरा करता है।
+**User-friendly description (hi):** परीक्षण के प्रमाण से प्रोटोटाइप सुधारें और जाँचें कि वह उद्देश्य पूरा करता है।
 
-##### प्रारूप की विफलता का कारण खोजना
+##### प्रोटोटाइप की विफलता का कारण खोजना
 
 [diagnoseAPrototypeFailure.data.ts](../../../content/engineering/data/skills/engineeringDesign/testingAndIteration/skills/diagnoseAPrototypeFailure.data.ts)
 
@@ -1114,13 +1114,13 @@ Skills: 7
 
 **User-friendly description (hi):** जाँचें कि किस हिस्से या परिस्थिति से नमूने में खराबी आई होगी।
 
-##### प्रारूप के प्रदर्शन का मूल्यांकन
+##### प्रोटोटाइप के प्रदर्शन का मूल्यांकन
 
 [evaluatePrototypePerformance.data.ts](../../../content/engineering/data/skills/engineeringDesign/testingAndIteration/skills/evaluatePrototypePerformance.data.ts)
 
 **Methodological description (English):** Interpret observed prototype-test results under defined conditions and compare measured outputs with expected performance. This analysis alone does not establish full design verification or validate user needs.
 
-**User-friendly description (hi):** प्रारूप के मापे गए प्रदर्शन की अपेक्षित प्रदर्शन से तुलना करें।
+**User-friendly description (hi):** प्रोटोटाइप के मापे गए परिणामों की अपेक्षित परिणामों से तुलना करें।
 
 ##### मापन अनिश्चितता
 
@@ -1562,7 +1562,7 @@ Skills: 5
 
 **User-friendly description (hi):** टूटने का प्रतिरोध और आकार बदलने का प्रतिरोध अलग समझें।
 
-##### सामग्री की टिकाऊपन का मूल्यांकन
+##### सामग्री के टिकाऊपन का मूल्यांकन
 
 [evaluateMaterialDurability.data.ts](../../../content/engineering/data/skills/materialsAndConnections/materialSelection/skills/evaluateMaterialDurability.data.ts)
 
@@ -1958,7 +1958,7 @@ Skills: 5
 
 **User-friendly description (hi):** प्रसंस्करण तंत्र में आने, जाने और जमा होने वाले पदार्थ का हिसाब रखें।
 
-### सुरक्षा, स्थिरता और उत्तरदायित्व
+### सुरक्षा, सततता और उत्तरदायित्व
 
 Groups: 3 · Skills: 14
 
@@ -2432,7 +2432,7 @@ Skills: 4
 
 **User-friendly description (hi):** संभावित खराबियाँ कम करने के लिए जाँच और रखरखाव की योजना बनाएँ।
 
-##### प्रणाली में अतिरिक्त व्यवस्था
+##### प्रणाली में स्वतंत्र आरक्षित व्यवस्था
 
 [systemRedundancy.data.ts](../../../content/engineering/data/skills/systemsEngineering/reliabilityAndMaintenance/skills/systemRedundancy.data.ts)
 

@@ -1976,7 +1976,7 @@ Skills: 5
 
 **Methodological description (English):** Technical solutions create benefits and burdens for users, maintainers, neighbors and communities; limitations must be disclosed.
 
-**User-friendly description (de):** Erkunde die Verantwortung gegenüber allen Menschen, die technische Produkte betreffen.
+**User-friendly description (de):** Erkunde die Verantwortung gegenüber allen Menschen, die von technischen Produkten betroffen sind.
 
 ##### Konstruktionsgrenzen kommunizieren
 
@@ -2338,7 +2338,7 @@ Skills: 5
 
 **Methodological description (English):** Separate the engineered assembly from its users, surroundings and connected external services.
 
-**User-friendly description (de):** Gren­ze das untersuchte System von seiner Umgebung und seinen Nutzern ab.
+**User-friendly description (de):** Grenze das untersuchte System von seiner Umgebung und seinen Nutzern ab.
 
 ##### Funktionen von Teilsystemen
 
@@ -2576,7 +2576,7 @@ Skills: 3
 
 **User-friendly description (de):** Unterscheide Frischluftzufuhr von der bloßen Umwälzung vorhandener Raumluft.
 
-### Verkehrs- und Luft- und Raumfahrttechnik
+### Verkehrs-, Luft- und Raumfahrttechnik
 
 Groups: 4 · Skills: 15
 

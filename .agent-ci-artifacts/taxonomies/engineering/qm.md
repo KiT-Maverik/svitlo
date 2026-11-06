@@ -346,7 +346,7 @@ Skills: 4
 
 **Methodological description (English):** A valid biological analogy extracts a function and tests whether it can work with different materials, geometry and scale.
 
-**User-friendly description (qm):** Biologik vazifelerni müendislik prinsiplerine çevirmeyi ögren.
+**User-friendly description (qm):** Biologik vazifelerni mühendislik prinsiplerine çevirmeyi ögren.
 
 ##### Biologik prinsipni umumileştirme
 
@@ -912,13 +912,13 @@ Skills: 4
 
 **User-friendly description (qm):** Elektrik energiyası stansiyalardan dağıtuv şebekelerine nasıl keçkenini izle.
 
-##### Tekrar toldurılğan batareya sistemaları
+##### Qayta zaryadlana bilgen batareya sistemaları
 
 [rechargeableBatterySystems.data.ts](../../../content/engineering/data/skills/energySystems/storageAndDelivery/skills/rechargeableBatterySystems.data.ts)
 
 **Methodological description (English):** Identify cells, charging control and protective elements in practical energy storage.
 
-**User-friendly description (qm):** Tekrar zarýadlana bilgen batareyalarnıñ parçalarını ve çalışma sıñırlarını tanı.
+**User-friendly description (qm):** Qayta zaryadlana bilgen batareyalarnıñ parçalarını ve çalışma sıñırlarını tanı.
 
 ##### Issilik energiyasını saqlav
 
@@ -1494,7 +1494,7 @@ Skills: 5
 
 **Methodological description (English):** Connections can be temporary or permanent, transmit different forces and impose different maintenance requirements.
 
-**User-friendly description (qm):** Çeşit bağlanışlar parçalarnı nasıl tutıp yükni nasıl ötker genini ögren.
+**User-friendly description (qm):** Çeşit bağlanışlar parçalarnı nasıl tutıp yükni nasıl ötkergenini ögren.
 
 ##### Yapıştıruvlı bağlanışlar
 

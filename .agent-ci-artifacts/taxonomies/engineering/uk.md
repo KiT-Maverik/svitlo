@@ -506,7 +506,7 @@ Skills: 5
 
 **Methodological description (English):** Connect beam intensity and reflection paths with protective measures and controlled operation.
 
-**User-friendly description (uk):** Розпізнавай небезпеки, пов’язані з небезпечним лазерним обладнанням.
+**User-friendly description (uk):** Розпізнавай ризики, пов’язані з прямими та відбитими лазерними променями.
 
 ##### Будова лазерного пристрою
 
@@ -690,7 +690,7 @@ Skills: 5
 
 **Methodological description (English):** Choose an appropriate sensing method and insertion point for a selected branch.
 
-**User-friendly description (uk):** Вимірюй струм у колі, не підключаючи прилад неправильно.
+**User-friendly description (uk):** Вимірюй струм у потрібній гілці кола, правильно під’єднавши вимірювальний прилад.
 
 ##### Вимірювати напругу в електричному колі
 
@@ -944,7 +944,7 @@ Groups: 4 · Skills: 22
 
 **Methodological description (English):** A design must respond to an actual need, not merely demonstrate a technology. This domain concerns converting uncertain problems into requirements, selecting feasible concepts, communicating designs and improving them using evidence.
 
-**User-friendly description (uk):** Навчись розробляти, випробовувати й удосконалювати технічні рішення практичних потреб.
+**User-friendly description (uk):** Навчись розробляти, випробовувати й удосконалювати технічні рішення для практичних потреб.
 
 #### Вибір концепції
 
@@ -978,7 +978,7 @@ Skills: 5
 
 **Methodological description (English):** Separate a large objective into subsystems or functions with defined interactions.
 
-**User-friendly description (uk):** Розділи складну конструкцію на менші взаємопов’язані функції.
+**User-friendly description (uk):** Розділи складну проєктну задачу на взаємопов’язані підзадачі або функції.
 
 ##### Створення альтернативних проєктних концепцій
 
@@ -1070,7 +1070,7 @@ Skills: 5
 
 **Methodological description (English):** Specify relevant sizes and geometric relations so another person could reproduce a part.
 
-**User-friendly description (uk):** Накресли деталь із розмірами, що вказують її задуману величину.
+**User-friendly description (uk):** Накресли деталь і познач її заплановані розміри.
 
 ##### Створення функціональної блок-схеми
 

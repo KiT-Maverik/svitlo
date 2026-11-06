@@ -758,7 +758,7 @@ Skills: 4
 
 **User-friendly description (et):** Kasuta transistorit elektrooniliselt juhitava lülitina.
 
-#### Sardtarkvara
+#### Sardsüsteemide riistvara
 
 Skills: 4
 
@@ -1426,7 +1426,7 @@ Skills: 5
 
 **User-friendly description (et):** Tunne ära, millal detaili valmistamiseks materjali lõigates eemaldatakse.
 
-##### Vormivalmistusprotsessid
+##### Vormis valmistamise protsessid
 
 [moldingProcesses.data.ts](../../../content/engineering/data/skills/manufacturingAndProduction/materialShaping/skills/moldingProcesses.data.ts)
 
@@ -2448,7 +2448,7 @@ Skills: 4
 
 **User-friendly description (et):** Jälgi rikke tunnuseid läbi üksteisest sõltuvate osade.
 
-### Soojus- ja vedelikuseadmed
+### Soojus-, vedeliku- ja gaasiseadmed
 
 Groups: 3 · Skills: 11
 
@@ -2456,9 +2456,9 @@ Groups: 3 · Skills: 11
 
 **Methodological description (English):** Practical equipment moves heat, air and other fluids through controlled component chains. Here the object of study is the apparatus and its operating cycle, not the isolated thermodynamic or fluid laws.
 
-**User-friendly description (et):** Uuri masinaid, mis juhivad soojendamist, jahutamist ja vedelike voolamist.
+**User-friendly description (et):** Uuri masinaid, mis juhivad soojendamist, jahutamist ning vedelike ja gaaside voolu.
 
-#### Vedelikumasinad
+#### Vedeliku- ja gaasimasinad
 
 Skills: 4
 
@@ -2576,7 +2576,7 @@ Skills: 3
 
 **User-friendly description (et):** Erista värske õhu sissejuhtimist sama siseõhu ringlusest.
 
-### Transpordi- ja lennundus-kosmosetehnika
+### Transpordi-, lennundus- ja kosmosetehnika
 
 Groups: 4 · Skills: 15
 
