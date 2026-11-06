@@ -29,6 +29,8 @@ type Question_SelectOneAnswer_Response<SupportedLanguages extends Locale_Languag
     explanation?: NonEmptyArray<ContentBlock<'response', SupportedLanguages>>;
     hint?: NonEmptyArray<ContentBlock<'response', SupportedLanguages>>;
     answers: Question_SelectOneAnswer_Answers<'response', SupportedLanguages>;
+    /** Prepared choice order; stable across renders and hydration. */
+    answerOrder?: readonly string[];
   };
 
 export type Question_SelectOneAnswer<

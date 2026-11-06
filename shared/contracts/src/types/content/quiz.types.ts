@@ -1,4 +1,4 @@
-import type { NonEmptyArray } from '../../misc.types';
+import type { NonEmptyArray } from '../misc.types';
 import type { Locale_Languages } from './locale.types';
 import type { ContentBlock } from './blocks';
 
