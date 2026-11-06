@@ -6,7 +6,7 @@
       - any-glob-to-any-file: 'backend/server/**'
 'area: platform':
   - changed-files:
-      - any-glob-to-any-file: 'frontend/platform/**'
+      - any-glob-to-any-file: 'apps/platform/**'
 'area: scripts':
   - changed-files:
       - any-glob-to-any-file: 'scripts/**'

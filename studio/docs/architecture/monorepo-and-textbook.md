@@ -7,7 +7,7 @@ build-selected textbook. `learningApps/playground` is now a React DOM textbook
 package with authored `data/`, Scenes, generated static registry and explicit
 `@svitlo/playground` exports. `apps/web/textbooks.json` selects a declared
 workspace dependency before compilation; its build publishes textbook JSON,
-UI Kit locales and assets into the host. Other textbooks and `frontend/platform`
+UI Kit locales and assets into the host. Other textbooks and `apps/platform`
 retain their existing application architecture. The Next.js integration package
 resides at `shared/adapters/nextjs` but keeps its stable npm identity
 `@svitlo/adapter-nextjs`. The Stage 8 map and dependency
@@ -41,7 +41,10 @@ See the canonical [Cross-Platform Lesson Runtime](./cross-platform-lesson-runtim
 /
 ├── backend/
 │   └── server/           # @svitlo/server — manifest-only backend placeholder
-├── frontend/
+├── apps/
+│   ├── web/              # @svitlo/web — Next.js textbook host
+│   ├── mobile/           # Capacitor mobile host
+│   ├── desktop/          # Electron desktop host
 │   └── platform/         # @svitlo/platform — independent Next.js catalog app
 ├── content/
 │   ├── geography/        # @svitlo/geography — standalone textbook scaffold
@@ -63,9 +66,9 @@ See the canonical [Cross-Platform Lesson Runtime](./cross-platform-lesson-runtim
 └── turbo.json            # task graph reference; not used by GitHub Actions
 ```
 
-**Concrete source roots:** `shared/contracts`, `shared/engine`, `shared/indexdb`, `shared/ui-kit`, `content/geography`, `content/informatics`, `content/physics`, `content/math`, `content/playground`, `frontend/platform`, `backend/server`. These paths are actual package folders; diagrams above use abbreviated names.
+**Concrete source roots:** `shared/contracts`, `shared/engine`, `shared/indexdb`, `shared/ui-kit`, `content/geography`, `content/informatics`, `content/physics`, `content/math`, `content/playground`, `apps/platform`, `backend/server`. These paths are actual package folders; diagrams above use abbreviated names.
 
-The **eleven** current workspaces are `@svitlo/server`, `@svitlo/platform`, `@svitlo/geography`, `@svitlo/informatics`, `@svitlo/physics`, `@svitlo/math`, `@svitlo/playground`, `@svitlo/contracts`, `@svitlo/engine`, `@svitlo/indexdb`, `@svitlo/ui-kit`. Patterns in root `package.json` and lockfile: `backend/*`, `frontend/*`, `content/*`, `shared/*`, `shared/adapters/*`. The server is deliberately not claimed to be executable yet.
+Representative current workspaces include `@svitlo/server`, `@svitlo/platform`, `@svitlo/geography`, `@svitlo/informatics`, `@svitlo/physics`, `@svitlo/math`, `@svitlo/playground`, `@svitlo/contracts`, `@svitlo/engine`, `@svitlo/indexdb`, `@svitlo/ui-kit`. Patterns in root `package.json` and lockfile: `backend/*`, `apps/*`, `content/*`, `shared/*`, `shared/adapters/*`. The server is deliberately not claimed to be executable yet.
 
 ## Dependency direction and ownership
 

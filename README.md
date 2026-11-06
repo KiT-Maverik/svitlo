@@ -6,7 +6,7 @@ Svitlo is a modular interactive-learning project. Each textbook is a **standalon
 
 | Workspace                     | Folder                        | Purpose                                                                            |
 | ----------------------------- | ----------------------------- | ---------------------------------------------------------------------------------- |
-| `@svitlo/platform`            | `frontend/platform`           | Next.js web platform and external textbook catalog                                 |
+| `@svitlo/platform`            | `apps/platform`           | Next.js web platform and external textbook catalog                                 |
 | `@svitlo/math`                | `content/math`                | Mathematics textbook; owns taxonomy and curriculum                                 |
 | `@svitlo/biology`             | `content/biology`             | Biology textbook scaffold                                                          |
 | `@svitlo/geography`           | `content/geography`           | Geography textbook scaffold                                                        |
@@ -60,6 +60,6 @@ The Platform only links to a published Math textbook when its **real** `NEXT_PUB
 - [Final migration audit and known duplicate-source debt](studio/docs/architecture/migration-stage-8-audit.md)
 - [Architecture/documentation index](studio/docs/architecture/README.md)
 - [Historical migration notes](studio/Monorepo%20Migration.md)
-- [Math textbook](content/math/README.md), [Playground](content/playground/README.md), [Platform](frontend/platform/README.md)
+- [Math textbook](content/math/README.md), [Playground](content/playground/README.md), [Platform](apps/platform/README.md)
 
 **Known remaining debt:** the Stage 8 audit records 67 byte-identical source files across Math and Playground. The new architecture guard prevents **additional** exact-path duplication while existing copied lesson/page implementations await a separately scoped extraction. Successful monorepo CI alone does not prove independent npm package publishing or clean-room repository extraction.

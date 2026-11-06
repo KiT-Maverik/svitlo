@@ -13,7 +13,7 @@ const expected = [
     name: '@svitlo/server',
   },
   {
-    path: 'frontend/platform',
+    path: 'apps/platform',
     name: '@svitlo/platform',
   },
   {
@@ -110,7 +110,6 @@ const lock = readJson('package-lock.json');
 const patterns = [
   'apps/*',
   'backend/*',
-  'frontend/*',
   'content/*',
   'content/languages/*',
   'shared/*',

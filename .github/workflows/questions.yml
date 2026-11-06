@@ -64,4 +64,4 @@ jobs:
           path: |
             apps/web/test-results/
             content/math/test-results/
-            frontend/platform/test-results/
+            apps/platform/test-results/

@@ -65,8 +65,8 @@ const expectedShared = [
 for (const path of expectedShared) assert(existsSync(resolve(root, path)), 'Owner missing: ' + path);
 
 const rootManifest = JSON.parse(readFileSync(resolve(root, 'package.json'), 'utf8'));
-const platform = JSON.parse(readFileSync(resolve(root, 'frontend/platform/package.json'), 'utf8'));
-assert(rootManifest.workspaces.includes('frontend/*'), 'Platform must be in root npm workspaces');
+const platform = JSON.parse(readFileSync(resolve(root, 'apps/platform/package.json'), 'utf8'));
+assert(rootManifest.workspaces.includes('apps/*'), 'Platform must be in root npm workspaces');
 assert(
   Object.keys(platform.dependencies ?? {}).every(p => !p.startsWith('@svitlo/')),
   'Platform cannot depend on learning apps or shared packages until integration is scoped',
@@ -82,7 +82,7 @@ const canonical = readFileSync(resolve(root, 'studio/docs/architecture/monorepo-
 for (const subject of [
   'shared/contracts',
   'shared/indexdb',
-  'frontend/platform',
+  'apps/platform',
   'content/math',
   'content/informatics',
 ]) {
