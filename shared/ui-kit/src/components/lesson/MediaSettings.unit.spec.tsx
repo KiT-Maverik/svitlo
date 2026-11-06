@@ -59,6 +59,7 @@ describe('Lesson media settings', () => {
           id="test-video"
           type="video"
           fileLocation="/test.mp4"
+          poster="/poster.png"
           title="Test video"
           messages={enUiKitMessages.video}
         />
