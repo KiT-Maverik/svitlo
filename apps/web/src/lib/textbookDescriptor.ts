@@ -2,6 +2,8 @@
 export type TextbookDescriptor = Readonly<{
   id: string;
   title: string;
+  featuredCourseId?: string;
+  featuredCourseLabel?: string;
   featuredLessonId?: string;
   featuredLessonLabel?: string;
   skillAnalyticsDomains?: readonly string[];
