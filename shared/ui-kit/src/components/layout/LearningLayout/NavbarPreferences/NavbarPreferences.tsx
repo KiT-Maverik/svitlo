@@ -98,6 +98,8 @@ function ThemeSwitch({
           overflow: 'visible',
           '& .MuiSwitch-switchBase': {
             p: '5px',
+            left: theme => (theme.direction === 'rtl' ? 'auto' : 0),
+            right: theme => (theme.direction === 'rtl' ? 0 : 'auto'),
             color: '#B7791F',
             transitionDuration: '220ms',
             '&.Mui-checked': {
