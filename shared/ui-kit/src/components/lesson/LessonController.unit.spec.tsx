@@ -79,7 +79,8 @@ describe('LessonController scoped state and navigation', () => {
     expect(screen.getByText('Second section content')).toBeVisible();
 
     fireEvent.click(within(bottom).getByRole('button', { name: new RegExp(enUiKitMessages.learningLayout.actions.previous, 'i') }));
-    expect(screen.getByRole('button', { name: 'Checked' })).toBeDisabled();
+    fireEvent.click(screen.getByText('What is light?'));
+    expect(screen.getByRole('button', { name: enUiKitMessages.checkpoint.checked })).toBeDisabled();
   });
 
   it('keeps actions stable when a sibling state changes', () => {
