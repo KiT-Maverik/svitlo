@@ -46,6 +46,8 @@ for (const workspace of [
   run(npm, ['run', 'build', '--workspace', workspace]);
 }
 run(npm, ['run', 'build', '--workspace', selection.package]);
+// Resolve Engine only after building the shared workspace from a fresh checkout.
+const { mergeLessonResources } = await import('@svitlo/engine/lesson');
 const publicRoot = join(mobileRoot, 'public');
 run(npm, ['exec', '--workspace', '@svitlo/mobile', '--', 'svitlo-' + id, 'publish', '--output', publicRoot]);
 
@@ -71,11 +73,13 @@ for (const bucket of readdirSync(lessonsRoot, { withFileTypes: true })) {
     const configDir = join(lessonsRoot, bucket.name, lesson.name, 'config');
     if (!existsSync(configDir)) continue;
     const locales = readdirSync(configDir)
-      .filter(name => name.endsWith('.json'))
+      .filter(name => name.endsWith('.json') && name !== 'base.json')
       .map(name => basename(name, '.json'));
     if (!locales.length) continue;
     const first = locales.includes('uk') ? 'uk' : locales[0];
-    const config = JSON.parse(readFileSync(join(configDir, first + '.json'), 'utf8')).data;
+    const base = JSON.parse(readFileSync(join(configDir, 'base.json'), 'utf8'));
+    const localized = JSON.parse(readFileSync(join(configDir, first + '.json'), 'utf8'));
+    const config = mergeLessonResources(base, localized).data;
     if (config?.id !== lesson.name) throw new Error('Published lesson ID mismatch: ' + lesson.name);
     index.push({ id: lesson.name, title: config.title, languages: config.parameters.languages });
   }
