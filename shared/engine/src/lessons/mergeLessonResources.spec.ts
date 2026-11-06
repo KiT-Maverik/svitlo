@@ -34,6 +34,6 @@ describe('mergeLessonResources', () => {
     assert.throws(() => mergeLessonResources({ data: { id: 'fixed' } }, { data: { id: 'changed' } }),
       /replace invariant value/);
     assert.throws(() => mergeLessonResources({ data: [] }, { data: [1] }), /Expected sparse array patch/);
-    assert.throws(() => mergeLessonResources({ data: {} }, { data: { __proto__: { polluted: true } } }), /./);
+    assert.throws(() => mergeLessonResources({ data: {} }, { data: JSON.parse('{"__proto__":{"polluted":true}}') }), /./);
   });
 });

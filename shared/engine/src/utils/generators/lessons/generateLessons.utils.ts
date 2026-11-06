@@ -132,7 +132,7 @@ export function renderLessonFiles(lesson: unknown): Map<string, string> {
     throw new Error(`Lesson ${relativePath} has duplicate or unsupported languages`);
   }
 
-  c  const { flashcards, questions, sections, ...config } = lesson;
+  const { flashcards, questions, sections, ...config } = lesson;
   const collections = {
     config: { ...config, sections: compactQuizQuestions(sections) },
     flashcards,
