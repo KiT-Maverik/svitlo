@@ -73,7 +73,7 @@ test('mobile quick settings fills the content width and provides a close button'
   await page.setViewportSize({ width: 390, height: 720 });
   await page.goto(`/uk/lesson/uk/${id}`);
   await page.getByRole('button', { name: 'Відкрити налаштування' }).click();
-  const settings = page.getByRole('complementary', { name: 'Налаштування' });
+  const settings = page.getByRole('complementary', { name: 'Швидкі налаштування' });
   await expect(settings.getByRole('heading', { name: 'Швидкі налаштування' })).toBeVisible();
   const box = await settings.boundingBox();
   expect(box?.width).toBeGreaterThanOrEqual(389);
