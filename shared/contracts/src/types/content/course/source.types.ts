@@ -1,32 +1,57 @@
-import type { Lesson_Override } from './override.types';
+import type { ContentBlock } from '../blocks';
+import type { Lesson_Override, Section_Override } from './override.types';
 import type { Locale_Languages } from '../locale.types';
 import type { Section } from '../section.types';
 
-/**
- * The registry/definition owner, not the author of the most recent data patch.
- * 'course' means the containing Course; its ID is supplied by the Course tree.
- * These references are build-time metadata, not fields on canonical Sections.
- */
+/** Authoring/renderer owner, not the source of the last data edit. */
 export type Course_ContentSource =
   | { type: 'lesson'; lessonId: string }
   | { type: 'course' };
 
-export type Course_BlockPlacement = {
-  slug: string;
-  source: Course_ContentSource;
+export type Course_SectionAddition<Languages extends Locale_Languages> = {
+  section: Section<'data', Languages>;
+  source: Extract<Course_ContentSource, { type: 'course' }>;
 };
 
-/** Section data together with sources used to resolve Scene registries. */
-export type Course_SectionPlacement<Languages extends Locale_Languages> = {
-  section: Section<'data', Languages>;
-  source: Course_ContentSource;
-  blocks: readonly Course_BlockPlacement[];
+export type Course_BlockAddition<Languages extends Locale_Languages> = {
+  block: ContentBlock<'data', Languages>;
+  source: Extract<Course_ContentSource, { type: 'course' }>;
+};
+
+/** Partial kind-specific content patch; identity and block kind never change. */
+export type Course_BlockOverride<Languages extends Locale_Languages> =
+  ContentBlock<'data', Languages> extends infer Block
+    ? Block extends ContentBlock<'data', Languages>
+      ? Partial<Omit<Block, 'id' | 'slug' | 'type'>>
+      : never
+    : never;
+
+export type Course_BlockChanges<Languages extends Locale_Languages> = {
+  /** Slugs in final order. Only emitted when the order or membership changes. */
+  order?: readonly string[];
+  added?: readonly Course_BlockAddition<Languages>[];
+  removed?: readonly string[];
+  bySlug?: Readonly<Record<string, Course_BlockOverride<Languages>>>;
+};
+
+export type Course_SectionChanges<Languages extends Locale_Languages> = {
+  order?: readonly string[];
+  added?: readonly Course_SectionAddition<Languages>[];
+  removed?: readonly string[];
+  /** Only changed existing section fields/blocks; new sections are in added. */
+  bySlug?: Readonly<
+    Record<
+      string,
+      Omit<Section_Override<Languages>, 'content'> & { content?: Course_BlockChanges<Languages> }
+    >
+  >;
 };
 
 /**
- * Build-time Course entry. The Lesson remains canonical; only explicit
- * per-course changes and the effective ordered section composition are stored.
- * A Course publisher will materialize/localize this entry separately.
+ * Sparse, serializable patch for one use of a canonical Lesson.
+ * Generic deep-merge applies to ordinary object fields. Ordered Section and
+ * ContentBlock collections require applying their explicit operations, NOT
+ * generic index-based array merging. Original Lesson Data remains untouched.
  */
 export type Course_LessonOverride<
   Languages extends Locale_Languages,
@@ -35,6 +60,6 @@ export type Course_LessonOverride<
   type: 'lessonOverride';
   lessonId: string;
   overrides: Omit<Lesson_Override<Languages, CustomEvents>, 'sections'> & {
-    sections?: readonly Course_SectionPlacement<Languages>[];
+    sections?: Course_SectionChanges<Languages>;
   };
 };

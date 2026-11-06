@@ -10,6 +10,8 @@ export type Chapter<
 > = {
   type: 'chapter';
   id: string;
+  /** Optional registered icon key for course navigation; never JSX. */
+  iconKey?: string;
   title: ContentBlock_Text<ConfigType, SupportedLanguages>;
   content: readonly Chapter_Content<ConfigType, SupportedLanguages>[];
 };

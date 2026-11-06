@@ -6,7 +6,21 @@ export type { Course_LessonId, Course_Content, Module_Content, Chapter_Content }
 export type { Lesson_Override, Section_Override } from './override.types';
 export type {
   Course_ContentSource,
-  Course_BlockPlacement,
-  Course_SectionPlacement,
+  Course_SectionAddition,
+  Course_BlockAddition,
+  Course_BlockOverride,
+  Course_BlockChanges,
+  Course_SectionChanges,
   Course_LessonOverride,
 } from './source.types';
+export type {
+  Course_Toc,
+  Course_TocContent,
+  Course_TocLesson,
+  Course_TocEpisode,
+  Course_TocChapter,
+  Course_TocModule,
+  Course_TocContext,
+  Course_Resource,
+  Course_Creator,
+} from './toc.types';

@@ -10,6 +10,8 @@ export type Module<
 > = {
   type: 'module';
   id: string;
+  /** Optional registered icon key for course navigation; never JSX. */
+  iconKey?: string;
   title: ContentBlock_Text<ConfigType, SupportedLanguages>;
   content: readonly Module_Content<ConfigType, SupportedLanguages>[];
 };

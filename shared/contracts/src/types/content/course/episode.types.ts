@@ -15,6 +15,8 @@ export type Episode<
 > = {
   type: 'episode';
   id: string;
+  /** Optional registered icon key for course navigation; never JSX. */
+  iconKey?: string;
   title: ContentBlock_Text<ConfigType, SupportedLanguages>;
   sections: readonly Episode_ScenarioSection<ConfigType, SupportedLanguages>[];
 };
