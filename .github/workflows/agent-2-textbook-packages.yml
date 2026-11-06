@@ -9,6 +9,7 @@ on:
       - 'content/economics/**'
       - 'content/engineering/**'
       - 'content/health-safety/**'
+      - 'scripts/textbook-tooling/**'
       - '.github/workflows/agent-2-textbook-packages.yml'
   workflow_dispatch:
 
@@ -34,8 +35,8 @@ jobs:
             echo "::group::@svitlo/$book"
             if npm run build --workspace "@svitlo/$book" &&
                npm run typecheck --workspace "@svitlo/$book" &&
-               node --test "content/$book/scripts/publish.spec.mjs" &&
-               node "content/$book/scripts/check-react-dom-portability.mjs"; then
+               (cd "content/$book" && node --test ../../scripts/textbook-tooling/test-publish.mjs) &&
+               (cd "content/$book" && node ../../scripts/textbook-tooling/check-portability.mjs); then
               echo "PASS @svitlo/$book"
             else
               echo "::error title=@svitlo/$book::Build, typecheck or distribution check failed"

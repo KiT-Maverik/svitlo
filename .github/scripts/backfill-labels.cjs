@@ -6,13 +6,26 @@ module.exports = async function backfill({ github, context, core, shard, shards 
   const { owner, repo } = context.repo;
   const catalogue = require('../labels.json');
   const knownLabels = new Set(catalogue.map(({ name }) => name));
-  const areas = catalogue
-    .filter(label => label.name.startsWith('area: ') && label.name !== 'area: repo')
-    .map(({ name, description }) => ({
-      name,
-      prefix: description.replace(/^Changes to /, ''),
-    }));
-  const areaNames = new Set(catalogue.filter(label => label.name.startsWith('area: ')).map(label => label.name));
+  // Scope names determine paths; label descriptions are display text, not routing config.
+  const scoped = catalogue.filter(
+    label =>
+      (/(content|app|backend|shared|repo): /.test(label.name) && label.name !== 'repo: general') ||
+      label.name === 'studio',
+  );
+  const scopePaths = scoped.map(({ name }) => {
+    if (name === 'studio') return { name, prefixes: ['studio/'] };
+    const [kind, slug] = name.split(': ');
+    if (kind === 'content') return { name, prefixes: ['content/' + slug + '/'] };
+    if (kind === 'app') {
+      const prefixes = ['apps/' + slug + '/'];
+      return { name, prefixes };
+    }
+    if (kind === 'backend') return { name, prefixes: ['backend/' + slug + '/'] };
+    if (kind === 'shared') return { name, prefixes: ['shared/' + slug + '/'] };
+    if (name === 'repo: scripts') return { name, prefixes: ['scripts/'] };
+    throw new Error('Unsupported scope label: ' + name);
+  });
+  const scopeNames = new Set(scoped.map(label => label.name));
 
   const allPulls = await github.paginate(github.rest.pulls.list, {
     owner,
@@ -36,35 +49,41 @@ module.exports = async function backfill({ github, context, core, shard, shards 
     childBranches.set(pr.base.ref, (childBranches.get(pr.base.ref) || 0) + 1);
   }
 
-  const allAreaKeys = new Map(areas.map(area => [area.name.slice(6), area.name]));
+  const scopeByName = new Map(scoped.map(({ name }) => [name.toLowerCase(), name]));
+  const scopeBySlug = new Map();
+  for (const { name } of scoped) {
+    const slug = name.split(': ')[1];
+    if (!scopeBySlug.has(slug)) scopeBySlug.set(slug, name);
+  }
   const aliases = new Map([
-    ['health & safety', 'health-safety'],
-    ['health and safety', 'health-safety'],
-    ['language & literature', 'language-literature'],
-    ['language and literature', 'language-literature'],
-    ['ukrainian language', 'languages'],
-    ['ui kit', 'ui-kit'],
-    ['frontend', 'platform'],
-    ['backend', 'server'],
+    ['health & safety', 'content: health-safety'],
+    ['health and safety', 'content: health-safety'],
+    ['language & literature', 'content: language-literature'],
+    ['language and literature', 'content: language-literature'],
+    ['ukrainian language', 'content: languages'],
+    ['ui kit', 'shared: ui-kit'],
+    ['frontend', 'app: platform'],
+    ['backend', 'backend: server'],
+    ['repo', 'repo: general'],
   ]);
   function getAreas(paths) {
     const found = new Set();
     for (const path of paths) {
-      for (const area of areas) {
-        if (path.startsWith(area.prefix)) found.add(area.name);
+      for (const scope of scopePaths) {
+        if (scope.prefixes.some(prefix => path.startsWith(prefix))) found.add(scope.name);
       }
     }
-    return found.size ? [...found] : ['area: repo'];
+    return found.size ? [...found] : ['repo: general'];
   }
   function getIssueAreas(issue) {
     const title = issue.title.toLowerCase();
     const prefix = /^\[([^\]]+)\]/.exec(title);
     const first = prefix ? prefix[1] : title.split(/[\s:—-]/)[0];
-    const key = aliases.get(first) || first;
-    if (allAreaKeys.has(key)) return [allAreaKeys.get(key)];
-    const candidate = (issue.body || '').match(/(?:content|shared|backend|apps)\/[a-z-]+\//);
-    if (candidate) return getAreas([candidate[0]]);
-    return ['area: repo'];
+    const named = scopeByName.get(first) || aliases.get(first) || scopeBySlug.get(first);
+    if (named && knownLabels.has(named)) return [named];
+    const candidates = (issue.body || '').match(/(?:content|shared|backend|frontend|apps|studio|scripts)\/[a-z-]+\//g);
+    if (candidates) return getAreas(candidates);
+    return ['repo: general'];
   }
   function getWork(title) {
     const t = title.toLowerCase();
@@ -88,10 +107,12 @@ module.exports = async function backfill({ github, context, core, shard, shards 
 
   async function apply(record, target) {
     const existing = new Set(record.labels.map(label => label.name));
-    const toAdd = target.filter(label => knownLabels.has(label) && !existing.has(label));
-    // Repo fallback must never coexist with an area that identifies a real package.
+    const existingScoped = [...existing].some(label => scopeNames.has(label));
+    // Do not add the repository fallback when the Issue/PR already has a specific scope.
+    const resolved = target.filter(label => label !== 'repo: general' || !existingScoped);
+    const toAdd = resolved.filter(label => knownLabels.has(label) && !existing.has(label));
     const removeRepo =
-      target.some(label => label.startsWith('area: ') && label !== 'area: repo') && existing.has('area: repo');
+      (existingScoped || resolved.some(label => scopeNames.has(label))) && existing.has('repo: general');
     const wrongRole = target.includes('pr: agent-subtask')
       ? 'pr: integration'
       : target.includes('pr: integration')
@@ -108,7 +129,7 @@ module.exports = async function backfill({ github, context, core, shard, shards 
         counters.added += toAdd.length;
       }
       for (const label of [
-        removeRepo ? 'area: repo' : null,
+        removeRepo ? 'repo: general' : null,
         wrongRole && existing.has(wrongRole) ? wrongRole : null,
       ].filter(Boolean)) {
         await github.rest.issues.removeLabel({

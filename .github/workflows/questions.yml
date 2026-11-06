@@ -39,11 +39,11 @@ jobs:
         if: ${{ !cancelled() }}
         run: |
           for subject in math physics psychology philosophy language-literature; do
-            node --test "content/$subject/scripts/publish.spec.mjs"
-            node "content/$subject/scripts/check-react-dom-portability.mjs"
+            (cd "content/$subject" && node --test ../../scripts/textbook-tooling/test-publish.mjs)
+            (cd "content/$subject" && node ../../scripts/textbook-tooling/check-portability.mjs)
           done
-          node --test content/languages/ukrainian/scripts/publish.spec.mjs
-          node content/languages/ukrainian/scripts/check-react-dom-portability.mjs
+          (cd content/languages/ukrainian && node --test ../../../scripts/textbook-tooling/test-publish.mjs)
+          (cd content/languages/ukrainian && node ../../../scripts/textbook-tooling/check-portability.mjs)
       - name: Verify compiled public package artifacts
         if: ${{ !cancelled() }}
         run: npm run packages:artifacts:check

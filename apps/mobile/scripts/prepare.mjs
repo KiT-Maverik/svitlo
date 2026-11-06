@@ -26,7 +26,7 @@ if (
 ) {
   throw new Error('Selected textbook ' + id + ' must export compiled metadata, Scenes and styles');
 }
-if (!manifest.bin?.['svitlo-' + id]) {
+if (manifest.bin?.['svitlo-' + id] !== './dist/publish.mjs') {
   throw new Error('Selected textbook ' + id + ' must expose its Publish CLI');
 }
 const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
@@ -49,7 +49,10 @@ run(npm, ['run', 'build', '--workspace', selection.package]);
 // Resolve Engine only after building the shared workspace from a fresh checkout.
 const { mergeLessonResources } = await import('@svitlo/engine/lesson');
 const publicRoot = join(mobileRoot, 'public');
-run(npm, ['exec', '--workspace', '@svitlo/mobile', '--', 'svitlo-' + id, 'publish', '--output', publicRoot]);
+// npm ci may not link a binary generated during build, so execute the
+// published package binary from its validated manifest path directly.
+run(process.execPath,
+  [join(repoRoot, selection.directory, manifest.bin['svitlo-' + id]), 'publish', '--output', publicRoot]);
 
 // UI Kit owns global dictionaries and SVG flags. The textbook publisher must
 // not overwrite either, nor the Capacitor app's own static resources.

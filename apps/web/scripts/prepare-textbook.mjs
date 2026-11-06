@@ -19,7 +19,8 @@ if (manifest.name !== selection.package || webManifest.dependencies?.[manifest.n
   throw new Error('Selected textbook ' + id + ' is not a declared, version-matched Web dependency');
 }
 const cli = Object.keys(manifest.bin ?? {});
-if (cli.length !== 1 || !/^[a-z][a-z0-9-]*$/.test(cli[0])) {
+if (cli.length !== 1 || !/^[a-z][a-z0-9-]*$/.test(cli[0]) ||
+    manifest.bin[cli[0]] !== './dist/publish.mjs') {
   throw new Error('Selected textbook must expose exactly one public Publish CLI');
 }
 for (const entry of ['.', './scenes']) {
@@ -45,9 +46,10 @@ for (const workspace of [
 run('npm', ['run', 'build', '--workspace', selection.package]);
 
 const targetPublic = join(webRoot, 'public');
-// Web only invokes the textbook's public executable. Build-only generators
-// and authored data layout are intentionally opaque to this application.
-run('npm', ['exec', '--workspace', '@svitlo/web', '--', cli[0], 'publish', '--output', targetPublic]);
+// Invoke the documented package binary after build. npm may not create a
+// workspace bin shim during npm ci because dist/ did not exist at install time.
+// Build-only generators and authored data remain opaque to the host.
+run(process.execPath, [join(textbookRoot, manifest.bin[cli[0]]), 'publish', '--output', targetPublic]);
 
 // The UI Kit owns global UI translations; Web stages them independently of
 // textbook resource ownership, just as it stages UI Kit flags.

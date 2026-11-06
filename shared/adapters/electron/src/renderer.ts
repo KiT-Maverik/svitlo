@@ -1,5 +1,5 @@
 import { resolveEntityPath } from '@svitlo/engine';
-import { assembleLessonResponse, type LessonResponse } from '@svitlo/engine/lesson';
+import { assembleLessonResponse, mergeLessonResources, type LessonResponse } from '@svitlo/engine/lesson';
 import type { LanguageCode, Locale } from '@svitlo/engine/localization';
 
 /** Fetch only build-published lesson data. No Node, Electron or authored *.data.ts at runtime. */
@@ -14,9 +14,14 @@ export async function loadPublishedLesson(id: string, language: LanguageCode): P
   const location = resolveEntityPath(id);
   const base = '/data/pages/lessons/' + location;
   const [config, flashcards, questions] = await Promise.all(
-    (['config', 'flashcards', 'questions'] as const).map(kind =>
-      loadJson(base + '/' + kind + '/' + language + '.json'),
-    ),
+    (['config', 'flashcards', 'questions'] as const).map(async kind => {
+      const directory = base + '/' + kind + '/';
+      const [invariant, localized] = await Promise.all([
+        loadJson(directory + 'base.json'),
+        loadJson(directory + language + '.json'),
+      ]);
+      return mergeLessonResources(invariant, localized);
+    }),
   );
   return assembleLessonResponse(id, language, { config, flashcards, questions });
 }

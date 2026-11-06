@@ -17,8 +17,9 @@ Playground ownership.
 **Compiled distribution (Playground):** `npm run build --workspace @svitlo/playground`
 produces `content/playground/dist/` including ESM + declarations, Scene styles,
 localized lesson and Skills Analytics JSON and textbook assets. Consuming hosts
-import compiled exports and invoke the npm `svitlo-playground publish --output <dir>`
-CLI to stage prebuilt textbook-owned resources. The Web host no longer owns the
+import compiled exports and invoke the selected package's self-contained
+`dist/publish.mjs` binary (declared in its `package.json` `bin` field)
+to stage prebuilt textbook-owned resources. The Web host no longer owns the
 textbook generator orchestration. UI Kit static assets remain host-staged.
 See [Playground README](../../../content/playground/README.md) for commands,
 resource URLs and isolated tarball/React DOM portability checks.

@@ -1,11 +1,9 @@
 name: Backfill labels on existing Issues and PRs
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/backfill-labels.yml'
-      - '.github/scripts/backfill-labels.cjs'
+  workflow_run:
+    workflows: ['Sync repository labels']
+    types: [completed]
   workflow_dispatch:
 
 permissions:
@@ -19,6 +17,10 @@ concurrency:
 
 jobs:
   backfill:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.head_branch == 'main')
     runs-on: ubuntu-latest
     timeout-minutes: 30
     strategy:

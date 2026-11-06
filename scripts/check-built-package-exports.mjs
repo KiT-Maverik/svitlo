@@ -62,8 +62,8 @@ for (const path of selected) {
     }
   }
   if (name === 'playground') {
-    assert(pkg.bin?.['svitlo-playground'] === './scripts/publish.mjs', 'Playground Publish CLI missing');
-    assert(existsSync(resolve(root, path, 'scripts/publish.mjs')), 'Playground Publish CLI file missing');
+    assert(pkg.bin?.['svitlo-playground'] === './dist/publish.mjs', 'Playground Publish CLI missing');
+    assert(existsSync(resolve(root, path, 'dist/publish.mjs')), 'Playground Publish CLI file missing');
     const manifestPath = resolve(root, path, 'dist/manifest.json');
     assert(existsSync(manifestPath), 'Playground static resource manifest missing');
     const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
@@ -81,8 +81,8 @@ for (const path of selected) {
     }
   }
   if (['art', 'chemistry', 'economics', 'engineering', 'health-safety'].includes(name)) {
-    assert(pkg.bin?.['svitlo-' + name] === './scripts/publish.mjs', 'Missing Publish CLI: ' + name);
-    assert(existsSync(resolve(root, path, 'scripts/publish.mjs')), 'Missing CLI executable: ' + name);
+    assert(pkg.bin?.['svitlo-' + name] === './dist/publish.mjs', 'Missing Publish CLI: ' + name);
+    assert(existsSync(resolve(root, path, 'dist/publish.mjs')), 'Missing CLI executable: ' + name);
     const manifestPath = resolve(root, path, 'dist/manifest.json');
     assert(existsSync(manifestPath), 'Missing published manifest: ' + name);
     const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
@@ -93,8 +93,8 @@ for (const path of selected) {
     }
   }
   if (['math', 'physics', 'psychology', 'philosophy', 'language-literature', 'ukrainian'].includes(name)) {
-    assert(pkg.bin?.['svitlo-' + name] === './scripts/publish.mjs', 'Publish CLI missing: ' + pkg.name);
-    assert(existsSync(resolve(root, path, 'scripts/publish.mjs')), 'Publish script missing: ' + path);
+    assert(pkg.bin?.['svitlo-' + name] === './dist/publish.mjs', 'Publish CLI missing: ' + pkg.name);
+    assert(existsSync(resolve(root, path, 'dist/publish.mjs')), 'Publish script missing: ' + path);
     const manifest = JSON.parse(readFileSync(resolve(root, path, 'dist/manifest.json'), 'utf8'));
     assert(manifest.version === 1 && manifest.textbook === name && Array.isArray(manifest.files), 'Invalid manifest: ' + path);
     assert(new Set(manifest.files).size === manifest.files.length, 'Duplicate published resource: ' + path);
@@ -108,7 +108,7 @@ for (const path of selected) {
   if (["astronomy","biology","geography","history","informatics"].includes(name)) {
     assert(pkg.exports?.['.']?.default === './dist/textbook/index.js',
       'Textbook metadata must use compiled ESM: ' + name);
-    assert(pkg.bin?.['svitlo-' + name] === './scripts/publish.mjs',
+    assert(pkg.bin?.['svitlo-' + name] === './dist/publish.mjs',
       'Missing textbook Publish CLI: ' + name);
     const manifestPath = resolve(root, path, 'dist/manifest.json');
     assert(existsSync(manifestPath), 'Missing textbook resource manifest: ' + name);

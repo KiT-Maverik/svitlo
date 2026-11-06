@@ -15,7 +15,7 @@ function fixture(t) {
 
   for (const name of ['math', 'art']) {
     const path = join(root, 'content', name);
-    for (const file of ['dist/textbook/index.js', 'dist/textbook/index.d.ts', 'scripts/publish.mjs', 'dist/static/' + resource]) {
+    for (const file of ['dist/textbook/index.js', 'dist/textbook/index.d.ts', 'dist/publish.mjs', 'dist/static/' + resource]) {
       const target = join(path, file);
       mkdirSync(dirname(target), { recursive: true });
       writeFileSync(target, file.endsWith('.json') ? '{"domains":[]}\n' : '');
@@ -28,7 +28,7 @@ function fixture(t) {
       join(path, 'package.json'),
       JSON.stringify({
         name: '@svitlo/' + name,
-        bin: { ['svitlo-' + name]: './scripts/publish.mjs' },
+        bin: { ['svitlo-' + name]: './dist/publish.mjs' },
         exports: { '.': { default: './dist/textbook/index.js', types: './dist/textbook/index.d.ts' } },
       }),
     );

@@ -8,9 +8,13 @@ Do not import application-owned files, duplicate UI Kit flags, or import authore
 
 `npm run build --workspace @svitlo/playground` must create the complete
 `dist/` distribution, including compiled JS, public declarations, Scene styles,
-localized lesson/analytics JSON and any book assets. `scripts/publish.mjs` is
-a public, framework-independent CLI for distributing those **prebuilt** resources.
+localized lesson/analytics JSON and any book assets. The shared Node.js tooling
+in `scripts/textbook-tooling/` copies the self-contained public Publish CLI to
+`dist/publish.mjs` during build; the packed binary distributes those **prebuilt** resources.
 Never regenerate content during publication or delete unrelated host resources.
+The `scripts/textbook-tooling/generate-scenes.mjs` shared generator owns the
+statically analyzable registry for every Scene-enabled textbook, while the
+Scene implementations and generated `scenes/sceneLoader.ts` remain book-owned.
 Keep `./scenes`'s generated Scene Registry static and lazy; run
 `npm run check:scenes --workspace @svitlo/playground` after edits.
 
