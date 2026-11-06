@@ -22,7 +22,7 @@ export const controlArchitectureTradeOffs_Skill_Data = buildSkillConfig({
     ta: 'கட்டுப்பாட்டுக் கட்டமைப்பின் சமரசங்கள்',
     te: 'నియంత్రణ నిర్మాణ ఎంపికల రాజీలు',
     mr: 'नियंत्रण रचनेतील तडजोडी',
-    ms: 'Pertukaran dalam seni bina kawalan',
+    ms: 'Kompromi dalam seni bina kawalan',
     he: 'פשרות בתכנון ארכיטקטורת בקרה',
     pl: 'Kompromisy w architekturze sterowania',
     uk: 'Компроміси архітектури керування',
