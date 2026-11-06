@@ -6,24 +6,32 @@ import { assembleLessonResponse } from './assembleLessonResponse';
 
 const id = 'd3048d21-8690-5255-b62c-984c69ac272c';
 const authored = {
-  id, slug: 'eventLesson',
+  id,
+  slug: 'eventLesson',
   title: { en: 'Light', uk: 'Світло' },
-  flashcards: [], questions: {},
+  flashcards: [],
+  questions: {},
   parameters: {
     requireQuiz: false,
     languages: ['en', 'uk'],
     sections: { allowNavigation: true, allowSkipping: false, showIndexes: true },
   },
-  sections: [{
-    type: 'theory', id: 'section-1', slug: 'intro',
-    title: { en: 'Intro', uk: 'Вступ' },
-    navigationLabel: { en: 'Intro', uk: 'Вступ' },
-    content: [],
-  }],
+  sections: [
+    {
+      type: 'theory',
+      id: 'section-1',
+      slug: 'intro',
+      title: { en: 'Intro', uk: 'Вступ' },
+      navigationLabel: { en: 'Intro', uk: 'Вступ' },
+      content: [],
+    },
+  ],
   events: {
     lessonStarted: false,
     lightDiscovered: {
-      id: 'light-event-scene', slug: 'lightEventScene', type: 'scene',
+      id: 'light-event-scene',
+      slug: 'lightEventScene',
+      type: 'scene',
       locales: { title: { en: 'Well done!', uk: 'Молодець!' } },
     },
   },
@@ -51,18 +59,30 @@ describe('Lesson event authoring and publication', () => {
     });
     assert.equal(response.events?.lessonStarted, false);
     assert.deepEqual(response.events?.lightDiscovered, {
-      id: 'light-event-scene', slug: 'lightEventScene', type: 'scene',
+      id: 'light-event-scene',
+      slug: 'lightEventScene',
+      type: 'scene',
       locales: { title: 'Молодець!' },
       rendererKey: 'light-event-scene',
     });
   });
 
   it('rejects unsupported event IDs and disabled authored custom scenes', () => {
-    assert.throws(() => renderLessonFiles({
-      ...authored, events: { 'not.valid': authored.events.lightDiscovered },
-    }), /Invalid lesson event ID/);
-    assert.throws(() => renderLessonFiles({
-      ...authored, events: { lightDiscovered: false },
-    }), /authored Scene/);
+    assert.throws(
+      () =>
+        renderLessonFiles({
+          ...authored,
+          events: { 'not.valid': authored.events.lightDiscovered },
+        }),
+      /Invalid lesson event ID/,
+    );
+    assert.throws(
+      () =>
+        renderLessonFiles({
+          ...authored,
+          events: { lightDiscovered: false },
+        }),
+      /authored Scene/,
+    );
   });
 });

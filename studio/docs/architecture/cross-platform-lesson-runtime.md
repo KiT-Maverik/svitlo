@@ -97,7 +97,6 @@ Server-assembled props remove an extra client API fetch for Lesson configuration
 
 **Related:** [System Boundaries](./system-boundaries.md), [Offline & Device Compatibility](./offline-first-and-device-compatibility.md), [Git-First Typed Content](./git-first-typed-content.md), [Internationalization & Inclusive Access](./internationalization-and-accessibility.md), [Monorepo](./monorepo-and-textbook.md), [UI Kit agent instructions](../../../shared/ui-kit/AGENTS.md).
 
-
 ## Lesson-local event reactions (implemented)
 
 The shared Lesson Controller provides a lesson-scoped Event Bus with the built-in

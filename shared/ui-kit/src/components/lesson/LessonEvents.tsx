@@ -20,7 +20,9 @@ export function createLessonEventBus() {
     },
     subscribe(subscriber: (eventId: string) => void) {
       subscribers.add(subscriber);
-      return () => { subscribers.delete(subscriber); };
+      return () => {
+        subscribers.delete(subscriber);
+      };
     },
   };
 }
@@ -41,7 +43,13 @@ export function useLessonEventListener<CustomEvents extends string = never>(
   handler: () => void,
 ): void {
   const bus = useLessonEventBus();
-  useEffect(() => bus.subscribe(received => { if (received === eventId) handler(); }), [bus, eventId, handler]);
+  useEffect(
+    () =>
+      bus.subscribe(received => {
+        if (received === eventId) handler();
+      }),
+    [bus, eventId, handler],
+  );
 }
 
 export function useLessonEventScene() {
@@ -90,14 +98,16 @@ export function EventSceneHost({
       }
     });
   }, [bus, enabled, events]);
-  useEffect(() => { if (!enabled) setQueue([]); }, [enabled]);
+  useEffect(() => {
+    if (!enabled) setQueue([]);
+  }, [enabled]);
 
   const active = queue[0];
   const dismiss = () => setQueue(previous => previous.slice(1));
   const label = active
-    ? (typeof active.scene.locales?.title === 'string'
-        ? active.scene.locales.title
-        : active.eventId)
+    ? typeof active.scene.locales?.title === 'string'
+      ? active.scene.locales.title
+      : active.eventId
     : '';
 
   return (

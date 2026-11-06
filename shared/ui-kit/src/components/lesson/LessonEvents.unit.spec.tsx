@@ -9,10 +9,11 @@ import { useLessonActions, useLessonEventBus, useLessonEventScene } from './inde
 import { createLessonEventBus, resolveLessonEventScenes } from './LessonEvents';
 import type { EventScene } from './LessonEvents';
 
-
 const received: string[] = [];
 const celebration: EventScene = {
-  id: 'event-celebration', type: 'scene', rendererKey: 'event-celebration',
+  id: 'event-celebration',
+  type: 'scene',
+  rendererKey: 'event-celebration',
   locales: { title: 'Great work!' },
 };
 
@@ -29,14 +30,24 @@ function SceneContent({ locales }: { locales: EventScene['locales'] }) {
 function Layout({ messages, ...props }: LessonLearningLayoutProps) {
   const actions = useLessonActions<'lightDiscovered'>();
   const bus = useLessonEventBus();
-  useEffect(() => bus.subscribe(id => { received.push(id); }), [bus]);
+  useEffect(
+    () =>
+      bus.subscribe(id => {
+        received.push(id);
+      }),
+    [bus],
+  );
   return (
     <>
       <button onClick={() => actions.publishEvent('lightDiscovered')}>Discover light</button>
-      <button onClick={() => {
-        actions.publishEvent('lightDiscovered');
-        actions.publishEvent('lightDiscovered');
-      }}>Discover twice</button>
+      <button
+        onClick={() => {
+          actions.publishEvent('lightDiscovered');
+          actions.publishEvent('lightDiscovered');
+        }}
+      >
+        Discover twice
+      </button>
       <button onClick={actions.completeQuiz}>Complete quiz</button>
       <LearningLayout {...props} messages={messages.learningLayout} locale="en-US" />
     </>
@@ -56,12 +67,18 @@ function response(): LessonView {
     parameters: { sections: { allowNavigation: true, allowSkipping: true, showIndexes: true } },
     sections: [
       {
-        id: 'section-a', type: 'theory', navigationLabel: 'First',
-        content: [{ id: 'text-a', slug: 'firstText', type: 'text', value: 'First section' }], questions: [],
+        id: 'section-a',
+        type: 'theory',
+        navigationLabel: 'First',
+        content: [{ id: 'text-a', slug: 'firstText', type: 'text', value: 'First section' }],
+        questions: [],
       },
       {
-        id: 'section-b', type: 'theory', navigationLabel: 'Second',
-        content: [{ id: 'text-b', slug: 'secondText', type: 'text', value: 'Second section' }], questions: [],
+        id: 'section-b',
+        type: 'theory',
+        navigationLabel: 'Second',
+        content: [{ id: 'text-b', slug: 'secondText', type: 'text', value: 'Second section' }],
+        questions: [],
       },
     ],
   } as LessonView;
@@ -70,14 +87,19 @@ function response(): LessonView {
 function showLesson(overrides?: Record<string, EventScene | false>, view = response()) {
   return render(
     <Lesson
-      response={view} href="/en/lesson/events-lesson" messages={enUiKitMessages}
-      layout={Layout} eventOverrides={overrides}
-      sceneRegistry={id => id === celebration.id ? SceneContent : undefined}
+      response={view}
+      href="/en/lesson/events-lesson"
+      messages={enUiKitMessages}
+      layout={Layout}
+      eventOverrides={overrides}
+      sceneRegistry={id => (id === celebration.id ? SceneContent : undefined)}
     />,
   );
 }
 
-beforeEach(() => { received.length = 0; });
+beforeEach(() => {
+  received.length = 0;
+});
 
 describe('Lesson events', () => {
   it('delivers typed custom events without making the controller own the event queue', async () => {
@@ -111,9 +133,11 @@ describe('Lesson events', () => {
   it('emits lessonCompleted only after reaching the final unlocked section', () => {
     showLesson();
     expect(received).not.toContain('lessonCompleted');
-    const next = within(screen.getByRole('navigation', {
-      name: enUiKitMessages.learningLayout.navigation.bottom,
-    })).getByRole('button', { name: new RegExp(enUiKitMessages.learningLayout.actions.next, 'i') });
+    const next = within(
+      screen.getByRole('navigation', {
+        name: enUiKitMessages.learningLayout.navigation.bottom,
+      }),
+    ).getByRole('button', { name: new RegExp(enUiKitMessages.learningLayout.actions.next, 'i') });
     fireEvent.click(next);
     expect(received.filter(id => id === 'lessonCompleted')).toHaveLength(1);
   });
@@ -128,7 +152,8 @@ describe('Lesson events', () => {
 
   it('supports multiple subscribers and cleanup', () => {
     const bus = createLessonEventBus();
-    const first = vi.fn(); const second = vi.fn();
+    const first = vi.fn();
+    const second = vi.fn();
     const unsubscribe = bus.subscribe(first);
     bus.subscribe(second);
     bus.publish('lightDiscovered');
@@ -139,8 +164,9 @@ describe('Lesson events', () => {
   });
 
   it('only permits program overrides for built-in or declared custom events', () => {
-    expect(resolveLessonEventScenes({ lightDiscovered: celebration }, { lightDiscovered: false }).lightDiscovered)
-      .toBe(false);
+    expect(resolveLessonEventScenes({ lightDiscovered: celebration }, { lightDiscovered: false }).lightDiscovered).toBe(
+      false,
+    );
     expect(() => resolveLessonEventScenes({}, { unknown: false })).toThrow(/undeclared/);
   });
 });

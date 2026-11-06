@@ -136,8 +136,14 @@ export function assembleLessonResponse(
     for (const [pointer, source] of Object.entries(item.localeSources)) {
       if (source.code !== language) {
         throw new Error(
-          'Unexpected locale source in ' + kind + ' at ' + pointer +
-          ': requested ' + language + ', source ' + source.code,
+          'Unexpected locale source in ' +
+            kind +
+            ' at ' +
+            pointer +
+            ': requested ' +
+            language +
+            ', source ' +
+            source.code,
         );
       }
     }

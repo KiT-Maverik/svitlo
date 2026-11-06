@@ -50,8 +50,13 @@ function assertLesson(value: unknown): asserts value is LessonData {
     for (const [eventId, reaction] of Object.entries(value.events)) {
       if (!/^[a-z][A-Za-z0-9]*$/.test(eventId)) throw new Error('Invalid lesson event ID: ' + eventId);
       if (reaction === false && standard.has(eventId)) continue;
-      if (!isRecord(reaction) || reaction.type !== 'scene' || typeof reaction.id !== 'string' ||
-          typeof reaction.slug !== 'string' || !isRecord(reaction.locales)) {
+      if (
+        !isRecord(reaction) ||
+        reaction.type !== 'scene' ||
+        typeof reaction.id !== 'string' ||
+        typeof reaction.slug !== 'string' ||
+        !isRecord(reaction.locales)
+      ) {
         throw new Error('Lesson event reaction must be an authored Scene: ' + eventId);
       }
     }

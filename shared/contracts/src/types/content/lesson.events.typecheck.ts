@@ -1,4 +1,10 @@
-import { defineLessonData, type Lesson, type LessonEventOverrides, type LessonEvents, type SupportedLessonEvents } from '../../content';
+import {
+  defineLessonData,
+  type Lesson,
+  type LessonEventOverrides,
+  type LessonEvents,
+  type SupportedLessonEvents,
+} from '../../content';
 
 type Languages = readonly ['en'];
 type Custom = 'lightDiscovered' | 'lionAppeared';
@@ -46,11 +52,15 @@ void defaultLesson;
 
 declare const baseLesson: Omit<Lesson<'data', Languages>, 'events' | 'questions'>;
 const defaultAuthoring = defineLessonData<Languages>()({
-  ...baseLesson, questions: {}, events: { lessonCompleted: false },
+  ...baseLesson,
+  questions: {},
+  events: { lessonCompleted: false },
 });
 void defaultAuthoring;
 const customAuthoring = defineLessonData<Languages, 'lightDiscovered'>()({
-  ...baseLesson, questions: {}, events: { lightDiscovered: scene },
+  ...baseLesson,
+  questions: {},
+  events: { lightDiscovered: scene },
 });
 void customAuthoring;
 

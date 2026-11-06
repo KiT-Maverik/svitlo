@@ -1,6 +1,17 @@
 'use client';
 
-import { createContext, memo, useCallback, useContext, useEffect, useLayoutEffect, useMemo, useReducer, useRef, useState } from 'react';
+import {
+  createContext,
+  memo,
+  useCallback,
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useReducer,
+  useRef,
+  useState,
+} from 'react';
 import Container from '@mui/material/Container';
 import { ContentBlockRenderer } from '../widgets/ContentBlockRenderer';
 import { QuestionRenderer } from '../widgets/questions';
@@ -326,20 +337,26 @@ export function LessonController({
     availableEventsRef.current = availableEvents;
   }, [state, availableEvents]);
 
-  const emit = useCallback((eventId: string) => {
-    if (!availableEventsRef.current.has(eventId)) {
-      throw new Error('Unsupported lesson event: ' + eventId);
-    }
-    eventBus.publish(eventId);
-  }, [eventBus]);
+  const emit = useCallback(
+    (eventId: string) => {
+      if (!availableEventsRef.current.has(eventId)) {
+        throw new Error('Unsupported lesson event: ' + eventId);
+      }
+      eventBus.publish(eventId);
+    },
+    [eventBus],
+  );
 
-  const finishQuiz = useCallback((passed: boolean) => {
-    if (quizEmitted.current) return;
-    quizEmitted.current = true;
-    dispatch({ type: 'testDone' });
-    emit('quizCompleted');
-    if (!passed) emit('quizFailed');
-  }, [emit]);
+  const finishQuiz = useCallback(
+    (passed: boolean) => {
+      if (quizEmitted.current) return;
+      quizEmitted.current = true;
+      dispatch({ type: 'testDone' });
+      emit('quizCompleted');
+      if (!passed) emit('quizFailed');
+    },
+    [emit],
+  );
 
   const effectiveEvents = useMemo(
     () => resolveLessonEventScenes(response.events, eventOverrides),
@@ -355,9 +372,12 @@ export function LessonController({
   useEffect(() => {
     if (!eventReady || lessonFinished.current || !response.sections.length) return;
     const finalStep = response.sections.length - 1;
-    if (state.section.step !== finalStep ||
-        (response.sections.some(item => item.type === 'quiz') && !state.section.testDone) ||
-        !canLeaveSection(state, response, finalStep)) return;
+    if (
+      state.section.step !== finalStep ||
+      (response.sections.some(item => item.type === 'quiz') && !state.section.testDone) ||
+      !canLeaveSection(state, response, finalStep)
+    )
+      return;
     lessonFinished.current = true;
     emit('lessonCompleted');
   }, [eventReady, response, state, emit]);
@@ -464,9 +484,10 @@ export function LessonController({
   );
 
   const navActions = useMemo(() => ({ back: actions.back, next: actions.next, skip: actions.skip }), [actions]);
-  const renderEventHost = useCallback(() => (
-    <EventSceneHost bus={eventBus} events={effectiveEvents} sceneRegistry={sceneRegistry} enabled={eventReady} />
-  ), [eventBus, effectiveEvents, sceneRegistry, eventReady]);
+  const renderEventHost = useCallback(
+    () => <EventSceneHost bus={eventBus} events={effectiveEvents} sceneRegistry={sceneRegistry} enabled={eventReady} />,
+    [eventBus, effectiveEvents, sceneRegistry, eventReady],
+  );
   const quizIndex = response.sections.findIndex(item => item.type === 'quiz');
   const topics = useMemo(() => [{ id: response.id, title: response.title, href }], [response.id, response.title, href]);
   const skippableSteps = useMemo(
@@ -479,38 +500,38 @@ export function LessonController({
   return (
     <ActionsContext.Provider value={actions}>
       <LessonEventBusContext.Provider value={eventBus}>
-      <ParamsContext.Provider value={paramsValue}>
-        <LessonNavigationContext.Provider value={legacyNavigation}>
-          <Layout
-            contentLoading={contentLoading}
-            contentError={contentError}
-            onRetryContent={onRetryContent}
-            messages={messages}
-            topics={topics}
-            pathname={href}
-            skippableSteps={skippableSteps}
-            quizStep={quizIndex < 0 ? undefined : quizIndex}
-            progress={progress}
-            actions={navActions}
-            renderTopBar={renderTopBar}
-            renderBottomBar={renderBottomBar}
-            renderEventHost={renderEventHost}
-          >
-            <div className={styles.lesson}>
-              {!contentLoading && !contentError && (
-                <>
-                  <StepperContext.Provider value={stepper}>
-                    <MemoStepper response={response} messages={messages} />
-                  </StepperContext.Provider>
-                  <SectionContext.Provider value={section}>
-                    <MemoSection response={response} messages={messages} sceneRegistry={sceneRegistry} />
-                  </SectionContext.Provider>
-                </>
-              )}
-            </div>
-          </Layout>
-        </LessonNavigationContext.Provider>
-      </ParamsContext.Provider>
+        <ParamsContext.Provider value={paramsValue}>
+          <LessonNavigationContext.Provider value={legacyNavigation}>
+            <Layout
+              contentLoading={contentLoading}
+              contentError={contentError}
+              onRetryContent={onRetryContent}
+              messages={messages}
+              topics={topics}
+              pathname={href}
+              skippableSteps={skippableSteps}
+              quizStep={quizIndex < 0 ? undefined : quizIndex}
+              progress={progress}
+              actions={navActions}
+              renderTopBar={renderTopBar}
+              renderBottomBar={renderBottomBar}
+              renderEventHost={renderEventHost}
+            >
+              <div className={styles.lesson}>
+                {!contentLoading && !contentError && (
+                  <>
+                    <StepperContext.Provider value={stepper}>
+                      <MemoStepper response={response} messages={messages} />
+                    </StepperContext.Provider>
+                    <SectionContext.Provider value={section}>
+                      <MemoSection response={response} messages={messages} sceneRegistry={sceneRegistry} />
+                    </SectionContext.Provider>
+                  </>
+                )}
+              </div>
+            </Layout>
+          </LessonNavigationContext.Provider>
+        </ParamsContext.Provider>
       </LessonEventBusContext.Provider>
     </ActionsContext.Provider>
   );
