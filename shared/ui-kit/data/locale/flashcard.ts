@@ -1,3 +1,5 @@
+import type { UiKit_Component_Locale } from './locale.types';
+
 const en = {
   flashcard: {
     region: 'Flashcard',
@@ -372,7 +374,7 @@ const qm: Flashcard_Locale = {
 };
 
 /** Complete framework-independent card messages; review translations editorially. */
-export const data = {
+export const data: UiKit_Component_Locale<Flashcard_Locale> = {
   en,
   zh,
   hi,

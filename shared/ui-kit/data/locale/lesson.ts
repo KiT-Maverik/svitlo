@@ -1,3 +1,5 @@
+import type { UiKit_Component_Locale } from './locale.types';
+
 const en = {
   steps: { navigation: 'Lesson steps' },
   celebration: {
@@ -609,8 +611,7 @@ const qm: Lesson_Locale = {
   },
 };
 
-/** Complete authored Lesson UI labels. Build-time only. */
-export const data = {
+export const data: UiKit_Component_Locale<Lesson_Locale> = {
   en,
   zh,
   hi,

@@ -1,3 +1,5 @@
+import type { UiKit_Component_Locale } from './locale.types';
+
 const en = {
   offline: 'This image is not available offline.',
   unavailable: 'This image is unavailable.',
@@ -170,7 +172,7 @@ const qm: Image_Locale = {
   retry: 'Yañıdan deñe',
 };
 
-export const data = {
+export const data: UiKit_Component_Locale<Image_Locale> = {
   en,
   uk,
   zh,

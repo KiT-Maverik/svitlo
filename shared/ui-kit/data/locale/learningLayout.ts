@@ -1,3 +1,5 @@
+import type { UiKit_Component_Locale } from './locale.types';
+
 const en = {
   preparingLesson: 'Preparing your lesson…',
   brand: 'Svitlo',
@@ -901,7 +903,7 @@ const qm: LearningLayout_Locale = {
 };
 
 /** Complete authored LearningLayout messages. Build-time only. */
-export const data = {
+export const data: UiKit_Component_Locale<LearningLayout_Locale> = {
   en,
   zh,
   hi,

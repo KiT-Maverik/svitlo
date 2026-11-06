@@ -1,3 +1,5 @@
+import type { UiKit_Component_Locale } from './locale.types';
+
 const en = {
   language: 'Language',
   theme: { dark: 'Dark theme', light: 'Light theme' },
@@ -127,7 +129,7 @@ const qm: NavbarPreferences_Locale = {
   theme: { dark: 'Qaranlıq tema', light: 'Açıq tema' },
 };
 
-export const data = {
+export const data: UiKit_Component_Locale<NavbarPreferences_Locale> = {
   en,
   zh,
   hi,

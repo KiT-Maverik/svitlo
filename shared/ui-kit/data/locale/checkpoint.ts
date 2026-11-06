@@ -1,3 +1,5 @@
+import type { UiKit_Component_Locale } from './locale.types';
+
 const en = { title: 'Check your knowledge', check: 'Check', checked: 'Checked' };
 
 export type Checkpoint_Locale = typeof en;
@@ -126,7 +128,7 @@ const kk: Checkpoint_Locale = { title: 'Біліміңді тексер', check:
 
 const qm: Checkpoint_Locale = { title: 'Bilgiñni tekşer', check: 'Tekşer', checked: 'Tekşirildi' };
 
-export const data = {
+export const data: UiKit_Component_Locale<Checkpoint_Locale> = {
   en,
   zh,
   hi,

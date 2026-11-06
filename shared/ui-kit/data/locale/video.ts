@@ -1,3 +1,5 @@
+import type { UiKit_Component_Locale } from './locale.types';
+
 const en = {
   offline: 'This video is not available offline.',
   unavailable: 'This video is unavailable.',
@@ -203,7 +205,7 @@ const qm: Video_Locale = {
   retry: 'Yañıdan deñe',
 };
 
-export const data = {
+export const data: UiKit_Component_Locale<Video_Locale> = {
   en,
   uk,
   zh,

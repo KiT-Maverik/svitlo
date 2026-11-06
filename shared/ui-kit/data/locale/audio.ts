@@ -1,3 +1,5 @@
+import type { UiKit_Component_Locale } from './locale.types';
+
 const en = {
   offline: 'This audio is not available offline.',
   unavailable: 'This audio is unavailable.',
@@ -203,7 +205,7 @@ const qm: Audio_Locale = {
   retry: 'Yañıdan deñe',
 };
 
-export const data = {
+export const data: UiKit_Component_Locale<Audio_Locale> = {
   en,
   uk,
   zh,

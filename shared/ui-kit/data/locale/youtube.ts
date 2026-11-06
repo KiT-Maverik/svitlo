@@ -1,3 +1,5 @@
+import type { UiKit_Component_Locale } from './locale.types';
+
 const en = {
   loading: 'Loading video…',
   offline: 'This video needs an internet connection.',
@@ -203,7 +205,7 @@ const qm: Youtube_Locale = {
   retry: 'Yañıdan deñe',
 };
 
-export const data = {
+export const data: UiKit_Component_Locale<Youtube_Locale> = {
   en,
   uk,
   zh,
