@@ -56,10 +56,8 @@ describe('Layouts', () => {
       await LearningLayout_fx.actions.openTopics();
       await LearningLayout_fx.actions.openSettings();
       expect(await screen.findByText(locale.settingsDescription)).toBeVisible();
-      expect(LearningLayout_fx.selectors.topAction(aria.actions.closeSettings)).toHaveAttribute(
-        'aria-expanded',
-        'true',
-      );
+      expect(LearningLayout_fx.selectors.settings()).toBeVisible();
+      expect(LearningLayout_fx.selectors.topAction(aria.actions.profile)).toHaveAttribute('aria-expanded', 'false');
       expect(LearningLayout_fx.selectors.topAction(aria.actions.openTopics)).toHaveAttribute('aria-expanded', 'false');
     });
 
