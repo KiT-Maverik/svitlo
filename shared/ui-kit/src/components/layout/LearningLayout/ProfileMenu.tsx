@@ -147,6 +147,7 @@ export default function ProfileMenu({
             {profiles.map(candidate => (
               <MenuItem
                 key={candidate.id}
+                aria-label={candidate.displayName}
                 disabled={!onProfileChange || candidate.id === profile?.id}
                 selected={candidate.id === profile?.id}
                 onClick={() => selectProfile(candidate.id)}
