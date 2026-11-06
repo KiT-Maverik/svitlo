@@ -36,7 +36,7 @@ const scope = (prefix, dir) => {
     assert.ok(names.has(name), 'Missing label for ' + dir + '/' + entry.name + '/: ' + name);
     assert.ok(
       matcher.includes("'" + name + "':") &&
-      matcher.includes("'" + dir + '/' + entry.name + '/**'"),
+      matcher.includes("'" + dir + '/' + entry.name + "/**'"),
       'Missing path rule for ' + name
     );
   }
