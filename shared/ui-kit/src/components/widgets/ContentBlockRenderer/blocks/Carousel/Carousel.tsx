@@ -65,7 +65,7 @@ export function Carousel({
     : 450;
   const interval = Number.isFinite(autoplayIntervalMs) ? Math.max(1500, autoplayIntervalMs) : 5000;
   const animated = !reduceMotion && duration > 0;
-  const temporarilyPaused = pauseOnHover && (hovered || focused);
+  const temporarilyPaused = (pauseOnHover && hovered) || focused;
   const paused = playback === 'paused' || (playback === 'auto' && temporarilyPaused);
   const canAutoplay = autoplay && multiple && !paused && visible && (!reduceMotion || playback === 'playing');
 
@@ -191,7 +191,7 @@ export function Carousel({
       ref={rootRef}
       {...attributes}
       className={styles.root}
-      aria-label={title ?? currentSlide.alt}
+      aria-label={title ?? slides[0].alt}
       role="region"
       tabIndex={0}
       onKeyDown={onKeyDown}
