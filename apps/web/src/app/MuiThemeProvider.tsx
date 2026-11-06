@@ -18,5 +18,5 @@ const themes = {
 };
 
 export default function MuiThemeProvider({ children, direction }: { children: ReactNode; direction: TextDirection }) {
-  return <ThemeProvider theme={themes[direction]} disableTransitionOnChange forceThemeRerender>{children}</ThemeProvider>;
+  return <ThemeProvider theme={themes[direction]} disableTransitionOnChange>{children}</ThemeProvider>;
 }
