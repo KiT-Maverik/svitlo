@@ -18,10 +18,10 @@ const themes = {
 };
 
 export default function MuiThemeProvider({ children, direction }: { children: ReactNode; direction: TextDirection }) {
-  // MUI's CSS variables switch with data-light / data-dark. Forcing a theme rerender
-  // remounts the lesson tree and resets open drawers (including Quick Settings).
+  // Recalculate JS palette consumers while MUI updates data-light / data-dark CSS variables.
+  // The shared layout must read useColorScheme from this host's MUI instance.
   return (
-    <ThemeProvider theme={themes[direction]} disableTransitionOnChange>
+    <ThemeProvider theme={themes[direction]} disableTransitionOnChange forceThemeRerender>
       {children}
     </ThemeProvider>
   );
