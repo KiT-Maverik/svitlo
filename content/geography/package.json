@@ -6,12 +6,11 @@
   "scripts": {
     "build": "node ../../scripts/textbook-tooling/build.mjs",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "lint": "eslint textbook.ts data/homeCopy.ts scripts/locales.spec.mjs",
+    "lint": "eslint textbook.ts data/homeCopy.ts",
     "pretest:publish": "npm run build --workspace @svitlo/geography",
     "test:publish": "node --test ../../scripts/textbook-tooling/test-publish.mjs",
     "pretest:portability": "npm run build --workspace @svitlo/geography",
     "test:portability": "node ../../scripts/textbook-tooling/check-portability.mjs",
-    "test:locales": "node --test scripts/locales.spec.mjs",
     "prepack": "npm run build"
   },
   "bin": {

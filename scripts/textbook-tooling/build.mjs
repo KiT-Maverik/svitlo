@@ -25,8 +25,8 @@ if (hasStyles && !hasScenes) throw new Error('Scene styles require a Scene expor
 const dist = join(root, 'dist');
 const resources = join(dist, 'static');
 
-function run(program, args) {
-  const result = spawnSync(program, args, { cwd: repo, stdio: 'inherit', env: process.env });
+function run(program, args, cwd = repo) {
+  const result = spawnSync(program, args, { cwd, stdio: 'inherit', env: process.env });
   if (result.error || result.status !== 0) {
     throw new Error(program + ' ' + args.join(' ') + ' failed: ' + (result.error?.message ?? result.status));
   }
@@ -54,7 +54,7 @@ for (const [workspace, compiled] of [
 ]) {
   if (!existsSync(join(repo, compiled))) run('npm', ['run', 'build', '--workspace', workspace]);
 }
-if (pkg.scripts?.['check:scenes']) run('npm', ['run', 'check:scenes', '--workspace', pkg.name]);
+if (hasScenes) run(process.execPath, [join(repo, 'scripts/textbook-tooling/generate-scenes.mjs'), '--check'], root);
 
 rmSync(dist, { recursive: true, force: true });
 mkdirSync(resources, { recursive: true });

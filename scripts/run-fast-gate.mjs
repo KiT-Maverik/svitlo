@@ -97,6 +97,10 @@ function runGate(changed) {
   for (const f of plan.jsFiles) exec('node', ['--check', f]);
   for (const f of plan.jsonFiles) json(f);
   exec('node', ['--test', 'scripts/check-skills-taxonomy-structure.spec.mjs', 'scripts/run-fast-gate.spec.mjs']);
+  if (changed.some(f => f.startsWith('scripts/textbook-tooling/generate-scenes') ||
+    f.startsWith('content/playground/scenes/') || f === 'content/playground/package.json')) {
+    exec('node', ['--test', 'scripts/textbook-tooling/generate-scenes.spec.mjs']);
+  }
   if (
     changed.some(
       f => f.startsWith('scripts/generators/pages/skillAnalytics/') || f.startsWith('content/playground/data/skills/'),

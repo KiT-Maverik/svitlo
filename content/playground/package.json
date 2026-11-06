@@ -4,8 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "generate:scenes": "node scripts/generate-scenes.mjs --write",
-    "check:scenes": "node scripts/generate-scenes.mjs --check",
+    "generate:scenes": "node ../../scripts/textbook-tooling/generate-scenes.mjs --write",
+    "check:scenes": "node ../../scripts/textbook-tooling/generate-scenes.mjs --check",
     "build": "node ../../scripts/textbook-tooling/build.mjs",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test:components": "vitest run",
