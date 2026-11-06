@@ -33,6 +33,9 @@ test('mobile quick settings switches the actual color scheme', async ({ page }) 
   await page.getByRole('link').first().click();
   await page.getByRole('button', { name: 'Відкрити налаштування' }).click();
   const switcher = page.getByRole('switch', { name: 'Темна тема' });
+  await expect
+    .poll(() => page.locator('html').evaluate(element => element.hasAttribute('data-light') || element.hasAttribute('data-dark')))
+    .toBe(true);
   const wasDark = await switcher.isChecked();
   await switcher.click();
   if (wasDark) {
