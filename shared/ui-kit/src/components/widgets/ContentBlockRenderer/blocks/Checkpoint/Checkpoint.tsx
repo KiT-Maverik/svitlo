@@ -2,7 +2,7 @@
 
 import type { Checkpoint_Locale } from '../../../../../../data/locale/checkpoint';
 
-import { createElement, useId, useState } from 'react';
+import { createElement, useEffect, useId, useState } from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -16,6 +16,7 @@ import { DEFAULT_SUPPORTED_LANGUAGES, getLocaleDirection } from '@svitlo/engine/
 
 import type { RenderNested } from '../../types';
 import { useContentLanguage } from '../../ContentLanguageContext';
+import { useOptionalLessonActions } from '../../../../lesson/LessonOperationsContext';
 import styles from './Checkpoint.module.css';
 
 type CheckpointProps = ContentBlock_Checkpoint_Response<Locale_Languages> & {
@@ -46,8 +47,18 @@ export const Checkpoint = ({
 }: CheckpointProps) => {
   const languageCode = useContentLanguage();
   const domId = useId();
+  const actions = useOptionalLessonActions();
   const [expanded, setExpanded] = useState<number | null>(null);
   const [checkedIds, setCheckedIds] = useState<Set<string>>(() => new Set());
+  const hasPendingChecks =
+    requireCompletion &&
+    !completed &&
+    items.some((item, index) => (item.check ?? enableChecks) && !checkedIds.has(`${id}:${index}`));
+
+  useEffect(() => {
+    if (!hasPendingChecks) return;
+    return actions?.blockNext(domId);
+  }, [actions, domId, hasPendingChecks]);
   const language = DEFAULT_SUPPORTED_LANGUAGES.find(item => item.language === languageCode)?.locale ?? 'en-US';
   const direction = getLocaleDirection(language);
   const accordionHeading = `h${Math.min(headingLevel + 1, 6)}` as 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
