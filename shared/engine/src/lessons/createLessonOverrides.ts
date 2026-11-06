@@ -226,17 +226,19 @@ function diffContent<Languages extends Locale_Languages>(
     if (base.id !== block.id || base.type !== block.type) {
       throw new Error(`Cannot replace ContentBlock identity: ${block.slug}`);
     }
-    const changed = diffValue(base, block);
-    if (changed && typeof changed === 'object' && !Array.isArray(changed)) {
-      const fields = { ...(changed as Record<string, unknown>) };
-      delete fields.id;
-      delete fields.slug;
-      delete fields.type;
-      if (Object.keys(fields).length) bySlug[block.slug] = fields;
+    const fields: Record<string, unknown> = {};
+    for (const [key, value] of Object.entries(block)) {
+      if (['id', 'slug', 'type'].includes(key)) continue;
+      if (JSON.stringify((base as Record<string, unknown>)[key]) !== JSON.stringify(value)) {
+        // Whole property values stay valid authored data (including locale maps).
+        // Deep merge is performed later by the publisher.
+        fields[key] = value;
+      }
     }
+    if (Object.keys(fields).length) bySlug[block.slug] = fields;
   }
   if (Object.keys(bySlug).length) {
-    patch.bySlug = bySlug as Course_BlockChanges<Languages>['bySlug'];
+    patch.bySlug = bySlug as unknown as Course_BlockChanges<Languages>['bySlug'];
   }
   return Object.keys(patch).length ? patch : undefined;
 }
@@ -430,7 +432,7 @@ export class LessonOverridesBuilder<
     if (sectionParams !== undefined) overrides.parameters = { sections: sectionParams };
 
     const eventsChange = diffValue(this.lesson.events ?? {}, {
-      ...(this.lesson.events ?? {}),
+      ...((this.lesson.events ?? {}) as Record<string, unknown>),
       ...(this.state.events ?? {}),
     });
     if (eventsChange && typeof eventsChange === 'object') {
@@ -485,8 +487,9 @@ export class LessonOverridesBuilder<
         }
         const fields: Record<string, unknown> = {};
         for (const key of ['title', 'navigationLabel'] as const) {
-          const delta = diffValue(initial[key], entry.section[key]);
-          if (delta !== undefined) fields[key] = delta;
+          if (JSON.stringify(initial[key]) !== JSON.stringify(entry.section[key])) {
+            fields[key] = entry.section[key];
+          }
         }
         if (initial.skippable !== entry.section.skippable) {
           fields.skippable = entry.section.skippable === true;
@@ -496,7 +499,7 @@ export class LessonOverridesBuilder<
         if (Object.keys(fields).length) bySlug[entry.section.slug] = fields;
       }
       if (Object.keys(bySlug).length) {
-        patch.bySlug = bySlug as Course_SectionChanges<Languages>['bySlug'];
+        patch.bySlug = bySlug as unknown as Course_SectionChanges<Languages>['bySlug'];
       }
       if (Object.keys(patch).length) overrides.sections = patch;
     }

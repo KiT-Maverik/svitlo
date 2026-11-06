@@ -87,8 +87,8 @@ function moduleChildToc<L extends Locale_Languages>(
   if (typeof item === 'string' || ('type' in item && item.type === 'lessonOverride')) {
     return lessonToc(item, context);
   }
-  if (isCreator<Chapter<'data', L>, Course_TocChapter, L>(item)) {
-    return item.toToc(context) as Course_TocChapter | Course_TocEpisode;
+  if (isCreator<Chapter<'data', L> | Episode<'data', L>, Course_TocChapter | Course_TocEpisode, L>(item)) {
+    return item.toToc(context);
   }
   if (item.type === 'chapter') return createChapter(item).toToc(context);
   return episodeToc(item, context);
@@ -98,6 +98,12 @@ function unwrapChild<L extends Locale_Languages>(
   child: ModuleEntry<L>,
 ): string | Course_LessonOverride<L> | Chapter<'data', L> | Episode<'data', L> {
   return isCreator<Chapter<'data', L> | Episode<'data', L>, Course_TocChapter | Course_TocEpisode, L>(child)
+    ? child.getData()
+    : child;
+}
+
+function unwrapChapterChild<L extends Locale_Languages>(child: ChapterEntry<L>): Chapter_Content<'data', L> {
+  return isCreator<Episode<'data', L>, Course_TocEpisode, L>(child)
     ? child.getData()
     : child;
 }
@@ -113,7 +119,7 @@ export function createChapter<const L extends Locale_Languages>(
 ): Course_Creator<Chapter<'data', L>, Course_TocChapter, L> {
   const getData = (): Chapter<'data', L> => ({
     ...input,
-    content: input.content.map(child => unwrapChild(child)),
+    content: input.content.map(child => unwrapChapterChild(child)),
   });
   const toToc = (context: Course_TocContext<L>): Course_TocChapter => ({
     type: input.type,
