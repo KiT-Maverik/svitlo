@@ -3,8 +3,9 @@ import { notFound } from 'next/navigation';
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/localization';
 import { loadPublishedUiKitMessages } from '@svitlo/adapter-nextjs/lesson';
 import type { LessonResponse } from '@svitlo/engine/lesson';
-import { courseHasEpisode, flattenCourseToc, loadCourseEpisode, loadCourseToc } from '@/lib/courseResources';
+import { courseHasEpisode, loadCourseEpisode, loadCourseToc } from '@/lib/courseResources';
 import WebLesson from '@/components/pages/Lesson/Lesson';
+import { courseTocToTopics } from '@/lib/courseNavigation';
 
 type Props = { params: Promise<{ language: string; courseId: string; episodeId: string }> };
 type AuthoredEpisode = {
@@ -74,7 +75,7 @@ async function Content({ params }: Props) {
       locale={descriptor.locale}
       href={href}
       messages={messages}
-      topics={flattenCourseToc(toc, language)}
+      topics={courseTocToTopics(toc, language)}
     />
   );
 }
