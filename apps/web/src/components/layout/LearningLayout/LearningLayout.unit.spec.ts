@@ -75,7 +75,10 @@ describe('Layouts', () => {
       await LearningLayout_fx.actions.openSettings();
       const profile = LearningLayout_fx.selectors.topAction(aria.actions.profile);
       profile.click();
-      expect(LearningLayout_fx.selectors.topAction(aria.actions.openSettings)).toHaveAttribute('aria-expanded', 'false');
+      expect(LearningLayout_fx.selectors.topAction(aria.actions.openSettings)).toHaveAttribute(
+        'aria-expanded',
+        'false',
+      );
       expect(screen.getByRole('menuitem', { name: aria.actions.profileSettings })).toHaveAttribute('href', '#');
     });
 

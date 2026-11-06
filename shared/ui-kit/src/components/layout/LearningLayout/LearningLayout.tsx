@@ -61,7 +61,14 @@ export interface LearningLayoutProps {
 
 export type LearningLayoutTopBarProps = Pick<
   LearningLayoutProps,
-  'messages' | 'preferences' | 'linkComponent' | 'profile' | 'profiles' | 'onProfileChange' | 'onLogout' | 'profileSettingsHref'
+  | 'messages'
+  | 'preferences'
+  | 'linkComponent'
+  | 'profile'
+  | 'profiles'
+  | 'onProfileChange'
+  | 'onLogout'
+  | 'profileSettingsHref'
 > & {
   open: boolean;
   settingsOpen: boolean;
