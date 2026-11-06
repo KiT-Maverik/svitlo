@@ -1,8 +1,10 @@
 'use client';
 
+import type { UiKitMessages } from '#types/uiKitMessages';
+
 import { type ComponentType } from 'react';
 import Container from '@mui/material/Container';
-import type { ContentBlock, Locale_Languages, Question, Section_Type, UiKit_Global } from '@svitlo/engine/content';
+import type { ContentBlock, Locale_Languages, Question, Section_Type } from '@svitlo/engine/content';
 import type { LanguageCode } from '@svitlo/engine/localization';
 import { ContentBlockRenderer, type SceneRegistry } from '../widgets/ContentBlockRenderer';
 import { QuestionRenderer } from '../widgets/questions';
@@ -37,7 +39,7 @@ export type LessonView = {
 export type LessonProps = {
   response: LessonView;
   href: string;
-  messages: UiKit_Global<'response'>;
+  messages: UiKitMessages;
   /** Host binding: Next.js, Electron, or ordinary React can supply a layout. */
   layout: ComponentType<LessonLearningLayoutProps>;
   /** Application-owned scene registry never leaks into the shared package. */

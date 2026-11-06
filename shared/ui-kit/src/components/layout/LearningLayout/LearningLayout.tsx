@@ -1,5 +1,7 @@
 'use client';
 
+import type { LearningLayoutMessages } from '../../../../data/locale/learningLayout';
+
 import { useEffect, useState, type ReactNode, type ElementType } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -21,7 +23,6 @@ import TopNavbar from '../Navigation/TopNavbar';
 import BottomNavbar from '../Navigation/BottomNavbar';
 import { getLocaleDirection, type Locale } from '@svitlo/engine/localization';
 import VerticalSpace from '#widgets/VerticalSpace/VerticalSpace';
-import type { UiKit_Component } from '@svitlo/engine/content';
 
 export type Topic = { id: string; title: string; href: string };
 export type LearningLayoutProgress = {
@@ -36,7 +37,7 @@ export interface LearningLayoutProps {
   skippableSteps?: readonly boolean[];
   quizStep?: number;
   locale: Locale;
-  messages: UiKit_Component<'learningLayout', 'response'>;
+  messages: LearningLayoutMessages;
   pathname: string;
   progress: LearningLayoutProgress;
   actions: { back: () => void; next: () => void; skip: () => void };

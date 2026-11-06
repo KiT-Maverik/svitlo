@@ -1,4 +1,3 @@
-import type { UiKit_Component } from '@svitlo/engine/content';
 import type { DefaultSupportedLanguage } from '@svitlo/engine/localization';
 
 const en = {
@@ -32,7 +31,8 @@ const en = {
   settingsDescription: 'Learning settings will appear here.',
 };
 
-type Locale = typeof en;
+export type LearningLayoutMessages = typeof en;
+type Locale = LearningLayoutMessages;
 
 const zh: Locale = {
   preparingLesson: '正在准备您的课程…',
@@ -904,7 +904,7 @@ const qm: Locale = {
 };
 
 /** Complete authored LearningLayout messages. Build-time only. */
-export const data: UiKit_Component<'learningLayout', 'data', DefaultSupportedLanguage['language']> = {
+export const data: Readonly<Record<DefaultSupportedLanguage['language'], LearningLayoutMessages>> = {
   en,
   zh,
   hi,

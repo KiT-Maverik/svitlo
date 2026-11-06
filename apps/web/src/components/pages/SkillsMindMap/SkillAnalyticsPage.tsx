@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import type { Locale } from '@svitlo/engine/localization';
-import type { UiKit_Global } from '@svitlo/ui-kit';
+import type { UiKitMessages } from '@svitlo/ui-kit';
 import Link from 'next/link';
 import { Box, Container } from '@mui/material';
 import { useColorScheme } from '@mui/material/styles';
@@ -26,11 +26,11 @@ function SkillAnalyticsContent({
   initialMessages,
 }: {
   domainSlugs: readonly string[];
-  initialMessages: UiKit_Global<'response'>;
+  initialMessages: UiKitMessages;
 }) {
   const { locale, setLocale, ready, localeError } = useSkillsPageSettings();
   const { mode, systemMode, setMode } = useColorScheme();
-  const [resource, setResource] = useState<{ locale: Locale; messages: UiKit_Global<'response'> }>(() => ({
+  const [resource, setResource] = useState<{ locale: Locale; messages: UiKitMessages }>(() => ({
     locale: 'uk-UA',
     messages: initialMessages,
   }));
@@ -42,7 +42,7 @@ function SkillAnalyticsContent({
     void fetch('/data/ui-kit/' + encodeURIComponent(locale) + '.json', { signal: controller.signal })
       .then(response => {
         if (!response.ok) throw new Error('HTTP ' + response.status);
-        return response.json() as Promise<UiKit_Global<'response'>>;
+        return response.json() as Promise<UiKitMessages>;
       })
       .then(messages => {
         if (!controller.signal.aborted) {
@@ -106,7 +106,7 @@ export function SkillAnalyticsPage({
   initialMessages,
 }: {
   domainSlugs: readonly string[];
-  initialMessages: UiKit_Global<'response'>;
+  initialMessages: UiKitMessages;
 }) {
   return (
     <SkillsPageSettingsProvider>

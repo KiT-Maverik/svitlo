@@ -1,9 +1,10 @@
 'use client';
 
+import type { AudioMessages } from '../../../../../../data/locale/audio';
+
 import { useEffect, useRef, useState, type SyntheticEvent } from 'react';
 import Button from '@mui/material/Button';
 import type { ContentBlock_Audio_Response } from '@svitlo/engine/content';
-import type { UiKit_Component } from '@svitlo/engine/content';
 
 import { localizedAttributes } from '../../utils';
 import { useContentLanguage } from '../../ContentLanguageContext';
@@ -19,7 +20,7 @@ export const Audio = ({
   fallback,
   messages,
 }: ContentBlock_Audio_Response & {
-  messages: UiKit_Component<'audio', 'response'>;
+  messages: AudioMessages;
 }) => {
   const contentLanguage = useContentLanguage();
   const audioRef = useRef<HTMLAudioElement>(null);

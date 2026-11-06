@@ -1,4 +1,3 @@
-import type { UiKit_Component } from '@svitlo/engine/content';
 import type { DefaultSupportedLanguage } from '@svitlo/engine/localization';
 
 const en = {
@@ -8,7 +7,8 @@ const en = {
   retry: 'Try again',
 };
 
-type Locale = typeof en;
+export type AudioMessages = typeof en;
+type Locale = AudioMessages;
 
 const uk: Locale = {
   offline: 'Це аудіо недоступне без інтернету.',
@@ -206,7 +206,7 @@ const qm: Locale = {
   retry: 'Yañıdan deñe',
 };
 
-export const data: UiKit_Component<'audio', 'data', DefaultSupportedLanguage['language']> = {
+export const data: Readonly<Record<DefaultSupportedLanguage['language'], AudioMessages>> = {
   en,
   uk,
   zh,

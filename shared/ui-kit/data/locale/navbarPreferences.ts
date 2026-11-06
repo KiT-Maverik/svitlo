@@ -1,4 +1,3 @@
-import type { UiKit_Component } from '@svitlo/engine/content';
 import type { DefaultSupportedLanguage } from '@svitlo/engine/localization';
 
 const en = {
@@ -6,7 +5,8 @@ const en = {
   theme: { dark: 'Dark theme', light: 'Light theme' },
 };
 
-type Locale = typeof en;
+export type NavbarPreferencesMessages = typeof en;
+type Locale = NavbarPreferencesMessages;
 
 const zh: Locale = {
   language: '语言',
@@ -132,7 +132,7 @@ const qm: Locale = {
 };
 
 /** Complete authored NavbarPreferences messages. Build-time only. */
-export const data: UiKit_Component<'navbarPreferences', 'data', DefaultSupportedLanguage['language']> = {
+export const data: Readonly<Record<DefaultSupportedLanguage['language'], NavbarPreferencesMessages>> = {
   en,
   zh,
   hi,

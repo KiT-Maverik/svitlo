@@ -1,8 +1,9 @@
 'use client';
 
+import type { UiKitMessages } from '#types/uiKitMessages';
+
 import type { ElementType } from 'react';
 import type { Locale } from '@svitlo/engine/localization';
-import type { UiKit_Global } from '@svitlo/engine/content';
 import LearningLayout, { type LearningLayoutProps } from './LearningLayout';
 import NavbarPreferences from './NavbarPreferences/NavbarPreferences';
 import { useColorScheme } from '@mui/material/styles';
@@ -11,7 +12,7 @@ import { useLessonNavigation } from '../../lesson/LessonNavigation';
 export type LessonLearningLayoutProps = Pick<
   LearningLayoutProps,
   'children' | 'topics' | 'skippableSteps' | 'quizStep' | 'pathname' | 'contentLoading'
-> & { messages: UiKit_Global<'response'> };
+> & { messages: UiKitMessages };
 
 export type LessonLearningLayoutBindings = {
   /** Supplied by the consuming app; the UI Kit never imports Next.js hooks. */

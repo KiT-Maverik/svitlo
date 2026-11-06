@@ -1,4 +1,4 @@
-import type { UiKit_Global } from '@svitlo/engine/content';
+import type { UiKitMessages } from '#types/uiKitMessages';
 import { data as layout } from '../../data/locale/learningLayout';
 import { data as preferences } from '../../data/locale/navbarPreferences';
 import { data as lesson } from '../../data/locale/lesson';
@@ -11,7 +11,7 @@ import { data as youtube } from '../../data/locale/youtube';
 import { data as questionFrame } from '../../data/locale/questionFrame';
 
 /** Test-only fixture. This module is not emitted in the UI Kit runtime build. */
-export const ukUiKitMessages: UiKit_Global<'response'> = {
+export const ukUiKitMessages: UiKitMessages = {
   lesson: lesson.uk,
   learningLayout: layout.uk,
   navbarPreferences: preferences.uk,
@@ -24,7 +24,7 @@ export const ukUiKitMessages: UiKit_Global<'response'> = {
   questionFrame: questionFrame.uk,
 };
 
-export const enUiKitMessages: UiKit_Global<'response'> = {
+export const enUiKitMessages: UiKitMessages = {
   ...ukUiKitMessages,
   lesson: lesson.en,
   learningLayout: layout.en,

@@ -1,4 +1,3 @@
-import type { UiKit_Component } from '@svitlo/engine/content';
 import type { DefaultSupportedLanguage } from '@svitlo/engine/localization';
 
 const en = {
@@ -7,7 +6,8 @@ const en = {
   retry: 'Try again',
 };
 
-type Locale = typeof en;
+export type ImageMessages = typeof en;
+type Locale = ImageMessages;
 
 const uk: Locale = {
   offline: 'Це зображення недоступне без інтернету.',
@@ -173,7 +173,7 @@ const qm: Locale = {
   retry: 'Yañıdan deñe',
 };
 
-export const data: UiKit_Component<'image', 'data', DefaultSupportedLanguage['language']> = {
+export const data: Readonly<Record<DefaultSupportedLanguage['language'], ImageMessages>> = {
   en,
   uk,
   zh,

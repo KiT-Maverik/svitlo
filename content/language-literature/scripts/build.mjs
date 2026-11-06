@@ -38,7 +38,7 @@ function filesUnder(root, prefix = '') {
 for (const [workspace, compiled] of [
   ['@svitlo/contracts', 'shared/contracts/dist/index.js'],
   ['@svitlo/engine', 'shared/engine/dist/index.js'],
-  ['@svitlo/ui-kit', 'shared/ui-kit/dist/index.js'],
+  ['@svitlo/ui-kit', 'shared/ui-kit/dist/src/index.js'],
 ]) {
   if (!existsSync(join(repoRoot, compiled))) run('npm', ['run', 'build', '--workspace', workspace]);
 }

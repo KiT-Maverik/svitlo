@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import type { LessonResponse } from '@svitlo/engine/lesson';
-import type { UiKit_Global } from '@svitlo/ui-kit';
+import type { UiKitMessages } from '@svitlo/ui-kit';
 import { preloadScene } from '@/generated/textbookScenes';
 import WebLesson from './Lesson';
 
@@ -12,7 +12,7 @@ vi.mock('@svitlo/ui-kit/lesson', () => ({
   ),
 }));
 
-const messages = {} as UiKit_Global<'response'>;
+const messages = {} as UiKitMessages;
 const response = {
   id: 'lesson-one',
   sections: [{ content: [{ type: 'scene', id: 'scene-one' }] }, { content: [{ type: 'scene', id: 'scene-two' }] }],

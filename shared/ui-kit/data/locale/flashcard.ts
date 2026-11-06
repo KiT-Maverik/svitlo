@@ -1,4 +1,3 @@
-import type { UiKit_Component } from '@svitlo/engine/content';
 import type { DefaultSupportedLanguage } from '@svitlo/engine/localization';
 
 const en = {
@@ -14,7 +13,8 @@ const en = {
   },
 };
 
-type Locale = typeof en;
+export type FlashcardMessages = typeof en;
+type Locale = FlashcardMessages;
 
 const zh: Locale = {
   flashcard: {
@@ -375,7 +375,7 @@ const qm: Locale = {
 };
 
 /** Complete framework-independent card messages; review translations editorially. */
-export const data: UiKit_Component<'flashcard', 'data', DefaultSupportedLanguage['language']> = {
+export const data: Readonly<Record<DefaultSupportedLanguage['language'], FlashcardMessages>> = {
   en,
   zh,
   hi,

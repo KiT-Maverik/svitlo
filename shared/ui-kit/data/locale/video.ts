@@ -1,4 +1,3 @@
-import type { UiKit_Component } from '@svitlo/engine/content';
 import type { DefaultSupportedLanguage } from '@svitlo/engine/localization';
 
 const en = {
@@ -8,7 +7,8 @@ const en = {
   retry: 'Try again',
 };
 
-type Locale = typeof en;
+export type VideoMessages = typeof en;
+type Locale = VideoMessages;
 
 const uk: Locale = {
   offline: 'Це відео недоступне без інтернету.',
@@ -206,7 +206,7 @@ const qm: Locale = {
   retry: 'Yañıdan deñe',
 };
 
-export const data: UiKit_Component<'video', 'data', DefaultSupportedLanguage['language']> = {
+export const data: Readonly<Record<DefaultSupportedLanguage['language'], VideoMessages>> = {
   en,
   uk,
   zh,

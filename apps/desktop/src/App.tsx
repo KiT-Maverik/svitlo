@@ -3,7 +3,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { getLocaleDirection, type Locale } from '@svitlo/engine/localization';
 import type { LessonResponse } from '@svitlo/engine/lesson';
-import type { UiKit_Global } from '@svitlo/ui-kit';
+import type { UiKitMessages } from '@svitlo/ui-kit';
 import { Lesson } from '@svitlo/ui-kit/lesson';
 import { createLessonLearningLayout } from '@svitlo/ui-kit/learning-layout';
 import { SceneLocaleProvider } from '@svitlo/ui-kit/scene-locale';
@@ -38,7 +38,7 @@ const LessonLayout = createLessonLearningLayout({ useLocale: useDesktopLocale })
 
 type DataState =
   | { status: 'loading' }
-  | { status: 'ready'; response: LessonResponse; messages: UiKit_Global<'response'> }
+  | { status: 'ready'; response: LessonResponse; messages: UiKitMessages }
   | { status: 'error'; error: string };
 
 function readRoute(): LessonRoute | null {
@@ -67,7 +67,7 @@ export default function App() {
     setData({ status: 'loading' });
     Promise.all([
       loadPublishedLesson(route.lessonId, route.language),
-      loadPublishedUiKitMessages<UiKit_Global<'response'>>(route.locale),
+      loadPublishedUiKitMessages<UiKitMessages>(route.locale),
     ]).then(
       ([response, messages]) => {
         if (active) setData({ status: 'ready', response, messages });

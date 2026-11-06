@@ -1,9 +1,10 @@
 'use client';
 
+import type { VideoMessages } from '../../../../../../data/locale/video';
+
 import { useEffect, useRef, useState, type SyntheticEvent } from 'react';
 import Button from '@mui/material/Button';
 import type { ContentBlock_Video_Response } from '@svitlo/engine/content';
-import type { UiKit_Component } from '@svitlo/engine/content';
 
 import { localizedAttributes } from '../../utils';
 import { useContentLanguage } from '../../ContentLanguageContext';
@@ -19,7 +20,7 @@ export const Video = ({
   fallback,
   messages,
 }: ContentBlock_Video_Response & {
-  messages: UiKit_Component<'video', 'response'>;
+  messages: VideoMessages;
 }) => {
   const contentLanguage = useContentLanguage();
   const videoRef = useRef<HTMLVideoElement>(null);

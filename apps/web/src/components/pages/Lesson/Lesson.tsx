@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import type { Locale } from '@svitlo/engine/localization';
-import type { UiKit_Global } from '@svitlo/ui-kit';
+import type { UiKitMessages } from '@svitlo/ui-kit';
 import { Lesson } from '@svitlo/ui-kit/lesson';
 import { ImageRendererProvider } from '@svitlo/ui-kit/widgets';
 import { SceneLocaleProvider } from '@svitlo/ui-kit/scene-locale';
@@ -37,7 +37,7 @@ export default function WebLesson({
   response: LessonResponse;
   locale: Locale;
   href: string;
-  messages: UiKit_Global<'response'>;
+  messages: UiKitMessages;
 }) {
   const ids = useMemo(() => sceneIds(response.sections), [response.sections]);
   const requestKey = `${response.id}:${locale}`;

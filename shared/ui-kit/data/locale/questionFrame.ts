@@ -1,4 +1,3 @@
-import type { UiKit_Component } from '@svitlo/engine/content';
 import type { DefaultSupportedLanguage } from '@svitlo/engine/localization';
 
 const en = {
@@ -21,7 +20,8 @@ const en = {
   missedChoice: 'Correct answer not selected',
 };
 
-type Locale = typeof en;
+export type QuestionFrameMessages = typeof en;
+type Locale = QuestionFrameMessages;
 
 const uk: Locale = {
   check: 'Перевірити',
@@ -584,7 +584,7 @@ const qm: Locale = {
   missedChoice: 'Saylanmağan doğru cevap',
 };
 
-export const data: UiKit_Component<'questionFrame', 'data', DefaultSupportedLanguage['language']> = {
+export const data: Readonly<Record<DefaultSupportedLanguage['language'], QuestionFrameMessages>> = {
   en,
   uk,
   zh,

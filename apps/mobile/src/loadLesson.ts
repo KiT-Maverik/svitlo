@@ -1,7 +1,7 @@
 import { resolveEntityPath } from '@svitlo/engine';
 import { assembleLessonResponse, type LessonResponse } from '@svitlo/engine/lesson';
 import type { LanguageCode, Locale } from '@svitlo/engine/localization';
-import type { UiKit_Global } from '@svitlo/ui-kit';
+import type { UiKitMessages } from '@svitlo/ui-kit';
 
 /** Local build assets only; no server components, remote URLs or authored-data imports. */
 export async function fetchLocalJson(path: string): Promise<unknown> {
@@ -20,8 +20,8 @@ export async function loadLesson(id: string, language: LanguageCode): Promise<Le
   return assembleLessonResponse(id, language, { config, flashcards, questions });
 }
 
-export async function loadMessages(locale: Locale): Promise<UiKit_Global<'response'>> {
-  return fetchLocalJson('/data/ui-kit/' + locale + '.json') as Promise<UiKit_Global<'response'>>;
+export async function loadMessages(locale: Locale): Promise<UiKitMessages> {
+  return fetchLocalJson('/data/ui-kit/' + locale + '.json') as Promise<UiKitMessages>;
 }
 
 export type LessonIndex = {

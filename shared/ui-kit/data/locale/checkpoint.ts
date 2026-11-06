@@ -1,9 +1,9 @@
-import type { UiKit_Component } from '@svitlo/engine/content';
 import type { DefaultSupportedLanguage } from '@svitlo/engine/localization';
 
 const en = { title: 'Check your knowledge', check: 'Check', checked: 'Checked' };
 
-type Locale = typeof en;
+export type CheckpointMessages = typeof en;
+type Locale = CheckpointMessages;
 
 const zh: Locale = { title: '检验你的知识', check: '确认', checked: '已确认' };
 
@@ -129,7 +129,7 @@ const kk: Locale = { title: 'Біліміңді тексер', check: 'Текс�
 
 const qm: Locale = { title: 'Bilgiñni tekşer', check: 'Tekşer', checked: 'Tekşirildi' };
 
-export const data: UiKit_Component<'checkpoint', 'data', DefaultSupportedLanguage['language']> = {
+export const data: Readonly<Record<DefaultSupportedLanguage['language'], CheckpointMessages>> = {
   en,
   zh,
   hi,

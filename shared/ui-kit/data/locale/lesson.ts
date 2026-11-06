@@ -1,4 +1,3 @@
-import type { UiKit_Component } from '@svitlo/engine/content';
 import type { DefaultSupportedLanguage } from '@svitlo/engine/localization';
 
 const en = {
@@ -22,7 +21,8 @@ const en = {
   },
 };
 
-type Locale = typeof en;
+export type LessonMessages = typeof en;
+type Locale = LessonMessages;
 
 const zh: Locale = {
   steps: { navigation: '课程步骤' },
@@ -613,7 +613,7 @@ const qm: Locale = {
 };
 
 /** Complete authored Lesson UI labels. Build-time only. */
-export const data: UiKit_Component<'lesson', 'data', DefaultSupportedLanguage['language']> = {
+export const data: Readonly<Record<DefaultSupportedLanguage['language'], LessonMessages>> = {
   en,
   zh,
   hi,
