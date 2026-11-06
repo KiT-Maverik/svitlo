@@ -56,7 +56,7 @@ export const columns_Skill_Data = buildSkillConfig({
       ta: 'தூண்கள் அமுக்கத்தை எவ்வாறு தாங்குகின்றன, ஏன் நெளியலாம் என அறியுங்கள்.',
       te: 'స్తంభాలు సంపీడన భారాన్ని ఎలా మోస్తాయో, ఎందుకు వంగి స్థిరత్వం కోల్పోవచ్చో గుర్తించండి.',
       mr: 'स्तंभ दाब कसा पेलतात आणि ते का वाकू शकतात ते ओळखा.',
-      ms: 'Fahami cara tiang menahan mampatan dan mengapa tiang langsing boleh kehilangan kestabilan akibat beban mampatan.',
+      ms: 'Fahami cara tiang menahan mampatan dan mengapa tiang langsing boleh mengalami lengkokan akibat mampatan.'
       he: 'זהו כיצד עמודים נושאים לחץ ומדוע הם עלולים לקרוס בכפיפה.',
       pl: 'Rozpoznaj, jak słupy przenoszą ściskanie i dlaczego mogą wyboczyć się.',
       uk: 'Зрозумій, як колони сприймають стискання та чому можуть втрачати стійкість через випучування.',
