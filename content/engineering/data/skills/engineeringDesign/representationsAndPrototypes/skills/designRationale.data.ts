@@ -21,7 +21,7 @@ export const designRationale_Skill_Data = buildSkillConfig({
     vi: 'Cơ sở lý giải thiết kế',
     ta: 'வடிவமைப்பின் காரணவிளக்கம்',
     te: 'రూపకల్పన వెనుక కారణాలు',
-    mr: 'रचनेचे कारणमीमांसा',
+    mr: 'रचनेमागील कारणमीमांसा',
     ms: 'Rasional Reka Bentuk',
     he: 'נימוקי התכנון',
     pl: 'Uzasadnienie projektu',

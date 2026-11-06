@@ -45,7 +45,7 @@ export const servoPositioning_Skill_Data = buildSkillConfig({
       fr: 'Comprends comment un servomécanisme contrôle une position.',
       bn: 'সার্ভো প্রক্রিয়া কীভাবে অবস্থান নিয়ন্ত্রণ করে তা বোঝো।',
       pt: 'Entenda como um servomecanismo controla uma posição.',
-      ur: 'سمجھیں کہ سروو میکانزم مقام کیسے قابو کرتا ہے۔',
+      ur: 'سمجھیں کہ سروو میکانزم کسی حصے کی پوزیشن کو کیسے کنٹرول کرتا ہے۔',
       id: 'Pahami bagaimana mekanisme servo mengendalikan posisi.',
       de: 'Verstehe, wie ein Servomechanismus eine Position regelt.',
       ja: 'サーボ機構が位置を制御する仕組みを理解しよう。',

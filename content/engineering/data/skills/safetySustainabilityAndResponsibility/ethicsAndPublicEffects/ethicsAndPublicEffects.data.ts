@@ -63,7 +63,7 @@ export const ethicsAndPublicEffects_SkillGroup_Data = buildSkillGroupConfig({
       pt: 'Explore a responsabilidade com todas as pessoas afetadas pelos produtos de engenharia.',
       ur: 'انجینئرنگ مصنوعات سے متاثر ہونے والے ہر شخص کے لیے ذمہ داری سمجھیں۔',
       id: 'Pahami tanggung jawab kepada semua orang yang terdampak produk rekayasa.',
-      de: 'Erkunde die Verantwortung gegenüber allen Menschen, die technische Produkte betreffen.',
+      de: 'Erkunde die Verantwortung gegenüber allen Menschen, die von technischen Produkten betroffen sind.',
       ja: '工学製品の影響を受けるすべての人への責任を考えよう。',
       ko: '공학 제품의 영향을 받는 모든 사람에 대한 책임을 살펴보세요.',
       tr: 'Mühendislik ürünlerinden etkilenen herkese karşı sorumluluğu incele.',

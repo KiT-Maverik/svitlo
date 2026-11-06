@@ -52,7 +52,7 @@ export const identifyEngineeringHazards_Skill_Data = buildSkillConfig({
       ko: '기술 설계와 관련된 물리적 위험을 찾아보세요.',
       tr: 'Teknik bir tasarımla ilişkili fiziksel tehlikeleri belirle.',
       vi: 'Xác định các mối nguy vật lý gắn với thiết kế kỹ thuật.',
-      ta: 'தொழில்நுட்ப வடிவமைப்புடன் தொடர்புடைய உடலியல் அல்லாத இயற்பியல் ஆபத்துகளை அறிக.',
+      ta: 'தொழில்நுட்ப வடிவமைப்புடன் தொடர்புடைய இயற்பியல் ஆபத்துகளை அடையாளம் காணுங்கள்.',
       te: 'సాంకేతిక రూపకల్పనతో సంబంధమున్న భౌతిక ప్రమాదాలను గుర్తించండి.',
       mr: 'तांत्रिक रचनेशी संबंधित भौतिक धोके ओळखा.',
       ms: 'Kenal pasti bahaya fizikal yang berkaitan dengan reka bentuk teknikal.',

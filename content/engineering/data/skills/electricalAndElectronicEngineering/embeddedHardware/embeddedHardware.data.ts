@@ -35,7 +35,7 @@ export const embeddedHardware_SkillGroup_Data = buildSkillGroupConfig({
     uk: 'Вбудоване обладнання',
     lt: 'Įterptinė aparatinė įranga',
     lv: 'Iegultā aparatūra',
-    et: 'Sardtarkvara',
+    et: 'Sardsüsteemide riistvara',
     be: 'Убудаванае абсталяваньне',
     ka: 'ჩაშენებული აპარატურა',
     kk: 'Ендірілген аппараттық құралдар',

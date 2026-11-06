@@ -60,7 +60,7 @@ export const guidanceAndRetention_SkillGroup_Data = buildSkillGroupConfig({
       ar: 'اكتشف الأجزاء التي تدعم الحركة وتمنع الانفلات غير المقصود.',
       fr: 'Découvre les pièces qui soutiennent le mouvement et empêchent les libérations accidentelles.',
       bn: 'কোন অংশ গতি সমর্থন করে ও অনিচ্ছাকৃতভাবে ছেড়ে যাওয়া আটকায় তা জানো।',
-      pt: 'Descubra as peças que apoiam o movimento e evitam libertações acidentais.',
+      pt: 'Descubra as peças que apoiam o movimento e evitam desprendimentos acidentais.',
       ur: 'جانیں کہ کون سے حصے حرکت کو سہارا دیتے اور اچانک کھلنے سے روکتے ہیں۔',
       id: 'Pelajari bagian yang menopang gerak dan mencegah terlepas tanpa sengaja.',
       de: 'Erfahre, welche Teile Bewegung stützen und unbeabsichtigtes Lösen verhindern.',

@@ -30,7 +30,7 @@ export const evaluateGripAndHandling_Skill_Data = buildSkillConfig({
     lv: 'Satvēriena un lietošanas novērtēšana',
     et: 'Haarde ja käsitsemise hindamine',
     be: 'Ацэнка хапаньня і маніпуляваньня',
-    ka: 'მოჭიდებისა და დამუშავების შეფასება',
+    ka: 'მოჭიდებისა და მანიპულირების შეფასება',
     kk: 'Ұстау және қолдану ыңғайын бағалау',
     qm: 'Tutuv ve idare etüvni baala',
   },

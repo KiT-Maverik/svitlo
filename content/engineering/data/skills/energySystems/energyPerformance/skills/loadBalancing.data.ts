@@ -60,7 +60,7 @@ export const loadBalancing_Skill_Data = buildSkillConfig({
       pl: 'Zrozum, jak równowaga podaży i popytu wspiera pracę systemów elektroenergetycznych.',
       uk: 'Зрозумій, як узгодження виробництва й споживання допомагає роботі енергосистеми.',
       lt: 'Suprask, kaip pasiūlos ir paklausos derinimas padeda elektros sistemoms veikti.',
-      lv: 'Saproti, kā piedāvājuma un pieprasījuma līdzsvars palīdz elektros sistēmām darboties.',
+      lv: 'Saproti, kā piedāvājuma un pieprasījuma līdzsvars palīdz elektroenerģijas sistēmām darboties.',
       et: 'Mõista, kuidas pakkumise ja nõudluse tasakaal aitab elektrisüsteemi tööd.',
       be: 'Зразумей, як узгадненьне вытворчасьці й спажываньня дапамагае працы энэргасыстэмы.',
       ka: 'გაიგე, როგორ უწყობს ხელს მიწოდებისა და მოთხოვნის დაბალანსება ელექტროსისტემის მუშაობას.',

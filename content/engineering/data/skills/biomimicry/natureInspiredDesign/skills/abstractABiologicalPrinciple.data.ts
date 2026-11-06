@@ -59,7 +59,7 @@ export const abstractABiologicalPrinciple_Skill_Data = buildSkillConfig({
       he: 'תארו מנגנון ביולוגי בלי להעתיק פרטים טבעיים שאינם רלוונטיים.',
       pl: 'Opisz mechanizm biologiczny bez kopiowania nieistotnych szczegółów naturalnych.',
       uk: 'Опиши біологічний механізм, не копіюючи несуттєвих природних деталей.',
-      lt: 'Apibūdink biologinį mechanizmą nekopijuodamas nereikšmingų gamtos detalių.',
+      lt: 'Apibūdink biologinį mechanizmą, bet nekopijuok nereikšmingų gamtos detalių.',
       lv: 'Apraksti bioloģisku mehānismu, nekopējot nebūtiskas dabas detaļas.',
       et: 'Kirjelda bioloogilist mehhanismi, kopeerimata ebaolulisi looduse üksikasju.',
       be: 'Апішы біялягічны мэханізм, не капіюючы неістотных прыродных дэталяў.',

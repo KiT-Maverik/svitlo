@@ -72,7 +72,7 @@ export const generation_SkillGroup_Data = buildSkillGroupConfig({
       te: 'విద్యుత్ శక్తిని ఉత్పత్తి చేసే విభిన్న సాంకేతిక మార్గాలను తెలుసుకోండి.',
       mr: 'विद्युत ऊर्जा निर्माण करण्याचे विविध तांत्रिक मार्ग शोधा.',
       ms: 'Terokai pelbagai cara teknikal menghasilkan tenaga elektrik.',
-      he: 'גלו דרכים טכנולוגיות שונות להפקת כוח חשמלי.',
+      he: 'גלו דרכים טכנולוגיות שונות לייצור חשמל.',
       pl: 'Poznaj różne techniczne sposoby produkcji prądu.',
       uk: 'Досліди різні технічні способи виробництва електроенергії.',
       lt: 'Sužinok apie įvairius elektros energijos gamybos būdus.',
