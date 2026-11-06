@@ -1,49 +1,25 @@
 import { Suspense } from 'react';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/localization';
-import { loadPublishedLesson, loadPublishedUiKitMessages } from '@svitlo/adapter-nextjs/lesson';
-import { courseHasLesson, flattenCourseToc, loadCourseLesson, loadCourseToc } from '@/lib/courseResources';
-import WebLesson from '@/components/pages/Lesson/Lesson';
 
-type Props = { params: Promise<{ language: string; courseId: string; lessonId: string }> };
+type Props = {
+  params: Promise<{ language: string; courseId: string; lessonId: string }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+};
 
-async function Content({ params }: Props) {
+/** Legacy course URLs retain the interface locale as their default lesson locale. */
+async function LegacyRedirect({ params, searchParams }: Props) {
   const { language, courseId, lessonId } = await params;
-  const descriptor = DEFAULT_SUPPORTED_LANGUAGES.find(item => item.language === language);
-  if (!descriptor) notFound();
-  let toc;
-  try {
-    toc = await loadCourseToc(courseId, descriptor.language);
-  } catch {
-    notFound();
+  if (!DEFAULT_SUPPORTED_LANGUAGES.some(item => item.language === language)) notFound();
+  const query = new URLSearchParams();
+  for (const [name, value] of Object.entries(await searchParams)) {
+    if (Array.isArray(value)) value.forEach(item => query.append(name, item));
+    else if (value !== undefined) query.append(name, value);
   }
-  if (!courseHasLesson(toc, lessonId)) notFound();
-  const [lesson, messages] = await Promise.all([
-    loadPublishedLesson(lessonId, descriptor.language),
-    loadPublishedUiKitMessages(descriptor.locale),
-  ]);
-  const response = await loadCourseLesson(courseId, lesson, descriptor.language);
-  const href = '/' + language + '/course/' + courseId + '/lesson/' + lessonId;
-  return (
-    <WebLesson
-      response={response}
-      locale={descriptor.locale}
-      href={href}
-      messages={messages}
-      topics={flattenCourseToc(toc, language)}
-    />
-  );
+  const suffix = query.toString();
+  return redirect('/' + language + '/course/' + courseId + '/lesson/' + language + '/' + lessonId + (suffix ? '?' + suffix : ''));
 }
-export default function CourseLessonPage(props: Props) {
-  return (
-    <Suspense
-      fallback={
-        <div role="status" aria-busy="true">
-          Loading lesson…
-        </div>
-      }
-    >
-      <Content {...props} />
-    </Suspense>
-  );
+
+export default function LegacyCourseLessonPage(props: Props) {
+  return <Suspense fallback={null}><LegacyRedirect {...props} /></Suspense>;
 }

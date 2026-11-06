@@ -6,7 +6,7 @@ test('a real Playground lesson opens from the index on a phone-sized screen', as
   const lesson = page.getByRole('link').first();
   await expect(lesson).toBeVisible();
   await lesson.click();
-  await expect(page).toHaveURL(/\/[a-z]{2}\/lesson\/[0-9a-f-]{36}$/);
+  await expect(page).toHaveURL(/\/[a-z]{2}\/lesson\/[a-z]{2}\/[0-9a-f-]{36}$/);
   await expect(page.locator('#learning-content')).toBeVisible();
   await expect(page.locator('#learning-content')).toContainText(/\S+/);
   const sizes = await page.evaluate(() => ({

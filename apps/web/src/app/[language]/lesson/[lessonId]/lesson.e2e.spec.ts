@@ -1,16 +1,15 @@
 import { test, expect } from '@playwright/test';
 
-test('howLightMoves renders ordered sections, markdown, scenes and quiz from published JSON', async ({ page }) => {
-  await page.goto('/uk/lesson/d3048d21-8690-5255-b62c-984c69ac272c');
+const id = 'd3048d21-8690-5255-b62c-984c69ac272c';
+
+test('lesson renders sections, scenes and quiz in the selected content language', async ({ page }) => {
+  await page.goto(`/uk/lesson/uk/${id}`);
   await expect(page.locator('html')).toHaveAttribute('lang', 'uk-UA');
   await expect(page.locator('html')).toHaveAttribute('dir', 'ltr');
   await expect(page.getByRole('heading', { name: 'Як рухається світло', exact: true })).toBeVisible();
   await expect(page.getByRole('img', { name: 'Світловий промінь' })).toBeVisible();
-  await expect(
-    page.getByRole('region', {
-      name: 'Анімація поширення світла від джерела до екрана',
-    }),
-  ).toBeVisible();
+  await expect(page.getByRole('region', { name: 'Анімація поширення світла від джерела до екрана' })).toBeVisible();
+
   const next = page
     .getByRole('navigation', { name: 'Нижня навігація навчання' })
     .getByRole('button', { name: 'Далі →', exact: true });
@@ -20,8 +19,8 @@ test('howLightMoves renders ordered sections, markdown, scenes and quiz from pub
   await expect(page.locator('fieldset')).toHaveCount(1);
 });
 
-test('switching the requested locale selects localized JSON, including scene props', async ({ page }) => {
-  const root = '/data/pages/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/config/';
+test('the requested lesson language selects localized published JSON and scene props', async ({ page }) => {
+  const root = '/data/pages/lessons/c/' + id + '/config/';
   const [baseResource, localizedResource] = await Promise.all([
     page.request.get(root + 'base.json'),
     page.request.get(root + 'en.json'),
@@ -33,48 +32,88 @@ test('switching the requested locale selects localized JSON, including scene pro
   expect(base.data.title).toBeUndefined();
   expect(json.data.title).toBe('How Light Travels');
   expect(json.localeSources['/title']).toEqual({ code: 'en' });
-  await page.goto('/en/lesson/d3048d21-8690-5255-b62c-984c69ac272c');
+
+  await page.goto(`/uk/lesson/en/${id}`);
+  await expect(page.locator('html')).toHaveAttribute('lang', 'uk-UA');
+  await expect(page.locator('#learning-content [lang="en-US"]').first()).toBeVisible();
   await expect(page.getByRole('img', { name: 'Trace the path of light' })).toBeVisible();
   await expect(
-    page.getByRole('region', {
-      name: 'Animation of light traveling from the source to the screen',
-    }),
+    page.getByRole('region', { name: 'Animation of light traveling from the source to the screen' }),
   ).toBeVisible();
   await expect(page.getByRole('heading', { name: 'How light travels', exact: true })).toBeVisible();
 });
 
-test('the language selector changes the route language', async ({ page }) => {
-  await page.goto('/uk/lesson/d3048d21-8690-5255-b62c-984c69ac272c');
-  // The language control now lives in Quick Settings, opened from the profile menu.
+test('interface language selection does not change the lesson language', async ({ page }) => {
+  await page.goto(`/uk/lesson/uk/${id}`);
   await page.getByRole('button', { name: 'Профіль' }).click();
-  await page.getByRole('menuitem', { name: 'Налаштування' }).click();
-  await page.getByRole('combobox', { name: 'Мова' }).click();
+  await page.getByRole('menuitem', { name: 'Швидкі налаштування' }).click();
+  await expect(page.getByRole('heading', { name: 'Швидкі налаштування' })).toBeVisible();
+  await page.getByRole('combobox', { name: 'Мова інтерфейсу' }).click();
   await page.getByRole('option', { name: 'English' }).click();
-  await expect(page).toHaveURL('/en/lesson/d3048d21-8690-5255-b62c-984c69ac272c');
+  await expect(page).toHaveURL(`/en/lesson/uk/${id}`);
   await expect(page.locator('html')).toHaveAttribute('lang', 'en-US');
-  await expect(page.getByRole('heading', { name: 'How light travels', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Як рухається світло', exact: true })).toBeVisible();
+  await expect(page.getByRole('navigation', { name: 'Top learning navigation' })).toBeVisible();
 });
 
-test('RTL and internal language codes configure the document', async ({ page }) => {
-  await page.goto('/ar/lesson/d3048d21-8690-5255-b62c-984c69ac272c');
+test('lesson language selection does not change the interface language', async ({ page }) => {
+  await page.goto(`/uk/lesson/uk/${id}`);
+  await page.getByRole('button', { name: 'Профіль' }).click();
+  await page.getByRole('menuitem', { name: 'Швидкі налаштування' }).click();
+  await page.getByRole('combobox', { name: 'Мова уроку' }).click();
+  await page.getByRole('option', { name: 'English' }).click();
+  await expect(page).toHaveURL(`/uk/lesson/en/${id}`);
+  await expect(page.locator('html')).toHaveAttribute('lang', 'uk-UA');
+  await expect(page.locator('#learning-content [lang="en-US"]').first()).toHaveAttribute('dir', 'ltr');
+  await expect(page.getByRole('heading', { name: 'How light travels', exact: true })).toBeVisible();
+  await expect(page.getByRole('navigation', { name: 'Верхня навігація навчання' })).toBeVisible();
+});
+
+test('mobile quick settings fills the content width and provides a close button', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 720 });
+  await page.goto(`/uk/lesson/uk/${id}`);
+  await page.getByRole('button', { name: 'Профіль' }).click();
+  await page.getByRole('menuitem', { name: 'Швидкі налаштування' }).click();
+  const settings = page.getByRole('complementary', { name: 'Швидкі налаштування' });
+  await expect(settings.getByRole('heading', { name: 'Швидкі налаштування' })).toBeVisible();
+  const box = await settings.boundingBox();
+  expect(box?.width).toBeGreaterThanOrEqual(389);
+  await settings.getByRole('button', { name: 'Закрити панель налаштувань' }).click();
+  await expect(settings).not.toBeInViewport();
+  await page.setViewportSize({ width: 1280, height: 720 });
+  await page.getByRole('button', { name: 'Профіль' }).click();
+  await page.getByRole('menuitem', { name: 'Швидкі налаштування' }).click();
+  await expect(settings.getByRole('button', { name: 'Закрити панель налаштувань' })).toBeHidden();
+});
+
+test('RTL interface and content directions remain independent', async ({ page }) => {
+  await page.goto(`/ar/lesson/en/${id}`);
   await expect(page.locator('html')).toHaveAttribute('lang', 'ar-SA');
   await expect(page.locator('html')).toHaveAttribute('dir', 'rtl');
-  await expect(page.getByRole('img', { name: /مسار الضوء/ })).toBeVisible();
-  await expect(
-    page.getByRole('img', { name: /مسار الضوء/ }).locator('g[transform="translate(960 0) scale(-1 1)"]'),
-  ).toHaveCount(1);
+  await expect(page.locator('#learning-content [lang="en-US"]').first()).toHaveAttribute('dir', 'ltr');
 
-  await page.goto('/qm/lesson/d3048d21-8690-5255-b62c-984c69ac272c');
-  await expect(page.locator('html')).toHaveAttribute('lang', 'crh-Latn-UA');
+  await page.goto(`/uk/lesson/ar/${id}`);
+  await expect(page.locator('html')).toHaveAttribute('lang', 'uk-UA');
   await expect(page.locator('html')).toHaveAttribute('dir', 'ltr');
+  await expect(page.locator('#learning-content [lang="ar-SA"]').first()).toHaveAttribute('dir', 'rtl');
+
+  await page.goto(`/qm/lesson/qm/${id}`);
+  await expect(page.locator('html')).toHaveAttribute('lang', 'crh-Latn-UA');
+});
+
+test('legacy lesson URLs redirect without losing the content language or query', async ({ page }) => {
+  await page.goto(`/uk/lesson/${id}?ref=example`);
+  await expect(page).toHaveURL(`/uk/lesson/uk/${id}?ref=example`);
 });
 
 test('unsupported and removed lesson URLs return 404', async ({ request }) => {
   for (const path of [
     '/topics/light',
     '/topics/demo',
-    '/lesson/d3048d21-8690-5255-b62c-984c69ac272c',
-    '/xx/lesson/d3048d21-8690-5255-b62c-984c69ac272c',
+    '/lesson/' + id,
+    '/xx/lesson/uk/' + id,
+    '/uk/lesson/xx/' + id,
+    '/xx/lesson/' + id,
   ]) {
     const response = await request.get(path, { maxRedirects: 0 });
     expect(response.status()).toBe(404);

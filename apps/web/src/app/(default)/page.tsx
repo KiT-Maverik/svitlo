@@ -15,7 +15,7 @@ export default function Home() {
         </Box>
         <Stack direction="row" sx={{ gap: 2, flexWrap: 'wrap' }}>
           {textbook.featuredLessonId && textbook.featuredLessonLabel && (
-            <Button variant="contained" href={`/uk/lesson/${textbook.featuredLessonId}`}>
+            <Button variant="contained" href={`/uk/lesson/uk/${textbook.featuredLessonId}`}>
               {textbook.featuredLessonLabel}
             </Button>
           )}
