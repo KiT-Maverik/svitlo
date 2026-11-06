@@ -32,7 +32,7 @@ export const marinePropulsion_Skill_Data = buildSkillConfig({
     be: "Суднавая рухальная ўстаноўка",
     ka: "გემის ამძრავი სისტემა",
     kk: "Кеме қозғаушы жүйелері",
-    qm: "Gemi itki sistemasI",
+    qm: "Gemi itki sisteması",
   },
   description: {
     methodological: 'Trace motor or engine output to propeller or waterjet thrust.',
