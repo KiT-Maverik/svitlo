@@ -18,13 +18,13 @@ Each agent creates a dedicated Draft PR into `feat/engineering-skills-integratio
 
 The four agent pull requests were merged into the integration branch after the repository owner explicitly authorized the integration and promotion of Issue #191:
 
-| Agent | PR | Localized entities |
-| --- | --- | ---: |
-| 1 | #345 | 84 |
-| 2 | #344 | 74 |
-| 3 | #343 | 93 |
-| 4 | #346 | 92 |
-| **Total** | | **343** |
+| Agent     | PR   | Localized entities |
+| --------- | ---- | -----------------: |
+| 1         | #345 |                 84 |
+| 2         | #344 |                 74 |
+| 3         | #343 |                 93 |
+| 4         | #346 |                 92 |
+| **Total** |      |            **343** |
 
 A path-by-path comparison with the 343 unique canonical entity links in `taxonomy.md` found exactly 343 corresponding modified files, with no missing entities, duplicates across agents, or changes outside each agent's owned domain trees. All original English and methodological text, identifiers, and hierarchy remain intact; each entity has 28 added non-English `name` values and 28 added non-English `description.frontend` values.
 
