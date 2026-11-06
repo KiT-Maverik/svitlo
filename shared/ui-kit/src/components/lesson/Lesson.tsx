@@ -9,6 +9,7 @@ import type { LessonEventSceneMap } from './LessonEvents';
 import type { LanguageCode } from '@svitlo/engine/localization';
 import type { SceneRegistry } from '../widgets/ContentBlockRenderer';
 import type { LessonLearningLayoutProps } from '../layout/LearningLayout/createLessonLearningLayout';
+import type { Topic } from '../layout/LearningLayout/CourseTopicList';
 
 export type LessonView = {
   id: string;
@@ -30,7 +31,7 @@ export type LessonProps = {
   response: LessonView;
   href: string;
   /** Optional Course navigation entries, instead of a single standalone Lesson entry. */
-  topics?: readonly { id: string; title: string; href: string; depth?: number }[];
+  topics?: readonly Topic[];
   messages: UiKitMessages;
   /** Host binding: Next.js, Electron, or ordinary React can supply a layout. */
   layout: ComponentType<LessonLearningLayoutProps>;

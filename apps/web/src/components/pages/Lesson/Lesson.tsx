@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import type { Locale } from '@svitlo/engine/localization';
 import type { UiKitMessages } from '@svitlo/ui-kit';
+import type { Topic } from '@svitlo/ui-kit/learning-layout';
 import { Lesson } from '@svitlo/ui-kit/lesson';
 import { ImageRendererProvider } from '@svitlo/ui-kit/widgets';
 import { SceneLocaleProvider } from '@svitlo/ui-kit/scene-locale';
@@ -41,7 +42,7 @@ export default function WebLesson({
   lessonLocale?: Locale;
   href: string;
   messages: UiKitMessages;
-  topics?: readonly { id: string; title: string; href: string; depth?: number }[];
+  topics?: readonly Topic[];
 }) {
   const contentLocale = lessonLocale ?? locale;
   const ids = useMemo(() => sceneIds([response.sections, response.events]), [response.sections, response.events]);
