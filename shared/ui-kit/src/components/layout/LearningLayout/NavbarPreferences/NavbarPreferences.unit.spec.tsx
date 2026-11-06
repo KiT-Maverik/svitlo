@@ -122,13 +122,7 @@ describe('NavbarPreferences in shared UI Kit', () => {
     const view = renderPreferences();
     expect(screen.getByTestId('WbSunnyRoundedIcon')).toBeVisible();
     view.rerender(
-      <NavbarPreferences
-        locale="uk-UA"
-        messages={uk}
-        onLocaleChange={setLocale}
-        mode="dark"
-        onThemeChange={setMode}
-      />,
+      <NavbarPreferences locale="uk-UA" messages={uk} onLocaleChange={setLocale} mode="dark" onThemeChange={setMode} />,
     );
     expect(screen.getByTestId('DarkModeRoundedIcon')).toBeVisible();
   });
