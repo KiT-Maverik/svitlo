@@ -1,4 +1,14 @@
 export { Lesson } from './Lesson';
+export {
+  LessonController,
+  useLessonActions,
+  useLessonParams,
+  useLessonTopBar,
+  useLessonStepper,
+  useLessonSection,
+  useLessonBottomBar,
+} from './LessonController';
+export type { LessonActions, EditableSectionParam } from './LessonController';
 export type { LessonProps, LessonView } from './Lesson';
 export { LessonNavigationProvider, useLessonNavigation } from './LessonNavigation';
 export type { LessonNavigationAction } from './LessonNavigation';

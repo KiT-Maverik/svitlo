@@ -2,14 +2,18 @@
 
 import { createContext, useCallback, useContext, useState, type ReactNode } from 'react';
 
-export type LessonNavigationAction = { type: 'next' | 'back' | 'skip' | 'testDone' } | { type: 'visit'; step: number };
+export type LessonNavigationAction =
+  | { type: 'next' | 'back' | 'skip' | 'testDone' }
+  | { type: 'visit'; step: number }
+  | { type: 'restore'; step: number; testDone: boolean };
 
 type Navigation = {
-  progress: { ready: true; step: number; lastStep: number; testDone: boolean };
+  progress: { ready: boolean; step: number; lastStep: number; testDone: boolean };
   dispatch: (action: LessonNavigationAction) => void;
 };
 
-const Context = createContext<Navigation | null>(null);
+export const LessonNavigationContext = createContext<Navigation | null>(null);
+const Context = LessonNavigationContext;
 
 export function LessonNavigationProvider({ children, sectionCount }: { children: ReactNode; sectionCount: number }) {
   const [currentStep, setCurrentStep] = useState(0);
@@ -17,6 +21,13 @@ export function LessonNavigationProvider({ children, sectionCount }: { children:
   const lastStep = sectionCount - 1;
   const dispatch = useCallback(
     (action: LessonNavigationAction) => {
+      if (action.type === 'restore') {
+        setTestDone(action.testDone);
+        setCurrentStep(current =>
+          Number.isInteger(action.step) && action.step >= 0 && action.step <= lastStep ? action.step : current,
+        );
+        return;
+      }
       if (action.type === 'testDone') {
         setTestDone(true);
         return;
