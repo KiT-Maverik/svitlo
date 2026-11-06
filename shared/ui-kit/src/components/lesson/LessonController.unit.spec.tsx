@@ -261,6 +261,16 @@ describe('LessonController scoped state and navigation', () => {
     expect(next).toBeEnabled();
   });
 
+  it('shows lesson-scoped volume controls inside Quick Settings', () => {
+    showLesson(false);
+    fireEvent.click(screen.getByRole('button', { name: enUiKitMessages.learningLayout.actions.openSettings }));
+    expect(screen.getByRole('slider', { name: 'Volume' })).toHaveAttribute('aria-valuenow', '100');
+    fireEvent.click(screen.getByRole('button', { name: 'Mute' }));
+    expect(screen.getByRole('button', { name: 'Unmute' })).toBeVisible();
+    fireEvent.click(screen.getByRole('button', { name: 'Maximum volume' }));
+    expect(screen.getByRole('button', { name: 'Mute' })).toBeVisible();
+  });
+
   it('keeps actions stable when a sibling state changes', () => {
     showLesson(false);
     const before = observed.at(-1);

@@ -8,6 +8,7 @@ import type { ContentBlock_Audio_Response } from '@svitlo/engine/content';
 
 import { localizedAttributes } from '../../utils';
 import { useContentLanguage } from '../../ContentLanguageContext';
+import { useOptionalMediaSettings } from '../../../../lesson/MediaSettings';
 import { classifyAudioError, type AudioFailureKind } from './Audio.utils';
 import styles from './Audio.module.css';
 
@@ -23,10 +24,29 @@ export const Audio = ({
   messages: Audio_Locale;
 }) => {
   const contentLanguage = useContentLanguage();
+  const mediaSettings = useOptionalMediaSettings();
+  const volume = mediaSettings?.volume ?? 100;
+  const muted = mediaSettings?.muted ?? false;
   const audioRef = useRef<HTMLAudioElement>(null);
   const [failure, setFailure] = useState<AudioFailure | null>(null);
   const [attempt, setAttempt] = useState(0);
   const failureKind = failure?.source === fileLocation ? failure.kind : null;
+
+  // Apply shared settings to the current DOM element, including after a failed source is retried.
+  useEffect(() => {
+    const element = audioRef.current;
+    if (!element) return;
+    element.volume = volume / 100;
+    element.muted = muted;
+  }, [volume, muted, fileLocation, attempt, failureKind]);
+
+  const handleVolumeChange = (event: SyntheticEvent<HTMLAudioElement>) => {
+    if (!mediaSettings) return;
+    const element = event.currentTarget;
+    const nextVolume = Math.round(element.volume * 100);
+    if (nextVolume !== volume) mediaSettings.setVolume(nextVolume);
+    if (element.muted !== muted) mediaSettings.setMuted(element.muted);
+  };
 
   useEffect(() => {
     const kind = classifyAudioError(audioRef.current?.error ?? null, navigator.onLine);
@@ -76,6 +96,7 @@ export const Audio = ({
           src={fileLocation}
           preload="metadata"
           aria-label={title}
+          onVolumeChange={handleVolumeChange}
           onError={handleError}
           onStalled={failIfOffline}
           onWaiting={failIfOffline}

@@ -24,6 +24,7 @@ import { LearningLayoutTopBar, LearningLayoutBottomBar } from '../layout/Learnin
 import { LessonNavigationContext, type LessonNavigationAction } from './LessonNavigation';
 import { LessonOperationsContext } from './LessonOperationsContext';
 import { LessonSteps } from './LessonSteps';
+import { MediaVolumeControl } from './MediaVolumeControl';
 import type { LessonProps, LessonView } from './Lesson';
 import { DEFAULT_LESSON_EVENTS } from '@svitlo/engine/content';
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/localization';
@@ -578,6 +579,7 @@ export function LessonController({
               renderTopBar={renderTopBar}
               renderBottomBar={renderBottomBar}
               renderEventHost={renderEventHost}
+              settingsContent={<MediaVolumeControl messages={messages.navbarPreferences.volume} />}
             >
               <div className={styles.lesson} lang={contentLanguage?.locale} dir={contentLanguage?.direction}>
                 {!contentLoading && !contentError && (
