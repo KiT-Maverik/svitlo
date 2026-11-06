@@ -2,5 +2,19 @@
 export const textbook = {
   id: 'astronomy',
   title: 'Астрономія',
-  skillAnalyticsDomains: ["astrobiology","astronomicalInstrumentsAndEvidence","celestialMechanics","cosmicObjects","cosmology","earthMoonAndSun","exoplanetarySystems","interstellarAndGalacticAstronomy","observingTheSky","planetaryScience","solarAstronomy","solarSystemStructureAndOrigins","stellarPropertiesAndEvolution"],
+  skillAnalyticsDomains: [
+    'astrobiology',
+    'astronomicalInstrumentsAndEvidence',
+    'celestialMechanics',
+    'cosmicObjects',
+    'cosmology',
+    'earthMoonAndSun',
+    'exoplanetarySystems',
+    'interstellarAndGalacticAstronomy',
+    'observingTheSky',
+    'planetaryScience',
+    'solarAstronomy',
+    'solarSystemStructureAndOrigins',
+    'stellarPropertiesAndEvolution',
+  ],
 } as const;

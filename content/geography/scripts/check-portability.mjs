@@ -17,13 +17,27 @@ function command(program, args, cwd = repoRoot) {
   return run.stdout;
 }
 try {
-  const packed = JSON.parse(command('npm', ['pack', '--workspace', '@svitlo/geography',
-    '--ignore-scripts', '--pack-destination', temp, '--json']));
+  const packed = JSON.parse(
+    command('npm', [
+      'pack',
+      '--workspace',
+      '@svitlo/geography',
+      '--ignore-scripts',
+      '--pack-destination',
+      temp,
+      '--json',
+    ]),
+  );
   const details = Array.isArray(packed) ? packed[0] : packed['@svitlo/geography'];
   assert.ok(details, 'Missing packed textbook');
   const shipped = details.files.map(file => file.path);
-  for (const path of ['dist/textbook/index.js', 'dist/textbook/index.d.ts',
-    'dist/manifest.json', 'scripts/publish.mjs']) assert.ok(shipped.includes(path), 'Missing '+path);
+  for (const path of [
+    'dist/textbook/index.js',
+    'dist/textbook/index.d.ts',
+    'dist/manifest.json',
+    'scripts/publish.mjs',
+  ])
+    assert.ok(shipped.includes(path), 'Missing ' + path);
   assert.ok(!shipped.some(file => /^(src|data)\//.test(file)), 'Authoring source shipped');
   assert.ok(!shipped.some(file => /next\.config|\/next\//.test(file)), 'Next.js scaffold shipped');
   const packageRoot = join(temp, 'node_modules/@svitlo/geography');
@@ -35,13 +49,28 @@ try {
   assert.equal(textbook.id, 'geography');
   assert.equal(textbook.skillAnalyticsDomains.length, 11);
   const input = join(temp, 'consumer.mjs');
-  writeFileSync(input, "import { textbook } from '@svitlo/geography';\nif (!textbook.id) throw Error('Missing metadata');\n");
-  const result = await build({ entryPoints: [input], bundle: true, platform: 'browser',
-    format: 'esm', write: false, outdir: join(temp, 'bundled'), metafile: true });
+  writeFileSync(
+    input,
+    "import { textbook } from '@svitlo/geography';\nif (!textbook.id) throw Error('Missing metadata');\n",
+  );
+  const result = await build({
+    entryPoints: [input],
+    bundle: true,
+    platform: 'browser',
+    format: 'esm',
+    write: false,
+    outdir: join(temp, 'bundled'),
+    metafile: true,
+  });
   const sources = Object.keys(result.metafile.inputs).map(s => s.replaceAll('\\', '/'));
-  assert.ok(sources.some(s => s.includes('/dist/textbook/index.js')), 'ESM export not resolved');
-  assert.ok(!sources.some(s => s.endsWith('.data.ts') || s.includes('/next/')),
-    'Build consumed authoring source or Next.js');
+  assert.ok(
+    sources.some(s => s.includes('/dist/textbook/index.js')),
+    'ESM export not resolved',
+  );
+  assert.ok(
+    !sources.some(s => s.endsWith('.data.ts') || s.includes('/next/')),
+    'Build consumed authoring source or Next.js',
+  );
   console.log('Packed geography metadata, 11 Skills Domains and Publish CLI resolve in isolation');
 } finally {
   rmSync(temp, { recursive: true, force: true });

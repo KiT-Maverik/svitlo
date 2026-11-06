@@ -19,8 +19,8 @@ function fixture(t, built = true) {
     cpSync(join(root, 'dist/static'), join(pkg, 'dist/static'), { recursive: true });
     copyFileSync(join(root, 'dist/manifest.json'), join(pkg, 'dist/manifest.json'));
   }
-  const run = (...args) => spawnSync(process.execPath, [join(pkg, 'scripts/publish.mjs'), ...args],
-    { cwd: temp, encoding: 'utf8' });
+  const run = (...args) =>
+    spawnSync(process.execPath, [join(pkg, 'scripts/publish.mjs'), ...args], { cwd: temp, encoding: 'utf8' });
   return { pkg, out, run };
 }
 test('publishes only history authored Skills JSON and exact manifest ownership', t => {
@@ -29,10 +29,18 @@ test('publishes only history authored Skills JSON and exact manifest ownership',
   assert.equal(manifest.textbook, 'history');
   assert.equal(new Set(manifest.files).size, manifest.files.length);
   assert.ok(manifest.files.some(path => path.startsWith('data/pages/skillAnalytics/') && path.endsWith('.json')));
-  const locales = manifest.files.filter(path => path.startsWith('data/pages/skillAnalytics/') && path.endsWith('.json'));
+  const locales = manifest.files.filter(
+    path => path.startsWith('data/pages/skillAnalytics/') && path.endsWith('.json'),
+  );
   assert.equal(locales.length, 29, 'All supported localized Skills must be published');
-  assert.ok(locales.some(path => path.endsWith('/qm.json')), 'Crimean Tatar must be included');
-  assert.ok(locales.some(path => path.endsWith('/uk.json')), 'Ukrainian must be included');
+  assert.ok(
+    locales.some(path => path.endsWith('/qm.json')),
+    'Crimean Tatar must be included',
+  );
+  assert.ok(
+    locales.some(path => path.endsWith('/uk.json')),
+    'Ukrainian must be included',
+  );
   assert.ok(!manifest.files.some(path => path.startsWith('data/pages/lessons/')));
   const result = run('publish', '--output', out);
   assert.equal(result.status, 0, result.stderr);

@@ -2,5 +2,17 @@
 export const textbook = {
   id: 'biology',
   title: 'Біологія',
-  skillAnalyticsDomains: ["biotechnology","botany","characteristicsOfLivingThings","ecology","generalAndCellBiology","geneticsAndEvolution","humanAnatomyAndPhysiology","microbiology","mycology","virology","zoology"],
+  skillAnalyticsDomains: [
+    'biotechnology',
+    'botany',
+    'characteristicsOfLivingThings',
+    'ecology',
+    'generalAndCellBiology',
+    'geneticsAndEvolution',
+    'humanAnatomyAndPhysiology',
+    'microbiology',
+    'mycology',
+    'virology',
+    'zoology',
+  ],
 } as const;

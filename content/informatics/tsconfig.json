@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "module": "esnext",
     "moduleResolution": "bundler",
     "strict": true,
@@ -17,12 +13,6 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": [
-    "textbook.ts",
-    "data/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+  "include": ["textbook.ts", "data/**/*.ts"],
+  "exclude": ["node_modules", "dist"]
 }

@@ -77,8 +77,14 @@ for (const path of packages) {
     const manifestPath = resolve(root, path, 'dist/manifest.json');
     assert(existsSync(manifestPath), 'Missing published manifest: ' + name);
     const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
-    assert(manifest.version === 1 && manifest.textbook === name && Array.isArray(manifest.files), 'Invalid textbook manifest: ' + name);
-    assert(manifest.files.some(file => file.startsWith('data/pages/skillAnalytics/')), 'Missing authored Skills JSON: ' + name);
+    assert(
+      manifest.version === 1 && manifest.textbook === name && Array.isArray(manifest.files),
+      'Invalid textbook manifest: ' + name,
+    );
+    assert(
+      manifest.files.some(file => file.startsWith('data/pages/skillAnalytics/')),
+      'Missing authored Skills JSON: ' + name,
+    );
     for (const file of manifest.files) {
       assert(existsSync(resolve(root, path, 'dist/static', file)), 'Missing built ' + name + ' resource: ' + file);
     }
@@ -87,32 +93,50 @@ for (const path of packages) {
     assert(pkg.bin?.['svitlo-' + name] === './scripts/publish.mjs', 'Publish CLI missing: ' + pkg.name);
     assert(existsSync(resolve(root, path, 'scripts/publish.mjs')), 'Publish script missing: ' + path);
     const manifest = JSON.parse(readFileSync(resolve(root, path, 'dist/manifest.json'), 'utf8'));
-    assert(manifest.version === 1 && manifest.textbook === name && Array.isArray(manifest.files), 'Invalid manifest: ' + path);
+    assert(
+      manifest.version === 1 && manifest.textbook === name && Array.isArray(manifest.files),
+      'Invalid manifest: ' + path,
+    );
     assert(new Set(manifest.files).size === manifest.files.length, 'Duplicate published resource: ' + path);
     if (['math', 'physics', 'psychology', 'philosophy'].includes(name)) {
-      assert(manifest.files.some(file => file.startsWith('data/pages/skillAnalytics/')), 'Authored taxonomy not published: ' + path);
+      assert(
+        manifest.files.some(file => file.startsWith('data/pages/skillAnalytics/')),
+        'Authored taxonomy not published: ' + path,
+      );
     } else assert(manifest.files.length === 0, 'Metadata-only package must not fabricate resources: ' + path);
     for (const file of manifest.files) {
-      assert(!file.includes('..') && existsSync(resolve(root, path, 'dist/static', file)), 'Missing owned resource: ' + path + '/' + file);
+      assert(
+        !file.includes('..') && existsSync(resolve(root, path, 'dist/static', file)),
+        'Missing owned resource: ' + path + '/' + file,
+      );
     }
   }
-  if (["astronomy","biology","geography","history","informatics"].includes(name)) {
-    assert(pkg.exports?.['.']?.default === './dist/textbook/index.js',
-      'Textbook metadata must use compiled ESM: ' + name);
-    assert(pkg.bin?.['svitlo-' + name] === './scripts/publish.mjs',
-      'Missing textbook Publish CLI: ' + name);
+  if (['astronomy', 'biology', 'geography', 'history', 'informatics'].includes(name)) {
+    assert(
+      pkg.exports?.['.']?.default === './dist/textbook/index.js',
+      'Textbook metadata must use compiled ESM: ' + name,
+    );
+    assert(pkg.bin?.['svitlo-' + name] === './scripts/publish.mjs', 'Missing textbook Publish CLI: ' + name);
     const manifestPath = resolve(root, path, 'dist/manifest.json');
     assert(existsSync(manifestPath), 'Missing textbook resource manifest: ' + name);
     const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
-    assert(manifest.version === 1 && manifest.textbook === name && Array.isArray(manifest.files),
-      'Invalid textbook resource manifest: ' + name);
-    assert(manifest.files.some(file => file.startsWith('data/pages/skillAnalytics/')),
-      'Missing authored Skill Analytics: ' + name);
-    assert(!manifest.files.some(file => file.startsWith('data/pages/lessons/')),
-      'Unexpected non-authored Lesson JSON: ' + name);
+    assert(
+      manifest.version === 1 && manifest.textbook === name && Array.isArray(manifest.files),
+      'Invalid textbook resource manifest: ' + name,
+    );
+    assert(
+      manifest.files.some(file => file.startsWith('data/pages/skillAnalytics/')),
+      'Missing authored Skill Analytics: ' + name,
+    );
+    assert(
+      !manifest.files.some(file => file.startsWith('data/pages/lessons/')),
+      'Unexpected non-authored Lesson JSON: ' + name,
+    );
     for (const file of manifest.files)
-      assert(existsSync(resolve(root, path, 'dist/static', file)),
-        'Missing built textbook resource: ' + name + '/' + file);
+      assert(
+        existsSync(resolve(root, path, 'dist/static', file)),
+        'Missing built textbook resource: ' + name + '/' + file,
+      );
   }
   if (name === 'ui-kit') {
     assert(existsSync(resolve(root, path, 'assets/flags')), 'UI Kit packaged flag assets missing');

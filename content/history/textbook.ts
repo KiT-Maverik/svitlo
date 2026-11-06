@@ -2,5 +2,17 @@
 export const textbook = {
   id: 'history',
   title: 'Історія',
-  skillAnalyticsDomains: ["ancientAfrica","ancientAmericas","ancientEuropeBeyondMediterranean","ancientMediterranean","ancientOceania","ancientWesternAsia","crossRegionalHistoricalProcesses","eastAndCentralAsia","historicalInquiry","humanPrehistory","southAndSoutheastAsia"],
+  skillAnalyticsDomains: [
+    'ancientAfrica',
+    'ancientAmericas',
+    'ancientEuropeBeyondMediterranean',
+    'ancientMediterranean',
+    'ancientOceania',
+    'ancientWesternAsia',
+    'crossRegionalHistoricalProcesses',
+    'eastAndCentralAsia',
+    'historicalInquiry',
+    'humanPrehistory',
+    'southAndSoutheastAsia',
+  ],
 } as const;

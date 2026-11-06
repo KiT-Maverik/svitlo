@@ -2,5 +2,17 @@
 export const textbook = {
   id: 'geography',
   title: 'Географія',
-  skillAnalyticsDomains: ["atmosphereWeatherAndClimate","environmentAndSociety","geographicInquiry","geographicObjects","geology","humanGeography","landformsAndSurfaceProcesses","mapsAndGeospatialRepresentations","naturalRegionsAndBiogeography","spatialOrientation","waterSystems"],
+  skillAnalyticsDomains: [
+    'atmosphereWeatherAndClimate',
+    'environmentAndSociety',
+    'geographicInquiry',
+    'geographicObjects',
+    'geology',
+    'humanGeography',
+    'landformsAndSurfaceProcesses',
+    'mapsAndGeospatialRepresentations',
+    'naturalRegionsAndBiogeography',
+    'spatialOrientation',
+    'waterSystems',
+  ],
 } as const;

@@ -37,4 +37,3 @@ stale owned files without erasing unrelated host resources. Publication does **n
 TypeScript or regenerate Skills. The build also supports absent Lessons/Skills, including
 metadata-only distribution. A host owns routing, locale selection, UI Kit assets,
 Capacitor/Electron configuration and offline packaging.
-

@@ -40,4 +40,3 @@ metadata-only distribution. A host owns routing, locale selection, UI Kit assets
 Capacitor/Electron configuration and offline packaging.
 
 The pre-migration localized landing-page copy is preserved in `data/homeCopy.ts` for eventual host consumption. Its locale coverage is verified with `test:locales`; the obsolete Next.js shell/browser E2E test was removed because route ownership now belongs to hosts.
-

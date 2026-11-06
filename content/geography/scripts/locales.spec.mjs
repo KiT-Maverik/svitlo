@@ -6,8 +6,14 @@ import { fileURLToPath } from 'node:url';
 
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
 test('preserved Geography landing copy covers every supported language', async () => {
-  const compiled = await build({ entryPoints: [resolve(root, 'data/homeCopy.ts')],
-    bundle: true, platform: 'neutral', format: 'esm', write: false, logLevel: 'silent' });
+  const compiled = await build({
+    entryPoints: [resolve(root, 'data/homeCopy.ts')],
+    bundle: true,
+    platform: 'neutral',
+    format: 'esm',
+    write: false,
+    logLevel: 'silent',
+  });
   const url = 'data:text/javascript;base64,' + Buffer.from(compiled.outputFiles[0].contents).toString('base64');
   const { geographyHomeCopy } = await import(url);
   assert.equal(Object.keys(geographyHomeCopy).length, 29);
