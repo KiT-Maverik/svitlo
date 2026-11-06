@@ -128,7 +128,7 @@ const quizSettings = (layout: 'stack' | 'stepper', timeLimitSeconds?: number): Q
 
 describe('Quiz Section presentation', () => {
   it('supports stepper layout with one visible question and per-question progress', () => {
-    const second = { ...one, id: 'question-2', question: [text('q2', 'Another question')] };
+    const second = { ...one, id: 'question-2', question: [text('q2', 'Another question')] as [ReturnType<typeof text>] };
     render(
       <QuestionRenderer messages={enUiKitMessages} questions={[one, second]} parameters={quizSettings('stepper')} />,
     );
