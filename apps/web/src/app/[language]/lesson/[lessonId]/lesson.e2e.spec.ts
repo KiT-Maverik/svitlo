@@ -45,6 +45,9 @@ test('switching the requested locale selects localized JSON, including scene pro
 
 test('the language selector changes the route language', async ({ page }) => {
   await page.goto('/uk/lesson/d3048d21-8690-5255-b62c-984c69ac272c');
+  // The language control now lives in Quick Settings, opened from the profile menu.
+  await page.getByRole('button', { name: 'Профіль' }).click();
+  await page.getByRole('menuitem', { name: 'Налаштування' }).click();
   await page.getByRole('combobox', { name: 'Мова' }).click();
   await page.getByRole('option', { name: 'English' }).click();
   await expect(page).toHaveURL('/en/lesson/d3048d21-8690-5255-b62c-984c69ac272c');
