@@ -1,4 +1,5 @@
-import type { ContentBlock_Checkpoint, ContentBlock_Quiz_Screen, ContentBlock_Text } from './blocks';
+import type { ContentBlock_Checkpoint, ContentBlock_Text } from './blocks';
+import type { Quiz_Screen } from './quiz.types';
 import { defineLessonData, type Lesson } from './lesson.types';
 import type { Question_AnswerWithText, Question_SelectOneAnswer } from './questions';
 import type { Locale_Languages } from './locale.types';
@@ -14,7 +15,7 @@ const text: ContentBlock_Text<'data', SupportedLanguages> = {
 };
 
 const checkpointAnswer: ContentBlock_Checkpoint<'data', SupportedLanguages>['items'][number]['answer'][number] = text;
-const quizScreen: ContentBlock_Quiz_Screen<'data', SupportedLanguages> = { content: [text] };
+const quizScreen: Quiz_Screen<'data', SupportedLanguages> = { content: [text] };
 const questionContent: Question_SelectOneAnswer<'data', SupportedLanguages>['question'] = [text];
 const correctAnswer: Question_AnswerWithText<'data', SupportedLanguages>['correctAnswers'][number] = {
   en: 'yes',
@@ -26,6 +27,7 @@ const definedLesson = defineLessonData<SupportedLanguages>()({
   slug: 'lesson',
   title: lessonTitle,
   flashcards: [],
+  skills: [],
   parameters: {
     requireQuiz: false,
     languages,
@@ -35,7 +37,7 @@ const definedLesson = defineLessonData<SupportedLanguages>()({
   sections: [
     {
       id: 'section-id',
-      slug: 'intro',
+      slug: 'intro' as const,
       type: 'theory',
       title: { en: 'Introduction', uk: 'Вступ' },
       navigationLabel: 'Intro',

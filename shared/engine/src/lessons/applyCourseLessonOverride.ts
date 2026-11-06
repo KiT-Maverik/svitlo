@@ -43,15 +43,15 @@ function normalizedSection(raw: Record<string, unknown>): Section {
   ) {
     throw new Error('Invalid localized Course Section');
   }
+  if (raw.type === 'quiz') throw new Error('Course-added Quiz requires an assembled question bank');
   return {
     id: raw.id,
     slug: raw.slug,
-    type: raw.type as Section['type'],
+    type: raw.type as Exclude<Section['type'], 'quiz'>,
     title: raw.title,
     navigationLabel: raw.navigationLabel,
     ...(raw.skippable === true ? { skippable: true as const } : {}),
     content: raw.content.map(value => asBlock(value as Record<string, unknown>)),
-    questions: [],
   };
 }
 function changedBlocks(blocks: readonly Block[], changes: Record<string, unknown>): Block[] {
@@ -105,14 +105,24 @@ function changedSections(sections: readonly Section[], changes: Record<string, u
     if (['id', 'slug', 'type'].some(key => Object.hasOwn(patch, key))) {
       throw new Error('Cannot change Section identity');
     }
-    const next = { ...section };
-    if (patch.title !== undefined) next.title = patch.title as string;
-    if (patch.navigationLabel !== undefined) next.navigationLabel = patch.navigationLabel as string;
-    if (patch.skippable === false) delete next.skippable;
-    if (patch.skippable === true) next.skippable = true;
-    if (patch.content !== undefined)
-      next.content = changedBlocks(section.content, patch.content as Record<string, unknown>);
-    items.set(slug, next);
+    if (section.type === 'quiz' && patch.content !== undefined) {
+      throw new Error('Cannot change Quiz content: Quiz questions are assembled from parameters');
+    }
+    const metadata = {
+      ...section,
+      ...(patch.title !== undefined ? { title: patch.title as string } : {}),
+      ...(patch.navigationLabel !== undefined ? { navigationLabel: patch.navigationLabel as string } : {}),
+      ...(patch.skippable === false ? { skippable: undefined } : {}),
+      ...(patch.skippable === true ? { skippable: true as const } : {}),
+    };
+    if (section.type === 'quiz') {
+      items.set(slug, metadata);
+    } else {
+      items.set(slug, {
+        ...metadata,
+        content: patch.content === undefined ? section.content : changedBlocks(section.content, patch.content as Record<string, unknown>),
+      });
+    }
   }
   const order = (changes.order ?? [...items.keys()]) as string[];
   if (order.length !== items.size || new Set(order).size !== order.length || order.some(slug => !items.has(slug)))
@@ -146,14 +156,8 @@ export function applyCourseLessonOverride(response: LessonResponse, patch: Patch
     ? changedSections(response.sections, changes.sections as Record<string, unknown>)
     : response.sections;
   const quizzes = sections.filter(section => section.type === 'quiz');
-  if (quizzes.length > 1 || (response.parameters.requireQuiz && quizzes.length !== 1)) {
-    throw new Error('Invalid Course quiz Section count');
-  }
-  for (const section of sections) {
-    const quizBlocks = section.content.filter(block => block.type === 'quiz');
-    if ((section.type === 'quiz') !== (quizBlocks.length === 1)) {
-      throw new Error('Invalid Course quiz ContentBlock count in ' + section.slug);
-    }
+  if (response.parameters.requireQuiz && quizzes.length === 0) {
+    throw new Error('Course cannot remove every required Quiz Section');
   }
   const events = changes.events
     ? (mergeObject(response.events ?? {}, changes.events) as LessonResponse['events'])

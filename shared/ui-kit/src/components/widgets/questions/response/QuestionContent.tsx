@@ -6,9 +6,6 @@ import type { ContentBlockResponse, SceneRegistry } from '../../ContentBlockRend
 export type QuestionBlock = ContentBlock<'response', Locale_Languages>;
 
 function renderable(block: QuestionBlock): ContentBlockResponse {
-  if (block.type === 'quiz') {
-    throw new Error('Nested quizzes are not supported inside a question');
-  }
   return block;
 }
 
@@ -46,8 +43,6 @@ export function questionBlockLabel(block: QuestionBlock): string {
       return block.title;
     case 'scene':
       return block.rendererKey;
-    case 'quiz':
-      return '';
   }
 }
 

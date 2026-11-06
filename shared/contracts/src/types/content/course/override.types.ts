@@ -29,8 +29,10 @@ export type Lesson_Override<SupportedLanguages extends Lesson_Locale, CustomEven
  * there is intentionally no separate ContentBlock override contract.
  */
 export type Section_Override<SupportedLanguages extends Lesson_Locale> = Partial<
-  Pick<Section<'data', SupportedLanguages>, 'title' | 'navigationLabel' | 'content'>
+  Pick<Section<'data', SupportedLanguages>, 'title' | 'navigationLabel'>
 > & {
+  /** Only non-Quiz Sections have content. Quiz configuration lives in parameters. */
+  content?: Extract<Section<'data', SupportedLanguages>, { content: readonly unknown[] }>['content'];
   /** false means omit skippable in the resolved Section (which only accepts true). */
   skippable?: boolean;
 };

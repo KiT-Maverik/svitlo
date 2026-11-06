@@ -10,6 +10,7 @@ const authored = {
   slug: 'eventLesson',
   title: { en: 'Light', uk: 'Світло' },
   flashcards: [],
+  skills: [],
   questions: {},
   parameters: {
     requireQuiz: false,

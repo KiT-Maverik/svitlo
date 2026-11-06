@@ -26,7 +26,7 @@ const messages = {} as UiKitMessages;
 const response = {
   id: 'lesson-one',
   sections: [{ content: [{ type: 'scene', id: 'scene-one' }] }, { content: [{ type: 'scene', id: 'scene-two' }] }],
-} as LessonResponse;
+} as unknown as LessonResponse; // Minimal scene-discovery fixture; other response fields are not read.
 
 describe('Web lesson preparation', () => {
   beforeEach(() => vi.clearAllMocks());
