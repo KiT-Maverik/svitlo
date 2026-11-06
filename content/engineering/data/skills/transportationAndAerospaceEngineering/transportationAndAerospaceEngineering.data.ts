@@ -54,7 +54,7 @@ export const transportationAndAerospaceEngineering_SkillDomain_Data = buildSkill
       hi: 'भूमि, हवा, जल और अंतरिक्ष में वाहनों को चलाने वाली इंजीनियरिंग प्रणालियों को जानें।',
       es: 'Explora los sistemas de ingeniería que mueven vehículos por tierra, aire, agua y el espacio.',
       ar: 'استكشف الأنظمة الهندسية التي تحرك المركبات على اليابسة وفي الجو والماء والفضاء.',
-      fr: 'Découvre les systèmes techniques qui déplacent les véhicules sur terre, dans les airs, sur l\'eau et dans l\'espace.',
+      fr: "Découvre les systèmes techniques qui déplacent les véhicules sur terre, dans les airs, sur l'eau et dans l'espace.",
       bn: 'স্থল, আকাশ, জল ও মহাকাশে যান চলাচল করায় এমন প্রকৌশল ব্যবস্থা জানো।',
       pt: 'Explore os sistemas de engenharia que movimentam veículos em terra, no ar, na água e no espaço.',
       ur: 'زمین، ہوا، پانی اور خلا میں چلنے والی سواریوں کے انجینئرنگ نظام جانیں۔',

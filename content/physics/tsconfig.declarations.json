@@ -8,12 +8,6 @@
     "rootDir": ".",
     "outDir": "./dist/.declarations"
   },
-  "include": [
-    "textbook.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    ".test-build"
-  ]
+  "include": ["textbook.ts"],
+  "exclude": ["node_modules", "dist", ".test-build"]
 }

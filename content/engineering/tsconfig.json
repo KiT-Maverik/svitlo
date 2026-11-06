@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "module": "esnext",
     "moduleResolution": "bundler",
     "strict": true,
@@ -18,15 +14,6 @@
     "allowJs": true,
     "jsx": "react-jsx"
   },
-  "include": [
-    "textbook.ts",
-    "data/**/*.ts",
-    "scenes/**/*.ts",
-    "scenes/**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "test-results"
-  ]
+  "include": ["textbook.ts", "data/**/*.ts", "scenes/**/*.ts", "scenes/**/*.tsx"],
+  "exclude": ["node_modules", "dist", "test-results"]
 }

@@ -2,5 +2,19 @@
 export const textbook = {
   id: 'math',
   title: 'Математика',
-  skillAnalyticsDomains: ["algebra","arithmetic","counting","data","fractions","geometry","measurement","money","numeration","probability","problemSolving","reasoning","time"],
+  skillAnalyticsDomains: [
+    'algebra',
+    'arithmetic',
+    'counting',
+    'data',
+    'fractions',
+    'geometry',
+    'measurement',
+    'money',
+    'numeration',
+    'probability',
+    'problemSolving',
+    'reasoning',
+    'time',
+  ],
 } as const;

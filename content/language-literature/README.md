@@ -28,5 +28,3 @@ svitlo-language-literature publish --output /absolute/path/to/host/public
 ```
 
 The CLI ships with the npm tarball. It copies **prebuilt** `dist/static` resources, not authoring files, and never regenerates content. Its `.svitlo/publish-language-literature.json` tracks only this textbook's previously published files for safe stale cleanup. Host routes, flags, global localization, native integrations and deployment are owned by `apps/web`, `apps/mobile` and `apps/desktop`.
-
-

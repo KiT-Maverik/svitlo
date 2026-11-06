@@ -26,9 +26,7 @@ export function mergeLessonResources(base: unknown, patch: unknown): unknown {
       const copy: Record<string, unknown> = { ...current };
       for (const [key, value] of Object.entries(overlay)) {
         if (forbidden.has(key)) throw new Error('Forbidden sparse patch key at ' + at + '/' + key);
-        copy[key] = Object.hasOwn(current, key)
-          ? merge(current[key], value, at + '/' + key)
-          : value;
+        copy[key] = Object.hasOwn(current, key) ? merge(current[key], value, at + '/' + key) : value;
       }
       return copy;
     }

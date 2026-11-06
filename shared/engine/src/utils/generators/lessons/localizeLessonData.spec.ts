@@ -8,11 +8,13 @@ describe('splitLessonValue', () => {
       id: 'entity-uuid',
       slug: 'light',
       title: { en: 'Light', uk: 'Світло' },
-      sections: [{
-        id: 'one',
-        title: { en: 'Theory', uk: 'Теорія' },
-        content: [{ type: 'text', label: 'H₂O', text: { en: 'Water', uk: 'Вода' } }],
-      }],
+      sections: [
+        {
+          id: 'one',
+          title: { en: 'Theory', uk: 'Теорія' },
+          content: [{ type: 'text', label: 'H₂O', text: { en: 'Water', uk: 'Вода' } }],
+        },
+      ],
       statistics: { languages: { en: 143, uk: 144 } },
     };
     const { base, locales, pointers } = splitLessonValue(input, ['en', 'uk']);
@@ -36,14 +38,22 @@ describe('splitLessonValue', () => {
   });
 
   it('rejects missing translations, extra languages, legacy fallback and single-language values', () => {
-    assert.throws(() => splitLessonValue({ title: { en: 'Light' } }, ['en', 'uk']),
-      /Incomplete locale dictionary at \/title/);
-    assert.throws(() => splitLessonValue({ title: { en: 'Light', uk: 'Світло', de: 'Licht' } }, ['en', 'uk']),
-      /unexpected: de/);
-    assert.throws(() => splitLessonValue({ title: { fallback: 'en', en: 'Light' } }, ['en', 'uk']),
-      /Field-level fallback is not allowed/);
-    assert.throws(() => splitLessonValue({ title: { language: 'en', value: 'Light' } }, ['en', 'uk']),
-      /Single-language fallback is not allowed/);
+    assert.throws(
+      () => splitLessonValue({ title: { en: 'Light' } }, ['en', 'uk']),
+      /Incomplete locale dictionary at \/title/,
+    );
+    assert.throws(
+      () => splitLessonValue({ title: { en: 'Light', uk: 'Світло', de: 'Licht' } }, ['en', 'uk']),
+      /unexpected: de/,
+    );
+    assert.throws(
+      () => splitLessonValue({ title: { fallback: 'en', en: 'Light' } }, ['en', 'uk']),
+      /Field-level fallback is not allowed/,
+    );
+    assert.throws(
+      () => splitLessonValue({ title: { language: 'en', value: 'Light' } }, ['en', 'uk']),
+      /Single-language fallback is not allowed/,
+    );
     assert.throws(() => splitLessonValue({}, ['en', 'en']), /Invalid declared lesson languages/);
   });
 });

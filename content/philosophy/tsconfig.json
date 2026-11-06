@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "module": "esnext",
     "moduleResolution": "bundler",
     "strict": true,
@@ -19,15 +15,6 @@
     "jsx": "react-jsx",
     "incremental": true
   },
-  "include": [
-    "textbook.ts",
-    "data/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    ".test-build",
-    "test-results",
-    "playwright-report"
-  ]
+  "include": ["textbook.ts", "data/**/*.ts"],
+  "exclude": ["node_modules", "dist", ".test-build", "test-results", "playwright-report"]
 }

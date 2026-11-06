@@ -1,8 +1,16 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  existsSync, readFileSync, writeFileSync, mkdirSync, copyFileSync, cpSync,
-  rmSync, mkdtempSync, realpathSync, symlinkSync,
+  existsSync,
+  readFileSync,
+  writeFileSync,
+  mkdirSync,
+  copyFileSync,
+  cpSync,
+  rmSync,
+  mkdtempSync,
+  realpathSync,
+  symlinkSync,
 } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve, sep, relative } from 'node:path';
@@ -104,8 +112,7 @@ test('blocks malformed manifests, missing resources, traversal and symlinks', t 
 
 test('metadata-only packages may safely publish empty ownership', { skip: required }, t => {
   const f = fixture(t);
-  writeFileSync(join(f.target, 'dist/manifest.json'),
-    JSON.stringify({ version: 1, textbook: id, files: [] }));
+  writeFileSync(join(f.target, 'dist/manifest.json'), JSON.stringify({ version: 1, textbook: id, files: [] }));
   mkdirSync(join(f.output, 'images'), { recursive: true });
   writeFileSync(join(f.output, 'images/host.svg'), 'untouched');
   assert.equal(f.run('publish', '--output', f.output).status, 0);
