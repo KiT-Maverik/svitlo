@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "kind": "pr-scoped-agent-ci-artifacts",
-  "sourceCommit": "a993274c6024250985fdb3e9a31b721b823a8a69",
+  "sourceCommit": "065b7b71b38a9ad47a6e0bcb32a5598eea3c95f3",
   "packages": [
     "content/art",
     "content/astronomy",

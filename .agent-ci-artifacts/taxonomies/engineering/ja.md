@@ -190,7 +190,7 @@ Skills: 4
 
 **Methodological description (English):** Distinguish real changes from drift, limited resolution and random noise.
 
-**User-friendly description (ja):** センサー測定の偶然誤差と系統的な偏りを区別しよう。
+**User-friendly description (ja):** センサーの誤差が制御の判断にどう影響するか考えよう。
 
 ##### センサーの設置位置
 
@@ -608,7 +608,7 @@ Skills: 9
 
 **Methodological description (English):** Trace conversion, regulation and distribution of the electrical supply to devices with differing voltage and current needs.
 
-**User-friendly description (ja):** 電源装置が各部品に電力を供給する仕組みを学ぼう。
+**User-friendly description (ja):** コンピューターが電力を変換し、各部品に分配する仕組みを学ぼう。
 
 ##### コンピューターの熱管理
 
@@ -624,7 +624,7 @@ Skills: 9
 
 **Methodological description (English):** Identify the physical image-forming panel, drive electronics and light-emission or modulation mechanisms independently from displayed software content.
 
-**User-friendly description (ja):** 画面が電子信号を目に見える画像に変える仕組みを学ぼう。
+**User-friendly description (ja):** ディスプレイの主要なハードウェア部品とその働きを見分けよう。
 
 ##### 入力機器のハードウェア
 
@@ -632,7 +632,7 @@ Skills: 9
 
 **Methodological description (English):** Explain how mechanical switches, touch sensing or pointing-device transducers convert user actions into electrical signals.
 
-**User-friendly description (ja):** キーボードやマウスなどが操作を検出する仕組みを学ぼう。
+**User-friendly description (ja):** キーボードやセンサーなどの機器が操作をコンピューターの入力信号に変える仕組みを調べよう。
 
 ##### 主記憶装置のハードウェア
 

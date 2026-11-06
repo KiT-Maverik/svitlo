@@ -190,7 +190,7 @@ Skills: 4
 
 **Methodological description (English):** Distinguish real changes from drift, limited resolution and random noise.
 
-**User-friendly description (ta):** உணரி அளவீட்டில் சீரற்ற பிழையையும் முறையான சாய்வையும் வேறுபடுத்துங்கள்.
+**User-friendly description (ta):** உணரியின் அளவீட்டுப் பிழை கட்டுப்பாட்டு முடிவை எவ்வாறு பாதிக்கலாம் என்பதை அறிக.
 
 ##### உணரிகளை நிலைநிறுத்துதல்
 
@@ -608,7 +608,7 @@ Skills: 9
 
 **Methodological description (English):** Trace conversion, regulation and distribution of the electrical supply to devices with differing voltage and current needs.
 
-**User-friendly description (ta):** மின் வழங்கி கணினிப் பாகங்களுக்கு ஆற்றலை எவ்வாறு அளிக்கிறது என்பதை அறிக.
+**User-friendly description (ta):** கணினி மின்சக்தியை மாற்றி அதன் கூறுகளுக்குப் பகிர்ந்தளிக்கும் முறையை அறிக.
 
 ##### கணினி வெப்ப மேலாண்மை
 
@@ -624,7 +624,7 @@ Skills: 9
 
 **Methodological description (English):** Identify the physical image-forming panel, drive electronics and light-emission or modulation mechanisms independently from displayed software content.
 
-**User-friendly description (ta):** திரைகள் மின்னணுச் சமிக்ஞைகளைப் புலப்படும் படங்களாக எவ்வாறு மாற்றுகின்றன என்பதை அறிக.
+**User-friendly description (ta):** காட்சித்திரையின் முக்கிய வன்பொருள் கூறுகளையும் அவற்றின் செயல்பாடுகளையும் அடையாளம் காணுங்கள்.
 
 ##### உள்ளீட்டுச் சாதன வன்பொருள்
 
@@ -632,7 +632,7 @@ Skills: 9
 
 **Methodological description (English):** Explain how mechanical switches, touch sensing or pointing-device transducers convert user actions into electrical signals.
 
-**User-friendly description (ta):** விசைப்பலகை, சுட்டி மற்றும் உள்ளீட்டுச் சாதனங்கள் செயல்களை எவ்வாறு உணர்கின்றன என்பதை அறிக.
+**User-friendly description (ta):** விசைப்பலகைகள், உணரிகள் உள்ளிட்ட சாதனங்கள் கணினிக்கு உள்ளீட்டுச் சமிக்ஞைகளை எவ்வாறு வழங்குகின்றன என்பதை ஆராய்க.
 
 ##### முதன்மை நினைவக வன்பொருள்
 

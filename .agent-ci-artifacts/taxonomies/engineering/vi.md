@@ -190,7 +190,7 @@ Skills: 4
 
 **Methodological description (English):** Distinguish real changes from drift, limited resolution and random noise.
 
-**User-friendly description (vi):** Phân biệt sai số ngẫu nhiên và sai lệch hệ thống của phép đo cảm biến.
+**User-friendly description (vi):** Nhận biết sai số cảm biến có thể ảnh hưởng đến quyết định điều khiển như thế nào.
 
 ##### Bố trí cảm biến
 
@@ -608,7 +608,7 @@ Skills: 9
 
 **Methodological description (English):** Trace conversion, regulation and distribution of the electrical supply to devices with differing voltage and current needs.
 
-**User-friendly description (vi):** Tìm hiểu bộ nguồn cung cấp điện cho các bộ phận máy tính thế nào.
+**User-friendly description (vi):** Tìm hiểu cách máy tính chuyển đổi và phân phối điện năng cho các bộ phận.
 
 ##### Quản lý nhiệt máy tính
 
@@ -624,7 +624,7 @@ Skills: 9
 
 **Methodological description (English):** Identify the physical image-forming panel, drive electronics and light-emission or modulation mechanisms independently from displayed software content.
 
-**User-friendly description (vi):** Tìm hiểu màn hình biến tín hiệu điện tử thành hình ảnh nhìn thấy thế nào.
+**User-friendly description (vi):** Nhận biết các bộ phận phần cứng chính của màn hình và chức năng của chúng.
 
 ##### Phần cứng thiết bị nhập
 
@@ -632,7 +632,7 @@ Skills: 9
 
 **Methodological description (English):** Explain how mechanical switches, touch sensing or pointing-device transducers convert user actions into electrical signals.
 
-**User-friendly description (vi):** Tìm hiểu bàn phím, chuột và các thiết bị nhập phát hiện thao tác thế nào.
+**User-friendly description (vi):** Khám phá cách bàn phím, cảm biến và các thiết bị khác chuyển thao tác thành tín hiệu đầu vào của máy tính.
 
 ##### Phần cứng bộ nhớ chính
 

@@ -190,7 +190,7 @@ Skills: 4
 
 **Methodological description (English):** Distinguish real changes from drift, limited resolution and random noise.
 
-**User-friendly description (zh):** 区分传感器测量中的随机误差与系统性偏差。
+**User-friendly description (zh):** 理解传感器误差如何影响控制系统的决策。
 
 ##### 传感器布置
 
@@ -608,7 +608,7 @@ Skills: 9
 
 **Methodological description (English):** Trace conversion, regulation and distribution of the electrical supply to devices with differing voltage and current needs.
 
-**User-friendly description (zh):** 了解电源如何为计算机各个部件供电。
+**User-friendly description (zh):** 了解计算机如何转换电能并向各部件分配电力。
 
 ##### 计算机热管理
 
@@ -624,7 +624,7 @@ Skills: 9
 
 **Methodological description (English):** Identify the physical image-forming panel, drive electronics and light-emission or modulation mechanisms independently from displayed software content.
 
-**User-friendly description (zh):** 了解屏幕如何将电子信号转化为可见图像。
+**User-friendly description (zh):** 识别显示屏的主要硬件部件及其功能。
 
 ##### 输入设备硬件
 
@@ -632,7 +632,7 @@ Skills: 9
 
 **Methodological description (English):** Explain how mechanical switches, touch sensing or pointing-device transducers convert user actions into electrical signals.
 
-**User-friendly description (zh):** 探索键盘、鼠标和其他输入设备如何检测动作。
+**User-friendly description (zh):** 探索键盘、传感器等输入设备如何将操作转换为计算机输入信号。
 
 ##### 主存储器硬件
 
@@ -1300,7 +1300,7 @@ Skills: 4
 
 **User-friendly description (zh):** 学习研究产品使用者的实际活动和使用限制。
 
-##### 识别无障碍障碍
+##### 识别妨碍无障碍使用的因素
 
 [identifyAccessibilityBarriers.data.ts](../../../content/engineering/data/skills/humanCenteredEngineeringAndErgonomics/userNeeds/skills/identifyAccessibilityBarriers.data.ts)
 

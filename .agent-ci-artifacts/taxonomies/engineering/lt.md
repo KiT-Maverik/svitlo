@@ -190,7 +190,7 @@ Skills: 4
 
 **Methodological description (English):** Distinguish real changes from drift, limited resolution and random noise.
 
-**User-friendly description (lt):** Atskirk atsitiktinę paklaidą nuo sisteminio jutiklio rodmenų nuokrypio.
+**User-friendly description (lt):** Atpažink, kaip jutiklio matavimo paklaida gali paveikti valdymo sprendimą.
 
 ##### Jutiklių išdėstymas
 
@@ -354,7 +354,7 @@ Skills: 4
 
 **Methodological description (English):** Separate a transferable mechanism from the organism's particular form or habitat.
 
-**User-friendly description (lt):** Apibūdink biologinį mechanizmą nekopijuodamas nereikšmingų gamtos detalių.
+**User-friendly description (lt):** Apibūdink biologinį mechanizmą, bet nekopijuok nereikšmingų gamtos detalių.
 
 ##### Gamtos principo taikymas projektavime
 
@@ -608,7 +608,7 @@ Skills: 9
 
 **Methodological description (English):** Trace conversion, regulation and distribution of the electrical supply to devices with differing voltage and current needs.
 
-**User-friendly description (lt):** Sužinok, kaip maitinimo šaltinis tiekia energiją kompiuterio dalims.
+**User-friendly description (lt):** Sužinok, kaip kompiuteris keičia ir paskirsto elektros energiją savo dalims.
 
 ##### Kompiuterio šilumos valdymas
 
@@ -624,7 +624,7 @@ Skills: 9
 
 **Methodological description (English):** Identify the physical image-forming panel, drive electronics and light-emission or modulation mechanisms independently from displayed software content.
 
-**User-friendly description (lt):** Sužinok, kaip ekranai paverčia elektroninius signalus matomais vaizdais.
+**User-friendly description (lt):** Atpažink pagrindinius ekrano aparatinės įrangos elementus ir jų funkcijas.
 
 ##### Įvesties įrenginių aparatinė įranga
 
@@ -632,7 +632,7 @@ Skills: 9
 
 **Methodological description (English):** Explain how mechanical switches, touch sensing or pointing-device transducers convert user actions into electrical signals.
 
-**User-friendly description (lt):** Sužinok, kaip klaviatūros, pelės ir kiti įvesties įrenginiai aptinka veiksmus.
+**User-friendly description (lt):** Tyrinėk, kaip klaviatūros, jutikliai ir kiti įrenginiai perduoda įvesties signalus kompiuteriui.
 
 ##### Pagrindinės atminties aparatinė įranga
 
@@ -690,7 +690,7 @@ Skills: 5
 
 **Methodological description (English):** Choose an appropriate sensing method and insertion point for a selected branch.
 
-**User-friendly description (lt):** Matuok srovę grandinėje neteisingai neprijungdama matuoklio.
+**User-friendly description (lt):** Matuok grandinės srovę ir pasirūpink, kad matuoklis būtų prijungtas teisingai.
 
 ##### Matuoti grandinės įtampą
 

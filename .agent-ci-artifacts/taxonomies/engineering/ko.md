@@ -190,7 +190,7 @@ Skills: 4
 
 **Methodological description (English):** Distinguish real changes from drift, limited resolution and random noise.
 
-**User-friendly description (ko):** 센서 측정에서 무작위 오차와 체계적 편향을 구별하세요.
+**User-friendly description (ko):** 센서 오차가 제어 판단에 어떤 영향을 미치는지 알아보세요.
 
 ##### 센서 배치
 
@@ -608,7 +608,7 @@ Skills: 9
 
 **Methodological description (English):** Trace conversion, regulation and distribution of the electrical supply to devices with differing voltage and current needs.
 
-**User-friendly description (ko):** 전원 공급 장치가 컴퓨터 부품에 전력을 공급하는 방법을 알아보세요.
+**User-friendly description (ko):** 컴퓨터가 전력을 변환하고 각 부품에 분배하는 방법을 알아보세요.
 
 ##### 컴퓨터 열 관리
 
@@ -624,7 +624,7 @@ Skills: 9
 
 **Methodological description (English):** Identify the physical image-forming panel, drive electronics and light-emission or modulation mechanisms independently from displayed software content.
 
-**User-friendly description (ko):** 화면이 전자 신호를 보이는 이미지로 바꾸는 방법을 알아보세요.
+**User-friendly description (ko):** 디스플레이의 주요 하드웨어 구성 요소와 그 기능을 알아보세요.
 
 ##### 입력 장치 하드웨어
 
@@ -632,7 +632,7 @@ Skills: 9
 
 **Methodological description (English):** Explain how mechanical switches, touch sensing or pointing-device transducers convert user actions into electrical signals.
 
-**User-friendly description (ko):** 키보드, 마우스 등 입력 장치가 동작을 감지하는 방법을 알아보세요.
+**User-friendly description (ko):** 키보드와 센서 등 입력 장치가 동작을 컴퓨터 입력 신호로 바꾸는 방법을 알아보세요.
 
 ##### 주기억장치 하드웨어
 

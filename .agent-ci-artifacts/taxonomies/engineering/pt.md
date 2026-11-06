@@ -190,7 +190,7 @@ Skills: 4
 
 **Methodological description (English):** Distinguish real changes from drift, limited resolution and random noise.
 
-**User-friendly description (pt):** Diferencie erros aleatórios de desvios sistemáticos nas medições do sensor.
+**User-friendly description (pt):** Reconheça como erros dos sensores podem afetar uma decisão de controle.
 
 ##### Posicionamento de sensores
 
@@ -608,7 +608,7 @@ Skills: 9
 
 **Methodological description (English):** Trace conversion, regulation and distribution of the electrical supply to devices with differing voltage and current needs.
 
-**User-friendly description (pt):** Saiba como a fonte de alimentação fornece energia aos componentes do computador.
+**User-friendly description (pt):** Entenda como um computador converte e distribui energia elétrica aos seus componentes.
 
 ##### Gerenciamento térmico do computador
 
@@ -624,7 +624,7 @@ Skills: 9
 
 **Methodological description (English):** Identify the physical image-forming panel, drive electronics and light-emission or modulation mechanisms independently from displayed software content.
 
-**User-friendly description (pt):** Veja como telas transformam sinais eletrônicos em imagens visíveis.
+**User-friendly description (pt):** Reconheça os principais componentes físicos de uma tela e suas funções.
 
 ##### Hardware dos dispositivos de entrada
 
@@ -632,7 +632,7 @@ Skills: 9
 
 **Methodological description (English):** Explain how mechanical switches, touch sensing or pointing-device transducers convert user actions into electrical signals.
 
-**User-friendly description (pt):** Explore como teclados, mouses e outros dispositivos detectam ações.
+**User-friendly description (pt):** Explore como teclados, sensores e outros dispositivos fornecem sinais de entrada ao computador.
 
 ##### Hardware da memória principal
 
@@ -1130,13 +1130,13 @@ Skills: 7
 
 **User-friendly description (pt):** Entenda como a incerteza de medição pode afetar uma decisão de engenharia.
 
-##### Planear um ensaio de engenharia
+##### Planejar um ensaio de engenharia
 
 [planAnEngineeringTest.data.ts](../../../content/engineering/data/skills/engineeringDesign/testingAndIteration/skills/planAnEngineeringTest.data.ts)
 
 **Methodological description (English):** Define the operating conditions, measurement and pass criterion that will evaluate a requirement.
 
-**User-friendly description (pt):** Planeie um teste com condições de operação claras e resultado mensurável.
+**User-friendly description (pt):** Planeje um teste com condições de operação claras e resultado mensurável.
 
 ##### Rever um projeto com base em evidências
 
@@ -1146,13 +1146,13 @@ Skills: 7
 
 **User-friendly description (pt):** Use os resultados dos testes para justificar alterações no projeto.
 
-##### Validar necessidades dos utilizadores
+##### Validar necessidades dos usuários
 
 [validateUserNeeds.data.ts](../../../content/engineering/data/skills/engineeringDesign/testingAndIteration/skills/validateUserNeeds.data.ts)
 
 **Methodological description (English):** Assess whether the finished or representative solution actually meets the real-world needs of intended users in appropriate conditions, even where formal design requirements have been met.
 
-**User-friendly description (pt):** Verifique se a solução final realmente atende aos utilizadores previstos.
+**User-friendly description (pt):** Verifique se a solução final realmente atende aos usuários previstos.
 
 ##### Verificar requisitos de projeto
 
@@ -1518,7 +1518,7 @@ Skills: 5
 
 **Methodological description (English):** Identify how magnetic attraction can retain a part and when an alternative joint is necessary.
 
-**User-friendly description (pt):** Entenda em que condições ímanes podem fixar um componente.
+**User-friendly description (pt):** Entenda em que condições ímãs podem fixar um componente.
 
 ##### Fixação roscada
 
@@ -1638,7 +1638,7 @@ Skills: 5
 
 **Methodological description (English):** Motion must be supported and limited while interfaces are protected from damaging friction or unintended release.
 
-**User-friendly description (pt):** Descubra as peças que apoiam o movimento e evitam libertações acidentais.
+**User-friendly description (pt):** Descubra as peças que apoiam o movimento e evitam desprendimentos acidentais.
 
 ##### Rolamentos e mancais
 
@@ -1648,13 +1648,13 @@ Skills: 5
 
 **User-friendly description (pt):** Reconheça como um rolamento apoia um eixo em rotação.
 
-##### Mecanismos de travagem
+##### Mecanismos de frenagem
 
 [brakingMechanisms.data.ts](../../../content/engineering/data/skills/mechanismsAndMachines/guidanceAndRetention/skills/brakingMechanisms.data.ts)
 
 **Methodological description (English):** Trace how contact forces or another braking device oppose a rotating component and transfer motion energy into heat or another form.
 
-**User-friendly description (pt):** Acompanhe como os travões reduzem a velocidade de uma peça rotativa.
+**User-friendly description (pt):** Acompanhe como os freios reduzem a velocidade de uma peça rotativa.
 
 ##### Trincos
 
@@ -1712,7 +1712,7 @@ Skills: 3
 
 **Methodological description (English):** Follow useful motion and energy from a prime mover to the working component.
 
-**User-friendly description (pt):** Acompanhe a energia e o movimento do acionamento até ao componente de trabalho.
+**User-friendly description (pt):** Acompanhe a energia e o movimento do acionamento até o componente de trabalho.
 
 #### Conversão do movimento
 
@@ -2338,7 +2338,7 @@ Skills: 5
 
 **Methodological description (English):** Separate the engineered assembly from its users, surroundings and connected external services.
 
-**User-friendly description (pt):** Distinga o sistema estudado do ambiente e de seus utilizadores.
+**User-friendly description (pt):** Distinga o sistema estudado do ambiente e de seus usuários.
 
 ##### Funções dos subsistemas
 
@@ -2430,7 +2430,7 @@ Skills: 4
 
 **Methodological description (English):** Identify inspections, cleaning, adjustments or replacements justified by wear and operating conditions.
 
-**User-friendly description (pt):** Planeie inspeções e manutenção para reduzir falhas previsíveis.
+**User-friendly description (pt):** Planeje inspeções e manutenção para reduzir falhas previsíveis.
 
 ##### Redundância do sistema
 
