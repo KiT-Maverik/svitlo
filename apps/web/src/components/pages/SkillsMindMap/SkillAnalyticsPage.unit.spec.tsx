@@ -25,6 +25,11 @@ describe('Skills page in shared LearningLayout', () => {
     window.history.replaceState({}, '', '/');
   });
 
+  const openSettings = () => {
+    fireEvent.click(screen.getByRole('button', { name: aria.actions.profile }));
+    fireEvent.click(screen.getByRole('menuitem', { name: aria.settingsTitle }));
+  };
+
   it('opens the existing navbar settings drawer and changes page-owned Skill cards', async () => {
     render(
       <ThemeProvider theme={theme}>
@@ -36,8 +41,9 @@ describe('Skills page in shared LearningLayout', () => {
     expect(screen.getByRole('navigation', { name: aria.navigation.top })).toBeInTheDocument();
     expect(screen.queryByRole('button', { name: /Попередня|Назад/ })).not.toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole('button', { name: aria.actions.openSettings }));
+    openSettings();
     const sidebar = await screen.findByRole('complementary', { name: aria.navigation.settings });
+    expect(within(sidebar).getByRole('combobox', { name: ukUiKitMessages.navbarPreferences.language })).toBeVisible();
     expect(within(sidebar).getByRole('region', { name: 'Налаштування сторінки Skills' })).toBeInTheDocument();
     const mapControls = within(sidebar).getByRole('region', { name: 'Керування мапою Skills' });
     expect(within(mapControls).getByRole('button', { name: 'Згорнути все' })).toBeEnabled();
@@ -48,12 +54,12 @@ describe('Skills page in shared LearningLayout', () => {
     fireEvent.click(within(sidebar).getByRole('switch', { name: 'Показувати володіння навичкою' }));
     expect(within(card).getByRole('progressbar')).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: aria.actions.closeSettingsPanel }));
-    expect(screen.getByRole('button', { name: aria.actions.openSettings })).toHaveAttribute('aria-expanded', 'false');
+    expect(screen.getByRole('button', { name: aria.actions.profile })).toHaveAttribute('aria-expanded', 'false');
 
-    fireEvent.click(screen.getByRole('button', { name: aria.actions.openSettings }));
+    openSettings();
     const expandedSidebar = screen.getByRole('complementary', { name: aria.navigation.settings });
     fireEvent.click(within(expandedSidebar).getByRole('button', { name: 'Вмістити в екран' }));
-    expect(screen.getByRole('button', { name: aria.actions.openSettings })).toHaveAttribute('aria-expanded', 'false');
+    expect(screen.getByRole('button', { name: aria.actions.profile })).toHaveAttribute('aria-expanded', 'false');
     expect(screen.getByTestId('skills-map-world')).toBeInTheDocument();
   });
 });

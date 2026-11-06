@@ -18,11 +18,11 @@ function languageForLocale(locale: Locale) {
 
 /** The first code is the UI language; the code after /lesson/ is the lesson language. */
 function lessonRoute(pathname: string) {
-  const match = /^\/([a-z]{2})\/lesson\/(?:([a-z]{2})\/)?([^/]+)\/?$/.exec(pathname);
+  const match = /^\/([a-z]{2})(\/course\/[^/]+)?\/lesson\/(?:([a-z]{2})\/)?([^/]+)\/?$/.exec(pathname);
   if (!match) throw new Error('Unsupported lesson path: ' + pathname);
   const interfaceLanguage = languageForCode(match[1]);
-  const lessonLanguage = languageForCode(match[2] ?? match[1]);
-  return { interfaceLanguage, lessonLanguage, lessonId: match[3] };
+  const lessonLanguage = languageForCode(match[3] ?? match[1]);
+  return { interfaceLanguage, lessonLanguage, lessonId: match[4], routePrefix: match[2] ?? '' };
 }
 
 export function useLessonLanguage() {
@@ -32,17 +32,17 @@ export function useLessonLanguage() {
 export function useLessonLocale() {
   const pathname = usePathname();
   const router = useRouter();
-  const { interfaceLanguage, lessonLanguage, lessonId } = lessonRoute(pathname);
+  const { interfaceLanguage, lessonLanguage, lessonId, routePrefix } = lessonRoute(pathname);
 
   const navigate = useCallback(
     (interfaceCode: string, lessonCode: string) => {
       const params = new URLSearchParams(window.location.search);
       params.delete('lang');
       const query = params.toString();
-      const nextPath = `/${interfaceCode}/lesson/${lessonCode}/${lessonId}`;
+      const nextPath = `/${interfaceCode}${routePrefix}/lesson/${lessonCode}/${lessonId}`;
       router.replace(nextPath + (query ? `?${query}` : ''), { scroll: false });
     },
-    [lessonId, router],
+    [lessonId, routePrefix, router],
   );
 
   const setLocale = useCallback(

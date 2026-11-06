@@ -13,7 +13,6 @@ export type LessonLearningLayoutProps = Pick<
   | 'children'
   | 'topics'
   | 'skippableSteps'
-  | 'quizStep'
   | 'pathname'
   | 'contentLoading'
   | 'contentError'
@@ -23,6 +22,11 @@ export type LessonLearningLayoutProps = Pick<
   | 'renderTopBar'
   | 'renderBottomBar'
   | 'renderEventHost'
+  | 'profile'
+  | 'profiles'
+  | 'onProfileChange'
+  | 'onLogout'
+  | 'settingsContent'
 > & { messages: UiKitMessages };
 
 export type LessonLearningLayoutBindings = {
@@ -42,7 +46,6 @@ export function createLessonLearningLayout(bindings: LessonLearningLayoutBinding
     children,
     topics,
     skippableSteps,
-    quizStep,
     pathname,
     messages,
     contentLoading,
@@ -53,6 +56,11 @@ export function createLessonLearningLayout(bindings: LessonLearningLayoutBinding
     renderTopBar,
     renderBottomBar,
     renderEventHost,
+    profile,
+    profiles,
+    onProfileChange,
+    onLogout,
+    settingsContent,
   }: LessonLearningLayoutProps) {
     const { locale, setLocale, lessonLocale, setLessonLocale } = bindings.useLocale();
     const { mode, systemMode, setMode } = useColorScheme();
@@ -83,12 +91,16 @@ export function createLessonLearningLayout(bindings: LessonLearningLayoutBinding
         onRetryContent={onRetryContent}
         topics={topics}
         skippableSteps={skippableSteps}
-        quizStep={quizStep}
         actions={actions}
         renderTopBar={renderTopBar}
         renderBottomBar={renderBottomBar}
         renderEventHost={renderEventHost}
         preferences={preferences}
+        profile={profile}
+        profiles={profiles}
+        onProfileChange={onProfileChange}
+        onLogout={onLogout}
+        settingsContent={settingsContent}
         linkComponent={bindings.linkComponent}
       >
         {children}

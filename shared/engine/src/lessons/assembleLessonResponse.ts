@@ -2,30 +2,23 @@ import type { LanguageCode } from '@svitlo/contracts/localization';
 import {
   SECTION_TYPES,
   type ContentBlock,
+  type Quiz_Parameters,
+  type Section,
+  type SkillId,
   type Locale_Languages,
-  type Question,
   type Section_Type,
   type ContentBlock_Scene,
   DEFAULT_LESSON_EVENTS,
 } from '@svitlo/contracts/content';
 import { resolveEntityPath } from '../utils/entityPath/resolveEntityPath.utils';
+import { prepareQuizQuestions } from './prepareQuizQuestions';
 
 export type LocaleSource = { code: LanguageCode };
 export type LessonCollection = { data: unknown; localeSources: Record<string, LocaleSource> };
 /** Published section content is already ordered and discriminated. */
 export type LessonContentBlock = ContentBlock<'response', Locale_Languages> & { slug: string };
-export type LessonRenderableBlock = Exclude<LessonContentBlock, { type: 'quiz' }>;
-export type LessonSectionResponse = {
-  id: string;
-  slug: string;
-  type: Section_Type;
-  title: string;
-  navigationLabel: string;
-  skippable?: true;
-  content: LessonContentBlock[];
-  /** Questions referenced by this section's quiz blocks, ready for rendering. */
-  questions: Question<'response', Locale_Languages>[];
-};
+export type LessonRenderableBlock = LessonContentBlock;
+export type LessonSectionResponse = Section<'response', Locale_Languages>;
 export type LessonResponse = {
   id: string;
   slug: string;
@@ -37,6 +30,7 @@ export type LessonResponse = {
     sections: { allowNavigation: boolean; allowSkipping: boolean; showIndexes: boolean };
   };
   flashcards: unknown[];
+  skills: SkillId[];
   questions: Record<string, Record<string, Record<string, unknown>>>;
   sections: LessonSectionResponse[];
   events?: Readonly<Record<string, ContentBlock_Scene<'response', Locale_Languages> | false>>;
@@ -101,7 +95,6 @@ const supportedBlockTypes = new Set([
   'video',
   'youtube',
   'image',
-  'quiz',
 ]);
 
 function assembleBlocks(content: unknown, location: string): LessonContentBlock[] {
@@ -189,49 +182,44 @@ export function assembleLessonResponse(
     if (!SECTION_TYPES.includes(sectionType as Section_Type)) {
       throw new Error('Unsupported section type at ' + where + ': ' + sectionType);
     }
-    const content = assembleBlocks(section.content, relativePath + '/' + sectionSlug + '/content');
-    const quizBlocks = content.filter(block => block.type === 'quiz');
-    if ((sectionType === 'quiz') !== (quizBlocks.length === 1)) {
-      throw new Error('Quiz section type and content disagree at ' + sectionSlug);
-    }
-    const sectionQuestions: Question<'response', Locale_Languages>[] = [];
-    for (const block of quizBlocks) {
-      const slugs = block.questionSlugs;
-      if (
-        !Array.isArray(slugs) ||
-        slugs.some(value => typeof value !== 'string') ||
-        new Set(slugs).size !== slugs.length ||
-        slugs.length === 0
-      ) {
-        throw new Error('Invalid quiz questionSlugs in ' + relativePath + '/' + sectionSlug);
-      }
-      for (const questionSlug of slugs) {
-        const matches = Object.values(indexedQuestions).flatMap(bank =>
-          bank[questionSlug] ? [bank[questionSlug]] : [],
-        );
-        if (matches.length !== 1) {
-          throw new Error(
-            'Quiz references missing or ambiguous question ' + questionSlug + ' in ' + relativePath + '/' + sectionSlug,
-          );
-        }
-        const response = matches[0];
-        const responseType = string(response.type, 'questions.data.' + questionSlug + '.type');
-        if (!(responseType in indexedQuestions)) {
-          throw new Error('Unsupported question response type: ' + responseType);
-        }
-        sectionQuestions.push(response as Question<'response', Locale_Languages>);
-      }
-    }
-    sections.push({
+    const metadata = {
       id: sectionId,
       slug: sectionSlug,
-      type: sectionType as Section_Type,
       title: string(section.title, where + '.title'),
       navigationLabel: string(section.navigationLabel, where + '.navigationLabel'),
       ...(section.skippable === true ? { skippable: true as const } : {}),
-      content,
-      questions: sectionQuestions,
-    });
+    };
+    if (sectionType === 'quiz') {
+      if (section.content !== undefined) throw new Error('Quiz must not contain ContentBlocks at ' + sectionSlug);
+      const parameters = record(section.parameters, where + '.parameters');
+      const selection = record(parameters.selection, where + '.parameters.selection');
+      const layout = record(parameters.layout, where + '.parameters.layout');
+      if (!['all', 'sample'].includes(String(selection.mode))) throw new Error('Invalid Quiz selection at ' + where);
+      if (!['stack', 'stepper'].includes(String(layout.mode))) throw new Error('Invalid Quiz layout at ' + where);
+      if (parameters.isBlocker !== undefined && typeof parameters.isBlocker !== 'boolean')
+        throw new Error('Invalid Quiz isBlocker at ' + where);
+      if (
+        parameters.timeLimitSeconds !== undefined &&
+        (typeof parameters.timeLimitSeconds !== 'number' ||
+          !Number.isSafeInteger(parameters.timeLimitSeconds) ||
+          parameters.timeLimitSeconds <= 0)
+      )
+        throw new Error('Invalid Quiz timeLimitSeconds at ' + where);
+      const quiz = parameters as Quiz_Parameters<'response', Locale_Languages>;
+      sections.push({
+        ...metadata,
+        type: 'quiz',
+        parameters: quiz,
+        questions: prepareQuizQuestions(indexedQuestions, quiz),
+      });
+    } else {
+      if (section.parameters !== undefined) throw new Error('Unexpected Quiz parameters at ' + where);
+      sections.push({
+        ...metadata,
+        type: sectionType as Exclude<Section_Type, 'quiz'>,
+        content: assembleBlocks(section.content, relativePath + '/' + sectionSlug + '/content'),
+      });
+    }
   }
   const defaultEvents: ReadonlySet<string> = new Set(DEFAULT_LESSON_EVENTS);
   const eventScenes: Record<string, ContentBlock_Scene<'response', Locale_Languages> | false> = {};
@@ -262,8 +250,16 @@ export function assembleLessonResponse(
   }
   if (typeof parameters.requireQuiz !== 'boolean') throw new Error('Invalid requireQuiz for ' + slug);
   const quizCount = sections.filter(section => section.type === 'quiz').length;
-  if (quizCount > 1 || (parameters.requireQuiz && quizCount !== 1)) {
-    throw new Error('Lesson ' + relativePath + ' requires exactly one quiz when requireQuiz is true');
+  if (parameters.requireQuiz && quizCount === 0) {
+    throw new Error('Lesson ' + relativePath + ' requires at least one Quiz when requireQuiz is true');
+  }
+  const skills = data.skills;
+  if (
+    !Array.isArray(skills) ||
+    skills.some(value => typeof value !== 'string' || !/^[0-9a-f-]{36}$/i.test(value)) ||
+    new Set(skills).size !== skills.length
+  ) {
+    throw new Error('Invalid Lesson Skill IDs at ' + relativePath);
   }
   return {
     id: string(data.id, 'config.data.id'),
@@ -276,6 +272,7 @@ export function assembleLessonResponse(
       sections: settings as LessonResponse['parameters']['sections'],
     },
     flashcards: flashcards.data,
+    skills: skills as SkillId[],
     questions: indexedQuestions,
     sections,
     ...(data.events !== undefined ? { events: eventScenes } : {}),

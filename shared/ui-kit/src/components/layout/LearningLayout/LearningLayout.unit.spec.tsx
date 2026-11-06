@@ -50,12 +50,13 @@ describe('LearningLayout preparation', () => {
         name: 'Interface settings control',
       }),
     ).not.toBeInTheDocument();
-    fireEvent.click(screen.getByRole('button', { name: uk.actions.openSettings }));
+    fireEvent.click(screen.getByRole('button', { name: uk.actions.profile }));
+    fireEvent.click(screen.getByRole('menuitem', { name: uk.settingsTitle }));
     expect(screen.getByRole('heading', { name: uk.settingsTitle })).toBeVisible();
     expect(screen.getByRole('button', { name: 'Interface settings control' })).toBeVisible();
     expect(screen.getByText('Additional page control')).toBeVisible();
     fireEvent.click(screen.getByRole('button', { name: uk.actions.closeSidebar }));
-    expect(screen.getByRole('button', { name: uk.actions.openSettings })).toHaveAttribute('aria-expanded', 'false');
+    expect(screen.getByRole('button', { name: uk.actions.profile })).toHaveAttribute('aria-expanded', 'false');
   });
 
   it('shows an accessible error and offers retry while keeping lesson content inert', () => {

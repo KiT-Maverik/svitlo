@@ -6,25 +6,23 @@ import { useEffect, useState, type ReactNode, type ElementType, type Dispatch, t
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Drawer from '@mui/material/Drawer';
+import Divider from '@mui/material/Divider';
 import Fade from '@mui/material/Fade';
 import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
-import Tooltip from '@mui/material/Tooltip';
 import { alpha } from '@mui/material/styles';
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import LogoutIcon from '@mui/icons-material/Logout';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import TopNavbar from '../Navigation/TopNavbar';
 import BottomNavbar from '../Navigation/BottomNavbar';
 import { getLocaleDirection, type Locale } from '@svitlo/engine/localization';
 import VerticalSpace from '#widgets/VerticalSpace/VerticalSpace';
+import ProfileMenu, { type LearningProfile } from './ProfileMenu';
 
-export type Topic = { id: string; title: string; href: string };
+export type Topic = { id: string; title: string; href: string; depth?: number };
 export type LearningLayoutProgress = {
   ready: boolean;
   step: number;
@@ -35,14 +33,17 @@ export interface LearningLayoutProps {
   children: ReactNode;
   topics: readonly Topic[];
   skippableSteps?: readonly boolean[];
-  quizStep?: number;
   locale: Locale;
   messages: LearningLayout_Locale;
   pathname: string;
   progress: LearningLayoutProgress;
   actions: { back: () => void; next: () => void; skip: () => void };
-  /** Global controls presented inside the quick-settings drawer. */
+  /** Optional preference controls rendered in the settings drawer. */
   preferences?: ReactNode;
+  profile?: LearningProfile;
+  profiles?: readonly LearningProfile[];
+  onProfileChange?: (profileId: string) => void;
+  onLogout?: () => void;
   /** Optional page-specific controls inside the existing right settings drawer. */
   settingsContent?: ReactNode | ((actions: { closeSettings: () => void }) => ReactNode);
   /** Non-lesson pages can reuse the navbar and sidebars without lesson navigation. */
@@ -57,7 +58,10 @@ export interface LearningLayoutProps {
   renderEventHost?: () => ReactNode;
 }
 
-export type LearningLayoutTopBarProps = Pick<LearningLayoutProps, 'messages' | 'preferences' | 'linkComponent'> & {
+export type LearningLayoutTopBarProps = Pick<
+  LearningLayoutProps,
+  'messages' | 'preferences' | 'linkComponent' | 'profile' | 'profiles' | 'onProfileChange' | 'onLogout'
+> & {
   open: boolean;
   settingsOpen: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -67,7 +71,7 @@ export type LearningLayoutTopBarProps = Pick<LearningLayoutProps, 'messages' | '
 
 export type LearningLayoutBottomBarProps = Pick<
   LearningLayoutProps,
-  'messages' | 'progress' | 'actions' | 'skippableSteps' | 'quizStep' | 'contentLoading'
+  'messages' | 'progress' | 'actions' | 'skippableSteps' | 'contentLoading'
 > & {
   direction: 'ltr' | 'rtl';
   nextDisabled?: boolean;
@@ -79,6 +83,10 @@ export type LearningLayoutBottomBarProps = Pick<
 export function LearningLayoutTopBar({
   messages,
   linkComponent,
+  profile,
+  profiles,
+  onProfileChange,
+  onLogout,
   open,
   settingsOpen,
   setOpen,
@@ -128,33 +136,21 @@ export function LearningLayoutTopBar({
           </>
         ),
         right: (
-          <>
-            <Tooltip title={messages.tooltips.profile}>
-              <Box component="span" sx={{ display: { xs: 'none', sm: 'inline-flex' } }}>
-                <IconButton aria-label={messages.actions.profile} disabled>
-                  <AccountCircleOutlinedIcon />
-                </IconButton>
-              </Box>
-            </Tooltip>
-            <IconButton
-              aria-label={settingsOpen ? messages.actions.closeSettings : messages.actions.openSettings}
-              aria-expanded={settingsOpen}
-              aria-controls={settingsOpen ? 'settings-sidebar' : undefined}
-              onClick={() => {
-                setSettingsOpen(value => !value);
-                setOpen(false);
-              }}
-            >
-              <SettingsOutlinedIcon />
-            </IconButton>
-            <Tooltip title={messages.tooltips.logout}>
-              <Box component="span" sx={{ display: { xs: 'none', sm: 'inline-flex' } }}>
-                <IconButton aria-label={messages.actions.logout} disabled>
-                  <LogoutIcon />
-                </IconButton>
-              </Box>
-            </Tooltip>
-          </>
+          <ProfileMenu
+            messages={messages}
+            profile={profile}
+            profiles={profiles}
+            onProfileChange={onProfileChange}
+            onLogout={onLogout}
+            onOpen={() => {
+              setOpen(false);
+              setSettingsOpen(false);
+            }}
+            onSettings={() => {
+              setOpen(false);
+              setSettingsOpen(true);
+            }}
+          />
         ),
       }}
     />
@@ -166,7 +162,6 @@ export function LearningLayoutBottomBar({
   progress,
   actions,
   skippableSteps = [],
-  quizStep,
   contentLoading = false,
   direction,
   nextDisabled = false,
@@ -188,13 +183,7 @@ export function LearningLayoutBottomBar({
             </Button>
             <Button
               variant="contained"
-              disabled={
-                nextDisabled ||
-                contentLoading ||
-                !progress.ready ||
-                progress.step >= progress.lastStep ||
-                (progress.step === quizStep && !progress.testDone)
-              }
+              disabled={nextDisabled || contentLoading || !progress.ready || progress.step >= progress.lastStep}
               onClick={actions.next}
             >
               {messages.actions.next} {direction === 'rtl' ? '←' : '→'}
@@ -226,13 +215,16 @@ export default function LearningLayout({
   children,
   topics,
   skippableSteps = [],
-  quizStep,
   locale,
   messages,
   pathname,
   progress,
   actions,
   preferences,
+  profile,
+  profiles,
+  onProfileChange,
+  onLogout,
   settingsContent,
   showBottomNavbar = true,
   contentLoading = false,
@@ -276,6 +268,10 @@ export default function LearningLayout({
           messages,
           preferences,
           linkComponent,
+          profile,
+          profiles,
+          onProfileChange,
+          onLogout,
           open,
           settingsOpen,
           setOpen,
@@ -286,6 +282,10 @@ export default function LearningLayout({
           messages={messages}
           preferences={preferences}
           linkComponent={linkComponent}
+          profile={profile}
+          profiles={profiles}
+          onProfileChange={onProfileChange}
+          onLogout={onLogout}
           open={open}
           settingsOpen={settingsOpen}
           setOpen={setOpen}
@@ -357,7 +357,7 @@ export default function LearningLayout({
                         selected={pathname === topic.href}
                         aria-current={pathname === topic.href ? 'page' : undefined}
                         onClick={() => setOpen(false)}
-                        sx={{ borderRadius: 2 }}
+                        sx={{ borderRadius: 2, ps: 2 + Math.min(topic.depth ?? 0, 4) * 2 }}
                       >
                         <ListItemText primary={topic.title} />
                       </ListItemButton>
@@ -412,12 +412,11 @@ export default function LearningLayout({
             </Box>
             <Box sx={{ flex: 1, minHeight: 0, overflowY: 'auto', p: 2 }}>
               {preferences}
+              {preferences && settingsContent && <Divider sx={{ my: 2 }} />}
               {typeof settingsContent === 'function'
                 ? settingsContent({ closeSettings: () => setSettingsOpen(false) })
-                : settingsContent}
-              {!preferences && !settingsContent && (
-                <Typography color="text.secondary">{messages.settingsDescription}</Typography>
-              )}
+                : (settingsContent ??
+                  (!preferences && <Typography color="text.secondary">{messages.settingsDescription}</Typography>))}
             </Box>
           </Box>
         </Drawer>
@@ -500,7 +499,6 @@ export default function LearningLayout({
             progress,
             actions,
             skippableSteps,
-            quizStep,
             contentLoading,
             direction,
           })
@@ -510,7 +508,6 @@ export default function LearningLayout({
             progress={progress}
             actions={actions}
             skippableSteps={skippableSteps}
-            quizStep={quizStep}
             contentLoading={contentLoading}
             direction={direction}
           />

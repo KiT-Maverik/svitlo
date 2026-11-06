@@ -40,6 +40,15 @@ describe('independent lesson and interface locales from route', () => {
     expect(replace).toHaveBeenCalledWith(`/uk/lesson/ar/${lessonId}`, { scroll: false });
   });
 
+  it('keeps the course context while switching either language', () => {
+    vi.mocked(usePathname).mockReturnValue(`/uk/course/course-one/lesson/en/${lessonId}`);
+    const { result } = renderHook(() => useLessonLocale());
+    act(() => result.current.setLocale('fr-FR'));
+    expect(replace).toHaveBeenCalledWith(`/fr/course/course-one/lesson/en/${lessonId}`, { scroll: false });
+    act(() => result.current.setLessonLocale('de-DE'));
+    expect(replace).toHaveBeenCalledWith(`/uk/course/course-one/lesson/de/${lessonId}`, { scroll: false });
+  });
+
   it('upgrades legacy URLs to the explicit lesson locale on selection', () => {
     vi.mocked(usePathname).mockReturnValue(`/uk/lesson/${lessonId}`);
     const { result } = renderHook(() => useLessonLocale());

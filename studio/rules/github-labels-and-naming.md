@@ -38,6 +38,10 @@ Consult the catalog for exact label names and colors. Content scopes use parchme
 
 **Distinguish architecture from feature and refactor:** Use `work: architecture` for system design or architectural changes to module boundaries, contracts, data models, composition, dependency direction, or runtime data flows. Use `work: feature` for new user-facing or technical capabilities, and `work: refactor` for reorganizing implementation without intentionally changing its architecture or behavior. Architecture-only work must not be labeled `work: feature` solely because it adds technical infrastructure. Apply both labels only when the change genuinely includes both architecture work and a new capability.
 
+## Draft pull requests for coding agents
+
+Coding Agents **must create every PR as a GitHub Draft** (`draft: true`), whether it is a regular PR, an integration PR, or an agent subtask. Keep it in Draft after implementation and automated checks; only mark it Ready for review when the project owner explicitly requests that transition. This is the PR's native state, not a title prefix or a label.
+
 ## 3. Application requirements
 
 1. **At creation:** classify each new Issue and PR with the applicable scope label(s) (`content: *`, `app: *`, `backend: *`, `shared: *`, `studio`, `repo: *`) and `work: *` labels. Add relevant labels from other groups when appropriate. Creating labels in GitHub or adding names to the catalog does **not** apply them automatically to existing items.

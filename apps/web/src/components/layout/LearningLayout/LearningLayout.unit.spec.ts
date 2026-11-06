@@ -51,15 +51,21 @@ describe('Layouts', () => {
       expect(LearningLayout_fx.selectors.topAction(aria.actions.openTopics)).toHaveAttribute('aria-expanded', 'false');
     });
 
+    it('should show only the profile action on the right side of the navbar', () => {
+      LearningLayout_fx.render();
+      const right = LearningLayout_fx.navbar.slot('right', LearningLayout_fx.selectors.top());
+      expect(within(right).getAllByRole('button')).toHaveLength(1);
+      expect(within(right).getByRole('button', { name: aria.actions.profile })).toBeEnabled();
+      expect(within(right).queryByRole('combobox')).not.toBeInTheDocument();
+    });
+
     it('should keep settings and topics mutually exclusive', async () => {
       LearningLayout_fx.render();
       await LearningLayout_fx.actions.openTopics();
       await LearningLayout_fx.actions.openSettings();
-      expect(await screen.findByRole('heading', { name: locale.settingsTitle })).toBeVisible();
-      expect(LearningLayout_fx.selectors.topAction(aria.actions.closeSettings)).toHaveAttribute(
-        'aria-expanded',
-        'true',
-      );
+      expect(await screen.findByRole('combobox', { name: ukUiKitMessages.navbarPreferences.language })).toBeVisible();
+      expect(LearningLayout_fx.selectors.settings()).toBeVisible();
+      expect(LearningLayout_fx.selectors.topAction(aria.actions.profile)).toHaveAttribute('aria-expanded', 'false');
       expect(LearningLayout_fx.selectors.topAction(aria.actions.openTopics)).toHaveAttribute('aria-expanded', 'false');
     });
 

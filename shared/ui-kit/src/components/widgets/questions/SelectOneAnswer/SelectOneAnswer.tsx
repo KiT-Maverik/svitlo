@@ -2,6 +2,8 @@
 
 import type { UiKitMessages } from '#types/uiKitMessages';
 import { Stack } from '@mui/material';
+import { useContext } from 'react';
+import { QuestionCompletionContext } from '../response/QuestionCompletion';
 import type { Question_SelectOneAnswer, Locale_Languages } from '@svitlo/engine/content';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
 import { QuestionChoice } from '../response/QuestionChoice';
@@ -17,7 +19,8 @@ export function SelectOneAnswer({
   sceneRegistry?: SceneRegistry;
   messages: UiKitMessages;
 }) {
-  const options = [
+  const completion = useContext(QuestionCompletionContext);
+  const optionsUnordered = [
     ...Object.entries(response.answers.correct).map(([slug, block]) => ({
       id: 'correct:' + slug,
       block,
@@ -34,6 +37,9 @@ export function SelectOneAnswer({
       correct: false,
     })),
   ];
+  const options = response.answerOrder
+    ? [...optionsUnordered].sort((a, b) => response.answerOrder!.indexOf(a.id) - response.answerOrder!.indexOf(b.id))
+    : optionsUnordered;
   const attempt = useQuestionAttempt<string | null>(
     () => null,
     value => options.some(option => option.id === value && option.correct),
@@ -44,15 +50,24 @@ export function SelectOneAnswer({
       <Stack spacing={1} role="group" aria-label={questionLabel(response.question) || response.id}>
         {options.map(option => {
           const selected = attempt.value === option.id;
-          const feedback = attempt.checked
-            ? option.correct
-              ? selected
-                ? 'correct'
-                : 'missed'
-              : selected
-                ? 'incorrect'
-                : undefined
-            : undefined;
+          const showFeedback =
+            !completion.parameters || completion.parameters.feedbackMode === 'immediate' || completion.revealFeedback;
+          const feedback =
+            attempt.checked && showFeedback
+              ? option.correct
+                ? selected
+                  ? completion.parameters?.interaction.showCorrectAnswers === false
+                    ? undefined
+                    : 'correct'
+                  : completion.parameters?.interaction.showCorrectAnswers === false
+                    ? undefined
+                    : 'missed'
+                : selected
+                  ? completion.parameters?.interaction.showErrors === false
+                    ? undefined
+                    : 'incorrect'
+                  : undefined
+              : undefined;
           return (
             <QuestionChoice
               key={option.id}

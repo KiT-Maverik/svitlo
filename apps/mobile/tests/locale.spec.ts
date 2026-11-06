@@ -24,14 +24,16 @@ test('mobile lesson language can differ from its interface language', async ({ p
   await page.goto('/uk/lesson/en/' + supported!.id);
   await expect(page.locator('html')).toHaveAttribute('lang', 'uk-UA');
   await expect(page.locator('#learning-content [lang="en-US"]').first()).toBeVisible();
-  await page.getByRole('button', { name: 'Відкрити налаштування' }).click();
+  await page.getByRole('button', { name: 'Профіль' }).click();
+  await page.getByRole('menuitem', { name: 'Швидкі налаштування' }).click();
   await expect(page.getByRole('combobox', { name: 'Мова уроку' })).toBeVisible();
 });
 
 test('mobile quick settings switches the actual color scheme', async ({ page }) => {
   await page.goto('/');
   await page.getByRole('link').first().click();
-  await page.getByRole('button', { name: 'Відкрити налаштування' }).click();
+  await page.getByRole('button', { name: 'Профіль' }).click();
+  await page.getByRole('menuitem', { name: 'Швидкі налаштування' }).click();
   const switcher = page.getByRole('switch', { name: 'Темна тема' });
   await expect
     .poll(() =>

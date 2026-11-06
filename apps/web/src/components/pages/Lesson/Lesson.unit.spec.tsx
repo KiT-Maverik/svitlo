@@ -26,7 +26,7 @@ const messages = {} as UiKitMessages;
 const response = {
   id: 'lesson-one',
   sections: [{ content: [{ type: 'scene', id: 'scene-one' }] }, { content: [{ type: 'scene', id: 'scene-two' }] }],
-} as LessonResponse;
+} as unknown as LessonResponse; // Minimal scene-discovery fixture; other response fields are not read.
 
 describe('Web lesson preparation', () => {
   beforeEach(() => vi.clearAllMocks());
@@ -34,15 +34,7 @@ describe('Web lesson preparation', () => {
   it('keeps the learning area preparing until all lesson scenes have loaded', async () => {
     const pending = new Map<string, () => void>();
     vi.mocked(preloadScene).mockImplementation(id => new Promise<void>(resolve => pending.set(id, resolve)));
-    render(
-      <WebLesson
-        response={response}
-        locale="uk-UA"
-        lessonLocale="uk-UA"
-        href="/uk/lesson/lesson-one"
-        messages={messages}
-      />,
-    );
+    render(<WebLesson response={response} locale="uk-UA" href="/uk/lesson/lesson-one" messages={messages} />);
 
     expect(screen.getByTestId('lesson-ready')).toHaveTextContent('preparing');
     expect(preloadScene).toHaveBeenCalledWith('scene-one');
@@ -59,15 +51,7 @@ describe('Web lesson preparation', () => {
   it('retains the loading gate after a failed chunk and recovers when retried', async () => {
     vi.mocked(preloadScene).mockRejectedValueOnce(new Error('Chunk loading failed')).mockResolvedValue(undefined);
 
-    render(
-      <WebLesson
-        response={response}
-        locale="uk-UA"
-        lessonLocale="uk-UA"
-        href="/uk/lesson/lesson-one"
-        messages={messages}
-      />,
-    );
+    render(<WebLesson response={response} locale="uk-UA" href="/uk/lesson/lesson-one" messages={messages} />);
 
     const retry = await screen.findByRole('button', { name: 'retry' });
     expect(screen.getByTestId('lesson-ready')).not.toHaveTextContent('ready');
@@ -79,15 +63,7 @@ describe('Web lesson preparation', () => {
 
   it('handles an unknown scene ID as an error, not as ready', async () => {
     vi.mocked(preloadScene).mockRejectedValue(new Error('Unregistered scene id'));
-    render(
-      <WebLesson
-        response={response}
-        locale="uk-UA"
-        lessonLocale="uk-UA"
-        href="/uk/lesson/lesson-one"
-        messages={messages}
-      />,
-    );
+    render(<WebLesson response={response} locale="uk-UA" href="/uk/lesson/lesson-one" messages={messages} />);
     expect(await screen.findByRole('button', { name: 'retry' })).toBeVisible();
     expect(screen.getByTestId('lesson-ready')).not.toHaveTextContent('ready');
   });

@@ -30,18 +30,22 @@ function sceneIds(value: unknown): string[] {
 /** Next.js bindings and textbook-owned scene registry: no reusable UI lives here. */
 export default function WebLesson({
   response,
+  locale,
   lessonLocale,
   href,
   messages,
+  topics,
 }: {
   response: LessonResponse;
   locale: Locale;
-  lessonLocale: Locale;
+  lessonLocale?: Locale;
   href: string;
   messages: UiKitMessages;
+  topics?: readonly { id: string; title: string; href: string; depth?: number }[];
 }) {
+  const contentLocale = lessonLocale ?? locale;
   const ids = useMemo(() => sceneIds([response.sections, response.events]), [response.sections, response.events]);
-  const requestKey = `${response.id}:${lessonLocale}`;
+  const requestKey = `${href}:${response.id}:${contentLocale}`;
   const [prepared, setPrepared] = useState<{
     key: string;
     status: 'loading' | 'ready' | 'error';
@@ -72,12 +76,13 @@ export default function WebLesson({
   }, [ids, requestKey, current.attempt]);
 
   return (
-    <SceneLocaleProvider locale={lessonLocale}>
+    <SceneLocaleProvider locale={contentLocale}>
       <ImageRendererProvider renderer={NextImageRenderer}>
         <Lesson
           response={response}
           href={href}
           messages={messages}
+          topics={topics}
           layout={Layout}
           sceneRegistry={resolveScene}
           contentLoading={current.status !== 'ready'}
