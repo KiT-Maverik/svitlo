@@ -10,14 +10,14 @@ import { loadPublishedUiKitMessages } from './publishedUiKitMessages';
 
 /** Only the framework-specific route shape is Next.js-owned. */
 export type LessonPageInput = {
-  params: Promise<{ language: string; lessonId: string }>;
+  params: Promise<{ language: string; lessonLanguage?: string; lessonId: string }>;
 };
 
 /** The textbook supplies its published JSON loader and scene-bound Lesson renderer. */
 export type LessonPageBindings<Response extends { id: string; title: string }> = {
   loadLesson: (id: string, language: LanguageCode) => Promise<Response>;
   loadMessages: (locale: Locale) => Promise<UiKitMessages>;
-  renderLesson: (props: { response: Response; locale: Locale; href: string; messages: UiKitMessages }) => ReactElement;
+  renderLesson: (props: { response: Response; locale: Locale; lessonLocale: Locale; href: string; messages: UiKitMessages }) => ReactElement;
 };
 
 /**
@@ -28,9 +28,12 @@ export function createLessonPage<Response extends { id: string; title: string }>
   bindings: LessonPageBindings<Response>,
 ) {
   const load = cache(async ({ params }: LessonPageInput) => {
-    const { language: code, lessonId } = await params;
+    const { language: code, lessonLanguage: requestedLessonLanguage, lessonId } = await params;
     const descriptor = DEFAULT_SUPPORTED_LANGUAGES.find(entry => entry.language === code);
-    if (!descriptor) notFound();
+    const lessonDescriptor = DEFAULT_SUPPORTED_LANGUAGES.find(
+      entry => entry.language === (requestedLessonLanguage ?? code),
+    );
+    if (!descriptor || !lessonDescriptor) notFound();
 
     let id: string;
     try {
@@ -40,10 +43,17 @@ export function createLessonPage<Response extends { id: string; title: string }>
     }
 
     const [response, messages] = await Promise.all([
-      bindings.loadLesson(id, descriptor.language),
+      bindings.loadLesson(id, lessonDescriptor.language),
       bindings.loadMessages(descriptor.locale),
     ]);
-    return { response, messages, locale: descriptor.locale, code: descriptor.language };
+    return {
+      response,
+      messages,
+      locale: descriptor.locale,
+      lessonLocale: lessonDescriptor.locale,
+      code: descriptor.language,
+      lessonCode: lessonDescriptor.language,
+    };
   });
 
   async function generateMetadata(props: LessonPageInput): Promise<Metadata> {
@@ -52,12 +62,13 @@ export function createLessonPage<Response extends { id: string; title: string }>
   }
 
   async function LocalizedLesson(props: LessonPageInput): Promise<ReactElement> {
-    const { response, messages, locale, code } = await load(props);
+    const { response, messages, locale, lessonLocale, code, lessonCode } = await load(props);
     return bindings.renderLesson({
       response,
       messages,
       locale,
-      href: `/${code}/lesson/${response.id}`,
+      lessonLocale,
+      href: `/${code}/lesson/${lessonCode}/${response.id}`,
     });
   }
 
