@@ -30,7 +30,6 @@ function sceneIds(value: unknown): string[] {
 /** Next.js bindings and textbook-owned scene registry: no reusable UI lives here. */
 export default function WebLesson({
   response,
-  locale,
   lessonLocale,
   href,
   messages,
