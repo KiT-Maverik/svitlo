@@ -55,7 +55,7 @@ export const marinePropulsion_Skill_Data = buildSkillConfig({
       ta: 'கப்பல் இயந்திரமும் சுழலியும் கப்பலை எவ்வாறு நகர்த்துகின்றன என்பதை அறிக.',
       te: 'నౌక ఇంజిన్లు, ప్రొపెల్లర్లు ఓడను ఎలా కదిలిస్తాయో తెలుసుకోండి.',
       mr: 'जहाजाचे इंजिन आणि प्रोपेलर जहाज कसे पुढे नेतात ते जाणून घ्या.',
-      ms: 'Ketahui cara enjin dan kipas kapal menggerakkan kapal.',
+      ms: 'Ketahui cara enjin dan baling-baling menggerakkan kapal.',
       he: 'גלו כיצד מנועים ומדחפים מניעים כלי שיט.',
       pl: 'Prześledź, jak silniki i śruby napędowe poruszają statek.',
       uk: 'Простежуй, як суднові двигуни й гвинти рухають судно.',
