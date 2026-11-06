@@ -63,9 +63,7 @@ describe('Layouts', () => {
       LearningLayout_fx.render();
       await LearningLayout_fx.actions.openTopics();
       await LearningLayout_fx.actions.openSettings();
-      expect(
-        await screen.findByRole('combobox', { name: ukUiKitMessages.navbarPreferences.language }),
-      ).toBeVisible();
+      expect(await screen.findByRole('combobox', { name: ukUiKitMessages.navbarPreferences.language })).toBeVisible();
       expect(LearningLayout_fx.selectors.settings()).toBeVisible();
       expect(LearningLayout_fx.selectors.topAction(aria.actions.profile)).toHaveAttribute('aria-expanded', 'false');
       expect(LearningLayout_fx.selectors.topAction(aria.actions.openTopics)).toHaveAttribute('aria-expanded', 'false');

@@ -415,7 +415,8 @@ export default function LearningLayout({
               {preferences && settingsContent && <Divider sx={{ my: 2 }} />}
               {typeof settingsContent === 'function'
                 ? settingsContent({ closeSettings: () => setSettingsOpen(false) })
-                : (settingsContent ?? (!preferences && <Typography color="text.secondary">{messages.settingsDescription}</Typography>))}
+                : (settingsContent ??
+                  (!preferences && <Typography color="text.secondary">{messages.settingsDescription}</Typography>))}
             </Box>
           </Box>
         </Drawer>

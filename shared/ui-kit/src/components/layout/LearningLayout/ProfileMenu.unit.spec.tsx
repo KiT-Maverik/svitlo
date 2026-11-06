@@ -24,7 +24,10 @@ describe('ProfileMenu', () => {
     expect(trigger).toHaveAttribute('aria-expanded', 'true');
     expect(screen.getByRole('menu', { name: messages.actions.profile })).toBeVisible();
     expect(screen.getByText(messages.actions.profile)).toBeVisible();
-    expect(screen.getByRole('menuitem', { name: messages.actions.switchProfile })).toHaveAttribute('aria-disabled', 'true');
+    expect(screen.getByRole('menuitem', { name: messages.actions.switchProfile })).toHaveAttribute(
+      'aria-disabled',
+      'true',
+    );
     expect(screen.getByRole('menuitem', { name: messages.actions.logout })).toHaveAttribute('aria-disabled', 'true');
   });
 

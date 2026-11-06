@@ -126,7 +126,11 @@ export default function ProfileMenu({
       >
         <Box sx={{ px: 3, pt: 2, pb: 2, display: 'flex', alignItems: 'center', flexDirection: 'column', gap: 1 }}>
           {avatar(64)}
-          <Typography component="span" variant="subtitle1" sx={{ fontWeight: 700, overflowWrap: 'anywhere', textAlign: 'center' }}>
+          <Typography
+            component="span"
+            variant="subtitle1"
+            sx={{ fontWeight: 700, overflowWrap: 'anywhere', textAlign: 'center' }}
+          >
             {displayName}
           </Typography>
         </Box>
@@ -138,9 +142,14 @@ export default function ProfileMenu({
           onClick={() => setExpanded(value => !value)}
           sx={{ py: 1.25 }}
         >
-          <ListItemIcon><ManageAccountsOutlinedIcon fontSize="small" /></ListItemIcon>
+          <ListItemIcon>
+            <ManageAccountsOutlinedIcon fontSize="small" />
+          </ListItemIcon>
           <ListItemText>{messages.actions.switchProfile}</ListItemText>
-          <ExpandMoreRoundedIcon fontSize="small" sx={{ transform: expanded ? 'rotate(180deg)' : 'none', transition: 'transform 180ms' }} />
+          <ExpandMoreRoundedIcon
+            fontSize="small"
+            sx={{ transform: expanded ? 'rotate(180deg)' : 'none', transition: 'transform 180ms' }}
+          />
         </MenuItem>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <Box id={`${menuId}-profiles`} role="group" aria-label={messages.actions.switchProfile}>
@@ -165,12 +174,16 @@ export default function ProfileMenu({
           </Box>
         </Collapse>
         <MenuItem onClick={showSettings} sx={{ py: 1.25 }}>
-          <ListItemIcon><SettingsOutlinedIcon fontSize="small" /></ListItemIcon>
+          <ListItemIcon>
+            <SettingsOutlinedIcon fontSize="small" />
+          </ListItemIcon>
           <ListItemText>{messages.settingsTitle}</ListItemText>
         </MenuItem>
         <Divider />
         <MenuItem disabled={!onLogout} onClick={logout} sx={{ py: 1.25 }}>
-          <ListItemIcon><LogoutRoundedIcon fontSize="small" /></ListItemIcon>
+          <ListItemIcon>
+            <LogoutRoundedIcon fontSize="small" />
+          </ListItemIcon>
           <ListItemText>{messages.actions.logout}</ListItemText>
         </MenuItem>
       </Menu>
