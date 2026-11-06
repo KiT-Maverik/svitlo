@@ -38,7 +38,7 @@ function OutlineItem({ item, depth, messages }: { item: CourseOutlineItem; depth
     <Box component="li" id={item.id} sx={{ listStyle: 'none', minWidth: 0 }}>
       <Box
         component={item.href ? 'a' : 'div'}
-        href={item.href}
+        {...(item.href ? { href: item.href } : {})}
         sx={{
           display: 'flex', alignItems: 'center', gap: 1.5,
           px: 2, py: isGroup ? 2 : 1.5,
@@ -61,7 +61,7 @@ function OutlineItem({ item, depth, messages }: { item: CourseOutlineItem; depth
         {item.href && <ArrowForwardRounded aria-hidden="true" color="primary" sx={{ 'html[dir="rtl"] &': { transform: 'scaleX(-1)' } }} />}
       </Box>
       {!!item.children?.length && (
-        <Box component="ol" sx={{ m: 0, p: 0, ms: { xs: 1.5, sm: 3 }, ps: 1.5, borderInlineStart: '1px solid', borderColor: 'divider' }}>
+        <Box component="ol" sx={{ m: 0, p: 0, marginInlineStart: { xs: 1.5, sm: 3 }, paddingInlineStart: 1.5, borderInlineStart: '1px solid', borderColor: 'divider' }}>
           {item.children.map(child => <OutlineItem key={child.id} item={child} depth={depth + 1} messages={messages} />)}
         </Box>
       )}
