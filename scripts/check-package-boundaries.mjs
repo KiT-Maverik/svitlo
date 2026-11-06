@@ -28,17 +28,36 @@ function assert(condition, message) {
 }
 // Only the universal hosts are Next.js/Electron/Capacitor applications.
 const migratedTextbookPaths = [
-  'content/math', 'content/physics', 'content/psychology', 'content/philosophy',
-  'content/language-literature', 'content/languages/ukrainian',
+  'content/math',
+  'content/physics',
+  'content/psychology',
+  'content/philosophy',
+  'content/language-literature',
+  'content/languages/ukrainian',
+  'content/astronomy',
+  'content/biology',
+  'content/geography',
+  'content/history',
+  'content/informatics',
 ];
 for (const path of migratedTextbookPaths) {
   const pkg = readJson(path + '/package.json');
   const id = pkg.name.slice('@svitlo/'.length);
   assert(pkg.name === '@svitlo/' + id, 'Unexpected textbook package name: ' + path);
-  assert(!pkg.dependencies?.next && !existsSync(resolve(root, path, 'src/app')), 'Standalone Next.js shell remains: ' + path);
+  assert(
+    !pkg.dependencies?.next && !existsSync(resolve(root, path, 'src/app')),
+    'Standalone Next.js shell remains: ' + path,
+  );
   assert(pkg.bin?.['svitlo-' + id] === './scripts/publish.mjs', 'Missing textbook Publish CLI: ' + path);
-  assert(pkg.exports?.['.']?.default === './dist/textbook/index.js' && pkg.exports?.['.']?.types === './dist/textbook/index.d.ts', 'Book must expose compiled metadata: ' + path);
-  assert(!pkg.exports?.['./scenes'] && !pkg.exports?.['./styles'], 'Do not publish fabricated Scenes or styles: ' + path);
+  assert(
+    pkg.exports?.['.']?.default === './dist/textbook/index.js' &&
+      pkg.exports?.['.']?.types === './dist/textbook/index.d.ts',
+    'Book must expose compiled metadata: ' + path,
+  );
+  assert(
+    !pkg.exports?.['./scenes'] && !pkg.exports?.['./styles'],
+    'Do not publish fabricated Scenes or styles: ' + path,
+  );
 }
 assert(platform.name === '@svitlo/platform', 'Unexpected Platform package name');
 assert(
@@ -101,7 +120,8 @@ for (const [label, manifest] of [
   ['Playground', playground],
 ]) {
   assert(manifest.dependencies?.[engine.name] === engine.version, label + ' must use public Engine dependency');
-  if (label === 'Playground') assert(manifest.dependencies?.[uiKit.name] === uiKit.version, label + ' must use public UI Kit dependency');
+  if (label === 'Playground')
+    assert(manifest.dependencies?.[uiKit.name] === uiKit.version, label + ' must use public UI Kit dependency');
 }
 assert(existsSync(resolve(root, 'content/math/data/skills')), 'Math textbook is missing its canonical Skills taxonomy');
 assert(existsSync(resolve(root, 'content/math/docs')), 'Math textbook is missing package-local educational docs');
