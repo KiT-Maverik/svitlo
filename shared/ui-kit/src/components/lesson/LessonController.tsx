@@ -341,6 +341,7 @@ export function LessonController({
     [response.events],
   );
   const availableEventsRef = useRef(availableEvents);
+  const quizEmitted = useRef(new Set<string>());
   const lessonStarted = useRef(false);
   const lessonFinished = useRef(false);
   const latest = useRef(state);
@@ -362,7 +363,8 @@ export function LessonController({
   const finishQuiz = useCallback(
     (sectionId: string | undefined, passed: boolean) => {
       const id = sectionId ?? response.sections.find(section => section.type === 'quiz')?.id;
-      if (!id) return;
+      if (!id || quizEmitted.current.has(id)) return;
+      quizEmitted.current.add(id);
       dispatch({ type: 'quizDone', sectionId: id });
       emit('quizCompleted');
       if (!passed) emit('quizFailed');

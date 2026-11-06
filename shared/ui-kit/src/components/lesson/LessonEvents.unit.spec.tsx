@@ -48,7 +48,7 @@ function Layout({ messages, ...props }: LessonLearningLayoutProps) {
       >
         Discover twice
       </button>
-      <button onClick={actions.completeQuiz}>Complete quiz</button>
+      <button onClick={() => actions.completeQuiz('quiz-section')}>Complete quiz</button>
       <LearningLayout {...props} messages={messages.learningLayout} locale="en-US" />
     </>
   );
@@ -68,17 +68,19 @@ function response(): LessonView {
     sections: [
       {
         id: 'section-a',
+        slug: 'section-a',
         type: 'theory',
+        title: 'First',
         navigationLabel: 'First',
-        content: [{ id: 'text-a', slug: 'firstText', type: 'text', value: 'First section' }],
-        questions: [],
+        content: [{ id: 'text-a', type: 'text', value: 'First section' }],
       },
       {
         id: 'section-b',
+        slug: 'section-b',
         type: 'theory',
+        title: 'Second',
         navigationLabel: 'Second',
-        content: [{ id: 'text-b', slug: 'secondText', type: 'text', value: 'Second section' }],
-        questions: [],
+        content: [{ id: 'text-b', type: 'text', value: 'Second section' }],
       },
     ],
   } as LessonView;
@@ -143,7 +145,22 @@ describe('Lesson events', () => {
   });
 
   it('emits quizCompleted through the existing controller action', () => {
-    showLesson();
+    const base = response();
+    const quiz = {
+      id: 'quiz-section', slug: 'quiz-section', type: 'quiz' as const,
+      title: 'Quiz', navigationLabel: 'Quiz',
+      parameters: {
+        selection: { mode: 'all' as const },
+        layout: { mode: 'stack' as const },
+        feedbackMode: 'immediate' as const,
+        interaction: { retries: 0, showErrors: true, showCorrectAnswers: true,
+          allowExplanations: true, allowDeferring: false, allowQuestionNavigation: false, skippable: false },
+        results: { visibility: 'hidden' as const, showScore: false },
+        screen: {},
+      },
+      questions: [],
+    };
+    showLesson(undefined, { ...base, sections: [...base.sections, quiz] });
     fireEvent.click(screen.getByRole('button', { name: 'Complete quiz' }));
     fireEvent.click(screen.getByRole('button', { name: 'Complete quiz' }));
     expect(received.filter(id => id === 'quizCompleted')).toHaveLength(1);
