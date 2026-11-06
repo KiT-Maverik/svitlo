@@ -12,6 +12,7 @@ import type { LessonLearningLayoutProps } from '../layout/LearningLayout/createL
 import { LessonNavigationProvider, useLessonNavigation } from './LessonNavigation';
 import { LessonSteps } from './LessonSteps';
 import styles from './Lesson.module.css';
+import StepperContext from "@mui/material/Stepper/StepperContext";
 
 export type LessonContentBlock = ContentBlock<'response', Locale_Languages> & { slug: string };
 
@@ -60,6 +61,22 @@ function LessonBody({
   );
   return (
     <>
+      <LessonOperationalContext>
+      <LessonDataContext>
+        <TopBarContext>
+          TopBar
+        </TopBarContext>
+        <StepperContext>
+          Stepper
+        </StepperContext>
+        <SectionContext>
+          Section
+        </SectionContext>
+        <BottomBarContext>
+          BottomBar
+        </BottomBarContext>
+      </LessonDataContext>
+      </LessonOperationalContext>
       <LessonSteps
         navigationLabel={messages.lesson.steps.navigation}
         steps={response.sections.map(item => ({ id: item.id, title: item.navigationLabel }))}
