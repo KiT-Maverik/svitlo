@@ -14,20 +14,28 @@ export function languageForLocale(locale: Locale): LanguageCode {
 }
 
 export type MobileRoute =
-  { type: 'home' } | { type: 'lesson'; id: string; language: LanguageCode } | { type: 'not-found' };
+  | { type: 'home' }
+  | { type: 'lesson'; id: string; language: LanguageCode; lessonLanguage: LanguageCode }
+  | { type: 'not-found' };
 
 export function parseRoute(pathname: string): MobileRoute {
   if (pathname === '/' || pathname === '/index.html') return { type: 'home' };
-  const match = /^\/([a-z]{2})\/lesson\/([0-9a-f-]+)\/?$/.exec(pathname);
-  if (!match || !localeForLanguage(match[1])) return { type: 'not-found' };
+  const match = /^\/([a-z]{2})\/lesson\/(?:([a-z]{2})\/)?([0-9a-f-]+)\/?$/.exec(pathname);
+  if (!match || !localeForLanguage(match[1]) || !localeForLanguage(match[2] ?? match[1]))
+    return { type: 'not-found' };
   try {
-    resolveEntityPath(match[2]);
+    resolveEntityPath(match[3]);
   } catch {
     return { type: 'not-found' };
   }
-  return { type: 'lesson', language: match[1] as LanguageCode, id: match[2] };
+  return {
+    type: 'lesson',
+    language: match[1] as LanguageCode,
+    lessonLanguage: (match[2] ?? match[1]) as LanguageCode,
+    id: match[3],
+  };
 }
 
-export function lessonHref(language: LanguageCode, id: string): string {
-  return '/' + language + '/lesson/' + resolveEntityPath(id).split('/')[1];
+export function lessonHref(language: LanguageCode, id: string, lessonLanguage: LanguageCode = language): string {
+  return '/' + language + '/lesson/' + lessonLanguage + '/' + resolveEntityPath(id).split('/')[1];
 }
