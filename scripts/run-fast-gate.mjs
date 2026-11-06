@@ -97,8 +97,14 @@ function runGate(changed) {
   for (const f of plan.jsFiles) exec('node', ['--check', f]);
   for (const f of plan.jsonFiles) json(f);
   exec('node', ['--test', 'scripts/check-skills-taxonomy-structure.spec.mjs', 'scripts/run-fast-gate.spec.mjs']);
-  if (changed.some(f => f.startsWith('scripts/textbook-tooling/generate-scenes') ||
-    f.startsWith('content/playground/scenes/') || f === 'content/playground/package.json')) {
+  if (
+    changed.some(
+      f =>
+        f.startsWith('scripts/textbook-tooling/generate-scenes') ||
+        f.startsWith('content/playground/scenes/') ||
+        f === 'content/playground/package.json',
+    )
+  ) {
     exec('node', ['--test', 'scripts/textbook-tooling/generate-scenes.spec.mjs']);
   }
   if (
@@ -197,14 +203,26 @@ function runGate(changed) {
   // Run its build once and both package-scoped resource/consumer checks.
   for (const subject of ['math', 'physics', 'psychology', 'philosophy', 'language-literature', 'ukrainian']) {
     const pkg = all.get('@svitlo/' + subject);
-    if (!pkg || !changed.some(file => file.startsWith(pkg.path + '/')) &&
-        !(changed.some(file => file.startsWith('scripts/textbook-tooling/')) && ['math', 'ukrainian'].includes(subject))) continue;
+    if (
+      !pkg ||
+      (!changed.some(file => file.startsWith(pkg.path + '/')) &&
+        !(
+          changed.some(file => file.startsWith('scripts/textbook-tooling/')) && ['math', 'ukrainian'].includes(subject)
+        ))
+    )
+      continue;
     ensureSharedDependencies(pkg.name);
     exec('npm', ['run', 'build', '--workspace', pkg.name]);
-    exec('node', ['--test', path.join(repoRoot, 'scripts/textbook-tooling/test-publish.mjs')],
-      path.join(repoRoot, pkg.path));
-    exec('node', [path.join(repoRoot, 'scripts/textbook-tooling/check-portability.mjs')],
-      path.join(repoRoot, pkg.path));
+    exec(
+      'node',
+      ['--test', path.join(repoRoot, 'scripts/textbook-tooling/test-publish.mjs')],
+      path.join(repoRoot, pkg.path),
+    );
+    exec(
+      'node',
+      [path.join(repoRoot, 'scripts/textbook-tooling/check-portability.mjs')],
+      path.join(repoRoot, pkg.path),
+    );
   }
 
   const textbookTaxonomyChanged = targets.some(name => {

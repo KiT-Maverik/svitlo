@@ -3,7 +3,17 @@
  * Canonical Node.js textbook build pipeline. Run via each content package's
  * npm "build" script. Not part of the textbook's runtime or packed source.
  */
-import { existsSync, readFileSync, readdirSync, mkdirSync, rmSync, copyFileSync, cpSync, writeFileSync, chmodSync } from 'node:fs';
+import {
+  existsSync,
+  readFileSync,
+  readdirSync,
+  mkdirSync,
+  rmSync,
+  copyFileSync,
+  cpSync,
+  writeFileSync,
+  chmodSync,
+} from 'node:fs';
 import { dirname, join, relative, resolve, sep } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
@@ -13,8 +23,7 @@ const root = resolve(process.cwd());
 const repo = resolve(fileURLToPath(new URL('../..', import.meta.url)));
 const id = root.split(sep).at(-1);
 const packageDirectory = relative(repo, root).split(sep).join('/');
-if (!/^content\/(?:[a-z][a-z-]*|languages\/[a-z][a-z-]*)$/.test(packageDirectory) ||
-    !/^[a-z][a-z-]*$/.test(id)) {
+if (!/^content\/(?:[a-z][a-z-]*|languages\/[a-z][a-z-]*)$/.test(packageDirectory) || !/^[a-z][a-z-]*$/.test(id)) {
   throw new Error('Run the shared textbook build from a content textbook workspace');
 }
 const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
@@ -33,13 +42,15 @@ function run(program, args, cwd = repo) {
 }
 function filesUnder(folder, prefix = '') {
   if (!existsSync(folder)) return [];
-  return readdirSync(folder, { withFileTypes: true }).flatMap(item => {
-    if (item.isSymbolicLink()) throw new Error('Symlink in textbook inputs: ' + item.name);
-    const name = prefix ? prefix + '/' + item.name : item.name;
-    if (item.isDirectory()) return filesUnder(join(folder, item.name), name);
-    if (!item.isFile()) throw new Error('Unexpected textbook artifact: ' + name);
-    return [name];
-  }).sort();
+  return readdirSync(folder, { withFileTypes: true })
+    .flatMap(item => {
+      if (item.isSymbolicLink()) throw new Error('Symlink in textbook inputs: ' + item.name);
+      const name = prefix ? prefix + '/' + item.name : item.name;
+      if (item.isDirectory()) return filesUnder(join(folder, item.name), name);
+      if (!item.isFile()) throw new Error('Unexpected textbook artifact: ' + name);
+      return [name];
+    })
+    .sort();
 }
 const authored = folder => filesUnder(join(root, folder)).some(name => name.endsWith('.data.ts'));
 
@@ -48,9 +59,9 @@ const authored = folder => filesUnder(join(root, folder)).some(name => name.ends
 for (const [workspace, compiled] of [
   ['@svitlo/contracts', 'shared/contracts/dist/index.js'],
   ['@svitlo/engine', 'shared/engine/dist/index.js'],
-  ...(hasScenes || hasStyles || pkg.dependencies?.['@svitlo/ui-kit'] ||
-       pkg.devDependencies?.['@svitlo/ui-kit']
-    ? [['@svitlo/ui-kit', 'shared/ui-kit/dist/src/index.js']] : []),
+  ...(hasScenes || hasStyles || pkg.dependencies?.['@svitlo/ui-kit'] || pkg.devDependencies?.['@svitlo/ui-kit']
+    ? [['@svitlo/ui-kit', 'shared/ui-kit/dist/src/index.js']]
+    : []),
 ]) {
   if (!existsSync(join(repo, compiled))) run('npm', ['run', 'build', '--workspace', workspace]);
 }
@@ -77,19 +88,28 @@ const common = {
   assetNames: 'assets/[name]-[hash]',
   metafile: true,
   logLevel: 'warning',
-  plugins: hasStyles ? [{
-    name: 'textbook-css-modules',
-    setup(builder) {
-      builder.onLoad({ filter: /\.module\.css$/ }, async args => ({
-        contents: readFileSync(args.path, 'utf8'),
-        resolveDir: dirname(args.path),
-        loader: 'local-css',
-      }));
-    },
-  }] : [],
+  plugins: hasStyles
+    ? [
+        {
+          name: 'textbook-css-modules',
+          setup(builder) {
+            builder.onLoad({ filter: /\.module\.css$/ }, async args => ({
+              contents: readFileSync(args.path, 'utf8'),
+              resolveDir: dirname(args.path),
+              loader: 'local-css',
+            }));
+          },
+        },
+      ]
+    : [],
   loader: {
-    '.svg': 'file', '.png': 'file', '.jpg': 'file', '.jpeg': 'file',
-    '.webp': 'file', '.gif': 'file', '.woff2': 'file',
+    '.svg': 'file',
+    '.png': 'file',
+    '.jpg': 'file',
+    '.jpeg': 'file',
+    '.webp': 'file',
+    '.gif': 'file',
+    '.woff2': 'file',
   },
 };
 const metadata = await build({ ...common, entryPoints: { 'textbook/index': 'textbook.ts' } });
@@ -105,17 +125,18 @@ if (hasScenes) {
 }
 if (hasStyles) {
   const css = filesUnder(dist).filter(name => name.endsWith('.css'));
-  writeFileSync(join(dist, 'styles.css'),
-    css.map(name => '@import "./' + name + '";').join('\n') + '\n');
+  writeFileSync(join(dist, 'styles.css'), css.map(name => '@import "./' + name + '";').join('\n') + '\n');
 }
 
 run('npx', ['tsc', '-p', packageDirectory + '/tsconfig.declarations.json']);
 for (const [from, to] of [
   ['textbook.d.ts', 'textbook/index.d.ts'],
-  ...(hasScenes ? [
-    ['scenes/index.d.ts', 'scenes/index.d.ts'],
-    ['scenes/sceneLoader.d.ts', 'scenes/sceneLoader.d.ts'],
-  ] : []),
+  ...(hasScenes
+    ? [
+        ['scenes/index.d.ts', 'scenes/index.d.ts'],
+        ['scenes/sceneLoader.d.ts', 'scenes/sceneLoader.d.ts'],
+      ]
+    : []),
 ]) {
   const input = join(dist, '.declarations', from);
   if (!existsSync(input)) throw new Error('Missing compiled declaration: ' + from);
@@ -129,8 +150,14 @@ for (const [source, generator, target] of [
   ['data/skills', 'scripts/generators/pages/skillAnalytics/generate-skill-analytics.mjs', 'data/pages/skillAnalytics'],
 ]) {
   if (!authored(source)) continue;
-  run(process.execPath, [generator, '--package', packageDirectory,
-    '--output', relative(repo, join(resources, target)), '--write']);
+  run(process.execPath, [
+    generator,
+    '--package',
+    packageDirectory,
+    '--output',
+    relative(repo, join(resources, target)),
+    '--write',
+  ]);
 }
 const sourcePublic = join(root, 'public');
 if (existsSync(sourcePublic)) {
@@ -150,19 +177,32 @@ for (const [source, prefix] of [
     throw new Error('Authored ' + source + ' did not produce published JSON for ' + id);
   }
 }
-writeFileSync(join(dist, 'manifest.json'),
-  JSON.stringify({ version: 1, textbook: id, files: published }, null, 2) + '\n');
+writeFileSync(
+  join(dist, 'manifest.json'),
+  JSON.stringify({ version: 1, textbook: id, files: published }, null, 2) + '\n',
+);
 
 for (const name of filesUnder(dist).filter(name => name.endsWith('.js'))) {
   const js = readFileSync(join(dist, name), 'utf8');
-  if (/from\s*['"]@\//.test(js) || /import\s*\(\s*['"]@\//.test(js) ||
-      /import\s+['"][^'"]*\.data\.ts['"]/.test(js) || /from\s*['"]next\//.test(js)) {
+  if (
+    /from\s*['"]@\//.test(js) ||
+    /import\s*\(\s*['"]@\//.test(js) ||
+    /import\s+['"][^'"]*\.data\.ts['"]/.test(js) ||
+    /from\s*['"]next\//.test(js)
+  ) {
     throw new Error('Non-portable runtime import in dist/' + name);
   }
 }
 // Self-contained CLI is copied into the package, not imported from the monorepo.
 copyFileSync(join(repo, 'scripts/textbook-tooling/publish.mjs'), join(dist, 'publish.mjs'));
 chmodSync(join(dist, 'publish.mjs'), 0o755);
-console.log('Compiled ' + id + ': ' + published.length + ' static resources; ' +
-  (Object.keys(metadata.metafile.outputs).length +
-   (sceneResult ? Object.keys(sceneResult.metafile.outputs).length : 0)) + ' ESM outputs');
+console.log(
+  'Compiled ' +
+    id +
+    ': ' +
+    published.length +
+    ' static resources; ' +
+    (Object.keys(metadata.metafile.outputs).length +
+      (sceneResult ? Object.keys(sceneResult.metafile.outputs).length : 0)) +
+    ' ESM outputs',
+);
