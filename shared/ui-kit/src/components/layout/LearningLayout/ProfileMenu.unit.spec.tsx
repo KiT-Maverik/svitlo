@@ -24,8 +24,8 @@ describe('ProfileMenu', () => {
     expect(trigger).toHaveAttribute('aria-expanded', 'true');
     expect(screen.getByRole('menu', { name: messages.actions.profile })).toBeVisible();
     expect(screen.getByText(messages.actions.profile)).toBeVisible();
-    expect(screen.getByRole('menuitem', { name: messages.actions.switchProfile })).toBeDisabled();
-    expect(screen.getByRole('menuitem', { name: messages.actions.logout })).toBeDisabled();
+    expect(screen.getByRole('menuitem', { name: messages.actions.switchProfile })).toHaveAttribute('aria-disabled', 'true');
+    expect(screen.getByRole('menuitem', { name: messages.actions.logout })).toHaveAttribute('aria-disabled', 'true');
   });
 
   it('shows the current avatar and display name, then expands and switches profiles', async () => {
@@ -45,7 +45,7 @@ describe('ProfileMenu', () => {
     expect(switchItem).toBeEnabled();
     await userEvent.click(switchItem);
     expect(switchItem).toHaveAttribute('aria-expanded', 'true');
-    expect(screen.getByRole('menuitem', { name: active.displayName })).toBeDisabled();
+    expect(screen.getByRole('menuitem', { name: active.displayName })).toHaveAttribute('aria-disabled', 'true');
     await userEvent.click(screen.getByRole('menuitem', { name: second.displayName }));
     expect(onProfileChange).toHaveBeenCalledExactlyOnceWith('two');
     expect(screen.queryByRole('menu')).not.toBeInTheDocument();
