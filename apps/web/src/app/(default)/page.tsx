@@ -24,6 +24,9 @@ export default function Home() {
               {textbook.featuredCourseLabel}
             </Button>
           )}
+          <Button variant="outlined" href="/uk/courses">
+            Усі курси
+          </Button>
           {!!textbook.skillAnalyticsDomains?.length && (
             <Button variant="contained" color="secondary" href="/skillAnalytics">
               Аналітика навичок
