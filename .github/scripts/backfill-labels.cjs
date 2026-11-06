@@ -7,9 +7,10 @@ module.exports = async function backfill({ github, context, core, shard, shards 
   const catalogue = require('../labels.json');
   const knownLabels = new Set(catalogue.map(({ name }) => name));
   // Scope names determine paths; label descriptions are display text, not routing config.
-  const scoped = catalogue.filter(label =>
-    (/(content|app|backend|shared|repo): /.test(label.name) && label.name !== 'repo: general') ||
-    label.name === 'studio'
+  const scoped = catalogue.filter(
+    label =>
+      (/(content|app|backend|shared|repo): /.test(label.name) && label.name !== 'repo: general') ||
+      label.name === 'studio',
   );
   const scopePaths = scoped.map(({ name }) => {
     if (name === 'studio') return { name, prefixes: ['studio/'] };
@@ -112,8 +113,7 @@ module.exports = async function backfill({ github, context, core, shard, shards 
     const resolved = target.filter(label => label !== 'repo: general' || !existingScoped);
     const toAdd = resolved.filter(label => knownLabels.has(label) && !existing.has(label));
     const removeRepo =
-      (existingScoped || resolved.some(label => scopeNames.has(label))) &&
-      existing.has('repo: general');
+      (existingScoped || resolved.some(label => scopeNames.has(label))) && existing.has('repo: general');
     const wrongRole = target.includes('pr: agent-subtask')
       ? 'pr: integration'
       : target.includes('pr: integration')

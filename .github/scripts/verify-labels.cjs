@@ -18,8 +18,10 @@ for (const { name, color, description } of labels) {
 }
 assert.ok(names.has('repo: general'), 'Missing fallback repo: general');
 const ruleNames = [...matcher.matchAll(/^'([^']+)':\s*$/gm)].map(match => match[1]);
-const scopeLabels = labels.filter(label =>
-  (/^(shared|repo|content|app|backend): /.test(label.name) && label.name !== 'repo: general') || label.name === 'studio'
+const scopeLabels = labels.filter(
+  label =>
+    (/^(shared|repo|content|app|backend): /.test(label.name) && label.name !== 'repo: general') ||
+    label.name === 'studio',
 );
 for (const label of scopeLabels) {
   assert.ok(ruleNames.includes(label.name), 'Missing auto-labeler rule: ' + label.name);
@@ -35,9 +37,8 @@ const scope = (prefix, dir) => {
     const name = prefix + ': ' + entry.name;
     assert.ok(names.has(name), 'Missing label for ' + dir + '/' + entry.name + '/: ' + name);
     assert.ok(
-      matcher.includes("'" + name + "':") &&
-      matcher.includes("'" + dir + '/' + entry.name + "/**'"),
-      'Missing path rule for ' + name
+      matcher.includes("'" + name + "':") && matcher.includes("'" + dir + '/' + entry.name + "/**'"),
+      'Missing path rule for ' + name,
     );
   }
 };
@@ -51,5 +52,4 @@ assert.ok(matcher.includes("'scripts/**'"), 'Missing repository scripts rule');
 assert.ok(matcher.includes("'studio/**'"), 'Missing Studio rule');
 assert.ok(!labels.some(label => label.name.startsWith('area: ')), 'Legacy area labels must be migrated');
 assert.ok(matcher.includes("'frontend/platform/**'"), 'Legacy platform path must be supported');
-console.log('Validated ' + labels.length + ' label definitions and ' +
-  ruleNames.length + ' auto-labeler rules');
+console.log('Validated ' + labels.length + ' label definitions and ' + ruleNames.length + ' auto-labeler rules');

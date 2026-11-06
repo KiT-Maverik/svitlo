@@ -12,11 +12,7 @@ test('historical backfill resolves all scoped paths and preserves existing scope
       head: { ref: 'update-lesson' },
       base: { ref: 'main' },
       labels: [],
-      files: [
-        'content/math/data/lessons/example.ts',
-        'apps/web/src/app.ts',
-        'shared/adapters/src/index.ts',
-      ],
+      files: ['content/math/data/lessons/example.ts', 'apps/web/src/app.ts', 'shared/adapters/src/index.ts'],
     },
     {
       number: 102,
@@ -105,7 +101,12 @@ test('historical backfill resolves all scoped paths and preserves existing scope
   await backfill({
     github,
     context: { repo: { owner: 'KiT-Maverik', repo: 'svitlo-web' } },
-    core: { info() {}, error(message) { throw new Error(message); } },
+    core: {
+      info() {},
+      error(message) {
+        throw new Error(message);
+      },
+    },
     shard: 0,
     shards: 1,
   });
