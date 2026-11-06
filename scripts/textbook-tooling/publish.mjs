@@ -32,7 +32,9 @@ function owned(name) {
   return (
     typeof name === 'string' &&
     !isAbsolute(name) &&
-    /^(?:data\/pages\/lessons|data\/pages\/skillAnalytics|textbooks\/[a-z][a-z-]*)\/[a-zA-Z0-9_./-]+$/.test(name) &&
+    /^(?:data\/pages\/lessons|data\/pages\/courses|data\/pages\/skillAnalytics|textbooks\/[a-z][a-z-]*)\/[a-zA-Z0-9_./-]+$/.test(
+      name,
+    ) &&
     (name.startsWith('data/') || name.startsWith('textbooks/' + id + '/')) &&
     name.split('/').every(part => part && part !== '.' && part !== '..')
   );
