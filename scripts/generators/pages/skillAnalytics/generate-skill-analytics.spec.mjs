@@ -23,7 +23,10 @@ test('one self-contained Skill Analytics page payload per supported language', (
   assert.equal(files.has('index.json'), false);
   const uk = JSON.parse(files.get('uk.json'));
   assert.deepEqual(Object.keys(uk), ['domains']);
-  assert.equal(uk.domains.length, 2);
+  assert.equal(uk.domains.length, 3);
+  const light = uk.domains.find(domain => domain.slug === 'testLight');
+  assert.equal(light.children.length, 1);
+  assert.equal(light.children[0].children[0].slug, 'testExplainLightTravel');
   const domain = uk.domains.find(domain => domain.slug === 'testColors');
   assert.equal(domain.collection, 'skillDomain');
   assert.equal(domain.children.length, 2);
