@@ -79,10 +79,10 @@ describe('LessonController scoped state and navigation', () => {
     showLesson();
     const bottom = screen.getByRole('navigation', { name: enUiKitMessages.learningLayout.navigation.bottom });
     const steps = screen.getByRole('navigation', { name: enUiKitMessages.lesson.steps.navigation });
-    const next = () => within(bottom).getByRole('button', {
+    const next = within(bottom).getByRole('button', {
       name: new RegExp(enUiKitMessages.learningLayout.actions.next, 'i'),
     });
-    expect(next()).toBeDisabled();
+    expect(next).toBeDisabled();
     expect(
       within(bottom).getByRole('button', { name: new RegExp(enUiKitMessages.learningLayout.actions.skip, 'i') }),
     ).toBeDisabled();
@@ -180,7 +180,7 @@ describe('multiple Quiz Sections', () => {
         messages={enUiKitMessages} layout={TestLayout} />,
     );
     const bottom = screen.getByRole('navigation', { name: enUiKitMessages.learningLayout.navigation.bottom });
-    const next = within(bottom).getByRole('button', {
+    const next = () => within(bottom).getByRole('button', {
       name: new RegExp(enUiKitMessages.learningLayout.actions.next, 'i'),
     });
     expect(next()).toBeDisabled();
