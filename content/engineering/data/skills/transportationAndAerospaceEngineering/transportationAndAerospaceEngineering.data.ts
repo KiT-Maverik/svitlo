@@ -19,7 +19,7 @@ export const transportationAndAerospaceEngineering_SkillDomain_Data = buildSkill
     pt: 'Engenharia de transportes e aeroespacial',
     ur: 'نقل و حمل اور خلائی انجینئرنگ',
     id: 'Teknik transportasi dan kedirgantaraan',
-    de: 'Verkehrs- und Luft- und Raumfahrttechnik',
+    de: 'Verkehrs-, Luft- und Raumfahrttechnik',
     ja: '交通・航空宇宙工学',
     ko: '교통 및 항공우주 공학',
     tr: 'Ulaştırma ve havacılık-uzay mühendisliği',

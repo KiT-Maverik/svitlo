@@ -57,7 +57,7 @@ export const createADimensionedDrawing_Skill_Data = buildSkillConfig({
       mr: 'भागाचे नियोजित आकारमान दाखवणाऱ्या मापांसह रेखाचित्र काढ.',
       ms: 'Lukis komponen dengan ukuran yang menunjukkan saiz yang dikehendaki.',
       he: 'שרטטו חלק עם מידות המבהירות את גודלו המיועד.',
-      pl: 'Narysuj część z wymiarami wskazującymi planowaną wielkość.',
+      pl: 'Narysuj część i podaj jej projektowane wymiary.',
       uk: 'Накресли деталь і познач її заплановані розміри.',
       lt: 'Nubraižyk detalę su matmenimis, parodančiais numatytą dydį.',
       lv: 'Uzzīmē detaļu ar izmēriem, kas norāda paredzēto lielumu.',

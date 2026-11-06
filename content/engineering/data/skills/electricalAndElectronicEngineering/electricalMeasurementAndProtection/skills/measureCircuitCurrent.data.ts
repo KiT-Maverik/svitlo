@@ -57,7 +57,7 @@ export const measureCircuitCurrent_Skill_Data = buildSkillConfig({
       mr: 'मीटर चुकीचा न जोडता परिपथातील विद्युतप्रवाह मोजा.',
       ms: 'Ukur arus dalam litar tanpa menyambung meter secara salah.',
       he: 'מדדו זרם במעגל בלי לחבר את המכשיר באופן שגוי.',
-      pl: 'Zmierz prąd w obwodzie bez nieprawidłowego podłączenia miernika.',
+      pl: 'Zmierz natężenie prądu w wybranej gałęzi obwodu, prawidłowo podłączając miernik.',
       uk: 'Вимірюй струм у потрібній гілці кола, правильно під’єднавши вимірювальний прилад.',
       lt: 'Matuok srovę grandinėje neteisingai neprijungdama matuoklio.',
       lv: 'Mēri strāvu ķēdē, nepareizi nepieslēdzot mēraparātu.',
