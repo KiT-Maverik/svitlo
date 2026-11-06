@@ -27,9 +27,9 @@ test('generates stable, statically analyzable and lazy Scene imports', async t =
   const { root, loader } = fixture(t);
   assert.equal(await syncSceneRegistry(root, '--write', '@svitlo/example'), 2);
   const source = readFileSync(loader, 'utf8');
-  assert.match(source, /import\('\.\/a\/alpha-scene'\)/);
-  assert.match(source, /import\('\.\/b\/beta-scene'\)/);
-  assert.match(source, /from '\.\/createSceneRegistry'/);
+  assert.match(source, /import\(["']\.\/a\/alpha-scene["']\)/);
+  assert.match(source, /import\(["']\.\/b\/beta-scene["']\)/);
+  assert.match(source, /from ["']\.\/createSceneRegistry["']/);
   assert.match(source, /export const preloadScene/);
   assert.match(source, /export const resolveScene/);
   assert(source.indexOf('alpha-scene') < source.indexOf('beta-scene'));

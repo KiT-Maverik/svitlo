@@ -54,7 +54,11 @@ for (const [workspace, compiled] of [
 ]) {
   if (!existsSync(join(repo, compiled))) run('npm', ['run', 'build', '--workspace', workspace]);
 }
-if (hasScenes) run(process.execPath, [join(repo, 'scripts/textbook-tooling/generate-scenes.mjs'), '--check'], root);
+// Some textbooks expose placeholder Scene registries before authoring real Scenes.
+// Enable generated-registry verification explicitly via the shared npm check.
+if (hasScenes && pkg.scripts?.['check:scenes']) {
+  run(process.execPath, [join(repo, 'scripts/textbook-tooling/generate-scenes.mjs'), '--check'], root);
+}
 
 rmSync(dist, { recursive: true, force: true });
 mkdirSync(resources, { recursive: true });

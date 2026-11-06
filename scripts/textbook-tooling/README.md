@@ -13,8 +13,10 @@ The implementation lives here, **not** in UI Kit (rendering) or Engine
 - check-portability.mjs validates tarballs in an isolated ESM consumer.
 - test-publish.mjs covers security, ownership, repeat runs, and host assets.
 - generate-scenes.mjs owns the deterministic, static/lazy Scene Registry for any
-  textbook with a `./scenes` public export. Build validates its current output;
-  each textbook can keep `generate:scenes` and `check:scenes` npm commands.
+  textbook with real authored Scenes. Books opt in by defining `check:scenes`
+  (and `generate:scenes`) npm commands pointing to this shared script; their
+  build then validates the generated registry. Scaffold-only Scene exports can
+  remain empty until actual Scenes are authored.
 
 Each textbook preserves its npm scripts and svitlo-<textbook> CLI bin name.
 The generated Scene Registry and actual Scenes remain textbook-owned. The
