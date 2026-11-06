@@ -186,7 +186,7 @@ export default function UserCabinet({
         <Stack spacing={3}>
           <Box>
             <Stack direction="row" alignItems="center" gap={1.5} flexWrap="wrap">
-              <Typography component="h1" variant="h4" fontWeight={800}>
+              <Typography component="h1" variant="h4" sx={{ fontWeight: 800 }}>
                 {messages.title}
               </Typography>
               <Chip label={messages.demoBadge} size="small" variant="outlined" color="warning" />
@@ -201,7 +201,7 @@ export default function UserCabinet({
               <Stack direction="row" alignItems="center" gap={2.5} flexWrap="wrap">
                 <ProfileAvatar avatar={avatarById(savedProfile.avatarId)} displayName={savedProfile.displayName} size={80} />
                 <Box sx={{ minWidth: 0 }}>
-                  <Typography component="h2" variant="h5" fontWeight={750} sx={{ overflowWrap: 'anywhere' }}>
+                  <Typography component="h2" variant="h5" sx={{ fontWeight: 750, overflowWrap: 'anywhere' }}>
                     {savedProfile.displayName}
                   </Typography>
                   <Typography variant="body2" color="text.secondary" sx={{ overflowWrap: 'anywhere' }}>
@@ -237,12 +237,12 @@ export default function UserCabinet({
                 <CardContent sx={{ p: { xs: 2.5, sm: 4 }, '&:last-child': { pb: { xs: 2.5, sm: 4 } } }}>
                   <Stack spacing={3}>
                     <Box>
-                      <Typography component="h2" variant="h5" fontWeight={700}>{messages.profileTitle}</Typography>
+                      <Typography component="h2" variant="h5" sx={{ fontWeight: 700 }}>{messages.profileTitle}</Typography>
                       <Typography color="text.secondary" variant="body2">{messages.profileDescription}</Typography>
                     </Box>
                     <Divider />
                     <Box>
-                      <Typography component="h3" variant="subtitle1" fontWeight={700}>{messages.avatarTitle}</Typography>
+                      <Typography component="h3" variant="subtitle1" sx={{ fontWeight: 700 }}>{messages.avatarTitle}</Typography>
                       <Typography color="text.secondary" variant="body2" sx={{ mb: 2 }}>{messages.avatarDescription}</Typography>
                       <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.5 }}>
                         {avatars.map(option => {
@@ -270,7 +270,7 @@ export default function UserCabinet({
                               }}
                             >
                               <ProfileAvatar avatar={option} displayName={draft.displayName} size={54} />
-                              <Typography variant="caption" fontWeight={selected ? 700 : 400}>{option.label}</Typography>
+                              <Typography variant="caption" sx={{ fontWeight: selected ? 700 : 400 }}>{option.label}</Typography>
                               {selected && <CheckCircleRoundedIcon aria-hidden="true" color="primary" sx={{ position: 'absolute', insetBlockStart: 2, insetInlineEnd: 2, fontSize: 18 }} />}
                             </ButtonBase>
                           );
@@ -321,7 +321,7 @@ export default function UserCabinet({
                 <CardContent sx={{ p: { xs: 2.5, sm: 4 }, '&:last-child': { pb: { xs: 2.5, sm: 4 } } }}>
                   <Stack spacing={3}>
                     <Box>
-                      <Typography component="h2" variant="h5" fontWeight={700}>{messages.securityTitle}</Typography>
+                      <Typography component="h2" variant="h5" sx={{ fontWeight: 700 }}>{messages.securityTitle}</Typography>
                       <Typography color="text.secondary" variant="body2">{messages.securityDescription}</Typography>
                     </Box>
                     <Divider />
@@ -368,7 +368,7 @@ export default function UserCabinet({
                 <CardContent sx={{ p: { xs: 2.5, sm: 4 }, '&:last-child': { pb: { xs: 2.5, sm: 4 } } }}>
                   <Stack spacing={2.5}>
                     <Box>
-                      <Typography component="h2" variant="h5" fontWeight={700}>{messages.accountsTitle}</Typography>
+                      <Typography component="h2" variant="h5" sx={{ fontWeight: 700 }}>{messages.accountsTitle}</Typography>
                       <Typography color="text.secondary" variant="body2">{messages.accountsDescription}</Typography>
                     </Box>
                     <Divider />
@@ -378,7 +378,7 @@ export default function UserCabinet({
                           <Stack direction="row" alignItems="center" spacing={2}>
                             <ProfileAvatar avatar={avatarById(savedProfile.avatarId)} displayName={savedProfile.displayName} size={52} />
                             <Box sx={{ minWidth: 0, flex: 1 }}>
-                              <Typography fontWeight={700} sx={{ overflowWrap: 'anywhere' }}>{savedProfile.displayName}</Typography>
+                              <Typography sx={{ fontWeight: 700, overflowWrap: 'anywhere' }}>{savedProfile.displayName}</Typography>
                               <Typography color="text.secondary" variant="body2">{messages.accountRoles.owner}</Typography>
                             </Box>
                             <Chip size="small" label={messages.currentAccount} color="primary" variant="outlined" />
@@ -391,7 +391,7 @@ export default function UserCabinet({
                             <Stack direction="row" alignItems="center" spacing={2}>
                               <ProfileAvatar avatar={avatarById(account.avatarId)} displayName={account.displayName} size={52} />
                               <Box sx={{ minWidth: 0 }}>
-                                <Typography fontWeight={700} sx={{ overflowWrap: 'anywhere' }}>{account.displayName}</Typography>
+                                <Typography sx={{ fontWeight: 700, overflowWrap: 'anywhere' }}>{account.displayName}</Typography>
                                 <Typography color="text.secondary" variant="body2">{account.subtitle}</Typography>
                                 <Typography color="text.secondary" variant="caption">{messages.accountRoles[account.role]}</Typography>
                               </Box>
