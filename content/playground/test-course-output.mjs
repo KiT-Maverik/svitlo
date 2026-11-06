@@ -21,10 +21,10 @@ test('Playground Course generates independent localized TOC, sparse override and
   assert.equal(toc.children[0].children[0].type, 'chapter');
   assert.equal(toc.children[0].children[0].children[1].type, 'episode');
   assert.equal(patch.lessonId, lessonId);
-  assert.deepEqual(patch.overrides.sections.order, ['practice', 'storyBridge', 'theory', 'quiz']);
+  assert.deepEqual(patch.overrides.sections.order, ['practice', 'storyBridge', 'theory', 'contentBlockGallery', 'quiz']);
   assert.deepEqual(
     patch.overrides.sections.added.map(item => item.source.type),
-    ['course'],
+    ['course', 'course'],
   );
   assert.deepEqual(patch.overrides.parameters.sections, { allowSkipping: false });
   assert.equal(Object.hasOwn(patch.overrides, 'questions'), false);
@@ -33,6 +33,25 @@ test('Playground Course generates independent localized TOC, sparse override and
   assert.match(episode.sections[0].content[0].locales, /Lorem ipsum/);
   for (const resource of ['toc/uk.json', 'overrides/' + lessonId + '/uk.json', 'episodes/' + episodeId + '/uk.json']) {
     assert(files.includes('data/pages/courses/' + courseId + '/' + resource));
+  }
+});
+
+test('the Course-only gallery contains all supported renderable blocks and publishes its local media', () => {
+  const patch = json('overrides', lessonId, 'uk.json');
+  const gallery = patch.overrides.sections.added.find(entry => entry.section.slug === 'contentBlockGallery')?.section;
+  assert(gallery, 'Missing content block gallery Section');
+  assert.equal(gallery.type, 'learningFlow');
+  assert.deepEqual(
+    gallery.content.map(block => block.type),
+    ['text', 'markdown', 'code', 'image', 'video', 'audio', 'youtube', 'scene', 'checkpoint'],
+  );
+  assert.equal(gallery.content.find(block => block.type === 'image').src, '/textbooks/playground/whale.png');
+  assert.equal(gallery.content.find(block => block.type === 'video').fileLocation, '/textbooks/playground/barabaka.mp4');
+  assert.equal(gallery.content.find(block => block.type === 'audio').fileLocation, '/textbooks/playground/demo-tone.wav');
+  assert.equal(gallery.content.find(block => block.type === 'scene').id, 'how-light-moves-scene-ray');
+  assert.equal(gallery.content.find(block => block.type === 'checkpoint').items[0].answer[0].type, 'text');
+  for (const file of ['whale.png', 'barabaka.mp4', 'demo-tone.wav']) {
+    assert(files.includes('textbooks/playground/' + file), 'Missing published media ' + file);
   }
 });
 
