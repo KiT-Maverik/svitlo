@@ -12,8 +12,10 @@ import { build } from 'esbuild';
 const root = resolve(process.cwd());
 const repo = resolve(fileURLToPath(new URL('../..', import.meta.url)));
 const id = root.split(sep).at(-1);
-if (resolve(repo, 'content', id) !== root || !/^[a-z][a-z-]*$/.test(id)) {
-  throw new Error('Run the shared textbook build from a content/<textbook> workspace');
+const packageDirectory = relative(repo, root).split(sep).join('/');
+if (!/^content\/(?:[a-z][a-z-]*|languages\/[a-z][a-z-]*)$/.test(packageDirectory) ||
+    !/^[a-z][a-z-]*$/.test(id)) {
+  throw new Error('Run the shared textbook build from a content textbook workspace');
 }
 const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
 if (pkg.name !== '@svitlo/' + id) throw new Error('Textbook workspace identity mismatch: ' + id);
@@ -46,7 +48,9 @@ const authored = folder => filesUnder(join(root, folder)).some(name => name.ends
 for (const [workspace, compiled] of [
   ['@svitlo/contracts', 'shared/contracts/dist/index.js'],
   ['@svitlo/engine', 'shared/engine/dist/index.js'],
-  ...(hasScenes || hasStyles ? [['@svitlo/ui-kit', 'shared/ui-kit/dist/index.js']] : []),
+  ...(hasScenes || hasStyles || pkg.dependencies?.['@svitlo/ui-kit'] ||
+       pkg.devDependencies?.['@svitlo/ui-kit']
+    ? [['@svitlo/ui-kit', 'shared/ui-kit/dist/src/index.js']] : []),
 ]) {
   if (!existsSync(join(repo, compiled))) run('npm', ['run', 'build', '--workspace', workspace]);
 }
@@ -101,7 +105,7 @@ if (hasStyles) {
     css.map(name => '@import "./' + name + '";').join('\n') + '\n');
 }
 
-run('npx', ['tsc', '-p', 'content/' + id + '/tsconfig.declarations.json']);
+run('npx', ['tsc', '-p', packageDirectory + '/tsconfig.declarations.json']);
 for (const [from, to] of [
   ['textbook.d.ts', 'textbook/index.d.ts'],
   ...(hasScenes ? [
@@ -121,7 +125,7 @@ for (const [source, generator, target] of [
   ['data/skills', 'scripts/generators/pages/skillAnalytics/generate-skill-analytics.mjs', 'data/pages/skillAnalytics'],
 ]) {
   if (!authored(source)) continue;
-  run(process.execPath, [generator, '--package', 'content/' + id,
+  run(process.execPath, [generator, '--package', packageDirectory,
     '--output', relative(repo, join(resources, target)), '--write']);
 }
 const sourcePublic = join(root, 'public');

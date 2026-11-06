@@ -3,14 +3,16 @@
 import assert from 'node:assert/strict';
 import { mkdtempSync, mkdirSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join, resolve, sep } from 'node:path';
+import { join, resolve, sep, relative } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
 import { build } from 'esbuild';
 
 const root = resolve(process.cwd());
 const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
 const id = pkg.name?.match(/^@svitlo\/([a-z][a-z-]*)$/)?.[1];
-if (!id || !root.endsWith(sep + 'content' + sep + id)) {
+const repo = resolve(fileURLToPath(new URL('../..', import.meta.url)));
+if (!id || !/^content\/(?:[a-z][a-z-]*|languages\/[a-z][a-z-]*)$/.test(relative(repo, root).split(sep).join('/'))) {
   throw new Error('Run test:portability from a textbook workspace');
 }
 const hasScenes = Boolean(pkg.exports?.['./scenes']);
