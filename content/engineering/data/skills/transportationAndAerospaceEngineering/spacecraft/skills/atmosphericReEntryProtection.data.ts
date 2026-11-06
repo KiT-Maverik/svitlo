@@ -12,7 +12,7 @@ export const atmosphericReEntryProtection_Skill_Data = buildSkillConfig({
     fr: "Protection lors de la rentrée atmosphérique",
     bn: "বায়ুমণ্ডলে পুনঃপ্রবেশের সুরক্ষা",
     pt: "Proteção na reentrada atmosférica",
-    ur: "فضا سے فضا میں واپسی کے دوران تحفظ",
+    ur: "فضائی کرۂ ہوائی میں دوبارہ داخلے کے دوران تحفظ",
     id: "Perlindungan saat masuk kembali ke atmosfer",
     de: "Schutz beim Wiedereintritt in die Atmosphäre",
     ja: "大気圏再突入時の防護",
