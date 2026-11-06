@@ -6,6 +6,8 @@ import type {
   Module,
   Module_Content,
   Section_Override,
+  Course_TocModule,
+  Course_TocChapter,
 } from '../../../content';
 
 type Languages = readonly ['en', 'uk'];
@@ -28,3 +30,6 @@ type _NoSectionTypeOverride = AssertFalse<'type' extends keyof Section_Override<
 type _DisableCustomEvent = AssertTrue<
   false extends NonNullable<Lesson_Override<Languages, 'lionAppeared'>['events']>['lionAppeared'] ? true : false
 >;
+
+type _NoNestedModuleToc = AssertFalse<Course_TocModule extends Course_TocModule['children'][number] ? true : false>;
+type _NoNestedChapterToc = AssertFalse<Course_TocChapter extends Course_TocChapter['children'][number] ? true : false>;
