@@ -20,6 +20,7 @@ const en = {
   incorrectChoice: 'Incorrect answer',
   missedChoice: 'Correct answer not selected',
 };
+
 type Locale = typeof en;
 
 const uk: Locale = {

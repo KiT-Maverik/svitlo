@@ -21,6 +21,7 @@ const en = {
     },
   },
 };
+
 type Locale = typeof en;
 
 const zh: Locale = {

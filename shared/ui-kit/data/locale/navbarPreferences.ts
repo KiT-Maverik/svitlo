@@ -5,6 +5,7 @@ const en = {
   language: 'Language',
   theme: { dark: 'Dark theme', light: 'Light theme' },
 };
+
 type Locale = typeof en;
 
 const zh: Locale = {

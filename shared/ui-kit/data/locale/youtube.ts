@@ -7,6 +7,7 @@ const en = {
   unavailable: 'This video is unavailable.',
   retry: 'Try again',
 };
+
 type Locale = typeof en;
 
 const uk: Locale = {

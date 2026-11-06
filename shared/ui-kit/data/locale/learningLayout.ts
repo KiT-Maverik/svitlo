@@ -31,6 +31,7 @@ const en = {
   settingsTitle: 'Settings',
   settingsDescription: 'Learning settings will appear here.',
 };
+
 type Locale = typeof en;
 
 const zh: Locale = {

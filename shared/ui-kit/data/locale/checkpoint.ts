@@ -2,6 +2,7 @@ import type { UiKit_Component } from '@svitlo/engine/content';
 import type { DefaultSupportedLanguage } from '@svitlo/engine/localization';
 
 const en = { title: 'Check your knowledge', check: 'Check', checked: 'Checked' };
+
 type Locale = typeof en;
 
 const zh: Locale = { title: '检验你的知识', check: '确认', checked: '已确认' };

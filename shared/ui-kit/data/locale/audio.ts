@@ -7,6 +7,7 @@ const en = {
   playbackError: 'The audio could not be played.',
   retry: 'Try again',
 };
+
 type Locale = typeof en;
 
 const uk: Locale = {

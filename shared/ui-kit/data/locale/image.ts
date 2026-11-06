@@ -6,6 +6,7 @@ const en = {
   unavailable: 'This image is unavailable.',
   retry: 'Try again',
 };
+
 type Locale = typeof en;
 
 const uk: Locale = {
