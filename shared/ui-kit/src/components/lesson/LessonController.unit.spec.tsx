@@ -179,6 +179,21 @@ describe('multiple Quiz Sections', () => {
     ],
   } as LessonView;
 
+
+  it('allows advancing past a nonblocking Quiz without completing it', () => {
+    const optional = { ...quiz('optional'), parameters: params(false) };
+    const view = { ...fixture, sections: [optional, quiz('required'), fixture.sections[2]] } as LessonView;
+    render(<Lesson response={view} href="/en/lesson/nonblocking" messages={enUiKitMessages} layout={TestLayout} />);
+    const bottom = screen.getByRole('navigation', { name: enUiKitMessages.learningLayout.navigation.bottom });
+    const next = () => within(bottom).getByRole('button', {
+      name: new RegExp(enUiKitMessages.learningLayout.actions.next, 'i'),
+    });
+    expect(next()).toBeEnabled();
+    fireEvent.click(next());
+    expect(screen.getByText('Question required')).toBeVisible();
+    expect(next()).toBeDisabled();
+  });
+
   it('gates each Quiz independently until attempted, regardless of score', async () => {
     observedEvents.length = 0;
     render(

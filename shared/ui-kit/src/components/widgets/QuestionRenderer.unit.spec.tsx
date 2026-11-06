@@ -1,6 +1,6 @@
-import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import type { Question, Locale_Languages } from '@svitlo/engine/content';
+import type { Question, Locale_Languages, Quiz_Parameters } from '@svitlo/engine/content';
 import { QuestionRenderer } from './questions/response/QuestionRenderer';
 import { parseQuestionNumber } from './questions/AnswerWithNumber/AnswerWithNumber';
 import { enUiKitMessages } from '../../testing/uiKitMessages.unit.fx';
@@ -104,6 +104,64 @@ describe('QuestionRenderer — contract responses', () => {
     expect(screen.queryByText('What is the answer?')).toBeNull();
     expect(screen.getByText('Replacement prompt')).toBeVisible();
     expect(screen.getByRole('button', { name: 'Yes' })).toHaveAttribute('aria-pressed', 'false');
+  });
+});
+
+
+const quizSettings = (layout: 'stack' | 'stepper', timeLimitSeconds?: number): Quiz_Parameters<'response', Locale_Languages> => ({
+  selection: { mode: 'all' },
+  layout: { mode: layout, showProgress: true },
+  feedbackMode: 'immediate',
+  interaction: {
+    retries: 0,
+    showErrors: true,
+    showCorrectAnswers: true,
+    allowExplanations: true,
+    allowDeferring: false,
+    allowQuestionNavigation: true,
+    skippable: false,
+  },
+  results: { visibility: 'immediate', showScore: true },
+  screen: {},
+  ...(timeLimitSeconds === undefined ? {} : { timeLimitSeconds }),
+});
+
+describe('Quiz Section presentation', () => {
+  it('supports stepper layout with one visible question and per-question progress', () => {
+    const second = { ...one, id: 'question-2', question: [text('q2', 'Another question')] };
+    render(
+      <QuestionRenderer messages={enUiKitMessages} questions={[one, second]} parameters={quizSettings('stepper')} />,
+    );
+    expect(screen.getByRole('list', { name: enUiKitMessages.lesson.questionProgress.navigation })).toBeVisible();
+    expect(screen.getByText('What is the answer?')).toBeVisible();
+    expect(screen.getByText('Another question')).not.toBeVisible();
+    fireEvent.click(screen.getByRole('button', { name: 'Yes' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Check' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Next' }));
+    expect(screen.getByText('Another question')).toBeVisible();
+    expect(screen.getByText('What is the answer?')).not.toBeVisible();
+  });
+
+  it('ends the whole Quiz on timeout and reports a failed attempt', () => {
+    vi.useFakeTimers();
+    try {
+      const onComplete = vi.fn();
+      render(
+        <QuestionRenderer
+          messages={enUiKitMessages}
+          questions={[one]}
+          parameters={quizSettings('stack', 2)}
+          onComplete={onComplete}
+        />,
+      );
+      expect(screen.getByRole('timer')).toHaveTextContent('00:02');
+      act(() => vi.advanceTimersByTime(2000));
+      expect(screen.getByRole('timer')).toHaveTextContent('00:00');
+      expect(onComplete).toHaveBeenCalledWith({ passed: false, timedOut: true, correct: 0, total: 1 });
+      expect(screen.getByRole('button', { name: 'Check' })).toBeDisabled();
+    } finally {
+      vi.useRealTimers();
+    }
   });
 });
 

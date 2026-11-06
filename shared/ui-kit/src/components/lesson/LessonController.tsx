@@ -364,7 +364,7 @@ export function LessonController({
     (sectionId: string | undefined, passed: boolean) => {
       const active = response.sections[latest.current.section.step];
       const id = sectionId ?? (active?.type === 'quiz' ? active.id : undefined);
-      if (!id || quizEmitted.current.has(id)) return;
+      if (!id || !response.sections.some(section => section.type === 'quiz' && section.id === id) || quizEmitted.current.has(id)) return;
       quizEmitted.current.add(id);
       dispatch({ type: 'quizDone', sectionId: id });
       emit('quizCompleted');
