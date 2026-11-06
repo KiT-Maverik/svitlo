@@ -6,7 +6,7 @@ export const diagnoseAPrototypeFailure_Skill_Data = buildSkillConfig({
   name: {
     en: 'Diagnose a prototype failure',
     zh: '诊断原型故障',
-    hi: 'प्रारूप की विफलता का कारण खोजना',
+    hi: 'प्रोटोटाइप की विफलता का कारण खोजना',
     es: 'Diagnosticar un fallo de prototipo',
     ar: 'تشخيص تعطل نموذج أولي',
     fr: 'Diagnostiquer une défaillance de prototype',
