@@ -156,7 +156,6 @@ function ThemeSwitch({
   );
 }
 
-
 /** The controls live in the settings drawer, not in the top navigation bar. */
 export default function NavbarPreferences({
   locale,
