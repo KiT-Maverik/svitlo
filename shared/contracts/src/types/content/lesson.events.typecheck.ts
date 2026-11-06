@@ -54,12 +54,19 @@ const customAuthoring = defineLessonData<Languages, 'lightDiscovered'>()({
 });
 void customAuthoring;
 
-// @ts-expect-error Undeclared event IDs are not permitted by the authoring helper.
 defineLessonData<Languages>()({
-  ...baseLesson, questions: {}, events: { lessonCompleted: false, lightDiscovered: scene },
+  ...baseLesson,
+  questions: {},
+  events: {
+    lessonCompleted: false,
+    // @ts-expect-error Undeclared event IDs are not permitted by the authoring helper.
+    lightDiscovered: scene,
+  },
 });
 
-// @ts-expect-error An explicitly declared custom event must be configured.
 defineLessonData<Languages, 'lightDiscovered'>()({
-  ...baseLesson, questions: {}, events: { lessonCompleted: false },
+  ...baseLesson,
+  questions: {},
+  // @ts-expect-error An explicitly declared custom event must be configured.
+  events: { lessonCompleted: false },
 });
