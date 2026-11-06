@@ -106,8 +106,25 @@ describe('LessonController scoped state and navigation', () => {
     expect(screen.getByRole('button', { name: enUiKitMessages.checkpoint.checked })).toBeDisabled();
   });
 
-  it('allows skipping an unanswered checkpoint and restores the gate when navigating back', () => {
-    showLesson();
+  it('allows skipping an unanswered checkpoint without leaking its gate to the next section', () => {
+    const base = response(true);
+    const value: LessonView = {
+      ...base,
+      sections: [
+        ...base.sections,
+        {
+          id: 'outro',
+          type: 'theory',
+          navigationLabel: 'Outro',
+          content: [{ type: 'text', id: 'outro-text', slug: 'outro-text', value: 'Final section' }],
+          questions: [],
+        },
+      ],
+    };
+    observed.length = 0;
+    render(
+      <Lesson response={value} href="/en/lesson/lesson-test" messages={enUiKitMessages} layout={TestLayout} />,
+    );
     const bottom = screen.getByRole('navigation', { name: enUiKitMessages.learningLayout.navigation.bottom });
     const next = within(bottom).getByRole('button', {
       name: new RegExp(enUiKitMessages.learningLayout.actions.next, 'i'),
@@ -123,10 +140,15 @@ describe('LessonController scoped state and navigation', () => {
     expect(skip).toBeEnabled();
     fireEvent.click(skip);
     expect(screen.getByText('Second section content')).toBeVisible();
+    expect(next).toBeEnabled();
     fireEvent.click(back);
     expect(screen.getByText('What is light?')).toBeVisible();
     expect(next).toBeDisabled();
     expect(skip).toBeEnabled();
+    fireEvent.click(skip);
+    expect(next).toBeEnabled();
+    fireEvent.click(next);
+    expect(screen.getByText('Final section')).toBeVisible();
   });
 
   it('removes a checkpoint blocker when leaving its section backward', () => {
