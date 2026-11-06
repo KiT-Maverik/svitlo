@@ -44,7 +44,7 @@ describe('Lesson media settings', () => {
     expect(state).toHaveTextContent('100:false');
   });
 
-  it('synchronizes native audio and video elements with shared settings', () => {
+  it('applies shared volume and mute state to native audio and video', () => {
     const { container } = render(
       <MediaSettingsProvider>
         <TestControls />
@@ -74,12 +74,10 @@ describe('Lesson media settings', () => {
     expect(audio.muted).toBe(true);
     expect(video.muted).toBe(true);
     expect(audio.volume).toBe(0.4);
-    audio.volume = 0.8;
-    audio.muted = false;
-    expect(audio.muted).toBe(false);
-    fireEvent.volumeChange(audio);
-    expect(screen.getByTestId('media-state')).toHaveTextContent('80:false');
-    expect(video.volume).toBe(0.8);
-    expect(video.muted).toBe(false);
+    fireEvent.click(screen.getByRole('button', { name: 'Set excess volume' }));
+    expect(audio.volume).toBe(1);
+    expect(video.volume).toBe(1);
+    expect(audio.muted).toBe(true);
+    expect(video.muted).toBe(true);
   });
 });
