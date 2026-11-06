@@ -41,6 +41,7 @@ export interface LearningLayoutProps {
   pathname: string;
   progress: LearningLayoutProgress;
   actions: { back: () => void; next: () => void; skip: () => void };
+  /** Global controls presented inside the quick-settings drawer. */
   preferences?: ReactNode;
   /** Optional page-specific controls inside the existing right settings drawer. */
   settingsContent?: ReactNode | ((actions: { closeSettings: () => void }) => ReactNode);
@@ -77,7 +78,7 @@ export type LearningLayoutBottomBarProps = Pick<
 /** Default chrome stays reusable outside lessons; controller-owned slots can wrap it in independent contexts. */
 export function LearningLayoutTopBar({
   messages,
-  preferences,
+
   linkComponent,
   open,
   settingsOpen,
@@ -129,7 +130,6 @@ export function LearningLayoutTopBar({
         ),
         right: (
           <>
-            {preferences}
             <Tooltip title={messages.tooltips.profile}>
               <Box component="span" sx={{ display: { xs: 'none', sm: 'inline-flex' } }}>
                 <IconButton aria-label={messages.actions.profile} disabled>
@@ -375,7 +375,12 @@ export default function LearningLayout({
           open={settingsOpen}
           slotProps={{
             paper: {
-              sx: { position: 'absolute', width: 'min(320px, calc(100vw - 48px))', height: '100%', overflow: 'hidden' },
+              sx: {
+                position: 'absolute',
+                width: { xs: '100%', sm: 'min(320px, calc(100vw - 48px))' },
+                height: '100%',
+                overflow: 'hidden',
+              },
             },
           }}
         >
@@ -395,17 +400,25 @@ export default function LearningLayout({
                 flexShrink: 0,
               }}
             >
-              <Typography component="h2" sx={{ flex: 1, px: 1, fontSize: 18, fontWeight: 700 }}>
+              <Typography component="h2" sx={{ flex: 1, px: 1, fontSize: 18, fontWeight: 700, textAlign: 'start' }}>
                 {messages.settingsTitle}
               </Typography>
-              <IconButton aria-label={messages.actions.closeSettingsPanel} onClick={() => setSettingsOpen(false)}>
+              <IconButton
+                aria-label={messages.actions.closeSettingsPanel}
+                onClick={() => setSettingsOpen(false)}
+                sx={{ display: { xs: 'inline-flex', sm: 'none' } }}
+              >
                 <CloseIcon />
               </IconButton>
             </Box>
             <Box sx={{ flex: 1, minHeight: 0, overflowY: 'auto', p: 2 }}>
+              {preferences}
               {typeof settingsContent === 'function'
                 ? settingsContent({ closeSettings: () => setSettingsOpen(false) })
-                : (settingsContent ?? <Typography color="text.secondary">{messages.settingsDescription}</Typography>)}
+                : settingsContent}
+              {!preferences && !settingsContent && (
+                <Typography color="text.secondary">{messages.settingsDescription}</Typography>
+              )}
             </Box>
           </Box>
         </Drawer>
