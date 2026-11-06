@@ -65,9 +65,60 @@ test('Course lesson keeps the course context while interface and lesson language
   await expect(page).toHaveURL('/en/course/' + courseId + '/lesson/en/' + lessonId);
 });
 
+test('Course sidebar groups its published Module and Chapter and retains the active Lesson', async ({
+  page,
+  request,
+}) => {
+  const response = await request.get('/data/pages/courses/' + courseId + '/toc/uk.json');
+  const toc = await response.json();
+  const module = toc.children[0];
+  const chapter = module.children[0];
+  await page.goto('/uk/course/' + courseId + '/lesson/uk/' + lessonId);
+  await page.getByRole('button', { name: 'Відкрити список тем' }).click();
+
+  const sidebar = page.getByRole('navigation', { name: 'Список тем' });
+  const moduleButton = sidebar.getByRole('button', { name: module.title }).first();
+  const chapterButton = sidebar.getByRole('button', { name: chapter.title }).first();
+  const activeLink = sidebar.locator('a[href="/uk/course/' + courseId + '/lesson/uk/' + lessonId + '"]');
+
+  await expect(moduleButton).toHaveAttribute('aria-expanded', 'true');
+  await expect(chapterButton).toHaveAttribute('aria-expanded', 'true');
+  await expect(activeLink).toHaveAttribute('aria-current', 'page');
+
+  await chapterButton.click();
+  await expect(chapterButton).toHaveAttribute('aria-expanded', 'false');
+  await expect(activeLink).toBeHidden();
+
+  await moduleButton.click();
+  await expect(moduleButton).toHaveAttribute('aria-expanded', 'false');
+  await moduleButton.click();
+  await expect(moduleButton).toHaveAttribute('aria-expanded', 'true');
+  await expect(chapterButton).toHaveAttribute('aria-expanded', 'false');
+
+  await chapterButton.click();
+  await expect(activeLink).toBeVisible();
+});
+
 test('Episode is navigable as a separate Course unit', async ({ page }) => {
   await page.goto('/uk/course/' + courseId + '/episode/' + episodeId);
-  await expect(page.getByText(/Lorem ipsum dolor sit amet/)).toBeVisible();
+  await expect(
+    page
+      .locator('#learning-content')
+      .getByText(/Lorem ipsum dolor sit amet/)
+      .first(),
+  ).toBeVisible();
+  await page.getByRole('button', { name: 'Профіль' }).click();
+  await page.getByRole('menuitem', { name: 'Швидкі налаштування' }).click();
+  await expect(page.getByRole('combobox', { name: 'Мова уроку' })).toHaveCount(0);
+  await page.getByRole('combobox', { name: 'Мова інтерфейсу' }).click();
+  await page.getByRole('option', { name: 'English' }).click();
+  await expect(page).toHaveURL('/en/course/' + courseId + '/episode/' + episodeId);
+  await expect(
+    page
+      .locator('#learning-content')
+      .getByText(/Lorem ipsum dolor sit amet/)
+      .first(),
+  ).toBeVisible();
 });
 
 test('Unknown Course membership returns 404', async ({ request }) => {

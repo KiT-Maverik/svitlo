@@ -7,6 +7,7 @@ const lesson = defineLessonData<typeof languages>()({
   slug: 'lesson',
   title: { en: 'Light', uk: 'Світло' },
   flashcards: [],
+  skills: [],
   questions: {},
   parameters: {
     requireQuiz: false,
@@ -77,5 +78,37 @@ customized.sections.remove('practice').sections.bySlug.practice;
 customized.sections.bySlug.theory.content.remove('intro').sections.bySlug.theory.content.bySlug.intro;
 // @ts-expect-error Lesson language tuple cannot be overridden through params.
 customized.setParams({ languages });
+const quizBuilder = createLessonOverrides(
+  defineLessonData<typeof languages>()({
+    ...lesson,
+    sections: [
+      {
+        id: 'quiz',
+        slug: 'quiz',
+        type: 'quiz',
+        title: 'Quiz',
+        navigationLabel: 'Quiz',
+        parameters: {
+          selection: { mode: 'all' },
+          layout: { mode: 'stack' },
+          feedbackMode: 'immediate',
+          interaction: {
+            retries: 0,
+            showErrors: true,
+            showCorrectAnswers: true,
+            allowExplanations: true,
+            allowDeferring: false,
+            allowQuestionNavigation: true,
+            skippable: false,
+          },
+          results: { visibility: 'immediate', showScore: true },
+          screen: {},
+        },
+      },
+    ],
+  }),
+);
+// @ts-expect-error Quiz Sections have parameters, not ContentBlocks.
+quizBuilder.sections.bySlug.quiz.content;
 
 void courseEntry;

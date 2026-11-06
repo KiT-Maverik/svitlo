@@ -9,9 +9,6 @@ import Drawer from '@mui/material/Drawer';
 import Divider from '@mui/material/Divider';
 import Fade from '@mui/material/Fade';
 import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
 import { alpha } from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -22,8 +19,9 @@ import BottomNavbar from '../Navigation/BottomNavbar';
 import { getLocaleDirection, type Locale } from '@svitlo/engine/localization';
 import VerticalSpace from '#widgets/VerticalSpace/VerticalSpace';
 import ProfileMenu, { type LearningProfile } from './ProfileMenu';
+import CourseTopicList, { type Topic } from './CourseTopicList';
 
-export type Topic = { id: string; title: string; href: string; depth?: number };
+export type { Topic } from './CourseTopicList';
 export type LearningLayoutProgress = {
   ready: boolean;
   step: number;
@@ -365,21 +363,12 @@ export default function LearningLayout({
               }
               center={
                 <Box sx={{ height: '100%', overflowY: 'auto', overscrollBehavior: 'contain', px: 1 }}>
-                  <List disablePadding>
-                    {topics.map(topic => (
-                      <ListItemButton
-                        key={topic.id}
-                        component={linkComponent ?? 'a'}
-                        href={topic.href}
-                        selected={pathname === topic.href}
-                        aria-current={pathname === topic.href ? 'page' : undefined}
-                        onClick={() => setOpen(false)}
-                        sx={{ borderRadius: 2, ps: 2 + Math.min(topic.depth ?? 0, 4) * 2 }}
-                      >
-                        <ListItemText primary={topic.title} />
-                      </ListItemButton>
-                    ))}
-                  </List>
+                  <CourseTopicList
+                    topics={topics}
+                    pathname={pathname}
+                    linkComponent={linkComponent}
+                    onNavigate={() => setOpen(false)}
+                  />
                 </Box>
               }
             />

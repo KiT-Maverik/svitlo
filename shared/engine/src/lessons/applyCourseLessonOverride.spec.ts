@@ -14,6 +14,7 @@ const base = {
     sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
   },
   flashcards: [],
+  skills: [],
   questions: {},
   localeSources: { config: {}, flashcards: {}, questions: {} },
   sections: [
@@ -36,7 +37,7 @@ const base = {
       questions: [],
     },
   ],
-} as LessonResponse;
+} as unknown as LessonResponse;
 
 test('Course patch composes new Sections and reorders existing Sections without mutation', () => {
   const original = JSON.stringify(base);
@@ -68,8 +69,11 @@ test('Course patch composes new Sections and reorders existing Sections without 
     composed.sections.map(section => section.slug),
     ['practice', 'story', 'theory'],
   );
-  assert.equal(composed.sections[1].content[0].type, 'markdown');
-  assert.equal((composed.sections[1].content[0] as { text: string }).text, 'Lorem ipsum');
+  const story = composed.sections[1];
+  assert.equal(story.type, 'scenario');
+  if (story.type !== 'scenario') throw new Error('Expected scenario');
+  assert.equal(story.content[0].type, 'markdown');
+  assert.equal((story.content[0] as { text: string }).text, 'Lorem ipsum');
   assert.equal(composed.parameters.sections.allowSkipping, false);
   assert.equal(JSON.stringify(base), original);
 });
