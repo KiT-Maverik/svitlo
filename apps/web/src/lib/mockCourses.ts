@@ -1,4 +1,5 @@
 import type { Course_Toc, Course_TocContent } from '@svitlo/engine/content';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/localization';
 import type { CourseMessages, CourseOutlineItem, CoursePreview } from '@svitlo/ui-kit/course';
 
 type MockCourse = {
@@ -33,6 +34,7 @@ export function getMockCourses(language: string): readonly MockCourse[] {
         level: t('Для допитливих', 'For curious learners'),
         lessons: 3,
         modules: 1,
+        languages: DEFAULT_SUPPORTED_LANGUAGES.map(({ language }) => language),
         tone: 'sky',
         highlights: [
           t('Побачиш, як поширюється світло', 'Explore how light travels'),
@@ -95,6 +97,7 @@ export function getMockCourses(language: string): readonly MockCourse[] {
         level: t('Базовий рівень', 'Foundations'),
         lessons: 4,
         modules: 2,
+        languages: ['en', 'uk'],
         tone: 'amber',
         highlights: [
           t('Розвиватимеш логічне мислення', 'Develop logical thinking'),
@@ -156,6 +159,7 @@ export function getMockCourses(language: string): readonly MockCourse[] {
         level: t('Для початківців', 'Beginner'),
         lessons: 2,
         modules: 1,
+        languages: ['en', 'uk'],
         tone: 'sage',
         highlights: [
           t('Познайомишся із Сонячною системою', 'Meet the Solar System'),
@@ -227,6 +231,7 @@ const ukMessages: CourseMessages = {
   catalogDescription: 'Короткі інтерактивні курси, які перетворюють цікавість на нові відкриття.',
   explore: 'Переглянути курс',
   lessons: 'уроків',
+  languages: 'Мови курсу',
   modules: 'модулів',
   emptyCatalog: 'Поки що курсів немає.',
   backToCatalog: 'Усі курси',
@@ -248,6 +253,7 @@ const enMessages: CourseMessages = {
   catalogDescription: 'Short interactive courses that turn curiosity into new discoveries.',
   explore: 'Explore course',
   lessons: 'lessons',
+  languages: 'Course languages',
   modules: 'modules',
   emptyCatalog: 'No courses available yet.',
   backToCatalog: 'All courses',
