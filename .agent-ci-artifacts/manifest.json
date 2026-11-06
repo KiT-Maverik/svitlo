@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "kind": "pr-scoped-agent-ci-artifacts",
-  "sourceCommit": "6ef345fb893a8ee46d3741c2572f3560fc43706f",
+  "sourceCommit": "ba6cc4f48437544054b7f6c72856ccf4c0352c1f",
   "packages": [
     "content/art",
     "content/astronomy",
@@ -1355,267 +1355,6 @@
       "domains": 17,
       "groups": 71,
       "skills": 257
-    },
-    {
-      "kind": "taxonomy",
-      "textbook": "content/engineering",
-      "locale": "en",
-      "path": ".agent-ci-artifacts/taxonomies/engineering/en.md",
-      "domains": 18,
-      "groups": 61,
-      "skills": 264
-    },
-    {
-      "kind": "taxonomy",
-      "textbook": "content/engineering",
-      "locale": "zh",
-      "path": ".agent-ci-artifacts/taxonomies/engineering/zh.md",
-      "domains": 18,
-      "groups": 61,
-      "skills": 264
-    },
-    {
-      "kind": "taxonomy",
-      "textbook": "content/engineering",
-      "locale": "hi",
-      "path": ".agent-ci-artifacts/taxonomies/engineering/hi.md",
-      "domains": 18,
-      "groups": 61,
-      "skills": 264
-    },
-    {
-      "kind": "taxonomy",
-      "textbook": "content/engineering",
-      "locale": "es",
-      "path": ".agent-ci-artifacts/taxonomies/engineering/es.md",
-      "domains": 18,
-      "groups": 61,
-      "skills": 264
-    },
-    {
-      "kind": "taxonomy",
-      "textbook": "content/engineering",
-      "locale": "ar",
-      "path": ".agent-ci-artifacts/taxonomies/engineering/ar.md",
-      "domains": 18,
-      "groups": 61,
-      "skills": 264
-    },
-    {
-      "kind": "taxonomy",
-      "textbook": "content/engineering",
-      "locale": "fr",
-      "path": ".agent-ci-artifacts/taxonomies/engineering/fr.md",
-      "domains": 18,
-      "groups": 61,
-      "skills": 264
-    },
-    {
-      "kind": "taxonomy",
-      "textbook": "content/engineering",
-      "locale": "bn",
-      "path": ".agent-ci-artifacts/taxonomies/engineering/bn.md",
-      "domains": 18,
-      "groups": 61,
-      "skills": 264
-    },
-    {
-      "kind": "taxonomy",
-      "textbook": "content/engineering",
-      "locale": "pt",
-      "path": ".agent-ci-artifacts/taxonomies/engineering/pt.md",
-      "domains": 18,
-      "groups": 61,
-      "skills": 264
-    },
-    {
-      "kind": "taxonomy",
-      "textbook": "content/engineering",
-      "locale": "ur",
-      "path": ".agent-ci-artifacts/taxonomies/engineering/ur.md",
-      "domains": 18,
-      "groups": 61,
-      "skills": 264
-    },
-    {
-      "kind": "taxonomy",
-      "textbook": "content/engineering",
-      "locale": "id",
-      "path": ".agent-ci-artifacts/taxonomies/engineering/id.md",
-      "domains": 18,
-      "groups": 61,
-      "skills": 264
-    },
-    {
-      "kind": "taxonomy",
-      "textbook": "content/engineering",
-      "locale": "de",
-      "path": ".agent-ci-artifacts/taxonomies/engineering/de.md",
-      "domains": 18,
-      "groups": 61,
-      "skills": 264
-    },
-    {
-      "kind": "taxonomy",
-      "textbook": "content/engineering",
-      "locale": "ja",
-      "path": ".agent-ci-artifacts/taxonomies/engineering/ja.md",
-      "domains": 18,
-      "groups": 61,
-      "skills": 264
-    },
-    {
-      "kind": "taxonomy",
-      "textbook": "content/engineering",
-      "locale": "ko",
-      "path": ".agent-ci-artifacts/taxonomies/engineering/ko.md",
-      "domains": 18,
-      "groups": 61,
-      "skills": 264
-    },
-    {
-      "kind": "taxonomy",
-      "textbook": "content/engineering",
-      "locale": "tr",
-      "path": ".agent-ci-artifacts/taxonomies/engineering/tr.md",
-      "domains": 18,
-      "groups": 61,
-      "skills": 264
-    },
-    {
-      "kind": "taxonomy",
-      "textbook": "content/engineering",
-      "locale": "vi",
-      "path": ".agent-ci-artifacts/taxonomies/engineering/vi.md",
-      "domains": 18,
-      "groups": 61,
-      "skills": 264
-    },
-    {
-      "kind": "taxonomy",
-      "textbook": "content/engineering",
-      "locale": "ta",
-      "path": ".agent-ci-artifacts/taxonomies/engineering/ta.md",
-      "domains": 18,
-      "groups": 61,
-      "skills": 264
-    },
-    {
-      "kind": "taxonomy",
-      "textbook": "content/engineering",
-      "locale": "te",
-      "path": ".agent-ci-artifacts/taxonomies/engineering/te.md",
-      "domains": 18,
-      "groups": 61,
-      "skills": 264
-    },
-    {
-      "kind": "taxonomy",
-      "textbook": "content/engineering",
-      "locale": "mr",
-      "path": ".agent-ci-artifacts/taxonomies/engineering/mr.md",
-      "domains": 18,
-      "groups": 61,
-      "skills": 264
-    },
-    {
-      "kind": "taxonomy",
-      "textbook": "content/engineering",
-      "locale": "ms",
-      "path": ".agent-ci-artifacts/taxonomies/engineering/ms.md",
-      "domains": 18,
-      "groups": 61,
-      "skills": 264
-    },
-    {
-      "kind": "taxonomy",
-      "textbook": "content/engineering",
-      "locale": "he",
-      "path": ".agent-ci-artifacts/taxonomies/engineering/he.md",
-      "domains": 18,
-      "groups": 61,
-      "skills": 264
-    },
-    {
-      "kind": "taxonomy",
-      "textbook": "content/engineering",
-      "locale": "pl",
-      "path": ".agent-ci-artifacts/taxonomies/engineering/pl.md",
-      "domains": 18,
-      "groups": 61,
-      "skills": 264
-    },
-    {
-      "kind": "taxonomy",
-      "textbook": "content/engineering",
-      "locale": "uk",
-      "path": ".agent-ci-artifacts/taxonomies/engineering/uk.md",
-      "domains": 18,
-      "groups": 61,
-      "skills": 264
-    },
-    {
-      "kind": "taxonomy",
-      "textbook": "content/engineering",
-      "locale": "lt",
-      "path": ".agent-ci-artifacts/taxonomies/engineering/lt.md",
-      "domains": 18,
-      "groups": 61,
-      "skills": 264
-    },
-    {
-      "kind": "taxonomy",
-      "textbook": "content/engineering",
-      "locale": "lv",
-      "path": ".agent-ci-artifacts/taxonomies/engineering/lv.md",
-      "domains": 18,
-      "groups": 61,
-      "skills": 264
-    },
-    {
-      "kind": "taxonomy",
-      "textbook": "content/engineering",
-      "locale": "et",
-      "path": ".agent-ci-artifacts/taxonomies/engineering/et.md",
-      "domains": 18,
-      "groups": 61,
-      "skills": 264
-    },
-    {
-      "kind": "taxonomy",
-      "textbook": "content/engineering",
-      "locale": "be",
-      "path": ".agent-ci-artifacts/taxonomies/engineering/be.md",
-      "domains": 18,
-      "groups": 61,
-      "skills": 264
-    },
-    {
-      "kind": "taxonomy",
-      "textbook": "content/engineering",
-      "locale": "ka",
-      "path": ".agent-ci-artifacts/taxonomies/engineering/ka.md",
-      "domains": 18,
-      "groups": 61,
-      "skills": 264
-    },
-    {
-      "kind": "taxonomy",
-      "textbook": "content/engineering",
-      "locale": "kk",
-      "path": ".agent-ci-artifacts/taxonomies/engineering/kk.md",
-      "domains": 18,
-      "groups": 61,
-      "skills": 264
-    },
-    {
-      "kind": "taxonomy",
-      "textbook": "content/engineering",
-      "locale": "qm",
-      "path": ".agent-ci-artifacts/taxonomies/engineering/qm.md",
-      "domains": 18,
-      "groups": 61,
-      "skills": 264
     },
     {
       "kind": "taxonomy",
@@ -3709,6 +3448,180 @@
   "failures": [
     {
       "kind": "taxonomy",
+      "textbook": "content/engineering",
+      "locale": "en",
+      "error": "file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13\n  if (!ok) throw new Error(message);\n                 ^\n\nError: Invalid TypeScript syntax: /home/runner/work/svitlo-web/svitlo-web/content/engineering/data/skills/structuresAndConstruction/stabilityAndTesting/skills/evaluateStructuralStability.data.ts\n    at check (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13:18)\n    at parse (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:31:3)\n    at entity (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:83:20)\n    at skills (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:156:7)\n    at checkTaxonomy (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:224:7)\n    at file:///home/runner/work/svitlo-web/svitlo-web/scripts/generate-skills-taxonomy.mjs:52:21\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v24.22.2"
+    },
+    {
+      "kind": "taxonomy",
+      "textbook": "content/engineering",
+      "locale": "zh",
+      "error": "file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13\n  if (!ok) throw new Error(message);\n                 ^\n\nError: Invalid TypeScript syntax: /home/runner/work/svitlo-web/svitlo-web/content/engineering/data/skills/structuresAndConstruction/stabilityAndTesting/skills/evaluateStructuralStability.data.ts\n    at check (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13:18)\n    at parse (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:31:3)\n    at entity (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:83:20)\n    at skills (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:156:7)\n    at checkTaxonomy (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:224:7)\n    at file:///home/runner/work/svitlo-web/svitlo-web/scripts/generate-skills-taxonomy.mjs:52:21\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v24.22.2"
+    },
+    {
+      "kind": "taxonomy",
+      "textbook": "content/engineering",
+      "locale": "hi",
+      "error": "file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13\n  if (!ok) throw new Error(message);\n                 ^\n\nError: Invalid TypeScript syntax: /home/runner/work/svitlo-web/svitlo-web/content/engineering/data/skills/structuresAndConstruction/stabilityAndTesting/skills/evaluateStructuralStability.data.ts\n    at check (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13:18)\n    at parse (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:31:3)\n    at entity (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:83:20)\n    at skills (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:156:7)\n    at checkTaxonomy (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:224:7)\n    at file:///home/runner/work/svitlo-web/svitlo-web/scripts/generate-skills-taxonomy.mjs:52:21\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v24.22.2"
+    },
+    {
+      "kind": "taxonomy",
+      "textbook": "content/engineering",
+      "locale": "es",
+      "error": "file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13\n  if (!ok) throw new Error(message);\n                 ^\n\nError: Invalid TypeScript syntax: /home/runner/work/svitlo-web/svitlo-web/content/engineering/data/skills/structuresAndConstruction/stabilityAndTesting/skills/evaluateStructuralStability.data.ts\n    at check (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13:18)\n    at parse (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:31:3)\n    at entity (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:83:20)\n    at skills (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:156:7)\n    at checkTaxonomy (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:224:7)\n    at file:///home/runner/work/svitlo-web/svitlo-web/scripts/generate-skills-taxonomy.mjs:52:21\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v24.22.2"
+    },
+    {
+      "kind": "taxonomy",
+      "textbook": "content/engineering",
+      "locale": "ar",
+      "error": "file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13\n  if (!ok) throw new Error(message);\n                 ^\n\nError: Invalid TypeScript syntax: /home/runner/work/svitlo-web/svitlo-web/content/engineering/data/skills/structuresAndConstruction/stabilityAndTesting/skills/evaluateStructuralStability.data.ts\n    at check (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13:18)\n    at parse (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:31:3)\n    at entity (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:83:20)\n    at skills (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:156:7)\n    at checkTaxonomy (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:224:7)\n    at file:///home/runner/work/svitlo-web/svitlo-web/scripts/generate-skills-taxonomy.mjs:52:21\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v24.22.2"
+    },
+    {
+      "kind": "taxonomy",
+      "textbook": "content/engineering",
+      "locale": "fr",
+      "error": "file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13\n  if (!ok) throw new Error(message);\n                 ^\n\nError: Invalid TypeScript syntax: /home/runner/work/svitlo-web/svitlo-web/content/engineering/data/skills/structuresAndConstruction/stabilityAndTesting/skills/evaluateStructuralStability.data.ts\n    at check (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13:18)\n    at parse (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:31:3)\n    at entity (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:83:20)\n    at skills (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:156:7)\n    at checkTaxonomy (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:224:7)\n    at file:///home/runner/work/svitlo-web/svitlo-web/scripts/generate-skills-taxonomy.mjs:52:21\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v24.22.2"
+    },
+    {
+      "kind": "taxonomy",
+      "textbook": "content/engineering",
+      "locale": "bn",
+      "error": "file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13\n  if (!ok) throw new Error(message);\n                 ^\n\nError: Invalid TypeScript syntax: /home/runner/work/svitlo-web/svitlo-web/content/engineering/data/skills/structuresAndConstruction/stabilityAndTesting/skills/evaluateStructuralStability.data.ts\n    at check (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13:18)\n    at parse (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:31:3)\n    at entity (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:83:20)\n    at skills (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:156:7)\n    at checkTaxonomy (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:224:7)\n    at file:///home/runner/work/svitlo-web/svitlo-web/scripts/generate-skills-taxonomy.mjs:52:21\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v24.22.2"
+    },
+    {
+      "kind": "taxonomy",
+      "textbook": "content/engineering",
+      "locale": "pt",
+      "error": "file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13\n  if (!ok) throw new Error(message);\n                 ^\n\nError: Invalid TypeScript syntax: /home/runner/work/svitlo-web/svitlo-web/content/engineering/data/skills/structuresAndConstruction/stabilityAndTesting/skills/evaluateStructuralStability.data.ts\n    at check (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13:18)\n    at parse (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:31:3)\n    at entity (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:83:20)\n    at skills (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:156:7)\n    at checkTaxonomy (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:224:7)\n    at file:///home/runner/work/svitlo-web/svitlo-web/scripts/generate-skills-taxonomy.mjs:52:21\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v24.22.2"
+    },
+    {
+      "kind": "taxonomy",
+      "textbook": "content/engineering",
+      "locale": "ur",
+      "error": "file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13\n  if (!ok) throw new Error(message);\n                 ^\n\nError: Invalid TypeScript syntax: /home/runner/work/svitlo-web/svitlo-web/content/engineering/data/skills/structuresAndConstruction/stabilityAndTesting/skills/evaluateStructuralStability.data.ts\n    at check (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13:18)\n    at parse (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:31:3)\n    at entity (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:83:20)\n    at skills (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:156:7)\n    at checkTaxonomy (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:224:7)\n    at file:///home/runner/work/svitlo-web/svitlo-web/scripts/generate-skills-taxonomy.mjs:52:21\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v24.22.2"
+    },
+    {
+      "kind": "taxonomy",
+      "textbook": "content/engineering",
+      "locale": "id",
+      "error": "file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13\n  if (!ok) throw new Error(message);\n                 ^\n\nError: Invalid TypeScript syntax: /home/runner/work/svitlo-web/svitlo-web/content/engineering/data/skills/structuresAndConstruction/stabilityAndTesting/skills/evaluateStructuralStability.data.ts\n    at check (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13:18)\n    at parse (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:31:3)\n    at entity (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:83:20)\n    at skills (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:156:7)\n    at checkTaxonomy (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:224:7)\n    at file:///home/runner/work/svitlo-web/svitlo-web/scripts/generate-skills-taxonomy.mjs:52:21\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v24.22.2"
+    },
+    {
+      "kind": "taxonomy",
+      "textbook": "content/engineering",
+      "locale": "de",
+      "error": "file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13\n  if (!ok) throw new Error(message);\n                 ^\n\nError: Invalid TypeScript syntax: /home/runner/work/svitlo-web/svitlo-web/content/engineering/data/skills/structuresAndConstruction/stabilityAndTesting/skills/evaluateStructuralStability.data.ts\n    at check (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13:18)\n    at parse (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:31:3)\n    at entity (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:83:20)\n    at skills (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:156:7)\n    at checkTaxonomy (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:224:7)\n    at file:///home/runner/work/svitlo-web/svitlo-web/scripts/generate-skills-taxonomy.mjs:52:21\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v24.22.2"
+    },
+    {
+      "kind": "taxonomy",
+      "textbook": "content/engineering",
+      "locale": "ja",
+      "error": "file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13\n  if (!ok) throw new Error(message);\n                 ^\n\nError: Invalid TypeScript syntax: /home/runner/work/svitlo-web/svitlo-web/content/engineering/data/skills/structuresAndConstruction/stabilityAndTesting/skills/evaluateStructuralStability.data.ts\n    at check (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13:18)\n    at parse (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:31:3)\n    at entity (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:83:20)\n    at skills (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:156:7)\n    at checkTaxonomy (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:224:7)\n    at file:///home/runner/work/svitlo-web/svitlo-web/scripts/generate-skills-taxonomy.mjs:52:21\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v24.22.2"
+    },
+    {
+      "kind": "taxonomy",
+      "textbook": "content/engineering",
+      "locale": "ko",
+      "error": "file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13\n  if (!ok) throw new Error(message);\n                 ^\n\nError: Invalid TypeScript syntax: /home/runner/work/svitlo-web/svitlo-web/content/engineering/data/skills/structuresAndConstruction/stabilityAndTesting/skills/evaluateStructuralStability.data.ts\n    at check (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13:18)\n    at parse (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:31:3)\n    at entity (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:83:20)\n    at skills (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:156:7)\n    at checkTaxonomy (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:224:7)\n    at file:///home/runner/work/svitlo-web/svitlo-web/scripts/generate-skills-taxonomy.mjs:52:21\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v24.22.2"
+    },
+    {
+      "kind": "taxonomy",
+      "textbook": "content/engineering",
+      "locale": "tr",
+      "error": "file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13\n  if (!ok) throw new Error(message);\n                 ^\n\nError: Invalid TypeScript syntax: /home/runner/work/svitlo-web/svitlo-web/content/engineering/data/skills/structuresAndConstruction/stabilityAndTesting/skills/evaluateStructuralStability.data.ts\n    at check (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13:18)\n    at parse (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:31:3)\n    at entity (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:83:20)\n    at skills (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:156:7)\n    at checkTaxonomy (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:224:7)\n    at file:///home/runner/work/svitlo-web/svitlo-web/scripts/generate-skills-taxonomy.mjs:52:21\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v24.22.2"
+    },
+    {
+      "kind": "taxonomy",
+      "textbook": "content/engineering",
+      "locale": "vi",
+      "error": "file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13\n  if (!ok) throw new Error(message);\n                 ^\n\nError: Invalid TypeScript syntax: /home/runner/work/svitlo-web/svitlo-web/content/engineering/data/skills/structuresAndConstruction/stabilityAndTesting/skills/evaluateStructuralStability.data.ts\n    at check (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13:18)\n    at parse (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:31:3)\n    at entity (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:83:20)\n    at skills (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:156:7)\n    at checkTaxonomy (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:224:7)\n    at file:///home/runner/work/svitlo-web/svitlo-web/scripts/generate-skills-taxonomy.mjs:52:21\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v24.22.2"
+    },
+    {
+      "kind": "taxonomy",
+      "textbook": "content/engineering",
+      "locale": "ta",
+      "error": "file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13\n  if (!ok) throw new Error(message);\n                 ^\n\nError: Invalid TypeScript syntax: /home/runner/work/svitlo-web/svitlo-web/content/engineering/data/skills/structuresAndConstruction/stabilityAndTesting/skills/evaluateStructuralStability.data.ts\n    at check (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13:18)\n    at parse (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:31:3)\n    at entity (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:83:20)\n    at skills (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:156:7)\n    at checkTaxonomy (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:224:7)\n    at file:///home/runner/work/svitlo-web/svitlo-web/scripts/generate-skills-taxonomy.mjs:52:21\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v24.22.2"
+    },
+    {
+      "kind": "taxonomy",
+      "textbook": "content/engineering",
+      "locale": "te",
+      "error": "file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13\n  if (!ok) throw new Error(message);\n                 ^\n\nError: Invalid TypeScript syntax: /home/runner/work/svitlo-web/svitlo-web/content/engineering/data/skills/structuresAndConstruction/stabilityAndTesting/skills/evaluateStructuralStability.data.ts\n    at check (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13:18)\n    at parse (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:31:3)\n    at entity (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:83:20)\n    at skills (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:156:7)\n    at checkTaxonomy (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:224:7)\n    at file:///home/runner/work/svitlo-web/svitlo-web/scripts/generate-skills-taxonomy.mjs:52:21\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v24.22.2"
+    },
+    {
+      "kind": "taxonomy",
+      "textbook": "content/engineering",
+      "locale": "mr",
+      "error": "file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13\n  if (!ok) throw new Error(message);\n                 ^\n\nError: Invalid TypeScript syntax: /home/runner/work/svitlo-web/svitlo-web/content/engineering/data/skills/structuresAndConstruction/stabilityAndTesting/skills/evaluateStructuralStability.data.ts\n    at check (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13:18)\n    at parse (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:31:3)\n    at entity (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:83:20)\n    at skills (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:156:7)\n    at checkTaxonomy (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:224:7)\n    at file:///home/runner/work/svitlo-web/svitlo-web/scripts/generate-skills-taxonomy.mjs:52:21\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v24.22.2"
+    },
+    {
+      "kind": "taxonomy",
+      "textbook": "content/engineering",
+      "locale": "ms",
+      "error": "file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13\n  if (!ok) throw new Error(message);\n                 ^\n\nError: Invalid TypeScript syntax: /home/runner/work/svitlo-web/svitlo-web/content/engineering/data/skills/structuresAndConstruction/stabilityAndTesting/skills/evaluateStructuralStability.data.ts\n    at check (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13:18)\n    at parse (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:31:3)\n    at entity (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:83:20)\n    at skills (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:156:7)\n    at checkTaxonomy (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:224:7)\n    at file:///home/runner/work/svitlo-web/svitlo-web/scripts/generate-skills-taxonomy.mjs:52:21\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v24.22.2"
+    },
+    {
+      "kind": "taxonomy",
+      "textbook": "content/engineering",
+      "locale": "he",
+      "error": "file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13\n  if (!ok) throw new Error(message);\n                 ^\n\nError: Invalid TypeScript syntax: /home/runner/work/svitlo-web/svitlo-web/content/engineering/data/skills/structuresAndConstruction/stabilityAndTesting/skills/evaluateStructuralStability.data.ts\n    at check (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13:18)\n    at parse (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:31:3)\n    at entity (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:83:20)\n    at skills (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:156:7)\n    at checkTaxonomy (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:224:7)\n    at file:///home/runner/work/svitlo-web/svitlo-web/scripts/generate-skills-taxonomy.mjs:52:21\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v24.22.2"
+    },
+    {
+      "kind": "taxonomy",
+      "textbook": "content/engineering",
+      "locale": "pl",
+      "error": "file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13\n  if (!ok) throw new Error(message);\n                 ^\n\nError: Invalid TypeScript syntax: /home/runner/work/svitlo-web/svitlo-web/content/engineering/data/skills/structuresAndConstruction/stabilityAndTesting/skills/evaluateStructuralStability.data.ts\n    at check (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13:18)\n    at parse (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:31:3)\n    at entity (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:83:20)\n    at skills (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:156:7)\n    at checkTaxonomy (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:224:7)\n    at file:///home/runner/work/svitlo-web/svitlo-web/scripts/generate-skills-taxonomy.mjs:52:21\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v24.22.2"
+    },
+    {
+      "kind": "taxonomy",
+      "textbook": "content/engineering",
+      "locale": "uk",
+      "error": "file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13\n  if (!ok) throw new Error(message);\n                 ^\n\nError: Invalid TypeScript syntax: /home/runner/work/svitlo-web/svitlo-web/content/engineering/data/skills/structuresAndConstruction/stabilityAndTesting/skills/evaluateStructuralStability.data.ts\n    at check (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13:18)\n    at parse (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:31:3)\n    at entity (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:83:20)\n    at skills (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:156:7)\n    at checkTaxonomy (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:224:7)\n    at file:///home/runner/work/svitlo-web/svitlo-web/scripts/generate-skills-taxonomy.mjs:52:21\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v24.22.2"
+    },
+    {
+      "kind": "taxonomy",
+      "textbook": "content/engineering",
+      "locale": "lt",
+      "error": "file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13\n  if (!ok) throw new Error(message);\n                 ^\n\nError: Invalid TypeScript syntax: /home/runner/work/svitlo-web/svitlo-web/content/engineering/data/skills/structuresAndConstruction/stabilityAndTesting/skills/evaluateStructuralStability.data.ts\n    at check (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13:18)\n    at parse (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:31:3)\n    at entity (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:83:20)\n    at skills (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:156:7)\n    at checkTaxonomy (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:224:7)\n    at file:///home/runner/work/svitlo-web/svitlo-web/scripts/generate-skills-taxonomy.mjs:52:21\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v24.22.2"
+    },
+    {
+      "kind": "taxonomy",
+      "textbook": "content/engineering",
+      "locale": "lv",
+      "error": "file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13\n  if (!ok) throw new Error(message);\n                 ^\n\nError: Invalid TypeScript syntax: /home/runner/work/svitlo-web/svitlo-web/content/engineering/data/skills/structuresAndConstruction/stabilityAndTesting/skills/evaluateStructuralStability.data.ts\n    at check (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13:18)\n    at parse (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:31:3)\n    at entity (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:83:20)\n    at skills (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:156:7)\n    at checkTaxonomy (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:224:7)\n    at file:///home/runner/work/svitlo-web/svitlo-web/scripts/generate-skills-taxonomy.mjs:52:21\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v24.22.2"
+    },
+    {
+      "kind": "taxonomy",
+      "textbook": "content/engineering",
+      "locale": "et",
+      "error": "file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13\n  if (!ok) throw new Error(message);\n                 ^\n\nError: Invalid TypeScript syntax: /home/runner/work/svitlo-web/svitlo-web/content/engineering/data/skills/structuresAndConstruction/stabilityAndTesting/skills/evaluateStructuralStability.data.ts\n    at check (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13:18)\n    at parse (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:31:3)\n    at entity (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:83:20)\n    at skills (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:156:7)\n    at checkTaxonomy (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:224:7)\n    at file:///home/runner/work/svitlo-web/svitlo-web/scripts/generate-skills-taxonomy.mjs:52:21\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v24.22.2"
+    },
+    {
+      "kind": "taxonomy",
+      "textbook": "content/engineering",
+      "locale": "be",
+      "error": "file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13\n  if (!ok) throw new Error(message);\n                 ^\n\nError: Invalid TypeScript syntax: /home/runner/work/svitlo-web/svitlo-web/content/engineering/data/skills/structuresAndConstruction/stabilityAndTesting/skills/evaluateStructuralStability.data.ts\n    at check (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13:18)\n    at parse (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:31:3)\n    at entity (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:83:20)\n    at skills (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:156:7)\n    at checkTaxonomy (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:224:7)\n    at file:///home/runner/work/svitlo-web/svitlo-web/scripts/generate-skills-taxonomy.mjs:52:21\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v24.22.2"
+    },
+    {
+      "kind": "taxonomy",
+      "textbook": "content/engineering",
+      "locale": "ka",
+      "error": "file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13\n  if (!ok) throw new Error(message);\n                 ^\n\nError: Invalid TypeScript syntax: /home/runner/work/svitlo-web/svitlo-web/content/engineering/data/skills/structuresAndConstruction/stabilityAndTesting/skills/evaluateStructuralStability.data.ts\n    at check (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13:18)\n    at parse (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:31:3)\n    at entity (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:83:20)\n    at skills (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:156:7)\n    at checkTaxonomy (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:224:7)\n    at file:///home/runner/work/svitlo-web/svitlo-web/scripts/generate-skills-taxonomy.mjs:52:21\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v24.22.2"
+    },
+    {
+      "kind": "taxonomy",
+      "textbook": "content/engineering",
+      "locale": "kk",
+      "error": "file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13\n  if (!ok) throw new Error(message);\n                 ^\n\nError: Invalid TypeScript syntax: /home/runner/work/svitlo-web/svitlo-web/content/engineering/data/skills/structuresAndConstruction/stabilityAndTesting/skills/evaluateStructuralStability.data.ts\n    at check (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13:18)\n    at parse (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:31:3)\n    at entity (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:83:20)\n    at skills (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:156:7)\n    at checkTaxonomy (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:224:7)\n    at file:///home/runner/work/svitlo-web/svitlo-web/scripts/generate-skills-taxonomy.mjs:52:21\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v24.22.2"
+    },
+    {
+      "kind": "taxonomy",
+      "textbook": "content/engineering",
+      "locale": "qm",
+      "error": "file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13\n  if (!ok) throw new Error(message);\n                 ^\n\nError: Invalid TypeScript syntax: /home/runner/work/svitlo-web/svitlo-web/content/engineering/data/skills/structuresAndConstruction/stabilityAndTesting/skills/evaluateStructuralStability.data.ts\n    at check (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:13:18)\n    at parse (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:31:3)\n    at entity (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:83:20)\n    at skills (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:156:7)\n    at checkTaxonomy (file:///home/runner/work/svitlo-web/svitlo-web/scripts/check-skills-taxonomy-structure.mjs:224:7)\n    at file:///home/runner/work/svitlo-web/svitlo-web/scripts/generate-skills-taxonomy.mjs:52:21\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v24.22.2"
+    },
+    {
+      "kind": "taxonomy",
       "textbook": "content/playground",
       "locale": "en",
       "error": "file:///home/runner/work/svitlo-web/svitlo-web/scripts/generate-skills-taxonomy.mjs:20\n  throw new Error(message);\n        ^\n\nError: Missing description (taxonomy not yet migrated): /home/runner/work/svitlo-web/svitlo-web/content/playground/data/skills/testColors/testColors.data.ts\n    at fail (file:///home/runner/work/svitlo-web/svitlo-web/scripts/generate-skills-taxonomy.mjs:20:9)\n    at readEntity (file:///home/runner/work/svitlo-web/svitlo-web/scripts/generate-skills-taxonomy.mjs:133:27)\n    at file:///home/runner/work/svitlo-web/svitlo-web/scripts/generate-skills-taxonomy.mjs:198:18\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v24.22.2"
@@ -4086,9 +3999,9 @@
     }
   ],
   "summary": {
-    "taxonomyDocuments": 406,
+    "taxonomyDocuments": 377,
     "discoveredLessons": 1,
     "lessonDocuments": 0,
-    "failures": 58
+    "failures": 87
   }
 }
