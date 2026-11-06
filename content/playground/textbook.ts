@@ -1,6 +1,8 @@
 export const textbook = {
   id: 'playground',
   title: 'Світло · Playground',
+  featuredCourseId: '30ecbde1-97fd-5fe7-a353-ea89b9ef4a67',
+  featuredCourseLabel: 'Перевірити тестовий курс «Подорож світла»',
   featuredLessonId: 'd3048d21-8690-5255-b62c-984c69ac272c',
   featuredLessonLabel: 'Відкрити урок «Як рухається світло»',
   skillAnalyticsDomains: ['testColors', 'testShapes'],
