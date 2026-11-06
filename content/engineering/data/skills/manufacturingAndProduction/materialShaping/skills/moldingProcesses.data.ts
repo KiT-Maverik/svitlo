@@ -28,7 +28,7 @@ export const moldingProcesses_Skill_Data = buildSkillConfig({
     uk: 'Процеси формування у формах',
     lt: 'Formavimo liejimo formomis procesai',
     lv: 'Veidņu formēšanas procesi',
-    et: 'Vormivalmistusprotsessid',
+    et: 'Vormis valmistamise protsessid',
     be: 'Працэсы фармаваньня ў формах',
     ka: 'ყალიბში ფორმირების პროცესები',
     kk: 'Қалыптау үдерістері',

@@ -39,7 +39,7 @@ export const biomimeticStreamlining_Skill_Data = buildSkillConfig({
     frontend: {
       en: 'Recognize how biological shapes can reduce drag in technical designs.',
       zh: '认识生物形状如何减少技术设计中的流体阻力。',
-      hi: 'पहचानें कि जैविक आकृतियाँ तकनीकी डिज़ाइन में घर्षणीय प्रतिरोध कैसे घटाती हैं।',
+      hi: 'पहचानें कि जैविक आकृतियाँ तकनीकी डिज़ाइन में प्रवाह प्रतिरोध कैसे घटाती हैं।',
       es: 'Reconoce cómo las formas biológicas pueden reducir la resistencia al avance en diseños técnicos.',
       ar: 'تعرّف كيف تقلل الأشكال الحيوية مقاومة الحركة في التصاميم التقنية.',
       fr: 'Reconnais comment les formes biologiques peuvent réduire la traînée dans des conceptions techniques.',

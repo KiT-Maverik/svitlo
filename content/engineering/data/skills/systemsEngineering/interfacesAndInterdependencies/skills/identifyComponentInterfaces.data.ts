@@ -40,7 +40,7 @@ export const identifyComponentInterfaces_Skill_Data = buildSkillConfig({
       en: 'Identify where mechanical, electrical or other connections cross between components.',
       zh: '识别部件之间机械、电气或其他连接的位置。',
       hi: 'पहचानें कि घटकों के बीच यांत्रिक, विद्युत या अन्य जोड़ कहाँ हैं।',
-      es: 'Señala dónde se conectan mecánica, eléctrica u otras formas los componentes.',
+      es: 'Señala dónde se conectan los componentes por medios mecánicos, eléctricos u otros.',
       ar: 'حدّد مواضع الوصلات الميكانيكية أو الكهربائية أو غيرها بين المكونات.',
       fr: 'Repère les connexions mécaniques, électriques ou autres entre les composants.',
       bn: 'উপাদানগুলোর যান্ত্রিক, বৈদ্যুতিক বা অন্য সংযোগ কোথায় তা চিহ্নিত করো।',
