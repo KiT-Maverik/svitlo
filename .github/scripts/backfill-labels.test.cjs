@@ -54,6 +54,30 @@ test('historical backfill resolves all scoped paths and preserves existing scope
       labels: [],
       files: ['studio/rules/github-labels-and-naming.md'],
     },
+    {
+      number: 107,
+      title: 'feat: Design new Lesson architecture',
+      head: { ref: 'lesson-architecture' },
+      base: { ref: 'main' },
+      labels: [],
+      files: ['shared/engine/src/lesson.ts'],
+    },
+    {
+      number: 108,
+      title: 'feat: Add language selector',
+      head: { ref: 'language-selector' },
+      base: { ref: 'main' },
+      labels: [],
+      files: ['apps/web/src/selector.ts'],
+    },
+    {
+      number: 109,
+      title: 'Refactor runtime boundaries for Lesson',
+      head: { ref: 'lesson-runtime-refactor' },
+      base: { ref: 'main' },
+      labels: [],
+      files: ['shared/engine/src/runtime.ts'],
+    },
   ];
   const issues = [
     { number: 201, title: '[Chemistry] Review skills', body: '', labels: [], user: { login: 'KiT-Maverik' } },
@@ -118,6 +142,11 @@ test('historical backfill resolves all scoped paths and preserves existing scope
   contains(104, 'repo: general');
   contains(105, 'repo: scripts');
   contains(106, 'studio');
+  contains(107, 'work: architecture');
+  assert.ok(!(added.get(107) || []).includes('work: feature'), 'Architecture-only PR must not be a feature');
+  contains(108, 'work: feature');
+  contains(109, 'work: architecture');
+  contains(109, 'work: refactor');
   contains(201, 'content: chemistry');
   contains(202, 'content: health-safety');
   contains(203, 'app: mobile');
