@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { enUiKitMessages } from '../../testing/uiKitMessages.unit.fx';
@@ -5,11 +6,15 @@ import LearningLayout from '../layout/LearningLayout/LearningLayout';
 import type { LessonLearningLayoutProps } from '../layout/LearningLayout/createLessonLearningLayout';
 import { Lesson, type LessonView } from './Lesson';
 import { useLessonActions, type LessonActions } from './LessonController';
+import { useLessonEventBus } from './LessonEvents';
 
 const observed: LessonActions[] = [];
+const observedEvents: string[] = [];
 
 function TestLayout({ messages, ...props }: LessonLearningLayoutProps) {
   const actions = useLessonActions();
+  const bus = useLessonEventBus();
+  useEffect(() => bus.subscribe(eventId => { observedEvents.push(eventId); }), [bus]);
   observed.push(actions);
   return (
     <>
@@ -175,6 +180,7 @@ describe('multiple Quiz Sections', () => {
   } as LessonView;
 
   it('gates each Quiz independently until attempted, regardless of score', async () => {
+    observedEvents.length = 0;
     render(
       <Lesson response={fixture} href="/en/lesson/multi-quiz-lesson"
         messages={enUiKitMessages} layout={TestLayout} />,
@@ -186,6 +192,7 @@ describe('multiple Quiz Sections', () => {
     expect(next()).toBeDisabled();
     fireEvent.click(screen.getByRole('button', { name: 'No' }));
     fireEvent.click(screen.getByRole('button', { name: 'Check' }));
+    await waitFor(() => expect(observedEvents).toContain('quizCompleted'));
     await waitFor(() => expect(next()).toBeEnabled());
     fireEvent.click(next());
     expect(screen.getByText('Question quiz-second')).toBeVisible();
