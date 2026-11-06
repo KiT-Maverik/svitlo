@@ -198,11 +198,13 @@ export function assembleLessonResponse(
       if (!['stack', 'stepper'].includes(String(layout.mode))) throw new Error('Invalid Quiz layout at ' + where);
       if (parameters.isBlocker !== undefined && typeof parameters.isBlocker !== 'boolean')
         throw new Error('Invalid Quiz isBlocker at ' + where);
-      if (parameters.timeLimitSeconds !== undefined && (
-        typeof parameters.timeLimitSeconds !== 'number' ||
-        !Number.isSafeInteger(parameters.timeLimitSeconds) ||
-        parameters.timeLimitSeconds <= 0
-      )) throw new Error('Invalid Quiz timeLimitSeconds at ' + where);
+      if (
+        parameters.timeLimitSeconds !== undefined &&
+        (typeof parameters.timeLimitSeconds !== 'number' ||
+          !Number.isSafeInteger(parameters.timeLimitSeconds) ||
+          parameters.timeLimitSeconds <= 0)
+      )
+        throw new Error('Invalid Quiz timeLimitSeconds at ' + where);
       const quiz = parameters as Quiz_Parameters<'response', Locale_Languages>;
       sections.push({
         ...metadata,
@@ -252,7 +254,11 @@ export function assembleLessonResponse(
     throw new Error('Lesson ' + relativePath + ' requires at least one Quiz when requireQuiz is true');
   }
   const skills = data.skills;
-  if (!Array.isArray(skills) || skills.some(value => typeof value !== 'string' || !/^[0-9a-f-]{36}$/i.test(value)) || new Set(skills).size !== skills.length) {
+  if (
+    !Array.isArray(skills) ||
+    skills.some(value => typeof value !== 'string' || !/^[0-9a-f-]{36}$/i.test(value)) ||
+    new Set(skills).size !== skills.length
+  ) {
     throw new Error('Invalid Lesson Skill IDs at ' + relativePath);
   }
   return {

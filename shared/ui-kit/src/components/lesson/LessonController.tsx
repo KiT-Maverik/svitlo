@@ -126,7 +126,8 @@ function hasNextBlocker(state: Runtime, step: number): boolean {
 function canLeaveSection(state: Runtime, response: LessonView, index: number): boolean {
   const section = response.sections[index];
   if (!section) return false;
-  if (section.type === 'quiz' && section.parameters.isBlocker && !state.section.completedQuizIds[section.id]) return false;
+  if (section.type === 'quiz' && section.parameters.isBlocker && !state.section.completedQuizIds[section.id])
+    return false;
   return requiredCheckpointIds(section).every(id => state.section.completedCheckpoints[section.id + '/' + id]);
 }
 
@@ -316,7 +317,7 @@ const MemoSection = memo(function LessonSection({
             language={response.locale.code}
             sceneRegistry={sceneRegistry}
             messages={messages}
-            onComplete={result => result.passed ? actions.completeQuiz(section.id) : actions.failQuiz(section.id)}
+            onComplete={result => (result.passed ? actions.completeQuiz(section.id) : actions.failQuiz(section.id))}
           />
         ) : (
           <ContentBlockRenderer
@@ -390,7 +391,12 @@ export function LessonController({
     (sectionId: string | undefined, passed: boolean) => {
       const active = response.sections[latest.current.section.step];
       const id = sectionId ?? (active?.type === 'quiz' ? active.id : undefined);
-      if (!id || !response.sections.some(section => section.type === 'quiz' && section.id === id) || quizEmitted.current.has(id)) return;
+      if (
+        !id ||
+        !response.sections.some(section => section.type === 'quiz' && section.id === id) ||
+        quizEmitted.current.has(id)
+      )
+        return;
       quizEmitted.current.add(id);
       dispatch({ type: 'quizDone', sectionId: id });
       emit('quizCompleted');
@@ -418,7 +424,8 @@ export function LessonController({
       state.section.step !== finalStep ||
       (lastSection.type === 'quiz' && !state.section.completedQuizIds[lastSection.id]) ||
       !canLeaveSection(state, response, finalStep)
-    ) return;
+    )
+      return;
     lessonFinished.current = true;
     emit('lessonCompleted');
   }, [eventReady, response, state, emit]);
@@ -539,7 +546,10 @@ export function LessonController({
   const skippableSteps = useMemo(
     () =>
       response.sections.map(
-        item => state.params.sections.allowSkipping && !!item.skippable && (item.type !== 'quiz' || (!item.parameters.isBlocker && item.parameters.interaction.skippable)),
+        item =>
+          state.params.sections.allowSkipping &&
+          !!item.skippable &&
+          (item.type !== 'quiz' || (!item.parameters.isBlocker && item.parameters.interaction.skippable)),
       ),
     [response.sections, state.params.sections.allowSkipping],
   );

@@ -17,8 +17,7 @@ export type Section_Type = (typeof SECTION_TYPES)[number];
 type RegularSection_Type = Exclude<Section_Type, 'quiz'>;
 
 type Section_Definition<Languages extends Locale_Languages> =
-  | { type: RegularSection_Type; content: readonly ContentBlock<'definition', Languages>[] }
-  | { type: 'quiz' };
+  { type: RegularSection_Type; content: readonly ContentBlock<'definition', Languages>[] } | { type: 'quiz' };
 
 type Section_Meta<Languages extends Locale_Languages> = {
   id: string;
@@ -34,11 +33,13 @@ type Section_Data<Languages extends Locale_Languages> = Section_Meta<Languages> 
     | { type: 'quiz'; parameters: Quiz_Parameters<'data', Languages> }
   );
 
-type Section_Response<Languages extends Locale_Languages> =
-  Omit<Section_Meta<Languages>, 'title' | 'navigationLabel'> & {
-    title: string;
-    navigationLabel: string;
-  } & (
+type Section_Response<Languages extends Locale_Languages> = Omit<
+  Section_Meta<Languages>,
+  'title' | 'navigationLabel'
+> & {
+  title: string;
+  navigationLabel: string;
+} & (
     | { type: RegularSection_Type; content: readonly ContentBlock<'response', Languages>[] }
     | {
         type: 'quiz';

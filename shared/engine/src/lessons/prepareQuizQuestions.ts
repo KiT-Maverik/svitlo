@@ -50,7 +50,12 @@ export function prepareQuizQuestions(
     : all;
   const ordered = selection.shuffle ? shuffled(pool, random) : [...pool];
   if (selection.mode === 'sample') {
-    if (typeof selection.count !== 'number' || !Number.isSafeInteger(selection.count) || selection.count <= 0 || selection.count > ordered.length)
+    if (
+      typeof selection.count !== 'number' ||
+      !Number.isSafeInteger(selection.count) ||
+      selection.count <= 0 ||
+      selection.count > ordered.length
+    )
       throw new Error('Quiz sample count must be within the available question pool');
   } else if (selection.mode !== 'all') {
     throw new Error('Unsupported Quiz selection mode');
@@ -66,22 +71,33 @@ export function prepareQuizQuestions(
     const incorrect = Object.entries(question.answers.incorrect);
     const distractors = Object.entries(question.answers.distractors);
     if (!correct.length) throw new Error('SelectOneAnswer requires a correct answer: ' + question.id);
-    if (settings.incorrectCount !== undefined &&
-      (!Number.isSafeInteger(settings.incorrectCount) || settings.incorrectCount < 0 || settings.incorrectCount > incorrect.length))
+    if (
+      settings.incorrectCount !== undefined &&
+      (!Number.isSafeInteger(settings.incorrectCount) ||
+        settings.incorrectCount < 0 ||
+        settings.incorrectCount > incorrect.length)
+    )
       throw new Error('Invalid Quiz incorrectCount for ' + question.id);
     const answers = {
       correct: Object.fromEntries([
         settings.correctVariant === 'random' ? correct[Math.floor(random() * correct.length)] : correct[0],
       ]),
-      incorrect: Object.fromEntries(settings.incorrectCount === undefined ? incorrect : shuffled(incorrect, random).slice(0, settings.incorrectCount)),
+      incorrect: Object.fromEntries(
+        settings.incorrectCount === undefined
+          ? incorrect
+          : shuffled(incorrect, random).slice(0, settings.incorrectCount),
+      ),
       distractors: Object.fromEntries(settings.includeDistractors === false ? [] : distractors),
     };
     if (settings.shuffleAnswers) {
-      const mixed = shuffled([
-        ...Object.entries(answers.correct).map(([key, value]) => ({ key, value, kind: 'correct' as const })),
-        ...Object.entries(answers.incorrect).map(([key, value]) => ({ key, value, kind: 'incorrect' as const })),
-        ...Object.entries(answers.distractors).map(([key, value]) => ({ key, value, kind: 'distractor' as const })),
-      ], random);
+      const mixed = shuffled(
+        [
+          ...Object.entries(answers.correct).map(([key, value]) => ({ key, value, kind: 'correct' as const })),
+          ...Object.entries(answers.incorrect).map(([key, value]) => ({ key, value, kind: 'incorrect' as const })),
+          ...Object.entries(answers.distractors).map(([key, value]) => ({ key, value, kind: 'distractor' as const })),
+        ],
+        random,
+      );
       // A dedicated display order is required: response maps alone group correct/incorrect answers.
       return { ...question, answers, answerOrder: mixed.map(item => item.kind + ':' + item.key) };
     }

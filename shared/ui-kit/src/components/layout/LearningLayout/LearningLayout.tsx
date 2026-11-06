@@ -187,12 +187,7 @@ export function LearningLayoutBottomBar({
             </Button>
             <Button
               variant="contained"
-              disabled={
-                nextDisabled ||
-                contentLoading ||
-                !progress.ready ||
-                progress.step >= progress.lastStep
-              }
+              disabled={nextDisabled || contentLoading || !progress.ready || progress.step >= progress.lastStep}
               onClick={actions.next}
             >
               {messages.actions.next} {direction === 'rtl' ? '←' : '→'}

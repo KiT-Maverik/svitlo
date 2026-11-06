@@ -51,7 +51,14 @@ const parameters = {
   },
   results: { visibility: 'after-review' as const, showScore: true },
   screen: {},
-  questionOptions: { selectOneAnswer: { incorrectCount: 1, includeDistractors: true, shuffleAnswers: true, correctVariant: 'random' as const } },
+  questionOptions: {
+    selectOneAnswer: {
+      incorrectCount: 1,
+      includeDistractors: true,
+      shuffleAnswers: true,
+      correctVariant: 'random' as const,
+    },
+  },
 };
 
 export const quiz_Section = {

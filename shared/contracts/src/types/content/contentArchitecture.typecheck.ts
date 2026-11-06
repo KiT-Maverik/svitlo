@@ -30,7 +30,10 @@ type _QuestionKinds = Assert<Equal<Question<'response', TestLanguages>['type'], 
 type _SceneDiscriminator = Assert<Equal<ContentBlock_Scene<'response', TestLanguages>['type'], 'scene'>>;
 type _SceneUsesRegistryKey = Assert<Equal<ContentBlock_Scene<'response', TestLanguages>['rendererKey'], string>>;
 type _OrderedSectionContent = Assert<
-  Equal<Extract<Section<'data', TestLanguages>, { content: readonly unknown[] }>['content'][number]['type'], ContentBlock_Type>
+  Equal<
+    Extract<Section<'data', TestLanguages>, { content: readonly unknown[] }>['content'][number]['type'],
+    ContentBlock_Type
+  >
 >;
 type _OrderedLessonSections = Assert<Equal<Lesson<'data', TestLanguages>['sections'][number]['type'], Section_Type>>;
 type _AuthoredKinds = Assert<Equal<ContentBlock<'data', TestLanguages>['type'], ContentBlock_Type>>;
@@ -38,10 +41,7 @@ type _QuizReferencesQuestions = Assert<
   Equal<NonNullable<Quiz_Parameters<'response', TestLanguages>['selection']['questionSlugs']>[number], string>
 >;
 type _QuizStartScreen = Assert<
-  Equal<
-    NonNullable<Quiz_Parameters<'data', TestLanguages>['screen']['starting']>,
-    Quiz_Screen<'data', TestLanguages>
-  >
+  Equal<NonNullable<Quiz_Parameters<'data', TestLanguages>['screen']['starting']>, Quiz_Screen<'data', TestLanguages>>
 >;
 type _QuizRetryScreen = Assert<
   Equal<

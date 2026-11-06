@@ -50,16 +50,24 @@ export function SelectOneAnswer({
       <Stack spacing={1} role="group" aria-label={questionLabel(response.question) || response.id}>
         {options.map(option => {
           const selected = attempt.value === option.id;
-          const showFeedback = !completion.parameters || completion.parameters.feedbackMode === 'immediate' || completion.revealFeedback;
-          const feedback = attempt.checked && showFeedback
-            ? option.correct
-              ? selected
-                ? completion.parameters?.interaction.showCorrectAnswers === false ? undefined : 'correct'
-                : completion.parameters?.interaction.showCorrectAnswers === false ? undefined : 'missed'
-              : selected
-                ? completion.parameters?.interaction.showErrors === false ? undefined : 'incorrect'
-                : undefined
-            : undefined;
+          const showFeedback =
+            !completion.parameters || completion.parameters.feedbackMode === 'immediate' || completion.revealFeedback;
+          const feedback =
+            attempt.checked && showFeedback
+              ? option.correct
+                ? selected
+                  ? completion.parameters?.interaction.showCorrectAnswers === false
+                    ? undefined
+                    : 'correct'
+                  : completion.parameters?.interaction.showCorrectAnswers === false
+                    ? undefined
+                    : 'missed'
+                : selected
+                  ? completion.parameters?.interaction.showErrors === false
+                    ? undefined
+                    : 'incorrect'
+                  : undefined
+              : undefined;
           return (
             <QuestionChoice
               key={option.id}

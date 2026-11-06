@@ -63,7 +63,9 @@ export function QuestionFrame<Value>({
   const t = messages.questionFrame;
   const settings = completion.parameters;
   const showFeedback = !settings || settings.feedbackMode === 'immediate' || completion.revealFeedback;
-  const showStatus = showFeedback && (attempt.correct ? (settings?.interaction.showCorrectAnswers ?? true) : (settings?.interaction.showErrors ?? true));
+  const showStatus =
+    showFeedback &&
+    (attempt.correct ? (settings?.interaction.showCorrectAnswers ?? true) : (settings?.interaction.showErrors ?? true));
   const canRetry = !settings || (!attempt.correct && attempt.attempts <= settings.interaction.retries);
   return (
     <Paper
@@ -90,7 +92,10 @@ export function QuestionFrame<Value>({
           {attempt.correct ? t.correct : t.incorrect}
         </Typography>
       ) : null}
-      {attempt.checked && showFeedback && (settings?.interaction.allowExplanations ?? true) && response.explanation?.length ? (
+      {attempt.checked &&
+      showFeedback &&
+      (settings?.interaction.allowExplanations ?? true) &&
+      response.explanation?.length ? (
         <Box component="details">
           <Box component="summary" sx={{ cursor: 'pointer' }}>
             {t.explanation}

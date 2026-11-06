@@ -15,7 +15,13 @@ let releaseTestBlocker: (() => void) | undefined;
 function TestLayout({ messages, ...props }: LessonLearningLayoutProps) {
   const actions = useLessonActions();
   const bus = useLessonEventBus();
-  useEffect(() => bus.subscribe(id => { observedEvents.push(id); }), [bus]);
+  useEffect(
+    () =>
+      bus.subscribe(id => {
+        observedEvents.push(id);
+      }),
+    [bus],
+  );
   observed.push(actions);
   return (
     <>
@@ -127,9 +133,7 @@ describe('LessonController scoped state and navigation', () => {
       ],
     } as unknown as LessonView;
     observed.length = 0;
-    render(
-      <Lesson response={value} href="/en/lesson/lesson-test" messages={enUiKitMessages} layout={TestLayout} />,
-    );
+    render(<Lesson response={value} href="/en/lesson/lesson-test" messages={enUiKitMessages} layout={TestLayout} />);
     const bottom = screen.getByRole('navigation', { name: enUiKitMessages.learningLayout.navigation.bottom });
     const next = within(bottom).getByRole('button', {
       name: new RegExp(enUiKitMessages.learningLayout.actions.next, 'i'),
@@ -172,14 +176,7 @@ describe('LessonController scoped state and navigation', () => {
       ],
     } as unknown as LessonView;
     observed.length = 0;
-    render(
-      <Lesson
-        response={value}
-        href="/en/lesson/lesson-test"
-        messages={enUiKitMessages}
-        layout={TestLayout}
-      />,
-    );
+    render(<Lesson response={value} href="/en/lesson/lesson-test" messages={enUiKitMessages} layout={TestLayout} />);
     const bottom = screen.getByRole('navigation', { name: enUiKitMessages.learningLayout.navigation.bottom });
     const next = within(bottom).getByRole('button', {
       name: new RegExp(enUiKitMessages.learningLayout.actions.next, 'i'),
@@ -231,14 +228,7 @@ describe('LessonController scoped state and navigation', () => {
       ],
     } as unknown as LessonView;
     observed.length = 0;
-    render(
-      <Lesson
-        response={value}
-        href="/en/lesson/lesson-test"
-        messages={enUiKitMessages}
-        layout={TestLayout}
-      />,
-    );
+    render(<Lesson response={value} href="/en/lesson/lesson-test" messages={enUiKitMessages} layout={TestLayout} />);
     const bottom = screen.getByRole('navigation', { name: enUiKitMessages.learningLayout.navigation.bottom });
     const next = within(bottom).getByRole('button', {
       name: new RegExp(enUiKitMessages.learningLayout.actions.next, 'i'),
@@ -304,7 +294,9 @@ describe('multiple Quiz Sections', () => {
     type: 'selectOneAnswer' as const,
     assessmentMethod: 'retrieval' as const,
     restrictions: [],
-    question: [{ id: 'prompt-' + id, type: 'text' as const, value: 'Question ' + id }] as [{ id: string; type: 'text'; value: string }],
+    question: [{ id: 'prompt-' + id, type: 'text' as const, value: 'Question ' + id }] as [
+      { id: string; type: 'text'; value: string },
+    ],
     answers: {
       correct: { yes: { id: 'yes-' + id, type: 'text' as const, value: 'Yes' } },
       incorrect: { no: { id: 'no-' + id, type: 'text' as const, value: 'No' } },
@@ -317,16 +309,25 @@ describe('multiple Quiz Sections', () => {
     layout: { mode: 'stack' as const },
     feedbackMode: 'immediate' as const,
     interaction: {
-      retries: 0, showErrors: true, showCorrectAnswers: true,
-      allowExplanations: true, allowDeferring: false,
-      allowQuestionNavigation: false, skippable: false,
+      retries: 0,
+      showErrors: true,
+      showCorrectAnswers: true,
+      allowExplanations: true,
+      allowDeferring: false,
+      allowQuestionNavigation: false,
+      skippable: false,
     },
     results: { visibility: 'immediate' as const, showScore: true },
     screen: {},
   });
   const quiz = (id: string) => ({
-    id, slug: id, title: id, navigationLabel: id, type: 'quiz' as const,
-    parameters: params(true), questions: [question(id)],
+    id,
+    slug: id,
+    title: id,
+    navigationLabel: id,
+    type: 'quiz' as const,
+    parameters: params(true),
+    questions: [question(id)],
   });
   const fixture = {
     id: 'multi-quiz-lesson',
@@ -336,22 +337,26 @@ describe('multiple Quiz Sections', () => {
     sections: [
       quiz('quiz-first'),
       quiz('quiz-second'),
-      { id: 'summary', slug: 'summary', type: 'theory' as const,
-        title: 'Summary', navigationLabel: 'Summary',
+      {
+        id: 'summary',
+        slug: 'summary',
+        type: 'theory' as const,
+        title: 'Summary',
+        navigationLabel: 'Summary',
         content: [{ type: 'text' as const, id: 'summary', value: 'Quiz sections finished' }],
       },
     ],
   } as LessonView;
-
 
   it('allows advancing past a nonblocking Quiz without completing it', () => {
     const optional = { ...quiz('optional'), parameters: params(false) };
     const view = { ...fixture, sections: [optional, quiz('required'), fixture.sections[2]] } as LessonView;
     render(<Lesson response={view} href="/en/lesson/nonblocking" messages={enUiKitMessages} layout={TestLayout} />);
     const bottom = screen.getByRole('navigation', { name: enUiKitMessages.learningLayout.navigation.bottom });
-    const next = () => within(bottom).getByRole('button', {
-      name: new RegExp(enUiKitMessages.learningLayout.actions.next, 'i'),
-    });
+    const next = () =>
+      within(bottom).getByRole('button', {
+        name: new RegExp(enUiKitMessages.learningLayout.actions.next, 'i'),
+      });
     expect(next()).toBeEnabled();
     fireEvent.click(next());
     expect(screen.getByText('Question required')).toBeVisible();
@@ -361,13 +366,13 @@ describe('multiple Quiz Sections', () => {
   it('gates each Quiz independently until attempted, regardless of score', async () => {
     observedEvents.length = 0;
     render(
-      <Lesson response={fixture} href="/en/lesson/multi-quiz-lesson"
-        messages={enUiKitMessages} layout={TestLayout} />,
+      <Lesson response={fixture} href="/en/lesson/multi-quiz-lesson" messages={enUiKitMessages} layout={TestLayout} />,
     );
     const bottom = screen.getByRole('navigation', { name: enUiKitMessages.learningLayout.navigation.bottom });
-    const next = () => within(bottom).getByRole('button', {
-      name: new RegExp(enUiKitMessages.learningLayout.actions.next, 'i'),
-    });
+    const next = () =>
+      within(bottom).getByRole('button', {
+        name: new RegExp(enUiKitMessages.learningLayout.actions.next, 'i'),
+      });
     expect(next()).toBeDisabled();
     fireEvent.click(screen.getByRole('button', { name: 'No' }));
     fireEvent.click(screen.getByRole('button', { name: 'Check' }));

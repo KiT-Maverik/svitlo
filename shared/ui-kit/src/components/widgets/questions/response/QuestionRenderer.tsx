@@ -81,7 +81,8 @@ export function QuestionRenderer({
   const [remaining, setRemaining] = useState(parameters?.timeLimitSeconds);
   const completed = useRef<string | null>(null);
   const signature = questions.map(question => question.type + ':' + question.id).join('|');
-  const allChecked = questions.length > 0 && questions.every(question => statuses.has(question.type + ':' + question.id));
+  const allChecked =
+    questions.length > 0 && questions.every(question => statuses.has(question.type + ':' + question.id));
   const correct = questions.filter(question => statuses.get(question.type + ':' + question.id) === true).length;
   const score = parameters?.grading?.mode === 'percentage' ? (correct * 100) / (questions.length || 1) : correct;
   const passed = parameters?.grading ? score >= parameters.grading.successThreshold : correct === questions.length;
@@ -90,7 +91,8 @@ export function QuestionRenderer({
   useEffect(() => {
     if (parameters?.timeLimitSeconds === undefined) return;
     const handle = setInterval(() => {
-      if (completed.current !== signature) setRemaining(value => value === undefined ? undefined : Math.max(0, value - 1));
+      if (completed.current !== signature)
+        setRemaining(value => (value === undefined ? undefined : Math.max(0, value - 1)));
     }, 1000);
     return () => clearInterval(handle);
   }, [parameters?.timeLimitSeconds, signature]);
@@ -134,7 +136,7 @@ export function QuestionRenderer({
   const active = Math.min(currentIndex, questions.length - 1);
   const progressStatuses = questions.map(question => {
     const status = statuses.get(question.type + ':' + question.id);
-    return status === undefined ? 'unanswered' as const : status ? 'correct' as const : 'incorrect' as const;
+    return status === undefined ? ('unanswered' as const) : status ? ('correct' as const) : ('incorrect' as const);
   });
   return (
     <ContentLanguageContext.Provider value={language ?? inheritedLanguage}>
@@ -146,22 +148,34 @@ export function QuestionRenderer({
             </Box>
           )}
           {showProgress && (
-            <QuestionProgress statuses={progressStatuses} currentIndex={active} messages={messages.lesson}
-              allowNavigation={parameters?.interaction.allowQuestionNavigation} onNavigate={setCurrentIndex} />
+            <QuestionProgress
+              statuses={progressStatuses}
+              currentIndex={active}
+              messages={messages.lesson}
+              allowNavigation={parameters?.interaction.allowQuestionNavigation}
+              onNavigate={setCurrentIndex}
+            />
           )}
           {questions.map((response, index) => (
-            <Box key={response.type + ':' + response.id} sx={{ display: !stepper || index === active ? 'block' : 'none' }}>
+            <Box
+              key={response.type + ':' + response.id}
+              sx={{ display: !stepper || index === active ? 'block' : 'none' }}
+            >
               <QuestionBlock response={response} sceneRegistry={sceneRegistry} messages={messages} />
             </Box>
           ))}
           {stepper && (
-            <Stack direction="row" sx={{ justifyContent: "space-between" }}>
+            <Stack direction="row" sx={{ justifyContent: 'space-between' }}>
               <Button disabled={active === 0} onClick={() => setCurrentIndex(active - 1)}>
                 {messages.learningLayout.actions.previous}
               </Button>
-              <Button disabled={active >= questions.length - 1 ||
-                (progressStatuses[active] === 'unanswered' && !parameters?.interaction.allowDeferring)}
-                onClick={() => setCurrentIndex(active + 1)}>
+              <Button
+                disabled={
+                  active >= questions.length - 1 ||
+                  (progressStatuses[active] === 'unanswered' && !parameters?.interaction.allowDeferring)
+                }
+                onClick={() => setCurrentIndex(active + 1)}
+              >
                 {messages.learningLayout.actions.next}
               </Button>
             </Stack>

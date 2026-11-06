@@ -41,10 +41,18 @@ function assertLesson(value: unknown): asserts value is LessonData {
   ) {
     throw new Error(`Lesson ${relativePath} has no valid parameters.languages`);
   }
-  if (!Array.isArray(value.flashcards) || !isRecord(value.questions) || !Array.isArray(value.sections) || !Array.isArray(value.skills)) {
+  if (
+    !Array.isArray(value.flashcards) ||
+    !isRecord(value.questions) ||
+    !Array.isArray(value.sections) ||
+    !Array.isArray(value.skills)
+  ) {
     throw new Error(`Lesson ${relativePath} is missing flashcards, questions, or sections`);
   }
-  if (new Set(value.skills).size !== value.skills.length || value.skills.some(id => typeof id !== 'string' || !/^[0-9a-f-]{36}$/i.test(id))) {
+  if (
+    new Set(value.skills).size !== value.skills.length ||
+    value.skills.some(id => typeof id !== 'string' || !/^[0-9a-f-]{36}$/i.test(id))
+  ) {
     throw new Error('Invalid Lesson Skill IDs');
   }
   // Validate authored event scenes before sparse publication. Custom event reactions cannot be false.
@@ -67,7 +75,13 @@ function assertLesson(value: unknown): asserts value is LessonData {
   }
   const sectionSlugs = new Set<string>();
   for (const [index, entry] of value.sections.entries()) {
-    if (!isRecord(entry) || typeof entry.slug !== 'string' || (entry.type === 'quiz' ? (!isRecord(entry.parameters) || entry.content !== undefined) : !Array.isArray(entry.content))) {
+    if (
+      !isRecord(entry) ||
+      typeof entry.slug !== 'string' ||
+      (entry.type === 'quiz'
+        ? !isRecord(entry.parameters) || entry.content !== undefined
+        : !Array.isArray(entry.content))
+    ) {
       throw new Error(`Invalid ordered section at ${relativePath}/sections[${index}]`);
     }
     if (sectionSlugs.has(entry.slug)) throw new Error(`Duplicate section slug: ${entry.slug}`);

@@ -147,14 +147,24 @@ describe('Lesson events', () => {
   it('emits quizCompleted through the existing controller action', () => {
     const base = response();
     const quiz = {
-      id: 'quiz-section', slug: 'quiz-section', type: 'quiz' as const,
-      title: 'Quiz', navigationLabel: 'Quiz',
+      id: 'quiz-section',
+      slug: 'quiz-section',
+      type: 'quiz' as const,
+      title: 'Quiz',
+      navigationLabel: 'Quiz',
       parameters: {
         selection: { mode: 'all' as const },
         layout: { mode: 'stack' as const },
         feedbackMode: 'immediate' as const,
-        interaction: { retries: 0, showErrors: true, showCorrectAnswers: true,
-          allowExplanations: true, allowDeferring: false, allowQuestionNavigation: false, skippable: false },
+        interaction: {
+          retries: 0,
+          showErrors: true,
+          showCorrectAnswers: true,
+          allowExplanations: true,
+          allowDeferring: false,
+          allowQuestionNavigation: false,
+          skippable: false,
+        },
         results: { visibility: 'hidden' as const, showScore: false },
         screen: {},
       },
