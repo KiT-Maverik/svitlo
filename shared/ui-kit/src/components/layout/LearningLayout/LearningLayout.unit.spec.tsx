@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, within } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import LearningLayout from './LearningLayout';
 import { learningLayout } from '../../../../data/locale/learningLayout';
@@ -45,7 +45,11 @@ describe('LearningLayout preparation', () => {
       </LearningLayout>,
     );
 
-    expect(screen.queryByRole('button', { name: 'Interface settings control' })).not.toBeVisible();
+    expect(
+      within(screen.getByRole('navigation', { name: uk.navigation.top })).queryByRole('button', {
+        name: 'Interface settings control',
+      }),
+    ).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: uk.actions.openSettings }));
     expect(screen.getByRole('heading', { name: uk.settingsTitle })).toBeVisible();
     expect(screen.getByRole('button', { name: 'Interface settings control' })).toBeVisible();
