@@ -76,10 +76,7 @@ export const LearningLayout_fx = {
   },
   actions: {
     openTopics: async () => userEvent.click(LearningLayout_fx.selectors.topAction(aria.actions.openTopics)),
-    openSettings: async () => {
-      await userEvent.click(LearningLayout_fx.selectors.topAction(aria.actions.profile));
-      await userEvent.click(screen.getByRole('menuitem', { name: aria.settingsTitle }));
-    },
+    openSettings: async () => userEvent.click(LearningLayout_fx.selectors.topAction(aria.actions.openSettings)),
     escape: async () => userEvent.keyboard('{Escape}'),
     next: async () => userEvent.click(LearningLayout_fx.selectors.bottomAction(aria.actions.next)),
     back: async () => userEvent.click(LearningLayout_fx.selectors.bottomAction(aria.actions.previous)),

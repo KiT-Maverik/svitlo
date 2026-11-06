@@ -51,15 +51,16 @@ describe('Layouts', () => {
       expect(LearningLayout_fx.selectors.topAction(aria.actions.openTopics)).toHaveAttribute('aria-expanded', 'false');
     });
 
-    it('should show only the profile action on the right side of the navbar', () => {
+    it('should show quick settings and profile actions on the right side of the navbar', () => {
       LearningLayout_fx.render();
       const right = LearningLayout_fx.navbar.slot('right', LearningLayout_fx.selectors.top());
-      expect(within(right).getAllByRole('button')).toHaveLength(1);
+      expect(within(right).getAllByRole('button')).toHaveLength(2);
+      expect(within(right).getByRole('button', { name: aria.actions.openSettings })).toBeEnabled();
       expect(within(right).getByRole('button', { name: aria.actions.profile })).toBeEnabled();
       expect(within(right).queryByRole('combobox')).not.toBeInTheDocument();
     });
 
-    it('should keep settings and topics mutually exclusive', async () => {
+    it('should keep quick settings and topics mutually exclusive', async () => {
       LearningLayout_fx.render();
       await LearningLayout_fx.actions.openTopics();
       await LearningLayout_fx.actions.openSettings();
@@ -67,6 +68,18 @@ describe('Layouts', () => {
       expect(LearningLayout_fx.selectors.settings()).toBeVisible();
       expect(LearningLayout_fx.selectors.topAction(aria.actions.profile)).toHaveAttribute('aria-expanded', 'false');
       expect(LearningLayout_fx.selectors.topAction(aria.actions.openTopics)).toHaveAttribute('aria-expanded', 'false');
+    });
+
+    it('should link to profile settings without opening quick settings', async () => {
+      LearningLayout_fx.render();
+      await LearningLayout_fx.actions.openSettings();
+      const profile = LearningLayout_fx.selectors.topAction(aria.actions.profile);
+      profile.click();
+      expect(LearningLayout_fx.selectors.topAction(aria.actions.openSettings)).toHaveAttribute(
+        'aria-expanded',
+        'false',
+      );
+      expect(screen.getByRole('menuitem', { name: aria.actions.profileSettings })).toHaveAttribute('href', '#');
     });
 
     it('should set right-to-left direction for RTL locales', () => {

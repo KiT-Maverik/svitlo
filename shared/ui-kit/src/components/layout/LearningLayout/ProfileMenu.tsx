@@ -33,7 +33,7 @@ export type ProfileMenuProps = {
   profiles?: readonly LearningProfile[];
   onProfileChange?: (profileId: string) => void;
   onLogout?: () => void;
-  onSettings: () => void;
+  settingsHref?: string;
   onOpen?: () => void;
 };
 
@@ -43,7 +43,7 @@ export default function ProfileMenu({
   profiles = [],
   onProfileChange,
   onLogout,
-  onSettings,
+  settingsHref = '#',
   onOpen,
 }: ProfileMenuProps) {
   const menuId = useId();
@@ -67,10 +67,6 @@ export default function ProfileMenu({
   const selectProfile = (id: string) => {
     close();
     onProfileChange?.(id);
-  };
-  const showSettings = () => {
-    close();
-    onSettings();
   };
   const logout = () => {
     close();
@@ -173,11 +169,11 @@ export default function ProfileMenu({
             ))}
           </Box>
         </Collapse>
-        <MenuItem onClick={showSettings} sx={{ py: 1.25 }}>
+        <MenuItem component="a" href={settingsHref} onClick={close} sx={{ py: 1.25 }}>
           <ListItemIcon>
             <SettingsOutlinedIcon fontSize="small" />
           </ListItemIcon>
-          <ListItemText>{messages.settingsTitle}</ListItemText>
+          <ListItemText>{messages.actions.profileSettings}</ListItemText>
         </MenuItem>
         <Divider />
         <MenuItem disabled={!onLogout} onClick={logout} sx={{ py: 1.25 }}>

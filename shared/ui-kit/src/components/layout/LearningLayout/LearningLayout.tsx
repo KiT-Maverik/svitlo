@@ -12,6 +12,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { alpha } from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu';
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import CloseIcon from '@mui/icons-material/Close';
 import TopNavbar from '../Navigation/TopNavbar';
 import BottomNavbar from '../Navigation/BottomNavbar';
@@ -42,6 +43,8 @@ export interface LearningLayoutProps {
   profiles?: readonly LearningProfile[];
   onProfileChange?: (profileId: string) => void;
   onLogout?: () => void;
+  /** Profile-settings destination; defaults to a placeholder hash. */
+  profileSettingsHref?: string;
   /** Optional page-specific controls inside the existing right settings drawer. */
   settingsContent?: ReactNode | ((actions: { closeSettings: () => void }) => ReactNode);
   /** Non-lesson pages can reuse the navbar and sidebars without lesson navigation. */
@@ -58,7 +61,14 @@ export interface LearningLayoutProps {
 
 export type LearningLayoutTopBarProps = Pick<
   LearningLayoutProps,
-  'messages' | 'preferences' | 'linkComponent' | 'profile' | 'profiles' | 'onProfileChange' | 'onLogout'
+  | 'messages'
+  | 'preferences'
+  | 'linkComponent'
+  | 'profile'
+  | 'profiles'
+  | 'onProfileChange'
+  | 'onLogout'
+  | 'profileSettingsHref'
 > & {
   open: boolean;
   settingsOpen: boolean;
@@ -85,6 +95,7 @@ export function LearningLayoutTopBar({
   profiles,
   onProfileChange,
   onLogout,
+  profileSettingsHref,
   open,
   settingsOpen,
   setOpen,
@@ -134,21 +145,31 @@ export function LearningLayoutTopBar({
           </>
         ),
         right: (
-          <ProfileMenu
-            messages={messages}
-            profile={profile}
-            profiles={profiles}
-            onProfileChange={onProfileChange}
-            onLogout={onLogout}
-            onOpen={() => {
-              setOpen(false);
-              setSettingsOpen(false);
-            }}
-            onSettings={() => {
-              setOpen(false);
-              setSettingsOpen(true);
-            }}
-          />
+          <>
+            <IconButton
+              aria-label={settingsOpen ? messages.actions.closeSettings : messages.actions.openSettings}
+              aria-expanded={settingsOpen}
+              aria-controls={settingsOpen ? 'settings-sidebar' : undefined}
+              onClick={() => {
+                setSettingsOpen(value => !value);
+                setOpen(false);
+              }}
+            >
+              <SettingsOutlinedIcon />
+            </IconButton>
+            <ProfileMenu
+              messages={messages}
+              profile={profile}
+              profiles={profiles}
+              onProfileChange={onProfileChange}
+              onLogout={onLogout}
+              settingsHref={profileSettingsHref}
+              onOpen={() => {
+                setOpen(false);
+                setSettingsOpen(false);
+              }}
+            />
+          </>
         ),
       }}
     />
@@ -223,6 +244,7 @@ export default function LearningLayout({
   profiles,
   onProfileChange,
   onLogout,
+  profileSettingsHref,
   settingsContent,
   showBottomNavbar = true,
   contentLoading = false,
@@ -270,6 +292,7 @@ export default function LearningLayout({
           profiles,
           onProfileChange,
           onLogout,
+          profileSettingsHref,
           open,
           settingsOpen,
           setOpen,
@@ -284,6 +307,7 @@ export default function LearningLayout({
           profiles={profiles}
           onProfileChange={onProfileChange}
           onLogout={onLogout}
+          profileSettingsHref={profileSettingsHref}
           open={open}
           settingsOpen={settingsOpen}
           setOpen={setOpen}
