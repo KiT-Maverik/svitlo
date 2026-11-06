@@ -78,7 +78,6 @@ export type LearningLayoutBottomBarProps = Pick<
 /** Default chrome stays reusable outside lessons; controller-owned slots can wrap it in independent contexts. */
 export function LearningLayoutTopBar({
   messages,
-
   linkComponent,
   open,
   settingsOpen,
