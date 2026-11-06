@@ -40,7 +40,7 @@ export function CourseCard({ course, href, messages }: CourseCardProps) {
       >
         <CourseArtwork tone={course.tone} />
         <CardContent sx={{ p: 3, display: 'flex', flexDirection: 'column', flexGrow: 1, gap: 1.5 }}>
-          <Stack direction="row" alignItems="center" gap={1} flexWrap="wrap">
+          <Stack direction="row" sx={{ alignItems: 'center', gap: 1, flexWrap: 'wrap' }}>
             <Chip label={course.category} size="small" variant="outlined" />
             <Typography variant="caption" color="text.secondary">
               {course.level}
@@ -62,15 +62,15 @@ export function CourseCard({ course, href, messages }: CourseCardProps) {
           >
             {course.description}
           </Typography>
-          <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mt: 'auto', pt: 1 }}>
-            <Stack direction="row" alignItems="center" spacing={0.75} color="text.secondary">
+          <Stack direction="row" sx={{ justifyContent: 'space-between', alignItems: 'center', mt: 'auto', pt: 1 }}>
+            <Stack direction="row" spacing={0.75} sx={{ alignItems: 'center', color: 'text.secondary' }}>
               <AutoStoriesOutlined fontSize="small" aria-hidden="true" />
               <Typography variant="caption">
                 {course.lessons} {messages.lessons}
               </Typography>
             </Stack>
-            <Stack direction="row" alignItems="center" spacing={0.5} color="primary.main">
-              <Typography variant="body2" fontWeight={700}>
+            <Stack direction="row" spacing={0.5} sx={{ alignItems: 'center', color: 'primary.main' }}>
+              <Typography variant="body2" sx={{ fontWeight: 700 }}>
                 {messages.explore}
               </Typography>
               <ArrowForwardRounded

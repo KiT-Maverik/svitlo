@@ -8,10 +8,10 @@ async function LegacyRedirect({
   params,
   searchParams,
 }: {
-  params: Promise<{ language: string; lessonId: string }>;
+  params: Promise<{ language: string; lessonLanguage: string }>;
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
-  const { language, lessonId } = await params;
+  const { language, lessonLanguage: lessonId } = await params;
   if (!DEFAULT_SUPPORTED_LANGUAGES.some(entry => entry.language === language)) notFound();
   try {
     resolveEntityPath(lessonId);
@@ -30,7 +30,7 @@ async function LegacyRedirect({
 
 /** Next.js Cache Components require async URL inspection beneath Suspense. */
 export default function LegacyLessonPage(props: {
-  params: Promise<{ language: string; lessonId: string }>;
+  params: Promise<{ language: string; lessonLanguage: string }>;
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   return (

@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/localization';
 import { CoursePage } from '@svitlo/ui-kit/course';
@@ -5,7 +6,7 @@ import { getMockCourse, getMockCourseMessages, mockCourseOutline } from '@/lib/m
 
 type Props = { params: Promise<{ language: string; courseId: string }> };
 
-export default async function CourseDetailRoute({ params }: Props) {
+async function Content({ params }: Props) {
   const { language, courseId } = await params;
   if (!DEFAULT_SUPPORTED_LANGUAGES.some(item => item.language === language)) notFound();
 
@@ -19,5 +20,12 @@ export default async function CourseDetailRoute({ params }: Props) {
       messages={getMockCourseMessages(language)}
       catalogHref={`/${language}/courses`}
     />
+  );
+}
+export default function CourseDetailRoute(props: Props) {
+  return (
+    <Suspense fallback={<div role="status">Loading course…</div>}>
+      <Content {...props} />
+    </Suspense>
   );
 }

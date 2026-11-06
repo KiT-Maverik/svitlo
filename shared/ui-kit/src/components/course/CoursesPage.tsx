@@ -10,7 +10,7 @@ export function CoursesPage({ courses, messages }: { courses: readonly CourseLis
   return (
     <Container component="main" maxWidth="lg" sx={{ py: { xs: 5, md: 9 } }}>
       <Box component="header" sx={{ mb: { xs: 4, md: 6 } }}>
-        <Typography variant="overline" color="primary.main" fontWeight={800}>
+        <Typography variant="overline" color="primary.main" sx={{ fontWeight: 800 }}>
           {messages.catalogEyebrow}
         </Typography>
         <Typography
