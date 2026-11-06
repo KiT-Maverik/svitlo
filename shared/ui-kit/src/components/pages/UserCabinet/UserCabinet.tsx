@@ -185,7 +185,7 @@ export default function UserCabinet({
       <Container maxWidth="lg" sx={{ py: { xs: 3, sm: 5 }, px: { xs: 2, sm: 3 } }}>
         <Stack spacing={3}>
           <Box>
-            <Stack direction="row" alignItems="center" gap={1.5} flexWrap="wrap">
+            <Stack direction="row" gap={1.5} sx={{ alignItems: 'center', flexWrap: 'wrap' }}>
               <Typography component="h1" variant="h4" sx={{ fontWeight: 800 }}>
                 {messages.title}
               </Typography>
@@ -198,7 +198,7 @@ export default function UserCabinet({
 
           <Card variant="outlined" sx={{ borderRadius: 4, overflow: 'visible' }}>
             <CardContent sx={{ p: { xs: 2.5, sm: 3 }, '&:last-child': { pb: { xs: 2.5, sm: 3 } } }}>
-              <Stack direction="row" alignItems="center" gap={2.5} flexWrap="wrap">
+              <Stack direction="row" gap={2.5} sx={{ alignItems: 'center', flexWrap: 'wrap' }}>
                 <ProfileAvatar avatar={avatarById(savedProfile.avatarId)} displayName={savedProfile.displayName} size={80} />
                 <Box sx={{ minWidth: 0 }}>
                   <Typography component="h2" variant="h5" sx={{ fontWeight: 750, overflowWrap: 'anywhere' }}>
@@ -375,7 +375,7 @@ export default function UserCabinet({
                     <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, minmax(0, 1fr))' }, gap: 2 }}>
                       <Card variant="outlined" sx={{ borderRadius: 3, bgcolor: 'action.hover' }}>
                         <CardContent>
-                          <Stack direction="row" alignItems="center" spacing={2}>
+                          <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
                             <ProfileAvatar avatar={avatarById(savedProfile.avatarId)} displayName={savedProfile.displayName} size={52} />
                             <Box sx={{ minWidth: 0, flex: 1 }}>
                               <Typography sx={{ fontWeight: 700, overflowWrap: 'anywhere' }}>{savedProfile.displayName}</Typography>
@@ -388,7 +388,7 @@ export default function UserCabinet({
                       {additionalAccounts.map(account => (
                         <Card key={account.id} variant="outlined" sx={{ borderRadius: 3 }}>
                           <CardContent>
-                            <Stack direction="row" alignItems="center" spacing={2}>
+                            <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
                               <ProfileAvatar avatar={avatarById(account.avatarId)} displayName={account.displayName} size={52} />
                               <Box sx={{ minWidth: 0 }}>
                                 <Typography sx={{ fontWeight: 700, overflowWrap: 'anywhere' }}>{account.displayName}</Typography>
