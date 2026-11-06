@@ -31,7 +31,7 @@ const context: Course_TocContext<typeof languages> = {
 
 describe('Course entity creators', () => {
   it('creates typed hierarchical TOC and serializable authoring resource data', () => {
-    const episode = createEpisode(episodeData);
+    const episode = createEpisode<typeof languages>(episodeData);
     const chapter = createChapter<typeof languages>({
       type: 'chapter', id: 'chapter-1', iconKey: 'bookmark', title,
       content: ['lesson-1', episode],
@@ -54,7 +54,8 @@ describe('Course entity creators', () => {
 
     const output = module.toResource(context);
     assert.deepEqual(output.toc, toc);
-    assert.equal(output.data.content[0].type, 'chapter');
+    const firstChild = output.data.content[0];
+    assert.equal(typeof firstChild === 'string' ? firstChild : firstChild.type, 'chapter');
     assert.equal(JSON.stringify(output).includes('getData'), false);
     assert.deepEqual(chapter.getData().content.map(item => typeof item === 'string' ? item : item.type), [
       'lesson-1', 'episode',
