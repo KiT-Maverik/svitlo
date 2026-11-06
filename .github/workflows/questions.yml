@@ -35,14 +35,20 @@ jobs:
         if: ${{ !cancelled() }}
       - run: npm run build
         if: ${{ !cancelled() }}
+      - name: Verify migrated textbook publishers and isolated ESM tarballs
+        if: ${{ !cancelled() }}
+        run: |
+          for subject in math physics psychology philosophy language-literature; do
+            node --test "content/$subject/scripts/publish.spec.mjs"
+            node "content/$subject/scripts/check-react-dom-portability.mjs"
+          done
+          node --test content/languages/ukrainian/scripts/publish.spec.mjs
+          node content/languages/ukrainian/scripts/check-react-dom-portability.mjs
       - name: Verify compiled public package artifacts
         if: ${{ !cancelled() }}
         run: npm run packages:artifacts:check
       - run: npx playwright install chromium
         if: ${{ !cancelled() }}
-      - name: Mathematics UI E2E (desktop and mobile)
-        if: ${{ !cancelled() }}
-        run: npm run test:e2e --workspace @svitlo/math
       - name: Universal Web lesson E2E (desktop and mobile)
         if: ${{ !cancelled() }}
         run: npm run test:e2e --workspace @svitlo/web

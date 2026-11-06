@@ -137,12 +137,17 @@ for (const { path, name } of expected) {
   const pkg = readJson(pkgPath);
   const tsconfig = readJson(tsconfigPath);
   assert(pkg.name === name && pkg.private === true, 'Invalid workspace manifest: ' + pkgPath);
-  if (!new Set(['@svitlo/playground', '@svitlo/art', '@svitlo/chemistry', '@svitlo/economics', '@svitlo/engineering', '@svitlo/health-safety']).has(name)) {
+  if (!new Set(['@svitlo/playground', ...["math","physics","psychology","philosophy","language-literature","ukrainian","art","chemistry","economics","engineering","health-safety"].map(id => '@svitlo/' + id)]).has(name)) {
     assert(tsconfig.compilerOptions?.paths?.['@/*']?.[0] === 'src/*', 'Missing local alias in ' + tsconfigPath);
   }
-  if (['@svitlo/art', '@svitlo/chemistry', '@svitlo/economics', '@svitlo/engineering', '@svitlo/health-safety'].includes(name)) {
+  if (["math","physics","psychology","philosophy","language-literature","ukrainian","art","chemistry","economics","engineering","health-safety"].map(id => '@svitlo/' + id).includes(name)) {
     assert(!tsconfig.compilerOptions?.paths?.['@/*'], 'Migrated textbook retains app alias: ' + name);
     assert(!pkg.dependencies?.next && pkg.exports?.['.']?.default?.startsWith('./dist/'), 'Textbook needs compiled exports: ' + name);
+  }
+  if (["math","physics","psychology","philosophy","language-literature","ukrainian"].map(id => '@svitlo/' + id).includes(name)) {
+    assert(!existsSync(resolve(root, path, 'src/app')), 'Old Next.js shell remains: ' + path);
+    assert(pkg.exports?.['.']?.default === './dist/textbook/index.js', 'Missing textbook JS export: ' + path);
+    assert(pkg.bin?.['svitlo-' + name.slice('@svitlo/'.length)] === './scripts/publish.mjs', 'Missing Publisher CLI: ' + path);
   }
   assert(lock.packages[path]?.name === name, 'Missing workspace lockfile package: ' + name);
   assert(lock.packages['node_modules/' + name]?.resolved === path, 'Missing workspace lockfile link: ' + name);
