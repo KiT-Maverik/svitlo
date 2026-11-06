@@ -212,7 +212,7 @@ export default function UserCabinet({
             </CardContent>
           </Card>
 
-          <Alert severity="info" variant="outlined">
+          <Alert severity="info" variant="outlined" role="note">
             <Typography variant="body2">{messages.demoDescription}</Typography>
           </Alert>
 
