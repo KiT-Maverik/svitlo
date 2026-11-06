@@ -1,4 +1,3 @@
-import type { ContentBlock } from '../blocks';
 import type { Lesson_Override } from './override.types';
 import type { Locale_Languages } from '../locale.types';
 import type { Section } from '../section.types';
