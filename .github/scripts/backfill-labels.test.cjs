@@ -20,7 +20,7 @@ test('historical backfill resolves all scoped paths and preserves existing scope
       head: { ref: 'move-platform' },
       base: { ref: 'main' },
       labels: [{ name: 'repo: general' }],
-      files: ['frontend/platform/src/app.ts', 'apps/platform/src/app.ts'],
+      files: ['apps/platform/src/app.ts'],
     },
     {
       number: 103,

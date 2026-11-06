@@ -102,7 +102,7 @@
   {
     "name": "app: platform",
     "color": "0D9488",
-    "description": "Changes to apps/platform/ or frontend/platform/"
+    "description": "Changes to apps/platform/"
   },
   {
     "name": "backend: server",

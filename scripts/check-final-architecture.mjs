@@ -65,8 +65,8 @@ const expectedShared = [
 for (const path of expectedShared) assert(existsSync(resolve(root, path)), 'Owner missing: ' + path);
 
 const rootManifest = JSON.parse(readFileSync(resolve(root, 'package.json'), 'utf8'));
-const platform = JSON.parse(readFileSync(resolve(root, 'frontend/platform/package.json'), 'utf8'));
-assert(rootManifest.workspaces.includes('frontend/*'), 'Platform must be in root npm workspaces');
+const platform = JSON.parse(readFileSync(resolve(root, 'apps/platform/package.json'), 'utf8'));
+assert(rootManifest.workspaces.includes('apps/*'), 'Platform must be in root npm workspaces');
 assert(
   Object.keys(platform.dependencies ?? {}).every(p => !p.startsWith('@svitlo/')),
   'Platform cannot depend on learning apps or shared packages until integration is scoped',
@@ -79,13 +79,7 @@ assert(
 const db = readFileSync(resolve(root, '.github/workflows/db-controllers-e2e.yml'), 'utf8');
 assert(db.includes('test:e2e:db'), 'Native Chromium workflow missing');
 const canonical = readFileSync(resolve(root, 'studio/docs/architecture/monorepo-and-textbook.md'), 'utf8');
-for (const subject of [
-  'shared/contracts',
-  'shared/indexdb',
-  'frontend/platform',
-  'content/math',
-  'content/informatics',
-]) {
+for (const subject of ['shared/contracts', 'shared/indexdb', 'apps/platform', 'content/math', 'content/informatics']) {
   assert(canonical.includes(subject), 'Canonical architecture docs omit: ' + subject);
 }
 console.log(

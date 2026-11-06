@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { getLearningApps } from '@/catalog/content';
+import { getLearningApps } from '@/catalog/learningApps';
 import { PageIntro } from '@/components/PageIntro';
 
 export const metadata: Metadata = { title: 'Навчальні матеріали' };

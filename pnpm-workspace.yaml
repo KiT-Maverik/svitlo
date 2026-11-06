@@ -1,7 +1,6 @@
 packages:
   - 'apps/*'
   - 'backend/*'
-  - 'frontend/*'
   - 'content/*'
   - 'content/languages/*'
   - 'shared/*'

@@ -51,5 +51,5 @@ assert.ok(names.has('studio'), 'Missing standalone studio label');
 assert.ok(matcher.includes("'scripts/**'"), 'Missing repository scripts rule');
 assert.ok(matcher.includes("'studio/**'"), 'Missing Studio rule');
 assert.ok(!labels.some(label => label.name.startsWith('area: ')), 'Legacy area labels must be migrated');
-assert.ok(matcher.includes("'frontend/platform/**'"), 'Legacy platform path must be supported');
+assert.ok(!matcher.includes("'frontend/platform/**'"), 'Deprecated platform path must not be matched');
 console.log('Validated ' + labels.length + ' label definitions and ' + ruleNames.length + ' auto-labeler rules');

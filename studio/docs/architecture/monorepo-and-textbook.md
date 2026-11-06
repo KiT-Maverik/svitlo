@@ -3,11 +3,11 @@
 **Canonical implementation guide (Stage 8, 2026-10-29).** Always check manifests and CI for the commit under review. [Historical migration log](../../Monorepo%20Migration.md) is **not** a current directory map. [Final audit and remaining debt](./migration-stage-8-audit.md).
 
 **2026-11-05 implementation update:** `apps/web` is the universal Next.js host for the
-build-selected textbook. `learningApps/playground` is now a React DOM textbook
+build-selected textbook. `content/playground` is now a React DOM textbook
 package with authored `data/`, Scenes, generated static registry and explicit
 `@svitlo/playground` exports. `apps/web/textbooks.json` selects a declared
 workspace dependency before compilation; its build publishes textbook JSON,
-UI Kit locales and assets into the host. Other textbooks and `frontend/platform`
+UI Kit locales and assets into the host. Other textbooks and `apps/platform`
 retain their existing application architecture. The Next.js integration package
 resides at `shared/adapters/nextjs` but keeps its stable npm identity
 `@svitlo/adapter-nextjs`. The Stage 8 map and dependency
@@ -32,7 +32,7 @@ Svitlo **currently** combines independently deployable Next.js apps with explici
 
 **Target architecture, not the implemented Stage 8 layout:** move toward a thin Next.js Web host, one React + Capacitor mobile host (iOS and Android), and one React + Electron desktop host. Each textbook will be a single independently extractable package holding authored `*.data.ts`, assets, Scenes and its generated static Scene registry, rather than a separately maintained Next.js app per target. **There is no requirement to split textbook definitions and runtime registries into different repositories or packages.**
 
-At build time a host selects one or more textbook packages and statically bundles their registries/Scenes. Build-time authored-data publishing produces runtime JSON, not runtime imports of `*.data.ts`. The actual migration requires defined public package exports, stable build selection, parity tests, and review of existing server/provider coupling; no new `apps/web`, `apps/mobile`, `apps/desktop`, or `books/` directories are claimed to exist here. SSR/SSG can remain in the Web host; interactive Lesson UI belongs in reusable React DOM code.
+At build time a host selects one or more textbook packages and statically bundles their registries/Scenes. Build-time authored-data publishing produces runtime JSON, not runtime imports of `*.data.ts`. The full target architecture continues to require stable public package exports, build selection and parity tests, and review of server/provider coupling. The current Web, Capacitor and Electron hosts are in `apps/web`, `apps/mobile` and `apps/desktop`; the repository does not use a `books/` root. SSR/SSG can remain in the Web host; interactive Lesson UI belongs in reusable React DOM code.
 
 See the canonical [Cross-Platform Lesson Runtime](./cross-platform-lesson-runtime.md) for target dependency/DI, licensing, PWA, offline, and client-state rules. The map, dependencies, scripts and Stage 8 audit below remain a **snapshot of the current standalone-app architecture** until a separate migration changes them.
 
@@ -42,7 +42,10 @@ See the canonical [Cross-Platform Lesson Runtime](./cross-platform-lesson-runtim
 /
 ├── backend/
 │   └── server/           # @svitlo/server — manifest-only backend placeholder
-├── frontend/
+├── apps/
+│   ├── web/              # @svitlo/web — Next.js textbook host
+│   ├── mobile/           # Capacitor mobile host
+│   ├── desktop/          # Electron desktop host
 │   └── platform/         # @svitlo/platform — independent Next.js catalog app
 ├── content/
 │   ├── geography/        # @svitlo/geography — standalone textbook scaffold
@@ -64,9 +67,9 @@ See the canonical [Cross-Platform Lesson Runtime](./cross-platform-lesson-runtim
 └── turbo.json            # task graph reference; not used by GitHub Actions
 ```
 
-**Concrete source roots:** `shared/contracts`, `shared/engine`, `shared/indexdb`, `shared/ui-kit`, `content/geography`, `content/informatics`, `content/physics`, `content/math`, `content/playground`, `frontend/platform`, `backend/server`. These paths are actual package folders; diagrams above use abbreviated names.
+**Concrete source roots:** `shared/contracts`, `shared/engine`, `shared/indexdb`, `shared/ui-kit`, `content/geography`, `content/informatics`, `content/physics`, `content/math`, `content/playground`, `apps/platform`, `backend/server`. These paths are actual package folders; diagrams above use abbreviated names.
 
-The **eleven** current workspaces are `@svitlo/server`, `@svitlo/platform`, `@svitlo/geography`, `@svitlo/informatics`, `@svitlo/physics`, `@svitlo/math`, `@svitlo/playground`, `@svitlo/contracts`, `@svitlo/engine`, `@svitlo/indexdb`, `@svitlo/ui-kit`. Patterns in root `package.json` and lockfile: `backend/*`, `frontend/*`, `content/*`, `shared/*`, `shared/adapters/*`. The server is deliberately not claimed to be executable yet.
+Representative current workspaces include `@svitlo/server`, `@svitlo/platform`, `@svitlo/geography`, `@svitlo/informatics`, `@svitlo/physics`, `@svitlo/math`, `@svitlo/playground`, `@svitlo/contracts`, `@svitlo/engine`, `@svitlo/indexdb`, `@svitlo/ui-kit`. Patterns in root `package.json` and lockfile: `backend/*`, `apps/*`, `content/*`, `shared/*`, `shared/adapters/*`. The server is deliberately not claimed to be executable yet.
 
 ## Dependency direction and ownership
 

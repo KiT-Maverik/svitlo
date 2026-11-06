@@ -18,7 +18,6 @@ module.exports = async function backfill({ github, context, core, shard, shards 
     if (kind === 'content') return { name, prefixes: ['content/' + slug + '/'] };
     if (kind === 'app') {
       const prefixes = ['apps/' + slug + '/'];
-      if (slug === 'platform') prefixes.push('frontend/platform/');
       return { name, prefixes };
     }
     if (kind === 'backend') return { name, prefixes: ['backend/' + slug + '/'] };

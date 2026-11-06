@@ -13,7 +13,7 @@ const expected = [
     name: '@svitlo/server',
   },
   {
-    path: 'frontend/platform',
+    path: 'apps/platform',
     name: '@svitlo/platform',
   },
   {
@@ -107,15 +107,7 @@ const expected = [
 ];
 const manifest = readJson('package.json');
 const lock = readJson('package-lock.json');
-const patterns = [
-  'apps/*',
-  'backend/*',
-  'frontend/*',
-  'content/*',
-  'content/languages/*',
-  'shared/*',
-  'shared/adapters/*',
-];
+const patterns = ['apps/*', 'backend/*', 'content/*', 'content/languages/*', 'shared/*', 'shared/adapters/*'];
 
 function assert(ok, description) {
   if (!ok) throw new Error(description);
