@@ -23,7 +23,7 @@ if (bookManifest.name !== selected.package || hostManifest.dependencies[bookMani
   throw new Error('Selected textbook must be a declared, version-matched Desktop dependency');
 }
 const publish = bookManifest.bin?.['svitlo-' + textbookId];
-if (!publish || !bookManifest.exports?.['./scenes']?.default?.startsWith('./dist/')) {
+if (publish !== './dist/publish.mjs' || !bookManifest.exports?.['./scenes']?.default?.startsWith('./dist/')) {
   throw new Error('Selected textbook must expose its compiled Scene registry and Publish CLI');
 }
 const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
@@ -39,7 +39,9 @@ for (const workspace of ['@svitlo/contracts', '@svitlo/engine', '@svitlo/ui-kit'
 run(npm, ['run', 'build', '--workspace', selected.package]);
 
 const publicRoot = join(desktopRoot, 'public');
-run(npm, ['exec', '--workspace', '@svitlo/desktop', '--', 'svitlo-' + textbookId, 'publish', '--output', publicRoot]);
+// Invoke the package's built standalone CLI rather than an npm bin shim
+// which does not necessarily exist after npm ci of unbuilt workspaces.
+run(process.execPath, [join(repoRoot, selected.directory, publish), 'publish', '--output', publicRoot]);
 
 // UI Kit-owned global strings and flags are independent of textbook publication.
 const localeOutput = join(publicRoot, 'data/ui-kit');

@@ -18,9 +18,11 @@ test('renderer has no Next.js server or external entrypoint', () => {
 });
 test('build bundles the real lesson and localized config, flashcards and questions', () => {
   for (const kind of ['config', 'flashcards', 'questions']) {
-    const filename = join(resources, kind, 'uk.json');
-    assert.ok(existsSync(filename), filename);
-    assert.ok(JSON.parse(readFileSync(filename, 'utf8')).data !== undefined);
+    for (const language of ['base', 'uk']) {
+      const filename = join(resources, kind, language + '.json');
+      assert.ok(existsSync(filename), filename);
+      assert.ok(JSON.parse(readFileSync(filename, 'utf8')).data !== undefined);
+    }
   }
   assert.ok(existsSync(join(renderer, 'data/ui-kit/uk-UA.json')));
   assert.ok(existsSync(join(renderer, 'data/pages/skillAnalytics/uk.json')));

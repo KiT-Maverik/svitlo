@@ -19,7 +19,7 @@ test('catalog entries are declared workspace packages with a public Scene regist
     assert.equal(host.dependencies[entry.package], textbook.version);
     assert.match(textbook.exports['./scenes']?.default ?? '', /^\.\/dist\//);
     assert.match(textbook.exports['.']?.default ?? '', /^\.\/dist\//);
-    assert.equal(typeof textbook.bin?.['svitlo-' + id], 'string');
+    assert.equal(textbook.bin?.['svitlo-' + id], './dist/publish.mjs');
   }
 });
 

@@ -9,6 +9,7 @@ on:
       - 'content/math/package.json'
       - 'shared/engine/**'
       - 'shared/contracts/**'
+      - 'scripts/textbook-tooling/**'
       - '.github/workflows/arithmetic-taxonomy.yml'
   workflow_dispatch:
 permissions:
@@ -37,5 +38,5 @@ jobs:
       - run: node scripts/check-skills-taxonomy-structure.mjs
       - run: npm run test:components --workspace @svitlo/math
       - run: npm run build --workspace @svitlo/math
-      - run: node --test content/math/scripts/publish.spec.mjs
-      - run: node content/math/scripts/check-react-dom-portability.mjs
+      - run: (cd content/math && node --test ../../scripts/textbook-tooling/test-publish.mjs)
+      - run: (cd content/math && node ../../scripts/textbook-tooling/check-portability.mjs)
