@@ -4,7 +4,11 @@ import { createContext, memo, useCallback, useContext, useLayoutEffect, useMemo,
 import Container from '@mui/material/Container';
 import { ContentBlockRenderer } from '../widgets/ContentBlockRenderer';
 import { QuestionRenderer } from '../widgets/questions';
-import type { LearningLayoutTopBarProps, LearningLayoutBottomBarProps, LearningLayoutProgress } from '../layout/LearningLayout/LearningLayout';
+import type {
+  LearningLayoutTopBarProps,
+  LearningLayoutBottomBarProps,
+  LearningLayoutProgress,
+} from '../layout/LearningLayout/LearningLayout';
 import { LearningLayoutTopBar, LearningLayoutBottomBar } from '../layout/LearningLayout/LearningLayout';
 import { LessonNavigationContext, type LessonNavigationAction } from './LessonNavigation';
 import { LessonSteps } from './LessonSteps';
@@ -54,7 +58,10 @@ export type LessonActions = {
 };
 
 const ActionsContext = createContext<LessonActions | null>(null);
-const ParamsContext = createContext<{ values: LessonView['parameters']; editable: readonly EditableSectionParam[] } | null>(null);
+const ParamsContext = createContext<{
+  values: LessonView['parameters'];
+  editable: readonly EditableSectionParam[];
+} | null>(null);
 const TopBarContext = createContext<TopBarState | null>(null);
 const StepperContext = createContext<{
   visible: boolean;
@@ -64,14 +71,22 @@ const StepperContext = createContext<{
   parameters: SectionParams;
 } | null>(null);
 const SectionContext = createContext<{
-  id: string; step: number; completedCheckpoints: Readonly<Record<string, true>>;
+  id: string;
+  step: number;
+  completedCheckpoints: Readonly<Record<string, true>>;
 } | null>(null);
-const BottomBarContext = createContext<{ nextDisabled: boolean; backDisabled: boolean; skipDisabled: boolean } | null>(null);
+const BottomBarContext = createContext<{ nextDisabled: boolean; backDisabled: boolean; skipDisabled: boolean } | null>(
+  null,
+);
 
 function requiredCheckpointIds(section: LessonView['sections'][number]): string[] {
   return section.content
-    .filter(block => block.type === 'checkpoint' && block.requireCompletion &&
-      block.items.some(item => item.check ?? block.enableChecks ?? false))
+    .filter(
+      block =>
+        block.type === 'checkpoint' &&
+        block.requireCompletion &&
+        block.items.some(item => item.check ?? block.enableChecks ?? false),
+    )
     .map(block => block.id);
 }
 
@@ -95,7 +110,12 @@ function canMoveTo(state: Runtime, response: LessonView, target: number, direct:
   return true;
 }
 
-function reduce(state: Runtime, action: Command, response: LessonView, editable: readonly EditableSectionParam[]): Runtime {
+function reduce(
+  state: Runtime,
+  action: Command,
+  response: LessonView,
+  editable: readonly EditableSectionParam[],
+): Runtime {
   switch (action.type) {
     case 'params': {
       const changes = Object.fromEntries(
@@ -115,13 +135,20 @@ function reduce(state: Runtime, action: Command, response: LessonView, editable:
     case 'testDone':
       return state.section.testDone ? state : { ...state, section: { ...state.section, testDone: true } };
     case 'checkpoint': {
-      if (!response.sections.some(section => section.id === action.sectionId &&
-        requiredCheckpointIds(section).includes(action.checkpointId))) return state;
+      if (
+        !response.sections.some(
+          section => section.id === action.sectionId && requiredCheckpointIds(section).includes(action.checkpointId),
+        )
+      )
+        return state;
       const id = action.sectionId + '/' + action.checkpointId;
       if (state.section.completedCheckpoints[id]) return state;
       return {
         ...state,
-        section: { ...state.section, completedCheckpoints: { ...state.section.completedCheckpoints, [id]: true as const } },
+        section: {
+          ...state.section,
+          completedCheckpoints: { ...state.section.completedCheckpoints, [id]: true as const },
+        },
       };
     }
     case 'restore': {
@@ -136,9 +163,14 @@ function reduce(state: Runtime, action: Command, response: LessonView, editable:
     case 'skip': {
       const current = state.section.step;
       const target = action.type === 'visit' ? action.step : action.type === 'back' ? current - 1 : current + 1;
-      if (action.type === 'skip' &&
-        (!state.params.sections.allowSkipping || !response.sections[current]?.skippable ||
-          response.sections[current]?.type === 'quiz' || state.bottomBar.skipDisabled)) return state;
+      if (
+        action.type === 'skip' &&
+        (!state.params.sections.allowSkipping ||
+          !response.sections[current]?.skippable ||
+          response.sections[current]?.type === 'quiz' ||
+          state.bottomBar.skipDisabled)
+      )
+        return state;
       if (action.type === 'back' && state.bottomBar.backDisabled) return state;
       if (!canMoveTo(state, response, target, action.type === 'visit')) return state;
       return target === current ? state : { ...state, section: { ...state.section, step: target } };
@@ -197,12 +229,18 @@ const MemoStepper = memo(function LessonStepper({ response, messages }: Pick<Les
   );
 });
 
-const MemoSection = memo(function LessonSection({ response, messages, sceneRegistry }: Pick<LessonProps, 'response' | 'messages' | 'sceneRegistry'>) {
+const MemoSection = memo(function LessonSection({
+  response,
+  messages,
+  sceneRegistry,
+}: Pick<LessonProps, 'response' | 'messages' | 'sceneRegistry'>) {
   const { step, completedCheckpoints } = useLessonSection();
   const actions = useLessonActions();
   const section = response.sections[step];
   const completeCheckpoint = useCallback(
-    (checkpointId: string) => { if (section) actions.completeCheckpoint(section.id, checkpointId); },
+    (checkpointId: string) => {
+      if (section) actions.completeCheckpoint(section.id, checkpointId);
+    },
     [actions, section?.id],
   );
   const isCheckpointCompleted = useCallback(
@@ -242,8 +280,15 @@ const MemoSection = memo(function LessonSection({ response, messages, sceneRegis
 });
 
 export function LessonController({
-  response, href, messages, layout: Layout, sceneRegistry, contentLoading,
-  editableSectionParams = EMPTY_EDITABLE, contentError, onRetryContent,
+  response,
+  href,
+  messages,
+  layout: Layout,
+  sceneRegistry,
+  contentLoading,
+  editableSectionParams = EMPTY_EDITABLE,
+  contentError,
+  onRetryContent,
 }: LessonProps) {
   const [state, dispatch] = useReducer(
     (current: Runtime, action: Command) =>
@@ -260,31 +305,39 @@ export function LessonController({
     }),
   );
   const latest = useRef(state);
-  useLayoutEffect(() => { latest.current = state; }, [state]);
+  useLayoutEffect(() => {
+    latest.current = state;
+  }, [state]);
 
-  const actions = useMemo<LessonActions>(() => ({
-    updateSectionParams: patch => dispatch({ type: 'params', patch }),
-    updateTopBar: patch => dispatch({ type: 'topBar', patch }),
-    updateStepper: patch => dispatch({ type: 'stepper', patch }),
-    updateBottomBar: patch => dispatch({ type: 'bottomBar', patch }),
-    next: () => dispatch({ type: 'next' }),
-    back: () => dispatch({ type: 'back' }),
-    skip: () => dispatch({ type: 'skip' }),
-    goToSection: step => dispatch({ type: 'visit', step }),
-    completeQuiz: () => dispatch({ type: 'testDone' }),
-    completeCheckpoint: (sectionId, checkpointId) => dispatch({ type: 'checkpoint', sectionId, checkpointId }),
-    getParams: () => latest.current.params,
-    getTopBar: () => latest.current.topBar,
-    getSection: () => latest.current.section,
-    getBottomBar: () => latest.current.bottomBar,
-  }), []);
+  const actions = useMemo<LessonActions>(
+    () => ({
+      updateSectionParams: patch => dispatch({ type: 'params', patch }),
+      updateTopBar: patch => dispatch({ type: 'topBar', patch }),
+      updateStepper: patch => dispatch({ type: 'stepper', patch }),
+      updateBottomBar: patch => dispatch({ type: 'bottomBar', patch }),
+      next: () => dispatch({ type: 'next' }),
+      back: () => dispatch({ type: 'back' }),
+      skip: () => dispatch({ type: 'skip' }),
+      goToSection: step => dispatch({ type: 'visit', step }),
+      completeQuiz: () => dispatch({ type: 'testDone' }),
+      completeCheckpoint: (sectionId, checkpointId) => dispatch({ type: 'checkpoint', sectionId, checkpointId }),
+      getParams: () => latest.current.params,
+      getTopBar: () => latest.current.topBar,
+      getSection: () => latest.current.section,
+      getBottomBar: () => latest.current.bottomBar,
+    }),
+    [],
+  );
 
-  const progress = useMemo<LearningLayoutProgress>(() => ({
-    ready: true,
-    step: state.section.step,
-    lastStep: response.sections.length - 1,
-    testDone: state.section.testDone,
-  }), [state.section.step, state.section.testDone, response.sections.length]);
+  const progress = useMemo<LearningLayoutProgress>(
+    () => ({
+      ready: true,
+      step: state.section.step,
+      lastStep: response.sections.length - 1,
+      testDone: state.section.testDone,
+    }),
+    [state.section.step, state.section.testDone, response.sections.length],
+  );
   const legacyDispatch = useCallback((action: LessonNavigationAction) => {
     if (action.type === 'visit') dispatch({ type: 'visit', step: action.step });
     else if (action.type === 'restore') dispatch({ type: 'restore', step: action.step, testDone: action.testDone });
@@ -292,46 +345,74 @@ export function LessonController({
   }, []);
   const legacyNavigation = useMemo(() => ({ progress, dispatch: legacyDispatch }), [progress, legacyDispatch]);
 
-  const paramsValue = useMemo(() => ({
-    values: state.params, editable: editableSectionParams,
-  }), [state.params, editableSectionParams]);
+  const paramsValue = useMemo(
+    () => ({
+      values: state.params,
+      editable: editableSectionParams,
+    }),
+    [state.params, editableSectionParams],
+  );
 
-  const renderTopBar = useCallback((props: LearningLayoutTopBarProps) => (
-    <TopBarContext.Provider value={state.topBar}><MemoTopBar {...props} /></TopBarContext.Provider>
-  ), [state.topBar]);
+  const renderTopBar = useCallback(
+    (props: LearningLayoutTopBarProps) => (
+      <TopBarContext.Provider value={state.topBar}>
+        <MemoTopBar {...props} />
+      </TopBarContext.Provider>
+    ),
+    [state.topBar],
+  );
   const bottomValue = useMemo(() => {
     const current = response.sections[state.section.step];
-    const nextDisabled = state.bottomBar.nextDisabled ||
+    const nextDisabled =
+      state.bottomBar.nextDisabled ||
       state.section.step >= response.sections.length - 1 ||
       !canLeaveSection(state, response, state.section.step);
-    const skipDisabled = state.bottomBar.skipDisabled || !state.params.sections.allowSkipping ||
-      !current?.skippable || current.type === 'quiz' || nextDisabled;
+    const skipDisabled =
+      state.bottomBar.skipDisabled ||
+      !state.params.sections.allowSkipping ||
+      !current?.skippable ||
+      current.type === 'quiz' ||
+      nextDisabled;
     return { nextDisabled, skipDisabled, backDisabled: state.bottomBar.backDisabled };
   }, [state.bottomBar, state.section, state.params.sections.allowSkipping, response]);
-  const renderBottomBar = useCallback((props: LearningLayoutBottomBarProps) => (
-    <BottomBarContext.Provider value={bottomValue}>
-      <MemoBottomBar {...props} />
-    </BottomBarContext.Provider>
-  ), [bottomValue]);
+  const renderBottomBar = useCallback(
+    (props: LearningLayoutBottomBarProps) => (
+      <BottomBarContext.Provider value={bottomValue}>
+        <MemoBottomBar {...props} />
+      </BottomBarContext.Provider>
+    ),
+    [bottomValue],
+  );
 
-  const stepper = useMemo(() => ({
-    visible: state.stepper.visible,
-    currentStep: state.section.step,
-    completedStep: state.section.testDone ? response.sections.length - 1 : undefined,
-    parameters: state.params.sections,
-    canNavigateTo: (step: number) => canMoveTo(state, response, step, true),
-  }), [state.stepper, state.section, state.params, state.bottomBar, response]);
-  const section = useMemo(() => ({
-    step: state.section.step, id: response.sections[state.section.step]?.id ?? '',
-    completedCheckpoints: state.section.completedCheckpoints,
-  }), [state.section.step, state.section.completedCheckpoints, response.sections]);
+  const stepper = useMemo(
+    () => ({
+      visible: state.stepper.visible,
+      currentStep: state.section.step,
+      completedStep: state.section.testDone ? response.sections.length - 1 : undefined,
+      parameters: state.params.sections,
+      canNavigateTo: (step: number) => canMoveTo(state, response, step, true),
+    }),
+    [state.stepper, state.section, state.params, state.bottomBar, response],
+  );
+  const section = useMemo(
+    () => ({
+      step: state.section.step,
+      id: response.sections[state.section.step]?.id ?? '',
+      completedCheckpoints: state.section.completedCheckpoints,
+    }),
+    [state.section.step, state.section.completedCheckpoints, response.sections],
+  );
 
   const navActions = useMemo(() => ({ back: actions.back, next: actions.next, skip: actions.skip }), [actions]);
   const quizIndex = response.sections.findIndex(item => item.type === 'quiz');
   const topics = useMemo(() => [{ id: response.id, title: response.title, href }], [response.id, response.title, href]);
-  const skippableSteps = useMemo(() => response.sections.map(
-    (item, index) => index !== quizIndex && state.params.sections.allowSkipping && !!item.skippable,
-  ), [response.sections, quizIndex, state.params.sections.allowSkipping]);
+  const skippableSteps = useMemo(
+    () =>
+      response.sections.map(
+        (item, index) => index !== quizIndex && state.params.sections.allowSkipping && !!item.skippable,
+      ),
+    [response.sections, quizIndex, state.params.sections.allowSkipping],
+  );
   return (
     <ActionsContext.Provider value={actions}>
       <ParamsContext.Provider value={paramsValue}>

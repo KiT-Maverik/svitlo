@@ -140,8 +140,13 @@ export const Checkpoint = ({
                         if (completed || checkedIds.has(itemId)) return;
                         const next = new Set(checkedIds).add(itemId);
                         setCheckedIds(next);
-                        if (requireCompletion && items.every((entry, position) =>
-                          !(entry.check ?? enableChecks) || next.has(id + ':' + position))) onComplete?.();
+                        if (
+                          requireCompletion &&
+                          items.every(
+                            (entry, position) => !(entry.check ?? enableChecks) || next.has(id + ':' + position),
+                          )
+                        )
+                          onComplete?.();
                       }}
                       aria-pressed={isChecked}
                       dir={direction}

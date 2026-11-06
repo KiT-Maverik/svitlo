@@ -50,16 +50,19 @@ export function createLessonLearningLayout(bindings: LessonLearningLayoutBinding
     const { locale, setLocale } = bindings.useLocale();
     const { mode, systemMode, setMode } = useColorScheme();
 
-    const preferences = useMemo(() => (
-      <NavbarPreferences
-        messages={messages.navbarPreferences}
-        locale={locale}
-        onLocaleChange={setLocale}
-        mode={mode}
-        systemMode={systemMode}
-        onThemeChange={setMode}
-      />
-    ), [messages.navbarPreferences, locale, setLocale, mode, systemMode, setMode]);
+    const preferences = useMemo(
+      () => (
+        <NavbarPreferences
+          messages={messages.navbarPreferences}
+          locale={locale}
+          onLocaleChange={setLocale}
+          mode={mode}
+          systemMode={systemMode}
+          onThemeChange={setMode}
+        />
+      ),
+      [messages.navbarPreferences, locale, setLocale, mode, systemMode, setMode],
+    );
     return (
       <LearningLayout
         locale={locale}

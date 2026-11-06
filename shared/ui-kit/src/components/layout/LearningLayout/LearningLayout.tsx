@@ -54,7 +54,6 @@ export interface LearningLayoutProps {
   renderBottomBar?: (props: LearningLayoutBottomBarProps) => ReactNode;
 }
 
-
 export type LearningLayoutTopBarProps = Pick<LearningLayoutProps, 'messages' | 'preferences' | 'linkComponent'> & {
   open: boolean;
   settingsOpen: boolean;
@@ -75,125 +74,150 @@ export type LearningLayoutBottomBarProps = Pick<
 
 /** Default chrome stays reusable outside lessons; controller-owned slots can wrap it in independent contexts. */
 export function LearningLayoutTopBar({
-  messages, preferences, linkComponent, open, settingsOpen, setOpen, setSettingsOpen, lessonTitle,
+  messages,
+  preferences,
+  linkComponent,
+  open,
+  settingsOpen,
+  setOpen,
+  setSettingsOpen,
+  lessonTitle,
 }: LearningLayoutTopBarProps) {
   return (
-      <TopNavbar
-        aria-label={messages.navigation.top}
-        slots={{
-          left: (
-            <>
-              <IconButton
-                aria-label={open ? messages.actions.closeTopics : messages.actions.openTopics}
-                aria-expanded={open}
-                aria-controls={open ? 'learning-sidebar' : undefined}
-                onClick={() => {
-                  setOpen(value => !value);
-                  setSettingsOpen(false);
-                }}
-              >
-                <MenuIcon />
-              </IconButton>
+    <TopNavbar
+      aria-label={messages.navigation.top}
+      slots={{
+        left: (
+          <>
+            <IconButton
+              aria-label={open ? messages.actions.closeTopics : messages.actions.openTopics}
+              aria-expanded={open}
+              aria-controls={open ? 'learning-sidebar' : undefined}
+              onClick={() => {
+                setOpen(value => !value);
+                setSettingsOpen(false);
+              }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography
+              component={linkComponent ?? 'a'}
+              href="/"
+              sx={{ color: 'text.primary', fontWeight: 800, fontSize: 20, textDecoration: 'none' }}
+            >
+              {messages.brand}
+            </Typography>
+            {lessonTitle && (
               <Typography
-                component={linkComponent ?? 'a'}
-                href="/"
-                sx={{ color: 'text.primary', fontWeight: 800, fontSize: 20, textDecoration: 'none' }}
-              >
-                {messages.brand}
-              </Typography>
-              {lessonTitle && (
-                <Typography component="span" variant="body2" title={lessonTitle}
-                  sx={{ display: { xs: 'none', md: 'block' }, maxWidth: 280, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                  {lessonTitle}
-                </Typography>
-              )}
-            </>
-          ),
-          right: (
-            <>
-              {preferences}
-              <Tooltip title={messages.tooltips.profile}>
-                <Box component="span" sx={{ display: { xs: 'none', sm: 'inline-flex' } }}>
-                  <IconButton aria-label={messages.actions.profile} disabled>
-                    <AccountCircleOutlinedIcon />
-                  </IconButton>
-                </Box>
-              </Tooltip>
-              <IconButton
-                aria-label={settingsOpen ? messages.actions.closeSettings : messages.actions.openSettings}
-                aria-expanded={settingsOpen}
-                aria-controls={settingsOpen ? 'settings-sidebar' : undefined}
-                onClick={() => {
-                  setSettingsOpen(value => !value);
-                  setOpen(false);
+                component="span"
+                variant="body2"
+                title={lessonTitle}
+                sx={{
+                  display: { xs: 'none', md: 'block' },
+                  maxWidth: 280,
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap',
                 }}
               >
-                <SettingsOutlinedIcon />
-              </IconButton>
-              <Tooltip title={messages.tooltips.logout}>
-                <Box component="span" sx={{ display: { xs: 'none', sm: 'inline-flex' } }}>
-                  <IconButton aria-label={messages.actions.logout} disabled>
-                    <LogoutIcon />
-                  </IconButton>
-                </Box>
-              </Tooltip>
-            </>
-          ),
-        }}
-      />
+                {lessonTitle}
+              </Typography>
+            )}
+          </>
+        ),
+        right: (
+          <>
+            {preferences}
+            <Tooltip title={messages.tooltips.profile}>
+              <Box component="span" sx={{ display: { xs: 'none', sm: 'inline-flex' } }}>
+                <IconButton aria-label={messages.actions.profile} disabled>
+                  <AccountCircleOutlinedIcon />
+                </IconButton>
+              </Box>
+            </Tooltip>
+            <IconButton
+              aria-label={settingsOpen ? messages.actions.closeSettings : messages.actions.openSettings}
+              aria-expanded={settingsOpen}
+              aria-controls={settingsOpen ? 'settings-sidebar' : undefined}
+              onClick={() => {
+                setSettingsOpen(value => !value);
+                setOpen(false);
+              }}
+            >
+              <SettingsOutlinedIcon />
+            </IconButton>
+            <Tooltip title={messages.tooltips.logout}>
+              <Box component="span" sx={{ display: { xs: 'none', sm: 'inline-flex' } }}>
+                <IconButton aria-label={messages.actions.logout} disabled>
+                  <LogoutIcon />
+                </IconButton>
+              </Box>
+            </Tooltip>
+          </>
+        ),
+      }}
+    />
   );
 }
 
 export function LearningLayoutBottomBar({
-  messages, progress, actions, skippableSteps = [], quizStep, contentLoading = false, direction,
-  nextDisabled = false, backDisabled = false, skipDisabled = false,
+  messages,
+  progress,
+  actions,
+  skippableSteps = [],
+  quizStep,
+  contentLoading = false,
+  direction,
+  nextDisabled = false,
+  backDisabled = false,
+  skipDisabled = false,
 }: LearningLayoutBottomBarProps) {
   return (
-        <BottomNavbar
-          aria-label={messages.navigation.bottom}
-          slots={{
-            center: (
-              <>
-                <Button
-                  variant="contained"
-                  disabled={backDisabled || contentLoading || !progress.ready || progress.step === 0}
-                  onClick={actions.back}
-                >
-                  {direction === 'rtl' ? '→' : '←'} {messages.actions.previous}
-                </Button>
-                <Button
-                  variant="contained"
-                  disabled={
-                    nextDisabled ||
-                    contentLoading ||
-                    !progress.ready ||
-                    progress.step >= progress.lastStep ||
-                    (progress.step === quizStep && !progress.testDone)
-                  }
-                  onClick={actions.next}
-                >
-                  {messages.actions.next} {direction === 'rtl' ? '←' : '→'}
-                </Button>
-              </>
-            ),
-            right: (
-              <Button
-                variant="outlined"
-                disabled={
-                  skipDisabled ||
-                  contentLoading ||
-                  !progress.ready ||
-                  progress.step >= progress.lastStep ||
-                  !skippableSteps[progress.step]
-                }
-                onClick={actions.skip}
-              >
-                {messages.actions.skip}
-              </Button>
-            ),
-          }}
-          slotProps={{ root: { sx: { px: { xs: 1, sm: 2 } } } }}
-        />
+    <BottomNavbar
+      aria-label={messages.navigation.bottom}
+      slots={{
+        center: (
+          <>
+            <Button
+              variant="contained"
+              disabled={backDisabled || contentLoading || !progress.ready || progress.step === 0}
+              onClick={actions.back}
+            >
+              {direction === 'rtl' ? '→' : '←'} {messages.actions.previous}
+            </Button>
+            <Button
+              variant="contained"
+              disabled={
+                nextDisabled ||
+                contentLoading ||
+                !progress.ready ||
+                progress.step >= progress.lastStep ||
+                (progress.step === quizStep && !progress.testDone)
+              }
+              onClick={actions.next}
+            >
+              {messages.actions.next} {direction === 'rtl' ? '←' : '→'}
+            </Button>
+          </>
+        ),
+        right: (
+          <Button
+            variant="outlined"
+            disabled={
+              skipDisabled ||
+              contentLoading ||
+              !progress.ready ||
+              progress.step >= progress.lastStep ||
+              !skippableSteps[progress.step]
+            }
+            onClick={actions.skip}
+          >
+            {messages.actions.skip}
+          </Button>
+        ),
+      }}
+      slotProps={{ root: { sx: { px: { xs: 1, sm: 2 } } } }}
+    />
   );
 }
 
@@ -245,12 +269,25 @@ export default function LearningLayout({
         color: 'text.primary',
       }}
     >
-      {renderTopBar ? renderTopBar({
-        messages, preferences, linkComponent, open, settingsOpen, setOpen, setSettingsOpen,
-      }) : (
+      {renderTopBar ? (
+        renderTopBar({
+          messages,
+          preferences,
+          linkComponent,
+          open,
+          settingsOpen,
+          setOpen,
+          setSettingsOpen,
+        })
+      ) : (
         <LearningLayoutTopBar
-          messages={messages} preferences={preferences} linkComponent={linkComponent}
-          open={open} settingsOpen={settingsOpen} setOpen={setOpen} setSettingsOpen={setSettingsOpen}
+          messages={messages}
+          preferences={preferences}
+          linkComponent={linkComponent}
+          open={open}
+          settingsOpen={settingsOpen}
+          setOpen={setOpen}
+          setSettingsOpen={setSettingsOpen}
         />
       )}
 
@@ -441,14 +478,28 @@ export default function LearningLayout({
         </Fade>
       </Box>
 
-      {showBottomNavbar && (renderBottomBar ? renderBottomBar({
-        messages, progress, actions, skippableSteps, quizStep, contentLoading, direction,
-      }) : (
-        <LearningLayoutBottomBar
-          messages={messages} progress={progress} actions={actions} skippableSteps={skippableSteps}
-          quizStep={quizStep} contentLoading={contentLoading} direction={direction}
-        />
-      ))}
+      {showBottomNavbar &&
+        (renderBottomBar ? (
+          renderBottomBar({
+            messages,
+            progress,
+            actions,
+            skippableSteps,
+            quizStep,
+            contentLoading,
+            direction,
+          })
+        ) : (
+          <LearningLayoutBottomBar
+            messages={messages}
+            progress={progress}
+            actions={actions}
+            skippableSteps={skippableSteps}
+            quizStep={quizStep}
+            contentLoading={contentLoading}
+            direction={direction}
+          />
+        ))}
     </Box>
   );
 }

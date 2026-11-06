@@ -32,14 +32,22 @@ function response(required: boolean, allowNavigation = true): LessonView {
         type: 'theory',
         navigationLabel: 'Introduction',
         skippable: true,
-        content: [{
-          type: 'checkpoint', id: 'checkpoint-1', slug: 'check-one',
-          title: 'Check your knowledge', requireCompletion: required,
-          items: [{
-            question: 'What is light?', check: true,
-            answer: [{ type: 'text', id: 'answer-1', value: 'Radiation' }],
-          }],
-        }],
+        content: [
+          {
+            type: 'checkpoint',
+            id: 'checkpoint-1',
+            slug: 'check-one',
+            title: 'Check your knowledge',
+            requireCompletion: required,
+            items: [
+              {
+                question: 'What is light?',
+                check: true,
+                answer: [{ type: 'text', id: 'answer-1', value: 'Radiation' }],
+              },
+            ],
+          },
+        ],
         questions: [],
       },
       {
@@ -53,11 +61,16 @@ function response(required: boolean, allowNavigation = true): LessonView {
   } as unknown as LessonView;
 }
 
-function showLesson(required = true, allowNavigation = true, editableSectionParams: readonly ('allowNavigation')[] = []) {
+function showLesson(required = true, allowNavigation = true, editableSectionParams: readonly 'allowNavigation'[] = []) {
   observed.length = 0;
   return render(
-    <Lesson response={response(required, allowNavigation)} href="/en/lesson/lesson-test"
-      messages={enUiKitMessages} layout={TestLayout} editableSectionParams={editableSectionParams} />,
+    <Lesson
+      response={response(required, allowNavigation)}
+      href="/en/lesson/lesson-test"
+      messages={enUiKitMessages}
+      layout={TestLayout}
+      editableSectionParams={editableSectionParams}
+    />,
   );
 }
 
@@ -66,9 +79,13 @@ describe('LessonController scoped state and navigation', () => {
     showLesson();
     const bottom = screen.getByRole('navigation', { name: enUiKitMessages.learningLayout.navigation.bottom });
     const steps = screen.getByRole('navigation', { name: enUiKitMessages.lesson.steps.navigation });
-    const next = within(bottom).getByRole('button', { name: new RegExp(enUiKitMessages.learningLayout.actions.next, 'i') });
+    const next = within(bottom).getByRole('button', {
+      name: new RegExp(enUiKitMessages.learningLayout.actions.next, 'i'),
+    });
     expect(next).toBeDisabled();
-    expect(within(bottom).getByRole('button', { name: new RegExp(enUiKitMessages.learningLayout.actions.skip, 'i') })).toBeDisabled();
+    expect(
+      within(bottom).getByRole('button', { name: new RegExp(enUiKitMessages.learningLayout.actions.skip, 'i') }),
+    ).toBeDisabled();
     expect(within(steps).getByRole('button', { name: /Summary/i })).toBeDisabled();
 
     fireEvent.click(screen.getByText('What is light?'));
@@ -78,7 +95,9 @@ describe('LessonController scoped state and navigation', () => {
     fireEvent.click(next);
     expect(screen.getByText('Second section content')).toBeVisible();
 
-    fireEvent.click(within(bottom).getByRole('button', { name: new RegExp(enUiKitMessages.learningLayout.actions.previous, 'i') }));
+    fireEvent.click(
+      within(bottom).getByRole('button', { name: new RegExp(enUiKitMessages.learningLayout.actions.previous, 'i') }),
+    );
     fireEvent.click(screen.getByText('What is light?'));
     expect(screen.getByRole('button', { name: enUiKitMessages.checkpoint.checked })).toBeDisabled();
   });

@@ -30,7 +30,8 @@ function renderBlock(
   isCheckpointCompleted?: (checkpointId: string) => boolean,
 ): ReactNode {
   requireTaggedResponse(response);
-  const nested = (block: ContentBlockResponse) => renderBlock(block, messages, sceneRegistry, onCheckpointComplete, isCheckpointCompleted);
+  const nested = (block: ContentBlockResponse) =>
+    renderBlock(block, messages, sceneRegistry, onCheckpointComplete, isCheckpointCompleted);
 
   switch (response.type) {
     case 'text':
@@ -38,7 +39,15 @@ function renderBlock(
     case 'markdown':
       return <Markdown {...response} />;
     case 'checkpoint':
-      return <Checkpoint {...response} messages={messages.checkpoint} renderNested={nested} onComplete={() => onCheckpointComplete?.(response.id)} completed={isCheckpointCompleted?.(response.id)} />;
+      return (
+        <Checkpoint
+          {...response}
+          messages={messages.checkpoint}
+          renderNested={nested}
+          onComplete={() => onCheckpointComplete?.(response.id)}
+          completed={isCheckpointCompleted?.(response.id)}
+        />
+      );
     case 'scene':
       return <Scene response={response} sceneRegistry={sceneRegistry} />;
     case 'code':
@@ -70,7 +79,9 @@ export function ContentBlockRenderer({
   return (
     <ContentLanguageContext.Provider value={language ?? inheritedLanguage}>
       {blocks.map(block => (
-        <Fragment key={`${block.type}:${block.id}`}>{renderBlock(block, messages, sceneRegistry, onCheckpointComplete, isCheckpointCompleted)}</Fragment>
+        <Fragment key={`${block.type}:${block.id}`}>
+          {renderBlock(block, messages, sceneRegistry, onCheckpointComplete, isCheckpointCompleted)}
+        </Fragment>
       ))}
     </ContentLanguageContext.Provider>
   );

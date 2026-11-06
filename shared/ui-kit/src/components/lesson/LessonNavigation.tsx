@@ -23,7 +23,9 @@ export function LessonNavigationProvider({ children, sectionCount }: { children:
     (action: LessonNavigationAction) => {
       if (action.type === 'restore') {
         setTestDone(action.testDone);
-        setCurrentStep(current => Number.isInteger(action.step) && action.step >= 0 && action.step <= lastStep ? action.step : current);
+        setCurrentStep(current =>
+          Number.isInteger(action.step) && action.step >= 0 && action.step <= lastStep ? action.step : current,
+        );
         return;
       }
       if (action.type === 'testDone') {
