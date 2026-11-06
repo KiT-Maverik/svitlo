@@ -5,7 +5,7 @@ import { pathToFileURL } from 'node:url';
 import { build } from 'esbuild';
 import { DEFAULT_SUPPORTED_LANGUAGES } from '../../../types/languages';
 import type { LanguageCode } from '../../../types/languages';
-import { localizeLessonValue } from './localizeLessonData.utils';
+import { splitLessonValue } from './localizeLessonData.utils';
 import { resolveEntityPath } from '../../entityPath/resolveEntityPath.utils';
 
 type LessonData = {
@@ -122,7 +122,7 @@ function compactQuizQuestions(value: unknown): unknown {
   );
 }
 
-/** Render three independently fetchable collections for every language of one lesson. */
+/** Publish shared base and sparse locale patches for each of the three Lesson collections. */
 export function renderLessonFiles(lesson: unknown): Map<string, string> {
   assertLesson(lesson);
   const relativePath = resolveEntityPath(lesson.id);
@@ -133,18 +133,20 @@ export function renderLessonFiles(lesson: unknown): Map<string, string> {
   }
 
   const { flashcards, questions, sections, ...config } = lesson;
+  const collections = {
+    config: { ...config, sections: compactQuizQuestions(sections) },
+    flashcards,
+    questions,
+  };
   const files = new Map<string, string>();
-  for (const language of languages) {
-    const collections = {
-      config: { ...config, sections: compactQuizQuestions(sections) },
-      flashcards,
-      questions,
-    };
-    for (const [kind, source] of Object.entries(collections)) {
-      const { value, sources } = localizeLessonValue(source, language, languages);
+  for (const [kind, source] of Object.entries(collections)) {
+    const { base, locales, pointers } = splitLessonValue(source, languages);
+    files.set(`${relativePath}/${kind}/base.json`, JSON.stringify({ data: base }) + '\n');
+    for (const language of languages) {
+      const localeSources = Object.fromEntries(pointers.map(pointer => [pointer, { code: language }]));
       files.set(
         `${relativePath}/${kind}/${language}.json`,
-        JSON.stringify({ data: value, localeSources: sources }) + '\n',
+        JSON.stringify({ data: locales[language] ?? {}, localeSources }) + '\n',
       );
     }
   }

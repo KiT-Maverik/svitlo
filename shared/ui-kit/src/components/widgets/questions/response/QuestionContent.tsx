@@ -1,6 +1,6 @@
+import type { UiKitMessages } from '#types/uiKitMessages';
 import type { ContentBlock, Locale_Languages } from '@svitlo/engine/content';
 import { ContentBlockRenderer } from '../../ContentBlockRenderer';
-import type { UiKit_Global } from '@svitlo/engine/content';
 import type { ContentBlockResponse, SceneRegistry } from '../../ContentBlockRenderer';
 
 export type QuestionBlock = ContentBlock<'response', Locale_Languages>;
@@ -17,7 +17,7 @@ export function QuestionContent({
   sceneRegistry,
   messages,
 }: {
-  messages: UiKit_Global<'response'>;
+  messages: UiKitMessages;
   blocks?: readonly QuestionBlock[];
   sceneRegistry?: SceneRegistry;
 }) {

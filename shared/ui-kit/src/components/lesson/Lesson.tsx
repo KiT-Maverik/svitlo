@@ -1,8 +1,10 @@
 'use client';
 
+import type { UiKitMessages } from '#types/uiKitMessages';
+
 import { type ComponentType } from 'react';
 import Container from '@mui/material/Container';
-import type { ContentBlock, Locale_Languages, Question, Section_Type, UiKit_Global } from '@svitlo/engine/content';
+import type { ContentBlock, Locale_Languages, Question, Section_Type } from '@svitlo/engine/content';
 import type { LanguageCode } from '@svitlo/engine/localization';
 import { ContentBlockRenderer, type SceneRegistry } from '../widgets/ContentBlockRenderer';
 import { QuestionRenderer } from '../widgets/questions';
@@ -37,11 +39,14 @@ export type LessonView = {
 export type LessonProps = {
   response: LessonView;
   href: string;
-  messages: UiKit_Global<'response'>;
+  messages: UiKitMessages;
   /** Host binding: Next.js, Electron, or ordinary React can supply a layout. */
   layout: ComponentType<LessonLearningLayoutProps>;
   /** Application-owned scene registry never leaks into the shared package. */
   sceneRegistry?: SceneRegistry;
+  contentLoading?: boolean;
+  contentError?: boolean;
+  onRetryContent?: () => void;
 };
 
 function LessonBody({
@@ -92,11 +97,23 @@ function LessonBody({
   );
 }
 
-export function Lesson({ response, href, messages, layout: Layout, sceneRegistry }: LessonProps) {
+export function Lesson({
+  response,
+  href,
+  messages,
+  layout: Layout,
+  sceneRegistry,
+  contentLoading,
+  contentError,
+  onRetryContent,
+}: LessonProps) {
   const quizIndex = response.sections.findIndex(section => section.type === 'quiz');
   return (
     <LessonNavigationProvider key={response.id} sectionCount={response.sections.length}>
       <Layout
+        contentLoading={contentLoading}
+        contentError={contentError}
+        onRetryContent={onRetryContent}
         messages={messages}
         topics={[{ id: response.id, title: response.title, href }]}
         pathname={href}
@@ -106,7 +123,7 @@ export function Lesson({ response, href, messages, layout: Layout, sceneRegistry
         quizStep={quizIndex < 0 ? undefined : quizIndex}
       >
         <div className={styles.lesson}>
-          <LessonBody response={response} messages={messages} sceneRegistry={sceneRegistry} />
+          {!contentLoading && <LessonBody response={response} messages={messages} sceneRegistry={sceneRegistry} />}
         </div>
       </Layout>
     </LessonNavigationProvider>

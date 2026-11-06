@@ -1,8 +1,9 @@
 'use client';
+
+import type { UiKitMessages } from '#types/uiKitMessages';
 import { Stack, Typography } from '@mui/material';
 import type { Question_BuildAnswerWithBlocks, Locale_Languages } from '@svitlo/engine/content';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
-import type { UiKit_Global } from '@svitlo/engine/content';
 import { QuestionChoice } from '../response/QuestionChoice';
 import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
 import { type QuestionItem, shuffleItems } from '../response/QuestionContent';
@@ -15,7 +16,7 @@ export function BuildAnswerWithBlocks({
 }: {
   response: Question_BuildAnswerWithBlocks<'response', Locale_Languages>;
   sceneRegistry?: SceneRegistry;
-  messages: UiKit_Global<'response'>;
+  messages: UiKitMessages;
 }) {
   const correct: QuestionItem[] = response.correctSequence.map((block, index) => ({
     id: 'correct:' + index + ':' + block.id,

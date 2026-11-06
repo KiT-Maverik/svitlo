@@ -79,7 +79,7 @@ export const natureInspiredDesign_SkillGroup_Data = buildSkillGroupConfig({
       be: 'Навучыся ператвараць біялягічныя функцыі ў інжынэрныя прынцыпы.',
       ka: 'ისწავლე ბიოლოგიური ფუნქციების საინჟინრო პრინციპებად გადატანა.',
       kk: 'Биологиялық қызметтерді инженерлік қағидаларға айналдыруды үйрен.',
-      qm: 'Biologik vazifelerni müendislik prinsiplerine çevirmeyi ögren.',
+      qm: 'Biologik vazifelerni mühendislik prinsiplerine çevirmeyi ögren.',
     },
   },
 });

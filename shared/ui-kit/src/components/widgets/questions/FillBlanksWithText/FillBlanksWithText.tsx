@@ -1,8 +1,9 @@
 'use client';
+
+import type { UiKitMessages } from '#types/uiKitMessages';
 import { Stack, TextField } from '@mui/material';
 import type { Question_FillBlanksWithText, Locale_Languages } from '@svitlo/engine/content';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
-import type { UiKit_Global } from '@svitlo/engine/content';
 import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
 import { normalizedAnswer } from '../response/QuestionContent';
 
@@ -13,7 +14,7 @@ export function FillBlanksWithText({
 }: {
   response: Question_FillBlanksWithText<'response', Locale_Languages>;
   sceneRegistry?: SceneRegistry;
-  messages: UiKit_Global<'response'>;
+  messages: UiKitMessages;
 }) {
   const attempt = useQuestionAttempt<Record<string, string>>(
     () => ({}),

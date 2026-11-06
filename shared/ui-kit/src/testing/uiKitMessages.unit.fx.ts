@@ -1,22 +1,22 @@
-import type { UiKit_Global } from '@svitlo/engine/content';
-import { locale as layout } from '../../data/components/LearningLayout/uk-UA.data';
-import { locale as enLayout } from '../../data/components/LearningLayout/en-US.data';
-import { locale as preferences } from '../../data/components/NavbarPreferences/uk-UA.data';
-import { locale as enPreferences } from '../../data/components/NavbarPreferences/en-US.data';
-import { data as lesson } from '../../data/components/Lesson/messages.data';
-import { data as flashcard } from '../../data/components/Flashcard/messages.data';
-import { data as checkpoint } from '../../data/components/Checkpoint/messages.data';
-import { data as audio } from '../../data/components/Audio/messages.data';
-import { data as image } from '../../data/components/Image/messages.data';
-import { data as video } from '../../data/components/Video/messages.data';
-import { data as youtube } from '../../data/components/Youtube/messages.data';
-import { data as questionFrame } from '../../data/components/QuestionFrame/messages.data';
+import type { UiKitMessages } from '#types/uiKitMessages';
+import {
+  learningLayout as layout,
+  navbarPreferences as preferences,
+  lesson,
+  flashcard,
+  checkpoint,
+  audio,
+  image,
+  video,
+  youtube,
+  questionFrame,
+} from '../../data/locale';
 
 /** Test-only fixture. This module is not emitted in the UI Kit runtime build. */
-export const ukUiKitMessages: UiKit_Global<'response'> = {
+export const ukUiKitMessages: UiKitMessages = {
   lesson: lesson.uk,
-  learningLayout: layout,
-  navbarPreferences: preferences,
+  learningLayout: layout.uk,
+  navbarPreferences: preferences.uk,
   flashcard: flashcard.uk,
   checkpoint: checkpoint.uk,
   audio: audio.uk,
@@ -26,11 +26,11 @@ export const ukUiKitMessages: UiKit_Global<'response'> = {
   questionFrame: questionFrame.uk,
 };
 
-export const enUiKitMessages: UiKit_Global<'response'> = {
+export const enUiKitMessages: UiKitMessages = {
   ...ukUiKitMessages,
   lesson: lesson.en,
-  learningLayout: enLayout,
-  navbarPreferences: enPreferences,
+  learningLayout: layout.en,
+  navbarPreferences: preferences.en,
   flashcard: flashcard.en,
   checkpoint: checkpoint.en,
   audio: audio.en,

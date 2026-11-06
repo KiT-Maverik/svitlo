@@ -8,7 +8,7 @@ import {
 } from '@svitlo/contracts/content';
 import { resolveEntityPath } from '../utils/entityPath/resolveEntityPath.utils';
 
-export type LocaleSource = { code: LanguageCode; isFallback?: true };
+export type LocaleSource = { code: LanguageCode };
 export type LessonCollection = { data: unknown; localeSources: Record<string, LocaleSource> };
 /** Published section content is already ordered and discriminated. */
 export type LessonContentBlock = ContentBlock<'response', Locale_Languages> & { slug: string };
@@ -64,8 +64,8 @@ function collection(value: unknown, name: string): LessonCollection {
   for (const [pointer, source] of Object.entries(sources)) {
     const meta = record(source, name + '.localeSources.' + pointer);
     string(meta.code, name + '.localeSources.' + pointer + '.code');
-    if (meta.isFallback !== undefined && meta.isFallback !== true) {
-      throw new Error('Invalid fallback metadata in ' + name + ' at ' + pointer);
+    if (Object.keys(meta).length !== 1) {
+      throw new Error('Unexpected locale source metadata in ' + name + ' at ' + pointer);
     }
   }
   return { data: document.data, localeSources: sources as Record<string, LocaleSource> };
@@ -131,16 +131,10 @@ export function assembleLessonResponse(
   const questions = collection(raw.questions, 'questions');
   for (const [kind, item] of Object.entries({ config, flashcards, questions })) {
     for (const [pointer, source] of Object.entries(item.localeSources)) {
-      if (source.isFallback === true ? source.code === language : source.code !== language) {
+      if (source.code !== language) {
         throw new Error(
-          'Contradictory fallback metadata in ' +
-            kind +
-            ' at ' +
-            pointer +
-            ': requested ' +
-            language +
-            ', source ' +
-            source.code,
+          'Unexpected locale source in ' + kind + ' at ' + pointer +
+          ': requested ' + language + ', source ' + source.code,
         );
       }
     }

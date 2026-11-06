@@ -58,7 +58,7 @@ export const decomposeADesignProblem_Skill_Data = buildSkillConfig({
       ms: 'Bahagikan reka bentuk rumit kepada fungsi kecil yang saling berkait.',
       he: 'חלקו תכנון מורכב לפונקציות קטנות המקושרות זו לזו.',
       pl: 'Podziel złożony projekt na mniejsze, powiązane funkcje.',
-      uk: 'Розділи складну конструкцію на менші взаємопов’язані функції.',
+      uk: 'Розділи складну проєктну задачу на взаємопов’язані підзадачі або функції.',
       lt: 'Sudėtingą projektą padalyk į mažesnes susijusias funkcijas.',
       lv: 'Sadali sarežģītu projektu mazākās savstarpēji saistītās funkcijās.',
       et: 'Jaota keerukas projekt väiksemateks seotud funktsioonideks.',

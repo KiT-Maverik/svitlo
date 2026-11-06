@@ -1,5 +1,7 @@
 'use client';
 
+import type { LearningLayout_Locale } from '../../../../data/locale/learningLayout';
+
 import { useEffect, useState, type ReactNode, type ElementType } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -21,7 +23,6 @@ import TopNavbar from '../Navigation/TopNavbar';
 import BottomNavbar from '../Navigation/BottomNavbar';
 import { getLocaleDirection, type Locale } from '@svitlo/engine/localization';
 import VerticalSpace from '#widgets/VerticalSpace/VerticalSpace';
-import type { UiKit_Component } from '@svitlo/engine/content';
 
 export type Topic = { id: string; title: string; href: string };
 export type LearningLayoutProgress = {
@@ -36,7 +37,7 @@ export interface LearningLayoutProps {
   skippableSteps?: readonly boolean[];
   quizStep?: number;
   locale: Locale;
-  messages: UiKit_Component<'learningLayout', 'response'>;
+  messages: LearningLayout_Locale;
   pathname: string;
   progress: LearningLayoutProgress;
   actions: { back: () => void; next: () => void; skip: () => void };
@@ -45,6 +46,9 @@ export interface LearningLayoutProps {
   settingsContent?: ReactNode | ((actions: { closeSettings: () => void }) => ReactNode);
   /** Non-lesson pages can reuse the navbar and sidebars without lesson navigation. */
   showBottomNavbar?: boolean;
+  contentLoading?: boolean;
+  contentError?: boolean;
+  onRetryContent?: () => void;
   linkComponent?: ElementType;
 }
 
@@ -61,6 +65,9 @@ export default function LearningLayout({
   preferences,
   settingsContent,
   showBottomNavbar = true,
+  contentLoading = false,
+  contentError = false,
+  onRetryContent,
   linkComponent,
 }: LearningLayoutProps) {
   const direction = getLocaleDirection(locale);
@@ -268,6 +275,8 @@ export default function LearningLayout({
           component="main"
           id="learning-content"
           tabIndex={-1}
+          aria-busy={contentLoading || undefined}
+          inert={contentLoading || undefined}
           sx={{
             height: '100%',
             overflowY: 'auto',
@@ -277,6 +286,61 @@ export default function LearningLayout({
         >
           {children}
         </Box>
+        <Fade in={contentLoading} timeout={{ enter: 0, exit: 350 }} unmountOnExit>
+          <Box
+            role={contentError ? 'alert' : 'status'}
+            aria-live={contentError ? 'assertive' : 'polite'}
+            sx={{
+              position: 'absolute',
+              inset: 0,
+              zIndex: 1200,
+              display: 'grid',
+              placeContent: 'center',
+              justifyItems: 'center',
+              gap: 3,
+              px: 3,
+              textAlign: 'center',
+              bgcolor: 'background.default',
+              '@media (prefers-reduced-motion: reduce)': { transition: 'none !important' },
+            }}
+          >
+            <Box
+              aria-hidden="true"
+              sx={{
+                display: 'flex',
+                gap: 1.5,
+                '& span': {
+                  width: 14,
+                  height: 14,
+                  borderRadius: '50%',
+                  bgcolor: 'primary.main',
+                  animation: 'lessonLoadingPulse 1.2s ease-in-out infinite',
+                },
+                '& span:nth-of-type(2)': { animationDelay: '0.15s' },
+                '& span:nth-of-type(3)': { animationDelay: '0.3s' },
+                '@keyframes lessonLoadingPulse': {
+                  '0%, 60%, 100%': { opacity: 0.35, transform: 'translateY(0)' },
+                  '30%': { opacity: 1, transform: 'translateY(-8px)' },
+                },
+                '@media (prefers-reduced-motion: reduce)': {
+                  '& span': { animation: 'none', opacity: 0.75 },
+                },
+              }}
+            >
+              <span />
+              <span />
+              <span />
+            </Box>
+            <Typography variant="h6" component="span">
+              {contentError ? messages.preparingLessonError : messages.preparingLesson}
+            </Typography>
+            {contentError && onRetryContent && (
+              <Button variant="contained" onClick={onRetryContent}>
+                {messages.actions.retry}
+              </Button>
+            )}
+          </Box>
+        </Fade>
       </Box>
 
       {showBottomNavbar && (
@@ -285,12 +349,17 @@ export default function LearningLayout({
           slots={{
             center: (
               <>
-                <Button variant="contained" disabled={!progress.ready || progress.step === 0} onClick={actions.back}>
+                <Button
+                  variant="contained"
+                  disabled={contentLoading || !progress.ready || progress.step === 0}
+                  onClick={actions.back}
+                >
                   {direction === 'rtl' ? '→' : '←'} {messages.actions.previous}
                 </Button>
                 <Button
                   variant="contained"
                   disabled={
+                    contentLoading ||
                     !progress.ready ||
                     progress.step >= progress.lastStep ||
                     (progress.step === quizStep && !progress.testDone)
@@ -304,7 +373,12 @@ export default function LearningLayout({
             right: (
               <Button
                 variant="outlined"
-                disabled={!progress.ready || progress.step >= progress.lastStep || !skippableSteps[progress.step]}
+                disabled={
+                  contentLoading ||
+                  !progress.ready ||
+                  progress.step >= progress.lastStep ||
+                  !skippableSteps[progress.step]
+                }
                 onClick={actions.skip}
               >
                 {messages.actions.skip}

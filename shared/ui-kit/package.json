@@ -3,62 +3,62 @@
   "version": "0.0.0",
   "private": true,
   "type": "commonjs",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
   "imports": {
-    "#layout/*": "./dist/components/layout/*.js",
-    "#widgets/*": "./dist/components/widgets/*.js",
-    "#testing/*": "./dist/testing/*.js",
-    "#types/*": "./dist/types/*.js",
-    "#utils/*": "./dist/utils/*.js"
+    "#layout/*": "./dist/src/components/layout/*.js",
+    "#widgets/*": "./dist/src/components/widgets/*.js",
+    "#testing/*": "./dist/src/testing/*.js",
+    "#types/*": "./dist/src/types/*.js",
+    "#utils/*": "./dist/src/utils/*.js"
   },
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
+      "types": "./dist/src/index.d.ts",
+      "default": "./dist/src/index.js"
     },
     "./widgets": {
-      "types": "./dist/widgets.d.ts",
-      "default": "./dist/widgets.js"
+      "types": "./dist/src/widgets.d.ts",
+      "default": "./dist/src/widgets.js"
     },
     "./questions": {
-      "types": "./dist/questions.d.ts",
-      "default": "./dist/questions.js"
+      "types": "./dist/src/questions.d.ts",
+      "default": "./dist/src/questions.js"
     },
     "./navigation": {
-      "types": "./dist/navigation.d.ts",
-      "default": "./dist/navigation.js"
+      "types": "./dist/src/navigation.d.ts",
+      "default": "./dist/src/navigation.js"
     },
     "./widgets/*": {
-      "types": "./dist/components/widgets/*.d.ts",
-      "default": "./dist/components/widgets/*.js"
+      "types": "./dist/src/components/widgets/*.d.ts",
+      "default": "./dist/src/components/widgets/*.js"
     },
     "./questions/*": {
-      "types": "./dist/components/widgets/questions/*.d.ts",
-      "default": "./dist/components/widgets/questions/*.js"
+      "types": "./dist/src/components/widgets/questions/*.d.ts",
+      "default": "./dist/src/components/widgets/questions/*.js"
     },
     "./navigation/*": {
-      "types": "./dist/components/layout/Navigation/*.d.ts",
-      "default": "./dist/components/layout/Navigation/*.js"
+      "types": "./dist/src/components/layout/Navigation/*.d.ts",
+      "default": "./dist/src/components/layout/Navigation/*.js"
     },
     "./learning-layout": {
-      "types": "./dist/components/layout/LearningLayout/index.d.ts",
-      "default": "./dist/components/layout/LearningLayout/index.js"
+      "types": "./dist/src/components/layout/LearningLayout/index.d.ts",
+      "default": "./dist/src/components/layout/LearningLayout/index.js"
     },
     "./sync-flags": {
       "default": "./scripts/sync-flags.mjs"
     },
     "./learning-layout/preferences": {
-      "types": "./dist/components/layout/LearningLayout/NavbarPreferences/NavbarPreferences.d.ts",
-      "default": "./dist/components/layout/LearningLayout/NavbarPreferences/NavbarPreferences.js"
+      "types": "./dist/src/components/layout/LearningLayout/NavbarPreferences/NavbarPreferences.d.ts",
+      "default": "./dist/src/components/layout/LearningLayout/NavbarPreferences/NavbarPreferences.js"
     },
     "./lesson": {
-      "types": "./dist/components/lesson/index.d.ts",
-      "default": "./dist/components/lesson/index.js"
+      "types": "./dist/src/components/lesson/index.d.ts",
+      "default": "./dist/src/components/lesson/index.js"
     },
     "./scene-locale": {
-      "types": "./dist/scene-locale.d.ts",
-      "default": "./dist/scene-locale.js"
+      "types": "./dist/src/scene-locale.d.ts",
+      "default": "./dist/src/scene-locale.js"
     }
   },
   "files": [
@@ -67,7 +67,7 @@
     "scripts/sync-flags.mjs"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.build.json && node scripts/copy-assets.mjs",
+    "build": "node scripts/build.mjs",
     "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.data.json --noEmit",
     "test:logic": "npm run typecheck && npm run test:locales",
     "test:components": "vitest run",

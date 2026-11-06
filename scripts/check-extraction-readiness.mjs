@@ -150,7 +150,7 @@ for (const [path, pkg] of workspaces.filter(([name]) => name.startsWith('shared/
         target.startsWith('./dist/') && target.endsWith('.js'),
         'Invalid compiled entrypoint: ' + pkg.name + subpath,
       );
-      const sourcePath = target.replace('./dist/', 'src/').replace(/\.js$/, '');
+      const sourcePath = target.replace(/^\.\/dist\/(?:src\/)?/, 'src/').replace(/\.js$/, '');
       assert(
         ['.ts', '.tsx'].some(ext => existsSync(resolve(root, path, sourcePath + ext))),
         'Missing public entrypoint source: ' + pkg.name + subpath,

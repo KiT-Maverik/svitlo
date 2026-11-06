@@ -6,7 +6,7 @@ export const systemRedundancy_Skill_Data = buildSkillConfig({
   name: {
     en: 'System redundancy',
     zh: '系统冗余',
-    hi: 'प्रणाली में अतिरिक्त व्यवस्था',
+    hi: 'प्रणाली में स्वतंत्र आरक्षित व्यवस्था',
     es: 'Redundancia del sistema',
     ar: 'الازدواجية الاحتياطية في النظام',
     fr: 'Redondance du système',

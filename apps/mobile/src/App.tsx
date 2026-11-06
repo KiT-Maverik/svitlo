@@ -16,7 +16,7 @@ import { SceneLocaleProvider } from '@svitlo/ui-kit/scene-locale';
 import { createLessonLearningLayout, type LessonLearningLayoutProps } from '@svitlo/ui-kit/learning-layout';
 import { registerNativeBackButton, exitNativeApp } from '@svitlo/adapter-capacitor';
 import type { LessonResponse } from '@svitlo/engine/lesson';
-import type { UiKit_Global } from '@svitlo/ui-kit';
+import type { UiKitMessages } from '@svitlo/ui-kit';
 import { textbook, resolveScene } from './generated/textbook';
 import { loadLesson, loadLessonIndex, loadMessages, type LessonIndex } from './loadLesson';
 import { defaultLanguage, languageForLocale, lessonHref, localeForLanguage, parseRoute } from './routes';
@@ -100,7 +100,7 @@ function PersistingLessonLayout(props: LessonLearningLayoutProps) {
 }
 const theme = createTheme({ cssVariables: true });
 
-type LessonData = { response: LessonResponse; messages: UiKit_Global<'response'> };
+type LessonData = { response: LessonResponse; messages: UiKitMessages };
 type LoadState =
   | { status: 'loading' }
   | { status: 'error'; message: string }

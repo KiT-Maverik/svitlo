@@ -1,9 +1,10 @@
 'use client';
 
+import type { UiKitMessages } from '#types/uiKitMessages';
+
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { Question, Locale_Languages } from '@svitlo/engine/content';
 import type { LanguageCode } from '@svitlo/engine/localization';
-import type { UiKit_Global } from '@svitlo/engine/content';
 import { ContentLanguageContext, useContentLanguage } from '../../ContentBlockRenderer/ContentLanguageContext';
 import { QuestionCompletionContext } from './QuestionCompletion';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
@@ -20,7 +21,7 @@ import { SelectOneAnswer } from '../SelectOneAnswer/SelectOneAnswer';
 export type QuestionResponse = Question<'response', Locale_Languages>;
 
 export type QuestionRendererProps = {
-  messages: UiKit_Global<'response'>;
+  messages: UiKitMessages;
   questions?: readonly QuestionResponse[];
   sceneRegistry?: SceneRegistry;
   language?: LanguageCode;
@@ -35,7 +36,7 @@ function QuestionBlock({
 }: {
   response: QuestionResponse;
   sceneRegistry?: SceneRegistry;
-  messages: UiKit_Global<'response'>;
+  messages: UiKitMessages;
 }) {
   switch (response.type) {
     case 'selectOneAnswer':
