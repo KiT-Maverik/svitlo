@@ -103,10 +103,13 @@ module.exports = async function backfill({ github, context, core, shard, shards 
 
   async function apply(record, target) {
     const existing = new Set(record.labels.map(label => label.name));
-    const toAdd = target.filter(label => knownLabels.has(label) && !existing.has(label));
-    // Repo fallback must never coexist with an area that identifies a real package.
+    const existingScoped = [...existing].some(label => scopeNames.has(label));
+    // Do not add the repository fallback when the Issue/PR already has a specific scope.
+    const resolved = target.filter(label => label !== 'area: repo' || !existingScoped);
+    const toAdd = resolved.filter(label => knownLabels.has(label) && !existing.has(label));
     const removeRepo =
-      target.some(label => scopeNames.has(label)) && existing.has('area: repo');
+      (existingScoped || resolved.some(label => scopeNames.has(label))) &&
+      existing.has('area: repo');
     const wrongRole = target.includes('pr: agent-subtask')
       ? 'pr: integration'
       : target.includes('pr: integration')
