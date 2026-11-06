@@ -79,11 +79,13 @@ describe('Layouts', () => {
       await LearningLayout_fx.actions.openSettings();
       const profile = LearningLayout_fx.selectors.topAction(aria.actions.profile);
       profile.click();
+      const profileSettings = screen.getByRole('menuitem', { name: aria.actions.profileSettings });
+      expect(profileSettings).toHaveAttribute('href', '#');
+      profileSettings.click();
       expect(LearningLayout_fx.selectors.topAction(aria.actions.openSettings)).toHaveAttribute(
         'aria-expanded',
         'false',
       );
-      expect(screen.getByRole('menuitem', { name: aria.actions.profileSettings })).toHaveAttribute('href', '#');
     });
 
     it('keeps Quick Settings open and synchronizes the switch with the applied scheme', async () => {
