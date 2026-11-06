@@ -11,6 +11,7 @@ on:
       - 'content/language-literature/**'
       - 'content/languages/ukrainian/**'
       - 'scripts/check-built-package-exports.mjs'
+      - 'scripts/textbook-tooling/**'
       - '.github/workflows/content-packages-agent-1.yml'
   workflow_dispatch:
 
@@ -70,8 +71,8 @@ jobs:
       - name: Verify isolated consumer, publication and cleanup for each textbook
         run: |
           for textbook in math physics psychology philosophy language-literature; do
-            node --test "content/$textbook/scripts/publish.spec.mjs"
-            node "content/$textbook/scripts/check-react-dom-portability.mjs"
+            (cd "content/$textbook" && node --test ../../scripts/textbook-tooling/test-publish.mjs)
+            (cd "content/$textbook" && node ../../scripts/textbook-tooling/check-portability.mjs)
           done
-          node --test content/languages/ukrainian/scripts/publish.spec.mjs
-          node content/languages/ukrainian/scripts/check-react-dom-portability.mjs
+          (cd content/languages/ukrainian && node --test ../../../scripts/textbook-tooling/test-publish.mjs)
+          (cd content/languages/ukrainian && node ../../../scripts/textbook-tooling/check-portability.mjs)
