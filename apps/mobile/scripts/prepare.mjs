@@ -4,7 +4,6 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync
 import { basename, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
-import { mergeLessonResources } from '@svitlo/engine/lesson';
 
 const mobileRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const repoRoot = resolve(mobileRoot, '../..');
@@ -47,6 +46,8 @@ for (const workspace of [
   run(npm, ['run', 'build', '--workspace', workspace]);
 }
 run(npm, ['run', 'build', '--workspace', selection.package]);
+// Resolve Engine only after building the shared workspace from a fresh checkout.
+const { mergeLessonResources } = await import('@svitlo/engine/lesson');
 const publicRoot = join(mobileRoot, 'public');
 run(npm, ['exec', '--workspace', '@svitlo/mobile', '--', 'svitlo-' + id, 'publish', '--output', publicRoot]);
 
