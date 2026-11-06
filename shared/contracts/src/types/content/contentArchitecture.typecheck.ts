@@ -133,11 +133,11 @@ const runtimeScene: ContentBlock_Scene<'response', TestLanguages> = {
   locales: { title: 'Light ray' },
 };
 
-const customQuizScreen: ContentBlock_Quiz_Screen<'response', TestLanguages> = {
+const customQuizScreen: Quiz_Screen<'response', TestLanguages> = {
   content: [runtimeText],
 };
 // @ts-expect-error A custom screen requires at least one content block.
-const emptyQuizScreen: ContentBlock_Quiz_Screen<'response', TestLanguages> = { content: [] };
+const emptyQuizScreen: Quiz_Screen<'response', TestLanguages> = { content: [] };
 
 // @ts-expect-error A localized runtime content block must carry its discriminator.
 const missingDiscriminator: ContentBlock_Text<'response', TestLanguages> = {
