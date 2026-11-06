@@ -20,7 +20,7 @@ export const lifeCycleAndResources_SkillGroup_Data = buildSkillGroupConfig({
     fr: 'Cycle de vie et ressources',
     bn: 'জীবনচক্র ও সম্পদ',
     pt: 'Ciclo de vida e recursos',
-    ur: 'حیاتی دور اور وسائل',
+    ur: 'مصنوعات کا دورِ حیات اور وسائل',
     id: 'Siklus hidup dan sumber daya',
     de: 'Lebenszyklus und Ressourcen',
     ja: 'ライフサイクルと資源',
