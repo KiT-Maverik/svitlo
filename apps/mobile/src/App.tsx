@@ -9,7 +9,7 @@ import {
   type MouseEvent,
 } from 'react';
 import { CssBaseline, Button, Container, Typography, CircularProgress, Box, List, ListItemButton } from '@mui/material';
-import { ThemeProvider, createTheme, useColorScheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { DEFAULT_SUPPORTED_LANGUAGES, getLocaleDirection, type Locale } from '@svitlo/engine/localization';
 import { Lesson, useLessonNavigation } from '@svitlo/ui-kit/lesson';
 import { SceneLocaleProvider } from '@svitlo/ui-kit/scene-locale';
@@ -59,11 +59,7 @@ const MobileLink = forwardRef<HTMLAnchorElement, AnchorHTMLAttributes<HTMLAnchor
   };
   return <a {...props} href={href} ref={ref} onClick={handleClick} />;
 });
-const MobileLessonLayout = createLessonLearningLayout({
-  useLocale: useLocaleBinding,
-  useColorScheme,
-  linkComponent: MobileLink,
-});
+const MobileLessonLayout = createLessonLearningLayout({ useLocale: useLocaleBinding, linkComponent: MobileLink });
 function PersistingLessonLayout(props: LessonLearningLayoutProps) {
   const { progress, dispatch } = useLessonNavigation();
   const [restored, setRestored] = useState(false);
