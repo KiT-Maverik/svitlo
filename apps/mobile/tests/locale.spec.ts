@@ -8,7 +8,7 @@ test('supported RTL lesson locale sets document direction', async ({ page }) => 
   });
   const supported = catalog.lessons.find(lesson => lesson.languages.includes('ar'));
   test.skip(!supported, 'The selected textbook has no Arabic lesson');
-  await page.goto('/ar/lesson/' + supported!.id);
+  await page.goto('/ar/lesson/ar/' + supported!.id);
   await expect(page.locator('html')).toHaveAttribute('dir', 'rtl');
   await expect(page.locator('#learning-content')).toBeVisible();
 });
