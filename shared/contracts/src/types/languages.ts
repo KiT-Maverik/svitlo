@@ -113,7 +113,7 @@ export const DEFAULT_SUPPORTED_LANGUAGES = [
     locale: 'be-tarask',
     language: 'be',
     name: 'Belarusian (Taraškievica)',
-    nativeName: 'Беларуская (тарашкевіца)',
+    nativeName: 'Беларуская',
     nameUk: 'Білоруська (тарашкевиця)',
     direction: 'ltr',
   },

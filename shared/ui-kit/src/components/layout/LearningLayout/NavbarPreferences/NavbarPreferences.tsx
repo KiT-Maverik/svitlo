@@ -10,11 +10,12 @@ import Tooltip from '@mui/material/Tooltip';
 import { DEFAULT_SUPPORTED_LANGUAGES, type Locale } from '@svitlo/engine/localization';
 import { Flag } from '#widgets/Flag/Flag';
 
+const nativeNameCollator = new Intl.Collator('en', { sensitivity: 'base' });
 const locales = DEFAULT_SUPPORTED_LANGUAGES.map(({ locale, language, nativeName }) => ({
   locale,
   language,
   nativeName,
-}));
+})).sort((a, b) => nativeNameCollator.compare(a.nativeName, b.nativeName) || a.locale.localeCompare(b.locale));
 
 export type NavbarPreferencesProps = {
   locale: Locale;
