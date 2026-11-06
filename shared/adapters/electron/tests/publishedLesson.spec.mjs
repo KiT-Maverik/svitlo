@@ -11,16 +11,24 @@ function resources() {
     config: {
       base: {
         data: {
-          id, slug: 'lesson', title: null,
+          id,
+          slug: 'lesson',
+          title: null,
           parameters: {
             languages: ['uk'],
             requireQuiz: false,
             sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
           },
-          sections: [{
-            id: 'section', slug: 'intro', type: 'theory',
-            title: null, navigationLabel: null, content: [],
-          }],
+          sections: [
+            {
+              id: 'section',
+              slug: 'intro',
+              type: 'theory',
+              title: null,
+              navigationLabel: null,
+              content: [],
+            },
+          ],
         },
         localeSources: {},
       },
@@ -52,10 +60,10 @@ test('Electron resolves base and sparse locale resources before lesson assembly'
   assert.equal(lesson.sections[0].title, 'Вступ');
   assert.equal(lesson.sections[0].navigationLabel, 'Початок');
   assert.equal(lesson.locale.code, 'uk');
-  assert.deepEqual(requested.sort(), kinds.flatMap(kind => [
-    path + '/' + kind + '/base.json',
-    path + '/' + kind + '/uk.json',
-  ]).sort());
+  assert.deepEqual(
+    requested.sort(),
+    kinds.flatMap(kind => [path + '/' + kind + '/base.json', path + '/' + kind + '/uk.json']).sort(),
+  );
 });
 
 test('Electron rejects missing locale patches rather than falling back silently', async t => {

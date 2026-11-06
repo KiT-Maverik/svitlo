@@ -43,15 +43,19 @@ describe('renderLessonFiles', () => {
     assert.equal(cardsBase.data[0].label, 'H₂O');
     assert.equal(cardsLocale.data['0'].front['0'].text, 'Промінь');
     assert.deepEqual(cardsLocale.localeSources['/0/front/0/text'], { code: 'uk' });
-    const restored = mergeLessonResources(base, localized) as { data: { title: string; sections: { title: string }[] } };
+    const restored = mergeLessonResources(base, localized) as {
+      data: { title: string; sections: { title: string }[] };
+    };
     assert.equal(restored.data.title, 'Світло');
     assert.equal(restored.data.sections[0].title, 'Тест');
   });
 
   it('rejects missing and legacy fallback translations at build time', () => {
     assert.throws(() => renderLessonFiles({ ...lesson, title: { en: 'Light' } }), /Incomplete locale dictionary/);
-    assert.throws(() => renderLessonFiles({ ...lesson, title: { fallback: 'en', en: 'Light' } }),
-      /Field-level fallback/);
+    assert.throws(
+      () => renderLessonFiles({ ...lesson, title: { fallback: 'en', en: 'Light' } }),
+      /Field-level fallback/,
+    );
   });
 
   it('rejects invalid UUID and malformed slug', () => {

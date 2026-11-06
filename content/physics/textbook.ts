@@ -2,5 +2,18 @@
 export const textbook = {
   id: 'physics',
   title: 'Фізика',
-  skillAnalyticsDomains: ["electromagnetism","energy","fluidMechanics","forcesAndInteractions","measurement","mechanics","modernPhysics","molecularPhysics","optics","radiation","thermodynamics","waves"],
+  skillAnalyticsDomains: [
+    'electromagnetism',
+    'energy',
+    'fluidMechanics',
+    'forcesAndInteractions',
+    'measurement',
+    'mechanics',
+    'modernPhysics',
+    'molecularPhysics',
+    'optics',
+    'radiation',
+    'thermodynamics',
+    'waves',
+  ],
 } as const;

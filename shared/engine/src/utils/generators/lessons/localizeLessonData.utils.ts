@@ -28,8 +28,11 @@ const pointer = (path: readonly string[]): string =>
  */
 export function splitLessonValue(input: unknown, supportedLanguages: readonly LanguageCode[]): SparseLessonValue {
   const languages = new Set(supportedLanguages);
-  if (!languages.size || languages.size !== supportedLanguages.length ||
-      [...languages].some(language => !knownLanguages.has(language))) {
+  if (
+    !languages.size ||
+    languages.size !== supportedLanguages.length ||
+    [...languages].some(language => !knownLanguages.has(language))
+  ) {
     throw new Error('Invalid declared lesson languages');
   }
 
@@ -40,12 +43,13 @@ export function splitLessonValue(input: unknown, supportedLanguages: readonly La
       for (const language of languages) {
         const patch = Object.fromEntries(
           children.flatMap((item, index) =>
-            Object.hasOwn(item.locales, language) ? [[String(index), item.locales[language]]] : []),
+            Object.hasOwn(item.locales, language) ? [[String(index), item.locales[language]]] : [],
+          ),
         );
         if (Object.keys(patch).length) locales[language] = patch;
       }
       return {
-        base: children.map(item => item.base === OMIT ? null : item.base),
+        base: children.map(item => (item.base === OMIT ? null : item.base)),
         locales,
         pointers: children.flatMap(item => item.pointers),
       };
@@ -53,8 +57,13 @@ export function splitLessonValue(input: unknown, supportedLanguages: readonly La
 
     if (isRecord(value)) {
       const keys = Object.keys(value);
-      if (keys.length === 2 && keys.includes('language') && keys.includes('value') &&
-          typeof value.language === 'string' && typeof value.value === 'string') {
+      if (
+        keys.length === 2 &&
+        keys.includes('language') &&
+        keys.includes('value') &&
+        typeof value.language === 'string' &&
+        typeof value.value === 'string'
+      ) {
         throw new Error('Single-language fallback is not allowed at ' + pointer(path));
       }
       if (keys.includes('fallback')) {
@@ -64,7 +73,8 @@ export function splitLessonValue(input: unknown, supportedLanguages: readonly La
       // Numeric language-keyed maps are ordinary data, not text localization.
       // Only an entire language-keyed record can be a locale dictionary.
       // In particular, ordinary content has an 'id' property (Indonesian code).
-      const localized = keys.length > 0 &&
+      const localized =
+        keys.length > 0 &&
         keys.every(key => knownLanguages.has(key as LanguageCode)) &&
         Object.values(value).some(item => typeof item === 'string');
       if (localized) {
@@ -72,9 +82,17 @@ export function splitLessonValue(input: unknown, supportedLanguages: readonly La
         const missing = [...languages].filter(language => !Object.hasOwn(value, language));
         const invalid = keys.filter(key => typeof value[key] !== 'string');
         if (unexpected.length || missing.length || invalid.length) {
-          throw new Error('Incomplete locale dictionary at ' + pointer(path) +
-            ' (missing: ' + missing.join(', ') + '; unexpected: ' + unexpected.join(', ') +
-            '; invalid: ' + invalid.join(', ') + ')');
+          throw new Error(
+            'Incomplete locale dictionary at ' +
+              pointer(path) +
+              ' (missing: ' +
+              missing.join(', ') +
+              '; unexpected: ' +
+              unexpected.join(', ') +
+              '; invalid: ' +
+              invalid.join(', ') +
+              ')',
+          );
         }
         return {
           base: OMIT,
@@ -88,20 +106,19 @@ export function splitLessonValue(input: unknown, supportedLanguages: readonly La
       for (const language of languages) {
         const patch = Object.fromEntries(
           children.flatMap(([key, child]) =>
-            Object.hasOwn(child.locales, language) ? [[key, child.locales[language]]] : []),
+            Object.hasOwn(child.locales, language) ? [[key, child.locales[language]]] : [],
+          ),
         );
         if (Object.keys(patch).length) locales[language] = patch;
       }
       return {
-        base: Object.fromEntries(children.flatMap(([key, child]) =>
-          child.base === OMIT ? [] : [[key, child.base]])),
+        base: Object.fromEntries(children.flatMap(([key, child]) => (child.base === OMIT ? [] : [[key, child.base]]))),
         locales,
         pointers: children.flatMap(([, child]) => child.pointers),
       };
     }
 
-    if (value === null || typeof value === 'string' || typeof value === 'number' ||
-        typeof value === 'boolean') {
+    if (value === null || typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
       return { base: value, locales: {}, pointers: [] };
     }
     throw new Error('Unsupported lesson value at ' + pointer(path) + ': ' + typeof value);

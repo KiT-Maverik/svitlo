@@ -26,7 +26,8 @@ export async function loadPublishedLesson(id: string, language: LanguageCode): P
             source = await readFile(filename, 'utf8');
           } catch (error) {
             throw new Error(
-              'Missing published lesson resource ' + filename +
+              'Missing published lesson resource ' +
+                filename +
                 '. Run the lessons generator for this textbook before dev/build.',
               { cause: error },
             );

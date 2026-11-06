@@ -51,8 +51,12 @@ const { mergeLessonResources } = await import('@svitlo/engine/lesson');
 const publicRoot = join(mobileRoot, 'public');
 // npm ci may not link a binary generated during build, so execute the
 // published package binary from its validated manifest path directly.
-run(process.execPath,
-  [join(repoRoot, selection.directory, manifest.bin['svitlo-' + id]), 'publish', '--output', publicRoot]);
+run(process.execPath, [
+  join(repoRoot, selection.directory, manifest.bin['svitlo-' + id]),
+  'publish',
+  '--output',
+  publicRoot,
+]);
 
 // UI Kit owns global dictionaries and SVG flags. The textbook publisher must
 // not overwrite either, nor the Capacitor app's own static resources.

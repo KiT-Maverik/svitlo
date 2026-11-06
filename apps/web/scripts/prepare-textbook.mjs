@@ -19,8 +19,7 @@ if (manifest.name !== selection.package || webManifest.dependencies?.[manifest.n
   throw new Error('Selected textbook ' + id + ' is not a declared, version-matched Web dependency');
 }
 const cli = Object.keys(manifest.bin ?? {});
-if (cli.length !== 1 || !/^[a-z][a-z0-9-]*$/.test(cli[0]) ||
-    manifest.bin[cli[0]] !== './dist/publish.mjs') {
+if (cli.length !== 1 || !/^[a-z][a-z0-9-]*$/.test(cli[0]) || manifest.bin[cli[0]] !== './dist/publish.mjs') {
   throw new Error('Selected textbook must expose exactly one public Publish CLI');
 }
 for (const entry of ['.', './scenes']) {

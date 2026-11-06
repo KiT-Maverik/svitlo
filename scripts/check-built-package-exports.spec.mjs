@@ -15,15 +15,17 @@ function fixture(t) {
 
   for (const name of ['math', 'art']) {
     const path = join(root, 'content', name);
-    for (const file of ['dist/textbook/index.js', 'dist/textbook/index.d.ts', 'dist/publish.mjs', 'dist/static/' + resource]) {
+    for (const file of [
+      'dist/textbook/index.js',
+      'dist/textbook/index.d.ts',
+      'dist/publish.mjs',
+      'dist/static/' + resource,
+    ]) {
       const target = join(path, file);
       mkdirSync(dirname(target), { recursive: true });
       writeFileSync(target, file.endsWith('.json') ? '{"domains":[]}\n' : '');
     }
-    writeFileSync(
-      join(path, 'dist/manifest.json'),
-      JSON.stringify({ version: 1, textbook: name, files: [resource] }),
-    );
+    writeFileSync(join(path, 'dist/manifest.json'), JSON.stringify({ version: 1, textbook: name, files: [resource] }));
     writeFileSync(
       join(path, 'package.json'),
       JSON.stringify({
