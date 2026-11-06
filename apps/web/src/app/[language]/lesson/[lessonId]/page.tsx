@@ -25,7 +25,7 @@ async function LegacyRedirect({
     else if (value !== undefined) query.append(name, value);
   }
   const suffix = query.toString();
-  redirect(`/${language}/lesson/${language}/${lessonId}${suffix ? '?' + suffix : ''}`);
+  return redirect(`/${language}/lesson/${language}/${lessonId}${suffix ? '?' + suffix : ''}`);
 }
 
 /** Next.js Cache Components require async URL inspection beneath Suspense. */
