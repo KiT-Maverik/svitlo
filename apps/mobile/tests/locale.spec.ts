@@ -23,7 +23,7 @@ test('mobile lesson language can differ from its interface language', async ({ p
   test.skip(!supported, 'The selected textbook has no English lesson');
   await page.goto('/uk/lesson/en/' + supported!.id);
   await expect(page.locator('html')).toHaveAttribute('lang', 'uk-UA');
-  await expect(page.locator('#learning-content [lang="en-US"]')).toBeVisible();
+  await expect(page.locator('#learning-content [lang="en-US"]').first()).toBeVisible();
   await page.getByRole('button', { name: 'Відкрити налаштування' }).click();
   await expect(page.getByRole('combobox', { name: 'Мова уроку' })).toBeVisible();
 });
