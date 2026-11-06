@@ -182,6 +182,17 @@ function runGate(changed) {
   // exist only after the shared Engine build; data/ is now included in textbook tsconfigs.
   // Build this prerequisite for affected textbooks even when their manifests have not
   // yet declared an explicit Engine dependency.
+  // A textbook migration changes the packed npm contract, not only TypeScript.
+  // Run its build once and both package-scoped resource/consumer checks.
+  for (const subject of ['math', 'physics', 'psychology', 'philosophy', 'language-literature', 'ukrainian']) {
+    const pkg = all.get('@svitlo/' + subject);
+    if (!pkg || !changed.some(file => file.startsWith(pkg.path + '/'))) continue;
+    ensureSharedDependencies(pkg.name);
+    exec('npm', ['run', 'build', '--workspace', pkg.name]);
+    exec('node', ['--test', path.join(pkg.path, 'scripts/publish.spec.mjs')]);
+    exec('node', [path.join(pkg.path, 'scripts/check-react-dom-portability.mjs')]);
+  }
+
   const textbookTaxonomyChanged = targets.some(name => {
     const pkg = all.get(name);
     return pkg?.path.startsWith('content/') && fs.existsSync(path.join(repoRoot, pkg.path, 'data/skills'));

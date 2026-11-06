@@ -1,0 +1,50 @@
+name: Agent 2 textbook package portability
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths:
+      - 'content/art/**'
+      - 'content/chemistry/**'
+      - 'content/economics/**'
+      - 'content/engineering/**'
+      - 'content/health-safety/**'
+      - '.github/workflows/agent-2-textbook-packages.yml'
+  workflow_dispatch:
+
+jobs:
+  packages:
+    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Verify scoped repository contract
+        run: npm run packages:check
+      - name: Build, typecheck, publish and test packed consumer for each assigned textbook
+        shell: bash
+        run: |
+          failures=0
+          for book in art chemistry economics engineering health-safety; do
+            echo "::group::@svitlo/$book"
+            if npm run build --workspace "@svitlo/$book" &&
+               npm run typecheck --workspace "@svitlo/$book" &&
+               node --test "content/$book/scripts/publish.spec.mjs" &&
+               node "content/$book/scripts/check-react-dom-portability.mjs"; then
+              echo "PASS @svitlo/$book"
+            else
+              echo "::error title=@svitlo/$book::Build, typecheck or distribution check failed"
+              failures=1
+            fi
+            echo "::endgroup::"
+          done
+          if [ "$failures" -eq 0 ]; then
+            npm run build --workspace @svitlo/playground
+            npm run packages:artifacts:check
+          fi
+          exit "$failures"
