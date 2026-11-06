@@ -11,7 +11,14 @@ import { useLessonNavigation } from '../../lesson/LessonNavigation';
 
 export type LessonLearningLayoutProps = Pick<
   LearningLayoutProps,
-  'children' | 'topics' | 'skippableSteps' | 'quizStep' | 'pathname' | 'contentLoading'
+  | 'children'
+  | 'topics'
+  | 'skippableSteps'
+  | 'quizStep'
+  | 'pathname'
+  | 'contentLoading'
+  | 'contentError'
+  | 'onRetryContent'
 > & { messages: UiKitMessages };
 
 export type LessonLearningLayoutBindings = {
@@ -30,6 +37,8 @@ export function createLessonLearningLayout(bindings: LessonLearningLayoutBinding
     pathname,
     messages,
     contentLoading,
+    contentError,
+    onRetryContent,
   }: LessonLearningLayoutProps) {
     const { locale, setLocale } = bindings.useLocale();
     const { progress, dispatch } = useLessonNavigation();
@@ -42,6 +51,8 @@ export function createLessonLearningLayout(bindings: LessonLearningLayoutBinding
         pathname={pathname}
         progress={progress}
         contentLoading={contentLoading}
+        contentError={contentError}
+        onRetryContent={onRetryContent}
         topics={topics}
         skippableSteps={skippableSteps}
         quizStep={quizStep}

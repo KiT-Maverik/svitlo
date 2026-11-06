@@ -47,6 +47,8 @@ export interface LearningLayoutProps {
   /** Non-lesson pages can reuse the navbar and sidebars without lesson navigation. */
   showBottomNavbar?: boolean;
   contentLoading?: boolean;
+  contentError?: boolean;
+  onRetryContent?: () => void;
   linkComponent?: ElementType;
 }
 
@@ -64,6 +66,8 @@ export default function LearningLayout({
   settingsContent,
   showBottomNavbar = true,
   contentLoading = false,
+  contentError = false,
+  onRetryContent,
   linkComponent,
 }: LearningLayoutProps) {
   const direction = getLocaleDirection(locale);
@@ -284,8 +288,8 @@ export default function LearningLayout({
         </Box>
         <Fade in={contentLoading} timeout={{ enter: 0, exit: 350 }} unmountOnExit>
           <Box
-            role="status"
-            aria-live="polite"
+            role={contentError ? 'alert' : 'status'}
+            aria-live={contentError ? 'assertive' : 'polite'}
             sx={{
               position: 'absolute',
               inset: 0,
@@ -328,8 +332,13 @@ export default function LearningLayout({
               <span />
             </Box>
             <Typography variant="h6" component="span">
-              {messages.preparingLesson}
+              {contentError ? messages.preparingLessonError : messages.preparingLesson}
             </Typography>
+            {contentError && onRetryContent && (
+              <Button variant="contained" onClick={onRetryContent}>
+                {messages.actions.retry}
+              </Button>
+            )}
           </Box>
         </Fade>
       </Box>

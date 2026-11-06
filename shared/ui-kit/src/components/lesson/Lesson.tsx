@@ -45,6 +45,8 @@ export type LessonProps = {
   /** Application-owned scene registry never leaks into the shared package. */
   sceneRegistry?: SceneRegistry;
   contentLoading?: boolean;
+  contentError?: boolean;
+  onRetryContent?: () => void;
 };
 
 function LessonBody({
@@ -95,12 +97,23 @@ function LessonBody({
   );
 }
 
-export function Lesson({ response, href, messages, layout: Layout, sceneRegistry, contentLoading }: LessonProps) {
+export function Lesson({
+  response,
+  href,
+  messages,
+  layout: Layout,
+  sceneRegistry,
+  contentLoading,
+  contentError,
+  onRetryContent,
+}: LessonProps) {
   const quizIndex = response.sections.findIndex(section => section.type === 'quiz');
   return (
     <LessonNavigationProvider key={response.id} sectionCount={response.sections.length}>
       <Layout
         contentLoading={contentLoading}
+        contentError={contentError}
+        onRetryContent={onRetryContent}
         messages={messages}
         topics={[{ id: response.id, title: response.title, href }]}
         pathname={href}
@@ -110,7 +123,7 @@ export function Lesson({ response, href, messages, layout: Layout, sceneRegistry
         quizStep={quizIndex < 0 ? undefined : quizIndex}
       >
         <div className={styles.lesson}>
-          <LessonBody response={response} messages={messages} sceneRegistry={sceneRegistry} />
+          {!contentLoading && <LessonBody response={response} messages={messages} sceneRegistry={sceneRegistry} />}
         </div>
       </Layout>
     </LessonNavigationProvider>
