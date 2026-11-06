@@ -9,7 +9,7 @@ export const biomimeticStreamlining_Skill_Data = buildSkillConfig({
     hi: 'जैव-अनुकरणीय प्रवाहरेखीय आकार',
     es: 'Diseño aerodinámico biomimético',
     ar: 'الانسيابية المستوحاة من الأحياء',
-    fr: 'Profilage biomimétique',
+    fr: 'Formes profilées biomimétiques',
     bn: 'জীবঅনুকরণী প্রবাহরেখা নকশা',
     pt: 'Perfilamento biomimético',
     ur: 'حیاتیاتی نمونوں جیسی ہموار ساخت',

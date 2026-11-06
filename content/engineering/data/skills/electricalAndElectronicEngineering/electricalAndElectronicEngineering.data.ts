@@ -56,7 +56,7 @@ export const electricalAndElectronicEngineering_SkillDomain_Data = buildSkillDom
       hi: 'जानें कि विद्युत और इलेक्ट्रॉनिक उपकरण कैसे बनाए, मापे और सुरक्षित रखे जाते हैं।',
       es: 'Explora cómo se construyen, miden y protegen los equipos eléctricos y electrónicos.',
       ar: 'استكشف كيف تُبنى الأجهزة الكهربائية والإلكترونية وتُقاس وتُحمى.',
-      fr: 'Découvre comment construire, mesurer et protéger les équipements électriques et électroniques.',
+      fr: 'Découvre comment les équipements électriques et électroniques sont construits, mesurés et protégés.',
       bn: 'বৈদ্যুতিক ও ইলেকট্রনিক যন্ত্র কীভাবে তৈরি, পরিমাপ ও সুরক্ষিত হয় তা জানো।',
       pt: 'Explore como equipamentos elétricos e eletrônicos são construídos, medidos e protegidos.',
       ur: 'جانیں کہ برقی اور الیکٹرانک آلات کیسے بنائے، ناپے اور محفوظ کیے جاتے ہیں۔',
