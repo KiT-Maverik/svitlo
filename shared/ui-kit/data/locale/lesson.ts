@@ -611,7 +611,7 @@ const qm: Lesson_Locale = {
   },
 };
 
-export const data: UiKit_Component_Locale<Lesson_Locale> = {
+export const lesson: UiKit_Component_Locale<Lesson_Locale> = {
   en,
   zh,
   hi,

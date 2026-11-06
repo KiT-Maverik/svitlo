@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Celebration } from './Celebration';
-import { data as lesson } from '../../../data/locale/lesson';
+import { lesson } from '../../../data/locale/lesson';
 
 const meta = {
   title: 'Lesson/Celebration',

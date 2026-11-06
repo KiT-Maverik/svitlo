@@ -583,7 +583,7 @@ const qm: QuestionFrame_Locale = {
   missedChoice: 'Saylanmağan doğru cevap',
 };
 
-export const data: UiKit_Component_Locale<QuestionFrame_Locale> = {
+export const questionFrame: UiKit_Component_Locale<QuestionFrame_Locale> = {
   en,
   uk,
   zh,

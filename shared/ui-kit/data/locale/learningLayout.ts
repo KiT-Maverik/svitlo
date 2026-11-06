@@ -903,7 +903,7 @@ const qm: LearningLayout_Locale = {
 };
 
 /** Complete authored LearningLayout messages. Build-time only. */
-export const data: UiKit_Component_Locale<LearningLayout_Locale> = {
+export const learningLayout: UiKit_Component_Locale<LearningLayout_Locale> = {
   en,
   zh,
   hi,

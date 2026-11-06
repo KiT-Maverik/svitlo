@@ -4,8 +4,8 @@ import userEvent from '@testing-library/user-event';
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/localization';
 import NavbarPreferences from './NavbarPreferences';
 import { ukUiKitMessages } from '../../../../testing/uiKitMessages.unit.fx';
-import { data } from '../../../../../data/locale/navbarPreferences';
-const { lt, ar, en } = data;
+import { navbarPreferences } from '../../../../../data/locale/navbarPreferences';
+const { lt, ar, en } = navbarPreferences;
 const uk = ukUiKitMessages.navbarPreferences;
 const aria = { locale: uk.language, theme: uk.theme.dark };
 

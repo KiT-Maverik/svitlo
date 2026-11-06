@@ -205,7 +205,7 @@ const qm: Youtube_Locale = {
   retry: 'Yañıdan deñe',
 };
 
-export const data: UiKit_Component_Locale<Youtube_Locale> = {
+export const youtube: UiKit_Component_Locale<Youtube_Locale> = {
   en,
   uk,
   zh,

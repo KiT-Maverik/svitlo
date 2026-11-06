@@ -2,7 +2,7 @@
  * Build-time only: assemble global UI Kit translations into independent
  * per-locale JSON files for each textbook. UI Kit runtime imports no data/*.ts.
  */
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -29,40 +29,21 @@ const output =
 if (!output.startsWith(resolve(repoRoot) + sep)) throw new Error('Output must stay inside the repository');
 const { DEFAULT_SUPPORTED_LANGUAGES } = require('@svitlo/contracts/localization');
 const tmp = mkdtempSync(join(tmpdir(), 'svitlo-ui-kit-'));
-const cache = new Map();
 
 /** Compile authored data into temporary JS modules; never ship this code to the app. */
-function readData(component) {
-  const path = join(dataRoot, component + '.ts');
-  if (!existsSync(path)) return undefined;
-  if (!cache.has(path)) {
-    const source = readFileSync(path, 'utf8');
+function loadLocaleIndex() {
+  for (const name of readdirSync(dataRoot).filter(name => name.endsWith('.ts'))) {
+    const source = readFileSync(join(dataRoot, name), 'utf8');
     const js = ts.transpileModule(source, {
       compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
     }).outputText;
-    const temporary = join(tmp, cache.size + '.cjs');
-    writeFileSync(temporary, js);
-    const authored = require(temporary);
-    cache.set(path, authored.data ?? authored.locale);
+    writeFileSync(join(tmp, name.replace(/\.ts$/, '.js')), js);
   }
-  return cache.get(path);
+  return Object.freeze(require(join(tmp, 'index.js')));
 }
 
-const whole = Object.freeze({
-  lesson: readData('lesson'),
-  learningLayout: readData('learningLayout'),
-  navbarPreferences: readData('navbarPreferences'),
-  flashcard: readData('flashcard'),
-  checkpoint: readData('checkpoint'),
-  audio: readData('audio'),
-  image: readData('image'),
-  video: readData('video'),
-  youtube: readData('youtube'),
-  questionFrame: readData('questionFrame'),
-});
-
-function message(component, language) {
-  return whole[component]?.[language];
+function message(dictionaries, component, language) {
+  return dictionaries[component]?.[language];
 }
 
 function shapeOf(value) {
@@ -90,12 +71,12 @@ function assertShape(component, reference, data, locale) {
  * --audit prints missing language codes without publishing files.
  * Normal generation requires all canonical component/locale dictionaries.
  */
-function auditMissingTranslations(components) {
+function auditMissingTranslations(dictionaries, components) {
   const missing = {};
   for (const component of components) {
     const absent = [];
     for (const { language } of DEFAULT_SUPPORTED_LANGUAGES) {
-      const value = whole[component]?.[language];
+      const value = message(dictionaries, component, language);
       if (!value) absent.push(language);
     }
     if (absent.length) missing[component] = absent;
@@ -104,19 +85,9 @@ function auditMissingTranslations(components) {
 }
 
 try {
-  const components = [
-    'lesson',
-    'learningLayout',
-    'navbarPreferences',
-    'flashcard',
-    'checkpoint',
-    'audio',
-    'image',
-    'video',
-    'youtube',
-    'questionFrame',
-  ];
-  const missing = auditMissingTranslations(components);
+  const whole = loadLocaleIndex();
+  const components = Object.keys(whole);
+  const missing = auditMissingTranslations(whole, components);
   const missingCount = Object.values(missing).reduce((count, codes) => count + codes.length, 0);
   if (process.argv.includes('--audit')) {
     console.log(
@@ -139,11 +110,11 @@ try {
       throw new Error('UI Kit translations incomplete (' + missingCount + '): ' + details);
     }
     // Preflight all language/key structures before publishing the first file.
-    const defaults = Object.fromEntries(components.map(c => [c, message(c, 'uk')]));
+    const defaults = Object.fromEntries(components.map(c => [c, message(whole, c, 'uk')]));
     const published = DEFAULT_SUPPORTED_LANGUAGES.map(({ locale, language }) => {
       const messages = Object.fromEntries(
         components.map(c => {
-          const value = message(c, language);
+          const value = message(whole, c, language);
           if (!value) throw new Error(`Missing ${c} translations for ${locale}`);
           assertShape(c, defaults[c], value, locale);
           return [c, value];

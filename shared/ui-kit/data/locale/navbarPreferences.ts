@@ -129,7 +129,7 @@ const qm: NavbarPreferences_Locale = {
   theme: { dark: 'Qaranlıq tema', light: 'Açıq tema' },
 };
 
-export const data: UiKit_Component_Locale<NavbarPreferences_Locale> = {
+export const navbarPreferences: UiKit_Component_Locale<NavbarPreferences_Locale> = {
   en,
   zh,
   hi,

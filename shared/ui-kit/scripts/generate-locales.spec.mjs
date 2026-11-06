@@ -35,7 +35,10 @@ describe('global UI Kit translation coverage', () => {
       'video',
       'youtube',
     ];
-    assert.deepEqual(readdirSync(locales).sort(), [...expected.map(name => name + '.ts'), 'locale.types.ts'].sort());
+    assert.deepEqual(
+      readdirSync(locales).sort(),
+      [...expected.map(name => name + '.ts'), 'index.ts', 'locale.types.ts'].sort(),
+    );
   });
 
   it('audits complete coverage of every canonical language and component', () => {

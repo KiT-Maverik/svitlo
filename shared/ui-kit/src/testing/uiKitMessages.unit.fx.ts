@@ -1,14 +1,16 @@
 import type { UiKitMessages } from '#types/uiKitMessages';
-import { data as layout } from '../../data/locale/learningLayout';
-import { data as preferences } from '../../data/locale/navbarPreferences';
-import { data as lesson } from '../../data/locale/lesson';
-import { data as flashcard } from '../../data/locale/flashcard';
-import { data as checkpoint } from '../../data/locale/checkpoint';
-import { data as audio } from '../../data/locale/audio';
-import { data as image } from '../../data/locale/image';
-import { data as video } from '../../data/locale/video';
-import { data as youtube } from '../../data/locale/youtube';
-import { data as questionFrame } from '../../data/locale/questionFrame';
+import {
+  learningLayout as layout,
+  navbarPreferences as preferences,
+  lesson,
+  flashcard,
+  checkpoint,
+  audio,
+  image,
+  video,
+  youtube,
+  questionFrame,
+} from '../../data/locale';
 
 /** Test-only fixture. This module is not emitted in the UI Kit runtime build. */
 export const ukUiKitMessages: UiKitMessages = {

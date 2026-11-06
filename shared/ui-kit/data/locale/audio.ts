@@ -205,7 +205,7 @@ const qm: Audio_Locale = {
   retry: 'Yañıdan deñe',
 };
 
-export const data: UiKit_Component_Locale<Audio_Locale> = {
+export const audio: UiKit_Component_Locale<Audio_Locale> = {
   en,
   uk,
   zh,

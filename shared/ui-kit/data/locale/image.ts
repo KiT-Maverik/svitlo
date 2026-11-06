@@ -172,7 +172,7 @@ const qm: Image_Locale = {
   retry: 'Yañıdan deñe',
 };
 
-export const data: UiKit_Component_Locale<Image_Locale> = {
+export const image: UiKit_Component_Locale<Image_Locale> = {
   en,
   uk,
   zh,

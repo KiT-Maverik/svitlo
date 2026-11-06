@@ -205,7 +205,7 @@ const qm: Video_Locale = {
   retry: 'Yañıdan deñe',
 };
 
-export const data: UiKit_Component_Locale<Video_Locale> = {
+export const video: UiKit_Component_Locale<Video_Locale> = {
   en,
   uk,
   zh,

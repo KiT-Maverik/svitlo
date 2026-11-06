@@ -128,7 +128,7 @@ const kk: Checkpoint_Locale = { title: 'Біліміңді тексер', check:
 
 const qm: Checkpoint_Locale = { title: 'Bilgiñni tekşer', check: 'Tekşer', checked: 'Tekşirildi' };
 
-export const data: UiKit_Component_Locale<Checkpoint_Locale> = {
+export const checkpoint: UiKit_Component_Locale<Checkpoint_Locale> = {
   en,
   zh,
   hi,
