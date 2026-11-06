@@ -1,82 +1,114 @@
+import { DEFAULT_SUPPORTED_LANGUAGES } from '../../../types/languages';
 import type { LanguageCode } from '../../../types/languages';
 
-export type LocaleSource = {
-  code: LanguageCode;
-  isFallback?: true;
+type Partition = {
+  base: unknown | typeof OMIT;
+  locales: Partial<Record<LanguageCode, unknown>>;
+  pointers: string[];
 };
 
-export type LocalizedLessonValue = {
-  value: unknown;
-  sources: Record<string, LocaleSource>;
+export type SparseLessonValue = {
+  base: unknown;
+  locales: Partial<Record<LanguageCode, unknown>>;
+  /** JSON Pointers of fields which must be translated for every declared language. */
+  pointers: string[];
 };
 
+const OMIT = Symbol('localized-value');
+const knownLanguages = new Set<LanguageCode>(DEFAULT_SUPPORTED_LANGUAGES.map(entry => entry.language));
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
-
 const pointer = (path: readonly string[]): string =>
-  `/${path.map(part => part.replaceAll('~', '~0').replaceAll('/', '~1')).join('/')}`;
+  '/' + path.map(part => part.replaceAll('~', '~0').replaceAll('/', '~1')).join('/');
 
-/** Select each locale independently, retaining the actual language at its JSON Pointer. */
-export function localizeLessonValue(
-  input: unknown,
-  requested: LanguageCode,
-  supportedLanguages: readonly LanguageCode[],
-): LocalizedLessonValue {
-  const available = new Set(supportedLanguages);
-  const sources: Record<string, LocaleSource> = {};
+/**
+ * Split authored Lesson Data into one shared structural value and sparse language patches.
+ * Authored strings are invariant; authored locale dictionaries must be complete.
+ * Array patches are numeric-key objects to avoid repeating array structure in every locale.
+ */
+export function splitLessonValue(input: unknown, supportedLanguages: readonly LanguageCode[]): SparseLessonValue {
+  const languages = new Set(supportedLanguages);
+  if (!languages.size || languages.size !== supportedLanguages.length ||
+      [...languages].some(language => !knownLanguages.has(language))) {
+    throw new Error('Invalid declared lesson languages');
+  }
 
-  if (!available.has(requested)) throw new Error(`Unsupported requested language: ${requested}`);
-
-  function select(value: Record<string, unknown>, path: readonly string[]): string | undefined {
-    const keys = Object.keys(value);
-    const single = keys.length === 2 && keys.includes('language') && keys.includes('value');
-    if (single) {
-      const code = value.language;
-      if (typeof code !== 'string' || !available.has(code as LanguageCode) || typeof value.value !== 'string') {
-        throw new Error(`Invalid single-locale value at ${pointer(path)}`);
+  function split(value: unknown, path: readonly string[]): Partition {
+    if (Array.isArray(value)) {
+      const children = value.map((item, index) => split(item, [...path, String(index)]));
+      const locales: Partition['locales'] = {};
+      for (const language of languages) {
+        const patch = Object.fromEntries(
+          children.flatMap((item, index) =>
+            Object.hasOwn(item.locales, language) ? [[String(index), item.locales[language]]] : []),
+        );
+        if (Object.keys(patch).length) locales[language] = patch;
       }
-      sources[pointer(path)] =
-        code === requested ? { code: code as LanguageCode } : { code: code as LanguageCode, isFallback: true };
-      return value.value;
+      return {
+        base: children.map(item => item.base === OMIT ? null : item.base),
+        locales,
+        pointers: children.flatMap(item => item.pointers),
+      };
     }
 
-    const hasFallback = Object.hasOwn(value, 'fallback');
-    const languageKeys = keys.filter(key => key !== 'fallback');
-    const looksLocalized =
-      hasFallback ||
-      (keys.length > 0 && keys.every(key => available.has(key as LanguageCode) && typeof value[key] === 'string'));
-    if (!looksLocalized) return undefined;
-
-    if (
-      languageKeys.length === 0 ||
-      languageKeys.some(key => !available.has(key as LanguageCode) || typeof value[key] !== 'string')
-    ) {
-      throw new Error(`Invalid locale dictionary at ${pointer(path)}`);
-    }
-
-    const fallback = value.fallback;
-    if (hasFallback && (typeof fallback !== 'string' || typeof value[fallback] !== 'string')) {
-      throw new Error(`Invalid fallback at ${pointer(path)}`);
-    }
-    const code = typeof value[requested] === 'string' ? requested : fallback;
-    if (typeof code !== 'string' || typeof value[code] !== 'string') {
-      throw new Error(`Missing ${requested} locale at ${pointer(path)}`);
-    }
-    sources[pointer(path)] =
-      code === requested ? { code: code as LanguageCode } : { code: code as LanguageCode, isFallback: true };
-    return value[code];
-  }
-
-  function visit(value: unknown, path: readonly string[]): unknown {
-    if (Array.isArray(value)) return value.map((item, index) => visit(item, [...path, String(index)]));
     if (isRecord(value)) {
-      const selected = select(value, path);
-      if (selected !== undefined) return selected;
-      return Object.fromEntries(Object.entries(value).map(([key, child]) => [key, visit(child, [...path, key])]));
+      const keys = Object.keys(value);
+      if (keys.length === 2 && keys.includes('language') && keys.includes('value') &&
+          typeof value.language === 'string' && typeof value.value === 'string') {
+        throw new Error('Single-language fallback is not allowed at ' + pointer(path));
+      }
+      if (keys.includes('fallback')) {
+        throw new Error('Field-level fallback is not allowed at ' + pointer(path));
+      }
+
+      // Numeric language-keyed maps are ordinary data, not text localization.
+      // A record containing language keys and text is an authored locale dictionary.
+      const localized = keys.some(key => knownLanguages.has(key as LanguageCode)) &&
+        Object.values(value).some(item => typeof item === 'string');
+      if (localized) {
+        const unexpected = keys.filter(key => !languages.has(key as LanguageCode));
+        const missing = [...languages].filter(language => !Object.hasOwn(value, language));
+        const invalid = keys.filter(key => typeof value[key] !== 'string');
+        if (unexpected.length || missing.length || invalid.length) {
+          throw new Error('Incomplete locale dictionary at ' + pointer(path) +
+            ' (missing: ' + missing.join(', ') + '; unexpected: ' + unexpected.join(', ') +
+            '; invalid: ' + invalid.join(', ') + ')');
+        }
+        return {
+          base: OMIT,
+          locales: Object.fromEntries([...languages].map(language => [language, value[language]])),
+          pointers: [pointer(path)],
+        };
+      }
+
+      const children = Object.entries(value).map(([key, item]) => [key, split(item, [...path, key])] as const);
+      const locales: Partition['locales'] = {};
+      for (const language of languages) {
+        const patch = Object.fromEntries(
+          children.flatMap(([key, child]) =>
+            Object.hasOwn(child.locales, language) ? [[key, child.locales[language]]] : []),
+        );
+        if (Object.keys(patch).length) locales[language] = patch;
+      }
+      return {
+        base: Object.fromEntries(children.flatMap(([key, child]) =>
+          child.base === OMIT ? [] : [[key, child.base]])),
+        locales,
+        pointers: children.flatMap(([, child]) => child.pointers),
+      };
     }
-    if (value === null || ['string', 'number', 'boolean'].includes(typeof value)) return value;
-    throw new Error(`Unsupported value at ${pointer(path)}: ${typeof value}`);
+
+    if (value === null || typeof value === 'string' || typeof value === 'number' ||
+        typeof value === 'boolean') {
+      return { base: value, locales: {}, pointers: [] };
+    }
+    throw new Error('Unsupported lesson value at ' + pointer(path) + ': ' + typeof value);
   }
 
-  return { value: visit(input, []), sources };
+  const result = split(input, []);
+  return {
+    base: result.base === OMIT ? null : result.base,
+    locales: result.locales,
+    pointers: result.pointers,
+  };
 }
