@@ -40,7 +40,7 @@ export const identifyLaserDeviceHazards_Skill_Data = buildSkillConfig({
       en: 'Recognize hazards associated with unsafe laser equipment.',
       zh: '识别不安全的激光设备可能造成的危险。',
       hi: 'असुरक्षित लेज़र उपकरणों से जुड़े खतरों को पहचानें।',
-      es: 'Reconoce los peligros de utilizar equipos láser sin seguridad.',
+      es: 'Reconoce los riesgos de la exposición directa o reflejada al haz de un láser.',
       ar: 'تعرّف على مخاطر استخدام أجهزة ليزر غير آمنة.',
       fr: 'Reconnais les dangers liés aux appareils laser utilisés sans précaution.',
       bn: 'অনিরাপদ লেজার যন্ত্রের সঙ্গে যুক্ত বিপদ চেনো।',

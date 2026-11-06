@@ -56,7 +56,7 @@ export const opticalDevices_SkillGroup_Data = buildSkillGroupConfig({
       en: 'Learn how optical devices manipulate light for imaging and communication.',
       zh: '了解光学装置如何操控光线以成像和通信。',
       hi: 'जानें कि प्रकाशीय उपकरण चित्र और संचार के लिए प्रकाश का उपयोग कैसे करते हैं।',
-      es: 'Aprende cómo los dispositivos ópticos manipulan la luz para crear imágenes y comunicar.',
+      es: 'Aprende cómo los dispositivos ópticos manipulan la luz para crear imágenes y transmitir información.',
       ar: 'تعرّف كيف تتحكم الأجهزة البصرية بالضوء للتصوير والاتصال.',
       fr: "Découvre comment les dispositifs optiques manipulent la lumière pour l'imagerie et la communication.",
       bn: 'আলোকীয় যন্ত্র ছবি ও যোগাযোগে আলো কীভাবে নিয়ন্ত্রণ করে তা জানো।',
