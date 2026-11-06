@@ -198,7 +198,7 @@ for (const { path, name } of expected) {
     assert(!existsSync(resolve(root, path, 'src/app')), 'Old Next.js shell remains: ' + path);
     assert(pkg.exports?.['.']?.default === './dist/textbook/index.js', 'Missing textbook JS export: ' + path);
     assert(
-      pkg.bin?.['svitlo-' + name.slice('@svitlo/'.length)] === './scripts/publish.mjs',
+      pkg.bin?.['svitlo-' + name.slice('@svitlo/'.length)] === './dist/publish.mjs',
       'Missing Publisher CLI: ' + path,
     );
   }
