@@ -101,7 +101,7 @@ function ThemeSwitch({
             color: '#B7791F',
             transitionDuration: '220ms',
             '&.Mui-checked': {
-              transform: 'translateX(30px)',
+              transform: theme => (theme.direction === 'rtl' ? 'translateX(-30px)' : 'translateX(30px)'),
               color: '#EAF0FF',
               '& + .MuiSwitch-track': {
                 bgcolor: '#3B4E7F',
