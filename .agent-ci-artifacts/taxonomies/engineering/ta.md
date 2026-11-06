@@ -616,7 +616,7 @@ Skills: 9
 
 **Methodological description (English):** Relate computer component heat production to cooling paths, heat sinks, airflow and protection against excessive temperature.
 
-**User-friendly description (ta):** வெப்ப உறிஞ்சி, விசிறி, காற்றோட்டம் அதிக வெப்பத்தை எவ்வாறு தடுக்கின்றன என்பதை அறிக.
+**User-friendly description (ta):** கணினி வன்பொருளுக்கு குளிரூட்டலும் வெப்ப மேலாண்மையும் ஏன் தேவை என்பதை விளக்குங்கள்.
 
 ##### திரை வன்பொருள்
 
@@ -648,7 +648,7 @@ Skills: 9
 
 **Methodological description (English):** Relate solid-state or magnetic storage media and controllers to retention, transfer, access performance and device reliability.
 
-**User-friendly description (ta):** மின்சாரம் இல்லாவிட்டாலும் சில சேமிப்புச் சாதனங்கள் தரவை ஏன் தக்கவைக்கின்றன என்பதை அறிக.
+**User-friendly description (ta):** மின்சாரம் இல்லாதபோதும் தகவலைத் தக்கவைக்கும் பல்வேறு சேமிப்பு ஊடகங்களை ஒப்பிடுங்கள்.
 
 ##### அச்சு மின்சுற்றுப் பலகை இணைப்புகள்
 
@@ -656,7 +656,7 @@ Skills: 9
 
 **Methodological description (English):** Trace physical conductive pathways and connector functions that distribute signals and electrical power between mounted components.
 
-**User-friendly description (ta):** பலகையின் கடத்தும் பாதைகள் மின்னணுக் கூறுகளை எவ்வாறு இணைக்கின்றன என்பதை அறிக.
+**User-friendly description (ta):** அச்சு மின்சுற்றுப் பலகையின் கடத்தும் பாதைகளைத் தொடர்ந்து மின் இணைப்புகளைக் கண்டறியுங்கள்.
 
 ##### செயலி வன்பொருள்
 
@@ -2100,7 +2100,7 @@ Skills: 4
 
 **Methodological description (English):** Recognize hazardous motion, temperature, electricity, pressure or stored energy in intended use.
 
-**User-friendly description (ta):** தொழில்நுட்ப வடிவமைப்புடன் தொடர்புடைய உடலியல் அல்லாத இயற்பியல் ஆபத்துகளை அறிக.
+**User-friendly description (ta):** தொழில்நுட்ப வடிவமைப்புடன் தொடர்புடைய இயற்பியல் ஆபத்துகளை அடையாளம் காணுங்கள்.
 
 ##### பாதுகாப்பு விளிம்புகள்
 

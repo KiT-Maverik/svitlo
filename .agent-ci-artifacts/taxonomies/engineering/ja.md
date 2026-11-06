@@ -616,7 +616,7 @@ Skills: 9
 
 **Methodological description (English):** Relate computer component heat production to cooling paths, heat sinks, airflow and protection against excessive temperature.
 
-**User-friendly description (ja):** ヒートシンク、ファン、空気の流れが過熱を防ぐ仕組みを学ぼう。
+**User-friendly description (ja):** コンピューターの部品に冷却と熱管理が必要な理由を説明しよう。
 
 ##### ディスプレイのハードウェア
 
@@ -648,7 +648,7 @@ Skills: 9
 
 **Methodological description (English):** Relate solid-state or magnetic storage media and controllers to retention, transfer, access performance and device reliability.
 
-**User-friendly description (ja):** 電源を切ってもデータが残る記憶装置の仕組みを学ぼう。
+**User-friendly description (ja):** 電源がなくても情報を保持できるさまざまな記憶媒体を比べよう。
 
 ##### プリント基板の配線接続
 
@@ -656,7 +656,7 @@ Skills: 9
 
 **Methodological description (English):** Trace physical conductive pathways and connector functions that distribute signals and electrical power between mounted components.
 
-**User-friendly description (ja):** 基板上の配線が電子部品を結ぶ仕組みを学ぼう。
+**User-friendly description (ja):** プリント基板上の導電パターンをたどって、電気的な接続を確認しよう。
 
 ##### プロセッサーハードウェア
 

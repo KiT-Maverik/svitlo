@@ -616,7 +616,7 @@ Skills: 9
 
 **Methodological description (English):** Relate computer component heat production to cooling paths, heat sinks, airflow and protection against excessive temperature.
 
-**User-friendly description (zh):** 了解散热器、风扇和气流如何防止过热。
+**User-friendly description (zh):** 解释为什么计算机硬件需要冷却和散热管理。
 
 ##### 显示硬件
 
@@ -648,7 +648,7 @@ Skills: 9
 
 **Methodological description (English):** Relate solid-state or magnetic storage media and controllers to retention, transfer, access performance and device reliability.
 
-**User-friendly description (zh):** 了解为何某些存储装置在断电后仍能保留数据。
+**User-friendly description (zh):** 比较断电后仍能保存信息的不同物理存储介质。
 
 ##### 印制电路板连接
 
@@ -656,7 +656,7 @@ Skills: 9
 
 **Methodological description (English):** Trace physical conductive pathways and connector functions that distribute signals and electrical power between mounted components.
 
-**User-friendly description (zh):** 了解电路板上的导线如何连接电子元件。
+**User-friendly description (zh):** 沿着印制电路板上的导电线路追踪电气连接。
 
 ##### 处理器硬件
 

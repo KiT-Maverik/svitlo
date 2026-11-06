@@ -616,7 +616,7 @@ Skills: 9
 
 **Methodological description (English):** Relate computer component heat production to cooling paths, heat sinks, airflow and protection against excessive temperature.
 
-**User-friendly description (pt):** Descubra como dissipadores, ventiladores e fluxo de ar evitam superaquecimento.
+**User-friendly description (pt):** Explique por que os componentes do computador precisam de resfriamento e gerenciamento térmico.
 
 ##### Hardware de exibição
 
@@ -648,7 +648,7 @@ Skills: 9
 
 **Methodological description (English):** Relate solid-state or magnetic storage media and controllers to retention, transfer, access performance and device reliability.
 
-**User-friendly description (pt):** Entenda por que certos dispositivos mantêm dados sem energia.
+**User-friendly description (pt):** Compare os meios físicos de armazenamento que preservam dados mesmo sem energia elétrica.
 
 ##### Interconexões de placas de circuito impresso
 
@@ -656,7 +656,7 @@ Skills: 9
 
 **Methodological description (English):** Trace physical conductive pathways and connector functions that distribute signals and electrical power between mounted components.
 
-**User-friendly description (pt):** Veja como trilhas da placa conectam componentes eletrônicos.
+**User-friendly description (pt):** Siga as trilhas condutoras de uma placa de circuito impresso para identificar as conexões elétricas.
 
 ##### Hardware do processador
 

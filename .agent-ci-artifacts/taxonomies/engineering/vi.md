@@ -616,7 +616,7 @@ Skills: 9
 
 **Methodological description (English):** Relate computer component heat production to cooling paths, heat sinks, airflow and protection against excessive temperature.
 
-**User-friendly description (vi):** Tìm hiểu tản nhiệt, quạt và luồng khí ngăn quá nhiệt thế nào.
+**User-friendly description (vi):** Giải thích vì sao phần cứng máy tính cần làm mát và quản lý nhiệt.
 
 ##### Phần cứng màn hình
 
@@ -648,7 +648,7 @@ Skills: 9
 
 **Methodological description (English):** Relate solid-state or magnetic storage media and controllers to retention, transfer, access performance and device reliability.
 
-**User-friendly description (vi):** Hiểu vì sao một số thiết bị lưu trữ vẫn giữ dữ liệu khi mất điện.
+**User-friendly description (vi):** So sánh các loại phương tiện lưu trữ vật lý có thể giữ dữ liệu khi mất điện.
 
 ##### Kết nối trên bảng mạch in
 
@@ -656,7 +656,7 @@ Skills: 9
 
 **Methodological description (English):** Trace physical conductive pathways and connector functions that distribute signals and electrical power between mounted components.
 
-**User-friendly description (vi):** Tìm hiểu đường dẫn trên bảng mạch nối các linh kiện thế nào.
+**User-friendly description (vi):** Lần theo các đường dẫn điện để xác định các kết nối trên bảng mạch in.
 
 ##### Phần cứng bộ xử lý
 

@@ -616,7 +616,7 @@ Skills: 9
 
 **Methodological description (English):** Relate computer component heat production to cooling paths, heat sinks, airflow and protection against excessive temperature.
 
-**User-friendly description (lt):** Sužinok, kaip radiatoriai, ventiliatoriai ir oro srautas apsaugo nuo perkaitimo.
+**User-friendly description (lt):** Paaiškink, kodėl kompiuterio aparatinei įrangai būtinas aušinimas ir šilumos valdymas.
 
 ##### Ekranų aparatinė įranga
 
@@ -648,7 +648,7 @@ Skills: 9
 
 **Methodological description (English):** Relate solid-state or magnetic storage media and controllers to retention, transfer, access performance and device reliability.
 
-**User-friendly description (lt):** Suprask, kodėl kai kurios laikmenos saugo duomenis be elektros.
+**User-friendly description (lt):** Palygink fizines duomenų laikmenas, kurios išsaugo informaciją net ir be elektros energijos.
 
 ##### Spausdintinių plokščių jungtys
 
@@ -656,7 +656,7 @@ Skills: 9
 
 **Methodological description (English):** Trace physical conductive pathways and connector functions that distribute signals and electrical power between mounted components.
 
-**User-friendly description (lt):** Sužinok, kaip plokštės takeliai jungia elektroninius komponentus.
+**User-friendly description (lt):** Atsek elektros jungtis spausdintinės plokštės laidžiais takeliais.
 
 ##### Procesoriaus aparatinė įranga
 

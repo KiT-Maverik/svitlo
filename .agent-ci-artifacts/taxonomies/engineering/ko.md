@@ -616,7 +616,7 @@ Skills: 9
 
 **Methodological description (English):** Relate computer component heat production to cooling paths, heat sinks, airflow and protection against excessive temperature.
 
-**User-friendly description (ko):** 방열판, 팬, 공기 흐름이 과열을 방지하는 원리를 알아보세요.
+**User-friendly description (ko):** 컴퓨터 하드웨어에 냉각과 열 관리가 필요한 이유를 설명해 보세요.
 
 ##### 디스플레이 하드웨어
 
@@ -648,7 +648,7 @@ Skills: 9
 
 **Methodological description (English):** Relate solid-state or magnetic storage media and controllers to retention, transfer, access performance and device reliability.
 
-**User-friendly description (ko):** 전원이 꺼져도 일부 저장 장치에 데이터가 남는 이유를 알아보세요.
+**User-friendly description (ko):** 전원이 없어도 정보를 보존하는 여러 물리적 저장 매체를 비교해 보세요.
 
 ##### 인쇄 회로 기판 연결
 
@@ -656,7 +656,7 @@ Skills: 9
 
 **Methodological description (English):** Trace physical conductive pathways and connector functions that distribute signals and electrical power between mounted components.
 
-**User-friendly description (ko):** 기판의 배선이 전자 부품을 연결하는 방법을 알아보세요.
+**User-friendly description (ko):** 인쇄 회로 기판의 배선을 따라 전기적 연결을 추적해 보세요.
 
 ##### 프로세서 하드웨어
 
