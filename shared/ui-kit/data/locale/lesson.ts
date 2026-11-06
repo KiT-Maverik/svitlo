@@ -1,32 +1,449 @@
-import type { LanguageCode } from '@svitlo/engine/localization';
 import type { UiKit_Component } from '@svitlo/engine/content';
+import type { DefaultSupportedLanguage } from '@svitlo/engine/localization';
 
-/** Complete authored Lesson UI labels. These are build-time only; no runtime TS imports. */
-function dictionary([
-  navigation,
-  title,
-  description,
-  correctAnswers,
-  scoreTemplate,
-  note,
-  home,
-  questionNavigation,
-  correct,
-  incorrect,
-  unanswered,
-  deferred,
-]: readonly [string, string, string, string, string, string, string, string, string, string, string, string]) {
-  return {
-    steps: { navigation },
-    celebration: { title, description, correctAnswers, scoreTemplate, note, home },
-    questionProgress: {
-      navigation: questionNavigation,
-      status: { correct, incorrect, unanswered, deferred },
+const en = {
+  steps: { navigation: 'Lesson steps' },
+  celebration: {
+    title: 'Congratulations! You have completed this lesson!',
+    description: 'Theory, practice, flashcards and quiz — every stage is complete.',
+    correctAnswers: 'Correct answers:',
+    scoreTemplate: '{score} of {total}',
+    note: 'Completing the lesson does not mean every answer was correct — you can always revisit the material.',
+    home: 'Home',
+  },
+  questionProgress: {
+    navigation: 'Question status',
+    status: {
+      correct: 'Correct answer',
+      incorrect: 'Incorrect answer',
+      unanswered: 'Not answered yet',
+      deferred: 'Deferred',
     },
-  };
-}
+  },
+};
+type Locale = typeof en;
 
-const uk = {
+const zh: Locale = {
+  steps: { navigation: '课程步骤' },
+  celebration: {
+    title: '恭喜！你已经完成本课！',
+    description: '理论、练习、学习卡和测验——所有环节都已完成。',
+    correctAnswers: '正确答案数：',
+    scoreTemplate: '{score} / {total}',
+    note: '完成课程并不代表每道题都答对了——你随时可以回来复习。',
+    home: '首页',
+  },
+  questionProgress: {
+    navigation: '题目状态',
+    status: {
+      correct: '回答正确',
+      incorrect: '回答错误',
+      unanswered: '尚未回答',
+      deferred: '稍后回答',
+    },
+  },
+};
+
+const hi: Locale = {
+  steps: { navigation: 'पाठ के चरण' },
+  celebration: {
+    title: 'बधाई हो! आपने यह पाठ पूरा कर लिया है!',
+    description: 'सिद्धांत, अभ्यास, फ्लैशकार्ड और परीक्षा — सभी चरण पूरे हो गए हैं।',
+    correctAnswers: 'सही उत्तर:',
+    scoreTemplate: '{total} में से {score}',
+    note: 'पाठ पूरा करने का अर्थ यह नहीं है कि सभी उत्तर सही थे — आप सामग्री को फिर से पढ़ सकते हैं।',
+    home: 'मुख्य पृष्ठ',
+  },
+  questionProgress: {
+    navigation: 'प्रश्नों की स्थिति',
+    status: {
+      correct: 'सही उत्तर',
+      incorrect: 'गलत उत्तर',
+      unanswered: 'अभी उत्तर नहीं दिया',
+      deferred: 'स्थगित',
+    },
+  },
+};
+
+const es: Locale = {
+  steps: { navigation: 'Etapas de la lección' },
+  celebration: {
+    title: '¡Enhorabuena! ¡Has terminado esta lección!',
+    description: 'Teoría, práctica, tarjetas didácticas y prueba: has completado todas las etapas.',
+    correctAnswers: 'Respuestas correctas:',
+    scoreTemplate: '{score} de {total}',
+    note: 'Terminar la lección no significa que todas las respuestas fueran correctas; siempre puedes repasar el material.',
+    home: 'Inicio',
+  },
+  questionProgress: {
+    navigation: 'Estado de las preguntas',
+    status: {
+      correct: 'Respuesta correcta',
+      incorrect: 'Respuesta incorrecta',
+      unanswered: 'Aún sin responder',
+      deferred: 'Aplazada',
+    },
+  },
+};
+
+const ar: Locale = {
+  steps: { navigation: 'مراحل الدرس' },
+  celebration: {
+    title: 'تهانينا! لقد أكملت هذا الدرس!',
+    description: 'النظرية والتطبيق وبطاقات المراجعة والاختبار — لقد أكملت جميع المراحل.',
+    correctAnswers: 'الإجابات الصحيحة:',
+    scoreTemplate: '{score} من {total}',
+    note: 'إكمال الدرس لا يعني أن جميع إجاباتك كانت صحيحة — يمكنك دائمًا مراجعة المادة.',
+    home: 'الصفحة الرئيسية',
+  },
+  questionProgress: {
+    navigation: 'حالة الأسئلة',
+    status: {
+      correct: 'إجابة صحيحة',
+      incorrect: 'إجابة خاطئة',
+      unanswered: 'لم تتم الإجابة بعد',
+      deferred: 'مؤجل',
+    },
+  },
+};
+
+const fr: Locale = {
+  steps: { navigation: 'Étapes de la leçon' },
+  celebration: {
+    title: 'Félicitations ! Vous avez terminé cette leçon !',
+    description: 'Théorie, pratique, fiches de révision et quiz : toutes les étapes sont terminées.',
+    correctAnswers: 'Bonnes réponses :',
+    scoreTemplate: '{score} sur {total}',
+    note: 'Terminer la leçon ne signifie pas que toutes les réponses étaient correctes ; vous pouvez toujours revoir le contenu.',
+    home: 'Accueil',
+  },
+  questionProgress: {
+    navigation: 'Statut des questions',
+    status: {
+      correct: 'Bonne réponse',
+      incorrect: 'Mauvaise réponse',
+      unanswered: 'Pas encore de réponse',
+      deferred: 'Reportée',
+    },
+  },
+};
+
+const bn: Locale = {
+  steps: { navigation: 'পাঠের ধাপ' },
+  celebration: {
+    title: 'অভিনন্দন! আপনি এই পাঠটি শেষ করেছেন!',
+    description: 'তত্ত্ব, অনুশীলন, ফ্ল্যাশকার্ড ও কুইজ — সব ধাপ সম্পন্ন হয়েছে।',
+    correctAnswers: 'সঠিক উত্তর:',
+    scoreTemplate: '{total}টির মধ্যে {score}টি',
+    note: 'পাঠ শেষ করার অর্থ এই নয় যে সব উত্তর সঠিক ছিল — আপনি সব সময় আবার বিষয়বস্তু পড়তে পারেন।',
+    home: 'মূল পাতা',
+  },
+  questionProgress: {
+    navigation: 'প্রশ্নের অবস্থা',
+    status: {
+      correct: 'সঠিক উত্তর',
+      incorrect: 'ভুল উত্তর',
+      unanswered: 'এখনও উত্তর দেওয়া হয়নি',
+      deferred: 'পরে উত্তর দেওয়া হবে',
+    },
+  },
+};
+
+const pt: Locale = {
+  steps: { navigation: 'Etapas da aula' },
+  celebration: {
+    title: 'Parabéns! Você concluiu esta aula!',
+    description: 'Teoria, prática, cartões de estudo e teste — todas as etapas foram concluídas.',
+    correctAnswers: 'Respostas corretas:',
+    scoreTemplate: '{score} de {total}',
+    note: 'Concluir a aula não significa que todas as respostas estavam corretas — você sempre pode revisar o conteúdo.',
+    home: 'Início',
+  },
+  questionProgress: {
+    navigation: 'Status das questões',
+    status: {
+      correct: 'Resposta correta',
+      incorrect: 'Resposta incorreta',
+      unanswered: 'Ainda não respondida',
+      deferred: 'Adiada',
+    },
+  },
+};
+
+const ur: Locale = {
+  steps: { navigation: 'سبق کے مراحل' },
+  celebration: {
+    title: 'مبارک ہو! آپ نے یہ سبق مکمل کر لیا ہے!',
+    description: 'نظریہ، مشق، فلیش کارڈز اور امتحان — تمام مراحل مکمل ہو گئے ہیں۔',
+    correctAnswers: 'درست جوابات:',
+    scoreTemplate: '{total} میں سے {score}',
+    note: 'سبق مکمل کرنے کا مطلب یہ نہیں کہ ہر جواب درست تھا — آپ مواد کو دوبارہ پڑھ سکتے ہیں۔',
+    home: 'مرکزی صفحہ',
+  },
+  questionProgress: {
+    navigation: 'سوالات کی حالت',
+    status: {
+      correct: 'درست جواب',
+      incorrect: 'غلط جواب',
+      unanswered: 'ابھی جواب نہیں دیا',
+      deferred: 'بعد کے لیے مؤخر',
+    },
+  },
+};
+
+const id: Locale = {
+  steps: { navigation: 'Tahapan pelajaran' },
+  celebration: {
+    title: 'Selamat! Kamu telah menyelesaikan pelajaran ini!',
+    description: 'Teori, latihan, kartu belajar, dan kuis — semua tahap telah selesai.',
+    correctAnswers: 'Jawaban benar:',
+    scoreTemplate: '{score} dari {total}',
+    note: 'Menyelesaikan pelajaran bukan berarti semua jawaban benar — kamu selalu dapat mempelajari materinya kembali.',
+    home: 'Beranda',
+  },
+  questionProgress: {
+    navigation: 'Status pertanyaan',
+    status: {
+      correct: 'Jawaban benar',
+      incorrect: 'Jawaban salah',
+      unanswered: 'Belum dijawab',
+      deferred: 'Ditunda',
+    },
+  },
+};
+
+const de: Locale = {
+  steps: { navigation: 'Lektionsschritte' },
+  celebration: {
+    title: 'Herzlichen Glückwunsch! Du hast diese Lektion abgeschlossen!',
+    description: 'Theorie, Praxis, Lernkarten und Test – alle Schritte sind geschafft.',
+    correctAnswers: 'Richtige Antworten:',
+    scoreTemplate: '{score} von {total}',
+    note: 'Der Abschluss der Lektion bedeutet nicht, dass alle Antworten richtig waren – du kannst den Stoff jederzeit wiederholen.',
+    home: 'Startseite',
+  },
+  questionProgress: {
+    navigation: 'Fragenstatus',
+    status: {
+      correct: 'Richtige Antwort',
+      incorrect: 'Falsche Antwort',
+      unanswered: 'Noch nicht beantwortet',
+      deferred: 'Zurückgestellt',
+    },
+  },
+};
+
+const ja: Locale = {
+  steps: { navigation: 'レッスンのステップ' },
+  celebration: {
+    title: 'おめでとうございます！このレッスンを修了しました！',
+    description: '理論、練習、フラッシュカード、クイズのすべての段階が完了しました。',
+    correctAnswers: '正解数：',
+    scoreTemplate: '{total}問中{score}問',
+    note: 'レッスンを終えても、すべての答えが正しかったとは限りません。いつでも復習できます。',
+    home: 'ホーム',
+  },
+  questionProgress: {
+    navigation: '問題の状態',
+    status: {
+      correct: '正解',
+      incorrect: '不正解',
+      unanswered: '未回答',
+      deferred: '後回し',
+    },
+  },
+};
+
+const ko: Locale = {
+  steps: { navigation: '수업 단계' },
+  celebration: {
+    title: '축하합니다! 이 수업을 완료했습니다!',
+    description: '이론, 연습, 학습 카드, 퀴즈까지 모든 단계를 마쳤습니다.',
+    correctAnswers: '정답 수:',
+    scoreTemplate: '{total}개 중 {score}개',
+    note: '수업을 마쳤다고 모든 답이 정답인 것은 아닙니다. 언제든지 내용을 복습할 수 있습니다.',
+    home: '홈',
+  },
+  questionProgress: {
+    navigation: '문항 상태',
+    status: {
+      correct: '정답',
+      incorrect: '오답',
+      unanswered: '아직 답하지 않음',
+      deferred: '보류',
+    },
+  },
+};
+
+const tr: Locale = {
+  steps: { navigation: 'Ders aşamaları' },
+  celebration: {
+    title: 'Tebrikler! Bu dersi tamamladın!',
+    description: 'Teori, uygulama, bilgi kartları ve sınav — tüm aşamalar tamamlandı.',
+    correctAnswers: 'Doğru yanıtlar:',
+    scoreTemplate: '{total} sorudan {score} doğru',
+    note: 'Dersi bitirmek tüm yanıtlarının doğru olduğu anlamına gelmez; istediğin zaman konuları yeniden çalışabilirsin.',
+    home: 'Ana sayfa',
+  },
+  questionProgress: {
+    navigation: 'Soru durumu',
+    status: {
+      correct: 'Doğru yanıt',
+      incorrect: 'Yanlış yanıt',
+      unanswered: 'Henüz yanıtlanmadı',
+      deferred: 'Ertelendi',
+    },
+  },
+};
+
+const vi: Locale = {
+  steps: { navigation: 'Các bước của bài học' },
+  celebration: {
+    title: 'Chúc mừng! Bạn đã hoàn thành bài học này!',
+    description: 'Lý thuyết, thực hành, thẻ ghi nhớ và bài kiểm tra — tất cả các bước đã hoàn tất.',
+    correctAnswers: 'Số câu trả lời đúng:',
+    scoreTemplate: '{score} trên {total}',
+    note: 'Hoàn thành bài học không có nghĩa là mọi câu trả lời đều đúng — bạn luôn có thể ôn tập lại.',
+    home: 'Trang chủ',
+  },
+  questionProgress: {
+    navigation: 'Trạng thái câu hỏi',
+    status: {
+      correct: 'Câu trả lời đúng',
+      incorrect: 'Câu trả lời sai',
+      unanswered: 'Chưa trả lời',
+      deferred: 'Để sau',
+    },
+  },
+};
+
+const ta: Locale = {
+  steps: { navigation: 'பாடத்தின் படிகள்' },
+  celebration: {
+    title: 'வாழ்த்துகள்! இந்தப் பாடத்தை முடித்துவிட்டீர்கள்!',
+    description: 'கோட்பாடு, பயிற்சி, நினைவுக் கார்டுகள் மற்றும் வினாடி வினா — அனைத்துப் படிகளும் முடிந்துவிட்டன.',
+    correctAnswers: 'சரியான பதில்கள்:',
+    scoreTemplate: '{total} இல் {score}',
+    note: 'பாடத்தை முடித்ததால் எல்லாப் பதில்களும் சரியாக இருந்தன என்று அர்த்தமில்லை — உள்ளடக்கத்தை மீண்டும் படிக்கலாம்.',
+    home: 'முகப்புப் பக்கம்',
+  },
+  questionProgress: {
+    navigation: 'கேள்விகளின் நிலை',
+    status: {
+      correct: 'சரியான பதில்',
+      incorrect: 'தவறான பதில்',
+      unanswered: 'இன்னும் பதிலளிக்கவில்லை',
+      deferred: 'ஒத்திவைக்கப்பட்டது',
+    },
+  },
+};
+
+const te: Locale = {
+  steps: { navigation: 'పాఠం దశలు' },
+  celebration: {
+    title: 'అభినందనలు! మీరు ఈ పాఠాన్ని పూర్తి చేశారు!',
+    description: 'సిద్ధాంతం, సాధన, ఫ్లాష్‌కార్డులు, క్విజ్ — అన్ని దశలూ పూర్తయ్యాయి.',
+    correctAnswers: 'సరైన సమాధానాలు:',
+    scoreTemplate: '{total}లో {score}',
+    note: 'పాఠం పూర్తయిందంటే అన్ని సమాధానాలూ సరైనవని కాదు — మీరు ఎప్పుడైనా విషయాన్ని మళ్లీ చదవవచ్చు.',
+    home: 'హోమ్',
+  },
+  questionProgress: {
+    navigation: 'ప్రశ్నల స్థితి',
+    status: {
+      correct: 'సరైన సమాధానం',
+      incorrect: 'తప్పు సమాధానం',
+      unanswered: 'ఇంకా సమాధానం ఇవ్వలేదు',
+      deferred: 'వాయిదా వేయబడింది',
+    },
+  },
+};
+
+const mr: Locale = {
+  steps: { navigation: 'धड्याचे टप्पे' },
+  celebration: {
+    title: 'अभिनंदन! तुम्ही हा धडा पूर्ण केला आहे!',
+    description: 'सिद्धांत, सराव, फ्लॅशकार्ड आणि चाचणी — सर्व टप्पे पूर्ण झाले आहेत.',
+    correctAnswers: 'बरोबर उत्तरे:',
+    scoreTemplate: '{total} पैकी {score}',
+    note: 'धडा पूर्ण केल्याचा अर्थ सर्व उत्तरे बरोबर होती असे नाही — तुम्ही साहित्य पुन्हा पाहू शकता.',
+    home: 'मुख्यपृष्ठ',
+  },
+  questionProgress: {
+    navigation: 'प्रश्नांची स्थिती',
+    status: {
+      correct: 'बरोबर उत्तर',
+      incorrect: 'चुकीचे उत्तर',
+      unanswered: 'अजून उत्तर दिले नाही',
+      deferred: 'पुढे ढकलले',
+    },
+  },
+};
+
+const ms: Locale = {
+  steps: { navigation: 'Langkah pelajaran' },
+  celebration: {
+    title: 'Tahniah! Anda telah menamatkan pelajaran ini!',
+    description: 'Teori, latihan, kad imbas dan kuiz — semua langkah telah selesai.',
+    correctAnswers: 'Jawapan betul:',
+    scoreTemplate: '{score} daripada {total}',
+    note: 'Menamatkan pelajaran tidak bermakna semua jawapan betul — anda boleh mengulang kaji bahan pada bila-bila masa.',
+    home: 'Laman utama',
+  },
+  questionProgress: {
+    navigation: 'Status soalan',
+    status: {
+      correct: 'Jawapan betul',
+      incorrect: 'Jawapan salah',
+      unanswered: 'Belum dijawab',
+      deferred: 'Ditangguhkan',
+    },
+  },
+};
+
+const he: Locale = {
+  steps: { navigation: 'שלבי השיעור' },
+  celebration: {
+    title: 'כל הכבוד! סיימת את השיעור הזה!',
+    description: 'תיאוריה, תרגול, כרטיסיות ובוחן — כל השלבים הושלמו.',
+    correctAnswers: 'תשובות נכונות:',
+    scoreTemplate: '{score} מתוך {total}',
+    note: 'סיום השיעור לא אומר שכל התשובות היו נכונות — תמיד אפשר לחזור לחומר ולתרגל.',
+    home: 'דף הבית',
+  },
+  questionProgress: {
+    navigation: 'מצב השאלות',
+    status: {
+      correct: 'תשובה נכונה',
+      incorrect: 'תשובה שגויה',
+      unanswered: 'טרם נענה',
+      deferred: 'נדחה',
+    },
+  },
+};
+
+const pl: Locale = {
+  steps: { navigation: 'Etapy lekcji' },
+  celebration: {
+    title: 'Gratulacje! Ukończono tę lekcję!',
+    description: 'Teoria, ćwiczenia, fiszki i test — wszystkie etapy za Tobą.',
+    correctAnswers: 'Poprawne odpowiedzi:',
+    scoreTemplate: '{score} z {total}',
+    note: 'Ukończenie lekcji nie oznacza, że wszystkie odpowiedzi były poprawne — zawsze możesz wrócić do materiału.',
+    home: 'Strona główna',
+  },
+  questionProgress: {
+    navigation: 'Stan pytań',
+    status: {
+      correct: 'Poprawna odpowiedź',
+      incorrect: 'Niepoprawna odpowiedź',
+      unanswered: 'Jeszcze bez odpowiedzi',
+      deferred: 'Odłożone',
+    },
+  },
+};
+
+const uk: Locale = {
   steps: { navigation: 'Етапи уроку' },
   celebration: {
     title: 'Вітаємо, ви завершили роботу з цим уроком!',
@@ -45,9 +462,9 @@ const uk = {
       deferred: 'Відкладено',
     },
   },
-} as const;
+};
 
-const lt = {
+const lt: Locale = {
   steps: { navigation: 'Pamokos etapai' },
   celebration: {
     title: 'Sveikiname! Baigėte šią pamoką!',
@@ -66,9 +483,9 @@ const lt = {
       deferred: 'Atidėta',
     },
   },
-} as const;
+};
 
-const lv = {
+const lv: Locale = {
   steps: { navigation: 'Nodarbības posmi' },
   celebration: {
     title: 'Apsveicam! Nodarbība pabeigta!',
@@ -87,9 +504,9 @@ const lv = {
       deferred: 'Atlikts',
     },
   },
-} as const;
+};
 
-const et = {
+const et: Locale = {
   steps: { navigation: 'Tunni etapid' },
   celebration: {
     title: 'Palju õnne! Olete selle tunni lõpetanud!',
@@ -108,9 +525,9 @@ const et = {
       deferred: 'Edasi lükatud',
     },
   },
-} as const;
+};
 
-const be = {
+const be: Locale = {
   steps: { navigation: 'Этапы ўроку' },
   celebration: {
     title: 'Віншуем! Вы скончылі гэты ўрок!',
@@ -129,9 +546,9 @@ const be = {
       deferred: 'Адкладзена',
     },
   },
-} as const;
+};
 
-const ka = {
+const ka: Locale = {
   steps: { navigation: 'გაკვეთილის ეტაპები' },
   celebration: {
     title: 'გილოცავთ! თქვენ დაასრულეთ ეს გაკვეთილი!',
@@ -150,9 +567,9 @@ const ka = {
       deferred: 'გადადებულია',
     },
   },
-} as const;
+};
 
-const kk = {
+const kk: Locale = {
   steps: { navigation: 'Сабақ кезеңдері' },
   celebration: {
     title: 'Құттықтаймыз! Сіз бұл сабақты аяқтадыңыз!',
@@ -171,9 +588,9 @@ const kk = {
       deferred: 'Кейінге қалдырылған',
     },
   },
-} as const;
+};
 
-const qm = {
+const qm: Locale = {
   steps: { navigation: 'Dersniñ basamaqları' },
   celebration: {
     title: 'Tebrikler, sen bu dersni bitirdiñ!',
@@ -192,303 +609,31 @@ const qm = {
       deferred: 'Soñrağa qaldırıldı',
     },
   },
-} as const;
+};
 
-export const data = {
-  en: dictionary([
-    'Lesson steps',
-    'Congratulations! You have completed this lesson!',
-    'Theory, practice, flashcards and quiz — every stage is complete.',
-    'Correct answers:',
-    '{score} of {total}',
-    'Completing the lesson does not mean every answer was correct — you can always revisit the material.',
-    'Home',
-    'Question status',
-    'Correct answer',
-    'Incorrect answer',
-    'Not answered yet',
-    'Deferred',
-  ]),
-  zh: dictionary([
-    '课程步骤',
-    '恭喜！你已经完成本课！',
-    '理论、练习、学习卡和测验——所有环节都已完成。',
-    '正确答案数：',
-    '{score} / {total}',
-    '完成课程并不代表每道题都答对了——你随时可以回来复习。',
-    '首页',
-    '题目状态',
-    '回答正确',
-    '回答错误',
-    '尚未回答',
-    '稍后回答',
-  ]),
-  hi: dictionary([
-    'पाठ के चरण',
-    'बधाई हो! आपने यह पाठ पूरा कर लिया है!',
-    'सिद्धांत, अभ्यास, फ्लैशकार्ड और परीक्षा — सभी चरण पूरे हो गए हैं।',
-    'सही उत्तर:',
-    '{total} में से {score}',
-    'पाठ पूरा करने का अर्थ यह नहीं है कि सभी उत्तर सही थे — आप सामग्री को फिर से पढ़ सकते हैं।',
-    'मुख्य पृष्ठ',
-    'प्रश्नों की स्थिति',
-    'सही उत्तर',
-    'गलत उत्तर',
-    'अभी उत्तर नहीं दिया',
-    'स्थगित',
-  ]),
-  es: dictionary([
-    'Etapas de la lección',
-    '¡Enhorabuena! ¡Has terminado esta lección!',
-    'Teoría, práctica, tarjetas didácticas y prueba: has completado todas las etapas.',
-    'Respuestas correctas:',
-    '{score} de {total}',
-    'Terminar la lección no significa que todas las respuestas fueran correctas; siempre puedes repasar el material.',
-    'Inicio',
-    'Estado de las preguntas',
-    'Respuesta correcta',
-    'Respuesta incorrecta',
-    'Aún sin responder',
-    'Aplazada',
-  ]),
-  ar: dictionary([
-    'مراحل الدرس',
-    'تهانينا! لقد أكملت هذا الدرس!',
-    'النظرية والتطبيق وبطاقات المراجعة والاختبار — لقد أكملت جميع المراحل.',
-    'الإجابات الصحيحة:',
-    '{score} من {total}',
-    'إكمال الدرس لا يعني أن جميع إجاباتك كانت صحيحة — يمكنك دائمًا مراجعة المادة.',
-    'الصفحة الرئيسية',
-    'حالة الأسئلة',
-    'إجابة صحيحة',
-    'إجابة خاطئة',
-    'لم تتم الإجابة بعد',
-    'مؤجل',
-  ]),
-  fr: dictionary([
-    'Étapes de la leçon',
-    'Félicitations ! Vous avez terminé cette leçon !',
-    'Théorie, pratique, fiches de révision et quiz : toutes les étapes sont terminées.',
-    'Bonnes réponses :',
-    '{score} sur {total}',
-    'Terminer la leçon ne signifie pas que toutes les réponses étaient correctes ; vous pouvez toujours revoir le contenu.',
-    'Accueil',
-    'Statut des questions',
-    'Bonne réponse',
-    'Mauvaise réponse',
-    'Pas encore de réponse',
-    'Reportée',
-  ]),
-  bn: dictionary([
-    'পাঠের ধাপ',
-    'অভিনন্দন! আপনি এই পাঠটি শেষ করেছেন!',
-    'তত্ত্ব, অনুশীলন, ফ্ল্যাশকার্ড ও কুইজ — সব ধাপ সম্পন্ন হয়েছে।',
-    'সঠিক উত্তর:',
-    '{total}টির মধ্যে {score}টি',
-    'পাঠ শেষ করার অর্থ এই নয় যে সব উত্তর সঠিক ছিল — আপনি সব সময় আবার বিষয়বস্তু পড়তে পারেন।',
-    'মূল পাতা',
-    'প্রশ্নের অবস্থা',
-    'সঠিক উত্তর',
-    'ভুল উত্তর',
-    'এখনও উত্তর দেওয়া হয়নি',
-    'পরে উত্তর দেওয়া হবে',
-  ]),
-  pt: dictionary([
-    'Etapas da aula',
-    'Parabéns! Você concluiu esta aula!',
-    'Teoria, prática, cartões de estudo e teste — todas as etapas foram concluídas.',
-    'Respostas corretas:',
-    '{score} de {total}',
-    'Concluir a aula não significa que todas as respostas estavam corretas — você sempre pode revisar o conteúdo.',
-    'Início',
-    'Status das questões',
-    'Resposta correta',
-    'Resposta incorreta',
-    'Ainda não respondida',
-    'Adiada',
-  ]),
-  ur: dictionary([
-    'سبق کے مراحل',
-    'مبارک ہو! آپ نے یہ سبق مکمل کر لیا ہے!',
-    'نظریہ، مشق، فلیش کارڈز اور امتحان — تمام مراحل مکمل ہو گئے ہیں۔',
-    'درست جوابات:',
-    '{total} میں سے {score}',
-    'سبق مکمل کرنے کا مطلب یہ نہیں کہ ہر جواب درست تھا — آپ مواد کو دوبارہ پڑھ سکتے ہیں۔',
-    'مرکزی صفحہ',
-    'سوالات کی حالت',
-    'درست جواب',
-    'غلط جواب',
-    'ابھی جواب نہیں دیا',
-    'بعد کے لیے مؤخر',
-  ]),
-  id: dictionary([
-    'Tahapan pelajaran',
-    'Selamat! Kamu telah menyelesaikan pelajaran ini!',
-    'Teori, latihan, kartu belajar, dan kuis — semua tahap telah selesai.',
-    'Jawaban benar:',
-    '{score} dari {total}',
-    'Menyelesaikan pelajaran bukan berarti semua jawaban benar — kamu selalu dapat mempelajari materinya kembali.',
-    'Beranda',
-    'Status pertanyaan',
-    'Jawaban benar',
-    'Jawaban salah',
-    'Belum dijawab',
-    'Ditunda',
-  ]),
-  de: dictionary([
-    'Lektionsschritte',
-    'Herzlichen Glückwunsch! Du hast diese Lektion abgeschlossen!',
-    'Theorie, Praxis, Lernkarten und Test – alle Schritte sind geschafft.',
-    'Richtige Antworten:',
-    '{score} von {total}',
-    'Der Abschluss der Lektion bedeutet nicht, dass alle Antworten richtig waren – du kannst den Stoff jederzeit wiederholen.',
-    'Startseite',
-    'Fragenstatus',
-    'Richtige Antwort',
-    'Falsche Antwort',
-    'Noch nicht beantwortet',
-    'Zurückgestellt',
-  ]),
-  ja: dictionary([
-    'レッスンのステップ',
-    'おめでとうございます！このレッスンを修了しました！',
-    '理論、練習、フラッシュカード、クイズのすべての段階が完了しました。',
-    '正解数：',
-    '{total}問中{score}問',
-    'レッスンを終えても、すべての答えが正しかったとは限りません。いつでも復習できます。',
-    'ホーム',
-    '問題の状態',
-    '正解',
-    '不正解',
-    '未回答',
-    '後回し',
-  ]),
-  ko: dictionary([
-    '수업 단계',
-    '축하합니다! 이 수업을 완료했습니다!',
-    '이론, 연습, 학습 카드, 퀴즈까지 모든 단계를 마쳤습니다.',
-    '정답 수:',
-    '{total}개 중 {score}개',
-    '수업을 마쳤다고 모든 답이 정답인 것은 아닙니다. 언제든지 내용을 복습할 수 있습니다.',
-    '홈',
-    '문항 상태',
-    '정답',
-    '오답',
-    '아직 답하지 않음',
-    '보류',
-  ]),
-  tr: dictionary([
-    'Ders aşamaları',
-    'Tebrikler! Bu dersi tamamladın!',
-    'Teori, uygulama, bilgi kartları ve sınav — tüm aşamalar tamamlandı.',
-    'Doğru yanıtlar:',
-    '{total} sorudan {score} doğru',
-    'Dersi bitirmek tüm yanıtlarının doğru olduğu anlamına gelmez; istediğin zaman konuları yeniden çalışabilirsin.',
-    'Ana sayfa',
-    'Soru durumu',
-    'Doğru yanıt',
-    'Yanlış yanıt',
-    'Henüz yanıtlanmadı',
-    'Ertelendi',
-  ]),
-  vi: dictionary([
-    'Các bước của bài học',
-    'Chúc mừng! Bạn đã hoàn thành bài học này!',
-    'Lý thuyết, thực hành, thẻ ghi nhớ và bài kiểm tra — tất cả các bước đã hoàn tất.',
-    'Số câu trả lời đúng:',
-    '{score} trên {total}',
-    'Hoàn thành bài học không có nghĩa là mọi câu trả lời đều đúng — bạn luôn có thể ôn tập lại.',
-    'Trang chủ',
-    'Trạng thái câu hỏi',
-    'Câu trả lời đúng',
-    'Câu trả lời sai',
-    'Chưa trả lời',
-    'Để sau',
-  ]),
-  ta: dictionary([
-    'பாடத்தின் படிகள்',
-    'வாழ்த்துகள்! இந்தப் பாடத்தை முடித்துவிட்டீர்கள்!',
-    'கோட்பாடு, பயிற்சி, நினைவுக் கார்டுகள் மற்றும் வினாடி வினா — அனைத்துப் படிகளும் முடிந்துவிட்டன.',
-    'சரியான பதில்கள்:',
-    '{total} இல் {score}',
-    'பாடத்தை முடித்ததால் எல்லாப் பதில்களும் சரியாக இருந்தன என்று அர்த்தமில்லை — உள்ளடக்கத்தை மீண்டும் படிக்கலாம்.',
-    'முகப்புப் பக்கம்',
-    'கேள்விகளின் நிலை',
-    'சரியான பதில்',
-    'தவறான பதில்',
-    'இன்னும் பதிலளிக்கவில்லை',
-    'ஒத்திவைக்கப்பட்டது',
-  ]),
-  te: dictionary([
-    'పాఠం దశలు',
-    'అభినందనలు! మీరు ఈ పాఠాన్ని పూర్తి చేశారు!',
-    'సిద్ధాంతం, సాధన, ఫ్లాష్‌కార్డులు, క్విజ్ — అన్ని దశలూ పూర్తయ్యాయి.',
-    'సరైన సమాధానాలు:',
-    '{total}లో {score}',
-    'పాఠం పూర్తయిందంటే అన్ని సమాధానాలూ సరైనవని కాదు — మీరు ఎప్పుడైనా విషయాన్ని మళ్లీ చదవవచ్చు.',
-    'హోమ్',
-    'ప్రశ్నల స్థితి',
-    'సరైన సమాధానం',
-    'తప్పు సమాధానం',
-    'ఇంకా సమాధానం ఇవ్వలేదు',
-    'వాయిదా వేయబడింది',
-  ]),
-  mr: dictionary([
-    'धड्याचे टप्पे',
-    'अभिनंदन! तुम्ही हा धडा पूर्ण केला आहे!',
-    'सिद्धांत, सराव, फ्लॅशकार्ड आणि चाचणी — सर्व टप्पे पूर्ण झाले आहेत.',
-    'बरोबर उत्तरे:',
-    '{total} पैकी {score}',
-    'धडा पूर्ण केल्याचा अर्थ सर्व उत्तरे बरोबर होती असे नाही — तुम्ही साहित्य पुन्हा पाहू शकता.',
-    'मुख्यपृष्ठ',
-    'प्रश्नांची स्थिती',
-    'बरोबर उत्तर',
-    'चुकीचे उत्तर',
-    'अजून उत्तर दिले नाही',
-    'पुढे ढकलले',
-  ]),
-  ms: dictionary([
-    'Langkah pelajaran',
-    'Tahniah! Anda telah menamatkan pelajaran ini!',
-    'Teori, latihan, kad imbas dan kuiz — semua langkah telah selesai.',
-    'Jawapan betul:',
-    '{score} daripada {total}',
-    'Menamatkan pelajaran tidak bermakna semua jawapan betul — anda boleh mengulang kaji bahan pada bila-bila masa.',
-    'Laman utama',
-    'Status soalan',
-    'Jawapan betul',
-    'Jawapan salah',
-    'Belum dijawab',
-    'Ditangguhkan',
-  ]),
-  he: dictionary([
-    'שלבי השיעור',
-    'כל הכבוד! סיימת את השיעור הזה!',
-    'תיאוריה, תרגול, כרטיסיות ובוחן — כל השלבים הושלמו.',
-    'תשובות נכונות:',
-    '{score} מתוך {total}',
-    'סיום השיעור לא אומר שכל התשובות היו נכונות — תמיד אפשר לחזור לחומר ולתרגל.',
-    'דף הבית',
-    'מצב השאלות',
-    'תשובה נכונה',
-    'תשובה שגויה',
-    'טרם נענה',
-    'נדחה',
-  ]),
-  pl: dictionary([
-    'Etapy lekcji',
-    'Gratulacje! Ukończono tę lekcję!',
-    'Teoria, ćwiczenia, fiszki i test — wszystkie etapy za Tobą.',
-    'Poprawne odpowiedzi:',
-    '{score} z {total}',
-    'Ukończenie lekcji nie oznacza, że wszystkie odpowiedzi były poprawne — zawsze możesz wrócić do materiału.',
-    'Strona główna',
-    'Stan pytań',
-    'Poprawna odpowiedź',
-    'Niepoprawna odpowiedź',
-    'Jeszcze bez odpowiedzi',
-    'Odłożone',
-  ]),
+/** Complete authored Lesson UI labels. Build-time only. */
+export const data: UiKit_Component<'lesson', 'data', DefaultSupportedLanguage['language']> = {
+  en,
+  zh,
+  hi,
+  es,
+  ar,
+  fr,
+  bn,
+  pt,
+  ur,
+  id,
+  de,
+  ja,
+  ko,
+  tr,
+  vi,
+  ta,
+  te,
+  mr,
+  ms,
+  he,
+  pl,
   uk,
   lt,
   lv,
@@ -497,4 +642,4 @@ export const data = {
   ka,
   kk,
   qm,
-} satisfies UiKit_Component<'lesson', 'data', LanguageCode>;
+};
