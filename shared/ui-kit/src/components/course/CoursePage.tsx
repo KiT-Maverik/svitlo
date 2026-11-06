@@ -4,7 +4,6 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import Container from '@mui/material/Container';
-import Divider from '@mui/material/Divider';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
@@ -41,7 +40,15 @@ function OutlineItem({ item, depth, messages }: { item: CourseOutlineItem; depth
       <AutoStoriesOutlined fontSize="small" />
     );
   return (
-    <Box component="li" id={item.id} sx={{ listStyle: 'none', minWidth: 0 }}>
+    <Box
+      component="li"
+      id={item.id}
+      sx={{
+        listStyle: 'none',
+        minWidth: 0,
+        ...(depth === 0 ? { '& + li': { borderTop: '1px solid', borderColor: 'divider', pt: 1 } } : {}),
+      }}
+    >
       <Box
         component={item.href ? 'a' : 'div'}
         {...(item.href ? { href: item.href } : {})}
@@ -82,7 +89,7 @@ function OutlineItem({ item, depth, messages }: { item: CourseOutlineItem; depth
           <Typography
             component={depth === 0 ? 'h3' : depth === 1 && isGroup ? 'h4' : 'span'}
             variant="body1"
-            fontWeight={isGroup ? 750 : 500}
+            sx={{ fontWeight: isGroup ? 750 : 500 }}
           >
             {item.title}
           </Typography>
@@ -132,8 +139,8 @@ export function CoursePage({ course, outline, messages, catalogHref }: CoursePag
       </Button>
       <Paper component="header" variant="outlined" sx={{ overflow: 'hidden', borderRadius: 4, mb: 5 }}>
         <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'minmax(0, 1.6fr) minmax(250px, 1fr)' } }}>
-          <Stack justifyContent="center" spacing={2.5} sx={{ p: { xs: 3, md: 5 } }}>
-            <Stack direction="row" gap={1} flexWrap="wrap">
+          <Stack spacing={2.5} sx={{ justifyContent: 'center', p: { xs: 3, md: 5 } }}>
+            <Stack direction="row" sx={{ gap: 1, flexWrap: 'wrap' }}>
               <Chip color="primary" variant="outlined" label={course.category} />
               <Chip variant="outlined" label={course.level} />
             </Stack>
@@ -143,14 +150,14 @@ export function CoursePage({ course, outline, messages, catalogHref }: CoursePag
             <Typography color="text.secondary" variant="body1" sx={{ lineHeight: 1.7 }}>
               {course.description}
             </Typography>
-            <Stack direction="row" gap={2.5} flexWrap="wrap" color="text.secondary">
-              <Stack direction="row" alignItems="center" gap={1}>
+            <Stack direction="row" sx={{ gap: 2.5, flexWrap: 'wrap', color: 'text.secondary' }}>
+              <Stack direction="row" sx={{ alignItems: 'center', gap: 1 }}>
                 <AutoStoriesOutlined fontSize="small" />
                 <Typography variant="body2">
                   {course.lessons} {messages.lessons}
                 </Typography>
               </Stack>
-              <Stack direction="row" alignItems="center" gap={1}>
+              <Stack direction="row" sx={{ alignItems: 'center', gap: 1 }}>
                 <LayersOutlined fontSize="small" />
                 <Typography variant="body2">
                   {course.modules} {messages.modules}
@@ -189,12 +196,12 @@ export function CoursePage({ course, outline, messages, catalogHref }: CoursePag
       >
         {!!course.highlights?.length && (
           <Paper component="section" variant="outlined" sx={{ p: 3, borderRadius: 3 }}>
-            <Typography component="h2" variant="h6" fontWeight={800} sx={{ mb: 2 }}>
+            <Typography component="h2" variant="h6" sx={{ fontWeight: 800, mb: 2 }}>
               {messages.highlights}
             </Typography>
             <Stack component="ul" spacing={2} sx={{ m: 0, p: 0, listStyle: 'none' }}>
               {course.highlights.map(highlight => (
-                <Stack component="li" direction="row" gap={1.5} key={highlight}>
+                <Stack component="li" direction="row" sx={{ gap: 1.5 }} key={highlight}>
                   <CheckCircleOutlineRounded color="success" fontSize="small" aria-hidden="true" />
                   <Typography variant="body2">{highlight}</Typography>
                 </Stack>
@@ -203,7 +210,7 @@ export function CoursePage({ course, outline, messages, catalogHref }: CoursePag
           </Paper>
         )}
         <Box component="section" aria-labelledby="course-outline-title">
-          <Typography id="course-outline-title" component="h2" variant="h5" fontWeight={800} sx={{ mb: 2 }}>
+          <Typography id="course-outline-title" component="h2" variant="h5" sx={{ fontWeight: 800, mb: 2 }}>
             {messages.contents}
           </Typography>
           <Paper variant="outlined" sx={{ borderRadius: 3, p: 2 }}>
@@ -213,11 +220,8 @@ export function CoursePage({ course, outline, messages, catalogHref }: CoursePag
               </Typography>
             ) : (
               <Stack component="ol" spacing={1} sx={{ m: 0, p: 0 }}>
-                {outline.map((item, index) => (
-                  <Box component="li" key={item.id} sx={{ listStyle: 'none' }}>
-                    {index > 0 && <Divider sx={{ mb: 1 }} />}
-                    <OutlineItem item={item} depth={0} messages={messages} />
-                  </Box>
+                {outline.map(item => (
+                  <OutlineItem key={item.id} item={item} depth={0} messages={messages} />
                 ))}
               </Stack>
             )}

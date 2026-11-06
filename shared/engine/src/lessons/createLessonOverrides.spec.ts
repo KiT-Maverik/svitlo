@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { defineLessonData, type Lesson, type Section } from '@svitlo/contracts/content';
+import { defineLessonData, type Section } from '@svitlo/contracts/content';
 import { createLessonOverrides } from './createLessonOverrides';
 
 const languages = ['en', 'uk'] as const;
@@ -10,6 +10,7 @@ const lesson = defineLessonData<typeof languages>()({
   slug: 'light',
   title: { en: 'Light', uk: 'Світло' },
   flashcards: [],
+  skills: [],
   parameters: {
     requireQuiz: false,
     languages,
@@ -90,7 +91,7 @@ describe('createLessonOverrides', () => {
     });
     assert.deepEqual(result.overrides.sections?.bySlug?.theory?.content?.order, ['intro', 'hint']);
     assert.deepEqual(result.overrides.sections?.bySlug?.story, undefined);
-    assert.equal(lesson.sections[0].content[0].locales.en, 'Original');
+    assert.equal(lesson.sections[0].type === 'theory' && lesson.sections[0].content[0].locales.en, 'Original');
     assert.equal(lesson.sections.length, 2);
     assert.deepEqual(original.build().overrides, {});
     assert.doesNotThrow(() => JSON.stringify(result));
@@ -159,25 +160,41 @@ describe('createLessonOverrides', () => {
     assert.throws(() => builder.sections.bySlug.theory.content.remove('missing' as 'intro'), /Unknown ContentBlock/);
   });
 
-  it('rejects deletion of the mandatory quiz or its quiz block', () => {
+  it('supports a quiz Section without content and rejects removal of a mandatory quiz', () => {
     const quiz = {
       id: 'quiz-section',
       slug: 'quiz',
-      type: 'quiz',
+      type: 'quiz' as const,
       title: 'Quiz',
       navigationLabel: 'Quiz',
-      content: [{ id: 'quiz-block', slug: 'questions', type: 'quiz', questionSlugs: ['one'] }],
-    };
-    const requiredLesson = {
+      parameters: {
+        selection: { mode: 'all' as const },
+        layout: { mode: 'stack' as const },
+        feedbackMode: 'immediate' as const,
+        interaction: {
+          retries: 0,
+          showErrors: true,
+          showCorrectAnswers: true,
+          allowExplanations: true,
+          allowDeferring: false,
+          allowQuestionNavigation: true,
+          skippable: false,
+        },
+        results: { visibility: 'immediate' as const, showScore: true },
+        screen: {},
+      },
+    } satisfies Section<'data', typeof languages>;
+    const requiredLesson = defineLessonData<typeof languages>()({
       ...lesson,
       parameters: { ...lesson.parameters, requireQuiz: true },
       sections: [...lesson.sections, quiz],
-    } as unknown as Lesson<'data', typeof languages>;
+    });
     const builder = createLessonOverrides(requiredLesson);
-    assert.throws(() => builder.sections.remove('quiz').build(), /Invalid quiz Section count/);
-    assert.throws(
-      () => builder.sections.bySlug.quiz.content.remove('questions').build(),
-      /Invalid quiz ContentBlock count/,
+    assert.deepEqual(Object.keys(builder.sections.bySlug.quiz), ['set']);
+    assert.deepEqual(
+      builder.sections.setOrder(['practice', 'theory', 'quiz'] as never).build().overrides.sections?.order,
+      ['practice', 'theory', 'quiz'],
     );
+    assert.throws(() => builder.sections.remove('quiz').build(), /Invalid quiz Section count/);
   });
 });

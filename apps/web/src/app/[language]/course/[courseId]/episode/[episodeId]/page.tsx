@@ -54,6 +54,7 @@ async function Content({ params }: Props) {
       sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
     },
     flashcards: [],
+    skills: [],
     questions: {},
     localeSources: { config: {}, questions: {}, flashcards: {} },
     sections: episode.sections.map(section => ({

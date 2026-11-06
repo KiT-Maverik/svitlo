@@ -101,7 +101,24 @@ test('Course sidebar groups its published Module and Chapter and retains the act
 
 test('Episode is navigable as a separate Course unit', async ({ page }) => {
   await page.goto('/uk/course/' + courseId + '/episode/' + episodeId);
-  await expect(page.getByText(/Lorem ipsum dolor sit amet/)).toBeVisible();
+  await expect(
+    page
+      .locator('#learning-content')
+      .getByText(/Lorem ipsum dolor sit amet/)
+      .first(),
+  ).toBeVisible();
+  await page.getByRole('button', { name: 'Профіль' }).click();
+  await page.getByRole('menuitem', { name: 'Швидкі налаштування' }).click();
+  await expect(page.getByRole('combobox', { name: 'Мова уроку' })).toHaveCount(0);
+  await page.getByRole('combobox', { name: 'Мова інтерфейсу' }).click();
+  await page.getByRole('option', { name: 'English' }).click();
+  await expect(page).toHaveURL('/en/course/' + courseId + '/episode/' + episodeId);
+  await expect(
+    page
+      .locator('#learning-content')
+      .getByText(/Lorem ipsum dolor sit amet/)
+      .first(),
+  ).toBeVisible();
 });
 
 test('Unknown Course membership returns 404', async ({ request }) => {
