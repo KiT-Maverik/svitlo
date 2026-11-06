@@ -3,7 +3,11 @@ import type {
   ContentBlock_Scene,
   Course_ContentSource,
   Course_LessonOverride,
-  Course_SectionPlacement,
+  Course_SectionChanges,
+  Course_BlockChanges,
+  Course_TocContext,
+  Course_TocLesson,
+  Course_Resource,
   DefaultLessonEvent,
   Lesson,
   LessonEventOverrides,
@@ -170,6 +174,83 @@ function assertAllIncluded(items: readonly { slug: string }[], known: readonly {
   }
 }
 
+/** Object fields are sparse; arrays are indivisible values, never merged by indexes. */
+function diffValue(previous: unknown, current: unknown): unknown {
+  if (JSON.stringify(previous) === JSON.stringify(current)) return undefined;
+  if (
+    previous && current
+    && typeof previous === 'object' && typeof current === 'object'
+    && !Array.isArray(previous) && !Array.isArray(current)
+  ) {
+    const before = previous as Record<string, unknown>;
+    const after = current as Record<string, unknown>;
+    const result: Record<string, unknown> = {};
+    for (const [key, value] of Object.entries(after)) {
+      const difference = diffValue(before[key], value);
+      if (difference !== undefined) result[key] = difference;
+    }
+    return Object.keys(result).length ? result : undefined;
+  }
+  return current;
+}
+
+function diffContent<Languages extends Locale_Languages>(
+  original: readonly AnyBlock[],
+  current: readonly AnyBlock[],
+  sources: Readonly<Record<string, Source>>,
+): Course_BlockChanges<Languages> | undefined {
+  const originalBySlug = new Map(original.map(block => [block.slug, block]));
+  const currentBySlug = new Map(current.map(block => [block.slug, block]));
+  const patch: Course_BlockChanges<Languages> = {};
+  if (original.map(block => block.slug).join('\u0000') !== current.map(block => block.slug).join('\u0000')) {
+    patch.order = current.map(block => block.slug);
+  }
+  const added = current.filter(block => !originalBySlug.has(block.slug));
+  if (added.length) {
+    for (const block of added) {
+      if (sources[block.slug]?.type !== 'course') {
+        throw new Error(`New ContentBlock ${block.slug} must belong to Course`);
+      }
+    }
+    patch.added = added.map(block => ({
+      block: block as ContentBlock<'data', Languages>,
+      source: { type: 'course' as const },
+    }));
+  }
+  const removed = original.filter(block => !currentBySlug.has(block.slug)).map(block => block.slug);
+  if (removed.length) patch.removed = removed;
+  const bySlug: Record<string, Record<string, unknown>> = {};
+  for (const block of current) {
+    const base = originalBySlug.get(block.slug);
+    if (!base) continue;
+    if (base.id !== block.id || base.type !== block.type) {
+      throw new Error(`Cannot replace ContentBlock identity: ${block.slug}`);
+    }
+    const changed = diffValue(base, block);
+    if (changed && typeof changed === 'object' && !Array.isArray(changed)) {
+      const fields = { ...(changed as Record<string, unknown>) };
+      delete fields.id;
+      delete fields.slug;
+      delete fields.type;
+      if (Object.keys(fields).length) bySlug[block.slug] = fields;
+    }
+  }
+  if (Object.keys(bySlug).length) {
+    patch.bySlug = bySlug as Course_BlockChanges<Languages>['bySlug'];
+  }
+  return Object.keys(patch).length ? patch : undefined;
+}
+
+function localizedTitle<L extends Locale_Languages>(
+  title: string | Record<L[number], string>,
+  language: L[number],
+): string {
+  if (typeof title === 'string') return title;
+  const value = title[language];
+  if (typeof value !== 'string') throw new Error(`Missing Lesson title for language ${language}`);
+  return value;
+}
+
 function blocksAsSources(section: AnySection, source: Source): Readonly<Record<string, Source>> {
   assertUnique(section.content, `ContentBlock in ${section.slug}`);
   return Object.fromEntries(section.content.map(block => [block.slug, source]));
@@ -331,36 +412,121 @@ export class LessonOverridesBuilder<
     });
   }
 
-  /** Serializable, authored patch with stable registry-owner metadata. */
+  /** Only changed authoring fields, plus explicit list operations, are emitted. */
   build(): Course_LessonOverride<LanguagesOf<L>, CustomEventsOf<L>> {
-    const overrides: Course_LessonOverride<LanguagesOf<L>, CustomEventsOf<L>>['overrides'] = {};
-    if (this.state.title !== undefined) overrides.title = this.state.title as L['title'];
-    if (this.state.parameters !== undefined) {
-      overrides.parameters = this.state.parameters as NonNullable<Lesson_Override<LanguagesOf<L>>['parameters']>;
+    type Languages = LanguagesOf<L>;
+    const overrides: Course_LessonOverride<Languages, CustomEventsOf<L>>['overrides'] = {};
+
+    const titleChange = diffValue(this.lesson.title, this.state.title ?? this.lesson.title);
+    if (titleChange !== undefined) {
+      // Locale maps are authored as complete values, even when a subset changed.
+      overrides.title = this.state.title as L['title'];
     }
-    if (this.state.events !== undefined) {
-      overrides.events = this.state.events as EventChanges<L>;
+
+    const sectionParams = diffValue(
+      this.lesson.parameters.sections,
+      { ...this.lesson.parameters.sections, ...this.state.parameters?.sections },
+    ) as Record<string, boolean> | undefined;
+    if (sectionParams !== undefined) overrides.parameters = { sections: sectionParams };
+
+    const eventsChange = diffValue(this.lesson.events ?? {}, {
+      ...(this.lesson.events ?? {}),
+      ...(this.state.events ?? {}),
+    });
+    if (eventsChange && typeof eventsChange === 'object') {
+      overrides.events = eventsChange as EventChanges<L>;
     }
+
     if (this.state.sectionsChanged) {
-      const sections: Course_SectionPlacement<LanguagesOf<L>>[] = this.state.sections.map(({ section, source, blockSources }) => ({
-        section: { ...section, content: [...section.content] },
-        source,
-        blocks: section.content.map(block => ({ slug: block.slug, source: blockSources[block.slug] })),
-      }));
-      const quizzes = sections.filter(entry => entry.section.type === 'quiz');
+      const previous = this.lesson.sections;
+      const current = this.state.sections;
+      const previousBySlug = new Map(previous.map(section => [section.slug, section]));
+      const currentBySlug = new Map(current.map(entry => [entry.section.slug, entry]));
+      const patch: Course_SectionChanges<Languages> = {};
+
+      assertUnique(current.map(entry => entry.section), 'Section');
+      const quizzes = current.filter(entry => entry.section.type === 'quiz');
       if (quizzes.length > 1 || (this.lesson.parameters.requireQuiz && quizzes.length !== 1)) {
         throw new Error(`Invalid quiz Section count in override for Lesson ${this.lesson.id}`);
       }
-      for (const { section } of sections) {
+      for (const { section } of current) {
+        assertUnique(section.content, `ContentBlock in ${section.slug}`);
         const quizBlocks = section.content.filter(block => block.type === 'quiz');
         if ((section.type === 'quiz') !== (quizBlocks.length === 1)) {
           throw new Error(`Invalid quiz ContentBlock count in Section ${section.slug}`);
         }
       }
-      overrides.sections = sections;
+
+      const order = current.map(entry => entry.section.slug);
+      if (previous.map(section => section.slug).join('\u0000') !== order.join('\u0000')) {
+        patch.order = order;
+      }
+      const added = current.filter(entry => !previousBySlug.has(entry.section.slug));
+      if (added.length) {
+        for (const entry of added) {
+          if (entry.source.type !== 'course') {
+            throw new Error(`New Section ${entry.section.slug} must belong to Course`);
+          }
+        }
+        patch.added = added.map(entry => ({
+          section: { ...entry.section, content: [...entry.section.content] } as Section<'data', Languages>,
+          source: { type: 'course' as const },
+        }));
+      }
+      const removed = previous.filter(section => !currentBySlug.has(section.slug)).map(section => section.slug);
+      if (removed.length) patch.removed = removed;
+
+      const bySlug: Record<string, Record<string, unknown>> = {};
+      for (const entry of current) {
+        const initial = previousBySlug.get(entry.section.slug);
+        if (!initial) continue;
+        if (initial.id !== entry.section.id || initial.type !== entry.section.type) {
+          throw new Error(`Cannot change Section identity: ${entry.section.slug}`);
+        }
+        const fields: Record<string, unknown> = {};
+        for (const key of ['title', 'navigationLabel'] as const) {
+          const delta = diffValue(initial[key], entry.section[key]);
+          if (delta !== undefined) fields[key] = delta;
+        }
+        if (initial.skippable !== entry.section.skippable) {
+          fields.skippable = entry.section.skippable === true;
+        }
+        const content = diffContent<Languages>(initial.content, entry.section.content, entry.blockSources);
+        if (content) fields.content = content;
+        if (Object.keys(fields).length) bySlug[entry.section.slug] = fields;
+      }
+      if (Object.keys(bySlug).length) {
+        patch.bySlug = bySlug as Course_SectionChanges<Languages>['bySlug'];
+      }
+      if (Object.keys(patch).length) overrides.sections = patch;
     }
+
     return { type: 'lessonOverride', lessonId: this.lesson.id, overrides };
   }
+
+  getData(): Course_LessonOverride<LanguagesOf<L>, CustomEventsOf<L>> {
+    return this.build();
+  }
+
+  /** The Lesson remains one TOC leaf; only its localized title may change. */
+  toToc(context: Course_TocContext<LanguagesOf<L>>): Course_TocLesson {
+    const base = context.resolveLesson(this.lesson.id);
+    const patchTitle = this.build().overrides.title;
+    return {
+      ...base,
+      title: localizedTitle(
+        (patchTitle ?? this.lesson.title) as string | Record<LanguagesOf<L>[number], string>,
+        context.language,
+      ),
+    };
+  }
+
+  toResource(
+    context: Course_TocContext<LanguagesOf<L>>,
+  ): Course_Resource<Course_LessonOverride<LanguagesOf<L>, CustomEventsOf<L>>, Course_TocLesson> {
+    return { data: this.build(), toc: this.toToc(context) };
+  }
+
 }
 
 /** Capture literal section/block slugs from authored Lesson Data, never from its Definition. */
