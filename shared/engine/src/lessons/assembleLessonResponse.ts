@@ -5,7 +5,6 @@ import {
   type Quiz_Parameters,
   type Section,
   type Locale_Languages,
-  type Question,
   type Section_Type,
   type ContentBlock_Scene,
   DEFAULT_LESSON_EVENTS,
@@ -200,7 +199,7 @@ export function assembleLessonResponse(
         throw new Error('Invalid Quiz isBlocker at ' + where);
       if (parameters.timeLimitSeconds !== undefined && (
         typeof parameters.timeLimitSeconds !== 'number' ||
-        !Number.isFinite(parameters.timeLimitSeconds) ||
+        !Number.isSafeInteger(parameters.timeLimitSeconds) ||
         parameters.timeLimitSeconds <= 0
       )) throw new Error('Invalid Quiz timeLimitSeconds at ' + where);
       const quiz = parameters as Quiz_Parameters<'response', Locale_Languages>;

@@ -50,7 +50,7 @@ export function prepareQuizQuestions(
     : all;
   const ordered = selection.shuffle ? shuffled(pool, random) : [...pool];
   if (selection.mode === 'sample') {
-    if (!Number.isSafeInteger(selection.count) || !selection.count || selection.count <= 0 || selection.count > ordered.length)
+    if (typeof selection.count !== 'number' || !Number.isSafeInteger(selection.count) || selection.count <= 0 || selection.count > ordered.length)
       throw new Error('Quiz sample count must be within the available question pool');
   } else if (selection.mode !== 'all') {
     throw new Error('Unsupported Quiz selection mode');
@@ -80,7 +80,7 @@ export function prepareQuizQuestions(
       const mixed = shuffled([
         ...Object.entries(answers.correct).map(([key, value]) => ({ key, value, kind: 'correct' as const })),
         ...Object.entries(answers.incorrect).map(([key, value]) => ({ key, value, kind: 'incorrect' as const })),
-        ...Object.entries(answers.distractors).map(([key, value]) => ({ key, value, kind: 'distractors' as const })),
+        ...Object.entries(answers.distractors).map(([key, value]) => ({ key, value, kind: 'distractor' as const })),
       ], random);
       // A dedicated display order is required: response maps alone group correct/incorrect answers.
       return { ...question, answers, answerOrder: mixed.map(item => item.kind + ':' + item.key) };

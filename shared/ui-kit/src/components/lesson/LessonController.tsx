@@ -386,7 +386,6 @@ export function LessonController({
     const finalStep = response.sections.length - 1;
     if (
       state.section.step !== finalStep ||
-      
       !canLeaveSection(state, response, finalStep)
     )
       return;
