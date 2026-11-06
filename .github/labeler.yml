@@ -1,18 +1,81 @@
-# PR labels from changed files or agent branch conventions.
-# Labels are defined with colors and descriptions in .github/labels.json.
-# 'area: repo' is a fallback managed by the PR workflow, not a glob rule.
-'area: server':
+# PR labels based on changed file paths and agent branch conventions.
+# Names and colors come from .github/labels.json; area: repo is the fallback.
+'content: art':
+  - changed-files:
+      - any-glob-to-any-file: 'content/art/**'
+'content: astronomy':
+  - changed-files:
+      - any-glob-to-any-file: 'content/astronomy/**'
+'content: biology':
+  - changed-files:
+      - any-glob-to-any-file: 'content/biology/**'
+'content: chemistry':
+  - changed-files:
+      - any-glob-to-any-file: 'content/chemistry/**'
+'content: economics':
+  - changed-files:
+      - any-glob-to-any-file: 'content/economics/**'
+'content: engineering':
+  - changed-files:
+      - any-glob-to-any-file: 'content/engineering/**'
+'content: geography':
+  - changed-files:
+      - any-glob-to-any-file: 'content/geography/**'
+'content: health-safety':
+  - changed-files:
+      - any-glob-to-any-file: 'content/health-safety/**'
+'content: history':
+  - changed-files:
+      - any-glob-to-any-file: 'content/history/**'
+'content: informatics':
+  - changed-files:
+      - any-glob-to-any-file: 'content/informatics/**'
+'content: language-literature':
+  - changed-files:
+      - any-glob-to-any-file: 'content/language-literature/**'
+'content: languages':
+  - changed-files:
+      - any-glob-to-any-file: 'content/languages/**'
+'content: math':
+  - changed-files:
+      - any-glob-to-any-file: 'content/math/**'
+'content: philosophy':
+  - changed-files:
+      - any-glob-to-any-file: 'content/philosophy/**'
+'content: physics':
+  - changed-files:
+      - any-glob-to-any-file: 'content/physics/**'
+'content: playground':
+  - changed-files:
+      - any-glob-to-any-file: 'content/playground/**'
+'content: psychology':
+  - changed-files:
+      - any-glob-to-any-file: 'content/psychology/**'
+'app: desktop':
+  - changed-files:
+      - any-glob-to-any-file: 'apps/desktop/**'
+'app: mobile':
+  - changed-files:
+      - any-glob-to-any-file: 'apps/mobile/**'
+'app: web':
+  - changed-files:
+      - any-glob-to-any-file: 'apps/web/**'
+'app: platform':
+  - changed-files:
+      - any-glob-to-any-file: 'apps/platform/**'
+      - any-glob-to-any-file: 'frontend/platform/**'
+'backend: server':
   - changed-files:
       - any-glob-to-any-file: 'backend/server/**'
-'area: platform':
-  - changed-files:
-      - any-glob-to-any-file: 'frontend/platform/**'
 'area: scripts':
   - changed-files:
       - any-glob-to-any-file: 'scripts/**'
 'area: contracts':
   - changed-files:
       - any-glob-to-any-file: 'shared/contracts/**'
+'area: adapters':
+  - changed-files:
+      - any-glob-to-any-file: 'shared/adapters/**'
 'area: engine':
   - changed-files:
       - any-glob-to-any-file: 'shared/engine/**'
@@ -25,56 +88,5 @@
 'area: studio':
   - changed-files:
       - any-glob-to-any-file: 'studio/**'
-'area: art':
-  - changed-files:
-      - any-glob-to-any-file: 'content/art/**'
-'area: astronomy':
-  - changed-files:
-      - any-glob-to-any-file: 'content/astronomy/**'
-'area: biology':
-  - changed-files:
-      - any-glob-to-any-file: 'content/biology/**'
-'area: chemistry':
-  - changed-files:
-      - any-glob-to-any-file: 'content/chemistry/**'
-'area: economics':
-  - changed-files:
-      - any-glob-to-any-file: 'content/economics/**'
-'area: engineering':
-  - changed-files:
-      - any-glob-to-any-file: 'content/engineering/**'
-'area: geography':
-  - changed-files:
-      - any-glob-to-any-file: 'content/geography/**'
-'area: health-safety':
-  - changed-files:
-      - any-glob-to-any-file: 'content/health-safety/**'
-'area: history':
-  - changed-files:
-      - any-glob-to-any-file: 'content/history/**'
-'area: informatics':
-  - changed-files:
-      - any-glob-to-any-file: 'content/informatics/**'
-'area: language-literature':
-  - changed-files:
-      - any-glob-to-any-file: 'content/language-literature/**'
-'area: languages':
-  - changed-files:
-      - any-glob-to-any-file: 'content/languages/**'
-'area: math':
-  - changed-files:
-      - any-glob-to-any-file: 'content/math/**'
-'area: philosophy':
-  - changed-files:
-      - any-glob-to-any-file: 'content/philosophy/**'
-'area: physics':
-  - changed-files:
-      - any-glob-to-any-file: 'content/physics/**'
-'area: playground':
-  - changed-files:
-      - any-glob-to-any-file: 'content/playground/**'
-'area: psychology':
-  - changed-files:
-      - any-glob-to-any-file: 'content/psychology/**'
 'pr: agent-subtask':
   - head-branch: '(^|[-_/])agent[-_/]?[0-9]+($|[-_/])'

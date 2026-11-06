@@ -1,13 +1,113 @@
 [
   {
-    "name": "area: server",
-    "color": "2563EB",
-    "description": "Changes to backend/server/"
+    "name": "content: art",
+    "color": "D97706",
+    "description": "Changes to content/art/"
   },
   {
-    "name": "area: platform",
-    "color": "2563EB",
-    "description": "Changes to frontend/platform/"
+    "name": "content: astronomy",
+    "color": "D97706",
+    "description": "Changes to content/astronomy/"
+  },
+  {
+    "name": "content: biology",
+    "color": "D97706",
+    "description": "Changes to content/biology/"
+  },
+  {
+    "name": "content: chemistry",
+    "color": "D97706",
+    "description": "Changes to content/chemistry/"
+  },
+  {
+    "name": "content: economics",
+    "color": "D97706",
+    "description": "Changes to content/economics/"
+  },
+  {
+    "name": "content: engineering",
+    "color": "D97706",
+    "description": "Changes to content/engineering/"
+  },
+  {
+    "name": "content: geography",
+    "color": "D97706",
+    "description": "Changes to content/geography/"
+  },
+  {
+    "name": "content: health-safety",
+    "color": "D97706",
+    "description": "Changes to content/health-safety/"
+  },
+  {
+    "name": "content: history",
+    "color": "D97706",
+    "description": "Changes to content/history/"
+  },
+  {
+    "name": "content: informatics",
+    "color": "D97706",
+    "description": "Changes to content/informatics/"
+  },
+  {
+    "name": "content: language-literature",
+    "color": "D97706",
+    "description": "Changes to content/language-literature/"
+  },
+  {
+    "name": "content: languages",
+    "color": "D97706",
+    "description": "Changes to content/languages/"
+  },
+  {
+    "name": "content: math",
+    "color": "D97706",
+    "description": "Changes to content/math/"
+  },
+  {
+    "name": "content: philosophy",
+    "color": "D97706",
+    "description": "Changes to content/philosophy/"
+  },
+  {
+    "name": "content: physics",
+    "color": "D97706",
+    "description": "Changes to content/physics/"
+  },
+  {
+    "name": "content: playground",
+    "color": "D97706",
+    "description": "Changes to content/playground/"
+  },
+  {
+    "name": "content: psychology",
+    "color": "D97706",
+    "description": "Changes to content/psychology/"
+  },
+  {
+    "name": "app: desktop",
+    "color": "0D9488",
+    "description": "Changes to apps/desktop/"
+  },
+  {
+    "name": "app: mobile",
+    "color": "0D9488",
+    "description": "Changes to apps/mobile/"
+  },
+  {
+    "name": "app: web",
+    "color": "0D9488",
+    "description": "Changes to apps/web/"
+  },
+  {
+    "name": "app: platform",
+    "color": "0D9488",
+    "description": "Changes to apps/platform/ or frontend/platform/"
+  },
+  {
+    "name": "backend: server",
+    "color": "C2410C",
+    "description": "Changes to backend/server/"
   },
   {
     "name": "area: scripts",
@@ -18,6 +118,11 @@
     "name": "area: contracts",
     "color": "2563EB",
     "description": "Changes to shared/contracts/"
+  },
+  {
+    "name": "area: adapters",
+    "color": "2563EB",
+    "description": "Changes to shared/adapters/"
   },
   {
     "name": "area: engine",
@@ -43,91 +148,6 @@
     "name": "area: repo",
     "color": "2563EB",
     "description": "Repository-wide changes or files outside a specific area"
-  },
-  {
-    "name": "area: art",
-    "color": "2563EB",
-    "description": "Changes to content/art/"
-  },
-  {
-    "name": "area: astronomy",
-    "color": "2563EB",
-    "description": "Changes to content/astronomy/"
-  },
-  {
-    "name": "area: biology",
-    "color": "2563EB",
-    "description": "Changes to content/biology/"
-  },
-  {
-    "name": "area: chemistry",
-    "color": "2563EB",
-    "description": "Changes to content/chemistry/"
-  },
-  {
-    "name": "area: economics",
-    "color": "2563EB",
-    "description": "Changes to content/economics/"
-  },
-  {
-    "name": "area: engineering",
-    "color": "2563EB",
-    "description": "Changes to content/engineering/"
-  },
-  {
-    "name": "area: geography",
-    "color": "2563EB",
-    "description": "Changes to content/geography/"
-  },
-  {
-    "name": "area: health-safety",
-    "color": "2563EB",
-    "description": "Changes to content/health-safety/"
-  },
-  {
-    "name": "area: history",
-    "color": "2563EB",
-    "description": "Changes to content/history/"
-  },
-  {
-    "name": "area: informatics",
-    "color": "2563EB",
-    "description": "Changes to content/informatics/"
-  },
-  {
-    "name": "area: language-literature",
-    "color": "2563EB",
-    "description": "Changes to content/language-literature/"
-  },
-  {
-    "name": "area: languages",
-    "color": "2563EB",
-    "description": "Changes to content/languages/"
-  },
-  {
-    "name": "area: math",
-    "color": "2563EB",
-    "description": "Changes to content/math/"
-  },
-  {
-    "name": "area: philosophy",
-    "color": "2563EB",
-    "description": "Changes to content/philosophy/"
-  },
-  {
-    "name": "area: physics",
-    "color": "2563EB",
-    "description": "Changes to content/physics/"
-  },
-  {
-    "name": "area: playground",
-    "color": "2563EB",
-    "description": "Changes to content/playground/"
-  },
-  {
-    "name": "area: psychology",
-    "color": "2563EB",
-    "description": "Changes to content/psychology/"
   },
   {
     "name": "work: feature",
