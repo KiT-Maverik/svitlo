@@ -1,0 +1,40 @@
+// Synthetic Playground fixtures: locale-tagged placeholders, not translations.
+import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { testExplainLightTravel_Skill_Data } from './skills';
+
+export const testLightPropagation_SkillGroup_Data = buildSkillGroupConfig({
+  id: '00000000-0000-4000-8000-000000000016',
+  slug: 'testLightPropagation',
+  name: {
+    en: '[TEST en] Light propagation',
+    zh: '[TEST zh] Light propagation',
+    hi: '[TEST hi] Light propagation',
+    es: '[TEST es] Light propagation',
+    ar: '[TEST ar] Light propagation',
+    fr: '[TEST fr] Light propagation',
+    bn: '[TEST bn] Light propagation',
+    pt: '[TEST pt] Light propagation',
+    ur: '[TEST ur] Light propagation',
+    id: '[TEST id] Light propagation',
+    de: '[TEST de] Light propagation',
+    ja: '[TEST ja] Light propagation',
+    ko: '[TEST ko] Light propagation',
+    tr: '[TEST tr] Light propagation',
+    vi: '[TEST vi] Light propagation',
+    ta: '[TEST ta] Light propagation',
+    te: '[TEST te] Light propagation',
+    mr: '[TEST mr] Light propagation',
+    ms: '[TEST ms] Light propagation',
+    he: '[TEST he] Light propagation',
+    pl: '[TEST pl] Light propagation',
+    uk: '[TEST uk] Light propagation',
+    lt: '[TEST lt] Light propagation',
+    lv: '[TEST lv] Light propagation',
+    et: '[TEST et] Light propagation',
+    be: '[TEST be] Light propagation',
+    ka: '[TEST ka] Light propagation',
+    kk: '[TEST kk] Light propagation',
+    qm: '[TEST qm] Light propagation',
+  },
+  skills: { testExplainLightTravel: testExplainLightTravel_Skill_Data },
+});

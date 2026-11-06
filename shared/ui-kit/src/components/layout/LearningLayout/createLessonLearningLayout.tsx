@@ -13,7 +13,6 @@ export type LessonLearningLayoutProps = Pick<
   | 'children'
   | 'topics'
   | 'skippableSteps'
-  | 'quizStep'
   | 'pathname'
   | 'contentLoading'
   | 'contentError'
@@ -42,7 +41,6 @@ export function createLessonLearningLayout(bindings: LessonLearningLayoutBinding
     children,
     topics,
     skippableSteps,
-    quizStep,
     pathname,
     messages,
     contentLoading,
@@ -86,7 +84,6 @@ export function createLessonLearningLayout(bindings: LessonLearningLayoutBinding
         onRetryContent={onRetryContent}
         topics={topics}
         skippableSteps={skippableSteps}
-        quizStep={quizStep}
         actions={actions}
         renderTopBar={renderTopBar}
         renderBottomBar={renderBottomBar}

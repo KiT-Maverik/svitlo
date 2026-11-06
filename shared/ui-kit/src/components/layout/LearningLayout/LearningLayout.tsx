@@ -33,7 +33,6 @@ export interface LearningLayoutProps {
   children: ReactNode;
   topics: readonly Topic[];
   skippableSteps?: readonly boolean[];
-  quizStep?: number;
   locale: Locale;
   messages: LearningLayout_Locale;
   pathname: string;
@@ -72,7 +71,7 @@ export type LearningLayoutTopBarProps = Pick<
 
 export type LearningLayoutBottomBarProps = Pick<
   LearningLayoutProps,
-  'messages' | 'progress' | 'actions' | 'skippableSteps' | 'quizStep' | 'contentLoading'
+  'messages' | 'progress' | 'actions' | 'skippableSteps' | 'contentLoading'
 > & {
   direction: 'ltr' | 'rtl';
   nextDisabled?: boolean;
@@ -163,7 +162,6 @@ export function LearningLayoutBottomBar({
   progress,
   actions,
   skippableSteps = [],
-  quizStep,
   contentLoading = false,
   direction,
   nextDisabled = false,
@@ -185,13 +183,7 @@ export function LearningLayoutBottomBar({
             </Button>
             <Button
               variant="contained"
-              disabled={
-                nextDisabled ||
-                contentLoading ||
-                !progress.ready ||
-                progress.step >= progress.lastStep ||
-                (progress.step === quizStep && !progress.testDone)
-              }
+              disabled={nextDisabled || contentLoading || !progress.ready || progress.step >= progress.lastStep}
               onClick={actions.next}
             >
               {messages.actions.next} {direction === 'rtl' ? '←' : '→'}
@@ -223,7 +215,6 @@ export default function LearningLayout({
   children,
   topics,
   skippableSteps = [],
-  quizStep,
   locale,
   messages,
   pathname,
@@ -499,7 +490,6 @@ export default function LearningLayout({
             progress,
             actions,
             skippableSteps,
-            quizStep,
             contentLoading,
             direction,
           })
@@ -509,7 +499,6 @@ export default function LearningLayout({
             progress={progress}
             actions={actions}
             skippableSteps={skippableSteps}
-            quizStep={quizStep}
             contentLoading={contentLoading}
             direction={direction}
           />

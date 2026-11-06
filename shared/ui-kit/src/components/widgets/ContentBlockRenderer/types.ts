@@ -3,8 +3,8 @@ import type { ComponentType, ReactNode } from 'react';
 import type { ContentBlock, Locale_Languages } from '@svitlo/engine/content';
 import type { LanguageCode } from '@svitlo/engine/localization';
 
-/** Quiz has its own flow and is not rendered as page content. */
-export type ContentBlockResponse = Exclude<ContentBlock<'response', Locale_Languages>, { type: 'quiz' }>;
+/** Quiz is a Section; ContentBlock contains renderable resources only. */
+export type ContentBlockResponse = ContentBlock<'response', Locale_Languages>;
 export type ContentBlockType = ContentBlockResponse['type'];
 export type ResponseOf<Type extends ContentBlockType> = Extract<ContentBlockResponse, { type: Type }>;
 

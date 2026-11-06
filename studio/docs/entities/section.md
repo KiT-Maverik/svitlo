@@ -1,32 +1,22 @@
 # Section
 
-**Entity category:** ordered, pedagogically coherent unit inside a [Lesson](./lesson.md).
+A Section is a navigable learning unit. Regular Sections hold ordered ContentBlocks; a Quiz is **a Section, not a ContentBlock**.
 
-A **Section** is one navigable learning step that groups content for a recognizable purpose. **Examples of pedagogical purposes** include theory/explanation, guided practice, learner-controlled exploration, a bespoke interactive component, Quiz (a set of Questions), flashcard study/review, coding task, and **kids' block-based coding task**. Choose a purpose that serves the approved learning outcomes; these labels are **not automatically TypeScript discriminators or implemented Section types**.
+## Contract
 
-## CURRENT TYPE CONTRACT VS EDUCATIONAL INTENT
+See [Section](../../../shared/contracts/src/types/content/section.types.ts) and [Quiz parameters](../../../shared/contracts/src/types/content/quiz.types.ts).
 
-**Observed in Code:** [`LessonSection_Content`](../../../shared/contracts/src/types/content/lesson.types.ts) is currently `LessonSection_Config | Quiz_Config`.
+- General Section: `type`, `content: ContentBlock[]` and metadata.
+- Quiz Section: `type: 'quiz'`, `parameters` and metadata, with **no** `content` array.
+- Quiz parameters hold `selection`, `questionOptions`, `layout`, `interaction`, `feedbackMode`, `grading`, `results`, `screen`, `timeLimitSeconds` and `isBlocker`.
+- Lesson owns the full authored Question catalog. Engine prepares each Quiz's Question array from this catalog and its `parameters.selection` settings.
+- Multiple Quiz Sections are supported. A Quiz with `isBlocker: true` prevents forward navigation until the Quiz attempt is completed; passing the grade threshold is a separate assessment outcome.
+- Omitted `timeLimitSeconds` means an untimed Quiz. `layout.mode` supports `stack` and `stepper`; the latter reuses QuestionProgress.
 
-- **`LessonSection_Config`** holds an ordered, **nonempty** `content: NonEmptyArray<Resource_Config>`, a Section name/ID, parent Lesson ID, skippable policy and optional presentation icon. Use it for general teaching/practice/exploration content when the necessary blocks are actually supported.
-- **`Quiz_Config`** is a **different** Section-shaped assessment structure with a question bank and settings; it is **not** a regular vertical array of general Resource blocks. Scoring, mastery attribution and correct-response validity are assessment-owned, not Screenwriter-owned.
-- **Theory, practice, flashcards, interactive, coding, kids' block coding** are currently _editorial categories/capability proposals_ rather than established additional `Section` discriminators. Do not add `sectionType: 'theory'` or a new `Quiz_Config` field merely because a category is useful. A first-class type requires explicit architecture and implementation approval.
-- Existing shared Flashcard widgets do **not** by themselves imply a supported standalone Flashcard Section. Likewise, a coding editor or block programming area needs verified renderer/integration or a proposed Scene.
+The same prepared Question responses and Quiz parameters can power standalone practice.
 
-## VERTICAL CONTENT-BLOCK CONTRACT
+## Layout and knowledge checkpoints
 
-**Binding authoring invariant:** within each general Section, render/plan Resource blocks as a **single vertical column**, from top to bottom, in their declared order. Do not design side-by-side **sibling Resource blocks** or treat a Section as an arbitrary multi-column grid. A **Scene** is one typed block and may implement its own internal interactive layout, including diagrams or columns, without breaking the outer Section order.
+General Section ContentBlocks render in one vertical column. A Scene can have its own internal layout. A Knowledge Checkpoint is a reflective prompt, not a scored Quiz.
 
-A content block is strictly typed by [`Resource_Config`](../../../shared/contracts/src/types/content/resource.types.ts) and `blockType` (currently `text`, `markdown`, `code`, `audio`, `video`, `image`, `scene`; `youtube` appears in the label type but not the config union). The actual generic Lesson renderer currently supports only `text`, `markdown`, `scene`; other typed blocks are **not automatically renderable**. A Content must distinguish supported, typed-only/partial and proposed functionality. Read the live renderer before declaring readiness.
-
-## KNOWLEDGE CHECKPOINT
-
-The existing [`KnowledgeCheckpoint`](../../../shared/ui-kit/src/components/widgets/KnowledgeCheckpoint/KnowledgeCheckpoint.tsx) is a **reflection and self-explanation pause**, not a Quiz, scored Question type, grade, mastery gate or test of correctness.
-
-- Present a prompt/question in an accordion header. The learner can expand it to reveal explanatory content, think before revealing and optionally mark it as reviewed/checked.
-- The widget tracks which prompts have been acknowledged via `onProgressChange`; it does **not** verify the learner's answer. A `complete` callback means items have been marked, **not** that understanding or mastery was demonstrated.
-- Insert where a deliberate pause adds understanding, e.g. after a Theory explanation, model, comparison or interaction. **Do not require one per Section**, infer correctness, or award scores from clicks.
-- **Existing integration:** in `content/playground/src/data/howLightMoves`, a prop-free `Checkpoint` Scene wraps the widget and is placed as a `blockType: 'scene'` Resource in the Theory Section. `KnowledgeCheckpoint` itself is not a `Resource_Config.blockType` and not a `Quiz_Config`.
-- The Screenwriter must specify meaningful questions, reveal content and placement; a Coding Agent verifies actual integration, locale, keyboard/RTL and progress semantics before implementation.
-
-Related: [Lesson](./lesson.md), [Lesson Content](./lesson-content.md), [Program](./program.md).
+Related: [Lesson](./lesson.md), [Lesson Content](./lesson-content.md).
