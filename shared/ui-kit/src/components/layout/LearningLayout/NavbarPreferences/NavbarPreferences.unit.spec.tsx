@@ -1,5 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
+import { createTheme, ThemeProvider, useColorScheme } from '@mui/material/styles';
 import userEvent from '@testing-library/user-event';
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/localization';
 import NavbarPreferences from './NavbarPreferences';
@@ -8,12 +9,38 @@ import { navbarPreferences } from '../../../../../data/locale/navbarPreferences'
 const { lt, ar, en } = navbarPreferences;
 const uk = ukUiKitMessages.navbarPreferences;
 const aria = { locale: uk.language, theme: uk.theme.dark };
+const muiTheme = createTheme({
+  cssVariables: { colorSchemeSelector: 'data' },
+  colorSchemes: { light: true, dark: true },
+});
+
+function ConnectedThemePreferences() {
+  const { mode, systemMode, setMode } = useColorScheme();
+  return (
+    <>
+      <output data-testid="selected-theme-mode">{mode}</output>
+      <NavbarPreferences
+        locale="uk-UA"
+        messages={uk}
+        onLocaleChange={vi.fn()}
+        mode={mode}
+        systemMode={systemMode}
+        onThemeChange={setMode}
+      />
+    </>
+  );
+}
+
 
 describe('NavbarPreferences in shared UI Kit', () => {
   const setLocale = vi.fn();
   const setLessonLocale = vi.fn();
   const setMode = vi.fn();
-  const renderPreferences = (locale: 'uk-UA' | 'lt-LT' = 'uk-UA', mode: 'light' | 'dark' | null = 'light') =>
+  const renderPreferences = (
+    locale: 'uk-UA' | 'lt-LT' = 'uk-UA',
+    mode: 'light' | 'dark' | 'system' | null = 'light',
+    systemMode: 'light' | 'dark' = 'light',
+  ) =>
     render(
       <NavbarPreferences
         locale={locale}
@@ -22,7 +49,7 @@ describe('NavbarPreferences in shared UI Kit', () => {
         lessonLocale="en-US"
         onLessonLocaleChange={setLessonLocale}
         mode={mode ?? undefined}
-        systemMode="light"
+        systemMode={systemMode}
         onThemeChange={setMode}
       />,
     );
@@ -31,7 +58,10 @@ describe('NavbarPreferences in shared UI Kit', () => {
   const locale = () => screen.getByRole('combobox', { name: aria.locale });
   const lessonLocale = () => screen.getByRole('combobox', { name: uk.lessonLanguage });
 
-  afterEach(() => vi.clearAllMocks());
+  afterEach(() => {
+    vi.clearAllMocks();
+    window.localStorage.removeItem('mui-mode');
+  });
 
   it('exposes accessible locale and theme controls', () => {
     renderPreferences();
@@ -88,9 +118,48 @@ describe('NavbarPreferences in shared UI Kit', () => {
     expect(setMode).toHaveBeenCalledWith('light');
   });
 
-  it('disables theme selection until MUI mode initializes', () => {
+  it('allows theme selection while MUI restores the saved mode', async () => {
     renderPreferences('uk-UA', null);
-    expect(theme()).toBeDisabled();
+    expect(theme()).toBeEnabled();
+    await userEvent.click(theme());
+    expect(setMode).toHaveBeenCalledWith('dark');
+  });
+
+  it('resolves the system color mode and toggles to an explicit preference', async () => {
+    renderPreferences('uk-UA', 'system', 'dark');
+    expect(theme()).toBeChecked();
+    await userEvent.click(theme());
+    expect(setMode).toHaveBeenCalledWith('light');
+  });
+
+  it('shows a sun in light mode and a moon in dark mode', () => {
+    const view = renderPreferences();
+    expect(screen.getByTestId('WbSunnyRoundedIcon')).toBeVisible();
+    view.rerender(
+      <NavbarPreferences locale="uk-UA" messages={uk} onLocaleChange={setLocale} mode="dark" onThemeChange={setMode} />,
+    );
+    expect(screen.getByTestId('DarkModeRoundedIcon')).toBeVisible();
+  });
+
+  it('applies both MUI CSS color schemes through the real ThemeProvider', async () => {
+    window.localStorage.removeItem('mui-mode');
+    render(
+      <ThemeProvider theme={muiTheme}>
+        <ConnectedThemePreferences />
+      </ThemeProvider>,
+    );
+    await waitFor(() => expect(screen.getByTestId('selected-theme-mode')).not.toHaveTextContent(''));
+    await userEvent.click(theme());
+    await waitFor(() => {
+      expect(screen.getByTestId('selected-theme-mode')).toHaveTextContent('dark');
+      expect(document.documentElement).toHaveAttribute('data-dark');
+    });
+    await userEvent.click(theme());
+    await waitFor(() => {
+      expect(screen.getByTestId('selected-theme-mode')).toHaveTextContent('light');
+      expect(document.documentElement).toHaveAttribute('data-light');
+    });
+    window.localStorage.removeItem('mui-mode');
   });
 
   it('uses localized theme tooltip text', async () => {
