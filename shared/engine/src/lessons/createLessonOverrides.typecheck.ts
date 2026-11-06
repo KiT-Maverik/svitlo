@@ -40,6 +40,23 @@ const customized = createLessonOverrides(lesson)
   .sections.setOrder(['theory', inserted, 'practice']);
 const courseEntry: Course_Content<'data', typeof languages> = customized.build();
 
+const customOnly = defineLessonData<typeof languages, 'lionAppeared'>()({
+  ...lesson,
+  events: {
+    lionAppeared: {
+      type: 'scene',
+      id: 'lion-scene',
+      slug: 'lion',
+      locales: { message: { en: 'Hello', uk: 'Вітаю' } },
+    },
+  },
+});
+const disabledCustom = createLessonOverrides(customOnly).setEvents({ lionAppeared: false }).build();
+// @ts-expect-error Undeclared custom events cannot be introduced by a course.
+createLessonOverrides(lesson).setEvents({ lionAppeared: false });
+void disabledCustom;
+
+
 // @ts-expect-error Missing a known Section in a complete order.
 customized.sections.setOrder(['theory', 'scenario']);
 // @ts-expect-error No duplicate Section slug.
