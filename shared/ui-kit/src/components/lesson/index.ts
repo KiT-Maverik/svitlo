@@ -1,5 +1,13 @@
 export { Lesson } from './Lesson';
 export {
+  EventSceneHost,
+  createLessonEventBus,
+  useLessonEventListener,
+  useLessonEventScene,
+  useLessonEventBus,
+} from './LessonEvents';
+export type { LessonEventBus, LessonEventSceneMap, EventScene } from './LessonEvents';
+export {
   LessonController,
   useLessonActions,
   useLessonParams,

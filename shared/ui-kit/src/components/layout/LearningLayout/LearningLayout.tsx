@@ -52,6 +52,8 @@ export interface LearningLayoutProps {
   linkComponent?: ElementType;
   renderTopBar?: (props: LearningLayoutTopBarProps) => ReactNode;
   renderBottomBar?: (props: LearningLayoutBottomBarProps) => ReactNode;
+  /** Fifth sibling region: portalled reactions do not add a layout row. */
+  renderEventHost?: () => ReactNode;
 }
 
 export type LearningLayoutTopBarProps = Pick<LearningLayoutProps, 'messages' | 'preferences' | 'linkComponent'> & {
@@ -240,6 +242,7 @@ export default function LearningLayout({
   linkComponent,
   renderTopBar,
   renderBottomBar,
+  renderEventHost,
 }: LearningLayoutProps) {
   const direction = getLocaleDirection(locale);
   const [open, setOpen] = useState(false);
@@ -500,6 +503,7 @@ export default function LearningLayout({
             direction={direction}
           />
         ))}
+      {renderEventHost?.()}
     </Box>
   );
 }

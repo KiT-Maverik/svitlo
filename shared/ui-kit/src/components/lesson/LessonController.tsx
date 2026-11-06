@@ -1,6 +1,17 @@
 'use client';
 
-import { createContext, memo, useCallback, useContext, useLayoutEffect, useMemo, useReducer, useRef } from 'react';
+import {
+  createContext,
+  memo,
+  useCallback,
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useReducer,
+  useRef,
+  useState,
+} from 'react';
 import Container from '@mui/material/Container';
 import { ContentBlockRenderer } from '../widgets/ContentBlockRenderer';
 import { QuestionRenderer } from '../widgets/questions';
@@ -13,6 +24,8 @@ import { LearningLayoutTopBar, LearningLayoutBottomBar } from '../layout/Learnin
 import { LessonNavigationContext, type LessonNavigationAction } from './LessonNavigation';
 import { LessonSteps } from './LessonSteps';
 import type { LessonProps, LessonView } from './Lesson';
+import { DEFAULT_LESSON_EVENTS } from '@svitlo/engine/content';
+import { EventSceneHost, LessonEventBusContext, createLessonEventBus, resolveLessonEventScenes } from './LessonEvents';
 import styles from './Lesson.module.css';
 
 type SectionParams = LessonView['parameters']['sections'];
@@ -39,7 +52,7 @@ type Command =
   | { type: 'restore'; step: number; testDone: boolean }
   | { type: 'checkpoint'; sectionId: string; checkpointId: string };
 
-export type LessonActions = {
+export type LessonActions<CustomEvents extends string = never> = {
   updateSectionParams: (patch: Partial<SectionParams>) => void;
   updateTopBar: (patch: Partial<TopBarState>) => void;
   updateStepper: (patch: Partial<StepperState>) => void;
@@ -49,6 +62,10 @@ export type LessonActions = {
   skip: () => void;
   goToSection: (step: number) => void;
   completeQuiz: () => void;
+  /** A scored assessment may report failure. The generic QuestionRenderer only reports completion. */
+  failQuiz: () => void;
+  /** Only author-declared custom events may be emitted by scenes; lifecycle events are controller-owned. */
+  publishEvent: (eventId: CustomEvents) => void;
   completeCheckpoint: (sectionId: string, checkpointId: string) => void;
   /** Event-time snapshot readers; these are NOT reactive subscriptions. */
   getParams: () => LessonView['parameters'];
@@ -182,8 +199,8 @@ function useRequiredContext<T>(value: T | null, name: string): T {
   if (!value) throw new Error(name + ' must be used inside LessonController');
   return value;
 }
-export function useLessonActions(): LessonActions {
-  return useRequiredContext(useContext(ActionsContext), 'LessonActionsContext');
+export function useLessonActions<CustomEvents extends string = never>(): LessonActions<CustomEvents> {
+  return useRequiredContext(useContext(ActionsContext), 'LessonActionsContext') as LessonActions<CustomEvents>;
 }
 export function useLessonParams() {
   return useRequiredContext(useContext(ParamsContext), 'LessonParamsContext');
@@ -289,6 +306,7 @@ export function LessonController({
   editableSectionParams = EMPTY_EDITABLE,
   contentError,
   onRetryContent,
+  eventOverrides,
 }: LessonProps) {
   const [state, dispatch] = useReducer(
     (current: Runtime, action: Command) =>
@@ -304,10 +322,65 @@ export function LessonController({
       bottomBar: { nextDisabled: false, backDisabled: false, skipDisabled: false },
     }),
   );
+  const [eventBus] = useState(createLessonEventBus);
+  const availableEvents = useMemo(
+    () => new Set<string>([...DEFAULT_LESSON_EVENTS, ...Object.keys(response.events ?? {})]),
+    [response.events],
+  );
+  const availableEventsRef = useRef(availableEvents);
+  const quizEmitted = useRef(false);
+  const lessonStarted = useRef(false);
+  const lessonFinished = useRef(false);
   const latest = useRef(state);
   useLayoutEffect(() => {
     latest.current = state;
-  }, [state]);
+    availableEventsRef.current = availableEvents;
+  }, [state, availableEvents]);
+
+  const emit = useCallback(
+    (eventId: string) => {
+      if (!availableEventsRef.current.has(eventId)) {
+        throw new Error('Unsupported lesson event: ' + eventId);
+      }
+      eventBus.publish(eventId);
+    },
+    [eventBus],
+  );
+
+  const finishQuiz = useCallback(
+    (passed: boolean) => {
+      if (quizEmitted.current) return;
+      quizEmitted.current = true;
+      dispatch({ type: 'testDone' });
+      emit('quizCompleted');
+      if (!passed) emit('quizFailed');
+    },
+    [emit],
+  );
+
+  const effectiveEvents = useMemo(
+    () => resolveLessonEventScenes(response.events, eventOverrides),
+    [response.events, eventOverrides],
+  );
+  const eventReady = !contentLoading && !contentError;
+  useEffect(() => {
+    if (eventReady && !lessonStarted.current) {
+      lessonStarted.current = true;
+      emit('lessonStarted');
+    }
+  }, [eventReady, emit]);
+  useEffect(() => {
+    if (!eventReady || lessonFinished.current || !response.sections.length) return;
+    const finalStep = response.sections.length - 1;
+    if (
+      state.section.step !== finalStep ||
+      (response.sections.some(item => item.type === 'quiz') && !state.section.testDone) ||
+      !canLeaveSection(state, response, finalStep)
+    )
+      return;
+    lessonFinished.current = true;
+    emit('lessonCompleted');
+  }, [eventReady, response, state, emit]);
 
   const actions = useMemo<LessonActions>(
     () => ({
@@ -319,14 +392,21 @@ export function LessonController({
       back: () => dispatch({ type: 'back' }),
       skip: () => dispatch({ type: 'skip' }),
       goToSection: step => dispatch({ type: 'visit', step }),
-      completeQuiz: () => dispatch({ type: 'testDone' }),
+      completeQuiz: () => finishQuiz(true),
+      failQuiz: () => finishQuiz(false),
+      publishEvent: eventId => {
+        if (DEFAULT_LESSON_EVENTS.some(builtin => builtin === eventId)) {
+          throw new Error('Built-in lesson events can only be emitted by the controller');
+        }
+        emit(eventId);
+      },
       completeCheckpoint: (sectionId, checkpointId) => dispatch({ type: 'checkpoint', sectionId, checkpointId }),
       getParams: () => latest.current.params,
       getTopBar: () => latest.current.topBar,
       getSection: () => latest.current.section,
       getBottomBar: () => latest.current.bottomBar,
     }),
-    [],
+    [emit, finishQuiz],
   );
 
   const progress = useMemo<LearningLayoutProgress>(
@@ -404,6 +484,10 @@ export function LessonController({
   );
 
   const navActions = useMemo(() => ({ back: actions.back, next: actions.next, skip: actions.skip }), [actions]);
+  const renderEventHost = useCallback(
+    () => <EventSceneHost bus={eventBus} events={effectiveEvents} sceneRegistry={sceneRegistry} enabled={eventReady} />,
+    [eventBus, effectiveEvents, sceneRegistry, eventReady],
+  );
   const quizIndex = response.sections.findIndex(item => item.type === 'quiz');
   const topics = useMemo(() => [{ id: response.id, title: response.title, href }], [response.id, response.title, href]);
   const skippableSteps = useMemo(
@@ -415,37 +499,40 @@ export function LessonController({
   );
   return (
     <ActionsContext.Provider value={actions}>
-      <ParamsContext.Provider value={paramsValue}>
-        <LessonNavigationContext.Provider value={legacyNavigation}>
-          <Layout
-            contentLoading={contentLoading}
-            contentError={contentError}
-            onRetryContent={onRetryContent}
-            messages={messages}
-            topics={topics}
-            pathname={href}
-            skippableSteps={skippableSteps}
-            quizStep={quizIndex < 0 ? undefined : quizIndex}
-            progress={progress}
-            actions={navActions}
-            renderTopBar={renderTopBar}
-            renderBottomBar={renderBottomBar}
-          >
-            <div className={styles.lesson}>
-              {!contentLoading && !contentError && (
-                <>
-                  <StepperContext.Provider value={stepper}>
-                    <MemoStepper response={response} messages={messages} />
-                  </StepperContext.Provider>
-                  <SectionContext.Provider value={section}>
-                    <MemoSection response={response} messages={messages} sceneRegistry={sceneRegistry} />
-                  </SectionContext.Provider>
-                </>
-              )}
-            </div>
-          </Layout>
-        </LessonNavigationContext.Provider>
-      </ParamsContext.Provider>
+      <LessonEventBusContext.Provider value={eventBus}>
+        <ParamsContext.Provider value={paramsValue}>
+          <LessonNavigationContext.Provider value={legacyNavigation}>
+            <Layout
+              contentLoading={contentLoading}
+              contentError={contentError}
+              onRetryContent={onRetryContent}
+              messages={messages}
+              topics={topics}
+              pathname={href}
+              skippableSteps={skippableSteps}
+              quizStep={quizIndex < 0 ? undefined : quizIndex}
+              progress={progress}
+              actions={navActions}
+              renderTopBar={renderTopBar}
+              renderBottomBar={renderBottomBar}
+              renderEventHost={renderEventHost}
+            >
+              <div className={styles.lesson}>
+                {!contentLoading && !contentError && (
+                  <>
+                    <StepperContext.Provider value={stepper}>
+                      <MemoStepper response={response} messages={messages} />
+                    </StepperContext.Provider>
+                    <SectionContext.Provider value={section}>
+                      <MemoSection response={response} messages={messages} sceneRegistry={sceneRegistry} />
+                    </SectionContext.Provider>
+                  </>
+                )}
+              </div>
+            </Layout>
+          </LessonNavigationContext.Provider>
+        </ParamsContext.Provider>
+      </LessonEventBusContext.Provider>
     </ActionsContext.Provider>
   );
 }

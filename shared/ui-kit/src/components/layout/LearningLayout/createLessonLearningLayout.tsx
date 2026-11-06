@@ -22,6 +22,7 @@ export type LessonLearningLayoutProps = Pick<
   | 'actions'
   | 'renderTopBar'
   | 'renderBottomBar'
+  | 'renderEventHost'
 > & { messages: UiKitMessages };
 
 export type LessonLearningLayoutBindings = {
@@ -46,6 +47,7 @@ export function createLessonLearningLayout(bindings: LessonLearningLayoutBinding
     actions,
     renderTopBar,
     renderBottomBar,
+    renderEventHost,
   }: LessonLearningLayoutProps) {
     const { locale, setLocale } = bindings.useLocale();
     const { mode, systemMode, setMode } = useColorScheme();
@@ -78,6 +80,7 @@ export function createLessonLearningLayout(bindings: LessonLearningLayoutBinding
         actions={actions}
         renderTopBar={renderTopBar}
         renderBottomBar={renderBottomBar}
+        renderEventHost={renderEventHost}
         preferences={preferences}
         linkComponent={bindings.linkComponent}
       >
