@@ -39,16 +39,29 @@ const meta = {
       tone: 'sky',
       highlights: ['Досліджуй світло', 'Застосовуй знання на практиці'],
     },
-    outline: [{
-      id: 'module-one', type: 'module', title: 'Лабораторія світла',
-      children: [{
-        id: 'chapter-one', type: 'chapter', title: 'Перші кроки',
+    outline: [
+      {
+        id: 'module-one',
+        type: 'module',
+        title: 'Лабораторія світла',
         children: [
-          { id: 'lesson-one', type: 'lesson', title: 'Що таке світло?', href: '/uk/course/demo/lesson/lesson-one' },
-          { id: 'episode-one', type: 'episode', title: 'Таємна історія', href: '/uk/course/demo/episode/episode-one' },
+          {
+            id: 'chapter-one',
+            type: 'chapter',
+            title: 'Перші кроки',
+            children: [
+              { id: 'lesson-one', type: 'lesson', title: 'Що таке світло?', href: '/uk/course/demo/lesson/lesson-one' },
+              {
+                id: 'episode-one',
+                type: 'episode',
+                title: 'Таємна історія',
+                href: '/uk/course/demo/episode/episode-one',
+              },
+            ],
+          },
         ],
-      }],
-    }],
+      },
+    ],
   },
 } satisfies Meta<typeof CoursePage>;
 export default meta;

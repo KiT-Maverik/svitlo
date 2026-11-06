@@ -1,5 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import { getMockCourse, getMockCourses, getMockCourseMessages, mockCourseOutline, PLAYGROUND_COURSE_ID } from './mockCourses';
+import {
+  getMockCourse,
+  getMockCourses,
+  getMockCourseMessages,
+  mockCourseOutline,
+  PLAYGROUND_COURSE_ID,
+} from './mockCourses';
 
 describe('temporary course catalog adapters', () => {
   it('exposes distinct courses and preserves published Playground lesson URLs', () => {

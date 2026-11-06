@@ -15,7 +15,13 @@ const course: CoursePreview = {
 
 describe('CourseCard', () => {
   it('has one keyboard-accessible link and displays course metadata', () => {
-    render(<CourseCard course={course} href="/en/course/light" messages={{ explore: 'Explore course', lessons: 'lessons' }} />);
+    render(
+      <CourseCard
+        course={course}
+        href="/en/course/light"
+        messages={{ explore: 'Explore course', lessons: 'lessons' }}
+      />,
+    );
     expect(screen.getByRole('heading', { name: 'Journey of Light', level: 2 })).toBeVisible();
     const link = screen.getByRole('link', { name: 'Explore course: Journey of Light' });
     expect(link).toHaveAttribute('href', '/en/course/light');
