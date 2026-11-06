@@ -21,7 +21,13 @@ test('Playground Course generates independent localized TOC, sparse override and
   assert.equal(toc.children[0].children[0].type, 'chapter');
   assert.equal(toc.children[0].children[0].children[1].type, 'episode');
   assert.equal(patch.lessonId, lessonId);
-  assert.deepEqual(patch.overrides.sections.order, ['practice', 'storyBridge', 'theory', 'contentBlockGallery', 'quiz']);
+  assert.deepEqual(patch.overrides.sections.order, [
+    'practice',
+    'storyBridge',
+    'theory',
+    'contentBlockGallery',
+    'quiz',
+  ]);
   assert.deepEqual(
     patch.overrides.sections.added.map(item => item.source.type),
     ['course', 'course'],
@@ -46,8 +52,14 @@ test('the Course-only gallery contains all supported renderable blocks and publi
     ['text', 'markdown', 'code', 'image', 'video', 'audio', 'youtube', 'scene', 'checkpoint'],
   );
   assert.equal(gallery.content.find(block => block.type === 'image').src, '/textbooks/playground/whale.png');
-  assert.equal(gallery.content.find(block => block.type === 'video').fileLocation, '/textbooks/playground/barabaka.mp4');
-  assert.equal(gallery.content.find(block => block.type === 'audio').fileLocation, '/textbooks/playground/demo-tone.wav');
+  assert.equal(
+    gallery.content.find(block => block.type === 'video').fileLocation,
+    '/textbooks/playground/barabaka.mp4',
+  );
+  assert.equal(
+    gallery.content.find(block => block.type === 'audio').fileLocation,
+    '/textbooks/playground/demo-tone.wav',
+  );
   assert.equal(gallery.content.find(block => block.type === 'scene').id, 'how-light-moves-scene-ray');
   assert.equal(gallery.content.find(block => block.type === 'checkpoint').items[0].answer[0].type, 'text');
   for (const file of ['whale.png', 'barabaka.mp4', 'demo-tone.wav']) {
