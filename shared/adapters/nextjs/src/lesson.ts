@@ -17,7 +17,13 @@ export type LessonPageInput = {
 export type LessonPageBindings<Response extends { id: string; title: string }> = {
   loadLesson: (id: string, language: LanguageCode) => Promise<Response>;
   loadMessages: (locale: Locale) => Promise<UiKitMessages>;
-  renderLesson: (props: { response: Response; locale: Locale; lessonLocale: Locale; href: string; messages: UiKitMessages }) => ReactElement;
+  renderLesson: (props: {
+    response: Response;
+    locale: Locale;
+    lessonLocale: Locale;
+    href: string;
+    messages: UiKitMessages;
+  }) => ReactElement;
 };
 
 /**

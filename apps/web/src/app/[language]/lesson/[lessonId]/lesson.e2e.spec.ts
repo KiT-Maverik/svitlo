@@ -8,9 +8,7 @@ test('lesson renders sections, scenes and quiz in the selected content language'
   await expect(page.locator('html')).toHaveAttribute('dir', 'ltr');
   await expect(page.getByRole('heading', { name: 'Як рухається світло', exact: true })).toBeVisible();
   await expect(page.getByRole('img', { name: 'Світловий промінь' })).toBeVisible();
-  await expect(
-    page.getByRole('region', { name: 'Анімація поширення світла від джерела до екрана' }),
-  ).toBeVisible();
+  await expect(page.getByRole('region', { name: 'Анімація поширення світла від джерела до екрана' })).toBeVisible();
 
   const next = page
     .getByRole('navigation', { name: 'Нижня навігація навчання' })
@@ -78,10 +76,7 @@ test('mobile quick settings fills the content width and provides a close button'
   const box = await settings.boundingBox();
   expect(box?.width).toBeGreaterThanOrEqual(389);
   await settings.getByRole('button', { name: 'Закрити панель налаштувань' }).click();
-  await expect(page.getByRole('button', { name: 'Відкрити налаштування' })).toHaveAttribute(
-    'aria-expanded',
-    'false',
-  );
+  await expect(page.getByRole('button', { name: 'Відкрити налаштування' })).toHaveAttribute('aria-expanded', 'false');
   await page.setViewportSize({ width: 1280, height: 720 });
   await page.getByRole('button', { name: 'Відкрити налаштування' }).click();
   await expect(settings.getByRole('button', { name: 'Закрити панель налаштувань' })).toBeHidden();

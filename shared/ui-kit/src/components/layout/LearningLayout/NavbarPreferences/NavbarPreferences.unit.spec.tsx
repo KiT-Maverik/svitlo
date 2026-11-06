@@ -31,7 +31,6 @@ function ConnectedThemePreferences() {
   );
 }
 
-
 describe('NavbarPreferences in shared UI Kit', () => {
   const setLocale = vi.fn();
   const setLessonLocale = vi.fn();

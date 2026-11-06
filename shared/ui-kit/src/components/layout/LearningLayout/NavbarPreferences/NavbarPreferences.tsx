@@ -181,11 +181,7 @@ export default function NavbarPreferences({
           <Typography variant="body2" component="h3" sx={{ fontWeight: 700 }}>
             {messages.lessonLanguage}
           </Typography>
-          <LocaleSelector
-            locale={lessonLocale}
-            onLocaleChange={onLessonLocaleChange}
-            label={messages.lessonLanguage}
-          />
+          <LocaleSelector locale={lessonLocale} onLocaleChange={onLessonLocaleChange} label={messages.lessonLanguage} />
         </Box>
       )}
     </Box>

@@ -10,9 +10,10 @@ export type LessonRoute = {
 };
 
 export function parseLessonRoute(pathname: string): LessonRoute | null {
-  const match = /^\/([a-z]{2})\/lesson\/(?:([a-z]{2})\/)?([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\/?$/i.exec(
-    pathname,
-  );
+  const match =
+    /^\/([a-z]{2})\/lesson\/(?:([a-z]{2})\/)?([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\/?$/i.exec(
+      pathname,
+    );
   if (!match) return null;
   const definition = DEFAULT_SUPPORTED_LANGUAGES.find(entry => entry.language === match[1]);
   const lessonDefinition = DEFAULT_SUPPORTED_LANGUAGES.find(entry => entry.language === (match[2] ?? match[1]));

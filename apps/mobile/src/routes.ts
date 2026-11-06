@@ -21,8 +21,7 @@ export type MobileRoute =
 export function parseRoute(pathname: string): MobileRoute {
   if (pathname === '/' || pathname === '/index.html') return { type: 'home' };
   const match = /^\/([a-z]{2})\/lesson\/(?:([a-z]{2})\/)?([0-9a-f-]+)\/?$/.exec(pathname);
-  if (!match || !localeForLanguage(match[1]) || !localeForLanguage(match[2] ?? match[1]))
-    return { type: 'not-found' };
+  if (!match || !localeForLanguage(match[1]) || !localeForLanguage(match[2] ?? match[1])) return { type: 'not-found' };
   try {
     resolveEntityPath(match[3]);
   } catch {

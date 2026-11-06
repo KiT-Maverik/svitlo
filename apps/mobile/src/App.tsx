@@ -149,9 +149,10 @@ function MobileContent() {
     const task: Promise<LoadState> =
       route.type === 'home'
         ? loadLessonIndex().then(index => ({ status: 'home', index }))
-        : Promise.all([loadLesson(route.id, route.lessonLanguage), loadMessages(localeForLanguage(route.language)!)]).then(
-            ([response, messages]) => ({ status: 'lesson', data: { response, messages } }),
-          );
+        : Promise.all([
+            loadLesson(route.id, route.lessonLanguage),
+            loadMessages(localeForLanguage(route.language)!),
+          ]).then(([response, messages]) => ({ status: 'lesson', data: { response, messages } }));
     void task
       .then(data => {
         if (live) setState(data);
