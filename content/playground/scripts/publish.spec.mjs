@@ -18,7 +18,7 @@ import { spawnSync } from 'node:child_process';
 import { createRequire } from 'node:module';
 
 const require = createRequire(import.meta.url);
-const { assembleLessonResponse } = require('@svitlo/engine/lesson');
+const { assembleLessonResponse, mergeLessonResources } = require('@svitlo/engine/lesson');
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const lessonId = 'd3048d21-8690-5255-b62c-984c69ac272c';
 const bucket = 'c/' + lessonId;
@@ -50,11 +50,15 @@ test('publish real localized JSON and assemble a valid Playground lesson respons
   const collections = Object.fromEntries(
     ['config', 'questions', 'flashcards'].map(name => [
       name,
-      JSON.parse(readFileSync(join(folder, name, 'uk.json'), 'utf8')),
+      mergeLessonResources(
+        JSON.parse(readFileSync(join(folder, name, 'base.json'), 'utf8')),
+        JSON.parse(readFileSync(join(folder, name, 'uk.json'), 'utf8')),
+      ),
     ]),
   );
   const lesson = assembleLessonResponse(lessonId, 'uk', collections);
   assert.equal(lesson.id, lessonId);
+  assert.equal(lesson.title, 'Як рухається світло');
   assert.ok(lesson.sections.length > 0);
   assert.ok(lesson.sections.every(section => Array.isArray(section.content)));
   assert.ok(existsSync(join(out, 'data/pages/skillAnalytics/uk.json')));

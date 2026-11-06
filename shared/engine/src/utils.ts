@@ -5,5 +5,5 @@ export {
   renderTextbookLessonFiles,
   writeLessonFiles,
 } from './utils/generators/lessons/generateLessons.utils';
-export { localizeLessonValue } from './utils/generators/lessons/localizeLessonData.utils';
+export { splitLessonValue } from './utils/generators/lessons/localizeLessonData.utils';
 export { resolveEntityPath } from './utils/entityPath/resolveEntityPath.utils';
