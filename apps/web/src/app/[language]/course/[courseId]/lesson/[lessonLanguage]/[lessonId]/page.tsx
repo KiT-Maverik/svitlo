@@ -2,8 +2,9 @@ import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/localization';
 import { loadPublishedLesson, loadPublishedUiKitMessages } from '@svitlo/adapter-nextjs/lesson';
-import { courseHasLesson, flattenCourseToc, loadCourseLesson, loadCourseToc } from '@/lib/courseResources';
+import { courseHasLesson, loadCourseLesson, loadCourseToc } from '@/lib/courseResources';
 import WebLesson from '@/components/pages/Lesson/Lesson';
+import { courseTocToTopics } from '@/lib/courseNavigation';
 
 type Props = { params: Promise<{ language: string; courseId: string; lessonLanguage: string; lessonId: string }> };
 
@@ -34,7 +35,7 @@ async function Content({ params }: Props) {
       lessonLocale={lessonDescriptor.locale}
       href={href}
       messages={messages}
-      topics={flattenCourseToc(toc, language, lessonLanguage)}
+      topics={courseTocToTopics(toc, language, lessonLanguage)}
     />
   );
 }
