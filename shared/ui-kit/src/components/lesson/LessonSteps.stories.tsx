@@ -23,3 +23,12 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {};
 export const WithoutNumbers: Story = { args: { showStepNumbers: false } };
 export const ReadOnly: Story = { args: { allowNavigation: false } };
+export const ManySections: Story = {
+  args: {
+    currentStep: 6,
+    steps: Array.from({ length: 10 }, (_, index) => ({
+      id: `section-${index + 1}`,
+      title: `Section ${index + 1}`,
+    })),
+  },
+};

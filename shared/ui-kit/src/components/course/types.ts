@@ -1,3 +1,5 @@
+import type { LanguageCode } from '@svitlo/engine/localization';
+
 /** Presentation-only view models. Hosts adapt published Course_Toc and course metadata to these props. */
 export type CourseTone = 'sky' | 'amber' | 'sage';
 
@@ -10,6 +12,8 @@ export type CoursePreview = {
   lessons: number;
   modules: number;
   duration?: string;
+  /** Language keys actually available for this course, not the app-wide locale list. */
+  languages?: readonly LanguageCode[];
   tone?: CourseTone;
   /** Optional teaser outcomes; no progress or completion is inferred. */
   highlights?: readonly string[];
@@ -32,6 +36,7 @@ export type CourseMessages = {
   catalogDescription: string;
   explore: string;
   lessons: string;
+  languages: string;
   modules: string;
   emptyCatalog: string;
   backToCatalog: string;

@@ -11,6 +11,7 @@ const course: CoursePreview = {
   level: 'Beginner',
   lessons: 3,
   modules: 1,
+  languages: ['en', 'uk', 'qm', 'pl', 'de'],
 };
 
 describe('CourseCard', () => {
@@ -19,7 +20,8 @@ describe('CourseCard', () => {
       <CourseCard
         course={course}
         href="/en/course/light"
-        messages={{ explore: 'Explore course', lessons: 'lessons' }}
+        messages={{ explore: 'Explore course', lessons: 'lessons', languages: 'Languages' }}
+        interfaceLanguage="pl"
       />,
     );
     expect(screen.getByRole('heading', { name: 'Journey of Light', level: 2 })).toBeVisible();
@@ -27,5 +29,13 @@ describe('CourseCard', () => {
     expect(link).toHaveAttribute('href', '/en/course/light');
     expect(link).toHaveTextContent('3 lessons');
     expect(link).toHaveTextContent('Physics');
+    const languages = screen.getByRole('group', { name: 'Languages' });
+    expect(Array.from(languages.querySelectorAll('[lang]')).map(item => item.getAttribute('lang'))).toEqual([
+      'pl-PL',
+      'en-US',
+      'uk-UA',
+      'crh-Latn-UA',
+    ]);
+    expect(languages).toHaveTextContent('+1');
   });
 });
