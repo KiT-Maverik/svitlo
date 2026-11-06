@@ -11,7 +11,14 @@ import { useLessonNavigation } from '../../lesson/LessonNavigation';
 
 export type LessonLearningLayoutProps = Pick<
   LearningLayoutProps,
-  'children' | 'topics' | 'skippableSteps' | 'quizStep' | 'pathname' | 'contentLoading' | 'contentError' | 'onRetryContent'
+  | 'children'
+  | 'topics'
+  | 'skippableSteps'
+  | 'quizStep'
+  | 'pathname'
+  | 'contentLoading'
+  | 'contentError'
+  | 'onRetryContent'
 > & { messages: UiKitMessages };
 
 export type LessonLearningLayoutBindings = {

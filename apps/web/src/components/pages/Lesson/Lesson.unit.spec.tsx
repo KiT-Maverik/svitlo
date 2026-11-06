@@ -17,13 +17,7 @@ vi.mock('@svitlo/ui-kit/lesson', () => ({
     onRetryContent: () => void;
   }) => (
     <div data-testid="lesson-ready">
-      {contentError ? (
-        <button onClick={onRetryContent}>retry</button>
-      ) : contentLoading ? (
-        'preparing'
-      ) : (
-        'ready'
-      )}
+      {contentError ? <button onClick={onRetryContent}>retry</button> : contentLoading ? 'preparing' : 'ready'}
     </div>
   ),
 }));

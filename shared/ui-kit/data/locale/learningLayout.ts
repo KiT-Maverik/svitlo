@@ -2,7 +2,7 @@ import type { UiKit_Component_Locale } from './locale.types';
 
 const en = {
   preparingLesson: 'Preparing your lesson…',
-  preparingLessonError: 'We couldn\'t prepare this lesson.',
+  preparingLessonError: "We couldn't prepare this lesson.",
   brand: 'Svitlo',
   navigation: {
     top: 'Top learning navigation',
