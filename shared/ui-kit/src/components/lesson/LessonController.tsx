@@ -33,7 +33,12 @@ const EMPTY_EDITABLE: readonly EditableSectionParam[] = [];
 export type EditableSectionParam = keyof SectionParams;
 type TopBarState = { title: string };
 type StepperState = { visible: boolean };
-type SectionState = { step: number; testDone: boolean; completedCheckpoints: Readonly<Record<string, true>> };
+type SectionState = {
+  step: number;
+  testDone: boolean;
+  completedQuizIds: Readonly<Record<string, true>>;
+  completedCheckpoints: Readonly<Record<string, true>>;
+};
 type BottomBarState = { nextDisabled: boolean; backDisabled: boolean; skipDisabled: boolean };
 type Runtime = {
   params: LessonView['parameters'];
@@ -48,6 +53,7 @@ type Command =
   | { type: 'stepper'; patch: Partial<StepperState> }
   | { type: 'bottomBar'; patch: Partial<BottomBarState> }
   | { type: 'next' | 'back' | 'skip' | 'testDone' }
+  | { type: 'quizDone'; sectionId: string }
   | { type: 'visit'; step: number }
   | { type: 'restore'; step: number; testDone: boolean }
   | { type: 'checkpoint'; sectionId: string; checkpointId: string };
@@ -61,9 +67,8 @@ export type LessonActions<CustomEvents extends string = never> = {
   back: () => void;
   skip: () => void;
   goToSection: (step: number) => void;
-  completeQuiz: () => void;
-  /** A scored assessment may report failure. The generic QuestionRenderer only reports completion. */
-  failQuiz: () => void;
+  completeQuiz: (sectionId?: string) => void;
+  failQuiz: (sectionId?: string) => void;
   /** Only author-declared custom events may be emitted by scenes; lifecycle events are controller-owned. */
   publishEvent: (eventId: CustomEvents) => void;
   completeCheckpoint: (sectionId: string, checkpointId: string) => void;
@@ -97,6 +102,7 @@ const BottomBarContext = createContext<{ nextDisabled: boolean; backDisabled: bo
 );
 
 function requiredCheckpointIds(section: LessonView['sections'][number]): string[] {
+  if (section.type === 'quiz') return [];
   return section.content
     .filter(
       block =>
@@ -110,7 +116,7 @@ function requiredCheckpointIds(section: LessonView['sections'][number]): string[
 function canLeaveSection(state: Runtime, response: LessonView, index: number): boolean {
   const section = response.sections[index];
   if (!section) return false;
-  if (section.type === 'quiz' && !state.section.testDone) return false;
+  if (section.type === 'quiz' && section.parameters.isBlocker && !state.section.completedQuizIds[section.id]) return false;
   return requiredCheckpointIds(section).every(id => state.section.completedCheckpoints[section.id + '/' + id]);
 }
 
@@ -151,6 +157,14 @@ function reduce(
       return { ...state, bottomBar: { ...state.bottomBar, ...action.patch } };
     case 'testDone':
       return state.section.testDone ? state : { ...state, section: { ...state.section, testDone: true } };
+    case 'quizDone': {
+      if (!response.sections.some(section => section.type === 'quiz' && section.id === action.sectionId)) return state;
+      const completedQuizIds = { ...state.section.completedQuizIds, [action.sectionId]: true as const };
+      const allQuizzesFinished = response.sections
+        .filter(section => section.type === 'quiz')
+        .every(section => completedQuizIds[section.id]);
+      return { ...state, section: { ...state.section, completedQuizIds, testDone: allQuizzesFinished } };
+    }
     case 'checkpoint': {
       if (
         !response.sections.some(
@@ -184,7 +198,7 @@ function reduce(
         action.type === 'skip' &&
         (!state.params.sections.allowSkipping ||
           !response.sections[current]?.skippable ||
-          response.sections[current]?.type === 'quiz' ||
+          (response.sections[current]?.type === 'quiz' && response.sections[current].parameters.isBlocker) ||
           state.bottomBar.skipDisabled)
       )
         return state;
@@ -265,9 +279,7 @@ const MemoSection = memo(function LessonSection({
     [completedCheckpoints, section?.id],
   );
   if (!section) return null;
-  const blocks = section.content.filter(
-    (block): block is Exclude<typeof block, { type: 'quiz' }> => block.type !== 'quiz',
-  );
+  const blocks = section.type === 'quiz' ? [] : section.content;
   return (
     <div className={styles.stage}>
       <Container maxWidth="md" sx={{ py: { xs: 3, md: 6 } }}>
@@ -275,10 +287,11 @@ const MemoSection = memo(function LessonSection({
           <QuestionRenderer
             key={section.id}
             questions={section.questions}
+            parameters={section.parameters}
             language={response.locale.code}
             sceneRegistry={sceneRegistry}
             messages={messages}
-            onComplete={actions.completeQuiz}
+            onComplete={result => result.passed ? actions.completeQuiz(section.id) : actions.failQuiz(section.id)}
           />
         ) : (
           <ContentBlockRenderer
@@ -318,7 +331,7 @@ export function LessonController({
       params: value.parameters,
       topBar: { title: value.title },
       stepper: { visible: true },
-      section: { step: 0, testDone: false, completedCheckpoints: {} },
+      section: { step: 0, testDone: false, completedQuizIds: {}, completedCheckpoints: {} },
       bottomBar: { nextDisabled: false, backDisabled: false, skipDisabled: false },
     }),
   );
@@ -328,7 +341,6 @@ export function LessonController({
     [response.events],
   );
   const availableEventsRef = useRef(availableEvents);
-  const quizEmitted = useRef(false);
   const lessonStarted = useRef(false);
   const lessonFinished = useRef(false);
   const latest = useRef(state);
@@ -348,14 +360,14 @@ export function LessonController({
   );
 
   const finishQuiz = useCallback(
-    (passed: boolean) => {
-      if (quizEmitted.current) return;
-      quizEmitted.current = true;
-      dispatch({ type: 'testDone' });
+    (sectionId: string | undefined, passed: boolean) => {
+      const id = sectionId ?? response.sections.find(section => section.type === 'quiz')?.id;
+      if (!id) return;
+      dispatch({ type: 'quizDone', sectionId: id });
       emit('quizCompleted');
       if (!passed) emit('quizFailed');
     },
-    [emit],
+    [emit, response.sections],
   );
 
   const effectiveEvents = useMemo(
@@ -374,7 +386,7 @@ export function LessonController({
     const finalStep = response.sections.length - 1;
     if (
       state.section.step !== finalStep ||
-      (response.sections.some(item => item.type === 'quiz') && !state.section.testDone) ||
+      
       !canLeaveSection(state, response, finalStep)
     )
       return;
@@ -392,8 +404,8 @@ export function LessonController({
       back: () => dispatch({ type: 'back' }),
       skip: () => dispatch({ type: 'skip' }),
       goToSection: step => dispatch({ type: 'visit', step }),
-      completeQuiz: () => finishQuiz(true),
-      failQuiz: () => finishQuiz(false),
+      completeQuiz: sectionId => finishQuiz(sectionId, true),
+      failQuiz: sectionId => finishQuiz(sectionId, false),
       publishEvent: eventId => {
         if (DEFAULT_LESSON_EVENTS.some(builtin => builtin === eventId)) {
           throw new Error('Built-in lesson events can only be emitted by the controller');
@@ -451,7 +463,7 @@ export function LessonController({
       state.bottomBar.skipDisabled ||
       !state.params.sections.allowSkipping ||
       !current?.skippable ||
-      current.type === 'quiz' ||
+      (current.type === 'quiz' && (current.parameters.isBlocker || !current.parameters.interaction.skippable)) ||
       nextDisabled;
     return { nextDisabled, skipDisabled, backDisabled: state.bottomBar.backDisabled };
   }, [state.bottomBar, state.section, state.params.sections.allowSkipping, response]);
@@ -493,9 +505,9 @@ export function LessonController({
   const skippableSteps = useMemo(
     () =>
       response.sections.map(
-        (item, index) => index !== quizIndex && state.params.sections.allowSkipping && !!item.skippable,
+        item => state.params.sections.allowSkipping && !!item.skippable && (item.type !== 'quiz' || (!item.parameters.isBlocker && item.parameters.interaction.skippable)),
       ),
-    [response.sections, quizIndex, state.params.sections.allowSkipping],
+    [response.sections, state.params.sections.allowSkipping],
   );
   return (
     <ActionsContext.Provider value={actions}>
