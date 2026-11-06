@@ -155,7 +155,7 @@ export function QuestionRenderer({
             </Box>
           ))}
           {stepper && (
-            <Stack direction="row" justifyContent="space-between">
+            <Stack direction="row" sx={{ justifyContent: "space-between" }}>
               <Button disabled={active === 0} onClick={() => setCurrentIndex(active - 1)}>
                 {messages.learningLayout.actions.previous}
               </Button>
