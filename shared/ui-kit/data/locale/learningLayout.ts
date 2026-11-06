@@ -8,7 +8,7 @@ const en = {
     top: 'Top learning navigation',
     bottom: 'Bottom learning navigation',
     topics: 'Topic list',
-    settings: 'Settings',
+    settings: 'Quick settings',
   },
   actions: {
     openTopics: 'Open topic list',
@@ -43,7 +43,7 @@ const zh: LearningLayout_Locale = {
     top: '顶部学习导航',
     bottom: '底部学习导航',
     topics: '主题列表',
-    settings: '设置',
+    settings: '快捷设置',
   },
   actions: {
     openTopics: '打开主题列表',
@@ -76,7 +76,7 @@ const hi: LearningLayout_Locale = {
     top: 'ऊपरी अध्ययन नेविगेशन',
     bottom: 'निचला अध्ययन नेविगेशन',
     topics: 'विषयों की सूची',
-    settings: 'सेटिंग्स',
+    settings: 'त्वरित सेटिंग्स',
   },
   actions: {
     openTopics: 'विषयों की सूची खोलें',
@@ -109,7 +109,7 @@ const es: LearningLayout_Locale = {
     top: 'Navegación superior de aprendizaje',
     bottom: 'Navegación inferior de aprendizaje',
     topics: 'Lista de temas',
-    settings: 'Configuración',
+    settings: 'Ajustes rápidos',
   },
   actions: {
     openTopics: 'Abrir la lista de temas',
@@ -142,7 +142,7 @@ const ar: LearningLayout_Locale = {
     top: 'التنقل العلوي للتعلّم',
     bottom: 'التنقل السفلي للتعلّم',
     topics: 'قائمة الموضوعات',
-    settings: 'الإعدادات',
+    settings: 'الإعدادات السريعة',
   },
   actions: {
     openTopics: 'فتح قائمة الموضوعات',
@@ -175,7 +175,7 @@ const fr: LearningLayout_Locale = {
     top: 'Navigation supérieure de l’apprentissage',
     bottom: 'Navigation inférieure de l’apprentissage',
     topics: 'Liste des sujets',
-    settings: 'Paramètres',
+    settings: 'Paramètres rapides',
   },
   actions: {
     openTopics: 'Ouvrir la liste des sujets',
@@ -208,7 +208,7 @@ const bn: LearningLayout_Locale = {
     top: 'শেখার ওপরের নেভিগেশন',
     bottom: 'শেখার নিচের নেভিগেশন',
     topics: 'বিষয়ের তালিকা',
-    settings: 'সেটিংস',
+    settings: 'দ্রুত সেটিংস',
   },
   actions: {
     openTopics: 'বিষয়ের তালিকা খুলুন',
@@ -241,7 +241,7 @@ const pt: LearningLayout_Locale = {
     top: 'Navegação superior de aprendizagem',
     bottom: 'Navegação inferior de aprendizagem',
     topics: 'Lista de temas',
-    settings: 'Configurações',
+    settings: 'Configurações rápidas',
   },
   actions: {
     openTopics: 'Abrir a lista de temas',
@@ -274,7 +274,7 @@ const ur: LearningLayout_Locale = {
     top: 'سیکھنے کی بالائی نیویگیشن',
     bottom: 'سیکھنے کی زیریں نیویگیشن',
     topics: 'موضوعات کی فہرست',
-    settings: 'ترتیبات',
+    settings: 'فوری ترتیبات',
   },
   actions: {
     openTopics: 'موضوعات کی فہرست کھولیں',
@@ -307,7 +307,7 @@ const id: LearningLayout_Locale = {
     top: 'Navigasi belajar atas',
     bottom: 'Navigasi belajar bawah',
     topics: 'Daftar topik',
-    settings: 'Pengaturan',
+    settings: 'Pengaturan cepat',
   },
   actions: {
     openTopics: 'Buka daftar topik',
@@ -340,7 +340,7 @@ const de: LearningLayout_Locale = {
     top: 'Obere Lernnavigation',
     bottom: 'Untere Lernnavigation',
     topics: 'Themenliste',
-    settings: 'Einstellungen',
+    settings: 'Schnelleinstellungen',
   },
   actions: {
     openTopics: 'Themenliste öffnen',
@@ -373,7 +373,7 @@ const ja: LearningLayout_Locale = {
     top: '上部の学習ナビゲーション',
     bottom: '下部の学習ナビゲーション',
     topics: 'トピック一覧',
-    settings: '設定',
+    settings: 'クイック設定',
   },
   actions: {
     openTopics: 'トピック一覧を開く',
@@ -406,7 +406,7 @@ const ko: LearningLayout_Locale = {
     top: '상단 학습 탐색',
     bottom: '하단 학습 탐색',
     topics: '주제 목록',
-    settings: '설정',
+    settings: '빠른 설정',
   },
   actions: {
     openTopics: '주제 목록 열기',
@@ -439,7 +439,7 @@ const tr: LearningLayout_Locale = {
     top: 'Üst öğrenme gezintisi',
     bottom: 'Alt öğrenme gezintisi',
     topics: 'Konu listesi',
-    settings: 'Ayarlar',
+    settings: 'Hızlı ayarlar',
   },
   actions: {
     openTopics: 'Konu listesini aç',
@@ -472,7 +472,7 @@ const vi: LearningLayout_Locale = {
     top: 'Thanh điều hướng học tập phía trên',
     bottom: 'Thanh điều hướng học tập phía dưới',
     topics: 'Danh sách chủ đề',
-    settings: 'Cài đặt',
+    settings: 'Cài đặt nhanh',
   },
   actions: {
     openTopics: 'Mở danh sách chủ đề',
@@ -505,7 +505,7 @@ const ta: LearningLayout_Locale = {
     top: 'மேல் கற்றல் வழிசெலுத்தல்',
     bottom: 'கீழ் கற்றல் வழிசெலுத்தல்',
     topics: 'தலைப்புப் பட்டியல்',
-    settings: 'அமைப்புகள்',
+    settings: 'விரைவு அமைப்புகள்',
   },
   actions: {
     openTopics: 'தலைப்புப் பட்டியலைத் திற',
@@ -538,7 +538,7 @@ const te: LearningLayout_Locale = {
     top: 'ఎగువ అభ్యాస నావిగేషన్',
     bottom: 'దిగువ అభ్యాస నావిగేషన్',
     topics: 'అంశాల జాబితా',
-    settings: 'సెట్టింగ్‌లు',
+    settings: 'శీఘ్ర సెట్టింగ్‌లు',
   },
   actions: {
     openTopics: 'అంశాల జాబితా తెరవండి',
@@ -571,7 +571,7 @@ const mr: LearningLayout_Locale = {
     top: 'वरचे अध्ययन नेव्हिगेशन',
     bottom: 'खालचे अध्ययन नेव्हिगेशन',
     topics: 'विषयांची यादी',
-    settings: 'सेटिंग्ज',
+    settings: 'झटपट सेटिंग्ज',
   },
   actions: {
     openTopics: 'विषयांची यादी उघडा',
@@ -604,7 +604,7 @@ const ms: LearningLayout_Locale = {
     top: 'Navigasi pembelajaran atas',
     bottom: 'Navigasi pembelajaran bawah',
     topics: 'Senarai topik',
-    settings: 'Tetapan',
+    settings: 'Tetapan pantas',
   },
   actions: {
     openTopics: 'Buka senarai topik',
@@ -637,7 +637,7 @@ const he: LearningLayout_Locale = {
     top: 'ניווט למידה עליון',
     bottom: 'ניווט למידה תחתון',
     topics: 'רשימת נושאים',
-    settings: 'הגדרות',
+    settings: 'הגדרות מהירות',
   },
   actions: {
     openTopics: 'פתיחת רשימת הנושאים',
@@ -670,7 +670,7 @@ const pl: LearningLayout_Locale = {
     top: 'Górna nawigacja nauki',
     bottom: 'Dolna nawigacja nauki',
     topics: 'Lista tematów',
-    settings: 'Ustawienia',
+    settings: 'Szybkie ustawienia',
   },
   actions: {
     openTopics: 'Otwórz listę tematów',
@@ -703,7 +703,7 @@ const uk: LearningLayout_Locale = {
     top: 'Верхня навігація навчання',
     bottom: 'Нижня навігація навчання',
     topics: 'Список тем',
-    settings: 'Налаштування',
+    settings: 'Швидкі налаштування',
   },
   actions: {
     openTopics: 'Відкрити список тем',
@@ -736,7 +736,7 @@ const lt: LearningLayout_Locale = {
     top: 'Viršutinė mokymosi navigacija',
     bottom: 'Apatinė mokymosi navigacija',
     topics: 'Temų sąrašas',
-    settings: 'Nustatymai',
+    settings: 'Spartieji nustatymai',
   },
   actions: {
     openTopics: 'Atverti temų sąrašą',
@@ -769,7 +769,7 @@ const lv: LearningLayout_Locale = {
     top: 'Augšējā mācību navigācija',
     bottom: 'Apakšējā mācību navigācija',
     topics: 'Tēmu saraksts',
-    settings: 'Iestatījumi',
+    settings: 'Ātrie iestatījumi',
   },
   actions: {
     openTopics: 'Atvērt tēmu sarakstu',
@@ -802,7 +802,7 @@ const et: LearningLayout_Locale = {
     top: 'Ülemine õppenavigeerimine',
     bottom: 'Alumine õppenavigeerimine',
     topics: 'Teemade loend',
-    settings: 'Seaded',
+    settings: 'Kiirseaded',
   },
   actions: {
     openTopics: 'Ava teemade loend',
@@ -835,7 +835,7 @@ const be: LearningLayout_Locale = {
     top: 'Верхняя навігацыя навучаньня',
     bottom: 'Ніжняя навігацыя навучаньня',
     topics: 'Сьпіс тэмаў',
-    settings: 'Налады',
+    settings: 'Хуткія налады',
   },
   actions: {
     openTopics: 'Адкрыць сьпіс тэмаў',
@@ -868,7 +868,7 @@ const ka: LearningLayout_Locale = {
     top: 'სასწავლო ზედა ნავიგაცია',
     bottom: 'სასწავლო ქვედა ნავიგაცია',
     topics: 'თემების სია',
-    settings: 'პარამეტრები',
+    settings: 'სწრაფი პარამეტრები',
   },
   actions: {
     openTopics: 'თემების სიის გახსნა',
@@ -901,7 +901,7 @@ const kk: LearningLayout_Locale = {
     top: 'Жоғарғы оқу навигациясы',
     bottom: 'Төменгі оқу навигациясы',
     topics: 'Тақырыптар тізімі',
-    settings: 'Параметрлер',
+    settings: 'Жылдам параметрлер',
   },
   actions: {
     openTopics: 'Тақырыптар тізімін ашу',
@@ -935,7 +935,7 @@ const qm: LearningLayout_Locale = {
     top: 'Oquvnıñ yuqarı navigatsiyası',
     bottom: 'Oquvnıñ aşağı navigatsiyası',
     topics: 'Mevzular cedveli',
-    settings: 'Ayarlamalar',
+    settings: 'Tez ayarlamalar',
   },
   actions: {
     openTopics: 'Mevzular cedvelini aç',
