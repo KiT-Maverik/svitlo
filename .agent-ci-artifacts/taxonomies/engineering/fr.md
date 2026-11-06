@@ -314,7 +314,7 @@ Skills: 4
 
 **User-friendly description (fr):** Explore les mécanismes de fixation inspirés des organismes vivants.
 
-##### Profilage biomimétique
+##### Formes profilées biomimétiques
 
 [biomimeticStreamlining.data.ts](../../../content/engineering/data/skills/biomimicry/bioInspiredTechnologies/skills/biomimeticStreamlining.data.ts)
 
@@ -532,7 +532,7 @@ Groups: 5 · Skills: 27
 
 **Methodological description (English):** Circuits and electronic hardware distribute power, process signals and connect physical controls to useful outputs. The subject here is device architecture and correct component integration, not the scientific derivation of electromagnetic laws.
 
-**User-friendly description (fr):** Découvre comment construire, mesurer et protéger les équipements électriques et électroniques.
+**User-friendly description (fr):** Découvre comment les équipements électriques et électroniques sont construits, mesurés et protégés.
 
 #### Construction de circuits
 

@@ -22,7 +22,7 @@ Groups: 4 · Skills: 18
 
 **Methodological description (English):** Robotic and automated machinery converts physical observations into controlled actions. Engineering competencies concern sensors, actuators, feedback, mechanism geometry and dependable operation; general algorithms and software authoring remain in Informatics.
 
-**User-friendly description (mr):** सेन्सर, नियंत्रक व ॲक्च्युएटर भौतिक प्रणालींना कसा प्रतिसाद देऊ देतात ते जाणून घ्या.
+**User-friendly description (mr):** सेन्सर, नियंत्रक आणि ॲक्च्युएटर भौतिक प्रणालींना प्रतिसाद देण्यास कसे सक्षम करतात ते जाणून घ्या.
 
 #### ड्राइव्ह आणि प्रवर्तक
 
@@ -294,7 +294,7 @@ Groups: 2 · Skills: 8
 
 **Methodological description (English):** Nature-inspired engineering abstracts useful functional strategies from living systems and subjects technical adaptations to testing. Evolution is not intentional design, and merely studying an organism is not itself an engineering competency.
 
-**User-friendly description (mr):** निसर्गाच्या काम करण्याच्या पद्धती उपयुक्त तांत्रिक रचनांना कशी प्रेरणा देतात ते जाणून घ्या.
+**User-friendly description (mr):** निसर्गाच्या कार्यपद्धती उपयुक्त तांत्रिक रचनांना कशा प्रेरणा देतात ते जाणून घ्या.
 
 #### जैवप्रेरित तंत्रज्ञान
 
@@ -328,7 +328,7 @@ Skills: 4
 
 **Methodological description (English):** Identify shells, cellular patterns or branching that motivate efficient material placement.
 
-**User-friendly description (mr):** नैसर्गिक रचना हलक्या पण मजबूत अभियांत्रिकी आकारांना कशी प्रेरणा देतात ते पाहा.
+**User-friendly description (mr):** नैसर्गिक रचना हलक्या पण मजबूत अभियांत्रिकी आकारांना कशा प्रेरणा देतात ते पाहा.
 
 ##### स्वतः स्वच्छ होणारे पृष्ठभाग
 
@@ -808,7 +808,7 @@ Groups: 3 · Skills: 12
 
 **Methodological description (English):** Useful energy services depend on conversion, storage, power delivery and load management. The engineering emphasis is on connected equipment and operational limitations, while the principles of energy conservation belong to Physics.
 
-**User-friendly description (mr):** अभियांत्रिकी प्रणाली ऊर्जा कशी निर्माण, साठवून, वाहून आणि वापरतात ते जाणून घ्या.
+**User-friendly description (mr):** अभियांत्रिकी प्रणाली ऊर्जा कशी निर्माण करतात, साठवतात, वाहून नेतात आणि वापरतात ते जाणून घ्या.
 
 #### ऊर्जा कार्यक्षमता
 
@@ -1080,7 +1080,7 @@ Skills: 5
 
 **User-friendly description (mr):** भाग आणि ऊर्जा, पदार्थ किंवा संकेतांचा प्रवाह दाखवणारी आकृती काढ.
 
-##### रचनेचे कारणमीमांसा
+##### रचनेमागील कारणमीमांसा
 
 [designRationale.data.ts](../../../content/engineering/data/skills/engineeringDesign/representationsAndPrototypes/skills/designRationale.data.ts)
 

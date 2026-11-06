@@ -22,7 +22,7 @@ Groups: 4 · Skills: 18
 
 **Methodological description (English):** Robotic and automated machinery converts physical observations into controlled actions. Engineering competencies concern sensors, actuators, feedback, mechanism geometry and dependable operation; general algorithms and software authoring remain in Informatics.
 
-**User-friendly description (ur):** جانیں کہ سینسر، کنٹرولر اور محرکات جسمانی نظاموں کو کیسے ردعمل دیتے ہیں۔
+**User-friendly description (ur):** جانیں کہ سینسر، کنٹرولر اور محرکات جسمانی نظاموں کو ردِعمل دینے کے قابل کیسے بناتے ہیں۔
 
 #### ڈرائیو اور محرکات
 
@@ -72,7 +72,7 @@ Skills: 5
 
 **Methodological description (English):** Identify the use of position feedback to command and maintain an actuator's location.
 
-**User-friendly description (ur):** سمجھیں کہ سروو میکانزم مقام کیسے قابو کرتا ہے۔
+**User-friendly description (ur):** سمجھیں کہ سروو میکانزم کسی حصے کی پوزیشن کو کیسے کنٹرول کرتا ہے۔
 
 #### فیڈبیک اور کنٹرول
 
@@ -294,7 +294,7 @@ Groups: 2 · Skills: 8
 
 **Methodological description (English):** Nature-inspired engineering abstracts useful functional strategies from living systems and subjects technical adaptations to testing. Evolution is not intentional design, and merely studying an organism is not itself an engineering competency.
 
-**User-friendly description (ur):** جانیں کہ قدرت کے کام کرنے کے طریقے مفید تکنیکی ڈیزائن کیسے پیدا کرتے ہیں۔
+**User-friendly description (ur):** جانیں کہ قدرتی طریقۂ کار مفید تکنیکی ڈیزائن بنانے کی ترغیب کیسے دیتے ہیں۔
 
 #### حیاتیاتی نمونوں سے متاثر ٹیکنالوجیاں
 
@@ -322,7 +322,7 @@ Skills: 4
 
 **User-friendly description (ur):** پہچانیں کہ جانداروں کی شکلیں تکنیکی ڈیزائن میں سیال مزاحمت کیسے کم کرتی ہیں۔
 
-##### ہلکے اور مضبوط حیاتیاتی ساخت سے متاثر ڈھانچے
+##### حیاتیاتی ساختوں سے متاثر ہلکے مگر مضبوط ڈھانچے
 
 [lightweightBioInspiredStructures.data.ts](../../../content/engineering/data/skills/biomimicry/bioInspiredTechnologies/skills/lightweightBioInspiredStructures.data.ts)
 
@@ -2018,7 +2018,7 @@ Skills: 5
 
 **User-friendly description (ur):** شواہد، حفاظت اور سماجی نتائج کی بنیاد پر انجینئرنگ کے فیصلوں کا جواز دیں۔
 
-#### حیاتی دور اور وسائل
+#### مصنوعات کا دورِ حیات اور وسائل
 
 Skills: 5
 
@@ -2680,7 +2680,7 @@ Skills: 4
 
 **User-friendly description (ur):** جانیں کہ خلائی جہاز عام فضائی حالات سے باہر کیسے کام کرتے ہیں۔
 
-##### فضائی کرۂ ہوائی میں دوبارہ داخلے کے دوران تحفظ
+##### فضا میں دوبارہ داخلے کے دوران تحفظ
 
 [atmosphericReEntryProtection.data.ts](../../../content/engineering/data/skills/transportationAndAerospaceEngineering/spacecraft/skills/atmosphericReEntryProtection.data.ts)
 

@@ -440,7 +440,7 @@ Skills: 5
 
 **User-friendly description (bn):** প্রেরণ, বিস্তার ও গ্রহণের মধ্য দিয়ে সংকেতের পথ অনুসরণ করো।
 
-#### নৌচালনা ও দিকনির্ণয় যন্ত্র
+#### দিকনির্দেশনা ও অবস্থান নির্ণয়ের যন্ত্র
 
 Skills: 3
 
@@ -1876,7 +1876,7 @@ Skills: 4
 
 **User-friendly description (bn):** পদার্থ আলাদা করা, বিক্রিয়া ঘটানো, গরম করা ও নিরাপদে ধারণ করার যন্ত্রগুলো জানো।
 
-##### রাসায়নিক বিক্রিয়ক ব্যবস্থা
+##### রাসায়নিক রিঅ্যাক্টর ব্যবস্থা
 
 [chemicalReactorSystems.data.ts](../../../content/engineering/data/skills/processAndAgriculturalEngineering/industrialProcessEquipment/skills/chemicalReactorSystems.data.ts)
 

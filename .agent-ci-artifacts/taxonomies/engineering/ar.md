@@ -768,7 +768,7 @@ Skills: 4
 
 **User-friendly description (ar):** اكتشف توصيلات العتاد المستخدمة في أجهزة التحكم المدمجة.
 
-##### توافق مشغلات المحركات
+##### توافق دوائر قيادة المشغلات
 
 [actuatorDriverCompatibility.data.ts](../../../content/engineering/data/skills/electricalAndElectronicEngineering/embeddedHardware/skills/actuatorDriverCompatibility.data.ts)
 

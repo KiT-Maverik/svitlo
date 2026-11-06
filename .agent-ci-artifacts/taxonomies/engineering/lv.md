@@ -624,7 +624,7 @@ Skills: 9
 
 **Methodological description (English):** Identify the physical image-forming panel, drive electronics and light-emission or modulation mechanisms independently from displayed software content.
 
-**User-friendly description (lv):** Uzzini, kā ekrāni pārvērš elektroniskos signālus redzamos bildēs.
+**User-friendly description (lv):** Uzzini, kā ekrāni pārvērš elektroniskos signālus redzamos attēlos.
 
 ##### Ievades ierīču aparatūra
 
@@ -842,7 +842,7 @@ Skills: 3
 
 **Methodological description (English):** Recognize why generation, storage and demand must be coordinated across time.
 
-**User-friendly description (lv):** Saproti, kā piedāvājuma un pieprasījuma līdzsvars palīdz elektros sistēmām darboties.
+**User-friendly description (lv):** Saproti, kā piedāvājuma un pieprasījuma līdzsvars palīdz elektroenerģijas sistēmām darboties.
 
 #### Elektroenerģijas ražošana
 
@@ -2288,7 +2288,7 @@ Skills: 6
 
 **User-friendly description (lv):** Izskaidro, kā pamati pārnes būves svaru uz grunti.
 
-##### Konstrukciju atsaistes
+##### Konstrukciju diagonālās saites
 
 [structuralBracing.data.ts](../../../content/engineering/data/skills/structuresAndConstruction/structuralElements/skills/structuralBracing.data.ts)
 
@@ -2414,7 +2414,7 @@ Skills: 4
 
 **Methodological description (English):** Operating systems face wear and faults, so diagnosis and continued service require explicit understanding of possible failure paths.
 
-**User-friendly description (lv):** Uzzini, kā inženieri novērš atteices un uztur drošu darbību.
+**User-friendly description (lv):** Uzzini, kā inženieri risina atteices un nodrošina sistēmu uzticamu darbību.
 
 ##### Detaļas un sistēmas atteices atšķiršana
 
@@ -2448,7 +2448,7 @@ Skills: 4
 
 **User-friendly description (lv):** Izseko kļūmes pazīmes savstarpēji atkarīgos komponentos.
 
-### Siltuma un šķidrumu iekārtas
+### Siltuma, šķidrumu un gāzu iekārtas
 
 Groups: 3 · Skills: 11
 

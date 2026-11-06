@@ -956,7 +956,7 @@ Skills: 5
 
 **User-friendly description (id):** Pelajari cara membandingkan beragam cara memenuhi kebutuhan teknis.
 
-##### Mengantisipasi Cara Kegagalan
+##### Mengantisipasi Mode Kegagalan
 
 [anticipateFailureModes.data.ts](../../../content/engineering/data/skills/engineeringDesign/conceptSelection/skills/anticipateFailureModes.data.ts)
 
@@ -1240,7 +1240,7 @@ Skills: 4
 
 **User-friendly description (id):** Periksa apakah produk menjelaskan dengan jelas hasil tindakan kontrolnya.
 
-##### Menguji Kegunaan Produk Fisik
+##### Menguji Kemudahan Penggunaan Produk Fisik
 
 [testPhysicalProductUsability.data.ts](../../../content/engineering/data/skills/humanCenteredEngineeringAndErgonomics/physicalInteraction/skills/testPhysicalProductUsability.data.ts)
 
