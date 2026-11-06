@@ -39,9 +39,9 @@ describe('UserCabinet mockup', () => {
     const user = userEvent.setup();
     render(<UserCabinet {...userCabinetDemo} />);
     await user.click(screen.getByRole('tab', { name: messages.tabs.security }));
-    const current = screen.getByLabelText(messages.currentPassword);
-    const password = screen.getByLabelText(messages.newPassword);
-    const confirm = screen.getByLabelText(messages.confirmPassword);
+    const current = screen.getByLabelText(new RegExp(messages.currentPassword));
+    const password = screen.getByLabelText(new RegExp(messages.newPassword));
+    const confirm = screen.getByLabelText(new RegExp(messages.confirmPassword));
     expect(current).toHaveAttribute('type', 'password');
     expect(password).toHaveAttribute('type', 'password');
 
@@ -63,10 +63,10 @@ describe('UserCabinet mockup', () => {
   it('discards password inputs when switching pages', async () => {
     const user = userEvent.setup();
     render(<UserCabinet {...userCabinetDemo} initialTab="security" />);
-    await user.type(screen.getByLabelText(messages.currentPassword), 'temporary');
+    await user.type(screen.getByLabelText(new RegExp(messages.currentPassword)), 'temporary');
     await user.click(screen.getByRole('tab', { name: messages.tabs.accounts }));
     await user.click(screen.getByRole('tab', { name: messages.tabs.security }));
-    expect(screen.getByLabelText(messages.currentPassword)).toHaveValue('');
+    expect(screen.getByLabelText(new RegExp(messages.currentPassword))).toHaveValue('');
   });
 
   it('shows linked accounts as read-only profiles distinct from the current account', async () => {
