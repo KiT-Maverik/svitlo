@@ -1,6 +1,6 @@
 import { fireEvent, render, screen, within } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { enUiKitMessages } from '../testing/uiKitMessages.unit.fx';
+import { enUiKitMessages } from '../../testing/uiKitMessages.unit.fx';
 import LearningLayout from '../layout/LearningLayout/LearningLayout';
 import type { LessonLearningLayoutProps } from '../layout/LearningLayout/createLessonLearningLayout';
 import { Lesson, type LessonView } from './Lesson';
