@@ -54,6 +54,14 @@ content or compile code. It preserves resource URLs, validates paths and writes
 safe stale-file cleanup. It leaves UI Kit flags, UI Kit translations, host favicons,
 Electron icons and Capacitor assets alone.
 
+Book-owned media may be placed in `static/` (for example
+`static/whale.png`, `static/barabaka.mp4`, `static/demo-tone.wav`) or
+`public/`. The textbook build stages them under
+`dist/static/textbooks/playground/`, and the Publish CLI makes them available
+at `/textbooks/playground/<filename>`. An identical path in both source folders
+is rejected instead of silently overwritten. YouTube embeds require external
+connectivity; the other gallery media are distributed with the package.
+
 Book resources use `/data/pages/lessons`,
 `/data/pages/skillAnalytics` and `/textbooks/playground`.
 UI Kit global message JSON and SVG flags remain host-staged from the UI Kit package.
@@ -75,7 +83,10 @@ The Playground textbook now also authors a demo Course in
 `data/courses/playgroundLightCourse.data.ts` with two lightweight Lesson copies,
 a Module, a Chapter, a narrative Episode, and a course-local section reorder
 for the existing `howLightMoves` Lesson. The Lesson's canonical files and
-Definition are not modified.
+Definition are not modified. The Course-only override also inserts a
+`contentBlockGallery` Section that exercises all nine supported ContentBlock
+renderers: text, Markdown, code, image, video, audio, YouTube, Scene and checkpoint.
+The standalone Lesson retains its original three Sections.
 
 The shared build pipeline automatically emits **separate** Course resources:
 

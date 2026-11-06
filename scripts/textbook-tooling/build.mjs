@@ -169,6 +169,16 @@ if (existsSync(sourcePublic)) {
     },
   });
 }
+// Keep textbook-owned static media in the same namespace as public assets.
+// Unlike host resources, these files belong to the compiled textbook package.
+for (const name of filesUnder(join(root, 'static'))) {
+  const destination = join(resources, 'textbooks', id, name);
+  if (existsSync(destination)) {
+    throw new Error('Duplicate textbook media path in public/ and static/: ' + name);
+  }
+  mkdirSync(dirname(destination), { recursive: true });
+  copyFileSync(join(root, 'static', name), destination);
+}
 const published = filesUnder(resources);
 for (const [source, prefix] of [
   ['data/lessons', 'data/pages/lessons/'],
