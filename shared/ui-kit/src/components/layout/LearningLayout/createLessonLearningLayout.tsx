@@ -2,12 +2,11 @@
 
 import type { UiKitMessages } from '#types/uiKitMessages';
 
-import type { ElementType } from 'react';
+import { useMemo, type ElementType } from 'react';
 import type { Locale } from '@svitlo/engine/localization';
 import LearningLayout, { type LearningLayoutProps } from './LearningLayout';
 import NavbarPreferences from './NavbarPreferences/NavbarPreferences';
 import { useColorScheme } from '@mui/material/styles';
-import { useLessonNavigation } from '../../lesson/LessonNavigation';
 
 export type LessonLearningLayoutProps = Pick<
   LearningLayoutProps,
@@ -19,6 +18,10 @@ export type LessonLearningLayoutProps = Pick<
   | 'contentLoading'
   | 'contentError'
   | 'onRetryContent'
+  | 'progress'
+  | 'actions'
+  | 'renderTopBar'
+  | 'renderBottomBar'
 > & { messages: UiKitMessages };
 
 export type LessonLearningLayoutBindings = {
@@ -39,11 +42,27 @@ export function createLessonLearningLayout(bindings: LessonLearningLayoutBinding
     contentLoading,
     contentError,
     onRetryContent,
+    progress,
+    actions,
+    renderTopBar,
+    renderBottomBar,
   }: LessonLearningLayoutProps) {
     const { locale, setLocale } = bindings.useLocale();
-    const { progress, dispatch } = useLessonNavigation();
     const { mode, systemMode, setMode } = useColorScheme();
 
+    const preferences = useMemo(
+      () => (
+        <NavbarPreferences
+          messages={messages.navbarPreferences}
+          locale={locale}
+          onLocaleChange={setLocale}
+          mode={mode}
+          systemMode={systemMode}
+          onThemeChange={setMode}
+        />
+      ),
+      [messages.navbarPreferences, locale, setLocale, mode, systemMode, setMode],
+    );
     return (
       <LearningLayout
         locale={locale}
@@ -56,21 +75,10 @@ export function createLessonLearningLayout(bindings: LessonLearningLayoutBinding
         topics={topics}
         skippableSteps={skippableSteps}
         quizStep={quizStep}
-        actions={{
-          back: () => dispatch({ type: 'back' }),
-          next: () => dispatch({ type: 'next' }),
-          skip: () => dispatch({ type: 'skip' }),
-        }}
-        preferences={
-          <NavbarPreferences
-            messages={messages.navbarPreferences}
-            locale={locale}
-            onLocaleChange={setLocale}
-            mode={mode}
-            systemMode={systemMode}
-            onThemeChange={setMode}
-          />
-        }
+        actions={actions}
+        renderTopBar={renderTopBar}
+        renderBottomBar={renderBottomBar}
+        preferences={preferences}
         linkComponent={bindings.linkComponent}
       >
         {children}

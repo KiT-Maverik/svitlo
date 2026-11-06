@@ -72,9 +72,10 @@ function PersistingLessonLayout(props: LessonLearningLayoutProps) {
             data.step >= 0 &&
             data.step <= progress.lastStep
           ) {
-            dispatch({ type: 'visit', step: data.step });
+            dispatch({ type: 'restore', step: data.step, testDone: data.testDone === true });
+          } else if (data.testDone === true) {
+            dispatch({ type: 'testDone' });
           }
-          if (data.testDone === true) dispatch({ type: 'testDone' });
         }
       }
     } catch {

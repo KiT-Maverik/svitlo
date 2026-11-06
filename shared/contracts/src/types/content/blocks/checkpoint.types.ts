@@ -35,6 +35,8 @@ type ContentBlock_Checkpoint_Settings = {
   iconPosition?: 'left' | 'right';
   chevronPosition?: 'left' | 'right';
   enableChecks?: boolean;
+  /** If true, completing all checkable items is required before leaving this section. */
+  requireCompletion?: boolean;
   renderAsGroup?: boolean;
 };
 
