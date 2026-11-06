@@ -39,7 +39,7 @@ export const persistentDataStorage_Skill_Data = buildSkillConfig({
       'Relate solid-state or magnetic storage media and controllers to retention, transfer, access performance and device reliability.',
     frontend: {
       en: 'Compare physical media that retain information without power.',
-      zh: '了解为何某些存储装置在断电后仍能保留数据。',
+      zh: '比较断电后仍能保存信息的不同物理存储介质。',
       hi: 'समझें कि कुछ भंडारण उपकरण बिजली बंद होने पर भी डेटा क्यों बचाए रखते हैं।',
       es: 'Comprende por qué ciertos dispositivos conservan datos sin energía.',
       ar: 'افهم لماذا تحتفظ بعض أجهزة التخزين بالبيانات بعد انقطاع الكهرباء.',
