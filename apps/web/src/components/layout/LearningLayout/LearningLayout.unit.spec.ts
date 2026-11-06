@@ -90,11 +90,13 @@ describe('Layouts', () => {
       window.localStorage.setItem('mui-mode', 'light');
       try {
         render(
-          createElement(
-            MuiThemeProvider,
-            { direction: 'ltr' },
-            createElement(LearningLayout, LearningLayout_fx.defaults, 'Lesson content'),
-          ),
+          createElement(MuiThemeProvider, {
+            direction: 'ltr',
+            children: createElement(LearningLayout, {
+              ...LearningLayout_fx.defaults,
+              children: 'Lesson content',
+            }),
+          }),
         );
 
         await userEvent.click(screen.getByRole('button', { name: aria.actions.openSettings }));
