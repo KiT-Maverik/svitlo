@@ -58,7 +58,13 @@ jobs:
           done
           npm run test:types --workspace @svitlo/math
       - name: Validate compiled public entrypoints and manifests
-        run: npm run packages:artifacts:check
+        run: |
+          node --test scripts/check-built-package-exports.spec.mjs
+          npm run packages:artifacts:check -- --packages \
+            shared/contracts shared/engine shared/indexdb shared/ui-kit \
+            shared/adapters/nextjs content/playground \
+            content/math content/physics content/psychology content/philosophy \
+            content/language-literature content/languages/ukrainian
       - name: Preserve real Math localization and content contract tests
         run: npm run test:components --workspace @svitlo/math
       - name: Verify isolated consumer, publication and cleanup for each textbook
