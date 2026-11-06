@@ -1,8 +1,8 @@
-import type { Course_Content, Lesson, Section } from '@svitlo/contracts/content';
+import { defineLessonData, type Course_Content, type Section } from '@svitlo/contracts/content';
 import { createLessonOverrides } from './createLessonOverrides';
 
 const languages = ['en', 'uk'] as const;
-const lesson = {
+const lesson = defineLessonData<typeof languages>()({
   id: 'lesson-id',
   slug: 'lesson',
   title: { en: 'Light', uk: 'Світло' },
@@ -24,7 +24,7 @@ const lesson = {
     },
     { id: 'practice-id', slug: 'practice', type: 'practice', title: 'Practice', navigationLabel: 'Practice', content: [] },
   ],
-} as const satisfies Lesson<'data', typeof languages>;
+});
 
 const inserted = {
   id: 'scenario-id',

@@ -1,11 +1,11 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import type { Lesson, Section } from '@svitlo/contracts/content';
+import { defineLessonData, type Lesson, type Section } from '@svitlo/contracts/content';
 import { createLessonOverrides } from './createLessonOverrides';
 
 const languages = ['en', 'uk'] as const;
 
-const lesson = {
+const lesson = defineLessonData<typeof languages>()({
   id: 'lesson-id',
   slug: 'light',
   title: { en: 'Light', uk: 'Світло' },
@@ -34,7 +34,7 @@ const lesson = {
       content: [],
     },
   ],
-} as const satisfies Lesson<'data', typeof languages>;
+});
 
 const courseScenario = {
   id: 'story-id',
@@ -96,7 +96,7 @@ describe('createLessonOverrides', () => {
 
   it('rejects missing, duplicate or unknown order entries, including duplicate IDs', () => {
     const builder = createLessonOverrides(lesson);
-    const dynamicOrder = builder.sections.setOrder as (items: readonly (string | Section<'data', typeof languages>)[]) => unknown;
+    const dynamicOrder = builder.sections.setOrder as unknown as (items: readonly (string | Section<'data', typeof languages>)[]) => unknown;
     assert.throws(() => dynamicOrder(['theory']), /Missing Section: practice/);
     assert.throws(() => dynamicOrder(['theory', 'theory', 'practice']), /Duplicate/);
     assert.throws(() => dynamicOrder(['missing', 'theory', 'practice']), /Unknown Section/);
@@ -104,7 +104,7 @@ describe('createLessonOverrides', () => {
       () => dynamicOrder(['theory', 'practice', { ...courseScenario, id: 'theory-id' }]),
       /Duplicate/,
     );
-    const contentOrder = builder.sections.bySlug.theory.content.setOrder as (items: readonly string[]) => unknown;
+    const contentOrder = builder.sections.bySlug.theory.content.setOrder as unknown as (items: readonly string[]) => unknown;
     assert.throws(() => contentOrder(['intro', 'intro']), /Duplicate/);
     assert.throws(() => contentOrder(['unknown', 'intro']), /Unknown ContentBlock/);
     assert.throws(() => builder.sections.bySlug.theory.content.remove('missing' as 'intro'), /Unknown ContentBlock/);
