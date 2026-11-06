@@ -60,3 +60,5 @@ jobs:
             echo "::endgroup::"
           done
           npm run test:locales --workspace @svitlo/geography
+      - name: Check Agent 3 compiled metadata exports and owned manifests
+        run: npm run packages:artifacts:check -- --packages content/astronomy content/biology content/geography content/history content/informatics
