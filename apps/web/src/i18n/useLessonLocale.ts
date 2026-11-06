@@ -16,13 +16,30 @@ function languageForLocale(locale: Locale) {
   return language;
 }
 
-/** The first code is the UI language; the code after /lesson/ is the lesson language. */
+/** Lessons may select a separate content language; episodes use the UI language. */
 function lessonRoute(pathname: string) {
-  const match = /^\/([a-z]{2})(\/course\/[^/]+)?\/lesson\/(?:([a-z]{2})\/)?([^/]+)\/?$/.exec(pathname);
-  if (!match) throw new Error('Unsupported lesson path: ' + pathname);
-  const interfaceLanguage = languageForCode(match[1]);
-  const lessonLanguage = languageForCode(match[3] ?? match[1]);
-  return { interfaceLanguage, lessonLanguage, lessonId: match[4], routePrefix: match[2] ?? '' };
+  const lesson = /^\/([a-z]{2})(\/course\/[^/]+)?\/lesson\/(?:([a-z]{2})\/)?([^/]+)\/?$/.exec(pathname);
+  if (lesson) {
+    return {
+      kind: 'lesson' as const,
+      interfaceLanguage: languageForCode(lesson[1]),
+      lessonLanguage: languageForCode(lesson[3] ?? lesson[1]),
+      entryId: lesson[4],
+      routePrefix: lesson[2] ?? '',
+    };
+  }
+  const episode = /^\/([a-z]{2})(\/course\/[^/]+)\/episode\/([^/]+)\/?$/.exec(pathname);
+  if (episode) {
+    const interfaceLanguage = languageForCode(episode[1]);
+    return {
+      kind: 'episode' as const,
+      interfaceLanguage,
+      lessonLanguage: interfaceLanguage,
+      entryId: episode[3],
+      routePrefix: episode[2],
+    };
+  }
+  throw new Error('Unsupported lesson path: ' + pathname);
 }
 
 export function useLessonLanguage() {
@@ -32,17 +49,20 @@ export function useLessonLanguage() {
 export function useLessonLocale() {
   const pathname = usePathname();
   const router = useRouter();
-  const { interfaceLanguage, lessonLanguage, lessonId, routePrefix } = lessonRoute(pathname);
+  const { kind, interfaceLanguage, lessonLanguage, entryId, routePrefix } = lessonRoute(pathname);
 
   const navigate = useCallback(
     (interfaceCode: string, lessonCode: string) => {
       const params = new URLSearchParams(window.location.search);
       params.delete('lang');
       const query = params.toString();
-      const nextPath = `/${interfaceCode}${routePrefix}/lesson/${lessonCode}/${lessonId}`;
+      const nextPath =
+        kind === 'episode'
+          ? `/${interfaceCode}${routePrefix}/episode/${entryId}`
+          : `/${interfaceCode}${routePrefix}/lesson/${lessonCode}/${entryId}`;
       router.replace(nextPath + (query ? `?${query}` : ''), { scroll: false });
     },
-    [lessonId, routePrefix, router],
+    [entryId, kind, routePrefix, router],
   );
 
   const setLocale = useCallback(
@@ -55,5 +75,10 @@ export function useLessonLocale() {
     [navigate, interfaceLanguage.language],
   );
 
-  return { locale: interfaceLanguage.locale, setLocale, lessonLocale: lessonLanguage.locale, setLessonLocale };
+  return {
+    locale: interfaceLanguage.locale,
+    setLocale,
+    lessonLocale: kind === 'episode' ? undefined : lessonLanguage.locale,
+    setLessonLocale: kind === 'episode' ? undefined : setLessonLocale,
+  };
 }

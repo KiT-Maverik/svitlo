@@ -36,7 +36,7 @@ describe('independent lesson and interface locales from route', () => {
 
   it('changes only lesson language while preserving interface language', () => {
     const { result } = renderHook(() => useLessonLocale());
-    act(() => result.current.setLessonLocale('ar-SA'));
+    act(() => result.current.setLessonLocale!('ar-SA'));
     expect(replace).toHaveBeenCalledWith(`/uk/lesson/ar/${lessonId}`, { scroll: false });
   });
 
@@ -45,7 +45,7 @@ describe('independent lesson and interface locales from route', () => {
     const { result } = renderHook(() => useLessonLocale());
     act(() => result.current.setLocale('fr-FR'));
     expect(replace).toHaveBeenCalledWith(`/fr/course/course-one/lesson/en/${lessonId}`, { scroll: false });
-    act(() => result.current.setLessonLocale('de-DE'));
+    act(() => result.current.setLessonLocale!('de-DE'));
     expect(replace).toHaveBeenCalledWith(`/uk/course/course-one/lesson/de/${lessonId}`, { scroll: false });
   });
 
@@ -55,5 +55,18 @@ describe('independent lesson and interface locales from route', () => {
     expect(result.current.lessonLocale).toBe('uk-UA');
     act(() => result.current.setLocale('en-US'));
     expect(replace).toHaveBeenCalledWith(`/en/lesson/uk/${lessonId}`, { scroll: false });
+  });
+
+  it('uses the interface language for a course episode and keeps the episode URL when switching it', () => {
+    const episodePath = '/uk/course/course-one/episode/episode-one';
+    vi.mocked(usePathname).mockReturnValue(episodePath);
+    window.history.replaceState({}, '', episodePath + '?ref=abc&lang=uk-UA');
+    expect(renderHook(() => useLessonLanguage()).result.current.locale).toBe('uk-UA');
+    const { result } = renderHook(() => useLessonLocale());
+    expect(result.current.locale).toBe('uk-UA');
+    expect(result.current.lessonLocale).toBeUndefined();
+    expect(result.current.setLessonLocale).toBeUndefined();
+    act(() => result.current.setLocale('de-DE'));
+    expect(replace).toHaveBeenCalledWith('/de/course/course-one/episode/episode-one?ref=abc', { scroll: false });
   });
 });
