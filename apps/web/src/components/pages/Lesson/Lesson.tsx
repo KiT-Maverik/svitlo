@@ -41,7 +41,7 @@ export default function WebLesson({
   messages: UiKitMessages;
 }) {
   const ids = useMemo(() => sceneIds([response.sections, response.events]), [response.sections, response.events]);
-  const requestKey = `${response.id}:${response.locale.code}`;
+  const requestKey = `${response.id}:${lessonLocale}`;
   const [prepared, setPrepared] = useState<{
     key: string;
     status: 'loading' | 'ready' | 'error';
