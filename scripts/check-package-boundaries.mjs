@@ -131,7 +131,7 @@ assert(
   'Playground cannot contain authored textbook content',
 );
 assert(
-  existsSync(resolve(root, 'apps/web/src/app/[language]/lesson/[lessonId]/page.tsx')),
+  existsSync(resolve(root, 'apps/web/src/app/[language]/lesson/[lessonLanguage]/[lessonId]/page.tsx')),
   'Web must host the UUID-addressed lesson route',
 );
 assert(

@@ -31,8 +31,11 @@ type SectionFor<Sections extends readonly AnySection[], Slug extends string> = E
   Sections[number],
   { slug: Slug }
 >;
-type BlockSlug<S extends AnySection> = S['content'][number]['slug'];
-type BlockFor<S extends AnySection, Slug extends string> = Extract<S['content'][number], { slug: Slug }>;
+type BlocksOf<S extends AnySection> = S extends { content: infer Blocks extends readonly AnyBlock[] }
+  ? Blocks
+  : readonly never[];
+type BlockSlug<S extends AnySection> = BlocksOf<S>[number]['slug'];
+type BlockFor<S extends AnySection, Slug extends string> = Extract<BlocksOf<S>[number], { slug: Slug }>;
 type SlugOf<Item> = Item extends string ? Item : Item extends { slug: infer S extends string } ? S : never;
 type SlugsOf<Items extends readonly unknown[]> = SlugOf<Items[number]>;
 
@@ -75,7 +78,7 @@ type UpdatedSectionContent<
       : S
     : never
   : never)[];
-type DropBlock<S extends AnySection, Slug extends string> = readonly Exclude<S['content'][number], { slug: Slug }>[];
+type DropBlock<S extends AnySection, Slug extends string> = readonly Exclude<BlocksOf<S>[number], { slug: Slug }>[];
 
 type EditableBlock<Block extends AnyBlock, L extends AnyLesson> = Partial<
   Omit<Extract<ContentBlock<'data', LanguagesOf<L>>, { type: Block['type'] }>, 'id' | 'slug' | 'type'>
@@ -117,8 +120,9 @@ type SectionsAPI<L extends AnyLesson, Sections extends readonly AnySection[]> = 
   readonly bySlug: {
     readonly [SectionKey in SectionSlug<Sections>]: {
       set(patch: EditableSection<L>): LessonOverridesBuilder<L, Sections>;
-      readonly content: ContentAPI<L, Sections, SectionKey>;
-    };
+    } & (SectionFor<Sections, SectionKey> extends { type: 'quiz' }
+      ? object
+      : { readonly content: ContentAPI<L, Sections, SectionKey> });
   };
   setOrder<const Items extends readonly (SectionSlug<Sections> | Section<'data', LanguagesOf<L>>)[]>(
     order: Items & CheckOrder<SectionSlug<Sections>, Items>,
@@ -248,6 +252,7 @@ function localizedTitle<L extends Locale_Languages>(
 }
 
 function blocksAsSources(section: AnySection, source: Source): Readonly<Record<string, Source>> {
+  if (section.type === 'quiz') return {};
   assertUnique(section.content, `ContentBlock in ${section.slug}`);
   return Object.fromEntries(section.content.map(block => [block.slug, source]));
 }
@@ -294,16 +299,20 @@ export class LessonOverridesBuilder<L extends AnyLesson, Sections extends readon
         section.slug,
         {
           set: (patch: EditableSection<L>) => this.setSection(section.slug, patch),
-          content: {
-            bySlug: Object.fromEntries(
-              section.content.map(block => [
-                block.slug,
-                { set: (patch: Record<string, unknown>) => this.setBlock(section.slug, block.slug, patch) },
-              ]),
-            ),
-            setOrder: (order: readonly (string | AnyBlock)[]) => this.orderBlocks(section.slug, order),
-            remove: (slug: string) => this.removeBlock(section.slug, slug),
-          },
+          ...(section.type === 'quiz'
+            ? {}
+            : {
+                content: {
+                  bySlug: Object.fromEntries(
+                    section.content.map(block => [
+                      block.slug,
+                      { set: (patch: Record<string, unknown>) => this.setBlock(section.slug, block.slug, patch) },
+                    ]),
+                  ),
+                  setOrder: (order: readonly (string | AnyBlock)[]) => this.orderBlocks(section.slug, order),
+                  remove: (slug: string) => this.removeBlock(section.slug, slug),
+                },
+              }),
         },
       ]),
     );
@@ -349,6 +358,7 @@ export class LessonOverridesBuilder<L extends AnyLesson, Sections extends readon
       }
     }
     return this.replaceSection(sectionSlug, entry => {
+      if (entry.section.type === 'quiz') throw new Error(`Quiz Section has no ContentBlocks: ${sectionSlug}`);
       if (!entry.section.content.some(block => block.slug === blockSlug)) {
         throw new Error(`Unknown ContentBlock: ${blockSlug}`);
       }
@@ -394,6 +404,7 @@ export class LessonOverridesBuilder<L extends AnyLesson, Sections extends readon
 
   private orderBlocks(sectionSlug: string, order: readonly (string | AnyBlock)[]): LessonOverridesBuilder<L, any> {
     return this.replaceSection(sectionSlug, entry => {
+      if (entry.section.type === 'quiz') throw new Error(`Quiz Section has no ContentBlocks: ${sectionSlug}`);
       const lookup = new Map(entry.section.content.map(block => [block.slug, block]));
       const blockSources = { ...entry.blockSources };
       const content = order.map(item => {
@@ -414,6 +425,7 @@ export class LessonOverridesBuilder<L extends AnyLesson, Sections extends readon
 
   private removeBlock(sectionSlug: string, slug: string): LessonOverridesBuilder<L, any> {
     return this.replaceSection(sectionSlug, entry => {
+      if (entry.section.type === 'quiz') throw new Error(`Quiz Section has no ContentBlocks: ${sectionSlug}`);
       if (!entry.section.content.some(block => block.slug === slug)) throw new Error(`Unknown ContentBlock: ${slug}`);
       const blockSources = { ...entry.blockSources };
       delete blockSources[slug];
@@ -468,11 +480,8 @@ export class LessonOverridesBuilder<L extends AnyLesson, Sections extends readon
         throw new Error(`Invalid quiz Section count in override for Lesson ${this.lesson.id}`);
       }
       for (const { section } of current) {
+        if (section.type === 'quiz') continue;
         assertUnique(section.content, `ContentBlock in ${section.slug}`);
-        const quizBlocks = section.content.filter(block => block.type === 'quiz');
-        if ((section.type === 'quiz') !== (quizBlocks.length === 1)) {
-          throw new Error(`Invalid quiz ContentBlock count in Section ${section.slug}`);
-        }
       }
 
       const order = current.map(entry => entry.section.slug);
@@ -487,7 +496,9 @@ export class LessonOverridesBuilder<L extends AnyLesson, Sections extends readon
           }
         }
         patch.added = added.map(entry => ({
-          section: { ...entry.section, content: [...entry.section.content] } as Section<'data', Languages>,
+          section: (entry.section.type === 'quiz'
+            ? { ...entry.section }
+            : { ...entry.section, content: [...entry.section.content] }) as Section<'data', Languages>,
           source: { type: 'course' as const },
         }));
       }
@@ -510,8 +521,10 @@ export class LessonOverridesBuilder<L extends AnyLesson, Sections extends readon
         if (initial.skippable !== entry.section.skippable) {
           fields.skippable = entry.section.skippable === true;
         }
-        const content = diffContent<Languages>(initial.content, entry.section.content, entry.blockSources);
-        if (content) fields.content = content;
+        if (initial.type !== 'quiz' && entry.section.type !== 'quiz') {
+          const content = diffContent<Languages>(initial.content, entry.section.content, entry.blockSources);
+          if (content) fields.content = content;
+        }
         if (Object.keys(fields).length) bySlug[entry.section.slug] = fields;
       }
       if (Object.keys(bySlug).length) {
