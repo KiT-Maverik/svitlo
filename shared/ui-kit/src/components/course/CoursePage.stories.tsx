@@ -8,6 +8,7 @@ const messages: CourseMessages = {
   catalogDescription: 'Навчальні пригоди',
   explore: 'Переглянути',
   lessons: 'уроків',
+  languages: 'Мови курсу',
   modules: 'модулів',
   emptyCatalog: 'Курсів немає',
   backToCatalog: 'Усі курси',
@@ -27,6 +28,7 @@ const meta = {
   component: CoursePage,
   args: {
     catalogHref: '/uk/courses',
+    interfaceLanguage: 'uk',
     messages,
     course: {
       id: 'demo',
@@ -36,6 +38,7 @@ const meta = {
       level: 'Для початківців',
       lessons: 3,
       modules: 1,
+      languages: ['en', 'uk', 'qm', 'pl', 'de'],
       tone: 'sky',
       highlights: ['Досліджуй світло', 'Застосовуй знання на практиці'],
     },

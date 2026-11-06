@@ -3,10 +3,19 @@
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+import type { LanguageCode } from '@svitlo/engine/localization';
 import type { CourseListItem, CourseMessages } from './types';
 import { CourseCard } from './CourseCard';
 
-export function CoursesPage({ courses, messages }: { courses: readonly CourseListItem[]; messages: CourseMessages }) {
+export function CoursesPage({
+  courses,
+  messages,
+  interfaceLanguage,
+}: {
+  courses: readonly CourseListItem[];
+  messages: CourseMessages;
+  interfaceLanguage?: LanguageCode;
+}) {
   return (
     <Container component="main" maxWidth="lg" sx={{ py: { xs: 5, md: 9 } }}>
       <Box component="header" sx={{ mb: { xs: 4, md: 6 } }}>
@@ -39,7 +48,13 @@ export function CoursesPage({ courses, messages }: { courses: readonly CourseLis
           }}
         >
           {courses.map(({ course, href }) => (
-            <CourseCard key={course.id} course={course} href={href} messages={messages} />
+            <CourseCard
+              key={course.id}
+              course={course}
+              href={href}
+              messages={messages}
+              interfaceLanguage={interfaceLanguage}
+            />
           ))}
         </Box>
       )}

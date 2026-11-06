@@ -6,8 +6,13 @@
 }
 .steps {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(104px, 1fr);
   gap: 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
   padding: 20px clamp(12px, 4vw, 48px);
   background-color: var(--mui-palette-background-paper);
   position: sticky;
