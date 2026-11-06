@@ -42,8 +42,7 @@ export function LessonSteps({
     const activeRect = activeStep.getBoundingClientRect();
     if (activeRect.left < containerRect.left || activeRect.right > containerRect.right) {
       // Scroll only the step strip, not the lesson page. Physical offsets also work in RTL.
-      container.scrollLeft +=
-        (activeRect.left + activeRect.right - containerRect.left - containerRect.right) / 2;
+      container.scrollLeft += (activeRect.left + activeRect.right - containerRect.left - containerRect.right) / 2;
     }
   }, [currentStep, steps.length]);
 
