@@ -33,6 +33,10 @@ function Layout({ messages, ...props }: LessonLearningLayoutProps) {
   return (
     <>
       <button onClick={() => actions.publishEvent('lightDiscovered')}>Discover light</button>
+      <button onClick={() => {
+        actions.publishEvent('lightDiscovered');
+        actions.publishEvent('lightDiscovered');
+      }}>Discover twice</button>
       <button onClick={actions.completeQuiz}>Complete quiz</button>
       <LearningLayout {...props} messages={messages.learningLayout} locale="en-US" />
     </>
@@ -96,8 +100,7 @@ describe('Lesson events', () => {
 
   it('queues multiple reactions in publication order', async () => {
     showLesson();
-    fireEvent.click(screen.getByRole('button', { name: 'Discover light' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Discover light' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Discover twice' }));
     expect(screen.getByRole('dialog')).toBeVisible();
     fireEvent.click(screen.getByRole('button', { name: 'Dismiss celebration' }));
     expect(screen.getByRole('dialog')).toBeVisible();
