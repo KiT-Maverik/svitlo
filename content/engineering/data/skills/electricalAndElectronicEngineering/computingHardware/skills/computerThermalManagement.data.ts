@@ -29,7 +29,7 @@ export const computerThermalManagement_Skill_Data = buildSkillConfig({
     lt: 'Kompiuterio šilumos valdymas',
     lv: 'Datora siltuma pārvaldība',
     et: 'Arvuti soojusjuhtimine',
-    be: 'Цеплавое кіраваньне кампутарам',
+    be: 'Кіраваньне цеплавым рэжымам кампутара',
     ka: 'კომპიუტერის თბური მართვა',
     kk: 'Компьютердің жылуын басқару',
     qm: 'Kompyuterniñ issılığını idare etmek',
