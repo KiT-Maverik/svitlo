@@ -49,7 +49,7 @@ export async function syncSceneRegistry(root, mode, packageName = 'the selected 
     if (readFileSync(target, 'utf8') !== formatted)
       throw new Error('Stale Scene registry; run npm run generate:scenes --workspace ' + packageName);
   } else throw new Error('Usage: generate-scenes.mjs --write|--check');
-  
+
   return entries.length;
 }
 
@@ -69,5 +69,8 @@ async function cli() {
   console.log('Verified ' + count + ' statically registered Scenes in ' + manifest.name);
 }
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  cli().catch(error => { console.error(error); process.exitCode = 1; });
+  cli().catch(error => {
+    console.error(error);
+    process.exitCode = 1;
+  });
 }
