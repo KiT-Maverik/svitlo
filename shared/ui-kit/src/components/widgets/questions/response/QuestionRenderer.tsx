@@ -3,10 +3,12 @@
 import type { UiKitMessages } from '#types/uiKitMessages';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
-import type { Question, Locale_Languages } from '@svitlo/engine/content';
+import { Box, Button, Stack, Typography } from '@mui/material';
+import type { Question, Locale_Languages, Quiz_Parameters } from '@svitlo/engine/content';
 import type { LanguageCode } from '@svitlo/engine/localization';
 import { ContentLanguageContext, useContentLanguage } from '../../ContentBlockRenderer/ContentLanguageContext';
 import { QuestionCompletionContext } from './QuestionCompletion';
+import { QuestionProgress } from '../../../lesson/QuestionProgress';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
 import { AnswerWithNumber } from '../AnswerWithNumber/AnswerWithNumber';
 import { AnswerWithText } from '../AnswerWithText/AnswerWithText';
@@ -19,14 +21,14 @@ import { SelectMultipleAnswers } from '../SelectMultipleAnswers/SelectMultipleAn
 import { SelectOneAnswer } from '../SelectOneAnswer/SelectOneAnswer';
 
 export type QuestionResponse = Question<'response', Locale_Languages>;
-
+export type QuizCompletion = { passed: boolean; correct: number; total: number; timedOut: boolean };
 export type QuestionRendererProps = {
   messages: UiKitMessages;
   questions?: readonly QuestionResponse[];
+  parameters?: Quiz_Parameters<'response', Locale_Languages>;
   sceneRegistry?: SceneRegistry;
   language?: LanguageCode;
-  /** Called exactly once after all questions have been checked. */
-  onComplete?: () => void;
+  onComplete?: (result: QuizCompletion) => void;
 };
 
 function QuestionBlock({
@@ -64,58 +66,108 @@ function QuestionBlock({
   }
 }
 
-/** Consume the server-assembled responses directly; no legacy question model. */
+/** One Quiz renderer for Lesson sections and standalone practice. */
 export function QuestionRenderer({
   questions = [],
+  parameters,
   sceneRegistry,
   language,
   onComplete,
   messages,
 }: QuestionRendererProps) {
   const inheritedLanguage = useContentLanguage();
-  const [checkedIds, setCheckedIds] = useState<ReadonlySet<string>>(() => new Set());
+  const [statuses, setStatuses] = useState<ReadonlyMap<string, boolean>>(() => new Map());
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [remaining, setRemaining] = useState(parameters?.timeLimitSeconds);
   const completed = useRef<string | null>(null);
   const signature = questions.map(question => question.type + ':' + question.id).join('|');
-  const allChecked =
-    questions.length > 0 && questions.every(question => checkedIds.has(question.type + ':' + question.id));
+  const allChecked = questions.length > 0 && questions.every(question => statuses.has(question.type + ':' + question.id));
+  const correct = questions.filter(question => statuses.get(question.type + ':' + question.id) === true).length;
+  const score = parameters?.grading?.mode === 'percentage' ? (correct * 100) / (questions.length || 1) : correct;
+  const passed = parameters?.grading ? score >= parameters.grading.successThreshold : correct === questions.length;
+  const timedOut = remaining !== undefined && remaining <= 0;
 
   useEffect(() => {
-    if (!allChecked && completed.current === signature) completed.current = null;
-    if (allChecked && completed.current !== signature) {
+    if (parameters?.timeLimitSeconds === undefined) return;
+    const handle = setInterval(() => {
+      if (completed.current !== signature) setRemaining(value => value === undefined ? undefined : Math.max(0, value - 1));
+    }, 1000);
+    return () => clearInterval(handle);
+  }, [parameters?.timeLimitSeconds, signature]);
+
+  useEffect(() => {
+    if (!allChecked && !timedOut && completed.current === signature) completed.current = null;
+    if (questions.length && (allChecked || timedOut) && completed.current !== signature) {
       completed.current = signature;
-      onComplete?.();
+      onComplete?.({ passed: !timedOut && passed, correct, total: questions.length, timedOut });
     }
-  }, [allChecked, onComplete, signature]);
+  }, [allChecked, correct, onComplete, passed, questions.length, signature, timedOut]);
 
   const context = useMemo(
     () => ({
-      markChecked(id: string) {
-        setCheckedIds(previous => (previous.has(id) ? previous : new Set([...previous, id])));
+      parameters,
+      revealFeedback: allChecked || timedOut,
+      locked: timedOut,
+      markChecked(id: string, isCorrect: boolean) {
+        setStatuses(previous => {
+          if (previous.get(id) === isCorrect) return previous;
+          const next = new Map(previous);
+          next.set(id, isCorrect);
+          return next;
+        });
       },
       markUnchecked(id: string) {
-        setCheckedIds(previous => {
+        setStatuses(previous => {
           if (!previous.has(id)) return previous;
-          const next = new Set(previous);
+          const next = new Map(previous);
           next.delete(id);
           return next;
         });
       },
     }),
-    [],
+    [parameters, allChecked, timedOut],
   );
 
   if (!questions.length) return null;
+  const stepper = parameters?.layout.mode === 'stepper';
+  const showProgress = stepper && (parameters?.layout.showProgress ?? true);
+  const active = Math.min(currentIndex, questions.length - 1);
+  const progressStatuses = questions.map(question => {
+    const status = statuses.get(question.type + ':' + question.id);
+    return status === undefined ? 'unanswered' as const : status ? 'correct' as const : 'incorrect' as const;
+  });
   return (
     <ContentLanguageContext.Provider value={language ?? inheritedLanguage}>
       <QuestionCompletionContext.Provider value={context}>
-        {questions.map(response => (
-          <QuestionBlock
-            key={response.type + ':' + response.id}
-            response={response}
-            sceneRegistry={sceneRegistry}
-            messages={messages}
-          />
-        ))}
+        <Stack spacing={2}>
+          {remaining !== undefined && (
+            <Box role="timer" aria-live="off" sx={{ textAlign: 'end', fontVariantNumeric: 'tabular-nums' }}>
+              {String(Math.floor(remaining / 60)).padStart(2, '0')}:{String(remaining % 60).padStart(2, '0')}
+            </Box>
+          )}
+          {showProgress && (
+            <QuestionProgress statuses={progressStatuses} currentIndex={active} messages={messages.lesson}
+              allowNavigation={parameters?.interaction.allowQuestionNavigation} onNavigate={setCurrentIndex} />
+          )}
+          {questions.map((response, index) => (
+            <Box key={response.type + ':' + response.id} sx={{ display: !stepper || index === active ? 'block' : 'none' }}>
+              <QuestionBlock response={response} sceneRegistry={sceneRegistry} messages={messages} />
+            </Box>
+          ))}
+          {stepper && (
+            <Stack direction="row" justifyContent="space-between">
+              <Button disabled={active === 0} onClick={() => setCurrentIndex(active - 1)}>
+                {messages.learningLayout.actions.previous}
+              </Button>
+              <Button disabled={active >= questions.length - 1 ||
+                (progressStatuses[active] === 'unanswered' && !parameters?.interaction.allowDeferring)}
+                onClick={() => setCurrentIndex(active + 1)}>
+                {messages.learningLayout.actions.next}
+              </Button>
+            </Stack>
+          )}
+          {timedOut && <Typography role="status">{messages.questionFrame.incorrect}</Typography>}
+        </Stack>
       </QuestionCompletionContext.Provider>
     </ContentLanguageContext.Provider>
   );
