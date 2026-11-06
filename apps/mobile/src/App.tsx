@@ -104,7 +104,10 @@ function PersistingLessonLayout(props: LessonLearningLayoutProps) {
     </Box>
   );
 }
-const theme = createTheme({ cssVariables: true });
+const theme = createTheme({
+  cssVariables: { colorSchemeSelector: 'data' },
+  colorSchemes: { light: true, dark: true },
+});
 
 type LessonData = { response: LessonResponse; messages: UiKitMessages };
 type LoadState =
