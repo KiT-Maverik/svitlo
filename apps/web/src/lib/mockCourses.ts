@@ -103,7 +103,7 @@ export function getMockCourses(language: string): readonly MockCourse[] {
         description: t('Планети, зорі, супутники й великі запитання про Всесвіт. Попередній перегляд майбутньої космічної подорожі.', 'Planets, stars, moons, and big questions about the universe. An early preview of a space adventure.'),
         category: t('Астрономія', 'Astronomy'),
         level: t('Для початківців', 'Beginner'),
-        lessons: 3,
+        lessons: 2,
         modules: 1,
         tone: 'sage',
         highlights: [t('Познайомишся із Сонячною системою', 'Meet the Solar System'), t('Дізнаєшся, як живуть зорі', 'Discover the life of stars')],
