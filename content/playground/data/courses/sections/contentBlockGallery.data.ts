@@ -1,0 +1,101 @@
+import type { Section } from '@svitlo/engine/content';
+import type { HowLightMoves_Languages } from '../../lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/constants';
+import { lightRayDiagramData } from '../../lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/sections/theory/scenes/lightRayDiagram';
+
+/**
+ * Course-only content fixture. It demonstrates every ContentBlock renderer in
+ * the actual Lesson UI without changing the standalone How Light Moves Lesson.
+ * Labels are deliberately technical and language-independent in this demo.
+ */
+export const contentBlockGallery_Section = {
+  id: '4b60ac47-8d6e-55f1-8aaa-641abe18550d',
+  slug: 'contentBlockGallery',
+  type: 'learningFlow',
+  title: 'Content blocks · gallery',
+  navigationLabel: 'Content blocks',
+  skippable: true,
+  content: [
+    {
+      id: 'playground-gallery-text',
+      slug: 'plainText',
+      type: 'text',
+      value: 'TEXT · A short, plain-text content block, rendered by the shared UI Kit.',
+    },
+    {
+      id: 'playground-gallery-markdown',
+      slug: 'formattedMarkdown',
+      type: 'markdown',
+      locales:
+        '## Markdown\n\nThis block shows **bold**, *italic* and `inline code`.\n\n- First item\n- Second item\n\n> A short quotation.',
+    },
+    {
+      id: 'playground-gallery-code',
+      slug: 'highlightedCode',
+      type: 'code',
+      title: 'CODE · TypeScript',
+      language: 'typescript',
+      code: 'const lesson = { topic: "light", speed: 299_792_458 };\nconsole.log(lesson.topic);',
+    },
+    {
+      id: 'playground-gallery-image',
+      slug: 'localImage',
+      type: 'image',
+      src: '/textbooks/playground/whale.png',
+      alt: 'A cartoon whale used as the Playground image demo.',
+      caption: 'IMAGE · A locally published PNG with alternative text and a caption.',
+      fill: true,
+      aspectRatio: 16 / 9,
+      objectFit: 'contain',
+    },
+    {
+      id: 'playground-gallery-video',
+      slug: 'localVideo',
+      type: 'video',
+      fileLocation: '/textbooks/playground/barabaka.mp4',
+      poster: '/textbooks/playground/whale.png',
+      title: 'VIDEO · Locally published MP4',
+    },
+    {
+      id: 'playground-gallery-audio',
+      slug: 'localAudio',
+      type: 'audio',
+      fileLocation: '/textbooks/playground/demo-tone.wav',
+      title: 'AUDIO · Local demo tone',
+      description: 'A short original test tone, used only to demonstrate audio playback.',
+    },
+    {
+      id: 'playground-gallery-youtube',
+      slug: 'youtubeEmbed',
+      type: 'youtube',
+      mode: 'embed',
+      href: 'https://www.youtube.com/watch?v=jNQXAC9IVRw',
+      title: 'YOUTUBE · External embedded video',
+      hint: 'Requires an internet connection; offline mode shows a fallback.',
+    },
+    // Use an existing registered Scene so this course-only fixture needs no
+    // separate Scene implementation or changes to the generated Scene registry.
+    lightRayDiagramData,
+    {
+      id: 'playground-gallery-checkpoint',
+      slug: 'interactiveCheckpoint',
+      type: 'checkpoint',
+      title: 'CHECKPOINT · Expand and mark the answer',
+      enableChecks: true,
+      showIndices: true,
+      items: [
+        {
+          question: 'How do I reveal this answer?',
+          check: true,
+          answer: [
+            {
+              id: 'playground-gallery-checkpoint-answer',
+              slug: 'checkpointAnswer',
+              type: 'text',
+              value: 'Open the checkpoint row, then mark it complete.',
+            },
+          ],
+        },
+      ],
+    },
+  ],
+} satisfies Section<'data', HowLightMoves_Languages>;
