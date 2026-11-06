@@ -25,7 +25,7 @@ export const biomedicalAndAssistiveEngineering_SkillDomain_Data = buildSkillDoma
     ta: 'உயிர்மருத்துவ மற்றும் உதவிப் பொறியியல்',
     te: 'జీవవైద్య మరియు సహాయక ఇంజినీరింగ్',
     mr: 'जैववैद्यकीय आणि साहाय्यक अभियांत्रिकी',
-    ms: 'Kejuruteraan bioperubatan dan bantuan',
+    ms: 'Kejuruteraan bioperubatan dan teknologi bantuan',
     he: 'הנדסה ביו־רפואית וטכנולוגיות מסייעות',
     pl: 'Inżynieria biomedyczna i wspomagająca',
     uk: 'Біомедична та асистивна інженерія',
