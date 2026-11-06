@@ -1,10 +1,183 @@
 .figure {
   margin: 0;
+  width: 100%;
 }
 
-.audio {
-  display: block;
+.player {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 2vw, 1.25rem);
   width: 100%;
+  min-width: 0;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--mui-palette-divider, #d9e4dd);
+  border-radius: 1.5rem;
+  color: var(--mui-palette-text-primary, #21382b);
+  background: color-mix(
+    in srgb,
+    var(--mui-palette-primary-main, #4caf70) 8%,
+    var(--mui-palette-background-paper, #fff)
+  );
+}
+
+.nativeAudio {
+  display: none;
+}
+
+.player .playButton {
+  flex: 0 0 auto;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  color: var(--mui-palette-primary-contrastText, #fff);
+  background: var(--mui-palette-primary-main, #4caf70);
+  transition: transform 160ms ease, background-color 160ms ease;
+}
+
+.player .playButton:hover {
+  background: var(--mui-palette-primary-dark, #388b55);
+  transform: scale(1.035);
+}
+
+.player .playButton:focus-visible,
+.speed:focus-visible,
+.seekInput:focus-visible,
+.volumeInput:focus-visible {
+  outline: 3px solid var(--mui-palette-primary-main, #4caf70);
+  outline-offset: 3px;
+}
+
+.content {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.waveformRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.timeline {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  border-radius: 0.5rem;
+}
+
+.timeline:focus-within {
+  outline: 2px solid var(--mui-palette-primary-main, #4caf70);
+  outline-offset: 3px;
+}
+
+.bars {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 2.75rem;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bar,
+.playedBar {
+  display: block;
+  flex: 1 1 0;
+  min-width: 1px;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--mui-palette-primary-main, #4caf70) 29%, transparent);
+}
+
+.playedBar {
+  background: var(--mui-palette-primary-main, #4caf70);
+}
+
+.seekInput {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.seekInput:disabled {
+  cursor: not-allowed;
+}
+
+.language {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  flex: 0 0 auto;
+  min-width: 2.25rem;
+  padding: 0.25rem 0.4rem;
+  border-radius: 0.5rem;
+  color: var(--mui-palette-text-secondary, #65756b);
+  background: var(--mui-palette-action-hover, rgb(0 0 0 / 5%));
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  margin-top: 0.45rem;
+}
+
+.time {
+  flex: 0 0 auto;
+  color: var(--mui-palette-text-secondary, #5b7767);
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.timeDivider {
+  margin-inline: 0.125rem;
+  opacity: 0.5;
+}
+
+.controls,
+.volume {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.controls {
+  margin-inline-start: auto;
+}
+
+.volume {
+  color: var(--mui-palette-text-secondary, #5b7767);
+}
+
+.volumeInput {
+  width: clamp(3.25rem, 8vw, 5rem);
+  margin: 0;
+  accent-color: var(--mui-palette-primary-main, #4caf70);
+  cursor: pointer;
+}
+
+.speed {
+  box-sizing: border-box;
+  min-width: 3.75rem;
+  padding: 0.3rem 0.4rem;
+  border: 1px solid var(--mui-palette-divider, #c3d3c9);
+  border-radius: 0.5rem;
+  color: inherit;
+  background: var(--mui-palette-background-paper, #fff);
+  font: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
 }
 
 .caption {
@@ -24,4 +197,46 @@
   text-align: center;
   color: var(--mui-palette-text-secondary, #555);
   background: var(--mui-palette-action-hover, #f3f3f3);
+}
+
+@media (max-width: 480px) {
+  .player {
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.85rem;
+    border-radius: 1rem;
+  }
+
+  .player .playButton {
+    width: 3.1rem;
+    height: 3.1rem;
+  }
+
+  .footer {
+    flex-wrap: wrap;
+  }
+
+  .controls {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .bars {
+    height: 2.35rem;
+  }
+
+  .language {
+    gap: 0.15rem;
+    padding-inline: 0.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .player .playButton {
+    transition: none;
+  }
+
+  .player .playButton:hover {
+    transform: none;
+  }
 }
