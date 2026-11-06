@@ -68,3 +68,35 @@ registry and stylesheet, and stage UI Kit translations/flags independently.
 Build/bundle tests do not alone prove all installed Electron/Capacitor devices
 work, or that the Web host precaches lazy chunks. Offline content packaging and
 real-device accessibility/launch checks remain host-specific release gates.
+
+## Playground Course integration example
+
+The Playground textbook now also authors a demo Course in
+`data/courses/playgroundLightCourse.data.ts` with two lightweight Lesson copies,
+a Module, a Chapter, a narrative Episode, and a course-local section reorder
+for the existing `howLightMoves` Lesson. The Lesson's canonical files and
+Definition are not modified.
+
+The shared build pipeline automatically emits **separate** Course resources:
+
+```text
+dist/static/data/pages/courses/30ecbde1-97fd-5fe7-a353-ea89b9ef4a67/
+  toc/<language>.json
+  overrides/d3048d21-8690-5255-b62c-984c69ac272c/<language>.json
+  episodes/9f417177-1d07-5a9d-ad74-0146c5637e84/<language>.json
+```
+
+The published TOC provides the navigation tree. The override resource
+contains only changed fields and slug-keyed ordering operations, and is
+applied **only** in the Course context. Episode resources are separate from
+the Lesson content. All three are included in `dist/manifest.json` and
+published by the existing `svitlo-playground publish` CLI.
+
+Open:
+
+- `/uk/course/30ecbde1-97fd-5fe7-a353-ea89b9ef4a67` — Course TOC
+- `/uk/course/30ecbde1-97fd-5fe7-a353-ea89b9ef4a67/lesson/d3048d21-8690-5255-b62c-984c69ac272c` — overridden Lesson
+- `/uk/course/30ecbde1-97fd-5fe7-a353-ea89b9ef4a67/episode/9f417177-1d07-5a9d-ad74-0146c5637e84` — Lorem Ipsum Episode
+
+The existing standalone Lesson URL remains unchanged. This is a
+test-only content arrangement, not a production learning program.
