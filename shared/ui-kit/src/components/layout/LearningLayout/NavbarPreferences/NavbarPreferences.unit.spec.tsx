@@ -72,6 +72,25 @@ describe('NavbarPreferences in shared UI Kit', () => {
     expect(setLocale).toHaveBeenCalledWith('en-US');
   });
 
+  it('sorts language options alphabetically by their native names', async () => {
+    renderPreferences();
+    await userEvent.click(locale());
+    const options = await screen.findAllByRole('option');
+    const names = options.map(option => option.textContent?.trim());
+    const collator = new Intl.Collator('en', { sensitivity: 'base' });
+    const expected = DEFAULT_SUPPORTED_LANGUAGES.map(entry => entry.nativeName).sort(collator.compare);
+    expect(names).toEqual(expected);
+  });
+
+  it('displays the Belarusian language name without an orthography suffix', async () => {
+    renderPreferences();
+    await userEvent.click(locale());
+    expect(await screen.findByRole('option', { name: 'Беларуская' })).toBeInTheDocument();
+    expect(screen.queryByText(/тарашкевіца/i)).not.toBeInTheDocument();
+    await userEvent.click(screen.getByRole('option', { name: 'Беларуская' }));
+    expect(setLocale).toHaveBeenCalledWith('be-tarask');
+  });
+
   it('toggles between light and dark themes', async () => {
     renderPreferences();
     await userEvent.click(theme());
