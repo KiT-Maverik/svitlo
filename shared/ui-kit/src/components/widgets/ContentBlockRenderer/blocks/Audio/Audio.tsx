@@ -113,6 +113,13 @@ export const Audio = ({
   const toggleMute = () => {
     const audio = audioRef.current;
     if (!audio) return;
+    if (audio.volume === 0) {
+      audio.volume = 1;
+      audio.muted = false;
+      setVolume(1);
+      setMuted(false);
+      return;
+    }
     audio.muted = !audio.muted;
     setMuted(audio.muted);
   };
