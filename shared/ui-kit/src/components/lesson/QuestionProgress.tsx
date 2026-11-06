@@ -1,7 +1,8 @@
 'use client';
 
+import type { Lesson_Locale } from '../../../data/locale/lesson';
+
 import Box from '@mui/material/Box';
-import type { UiKit_Component } from '@svitlo/engine/content';
 import styles from './Lesson.module.css';
 
 export type QuestionStatus = 'unanswered' | 'correct' | 'incorrect' | 'deferred';
@@ -9,7 +10,7 @@ export type QuestionStatus = 'unanswered' | 'correct' | 'incorrect' | 'deferred'
 export type QuestionProgressProps = {
   statuses: readonly QuestionStatus[];
   currentIndex: number;
-  messages: UiKit_Component<'lesson', 'response'>;
+  messages: Lesson_Locale;
   allowNavigation?: boolean;
   onNavigate?: (index: number) => void;
   className?: string;

@@ -17,13 +17,25 @@ const sceneImports: Readonly<Record<string, () => Promise<SceneModule>>> = {
 };
 
 const cache = new Map<string, SceneComponent>();
+const pending = new Map<string, Promise<SceneModule>>();
+
+export function preloadScene(id: string): Promise<void> {
+  const load = sceneImports[id];
+  if (!load) return Promise.reject(new Error('Unregistered scene id: ' + id));
+  let promise = pending.get(id);
+  if (!promise) {
+    promise = load();
+    pending.set(id, promise);
+  }
+  return promise.then(() => undefined);
+}
 
 export const resolveScene: SceneRegistry = id => {
   const load = sceneImports[id];
   if (!load) return undefined;
   let component = cache.get(id);
   if (!component) {
-    component = lazy(load);
+    component = lazy(() => pending.get(id) ?? load());
     cache.set(id, component);
   }
   return component;

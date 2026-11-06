@@ -1,10 +1,11 @@
 'use client';
 
+import type { Image_Locale } from '../../../../../../data/locale/image';
+
 import { useEffect, useRef, useState } from 'react';
 import Button from '@mui/material/Button';
 
 import type { ContentBlock_Image_Response } from '@svitlo/engine/content';
-import type { UiKit_Component } from '@svitlo/engine/content';
 
 import { localizedAttributes } from '../../utils';
 import { useContentLanguage } from '../../ContentLanguageContext';
@@ -14,7 +15,7 @@ import styles from './Image.module.css';
 
 type ImageFailure = { source: string; kind: ImageFailureKind };
 
-export const Image = (props: ContentBlock_Image_Response & { messages: UiKit_Component<'image', 'response'> }) => {
+export const Image = (props: ContentBlock_Image_Response & { messages: Image_Locale }) => {
   const { src, alt, caption, sizes, unoptimized, fallback, messages } = props;
   const Renderer = useImageRenderer();
   const contentLanguage = useContentLanguage();

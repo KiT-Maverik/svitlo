@@ -1,9 +1,10 @@
 'use client';
 
+import type { Youtube_Locale } from '../../../../../../data/locale/youtube';
+
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 
 import type { ContentBlock_Youtube_Response } from '@svitlo/engine/content';
-import type { UiKit_Component } from '@svitlo/engine/content';
 import { localizedAttributes } from '../../utils';
 import { useContentLanguage } from '../../ContentLanguageContext';
 import {
@@ -28,7 +29,7 @@ export const Youtube = ({
   fallback: fallbackMessages,
   messages,
 }: ContentBlock_Youtube_Response & {
-  messages: UiKit_Component<'youtube', 'response'>;
+  messages: Youtube_Locale;
 }) => {
   const contentLanguage = useContentLanguage();
   const online = useSyncExternalStore(subscribeConnectionChange, getConnectionSnapshot, getServerConnectionSnapshot);

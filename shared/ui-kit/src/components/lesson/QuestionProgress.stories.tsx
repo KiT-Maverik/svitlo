@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { QuestionProgress } from './QuestionProgress';
-import { data as lesson } from '../../../data/components/Lesson/messages.data';
+import { lesson } from '../../../data/locale/lesson';
 
 const meta = {
   title: 'Lesson/Question Progress',

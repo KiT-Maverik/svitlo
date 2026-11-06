@@ -1,8 +1,9 @@
 'use client';
+
+import type { UiKitMessages } from '#types/uiKitMessages';
 import { Stack } from '@mui/material';
 import type { Question_SelectOneAnswer, Locale_Languages } from '@svitlo/engine/content';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
-import type { UiKit_Global } from '@svitlo/engine/content';
 import { QuestionChoice } from '../response/QuestionChoice';
 import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
 import { questionLabel } from '../response/QuestionContent';
@@ -14,7 +15,7 @@ export function SelectOneAnswer({
 }: {
   response: Question_SelectOneAnswer<'response', Locale_Languages>;
   sceneRegistry?: SceneRegistry;
-  messages: UiKit_Global<'response'>;
+  messages: UiKitMessages;
 }) {
   const options = [
     ...Object.entries(response.answers.correct).map(([slug, block]) => ({

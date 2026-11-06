@@ -1,7 +1,8 @@
 'use client';
 
+import type { Lesson_Locale } from '../../../data/locale/lesson';
+
 import { useEffect, useState, type CSSProperties, type ElementType } from 'react';
-import type { UiKit_Component } from '@svitlo/engine/content';
 import styles from './Lesson.module.css';
 
 /** Audio feedback is optional and never blocks lesson completion. */
@@ -35,7 +36,7 @@ export async function playCelebration() {
 export type CelebrationProps = {
   score: number;
   total: number;
-  messages: UiKit_Component<'lesson', 'response'>;
+  messages: Lesson_Locale;
   homeHref?: string;
   /** A Next Link, Electron link, or plain anchor supplied by the host. */
   linkComponent?: ElementType;

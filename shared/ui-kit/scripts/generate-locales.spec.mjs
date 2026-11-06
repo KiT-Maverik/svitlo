@@ -1,6 +1,6 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
@@ -21,6 +21,26 @@ function generate(...flags) {
 }
 
 describe('global UI Kit translation coverage', () => {
+  it('stores every component dictionary in one authored file', () => {
+    const locales = path.join(root, 'shared/ui-kit/data/locale');
+    const expected = [
+      'audio',
+      'checkpoint',
+      'flashcard',
+      'image',
+      'learningLayout',
+      'lesson',
+      'navbarPreferences',
+      'questionFrame',
+      'video',
+      'youtube',
+    ];
+    assert.deepEqual(
+      readdirSync(locales).sort(),
+      [...expected.map(name => name + '.ts'), 'index.ts', 'locale.types.ts'].sort(),
+    );
+  });
+
   it('audits complete coverage of every canonical language and component', () => {
     const result = generate('--audit');
     assert.equal(result.status, 0, result.stderr);

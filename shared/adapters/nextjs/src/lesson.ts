@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { resolveEntityPath } from '@svitlo/engine';
 import { DEFAULT_SUPPORTED_LANGUAGES, type LanguageCode, type Locale } from '@svitlo/engine/localization';
-import type { UiKit_Global } from '@svitlo/ui-kit';
+import type { UiKitMessages } from '@svitlo/ui-kit';
 import type { LessonResponse } from '@svitlo/engine/lesson';
 import { loadPublishedLesson } from './publishedLesson';
 import { loadPublishedUiKitMessages } from './publishedUiKitMessages';
@@ -16,13 +16,8 @@ export type LessonPageInput = {
 /** The textbook supplies its published JSON loader and scene-bound Lesson renderer. */
 export type LessonPageBindings<Response extends { id: string; title: string }> = {
   loadLesson: (id: string, language: LanguageCode) => Promise<Response>;
-  loadMessages: (locale: Locale) => Promise<UiKit_Global<'response'>>;
-  renderLesson: (props: {
-    response: Response;
-    locale: Locale;
-    href: string;
-    messages: UiKit_Global<'response'>;
-  }) => ReactElement;
+  loadMessages: (locale: Locale) => Promise<UiKitMessages>;
+  renderLesson: (props: { response: Response; locale: Locale; href: string; messages: UiKitMessages }) => ReactElement;
 };
 
 /**

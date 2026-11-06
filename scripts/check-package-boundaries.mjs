@@ -384,7 +384,7 @@ assert(
 );
 assert(
   uiKit.exports?.['./learning-layout/preferences']?.default ===
-    './dist/components/layout/LearningLayout/NavbarPreferences/NavbarPreferences.js',
+    './dist/src/components/layout/LearningLayout/NavbarPreferences/NavbarPreferences.js',
   'NavbarPreferences must have a compiled public UI Kit export',
 );
 const themeComponent = readFileSync(

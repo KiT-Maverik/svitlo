@@ -1,8 +1,9 @@
 'use client';
 
+import type { UiKitMessages } from '#types/uiKitMessages';
+
 import { Box, ButtonBase } from '@mui/material';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
-import type { UiKit_Global } from '@svitlo/engine/content';
 import { QuestionContent, questionBlockLabel, type QuestionBlock } from './QuestionContent';
 
 export type ChoiceFeedback = 'correct' | 'incorrect' | 'missed' | undefined;
@@ -16,7 +17,7 @@ export function QuestionChoice({
   sceneRegistry,
   messages,
 }: {
-  messages: UiKit_Global<'response'>;
+  messages: UiKitMessages;
   block: QuestionBlock;
   selected: boolean;
   disabled?: boolean;

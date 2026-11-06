@@ -1,8 +1,9 @@
 'use client';
+
+import type { UiKitMessages } from '#types/uiKitMessages';
 import { TextField } from '@mui/material';
 import type { Question_AnswerWithNumber, Locale_Languages } from '@svitlo/engine/content';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
-import type { UiKit_Global } from '@svitlo/engine/content';
 import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
 
 export function parseQuestionNumber(value: string): number | null {
@@ -19,7 +20,7 @@ export function AnswerWithNumber({
 }: {
   response: Question_AnswerWithNumber<'response', Locale_Languages>;
   sceneRegistry?: SceneRegistry;
-  messages: UiKit_Global<'response'>;
+  messages: UiKitMessages;
 }) {
   const attempt = useQuestionAttempt(
     () => '',
