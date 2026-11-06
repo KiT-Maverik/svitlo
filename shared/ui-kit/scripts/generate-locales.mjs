@@ -50,6 +50,8 @@ function readData(component, file) {
 
 const whole = Object.freeze({
   lesson: readData('Lesson', 'messages.data.ts'),
+  learningLayout: readData('LearningLayout', 'messages.data.ts'),
+  navbarPreferences: readData('NavbarPreferences', 'messages.data.ts'),
   flashcard: readData('Flashcard', 'messages.data.ts'),
   checkpoint: readData('Checkpoint', 'messages.data.ts'),
   audio: readData('Audio', 'messages.data.ts'),
@@ -59,9 +61,7 @@ const whole = Object.freeze({
   questionFrame: readData('QuestionFrame', 'messages.data.ts'),
 });
 
-function message(component, locale, language) {
-  if (component === 'learningLayout') return readData('LearningLayout', locale + '.data.ts');
-  if (component === 'navbarPreferences') return readData('NavbarPreferences', locale + '.data.ts');
+function message(component, language) {
   return whole[component]?.[language];
 }
 
@@ -94,11 +94,8 @@ function auditMissingTranslations(components) {
   const missing = {};
   for (const component of components) {
     const absent = [];
-    for (const { locale, language } of DEFAULT_SUPPORTED_LANGUAGES) {
-      const value =
-        component === 'learningLayout' || component === 'navbarPreferences'
-          ? readData(component === 'learningLayout' ? 'LearningLayout' : 'NavbarPreferences', locale + '.data.ts')
-          : whole[component]?.[language];
+    for (const { language } of DEFAULT_SUPPORTED_LANGUAGES) {
+      const value = whole[component]?.[language];
       if (!value) absent.push(language);
     }
     if (absent.length) missing[component] = absent;
@@ -142,11 +139,11 @@ try {
       throw new Error('UI Kit translations incomplete (' + missingCount + '): ' + details);
     }
     // Preflight all language/key structures before publishing the first file.
-    const defaults = Object.fromEntries(components.map(c => [c, message(c, 'uk-UA', 'uk')]));
+    const defaults = Object.fromEntries(components.map(c => [c, message(c, 'uk')]));
     const published = DEFAULT_SUPPORTED_LANGUAGES.map(({ locale, language }) => {
       const messages = Object.fromEntries(
         components.map(c => {
-          const value = message(c, locale, language);
+          const value = message(c, language);
           if (!value) throw new Error(`Missing ${c} translations for ${locale}`);
           assertShape(c, defaults[c], value, locale);
           return [c, value];

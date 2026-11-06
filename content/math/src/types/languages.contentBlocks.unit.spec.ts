@@ -2,40 +2,10 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/localization';
-import { locale as ltLayout } from '../../../../shared/ui-kit/data/components/LearningLayout/lt-LT.data';
-import { locale as lvLayout } from '../../../../shared/ui-kit/data/components/LearningLayout/lv-LV.data';
-import { locale as etLayout } from '../../../../shared/ui-kit/data/components/LearningLayout/et-EE.data';
-import { locale as beLayout } from '../../../../shared/ui-kit/data/components/LearningLayout/be-tarask.data';
-import { locale as kaLayout } from '../../../../shared/ui-kit/data/components/LearningLayout/ka-GE.data';
-import { locale as kkLayout } from '../../../../shared/ui-kit/data/components/LearningLayout/kk-Cyrl-KZ.data';
-import { locale as qmLayout } from '../../../../shared/ui-kit/data/components/LearningLayout/crh-Latn-UA.data';
-import { locale as ltPreferences } from '../../../../shared/ui-kit/data/components/NavbarPreferences/lt-LT.data';
-import { locale as lvPreferences } from '../../../../shared/ui-kit/data/components/NavbarPreferences/lv-LV.data';
-import { locale as etPreferences } from '../../../../shared/ui-kit/data/components/NavbarPreferences/et-EE.data';
-import { locale as bePreferences } from '../../../../shared/ui-kit/data/components/NavbarPreferences/be-tarask.data';
-import { locale as kaPreferences } from '../../../../shared/ui-kit/data/components/NavbarPreferences/ka-GE.data';
-import { locale as kkPreferences } from '../../../../shared/ui-kit/data/components/NavbarPreferences/kk-Cyrl-KZ.data';
-import { locale as qmPreferences } from '../../../../shared/ui-kit/data/components/NavbarPreferences/crh-Latn-UA.data';
+import { data as layouts } from '../../../../shared/ui-kit/data/components/LearningLayout/messages.data';
+import { data as preferences } from '../../../../shared/ui-kit/data/components/NavbarPreferences/messages.data';
 
 const root = process.cwd();
-const layouts = {
-  'lt-LT': ltLayout,
-  'lv-LV': lvLayout,
-  'et-EE': etLayout,
-  'be-tarask': beLayout,
-  'ka-GE': kaLayout,
-  'kk-Cyrl-KZ': kkLayout,
-  'crh-Latn-UA': qmLayout,
-};
-const preferences = {
-  'lt-LT': ltPreferences,
-  'lv-LV': lvPreferences,
-  'et-EE': etPreferences,
-  'be-tarask': bePreferences,
-  'ka-GE': kaPreferences,
-  'kk-Cyrl-KZ': kkPreferences,
-  'crh-Latn-UA': qmPreferences,
-};
 const newLanguages = ['lt', 'lv', 'et', 'be', 'ka', 'kk'] as const;
 const newLocales = ['lt-LT', 'lv-LV', 'et-EE', 'be-tarask', 'ka-GE', 'kk-Cyrl-KZ'] as const;
 
@@ -79,14 +49,14 @@ describe('Extended locale contentBlock coverage', () => {
   it('supports the Crimean Tatar learner interface without locale fallback', () => {
     const locale = 'crh-Latn-UA';
     expect(DEFAULT_SUPPORTED_LANGUAGES.find(item => item.locale === locale)?.language).toBe('qm');
-    expect(layouts[locale].navigation.top).toBe('Oquvnıñ yuqarı navigatsiyası');
-    expect(preferences[locale].language).toBe('Til');
+    expect(layouts.qm.navigation.top).toBe('Oquvnıñ yuqarı navigatsiyası');
+    expect(preferences.qm.language).toBe('Til');
   });
 
   it('provides locale dictionaries for the shared learner interface', () => {
-    for (const locale of newLocales) expect(layouts[locale].brand).toBeTruthy();
-    for (const locale of newLocales) {
-      const messages = preferences[locale];
+    for (const language of newLanguages) expect(layouts[language].brand).toBeTruthy();
+    for (const language of newLanguages) {
+      const messages = preferences[language];
       expect(messages.language).toBeTruthy();
       expect(messages.theme.dark).toBeTruthy();
       expect(messages.theme.light).toBeTruthy();

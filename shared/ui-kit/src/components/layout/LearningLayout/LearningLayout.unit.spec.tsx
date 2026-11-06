@@ -1,7 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import LearningLayout from './LearningLayout';
-import { locale as uk } from '../../../../data/components/LearningLayout/uk-UA.data';
+import { data } from '../../../../data/components/LearningLayout/messages.data';
+
+const uk = data.uk;
 
 describe('LearningLayout preparation', () => {
   it('covers the learning area while leaving both navigation bars visible', () => {
