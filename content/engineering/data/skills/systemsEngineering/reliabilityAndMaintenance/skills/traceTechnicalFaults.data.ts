@@ -42,7 +42,7 @@ export const traceTechnicalFaults_Skill_Data = buildSkillConfig({
       hi: 'एक दूसरे पर निर्भर हिस्सों में खराबी के लक्षणों का रास्ता तलाशें।',
       es: 'Sigue los síntomas de una avería a través de componentes dependientes.',
       ar: 'تتبّع أعراض العطل عبر المكوّنات المعتمدة بعضها على بعض.',
-      fr: 'Suis les symptômes d\'une panne à travers les composants interdépendants.',
+      fr: "Suis les symptômes d'une panne à travers les composants interdépendants.",
       bn: 'পরস্পর নির্ভরশীল অংশগুলোতে ত্রুটির লক্ষণ অনুসরণ করো।',
       pt: 'Acompanhe sinais de avaria pelos componentes interdependentes.',
       ur: 'آپس میں منسلک پرزوں کے ذریعے خرابی کی علامات کا سراغ لگائیں۔',

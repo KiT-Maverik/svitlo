@@ -43,7 +43,7 @@ export const measurementUncertainty_Skill_Data = buildSkillConfig({
       hi: 'समझें कि मापन की अनिश्चितता इंजीनियरिंग निर्णय पर कैसे असर डालती है।',
       es: 'Comprende cómo la incertidumbre de medición afecta a una decisión de ingeniería.',
       ar: 'افهم كيف يؤثر عدم اليقين في القياس على قرار هندسي.',
-      fr: 'Comprends comment l\'incertitude d\'une mesure peut influencer une décision technique.',
+      fr: "Comprends comment l'incertitude d'une mesure peut influencer une décision technique.",
       bn: 'পরিমাপের অনিশ্চয়তা প্রকৌশল সিদ্ধান্তে কীভাবে প্রভাব ফেলে তা বোঝো।',
       pt: 'Entenda como a incerteza de medição pode afetar uma decisão de engenharia.',
       ur: 'جانیں کہ پیمائش کی غیر یقینی صورت انجینئرنگ فیصلے کو کیسے متاثر کرتی ہے۔',

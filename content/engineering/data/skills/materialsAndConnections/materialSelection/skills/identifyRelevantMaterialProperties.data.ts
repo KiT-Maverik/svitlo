@@ -9,7 +9,7 @@ export const identifyRelevantMaterialProperties_Skill_Data = buildSkillConfig({
     hi: 'महत्त्वपूर्ण सामग्री गुण पहचानना',
     es: 'Identificar propiedades relevantes de materiales',
     ar: 'تحديد خصائص المواد المهمة',
-    fr: 'Identifier les propriétés pertinentes d\'un matériau',
+    fr: "Identifier les propriétés pertinentes d'un matériau",
     bn: 'প্রাসঙ্গিক উপাদানগত গুণ শনাক্ত করা',
     pt: 'Identificar propriedades relevantes dos materiais',
     ur: 'مواد کی اہم خصوصیات پہچاننا',

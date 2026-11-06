@@ -43,7 +43,7 @@ export const traceInputsAndOutputs_Skill_Data = buildSkillConfig({
       hi: 'प्रणाली में आने-जाने वाले पदार्थ, ऊर्जा या सूचना का मार्ग देखें।',
       es: 'Sigue los materiales, la energía o la información que entran y salen de un sistema.',
       ar: 'تتبّع المواد أو الطاقة أو المعلومات الداخلة إلى النظام والخارجة منه.',
-      fr: 'Suis la matière, l\'énergie ou l\'information entrant et sortant d\'un système.',
+      fr: "Suis la matière, l'énergie ou l'information entrant et sortant d'un système.",
       bn: 'ব্যবস্থায় ঢোকা ও বের হওয়া বস্তু, শক্তি বা তথ্যের পথ দেখো।',
       pt: 'Acompanhe materiais, energia ou informação que entram e saem de um sistema.',
       ur: 'نظام میں داخل اور خارج ہونے والے مادے، توانائی یا معلومات کا راستہ دیکھیں۔',

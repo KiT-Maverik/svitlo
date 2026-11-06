@@ -52,7 +52,7 @@ export const materialsAndConnections_SkillDomain_Data = buildSkillDomainConfig({
       hi: 'उत्पाद की परिस्थितियों के अनुसार उपयुक्त सामग्री और जोड़ने के तरीके चुनना सीखें।',
       es: 'Aprende a elegir materiales y uniones adecuados a las condiciones de uso de un producto.',
       ar: 'تعلّم اختيار المواد وطرق الوصل المناسبة لظروف استخدام المنتج.',
-      fr: 'Apprends à choisir des matériaux et assemblages adaptés aux conditions d\'utilisation d\'un produit.',
+      fr: "Apprends à choisir des matériaux et assemblages adaptés aux conditions d'utilisation d'un produit.",
       bn: 'পণ্যের ব্যবহার অনুযায়ী উপযুক্ত উপকরণ ও জোড়ার পদ্ধতি বেছে নিতে শেখো।',
       pt: 'Aprenda a escolher materiais e métodos de união adequados às condições de uso.',
       ur: 'استعمال کے حالات کے مطابق مناسب مواد اور جوڑنے کے طریقے چننا سیکھیں۔',

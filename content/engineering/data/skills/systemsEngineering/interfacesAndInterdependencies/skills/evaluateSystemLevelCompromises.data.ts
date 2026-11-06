@@ -9,7 +9,7 @@ export const evaluateSystemLevelCompromises_Skill_Data = buildSkillConfig({
     hi: 'प्रणाली-स्तरीय समझौतों का मूल्यांकन',
     es: 'Evaluar compromisos a nivel de sistema',
     ar: 'تقييم المفاضلات على مستوى النظام',
-    fr: 'Évaluer les compromis à l\'échelle du système',
+    fr: "Évaluer les compromis à l'échelle du système",
     bn: 'সামগ্রিক ব্যবস্থার আপস মূল্যায়ন',
     pt: 'Avaliar compromissos do sistema inteiro',
     ur: 'پورے نظام کی سطح پر سمجھوتوں کا جائزہ',

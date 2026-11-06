@@ -42,7 +42,7 @@ export const identifyDesignConstraints_Skill_Data = buildSkillConfig({
       hi: 'लागत, उपलब्ध सामग्री, जगह और सुरक्षा जैसी सीमाएँ पहचानें।',
       es: 'Identifica límites como costes, materiales disponibles, espacio y seguridad.',
       ar: 'حدّد القيود مثل التكلفة والمواد المتاحة والمساحة والسلامة.',
-      fr: 'Repère les limites de coût, de matériaux disponibles, d\'espace et de sécurité.',
+      fr: "Repère les limites de coût, de matériaux disponibles, d'espace et de sécurité.",
       bn: 'খরচ, উপকরণ, জায়গা ও নিরাপত্তার মতো সীমাবদ্ধতা চিহ্নিত করো।',
       pt: 'Identifique limites de custo, materiais disponíveis, espaço e segurança.',
       ur: 'لاگت، دستیاب سامان، جگہ اور حفاظت جیسی پابندیاں پہچانیں۔',

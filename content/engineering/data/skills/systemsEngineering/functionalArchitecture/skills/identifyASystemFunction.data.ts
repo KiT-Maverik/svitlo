@@ -42,7 +42,7 @@ export const identifyASystemFunction_Skill_Data = buildSkillConfig({
       hi: 'किसी अभियांत्रिकी प्रणाली का उपयोगी कार्य पहचानें।',
       es: 'Identifica la tarea útil que realiza un sistema técnico.',
       ar: 'حدّد المهمة المفيدة التي يؤديها النظام الهندسي.',
-      fr: 'Identifie la tâche utile qu\'accomplit un système technique.',
+      fr: "Identifie la tâche utile qu'accomplit un système technique.",
       bn: 'প্রকৌশল ব্যবস্থা কোন দরকারি কাজটি করে তা চিহ্নিত করো।',
       pt: 'Identifique a tarefa útil realizada por um sistema técnico.',
       ur: 'انجینئرنگ نظام کا کارآمد کام پہچانیں۔',

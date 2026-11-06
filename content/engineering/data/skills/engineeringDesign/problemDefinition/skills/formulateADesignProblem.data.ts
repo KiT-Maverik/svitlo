@@ -43,7 +43,7 @@ export const formulateADesignProblem_Skill_Data = buildSkillConfig({
       hi: 'बताएँ कि तकनीकी समाधान क्या करेगा और उसका उपयोग कौन करेगा।',
       es: 'Describe qué debe hacer la solución técnica y quién la utilizará.',
       ar: 'صِف ما يجب أن ينجزه الحل التقني ومن سيستخدمه.',
-      fr: 'Décris ce que la solution technique doit accomplir et qui l\'utilisera.',
+      fr: "Décris ce que la solution technique doit accomplir et qui l'utilisera.",
       bn: 'প্রযুক্তিগত সমাধান কী করবে এবং কারা ব্যবহার করবে তা বোঝাও।',
       pt: 'Descreva o que a solução técnica deve fazer e quem a utilizará.',
       ur: 'بتائیں کہ تکنیکی حل کیا کرے گا اور اسے کون استعمال کرے گا۔',

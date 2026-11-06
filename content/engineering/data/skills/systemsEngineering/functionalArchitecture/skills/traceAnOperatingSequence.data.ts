@@ -42,7 +42,7 @@ export const traceAnOperatingSequence_Skill_Data = buildSkillConfig({
       hi: 'प्रणाली शुरू करने, चलाने और बंद करने की घटनाओं का क्रम देखें।',
       es: 'Sigue los pasos al poner en marcha, utilizar y detener un sistema.',
       ar: 'تتبّع الخطوات عند بدء تشغيل النظام واستخدامه وإيقافه.',
-      fr: 'Suis les étapes de démarrage, d\'utilisation et d\'arrêt d\'un système.',
+      fr: "Suis les étapes de démarrage, d'utilisation et d'arrêt d'un système.",
       bn: 'ব্যবস্থা চালু, ব্যবহার ও বন্ধ করার ধাপগুলো অনুসরণ করো।',
       pt: 'Acompanhe as etapas de iniciar, utilizar e parar um sistema.',
       ur: 'نظام شروع، استعمال اور بند ہونے کے مراحل دیکھیں۔',

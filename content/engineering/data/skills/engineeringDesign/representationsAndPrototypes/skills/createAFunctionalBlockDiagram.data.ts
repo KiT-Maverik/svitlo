@@ -42,7 +42,7 @@ export const createAFunctionalBlockDiagram_Skill_Data = buildSkillConfig({
       hi: 'ऐसा आरेख बनाएँ जिसमें हिस्से और ऊर्जा, सामग्री या संकेतों के प्रवाह दिखें।',
       es: 'Dibuja un esquema con piezas y flujos de energía, materiales o señales.',
       ar: 'ارسم مخططًا يبيّن الأجزاء وتدفق الطاقة أو المواد أو الإشارات.',
-      fr: 'Dessine un schéma montrant les pièces et les flux d\'énergie, de matière ou de signaux.',
+      fr: "Dessine un schéma montrant les pièces et les flux d'énergie, de matière ou de signaux.",
       bn: 'অংশগুলো এবং শক্তি, পদার্থ বা সংকেতের প্রবাহ দেখিয়ে চিত্র আঁকো।',
       pt: 'Desenhe um esquema com componentes e fluxos de energia, materiais ou sinais.',
       ur: 'ایسا خاکہ بنائیں جو حصے اور توانائی، مادے یا اشاروں کا بہاؤ دکھائے۔',

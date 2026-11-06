@@ -9,7 +9,7 @@ export const planAnEngineeringTest_Skill_Data = buildSkillConfig({
     hi: 'अभियांत्रिकी परीक्षण की योजना बनाना',
     es: 'Planificar una prueba de ingeniería',
     ar: 'تخطيط اختبار هندسي',
-    fr: 'Planifier un essai d\'ingénierie',
+    fr: "Planifier un essai d'ingénierie",
     bn: 'প্রকৌশল পরীক্ষা পরিকল্পনা করা',
     pt: 'Planear um ensaio de engenharia',
     ur: 'انجینئرنگ ٹیسٹ کی منصوبہ بندی',

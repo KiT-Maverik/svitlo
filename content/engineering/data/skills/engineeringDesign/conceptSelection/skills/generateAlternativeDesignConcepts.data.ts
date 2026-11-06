@@ -9,7 +9,7 @@ export const generateAlternativeDesignConcepts_Skill_Data = buildSkillConfig({
     hi: 'वैकल्पिक डिज़ाइन अवधारणाएँ बनाना',
     es: 'Generar conceptos alternativos de diseño',
     ar: 'ابتكار مفاهيم تصميم بديلة',
-    fr: 'Créer d\'autres concepts de conception',
+    fr: "Créer d'autres concepts de conception",
     bn: 'বিকল্প নকশা ধারণা তৈরি করা',
     pt: 'Gerar conceitos alternativos de projeto',
     ur: 'متبادل ڈیزائن تصورات تیار کرنا',

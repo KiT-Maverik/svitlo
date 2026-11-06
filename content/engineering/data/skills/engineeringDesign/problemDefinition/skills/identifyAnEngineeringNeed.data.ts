@@ -43,7 +43,7 @@ export const identifyAnEngineeringNeed_Skill_Data = buildSkillConfig({
       hi: 'ऐसी वास्तविक ज़रूरत पहचानें जिसे अभियांत्रिकी से पूरा किया जा सके।',
       es: 'Identifica una necesidad real que la ingeniería podría ayudar a resolver.',
       ar: 'حدّد حاجة حقيقية يمكن للهندسة أن تساعد في تلبيتها.',
-      fr: 'Repère un besoin réel auquel l\'ingénierie pourrait répondre.',
+      fr: "Repère un besoin réel auquel l'ingénierie pourrait répondre.",
       bn: 'প্রকৌশল দিয়ে মেটানো সম্ভব এমন বাস্তব প্রয়োজন চিহ্নিত করো।',
       pt: 'Identifique uma necessidade real que a engenharia possa ajudar a atender.',
       ur: 'ایسی حقیقی ضرورت پہچانیں جسے انجینئرنگ پورا کرنے میں مدد دے سکے۔',

@@ -42,7 +42,7 @@ export const evaluateMaterialDurability_Skill_Data = buildSkillConfig({
       hi: 'घिसाव और पर्यावरणीय प्रभाव सहने की क्षमता से सामग्री की तुलना करें।',
       es: 'Compara materiales según cómo resisten el desgaste y la exposición ambiental.',
       ar: 'قارن المواد حسب مقاومتها للتآكل وتأثيرات البيئة.',
-      fr: 'Compare les matériaux selon leur résistance à l\'usure et aux conditions environnementales.',
+      fr: "Compare les matériaux selon leur résistance à l'usure et aux conditions environnementales.",
       bn: 'ঘর্ষণ ও পরিবেশের প্রভাব সহ্য করার ক্ষমতায় উপকরণ তুলনা করো।',
       pt: 'Compare materiais pela resistência ao desgaste e às condições ambientais.',
       ur: 'گھسنے اور ماحول کے اثرات برداشت کرنے کی صلاحیت سے مواد کا موازنہ کریں۔',
