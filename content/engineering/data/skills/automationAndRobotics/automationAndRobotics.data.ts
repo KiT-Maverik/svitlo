@@ -76,7 +76,7 @@ export const automationAndRobotics_SkillDomain_Data = buildSkillDomainConfig({
       et: 'Uuri, kuidas andurid, juhtseadmed ja täiturid panevad füüsilised süsteemid reageerima.',
       be: 'Даведайся, як датчыкі, сыстэмы кіраваньня і выканаўчыя мэханізмы забясьпечваюць рэакцыю фізычных сыстэмаў.',
       ka: 'გაიგე, როგორ რეაგირებენ ფიზიკური სისტემები სენსორების, კონტროლერებისა და ამძრავების დახმარებით.',
-      kk: 'Датчиктер, басқару жүйелері мен атқарушы тетіктер физикалық жүйелерді қалай іске қосатынын біл.',
+      kk: 'Датчиктер, басқару жүйелері мен атқарушы тетіктер физикалық жүйелерге қалай жауап қайтаруға мүмкіндік беретінін біл.',
       qm: 'Sensorlar, kontrol cihazları ve areketlendirgicler fizikiy sistemalarnı nasıl cevap bergenini ögren.',
     },
   },
