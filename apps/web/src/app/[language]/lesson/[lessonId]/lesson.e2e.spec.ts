@@ -21,9 +21,16 @@ test('howLightMoves renders ordered sections, markdown, scenes and quiz from pub
 });
 
 test('switching the requested locale selects localized JSON, including scene props', async ({ page }) => {
-  const resource = await page.request.get('/data/pages/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/config/en.json');
-  expect(resource.ok()).toBe(true);
-  const json = await resource.json();
+  const root = '/data/pages/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/config/';
+  const [baseResource, localizedResource] = await Promise.all([
+    page.request.get(root + 'base.json'),
+    page.request.get(root + 'en.json'),
+  ]);
+  expect(baseResource.ok()).toBe(true);
+  expect(localizedResource.ok()).toBe(true);
+  const base = await baseResource.json();
+  const json = await localizedResource.json();
+  expect(base.data.title).toBeUndefined();
   expect(json.data.title).toBe('How Light Travels');
   expect(json.localeSources['/title']).toEqual({ code: 'en' });
   await page.goto('/en/lesson/d3048d21-8690-5255-b62c-984c69ac272c');
