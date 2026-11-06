@@ -6,6 +6,7 @@ import { useEffect, useState, type ReactNode, type ElementType, type Dispatch, t
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Drawer from '@mui/material/Drawer';
+import Divider from '@mui/material/Divider';
 import Fade from '@mui/material/Fade';
 import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
@@ -410,9 +411,11 @@ export default function LearningLayout({
               </IconButton>
             </Box>
             <Box sx={{ flex: 1, minHeight: 0, overflowY: 'auto', p: 2 }}>
+              {preferences}
+              {preferences && settingsContent && <Divider sx={{ my: 2 }} />}
               {typeof settingsContent === 'function'
                 ? settingsContent({ closeSettings: () => setSettingsOpen(false) })
-                : (settingsContent ?? preferences ?? <Typography color="text.secondary">{messages.settingsDescription}</Typography>)}
+                : (settingsContent ?? (!preferences && <Typography color="text.secondary">{messages.settingsDescription}</Typography>))}
             </Box>
           </Box>
         </Drawer>
