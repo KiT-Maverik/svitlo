@@ -25,6 +25,7 @@ import { LessonNavigationContext, type LessonNavigationAction } from './LessonNa
 import { LessonOperationsContext } from './LessonOperationsContext';
 import { LessonSteps } from './LessonSteps';
 import { MediaVolumeControl } from './MediaVolumeControl';
+import { MediaSettingsProvider } from './MediaSettings';
 import type { LessonProps, LessonView } from './Lesson';
 import { DEFAULT_LESSON_EVENTS } from '@svitlo/engine/content';
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/localization';
@@ -337,7 +338,7 @@ const MemoSection = memo(function LessonSection({
   );
 });
 
-export function LessonController({
+function LessonControllerRuntime({
   response,
   href,
   messages,
@@ -598,5 +599,14 @@ export function LessonController({
         </ParamsContext.Provider>
       </LessonEventBusContext.Provider>
     </LessonOperationsContext.Provider>
+  );
+}
+
+/** Keep media preferences scoped to this Lesson Controller, including direct consumers. */
+export function LessonController(props: LessonProps) {
+  return (
+    <MediaSettingsProvider key={props.href + ':' + props.response.id + ':' + props.response.locale.code}>
+      <LessonControllerRuntime {...props} />
+    </MediaSettingsProvider>
   );
 }
