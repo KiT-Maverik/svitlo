@@ -1,5 +1,3 @@
-import type { DefaultSupportedLanguage } from '@svitlo/engine/localization';
-
 const en = {
   steps: { navigation: 'Lesson steps' },
   celebration: {
@@ -612,7 +610,7 @@ const qm: Lesson_Locale = {
 };
 
 /** Complete authored Lesson UI labels. Build-time only. */
-export const data: Readonly<Record<DefaultSupportedLanguage['language'], Lesson_Locale>> = {
+export const data = {
   en,
   zh,
   hi,

@@ -1,5 +1,3 @@
-import type { DefaultSupportedLanguage } from '@svitlo/engine/localization';
-
 const en = { title: 'Check your knowledge', check: 'Check', checked: 'Checked' };
 
 export type Checkpoint_Locale = typeof en;
@@ -128,7 +126,7 @@ const kk: Checkpoint_Locale = { title: 'Біліміңді тексер', check:
 
 const qm: Checkpoint_Locale = { title: 'Bilgiñni tekşer', check: 'Tekşer', checked: 'Tekşirildi' };
 
-export const data: Readonly<Record<DefaultSupportedLanguage['language'], Checkpoint_Locale>> = {
+export const data = {
   en,
   zh,
   hi,

@@ -1,5 +1,3 @@
-import type { DefaultSupportedLanguage } from '@svitlo/engine/localization';
-
 const en = {
   offline: 'This video is not available offline.',
   unavailable: 'This video is unavailable.',
@@ -205,7 +203,7 @@ const qm: Video_Locale = {
   retry: 'Yañıdan deñe',
 };
 
-export const data: Readonly<Record<DefaultSupportedLanguage['language'], Video_Locale>> = {
+export const data = {
   en,
   uk,
   zh,

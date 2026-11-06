@@ -1,5 +1,3 @@
-import type { DefaultSupportedLanguage } from '@svitlo/engine/localization';
-
 const en = {
   check: 'Check',
   retry: 'Try again',
@@ -583,7 +581,7 @@ const qm: QuestionFrame_Locale = {
   missedChoice: 'Saylanmağan doğru cevap',
 };
 
-export const data: Readonly<Record<DefaultSupportedLanguage['language'], QuestionFrame_Locale>> = {
+export const data = {
   en,
   uk,
   zh,

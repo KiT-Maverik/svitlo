@@ -1,5 +1,3 @@
-import type { DefaultSupportedLanguage } from '@svitlo/engine/localization';
-
 const en = {
   flashcard: {
     region: 'Flashcard',
@@ -374,7 +372,7 @@ const qm: Flashcard_Locale = {
 };
 
 /** Complete framework-independent card messages; review translations editorially. */
-export const data: Readonly<Record<DefaultSupportedLanguage['language'], Flashcard_Locale>> = {
+export const data = {
   en,
   zh,
   hi,

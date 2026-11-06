@@ -1,5 +1,3 @@
-import type { DefaultSupportedLanguage } from '@svitlo/engine/localization';
-
 const en = {
   offline: 'This image is not available offline.',
   unavailable: 'This image is unavailable.',
@@ -172,7 +170,7 @@ const qm: Image_Locale = {
   retry: 'Yañıdan deñe',
 };
 
-export const data: Readonly<Record<DefaultSupportedLanguage['language'], Image_Locale>> = {
+export const data = {
   en,
   uk,
   zh,

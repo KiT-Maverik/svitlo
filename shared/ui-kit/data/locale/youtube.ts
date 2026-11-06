@@ -1,5 +1,3 @@
-import type { DefaultSupportedLanguage } from '@svitlo/engine/localization';
-
 const en = {
   loading: 'Loading video…',
   offline: 'This video needs an internet connection.',
@@ -205,7 +203,7 @@ const qm: Youtube_Locale = {
   retry: 'Yañıdan deñe',
 };
 
-export const data: Readonly<Record<DefaultSupportedLanguage['language'], Youtube_Locale>> = {
+export const data = {
   en,
   uk,
   zh,

@@ -1,5 +1,3 @@
-import type { DefaultSupportedLanguage } from '@svitlo/engine/localization';
-
 const en = {
   language: 'Language',
   theme: { dark: 'Dark theme', light: 'Light theme' },
@@ -129,7 +127,7 @@ const qm: NavbarPreferences_Locale = {
   theme: { dark: 'Qaranlıq tema', light: 'Açıq tema' },
 };
 
-export const data: Readonly<Record<DefaultSupportedLanguage['language'], NavbarPreferences_Locale>> = {
+export const data = {
   en,
   zh,
   hi,

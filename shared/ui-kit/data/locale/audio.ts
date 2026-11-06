@@ -1,5 +1,3 @@
-import type { DefaultSupportedLanguage } from '@svitlo/engine/localization';
-
 const en = {
   offline: 'This audio is not available offline.',
   unavailable: 'This audio is unavailable.',
@@ -205,7 +203,7 @@ const qm: Audio_Locale = {
   retry: 'Yañıdan deñe',
 };
 
-export const data: Readonly<Record<DefaultSupportedLanguage['language'], Audio_Locale>> = {
+export const data = {
   en,
   uk,
   zh,

@@ -1,5 +1,3 @@
-import type { DefaultSupportedLanguage } from '@svitlo/engine/localization';
-
 const en = {
   preparingLesson: 'Preparing your lesson…',
   brand: 'Svitlo',
@@ -903,7 +901,7 @@ const qm: LearningLayout_Locale = {
 };
 
 /** Complete authored LearningLayout messages. Build-time only. */
-export const data: Readonly<Record<DefaultSupportedLanguage['language'], LearningLayout_Locale>> = {
+export const data = {
   en,
   zh,
   hi,
