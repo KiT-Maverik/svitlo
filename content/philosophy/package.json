@@ -4,20 +4,19 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node scripts/build.mjs",
+    "build": "node ../../scripts/textbook-tooling/build.mjs",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "pretest:publish": "npm run build --workspace @svitlo/philosophy",
-    "test:publish": "node --test scripts/publish.spec.mjs",
+    "test:publish": "node --test ../../scripts/textbook-tooling/test-publish.mjs",
     "pretest:portability": "npm run build --workspace @svitlo/philosophy",
-    "test:portability": "node scripts/check-react-dom-portability.mjs",
+    "test:portability": "node ../../scripts/textbook-tooling/check-portability.mjs",
     "prepack": "npm run build"
   },
   "bin": {
-    "svitlo-philosophy": "./scripts/publish.mjs"
+    "svitlo-philosophy": "./dist/publish.mjs"
   },
   "files": [
-    "dist",
-    "scripts/publish.mjs"
+    "dist"
   ],
   "dependencies": {
     "@svitlo/engine": "0.0.0"

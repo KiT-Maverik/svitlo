@@ -4,21 +4,20 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node scripts/build.mjs",
+    "build": "node ../../scripts/textbook-tooling/build.mjs",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "lint": "eslint textbook.ts scripts/*.mjs",
+    "lint": "eslint textbook.ts",
     "pretest:publish": "npm run build --workspace @svitlo/history",
-    "test:publish": "node --test scripts/publish.spec.mjs",
+    "test:publish": "node --test ../../scripts/textbook-tooling/test-publish.mjs",
     "pretest:portability": "npm run build --workspace @svitlo/history",
-    "test:portability": "node scripts/check-portability.mjs",
+    "test:portability": "node ../../scripts/textbook-tooling/check-portability.mjs",
     "prepack": "npm run build"
   },
   "bin": {
-    "svitlo-history": "./scripts/publish.mjs"
+    "svitlo-history": "./dist/publish.mjs"
   },
   "files": [
-    "dist",
-    "scripts/publish.mjs"
+    "dist"
   ],
   "dependencies": {
     "@svitlo/engine": "0.0.0"
