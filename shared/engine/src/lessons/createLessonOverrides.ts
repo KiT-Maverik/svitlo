@@ -13,7 +13,9 @@ import type {
   Section_Override,
 } from '@svitlo/contracts/content';
 
-type AnyLesson = Lesson<'data', any, never>;
+// Use Lesson's canonical data shape without narrowing its custom event keys.
+// A Lesson may declare only custom reactions, with no standard event handlers.
+type AnyLesson = Omit<Lesson<'data', any, never>, 'events'> & { events?: unknown };
 type AnySection = Section<'data', any>;
 type AnyBlock = ContentBlock<'data', any>;
 
