@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, within } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { enUiKitMessages } from '../../testing/uiKitMessages.unit.fx';
 import LearningLayout from '../layout/LearningLayout/LearningLayout';
@@ -126,5 +126,74 @@ describe('LessonController scoped state and navigation', () => {
     expect(summary).toBeDisabled();
     fireEvent.click(screen.getByRole('button', { name: 'Enable navigation' }));
     expect(summary).toBeEnabled();
+  });
+});
+
+describe('multiple Quiz Sections', () => {
+  const question = (id: string) => ({
+    id: 'question-' + id,
+    type: 'selectOneAnswer' as const,
+    assessmentMethod: 'retrieval' as const,
+    restrictions: [],
+    question: [{ id: 'prompt-' + id, type: 'text' as const, value: 'Question ' + id }] as [{ id: string; type: 'text'; value: string }],
+    answers: {
+      correct: { yes: { id: 'yes-' + id, type: 'text' as const, value: 'Yes' } },
+      incorrect: { no: { id: 'no-' + id, type: 'text' as const, value: 'No' } },
+      distractors: {},
+    },
+  });
+  const params = (isBlocker: boolean) => ({
+    isBlocker,
+    selection: { mode: 'all' as const },
+    layout: { mode: 'stack' as const },
+    feedbackMode: 'immediate' as const,
+    interaction: {
+      retries: 0, showErrors: true, showCorrectAnswers: true,
+      allowExplanations: true, allowDeferring: false,
+      allowQuestionNavigation: false, skippable: false,
+    },
+    results: { visibility: 'immediate' as const, showScore: true },
+    screen: {},
+  });
+  const quiz = (id: string) => ({
+    id, slug: id, title: id, navigationLabel: id, type: 'quiz' as const,
+    parameters: params(true), questions: [question(id)],
+  });
+  const fixture = {
+    id: 'multi-quiz-lesson',
+    title: 'Multiple quizzes',
+    locale: { code: 'en' as const },
+    parameters: { sections: { allowNavigation: true, allowSkipping: true, showIndexes: true } },
+    sections: [
+      quiz('quiz-first'),
+      quiz('quiz-second'),
+      { id: 'summary', slug: 'summary', type: 'theory' as const,
+        title: 'Summary', navigationLabel: 'Summary',
+        content: [{ type: 'text' as const, id: 'summary', value: 'Quiz sections finished' }],
+      },
+    ],
+  } as LessonView;
+
+  it('gates each Quiz independently until attempted, regardless of score', async () => {
+    render(
+      <Lesson response={fixture} href="/en/lesson/multi-quiz-lesson"
+        messages={enUiKitMessages} layout={TestLayout} />,
+    );
+    const bottom = screen.getByRole('navigation', { name: enUiKitMessages.learningLayout.navigation.bottom });
+    const next = within(bottom).getByRole('button', {
+      name: new RegExp(enUiKitMessages.learningLayout.actions.next, 'i'),
+    });
+    expect(next).toBeDisabled();
+    fireEvent.click(screen.getByRole('button', { name: 'No' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Check' }));
+    await waitFor(() => expect(next).toBeEnabled());
+    fireEvent.click(next);
+    expect(screen.getByText('Question quiz-second')).toBeVisible();
+    expect(next).toBeDisabled();
+    fireEvent.click(screen.getByRole('button', { name: 'Yes' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Check' }));
+    await waitFor(() => expect(next).toBeEnabled());
+    fireEvent.click(next);
+    expect(screen.getByText('Quiz sections finished')).toBeVisible();
   });
 });
