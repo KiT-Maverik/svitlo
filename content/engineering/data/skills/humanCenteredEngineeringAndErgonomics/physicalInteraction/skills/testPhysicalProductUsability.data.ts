@@ -13,7 +13,7 @@ export const testPhysicalProductUsability_Skill_Data = buildSkillConfig({
     bn: 'বাস্তব পণ্যের ব্যবহারযোগ্যতা পরীক্ষা',
     pt: 'Testar a usabilidade de um produto físico',
     ur: 'حقیقی مصنوع کی قابلِ استعمال ہونے کی جانچ',
-    id: 'Menguji Kegunaan Produk Fisik',
+    id: 'Menguji Kemudahan Penggunaan Produk Fisik',
     de: 'Bedienbarkeit eines physischen Produkts testen',
     ja: '物理製品の使いやすさを試す',
     ko: '물리적 제품 사용성 시험',

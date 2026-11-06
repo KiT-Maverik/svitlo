@@ -61,7 +61,7 @@ export const displayHardware_Skill_Data = buildSkillConfig({
       pl: 'Dowiedz się, jak ekrany zamieniają sygnały elektroniczne na widzialne obrazy.',
       uk: 'Дізнайся, як екрани перетворюють електронні сигнали на видимі зображення.',
       lt: 'Atpažink pagrindinius ekrano aparatinės įrangos elementus ir jų funkcijas.',
-      lv: 'Uzzini, kā ekrāni pārvērš elektroniskos signālus redzamos bildēs.',
+      lv: 'Uzzini, kā ekrāni pārvērš elektroniskos signālus redzamos attēlos.',
       et: 'Uuri, kuidas ekraanid muudavad elektronsignaalid nähtavateks kujutisteks.',
       be: 'Даведайся, як экраны ператвараюць электронныя сыгналы ў бачныя выявы.',
       ka: 'გაიგე, როგორ გარდაქმნიან ეკრანები ელექტრონულ სიგნალებს ხილულ გამოსახულებებად.',

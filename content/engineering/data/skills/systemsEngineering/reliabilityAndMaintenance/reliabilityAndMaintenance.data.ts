@@ -74,7 +74,7 @@ export const reliabilityAndMaintenance_SkillGroup_Data = buildSkillGroupConfig({
       pl: 'Poznaj sposoby zarządzania awariami i utrzymywania niezawodnej pracy.',
       uk: 'Дізнайся, як інженери долають несправності й підтримують надійну роботу.',
       lt: 'Sužinok, kaip inžinieriai šalina gedimus ir užtikrina patikimą veikimą.',
-      lv: 'Uzzini, kā inženieri novērš atteices un uztur drošu darbību.',
+      lv: 'Uzzini, kā inženieri risina atteices un nodrošina sistēmu uzticamu darbību.',
       et: 'Uuri, kuidas insenerid tegelevad riketega ja hoiavad süsteemi töökorras.',
       be: 'Даведайся, як інжынэры пераадольваюць няспраўнасьці й падтрымліваюць надзейную працу.',
       ka: 'გაიგე, როგორ უმკლავდებიან ინჟინრები გაუმართაობებს და ინარჩუნებენ საიმედო მუშაობას.',

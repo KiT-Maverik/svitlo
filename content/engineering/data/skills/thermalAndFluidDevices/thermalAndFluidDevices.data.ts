@@ -31,7 +31,7 @@ export const thermalAndFluidDevices_SkillDomain_Data = buildSkillDomainConfig({
     pl: 'Urządzenia cieplne i przepływowe',
     uk: 'Теплові та гідрогазодинамічні пристрої',
     lt: 'Šiluminiai ir skysčių įrenginiai',
-    lv: 'Siltuma un šķidrumu iekārtas',
+    lv: 'Siltuma, šķidrumu un gāzu iekārtas',
     et: 'Soojus-, vedeliku- ja gaasiseadmed',
     be: 'Цеплавыя і гідрагазавыя прылады',
     ka: 'თბური და სითხის მოწყობილობები',
