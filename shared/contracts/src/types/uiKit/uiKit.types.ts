@@ -21,6 +21,7 @@ export type UiKit_ComponentMessages = {
   };
   learningLayout: {
     brand: string;
+    preparingLesson: string;
     navigation: { top: string; bottom: string; topics: string; settings: string };
     actions: {
       openTopics: string;

@@ -31,13 +31,24 @@ const output =
   `type SceneComponent = NonNullable<ReturnType<SceneRegistry>>;\n` +
   `type SceneModule = { default: SceneComponent };\n\n` +
   `const sceneImports: Readonly<Record<string, () => Promise<SceneModule>>> = {\n${imports}\n};\n\n` +
-  `const cache = new Map<string, SceneComponent>();\n\n` +
+  `const cache = new Map<string, SceneComponent>();\n` +
+  `const pending = new Map<string, Promise<SceneModule>>();\n\n` +
+  `export function preloadScene(id: string): Promise<void> {\n` +
+  `  const load = sceneImports[id];\n` +
+  `  if (!load) return Promise.reject(new Error('Unregistered scene id: ' + id));\n` +
+  `  let promise = pending.get(id);\n` +
+  `  if (!promise) {\n` +
+  `    promise = load();\n` +
+  `    pending.set(id, promise);\n` +
+  `  }\n` +
+  `  return promise.then(() => undefined);\n` +
+  `}\n\n` +
   `export const resolveScene: SceneRegistry = id => {\n` +
   `  const load = sceneImports[id];\n` +
   `  if (!load) return undefined;\n` +
   `  let component = cache.get(id);\n` +
   `  if (!component) {\n` +
-  `    component = lazy(load);\n` +
+  `    component = lazy(() => pending.get(id) ?? load());\n` +
   `    cache.set(id, component);\n` +
   `  }\n` +
   `  return component;\n` +

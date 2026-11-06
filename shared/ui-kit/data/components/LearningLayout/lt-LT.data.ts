@@ -1,4 +1,5 @@
 export const locale = {
+  preparingLesson: 'Ruošiame jūsų pamoką…',
   brand: 'Світло',
   navigation: {
     top: 'Viršutinė mokymosi navigacija',

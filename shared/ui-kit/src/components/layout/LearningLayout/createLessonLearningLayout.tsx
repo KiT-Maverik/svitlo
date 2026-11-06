@@ -10,7 +10,7 @@ import { useLessonNavigation } from '../../lesson/LessonNavigation';
 
 export type LessonLearningLayoutProps = Pick<
   LearningLayoutProps,
-  'children' | 'topics' | 'skippableSteps' | 'quizStep' | 'pathname'
+  'children' | 'topics' | 'skippableSteps' | 'quizStep' | 'pathname' | 'contentLoading'
 > & { messages: UiKit_Global<'response'> };
 
 export type LessonLearningLayoutBindings = {
@@ -28,6 +28,7 @@ export function createLessonLearningLayout(bindings: LessonLearningLayoutBinding
     quizStep,
     pathname,
     messages,
+    contentLoading,
   }: LessonLearningLayoutProps) {
     const { locale, setLocale } = bindings.useLocale();
     const { progress, dispatch } = useLessonNavigation();
@@ -39,6 +40,7 @@ export function createLessonLearningLayout(bindings: LessonLearningLayoutBinding
         messages={messages.learningLayout}
         pathname={pathname}
         progress={progress}
+        contentLoading={contentLoading}
         topics={topics}
         skippableSteps={skippableSteps}
         quizStep={quizStep}

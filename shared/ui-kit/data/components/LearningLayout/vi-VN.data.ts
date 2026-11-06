@@ -1,4 +1,5 @@
 export const locale = {
+  preparingLesson: 'Đang chuẩn bị bài học của bạn…',
   brand: 'Svitlo',
   navigation: {
     top: 'Thanh điều hướng học tập phía trên',

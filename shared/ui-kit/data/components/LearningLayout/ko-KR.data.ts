@@ -1,4 +1,5 @@
 export const locale = {
+  preparingLesson: '수업을 준비하고 있어요…',
   brand: 'Svitlo',
   navigation: {
     top: '상단 학습 탐색',

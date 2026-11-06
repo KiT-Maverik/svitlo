@@ -42,6 +42,7 @@ export type LessonProps = {
   layout: ComponentType<LessonLearningLayoutProps>;
   /** Application-owned scene registry never leaks into the shared package. */
   sceneRegistry?: SceneRegistry;
+  contentLoading?: boolean;
 };
 
 function LessonBody({
@@ -92,11 +93,12 @@ function LessonBody({
   );
 }
 
-export function Lesson({ response, href, messages, layout: Layout, sceneRegistry }: LessonProps) {
+export function Lesson({ response, href, messages, layout: Layout, sceneRegistry, contentLoading }: LessonProps) {
   const quizIndex = response.sections.findIndex(section => section.type === 'quiz');
   return (
     <LessonNavigationProvider key={response.id} sectionCount={response.sections.length}>
       <Layout
+        contentLoading={contentLoading}
         messages={messages}
         topics={[{ id: response.id, title: response.title, href }]}
         pathname={href}

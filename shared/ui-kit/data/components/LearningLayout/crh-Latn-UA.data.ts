@@ -1,5 +1,6 @@
 /** Crimean Tatar (Svitlo qm), Latin script. Requires native-speaker linguistic review. */
 export const locale = {
+  preparingLesson: 'Dersinizi azırlaymız…',
   brand: 'Svitlo',
   navigation: {
     top: 'Oquvnıñ yuqarı navigatsiyası',

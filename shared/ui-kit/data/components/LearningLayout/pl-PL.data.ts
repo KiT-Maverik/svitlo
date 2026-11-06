@@ -1,4 +1,5 @@
 export const locale = {
+  preparingLesson: 'Przygotowujemy Twoją lekcję…',
   brand: 'Svitlo',
   navigation: {
     top: 'Górna nawigacja nauki',
