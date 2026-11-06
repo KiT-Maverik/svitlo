@@ -14,7 +14,9 @@ describe('UserCabinet mockup', () => {
     expect(screen.getAllByRole('tab')).toHaveLength(3);
     expect(screen.getByRole('tab', { name: messages.tabs.profile })).toHaveAttribute('aria-selected', 'true');
     expect(screen.getByRole('tabpanel')).toHaveAccessibleName(messages.tabs.profile);
-    expect(screen.getByRole('textbox', { name: messages.displayName })).toHaveValue(userCabinetDemo.profile.displayName);
+    expect(screen.getByRole('textbox', { name: messages.displayName })).toHaveValue(
+      userCabinetDemo.profile.displayName,
+    );
   });
 
   it('previews the avatar and updated display name only after saving the mock form', async () => {
@@ -23,7 +25,10 @@ describe('UserCabinet mockup', () => {
     const avatar = screen.getByRole('button', { name: `${messages.chooseAvatar}: Лисеня` });
     await user.click(avatar);
     expect(avatar).toHaveAttribute('aria-pressed', 'true');
-    expect(screen.getByRole('button', { name: `${messages.chooseAvatar}: Сонях` })).toHaveAttribute('aria-pressed', 'false');
+    expect(screen.getByRole('button', { name: `${messages.chooseAvatar}: Сонях` })).toHaveAttribute(
+      'aria-pressed',
+      'false',
+    );
 
     const displayName = screen.getByRole('textbox', { name: messages.displayName });
     await user.clear(displayName);

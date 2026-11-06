@@ -96,15 +96,7 @@ export type UserCabinetProps = {
   initialTab?: CabinetTab;
 };
 
-function ProfileAvatar({
-  avatar,
-  displayName,
-  size,
-}: {
-  avatar?: CabinetAvatar;
-  displayName: string;
-  size: number;
-}) {
+function ProfileAvatar({ avatar, displayName, size }: { avatar?: CabinetAvatar; displayName: string; size: number }) {
   return (
     <Avatar
       sx={{
@@ -199,7 +191,11 @@ export default function UserCabinet({
           <Card variant="outlined" sx={{ borderRadius: 4, overflow: 'visible' }}>
             <CardContent sx={{ p: { xs: 2.5, sm: 3 }, '&:last-child': { pb: { xs: 2.5, sm: 3 } } }}>
               <Stack direction="row" sx={{ gap: 2.5, alignItems: 'center', flexWrap: 'wrap' }}>
-                <ProfileAvatar avatar={avatarById(savedProfile.avatarId)} displayName={savedProfile.displayName} size={80} />
+                <ProfileAvatar
+                  avatar={avatarById(savedProfile.avatarId)}
+                  displayName={savedProfile.displayName}
+                  size={80}
+                />
                 <Box sx={{ minWidth: 0 }}>
                   <Typography component="h2" variant="h5" sx={{ fontWeight: 750, overflowWrap: 'anywhere' }}>
                     {savedProfile.displayName}
@@ -225,9 +221,30 @@ export default function UserCabinet({
               scrollButtons="auto"
               allowScrollButtonsMobile
             >
-              <Tab id={`${tabsId}-profile`} aria-controls={`${tabsId}-panel`} value="profile" icon={<AccountCircleOutlinedIcon />} iconPosition="start" label={messages.tabs.profile} />
-              <Tab id={`${tabsId}-security`} aria-controls={`${tabsId}-panel`} value="security" icon={<LockOutlinedIcon />} iconPosition="start" label={messages.tabs.security} />
-              <Tab id={`${tabsId}-accounts`} aria-controls={`${tabsId}-panel`} value="accounts" icon={<GroupsOutlinedIcon />} iconPosition="start" label={messages.tabs.accounts} />
+              <Tab
+                id={`${tabsId}-profile`}
+                aria-controls={`${tabsId}-panel`}
+                value="profile"
+                icon={<AccountCircleOutlinedIcon />}
+                iconPosition="start"
+                label={messages.tabs.profile}
+              />
+              <Tab
+                id={`${tabsId}-security`}
+                aria-controls={`${tabsId}-panel`}
+                value="security"
+                icon={<LockOutlinedIcon />}
+                iconPosition="start"
+                label={messages.tabs.security}
+              />
+              <Tab
+                id={`${tabsId}-accounts`}
+                aria-controls={`${tabsId}-panel`}
+                value="accounts"
+                icon={<GroupsOutlinedIcon />}
+                iconPosition="start"
+                label={messages.tabs.accounts}
+              />
             </Tabs>
           </Box>
 
@@ -237,13 +254,21 @@ export default function UserCabinet({
                 <CardContent sx={{ p: { xs: 2.5, sm: 4 }, '&:last-child': { pb: { xs: 2.5, sm: 4 } } }}>
                   <Stack spacing={3}>
                     <Box>
-                      <Typography component="h2" variant="h5" sx={{ fontWeight: 700 }}>{messages.profileTitle}</Typography>
-                      <Typography color="text.secondary" variant="body2">{messages.profileDescription}</Typography>
+                      <Typography component="h2" variant="h5" sx={{ fontWeight: 700 }}>
+                        {messages.profileTitle}
+                      </Typography>
+                      <Typography color="text.secondary" variant="body2">
+                        {messages.profileDescription}
+                      </Typography>
                     </Box>
                     <Divider />
                     <Box>
-                      <Typography component="h3" variant="subtitle1" sx={{ fontWeight: 700 }}>{messages.avatarTitle}</Typography>
-                      <Typography color="text.secondary" variant="body2" sx={{ mb: 2 }}>{messages.avatarDescription}</Typography>
+                      <Typography component="h3" variant="subtitle1" sx={{ fontWeight: 700 }}>
+                        {messages.avatarTitle}
+                      </Typography>
+                      <Typography color="text.secondary" variant="body2" sx={{ mb: 2 }}>
+                        {messages.avatarDescription}
+                      </Typography>
                       <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.5 }}>
                         {avatars.map(option => {
                           const selected = draft.avatarId === option.id;
@@ -266,12 +291,24 @@ export default function UserCabinet({
                                 gap: 0.75,
                                 minWidth: 88,
                                 position: 'relative',
-                                '&:focus-visible': { outline: '3px solid', outlineColor: 'primary.main', outlineOffset: 2 },
+                                '&:focus-visible': {
+                                  outline: '3px solid',
+                                  outlineColor: 'primary.main',
+                                  outlineOffset: 2,
+                                },
                               }}
                             >
                               <ProfileAvatar avatar={option} displayName={draft.displayName} size={54} />
-                              <Typography variant="caption" sx={{ fontWeight: selected ? 700 : 400 }}>{option.label}</Typography>
-                              {selected && <CheckCircleRoundedIcon aria-hidden="true" color="primary" sx={{ position: 'absolute', insetBlockStart: 2, insetInlineEnd: 2, fontSize: 18 }} />}
+                              <Typography variant="caption" sx={{ fontWeight: selected ? 700 : 400 }}>
+                                {option.label}
+                              </Typography>
+                              {selected && (
+                                <CheckCircleRoundedIcon
+                                  aria-hidden="true"
+                                  color="primary"
+                                  sx={{ position: 'absolute', insetBlockStart: 2, insetInlineEnd: 2, fontSize: 18 }}
+                                />
+                              )}
                             </ButtonBase>
                           );
                         })}
@@ -280,26 +317,38 @@ export default function UserCabinet({
                     <Box component="form" onSubmit={saveProfile} noValidate={false}>
                       <Stack spacing={2.5}>
                         <TextField
-                          fullWidth required
+                          fullWidth
+                          required
                           label={messages.displayName}
                           name="displayName"
                           value={draft.displayName}
-                          onChange={event => { setDraft(previous => ({ ...previous, displayName: event.target.value })); setProfileNotice(false); }}
+                          onChange={event => {
+                            setDraft(previous => ({ ...previous, displayName: event.target.value }));
+                            setProfileNotice(false);
+                          }}
                         />
                         <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 2 }}>
                           <TextField
-                            fullWidth required
+                            fullWidth
+                            required
                             label={messages.firstName}
                             name="firstName"
                             value={draft.firstName}
-                            onChange={event => { setDraft(previous => ({ ...previous, firstName: event.target.value })); setProfileNotice(false); }}
+                            onChange={event => {
+                              setDraft(previous => ({ ...previous, firstName: event.target.value }));
+                              setProfileNotice(false);
+                            }}
                           />
                           <TextField
-                            fullWidth required
+                            fullWidth
+                            required
                             label={messages.lastName}
                             name="lastName"
                             value={draft.lastName}
-                            onChange={event => { setDraft(previous => ({ ...previous, lastName: event.target.value })); setProfileNotice(false); }}
+                            onChange={event => {
+                              setDraft(previous => ({ ...previous, lastName: event.target.value }));
+                              setProfileNotice(false);
+                            }}
                           />
                         </Box>
                         <TextField fullWidth disabled label={messages.email} value={savedProfile.email} />
@@ -308,7 +357,11 @@ export default function UserCabinet({
                             {messages.saveProfile}
                           </Button>
                         </Box>
-                        {profileNotice && <Alert severity="info" role="status">{messages.profilePreviewNotice}</Alert>}
+                        {profileNotice && (
+                          <Alert severity="info" role="status">
+                            {messages.profilePreviewNotice}
+                          </Alert>
+                        )}
                       </Stack>
                     </Box>
                   </Stack>
@@ -321,26 +374,51 @@ export default function UserCabinet({
                 <CardContent sx={{ p: { xs: 2.5, sm: 4 }, '&:last-child': { pb: { xs: 2.5, sm: 4 } } }}>
                   <Stack spacing={3}>
                     <Box>
-                      <Typography component="h2" variant="h5" sx={{ fontWeight: 700 }}>{messages.securityTitle}</Typography>
-                      <Typography color="text.secondary" variant="body2">{messages.securityDescription}</Typography>
+                      <Typography component="h2" variant="h5" sx={{ fontWeight: 700 }}>
+                        {messages.securityTitle}
+                      </Typography>
+                      <Typography color="text.secondary" variant="body2">
+                        {messages.securityDescription}
+                      </Typography>
                     </Box>
                     <Divider />
                     <Box component="form" onSubmit={changePassword} sx={{ maxWidth: 520 }}>
                       <Stack spacing={2.5}>
                         <TextField
-                          fullWidth required type="password" autoComplete="current-password"
-                          label={messages.currentPassword} value={currentPassword}
-                          onChange={event => { setCurrentPassword(event.target.value); setPasswordNotice(null); }}
+                          fullWidth
+                          required
+                          type="password"
+                          autoComplete="current-password"
+                          label={messages.currentPassword}
+                          value={currentPassword}
+                          onChange={event => {
+                            setCurrentPassword(event.target.value);
+                            setPasswordNotice(null);
+                          }}
                         />
                         <TextField
-                          fullWidth required type="password" autoComplete="new-password"
-                          label={messages.newPassword} value={newPassword}
-                          onChange={event => { setNewPassword(event.target.value); setPasswordNotice(null); }}
+                          fullWidth
+                          required
+                          type="password"
+                          autoComplete="new-password"
+                          label={messages.newPassword}
+                          value={newPassword}
+                          onChange={event => {
+                            setNewPassword(event.target.value);
+                            setPasswordNotice(null);
+                          }}
                         />
                         <TextField
-                          fullWidth required type="password" autoComplete="new-password"
-                          label={messages.confirmPassword} value={confirmPassword}
-                          onChange={event => { setConfirmPassword(event.target.value); setPasswordNotice(null); }}
+                          fullWidth
+                          required
+                          type="password"
+                          autoComplete="new-password"
+                          label={messages.confirmPassword}
+                          value={confirmPassword}
+                          onChange={event => {
+                            setConfirmPassword(event.target.value);
+                            setPasswordNotice(null);
+                          }}
                         />
                         <Box>
                           <Button type="submit" variant="contained" startIcon={<LockOutlinedIcon />}>
@@ -348,7 +426,10 @@ export default function UserCabinet({
                           </Button>
                         </Box>
                         {passwordNotice && (
-                          <Alert role={passwordNotice === 'demo' ? 'status' : 'alert'} severity={passwordNotice === 'demo' ? 'info' : 'error'}>
+                          <Alert
+                            role={passwordNotice === 'demo' ? 'status' : 'alert'}
+                            severity={passwordNotice === 'demo' ? 'info' : 'error'}
+                          >
                             {passwordNotice === 'short'
                               ? messages.passwordTooShort
                               : passwordNotice === 'mismatch'
@@ -368,18 +449,36 @@ export default function UserCabinet({
                 <CardContent sx={{ p: { xs: 2.5, sm: 4 }, '&:last-child': { pb: { xs: 2.5, sm: 4 } } }}>
                   <Stack spacing={2.5}>
                     <Box>
-                      <Typography component="h2" variant="h5" sx={{ fontWeight: 700 }}>{messages.accountsTitle}</Typography>
-                      <Typography color="text.secondary" variant="body2">{messages.accountsDescription}</Typography>
+                      <Typography component="h2" variant="h5" sx={{ fontWeight: 700 }}>
+                        {messages.accountsTitle}
+                      </Typography>
+                      <Typography color="text.secondary" variant="body2">
+                        {messages.accountsDescription}
+                      </Typography>
                     </Box>
                     <Divider />
-                    <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, minmax(0, 1fr))' }, gap: 2 }}>
+                    <Box
+                      sx={{
+                        display: 'grid',
+                        gridTemplateColumns: { xs: '1fr', md: 'repeat(2, minmax(0, 1fr))' },
+                        gap: 2,
+                      }}
+                    >
                       <Card variant="outlined" sx={{ borderRadius: 3, bgcolor: 'action.hover' }}>
                         <CardContent>
                           <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
-                            <ProfileAvatar avatar={avatarById(savedProfile.avatarId)} displayName={savedProfile.displayName} size={52} />
+                            <ProfileAvatar
+                              avatar={avatarById(savedProfile.avatarId)}
+                              displayName={savedProfile.displayName}
+                              size={52}
+                            />
                             <Box sx={{ minWidth: 0, flex: 1 }}>
-                              <Typography sx={{ fontWeight: 700, overflowWrap: 'anywhere' }}>{savedProfile.displayName}</Typography>
-                              <Typography color="text.secondary" variant="body2">{messages.accountRoles.owner}</Typography>
+                              <Typography sx={{ fontWeight: 700, overflowWrap: 'anywhere' }}>
+                                {savedProfile.displayName}
+                              </Typography>
+                              <Typography color="text.secondary" variant="body2">
+                                {messages.accountRoles.owner}
+                              </Typography>
                             </Box>
                             <Chip size="small" label={messages.currentAccount} color="primary" variant="outlined" />
                           </Stack>
@@ -389,11 +488,21 @@ export default function UserCabinet({
                         <Card key={account.id} variant="outlined" sx={{ borderRadius: 3 }}>
                           <CardContent>
                             <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
-                              <ProfileAvatar avatar={avatarById(account.avatarId)} displayName={account.displayName} size={52} />
+                              <ProfileAvatar
+                                avatar={avatarById(account.avatarId)}
+                                displayName={account.displayName}
+                                size={52}
+                              />
                               <Box sx={{ minWidth: 0 }}>
-                                <Typography sx={{ fontWeight: 700, overflowWrap: 'anywhere' }}>{account.displayName}</Typography>
-                                <Typography color="text.secondary" variant="body2">{account.subtitle}</Typography>
-                                <Typography color="text.secondary" variant="caption">{messages.accountRoles[account.role]}</Typography>
+                                <Typography sx={{ fontWeight: 700, overflowWrap: 'anywhere' }}>
+                                  {account.displayName}
+                                </Typography>
+                                <Typography color="text.secondary" variant="body2">
+                                  {account.subtitle}
+                                </Typography>
+                                <Typography color="text.secondary" variant="caption">
+                                  {messages.accountRoles[account.role]}
+                                </Typography>
                               </Box>
                             </Stack>
                           </CardContent>
