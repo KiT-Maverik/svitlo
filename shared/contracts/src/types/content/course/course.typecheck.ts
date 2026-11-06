@@ -8,7 +8,8 @@ import type {
   Module,
   Module_Content,
 } from '../../../content';
-import type { ContentBlock_Markdown, ContentBlock_Text, Section } from '../index';
+import type { ContentBlock_Markdown, ContentBlock_Text } from '../blocks';
+import type { Section } from '../section.types';
 
 type Languages = readonly ['en', 'uk'];
 
@@ -85,10 +86,7 @@ const partialTitle: ContentBlock_Text<'data', Languages> = {
   value: { en: 'Fractions' },
 };
 // @ts-expect-error The course language tuple must match the declared tuple.
-const missingCourseLanguage: Course<'data', Languages> = {
-  ...course,
-  parameters: { languages: ['en'] },
-};
+const missingCourseLanguage: Course<'data', Languages>['parameters']['languages'] = ['en'];
 
 void [
   course,
