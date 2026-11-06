@@ -362,7 +362,8 @@ export function LessonController({
 
   const finishQuiz = useCallback(
     (sectionId: string | undefined, passed: boolean) => {
-      const id = sectionId ?? response.sections.find(section => section.type === 'quiz')?.id;
+      const active = response.sections[latest.current.section.step];
+      const id = sectionId ?? (active?.type === 'quiz' ? active.id : undefined);
       if (!id || quizEmitted.current.has(id)) return;
       quizEmitted.current.add(id);
       dispatch({ type: 'quizDone', sectionId: id });
@@ -386,11 +387,12 @@ export function LessonController({
   useEffect(() => {
     if (!eventReady || lessonFinished.current || !response.sections.length) return;
     const finalStep = response.sections.length - 1;
+    const lastSection = response.sections[finalStep];
     if (
       state.section.step !== finalStep ||
+      (lastSection.type === 'quiz' && !state.section.completedQuizIds[lastSection.id]) ||
       !canLeaveSection(state, response, finalStep)
-    )
-      return;
+    ) return;
     lessonFinished.current = true;
     emit('lessonCompleted');
   }, [eventReady, response, state, emit]);
