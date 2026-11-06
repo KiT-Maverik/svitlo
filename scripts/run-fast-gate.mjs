@@ -12,8 +12,8 @@ function assert(ok, message) {
 function json(file) {
   return JSON.parse(fs.readFileSync(path.join(repoRoot, file), 'utf8'));
 }
-function exec(command, args) {
-  const result = spawnSync(command, args, { cwd: repoRoot, stdio: 'inherit', shell: false });
+function exec(command, args, cwd = repoRoot) {
+  const result = spawnSync(command, args, { cwd, stdio: 'inherit', shell: false });
   assert(
     !result.error && result.status === 0,
     'FastGate command failed: ' + command + ' ' + args.join(' ') + (result.error ? ': ' + result.error.message : ''),
@@ -45,6 +45,7 @@ export function chooseChecks(changed, workspaces) {
   const affected = new Set();
   const packages = new Map(workspaces.map(w => [w.name, w]));
   const global = changed.some(f => f === 'package.json' || f.startsWith('scripts/check-workspaces'));
+  const sharedTextbookTooling = changed.some(f => f.startsWith('scripts/textbook-tooling/'));
   const lockChange = changed.includes('package-lock.json');
   for (const file of changed) {
     const pkg = packageFor(file, workspaces);
@@ -58,6 +59,11 @@ export function chooseChecks(changed, workspaces) {
     }
   }
   if (global) for (const name of packages.keys()) affected.add(name);
+  if (sharedTextbookTooling) {
+    for (const name of ['@svitlo/playground', '@svitlo/art', '@svitlo/astronomy']) {
+      if (packages.has(name)) affected.add(name);
+    }
+  }
   if (lockChange)
     for (const name of ['@svitlo/contracts', '@svitlo/engine', '@svitlo/indexdb', '@svitlo/ui-kit', '@svitlo/math']) {
       if (packages.has(name)) affected.add(name);
@@ -160,6 +166,7 @@ function runGate(changed) {
         file.startsWith('apps/web/') ||
         file.startsWith('content/playground/scenes/') ||
         file.startsWith('content/playground/scripts/') ||
+        file.startsWith('scripts/textbook-tooling/') ||
         file === 'content/playground/package.json' ||
         file === 'shared/ui-kit/src/scene-locale.tsx',
     )
@@ -186,11 +193,14 @@ function runGate(changed) {
   // Run its build once and both package-scoped resource/consumer checks.
   for (const subject of ['math', 'physics', 'psychology', 'philosophy', 'language-literature', 'ukrainian']) {
     const pkg = all.get('@svitlo/' + subject);
-    if (!pkg || !changed.some(file => file.startsWith(pkg.path + '/'))) continue;
+    if (!pkg || !changed.some(file => file.startsWith(pkg.path + '/')) &&
+        !(changed.some(file => file.startsWith('scripts/textbook-tooling/')) && ['math', 'ukrainian'].includes(subject))) continue;
     ensureSharedDependencies(pkg.name);
     exec('npm', ['run', 'build', '--workspace', pkg.name]);
-    exec('node', ['--test', path.join(pkg.path, 'scripts/publish.spec.mjs')]);
-    exec('node', [path.join(pkg.path, 'scripts/check-react-dom-portability.mjs')]);
+    exec('node', ['--test', path.join(repoRoot, 'scripts/textbook-tooling/test-publish.mjs')],
+      path.join(repoRoot, pkg.path));
+    exec('node', [path.join(repoRoot, 'scripts/textbook-tooling/check-portability.mjs')],
+      path.join(repoRoot, pkg.path));
   }
 
   const textbookTaxonomyChanged = targets.some(name => {
