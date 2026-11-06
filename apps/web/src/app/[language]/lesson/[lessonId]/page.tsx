@@ -1,9 +1,10 @@
+import { Suspense } from 'react';
 import { notFound, redirect } from 'next/navigation';
 import { resolveEntityPath } from '@svitlo/engine';
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/localization';
 
 /** Redirect existing links to the canonical two-language lesson URL. */
-export default async function LegacyLessonPage({
+async function LegacyRedirect({
   params,
   searchParams,
 }: {
@@ -25,4 +26,16 @@ export default async function LegacyLessonPage({
   }
   const suffix = query.toString();
   redirect(`/${language}/lesson/${language}/${lessonId}${suffix ? '?' + suffix : ''}`);
+}
+
+/** Next.js Cache Components require async URL inspection beneath Suspense. */
+export default function LegacyLessonPage(props: {
+  params: Promise<{ language: string; lessonId: string }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
+  return (
+    <Suspense fallback={null}>
+      <LegacyRedirect {...props} />
+    </Suspense>
+  );
 }
