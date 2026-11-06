@@ -13,7 +13,7 @@ export const anticipateFailureModes_Skill_Data = buildSkillConfig({
     bn: 'সম্ভাব্য ব্যর্থতার ধরন অনুমান করা',
     pt: 'Antecipar modos de falha',
     ur: 'خرابی کے ممکنہ طریقوں کا اندازہ',
-    id: 'Mengantisipasi Cara Kegagalan',
+    id: 'Mengantisipasi Mode Kegagalan',
     de: 'Mögliche Ausfallarten voraussehen',
     ja: '故障の起こり方を予測する',
     ko: '고장 형태 예상하기',
