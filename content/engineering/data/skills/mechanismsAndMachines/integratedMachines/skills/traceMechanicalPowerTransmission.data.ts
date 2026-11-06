@@ -65,7 +65,7 @@ export const traceMechanicalPowerTransmission_Skill_Data = buildSkillConfig({
       be: "Прасачы энэргію й рух ад прываду да працоўнага органа машыны.",
       ka: "თვალი ადევნე ენერგიასა და მოძრაობას ამძრავიდან მანქანის სამუშაო ნაწილამდე.",
       kk: "Жетектен машинаның жұмыс бөлігіне дейін энергия мен қозғалысты қадағала.",
-      qm: "Aydavcıdan maşinanıñ işlegen parçasına qadar enerģiya ve areketni izle.",
+      qm: "Aydavcıdan maşinanıñ işlegen parçasına qadar energiya ve areketni izle.",
     },
   },
 });
