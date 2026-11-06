@@ -31,7 +31,8 @@ export type LessonEventsField<Languages extends Lesson_Locale, CustomEvents exte
 export type LessonEventOverrides<
   CustomEvents extends string = never,
   Languages extends Lesson_Locale = Lesson_Locale,
-> = Partial<Record<SupportedLessonEvents<CustomEvents>, EventScene<'response', Languages> | false>>;
+  ConfigType extends 'data' | 'response' = 'response',
+> = Partial<Record<SupportedLessonEvents<CustomEvents>, EventScene<ConfigType, Languages> | false>>;
 
 /** Published events are localized scene blocks, not callbacks or JSX. */
 export type LessonResponseEvents<Languages extends Lesson_Locale, CustomEvents extends string = never> = Partial<

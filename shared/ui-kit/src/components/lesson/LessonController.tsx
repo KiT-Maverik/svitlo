@@ -339,6 +339,7 @@ export function LessonController({
   response,
   href,
   messages,
+  topics: courseTopics,
   layout: Layout,
   sceneRegistry,
   contentLoading,
@@ -542,7 +543,11 @@ export function LessonController({
     () => <EventSceneHost bus={eventBus} events={effectiveEvents} sceneRegistry={sceneRegistry} enabled={eventReady} />,
     [eventBus, effectiveEvents, sceneRegistry, eventReady],
   );
-  const topics = useMemo(() => [{ id: response.id, title: response.title, href }], [response.id, response.title, href]);
+  const standaloneTopics = useMemo(
+    () => [{ id: response.id, title: response.title, href }],
+    [response.id, response.title, href],
+  );
+  const topics = courseTopics ?? standaloneTopics;
   const skippableSteps = useMemo(
     () =>
       response.sections.map(
