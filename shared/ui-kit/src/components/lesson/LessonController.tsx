@@ -25,6 +25,7 @@ import { LessonNavigationContext, type LessonNavigationAction } from './LessonNa
 import { LessonSteps } from './LessonSteps';
 import type { LessonProps, LessonView } from './Lesson';
 import { DEFAULT_LESSON_EVENTS } from '@svitlo/engine/content';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/localization';
 import { EventSceneHost, LessonEventBusContext, createLessonEventBus, resolveLessonEventScenes } from './LessonEvents';
 import styles from './Lesson.module.css';
 
@@ -488,6 +489,7 @@ export function LessonController({
     () => <EventSceneHost bus={eventBus} events={effectiveEvents} sceneRegistry={sceneRegistry} enabled={eventReady} />,
     [eventBus, effectiveEvents, sceneRegistry, eventReady],
   );
+  const contentLanguage = DEFAULT_SUPPORTED_LANGUAGES.find(item => item.language === response.locale.code);
   const quizIndex = response.sections.findIndex(item => item.type === 'quiz');
   const topics = useMemo(() => [{ id: response.id, title: response.title, href }], [response.id, response.title, href]);
   const skippableSteps = useMemo(
@@ -517,7 +519,7 @@ export function LessonController({
               renderBottomBar={renderBottomBar}
               renderEventHost={renderEventHost}
             >
-              <div className={styles.lesson}>
+              <div className={styles.lesson} lang={contentLanguage?.locale} dir={contentLanguage?.direction}>
                 {!contentLoading && !contentError && (
                   <>
                     <StepperContext.Provider value={stepper}>
