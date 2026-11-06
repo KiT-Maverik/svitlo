@@ -2,8 +2,8 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/localization';
-import { data as layouts } from '../../../../shared/ui-kit/data/components/LearningLayout/messages.data';
-import { data as preferences } from '../../../../shared/ui-kit/data/components/NavbarPreferences/messages.data';
+import { data as layouts } from '../../../../shared/ui-kit/data/locale/learningLayout';
+import { data as preferences } from '../../../../shared/ui-kit/data/locale/navbarPreferences';
 
 const root = process.cwd();
 const newLanguages = ['lt', 'lv', 'et', 'be', 'ka', 'kk'] as const;

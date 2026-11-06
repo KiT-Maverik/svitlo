@@ -22,14 +22,20 @@ function generate(...flags) {
 
 describe('global UI Kit translation coverage', () => {
   it('stores every component dictionary in one authored file', () => {
-    const components = path.join(root, 'shared/ui-kit/data/components');
-    for (const entry of readdirSync(components, { withFileTypes: true }).filter(item => item.isDirectory())) {
-      assert.deepEqual(
-        readdirSync(path.join(components, entry.name)).filter(file => file.endsWith('.data.ts')),
-        ['messages.data.ts'],
-        entry.name,
-      );
-    }
+    const locales = path.join(root, 'shared/ui-kit/data/locale');
+    const expected = [
+      'audio',
+      'checkpoint',
+      'flashcard',
+      'image',
+      'learningLayout',
+      'lesson',
+      'navbarPreferences',
+      'questionFrame',
+      'video',
+      'youtube',
+    ];
+    assert.deepEqual(readdirSync(locales).sort(), expected.map(name => name + '.ts').sort());
   });
 
   it('audits complete coverage of every canonical language and component', () => {

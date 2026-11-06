@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import LearningLayout from './LearningLayout';
-import { data } from '../../../../data/components/LearningLayout/messages.data';
+import { data } from '../../../../data/locale/learningLayout';
 
 const uk = data.uk;
 

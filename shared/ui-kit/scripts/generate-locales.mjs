@@ -11,7 +11,7 @@ import ts from 'typescript';
 
 const require = createRequire(import.meta.url);
 const repoRoot = fileURLToPath(new URL('../../../', import.meta.url));
-const dataRoot = join(repoRoot, 'shared/ui-kit/data/components');
+const dataRoot = join(repoRoot, 'shared/ui-kit/data/locale');
 const targetFlag = process.argv.indexOf('--package');
 if (targetFlag < 0 || !process.argv[targetFlag + 1]) {
   throw new Error('Usage: node generate-locales.mjs --package content/<textbook>');
@@ -32,8 +32,8 @@ const tmp = mkdtempSync(join(tmpdir(), 'svitlo-ui-kit-'));
 const cache = new Map();
 
 /** Compile authored data into temporary JS modules; never ship this code to the app. */
-function readData(component, file) {
-  const path = join(dataRoot, component, file);
+function readData(component) {
+  const path = join(dataRoot, component + '.ts');
   if (!existsSync(path)) return undefined;
   if (!cache.has(path)) {
     const source = readFileSync(path, 'utf8');
@@ -49,16 +49,16 @@ function readData(component, file) {
 }
 
 const whole = Object.freeze({
-  lesson: readData('Lesson', 'messages.data.ts'),
-  learningLayout: readData('LearningLayout', 'messages.data.ts'),
-  navbarPreferences: readData('NavbarPreferences', 'messages.data.ts'),
-  flashcard: readData('Flashcard', 'messages.data.ts'),
-  checkpoint: readData('Checkpoint', 'messages.data.ts'),
-  audio: readData('Audio', 'messages.data.ts'),
-  image: readData('Image', 'messages.data.ts'),
-  video: readData('Video', 'messages.data.ts'),
-  youtube: readData('Youtube', 'messages.data.ts'),
-  questionFrame: readData('QuestionFrame', 'messages.data.ts'),
+  lesson: readData('lesson'),
+  learningLayout: readData('learningLayout'),
+  navbarPreferences: readData('navbarPreferences'),
+  flashcard: readData('flashcard'),
+  checkpoint: readData('checkpoint'),
+  audio: readData('audio'),
+  image: readData('image'),
+  video: readData('video'),
+  youtube: readData('youtube'),
+  questionFrame: readData('questionFrame'),
 });
 
 function message(component, language) {
