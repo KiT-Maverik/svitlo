@@ -1,5 +1,6 @@
 import { createChapter, createEpisode, createLessonOverrides, createModule } from '@svitlo/engine/builders';
 import type { Course, Section } from '@svitlo/engine/content';
+import { contentBlockGallery_Section } from './sections/contentBlockGallery.data';
 import {
   howLightMoves_languages,
   type HowLightMoves_Languages,
@@ -56,7 +57,7 @@ const storyInsideLesson = {
 
 const reorderedLesson = createLessonOverrides(howLightMoves_Data)
   .setParams({ sections: { allowSkipping: false } })
-  .sections.setOrder(['practice', storyInsideLesson, 'theory', 'quiz'])
+  .sections.setOrder(['practice', storyInsideLesson, 'theory', contentBlockGallery_Section, 'quiz'])
   .build();
 
 const chapter = createChapter<HowLightMoves_Languages>({
