@@ -35,11 +35,13 @@ describe('LessonSteps', () => {
       id: `step-${index + 1}`,
       title: `Step ${index + 1}`,
     }));
-    const rectSpy = vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockImplementation(function (this: HTMLElement) {
-      if (this.tagName === 'NAV') return { left: 0, right: 320 } as DOMRect;
-      if (this.getAttribute('aria-current') === 'step') return { left: 620, right: 720 } as DOMRect;
-      return { left: 0, right: 0 } as DOMRect;
-    });
+    const rectSpy = vi
+      .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
+      .mockImplementation(function (this: HTMLElement) {
+        if (this.tagName === 'NAV') return { left: 0, right: 320 } as DOMRect;
+        if (this.getAttribute('aria-current') === 'step') return { left: 620, right: 720 } as DOMRect;
+        return { left: 0, right: 0 } as DOMRect;
+      });
 
     try {
       render(<LessonSteps navigationLabel="Lesson steps" steps={longSteps} currentStep={6} />);
