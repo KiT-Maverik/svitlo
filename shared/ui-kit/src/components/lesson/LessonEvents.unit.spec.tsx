@@ -8,7 +8,7 @@ import { Lesson, type LessonView } from './Lesson';
 import { useLessonActions, useLessonEventBus, useLessonEventScene } from './index';
 import { createLessonEventBus, resolveLessonEventScenes } from './LessonEvents';
 import type { EventScene } from './LessonEvents';
-import type { ContentBlock_Scene_LocaleShape } from '@svitlo/engine/content';
+
 
 const received: string[] = [];
 const celebration: EventScene = {
@@ -16,7 +16,7 @@ const celebration: EventScene = {
   locales: { title: 'Great work!' },
 };
 
-function SceneContent({ locales }: { locales: ContentBlock_Scene_LocaleShape }) {
+function SceneContent({ locales }: { locales: EventScene['locales'] }) {
   const { dismiss } = useLessonEventScene();
   return (
     <>
@@ -53,11 +53,11 @@ function response(): LessonView {
     sections: [
       {
         id: 'section-a', type: 'theory', navigationLabel: 'First',
-        content: [{ id: 'text-a', type: 'text', value: 'First section' }], questions: [],
+        content: [{ id: 'text-a', slug: 'firstText', type: 'text', value: 'First section' }], questions: [],
       },
       {
         id: 'section-b', type: 'theory', navigationLabel: 'Second',
-        content: [{ id: 'text-b', type: 'text', value: 'Second section' }], questions: [],
+        content: [{ id: 'text-b', slug: 'secondText', type: 'text', value: 'Second section' }], questions: [],
       },
     ],
   } as LessonView;
