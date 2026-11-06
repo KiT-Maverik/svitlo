@@ -44,7 +44,7 @@ export const identifySystemBoundaries_Skill_Data = buildSkillConfig({
       ar: 'ميّز النظام المدروس من بيئته ومستخدميه.',
       fr: 'Distingue le système étudié de son environnement et de ses utilisateurs.',
       bn: 'অধ্যয়ন করা ব্যবস্থাকে তার পরিবেশ ও ব্যবহারকারী থেকে আলাদা করো।',
-      pt: 'Distinga o sistema estudado do ambiente e de seus utilizadores.',
+      pt: 'Distinga o sistema estudado do ambiente e de seus usuários.',
       ur: 'زیرِ مطالعہ نظام کو اس کے ماحول اور صارفین سے الگ سمجھیں۔',
       id: 'Bedakan sistem yang dikaji dari lingkungan dan penggunanya.',
       de: 'Grenze das untersuchte System von seiner Umgebung und seinen Nutzern ab.',

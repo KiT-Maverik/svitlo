@@ -44,7 +44,7 @@ export const magneticFastening_Skill_Data = buildSkillConfig({
       ar: 'افهم متى يمكن للمغناطيس تثبيت مكوّن.',
       fr: 'Comprends dans quelles conditions des aimants peuvent fixer une pièce.',
       bn: 'চুম্বক কখন কোনো অংশ ধরে রাখতে পারে তা বোঝো।',
-      pt: 'Entenda em que condições ímanes podem fixar um componente.',
+      pt: 'Entenda em que condições ímãs podem fixar um componente.',
       ur: 'جانیں کہ مقناطیس کب کسی پرزے کو مضبوطی سے تھام سکتا ہے۔',
       id: 'Pahami kapan magnet dapat menahan suatu komponen.',
       de: 'Verstehe, wann Magnete ein Bauteil sicher halten können.',

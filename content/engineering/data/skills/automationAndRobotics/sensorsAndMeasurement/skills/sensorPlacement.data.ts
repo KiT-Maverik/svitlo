@@ -59,7 +59,7 @@ export const sensorPlacement_Skill_Data = buildSkillConfig({
       he: 'בחרו מיקום חיישנים שיניב מדידות שימושיות ואמינות.',
       pl: 'Dobierz położenie czujników, aby uzyskać przydatne i wiarygodne pomiary.',
       uk: 'Обирай місце датчика для корисних і надійних вимірювань.',
-      lt: 'Parink jutiklio vietą patikimiems ir naudingi matavimams.',
+      lt: 'Parink jutiklio vietą patikimiems ir naudingiems matavimams.',
       lv: 'Izvēlies sensoru novietojumu noderīgiem un uzticamiem mērījumiem.',
       et: 'Vali andurite asukoht kasulike ja usaldusväärsete mõõtmiste jaoks.',
       be: 'Выбірай месца датчыка для карысных і надзейных вымярэньняў.',
