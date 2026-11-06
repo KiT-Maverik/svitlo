@@ -219,6 +219,7 @@ function MobileContent() {
       </Container>
     );
   }
+  if (route.type !== 'lesson') return null;
   const { response, messages } = state.data;
   return (
     <LocaleContext.Provider value={localeBinding}>
