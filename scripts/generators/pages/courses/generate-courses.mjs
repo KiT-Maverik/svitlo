@@ -69,7 +69,6 @@ async function render(root) {
     const creator = createCourse(course);
     const { groups, episodes, lessons, overrides } = creator.getContentEntries();
     const visited = new Set([course.id]);
-    const usedLessons = new Set();
     for (const group of groups) {
       const key = id(group.id);
       if (visited.has(key)) throw new Error('Duplicate Course node ID ' + key);
@@ -83,13 +82,18 @@ async function render(root) {
         throw new Error('Episode contains non-scenario Section');
       }
     }
-    for (const lesson of lessons) {
-      const key = id(lesson.id);
-      if (usedLessons.has(key)) throw new Error('Repeated Lesson: ' + key);
-      usedLessons.add(key);
-    }
+    // Repeated references are valid, but every referenced UUID must be valid.
+    for (const lesson of lessons) id(lesson.id);
+    // Overrides are keyed by Lesson UUID in the existing publication layout.
+    // Distinct per-slot patches for one Lesson would collide: reject rather
+    // than silently overwrite one occurrence with another.
+    const overriddenLessons = new Set();
     for (const override of overrides) {
       if (override.lessonId !== override.lesson?.id) throw new Error('Mismatched Lesson override ID');
+      if (overriddenLessons.has(override.lessonId)) {
+        throw new Error('Conflicting repeated Course Lesson overrides: ' + override.lessonId);
+      }
+      overriddenLessons.add(override.lessonId);
     }
     // Creator returns only sparse, language-neutral data. The publisher owns
     // paths, serialization and the base.json / <language>.json layout.

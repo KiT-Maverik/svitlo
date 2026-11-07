@@ -97,3 +97,18 @@ type _CourseAcceptsLesson = AssertTrue<
     : false
 >;
 type _CourseRejectsRawIds = AssertFalse<string extends Course<'data', Languages>['content'][number] ? true : false>;
+
+// Independent Lessons can support more languages, never fewer than the Course.
+type _CourseAcceptsLessonLocaleSuperset = AssertTrue<
+  import('../lesson.types').Lesson<'data', readonly ['en', 'uk', 'fr']> extends Course<
+    'data',
+    Languages
+  >['content'][number]
+    ? true
+    : false
+>;
+type _CourseRejectsLessonMissingLocale = AssertFalse<
+  import('../lesson.types').Lesson<'data', readonly ['en']> extends Course<'data', Languages>['content'][number]
+    ? true
+    : false
+>;

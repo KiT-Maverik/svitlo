@@ -2,7 +2,14 @@ export type { Course, Course_Prerequisites, Course_ScenarioMode } from './course
 export type { Module } from './module.types';
 export type { Chapter } from './chapter.types';
 export type { Episode, Episode_ScenarioSection } from './episode.types';
-export type { Course_LessonId, Course_Content, Module_Content, Chapter_Content } from './content.types';
+export type {
+  Course_LessonId,
+  Course_Content,
+  Module_Content,
+  Chapter_Content,
+  Course_CompatibleLesson,
+  Course_CompatibleOverride,
+} from './content.types';
 export type { Lesson_Override, Section_Override } from './override.types';
 export type {
   Course_ContentSource,
