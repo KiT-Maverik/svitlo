@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Read-only LessonV2 data → review Markdown. No published JSON or authored data changes.
+ * Read-only typed Lesson data → review Markdown. No published JSON or authored data changes.
  *
  * node scripts/generate-lessons-markdown.mjs --package content/playground \
  *   --lesson d3048d21-8690-5255-b62c-984c69ac272c --locale uk --stdout
@@ -11,6 +11,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 import Module from 'node:module';
+import { spawnSync } from 'node:child_process';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { renderLessonMarkdown, sourceIndex, supportedLanguages } from './lib/lesson-markdown.mjs';
 import { resolveEntityPath } from '@svitlo/engine/utils';
@@ -142,12 +143,16 @@ export async function generate(options, { root = repositoryRoot, loader = loadLe
     if (lesson.id !== item.id || resolveEntityPath(lesson.id) !== item.relative)
       throw new Error(`Lesson identity mismatch at ${item.entry}`);
     const sources = sourceIndex(root, path.relative(root, item.directory));
+    const commit = spawnSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' });
+    const sourceRef =
+      commit.status === 0 && /^[0-9a-f]{40}$/.test(commit.stdout.trim()) ? commit.stdout.trim() : 'main';
     const markdown = renderLessonMarkdown({
       lesson,
       locale: options.locale,
       languages: locales,
       packagePath: options.package,
       sourceFiles: sources,
+      sourceRef,
     });
     generated.push({ path: `${options.package.split('/')[1]}/${item.relative}/${options.locale}.md`, markdown });
   }
