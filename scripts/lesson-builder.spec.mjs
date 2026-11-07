@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import yaml from 'js-yaml';
+import ts from 'typescript';
 import { runOne, repoRoot } from './lesson-builder.mjs';
 
 const lessonId = 'd3048d21-8690-5255-b62c-984c69ac272c';
@@ -278,4 +279,35 @@ test('checks canonical YAML source references before emission', () =>
     f.save();
     assert.throws(() => runOne(f.lesson, 'generate', f.repo),
       /questions\/questions.yaml:sources.content.path/);
+  }));
+
+test('single-language generated TypeScript matches real Engine/Contracts APIs', () =>
+  withFixture(f => {
+    f.content.supportedLanguages = ['en'];
+    f.questions.supportedLanguages = ['en'];
+    f.methodology.supportedLanguages = ['en'];
+    f.save();
+    runOne(f.lesson, 'generate', f.repo);
+    const generated = f.generated('lesson.data.ts');
+    const options = {
+      target: ts.ScriptTarget.ES2022,
+      module: ts.ModuleKind.ESNext,
+      moduleResolution: ts.ModuleResolutionKind.Bundler,
+      strict: true,
+      noEmit: true,
+      skipLibCheck: true,
+      esModuleInterop: true,
+      baseUrl: repoRoot,
+      paths: {
+        '@svitlo/engine': ['shared/engine/src/index.ts'],
+        '@svitlo/engine/*': ['shared/engine/src/*'],
+        '@svitlo/contracts': ['shared/contracts/src/index.ts'],
+        '@svitlo/contracts/*': ['shared/contracts/src/*'],
+      },
+    };
+    const program = ts.createProgram([generated], options);
+    const ownErrors = ts.getPreEmitDiagnostics(program)
+      .filter(d => d.file && path.resolve(d.file.fileName) === path.resolve(generated))
+      .map(d => ts.flattenDiagnosticMessageText(d.messageText, '\n'));
+    assert.deepEqual(ownErrors, []);
   }));
