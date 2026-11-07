@@ -32,21 +32,25 @@ Record in handoff: next actionable role(s), verified files/source Git blob or co
 
 ## Standard stage transitions
 
-Stage names and required evidence (order can be staggered per Lesson; don't auto-approve):
+Stage names and required evidence (order can be staggered **between Lessons**, but each Lesson respects prerequisites; no auto-approval):
 
-| Stage                 | Persona / tool                                                                 | Evidence and gate                                                                                                                                                    |
-| --------------------- | ------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `methodology`         | Methodologist / Create Lesson Brief                                            | Valid `methodology.md` with verified Skills, approved by editor; proposed drafts may remain blocked pending approval                                                 |
-| `content`             | Educational Screenwriter / Create Lesson Content                               | `content.yaml` following schema, separately editorially approved; legacy docs require explicit migration                                                             |
-| `experience-review`   | Learning Experience Expert / Review Lesson Experience                          | `experience-review.md`, source-specific independent pass, followed by authorized editorial sign-off                                                                  |
-| `methodology-review`  | Methodologist / Review Lesson Methodology                                      | `methodology-review.md`, independent pass on **same current `content.yaml` revision**, followed by authorized sign-off                                               |
-| `generate-sources`    | Dedicated scripted YAML→Lesson builder (when implemented)                      | Actual typed Lesson/Section/ContentBlock scaffold, source-language-only data and pending resource requirements; never ask Implement Scene to recreate this generator |
-| `resource-production` | Assessment/media specialists and [Implement Scene](./implement-scene.skill.md) | Approved Questions/media; Scene code, co-located tests, lazy registration, local TODOs/requirements and precise missing-locale handoff                               |
-| `localization`        | Translation agents                                                             | Actual translations for all declared Lesson languages; missing-language TS errors cannot be bypassed                                                                 |
-| `validation`          | Coding Agent / QA                                                              | Typecheck, builds, tests, resource integrity and publication checks confirmed against current commit                                                                 |
-| `completed`           | Coordinator/owner                                                              | All scoped Lessons independently completed, sign-offs linked, no unresolved blockers                                                                                 |
+| Stage | Persona / tool | Evidence and gate |
+| --- | --- | --- |
+| `methodology` | Methodologist / Create Lesson Brief | Valid `methodology.md`, verified Skills, explicit editorial approval |
+| `content` | Educational Screenwriter / Create Lesson Content | Current `content.yaml` against schema, separate editorial approval |
+| `experience-review` | Learning Experience Expert / Review Lesson Experience | Independent source-specific pass and authorized editorial sign-off |
+| `methodology-review` | Methodologist / Review Lesson Methodology | Independent pass on the same current `content.yaml` revision and authorized sign-off |
+| `questions` | Assessment Architect / [Create Lesson Questions](./create-lesson-questions.skill.md) | Valid `questions/questions.yaml` full bank, approved Quiz assignments and source references, **separate editorial approval** for current bank revision |
+| `flashcards` | Flashcard Learning Architect / [Create Lesson Flashcards](./create-lesson-flashcards.skill.md) | Valid `flashcards/flashcards.yaml`, verified against the **approved Question bank**, current source references and **independent Flashcard editorial sign-off** |
+| `generate-sources` | Dedicated deterministic YAML→TypeScript builder (**not yet implemented**) | Both Questions and Flashcards independently approved; approved `content.yaml`/review revisions verified; full Question bank, curated Quiz selections, Question-backed Flashcard imports and link data, typed Lesson/Section/Block scaffolds and pending Scene/media requirements generated without changing YAML |
+| `resource-production` | [Implement Scene](./implement-scene.skill.md) and manual Media/Asset owners | **After scaffold generation**: approved Scenes with registration/tests, actual media and accessible alternatives, tracked unresolved requirements; **no Question/Flashcard authoring in this stage** |
+| `localization` | Translation agents | Actual translations for all declared Lesson languages; missing-language TS errors cannot be bypassed |
+| `validation` | Coding Agent / QA | Typecheck, builds, tests, Question/Flashcard references, resource integrity and publication checks confirmed against current commit |
+| `completed` | Coordinator/owner | All scoped Lessons independently completed, sign-offs linked, no unresolved blockers |
 
-`approval` is **not** the same as file creation, an AI's verdict or a green CI status. Review results may recommend pass, changes requested or blocked; only documented authorized approval may change a review stage to `approved`. If `content.yaml` or Methodology materially changes after a review, invalidate affected downstream approval **for that Lesson** until independently re-reviewed. Keep historical review references, do not erase them.
+**Builder readiness is a hard gate, not an automatic next action.** Verify explicit, revision-specific approvals for `content.yaml`, `questions/questions.yaml` and `flashcards/flashcards.yaml` (in addition to Methodology and both independent reviews) **before** entering `generate-sources`. The Flashcard stage depends on an approved Question bank **even if no Quiz is included**; a contradictory Lesson scope is escalated for an editorial decision, never bypassed with an empty placeholder. The future builder generates Question exports before Flashcard imports and preserves Question-backed values and two-sided card relationships. Scenes and manual assets can proceed in parallel **only after** scaffold generation.
+
+`approval` is **not** the same as file creation, an AI's verdict or a green CI status. Review results may recommend pass, changes requested or blocked; only documented authorized approval may change a review stage to `approved`. If `content.yaml` or Methodology materially changes after a review, invalidate affected downstream approval **for that Lesson** until independently re-reviewed. A material Question-bank change requires reassessing dependent Flashcard references and approval; a material Flashcard change requires new Flashcard sign-off. Re-run the builder against freshly approved sources where affected. Keep historical review references, do not erase them. Existing Issue rows at `generate-sources` or `resource-production` must be **reconciled** against the new prerequisite gates before any advancement; do not silently mark Questions or Flashcards approved.
 
 ## Resumable batch execution across agents and chats
 
@@ -74,6 +78,7 @@ The same coordinator pattern may later accept a Course Production template with 
 - One Issue covers one/many verified Lesson UUIDs with frozen scope, proper labels, real artifact links.
 - Every Lesson has a current stage/status/owner/PR/blocker record, and issue-level gates accurately summarize batch progress.
 - Every review is independent, tied to a source revision, and editorial approval has evidence.
+- Each Lesson's Question bank and dependent Flashcard YAML have independent editorial approvals **before** any deterministic source generation; Scene/manual asset production happens only after scaffolding.
 - Multiple agents in multiple chats can resume using Issue+Git without prior chat history.
 - Agents process authorized batches autonomously and stop only on real gates or scope limits.
 - Existing repo guidelines, Draft PR policy and no-auto-merge/close requirements remain intact.
