@@ -20,7 +20,11 @@ async function loadJson(filename: string): Promise<unknown> {
 }
 
 /** Course runtime is the sole owner of assembling the published sparse base and locale. */
-async function loadSparseCourseResource(courseId: string, language: LanguageCode, ...segments: string[]): Promise<unknown> {
+async function loadSparseCourseResource(
+  courseId: string,
+  language: LanguageCode,
+  ...segments: string[]
+): Promise<unknown> {
   const directory = path.join(courseRoot(courseId), ...segments);
   const [base, locale] = await Promise.all([
     loadJson(path.join(directory, 'base.json')),

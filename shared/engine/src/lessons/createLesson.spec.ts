@@ -16,16 +16,27 @@ const lessonId = 'd3048d21-8690-5255-b62c-984c69ac272c';
 
 const title = { en: 'How light moves', uk: 'Як рухається світло' };
 const text = createContentBlock<typeof languages>()({
-  id: 'text-id', slug: 'intro', type: 'text', value: { en: 'Ray', uk: 'Промінь' },
+  id: 'text-id',
+  slug: 'intro',
+  type: 'text',
+  value: { en: 'Ray', uk: 'Промінь' },
 });
 const invariant = createContentBlock<typeof languages>()({
-  id: 'invariant-id', slug: 'invariant', type: 'text', value: 'H₂O',
+  id: 'invariant-id',
+  slug: 'invariant',
+  type: 'text',
+  value: 'H₂O',
 });
 const markdown = createContentBlock<typeof languages>()({
-  id: 'markdown-id', slug: 'details', type: 'markdown', locales: { en: '**Light**', uk: '**Світло**' },
+  id: 'markdown-id',
+  slug: 'details',
+  type: 'markdown',
+  locales: { en: '**Light**', uk: '**Світло**' },
 });
 const scene = createContentBlock<typeof languages>()({
-  id: 'scene-id', slug: 'rayScene', type: 'scene',
+  id: 'scene-id',
+  slug: 'rayScene',
+  type: 'scene',
   locales: { labels: { source: { en: 'Source', uk: 'Джерело' } } },
 });
 const theory = createSection<typeof languages>()({
@@ -48,8 +59,13 @@ const quiz = createSection<typeof languages>()({
     layout: { mode: 'stack' },
     feedbackMode: 'immediate',
     interaction: {
-      retries: 0, showErrors: true, showCorrectAnswers: true, allowExplanations: true,
-      allowDeferring: false, allowQuestionNavigation: true, skippable: false,
+      retries: 0,
+      showErrors: true,
+      showCorrectAnswers: true,
+      allowExplanations: true,
+      allowDeferring: false,
+      allowQuestionNavigation: true,
+      skippable: false,
     },
     results: { visibility: 'after-review', showScore: true },
     screen: {},
@@ -69,7 +85,10 @@ const creator = createLesson<typeof languages>()({
   questions: {
     selectOneAnswer: {
       one: {
-        id: 'question-id', slug: 'one', type: 'selectOneAnswer', assessmentMethod: 'retrieval',
+        id: 'question-id',
+        slug: 'one',
+        type: 'selectOneAnswer',
+        assessmentMethod: 'retrieval',
         restrictions: [],
         question: [{ id: 'prompt-id', slug: 'prompt', type: 'text', value: { en: 'Light?', uk: 'Світло?' } }],
         answers: {
@@ -105,7 +124,11 @@ describe('composable Lesson creators', () => {
 
     assert.deepEqual(theory.getLocale({ languages, language: 'uk' }), {
       title: 'Теорія',
-      content: { '0': { value: 'Промінь' }, '2': { locales: '**Світло**' }, '3': { locales: { labels: { source: 'Джерело' } } } },
+      content: {
+        '0': { value: 'Промінь' },
+        '2': { locales: '**Світло**' },
+        '3': { locales: { labels: { source: 'Джерело' } } },
+      },
     });
     assert.equal(creator.getLocale('uk').config.localeSources['/sections/0/content/0/value'].code, 'uk');
     assert.throws(() => splitLessonValue({ value: { en: 'Only English' } }, languages), /Incomplete locale dictionary/);
@@ -149,24 +172,31 @@ describe('composable Lesson creators', () => {
 
   it('is consumed by Course creators and Course-local Lesson overrides', () => {
     const chapter = createChapter<typeof languages>({
-      type: 'chapter', id: 'chapter-id',
+      type: 'chapter',
+      id: 'chapter-id',
       title: { type: 'text', id: 'chapter-title', slug: 'chapterTitle', value: 'Chapter' },
       content: [creator],
     });
     assert.deepEqual(chapter.getData().content[0], creator.getData());
-    assert.deepEqual(chapter.getContentEntries().lessons.map(item => item.id), [lessonId]);
+    assert.deepEqual(
+      chapter.getContentEntries().lessons.map(item => item.id),
+      [lessonId],
+    );
     const course = createCourse<typeof languages>({
-      type: 'course', id: 'course-id', parameters: { languages },
+      type: 'course',
+      id: 'course-id',
+      parameters: { languages },
       title: { type: 'text', id: 'course-title', slug: 'courseTitle', value: 'Course' },
       description: { type: 'markdown', id: 'course-desc', slug: 'courseDescription', locales: 'Description' },
       content: [chapter],
     });
-    assert.deepEqual(course.getContentEntries().lessons.map(item => item.id), [lessonId]);
+    assert.deepEqual(
+      course.getContentEntries().lessons.map(item => item.id),
+      [lessonId],
+    );
     assert.deepEqual(course.toToc({ language: 'uk' }).children[0].type, 'chapter');
 
-    const override = createLessonOverrides(creator.getData())
-      .sections.setOrder(['quiz', 'theory'])
-      .build();
+    const override = createLessonOverrides(creator.getData()).sections.setOrder(['quiz', 'theory']).build();
     assert.equal(override.lesson.id, lessonId);
     assert.deepEqual(override.overrides.sections?.order, ['quiz', 'theory']);
   });

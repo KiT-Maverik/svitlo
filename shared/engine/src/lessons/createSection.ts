@@ -25,9 +25,7 @@ export type SectionCreator<
 export function createSection<const L extends Locale_Languages>(): <const Source extends SectionSource<L>>(
   source: Source,
 ) => SectionCreator<L, Source>;
-export function createSection<const L extends Locale_Languages>(
-  source: SectionSource<L>,
-): SectionCreator<L>;
+export function createSection<const L extends Locale_Languages>(source: SectionSource<L>): SectionCreator<L>;
 export function createSection<L extends Locale_Languages>(source?: SectionSource<L>) {
   const build = <const Source extends SectionSource<L>>(input: Source): SectionCreator<L, Source> => {
     const getData = (): SectionDataOf<Source> =>

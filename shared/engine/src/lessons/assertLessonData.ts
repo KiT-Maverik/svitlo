@@ -98,4 +98,3 @@ export function assertLessonData(value: unknown): asserts value is Lesson<'data'
     }
   }
 }
-

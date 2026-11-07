@@ -59,9 +59,11 @@ function partitionsFor<L extends Lesson_Locale>(data: Lesson<'data', L>): Partit
   };
 }
 
-function makeLessonCreator<L extends Lesson_Locale, Events extends string, const Source extends LessonSource<L, Events>>(
-  input: Source,
-): LessonCreator<L, LessonDataOf<Source> & Lesson<'data', L, Events>> {
+function makeLessonCreator<
+  L extends Lesson_Locale,
+  Events extends string,
+  const Source extends LessonSource<L, Events>,
+>(input: Source): LessonCreator<L, LessonDataOf<Source> & Lesson<'data', L, Events>> {
   let normalized: (LessonDataOf<Source> & Lesson<'data', L, Events>) | undefined;
   let partitions: Partitions | undefined;
   const getData = (): LessonDataOf<Source> & Lesson<'data', L, Events> => {
@@ -86,13 +88,18 @@ function makeLessonCreator<L extends Lesson_Locale, Events extends string, const
       throw new Error(`Lesson ${data.id} does not support language ${language}`);
     }
     const parts = getPartitions();
-    return Object.fromEntries(kinds.map(kind => {
-      const { locales, pointers } = parts[kind];
-      return [kind, {
-        data: locales[language] ?? {},
-        localeSources: Object.fromEntries(pointers.map(pointer => [pointer, { code: language }])),
-      }];
-    })) as LessonLocale;
+    return Object.fromEntries(
+      kinds.map(kind => {
+        const { locales, pointers } = parts[kind];
+        return [
+          kind,
+          {
+            data: locales[language] ?? {},
+            localeSources: Object.fromEntries(pointers.map(pointer => [pointer, { code: language }])),
+          },
+        ];
+      }),
+    ) as LessonLocale;
   };
   return { getData, getBase, getLocale };
 }
@@ -101,9 +108,10 @@ function makeLessonCreator<L extends Lesson_Locale, Events extends string, const
 export function createLesson<const L extends Lesson_Locale, Events extends string = never>(): <
   const Source extends LessonSource<L, Events>,
 >(
-  input: Source &
-    { questions: Question_Catalog_ValidSlugs<Source['questions'], L> } &
-    LessonEventKeysValidated<Source, Events>,
+  input: Source & { questions: Question_Catalog_ValidSlugs<Source['questions'], L> } & LessonEventKeysValidated<
+      Source,
+      Events
+    >,
 ) => LessonCreator<L, LessonDataOf<Source> & Lesson<'data', L, Events>>;
 /** Direct form accepts an already-typed Lesson, as Course creators do. */
 export function createLesson<const L extends Lesson_Locale, Events extends string = never>(

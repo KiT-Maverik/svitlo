@@ -23,11 +23,11 @@ const chapter = createChapter({ ...chapterData, content: [lessonA, episode] });
 const module = createModule({ ...moduleData, content: [chapter, lessonB] });
 const course = createCourse({ ...courseData, content: [module] });
 
-course.getData();                   // Authored, complete, build-only
-course.getContentEntries();         // Flattened authoring entities for publisher
-course.getBase();                   // { toc, episodes, overrides } invariant data
-course.getLocale('uk');            // Sparse patch for the selected language
-course.toToc({ language: 'uk' });   // Fully localized authoring preview only
+course.getData(); // Authored, complete, build-only
+course.getContentEntries(); // Flattened authoring entities for publisher
+course.getBase(); // { toc, episodes, overrides } invariant data
+course.getLocale('uk'); // Sparse patch for the selected language
+course.toToc({ language: 'uk' }); // Fully localized authoring preview only
 ```
 
 `getContentEntries()` also exists on Module, Chapter and Episode creators.

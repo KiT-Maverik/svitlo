@@ -11,9 +11,7 @@ export type ContentBlockCreator<
 };
 
 /** Preserve authored data and expose a shared base and sparse language projections. */
-export function createContentBlock<const L extends Locale_Languages>(): <
-  const Data extends ContentBlock<'data', L>,
->(
+export function createContentBlock<const L extends Locale_Languages>(): <const Data extends ContentBlock<'data', L>>(
   data: Data,
 ) => ContentBlockCreator<L, Data>;
 export function createContentBlock<const L extends Locale_Languages>(

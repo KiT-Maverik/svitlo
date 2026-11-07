@@ -91,9 +91,7 @@ type CoursePartitions = {
   overrides: Map<string, SparseLessonValue>;
 };
 
-export function createCourse<const L extends Locale_Languages>(
-  course: CourseInput<L>,
-): CourseCreator<L> {
+export function createCourse<const L extends Locale_Languages>(course: CourseInput<L>): CourseCreator<L> {
   const getData = (): Course<'data', L> => ({
     ...course,
     content: course.content.map(entry => ('getData' in entry ? entry.getData() : entry)),
@@ -115,10 +113,12 @@ export function createCourse<const L extends Locale_Languages>(
       partitions = {
         toc: splitLessonValue(toc, languages),
         episodes: new Map(entries.episodes.map(episode => [episode.id, splitLessonValue(episode, languages)])),
-        overrides: new Map(entries.overrides.map(item => {
-          const { lesson, ...patch } = item;
-          return [item.lessonId, splitLessonValue(patch, languages)];
-        })),
+        overrides: new Map(
+          entries.overrides.map(item => {
+            const { lesson, ...patch } = item;
+            return [item.lessonId, splitLessonValue(patch, languages)];
+          }),
+        ),
       };
     }
     return partitions;

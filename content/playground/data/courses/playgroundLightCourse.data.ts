@@ -1,4 +1,11 @@
-import { createChapter, createContentBlock, createEpisode, createLessonOverrides, createModule, createSection } from '@svitlo/engine/builders';
+import {
+  createChapter,
+  createContentBlock,
+  createEpisode,
+  createLessonOverrides,
+  createModule,
+  createSection,
+} from '@svitlo/engine/builders';
 import type { Course } from '@svitlo/engine/content';
 import { contentBlockGallery_Section } from './sections/contentBlockGallery.data';
 import {

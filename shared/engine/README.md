@@ -50,12 +50,18 @@ creator calls infer their specific block/section payloads and literal slugs:
 ```ts
 const languages = ['en', 'uk'] as const;
 const block = createContentBlock<typeof languages>()({
-  id: 'intro-id', slug: 'intro', type: 'text',
+  id: 'intro-id',
+  slug: 'intro',
+  type: 'text',
   value: { en: 'Hello', uk: 'Привіт' },
 });
 const section = createSection<typeof languages>()({
-  id: 'section-id', slug: 'theory', type: 'theory',
-  title: 'Theory', navigationLabel: 'Theory', content: [block],
+  id: 'section-id',
+  slug: 'theory',
+  type: 'theory',
+  title: 'Theory',
+  navigationLabel: 'Theory',
+  content: [block],
 });
 const lesson = createLesson<typeof languages>()({
   // all required Lesson fields, including parameters.languages: languages,

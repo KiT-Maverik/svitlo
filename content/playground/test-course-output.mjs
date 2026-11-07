@@ -10,10 +10,7 @@ const lessonId = 'd3048d21-8690-5255-b62c-984c69ac272c';
 const episodeId = '9f417177-1d07-5a9d-ad74-0146c5637e84';
 const files = JSON.parse(readFileSync('dist/manifest.json', 'utf8')).files;
 const json = (...segments) => JSON.parse(readFileSync(join(base, courseId, ...segments), 'utf8'));
-const assembled = (...segments) => mergeLessonResources(
-  json(...segments.slice(0, -1), 'base.json'),
-  json(...segments),
-);
+const assembled = (...segments) => mergeLessonResources(json(...segments.slice(0, -1), 'base.json'), json(...segments));
 
 test('Playground Course generates independent localized TOC, sparse override and Episode resources', () => {
   const toc = assembled('toc', 'uk.json');
@@ -116,7 +113,11 @@ test('Course generator emits matching resource groups for every supported locale
     }
   }
   assert.equal(paths.length, 3 * (locales.length + 1));
-  for (const resource of ['toc/base.json', 'overrides/' + lessonId + '/base.json', 'episodes/' + episodeId + '/base.json']) {
+  for (const resource of [
+    'toc/base.json',
+    'overrides/' + lessonId + '/base.json',
+    'episodes/' + episodeId + '/base.json',
+  ]) {
     assert(paths.includes(prefix + resource));
   }
 });

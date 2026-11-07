@@ -36,7 +36,9 @@ export async function loadLessonData(entry: string): Promise<unknown> {
       ],
     });
     const exports = require(output) as Record<string, unknown>;
-    const entries = Object.values(exports).filter(value => value !== null && typeof value === 'object' && 'id' in value && 'slug' in value);
+    const entries = Object.values(exports).filter(
+      value => value !== null && typeof value === 'object' && 'id' in value && 'slug' in value,
+    );
     if (entries.length !== 1) throw new Error(`Expected one exported lesson in ${entry}; found ${entries.length}`);
     return entries[0];
   } finally {

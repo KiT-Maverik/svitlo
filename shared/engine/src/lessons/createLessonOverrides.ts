@@ -536,8 +536,6 @@ export class LessonOverridesBuilder<L extends AnyLesson, Sections extends readon
   getContentEntries() {
     return { lessons: [this.lesson], groups: [], episodes: [], overrides: [this.build()] };
   }
-
-
 }
 
 /** Capture literal section/block slugs from authored Lesson Data, never from its Definition. */
