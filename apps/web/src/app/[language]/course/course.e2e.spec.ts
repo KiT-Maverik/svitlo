@@ -76,7 +76,7 @@ test('Course sidebar groups its published Module and Chapter and retains the act
   await page.getByRole('button', { name: 'Відкрити список тем' }).click();
 
   const sidebar = page.getByRole('navigation', { name: 'Список тем' });
-  const moduleButton = sidebar.getByRole('button', { name: module.title }).first();
+  const moduleButton = sidebar.getByRole('button', { name: courseModule.title }).first();
   const chapterButton = sidebar.getByRole('button', { name: chapter.title }).first();
   const activeLink = sidebar.locator('a[href="/uk/course/' + courseId + '/lesson/uk/' + lessonId + '"]');
 
