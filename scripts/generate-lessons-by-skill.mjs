@@ -29,10 +29,8 @@ function unwrap(node) {
   return node;
 }
 function member(object, key) {
-  return object.properties.find(p =>
-    ts.isPropertyAssignment(p) &&
-    (ts.isIdentifier(p.name) || ts.isStringLiteral(p.name)) &&
-    p.name.text === key,
+  return object.properties.find(
+    p => ts.isPropertyAssignment(p) && (ts.isIdentifier(p.name) || ts.isStringLiteral(p.name)) && p.name.text === key,
   );
 }
 function literal(node) {
@@ -45,7 +43,8 @@ function source(file) {
 function exportedDeclarations(sf) {
   const vars = new Map();
   for (const statement of sf.statements) {
-    if (!ts.isVariableStatement(statement) || !statement.modifiers?.some(x => x.kind === ts.SyntaxKind.ExportKeyword)) continue;
+    if (!ts.isVariableStatement(statement) || !statement.modifiers?.some(x => x.kind === ts.SyntaxKind.ExportKeyword))
+      continue;
     for (const decl of statement.declarationList.declarations) {
       if (ts.isIdentifier(decl.name)) vars.set(decl.name.text, decl.initializer);
     }
@@ -54,8 +53,13 @@ function exportedDeclarations(sf) {
 }
 function parseSkillDeclaration(initializer) {
   const expr = unwrap(initializer);
-  if (!expr || !ts.isCallExpression(expr) || !ts.isIdentifier(expr.expression) ||
-    expr.expression.text !== 'buildSkillConfig') return null;
+  if (
+    !expr ||
+    !ts.isCallExpression(expr) ||
+    !ts.isIdentifier(expr.expression) ||
+    expr.expression.text !== 'buildSkillConfig'
+  )
+    return null;
   const object = unwrap(expr.arguments[0]);
   if (!object || !ts.isObjectLiteralExpression(object)) throw new Error('Invalid buildSkillConfig call');
   const id = literal(member(object, 'id')?.initializer);
@@ -103,19 +107,28 @@ function lessonConfiguration(sf, expectedId) {
   }
   for (const initializer of exports.values()) if (initializer) visit(initializer);
   if (!found) throw new Error('No Lesson object with matching static ID ' + expectedId);
-  return { object: found, exports: [...exports].filter(([, init]) => init && includesNode(init, found)).map(([name]) => name) };
+  return {
+    object: found,
+    exports: [...exports].filter(([, init]) => init && includesNode(init, found)).map(([name]) => name),
+  };
 }
 function includesNode(parent, child) {
   if (parent === child) return true;
   let result = false;
-  ts.forEachChild(parent, node => { if (!result && includesNode(node, child)) result = true; });
+  ts.forEachChild(parent, node => {
+    if (!result && includesNode(node, child)) result = true;
+  });
   return result;
 }
 function imports(sf) {
   const alias = new Map();
   for (const stmt of sf.statements) {
-    if (!ts.isImportDeclaration(stmt) || !stmt.importClause?.namedBindings ||
-      !ts.isNamedImports(stmt.importClause.namedBindings)) continue;
+    if (
+      !ts.isImportDeclaration(stmt) ||
+      !stmt.importClause?.namedBindings ||
+      !ts.isNamedImports(stmt.importClause.namedBindings)
+    )
+      continue;
     for (const item of stmt.importClause.namedBindings.elements) {
       alias.set(item.name.text, (item.propertyName ?? item.name).text);
     }
@@ -138,7 +151,9 @@ function lessonData(root, lesson, catalogue, knownLessons, visiting = new Set())
     const sf = source(cacheKey);
     const conf = lessonConfiguration(sf, lesson.id).object;
     const aliases = imports(sf);
-    let ids = null, title = null, slug = null;
+    let ids = null,
+      title = null,
+      slug = null;
     for (const property of conf.properties) {
       if (ts.isSpreadAssignment(property)) {
         if (!ts.isIdentifier(property.expression)) throw new Error('Non-static Lesson spread in ' + cacheKey);
@@ -150,7 +165,7 @@ function lessonData(root, lesson, catalogue, knownLessons, visiting = new Set())
         title = inherited.title;
         slug = inherited.slug;
       } else if (ts.isPropertyAssignment(property)) {
-        const name = (ts.isIdentifier(property.name) || ts.isStringLiteral(property.name)) ? property.name.text : null;
+        const name = ts.isIdentifier(property.name) || ts.isStringLiteral(property.name) ? property.name.text : null;
         if (name === 'skills') {
           const value = unwrap(property.initializer);
           if (!value || !ts.isArrayLiteralExpression(value)) throw new Error('Non-static skills array: ' + cacheKey);
@@ -208,7 +223,9 @@ export function buildIndex(root = repoRoot, selectedPackage) {
         const data = lessonData(root, lesson, catalogue, known);
         const sourcePath = path.relative(root, lesson.source).split(path.sep).join('/');
         const baseDir = path.dirname(lesson.source);
-        const briefPath = ['methodology.md', 'methodologist-brief.md'].find(file => fs.existsSync(path.join(baseDir, file)));
+        const briefPath = ['methodology.md', 'methodologist-brief.md'].find(file =>
+          fs.existsSync(path.join(baseDir, file)),
+        );
         const item = {
           lessonId: lesson.id,
           textbook,
@@ -243,21 +260,36 @@ export function renderSkillIndex(skillId, result) {
     '<!-- GENERATED FROM LESSON CODE; DO NOT EDIT. -->',
     '# Lessons by Skill ID: ' + skillId,
     '',
-    ...(skill ? ['Skill: ' + skill.name, 'Taxonomy source: [' + path.posix.basename(skill.source) + '](' + link(skill.source) + ')', ''] : []),
+    ...(skill
+      ? [
+          'Skill: ' + skill.name,
+          'Taxonomy source: [' + path.posix.basename(skill.source) + '](' + link(skill.source) + ')',
+          '',
+        ]
+      : []),
     'Implemented Lesson candidates: ' + lessons.length,
     '',
   ];
   for (const lesson of lessons) {
-    lines.push('## ' + (lesson.title ?? lesson.slug ?? lesson.lessonId), '',
+    lines.push(
+      '## ' + (lesson.title ?? lesson.slug ?? lesson.lessonId),
+      '',
       '- Lesson ID: `' + lesson.lessonId + '`',
       '- Textbook: `content/' + lesson.textbook + '`',
       '- Lesson data: [' + path.posix.basename(lesson.source) + '](' + link(lesson.source) + ')',
       '- Skills: ' + lesson.skills.map(id => '`' + id + '`').join(', '),
-      '- Methodology: ' + (lesson.methodology ? '[' + path.posix.basename(lesson.methodology) + '](' + link(lesson.methodology) + ')' : 'Not found'),
-      '');
+      '- Methodology: ' +
+        (lesson.methodology
+          ? '[' + path.posix.basename(lesson.methodology) + '](' + link(lesson.methodology) + ')'
+          : 'Not found'),
+      '',
+    );
   }
   if (!lessons.length) lines.push('No implemented Lesson in this index references this Skill ID.', '');
-  lines.push('> Search candidates only; matching Skill IDs does not prove audience, depth, prerequisite, language or pedagogical suitability.', '');
+  lines.push(
+    '> Search candidates only; matching Skill IDs does not prove audience, depth, prerequisite, language or pedagogical suitability.',
+    '',
+  );
   return lines.join('\n');
 }
 
@@ -309,7 +341,10 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
     });
     for (const failure of result.failures) process.stderr.write('Warning: ' + JSON.stringify(failure) + '\n');
     if (options.stdout) process.stdout.write(result.generated[0].markdown);
-    else process.stderr.write('Generated ' + result.generated.length + ' Skill lookup files from ' + result.lessonCount + ' Lessons.\n');
+    else
+      process.stderr.write(
+        'Generated ' + result.generated.length + ' Skill lookup files from ' + result.lessonCount + ' Lessons.\n',
+      );
     if (result.failures.length) process.exitCode = 1;
   } catch (error) {
     process.stderr.write('Lesson Skill index failed: ' + String(error.message) + '\n');

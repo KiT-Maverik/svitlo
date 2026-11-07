@@ -10,9 +10,14 @@ import type {
 
 /** A Lesson Data object is not discriminated by type: unlike Chapter/Episode it has slug + parameters. */
 export function isCourseLesson(value: unknown): value is Lesson<'data', any> {
-  return value !== null && typeof value === 'object' &&
-    'id' in value && 'slug' in value && 'parameters' in value &&
-    !('type' in value);
+  return (
+    value !== null &&
+    typeof value === 'object' &&
+    'id' in value &&
+    'slug' in value &&
+    'parameters' in value &&
+    !('type' in value)
+  );
 }
 
 export function isCourseCreator(value: unknown): value is {
@@ -21,10 +26,16 @@ export function isCourseCreator(value: unknown): value is {
   toResource(context: unknown): unknown;
   getPublicationItems(): unknown;
 } {
-  return value !== null && typeof value === 'object' &&
-    'getData' in value && typeof value.getData === 'function' &&
-    'toToc' in value && typeof value.toToc === 'function' &&
-    'getPublicationItems' in value && typeof value.getPublicationItems === 'function';
+  return (
+    value !== null &&
+    typeof value === 'object' &&
+    'getData' in value &&
+    typeof value.getData === 'function' &&
+    'toToc' in value &&
+    typeof value.toToc === 'function' &&
+    'getPublicationItems' in value &&
+    typeof value.getPublicationItems === 'function'
+  );
 }
 
 /**

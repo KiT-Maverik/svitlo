@@ -534,7 +534,12 @@ export class LessonOverridesBuilder<L extends AnyLesson, Sections extends readon
       if (Object.keys(patch).length) overrides.sections = patch;
     }
 
-    return { type: 'lessonOverride', lessonId: this.lesson.id, lesson: this.lesson as Lesson<'data', Languages, CustomEventsOf<L>>, overrides };
+    return {
+      type: 'lessonOverride',
+      lessonId: this.lesson.id,
+      lesson: this.lesson as Lesson<'data', Languages, CustomEventsOf<L>>,
+      overrides,
+    };
   }
 
   getData(): Course_LessonAuthoringOverride<LanguagesOf<L>, CustomEventsOf<L>> {

@@ -84,9 +84,18 @@ describe('Course entity creators', () => {
     const firstChild = output.data.content[0];
     assert.equal('type' in firstChild ? firstChild.type : 'lesson', 'chapter');
     assert.equal(JSON.stringify(output).includes('getData'), false);
-    assert.deepEqual(chapter.getPublicationItems().lessons.map(item => item.id), ['lesson-1']);
-    assert.deepEqual(module.getPublicationItems().lessons.map(item => item.id), ['lesson-1', 'lesson-2']);
-    assert.deepEqual(module.getPublicationItems().groups.map(item => item.type), ['chapter']);
+    assert.deepEqual(
+      chapter.getPublicationItems().lessons.map(item => item.id),
+      ['lesson-1'],
+    );
+    assert.deepEqual(
+      module.getPublicationItems().lessons.map(item => item.id),
+      ['lesson-1', 'lesson-2'],
+    );
+    assert.deepEqual(
+      module.getPublicationItems().groups.map(item => item.type),
+      ['chapter'],
+    );
   });
 
   it('preserves references and validates requested locale', () => {

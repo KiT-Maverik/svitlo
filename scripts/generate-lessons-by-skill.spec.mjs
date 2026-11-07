@@ -18,12 +18,22 @@ function withRepository(run) {
     return file;
   };
   try {
-    put('content/math/data/skills/numbers/addition/skills/one.data.ts',
-      "export const one_Skill_Data = buildSkillConfig({ id: '" + SKILL_ONE + "', name: { en: 'Meaning of addition' } });\n");
-    put('content/math/data/skills/numbers/addition/skills/two.data.ts',
-      "export const two_Skill_Data = buildSkillConfig({ id: '" + SKILL_TWO + "', name: { en: 'Addition practice' } });\n");
+    put(
+      'content/math/data/skills/numbers/addition/skills/one.data.ts',
+      "export const one_Skill_Data = buildSkillConfig({ id: '" +
+        SKILL_ONE +
+        "', name: { en: 'Meaning of addition' } });\n",
+    );
+    put(
+      'content/math/data/skills/numbers/addition/skills/two.data.ts',
+      "export const two_Skill_Data = buildSkillConfig({ id: '" +
+        SKILL_TWO +
+        "', name: { en: 'Addition practice' } });\n",
+    );
     const base = 'content/math/data/lessons/c/' + LESSON_ONE + '/';
-    put(base + 'addition.data.ts', `
+    put(
+      base + 'addition.data.ts',
+      `
 import { one_Skill_Data, two_Skill_Data } from '../../../skills/numbers/addition/skills';
 export const addition_Data = defineLessonData()({
   id: '${LESSON_ONE}',
@@ -31,10 +41,13 @@ export const addition_Data = defineLessonData()({
   title: { en: 'Addition concepts' },
   skills: [one_Skill_Data.id, two_Skill_Data.id],
 });
-`);
+`,
+    );
     put(base + 'methodology.md', '# Addition methodology\n');
     const clone = 'content/math/data/lessons/1/' + LESSON_TWO + '/';
-    put(clone + 'practice.data.ts', `
+    put(
+      clone + 'practice.data.ts',
+      `
 import { addition_Data } from '../../c/${LESSON_ONE}/addition.data';
 export const practice_Data = defineLessonData()({
   ...addition_Data,
@@ -42,7 +55,8 @@ export const practice_Data = defineLessonData()({
   slug: 'practice',
   title: 'Addition practice',
 });
-`);
+`,
+    );
     return run({ root, put });
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
@@ -55,8 +69,14 @@ test('indexes multi-skill lessons in flat ID entries and resolves spread-based l
     assert.equal(lessonCount, 2);
     assert.deepEqual(failures, []);
     assert.deepEqual([...index.keys()].sort(), [SKILL_ONE, SKILL_TWO]);
-    assert.deepEqual(index.get(SKILL_ONE).lessons.map(l => l.lessonId), [LESSON_ONE, LESSON_TWO]);
-    assert.deepEqual(index.get(SKILL_TWO).lessons.map(l => l.lessonId), [LESSON_ONE, LESSON_TWO]);
+    assert.deepEqual(
+      index.get(SKILL_ONE).lessons.map(l => l.lessonId),
+      [LESSON_ONE, LESSON_TWO],
+    );
+    assert.deepEqual(
+      index.get(SKILL_TWO).lessons.map(l => l.lessonId),
+      [LESSON_ONE, LESSON_TWO],
+    );
     const markdown = renderSkillIndex(SKILL_ONE, index.get(SKILL_ONE));
     assert.match(markdown, /Implemented Lesson candidates: 2/);
     assert.match(markdown, /methodology\.md/);
@@ -79,10 +99,12 @@ test('filters by textbook, writes one flat Markdown file per selected Skill, and
 
 test('fails closed for unresolved expressions instead of silently dropping a lesson', () => {
   withRepository(({ root, put }) => {
-    put('content/math/data/lessons/c/' + LESSON_ONE + '/addition.data.ts',
+    put(
+      'content/math/data/lessons/c/' + LESSON_ONE + '/addition.data.ts',
       `export const addition_Data = defineLessonData()({
         id: '${LESSON_ONE}', slug: 'addition', skills: getSkillsDynamically()
-      });`);
+      });`,
+    );
     const index = buildIndex(root);
     assert.equal(index.failures.length, 2);
     assert.equal(index.index.size, 0);
@@ -92,7 +114,10 @@ test('fails closed for unresolved expressions instead of silently dropping a les
 
 test('validates CLI arguments and prevents unsafe package paths', () => {
   assert.deepEqual(parseArguments(['--skill', SKILL_ONE, '--stdout']).skills, [SKILL_ONE]);
-  assert.throws(() => parseArguments(['--package', 'content/../private', '--skill', SKILL_ONE, '--stdout']), /Invalid textbook/);
+  assert.throws(
+    () => parseArguments(['--package', 'content/../private', '--skill', SKILL_ONE, '--stdout']),
+    /Invalid textbook/,
+  );
   assert.throws(() => parseArguments(['--stdout']), /exactly one --skill/);
   assert.throws(() => parseArguments(['--skill', 'not-a-uuid', '--stdout']), /Invalid Skill UUID/);
 });

@@ -50,9 +50,9 @@ Empty collections mean no requirements of that type have been identified; missin
 
 One file only, within the **selected existing textbook package**:
 
-~~~text
+```text
 content/<textbook>/data/courses/<bucket>/<course-uuid>/methodology.md
-~~~
+```
 
 Obtain the relative bucket path with **resolveEntityPath(courseId)** from @svitlo/engine/utils. The bucket is the last hexadecimal character of the normalized UUID; never allocate buckets by count, derive an ID from a slug or re-mint an existing Course ID. On an existing Course, locate and reuse its ID and Methodology document, updating in place. Create the missing courses/bucket/UUID directories for a new Course; do **not** relocate existing flat data/courses/*.data.ts implementations as a side effect. Do not create a sample Course merely to demonstrate this skill.
 
@@ -62,7 +62,7 @@ The methodology.md document stays alongside the Course throughout and after impl
 
 Replace every example/placeholder with verified case-specific information. Omit an undecided optional scenarioMode rather than inventing its value. The YAML is **editorial metadata**, not a claim that runtime serializers already consume it; localizable text in Course TypeScript must follow its own ContentBlock contracts.
 
-~~~yaml
+```yaml
 ---
 schemaVersion: 1
 kind: course-methodology
@@ -118,7 +118,7 @@ skillGapProposals: []
 
 ## Sources and methodological justification
 <Specific reliable references and rationale for significant decisions.>
-~~~
+```
 
 Use only standards records that are actually applicable; use an empty standards array if none are specified, and explicitly document any unknown alignment. Put only approved or independently verified UUID references in prerequisites; pending proposals stay in skillGapProposals with no fake canonical ID. Mark the whole document **draft** until explicitly approved.
 

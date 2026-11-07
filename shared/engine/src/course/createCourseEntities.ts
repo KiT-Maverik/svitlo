@@ -46,9 +46,12 @@ function localizeTitle<L extends Locale_Languages>(
   return title;
 }
 
-export function lessonToc<L extends Locale_Languages>(entry: LessonEntry<L>, context: Course_TocContext<L>): Course_TocLesson {
+export function lessonToc<L extends Locale_Languages>(
+  entry: LessonEntry<L>,
+  context: Course_TocContext<L>,
+): Course_TocLesson {
   const lesson = isCourseLesson(entry) ? entry : entry.lesson;
-  const title = isCourseLesson(entry) ? lesson.title : entry.overrides.title ?? lesson.title;
+  const title = isCourseLesson(entry) ? lesson.title : (entry.overrides.title ?? lesson.title);
   const localizedTitle = typeof title === 'string' ? title : title[context.language];
   if (typeof localizedTitle !== 'string') {
     throw new Error(`Missing Lesson title for ${context.language}`);
