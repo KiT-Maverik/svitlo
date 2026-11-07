@@ -1,0 +1,30 @@
+/*
+ * Paint-only theme transitions. Keep this inside the same MUI cascade layer as
+ * the component styles; :where() lets component-specific motion (drawers,
+ * carousels, switches, etc.) retain its higher-specificity transition rules.
+ */
+@layer mui {
+  @media (prefers-reduced-motion: no-preference) {
+    :where(
+      body,
+      .MuiBox-root,
+      .MuiPaper-root,
+      .MuiTypography-root,
+      .MuiSvgIcon-root,
+      .MuiButton-root,
+      .MuiIconButton-root,
+      .MuiInputBase-root,
+      .MuiOutlinedInput-notchedOutline,
+      .MuiDivider-root,
+      .MuiChip-root,
+      .MuiListItemButton-root,
+      .MuiTab-root,
+      .MuiAlert-root,
+      .MuiBackdrop-root
+    ) {
+      transition-property: background-color, color, border-color, box-shadow, fill, stroke;
+      transition-duration: 280ms;
+      transition-timing-function: ease-in-out;
+    }
+  }
+}

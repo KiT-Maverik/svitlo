@@ -24,8 +24,8 @@ body {
   min-height: 100%;
   display: flex;
   flex-direction: column;
-  color: var(--mui-palette-text-primary, var(--foreground));
-  background-color: var(--mui-palette-background-default, var(--background));
+  color: var(--foreground);
+  background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -42,37 +42,8 @@ a {
   text-decoration: none;
 }
 
-html[data-light] {
-  color-scheme: light;
-}
-
-html[data-dark] {
-  color-scheme: dark;
-}
-
-/* Only animate paint properties; layout and content motion remain unaffected. */
-/* :where() keeps MUI's interactive component transitions authoritative. */
-@media (prefers-reduced-motion: no-preference) {
-  :where(
-    body,
-    .MuiBox-root,
-    .MuiPaper-root,
-    .MuiTypography-root,
-    .MuiSvgIcon-root,
-    .MuiButton-root,
-    .MuiIconButton-root,
-    .MuiInputBase-root,
-    .MuiOutlinedInput-notchedOutline,
-    .MuiDivider-root,
-    .MuiCard-root,
-    .MuiChip-root,
-    .MuiListItemButton-root,
-    .MuiTab-root,
-    .MuiAlert-root,
-    .MuiBackdrop-root
-  ) {
-    transition-property: background-color, color, border-color, box-shadow, fill, stroke;
-    transition-duration: 280ms;
-    transition-timing-function: ease-in-out;
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
   }
 }
