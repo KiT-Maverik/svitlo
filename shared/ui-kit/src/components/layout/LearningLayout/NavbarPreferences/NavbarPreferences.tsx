@@ -98,7 +98,14 @@ function ThemeSwitch({
 
   return (
     <Box
-      sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 1, width: '100%', minWidth: 0 }}
+      sx={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        gap: 1,
+        width: '100%',
+        minWidth: 0,
+      }}
     >
       <Typography variant="body2" sx={{ flex: '1 1 auto', minWidth: 0, overflowWrap: 'anywhere' }}>
         {isDark ? messages.theme.dark : messages.theme.light}
