@@ -48,7 +48,7 @@ const back = [{ id: '...', slug: 'back', type: 'text',
   value: lightTravelsStraight_Question_Data.answers.correct.straightLine.value }];
 ```
 
-These are **illustrations of the generated pattern**, not committed imports or a claim the generator exists. The source Question must remain the localizable authority. Generate stable Flashcard ContentBlock IDs and slugs, but **never reuse Question ContentBlock IDs blindly**. Reject dangling paths, wrong types, incorrect options or duplicate source text. Never quietly substitute English literals when import resolution fails. Where the Question offers no reusable value, author concise independent source-language copy.
+These are **illustrations of the generated pattern**, not committed imports or a claim the generator exists. If an authorized preliminary TypeScript scaffold is created before its Question export is ready, it must contain a **conspicuous unresolved `TODO(question-import): <questionSlug> <fieldPath>` next to the intended assignment** and remain blocked from validation/publication; do not silently insert placeholder prose or freeze a copied source-language value. In the complete implementation the TODO is replaced by the real imported `Question_Data` property access. The source Question must remain the localizable authority. Generate stable Flashcard ContentBlock IDs and slugs, but **never reuse Question ContentBlock IDs blindly**. Reject dangling paths, wrong types, incorrect options or duplicate source text. Never quietly substitute English literals when import resolution fails. Where the Question offers no reusable value, author concise independent source-language copy.
 
 ## Step 3 — Use ContentBlocks purposefully
 
