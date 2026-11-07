@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { SvitloThemeProvider } from '@svitlo/ui-kit/theme';
 import { getLocaleDirection, type Locale } from '@svitlo/engine/localization';
 import type { LessonResponse } from '@svitlo/engine/lesson';
 import type { UiKitMessages } from '@svitlo/ui-kit';
@@ -10,19 +9,6 @@ import { SceneLocaleProvider } from '@svitlo/ui-kit/scene-locale';
 import { resolveScene } from '@svitlo/playground/scenes';
 import { loadPublishedLesson, loadPublishedUiKitMessages } from '@svitlo/adapter-electron';
 import { changeLessonLocale, changeContentLocale, initialLessonRoute, lessonHref, type LessonRoute } from './routing';
-
-const themes = {
-  ltr: createTheme({
-    cssVariables: { colorSchemeSelector: 'data' },
-    colorSchemes: { light: true, dark: true },
-    direction: 'ltr',
-  }),
-  rtl: createTheme({
-    cssVariables: { colorSchemeSelector: 'data' },
-    colorSchemes: { light: true, dark: true },
-    direction: 'rtl',
-  }),
-};
 
 type RouteContextValue = {
   locale: Locale;
@@ -112,8 +98,7 @@ export default function App() {
   }, [route?.locale, direction]);
 
   return (
-    <ThemeProvider theme={themes[direction]}>
-      <CssBaseline />
+    <SvitloThemeProvider direction={direction}>
       {!route ? (
         <main role="alert" className="desktop-message">
           <h1>Unsupported lesson route</h1>
@@ -143,6 +128,6 @@ export default function App() {
           </SceneLocaleProvider>
         </RouteContext.Provider>
       )}
-    </ThemeProvider>
+    </SvitloThemeProvider>
   );
 }
