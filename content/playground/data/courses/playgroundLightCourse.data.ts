@@ -70,7 +70,7 @@ const chapter = createChapter<HowLightMoves_Languages>({
     type: 'text',
     value: 'Light: first steps',
   },
-  content: [lightDiscovery_Data.id, episode, reorderedLesson],
+  content: [lightDiscovery_Data, episode, reorderedLesson],
 });
 
 const module = createModule<HowLightMoves_Languages>({
@@ -83,7 +83,7 @@ const module = createModule<HowLightMoves_Languages>({
     type: 'text',
     value: 'The Light Laboratory',
   },
-  content: [chapter, lightExploration_Data.id],
+  content: [chapter, lightExploration_Data],
 });
 
 /** Course source is never imported into client/runtime bundles. */

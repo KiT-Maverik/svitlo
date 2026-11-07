@@ -6,7 +6,7 @@
 
 A Lesson has **separate role-owned Markdown artifacts**, not a single document extended by all specialists.
 
-- **Methodologist Brief:** `<PackageRoot>/data/lessons/<last-hex-digit>/<uuid>/methodologist-brief.md`. It specifies learner profile, prerequisites, approved Skills, educational outcomes, essential content and pedagogical boundaries. It stays beside the Lesson but **must not be embedded in runtime configuration or published to the client by default**.
+- **Methodologist Brief:** `<PackageRoot>/data/lessons/<last-hex-digit>/<uuid>/methodology.md (existing legacy file: methodologist-brief.md)`. It specifies learner profile, prerequisites, approved Skills, educational outcomes, essential content and pedagogical boundaries. It stays beside the Lesson but **must not be embedded in runtime configuration or published to the client by default**.
 - **Educational Screenwriter:** writes `<PackageRoot>/data/lessons/<last-hex-digit>/<uuid>/content.md` alongside the approved Brief, without editing the Methodologist's content. Custom Scenes have separate `scenes/*.scene-spec.md` documents when needed.
 - **Other specialists:** Scene specifications, assessment designs, media and implementation each remain separate role-owned artifacts as defined by their own workflows.
 - **Coding Agent:** creates typed runtime Lesson configuration independently of Methodologist prose; documentation is not application code.
@@ -24,4 +24,4 @@ The Lesson remains **Program-neutral**, can be reused across Curricula, and may 
 
 ## WORKFLOW OWNERSHIP
 
-[Create Lesson Brief](../../skills/lesson-workflow/create-lesson-brief.skill.md) creates `methodologist-brief.md`. After its explicit approval, [Create Lesson Content](../../skills/lesson-workflow/create-lesson-content.skill.md) creates an independent `content.md` in that **same Lesson folder** and optionally Scene specifications. Scene implementation, Question/Quiz authoring, runtime configuration, Program narratives and editorial approvals are separate, subsequently authorized stages.
+[Create Lesson Brief](../../skills/lesson-workflow/create-lesson-brief.skill.md) creates `methodology.md` for a new Lesson. For an existing Lesson with `methodologist-brief.md`, update the legacy file in place instead of duplicating it. After its explicit approval, [Create Lesson Content](../../skills/lesson-workflow/create-lesson-content.skill.md) creates an independent `content.md` in that **same Lesson folder** and optionally Scene specifications. Scene implementation, Question/Quiz authoring, runtime configuration, Program narratives and editorial approvals are separate, subsequently authorized stages.

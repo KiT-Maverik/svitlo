@@ -2,7 +2,7 @@ import type {
   Chapter,
   Chapter_Content,
   Course_Creator,
-  Course_LessonOverride,
+  Course_LessonAuthoringOverride,
   Course_Resource,
   Course_TocChapter,
   Course_TocContext,
@@ -10,14 +10,16 @@ import type {
   Course_TocLesson,
   Course_TocModule,
   Episode,
+  Lesson,
   Locale_Languages,
   Module,
 } from '@svitlo/contracts/content';
+import { collectCoursePublicationItems, isCourseLesson } from './collectCoursePublicationItems';
 
 type EpisodeCreator<L extends Locale_Languages> = Course_Creator<Episode<'data', L>, Course_TocEpisode, L>;
 type ChapterCreator<L extends Locale_Languages> = Course_Creator<Chapter<'data', L>, Course_TocChapter, L>;
 
-type LessonEntry<L extends Locale_Languages> = string | Course_LessonOverride<L>;
+type LessonEntry<L extends Locale_Languages> = Lesson<'data', L> | Course_LessonAuthoringOverride<L>;
 type ChapterEntry<L extends Locale_Languages> = LessonEntry<L> | Episode<'data', L> | EpisodeCreator<L>;
 type ModuleEntry<L extends Locale_Languages> = ChapterEntry<L> | Chapter<'data', L> | ChapterCreator<L>;
 
@@ -44,16 +46,17 @@ function localizeTitle<L extends Locale_Languages>(
   return title;
 }
 
-function lessonToc<L extends Locale_Languages>(entry: LessonEntry<L>, context: Course_TocContext<L>): Course_TocLesson {
-  if (typeof entry === 'string') return context.resolveLesson(entry);
-  const base = context.resolveLesson(entry.lessonId);
-  if (entry.overrides.title === undefined) return base;
-  const title = entry.overrides.title;
+export function lessonToc<L extends Locale_Languages>(
+  entry: LessonEntry<L>,
+  context: Course_TocContext<L>,
+): Course_TocLesson {
+  const lesson = isCourseLesson(entry) ? entry : entry.lesson;
+  const title = isCourseLesson(entry) ? lesson.title : (entry.overrides.title ?? lesson.title);
   const localizedTitle = typeof title === 'string' ? title : title[context.language];
   if (typeof localizedTitle !== 'string') {
-    throw new Error(`Missing overridden Lesson title for ${context.language}`);
+    throw new Error(`Missing Lesson title for ${context.language}`);
   }
-  return { ...base, title: localizedTitle };
+  return { type: 'lesson', id: lesson.id, title: localizedTitle };
 }
 
 function episodeToc<L extends Locale_Languages>(
@@ -69,7 +72,7 @@ function chapterChildToc<L extends Locale_Languages>(
   item: ChapterEntry<L>,
   context: Course_TocContext<L>,
 ): Course_TocLesson | Course_TocEpisode {
-  if (typeof item === 'string' || ('type' in item && item.type === 'lessonOverride')) {
+  if (isCourseLesson(item) || ('type' in item && item.type === 'lessonOverride')) {
     return lessonToc(item, context);
   }
   return episodeToc(item, context);
@@ -79,7 +82,7 @@ function moduleChildToc<L extends Locale_Languages>(
   item: ModuleEntry<L>,
   context: Course_TocContext<L>,
 ): Course_TocChapter | Course_TocLesson | Course_TocEpisode {
-  if (typeof item === 'string' || ('type' in item && item.type === 'lessonOverride')) {
+  if (isCourseLesson(item) || ('type' in item && item.type === 'lessonOverride')) {
     return lessonToc(item, context);
   }
   if (isCreator<Chapter<'data', L> | Episode<'data', L>, Course_TocChapter | Course_TocEpisode, L>(item)) {
@@ -91,7 +94,7 @@ function moduleChildToc<L extends Locale_Languages>(
 
 function unwrapChild<L extends Locale_Languages>(
   child: ModuleEntry<L>,
-): string | Course_LessonOverride<L> | Chapter<'data', L> | Episode<'data', L> {
+): LessonEntry<L> | Chapter<'data', L> | Episode<'data', L> {
   return isCreator<Chapter<'data', L> | Episode<'data', L>, Course_TocChapter | Course_TocEpisode, L>(child)
     ? child.getData()
     : child;
@@ -127,7 +130,8 @@ export function createChapter<const L extends Locale_Languages>(
     data: getData(),
     toc: toToc(context),
   });
-  return { getData, toToc, toResource };
+  const getPublicationItems = () => collectCoursePublicationItems<L>(input.content);
+  return { getData, toToc, toResource, getPublicationItems };
 }
 
 /** Build-time, IO-free Module creator. */
@@ -149,7 +153,8 @@ export function createModule<const L extends Locale_Languages>(
     data: getData(),
     toc: toToc(context),
   });
-  return { getData, toToc, toResource };
+  const getPublicationItems = () => collectCoursePublicationItems<L>(input.content);
+  return { getData, toToc, toResource, getPublicationItems };
 }
 
 /** An Episode owns Scenario Sections but is not itself a Section. */
@@ -170,5 +175,6 @@ export function createEpisode<const L extends Locale_Languages>(
     data: getData(),
     toc: toToc(context),
   });
-  return { getData, toToc, toResource };
+  const getPublicationItems = () => ({ lessons: [], groups: [], overrides: [], episodes: [getData()] });
+  return { getData, toToc, toResource, getPublicationItems };
 }

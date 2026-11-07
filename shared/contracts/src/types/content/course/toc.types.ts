@@ -38,10 +38,9 @@ export type Course_Toc = NavigationLabel & {
   children: readonly Course_TocContent[];
 };
 
-/** A Course creator uses the locale to localize titles and a Lesson resolver for ID references. */
+/** All Lesson data is available at authoring time; TOC projection only needs a locale. */
 export type Course_TocContext<Languages extends Locale_Languages> = {
   language: Languages[number];
-  resolveLesson: (lessonId: string) => Course_TocLesson;
 };
 
 /**
@@ -53,8 +52,17 @@ export type Course_Resource<Data, Toc> = {
   toc: Toc;
 };
 
+/** Flat authoring entities consumed by Course generators (not embedded in published TOC). */
+export type Course_PublicationItems<Languages extends Locale_Languages> = {
+  lessons: readonly Lesson<'data', Languages>[];
+  episodes: readonly Episode<'data', Languages>[];
+  groups: readonly (Module<'data', Languages> | Chapter<'data', Languages>)[];
+  overrides: readonly import('./source.types').Course_LessonAuthoringOverride<Languages>[];
+};
+
 export type Course_Creator<Data, Toc, Languages extends Locale_Languages> = {
   getData(): Data;
   toToc(context: Course_TocContext<Languages>): Toc;
   toResource(context: Course_TocContext<Languages>): Course_Resource<Data, Toc>;
+  getPublicationItems(): Course_PublicationItems<Languages>;
 };

@@ -123,6 +123,8 @@ jobs:
         run: |
           node --check scripts/generate-lesson-review-artifacts.mjs
           node --test scripts/generate-lesson-review-artifacts.spec.mjs
+          node --check scripts/generate-lessons-by-skill.mjs
+          node --test scripts/generate-lessons-by-skill.spec.mjs
       - name: Generate Skills and Lesson Markdown in every supported language
         run: |
           node --check scripts/generate-translation-review-artifacts.mjs
@@ -190,11 +192,13 @@ jobs:
           for (const entry of manifest.generated) {
             const name = entry.path;
             const segments = typeof name === 'string' ? name.split('/') : [];
-            const depth = segments[1] === 'taxonomies' ? 4 : segments[1] === 'lessons' ? 6 : -1;
+            const depth = segments[1] === 'taxonomies' ? 4 : segments[1] === 'lessons' ? 6 : segments[1] === 'lessons-by-skill' ? 3 : -1;
             if (typeof name !== 'string' ||
                 segments[0] !== root || segments.length !== depth ||
                 segments.slice(2).some(part => !/^[a-zA-Z0-9._-]+$/.test(part) || part === '..') ||
-                !name.endsWith('.md') || expected.has(name) || !fs.statSync(name).isFile()) {
+                !name.endsWith('.md') ||
+                (segments[1] === 'lessons-by-skill' && !/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}\.md$/.test(segments[2])) ||
+                expected.has(name) || !fs.statSync(name).isFile()) {
               throw Error('Invalid generated artifact entry: ' + String(name));
             }
             expected.add(name);

@@ -2,7 +2,7 @@
 /**
  * Build one complete, PR-scoped agent reference library from canonical Code.
  * On-demand only. No CLI modes: generate Skills and Lesson Markdown in every supported language.
- * Output: .agent-ci-artifacts/{taxonomies,lessons}/... + manifest.json
+ * Output: .agent-ci-artifacts/{taxonomies,lessons,lessons-by-skill}/... + manifest.json
  * The CI workflow owns committing and cleaning this directory on the PR branch.
  */
 import fs from 'node:fs';
@@ -12,6 +12,7 @@ import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
 import ts from 'typescript';
 import { discoverLessons, generateLessonReviewArtifacts } from './generate-lesson-review-artifacts.mjs';
+import { generate as generateLessonsBySkill } from './generate-lessons-by-skill.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const output = path.join(root, '.agent-ci-artifacts');
@@ -143,10 +144,25 @@ for (const textbook of textbooks) {
   }
 }
 const lessonStats = generateLessonReviewArtifacts({ root, output, languages, manifest, saveManifest });
+const skillLookup = generateLessonsBySkill({ root, output: path.join(output, 'lessons-by-skill') });
+for (const problem of skillLookup.failures) {
+  manifest.failures.push({ kind: 'lessons-by-skill', ...problem });
+  process.stderr.write('::warning::Lesson Skill lookup ' + problem.lessonId + ': ' + problem.error + '\n');
+}
+for (const item of skillLookup.generated) {
+  manifest.generated.push({
+    kind: 'lessons-by-skill',
+    skillId: item.skillId,
+    lessons: item.lessons,
+    path: '.agent-ci-artifacts/lessons-by-skill/' + item.skillId + '.md',
+  });
+}
+saveManifest();
 manifest.summary = {
   taxonomyDocuments: manifest.generated.filter(item => item.kind === 'taxonomy').length,
   discoveredLessons: lessonStats.discoveredLessons,
   lessonDocuments: lessonStats.generated,
+  lessonSkillLookupFiles: skillLookup.generated.length,
   failures: manifest.failures.length,
 };
 saveManifest();
