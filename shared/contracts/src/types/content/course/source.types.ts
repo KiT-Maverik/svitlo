@@ -52,9 +52,16 @@ export type Course_SectionChanges<Languages extends Locale_Languages> = {
 export type Course_LessonOverride<Languages extends Locale_Languages, CustomEvents extends string = never> = {
   type: 'lessonOverride';
   lessonId: string;
-  /** Canonical Lesson Data; kept in authoring only, never emitted in override JSON. */
-  lesson: Lesson<'data', Languages>;
   overrides: Omit<Lesson_Override<Languages, CustomEvents>, 'sections'> & {
     sections?: Course_SectionChanges<Languages>;
   };
+};
+
+// Authoring-time Course override: keeps the entire typed Lesson available.
+// The published override resource uses Course_LessonOverride without this field.
+export type Course_LessonAuthoringOverride<
+  Languages extends Locale_Languages,
+  CustomEvents extends string = never,
+> = Course_LessonOverride<Languages, CustomEvents> & {
+  lesson: Lesson<'data', Languages, CustomEvents>;
 };

@@ -12,6 +12,7 @@ export type {
   Course_BlockChanges,
   Course_SectionChanges,
   Course_LessonOverride,
+  Course_LessonAuthoringOverride,
 } from './source.types';
 export type {
   Course_Toc,

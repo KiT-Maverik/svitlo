@@ -82,7 +82,7 @@ describe('Course entity creators', () => {
     const output = module.toResource(context);
     assert.deepEqual(output.toc, toc);
     const firstChild = output.data.content[0];
-    assert.equal(typeof firstChild === 'string' ? firstChild : firstChild.type, 'chapter');
+    assert.equal('type' in firstChild ? firstChild.type : 'lesson', 'chapter');
     assert.equal(JSON.stringify(output).includes('getData'), false);
     assert.deepEqual(chapter.getPublicationItems().lessons.map(item => item.id), ['lesson-1']);
     assert.deepEqual(module.getPublicationItems().lessons.map(item => item.id), ['lesson-1', 'lesson-2']);

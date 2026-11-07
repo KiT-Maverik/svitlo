@@ -57,7 +57,7 @@ export type Course_PublicationItems<Languages extends Locale_Languages> = {
   lessons: readonly Lesson<'data', Languages>[];
   episodes: readonly Episode<'data', Languages>[];
   groups: readonly (Module<'data', Languages> | Chapter<'data', Languages>)[];
-  overrides: readonly import('./source.types').Course_LessonOverride<Languages>[];
+  overrides: readonly import('./source.types').Course_LessonAuthoringOverride<Languages>[];
 };
 
 export type Course_Creator<Data, Toc, Languages extends Locale_Languages> = {

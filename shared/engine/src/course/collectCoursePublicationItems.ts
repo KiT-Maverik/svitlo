@@ -1,6 +1,6 @@
 import type {
   Chapter,
-  Course_LessonOverride,
+  Course_LessonAuthoringOverride,
   Course_PublicationItems,
   Episode,
   Lesson,
@@ -39,7 +39,7 @@ export function collectCoursePublicationItems<L extends Locale_Languages>(
   const lessons: Lesson<'data', L>[] = [];
   const episodes: Episode<'data', L>[] = [];
   const groups: (Module<'data', L> | Chapter<'data', L>)[] = [];
-  const overrides: Course_LessonOverride<L>[] = [];
+  const overrides: Course_LessonAuthoringOverride<L>[] = [];
 
   function visit(source: unknown): void {
     const item = isCourseCreator(source) ? source.getData() : source;
@@ -52,7 +52,7 @@ export function collectCoursePublicationItems<L extends Locale_Languages>(
     }
     const entry = item as { type: string; id?: string; content?: readonly unknown[] };
     if (entry.type === 'lessonOverride') {
-      const override = item as Course_LessonOverride<L>;
+      const override = item as Course_LessonAuthoringOverride<L>;
       overrides.push(override);
       lessons.push(override.lesson);
       return;

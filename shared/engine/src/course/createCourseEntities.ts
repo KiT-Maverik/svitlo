@@ -2,7 +2,7 @@ import type {
   Chapter,
   Chapter_Content,
   Course_Creator,
-  Course_LessonOverride,
+  Course_LessonAuthoringOverride,
   Course_Resource,
   Course_TocChapter,
   Course_TocContext,
@@ -19,7 +19,7 @@ import { collectCoursePublicationItems, isCourseLesson } from './collectCoursePu
 type EpisodeCreator<L extends Locale_Languages> = Course_Creator<Episode<'data', L>, Course_TocEpisode, L>;
 type ChapterCreator<L extends Locale_Languages> = Course_Creator<Chapter<'data', L>, Course_TocChapter, L>;
 
-type LessonEntry<L extends Locale_Languages> = Lesson<'data', L> | Course_LessonOverride<L>;
+type LessonEntry<L extends Locale_Languages> = Lesson<'data', L> | Course_LessonAuthoringOverride<L>;
 type ChapterEntry<L extends Locale_Languages> = LessonEntry<L> | Episode<'data', L> | EpisodeCreator<L>;
 type ModuleEntry<L extends Locale_Languages> = ChapterEntry<L> | Chapter<'data', L> | ChapterCreator<L>;
 
