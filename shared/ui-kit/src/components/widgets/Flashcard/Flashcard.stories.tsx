@@ -2,9 +2,6 @@ import type { Meta, StoryObj } from '@storybook/nextjs';
 import { useState } from 'react';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import ListOutlined from '@mui/icons-material/ListOutlined';
-import PriorityHighOutlined from '@mui/icons-material/PriorityHighOutlined';
-import ChatBubbleOutlineOutlined from '@mui/icons-material/ChatBubbleOutlineOutlined';
 import { Flashcard, type FlashcardProps } from './Flashcard';
 import { ukUiKitMessages } from '../../../testing/uiKitMessages.unit.fx';
 
@@ -43,7 +40,8 @@ const meta = {
   argTypes: {
     question: { control: 'text' },
     answer: { control: 'text' },
-    labels: { control: 'object', description: 'Службові мітки, які показуються під питанням.' },
+    flags: { control: 'object', description: 'Типізовані мітки з Lesson Data: list, warning, acronym, custom.' },
+    labels: { control: 'object', description: 'Додаткові UI-мітки, якщо їх задає хост.' },
     initialRevealed: { control: 'boolean', description: 'Початковий стан картки у Playground.' },
     disabled: { control: 'boolean' },
   },
@@ -51,10 +49,11 @@ const meta = {
     messages: ukUiKitMessages.flashcard,
     question: 'Як поширюється світло в прозорому однорідному середовищі?',
     answer: 'Прямолінійно.',
-    labels: [
-      { icon: <ListOutlined />, label: '6', color: 'info' },
-      { icon: <PriorityHighOutlined />, label: 'Увага', color: 'warning' },
-      { icon: <ChatBubbleOutlineOutlined />, label: 'PaRFUME', color: 'secondary' },
+    flags: [
+      { type: 'list', count: 6 },
+      { type: 'warning' },
+      { type: 'acronym', value: 'PaRFUME' },
+      { type: 'custom', value: 'Важливо', color: 'success', icon: 'star' },
     ],
     initialRevealed: false,
     disabled: false,
@@ -75,5 +74,5 @@ export const Disabled: Story = {
 };
 
 export const WithoutProgress: Story = {
-  args: { labels: [] },
+  args: { flags: [], labels: [] },
 };
