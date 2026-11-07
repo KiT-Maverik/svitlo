@@ -57,7 +57,10 @@ function LocaleSelector({
       renderValue={value => {
         const selected = options.find(option => option.locale === value);
         return selected ? (
-          <Box component="span" sx={{ display: 'inline-flex', alignItems: 'center', gap: 0.75, minWidth: 0, maxWidth: '100%' }}>
+          <Box
+            component="span"
+            sx={{ display: 'inline-flex', alignItems: 'center', gap: 0.75, minWidth: 0, maxWidth: '100%' }}
+          >
             <Flag locale={selected.locale} width={20} height={14} />
             <Box component="span" sx={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
               {selected.nativeName}
@@ -94,7 +97,9 @@ function ThemeSwitch({
   const isDark = mode === 'dark' || ((mode === 'system' || mode === undefined) && systemMode === 'dark');
 
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 1, width: '100%', minWidth: 0 }}>
+    <Box
+      sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 1, width: '100%', minWidth: 0 }}
+    >
       <Typography variant="body2" sx={{ flex: '1 1 auto', minWidth: 0, overflowWrap: 'anywhere' }}>
         {isDark ? messages.theme.dark : messages.theme.light}
       </Typography>
