@@ -139,7 +139,7 @@ test('multiple Quizzes select only their curated questions, retaining the full b
   }, { plans: ['knowledge', 'verify'] }));
 test('rejects duplicate Section, Question and missing question/Quiz references', () =>
   withFixture(f => {
-    f.content.sections.push({ ...f.content.sections[0] });
+    f.content.sections.push(structuredClone(f.content.sections[0]));
     f.save();
     assert.throws(() => runOne(f.lesson, 'generate', f.repo), /duplicate key/);
     f.content.sections.pop();
