@@ -15,7 +15,7 @@ The path must match the real Lesson's UUID-resolved directory. Do not guess it f
 Required approved inputs:
 
 1. `methodology.md` (or the existing legacy `methodologist-brief.md`) with approved outcomes, audience, approved target Skill IDs, `documentLanguage`, `supportedLanguages`, and explicit `assessmentPlan`.
-2. The *current* `content.yaml`, with approved Quiz keys and `assessmentPlanKey` references, Lesson explanations, representations, and available media/Scene specifications.
+2. The _current_ `content.yaml`, with approved Quiz keys and `assessmentPlanKey` references, Lesson explanations, representations, and available media/Scene specifications.
 3. The exact canonical current Question types and input/rendering behavior, 16 Assessment Methods, Quiz selection/interaction parameters, and relevant ContentBlock contracts.
 4. Verified canonical source definitions for **only the target Skills** (and neighboring/prerequisite Skills when boundary analysis needs them). Verify approval and identity. Do not invent identifiers.
 5. Verified existing media paths if any; missing media must remain explicit requests.
@@ -32,7 +32,7 @@ The approved list of required methods is a **hard coverage constraint**, not an 
 
 ## Step 2 — Generate broadly, curate rigorously
 
-Generate a candidate pool using different *valid* cognitive operations, knowledge aspects, contexts, meaningful representations, common misconceptions and appropriate difficulty. Evaluate each candidate against what the kept bank already tests.
+Generate a candidate pool using different _valid_ cognitive operations, knowledge aspects, contexts, meaningful representations, common misconceptions and appropriate difficulty. Evaluate each candidate against what the kept bank already tests.
 
 **Retain only if marginal diagnostic value is positive.** It must add a distinct observable outcome, Method-driven operation, meaningful misconception/boundary, unfamiliar transfer, or necessary parallel form of the **same validated construct** for sampling/accessibility. Rephrasing, renumbering, reordering choices, switching widgets, or inserting a decorative image are not evidence of diversity.
 
@@ -47,7 +47,7 @@ Neither tier has a mandatory item count. Do not add arbitrary quotas or force on
 
 **The bank and the ordinary Lesson Quiz are separate deliverables.** The full bank is retained for future **Custom Practice**, and it may contain far more Questions than the default Lesson Quiz. `core`/`extension` are bank coverage tiers, not Quiz inclusion switches. A default Quiz should normally show **only a small, pedagogically sufficient subset**, never all 100 items just because 100 were written.
 
-After authoring the bank, inspect *every approved Quiz Section* in the current `content.yaml` and map its `assessmentPlanKey` to exactly one `quizAssignments[]` entry. Author its explicit `selection` object using the existing `Quiz_Parameters.selection` contract:
+After authoring the bank, inspect _every approved Quiz Section_ in the current `content.yaml` and map its `assessmentPlanKey` to exactly one `quizAssignments[]` entry. Author its explicit `selection` object using the existing `Quiz_Parameters.selection` contract:
 
 - **Recommended for the ordinary default Quiz:** `mode: all` **with a required, explicit, short `questionSlugs` list**. This mode means "include all slugs on this particular list"—not the whole Lesson bank. Select Questions deliberately to cover the Quiz's intended target Skills, required Assessment Methods, outcomes and representative misconceptions. Prefer a compact, balanced set rather than the easiest items or a comprehensive exam.
 - **Optional sampled subset:** `mode: sample` **with an explicit eligible `questionSlugs` pool**, positive integer `count` and deliberate `shuffle`/`seed`. The current Engine uses seed `0` by default: published Quiz samples are **deterministic**, not automatically refreshed at every attempt. Custom Practice could vary the seed through separately implemented runtime behavior. Use sampling only when the selected set is pedagogically safe; the present `Quiz_Parameters` has **no built-in stratified sampling by Skill or Assessment Method**. If sampling might omit required evidence, use a curated fixed set or escalate the need for stratified runtime support.
@@ -94,12 +94,12 @@ Use [`lesson-questions.schema.json`](./lesson-questions.schema.json) as the edit
 schemaVersion: 1
 kind: lesson-question-bank
 status: draft
-lessonId: "00000000-0000-0000-0000-000000000000" # placeholder only
+lessonId: '00000000-0000-0000-0000-000000000000' # placeholder only
 documentLanguage: en
 supportedLanguages: [en, uk]
 sources:
-  methodology: {path: ../methodology.md}
-  content: {path: ../content.yaml}
+  methodology: { path: ../methodology.md }
+  content: { path: ../content.yaml }
 quizAssignments:
   - assessmentPlanKey: check-understanding
     selection:
@@ -110,7 +110,7 @@ questions:
   - slug: identify-model-error
     type: selectOneAnswer
     assessmentMethod: errorDiagnosis
-    targetSkills: ["00000000-0000-0000-0000-000000000001"] # replace with approved Skill UUID
+    targetSkills: ['00000000-0000-0000-0000-000000000001'] # replace with approved Skill UUID
     assessmentPlanKeys: [check-understanding]
     pool: core
     evidence:
@@ -119,19 +119,19 @@ questions:
       distinction: Distinguishes causal misunderstanding from vocabulary recall
       distinctness: Tests error diagnosis rather than another retrieval item
     question:
-      - {type: text, text: "Which statement contains the error?"}
+      - { type: text, text: 'Which statement contains the error?' }
     answer:
       correct:
         - key: faulty
-          content: [{type: text, text: "Example incorrect claim."}]
+          content: [{ type: text, text: 'Example incorrect claim.' }]
       incorrect:
         - key: sound
-          content: [{type: text, text: "Example correct claim."}]
+          content: [{ type: text, text: 'Example correct claim.' }]
       distractors: []
     explanation:
-      - {type: text, text: "The faulty statement reverses the stated causal relationship."}
+      - { type: text, text: 'The faulty statement reverses the stated causal relationship.' }
 coverage:
-  - targetSkill: "00000000-0000-0000-0000-000000000001"
+  - targetSkill: '00000000-0000-0000-0000-000000000001'
     outcome: Detect an incorrect claim in a studied model
     assessmentMethod: errorDiagnosis
     questionSlugs: [identify-model-error]
@@ -152,4 +152,4 @@ Validate machine-readable YAML against the schema plus **semantic checks** (a sc
 6. Only one source language is authored. No invented translations, IDs, media or renderer capabilities.
 7. The full bank is preserved for Custom Practice regardless of default Quiz subsets, and the builder is required to emit both the full catalog and merged Quiz selections when implemented. The bank matches current approved source revisions. A subsequent material change to methodology or content invalidates affected reviews/coverage until checked.
 
-Create/update the bank only in its Lesson's `questions/` folder. Follow the Lesson Production Issue handoff, Draft PR and source-specific approval policy when operating in a production workflow. The Coding Agent consumes the *approved* YAML to author typed data and tests; the Translation workflow supplies remaining locales. Do not claim the YAML-to-code generator exists unless it is verified in the repository.
+Create/update the bank only in its Lesson's `questions/` folder. Follow the Lesson Production Issue handoff, Draft PR and source-specific approval policy when operating in a production workflow. The Coding Agent consumes the _approved_ YAML to author typed data and tests; the Translation workflow supplies remaining locales. Do not claim the YAML-to-code generator exists unless it is verified in the repository.

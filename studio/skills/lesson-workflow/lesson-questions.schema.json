@@ -26,10 +26,7 @@
       "const": "lesson-question-bank"
     },
     "status": {
-      "enum": [
-        "draft",
-        "approved"
-      ]
+      "enum": ["draft", "approved"]
     },
     "lessonId": {
       "type": "string",
@@ -50,10 +47,7 @@
     },
     "sources": {
       "type": "object",
-      "required": [
-        "methodology",
-        "content"
-      ],
+      "required": ["methodology", "content"],
       "properties": {
         "methodology": {
           "$ref": "#/$defs/source"
@@ -69,10 +63,7 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": [
-          "assessmentPlanKey",
-          "selection"
-        ],
+        "required": ["assessmentPlanKey", "selection"],
         "properties": {
           "assessmentPlanKey": {
             "type": "string",
@@ -96,12 +87,7 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": [
-          "targetSkill",
-          "outcome",
-          "assessmentMethod",
-          "questionSlugs"
-        ],
+        "required": ["targetSkill", "outcome", "assessmentMethod", "questionSlugs"],
         "properties": {
           "targetSkill": {
             "type": "string",
@@ -147,21 +133,10 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": [
-          "kind",
-          "description",
-          "status"
-        ],
+        "required": ["kind", "description", "status"],
         "properties": {
           "kind": {
-            "enum": [
-              "media",
-              "accessibility",
-              "grading",
-              "subject-review",
-              "contract",
-              "other"
-            ]
+            "enum": ["media", "accessibility", "grading", "subject-review", "contract", "other"]
           },
           "description": {
             "type": "string",
@@ -187,9 +162,7 @@
             "const": "approved"
           }
         },
-        "required": [
-          "status"
-        ]
+        "required": ["status"]
       },
       "then": {
         "properties": {
@@ -207,9 +180,7 @@
     },
     "source": {
       "type": "object",
-      "required": [
-        "path"
-      ],
+      "required": ["path"],
       "properties": {
         "path": {
           "type": "string",
@@ -226,10 +197,7 @@
       "oneOf": [
         {
           "type": "object",
-          "required": [
-            "type",
-            "text"
-          ],
+          "required": ["type", "text"],
           "properties": {
             "type": {
               "const": "text"
@@ -243,10 +211,7 @@
         },
         {
           "type": "object",
-          "required": [
-            "type",
-            "assetPath"
-          ],
+          "required": ["type", "assetPath"],
           "properties": {
             "type": {
               "const": "image"
@@ -260,22 +225,14 @@
         },
         {
           "type": "object",
-          "required": [
-            "type",
-            "assetRequest"
-          ],
+          "required": ["type", "assetRequest"],
           "properties": {
             "type": {
               "const": "image"
             },
             "assetRequest": {
               "type": "object",
-              "required": [
-                "description",
-                "purpose",
-                "altIntent",
-                "status"
-              ],
+              "required": ["description", "purpose", "altIntent", "status"],
               "properties": {
                 "description": {
                   "type": "string",
@@ -302,10 +259,7 @@
     },
     "choice": {
       "type": "object",
-      "required": [
-        "key",
-        "content"
-      ],
+      "required": ["key", "content"],
       "properties": {
         "key": {
           "type": "string",
@@ -323,11 +277,7 @@
     },
     "pair": {
       "type": "object",
-      "required": [
-        "key",
-        "left",
-        "right"
-      ],
+      "required": ["key", "left", "right"],
       "properties": {
         "key": {
           "type": "string",
@@ -344,10 +294,7 @@
     },
     "textSlot": {
       "type": "object",
-      "required": [
-        "selector",
-        "correctAnswers"
-      ],
+      "required": ["selector", "correctAnswers"],
       "properties": {
         "selector": {
           "type": "string",
@@ -367,10 +314,7 @@
     },
     "blockSlot": {
       "type": "object",
-      "required": [
-        "selector",
-        "correctAnswer"
-      ],
+      "required": ["selector", "correctAnswer"],
       "properties": {
         "selector": {
           "type": "string",
@@ -384,12 +328,7 @@
     },
     "evidence": {
       "type": "object",
-      "required": [
-        "outcome",
-        "operation",
-        "distinction",
-        "distinctness"
-      ],
+      "required": ["outcome", "operation", "distinction", "distinctness"],
       "properties": {
         "outcome": {
           "type": "string",
@@ -412,11 +351,7 @@
           "minLength": 1
         },
         "demand": {
-          "enum": [
-            "foundational",
-            "intermediate",
-            "advanced"
-          ]
+          "enum": ["foundational", "intermediate", "advanced"]
         },
         "knowledgeAspect": {
           "type": "string",
@@ -496,10 +431,7 @@
           }
         },
         "pool": {
-          "enum": [
-            "core",
-            "extension"
-          ],
+          "enum": ["core", "extension"],
           "description": "Core and extension describe bank coverage, not automatic default Quiz inclusion; Quiz inclusion is determined only by quizAssignments[].selection.questionSlugs."
         },
         "evidence": {
@@ -547,19 +479,13 @@
                 "const": "selectOneAnswer"
               }
             },
-            "required": [
-              "type"
-            ]
+            "required": ["type"]
           },
           "then": {
             "properties": {
               "answer": {
                 "type": "object",
-                "required": [
-                  "correct",
-                  "incorrect",
-                  "distractors"
-                ],
+                "required": ["correct", "incorrect", "distractors"],
                 "properties": {
                   "correct": {
                     "type": "array",
@@ -595,19 +521,13 @@
                 "const": "selectMultipleAnswers"
               }
             },
-            "required": [
-              "type"
-            ]
+            "required": ["type"]
           },
           "then": {
             "properties": {
               "answer": {
                 "type": "object",
-                "required": [
-                  "correct",
-                  "incorrect",
-                  "distractors"
-                ],
+                "required": ["correct", "incorrect", "distractors"],
                 "properties": {
                   "correct": {
                     "type": "array",
@@ -643,17 +563,13 @@
                 "const": "matchBlocks"
               }
             },
-            "required": [
-              "type"
-            ]
+            "required": ["type"]
           },
           "then": {
             "properties": {
               "answer": {
                 "type": "object",
-                "required": [
-                  "pairs"
-                ],
+                "required": ["pairs"],
                 "properties": {
                   "pairs": {
                     "type": "array",
@@ -675,18 +591,13 @@
                 "const": "answerWithText"
               }
             },
-            "required": [
-              "type"
-            ]
+            "required": ["type"]
           },
           "then": {
             "properties": {
               "answer": {
                 "type": "object",
-                "required": [
-                  "correctAnswers",
-                  "placeholder"
-                ],
+                "required": ["correctAnswers", "placeholder"],
                 "properties": {
                   "correctAnswers": {
                     "type": "array",
@@ -713,18 +624,13 @@
                 "const": "answerWithNumber"
               }
             },
-            "required": [
-              "type"
-            ]
+            "required": ["type"]
           },
           "then": {
             "properties": {
               "answer": {
                 "type": "object",
-                "required": [
-                  "correctAnswers",
-                  "placeholder"
-                ],
+                "required": ["correctAnswers", "placeholder"],
                 "properties": {
                   "correctAnswers": {
                     "type": "array",
@@ -750,17 +656,13 @@
                 "const": "orderSequence"
               }
             },
-            "required": [
-              "type"
-            ]
+            "required": ["type"]
           },
           "then": {
             "properties": {
               "answer": {
                 "type": "object",
-                "required": [
-                  "sequence"
-                ],
+                "required": ["sequence"],
                 "properties": {
                   "sequence": {
                     "type": "array",
@@ -782,19 +684,13 @@
                 "const": "buildAnswerWithBlocks"
               }
             },
-            "required": [
-              "type"
-            ]
+            "required": ["type"]
           },
           "then": {
             "properties": {
               "answer": {
                 "type": "object",
-                "required": [
-                  "correctSequence",
-                  "distractors",
-                  "placeholder"
-                ],
+                "required": ["correctSequence", "distractors", "placeholder"],
                 "properties": {
                   "correctSequence": {
                     "type": "array",
@@ -826,19 +722,13 @@
                 "const": "fillBlanksWithBlocks"
               }
             },
-            "required": [
-              "type"
-            ]
+            "required": ["type"]
           },
           "then": {
             "properties": {
               "answer": {
                 "type": "object",
-                "required": [
-                  "slots",
-                  "distractors",
-                  "placeholder"
-                ],
+                "required": ["slots", "distractors", "placeholder"],
                 "properties": {
                   "slots": {
                     "type": "array",
@@ -870,18 +760,13 @@
                 "const": "fillBlanksWithText"
               }
             },
-            "required": [
-              "type"
-            ]
+            "required": ["type"]
           },
           "then": {
             "properties": {
               "answer": {
                 "type": "object",
-                "required": [
-                  "slots",
-                  "placeholder"
-                ],
+                "required": ["slots", "placeholder"],
                 "properties": {
                   "slots": {
                     "type": "array",
@@ -904,16 +789,10 @@
     "quizSelection": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "mode",
-        "questionSlugs"
-      ],
+      "required": ["mode", "questionSlugs"],
       "properties": {
         "mode": {
-          "enum": [
-            "all",
-            "sample"
-          ]
+          "enum": ["all", "sample"]
         },
         "questionSlugs": {
           "type": "array",
@@ -943,14 +822,10 @@
                 "const": "sample"
               }
             },
-            "required": [
-              "mode"
-            ]
+            "required": ["mode"]
           },
           "then": {
-            "required": [
-              "count"
-            ]
+            "required": ["count"]
           }
         },
         {
@@ -960,15 +835,11 @@
                 "const": "all"
               }
             },
-            "required": [
-              "mode"
-            ]
+            "required": ["mode"]
           },
           "then": {
             "not": {
-              "required": [
-                "count"
-              ]
+              "required": ["count"]
             }
           }
         }
