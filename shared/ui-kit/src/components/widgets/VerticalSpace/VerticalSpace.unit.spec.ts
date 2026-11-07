@@ -23,7 +23,7 @@ describe('Widgets', () => {
       expect(VerticalSpace_fx.selectors.container()).toHaveAttribute('data-has-top', 'false');
       expect(VerticalSpace_fx.selectors.container()).toHaveAttribute('data-has-bottom', 'false');
 
-      view.rerender(<></>);
+      view.unmount();
       // Each configuration is independently keyed by the presence of its slots.
       const top = VerticalSpace_fx.render({ top: 'Heading' });
       expect(VerticalSpace_fx.selectors.containers().at(-1)).toHaveAttribute('data-has-top', 'true');

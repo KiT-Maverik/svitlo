@@ -22,7 +22,7 @@ describe('LearningLayout preparation', () => {
     );
 
     expect(screen.getByRole('navigation', { name: uk.navigation.top })).toBeVisible();
-    expect(screen.getByRole('navigation', { name: uk.navigation.top }).parentElement?.parentElement).toHaveClass(
+    expect(screen.getByRole('navigation', { name: uk.navigation.top }).parentElement).toHaveClass(
       'svitlo-theme-surface',
     );
     expect(screen.getByRole('navigation', { name: uk.navigation.bottom })).toBeVisible();
