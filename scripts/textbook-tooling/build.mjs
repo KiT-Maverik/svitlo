@@ -18,6 +18,7 @@ import { dirname, join, relative, resolve, sep } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { build } from 'esbuild';
+import { checkTaxonomy } from '../check-skills-taxonomy-structure.mjs';
 
 const root = resolve(process.cwd());
 const repo = resolve(fileURLToPath(new URL('../..', import.meta.url)));
@@ -53,6 +54,13 @@ function filesUnder(folder, prefix = '') {
     .sort();
 }
 const authored = folder => filesUnder(join(root, folder)).some(name => name.endsWith('.data.ts'));
+
+// Authored Skill graphs must be complete before a textbook can be published.
+// The same invariant is enforced for every content package, including Playground.
+if (authored('data/skills')) {
+  const { domains, groups, skills } = checkTaxonomy(join(root, 'data/skills'));
+  console.log('Verified ' + id + ' Skills: ' + domains + ' domains, ' + groups + ' groups, ' + skills + ' skills');
+}
 
 // Dependencies required for build-time content generation; none are included in
 // the runtime output. Standalone npm workspace builds start from a clean checkout.
