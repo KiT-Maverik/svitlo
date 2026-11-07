@@ -156,10 +156,17 @@ test('rejects duplicate Section, Question and missing question/Quiz references',
   }));
 test('rejects invalid Skill IDs and AssessmentMethodKey at the exact YAML field', () =>
   withFixture(f => {
-    f.questions.questions[0].targetSkills = ['00000000-0000-4000-8000-000000000999'];
+    const missingSkill = '00000000-0000-4000-8000-000000000999';
+    f.questions.questions[0].targetSkills = [missingSkill];
+    f.questions.coverage[0].targetSkill = missingSkill;
+    f.methodology.assessmentPlan.quizzes[0].targetSkills = [missingSkill];
+    f.content.sections[1].targetSkills = [missingSkill];
     f.save();
     assert.throws(() => runOne(f.lesson, 'generate', f.repo), /unknown canonical Skill ID/);
     f.questions.questions[0].targetSkills = [skillId];
+    f.questions.coverage[0].targetSkill = skillId;
+    f.methodology.assessmentPlan.quizzes[0].targetSkills = [skillId];
+    f.content.sections[1].targetSkills = [skillId];
     f.questions.questions[0].assessmentMethod = 'madeUp';
     f.save();
     assert.throws(() => runOne(f.lesson, 'generate', f.repo),
