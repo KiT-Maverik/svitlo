@@ -1,5 +1,5 @@
 import type { HowLightMoves_Languages } from '../../constants';
-import type { Section } from '@svitlo/engine/content';
+import { createSection, createContentBlock } from '@svitlo/engine/builders';
 import { checkpointData } from './checkpoints/checkpoint';
 import { lightPropagationSimulationData } from './scenes/lightPropagationSimulation';
 import { lightRayDiagramData } from './scenes/lightRayDiagram';
@@ -37,33 +37,35 @@ const title = {
   zh: '理论',
 };
 
-export const theory_Section = {
+export const theory_Section_Creator = createSection<HowLightMoves_Languages>()({
   id: '32376510-b49a-5da8-91d7-e13cf162c9f9',
   type: 'theory',
   slug: 'theory' as const,
   title,
   navigationLabel: title,
   content: [
-    {
+    createContentBlock<HowLightMoves_Languages>()({
       type: 'markdown',
       id: 'how-light-moves-p1',
       slug: 'p1',
       locales: getMarkdownLocale(new URL('./markdown/p1/', import.meta.url)),
-    },
-    lightRayDiagramData,
-    {
+    }),
+    createContentBlock<HowLightMoves_Languages>()(lightRayDiagramData),
+    createContentBlock<HowLightMoves_Languages>()({
       type: 'markdown',
       id: 'how-light-moves-p2',
       slug: 'p2',
       locales: getMarkdownLocale(new URL('./markdown/p2/', import.meta.url)),
-    },
-    lightPropagationSimulationData,
-    {
+    }),
+    createContentBlock<HowLightMoves_Languages>()(lightPropagationSimulationData),
+    createContentBlock<HowLightMoves_Languages>()({
       type: 'markdown',
       id: 'how-light-moves-p3',
       slug: 'p3',
       locales: getMarkdownLocale(new URL('./markdown/p3/', import.meta.url)),
-    },
-    checkpointData,
+    }),
+    createContentBlock<HowLightMoves_Languages>()(checkpointData),
   ],
-} satisfies Section<'data', HowLightMoves_Languages>;
+});
+
+export const theory_Section = theory_Section_Creator.getData();

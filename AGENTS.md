@@ -55,6 +55,10 @@ the instructions and resources relevant to that task. **Do not assume that
 
 Before creating or updating GitHub Issues, pull requests, or branches, read and follow [GitHub labels and naming conventions](studio/rules/github-labels-and-naming.md). Use [the canonical label catalog](.github/labels.json) for exact names. Apply appropriate labels to Issues and PRs in GitHub, rather than only describing them in text. Keep entity names short, specific, and free of category information already carried by labels. Preserve any workflow-required branch identifiers.
 
+## Translation Production Issue coordination
+
+For authorized translation of a defined group of localized entities (Skills, Lessons, Assessment Methods, Courses, UI Kit or other typed content), first read [Manage Translation Production](studio/skills/translation-workflow/manage-translation-production.skill.md) and find/reuse/create a single [Translation Production Issue](.github/ISSUE_TEMPLATE/translation-production.yml) for that fixed entity + target-locale scope. Coordinate translator Draft PRs → one integration branch → independent reviewer Draft PRs **after all translation merges**. A missing per-entity localized Markdown generator is an **immediate review stop** requiring an explicit chat report, not a fallback to manual code scanning. Keep review artifacts on reviewer PR branches and clean before integration merges. Routine isolated copy fixes do not require a production campaign Issue.
+
 ## Lesson production Issue handoff
 
 For any **authorized Lesson production** work (authoring one/many new Lessons, writing content plans, running educational reviews, generating source/material or coordinating production), locate an existing matching Lesson Production Issue or establish the fixed-scope Issue through the coordination skill before creating production PRs. Do not create a separate Issue per Lesson or stage; exclude exploratory questions or isolated maintenance work that is not a production workflow.

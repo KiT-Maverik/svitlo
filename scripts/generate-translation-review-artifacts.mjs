@@ -13,6 +13,7 @@ import { spawnSync } from 'node:child_process';
 import ts from 'typescript';
 import { discoverLessons, generateLessonReviewArtifacts } from './generate-lesson-review-artifacts.mjs';
 import { generate as generateLessonsBySkill } from './generate-lessons-by-skill.mjs';
+import { generateAssessmentMethodsReviewArtifacts } from './generate-assessment-methods-reference.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const output = path.join(root, '.agent-ci-artifacts');
@@ -157,8 +158,16 @@ for (const item of skillLookup.generated) {
     path: '.agent-ci-artifacts/lessons-by-skill/' + item.skillId + '.md',
   });
 }
+const assessmentMethodsStats = generateAssessmentMethodsReviewArtifacts({
+  root,
+  output,
+  languages,
+  manifest,
+  saveManifest,
+});
 saveManifest();
 manifest.summary = {
+  assessmentMethodDocuments: assessmentMethodsStats.generated,
   taxonomyDocuments: manifest.generated.filter(item => item.kind === 'taxonomy').length,
   discoveredLessons: lessonStats.discoveredLessons,
   lessonDocuments: lessonStats.generated,
@@ -178,7 +187,7 @@ process.stdout.write(
 process.stdout.write(
   'Agent review library: ' +
     manifest.generated.length +
-    ' documents (Skills + Lessons), ' +
+    ' documents (Skills + Lessons + Assessment Methods), ' +
     manifest.failures.length +
     ' failed, ' +
     textbooks.length +
@@ -190,4 +199,9 @@ process.stdout.write(
 );
 if (!manifest.generated.length) {
   throw new Error('No review Markdown generated; inspect .agent-ci-artifacts/manifest.json');
+}
+if (assessmentMethodsStats.failures) {
+  throw new Error(
+    'Assessment Methods references failed for ' + assessmentMethodsStats.failures + ' locales; inspect manifest.json',
+  );
 }

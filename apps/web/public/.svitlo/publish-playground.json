@@ -387,6 +387,11 @@
     "data/pages/skillAnalytics/uk.json",
     "data/pages/skillAnalytics/ur.json",
     "data/pages/skillAnalytics/vi.json",
-    "data/pages/skillAnalytics/zh.json"
+    "data/pages/skillAnalytics/zh.json",
+    "textbooks/playground/barabaka.mp4",
+    "textbooks/playground/carousel-light.svg",
+    "textbooks/playground/carousel-prism.svg",
+    "textbooks/playground/demo-tone.wav",
+    "textbooks/playground/whale.png"
   ]
 }

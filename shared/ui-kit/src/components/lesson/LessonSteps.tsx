@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useLayoutEffect, useRef } from 'react';
 import Box from '@mui/material/Box';
 import styles from './Lesson.module.css';
 
@@ -33,7 +33,9 @@ export function LessonSteps({
   const containerRef = useRef<HTMLElement>(null);
   const activeStepRef = useRef<HTMLButtonElement>(null);
 
-  useEffect(() => {
+  // Position the active step in the same render frame, before browser paint.
+  // A passive effect can scroll a frame after paint, briefly exposing old labels.
+  useLayoutEffect(() => {
     const container = containerRef.current;
     const activeStep = activeStepRef.current;
     if (!container || !activeStep) return;
@@ -47,25 +49,27 @@ export function LessonSteps({
   }, [currentStep, steps.length]);
 
   return (
-    <Box component="nav" ref={containerRef} className={styles.steps} aria-label={navigationLabel}>
-      {steps.map((step, index) => (
-        <Box
-          component="button"
-          key={step.id}
-          ref={index === currentStep ? activeStepRef : undefined}
-          type="button"
-          disabled={!allowNavigation || (canNavigateTo ? !canNavigateTo(index) : false)}
-          aria-current={index === currentStep ? 'step' : undefined}
-          data-complete={index === completedStep || undefined}
-          onClick={() => onNavigate?.(index)}
-        >
-          <span className={styles.segment} />
-          <span className={styles.stepLabel}>
-            {showStepNumbers ? `${index + 1}. ` : ''}
-            {step.title}
-          </span>
-        </Box>
-      ))}
+    <Box className={`${styles.stepper} svitlo-theme-stepper`}>
+      <Box component="nav" ref={containerRef} className={styles.steps} aria-label={navigationLabel}>
+        {steps.map((step, index) => (
+          <Box
+            component="button"
+            key={step.id}
+            ref={index === currentStep ? activeStepRef : undefined}
+            type="button"
+            disabled={!allowNavigation || (canNavigateTo ? !canNavigateTo(index) : false)}
+            aria-current={index === currentStep ? 'step' : undefined}
+            data-complete={index === completedStep || undefined}
+            onClick={() => onNavigate?.(index)}
+          >
+            <span className={styles.segment} />
+            <span className={styles.stepLabel}>
+              {showStepNumbers ? `${index + 1}. ` : ''}
+              {step.title}
+            </span>
+          </Box>
+        ))}
+      </Box>
     </Box>
   );
 }

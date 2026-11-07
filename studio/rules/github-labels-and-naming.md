@@ -72,6 +72,12 @@ These are naming examples, not an instruction to rename existing PRs or replace 
 
 **Pre-publication check:** Is the title specific and concise? Does it avoid duplicating GitHub labels? Are the actual (not hypothetical) labels applied? Are scope and work labels accurate? Are PR roles and target branches correct? Are temporary labels up to date?
 
+## Translation Production Issue / integration topology
+
+Use [Translation Production Issue Form](../../.github/ISSUE_TEMPLATE/translation-production.yml) and [Manage Translation Production](../skills/translation-workflow/manage-translation-production.skill.md) for campaigns on fixed sets of localized entities and languages. One Issue covers the full translation **and** independent review campaign, across as many agents as the verified workload warrants. A single Draft integration PR targets `main`, labeled `pr: integration`; translator and reviewer subtask Draft PRs target **that integration branch** and use `pr: agent-subtask`. Preserve exact entity/locale work ownership and reuse existing PRs, avoiding a new Issue for each agent or language.
+
+Review may start **only after every translation subtask has merged into the integration branch**. It must use Code-derived localized Markdown generated on reviewer PR branches from the integrated source. Check the entity-specific generator exists; if missing, stop review and report the blocker in chat and Issue. Reviewer artifacts must be cleaned before their PRs merge. Agent PRs reference the Issue with `Refs #N`; only the owner-authorized final integration PR may close it on merge. Do not claim this policy launches asynchronous agents or auto-merges PRs.
+
 ## Lesson-production Issue scope and stage coordination
 
 For production of **one or more Lessons**, use the repository's [Lesson production Issue Form](../../.github/ISSUE_TEMPLATE/lesson-production.yml) and [Manage Lesson Production](../skills/lesson-workflow/manage-lesson-production.skill.md). A single Issue may contain several explicitly identified Lesson UUIDs; never force one Issue per Lesson or per fast workflow stage. The per-Lesson tracker records the next stage, status, owner/branch, Draft PRs and blockers; scope-level checkboxes do not supersede the source files and independent approvals.

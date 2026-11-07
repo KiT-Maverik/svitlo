@@ -1,5 +1,5 @@
 import type { HowLightMoves_Languages } from '../../constants';
-import type { Section } from '@svitlo/engine/content';
+import { createSection, createContentBlock } from '@svitlo/engine/builders';
 import { showcaseData } from './scenes/showcase';
 
 const title = {
@@ -34,7 +34,7 @@ const title = {
   zh: '练习',
 };
 
-export const practice_Section = {
+export const practice_Section_Creator = createSection<HowLightMoves_Languages>()({
   id: '562f4c02-6ea0-55f0-900d-7d90e60bc314',
   type: 'practice' as const,
   slug: 'practice' as const,
@@ -42,7 +42,7 @@ export const practice_Section = {
   navigationLabel: title,
   skippable: true,
   content: [
-    {
+    createContentBlock<HowLightMoves_Languages>()({
       type: 'text',
       id: 'practice-task',
       slug: 'task',
@@ -77,7 +77,9 @@ export const practice_Section = {
         vi: 'So sánh tốc độ ánh sáng trong chân không, không khí và nước.',
         zh: '比较光在真空、空气和水中的传播速度。',
       },
-    },
-    showcaseData,
+    }),
+    createContentBlock<HowLightMoves_Languages>()(showcaseData),
   ],
-} satisfies Section<'data', HowLightMoves_Languages>;
+});
+
+export const practice_Section = practice_Section_Creator.getData();

@@ -11,6 +11,8 @@ Current folder contract:
 ```text
 .agent-ci-artifacts/
   manifest.json
+  assessment-methods/
+    <language-key>.md
   taxonomies/
     <textbook-name>/
       <language-key>.md
@@ -21,7 +23,27 @@ Current folder contract:
           <language-key>.md
 ```
 
-The `manifest.json` records the canonical **last non-artifact source commit**, language roster, supported book paths, successfully generated documents and failures. `generated` entries include `kind: taxonomy` or `kind: lesson`; `summary` counts the successful documents and discovered lessons. Repeated generation without source changes produces the same manifest (no changing timestamp). Taxonomy Markdown references actual Code Skills entities, localizes headings and frontend descriptions, and retains canonical English methodological descriptions. Lesson Markdown represents canonical authored lessons and their localized educational content, including source links. Generated files are **not** writeback sources.
+The `manifest.json` records the canonical **last non-artifact source commit**, language roster, supported book paths, successfully generated documents and failures. `generated` entries include `kind: taxonomy`, `kind: lesson`, `kind: lessons-by-skill` or `kind: assessment-method`; `summary` counts the successful documents and discovered lessons. Repeated generation without source changes produces the same manifest (no changing timestamp). Taxonomy Markdown references actual Code Skills entities, localizes headings and frontend descriptions, and retains canonical English methodological descriptions. Lesson Markdown represents canonical authored lessons and their localized educational content, including source links. Generated files are **not** writeback sources.
+
+## Assessment Methods reference
+
+During the existing Agent CI Artifacts generation run, `scripts/generate-translation-review-artifacts.mjs` also invokes `scripts/generate-assessment-methods-reference.mjs` for **every language in `DEFAULT_SUPPORTED_LANGUAGES`**. This creates one temporary `.agent-ci-artifacts/assessment-methods/<language>.md` for each supported language and records each in the same `manifest.json` (`kind: assessment-method`, with `summary.assessmentMethodDocuments`). Missing IDs, English descriptions or UI Kit translations produce explicit manifest failures and fail the generation job. The standard path validation, publish/cleanup and merge guard remain unchanged; **do not create a separate workflow or publish these files as runtime data**.
+
+Each reference lists the 16 canonical `AssessmentMethodKey` values and UUIDs from Contracts, **short frontend labels in the selected language from UI Kit**, and **detailed pedagogical descriptions from the English Engine methodology, kept in English in every document**. The generated links resolve back to their respective canonical files. Assessment Methods describe the cognitive operation and evidence an assessment requires; Question types describe the learner's response mechanism or widget. This distinction is essential when planning Quiz Sections: multiple methods may be pedagogically justified across one Lesson's distinct Skills and learning outcomes, and a single Question type can assess different methods. The Methodologist plans evidence requirements and the need for quizzes; the Learning Assessment Architect designs valid Questions and scoring. Machine-readable configurations must use the canonical key, never the localized label.
+
+To inspect a specific language without writing files:
+
+```sh
+node scripts/generate-assessment-methods-reference.mjs --locale uk --stdout
+```
+
+To generate one selected language into the temporary workspace:
+
+```sh
+node scripts/generate-assessment-methods-reference.mjs --locale uk --output .agent-ci-artifacts/assessment-methods
+```
+
+If this PR-scoped document is not available, agents must inspect Contracts, the English Engine methodology and UI Kit locale sources directly. Never infer that missing reference files mean the method does not exist, and never invent new keys or labels.
 
 ## Lifecycle
 
@@ -50,3 +72,9 @@ Use `/agent-artifacts generate` on a same-repository agent PR targeting `new-les
 **Workflow activation detail:** `issue_comment` and `workflow_dispatch` resolve the workflow file from the default branch, currently `main`. Changes to the workflow committed only on `new-lesson` do not alter default-branch comment handling yet; the currently installed default-branch workflow can still check out the specified PR's head SHA and use its scripts, but new workflow validation and integration-branch auto-cleanup are only guaranteed after the relevant workflow changes reach the branch GitHub uses for that event. Verify Actions execution rather than assuming a command fired.
 
 **CI isolation:** Generation runs with read-only permissions, publishes through a separate write-authorized job, and the publishing job verifies that every Markdown file matches an entry in `manifest.json`. No source-branch script is executed by the publishing job. Source branches that advance during generation are not force-pushed.
+
+## Translation Production: required entity-specific review generator
+
+When work is tracked through a [Translation Production Issue](../skills/translation-workflow/manage-translation-production.skill.md), **all translation subtask PRs must first merge into the integration branch**. Independent reviewer subtask branches then start from that verified integrated translation SHA. Each reviewer generates the Markdown reference library on **their own Draft PR branch** and validates `manifest.json` source provenance and complete assigned entity/locale output. These generated files must never land in the integration branch or `main`; cleanup is mandatory before merging reviewer fixes.
+
+The existence of `generate-translation-review-artifacts.mjs` is **not** evidence it supports every new locale-bearing entity. Current generator families cover Skills, Lessons and Assessment Methods (verify their actual supported hierarchy and CLI on the relevant revision). A Course, UI Kit or other entity needs a supported generator before its review can begin. **If the required generator or localized Markdown is unavailable, the reviewer must stop, explicitly report in chat the missing generator/locale/entity and required fix, and block that review in the Issue.** Do **not** replace the required view with manual inspection of distributed typed source files under this production-review protocol. The optional direct-Contracts fallback described above for Methodologists consulting Assessment Method definitions **does not waive** this linguistic-review prerequisite.
