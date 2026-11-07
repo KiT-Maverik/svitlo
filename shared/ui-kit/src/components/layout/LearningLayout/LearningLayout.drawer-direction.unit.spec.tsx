@@ -81,7 +81,10 @@ describe('LearningLayout sidebar animation direction', () => {
       <LearningLayout {...commonProps} locale="ar-SA">
         <LessonSteps
           navigationLabel="Lesson steps"
-          steps={[{ id: 'one', title: 'One' }, { id: 'two', title: 'Two' }]}
+          steps={[
+            { id: 'one', title: 'One' },
+            { id: 'two', title: 'Two' },
+          ]}
           currentStep={0}
         />
       </LearningLayout>,
