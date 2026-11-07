@@ -25,15 +25,19 @@ const themes = {
   rtl: createTheme({ cssVariables: { colorSchemeSelector: 'data' }, colorSchemes, direction: 'rtl' }),
 };
 
-/** Paint-only transitions; MUI component-specific movement stays authoritative. */
+/**
+ * Animate only the large surfaces that establish the page's colors. Applying
+ * transitions to every MUI child (especially Select, Typography and SvgIcon)
+ * stacks multiple paint animations and makes Quick Settings appear to flash.
+ * Keep each component's own interaction/motion transitions untouched.
+ */
 const themeTransitions = {
   '@media (prefers-reduced-motion: no-preference)': {
-    ':where(body, .MuiBox-root, .MuiPaper-root, .MuiTypography-root, .MuiSvgIcon-root, .MuiButton-root, .MuiIconButton-root, .MuiInputBase-root, .MuiOutlinedInput-notchedOutline, .MuiDivider-root, .MuiChip-root, .MuiListItemButton-root, .MuiTab-root, .MuiAlert-root)':
-      {
-        transitionProperty: 'background-color, color, border-color, box-shadow, fill, stroke',
-        transitionDuration: '280ms',
-        transitionTimingFunction: 'ease-in-out',
-      },
+    ':where(body, .svitlo-theme-surface, .MuiPaper-root)': {
+      transitionProperty: 'background-color, color, border-color',
+      transitionDuration: '280ms',
+      transitionTimingFunction: 'ease-in-out',
+    },
   },
 } as const;
 
