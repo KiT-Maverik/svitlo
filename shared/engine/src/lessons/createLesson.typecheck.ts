@@ -1,5 +1,5 @@
 import { createContentBlock } from './createContentBlock';
-import { createSection } from './createSection';
+import { createSectionConfigurator } from './createSection';
 import { createLesson } from './createLesson';
 import type { ContentBlock, Section } from '@svitlo/contracts/content';
 
@@ -17,7 +17,7 @@ const invariant = createContentBlock<typeof languages>()({
   slug: 'constant',
   locales: 'H₂O',
 });
-const section = createSection<typeof languages>()({
+const section = createSectionConfigurator<typeof languages>()({
   type: 'theory',
   id: 'section-id',
   slug: 'theory',
@@ -25,7 +25,7 @@ const section = createSection<typeof languages>()({
   navigationLabel: '1',
   content: [translated, invariant],
 });
-const quiz = createSection<typeof languages>()({
+const quiz = createSectionConfigurator<typeof languages>()({
   type: 'quiz',
   id: 'quiz-id',
   slug: 'quiz',
@@ -73,7 +73,7 @@ const dataBlock: ContentBlock<'data', typeof languages> = translated.getData();
 createContentBlock<typeof languages>()({ type: 'text', id: 'bad', slug: 'bad', value: { en: 'Missing uk' } });
 // @ts-expect-error Quiz is a Section, not a ContentBlock.
 createContentBlock<typeof languages>()({ type: 'quiz', id: 'quiz', slug: 'quiz' });
-createSection<typeof languages>()({
+createSectionConfigurator<typeof languages>()({
   type: 'theory',
   id: 'bad',
   slug: 'bad',
@@ -82,7 +82,7 @@ createSection<typeof languages>()({
   navigationLabel: 'Bad',
   content: [],
 });
-createSection<typeof languages>()({
+createSectionConfigurator<typeof languages>()({
   type: 'practice',
   id: 'bad-block',
   slug: 'badBlock',

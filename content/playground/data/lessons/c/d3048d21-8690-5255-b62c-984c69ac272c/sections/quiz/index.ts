@@ -62,7 +62,7 @@ const parameters = {
   },
 } satisfies Quiz_Parameters<'data', HowLightMoves_Languages>;
 
-export const quiz_Section_Creator = createSection<HowLightMoves_Languages>()({
+export const quiz_Section_Configurator = createSection<HowLightMoves_Languages>()({
   id: '2a02b81f-dbd6-58d8-9711-4deb97312a56',
   type: 'quiz',
   slug: 'quiz',
@@ -72,4 +72,4 @@ export const quiz_Section_Creator = createSection<HowLightMoves_Languages>()({
   parameters,
 });
 
-export const quiz_Section = quiz_Section_Creator.getData();
+export const quiz_Section = quiz_Section_Configurator.getData();

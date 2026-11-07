@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import { createContentBlock } from './createContentBlock';
-import { createSection } from './createSection';
+import { createSectionConfigurator } from './createSection';
 import { createLesson } from './createLesson';
 import { linkFlashcards } from './linkFlashcards';
 import { splitLessonValue } from './splitLessonValue';
@@ -40,7 +40,7 @@ const scene = createContentBlock<typeof languages>()({
   type: 'scene',
   locales: { en: { labels: { source: 'Source' } }, uk: { labels: { source: 'Джерело' } } },
 });
-const theory = createSection<typeof languages>()({
+const theory = createSectionConfigurator<typeof languages>()({
   type: 'theory',
   id: 'theory-id',
   slug: 'theory',
@@ -48,7 +48,7 @@ const theory = createSection<typeof languages>()({
   navigationLabel: '1',
   content: [text, invariant, markdown, scene],
 });
-const quiz = createSection<typeof languages>()({
+const quiz = createSectionConfigurator<typeof languages>()({
   type: 'quiz',
   id: 'quiz-id',
   slug: 'quiz',

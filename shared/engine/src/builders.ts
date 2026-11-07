@@ -9,7 +9,7 @@ export { createLesson } from './lessons/createLesson';
 export { linkFlashcards } from './lessons/linkFlashcards';
 export type { FlashcardLink } from './lessons/linkFlashcards';
 export type { LessonCreator, LessonBase, LessonLocale } from './lessons/createLesson';
-export { createSection } from './lessons/createSection';
+export { createSectionConfigurator } from './lessons/createSection';
 export type { SectionCreator } from './lessons/createSection';
 export { createContentBlock } from './lessons/createContentBlock';
 export type { ContentBlockCreator } from './lessons/createContentBlock';

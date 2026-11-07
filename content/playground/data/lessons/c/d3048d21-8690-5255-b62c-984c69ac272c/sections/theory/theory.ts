@@ -37,7 +37,7 @@ const title = {
   zh: '理论',
 };
 
-export const theory_Section_Creator = createSection<HowLightMoves_Languages>()({
+export const theory_Section_Configurator = createSection<HowLightMoves_Languages>()({
   id: '32376510-b49a-5da8-91d7-e13cf162c9f9',
   type: 'theory',
   slug: 'theory',
@@ -68,4 +68,4 @@ export const theory_Section_Creator = createSection<HowLightMoves_Languages>()({
   ],
 });
 
-export const theory_Section = theory_Section_Creator.getData();
+export const theory_Section = theory_Section_Configurator.getData();
