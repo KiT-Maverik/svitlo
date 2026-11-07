@@ -51,8 +51,8 @@ Generated outputs:
 - generated/requirements.md — corresponding human-readable handoff.
 - generated/manifest.json — SHA-256 input and output fingerprints, generator
   version, Lesson ID and check categories.
-When a source cannot be mapped, the Builder fails before writing any output,
-with a file/field diagnostic; incomplete sources cannot appear generated.
+  When a source cannot be mapped, the Builder fails before writing any output,
+  with a file/field diagnostic; incomplete sources cannot appear generated.
 
 The script uses stable UUIDv5 identities from the Lesson UUID and editorial
 keys/paths. It skips unchanged files and refuses to overwrite manual edits,

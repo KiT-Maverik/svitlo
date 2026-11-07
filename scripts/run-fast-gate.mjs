@@ -144,7 +144,9 @@ function runGate(changed) {
         file.startsWith('scripts/lesson-builder.') ||
         file === 'package.json' ||
         file === 'package-lock.json' ||
-        /^studio\/skills\/lesson-workflow\/lesson-(?:content|questions|methodology-frontmatter)\.schema\.json$/.test(file),
+        /^studio\/skills\/lesson-workflow\/lesson-(?:content|questions|methodology-frontmatter)\.schema\.json$/.test(
+          file,
+        ),
     )
   ) {
     exec('node', ['--test', 'scripts/lesson-builder.spec.mjs']);
