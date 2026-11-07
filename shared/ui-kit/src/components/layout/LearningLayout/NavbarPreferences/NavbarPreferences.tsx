@@ -2,7 +2,9 @@
 
 import type { NavbarPreferences_Locale } from '../../../../../data/locale/navbarPreferences';
 
+import type { ReactNode } from 'react';
 import Box from '@mui/material/Box';
+import Divider from '@mui/material/Divider';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import Switch from '@mui/material/Switch';
@@ -25,7 +27,9 @@ export type NavbarPreferencesProps = {
   messages: NavbarPreferences_Locale;
   onLocaleChange: (locale: Locale) => void;
   lessonLocale?: Locale;
+  lessonLanguages?: readonly Locale[];
   onLessonLocaleChange?: (locale: Locale) => void;
+  volumeControl?: ReactNode;
   mode?: 'light' | 'dark' | 'system';
   systemMode?: 'light' | 'dark';
   onThemeChange: (mode: 'light' | 'dark') => void;
@@ -35,34 +39,43 @@ function LocaleSelector({
   locale,
   onLocaleChange,
   label,
+  availableLocales,
 }: {
   locale: Locale;
   onLocaleChange: (locale: Locale) => void;
   label: string;
+  availableLocales?: readonly Locale[];
 }) {
+  const options = availableLocales ? locales.filter(item => availableLocales.includes(item.locale)) : locales;
   return (
     <Select
       size="small"
       fullWidth
+      sx={{ minWidth: 0, width: '100%', '& .MuiSelect-select': { minWidth: 0 } }}
       value={locale}
       inputProps={{ 'aria-label': label }}
       renderValue={value => {
-        const selected = locales.find(option => option.locale === value);
+        const selected = options.find(option => option.locale === value);
         return selected ? (
-          <Box component="span" sx={{ display: 'inline-flex', alignItems: 'center', gap: 0.75 }}>
+          <Box
+            component="span"
+            sx={{ display: 'inline-flex', alignItems: 'center', gap: 0.75, minWidth: 0, maxWidth: '100%' }}
+          >
             <Flag locale={selected.locale} width={20} height={14} />
-            {selected.nativeName}
+            <Box component="span" sx={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+              {selected.nativeName}
+            </Box>
           </Box>
         ) : (
           value
         );
       }}
       onChange={event => {
-        const selected = locales.find(option => option.locale === event.target.value);
+        const selected = options.find(option => option.locale === event.target.value);
         if (selected) onLocaleChange(selected.locale);
       }}
     >
-      {locales.map(option => (
+      {options.map(option => (
         <MenuItem key={option.locale} value={option.locale}>
           <Box component="span" sx={{ display: 'inline-flex', alignItems: 'center', gap: 1 }}>
             <Flag locale={option.locale} width={20} height={14} />
@@ -84,8 +97,19 @@ function ThemeSwitch({
   const isDark = mode === 'dark' || ((mode === 'system' || mode === undefined) && systemMode === 'dark');
 
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 1 }}>
-      <Typography variant="body2">{isDark ? messages.theme.dark : messages.theme.light}</Typography>
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        gap: 1,
+        width: '100%',
+        minWidth: 0,
+      }}
+    >
+      <Typography variant="body2" sx={{ flex: '1 1 auto', minWidth: 0, overflowWrap: 'anywhere' }}>
+        {isDark ? messages.theme.dark : messages.theme.light}
+      </Typography>
       <Tooltip title={isDark ? messages.theme.dark : messages.theme.light}>
         <Switch
           checked={isDark}
@@ -104,6 +128,7 @@ function ThemeSwitch({
           sx={{
             width: 68,
             height: 38,
+            flexShrink: 0,
             p: 0,
             overflow: 'visible',
             '& .MuiSwitch-switchBase': {
@@ -156,34 +181,43 @@ function ThemeSwitch({
   );
 }
 
-/** The controls live in the settings drawer, not in the top navigation bar. */
+/** Quick Settings are ordered from theme down to the interface language. */
 export default function NavbarPreferences({
   locale,
   messages,
   onLocaleChange,
   lessonLocale,
+  lessonLanguages,
   onLessonLocaleChange,
+  volumeControl,
   mode,
   systemMode,
   onThemeChange,
 }: NavbarPreferencesProps) {
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
-      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5, width: '100%', minWidth: 0 }}>
+      <ThemeSwitch messages={messages} mode={mode} systemMode={systemMode} onThemeChange={onThemeChange} />
+      {volumeControl}
+      {volumeControl && <Divider />}
+      {lessonLocale && onLessonLocaleChange && (
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, minWidth: 0 }}>
+          <Typography variant="body2" component="h3" sx={{ fontWeight: 700 }}>
+            {messages.lessonLanguage}
+          </Typography>
+          <LocaleSelector
+            locale={lessonLocale}
+            onLocaleChange={onLessonLocaleChange}
+            label={messages.lessonLanguage}
+            availableLocales={lessonLanguages}
+          />
+        </Box>
+      )}
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, minWidth: 0 }}>
         <Typography variant="body2" component="h3" sx={{ fontWeight: 700 }}>
           {messages.language}
         </Typography>
         <LocaleSelector locale={locale} onLocaleChange={onLocaleChange} label={messages.language} />
       </Box>
-      <ThemeSwitch messages={messages} mode={mode} systemMode={systemMode} onThemeChange={onThemeChange} />
-      {lessonLocale && onLessonLocaleChange && (
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-          <Typography variant="body2" component="h3" sx={{ fontWeight: 700 }}>
-            {messages.lessonLanguage}
-          </Typography>
-          <LocaleSelector locale={lessonLocale} onLocaleChange={onLessonLocaleChange} label={messages.lessonLanguage} />
-        </Box>
-      )}
     </Box>
   );
 }

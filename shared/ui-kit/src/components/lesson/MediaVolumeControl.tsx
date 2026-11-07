@@ -15,7 +15,7 @@ export function MediaVolumeControl({ messages }: { messages: NavbarPreferences_L
   const { volume, muted, setVolume, setMuted, toggleMuted } = useMediaSettings();
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, width: '100%', minWidth: 0 }}>
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <Typography variant="body2" component="h3" sx={{ fontWeight: 700 }}>
           {messages.label}
@@ -24,13 +24,14 @@ export function MediaVolumeControl({ messages }: { messages: NavbarPreferences_L
           {muted ? 0 : volume}%
         </Typography>
       </Box>
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, minWidth: 0, width: '100%' }}>
         <Tooltip title={muted ? messages.unmute : messages.mute}>
           <IconButton aria-label={muted ? messages.unmute : messages.mute} onClick={toggleMuted} size="small">
             <VolumeOffRoundedIcon color={muted || volume === 0 ? 'disabled' : 'inherit'} />
           </IconButton>
         </Tooltip>
         <Slider
+          sx={{ flex: '1 1 0', minWidth: 0, width: 'auto' }}
           aria-label={messages.label}
           min={0}
           max={100}
