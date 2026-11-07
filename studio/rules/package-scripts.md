@@ -4,6 +4,45 @@
 
 **Applies to:** Root `package.json`, workspaces under `apps/`, `content/`, `shared/`, `backend/`, and every workflow or script invoking them.
 
+## Required `package.json` section order
+
+Keep the top-level manifest sections in the same **presentation order** in the repository root and every workspace:
+
+1. **Package metadata first:** `name`, `version`, `description`, `private`, `type`, and other package identity metadata (for example `license`, `author`, `repository`, `packageManager`, `engines`).
+2. **Scripts:** `scripts` (if the package has scripts).
+3. **Runtime dependencies:** `dependencies` (if needed).
+4. **Development dependencies:** `devDependencies` (if needed).
+5. **All other fields:** bundler/runtime/package-publication configuration such as `main`, `types`, `imports`, `exports`, `files`, `bin`, `peerDependencies`, `typesVersions`, `workspaces`, etc., ordered as appropriate for that package.
+
+Omit absent/irrelevant fields; never add empty `scripts` or dependency objects just for visual uniformity. Do not change the order of individual scripts or dependencies as part of a section-order cleanup.
+
+**JSON object key order is not semantically significant for npm:** rearranging these top-level keys does **not** change build behavior, dependency resolution or lifecycle hooks. This rule exists for human readability, consistency and predictable diffs. Keep the values and the structure inside each section unchanged.
+
+For example:
+
+```json
+{
+  "name": "@svitlo/example",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "package:build": "tsc -p tsconfig.build.json",
+    "code:check:types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@svitlo/contracts": "0.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5"
+  },
+  "main": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js"
+  }
+}
+```
+
 ## Core principle: same command, different scope
 
 The **same canonical script name** means the **same operation** everywhere it is supported.

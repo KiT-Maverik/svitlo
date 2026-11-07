@@ -51,6 +51,51 @@ test('workspace cycles and missing capabilities fail loudly', () => {
   assert.throws(() => planWorkspaceOperation([ws('x', 'apps/x', {})], 'app:build'), /No workspaces/);
 });
 
+const packageMetadataFields = new Set([
+  'name',
+  'version',
+  'description',
+  'private',
+  'type',
+  'license',
+  'author',
+  'contributors',
+  'homepage',
+  'repository',
+  'bugs',
+  'keywords',
+  'funding',
+  'packageManager',
+  'engines',
+]);
+
+test('root and workspace package manifests group metadata, scripts, dependencies, devDependencies and other fields', () => {
+  const rootPath = fileURLToPath(new URL('../package.json', import.meta.url));
+  const packages = discoverWorkspaces();
+  const rootDir = fileURLToPath(new URL('../', import.meta.url));
+  const manifestFiles = [rootPath, ...packages.map(pkg => rootDir + pkg.path + '/package.json')];
+  for (const path of manifestFiles) {
+    const keys = Object.keys(JSON.parse(readFileSync(path, 'utf8')));
+    let previousCategory = -1;
+    for (const key of keys) {
+      const category = packageMetadataFields.has(key)
+        ? 0
+        : key === 'scripts'
+          ? 1
+          : key === 'dependencies'
+            ? 2
+            : key === 'devDependencies'
+              ? 3
+              : 4;
+      assert(
+        category >= previousCategory,
+        path + ': field ' + key + ' is out of order (metadata → scripts → dependencies → devDependencies → other)',
+      );
+      previousCategory = category;
+    }
+  }
+});
+
 test('real manifests use canonical operation names and preserve npm pre-hooks', () => {
   const root = JSON.parse(readFileSync(fileURLToPath(new URL('../package.json', import.meta.url)), 'utf8'));
   const packages = discoverWorkspaces();
