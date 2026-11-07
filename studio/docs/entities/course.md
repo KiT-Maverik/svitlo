@@ -10,33 +10,37 @@ A **Course** is an ordered learning journey, distinct from a Curriculum. Its aut
 
 A TOC creator receives only `{ language }`. It reads localized Lesson titles from the already imported Lesson Data and emits compact TOC leaves with `type`, `id`, and localized `title`.
 
-## Shared creator API
+## Creator and publication boundaries
 
-Every authoring creator implements `Course_Creator<Data, Toc, Languages>`:
+All Course-family creators return authored data via `getData()`.
+`createModule`, `createChapter` and `createEpisode` compose typed
+nested entities; they do **not** build their own TOC. The Course creator
+traverses its complete content tree and owns navigation projection.
 
 ```ts
 const episode = createEpisode(episodeData);
-const chapter = createChapter({
-  type: 'chapter',
-  id: 'introduction',
-  title: chapterTitle,
-  iconKey: 'book',
-  content: [lessonA, episode],
-});
-const module = createModule({
-  type: 'module',
-  id: 'foundations',
-  title: moduleTitle,
-  content: [chapter, lessonB],
-});
+const chapter = createChapter({ ...chapterData, content: [lessonA, episode] });
+const module = createModule({ ...moduleData, content: [chapter, lessonB] });
+const course = createCourse({ ...courseData, content: [module] });
 
-chapter.getData(); // normalized, authoring-time Chapter Data
-chapter.toToc(context); // localized, hierarchy-safe Course_TocChapter
-chapter.toResource(context); // { data, toc }, build-time only
-chapter.getPublicationItems(); // { lessons, episodes, groups, overrides }, flattened
+course.getData();                   // Authored, complete, build-only
+course.getContentEntries();         // Flattened authoring entities for publisher
+course.getBase();                   // { toc, episodes, overrides } invariant data
+course.getLocale('uk');            // Sparse patch for the selected language
+course.toToc({ language: 'uk' });   // Fully localized authoring preview only
 ```
 
-`getData()` and `toResource().data` retain full Lessons solely during the build; they are **not emitted directly into published JSON**. `getPublicationItems()` is the single traversal/normalization API used by the publisher for a flat set of Lessons, Episodes, grouping nodes, and overrides. `toToc()` and `toResource().toc` project compact locale-specific navigation. Shared creator methods do not perform IO; the publisher handles locale-specific Episodes, override resources, ID-integrity checks and file IO without rewalking the nested authoring tree.
+`getContentEntries()` also exists on Module, Chapter and Episode creators.
+It returns `lessons`, `episodes`, `groups` and `overrides`, **not files**.
+The Course generator owns path construction, serialization and publication
+of `toc/base.json` plus `toc/<language>.json`, and equivalent resources
+under `episodes/<id>/` and `overrides/<lessonId>/`.
+
+Only the Course builds TOC. Its base holds types, IDs, icons and hierarchy;
+locale patches hold only localized navigation strings, without duplicating
+invariant fields or child-array structure. Runtime merges the base and
+the requested language before navigation or applying a Course-local patch.
+Standalone Lesson Data never appears in published Course resources.
 
 ## Sparse Lesson override API
 
@@ -51,8 +55,7 @@ const overridden = createLessonOverrides(lesson)
 
 overridden.build(); // minimum changed-field patch
 overridden.getData(); // same authored patch
-overridden.toToc(context); // Lesson TOC leaf, with possible title override
-overridden.toResource(context); // { data: patch, toc }
+overridden.getContentEntries(); // Build-time Lesson and patch references; no files or TOC
 ```
 
 `build()` returns `{ type: 'lessonOverride', lessonId, lesson, overrides }` with **only changed override fields**; the `lesson` property is the original, unmodified Lesson Data available solely at authoring/build time. The publisher strips it and emits only `lessonId` plus the sparse override. Unchanged sections, blocks, questions, flashcards, language sets and Lesson Definition are never copied into the published patch. The `sections` field uses an explicit patch model:
@@ -129,4 +132,4 @@ Editorial `methodology.md` declares its own prose `documentLanguage` and planned
 
 Course/Module/Chapter creators now accept full `Lesson<'data', SupportedLanguages>` objects instead of bare Lesson IDs. The shared Course generic propagates through nested entities and Lesson Data. This ensures the TS compiler sees the Lesson's declared languages and localized values at authoring time. `createLessonOverrides(lesson).build()` also carries its original Lesson Data for the same check. As with the existing Lesson contracts, scalar strings remain intentionally invariant; locale dictionaries must be complete.
 
-The Course publisher consumes `createCourse(course).toResource({language})` and `getPublicationItems()`, not manual recursive Lesson lookups. It writes localized TOC, Episodes, and sparse Lesson overrides, not embedded Lesson objects. Duplicate IDs, invalid buckets, missing authoring data and output collisions remain generator integrity checks. **Run TypeScript typecheck on authored Course sources before publication:** esbuild/transpilation alone does not typecheck. The current direct `Lesson<'data', SupportedLanguages>` contract expects the Lesson's declared language tuple to match the Course language tuple; supporting Lessons with additional independent locales may need a dedicated typed superset contract later, not silent weakening to `any`.
+The Course publisher consumes `createCourse(course).getBase()`, `getLocale(language)` and `getContentEntries()`, not manual recursive Lesson lookups. It writes localized TOC, Episodes, and sparse Lesson overrides, not embedded Lesson objects. Duplicate IDs, invalid buckets, missing authoring data and output collisions remain generator integrity checks. **Run TypeScript typecheck on authored Course sources before publication:** esbuild/transpilation alone does not typecheck. The current direct `Lesson<'data', SupportedLanguages>` contract expects the Lesson's declared language tuple to match the Course language tuple; supporting Lessons with additional independent locales may need a dedicated typed superset contract later, not silent weakening to `any`.

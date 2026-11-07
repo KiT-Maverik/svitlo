@@ -37,3 +37,12 @@ existing serialization; the generator must not special-case individual block
 kinds. `createContentBlock<SupportedLanguages>()` similarly exposes
 `getData()` and pure `toResource({ languages })` with strict locale
 coverage and intentional language-independent strings.
+
+## Build-time creator methods
+
+`createSection<L>()(data)` and `createContentBlock<L>()(data)` expose
+`getData()`, `getBase({ languages })` and
+`getLocale({ languages, language })`. These nested entities have no
+independent published file paths; the Lesson or Course generator owns those.
+A Quiz remains a Section, not a ContentBlock. Sparse locale patches never
+repeat invariant IDs, types or authored ordering.

@@ -26,22 +26,22 @@ Related: [Lesson Content](./lesson-content.md), [Section](./section.md), [Progra
 
 ## Typed creator and publication boundary
 
-The canonical builder is `createLesson<SupportedLanguages>()(data)` from
-`@svitlo/engine/builders`. It accepts nested `createSection` creators or
-ordinary typed Section data and returns a build-time creator. Authors export the
-result of `creator.getData()` in their named `*.data.ts` module for reuse
-inside Course authoring; Course/Chapter/Module creators also accept Lesson
-creators directly. `createLessonOverrides(lesson.getData())` retains the
-original Lesson identity and serializes only the Course-local changes.
+`createLesson<SupportedLanguages>()(data)` is the canonical build-time
+creator. It accepts `createSection` creators (which may themselves contain
+`createContentBlock` creators) and ordinary typed authored data. Authors
+export `lesson.getData()` from `*.data.ts` for use in Courses.
 
-`creator.toResource({ language })` projects the existing sparse
-`config` / `flashcards` / `questions` JSON documents, and
-`creator.getPublicationItems()` exposes the complete path-addressed file set.
-`creator.toResponse({ language })` assembles a localized preview with the
-same Engine merge and Lesson Response logic as runtime. The filesystem generator
-owns discovery, loading and writing; the creator and specialized Engine helpers
-own entity-level normalization, localization and resource preparation.
-Neither creators nor authored TypeScript objects are part of runtime JSON.
+`lesson.getBase()` returns the invariant parts of `config`, `flashcards`,
+and `questions`. `lesson.getLocale(language)` returns **only** the sparse
+localized patches and `localeSources`. No invariant strings, IDs, Sections or
+array structure are duplicated in locale patches. Locale dictionaries must be
+complete, with no automatic translations or field-level fallbacks.
+
+The Lesson generator (not the creator) handles JSON paths and bytes. At runtime,
+`mergeLessonResources` and `assembleLessonResponse` combine the published
+base and selected locale. A Lesson is Course-neutral and has **no TOC method**.
+`createLessonOverrides(lesson.getData())` is a separate Course-local builder;
+it preserves the canonical Lesson and emits only authored changes.
 
 See [Engine creator API](../../../shared/engine/README.md) and
-[Section](./section.md) for composition examples.
+[Course](./course.md) for TOC and publishing details.

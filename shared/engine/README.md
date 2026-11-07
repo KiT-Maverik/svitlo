@@ -82,3 +82,30 @@ assembly belong to the Lesson creator and its existing dedicated Engine helpers.
 This keeps the exact published `config` / `flashcards` / `questions`
 `base.json` + `<language>.json` format and prevents source methods from
 entering runtime resources.
+
+## Build-time creator/publisher/runtime boundary
+
+A creator returns typed, locale-complete authored data with `getData()`; it
+does **not** compute filenames, write files, or manufacture a combined resource.
+
+- `createLesson(l).getBase()` returns the invariant `config`, `flashcards`
+  and `questions` documents. `getLocale(language)` returns only sparse locale
+  patches and `localeSources` for the same three collections.
+- `createSection` and `createContentBlock` expose `getBase({ languages })`
+  and `getLocale({ languages, language })` because their creators have no
+  runtime language tuple. Quiz is a Section.
+- `createCourse(course).getBase()` exposes invariant `toc`, `episodes` and
+  `overrides`; `getLocale(language)` provides matching sparse patches.
+  `toToc({ language })` is a **Course-only authoring preview**: it traverses
+  Module, Chapter, Episode and Lesson nodes and assembles localized navigation.
+  Nested creators have no `toToc` method.
+- `getContentEntries()` on Course/Module/Chapter/Episode flattens authoring
+  references for publication validation; it never returns filesystem paths or
+  serialized JSON. `createLessonOverrides(lesson)` remains a separate,
+  immutable builder of Course-local patches.
+
+The **Lesson and Course generators** select resource paths and perform JSON
+serialization. The **runtime** loads `base.json` plus the selected language
+patch and merges them using `mergeLessonResources` (including index-keyed
+array patches). Course resources are published independently for TOC, Episode
+and Lesson override; full imported Lesson data never appears in Course JSON.
