@@ -34,9 +34,9 @@ function run(command, args) {
   }
 }
 for (const workspace of ['@svitlo/contracts', '@svitlo/engine', '@svitlo/ui-kit', '@svitlo/adapter-electron']) {
-  run(npm, ['run', 'build', '--workspace', workspace]);
+  run(npm, ['run', 'package:build', '--workspace', workspace]);
 }
-run(npm, ['run', 'build', '--workspace', selected.package]);
+run(npm, ['run', 'package:build', '--workspace', selected.package]);
 
 const publicRoot = join(desktopRoot, 'public');
 // Invoke the package's built standalone CLI rather than an npm bin shim

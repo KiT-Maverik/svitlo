@@ -43,9 +43,9 @@ for (const workspace of [
   '@svitlo/ui-kit',
   '@svitlo/adapter-capacitor',
 ]) {
-  run(npm, ['run', 'build', '--workspace', workspace]);
+  run(npm, ['run', 'package:build', '--workspace', workspace]);
 }
-run(npm, ['run', 'build', '--workspace', selection.package]);
+run(npm, ['run', 'package:build', '--workspace', selection.package]);
 // Resolve Engine only after building the shared workspace from a fresh checkout.
 const { mergeLessonResources } = await import('@svitlo/engine/lesson');
 const publicRoot = join(mobileRoot, 'public');
