@@ -26,11 +26,7 @@ export function MediaVolumeControl({ messages }: { messages: NavbarPreferences_L
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
         <Tooltip title={muted ? messages.unmute : messages.mute}>
-          <IconButton
-            aria-label={muted ? messages.unmute : messages.mute}
-            onClick={toggleMuted}
-            size="small"
-          >
+          <IconButton aria-label={muted ? messages.unmute : messages.mute} onClick={toggleMuted} size="small">
             <VolumeOffRoundedIcon color={muted || volume === 0 ? 'disabled' : 'inherit'} />
           </IconButton>
         </Tooltip>

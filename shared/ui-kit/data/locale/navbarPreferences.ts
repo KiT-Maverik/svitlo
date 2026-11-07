@@ -118,7 +118,12 @@ const te: NavbarPreferences_Locale = {
   language: 'ఇంటర్‌ఫేస్ భాష',
   lessonLanguage: 'పాఠం భాష',
   theme: { dark: 'ముదురు థీమ్', light: 'లేత థీమ్' },
-  volume: { label: 'ధ్వని స్థాయి', mute: 'శబ్దాన్ని ఆపివేయి', unmute: 'శబ్దాన్ని ప్రారంభించు', maximum: 'గరిష్ఠ ధ్వని స్థాయి' },
+  volume: {
+    label: 'ధ్వని స్థాయి',
+    mute: 'శబ్దాన్ని ఆపివేయి',
+    unmute: 'శబ్దాన్ని ప్రారంభించు',
+    maximum: 'గరిష్ఠ ధ్వని స్థాయి',
+  },
 };
 
 const mr: NavbarPreferences_Locale = {
