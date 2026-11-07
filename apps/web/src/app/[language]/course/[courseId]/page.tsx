@@ -8,7 +8,8 @@ type Props = { params: Promise<{ language: string; courseId: string }> };
 
 async function Content({ params }: Props) {
   const { language, courseId } = await params;
-  if (!DEFAULT_SUPPORTED_LANGUAGES.some(item => item.language === language)) notFound();
+  const interfaceLocale = DEFAULT_SUPPORTED_LANGUAGES.find(item => item.language === language);
+  if (!interfaceLocale) notFound();
 
   const course = getMockCourse(courseId, language);
   if (!course) notFound();
@@ -19,6 +20,7 @@ async function Content({ params }: Props) {
       outline={mockCourseOutline(course, language)}
       messages={getMockCourseMessages(language)}
       catalogHref={`/${language}/courses`}
+      interfaceLanguage={interfaceLocale.language}
     />
   );
 }

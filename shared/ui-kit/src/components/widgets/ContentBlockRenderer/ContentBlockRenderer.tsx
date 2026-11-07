@@ -5,6 +5,7 @@ import { Audio } from './blocks/Audio/Audio';
 import { Checkpoint } from './blocks/Checkpoint/Checkpoint';
 import { Code } from './blocks/Code/Code';
 import { Image } from './blocks/Image/Image';
+import { Carousel } from './blocks/Carousel/Carousel';
 import { Markdown } from './blocks/Markdown/Markdown';
 import { Scene } from './blocks/Scene/Scene';
 import { ContentBlock_Text } from './blocks/Text/Text';
@@ -60,6 +61,8 @@ function renderBlock(
       return <Youtube {...response} messages={messages.youtube} />;
     case 'image':
       return <Image {...response} messages={messages.image} />;
+    case 'carousel':
+      return <Carousel {...response} messages={messages} />;
     default:
       return assertNever(response);
   }

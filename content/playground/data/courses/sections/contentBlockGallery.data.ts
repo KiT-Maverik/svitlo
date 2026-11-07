@@ -49,6 +49,35 @@ export const contentBlockGallery_Section = {
       objectFit: 'contain',
     },
     {
+      id: 'playground-gallery-carousel',
+      slug: 'localCarousel',
+      type: 'carousel',
+      title: 'CAROUSEL · Interactive image gallery',
+      aspectRatio: 16 / 9,
+      objectFit: 'contain',
+      loop: true,
+      transition: 'slide',
+      autoplay: false,
+      allowFullscreen: true,
+      slides: [
+        {
+          src: '/textbooks/playground/whale.png',
+          alt: 'A friendly cartoon whale on a light background.',
+          caption: 'The Playground whale illustration.',
+        },
+        {
+          src: '/textbooks/playground/carousel-light.svg',
+          alt: 'A glowing yellow sun with light rays against a blue sky.',
+          caption: 'An illustration of a light source.',
+        },
+        {
+          src: '/textbooks/playground/carousel-prism.svg',
+          alt: 'A triangular prism splitting a beam of white light into a rainbow.',
+          caption: 'An illustration of light dispersion.',
+        },
+      ],
+    },
+    {
       id: 'playground-gallery-video',
       slug: 'localVideo',
       type: 'video',

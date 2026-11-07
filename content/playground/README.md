@@ -84,8 +84,8 @@ The Playground textbook now also authors a demo Course in
 a Module, a Chapter, a narrative Episode, and a course-local section reorder
 for the existing `howLightMoves` Lesson. The Lesson's canonical files and
 Definition are not modified. The Course-only override also inserts a
-`contentBlockGallery` Section that exercises all nine supported ContentBlock
-renderers: text, Markdown, code, image, video, audio, YouTube, Scene and checkpoint.
+`contentBlockGallery` Section that exercises all ten supported ContentBlock
+renderers: text, Markdown, code, image, carousel, video, audio, YouTube, Scene and checkpoint.
 The standalone Lesson retains its original three Sections.
 
 The shared build pipeline automatically emits **separate** Course resources:

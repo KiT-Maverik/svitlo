@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
 import Box from '@mui/material/Box';
 import styles from './Lesson.module.css';
 
@@ -29,12 +30,29 @@ export function LessonSteps({
   onNavigate,
   navigationLabel,
 }: LessonStepsProps) {
+  const containerRef = useRef<HTMLElement>(null);
+  const activeStepRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    const activeStep = activeStepRef.current;
+    if (!container || !activeStep) return;
+
+    const containerRect = container.getBoundingClientRect();
+    const activeRect = activeStep.getBoundingClientRect();
+    if (activeRect.left < containerRect.left || activeRect.right > containerRect.right) {
+      // Scroll only the step strip, not the lesson page. Physical offsets also work in RTL.
+      container.scrollLeft += (activeRect.left + activeRect.right - containerRect.left - containerRect.right) / 2;
+    }
+  }, [currentStep, steps.length]);
+
   return (
-    <Box component="nav" className={styles.steps} aria-label={navigationLabel}>
+    <Box component="nav" ref={containerRef} className={styles.steps} aria-label={navigationLabel}>
       {steps.map((step, index) => (
         <Box
           component="button"
           key={step.id}
+          ref={index === currentStep ? activeStepRef : undefined}
           type="button"
           disabled={!allowNavigation || (canNavigateTo ? !canNavigateTo(index) : false)}
           aria-current={index === currentStep ? 'step' : undefined}

@@ -3,6 +3,7 @@ import type { ContentEntity_ConfigType } from '../entity.types';
 import type { Locale_Languages, Locale_Options } from '../locale.types';
 import type { ContentBlock_Audio } from './audio.types';
 import type { ContentBlock_Code } from './code.types';
+import type { ContentBlock_Carousel } from './carousel.types';
 import type { ContentBlock_Data_Meta, ContentBlock_Definition_Meta, ContentBlock_Response_Meta } from './common.types';
 import type { ContentBlock_Image } from './image.types';
 import type { ContentBlock_Markdown } from './markdown.types';
@@ -19,7 +20,8 @@ type OtherContentBlocks<ConfigType extends ContentEntity_ConfigType, SupportedLa
   | ContentBlock_Audio<ConfigType, SupportedLanguages>
   | ContentBlock_Video<ConfigType, SupportedLanguages>
   | ContentBlock_Youtube<ConfigType, SupportedLanguages>
-  | ContentBlock_Image<ConfigType, SupportedLanguages>;
+  | ContentBlock_Image<ConfigType, SupportedLanguages>
+  | ContentBlock_Carousel<ConfigType, SupportedLanguages>;
 
 type CheckpointAnswer<
   ConfigType extends ContentEntity_ConfigType,

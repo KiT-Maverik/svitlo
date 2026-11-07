@@ -11,6 +11,7 @@ export const supportedTypes = new Set<string>([
   'video',
   'youtube',
   'image',
+  'carousel',
 ]);
 
 export function assertNever(value: never): never {
