@@ -1,6 +1,7 @@
 import type { Lesson, Locale_Languages } from '@svitlo/contracts/content';
 import type { LanguageCode } from '../types/languages';
 import { resolveEntityPath } from '../utils/entityPath/resolveEntityPath.utils';
+import { assertFlashcardLinks } from './assertFlashcardLinks';
 
 /** Runtime validation complements (rather than replaces) authoring TypeScript checks. */
 type LessonData = {
@@ -44,6 +45,7 @@ export function assertLessonData(value: unknown): asserts value is Lesson<'data'
   ) {
     throw new Error(`Lesson ${relativePath} is missing flashcards, questions, or sections`);
   }
+  assertFlashcardLinks(value.flashcards as readonly unknown[]);
   if (
     new Set(value.skills).size !== value.skills.length ||
     value.skills.some(id => typeof id !== 'string' || !/^[0-9a-f-]{36}$/i.test(id))
