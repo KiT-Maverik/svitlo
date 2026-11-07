@@ -1,4 +1,4 @@
-export type { Course } from './course.types';
+export type { Course, Course_Prerequisites, Course_ScenarioMode } from './course.types';
 export type { Module } from './module.types';
 export type { Chapter } from './chapter.types';
 export type { Episode, Episode_ScenarioSection } from './episode.types';

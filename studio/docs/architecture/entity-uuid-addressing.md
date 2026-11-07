@@ -49,3 +49,7 @@ The UUID is minted once upon creation (UUIDv4/v5/v7 supported); scripts may use 
 - Create Lesson: assign its immutable UUID, use the Engine resolver to compute the directory, then write the Brief/Content there. Never pick a numbered bucket based on capacity or assign a manually stored `group`.
 - Existing Lesson: find by UUID through the resolver; IDE repository search remains convenient for slug/title. Do not add a custom slug-to-path search utility.
 - Move between bucket depths only with a dedicated migration PR and verification of all imports and generated/public URLs.
+
+## Course methodology storage
+
+New Course methodological documents use `content/<textbook>/data/courses/<bucket>/<uuid>/methodology.md`, with `<bucket>/<uuid>` resolved by `resolveEntityPath(courseId)`. The Methodology is editorial-only and persists after runtime Course implementation. This introduces no automatic migration of existing flat `data/courses/*.data.ts` authoring files and no change to current Course publishing/discovery.

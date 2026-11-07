@@ -8,6 +8,10 @@ import type {
   Section_Override,
   Course_TocModule,
   Course_TocChapter,
+  Course,
+  Course_Prerequisites,
+  Course_ScenarioMode,
+  SkillId,
 } from '../../../content';
 
 type Languages = readonly ['en', 'uk'];
@@ -39,3 +43,22 @@ type _DisableCustomEvent = AssertTrue<
 
 type _NoNestedModuleToc = AssertFalse<Course_TocModule extends Course_TocModule['children'][number] ? true : false>;
 type _NoNestedChapterToc = AssertFalse<Course_TocChapter extends Course_TocChapter['children'][number] ? true : false>;
+
+// Course editorial metadata supports optional narrative and typed prerequisite IDs.
+type _ScenarioModeNone = AssertTrue<'none' extends Course_ScenarioMode ? true : false>;
+type _ScenarioModeStory = AssertTrue<'story' extends Course_ScenarioMode ? true : false>;
+type _ScenarioModeRejectsUnknown = AssertFalse<'scripted' extends Course_ScenarioMode ? true : false>;
+type _CoursePrerequisites = AssertTrue<
+  Course<'data', Languages>['prerequisites'] extends Course_Prerequisites<'data', Languages> | undefined
+    ? true
+    : false
+>;
+type _PrerequisiteSkillRefs = AssertTrue<
+  NonNullable<Course_Prerequisites<'data', Languages>['skills']>[number] extends SkillId ? true : false
+>;
+type _PrerequisiteGroupRefs = AssertTrue<
+  NonNullable<Course_Prerequisites<'data', Languages>['skillGroups']>[number] extends SkillId ? true : false
+>;
+type _PrerequisiteDomainRefs = AssertTrue<
+  NonNullable<Course_Prerequisites<'data', Languages>['skillDomains']>[number] extends SkillId ? true : false
+>;
