@@ -77,10 +77,8 @@
   transform: translate(-50%, -50%);
   white-space: nowrap;
   transition:
-    background-color var(--svitlo-theme-transition-duration, 280ms)
-      var(--svitlo-theme-transition-easing, ease-in-out),
-    border-color var(--svitlo-theme-transition-duration, 280ms)
-      var(--svitlo-theme-transition-easing, ease-in-out),
+    background-color var(--svitlo-theme-transition-duration, 280ms) var(--svitlo-theme-transition-easing, ease-in-out),
+    border-color var(--svitlo-theme-transition-duration, 280ms) var(--svitlo-theme-transition-easing, ease-in-out),
     box-shadow 0.2s,
     color 0.2s,
     transform 0.2s;
