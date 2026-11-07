@@ -1,7 +1,6 @@
 import type {
   Chapter,
   Chapter_Content,
-  Chapter,
   Episode,
   Lesson_Override,
   Module,
