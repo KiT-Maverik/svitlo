@@ -311,3 +311,41 @@ test('single-language generated TypeScript matches real Engine/Contracts APIs', 
       .map(d => ts.flattenDiagnosticMessageText(d.messageText, '\n'));
     assert.deepEqual(ownErrors, []);
   }));
+
+test('stable ContentBlock identity survives editorial reordering', () =>
+  withFixture(f => {
+    runOne(f.lesson, 'generate', f.repo);
+    const before = fs.readFileSync(f.generated('lesson.data.ts'), 'utf8');
+    const blockId = before.match(/"id": "([a-f0-9-]{36})",\s*"slug": "intro"/)?.[1];
+    assert.ok(blockId);
+    f.content.sections[0].blocks.reverse();
+    f.save();
+    runOne(f.lesson, 'generate', f.repo);
+    const after = fs.readFileSync(f.generated('lesson.data.ts'), 'utf8');
+    assert.match(after, new RegExp('"id": "' + blockId + '",\\s*"slug": "intro"'));
+  }));
+test('Scene renderer key follows the current kebab-case registry convention', () =>
+  withFixture(f => {
+    f.content.sections[0].blocks.push({
+      key: 'simulation', type: 'scene', purpose: 'Explore a ray', readiness: 'typed-only',
+      accessibility: 'Keyboard accessible', sceneSpecKey: 'ray',
+    });
+    f.content.sceneSpecifications.push({
+      key: 'ray', path: 'scenes/ray.scene-spec.md', status: 'approved',
+    });
+    fs.mkdirSync(path.join(f.lesson, 'scenes'));
+    fs.writeFileSync(path.join(f.lesson, 'scenes/ray.scene-spec.md'), '# Approved Ray\n');
+    f.save();
+    runOne(f.lesson, 'generate', f.repo);
+    assert.match(fs.readFileSync(f.generated('lesson.data.ts'), 'utf8'),
+      /"id": "how-light-moves-scene-ray"/);
+    assert.match(fs.readFileSync(f.generated('requirements.md'), 'utf8'),
+      /how-light-moves-scene-ray/);
+  }));
+test('rejects YAML-supplied Methodology path traversal before opening a file', () =>
+  withFixture(f => {
+    f.content.methodologySource = '../../other.md';
+    f.save();
+    assert.throws(() => runOne(f.lesson, 'generate', f.repo),
+      /content.yaml:methodologySource: must name the canonical Methodology file/);
+  }));
