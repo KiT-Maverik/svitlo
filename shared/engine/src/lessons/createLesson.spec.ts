@@ -145,7 +145,7 @@ describe('composable Lesson creators', () => {
       title: { type: 'text', id: 'chapter-title', slug: 'chapterTitle', value: 'Chapter' },
       content: [creator],
     });
-    assert.equal(chapter.getData().content[0].id, lessonId);
+    assert.deepEqual(chapter.getData().content[0], creator.getData());
     assert.deepEqual(chapter.getPublicationItems().lessons.map(item => item.id), [lessonId]);
     const course = createCourse<typeof languages>({
       type: 'course', id: 'course-id', parameters: { languages },
