@@ -111,6 +111,18 @@ function runGate(changed) {
     ]);
   }
 
+  if (
+    changed.some(
+      file =>
+        file.startsWith('scripts/generate-assessment-methods-reference.') ||
+        file === 'scripts/generate-translation-review-artifacts.mjs' ||
+        file === 'shared/ui-kit/data/locale/assessmentMethods.ts' ||
+        file === 'shared/engine/src/data/assessmentMethodTaxonomy/locales/en.ts',
+    )
+  ) {
+    exec('node', ['--test', 'scripts/generate-assessment-methods-reference.spec.mjs']);
+  }
+
   const built = new Set();
   function ensureSharedDependencies(name, visiting = new Set()) {
     assert(!visiting.has(name), 'Cyclic workspace dependency: ' + name);
