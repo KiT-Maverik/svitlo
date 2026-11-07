@@ -92,7 +92,18 @@ export function createLessonLearningLayout(bindings: LessonLearningLayoutBinding
           onThemeChange={setMode}
         />
       ),
-      [messages.navbarPreferences, locale, setLocale, lessonLocale, supportedLessonLanguages, setLessonLocale, volumeControl, mode, systemMode, setMode],
+      [
+        messages.navbarPreferences,
+        locale,
+        setLocale,
+        lessonLocale,
+        supportedLessonLanguages,
+        setLessonLocale,
+        volumeControl,
+        mode,
+        systemMode,
+        setMode,
+      ],
     );
     return (
       <LearningLayout
