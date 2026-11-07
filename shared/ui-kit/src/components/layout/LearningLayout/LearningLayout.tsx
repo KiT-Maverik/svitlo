@@ -137,6 +137,7 @@ export function LearningLayoutTopBar({
                 title={lessonTitle}
                 sx={{
                   display: { xs: 'none', md: 'block' },
+                  color: 'text.primary',
                   maxWidth: 280,
                   overflow: 'hidden',
                   textOverflow: 'ellipsis',

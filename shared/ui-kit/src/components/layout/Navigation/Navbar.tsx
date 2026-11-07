@@ -14,12 +14,13 @@ export type NavbarProps = {
 };
 
 export default function Navbar({ slots = {}, slotProps = {}, 'aria-label': label }: NavbarProps) {
-  const { sx: rootSx = [], ...rootProps } = slotProps.root ?? {};
+  const { sx: rootSx = [], className: rootClassName, ...rootProps } = slotProps.root ?? {};
   return (
     <Box
       {...rootProps}
       component="nav"
       aria-label={label}
+      className={['svitlo-theme-chrome', rootClassName].filter(Boolean).join(' ')}
       sx={[
         {
           display: 'grid',

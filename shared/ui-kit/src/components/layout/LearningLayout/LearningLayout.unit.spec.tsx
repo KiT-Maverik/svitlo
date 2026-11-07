@@ -1,6 +1,6 @@
 import { fireEvent, render, screen, within } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import LearningLayout from './LearningLayout';
+import LearningLayout, { LearningLayoutTopBar } from './LearningLayout';
 import ThemeSwitch from './NavbarPreferences/ThemeSwitch';
 import { learningLayout } from '../../../../data/locale/learningLayout';
 
@@ -22,11 +22,13 @@ describe('LearningLayout preparation', () => {
       </LearningLayout>,
     );
 
-    expect(screen.getByRole('navigation', { name: uk.navigation.top })).toBeVisible();
-    expect(screen.getByRole('navigation', { name: uk.navigation.top }).parentElement).toHaveClass(
-      'svitlo-theme-surface',
-    );
-    expect(screen.getByRole('navigation', { name: uk.navigation.bottom })).toBeVisible();
+    const top = screen.getByRole('navigation', { name: uk.navigation.top });
+    const bottom = screen.getByRole('navigation', { name: uk.navigation.bottom });
+    expect(top).toBeVisible();
+    expect(top.parentElement).toHaveClass('svitlo-theme-surface');
+    expect(top).toHaveClass('svitlo-theme-chrome');
+    expect(bottom).toBeVisible();
+    expect(bottom).toHaveClass('svitlo-theme-chrome');
     expect(screen.getByRole('status')).toHaveTextContent(uk.preparingLesson);
     expect(screen.getByRole('main', { hidden: true })).toHaveAttribute('aria-busy', 'true');
     expect(screen.getByRole('main', { hidden: true })).toHaveAttribute('inert');
@@ -67,6 +69,30 @@ describe('LearningLayout preparation', () => {
     expect(screen.getByText('Additional page control')).toBeVisible();
     fireEvent.click(screen.getByRole('button', { name: uk.actions.closeSidebar }));
     expect(screen.getByRole('button', { name: uk.actions.profile })).toHaveAttribute('aria-expanded', 'false');
+  });
+
+  it('keeps the lesson title and disabled Back/Skip labels mounted in shared navigation', () => {
+    render(
+      <LearningLayout
+        locale="uk-UA"
+        messages={uk}
+        pathname="/uk/lesson/test"
+        progress={{ ready: true, step: 0, lastStep: 1, testDone: false }}
+        topics={[]}
+        actions={{ back: vi.fn(), next: vi.fn(), skip: vi.fn() }}
+        renderTopBar={props => (
+          // Exercise the same component that the LessonController uses.
+          <LearningLayoutTopBar {...props} lessonTitle="Тестовий урок" />
+        )}
+      >
+        <p>Вміст уроку</p>
+      </LearningLayout>,
+    );
+    const top = screen.getByRole('navigation', { name: uk.navigation.top });
+    const bottom = screen.getByRole('navigation', { name: uk.navigation.bottom });
+    expect(within(top).getByText('Тестовий урок')).toBeInTheDocument();
+    expect(within(bottom).getByRole('button', { name: /Назад/ })).toBeDisabled();
+    expect(within(bottom).getByRole('button', { name: uk.actions.skip })).toBeDisabled();
   });
 
   it('renders the theme switch before settings in the navbar and nowhere in the drawer', () => {
