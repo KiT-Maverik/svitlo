@@ -401,7 +401,14 @@ export default function LearningLayout({
             id="settings-sidebar"
             component="aside"
             aria-label={messages.navigation.settings}
-            sx={{ height: '100%', width: '100%', minHeight: 0, minWidth: 0, overflowX: 'hidden', boxSizing: 'border-box' }}
+            sx={{
+              height: '100%',
+              width: '100%',
+              minHeight: 0,
+              minWidth: 0,
+              overflowX: 'hidden',
+              boxSizing: 'border-box',
+            }}
           >
             <VerticalSpace
               top={
