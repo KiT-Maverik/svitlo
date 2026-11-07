@@ -1,7 +1,4 @@
-import {
-  FLASHCARD_RELATION_TYPES,
-  type FlashcardRelationType,
-} from '@svitlo/contracts/content';
+import { FLASHCARD_RELATION_TYPES, type FlashcardRelationType } from '@svitlo/contracts/content';
 
 type LinkEntry = {
   cardId: string;
@@ -36,14 +33,18 @@ export function assertFlashcardLinks(flashcards: readonly unknown[]): void {
       if (!isRecord(raw)) throw new Error('Invalid Flashcard relationship entry');
       const { relationshipId, relatedFlashcardId, type, position } = raw;
       if (
-        typeof relationshipId !== 'string' || !relationshipId ||
+        typeof relationshipId !== 'string' ||
+        !relationshipId ||
         localIds.has(relationshipId) ||
-        typeof relatedFlashcardId !== 'string' || !relatedFlashcardId ||
-        !cardIds.has(relatedFlashcardId) || relatedFlashcardId === card.id ||
+        typeof relatedFlashcardId !== 'string' ||
+        !relatedFlashcardId ||
+        !cardIds.has(relatedFlashcardId) ||
+        relatedFlashcardId === card.id ||
         typeof type !== 'string' ||
         !Object.hasOwn(FLASHCARD_RELATION_TYPES, type) ||
         (position !== 'peer' && position !== 'source' && position !== 'target')
-      ) throw new Error('Invalid Flashcard relationship on card ' + card.id);
+      )
+        throw new Error('Invalid Flashcard relationship on card ' + card.id);
       const semantics = FLASHCARD_RELATION_TYPES[type as FlashcardRelationType];
       if ((semantics === 'symmetric') !== (position === 'peer')) {
         throw new Error('Flashcard relationship direction does not match type: ' + relationshipId);
@@ -70,10 +71,14 @@ export function assertFlashcardLinks(flashcards: readonly unknown[]): void {
       a.type !== b.type ||
       a.cardId !== b.relatedFlashcardId ||
       b.cardId !== a.relatedFlashcardId ||
-      (a.position === 'peer' ? b.position !== 'peer' :
-        !((a.position === 'source' && b.position === 'target') ||
-          (a.position === 'target' && b.position === 'source')))
-    ) throw new Error('Inconsistent mirrored Flashcard relation: ' + id);
+      (a.position === 'peer'
+        ? b.position !== 'peer'
+        : !(
+            (a.position === 'source' && b.position === 'target') ||
+            (a.position === 'target' && b.position === 'source')
+          ))
+    )
+      throw new Error('Inconsistent mirrored Flashcard relation: ' + id);
 
     const source = a.position === 'target' ? b.cardId : a.cardId;
     const target = a.position === 'target' ? a.cardId : b.cardId;

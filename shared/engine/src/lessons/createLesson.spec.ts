@@ -175,7 +175,11 @@ describe('composable Lesson creators', () => {
     const flashcards = linkFlashcards<typeof languages>(
       [
         {
-          id: 'card-a', front: [], back: [], hint: [], tags: [],
+          id: 'card-a',
+          front: [],
+          back: [],
+          hint: [],
+          tags: [],
           flags: [
             { type: 'list', count: 3 },
             { type: 'warning' },
@@ -183,16 +187,22 @@ describe('composable Lesson creators', () => {
           ],
         },
         {
-          id: 'card-b', front: [], back: [], hint: [], tags: [],
+          id: 'card-b',
+          front: [],
+          back: [],
+          hint: [],
+          tags: [],
           flags: [{ type: 'acronym', value: { en: 'RED', uk: 'ЧЕР' } }],
         },
       ],
-      [{
-        relationshipId: 'bidirectional-recall',
-        type: 'reverse',
-        sourceFlashcardId: 'card-a',
-        targetFlashcardId: 'card-b',
-      }],
+      [
+        {
+          relationshipId: 'bidirectional-recall',
+          type: 'reverse',
+          sourceFlashcardId: 'card-a',
+          targetFlashcardId: 'card-b',
+        },
+      ],
     );
     const linkedLesson = createLesson<typeof languages>()({ ...creator.getData(), flashcards });
     const base = linkedLesson.getBase();
@@ -203,24 +213,28 @@ describe('composable Lesson creators', () => {
       questions: mergeLessonResources(base.questions, locale.questions),
     });
     const published = response.flashcards as typeof flashcards;
-    assert.deepEqual(published[0].relationships, [{
-      relationshipId: 'bidirectional-recall',
-      type: 'reverse',
-      relatedFlashcardId: 'card-b',
-      position: 'peer',
-    }]);
+    assert.deepEqual(published[0].relationships, [
+      {
+        relationshipId: 'bidirectional-recall',
+        type: 'reverse',
+        relatedFlashcardId: 'card-b',
+        position: 'peer',
+      },
+    ]);
     assert.deepEqual(published[0].flags, [
       { type: 'list', count: 3 },
       { type: 'warning' },
       { type: 'custom', color: 'success', icon: 'star', value: 'Важливо' },
     ]);
     assert.deepEqual(published[1].flags, [{ type: 'acronym', value: 'ЧЕР' }]);
-    assert.deepEqual(published[1].relationships, [{
-      relationshipId: 'bidirectional-recall',
-      type: 'reverse',
-      relatedFlashcardId: 'card-a',
-      position: 'peer',
-    }]);
+    assert.deepEqual(published[1].relationships, [
+      {
+        relationshipId: 'bidirectional-recall',
+        type: 'reverse',
+        relatedFlashcardId: 'card-a',
+        position: 'peer',
+      },
+    ]);
   });
 
   it('is consumed by Course creators and Course-local Lesson overrides', () => {

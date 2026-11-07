@@ -1,7 +1,4 @@
-import {
-  FLASHCARD_FLAG_COLORS,
-  FLASHCARD_FLAG_ICONS,
-} from '@svitlo/contracts/content';
+import { FLASHCARD_FLAG_COLORS, FLASHCARD_FLAG_ICONS } from '@svitlo/contracts/content';
 
 const colors: ReadonlySet<string> = new Set(FLASHCARD_FLAG_COLORS);
 const icons: ReadonlySet<string> = new Set(FLASHCARD_FLAG_ICONS);
@@ -29,8 +26,11 @@ export function assertFlashcardFlags(flashcards: readonly unknown[]): void {
       const keys = Object.keys(flag);
       switch (flag.type) {
         case 'list':
-          if (keys.some(key => key !== 'type' && key !== 'count') ||
-            !Number.isSafeInteger(flag.count) || (flag.count as number) < 2)
+          if (
+            keys.some(key => key !== 'type' && key !== 'count') ||
+            !Number.isSafeInteger(flag.count) ||
+            (flag.count as number) < 2
+          )
             throw new Error('Invalid Flashcard list count flag');
           break;
         case 'warning':
@@ -44,9 +44,11 @@ export function assertFlashcardFlags(flashcards: readonly unknown[]): void {
           if (
             keys.some(key => !['type', 'value', 'color', 'icon'].includes(key)) ||
             !validText(flag.value) ||
-            typeof flag.color !== 'string' || !colors.has(flag.color) ||
+            typeof flag.color !== 'string' ||
+            !colors.has(flag.color) ||
             (flag.icon !== undefined && (typeof flag.icon !== 'string' || !icons.has(flag.icon)))
-          ) throw new Error('Invalid Flashcard custom flag');
+          )
+            throw new Error('Invalid Flashcard custom flag');
           break;
         default:
           throw new Error('Unknown Flashcard flag type: ' + flag.type);

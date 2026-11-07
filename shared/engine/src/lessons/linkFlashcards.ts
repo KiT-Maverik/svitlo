@@ -1,4 +1,10 @@
-import { FLASHCARD_RELATION_TYPES, type Flashcard, type FlashcardRelation, type FlashcardRelationType, type Locale_Languages } from '@svitlo/contracts/content';
+import {
+  FLASHCARD_RELATION_TYPES,
+  type Flashcard,
+  type FlashcardRelation,
+  type FlashcardRelationType,
+  type Locale_Languages,
+} from '@svitlo/contracts/content';
 
 /** Canonical authored edge: supplied exactly once, then mirrored onto both Flashcards. */
 export type FlashcardLink = {
@@ -27,9 +33,7 @@ export function linkFlashcards<L extends Locale_Languages>(
     byId.set(card.id, card);
   }
 
-  const graph = new Map<string, FlashcardRelation[]>(
-    flashcards.map(card => [card.id, []]),
-  );
+  const graph = new Map<string, FlashcardRelation[]>(flashcards.map(card => [card.id, []]));
   const seenIds = new Set<string>();
   const seenEdges = new Set<string>();
   for (const link of links) {
@@ -44,12 +48,12 @@ export function linkFlashcards<L extends Locale_Languages>(
     if (sourceFlashcardId === targetFlashcardId)
       throw new Error('Flashcard cannot be related to itself: ' + relationshipId);
 
-    const endpoints = semantics === 'symmetric'
-      ? [sourceFlashcardId, targetFlashcardId].sort()
-      : [sourceFlashcardId, targetFlashcardId];
+    const endpoints =
+      semantics === 'symmetric'
+        ? [sourceFlashcardId, targetFlashcardId].sort()
+        : [sourceFlashcardId, targetFlashcardId];
     const edgeKey = JSON.stringify([type, ...endpoints]);
-    if (seenEdges.has(edgeKey))
-      throw new Error('Duplicate Flashcard relation: ' + relationshipId);
+    if (seenEdges.has(edgeKey)) throw new Error('Duplicate Flashcard relation: ' + relationshipId);
     seenEdges.add(edgeKey);
 
     graph.get(sourceFlashcardId)!.push({
@@ -68,8 +72,6 @@ export function linkFlashcards<L extends Locale_Languages>(
 
   return flashcards.map(card => ({
     ...card,
-    relationships: graph.get(card.id)!.sort((a, b) =>
-      a.relationshipId.localeCompare(b.relationshipId),
-    ),
+    relationships: graph.get(card.id)!.sort((a, b) => a.relationshipId.localeCompare(b.relationshipId)),
   }));
 }

@@ -25,7 +25,7 @@ Select atomic recall targets. Do not demand one card per Question, per paragraph
 ### Atomicity and concise writing
 
 - The `front` and `back` must be as short as possible while retaining an unambiguous educational target and all scientifically necessary qualifiers. No filler, introductions, rhetorical padding, unrelated examples or long summaries.
-- **Mandatory punctuation/conjunction audit** for each `and`, `or`, comma, semicolon, slash, colon, parenthetical aside and enumeration on either side. Ask whether two independently recallable facts are being merged. If yes, split into distinct cards. Keep one list card when the *set*, its number or meaningful order is the learning target.
+- **Mandatory punctuation/conjunction audit** for each `and`, `or`, comma, semicolon, slash, colon, parenthetical aside and enumeration on either side. Ask whether two independently recallable facts are being merged. If yes, split into distinct cards. Keep one list card when the _set_, its number or meaningful order is the learning target.
 - A definition should rarely require a paragraph. When two directional cards target the same concept, each must be useful on its own.
 - Do not put a long explanation on the back merely because the Lesson provides one; reserve explanation-heavy work for Lessons/Questions.
 - When two cards retrieve the same concept in opposite directions, keep both only if each direction is independently useful, and connect them with `reverse`. Avoid duplicating the same direction with superficial rewording.
@@ -44,10 +44,15 @@ On subsequent **YAML-to-TypeScript generation**, resolve a Question by its globa
 ```ts
 import { lightTravelsStraight_Question_Data } from '../questions/lightTravelsStraight';
 
-const front = [{ id: '...', slug: 'front', type: 'text',
-  value: lightTravelsStraight_Question_Data.question[0].value }];
-const back = [{ id: '...', slug: 'back', type: 'text',
-  value: lightTravelsStraight_Question_Data.answers.correct.straightLine.value }];
+const front = [{ id: '...', slug: 'front', type: 'text', value: lightTravelsStraight_Question_Data.question[0].value }];
+const back = [
+  {
+    id: '...',
+    slug: 'back',
+    type: 'text',
+    value: lightTravelsStraight_Question_Data.answers.correct.straightLine.value,
+  },
+];
 ```
 
 These are **illustrations of the generated pattern**, not committed imports or a claim the generator exists. If an authorized preliminary TypeScript scaffold is created before its Question export is ready, it must contain a **conspicuous unresolved `TODO(question-import): <questionSlug> <fieldPath>` next to the intended assignment** and remain blocked from validation/publication; do not silently insert placeholder prose or freeze a copied source-language value. In the complete implementation the TODO is replaced by the real imported `Question_Data` property access. The source Question must remain the localizable authority. Generate stable Flashcard ContentBlock IDs and slugs, but **never reuse Question ContentBlock IDs blindly**. Reject dangling paths, wrong types, incorrect options or duplicate source text. Never quietly substitute English literals when import resolution fails. Where the Question offers no reusable value, author concise independent source-language copy.
@@ -69,17 +74,17 @@ Use the discriminated `flags` array on each card. The canonical output contract 
 
 ```yaml
 flags:
-  - {type: list, count: 4}
-  - {type: warning}
+  - { type: list, count: 4 }
+  - { type: warning }
   - type: acronym
     value: PaRFUME
     localePolicy: needsLocalizedVersion
     parts:
-      - {kind: source, item: Paper, letters: P}
-      - {kind: connector, letters: a}
-      - {kind: source, item: Rope, letters: R}
+      - { kind: source, item: Paper, letters: P }
+      - { kind: connector, letters: a }
+      - { kind: source, item: Rope, letters: R }
       # Include all remaining pieces to spell the complete value.
-  - {type: custom, value: "Review this", color: info, icon: star}
+  - { type: custom, value: 'Review this', color: info, icon: star }
 ```
 
 This shows shape only: an actual acronym's complete `parts` MUST concatenate to its `value`, and uppercase source letters must actually match the remembered list. Do not force an acronym if it does not improve memory. Connector letters added for pronounceability must be lowercase; actual first one or two letters must be uppercase, preserving list meaning and intended sequence.
@@ -116,7 +121,8 @@ relationships:
 
 **Do not author `directed`, arbitrary `kind`, or duplicate reverse edges.** Directionality is determined by the canonical type. For symmetric relations, source and target order has no effect. Each card may participate in any number of distinct relationships and may have several **different relation types with the same partner**. Use a relationship only when the educational semantics are real and defensible.
 
-**Generated dual-sided links:** for each editorial edge, the builder must resolve both card slugs to their **actual stable Flashcard IDs** and create one `FlashcardLink` with a stable `relationshipId` derived from `key`. It then calls `linkFlashcards(flashcards, links)` from `@svitlo/engine/builders` **exactly once**, before Lesson serialization. This helper attaches an adjacency entry on *both cards*, with the same `relationshipId` and `type`, the other card's ID in `relatedFlashcardId`, and a position:
+**Generated dual-sided links:** for each editorial edge, the builder must resolve both card slugs to their **actual stable Flashcard IDs** and create one `FlashcardLink` with a stable `relationshipId` derived from `key`. It then calls `linkFlashcards(flashcards, links)` from `@svitlo/engine/builders` **exactly once**, before Lesson serialization. This helper attaches an adjacency entry on _both cards_, with the same `relationshipId` and `type`, the other card's ID in `relatedFlashcardId`, and a position:
+
 - `peer` / `peer` for symmetric types.
 - `source` / `target` for directed types.
 
@@ -136,13 +142,13 @@ The YAML's required groups are `schemaVersion`, `kind`, `status`, `lessonId`, `d
 schemaVersion: 1
 kind: lesson-flashcard-bank
 status: draft
-lessonId: "00000000-0000-0000-0000-000000000000"
+lessonId: '00000000-0000-0000-0000-000000000000'
 documentLanguage: en
 supportedLanguages: [en, uk]
 sources:
-  methodology: {path: ../methodology.md}
-  content: {path: ../content.yaml}
-  questions: {path: ../questions/questions.yaml, revision: verified-commit-or-blob}
+  methodology: { path: ../methodology.md }
+  content: { path: ../content.yaml }
+  questions: { path: ../questions/questions.yaml, revision: verified-commit-or-blob }
 flashcards:
   - slug: light-recall
     isDefault: true
@@ -161,7 +167,7 @@ flashcards:
     hint: []
     tags: [light]
     flags:
-      - {type: custom, value: "Practice", color: success, icon: check}
+      - { type: custom, value: 'Practice', color: success, icon: check }
 relationships: []
 unresolvedDependencies: []
 ```

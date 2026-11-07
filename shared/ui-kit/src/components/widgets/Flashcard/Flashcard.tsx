@@ -38,7 +38,18 @@ export interface FlashcardProps {
 }
 
 export const Flashcard = forwardRef<HTMLButtonElement, FlashcardProps>(function Flashcard(
-  { question, answer, messages, flags = [], labels = [], revealed = false, disabled = false, onReveal, onRate, onAddLabel },
+  {
+    question,
+    answer,
+    messages,
+    flags = [],
+    labels = [],
+    revealed = false,
+    disabled = false,
+    onReveal,
+    onRate,
+    onAddLabel,
+  },
   ref,
 ) {
   const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);

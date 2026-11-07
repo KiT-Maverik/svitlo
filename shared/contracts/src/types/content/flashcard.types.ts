@@ -33,13 +33,27 @@ export type FlashcardRelation = {
 
 /** Serializable palette choices supported by the Flashcard's MUI Chip. */
 export const FLASHCARD_FLAG_COLORS = [
-  'default', 'primary', 'secondary', 'error', 'info', 'success', 'warning',
+  'default',
+  'primary',
+  'secondary',
+  'error',
+  'info',
+  'success',
+  'warning',
 ] as const;
 export type FlashcardFlagColor = (typeof FLASHCARD_FLAG_COLORS)[number];
 
 /** Serializable icon names, not React components or dynamically imported paths. */
 export const FLASHCARD_FLAG_ICONS = [
-  'list', 'warning', 'acronym', 'info', 'star', 'bookmark', 'lightbulb', 'code', 'check',
+  'list',
+  'warning',
+  'acronym',
+  'info',
+  'star',
+  'bookmark',
+  'lightbulb',
+  'code',
+  'check',
 ] as const;
 export type FlashcardFlagIcon = (typeof FLASHCARD_FLAG_ICONS)[number];
 
@@ -48,10 +62,7 @@ export type FlashcardFlagIcon = (typeof FLASHCARD_FLAG_ICONS)[number];
  * author-defined chip label, one palette color and an optional icon.
  * Only the label text requires localization; colors and icon keys are invariant.
  */
-export type FlashcardFlag<
-  ConfigType extends 'data' | 'response',
-  Languages extends Locale_Languages,
-> =
+export type FlashcardFlag<ConfigType extends 'data' | 'response', Languages extends Locale_Languages> =
   | { type: 'list'; count: number }
   | { type: 'warning' }
   | { type: 'acronym'; value: ConfigType extends 'data' ? Locale_Options<Languages> : string }

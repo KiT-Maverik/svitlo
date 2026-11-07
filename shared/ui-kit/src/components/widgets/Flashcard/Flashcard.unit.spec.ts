@@ -53,11 +53,7 @@ describe('Components', () => {
 
     it('should render the three built-in typed flags as localized chips', () => {
       Flashcard_fx.render({
-        flags: [
-          { type: 'list', count: 6 },
-          { type: 'warning' },
-          { type: 'acronym', value: 'PaRFUME' },
-        ],
+        flags: [{ type: 'list', count: 6 }, { type: 'warning' }, { type: 'acronym', value: 'PaRFUME' }],
       });
       expect(screen.getByText('6')).toBeVisible();
       expect(screen.getByText('Увага')).toBeVisible();

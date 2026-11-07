@@ -25,10 +25,7 @@
       "const": "lesson-flashcard-bank"
     },
     "status": {
-      "enum": [
-        "draft",
-        "approved"
-      ]
+      "enum": ["draft", "approved"]
     },
     "lessonId": {
       "type": "string",
@@ -50,11 +47,7 @@
     "sources": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "methodology",
-        "content",
-        "questions"
-      ],
+      "required": ["methodology", "content", "questions"],
       "properties": {
         "methodology": {
           "$ref": "#/$defs/source"
@@ -65,10 +58,7 @@
         "questions": {
           "type": "object",
           "additionalProperties": false,
-          "required": [
-            "path",
-            "revision"
-          ],
+          "required": ["path", "revision"],
           "properties": {
             "path": {
               "type": "string",
@@ -121,9 +111,7 @@
     "source": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "path"
-      ],
+      "required": ["path"],
       "properties": {
         "path": {
           "type": "string",
@@ -138,11 +126,7 @@
     "questionFieldRef": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "kind",
-        "questionSlug",
-        "fieldPath"
-      ],
+      "required": ["kind", "questionSlug", "fieldPath"],
       "properties": {
         "kind": {
           "const": "questionField"
@@ -172,10 +156,7 @@
     "textStyle": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "id",
-        "applyStyle"
-      ],
+      "required": ["id", "applyStyle"],
       "properties": {
         "id": {
           "type": "string",
@@ -184,25 +165,13 @@
         "applyStyle": {
           "type": "array",
           "items": {
-            "enum": [
-              "highlight",
-              "bold",
-              "cursive",
-              "underscore",
-              "crossed",
-              "variable"
-            ]
+            "enum": ["highlight", "bold", "cursive", "underscore", "crossed", "variable"]
           },
           "minItems": 1,
           "uniqueItems": true
         },
         "tone": {
-          "enum": [
-            "neutral",
-            "info",
-            "warning",
-            "success"
-          ]
+          "enum": ["neutral", "info", "warning", "success"]
         },
         "applyColor": {
           "type": "string",
@@ -235,10 +204,7 @@
     "textBlock": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "type",
-        "value"
-      ],
+      "required": ["type", "value"],
       "properties": {
         "type": {
           "const": "text"
@@ -276,11 +242,7 @@
     "codeBlock": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "type",
-        "language",
-        "code"
-      ],
+      "required": ["type", "language", "code"],
       "properties": {
         "type": {
           "const": "code"
@@ -316,10 +278,7 @@
           "items": {
             "type": "object",
             "additionalProperties": false,
-            "required": [
-              "id",
-              "value"
-            ],
+            "required": ["id", "value"],
             "properties": {
               "id": {
                 "type": "string",
@@ -345,10 +304,7 @@
     "markdownBlock": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "type",
-        "value"
-      ],
+      "required": ["type", "value"],
       "properties": {
         "type": {
           "const": "markdown"
@@ -369,12 +325,7 @@
     "existingImage": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "type",
-        "assetPath",
-        "alt",
-        "layout"
-      ],
+      "required": ["type", "assetPath", "alt", "layout"],
       "properties": {
         "type": {
           "const": "image"
@@ -410,10 +361,7 @@
             {
               "type": "object",
               "additionalProperties": false,
-              "required": [
-                "width",
-                "height"
-              ],
+              "required": ["width", "height"],
               "properties": {
                 "width": {
                   "type": "integer",
@@ -428,10 +376,7 @@
             {
               "type": "object",
               "additionalProperties": false,
-              "required": [
-                "fill",
-                "aspectRatio"
-              ],
+              "required": ["fill", "aspectRatio"],
               "properties": {
                 "fill": {
                   "const": true
@@ -441,10 +386,7 @@
                   "exclusiveMinimum": 0
                 },
                 "objectFit": {
-                  "enum": [
-                    "contain",
-                    "cover"
-                  ]
+                  "enum": ["contain", "cover"]
                 }
               }
             }
@@ -455,11 +397,7 @@
     "pendingImage": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "type",
-        "assetRequest",
-        "layout"
-      ],
+      "required": ["type", "assetRequest", "layout"],
       "properties": {
         "type": {
           "const": "image"
@@ -467,12 +405,7 @@
         "assetRequest": {
           "type": "object",
           "additionalProperties": false,
-          "required": [
-            "description",
-            "purpose",
-            "altIntent",
-            "status"
-          ],
+          "required": ["description", "purpose", "altIntent", "status"],
           "properties": {
             "description": {
               "type": "string",
@@ -496,10 +429,7 @@
             {
               "type": "object",
               "additionalProperties": false,
-              "required": [
-                "width",
-                "height"
-              ],
+              "required": ["width", "height"],
               "properties": {
                 "width": {
                   "type": "integer",
@@ -514,10 +444,7 @@
             {
               "type": "object",
               "additionalProperties": false,
-              "required": [
-                "fill",
-                "aspectRatio"
-              ],
+              "required": ["fill", "aspectRatio"],
               "properties": {
                 "fill": {
                   "const": true
@@ -527,10 +454,7 @@
                   "exclusiveMinimum": 0
                 },
                 "objectFit": {
-                  "enum": [
-                    "contain",
-                    "cover"
-                  ]
+                  "enum": ["contain", "cover"]
                 }
               }
             }
@@ -541,22 +465,10 @@
     "advancedBlock": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "type",
-        "purpose",
-        "status",
-        "dependency"
-      ],
+      "required": ["type", "purpose", "status", "dependency"],
       "properties": {
         "type": {
-          "enum": [
-            "audio",
-            "video",
-            "youtube",
-            "carousel",
-            "scene",
-            "checkpoint"
-          ]
+          "enum": ["audio", "video", "youtube", "carousel", "scene", "checkpoint"]
         },
         "purpose": {
           "type": "string",
@@ -574,11 +486,7 @@
     "acronymSourcePart": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "kind",
-        "item",
-        "letters"
-      ],
+      "required": ["kind", "item", "letters"],
       "properties": {
         "kind": {
           "const": "source"
@@ -596,10 +504,7 @@
     "acronymConnectorPart": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "kind",
-        "letters"
-      ],
+      "required": ["kind", "letters"],
       "properties": {
         "kind": {
           "const": "connector"
@@ -613,14 +518,7 @@
     "card": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "slug",
-        "front",
-        "back",
-        "hint",
-        "tags",
-        "flags"
-      ],
+      "required": ["slug", "front", "back", "hint", "tags", "flags"],
       "properties": {
         "slug": {
           "type": "string",
@@ -689,13 +587,7 @@
     "relationship": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "key",
-        "source",
-        "target",
-        "type",
-        "rationale"
-      ],
+      "required": ["key", "source", "target", "type", "rationale"],
       "properties": {
         "key": {
           "type": "string",
@@ -734,11 +626,7 @@
     "dependency": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "kind",
-        "description",
-        "status"
-      ],
+      "required": ["kind", "description", "status"],
       "properties": {
         "kind": {
           "enum": [
@@ -772,10 +660,7 @@
     "listFlag": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "type",
-        "count"
-      ],
+      "required": ["type", "count"],
       "properties": {
         "type": {
           "const": "list"
@@ -790,9 +675,7 @@
     "warningFlag": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "type"
-      ],
+      "required": ["type"],
       "properties": {
         "type": {
           "const": "warning"
@@ -803,12 +686,7 @@
     "acronymFlag": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "type",
-        "value",
-        "localePolicy",
-        "parts"
-      ],
+      "required": ["type", "value", "localePolicy", "parts"],
       "properties": {
         "type": {
           "const": "acronym"
@@ -818,10 +696,7 @@
           "minLength": 1
         },
         "localePolicy": {
-          "enum": [
-            "invariant",
-            "needsLocalizedVersion"
-          ]
+          "enum": ["invariant", "needsLocalizedVersion"]
         },
         "parts": {
           "type": "array",
@@ -843,11 +718,7 @@
     "customFlag": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "type",
-        "value",
-        "color"
-      ],
+      "required": ["type", "value", "color"],
       "properties": {
         "type": {
           "const": "custom"
@@ -857,28 +728,10 @@
           "minLength": 1
         },
         "color": {
-          "enum": [
-            "default",
-            "primary",
-            "secondary",
-            "error",
-            "info",
-            "success",
-            "warning"
-          ]
+          "enum": ["default", "primary", "secondary", "error", "info", "success", "warning"]
         },
         "icon": {
-          "enum": [
-            "list",
-            "warning",
-            "acronym",
-            "info",
-            "star",
-            "bookmark",
-            "lightbulb",
-            "code",
-            "check"
-          ]
+          "enum": ["list", "warning", "acronym", "info", "star", "bookmark", "lightbulb", "code", "check"]
         }
       },
       "description": "User-defined chip label with one palette color and optional safe icon token, never a React component."
