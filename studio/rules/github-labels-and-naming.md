@@ -71,3 +71,9 @@ These are naming examples, not an instruction to rename existing PRs or replace 
 - **Repository entities and documentation headings:** use accurate, concise domain terms; do not encode status, origin, or priority in a name where structured metadata already captures it.
 
 **Pre-publication check:** Is the title specific and concise? Does it avoid duplicating GitHub labels? Are the actual (not hypothetical) labels applied? Are scope and work labels accurate? Are PR roles and target branches correct? Are temporary labels up to date?
+
+## Lesson-production Issue scope and stage coordination
+
+For production of **one or more Lessons**, use the repository's [Lesson production Issue Form](../../.github/ISSUE_TEMPLATE/lesson-production.yml) and [Manage Lesson Production](../skills/lesson-workflow/manage-lesson-production.skill.md). A single Issue may contain several explicitly identified Lesson UUIDs; never force one Issue per Lesson or per fast workflow stage. The per-Lesson tracker records the next stage, status, owner/branch, Draft PRs and blockers; scope-level checkboxes do not supersede the source files and independent approvals.
+
+When working from a Lesson Production Issue, read its **latest** body, linked PRs and the actual Lesson sources before editing, claim the bounded artifact and keep the Issue updated after each meaningful batch. Multiple agents/chats can resume from this record; do not use chat history as the sole source of truth. Intermediate Draft PRs should say `Refs #N`, not `Closes #N` while other Lessons remain unfinished. Do not automatically merge PRs, self-approve editorial gates or close incomplete Issues.
