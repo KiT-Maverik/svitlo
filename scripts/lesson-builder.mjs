@@ -120,20 +120,36 @@ function sceneRendererKey(lessonSlug, specKey) {
   const normalized = lessonSlug.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
   return normalized + '-scene-' + specKey;
 }
+function allowedSpec(spec, fields, file, field) {
+  for (const key of Object.keys(spec)) {
+    required(fields.includes(key), file, field + '.contentSpec.' + key,
+      'no approved mapping to the canonical ContentBlock contract; refusing to discard editorial data');
+  }
+}
 function blockData(block, lessonId, language, root, requirements, field, stableKey, lessonSlug, file = 'content.yaml') {
   const id = block.type === 'scene'
     ? sceneRendererKey(lessonSlug, block.sceneSpecKey)
     : uuid5(lessonId, 'block/' + stableKey);
   const value = { id, slug: block.key, type: block.type };
   const spec = block.contentSpec ?? {};
-  if (block.type === 'text') return { ...value, value: loc(block.sourceText, language, file, field + '.sourceText') };
-  if (block.type === 'markdown') return { ...value, locales: loc(block.sourceText, language, file, field + '.sourceText') };
+  if (block.type === 'text') {
+    allowedSpec(spec, ['styling', 'wrap'], file, field);
+    return { ...value, value: loc(block.sourceText, language, file, field + '.sourceText'), ...spec };
+  }
+  if (block.type === 'markdown') {
+    allowedSpec(spec, [], file, field);
+    return { ...value, locales: loc(block.sourceText, language, file, field + '.sourceText') };
+  }
   if (block.type === 'scene') {
+    allowedSpec(spec, [], file, field);
     issue(requirements, 'scene', field, 'Implement approved scene specification ' + block.sceneSpecKey +
       '; registry rendererKey is ' + value.id + '. Scene locales must be authored by Implement Scene.', 'Implement Scene');
     return { ...value, locales: {} };
   }
   if (block.type === 'code') {
+    allowedSpec(spec, ['language', 'code', 'fileLocation', 'title', 'variables'], file, field);
+    required(!(spec.code !== undefined && spec.fileLocation !== undefined), file,
+      field + '.contentSpec', 'code and fileLocation are mutually exclusive');
     required(typeof spec.language === 'string' && (typeof spec.code === 'string' || typeof spec.fileLocation === 'string'),
       file, field + '.contentSpec', 'code requires canonical language and code or fileLocation');
     const { code, fileLocation, title } = spec;
@@ -142,9 +158,13 @@ function blockData(block, lessonId, language, root, requirements, field, stableK
     return { ...value, language: spec.language,
       ...(code !== undefined ? { code: loc(code, language, file, field + '.contentSpec.code') } : {}),
       ...(fileLocation !== undefined ? { fileLocation: loc(fileLocation, language, file, field + '.contentSpec.fileLocation') } : {}),
-      ...(title !== undefined ? { title: loc(title, language, file, field + '.contentSpec.title') } : {}) };
+      ...(title !== undefined ? { title: loc(title, language, file, field + '.contentSpec.title') } : {}),
+      ...(spec.variables ? { variables: spec.variables.map((v, i) => ({
+        id: v.id, value: loc(v.value, language, file, field + '.contentSpec.variables[' + i + '].value'),
+      })) } : {}) };
   }
   if (block.type === 'youtube') {
+    allowedSpec(spec, ['href', 'mode', 'title', 'hint'], file, field);
     required(typeof spec.href === 'string' && ['link', 'embed'].includes(spec.mode), file,
       field + '.contentSpec', 'youtube requires href and mode');
     required(spec.mode === 'link' || spec.title || spec.hint, file, field + '.contentSpec',
@@ -155,6 +175,10 @@ function blockData(block, lessonId, language, root, requirements, field, stableK
       ...(spec.hint ? { hint: loc(spec.hint, language, file, field + '.contentSpec.hint') } : {}) };
   }
   if (block.type === 'image') {
+    allowedSpec(spec, ['src', 'alt', 'width', 'height', 'fill', 'aspectRatio', 'objectFit', 'caption', 'sizes', 'unoptimized'], file, field);
+    required(spec.fill === true ? spec.width === undefined && spec.height === undefined
+      : spec.aspectRatio === undefined && spec.objectFit === undefined,
+      file, field + '.contentSpec', 'image layout must use either fill/aspectRatio or width/height');
     const src = block.assetRequest?.path ?? spec.src;
     required(typeof src === 'string' && typeof spec.alt === 'string' &&
       ((Number.isFinite(spec.width) && Number.isFinite(spec.height)) ||
@@ -167,9 +191,13 @@ function blockData(block, lessonId, language, root, requirements, field, stableK
         : { width: spec.width, height: spec.height }),
       src: loc(src, language, file, field + '.assetRequest.path'),
       alt: loc(spec.alt, language, file, field + '.contentSpec.alt'),
-      ...(spec.caption ? { caption: loc(spec.caption, language, file, field + '.contentSpec.caption') } : {}) };
+      ...(spec.caption ? { caption: loc(spec.caption, language, file, field + '.contentSpec.caption') } : {}),
+      ...(spec.sizes ? { sizes: spec.sizes } : {}),
+      ...(spec.unoptimized === true ? { unoptimized: true } : {}) };
   }
   if (block.type === 'audio' || block.type === 'video') {
+    allowedSpec(spec, block.type === 'audio'
+      ? ['fileLocation', 'title', 'description'] : ['fileLocation', 'poster', 'title'], file, field);
     const src = block.assetRequest?.path ?? spec.fileLocation;
     required(typeof src === 'string', file, field + '.assetRequest.path', block.type + ' needs a fileLocation');
     if (!safeAsset(root, src, file, field + '.assetRequest.path'))
@@ -188,9 +216,14 @@ function blockData(block, lessonId, language, root, requirements, field, stableK
       ...(spec.title ? { title: loc(spec.title, language, file, field + '.contentSpec.title') } : {}) };
   }
   if (block.type === 'carousel') {
+    const settings = ['aspectRatio', 'objectFit', 'loop', 'autoplay', 'autoplayIntervalMs',
+      'transition', 'transitionDurationMs', 'showArrows', 'showIndicators', 'allowFullscreen',
+      'allowSwipe', 'startIndex', 'pauseOnHover'];
+    allowedSpec(spec, ['slides', 'title', ...settings], file, field);
     required(Array.isArray(spec.slides) && spec.slides.length > 0,
       file, field + '.contentSpec.slides', 'carousel needs at least one typed slide');
-    return { ...value, ...(spec.title ? { title: loc(spec.title, language, file, field + '.contentSpec.title') } : {}),
+    return { ...value, ...Object.fromEntries(settings.filter(k => Object.hasOwn(spec, k)).map(k => [k, spec[k]])),
+      ...(spec.title ? { title: loc(spec.title, language, file, field + '.contentSpec.title') } : {}),
       slides: spec.slides.map((slide, index) => {
         const where = field + '.contentSpec.slides[' + index + ']';
         required(typeof slide.src === 'string' && typeof slide.alt === 'string',
