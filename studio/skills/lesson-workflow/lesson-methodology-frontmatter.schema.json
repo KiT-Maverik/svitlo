@@ -4,11 +4,7 @@
   "title": "Lesson Methodologist Brief YAML frontmatter",
   "description": "Validate YAML frontmatter of methodology.md, not full Markdown; approval is editorial.",
   "type": "object",
-  "required": [
-    "documentLanguage",
-    "supportedLanguages",
-    "assessmentPlan"
-  ],
+  "required": ["documentLanguage", "supportedLanguages", "assessmentPlan"],
   "properties": {
     "documentLanguage": {
       "type": "string",
@@ -26,10 +22,7 @@
     "assessmentPlan": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "quizRequired",
-        "quizzes"
-      ],
+      "required": ["quizRequired", "quizzes"],
       "properties": {
         "quizRequired": {
           "type": "boolean"
@@ -49,9 +42,7 @@
                 "const": true
               }
             },
-            "required": [
-              "quizRequired"
-            ]
+            "required": ["quizRequired"]
           },
           "then": {
             "properties": {
@@ -80,12 +71,7 @@
     "quizRequirement": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "key",
-        "purpose",
-        "targetSkills",
-        "requiredAssessmentMethods"
-      ],
+      "required": ["key", "purpose", "targetSkills", "requiredAssessmentMethods"],
       "properties": {
         "key": {
           "type": "string",

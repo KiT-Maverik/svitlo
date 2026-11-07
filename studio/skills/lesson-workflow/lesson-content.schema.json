@@ -28,10 +28,7 @@
       "const": "lesson-content-plan"
     },
     "status": {
-      "enum": [
-        "draft",
-        "approved"
-      ]
+      "enum": ["draft", "approved"]
     },
     "lessonId": {
       "type": "string",
@@ -43,10 +40,7 @@
     },
     "methodologySource": {
       "type": "string",
-      "enum": [
-        "methodology.md",
-        "methodologist-brief.md"
-      ]
+      "enum": ["methodology.md", "methodologist-brief.md"]
     },
     "documentLanguage": {
       "type": "string",
@@ -99,11 +93,7 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": [
-          "key",
-          "content",
-          "afterSectionKey"
-        ],
+        "required": ["key", "content", "afterSectionKey"],
         "properties": {
           "key": {
             "type": "string",
@@ -157,10 +147,7 @@
         {
           "type": "object",
           "additionalProperties": false,
-          "required": [
-            "value",
-            "invariant"
-          ],
+          "required": ["value", "invariant"],
           "properties": {
             "value": {
               "type": "string",
@@ -176,27 +163,14 @@
     "regularSection": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "key",
-        "type",
-        "title",
-        "purpose",
-        "blocks"
-      ],
+      "required": ["key", "type", "title", "purpose", "blocks"],
       "properties": {
         "key": {
           "type": "string",
           "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
         },
         "type": {
-          "enum": [
-            "theory",
-            "practice",
-            "codingTask",
-            "learningFlow",
-            "flashcards",
-            "scenario"
-          ]
+          "enum": ["theory", "practice", "codingTask", "learningFlow", "flashcards", "scenario"]
         },
         "title": {
           "$ref": "#/$defs/localizable"
@@ -225,15 +199,7 @@
     "quizSection": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "key",
-        "type",
-        "title",
-        "purpose",
-        "assessmentPlanKey",
-        "targetSkills",
-        "requiredAssessmentMethods"
-      ],
+      "required": ["key", "type", "title", "purpose", "assessmentPlanKey", "targetSkills", "requiredAssessmentMethods"],
       "properties": {
         "key": {
           "type": "string",
@@ -297,10 +263,7 @@
           "items": {
             "type": "object",
             "additionalProperties": false,
-            "required": [
-              "assessmentMethod",
-              "evidenceIntent"
-            ],
+            "required": ["assessmentMethod", "evidenceIntent"],
             "properties": {
               "assessmentMethod": {
                 "enum": [
@@ -345,42 +308,21 @@
     "block": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "key",
-        "type",
-        "purpose",
-        "readiness",
-        "accessibility"
-      ],
+      "required": ["key", "type", "purpose", "readiness", "accessibility"],
       "properties": {
         "key": {
           "type": "string",
           "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
         },
         "type": {
-          "enum": [
-            "text",
-            "markdown",
-            "checkpoint",
-            "code",
-            "audio",
-            "video",
-            "youtube",
-            "image",
-            "carousel",
-            "scene"
-          ]
+          "enum": ["text", "markdown", "checkpoint", "code", "audio", "video", "youtube", "image", "carousel", "scene"]
         },
         "purpose": {
           "type": "string",
           "minLength": 1
         },
         "readiness": {
-          "enum": [
-            "available",
-            "typed-only",
-            "proposed"
-          ]
+          "enum": ["available", "typed-only", "proposed"]
         },
         "sourceText": {
           "type": "string",
@@ -393,20 +335,14 @@
         "assetRequest": {
           "type": "object",
           "additionalProperties": false,
-          "required": [
-            "description",
-            "status"
-          ],
+          "required": ["description", "status"],
           "properties": {
             "description": {
               "type": "string",
               "minLength": 1
             },
             "status": {
-              "enum": [
-                "pending",
-                "provided"
-              ]
+              "enum": ["pending", "provided"]
             },
             "path": {
               "type": "string",
@@ -444,20 +380,13 @@
           "if": {
             "properties": {
               "type": {
-                "enum": [
-                  "text",
-                  "markdown"
-                ]
+                "enum": ["text", "markdown"]
               }
             },
-            "required": [
-              "type"
-            ]
+            "required": ["type"]
           },
           "then": {
-            "required": [
-              "sourceText"
-            ]
+            "required": ["sourceText"]
           }
         },
         {
@@ -467,36 +396,23 @@
                 "const": "scene"
               }
             },
-            "required": [
-              "type"
-            ]
+            "required": ["type"]
           },
           "then": {
-            "required": [
-              "sceneSpecKey"
-            ]
+            "required": ["sceneSpecKey"]
           }
         },
         {
           "if": {
             "properties": {
               "type": {
-                "enum": [
-                  "image",
-                  "audio",
-                  "video",
-                  "carousel"
-                ]
+                "enum": ["image", "audio", "video", "carousel"]
               }
             },
-            "required": [
-              "type"
-            ]
+            "required": ["type"]
           },
           "then": {
-            "required": [
-              "assetRequest"
-            ]
+            "required": ["assetRequest"]
           }
         }
       ]
@@ -504,11 +420,7 @@
     "sceneSpec": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "key",
-        "path",
-        "status"
-      ],
+      "required": ["key", "path", "status"],
       "properties": {
         "key": {
           "type": "string",
@@ -519,41 +431,24 @@
           "pattern": "^scenes/[a-zA-Z0-9-]+\\.scene-spec\\.md$"
         },
         "status": {
-          "enum": [
-            "draft",
-            "approved"
-          ]
+          "enum": ["draft", "approved"]
         }
       }
     },
     "dependency": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "kind",
-        "description",
-        "status"
-      ],
+      "required": ["kind", "description", "status"],
       "properties": {
         "kind": {
-          "enum": [
-            "scene",
-            "assessment",
-            "media",
-            "platform",
-            "localization",
-            "other"
-          ]
+          "enum": ["scene", "assessment", "media", "platform", "localization", "other"]
         },
         "description": {
           "type": "string",
           "minLength": 1
         },
         "status": {
-          "enum": [
-            "pending",
-            "ready"
-          ]
+          "enum": ["pending", "ready"]
         },
         "owner": {
           "type": "string",
