@@ -2,33 +2,6 @@
   "name": "@svitlo/indexdb",
   "version": "0.0.0",
   "private": true,
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
-    },
-    "./controllers": {
-      "types": "./dist/controllers.d.ts",
-      "default": "./dist/controllers.js"
-    },
-    "./utils": {
-      "types": "./dist/utils.d.ts",
-      "default": "./dist/utils.js"
-    },
-    "./schemas": {
-      "types": "./dist/schemas.d.ts",
-      "default": "./dist/schemas.js"
-    },
-    "./config": {
-      "types": "./dist/config.d.ts",
-      "default": "./dist/config.js"
-    }
-  },
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "package:build": "tsc -p tsconfig.build.json",
     "code:check:types": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.browser.json --noEmit",
@@ -58,6 +31,33 @@
     "react": "19.3.0",
     "react-dom": "19.3.0"
   },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./controllers": {
+      "types": "./dist/controllers.d.ts",
+      "default": "./dist/controllers.js"
+    },
+    "./utils": {
+      "types": "./dist/utils.d.ts",
+      "default": "./dist/utils.js"
+    },
+    "./schemas": {
+      "types": "./dist/schemas.d.ts",
+      "default": "./dist/schemas.js"
+    },
+    "./config": {
+      "types": "./dist/config.d.ts",
+      "default": "./dist/config.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "typesVersions": {
     "*": {
       "controllers": [

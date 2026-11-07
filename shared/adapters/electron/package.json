@@ -3,20 +3,6 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "exports": {
-    ".": {
-      "types": "./dist/renderer.d.ts",
-      "default": "./dist/renderer.js"
-    },
-    "./main": {
-      "types": "./dist/main.d.ts",
-      "default": "./dist/main.js"
-    },
-    "./resources": {
-      "types": "./dist/resourcePath.d.ts",
-      "default": "./dist/resourcePath.js"
-    }
-  },
   "scripts": {
     "package:build": "tsc -p tsconfig.build.json",
     "code:check:types": "tsc -p tsconfig.json --noEmit",
@@ -31,5 +17,19 @@
     "@types/node": "^20",
     "electron": "45.2.2",
     "typescript": "^5"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/renderer.d.ts",
+      "default": "./dist/renderer.js"
+    },
+    "./main": {
+      "types": "./dist/main.d.ts",
+      "default": "./dist/main.js"
+    },
+    "./resources": {
+      "types": "./dist/resourcePath.d.ts",
+      "default": "./dist/resourcePath.js"
+    }
   }
 }

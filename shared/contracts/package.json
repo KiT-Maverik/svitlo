@@ -2,12 +2,6 @@
   "name": "@svitlo/contracts",
   "version": "0.0.0",
   "private": true,
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "devDependencies": {
-    "typescript": "^5",
-    "@types/node": "^20"
-  },
   "scripts": {
     "package:build": "tsc -p tsconfig.build.json",
     "code:check:types": "tsc -p tsconfig.json --noEmit",
@@ -16,6 +10,12 @@
     "code:format:check": "prettier --check . --ignore-path ../../.prettierignore",
     "code:format:fix": "prettier --write . --ignore-path ../../.prettierignore"
   },
+  "devDependencies": {
+    "typescript": "^5",
+    "@types/node": "^20"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",

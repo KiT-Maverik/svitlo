@@ -3,6 +3,24 @@
   "version": "0.0.0",
   "private": true,
   "type": "commonjs",
+  "scripts": {
+    "package:build": "tsc -p tsconfig.build.json",
+    "code:check:types": "tsc -p tsconfig.json --noEmit",
+    "prepack": "npm run package:build",
+    "code:format:check": "prettier --check . --ignore-path ../../../.prettierignore",
+    "code:format:fix": "prettier --write . --ignore-path ../../../.prettierignore"
+  },
+  "dependencies": {
+    "@svitlo/engine": "0.0.0",
+    "@svitlo/ui-kit": "0.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "next": "16.4.2",
+    "react": "19.3.0",
+    "typescript": "^5"
+  },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
@@ -22,26 +40,8 @@
   "files": [
     "dist"
   ],
-  "scripts": {
-    "package:build": "tsc -p tsconfig.build.json",
-    "code:check:types": "tsc -p tsconfig.json --noEmit",
-    "prepack": "npm run package:build",
-    "code:format:check": "prettier --check . --ignore-path ../../../.prettierignore",
-    "code:format:fix": "prettier --write . --ignore-path ../../../.prettierignore"
-  },
-  "dependencies": {
-    "@svitlo/engine": "0.0.0",
-    "@svitlo/ui-kit": "0.0.0"
-  },
   "peerDependencies": {
     "next": "16.4.2",
     "react": "^19.3.0"
-  },
-  "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "next": "16.4.2",
-    "react": "19.3.0",
-    "typescript": "^5"
   }
 }
