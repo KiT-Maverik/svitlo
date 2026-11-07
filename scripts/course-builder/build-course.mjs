@@ -118,6 +118,11 @@ export async function resolveCourseSource(courseFolder, reference) {
   if (!fs.existsSync(file) || !fs.statSync(file).isFile()) {
     error('COURSE_SOURCE', 'missing approved Course-owned TS source: ' + file);
   }
+  const realFolder = fs.realpathSync(courseFolder);
+  const realFile = fs.realpathSync(file);
+  if (!realFile.startsWith(realFolder + path.sep)) {
+    error('COURSE_SOURCE', 'Course-owned source resolves outside its Course directory: ' + file);
+  }
   const source = ts.createSourceFile(file, fs.readFileSync(file, 'utf8'), ts.ScriptTarget.Latest, true);
   const exports = source.statements.flatMap(statement => {
     const isExport = statement.modifiers?.some(m => m.kind === ts.SyntaxKind.ExportKeyword);
