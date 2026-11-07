@@ -45,43 +45,19 @@ export function chooseChecks(changed, workspaces) {
   const affected = new Set();
   const packages = new Map(workspaces.map(w => [w.name, w]));
   const global = changed.some(f => f === 'package.json' || f.startsWith('scripts/check-workspaces'));
-  const sharedTextbookTooling = changed.some(f => f.startsWith('scripts/textbook-tooling/'));
   const lockChange = changed.includes('package-lock.json');
   for (const file of changed) {
     const pkg = packageFor(file, workspaces);
     if (pkg) affected.add(pkg.name);
-    if (
-      file.startsWith('shared/') &&
-      pkg &&
-      ['@svitlo/contracts', '@svitlo/engine', '@svitlo/indexdb', '@svitlo/ui-kit'].includes(pkg.name)
-    ) {
-      affected.add('@svitlo/math');
-    }
   }
   if (global) for (const name of packages.keys()) affected.add(name);
-  if (sharedTextbookTooling) {
-    for (const name of ['@svitlo/playground', '@svitlo/art', '@svitlo/astronomy']) {
-      if (packages.has(name)) affected.add(name);
-    }
-  }
   if (lockChange)
-    for (const name of ['@svitlo/contracts', '@svitlo/engine', '@svitlo/indexdb', '@svitlo/ui-kit', '@svitlo/math']) {
+    for (const name of ['@svitlo/contracts', '@svitlo/engine', '@svitlo/indexdb', '@svitlo/ui-kit']) {
       if (packages.has(name)) affected.add(name);
     }
-  const taxonomy =
-    global ||
-    lockChange ||
-    changed.some(
-      f =>
-        f.startsWith('content/math/data/skills/') ||
-        f.startsWith('scripts/check-skills-taxonomy-structure') ||
-        f.startsWith('shared/contracts/') ||
-        f.startsWith('shared/engine/'),
-    );
-  const mathComponents = changed.some(f => f.startsWith('content/math/src/') && /\.(ts|tsx|js|jsx)$/.test(f));
   const jsFiles = changed.filter(f => /\.(?:mjs|cjs|js)$/.test(f) && fs.existsSync(path.join(repoRoot, f)));
   const jsonFiles = changed.filter(f => f.endsWith('.json') && fs.existsSync(path.join(repoRoot, f)));
-  return { affected, taxonomy, mathComponents, jsFiles, jsonFiles };
+  return { affected, jsFiles, jsonFiles };
 }
 function changedFiles(base, head) {
   assert(/^[a-f0-9]{40}$/.test(base) && /^[a-f0-9]{40}$/.test(head), 'Base and head must be 40-character commit SHAs');
@@ -96,7 +72,7 @@ function runGate(changed) {
   const plan = chooseChecks(changed, workspaces);
   for (const f of plan.jsFiles) exec('node', ['--check', f]);
   for (const f of plan.jsonFiles) json(f);
-  exec('node', ['--test', 'scripts/check-skills-taxonomy-structure.spec.mjs', 'scripts/run-fast-gate.spec.mjs']);
+  exec('node', ['--test', 'scripts/run-fast-gate.spec.mjs']);
   if (
     changed.some(
       f =>
@@ -134,7 +110,6 @@ function runGate(changed) {
       'scripts/generate-skills-taxonomy.roundtrip.spec.mjs',
     ]);
   }
-  if (plan.taxonomy) exec('node', ['scripts/check-skills-taxonomy-structure.mjs']);
 
   const built = new Set();
   function ensureSharedDependencies(name, visiting = new Set()) {
@@ -168,74 +143,8 @@ function runGate(changed) {
     return index < 0 ? priority.length : index;
   };
   const targets = [...plan.affected].sort((a, b) => rank(a) - rank(b) || a.localeCompare(b));
-  // A non-Next React DOM browser bundle proves that textbook exports and lazy
-  // Scenes work without the Next.js compiler. Run before unrelated typechecks.
-  if (
-    changed.some(
-      file =>
-        file.startsWith('apps/web/') ||
-        file.startsWith('content/playground/scenes/') ||
-        file.startsWith('content/playground/scripts/') ||
-        file.startsWith('scripts/textbook-tooling/') ||
-        file === 'content/playground/package.json' ||
-        file === 'shared/ui-kit/src/scene-locale.tsx',
-    )
-  ) {
-    exec('npm', ['run', 'test:portability', '--workspace', '@svitlo/playground']);
-  }
-
-  if (
-    changed.some(
-      file =>
-        file.startsWith('content/playground/scripts/') ||
-        file === 'content/playground/package.json' ||
-        file.startsWith('apps/web/scripts/prepare-textbook'),
-    )
-  ) {
-    exec('npm', ['run', 'test:publish', '--workspace', '@svitlo/playground']);
-  }
-
-  // Authored textbook taxonomy imports @svitlo/engine/taxonomy. Its exported declarations
-  // exist only after the shared Engine build; data/ is now included in textbook tsconfigs.
-  // Build this prerequisite for affected textbooks even when their manifests have not
-  // yet declared an explicit Engine dependency.
-  // A textbook migration changes the packed npm contract, not only TypeScript.
-  // Run its build once and both package-scoped resource/consumer checks.
-  for (const subject of ['math', 'physics', 'psychology', 'philosophy', 'language-literature', 'ukrainian']) {
-    const pkg = all.get('@svitlo/' + subject);
-    if (
-      !pkg ||
-      (!changed.some(file => file.startsWith(pkg.path + '/')) &&
-        !(
-          changed.some(file => file.startsWith('scripts/textbook-tooling/')) && ['math', 'ukrainian'].includes(subject)
-        ))
-    )
-      continue;
-    ensureSharedDependencies(pkg.name);
-    exec('npm', ['run', 'build', '--workspace', pkg.name]);
-    exec(
-      'node',
-      ['--test', path.join(repoRoot, 'scripts/textbook-tooling/test-publish.mjs')],
-      path.join(repoRoot, pkg.path),
-    );
-    exec(
-      'node',
-      [path.join(repoRoot, 'scripts/textbook-tooling/check-portability.mjs')],
-      path.join(repoRoot, pkg.path),
-    );
-  }
-
-  const textbookTaxonomyChanged = targets.some(name => {
-    const pkg = all.get(name);
-    return pkg?.path.startsWith('content/') && fs.existsSync(path.join(repoRoot, pkg.path, 'data/skills'));
-  });
-  if (textbookTaxonomyChanged) {
-    ensureSharedDependencies('@svitlo/engine');
-    if (!built.has('@svitlo/engine')) {
-      exec('npm', ['run', 'build', '--workspace', '@svitlo/engine']);
-      built.add('@svitlo/engine');
-    }
-  }
+  // Content package compilation, Skills validation and portability belong to
+  // the dedicated Content Build workflow. FastGate validates workspace types.
   for (const name of targets) {
     const pkg = all.get(name);
     if (!pkg?.scripts?.typecheck) continue;
@@ -292,18 +201,13 @@ function runGate(changed) {
       'scripts/generate-lesson-review-artifacts.spec.mjs',
     ]);
   }
-
-  if (plan.mathComponents) {
-    ensureSharedDependencies('@svitlo/math');
-    exec('npm', ['run', 'test:components', '--workspace', '@svitlo/math']);
-  }
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   try {
     const args = process.argv.slice(2);
     if (args.length === 1 && args[0] === '--all') {
-      runGate(['package.json', 'content/math/data/skills/index.ts']);
+      runGate(['package.json']);
     } else if (args.length === 2) {
       runGate(changedFiles(args[0], args[1]));
     } else throw new Error('Usage: node scripts/run-fast-gate.mjs <base-sha> <head-sha> | --all');
