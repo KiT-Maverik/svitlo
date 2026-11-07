@@ -9,6 +9,7 @@ import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import yaml from 'js-yaml';
 import Ajv2020 from 'ajv2020/dist/2020.js';
+import { compileFlashcards, serializeFlashcardsTS } from './lib/lesson-flashcards.mjs';
 
 export const repoRoot = path.resolve(fileURLToPath(new URL('..', import.meta.url)));
 const schemaRoot = path.join(repoRoot, 'studio/skills/lesson-workflow');
@@ -18,6 +19,7 @@ const schemas = [
   ['methodology', 'lesson-methodology-frontmatter.schema.json'],
   ['content', 'lesson-content.schema.json'],
   ['questions', 'lesson-questions.schema.json'],
+  ['flashcards', 'lesson-flashcards.schema.json'],
 ];
 
 export class BuilderDiagnostic extends Error {
@@ -458,18 +460,41 @@ function inputFor(root) {
   const methodology = loadMethodology(methodologyText, method);
   const questionText = read(path.join(root, 'questions/questions.yaml'));
   const questions = loadYAML(questionText, 'questions/questions.yaml');
-  return { content, questions, methodology,
+  const flashcardsFile = path.join(root, 'flashcards/flashcards.yaml');
+  const flashcardsText = fs.existsSync(flashcardsFile) ? read(flashcardsFile) : null;
+  const flashcards = flashcardsText === null ? null : loadYAML(flashcardsText, 'flashcards/flashcards.yaml');
+  return { content, questions, methodology, flashcards,
     inputs: { [content.methodologySource]: sha(methodologyText),
-      'content.yaml': sha(contentText), 'questions/questions.yaml': sha(questionText) } };
+      'content.yaml': sha(contentText), 'questions/questions.yaml': sha(questionText),
+      ...(flashcardsText === null ? {} : { 'flashcards/flashcards.yaml': sha(flashcardsText) }) } };
 }
 function generateModel(target, input) {
   const { root, workspace, lessonId } = target;
-  const { content, questions, methodology } = input;
+  const { content, questions, methodology, flashcards } = input;
   const requirements = [];
   const validators = schemaValidators();
   validateSchema(validators.methodology, methodology, content.methodologySource);
   validateSchema(validators.content, content, 'content.yaml');
   validateSchema(validators.questions, questions, 'questions/questions.yaml');
+  if (flashcards) {
+    validateSchema(validators.flashcards, flashcards, 'flashcards/flashcards.yaml');
+    required(flashcards.status === 'approved', 'flashcards/flashcards.yaml', 'status',
+      'Flashcard bank must be approved');
+    required(flashcards.lessonId === content.lessonId, 'flashcards/flashcards.yaml', 'lessonId',
+      'does not match approved Lesson ID');
+    required(flashcards.documentLanguage === content.documentLanguage,
+      'flashcards/flashcards.yaml', 'documentLanguage', 'must match source documentLanguage');
+    required(sameList(flashcards.supportedLanguages, content.supportedLanguages),
+      'flashcards/flashcards.yaml', 'supportedLanguages', 'must match canonical Lesson languages');
+    for (const [kind, expected] of [
+      ['methodology', content.methodologySource],
+      ['content', 'content.yaml'],
+      ['questions', 'questions/questions.yaml'],
+    ]) {
+      required(flashcards.sources[kind].path === expected, 'flashcards/flashcards.yaml',
+        'sources.' + kind + '.path', 'must reference canonical approved ' + expected);
+    }
+  }
   required(content.lessonId === lessonId, 'content.yaml', 'lessonId', 'UUID differs from directory');
   const skills = checkSources(root, content, questions, methodology);
   verifySkills(workspace, skills);
@@ -510,9 +535,19 @@ function generateModel(target, input) {
   if (content.supportedLanguages.some(code => code !== language))
     issue(requirements, 'localization', 'supportedLanguages',
       'Translation Production must supply ' + content.supportedLanguages.filter(code => code !== language).join(', '));
-  issue(requirements, 'contract', 'flashcards',
-    'Flashcards YAML -> canonical Flashcard contract integration deferred until the parallel contract is approved');
-  return { bank, sections, skills, requirements };
+  let compiledFlashcards = null;
+  if (flashcards) {
+    compiledFlashcards = compileFlashcards({
+      source: flashcards, bank, lessonId, language, workspace,
+      helpers: { uuid5, loc, safeAsset, issue, fail, required, unique },
+    });
+    requirements.push(...compiledFlashcards.requirements);
+  } else {
+    issue(requirements, 'editorial', 'flashcards/flashcards.yaml',
+      'Await approved Flashcard Learning Architect bank after the approved Question Bank',
+      'Flashcard Learning Architect');
+  }
+  return { bank, sections, skills, flashcards: compiledFlashcards, requirements };
 }
 function renderLesson(input, model) {
   const content = input.content;
@@ -527,16 +562,21 @@ function renderLesson(input, model) {
         JSON.stringify(block, null, 2) + ')').join(',\n') + '] })';
   });
   return marker + '\n' +
-    "import { createLesson, createSection, createContentBlock } from '@svitlo/engine/builders';\n" +
+    "import { createLesson, createSection, createContentBlock, linkFlashcards } from '@svitlo/engine/builders';\n" +
     "import type { Locale_Languages, Question_Catalog } from '@svitlo/contracts/content';\n\n" +
     'export const supportedLanguages = ' + languages + ' as const satisfies Locale_Languages;\n' +
     'export type Languages = typeof supportedLanguages;\n' +
     'export const questionBank = ' + bank + " satisfies Question_Catalog<'data', Languages>;\n" +
+    (model.flashcards
+      ? 'export const flashcards = linkFlashcards<Languages>(' +
+        serializeFlashcardsTS(model.flashcards.cards) + ', ' +
+        serializeFlashcardsTS(model.flashcards.links) + ');\n'
+      : 'export const flashcards = [];\n') +
     'export const lessonCreator = createLesson<Languages>()({\n' +
     '  id: ' + JSON.stringify(content.lessonId) + ',\n' +
     '  slug: ' + JSON.stringify(content.lessonSlug) + ',\n' +
     '  title: ' + JSON.stringify(sourceText(content.title, content.documentLanguage)) + ',\n' +
-    '  flashcards: [],\n' +
+    '  flashcards,\n' +
     '  skills: ' + JSON.stringify(model.skills) + ',\n' +
     '  parameters: { requireQuiz: ' + content.sections.some(s => s.type === 'quiz') +
     ', languages: supportedLanguages, sections: { allowNavigation: true, allowSkipping: true, showIndexes: true } },\n' +
