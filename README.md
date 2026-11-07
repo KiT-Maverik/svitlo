@@ -44,7 +44,20 @@ npm run build
 npm run packages:artifacts:check
 ```
 
-Run a textbook: `npm run dev:<subject-slug>` (all 16 subjects). Run Platform: `npm run dev:platform`; Playground: `npm run dev`. Each Next.js app is independent; simultaneous development servers require different ports.
+Run the Web host with Playground: `npm run dev`. Run the Platform app separately with
+`npm run dev --workspace @svitlo/platform`; use different ports for simultaneous development servers.
+
+Build or check a content package directly using its workspace name, for example:
+
+```bash
+npm run build --workspace @svitlo/physics
+npm run typecheck --workspace @svitlo/physics
+npm run test --workspace @svitlo/math
+```
+
+Content packages are not individual development servers. Some focused builds require previously built shared packages;
+use the root `npm run build` for the full dependency-ordered build, or build the necessary shared dependencies first.
+The removed root-level subject aliases (such as `build:physics`) are equivalent to these workspace commands.
 
 Browser testing after `npx playwright install chromium` and a build:
 
