@@ -17,13 +17,13 @@ The first release supports only SVITLO_TEXTBOOK=playground.
 
 After npm ci at the monorepo root:
 
-    SVITLO_TEXTBOOK=playground npm run dev --workspace @svitlo/desktop
-    SVITLO_TEXTBOOK=playground npm run build --workspace @svitlo/desktop
-    npm run typecheck --workspace @svitlo/desktop
-    npm run lint --workspace @svitlo/desktop
+    SVITLO_TEXTBOOK=playground npm run app:start:dev --workspace @svitlo/desktop
+    SVITLO_TEXTBOOK=playground npm run app:build --workspace @svitlo/desktop
+    npm run code:check:types --workspace @svitlo/desktop
+    npm run code:lint:check --workspace @svitlo/desktop
     npm run test --workspace @svitlo/desktop
     npm run test:smoke --workspace @svitlo/desktop
-    npm run package --workspace @svitlo/desktop
+    npm run app:pack --workspace @svitlo/desktop
 
 Use package:win, package:mac or package:linux on the corresponding build OS.
 Only targets actually tested on that OS should be described as verified.
