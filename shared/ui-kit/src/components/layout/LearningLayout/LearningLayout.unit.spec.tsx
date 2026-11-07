@@ -27,6 +27,7 @@ describe('LearningLayout preparation', () => {
     expect(top).toBeVisible();
     expect(top.parentElement).toHaveClass('svitlo-theme-surface');
     expect(top).toHaveClass('svitlo-theme-chrome');
+    expect(top).toHaveStyle({ userSelect: 'none' });
     expect(bottom).toBeVisible();
     expect(bottom).toHaveClass('svitlo-theme-chrome');
     expect(screen.getByRole('status')).toHaveTextContent(uk.preparingLesson);
