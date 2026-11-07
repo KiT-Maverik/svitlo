@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { afterEach, describe, expect, it } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { useColorScheme, useTheme } from '@mui/material/styles';
-import MuiThemeProvider from './MuiThemeProvider';
+import { useTheme } from '@mui/material/styles';
+import { SvitloThemeProvider, useSvitloColorScheme } from '@svitlo/ui-kit/theme';
 
 function ThemeConsumer() {
-  const { mode, setMode } = useColorScheme();
+  const { mode, setMode } = useSvitloColorScheme();
   const theme = useTheme();
   const [count, setCount] = useState(0);
 
@@ -28,7 +28,7 @@ function ThemeConsumer() {
   );
 }
 
-describe('Web color scheme provider', () => {
+describe('Web integration with shared color scheme provider', () => {
   afterEach(() => {
     window.localStorage.removeItem('mui-mode');
   });
@@ -36,9 +36,9 @@ describe('Web color scheme provider', () => {
   it('switches the active CSS color scheme without losing page state', async () => {
     window.localStorage.removeItem('mui-mode');
     render(
-      <MuiThemeProvider direction="ltr">
+      <SvitloThemeProvider direction="ltr">
         <ThemeConsumer />
-      </MuiThemeProvider>,
+      </SvitloThemeProvider>,
     );
 
     await waitFor(() => expect(screen.getByTestId('mode')).not.toHaveTextContent(''));

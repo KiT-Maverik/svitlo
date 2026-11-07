@@ -1,10 +1,9 @@
 import '@/generated/textbookStyles';
 import type { ReactNode } from 'react';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
-import CssBaseline from '@mui/material/CssBaseline';
 import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 import type { TextDirection } from '@svitlo/engine/localization';
-import MuiThemeProvider from './MuiThemeProvider';
+import { SvitloThemeProvider } from '@svitlo/ui-kit/theme';
 
 export default function AppDocument({
   children,
@@ -20,10 +19,7 @@ export default function AppDocument({
       <body>
         <InitColorSchemeScript attribute="data" />
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-          <MuiThemeProvider direction={direction}>
-            <CssBaseline />
-            {children}
-          </MuiThemeProvider>
+          <SvitloThemeProvider direction={direction}>{children}</SvitloThemeProvider>
         </AppRouterCacheProvider>
       </body>
     </html>

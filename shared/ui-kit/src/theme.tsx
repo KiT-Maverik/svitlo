@@ -1,0 +1,57 @@
+'use client';
+
+import type { ReactNode } from 'react';
+import CssBaseline from '@mui/material/CssBaseline';
+import GlobalStyles from '@mui/material/GlobalStyles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+// Export the hook from the same MUI module instance that owns ThemeProvider.
+// Cross-platform consumers must not mix ESM and CommonJS MUI color-scheme contexts.
+export { useColorScheme as useSvitloColorScheme } from '@mui/material/styles';
+import type { TextDirection } from '@svitlo/engine/localization';
+
+/**
+ * The same MUI palette, CSS-variable color schemes and motion are used by
+ * Next.js, Electron and Capacitor. The host owns only routing, persistence
+ * and (for SSR) the initial color-scheme script.
+ */
+const colorSchemes = {
+  light: true,
+  dark: { palette: { primary: { main: '#1976d2', contrastText: '#fff' } } },
+} as const;
+
+const themes = {
+  ltr: createTheme({ cssVariables: { colorSchemeSelector: 'data' }, colorSchemes, direction: 'ltr' }),
+  rtl: createTheme({ cssVariables: { colorSchemeSelector: 'data' }, colorSchemes, direction: 'rtl' }),
+};
+
+/** Paint-only transitions; MUI component-specific movement stays authoritative. */
+const themeTransitions = {
+  '@media (prefers-reduced-motion: no-preference)': {
+    ':where(body, .MuiBox-root, .MuiPaper-root, .MuiTypography-root, .MuiSvgIcon-root, .MuiButton-root, .MuiIconButton-root, .MuiInputBase-root, .MuiOutlinedInput-notchedOutline, .MuiDivider-root, .MuiChip-root, .MuiListItemButton-root, .MuiTab-root, .MuiAlert-root)':
+      {
+        transitionProperty: 'background-color, color, border-color, box-shadow, fill, stroke',
+        transitionDuration: '280ms',
+        transitionTimingFunction: 'ease-in-out',
+      },
+  },
+} as const;
+
+export type SvitloThemeProviderProps = {
+  children: ReactNode;
+  direction: TextDirection;
+  /** The host can keep its existing initial mode without defining palettes. */
+  defaultMode?: 'light' | 'dark' | 'system';
+  /** Browser-only hosts can skip the server hydration reconciliation. */
+  noSsr?: boolean;
+};
+
+export function SvitloThemeProvider({ children, direction, defaultMode, noSsr }: SvitloThemeProviderProps) {
+  return (
+    <ThemeProvider theme={themes[direction]} defaultMode={defaultMode} noSsr={noSsr}>
+      <CssBaseline />
+      <GlobalStyles styles={themeTransitions} />
+      {children}
+    </ThemeProvider>
+  );
+}

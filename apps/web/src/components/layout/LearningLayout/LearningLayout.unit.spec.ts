@@ -5,7 +5,7 @@ vi.mock('@/i18n/useLessonLocale', () => ({ useLessonLocale: vi.fn() }));
 import { createElement } from 'react';
 import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import MuiThemeProvider from '@/app/MuiThemeProvider';
+import { SvitloThemeProvider } from '@svitlo/ui-kit/theme';
 import LearningLayout from './LearningLayout';
 import { LearningLayout_fx } from './LearningLayout.unit.fx';
 import { LearningLayout_mx } from './LearningLayout.unit.mx';
@@ -90,7 +90,7 @@ describe('Layouts', () => {
       window.localStorage.setItem('mui-mode', 'light');
       try {
         render(
-          createElement(MuiThemeProvider, {
+          createElement(SvitloThemeProvider, {
             direction: 'ltr',
             children: createElement(LearningLayout, {
               ...LearningLayout_fx.defaults,

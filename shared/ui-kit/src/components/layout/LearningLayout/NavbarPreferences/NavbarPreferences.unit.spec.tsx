@@ -178,13 +178,21 @@ describe('NavbarPreferences in shared UI Kit', () => {
     expect(setMode).toHaveBeenCalledWith('light');
   });
 
-  it('shows a sun in light mode and a moon in dark mode', () => {
+  it('keeps both theme icons mounted so they can crossfade during a toggle', () => {
     const view = renderPreferences();
-    expect(screen.getByTestId('WbSunnyRoundedIcon')).toBeVisible();
+    const sun = screen.getByTestId('WbSunnyRoundedIcon');
+    const moon = screen.getByTestId('DarkModeRoundedIcon');
+    expect(sun).toHaveClass('theme-switch-icon--sun');
+    expect(moon).toHaveClass('theme-switch-icon--moon');
+    expect(theme()).not.toBeChecked();
+
     view.rerender(
       <NavbarPreferences locale="uk-UA" messages={uk} onLocaleChange={setLocale} mode="dark" onThemeChange={setMode} />,
     );
-    expect(screen.getByTestId('DarkModeRoundedIcon')).toBeVisible();
+
+    expect(theme()).toBeChecked();
+    expect(screen.getByTestId('WbSunnyRoundedIcon')).toBe(sun);
+    expect(screen.getByTestId('DarkModeRoundedIcon')).toBe(moon);
   });
 
   it('applies both MUI CSS color schemes through the real ThemeProvider', async () => {
