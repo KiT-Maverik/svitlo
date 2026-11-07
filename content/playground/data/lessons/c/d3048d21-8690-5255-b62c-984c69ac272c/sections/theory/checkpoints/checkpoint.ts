@@ -233,7 +233,7 @@ type CheckpointAnswer = Checkpoint_ContentBlock<'data'>['items'][number]['answer
 export const checkpointData = {
   type: 'checkpoint',
   id: 'cd65e160-da27-57e1-a58f-38b1276c4346',
-  slug: 'checkpoint' as const,
+  slug: 'checkpoint',
   title: checkpoint.title,
   items: checkpoint.items.map(({ question, answer }, index) => ({
     question,

@@ -357,10 +357,10 @@ export type LightRayDiagram_ContentBlock<ConfigType extends 'definition' | 'data
   Locale
 >;
 
-export const lightRayDiagramData = {
+export const lightRayDiagram = {
   type: 'scene',
-  id: 'how-light-moves-scene-ray',
-  slug: 'lightRayDiagram' as const,
+  id: 'uuid',
+  slug: 'lightRayDiagram',
   locales: {
     en,
     ar,
