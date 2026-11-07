@@ -287,6 +287,7 @@ test('single-language generated TypeScript matches real Engine/Contracts APIs', 
     f.questions.supportedLanguages = ['en'];
     f.methodology.supportedLanguages = ['en'];
     f.save();
+    writeFlashcards(f, bank => { bank.supportedLanguages = ['en']; return bank; });
     runOne(f.lesson, 'generate', f.repo);
     const generated = f.generated('lesson.data.ts');
     const options = {
