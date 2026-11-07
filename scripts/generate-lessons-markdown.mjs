@@ -144,7 +144,8 @@ export async function generate(options, { root = repositoryRoot, loader = loadLe
       throw new Error(`Lesson identity mismatch at ${item.entry}`);
     const sources = sourceIndex(root, path.relative(root, item.directory));
     const commit = spawnSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' });
-    const sourceRef = commit.status === 0 && /^[0-9a-f]{40}$/.test(commit.stdout.trim()) ? commit.stdout.trim() : 'main';
+    const sourceRef =
+      commit.status === 0 && /^[0-9a-f]{40}$/.test(commit.stdout.trim()) ? commit.stdout.trim() : 'main';
     const markdown = renderLessonMarkdown({
       lesson,
       locale: options.locale,

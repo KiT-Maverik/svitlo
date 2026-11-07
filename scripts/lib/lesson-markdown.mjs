@@ -44,24 +44,32 @@ export function localizeReviewValue(input, requested, allowedLanguages, knownLan
     if (keys.length === 2 && keys.includes('language') && keys.includes('value')) {
       throw new Error(`Legacy single-language fallback is not allowed at ${ptr(parts)}`);
     }
-    const isLegacyFallback = keys.includes('fallback') &&
+    const isLegacyFallback =
+      keys.includes('fallback') &&
       keys.some(key => key !== 'fallback') &&
       keys.filter(key => key !== 'fallback').every(key => known.has(key));
     if (isLegacyFallback) throw new Error(`Field-level fallback is not allowed at ${ptr(parts)}`);
-    const localized = keys.length > 0 && keys.every(key => known.has(key)) &&
+    const localized =
+      keys.length > 0 &&
+      keys.every(key => known.has(key)) &&
       Object.values(value).some(item => typeof item === 'string');
     if (localized) {
       const missing = [...languages].filter(code => !Object.hasOwn(value, code));
       const invalid = keys.filter(key => typeof value[key] !== 'string');
       const unexpected = keys.filter(key => !languages.has(key));
       if (missing.length || invalid.length || unexpected.length) {
-        throw new Error(`Incomplete locale dictionary at ${ptr(parts)} (missing: ${missing.join(', ')}; unexpected: ${unexpected.join(', ')}; invalid: ${invalid.join(', ')})`);
+        throw new Error(
+          `Incomplete locale dictionary at ${ptr(parts)} (missing: ${missing.join(', ')}; unexpected: ${unexpected.join(', ')}; invalid: ${invalid.join(', ')})`,
+        );
       }
       sources[ptr(parts)] = { code: requested };
       return value[requested];
     }
-    return Object.fromEntries(Object.entries(value).filter(([, child]) => child !== undefined)
-      .map(([key, child]) => [key, visit(child, [...parts, key])]));
+    return Object.fromEntries(
+      Object.entries(value)
+        .filter(([, child]) => child !== undefined)
+        .map(([key, child]) => [key, visit(child, [...parts, key])]),
+    );
   }
   return { value: visit(input, []), sources };
 }
@@ -98,16 +106,12 @@ export function sourceIndex(repositoryRoot, lessonRelativePath) {
   };
 }
 
-export function renderLessonMarkdown({
-  lesson,
-  locale,
-  languages,
-  packagePath,
-  sourceFiles,
-  sourceRef = 'main',
-}) {
+export function renderLessonMarkdown({ lesson, locale, languages, packagePath, sourceFiles, sourceRef = 'main' }) {
   const record = value => value !== null && typeof value === 'object' && !Array.isArray(value);
-  const escape = value => String(value).replaceAll('\r', '').replace(/([\\`*_[\]<>|])/g, '\\$1');
+  const escape = value =>
+    String(value)
+      .replaceAll('\r', '')
+      .replace(/([\\`*_[\]<>|])/g, '\\$1');
   const headingText = value => escape(value).replaceAll('\n', ' ');
   const canonical = value => {
     if (typeof value !== 'string' || !value.trim()) throw new Error('Missing or invalid text');
@@ -119,8 +123,12 @@ export function renderLessonMarkdown({
   const relative = resolveEntityPath(canonical(lesson.id));
   const slug = segment(lesson.slug, 'lesson slug');
   const supported = lesson.parameters?.languages;
-  if (!Array.isArray(supported) || !supported.length ||
-      supported.length !== new Set(supported).size || supported.some(code => !languages.includes(code))) {
+  if (
+    !Array.isArray(supported) ||
+    !supported.length ||
+    supported.length !== new Set(supported).size ||
+    supported.some(code => !languages.includes(code))
+  ) {
     throw new Error('Missing, duplicate or unsupported lesson languages');
   }
   if (!supported.includes(locale)) throw new Error(`Lesson ${relative} does not support locale ${locale}`);
@@ -131,16 +139,31 @@ export function renderLessonMarkdown({
   const lessonRoot = `${packagePath}/data/lessons/${relative}`;
   const files = sourceFiles?.files ?? [];
   const quoteRef = encodeURIComponent(sourceRef);
-  const link = file => `https://github.com/KiT-Maverik/svitlo-web/blob/${quoteRef}/${file.split('/').map(encodeURIComponent).join('/')}`;
+  const link = file =>
+    `https://github.com/KiT-Maverik/svitlo-web/blob/${quoteRef}/${file.split('/').map(encodeURIComponent).join('/')}`;
   const source = (id, fallback) => {
     const found = files.find(file => file.text.includes(`'${id}'`) || file.text.includes(`"${id}"`));
-    const target = found?.relative ?? (files.some(file => file.relative === fallback) ? fallback :
-      files.find(file => file.relative.endsWith('.data.ts'))?.relative ?? fallback);
+    const target =
+      found?.relative ??
+      (files.some(file => file.relative === fallback)
+        ? fallback
+        : (files.find(file => file.relative.endsWith('.data.ts'))?.relative ?? fallback));
     return `[source](${link(target)})`;
   };
   const lines = [];
   const add = text => lines.push(text);
-  const blockTypes = new Set(['text', 'markdown', 'checkpoint', 'code', 'audio', 'video', 'youtube', 'image', 'carousel', 'scene']);
+  const blockTypes = new Set([
+    'text',
+    'markdown',
+    'checkpoint',
+    'code',
+    'audio',
+    'video',
+    'youtube',
+    'image',
+    'carousel',
+    'scene',
+  ]);
   const mediaTypes = new Set(['image', 'audio', 'video', 'youtube', 'carousel']);
   const sourceEntry = `${lessonRoot}/${slug}.data.ts`;
   function writeValue(label, value, depth = 0, fallback = sourceEntry) {
@@ -156,9 +179,13 @@ export function renderLessonMarkdown({
       const type = value.type;
       if (typeof type === 'string' && Object.hasOwn(value, 'id') && Object.hasOwn(value, 'slug')) {
         if (!blockTypes.has(type)) throw new Error(`Unsupported content block type: ${type}`);
-        add(`${prefix}- **${title} · ${escape(type)}** (\`${escape(value.slug)}\`, \`${escape(value.id)}\`; ${source(value.id, fallback)})`);
+        add(
+          `${prefix}- **${title} · ${escape(type)}** (\`${escape(value.slug)}\`, \`${escape(value.id)}\`; ${source(value.id, fallback)})`,
+        );
         if (mediaTypes.has(type)) {
-          add(`${prefix}  - *Media is not embedded. Paths, accessible descriptions, captions and display/fallback metadata are shown below.*`);
+          add(
+            `${prefix}  - *Media is not embedded. Paths, accessible descriptions, captions and display/fallback metadata are shown below.*`,
+          );
         }
         const entries = Object.entries(value).filter(([key]) => !['id', 'slug', 'type'].includes(key));
         for (const [key, child] of entries) writeValue(key, child, depth + 1, fallback);
@@ -207,7 +234,9 @@ export function renderLessonMarkdown({
     if (!record(section) || typeof section.id !== 'string' || typeof section.slug !== 'string') {
       throw new Error(`Invalid section ${index + 1}`);
     }
-    add(`### ${index + 1}. ${headingText(section.title)} · ${headingText(section.slug)} (${headingText(section.type)})`);
+    add(
+      `### ${index + 1}. ${headingText(section.title)} · ${headingText(section.slug)} (${headingText(section.type)})`,
+    );
     add('');
     add(`- ID: \`${section.id}\``);
     add(`- Navigation: ${headingText(section.navigationLabel)}`);
@@ -232,8 +261,13 @@ export function renderLessonMarkdown({
   for (const [type, catalog] of Object.entries(localized.questions)) {
     if (!record(catalog)) throw new Error(`Invalid question catalog ${type}`);
     for (const [key, question] of Object.entries(catalog)) {
-      if (!record(question) || typeof question.id !== 'string' || !Array.isArray(question.question) ||
-          question.type !== type) throw new Error(`Invalid question ${type}/${key}`);
+      if (
+        !record(question) ||
+        typeof question.id !== 'string' ||
+        !Array.isArray(question.question) ||
+        question.type !== type
+      )
+        throw new Error(`Invalid question ${type}/${key}`);
       questionCount++;
       add(`### ${questionCount}. ${headingText(key)} · ${headingText(type)}`);
       add('');
@@ -250,8 +284,14 @@ export function renderLessonMarkdown({
   add('## Flashcard Bank');
   add('');
   localized.flashcards.forEach((card, index) => {
-    if (!record(card) || typeof card.id !== 'string' || !Array.isArray(card.front) || !Array.isArray(card.back) ||
-        !Array.isArray(card.hint)) throw new Error(`Invalid Flashcard ${index + 1}`);
+    if (
+      !record(card) ||
+      typeof card.id !== 'string' ||
+      !Array.isArray(card.front) ||
+      !Array.isArray(card.back) ||
+      !Array.isArray(card.hint)
+    )
+      throw new Error(`Invalid Flashcard ${index + 1}`);
     add(`### Flashcard ${index + 1}`);
     add('');
     add(`- ID: \`${card.id}\``);
