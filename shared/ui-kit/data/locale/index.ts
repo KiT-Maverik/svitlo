@@ -1,3 +1,4 @@
+export * from './assessmentMethods';
 export * from './audio';
 export * from './checkpoint';
 export * from './flashcard';

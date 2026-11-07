@@ -11,6 +11,8 @@ Current folder contract:
 ```text
 .agent-ci-artifacts/
   manifest.json
+  assessment-methods/
+    <language-key>.md
   taxonomies/
     <textbook-name>/
       <language-key>.md
@@ -21,7 +23,27 @@ Current folder contract:
           <language-key>.md
 ```
 
-The `manifest.json` records the canonical **last non-artifact source commit**, language roster, supported book paths, successfully generated documents and failures. `generated` entries include `kind: taxonomy` or `kind: lesson`; `summary` counts the successful documents and discovered lessons. Repeated generation without source changes produces the same manifest (no changing timestamp). Taxonomy Markdown references actual Code Skills entities, localizes headings and frontend descriptions, and retains canonical English methodological descriptions. Lesson Markdown represents canonical authored lessons and their localized educational content, including source links. Generated files are **not** writeback sources.
+The `manifest.json` records the canonical **last non-artifact source commit**, language roster, supported book paths, successfully generated documents and failures. `generated` entries include `kind: taxonomy`, `kind: lesson`, `kind: lessons-by-skill` or `kind: assessment-method`; `summary` counts the successful documents and discovered lessons. Repeated generation without source changes produces the same manifest (no changing timestamp). Taxonomy Markdown references actual Code Skills entities, localizes headings and frontend descriptions, and retains canonical English methodological descriptions. Lesson Markdown represents canonical authored lessons and their localized educational content, including source links. Generated files are **not** writeback sources.
+
+## Assessment Methods reference
+
+During the existing Agent CI Artifacts generation run, `scripts/generate-translation-review-artifacts.mjs` also invokes `scripts/generate-assessment-methods-reference.mjs` for **every language in `DEFAULT_SUPPORTED_LANGUAGES`**. This creates one temporary `.agent-ci-artifacts/assessment-methods/<language>.md` for each supported language and records each in the same `manifest.json` (`kind: assessment-method`, with `summary.assessmentMethodDocuments`). Missing IDs, English descriptions or UI Kit translations produce explicit manifest failures and fail the generation job. The standard path validation, publish/cleanup and merge guard remain unchanged; **do not create a separate workflow or publish these files as runtime data**.
+
+Each reference lists the 16 canonical `AssessmentMethodKey` values and UUIDs from Contracts, **short frontend labels in the selected language from UI Kit**, and **detailed pedagogical descriptions from the English Engine methodology, kept in English in every document**. The generated links resolve back to their respective canonical files. Assessment Methods describe the cognitive operation and evidence an assessment requires; Question types describe the learner's response mechanism or widget. This distinction is essential when planning Quiz Sections: multiple methods may be pedagogically justified across one Lesson's distinct Skills and learning outcomes, and a single Question type can assess different methods. The Methodologist plans evidence requirements and the need for quizzes; the Learning Assessment Architect designs valid Questions and scoring. Machine-readable configurations must use the canonical key, never the localized label.
+
+To inspect a specific language without writing files:
+
+```sh
+node scripts/generate-assessment-methods-reference.mjs --locale uk --stdout
+```
+
+To generate one selected language into the temporary workspace:
+
+```sh
+node scripts/generate-assessment-methods-reference.mjs --locale uk --output .agent-ci-artifacts/assessment-methods
+```
+
+If this PR-scoped document is not available, agents must inspect Contracts, the English Engine methodology and UI Kit locale sources directly. Never infer that missing reference files mean the method does not exist, and never invent new keys or labels.
 
 ## Lifecycle
 
