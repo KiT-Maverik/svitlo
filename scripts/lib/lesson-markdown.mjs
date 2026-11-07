@@ -29,51 +29,47 @@ export function supportedLanguages(repositoryRoot) {
 }
 
 /** Mirrors the runtime generator's field-level explicit fallback rules. */
-export function localizeReviewValue(input, requested, allowedLanguages) {
-  const allowed = new Set(allowedLanguages);
-  if (!allowed.has(requested)) throw new Error(`Unsupported requested language: ${requested}`);
+export function localizeReviewValue(input, requested, allowedLanguages, knownLanguages = allowedLanguages) {
+  const languages = new Set(allowedLanguages);
+  const known = new Set(knownLanguages);
+  if (!languages.has(requested)) throw new Error(`Unsupported requested language: ${requested}`);
   const sources = {};
+  const isObject = value => value !== null && typeof value === 'object' && !Array.isArray(value);
+  const ptr = parts => '/' + parts.map(part => String(part).replaceAll('~', '~0').replaceAll('/', '~1')).join('/');
   function visit(value, parts) {
     if (Array.isArray(value)) return value.map((item, index) => visit(item, [...parts, index]));
-    if (!isRecord(value)) {
-      if (value === null || ['string', 'number', 'boolean'].includes(typeof value)) return value;
-      throw new Error(`Unsupported value at ${pointer(parts)}`);
-    }
+    if (value === null || ['string', 'number', 'boolean'].includes(typeof value)) return value;
+    if (!isObject(value)) throw new Error(`Unsupported value at ${ptr(parts)}`);
     const keys = Object.keys(value);
     if (keys.length === 2 && keys.includes('language') && keys.includes('value')) {
-      if (!allowed.has(value.language) || typeof value.value !== 'string' || !value.value.trim()) {
-        throw new Error(`Invalid single-language value at ${pointer(parts)}`);
-      }
-      sources[pointer(parts)] =
-        value.language === requested ? { code: requested } : { code: value.language, isFallback: true };
-      return value.value;
+      throw new Error(`Legacy single-language fallback is not allowed at ${ptr(parts)}`);
     }
-    const fallbackPresent = Object.hasOwn(value, 'fallback');
-    const localeKeys = keys.filter(key => key !== 'fallback');
-    const looksLocalized =
-      fallbackPresent || (keys.length > 0 && keys.every(key => allowed.has(key) && typeof value[key] === 'string'));
-    if (looksLocalized) {
-      if (
-        !localeKeys.length ||
-        localeKeys.some(key => !allowed.has(key) || typeof value[key] !== 'string' || !value[key].trim())
-      ) {
-        throw new Error(`Invalid locale dictionary at ${pointer(parts)}`);
+    const isLegacyFallback =
+      keys.includes('fallback') &&
+      keys.some(key => key !== 'fallback') &&
+      keys.filter(key => key !== 'fallback').every(key => known.has(key));
+    if (isLegacyFallback) throw new Error(`Field-level fallback is not allowed at ${ptr(parts)}`);
+    const localized =
+      keys.length > 0 &&
+      keys.every(key => known.has(key)) &&
+      Object.values(value).some(item => typeof item === 'string');
+    if (localized) {
+      const missing = [...languages].filter(code => !Object.hasOwn(value, code));
+      const invalid = keys.filter(key => typeof value[key] !== 'string');
+      const unexpected = keys.filter(key => !languages.has(key));
+      if (missing.length || invalid.length || unexpected.length) {
+        throw new Error(
+          `Incomplete locale dictionary at ${ptr(parts)} (missing: ${missing.join(', ')}; unexpected: ${unexpected.join(', ')}; invalid: ${invalid.join(', ')})`,
+        );
       }
-      if (
-        fallbackPresent &&
-        (typeof value.fallback !== 'string' ||
-          !allowed.has(value.fallback) ||
-          typeof value[value.fallback] !== 'string')
-      ) {
-        throw new Error(`Invalid fallback at ${pointer(parts)}`);
-      }
-      const code = Object.hasOwn(value, requested) ? requested : value.fallback;
-      if (typeof code !== 'string' || typeof value[code] !== 'string')
-        throw new Error(`Missing ${requested} locale at ${pointer(parts)}`);
-      sources[pointer(parts)] = code === requested ? { code } : { code, isFallback: true };
-      return value[code];
+      sources[ptr(parts)] = { code: requested };
+      return value[requested];
     }
-    return Object.fromEntries(Object.entries(value).map(([key, child]) => [key, visit(child, [...parts, key])]));
+    return Object.fromEntries(
+      Object.entries(value)
+        .filter(([, child]) => child !== undefined)
+        .map(([key, child]) => [key, visit(child, [...parts, key])]),
+    );
   }
   return { value: visit(input, []), sources };
 }
@@ -110,317 +106,203 @@ export function sourceIndex(repositoryRoot, lessonRelativePath) {
   };
 }
 
-export function renderLessonMarkdown({
-  lesson,
-  locale,
-  languages,
-  packagePath,
-  sourceFiles,
-  sourceRef = 'new-lesson',
-}) {
-  if (!isRecord(lesson)) throw new Error('Lesson must be an object');
-  const textbook = segment(packagePath.split('/')[1], 'textbook');
-  if (packagePath !== `content/${textbook}`) throw new Error('Invalid package path');
-  const relative = resolveEntityPath(required(lesson.id, 'lesson id'));
+export function renderLessonMarkdown({ lesson, locale, languages, packagePath, sourceFiles, sourceRef = 'main' }) {
+  const record = value => value !== null && typeof value === 'object' && !Array.isArray(value);
+  const escape = value =>
+    String(value)
+      .replaceAll('\r', '')
+      .replace(/([\\`*_[\]<>|])/g, '\\$1');
+  const headingText = value => escape(value).replaceAll('\n', ' ');
+  const canonical = value => {
+    if (typeof value !== 'string' || !value.trim()) throw new Error('Missing or invalid text');
+    return value;
+  };
+  if (!record(lesson)) throw new Error('Lesson must be an object');
+  if (!/^content\/[a-z][a-z0-9-]*$/.test(packagePath)) throw new Error('Invalid package path');
+  const textbook = packagePath.slice('content/'.length);
+  const relative = resolveEntityPath(canonical(lesson.id));
   const slug = segment(lesson.slug, 'lesson slug');
+  const supported = lesson.parameters?.languages;
   if (
-    !isRecord(lesson.parameters) ||
-    !Array.isArray(lesson.parameters.languages) ||
-    !lesson.parameters.languages.length
+    !Array.isArray(supported) ||
+    !supported.length ||
+    supported.length !== new Set(supported).size ||
+    supported.some(code => !languages.includes(code))
   ) {
-    throw new Error('Missing lesson parameters.languages');
+    throw new Error('Missing, duplicate or unsupported lesson languages');
   }
-  if (
-    new Set(lesson.parameters.languages).size !== lesson.parameters.languages.length ||
-    lesson.parameters.languages.some(code => !languages.includes(code))
-  ) {
-    throw new Error('Duplicate or unsupported lesson languages');
+  if (!supported.includes(locale)) throw new Error(`Lesson ${relative} does not support locale ${locale}`);
+  if (!Array.isArray(lesson.sections) || !record(lesson.questions) || !Array.isArray(lesson.flashcards)) {
+    throw new Error('Lesson is missing sections, question catalog or flashcards');
   }
-  if (!lesson.parameters.languages.includes(locale))
-    throw new Error(`Lesson ${relative} does not support locale ${locale}`);
-  if (
-    !Array.isArray(lesson.sections) ||
-    !lesson.sections.length ||
-    !isRecord(lesson.questions) ||
-    !Array.isArray(lesson.flashcards)
-  ) {
-    throw new Error(`Lesson ${relative} is missing sections, questions, or flashcards`);
-  }
-  const { value: localized, sources } = localizeReviewValue(lesson, locale, lesson.parameters.languages);
-  const lessonPath = `${packagePath}/data/lessons/${relative}`;
-  const entry = `${lessonPath}/${slug}.data.ts`;
+  const localized = localizeReviewValue(lesson, locale, supported, languages).value;
+  const lessonRoot = `${packagePath}/data/lessons/${relative}`;
   const files = sourceFiles?.files ?? [];
+  const quoteRef = encodeURIComponent(sourceRef);
   const link = file =>
-    `https://github.com/KiT-Maverik/svitlo-web/blob/${encodeURIComponent(sourceRef)}/${file.split('/').map(encodeURIComponent).join('/')}`;
-  const source = (id, fallback = entry) => {
-    const match =
-      typeof id === 'string'
-        ? files.find(file => file.text.includes(`'${id}'`) || file.text.includes(`"${id}"`))
-        : null;
-    const file = match?.relative ?? fallback;
-    return `[source](${link(file)})`;
+    `https://github.com/KiT-Maverik/svitlo-web/blob/${quoteRef}/${file.split('/').map(encodeURIComponent).join('/')}`;
+  const source = (id, fallback) => {
+    const found = files.find(file => file.text.includes(`'${id}'`) || file.text.includes(`"${id}"`));
+    const target =
+      found?.relative ??
+      (files.some(file => file.relative === fallback)
+        ? fallback
+        : (files.find(file => file.relative.endsWith('.data.ts'))?.relative ?? fallback));
+    return `[source](${link(target)})`;
   };
   const lines = [];
-  const add = (...items) => lines.push(...items);
-  const inline = value =>
-    required(value, 'localized text')
-      .replaceAll('\r', '')
-      .replaceAll('\n', ' ')
-      .replace(/([\\`*_[\]<>|])/g, '\\$1');
-  const note = parts => {
-    const origin = sources[pointer(parts)];
-    if (!origin) throw new Error(`Missing localization source at ${pointer(parts)}`);
-    return origin.isFallback ? ` **[source: ${origin.code}; fallback for ${locale}]**` : '';
-  };
-  const phrase = (value, parts) => `${inline(value)}${note(parts)}`;
-  const heading = (level, text) => add(`${'#'.repeat(level)} ${text}`, '');
-  const emitText = (label, value, parts, blockMarkdown = false) => {
-    add(`**${label}**${note(parts)}`, '');
-    required(value, label);
-    if (blockMarkdown) add(value.trimEnd(), '');
-    else add(value, '');
-  };
-  const metadata = (object, omit) => {
-    const entries = Object.entries(object).filter(([k, v]) => !omit.includes(k) && v !== undefined && v !== null);
-    for (const [k, v] of entries) add(`- ${k}: ${typeof v === 'string' ? `\`${inline(v)}\`` : `\`${compact(v)}\``}`);
-    if (entries.length) add('');
-  };
-  const listSceneTexts = (value, parts, keys = []) => {
+  const add = text => lines.push(text);
+  const blockTypes = new Set([
+    'text',
+    'markdown',
+    'checkpoint',
+    'code',
+    'audio',
+    'video',
+    'youtube',
+    'image',
+    'carousel',
+    'scene',
+  ]);
+  const mediaTypes = new Set(['image', 'audio', 'video', 'youtube', 'carousel']);
+  const sourceEntry = `${lessonRoot}/${slug}.data.ts`;
+  function writeValue(label, value, depth = 0, fallback = sourceEntry) {
+    const prefix = '  '.repeat(depth);
+    const title = escape(label);
+    if (value === undefined) return;
+    if (Array.isArray(value)) {
+      add(`${prefix}- **${title}** (${value.length})`);
+      value.forEach((item, index) => writeValue(`${index + 1}`, item, depth + 1, fallback));
+      return;
+    }
+    if (record(value)) {
+      const type = value.type;
+      if (typeof type === 'string' && Object.hasOwn(value, 'id') && Object.hasOwn(value, 'slug')) {
+        if (!blockTypes.has(type)) throw new Error(`Unsupported content block type: ${type}`);
+        add(
+          `${prefix}- **${title} · ${escape(type)}** (\`${escape(value.slug)}\`, \`${escape(value.id)}\`; ${source(value.id, fallback)})`,
+        );
+        if (mediaTypes.has(type)) {
+          add(
+            `${prefix}  - *Media is not embedded. Paths, accessible descriptions, captions and display/fallback metadata are shown below.*`,
+          );
+        }
+        const entries = Object.entries(value).filter(([key]) => !['id', 'slug', 'type'].includes(key));
+        for (const [key, child] of entries) writeValue(key, child, depth + 1, fallback);
+        return;
+      }
+      if (Object.keys(value).length === 0) {
+        add(`${prefix}- **${title}:** (none)`);
+        return;
+      }
+      add(`${prefix}- **${title}**`);
+      for (const [key, child] of Object.entries(value)) writeValue(key, child, depth + 1, fallback);
+      return;
+    }
     if (typeof value === 'string') {
-      emitText(keys.join('.') || 'scene text', value, parts);
-    } else if (isRecord(value)) {
-      for (const [k, child] of Object.entries(value)) listSceneTexts(child, [...parts, k], [...keys, k]);
-    } else if (Array.isArray(value)) {
-      value.forEach((child, index) => listSceneTexts(child, [...parts, index], [...keys, index]));
-    } else throw new Error(`Invalid scene-localized text at ${pointer(parts)}`);
-  };
-  function emitBlock(block, type, parts, title, fallback) {
-    if (!isRecord(block)) throw new Error(`Invalid ${type} block at ${pointer(parts)}`);
-    const id = required(block.id, `${type} id`);
-    heading(4, `${title} · ${type}`);
-    add(
-      `- ID: \`${inline(id)}\``,
-      `- Slug: \`${inline(block.slug ?? title)}\``,
-      `- Type: \`${type}\``,
-      `- Canonical: ${source(id, fallback)}`,
-      '',
-    );
-    switch (type) {
-      case 'text':
-        emitText('Text', block.value, [...parts, 'value']);
-        break;
-      case 'markdown': {
-        const field = block.text === undefined ? 'locales' : 'text';
-        const textPath = [...parts, field];
-        if (parts[0] === 'sections' && parts[2] === 'content') {
-          const origin = sources[pointer(textPath)];
-          const sectionSlug = localized.sections[Number(parts[1])]?.slug;
-          const markdownFile = `${lessonPath}/sections/${sectionSlug}/markdown/${block.slug}/${origin?.code ?? locale}.md`;
-          if (sourceFiles?.hasFile?.(markdownFile))
-            add(`- Localized Markdown file: [${origin?.code ?? locale}.md](${link(markdownFile)})`, '');
-        }
-        emitText('Markdown', block.text ?? block.locales, textPath, true);
-        break;
+      if (value.includes('\n') || (label === 'locales' && value.includes('**'))) {
+        add(`${prefix}- **${title}:**`);
+        const fence = '~'.repeat(Math.max(4, ...(value.match(/~+/g) ?? []).map(run => run.length + 1)));
+        add(`${prefix}  ${fence}${label === 'locales' ? 'markdown' : ''}`);
+        for (const line of value.replaceAll('\r', '').split('\n')) add(`${prefix}  ${line}`);
+        add(`${prefix}  ${fence}`);
+      } else {
+        add(`${prefix}- **${title}:** ${value === '' ? '*(empty)*' : escape(value)}`);
       }
-      case 'checkpoint': {
-        emitText('Title', block.title, [...parts, 'title']);
-        if (!Array.isArray(block.items)) throw new Error(`Invalid checkpoint items at ${pointer(parts)}`);
-        block.items.forEach((item, i) => {
-          if (!isRecord(item) || !Array.isArray(item.answer) || !item.answer.length)
-            throw new Error(`Invalid checkpoint answer at ${pointer([...parts, 'items', i])}`);
-          add(`**Item ${i + 1} — ${phrase(item.question, [...parts, 'items', i, 'question'])}**`, '');
-          item.answer.forEach((answer, j) =>
-            emitBlock(
-              answer,
-              inferBlockType(answer),
-              [...parts, 'items', i, 'answer', j],
-              `Answer ${i + 1}.${j + 1}`,
-              fallback,
-            ),
-          );
-        });
-        break;
-      }
-      case 'quiz': {
-        emitText('Welcome', block.welcome, [...parts, 'welcome']);
-        if (!isRecord(block.questions) || !Object.keys(block.questions).length)
-          throw new Error(`Empty quiz questions at ${pointer(parts)}`);
-        Object.entries(block.questions).forEach(([key, q], index) =>
-          emitQuestion(q, key, [...parts, 'questions', key], index + 1, fallback),
-        );
-        metadata(block, ['id', 'slug', 'welcome', 'questions', 'type', 'locale']);
-        break;
-      }
-      case 'scene': {
-        const texts = block.locales;
-        if (!isRecord(texts)) throw new Error(`Missing scene localized data at ${pointer(parts)}`);
-        add('Custom scene: implementation referenced in canonical definition; JSX is intentionally not rendered.', '');
-        listSceneTexts(texts, [...parts, 'locales']);
-        metadata(block, ['id', 'slug', 'locales', 'locale', 'type']);
-        break;
-      }
-      case 'image':
-      case 'video':
-      case 'audio':
-      case 'youtube':
-      case 'code': {
-        add('Media/code reference (not rendered).', '');
-        for (const field of ['title', 'description', 'hint', 'alt', 'src', 'href', 'fileLocation', 'poster']) {
-          if (typeof block[field] === 'string') {
-            if (sources[pointer([...parts, field])]) emitText(field, block[field], [...parts, field]);
-            else add(`- ${field}: \`${inline(block[field])}\``);
-          }
-        }
-        metadata(block, [
-          'id',
-          'slug',
-          'type',
-          'locale',
-          'title',
-          'description',
-          'hint',
-          'alt',
-          'src',
-          'href',
-          'fileLocation',
-          'poster',
-        ]);
-        break;
-      }
-      default:
-        throw new Error(`Unsupported content block type: ${type}`);
+      return;
     }
-  }
-  const seenQuestions = new Set();
-  function emitQuestion(question, key, parts, index, fallback) {
-    if (!isRecord(question)) throw new Error(`Invalid question ${key}`);
-    const id = required(question.id, `question ${key} id`);
-    const type = question.type ?? 'selectOneAnswer';
-    if (seenQuestions.has(id)) return;
-    seenQuestions.add(id);
-    heading(5, `Question ${index}: ${key} · ${type}`);
-    add(
-      `- ID: \`${inline(id)}\``,
-      `- Slug: \`${inline(question.slug ?? key)}\``,
-      `- Canonical: ${source(id, fallback)}`,
-      '',
-    );
-    if (!Array.isArray(question.question) || !question.question.length)
-      throw new Error(`Missing question content: ${key}`);
-    for (const [i, block] of question.question.entries())
-      emitBlock(block, inferBlockType(block), [...parts, 'question', i], `Prompt ${i + 1}`, fallback);
-    if (isRecord(question.answers)) {
-      for (const [category, answers] of Object.entries(question.answers)) {
-        if (!isRecord(answers)) throw new Error(`Invalid answer category ${category}`);
-        for (const [answerKey, block] of Object.entries(answers)) {
-          emitBlock(
-            block,
-            inferBlockType(block),
-            [...parts, 'answers', category, answerKey],
-            `${category} answer: ${answerKey}`,
-            fallback,
-          );
-        }
-      }
+    if (value === null || typeof value === 'number' || typeof value === 'boolean') {
+      add(`${prefix}- **${title}:** \`${String(value)}\``);
+      return;
     }
-    for (const kind of ['explanation', 'hint']) {
-      if (question[kind] !== undefined) {
-        if (!Array.isArray(question[kind])) throw new Error(`Invalid ${kind} for question ${key}`);
-        question[kind].forEach((block, i) =>
-          emitBlock(block, inferBlockType(block), [...parts, kind, i], `${kind} ${i + 1}`, fallback),
-        );
-      }
-    }
-    metadata(question, ['id', 'slug', 'type', 'question', 'answers', 'explanation', 'hint', 'locale']);
+    throw new Error(`Unsupported Lesson field: ${label}`);
   }
 
-  heading(1, inline(localized.title));
-  add(
-    `- Entity: \`lesson\``,
-    `- ID: \`${inline(lesson.id)}\``,
-    `- Group / slug: \`${relative}\``,
-    `- Requested language: \`${locale}\``,
-    `- Canonical: ${source(lesson.id)}`,
-  );
-  const fallbackCodes = [
-    ...new Set(
-      Object.values(sources)
-        .filter(v => v.isFallback)
-        .map(v => v.code),
-    ),
-  ];
-  add(
-    `- Source languages: ${fallbackCodes.length ? fallbackCodes.map(v => `\`${v}\` (explicit fallback)`).join(', ') : `\`${locale}\` (no fallbacks)`}`,
-    '',
-  );
-  if (sources['/title']?.isFallback) add(`> Lesson title fallback: ${sources['/title'].code}`, '');
-  heading(2, 'Sections');
-  for (const [sectionIndex, section] of localized.sections.entries()) {
-    if (!isRecord(section) || !Array.isArray(section.content)) throw new Error(`Invalid section ${sectionIndex}`);
-    const sectionKey = required(section.slug, 'section slug');
-    required(section.id, `section ${sectionKey} id`);
-    const sp = ['sections', sectionIndex];
-    heading(3, `${phrase(section.title, [...sp, 'title'])} · ${sectionKey}`);
-    add(
-      `- ID: \`${inline(section.id)}\``,
-      `- Slug: \`${inline(sectionKey)}\``,
-      `- Canonical: ${source(section.id, `${lessonPath}/sections/${sectionKey}/${sectionKey}.data.ts`)}`,
-      `- Navigation label: ${phrase(section.navigationLabel, [...sp, 'navigationLabel'])}`,
-      '',
-    );
-    for (const [blockIndex, block] of section.content.entries()) {
-      const type = inferBlockType(block);
-      const key = required(block.slug, 'block slug');
-      emitBlock(
-        block,
-        type,
-        [...sp, 'content', blockIndex],
-        `${blockIndex + 1}. ${key}`,
-        `${lessonPath}/sections/${sectionKey}/${sectionKey}.data.ts`,
-      );
+  add(`# ${headingText(localized.title)}`);
+  add('');
+  add(`- Lesson: \`${lesson.id}\` (${headingText(slug)})`);
+  add(`- Language: \`${locale}\` (supported: ${supported.map(code => `\`${code}\``).join(', ')})`);
+  add(`- Canonical: ${source(lesson.id, sourceEntry)}`);
+  add('- **Media representations:** descriptive metadata only; binary media and interactive Scenes are not rendered.');
+  add('');
+  if (localized.skills?.length) writeValue('Target Skills', localized.skills);
+  if (localized.parameters) writeValue('Lesson parameters', { ...localized.parameters, languages: undefined });
+  add('');
+  add('## Lesson');
+  add('');
+  for (const [index, section] of localized.sections.entries()) {
+    if (!record(section) || typeof section.id !== 'string' || typeof section.slug !== 'string') {
+      throw new Error(`Invalid section ${index + 1}`);
     }
+    add(
+      `### ${index + 1}. ${headingText(section.title)} · ${headingText(section.slug)} (${headingText(section.type)})`,
+    );
+    add('');
+    add(`- ID: \`${section.id}\``);
+    add(`- Navigation: ${headingText(section.navigationLabel)}`);
+    add(`- Canonical: ${source(section.id, sourceEntry)}`);
+    for (const [key, value] of Object.entries(section)) {
+      if (['id', 'slug', 'title', 'navigationLabel', 'type', 'content', 'parameters'].includes(key)) continue;
+      writeValue(key, value);
+    }
+    if (section.type === 'quiz') {
+      if (!record(section.parameters)) throw new Error(`Quiz Section ${section.slug} is missing parameters`);
+      add('- **Quiz uses references into the Question Bank below; content is not repeated here.**');
+      writeValue('Quiz parameters and selected Question slugs', section.parameters);
+    } else {
+      if (!Array.isArray(section.content)) throw new Error(`Section ${section.slug} is missing content`);
+      section.content.forEach((block, i) => writeValue(`Block ${i + 1}`, block));
+    }
+    add('');
   }
-  if (Object.keys(localized.questions).length) {
-    heading(2, 'Additional question catalog entries');
-    for (const [type, catalog] of Object.entries(localized.questions)) {
-      if (!isRecord(catalog)) throw new Error(`Invalid question catalog ${type}`);
-      for (const [key, question] of Object.entries(catalog)) {
-        if (!seenQuestions.has(question?.id))
-          emitQuestion(
-            question,
-            key,
-            ['questions', type, key],
-            seenQuestions.size + 1,
-            `${lessonPath}/questions/index.data.ts`,
-          );
+  add('## Question Bank');
+  add('');
+  let questionCount = 0;
+  for (const [type, catalog] of Object.entries(localized.questions)) {
+    if (!record(catalog)) throw new Error(`Invalid question catalog ${type}`);
+    for (const [key, question] of Object.entries(catalog)) {
+      if (
+        !record(question) ||
+        typeof question.id !== 'string' ||
+        !Array.isArray(question.question) ||
+        question.type !== type
+      )
+        throw new Error(`Invalid question ${type}/${key}`);
+      questionCount++;
+      add(`### ${questionCount}. ${headingText(key)} · ${headingText(type)}`);
+      add('');
+      add(`- ID: \`${question.id}\``);
+      add(`- Canonical: ${source(question.id, sourceEntry)}`);
+      for (const [field, value] of Object.entries(question)) {
+        if (['id', 'slug', 'type'].includes(field)) continue;
+        writeValue(field, value);
       }
+      add('');
     }
   }
-  heading(2, 'Flashcards');
-  for (const [index, card] of localized.flashcards.entries()) {
-    if (!isRecord(card)) throw new Error(`Invalid flashcard ${index}`);
-    required(card.id, `flashcard ${index} id`);
-    heading(3, `Flashcard ${index + 1}`);
-    add(
-      `- ID: \`${inline(card.id)}\``,
-      `- Canonical: ${source(card.id, `${lessonPath}/flashcards/index.data.ts`)}`,
-      '',
-    );
-    for (const side of ['front', 'back', 'hint']) {
-      if (!Array.isArray(card[side])) throw new Error(`Invalid flashcard ${side} at ${index}`);
-      heading(4, side[0].toUpperCase() + side.slice(1));
-      card[side].forEach((block, i) =>
-        emitBlock(
-          block,
-          inferBlockType(block),
-          ['flashcards', index, side, i],
-          `${side} ${i + 1}`,
-          `${lessonPath}/flashcards/index.data.ts`,
-        ),
-      );
+  if (!questionCount) add('No Questions in this bank.', '');
+  add('## Flashcard Bank');
+  add('');
+  localized.flashcards.forEach((card, index) => {
+    if (
+      !record(card) ||
+      typeof card.id !== 'string' ||
+      !Array.isArray(card.front) ||
+      !Array.isArray(card.back) ||
+      !Array.isArray(card.hint)
+    )
+      throw new Error(`Invalid Flashcard ${index + 1}`);
+    add(`### Flashcard ${index + 1}`);
+    add('');
+    add(`- ID: \`${card.id}\``);
+    add(`- Canonical: ${source(card.id, sourceEntry)}`);
+    for (const [field, value] of Object.entries(card)) {
+      if (field === 'id') continue;
+      writeValue(field, value);
     }
-    metadata(card, ['id', 'front', 'back', 'hint']);
-  }
+    add('');
+  });
+  if (!localized.flashcards.length) add('No Flashcards in this bank.', '');
   return lines.join('\n').trimEnd() + '\n';
 }
 
