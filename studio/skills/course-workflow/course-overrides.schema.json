@@ -1,0 +1,278 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Svitlo approved Course-owned Lesson overrides",
+  "description": "Separate from skill-based Course TOC; never edits standalone Lesson source. Ordered sparse transformations through existing Engine createLessonOverrides API.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "kind",
+    "status",
+    "courseId",
+    "overrides"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "kind": {
+      "const": "course-lesson-overrides"
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "approved"
+      ]
+    },
+    "courseId": {
+      "$ref": "#/$defs/uuid"
+    },
+    "overrides": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "lessonId",
+          "slotKey",
+          "operations"
+        ],
+        "properties": {
+          "lessonId": {
+            "$ref": "#/$defs/uuid"
+          },
+          "slotKey": {
+            "$ref": "#/$defs/key"
+          },
+          "operations": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "type",
+                    "sections"
+                  ],
+                  "properties": {
+                    "type": {
+                      "const": "params"
+                    },
+                    "sections": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "minProperties": 1,
+                      "properties": {
+                        "allowNavigation": {
+                          "type": "boolean"
+                        },
+                        "allowSkipping": {
+                          "type": "boolean"
+                        },
+                        "showIndexes": {
+                          "type": "boolean"
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "type",
+                    "source"
+                  ],
+                  "properties": {
+                    "type": {
+                      "enum": [
+                        "title",
+                        "events"
+                      ]
+                    },
+                    "source": {
+                      "$ref": "#/$defs/source"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "type",
+                    "slug",
+                    "source"
+                  ],
+                  "properties": {
+                    "type": {
+                      "const": "section-set"
+                    },
+                    "slug": {
+                      "$ref": "#/$defs/slug"
+                    },
+                    "source": {
+                      "$ref": "#/$defs/source"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "type",
+                    "slug"
+                  ],
+                  "properties": {
+                    "type": {
+                      "const": "section-remove"
+                    },
+                    "slug": {
+                      "$ref": "#/$defs/slug"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "type",
+                    "entries"
+                  ],
+                  "properties": {
+                    "type": {
+                      "const": "section-order"
+                    },
+                    "entries": {
+                      "$ref": "#/$defs/order"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "type",
+                    "sectionSlug",
+                    "slug",
+                    "source"
+                  ],
+                  "properties": {
+                    "type": {
+                      "const": "block-set"
+                    },
+                    "sectionSlug": {
+                      "$ref": "#/$defs/slug"
+                    },
+                    "slug": {
+                      "$ref": "#/$defs/slug"
+                    },
+                    "source": {
+                      "$ref": "#/$defs/source"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "type",
+                    "sectionSlug",
+                    "slug"
+                  ],
+                  "properties": {
+                    "type": {
+                      "const": "block-remove"
+                    },
+                    "sectionSlug": {
+                      "$ref": "#/$defs/slug"
+                    },
+                    "slug": {
+                      "$ref": "#/$defs/slug"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "type",
+                    "sectionSlug",
+                    "entries"
+                  ],
+                  "properties": {
+                    "type": {
+                      "const": "block-order"
+                    },
+                    "sectionSlug": {
+                      "$ref": "#/$defs/slug"
+                    },
+                    "entries": {
+                      "$ref": "#/$defs/order"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "uuid": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$"
+    },
+    "key": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+    },
+    "slug": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "export"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "pattern": "^(?:sections|blocks|patches)/[A-Za-z0-9_/-]+\\.ts$"
+        },
+        "export": {
+          "type": "string",
+          "pattern": "^[A-Za-z_$][A-Za-z0-9_$]*$"
+        }
+      }
+    },
+    "order": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/$defs/slug"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source"
+            ],
+            "properties": {
+              "source": {
+                "$ref": "#/$defs/source"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
