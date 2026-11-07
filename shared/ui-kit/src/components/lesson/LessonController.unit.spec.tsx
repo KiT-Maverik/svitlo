@@ -350,7 +350,7 @@ describe('multiple Quiz Sections', () => {
     id: 'multi-quiz-lesson',
     title: 'Multiple quizzes',
     locale: { code: 'en' as const },
-    parameters: { sections: { allowNavigation: true, allowSkipping: true, showIndexes: true } },
+    parameters: { languages: ['en'], sections: { allowNavigation: true, allowSkipping: true, showIndexes: true } },
     sections: [
       quiz('quiz-first'),
       quiz('quiz-second'),
