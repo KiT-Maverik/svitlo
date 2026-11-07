@@ -28,7 +28,7 @@ export type LessonLearningLayoutProps = Pick<
   | 'onLogout'
   | 'profileSettingsHref'
   | 'settingsContent'
-> & { messages: UiKitMessages };
+> & { messages: UiKitMessages; supportedLessonLanguages?: readonly Locale[] };
 
 export type LessonLearningLayoutBindings = {
   /** Supplied by the consuming app; the UI Kit never imports Next.js hooks. */
@@ -71,9 +71,11 @@ export function createLessonLearningLayout(bindings: LessonLearningLayoutBinding
     onLogout,
     profileSettingsHref,
     settingsContent,
+    supportedLessonLanguages,
   }: LessonLearningLayoutProps) {
     const { locale, setLocale, lessonLocale, setLessonLocale } = bindings.useLocale();
     const { mode, systemMode, setMode } = useBoundColorScheme();
+    const volumeControl = typeof settingsContent === 'function' ? undefined : settingsContent;
 
     const preferences = useMemo(
       () => (
@@ -82,13 +84,15 @@ export function createLessonLearningLayout(bindings: LessonLearningLayoutBinding
           locale={locale}
           onLocaleChange={setLocale}
           lessonLocale={lessonLocale}
+          lessonLanguages={supportedLessonLanguages}
           onLessonLocaleChange={setLessonLocale}
+          volumeControl={volumeControl}
           mode={mode}
           systemMode={systemMode}
           onThemeChange={setMode}
         />
       ),
-      [messages.navbarPreferences, locale, setLocale, lessonLocale, setLessonLocale, mode, systemMode, setMode],
+      [messages.navbarPreferences, locale, setLocale, lessonLocale, supportedLessonLanguages, setLessonLocale, volumeControl, mode, systemMode, setMode],
     );
     return (
       <LearningLayout
@@ -111,7 +115,7 @@ export function createLessonLearningLayout(bindings: LessonLearningLayoutBinding
         onProfileChange={onProfileChange}
         onLogout={onLogout}
         profileSettingsHref={profileSettingsHref}
-        settingsContent={settingsContent}
+        settingsContent={typeof settingsContent === 'function' ? settingsContent : undefined}
         linkComponent={bindings.linkComponent}
       >
         {children}
