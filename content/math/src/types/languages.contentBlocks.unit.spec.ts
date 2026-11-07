@@ -50,7 +50,7 @@ describe('Extended locale contentBlock coverage', () => {
     const locale = 'crh-Latn-UA';
     expect(DEFAULT_SUPPORTED_LANGUAGES.find(item => item.locale === locale)?.language).toBe('qm');
     expect(layouts.qm.navigation.top).toBe('Oquvnıñ yuqarı navigatsiyası');
-    expect(preferences.qm.language).toBe('Til');
+    expect(preferences.qm.language).toBe('İnterfeys tili');
   });
 
   it('provides locale dictionaries for the shared learner interface', () => {

@@ -15,9 +15,9 @@ describe('temporary course catalog adapters', () => {
     const published = getMockCourse(PLAYGROUND_COURSE_ID, 'uk');
     expect(published).toBeDefined();
     if (!published) return;
-    const module = mockCourseOutline(published, 'uk')[0];
-    expect(module.type).toBe('module');
-    const chapter = module.children?.[0];
+    const courseModule = mockCourseOutline(published, 'uk')[0];
+    expect(courseModule.type).toBe('module');
+    const chapter = courseModule.children?.[0];
     expect(chapter?.type).toBe('chapter');
     expect(chapter?.children?.some(item => item.type === 'episode' && item.href?.includes('/episode/'))).toBe(true);
     expect(chapter?.children?.some(item => item.type === 'lesson' && item.href?.includes('/lesson/uk/'))).toBe(true);
