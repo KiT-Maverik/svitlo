@@ -73,7 +73,7 @@ Its `value` must equal the concatenation of `parts[].letters` in order. Every `s
 
 `localePolicy: invariant` is allowed only when the mnemonic truly works unchanged in all Lesson languages; its raw `value` can then be included in generated `Flashcard.flags` as a label, deduplicated with authored `flags`. `localePolicy: needsLocalizedVersion` flags a **real blocker for multilingual flag publication**: current `flags: string[]` is not localizable. Do not publish untranslated source-language mnemonic as if it encoded every translated list. Require editorial solution (e.g. localized mnemonic content or a localized flag contract); record in `unresolvedDependencies`. Do not invent a runtime `acronym` property.
 
-A count hint is required regardless of whether an acronym is available.
+A structured `listAnswerCount` is required for true list answers regardless of whether an acronym is available. The future typed count flag must derive from this metadata; a numeric hint remains optional interim presentation, never text appended to `front`.
 
 ## Step 5 — Author canonical typed card relationships
 
@@ -158,7 +158,7 @@ Validate schema and additionally verify:
 1. Approved nonempty upstream Question bank, accurate provenance and stable IDs/slugs. **No Question source = no Flashcard authoring**.
 2. Every Question reference resolves to a genuine, correct field in the **actual bank**; for typed code generation, a real export exists, has compatible locales and matches generated TypeScript property access.
 3. Atomized content, concise independent prompts/answers, explicit punctuation/conjunction audit, zero meaningless duplicate cards.
-4. For list answers, `listAnswerCount` matches actual items and numeric `hint` contains the count.
+4. For list answers, `listAnswerCount` matches actual items, no count is manually embedded in `front`, and any interim numeric `hint` agrees with the structured count. The future typed count-flag mechanism must not be falsely claimed as implemented.
 5. Variables use meaningful names and correct TextBlock/CodeBlock marker conventions. No claim that styling generates randomized values.
 6. Acronym source letters and connectors match uppercase/lowercase rules and the original items, with localized-flag limitations clearly surfaced.
 7. Relationship slugs exist; types belong to the canonical nine-value enum, both endpoints receive mirrored links with the other card's actual ID and correct `position`, and no self-links or duplicate edges survive. Runtime graph storage is supported by Contracts/Engine; UI and scheduling actions are **not** implied.
