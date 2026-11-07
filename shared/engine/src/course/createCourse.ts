@@ -92,10 +92,23 @@ type CoursePartitions = {
 };
 
 export function createCourse<const L extends Locale_Languages>(course: CourseInput<L>): CourseCreator<L> {
-  const getData = (): Course<'data', L> => ({
-    ...course,
-    content: course.content.map(entry => ('getData' in entry ? entry.getData() : entry)),
-  });
+  const getData = (): Course<'data', L> => {
+    const data: Course<'data', L> = {
+      ...course,
+      content: course.content.map(entry => ('getData' in entry ? entry.getData() : entry)),
+    };
+    // Every Course locale must be implemented by each standalone Lesson.
+    // Extra Lesson locales are allowed and are not copied into Course assets.
+    const languages = data.parameters.languages;
+    for (const lesson of collectCoursePublicationItems<L>(data.content).lessons) {
+      const actual = lesson.parameters.languages;
+      if (new Set(actual).size !== actual.length || languages.some(language => !actual.includes(language))) {
+        throw new Error('Course ' + data.id + ': Lesson ' + lesson.id +
+          ' does not cover Course languages ' + languages.join(', '));
+      }
+    }
+    return data;
+  };
   const getContentEntries = () => collectCoursePublicationItems<L>(getData().content);
 
   let partitions: CoursePartitions | undefined;
