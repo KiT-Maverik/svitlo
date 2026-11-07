@@ -3,6 +3,21 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "scripts": {
+    "package:build": "tsc -p tsconfig.build.json",
+    "code:check:types": "tsc -p tsconfig.json --noEmit",
+    "test": "npm run package:build && node --test tests/*.spec.mjs",
+    "code:format:check": "prettier --check . --ignore-path ../../../.prettierignore",
+    "code:format:fix": "prettier --write . --ignore-path ../../../.prettierignore"
+  },
+  "dependencies": {
+    "@svitlo/engine": "0.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "electron": "45.2.2",
+    "typescript": "^5"
+  },
   "exports": {
     ".": {
       "types": "./dist/renderer.d.ts",
@@ -16,18 +31,5 @@
       "types": "./dist/resourcePath.d.ts",
       "default": "./dist/resourcePath.js"
     }
-  },
-  "scripts": {
-    "build": "tsc -p tsconfig.build.json",
-    "typecheck": "tsc -p tsconfig.json --noEmit",
-    "test": "npm run build && node --test tests/*.spec.mjs"
-  },
-  "dependencies": {
-    "@svitlo/engine": "0.0.0"
-  },
-  "devDependencies": {
-    "@types/node": "^20",
-    "electron": "45.2.2",
-    "typescript": "^5"
   }
 }

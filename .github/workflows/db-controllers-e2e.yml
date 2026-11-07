@@ -22,29 +22,29 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
-      - run: npm run packages:check
+      - run: npm run repo:check:packages
       # Run only this workflow's browser dependencies. Root commands check all
       # textbook workspaces, including unrelated in-progress authored translations.
-      - run: npm run build --workspace @svitlo/contracts
-      - run: npm run build --workspace @svitlo/engine
-      - run: npm run build --workspace @svitlo/indexdb
-      - run: npm run build --workspace @svitlo/ui-kit
-      - run: npm run typecheck --workspace @svitlo/contracts
-      - run: npm run typecheck --workspace @svitlo/indexdb
-      - run: npm run typecheck --workspace @svitlo/ui-kit
-      - run: npm run typecheck --workspace @svitlo/playground
+      - run: npm run package:build --workspace @svitlo/contracts
+      - run: npm run package:build --workspace @svitlo/engine
+      - run: npm run package:build --workspace @svitlo/indexdb
+      - run: npm run package:build --workspace @svitlo/ui-kit
+      - run: npm run code:check:types --workspace @svitlo/contracts
+      - run: npm run code:check:types --workspace @svitlo/indexdb
+      - run: npm run code:check:types --workspace @svitlo/ui-kit
+      - run: npm run code:check:types --workspace @svitlo/playground
       - run: npm run test --workspace @svitlo/indexdb
       - run: npm run test --workspace @svitlo/ui-kit
-      - run: npm run lint --workspace @svitlo/web
-      - run: npm run build --workspace @svitlo/playground
-      - run: npm run build --workspace @svitlo/web
+      - run: npm run code:lint:check --workspace @svitlo/web
+      - run: npm run package:build --workspace @svitlo/playground
+      - run: npm run app:build --workspace @svitlo/web
       - run: npx playwright install chromium
       - name: Native IndexedDB Chromium
-        run: npm run test:e2e:db
+        run: npm run test:e2e:db --workspace @svitlo/indexdb
       - name: Native IndexedDB Chromium repeat
-        run: npm run test:e2e:db
+        run: npm run test:e2e:db --workspace @svitlo/indexdb
       - name: Existing Playwright suite
-        run: npm run test:e2e
+        run: npm run test:e2e --workspace @svitlo/web
       - uses: actions/upload-artifact@v4
         if: always()
         with:

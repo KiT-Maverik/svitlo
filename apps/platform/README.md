@@ -13,9 +13,9 @@ Standalone Next.js 16 App Router public website with React 19 and TypeScript. Th
 
 ## Running
 
-From the repository root, use npm ci, followed by npm run dev:platform, npm run build:platform, npm run typecheck:platform and npm run lint --workspace @svitlo/platform.
+From the repository root, use npm ci, followed by npm run app:start:dev --workspace @svitlo/platform, npm run app:build --workspace @svitlo/platform, npm run code:check:types --workspace @svitlo/platform and npm run code:lint:check --workspace @svitlo/platform.
 
-The Playwright smoke suite (npm run test:e2e:platform) uses port 3111 and requires a built production app. Navigation, scholarship previews and informational pages need no external service.
+The Playwright smoke suite (npm run test:e2e --workspace @svitlo/platform) uses port 3111 and requires a built production app. Navigation, scholarship previews and informational pages need no external service.
 
 ## Deployment URLs and placeholders
 

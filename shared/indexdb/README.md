@@ -12,6 +12,6 @@ The test server generates a disposable minimal Next.js application without impor
 either learning app. Node controller tests remain in `src/controllers/` and use
 fake-indexeddb.
 
-From the monorepo root run `npm run test:e2e:db` after installing dependencies and
+From the monorepo root run `npm run test:e2e:db --workspace @svitlo/indexdb` after installing dependencies and
 Chromium (`npx playwright install chromium`). CI repeats the native suite.
 Browser test React/Next.js tooling is dev-only; production exports remain framework-free.

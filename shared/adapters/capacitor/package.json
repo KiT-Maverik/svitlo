@@ -3,6 +3,18 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "scripts": {
+    "package:build": "tsc -p tsconfig.build.json",
+    "code:check:types": "tsc -p tsconfig.json --noEmit",
+    "code:lint:check": "npm run code:check:types",
+    "code:format:check": "prettier --check . --ignore-path ../../../.prettierignore",
+    "code:format:fix": "prettier --write . --ignore-path ../../../.prettierignore"
+  },
+  "devDependencies": {
+    "@capacitor/app": "^7.0.0",
+    "@capacitor/core": "^7.4.4",
+    "typescript": "^5"
+  },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
@@ -11,18 +23,8 @@
       "default": "./dist/index.js"
     }
   },
-  "scripts": {
-    "build": "tsc -p tsconfig.build.json",
-    "typecheck": "tsc -p tsconfig.json --noEmit",
-    "lint": "npm run typecheck"
-  },
   "peerDependencies": {
     "@capacitor/app": "^7.0.0",
     "@capacitor/core": "^7.4.4"
-  },
-  "devDependencies": {
-    "@capacitor/app": "^7.0.0",
-    "@capacitor/core": "^7.4.4",
-    "typescript": "^5"
   }
 }

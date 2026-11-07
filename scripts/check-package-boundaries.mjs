@@ -176,7 +176,7 @@ assert(
 );
 assert(!existsSync(resolve(root, 'math')), 'Root mathematics docs must be inside the textbook package');
 assert(uiKit.dependencies?.[engine.name] === engine.version, 'UI Kit must consume the published Engine API');
-assert(engine.scripts?.build && engine.files?.includes('dist'), 'Engine must publish compiled artifacts');
+assert(engine.scripts?.['package:build'] && engine.files?.includes('dist'), 'Engine must publish compiled artifacts');
 for (const subpath of ['.', './localization', './taxonomy', './content', './builders', './generation']) {
   const target = engine.exports?.[subpath];
   assert(

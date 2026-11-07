@@ -4,21 +4,18 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node ../../scripts/textbook-tooling/build.mjs",
-    "typecheck": "tsc -p tsconfig.json --noEmit",
-    "lint": "eslint textbook.ts",
-    "pretest:publish": "npm run build --workspace @svitlo/history",
+    "package:build": "node ../../scripts/textbook-tooling/build.mjs",
+    "code:check:types": "tsc -p tsconfig.json --noEmit",
+    "code:lint:check": "eslint textbook.ts",
+    "pretest:publish": "npm run package:build --workspace @svitlo/history",
     "test:publish": "node --test ../../scripts/textbook-tooling/test-publish.mjs",
-    "pretest:portability": "npm run build --workspace @svitlo/history",
+    "pretest:portability": "npm run package:build --workspace @svitlo/history",
     "test:portability": "node ../../scripts/textbook-tooling/check-portability.mjs",
-    "prepack": "npm run build"
+    "prepack": "npm run package:build",
+    "code:format:check": "prettier --check . --ignore-path ../../.prettierignore",
+    "code:format:fix": "prettier --write . --ignore-path ../../.prettierignore",
+    "code:lint:fix": "eslint textbook.ts --fix"
   },
-  "bin": {
-    "svitlo-history": "./dist/publish.mjs"
-  },
-  "files": [
-    "dist"
-  ],
   "dependencies": {
     "@svitlo/engine": "0.0.0"
   },
@@ -30,6 +27,12 @@
     "@typescript-eslint/parser": "^8.72.0",
     "@typescript-eslint/eslint-plugin": "^8.72.0"
   },
+  "bin": {
+    "svitlo-history": "./dist/publish.mjs"
+  },
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
       "types": "./dist/textbook/index.d.ts",

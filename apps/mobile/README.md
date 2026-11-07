@@ -6,19 +6,19 @@ A single **React DOM + TypeScript + Capacitor 7** host for Android and iOS, powe
 
 Run these commands at the repository root after npm ci:
 
-    npm run dev --workspace @svitlo/mobile
-    SVITLO_TEXTBOOK=playground npm run build --workspace @svitlo/mobile
-    npm run verify:bundle --workspace @svitlo/mobile
-    npm run typecheck --workspace @svitlo/mobile
-    npm run lint --workspace @svitlo/mobile
+    npm run app:start:dev --workspace @svitlo/mobile
+    SVITLO_TEXTBOOK=playground npm run app:build --workspace @svitlo/mobile
+    npm run app:check:bundle --workspace @svitlo/mobile
+    npm run code:check:types --workspace @svitlo/mobile
+    npm run code:lint:check --workspace @svitlo/mobile
     npm run test --workspace @svitlo/mobile
     npm run test:e2e --workspace @svitlo/mobile
 
 Android and iOS source projects are **already committed**. To update their bundled WebView assets:
 
-    npm run sync --workspace @svitlo/mobile
-    npm run android --workspace @svitlo/mobile
-    npm run ios --workspace @svitlo/mobile
+    npm run app:sync --workspace @svitlo/mobile
+    npm run app:open:android --workspace @svitlo/mobile
+    npm run app:open:ios --workspace @svitlo/mobile
 
 Android launch/build requires Android Studio, Android SDK and a configured emulator/device. iOS requires macOS with Xcode and an iOS Simulator/device. For a command-line native smoke build after sync, use ./gradlew assembleDebug from apps/mobile/android or xcodebuild with the App workspace/scheme on a Mac. No certificates or signing credentials are committed.
 

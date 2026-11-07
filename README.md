@@ -36,21 +36,22 @@ Node and npm workspaces are the current package/CI tools; `package-lock.json` is
 
 ```bash
 npm ci
-npm run packages:check
-npm run typecheck
+npm run repo:check:packages
+npm run code:check:types
 npm test
-npm run lint
-npm run build
-npm run packages:artifacts:check
+npm run code:lint:check
+npm run package:build
+npm run app:build
+npm run repo:check:artifacts
 ```
 
-Run a textbook: `npm run dev:<subject-slug>` (all 16 subjects). Run Platform: `npm run dev:platform`; Playground: `npm run dev`. Each Next.js app is independent; simultaneous development servers require different ports.
+Run the Web host with Playground using `npm run app:start:dev --workspace @svitlo/web`; run Platform with `npm run app:start:dev --workspace @svitlo/platform`. Content textbooks are packages rather than standalone development servers. Use different ports for simultaneous app servers.
 
 Browser testing after `npx playwright install chromium` and a build:
 
-- `npm run test:e2e:db` — native IndexedDB controller Chromium suite
-- `npm run test:e2e:platform` — Platform desktop/mobile smoke
-- `npm run test:e2e --workspace @svitlo/math` and `npm run test:e2e --workspace @svitlo/playground` — learning app suites
+- `npm run test:e2e:db --workspace @svitlo/indexdb` — native IndexedDB controller Chromium suite
+- `npm run test:e2e --workspace @svitlo/platform` — Platform desktop/mobile smoke
+- `npm run test:e2e --workspace @svitlo/web` — Web browser tests
 
 The Platform only links to a published Math textbook when its **real** `NEXT_PUBLIC_MATH_APP_URL` has been configured. The backend, account system, cross-device sync and offline/PWA feature set are future work, not implied by the scaffold.
 

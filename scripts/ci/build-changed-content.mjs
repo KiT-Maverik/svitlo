@@ -22,7 +22,7 @@ function contentWorkspaces() {
       const path = folder + '/' + entry.name;
       if (!existsSync(join(repo, path, 'package.json'))) continue;
       const pkg = readJson(path + '/package.json');
-      if (pkg.name?.startsWith('@svitlo/') && pkg.scripts?.build) {
+      if (pkg.name?.startsWith('@svitlo/') && pkg.scripts?.['package:build']) {
         result.push({ path, name: pkg.name, scripts: pkg.scripts });
       }
     }
@@ -65,8 +65,8 @@ export function resolveAgentScope(baseRef, headRef, changed, workspaces, owners)
 function validateAgent({ workspace, domains }) {
   // Preserve strict ownership checks for incomplete agent integration branches.
   run('node', ['scripts/check-skills-taxonomy-structure.mjs', workspace.path + '/data/skills']);
-  run('npm', ['run', 'build', '--workspace', '@svitlo/contracts']);
-  run('npm', ['run', 'build', '--workspace', '@svitlo/engine']);
+  run('npm', ['run', 'package:build', '--workspace', '@svitlo/contracts']);
+  run('npm', ['run', 'package:build', '--workspace', '@svitlo/engine']);
   const file = join(repo, workspace.path, 'tsconfig.agent-ci.tmp.json');
   try {
     writeFileSync(
@@ -90,8 +90,8 @@ function validateAgent({ workspace, domains }) {
 function verifyPackage(pkg, changed) {
   console.log('::group::' + pkg.name);
   try {
-    run('npm', ['run', 'build', '--workspace', pkg.name]); // includes Skills graph checks
-    if (pkg.scripts.lint) run('npm', ['run', 'lint', '--workspace', pkg.name]);
+    run('npm', ['run', 'package:build', '--workspace', pkg.name]); // includes Skills graph checks
+    if (pkg.scripts['code:lint:check']) run('npm', ['run', 'code:lint:check', '--workspace', pkg.name]);
     if (pkg.name === '@svitlo/math' && changed.some(f => f.startsWith('content/math/'))) {
       run('npm', ['run', 'test:types', '--workspace', pkg.name]);
       run('npm', ['run', 'test:components', '--workspace', pkg.name]);
@@ -127,7 +127,7 @@ function execute(changed, all, baseRef, headRef) {
     console.log('No changed content packages; no builds needed');
     return;
   }
-  run('npm', ['run', 'packages:check']);
+  run('npm', ['run', 'repo:check:packages']);
   run('node', ['--test', 'scripts/check-built-package-exports.spec.mjs']);
   let failures = 0;
   for (const path of targets) {
@@ -140,7 +140,7 @@ function execute(changed, all, baseRef, headRef) {
     }
   }
   if (failures) throw new Error(failures + ' content package(s) failed verification');
-  run('npm', ['run', 'packages:artifacts:check', '--', '--packages', ...targets]);
+  run('npm', ['run', 'repo:check:artifacts', '--', '--packages', ...targets]);
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

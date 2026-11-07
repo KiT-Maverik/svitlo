@@ -2,14 +2,24 @@
   "name": "@svitlo/engine",
   "version": "0.0.0",
   "private": true,
+  "scripts": {
+    "package:build": "tsc -p tsconfig.build.json",
+    "code:check:types": "tsc -p tsconfig.json --noEmit",
+    "prepack": "npm run package:build",
+    "test": "tsc -p tsconfig.test.json && node --test .test-build/utils/builders/*/*.spec.js .test-build/utils/createDynamicQuestion/*.spec.js .test-build/utils/createLocalizedFileLocations/*.spec.js .test-build/utils/entityPath/*.spec.js .test-build/utils/generators/getMarkdownLocale/*.spec.js .test-build/utils/generators/lessons/*.spec.js .test-build/lessons/*.spec.js .test-build/data/assessmentMethodTaxonomy/*.spec.js",
+    "code:format:check": "prettier --check . --ignore-path ../../.prettierignore",
+    "code:format:fix": "prettier --write . --ignore-path ../../.prettierignore"
+  },
+  "dependencies": {
+    "@svitlo/contracts": "0.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5",
+    "@types/node": "^20",
+    "esbuild": "^0.28.2"
+  },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "scripts": {
-    "build": "tsc -p tsconfig.build.json",
-    "typecheck": "tsc -p tsconfig.json --noEmit",
-    "prepack": "npm run build",
-    "test": "tsc -p tsconfig.test.json && node --test .test-build/utils/builders/*/*.spec.js .test-build/utils/createDynamicQuestion/*.spec.js .test-build/utils/createLocalizedFileLocations/*.spec.js .test-build/utils/entityPath/*.spec.js .test-build/utils/generators/getMarkdownLocale/*.spec.js .test-build/utils/generators/lessons/*.spec.js .test-build/lessons/*.spec.js .test-build/data/assessmentMethodTaxonomy/*.spec.js"
-  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -55,11 +65,6 @@
   "files": [
     "dist"
   ],
-  "devDependencies": {
-    "typescript": "^5",
-    "@types/node": "^20",
-    "esbuild": "^0.28.2"
-  },
   "typesVersions": {
     "*": {
       "localization": [
@@ -93,8 +98,5 @@
         "dist/lesson.d.ts"
       ]
     }
-  },
-  "dependencies": {
-    "@svitlo/contracts": "0.0.0"
   }
 }

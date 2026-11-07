@@ -40,9 +40,9 @@ for (const workspace of [
   '@svitlo/ui-kit',
   '@svitlo/adapter-nextjs',
 ]) {
-  run('npm', ['run', 'build', '--workspace', workspace]);
+  run('npm', ['run', 'package:build', '--workspace', workspace]);
 }
-run('npm', ['run', 'build', '--workspace', selection.package]);
+run('npm', ['run', 'package:build', '--workspace', selection.package]);
 
 const targetPublic = join(webRoot, 'public');
 // Invoke the documented package binary after build. npm may not create a
