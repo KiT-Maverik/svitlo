@@ -285,6 +285,10 @@ function checkSources(root, content, questions, methodology) {
     'must include documentLanguage');
   required(content.status === 'approved' && questions.status === 'approved', cf, 'status',
     'Content and Question Bank must both be approved');
+  required(questions.sources.methodology.path === content.methodologySource,
+    qf, 'sources.methodology.path', 'must point to approved ' + content.methodologySource);
+  required(questions.sources.content.path === 'content.yaml',
+    qf, 'sources.content.path', 'must point to approved content.yaml');
   const plan = methodology.assessmentPlan.quizzes;
   unique(plan.map(x => x.key), mf, 'assessmentPlan.quizzes');
   const quizSections = content.sections.filter(s => s.type === 'quiz');
@@ -554,8 +558,10 @@ function ownedFiles(target, files, mode, sourceHashes, slug) {
   }, null, 2) + '\n';
   const expected = { ...files, 'manifest.json': manifest };
   let changed = 0;
-  for (const [name, value] of Object.entries({ ...files, [entryName]: entryText })) {
-    const file = name === entryName ? entryFile : path.join(output, name);
+  for (const [file, name, value] of [
+    ...Object.entries(files).map(([name, value]) => [path.join(output, name), 'generated/' + name, value]),
+    [entryFile, entryName, entryText],
+  ]) {
     if (!fs.existsSync(file) || read(file) !== value) {
       if (mode === 'check') fail(name, '$', 'missing/stale generated file');
       if (!old && fs.existsSync(file))
