@@ -4,7 +4,7 @@
 
 ## Ownership and approval
 
-A Course editor/Experience designer must approve the **Course-specific modification**, and the relevant content owner must approve any replacement prose, interaction, scenario, events or newly inserted Section/ContentBlock. An approved \`overrides.yaml\` can only reference already implemented standalone Lessons and already authored, reviewed **Course-owned TypeScript sources**. Approving this file does **not** change ownership of the original Lesson or authorize the builder to invent a scene, story, image, question or translation.
+An authorized Course editor must approve the **Course-specific modification**, and the relevant content owner must approve any replacement prose, interaction, scenario, events or newly inserted Section/ContentBlock. An approved \`overrides.yaml\` can only reference already implemented standalone Lessons and already authored, reviewed **Course-owned TypeScript sources**. Approving this file does **not** change ownership of the original Lesson or authorize the builder to invent a scene, story, image, question or translation.
 
 The input is an ordered sequence of explicitly typed operations applied to one Course Lesson slot using \`createLessonOverrides(lesson)\`. References to existing Sections and ContentBlocks use immutable **slugs**, never array indexes. A new Course-owned item is referenced by an exported TypeScript object in the **same Course directory**, never copied into a Lesson directory:
 
@@ -13,6 +13,18 @@ The input is an ordered sequence of explicitly typed operations applied to one C
 - \`patches/<name>.ts\`: an approved, typed sparse replacement, title, Section metadata or event patch. Its exported type must satisfy the existing creator API.
 
 The YAML builder checks source files and exported symbols. TypeScript and Engine creators validate the shapes and the existing original slug/ID invariants. New Course-owned material must have a distinct canonical content-producing workflow. No arbitrary inline TS/JS, fabricated strings, unknown Lesson-owned Question changes, or unreviewed translation fallback is permitted.
+
+## Multi-author workflow and configuration review
+
+The Course-owned `overrides.yaml` is **one shared approved input**, not separate methodological and scenario override files:
+
+- **Course Methodologist**, during [Review Course Methodology and Configuration](./review-course-methodology.skill.md), inspects real Lesson Data and may author **methodological** overrides (navigation, skipping, pacing/order, other approved operations) when needed for the Course's learning sequence. This does **not** happen while creating the skill-based TOC, which precedes Lesson matching.
+- **Course Screenwriter**, in the future Course scenario authoring stage, may propose **scenario** overrides (story integration, new approved Course-owned Sections/blocks, transitions/events and sequencing) within their creative scope. A missing Course Screenwriting skill is not permission for the Builder or Methodologist to fabricate narrative assets.
+- **Independent reviewers**: [Scenario Review](./review-course-scenario.skill.md) is conditional on actual scenario material; Methodological Review is required before final composed Course generation. Reviewers check distinct concerns and record exact reviewed source revisions. Their verdicts do not replace authorized editorial approval.
+
+The editor/content owner resolves contradictory operations; **do not silently overwrite** another specialist's approved modifications. Record operation-level author, rationale, affected slot and revision in review reports or PR discussion, **not as unsupported extra keys in the current YAML schema**. An edit to previously approved `overrides.yaml` reopens its approval gate: set it to `status: draft`, obtain approval for the new revision, and recheck the affected methodological/scenario reviews. When no changes are needed, omit the optional file instead of creating empty or decorative overrides.
+
+These are **editorial review requirements**. The current deterministic Builder checks `status: approved` plus its schema/source validation; it does not automatically inspect `scenario-review.md` or `methodology-review.md`.
 
 ## Example (schematic UUIDs, never a production-ready editorial artifact)
 
