@@ -43,7 +43,11 @@ async function Content({ params }: Props) {
 export default function CourseLessonPage(props: Props) {
   return (
     <Suspense
-      fallback={<div role="status" aria-busy="true">Loading lesson…</div>}
+      fallback={
+        <div role="status" aria-busy="true">
+          Loading lesson…
+        </div>
+      }
     >
       <Content {...props} />
     </Suspense>
