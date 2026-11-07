@@ -3,7 +3,7 @@ import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import LearningLayout from './LearningLayout';
 import { testId as navbarTestId } from '@svitlo/ui-kit/navigation/Navbar.constants';
-import { testId as spaceTestId } from '@svitlo/ui-kit/widgets/VerticalSpace/VerticalSpace.constants';
+import { testId as spaceTestId } from '@svitlo/ui-kit/layout/ThreeSlotLayout.constants';
 
 const Navbar_fx = {
   selectors: {
@@ -13,7 +13,7 @@ const Navbar_fx = {
       (navigation ? within(navigation) : screen).getByTestId(navbarTestId.slots[name]),
   },
 };
-const VerticalSpace_fx = {
+const ThreeSlotLayout_fx = {
   selectors: {
     container: (scope?: HTMLElement) => (scope ? within(scope) : screen).getByTestId(spaceTestId.container),
     containers: () => screen.getAllByTestId(spaceTestId.container),
@@ -63,7 +63,7 @@ export const LearningLayout_fx = {
     return render(createElement(TestLayout));
   },
   navbar: Navbar_fx.selectors,
-  child: { verticalSpace: VerticalSpace_fx.selectors },
+  child: { threeSlotLayout: ThreeSlotLayout_fx.selectors },
   selectors: {
     top: () => screen.getByRole('navigation', { name: aria.navigation.top }),
     bottom: () => screen.getByRole('navigation', { name: aria.navigation.bottom }),

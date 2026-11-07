@@ -30,6 +30,18 @@ describe('Layouts', () => {
       expect(onClick).toHaveBeenCalledOnce();
     });
 
+    it('uses the horizontal three-zone layout and supports native RTL direction', () => {
+      Navbar_fx.render({
+        slots: { left: 'Start', center: 'Fill', right: 'End' },
+        slotProps: { root: { dir: 'rtl' } },
+      });
+      const navbar = Navbar_fx.selectors.navigation();
+      expect(navbar).toHaveAttribute('dir', 'rtl');
+      expect(navbar).toHaveAttribute('data-axis', 'horizontal');
+      expect(Navbar_fx.selectors.slot('left', navbar)).toHaveTextContent('Start');
+      expect(Navbar_fx.selectors.slot('right', navbar)).toHaveTextContent('End');
+    });
+
     it('should keep shared slot selectors scoped when two navbars are rendered', () => {
       Navbar_fx.render({ 'aria-label': 'First', slots: { left: 'Alpha' } });
       Navbar_fx.render({ 'aria-label': 'Second', slots: { left: 'Beta' } });
