@@ -1,13 +1,13 @@
-import { defineLessonData, type Lesson } from '@svitlo/engine/content';
+import { createLesson } from '@svitlo/engine/builders';
 import { howLightMoves_languages, type HowLightMoves_Languages } from './constants';
 import { howLightMoves_Flashcards } from './flashcards';
 import { howLightMoves_Questions } from './questions';
 import { testExplainLightTravel_Skill_Data } from '../../../skills/testLight/testLightPropagation/skills';
-import { practice_Section } from './sections/practice';
-import { quiz_Section } from './sections/quiz';
-import { theory_Section } from './sections/theory/theory';
+import { practice_Section_Creator } from './sections/practice';
+import { quiz_Section_Creator } from './sections/quiz';
+import { theory_Section_Creator } from './sections/theory/theory';
 
-export const howLightMoves_Data = defineLessonData<HowLightMoves_Languages>()({
+export const howLightMoves_Creator = createLesson<HowLightMoves_Languages>()({
   id: 'd3048d21-8690-5255-b62c-984c69ac272c',
   slug: 'howLightMoves',
   title: {
@@ -53,5 +53,7 @@ export const howLightMoves_Data = defineLessonData<HowLightMoves_Languages>()({
     },
   },
   questions: howLightMoves_Questions,
-  sections: [theory_Section, practice_Section, quiz_Section],
-} satisfies Lesson<'data', HowLightMoves_Languages>);
+  sections: [theory_Section_Creator, practice_Section_Creator, quiz_Section_Creator],
+});
+
+export const howLightMoves_Data = howLightMoves_Creator.getData();

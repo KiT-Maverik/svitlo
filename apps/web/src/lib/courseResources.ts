@@ -6,7 +6,7 @@ import type { Course_Toc, Course_TocContent, Course_TocEpisode, Course_TocLesson
 import type { LanguageCode } from '@svitlo/engine/localization';
 import type { Course_LessonOverride, Locale_Languages } from '@svitlo/engine/content';
 import type { LessonResponse } from '@svitlo/engine/lesson';
-import { applyCourseLessonOverride } from '@svitlo/engine/lesson';
+import { applyCourseLessonOverride, mergeLessonResources } from '@svitlo/engine/lesson';
 
 const UUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
 const assertUuid = (id: string) => {
@@ -19,8 +19,22 @@ async function loadJson(filename: string): Promise<unknown> {
   return JSON.parse(await readFile(filename, 'utf8'));
 }
 
+/** Course runtime is the sole owner of assembling the published sparse base and locale. */
+async function loadSparseCourseResource(
+  courseId: string,
+  language: LanguageCode,
+  ...segments: string[]
+): Promise<unknown> {
+  const directory = path.join(courseRoot(courseId), ...segments);
+  const [base, locale] = await Promise.all([
+    loadJson(path.join(directory, 'base.json')),
+    loadJson(path.join(directory, language + '.json')),
+  ]);
+  return mergeLessonResources(base, locale);
+}
+
 export async function loadCourseToc(id: string, language: LanguageCode): Promise<Course_Toc> {
-  const data = await loadJson(path.join(courseRoot(id), 'toc', language + '.json'));
+  const data = await loadSparseCourseResource(id, language, 'toc');
   if (
     !data ||
     typeof data !== 'object' ||
@@ -89,10 +103,9 @@ export async function loadCourseLesson(
   language: LanguageCode,
 ): Promise<LessonResponse> {
   assertUuid(lesson.id);
-  const file = path.join(courseRoot(courseId), 'overrides', lesson.id, language + '.json');
   let data: unknown;
   try {
-    data = await loadJson(file);
+    data = await loadSparseCourseResource(courseId, language, 'overrides', lesson.id);
   } catch (error) {
     if ((error as NodeJS.ErrnoException).code === 'ENOENT') return lesson;
     throw error;
@@ -100,5 +113,5 @@ export async function loadCourseLesson(
   return applyCourseLessonOverride(lesson, data as Course_LessonOverride<Locale_Languages>);
 }
 export async function loadCourseEpisode(courseId: string, id: string, language: LanguageCode): Promise<unknown> {
-  return loadJson(path.join(courseRoot(courseId), 'episodes', assertUuid(id), language + '.json'));
+  return loadSparseCourseResource(courseId, language, 'episodes', assertUuid(id));
 }

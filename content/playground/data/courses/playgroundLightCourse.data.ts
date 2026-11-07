@@ -1,5 +1,12 @@
-import { createChapter, createEpisode, createLessonOverrides, createModule } from '@svitlo/engine/builders';
-import type { Course, Section } from '@svitlo/engine/content';
+import {
+  createChapter,
+  createContentBlock,
+  createEpisode,
+  createLessonOverrides,
+  createModule,
+  createSection,
+} from '@svitlo/engine/builders';
+import type { Course } from '@svitlo/engine/content';
 import { contentBlockGallery_Section } from './sections/contentBlockGallery.data';
 import {
   howLightMoves_languages,
@@ -27,19 +34,19 @@ const episode = createEpisode<HowLightMoves_Languages>({
       title: 'A short adventure',
       navigationLabel: 'Story',
       content: [
-        {
+        createContentBlock<HowLightMoves_Languages>()({
           id: 'episode-markdown',
           slug: 'storyCopy',
           type: 'markdown',
           locales:
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        },
+        }).getData(),
       ],
     },
   ],
 });
 
-const storyInsideLesson = {
+const storyInsideLesson = createSection<HowLightMoves_Languages>()({
   id: '5234f750-02c0-54fc-a02f-c9b76b2d680b',
   slug: 'storyBridge',
   type: 'scenario',
@@ -53,7 +60,7 @@ const storyInsideLesson = {
       locales: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. A small story between lesson sections.',
     },
   ],
-} as const satisfies Section<'data', HowLightMoves_Languages>;
+}).getData();
 
 const reorderedLesson = createLessonOverrides(howLightMoves_Data)
   .setParams({ sections: { allowSkipping: false } })

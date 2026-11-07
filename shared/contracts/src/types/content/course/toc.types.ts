@@ -1,4 +1,5 @@
 import type { Locale_Languages } from '../locale.types';
+import type { Entity_Creator } from '../entity.types';
 import type { Lesson } from '../lesson.types';
 import type { Course } from './course.types';
 import type { Chapter } from './chapter.types';
@@ -43,15 +44,7 @@ export type Course_TocContext<Languages extends Locale_Languages> = {
   language: Languages[number];
 };
 
-/**
- * Pure creator output: data stays authored/locale-complete and TOC is localized.
- * The publisher performs final locale projection, reference validation and IO.
- */
-export type Course_Resource<Data, Toc> = {
-  data: Data;
-  toc: Toc;
-};
-
+/** The Course creator builds navigation; publishers choose the serialized paths. */
 /** Flat authoring entities consumed by Course generators (not embedded in published TOC). */
 export type Course_PublicationItems<Languages extends Locale_Languages> = {
   lessons: readonly Lesson<'data', Languages>[];
@@ -60,9 +53,7 @@ export type Course_PublicationItems<Languages extends Locale_Languages> = {
   overrides: readonly import('./source.types').Course_LessonAuthoringOverride<Languages>[];
 };
 
-export type Course_Creator<Data, Toc, Languages extends Locale_Languages> = {
-  getData(): Data;
-  toToc(context: Course_TocContext<Languages>): Toc;
-  toResource(context: Course_TocContext<Languages>): Course_Resource<Data, Toc>;
-  getPublicationItems(): Course_PublicationItems<Languages>;
+export type Course_Creator<Data, Languages extends Locale_Languages> = Entity_Creator<Data> & {
+  /** Flatten nested entities; never serialize imported Lesson data in Course resources. */
+  getContentEntries(): Course_PublicationItems<Languages>;
 };

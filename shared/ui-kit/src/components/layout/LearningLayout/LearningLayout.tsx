@@ -263,6 +263,8 @@ export default function LearningLayout({
   renderEventHost,
 }: LearningLayoutProps) {
   const direction = getLocaleDirection(locale);
+  const topicsAnchor = direction === 'rtl' ? 'right' : 'left';
+  const settingsAnchor = direction === 'rtl' ? 'left' : 'right';
   const [open, setOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   useEffect(() => {
@@ -348,10 +350,14 @@ export default function LearningLayout({
           />
         </Fade>
         <Drawer
-          anchor={direction === 'rtl' ? 'right' : 'left'}
+          anchor={topicsAnchor}
           variant="persistent"
           open={open}
           slotProps={{
+            // MUI mirrors Slide internally for RTL, but the Paper still uses the
+            // physical anchor. Set the direction explicitly so it enters from
+            // that edge rather than crossing the screen.
+            transition: { direction: topicsAnchor === 'left' ? 'right' : 'left' },
             paper: {
               sx: {
                 position: 'absolute',
@@ -403,10 +409,11 @@ export default function LearningLayout({
           </Box>
         </Drawer>
         <Drawer
-          anchor={direction === 'rtl' ? 'left' : 'right'}
+          anchor={settingsAnchor}
           variant="persistent"
           open={settingsOpen}
           slotProps={{
+            transition: { direction: settingsAnchor === 'left' ? 'right' : 'left' },
             paper: {
               sx: {
                 position: 'absolute',
