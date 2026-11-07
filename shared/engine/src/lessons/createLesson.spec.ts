@@ -174,8 +174,18 @@ describe('composable Lesson creators', () => {
   it('preserves both Flashcard relation endpoints through locale publication and response assembly', () => {
     const flashcards = linkFlashcards<typeof languages>(
       [
-        { id: 'card-a', front: [], back: [], hint: [], tags: [], flags: [] },
-        { id: 'card-b', front: [], back: [], hint: [], tags: [], flags: [] },
+        {
+          id: 'card-a', front: [], back: [], hint: [], tags: [],
+          flags: [
+            { type: 'list', count: 3 },
+            { type: 'warning' },
+            { type: 'custom', color: 'success', icon: 'star', value: { en: 'Important', uk: 'Важливо' } },
+          ],
+        },
+        {
+          id: 'card-b', front: [], back: [], hint: [], tags: [],
+          flags: [{ type: 'acronym', value: { en: 'RED', uk: 'ЧЕР' } }],
+        },
       ],
       [{
         relationshipId: 'bidirectional-recall',
@@ -199,6 +209,12 @@ describe('composable Lesson creators', () => {
       relatedFlashcardId: 'card-b',
       position: 'peer',
     }]);
+    assert.deepEqual(published[0].flags, [
+      { type: 'list', count: 3 },
+      { type: 'warning' },
+      { type: 'custom', color: 'success', icon: 'star', value: 'Важливо' },
+    ]);
+    assert.deepEqual(published[1].flags, [{ type: 'acronym', value: 'ЧЕР' }]);
     assert.deepEqual(published[1].relationships, [{
       relationshipId: 'bidirectional-recall',
       type: 'reverse',
