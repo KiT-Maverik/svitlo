@@ -43,7 +43,11 @@ function methodologyFrontmatter(text) {
 export function groupUuid(courseId, kind, key) {
   if (!UUID.test(courseId)) error('UUID', 'invalid Course UUID ' + courseId);
   const ns = Buffer.from(courseId.replaceAll('-', ''), 'hex');
-  const bytes = createHash('sha1').update(ns).update(kind + ':' + key).digest().subarray(0, 16);
+  const bytes = createHash('sha1')
+    .update(ns)
+    .update(kind + ':' + key)
+    .digest()
+    .subarray(0, 16);
   bytes[6] = (bytes[6] & 0x0f) | 0x50;
   bytes[8] = (bytes[8] & 0x3f) | 0x80;
   const hex = bytes.toString('hex');
@@ -95,13 +99,7 @@ function normalizeTree(items, courseId, seenKeys, lessonIds, breadcrumb = 'conte
  * The resolver must return actual implemented Lesson data metadata and import
  * coordinates; it must never manufacture an unimplemented Lesson.
  */
-export async function buildCoursePlan({
-  methodologyText,
-  tocText,
-  schema,
-  supportedCodes,
-  resolveLesson,
-}) {
+export async function buildCoursePlan({ methodologyText, tocText, schema, supportedCodes, resolveLesson }) {
   const methodology = methodologyFrontmatter(methodologyText);
   const toc = parseYaml(tocText, 'toc.yaml');
   validateSchema(toc, schema);
@@ -135,9 +133,15 @@ export async function buildCoursePlan({
     // The current Course<'data', L> expects exactly L on nested Lesson Data.
     // An actual superset is semantically valid, but cannot safely be cast to L.
     if (JSON.stringify(actual) !== JSON.stringify(languages)) {
-      error('TYPED_LANGUAGE_SUPERSET',
-        id + ': Lesson languages (' + actual.join(', ') + ') cover Course languages (' +
-        languages.join(', ') + '), but Course creator currently requires an identical tuple');
+      error(
+        'TYPED_LANGUAGE_SUPERSET',
+        id +
+          ': Lesson languages (' +
+          actual.join(', ') +
+          ') cover Course languages (' +
+          languages.join(', ') +
+          '), but Course creator currently requires an identical tuple',
+      );
     }
     if (!item.source || !item.exportName) error('LESSON_EXPORT', id + ': no unique exported Lesson Data symbol');
     lessons.set(id, item);
@@ -149,14 +153,10 @@ function titleKey(node) {
   return node.type + '/' + node.key;
 }
 function flattenGroups(items) {
-  return items.flatMap(item =>
-    item.type === 'lesson' ? [] : [item, ...flattenGroups(item.children)],
-  );
+  return items.flatMap(item => (item.type === 'lesson' ? [] : [item, ...flattenGroups(item.children)]));
 }
 function flattenSlots(items) {
-  return items.flatMap(item =>
-    item.type === 'lesson' ? [item] : flattenSlots(item.children),
-  );
+  return items.flatMap(item => (item.type === 'lesson' ? [item] : flattenSlots(item.children)));
 }
 function titleSource(title) {
   return typeof title === 'string' ? title : title.value;
@@ -202,13 +202,27 @@ export function renderCourseSource(plan, outputFilename) {
   };
   const entries = plan.tree.map(node => emitNode(node)).join(',\n');
   const keys = localized.map(node => '  ' + js(titleKey(node)) + ': Record<CourseLanguage, string>;').join('\n');
-  const sources = localized.map(node =>
-    '  ' + js(titleKey(node)) + ': { ' + js(plan.documentLanguage) + ': ' + js(titleSource(node.title)) + ' },',
-  ).join('\n');
-  const slotSources = flattenSlots(plan.tree).map(node =>
-    '  ' + js(node.key) + ': { lessonId: ' + js(node.lessonId) + ', ' +
-      'documentLanguage: ' + js(plan.documentLanguage) + ', title: ' + js(titleSource(node.title)) + ' },',
-  ).join('\n');
+  const sources = localized
+    .map(
+      node =>
+        '  ' + js(titleKey(node)) + ': { ' + js(plan.documentLanguage) + ': ' + js(titleSource(node.title)) + ' },',
+    )
+    .join('\n');
+  const slotSources = flattenSlots(plan.tree)
+    .map(
+      node =>
+        '  ' +
+        js(node.key) +
+        ': { lessonId: ' +
+        js(node.lessonId) +
+        ', ' +
+        'documentLanguage: ' +
+        js(plan.documentLanguage) +
+        ', title: ' +
+        js(titleSource(node.title)) +
+        ' },',
+    )
+    .join('\n');
   return [
     generatedHeader.trimEnd(),
     'import { createCourse, createChapter, createModule } from "@svitlo/engine/builders";',
@@ -256,8 +270,8 @@ function lessonExport(source, filename) {
   const ast = ts.createSourceFile(filename, source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
   const names = [];
   for (const statement of ast.statements) {
-    if (!ts.isVariableStatement(statement) ||
-      !statement.modifiers?.some(x => x.kind === ts.SyntaxKind.ExportKeyword)) continue;
+    if (!ts.isVariableStatement(statement) || !statement.modifiers?.some(x => x.kind === ts.SyntaxKind.ExportKeyword))
+      continue;
     for (const declaration of statement.declarationList.declarations) {
       if (ts.isIdentifier(declaration.name) && /_Data$/.test(declaration.name.text)) {
         names.push(declaration.name.text);
@@ -274,10 +288,15 @@ export async function resolveImplementedLesson(root, id) {
   if (!fs.existsSync(folder)) {
     error('MISSING_LESSON', id + ': expected implemented Lesson *.data.ts at ' + folder);
   }
-  const candidates = fs.readdirSync(folder).filter(name => name.endsWith('.data.ts')).sort();
+  const candidates = fs
+    .readdirSync(folder)
+    .filter(name => name.endsWith('.data.ts'))
+    .sort();
   if (candidates.length !== 1) {
-    error('MISSING_LESSON', id + ': expected exactly one Lesson *.data.ts at ' + folder +
-      ' (found ' + candidates.length + ')');
+    error(
+      'MISSING_LESSON',
+      id + ': expected exactly one Lesson *.data.ts at ' + folder + ' (found ' + candidates.length + ')',
+    );
   }
   const filename = path.join(folder, candidates[0]);
   const lesson = await loadLessonData(filename);
@@ -316,7 +335,10 @@ export function parseArguments(args) {
     } else error('ARGS', 'unexpected argument ' + args[i]);
   }
   if (!PACKAGE.test(packagePath ?? '') || !UUID.test(courseId ?? '') || !action) {
-    error('ARGS', 'usage: node scripts/course-builder/build-course.mjs --package content/<book> --course <uuid> --write|--check');
+    error(
+      'ARGS',
+      'usage: node scripts/course-builder/build-course.mjs --package content/<book> --course <uuid> --write|--check',
+    );
   }
   return { packagePath, courseId, action };
 }
@@ -332,7 +354,9 @@ export async function main(args) {
   if (!fs.existsSync(methodology) || !fs.existsSync(toc)) {
     error('INPUT', 'missing ' + (!fs.existsSync(methodology) ? methodology : toc));
   }
-  const schema = JSON.parse(fs.readFileSync(path.join(repoRoot, 'studio/skills/course-workflow/course-toc.schema.json'), 'utf8'));
+  const schema = JSON.parse(
+    fs.readFileSync(path.join(repoRoot, 'studio/skills/course-workflow/course-toc.schema.json'), 'utf8'),
+  );
   const plan = await buildCoursePlan({
     methodologyText: fs.readFileSync(methodology, 'utf8'),
     tocText: fs.readFileSync(toc, 'utf8'),
@@ -345,7 +369,9 @@ export async function main(args) {
   const rendered = renderCourseSource(plan, filename);
   const updated = verifyOrWriteGenerated(filename, rendered, action);
   if (action === '--write' && !updated) return console.log('Course TS already up to date: ' + filename);
-  console.log('Validated Course ' + plan.courseId + ' (' + plan.lessons.size + ' unique Lessons); ' + action + ' ' + filename);
+  console.log(
+    'Validated Course ' + plan.courseId + ' (' + plan.lessons.size + ' unique Lessons); ' + action + ' ' + filename,
+  );
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

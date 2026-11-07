@@ -6,7 +6,7 @@ This is **not** an AI authoring skill and does **not** generate standalone Lesso
 
 From the monorepo root after installing and building the existing Contracts/Engine workspaces:
 
-~~~sh
+```sh
 npm run package:build --workspace @svitlo/contracts
 npm run package:build --workspace @svitlo/engine
 
@@ -21,23 +21,23 @@ node scripts/course-builder/build-course.mjs \
   --check
 
 node --test scripts/course-builder/build-course.spec.mjs
-~~~
+```
 
 The builder looks for existing approved input only at:
 
-~~~text
+```text
 content/<book>/data/courses/<last-hex-digit>/<courseId>/
   methodology.md
   toc.yaml
-~~~
+```
 
 The canonical JSON Schema is **read from Studio**, not reimplemented. Duplicate keys are rejected; order is inherited exclusively from the YAML arrays. All Lesson slots require a matched UUID. For each unique UUID the builder looks in the textbook's canonical Lesson UUID bucket, requires exactly one implemented \`*.data.ts\`, loads real Lesson data through \`@svitlo/engine/utils\` and checks identity and implemented languages. Editorial-only \`methodology.md\` or \`lesson.identity.json\` is not an implemented Lesson. Missing implementations fail with their expected path.
 
 The generated file is:
 
-~~~text
+```text
 content/<book>/data/courses/<bucket>/<courseId>/toc.generated.ts
-~~~
+```
 
 It exports:
 
@@ -49,19 +49,24 @@ It exports:
 
 The caller must supply separately approved Course-level frontend \`title\` and \`description\` as \`CourseFrontendMetadata\` and complete translations for ordinary grouping titles. For example, the caller's existing, authored flat \`data/courses/<name>.data.ts\` may use:
 
-~~~ts
+```ts
 import { createCourseData } from './<bucket>/<uuid>/toc.generated';
 
 export const exampleCourse_Data = createCourseData(
   {
     title: { id: 'course-title', slug: 'courseTitle', type: 'text', value: { uk: '...', en: '...' } },
-    description: { id: 'course-description', slug: 'courseDescription', type: 'markdown', locales: { uk: '...', en: '...' } },
+    description: {
+      id: 'course-description',
+      slug: 'courseDescription',
+      type: 'markdown',
+      locales: { uk: '...', en: '...' },
+    },
   },
   {
     'module/foundations': { uk: '...', en: '...' },
   },
 );
-~~~
+```
 
 The example values above are schematic and **must not** be used as placeholders in actual Course authoring. Ordinary titles are not promoted to language-independent strings simply because translations are unfinished. The generated source-only dictionaries do not satisfy the full localized type for a multi-language Course and cannot be passed directly to the factory until translations are approved. The builder does not assert publication readiness merely because a TS factory was generated.
 
@@ -73,7 +78,7 @@ Further gaps to close in subsequent reviewed work:
 
 1. **Course frontend copy/translation ownership:** determine the canonical approved input for Course title, description, optional prerequisites text and translated Module/Chapter labels. Only then can a builder safely emit a complete \`*.data.ts\` entrypoint automatically.
 2. **Course-owned Episodes, Scenario Sections and sparse Overrides:** no approved editorial YAML schema was found in the Course Workflow. This builder neither writes nor modifies them; existing typed authoring and slug-keyed overrides remain supported by the current Course API/publisher.
-3. **Subset language typing:** \`Course<'data', L>\` currently requires imported \`Lesson<'data', L>\` with the *identical ordered tuple*. The builder checks the required Course locale subset first, then emits \`TYPED_LANGUAGE_SUPERSET\` for a Lesson with extra supported languages, rather than forcing \`any\`/casts or copying the Lesson. The Course contract needs a type-safe superset adaptation, independently approved.
+3. **Subset language typing:** \`Course<'data', L>\` currently requires imported \`Lesson<'data', L>\` with the _identical ordered tuple_. The builder checks the required Course locale subset first, then emits \`TYPED_LANGUAGE_SUPERSET\` for a Lesson with extra supported languages, rather than forcing \`any\`/casts or copying the Lesson. The Course contract needs a type-safe superset adaptation, independently approved.
 4. **Repeated Lesson routes/overrides:** the publisher can now reuse one Lesson UUID in several TOC positions, but all placements address the same Lesson URL. Two different per-slot overrides targeting one UUID are rejected because the current publisher keys overrides by Lesson UUID, not slot key.
 5. **Runtime Lesson titles:** existing \`createCourse\` derives Lesson TOC titles from canonical Lesson Data. TOC slot titles are editorial intent, not automatically approved sparse title overrides. The builder exposes them for review without changing Lesson UI or content.
 6. **Group UUIDs:** Module/Chapter IDs are stable UUIDv5 values scoped by Course ID, node type and immutable editorial key. Renaming a key changes that group's identity: key changes require explicit migration/approval.

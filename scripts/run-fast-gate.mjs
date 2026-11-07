@@ -75,7 +75,11 @@ function runGate(changed) {
   exec('node', ['--test', 'scripts/run-fast-gate.spec.mjs']);
   // Validate editorial Course composition independently of unrelated workspace
   // typecheck errors; the Course builder is deterministic repository tooling.
-  if (changed.some(f => f.startsWith('scripts/course-builder/') || f === 'studio/skills/course-workflow/course-toc.schema.json')) {
+  if (
+    changed.some(
+      f => f.startsWith('scripts/course-builder/') || f === 'studio/skills/course-workflow/course-toc.schema.json',
+    )
+  ) {
     exec('node', ['--test', 'scripts/course-builder/build-course.spec.mjs']);
   }
 

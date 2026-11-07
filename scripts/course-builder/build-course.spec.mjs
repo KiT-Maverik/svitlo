@@ -8,28 +8,47 @@ import ts from 'typescript';
 import { buildCoursePlan, groupUuid, renderCourseSource, verifyOrWriteGenerated } from './build-course.mjs';
 
 const root = path.resolve(fileURLToPath(new URL('../..', import.meta.url)));
-const schema = JSON.parse(fs.readFileSync(path.join(root, 'studio/skills/course-workflow/course-toc.schema.json'), 'utf8'));
+const schema = JSON.parse(
+  fs.readFileSync(path.join(root, 'studio/skills/course-workflow/course-toc.schema.json'), 'utf8'),
+);
 const id = '30ecbde1-97fd-5fe7-a353-ea89b9ef4a67';
 const lessonA = 'd3048d21-8690-5255-b62c-984c69ac272c';
 const lessonB = 'f760e7b7-9f77-5027-89ce-4e40d9d031a1';
 const skillId = '00b48cb0-13c2-4531-84ac-1b8d44f11055';
 
 const lesson = (key, lessonId = lessonA) => ({
-  type: 'lesson', key, title: key, objective: 'Learn the skill',
+  type: 'lesson',
+  key,
+  title: key,
+  objective: 'Learn the skill',
   skills: [{ id: skillId, name: 'Skill', source: 'content/math/data/skills/arithmetic/test.data.ts' }],
   lessonId,
 });
 const chapter = (key, children) => ({ type: 'chapter', key, title: key, children });
 const module = (key, children) => ({ type: 'module', key, title: key, children });
-const method = (langs = ['uk', 'en'], docLang = 'en') => [
-  '---', 'schemaVersion: 1', 'kind: course-methodology', 'status: approved',
-  'courseId: ' + id, 'documentLanguage: ' + docLang,
-  'supportedLanguages: [' + langs.join(', ') + ']', '---', '# Approved Course',
-].join('\n');
-const toc = (content, langs = ['uk', 'en'], documentLanguage = 'uk') => JSON.stringify({
-  schemaVersion: 1, kind: 'course-toc-plan', status: 'approved',
-  courseId: id, documentLanguage, supportedLanguages: langs, content, openIssues: [],
-});
+const method = (langs = ['uk', 'en'], docLang = 'en') =>
+  [
+    '---',
+    'schemaVersion: 1',
+    'kind: course-methodology',
+    'status: approved',
+    'courseId: ' + id,
+    'documentLanguage: ' + docLang,
+    'supportedLanguages: [' + langs.join(', ') + ']',
+    '---',
+    '# Approved Course',
+  ].join('\n');
+const toc = (content, langs = ['uk', 'en'], documentLanguage = 'uk') =>
+  JSON.stringify({
+    schemaVersion: 1,
+    kind: 'course-toc-plan',
+    status: 'approved',
+    courseId: id,
+    documentLanguage,
+    supportedLanguages: langs,
+    content,
+    openIssues: [],
+  });
 const known = new Set(['uk', 'en', 'fr']);
 const resolver = async lessonId => ({
   id: lessonId,
@@ -37,18 +56,22 @@ const resolver = async lessonId => ({
   source: '/repo/content/math/data/lessons/c/' + lessonId + '/lesson.data.ts',
   exportName: 'lesson_Data',
 });
-const generate = (nodes, opts = {}) => buildCoursePlan({
-  methodologyText: opts.method ?? method(),
-  tocText: opts.toc ?? toc(nodes),
-  schema,
-  supportedCodes: known,
-  resolveLesson: opts.resolver ?? resolver,
-});
+const generate = (nodes, opts = {}) =>
+  buildCoursePlan({
+    methodologyText: opts.method ?? method(),
+    tocText: opts.toc ?? toc(nodes),
+    schema,
+    supportedCodes: known,
+    resolveLesson: opts.resolver ?? resolver,
+  });
 const output = '/repo/content/math/data/courses/7/' + id + '/toc.generated.ts';
 
 test('Course with only Lessons: preserves sequence, ID and source-only slot labels', async () => {
   const plan = await generate([lesson('one', lessonB), lesson('two', lessonA)]);
-  assert.deepEqual(plan.tree.map(x => x.lessonId), [lessonB, lessonA]);
+  assert.deepEqual(
+    plan.tree.map(x => x.lessonId),
+    [lessonB, lessonA],
+  );
   const code = renderCourseSource(plan, output);
   assert(code.includes('createCourse<CourseLanguages>'));
   assert(code.includes('courseLessonSlotTitleSources'));
@@ -74,30 +97,51 @@ test('Modules/Chapters preserve nesting and stable UUIDv5 keys', async () => {
 test('Reuse of one Lesson is resolved once and imports canonical Data once', async () => {
   let calls = 0;
   const plan = await generate([lesson('intro'), lesson('review')], {
-    resolver: async id => { calls++; return resolver(id); },
+    resolver: async id => {
+      calls++;
+      return resolver(id);
+    },
   });
   assert.equal(calls, 1);
   assert.equal(plan.lessons.size, 1);
   assert.equal((renderCourseSource(plan, output).match(/import \{ lesson_Data/g) ?? []).length, 1);
-  assert.deepEqual(plan.tree.map(x => x.lessonId), [lessonA, lessonA]);
+  assert.deepEqual(
+    plan.tree.map(x => x.lessonId),
+    [lessonA, lessonA],
+  );
 });
 
 test('Missing matched Lesson UUID reports its slot', async () => {
-  await assert.rejects(() => generate([{
-    ...lesson('unfinished'), lessonId: undefined,
-  }]), /SCHEMA|UNMATCHED_LESSON/);
+  await assert.rejects(
+    () =>
+      generate([
+        {
+          ...lesson('unfinished'),
+          lessonId: undefined,
+        },
+      ]),
+    /SCHEMA|UNMATCHED_LESSON/,
+  );
 });
 
 test('Unknown implemented Lesson UUID is a hard blocker, no empty Lesson generated', async () => {
-  await assert.rejects(() => generate([lesson('unknown')], {
-    resolver: async () => null,
-  }), /MISSING_LESSON.*d3048d21/);
+  await assert.rejects(
+    () =>
+      generate([lesson('unknown')], {
+        resolver: async () => null,
+      }),
+    /MISSING_LESSON.*d3048d21/,
+  );
 });
 
 test('Wrong resolved Lesson UUID fails closed', async () => {
-  await assert.rejects(() => generate([lesson('wrong')], {
-    resolver: async x => ({ ...await resolver(x), id: lessonB }),
-  }), /LESSON_ID/);
+  await assert.rejects(
+    () =>
+      generate([lesson('wrong')], {
+        resolver: async x => ({ ...(await resolver(x)), id: lessonB }),
+      }),
+    /LESSON_ID/,
+  );
 });
 
 test('Schema rejects impossible nesting and unsupported explicit order', async () => {
@@ -111,15 +155,23 @@ test('Duplicate editorial keys are rejected even for distinct Lesson IDs', async
 });
 
 test('Lesson without a Course locale reports exactly what is missing', async () => {
-  await assert.rejects(() => generate([lesson('locales')], {
-    resolver: async x => ({ ...await resolver(x), languages: ['en'] }),
-  }), /LESSON_LOCALES.*uk/);
+  await assert.rejects(
+    () =>
+      generate([lesson('locales')], {
+        resolver: async x => ({ ...(await resolver(x)), languages: ['en'] }),
+      }),
+    /LESSON_LOCALES.*uk/,
+  );
 });
 
 test('Superset Lesson tuple reports the current strict Course contract gap', async () => {
-  await assert.rejects(() => generate([lesson('superset')], {
-    resolver: async x => ({ ...await resolver(x), languages: ['uk', 'en', 'fr'] }),
-  }), /TYPED_LANGUAGE_SUPERSET/);
+  await assert.rejects(
+    () =>
+      generate([lesson('superset')], {
+        resolver: async x => ({ ...(await resolver(x)), languages: ['uk', 'en', 'fr'] }),
+      }),
+    /TYPED_LANGUAGE_SUPERSET/,
+  );
 });
 
 test('Methodology and TOC document languages are independent', async () => {
