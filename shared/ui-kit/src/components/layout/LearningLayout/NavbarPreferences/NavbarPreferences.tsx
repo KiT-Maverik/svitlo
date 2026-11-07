@@ -7,10 +7,6 @@ import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import Switch from '@mui/material/Switch';
-import Tooltip from '@mui/material/Tooltip';
-import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
-import WbSunnyRoundedIcon from '@mui/icons-material/WbSunnyRounded';
 import Typography from '@mui/material/Typography';
 import { DEFAULT_SUPPORTED_LANGUAGES, type Locale } from '@svitlo/engine/localization';
 import { Flag } from '#widgets/Flag/Flag';
@@ -30,9 +26,6 @@ export type NavbarPreferencesProps = {
   lessonLanguages?: readonly Locale[];
   onLessonLocaleChange?: (locale: Locale) => void;
   volumeControl?: ReactNode;
-  mode?: 'light' | 'dark' | 'system';
-  systemMode?: 'light' | 'dark';
-  onThemeChange: (mode: 'light' | 'dark') => void;
 };
 
 function LocaleSelector({
@@ -87,132 +80,7 @@ function LocaleSelector({
   );
 }
 
-function ThemeThumb() {
-  return (
-    <Box component="span" className="theme-switch-thumb">
-      <WbSunnyRoundedIcon className="theme-switch-icon theme-switch-icon--sun" sx={{ fontSize: 18 }} />
-      <DarkModeRoundedIcon className="theme-switch-icon theme-switch-icon--moon" sx={{ fontSize: 18 }} />
-    </Box>
-  );
-}
-
-function ThemeSwitch({
-  messages,
-  mode,
-  systemMode,
-  onThemeChange,
-}: Pick<NavbarPreferencesProps, 'messages' | 'mode' | 'systemMode' | 'onThemeChange'>) {
-  // MUI's mode is undefined during hydration; the control must remain usable.
-  const isDark = mode === 'dark' || ((mode === 'system' || mode === undefined) && systemMode === 'dark');
-
-  return (
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        gap: 1,
-        width: '100%',
-        minWidth: 0,
-      }}
-    >
-      <Typography variant="body2" sx={{ flex: '1 1 auto', minWidth: 0, overflowWrap: 'anywhere' }}>
-        {isDark ? messages.theme.dark : messages.theme.light}
-      </Typography>
-      <Tooltip title={isDark ? messages.theme.dark : messages.theme.light}>
-        <Switch
-          checked={isDark}
-          onChange={(_event, checked) => onThemeChange(checked ? 'dark' : 'light')}
-          slotProps={{ input: { 'aria-label': messages.theme.dark } }}
-          icon={<ThemeThumb />}
-          checkedIcon={<ThemeThumb />}
-          sx={{
-            width: 68,
-            height: 38,
-            flexShrink: 0,
-            p: 0,
-            overflow: 'visible',
-            '& .MuiSwitch-switchBase': {
-              p: '5px',
-              left: theme => (theme.direction === 'rtl' ? 'auto' : 0),
-              right: theme => (theme.direction === 'rtl' ? 0 : 'auto'),
-              color: '#B7791F',
-              transition: theme =>
-                theme.transitions.create(['transform', 'color'], {
-                  duration: 320,
-                  easing: theme.transitions.easing.easeInOut,
-                }),
-              '&.Mui-checked': {
-                transform: theme => (theme.direction === 'rtl' ? 'translateX(-30px)' : 'translateX(30px)'),
-                color: '#EAF0FF',
-                '& + .MuiSwitch-track': {
-                  bgcolor: '#3B4E7F',
-                  borderColor: '#6479AB',
-                  opacity: 1,
-                },
-              },
-              '&.Mui-focusVisible .theme-switch-thumb': {
-                outline: '3px solid',
-                outlineColor: 'primary.main',
-                outlineOffset: 2,
-              },
-            },
-            '& .theme-switch-thumb': {
-              width: 28,
-              height: 28,
-              display: 'grid',
-              placeItems: 'center',
-              borderRadius: '50%',
-              bgcolor: '#FFF7DC',
-              boxShadow: '0 1px 4px rgba(32, 41, 63, 0.24)',
-              position: 'relative',
-              transition: 'background-color 320ms ease-in-out, box-shadow 320ms ease-in-out',
-            },
-            '& .Mui-checked .theme-switch-thumb': {
-              bgcolor: '#202E56',
-            },
-            '& .theme-switch-icon': {
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              transition: 'opacity 240ms ease-in-out, transform 320ms ease-in-out',
-            },
-            '& .theme-switch-icon--sun': {
-              opacity: 1,
-              transform: 'translate(-50%, -50%) rotate(0deg) scale(1)',
-            },
-            '& .theme-switch-icon--moon': {
-              opacity: 0,
-              transform: 'translate(-50%, -50%) rotate(-75deg) scale(0.5)',
-            },
-            '& .Mui-checked .theme-switch-icon--sun': {
-              opacity: 0,
-              transform: 'translate(-50%, -50%) rotate(75deg) scale(0.5)',
-            },
-            '& .Mui-checked .theme-switch-icon--moon': {
-              opacity: 1,
-              transform: 'translate(-50%, -50%) rotate(0deg) scale(1)',
-            },
-            '& .MuiSwitch-track': {
-              bgcolor: '#F1C76B',
-              border: '1px solid #D9A83D',
-              borderRadius: 19,
-              opacity: 1,
-              transition: 'background-color 320ms ease-in-out, border-color 320ms ease-in-out',
-            },
-            '@media (prefers-reduced-motion: reduce)': {
-              '& .MuiSwitch-switchBase, & .MuiSwitch-track, & .theme-switch-thumb, & .theme-switch-icon': {
-                transition: 'none',
-              },
-            },
-          }}
-        />
-      </Tooltip>
-    </Box>
-  );
-}
-
-/** Quick Settings are ordered from theme down to the interface language. */
+/** Media and language controls; the theme switch is in the shared navbar. */
 export default function NavbarPreferences({
   locale,
   messages,
@@ -221,13 +89,9 @@ export default function NavbarPreferences({
   lessonLanguages,
   onLessonLocaleChange,
   volumeControl,
-  mode,
-  systemMode,
-  onThemeChange,
 }: NavbarPreferencesProps) {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5, width: '100%', minWidth: 0 }}>
-      <ThemeSwitch messages={messages} mode={mode} systemMode={systemMode} onThemeChange={onThemeChange} />
       {volumeControl}
       {volumeControl && <Divider />}
       {lessonLocale && onLessonLocaleChange && (

@@ -6,6 +6,7 @@ import { useMemo, type ElementType } from 'react';
 import type { Locale } from '@svitlo/engine/localization';
 import LearningLayout, { type LearningLayoutProps } from './LearningLayout';
 import NavbarPreferences from './NavbarPreferences/NavbarPreferences';
+import ThemeSwitch from './NavbarPreferences/ThemeSwitch';
 import { useColorScheme } from '@mui/material/styles';
 
 export type LessonLearningLayoutProps = Pick<
@@ -87,9 +88,6 @@ export function createLessonLearningLayout(bindings: LessonLearningLayoutBinding
           lessonLanguages={supportedLessonLanguages}
           onLessonLocaleChange={setLessonLocale}
           volumeControl={volumeControl}
-          mode={mode}
-          systemMode={systemMode}
-          onThemeChange={setMode}
         />
       ),
       [
@@ -100,11 +98,17 @@ export function createLessonLearningLayout(bindings: LessonLearningLayoutBinding
         supportedLessonLanguages,
         setLessonLocale,
         volumeControl,
-        mode,
-        systemMode,
-        setMode,
       ],
     );
+    const themeControl = (
+      <ThemeSwitch
+        label={messages.navbarPreferences.theme.dark}
+        mode={mode}
+        systemMode={systemMode}
+        onThemeChange={setMode}
+      />
+    );
+
     return (
       <LearningLayout
         locale={locale}
@@ -121,6 +125,7 @@ export function createLessonLearningLayout(bindings: LessonLearningLayoutBinding
         renderBottomBar={renderBottomBar}
         renderEventHost={renderEventHost}
         preferences={preferences}
+        themeControl={themeControl}
         profile={profile}
         profiles={profiles}
         onProfileChange={onProfileChange}
