@@ -22,11 +22,19 @@ Both reviews are independent of the Screenwriter and of each other. The reviewer
 2. Screenwriter authors machine-readable `content.yaml` in one source language; editor determines draft readiness and required approval.
 3. Learning Experience Expert independently reviews and requests corrections until a source-specific pass and editorial sign-off.
 4. Methodologist independently reviews the **same latest source revision** and requests corrections until sign-off. Any correction sends the affected Lesson back through required reviews; do not mechanically re-run unaffected Lessons.
-5. When implemented, an authorized generator produces typed Lesson/Section/ContentBlock sources **and resource requirements for unfinished media and Scenes**. Do not claim this generator exists merely because the stage appears in the tracker.
-6. Specialized agents produce Quiz Questions, Scenes, media and accessibility alternatives; translation agents fill the remaining approved locales. Incomplete source-locale scaffolds may intentionally have TypeScript errors, but cannot pass production publication.
+5. An **independent deterministic builder script** (when implemented and authorized) consumes approved `content.yaml` and creates typed Lesson/Section/ContentBlock scaffolding **plus requirements for pending media and Scenes**. Scene agents do not implement or reproduce this generator. Do not claim the builder exists until verified.
+6. Coding Agents use [Implement Scene](../../skills/lesson-workflow/implement-scene.skill.md) for approved Scene behaviors, typed source-locale text, co-located tests and registry integration; specialized agents create Quiz Questions, media and accessible alternatives. Translation agents independently fill remaining locales. Incomplete source-locale scaffolds may intentionally have TypeScript errors, but cannot pass production publication.
 7. Typecheck, build, content-generation validation, QA and publisher checks gate completion.
 
 Per-Lesson stages can be asynchronous: one Lesson may be awaiting Experience Review while another is ready for translation. Batch as many **independent ready Lessons** as the scope and role permit. Do not force the user to say "continue" for each Lesson.
+
+## Course Workflow → Lesson Production Issue
+
+[Match Course TOC Lessons](../../skills/course-workflow/match-course-toc-lessons.skill.md) is the explicit **Course-to-Lesson production handoff** for a bounded selected Chapter/Module/slot batch. When authorized, resolve all Course slot `key` paths into verified Lesson UUIDs, deduplicate new or reused editorial-only drafts, and create/reuse **one Lesson Production Issue** for the full still-unimplemented subset. Record the Course UUID, `toc.yaml` source commit/PR SHA, exact slot → Lesson-ID mapping, Brief paths and approval status. Already implemented suitable Lessons stay reused and should not be reproduced; missing locales on already implemented Lessons belong in Translation Production.
+
+A Methodologist Draft creates an Issue row at `methodology` / `ready-for-review`, **not** an approved production authorization. The Course matching PR uses `Refs #N`, never closes the Issue, and the standalone Lesson remains Course-neutral. Issue membership is frozen; later Course TOC changes do not silently change scope. If matching was editorial-only or Issue creation is unavailable, report the pending UUID worklist and blocker.
+
+[Implement Scene](../../skills/lesson-workflow/implement-scene.skill.md) **requires** the fixed-scope Lesson Production Issue before editing Scene code, independently verifies the approved Scene spec, and blocks implementation when the separate YAML→typed builder scaffold is absent. Track Scene TODOs/assets/translation blockers in both code and Issue. **Do not** implement the builder in this workflow change.
 
 ## Issue tracker state and PR relationships
 
@@ -43,3 +51,5 @@ A PR is an **implementation/review change set**, not the complete production Iss
 ## Future Course production
 
 A future Course-production Issue Form may share the same immutable-scope, per-entity tracker, handoff and role protocol with **different steps and artifacts**. Do not implicitly turn a Lesson-production Issue into an unbounded Course workflow.
+
+**Scene handoff:** track missing Scene questions, media, localization and testing with precise `TODO(scene/asset/i18n/a11y/test)` comments beside the relevant code and matching Issue blockers. Remove resolved TODOs with verified fixes. Missing-locale TypeScript errors can remain during intermediate authoring (report exactly), but must block publication; unrelated engineering/type defects must be fixed.
