@@ -579,24 +579,8 @@ export function runOne(source, mode = 'check', repo = repoRoot) {
   if (!['check', 'generate'].includes(mode)) throw new Error('Mode must be check or generate');
   const target = targetFor(source, repo);
   const input = inputFor(target.root);
-  let model;
-  try {
-    model = generateModel(target, input);
-  } catch (error) {
-    if (error instanceof BuilderDiagnostic && mode === 'generate') {
-      const blockers = [{ kind: 'contract', location: error.file + ':' + error.field,
-        detail: error.message, status: 'pending' }];
-      // Never write invalid Lesson Data just to satisfy a schema or a missing resource.
-      const files = requirementFiles(input, blockers);
-      const dir = path.join(target.root, 'generated');
-      if (!fs.existsSync(path.join(dir, 'manifest.json')) && !fs.existsSync(path.join(dir, 'lesson.data.ts'))) {
-        noSymlinks(dir);
-        fs.mkdirSync(dir, { recursive: true });
-        safeWrite(path.join(dir, 'requirements.blocked.json'), files['requirements.json']);
-      }
-    }
-    throw error;
-  }
+  // Validation is a fail-closed, read-only phase: invalid inputs never write partial output.
+  const model = generateModel(target, input);
   const files = { 'lesson.data.ts': renderLesson(input, model),
     ...requirementFiles(input, model.requirements) };
   const output = ownedFiles(target, files, mode, input.inputs, input.content.lessonSlug);
