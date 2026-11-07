@@ -8,7 +8,7 @@
     "code:lint:check": "node scripts/run-workspace-script.mjs code:lint:check",
     "code:lint:fix": "node scripts/run-workspace-script.mjs code:lint:fix",
     "code:check:types": "node scripts/run-workspace-script.mjs code:check:types",
-    "test": "node scripts/run-workspace-script.mjs test && node --test scripts/course-builder/build-course.spec.mjs",
+    "test": "node scripts/run-workspace-script.mjs test && node --test scripts/course-builder/build-course.spec.mjs && node --test scripts/lesson-builder.spec.mjs",
     "test:e2e": "node scripts/run-workspace-script.mjs test:e2e",
     "test:components": "node scripts/run-workspace-script.mjs test:components",
     "test:components:coverage": "node scripts/run-workspace-script.mjs test:components:coverage",
@@ -20,12 +20,16 @@
     "storybook:build": "node scripts/run-workspace-script.mjs storybook:build",
     "repo:list:packages": "npm ls --workspaces --depth=0",
     "repo:check:packages": "node scripts/check-workspaces.mjs && node scripts/check-package-boundaries.mjs && node scripts/check-extraction-readiness.mjs && node scripts/check-final-architecture.mjs && node --test scripts/run-workspace-script.spec.mjs",
-    "repo:check:artifacts": "node scripts/check-built-package-exports.mjs"
+    "repo:check:artifacts": "node scripts/check-built-package-exports.mjs",
+    "content:generate:lessons": "node scripts/lesson-builder.mjs generate",
+    "content:check:lessons": "node scripts/lesson-builder.mjs check",
+    "test:unit:lesson-builder": "node --test scripts/lesson-builder.spec.mjs"
   },
   "devDependencies": {
     "ajv": "8.20.0",
     "prettier": "3.9.10",
-    "yaml": "2.9.1"
+    "yaml": "2.9.1",
+    "typescript": "5.9.3"
   },
   "workspaces": [
     "apps/*",

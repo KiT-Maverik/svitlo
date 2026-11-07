@@ -6,7 +6,7 @@ import ListOutlined from '@mui/icons-material/ListOutlined';
 import PriorityHighOutlined from '@mui/icons-material/PriorityHighOutlined';
 import ChatBubbleOutlineOutlined from '@mui/icons-material/ChatBubbleOutlineOutlined';
 import InfoOutlined from '@mui/icons-material/InfoOutlined';
-import StarOutline from '@mui/icons-material/StarOutline';
+import StarOutlined from '@mui/icons-material/StarOutlined';
 import BookmarkBorderOutlined from '@mui/icons-material/BookmarkBorderOutlined';
 import LightbulbOutlined from '@mui/icons-material/LightbulbOutlined';
 import CodeOutlined from '@mui/icons-material/CodeOutlined';
@@ -24,7 +24,7 @@ const iconByName = {
   warning: <PriorityHighOutlined />,
   acronym: <ChatBubbleOutlineOutlined />,
   info: <InfoOutlined />,
-  star: <StarOutline />,
+  star: <StarOutlined />,
   bookmark: <BookmarkBorderOutlined />,
   lightbulb: <LightbulbOutlined />,
   code: <CodeOutlined />,
