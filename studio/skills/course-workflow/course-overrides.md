@@ -16,7 +16,7 @@ The YAML builder checks source files and exported symbols. TypeScript and Engine
 
 ## Example (schematic UUIDs, never a production-ready editorial artifact)
 
-~~~yaml
+```yaml
 schemaVersion: 1
 kind: course-lesson-overrides
 status: approved
@@ -58,25 +58,25 @@ overrides:
           - theory
           - quiz
           - { source: { path: sections/storyBridge.ts, export: storyBridge_Section } }
-~~~
+```
 
 Replace the example's slugs, IDs and paths with verified sources. In an actual Lesson the retained Section and ContentBlock lists **must match** its existing authoring data; the builder rejects missing/duplicate members.
 
 ## Supported operations
 
-| Type | Required fields | Existing Engine method |
-| --- | --- | --- |
-| \`params\` | \`sections\` (allowNavigation / allowSkipping / showIndexes) | \`.setParams({ sections })\` |
-| \`title\` | \`source\` (approved typed title dictionary) | \`.setTitle(source)\` |
-| \`events\` | \`source\` (approved typed event patch) | \`.setEvents(source)\` |
-| \`section-set\` | \`slug\`, \`source\` (approved metadata patch) | \`.sections.bySlug[slug].set(source)\` |
-| \`section-remove\` | \`slug\` | \`.sections.remove(slug)\` |
-| \`section-order\` | \`entries\`: existing slugs or Course-owned Section source refs | \`.sections.setOrder(entries)\` |
-| \`block-set\` | \`sectionSlug\`, \`slug\`, \`source\` | \`.sections.bySlug[sectionSlug].content.bySlug[slug].set(source)\` |
-| \`block-remove\` | \`sectionSlug\`, \`slug\` | \`.sections.bySlug[sectionSlug].content.remove(slug)\` |
-| \`block-order\` | \`sectionSlug\`, \`entries\`: existing slugs or Course-owned block source refs | \`.sections.bySlug[sectionSlug].content.setOrder(entries)\` |
+| Type               | Required fields                                                                | Existing Engine method                                             |
+| ------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| \`params\`         | \`sections\` (allowNavigation / allowSkipping / showIndexes)                   | \`.setParams({ sections })\`                                       |
+| \`title\`          | \`source\` (approved typed title dictionary)                                   | \`.setTitle(source)\`                                              |
+| \`events\`         | \`source\` (approved typed event patch)                                        | \`.setEvents(source)\`                                             |
+| \`section-set\`    | \`slug\`, \`source\` (approved metadata patch)                                 | \`.sections.bySlug[slug].set(source)\`                             |
+| \`section-remove\` | \`slug\`                                                                       | \`.sections.remove(slug)\`                                         |
+| \`section-order\`  | \`entries\`: existing slugs or Course-owned Section source refs                | \`.sections.setOrder(entries)\`                                    |
+| \`block-set\`      | \`sectionSlug\`, \`slug\`, \`source\`                                          | \`.sections.bySlug[sectionSlug].content.bySlug[slug].set(source)\` |
+| \`block-remove\`   | \`sectionSlug\`, \`slug\`                                                      | \`.sections.bySlug[sectionSlug].content.remove(slug)\`             |
+| \`block-order\`    | \`sectionSlug\`, \`entries\`: existing slugs or Course-owned block source refs | \`.sections.bySlug[sectionSlug].content.setOrder(entries)\`        |
 
-The \`operations\` array is ordered. A \`remove\` should precede an affected \`setOrder\` (because \`setOrder\` includes all *currently present* members), and new items must be represented by source refs inside their order operation. Schema validation rejects unsupported operations and fields. Slug membership and original Lesson languages are checked against actual authored Lesson Data; the existing creator enforces complete slug/ID uniqueness and Quiz invariants.
+The \`operations\` array is ordered. A \`remove\` should precede an affected \`setOrder\` (because \`setOrder\` includes all _currently present_ members), and new items must be represented by source refs inside their order operation. Schema validation rejects unsupported operations and fields. Slug membership and original Lesson languages are checked against actual authored Lesson Data; the existing creator enforces complete slug/ID uniqueness and Quiz invariants.
 
 ## Important publication constraints
 

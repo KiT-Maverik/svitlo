@@ -124,8 +124,9 @@ export function createCourse<const L extends Locale_Languages>(course: CourseInp
     for (const lesson of collectCoursePublicationItems<L>(data.content).lessons) {
       const actual = lesson.parameters.languages;
       if (new Set(actual).size !== actual.length || languages.some(language => !actual.includes(language))) {
-        throw new Error('Course ' + data.id + ': Lesson ' + lesson.id +
-          ' does not cover Course languages ' + languages.join(', '));
+        throw new Error(
+          'Course ' + data.id + ': Lesson ' + lesson.id + ' does not cover Course languages ' + languages.join(', '),
+        );
       }
     }
     return data;

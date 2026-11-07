@@ -14,7 +14,8 @@ import type { LessonCreator } from '../lessons/createLesson';
 type EpisodeCreator<L extends Locale_Languages> = Course_Creator<Episode<'data', L>, L>;
 type ChapterCreator<L extends Locale_Languages> = Course_Creator<Chapter<'data', L>, L>;
 
-type LessonEntry<L extends Locale_Languages> = Course_CompatibleLesson<L> | Course_CompatibleOverride<L> | LessonCreator<L>;
+type LessonEntry<L extends Locale_Languages> =
+  Course_CompatibleLesson<L> | Course_CompatibleOverride<L> | LessonCreator<L>;
 type ChapterEntry<L extends Locale_Languages> = LessonEntry<L> | Episode<'data', L> | EpisodeCreator<L>;
 type ModuleEntry<L extends Locale_Languages> = ChapterEntry<L> | Chapter<'data', L> | ChapterCreator<L>;
 

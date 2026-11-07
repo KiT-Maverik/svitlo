@@ -165,18 +165,22 @@ export async function buildCourseOverrides(text, schema, plan, resolveSource) {
       error('OVERRIDE_SLOT', item.slotKey + ': no matched Course Lesson slot for ' + item.lessonId);
     }
     if ((countByLesson.get(item.lessonId) ?? 0) > 1) {
-      error('OVERRIDE_REUSED_LESSON', item.lessonId +
-        ' occurs at multiple TOC slots; the publisher keys overrides by Lesson UUID, not slotKey');
+      error(
+        'OVERRIDE_REUSED_LESSON',
+        item.lessonId + ' occurs at multiple TOC slots; the publisher keys overrides by Lesson UUID, not slotKey',
+      );
     }
     if (overrides.has(item.lessonId)) {
       error('DUPLICATE_OVERRIDE', 'more than one override for Lesson ' + item.lessonId);
     }
     const actual = plan.lessons.get(item.lessonId);
     if (!actual) error('OVERRIDE_LESSON', item.lessonId + ': no resolved standalone Lesson');
-    const sections = new Map((actual.sections ?? []).map(section => [
-      section.slug,
-      { ...section, blocks: new Map((section.blocks ?? []).map(block => [block.slug, block])) },
-    ]));
+    const sections = new Map(
+      (actual.sections ?? []).map(section => [
+        section.slug,
+        { ...section, blocks: new Map((section.blocks ?? []).map(block => [block.slug, block])) },
+      ]),
+    );
     const sourceKeys = new Set();
 
     const ensureSection = (slug, content = false) => {
@@ -237,8 +241,14 @@ export async function buildCourseOverrides(text, schema, plan, resolveSource) {
 }
 
 export async function buildCoursePlan({
-  methodologyText, tocText, schema, supportedCodes, resolveLesson,
-  overridesText, overridesSchema, resolveOwnedSource,
+  methodologyText,
+  tocText,
+  schema,
+  supportedCodes,
+  resolveLesson,
+  overridesText,
+  overridesSchema,
+  resolveOwnedSource,
 }) {
   const methodology = methodologyFrontmatter(methodologyText);
   const toc = parseYaml(tocText, 'toc.yaml');
@@ -274,9 +284,10 @@ export async function buildCoursePlan({
     lessons.set(id, item);
   }
   const plan = { courseId: toc.courseId, documentLanguage: toc.documentLanguage, languages, tree, lessons };
-  const overrides = overridesText === undefined
-    ? new Map()
-    : await buildCourseOverrides(overridesText, overridesSchema, plan, resolveOwnedSource);
+  const overrides =
+    overridesText === undefined
+      ? new Map()
+      : await buildCourseOverrides(overridesText, overridesSchema, plan, resolveOwnedSource);
   return { ...plan, overrides };
 }
 
@@ -310,7 +321,7 @@ export function renderCourseSource(plan, outputFilename) {
     for (const operation of override.operations) {
       const refs = [
         ...(operation.source ? [operation.source] : []),
-        ...(operation.entries ?? []).flatMap(entry => typeof entry === 'string' ? [] : [entry.source]),
+        ...(operation.entries ?? []).flatMap(entry => (typeof entry === 'string' ? [] : [entry.source])),
       ];
       for (const reference of refs) {
         const key = reference.path + '#' + reference.export;
@@ -325,9 +336,8 @@ export function renderCourseSource(plan, outputFilename) {
     return 'import { ' + name + ' as ' + symbol + ' } from ' + js('./' + filename) + ';';
   });
   const ownedSymbol = reference => sourceSymbols.get(reference.path + '#' + reference.export);
-  const renderOrder = entries => '[' + entries.map(entry =>
-    typeof entry === 'string' ? js(entry) : ownedSymbol(entry.source)
-  ).join(', ') + ']';
+  const renderOrder = entries =>
+    '[' + entries.map(entry => (typeof entry === 'string' ? js(entry) : ownedSymbol(entry.source))).join(', ') + ']';
   const overrideVariables = new Map(authoredOverrides.map((entry, index) => [entry.lessonId, 'override' + index]));
   const renderOverride = (entry, index) => {
     const lesson = lessons.find(item => item.id === entry.lessonId);
@@ -415,7 +425,9 @@ export function renderCourseSource(plan, outputFilename) {
     .join('\n');
   return [
     generatedHeader.trimEnd(),
-    'import { createCourse, createChapter, createModule' + (authoredOverrides.length ? ', createLessonOverrides' : '') + ' } from "@svitlo/engine/builders";',
+    'import { createCourse, createChapter, createModule' +
+      (authoredOverrides.length ? ', createLessonOverrides' : '') +
+      ' } from "@svitlo/engine/builders";',
     'import type { Course, Locale_Languages } from "@svitlo/engine/content";',
     ...importLines,
     ...ownedImports,
@@ -567,13 +579,15 @@ export async function main(args) {
     schema,
     supportedCodes: new Set(DEFAULT_SUPPORTED_LANGUAGES.map(x => x.language)),
     resolveLesson: id => resolveImplementedLesson(root, id),
-    ...(fs.existsSync(overridesFilename) ? {
-      overridesText: fs.readFileSync(overridesFilename, 'utf8'),
-      overridesSchema: JSON.parse(fs.readFileSync(
-        path.join(repoRoot, 'studio/skills/course-workflow/course-overrides.schema.json'), 'utf8',
-      )),
-      resolveOwnedSource: reference => resolveCourseSource(folder, reference),
-    } : {}),
+    ...(fs.existsSync(overridesFilename)
+      ? {
+          overridesText: fs.readFileSync(overridesFilename, 'utf8'),
+          overridesSchema: JSON.parse(
+            fs.readFileSync(path.join(repoRoot, 'studio/skills/course-workflow/course-overrides.schema.json'), 'utf8'),
+          ),
+          resolveOwnedSource: reference => resolveCourseSource(folder, reference),
+        }
+      : {}),
   });
   if (plan.courseId !== courseId) error('COURSE_ID', 'requested Course UUID differs from editorial input');
   const filename = path.join(folder, 'toc.generated.ts');

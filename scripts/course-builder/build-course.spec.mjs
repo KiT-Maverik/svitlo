@@ -5,7 +5,13 @@ import path from 'node:path';
 import os from 'node:os';
 import { fileURLToPath } from 'node:url';
 import ts from 'typescript';
-import { buildCoursePlan, groupUuid, renderCourseSource, resolveCourseSource, verifyOrWriteGenerated } from './build-course.mjs';
+import {
+  buildCoursePlan,
+  groupUuid,
+  renderCourseSource,
+  resolveCourseSource,
+  verifyOrWriteGenerated,
+} from './build-course.mjs';
 
 const root = path.resolve(fileURLToPath(new URL('../..', import.meta.url)));
 const schema = JSON.parse(
@@ -72,11 +78,13 @@ const generate = (nodes, opts = {}) =>
     schema,
     supportedCodes: known,
     resolveLesson: opts.resolver ?? resolver,
-    ...(opts.overrides ? {
-      overridesText: JSON.stringify(opts.overrides),
-      overridesSchema,
-      resolveOwnedSource: async () => undefined,
-    } : {}),
+    ...(opts.overrides
+      ? {
+          overridesText: JSON.stringify(opts.overrides),
+          overridesSchema,
+          resolveOwnedSource: async () => undefined,
+        }
+      : {}),
   });
 const output = '/repo/content/math/data/courses/7/' + id + '/toc.generated.ts';
 
@@ -261,7 +269,10 @@ test('Approved Course-owned YAML emits typed sparse overrides with slug order an
     { type: 'block-set', sectionSlug: 'theory', slug: 'intro', source: ref('patches/intro.ts', 'intro_Patch') },
     { type: 'block-remove', sectionSlug: 'theory', slug: 'summary' },
     { type: 'block-order', sectionSlug: 'theory', entries: ['intro', { source: ref('blocks/hint.ts', 'hint_Block') }] },
-    { type: 'section-order', entries: ['practice', 'theory', 'quiz', { source: ref('sections/story.ts', 'story_Section') }] },
+    {
+      type: 'section-order',
+      entries: ['practice', 'theory', 'quiz', { source: ref('sections/story.ts', 'story_Section') }],
+    },
   ]);
   const plan = await generate([lesson('intro')], { overrides: input });
   assert.equal(plan.overrides.size, 1);
@@ -282,60 +293,127 @@ test('Approved Course-owned YAML emits typed sparse overrides with slug order an
 });
 
 test('Course-only override validates its TOC slot and canonical Lesson identity', async () => {
-  await assert.rejects(() => generate([lesson('intro')], {
-    overrides: overrideInput('unknown', [{ type: 'params', sections: { allowNavigation: false } }]),
-  }), /OVERRIDE_SLOT/);
-  await assert.rejects(() => generate([lesson('intro')], {
-    overrides: overrideInput('intro', [{ type: 'params', sections: { allowNavigation: false } }], lessonB),
-  }), /OVERRIDE_SLOT/);
+  await assert.rejects(
+    () =>
+      generate([lesson('intro')], {
+        overrides: overrideInput('unknown', [{ type: 'params', sections: { allowNavigation: false } }]),
+      }),
+    /OVERRIDE_SLOT/,
+  );
+  await assert.rejects(
+    () =>
+      generate([lesson('intro')], {
+        overrides: overrideInput('intro', [{ type: 'params', sections: { allowNavigation: false } }], lessonB),
+      }),
+    /OVERRIDE_SLOT/,
+  );
 });
 
 test('Course override cannot address missing Section, ContentBlock or Quiz blocks', async () => {
-  await assert.rejects(() => generate([lesson('intro')], {
-    overrides: overrideInput('intro', [{ type: 'section-remove', slug: 'unknown' }]),
-  }), /OVERRIDE_SECTION/);
-  await assert.rejects(() => generate([lesson('intro')], {
-    overrides: overrideInput('intro', [{ type: 'block-remove', sectionSlug: 'theory', slug: 'missing' }]),
-  }), /OVERRIDE_BLOCK/);
-  await assert.rejects(() => generate([lesson('intro')], {
-    overrides: overrideInput('intro', [{ type: 'block-order', sectionSlug: 'quiz', entries: ['intro'] }]),
-  }), /OVERRIDE_QUIZ/);
+  await assert.rejects(
+    () =>
+      generate([lesson('intro')], {
+        overrides: overrideInput('intro', [{ type: 'section-remove', slug: 'unknown' }]),
+      }),
+    /OVERRIDE_SECTION/,
+  );
+  await assert.rejects(
+    () =>
+      generate([lesson('intro')], {
+        overrides: overrideInput('intro', [{ type: 'block-remove', sectionSlug: 'theory', slug: 'missing' }]),
+      }),
+    /OVERRIDE_BLOCK/,
+  );
+  await assert.rejects(
+    () =>
+      generate([lesson('intro')], {
+        overrides: overrideInput('intro', [{ type: 'block-order', sectionSlug: 'quiz', entries: ['intro'] }]),
+      }),
+    /OVERRIDE_QUIZ/,
+  );
 });
 
 test('Course overrides reject malformed, incomplete or repeated slug orders', async () => {
-  await assert.rejects(() => generate([lesson('intro')], {
-    overrides: overrideInput('intro', [{ type: 'section-order', entries: ['theory', 'theory', 'practice', 'quiz'] }]),
-  }), /OVERRIDE_ORDER/);
-  await assert.rejects(() => generate([lesson('intro')], {
-    overrides: overrideInput('intro', [{ type: 'section-order', entries: ['theory'] }]),
-  }), /OVERRIDE_ORDER/);
-  await assert.rejects(() => generate([lesson('intro')], {
-    overrides: overrideInput('intro', [{ type: 'block-order', sectionSlug: 'theory', entries: ['intro'] }]),
-  }), /OVERRIDE_ORDER/);
+  await assert.rejects(
+    () =>
+      generate([lesson('intro')], {
+        overrides: overrideInput('intro', [
+          { type: 'section-order', entries: ['theory', 'theory', 'practice', 'quiz'] },
+        ]),
+      }),
+    /OVERRIDE_ORDER/,
+  );
+  await assert.rejects(
+    () =>
+      generate([lesson('intro')], {
+        overrides: overrideInput('intro', [{ type: 'section-order', entries: ['theory'] }]),
+      }),
+    /OVERRIDE_ORDER/,
+  );
+  await assert.rejects(
+    () =>
+      generate([lesson('intro')], {
+        overrides: overrideInput('intro', [{ type: 'block-order', sectionSlug: 'theory', entries: ['intro'] }]),
+      }),
+    /OVERRIDE_ORDER/,
+  );
 });
 
 test('Course overrides reject per-slot patches for reused Lesson UUID', async () => {
-  await assert.rejects(() => generate([lesson('intro'), lesson('review')], {
-    overrides: overrideInput('intro', [{ type: 'params', sections: { allowSkipping: true } }]),
-  }), /OVERRIDE_REUSED_LESSON/);
+  await assert.rejects(
+    () =>
+      generate([lesson('intro'), lesson('review')], {
+        overrides: overrideInput('intro', [{ type: 'params', sections: { allowSkipping: true } }]),
+      }),
+    /OVERRIDE_REUSED_LESSON/,
+  );
 });
 
 test('Course YAML schema forbids inline authored sections, unknown override fields and unsafe imports', async () => {
-  await assert.rejects(() => generate([lesson('intro')], {
-    overrides: overrideInput('intro', [{ type: 'section-order', entries: ['theory', 'practice', 'quiz', {
-      id: 'new-id', slug: 'invented', type: 'scenario',
-    }] }]),
-  }), /SCHEMA/);
-  await assert.rejects(() => generate([lesson('intro')], {
-    overrides: overrideInput('intro', [{ type: 'block-set', sectionSlug: 'theory', slug: 'intro',
-      source: ref('../lessons/evil.ts', 'evil_Patch') }]),
-  }), /SCHEMA/);
-  await assert.rejects(() => generate([lesson('intro')], {
-    overrides: overrideInput('intro', [{ type: 'params', sections: { requireQuiz: false } }]),
-  }), /SCHEMA/);
-  await assert.rejects(() => generate([lesson('intro')], {
-    overrides: { ...overrideInput('intro', [{ type: 'section-remove', slug: 'theory' }]), status: 'draft' },
-  }), /APPROVAL/);
+  await assert.rejects(
+    () =>
+      generate([lesson('intro')], {
+        overrides: overrideInput('intro', [
+          {
+            type: 'section-order',
+            entries: [
+              'theory',
+              'practice',
+              'quiz',
+              {
+                id: 'new-id',
+                slug: 'invented',
+                type: 'scenario',
+              },
+            ],
+          },
+        ]),
+      }),
+    /SCHEMA/,
+  );
+  await assert.rejects(
+    () =>
+      generate([lesson('intro')], {
+        overrides: overrideInput('intro', [
+          { type: 'block-set', sectionSlug: 'theory', slug: 'intro', source: ref('../lessons/evil.ts', 'evil_Patch') },
+        ]),
+      }),
+    /SCHEMA/,
+  );
+  await assert.rejects(
+    () =>
+      generate([lesson('intro')], {
+        overrides: overrideInput('intro', [{ type: 'params', sections: { requireQuiz: false } }]),
+      }),
+    /SCHEMA/,
+  );
+  await assert.rejects(
+    () =>
+      generate([lesson('intro')], {
+        overrides: { ...overrideInput('intro', [{ type: 'section-remove', slug: 'theory' }]), status: 'draft' },
+      }),
+    /APPROVAL/,
+  );
 });
 
 test('Course-owned TS sources must exist and export their approved symbol inside their Course directory', async () => {
@@ -346,10 +424,10 @@ test('Course-owned TS sources must exist and export their approved symbol inside
     fs.mkdirSync(patches);
     const source = path.join(patches, 'title.ts');
     fs.writeFileSync(source, 'export const title_Patch = { uk: "Назва", en: "Title" };\n');
-    assert.deepEqual(
-      await resolveCourseSource(folder, { path: 'patches/title.ts', export: 'title_Patch' }),
-      { path: source, exportName: 'title_Patch' },
-    );
+    assert.deepEqual(await resolveCourseSource(folder, { path: 'patches/title.ts', export: 'title_Patch' }), {
+      path: source,
+      exportName: 'title_Patch',
+    });
     await assert.rejects(
       () => resolveCourseSource(folder, { path: 'patches/title.ts', export: 'notExported' }),
       /COURSE_SOURCE.*notExported/,

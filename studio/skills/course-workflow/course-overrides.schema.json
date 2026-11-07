@@ -4,13 +4,7 @@
   "description": "Separate from skill-based Course TOC; never edits standalone Lesson source. Ordered sparse transformations through existing Engine createLessonOverrides API.",
   "type": "object",
   "additionalProperties": false,
-  "required": [
-    "schemaVersion",
-    "kind",
-    "status",
-    "courseId",
-    "overrides"
-  ],
+  "required": ["schemaVersion", "kind", "status", "courseId", "overrides"],
   "properties": {
     "schemaVersion": {
       "const": 1
@@ -19,10 +13,7 @@
       "const": "course-lesson-overrides"
     },
     "status": {
-      "enum": [
-        "draft",
-        "approved"
-      ]
+      "enum": ["draft", "approved"]
     },
     "courseId": {
       "$ref": "#/$defs/uuid"
@@ -32,11 +23,7 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": [
-          "lessonId",
-          "slotKey",
-          "operations"
-        ],
+        "required": ["lessonId", "slotKey", "operations"],
         "properties": {
           "lessonId": {
             "$ref": "#/$defs/uuid"
@@ -52,10 +39,7 @@
                 {
                   "type": "object",
                   "additionalProperties": false,
-                  "required": [
-                    "type",
-                    "sections"
-                  ],
+                  "required": ["type", "sections"],
                   "properties": {
                     "type": {
                       "const": "params"
@@ -81,16 +65,10 @@
                 {
                   "type": "object",
                   "additionalProperties": false,
-                  "required": [
-                    "type",
-                    "source"
-                  ],
+                  "required": ["type", "source"],
                   "properties": {
                     "type": {
-                      "enum": [
-                        "title",
-                        "events"
-                      ]
+                      "enum": ["title", "events"]
                     },
                     "source": {
                       "$ref": "#/$defs/source"
@@ -100,11 +78,7 @@
                 {
                   "type": "object",
                   "additionalProperties": false,
-                  "required": [
-                    "type",
-                    "slug",
-                    "source"
-                  ],
+                  "required": ["type", "slug", "source"],
                   "properties": {
                     "type": {
                       "const": "section-set"
@@ -120,10 +94,7 @@
                 {
                   "type": "object",
                   "additionalProperties": false,
-                  "required": [
-                    "type",
-                    "slug"
-                  ],
+                  "required": ["type", "slug"],
                   "properties": {
                     "type": {
                       "const": "section-remove"
@@ -136,10 +107,7 @@
                 {
                   "type": "object",
                   "additionalProperties": false,
-                  "required": [
-                    "type",
-                    "entries"
-                  ],
+                  "required": ["type", "entries"],
                   "properties": {
                     "type": {
                       "const": "section-order"
@@ -152,12 +120,7 @@
                 {
                   "type": "object",
                   "additionalProperties": false,
-                  "required": [
-                    "type",
-                    "sectionSlug",
-                    "slug",
-                    "source"
-                  ],
+                  "required": ["type", "sectionSlug", "slug", "source"],
                   "properties": {
                     "type": {
                       "const": "block-set"
@@ -176,11 +139,7 @@
                 {
                   "type": "object",
                   "additionalProperties": false,
-                  "required": [
-                    "type",
-                    "sectionSlug",
-                    "slug"
-                  ],
+                  "required": ["type", "sectionSlug", "slug"],
                   "properties": {
                     "type": {
                       "const": "block-remove"
@@ -196,11 +155,7 @@
                 {
                   "type": "object",
                   "additionalProperties": false,
-                  "required": [
-                    "type",
-                    "sectionSlug",
-                    "entries"
-                  ],
+                  "required": ["type", "sectionSlug", "entries"],
                   "properties": {
                     "type": {
                       "const": "block-order"
@@ -236,10 +191,7 @@
     "source": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "path",
-        "export"
-      ],
+      "required": ["path", "export"],
       "properties": {
         "path": {
           "type": "string",
@@ -262,9 +214,7 @@
           {
             "type": "object",
             "additionalProperties": false,
-            "required": [
-              "source"
-            ],
+            "required": ["source"],
             "properties": {
               "source": {
                 "$ref": "#/$defs/source"
