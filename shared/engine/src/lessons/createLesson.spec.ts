@@ -3,6 +3,7 @@ import { describe, it } from 'node:test';
 import { createContentBlock } from './createContentBlock';
 import { createSection } from './createSection';
 import { createLesson } from './createLesson';
+import { linkFlashcards } from './linkFlashcards';
 import { splitLessonValue } from './splitLessonValue';
 import { renderLessonFiles } from '../utils/generators/lessons/generateLessons.utils';
 import { createChapter } from '../course/createCourseEntities';
@@ -168,6 +169,42 @@ describe('composable Lesson creators', () => {
       assert.equal(quizResponse.parameters.isBlocker, true);
       assert.equal(quizResponse.questions.length, 1);
     }
+  });
+
+  it('preserves both Flashcard relation endpoints through locale publication and response assembly', () => {
+    const flashcards = linkFlashcards<typeof languages>(
+      [
+        { id: 'card-a', front: [], back: [], hint: [], tags: [], flags: [] },
+        { id: 'card-b', front: [], back: [], hint: [], tags: [], flags: [] },
+      ],
+      [{
+        relationshipId: 'bidirectional-recall',
+        type: 'reverse',
+        sourceFlashcardId: 'card-a',
+        targetFlashcardId: 'card-b',
+      }],
+    );
+    const linkedLesson = createLesson<typeof languages>()({ ...creator.getData(), flashcards });
+    const base = linkedLesson.getBase();
+    const locale = linkedLesson.getLocale('uk');
+    const response = assembleLessonResponse(lessonId, 'uk', {
+      config: mergeLessonResources(base.config, locale.config),
+      flashcards: mergeLessonResources(base.flashcards, locale.flashcards),
+      questions: mergeLessonResources(base.questions, locale.questions),
+    });
+    const published = response.flashcards as typeof flashcards;
+    assert.deepEqual(published[0].relationships, [{
+      relationshipId: 'bidirectional-recall',
+      type: 'reverse',
+      relatedFlashcardId: 'card-b',
+      position: 'peer',
+    }]);
+    assert.deepEqual(published[1].relationships, [{
+      relationshipId: 'bidirectional-recall',
+      type: 'reverse',
+      relatedFlashcardId: 'card-a',
+      position: 'peer',
+    }]);
   });
 
   it('is consumed by Course creators and Course-local Lesson overrides', () => {
