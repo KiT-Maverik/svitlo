@@ -54,3 +54,7 @@ the instructions and resources relevant to that task. **Do not assume that
 ## Repository-wide GitHub rules
 
 Before creating or updating GitHub Issues, pull requests, or branches, read and follow [GitHub labels and naming conventions](studio/rules/github-labels-and-naming.md). Use [the canonical label catalog](.github/labels.json) for exact names. Apply appropriate labels to Issues and PRs in GitHub, rather than only describing them in text. Keep entity names short, specific, and free of category information already carried by labels. Preserve any workflow-required branch identifiers.
+
+## Lesson production Issue handoff
+
+For tasks referencing a GitHub Lesson Production Issue, read [Manage Lesson Production](studio/skills/lesson-workflow/manage-lesson-production.skill.md) and its linked [lifecycle](studio/docs/architecture/lesson-production-workflow.md). One Issue covers **one or more explicitly scoped Lessons**; resume from the current Issue, linked PRs and real Git files, not a previous chat. Maintain per-Lesson statuses and independently verified approvals; avoid duplicate Issues and do not require a new user turn after every short task in an authorized batch.
