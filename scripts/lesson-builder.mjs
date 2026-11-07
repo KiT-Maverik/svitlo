@@ -347,6 +347,7 @@ function checkSources(root, content, questions, methodology) {
     'does not agree with assessmentPlan.quizzes');
   required(quizSections.length === plan.length && questions.quizAssignments.length === plan.length,
     cf, 'sections', 'Quiz Section count and Question assignments must match the Methodology assessment plan');
+  unique(quizSections.map(s => s.assessmentPlanKey), cf, 'sections.assessmentPlanKey');
   const knownPlan = new Map(plan.map(q => [q.key, q]));
   const knownQuestions = new Map(questions.questions.map(q => [q.slug, q]));
   const assignments = new Map(questions.quizAssignments.map(q => [q.assessmentPlanKey, q]));
@@ -402,17 +403,23 @@ function checkSources(root, content, questions, methodology) {
     for (const slug of coverage.questionSlugs)
       required(knownQuestions.has(slug), qf, 'coverage[' + i + '].questionSlugs', 'unknown Question ' + slug);
   }
+  const usedSceneSpecs = [];
   for (const [i, section] of content.sections.entries()) {
     for (const [j, block] of (section.blocks ?? []).entries()) {
       if (block.type !== 'scene') continue;
+      usedSceneSpecs.push(block.sceneSpecKey);
       const scene = content.sceneSpecifications.find(s => s.key === block.sceneSpecKey);
       required(scene, cf, 'sections[' + i + '].blocks[' + j + '].sceneSpecKey', 'unknown Scene specification');
       required(scene.status === 'approved', cf, 'sceneSpecifications.' + scene.key, 'Scene spec must be approved');
+      required(/^scenes\/[a-zA-Z0-9/_-]+\.scene-spec\.md$/.test(scene.path),
+        cf, 'sceneSpecifications.' + scene.key + '.path',
+        'Scene specification must be a lesson-local scenes/*.scene-spec.md');
       required(safeAsset(root, scene.path, cf, 'sceneSpecifications.' + scene.key + '.path'),
         cf, 'sceneSpecifications.' + scene.key + '.path',
         'Scene specification file is missing: ' + scene.path);
     }
   }
+  unique(usedSceneSpecs, cf, 'sections.sceneSpecKey');
   return [...allSkills].sort();
 }
 function verifySkills(workspace, skills) {
