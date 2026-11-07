@@ -415,6 +415,12 @@ export function renderCourseSource(plan, outputFilename) {
     'export const courseLanguages = ' + js(plan.languages) + ' as const satisfies Locale_Languages;',
     'export type CourseLanguages = typeof courseLanguages;',
     'export type CourseLanguage = CourseLanguages[number];',
+    'type LessonCoversCourse<Actual extends readonly string[]> =',
+    '  Exclude<CourseLanguage, Actual[number]> extends never ? true : never;',
+    ...lessons.flatMap((item, index) => [
+      'const _lessonCoverage' + index + ': LessonCoversCourse<typeof lesson' + index + '.parameters.languages> = true;',
+      'void _lessonCoverage' + index + ';',
+    ]),
     '',
     '/** Only Course-owned grouping titles; Lesson navigation uses canonical Lesson titles. */',
     'export type CourseLocalizedGroupTitles = {',
