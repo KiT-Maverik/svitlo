@@ -26,15 +26,12 @@ const topics: Topic[] = [
 describe('CourseTopicList', () => {
   it('highlights the current leaf and retains regular navigation', () => {
     const navigate = vi.fn();
-    render(
-      <CourseTopicList
-        topics={topics}
-        pathname="/uk/course/demo/lesson/en/lesson-a"
-        onNavigate={navigate}
-      />,
+    const { container } = render(
+      <CourseTopicList topics={topics} pathname="/uk/course/demo/lesson/en/lesson-a" onNavigate={navigate} />,
     );
 
     expect(screen.getByRole('link', { name: 'Lesson A' })).toHaveAttribute('aria-current', 'page');
+    expect(container.querySelector('ul')).toHaveStyle({ userSelect: 'none' });
     expect(screen.getByRole('link', { name: 'Episode A' })).toHaveAttribute(
       'href',
       '/uk/course/demo/episode/episode-a',
@@ -44,13 +41,7 @@ describe('CourseTopicList', () => {
   });
 
   it('collapses Modules and Chapters independently while keeping siblings available', async () => {
-    render(
-      <CourseTopicList
-        topics={topics}
-        pathname="/uk/course/demo/lesson/en/lesson-a"
-        onNavigate={vi.fn()}
-      />,
-    );
+    render(<CourseTopicList topics={topics} pathname="/uk/course/demo/lesson/en/lesson-a" onNavigate={vi.fn()} />);
     const moduleHeader = screen.getAllByRole('button', { name: 'Module A' })[0]!;
     const chapterHeader = screen.getAllByRole('button', { name: 'Chapter A' })[0]!;
     expect(moduleHeader).toHaveAttribute('aria-expanded', 'true');

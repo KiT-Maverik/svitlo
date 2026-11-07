@@ -35,7 +35,7 @@ export default function Navbar({ slots = {}, slotProps = {}, 'aria-label': label
           'aria-label': label,
           className: ['svitlo-theme-chrome', rootClassName].filter(Boolean).join(' '),
           sx: [
-            { px: 2, minHeight: 64, bgcolor: 'background.paper' },
+            { px: 2, minHeight: 64, bgcolor: 'background.paper', userSelect: 'none' },
             ...sxArray(rootSx),
           ],
         },

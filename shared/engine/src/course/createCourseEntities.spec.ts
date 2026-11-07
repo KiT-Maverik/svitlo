@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import type { Course_TocContext, Episode, Locale_Languages } from '@svitlo/contracts/content';
+import type { Course_TocContext, Episode, Lesson, Locale_Languages } from '@svitlo/contracts/content';
 import { createChapter, createEpisode, createModule } from './createCourseEntities';
 
 const languages = ['en', 'uk'] as const;
@@ -26,12 +26,23 @@ const episodeData = {
     },
   ],
 } satisfies Episode<'data', typeof languages>;
-const context: Course_TocContext<typeof languages> = {
-  language: 'uk',
-  resolveLesson(id) {
-    return { type: 'lesson', id, title: `Урок ${id}`, iconKey: 'book' };
+const lesson = (id: string): Lesson<'data', typeof languages> => ({
+  id,
+  slug: 'sample',
+  title: { en: 'Lesson ' + id, uk: 'Урок ' + id },
+  skills: [],
+  parameters: {
+    requireQuiz: false,
+    languages,
+    sections: { allowNavigation: true, allowSkipping: false, showIndexes: true },
   },
-};
+  questions: {},
+  flashcards: [],
+  sections: [],
+});
+const one = lesson('lesson-1');
+const two = lesson('lesson-2');
+const context: Course_TocContext<typeof languages> = { language: 'uk' };
 
 describe('Course entity creators', () => {
   it('creates typed hierarchical TOC and serializable authoring resource data', () => {
@@ -41,14 +52,14 @@ describe('Course entity creators', () => {
       id: 'chapter-1',
       iconKey: 'bookmark',
       title,
-      content: ['lesson-1', episode],
+      content: [one, episode],
     });
     const module = createModule<typeof languages>({
       type: 'module',
       id: 'module-1',
       iconKey: 'folder',
       title,
-      content: [chapter, 'lesson-2', episode],
+      content: [chapter, two, episode],
     });
 
     const toc = module.toToc(context);
@@ -71,11 +82,19 @@ describe('Course entity creators', () => {
     const output = module.toResource(context);
     assert.deepEqual(output.toc, toc);
     const firstChild = output.data.content[0];
-    assert.equal(typeof firstChild === 'string' ? firstChild : firstChild.type, 'chapter');
+    assert.equal('type' in firstChild ? firstChild.type : 'lesson', 'chapter');
     assert.equal(JSON.stringify(output).includes('getData'), false);
     assert.deepEqual(
-      chapter.getData().content.map(item => (typeof item === 'string' ? item : item.type)),
-      ['lesson-1', 'episode'],
+      chapter.getPublicationItems().lessons.map(item => item.id),
+      ['lesson-1'],
+    );
+    assert.deepEqual(
+      module.getPublicationItems().lessons.map(item => item.id),
+      ['lesson-1', 'lesson-2'],
+    );
+    assert.deepEqual(
+      module.getPublicationItems().groups.map(item => item.type),
+      ['chapter'],
     );
   });
 
@@ -84,9 +103,9 @@ describe('Course entity creators', () => {
       type: 'chapter',
       id: 'c',
       title,
-      content: ['lesson-1'],
+      content: [one],
     });
-    assert.deepEqual(chapter.getData().content, ['lesson-1']);
+    assert.deepEqual(chapter.getData().content, [one]);
     assert.throws(
       () =>
         chapter.toToc({

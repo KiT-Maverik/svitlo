@@ -39,6 +39,13 @@ describe('Animated navbar ThemeSwitch', () => {
     expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
   });
 
+  it('uses the compact navbar size without exposing selectable static text', () => {
+    const { container } = render(<ThemeSwitch label={uk.theme.dark} mode="light" onThemeChange={setMode} />);
+    const root = container.querySelector('.MuiSwitch-root');
+    expect(root).toHaveStyle({ width: '54px', height: '30px' });
+    expect(root).toHaveStyle({ userSelect: 'none', cursor: 'pointer' });
+  });
+
   it('toggles both ways and preserves sun and moon nodes for crossfade', async () => {
     const view = render(<ThemeSwitch label={uk.theme.dark} mode="light" onThemeChange={setMode} />);
     const sun = screen.getByTestId('WbSunnyRoundedIcon');

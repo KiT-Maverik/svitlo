@@ -375,7 +375,7 @@ export default function LearningLayout({
                 start: (
                   <Typography
                     component="h2"
-                    sx={{ px: 3, pt: 2, fontSize: 13, fontWeight: 700, color: 'text.secondary' }}
+                    sx={{ px: 3, pt: 2, fontSize: 13, fontWeight: 700, color: 'text.secondary', userSelect: 'none' }}
                   >
                     {messages.topicsTitle}
                   </Typography>
