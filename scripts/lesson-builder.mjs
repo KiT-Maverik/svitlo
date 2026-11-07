@@ -362,7 +362,8 @@ function checkSources(root, content, questions, methodology) {
       const scene = content.sceneSpecifications.find(s => s.key === block.sceneSpecKey);
       required(scene, cf, 'sections[' + i + '].blocks[' + j + '].sceneSpecKey', 'unknown Scene specification');
       required(scene.status === 'approved', cf, 'sceneSpecifications.' + scene.key, 'Scene spec must be approved');
-      required(fs.existsSync(path.join(root, scene.path)), cf, 'sceneSpecifications.' + scene.key + '.path',
+      required(safeAsset(root, scene.path, cf, 'sceneSpecifications.' + scene.key + '.path'),
+        cf, 'sceneSpecifications.' + scene.key + '.path',
         'Scene specification file is missing: ' + scene.path);
     }
   }
