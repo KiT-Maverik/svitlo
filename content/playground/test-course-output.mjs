@@ -49,9 +49,23 @@ test('the Course-only gallery contains all supported renderable blocks and publi
   assert.equal(gallery.type, 'learningFlow');
   assert.deepEqual(
     gallery.content.map(block => block.type),
-    ['text', 'markdown', 'code', 'image', 'video', 'audio', 'youtube', 'scene', 'checkpoint'],
+    ['text', 'markdown', 'code', 'image', 'carousel', 'video', 'audio', 'youtube', 'scene', 'checkpoint'],
   );
   assert.equal(gallery.content.find(block => block.type === 'image').src, '/textbooks/playground/whale.png');
+  const carousel = gallery.content.find(block => block.type === 'carousel');
+  assert(carousel, 'Missing carousel block in published Course gallery');
+  assert.equal(carousel.transition, 'slide');
+  assert.equal(carousel.loop, true);
+  assert.equal(carousel.allowFullscreen, true);
+  assert.deepEqual(
+    carousel.slides.map(slide => slide.src),
+    [
+      '/textbooks/playground/whale.png',
+      '/textbooks/playground/carousel-light.svg',
+      '/textbooks/playground/carousel-prism.svg',
+    ],
+  );
+  assert(carousel.slides.every(slide => typeof slide.alt === 'string' && slide.alt.trim()));
   assert.equal(
     gallery.content.find(block => block.type === 'video').fileLocation,
     '/textbooks/playground/barabaka.mp4',
@@ -62,7 +76,7 @@ test('the Course-only gallery contains all supported renderable blocks and publi
   );
   assert.equal(gallery.content.find(block => block.type === 'scene').id, 'how-light-moves-scene-ray');
   assert.equal(gallery.content.find(block => block.type === 'checkpoint').items[0].answer[0].type, 'text');
-  for (const file of ['whale.png', 'barabaka.mp4', 'demo-tone.wav']) {
+  for (const file of ['whale.png', 'carousel-light.svg', 'carousel-prism.svg', 'barabaka.mp4', 'demo-tone.wav']) {
     assert(files.includes('textbooks/playground/' + file), 'Missing published media ' + file);
   }
 });
