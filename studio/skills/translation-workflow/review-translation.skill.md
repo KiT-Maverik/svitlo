@@ -16,11 +16,15 @@ Review one or more Svitlo localizations **by reading generated Markdown referenc
 
 ## ONE CANONICAL GENERATED LIBRARY
 
-All agents share the repository-level temporary folder:
+All agents share the repository-level temporary folder. The existing generator may emit several entity kinds, but **review is allowed only for the kinds actually supported by the current code and manifest**:
 
 ```text
 .agent-ci-artifacts/
   manifest.json
+  assessment-methods/
+    <language>.md
+  lessons/
+    <textbook>/<bucket>/<lesson-slug>/<language>.md
   taxonomies/
     astronomy/
       qm.md
@@ -34,9 +38,9 @@ All agents share the repository-level temporary folder:
       <every supported language key>.md
 ```
 
-One generation always attempts **every available textbook taxonomy in every registered language**. There is **no user-facing option to generate one book, one domain, or one locale**. The agent simply picks the documents it needs from this complete reference library, according to its assigned scope. **Generating all languages does not mean reviewing or altering all languages.** If the task is to review Crimean Tatar Astronomy, read `.agent-ci-artifacts/taxonomies/astronomy/qm.md`; use other Markdown files only when they materially help terminology comparison.
+One generation attempts **all available supported reference collections in every registered language** (including Skills taxonomies, Lessons and Assessment Methods where generator support exists). There is **no user-facing option to generate one book, one domain, or one locale**. The agent simply picks the documents it needs from this complete reference library, according to its assigned scope. **Generating all languages does not mean reviewing or altering all languages.** If the task is to review Crimean Tatar Astronomy, read `.agent-ci-artifacts/taxonomies/astronomy/qm.md`; use other Markdown files only when they materially help terminology comparison.
 
-The generator reads `shared/contracts/src/types/languages.ts` for the real language roster and auto-discovers textbooks with `content/*/data/skills`. It uses the established read-only [Code → Markdown generator](../../../scripts/generate-skills-taxonomy.mjs) in `--stdout` mode, then rewrites canonical source links for the temporary directory. `manifest.json` records which files were actually generated, which failed, and the exact source commit. **Do not assume 100% generation coverage if the manifest contains failures.** Never fabricate missing artifacts.
+The generator reads `shared/contracts/src/types/languages.ts` for the live language roster and discovers supported content sources. For Skills, it uses [Skills Code → Markdown](../../../scripts/generate-skills-taxonomy.mjs); for Lessons and Assessment Methods, separate entity-specific generators/adapters must be confirmed. Course/UI Kit support cannot be assumed from this list. It rewrites source links for the temporary directory. `manifest.json` records which files were actually generated, which failed, and the exact source commit. **Do not assume 100% generation coverage if the manifest contains failures.** Never fabricate missing artifacts.
 
 ## GET OR REFRESH THE LIBRARY (ON DEMAND)
 
@@ -44,7 +48,7 @@ The generator reads `shared/contracts/src/types/languages.ts` for the real langu
 
 ### Preferred: CI on a specific PR branch
 
-**A PR must already exist before its comment can trigger CI. **Under a Translation Production Issue, the reviewer PR must branch from the verified fully translated integration SHA and target the integration PR branch; do not use this standalone `main` example as a shortcut.**** If starting a review with no source changes yet, create a branch from the current `main`, add a small **temporary** `.agent-ci-artifacts/review-request.md` marker (review purpose only), and open a **draft PR** into `main`. This seed marker is overwritten by generation and deleted during final cleanup; it must never be merged. Keep the PR in **Draft** while reviewing, since marking it Ready for review initiates cleanup.
+**A PR must already exist before its comment can trigger CI.** For a **Translation Production Issue**, branch from the verified fully translated **integration SHA** and open a Draft reviewer subtask PR **targeting the integration branch**, never `main`. For a standalone review not governed by a Production Issue, the reviewer may branch from current `main` and open a Draft PR targeting `main`. When there is no source diff yet, a small **temporary** `.agent-ci-artifacts/review-request.md` marker is permitted solely to open the PR; generation replaces it and cleanup removes it before any merge. Keep the reviewer PR in **Draft** while reviewing, since Ready for review may trigger cleanup.
 
 A single **permanent** workflow, [Agent CI Artifacts](../../../.github/workflows/translation-review.yml), accepts an owner-authorized command posted in the PR conversation:
 
@@ -52,7 +56,7 @@ A single **permanent** workflow, [Agent CI Artifacts](../../../.github/workflows
 /agent-artifacts generate
 ```
 
-The workflow resolves the PR, checks out its **current head commit** (not necessarily `main`), generates **all** taxonomies × languages on an isolated read-only worker, and then commits the resulting `.agent-ci-artifacts/` files **only to the same PR branch**. The agent can read them directly through GitHub as ordinary files, by exact path. It does **not** need the user to upload the Markdown. For manual execution, GitHub Actions → **Agent CI Artifacts** → **Run workflow** takes a PR number and `generate` operation.
+The workflow resolves the PR, checks out its **current head commit** (not necessarily `main`), generates **supported** reference collections × languages on an isolated read-only worker, and then commits the resulting `.agent-ci-artifacts/` files **only to the same PR branch**. The agent can read them directly through GitHub as ordinary files, by exact path. It does **not** need the user to upload the Markdown. For manual execution, GitHub Actions → **Agent CI Artifacts** → **Run workflow** takes a PR number and `generate` operation.
 
 **Important deployment prerequisite:** GitHub only processes `issue_comment` and `workflow_dispatch` from workflows present on the **default branch**. If this workflow has not yet been merged into `main`, comment commands will not run. Do not claim a CI job exists or was triggered. In that situation, use a checkout/local execution, or report the activation prerequisite. On first adoption, merge the workflow infrastructure via a clean PR with no `.agent-ci-artifacts/` data; only then run it for translation-review PRs.
 
@@ -66,7 +70,7 @@ From the repository root, run:
 node scripts/generate-translation-review-artifacts.mjs
 ```
 
-This runs exactly the same all-taxonomies/all-locales generation and populates `.agent-ci-artifacts/` locally. The agent may use these documents in the local checkout. If GitHub access is only via a file-reading connector and no workflow has been activated, do **not** pretend local execution occurred.
+This runs the same currently supported all-entity/all-locale generation and populates `.agent-ci-artifacts/` locally. The agent may use these documents in the local checkout. If GitHub access is only via a file-reading connector and no workflow has been activated, do **not** pretend local execution occurred.
 
 ## REVIEW PROCESS
 
