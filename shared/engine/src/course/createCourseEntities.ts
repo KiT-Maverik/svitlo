@@ -15,11 +15,12 @@ import type {
   Module,
 } from '@svitlo/contracts/content';
 import { collectCoursePublicationItems, isCourseLesson } from './collectCoursePublicationItems';
+import type { LessonCreator } from '../lessons/createLesson';
 
 type EpisodeCreator<L extends Locale_Languages> = Course_Creator<Episode<'data', L>, Course_TocEpisode, L>;
 type ChapterCreator<L extends Locale_Languages> = Course_Creator<Chapter<'data', L>, Course_TocChapter, L>;
 
-type LessonEntry<L extends Locale_Languages> = Lesson<'data', L> | Course_LessonAuthoringOverride<L>;
+type LessonEntry<L extends Locale_Languages> = Lesson<'data', L> | Course_LessonAuthoringOverride<L> | LessonCreator<L>;
 type ChapterEntry<L extends Locale_Languages> = LessonEntry<L> | Episode<'data', L> | EpisodeCreator<L>;
 type ModuleEntry<L extends Locale_Languages> = ChapterEntry<L> | Chapter<'data', L> | ChapterCreator<L>;
 
@@ -50,8 +51,9 @@ export function lessonToc<L extends Locale_Languages>(
   entry: LessonEntry<L>,
   context: Course_TocContext<L>,
 ): Course_TocLesson {
-  const lesson = isCourseLesson(entry) ? entry : entry.lesson;
-  const title = isCourseLesson(entry) ? lesson.title : (entry.overrides.title ?? lesson.title);
+  const authored = 'getData' in entry ? entry.getData() : entry;
+  const lesson = isCourseLesson(authored) ? authored : authored.lesson;
+  const title = isCourseLesson(authored) ? lesson.title : (authored.overrides.title ?? lesson.title);
   const localizedTitle = typeof title === 'string' ? title : title[context.language];
   if (typeof localizedTitle !== 'string') {
     throw new Error(`Missing Lesson title for ${context.language}`);
@@ -72,7 +74,7 @@ function chapterChildToc<L extends Locale_Languages>(
   item: ChapterEntry<L>,
   context: Course_TocContext<L>,
 ): Course_TocLesson | Course_TocEpisode {
-  if (isCourseLesson(item) || ('type' in item && item.type === 'lessonOverride')) {
+  if (isCourseLesson(item) || ('type' in item && item.type === 'lessonOverride') || ('getData' in item && !('toToc' in item))) {
     return lessonToc(item, context);
   }
   return episodeToc(item, context);
@@ -82,7 +84,7 @@ function moduleChildToc<L extends Locale_Languages>(
   item: ModuleEntry<L>,
   context: Course_TocContext<L>,
 ): Course_TocChapter | Course_TocLesson | Course_TocEpisode {
-  if (isCourseLesson(item) || ('type' in item && item.type === 'lessonOverride')) {
+  if (isCourseLesson(item) || ('type' in item && item.type === 'lessonOverride') || ('getData' in item && !('toToc' in item))) {
     return lessonToc(item, context);
   }
   if (isCreator<Chapter<'data', L> | Episode<'data', L>, Course_TocChapter | Course_TocEpisode, L>(item)) {
@@ -94,14 +96,12 @@ function moduleChildToc<L extends Locale_Languages>(
 
 function unwrapChild<L extends Locale_Languages>(
   child: ModuleEntry<L>,
-): LessonEntry<L> | Chapter<'data', L> | Episode<'data', L> {
-  return isCreator<Chapter<'data', L> | Episode<'data', L>, Course_TocChapter | Course_TocEpisode, L>(child)
-    ? child.getData()
-    : child;
+): Lesson<'data', L> | Course_LessonAuthoringOverride<L> | Chapter<'data', L> | Episode<'data', L> {
+  return 'getData' in child ? child.getData() : child;
 }
 
 function unwrapChapterChild<L extends Locale_Languages>(child: ChapterEntry<L>): Chapter_Content<'data', L> {
-  return isCreator<Episode<'data', L>, Course_TocEpisode, L>(child) ? child.getData() : child;
+  return 'getData' in child ? child.getData() : child;
 }
 
 type ChapterInput<L extends Locale_Languages> = Omit<Chapter<'data', L>, 'content'> & {

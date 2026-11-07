@@ -1,6 +1,13 @@
 import type {
   Course,
   Course_Creator,
+  Course_Content,
+  Chapter,
+  Episode,
+  Module,
+  Course_TocChapter,
+  Course_TocEpisode,
+  Course_TocModule,
   Course_Toc,
   Course_TocContent,
   Course_TocContext,
@@ -8,6 +15,19 @@ import type {
 } from '@svitlo/contracts/content';
 import { createChapter, createEpisode, createModule, lessonToc } from './createCourseEntities';
 import { collectCoursePublicationItems, isCourseLesson } from './collectCoursePublicationItems';
+import type { LessonCreator } from '../lessons/createLesson';
+
+type CourseAuthoringEntry<L extends Locale_Languages> =
+  | Course_Content<'data', L>
+  | LessonCreator<L>
+  | Course_Creator<Chapter<'data', L>, Course_TocChapter, L>
+  | Course_Creator<Episode<'data', L>, Course_TocEpisode, L>
+  | Course_Creator<Module<'data', L>, Course_TocModule, L>;
+
+type CourseInput<L extends Locale_Languages> = Omit<Course<'data', L>, 'content'> & {
+  content: readonly CourseAuthoringEntry<L>[];
+};
+
 
 function localized<Languages extends Locale_Languages>(
   value: string | Record<Languages[number], string>,
@@ -21,11 +41,14 @@ function localized<Languages extends Locale_Languages>(
 
 /** Pure Course creator. Filesystem access and JSON publication belong to the caller. */
 export function createCourse<const Languages extends Locale_Languages>(
-  course: Course<'data', Languages>,
+  course: CourseInput<Languages>,
 ): Course_Creator<Course<'data', Languages>, Course_Toc, Languages> {
-  const getData = () => ({ ...course, content: [...course.content] });
+  const getData = (): Course<'data', Languages> => ({
+    ...course,
+    content: course.content.map(entry => ('getData' in entry ? entry.getData() : entry)),
+  });
   const toToc = (context: Course_TocContext<Languages>): Course_Toc => {
-    const children = course.content.map((entry): Course_TocContent => {
+    const children = getData().content.map((entry): Course_TocContent => {
       if (isCourseLesson(entry)) return lessonToc(entry, context);
       switch (entry.type) {
         case 'module':
@@ -49,6 +72,6 @@ export function createCourse<const Languages extends Locale_Languages>(
     data: getData(),
     toc: toToc(context),
   });
-  const getPublicationItems = () => collectCoursePublicationItems<Languages>(course.content);
+  const getPublicationItems = () => collectCoursePublicationItems<Languages>(getData().content);
   return { getData, toToc, toResource, getPublicationItems };
 }

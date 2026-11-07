@@ -4,3 +4,10 @@ export { createLessonOverrides, LessonOverridesBuilder } from './lessons/createL
 export { createChapter, createModule, createEpisode } from './course/createCourseEntities';
 
 export { createCourse } from './course/createCourse';
+
+export { createLesson } from './lessons/createLesson';
+export type { LessonCreator, LessonResource } from './lessons/createLesson';
+export { createSection } from './lessons/createSection';
+export type { SectionCreator } from './lessons/createSection';
+export { createContentBlock } from './lessons/createContentBlock';
+export type { ContentBlockCreator } from './lessons/createContentBlock';

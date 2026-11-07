@@ -20,6 +20,10 @@ export function isCourseLesson(value: unknown): value is Lesson<'data', any> {
   );
 }
 
+function isDataCreator(value: unknown): value is { getData(): unknown } {
+  return value !== null && typeof value === 'object' && 'getData' in value && typeof value.getData === 'function';
+}
+
 export function isCourseCreator(value: unknown): value is {
   getData(): unknown;
   toToc(context: unknown): unknown;
@@ -53,7 +57,7 @@ export function collectCoursePublicationItems<L extends Locale_Languages>(
   const overrides: Course_LessonAuthoringOverride<L>[] = [];
 
   function visit(source: unknown): void {
-    const item = isCourseCreator(source) ? source.getData() : source;
+    const item = isDataCreator(source) ? source.getData() : source;
     if (isCourseLesson(item)) {
       lessons.push(item as Lesson<'data', L>);
       return;

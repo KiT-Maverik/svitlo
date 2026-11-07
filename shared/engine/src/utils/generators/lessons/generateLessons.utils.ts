@@ -3,106 +3,8 @@ import path from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { pathToFileURL } from 'node:url';
 import { build } from 'esbuild';
-import { DEFAULT_SUPPORTED_LANGUAGES } from '../../../types/languages';
-import type { LanguageCode } from '../../../types/languages';
-import { splitLessonValue } from './localizeLessonData.utils';
+import { createLessonFromUnknown } from '../../../lessons/createLesson';
 import { resolveEntityPath } from '../../entityPath/resolveEntityPath.utils';
-
-type LessonData = {
-  id: string;
-  slug: string;
-  parameters: { languages: readonly LanguageCode[] };
-  flashcards: unknown[];
-  questions: Record<string, Record<string, unknown>>;
-  skills: string[];
-  sections: unknown[];
-  [key: string]: unknown;
-};
-
-const isRecord = (value: unknown): value is Record<string, unknown> =>
-  value !== null && typeof value === 'object' && !Array.isArray(value);
-
-function assertLesson(value: unknown): asserts value is LessonData {
-  if (
-    !isRecord(value) ||
-    typeof value.id !== 'string' ||
-    typeof value.slug !== 'string' ||
-    !/^[a-z][A-Za-z0-9]*$/.test(value.slug)
-  ) {
-    throw new Error('Lesson must declare a canonical UUID id and camelCase slug');
-  }
-  const relativePath = resolveEntityPath(value.id);
-  const parameters = value.parameters;
-  if (
-    !isRecord(parameters) ||
-    !Array.isArray(parameters.languages) ||
-    parameters.languages.length === 0 ||
-    !parameters.languages.every(code => typeof code === 'string')
-  ) {
-    throw new Error(`Lesson ${relativePath} has no valid parameters.languages`);
-  }
-  if (
-    !Array.isArray(value.flashcards) ||
-    !isRecord(value.questions) ||
-    !Array.isArray(value.sections) ||
-    !Array.isArray(value.skills)
-  ) {
-    throw new Error(`Lesson ${relativePath} is missing flashcards, questions, or sections`);
-  }
-  if (
-    new Set(value.skills).size !== value.skills.length ||
-    value.skills.some(id => typeof id !== 'string' || !/^[0-9a-f-]{36}$/i.test(id))
-  ) {
-    throw new Error('Invalid Lesson Skill IDs');
-  }
-  // Validate authored event scenes before sparse publication. Custom event reactions cannot be false.
-  if (value.events !== undefined) {
-    if (!isRecord(value.events)) throw new Error('Lesson events must be a keyed object');
-    const standard = new Set(['lessonStarted', 'lessonCompleted', 'quizCompleted', 'quizFailed']);
-    for (const [eventId, reaction] of Object.entries(value.events)) {
-      if (!/^[a-z][A-Za-z0-9]*$/.test(eventId)) throw new Error('Invalid lesson event ID: ' + eventId);
-      if (reaction === false && standard.has(eventId)) continue;
-      if (
-        !isRecord(reaction) ||
-        reaction.type !== 'scene' ||
-        typeof reaction.id !== 'string' ||
-        typeof reaction.slug !== 'string' ||
-        !isRecord(reaction.locales)
-      ) {
-        throw new Error('Lesson event reaction must be an authored Scene: ' + eventId);
-      }
-    }
-  }
-  const sectionSlugs = new Set<string>();
-  for (const [index, entry] of value.sections.entries()) {
-    if (
-      !isRecord(entry) ||
-      typeof entry.slug !== 'string' ||
-      (entry.type === 'quiz'
-        ? !isRecord(entry.parameters) || entry.content !== undefined
-        : !Array.isArray(entry.content))
-    ) {
-      throw new Error(`Invalid ordered section at ${relativePath}/sections[${index}]`);
-    }
-    if (sectionSlugs.has(entry.slug)) throw new Error(`Duplicate section slug: ${entry.slug}`);
-    sectionSlugs.add(entry.slug);
-    if (entry.type === 'quiz') continue;
-    const blockKeys = new Set<string>();
-    for (const [blockIndex, item] of (entry.content as unknown[]).entries()) {
-      if (
-        !isRecord(item) ||
-        typeof item.id !== 'string' ||
-        typeof item.slug !== 'string' ||
-        typeof item.type !== 'string'
-      ) {
-        throw new Error(`Invalid content block at ${relativePath}/sections[${index}]/content[${blockIndex}]`);
-      }
-      const key = item.type + '/' + item.slug;
-      if (blockKeys.has(key)) throw new Error(`Duplicate content block: ${key}`);
-      blockKeys.add(key);
-    }
-  }
-}
 
 /** Load authoring TypeScript without requiring the application runtime. */
 export async function loadLessonData(entry: string): Promise<unknown> {
@@ -134,7 +36,7 @@ export async function loadLessonData(entry: string): Promise<unknown> {
       ],
     });
     const exports = require(output) as Record<string, unknown>;
-    const entries = Object.values(exports).filter(value => isRecord(value) && 'id' in value && 'slug' in value);
+    const entries = Object.values(exports).filter(value => value !== null && typeof value === 'object' && 'id' in value && 'slug' in value);
     if (entries.length !== 1) throw new Error(`Expected one exported lesson in ${entry}; found ${entries.length}`);
     return entries[0];
   } finally {
@@ -142,35 +44,9 @@ export async function loadLessonData(entry: string): Promise<unknown> {
   }
 }
 
-/** Publish shared base and sparse locale patches for each of the three Lesson collections. */
+/** Compatibility API for tooling and tests; entity preparation lives in the creator. */
 export function renderLessonFiles(lesson: unknown): Map<string, string> {
-  assertLesson(lesson);
-  const relativePath = resolveEntityPath(lesson.id);
-  const supported = new Set(DEFAULT_SUPPORTED_LANGUAGES.map(item => item.language));
-  const languages = lesson.parameters.languages;
-  if (new Set(languages).size !== languages.length || languages.some(code => !supported.has(code))) {
-    throw new Error(`Lesson ${relativePath} has duplicate or unsupported languages`);
-  }
-
-  const { flashcards, questions, sections, ...config } = lesson;
-  const collections = {
-    config: { ...config, sections },
-    flashcards,
-    questions,
-  };
-  const files = new Map<string, string>();
-  for (const [kind, source] of Object.entries(collections)) {
-    const { base, locales, pointers } = splitLessonValue(source, languages);
-    files.set(`${relativePath}/${kind}/base.json`, JSON.stringify({ data: base }) + '\n');
-    for (const language of languages) {
-      const localeSources = Object.fromEntries(pointers.map(pointer => [pointer, { code: language }]));
-      files.set(
-        `${relativePath}/${kind}/${language}.json`,
-        JSON.stringify({ data: locales[language] ?? {}, localeSources }) + '\n',
-      );
-    }
-  }
-  return files;
+  return new Map(createLessonFromUnknown(lesson).getPublicationItems());
 }
 
 /** Discover authored lessons by UUID path; editorial-only directories are not generated. */
@@ -190,10 +66,10 @@ export async function renderTextbookLessonFiles(packageDirectory: string): Promi
       const candidates = fs.readdirSync(lessonDir).filter(name => name.endsWith('.data.ts'));
       if (!candidates.length) continue; // Editorial draft without authored TS.
       if (candidates.length !== 1) throw new Error(`Ambiguous Lesson files: ${lessonDir}`);
-      const lesson = await loadLessonData(path.join(lessonDir, candidates[0]));
-      assertLesson(lesson);
+      const creator = createLessonFromUnknown(await loadLessonData(path.join(lessonDir, candidates[0])));
+      const lesson = creator.getData();
       if (lesson.id.toLowerCase() !== entry.name) throw new Error(`Lesson UUID/path mismatch: ${lessonDir}`);
-      for (const [key, value] of renderLessonFiles(lesson)) {
+      for (const [key, value] of creator.getPublicationItems()) {
         if (files.has(key)) throw new Error(`Duplicate Lesson publication: ${key}`);
         files.set(key, value);
       }
