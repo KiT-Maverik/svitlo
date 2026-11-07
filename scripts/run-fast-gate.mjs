@@ -73,6 +73,9 @@ function runGate(changed) {
   for (const f of plan.jsFiles) exec('node', ['--check', f]);
   for (const f of plan.jsonFiles) json(f);
   exec('node', ['--test', 'scripts/run-fast-gate.spec.mjs']);
+  if (changed.some(file => file === 'package.json' || file.startsWith('scripts/run-workspace-script.'))) {
+    exec('node', ['--test', 'scripts/run-workspace-script.spec.mjs']);
+  }
   if (
     changed.some(
       f =>
@@ -133,8 +136,8 @@ function runGate(changed) {
       if (!all.has(dep)) continue;
       ensureSharedDependencies(dep, next);
       const d = all.get(dep);
-      if (d.path.startsWith('shared/') && d.scripts?.build && !built.has(dep)) {
-        exec('npm', ['run', 'build', '--workspace', dep]);
+      if (d.path.startsWith('shared/') && d.scripts?.['package:build'] && !built.has(dep)) {
+        exec('npm', ['run', 'package:build', '--workspace', dep]);
         built.add(dep);
       }
     }
@@ -159,14 +162,14 @@ function runGate(changed) {
   // the dedicated Content Build workflow. FastGate validates workspace types.
   for (const name of targets) {
     const pkg = all.get(name);
-    if (!pkg?.scripts?.typecheck) continue;
+    if (!pkg?.scripts?.['code:check:types']) continue;
     ensureSharedDependencies(name);
     // Some shared packages typecheck their own public dist exports (e.g. IndexDB browser tests).
-    if (pkg.path.startsWith('shared/') && pkg.scripts?.build && !built.has(name)) {
-      exec('npm', ['run', 'build', '--workspace', name]);
+    if (pkg.path.startsWith('shared/') && pkg.scripts?.['package:build'] && !built.has(name)) {
+      exec('npm', ['run', 'package:build', '--workspace', name]);
       built.add(name);
     }
-    exec('npm', ['run', 'typecheck', '--workspace', name]);
+    exec('npm', ['run', 'code:check:types', '--workspace', name]);
     // Validate shared package behavior before unrelated textbooks can fail on
     // incomplete authored data. Dependencies are built in the same pass.
     if (pkg.path.startsWith('shared/') && pkg.scripts?.test) {
@@ -187,8 +190,8 @@ function runGate(changed) {
           file.startsWith('apps/web/'),
       )
     ) {
-      exec('npm', ['run', 'build', '--workspace', name]);
-      exec('npm', ['run', 'test:selection', '--workspace', name]);
+      exec('npm', ['run', 'app:build', '--workspace', name]);
+      exec('npm', ['run', 'test:unit:selection', '--workspace', name]);
       exec('npm', ['run', 'test:components', '--workspace', name]);
     }
   }
@@ -206,7 +209,7 @@ function runGate(changed) {
   ) {
     ensureSharedDependencies('@svitlo/engine');
     if (!built.has('@svitlo/engine')) {
-      exec('npm', ['run', 'build', '--workspace', '@svitlo/engine']);
+      exec('npm', ['run', 'package:build', '--workspace', '@svitlo/engine']);
       built.add('@svitlo/engine');
     }
     exec('node', [
