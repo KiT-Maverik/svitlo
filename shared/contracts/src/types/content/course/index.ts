@@ -22,7 +22,6 @@ export type {
   Course_TocChapter,
   Course_TocModule,
   Course_TocContext,
-  Course_Resource,
   Course_Creator,
   Course_PublicationItems,
 } from './toc.types';
