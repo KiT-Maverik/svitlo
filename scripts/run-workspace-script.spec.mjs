@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { planWorkspaceOperation } from './run-workspace-script.mjs';
+import { discoverWorkspaces, planWorkspaceOperation } from './run-workspace-script.mjs';
+import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 
 const ws = (name, path, scripts, deps = []) => ({
   name, path, scripts,
@@ -47,4 +49,32 @@ test('workspace cycles and missing capabilities fail loudly', () => {
   ];
   assert.throws(() => planWorkspaceOperation(items, 'package:build'), /cycle/);
   assert.throws(() => planWorkspaceOperation([ws('x', 'apps/x', {})], 'app:build'), /No workspaces/);
+});
+
+test('real manifests use canonical operation names and preserve npm pre-hooks', () => {
+  const root = JSON.parse(readFileSync(fileURLToPath(new URL('../package.json', import.meta.url)), 'utf8'));
+  const packages = discoverWorkspaces();
+  assert.equal(packages.length, 29);
+  assert.equal(Object.hasOwn(root.scripts, 'storybook:start'), false);
+  assert.equal(Object.hasOwn(root.scripts, 'app:start:dev'), false);
+  assert.equal(Object.hasOwn(root.scripts, 'app:start'), false);
+  for (const script of ['package:build', 'app:build', 'code:check:types', 'test', 'storybook:build']) {
+    assert(Object.hasOwn(root.scripts, script), 'root missing ' + script);
+    const eligible = packages.filter(pkg => Object.hasOwn(pkg.scripts || {}, script));
+    assert(eligible.length > 0, 'no workspace implements ' + script);
+    const plan = planWorkspaceOperation(packages, script);
+    assert.equal(plan.selected.length, eligible.length);
+  }
+  for (const pkg of packages) {
+    const scripts = pkg.scripts || {};
+    for (const old of ['build', 'typecheck', 'lint', 'dev', 'start', 'storybook', 'build-storybook']) {
+      assert(!Object.hasOwn(scripts, old), pkg.name + ' still uses ' + old);
+    }
+    if (!Object.keys(scripts).length) continue;
+    assert(scripts['code:format:check'] && scripts['code:format:fix'], pkg.name + ' lacks format commands');
+    for (const key of Object.keys(scripts)) {
+      if (!key.startsWith('pre') || key === 'prepack') continue;
+      assert(Object.hasOwn(scripts, key.slice(3)), pkg.name + ' orphaned npm hook ' + key);
+    }
+  }
 });
