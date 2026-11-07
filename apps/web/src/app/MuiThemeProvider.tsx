@@ -20,9 +20,5 @@ const themes = {
 export default function MuiThemeProvider({ children, direction }: { children: ReactNode; direction: TextDirection }) {
   // CSS-variable palettes follow MUI's data-light / data-dark selectors.
   // Quick Settings must use the host's MUI useColorScheme to read and change the mode.
-  return (
-    <ThemeProvider theme={themes[direction]}>
-      {children}
-    </ThemeProvider>
-  );
+  return <ThemeProvider theme={themes[direction]}>{children}</ThemeProvider>;
 }
