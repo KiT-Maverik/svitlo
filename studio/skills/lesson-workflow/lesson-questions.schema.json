@@ -1,0 +1,849 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://svitlo.dev/studio/lesson-questions.schema.json",
+  "title": "Lesson Question Bank — Assessment Architect",
+  "description": "Editorial source-language YAML for assessment question generation; not runtime authored Question data.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "kind",
+    "status",
+    "lessonId",
+    "documentLanguage",
+    "supportedLanguages",
+    "sources",
+    "quizAssignments",
+    "questions",
+    "coverage",
+    "unresolvedDependencies"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "kind": {
+      "const": "lesson-question-bank"
+    },
+    "status": {
+      "enum": ["draft", "approved"]
+    },
+    "lessonId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "documentLanguage": {
+      "type": "string",
+      "pattern": "^[a-z]{2}$"
+    },
+    "supportedLanguages": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z]{2}$"
+      }
+    },
+    "sources": {
+      "type": "object",
+      "required": ["methodology", "content"],
+      "properties": {
+        "methodology": {
+          "$ref": "#/$defs/source"
+        },
+        "content": {
+          "$ref": "#/$defs/source"
+        }
+      },
+      "additionalProperties": false
+    },
+    "quizAssignments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["assessmentPlanKey", "selection"],
+        "properties": {
+          "assessmentPlanKey": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+          },
+          "selection": {
+            "$ref": "#/$defs/quizSelection"
+          }
+        }
+      },
+      "description": "Every approved Quiz maps to one deliberately curated default selection. Explicit questionSlugs are always required; omission in runtime would select the entire Lesson bank."
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/question"
+      },
+      "description": "Full Lesson Question bank, including items never selected for an ordinary Quiz, retained for future custom practice."
+    },
+    "coverage": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["targetSkill", "outcome", "assessmentMethod", "questionSlugs"],
+        "properties": {
+          "targetSkill": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+          },
+          "outcome": {
+            "type": "string",
+            "minLength": 1
+          },
+          "assessmentMethod": {
+            "type": "string",
+            "enum": [
+              "retrieval",
+              "interpretation",
+              "application",
+              "classification",
+              "relationshipMapping",
+              "representationTranslation",
+              "missingInformationInference",
+              "structuralAnalysis",
+              "patternGeneralization",
+              "analogicalReasoning",
+              "knowledgeTransfer",
+              "prediction",
+              "errorDiagnosis",
+              "verification",
+              "justification",
+              "knowledgeConstruction"
+            ]
+          },
+          "questionSlugs": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/$defs/slug"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "unresolvedDependencies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["kind", "description", "status"],
+        "properties": {
+          "kind": {
+            "enum": ["media", "accessibility", "grading", "subject-review", "contract", "other"]
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "const": "pending"
+          },
+          "questionSlug": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "approved"
+          }
+        },
+        "required": ["status"]
+      },
+      "then": {
+        "properties": {
+          "questions": {
+            "minItems": 1
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+    },
+    "source": {
+      "type": "object",
+      "required": ["path"],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "block": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": ["type", "text"],
+          "properties": {
+            "type": {
+              "const": "text"
+            },
+            "text": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": ["type", "assetPath"],
+          "properties": {
+            "type": {
+              "const": "image"
+            },
+            "assetPath": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": ["type", "assetRequest"],
+          "properties": {
+            "type": {
+              "const": "image"
+            },
+            "assetRequest": {
+              "type": "object",
+              "required": ["description", "purpose", "altIntent", "status"],
+              "properties": {
+                "description": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "purpose": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "altIntent": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "status": {
+                  "const": "pending"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "choice": {
+      "type": "object",
+      "required": ["key", "content"],
+      "properties": {
+        "key": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "content": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/block"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "pair": {
+      "type": "object",
+      "required": ["key", "left", "right"],
+      "properties": {
+        "key": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "left": {
+          "$ref": "#/$defs/block"
+        },
+        "right": {
+          "$ref": "#/$defs/block"
+        }
+      },
+      "additionalProperties": false
+    },
+    "textSlot": {
+      "type": "object",
+      "required": ["selector", "correctAnswers"],
+      "properties": {
+        "selector": {
+          "type": "string",
+          "minLength": 1
+        },
+        "correctAnswers": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "blockSlot": {
+      "type": "object",
+      "required": ["selector", "correctAnswer"],
+      "properties": {
+        "selector": {
+          "type": "string",
+          "minLength": 1
+        },
+        "correctAnswer": {
+          "$ref": "#/$defs/block"
+        }
+      },
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["outcome", "operation", "distinction", "distinctness"],
+      "properties": {
+        "outcome": {
+          "type": "string",
+          "minLength": 1
+        },
+        "operation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "distinction": {
+          "type": "string",
+          "minLength": 1
+        },
+        "distinctness": {
+          "type": "string",
+          "minLength": 1
+        },
+        "context": {
+          "type": "string",
+          "minLength": 1
+        },
+        "demand": {
+          "enum": ["foundational", "intermediate", "advanced"]
+        },
+        "knowledgeAspect": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "question": {
+      "type": "object",
+      "required": [
+        "slug",
+        "type",
+        "assessmentMethod",
+        "targetSkills",
+        "assessmentPlanKeys",
+        "pool",
+        "evidence",
+        "question",
+        "answer",
+        "explanation"
+      ],
+      "properties": {
+        "slug": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "type": {
+          "enum": [
+            "selectOneAnswer",
+            "selectMultipleAnswers",
+            "matchBlocks",
+            "answerWithText",
+            "answerWithNumber",
+            "orderSequence",
+            "buildAnswerWithBlocks",
+            "fillBlanksWithBlocks",
+            "fillBlanksWithText"
+          ]
+        },
+        "assessmentMethod": {
+          "type": "string",
+          "enum": [
+            "retrieval",
+            "interpretation",
+            "application",
+            "classification",
+            "relationshipMapping",
+            "representationTranslation",
+            "missingInformationInference",
+            "structuralAnalysis",
+            "patternGeneralization",
+            "analogicalReasoning",
+            "knowledgeTransfer",
+            "prediction",
+            "errorDiagnosis",
+            "verification",
+            "justification",
+            "knowledgeConstruction"
+          ]
+        },
+        "targetSkills": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+          }
+        },
+        "assessmentPlanKeys": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+          }
+        },
+        "pool": {
+          "enum": ["core", "extension"],
+          "description": "Core and extension describe bank coverage, not automatic default Quiz inclusion; Quiz inclusion is determined only by quizAssignments[].selection.questionSlugs."
+        },
+        "evidence": {
+          "$ref": "#/$defs/evidence"
+        },
+        "question": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/block"
+          }
+        },
+        "answer": {
+          "type": "object"
+        },
+        "explanation": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/block"
+          }
+        },
+        "hint": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/block"
+          }
+        },
+        "accessibility": {
+          "type": "string",
+          "minLength": 1
+        },
+        "localizationNotes": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "selectOneAnswer"
+              }
+            },
+            "required": ["type"]
+          },
+          "then": {
+            "properties": {
+              "answer": {
+                "type": "object",
+                "required": ["correct", "incorrect", "distractors"],
+                "properties": {
+                  "correct": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                      "$ref": "#/$defs/choice"
+                    }
+                  },
+                  "incorrect": {
+                    "type": "array",
+                    "minItems": 0,
+                    "items": {
+                      "$ref": "#/$defs/choice"
+                    }
+                  },
+                  "distractors": {
+                    "type": "array",
+                    "minItems": 0,
+                    "items": {
+                      "$ref": "#/$defs/choice"
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "selectMultipleAnswers"
+              }
+            },
+            "required": ["type"]
+          },
+          "then": {
+            "properties": {
+              "answer": {
+                "type": "object",
+                "required": ["correct", "incorrect", "distractors"],
+                "properties": {
+                  "correct": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                      "$ref": "#/$defs/choice"
+                    }
+                  },
+                  "incorrect": {
+                    "type": "array",
+                    "minItems": 0,
+                    "items": {
+                      "$ref": "#/$defs/choice"
+                    }
+                  },
+                  "distractors": {
+                    "type": "array",
+                    "minItems": 0,
+                    "items": {
+                      "$ref": "#/$defs/choice"
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "matchBlocks"
+              }
+            },
+            "required": ["type"]
+          },
+          "then": {
+            "properties": {
+              "answer": {
+                "type": "object",
+                "required": ["pairs"],
+                "properties": {
+                  "pairs": {
+                    "type": "array",
+                    "minItems": 2,
+                    "items": {
+                      "$ref": "#/$defs/pair"
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "answerWithText"
+              }
+            },
+            "required": ["type"]
+          },
+          "then": {
+            "properties": {
+              "answer": {
+                "type": "object",
+                "required": ["correctAnswers", "placeholder"],
+                "properties": {
+                  "correctAnswers": {
+                    "type": "array",
+                    "minItems": 1,
+                    "uniqueItems": true,
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "placeholder": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "answerWithNumber"
+              }
+            },
+            "required": ["type"]
+          },
+          "then": {
+            "properties": {
+              "answer": {
+                "type": "object",
+                "required": ["correctAnswers", "placeholder"],
+                "properties": {
+                  "correctAnswers": {
+                    "type": "array",
+                    "minItems": 1,
+                    "uniqueItems": true,
+                    "items": {
+                      "type": "number"
+                    }
+                  },
+                  "placeholder": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "orderSequence"
+              }
+            },
+            "required": ["type"]
+          },
+          "then": {
+            "properties": {
+              "answer": {
+                "type": "object",
+                "required": ["sequence"],
+                "properties": {
+                  "sequence": {
+                    "type": "array",
+                    "minItems": 2,
+                    "items": {
+                      "$ref": "#/$defs/block"
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "buildAnswerWithBlocks"
+              }
+            },
+            "required": ["type"]
+          },
+          "then": {
+            "properties": {
+              "answer": {
+                "type": "object",
+                "required": ["correctSequence", "distractors", "placeholder"],
+                "properties": {
+                  "correctSequence": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                      "$ref": "#/$defs/block"
+                    }
+                  },
+                  "distractors": {
+                    "type": "array",
+                    "minItems": 0,
+                    "items": {
+                      "$ref": "#/$defs/block"
+                    }
+                  },
+                  "placeholder": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "fillBlanksWithBlocks"
+              }
+            },
+            "required": ["type"]
+          },
+          "then": {
+            "properties": {
+              "answer": {
+                "type": "object",
+                "required": ["slots", "distractors", "placeholder"],
+                "properties": {
+                  "slots": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                      "$ref": "#/$defs/blockSlot"
+                    }
+                  },
+                  "distractors": {
+                    "type": "array",
+                    "minItems": 0,
+                    "items": {
+                      "$ref": "#/$defs/block"
+                    }
+                  },
+                  "placeholder": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "fillBlanksWithText"
+              }
+            },
+            "required": ["type"]
+          },
+          "then": {
+            "properties": {
+              "answer": {
+                "type": "object",
+                "required": ["slots", "placeholder"],
+                "properties": {
+                  "slots": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                      "$ref": "#/$defs/textSlot"
+                    }
+                  },
+                  "placeholder": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      ]
+    },
+    "quizSelection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "questionSlugs"],
+      "properties": {
+        "mode": {
+          "enum": ["all", "sample"]
+        },
+        "questionSlugs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+          }
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "shuffle": {
+          "type": "boolean"
+        },
+        "seed": {
+          "type": "integer"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "mode": {
+                "const": "sample"
+              }
+            },
+            "required": ["mode"]
+          },
+          "then": {
+            "required": ["count"]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "mode": {
+                "const": "all"
+              }
+            },
+            "required": ["mode"]
+          },
+          "then": {
+            "not": {
+              "required": ["count"]
+            }
+          }
+        }
+      ]
+    }
+  }
+}
