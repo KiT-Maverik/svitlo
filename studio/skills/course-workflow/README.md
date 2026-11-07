@@ -8,6 +8,10 @@ Independent course-authoring skills; explicit artifact prerequisites, **no manda
 
 The editorial TOC format is defined by [course-toc.schema.json](./course-toc.schema.json). Narrative, UX and production are independent optional operations.
 
+## Approved Course-owned overrides
+
+[Course Lesson Overrides](./course-overrides.md) defines the **separate** `overrides.yaml` editorial format, validated by [course-overrides.schema.json](./course-overrides.schema.json). It is not part of `toc.yaml` and never edits a standalone Lesson. A reviewed Course integration author can use it to specify sparse parameter changes, Section/ContentBlock slug modifications, ordering and approved Course-owned TS source references for new Sections/blocks or metadata patches. The deterministic Course Builder at `scripts/course-builder/` turns these instructions into existing `createLessonOverrides` API calls. Scenario content/asset sources must already exist and be approved; their authorship is not delegated to the builder.
+
 ## Localization convention
 
 Course Methodology records its editorial `documentLanguage` and planned `supportedLanguages`. The skill-based TOC declares its own source `documentLanguage` (which must belong to `supportedLanguages` for direct publication) and repeats the planned Course languages. Ordinary titles are translatable text; `{ value: "...", invariant: true }` identifies genuine language-independent titles. Standalone Lessons must cover every Course locale but may support more; matching checks this independently.
