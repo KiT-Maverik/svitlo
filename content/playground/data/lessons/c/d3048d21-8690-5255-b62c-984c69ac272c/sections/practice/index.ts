@@ -44,7 +44,7 @@ export const practice_Section_Creator = createSection<HowLightMoves_Languages>()
   content: [
     createContentBlock<HowLightMoves_Languages>()({
       type: 'text',
-      id: 'practice-task',
+      id: 'ae0cafb2-acdc-4eea-849b-582de3882f61',
       slug: 'task',
       value: {
         ar: 'قارِن سرعة الضوء في الفراغ والهواء والماء.',
