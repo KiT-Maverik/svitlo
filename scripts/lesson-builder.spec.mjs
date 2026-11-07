@@ -349,3 +349,25 @@ test('rejects YAML-supplied Methodology path traversal before opening a file', (
     assert.throws(() => runOne(f.lesson, 'generate', f.repo),
       /content.yaml:methodologySource: must name the canonical Methodology file/);
   }));
+
+test('does not silently discard unknown editorial contentSpec fields', () =>
+  withFixture(f => {
+    f.content.sections[0].blocks[0].contentSpec = { unexplainedParameter: 'editorial meaning' };
+    f.save();
+    assert.throws(() => runOne(f.lesson, 'generate', f.repo),
+      /content.yaml:sections\[0\].blocks\[0\].contentSpec.unexplainedParameter/);
+  }));
+test('preserves canonical text presentation fields and code-block exclusivity', () =>
+  withFixture(f => {
+    f.content.sections[0].blocks[0].contentSpec = { wrap: { enabled: false } };
+    f.save();
+    runOne(f.lesson, 'generate', f.repo);
+    assert.match(fs.readFileSync(f.generated('lesson.data.ts'), 'utf8'), /"wrap": \{/);
+    f.content.sections[0].blocks.push({
+      key: 'example', type: 'code', purpose: 'Read a sample', readiness: 'typed-only',
+      accessibility: 'Readable code',
+      contentSpec: { language: 'js', code: 'console.log(1);', fileLocation: 'code/example.js' },
+    });
+    f.save();
+    assert.throws(() => runOne(f.lesson, 'generate', f.repo), /mutually exclusive/);
+  }));
