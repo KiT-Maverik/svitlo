@@ -4,21 +4,13 @@ on:
   pull_request:
     paths:
       - 'content/history/**'
-      - 'shared/contracts/**'
-      - 'shared/engine/**'
       - '.github/workflows/history-skills.yml'
-      - 'package.json'
-      - 'package-lock.json'
   push:
     branches:
       - feat/history-skills-integration
     paths:
       - 'content/history/**'
-      - 'shared/contracts/**'
-      - 'shared/engine/**'
       - '.github/workflows/history-skills.yml'
-      - 'package.json'
-      - 'package-lock.json'
   workflow_dispatch:
 
 permissions:

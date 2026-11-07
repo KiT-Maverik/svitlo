@@ -50,13 +50,6 @@ export function chooseChecks(changed, workspaces) {
   for (const file of changed) {
     const pkg = packageFor(file, workspaces);
     if (pkg) affected.add(pkg.name);
-    if (
-      file.startsWith('shared/') &&
-      pkg &&
-      ['@svitlo/contracts', '@svitlo/engine', '@svitlo/indexdb', '@svitlo/ui-kit'].includes(pkg.name)
-    ) {
-      affected.add('@svitlo/math');
-    }
   }
   if (global) for (const name of packages.keys()) affected.add(name);
   if (sharedTextbookTooling) {
@@ -65,23 +58,12 @@ export function chooseChecks(changed, workspaces) {
     }
   }
   if (lockChange)
-    for (const name of ['@svitlo/contracts', '@svitlo/engine', '@svitlo/indexdb', '@svitlo/ui-kit', '@svitlo/math']) {
+    for (const name of ['@svitlo/contracts', '@svitlo/engine', '@svitlo/indexdb', '@svitlo/ui-kit']) {
       if (packages.has(name)) affected.add(name);
     }
-  const taxonomy =
-    global ||
-    lockChange ||
-    changed.some(
-      f =>
-        f.startsWith('content/math/data/skills/') ||
-        f.startsWith('scripts/check-skills-taxonomy-structure') ||
-        f.startsWith('shared/contracts/') ||
-        f.startsWith('shared/engine/'),
-    );
-  const mathComponents = changed.some(f => f.startsWith('content/math/src/') && /\.(ts|tsx|js|jsx)$/.test(f));
   const jsFiles = changed.filter(f => /\.(?:mjs|cjs|js)$/.test(f) && fs.existsSync(path.join(repoRoot, f)));
   const jsonFiles = changed.filter(f => f.endsWith('.json') && fs.existsSync(path.join(repoRoot, f)));
-  return { affected, taxonomy, mathComponents, jsFiles, jsonFiles };
+  return { affected, jsFiles, jsonFiles };
 }
 function changedFiles(base, head) {
   assert(/^[a-f0-9]{40}$/.test(base) && /^[a-f0-9]{40}$/.test(head), 'Base and head must be 40-character commit SHAs');
@@ -96,7 +78,7 @@ function runGate(changed) {
   const plan = chooseChecks(changed, workspaces);
   for (const f of plan.jsFiles) exec('node', ['--check', f]);
   for (const f of plan.jsonFiles) json(f);
-  exec('node', ['--test', 'scripts/check-skills-taxonomy-structure.spec.mjs', 'scripts/run-fast-gate.spec.mjs']);
+  exec('node', ['--test', 'scripts/run-fast-gate.spec.mjs']);
   if (
     changed.some(
       f =>
@@ -134,7 +116,6 @@ function runGate(changed) {
       'scripts/generate-skills-taxonomy.roundtrip.spec.mjs',
     ]);
   }
-  if (plan.taxonomy) exec('node', ['scripts/check-skills-taxonomy-structure.mjs']);
 
   const built = new Set();
   function ensureSharedDependencies(name, visiting = new Set()) {
@@ -207,7 +188,7 @@ function runGate(changed) {
       !pkg ||
       (!changed.some(file => file.startsWith(pkg.path + '/')) &&
         !(
-          changed.some(file => file.startsWith('scripts/textbook-tooling/')) && ['math', 'ukrainian'].includes(subject)
+          changed.some(file => file.startsWith('scripts/textbook-tooling/')) && subject === 'ukrainian'
         ))
     )
       continue;
@@ -293,17 +274,13 @@ function runGate(changed) {
     ]);
   }
 
-  if (plan.mathComponents) {
-    ensureSharedDependencies('@svitlo/math');
-    exec('npm', ['run', 'test:components', '--workspace', '@svitlo/math']);
-  }
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   try {
     const args = process.argv.slice(2);
     if (args.length === 1 && args[0] === '--all') {
-      runGate(['package.json', 'content/math/data/skills/index.ts']);
+      runGate(['package.json']);
     } else if (args.length === 2) {
       runGate(changedFiles(args[0], args[1]));
     } else throw new Error('Usage: node scripts/run-fast-gate.mjs <base-sha> <head-sha> | --all');

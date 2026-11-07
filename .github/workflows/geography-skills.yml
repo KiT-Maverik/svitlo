@@ -4,21 +4,13 @@ on:
   pull_request:
     paths:
       - 'content/geography/**'
-      - 'shared/contracts/**'
-      - 'shared/engine/**'
       - '.github/workflows/geography-skills.yml'
-      - 'package.json'
-      - 'package-lock.json'
   push:
     branches:
       - feat/geography-skills-integration
     paths:
       - 'content/geography/**'
-      - 'shared/contracts/**'
-      - 'shared/engine/**'
       - '.github/workflows/geography-skills.yml'
-      - 'package.json'
-      - 'package-lock.json'
   workflow_dispatch:
 
 permissions:

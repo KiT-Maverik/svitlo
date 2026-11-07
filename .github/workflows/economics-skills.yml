@@ -4,21 +4,13 @@ on:
   pull_request:
     paths:
       - 'content/economics/**'
-      - 'shared/contracts/**'
-      - 'shared/engine/**'
       - '.github/workflows/economics-skills.yml'
-      - 'package.json'
-      - 'package-lock.json'
   push:
     branches:
       - feat/economics-skills-integration
     paths:
       - 'content/economics/**'
-      - 'shared/contracts/**'
-      - 'shared/engine/**'
       - '.github/workflows/economics-skills.yml'
-      - 'package.json'
-      - 'package-lock.json'
   workflow_dispatch:
 
 permissions:

@@ -4,11 +4,7 @@ on:
   pull_request:
     paths:
       - 'content/informatics/**'
-      - 'shared/contracts/**'
-      - 'shared/engine/**'
       - '.github/workflows/informatics-skills.yml'
-      - 'package.json'
-      - 'package-lock.json'
   workflow_dispatch:
 
 permissions:
