@@ -8,7 +8,7 @@
     "code:lint:check": "node scripts/run-workspace-script.mjs code:lint:check",
     "code:lint:fix": "node scripts/run-workspace-script.mjs code:lint:fix",
     "code:check:types": "node scripts/run-workspace-script.mjs code:check:types",
-    "test": "node scripts/run-workspace-script.mjs test",
+    "test": "node scripts/run-workspace-script.mjs test && node --test scripts/lesson-builder.spec.mjs",
     "test:e2e": "node scripts/run-workspace-script.mjs test:e2e",
     "test:components": "node scripts/run-workspace-script.mjs test:components",
     "test:components:coverage": "node scripts/run-workspace-script.mjs test:components:coverage",
@@ -26,9 +26,9 @@
     "test:unit:lesson-builder": "node --test scripts/lesson-builder.spec.mjs"
   },
   "devDependencies": {
-    "prettier": "3.9.10",
     "ajv2020": "npm:ajv@8.20.0",
-    "js-yaml": "4.3.2"
+    "js-yaml": "4.3.2",
+    "prettier": "3.9.10"
   },
   "workspaces": [
     "apps/*",
