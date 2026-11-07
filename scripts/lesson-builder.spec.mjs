@@ -111,6 +111,11 @@ test('generates a typed full Lesson with all approved source text and selected Q
     assert.equal(manifest.generator, 'lesson-builder-v1');
     assert.ok(manifest.inputs['questions/questions.yaml']);
     assert.ok(manifest.outputs['lesson.data.ts']);
+    assert.equal(manifest.entrypoint.name, 'howLightMoves.data.ts');
+    assert.match(fs.readFileSync(path.join(f.lesson, 'howLightMoves.data.ts'), 'utf8'),
+      /export \{ lessonData \} from/);
+    assert.deepEqual(fs.readdirSync(f.lesson).filter(name => name.endsWith('.data.ts')),
+      ['howLightMoves.data.ts']);
   }));
 test('supports Lessons without a Quiz and with two explicit Quiz selections', () =>
   withFixture(f => {
@@ -252,3 +257,18 @@ test('real Playground Lesson is read-only integration evidence of current creato
   assert.equal(fs.existsSync(path.join(root, 'content.yaml')), false);
   // No migration or overwrite of the real Playground TS lesson is performed.
 });
+
+test('refuses a competing manual Lesson entrypoint without touching it', () =>
+  withFixture(f => {
+    const manual = path.join(f.lesson, 'manual.data.ts');
+    fs.writeFileSync(manual, 'export const manual = "keep";\n');
+    assert.throws(() => runOne(f.lesson, 'generate', f.repo), /entrypoint\(s\).*duplicated/);
+    assert.equal(fs.readFileSync(manual, 'utf8'), 'export const manual = "keep";\n');
+  }));
+test('checks canonical YAML source references before emission', () =>
+  withFixture(f => {
+    f.questions.sources.content.path = 'other.yaml';
+    f.save();
+    assert.throws(() => runOne(f.lesson, 'generate', f.repo),
+      /questions\/questions.yaml:sources.content.path/);
+  }));
