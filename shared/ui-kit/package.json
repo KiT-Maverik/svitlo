@@ -87,15 +87,17 @@
     "scripts/sync-flags.mjs"
   ],
   "scripts": {
-    "build": "node scripts/build.mjs",
-    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.data.json --noEmit",
-    "test:logic": "npm run typecheck && npm run test:locales",
+    "package:build": "node scripts/build.mjs",
+    "code:check:types": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.data.json --noEmit",
+    "test:logic": "npm run code:check:types && npm run test:locales",
     "test:components": "vitest run",
     "test": "npm run test:logic && npm run test:components",
-    "prepack": "npm run build",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "test:locales": "node --test scripts/generate-locales.spec.mjs scripts/sync-flags.spec.mjs"
+    "prepack": "npm run package:build",
+    "storybook:start": "storybook dev -p 6006",
+    "storybook:build": "storybook build",
+    "test:locales": "node --test scripts/generate-locales.spec.mjs scripts/sync-flags.spec.mjs",
+    "code:format:check": "prettier --check . --ignore-path ../../.prettierignore",
+    "code:format:fix": "prettier --write . --ignore-path ../../.prettierignore"
   },
   "dependencies": {
     "@svitlo/engine": "0.0.0",

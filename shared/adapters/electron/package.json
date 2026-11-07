@@ -18,9 +18,11 @@
     }
   },
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
-    "typecheck": "tsc -p tsconfig.json --noEmit",
-    "test": "npm run build && node --test tests/*.spec.mjs"
+    "package:build": "tsc -p tsconfig.build.json",
+    "code:check:types": "tsc -p tsconfig.json --noEmit",
+    "test": "npm run package:build && node --test tests/*.spec.mjs",
+    "code:format:check": "prettier --check . --ignore-path ../../../.prettierignore",
+    "code:format:fix": "prettier --write . --ignore-path ../../../.prettierignore"
   },
   "dependencies": {
     "@svitlo/engine": "0.0.0"

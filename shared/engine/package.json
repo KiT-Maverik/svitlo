@@ -5,10 +5,12 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
-    "typecheck": "tsc -p tsconfig.json --noEmit",
-    "prepack": "npm run build",
-    "test": "tsc -p tsconfig.test.json && node --test .test-build/utils/builders/*/*.spec.js .test-build/utils/createDynamicQuestion/*.spec.js .test-build/utils/createLocalizedFileLocations/*.spec.js .test-build/utils/entityPath/*.spec.js .test-build/utils/generators/getMarkdownLocale/*.spec.js .test-build/utils/generators/lessons/*.spec.js .test-build/lessons/*.spec.js .test-build/data/assessmentMethodTaxonomy/*.spec.js"
+    "package:build": "tsc -p tsconfig.build.json",
+    "code:check:types": "tsc -p tsconfig.json --noEmit",
+    "prepack": "npm run package:build",
+    "test": "tsc -p tsconfig.test.json && node --test .test-build/utils/builders/*/*.spec.js .test-build/utils/createDynamicQuestion/*.spec.js .test-build/utils/createLocalizedFileLocations/*.spec.js .test-build/utils/entityPath/*.spec.js .test-build/utils/generators/getMarkdownLocale/*.spec.js .test-build/utils/generators/lessons/*.spec.js .test-build/lessons/*.spec.js .test-build/data/assessmentMethodTaxonomy/*.spec.js",
+    "code:format:check": "prettier --check . --ignore-path ../../.prettierignore",
+    "code:format:fix": "prettier --write . --ignore-path ../../.prettierignore"
   },
   "exports": {
     ".": {
