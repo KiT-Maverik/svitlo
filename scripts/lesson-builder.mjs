@@ -242,9 +242,9 @@ function blockData(block, lessonId, language, root, requirements, field, stableK
   fail(file, field + '.type', 'no unambiguous mapping from this editorial block to ContentBlock data: ' +
     block.type + '; add an approved typed contentSpec/contract mapping, never a placeholder');
 }
-function questionBlock(block, lessonId, language, root, requirements, field) {
+function questionBlock(block, lessonId, language, root, requirements, field, identity = field) {
   if (block.type === 'text')
-    return { id: uuid5(lessonId, 'question-block/' + field), slug: 'text', type: 'text',
+    return { id: uuid5(lessonId, 'question-block/' + identity), slug: 'text', type: 'text',
       value: loc(block.text, language, 'questions/questions.yaml', field + '.text') };
   const asset = block.assetPath;
   if (asset && !safeAsset(root, asset, 'questions/questions.yaml', field + '.assetPath'))
@@ -256,7 +256,8 @@ function questionData(q, lessonId, language, root, requirements, index) {
   const p = 'questions[' + index + ']';
   const file = 'questions/questions.yaml';
   const blocks = (items, field) => items.map((item, i) =>
-    questionBlock(item, lessonId, language, root, requirements, p + '.' + field + '[' + i + ']'));
+    questionBlock(item, lessonId, language, root, requirements, p + '.' + field + '[' + i + ']',
+      q.slug + '/' + field + '/' + i));
   const data = {
     id: uuid5(lessonId, 'question/' + q.slug), slug: q.slug, type: q.type,
     assessmentMethod: q.assessmentMethod, restrictions: [],
@@ -274,7 +275,8 @@ function questionData(q, lessonId, language, root, requirements, index) {
         required(!Object.hasOwn(answers[kind], choice.key), file, p + '.answer.' + kind + '[' + i + '].key',
           'duplicate answer key');
         answers[kind][choice.key] = questionBlock(choice.content[0], lessonId, language, root, requirements,
-          p + '.answer.' + kind + '[' + i + '].content[0]');
+          p + '.answer.' + kind + '[' + i + '].content[0]',
+          q.slug + '/answer/' + kind + '/' + choice.key);
       }
     }
     return { ...data, answers };
@@ -284,8 +286,8 @@ function questionData(q, lessonId, language, root, requirements, index) {
     for (const [i, pair] of answer.pairs.entries()) {
       required(!Object.hasOwn(pairs, pair.key), file, p + '.answer.pairs[' + i + '].key', 'duplicate pair key');
       pairs[pair.key] = {
-        left: questionBlock(pair.left, lessonId, language, root, requirements, p + '.answer.pairs[' + i + '].left'),
-        right: questionBlock(pair.right, lessonId, language, root, requirements, p + '.answer.pairs[' + i + '].right'),
+        left: questionBlock(pair.left, lessonId, language, root, requirements, p + '.answer.pairs[' + i + '].left', q.slug + '/pair/' + pair.key + '/left'),
+        right: questionBlock(pair.right, lessonId, language, root, requirements, p + '.answer.pairs[' + i + '].right', q.slug + '/pair/' + pair.key + '/right'),
       };
     }
     return { ...data, pairs };
@@ -304,7 +306,7 @@ function questionData(q, lessonId, language, root, requirements, index) {
   if (q.type === 'fillBlanksWithBlocks')
     return { ...data, slots: answer.slots.map((slot, i) => ({
       selector: slot.selector, correctAnswer: questionBlock(slot.correctAnswer, lessonId, language, root, requirements,
-        p + '.answer.slots[' + i + '].correctAnswer'),
+        p + '.answer.slots[' + i + '].correctAnswer', q.slug + '/slot/' + slot.selector),
     })), distractors: blocks(answer.distractors, 'answer.distractors'),
     placeholder: loc(answer.placeholder, language, file, p + '.answer.placeholder') };
   if (q.type === 'fillBlanksWithText')
