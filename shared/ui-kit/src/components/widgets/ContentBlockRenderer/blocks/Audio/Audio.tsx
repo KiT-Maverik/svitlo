@@ -15,6 +15,7 @@ import type { ContentBlock_Audio_Response } from '@svitlo/engine/content';
 import { Flag } from '../../../Flag/Flag';
 import { localizedAttributes } from '../../utils';
 import { useContentLanguage } from '../../ContentLanguageContext';
+import { useOptionalMediaSettings } from '../../../../lesson/MediaSettings';
 import { classifyAudioError, formatAudioTime, type AudioFailureKind } from './Audio.utils';
 import styles from './Audio.module.css';
 
@@ -39,6 +40,7 @@ export const Audio = ({
   messages: Audio_Locale;
 }) => {
   const contentLanguage = useContentLanguage();
+  const mediaSettings = useOptionalMediaSettings();
   const language = DEFAULT_SUPPORTED_LANGUAGES.find(item => item.language === contentLanguage);
   const audioRef = useRef<HTMLAudioElement>(null);
   const [failure, setFailure] = useState<AudioFailure | null>(null);
@@ -46,10 +48,21 @@ export const Audio = ({
   const [position, setPosition] = useState(0);
   const [duration, setDuration] = useState(0);
   const [playing, setPlaying] = useState(false);
-  const [volume, setVolume] = useState(1);
-  const [muted, setMuted] = useState(false);
+  const [localVolume, setLocalVolume] = useState(1);
+  const [localMuted, setLocalMuted] = useState(false);
+  const volume = mediaSettings ? mediaSettings.volume / 100 : localVolume;
+  const muted = mediaSettings?.muted ?? localMuted;
   const [speed, setSpeed] = useState(1);
   const failureKind = failure?.source === fileLocation ? failure.kind : null;
+
+  // One shared source of truth inside a lesson; standalone players retain local settings.
+  // Browser volumechange events do not write to the shared context to avoid feedback loops.
+  useEffect(() => {
+    const element = audioRef.current;
+    if (!element) return;
+    if (element.volume !== volume) element.volume = volume;
+    if (element.muted !== muted) element.muted = muted;
+  }, [volume, muted, fileLocation, attempt, failureKind]);
 
   useEffect(() => {
     setPosition(0);
@@ -107,8 +120,13 @@ export const Audio = ({
     if (!audio) return;
     audio.volume = value;
     audio.muted = false;
-    setVolume(value);
-    setMuted(false);
+    if (mediaSettings) {
+      mediaSettings.setVolume(value * 100);
+      mediaSettings.setMuted(false);
+    } else {
+      setLocalVolume(value);
+      setLocalMuted(false);
+    }
   };
   const toggleMute = () => {
     const audio = audioRef.current;
@@ -116,12 +134,19 @@ export const Audio = ({
     if (audio.volume === 0) {
       audio.volume = 1;
       audio.muted = false;
-      setVolume(1);
-      setMuted(false);
+      if (mediaSettings) {
+        mediaSettings.setVolume(100);
+        mediaSettings.setMuted(false);
+      } else {
+        setLocalVolume(1);
+        setLocalMuted(false);
+      }
       return;
     }
-    audio.muted = !audio.muted;
-    setMuted(audio.muted);
+    const nextMuted = !audio.muted;
+    audio.muted = nextMuted;
+    if (mediaSettings) mediaSettings.setMuted(nextMuted);
+    else setLocalMuted(nextMuted);
   };
   const changeSpeed = (value: number) => {
     const audio = audioRef.current;
@@ -164,8 +189,10 @@ export const Audio = ({
             onPause={() => setPlaying(false)}
             onEnded={() => setPlaying(false)}
             onVolumeChange={event => {
-              setVolume(event.currentTarget.volume);
-              setMuted(event.currentTarget.muted);
+              if (!mediaSettings) {
+                setLocalVolume(event.currentTarget.volume);
+                setLocalMuted(event.currentTarget.muted);
+              }
             }}
             onRateChange={event => setSpeed(event.currentTarget.playbackRate)}
           />

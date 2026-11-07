@@ -8,6 +8,7 @@ import type { ContentBlock_Video_Response } from '@svitlo/engine/content';
 
 import { localizedAttributes } from '../../utils';
 import { useContentLanguage } from '../../ContentLanguageContext';
+import { useOptionalMediaSettings } from '../../../../lesson/MediaSettings';
 import { classifyVideoError, type VideoFailureKind } from './Video.utils';
 import styles from './Video.module.css';
 
@@ -23,10 +24,21 @@ export const Video = ({
   messages: Video_Locale;
 }) => {
   const contentLanguage = useContentLanguage();
+  const mediaSettings = useOptionalMediaSettings();
+  const volume = mediaSettings?.volume ?? 100;
+  const muted = mediaSettings?.muted ?? false;
   const videoRef = useRef<HTMLVideoElement>(null);
   const [failure, setFailure] = useState<VideoFailure | null>(null);
   const [attempt, setAttempt] = useState(0);
   const failureKind = failure?.source === fileLocation ? failure.kind : null;
+
+  // Apply shared settings to the current DOM element, including after a failed source is retried.
+  useEffect(() => {
+    const element = videoRef.current;
+    if (!element) return;
+    element.volume = volume / 100;
+    element.muted = muted;
+  }, [volume, muted, fileLocation, attempt, failureKind]);
 
   useEffect(() => {
     const error = videoRef.current?.error;
