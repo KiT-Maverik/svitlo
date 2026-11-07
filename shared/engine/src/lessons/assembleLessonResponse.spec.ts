@@ -104,9 +104,20 @@ describe('assembleLessonResponse', () => {
       autoplayIntervalMs: 3500,
       transition: 'fade',
     };
-    const data = { ...lesson, parameters: { ...lesson.parameters, requireQuiz: false }, sections: [
-      { id: 'intro-id', slug: 'intro', type: 'theory', title: 'Intro', navigationLabel: 'Intro', content: [carousel] },
-    ] };
+    const data = {
+      ...lesson,
+      parameters: { ...lesson.parameters, requireQuiz: false },
+      sections: [
+        {
+          id: 'intro-id',
+          slug: 'intro',
+          type: 'theory',
+          title: 'Intro',
+          navigationLabel: 'Intro',
+          content: [carousel],
+        },
+      ],
+    };
     const response = assembleLessonResponse(id, 'en', {
       config: { data, localeSources: {} },
       flashcards: { data: [], localeSources: {} },
@@ -118,5 +129,4 @@ describe('assembleLessonResponse', () => {
       assert.deepEqual(section.content[0], carousel);
     }
   });
-
 });

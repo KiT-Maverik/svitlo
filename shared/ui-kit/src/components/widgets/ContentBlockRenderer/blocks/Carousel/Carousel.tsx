@@ -60,9 +60,7 @@ export function Carousel({
   const current = Math.min(index, count - 1);
   const multiple = count > 1;
   const ratio = Number.isFinite(aspectRatio) && aspectRatio > 0 ? aspectRatio : 16 / 9;
-  const duration = Number.isFinite(transitionDurationMs)
-    ? Math.min(1500, Math.max(0, transitionDurationMs))
-    : 450;
+  const duration = Number.isFinite(transitionDurationMs) ? Math.min(1500, Math.max(0, transitionDurationMs)) : 450;
   const interval = Number.isFinite(autoplayIntervalMs) ? Math.max(1500, autoplayIntervalMs) : 5000;
   const animated = !reduceMotion && duration > 0;
   const temporarilyPaused = (pauseOnHover && hovered) || focused;
@@ -130,7 +128,7 @@ export function Carousel({
     if (event.target !== event.currentTarget || !multiple) return;
     if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
       event.preventDefault();
-      move((event.key === 'ArrowLeft' ? -1 : 1) * (rtl ? -1 : 1) as -1 | 1);
+      move(((event.key === 'ArrowLeft' ? -1 : 1) * (rtl ? -1 : 1)) as -1 | 1);
     } else if (event.key === 'Home') {
       event.preventDefault();
       goTo(0);
@@ -155,17 +153,15 @@ export function Carousel({
     const deltaX = touch.clientX - origin.x;
     const deltaY = touch.clientY - origin.y;
     if (Math.abs(deltaX) > 48 && Math.abs(deltaX) > Math.abs(deltaY) * 1.2) {
-      move((deltaX < 0 ? 1 : -1) * (rtl ? -1 : 1) as -1 | 1);
+      move(((deltaX < 0 ? 1 : -1) * (rtl ? -1 : 1)) as -1 | 1);
     }
   }
 
   const visualDirection = (transitionState?.direction ?? 1) * (rtl ? -1 : 1);
-  const inClass = transition === 'fade'
-    ? styles.fadeIn
-    : visualDirection > 0 ? styles.enterFromRight : styles.enterFromLeft;
-  const outClass = transition === 'fade'
-    ? styles.fadeOut
-    : visualDirection > 0 ? styles.exitToLeft : styles.exitToRight;
+  const inClass =
+    transition === 'fade' ? styles.fadeIn : visualDirection > 0 ? styles.enterFromRight : styles.enterFromLeft;
+  const outClass =
+    transition === 'fade' ? styles.fadeOut : visualDirection > 0 ? styles.exitToLeft : styles.exitToRight;
   const showTransition = transitionState !== null && animated;
   const currentSlide = slides[current];
   const style = { '--carousel-duration': String(duration) + 'ms' } as CSSProperties;
@@ -249,7 +245,7 @@ export function Carousel({
             </IconButton>
           </>
         )}
-        {(autoplay && multiple || allowFullscreen) && (
+        {((autoplay && multiple) || allowFullscreen) && (
           <div className={styles.actions}>
             {autoplay && multiple && (
               <IconButton

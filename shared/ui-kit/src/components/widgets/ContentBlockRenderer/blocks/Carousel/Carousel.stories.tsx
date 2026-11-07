@@ -5,9 +5,15 @@ import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 function illustration(sky: string, center: string, accent: string) {
   const svg =
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" width="960" height="540">' +
-    '<rect width="960" height="540" fill="' + sky + '"/>' +
-    '<circle cx="480" cy="240" r="125" fill="' + center + '"/>' +
-    '<path d="M0 470 Q230 300 480 445 T960 430 V540 H0Z" fill="' + accent + '"/>' +
+    '<rect width="960" height="540" fill="' +
+    sky +
+    '"/>' +
+    '<circle cx="480" cy="240" r="125" fill="' +
+    center +
+    '"/>' +
+    '<path d="M0 470 Q230 300 480 445 T960 430 V540 H0Z" fill="' +
+    accent +
+    '"/>' +
     '</svg>';
   return 'data:image/svg+xml,' + encodeURIComponent(svg);
 }

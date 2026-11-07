@@ -54,10 +54,7 @@ export type ContentBlock_Carousel_Response = ContentBlock_Response_Meta<'carouse
     slides: readonly [ContentBlock_Carousel_Slide_Response, ...ContentBlock_Carousel_Slide_Response[]];
   };
 
-export type ContentBlock_Carousel<
-  Mode extends ContentEntity_ConfigType,
-  Languages extends Locale_Languages,
-> = {
+export type ContentBlock_Carousel<Mode extends ContentEntity_ConfigType, Languages extends Locale_Languages> = {
   definition: ContentBlock_Carousel_Definition;
   data: ContentBlock_Carousel_Data<Languages>;
   response: ContentBlock_Carousel_Response;

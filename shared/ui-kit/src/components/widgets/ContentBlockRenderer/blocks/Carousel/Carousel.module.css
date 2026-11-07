@@ -130,7 +130,10 @@
   cursor: pointer;
   background: var(--mui-palette-action-disabled, #a9b0bc);
   opacity: 0.5;
-  transition: width 180ms ease, opacity 180ms ease, background-color 180ms ease;
+  transition:
+    width 180ms ease,
+    opacity 180ms ease,
+    background-color 180ms ease;
 }
 
 .indicator:hover {
@@ -143,19 +146,73 @@
   background: var(--mui-palette-primary-main, #1976d2);
 }
 
-.enterFromRight { animation: fromRight var(--carousel-duration) cubic-bezier(.22, 1, .36, 1) both; }
-.enterFromLeft { animation: fromLeft var(--carousel-duration) cubic-bezier(.22, 1, .36, 1) both; }
-.exitToLeft { animation: toLeft var(--carousel-duration) cubic-bezier(.22, 1, .36, 1) both; }
-.exitToRight { animation: toRight var(--carousel-duration) cubic-bezier(.22, 1, .36, 1) both; }
-.fadeIn { animation: fadeIn var(--carousel-duration) ease both; }
-.fadeOut { animation: fadeOut var(--carousel-duration) ease both; }
+.enterFromRight {
+  animation: fromRight var(--carousel-duration) cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.enterFromLeft {
+  animation: fromLeft var(--carousel-duration) cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.exitToLeft {
+  animation: toLeft var(--carousel-duration) cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.exitToRight {
+  animation: toRight var(--carousel-duration) cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.fadeIn {
+  animation: fadeIn var(--carousel-duration) ease both;
+}
+.fadeOut {
+  animation: fadeOut var(--carousel-duration) ease both;
+}
 
-@keyframes fromRight { from { transform: translateX(100%); } to { transform: translateX(0); } }
-@keyframes fromLeft { from { transform: translateX(-100%); } to { transform: translateX(0); } }
-@keyframes toLeft { from { transform: translateX(0); } to { transform: translateX(-100%); } }
-@keyframes toRight { from { transform: translateX(0); } to { transform: translateX(100%); } }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-@keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+@keyframes fromRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes fromLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes toLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+@keyframes toRight {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
 
 .root:fullscreen {
   display: flex;
@@ -190,18 +247,42 @@
 }
 
 @media (max-width: 480px) {
-  .root { border-radius: 12px; }
-  .previous { inset-inline-start: 6px; }
-  .next { inset-inline-end: 6px; }
-  .actions { top: 6px; inset-inline-end: 6px; gap: 4px; }
-  .indicators { gap: 5px; padding: 10px; }
-  .indicator { width: 19px; }
-  .indicator.selected { width: 30px; }
+  .root {
+    border-radius: 12px;
+  }
+  .previous {
+    inset-inline-start: 6px;
+  }
+  .next {
+    inset-inline-end: 6px;
+  }
+  .actions {
+    top: 6px;
+    inset-inline-end: 6px;
+    gap: 4px;
+  }
+  .indicators {
+    gap: 5px;
+    padding: 10px;
+  }
+  .indicator {
+    width: 19px;
+  }
+  .indicator.selected {
+    width: 30px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .enterFromRight, .enterFromLeft, .exitToLeft, .exitToRight, .fadeIn, .fadeOut {
+  .enterFromRight,
+  .enterFromLeft,
+  .exitToLeft,
+  .exitToRight,
+  .fadeIn,
+  .fadeOut {
     animation: none !important;
   }
-  .indicator { transition: none; }
+  .indicator {
+    transition: none;
+  }
 }
