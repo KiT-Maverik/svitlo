@@ -73,23 +73,25 @@ const dataBlock: ContentBlock<'data', typeof languages> = translated.getData();
 createContentBlock<typeof languages>()({ type: 'text', id: 'bad', slug: 'bad', value: { en: 'Missing uk' } });
 // @ts-expect-error Quiz is a Section, not a ContentBlock.
 createContentBlock<typeof languages>()({ type: 'quiz', id: 'quiz', slug: 'quiz' });
-// @ts-expect-error Missing required translated Section title.
 createSection<typeof languages>()({
   type: 'theory',
   id: 'bad',
   slug: 'bad',
+  // @ts-expect-error Missing required translated Section title.
   title: { en: 'Only English' },
   navigationLabel: 'Bad',
   content: [],
 });
-// @ts-expect-error Invalid ContentBlock locale must be rejected through the Section generic.
 createSection<typeof languages>()({
   type: 'practice',
   id: 'bad-block',
   slug: 'badBlock',
   title: 'Title',
   navigationLabel: 'Nav',
-  content: [{ type: 'text', id: 'bad', slug: 'bad', value: { en: 'Only English' } }],
+  content: [
+    // @ts-expect-error Invalid ContentBlock locale must be rejected through the Section generic.
+    { type: 'text', id: 'bad', slug: 'bad', value: { en: 'Only English' } },
+  ],
 });
 // @ts-expect-error Invalid localized Lesson title must be rejected.
 createLesson<typeof languages>()({ ...lesson.getData(), title: { en: 'Only English' } });
