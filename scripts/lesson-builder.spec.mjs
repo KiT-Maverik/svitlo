@@ -408,3 +408,96 @@ test('Question and keyed answer block identities survive Question Bank reorderin
     assert.match(after, new RegExp('"q-two": \\{\\s*"id": "' + qId + '"'));
     assert.match(after, new RegExp('"q-two": \\{[\\s\\S]*?"question": \\[\\s*\\{\\s*"id": "' + promptId + '"'));
   }));
+
+function writeFlashcards(f, transform = value => value) {
+  const bank = {
+    schemaVersion: 1, kind: 'lesson-flashcard-bank', status: 'approved',
+    lessonId, documentLanguage: 'en', supportedLanguages: ['en', 'uk'],
+    sources: {
+      methodology: { path: 'methodology.md' },
+      content: { path: 'content.yaml' },
+      questions: { path: 'questions/questions.yaml', revision: 'reviewed-question-revision' },
+    },
+    flashcards: [
+      { slug: 'ray-fact', front: [
+        { type: 'text', value: { kind: 'questionField', questionSlug: 'q-one',
+          fieldPath: ['question', 0, 'value'] } },
+      ], back: [
+        { type: 'text', value: 'Light travels straight', styling: [
+          { id: 'light', applyStyle: ['bold'] },
+        ] },
+      ], hint: [], tags: ['physics'], flags: [{ type: 'warning' }, { type: 'list', count: 2 }] },
+      { slug: 'path-check', front: [
+        { type: 'text', value: 'What shape is the path?' },
+      ], back: [
+        { type: 'text', value: { kind: 'questionField', questionSlug: 'q-one',
+          fieldPath: ['answers', 'correct', 'straight', 'value'] } },
+      ], hint: [], tags: [], flags: [
+        { type: 'custom', value: 'Keep practicing', color: 'info', icon: 'star' },
+        { type: 'acronym', value: 'AB', localePolicy: 'needsLocalizedVersion',
+          parts: [{ kind: 'source', item: 'A', letters: 'A' },
+            { kind: 'source', item: 'B', letters: 'B' }] },
+      ] },
+    ],
+    relationships: [
+      { key: 'reverse-ray', source: 'ray-fact', target: 'path-check',
+        type: 'reverse', rationale: 'Complementary directions' },
+    ],
+    unresolvedDependencies: [],
+  };
+  const converted = transform(bank) ?? bank;
+  const file = path.join(f.lesson, 'flashcards/flashcards.yaml');
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.writeFileSync(file, yaml.dump(converted));
+  return converted;
+}
+test('approved Flashcards compile typed flags, Question-field references and mirrored links', () =>
+  withFixture(f => {
+    writeFlashcards(f);
+    runOne(f.lesson, 'generate', f.repo);
+    const generated = fs.readFileSync(f.generated('lesson.data.ts'), 'utf8');
+    assert.match(generated, /linkFlashcards<Languages>/);
+    assert.match(generated, /questionBank\["selectOneAnswer"\]\["q-one"\]\["question"\]\[0\]\["value"\]/);
+    assert.match(generated, /"relationshipId":/);
+    assert.match(generated, /"type": "reverse"/);
+    assert.match(generated, /"count": 2/);
+    assert.doesNotMatch(generated, /"localePolicy"/);
+    assert.doesNotMatch(generated, /"parts"/);
+    const manifest = JSON.parse(fs.readFileSync(f.generated('manifest.json'), 'utf8'));
+    assert.ok(manifest.inputs['flashcards/flashcards.yaml']);
+    const req = JSON.parse(fs.readFileSync(f.generated('requirements.json'), 'utf8'));
+    assert.ok(req.unresolved.some(x => x.kind === 'localization' && x.detail.includes('acronym')));
+    assert.equal(runOne(f.lesson, 'check', f.repo).changed, 0);
+  }));
+test('Flashcard references must resolve against actual typed Question data', () =>
+  withFixture(f => {
+    writeFlashcards(f, bank => {
+      bank.flashcards[0].front[0].value.fieldPath = ['question', 0, 'notAField'];
+      return bank;
+    });
+    assert.throws(() => runOne(f.lesson, 'generate', f.repo),
+      /flashcards\/flashcards.yaml:.*fieldPath.*unknown canonical Question property/);
+    assert.ok(!fs.existsSync(f.generated('lesson.data.ts')));
+    assert.ok(fs.existsSync(f.generated('requirements.blocked.json')));
+  }));
+test('rejects duplicate Flashcard links and invented acronym compositions', () =>
+  withFixture(f => {
+    const bank = writeFlashcards(f);
+    bank.relationships.push({ key: 'duplicate', source: 'path-check', target: 'ray-fact',
+      type: 'reverse', rationale: 'Same relation repeated in reverse order' });
+    fs.writeFileSync(path.join(f.lesson, 'flashcards/flashcards.yaml'), yaml.dump(bank));
+    assert.throws(() => runOne(f.lesson, 'generate', f.repo), /duplicate typed Flashcard edge/);
+    bank.relationships.pop();
+    bank.flashcards[1].flags[1].parts[1].letters = 'C';
+    fs.writeFileSync(path.join(f.lesson, 'flashcards/flashcards.yaml'), yaml.dump(bank));
+    assert.throws(() => runOne(f.lesson, 'generate', f.repo), /acronym parts must concatenate/);
+  }));
+test('rejects proposed Flashcard blocks without inventing runtime content', () =>
+  withFixture(f => {
+    writeFlashcards(f, bank => {
+      bank.flashcards[0].back = [{ type: 'scene', purpose: 'Interactive simulation',
+        status: 'proposed', dependency: 'Implement Scene after approved specification' }];
+      return bank;
+    });
+    assert.throws(() => runOne(f.lesson, 'generate', f.repo), /unsupported\/pending Flashcard block/);
+  }));
