@@ -1,0 +1,146 @@
+name: Translation production
+description: Coordinate parallel entity translations and independent post-integration reviews in one issue.
+title: "Translate and review: "
+labels:
+  - "work: translation"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        One issue = one immutable, explicitly verified entity + locale scope.
+        Agents must follow `studio/skills/translation-workflow/manage-translation-production.skill.md`.
+        The coordinator expands the requested scope into an exact entity/locale inventory and
+        plans work batches, translation subtask PRs, integration PR, and independent review
+        batches in this **same issue**. Four agents is a typical large batch, not a quota.
+        Creation of this issue authorizes planning only, never unapproved translations,
+        reviewer self-approval, or merging the final integration PR.
+  - type: input
+    id: package
+    attributes:
+      label: Package or owning workspace
+      placeholder: content/math
+      description: Repository-relative path to the real owner of the translated entities.
+    validations:
+      required: true
+  - type: dropdown
+    id: entity-kind
+    attributes:
+      label: Entity type
+      options:
+        - Skills taxonomy (Domain / Group / Skill)
+        - Lesson (including Sections, ContentBlocks, Questions)
+        - Assessment Methods
+        - Course (including Modules, Chapters, Episodes)
+        - UI Kit messages
+        - Other typed localized entity (describe below)
+    validations:
+      required: true
+  - type: textarea
+    id: entities
+    attributes:
+      label: Entity scope
+      description: |
+        Specify exact UUIDs, source paths or named subtrees (e.g. Course Chapter/Module).
+        If a subtree is given, the coordinator resolves its full entity-ID snapshot before
+        assigning agents. No auto-expansion on later Course or taxonomy changes.
+      placeholder: |
+        Entity IDs / source paths:
+        Scope provenance (Course/Chapter/Module or taxonomy tree):
+        Explicit exclusions:
+    validations:
+      required: true
+  - type: textarea
+    id: locales
+    attributes:
+      label: Source and target languages
+      description: |
+        State the authoritative source language and target language codes.
+        "All missing supported languages" is allowed; the coordinator resolves it to
+        the live language registry and records an exact frozen list before work.
+        Do not translate language-independent methodological metadata.
+      placeholder: |
+        Source language: en
+        Targets: all missing supported languages
+        Already approved locale exclusions:
+    validations:
+      required: true
+  - type: textarea
+    id: work-requirements
+    attributes:
+      label: Requirements and integration constraints
+      description: Approval sources, translation context, deadlines, agent preferences, review expectations and authorized PR merge gates.
+      placeholder: |
+        Approved source of meaning:
+        Constraints / reading audience:
+        Preferred concurrency (optional, default planned from workload):
+        Authorized agent-subtask merges:
+        Final integration merge requires owner approval:
+    validations:
+      required: true
+  - type: textarea
+    id: planning
+    attributes:
+      label: Coordinator work plan (maintained by agents)
+      description: |
+        After inventory, replace placeholders with exact IDs/languages, workloads,
+        file ownership and planned translation/review batches. Never estimate completion
+        from a partial file count or split the same editable file across concurrent PRs.
+      value: |
+        <!-- svitlo-translation-production:v1 -->
+        Status: awaiting-inventory
+        Entity inventory snapshot / source commit:
+        Exact source language:
+        Exact target language codes:
+        Total entities / translatable fields / entity-locale units:
+        Planned translation agent count / rationale:
+        Translation integration branch / Draft PR -> main:
+        Translation baseline and check commands:
+        Independent review snapshot (set only after all translation PRs merge):
+        Review generator and artifact paths verified:
+        Planned review agent count / rationale:
+
+        | Batch | Phase | Assigned entities / paths | Assigned language codes | Workload | Owner / branch | Draft PR | State |
+        | --- | --- | --- | --- | --- | --- | --- | --- |
+        | (initialize from actual inventory) | translation | - | - | - | - | - | planned |
+
+        Coverage: assigned pairs must be unique and equal the required entity × target-locale matrix.
+    validations:
+      required: true
+  - type: textarea
+    id: stage
+    attributes:
+      label: Integration and review gates (maintained by agents)
+      value: |
+        - [ ] Scope, source meaning and language registry verified
+        - [ ] Canonical source data / baseline available
+        - [ ] One Draft integration PR targeting main created and linked
+        - [ ] Translation batches nonoverlapping and completely assigned
+        - [ ] All translation subtask PRs verified and merged into integration
+        - [ ] Integrated translations validated and review baseline frozen
+        - [ ] Entity-specific localized Markdown generator verified
+        - [ ] Review agent batches assigned from integrated revision
+        - [ ] All assigned review documents generated and manifest verified
+        - [ ] All review batches completed; corrections merged and rechecked
+        - [ ] Final completeness, typecheck, CI and cleanup verified
+        - [ ] Owner authorized final integration merge
+      description: |
+        Each gate needs evidence linked below. Do not check "review ready"
+        based on unmerged translation PRs. Reviewer MUST STOP and report in
+        chat if the required entity-specific localized document generator is absent.
+    validations:
+      required: true
+  - type: textarea
+    id: handoff
+    attributes:
+      label: Durable handoff, blockers and evidence
+      description: Persist source revisions, PR links, reviewer artifact provenance and next steps across chats and agents.
+      value: |
+        Current phase: inventory
+        Active owners and branches:
+        Last confirmed integration SHA:
+        Translation batch PRs and merge evidence:
+        Reviewer source revision:
+        Agent CI Artifacts manifest / document paths:
+        Missing generator, locales or other blockers:
+        Latest validated results:
+        Next independently actionable batches:
