@@ -517,13 +517,21 @@ function safeWrite(file, value) {
   }
   return true;
 }
-function ownedFiles(target, files, mode, sourceHashes) {
+function ownedFiles(target, files, mode, sourceHashes, slug) {
   const output = path.join(target.root, 'generated');
+  const entryName = slug + '.data.ts';
+  const entryFile = path.join(target.root, entryName);
+  const entryText = marker + '\nexport { lessonData } from "./generated/lesson.data";\n';
   const manifestFile = path.join(output, 'manifest.json');
   const old = fs.existsSync(manifestFile) ? JSON.parse(read(manifestFile)) : null;
+  const otherEntries = fs.readdirSync(target.root).filter(name => name.endsWith('.data.ts') && name !== entryName);
+  required(otherEntries.length === 0, 'generated/manifest.json', 'entrypoint',
+    'existing authored Lesson entrypoint(s) must not be duplicated: ' + otherEntries.join(', '));
   if (old) {
     required(old.version === 1 && old.lessonId === target.lessonId && old.generator === 'lesson-builder-v1',
       'generated/manifest.json', '$', 'invalid ownership manifest');
+    required(old.entrypoint?.name === entryName, 'generated/manifest.json', 'entrypoint',
+      'Lesson slug changed; manually migrate the existing entrypoint');
     for (const [name, hash] of Object.entries(old.outputs)) {
       required(['lesson.data.ts', 'requirements.json', 'requirements.md'].includes(name),
         'generated/manifest.json', 'outputs', 'unrecognized generated path ' + name);
@@ -531,24 +539,35 @@ function ownedFiles(target, files, mode, sourceHashes) {
       if (fs.existsSync(existing))
         required(sha(read(existing)) === hash, name, '$', 'generated output modified manually; preserve changes before regeneration');
     }
+    if (fs.existsSync(entryFile))
+      required(sha(read(entryFile)) === old.entrypoint.sha256, entryName, '$',
+        'generated entrypoint modified manually; preserve changes before regeneration');
+  } else {
+    required(!fs.existsSync(entryFile), entryName, '$',
+      'unowned Lesson entrypoint exists; refusing overwrite');
   }
   const manifest = JSON.stringify({
     version: 1, generator: 'lesson-builder-v1', lessonId: target.lessonId,
     inputs: sourceHashes, checks: ['json-schema-2020-12', 'cross-file', 'skill-catalog', 'asset-paths'],
+    entrypoint: { name: entryName, sha256: sha(entryText) },
     outputs: Object.fromEntries(Object.entries(files).map(([name, value]) => [name, sha(value)])),
   }, null, 2) + '\n';
   const expected = { ...files, 'manifest.json': manifest };
   let changed = 0;
-  for (const [name, value] of Object.entries(expected)) {
-    const file = path.join(output, name);
+  for (const [name, value] of Object.entries({ ...files, [entryName]: entryText })) {
+    const file = name === entryName ? entryFile : path.join(output, name);
     if (!fs.existsSync(file) || read(file) !== value) {
-      if (mode === 'check') fail('generated/' + name, '$', 'missing/stale generated file');
+      if (mode === 'check') fail(name, '$', 'missing/stale generated file');
       if (!old && fs.existsSync(file))
-        fail('generated/' + name, '$', 'unowned output exists; refusing overwrite');
+        fail(name, '$', 'unowned output exists; refusing overwrite');
       if (safeWrite(file, value)) changed++;
     }
   }
-  return { changed, files: Object.keys(expected) };
+  if (!fs.existsSync(manifestFile) || read(manifestFile) !== manifest) {
+    if (mode === 'check') fail('generated/manifest.json', '$', 'missing/stale generated file');
+    if (safeWrite(manifestFile, manifest)) changed++;
+  }
+  return { changed, files: [entryName, ...Object.keys(expected).map(name => 'generated/' + name)] };
 }
 export function runOne(source, mode = 'check', repo = repoRoot) {
   if (!['check', 'generate'].includes(mode)) throw new Error('Mode must be check or generate');
@@ -574,7 +593,7 @@ export function runOne(source, mode = 'check', repo = repoRoot) {
   }
   const files = { 'lesson.data.ts': renderLesson(input, model),
     ...requirementFiles(input, model.requirements) };
-  const output = ownedFiles(target, files, mode, input.inputs);
+  const output = ownedFiles(target, files, mode, input.inputs, input.content.lessonSlug);
   return { ...output, requirements: model.requirements, lessonId: target.lessonId };
 }
 function discover(repo) {
