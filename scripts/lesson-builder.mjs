@@ -132,6 +132,10 @@ function blockData(block, lessonId, language, root, requirements, field, stableK
     : uuid5(lessonId, 'block/' + stableKey);
   const value = { id, slug: block.key, type: block.type };
   const spec = block.contentSpec ?? {};
+  if (block.assetRequest?.status === 'pending') {
+    issue(requirements, 'media', field,
+      'Unapproved asset request: ' + block.assetRequest.description, 'Media Production');
+  }
   if (block.type === 'text') {
     allowedSpec(spec, ['styling', 'wrap'], file, field);
     return { ...value, value: loc(block.sourceText, language, file, field + '.sourceText'), ...spec };
