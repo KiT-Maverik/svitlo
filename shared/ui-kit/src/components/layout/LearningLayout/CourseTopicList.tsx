@@ -180,7 +180,7 @@ export default function CourseTopicList({
   onNavigate: () => void;
 }) {
   return (
-    <Box component="ul" sx={{ m: 0, p: 0 }}>
+    <Box component="ul" sx={{ m: 0, p: 0, userSelect: 'none' }}>
       {topics.map(topic => (
         <TopicItem
           key={topic.id}

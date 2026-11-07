@@ -30,6 +30,7 @@ export default function Navbar({ slots = {}, slotProps = {}, 'aria-label': label
           px: 2,
           minHeight: 64,
           bgcolor: 'background.paper',
+          userSelect: 'none',
         },
         ...(Array.isArray(rootSx) ? rootSx : [rootSx]),
       ]}
