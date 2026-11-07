@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import type { Episode, Lesson } from '@svitlo/contracts/content';
+import type { Course, Episode, Lesson } from '@svitlo/contracts/content';
 import { createChapter, createEpisode, createModule } from './createCourseEntities';
 import { createCourse } from './createCourse';
 import { mergeLessonResources } from '../lessons/mergeLessonResources';
@@ -112,7 +112,60 @@ describe('Course entity creators', () => {
     assert.equal((base.toc as { title?: string }).title, undefined);
     assert.equal(JSON.stringify(locale.toc).includes('course-1'), false);
     assert.deepEqual(mergeLessonResources(base.toc, locale.toc), toc);
-    assert.deepEqual(mergeLessonResources(base.episodes['episode-1'], locale.episodes['episode-1']), episodeData);
+    assert.deepEqual(mergeLessonResources(base.episodes['episode-1'], locale.episodes['episode-1']), {
+      ...episodeData,
+      title: { ...title, value: 'Подорож' },
+      sections: [{ ...episodeData.sections[0], title: 'Історія', navigationLabel: 'Історія' }],
+    });
+  });
+
+  it('accepts standalone Lessons with extra locales while publishing only Course locales', () => {
+    const extraLanguages = ['en', 'uk', 'fr'] as const;
+    const extra = {
+      ...lesson('lesson-with-more-locales'),
+      title: { en: 'Colors', uk: 'Кольори', fr: 'Couleurs' },
+      sections: [],
+      flashcards: [],
+      questions: {},
+      parameters: { ...one.parameters, languages: extraLanguages },
+    } satisfies Lesson<'data', typeof extraLanguages>;
+    const course = createCourse<typeof languages>({
+      type: 'course',
+      id: 'course-with-fewer-locales',
+      title,
+      description: { id: 'description', slug: 'description', type: 'markdown', locales: 'Invariant description' },
+      parameters: { languages },
+      content: [
+        createModule<typeof languages>({
+          type: 'module',
+          id: 'group',
+          title,
+          content: [extra],
+        }),
+      ],
+    });
+    assert.deepEqual(course.getContentEntries().lessons[0].parameters.languages, extraLanguages);
+    assert.deepEqual(course.getLocale('uk').toc, {
+      title: 'Подорож',
+      children: { '0': { title: 'Подорож', children: { '0': { title: 'Кольори' } } } },
+    });
+    assert.equal(Object.hasOwn(course.getLocale('uk'), 'fr'), false);
+
+    const missingUkrainian = {
+      ...extra,
+      title: { en: 'Colors' },
+      parameters: { ...extra.parameters, languages: ['en'] as const },
+    } satisfies Lesson<'data', readonly ['en']>;
+    const bad = createCourse<typeof languages>({
+      type: 'course',
+      id: 'course-missing-locale',
+      title,
+      description: { id: 'description', slug: 'description', type: 'markdown', locales: 'Invariant description' },
+      parameters: { languages },
+      // Test the runtime guard against input loaded from an untyped external source.
+      content: [missingUkrainian as unknown as Course<'data', typeof languages>['content'][number]],
+    });
+    assert.throws(() => bad.getData(), /does not cover Course languages/);
   });
 
   it('keeps invariant navigation strings in base and rejects unsupported locales', () => {
