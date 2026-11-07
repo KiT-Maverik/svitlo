@@ -367,7 +367,14 @@ export default function LearningLayout({
             id="learning-sidebar"
             component="nav"
             aria-label={messages.navigation.topics}
-            sx={{ width: '100%', height: '100%', minHeight: 0, overflowY: 'auto', overflowX: 'hidden', overscrollBehavior: 'contain' }}
+            sx={{
+              width: '100%',
+              height: '100%',
+              minHeight: 0,
+              overflowY: 'auto',
+              overflowX: 'hidden',
+              overscrollBehavior: 'contain',
+            }}
           >
             <ThreeSlotLayout
               axis="vertical"
