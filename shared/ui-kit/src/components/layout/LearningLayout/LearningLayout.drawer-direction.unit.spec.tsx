@@ -41,7 +41,9 @@ const commonProps = {
 };
 
 function expectDrawerDirections(topicsAnchor: string, settingsAnchor: string) {
-  const topicsDrawer = screen.getByRole('navigation', { name: messages.navigation.topics }).closest('[data-testid="sidebar-drawer"]');
+  const topicsDrawer = screen
+    .getByRole('navigation', { name: messages.navigation.topics })
+    .closest('[data-testid="sidebar-drawer"]');
   const settingsDrawer = screen
     .getByRole('complementary', { name: messages.navigation.settings })
     .closest('[data-testid="sidebar-drawer"]');
@@ -54,14 +56,22 @@ function expectDrawerDirections(topicsAnchor: string, settingsAnchor: string) {
 
 describe('LearningLayout sidebar animation direction', () => {
   it('opens both sidebars from their physical edges in LTR', () => {
-    render(<LearningLayout {...commonProps} locale="uk-UA"><p>Lesson</p></LearningLayout>);
+    render(
+      <LearningLayout {...commonProps} locale="uk-UA">
+        <p>Lesson</p>
+      </LearningLayout>,
+    );
     expectDrawerDirections('left', 'right');
   });
 
   it.each(['ar-SA', 'he-IL', 'ur-PK'] as const)(
     'mirrors the sidebar edges and matching slide directions for RTL locale %s',
     locale => {
-      render(<LearningLayout {...commonProps} locale={locale}><p>Lesson</p></LearningLayout>);
+      render(
+        <LearningLayout {...commonProps} locale={locale}>
+          <p>Lesson</p>
+        </LearningLayout>,
+      );
       expectDrawerDirections('right', 'left');
     },
   );
@@ -83,10 +93,18 @@ describe('LearningLayout sidebar animation direction', () => {
   });
 
   it('updates both animations when the interface language changes from LTR to RTL', () => {
-    const view = render(<LearningLayout {...commonProps} locale="uk-UA"><p>Lesson</p></LearningLayout>);
+    const view = render(
+      <LearningLayout {...commonProps} locale="uk-UA">
+        <p>Lesson</p>
+      </LearningLayout>,
+    );
     expectDrawerDirections('left', 'right');
 
-    view.rerender(<LearningLayout {...commonProps} locale="ar-SA"><p>Lesson</p></LearningLayout>);
+    view.rerender(
+      <LearningLayout {...commonProps} locale="ar-SA">
+        <p>Lesson</p>
+      </LearningLayout>,
+    );
     expectDrawerDirections('right', 'left');
   });
 });
