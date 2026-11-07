@@ -3,12 +3,15 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint .",
-    "typecheck": "next typegen && tsc --noEmit",
-    "test:e2e": "playwright test"
+    "app:start:dev": "next dev",
+    "app:build": "next build",
+    "app:start": "next start",
+    "code:lint:check": "eslint .",
+    "code:check:types": "next typegen && tsc --noEmit",
+    "test:e2e": "playwright test",
+    "code:format:check": "prettier --check . --ignore-path ../../.prettierignore",
+    "code:format:fix": "prettier --write . --ignore-path ../../.prettierignore",
+    "code:lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",
