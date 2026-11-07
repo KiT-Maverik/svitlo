@@ -38,7 +38,7 @@ If approved Skills, essential audience or substantive intent are missing, or a S
 2. **Establish the pedagogical contract.** Describe the desired conceptual change, observable outcomes, prior knowledge, prerequisite gaps, depth appropriate to the audience, and why the selected Skills belong together. Distinguish teaching a Skill from assessing its mastery.
 3. **Specify the subject matter.** Identify essential facts, concepts, mechanisms, relationships, terminology, valid examples or counterexamples, common misconceptions, and hard exclusions. Include enough accurate substance for the Educational Screenwriter to work without inventing facts or objectives; do not write a Section-by-Section instructional plan.
 4. **Design the learning progression conceptually.** Identify conceptual dependencies and the necessary transition from known to new material. Suggest appropriate kinds of understanding and transfer, without prescribing general Section count, UI widgets, concrete Questions, scoring, gamification or narrative.
-4a. **Define the Lesson assessment contract.** Make a positive decision about Quiz necessity: `assessmentPlan.quizRequired: false` with `quizzes: []`, or `true` with one or more distinct Quiz requirements, each with a stable `key`, pedagogical `purpose`, target Skill UUIDs and a non-empty list of typed `requiredAssessmentMethods`. Use exact `AssessmentMethodKey` strings (e.g. `retrieval`, `interpretation`, `application`), not method UUIDs or UI Question types. An Assessment Method specifies the **cognitive operation to assess**, not how the learner inputs an answer. A required Quiz must be justified by its assessment purpose; never add one by default. You may require several distinct Quizzes. Do **not** choose actual questions, correct answers, distractors, scoring thresholds, retries, Quiz UI layout or Section implementation details; delegate those to the appropriate specialists.
+   4a. **Define the Lesson assessment contract.** Make a positive decision about Quiz necessity: `assessmentPlan.quizRequired: false` with `quizzes: []`, or `true` with one or more distinct Quiz requirements, each with a stable `key`, pedagogical `purpose`, target Skill UUIDs and a non-empty list of typed `requiredAssessmentMethods`. Use exact `AssessmentMethodKey` strings (e.g. `retrieval`, `interpretation`, `application`), not method UUIDs or UI Question types. An Assessment Method specifies the **cognitive operation to assess**, not how the learner inputs an answer. A required Quiz must be justified by its assessment purpose; never add one by default. You may require several distinct Quizzes. Do **not** choose actual questions, correct answers, distractors, scoring thresholds, retries, Quiz UI layout or Section implementation details; delegate those to the appropriate specialists.
 5. **Check scope and independence.** One Lesson may target multiple Skills when they form a coherent learning objective; if it becomes an entire course, propose a split for editor approval rather than silently splitting, merging, adding or renaming Skills. No grade ceilings or instructional modes may be written back into the taxonomy.
 6. **Honor cross-cutting constraints.** Specify localization-sensitive terms and examples, disability-aware alternatives the experience must enable, offline completeness and low-device pedagogical equivalence. Note factual uncertainty and sources. Do not invent runtime APIs, Note events or assessment guarantees.
 7. **Escalate conflicts.** The Methodologist Persona's mandatory Skill-versus-Question and disciplinary ownership gates still apply. Report specific choices in the editor handoff and do not alter approved taxonomy identities or another specialist's approved section.
@@ -58,16 +58,15 @@ The following is an **embedded authoring template**; replace all placeholders an
 documentLanguage: en
 supportedLanguages: [en, uk] # replace with approved Lesson language plan
 assessmentPlan:
-  quizRequired: true  # set false and quizzes: [] when no Quiz is warranted
+  quizRequired: true # set false and quizzes: [] when no Quiz is warranted
   quizzes:
     - key: explain-concept
-      purpose: "Verify understanding of the intended concept."
+      purpose: 'Verify understanding of the intended concept.'
       targetSkills:
-        - "00b48cb0-13c2-4531-84ac-1b8d44f11055" # illustrative; verify actual Skill IDs
+        - '00b48cb0-13c2-4531-84ac-1b8d44f11055' # illustrative; verify actual Skill IDs
       requiredAssessmentMethods: [interpretation, application]
-      evidenceIntent: "Explain and apply the concept in a meaningful case."
+      evidenceIntent: 'Explain and apply the concept in a meaningful case.'
 ---
-
 
 # %LESSON_TITLE% — Methodologist Brief
 

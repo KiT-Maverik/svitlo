@@ -39,11 +39,11 @@ content/<textbook>/data/lessons/<bucket>/<lesson-uuid>/
 
 If a legacy `content.md`, `script.md` or older Section storyboard already exists, read it and report an explicit migration decision. Do not overwrite, delete or silently maintain two competing canonical Lesson plans. Migration to `content.yaml` is an authorized editorial revision, not an automatic global file migration.
 
-The YAML contains **source-language editorial content and machine identities**, not fabricated full runtime `Lesson<'data'>`, `Section<'data'>` or `Quiz_Parameters`. Stable `key` fields identify *planned* Sections and blocks; the implementation stage maps these to stable UUIDs and slugs in existing contracts without regenerating a Lesson ID. The renderer and generator may need additional technical fields; do not invent unsupported schema properties.
+The YAML contains **source-language editorial content and machine identities**, not fabricated full runtime `Lesson<'data'>`, `Section<'data'>` or `Quiz_Parameters`. Stable `key` fields identify _planned_ Sections and blocks; the implementation stage maps these to stable UUIDs and slugs in existing contracts without regenerating a Lesson ID. The renderer and generator may need additional technical fields; do not invent unsupported schema properties.
 
 ## Source language and localization
 
-- `documentLanguage` is the **single source language of all learner-facing ordinary text** authored in `content.yaml`: titles, narrative copy, feedback and prompts. It can differ from the Methodology's editorial language, but **must be included** in `supportedLanguages`. `supportedLanguages` is copied from the approved Lesson Methodology (nonempty, unique and from the supported registry); it means *planned* target locales, not delivered translations.
+- `documentLanguage` is the **single source language of all learner-facing ordinary text** authored in `content.yaml`: titles, narrative copy, feedback and prompts. It can differ from the Methodology's editorial language, but **must be included** in `supportedLanguages`. `supportedLanguages` is copied from the approved Lesson Methodology (nonempty, unique and from the supported registry); it means _planned_ target locales, not delivered translations.
 - Plain YAML strings under `title`, `sourceText` and other learner-facing fields belong **only to `documentLanguage`**. A truly untranslatable title (symbol, chemical formula, numerical notation) may use `{value: "...", invariant: true}` for schema-supported titles. Do not treat arbitrary scalars as invariant just to silence type errors.
 - A future Markdown/YAML-to-entity generator consumes `content.yaml` and, optionally, the approved `methodology.md` and Scene Markdown specs. Its first pass creates folders and source-locale authored TS values **only for `documentLanguage`**. It must **not** copy source content into all planned target locales, add fallback strings, weaken `SupportedLanguages`, or lie about completed translations.
 - **Temporary TypeScript missing-locale errors are an expected intermediate authoring state**, not proof of completion. Preserve them visibly to guide a future translation agent. Translation completes `supportedLanguages` before normal production typecheck/build/publication gates can pass. Generators must never publish incomplete locales as though complete. The generator itself is **not implemented by this skill**.
@@ -68,31 +68,31 @@ The sample identifiers, text and Assessment Methods are **illustrative**; replac
 schemaVersion: 1
 kind: lesson-content-plan
 status: draft
-lessonId: "11111111-1111-4111-8111-111111111111"
+lessonId: '11111111-1111-4111-8111-111111111111'
 lessonSlug: additionMeaning
 methodologySource: methodology.md
 documentLanguage: uk
 supportedLanguages: [uk, en]
-title: "Що означає додавання?"
+title: 'Що означає додавання?'
 learningIntent: "Зрозуміти об'єднання двох множин і пояснити отриманий результат."
 sections:
   - key: combine-objects
     type: theory
     title: "Об'єднуємо предмети"
-    purpose: "Наочно побачити значення додавання."
+    purpose: 'Наочно побачити значення додавання.'
     blocks:
       - key: first-observation
         type: markdown
-        purpose: "Зробити прогноз перед перевіркою."
+        purpose: 'Зробити прогноз перед перевіркою.'
         readiness: available
-        sourceText: "У кошику два яблука. Покладемо ще одне. Скільки стане?"
-        accessibility: "Пояснення повне без кольору, руху або зображення."
+        sourceText: 'У кошику два яблука. Покладемо ще одне. Скільки стане?'
+        accessibility: 'Пояснення повне без кольору, руху або зображення.'
   - key: explain-the-result
     type: quiz
-    title: "Поясни результат"
-    purpose: "Перевірити розуміння операції, а не вгадування символу."
+    title: 'Поясни результат'
+    purpose: 'Перевірити розуміння операції, а не вгадування символу.'
     assessmentPlanKey: explain-the-result
-    targetSkills: ["00b48cb0-13c2-4531-84ac-1b8d44f11055"]
+    targetSkills: ['00b48cb0-13c2-4531-84ac-1b8d44f11055']
     requiredAssessmentMethods: [interpretation, application]
     questionBriefs:
       - assessmentMethod: interpretation
@@ -100,7 +100,7 @@ sections:
 sceneSpecifications: []
 productionDependencies:
   - kind: assessment
-    description: "Question bank and answer validity require Assessment Architect approval."
+    description: 'Question bank and answer validity require Assessment Architect approval.'
     status: pending
 ```
 

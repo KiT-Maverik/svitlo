@@ -22,7 +22,7 @@ Evaluate **every** Section and its ContentBlocks, not only the introduction:
 4. Modern and interactive experiences: whether diagrams, simulations, manipulable models, narrative pacing, multimedia or custom Scenes materially improve understanding; distinguish feasible from speculative or missing implementation.
 5. Motivation and gamification: intrinsic engagement and meaningful challenge; flag distracting decoration, reward pressure, overstimulation or artificial clicking quotas.
 6. Accessibility and localization: alternative interaction modes, readable text, keyboard/touch/screen-reader, accessible feedback, semantic LTR/RTL, captions/transcripts, motion control, offline/weak-device equivalence. Check that `documentLanguage` is actual authored copy and other planned locales are not invented.
-7. Production readiness: media `assetRequest`, pending Scenes, interactions and Quiz/assessment dependencies are explicit and actionable. Missing assets are *legitimate planned production work* when clearly identified; they must not masquerade as available assets or be treated as missing pedagogical design by default.
+7. Production readiness: media `assetRequest`, pending Scenes, interactions and Quiz/assessment dependencies are explicit and actionable. Missing assets are _legitimate planned production work_ when clearly identified; they must not masquerade as available assets or be treated as missing pedagogical design by default.
 
 ## Output and ownership
 

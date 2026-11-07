@@ -28,17 +28,17 @@ Record in handoff: next actionable role(s), verified files/source Git blob or co
 
 Stage names and required evidence (order can be staggered per Lesson; don't auto-approve):
 
-| Stage | Persona / tool | Evidence and gate |
-| --- | --- | --- |
-| `methodology` | Methodologist / Create Lesson Brief | Valid `methodology.md` with verified Skills, approved by editor; proposed drafts may remain blocked pending approval |
-| `content` | Educational Screenwriter / Create Lesson Content | `content.yaml` following schema, separately editorially approved; legacy docs require explicit migration |
-| `experience-review` | Learning Experience Expert / Review Lesson Experience | `experience-review.md`, source-specific independent pass, followed by authorized editorial sign-off |
-| `methodology-review` | Methodologist / Review Lesson Methodology | `methodology-review.md`, independent pass on **same current `content.yaml` revision**, followed by authorized sign-off |
-| `generate-sources` | Coding Agent / Lesson source generator (when implemented) | Actual typed source files, pending resource requirements, generated identity paths checked; never claim generation tool exists until verified |
-| `resource-production` | Assessment/Scene/media specialists | Approved Question assets, Scene specs/implementations, media requirements; review outstanding dependencies |
-| `localization` | Translation agents | Actual translations for all declared Lesson languages; missing-language TS errors cannot be bypassed |
-| `validation` | Coding Agent / QA | Typecheck, builds, tests, resource integrity and publication checks confirmed against current commit |
-| `completed` | Coordinator/owner | All scoped Lessons independently completed, sign-offs linked, no unresolved blockers |
+| Stage                 | Persona / tool                                            | Evidence and gate                                                                                                                             |
+| --------------------- | --------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| `methodology`         | Methodologist / Create Lesson Brief                       | Valid `methodology.md` with verified Skills, approved by editor; proposed drafts may remain blocked pending approval                          |
+| `content`             | Educational Screenwriter / Create Lesson Content          | `content.yaml` following schema, separately editorially approved; legacy docs require explicit migration                                      |
+| `experience-review`   | Learning Experience Expert / Review Lesson Experience     | `experience-review.md`, source-specific independent pass, followed by authorized editorial sign-off                                           |
+| `methodology-review`  | Methodologist / Review Lesson Methodology                 | `methodology-review.md`, independent pass on **same current `content.yaml` revision**, followed by authorized sign-off                        |
+| `generate-sources`    | Coding Agent / Lesson source generator (when implemented) | Actual typed source files, pending resource requirements, generated identity paths checked; never claim generation tool exists until verified |
+| `resource-production` | Assessment/Scene/media specialists                        | Approved Question assets, Scene specs/implementations, media requirements; review outstanding dependencies                                    |
+| `localization`        | Translation agents                                        | Actual translations for all declared Lesson languages; missing-language TS errors cannot be bypassed                                          |
+| `validation`          | Coding Agent / QA                                         | Typecheck, builds, tests, resource integrity and publication checks confirmed against current commit                                          |
+| `completed`           | Coordinator/owner                                         | All scoped Lessons independently completed, sign-offs linked, no unresolved blockers                                                          |
 
 `approval` is **not** the same as file creation, an AI's verdict or a green CI status. Review results may recommend pass, changes requested or blocked; only documented authorized approval may change a review stage to `approved`. If `content.yaml` or Methodology materially changes after a review, invalidate affected downstream approval **for that Lesson** until independently re-reviewed. Keep historical review references, do not erase them.
 

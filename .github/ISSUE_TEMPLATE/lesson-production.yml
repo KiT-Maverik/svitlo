@@ -1,8 +1,8 @@
 name: Lesson production scope
 description: Coordinate production of one or more specified Lessons in a single issue, across agents and chats.
-title: "Produce lessons: "
+title: 'Produce lessons: '
 labels:
-  - "work: content"
+  - 'work: content'
 body:
   - type: markdown
     attributes:
