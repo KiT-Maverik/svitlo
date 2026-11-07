@@ -64,7 +64,7 @@ function response(): LessonView {
       lessonCompleted: false,
       lightDiscovered: celebration,
     },
-    parameters: { sections: { allowNavigation: true, allowSkipping: true, showIndexes: true } },
+    parameters: { languages: ['en'], sections: { allowNavigation: true, allowSkipping: true, showIndexes: true } },
     sections: [
       {
         id: 'section-a',
