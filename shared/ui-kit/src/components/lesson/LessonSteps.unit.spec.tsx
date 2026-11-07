@@ -15,6 +15,15 @@ describe('LessonSteps', () => {
     expect(screen.getByRole('button', { name: '1. Theory' })).toBeDisabled();
   });
 
+  it('keeps the themed fade separate from the horizontally scrolling navigation controls', () => {
+    render(<LessonSteps navigationLabel="Lesson steps" steps={steps} currentStep={0} />);
+    const navigation = screen.getByRole('navigation', { name: 'Lesson steps' });
+
+    expect(navigation.parentElement).toHaveClass('svitlo-theme-stepper');
+    expect(navigation.parentElement).not.toHaveAttribute('role', 'navigation');
+    expect(navigation.querySelectorAll('button')).toHaveLength(steps.length);
+  });
+
   it('injects navigation events instead of relying on a framework router', () => {
     const onNavigate = vi.fn();
     render(
@@ -49,6 +58,59 @@ describe('LessonSteps', () => {
       expect(screen.getAllByRole('button')).toHaveLength(8);
       expect(screen.getByRole('button', { name: '7. Step 7' })).toHaveAttribute('aria-current', 'step');
       expect(navigation.scrollLeft).toBe(510);
+    } finally {
+      rectSpy.mockRestore();
+    }
+  });
+
+  it('preserves non-active step elements across rapid navigation and gate changes', () => {
+    const baseProps = { navigationLabel: 'Lesson steps', steps, allowNavigation: true };
+    const { rerender } = render(<LessonSteps {...baseProps} currentStep={0} canNavigateTo={step => step === 0} />);
+    const originalButtons = screen.getAllByRole('button');
+    expect(originalButtons[1]).toBeDisabled();
+
+    // Section changes can also register and release navigation blockers.
+    // The step strip must not unmount or replace the non-active labels.
+    for (const currentStep of [1, 2, 1, 0]) {
+      rerender(<LessonSteps {...baseProps} currentStep={currentStep} canNavigateTo={step => step <= currentStep} />);
+      const currentButtons = screen.getAllByRole('button');
+      currentButtons.forEach((button, index) => expect(button).toBe(originalButtons[index]));
+      expect(currentButtons[currentStep]).toHaveAttribute('aria-current', 'step');
+    }
+
+    rerender(<LessonSteps {...baseProps} currentStep={0} canNavigateTo={() => false} />);
+    expect(screen.getAllByRole('button')[1]).toBeDisabled();
+    expect(screen.getAllByRole('button')[1]).toBe(originalButtons[1]);
+  });
+
+  it('inherits RTL reading order and scrolls left for a visually earlier active step', () => {
+    const longSteps = Array.from({ length: 8 }, (_, index) => ({
+      id: `step-${index + 1}`,
+      title: `Step ${index + 1}`,
+    }));
+    const rectSpy = vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockImplementation(function (
+      this: HTMLElement,
+    ) {
+      if (this.tagName === 'NAV') return { left: 0, right: 320 } as DOMRect;
+      if (this.getAttribute('aria-current') === 'step') return { left: -140, right: -40 } as DOMRect;
+      return { left: 0, right: 0 } as DOMRect;
+    });
+
+    try {
+      render(
+        <div dir="rtl">
+          <LessonSteps navigationLabel="مراحل الدرس" steps={longSteps} currentStep={6} />
+        </div>,
+      );
+      const navigation = screen.getByRole('navigation', { name: 'مراحل الدرس' });
+      expect(navigation.closest('[dir]')).toHaveAttribute('dir', 'rtl');
+      // The DOM and screen-reader order remain logical; CSS grid flows from the right
+      // in an RTL containing block, while scrollLeft moves in the negative direction.
+      expect(Array.from(navigation.querySelectorAll('button')).map(button => button.textContent)).toEqual(
+        longSteps.map((step, index) => `${index + 1}. ${step.title}`),
+      );
+      expect(screen.getByRole('button', { name: '7. Step 7' })).toHaveAttribute('aria-current', 'step');
+      expect(navigation.scrollLeft).toBe(-250);
     } finally {
       rectSpy.mockRestore();
     }

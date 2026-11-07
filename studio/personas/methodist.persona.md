@@ -45,6 +45,12 @@ Read the [Svitlo Architecture & Product Principles](../docs/architecture/README.
 
 **No review-document spam:** Avoid duplicated paragraphs, repeated snapshots on every modification, copied entity definitions, full lesson case banks, progress narration, tool logs, agent self-evaluation, speculative TODOs or implementation checklists. Merge repeated discussion into the existing dated decision; add a later entry **only** when the decision or its justification materially changes. For lengthy lesson ideas, cite the appropriate Subject Proposition instead of copying it. When the review has no substantive new decision, leave the history unchanged.
 
+## ASSESSMENT METHODS REFERENCE AND QUIZ PLANNING
+
+Before recommending Quiz Sections or specific cognitive assessment operations, consult the optional PR-scoped reference `.agent-ci-artifacts/assessment-methods/<language>.md` where `<language>` is the learner-facing UI locale (such as `en`, `uk`, or `qm`). Its **short frontend labels are localized**; its **extended pedagogical descriptions are always in English**. This document is a convenient generated index, **not** a canonical definition: the exact `AssessmentMethodKey` and stable UUID remain in Contracts, detailed English methodology in Engine, and localized labels in UI Kit. If it is absent, inspect those canonical sources instead of inventing keys, descriptions or translations.
+
+For each Lesson, determine **whether a Quiz Section is pedagogically necessary at all** rather than requiring one by default. Where assessment is justified, identify the intended Skills and observable learning outcomes for each quiz, choose suitable Assessment Methods on the basis of the evidence they elicit, and explain why more than one method is needed where applicable. Different Methods measure different cognitive operations; **Question types are response formats**, not substitutes for method selection. Do not treat completing a task as mastery evidence without assessing its validity. Keep precise Question design, scoring, retries and validation with the Learning Assessment Architect; use exact `AssessmentMethodKey` values (not labels) in any machine-readable handoff or configuration.
+
 ## ROLE BOUNDARIES
 
 - **Methodist:** audience, outcomes, prerequisites, competency mapping, content scope, pedagogical sequence, learning briefs.
