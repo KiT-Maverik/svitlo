@@ -48,21 +48,9 @@ test('unrelated workflow changes do not select subject workspaces', () => {
   assert.deepEqual([...p.affected], []);
 });
 
-test('taxonomy quality workflows only subscribe to their own subject files', () => {
-  const workflows = {
-    'arithmetic-taxonomy.yml': 'math',
-    'economics-skills.yml': 'economics',
-    'geography-skills.yml': 'geography',
-    'history-skills.yml': 'history',
-    'informatics-skills.yml': 'informatics',
-  };
-  for (const [file, subject] of Object.entries(workflows)) {
-    const relative = '.github/workflows/' + file;
-    const workflow = readFileSync(fileURLToPath(new URL('../' + relative, import.meta.url)), 'utf8');
-    const watchedPaths = [...workflow.matchAll(/^\s*-\s+'([^']+)'/gm)].map(match => match[1]);
-    assert.ok(watchedPaths.some(path => path.startsWith('content/' + subject + '/')), file);
-    for (const path of watchedPaths) {
-      assert.ok(path.startsWith('content/' + subject + '/') || path === relative, file + ': ' + path);
-    }
-  }
+test('content builds have one dedicated workflow with scoped triggers', () => {
+  const workflow = readFileSync(fileURLToPath(new URL('../.github/workflows/content-build.yml', import.meta.url)), 'utf8');
+  assert.match(workflow, /name: Content packages build/);
+  assert.match(workflow, /- 'content\/\*\*'/);
+  assert.doesNotMatch(workflow, /- 'shared\/\*\*'/);
 });
