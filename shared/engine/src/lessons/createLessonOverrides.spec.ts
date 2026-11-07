@@ -113,7 +113,7 @@ describe('createLessonOverrides', () => {
     assert.deepEqual(sections?.bySlug?.theory?.content?.removed, ['intro']);
   });
 
-  it('emits only modified fields and supports common creator projections', () => {
+  it('emits only modified fields and exposes authoring entries without TOC/file operations', () => {
     const original = createLessonOverrides(lesson);
     const unchanged = original
       .setParams({ sections: { allowNavigation: true } })
@@ -126,16 +126,8 @@ describe('createLessonOverrides', () => {
     assert.deepEqual(customized.getData().overrides, {
       sections: { bySlug: { theory: { navigationLabel: 'Introduction' } } },
     });
-    const context = { language: 'en' as const };
-    assert.deepEqual(customized.toToc(context), {
-      type: 'lesson',
-      id: lesson.id,
-      title: 'Light',
-    });
-    assert.deepEqual(customized.toResource(context), {
-      data: customized.build(),
-      toc: customized.toToc(context),
-    });
+    assert.deepEqual(customized.getContentEntries().lessons, [lesson]);
+    assert.deepEqual(customized.getContentEntries().overrides, [customized.build()]);
   });
 
   it('rejects missing, duplicate or unknown order entries, including duplicate IDs', () => {

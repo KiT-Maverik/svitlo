@@ -6,8 +6,7 @@ import { createRequire } from 'node:module';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { build } from 'esbuild';
 import { createCourse } from '@svitlo/engine/builders';
-import { splitLessonValue, writeLessonFiles } from '@svitlo/engine/utils';
-import { mergeLessonResources } from '@svitlo/engine/lesson';
+import { writeLessonFiles } from '@svitlo/engine/utils';
 
 const repo = path.resolve(fileURLToPath(new URL('../../../..', import.meta.url)));
 const require = createRequire(import.meta.url);
@@ -16,10 +15,6 @@ const id = value => {
   if (!uuid.test(value)) throw new Error('Invalid UUID: ' + value);
   return value;
 };
-function localized(value, languages, language) {
-  const { base, locales } = splitLessonValue(value, languages);
-  return mergeLessonResources({ data: base }, { data: locales[language] ?? {} }).data;
-}
 async function loadCourse(filename) {
   const tmp = fs.mkdtempSync(path.join(path.dirname(filename), '.course-load-'));
   const outfile = path.join(tmp, 'course.cjs');
@@ -72,7 +67,7 @@ async function render(root) {
     // A single unified Course creator API owns authored-tree traversal.
     // Full Lesson Data is build-only; the publisher emits compact references.
     const creator = createCourse(course);
-    const { groups, episodes, lessons, overrides } = creator.getPublicationItems();
+    const { groups, episodes, lessons, overrides } = creator.getContentEntries();
     const visited = new Set([course.id]);
     const usedLessons = new Set();
     for (const group of groups) {
@@ -96,21 +91,35 @@ async function render(root) {
     for (const override of overrides) {
       if (override.lessonId !== override.lesson?.id) throw new Error('Mismatched Lesson override ID');
     }
+    // Creator returns only sparse, language-neutral data. The publisher owns
+    // paths, serialization and the base.json / <language>.json layout.
+    const base = creator.getBase();
+    resources.set(course.id + '/toc/base.json', JSON.stringify(base.toc) + '\n');
+    for (const item of overrides) {
+      resources.set(
+        course.id + '/overrides/' + item.lessonId + '/base.json',
+        JSON.stringify(base.overrides[item.lessonId]) + '\n',
+      );
+    }
+    for (const episode of episodes) {
+      resources.set(
+        course.id + '/episodes/' + episode.id + '/base.json',
+        JSON.stringify(base.episodes[episode.id]) + '\n',
+      );
+    }
     for (const language of languages) {
-      const { toc } = creator.toResource({ language });
-      resources.set(course.id + '/toc/' + language + '.json', JSON.stringify(toc) + '\n');
+      const locale = creator.getLocale(language);
+      resources.set(course.id + '/toc/' + language + '.json', JSON.stringify(locale.toc) + '\n');
       for (const item of overrides) {
-        // Never publish the full source Lesson again inside an override patch.
-        const { lesson, ...patch } = item;
         resources.set(
           course.id + '/overrides/' + item.lessonId + '/' + language + '.json',
-          JSON.stringify(localized(patch, languages, language)) + '\n',
+          JSON.stringify(locale.overrides[item.lessonId]) + '\n',
         );
       }
       for (const episode of episodes) {
         resources.set(
           course.id + '/episodes/' + episode.id + '/' + language + '.json',
-          JSON.stringify(localized(episode, languages, language)) + '\n',
+          JSON.stringify(locale.episodes[episode.id]) + '\n',
         );
       }
     }

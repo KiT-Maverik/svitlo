@@ -20,3 +20,17 @@ The same prepared Question responses and Quiz parameters can power standalone pr
 General Section ContentBlocks render in one vertical column. A Scene can have its own internal layout. A Knowledge Checkpoint is a reflective prompt, not a scored Quiz.
 
 Related: [Lesson](./lesson.md), [Lesson Content](./lesson-content.md).
+
+## Build-time creator API
+
+`createSection<SupportedLanguages>()({ ... })` accepts typed Section
+data or ContentBlock creators. `getData()` unwraps nested creators
+without losing content identity or order. For both ordinary Sections
+and Quiz Sections, `getBase({ languages })` returns invariant authored
+data while `getLocale({ languages, language })` returns only the sparse
+patch for a selected language.
+
+`createContentBlock<SupportedLanguages>()({ ... })` exposes the same
+three operations. Neither nested creator handles files, TOC, or runtime
+merging; Lesson and Course generators own their respective publication
+boundaries. The Quiz Question catalog remains owned by the parent Lesson.
