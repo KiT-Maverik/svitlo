@@ -74,7 +74,7 @@ describe('Course entity creators', () => {
       }
     }
     const data = course.getData();
-    assert.equal(data.content[0].type, 'module');
+    assert.equal('type' in data.content[0] ? data.content[0].type : 'lesson', 'module');
     assert.equal(JSON.stringify(data).includes('getData'), false);
     assert.deepEqual(chapter.getContentEntries().lessons.map(item => item.id), ['lesson-1']);
     assert.deepEqual(module.getContentEntries().lessons.map(item => item.id), ['lesson-1', 'lesson-2']);
