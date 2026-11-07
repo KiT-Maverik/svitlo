@@ -26,7 +26,7 @@ const topics: Topic[] = [
 describe('CourseTopicList', () => {
   it('highlights the current leaf and retains regular navigation', () => {
     const navigate = vi.fn();
-    render(
+    const { container } = render(
       <CourseTopicList
         topics={topics}
         pathname="/uk/course/demo/lesson/en/lesson-a"
@@ -35,7 +35,7 @@ describe('CourseTopicList', () => {
     );
 
     expect(screen.getByRole('link', { name: 'Lesson A' })).toHaveAttribute('aria-current', 'page');
-    expect(screen.getByRole('link', { name: 'Lesson A' }).closest('ul')).toHaveStyle({ userSelect: 'none' });
+    expect(container.querySelector('ul')).toHaveStyle({ userSelect: 'none' });
     expect(screen.getByRole('link', { name: 'Episode A' })).toHaveAttribute(
       'href',
       '/uk/course/demo/episode/episode-a',
