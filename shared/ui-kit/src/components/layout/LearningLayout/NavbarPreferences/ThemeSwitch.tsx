@@ -25,7 +25,7 @@ function ThemeThumb() {
 export default function ThemeSwitch({ label, mode, systemMode, onThemeChange }: ThemeSwitchProps) {
   const isDark = mode === 'dark' || ((mode === 'system' || mode === undefined) && systemMode === 'dark');
   return (
-<Switch
+    <Switch
       checked={isDark}
       onChange={(_event, checked) => onThemeChange(checked ? 'dark' : 'light')}
       slotProps={{ input: { 'aria-label': label } }}
