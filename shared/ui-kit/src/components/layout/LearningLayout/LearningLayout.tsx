@@ -274,6 +274,7 @@ export default function LearningLayout({
     <Box
       dir={direction}
       lang={locale}
+      className="svitlo-theme-surface"
       sx={{
         height: '100dvh',
         display: 'grid',

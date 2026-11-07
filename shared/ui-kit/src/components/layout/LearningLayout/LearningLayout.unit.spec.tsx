@@ -22,6 +22,9 @@ describe('LearningLayout preparation', () => {
     );
 
     expect(screen.getByRole('navigation', { name: uk.navigation.top })).toBeVisible();
+    expect(screen.getByRole('navigation', { name: uk.navigation.top }).parentElement).toHaveClass(
+      'svitlo-theme-surface',
+    );
     expect(screen.getByRole('navigation', { name: uk.navigation.bottom })).toBeVisible();
     expect(screen.getByRole('status')).toHaveTextContent(uk.preparingLesson);
     expect(screen.getByRole('main', { hidden: true })).toHaveAttribute('aria-busy', 'true');
