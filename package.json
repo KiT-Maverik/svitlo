@@ -23,7 +23,9 @@
     "repo:check:artifacts": "node scripts/check-built-package-exports.mjs"
   },
   "devDependencies": {
-    "prettier": "3.9.10"
+    "ajv": "8.20.0",
+    "prettier": "3.9.10",
+    "yaml": "2.9.1"
   },
   "workspaces": [
     "apps/*",
