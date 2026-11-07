@@ -99,6 +99,138 @@ function normalizeTree(items, courseId, seenKeys, lessonIds, breadcrumb = 'conte
  * The resolver must return actual implemented Lesson data metadata and import
  * coordinates; it must never manufacture an unimplemented Lesson.
  */
+
+function walkSlots(items, output = []) {
+  for (const item of items) {
+    if (item.type === 'lesson') output.push(item);
+    else walkSlots(item.children, output);
+  }
+  return output;
+}
+
+/** Resolve only approved, existing Course-owned TypeScript references. */
+export async function resolveCourseSource(courseFolder, reference) {
+  const file = path.resolve(courseFolder, reference.path);
+  const relative = path.relative(courseFolder, file);
+  if (!relative || relative.startsWith('..' + path.sep) || path.isAbsolute(relative)) {
+    error('COURSE_SOURCE', 'Course-owned source escapes the Course directory: ' + reference.path);
+  }
+  if (!fs.existsSync(file) || !fs.statSync(file).isFile()) {
+    error('COURSE_SOURCE', 'missing approved Course-owned TS source: ' + file);
+  }
+  const source = ts.createSourceFile(file, fs.readFileSync(file, 'utf8'), ts.ScriptTarget.Latest, true);
+  const exports = source.statements.flatMap(statement => {
+    const isExport = statement.modifiers?.some(m => m.kind === ts.SyntaxKind.ExportKeyword);
+    if (!isExport) return [];
+    if (ts.isVariableStatement(statement)) {
+      return statement.declarationList.declarations
+        .filter(item => ts.isIdentifier(item.name))
+        .map(item => item.name.text);
+    }
+    if ((ts.isFunctionDeclaration(statement) || ts.isClassDeclaration(statement)) && statement.name) {
+      return [statement.name.text];
+    }
+    return [];
+  });
+  if (!exports.includes(reference.export)) {
+    error('COURSE_SOURCE', file + ': missing directly exported symbol ' + reference.export);
+  }
+  return { path: file, exportName: reference.export };
+}
+
+/**
+ * Course-specific sparse transformations live separately from the skill-based
+ * TOC. A Lesson's original source is never edited and no new authored Section
+ * or ContentBlock is manufactured from YAML.
+ */
+export async function buildCourseOverrides(text, schema, plan, resolveSource) {
+  const document = parseYaml(text, 'overrides.yaml');
+  validateSchema(document, schema);
+  if (document.status !== 'approved') error('APPROVAL', 'Course overrides.yaml must be approved');
+  if (document.courseId !== plan.courseId) error('COURSE_ID', 'overrides.yaml Course UUID does not match toc.yaml');
+  const slots = walkSlots(plan.tree);
+  const slotByKey = new Map(slots.map(item => [item.key, item]));
+  const countByLesson = new Map();
+  for (const slot of slots) countByLesson.set(slot.lessonId, (countByLesson.get(slot.lessonId) ?? 0) + 1);
+  const overrides = new Map();
+
+  for (const item of document.overrides) {
+    const slot = slotByKey.get(item.slotKey);
+    if (!slot || slot.lessonId !== item.lessonId) {
+      error('OVERRIDE_SLOT', item.slotKey + ': no matched Course Lesson slot for ' + item.lessonId);
+    }
+    if ((countByLesson.get(item.lessonId) ?? 0) > 1) {
+      error('OVERRIDE_REUSED_LESSON', item.lessonId +
+        ' occurs at multiple TOC slots; the publisher keys overrides by Lesson UUID, not slotKey');
+    }
+    if (overrides.has(item.lessonId)) {
+      error('DUPLICATE_OVERRIDE', 'more than one override for Lesson ' + item.lessonId);
+    }
+    const actual = plan.lessons.get(item.lessonId);
+    if (!actual) error('OVERRIDE_LESSON', item.lessonId + ': no resolved standalone Lesson');
+    const sections = new Map((actual.sections ?? []).map(section => [
+      section.slug,
+      { ...section, blocks: new Map((section.blocks ?? []).map(block => [block.slug, block])) },
+    ]));
+    const sourceKeys = new Set();
+
+    const ensureSection = (slug, content = false) => {
+      if (!sections.has(slug)) error('OVERRIDE_SECTION', item.lessonId + ': unknown Section slug ' + slug);
+      const section = sections.get(slug);
+      if (content && section.type === 'quiz') {
+        error('OVERRIDE_QUIZ', item.lessonId + ': quiz Section has no ContentBlocks: ' + slug);
+      }
+      return section;
+    };
+    const ensureBlock = (sectionSlug, slug) => {
+      const section = ensureSection(sectionSlug, true);
+      if (!section.blocks.has(slug)) {
+        error('OVERRIDE_BLOCK', item.lessonId + ': unknown ContentBlock slug ' + sectionSlug + '/' + slug);
+      }
+      return section.blocks.get(slug);
+    };
+    const approved = async reference => {
+      const key = reference.path + '#' + reference.export;
+      sourceKeys.add(key);
+      if (resolveSource) await resolveSource(reference);
+    };
+    for (const op of item.operations) {
+      if (op.source) await approved(op.source);
+      if (op.type === 'section-set' || op.type === 'section-remove') ensureSection(op.slug);
+      if (op.type === 'section-remove') sections.delete(op.slug);
+      if (op.type === 'section-order') {
+        const referenced = op.entries.filter(x => typeof x === 'string');
+        if (new Set(referenced).size !== referenced.length) {
+          error('OVERRIDE_ORDER', 'duplicate Section slugs in order for Lesson ' + item.lessonId);
+        }
+        for (const slug of referenced) ensureSection(slug);
+        if ([...sections.keys()].some(slug => !referenced.includes(slug))) {
+          error('OVERRIDE_ORDER', 'Section order must include each existing Section exactly once: ' + item.lessonId);
+        }
+        for (const entry of op.entries) if (typeof entry !== 'string') await approved(entry.source);
+      }
+      if (op.type === 'block-set' || op.type === 'block-remove') {
+        ensureBlock(op.sectionSlug, op.slug);
+        if (op.type === 'block-remove') sections.get(op.sectionSlug).blocks.delete(op.slug);
+      }
+      if (op.type === 'block-order') {
+        const section = ensureSection(op.sectionSlug, true);
+        const referenced = op.entries.filter(x => typeof x === 'string');
+        if (new Set(referenced).size !== referenced.length) {
+          error('OVERRIDE_ORDER', 'duplicate ContentBlock slugs in ' + op.sectionSlug);
+        }
+        for (const slug of referenced) ensureBlock(op.sectionSlug, slug);
+        if ([...section.blocks.keys()].some(slug => !referenced.includes(slug))) {
+          error('OVERRIDE_ORDER', 'ContentBlock order must include each existing block in ' + op.sectionSlug);
+        }
+        for (const entry of op.entries) if (typeof entry !== 'string') await approved(entry.source);
+      }
+    }
+    overrides.set(item.lessonId, item);
+  }
+  return overrides;
+}
+
 export async function buildCoursePlan({ methodologyText, tocText, schema, supportedCodes, resolveLesson }) {
   const methodology = methodologyFrontmatter(methodologyText);
   const toc = parseYaml(tocText, 'toc.yaml');
@@ -130,23 +262,14 @@ export async function buildCoursePlan({ methodologyText, tocText, schema, suppor
     const actual = checkedLanguages(item.languages, 'Lesson ' + id, supportedCodes);
     const missing = languages.filter(code => !actual.includes(code));
     if (missing.length) error('LESSON_LOCALES', id + ': missing Course locales ' + missing.join(', '));
-    // The current Course<'data', L> expects exactly L on nested Lesson Data.
-    // An actual superset is semantically valid, but cannot safely be cast to L.
-    if (JSON.stringify(actual) !== JSON.stringify(languages)) {
-      error(
-        'TYPED_LANGUAGE_SUPERSET',
-        id +
-          ': Lesson languages (' +
-          actual.join(', ') +
-          ') cover Course languages (' +
-          languages.join(', ') +
-          '), but Course creator currently requires an identical tuple',
-      );
-    }
     if (!item.source || !item.exportName) error('LESSON_EXPORT', id + ': no unique exported Lesson Data symbol');
     lessons.set(id, item);
   }
-  return { courseId: toc.courseId, documentLanguage: toc.documentLanguage, languages, tree, lessons };
+  const plan = { courseId: toc.courseId, documentLanguage: toc.documentLanguage, languages, tree, lessons };
+  const overrides = overridesText === undefined
+    ? new Map()
+    : await buildCourseOverrides(overridesText, overridesSchema, plan, resolveOwnedSource);
+  return { ...plan, overrides };
 }
 
 function titleKey(node) {
@@ -305,6 +428,11 @@ export async function resolveImplementedLesson(root, id) {
     languages: lesson.parameters?.languages,
     source: filename,
     exportName: lessonExport(fs.readFileSync(filename, 'utf8'), filename),
+    sections: (lesson.sections ?? []).map(section => ({
+      slug: section.slug,
+      type: section.type,
+      blocks: section.type === 'quiz' ? [] : section.content.map(block => ({ slug: block.slug, type: block.type })),
+    })),
   };
 }
 
@@ -349,6 +477,7 @@ export async function main(args) {
   const { resolveEntityPath } = await import('@svitlo/engine/utils');
   const { DEFAULT_SUPPORTED_LANGUAGES } = await import('@svitlo/contracts/localization');
   const folder = path.join(root, 'data/courses', resolveEntityPath(courseId));
+  const overridesFilename = path.join(folder, 'overrides.yaml');
   const methodology = path.join(folder, 'methodology.md');
   const toc = path.join(folder, 'toc.yaml');
   if (!fs.existsSync(methodology) || !fs.existsSync(toc)) {
@@ -363,6 +492,13 @@ export async function main(args) {
     schema,
     supportedCodes: new Set(DEFAULT_SUPPORTED_LANGUAGES.map(x => x.language)),
     resolveLesson: id => resolveImplementedLesson(root, id),
+    ...(fs.existsSync(overridesFilename) ? {
+      overridesText: fs.readFileSync(overridesFilename, 'utf8'),
+      overridesSchema: JSON.parse(fs.readFileSync(
+        path.join(repoRoot, 'studio/skills/course-workflow/course-overrides.schema.json'), 'utf8',
+      )),
+      resolveOwnedSource: reference => resolveCourseSource(folder, reference),
+    } : {}),
   });
   if (plan.courseId !== courseId) error('COURSE_ID', 'requested Course UUID differs from editorial input');
   const filename = path.join(folder, 'toc.generated.ts');
