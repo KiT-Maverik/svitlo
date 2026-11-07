@@ -43,7 +43,21 @@ Organize kept Questions into:
 
 Neither tier has a mandatory item count. Do not add arbitrary quotas or force one Question per Skill, one Question per Method, or one of each type. Keep a useful pool when opportunities are genuinely rich; stop when further candidates would be near-duplicates. When a competency cannot be evaluated validly with available Question formats, document the limitation instead of making a fake multiple-choice substitute.
 
-## Step 3 — Author complete, implementable items
+## Step 3 — Curate each default Lesson Quiz independently
+
+**The bank and the ordinary Lesson Quiz are separate deliverables.** The full bank is retained for future **Custom Practice**, and it may contain far more Questions than the default Lesson Quiz. `core`/`extension` are bank coverage tiers, not Quiz inclusion switches. A default Quiz should normally show **only a small, pedagogically sufficient subset**, never all 100 items just because 100 were written.
+
+After authoring the bank, inspect *every approved Quiz Section* in the current `content.yaml` and map its `assessmentPlanKey` to exactly one `quizAssignments[]` entry. Author its explicit `selection` object using the existing `Quiz_Parameters.selection` contract:
+
+- **Recommended for the ordinary default Quiz:** `mode: all` **with a required, explicit, short `questionSlugs` list**. This mode means "include all slugs on this particular list"—not the whole Lesson bank. Select Questions deliberately to cover the Quiz's intended target Skills, required Assessment Methods, outcomes and representative misconceptions. Prefer a compact, balanced set rather than the easiest items or a comprehensive exam.
+- **Optional variable sampling:** `mode: sample` **with an explicit eligible `questionSlugs` pool**, positive integer `count` and deliberate `shuffle`/`seed`. Use it only when the permitted sample outcomes are pedagogically safe; the present `Quiz_Parameters` has **no built-in stratified sampling by Skill or Assessment Method**. If random sampling might omit required evidence, use a curated fixed set or escalate the need for stratified runtime support.
+- **Never omit `questionSlugs` for a default Lesson Quiz**: the current runtime then selects from the entire bank. Also never duplicate all bank Question slugs into an ordinary Quiz by default.
+- The Quiz must use only approved, existing bank Question slugs, preserving their source-language and type-independent identities. Assign separate default selections for multiple Quizzes, reflecting their placement and prerequisites, and avoid unintended repeated Questions.
+- A Question **not selected into any default Quiz remains in the Lesson bank** and remains eligible for extra practice. Do not delete or artificially cap the bank to satisfy the default Quiz length. Custom Practice should be able to operate on the full valid bank when implemented, with its own independently configured selection and scoring.
+
+**Ownership and generation:** keep the Quiz subset specification in Assessment-Architect-owned `questions/questions.yaml`, not in the Screenwriter's `content.yaml`. The future YAML-to-TypeScript builder must combine the documents by `assessmentPlanKey`, map the explicit `quizAssignments[].selection` to the matching generated Quiz Section's `parameters.selection` in Lesson config, and publish **all Questions** to `Lesson.questions`. It must preserve the other Quiz parameters and never rewrite the Screenwriter's source. Confirm actual generated data and semantics after the generator exists; do not claim it does today.
+
+## Step 4 — Author complete, implementable items
 
 Every kept Question needs:
 
@@ -58,7 +72,7 @@ The schema uses **editorial block** shapes: `{type: text, text: ...}` for source
 
 Do not claim automatic scoring can measure open-ended justification/knowledge construction without verified grading support. Where chosen Method requires such evidence, design a valid item plus explicit limitation/review requirement.
 
-## Step 4 — Source language and provenance
+## Step 5 — Source language and provenance
 
 Write **exactly one source-language bank**. `documentLanguage` defaults to `en` unless the editor explicitly selects a different approved language. It must belong to `supportedLanguages`. Copy `supportedLanguages` unchanged from the approved Lesson. Every learner-facing prompt/answer/explanation/hint and media text specification is authored only in `documentLanguage`. Technical keys and canonical `assessmentMethod` values remain exact English identifiers. **Do not translate** or fill missing locale values with duplicates/placeholders.
 
@@ -70,7 +84,7 @@ Use [`lesson-questions.schema.json`](./lesson-questions.schema.json) as the edit
 
 - `schemaVersion: 1`, `kind: lesson-question-bank`, `status`, `lessonId`, `documentLanguage`, `supportedLanguages`.
 - `sources` referencing the approved methodology and current Screenwriter content.
-- `quizAssignments` mapping approved `assessmentPlanKey` values to Question slugs (empty for a deliberately unquizzed Lesson).
+- `quizAssignments` mapping approved `assessmentPlanKey` values to **explicit default Quiz `selection`** objects with curated Question slugs (empty for a deliberately unquizzed Lesson). This specification must be copied into generated Lesson Quiz Section parameters by the builder; it is not a request to modify `content.yaml`.
 - `questions` containing actual source-language Question data with type-specific answers.
 - `coverage` documenting why evidence cells are covered; `unresolvedDependencies` listing missing media, factual decisions, accessibility concerns or grading limitations.
 
@@ -88,7 +102,10 @@ sources:
   content: {path: ../content.yaml}
 quizAssignments:
   - assessmentPlanKey: check-understanding
-    questionSlugs: [identify-model-error]
+    selection:
+      mode: all
+      questionSlugs: [identify-model-error]
+      shuffle: false
 questions:
   - slug: identify-model-error
     type: selectOneAnswer
@@ -128,11 +145,11 @@ IDs and educational claims above are illustrative placeholders, **never permissi
 Validate machine-readable YAML against the schema plus **semantic checks** (a schema alone cannot establish correctness):
 
 1. Every Question type and method exists in current canonical Contracts, and required type-specific answer fields are complete.
-2. Every `targetSkills` value belongs to the Lesson's approved Skill set. Every `assessmentPlanKey` exists in both sources. All assigned Question slugs exist, with no duplicate slugs or orphans that were supposed to be in a Quiz.
-3. Every required Quiz `targetSkill`/`requiredAssessmentMethods` pair has meaningful coverage, or an explicit blocking gap; `coverage` matches the actual Question assignments.
+2. Every `targetSkills` value belongs to the Lesson's approved Skill set. Every `assessmentPlanKey` exists in both sources. All explicitly assigned `selection.questionSlugs` exist, are unique within a Quiz, and reference eligible bank Questions; unassigned Questions are allowed and preserved for additional practice.
+3. Every default Quiz has a deliberate, proportionate **subset** with a nonempty explicit `questionSlugs` list, and each required Quiz `targetSkill`/`requiredAssessmentMethods` pair has meaningful coverage **in the actual selected set** (not merely somewhere in the full bank). For `sample` mode, assess every possible sample or document a safe selection strategy; never rely on accidental coverage. `coverage` matches the actual Question assignments.
 4. Every item has a distinctness case, correct answer and evidence target. Reject near-duplicates and superficial type-diversity inflation.
 5. Any media requirement has an approved real path or an explicit request, with a plan for equivalent accessible evidence; unresolved blockers are not disguised as approved resources.
 6. Only one source language is authored. No invented translations, IDs, media or renderer capabilities.
-7. The bank matches current approved source revisions. A subsequent material change to methodology or content invalidates affected reviews/coverage until checked.
+7. The full bank is preserved for Custom Practice regardless of default Quiz subsets, and the builder is required to emit both the full catalog and merged Quiz selections when implemented. The bank matches current approved source revisions. A subsequent material change to methodology or content invalidates affected reviews/coverage until checked.
 
 Create/update the bank only in its Lesson's `questions/` folder. Follow the Lesson Production Issue handoff, Draft PR and source-specific approval policy when operating in a production workflow. The Coding Agent consumes the *approved* YAML to author typed data and tests; the Translation workflow supplies remaining locales. Do not claim the YAML-to-code generator exists unless it is verified in the repository.
