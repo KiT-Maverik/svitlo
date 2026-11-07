@@ -70,7 +70,7 @@ function staticValue(node, declarations, visiting = new Set()) {
       let key;
       let value;
       if (ts.isPropertyAssignment(prop)) {
-        key = (ts.isIdentifier(prop.name) || ts.isStringLiteral(prop.name)) ? prop.name.text : null;
+        key = ts.isIdentifier(prop.name) || ts.isStringLiteral(prop.name) ? prop.name.text : null;
         value = prop.initializer;
       } else if (ts.isShorthandPropertyAssignment(prop)) {
         key = prop.name.text;
@@ -94,7 +94,8 @@ function declaration(root, relative, name) {
 }
 
 function assertExactKeys(value, keys, context) {
-  if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error('Invalid ' + context + ' dictionary');
+  if (!value || typeof value !== 'object' || Array.isArray(value))
+    throw new Error('Invalid ' + context + ' dictionary');
   const extras = Object.keys(value).filter(key => !keys.includes(key));
   const missing = keys.filter(key => !Object.hasOwn(value, key));
   if (extras.length || missing.length) {
@@ -169,12 +170,22 @@ export function renderAssessmentMethodsReference(options) {
       'A **Question type** specifies how the learner supplies a response (such as selecting, matching or entering text). ' +
       'The same Assessment Method can be evaluated using different Question types; the same Question type can evaluate different methods.',
     '',
-    'Use the exact ' + tick + 'AssessmentMethodKey' + tick + ' in machine-readable configurations. ' +
+    'Use the exact ' +
+      tick +
+      'AssessmentMethodKey' +
+      tick +
+      ' in machine-readable configurations. ' +
       'This temporary reference is not a new taxonomy or a replacement for canonical Contracts.',
     '',
-    'Canonical sources: [Assessment Method keys and UUIDs](' + links.identities + '), ' +
-      '[English methodological descriptions](' + links.descriptions + ') and ' +
-      '[UI Kit labels](' + links.labels + ').',
+    'Canonical sources: [Assessment Method keys and UUIDs](' +
+      links.identities +
+      '), ' +
+      '[English methodological descriptions](' +
+      links.descriptions +
+      ') and ' +
+      '[UI Kit labels](' +
+      links.labels +
+      ').',
     '',
     'Methods: ' + methods.length,
     '',
@@ -186,8 +197,14 @@ export function renderAssessmentMethodsReference(options) {
       '- **UUID:** ' + tick + method.id + tick,
       '- **Frontend label (' + locale + '):** ' + escapeMarkdown(method.label),
       '- **Methodological description (English):** ' + escapeMarkdown(method.description),
-      '- **Canonical definitions:** [identity](' + links.identities + '), ' +
-        '[methodology](' + links.descriptions + '), [localized label](' + links.labels + ')',
+      '- **Canonical definitions:** [identity](' +
+        links.identities +
+        '), ' +
+        '[methodology](' +
+        links.descriptions +
+        '), [localized label](' +
+        links.labels +
+        ')',
       '',
     );
   }

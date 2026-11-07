@@ -46,8 +46,9 @@ test('every supported language has exactly the canonical 16 keys, IDs and actual
   assert.ok(languages.includes('uk'));
   assert.ok(languages.includes('qm'));
   const canonicalIds = new Map(
-    [...fs.readFileSync(path.join(repoRoot, sources[0]), 'utf8').matchAll(/^\s{2}([A-Za-z]+): '([a-f0-9-]{36})'/gm)]
-      .map(match => [match[1], match[2]]),
+    [
+      ...fs.readFileSync(path.join(repoRoot, sources[0]), 'utf8').matchAll(/^\s{2}([A-Za-z]+): '([a-f0-9-]{36})'/gm),
+    ].map(match => [match[1], match[2]]),
   );
   assert.equal(canonicalIds.size, 16);
   const reference = readAssessmentMethodsReference({ locale: 'en' });
@@ -56,7 +57,10 @@ test('every supported language has exactly the canonical 16 keys, IDs and actual
   for (const locale of languages) {
     const data = readAssessmentMethodsReference({ locale });
     assert.equal(data.methods.length, 16);
-    assert.deepEqual(data.methods.map(method => method.key), keys);
+    assert.deepEqual(
+      data.methods.map(method => method.key),
+      keys,
+    );
     assert.equal(new Set(data.methods.map(method => method.id)).size, 16);
     const markdown = renderAssessmentMethodsReference({ locale });
     const headings = [...markdown.matchAll(keyHeading)].map(match => match[1]);
@@ -127,9 +131,15 @@ test('missing method labels and whole locales fail, without English fallback', (
 
 test('unknown locales, missing source, invalid UUIDs and missing English descriptions fail', () =>
   withFixture(root => {
-    assert.throws(() => readAssessmentMethodsReference({ root, locale: 'xx' }), /Unsupported Assessment Methods locale/);
+    assert.throws(
+      () => readAssessmentMethodsReference({ root, locale: 'xx' }),
+      /Unsupported Assessment Methods locale/,
+    );
     replaceFile(root, sources[0], text => text.replace(/db75ef83-f99d-4a93-940c-9402abc908d5/, 'invalid'));
-    assert.throws(() => readAssessmentMethodsReference({ root, locale: 'uk' }), /Invalid canonical Assessment Method UUID/);
+    assert.throws(
+      () => readAssessmentMethodsReference({ root, locale: 'uk' }),
+      /Invalid canonical Assessment Method UUID/,
+    );
   }));
 
 test('missing English descriptions are not repaired using localized content', () =>
@@ -166,7 +176,14 @@ test('PR-artifact manifest records success, failures and only allowed temporary 
       );
     }
     assert.throws(
-      () => generateAssessmentMethodsReviewArtifacts({ root, output: path.join(root, 'public'), languages, manifest, saveManifest }),
+      () =>
+        generateAssessmentMethodsReviewArtifacts({
+          root,
+          output: path.join(root, 'public'),
+          languages,
+          manifest,
+          saveManifest,
+        }),
       /PR-scoped .agent-ci-artifacts/,
     );
     replaceFile(root, sources[3], text => text.replace(/  uk,\n/, ''));
@@ -174,7 +191,10 @@ test('PR-artifact manifest records success, failures and only allowed temporary 
     const retry = generateAssessmentMethodsReviewArtifacts({ root, output, languages: ['uk'], manifest, saveManifest });
     assert.deepEqual(retry, { generated: 0, failures: 1 });
     assert.equal(manifest.generated.length, before);
-    assert.deepEqual(manifest.failures.map(f => [f.kind, f.locale]), [['assessment-method', 'uk']]);
+    assert.deepEqual(
+      manifest.failures.map(f => [f.kind, f.locale]),
+      [['assessment-method', 'uk']],
+    );
   }));
 
 test('temporary paths are governed by existing Agent CI Artifacts cleanup, not a new workflow', () => {

@@ -201,5 +201,7 @@ if (!manifest.generated.length) {
   throw new Error('No review Markdown generated; inspect .agent-ci-artifacts/manifest.json');
 }
 if (assessmentMethodsStats.failures) {
-  throw new Error('Assessment Methods references failed for ' + assessmentMethodsStats.failures + ' locales; inspect manifest.json');
+  throw new Error(
+    'Assessment Methods references failed for ' + assessmentMethodsStats.failures + ' locales; inspect manifest.json',
+  );
 }
