@@ -1,0 +1,89 @@
+# Implement Scene Skill
+
+**Persona:** [Coding Agent](../../personas/coding-agent.persona.md) — read it fully before any work. Also read applicable root/package `AGENTS.md`, [Lesson Production](../../docs/architecture/lesson-production-workflow.md), [Lesson Content](../../docs/entities/lesson-content.md), accessibility/offline architecture and the **actual current** Contracts, Engine, UI Kit renderer, textbook Scene registry, tests and package scripts.
+
+**Purpose:** Implement, integrate and test one or a batch of bespoke React Scenes from already-approved Educational Screenwriter specifications. This is an engineering specialization, **not the YAML-to-typed-Lesson generator**.
+
+## Responsibility / source-of-truth boundaries
+
+- **Deterministic builder/scaffolder (separate work):** parses approved `content.yaml`; creates typed Lesson/Section/ContentBlock data, source-locale resource scaffolds, directories and `requirements.md` for pending dependencies. **Do not implement or reimplement that builder in this Skill.** Do not manually recreate the entire Lesson or its ContentBlocks from YAML as a substitute for a missing builder. Use already available scaffold and assigned files.
+- **Educational Screenwriter:** owns the approved `content.yaml` and separate, approved `scenes/<scene-key>.scene-spec.md`. Learning purpose, scientific subject behavior, expected interactions, explanations and constraints are fixed by these specifications.
+- **Learning Experience Expert / Methodologist:** their accepted reviews and editorial sign-offs are separate prerequisites. Coding Agent must not silently alter learning outcomes, Quiz requirements, assessment evidence, Course narrative or scene semantics.
+- **Implement Scene Coding Agent (this Skill):** writes the React Scene implementation, typed localizable-text shape, **only the approved source-language strings**, internal model, styles, accessibility, tests and integration with the existing content block and Scene registry. Identifies unfinished assets and questions with actionable source `TODO` annotations; resolves/removes each when actually completed.
+- **Translation agents:** later supply all remaining supported Lesson locales; their production/review process is [Translation Production](../translation-workflow/manage-translation-production.skill.md). Coding Agent **must not translate** other languages or copy source text into them.
+- **Resource specialists:** create pending media/3D/audio/video assets. The implementer may integrate existing verified, authorized assets, but not fabricate URLs or claim incomplete media exists.
+
+## Hard prerequisites and scope
+
+1. Read the Lesson Production Issue if one exists (one issue may cover many Lesson UUIDs); locate exact Lesson UUID, target textbook and owned Scene keys. Read current source and PRs; claim nonoverlapping Scene paths. Process all **independent ready** assigned Scenes in a batch without prompting after each.
+2. Confirm the actual Lesson's **approved** `methodology.md`, `content.yaml` and `scene-spec.md`, with required independent Experience and Methodology reviews against the **current content revision** and editorial sign-off. The YAML `sceneSpecKey` alone is **not** a scene behavior specification.
+3. The scene specification must identify educational purpose, learner actions, meaningful states/transitions, correct domain rules, feedback, copy/source language and accessibility expectations. Check it against the existing typed source/partial scaffold. If **missing, unapproved or materially ambiguous**, **stop the affected Scene** and record a precise blocker in chat and Issue. Don't invent missing teaching steps, algorithms, physics or assessment rules. Other ready Scenes may proceed independently.
+4. Inspect current textbook Scene implementation and testing conventions rather than copying historical references. Modern Scenes live in a textbook-owned `content/<textbook>/scenes/` subtree, separate from build-time `data/lessons/<bucket>/<uuid>/`. The latter holds authored data/scaffold; do not assume `content/playground/src/data` or old `resources/scenes/scenes.data.ts` exists.
+5. Confirm the target renderer supports the intended type, media, input modality and offline behavior. If the necessary component/provider/capability is absent, record a dependency and stop or implement only the independently valid portion. Don't invent an unrelated framework or edit shared contracts just to silence errors.
+
+## Current Scene contract and implementation
+
+Read these actual sources in the target branch:
+
+- `shared/contracts/src/types/content/blocks/scene.types.ts`: `ContentBlock_Scene<'data', SupportedLanguages, LocaleShape>` provides **typed** authored `locales`; the definition uses `rendererKey`; response supplies `locales` and `rendererKey`. The generic block discriminator is **`type: 'scene'`**, **not** historical `blockType: 'scene'`.
+- `shared/engine/src/lessons/createContentBlock.ts`, `createSection.ts` and `createLesson.ts`: typed build-time creator boundaries and sparse locale projection; preserve existing scaffold identity and order. Do not make runtime packages import authored `*.data.ts` unnecessarily.
+- `content/playground/scenes/y/how-light-moves-scene-ray/LightRayDiagram.tsx` and `content/playground/scenes/n/how-light-moves-scene-propagation/LightPropagationSimulation.tsx`: examples of **current typed `locales` props** and UI interactions. Treat as references, not a mandatory architecture for every textbook.
+- `content/playground/scenes/createSceneRegistry.ts` and `scripts/textbook-tooling/generate-scenes.mjs`: current lazy Scene registration; use the equivalent existing package setup.
+- Actual UI Kit Scene renderer/registry integration, current unit-test fixtures, package dependencies and accessibility APIs.
+
+**The Scene root component must follow the renderer's current typed public API.** In the current Playground, it accepts `locales` from the localized Scene response, rather than being prop-free or using the retired `SceneLocaleContext` pattern. Infer the minimal response prop type from the owning Scene block's `'response'` type, for example `Pick<SceneBlock<'response'>, 'locales'>`; do not invent a second translation provider or pass a whole multilingual dictionary to the Scene. Internal child components may receive typed props. Honor the current registry's default-export adapter.
+
+Implement deterministic model logic in pure functions when complex enough to test independently; ensure input bounds, state transitions, reset semantics, cleanup of timers/listeners, reduced-motion, render stability, keyboard/touch parity, sensible focus, a11y names and correct scientific behavior. Prefer existing UI Kit primitives and CSS logical properties; handle **semantic** LTR/RTL (reposition directional geometry only when meaning demands it, never mirror text, formulas, physical invariants or whole scenes indiscriminately). Design for narrow screens, slower devices, offline availability of bundled dependencies and no unnecessary initial bundle weight.
+
+## Localizable content: type the full shape, author **one** language
+
+1. Extract *every* learner-facing string from the approved Scene spec into a typed nested `LocaleShape`: labels, title/description, controls, hints, feedback, errors, ARIA names, SVG `<title>`/`<desc>`, captions, transcripts and descriptions for accessible alternatives. Reuse the target textbook's existing pattern for `ContentBlock_Scene<'data'>` and source-locale strings.
+2. Set the exact `supportedLanguages` required by the approved Lesson and create all **necessary type references** to them. Populate authored messages **only for `content.yaml.documentLanguage`**; if that differs from the Methodologist's editorial prose language, use the **Screenwriter** source language. Do not hardcode English because an example Scene uses it.
+3. **Never write translations** for other locales. No copied English/source text, machine translations, fake placeholders, empty strings, `as any`, weakened locale unions, `Partial<Record<...>>`, silent fallbacks, optional chains masquerading as valid text, or suppression of missing-locale errors. If a builder already generated the source-language locale object, reuse it; do not overwrite generated owned files with a competing dictionary.
+4. A temporarily failing **full TypeScript check from *only* missing target locale values** is an acceptable intermediate authoring state, **not** a completed Lesson. Verify and report concrete diagnostics by file/line/type: distinguish expected `missing target locale` errors from Scene logic, type/API, imports, tests and registration errors (these must be fixed). Do not assert a passing typecheck or publish/bundle incomplete supported locales. Source-locale unit tests may use explicit **test-only** LTR/RTL message fixtures to verify direction handling; they are not authored production translations.
+5. Record localization TODOs at the **actual authored dictionary/builder output boundary**, pointing at the Translation Production Issue or translation dependency. Avoid adding meaningless TODOs for every missing locale when one precise TODO with the required locale list and missing fields is sufficient. Remove the TODO only when real translated values have been supplied and coverage verified.
+
+## Unfinished requirements and **code-visible TODO lifecycle**
+
+A Scene may still have pending illustrations, meshes, media, captions, interaction details or technical decisions. Keep the partial implementation honest and **visible in the source**, not only in an Issue or chat.
+
+- For **every real unresolved item affecting implemented code**, add a local, actionable `TODO(scene)`, `TODO(asset)`, `TODO(i18n)`, `TODO(test)`, `TODO(perf)`, or `TODO(a11y)` comment **beside the code path or type/dictionary responsible**. Each TODO states **what is missing, why it matters, the needed action/acceptance condition and a traceable Issue/resource/spec key**. If ownership is unknown, state which specialist must decide.
+- Example (illustrative, not permission to ship fake content):
+
+```ts
+// TODO(asset): scene-key=solar-system-orbits, Issue #123 — replace the pending
+// orbit textures only after the Media Agent delivers approved, licensed files
+// and accessible alternatives; verify offline packaging and image descriptions.
+```
+
+- If an asset is missing, do **not** fabricate a URL, pretend a broken import works, or use arbitrary substitute educational content. Implement independently valid states and keep the missing branch explicitly gated by the existing product mechanism. A feature that cannot meet the approved learning purpose must remain **blocked/incomplete**, never marked production-ready.
+- If a substantive scientific/educational decision is unresolved, **stop that affected logic**, leave a clear TODO only in an existing genuinely incomplete scaffold/implementation where relevant, and return the question to the Screenwriter/Methodologist; do **not** invent behavior just to have a runnable demo.
+- For unresolved accessibility-equivalence barriers: investigate and implement reasonable alternatives first. If one truly remains, add **`TODO(a11y)` at the end of the main Scene component file** with affected learners, precise barrier, attempted alternatives and remedy; add a local comment near the affected code if useful. Explicitly disclose the barrier in the chat/Issue. A TODO is a **tracked limitation**, not an exemption from accessibility requirements.
+- Maintain a concise `requirements.md` / resource handoff **only when the separate builder or existing Scene workflow owns such a file**; otherwise record pending dependencies in the production Issue, without creating an alternative YAML-to-scaffold requirements generator. Keep source TODOs and Issue entries synchronized and actionable.
+- **Before each Scene PR completion and after any fix:** inspect all relevant TODO comments. For each resolved item, **remove the TODO in the same change** (and close/update the associated tracked task after verification). For unresolved items, confirm the comment still describes the current code and is referenced in the PR/Issue handoff. Never retain stale TODOs after completing an implementation, and never delete an unresolved TODO to make the code look complete. No permanent blanket TODOs, no silent suppression, no fake "done" checkmark.
+
+## Registration, integration and tests
+
+- Keep approved, stable Scene `rendererKey`, Scene block `id` and authored Lesson identity. The builder owns Lesson/Section/ContentBlock creation; this Skill only wires implemented Scene modules to their **existing assigned** Scene references. If the scaffold or rendererKey is missing, report it rather than inventing a competing source.
+- For textbook packages using `scripts/textbook-tooling/generate-scenes.mjs`, place Scene code in the expected textbook-owned `scenes/<bucket>/<rendererKey>/` with a valid `index.ts` default export. Inspect the generator's bucket/slug rules and do not infer them from old `data/lessons` paths. Run the textbook workspace's `generate:scenes` followed by `check:scenes`; **never manually edit generated `sceneLoader.ts`**. If the selected textbook uses different existing registration, follow its documented mechanism.
+- Test the actual loader-to-Scene path, that `rendererKey` resolves to the expected module, that the Scene is included in the right Section, and that only localized response text (not source multilingual dictionaries) reaches it. Verify the shared build-time resource generator and published package boundaries when relevant.
+- **Co-located automated Scene tests are mandatory for every Scene**, not just parent Lesson coverage. Follow repository/package conventions (e.g. `*.unit.spec.tsx` or `*.unit.spec.ts` and `*.unit.fx.ts`). Cover rendering with source locale, state machine/initial/reset/edge transitions, user interactions and feedback, scientific invariants and pure-model functions, accessible keyboard flow and names, meaningful nonvisual alternatives, semantic RTL using test-only fixtures, reduced-motion, responsive behavior where testable, asset-missing handling and registration/integration. Do not manufacture assertions that merely check an element exists.
+- Run available **focused** Scene tests, source-shape TypeScript verification/isolated tests that do not require unfinished translations, lint/format, generated Scene registry check, and any applicable package build/portability tests. Run the full typecheck too when possible and **classify** failures; do not claim a clean production build while locale/resource gaps remain.
+- If test infrastructure cannot exercise real rendering, declare precisely which test is missing or skipped and record `TODO(test)` linked to the needed harness. Don't substitute invented passing results.
+
+## Execution, PR and acceptance
+
+1. Resolve the assigned Lesson Production Issue scope; verify per-Scene approved specs and that the separate builder-generated data/scaffold is present. If absent, block the Scene and hand off to the **builder**, rather than implementing Lesson source generation here.
+2. Inspect exact current Scene contracts, renderer, lazy registry, textbook directories and locale conventions. Identify the type/shape of all source text, pending resources and unanswered questions before coding.
+3. Implement all **unblocked** assigned Scenes in owned code paths, with typed source-locale content only, source-visible TODOs for unresolved dependencies, meaningful accessibility/RTL behavior and co-located tests.
+4. Generate/verify registration, run focused checks, categorize expected missing-locale errors distinctly from actual engineering defects, and audit/remove resolved TODOs.
+5. Create/reuse appropriately scoped **Draft PR(s)**, reference the production Issue with `Refs #N`, and update per-Lesson tracker and Scene-level handoff. Work other ready Scenes in the authorized batch without asking to proceed after each. Do not silently merge or advance independent editorial/translation approvals.
+6. Report exact Scene spec and revision, implementation and test paths, test commands/results, registry validation, source locale and remaining target locales, **all unresolved TODOs with location and issue**, blockers including media/a11y, and what specialist/agent should run next.
+
+### Definition of done — engineering vs publication
+
+**Scene implementation complete (engineering):** all implementable approved behavior works; correctly typed source locale only; complete locale **shape**; tests exist and relevant focused tests pass; Scene registry is connected; all unresolved external dependencies are traceable in TODOs/Issue with no fabricated placeholders. Report any expected incomplete-locale typecheck errors. A Scene with a missing **essential** behavior/asset remains **blocked**, not completed.
+
+**Scene production ready:** separately verified complete actual translations for every supported locale, all approved assets and accessibility alternatives available, no unresolved blocking TODOs, full TypeScript/build/registry/package/QA validation passing. **Only translation/release owners may mark these later gates complete.**
+
+**Scope guard:** no YAML parser, no builder or generator for Lesson data, no Assessment Architect duties, no unauthorized translations, no new Course narrative, no hidden contracts refactor, and no false completion of incomplete features.
