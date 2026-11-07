@@ -557,7 +557,12 @@ function generateModel(target, input) {
 function renderLesson(input, model) {
   const content = input.content;
   const languages = JSON.stringify(content.supportedLanguages);
-  const bank = JSON.stringify(model.bank, null, 2);
+  // Exact Question slugs must remain literal types for createLesson's
+  // Question_Catalog_ValidSlugs invariant. Avoid 'as const' on the whole
+  // catalog: that would turn required NonEmptyArray tuples readonly.
+  const bank = JSON.stringify(model.bank, null, 2).replace(
+    /("slug":\s*)("(?:[^"\\]|\\.)*")/g, '$1$2 as const',
+  );
   const parts = model.sections.map(section => {
     if (section.type === 'quiz')
       return 'createSection<Languages>()(' + JSON.stringify(section, null, 2) + ')';
