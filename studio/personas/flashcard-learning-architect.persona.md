@@ -18,7 +18,7 @@ The Question bank is upstream even if the Flashcard does not reuse an item. For 
 
 Verify actual code before work; never infer API behavior from this document alone:
 
-- `shared/contracts/src/types/content/flashcard.types.ts`: `Flashcard<'data'>` has `id`, optional `isDefault`, `front`, `back`, `hint` (each ordered `ContentBlock[]`), `tags: string[]` and `flags: string[]`. There is **currently no typed card-link relation, special acronym field, or localized flags contract**.
+- `shared/contracts/src/types/content/flashcard.types.ts`: `Flashcard<'data'>` has `id`, optional `isDefault`, `front`, `back`, `hint` (each ordered `ContentBlock[]`), `tags: string[]` and `flags: string[]`. This PR adds **typed two-sided card links** through optional `relationships` and the nine-value `FlashcardRelationType` catalog. There is still no typed count/acronym flag mechanism or localized flags contract.
 - `shared/contracts/src/types/content/blocks/` and `shared/ui-kit/src/components/widgets/ContentBlockRenderer/`: know the real ContentBlock types, their parameters, renderer support and accessibility behavior. Use `code` for source code/syntax rather than a prose TextBlock; use image only when recognizing an image is the target; use text or markdown only where appropriate. Do not force advanced widgets into a simple card.
 - `shared/contracts/src/types/content/blocks/text.types.ts`, `shared/contracts/src/types/text.types.ts` and the Text renderer/parser: TextBlock supports named fragments such as `{{id: personName; value: Марія}}` and styling `{id: personName, applyStyle: [variable]}`. Name replaceable variables meaningfully (`personName`, `year`, `city`, `quantity`) rather than `x` or `value1`. Mark an illustrative/replaceable value as a *variable* so learners attend to the general relationship rather than accidental samples. **Variable styling is not automatic random replacement**: do not promise dynamic substitutions that current UI does not implement.
 - CodeBlock supports its own `{{identifier}}` substitutions through `variables` and a programming-language attribute. This mechanism is **not identical** to TextBlock `{{id: ...; value: ...}}` fragments; use the right form.
@@ -47,7 +47,7 @@ For a meaningful list, **consider** a pronounceable acronym/mnemonic made from t
 5. The YAML exposes an `acronym` object with its source-language display token and construction mapping. The existing `Flashcard.flags: string[]` can carry a **single invariant acronym label** in generated code when appropriate; do not invent a typed `acronym` runtime property or pretend `flags` has a special parser.
 6. **Localization limitation:** `flags` is currently **not localized**. A source-language acronym built from translated terms must not silently ship to all locales as though equivalent. Mark it as needing localized mnemonic review and a follow-up runtime/content-contract decision, or use an editor-approved truly invariant acronym. A translator must independently validate/recreate any locale-specific mnemonic.
 
-The count hint and mnemonic are separate: the hint conveys the number of answers; the mnemonic is an optional memory aid, not the answer itself.
+The structured `listAnswerCount` and mnemonic are separate: the former is the source for a **future typed count flag**; an optional interim hint may convey the count without modifying the question wording. The mnemonic is an independent optional memory aid.
 
 ## DETERMINISTIC, TWO-SIDED FLASHCARD RELATIONSHIPS
 
