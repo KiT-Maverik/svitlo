@@ -8,6 +8,7 @@ const messages: CourseMessages = {
   catalogDescription: 'Короткі інтерактивні курси, які перетворюють цікавість на нові відкриття.',
   explore: 'Переглянути курс',
   lessons: 'уроків',
+  languages: 'Мови курсу',
   modules: 'модулів',
   emptyCatalog: 'Поки що курсів немає.',
   backToCatalog: 'Усі курси',
@@ -28,6 +29,7 @@ const meta = {
   component: CoursesPage,
   args: {
     messages,
+    interfaceLanguage: 'uk',
     courses: [
       {
         href: '/uk/course/light',
@@ -40,6 +42,7 @@ const meta = {
           lessons: 3,
           modules: 1,
           tone: 'sky',
+          languages: ['en', 'uk', 'qm', 'pl', 'de'],
         },
       },
       {
@@ -53,6 +56,7 @@ const meta = {
           lessons: 4,
           modules: 2,
           tone: 'amber',
+          languages: ['en', 'uk', 'qm', 'pl', 'de'],
         },
       },
       {
@@ -66,6 +70,7 @@ const meta = {
           lessons: 2,
           modules: 1,
           tone: 'sage',
+          languages: ['en', 'uk', 'qm', 'pl', 'de'],
         },
       },
     ],
