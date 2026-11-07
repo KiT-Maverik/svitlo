@@ -390,3 +390,21 @@ test('invalid content creates only a structured blocked handoff and recovers cle
     assert.ok(!fs.existsSync(f.generated('requirements.blocked.json')));
     assert.equal(runOne(f.lesson, 'check', f.repo).changed, 0);
   }));
+
+test('Question and keyed answer block identities survive Question Bank reordering', () =>
+  withFixture(f => {
+    f.questions.questions.push(goodQuestion('q-two', []));
+    f.save();
+    runOne(f.lesson, 'generate', f.repo);
+    const before = fs.readFileSync(f.generated('lesson.data.ts'), 'utf8');
+    // IDs are derived from Question slug + answer key, not its array position.
+    const qId = before.match(/"q-two": \{\s*"id": "([a-f0-9-]{36})"/)?.[1];
+    const promptId = before.match(/"q-two": \{[\s\S]*?"question": \[\s*\{\s*"id": "([a-f0-9-]{36})"/)?.[1];
+    assert.ok(qId && promptId);
+    f.questions.questions.reverse();
+    f.save();
+    runOne(f.lesson, 'generate', f.repo);
+    const after = fs.readFileSync(f.generated('lesson.data.ts'), 'utf8');
+    assert.match(after, new RegExp('"q-two": \\{\\s*"id": "' + qId + '"'));
+    assert.match(after, new RegExp('"q-two": \\{[\\s\\S]*?"question": \\[\\s*\\{\\s*"id": "' + promptId + '"'));
+  }));
