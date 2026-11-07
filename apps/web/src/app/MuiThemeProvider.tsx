@@ -21,7 +21,7 @@ export default function MuiThemeProvider({ children, direction }: { children: Re
   // CSS-variable palettes follow MUI's data-light / data-dark selectors.
   // Quick Settings must use the host's MUI useColorScheme to read and change the mode.
   return (
-    <ThemeProvider theme={themes[direction]} disableTransitionOnChange>
+    <ThemeProvider theme={themes[direction]}>
       {children}
     </ThemeProvider>
   );
