@@ -33,7 +33,7 @@ export function LessonSteps({
   const containerRef = useRef<HTMLElement>(null);
   const activeStepRef = useRef<HTMLButtonElement>(null);
 
-  // Keep navigation positioning in the same commit as the active-step update.
+  // Position the active step in the same render frame, before browser paint.
   // A passive effect can scroll a frame after paint, briefly exposing old labels.
   useLayoutEffect(() => {
     const container = containerRef.current;
