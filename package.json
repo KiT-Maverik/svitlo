@@ -20,10 +20,15 @@
     "storybook:build": "node scripts/run-workspace-script.mjs storybook:build",
     "repo:list:packages": "npm ls --workspaces --depth=0",
     "repo:check:packages": "node scripts/check-workspaces.mjs && node scripts/check-package-boundaries.mjs && node scripts/check-extraction-readiness.mjs && node scripts/check-final-architecture.mjs && node --test scripts/run-workspace-script.spec.mjs",
-    "repo:check:artifacts": "node scripts/check-built-package-exports.mjs"
+    "repo:check:artifacts": "node scripts/check-built-package-exports.mjs",
+    "content:generate:lessons": "node scripts/lesson-builder.mjs generate",
+    "content:check:lessons": "node scripts/lesson-builder.mjs check",
+    "test:unit:lesson-builder": "node --test scripts/lesson-builder.spec.mjs"
   },
   "devDependencies": {
-    "prettier": "3.9.10"
+    "prettier": "3.9.10",
+    "ajv2020": "npm:ajv@8.20.0",
+    "js-yaml": "4.3.2"
   },
   "workspaces": [
     "apps/*",
