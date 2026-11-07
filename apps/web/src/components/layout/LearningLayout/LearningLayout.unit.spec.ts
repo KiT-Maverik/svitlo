@@ -102,8 +102,7 @@ describe('Layouts', () => {
         await userEvent.click(screen.getByRole('button', { name: aria.actions.openSettings }));
         const settings = screen.getByRole('complementary', { name: aria.navigation.settings });
         const navbar = screen.getByRole('navigation', { name: aria.navigation.top });
-        const theme = () =>
-          within(navbar).getByRole('switch', { name: ukUiKitMessages.navbarPreferences.theme.dark });
+        const theme = () => within(navbar).getByRole('switch', { name: ukUiKitMessages.navbarPreferences.theme.dark });
         expect(within(settings).queryByRole('switch')).not.toBeInTheDocument();
 
         await waitFor(() => {

@@ -40,10 +40,14 @@ describe('Skills page in shared LearningLayout', () => {
     expect(screen.queryByRole('button', { name: /Попередня|Назад/ })).not.toBeInTheDocument();
 
     const navbar = screen.getByRole('navigation', { name: aria.navigation.top });
-    expect(within(navbar).getByRole('switch', { name: ukUiKitMessages.navbarPreferences.theme.dark })).toBeInTheDocument();
+    expect(
+      within(navbar).getByRole('switch', { name: ukUiKitMessages.navbarPreferences.theme.dark }),
+    ).toBeInTheDocument();
     openSettings();
     const sidebar = await screen.findByRole('complementary', { name: aria.navigation.settings });
-    expect(within(sidebar).queryByRole('switch', { name: ukUiKitMessages.navbarPreferences.theme.dark })).not.toBeInTheDocument();
+    expect(
+      within(sidebar).queryByRole('switch', { name: ukUiKitMessages.navbarPreferences.theme.dark }),
+    ).not.toBeInTheDocument();
     expect(within(sidebar).getByRole('combobox', { name: ukUiKitMessages.navbarPreferences.language })).toBeVisible();
     expect(within(sidebar).getByRole('region', { name: 'Налаштування сторінки Skills' })).toBeInTheDocument();
     const mapControls = within(sidebar).getByRole('region', { name: 'Керування мапою Skills' });

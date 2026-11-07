@@ -88,11 +88,7 @@ function SkillAnalyticsContent({
       }
       showBottomNavbar={false}
       preferences={
-        <NavbarPreferences
-          messages={messages.navbarPreferences}
-          locale={locale}
-          onLocaleChange={setLocale}
-        />
+        <NavbarPreferences messages={messages.navbarPreferences} locale={locale} onLocaleChange={setLocale} />
       }
       settingsContent={({ closeSettings }) => <SkillsPagePreferences onFitToScreen={closeSettings} />}
     >
