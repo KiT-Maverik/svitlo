@@ -2,9 +2,10 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
+import os from 'node:os';
 import { fileURLToPath } from 'node:url';
 import ts from 'typescript';
-import { buildCoursePlan, groupUuid, renderCourseSource } from './build-course.mjs';
+import { buildCoursePlan, groupUuid, renderCourseSource, verifyOrWriteGenerated } from './build-course.mjs';
 
 const root = path.resolve(fileURLToPath(new URL('../..', import.meta.url)));
 const schema = JSON.parse(fs.readFileSync(path.join(root, 'studio/skills/course-workflow/course-toc.schema.json'), 'utf8'));
@@ -155,4 +156,24 @@ test('Invalid locale declarations, approval and differing course IDs block gener
 test('Unknown Episode/Override editorial fields cannot silently enter Course plan', async () => {
   await assert.rejects(() => generate([{ type: 'episode', key: 'act1', title: 'Act 1', children: [] }]), /SCHEMA/);
   await assert.rejects(() => generate([{ ...lesson('intro'), overrides: { title: 'Unapproved' } }]), /SCHEMA/);
+});
+
+test('Writing is idempotent; check mode is read-only and rejects drift', async () => {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'course-builder-test-'));
+  const filename = path.join(directory, 'toc.generated.ts');
+  try {
+    const code = renderCourseSource(await generate([lesson('first')]), filename);
+    assert.throws(() => verifyOrWriteGenerated(filename, code, '--check'), /STALE/);
+    assert.equal(verifyOrWriteGenerated(filename, code, '--write'), true);
+    const stat = fs.statSync(filename).mtimeMs;
+    assert.equal(verifyOrWriteGenerated(filename, code, '--check'), false);
+    assert.equal(verifyOrWriteGenerated(filename, code, '--write'), false);
+    assert.equal(fs.statSync(filename).mtimeMs, stat);
+    assert.throws(() => verifyOrWriteGenerated(filename, code + '\\n', '--check'), /STALE/);
+    fs.writeFileSync(filename, '// manual edits must be kept\\n');
+    assert.throws(() => verifyOrWriteGenerated(filename, code, '--write'), /OWNERSHIP/);
+    assert.equal(fs.readFileSync(filename, 'utf8'), '// manual edits must be kept\\n');
+  } finally {
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
 });
