@@ -231,7 +231,10 @@ export async function buildCourseOverrides(text, schema, plan, resolveSource) {
   return overrides;
 }
 
-export async function buildCoursePlan({ methodologyText, tocText, schema, supportedCodes, resolveLesson }) {
+export async function buildCoursePlan({
+  methodologyText, tocText, schema, supportedCodes, resolveLesson,
+  overridesText, overridesSchema, resolveOwnedSource,
+}) {
   const methodology = methodologyFrontmatter(methodologyText);
   const toc = parseYaml(tocText, 'toc.yaml');
   validateSchema(toc, schema);
