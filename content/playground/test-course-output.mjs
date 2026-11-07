@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { mergeLessonResources } from '@svitlo/engine/lesson';
 
 const base = join(process.cwd(), 'dist/static/data/pages/courses');
 const courseId = '30ecbde1-97fd-5fe7-a353-ea89b9ef4a67';
@@ -9,12 +10,16 @@ const lessonId = 'd3048d21-8690-5255-b62c-984c69ac272c';
 const episodeId = '9f417177-1d07-5a9d-ad74-0146c5637e84';
 const files = JSON.parse(readFileSync('dist/manifest.json', 'utf8')).files;
 const json = (...segments) => JSON.parse(readFileSync(join(base, courseId, ...segments), 'utf8'));
+const assembled = (...segments) => mergeLessonResources(json(...segments.slice(0, -1), 'base.json'), json(...segments));
 
 test('Playground Course generates independent localized TOC, sparse override and Episode resources', () => {
-  const toc = json('toc', 'uk.json');
-  const patch = json('overrides', lessonId, 'uk.json');
-  const episode = json('episodes', episodeId, 'uk.json');
+  const toc = assembled('toc', 'uk.json');
+  const patch = assembled('overrides', lessonId, 'uk.json');
+  const episode = assembled('episodes', episodeId, 'uk.json');
 
+  assert.equal(Object.hasOwn(json('toc', 'uk.json'), 'type'), false);
+  assert.equal(Object.hasOwn(json('episodes', episodeId, 'uk.json'), 'sections'), false);
+  assert.equal(Object.hasOwn(json('overrides', lessonId, 'uk.json'), 'lessonId'), false);
   assert.equal(toc.type, 'course');
   assert.equal(toc.id, courseId);
   assert.equal(toc.children[0].type, 'module');
@@ -43,7 +48,7 @@ test('Playground Course generates independent localized TOC, sparse override and
 });
 
 test('the Course-only gallery contains all supported renderable blocks and publishes its local media', () => {
-  const patch = json('overrides', lessonId, 'uk.json');
+  const patch = assembled('overrides', lessonId, 'uk.json');
   const gallery = patch.overrides.sections.added.find(entry => entry.section.slug === 'contentBlockGallery')?.section;
   assert(gallery, 'Missing content block gallery Section');
   assert.equal(gallery.type, 'learningFlow');
@@ -95,7 +100,7 @@ test('Course generator emits matching resource groups for every supported locale
   const prefix = 'data/pages/courses/' + courseId + '/';
   const paths = files.filter(name => name.startsWith(prefix));
   const locales = paths
-    .filter(name => name.includes('/toc/'))
+    .filter(name => name.includes('/toc/') && !name.endsWith('/base.json'))
     .map(name => name.slice(name.lastIndexOf('/') + 1).replace(/\.json$/, ''));
   assert(locales.length > 1);
   for (const locale of locales) {
@@ -107,5 +112,12 @@ test('Course generator emits matching resource groups for every supported locale
       assert(paths.includes(prefix + relative));
     }
   }
-  assert.equal(paths.length, 3 * locales.length);
+  assert.equal(paths.length, 3 * (locales.length + 1));
+  for (const resource of [
+    'toc/base.json',
+    'overrides/' + lessonId + '/base.json',
+    'episodes/' + episodeId + '/base.json',
+  ]) {
+    assert(paths.includes(prefix + resource));
+  }
 });

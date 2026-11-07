@@ -1,7 +1,9 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import type { Course_TocContext, Episode, Lesson, Locale_Languages } from '@svitlo/contracts/content';
+import type { Episode, Lesson } from '@svitlo/contracts/content';
 import { createChapter, createEpisode, createModule } from './createCourseEntities';
+import { createCourse } from './createCourse';
+import { mergeLessonResources } from '../lessons/mergeLessonResources';
 
 const languages = ['en', 'uk'] as const;
 const title = {
@@ -42,10 +44,9 @@ const lesson = (id: string): Lesson<'data', typeof languages> => ({
 });
 const one = lesson('lesson-1');
 const two = lesson('lesson-2');
-const context: Course_TocContext<typeof languages> = { language: 'uk' };
 
 describe('Course entity creators', () => {
-  it('creates typed hierarchical TOC and serializable authoring resource data', () => {
+  it('builds localized TOC solely at the Course level from typed nested entities', () => {
     const episode = createEpisode<typeof languages>(episodeData);
     const chapter = createChapter<typeof languages>({
       type: 'chapter',
@@ -59,60 +60,75 @@ describe('Course entity creators', () => {
       id: 'module-1',
       iconKey: 'folder',
       title,
-      content: [chapter, two, episode],
+      content: [chapter, two],
     });
-
-    const toc = module.toToc(context);
-    assert.equal(toc.type, 'module');
+    const course = createCourse<typeof languages>({
+      type: 'course',
+      id: 'course-1',
+      title,
+      description: { id: 'description', slug: 'description', type: 'markdown', locales: 'Invariant description' },
+      parameters: { languages },
+      content: [module],
+    });
+    const toc = course.toToc({ language: 'uk' });
+    assert.equal(toc.type, 'course');
     assert.equal(toc.title, 'Подорож');
-    assert.equal(toc.iconKey, 'folder');
-    assert.deepEqual(
-      toc.children.map(item => item.type),
-      ['chapter', 'lesson', 'episode'],
-    );
-    assert.equal(toc.children[0].type, 'chapter');
-    if (toc.children[0].type === 'chapter') {
+    assert.equal(toc.children[0].type, 'module');
+    if (toc.children[0].type === 'module') {
+      assert.equal(toc.children[0].title, 'Подорож');
+      assert.equal(toc.children[0].iconKey, 'folder');
       assert.deepEqual(
         toc.children[0].children.map(item => item.type),
-        ['lesson', 'episode'],
+        ['chapter', 'lesson'],
       );
+      const first = toc.children[0].children[0];
+      if (first.type === 'chapter') {
+        assert.equal(first.iconKey, 'bookmark');
+        assert.deepEqual(
+          first.children.map(item => item.type),
+          ['lesson', 'episode'],
+        );
+      }
     }
-    assert.equal(episode.toToc(context).iconKey, 'clapperboard');
-
-    const output = module.toResource(context);
-    assert.deepEqual(output.toc, toc);
-    const firstChild = output.data.content[0];
-    assert.equal('type' in firstChild ? firstChild.type : 'lesson', 'chapter');
-    assert.equal(JSON.stringify(output).includes('getData'), false);
+    const data = course.getData();
+    assert.equal('type' in data.content[0] ? data.content[0].type : 'lesson', 'module');
+    assert.equal(JSON.stringify(data).includes('getData'), false);
     assert.deepEqual(
-      chapter.getPublicationItems().lessons.map(item => item.id),
+      chapter.getContentEntries().lessons.map(item => item.id),
       ['lesson-1'],
     );
     assert.deepEqual(
-      module.getPublicationItems().lessons.map(item => item.id),
+      module.getContentEntries().lessons.map(item => item.id),
       ['lesson-1', 'lesson-2'],
     );
     assert.deepEqual(
-      module.getPublicationItems().groups.map(item => item.type),
+      module.getContentEntries().groups.map(item => item.type),
       ['chapter'],
     );
+
+    const base = course.getBase();
+    const locale = course.getLocale('uk');
+    assert.equal((base.toc as { type: string }).type, 'course');
+    assert.equal((base.toc as { title?: string }).title, undefined);
+    assert.equal(JSON.stringify(locale.toc).includes('course-1'), false);
+    assert.deepEqual(mergeLessonResources(base.toc, locale.toc), toc);
+    assert.deepEqual(mergeLessonResources(base.episodes['episode-1'], locale.episodes['episode-1']), episodeData);
   });
 
-  it('preserves references and validates requested locale', () => {
-    const chapter = createChapter<typeof languages>({
-      type: 'chapter',
-      id: 'c',
-      title,
-      content: [one],
+  it('keeps invariant navigation strings in base and rejects unsupported locales', () => {
+    const course = createCourse<typeof languages>({
+      type: 'course',
+      id: 'course-1',
+      title: { ...title, value: 'Invariant title' },
+      description: { id: 'description', slug: 'description', type: 'markdown', locales: 'Invariant description' },
+      parameters: { languages },
+      content: [createChapter<typeof languages>({ type: 'chapter', id: 'c', title, content: [one] })],
     });
-    assert.deepEqual(chapter.getData().content, [one]);
-    assert.throws(
-      () =>
-        chapter.toToc({
-          ...context,
-          language: 'de' as (typeof languages)[number],
-        }),
-      /Missing title/,
-    );
+    assert.equal((course.getBase().toc as { title: string }).title, 'Invariant title');
+    assert.deepEqual(course.getLocale('uk').toc, {
+      children: { '0': { title: 'Подорож', children: { '0': { title: 'Урок lesson-1' } } } },
+    });
+    assert.throws(() => course.getLocale('de' as (typeof languages)[number]), /Unsupported Course language/);
+    assert.throws(() => course.toToc({ language: 'de' as (typeof languages)[number] }), /Unsupported Course language/);
   });
 });

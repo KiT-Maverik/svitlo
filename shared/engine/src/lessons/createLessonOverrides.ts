@@ -6,9 +6,6 @@ import type {
   Course_LessonAuthoringOverride,
   Course_SectionChanges,
   Course_BlockChanges,
-  Course_TocContext,
-  Course_TocLesson,
-  Course_Resource,
   DefaultLessonEvent,
   Lesson,
   LessonEventOverrides,
@@ -240,16 +237,6 @@ function diffContent<Languages extends Locale_Languages>(
     patch.bySlug = bySlug as unknown as Course_BlockChanges<Languages>['bySlug'];
   }
   return Object.keys(patch).length ? patch : undefined;
-}
-
-function localizedTitle<L extends Locale_Languages>(
-  title: string | Record<L[number], string>,
-  language: L[number],
-): string {
-  if (typeof title === 'string') return title;
-  const value = title[language];
-  if (typeof value !== 'string') throw new Error(`Missing Lesson title for language ${language}`);
-  return value;
 }
 
 function blocksAsSources(section: AnySection, source: Source): Readonly<Record<string, Source>> {
@@ -546,27 +533,8 @@ export class LessonOverridesBuilder<L extends AnyLesson, Sections extends readon
     return this.build();
   }
 
-  getPublicationItems() {
+  getContentEntries() {
     return { lessons: [this.lesson], groups: [], episodes: [], overrides: [this.build()] };
-  }
-
-  /** The Lesson remains one TOC leaf; only its localized title may change. */
-  toToc(context: Course_TocContext<LanguagesOf<L>>): Course_TocLesson {
-    const patchTitle = this.build().overrides.title;
-    return {
-      type: 'lesson',
-      id: this.lesson.id,
-      title: localizedTitle(
-        (patchTitle ?? this.lesson.title) as string | Record<LanguagesOf<L>[number], string>,
-        context.language,
-      ),
-    };
-  }
-
-  toResource(
-    context: Course_TocContext<LanguagesOf<L>>,
-  ): Course_Resource<Course_LessonAuthoringOverride<LanguagesOf<L>, CustomEventsOf<L>>, Course_TocLesson> {
-    return { data: this.build(), toc: this.toToc(context) };
   }
 }
 

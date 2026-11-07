@@ -2,6 +2,8 @@
 
 **Status:** Active — translation of localized strings in strictly typed source files.
 
+**Production coordination:** For an authorized batch translation campaign, follow [Manage Translation Production](./manage-translation-production.skill.md). Work only on the exact assigned entity × language pairs and exclusively owned editable paths; use a Draft agent PR targeting the common integration branch, not `main`. All translator PRs must be merged into integration before independent review starts. A batch may comprise multiple Lessons/Skill subtrees/other entities; work through its whole scope without one user prompt per entity. Do not auto-create per-Lesson/per-language Issues.
+
 **Mandatory first action:** Read [Technical Translator Persona](../../personas/technical-translator.persona.md) in full. Follow the repository's `AGENTS.md`, relevant package instructions, [Internationalization & Inclusive Access](../../docs/architecture/internationalization-and-accessibility.md) and [Git-First Typed Content](../../docs/architecture/git-first-typed-content.md). Inspect the **current** source contracts and translation conventions; do not infer them from examples alone.
 
 ## PURPOSE AND BOUNDARIES

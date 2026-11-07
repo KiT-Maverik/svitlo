@@ -58,7 +58,7 @@ export type Lesson<
 }[ConfigType];
 
 /** Reject custom event IDs that are not declared in Lesson's third generic, even in helper calls without satisfies. */
-type LessonEventKeysValidated<T, CustomEvents extends string> = T extends { events: infer Events }
+export type LessonEventKeysValidated<T, CustomEvents extends string> = T extends { events: infer Events }
   ? { events: Record<Exclude<keyof Events, SupportedLessonEvents<CustomEvents>>, never> }
   : unknown;
 
