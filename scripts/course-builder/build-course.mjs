@@ -289,6 +289,22 @@ export async function resolveImplementedLesson(root, id) {
   };
 }
 
+/** Ownership-safe idempotent output; --check never creates or changes files. */
+export function verifyOrWriteGenerated(filename, rendered, action) {
+  if (action !== '--write' && action !== '--check') error('ARGS', 'unknown output action ' + action);
+  const existing = fs.existsSync(filename) ? fs.readFileSync(filename, 'utf8') : undefined;
+  if (action === '--check') {
+    if (existing !== rendered) error('STALE', 'Course TS composition is absent or out of date: ' + filename);
+    return false;
+  }
+  if (existing !== undefined && !existing.startsWith(generatedHeader)) {
+    error('OWNERSHIP', 'refusing to replace non-generated ' + filename);
+  }
+  if (existing === rendered) return false;
+  fs.writeFileSync(filename, rendered, 'utf8');
+  return true;
+}
+
 export function parseArguments(args) {
   let packagePath, courseId, action;
   for (let i = 0; i < args.length; i++) {
@@ -327,18 +343,8 @@ export async function main(args) {
   if (plan.courseId !== courseId) error('COURSE_ID', 'requested Course UUID differs from editorial input');
   const filename = path.join(folder, 'toc.generated.ts');
   const rendered = renderCourseSource(plan, filename);
-  if (action === '--check') {
-    if (!fs.existsSync(filename) || fs.readFileSync(filename, 'utf8') !== rendered) {
-      error('STALE', 'Course TS composition is absent or out of date: ' + filename);
-    }
-  } else {
-    if (fs.existsSync(filename)) {
-      const existing = fs.readFileSync(filename, 'utf8');
-      if (!existing.startsWith(generatedHeader)) error('OWNERSHIP', 'refusing to replace non-generated ' + filename);
-      if (existing === rendered) return console.log('Course TS already up to date: ' + filename);
-    }
-    fs.writeFileSync(filename, rendered, 'utf8');
-  }
+  const updated = verifyOrWriteGenerated(filename, rendered, action);
+  if (action === '--write' && !updated) return console.log('Course TS already up to date: ' + filename);
   console.log('Validated Course ' + plan.courseId + ' (' + plan.lessons.size + ' unique Lessons); ' + action + ' ' + filename);
 }
 
