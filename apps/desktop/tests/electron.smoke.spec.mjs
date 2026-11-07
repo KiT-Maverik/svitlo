@@ -28,13 +28,13 @@ test('cold-start desktop opens its packaged Playground lesson without remote acc
     await expect(page.getByText('Як поширюється світло в прозорому однорідному середовищі?')).toBeVisible();
     await expect(page.getByText('Could not open the packaged lesson')).toHaveCount(0);
     await page.getByRole('button', { name: 'Профіль' }).click();
-  await page.getByRole('menuitem', { name: 'Швидкі налаштування' }).click();
+    await page.getByRole('menuitem', { name: 'Швидкі налаштування' }).click();
     await page.getByRole('combobox', { name: 'Мова інтерфейсу' }).click();
     await page.getByRole('option', { name: 'English' }).click();
     await expect(page).toHaveURL(/^svitlo:\/\/app\/en\/lesson\/uk\//);
     await expect(page.getByRole('heading', { name: 'Як рухається світло' })).toBeVisible();
     await page.getByRole('button', { name: 'Profile' }).click();
-  await page.getByRole('menuitem', { name: 'Quick settings' }).click();
+    await page.getByRole('menuitem', { name: 'Quick settings' }).click();
     await page.getByRole('combobox', { name: 'Lesson language' }).click();
     await page.getByRole('option', { name: 'English' }).click();
     await expect(page).toHaveURL(/^svitlo:\/\/app\/en\/lesson\/en\//);

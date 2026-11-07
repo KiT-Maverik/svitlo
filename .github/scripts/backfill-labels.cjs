@@ -90,7 +90,10 @@ module.exports = async function backfill({ github, context, core, shard, shards 
     const result = new Set();
     if (/^(fix(?:\(|:|!|\/)|bug(?:\(|:|!|\/))/.test(t) || /\b(fix|bugfix|repair|regression)\b/.test(t))
       result.add('work: fix');
-    const architectureTitle = /\b(architectur(?:e|al)|system design|(?:runtime|module|package|component) boundaries|data flows?|dependency injection)\b/.test(t);
+    const architectureTitle =
+      /\b(architectur(?:e|al)|system design|(?:runtime|module|package|component) boundaries|data flows?|dependency injection)\b/.test(
+        t,
+      );
     if (architectureTitle) result.add('work: architecture');
     if (/^(feat(?:\(|:|!|\/)|feature(?:\(|:|!|\/))/.test(t) && !architectureTitle) result.add('work: feature');
     if (/\brefactor(?:ing)?\b/.test(t)) result.add('work: refactor');
