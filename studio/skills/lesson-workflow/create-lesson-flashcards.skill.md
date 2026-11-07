@@ -31,9 +31,9 @@ Select atomic recall targets. Do not demand one card per Question, per paragraph
 - When two cards retrieve the same concept in opposite directions, keep both only if each direction is independently useful, and connect them with `reverse`. Avoid duplicating the same direction with superficial rewording.
 - For code cards, assess structure, context, behavior or actual writing competence rather than accidental variable names. For write-code prompts, back with the minimum working code/template. For predict-output prompts, provide the exact output and a one-sentence causal reason when needed. Use `code` ContentBlocks for code, not prose TextBlocks.
 
-### List count hint
+### Count flag for a list answer
 
-For a genuine answer list of **N** independent elements, record `listAnswerCount: N` (N >= 2) in YAML, and keep `front` free of an inserted literal `(N)`. The intended Svitlo UI must show this through a **typed count flag**, which is not yet supported by the current untyped `flags: string[]` contract. Do **not** imply the count flag exists; preserve the structured count for follow-up flag architecture. During the interim, `hint` may carry a minimal numeric TextBlock if needed, but it is not the canonical field and must not be used as a substitute for `listAnswerCount`. Ensure the actual list is explicitly enumerated when it improves recall and recheck the count after edits or linked-Question updates. No count for a singular fact or incidental punctuation.
+When the back is a genuine multi-element enumeration, put one **typed list flag** in the card's `flags`: `{type: list, count: N}`, with integer N >= 2. Do not put an artificial `(N)` in the question, a duplicate `listAnswerCount` field, or a redundant numeral hint. The UI derives the list-count chip from this single canonical field. Enumerate answer items clearly when helpful, preserve meaningful order, and confirm the count after edits or Question source updates. A conjunction or incidental comma does **not** justify inventing a list.
 
 ## Step 2 — Reuse Question data, never duplicate its localized facts
 
@@ -61,19 +61,35 @@ Every `front`, `back` and `hint` is an **ordered array of editorial ContentBlock
 - `markdown`: only when concise mathematical/structured notation benefits from it.
 - `image`/other media: only when the stimulus itself is the recall target or needed for access, with real approved asset or explicit pending `assetRequest`/dependency and a non-revealing accessible alternative.
 - Avoid decorative videos, scenes, carousels or checklists inside a small flashcard. If a valid card needs a ContentBlock that this editorial schema cannot yet describe with enough type safety, report a specific generator extension rather than silently replacing it with prose.
-- Use `hint` for helpful cues (especially list counts), not answer leaks. Preserve meaningful LTR/RTL and literacy adaptations.
+- Use `hint` for helpful cues that are not already supplied by typed flags; never repeat the list count there or leak the answer. Preserve meaningful LTR/RTL and literacy adaptations.
 
-## Step 4 — Optional pronounceable acronym
+## Step 4 — Author typed flags, including optional acronyms
 
-For meaningful enumerations, optionally produce an `acronym` object:
+Use the discriminated `flags` array on each card. The canonical output contract has four variants:
 
-`{value, localePolicy, parts: [{kind: source, item, letters}, {kind: connector, letters}, ...]}`.
+```yaml
+flags:
+  - {type: list, count: 4}
+  - {type: warning}
+  - type: acronym
+    value: PaRFUME
+    localePolicy: needsLocalizedVersion
+    parts:
+      - {kind: source, item: Paper, letters: P}
+      - {kind: connector, letters: a}
+      - {kind: source, item: Rope, letters: R}
+      # Include all remaining pieces to spell the complete value.
+  - {type: custom, value: "Review this", color: info, icon: star}
+```
 
-Its `value` must equal the concatenation of `parts[].letters` in order. Every `source` part uses one or two genuine initial letters of its item in **UPPERCASE**; connector letters added for pronounceability are **lowercase**. Never invent an extra list item to force the mnemonic. Reject awkward or misleading acronyms rather than forcing one.
+This shows shape only: an actual acronym's complete `parts` MUST concatenate to its `value`, and uppercase source letters must actually match the remembered list. Do not force an acronym if it does not improve memory. Connector letters added for pronounceability must be lowercase; actual first one or two letters must be uppercase, preserving list meaning and intended sequence.
 
-`localePolicy: invariant` is allowed only when the mnemonic truly works unchanged in all Lesson languages; its raw `value` can then be included in generated `Flashcard.flags` as a label, deduplicated with authored `flags`. `localePolicy: needsLocalizedVersion` flags a **real blocker for multilingual flag publication**: current `flags: string[]` is not localizable. Do not publish untranslated source-language mnemonic as if it encoded every translated list. Require editorial solution (e.g. localized mnemonic content or a localized flag contract); record in `unresolvedDependencies`. Do not invent a runtime `acronym` property.
+- `list`: `count` integer >= 2. One list count flag, not duplicated in the front, hints or separate fields.
+- `warning`: a predefined caution chip; its learner-facing text comes from UI Kit's localized messages.
+- `acronym`: required editorial `value`, `localePolicy` and `parts`; generated runtime flag only needs `{type: 'acronym', value}`. `localePolicy: needsLocalizedVersion` blocks publication until a valid mnemonic exists for every supported locale. `invariant` is acceptable only if the same mnemonic genuinely applies to every locale. Never use a blanket fallback to the source language.
+- `custom`: `value` (learner-facing string), `color` (one canonical MUI Chip palette value) and optional `icon` (one known serialized icon token). Its text must be translated by the normal Lesson localization workflow unless truly invariant. Do not emit `ReactElement`, arbitrary SVG, import expressions or unsanitized CSS in authored data.
 
-A structured `listAnswerCount` is required for true list answers regardless of whether an acronym is available. The future typed count flag must derive from this metadata; a numeric hint remains optional interim presentation, never text appended to `front`.
+The four flag variants are **serialized data**, not ad hoc Storybook `labels`. The UI Kit's Flashcard flag adapter renders their icons, fixed colors and labels. Do not duplicate generated flag metadata or alter the Card's actual answer to show a flag.
 
 ## Step 5 — Author canonical typed card relationships
 
@@ -144,7 +160,8 @@ flashcards:
           fieldPath: [answers, correct, straightLine, value]
     hint: []
     tags: [light]
-    flags: []
+    flags:
+      - {type: custom, value: "Practice", color: success, icon: check}
 relationships: []
 unresolvedDependencies: []
 ```
@@ -158,9 +175,9 @@ Validate schema and additionally verify:
 1. Approved nonempty upstream Question bank, accurate provenance and stable IDs/slugs. **No Question source = no Flashcard authoring**.
 2. Every Question reference resolves to a genuine, correct field in the **actual bank**; for typed code generation, a real export exists, has compatible locales and matches generated TypeScript property access.
 3. Atomized content, concise independent prompts/answers, explicit punctuation/conjunction audit, zero meaningless duplicate cards.
-4. For list answers, `listAnswerCount` matches actual items, no count is manually embedded in `front`, and any interim numeric `hint` agrees with the structured count. The future typed count-flag mechanism must not be falsely claimed as implemented.
+4. For list answers, a single typed `flags: [{type: list, count: N}]` matches actual elements; no numeral is redundantly authored into the front, hints or another metadata field. For `custom`, verify its required value/color and optional allowed icon token.
 5. Variables use meaningful names and correct TextBlock/CodeBlock marker conventions. No claim that styling generates randomized values.
-6. Acronym source letters and connectors match uppercase/lowercase rules and the original items, with localized-flag limitations clearly surfaced.
+6. Acronym source letters and connectors match uppercase/lowercase rules and the original items, and any locale-specific mnemonic translations are pending until independently verified.
 7. Relationship slugs exist; types belong to the canonical nine-value enum, both endpoints receive mirrored links with the other card's actual ID and correct `position`, and no self-links or duplicate edges survive. Runtime graph storage is supported by Contracts/Engine; UI and scheduling actions are **not** implied.
 8. ContentBlock descriptions can actually be implemented or have precise recorded dependencies; no invented assets.
 9. One authored source language; no duplicated Question localizations, invented locales or hidden publication blockers.
