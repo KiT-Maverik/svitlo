@@ -1,3 +1,4 @@
+import type { AssessmentMethods_Locale } from '../../data/locale/assessmentMethods';
 import type { Audio_Locale } from '../../data/locale/audio';
 import type { Checkpoint_Locale } from '../../data/locale/checkpoint';
 import type { Flashcard_Locale } from '../../data/locale/flashcard';
@@ -10,6 +11,7 @@ import type { Video_Locale } from '../../data/locale/video';
 import type { Youtube_Locale } from '../../data/locale/youtube';
 
 export type {
+  AssessmentMethods_Locale,
   Audio_Locale,
   Checkpoint_Locale,
   Flashcard_Locale,
@@ -24,6 +26,7 @@ export type {
 
 /** One selected-language dictionary, assembled by the host from published JSON. */
 export type UiKitMessages = {
+  assessmentMethods: AssessmentMethods_Locale;
   audio: Audio_Locale;
   checkpoint: Checkpoint_Locale;
   flashcard: Flashcard_Locale;
