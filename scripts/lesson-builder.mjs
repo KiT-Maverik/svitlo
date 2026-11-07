@@ -667,8 +667,8 @@ export function runOne(source, mode = 'check', repo = repoRoot) {
   if (!['check', 'generate'].includes(mode)) throw new Error('Mode must be check or generate');
   const target = targetFor(source, repo);
   const input = inputFor(target.root);
-  // A failed conversion never writes or replaces Lesson Data. In generate mode
-  // it may record a separately owned blocker for the Lesson Production handoff.
+  // Validation must never emit invalid Lesson data; an error may write a separate
+  // machine-readable production blocker without overwriting any generated Lesson.
   let model;
   try {
     model = generateModel(target, input);
@@ -678,58 +678,14 @@ export function runOne(source, mode = 'check', repo = repoRoot) {
       if (fs.existsSync(blockedFile)) {
         const previous = JSON.parse(read(blockedFile));
         required(previous.generator === 'lesson-builder-v1' && previous.lessonId === target.lessonId,
-          'generated/requirements.blocked.json', '
-}
-function discover(repo) {
-  const roots = [];
-  const content = path.join(repo, 'content');
-  for (const entry of fs.readdirSync(content, { withFileTypes: true })) {
-    if (!entry.isDirectory()) continue;
-    const folder = path.join(content, entry.name);
-    const candidates = entry.name === 'languages'
-      ? fs.readdirSync(folder, { withFileTypes: true }).filter(e => e.isDirectory()).map(e => path.join(folder, e.name))
-      : [folder];
-    for (const workspace of candidates) {
-      const lessons = path.join(workspace, 'data/lessons');
-      if (!fs.existsSync(lessons)) continue;
-      for (const bucket of fs.readdirSync(lessons, { withFileTypes: true })) {
-        if (!bucket.isDirectory() || !/^[0-9a-f]$/.test(bucket.name)) continue;
-        for (const entity of fs.readdirSync(path.join(lessons, bucket.name), { withFileTypes: true })) {
-          if (!entity.isDirectory()) continue;
-          const folder = path.join(lessons, bucket.name, entity.name);
-          if (fs.existsSync(path.join(folder, 'content.yaml'))) roots.push(folder);
-        }
-      }
-    }
-  }
-  return roots.sort();
-}
-export function main(args = process.argv.slice(2), repo = repoRoot) {
-  const mode = args.shift();
-  if (!['generate', 'check'].includes(mode) || (args.length && !(args.length === 2 && args[0] === '--source'))) {
-    throw new Error('Usage: node scripts/lesson-builder.mjs generate|check [--source content/<book>/data/lessons/<bucket>/<uuid>]');
-  }
-  const roots = args.length ? [path.resolve(repo, args[1])] : discover(repo);
-  for (const source of roots) {
-    const result = runOne(source, mode, repo);
-    console.log(result.lessonId + ': ' + (mode === 'check' ? 'up to date' :
-      result.changed + ' files written') + '; unresolved: ' + result.requirements.length);
-  }
-  console.log('Verified ' + roots.length + ' editorial Lesson source(s)');
-}
-if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  try {
-    main();
-  } catch (error) {
-    console.error(error.message);
-    process.exitCode = 1;
-  }
-}
-, 'refusing to overwrite an unowned blocked handoff');
+          'generated/requirements.blocked.json', '$', 'refusing to overwrite an unowned blocked handoff');
       }
       const blocked = {
-        version: 1, generator: 'lesson-builder-v1', lessonId: target.lessonId,
-        inputs: input.inputs, unresolved: [{
+        version: 1,
+        generator: 'lesson-builder-v1',
+        lessonId: target.lessonId,
+        inputs: input.inputs,
+        unresolved: [{
           kind: 'contract', status: 'pending',
           location: error.file + ':' + error.field, detail: error.message,
         }],
@@ -745,102 +701,9 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   if (fs.existsSync(blockedFile)) {
     const previous = JSON.parse(read(blockedFile));
     required(previous.generator === 'lesson-builder-v1' && previous.lessonId === target.lessonId,
-      'generated/requirements.blocked.json', '
-}
-function discover(repo) {
-  const roots = [];
-  const content = path.join(repo, 'content');
-  for (const entry of fs.readdirSync(content, { withFileTypes: true })) {
-    if (!entry.isDirectory()) continue;
-    const folder = path.join(content, entry.name);
-    const candidates = entry.name === 'languages'
-      ? fs.readdirSync(folder, { withFileTypes: true }).filter(e => e.isDirectory()).map(e => path.join(folder, e.name))
-      : [folder];
-    for (const workspace of candidates) {
-      const lessons = path.join(workspace, 'data/lessons');
-      if (!fs.existsSync(lessons)) continue;
-      for (const bucket of fs.readdirSync(lessons, { withFileTypes: true })) {
-        if (!bucket.isDirectory() || !/^[0-9a-f]$/.test(bucket.name)) continue;
-        for (const entity of fs.readdirSync(path.join(lessons, bucket.name), { withFileTypes: true })) {
-          if (!entity.isDirectory()) continue;
-          const folder = path.join(lessons, bucket.name, entity.name);
-          if (fs.existsSync(path.join(folder, 'content.yaml'))) roots.push(folder);
-        }
-      }
-    }
-  }
-  return roots.sort();
-}
-export function main(args = process.argv.slice(2), repo = repoRoot) {
-  const mode = args.shift();
-  if (!['generate', 'check'].includes(mode) || (args.length && !(args.length === 2 && args[0] === '--source'))) {
-    throw new Error('Usage: node scripts/lesson-builder.mjs generate|check [--source content/<book>/data/lessons/<bucket>/<uuid>]');
-  }
-  const roots = args.length ? [path.resolve(repo, args[1])] : discover(repo);
-  for (const source of roots) {
-    const result = runOne(source, mode, repo);
-    console.log(result.lessonId + ': ' + (mode === 'check' ? 'up to date' :
-      result.changed + ' files written') + '; unresolved: ' + result.requirements.length);
-  }
-  console.log('Verified ' + roots.length + ' editorial Lesson source(s)');
-}
-if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  try {
-    main();
-  } catch (error) {
-    console.error(error.message);
-    process.exitCode = 1;
-  }
-}
-, 'unowned stale blocker');
-    if (mode === 'check') fail('generated/requirements.blocked.json', '
-}
-function discover(repo) {
-  const roots = [];
-  const content = path.join(repo, 'content');
-  for (const entry of fs.readdirSync(content, { withFileTypes: true })) {
-    if (!entry.isDirectory()) continue;
-    const folder = path.join(content, entry.name);
-    const candidates = entry.name === 'languages'
-      ? fs.readdirSync(folder, { withFileTypes: true }).filter(e => e.isDirectory()).map(e => path.join(folder, e.name))
-      : [folder];
-    for (const workspace of candidates) {
-      const lessons = path.join(workspace, 'data/lessons');
-      if (!fs.existsSync(lessons)) continue;
-      for (const bucket of fs.readdirSync(lessons, { withFileTypes: true })) {
-        if (!bucket.isDirectory() || !/^[0-9a-f]$/.test(bucket.name)) continue;
-        for (const entity of fs.readdirSync(path.join(lessons, bucket.name), { withFileTypes: true })) {
-          if (!entity.isDirectory()) continue;
-          const folder = path.join(lessons, bucket.name, entity.name);
-          if (fs.existsSync(path.join(folder, 'content.yaml'))) roots.push(folder);
-        }
-      }
-    }
-  }
-  return roots.sort();
-}
-export function main(args = process.argv.slice(2), repo = repoRoot) {
-  const mode = args.shift();
-  if (!['generate', 'check'].includes(mode) || (args.length && !(args.length === 2 && args[0] === '--source'))) {
-    throw new Error('Usage: node scripts/lesson-builder.mjs generate|check [--source content/<book>/data/lessons/<bucket>/<uuid>]');
-  }
-  const roots = args.length ? [path.resolve(repo, args[1])] : discover(repo);
-  for (const source of roots) {
-    const result = runOne(source, mode, repo);
-    console.log(result.lessonId + ': ' + (mode === 'check' ? 'up to date' :
-      result.changed + ' files written') + '; unresolved: ' + result.requirements.length);
-  }
-  console.log('Verified ' + roots.length + ' editorial Lesson source(s)');
-}
-if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  try {
-    main();
-  } catch (error) {
-    console.error(error.message);
-    process.exitCode = 1;
-  }
-}
-, 'stale blocker after successful generation');
+      'generated/requirements.blocked.json', '$', 'unowned stale blocker');
+    if (mode === 'check') fail('generated/requirements.blocked.json', '$',
+      'stale blocker after successful generation');
     fs.unlinkSync(blockedFile);
   }
   return { ...output, requirements: model.requirements, lessonId: target.lessonId };
