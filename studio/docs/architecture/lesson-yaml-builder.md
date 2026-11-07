@@ -17,7 +17,8 @@ approval links/revisions before invoking it.
 The source directory is the canonical
 content/<textbook>/data/lessons/<last-uuid-character>/<uuid>, containing
 methodology.md (or the legacy methodologist-brief.md), content.yaml,
-questions/questions.yaml, and optionally scenes/*.scene-spec.md.
+questions/questions.yaml, optional approved flashcards/flashcards.yaml, and
+optionally scenes/*.scene-spec.md.
 
 ## Commands
 
@@ -44,7 +45,8 @@ imports or a second publisher.
 
 Generated outputs:
 
-- generated/lesson.data.ts — typed Engine creator calls and full Question Catalog.
+- generated/lesson.data.ts — typed Engine creator calls, full Question Catalog,
+  and (when approved YAML exists) typed Flashcards via Engine linkFlashcards.
 - generated/requirements.json — machine-readable resource/contract/localization handoff.
 - generated/requirements.md — corresponding human-readable handoff.
 - generated/manifest.json — SHA-256 input and output fingerprints, generator
@@ -76,10 +78,16 @@ a Lesson slug needs an explicit migration. No timestamps or network lookups.
 
 ## Explicit blockers and deferred integrations
 
-1. Flashcards: current Flashcard contract uses typed front/back/hint ContentBlock
-   arrays, but there is **no approved canonical Flashcards YAML authoring source
-   or mapping**. The current Lesson requires an empty array and a visible
-   Flashcards integration requirement. Do not invent card semantics.
+1. Flashcards: the canonical approved Flashcards schema now exists. Optional
+   flashcards/flashcards.yaml is validated with the same source-language and
+   UUID invariants, and compiled to typed front/back/hint ContentBlocks, built-in
+   and custom flags, actual Question field references, and canonical relationships
+   mirrored by Engine linkFlashcards. If the approved YAML is absent, the Lesson
+   uses an empty Flashcard bank with an explicit editorial requirement. If a
+   Flashcard depends on an unsupported proposed block or missing essential
+   image information, generation stops with a structured blocked handoff.
+   Mnemonic composition and typed references are validated; educational
+   soundness and acronym translation still require review.
 2. Checkpoint ContentBlocks: editorial contentSpec has no canonical typed
    mapping for required title/items. The Builder refuses unsupported conversion.
 3. Question image blocks: editorial YAML lacks the required canonical image
