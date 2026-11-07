@@ -1,4 +1,5 @@
 import type { HowLightMoves_Languages } from '../../constants';
+import type { Quiz_Parameters } from '@svitlo/engine/content';
 import { createSection } from '@svitlo/engine/builders';
 import { howLightMoves_Questions } from '../../questions';
 
@@ -37,9 +38,9 @@ const title = {
 const parameters = {
   isBlocker: true,
   timeLimitSeconds: 300,
-  selection: { mode: 'all' as const, questionSlugs: Object.keys(howLightMoves_Questions.selectOneAnswer) },
-  layout: { mode: 'stepper' as const, showProgress: true },
-  feedbackMode: 'immediate' as const,
+  selection: { mode: 'all', questionSlugs: Object.keys(howLightMoves_Questions.selectOneAnswer) },
+  layout: { mode: 'stepper', showProgress: true },
+  feedbackMode: 'immediate',
   interaction: {
     retries: 0,
     showErrors: true,
@@ -49,22 +50,22 @@ const parameters = {
     allowQuestionNavigation: true,
     skippable: true,
   },
-  results: { visibility: 'after-review' as const, showScore: true },
+  results: { visibility: 'after-review', showScore: true },
   screen: {},
   questionOptions: {
     selectOneAnswer: {
       incorrectCount: 1,
       includeDistractors: true,
       shuffleAnswers: true,
-      correctVariant: 'random' as const,
+      correctVariant: 'random',
     },
   },
-};
+} satisfies Quiz_Parameters<'data', HowLightMoves_Languages>;
 
 export const quiz_Section_Creator = createSection<HowLightMoves_Languages>()({
   id: '2a02b81f-dbd6-58d8-9711-4deb97312a56',
-  type: 'quiz' as const,
-  slug: 'quiz' as const,
+  type: 'quiz',
+  slug: 'quiz',
   title,
   navigationLabel: title,
   skippable: true,

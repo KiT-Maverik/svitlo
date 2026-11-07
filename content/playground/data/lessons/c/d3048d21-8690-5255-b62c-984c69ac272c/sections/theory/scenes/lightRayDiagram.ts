@@ -357,7 +357,7 @@ export type LightRayDiagram_ContentBlock<ConfigType extends 'definition' | 'data
   Locale
 >;
 
-export const lightRayDiagramData = {
+export const lightRayDiagram = {
   type: 'scene',
   id: '72d22bea-d787-4c6d-9a83-144830c6d325',
   slug: 'lightRayDiagram',

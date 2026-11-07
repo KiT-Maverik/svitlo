@@ -992,10 +992,10 @@ export type Showcase_ContentBlock<ConfigType extends 'definition' | 'data' | 're
   Locale
 >;
 
-export const showcaseData = {
+export const showcase = {
   type: 'scene',
   id: '2abe959c-0908-4779-afbb-b2da6c1aa4d4',
-  slug: 'showcase' as const,
+  slug: 'showcase',
   locales: {
     en,
     ar,

@@ -1,6 +1,7 @@
-import type { Checkpoint_ContentBlock } from './checkpoint.types';
+import type { ContentBlock_Checkpoint } from '@svitlo/engine/content';
+import type { HowLightMoves_Languages } from '../../../constants';
 
-export const checkpointData = {
+export const checkpoint = {
   type: 'checkpoint',
   id: 'cd65e160-da27-57e1-a58f-38b1276c4346',
   slug: 'checkpoint',
@@ -250,4 +251,4 @@ export const checkpointData = {
       ],
     },
   ],
-} satisfies Checkpoint_ContentBlock<'data'>;
+} satisfies ContentBlock_Checkpoint<'data', HowLightMoves_Languages>;

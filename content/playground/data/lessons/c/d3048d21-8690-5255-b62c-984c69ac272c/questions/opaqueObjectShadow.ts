@@ -1,7 +1,6 @@
-import type { Question_SelectOneAnswer } from '@svitlo/engine/content';
-import type { HowLightMoves_Languages } from '../constants';
+import { defineQuestion } from './defineQuestion';
 
-export const opaqueObjectShadow_Question_Data = {
+export const opaqueObjectShadow_Question_Data = defineQuestion({
   answers: {
     correct: {
       shadow: {
@@ -158,7 +157,7 @@ export const opaqueObjectShadow_Question_Data = {
     },
   ],
   id: 'fbc29fba-d44d-5658-b6e7-ef1733ce81b5',
-  slug: 'opaqueObjectShadow' as const,
+  slug: 'opaqueObjectShadow',
   question: [
     {
       id: '449b5f02-dcf0-50c9-9c18-a379fd78589c',
@@ -199,4 +198,4 @@ export const opaqueObjectShadow_Question_Data = {
   ],
   restrictions: [],
   type: 'selectOneAnswer',
-} satisfies Question_SelectOneAnswer<'data', HowLightMoves_Languages>;
+});

@@ -1,7 +1,6 @@
-import type { Question_SelectOneAnswer } from '@svitlo/engine/content';
-import type { HowLightMoves_Languages } from '../constants';
+import { defineQuestion } from './defineQuestion';
 
-export const lightRayDirection_Question_Data = {
+export const lightRayDirection_Question_Data = defineQuestion({
   answers: {
     correct: {
       direction: {
@@ -158,7 +157,7 @@ export const lightRayDirection_Question_Data = {
     },
   ],
   id: '26b09f82-f8db-5b7a-9a0f-7e7937fba45c',
-  slug: 'lightRayDirection' as const,
+  slug: 'lightRayDirection',
   question: [
     {
       id: '8fbda15a-7184-519c-a6c1-a7da64575a05',
@@ -199,4 +198,4 @@ export const lightRayDirection_Question_Data = {
   ],
   restrictions: [],
   type: 'selectOneAnswer',
-} satisfies Question_SelectOneAnswer<'data', HowLightMoves_Languages>;
+});
