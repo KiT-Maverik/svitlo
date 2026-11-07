@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import type { Episode, Lesson } from '@svitlo/contracts/content';
-import { createChapter, createEpisode, createModule } from './createCourseEntities';
-import { createCourse } from './createCourse';
+import { createChapter, createEpisode, createModule } from './createModuleConfigurator';
+import { createCourse } from './createCourseConfigurator';
 import { mergeLessonResources } from '../lessons/mergeLessonResources';
 
 const languages = ['en', 'uk'] as const;
