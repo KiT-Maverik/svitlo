@@ -147,7 +147,7 @@ export function createLesson<const L extends Lesson_Locale, Events extends strin
 ): LessonCreator<L>;
 export function createLesson<L extends Lesson_Locale, Events extends string = never>(
   data?: LessonSource<L, Events>,
-) {
+): unknown {
   const build = <const Source extends LessonSource<L, Events>>(source: Source) =>
     makeLessonCreator<L, Events, Source>(source);
   return data === undefined ? build : build(data);

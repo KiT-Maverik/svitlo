@@ -3,6 +3,7 @@ import { describe, it } from 'node:test';
 import { createContentBlock } from './createContentBlock';
 import { createSection } from './createSection';
 import { createLesson } from './createLesson';
+import { splitLessonValue } from './splitLessonValue';
 import { renderLessonFiles } from '../utils/generators/lessons/generateLessons.utils';
 import { createChapter } from '../course/createCourseEntities';
 import { createCourse } from '../course/createCourse';
@@ -106,7 +107,7 @@ describe('composable Lesson creators', () => {
       content: { '0': { value: 'Промінь' }, '2': { locales: '**Світло**' }, '3': { locales: { labels: { source: 'Джерело' } } } },
     });
     assert.equal(creator.toResource({ language: 'uk' }).config.locale.localeSources['/sections/0/content/0/value'].code, 'uk');
-    assert.throws(() => text.toResource({ languages: ['en', 'uk', 'de'] }), /Incomplete locale dictionary/);
+    assert.throws(() => splitLessonValue({ value: { en: 'Only English' } }, languages), /Incomplete locale dictionary/);
   });
 
   it('preserves generator JSON bytes, locale paths, and response assembly for scenes and Quiz', () => {
