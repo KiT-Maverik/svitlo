@@ -371,3 +371,22 @@ test('preserves canonical text presentation fields and code-block exclusivity', 
     f.save();
     assert.throws(() => runOne(f.lesson, 'generate', f.repo), /mutually exclusive/);
   }));
+
+test('invalid content creates only a structured blocked handoff and recovers cleanly', () =>
+  withFixture(f => {
+    f.content.sections[0].blocks[0].contentSpec = { unsupported: true };
+    f.save();
+    assert.throws(() => runOne(f.lesson, 'generate', f.repo), /no approved mapping/);
+    const blocked = JSON.parse(fs.readFileSync(f.generated('requirements.blocked.json')));
+    assert.equal(blocked.lessonId, lessonId);
+    assert.equal(blocked.generator, 'lesson-builder-v1');
+    assert.equal(blocked.unresolved[0].kind, 'contract');
+    assert.ok(!fs.existsSync(f.generated('lesson.data.ts')));
+    delete f.content.sections[0].blocks[0].contentSpec;
+    f.save();
+    assert.throws(() => runOne(f.lesson, 'check', f.repo), /missing\/stale/);
+    runOne(f.lesson, 'generate', f.repo);
+    assert.ok(fs.existsSync(f.generated('lesson.data.ts')));
+    assert.ok(!fs.existsSync(f.generated('requirements.blocked.json')));
+    assert.equal(runOne(f.lesson, 'check', f.repo).changed, 0);
+  }));
