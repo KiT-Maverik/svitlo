@@ -11,7 +11,7 @@ export type * from './types/content/course';
 export type * from './types/content/quiz.types';
 export type { SkillId } from './types/content/skill.types';
 export type * from './types/content/flashcard.types';
-export { FLASHCARD_RELATION_TYPES } from './types/content/flashcard.types';
+export { FLASHCARD_RELATION_TYPES, FLASHCARD_FLAG_COLORS, FLASHCARD_FLAG_ICONS } from './types/content/flashcard.types';
 export type * from './types/content/review.types';
 export type * from './types/content/blocks';
 export type * from './types/content/questions';
