@@ -12,7 +12,7 @@ Read the focused [Lesson](../../docs/entities/lesson.md), [Lesson Content](../..
 
 Read [Svitlo Architecture & Product Principles](../../docs/architecture/README.md), particularly [Learning Experience Philosophy](../../docs/architecture/learning-experience-philosophy.md), [Internationalization & Inclusive Access](../../docs/architecture/internationalization-and-accessibility.md), [Offline/Device Compatibility](../../docs/architecture/offline-first-and-device-compatibility.md), and [Lesson Notes](../../docs/architecture/lesson-notes.md). Follow actual textbook instructions, the canonical taxonomy, and [SkillDomain](../../docs/entities/skill-domain.md), [SkillGroup](../../docs/entities/skill-group.md), [Skill](../../docs/entities/skill.md). The architecture expresses product intent, not proof of implemented runtime features.
 
-## REQUIRED INPUTS AND STOP CONDITIONS
+**Backward compatibility:** Newly created Lessons use `methodology.md`. For an existing Lesson with legacy `methodologist-brief.md`, update that existing file in place. Never write both as two Methodologist Briefs in the same Lesson directory.\n\n## REQUIRED INPUTS AND STOP CONDITIONS
 
 Do not author a Lesson Brief until these inputs are available and checked:
 
@@ -20,7 +20,8 @@ Do not author a Lesson Brief until these inputs are available and checked:
 2. **Approved Skills Taxonomy:** read `<PackageRoot>/docs/generated/skills/taxonomy.en.md` for relevant Domains, Groups, Skills and English methodological descriptions. **If absent**, run `node scripts/generate-skills-taxonomy.mjs --package content/<textbook> --locale en` from the **monorepo root**, substituting the actual package path; then read the result. The generated document is a read-only view of `*.data.ts` Code, **not** a separate canonical authority or proof of editorial approval. During staged migration, additionally consult approved but not-yet-promoted entries in `<PackageRoot>/docs/skills/taxonomy.md`, if present; this staging file can disappear after complete migration. If generation fails, a relevant entry is unavailable, or approval cannot be verified, **stop and report the blocker**, rather than guessing or treating partial output as complete.
 3. **Target Skills:** identify one or more **approved, independently meaningful Skills** and specify their canonical `*.data.ts` sources under **`<PackageRoot>/data/skills/` (outside `src/`)**. Record one Markdown link per Skill, labeled with its complete `.data.ts` filename; do not use Skill titles, UUIDs, generic link labels, or old `src/data/skillsTaxonomy/` paths. Verify pedagogical Skill identity against approved taxonomy. The canonical `data/skills/` layout is already used by Mathematics and Playground. Verify actual Skill files before linking to them. If another package has not migrated yet, report the unresolved path as a migration blocker; do not invent files or fall back to `src/`.
 4. **Audience:** intended learners, approximate prior knowledge and language/literacy context, and relevant accessibility needs; do not automatically assume a school grade.
-5. **Intent and constraints:** intended learning outcomes or instructional problem, content boundaries, required depth, known prerequisites, references and any mandatory standards or safety requirements. Surface missing **material** constraints instead of inventing them.
+5. **Intent and constraints:** intended learning outcomes or instructional problem, content boundaries, required depth, known prerequisites, references and any mandatory standards or safety requirements.
+6. **Language plan:** explicitly record `documentLanguage` (language of the methodological prose, normally `en`) and a non-empty, unique, ordered `supportedLanguages` list of planned learner-facing Lesson locales. Check against `DEFAULT_SUPPORTED_LANGUAGES`. If this Lesson is proposed for a Course, include **all Course languages**; otherwise establish the planned locale set with the editor and report missing decisions instead of guessing. Surface missing **material** constraints instead of inventing them.
 
 **Optional:** compatibility with a named Curriculum or Program, delivery modality, expected duration, media/technology restrictions, locale-specific contexts, or special revision goals. If compatibility is requested, actually read the named Curriculum and reconcile scope, learning depth and prerequisites **without making it the Lesson's owner**. If none is specified, do not manufacture a Curriculum or claim compatibility with all curricula. Curriculum is **never** a prerequisite for this Skill.
 
@@ -35,7 +36,7 @@ If approved Skills, essential audience or substantive intent are missing, or a S
 5. **Check scope and independence.** One Lesson may target multiple Skills when they form a coherent learning objective; if it becomes an entire course, propose a split for editor approval rather than silently splitting, merging, adding or renaming Skills. No grade ceilings or instructional modes may be written back into the taxonomy.
 6. **Honor cross-cutting constraints.** Specify localization-sensitive terms and examples, disability-aware alternatives the experience must enable, offline completeness and low-device pedagogical equivalence. Note factual uncertainty and sources. Do not invent runtime APIs, Note events or assessment guarantees.
 7. **Escalate conflicts.** The Methodologist Persona's mandatory Skill-versus-Question and disciplinary ownership gates still apply. Report specific choices in the editor handoff and do not alter approved taxonomy identities or another specialist's approved section.
-8. **Write only the standalone Methodologist Brief.** Create `methodologist-brief.md` using the template below, or update that exact existing file in place. Never insert Methodologist content into the Lesson config, Content, runtime assets, or another role's document. Do not generate duplicate Briefs.
+8. **Write only the standalone Methodologist Brief.** Create `methodology.md` for a new Lesson, or update the existing `methodology.md` / legacy `methodologist-brief.md` in place. Never insert Methodologist content into the Lesson config, Content, runtime assets, or another role's document. Do not generate duplicate Briefs.
 9. **Audit and stop.** Validate approved taxonomy references, real relative links, unique slug, stable bucket placement, coherent scope, outcomes, prerequisites, sources, role separation and status. Present the Brief for **explicit editor approval**; never run Create Lesson Content or implementation automatically.
 
 ### Approval and revisions
@@ -44,9 +45,14 @@ The new document is a **Draft Methodologist Brief**, not a draft of the _impleme
 
 ## METHODOLOGIST BRIEF TEMPLATE
 
-The following is an **embedded authoring template**; replace all placeholders and remove inapplicable optional notes before delivery. Canonical editorial writing is in **English**; learner-facing content will be localized in its later authoring stage. Do not use a target-language translation as a replacement for the canonical pedagogical contract.
+The following is an **embedded authoring template**; replace all placeholders and remove inapplicable optional notes before delivery. Canonical editorial writing is in **English**, so set `documentLanguage: en` unless an editor explicitly authorizes another editorial source language. This is **not** a localization of learner-facing Lesson content. `supportedLanguages` is the planned Lesson locale tuple; actual `Lesson.parameters.languages` and localized content must match it when implemented. Lessons may include more locales than a Course using them, but must include all Course locales. Do not treat either editorial metadata field as proof that translations have been authored or published.
 
 ```md
+---
+documentLanguage: en
+supportedLanguages: [en, uk] # replace with approved Lesson language plan
+---
+
 # %LESSON_TITLE% — Methodologist Brief
 
 Date: %YYYY-MM-DD%
@@ -108,6 +114,8 @@ Program dependence: None
 %Readiness summary, scope decisions, unresolved blockers, and what the Screenwriter may design after explicit approval.%
 ```
 
+**Localization metadata:** `documentLanguage` is the language of this editorial Brief. `supportedLanguages` lists planned learner-facing Lesson locales, not completed translations or a guarantee of runtime availability. Never silently drop a Course language when proposing a Lesson for that Course. For an existing legacy Brief without frontmatter, preserve the existing format and do not migrate it solely to add these fields unless the editor authorizes revision.
+
 **Metadata rules:** `Code` references the **Lesson implementation**, not a Skill Code link and not a directive to embed Methodologist prose in runtime configuration. Leave exactly `Code: [Not implemented](#)` unless a real Lesson implementation has been verified, in which case use its actual relative Markdown link and exact filename. Do not fabricate a runtime UUID, registry, approval date or implementation status. The Lesson slug is a file locator, not a verified runtime ID.
 
 **Target Skills rules:** Write a simple Markdown list with **one direct source-file link per approved Skill**, formatted exactly as `- [completeFilename.data.ts](relative/path/to/completeFilename.data.ts)`. The **link label must equal the target file's full basename**, including `.data.ts`; do not add bold Skill headings, friendly names, `Canonical Skill source` labels, UUIDs, `index.ts` aggregators, `*.ids.ts` dictionaries, generated taxonomy Markdown, or placeholder `#` links. Link directly to the `*.data.ts` file defining that **Skill**, not a Group/Domain.
@@ -125,7 +133,7 @@ The intermediate folders `arithmetic/addition/skills/` are an **example only**; 
 Each Lesson has a stable UUID. Its **folder is the UUID** in the bucket computed by `resolveEntityPath(id)` from `@svitlo/engine/utils` (see [entity UUID addressing](../../docs/architecture/entity-uuid-addressing.md)):
 
 ```text
-<PackageRoot>/data/lessons/<last-hex-digit>/<uuid>/methodologist-brief.md
+<PackageRoot>/data/lessons/<last-hex-digit>/<uuid>/methodology.md
 ```
 
 - On creation, mint the UUID once, use the shared Engine resolver to derive the path, and save a `lesson.identity.json` with `{ "id": "<uuid>", "slug": "<camelCaseSlug>" }` if typed `lesson.data.ts` does not exist yet.
@@ -138,7 +146,7 @@ Lessons remain Program-neutral and may be reused in several Curricula.
 
 ## DELIVERABLES AND ACCEPTANCE
 
-**Output exactly one authored/updated `methodologist-brief.md`** in the selected Lesson's stable UUID directory, with explicit `Draft` status and a verified Lesson Code link or the specified placeholder. Do not write companion Lesson Briefs, Lesson Content documents, runtime configs, or duplicate methodical content. Leave existing specialist and implementation artifacts untouched.
+**Output exactly one authored/updated Methodologist Brief** (`methodology.md` for new Lessons, or the existing legacy `methodologist-brief.md`) in the selected Lesson's stable UUID directory, with explicit `Draft` status and a verified Lesson Code link or the specified placeholder. Do not write companion Lesson Briefs, Lesson Content documents, runtime configs, or duplicate methodical content. Leave existing specialist and implementation artifacts untouched.
 
 The accompanying editor-facing handoff (chat/PR, not a second mandatory file) reports:
 

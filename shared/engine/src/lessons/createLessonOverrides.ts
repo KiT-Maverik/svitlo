@@ -3,6 +3,7 @@ import type {
   ContentBlock_Scene,
   Course_ContentSource,
   Course_LessonOverride,
+  Course_LessonAuthoringOverride,
   Course_SectionChanges,
   Course_BlockChanges,
   Course_TocContext,
@@ -438,7 +439,7 @@ export class LessonOverridesBuilder<L extends AnyLesson, Sections extends readon
   }
 
   /** Only changed authoring fields, plus explicit list operations, are emitted. */
-  build(): Course_LessonOverride<LanguagesOf<L>, CustomEventsOf<L>> {
+  build(): Course_LessonAuthoringOverride<LanguagesOf<L>, CustomEventsOf<L>> {
     type Languages = LanguagesOf<L>;
     const overrides: Course_LessonOverride<Languages, CustomEventsOf<L>>['overrides'] = {};
 
@@ -533,19 +534,28 @@ export class LessonOverridesBuilder<L extends AnyLesson, Sections extends readon
       if (Object.keys(patch).length) overrides.sections = patch;
     }
 
-    return { type: 'lessonOverride', lessonId: this.lesson.id, overrides };
+    return {
+      type: 'lessonOverride',
+      lessonId: this.lesson.id,
+      lesson: this.lesson as Lesson<'data', Languages, CustomEventsOf<L>>,
+      overrides,
+    };
   }
 
-  getData(): Course_LessonOverride<LanguagesOf<L>, CustomEventsOf<L>> {
+  getData(): Course_LessonAuthoringOverride<LanguagesOf<L>, CustomEventsOf<L>> {
     return this.build();
+  }
+
+  getPublicationItems() {
+    return { lessons: [this.lesson], groups: [], episodes: [], overrides: [this.build()] };
   }
 
   /** The Lesson remains one TOC leaf; only its localized title may change. */
   toToc(context: Course_TocContext<LanguagesOf<L>>): Course_TocLesson {
-    const base = context.resolveLesson(this.lesson.id);
     const patchTitle = this.build().overrides.title;
     return {
-      ...base,
+      type: 'lesson',
+      id: this.lesson.id,
       title: localizedTitle(
         (patchTitle ?? this.lesson.title) as string | Record<LanguagesOf<L>[number], string>,
         context.language,
@@ -555,7 +565,7 @@ export class LessonOverridesBuilder<L extends AnyLesson, Sections extends readon
 
   toResource(
     context: Course_TocContext<LanguagesOf<L>>,
-  ): Course_Resource<Course_LessonOverride<LanguagesOf<L>, CustomEventsOf<L>>, Course_TocLesson> {
+  ): Course_Resource<Course_LessonAuthoringOverride<LanguagesOf<L>, CustomEventsOf<L>>, Course_TocLesson> {
     return { data: this.build(), toc: this.toToc(context) };
   }
 }

@@ -6,7 +6,7 @@ import { createRequire } from 'node:module';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { build } from 'esbuild';
 import { createCourse } from '@svitlo/engine/builders';
-import { loadLessonData, splitLessonValue, writeLessonFiles } from '@svitlo/engine/utils';
+import { splitLessonValue, writeLessonFiles } from '@svitlo/engine/utils';
 import { mergeLessonResources } from '@svitlo/engine/lesson';
 
 const repo = path.resolve(fileURLToPath(new URL('../../../..', import.meta.url)));
@@ -55,43 +55,11 @@ async function loadCourse(filename) {
     fs.rmSync(tmp, { recursive: true, force: true });
   }
 }
-async function loadLessons(root) {
-  const result = new Map();
-  const directory = path.join(root, 'data/lessons');
-  if (!fs.existsSync(directory)) return result;
-  for (const bucket of fs.readdirSync(directory, { withFileTypes: true })) {
-    if (!bucket.isDirectory() || !/^[0-9a-f]$/.test(bucket.name)) continue;
-    for (const folder of fs.readdirSync(path.join(directory, bucket.name), { withFileTypes: true })) {
-      if (!folder.isDirectory()) continue;
-      id(folder.name);
-      if (folder.name.at(-1) !== bucket.name) throw new Error('Wrong Lesson bucket');
-      const dir = path.join(directory, bucket.name, folder.name);
-      const sources = fs.readdirSync(dir).filter(name => name.endsWith('.data.ts'));
-      if (sources.length !== 1) continue;
-      const lesson = await loadLessonData(path.join(dir, sources[0]));
-      if (lesson.id !== folder.name || result.has(lesson.id)) throw new Error('Duplicate Lesson ID');
-      result.set(lesson.id, lesson);
-    }
-  }
-  return result;
-}
-function walk(items, visitor) {
-  for (const item of items) {
-    if (typeof item === 'string') visitor('lesson', item);
-    else if (item.type === 'lessonOverride') visitor('override', item);
-    else if (item.type === 'episode') visitor('episode', item);
-    else if (item.type === 'module' || item.type === 'chapter') {
-      visitor('group', item);
-      walk(item.content, visitor);
-    } else throw new Error('Invalid Course entry');
-  }
-}
 async function render(root) {
   const folder = path.join(root, 'data/courses'),
     resources = new Map();
   if (!fs.existsSync(folder)) return resources;
-  const lessons = await loadLessons(root),
-    courseIds = new Set();
+  const courseIds = new Set();
   for (const name of fs.readdirSync(folder).filter(name => name.endsWith('.data.ts'))) {
     const course = await loadCourse(path.join(folder, name)),
       languages = course.parameters?.languages;
@@ -101,52 +69,50 @@ async function render(root) {
     if (!Array.isArray(languages) || !languages.length || new Set(languages).size !== languages.length) {
       throw new Error('Invalid Course languages');
     }
-    const visited = new Set([course.id]),
-      usedLessons = new Set();
-    walk(course.content, (kind, item) => {
-      const key = id(kind === 'lesson' ? item : kind === 'override' ? item.lessonId : item.id);
-      if (kind === 'group' || kind === 'episode') {
-        if (visited.has(key)) throw new Error('Duplicate Course node ID ' + key);
-        visited.add(key);
-        if (kind === 'episode' && item.sections.some(section => section.type !== 'scenario')) {
-          throw new Error('Episode contains non-scenario Section');
-        }
-      } else {
-        const lesson = lessons.get(key);
-        if (!lesson || usedLessons.has(key)) throw new Error('Missing/repeated Lesson: ' + key);
-        usedLessons.add(key);
-        if (languages.some(language => !lesson.parameters.languages.includes(language))) {
-          throw new Error('Lesson languages do not cover Course languages');
-        }
-      }
-    });
+    // A single unified Course creator API owns authored-tree traversal.
+    // Full Lesson Data is build-only; the publisher emits compact references.
     const creator = createCourse(course);
+    const { groups, episodes, lessons, overrides } = creator.getPublicationItems();
+    const visited = new Set([course.id]);
+    const usedLessons = new Set();
+    for (const group of groups) {
+      const key = id(group.id);
+      if (visited.has(key)) throw new Error('Duplicate Course node ID ' + key);
+      visited.add(key);
+    }
+    for (const episode of episodes) {
+      const key = id(episode.id);
+      if (visited.has(key)) throw new Error('Duplicate Course node ID ' + key);
+      visited.add(key);
+      if (episode.sections.some(section => section.type !== 'scenario')) {
+        throw new Error('Episode contains non-scenario Section');
+      }
+    }
+    for (const lesson of lessons) {
+      const key = id(lesson.id);
+      if (usedLessons.has(key)) throw new Error('Repeated Lesson: ' + key);
+      usedLessons.add(key);
+    }
+    for (const override of overrides) {
+      if (override.lessonId !== override.lesson?.id) throw new Error('Mismatched Lesson override ID');
+    }
     for (const language of languages) {
-      const context = {
-        language,
-        resolveLesson(key) {
-          const lesson = lessons.get(key);
-          if (!lesson) throw new Error('Unknown Lesson ' + key);
-          return {
-            type: 'lesson',
-            id: key,
-            title: typeof lesson.title === 'string' ? lesson.title : lesson.title[language],
-          };
-        },
-      };
-      resources.set(course.id + '/toc/' + language + '.json', JSON.stringify(creator.toToc(context)) + '\n');
-      walk(course.content, (kind, item) => {
-        if (kind === 'override')
-          resources.set(
-            course.id + '/overrides/' + item.lessonId + '/' + language + '.json',
-            JSON.stringify(localized(item, languages, language)) + '\n',
-          );
-        if (kind === 'episode')
-          resources.set(
-            course.id + '/episodes/' + item.id + '/' + language + '.json',
-            JSON.stringify(localized(item, languages, language)) + '\n',
-          );
-      });
+      const { toc } = creator.toResource({ language });
+      resources.set(course.id + '/toc/' + language + '.json', JSON.stringify(toc) + '\n');
+      for (const item of overrides) {
+        // Never publish the full source Lesson again inside an override patch.
+        const { lesson, ...patch } = item;
+        resources.set(
+          course.id + '/overrides/' + item.lessonId + '/' + language + '.json',
+          JSON.stringify(localized(patch, languages, language)) + '\n',
+        );
+      }
+      for (const episode of episodes) {
+        resources.set(
+          course.id + '/episodes/' + episode.id + '/' + language + '.json',
+          JSON.stringify(localized(episode, languages, language)) + '\n',
+        );
+      }
     }
   }
   return resources;

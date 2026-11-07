@@ -70,6 +70,7 @@ describe('createLessonOverrides', () => {
     const result = customized.build();
     assert.equal(result.type, 'lessonOverride');
     assert.equal(result.lessonId, lesson.id);
+    assert.equal(result.lesson, lesson);
     assert.deepEqual(result.overrides.title, { en: 'Adventure', uk: 'Пригода' });
     assert.deepEqual(result.overrides.parameters, { sections: { allowSkipping: false } });
     assert.deepEqual(result.overrides.events, { lessonCompleted: false });
@@ -125,17 +126,11 @@ describe('createLessonOverrides', () => {
     assert.deepEqual(customized.getData().overrides, {
       sections: { bySlug: { theory: { navigationLabel: 'Introduction' } } },
     });
-    const context = {
-      language: 'en' as const,
-      resolveLesson(id: string) {
-        return { type: 'lesson' as const, id, title: 'From catalog', iconKey: 'book-open' };
-      },
-    };
+    const context = { language: 'en' as const };
     assert.deepEqual(customized.toToc(context), {
       type: 'lesson',
       id: lesson.id,
       title: 'Light',
-      iconKey: 'book-open',
     });
     assert.deepEqual(customized.toResource(context), {
       data: customized.build(),

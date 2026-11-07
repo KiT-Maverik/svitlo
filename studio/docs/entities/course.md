@@ -2,13 +2,13 @@
 
 **Status:** Authored Course contracts, creator APIs and a Playground-only Course publication/navigation prototype are implemented. Course-owned React Scene registry generation, full publisher hardening, and progression/persistence remain future integration work.
 
-A **Course** is an ordered learning journey, distinct from a Curriculum. Its authored tree can contain Modules, Chapters, Episodes and standalone Lesson ID references or sparse Lesson override entries. A Module holds Chapters, Episodes or Lessons; a Chapter holds Episodes or Lessons. Episodes own `scenario` Sections; Scenes remain ContentBlocks.
+A **Course** is an ordered learning journey, distinct from a Curriculum. Its authored tree contains Modules, Chapters, Episodes and **complete reusable Lesson Data objects** or sparse Lesson override entries with the canonical Lesson attached at authoring time. This is a build-time-only dependency; no complete Lesson is duplicated in published Course JSON. A Module holds Chapters, Episodes or Lessons; a Chapter holds Episodes or Lessons. Episodes own `scenario` Sections; Scenes remain ContentBlocks.
 
 ## Navigation models
 
 `Course_Toc`, `Course_TocModule`, `Course_TocChapter`, `Course_TocLesson` and `Course_TocEpisode` have independently typed `children`. Their `type` values are derived from the existing Course/Module/Chapter/Episode/Lesson contracts, not duplicated discriminator unions. Modules, Chapters and Episodes accept optional `iconKey`. Lesson icons are resolved from the existing Lesson Definition (`iconKey` is not redundantly authored in Lesson Data).
 
-A TOC creator receives `{ language, resolveLesson(id) }`. Since a Course references Lessons by ID, a Chapter cannot invent or derive a Lesson's title/icon without this resolver.
+A TOC creator receives only `{ language }`. It reads localized Lesson titles from the already imported Lesson Data and emits compact TOC leaves with `type`, `id`, and localized `title`.
 
 ## Shared creator API
 
@@ -21,21 +21,22 @@ const chapter = createChapter({
   id: 'introduction',
   title: chapterTitle,
   iconKey: 'book',
-  content: [lessonA.id, episode],
+  content: [lessonA, episode],
 });
 const module = createModule({
   type: 'module',
   id: 'foundations',
   title: moduleTitle,
-  content: [chapter, lessonB.id],
+  content: [chapter, lessonB],
 });
 
 chapter.getData(); // normalized, authoring-time Chapter Data
 chapter.toToc(context); // localized, hierarchy-safe Course_TocChapter
-chapter.toResource(context); // { data, toc }, JSON-compatible publisher input
+chapter.toResource(context); // { data, toc }, build-time only
+chapter.getPublicationItems(); // { lessons, episodes, groups, overrides }, flattened
 ```
 
-Nested creators are unwrapped when producing `getData()`; no methods or closures enter published resource inputs. `toResource()` currently provides **prepared source data and the localized TOC**, not a fully localized Course Response. A subsequent publisher performs reference checks, full locale projection, static registry inclusion and file IO. Creator methods perform no IO.
+`getData()` and `toResource().data` retain full Lessons solely during the build; they are **not emitted directly into published JSON**. `getPublicationItems()` is the single traversal/normalization API used by the publisher for a flat set of Lessons, Episodes, grouping nodes, and overrides. `toToc()` and `toResource().toc` project compact locale-specific navigation. Shared creator methods do not perform IO; the publisher handles locale-specific Episodes, override resources, ID-integrity checks and file IO without rewalking the nested authoring tree.
 
 ## Sparse Lesson override API
 
@@ -54,7 +55,7 @@ overridden.toToc(context); // Lesson TOC leaf, with possible title override
 overridden.toResource(context); // { data: patch, toc }
 ```
 
-`build()` returns `{ type: 'lessonOverride', lessonId, overrides }` with **only changed fields**; unchanged sections, blocks, questions, flashcards, language sets and Lesson Definition are never copied. The `sections` field uses an explicit patch model:
+`build()` returns `{ type: 'lessonOverride', lessonId, lesson, overrides }` with **only changed override fields**; the `lesson` property is the original, unmodified Lesson Data available solely at authoring/build time. The publisher strips it and emits only `lessonId` plus the sparse override. Unchanged sections, blocks, questions, flashcards, language sets and Lesson Definition are never copied into the published patch. The `sections` field uses an explicit patch model:
 
 ```ts
 {
@@ -109,3 +110,23 @@ integration before it can render; the demonstration uses Markdown only.
 
 This is a proof of content publishing and navigation, **not yet** a full
 Course session/controller with completion across Lessons or persisted Course state.
+
+## Course methodological specification
+
+The independent [Create Course Methodology](../../../studio/skills/course-workflow/create-course-methodology.skill.md) skill writes a persistent editorial `methodology.md` under `content/<textbook>/data/courses/<bucket>/<courseId>/`. It records the intended audience, pedagogical rationale, standards compatibility, entry prerequisites, documentLanguage and planned supportedLanguages. It does **not** create a TOC, Course Data, Lessons or narrative. The authored Course currently supports optional `prerequisites` (skills, skillGroups, skillDomains, courses and a localized free-text Markdown block) and `scenarioMode: 'none' | 'story'`; legacy Courses may omit these fields. An omitted scenarioMode is not an assertion that a Course has a storyline. These contract fields do not imply automatic editorial Markdown ingestion, standards validation, prerequisite gating or narrative playback; those require separate implementation.
+
+## Course TOC Lesson matching
+
+The [Match Course TOC Lessons](../../../studio/skills/course-workflow/match-course-toc-lessons.skill.md) workflow enriches editorial `toc.yaml` slots with `lessonId` references. These point either to reviewed existing Lessons or to stable UUIDs reserved for standalone Methodologist drafts. There is no redundant per-slot implementation-status flag; actual Lesson `*.data.ts` presence determines implementation. Course-specific selection rationale stays in the TOC; Lesson Methodology remains independently reusable. The read-only [Lessons by Skill ID](../../../scripts/generate-lessons-by-skill.mjs) helper produces a flat PR-scoped Markdown reference library. This is not an auto-publishing or runtime Course matching feature.
+
+## Course languages and editor-authored TOC locale
+
+The Course already declares supported languages as `parameters.languages`. The generic `Course<'data', SupportedLanguages>` propagates them through Module, Chapter, Episode, Scenario Sections and Course-owned content/overrides. `Locale_Options<SupportedLanguages>` permits a complete localized dictionary or an **intentionally invariant string**, not partial translations. External Lessons are referenced by ID: the publisher checks that each `Lesson.parameters.languages` includes **every** Course language; Lessons may support more.
+
+Editorial `methodology.md` declares its own prose `documentLanguage` and planned `supportedLanguages`. The [skill-based TOC](../../../studio/skills/course-workflow/create-course-toc.skill.md) repeats supported languages and declares its **own** `documentLanguage` as the source locale for ordinary titles. Invariant titles are explicit `{value: "...", invariant: true}`. A future YAML-to-Course converter must put ordinary text into that locale, obtain translations for remaining supported languages, and must not copy untranslated source values as fallback. Its source `documentLanguage` must be in `supportedLanguages` for direct projection, even if the separate Methodology was written in another language. This editor convention does not imply an implemented YAML-to-Course converter.
+
+## Full Lesson Data in authoring, compact Course publications
+
+Course/Module/Chapter creators now accept full `Lesson<'data', SupportedLanguages>` objects instead of bare Lesson IDs. The shared Course generic propagates through nested entities and Lesson Data. This ensures the TS compiler sees the Lesson's declared languages and localized values at authoring time. `createLessonOverrides(lesson).build()` also carries its original Lesson Data for the same check. As with the existing Lesson contracts, scalar strings remain intentionally invariant; locale dictionaries must be complete.
+
+The Course publisher consumes `createCourse(course).toResource({language})` and `getPublicationItems()`, not manual recursive Lesson lookups. It writes localized TOC, Episodes, and sparse Lesson overrides, not embedded Lesson objects. Duplicate IDs, invalid buckets, missing authoring data and output collisions remain generator integrity checks. **Run TypeScript typecheck on authored Course sources before publication:** esbuild/transpilation alone does not typecheck. The current direct `Lesson<'data', SupportedLanguages>` contract expects the Lesson's declared language tuple to match the Course language tuple; supporting Lessons with additional independent locales may need a dedicated typed superset contract later, not silent weakening to `any`.

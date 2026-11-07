@@ -1,6 +1,7 @@
 import type { ContentBlock } from '../blocks';
 import type { Lesson_Override, Section_Override } from './override.types';
 import type { Locale_Languages } from '../locale.types';
+import type { Lesson } from '../lesson.types';
 import type { Section } from '../section.types';
 
 /** Authoring/renderer owner, not the source of the last data edit. */
@@ -54,4 +55,13 @@ export type Course_LessonOverride<Languages extends Locale_Languages, CustomEven
   overrides: Omit<Lesson_Override<Languages, CustomEvents>, 'sections'> & {
     sections?: Course_SectionChanges<Languages>;
   };
+};
+
+// Authoring-time Course override: keeps the entire typed Lesson available.
+// The published override resource uses Course_LessonOverride without this field.
+export type Course_LessonAuthoringOverride<
+  Languages extends Locale_Languages,
+  CustomEvents extends string = never,
+> = Course_LessonOverride<Languages, CustomEvents> & {
+  lesson: Lesson<'data', Languages, CustomEvents>;
 };
