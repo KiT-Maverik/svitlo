@@ -63,6 +63,34 @@ describe('LessonSteps', () => {
     }
   });
 
+  it('preserves non-active step elements across rapid navigation and gate changes', () => {
+    const baseProps = { navigationLabel: 'Lesson steps', steps, allowNavigation: true };
+    const { rerender } = render(
+      <LessonSteps {...baseProps} currentStep={0} canNavigateTo={step => step === 0} />,
+    );
+    const originalButtons = screen.getAllByRole('button');
+    expect(originalButtons[1]).toBeDisabled();
+
+    // Section changes can also register and release navigation blockers.
+    // The step strip must not unmount or replace the non-active labels.
+    for (const currentStep of [1, 2, 1, 0]) {
+      rerender(
+        <LessonSteps
+          {...baseProps}
+          currentStep={currentStep}
+          canNavigateTo={step => step <= currentStep}
+        />,
+      );
+      const currentButtons = screen.getAllByRole('button');
+      currentButtons.forEach((button, index) => expect(button).toBe(originalButtons[index]));
+      expect(currentButtons[currentStep]).toHaveAttribute('aria-current', 'step');
+    }
+
+    rerender(<LessonSteps {...baseProps} currentStep={0} canNavigateTo={() => false} />);
+    expect(screen.getAllByRole('button')[1]).toBeDisabled();
+    expect(screen.getAllByRole('button')[1]).toBe(originalButtons[1]);
+  });
+
   it('marks the selected and completed steps without changing their order', () => {
     render(
       <LessonSteps
