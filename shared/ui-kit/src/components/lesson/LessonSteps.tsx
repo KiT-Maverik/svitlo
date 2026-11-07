@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useLayoutEffect, useRef } from 'react';
 import Box from '@mui/material/Box';
 import styles from './Lesson.module.css';
 
@@ -33,7 +33,9 @@ export function LessonSteps({
   const containerRef = useRef<HTMLElement>(null);
   const activeStepRef = useRef<HTMLButtonElement>(null);
 
-  useEffect(() => {
+  // Keep navigation positioning in the same commit as the active-step update.
+  // A passive effect can scroll a frame after paint, briefly exposing old labels.
+  useLayoutEffect(() => {
     const container = containerRef.current;
     const activeStep = activeStepRef.current;
     if (!container || !activeStep) return;
