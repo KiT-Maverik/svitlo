@@ -10,9 +10,9 @@ Scene CSS, localized JSON and prebuilt assets. No host imports authored `*.data.
 From the monorepo root (after `npm ci`):
 
 ```bash
-npm run check:scenes --workspace @svitlo/playground
-npm run build --workspace @svitlo/playground
-npm run typecheck --workspace @svitlo/playground
+npm run content:check:scenes --workspace @svitlo/playground
+npm run package:build --workspace @svitlo/playground
+npm run code:check:types --workspace @svitlo/playground
 npm run test:portability --workspace @svitlo/playground
 npm run test:publish --workspace @svitlo/playground
 ```
