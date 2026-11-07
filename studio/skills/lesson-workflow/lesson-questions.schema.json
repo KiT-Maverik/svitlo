@@ -68,31 +68,29 @@
       "type": "array",
       "items": {
         "type": "object",
+        "additionalProperties": false,
         "required": [
           "assessmentPlanKey",
-          "questionSlugs"
+          "selection"
         ],
         "properties": {
           "assessmentPlanKey": {
             "type": "string",
             "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
           },
-          "questionSlugs": {
-            "type": "array",
-            "minItems": 1,
-            "items": {
-              "$ref": "#/$defs/slug"
-            }
+          "selection": {
+            "$ref": "#/$defs/quizSelection"
           }
-        },
-        "additionalProperties": false
-      }
+        }
+      },
+      "description": "Every approved Quiz maps to one deliberately curated default selection. Explicit questionSlugs are always required; omission in runtime would select the entire Lesson bank."
     },
     "questions": {
       "type": "array",
       "items": {
         "$ref": "#/$defs/question"
-      }
+      },
+      "description": "Full Lesson Question bank, including items never selected for an ordinary Quiz, retained for future custom practice."
     },
     "coverage": {
       "type": "array",
@@ -501,7 +499,8 @@
           "enum": [
             "core",
             "extension"
-          ]
+          ],
+          "description": "Core and extension describe bank coverage, not automatic default Quiz inclusion; Quiz inclusion is determined only by quizAssignments[].selection.questionSlugs."
         },
         "evidence": {
           "$ref": "#/$defs/evidence"
@@ -897,6 +896,79 @@
                 },
                 "additionalProperties": false
               }
+            }
+          }
+        }
+      ]
+    },
+    "quizSelection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "questionSlugs"
+      ],
+      "properties": {
+        "mode": {
+          "enum": [
+            "all",
+            "sample"
+          ]
+        },
+        "questionSlugs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+          }
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "shuffle": {
+          "type": "boolean"
+        },
+        "seed": {
+          "type": "integer"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "mode": {
+                "const": "sample"
+              }
+            },
+            "required": [
+              "mode"
+            ]
+          },
+          "then": {
+            "required": [
+              "count"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "mode": {
+                "const": "all"
+              }
+            },
+            "required": [
+              "mode"
+            ]
+          },
+          "then": {
+            "not": {
+              "required": [
+                "count"
+              ]
             }
           }
         }
