@@ -5,7 +5,9 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 const ws = (name, path, scripts, deps = []) => ({
-  name, path, scripts,
+  name,
+  path,
+  scripts,
   dependencies: Object.fromEntries(deps.map(dep => [dep, '*'])),
 });
 
@@ -26,9 +28,10 @@ test('builds dependencies in order and never builds an eligible package twice', 
     ],
   );
   const builds = planWorkspaceOperation(items, 'package:build').steps;
-  assert.deepEqual(builds.map(step => step.name), [
-    '@svitlo/contracts', '@svitlo/engine', '@svitlo/content',
-  ]);
+  assert.deepEqual(
+    builds.map(step => step.name),
+    ['@svitlo/contracts', '@svitlo/engine', '@svitlo/content'],
+  );
 });
 
 test('root script runs all eligible workspaces and skips unsupported ones', () => {
@@ -39,7 +42,10 @@ test('root script runs all eligible workspaces and skips unsupported ones', () =
   ];
   const plan = planWorkspaceOperation(items, 'code:lint:check');
   assert.deepEqual(plan.selected, ['a', 'b']);
-  assert.deepEqual(plan.steps.map(step => step.name), ['a', 'b']);
+  assert.deepEqual(
+    plan.steps.map(step => step.name),
+    ['a', 'b'],
+  );
 });
 
 test('workspace cycles and missing capabilities fail loudly', () => {

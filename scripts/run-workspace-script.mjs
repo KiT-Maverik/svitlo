@@ -49,7 +49,8 @@ export function planWorkspaceOperation(packages, operation) {
   }
   for (const pkg of [...packages].sort((a, b) => a.name.localeCompare(b.name))) visit(pkg.name);
 
-  const planned = [], built = new Set();
+  const planned = [],
+    built = new Set();
   function buildOnce(name) {
     if (built.has(name)) return;
     const pkg = byName.get(name);
@@ -59,7 +60,8 @@ export function planWorkspaceOperation(packages, operation) {
       built.add(name);
     }
   }
-  const buildOwn = operation === 'storybook:build' ||
+  const buildOwn =
+    operation === 'storybook:build' ||
     operation === 'code:check:types' ||
     operation === 'test' ||
     operation.startsWith('test:');

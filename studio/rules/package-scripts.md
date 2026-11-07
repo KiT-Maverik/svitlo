@@ -67,15 +67,15 @@ Use lowercase kebab-case segments separated by colons:
 test[:<kind>[:<detail>]]           # test is its own family, no code prefix
 ```
 
-| Family | Meaning |
-| --- | --- |
-| `code:` | Formatting, linting and static/type checks |
-| `test` / `test:` | All tests: unit, integration, component, E2E, smoke, coverage |
-| `package:` | Building and checking libraries/content packages as distributable units |
-| `app:` | Building, starting, validating and packing deployable apps |
-| `content:` | Generating, checking and publishing educational content |
-| `storybook:` | Storybook builds and interactive development |
-| `repo:` | Root-only architecture, workspace and tooling integrity checks |
+| Family           | Meaning                                                                 |
+| ---------------- | ----------------------------------------------------------------------- |
+| `code:`          | Formatting, linting and static/type checks                              |
+| `test` / `test:` | All tests: unit, integration, component, E2E, smoke, coverage           |
+| `package:`       | Building and checking libraries/content packages as distributable units |
+| `app:`           | Building, starting, validating and packing deployable apps              |
+| `content:`       | Generating, checking and publishing educational content                 |
+| `storybook:`     | Storybook builds and interactive development                            |
+| `repo:`          | Root-only architecture, workspace and tooling integrity checks          |
 
 `:check` **must not modify authored or tracked source**; ignored build outputs/caches necessary to inspect results are permitted. `:fix` explicitly permits safe source rewrites. Producing outputs belongs to `:build`, `:generate`, `:publish` or `:pack`, not `:check`.
 
@@ -85,32 +85,32 @@ test[:<kind>[:<detail>]]           # test is its own family, no code prefix
 
 Only define a command in a workspace that truly implements it.
 
-| Name | Operation |
-| --- | --- |
-| `code:format:check` | Validate formatting |
-| `code:format:fix` | Apply formatter |
-| `code:lint:check` | Run lint checks |
-| `code:lint:fix` | Apply supported automatic lint fixes |
-| `code:check:types` | Type-check without publishing |
-| `test` | Standard, deterministic test suite |
-| `test:unit` | Unit tests |
-| `test:integration` | Integration tests |
-| `test:components` | Component tests |
-| `test:e2e` | Browser/end-to-end tests |
-| `test:smoke` | Smoke tests |
-| `test:coverage` | Standard test suite with coverage |
-| `package:build` | Build a distributable library/content package |
-| `package:check:exports` | Check public package exports/artifacts |
-| `app:build` | Build a deployable app |
-| `app:start` | Run a built app in production |
-| `app:start:dev` | Run a development app server/watch mode |
-| `app:pack` | Create an application distribution |
-| `app:check:bundle` | Validate app bundle/resources |
-| `content:generate` | Generate derivative authored data |
-| `content:check` | Validate educational content without rewriting source |
-| `content:publish` | Produce/stage publishable localized content |
-| `storybook:build` | Build a static Storybook (aggregatable at root) |
-| `storybook:start` | Start Storybook dev server (**workspace only; never root**) |
+| Name                    | Operation                                                   |
+| ----------------------- | ----------------------------------------------------------- |
+| `code:format:check`     | Validate formatting                                         |
+| `code:format:fix`       | Apply formatter                                             |
+| `code:lint:check`       | Run lint checks                                             |
+| `code:lint:fix`         | Apply supported automatic lint fixes                        |
+| `code:check:types`      | Type-check without publishing                               |
+| `test`                  | Standard, deterministic test suite                          |
+| `test:unit`             | Unit tests                                                  |
+| `test:integration`      | Integration tests                                           |
+| `test:components`       | Component tests                                             |
+| `test:e2e`              | Browser/end-to-end tests                                    |
+| `test:smoke`            | Smoke tests                                                 |
+| `test:coverage`         | Standard test suite with coverage                           |
+| `package:build`         | Build a distributable library/content package               |
+| `package:check:exports` | Check public package exports/artifacts                      |
+| `app:build`             | Build a deployable app                                      |
+| `app:start`             | Run a built app in production                               |
+| `app:start:dev`         | Run a development app server/watch mode                     |
+| `app:pack`              | Create an application distribution                          |
+| `app:check:bundle`      | Validate app bundle/resources                               |
+| `content:generate`      | Generate derivative authored data                           |
+| `content:check`         | Validate educational content without rewriting source       |
+| `content:publish`       | Produce/stage publishable localized content                 |
+| `storybook:build`       | Build a static Storybook (aggregatable at root)             |
+| `storybook:start`       | Start Storybook dev server (**workspace only; never root**) |
 
 All test variants are in `test:`, not `code:`. Prefer `test:<kind>[:<area>][:coverage]`, for instance `test:e2e:db`, `test:components:coverage`, `test:unit:db:coverage`. The plain `test` should aggregate the package's regular deterministic tests; expensive E2E runs use explicit commands.
 
