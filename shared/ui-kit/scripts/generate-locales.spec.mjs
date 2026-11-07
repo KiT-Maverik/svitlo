@@ -24,6 +24,7 @@ describe('global UI Kit translation coverage', () => {
   it('stores every component dictionary in one authored file', () => {
     const locales = path.join(root, 'shared/ui-kit/data/locale');
     const expected = [
+      'assessmentMethods',
       'audio',
       'checkpoint',
       'flashcard',
@@ -46,7 +47,7 @@ describe('global UI Kit translation coverage', () => {
     assert.equal(result.status, 0, result.stderr);
     const audit = JSON.parse(result.stdout);
     assert.equal(audit.languages, DEFAULT_SUPPORTED_LANGUAGES.length);
-    assert.equal(audit.componentCount, 10);
+    assert.equal(audit.componentCount, 11);
     assert.equal(audit.missingCount, 0, JSON.stringify(audit.missing));
     assert.deepEqual(audit.missing, {});
   });
@@ -59,7 +60,7 @@ describe('global UI Kit translation coverage', () => {
       meta.locales,
       DEFAULT_SUPPORTED_LANGUAGES.map(({ locale }) => locale),
     );
-    assert.equal(meta.components.length, 10);
+    assert.equal(meta.components.length, 11);
 
     for (const { locale } of DEFAULT_SUPPORTED_LANGUAGES) {
       const messages = JSON.parse(readFileSync(path.join(output, locale + '.json'), 'utf8'));
@@ -70,6 +71,13 @@ describe('global UI Kit translation coverage', () => {
     const en = JSON.parse(readFileSync(path.join(output, 'en-US.json'), 'utf8'));
     const uk = JSON.parse(readFileSync(path.join(output, 'uk-UA.json'), 'utf8'));
     const qm = JSON.parse(readFileSync(path.join(output, 'crh-Latn-UA.json'), 'utf8'));
+    for (const { locale } of DEFAULT_SUPPORTED_LANGUAGES) {
+      const messages = JSON.parse(readFileSync(path.join(output, locale + '.json'), 'utf8'));
+      assert.equal(Object.keys(messages.assessmentMethods).length, 16, locale);
+    }
+    assert.equal(en.assessmentMethods.retrieval, 'Recall');
+    assert.equal(uk.assessmentMethods.retrieval, 'Відтворення знань');
+    assert.equal(qm.assessmentMethods.retrieval, 'Bilgilerni hatırğa ketirüv');
     assert.notEqual(ar.learningLayout.navigation.top, uk.learningLayout.navigation.top);
     assert.notEqual(ar.questionFrame.matchInstructions, en.questionFrame.matchInstructions);
     assert.notEqual(ar.image.retry, en.image.retry);
