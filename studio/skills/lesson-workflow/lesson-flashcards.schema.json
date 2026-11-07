@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://svitlo.dev/studio/lesson-flashcards.schema.json",
   "title": "Lesson Flashcards — Question-first, linked recall bank",
-  "description": "Source-language Flashcards with a single canonical relation edge list. The builder mirrors typed relations onto both Flashcard endpoints in runtime data.",
+  "description": "Source-language Flashcards with a single canonical relation edge list. The builder mirrors typed relations onto both Flashcard endpoints in runtime data. Built-in and custom Flashcard flags are discriminated objects, with no duplicated list count or acronym values.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -610,41 +610,6 @@
         }
       }
     },
-    "acronym": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "value",
-        "localePolicy",
-        "parts"
-      ],
-      "properties": {
-        "value": {
-          "type": "string",
-          "minLength": 1
-        },
-        "localePolicy": {
-          "enum": [
-            "invariant",
-            "needsLocalizedVersion"
-          ]
-        },
-        "parts": {
-          "type": "array",
-          "items": {
-            "oneOf": [
-              {
-                "$ref": "#/$defs/acronymSourcePart"
-              },
-              {
-                "$ref": "#/$defs/acronymConnectorPart"
-              }
-            ]
-          },
-          "minItems": 2
-        }
-      }
-    },
     "card": {
       "type": "object",
       "additionalProperties": false,
@@ -697,18 +662,23 @@
         "flags": {
           "type": "array",
           "items": {
-            "type": "string",
-            "minLength": 1
+            "oneOf": [
+              {
+                "$ref": "#/$defs/listFlag"
+              },
+              {
+                "$ref": "#/$defs/warningFlag"
+              },
+              {
+                "$ref": "#/$defs/acronymFlag"
+              },
+              {
+                "$ref": "#/$defs/customFlag"
+              }
+            ]
           },
           "minItems": 0,
-          "uniqueItems": true
-        },
-        "listAnswerCount": {
-          "type": "integer",
-          "minimum": 2
-        },
-        "acronym": {
-          "$ref": "#/$defs/acronym"
+          "description": "One canonical typed flag array. List count and acronym data live here, never duplicated in separate card properties."
         },
         "rationale": {
           "type": "string",
@@ -798,6 +768,120 @@
           "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
         }
       }
+    },
+    "listFlag": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "count"
+      ],
+      "properties": {
+        "type": {
+          "const": "list"
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 2
+        }
+      },
+      "description": "Count is displayed in a dedicated list chip. Never append a count to front text."
+    },
+    "warningFlag": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "const": "warning"
+        }
+      },
+      "description": "Built-in warning chip; its text is localized in UI Kit."
+    },
+    "acronymFlag": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "value",
+        "localePolicy",
+        "parts"
+      ],
+      "properties": {
+        "type": {
+          "const": "acronym"
+        },
+        "value": {
+          "type": "string",
+          "minLength": 1
+        },
+        "localePolicy": {
+          "enum": [
+            "invariant",
+            "needsLocalizedVersion"
+          ]
+        },
+        "parts": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/$defs/acronymSourcePart"
+              },
+              {
+                "$ref": "#/$defs/acronymConnectorPart"
+              }
+            ]
+          },
+          "minItems": 2
+        }
+      },
+      "description": "Editorial acronym construction metadata. Generator emits only {type:'acronym', value} to runtime; all translations must be reviewed."
+    },
+    "customFlag": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "value",
+        "color"
+      ],
+      "properties": {
+        "type": {
+          "const": "custom"
+        },
+        "value": {
+          "type": "string",
+          "minLength": 1
+        },
+        "color": {
+          "enum": [
+            "default",
+            "primary",
+            "secondary",
+            "error",
+            "info",
+            "success",
+            "warning"
+          ]
+        },
+        "icon": {
+          "enum": [
+            "list",
+            "warning",
+            "acronym",
+            "info",
+            "star",
+            "bookmark",
+            "lightbulb",
+            "code",
+            "check"
+          ]
+        }
+      },
+      "description": "User-defined chip label with one palette color and optional safe icon token, never a React component."
     }
   }
 }
