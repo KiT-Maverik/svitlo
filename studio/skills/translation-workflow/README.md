@@ -15,7 +15,7 @@ Reusable agent CI workflow: [Agent CI Artifacts](../../../.github/workflows/tran
 
 ## Lesson translation review references
 
-Canonical Lessons are discovered under `content/<textbook>/data/lessons/<group>/<slug>/<slug>.data.ts`. The same on-demand command builds `.agent-ci-artifacts/lessons/<textbook>/<group>/<slug>/<language>.md`. Reviewers should select the assigned Lesson and language, verify `manifest.json` for missing documents/failures, compare the source meaning, and make changes only to canonical authored code. Do not edit temporary Markdown.
+Canonical implemented Lessons are discovered under `content/<textbook>/data/lessons/<last-uuid-hex-digit>/<lesson-uuid>/*.data.ts`. The same on-demand command builds `.agent-ci-artifacts/lessons/<textbook>/<bucket>/<lesson-uuid>/<language>.md`. Each document includes Lesson Sections, the complete Question Bank, Flashcard Bank and descriptive metadata for non-text media, without embedding media. Reviewers should select the assigned Lesson and language, verify `manifest.json` for missing documents/failures, compare the source meaning, and make changes only to canonical authored code. Do not edit temporary Markdown.
 
 Lesson artifacts depend on the separate `scripts/generate-lessons-markdown.mjs` CLI being delivered by the Lesson → Markdown task (Agent 4). If it is not present, `manifest.json` explicitly records the missing dependency; generated Skills references are still usable. See the [Agent CI Artifacts architecture](../../docs/architecture/agent-ci-artifacts.md) for the CLI contract and behavior with integration PRs.
 

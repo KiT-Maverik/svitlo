@@ -69,7 +69,7 @@ test('generates locale-specific Markdown and records PR-scoped paths', () =>
     assert.equal(manifest.generated[0].kind, 'lesson');
     assert.equal(
       fs.readFileSync(path.join(output, 'lessons/playground/c/d3048d21-8690-5255-b62c-984c69ac272c/uk.md'), 'utf8'),
-      '# c/d3048d21-8690-5255-b62c-984c69ac272c: uk\n',
+      '# d3048d21-8690-5255-b62c-984c69ac272c: uk\n',
     );
     assert.equal(
       fs.readFileSync(
