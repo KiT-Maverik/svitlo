@@ -6,6 +6,8 @@ export { createChapter, createModule, createEpisode } from './course/createCours
 export { createCourse } from './course/createCourse';
 
 export { createLesson } from './lessons/createLesson';
+export { linkFlashcards } from './lessons/linkFlashcards';
+export type { FlashcardLink } from './lessons/linkFlashcards';
 export type { LessonCreator, LessonBase, LessonLocale } from './lessons/createLesson';
 export { createSection } from './lessons/createSection';
 export type { SectionCreator } from './lessons/createSection';
