@@ -62,9 +62,11 @@ describe('LearningLayout preparation', () => {
     expect(within(sidebar).getByTestId('three-slot-start')).toContainElement(
       screen.getByRole('heading', { name: uk.settingsTitle }),
     );
-    expect(within(sidebar).getByTestId('three-slot-end')).toContainElement(
-      screen.getByRole('button', { name: 'Interface settings control' }),
-    );
+    const threeSlots = within(sidebar).getByTestId('three-slot-layout');
+    expect(threeSlots).toHaveAttribute('data-axis', 'vertical');
+    const bottom = within(sidebar).getByTestId('three-slot-end');
+    expect(bottom).toContainElement(screen.getByRole('button', { name: 'Interface settings control' }));
+    expect(bottom).not.toHaveAttribute('role', 'scrollbar');
     expect(screen.getByRole('button', { name: 'Interface settings control' })).toBeVisible();
     expect(screen.getByText('Additional page control')).toBeVisible();
     fireEvent.click(screen.getByRole('button', { name: uk.actions.closeSidebar }));

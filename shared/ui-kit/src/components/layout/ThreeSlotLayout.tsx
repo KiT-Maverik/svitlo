@@ -4,7 +4,7 @@ import { testId } from './ThreeSlotLayout.constants';
 
 export type ThreeSlotAxis = 'horizontal' | 'vertical';
 export type ThreeSlotName = 'start' | 'center' | 'end';
-export type ThreeSlotZoneProps = Omit<BoxProps, 'children' | 'component'>;
+export type ThreeSlotZoneProps = Omit<BoxProps, 'children' | 'component'> & { 'data-testid'?: string };
 
 export type ThreeSlotLayoutProps = {
   /** Uses logical start/end: horizontal order mirrors automatically under dir="rtl". */
