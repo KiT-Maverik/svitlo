@@ -391,6 +391,7 @@ export default function LearningLayout({
                 position: 'absolute',
                 width: { xs: '100%', sm: 'min(320px, calc(100vw - 48px))' },
                 height: '100%',
+                display: 'flex',
                 overflow: 'hidden',
               },
             },
@@ -400,37 +401,66 @@ export default function LearningLayout({
             id="settings-sidebar"
             component="aside"
             aria-label={messages.navigation.settings}
-            sx={{ display: 'flex', flexDirection: 'column', height: '100%', minHeight: 0 }}
+            sx={{ height: '100%', width: '100%', minHeight: 0, minWidth: 0, overflowX: 'hidden', boxSizing: 'border-box' }}
           >
-            <Box
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                p: 1,
-                borderBottom: 1,
-                borderColor: 'divider',
-                flexShrink: 0,
-              }}
-            >
-              <Typography component="h2" sx={{ flex: 1, px: 1, fontSize: 18, fontWeight: 700, textAlign: 'start' }}>
-                {messages.settingsTitle}
-              </Typography>
-              <IconButton
-                aria-label={messages.actions.closeSettingsPanel}
-                onClick={() => setSettingsOpen(false)}
-                sx={{ display: { xs: 'inline-flex', sm: 'none' } }}
-              >
-                <CloseIcon />
-              </IconButton>
-            </Box>
-            <Box sx={{ flex: 1, minHeight: 0, overflowY: 'auto', p: 2 }}>
-              {preferences}
-              {preferences && settingsContent && <Divider sx={{ my: 2 }} />}
-              {typeof settingsContent === 'function'
-                ? settingsContent({ closeSettings: () => setSettingsOpen(false) })
-                : (settingsContent ??
-                  (!preferences && <Typography color="text.secondary">{messages.settingsDescription}</Typography>))}
-            </Box>
+            <VerticalSpace
+              top={
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    p: 1,
+                    borderBottom: 1,
+                    borderColor: 'divider',
+                    minWidth: 0,
+                  }}
+                >
+                  <Typography
+                    component="h2"
+                    sx={{ flex: 1, minWidth: 0, px: 1, fontSize: 18, fontWeight: 700, textAlign: 'start' }}
+                  >
+                    {messages.settingsTitle}
+                  </Typography>
+                  <IconButton
+                    aria-label={messages.actions.closeSettingsPanel}
+                    onClick={() => setSettingsOpen(false)}
+                    sx={{ display: { xs: 'inline-flex', sm: 'none' } }}
+                  >
+                    <CloseIcon />
+                  </IconButton>
+                </Box>
+              }
+              center={
+                <Box sx={{ height: '100%', minHeight: 0, minWidth: 0, overflowY: 'auto', overflowX: 'hidden', px: 2 }}>
+                  {!preferences && !settingsContent && (
+                    <Typography color="text.secondary">{messages.settingsDescription}</Typography>
+                  )}
+                </Box>
+              }
+              bottom={
+                preferences || settingsContent ? (
+                  <Box
+                    sx={{
+                      width: '100%',
+                      minWidth: 0,
+                      boxSizing: 'border-box',
+                      px: 2,
+                      pt: 1,
+                      pb: 2,
+                      maxHeight: 'calc(100% - 80px)',
+                      overflowY: 'auto',
+                      overflowX: 'hidden',
+                    }}
+                  >
+                    {preferences}
+                    {preferences && settingsContent && <Divider sx={{ my: 2 }} />}
+                    {typeof settingsContent === 'function'
+                      ? settingsContent({ closeSettings: () => setSettingsOpen(false) })
+                      : settingsContent}
+                  </Box>
+                ) : undefined
+              }
+            />
           </Box>
         </Drawer>
         <Box
