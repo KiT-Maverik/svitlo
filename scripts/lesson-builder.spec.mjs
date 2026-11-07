@@ -1,0 +1,254 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import yaml from 'js-yaml';
+import { runOne, repoRoot } from './lesson-builder.mjs';
+
+const lessonId = 'd3048d21-8690-5255-b62c-984c69ac272c';
+const skillId = '00000000-0000-4000-8000-000000000015';
+const goodQuestion = (slug = 'q-one', plans = ['knowledge']) => ({
+  slug, type: 'selectOneAnswer', assessmentMethod: 'retrieval',
+  targetSkills: [skillId], assessmentPlanKeys: plans, pool: 'core',
+  evidence: { outcome: 'Understands light', operation: 'Recall',
+    distinction: 'Straight path', distinctness: 'Unique observation' },
+  question: [{ type: 'text', text: 'How does light travel?' }],
+  answer: {
+    correct: [{ key: 'straight', content: [{ type: 'text', text: 'In a straight line' }] }],
+    incorrect: [{ key: 'curved', content: [{ type: 'text', text: 'In circles' }] }],
+    distractors: [],
+  },
+  explanation: [{ type: 'text', text: 'In a uniform medium, straight.' }],
+});
+const quizPlan = key => ({
+  key, purpose: 'Measure learning', targetSkills: [skillId], requiredAssessmentMethods: ['retrieval'],
+});
+const quizSection = (key, assessmentPlanKey) => ({
+  key, type: 'quiz', title: 'Quick check', purpose: 'Assess the concept',
+  assessmentPlanKey, targetSkills: [skillId], requiredAssessmentMethods: ['retrieval'],
+});
+const assignment = (key, slugs) => ({
+  assessmentPlanKey: key, selection: { mode: 'all', questionSlugs: slugs },
+});
+function fixture(options = {}) {
+  const repo = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-lesson-builder-'));
+  const workspace = path.join(repo, 'content/playground');
+  const lesson = path.join(workspace, 'data/lessons/c', lessonId);
+  fs.mkdirSync(path.join(lesson, 'questions'), { recursive: true });
+  fs.mkdirSync(path.join(workspace, 'data/skills/test/group/skills'), { recursive: true });
+  fs.writeFileSync(path.join(workspace, 'package.json'), JSON.stringify({ name: '@svitlo/playground' }));
+  fs.writeFileSync(path.join(workspace, 'data/skills/test/group/skills/light.data.ts'),
+    "export const light = { id: '" + skillId + "' };\n");
+  const planKeys = options.plans ?? ['knowledge'];
+  const methodology = {
+    documentLanguage: 'en', supportedLanguages: options.languages ?? ['en', 'uk'],
+    assessmentPlan: {
+      quizRequired: planKeys.length > 0,
+      quizzes: planKeys.map(quizPlan),
+    },
+  };
+  const content = {
+    schemaVersion: 1, kind: 'lesson-content-plan', status: 'approved', lessonId,
+    lessonSlug: 'howLightMoves', methodologySource: 'methodology.md',
+    documentLanguage: 'en', supportedLanguages: options.languages ?? ['en', 'uk'],
+    title: 'How Light Moves', learningIntent: 'Understand straight-line propagation',
+    sections: [
+      { key: 'theory', type: 'theory', title: 'Explore light', purpose: 'Teach light',
+        blocks: [
+          { key: 'intro', type: 'text', purpose: 'Introduce concept',
+            readiness: 'available', sourceText: 'Light travels in straight lines.',
+            accessibility: 'Screen-reader friendly' },
+          { key: 'details', type: 'markdown', purpose: 'Explanation',
+            readiness: 'available', sourceText: '**Light** moves straight.',
+            accessibility: 'Readable text' },
+        ] },
+      ...planKeys.map((key, i) => quizSection('quiz-' + (i + 1), key)),
+    ],
+    sceneSpecifications: [], productionDependencies: [],
+  };
+  const questions = {
+    schemaVersion: 1, kind: 'lesson-question-bank', status: 'approved',
+    lessonId, documentLanguage: 'en', supportedLanguages: options.languages ?? ['en', 'uk'],
+    sources: { methodology: { path: 'methodology.md' }, content: { path: 'content.yaml' } },
+    quizAssignments: planKeys.map(key => assignment(key, ['q-one'])),
+    questions: [goodQuestion('q-one', planKeys)],
+    coverage: [{ targetSkill: skillId, outcome: 'Understand light',
+      assessmentMethod: 'retrieval', questionSlugs: ['q-one'] }],
+    unresolvedDependencies: [],
+  };
+  const save = () => {
+    fs.writeFileSync(path.join(lesson, 'methodology.md'),
+      '---\n' + yaml.dump(methodology) + '---\n\nApproved methodology.\n');
+    fs.writeFileSync(path.join(lesson, 'content.yaml'), yaml.dump(content));
+    fs.writeFileSync(path.join(lesson, 'questions/questions.yaml'), yaml.dump(questions));
+  };
+  save();
+  return { repo, workspace, lesson, content, questions, methodology, save,
+    generated: name => path.join(lesson, 'generated', name),
+    dispose: () => fs.rmSync(repo, { recursive: true, force: true }) };
+}
+function withFixture(callback, options) {
+  const f = fixture(options);
+  try { return callback(f); } finally { f.dispose(); }
+}
+test('generates a typed full Lesson with all approved source text and selected Quiz', () =>
+  withFixture(f => {
+    const result = runOne(f.lesson, 'generate', f.repo);
+    assert.equal(result.lessonId, lessonId);
+    const ts = fs.readFileSync(f.generated('lesson.data.ts'), 'utf8');
+    assert.match(ts, /createLesson<Languages>/);
+    assert.match(ts, /createSection<Languages>/);
+    assert.match(ts, /createContentBlock<Languages>/);
+    assert.match(ts, /satisfies Question_Catalog<'data', Languages>/);
+    assert.match(ts, /How Light Moves/);
+    assert.match(ts, /questionSlugs/);
+    assert.match(ts, /q-one/);
+    assert.match(ts, /"uk"/);
+    assert.doesNotMatch(ts, /"uk":\s*"How Light Moves"/);
+    assert.equal(runOne(f.lesson, 'check', f.repo).changed, 0);
+    const manifest = JSON.parse(fs.readFileSync(f.generated('manifest.json')));
+    assert.equal(manifest.generator, 'lesson-builder-v1');
+    assert.ok(manifest.inputs['questions/questions.yaml']);
+    assert.ok(manifest.outputs['lesson.data.ts']);
+  }));
+test('supports Lessons without a Quiz and with two explicit Quiz selections', () =>
+  withFixture(f => {
+    runOne(f.lesson, 'generate', f.repo);
+    assert.doesNotMatch(fs.readFileSync(f.generated('lesson.data.ts'), 'utf8'), /"type": "quiz"/);
+    assert.match(fs.readFileSync(f.generated('lesson.data.ts'), 'utf8'), /requireQuiz: false/);
+  }, { plans: [] }));
+test('multiple Quizzes select only their curated questions, retaining the full bank', () =>
+  withFixture(f => {
+    f.questions.questions.push(goodQuestion('q-two', ['verify']));
+    f.questions.quizAssignments[1].selection.questionSlugs = ['q-two'];
+    f.questions.coverage[0].questionSlugs.push('q-two');
+    f.save();
+    runOne(f.lesson, 'generate', f.repo);
+    const ts = fs.readFileSync(f.generated('lesson.data.ts'), 'utf8');
+    assert.match(ts, /"q-two":/);
+    assert.match(ts, /"questionSlugs": \[\s*"q-two"/);
+    assert.match(ts, /"questionSlugs": \[\s*"q-one"/);
+    assert.equal((ts.match(/"type": "quiz"/g) || []).length, 2);
+  }, { plans: ['knowledge', 'verify'] }));
+test('rejects duplicate Section, Question and missing question/Quiz references', () =>
+  withFixture(f => {
+    f.content.sections.push({ ...f.content.sections[0] });
+    f.save();
+    assert.throws(() => runOne(f.lesson, 'generate', f.repo), /duplicate key/);
+    f.content.sections.pop();
+    f.questions.questions.push(goodQuestion('q-one'));
+    f.save();
+    assert.throws(() => runOne(f.lesson, 'generate', f.repo), /duplicate key/);
+    f.questions.questions.pop();
+    f.questions.quizAssignments[0].selection.questionSlugs = ['missing'];
+    f.save();
+    assert.throws(() => runOne(f.lesson, 'generate', f.repo), /unknown Question slug/);
+    f.questions.quizAssignments[0].selection.questionSlugs = ['q-one'];
+    f.content.sections[1].assessmentPlanKey = 'missing-plan';
+    f.save();
+    assert.throws(() => runOne(f.lesson, 'generate', f.repo), /unknown methodology Quiz key/);
+  }));
+test('rejects invalid Skill IDs and AssessmentMethodKey at the exact YAML field', () =>
+  withFixture(f => {
+    f.questions.questions[0].targetSkills = ['00000000-0000-4000-8000-000000000999'];
+    f.save();
+    assert.throws(() => runOne(f.lesson, 'generate', f.repo), /unknown canonical Skill ID/);
+    f.questions.questions[0].targetSkills = [skillId];
+    f.questions.questions[0].assessmentMethod = 'madeUp';
+    f.save();
+    assert.throws(() => runOne(f.lesson, 'generate', f.repo),
+      /questions\/questions.yaml:.*assessmentMethod/);
+  }));
+test('preserves one-language-only strings without copying them into other locales', () =>
+  withFixture(f => {
+    f.content.sections[0].title = 'An untranslated heading';
+    f.save();
+    runOne(f.lesson, 'generate', f.repo);
+    const data = fs.readFileSync(f.generated('lesson.data.ts'), 'utf8');
+    assert.match(data, /"en": "An untranslated heading"/);
+    assert.doesNotMatch(data, /"uk": "An untranslated heading"/);
+    const requirements = JSON.parse(fs.readFileSync(f.generated('requirements.json')));
+    assert.ok(requirements.unresolved.some(r => r.kind === 'localization'));
+  }));
+test('records missing media without inventing asset implementations', () =>
+  withFixture(f => {
+    f.content.sections[0].blocks.push({
+      key: 'illustration', type: 'image', purpose: 'Visualise the ray',
+      readiness: 'typed-only', accessibility: 'Text equivalent',
+      assetRequest: { description: 'Ray illustration', status: 'pending', path: 'static/ray.png' },
+      contentSpec: { width: 640, height: 360, alt: 'Straight light ray' },
+    });
+    f.save();
+    runOne(f.lesson, 'generate', f.repo);
+    const reqs = JSON.parse(fs.readFileSync(f.generated('requirements.json')));
+    assert.ok(reqs.unresolved.some(r => r.detail.includes('static/ray.png')));
+    assert.ok(!fs.existsSync(path.join(f.workspace, 'static/ray.png')));
+  }));
+test('is idempotent and update-safe: edits only generated outputs, never Scene source', () =>
+  withFixture(f => {
+    const manuallyOwned = path.join(f.workspace, 'scenes/c/custom-scene/index.tsx');
+    fs.mkdirSync(path.dirname(manuallyOwned), { recursive: true });
+    fs.writeFileSync(manuallyOwned, 'export default function Scene() { return null; }\n');
+    runOne(f.lesson, 'generate', f.repo);
+    const first = fs.readFileSync(f.generated('lesson.data.ts'), 'utf8');
+    const again = runOne(f.lesson, 'generate', f.repo);
+    assert.equal(again.changed, 0);
+    f.content.sections[0].blocks[0].sourceText = 'The new approved source-language description';
+    f.save();
+    assert.throws(() => runOne(f.lesson, 'check', f.repo), /stale generated file/);
+    runOne(f.lesson, 'generate', f.repo);
+    assert.notEqual(fs.readFileSync(f.generated('lesson.data.ts'), 'utf8'), first);
+    assert.equal(fs.readFileSync(manuallyOwned, 'utf8'),
+      'export default function Scene() { return null; }\n');
+    fs.appendFileSync(f.generated('lesson.data.ts'), '// manual change\n');
+    assert.throws(() => runOne(f.lesson, 'generate', f.repo), /modified manually/);
+  }));
+test('requires approved and complete schema-valid inputs', () =>
+  withFixture(f => {
+    f.content.status = 'draft';
+    f.save();
+    assert.throws(() => runOne(f.lesson, 'generate', f.repo), /must both be approved/);
+    delete f.content.sections[0].blocks[0].accessibility;
+    f.content.status = 'approved';
+    f.save();
+    assert.throws(() => runOne(f.lesson, 'generate', f.repo),
+      /content.yaml:.*accessibility/);
+    f.content.sections[0].blocks[0].accessibility = 'Readable';
+    f.save();
+    fs.rmSync(path.join(f.lesson, 'questions/questions.yaml'));
+    assert.throws(() => runOne(f.lesson, 'generate', f.repo), /ENOENT/);
+  }));
+test('does not fake Scene implementations; missing specifications fail explicitly', () =>
+  withFixture(f => {
+    f.content.sections[0].blocks.push({
+      key: 'simulation', type: 'scene', purpose: 'Explore the path',
+      readiness: 'typed-only', accessibility: 'Keyboard instructions',
+      sceneSpecKey: 'ray',
+    });
+    f.content.sceneSpecifications.push({
+      key: 'ray', path: 'scenes/ray.scene-spec.md', status: 'approved',
+    });
+    fs.mkdirSync(path.join(f.lesson, 'scenes'));
+    fs.writeFileSync(path.join(f.lesson, 'scenes/ray.scene-spec.md'), '# Ray specification\n');
+    f.save();
+    runOne(f.lesson, 'generate', f.repo);
+    const reqs = JSON.parse(fs.readFileSync(f.generated('requirements.json')));
+    assert.ok(reqs.unresolved.some(r => r.kind === 'scene' && r.owner === 'Implement Scene'));
+    assert.match(fs.readFileSync(f.generated('lesson.data.ts'), 'utf8'), /"locales": \{\}/);
+    f.content.sceneSpecifications[0].key = 'other';
+    f.save();
+    assert.throws(() => runOne(f.lesson, 'generate', f.repo), /unknown Scene specification/);
+  }));
+test('real Playground Lesson is read-only integration evidence of current creators and Question Bank', () => {
+  const root = path.join(repoRoot, 'content/playground/data/lessons/c', lessonId);
+  const lesson = fs.readFileSync(path.join(root, 'howLightMoves.data.ts'), 'utf8');
+  const quiz = fs.readFileSync(path.join(root, 'sections/quiz/index.ts'), 'utf8');
+  const catalog = fs.readFileSync(path.join(root, 'questions/index.ts'), 'utf8');
+  assert.match(lesson, /createLesson<HowLightMoves_Languages>/);
+  assert.match(quiz, /createSection<HowLightMoves_Languages>/);
+  assert.match(quiz, /questionSlugs:/);
+  assert.match(catalog, /Question_Catalog<'data', HowLightMoves_Languages>/);
+  assert.equal(fs.existsSync(path.join(root, 'content.yaml')), false);
+  // No migration or overwrite of the real Playground TS lesson is performed.
+});
