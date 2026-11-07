@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import LearningLayout from './LearningLayout';
+import { LessonSteps } from '../../lesson/LessonSteps';
 import { learningLayout } from '../../../../data/locale/learningLayout';
 
 // Intercept the physical anchor and Slide direction passed to MUI.
@@ -64,6 +65,22 @@ describe('LearningLayout sidebar animation direction', () => {
       expectDrawerDirections('right', 'left');
     },
   );
+
+  it('passes RTL reading order to the Lesson Stepper in the lesson content', () => {
+    render(
+      <LearningLayout {...commonProps} locale="ar-SA">
+        <LessonSteps
+          navigationLabel="Lesson steps"
+          steps={[{ id: 'one', title: 'One' }, { id: 'two', title: 'Two' }]}
+          currentStep={0}
+        />
+      </LearningLayout>,
+    );
+
+    const stepper = screen.getByRole('navigation', { name: 'Lesson steps' });
+    expect(stepper.closest('[dir]')).toHaveAttribute('dir', 'rtl');
+    expect(stepper.querySelectorAll('button')[0]).toHaveAttribute('aria-current', 'step');
+  });
 
   it('updates both animations when the interface language changes from LTR to RTL', () => {
     const view = render(<LearningLayout {...commonProps} locale="uk-UA"><p>Lesson</p></LearningLayout>);
