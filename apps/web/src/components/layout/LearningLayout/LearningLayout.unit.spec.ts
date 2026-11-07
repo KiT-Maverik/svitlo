@@ -86,7 +86,7 @@ describe('Layouts', () => {
       );
     });
 
-    it('keeps Quick Settings open and synchronizes the switch with the applied scheme', async () => {
+    it('keeps Quick Settings open when toggling the navbar theme switch', async () => {
       window.localStorage.setItem('mui-mode', 'light');
       try {
         render(
@@ -101,8 +101,9 @@ describe('Layouts', () => {
 
         await userEvent.click(screen.getByRole('button', { name: aria.actions.openSettings }));
         const settings = screen.getByRole('complementary', { name: aria.navigation.settings });
-        const theme = () =>
-          within(settings).getByRole('switch', { name: ukUiKitMessages.navbarPreferences.theme.dark });
+        const navbar = screen.getByRole('navigation', { name: aria.navigation.top });
+        const theme = () => within(navbar).getByRole('switch', { name: ukUiKitMessages.navbarPreferences.theme.dark });
+        expect(within(settings).queryByRole('switch')).not.toBeInTheDocument();
 
         await waitFor(() => {
           expect(theme()).not.toBeChecked();

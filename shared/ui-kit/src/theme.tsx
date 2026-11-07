@@ -29,12 +29,21 @@ const themes = {
  * Animate only the large surfaces that establish the page's colors. Applying
  * transitions to every MUI child (especially Select, Typography and SvgIcon)
  * stacks multiple paint animations and makes Quick Settings appear to flash.
- * Keep each component's own interaction/motion transitions untouched.
+ * Keep foreground text instant to prevent intermediate low-contrast states
+ * when disabled buttons or title colors change against their backgrounds.
+ * Navbar chrome keeps its opaque background instantaneous: interpolating
+ * inverted foreground/background colors makes text disappear at mid-transition.
+ * Its border still blends smoothly with the surrounding lesson surface.
  */
 const themeTransitions = {
   '@media (prefers-reduced-motion: no-preference)': {
     ':where(body, .svitlo-theme-surface, .MuiPaper-root)': {
-      transitionProperty: 'background-color, color, border-color',
+      transitionProperty: 'background-color, border-color',
+      transitionDuration: '280ms',
+      transitionTimingFunction: 'ease-in-out',
+    },
+    ':where(.svitlo-theme-chrome)': {
+      transitionProperty: 'border-color',
       transitionDuration: '280ms',
       transitionTimingFunction: 'ease-in-out',
     },

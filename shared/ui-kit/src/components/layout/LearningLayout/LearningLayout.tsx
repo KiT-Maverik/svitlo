@@ -39,6 +39,8 @@ export interface LearningLayoutProps {
   actions: { back: () => void; next: () => void; skip: () => void };
   /** Optional preference controls rendered in the settings drawer. */
   preferences?: ReactNode;
+  /** Host-bound switch appears just before the Quick Settings button in the navbar. */
+  themeControl?: ReactNode;
   profile?: LearningProfile;
   profiles?: readonly LearningProfile[];
   onProfileChange?: (profileId: string) => void;
@@ -63,6 +65,7 @@ export type LearningLayoutTopBarProps = Pick<
   LearningLayoutProps,
   | 'messages'
   | 'preferences'
+  | 'themeControl'
   | 'linkComponent'
   | 'profile'
   | 'profiles'
@@ -96,6 +99,7 @@ export function LearningLayoutTopBar({
   onProfileChange,
   onLogout,
   profileSettingsHref,
+  themeControl,
   open,
   settingsOpen,
   setOpen,
@@ -133,6 +137,7 @@ export function LearningLayoutTopBar({
                 title={lessonTitle}
                 sx={{
                   display: { xs: 'none', md: 'block' },
+                  color: 'text.primary',
                   maxWidth: 280,
                   overflow: 'hidden',
                   textOverflow: 'ellipsis',
@@ -146,6 +151,7 @@ export function LearningLayoutTopBar({
         ),
         right: (
           <>
+            {themeControl}
             <IconButton
               aria-label={settingsOpen ? messages.actions.closeSettings : messages.actions.openSettings}
               aria-expanded={settingsOpen}
@@ -240,6 +246,7 @@ export default function LearningLayout({
   progress,
   actions,
   preferences,
+  themeControl,
   profile,
   profiles,
   onProfileChange,
@@ -288,6 +295,7 @@ export default function LearningLayout({
         renderTopBar({
           messages,
           preferences,
+          themeControl,
           linkComponent,
           profile,
           profiles,
@@ -303,6 +311,7 @@ export default function LearningLayout({
         <LearningLayoutTopBar
           messages={messages}
           preferences={preferences}
+          themeControl={themeControl}
           linkComponent={linkComponent}
           profile={profile}
           profiles={profiles}

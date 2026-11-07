@@ -1,12 +1,11 @@
 import { beforeEach, afterEach, describe, expect, it, vi } from 'vitest';
 import { fireEvent, render, screen, within } from '@testing-library/react';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { SvitloThemeProvider } from '@svitlo/ui-kit/theme';
 import { ukUiKitMessages } from '../../../../../../shared/ui-kit/src/testing/uiKitMessages.unit.fx';
 const aria = ukUiKitMessages.learningLayout;
 import { SkillAnalyticsPage } from './SkillAnalyticsPage';
 import { fixtureJsonForSkillUrl, TEST_SKILLS_DOMAIN_SLUGS } from './skillsData.fixture';
 
-const theme = createTheme({ cssVariables: true, colorSchemes: { light: true, dark: true } });
 describe('Skills page in shared LearningLayout', () => {
   const originalFetch = globalThis.fetch;
   beforeEach(() => {
@@ -31,17 +30,24 @@ describe('Skills page in shared LearningLayout', () => {
 
   it('opens the existing navbar settings drawer and changes page-owned Skill cards', async () => {
     render(
-      <ThemeProvider theme={theme}>
+      <SvitloThemeProvider direction="ltr">
         <SkillAnalyticsPage domainSlugs={TEST_SKILLS_DOMAIN_SLUGS} initialMessages={ukUiKitMessages} />
-      </ThemeProvider>,
+      </SvitloThemeProvider>,
     );
     const card = await screen.findByTestId('skill-node-testRed');
     expect(within(card).getByRole('progressbar')).toBeInTheDocument();
     expect(screen.getByRole('navigation', { name: aria.navigation.top })).toBeInTheDocument();
     expect(screen.queryByRole('button', { name: /Попередня|Назад/ })).not.toBeInTheDocument();
 
+    const navbar = screen.getByRole('navigation', { name: aria.navigation.top });
+    expect(
+      within(navbar).getByRole('switch', { name: ukUiKitMessages.navbarPreferences.theme.dark }),
+    ).toBeInTheDocument();
     openSettings();
     const sidebar = await screen.findByRole('complementary', { name: aria.navigation.settings });
+    expect(
+      within(sidebar).queryByRole('switch', { name: ukUiKitMessages.navbarPreferences.theme.dark }),
+    ).not.toBeInTheDocument();
     expect(within(sidebar).getByRole('combobox', { name: ukUiKitMessages.navbarPreferences.language })).toBeVisible();
     expect(within(sidebar).getByRole('region', { name: 'Налаштування сторінки Skills' })).toBeInTheDocument();
     const mapControls = within(sidebar).getByRole('region', { name: 'Керування мапою Skills' });
