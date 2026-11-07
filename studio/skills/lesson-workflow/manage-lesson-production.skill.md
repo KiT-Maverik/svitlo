@@ -12,6 +12,12 @@ Read root/applicable `AGENTS.md`, [GitHub labeling rules](../../rules/github-lab
 4. Apply canonical `content: <package>`, `work: content` and proper `source: *` labels per [the catalog](../../../.github/labels.json); use `attention: blocked` or `attention: decision` only for actual outstanding conditions. Never invent status or persona labels not defined in the catalog.
 5. Freeze the membership snapshot at creation. A change in Course TOC **does not automatically mutate** the Issue worklist. Adding/removing Lesson UUIDs requires explicit owner approval and documented revision in the Issue, or a separate scope Issue if the change is substantial.
 
+## Intake from Course Workflow
+
+When [Match Course TOC Lessons](../course-workflow/match-course-toc-lessons.skill.md) requests an **authorized** handoff, use a **single Lesson Production Issue** for all distinct new/unimplemented Lesson IDs in that bounded matching batch. Verify Course UUID, selected TOC slot `key` → actual Lesson UUID mappings, `lesson.identity.json` and `methodology.md`, the source `toc.yaml` SHA and the matching PR. Reused standalone Lesson drafts count once; already implemented appropriate Lessons require no new production. Existing Lessons missing only a target locale need [Translation Production](../translation-workflow/manage-translation-production.skill.md), not a duplicate Lesson implementation Issue.
+
+Search/reconcile existing Issue ownership first: never duplicate or silently extend frozen scopes. Store Course provenance in the Issue, **not** as Lesson-owned Course narrative. Initialize per-Lesson stage from actual approvals; a newly created Methodologist Draft is `methodology` / `ready-for-review` or `blocked`, never automatically `approved`. Link Course matching Draft PR with `Refs #N`, not `Closes #N`. If the user only authorized editorial planning or Issue access is unavailable, report pending handoff instead of pretending an Issue exists. Issue creation is tracking, **not** approval to start downstream work. Do not automatically invoke Screenwriter/Implement Scene or the future YAML builder.
+
 ## Stable GitHub contract
 
 Issue Form headings are canonical input fields: **Textbook package**, **Lesson UUID scope**, **Scope provenance and authoritative sources**, **Requested starting point**, **Production scope and constraints**, **Production state tracker (coordinator-maintained)**, **Current handoff and activity log**.

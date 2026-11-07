@@ -28,6 +28,14 @@ Both reviews are independent of the Screenwriter and of each other. The reviewer
 
 Per-Lesson stages can be asynchronous: one Lesson may be awaiting Experience Review while another is ready for translation. Batch as many **independent ready Lessons** as the scope and role permit. Do not force the user to say "continue" for each Lesson.
 
+## Course Workflow → Lesson Production Issue
+
+[Match Course TOC Lessons](../../skills/course-workflow/match-course-toc-lessons.skill.md) is the explicit **Course-to-Lesson production handoff** for a bounded selected Chapter/Module/slot batch. When authorized, resolve all Course slot `key` paths into verified Lesson UUIDs, deduplicate new or reused editorial-only drafts, and create/reuse **one Lesson Production Issue** for the full still-unimplemented subset. Record the Course UUID, `toc.yaml` source commit/PR SHA, exact slot → Lesson-ID mapping, Brief paths and approval status. Already implemented suitable Lessons stay reused and should not be reproduced; missing locales on already implemented Lessons belong in Translation Production.
+
+A Methodologist Draft creates an Issue row at `methodology` / `ready-for-review`, **not** an approved production authorization. The Course matching PR uses `Refs #N`, never closes the Issue, and the standalone Lesson remains Course-neutral. Issue membership is frozen; later Course TOC changes do not silently change scope. If matching was editorial-only or Issue creation is unavailable, report the pending UUID worklist and blocker.
+
+[Implement Scene](../../skills/lesson-workflow/implement-scene.skill.md) **requires** the fixed-scope Lesson Production Issue before editing Scene code, independently verifies the approved Scene spec, and blocks implementation when the separate YAML→typed builder scaffold is absent. Track Scene TODOs/assets/translation blockers in both code and Issue. **Do not** implement the builder in this workflow change.
+
 ## Issue tracker state and PR relationships
 
 The Issue Form includes a frozen UUID scope, source references, constraints, a per-Lesson state table, a scope-level checklist and a handoff block. Preserve the `svitlo-lesson-production:v1` marker so agents recognize the format in any chat.

@@ -26,6 +26,8 @@ body:
       description: |
         One verified Lesson UUID per line (optionally followed by slug and UUID-folder path).
         This is the frozen worklist. A Chapter/Module may be named below as provenance, not as an auto-expanding query.
+        For Course matching, include all new/unimplemented Lesson UUIDs from the
+        authorized selected slots, deduplicated into one Issue.
       placeholder: |
         <lesson-uuid-1> | <lesson-slug-1> | data/lessons/<bucket>/<uuid>/
         <lesson-uuid-2> | <lesson-slug-2> | data/lessons/<bucket>/<uuid>/
@@ -37,8 +39,10 @@ body:
       label: Scope provenance and authoritative sources
       description: Links to Course/Chapter/Module TOC (if any), Lesson identity, methodology, content, current PRs and editorial approvals.
       placeholder: |
-        Course TOC and slot keys (optional):
-        Existing Lesson artifacts:
+        Course UUID and selected TOC slot keys (optional):
+        TOC source commit/PR SHA and matching PR:
+        Slot key -> Lesson UUID mapping:
+        Lesson identity / Methodologist Brief paths and approval state:
         Approved editorial constraints:
     validations:
       required: true
@@ -106,6 +110,7 @@ body:
         Current actionable stage:
         Available next roles:
         Blocked Lesson UUIDs:
+        Course matching handoff (if any):
         Active work / owner / Draft PR:
         Last verified source revision:
         Latest decision and approval links:
