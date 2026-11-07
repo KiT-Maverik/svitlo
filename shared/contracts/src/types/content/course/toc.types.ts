@@ -1,4 +1,5 @@
 import type { Locale_Languages } from '../locale.types';
+import type { Entity_Creator } from '../entity.types';
 import type { Lesson } from '../lesson.types';
 import type { Course } from './course.types';
 import type { Chapter } from './chapter.types';
@@ -60,9 +61,11 @@ export type Course_PublicationItems<Languages extends Locale_Languages> = {
   overrides: readonly import('./source.types').Course_LessonAuthoringOverride<Languages>[];
 };
 
-export type Course_Creator<Data, Toc, Languages extends Locale_Languages> = {
-  getData(): Data;
+export type Course_Creator<Data, Toc, Languages extends Locale_Languages> = Entity_Creator<
+  Data,
+  Course_TocContext<Languages>,
+  Course_Resource<Data, Toc>
+> & {
   toToc(context: Course_TocContext<Languages>): Toc;
-  toResource(context: Course_TocContext<Languages>): Course_Resource<Data, Toc>;
   getPublicationItems(): Course_PublicationItems<Languages>;
 };
