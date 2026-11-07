@@ -276,6 +276,8 @@ function runGate(changed) {
       file =>
         file.startsWith('scripts/generate-lessons-markdown.') ||
         file.startsWith('scripts/generate-lesson-review-artifacts.') ||
+        file.startsWith('scripts/generate-lessons-by-skill.') ||
+        file === 'scripts/generate-translation-review-artifacts.mjs' ||
         file.startsWith('scripts/lib/lesson-markdown.') ||
         file.startsWith('shared/engine/src/utils/generators/lessons/') ||
         file.startsWith('content/playground/data/lessons/'),
@@ -290,6 +292,7 @@ function runGate(changed) {
       '--test',
       'scripts/generate-lessons-markdown.spec.mjs',
       'scripts/generate-lesson-review-artifacts.spec.mjs',
+      'scripts/generate-lessons-by-skill.spec.mjs',
     ]);
   }
 
