@@ -1,6 +1,6 @@
 # Deterministic Course YAML → TypeScript composition
 
-This is **not** an AI authoring skill and does **not** generate standalone Lessons. It validates the approved Course Methodology and skill-based Course TOC, resolves **implemented** standalone Lessons by canonical UUID, and writes a deterministic **typed Course composition factory**. It does not change the existing Course publisher, Lesson authoring files, Episodes, Scenes or overrides.
+This is **not** an AI authoring skill and does **not** generate standalone Lessons. It validates the approved Course Methodology and skill-based Course TOC, resolves **implemented** standalone Lessons by canonical UUID, optionally applies approved Course-specific `overrides.yaml` instructions through the existing Engine sparse override builder, and writes a deterministic **typed Course composition factory**. It does not change the existing Course publisher, Lesson authoring files, Episodes, Scenes or overrides.
 
 ## Usage
 
@@ -77,7 +77,7 @@ The existing Course publisher discovers **flat** \`data/courses/*.data.ts\` expo
 Further gaps to close in subsequent reviewed work:
 
 1. **Course frontend copy/translation ownership:** determine the canonical approved input for Course title, description, optional prerequisites text and translated Module/Chapter labels. Only then can a builder safely emit a complete \`*.data.ts\` entrypoint automatically.
-2. **Course-owned Episodes, Scenario Sections and sparse Overrides:** no approved editorial YAML schema was found in the Course Workflow. This builder neither writes nor modifies them; existing typed authoring and slug-keyed overrides remain supported by the current Course API/publisher.
+2. **Course-owned Episodes and Scenario Sections:** no approved self-contained editorial schema produces their authored content yet. For Course-specific Lesson changes, the approved [`overrides.yaml` contract](../../studio/skills/course-workflow/course-overrides.md) now defines slug-keyed changes and references to already-approved Course-owned TypeScript Sections, blocks and patches. The builder emits actual `createLessonOverrides` calls; it never invents an Episode, Section, Scene or translation.
 3. **Subset language typing:** \`Course<'data', L>\` currently requires imported \`Lesson<'data', L>\` with the _identical ordered tuple_. The builder checks the required Course locale subset first, then emits \`TYPED_LANGUAGE_SUPERSET\` for a Lesson with extra supported languages, rather than forcing \`any\`/casts or copying the Lesson. The Course contract needs a type-safe superset adaptation, independently approved.
 4. **Repeated Lesson routes/overrides:** the publisher can now reuse one Lesson UUID in several TOC positions, but all placements address the same Lesson URL. Two different per-slot overrides targeting one UUID are rejected because the current publisher keys overrides by Lesson UUID, not slot key.
 5. **Runtime Lesson titles:** existing \`createCourse\` derives Lesson TOC titles from canonical Lesson Data. TOC slot titles are editorial intent, not automatically approved sparse title overrides. The builder exposes them for review without changing Lesson UI or content.
@@ -85,6 +85,6 @@ Further gaps to close in subsequent reviewed work:
 
 ### Determinism and ownership
 
-The builder processes input arrays without sorting, reuses each standalone Lesson import by UUID, deterministically derives group IDs, and emits byte-stable UTF-8 output. \`--check\` is read-only and fails on drift. \`--write\` rewrites **only** its marker-identified generated file and does nothing on unchanged output. No existing Lesson, Course publisher, Episode Scene, editor YAML or manually authored Course \`*.data.ts\` is changed by the generator.
+The builder processes input arrays without sorting, reuses each standalone Lesson import by UUID, applies approved override operations in their explicit YAML order, deterministically derives group IDs, and emits byte-stable UTF-8 output. \`--check\` is read-only and fails on drift. \`--write\` rewrites **only** its marker-identified generated file and does nothing on unchanged output. No existing Lesson, Course publisher, Episode Scene, editor YAML or manually authored Course \`*.data.ts\` is changed by the generator.
 
 For full validation, run the builder tests, the relevant textbook TypeScript typecheck after creating a real Course Data entrypoint, and the existing textbook publish/integration tests. The implementation is intentionally a separable production step from the Lesson YAML builder.
