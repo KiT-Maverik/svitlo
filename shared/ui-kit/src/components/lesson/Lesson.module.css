@@ -4,7 +4,30 @@
   display: flex;
   flex-direction: column;
 }
+.stepper {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  isolation: isolate;
+}
+
+/* The gradient stays fixed while only the navigation strip scrolls horizontally.
+   A color-filled mask (rather than a gradient background) allows the shared
+   theme background-color transition to interpolate with the page surface. */
+.stepper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-color: var(--mui-palette-background-default);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 65%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 65%, transparent 100%);
+}
+
 .steps {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: minmax(104px, 1fr);
@@ -14,9 +37,6 @@
   overscroll-behavior-x: contain;
   scrollbar-width: thin;
   padding: 20px clamp(12px, 4vw, 48px);
-  position: sticky;
-  top: 0;
-  z-index: 5;
 }
 .steps button {
   position: relative;
@@ -35,7 +55,8 @@
   height: 8px;
   border-radius: 10px;
   background: var(--mui-palette-action-disabledBackground);
-  transition: background 0.25s;
+  transition: background-color var(--svitlo-theme-transition-duration, 280ms)
+    var(--svitlo-theme-transition-easing, ease-in-out);
 }
 .stepLabel {
   position: absolute;
@@ -56,8 +77,10 @@
   transform: translate(-50%, -50%);
   white-space: nowrap;
   transition:
-    background-color 0.2s,
-    border-color 0.2s,
+    background-color var(--svitlo-theme-transition-duration, 280ms)
+      var(--svitlo-theme-transition-easing, ease-in-out),
+    border-color var(--svitlo-theme-transition-duration, 280ms)
+      var(--svitlo-theme-transition-easing, ease-in-out),
     box-shadow 0.2s,
     color 0.2s,
     transform 0.2s;
@@ -342,6 +365,7 @@
     display: none;
   }
   .segment,
+  .stepLabel,
   .rating,
   .rating span,
   .rating strong {
