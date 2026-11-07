@@ -47,25 +47,27 @@ export function LessonSteps({
   }, [currentStep, steps.length]);
 
   return (
-    <Box component="nav" ref={containerRef} className={styles.steps} aria-label={navigationLabel}>
-      {steps.map((step, index) => (
-        <Box
-          component="button"
-          key={step.id}
-          ref={index === currentStep ? activeStepRef : undefined}
-          type="button"
-          disabled={!allowNavigation || (canNavigateTo ? !canNavigateTo(index) : false)}
-          aria-current={index === currentStep ? 'step' : undefined}
-          data-complete={index === completedStep || undefined}
-          onClick={() => onNavigate?.(index)}
-        >
-          <span className={styles.segment} />
-          <span className={styles.stepLabel}>
-            {showStepNumbers ? `${index + 1}. ` : ''}
-            {step.title}
-          </span>
-        </Box>
-      ))}
+    <Box className={`${styles.stepper} svitlo-theme-stepper`}>
+      <Box component="nav" ref={containerRef} className={styles.steps} aria-label={navigationLabel}>
+        {steps.map((step, index) => (
+          <Box
+            component="button"
+            key={step.id}
+            ref={index === currentStep ? activeStepRef : undefined}
+            type="button"
+            disabled={!allowNavigation || (canNavigateTo ? !canNavigateTo(index) : false)}
+            aria-current={index === currentStep ? 'step' : undefined}
+            data-complete={index === completedStep || undefined}
+            onClick={() => onNavigate?.(index)}
+          >
+            <span className={styles.segment} />
+            <span className={styles.stepLabel}>
+              {showStepNumbers ? `${index + 1}. ` : ''}
+              {step.title}
+            </span>
+          </Box>
+        ))}
+      </Box>
     </Box>
   );
 }
