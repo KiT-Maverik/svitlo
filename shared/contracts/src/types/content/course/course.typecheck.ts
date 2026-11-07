@@ -1,6 +1,7 @@
 import type {
   Chapter,
   Chapter_Content,
+  Chapter,
   Episode,
   Lesson_Override,
   Module,
@@ -62,3 +63,24 @@ type _PrerequisiteGroupRefs = AssertTrue<
 type _PrerequisiteDomainRefs = AssertTrue<
   NonNullable<Course_Prerequisites<'data', Languages>['skillDomains']>[number] extends SkillId ? true : false
 >;
+
+// The same Course language tuple governs nested entities. Intentional invariants are allowed.
+const courseLanguages: Course<'data', Languages>['parameters']['languages'] = ['en', 'uk'];
+const fullModuleTitle: Module<'data', Languages>['title'] = {
+  type: 'text', id: 'module-title', slug: 'module', value: { en: 'Numbers', uk: 'Числа' },
+};
+const invariantChapterTitle: Chapter<'data', Languages>['title'] = {
+  type: 'text', id: 'chapter-title', slug: 'chapter', value: 'H₂O',
+};
+const incompleteEpisodeTitle: Episode<'data', Languages>['title'] = {
+  type: 'text', id: 'episode-title', slug: 'episode',
+  // @ts-expect-error A localized Episode title requires every Course locale.
+  value: { en: 'Story' },
+};
+// @ts-expect-error A Course cannot discard a declared locale.
+const incompleteCourseLanguages: Course<'data', Languages>['parameters']['languages'] = ['en'];
+void courseLanguages;
+void fullModuleTitle;
+void invariantChapterTitle;
+void incompleteEpisodeTitle;
+void incompleteCourseLanguages;

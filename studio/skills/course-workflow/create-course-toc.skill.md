@@ -20,7 +20,7 @@ Resolve `<bucket>/<course-uuid>` using the repository `resolveEntityPath(courseI
 
 ## Required inputs and authoritative sources
 
-1. **Course Methodology:** read the entire `methodology.md`, including YAML Frontmatter and rationale. Confirm `courseId`, `documentLanguage`, subject/textbook, target audience, depth, outcomes, standards, prerequisites, scope exclusions, available time and relevant open questions. Do not change the Course's entry prerequisites or supported languages while producing its TOC.
+1. **Course Methodology:** read the entire `methodology.md`, including YAML Frontmatter and rationale. Confirm `courseId`, editorial `documentLanguage`, non-empty `supportedLanguages`, subject/textbook, target audience, depth, outcomes, standards, prerequisites, scope exclusions, available time and relevant open questions. Do not change the Course's entry prerequisites or planned languages while producing its TOC; if authored Course Data already exists, compare its `parameters.languages` and report contradictions.
 2. **Actual taxonomy:** examine the relevant `content/<textbook>/data/skills/` hierarchy, the Skills' `description.methodological`, Groups, Domains and their actual canonical IDs. Do not infer competencies from a skill's display name alone, folder order or generic examples.
 3. **Generated English full taxonomy:** inspect `content/<textbook>/docs/generated/skills/taxonomy.en.md` if fresh. Its canonical generation command, from the monorepo root, is:
    
@@ -63,11 +63,34 @@ Each planned lesson has a stable `key` for matching and later conversion, **not*
 - `name` — exact current English Skill name from the canonical source, provided for review.
 - `source` — verified repository-root-relative `content/<textbook>/data/skills/.../*.data.ts` location for traceability. Useful for the reviewer, but never the authoritative identity; if a Skill file moves, update this reference.
 
-An optional `lessonId` and `lessonSelectionNote` can be set later by [Match Course TOC Lessons](./match-course-toc-lessons.skill.md), but must not be invented during initial TOC design. No per-slot implementation status is needed.\n\nRepeated Skill IDs in **different** lesson slots are valid when educationally intentional; duplicates **within the same slot** are not. Groups/Domains are for taxonomy navigation, **not** substitutes for concrete Skill targets in lesson leaves. An unimplemented or unavailable Lesson does not prevent including the Skill.
+An optional `lessonId` and `lessonSelectionNote` can be set later by [Match Course TOC Lessons](./match-course-toc-lessons.skill.md), but must not be invented during initial TOC design. No per-slot implementation status is needed.
+
+Repeated Skill IDs in **different** lesson slots are valid when educationally intentional; duplicates **within the same slot** are not. Groups/Domains are for taxonomy navigation, **not** substitutes for concrete Skill targets in lesson leaves. An unimplemented or unavailable Lesson does not prevent including the Skill.
+
+## Document language and supported languages
+
+Record both fields separately in the **root** of `toc.yaml`:
+
+- `documentLanguage` is the source language used in the *editable TOC* for ordinary titles, objectives and other descriptive text. It tells later Course authoring tools **which locale field receives those values**. It does **not** imply a Course already has other translations.
+- `supportedLanguages` is the non-empty, unique ordered list of Course locales, copied from the Methodology and checked against `DEFAULT_SUPPORTED_LANGUAGES`. It must match eventual `Course.parameters.languages`; this is the minimum set required of every Course Lesson. These are *planned* languages, not proof of completed translations.
+
+If the Methodology `documentLanguage` is in `supportedLanguages`, use it for the TOC by default. If the Methodology is in a different editorial language, **explicitly author or translate** the TOC in a supported locale; its own `documentLanguage` may differ. Do not project a TOC into Course-localized fields unless the chosen source language is in `supportedLanguages`; otherwise record the blocker instead of guessing translations.
+
+A plain scalar `title: "Лічба"` is **translatable source-locale text**. It must not be interpreted as an intentionally non-localized TypeScript string. For truly language-independent content, mark the field explicitly:
+
+~~~yaml
+title:
+  value: "H₂O"
+  invariant: true
+~~~
+
+Use this only for identical-in-all-locales values, never to bypass translations. In current Course contracts `Locale_Options<SupportedLanguages>` is a union of a **complete** locale dictionary and an **intentional invariant string**. A future converter must place source text into `documentLanguage`, require real translations for remaining supported locales before publication, and turn `invariant: true` into the scalar invariant alternative. Do not replicate one translation across languages as a fallback.
+
+The Course's SupportedLanguages generic propagates to nested Modules, Chapters, Episodes, Sections and Course-owned ContentBlocks. Attached standalone Lessons are referenced by ID: their actual `parameters.languages` must cover **all** Course supported languages and may include more. Do not redundantly repeat language arrays on each Chapter or Lesson slot.
 
 ## Machine-readable output contract
 
-Write actual **YAML 1.2** (`toc.yaml`, not a Markdown code fence) conforming to [course-toc.schema.json](./course-toc.schema.json) after YAML parsing. `schemaVersion: 1`, `kind: course-toc-plan`, `status: draft`, and `documentLanguage` from the Methodology are mandatory. The `content` tree is ordered; `openIssues` records genuine gaps, disputed dependencies or unsupported scope. Keep all consumer-relevant information **in YAML**, not only in chat or prose.
+Write actual **YAML 1.2** (`toc.yaml`, not a Markdown code fence) conforming to [course-toc.schema.json](./course-toc.schema.json) after YAML parsing. `schemaVersion: 1`, `kind: course-toc-plan`, `status: draft`, `documentLanguage` (TOC source locale) and `supportedLanguages` (planned Course locales) are mandatory. The `content` tree is ordered; `openIssues` records genuine gaps, disputed dependencies or unsupported scope. Keep all consumer-relevant information **in YAML**, not only in chat or prose.
 
 Example (illustrative Math Skill from the canonical source; the Course UUID below is a placeholder, not an existing Course):
 
@@ -77,6 +100,7 @@ kind: course-toc-plan
 status: draft
 courseId: "11111111-1111-4111-8111-111111111111"
 documentLanguage: uk
+supportedLanguages: [uk, en]
 content:
   - type: module
     key: arithmetic
@@ -104,9 +128,9 @@ Missing required Skills must be recorded in `openIssues`, with a suggested locat
 
 ## Acceptance and handoff
 
-- `methodology.md` exists; output `toc.yaml` is in the same immutable UUID bucket directory with matching `courseId` and `documentLanguage`.
+- `methodology.md` exists; output `toc.yaml` is in the same UUID bucket directory with matching `courseId` and `supportedLanguages`. The TOC `documentLanguage` is explicit and must be a supported Course language for direct projection, even if the Methodology itself was written in another language.
 - English generated taxonomy was consulted or regeneration was attempted and any blockers reported. Every Skill ID/name/source triple resolves to a real verified canonical Skill definition. No taxonomy files were silently edited.
-- YAML parses; nested tree follows [schema](./course-toc.schema.json); all node keys are unique; all Lesson leaves have at least one verified Skill ID; no Episodes, implemented Lesson IDs, scenario content, or duplicate `order` fields.
+- YAML parses; the unique supported locale set is valid, scalar text has a source locale and invariant titles have explicit markers; nested tree follows [schema](./course-toc.schema.json); all node keys are unique; all Lesson leaves have at least one verified Skill ID; no Episodes, implemented Lesson IDs, scenario content, or duplicate `order` fields.
 - Coverage and pedagogical order are audited globally, including multi-skill lessons, repeated skills, missing preparatory competencies and varying depth.
 - `openIssues` clearly distinguishes missing taxonomy competencies and actual blockers from completed work; `status: approved` is only an explicit editor decision.
 - Deliver a concise summary: scope, skill/slot counts, sequence rationale, gaps and pending approvals. **Do not** automatically run Lesson matching, scenario creation or code generation.

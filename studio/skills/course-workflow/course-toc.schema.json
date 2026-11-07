@@ -10,6 +10,7 @@
     "status",
     "courseId",
     "documentLanguage",
+    "supportedLanguages",
     "content",
     "openIssues"
   ],
@@ -55,6 +56,16 @@
       "items": {
         "$ref": "#/$defs/openIssue"
       }
+    },
+    "supportedLanguages": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z]{2}$"
+      },
+      "description": "Planned ordered Course language tuple, not already localized content."
     }
   },
   "$defs": {
@@ -106,8 +117,7 @@
           "$ref": "#/$defs/key"
         },
         "title": {
-          "type": "string",
-          "minLength": 1
+          "$ref": "#/$defs/title"
         },
         "objective": {
           "type": "string",
@@ -154,8 +164,7 @@
           "$ref": "#/$defs/key"
         },
         "title": {
-          "type": "string",
-          "minLength": 1
+          "$ref": "#/$defs/title"
         },
         "children": {
           "type": "array",
@@ -183,8 +192,7 @@
           "$ref": "#/$defs/key"
         },
         "title": {
-          "type": "string",
-          "minLength": 1
+          "$ref": "#/$defs/title"
         },
         "children": {
           "type": "array",
@@ -217,7 +225,8 @@
             "sequence-conflict",
             "scope-ambiguity",
             "taxonomy-unverified",
-            "other"
+            "other",
+            "lesson-languages-missing"
           ]
         },
         "description": {
@@ -233,6 +242,32 @@
           "minLength": 1
         }
       }
+    },
+    "title": {
+      "description": "Plain scalar text is authored in documentLanguage. An explicit object is language-invariant.",
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "object",
+          "required": [
+            "value",
+            "invariant"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "value": {
+              "type": "string",
+              "minLength": 1
+            },
+            "invariant": {
+              "const": true
+            }
+          }
+        }
+      ]
     }
   }
 }

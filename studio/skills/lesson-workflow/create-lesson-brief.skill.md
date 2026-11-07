@@ -20,7 +20,8 @@ Do not author a Lesson Brief until these inputs are available and checked:
 2. **Approved Skills Taxonomy:** read `<PackageRoot>/docs/generated/skills/taxonomy.en.md` for relevant Domains, Groups, Skills and English methodological descriptions. **If absent**, run `node scripts/generate-skills-taxonomy.mjs --package content/<textbook> --locale en` from the **monorepo root**, substituting the actual package path; then read the result. The generated document is a read-only view of `*.data.ts` Code, **not** a separate canonical authority or proof of editorial approval. During staged migration, additionally consult approved but not-yet-promoted entries in `<PackageRoot>/docs/skills/taxonomy.md`, if present; this staging file can disappear after complete migration. If generation fails, a relevant entry is unavailable, or approval cannot be verified, **stop and report the blocker**, rather than guessing or treating partial output as complete.
 3. **Target Skills:** identify one or more **approved, independently meaningful Skills** and specify their canonical `*.data.ts` sources under **`<PackageRoot>/data/skills/` (outside `src/`)**. Record one Markdown link per Skill, labeled with its complete `.data.ts` filename; do not use Skill titles, UUIDs, generic link labels, or old `src/data/skillsTaxonomy/` paths. Verify pedagogical Skill identity against approved taxonomy. The canonical `data/skills/` layout is already used by Mathematics and Playground. Verify actual Skill files before linking to them. If another package has not migrated yet, report the unresolved path as a migration blocker; do not invent files or fall back to `src/`.
 4. **Audience:** intended learners, approximate prior knowledge and language/literacy context, and relevant accessibility needs; do not automatically assume a school grade.
-5. **Intent and constraints:** intended learning outcomes or instructional problem, content boundaries, required depth, known prerequisites, references and any mandatory standards or safety requirements. Surface missing **material** constraints instead of inventing them.
+5. **Intent and constraints:** intended learning outcomes or instructional problem, content boundaries, required depth, known prerequisites, references and any mandatory standards or safety requirements.
+6. **Language plan:** explicitly record `documentLanguage` (language of the methodological prose, normally `en`) and a non-empty, unique, ordered `supportedLanguages` list of planned learner-facing Lesson locales. Check against `DEFAULT_SUPPORTED_LANGUAGES`. If this Lesson is proposed for a Course, include **all Course languages**; otherwise establish the planned locale set with the editor and report missing decisions instead of guessing. Surface missing **material** constraints instead of inventing them.
 
 **Optional:** compatibility with a named Curriculum or Program, delivery modality, expected duration, media/technology restrictions, locale-specific contexts, or special revision goals. If compatibility is requested, actually read the named Curriculum and reconcile scope, learning depth and prerequisites **without making it the Lesson's owner**. If none is specified, do not manufacture a Curriculum or claim compatibility with all curricula. Curriculum is **never** a prerequisite for this Skill.
 
@@ -44,9 +45,14 @@ The new document is a **Draft Methodologist Brief**, not a draft of the _impleme
 
 ## METHODOLOGIST BRIEF TEMPLATE
 
-The following is an **embedded authoring template**; replace all placeholders and remove inapplicable optional notes before delivery. Canonical editorial writing is in **English**; learner-facing content will be localized in its later authoring stage. Do not use a target-language translation as a replacement for the canonical pedagogical contract.
+The following is an **embedded authoring template**; replace all placeholders and remove inapplicable optional notes before delivery. Canonical editorial writing is in **English**, so set `documentLanguage: en` unless an editor explicitly authorizes another editorial source language. This is **not** a localization of learner-facing Lesson content. `supportedLanguages` is the planned Lesson locale tuple; actual `Lesson.parameters.languages` and localized content must match it when implemented. Lessons may include more locales than a Course using them, but must include all Course locales. Do not treat either editorial metadata field as proof that translations have been authored or published.
 
 ```md
+---
+documentLanguage: en
+supportedLanguages: [en, uk] # replace with approved Lesson language plan
+---
+
 # %LESSON_TITLE% — Methodologist Brief
 
 Date: %YYYY-MM-DD%
@@ -107,6 +113,8 @@ Program dependence: None
 
 %Readiness summary, scope decisions, unresolved blockers, and what the Screenwriter may design after explicit approval.%
 ```
+
+**Localization metadata:** `documentLanguage` is the language of this editorial Brief. `supportedLanguages` lists planned learner-facing Lesson locales, not completed translations or a guarantee of runtime availability. Never silently drop a Course language when proposing a Lesson for that Course. For an existing legacy Brief without frontmatter, preserve the existing format and do not migrate it solely to add these fields unless the editor authorizes revision.
 
 **Metadata rules:** `Code` references the **Lesson implementation**, not a Skill Code link and not a directive to embed Methodologist prose in runtime configuration. Leave exactly `Code: [Not implemented](#)` unless a real Lesson implementation has been verified, in which case use its actual relative Markdown link and exact filename. Do not fabricate a runtime UUID, registry, approval date or implementation status. The Lesson slug is a file locator, not a verified runtime ID.
 

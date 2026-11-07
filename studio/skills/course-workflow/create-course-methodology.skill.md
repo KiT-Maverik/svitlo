@@ -17,7 +17,7 @@ Establish the following from the editorial request and repository; ask only for 
 - **Audience:** learner profile, entry competence, age/grade only when applicable, language/literacy, learning context, accessibility considerations.
 - **Course purpose and form:** foundational, advanced, specialization, refresher, mini-course, or a context-specific description; desired outcomes, boundaries, depth and approximate scale.
 - **Curriculum/standards compatibility:** named educational frameworks, qualification standards, jurisdiction, version and extent of alignment when requested. An unspecified standard is not automatically applicable.
-- **Document language:** two-letter editorial language code (documentLanguage). **Separately** record planned Course supportedLanguages; these are not the language of the methodology document and must not be presented as already published translations.
+- **Document language:** `documentLanguage` names the **Methodology's editorial language**. Independently, `supportedLanguages` is an explicit **non-empty, duplicate-free, ordered** list of planned Course locales. Validate these against `DEFAULT_SUPPORTED_LANGUAGES`; they will define the Course's `parameters.languages` and every attached Lesson's minimum language coverage. They do **not** certify that any translations are finished. The Methodology may use an editorial language not in this list; the separate TOC must choose a supported source language for future Course title localization.
 - **Narrative/scenario choice:** scenarioMode is **none** or **story** only when the editor has made that decision; omit it and flag an open decision otherwise. A story is never presumed to be necessary.
 - **Constraints and available evidence:** instructional time if specified, teaching modality, required references, domain-specific safety, content exclusions, technology/offline constraints where meaningful.
 - **Skill taxonomy:** verify relevant promoted Skills, SkillGroups and SkillDomains in textbook data/skills and their methodological descriptions. If available, consult generated docs/generated/skills/taxonomy.en.md as an index (not a replacement for the canonical sources); consult approved staging taxonomy only for entries not yet promoted.
@@ -44,7 +44,7 @@ Empty collections mean no requirements of that type have been identified; missin
 4. Document standards compatibility with **specific versions, sources and supported extent** (full, partial, or intended/unverified). Do not assert certification or formal compliance on the basis of similarity alone; mark unknown alignments for review.
 5. Identify any taxonomy gaps that impede a coherent course. Record **proposals** with rationale and tentative labels, never forge Skill IDs or edit approved taxonomy automatically. Follow persona escalation on Skill-versus-Question classification.
 6. Create/update the single Methodology Markdown file using the stable location below. Keep a compact YAML Frontmatter for parseable metadata and substantive Markdown for durable reasoning. Preserve approved context and unrelated files when revising.
-7. Check UUID/path, source references, two distinct language fields, prerequisites, standards, open decisions and clear role boundaries. Finish with a review handoff; do not invoke another course-workflow skill automatically.
+7. Check UUID/path, source references, the editorial `documentLanguage`, valid unique non-empty `supportedLanguages`, prerequisites, standards, open decisions and clear role boundaries. For an existing authored Course, compare the planned list with actual `parameters.languages` and report discrepancies rather than silently rewriting either source. Finish with a review handoff; do not invoke another course-workflow skill automatically.
 
 ## Output path and identity
 
@@ -125,7 +125,7 @@ Use only standards records that are actually applicable; use an empty standards 
 ## Acceptance criteria
 
 - Exactly one methodology.md under the right textbook data/courses/<bucket>/<uuid>, sharing the existing Course ID when applicable.
-- Machine-readable courseId, documentLanguage, supportedLanguages, scenarioMode (when determined), standards and all five prerequisite kinds.
+- Machine-readable courseId, editorial documentLanguage, non-empty duplicate-free supportedLanguages verified against the real language roster, scenarioMode (when determined), standards and all five prerequisite kinds.
 - Audience, purpose, goals, depth, pedagogy, evaluation intent, exclusions, accessibility/localization and evidence explained with specificity.
 - References verified and gaps proposed openly; no invented taxonomy identifiers, compliance claims or downstream artifacts.
 - Useful as durable documentation after the Course is built; no requirement for narrative, TOC, implemented Lessons or runtime code.
