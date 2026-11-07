@@ -1,8 +1,9 @@
 # Course workflow
 
-This directory contains independent course-authoring skills. Each skill owns its own inputs and output artifacts; listing a skill here does **not** require running other skills or imply a mandatory end-to-end pipeline.
+Independent course-authoring skills; explicit artifact prerequisites, **no mandatory full pipeline**.
 
-- [Create Course Methodology](./create-course-methodology.skill.md) — Methodologist Persona; produces the durable `methodology.md` for a single Course. Does not create a TOC or lessons.
-- [Create Course Table of Contents](./create-course-toc.skill.md) — Methodologist Persona; requires an existing Course `methodology.md` and verified taxonomy, produces the **skill-based editorial `toc.yaml`**. Does not select implemented Lessons or create Episodes. The machine-readable format is specified by [course-toc.schema.json](./course-toc.schema.json).
+- [Create Course Methodology](./create-course-methodology.skill.md) — Methodologist; writes durable Course `methodology.md`.
+- [Create Course Table of Contents](./create-course-toc.skill.md) — Methodologist; requires `methodology.md` and Skill Taxonomy; creates ordered skill-based `toc.yaml`.
+- [Match Course TOC Lessons](./match-course-toc-lessons.skill.md) — Methodologist; requires existing `methodology.md` and `toc.yaml`, discovers candidates with [Lessons by Skill ID](../../../scripts/generate-lessons-by-skill.mjs), adds `lessonId` or creates an independent Lesson Methodology draft.
 
-Future Lesson matching, narrative planning and production are separate optional operations, not implicit parts of either skill.
+The editorial TOC format is defined by [course-toc.schema.json](./course-toc.schema.json). Narrative, UX and production are independent optional operations.

@@ -12,7 +12,7 @@ Read the focused [Lesson](../../docs/entities/lesson.md), [Lesson Content](../..
 
 Read [Svitlo Architecture & Product Principles](../../docs/architecture/README.md), particularly [Learning Experience Philosophy](../../docs/architecture/learning-experience-philosophy.md), [Internationalization & Inclusive Access](../../docs/architecture/internationalization-and-accessibility.md), [Offline/Device Compatibility](../../docs/architecture/offline-first-and-device-compatibility.md), and [Lesson Notes](../../docs/architecture/lesson-notes.md). Follow actual textbook instructions, the canonical taxonomy, and [SkillDomain](../../docs/entities/skill-domain.md), [SkillGroup](../../docs/entities/skill-group.md), [Skill](../../docs/entities/skill.md). The architecture expresses product intent, not proof of implemented runtime features.
 
-## REQUIRED INPUTS AND STOP CONDITIONS
+**Backward compatibility:** Newly created Lessons use `methodology.md`. For an existing Lesson with legacy `methodologist-brief.md`, update that existing file in place. Never write both as two Methodologist Briefs in the same Lesson directory.\n\n## REQUIRED INPUTS AND STOP CONDITIONS
 
 Do not author a Lesson Brief until these inputs are available and checked:
 
@@ -35,7 +35,7 @@ If approved Skills, essential audience or substantive intent are missing, or a S
 5. **Check scope and independence.** One Lesson may target multiple Skills when they form a coherent learning objective; if it becomes an entire course, propose a split for editor approval rather than silently splitting, merging, adding or renaming Skills. No grade ceilings or instructional modes may be written back into the taxonomy.
 6. **Honor cross-cutting constraints.** Specify localization-sensitive terms and examples, disability-aware alternatives the experience must enable, offline completeness and low-device pedagogical equivalence. Note factual uncertainty and sources. Do not invent runtime APIs, Note events or assessment guarantees.
 7. **Escalate conflicts.** The Methodologist Persona's mandatory Skill-versus-Question and disciplinary ownership gates still apply. Report specific choices in the editor handoff and do not alter approved taxonomy identities or another specialist's approved section.
-8. **Write only the standalone Methodologist Brief.** Create `methodologist-brief.md` using the template below, or update that exact existing file in place. Never insert Methodologist content into the Lesson config, Content, runtime assets, or another role's document. Do not generate duplicate Briefs.
+8. **Write only the standalone Methodologist Brief.** Create `methodology.md` for a new Lesson, or update the existing `methodology.md` / legacy `methodologist-brief.md` in place. Never insert Methodologist content into the Lesson config, Content, runtime assets, or another role's document. Do not generate duplicate Briefs.
 9. **Audit and stop.** Validate approved taxonomy references, real relative links, unique slug, stable bucket placement, coherent scope, outcomes, prerequisites, sources, role separation and status. Present the Brief for **explicit editor approval**; never run Create Lesson Content or implementation automatically.
 
 ### Approval and revisions
@@ -125,7 +125,7 @@ The intermediate folders `arithmetic/addition/skills/` are an **example only**; 
 Each Lesson has a stable UUID. Its **folder is the UUID** in the bucket computed by `resolveEntityPath(id)` from `@svitlo/engine/utils` (see [entity UUID addressing](../../docs/architecture/entity-uuid-addressing.md)):
 
 ```text
-<PackageRoot>/data/lessons/<last-hex-digit>/<uuid>/methodologist-brief.md
+<PackageRoot>/data/lessons/<last-hex-digit>/<uuid>/methodology.md
 ```
 
 - On creation, mint the UUID once, use the shared Engine resolver to derive the path, and save a `lesson.identity.json` with `{ "id": "<uuid>", "slug": "<camelCaseSlug>" }` if typed `lesson.data.ts` does not exist yet.
@@ -138,7 +138,7 @@ Lessons remain Program-neutral and may be reused in several Curricula.
 
 ## DELIVERABLES AND ACCEPTANCE
 
-**Output exactly one authored/updated `methodologist-brief.md`** in the selected Lesson's stable UUID directory, with explicit `Draft` status and a verified Lesson Code link or the specified placeholder. Do not write companion Lesson Briefs, Lesson Content documents, runtime configs, or duplicate methodical content. Leave existing specialist and implementation artifacts untouched.
+**Output exactly one authored/updated Methodologist Brief** (`methodology.md` for new Lessons, or the existing legacy `methodologist-brief.md`) in the selected Lesson's stable UUID directory, with explicit `Draft` status and a verified Lesson Code link or the specified placeholder. Do not write companion Lesson Briefs, Lesson Content documents, runtime configs, or duplicate methodical content. Leave existing specialist and implementation artifacts untouched.
 
 The accompanying editor-facing handoff (chat/PR, not a second mandatory file) reports:
 

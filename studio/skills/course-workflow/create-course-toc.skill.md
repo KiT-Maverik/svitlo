@@ -63,7 +63,7 @@ Each planned lesson has a stable `key` for matching and later conversion, **not*
 - `name` — exact current English Skill name from the canonical source, provided for review.
 - `source` — verified repository-root-relative `content/<textbook>/data/skills/.../*.data.ts` location for traceability. Useful for the reviewer, but never the authoritative identity; if a Skill file moves, update this reference.
 
-Repeated Skill IDs in **different** lesson slots are valid when educationally intentional; duplicates **within the same slot** are not. Groups/Domains are for taxonomy navigation, **not** substitutes for concrete Skill targets in lesson leaves. An unimplemented or unavailable Lesson does not prevent including the Skill.
+An optional `lessonId` and `lessonSelectionNote` can be set later by [Match Course TOC Lessons](./match-course-toc-lessons.skill.md), but must not be invented during initial TOC design. No per-slot implementation status is needed.\n\nRepeated Skill IDs in **different** lesson slots are valid when educationally intentional; duplicates **within the same slot** are not. Groups/Domains are for taxonomy navigation, **not** substitutes for concrete Skill targets in lesson leaves. An unimplemented or unavailable Lesson does not prevent including the Skill.
 
 ## Machine-readable output contract
 

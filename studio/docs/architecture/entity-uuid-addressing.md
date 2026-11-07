@@ -31,7 +31,8 @@ content/<book>/data/lessons/<last-hex-digit>/<uuid>/
   <slug>.data.ts                 # when implemented
   <slug>.definition.ts           # when implemented
   lesson.identity.json           # editorial-only drafts without typed Lesson data
-  methodologist-brief.md         # when applicable
+  methodology.md                # new Lesson Methodologist briefs
+  methodologist-brief.md         # existing legacy Briefs; do not duplicate
   content.md                     # when applicable
   sections/                      # when applicable
 ```

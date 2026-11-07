@@ -127,6 +127,13 @@
           "items": {
             "$ref": "#/$defs/skill"
           }
+        },
+        "lessonId": {
+          "$ref": "#/$defs/uuid"
+        },
+        "lessonSelectionNote": {
+          "type": "string",
+          "minLength": 1
         }
       }
     },
