@@ -1,0 +1,794 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://svitlo.dev/studio/lesson-flashcards.schema.json",
+  "title": "Lesson Flashcards — Question-first, linked recall bank",
+  "description": "Single-language editorial YAML. Reference fields and relationships require semantic validation and generation; no current runtime support for card links.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "kind",
+    "status",
+    "lessonId",
+    "documentLanguage",
+    "supportedLanguages",
+    "sources",
+    "flashcards",
+    "relationships",
+    "unresolvedDependencies"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "kind": {
+      "const": "lesson-flashcard-bank"
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "approved"
+      ]
+    },
+    "lessonId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "documentLanguage": {
+      "type": "string",
+      "pattern": "^[a-z]{2}$"
+    },
+    "supportedLanguages": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z]{2}$"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "sources": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "methodology",
+        "content",
+        "questions"
+      ],
+      "properties": {
+        "methodology": {
+          "$ref": "#/$defs/source"
+        },
+        "content": {
+          "$ref": "#/$defs/source"
+        },
+        "questions": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "path",
+            "revision"
+          ],
+          "properties": {
+            "path": {
+              "type": "string",
+              "minLength": 1
+            },
+            "revision": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "flashcards": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/card"
+      },
+      "minItems": 1
+    },
+    "relationships": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/relationship"
+      },
+      "minItems": 0
+    },
+    "unresolvedDependencies": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/dependency"
+      },
+      "minItems": 0
+    }
+  },
+  "$defs": {
+    "key": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][A-Za-z0-9]*$"
+    },
+    "uuid": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "questionFieldRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "questionSlug",
+        "fieldPath"
+      ],
+      "properties": {
+        "kind": {
+          "const": "questionField"
+        },
+        "questionSlug": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "fieldPath": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "integer",
+                "minimum": 0
+              }
+            ]
+          },
+          "minItems": 1
+        }
+      }
+    },
+    "textStyle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "applyStyle"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][A-Za-z0-9]*$"
+        },
+        "applyStyle": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "highlight",
+              "bold",
+              "cursive",
+              "underscore",
+              "crossed",
+              "variable"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "tone": {
+          "enum": [
+            "neutral",
+            "info",
+            "warning",
+            "success"
+          ]
+        },
+        "applyColor": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "block": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/textBlock"
+        },
+        {
+          "$ref": "#/$defs/markdownBlock"
+        },
+        {
+          "$ref": "#/$defs/codeBlock"
+        },
+        {
+          "$ref": "#/$defs/existingImage"
+        },
+        {
+          "$ref": "#/$defs/pendingImage"
+        },
+        {
+          "$ref": "#/$defs/advancedBlock"
+        }
+      ]
+    },
+    "textBlock": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "value"
+      ],
+      "properties": {
+        "type": {
+          "const": "text"
+        },
+        "value": {
+          "oneOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "$ref": "#/$defs/questionFieldRef"
+            }
+          ]
+        },
+        "styling": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/textStyle"
+          },
+          "minItems": 1
+        },
+        "wrap": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [],
+          "properties": {
+            "enabled": {
+              "const": false
+            }
+          }
+        }
+      }
+    },
+    "codeBlock": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "language",
+        "code"
+      ],
+      "properties": {
+        "type": {
+          "const": "code"
+        },
+        "language": {
+          "type": "string",
+          "minLength": 1
+        },
+        "code": {
+          "oneOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "$ref": "#/$defs/questionFieldRef"
+            }
+          ]
+        },
+        "title": {
+          "oneOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "$ref": "#/$defs/questionFieldRef"
+            }
+          ]
+        },
+        "variables": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "value"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z][A-Za-z0-9]*$"
+              },
+              "value": {
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  {
+                    "$ref": "#/$defs/questionFieldRef"
+                  }
+                ]
+              }
+            }
+          },
+          "minItems": 0
+        }
+      }
+    },
+    "markdownBlock": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "value"
+      ],
+      "properties": {
+        "type": {
+          "const": "markdown"
+        },
+        "value": {
+          "oneOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "$ref": "#/$defs/questionFieldRef"
+            }
+          ]
+        }
+      }
+    },
+    "existingImage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "assetPath",
+        "alt",
+        "layout"
+      ],
+      "properties": {
+        "type": {
+          "const": "image"
+        },
+        "assetPath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "alt": {
+          "oneOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "$ref": "#/$defs/questionFieldRef"
+            }
+          ]
+        },
+        "caption": {
+          "oneOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "$ref": "#/$defs/questionFieldRef"
+            }
+          ]
+        },
+        "layout": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "width",
+                "height"
+              ],
+              "properties": {
+                "width": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "height": {
+                  "type": "integer",
+                  "minimum": 1
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "fill",
+                "aspectRatio"
+              ],
+              "properties": {
+                "fill": {
+                  "const": true
+                },
+                "aspectRatio": {
+                  "type": "number",
+                  "exclusiveMinimum": 0
+                },
+                "objectFit": {
+                  "enum": [
+                    "contain",
+                    "cover"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "pendingImage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "assetRequest",
+        "layout"
+      ],
+      "properties": {
+        "type": {
+          "const": "image"
+        },
+        "assetRequest": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "purpose",
+            "altIntent",
+            "status"
+          ],
+          "properties": {
+            "description": {
+              "type": "string",
+              "minLength": 1
+            },
+            "purpose": {
+              "type": "string",
+              "minLength": 1
+            },
+            "altIntent": {
+              "type": "string",
+              "minLength": 1
+            },
+            "status": {
+              "const": "pending"
+            }
+          }
+        },
+        "layout": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "width",
+                "height"
+              ],
+              "properties": {
+                "width": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "height": {
+                  "type": "integer",
+                  "minimum": 1
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "fill",
+                "aspectRatio"
+              ],
+              "properties": {
+                "fill": {
+                  "const": true
+                },
+                "aspectRatio": {
+                  "type": "number",
+                  "exclusiveMinimum": 0
+                },
+                "objectFit": {
+                  "enum": [
+                    "contain",
+                    "cover"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "advancedBlock": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "purpose",
+        "status",
+        "dependency"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "audio",
+            "video",
+            "youtube",
+            "carousel",
+            "scene",
+            "checkpoint"
+          ]
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "const": "proposed"
+        },
+        "dependency": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "acronymSourcePart": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "item",
+        "letters"
+      ],
+      "properties": {
+        "kind": {
+          "const": "source"
+        },
+        "item": {
+          "type": "string",
+          "minLength": 1
+        },
+        "letters": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "acronymConnectorPart": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "letters"
+      ],
+      "properties": {
+        "kind": {
+          "const": "connector"
+        },
+        "letters": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "acronym": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value",
+        "localePolicy",
+        "parts"
+      ],
+      "properties": {
+        "value": {
+          "type": "string",
+          "minLength": 1
+        },
+        "localePolicy": {
+          "enum": [
+            "invariant",
+            "needsLocalizedVersion"
+          ]
+        },
+        "parts": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/$defs/acronymSourcePart"
+              },
+              {
+                "$ref": "#/$defs/acronymConnectorPart"
+              }
+            ]
+          },
+          "minItems": 2
+        }
+      }
+    },
+    "card": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "slug",
+        "front",
+        "back",
+        "hint",
+        "tags",
+        "flags"
+      ],
+      "properties": {
+        "slug": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "isDefault": {
+          "const": true
+        },
+        "front": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/block"
+          },
+          "minItems": 1
+        },
+        "back": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/block"
+          },
+          "minItems": 1
+        },
+        "hint": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/block"
+          },
+          "minItems": 0
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][A-Za-z0-9]*$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "flags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "listAnswerCount": {
+          "type": "integer",
+          "minimum": 2
+        },
+        "acronym": {
+          "$ref": "#/$defs/acronym"
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "relationship": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "key",
+        "source",
+        "target",
+        "kind",
+        "directed",
+        "rationale"
+      ],
+      "properties": {
+        "key": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "source": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "target": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "kind": {
+          "type": "string",
+          "pattern": "^[a-z][A-Za-z0-9]*$"
+        },
+        "directed": {
+          "type": "boolean"
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "dependency": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "description",
+        "status"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "questionImport",
+            "media",
+            "localization",
+            "acronym",
+            "runtimeGraph",
+            "contentBlock",
+            "editorial",
+            "other"
+          ]
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "const": "pending"
+        },
+        "cardSlug": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "relationKey": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        }
+      }
+    }
+  }
+}
