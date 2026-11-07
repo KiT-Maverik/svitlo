@@ -2,7 +2,11 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 vi.mock('@/i18n/useLessonLocale', () => ({ useLessonLocale: vi.fn() }));
 
-import { screen, within } from '@testing-library/react';
+import { createElement } from 'react';
+import { render, screen, waitFor, within } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import MuiThemeProvider from '@/app/MuiThemeProvider';
+import LearningLayout from './LearningLayout';
 import { LearningLayout_fx } from './LearningLayout.unit.fx';
 import { LearningLayout_mx } from './LearningLayout.unit.mx';
 import { ukUiKitMessages } from '../../../../../../shared/ui-kit/src/testing/uiKitMessages.unit.fx';
@@ -72,14 +76,55 @@ describe('Layouts', () => {
 
     it('should link to profile settings without opening quick settings', async () => {
       LearningLayout_fx.render();
-      await LearningLayout_fx.actions.openSettings();
-      const profile = LearningLayout_fx.selectors.topAction(aria.actions.profile);
-      profile.click();
+      await userEvent.click(LearningLayout_fx.selectors.topAction(aria.actions.profile));
+      const profileSettings = await screen.findByRole('menuitem', { name: aria.actions.profileSettings });
+      expect(profileSettings).toHaveAttribute('href', '#');
+      await userEvent.click(profileSettings);
       expect(LearningLayout_fx.selectors.topAction(aria.actions.openSettings)).toHaveAttribute(
         'aria-expanded',
         'false',
       );
-      expect(screen.getByRole('menuitem', { name: aria.actions.profileSettings })).toHaveAttribute('href', '#');
+    });
+
+    it('keeps Quick Settings open and synchronizes the switch with the applied scheme', async () => {
+      window.localStorage.setItem('mui-mode', 'light');
+      try {
+        render(
+          createElement(MuiThemeProvider, {
+            direction: 'ltr',
+            children: createElement(LearningLayout, {
+              ...LearningLayout_fx.defaults,
+              children: 'Lesson content',
+            }),
+          }),
+        );
+
+        await userEvent.click(screen.getByRole('button', { name: aria.actions.openSettings }));
+        const settings = screen.getByRole('complementary', { name: aria.navigation.settings });
+        const theme = () =>
+          within(settings).getByRole('switch', { name: ukUiKitMessages.navbarPreferences.theme.dark });
+
+        await waitFor(() => {
+          expect(theme()).not.toBeChecked();
+          expect(document.documentElement).toHaveAttribute('data-light');
+        });
+
+        await userEvent.click(theme());
+        await waitFor(() => {
+          expect(document.documentElement).toHaveAttribute('data-dark');
+          expect(theme()).toBeChecked();
+          expect(settings).toBeVisible();
+        });
+
+        await userEvent.click(theme());
+        await waitFor(() => {
+          expect(document.documentElement).toHaveAttribute('data-light');
+          expect(theme()).not.toBeChecked();
+          expect(settings).toBeVisible();
+        });
+      } finally {
+        window.localStorage.removeItem('mui-mode');
+      }
     });
 
     it('should set right-to-left direction for RTL locales', () => {
