@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://svitlo.dev/studio/lesson-flashcards.schema.json",
   "title": "Lesson Flashcards — Question-first, linked recall bank",
-  "description": "Single-language editorial YAML. Reference fields and relationships require semantic validation and generation; no current runtime support for card links.",
+  "description": "Source-language Flashcards with a single canonical relation edge list. The builder mirrors typed relations onto both Flashcard endpoints in runtime data.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -94,7 +94,8 @@
       "items": {
         "$ref": "#/$defs/relationship"
       },
-      "minItems": 0
+      "minItems": 0,
+      "description": "Each edge is authored once and compiled into both linked Flashcards. Multiple distinct types and multiple relations per card are allowed. Avoid duplicate pairs of the same type."
     },
     "unresolvedDependencies": {
       "type": "array",
@@ -722,8 +723,7 @@
         "key",
         "source",
         "target",
-        "kind",
-        "directed",
+        "type",
         "rationale"
       ],
       "properties": {
@@ -739,18 +739,27 @@
           "type": "string",
           "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
         },
-        "kind": {
-          "type": "string",
-          "pattern": "^[a-z][A-Za-z0-9]*$"
-        },
-        "directed": {
-          "type": "boolean"
-        },
         "rationale": {
           "type": "string",
           "minLength": 1
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "reverse",
+            "equivalent",
+            "contrast",
+            "complementary",
+            "prerequisite",
+            "partOf",
+            "exampleOf",
+            "causes",
+            "precedes"
+          ],
+          "description": "Canonical FlashcardRelationType from Contracts. Directionality is inferred from the type."
         }
-      }
+      },
+      "description": "One canonical edge. The generator resolves both endpoint slugs to card IDs and mirrors it into relationships[] on each card with the same relationshipId, type, relatedFlashcardId, and position."
     },
     "dependency": {
       "type": "object",
