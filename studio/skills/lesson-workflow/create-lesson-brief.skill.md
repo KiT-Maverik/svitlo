@@ -27,6 +27,12 @@ Do not author a Lesson Brief until these inputs are available and checked:
 
 If approved Skills, essential audience or substantive intent are missing, or a Skill is ambiguously identified, **stop and request the smallest necessary editorial clarification**. Do not generate an authoritative-looking Brief from guesses. Do not treat a draft or missing taxonomy as approved.
 
+## ASSESSMENT EVIDENCE PLANNING
+
+Consult `.agent-ci-artifacts/assessment-methods/<language>.md` when available, choosing the learner's frontend language for short labels. The extended explanations remain **English**. The reference lists all canonical Assessment Methods and distinguishes the **cognitive operation assessed** from a **Question UI type**; it is a read-only convenience view, not a replacement for `AssessmentMethodKey` identifiers in Contracts. If absent, inspect the canonical Contracts, English Engine methodology and UI Kit translations instead of making up methods or assuming defaults.
+
+In the Methodologist Brief, decide whether this Lesson needs any **Quiz Sections**, based on the intended Skills, observable outcomes and the kind of evidence necessary to evaluate them. When justified, describe which canonical `AssessmentMethodKey` values would elicit that evidence for each targeted Skill/outcome and why distinct Methods are needed; do not mechanically assign one method per Skill or mandate a Quiz in every Lesson. This is an **assessment intent and handoff**, not an implementation of Questions, UI interaction formats, scoring, mastery thresholds or retries. The Learning Assessment Architect owns those decisions.
+
 ## METHOD AND RESPONSIBILITY BOUNDARIES
 
 1. **Inspect before authoring.** Resolve the textbook path, existing Lesson directory/Methodologist Brief (if any), generated taxonomy descriptions, approved unpromoted staging entries when applicable, relevant references and actual implementation only if needed to validate the Code link. Preserve all existing unrelated specialist files.
@@ -88,6 +94,10 @@ Program dependence: None
 ## Conceptual progression and dependencies
 
 %What needs to be understood first, then next, and which prerequisites require attention. This is not a Section storyboard.%
+
+## Quiz assessment intent and evidence
+
+%Whether Quiz Sections are justified for this Lesson. If so, map exact AssessmentMethodKey values to approved Target Skills and observable outcomes; explain what distinct evidence each should elicit and why multiple methods are required where relevant. Leave Question types, concrete Questions and scoring to the Assessment Architect.%
 
 ## Misconceptions, examples and boundaries
 
