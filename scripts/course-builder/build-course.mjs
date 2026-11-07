@@ -296,6 +296,65 @@ export function renderCourseSource(plan, outputFilename) {
   const groups = flattenGroups(plan.tree);
   const localized = groups.filter(node => typeof node.title === 'string');
   const lessons = [...plan.lessons.values()];
+  const authoredOverrides = [...(plan.overrides ?? new Map()).values()];
+  const sourceSymbols = new Map();
+  for (const override of authoredOverrides) {
+    for (const operation of override.operations) {
+      const refs = [
+        ...(operation.source ? [operation.source] : []),
+        ...(operation.entries ?? []).flatMap(entry => typeof entry === 'string' ? [] : [entry.source]),
+      ];
+      for (const reference of refs) {
+        const key = reference.path + '#' + reference.export;
+        if (!sourceSymbols.has(key)) sourceSymbols.set(key, 'courseOwned' + sourceSymbols.size);
+      }
+    }
+  }
+  const ownedImports = [...sourceSymbols].map(([key, symbol]) => {
+    const hash = key.lastIndexOf('#');
+    const filename = key.slice(0, hash).replace(/\.ts$/, '');
+    const name = key.slice(hash + 1);
+    return 'import { ' + name + ' as ' + symbol + ' } from ' + js('./' + filename) + ';';
+  });
+  const ownedSymbol = reference => sourceSymbols.get(reference.path + '#' + reference.export);
+  const renderOrder = entries => '[' + entries.map(entry =>
+    typeof entry === 'string' ? js(entry) : ownedSymbol(entry.source)
+  ).join(', ') + ']';
+  const overrideVariables = new Map(authoredOverrides.map((entry, index) => [entry.lessonId, 'override' + index]));
+  const renderOverride = (entry, index) => {
+    const lesson = lessons.find(item => item.id === entry.lessonId);
+    const lessonVar = lessonVars.get(lesson.id);
+    const steps = entry.operations.map(operation => {
+      const section = operation.sectionSlug === undefined ? '' : '.sections.bySlug[' + js(operation.sectionSlug) + ']';
+      switch (operation.type) {
+        case 'params':
+          return '.setParams({ sections: ' + js(operation.sections) + ' })';
+        case 'title':
+          return '.setTitle(' + ownedSymbol(operation.source) + ')';
+        case 'events':
+          return '.setEvents(' + ownedSymbol(operation.source) + ')';
+        case 'section-set':
+          return '.sections.bySlug[' + js(operation.slug) + '].set(' + ownedSymbol(operation.source) + ')';
+        case 'section-remove':
+          return '.sections.remove(' + js(operation.slug) + ')';
+        case 'section-order':
+          return '.sections.setOrder(' + renderOrder(operation.entries) + ')';
+        case 'block-set':
+          return section + '.content.bySlug[' + js(operation.slug) + '].set(' + ownedSymbol(operation.source) + ')';
+        case 'block-remove':
+          return section + '.content.remove(' + js(operation.slug) + ')';
+        case 'block-order':
+          return section + '.content.setOrder(' + renderOrder(operation.entries) + ')';
+        default:
+          error('OVERRIDE_OPERATION', 'unsupported sparse operation: ' + operation.type);
+      }
+    });
+    return [
+      '  const override' + index + ' = createLessonOverrides(' + lessonVar + ')',
+      ...steps.map(step => '    ' + step),
+      '    .build();',
+    ].join('\n');
+  };
   const importLines = lessons.map((item, index) => {
     let relative = path.relative(path.dirname(outputFilename), item.source).split(path.sep).join('/');
     relative = relative.replace(/\.ts$/, '');
@@ -309,7 +368,7 @@ export function renderCourseSource(plan, outputFilename) {
     return '{ id: ' + js(uuid) + ', slug: ' + js('title-' + node.key) + ', type: "text", value: ' + value + ' }';
   };
   const emitNode = (node, indent = '    ') => {
-    if (node.type === 'lesson') return indent + lessonVars.get(node.lessonId);
+    if (node.type === 'lesson') return indent + (overrideVariables.get(node.lessonId) ?? lessonVars.get(node.lessonId));
     const creator = node.type === 'module' ? 'createModule' : 'createChapter';
     const children = node.children.map(child => emitNode(child, indent + '    ')).join(',\n');
     return [
@@ -348,9 +407,10 @@ export function renderCourseSource(plan, outputFilename) {
     .join('\n');
   return [
     generatedHeader.trimEnd(),
-    'import { createCourse, createChapter, createModule } from "@svitlo/engine/builders";',
+    'import { createCourse, createChapter, createModule' + (authoredOverrides.length ? ', createLessonOverrides' : '') + ' } from "@svitlo/engine/builders";',
     'import type { Course, Locale_Languages } from "@svitlo/engine/content";',
     ...importLines,
+    ...ownedImports,
     '',
     'export const courseLanguages = ' + js(plan.languages) + ' as const satisfies Locale_Languages;',
     'export type CourseLanguages = typeof courseLanguages;',
@@ -375,6 +435,7 @@ export function renderCourseSource(plan, outputFilename) {
     '>;',
     '',
     'export function createCourseData(metadata: CourseFrontendMetadata, titles: CourseLocalizedGroupTitles) {',
+    ...authoredOverrides.map(renderOverride),
     '  return createCourse<CourseLanguages>({',
     '    type: "course",',
     '    id: ' + js(plan.courseId) + ',',
