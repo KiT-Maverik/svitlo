@@ -24,16 +24,16 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
-      - run: npm run packages:check
-      - run: npm run typecheck
+      - run: npm run repo:check:packages
+      - run: npm run code:check:types
       - run: npm test
       - run: npm run test:components
       - run: npm run test:components --workspace @svitlo/math
-      - run: npm run test:db:coverage
+      - run: npm run test:integration:db:coverage --workspace @svitlo/indexdb
         if: ${{ !cancelled() }}
-      - run: npm run lint
+      - run: npm run code:lint:check
         if: ${{ !cancelled() }}
-      - run: npm run build
+      - run: npm run app:build
         if: ${{ !cancelled() }}
       - name: Verify migrated textbook publishers and isolated ESM tarballs
         if: ${{ !cancelled() }}
@@ -46,7 +46,7 @@ jobs:
           (cd content/languages/ukrainian && node ../../../scripts/textbook-tooling/check-portability.mjs)
       - name: Verify compiled public package artifacts
         if: ${{ !cancelled() }}
-        run: npm run packages:artifacts:check
+        run: npm run repo:check:artifacts
       - run: npx playwright install chromium
         if: ${{ !cancelled() }}
       - name: Universal Web lesson E2E (desktop and mobile)
@@ -56,7 +56,7 @@ jobs:
         if: ${{ !cancelled() }}
       - name: Platform catalog smoke E2E (desktop and mobile)
         if: ${{ !cancelled() }}
-        run: npm run test:e2e:platform
+        run: npm run test:e2e --workspace @svitlo/platform
       - uses: actions/upload-artifact@v4
         if: always()
         with:

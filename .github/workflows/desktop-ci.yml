@@ -22,20 +22,20 @@ jobs:
       - name: Install workspaces
         run: npm ci --no-audit --no-fund
       - name: Build adapter and renderer
-        run: npm run build --workspace @svitlo/desktop
+        run: npm run app:build --workspace @svitlo/desktop
       - name: Typecheck adapter and Desktop
         run: |
-          npm run typecheck --workspace @svitlo/adapter-electron
-          npm run typecheck --workspace @svitlo/desktop
+          npm run code:check:types --workspace @svitlo/adapter-electron
+          npm run code:check:types --workspace @svitlo/desktop
       - name: Validate Electron adapter resource confinement
         run: npm run test --workspace @svitlo/adapter-electron
       - name: Lint Desktop
-        run: npm run lint --workspace @svitlo/desktop
+        run: npm run code:lint:check --workspace @svitlo/desktop
       - name: Validate packaged resources
         run: npm run test --workspace @svitlo/desktop
       - name: Run Electron smoke test under virtual display
         run: xvfb-run -a npm run test:smoke --workspace @svitlo/desktop
       - name: Package for Linux
-        run: npm run package --workspace @svitlo/desktop
+        run: npm run app:pack --workspace @svitlo/desktop
       - name: Start the packaged Linux executable without network
         run: xvfb-run -a npm run test:packaged --workspace @svitlo/desktop

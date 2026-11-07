@@ -18,12 +18,12 @@ jobs:
           cache: npm
       - run: npm ci
       - name: DB controller unit tests and coverage
-        run: npm run test:db-controllers-unit:coverage
+        run: npm run test:unit:db-controllers:coverage --workspace @svitlo/indexdb
       - name: Existing and controller unit tests
         run: npm test
       - name: TypeScript
-        run: npm run typecheck
+        run: npm run code:check:types
       - name: ESLint
-        run: npm run lint
+        run: npm run code:lint:check
       - name: Production build
-        run: npm run build
+        run: npm run app:build
