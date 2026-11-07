@@ -16,8 +16,8 @@ export type ThemeSwitchProps = {
 function ThemeThumb() {
   return (
     <Box component="span" className="theme-switch-thumb">
-      <WbSunnyRoundedIcon className="theme-switch-icon theme-switch-icon--sun" sx={{ fontSize: 18 }} />
-      <DarkModeRoundedIcon className="theme-switch-icon theme-switch-icon--moon" sx={{ fontSize: 18 }} />
+      <WbSunnyRoundedIcon className="theme-switch-icon theme-switch-icon--sun" sx={{ fontSize: 14 }} />
+      <DarkModeRoundedIcon className="theme-switch-icon theme-switch-icon--moon" sx={{ fontSize: 14 }} />
     </Box>
   );
 }
@@ -32,13 +32,15 @@ export default function ThemeSwitch({ label, mode, systemMode, onThemeChange }: 
       icon={<ThemeThumb />}
       checkedIcon={<ThemeThumb />}
       sx={{
-        width: 68,
-        height: 38,
+        width: 54,
+        height: 30,
         flexShrink: 0,
+        cursor: 'pointer',
+        userSelect: 'none',
         p: 0,
         overflow: 'visible',
         '& .MuiSwitch-switchBase': {
-          p: '5px',
+          p: '4px',
           left: theme => (theme.direction === 'rtl' ? 'auto' : 0),
           right: theme => (theme.direction === 'rtl' ? 0 : 'auto'),
           color: '#B7791F',
@@ -48,7 +50,7 @@ export default function ThemeSwitch({ label, mode, systemMode, onThemeChange }: 
               easing: theme.transitions.easing.easeInOut,
             }),
           '&.Mui-checked': {
-            transform: theme => (theme.direction === 'rtl' ? 'translateX(-30px)' : 'translateX(30px)'),
+            transform: theme => (theme.direction === 'rtl' ? 'translateX(-24px)' : 'translateX(24px)'),
             color: '#EAF0FF',
             '& + .MuiSwitch-track': {
               bgcolor: '#3B4E7F',
@@ -63,8 +65,8 @@ export default function ThemeSwitch({ label, mode, systemMode, onThemeChange }: 
           },
         },
         '& .theme-switch-thumb': {
-          width: 28,
-          height: 28,
+          width: 22,
+          height: 22,
           display: 'grid',
           placeItems: 'center',
           borderRadius: '50%',
@@ -101,7 +103,7 @@ export default function ThemeSwitch({ label, mode, systemMode, onThemeChange }: 
         '& .MuiSwitch-track': {
           bgcolor: '#F1C76B',
           border: '1px solid #D9A83D',
-          borderRadius: 19,
+          borderRadius: 15,
           opacity: 1,
           transition: 'background-color 320ms ease-in-out, border-color 320ms ease-in-out',
         },
