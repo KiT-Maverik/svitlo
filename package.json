@@ -28,7 +28,8 @@
   "devDependencies": {
     "ajv2020": "npm:ajv@8.20.0",
     "js-yaml": "4.3.2",
-    "prettier": "3.9.10"
+    "prettier": "3.9.10",
+    "typescript": "5.9.3"
   },
   "workspaces": [
     "apps/*",
