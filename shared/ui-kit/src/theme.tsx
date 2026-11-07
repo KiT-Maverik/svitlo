@@ -31,12 +31,19 @@ const themes = {
  * stacks multiple paint animations and makes Quick Settings appear to flash.
  * Keep foreground text instant to prevent intermediate low-contrast states
  * when disabled buttons or title colors change against their backgrounds.
- * Paint the navbar on the same schedule as the page and drawer surfaces.
+ * Navbar chrome keeps its opaque background instantaneous: interpolating
+ * inverted foreground/background colors makes text disappear at mid-transition.
+ * Its border still blends smoothly with the surrounding lesson surface.
  */
 const themeTransitions = {
   '@media (prefers-reduced-motion: no-preference)': {
-    ':where(body, .svitlo-theme-surface, .svitlo-theme-chrome, .MuiPaper-root)': {
+    ':where(body, .svitlo-theme-surface, .MuiPaper-root)': {
       transitionProperty: 'background-color, border-color',
+      transitionDuration: '280ms',
+      transitionTimingFunction: 'ease-in-out',
+    },
+    ':where(.svitlo-theme-chrome)': {
+      transitionProperty: 'border-color',
       transitionDuration: '280ms',
       transitionTimingFunction: 'ease-in-out',
     },
