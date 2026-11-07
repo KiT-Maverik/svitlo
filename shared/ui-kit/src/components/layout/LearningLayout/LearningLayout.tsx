@@ -17,7 +17,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import TopNavbar from '../Navigation/TopNavbar';
 import BottomNavbar from '../Navigation/BottomNavbar';
 import { getLocaleDirection, type Locale } from '@svitlo/engine/localization';
-import VerticalSpace from '#widgets/VerticalSpace/VerticalSpace';
+import ThreeSlotLayout from '../ThreeSlotLayout';
 import ProfileMenu, { type LearningProfile } from './ProfileMenu';
 import CourseTopicList, { type Topic } from './CourseTopicList';
 
@@ -367,19 +367,21 @@ export default function LearningLayout({
             id="learning-sidebar"
             component="nav"
             aria-label={messages.navigation.topics}
-            sx={{ display: 'flex', flexDirection: 'column', height: '100%', minHeight: 0 }}
+            sx={{ width: '100%', height: '100%', minHeight: 0, overflowY: 'auto', overflowX: 'hidden', overscrollBehavior: 'contain' }}
           >
-            <VerticalSpace
-              top={
+            <ThreeSlotLayout
+              axis="vertical"
+              slots={{
+                start: (
                 <Typography
                   component="h2"
                   sx={{ px: 3, pt: 2, fontSize: 13, fontWeight: 700, color: 'text.secondary' }}
                 >
                   {messages.topicsTitle}
                 </Typography>
-              }
-              center={
-                <Box sx={{ height: '100%', overflowY: 'auto', overscrollBehavior: 'contain', px: 1 }}>
+                ),
+                center: (
+                <Box sx={{ minWidth: 0, px: 1 }}>
                   <CourseTopicList
                     topics={topics}
                     pathname={pathname}
@@ -387,7 +389,9 @@ export default function LearningLayout({
                     onNavigate={() => setOpen(false)}
                   />
                 </Box>
-              }
+                ),
+              }}
+              slotProps={{ root: { sx: { minHeight: '100%', height: 'auto' } } }}
             />
           </Box>
         </Drawer>
@@ -417,11 +421,15 @@ export default function LearningLayout({
               minHeight: 0,
               minWidth: 0,
               overflowX: 'hidden',
+              overflowY: 'auto',
+              overscrollBehavior: 'contain',
               boxSizing: 'border-box',
             }}
           >
-            <VerticalSpace
-              top={
+            <ThreeSlotLayout
+              axis="vertical"
+              slots={{
+                start: (
                 <Box
                   sx={{
                     display: 'flex',
@@ -446,15 +454,15 @@ export default function LearningLayout({
                     <CloseIcon />
                   </IconButton>
                 </Box>
-              }
-              center={
-                <Box sx={{ height: '100%', minHeight: 0, minWidth: 0, overflowY: 'auto', overflowX: 'hidden', px: 2 }}>
+                ),
+                center: (
+                <Box sx={{ minWidth: 0, px: 2 }}>
                   {!preferences && !settingsContent && (
                     <Typography color="text.secondary">{messages.settingsDescription}</Typography>
                   )}
                 </Box>
-              }
-              bottom={
+                ),
+                end: (
                 preferences || settingsContent ? (
                   <Box
                     sx={{
@@ -464,9 +472,6 @@ export default function LearningLayout({
                       px: 2,
                       pt: 1,
                       pb: 2,
-                      maxHeight: 'calc(100% - 80px)',
-                      overflowY: 'auto',
-                      overflowX: 'hidden',
                     }}
                   >
                     {preferences}
@@ -476,7 +481,12 @@ export default function LearningLayout({
                       : settingsContent}
                   </Box>
                 ) : undefined
-              }
+                ),
+              }}
+              slotProps={{
+                root: { sx: { minHeight: '100%', height: 'auto' } },
+                center: { sx: { justifyContent: 'flex-start' } },
+              }}
             />
           </Box>
         </Drawer>

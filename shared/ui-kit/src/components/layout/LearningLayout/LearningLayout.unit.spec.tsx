@@ -59,10 +59,10 @@ describe('LearningLayout preparation', () => {
     fireEvent.click(screen.getByRole('button', { name: uk.actions.openSettings }));
     expect(screen.getByRole('heading', { name: uk.settingsTitle })).toBeVisible();
     const sidebar = screen.getByRole('complementary', { name: uk.navigation.settings });
-    expect(within(sidebar).getByTestId('vertical-space-top')).toContainElement(
+    expect(within(sidebar).getByTestId('three-slot-start')).toContainElement(
       screen.getByRole('heading', { name: uk.settingsTitle }),
     );
-    expect(within(sidebar).getByTestId('vertical-space-bottom')).toContainElement(
+    expect(within(sidebar).getByTestId('three-slot-end')).toContainElement(
       screen.getByRole('button', { name: 'Interface settings control' }),
     );
     expect(screen.getByRole('button', { name: 'Interface settings control' })).toBeVisible();
