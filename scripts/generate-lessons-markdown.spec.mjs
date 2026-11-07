@@ -8,7 +8,7 @@ import path from 'node:path';
 
 import { describe, it } from 'node:test';
 
-import { discoverLessons, generate, parseArguments } from './generate-lessons-markdown.mjs';
+import { discoverLessons, generate, loadLesson, parseArguments } from './generate-lessons-markdown.mjs';
 
 import { localizeReviewValue, renderLessonMarkdown, sourceIndex, supportedLanguages } from './lib/lesson-markdown.mjs';
 
@@ -213,6 +213,25 @@ function testSuite() {
         tmp.cleanup();
       }
     });
+    it('renders the real Playground Lesson creator with current Question and Flashcard contracts', async () => {
+      const root = path.resolve('.');
+      const packageDirectory = path.join(root, 'content/playground');
+      const lessonId = 'd3048d21-8690-5255-b62c-984c69ac272c';
+      const directory = path.join(packageDirectory, 'data/lessons/c', lessonId);
+      const source = path.join(directory, 'howLightMoves.data.ts');
+      const actual = await loadLesson(source, packageDirectory);
+      assert.equal(actual.id, lessonId);
+      const markdown = await generate(
+        { package: 'content/playground', lesson: lessonId, locale: 'uk', stdout: true },
+        { root },
+      );
+      assert.match(markdown, /## Question Bank/);
+      assert.match(markdown, /## Flashcard Bank/);
+      assert.match(markdown, /Quiz uses references/);
+      assert.match(markdown, /Як рухається світло/);
+      assert.doesNotMatch(markdown, /\\[object Object\\]|undefined/);
+    });
+
     it('rejects symlinked canonical sources', () => {
       const tmp = temporaryRepo();
       try {
