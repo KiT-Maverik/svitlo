@@ -17,12 +17,6 @@
     "code:format:check": "prettier --check . --ignore-path ../../.prettierignore",
     "code:format:fix": "prettier --write . --ignore-path ../../.prettierignore"
   },
-  "bin": {
-    "svitlo-math": "./dist/publish.mjs"
-  },
-  "files": [
-    "dist"
-  ],
   "dependencies": {
     "@svitlo/engine": "0.0.0"
   },
@@ -33,6 +27,12 @@
     "vitest": "^3.2.4",
     "@svitlo/ui-kit": "0.0.0"
   },
+  "bin": {
+    "svitlo-math": "./dist/publish.mjs"
+  },
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
       "types": "./dist/textbook/index.d.ts",

@@ -16,12 +16,6 @@
     "code:format:fix": "prettier --write . --ignore-path ../../.prettierignore",
     "code:lint:fix": "eslint textbook.ts data/homeCopy.ts --fix"
   },
-  "bin": {
-    "svitlo-geography": "./dist/publish.mjs"
-  },
-  "files": [
-    "dist"
-  ],
   "dependencies": {
     "@svitlo/engine": "0.0.0",
     "@svitlo/contracts": "0.0.0"
@@ -34,6 +28,12 @@
     "@typescript-eslint/parser": "^8.72.0",
     "@typescript-eslint/eslint-plugin": "^8.72.0"
   },
+  "bin": {
+    "svitlo-geography": "./dist/publish.mjs"
+  },
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
       "types": "./dist/textbook/index.d.ts",

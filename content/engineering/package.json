@@ -16,12 +16,6 @@
     "code:format:fix": "prettier --write . --ignore-path ../../.prettierignore",
     "code:lint:fix": "eslint textbook.ts --fix"
   },
-  "bin": {
-    "svitlo-engineering": "./dist/publish.mjs"
-  },
-  "files": [
-    "dist"
-  ],
   "dependencies": {
     "@svitlo/engine": "0.0.0"
   },
@@ -31,6 +25,12 @@
     "typescript": "^5",
     "esbuild": "^0.28.2"
   },
+  "bin": {
+    "svitlo-engineering": "./dist/publish.mjs"
+  },
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
       "types": "./dist/textbook/index.d.ts",

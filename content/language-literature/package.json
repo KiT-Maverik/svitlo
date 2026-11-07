@@ -14,18 +14,18 @@
     "code:format:check": "prettier --check . --ignore-path ../../.prettierignore",
     "code:format:fix": "prettier --write . --ignore-path ../../.prettierignore"
   },
-  "bin": {
-    "svitlo-language-literature": "./dist/publish.mjs"
-  },
-  "files": [
-    "dist"
-  ],
   "dependencies": {},
   "devDependencies": {
     "@types/node": "^20",
     "esbuild": "^0.28.2",
     "typescript": "^5"
   },
+  "bin": {
+    "svitlo-language-literature": "./dist/publish.mjs"
+  },
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
       "types": "./dist/textbook/index.d.ts",
