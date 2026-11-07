@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import yaml from 'js-yaml';
+import yaml from 'yaml';
 import ts from 'typescript';
 import { runOne, repoRoot } from './lesson-builder.mjs';
 
@@ -80,9 +80,9 @@ function fixture(options = {}) {
   };
   const save = () => {
     fs.writeFileSync(path.join(lesson, 'methodology.md'),
-      '---\n' + yaml.dump(methodology) + '---\n\nApproved methodology.\n');
-    fs.writeFileSync(path.join(lesson, 'content.yaml'), yaml.dump(content));
-    fs.writeFileSync(path.join(lesson, 'questions/questions.yaml'), yaml.dump(questions));
+      '---\n' + yaml.stringify(methodology) + '---\n\nApproved methodology.\n');
+    fs.writeFileSync(path.join(lesson, 'content.yaml'), yaml.stringify(content));
+    fs.writeFileSync(path.join(lesson, 'questions/questions.yaml'), yaml.stringify(questions));
   };
   save();
   return { repo, workspace, lesson, content, questions, methodology, save,
@@ -449,7 +449,7 @@ function writeFlashcards(f, transform = value => value) {
   const converted = transform(bank) ?? bank;
   const file = path.join(f.lesson, 'flashcards/flashcards.yaml');
   fs.mkdirSync(path.dirname(file), { recursive: true });
-  fs.writeFileSync(file, yaml.dump(converted));
+  fs.writeFileSync(file, yaml.stringify(converted));
   return converted;
 }
 test('approved Flashcards compile typed flags, Question-field references and mirrored links', () =>
@@ -486,11 +486,11 @@ test('rejects duplicate Flashcard links and invented acronym compositions', () =
     const bank = writeFlashcards(f);
     bank.relationships.push({ key: 'duplicate', source: 'path-check', target: 'ray-fact',
       type: 'reverse', rationale: 'Same relation repeated in reverse order' });
-    fs.writeFileSync(path.join(f.lesson, 'flashcards/flashcards.yaml'), yaml.dump(bank));
+    fs.writeFileSync(path.join(f.lesson, 'flashcards/flashcards.yaml'), yaml.stringify(bank));
     assert.throws(() => runOne(f.lesson, 'generate', f.repo), /duplicate typed Flashcard edge/);
     bank.relationships.pop();
     bank.flashcards[1].flags[1].parts[1].letters = 'C';
-    fs.writeFileSync(path.join(f.lesson, 'flashcards/flashcards.yaml'), yaml.dump(bank));
+    fs.writeFileSync(path.join(f.lesson, 'flashcards/flashcards.yaml'), yaml.stringify(bank));
     assert.throws(() => runOne(f.lesson, 'generate', f.repo), /acronym parts must concatenate/);
   }));
 test('rejects proposed Flashcard blocks without inventing runtime content', () =>
