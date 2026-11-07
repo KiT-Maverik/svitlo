@@ -1,6 +1,7 @@
 import type { ContentBlock } from '../blocks';
 import type { Lesson_Override, Section_Override } from './override.types';
 import type { Locale_Languages } from '../locale.types';
+import type { Lesson } from '../lesson.types';
 import type { Section } from '../section.types';
 
 /** Authoring/renderer owner, not the source of the last data edit. */
@@ -51,6 +52,8 @@ export type Course_SectionChanges<Languages extends Locale_Languages> = {
 export type Course_LessonOverride<Languages extends Locale_Languages, CustomEvents extends string = never> = {
   type: 'lessonOverride';
   lessonId: string;
+  /** Canonical Lesson Data; kept in authoring only, never emitted in override JSON. */
+  lesson: Lesson<'data', Languages>;
   overrides: Omit<Lesson_Override<Languages, CustomEvents>, 'sections'> & {
     sections?: Course_SectionChanges<Languages>;
   };

@@ -1,16 +1,17 @@
 import type { ContentEntity_ConfigType } from '../entity.types';
+import type { Lesson } from '../lesson.types';
 import type { Locale_Languages } from '../locale.types';
 import type { Chapter } from './chapter.types';
 import type { Episode } from './episode.types';
 import type { Module } from './module.types';
 import type { Course_LessonOverride } from './source.types';
 
-/** Bare Lesson ID, referencing its canonical authored data (not a copied Lesson). */
+/** Published Lesson reference. Authored Courses instead contain the complete Lesson Data. */
 export type Course_LessonId = string;
 
 /** Only authored Course Data may contain a build-time Lesson override. */
 type Course_LessonEntry<ConfigType extends ContentEntity_ConfigType, Languages extends Locale_Languages> =
-  Course_LessonId | (ConfigType extends 'data' ? Course_LessonOverride<Languages> : never);
+  ConfigType extends 'data' ? Lesson<'data', Languages> | Course_LessonOverride<Languages> : Course_LessonId;
 
 /** Top-level course content can contain any grouping or navigable unit. */
 export type Course_Content<ConfigType extends ContentEntity_ConfigType, SupportedLanguages extends Locale_Languages> =

@@ -533,19 +533,23 @@ export class LessonOverridesBuilder<L extends AnyLesson, Sections extends readon
       if (Object.keys(patch).length) overrides.sections = patch;
     }
 
-    return { type: 'lessonOverride', lessonId: this.lesson.id, overrides };
+    return { type: 'lessonOverride', lessonId: this.lesson.id, lesson: this.lesson as Lesson<'data', Languages>, overrides };
   }
 
   getData(): Course_LessonOverride<LanguagesOf<L>, CustomEventsOf<L>> {
     return this.build();
   }
 
+  getPublicationItems() {
+    return { lessons: [this.lesson], groups: [], episodes: [], overrides: [this.build()] };
+  }
+
   /** The Lesson remains one TOC leaf; only its localized title may change. */
   toToc(context: Course_TocContext<LanguagesOf<L>>): Course_TocLesson {
-    const base = context.resolveLesson(this.lesson.id);
     const patchTitle = this.build().overrides.title;
     return {
-      ...base,
+      type: 'lesson',
+      id: this.lesson.id,
       title: localizedTitle(
         (patchTitle ?? this.lesson.title) as string | Record<LanguagesOf<L>[number], string>,
         context.language,

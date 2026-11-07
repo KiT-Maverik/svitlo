@@ -4,10 +4,10 @@ import type {
   Course_Toc,
   Course_TocContent,
   Course_TocContext,
-  Course_LessonOverride,
   Locale_Languages,
 } from '@svitlo/contracts/content';
-import { createChapter, createEpisode, createModule } from './createCourseEntities';
+import { createChapter, createEpisode, createModule, lessonToc } from './createCourseEntities';
+import { collectCoursePublicationItems, isCourseLesson } from './collectCoursePublicationItems';
 
 function localized<Languages extends Locale_Languages>(
   value: string | Record<Languages[number], string>,
@@ -26,7 +26,7 @@ export function createCourse<const Languages extends Locale_Languages>(
   const getData = () => ({ ...course, content: [...course.content] });
   const toToc = (context: Course_TocContext<Languages>): Course_Toc => {
     const children = course.content.map((entry): Course_TocContent => {
-      if (typeof entry === 'string') return context.resolveLesson(entry);
+      if (isCourseLesson(entry)) return lessonToc(entry, context);
       switch (entry.type) {
         case 'module':
           return createModule<Languages>(entry).toToc(context);
@@ -34,11 +34,8 @@ export function createCourse<const Languages extends Locale_Languages>(
           return createChapter<Languages>(entry).toToc(context);
         case 'episode':
           return createEpisode<Languages>(entry).toToc(context);
-        case 'lessonOverride': {
-          const lesson = context.resolveLesson(entry.lessonId);
-          const title = entry.overrides.title;
-          return title === undefined ? lesson : { ...lesson, title: localized(title, context.language) };
-        }
+        case 'lessonOverride':
+          return lessonToc(entry, context);
       }
     });
     return {
@@ -52,5 +49,6 @@ export function createCourse<const Languages extends Locale_Languages>(
     data: getData(),
     toc: toToc(context),
   });
-  return { getData, toToc, toResource };
+  const getPublicationItems = () => collectCoursePublicationItems<Languages>(course.content);
+  return { getData, toToc, toResource, getPublicationItems };
 }

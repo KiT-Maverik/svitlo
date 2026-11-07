@@ -83,3 +83,8 @@ void fullModuleTitle;
 void invariantChapterTitle;
 void incompleteEpisodeTitle;
 void incompleteCourseLanguages;
+
+// Course authoring includes complete Lesson data; bare UUID entries are not accepted.
+type _CourseAcceptsLesson = AssertTrue<import('../lesson.types').Lesson<'data', Languages> extends
+  Course<'data', Languages>['content'][number] ? true : false>;
+type _CourseRejectsRawIds = AssertFalse<string extends Course<'data', Languages>['content'][number] ? true : false>;
