@@ -85,6 +85,53 @@ describe('NavbarPreferences in shared UI Kit', () => {
     expect(setLocale).not.toHaveBeenCalled();
   });
 
+  it('only offers published lesson languages, keeping the full interface language list', async () => {
+    render(
+      <NavbarPreferences
+        locale="uk-UA"
+        messages={uk}
+        onLocaleChange={setLocale}
+        lessonLocale="en-US"
+        lessonLanguages={['en-US', 'uk-UA']}
+        onLessonLocaleChange={setLessonLocale}
+        mode="light"
+        onThemeChange={setMode}
+      />,
+    );
+
+    await userEvent.click(lessonLocale());
+    const ukrainian = DEFAULT_SUPPORTED_LANGUAGES.find(item => item.locale === 'uk-UA')!;
+    expect(await screen.findByRole('option', { name: ukrainian.nativeName })).toBeInTheDocument();
+    expect(screen.queryByRole('option', { name: 'Français' })).not.toBeInTheDocument();
+    await userEvent.click(screen.getByRole('option', { name: ukrainian.nativeName }));
+    expect(setLessonLocale).toHaveBeenCalledWith('uk-UA');
+
+    await userEvent.click(locale());
+    expect(await screen.findByRole('option', { name: 'Français' })).toBeInTheDocument();
+    expect(setLocale).not.toHaveBeenCalled();
+  });
+
+  it('orders theme, volume, lesson language, then interface language', () => {
+    const view = render(
+      <NavbarPreferences
+        locale="uk-UA"
+        messages={uk}
+        onLocaleChange={setLocale}
+        lessonLocale="en-US"
+        lessonLanguages={['en-US']}
+        onLessonLocaleChange={setLessonLocale}
+        volumeControl={<span>Volume control</span>}
+        mode="light"
+        onThemeChange={setMode}
+      />,
+    );
+    const content = view.container.textContent ?? '';
+    expect(content.indexOf(uk.theme.light)).toBeLessThan(content.indexOf('Volume control'));
+    expect(content.indexOf('Volume control')).toBeLessThan(content.indexOf(uk.lessonLanguage));
+    expect(content.indexOf(uk.lessonLanguage)).toBeLessThan(content.indexOf(uk.language));
+    expect(screen.getByRole('separator')).toBeInTheDocument();
+  });
+
   it('sorts language options alphabetically by their native names', async () => {
     renderPreferences();
     await userEvent.click(locale());
