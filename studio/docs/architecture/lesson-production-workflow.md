@@ -23,8 +23,8 @@ Both reviews are independent of the Screenwriter and of each other. The reviewer
 3. Learning Experience Expert independently reviews and requests corrections until a source-specific pass and editorial sign-off.
 4. Methodologist independently reviews the **same latest source revision** and requests corrections until sign-off. Any correction sends the affected Lesson back through required reviews; do not mechanically re-run unaffected Lessons.
 5. When implemented, an authorized generator produces typed Lesson/Section/ContentBlock sources **and resource requirements for unfinished media and Scenes**. Do not claim this generator exists merely because the stage appears in the tracker.
-6. Specialized agents produce Quiz Questions, Scenes, media and accessibility alternatives; translation agents fill the remaining approved locales. Incomplete source-locale scaffolds may intentionally have TypeScript errors, but cannot pass production publication.
-7. Typecheck, build, content-generation validation, QA and publisher checks gate completion.
+6. The Assessment Architect produces the reviewed Question bank; the **Flashcard Learning Architect then authors Flashcards**, after the Question bank is approved. The Flashcard source YAML may reference stable Question fields; generated Flashcard TypeScript must import actual Question exports and cannot be built before those exports exist. The separate editorial card-relationship graph is not an implemented runtime feature. Scene/media specialists handle other resources, and translators fill remaining approved locales. Incomplete source-locale scaffolds may intentionally have TypeScript errors, but cannot pass publication.
+7. Typecheck, build, content-generation validation, QA and publisher checks gate completion. Validate both the independent Question bank and Flashcard YAML, their stable references, and the lack of unapproved localizable acronym flags.
 
 Per-Lesson stages can be asynchronous: one Lesson may be awaiting Experience Review while another is ready for translation. Batch as many **independent ready Lessons** as the scope and role permit. Do not force the user to say "continue" for each Lesson.
 
