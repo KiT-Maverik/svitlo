@@ -34,3 +34,7 @@ patch for a selected language.
 three operations. Neither nested creator handles files, TOC, or runtime
 merging; Lesson and Course generators own their respective publication
 boundaries. The Quiz Question catalog remains owned by the parent Lesson.
+
+## Methodologist assessment requirements
+
+The Lesson's approved `methodology.md` YAML frontmatter declares `assessmentPlan.quizRequired` and `quizzes[]`, including required `AssessmentMethodKey` values per Quiz. `Quiz_Parameters` configures runtime behavior, but it does **not** decide why a Quiz is educationally required. The Screenwriter's `content.yaml` binds each required Quiz to its approved `assessmentPlanKey`; the Assessment Architect validates the actual Questions and scoring. No fixed one-Quiz-per-Lesson rule.

@@ -1,0 +1,114 @@
+name: Lesson production scope
+description: Coordinate production of one or more specified Lessons in a single issue, across agents and chats.
+title: 'Produce lessons: '
+labels:
+  - 'work: content'
+body:
+  - type: markdown
+    attributes:
+      value: |
+        One issue represents a **fixed Lesson production scope** (one Lesson or a batch).
+        Agents must follow `studio/skills/lesson-workflow/manage-lesson-production.skill.md`.
+        Record exact Lesson UUIDs; don't treat a Course/Chapter path as an automatically changing membership list.
+        The production coordinator normalizes the tracking table before assigning work.
+  - type: input
+    id: package
+    attributes:
+      label: Textbook package
+      description: Repository-relative package path. Use the real content package.
+      placeholder: content/math
+    validations:
+      required: true
+  - type: textarea
+    id: lessons
+    attributes:
+      label: Lesson UUID scope
+      description: |
+        One verified Lesson UUID per line (optionally followed by slug and UUID-folder path).
+        This is the frozen worklist. A Chapter/Module may be named below as provenance, not as an auto-expanding query.
+      placeholder: |
+        <lesson-uuid-1> | <lesson-slug-1> | data/lessons/<bucket>/<uuid>/
+        <lesson-uuid-2> | <lesson-slug-2> | data/lessons/<bucket>/<uuid>/
+    validations:
+      required: true
+  - type: textarea
+    id: provenance
+    attributes:
+      label: Scope provenance and authoritative sources
+      description: Links to Course/Chapter/Module TOC (if any), Lesson identity, methodology, content, current PRs and editorial approvals.
+      placeholder: |
+        Course TOC and slot keys (optional):
+        Existing Lesson artifacts:
+        Approved editorial constraints:
+    validations:
+      required: true
+  - type: dropdown
+    id: starting-point
+    attributes:
+      label: Requested starting point
+      description: Select the earliest relevant step; the coordinator verifies actual readiness per Lesson.
+      options:
+        - Discover and initialize current state
+        - Methodology authoring or approval
+        - Screenwriter content authoring
+        - Learning Experience Review
+        - Methodological Review
+        - Lesson source generation
+        - Asset, Scene and Question production
+        - Localization
+        - Validation and publication
+    validations:
+      required: true
+  - type: textarea
+    id: requirements
+    attributes:
+      label: Production scope and constraints
+      description: Outcome, intended scope, available specialists, authorized operations, exclusions and any due dates.
+      placeholder: |
+        Goal:
+        Authorizations:
+        Exclusions:
+        Needed sign-offs:
+    validations:
+      required: true
+  - type: textarea
+    id: tracker
+    attributes:
+      label: Production state tracker (coordinator-maintained)
+      description: |
+        A single table is authoritative for the current status of each Lesson. Agents must initialize/maintain one row per verified UUID.
+        Allowed status: not-started, in-progress, ready-for-review, changes-requested, approved, blocked, completed.
+        Stage means the NEXT needed operation, not a guarantee that previous artifacts were approved.
+      value: |
+        <!-- svitlo-lesson-production:v1; preserve this marker for cross-agent recovery -->
+        | Lesson UUID | Current stage | Status | Active owner / branch | PR(s) | Blocker or next action |
+        | --- | --- | --- | --- | --- | --- |
+        | (initialize one row per scoped UUID) | (stage) | not-started | — | — | Verify actual artifact state |
+
+        Scope-level gates (derived from the Lesson rows, not independently authoritative):
+        - [ ] Scope snapshot and Lesson identities verified
+        - [ ] Required Methodology briefs approved
+        - [ ] Screenwriter content plans approved
+        - [ ] Experience reviews approved for current content revisions
+        - [ ] Methodological reviews approved for current content revisions
+        - [ ] Lesson source scaffolds generated / requirements recorded
+        - [ ] Required Questions, Scenes and media completed
+        - [ ] Supported-language translations complete
+        - [ ] Typechecks, builds, QA and publications verified
+    validations:
+      required: true
+  - type: textarea
+    id: handoff
+    attributes:
+      label: Current handoff and activity log
+      description: Coordinator updates this after each meaningful batch; link durable artifacts and GitHub PRs.
+      value: |
+        Current actionable stage:
+        Available next roles:
+        Blocked Lesson UUIDs:
+        Active work / owner / Draft PR:
+        Last verified source revision:
+        Latest decision and approval links:
+        Next autonomous batch:
+    validations:
+      required: true
