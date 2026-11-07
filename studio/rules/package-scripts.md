@@ -1,6 +1,6 @@
 # npm Package Script Naming and Scope
 
-**Status:** Target convention. Existing script names remain supported until a separate migration updates all callers, including CI. This document does not claim that any npm scripts have already been renamed.
+**Status:** Canonical convention implemented in root and workspace manifests. The script migration, CI call-site updates and workspace aggregator are part of this same change.
 
 **Applies to:** Root `package.json`, workspaces under `apps/`, `content/`, `shared/`, `backend/`, and every workflow or script invoking them.
 
@@ -87,7 +87,7 @@ Specialized scripts may use further meaningful segments: `app:pack:linux`, `cont
 6. Omitting an unsafe/unimplemented root command is better than a misleading partial aggregator. **Never put `storybook:start` in root.**
 7. The repository uses **npm workspaces** and an authoritative `package-lock.json`; no implied pnpm or Turbo orchestration.
 
-### Target usage (not implemented by this guideline)
+### Supported CLI usage
 
 ```bash
 # Root: all applicable workspaces
@@ -108,28 +108,35 @@ npm run app:pack --workspace @svitlo/desktop
 npm run storybook:start --workspace @svitlo/ui-kit
 ```
 
-## Migration from current scripts
+## Migration and compatibility
 
-Current root/workspace commands and npm lifecycle hooks remain **legacy APIs** until their callers have been migrated. The canonical names below are a target, not commands currently guaranteed to exist.
+The canonical scripts have been adopted in the root and workspace manifests; the
+repository's GitHub Actions workflows, app-host preparation scripts, content build
+tooling, and documented invocations use the new names.
 
-| Current script(s) | Target |
-| --- | --- |
-| `format` / `format:check` | `code:format:fix` / `code:format:check` |
-| `lint` | `code:lint:check` (add `code:lint:fix` only where supported) |
-| `typecheck`, `packages:typecheck` | `code:check:types` |
-| `test`, `packages:test` | `test`; normalize suite and aggregation semantics |
-| `test:components`, `test:e2e`, `test:components:coverage` | Already canonical |
-| `build` in a library/content package | `package:build` |
-| `build` in an app | `app:build` |
-| `dev` / `start` in an app | `app:start:dev` / `app:start` |
-| `package`, `package:linux`, `package:mac`, `package:win` in Desktop | `app:pack` and `app:pack:<platform>` |
-| `storybook` / `build-storybook` in UI Kit | `storybook:start` / `storybook:build` |
-| `generate:scenes` / `check:scenes` in Playground | `content:generate:scenes` / `content:check:scenes` |
-| `packages:check`, `packages:artifacts:check` in root | Appropriate root-only `repo:check:*` scripts |
+- Root aggregation is implemented by `scripts/run-workspace-script.mjs`. It
+  discovers eligible workspaces dynamically and orders dependency-sensitive
+  operations topologically. See its Node regression tests.
+- Legacy `build`, `typecheck`, `lint`, `dev`, `start`, and
+  `build-storybook` npm script names have been replaced with the respective
+  `package:*`, `app:*`, `code:*` and `storybook:*` operations.
+- All test commands remain in the `test` family, including specialized
+  `test:publish`, `test:portability` and database/controller variants.
+- npm's built-in lifecycle entrypoint `prepack` **must remain named
+  `prepack`**. Its body now calls `package:build`. Explicit `prebuild`,
+  `predev` and `pretypecheck` hooks were renamed with their corresponding
+  scripts (e.g. `preapp:build` and `precode:check:types`) so their
+  automatic npm triggering is retained.
+- `storybook:start` is deliberately absent from the root; `app:start`
+  and `app:start:dev` are package-only pending a multi-app supervisor.
+- Specialized package-only scripts such as Desktop platform packing and Mobile
+  Capacitor synchronization retain a meaningful `app:*` namespace.
+- `repo:check:packages` is the repository-wide architecture and workspace
+  validation; `repo:check:artifacts` checks built package exports.
 
-Specialized test commands for DB controllers, portability, publish verification or packaged-app E2E must preserve their behavior and be mapped deliberately, not by blind string replacement.
-
-**Safe migration sequence:** inventory script callers (other scripts, workflows, readmes, tooling and lifecycle hooks); add canonical workspace commands; implement and test dependency-aware root aggregation; update all callers; then remove aliases. Verify FastGate, content publishing, Web/Desktop/Mobile pipelines, Storybook, package packing and formatting.
+When adding or changing a script in the future, update **all** call sites,
+npm lifecycle hooks, CI workflows, documentation, tests and runtime tooling.
+Do not reinstate package-specific root aliases or misleading partial aggregators.
 
 ## Review checklist
 
