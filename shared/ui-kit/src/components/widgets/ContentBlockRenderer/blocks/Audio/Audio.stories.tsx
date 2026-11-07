@@ -1,4 +1,4 @@
-import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
+import { enUiKitMessages, ukUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import type { Meta, StoryObj } from '@storybook/nextjs';
 import { Audio } from './Audio';
 import { ContentLanguageContext } from '../../ContentLanguageContext';
@@ -11,7 +11,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Native audio playback, optional caption, and localized error/retry states. Audio files may be cached for offline playback.',
+          'Custom waveform player with scrubbing, elapsed/total time, volume, playback speed, language indicator and localized error/retry states. The visual bars are decorative; the seek control is fully accessible.',
       },
     },
   },
@@ -46,7 +46,7 @@ export const Localized: Story = {
       </ContentLanguageContext.Provider>
     ),
   ],
-  args: { title: 'Звуки тварин', description: 'Прослухайте аудіозапис.' },
+  args: { messages: ukUiKitMessages.audio, title: 'Звуки тварин', description: 'Прослухайте аудіозапис.' },
 };
 
 export const MissingFile: Story = {
