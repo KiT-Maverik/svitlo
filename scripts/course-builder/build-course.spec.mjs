@@ -5,7 +5,7 @@ import path from 'node:path';
 import os from 'node:os';
 import { fileURLToPath } from 'node:url';
 import ts from 'typescript';
-import { buildCoursePlan, groupUuid, renderCourseSource, verifyOrWriteGenerated } from './build-course.mjs';
+import { buildCoursePlan, groupUuid, renderCourseSource, resolveCourseSource, verifyOrWriteGenerated } from './build-course.mjs';
 
 const root = path.resolve(fileURLToPath(new URL('../..', import.meta.url)));
 const schema = JSON.parse(
@@ -336,4 +336,36 @@ test('Course YAML schema forbids inline authored sections, unknown override fiel
   await assert.rejects(() => generate([lesson('intro')], {
     overrides: { ...overrideInput('intro', [{ type: 'section-remove', slug: 'theory' }]), status: 'draft' },
   }), /APPROVAL/);
+});
+
+test('Course-owned TS sources must exist and export their approved symbol inside their Course directory', async () => {
+  const folder = fs.mkdtempSync(path.join(os.tmpdir(), 'course-owned-'));
+  const external = fs.mkdtempSync(path.join(os.tmpdir(), 'course-external-'));
+  try {
+    const patches = path.join(folder, 'patches');
+    fs.mkdirSync(patches);
+    const source = path.join(patches, 'title.ts');
+    fs.writeFileSync(source, 'export const title_Patch = { uk: "Назва", en: "Title" };\n');
+    assert.deepEqual(
+      await resolveCourseSource(folder, { path: 'patches/title.ts', export: 'title_Patch' }),
+      { path: source, exportName: 'title_Patch' },
+    );
+    await assert.rejects(
+      () => resolveCourseSource(folder, { path: 'patches/title.ts', export: 'notExported' }),
+      /COURSE_SOURCE.*notExported/,
+    );
+    await assert.rejects(
+      () => resolveCourseSource(folder, { path: 'patches/missing.ts', export: 'title_Patch' }),
+      /COURSE_SOURCE.*missing approved/,
+    );
+    fs.writeFileSync(path.join(external, 'external.ts'), 'export const external_Patch = {};\n');
+    fs.symlinkSync(path.join(external, 'external.ts'), path.join(patches, 'external.ts'));
+    await assert.rejects(
+      () => resolveCourseSource(folder, { path: 'patches/external.ts', export: 'external_Patch' }),
+      /COURSE_SOURCE.*resolves outside/,
+    );
+  } finally {
+    fs.rmSync(folder, { recursive: true, force: true });
+    fs.rmSync(external, { recursive: true, force: true });
+  }
 });
