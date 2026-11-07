@@ -20,3 +20,20 @@ The same prepared Question responses and Quiz parameters can power standalone pr
 General Section ContentBlocks render in one vertical column. A Scene can have its own internal layout. A Knowledge Checkpoint is a reflective prompt, not a scored Quiz.
 
 Related: [Lesson](./lesson.md), [Lesson Content](./lesson-content.md).
+
+## Build-time creator API
+
+`createSection<SupportedLanguages>()({ ... })` accepts existing Section data,
+including typed `createContentBlock` creators for an ordinary Section's
+ordered `content` array. `getData()` unwraps nested creators while preserving
+their identity and order. `toResource({ languages })` uses the Lesson
+sparse-localization helper; it does not publish standalone Section files.
+
+A Quiz Section uses `createSection({ type: 'quiz', parameters: ... })` and
+has **no** ContentBlock `content`. Question selection is resolved from the
+parent Lesson catalog during Lesson Response assembly. New blocks should be
+added to the appropriate ContentBlock contract/renderer and verified against
+existing serialization; the generator must not special-case individual block
+kinds. `createContentBlock<SupportedLanguages>()` similarly exposes
+`getData()` and pure `toResource({ languages })` with strict locale
+coverage and intentional language-independent strings.

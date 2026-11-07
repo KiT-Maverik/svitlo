@@ -23,3 +23,25 @@ Lesson files live under `<PackageRoot>/data/lessons/<last-hex-digit>/<uuid>/`. T
 **Observed contract:** [`Lesson<'data'>`](../../../shared/contracts/src/types/content/lesson.types.ts) identifies a Lesson with `id`, `slug`, `title`, `parameters` and ordered `sections`; the bucket is derived by Engine and is not authored. The contract is **not a complete editorial Lesson definition**; code presence does not establish editorial approval. Do not infer that the folder slug is the runtime ID. Read the current renderer and catalog types before implementation.
 
 Related: [Lesson Content](./lesson-content.md), [Section](./section.md), [Program](./program.md), [Skill](./skill.md).
+
+## Typed creator and publication boundary
+
+The canonical builder is `createLesson<SupportedLanguages>()(data)` from
+`@svitlo/engine/builders`. It accepts nested `createSection` creators or
+ordinary typed Section data and returns a build-time creator. Authors export the
+result of `creator.getData()` in their named `*.data.ts` module for reuse
+inside Course authoring; Course/Chapter/Module creators also accept Lesson
+creators directly. `createLessonOverrides(lesson.getData())` retains the
+original Lesson identity and serializes only the Course-local changes.
+
+`creator.toResource({ language })` projects the existing sparse
+`config` / `flashcards` / `questions` JSON documents, and
+`creator.getPublicationItems()` exposes the complete path-addressed file set.
+`creator.toResponse({ language })` assembles a localized preview with the
+same Engine merge and Lesson Response logic as runtime. The filesystem generator
+owns discovery, loading and writing; the creator and specialized Engine helpers
+own entity-level normalization, localization and resource preparation.
+Neither creators nor authored TypeScript objects are part of runtime JSON.
+
+See [Engine creator API](../../../shared/engine/README.md) and
+[Section](./section.md) for composition examples.
