@@ -1,8 +1,8 @@
 name: Translation production
 description: Coordinate parallel entity translations and independent post-integration reviews in one issue.
-title: "Translate and review: "
+title: 'Translate and review: '
 labels:
-  - "work: translation"
+  - 'work: translation'
 body:
   - type: markdown
     attributes:

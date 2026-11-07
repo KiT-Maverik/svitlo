@@ -11,7 +11,7 @@ Use [Manage Translation Production](../../skills/translation-workflow/manage-tra
 ## Source and ownership invariants
 
 - Source of truth is approved **typed authored data** and verified English/source editorial meaning in the owning workspace; generated Markdown under `.agent-ci-artifacts/` is an **immutable read-only reference view**, not a replacement or write-back source.
-- The `(canonical entity / translatable field group, target language)` matrix has **complete disjoint ownership** across translation batches. Do not silently omit locales or split one editable file concurrently among agents. Prefer assigning complete entity files/subtrees with *all* their required target languages per translator when locales are co-located; distribute locales independently only if actual locale-file boundaries permit safe parallel edits.
+- The `(canonical entity / translatable field group, target language)` matrix has **complete disjoint ownership** across translation batches. Do not silently omit locales or split one editable file concurrently among agents. Prefer assigning complete entity files/subtrees with _all_ their required target languages per translator when locales are co-located; distribute locales independently only if actual locale-file boundaries permit safe parallel edits.
 - Agent count and assignments come from current entity counts, strings/complexity, locale roster and source layout. Four workers often fit large batches but are not a fixed quota. Smaller work may use one or two.
 - Preserve approved UUIDs, source language, content meaning, methodologically English-only descriptions and correct localization contracts; translation coverage is not proven by TypeScript passing alone.
 
