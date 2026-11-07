@@ -6,7 +6,7 @@ export { createChapter, createModule, createEpisode } from './course/createCours
 export { createCourse } from './course/createCourse';
 
 export { createLesson } from './lessons/createLesson';
-export type { LessonCreator, LessonResource } from './lessons/createLesson';
+export type { LessonCreator, LessonBase, LessonLocale } from './lessons/createLesson';
 export { createSection } from './lessons/createSection';
 export type { SectionCreator } from './lessons/createSection';
 export { createContentBlock } from './lessons/createContentBlock';

@@ -44,9 +44,24 @@ export async function loadLessonData(entry: string): Promise<unknown> {
   }
 }
 
-/** Compatibility API for tooling and tests; entity preparation lives in the creator. */
+/** The generator owns file paths and JSON serialization; the creator provides only data. */
 export function renderLessonFiles(lesson: unknown): Map<string, string> {
-  return new Map(createLessonFromUnknown(lesson).getPublicationItems());
+  const creator = createLessonFromUnknown(lesson);
+  const data = creator.getData();
+  const basePath = resolveEntityPath(data.id);
+  const base = creator.getBase();
+  const kinds = ['config', 'flashcards', 'questions'] as const;
+  const files = new Map<string, string>();
+  for (const kind of kinds) {
+    files.set(`${basePath}/${kind}/base.json`, JSON.stringify(base[kind]) + '\n');
+  }
+  for (const language of data.parameters.languages) {
+    const locale = creator.getLocale(language);
+    for (const kind of kinds) {
+      files.set(`${basePath}/${kind}/${language}.json`, JSON.stringify(locale[kind]) + '\n');
+    }
+  }
+  return files;
 }
 
 /** Discover authored lessons by UUID path; editorial-only directories are not generated. */
@@ -69,7 +84,7 @@ export async function renderTextbookLessonFiles(packageDirectory: string): Promi
       const creator = createLessonFromUnknown(await loadLessonData(path.join(lessonDir, candidates[0])));
       const lesson = creator.getData();
       if (lesson.id.toLowerCase() !== entry.name) throw new Error(`Lesson UUID/path mismatch: ${lessonDir}`);
-      for (const [key, value] of creator.getPublicationItems()) {
+      for (const [key, value] of renderLessonFiles(lesson)) {
         if (files.has(key)) throw new Error(`Duplicate Lesson publication: ${key}`);
         files.set(key, value);
       }

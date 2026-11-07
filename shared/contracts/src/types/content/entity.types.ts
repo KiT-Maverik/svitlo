@@ -1,7 +1,6 @@
 export type ContentEntity_ConfigType = 'definition' | 'data' | 'response';
 
-/** Shared, build-time shape for typed authoring creators. */
-export type Entity_Creator<Data, Context, Resource> = {
+/** A build-time creator owns entity data, never serialization paths or filesystem IO. */
+export type Entity_Creator<Data> = {
   getData(): Data;
-  toResource(context: Context): Resource;
 };
