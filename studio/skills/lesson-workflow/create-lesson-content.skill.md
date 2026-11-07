@@ -1,5 +1,7 @@
 # Create Lesson Content — machine-readable Screenwriter plan
 
+**Production Issue coordination:** For authorized Lesson production, find/create the [fixed-scope Lesson Production Issue](./manage-lesson-production.skill.md), reconcile its UUID membership and actual approved sources, and register the bounded Screenwriter assignment. Process all independently ready Lessons in a batch; update per-Lesson status/PR/handoff, keeping blocked Lessons visible. A fresh Issue per Lesson or per Section is not required. The Issue does not replace independent methodology approval.
+
 **First:** Read [Educational Screenwriter Persona](../../personas/educational-screenwriter.persona.md), applicable `AGENTS.md` and [Studio architecture](../../docs/architecture/README.md). This skill plans the **learning experience** for one or more selected, approved Lessons. It does not implement Lesson TypeScript, produce localized runtime responses, design assessment validity, or create Program story content.
 
 ## Inputs and role boundaries

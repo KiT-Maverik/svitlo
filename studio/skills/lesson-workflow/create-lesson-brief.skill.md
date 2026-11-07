@@ -1,5 +1,7 @@
 # Create Lesson Brief Skill
 
+**Production Issue coordination:** For authorized creation or revision of Lesson methodology as part of production, find or initialize the one fixed-scope [Lesson Production Issue](./manage-lesson-production.skill.md) before opening work PRs. An Issue may include many Lessons. Read its latest scope/status, process all ready Lessons in the assigned batch and update the same Issue on handoff; do not open a new Issue for each brief or seek a separate “continue” for each Lesson. Mere investigation/brainstorming does not require a Production Issue.
+
 **Mandatory first action:** Read [Methodologist Persona](../../personas/methodist.persona.md) **in full** and apply its professional judgment, editorial escalation rules and role boundaries. This Skill is the task-specific workflow for designing the **methodological specification of one independent Lesson**. It does not run Create Curriculum and does not author the Screenwriter-owned Lesson Content document, Questions, Scene specifications, gamification, or code.
 
 ## PURPOSE AND ARTIFACT OWNERSHIP
