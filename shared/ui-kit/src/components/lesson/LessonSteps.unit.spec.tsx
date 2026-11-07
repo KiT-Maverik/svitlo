@@ -15,6 +15,15 @@ describe('LessonSteps', () => {
     expect(screen.getByRole('button', { name: '1. Theory' })).toBeDisabled();
   });
 
+  it('keeps the themed fade separate from the horizontally scrolling navigation controls', () => {
+    render(<LessonSteps navigationLabel="Lesson steps" steps={steps} currentStep={0} />);
+    const navigation = screen.getByRole('navigation', { name: 'Lesson steps' });
+
+    expect(navigation.parentElement).toHaveClass('svitlo-theme-stepper');
+    expect(navigation.parentElement).not.toHaveAttribute('role', 'navigation');
+    expect(navigation.querySelectorAll('button')).toHaveLength(steps.length);
+  });
+
   it('injects navigation events instead of relying on a framework router', () => {
     const onNavigate = vi.fn();
     render(
