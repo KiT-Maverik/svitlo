@@ -7,8 +7,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
-import yaml from 'js-yaml';
-import Ajv2020 from 'ajv2020/dist/2020.js';
+import yaml from 'yaml';
+import Ajv2020 from 'ajv/dist/2020.js';
 import { compileFlashcards, serializeFlashcardsTS } from './lib/lesson-flashcards.mjs';
 
 export const repoRoot = path.resolve(fileURLToPath(new URL('..', import.meta.url)));
@@ -58,7 +58,7 @@ function read(file) {
 }
 function loadYAML(text, filename) {
   try {
-    const value = yaml.load(text, { schema: yaml.JSON_SCHEMA });
+    const value = yaml.parse(text, { schema: 'json', uniqueKeys: true });
     if (!value || typeof value !== 'object' || Array.isArray(value)) fail(filename, '$', 'expected YAML mapping');
     return value;
   } catch (error) {
