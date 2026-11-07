@@ -26,7 +26,10 @@ const themes = {
 };
 
 /**
- * Animate only the large surfaces that establish the page's colors. Applying
+ * Keep theme surface timing in one pair of CSS variables. The Stepper uses a
+ * masked solid-color layer so its bottom fade follows the same background-color
+ * interpolation as the page itself. Animate only the large surfaces that
+ * establish the page's colors. Applying
  * transitions to every MUI child (especially Select, Typography and SvgIcon)
  * stacks multiple paint animations and makes Quick Settings appear to flash.
  * Keep foreground text instant to prevent intermediate low-contrast states
@@ -36,16 +39,20 @@ const themes = {
  * Its border still blends smoothly with the surrounding lesson surface.
  */
 const themeTransitions = {
+  ':root': {
+    '--svitlo-theme-transition-duration': '280ms',
+    '--svitlo-theme-transition-easing': 'ease-in-out',
+  },
   '@media (prefers-reduced-motion: no-preference)': {
-    ':where(body, .svitlo-theme-surface, .MuiPaper-root)': {
+    ':where(body, .svitlo-theme-surface, .MuiPaper-root), .svitlo-theme-stepper::before': {
       transitionProperty: 'background-color, border-color',
-      transitionDuration: '280ms',
-      transitionTimingFunction: 'ease-in-out',
+      transitionDuration: 'var(--svitlo-theme-transition-duration)',
+      transitionTimingFunction: 'var(--svitlo-theme-transition-easing)',
     },
     ':where(.svitlo-theme-chrome)': {
       transitionProperty: 'border-color',
-      transitionDuration: '280ms',
-      transitionTimingFunction: 'ease-in-out',
+      transitionDuration: 'var(--svitlo-theme-transition-duration)',
+      transitionTimingFunction: 'var(--svitlo-theme-transition-easing)',
     },
   },
 } as const;

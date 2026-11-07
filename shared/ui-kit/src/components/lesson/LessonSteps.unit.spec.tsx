@@ -15,6 +15,15 @@ describe('LessonSteps', () => {
     expect(screen.getByRole('button', { name: '1. Theory' })).toBeDisabled();
   });
 
+  it('keeps the themed fade separate from the horizontally scrolling navigation controls', () => {
+    render(<LessonSteps navigationLabel="Lesson steps" steps={steps} currentStep={0} />);
+    const navigation = screen.getByRole('navigation', { name: 'Lesson steps' });
+
+    expect(navigation.parentElement).toHaveClass('svitlo-theme-stepper');
+    expect(navigation.parentElement).not.toHaveAttribute('role', 'navigation');
+    expect(navigation.querySelectorAll('button')).toHaveLength(steps.length);
+  });
+
   it('injects navigation events instead of relying on a framework router', () => {
     const onNavigate = vi.fn();
     render(
@@ -52,6 +61,34 @@ describe('LessonSteps', () => {
     } finally {
       rectSpy.mockRestore();
     }
+  });
+
+  it('preserves non-active step elements across rapid navigation and gate changes', () => {
+    const baseProps = { navigationLabel: 'Lesson steps', steps, allowNavigation: true };
+    const { rerender } = render(
+      <LessonSteps {...baseProps} currentStep={0} canNavigateTo={step => step === 0} />,
+    );
+    const originalButtons = screen.getAllByRole('button');
+    expect(originalButtons[1]).toBeDisabled();
+
+    // Section changes can also register and release navigation blockers.
+    // The step strip must not unmount or replace the non-active labels.
+    for (const currentStep of [1, 2, 1, 0]) {
+      rerender(
+        <LessonSteps
+          {...baseProps}
+          currentStep={currentStep}
+          canNavigateTo={step => step <= currentStep}
+        />,
+      );
+      const currentButtons = screen.getAllByRole('button');
+      currentButtons.forEach((button, index) => expect(button).toBe(originalButtons[index]));
+      expect(currentButtons[currentStep]).toHaveAttribute('aria-current', 'step');
+    }
+
+    rerender(<LessonSteps {...baseProps} currentStep={0} canNavigateTo={() => false} />);
+    expect(screen.getAllByRole('button')[1]).toBeDisabled();
+    expect(screen.getAllByRole('button')[1]).toBe(originalButtons[1]);
   });
 
   it('marks the selected and completed steps without changing their order', () => {
