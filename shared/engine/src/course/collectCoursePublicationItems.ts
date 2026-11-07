@@ -26,25 +26,21 @@ function isDataCreator(value: unknown): value is { getData(): unknown } {
 
 export function isCourseCreator(value: unknown): value is {
   getData(): unknown;
-  toToc(context: unknown): unknown;
-  toResource(context: unknown): unknown;
-  getPublicationItems(): unknown;
+  getContentEntries(): unknown;
 } {
   return (
     value !== null &&
     typeof value === 'object' &&
     'getData' in value &&
     typeof value.getData === 'function' &&
-    'toToc' in value &&
-    typeof value.toToc === 'function' &&
-    'getPublicationItems' in value &&
-    typeof value.getPublicationItems === 'function'
+    'getContentEntries' in value &&
+    typeof value.getContentEntries === 'function'
   );
 }
 
 /**
  * The single Course authoring traversal. All entity creators expose it through
- * getPublicationItems(); publishers do not need to know how content is nested.
+ * getContentEntries(); publishers do not need to know how content is nested.
  *
  * It deliberately retains full Lesson objects only until resource generation.
  */
