@@ -1,5 +1,4 @@
-import { howLightMoves_languages, type HowLightMoves_Languages } from '../../../constants';
-import { sceneLocalesToData } from '../../../sceneLocales';
+import type { HowLightMoves_Languages } from '../../../constants';
 import type { ContentBlock_Scene } from '@svitlo/engine/content';
 
 const en = {
@@ -1029,5 +1028,5 @@ export const showcaseData = {
   type: 'scene',
   id: 'how-light-moves-scene-showcase',
   slug: 'showcase' as const,
-  locales: sceneLocalesToData(howLightMoves_languages, showcase_Locale),
+  locales: showcase_Locale,
 } satisfies Showcase_ContentBlock<'data'>;

@@ -1,5 +1,4 @@
-import { howLightMoves_languages, type HowLightMoves_Languages } from '../../../constants';
-import { sceneLocalesToData } from '../../../sceneLocales';
+import type { HowLightMoves_Languages } from '../../../constants';
 import type { ContentBlock_Scene } from '@svitlo/engine/content';
 
 const en = {
@@ -722,5 +721,5 @@ export const lightPropagationSimulationData = {
   type: 'scene',
   id: 'how-light-moves-scene-propagation',
   slug: 'lightPropagationSimulation' as const,
-  locales: sceneLocalesToData(howLightMoves_languages, lightPropagationSimulation_Locale),
+  locales: lightPropagationSimulation_Locale,
 } satisfies LightPropagationSimulation_ContentBlock<'data'>;

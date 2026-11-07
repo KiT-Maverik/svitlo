@@ -3,6 +3,7 @@
   "textbook": "playground",
   "files": [
     "data/pages/courses/30ecbde1-97fd-5fe7-a353-ea89b9ef4a67/episodes/9f417177-1d07-5a9d-ad74-0146c5637e84/ar.json",
+    "data/pages/courses/30ecbde1-97fd-5fe7-a353-ea89b9ef4a67/episodes/9f417177-1d07-5a9d-ad74-0146c5637e84/base.json",
     "data/pages/courses/30ecbde1-97fd-5fe7-a353-ea89b9ef4a67/episodes/9f417177-1d07-5a9d-ad74-0146c5637e84/be.json",
     "data/pages/courses/30ecbde1-97fd-5fe7-a353-ea89b9ef4a67/episodes/9f417177-1d07-5a9d-ad74-0146c5637e84/bn.json",
     "data/pages/courses/30ecbde1-97fd-5fe7-a353-ea89b9ef4a67/episodes/9f417177-1d07-5a9d-ad74-0146c5637e84/de.json",
@@ -32,6 +33,7 @@
     "data/pages/courses/30ecbde1-97fd-5fe7-a353-ea89b9ef4a67/episodes/9f417177-1d07-5a9d-ad74-0146c5637e84/vi.json",
     "data/pages/courses/30ecbde1-97fd-5fe7-a353-ea89b9ef4a67/episodes/9f417177-1d07-5a9d-ad74-0146c5637e84/zh.json",
     "data/pages/courses/30ecbde1-97fd-5fe7-a353-ea89b9ef4a67/overrides/d3048d21-8690-5255-b62c-984c69ac272c/ar.json",
+    "data/pages/courses/30ecbde1-97fd-5fe7-a353-ea89b9ef4a67/overrides/d3048d21-8690-5255-b62c-984c69ac272c/base.json",
     "data/pages/courses/30ecbde1-97fd-5fe7-a353-ea89b9ef4a67/overrides/d3048d21-8690-5255-b62c-984c69ac272c/be.json",
     "data/pages/courses/30ecbde1-97fd-5fe7-a353-ea89b9ef4a67/overrides/d3048d21-8690-5255-b62c-984c69ac272c/bn.json",
     "data/pages/courses/30ecbde1-97fd-5fe7-a353-ea89b9ef4a67/overrides/d3048d21-8690-5255-b62c-984c69ac272c/de.json",
@@ -61,6 +63,7 @@
     "data/pages/courses/30ecbde1-97fd-5fe7-a353-ea89b9ef4a67/overrides/d3048d21-8690-5255-b62c-984c69ac272c/vi.json",
     "data/pages/courses/30ecbde1-97fd-5fe7-a353-ea89b9ef4a67/overrides/d3048d21-8690-5255-b62c-984c69ac272c/zh.json",
     "data/pages/courses/30ecbde1-97fd-5fe7-a353-ea89b9ef4a67/toc/ar.json",
+    "data/pages/courses/30ecbde1-97fd-5fe7-a353-ea89b9ef4a67/toc/base.json",
     "data/pages/courses/30ecbde1-97fd-5fe7-a353-ea89b9ef4a67/toc/be.json",
     "data/pages/courses/30ecbde1-97fd-5fe7-a353-ea89b9ef4a67/toc/bn.json",
     "data/pages/courses/30ecbde1-97fd-5fe7-a353-ea89b9ef4a67/toc/de.json",

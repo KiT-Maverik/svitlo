@@ -1,5 +1,4 @@
-import { howLightMoves_languages, type HowLightMoves_Languages } from '../../../constants';
-import { sceneLocalesToData } from '../../../sceneLocales';
+import type { HowLightMoves_Languages } from '../../../constants';
 import type { ContentBlock_Scene } from '@svitlo/engine/content';
 
 const en = {
@@ -394,5 +393,5 @@ export const lightRayDiagramData = {
   type: 'scene',
   id: 'how-light-moves-scene-ray',
   slug: 'lightRayDiagram' as const,
-  locales: sceneLocalesToData(howLightMoves_languages, lightRayDiagram_Locale),
+  locales: lightRayDiagram_Locale,
 } satisfies LightRayDiagram_ContentBlock<'data'>;

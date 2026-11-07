@@ -55,7 +55,7 @@ const customOnly = defineLessonData<typeof languages, 'lionAppeared'>()({
       type: 'scene',
       id: 'lion-scene',
       slug: 'lion',
-      locales: { message: { en: 'Hello', uk: 'Вітаю' } },
+      locales: { en: { message: 'Hello' }, uk: { message: 'Вітаю' } },
     },
   },
 });

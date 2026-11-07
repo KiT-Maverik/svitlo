@@ -132,6 +132,13 @@ const runtimeScene: ContentBlock_Scene<'response', TestLanguages> = {
   rendererKey: 'lightRayDiagram',
   locales: { title: 'Light ray' },
 };
+const authoredScene: ContentBlock_Scene<'data', TestLanguages, { title: string }> = {
+  id: 'scene-id',
+  slug: 'ray',
+  type: 'scene',
+  locales: { en: { title: 'Light ray' }, uk: { title: 'Промінь світла' } },
+};
+void authoredScene;
 
 const customQuizScreen: Quiz_Screen<'response', TestLanguages> = {
   content: [runtimeText],

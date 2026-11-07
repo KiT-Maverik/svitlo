@@ -6,7 +6,7 @@ import ListOutlined from '@mui/icons-material/ListOutlined';
 import PriorityHighOutlined from '@mui/icons-material/PriorityHighOutlined';
 import ChatBubbleOutlineOutlined from '@mui/icons-material/ChatBubbleOutlineOutlined';
 import InfoOutlined from '@mui/icons-material/InfoOutlined';
-import StarOutline from '@mui/icons-material/StarOutline';
+import StarOutline from '@mui/icons-material/StarOutlineOutlined';
 import BookmarkBorderOutlined from '@mui/icons-material/BookmarkBorderOutlined';
 import LightbulbOutlined from '@mui/icons-material/LightbulbOutlined';
 import CodeOutlined from '@mui/icons-material/CodeOutlined';

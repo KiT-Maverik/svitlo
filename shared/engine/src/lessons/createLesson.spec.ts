@@ -38,7 +38,7 @@ const scene = createContentBlock<typeof languages>()({
   id: 'scene-id',
   slug: 'rayScene',
   type: 'scene',
-  locales: { labels: { source: { en: 'Source', uk: 'Джерело' } } },
+  locales: { en: { labels: { source: 'Source' } }, uk: { labels: { source: 'Джерело' } } },
 });
 const theory = createSection<typeof languages>()({
   type: 'theory',
@@ -114,7 +114,10 @@ describe('composable Lesson creators', () => {
     assert.equal(JSON.stringify(lesson).includes('toResource'), false);
     assert.deepEqual(lesson.sections[0].type === 'theory' ? lesson.sections[0].content[0] : null, text.getData());
     assert.deepEqual(quiz.getData().parameters.isBlocker, true);
-    assert.deepEqual(scene.getData().locales, { labels: { source: { en: 'Source', uk: 'Джерело' } } });
+    assert.deepEqual(scene.getData().locales, {
+      en: { labels: { source: 'Source' } },
+      uk: { labels: { source: 'Джерело' } },
+    });
   });
 
   it('retains language-invariant fields and strict sparse localization', () => {

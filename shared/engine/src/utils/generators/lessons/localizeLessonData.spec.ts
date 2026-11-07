@@ -37,6 +37,33 @@ describe('splitLessonValue', () => {
     assert.deepEqual(result.locales.uk, { '0': 'Один' });
   });
 
+  it('publishes a complete Scene locale object for only the selected language', () => {
+    const scene = {
+      type: 'scene',
+      id: 'ray',
+      locales: {
+        en: { scene: { title: 'Light ray' }, labels: { source: 'Source' } },
+        uk: { scene: { title: 'Промінь світла' }, labels: { source: 'Джерело' } },
+      },
+    };
+    const result = splitLessonValue(scene, ['en', 'uk']);
+    assert.deepEqual(result.base, { type: 'scene', id: 'ray' });
+    assert.deepEqual(result.locales.uk, { locales: scene.locales.uk });
+    assert.deepEqual(result.pointers, ['/locales']);
+    assert.throws(
+      () => splitLessonValue({ ...scene, locales: { en: scene.locales.en } }, ['en', 'uk']),
+      /Incomplete Scene locale dictionary/,
+    );
+    assert.throws(
+      () =>
+        splitLessonValue({ ...scene, locales: { ...scene.locales, uk: { scene: { title: 'Промінь' } } } }, [
+          'en',
+          'uk',
+        ]),
+      /Invalid Scene locale shape/,
+    );
+  });
+
   it('rejects missing translations, extra languages, legacy fallback and single-language values', () => {
     assert.throws(
       () => splitLessonValue({ title: { en: 'Light' } }, ['en', 'uk']),

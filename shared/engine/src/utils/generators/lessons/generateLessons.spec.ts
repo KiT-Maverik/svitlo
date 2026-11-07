@@ -13,7 +13,7 @@ const lesson = {
   title: { en: 'Light', uk: 'Світло' },
   parameters: { languages: ['en', 'uk'] },
   skills: ['00000000-0000-4000-8000-000000000015'],
-  flashcards: [{ id: 'card-id', label: 'H₂O', front: [{ text: { en: 'Ray', uk: 'Промінь' } }] }],
+  flashcards: [{ id: 'card-id', label: 'H₂O', flags: [], front: [{ text: { en: 'Ray', uk: 'Промінь' } }] }],
   questions: { selectOneAnswer: { q1: { id: 'question-id', slug: 'q1', title: { en: 'What?', uk: 'Що?' } } } },
   sections: [
     {

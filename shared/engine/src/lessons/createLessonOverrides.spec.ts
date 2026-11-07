@@ -43,7 +43,7 @@ const courseScenario = {
   type: 'scenario',
   title: { en: 'A lion appears', uk: "З'являється лев" },
   navigationLabel: 'Story',
-  content: [{ id: 'lion-id', slug: 'lion', type: 'scene', locales: { name: { en: 'Lion', uk: 'Лев' } } }],
+  content: [{ id: 'lion-id', slug: 'lion', type: 'scene', locales: { en: { name: 'Lion' }, uk: { name: 'Лев' } } }],
 } as const satisfies Section<'data', typeof languages>;
 
 describe('createLessonOverrides', () => {

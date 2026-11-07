@@ -21,6 +21,19 @@ const isRecord = (value: unknown): value is Record<string, unknown> =>
 const pointer = (path: readonly string[]): string =>
   '/' + path.map(part => part.replaceAll('~', '~0').replaceAll('/', '~1')).join('/');
 
+function assertSameSceneShape(reference: unknown, candidate: unknown, path: readonly string[]): void {
+  if (typeof reference === 'string' && typeof candidate === 'string') return;
+  if (isRecord(reference) && isRecord(candidate)) {
+    const expected = Object.keys(reference);
+    const actual = Object.keys(candidate);
+    if (expected.length === actual.length && expected.every(key => Object.hasOwn(candidate, key))) {
+      for (const key of expected) assertSameSceneShape(reference[key], candidate[key], [...path, key]);
+      return;
+    }
+  }
+  throw new Error('Invalid Scene locale shape at ' + pointer(path));
+}
+
 /**
  * Split authored Lesson Data into one shared structural value and sparse language patches.
  * Authored strings are invariant; authored locale dictionaries must be complete.
@@ -36,7 +49,8 @@ export function splitLessonValue(input: unknown, supportedLanguages: readonly La
     throw new Error('Invalid declared lesson languages');
   }
 
-  function split(value: unknown, path: readonly string[]): Partition {
+  function split(value: unknown, path: readonly string[], sceneLocales = false): Partition {
+    if (sceneLocales && !isRecord(value)) throw new Error('Invalid Scene locales at ' + pointer(path));
     if (Array.isArray(value)) {
       const children = value.map((item, index) => split(item, [...path, String(index)]));
       const locales: Partition['locales'] = {};
@@ -57,6 +71,31 @@ export function splitLessonValue(input: unknown, supportedLanguages: readonly La
 
     if (isRecord(value)) {
       const keys = Object.keys(value);
+      if (sceneLocales) {
+        const unexpected = keys.filter(key => !languages.has(key as LanguageCode));
+        const missing = [...languages].filter(language => !Object.hasOwn(value, language));
+        if (unexpected.length || missing.length) {
+          throw new Error(
+            'Incomplete Scene locale dictionary at ' +
+              pointer(path) +
+              ' (missing: ' +
+              missing.join(', ') +
+              '; unexpected: ' +
+              unexpected.join(', ') +
+              ')',
+          );
+        }
+        const reference = value[supportedLanguages[0]];
+        for (const language of languages) {
+          if (!isRecord(value[language])) throw new Error('Invalid Scene locale at ' + pointer([...path, language]));
+          assertSameSceneShape(reference, value[language], [...path, language]);
+        }
+        return {
+          base: OMIT,
+          locales: Object.fromEntries([...languages].map(language => [language, value[language]])),
+          pointers: [pointer(path)],
+        };
+      }
       if (
         keys.length === 2 &&
         keys.includes('language') &&
@@ -101,7 +140,9 @@ export function splitLessonValue(input: unknown, supportedLanguages: readonly La
         };
       }
 
-      const children = Object.entries(value).map(([key, item]) => [key, split(item, [...path, key])] as const);
+      const children = Object.entries(value).map(
+        ([key, item]) => [key, split(item, [...path, key], value.type === 'scene' && key === 'locales')] as const,
+      );
       const locales: Partition['locales'] = {};
       for (const language of languages) {
         const patch = Object.fromEntries(

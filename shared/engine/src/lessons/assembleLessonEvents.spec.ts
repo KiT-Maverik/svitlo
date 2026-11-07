@@ -33,7 +33,7 @@ const authored = {
       id: 'light-event-scene',
       slug: 'lightEventScene',
       type: 'scene',
-      locales: { title: { en: 'Well done!', uk: 'Молодець!' } },
+      locales: { en: { title: 'Well done!' }, uk: { title: 'Молодець!' } },
     },
   },
 };
@@ -51,7 +51,7 @@ describe('Lesson event authoring and publication', () => {
     const configBase = JSON.parse(files.get(`c/${id}/config/base.json`)!);
     const configUk = JSON.parse(files.get(`c/${id}/config/uk.json`)!);
     assert.equal(configBase.data.events.lessonStarted, false);
-    assert.equal(configBase.data.events.lightDiscovered.locales.title, undefined);
+    assert.equal(configBase.data.events.lightDiscovered.locales, undefined);
     assert.equal(configUk.data.events.lightDiscovered.locales.title, 'Молодець!');
     const response = assembleLessonResponse(id, 'uk', {
       config: collection(files, 'config', 'uk'),
