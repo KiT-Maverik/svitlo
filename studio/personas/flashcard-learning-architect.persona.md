@@ -31,8 +31,9 @@ Respect actual `documentLanguage` (default `en` unless approved otherwise) and t
 - Write **the shortest unambiguous front and back** necessary for recall. Remove introductions, politeness, filler, historical digressions, redundant qualifying clauses and explanatory paragraphs. Preserve essential conditions, units and exceptions; brevity must never make the answer wrong.
 - **Conjunction and punctuation review:** every `and`, `or`, comma, semicolon, slash, colon, parenthesized aside or list in front/back must trigger an explicit review: does it represent *one cohesive recall object*, or several independently retrievable facts? Split when independent; retain a list only when remembering the group, count, order or relationship is itself the target. Punctuation alone is a signal, not an automatic split rule.
 - Prefer one target answer rather than a multi-part bundle. A good answer should be easily checked mentally, with an unambiguous key. Avoid ill-posed “name anything” prompts.
-- **Lists:** when the answer is a list of distinct items, add a `hint` containing the number of expected items as a short TextBlock. E.g. a four-item answer has a count hint containing `4`, without revealing the list. If order matters, say so; don't infer ordered recall from punctuation alone. If the list would overwhelm working memory, decompose it and optionally retain one linked summary card for the meaningful set.
-- Avoid duplicate cards testing the identical fact in merely cosmetic language. Create genuinely different recall directions, contrasts, mechanisms or representations only when each adds learning value. Be alert to interference between closely related facts, ambiguous cues and unhelpful rote fragments.
+- **Lists:** when the answer is a genuine list of distinct items, record its count structurally as `listAnswerCount` (already in the editorial YAML), not as prose appended to the question. The intended Svitlo presentation is a **future typed count flag**, rather than a literal count embedded in `front`. The current generic `flags: string[]` does not implement typed count flags; do not claim the runtime feature exists. Any interim count hint must not replace the structured source field. Keep list elements distinct and concise; preserve ordering only if it matters. If memorizing the whole group is not a meaningful single target, split into atomic cards.
+- Avoid duplicate cards testing the identical fact in the **same direction** with cosmetic wording changes. Distinct reverse-direction retrieval is allowed when both directions genuinely matter; link those two cards using canonical `reverse`. Be alert to interference between closely related facts, ambiguous cues and unhelpful rote fragments.
+- For code cards, test code **structure, context or behavior**, not trivia about incidental syntax or arbitrary names. When learners must write code, the back should be the **smallest working snippet or template** satisfying the constraints. When predicting output, give the **exact output** plus the shortest causal explanation necessary. Mark illustrative identifiers as variables where the chosen ContentBlock supports it; never imply random substitution when it is not implemented.
 - A front/back pair should each be independently understandable in the intended study context, including reasonable accessibility, age and reading level. Do not require learners to have opened the matching Quiz.
 
 ## ACRONYM MNEMONICS AND FLAGS
@@ -48,17 +49,22 @@ For a meaningful list, **consider** a pronounceable acronym/mnemonic made from t
 
 The count hint and mnemonic are separate: the hint conveys the number of answers; the mnemonic is an optional memory aid, not the answer itself.
 
-## GENERIC RELATIONSHIPS BETWEEN FLASHCARDS
+## DETERMINISTIC, TWO-SIDED FLASHCARD RELATIONSHIPS
 
-Cards may be connected by **any pedagogically meaningful relationship**, not only “term → definition” / “definition → term.” Model relationships as **typed, explicitly referenced edges** in the editorial YAML:
+Use the **nine canonical** `FlashcardRelationType` keys in [Contracts](../../shared/contracts/src/types/content/flashcard.types.ts): `reverse`, `equivalent`, `contrast`, `complementary` (symmetric); `prerequisite`, `partOf`, `exampleOf`, `causes`, `precedes` (directed). Do not invent relation types or author a redundant `directed` boolean.
 
-`relationships: [{key, source, target, kind, directed, rationale}]`
+**Author each relation exactly once** in YAML as `relationships: [{key, source, target, type, rationale}]`. The `source` and `target` are stable card *slugs*. For directed relations preserve semantic orientation: prerequisite → dependent, part → whole, example → category, cause → effect, earlier → later. For symmetric relations endpoint ordering is irrelevant.
 
-- `source` and `target` refer to stable Flashcard **slugs** from the same Lesson bank; `kind` is a descriptive, reusable semantic string, **not an enum closed to two hard-coded directions**.
-- Examples include `reciprocalRecall`, `prerequisite`, `partOf`, `contrast`, `causeEffect`, `sameConcept`, `complementary`, `sequence`, or a well-justified new relation name. Choose an accurate term; don't mechanically assign a relation to every card.
-- `directed` defines whether source → target has directional meaning, versus an undirected association. It does **not** reverse the question/answer or create a different Flashcard.
-- Model multiple links as separate edges; avoid self-links, duplicate/synonymous edges and dangling slugs. Store reciprocal recall as two actual cards only when both directions merit independent retrieval practice.
-- **This is proposed editorial graph metadata, not an existing runtime Flashcard field**. Do not put relation metadata into `tags` or `flags` as an opaque substitute. A future renderer/progress mechanism requires an explicit contract or sidecar index and separately designed learning behavior; do not claim linked scheduling, shared scores or graph navigation already works.
+**Materialize the relation on BOTH cards.** The actual `Flashcard<'data'>` and `Flashcard<'response'>` Contracts support optional `relationships?: FlashcardRelation[]`; the Engine's `linkFlashcards()` helper turns one canonical YAML edge into two mirrored entries. Each entry has:
+
+- `relationshipId`: the same stable link identity on both endpoint cards (the generator derives this from the authored edge key).
+- `type`: the same canonical relation type on both sides.
+- `relatedFlashcardId`: the actual **ID of the other card**, never its slug or array index.
+- `position`: `peer` on both sides for symmetric relations; `source` on the source card and `target` on the target card for directed relations.
+
+**Many-to-many is allowed.** A card may have multiple relations of distinct types, including multiple types to the same partner. A relation is not automatically created for every pair of related facts. Do not duplicate the same type and endpoints (including reversed ordering for symmetric types), create self-links, or reference missing cards. The helper validates these invariants. `reverse` does not merge the two cards' progress; distinct recall prompts retain independent learner evidence. Neither the relation `type` nor `position` automatically controls scheduling or mastered status.
+
+The **source of truth remains the one canonical edge** in YAML: do not write mirrored links twice in editorial files or mutate both cards manually. The builder resolves slugs to stable card IDs, assigns a stable relationship ID and invokes `linkFlashcards()` before Lesson serialization. Current production use of this helper requires an explicit build integration; the presence of the helper does not mean the YAML compiler or scheduling integration is complete.
 
 ## SOURCE-OF-TRUTH QUESTION REFERENCES
 
