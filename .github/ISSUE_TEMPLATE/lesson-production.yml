@@ -37,7 +37,7 @@ body:
     id: provenance
     attributes:
       label: Scope provenance and authoritative sources
-      description: Links to Course/Chapter/Module TOC (if any), Lesson identity, methodology, content, current PRs and editorial approvals.
+      description: Links to Course/Chapter/Module TOC (if any), Lesson identity, methodology, content, approved Question/Flashcard YAML revisions, current PRs and separate editorial sign-offs.
       placeholder: |
         Course UUID and selected TOC slot keys (optional):
         TOC source commit/PR SHA and matching PR:
@@ -57,8 +57,10 @@ body:
         - Screenwriter content authoring
         - Learning Experience Review
         - Methodological Review
-        - Lesson source generation
-        - Asset, Scene and Question production
+        - Question bank authoring and editorial approval
+        - Flashcard authoring and editorial approval
+        - Lesson source generation (after approved YAML)
+        - Scene and manual Media/Asset Production
         - Localization
         - Validation and publication
     validations:
@@ -83,6 +85,7 @@ body:
         A single table is authoritative for the current status of each Lesson. Agents must initialize/maintain one row per verified UUID.
         Allowed status: not-started, in-progress, ready-for-review, changes-requested, approved, blocked, completed.
         Stage means the NEXT needed operation, not a guarantee that previous artifacts were approved.
+        Per Lesson: questions -> flashcards -> generate-sources -> resource-production; each editorial approval is independently verified.
       value: |
         <!-- svitlo-lesson-production:v1; preserve this marker for cross-agent recovery -->
         | Lesson UUID | Current stage | Status | Active owner / branch | PR(s) | Blocker or next action |
@@ -95,8 +98,10 @@ body:
         - [ ] Screenwriter content plans approved
         - [ ] Experience reviews approved for current content revisions
         - [ ] Methodological reviews approved for current content revisions
-        - [ ] Lesson source scaffolds generated / requirements recorded
-        - [ ] Required Questions, Scenes and media completed
+        - [ ] Question banks independently approved for current source revisions
+        - [ ] Flashcard YAML independently approved against the current approved Question banks
+        - [ ] Deterministic Lesson source scaffolds generated from all approved YAML / requirements recorded
+        - [ ] Required Scenes, manual media/assets and accessible alternatives completed
         - [ ] Supported-language translations complete
         - [ ] Typechecks, builds, QA and publications verified
     validations:
@@ -112,7 +117,8 @@ body:
         Blocked Lesson UUIDs:
         Course matching handoff (if any):
         Active work / owner / Draft PR:
-        Last verified source revision:
+        Last verified content / Question / Flashcard source revisions:
+        Independent editorial approval links (Questions and Flashcards):
         Latest decision and approval links:
         Next autonomous batch:
     validations:
