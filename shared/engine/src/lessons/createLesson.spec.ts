@@ -7,6 +7,8 @@ import { splitLessonValue } from './splitLessonValue';
 import { renderLessonFiles } from '../utils/generators/lessons/generateLessons.utils';
 import { createChapter } from '../course/createCourseEntities';
 import { createCourse } from '../course/createCourse';
+import { assembleLessonResponse } from './assembleLessonResponse';
+import { mergeLessonResources } from './mergeLessonResources';
 import { createLessonOverrides } from './createLessonOverrides';
 
 const languages = ['en', 'uk'] as const;
@@ -96,30 +98,36 @@ describe('composable Lesson creators', () => {
   });
 
   it('retains language-invariant fields and strict sparse localization', () => {
-    const blockResource = text.toResource({ languages });
-    assert.equal(blockResource.base && typeof blockResource.base === 'object' && 'value' in blockResource.base, false);
-    assert.deepEqual(blockResource.locales.uk, { value: 'Промінь' });
-    assert.equal(invariant.toResource({ languages }).base && typeof invariant.toResource({ languages }).base, 'object');
+    const base = text.getBase({ languages });
+    assert.equal(base && typeof base === 'object' && 'value' in base, false);
+    assert.deepEqual(text.getLocale({ languages, language: 'uk' }), { value: 'Промінь' });
+    assert.equal(typeof invariant.getBase({ languages }), 'object');
 
-    const sectionResource = theory.toResource({ languages });
-    assert.deepEqual(sectionResource.locales.uk, {
+    assert.deepEqual(theory.getLocale({ languages, language: 'uk' }), {
       title: 'Теорія',
       content: { '0': { value: 'Промінь' }, '2': { locales: '**Світло**' }, '3': { locales: { labels: { source: 'Джерело' } } } },
     });
-    assert.equal(creator.toResource({ language: 'uk' }).config.locale.localeSources['/sections/0/content/0/value'].code, 'uk');
+    assert.equal(creator.getLocale('uk').config.localeSources['/sections/0/content/0/value'].code, 'uk');
     assert.throws(() => splitLessonValue({ value: { en: 'Only English' } }, languages), /Incomplete locale dictionary/);
   });
 
   it('preserves generator JSON bytes, locale paths, and response assembly for scenes and Quiz', () => {
-    const files = creator.getPublicationItems();
+    const files = renderLessonFiles(creator.getData());
     assert.equal(files.size, 9);
-    assert.deepEqual([...files], [...renderLessonFiles(creator.getData())]);
+    const serialized = JSON.parse(files.get(`c/${lessonId}/config/uk.json`)!);
+    assert.deepEqual(serialized, creator.getLocale('uk').config);
     const names = [...files.keys()];
     assert.equal(names[0], `c/${lessonId}/config/base.json`);
     assert.ok(names.includes(`c/${lessonId}/flashcards/uk.json`));
     assert.ok(names.includes(`c/${lessonId}/questions/en.json`));
 
-    const response = creator.toResponse({ language: 'uk' });
+    const base = creator.getBase();
+    const locale = creator.getLocale('uk');
+    const response = assembleLessonResponse(creator.getData().id, 'uk', {
+      config: mergeLessonResources(base.config, locale.config),
+      flashcards: mergeLessonResources(base.flashcards, locale.flashcards),
+      questions: mergeLessonResources(base.questions, locale.questions),
+    });
     assert.equal(response.title, 'Як рухається світло');
     assert.equal(response.locale.code, 'uk');
     const theoryResponse = response.sections[0];
@@ -146,14 +154,14 @@ describe('composable Lesson creators', () => {
       content: [creator],
     });
     assert.deepEqual(chapter.getData().content[0], creator.getData());
-    assert.deepEqual(chapter.getPublicationItems().lessons.map(item => item.id), [lessonId]);
+    assert.deepEqual(chapter.getContentEntries().lessons.map(item => item.id), [lessonId]);
     const course = createCourse<typeof languages>({
       type: 'course', id: 'course-id', parameters: { languages },
       title: { type: 'text', id: 'course-title', slug: 'courseTitle', value: 'Course' },
       description: { type: 'markdown', id: 'course-desc', slug: 'courseDescription', locales: 'Description' },
       content: [chapter],
     });
-    assert.deepEqual(course.getPublicationItems().lessons.map(item => item.id), [lessonId]);
+    assert.deepEqual(course.getContentEntries().lessons.map(item => item.id), [lessonId]);
     assert.deepEqual(course.toToc({ language: 'uk' }).children[0].type, 'chapter');
 
     const override = createLessonOverrides(creator.getData())
