@@ -31,25 +31,18 @@ No field-level runtime fallback is performed.
 
 ## Build-time creator APIs
 
-`@svitlo/engine/builders` now exposes a consistent creator family:
-`createCourse`, `createModule`, `createChapter`, `createEpisode`,
-`createLesson`, `createSection`, and `createContentBlock`.
+`@svitlo/engine/builders` exports `createCourse`, `createModule`,
+`createChapter`, `createEpisode`, `createLesson`,
+`createSection` and `createContentBlock`.
 
-- All creators expose `getData()` (authored data without creator methods) and
-  `toResource(context)` (an entity-specific, pure resource projection).
-- Course creators additionally expose `toToc({ language })` and
-  `getPublicationItems()` (nested authoring entities).
-- Lesson creators expose `getPublicationItems()` (the existing three sparse
-  JSON collections for **all** declared locales), and
-  `toResponse({ language })` (a build-time preview using the same
-  `mergeLessonResources` / `assembleLessonResponse` path as runtime).
-- Section and ContentBlock creators intentionally have **no TOC or filesystem API**.
-  Their `toResource({ languages })` returns a sparse partition for the
-  containing Lesson rather than standalone publication paths.
-- A Quiz remains `createSection({ type: 'quiz', parameters: ... })`, not a block.
-  All existing ContentBlock discriminants are supported, including Scene.
-- Neither creator objects nor closures are published. Scene renderer keys are
-  resolved by the existing runtime assembly and static Scene registry.
+Every creator exposes `getData()` for authoring. Lesson, Section and
+ContentBlock creators expose `getBase()` and `getLocale()`; Section
+and ContentBlock require an explicit `{ languages }` context because
+they do not own the language tuple. Course additionally exposes
+`getContentEntries()` and `toToc({ language })`; nested Module,
+Chapter and Episode expose `getContentEntries()` only. No creator
+creates paths, files, or a combined resource. Quiz remains a Section.
+Creator closures never enter runtime JSON.
 
 For authoring, pin the Lesson's language tuple **once** and let the child
 creator calls infer their specific block/section payloads and literal slugs:
@@ -76,19 +69,12 @@ catalog keys and declared Lesson event keys. Intentional invariants remain plain
 strings; missing locale map entries remain TypeScript errors. A direct
 `createLesson(existingLesson)` is also available for typed legacy authoring data.
 
-The generator only discovers/loads Lesson source and writes files. Sparse partitioning,
-validating entity structure, preparing resource paths, locale sources and response
-assembly belong to the Lesson creator and its existing dedicated Engine helpers.
-This keeps the exact published `config` / `flashcards` / `questions`
-`base.json` + `<language>.json` format and prevents source methods from
-entering runtime resources.
-
-## Build-time creator/publisher/runtime boundary
+## Creator / generator / runtime boundary
 
 A creator returns typed, locale-complete authored data with `getData()`; it
 does **not** compute filenames, write files, or manufacture a combined resource.
 
-- `createLesson(l).getBase()` returns the invariant `config`, `flashcards`
+- `createLesson(data).getBase()` returns the invariant `config`, `flashcards`
   and `questions` documents. `getLocale(language)` returns only sparse locale
   patches and `localeSources` for the same three collections.
 - `createSection` and `createContentBlock` expose `getBase({ languages })`

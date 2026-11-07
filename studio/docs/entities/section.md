@@ -23,26 +23,14 @@ Related: [Lesson](./lesson.md), [Lesson Content](./lesson-content.md).
 
 ## Build-time creator API
 
-`createSection<SupportedLanguages>()({ ... })` accepts existing Section data,
-including typed `createContentBlock` creators for an ordinary Section's
-ordered `content` array. `getData()` unwraps nested creators while preserving
-their identity and order. `toResource({ languages })` uses the Lesson
-sparse-localization helper; it does not publish standalone Section files.
+`createSection<SupportedLanguages>()({ ... })` accepts typed Section
+data or ContentBlock creators. `getData()` unwraps nested creators
+without losing content identity or order. For both ordinary Sections
+and Quiz Sections, `getBase({ languages })` returns invariant authored
+data while `getLocale({ languages, language })` returns only the sparse
+patch for a selected language.
 
-A Quiz Section uses `createSection({ type: 'quiz', parameters: ... })` and
-has **no** ContentBlock `content`. Question selection is resolved from the
-parent Lesson catalog during Lesson Response assembly. New blocks should be
-added to the appropriate ContentBlock contract/renderer and verified against
-existing serialization; the generator must not special-case individual block
-kinds. `createContentBlock<SupportedLanguages>()` similarly exposes
-`getData()` and pure `toResource({ languages })` with strict locale
-coverage and intentional language-independent strings.
-
-## Build-time creator methods
-
-`createSection<L>()(data)` and `createContentBlock<L>()(data)` expose
-`getData()`, `getBase({ languages })` and
-`getLocale({ languages, language })`. These nested entities have no
-independent published file paths; the Lesson or Course generator owns those.
-A Quiz remains a Section, not a ContentBlock. Sparse locale patches never
-repeat invariant IDs, types or authored ordering.
+`createContentBlock<SupportedLanguages>()({ ... })` exposes the same
+three operations. Neither nested creator handles files, TOC, or runtime
+merging; Lesson and Course generators own their respective publication
+boundaries. The Quiz Question catalog remains owned by the parent Lesson.
