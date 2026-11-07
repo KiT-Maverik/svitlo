@@ -17,7 +17,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import TopNavbar from '../Navigation/TopNavbar';
 import BottomNavbar from '../Navigation/BottomNavbar';
 import { getLocaleDirection, type Locale } from '@svitlo/engine/localization';
-import VerticalSpace from '#widgets/VerticalSpace/VerticalSpace';
+import ThreeSlotLayout from '../ThreeSlotLayout';
 import ProfileMenu, { type LearningProfile } from './ProfileMenu';
 import CourseTopicList, { type Topic } from './CourseTopicList';
 
@@ -367,27 +367,38 @@ export default function LearningLayout({
             id="learning-sidebar"
             component="nav"
             aria-label={messages.navigation.topics}
-            sx={{ display: 'flex', flexDirection: 'column', height: '100%', minHeight: 0 }}
+            sx={{
+              width: '100%',
+              height: '100%',
+              minHeight: 0,
+              overflowY: 'auto',
+              overflowX: 'hidden',
+              overscrollBehavior: 'contain',
+            }}
           >
-            <VerticalSpace
-              top={
-                <Typography
-                  component="h2"
-                  sx={{ px: 3, pt: 2, fontSize: 13, fontWeight: 700, color: 'text.secondary', userSelect: 'none' }}
-                >
-                  {messages.topicsTitle}
-                </Typography>
-              }
-              center={
-                <Box sx={{ height: '100%', overflowY: 'auto', overscrollBehavior: 'contain', px: 1 }}>
-                  <CourseTopicList
-                    topics={topics}
-                    pathname={pathname}
-                    linkComponent={linkComponent}
-                    onNavigate={() => setOpen(false)}
-                  />
-                </Box>
-              }
+            <ThreeSlotLayout
+              axis="vertical"
+              slots={{
+                start: (
+                  <Typography
+                    component="h2"
+                    sx={{ px: 3, pt: 2, fontSize: 13, fontWeight: 700, color: 'text.secondary', userSelect: 'none' }}
+                  >
+                    {messages.topicsTitle}
+                  </Typography>
+                ),
+                center: (
+                  <Box sx={{ minWidth: 0, px: 1 }}>
+                    <CourseTopicList
+                      topics={topics}
+                      pathname={pathname}
+                      linkComponent={linkComponent}
+                      onNavigate={() => setOpen(false)}
+                    />
+                  </Box>
+                ),
+              }}
+              slotProps={{ root: { sx: { minHeight: '100%', height: 'auto' } } }}
             />
           </Box>
         </Drawer>
@@ -417,66 +428,71 @@ export default function LearningLayout({
               minHeight: 0,
               minWidth: 0,
               overflowX: 'hidden',
+              overflowY: 'auto',
+              overscrollBehavior: 'contain',
               boxSizing: 'border-box',
             }}
           >
-            <VerticalSpace
-              top={
-                <Box
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    p: 1,
-                    borderBottom: 1,
-                    borderColor: 'divider',
-                    minWidth: 0,
-                  }}
-                >
-                  <Typography
-                    component="h2"
-                    sx={{ flex: 1, minWidth: 0, px: 1, fontSize: 18, fontWeight: 700, textAlign: 'start' }}
-                  >
-                    {messages.settingsTitle}
-                  </Typography>
-                  <IconButton
-                    aria-label={messages.actions.closeSettingsPanel}
-                    onClick={() => setSettingsOpen(false)}
-                    sx={{ display: { xs: 'inline-flex', sm: 'none' } }}
-                  >
-                    <CloseIcon />
-                  </IconButton>
-                </Box>
-              }
-              center={
-                <Box sx={{ height: '100%', minHeight: 0, minWidth: 0, overflowY: 'auto', overflowX: 'hidden', px: 2 }}>
-                  {!preferences && !settingsContent && (
-                    <Typography color="text.secondary">{messages.settingsDescription}</Typography>
-                  )}
-                </Box>
-              }
-              bottom={
-                preferences || settingsContent ? (
+            <ThreeSlotLayout
+              axis="vertical"
+              slots={{
+                start: (
                   <Box
                     sx={{
-                      width: '100%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      p: 1,
+                      borderBottom: 1,
+                      borderColor: 'divider',
                       minWidth: 0,
-                      boxSizing: 'border-box',
-                      px: 2,
-                      pt: 1,
-                      pb: 2,
-                      maxHeight: 'calc(100% - 80px)',
-                      overflowY: 'auto',
-                      overflowX: 'hidden',
                     }}
                   >
-                    {preferences}
-                    {preferences && settingsContent && <Divider sx={{ my: 2 }} />}
-                    {typeof settingsContent === 'function'
-                      ? settingsContent({ closeSettings: () => setSettingsOpen(false) })
-                      : settingsContent}
+                    <Typography
+                      component="h2"
+                      sx={{ flex: 1, minWidth: 0, px: 1, fontSize: 18, fontWeight: 700, textAlign: 'start' }}
+                    >
+                      {messages.settingsTitle}
+                    </Typography>
+                    <IconButton
+                      aria-label={messages.actions.closeSettingsPanel}
+                      onClick={() => setSettingsOpen(false)}
+                      sx={{ display: { xs: 'inline-flex', sm: 'none' } }}
+                    >
+                      <CloseIcon />
+                    </IconButton>
                   </Box>
-                ) : undefined
-              }
+                ),
+                center: (
+                  <Box sx={{ minWidth: 0, px: 2 }}>
+                    {!preferences && !settingsContent && (
+                      <Typography color="text.secondary">{messages.settingsDescription}</Typography>
+                    )}
+                  </Box>
+                ),
+                end:
+                  preferences || settingsContent ? (
+                    <Box
+                      sx={{
+                        width: '100%',
+                        minWidth: 0,
+                        boxSizing: 'border-box',
+                        px: 2,
+                        pt: 1,
+                        pb: 2,
+                      }}
+                    >
+                      {preferences}
+                      {preferences && settingsContent && <Divider sx={{ my: 2 }} />}
+                      {typeof settingsContent === 'function'
+                        ? settingsContent({ closeSettings: () => setSettingsOpen(false) })
+                        : settingsContent}
+                    </Box>
+                  ) : undefined,
+              }}
+              slotProps={{
+                root: { sx: { minHeight: '100%', height: 'auto' } },
+                center: { sx: { justifyContent: 'flex-start' } },
+              }}
             />
           </Box>
         </Drawer>
