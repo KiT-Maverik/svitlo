@@ -164,7 +164,8 @@ describe('composable Lesson creators', () => {
       assert.deepEqual(theoryResponse.content[0].type === 'text' && theoryResponse.content[0].value, 'Промінь');
       assert.equal(theoryResponse.content[1].type === 'text' && theoryResponse.content[1].value, 'H₂O');
       assert.equal(theoryResponse.content[2].type === 'markdown' && theoryResponse.content[2].text, '**Світло**');
-      assert.equal(theoryResponse.content[3].type === 'scene' && theoryResponse.content[3].rendererKey, 'scene-id');
+      assert.equal(theoryResponse.content[3].type === 'scene' && theoryResponse.content[3].id, 'scene-id');
+      assert.equal('rendererKey' in theoryResponse.content[3], false);
     }
     const quizResponse = response.sections[1];
     assert.equal(quizResponse.type, 'quiz');

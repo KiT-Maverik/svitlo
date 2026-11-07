@@ -79,9 +79,6 @@ function decorateResponse(value: unknown): unknown {
     const { locales: text, ...rest } = children;
     return { ...rest, text };
   }
-  if (source.type === 'scene' && source.locales && typeof source.locales === 'object') {
-    return { ...children, rendererKey: source.id };
-  }
   return children;
 }
 

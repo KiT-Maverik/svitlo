@@ -29,7 +29,7 @@ void disabledCustom;
 const programOverrides = {
   lessonCompleted: false,
   lightDiscovered: false,
-  lionAppeared: { type: 'scene', id: 'other', locales: {}, rendererKey: 'other' },
+  lionAppeared: { type: 'scene', id: 'other', locales: {} },
 } satisfies LessonEventOverrides<Custom, Languages>;
 void programOverrides;
 

@@ -28,7 +28,6 @@ function asBlock(authored: Record<string, unknown>): Block {
   }
   if (block.type === 'scene') {
     if (!record(block.locales)) throw new Error('Unlocalized Scene in Course resource');
-    block.rendererKey = block.id;
   }
   return block as Block;
 }

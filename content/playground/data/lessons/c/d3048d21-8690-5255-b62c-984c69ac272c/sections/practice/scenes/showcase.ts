@@ -994,7 +994,7 @@ export type Showcase_ContentBlock<ConfigType extends 'definition' | 'data' | 're
 
 export const showcaseData = {
   type: 'scene',
-  id: 'how-light-moves-scene-showcase',
+  id: '2abe959c-0908-4779-afbb-b2da6c1aa4d4',
   slug: 'showcase' as const,
   locales: {
     en,

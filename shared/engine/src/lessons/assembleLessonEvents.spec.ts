@@ -64,7 +64,6 @@ describe('Lesson event authoring and publication', () => {
       slug: 'lightEventScene',
       type: 'scene',
       locales: { title: 'Молодець!' },
-      rendererKey: 'light-event-scene',
     });
   });
 

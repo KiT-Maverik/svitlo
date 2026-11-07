@@ -86,7 +86,6 @@ describe('ContentBlockRenderer', () => {
           {
             id: 'diagram',
             type: 'scene',
-            rendererKey: 'diagram',
             locales: { title: 'Diagram' },
           },
         ]}

@@ -7,6 +7,7 @@ import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join, resolve, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { format, resolveConfig } from 'prettier';
+import { resolveEntityPath } from '@svitlo/engine/utils';
 
 const repoRoot = resolve(fileURLToPath(new URL('../..', import.meta.url)));
 
@@ -14,12 +15,17 @@ const repoRoot = resolve(fileURLToPath(new URL('../..', import.meta.url)));
 export async function syncSceneRegistry(root, mode, packageName = 'the selected textbook') {
   const scenes = join(root, 'scenes');
   const entries = readdirSync(scenes, { withFileTypes: true })
-    .filter(entry => entry.isDirectory() && /^[a-z]$/.test(entry.name))
-    .flatMap(letter =>
-      readdirSync(join(scenes, letter.name), { withFileTypes: true })
-        .filter(entry => entry.isDirectory() && /^[a-z][a-z0-9-]+$/.test(entry.name))
-        .map(entry => ({ id: entry.name, path: `./${letter.name}/${entry.name}` })),
-    )
+    .filter(entry => entry.isDirectory())
+    .flatMap(bucket => {
+      if (!/^[0-9a-f]$/.test(bucket.name)) throw new Error('Invalid Scene bucket: ' + bucket.name);
+      return readdirSync(join(scenes, bucket.name), { withFileTypes: true })
+        .filter(entry => entry.isDirectory())
+        .map(entry => {
+          const path = resolveEntityPath(entry.name);
+          if (path !== `${bucket.name}/${entry.name}`) throw new Error('Scene directory must match UUID path: ' + path);
+          return { id: entry.name, path: `./${path}` };
+        });
+    })
     .sort((a, b) => a.id.localeCompare(b.id));
   if (!entries.length || new Set(entries.map(entry => entry.id)).size !== entries.length) {
     throw new Error('Scene registry needs unique authored Scene directories');

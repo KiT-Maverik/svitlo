@@ -685,9 +685,9 @@ const zh: Locale = {
 export type LightPropagationSimulation_ContentBlock<ConfigType extends 'definition' | 'data' | 'response'> =
   ContentBlock_Scene<ConfigType, HowLightMoves_Languages, Locale>;
 
-export const lightPropagationSimulation = {
+export const lightPropagationSimulationData = {
   type: 'scene',
-  id: 'uuid',
+  id: '968926d3-7b15-4575-8f57-a5a2a5054783',
   slug: 'lightPropagationSimulation',
   locales: {
     en,

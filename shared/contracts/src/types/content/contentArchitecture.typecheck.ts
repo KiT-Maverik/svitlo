@@ -28,7 +28,7 @@ type _SectionResponseKinds = Assert<Equal<Section<'response', TestLanguages>['ty
 type _RuntimeKinds = Assert<Equal<ContentBlock<'response', TestLanguages>['type'], ContentBlock_Type>>;
 type _QuestionKinds = Assert<Equal<Question<'response', TestLanguages>['type'], Question_Type>>;
 type _SceneDiscriminator = Assert<Equal<ContentBlock_Scene<'response', TestLanguages>['type'], 'scene'>>;
-type _SceneUsesRegistryKey = Assert<Equal<ContentBlock_Scene<'response', TestLanguages>['rendererKey'], string>>;
+type _SceneUsesBlockId = Assert<Equal<ContentBlock_Scene<'response', TestLanguages>['id'], string>>;
 type _OrderedSectionContent = Assert<
   Equal<
     Extract<Section<'data', TestLanguages>, { content: readonly unknown[] }>['content'][number]['type'],
@@ -129,7 +129,6 @@ const unlabelledYoutube: ContentBlock_Youtube<'response', TestLanguages> = {
 const runtimeScene: ContentBlock_Scene<'response', TestLanguages> = {
   id: 'scene-id',
   type: 'scene',
-  rendererKey: 'lightRayDiagram',
   locales: { title: 'Light ray' },
 };
 const authoredScene: ContentBlock_Scene<'data', TestLanguages, { title: string }> = {

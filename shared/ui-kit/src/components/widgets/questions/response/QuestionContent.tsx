@@ -43,8 +43,12 @@ export function questionBlockLabel(block: QuestionBlock): string {
       return block.title ?? block.language;
     case 'checkpoint':
       return block.title;
-    case 'scene':
-      return block.rendererKey;
+    case 'scene': {
+      const title = block.locales.title;
+      if (typeof title === 'string') return title;
+      const scene = block.locales.scene;
+      return typeof scene === 'object' && typeof scene.title === 'string' ? scene.title : '';
+    }
   }
 }
 

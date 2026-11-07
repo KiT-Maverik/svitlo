@@ -13,10 +13,7 @@ export type ContentBlock_Scene_LocaleShape = {
   [Key: string]: string | ContentBlock_Scene_LocaleShape;
 };
 
-type ContentBlock_Scene_Definition = ContentBlock_Definition_Meta<'scene'> & {
-  /** Stable runtime Scene registry key (no JSX in authored configuration). */
-  rendererKey: string;
-};
+type ContentBlock_Scene_Definition = ContentBlock_Definition_Meta<'scene'>;
 
 type ContentBlock_Scene_Data<
   TLocales extends object,
@@ -29,7 +26,6 @@ type ContentBlock_Scene_Data<
 type ContentBlock_Scene_Response<TLocales extends object> = ContentBlock_Response_Meta<'scene'> & {
   /** Localized scene props supplied directly to the renderer. */
   locales: ContentBlock_Scene_Locales_Strings<TLocales>;
-  rendererKey: string;
 };
 
 export type ContentBlock_Scene<

@@ -65,7 +65,7 @@ try {
     ...(hasScenes ? ["if (resolveScene('missing-scene') !== undefined) throw new Error('Unexpected Scene');"] : []),
     ...(hasStyles
       ? [
-          "const scene = resolveScene('how-light-moves-scene-showcase');",
+          "const scene = resolveScene('2abe959c-0908-4779-afbb-b2da6c1aa4d4');",
           "if (!scene) throw new Error('Packaged Playground Scene is missing');",
           "const element = document.getElementById('root');",
           'if (element) createRoot(element).render(createElement(scene, { locales: {} }));',
