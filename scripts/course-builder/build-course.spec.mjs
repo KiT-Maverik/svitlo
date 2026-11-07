@@ -11,6 +11,10 @@ const root = path.resolve(fileURLToPath(new URL('../..', import.meta.url)));
 const schema = JSON.parse(
   fs.readFileSync(path.join(root, 'studio/skills/course-workflow/course-toc.schema.json'), 'utf8'),
 );
+const overridesSchema = JSON.parse(
+  fs.readFileSync(path.join(root, 'studio/skills/course-workflow/course-overrides.schema.json'), 'utf8'),
+);
+
 const id = '30ecbde1-97fd-5fe7-a353-ea89b9ef4a67';
 const lessonA = 'd3048d21-8690-5255-b62c-984c69ac272c';
 const lessonB = 'f760e7b7-9f77-5027-89ce-4e40d9d031a1';
@@ -55,6 +59,11 @@ const resolver = async lessonId => ({
   languages: ['uk', 'en'],
   source: '/repo/content/math/data/lessons/c/' + lessonId + '/lesson.data.ts',
   exportName: 'lesson_Data',
+  sections: [
+    { slug: 'theory', type: 'theory', blocks: [{ slug: 'intro' }, { slug: 'summary' }] },
+    { slug: 'practice', type: 'practice', blocks: [{ slug: 'task' }] },
+    { slug: 'quiz', type: 'quiz', blocks: [] },
+  ],
 });
 const generate = (nodes, opts = {}) =>
   buildCoursePlan({
@@ -63,6 +72,11 @@ const generate = (nodes, opts = {}) =>
     schema,
     supportedCodes: known,
     resolveLesson: opts.resolver ?? resolver,
+    ...(opts.overrides ? {
+      overridesText: JSON.stringify(opts.overrides),
+      overridesSchema,
+      resolveOwnedSource: async () => undefined,
+    } : {}),
   });
 const output = '/repo/content/math/data/courses/7/' + id + '/toc.generated.ts';
 
@@ -164,14 +178,15 @@ test('Lesson without a Course locale reports exactly what is missing', async () 
   );
 });
 
-test('Superset Lesson tuple reports the current strict Course contract gap', async () => {
-  await assert.rejects(
-    () =>
-      generate([lesson('superset')], {
-        resolver: async x => ({ ...(await resolver(x)), languages: ['uk', 'en', 'fr'] }),
-      }),
-    /TYPED_LANGUAGE_SUPERSET/,
-  );
+test('Lesson may implement additional languages beyond its Course', async () => {
+  const plan = await generate([lesson('superset')], {
+    resolver: async x => ({ ...(await resolver(x)), languages: ['uk', 'en', 'fr'] }),
+  });
+  assert.deepEqual(plan.languages, ['uk', 'en']);
+  assert.deepEqual(plan.lessons.get(lessonA).languages, ['uk', 'en', 'fr']);
+  const code = renderCourseSource(plan, output);
+  assert(code.includes('type LessonCoversCourse<Actual extends readonly string[]>'));
+  assert(code.includes('LessonCoversCourse<typeof lesson0.parameters.languages>'));
 });
 
 test('Methodology and TOC document languages are independent', async () => {
@@ -228,4 +243,97 @@ test('Writing is idempotent; check mode is read-only and rejects drift', async (
   } finally {
     fs.rmSync(directory, { recursive: true, force: true });
   }
+});
+
+const ref = (filename, symbol) => ({ path: filename, export: symbol });
+const overrideInput = (slotKey, operations, lessonId = lessonA) => ({
+  schemaVersion: 1,
+  kind: 'course-lesson-overrides',
+  status: 'approved',
+  courseId: id,
+  overrides: [{ slotKey, lessonId, operations }],
+});
+
+test('Approved Course-owned YAML emits typed sparse overrides with slug order and approved imports', async () => {
+  const input = overrideInput('intro', [
+    { type: 'params', sections: { allowSkipping: false } },
+    { type: 'section-set', slug: 'theory', source: ref('patches/theory.ts', 'theory_Patch') },
+    { type: 'block-set', sectionSlug: 'theory', slug: 'intro', source: ref('patches/intro.ts', 'intro_Patch') },
+    { type: 'block-remove', sectionSlug: 'theory', slug: 'summary' },
+    { type: 'block-order', sectionSlug: 'theory', entries: ['intro', { source: ref('blocks/hint.ts', 'hint_Block') }] },
+    { type: 'section-order', entries: ['practice', 'theory', 'quiz', { source: ref('sections/story.ts', 'story_Section') }] },
+  ]);
+  const plan = await generate([lesson('intro')], { overrides: input });
+  assert.equal(plan.overrides.size, 1);
+  const code = renderCourseSource(plan, output);
+  assert(code.includes('createLessonOverrides(lesson0)'));
+  assert(code.includes('.setParams({ sections: {"allowSkipping":false} })'));
+  assert(code.includes('.sections.bySlug["theory"].set(courseOwned0)'));
+  assert(code.includes('.sections.bySlug["theory"].content.bySlug["intro"].set(courseOwned1)'));
+  assert(code.includes('.sections.bySlug["theory"].content.remove("summary")'));
+  assert(code.includes('.sections.bySlug["theory"].content.setOrder(["intro", courseOwned2])'));
+  assert(code.includes('.sections.setOrder(["practice", "theory", "quiz", courseOwned3])'));
+  assert(code.includes('import { story_Section as courseOwned3 } from "./sections/story";'));
+  assert(code.includes('const override0 = createLessonOverrides(lesson0)'));
+  assert(code.includes('    override0'));
+  const ast = ts.createSourceFile('generated.ts', code, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
+  assert.deepEqual(ast.parseDiagnostics, []);
+  assert(!code.includes('createLesson('));
+});
+
+test('Course-only override validates its TOC slot and canonical Lesson identity', async () => {
+  await assert.rejects(() => generate([lesson('intro')], {
+    overrides: overrideInput('unknown', [{ type: 'params', sections: { allowNavigation: false } }]),
+  }), /OVERRIDE_SLOT/);
+  await assert.rejects(() => generate([lesson('intro')], {
+    overrides: overrideInput('intro', [{ type: 'params', sections: { allowNavigation: false } }], lessonB),
+  }), /OVERRIDE_SLOT/);
+});
+
+test('Course override cannot address missing Section, ContentBlock or Quiz blocks', async () => {
+  await assert.rejects(() => generate([lesson('intro')], {
+    overrides: overrideInput('intro', [{ type: 'section-remove', slug: 'unknown' }]),
+  }), /OVERRIDE_SECTION/);
+  await assert.rejects(() => generate([lesson('intro')], {
+    overrides: overrideInput('intro', [{ type: 'block-remove', sectionSlug: 'theory', slug: 'missing' }]),
+  }), /OVERRIDE_BLOCK/);
+  await assert.rejects(() => generate([lesson('intro')], {
+    overrides: overrideInput('intro', [{ type: 'block-order', sectionSlug: 'quiz', entries: ['intro'] }]),
+  }), /OVERRIDE_QUIZ/);
+});
+
+test('Course overrides reject malformed, incomplete or repeated slug orders', async () => {
+  await assert.rejects(() => generate([lesson('intro')], {
+    overrides: overrideInput('intro', [{ type: 'section-order', entries: ['theory', 'theory', 'practice', 'quiz'] }]),
+  }), /OVERRIDE_ORDER/);
+  await assert.rejects(() => generate([lesson('intro')], {
+    overrides: overrideInput('intro', [{ type: 'section-order', entries: ['theory'] }]),
+  }), /OVERRIDE_ORDER/);
+  await assert.rejects(() => generate([lesson('intro')], {
+    overrides: overrideInput('intro', [{ type: 'block-order', sectionSlug: 'theory', entries: ['intro'] }]),
+  }), /OVERRIDE_ORDER/);
+});
+
+test('Course overrides reject per-slot patches for reused Lesson UUID', async () => {
+  await assert.rejects(() => generate([lesson('intro'), lesson('review')], {
+    overrides: overrideInput('intro', [{ type: 'params', sections: { allowSkipping: true } }]),
+  }), /OVERRIDE_REUSED_LESSON/);
+});
+
+test('Course YAML schema forbids inline authored sections, unknown override fields and unsafe imports', async () => {
+  await assert.rejects(() => generate([lesson('intro')], {
+    overrides: overrideInput('intro', [{ type: 'section-order', entries: ['theory', 'practice', 'quiz', {
+      id: 'new-id', slug: 'invented', type: 'scenario',
+    }] }]),
+  }), /SCHEMA/);
+  await assert.rejects(() => generate([lesson('intro')], {
+    overrides: overrideInput('intro', [{ type: 'block-set', sectionSlug: 'theory', slug: 'intro',
+      source: ref('../lessons/evil.ts', 'evil_Patch') }]),
+  }), /SCHEMA/);
+  await assert.rejects(() => generate([lesson('intro')], {
+    overrides: overrideInput('intro', [{ type: 'params', sections: { requireQuiz: false } }]),
+  }), /SCHEMA/);
+  await assert.rejects(() => generate([lesson('intro')], {
+    overrides: { ...overrideInput('intro', [{ type: 'section-remove', slug: 'theory' }]), status: 'draft' },
+  }), /APPROVAL/);
 });
