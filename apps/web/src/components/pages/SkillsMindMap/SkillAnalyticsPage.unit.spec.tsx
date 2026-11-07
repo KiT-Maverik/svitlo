@@ -26,8 +26,7 @@ describe('Skills page in shared LearningLayout', () => {
   });
 
   const openSettings = () => {
-    fireEvent.click(screen.getByRole('button', { name: aria.actions.profile }));
-    fireEvent.click(screen.getByRole('menuitem', { name: aria.settingsTitle }));
+    fireEvent.click(screen.getByRole('button', { name: aria.actions.openSettings }));
   };
 
   it('opens the existing navbar settings drawer and changes page-owned Skill cards', async () => {

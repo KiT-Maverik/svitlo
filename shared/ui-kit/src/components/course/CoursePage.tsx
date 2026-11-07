@@ -14,7 +14,9 @@ import CheckCircleOutlineRounded from '@mui/icons-material/CheckCircleOutlineRou
 import LayersOutlined from '@mui/icons-material/LayersOutlined';
 import MenuBookOutlined from '@mui/icons-material/MenuBookOutlined';
 import PlayCircleOutlineRounded from '@mui/icons-material/PlayCircleOutlineRounded';
+import type { LanguageCode } from '@svitlo/engine/localization';
 import type { CourseMessages, CourseOutlineItem, CoursePreview } from './types';
+import { CourseLanguages } from './CourseLanguages';
 import { CourseArtwork } from './CourseArtwork';
 
 function firstPlayable(items: readonly CourseOutlineItem[]): string | undefined {
@@ -128,9 +130,10 @@ export type CoursePageProps = {
   outline: readonly CourseOutlineItem[];
   messages: CourseMessages;
   catalogHref: string;
+  interfaceLanguage?: LanguageCode;
 };
 
-export function CoursePage({ course, outline, messages, catalogHref }: CoursePageProps) {
+export function CoursePage({ course, outline, messages, catalogHref, interfaceLanguage }: CoursePageProps) {
   const startHref = firstPlayable(outline);
   return (
     <Container component="main" maxWidth="lg" sx={{ py: { xs: 3, md: 6 }, pb: 10 }}>
@@ -150,6 +153,13 @@ export function CoursePage({ course, outline, messages, catalogHref }: CoursePag
             <Typography color="text.secondary" variant="body1" sx={{ lineHeight: 1.7 }}>
               {course.description}
             </Typography>
+            {!!course.languages?.length && (
+              <CourseLanguages
+                languages={course.languages}
+                interfaceLanguage={interfaceLanguage}
+                label={messages.languages}
+              />
+            )}
             <Stack direction="row" sx={{ gap: 2.5, flexWrap: 'wrap', color: 'text.secondary' }}>
               <Stack direction="row" sx={{ alignItems: 'center', gap: 1 }}>
                 <AutoStoriesOutlined fontSize="small" />

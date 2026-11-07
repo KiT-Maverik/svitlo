@@ -70,10 +70,19 @@ describe('Lesson media settings', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Set 40%' }));
     expect(audio.volume).toBe(0.4);
     expect(video.volume).toBe(0.4);
+    fireEvent.change(screen.getByRole('slider', { name: enUiKitMessages.audio.volume }), {
+      target: { value: '0.6' },
+    });
+    expect(screen.getByTestId('media-state')).toHaveTextContent('60:false');
+    expect(video.volume).toBe(0.6);
     fireEvent.click(screen.getByRole('button', { name: 'Mute via context' }));
     expect(audio.muted).toBe(true);
     expect(video.muted).toBe(true);
-    expect(audio.volume).toBe(0.4);
+    expect(audio.volume).toBe(0.6);
+    fireEvent.click(screen.getByRole('button', { name: 'Unmute' }));
+    expect(screen.getByTestId('media-state')).toHaveTextContent('60:false');
+    expect(video.muted).toBe(false);
+    fireEvent.click(screen.getByRole('button', { name: 'Mute via context' }));
     fireEvent.click(screen.getByRole('button', { name: 'Set excess volume' }));
     expect(audio.volume).toBe(1);
     expect(video.volume).toBe(1);

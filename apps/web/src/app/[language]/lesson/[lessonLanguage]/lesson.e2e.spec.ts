@@ -45,8 +45,7 @@ test('the requested lesson language selects localized published JSON and scene p
 
 test('interface language selection does not change the lesson language', async ({ page }) => {
   await page.goto(`/uk/lesson/uk/${id}`);
-  await page.getByRole('button', { name: 'Профіль' }).click();
-  await page.getByRole('menuitem', { name: 'Швидкі налаштування' }).click();
+  await page.getByRole('button', { name: 'Відкрити налаштування' }).click();
   await expect(page.getByRole('heading', { name: 'Швидкі налаштування' })).toBeVisible();
   await page.getByRole('combobox', { name: 'Мова інтерфейсу' }).click();
   await page.getByRole('option', { name: 'English' }).click();
@@ -58,8 +57,7 @@ test('interface language selection does not change the lesson language', async (
 
 test('lesson language selection does not change the interface language', async ({ page }) => {
   await page.goto(`/uk/lesson/uk/${id}`);
-  await page.getByRole('button', { name: 'Профіль' }).click();
-  await page.getByRole('menuitem', { name: 'Швидкі налаштування' }).click();
+  await page.getByRole('button', { name: 'Відкрити налаштування' }).click();
   await page.getByRole('combobox', { name: 'Мова уроку' }).click();
   await page.getByRole('option', { name: 'English' }).click();
   await expect(page).toHaveURL(`/uk/lesson/en/${id}`);
@@ -72,8 +70,7 @@ test('lesson language selection does not change the interface language', async (
 test('mobile quick settings fills the content width and provides a close button', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 720 });
   await page.goto(`/uk/lesson/uk/${id}`);
-  await page.getByRole('button', { name: 'Профіль' }).click();
-  await page.getByRole('menuitem', { name: 'Швидкі налаштування' }).click();
+  await page.getByRole('button', { name: 'Відкрити налаштування' }).click();
   const settings = page.getByRole('complementary', { name: 'Швидкі налаштування' });
   await expect(settings.getByRole('heading', { name: 'Швидкі налаштування' })).toBeVisible();
   const box = await settings.boundingBox();
@@ -81,8 +78,7 @@ test('mobile quick settings fills the content width and provides a close button'
   await settings.getByRole('button', { name: 'Закрити панель налаштувань' }).click();
   await expect(settings).not.toBeInViewport();
   await page.setViewportSize({ width: 1280, height: 720 });
-  await page.getByRole('button', { name: 'Профіль' }).click();
-  await page.getByRole('menuitem', { name: 'Швидкі налаштування' }).click();
+  await page.getByRole('button', { name: 'Відкрити налаштування' }).click();
   await expect(settings.getByRole('button', { name: 'Закрити панель налаштувань' })).toBeHidden();
 });
 
@@ -132,8 +128,7 @@ test('Quick Settings switches the actual page colors and persists the theme', as
   await expect(html).toHaveAttribute('data-light', '');
   const lightBackground = await background();
 
-  await page.getByRole('button', { name: 'Профіль' }).click();
-  await page.getByRole('menuitem', { name: 'Швидкі налаштування' }).click();
+  await page.getByRole('button', { name: 'Відкрити налаштування' }).click();
   const toggle = page.getByRole('switch', { name: 'Темна тема' });
   await expect(toggle).not.toBeChecked();
 
@@ -146,8 +141,7 @@ test('Quick Settings switches the actual page colors and persists the theme', as
   await expect(html).toHaveAttribute('data-dark', '');
   await expect.poll(background).not.toBe(lightBackground);
 
-  await page.getByRole('button', { name: 'Профіль' }).click();
-  await page.getByRole('menuitem', { name: 'Швидкі налаштування' }).click();
+  await page.getByRole('button', { name: 'Відкрити налаштування' }).click();
   await expect(toggle).toBeChecked();
   await toggle.click();
   await expect(toggle).not.toBeChecked();

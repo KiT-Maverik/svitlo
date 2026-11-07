@@ -58,8 +58,7 @@ test('Course lesson keeps the course context while interface and lesson language
   await expect(page.locator('html')).toHaveAttribute('lang', 'uk-UA');
   await expect(page.locator('#learning-content [lang="en-US"]').first()).toHaveAttribute('dir', 'ltr');
   await expect(page.getByRole('heading', { name: 'How light travels', exact: true })).toBeVisible();
-  await page.getByRole('button', { name: 'Профіль' }).click();
-  await page.getByRole('menuitem', { name: 'Швидкі налаштування' }).click();
+  await page.getByRole('button', { name: 'Відкрити налаштування' }).click();
   await page.getByRole('combobox', { name: 'Мова інтерфейсу' }).click();
   await page.getByRole('option', { name: 'English' }).click();
   await expect(page).toHaveURL('/en/course/' + courseId + '/lesson/en/' + lessonId);
@@ -107,8 +106,7 @@ test('Episode is navigable as a separate Course unit', async ({ page }) => {
       .getByText(/Lorem ipsum dolor sit amet/)
       .first(),
   ).toBeVisible();
-  await page.getByRole('button', { name: 'Профіль' }).click();
-  await page.getByRole('menuitem', { name: 'Швидкі налаштування' }).click();
+  await page.getByRole('button', { name: 'Відкрити налаштування' }).click();
   await expect(page.getByRole('combobox', { name: 'Мова уроку' })).toHaveCount(0);
   await page.getByRole('combobox', { name: 'Мова інтерфейсу' }).click();
   await page.getByRole('option', { name: 'English' }).click();

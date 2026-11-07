@@ -1,5 +1,5 @@
 export type ContentBlock_Type =
-  'text' | 'markdown' | 'checkpoint' | 'code' | 'audio' | 'video' | 'youtube' | 'image' | 'scene';
+  'text' | 'markdown' | 'checkpoint' | 'code' | 'audio' | 'video' | 'youtube' | 'image' | 'carousel' | 'scene';
 
 export type ContentBlock_Definition_Meta<T extends ContentBlock_Type> = {
   type: T;

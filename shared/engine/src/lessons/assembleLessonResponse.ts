@@ -95,6 +95,7 @@ const supportedBlockTypes = new Set([
   'video',
   'youtube',
   'image',
+  'carousel',
 ]);
 
 function assembleBlocks(content: unknown, location: string): LessonContentBlock[] {
