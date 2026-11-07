@@ -34,15 +34,16 @@ function changedFiles(base, head) {
     throw new Error('BASE_SHA and HEAD_SHA must be 40-character SHA values');
   }
   return execFileSync('git', ['diff', '--name-only', '-z', base, head], { cwd: repo })
-    .toString('utf8').split('\0').filter(Boolean);
+    .toString('utf8')
+    .split('\0')
+    .filter(Boolean);
 }
 const representative = new Set(['@svitlo/math', '@svitlo/art', '@svitlo/playground', '@svitlo/astronomy']);
 export function selectContentBuilds(changed, workspaces, all = false) {
   if (all) return workspaces.map(w => w.path);
   const selected = new Set();
   for (const file of changed) {
-    const w = workspaces.filter(w => file.startsWith(w.path + '/'))
-      .sort((a, b) => b.path.length - a.path.length)[0];
+    const w = workspaces.filter(w => file.startsWith(w.path + '/')).sort((a, b) => b.path.length - a.path.length)[0];
     if (w) selected.add(w.path);
   }
   // A change to common packaging affects consumers. Sample representative
@@ -68,12 +69,19 @@ function validateAgent({ workspace, domains }) {
   run('npm', ['run', 'build', '--workspace', '@svitlo/engine']);
   const file = join(repo, workspace.path, 'tsconfig.agent-ci.tmp.json');
   try {
-    writeFileSync(file, JSON.stringify({
-      extends: './tsconfig.json',
-      compilerOptions: { strict: true, incremental: false },
-      include: domains.map(domain => 'data/skills/' + domain + '/**/*.ts'),
-      exclude: [],
-    }, null, 2) + '\n');
+    writeFileSync(
+      file,
+      JSON.stringify(
+        {
+          extends: './tsconfig.json',
+          compilerOptions: { strict: true, incremental: false },
+          include: domains.map(domain => 'data/skills/' + domain + '/**/*.ts'),
+          exclude: [],
+        },
+        null,
+        2,
+      ) + '\n',
+    );
     run('npx', ['tsc', '--noEmit', '-p', file]);
   } finally {
     if (existsSync(file)) unlinkSync(file);
@@ -106,7 +114,13 @@ function execute(changed, all, baseRef, headRef) {
     run('node', ['--test', 'scripts/check-skills-taxonomy-structure.spec.mjs']);
   }
   const workspaces = contentWorkspaces();
-  const agent = resolveAgentScope(baseRef, headRef, changed, workspaces, readJson('scripts/ci/skills-agent-owners.json'));
+  const agent = resolveAgentScope(
+    baseRef,
+    headRef,
+    changed,
+    workspaces,
+    readJson('scripts/ci/skills-agent-owners.json'),
+  );
   if (agent) return validateAgent(agent);
   const targets = selectContentBuilds(changed, workspaces, all);
   if (!targets.length) {
@@ -118,8 +132,9 @@ function execute(changed, all, baseRef, headRef) {
   let failures = 0;
   for (const path of targets) {
     const pkg = workspaces.find(w => w.path === path);
-    try { verifyPackage(pkg, changed); }
-    catch (error) {
+    try {
+      verifyPackage(pkg, changed);
+    } catch (error) {
       failures++;
       console.error('::error title=' + pkg.name + '::' + error.message);
     }

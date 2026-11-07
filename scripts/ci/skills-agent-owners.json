@@ -1,17 +1,7 @@
 {
   "economics": {
-    "1": [
-      "economicThinking",
-      "consumerBehavior",
-      "marketsAndCompetition",
-      "productionAndEntrepreneurship"
-    ],
-    "2": [
-      "laborAndEmployment",
-      "marketingAndTrade",
-      "personalFinance",
-      "moneyAndFinancialSystem"
-    ],
+    "1": ["economicThinking", "consumerBehavior", "marketsAndCompetition", "productionAndEntrepreneurship"],
+    "2": ["laborAndEmployment", "marketingAndTrade", "personalFinance", "moneyAndFinancialSystem"],
     "3": [
       "macroeconomics",
       "governmentAndEconomicPolicy",
@@ -27,77 +17,25 @@
     ]
   },
   "geography": {
-    "1": [
-      "spatialOrientation",
-      "mapsAndGeospatialRepresentations",
-      "geographicObjects"
-    ],
-    "2": [
-      "landformsAndSurfaceProcesses",
-      "geology"
-    ],
-    "3": [
-      "waterSystems",
-      "atmosphereWeatherAndClimate"
-    ],
-    "4": [
-      "naturalRegionsAndBiogeography",
-      "humanGeography",
-      "environmentAndSociety",
-      "geographicInquiry"
-    ]
+    "1": ["spatialOrientation", "mapsAndGeospatialRepresentations", "geographicObjects"],
+    "2": ["landformsAndSurfaceProcesses", "geology"],
+    "3": ["waterSystems", "atmosphereWeatherAndClimate"],
+    "4": ["naturalRegionsAndBiogeography", "humanGeography", "environmentAndSociety", "geographicInquiry"]
   },
   "history": {
-    "1": [
-      "historicalInquiry",
-      "humanPrehistory",
-      "ancientWesternAsia"
-    ],
-    "2": [
-      "ancientAfrica",
-      "southAndSoutheastAsia"
-    ],
-    "3": [
-      "eastAndCentralAsia",
-      "ancientMediterranean",
-      "ancientEuropeBeyondMediterranean"
-    ],
-    "4": [
-      "ancientAmericas",
-      "ancientOceania",
-      "crossRegionalHistoricalProcesses"
-    ]
+    "1": ["historicalInquiry", "humanPrehistory", "ancientWesternAsia"],
+    "2": ["ancientAfrica", "southAndSoutheastAsia"],
+    "3": ["eastAndCentralAsia", "ancientMediterranean", "ancientEuropeBeyondMediterranean"],
+    "4": ["ancientAmericas", "ancientOceania", "crossRegionalHistoricalProcesses"]
   },
   "chemistry": {
-    "1": [
-      "chemicalInquiry",
-      "substancesAndProperties",
-      "particlesAndStates"
-    ],
-    "2": [
-      "atomsAndPeriodicity",
-      "bondingAndStructure",
-      "mixturesAndSolutions"
-    ],
-    "3": [
-      "chemicalLanguageAndQuantities",
-      "chemicalReactions",
-      "acidBaseChemistry",
-      "energyRatesAndEquilibrium"
-    ],
-    "4": [
-      "inorganicChemistry",
-      "organicChemistry",
-      "chemistryInTheWorld"
-    ]
+    "1": ["chemicalInquiry", "substancesAndProperties", "particlesAndStates"],
+    "2": ["atomsAndPeriodicity", "bondingAndStructure", "mixturesAndSolutions"],
+    "3": ["chemicalLanguageAndQuantities", "chemicalReactions", "acidBaseChemistry", "energyRatesAndEquilibrium"],
+    "4": ["inorganicChemistry", "organicChemistry", "chemistryInTheWorld"]
   },
   "engineering": {
-    "1": [
-      "engineeringDesign",
-      "systemsEngineering",
-      "materialsAndConnections",
-      "mechanismsAndMachines"
-    ],
+    "1": ["engineeringDesign", "systemsEngineering", "materialsAndConnections", "mechanismsAndMachines"],
     "2": [
       "thermalAndFluidDevices",
       "structuresAndConstruction",
@@ -132,31 +70,13 @@
       "sexualAndReproductiveHealth",
       "substanceUseAndDependencePrevention"
     ],
-    "3": [
-      "everydayAndOccupationalSafety",
-      "transportWaterAndOutdoorSafety",
-      "emergenciesAndCivilProtection"
-    ],
-    "4": [
-      "firstAidAndImmediateResponse",
-      "digitalAndConsumerSafety"
-    ]
+    "3": ["everydayAndOccupationalSafety", "transportWaterAndOutdoorSafety", "emergenciesAndCivilProtection"],
+    "4": ["firstAidAndImmediateResponse", "digitalAndConsumerSafety"]
   },
   "philosophy": {
-    "1": [
-      "philosophicalInquiry",
-      "logicAndArgumentation"
-    ],
-    "2": [
-      "epistemologyAndCriticalEvaluation",
-      "philosophyOfScience",
-      "metaphysics"
-    ],
-    "3": [
-      "philosophyOfReligion",
-      "mindSelfAndHumanExistence",
-      "ethicsAndMoralReasoning"
-    ],
+    "1": ["philosophicalInquiry", "logicAndArgumentation"],
+    "2": ["epistemologyAndCriticalEvaluation", "philosophyOfScience", "metaphysics"],
+    "3": ["philosophyOfReligion", "mindSelfAndHumanExistence", "ethicsAndMoralReasoning"],
     "4": [
       "socialAndPoliticalPhilosophy",
       "philosophyOfLanguage",
@@ -165,22 +85,14 @@
     ]
   },
   "psychology": {
-    "1": [
-      "psychologicalScienceAndInquiry",
-      "biologicalFoundationsOfBehavior",
-      "sensationAndPerception"
-    ],
+    "1": ["psychologicalScienceAndInquiry", "biologicalFoundationsOfBehavior", "sensationAndPerception"],
     "2": [
       "attentionAndConsciousness",
       "learningAndBehaviorChange",
       "memoryAndMetacognition",
       "thinkingAndDecisionMaking"
     ],
-    "3": [
-      "emotionAndPsychologicalRegulation",
-      "motivationGoalsAndHabits",
-      "socialPsychology"
-    ],
+    "3": ["emotionAndPsychologicalRegulation", "motivationGoalsAndHabits", "socialPsychology"],
     "4": [
       "developmentAcrossTheLifespan",
       "personalityAndIndividualVariation",
