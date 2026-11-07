@@ -51,6 +51,20 @@ Generate **as many defensible, distinct Questions as the Lesson's outcomes justi
 
 **Stopping rule:** stop adding items when remaining candidates fail the marginal-evidence test. If an important evidence cell is not assessable with existing interfaces or content, report the gap; do not fabricate assessability. Separate a **minimal sufficient core** from an optional **extension pool**. A bigger bank is useful only if its items are independently informative and reusable.
 
+## FULL LESSON BANK VERSUS DEFAULT QUIZ SUBSETS
+
+**The Lesson's Question bank must not be confused with Questions shown during its ordinary learning flow.** The bank may be substantially larger than the built-in Quiz needs, so future Custom Practice can draw from **the entire valid bank**. This is a central reason to produce a deep, varied pool, subject to the marginal-evidence anti-spam rule. `core`/`extension` describe authoring coverage and priority, **not** whether a Question is permanently excluded from practice or included in the default Quiz.
+
+For every existing approved Quiz Section, the Assessment Architect must select a **short, pedagogically sufficient default subset**, not dump the whole bank into it. Inspect the current `content.yaml` Quiz `assessmentPlanKey`, purpose, Skill targets, required Assessment Methods and placement, then record the **actual default `Quiz_Parameters.selection`** in `questions/questions.yaml` under `quizAssignments[].selection`:
+
+- **Fixed default:** `{ mode: all, questionSlugs: [explicit, curated, slugs] }`. `all` means *all of the explicitly chosen subset*, **not all Questions in the Lesson**. Prefer this when exact default coverage must be assured.
+- **Variable default:** `{ mode: sample, questionSlugs: [explicit, eligible, pool], count: N, shuffle: true, seed: N }` when rotating items is genuinely warranted and every possible chosen sample meets the approved intent. `count` must be a positive integer no larger than the eligible pool. The current selection API has **no Skill-/Method-stratified sampling constraint**; a random sample from a mixed pool can accidentally miss a required Method. Therefore do not use naive random sampling when it can break compulsory coverage.
+- **Never omit `questionSlugs` in an authored default Quiz assignment:** the current runtime treats an omitted list as the **entire Lesson bank**. Do not emit `mode: all` with 100 questions simply because 100 exist, and do not assume `sample` is a remedy without inspecting coverage.
+- Multiple Quiz Sections need **separate deliberate selections**, respecting where each occurs in the learning journey and avoiding gratuitous repeats. A Question may be reused only when it adds a purposeful recheck.
+- Keep the default Quiz *proportionate* to its learning purpose and learner attention; there is no hard fixed number. Prefer the smallest set that validly covers its obligations. The practice bank can be much larger and may include Questions not referenced by any default Quiz.
+
+**Generation boundary:** the Assessment Architect authors the *selection plan* in `questions/questions.yaml`. The future builder/generator must resolve the assignment's `assessmentPlanKey` against the Quiz Section in `content.yaml`, then write `selection` into that Section's **generated** `Section<'data'>.parameters.selection` inside Lesson config; it must write **all** Question-bank entries into generated `Lesson<'data'>.questions`. No Question catalog or Quiz selection should be silently pruned during compilation. Do not edit the Screenwriter-owned `content.yaml` or hand-write TypeScript as a workaround. Current types and runtime support these selection semantics; that does **not** mean the YAML merger or Custom Practice UI already exists.
+
 ## ITEM DESIGN STANDARD
 
 Every Question must have a clear `slug`, approved Skill reference(s), one exact canonical `assessmentMethod`, supported Question `type`, intent and traceable source, as well as a complete **type-specific answer model** suitable for deterministic later code generation. The method must describe what the learner must mentally do; the type only specifies how the response is entered.
@@ -84,7 +98,7 @@ Write the **single canonical assessment blueprint** at:
 
 `content/<textbook>/data/lessons/<last-hex-digit>/<lesson-uuid>/questions/questions.yaml`
 
-Use [Create Lesson Questions](../skills/lesson-workflow/create-lesson-questions.skill.md) and its schema. It includes typed Questions, Quiz-assignment references, source/revision provenance, an evidence coverage summary, justified extension items, and unresolved dependencies. It is editorial **input for a later YAML-to-TypeScript generator**, not a published runtime catalog. Preserve existing files and stable slugs across revisions.
+Use [Create Lesson Questions](../skills/lesson-workflow/create-lesson-questions.skill.md) and its schema. It includes typed Questions, **explicit per-Quiz default selections**, source/revision provenance, an evidence coverage summary, justified extension items, and unresolved dependencies. It is editorial **input for a later YAML-to-TypeScript generator**, not a published runtime catalog. Preserve existing files and stable slugs across revisions.
 
 - **Methodologist:** owns the authorized outcomes, Skills and required Quiz/Assessment Methods; reviews pedagogical scope.
 - **Educational Screenwriter:** owns Lesson explanation, progression, Quiz placement and `content.yaml`; does not author assessment answer keys.
@@ -96,6 +110,6 @@ If `quizRequired: false`, do **not** create a Quiz. A non-Quiz practice bank may
 
 ## QUALITY GATE
 
-Before handing off, demonstrate: exact coverage of all required quiz-method pairs; transparent outcome/Skill coverage; validated distinctness of each kept item; type/method compatibility; complete correct-answer logic; meaningful explanations; media and accessibility dependency handling; source-language-only content; real canonical references; no invented Skills or methods; no unsupported claims about scoring, media, runtime or approvals.
+Before handing off, demonstrate: explicit, proportionate default Quiz selections with no accidental full-bank inclusion; full-bank preservation for future Custom Practice; exact coverage of all required quiz-method pairs; transparent outcome/Skill coverage; validated distinctness of each kept item; type/method compatibility; complete correct-answer logic; meaningful explanations; media and accessibility dependency handling; source-language-only content; real canonical references; no invented Skills or methods; no unsupported claims about scoring, media, runtime or approvals.
 
 A reviewer pass is not automatic editorial approval. Report blockers and affected Questions precisely; request explicit approval for material plan changes. Never conceal gaps by increasing item quantity.
