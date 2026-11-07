@@ -28,10 +28,12 @@ Select atomic recall targets. Do not demand one card per Question, per paragraph
 - **Mandatory punctuation/conjunction audit** for each `and`, `or`, comma, semicolon, slash, colon, parenthetical aside and enumeration on either side. Ask whether two independently recallable facts are being merged. If yes, split into distinct cards. Keep one list card when the *set*, its number or meaningful order is the learning target.
 - A definition should rarely require a paragraph. When two directional cards target the same concept, each must be useful on its own.
 - Do not put a long explanation on the back merely because the Lesson provides one; reserve explanation-heavy work for Lessons/Questions.
+- When two cards retrieve the same concept in opposite directions, keep both only if each direction is independently useful, and connect them with `reverse`. Avoid duplicating the same direction with superficial rewording.
+- For code cards, assess structure, context, behavior or actual writing competence rather than accidental variable names. For write-code prompts, back with the minimum working code/template. For predict-output prompts, provide the exact output and a one-sentence causal reason when needed. Use `code` ContentBlocks for code, not prose TextBlocks.
 
 ### List count hint
 
-If the answer contains a true list of **N** independent elements, set `listAnswerCount: N` (N >= 2) and put a brief `text` ContentBlock with the numeral alone, e.g. `hint: [{type: text, value: "4"}]`. It tells the learner how many parts to recall without showing the parts. Recheck the count if the answer is linked to Question data or edited later. No count for a singular fact or a sentence with incidental punctuation.
+For a genuine answer list of **N** independent elements, record `listAnswerCount: N` (N >= 2) in YAML, and keep `front` free of an inserted literal `(N)`. The intended Svitlo UI must show this through a **typed count flag**, which is not yet supported by the current untyped `flags: string[]` contract. Do **not** imply the count flag exists; preserve the structured count for follow-up flag architecture. During the interim, `hint` may carry a minimal numeric TextBlock if needed, but it is not the canonical field and must not be used as a substitute for `listAnswerCount`. Ensure the actual list is explicitly enumerated when it improves recall and recheck the count after edits or linked-Question updates. No count for a singular fact or incidental punctuation.
 
 ## Step 2 — Reuse Question data, never duplicate its localized facts
 
@@ -73,29 +75,38 @@ Its `value` must equal the concatenation of `parts[].letters` in order. Every `s
 
 A count hint is required regardless of whether an acronym is available.
 
-## Step 5 — Model generic card-to-card relationships
+## Step 5 — Author canonical typed card relationships
 
-Write **top-level `relationships`** as graph edges, not as a closed pair of term/definition directions:
+Write each relationship **only once** at the YAML bank root. Its `type` must be exactly one of the nine canonical `FlashcardRelationType` values from `FLASHCARD_RELATION_TYPES` in Contracts:
+
+- **Symmetric**: `reverse`, `equivalent`, `contrast`, `complementary`.
+- **Directed**: `prerequisite` (prerequisite → dependent), `partOf` (part → whole), `exampleOf` (example → category), `causes` (cause → effect), `precedes` (earlier → later).
+
+Example:
 
 ```yaml
 relationships:
-  - key: cause-to-effect
-    source: cause-recall
-    target: effect-prediction
-    kind: causeEffect
-    directed: true
-    rationale: Recalls an upstream cause and its observable consequence
-  - key: two-representations
-    source: verbal-rule
-    target: diagram-rule
-    kind: sameConcept
-    directed: false
-    rationale: Two independent representations of the same relationship
+  - key: reciprocal-retrieval
+    source: prompt-to-answer
+    target: answer-to-prompt
+    type: reverse
+    rationale: Independently practice both retrieval directions
+  - key: meaningful-sequence
+    source: step-one
+    target: step-two
+    type: precedes
+    rationale: Distinguish process order
 ```
 
-`kind` is a **semantic extensible string** (e.g. `reciprocalRecall`, `prerequisite`, `contrast`, `partOf`, `causeEffect`, `sameConcept` or another defensible category), not a fixed enum and **not** specifically “termToDefinition”/“definitionToTerm.” Use consistent names within the bank, documented by actual meaning. `directed` expresses directionality of the relationship, not flip direction of a single card. Multiple relationships may share endpoints; no self-links, stale references or duplicate edges. Do not fabricate relationships where cards are independent.
+**Do not author `directed`, arbitrary `kind`, or duplicate reverse edges.** Directionality is determined by the canonical type. For symmetric relations, source and target order has no effect. Each card may participate in any number of distinct relationships and may have several **different relation types with the same partner**. Use a relationship only when the educational semantics are real and defensible.
 
-**Current runtime `Flashcard` has no relationships field**. Treat the graph as authoring metadata for a **future separately specified sidecar/index or contract extension**. Do not serialize it into `flags`/`tags` or claim linked scheduling works today. Preserve exact graph structure for a future builder and log the missing runtime integration as a known dependency, not an authoring failure.
+**Generated dual-sided links:** for each editorial edge, the builder must resolve both card slugs to their **actual stable Flashcard IDs** and create one `FlashcardLink` with a stable `relationshipId` derived from `key`. It then calls `linkFlashcards(flashcards, links)` from `@svitlo/engine/builders` **exactly once**, before Lesson serialization. This helper attaches an adjacency entry on *both cards*, with the same `relationshipId` and `type`, the other card's ID in `relatedFlashcardId`, and a position:
+- `peer` / `peer` for symmetric types.
+- `source` / `target` for directed types.
+
+The actual Flashcard data/response contracts include the optional `relationships` property for compatibility with older cards. The builder helper rejects self-links, unknown IDs, duplicate links and already populated adjacency. **No requirement to author both sides manually**, and no redundancy inside editorial YAML. Generated links are structural/invariant: they do not need locale translations.
+
+Do not interpret `reverse` as shared mastery or adjust spaced repetition automatically. Relation metadata is supported as stored data; UI behaviors and scheduler semantics remain separate implementations.
 
 ## Step 6 — One source language and approvals
 
@@ -150,7 +161,7 @@ Validate schema and additionally verify:
 4. For list answers, `listAnswerCount` matches actual items and numeric `hint` contains the count.
 5. Variables use meaningful names and correct TextBlock/CodeBlock marker conventions. No claim that styling generates randomized values.
 6. Acronym source letters and connectors match uppercase/lowercase rules and the original items, with localized-flag limitations clearly surfaced.
-7. Relationship slugs exist; no invalid self-links or duplicate edges, and no claims about nonexistent runtime graph support.
+7. Relationship slugs exist; types belong to the canonical nine-value enum, both endpoints receive mirrored links with the other card's actual ID and correct `position`, and no self-links or duplicate edges survive. Runtime graph storage is supported by Contracts/Engine; UI and scheduling actions are **not** implied.
 8. ContentBlock descriptions can actually be implemented or have precise recorded dependencies; no invented assets.
 9. One authored source language; no duplicated Question localizations, invented locales or hidden publication blockers.
 10. A changed Question bank invalidates dependent cards until rechecked; editorial reviewer pass is not approval.
