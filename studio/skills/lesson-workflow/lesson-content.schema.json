@@ -1,0 +1,565 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://svitlo.dev/studio/lesson-content.schema.json",
+  "title": "Screenwriter Lesson Content Plan",
+  "description": "Editorial YAML blueprint, not authored Lesson Data or published Response; generator contract is future work.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "kind",
+    "status",
+    "lessonId",
+    "lessonSlug",
+    "methodologySource",
+    "documentLanguage",
+    "supportedLanguages",
+    "title",
+    "learningIntent",
+    "sections",
+    "sceneSpecifications",
+    "productionDependencies"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "kind": {
+      "const": "lesson-content-plan"
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "approved"
+      ]
+    },
+    "lessonId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "lessonSlug": {
+      "type": "string",
+      "pattern": "^[a-z][A-Za-z0-9]*$"
+    },
+    "methodologySource": {
+      "type": "string",
+      "enum": [
+        "methodology.md",
+        "methodologist-brief.md"
+      ]
+    },
+    "documentLanguage": {
+      "type": "string",
+      "pattern": "^[a-z]{2}$"
+    },
+    "supportedLanguages": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z]{2}$"
+      }
+    },
+    "title": {
+      "$ref": "#/$defs/localizable"
+    },
+    "learningIntent": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sections": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/$defs/regularSection"
+          },
+          {
+            "$ref": "#/$defs/quizSection"
+          }
+        ]
+      }
+    },
+    "sceneSpecifications": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/sceneSpec"
+      }
+    },
+    "productionDependencies": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/dependency"
+      }
+    },
+    "notesPlan": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "key",
+          "content",
+          "afterSectionKey"
+        ],
+        "properties": {
+          "key": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+          },
+          "content": {
+            "type": "string",
+            "minLength": 1
+          },
+          "afterSectionKey": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+          },
+          "triggerIntent": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "openQuestions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  },
+  "$defs": {
+    "uuid": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "key": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+    },
+    "localizable": {
+      "oneOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "invariant"
+          ],
+          "properties": {
+            "value": {
+              "type": "string",
+              "minLength": 1
+            },
+            "invariant": {
+              "const": true
+            }
+          }
+        }
+      ]
+    },
+    "regularSection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "key",
+        "type",
+        "title",
+        "purpose",
+        "blocks"
+      ],
+      "properties": {
+        "key": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "type": {
+          "enum": [
+            "theory",
+            "practice",
+            "codingTask",
+            "learningFlow",
+            "flashcards",
+            "scenario"
+          ]
+        },
+        "title": {
+          "$ref": "#/$defs/localizable"
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "blocks": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/block"
+          }
+        },
+        "transition": {
+          "type": "string",
+          "minLength": 1
+        },
+        "accessibility": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "quizSection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "key",
+        "type",
+        "title",
+        "purpose",
+        "assessmentPlanKey",
+        "targetSkills",
+        "requiredAssessmentMethods"
+      ],
+      "properties": {
+        "key": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "type": {
+          "const": "quiz"
+        },
+        "title": {
+          "$ref": "#/$defs/localizable"
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "assessmentPlanKey": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "targetSkills": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+          }
+        },
+        "requiredAssessmentMethods": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "retrieval",
+              "interpretation",
+              "application",
+              "classification",
+              "relationshipMapping",
+              "representationTranslation",
+              "missingInformationInference",
+              "structuralAnalysis",
+              "patternGeneralization",
+              "analogicalReasoning",
+              "knowledgeTransfer",
+              "prediction",
+              "errorDiagnosis",
+              "verification",
+              "justification",
+              "knowledgeConstruction"
+            ]
+          }
+        },
+        "placementReason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "questionBriefs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "assessmentMethod",
+              "evidenceIntent"
+            ],
+            "properties": {
+              "assessmentMethod": {
+                "enum": [
+                  "retrieval",
+                  "interpretation",
+                  "application",
+                  "classification",
+                  "relationshipMapping",
+                  "representationTranslation",
+                  "missingInformationInference",
+                  "structuralAnalysis",
+                  "patternGeneralization",
+                  "analogicalReasoning",
+                  "knowledgeTransfer",
+                  "prediction",
+                  "errorDiagnosis",
+                  "verification",
+                  "justification",
+                  "knowledgeConstruction"
+                ]
+              },
+              "evidenceIntent": {
+                "type": "string",
+                "minLength": 1
+              },
+              "targetSkillId": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+              }
+            }
+          }
+        },
+        "assessmentDependencies": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "block": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "key",
+        "type",
+        "purpose",
+        "readiness",
+        "accessibility"
+      ],
+      "properties": {
+        "key": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "type": {
+          "enum": [
+            "text",
+            "markdown",
+            "checkpoint",
+            "code",
+            "audio",
+            "video",
+            "youtube",
+            "image",
+            "carousel",
+            "scene"
+          ]
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "readiness": {
+          "enum": [
+            "available",
+            "typed-only",
+            "proposed"
+          ]
+        },
+        "sourceText": {
+          "type": "string",
+          "minLength": 1
+        },
+        "contentSpec": {
+          "type": "object",
+          "description": "Typed editorial parameters, not raw TypeScript or a promise of runtime support."
+        },
+        "assetRequest": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "status"
+          ],
+          "properties": {
+            "description": {
+              "type": "string",
+              "minLength": 1
+            },
+            "status": {
+              "enum": [
+                "pending",
+                "provided"
+              ]
+            },
+            "path": {
+              "type": "string",
+              "minLength": 1
+            },
+            "altIntent": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "sceneSpecKey": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "interaction": {
+          "type": "string",
+          "minLength": 1
+        },
+        "feedback": {
+          "type": "string",
+          "minLength": 1
+        },
+        "accessibility": {
+          "type": "string",
+          "minLength": 1
+        },
+        "localizationNotes": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "enum": [
+                  "text",
+                  "markdown"
+                ]
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "required": [
+              "sourceText"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "scene"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "required": [
+              "sceneSpecKey"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "enum": [
+                  "image",
+                  "audio",
+                  "video",
+                  "carousel"
+                ]
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "required": [
+              "assetRequest"
+            ]
+          }
+        }
+      ]
+    },
+    "sceneSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "key",
+        "path",
+        "status"
+      ],
+      "properties": {
+        "key": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "path": {
+          "type": "string",
+          "pattern": "^scenes/[a-zA-Z0-9-]+\\.scene-spec\\.md$"
+        },
+        "status": {
+          "enum": [
+            "draft",
+            "approved"
+          ]
+        }
+      }
+    },
+    "dependency": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "description",
+        "status"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "scene",
+            "assessment",
+            "media",
+            "platform",
+            "localization",
+            "other"
+          ]
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "pending",
+            "ready"
+          ]
+        },
+        "owner": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

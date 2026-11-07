@@ -20,3 +20,7 @@ The same prepared Question responses and Quiz parameters can power standalone pr
 General Section ContentBlocks render in one vertical column. A Scene can have its own internal layout. A Knowledge Checkpoint is a reflective prompt, not a scored Quiz.
 
 Related: [Lesson](./lesson.md), [Lesson Content](./lesson-content.md).
+
+## Methodologist assessment requirements
+
+The Lesson's approved `methodology.md` YAML frontmatter declares `assessmentPlan.quizRequired` and `quizzes[]`, including required `AssessmentMethodKey` values per Quiz. `Quiz_Parameters` configures runtime behavior, but it does **not** decide why a Quiz is educationally required. The Screenwriter's `content.yaml` binds each required Quiz to its approved `assessmentPlanKey`; the Assessment Architect validates the actual Questions and scoring. No fixed one-Quiz-per-Lesson rule.

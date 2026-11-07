@@ -1,27 +1,21 @@
 # Lesson Content
 
-**Entity category:** Screenwriter-owned editorial authoring specification for one Lesson.
+**Entity category:** Educational Screenwriter-owned **machine-readable editorial plan** for one independently reusable Lesson.
 
-The **Lesson Content** editorial specification determines **how** learners encounter, explore, interact with and understand the approved subject matter. It translates an approved Methodologist Brief into an ordered, **vertical** sequence of [Sections](./section.md) and typed content blocks, including actual learner-facing explanations, interaction prompts, visual/audio direction, predicted feedback and accessibility/localization requirements.
+A Lesson has two distinct editorial sources: `methodology.md` specifies **what, why, for whom** and the required Quiz/Assessment Method policy; `content.yaml` specifies **how to teach it**: ordered Sections, ContentBlocks, learner-facing source-language copy, experience design, required Quiz placements and production dependencies.
 
-This **Lesson Content specification is not** a fictional storyline, Program quest, a runtime Lesson configuration, a Methodologist Brief, a Question-bank implementation or generated media. See [Lesson](./lesson.md) and [Program](./program.md) for ownership boundaries.
+## Canonical file and ownership
 
-## OWNERSHIP AND SOURCE
+**Canonical file:** `content/<textbook>/data/lessons/<bucket>/<lesson-uuid>/content.yaml`.
 
-- **Owner:** Educational Screenwriter. Begin only from the intended Lesson's **approved**, factual `methodologist-brief.md`; do not revise the Methodologist's outcomes, target Skills or subject boundaries silently.
-- **File:** `<PackageRoot>/data/lessons/<bucketNumber>/<lessonSlug>/content.md`. The surrounding Lesson directory already identifies the Lesson; avoid `lesson-content.md` as the authored output filename.
-- **Status:** Draft until explicit editorial approval. Approval of `content.md` and approval of individual Scene specs are separate from Methodologist, assessment and implementation approvals.
-- **Hand-off:** Coding Agent implements code and resource assembly; Assessment Architect owns graded Question/Quiz validity, correct answers and mastery rules. Custom Scenes have individually reviewable Screenwriter specifications in `scenes/`, not a vague note to improvise.
+[Create Lesson Content](../../skills/lesson-workflow/create-lesson-content.skill.md) authors this YAML from an approved Methodologist Brief. Its [JSON Schema](../../skills/lesson-workflow/lesson-content.schema.json) checks structural format and known Section/ContentBlock and Assessment Method keys. The Lesson UUID is unchanged and is not inferred from title or slug. Existing `content.md` is a legacy Screenwriter document; it must be explicitly reviewed before editorial migration and should not remain a competing source of truth.
 
-## CONTENT SPECIFICATION CONTRACT
+`documentLanguage` is the single **source locale** of the Plan's learner-facing strings. `supportedLanguages` is the planned Lesson locale set, **not a translation completion report**. Plain strings are translatable source text; `{value, invariant: true}` is used only for truly locale-invariant titles. A future generator may scaffold the Lesson directory and source-locale TypeScript from the Plan. It must not fabricate translations, silently widen/narrow declared language coverage or suppress missing-locale TypeScript errors. Translation is a separate subsequent step required before normal production publication. **This YAML-to-TS generator is planned, not implemented by the editorial skill.**
 
-1. Maintain the same explicit ordered sequence of Sections that the implemented Lesson should present. A Section has a pedagogical purpose (theory, practice, exploration, quiz, flashcards, coding, block coding, etc.) and a **real** existing typed implementation shape or a clearly labeled proposed capability.
-2. A general Section lists each content block **top to bottom in one outer column**. Each block names its real `Resource_Config.blockType`, actual teaching content, learner action/feedback, locale/accessibility plan and renderer readiness. A custom Scene may contain its own internal multi-column or spatial arrangement; its position within the Section still counts as **one block**.
-3. Use rich web affordances when genuinely educational: animation, diagrams, audio, video, simulations, drag/touch/keyboard interactions, feedback and learner-controlled pacing. Never reduce learning to purposeless click-through or unbroken Markdown. Clearly mark missing integration as a dependency.
-4. A [Knowledge Checkpoint](./section.md#knowledge-checkpoint) can invite the learner to pause and reveal an explanation; it is **not** a scored Quiz or mastery evidence.
-5. Explain accessibility, meaningful non-visual/non-audio alternatives, LTR/RTL, localization, offline and low-device equivalence. Provide substantive content and separate review-ready Scene specifications for bespoke interactions.
-6. Leave Program plot, missions, mascots and rewards to the [Program](./program.md); an instructional sequence itself is **not** that plot.
+## Section and Quiz contracts
 
-**Terminology:** This editorial **Lesson Content** document is distinct from the TypeScript `LessonSection_Content` union and from the future published content resources. It specifies the instructional experience for implementation, but is not a serialized runtime data object.
+Regular Sections contain ordered ContentBlocks (current discriminant `type`; no old `blockType`). Every block has stable editorial key, type, role, required content or specification, accessibility and readiness. A Screenwriter can propose a new Scene or media dependency but cannot claim that runtime support already exists.
 
-The source of truth for implemented data structures and rendering remains the current TypeScript code, not this prose. See [Create Lesson Content Skill](../../skills/lesson-workflow/create-lesson-content.skill.md) for the workflow and exact deliverable template.
+**A Quiz is a Section, never a ContentBlock.** A Lesson may have **no Quiz, one Quiz or several** according to the approved Methodologist `assessmentPlan`. Each Quiz Section references a unique approved `assessmentPlanKey` and repeats the exact target Skill IDs and `requiredAssessmentMethods` from that requirement. `AssessmentMethodKey` expresses a cognitive operation, not the UI Question type. The Assessment Architect owns Question correctness, distractors, grading and mastery; the Screenwriter places the Quiz and explains its teaching context.
+
+`content.yaml` is not directly serialized as a runtime `Lesson<'data'>` or `Lesson<'response'>`. The Coding Agent and a future generator transform the editorial specification using the actual Engine creators and maintain the current resource layouts. [Lesson](./lesson.md), [Section](./section.md) and [Lesson editorial artifacts](../architecture/lesson-editorial-document.md) establish boundaries and review policy.
