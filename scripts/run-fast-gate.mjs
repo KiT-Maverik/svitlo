@@ -126,6 +126,20 @@ function runGate(changed) {
     exec('node', ['--test', 'scripts/generate-assessment-methods-reference.spec.mjs']);
   }
 
+  // Lesson builder is root-owned deterministic tooling: test it only when its
+  // implementation, dependency, or canonical editorial input schemas change.
+  if (
+    changed.some(
+      file =>
+        file.startsWith('scripts/lesson-builder.') ||
+        file === 'package.json' ||
+        file === 'package-lock.json' ||
+        /^studio\/skills\/lesson-workflow\/lesson-(?:content|questions|methodology-frontmatter)\.schema\.json$/.test(file),
+    )
+  ) {
+    exec('node', ['--test', 'scripts/lesson-builder.spec.mjs']);
+  }
+
   const built = new Set();
   function ensureSharedDependencies(name, visiting = new Set()) {
     assert(!visiting.has(name), 'Cyclic workspace dependency: ' + name);
