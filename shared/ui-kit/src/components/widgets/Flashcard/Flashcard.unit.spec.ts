@@ -51,6 +51,42 @@ describe('Components', () => {
       expect(onAddLabel).toHaveBeenCalledOnce();
     });
 
+    it('should render the three built-in typed flags as localized chips', () => {
+      Flashcard_fx.render({
+        flags: [{ type: 'list', count: 6 }, { type: 'warning' }, { type: 'acronym', value: 'PaRFUME' }],
+      });
+      expect(screen.getByText('6')).toBeVisible();
+      expect(screen.getByText('Увага')).toBeVisible();
+      expect(screen.getByText('PaRFUME')).toBeVisible();
+      expect(screen.getAllByText(/6|Увага|PaRFUME/)).toHaveLength(3);
+    });
+
+    it('should render custom flag color and optional icon safely', () => {
+      const { container } = Flashcard_fx.render({
+        flags: [
+          { type: 'custom', value: 'Custom with icon', color: 'success', icon: 'star' },
+          { type: 'custom', value: 'Custom without icon', color: 'primary' },
+        ],
+      });
+      expect(screen.getByText('Custom with icon')).toBeVisible();
+      expect(screen.getByText('Custom without icon')).toBeVisible();
+      const chips = container.querySelectorAll('.MuiChip-root');
+      expect(chips).toHaveLength(2);
+      expect(chips[0]).toHaveClass('MuiChip-colorSuccess');
+      expect(chips[0].querySelector('svg')).not.toBeNull();
+      expect(chips[1]).toHaveClass('MuiChip-colorPrimary');
+      expect(chips[1].querySelector('svg')).toBeNull();
+    });
+
+    it('should show typed flags alongside presentation-only labels', () => {
+      Flashcard_fx.render({
+        flags: [{ type: 'list', count: 3 }],
+        labels: [{ label: 'Host label' }],
+      });
+      expect(screen.getByText('3')).toBeVisible();
+      expect(screen.getByText('Host label')).toBeVisible();
+    });
+
     it('should render optional user-defined labels without changing the question', () => {
       Flashcard_fx.render({ labels: [{ label: 'Priority' }] });
       expect(screen.getByText('Priority')).toBeVisible();

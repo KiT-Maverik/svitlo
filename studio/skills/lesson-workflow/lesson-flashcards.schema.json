@@ -1,0 +1,740 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://svitlo.dev/studio/lesson-flashcards.schema.json",
+  "title": "Lesson Flashcards — Question-first, linked recall bank",
+  "description": "Source-language Flashcards with a single canonical relation edge list. The builder mirrors typed relations onto both Flashcard endpoints in runtime data. Built-in and custom Flashcard flags are discriminated objects, with no duplicated list count or acronym values.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "kind",
+    "status",
+    "lessonId",
+    "documentLanguage",
+    "supportedLanguages",
+    "sources",
+    "flashcards",
+    "relationships",
+    "unresolvedDependencies"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "kind": {
+      "const": "lesson-flashcard-bank"
+    },
+    "status": {
+      "enum": ["draft", "approved"]
+    },
+    "lessonId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "documentLanguage": {
+      "type": "string",
+      "pattern": "^[a-z]{2}$"
+    },
+    "supportedLanguages": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z]{2}$"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "sources": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["methodology", "content", "questions"],
+      "properties": {
+        "methodology": {
+          "$ref": "#/$defs/source"
+        },
+        "content": {
+          "$ref": "#/$defs/source"
+        },
+        "questions": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["path", "revision"],
+          "properties": {
+            "path": {
+              "type": "string",
+              "minLength": 1
+            },
+            "revision": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "flashcards": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/card"
+      },
+      "minItems": 1
+    },
+    "relationships": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/relationship"
+      },
+      "minItems": 0,
+      "description": "Each edge is authored once and compiled into both linked Flashcards. Multiple distinct types and multiple relations per card are allowed. Avoid duplicate pairs of the same type."
+    },
+    "unresolvedDependencies": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/dependency"
+      },
+      "minItems": 0
+    }
+  },
+  "$defs": {
+    "key": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][A-Za-z0-9]*$"
+    },
+    "uuid": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path"],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "questionFieldRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "questionSlug", "fieldPath"],
+      "properties": {
+        "kind": {
+          "const": "questionField"
+        },
+        "questionSlug": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "fieldPath": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "integer",
+                "minimum": 0
+              }
+            ]
+          },
+          "minItems": 1
+        }
+      }
+    },
+    "textStyle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "applyStyle"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][A-Za-z0-9]*$"
+        },
+        "applyStyle": {
+          "type": "array",
+          "items": {
+            "enum": ["highlight", "bold", "cursive", "underscore", "crossed", "variable"]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "tone": {
+          "enum": ["neutral", "info", "warning", "success"]
+        },
+        "applyColor": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "block": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/textBlock"
+        },
+        {
+          "$ref": "#/$defs/markdownBlock"
+        },
+        {
+          "$ref": "#/$defs/codeBlock"
+        },
+        {
+          "$ref": "#/$defs/existingImage"
+        },
+        {
+          "$ref": "#/$defs/pendingImage"
+        },
+        {
+          "$ref": "#/$defs/advancedBlock"
+        }
+      ]
+    },
+    "textBlock": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "value"],
+      "properties": {
+        "type": {
+          "const": "text"
+        },
+        "value": {
+          "oneOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "$ref": "#/$defs/questionFieldRef"
+            }
+          ]
+        },
+        "styling": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/textStyle"
+          },
+          "minItems": 1
+        },
+        "wrap": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [],
+          "properties": {
+            "enabled": {
+              "const": false
+            }
+          }
+        }
+      }
+    },
+    "codeBlock": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "language", "code"],
+      "properties": {
+        "type": {
+          "const": "code"
+        },
+        "language": {
+          "type": "string",
+          "minLength": 1
+        },
+        "code": {
+          "oneOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "$ref": "#/$defs/questionFieldRef"
+            }
+          ]
+        },
+        "title": {
+          "oneOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "$ref": "#/$defs/questionFieldRef"
+            }
+          ]
+        },
+        "variables": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "value"],
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z][A-Za-z0-9]*$"
+              },
+              "value": {
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  {
+                    "$ref": "#/$defs/questionFieldRef"
+                  }
+                ]
+              }
+            }
+          },
+          "minItems": 0
+        }
+      }
+    },
+    "markdownBlock": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "value"],
+      "properties": {
+        "type": {
+          "const": "markdown"
+        },
+        "value": {
+          "oneOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "$ref": "#/$defs/questionFieldRef"
+            }
+          ]
+        }
+      }
+    },
+    "existingImage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "assetPath", "alt", "layout"],
+      "properties": {
+        "type": {
+          "const": "image"
+        },
+        "assetPath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "alt": {
+          "oneOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "$ref": "#/$defs/questionFieldRef"
+            }
+          ]
+        },
+        "caption": {
+          "oneOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "$ref": "#/$defs/questionFieldRef"
+            }
+          ]
+        },
+        "layout": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["width", "height"],
+              "properties": {
+                "width": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "height": {
+                  "type": "integer",
+                  "minimum": 1
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["fill", "aspectRatio"],
+              "properties": {
+                "fill": {
+                  "const": true
+                },
+                "aspectRatio": {
+                  "type": "number",
+                  "exclusiveMinimum": 0
+                },
+                "objectFit": {
+                  "enum": ["contain", "cover"]
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "pendingImage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "assetRequest", "layout"],
+      "properties": {
+        "type": {
+          "const": "image"
+        },
+        "assetRequest": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["description", "purpose", "altIntent", "status"],
+          "properties": {
+            "description": {
+              "type": "string",
+              "minLength": 1
+            },
+            "purpose": {
+              "type": "string",
+              "minLength": 1
+            },
+            "altIntent": {
+              "type": "string",
+              "minLength": 1
+            },
+            "status": {
+              "const": "pending"
+            }
+          }
+        },
+        "layout": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["width", "height"],
+              "properties": {
+                "width": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "height": {
+                  "type": "integer",
+                  "minimum": 1
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["fill", "aspectRatio"],
+              "properties": {
+                "fill": {
+                  "const": true
+                },
+                "aspectRatio": {
+                  "type": "number",
+                  "exclusiveMinimum": 0
+                },
+                "objectFit": {
+                  "enum": ["contain", "cover"]
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "advancedBlock": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "purpose", "status", "dependency"],
+      "properties": {
+        "type": {
+          "enum": ["audio", "video", "youtube", "carousel", "scene", "checkpoint"]
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "const": "proposed"
+        },
+        "dependency": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "acronymSourcePart": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "item", "letters"],
+      "properties": {
+        "kind": {
+          "const": "source"
+        },
+        "item": {
+          "type": "string",
+          "minLength": 1
+        },
+        "letters": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "acronymConnectorPart": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "letters"],
+      "properties": {
+        "kind": {
+          "const": "connector"
+        },
+        "letters": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "card": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["slug", "front", "back", "hint", "tags", "flags"],
+      "properties": {
+        "slug": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "isDefault": {
+          "const": true
+        },
+        "front": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/block"
+          },
+          "minItems": 1
+        },
+        "back": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/block"
+          },
+          "minItems": 1
+        },
+        "hint": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/block"
+          },
+          "minItems": 0
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][A-Za-z0-9]*$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "flags": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/$defs/listFlag"
+              },
+              {
+                "$ref": "#/$defs/warningFlag"
+              },
+              {
+                "$ref": "#/$defs/acronymFlag"
+              },
+              {
+                "$ref": "#/$defs/customFlag"
+              }
+            ]
+          },
+          "minItems": 0,
+          "description": "One canonical typed flag array. List count and acronym data live here, never duplicated in separate card properties."
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "relationship": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key", "source", "target", "type", "rationale"],
+      "properties": {
+        "key": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "source": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "target": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "reverse",
+            "equivalent",
+            "contrast",
+            "complementary",
+            "prerequisite",
+            "partOf",
+            "exampleOf",
+            "causes",
+            "precedes"
+          ],
+          "description": "Canonical FlashcardRelationType from Contracts. Directionality is inferred from the type."
+        }
+      },
+      "description": "One canonical edge. The generator resolves both endpoint slugs to card IDs and mirrors it into relationships[] on each card with the same relationshipId, type, relatedFlashcardId, and position."
+    },
+    "dependency": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "description", "status"],
+      "properties": {
+        "kind": {
+          "enum": [
+            "questionImport",
+            "media",
+            "localization",
+            "acronym",
+            "runtimeGraph",
+            "contentBlock",
+            "editorial",
+            "other"
+          ]
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "const": "pending"
+        },
+        "cardSlug": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "relationKey": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        }
+      }
+    },
+    "listFlag": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "count"],
+      "properties": {
+        "type": {
+          "const": "list"
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 2
+        }
+      },
+      "description": "Count is displayed in a dedicated list chip. Never append a count to front text."
+    },
+    "warningFlag": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "const": "warning"
+        }
+      },
+      "description": "Built-in warning chip; its text is localized in UI Kit."
+    },
+    "acronymFlag": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "value", "localePolicy", "parts"],
+      "properties": {
+        "type": {
+          "const": "acronym"
+        },
+        "value": {
+          "type": "string",
+          "minLength": 1
+        },
+        "localePolicy": {
+          "enum": ["invariant", "needsLocalizedVersion"]
+        },
+        "parts": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/$defs/acronymSourcePart"
+              },
+              {
+                "$ref": "#/$defs/acronymConnectorPart"
+              }
+            ]
+          },
+          "minItems": 2
+        }
+      },
+      "description": "Editorial acronym construction metadata. Generator emits only {type:'acronym', value} to runtime; all translations must be reviewed."
+    },
+    "customFlag": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "value", "color"],
+      "properties": {
+        "type": {
+          "const": "custom"
+        },
+        "value": {
+          "type": "string",
+          "minLength": 1
+        },
+        "color": {
+          "enum": ["default", "primary", "secondary", "error", "info", "success", "warning"]
+        },
+        "icon": {
+          "enum": ["list", "warning", "acronym", "info", "star", "bookmark", "lightbulb", "code", "check"]
+        }
+      },
+      "description": "User-defined chip label with one palette color and optional safe icon token, never a React component."
+    }
+  }
+}
