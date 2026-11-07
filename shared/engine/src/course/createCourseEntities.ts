@@ -2,9 +2,9 @@ import type {
   Chapter,
   Chapter_Content,
   Course_Creator,
-  Course_LessonAuthoringOverride,
+  Course_CompatibleLesson,
+  Course_CompatibleOverride,
   Episode,
-  Lesson,
   Locale_Languages,
   Module,
 } from '@svitlo/contracts/content';
@@ -14,13 +14,13 @@ import type { LessonCreator } from '../lessons/createLesson';
 type EpisodeCreator<L extends Locale_Languages> = Course_Creator<Episode<'data', L>, L>;
 type ChapterCreator<L extends Locale_Languages> = Course_Creator<Chapter<'data', L>, L>;
 
-type LessonEntry<L extends Locale_Languages> = Lesson<'data', L> | Course_LessonAuthoringOverride<L> | LessonCreator<L>;
+type LessonEntry<L extends Locale_Languages> = Course_CompatibleLesson<L> | Course_CompatibleOverride<L> | LessonCreator<L>;
 type ChapterEntry<L extends Locale_Languages> = LessonEntry<L> | Episode<'data', L> | EpisodeCreator<L>;
 type ModuleEntry<L extends Locale_Languages> = ChapterEntry<L> | Chapter<'data', L> | ChapterCreator<L>;
 
 function unwrapChild<L extends Locale_Languages>(
   child: ModuleEntry<L>,
-): Lesson<'data', L> | Course_LessonAuthoringOverride<L> | Chapter<'data', L> | Episode<'data', L> {
+): Course_CompatibleLesson<L> | Course_CompatibleOverride<L> | Chapter<'data', L> | Episode<'data', L> {
   return 'getData' in child ? child.getData() : child;
 }
 
