@@ -31,6 +31,8 @@ export function questionBlockLabel(block: QuestionBlock): string {
       return block.text.replace(/[*_`#]/gu, '');
     case 'image':
       return block.alt;
+    case 'carousel':
+      return block.title ?? block.slides[0].alt;
     case 'audio':
       return block.title;
     case 'video':
