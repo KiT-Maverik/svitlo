@@ -35,6 +35,7 @@ describe('CourseTopicList', () => {
     );
 
     expect(screen.getByRole('link', { name: 'Lesson A' })).toHaveAttribute('aria-current', 'page');
+    expect(screen.getByRole('link', { name: 'Lesson A' }).closest('ul')).toHaveStyle({ userSelect: 'none' });
     expect(screen.getByRole('link', { name: 'Episode A' })).toHaveAttribute(
       'href',
       '/uk/course/demo/episode/episode-a',
