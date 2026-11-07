@@ -6,6 +6,7 @@ import { useMemo, type ElementType } from 'react';
 import type { Locale } from '@svitlo/engine/localization';
 import LearningLayout, { type LearningLayoutProps } from './LearningLayout';
 import NavbarPreferences from './NavbarPreferences/NavbarPreferences';
+import ThemeSwitch from './NavbarPreferences/ThemeSwitch';
 import { useColorScheme } from '@mui/material/styles';
 
 export type LessonLearningLayoutProps = Pick<
@@ -28,7 +29,7 @@ export type LessonLearningLayoutProps = Pick<
   | 'onLogout'
   | 'profileSettingsHref'
   | 'settingsContent'
-> & { messages: UiKitMessages };
+> & { messages: UiKitMessages; supportedLessonLanguages?: readonly Locale[] };
 
 export type LessonLearningLayoutBindings = {
   /** Supplied by the consuming app; the UI Kit never imports Next.js hooks. */
@@ -71,9 +72,11 @@ export function createLessonLearningLayout(bindings: LessonLearningLayoutBinding
     onLogout,
     profileSettingsHref,
     settingsContent,
+    supportedLessonLanguages,
   }: LessonLearningLayoutProps) {
     const { locale, setLocale, lessonLocale, setLessonLocale } = bindings.useLocale();
     const { mode, systemMode, setMode } = useBoundColorScheme();
+    const volumeControl = typeof settingsContent === 'function' ? undefined : settingsContent;
 
     const preferences = useMemo(
       () => (
@@ -82,14 +85,30 @@ export function createLessonLearningLayout(bindings: LessonLearningLayoutBinding
           locale={locale}
           onLocaleChange={setLocale}
           lessonLocale={lessonLocale}
+          lessonLanguages={supportedLessonLanguages}
           onLessonLocaleChange={setLessonLocale}
-          mode={mode}
-          systemMode={systemMode}
-          onThemeChange={setMode}
+          volumeControl={volumeControl}
         />
       ),
-      [messages.navbarPreferences, locale, setLocale, lessonLocale, setLessonLocale, mode, systemMode, setMode],
+      [
+        messages.navbarPreferences,
+        locale,
+        setLocale,
+        lessonLocale,
+        supportedLessonLanguages,
+        setLessonLocale,
+        volumeControl,
+      ],
     );
+    const themeControl = (
+      <ThemeSwitch
+        label={messages.navbarPreferences.theme.dark}
+        mode={mode}
+        systemMode={systemMode}
+        onThemeChange={setMode}
+      />
+    );
+
     return (
       <LearningLayout
         locale={locale}
@@ -106,12 +125,13 @@ export function createLessonLearningLayout(bindings: LessonLearningLayoutBinding
         renderBottomBar={renderBottomBar}
         renderEventHost={renderEventHost}
         preferences={preferences}
+        themeControl={themeControl}
         profile={profile}
         profiles={profiles}
         onProfileChange={onProfileChange}
         onLogout={onLogout}
         profileSettingsHref={profileSettingsHref}
-        settingsContent={settingsContent}
+        settingsContent={typeof settingsContent === 'function' ? settingsContent : undefined}
         linkComponent={bindings.linkComponent}
       >
         {children}

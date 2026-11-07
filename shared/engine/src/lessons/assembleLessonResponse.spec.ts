@@ -69,6 +69,7 @@ describe('assembleLessonResponse', () => {
       questions,
     });
     assert.deepEqual(response.skills, lesson.skills);
+    assert.deepEqual(response.parameters.languages, ['en']);
     assert.equal(response.sections.length, 2);
     assert.ok(response.sections.every(section => section.type === 'quiz' && section.questions.length === 1));
     const first = response.sections[0];

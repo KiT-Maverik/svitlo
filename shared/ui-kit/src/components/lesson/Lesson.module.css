@@ -14,7 +14,6 @@
   overscroll-behavior-x: contain;
   scrollbar-width: thin;
   padding: 20px clamp(12px, 4vw, 48px);
-  background-color: var(--mui-palette-background-paper);
   position: sticky;
   top: 0;
   z-index: 5;

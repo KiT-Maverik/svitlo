@@ -1,17 +1,36 @@
 .root {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
   gap: 16px;
   height: 100%;
+  width: 100%;
   min-height: 0;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* Only allocate rows for populated slots; the center gets the remaining height. */
+.root[data-has-top='true'] {
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+.root[data-has-bottom='true'] {
+  grid-template-rows: minmax(0, 1fr) auto;
+}
+
+.root[data-has-top='true'][data-has-bottom='true'] {
+  grid-template-rows: auto minmax(0, 1fr) auto;
 }
 
 .edge {
-  flex: none;
+  min-height: 0;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .center {
-  flex: 1;
   min-height: 0;
+  min-width: 0;
+  max-width: 100%;
 }

@@ -56,6 +56,10 @@
       "types": "./dist/src/components/layout/LearningLayout/NavbarPreferences/NavbarPreferences.d.ts",
       "default": "./dist/src/components/layout/LearningLayout/NavbarPreferences/NavbarPreferences.js"
     },
+    "./theme": {
+      "types": "./dist/src/theme.d.ts",
+      "default": "./dist/src/theme.js"
+    },
     "./lesson": {
       "types": "./dist/src/components/lesson/index.d.ts",
       "default": "./dist/src/components/lesson/index.js"

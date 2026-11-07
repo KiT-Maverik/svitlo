@@ -1,3 +1,5 @@
+export { SvitloThemeProvider } from './theme';
+export type { SvitloThemeProviderProps } from './theme';
 export * from './navigation';
 export * from './widgets';
 export * from './questions';

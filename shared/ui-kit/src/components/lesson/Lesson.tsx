@@ -16,6 +16,7 @@ export type LessonView = {
   title: string;
   locale: { code: LanguageCode };
   parameters: {
+    languages: readonly LanguageCode[];
     sections: {
       allowNavigation: boolean;
       allowSkipping: boolean;

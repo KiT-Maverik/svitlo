@@ -1,6 +1,7 @@
 import { fireEvent, render, screen, within } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import LearningLayout from './LearningLayout';
+import LearningLayout, { LearningLayoutTopBar } from './LearningLayout';
+import ThemeSwitch from './NavbarPreferences/ThemeSwitch';
 import { learningLayout } from '../../../../data/locale/learningLayout';
 
 const uk = learningLayout.uk;
@@ -21,8 +22,13 @@ describe('LearningLayout preparation', () => {
       </LearningLayout>,
     );
 
-    expect(screen.getByRole('navigation', { name: uk.navigation.top })).toBeVisible();
-    expect(screen.getByRole('navigation', { name: uk.navigation.bottom })).toBeVisible();
+    const top = screen.getByRole('navigation', { name: uk.navigation.top });
+    const bottom = screen.getByRole('navigation', { name: uk.navigation.bottom });
+    expect(top).toBeVisible();
+    expect(top.parentElement).toHaveClass('svitlo-theme-surface');
+    expect(top).toHaveClass('svitlo-theme-chrome');
+    expect(bottom).toBeVisible();
+    expect(bottom).toHaveClass('svitlo-theme-chrome');
     expect(screen.getByRole('status')).toHaveTextContent(uk.preparingLesson);
     expect(screen.getByRole('main', { hidden: true })).toHaveAttribute('aria-busy', 'true');
     expect(screen.getByRole('main', { hidden: true })).toHaveAttribute('inert');
@@ -52,10 +58,69 @@ describe('LearningLayout preparation', () => {
     ).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: uk.actions.openSettings }));
     expect(screen.getByRole('heading', { name: uk.settingsTitle })).toBeVisible();
+    const sidebar = screen.getByRole('complementary', { name: uk.navigation.settings });
+    expect(within(sidebar).getByTestId('vertical-space-top')).toContainElement(
+      screen.getByRole('heading', { name: uk.settingsTitle }),
+    );
+    expect(within(sidebar).getByTestId('vertical-space-bottom')).toContainElement(
+      screen.getByRole('button', { name: 'Interface settings control' }),
+    );
     expect(screen.getByRole('button', { name: 'Interface settings control' })).toBeVisible();
     expect(screen.getByText('Additional page control')).toBeVisible();
     fireEvent.click(screen.getByRole('button', { name: uk.actions.closeSidebar }));
     expect(screen.getByRole('button', { name: uk.actions.profile })).toHaveAttribute('aria-expanded', 'false');
+  });
+
+  it('keeps the lesson title and disabled Back/Skip labels mounted in shared navigation', () => {
+    render(
+      <LearningLayout
+        locale="uk-UA"
+        messages={uk}
+        pathname="/uk/lesson/test"
+        progress={{ ready: true, step: 0, lastStep: 1, testDone: false }}
+        topics={[]}
+        actions={{ back: vi.fn(), next: vi.fn(), skip: vi.fn() }}
+        renderTopBar={props => (
+          // Exercise the same component that the LessonController uses.
+          <LearningLayoutTopBar {...props} lessonTitle="Тестовий урок" />
+        )}
+      >
+        <p>Вміст уроку</p>
+      </LearningLayout>,
+    );
+    const top = screen.getByRole('navigation', { name: uk.navigation.top });
+    const bottom = screen.getByRole('navigation', { name: uk.navigation.bottom });
+    expect(within(top).getByText('Тестовий урок')).toBeInTheDocument();
+    expect(within(bottom).getByRole('button', { name: /Назад/ })).toBeDisabled();
+    expect(within(bottom).getByRole('button', { name: uk.actions.skip })).toBeDisabled();
+  });
+
+  it('renders the theme switch before settings in the navbar and nowhere in the drawer', () => {
+    const setMode = vi.fn();
+    render(
+      <LearningLayout
+        locale="uk-UA"
+        messages={uk}
+        pathname="/uk/lesson/uk/test"
+        progress={{ ready: true, step: 0, lastStep: 1, testDone: false }}
+        topics={[]}
+        actions={{ back: vi.fn(), next: vi.fn(), skip: vi.fn() }}
+        preferences={<p>Languages</p>}
+        themeControl={<ThemeSwitch label="Темна тема" mode="light" onThemeChange={setMode} />}
+      >
+        <p>Вміст уроку</p>
+      </LearningLayout>,
+    );
+    const navbar = screen.getByRole('navigation', { name: uk.navigation.top });
+    const toggle = within(navbar).getByRole('switch', { name: 'Темна тема' });
+    const settings = within(navbar).getByRole('button', { name: uk.actions.openSettings });
+    expect(toggle.compareDocumentPosition(settings) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    fireEvent.click(toggle);
+    expect(setMode).toHaveBeenCalledWith('dark');
+    fireEvent.click(settings);
+    expect(
+      within(screen.getByRole('complementary', { name: uk.navigation.settings })).queryByRole('switch'),
+    ).not.toBeInTheDocument();
   });
 
   it('keeps profile settings separate from quick settings', () => {

@@ -24,17 +24,18 @@ test('mobile lesson language can differ from its interface language', async ({ p
   await page.goto('/uk/lesson/en/' + supported!.id);
   await expect(page.locator('html')).toHaveAttribute('lang', 'uk-UA');
   await expect(page.locator('#learning-content [lang="en-US"]').first()).toBeVisible();
-  await page.getByRole('button', { name: 'Профіль' }).click();
-  await page.getByRole('menuitem', { name: 'Швидкі налаштування' }).click();
+  await page.getByRole('button', { name: 'Відкрити налаштування' }).click();
   await expect(page.getByRole('combobox', { name: 'Мова уроку' })).toBeVisible();
 });
 
 test('mobile quick settings switches the actual color scheme', async ({ page }) => {
   await page.goto('/');
   await page.getByRole('link').first().click();
-  await page.getByRole('button', { name: 'Профіль' }).click();
-  await page.getByRole('menuitem', { name: 'Швидкі налаштування' }).click();
-  const switcher = page.getByRole('switch', { name: 'Темна тема' });
+  const navbar = page.getByRole('navigation', { name: 'Верхня навігація навчання' });
+  const switcher = navbar.getByRole('switch', { name: 'Темна тема' });
+  await expect(switcher).toBeVisible();
+  await page.getByRole('button', { name: 'Відкрити налаштування' }).click();
+  await expect(page.getByRole('complementary', { name: 'Швидкі налаштування' }).getByRole('switch')).toHaveCount(0);
   await expect
     .poll(() =>
       page.locator('html').evaluate(element => element.hasAttribute('data-light') || element.hasAttribute('data-dark')),

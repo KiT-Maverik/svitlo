@@ -551,6 +551,13 @@ function LessonControllerRuntime({
     [response.id, response.title, href],
   );
   const topics = courseTopics ?? standaloneTopics;
+  const supportedLessonLanguages = useMemo(
+    () =>
+      DEFAULT_SUPPORTED_LANGUAGES.filter(item => response.parameters.languages.includes(item.language)).map(
+        item => item.locale,
+      ),
+    [response.parameters.languages],
+  );
   const contentLanguage = DEFAULT_SUPPORTED_LANGUAGES.find(item => item.language === response.locale.code);
   const skippableSteps = useMemo(
     () =>
@@ -580,6 +587,7 @@ function LessonControllerRuntime({
               renderTopBar={renderTopBar}
               renderBottomBar={renderBottomBar}
               renderEventHost={renderEventHost}
+              supportedLessonLanguages={supportedLessonLanguages}
               settingsContent={<MediaVolumeControl messages={messages.navbarPreferences.volume} />}
             >
               <div className={styles.lesson} lang={contentLanguage?.locale} dir={contentLanguage?.direction}>

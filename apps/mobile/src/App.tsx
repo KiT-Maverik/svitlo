@@ -7,9 +7,10 @@ import {
   useState,
   type AnchorHTMLAttributes,
   type MouseEvent,
+  type ReactNode,
 } from 'react';
-import { CssBaseline, Button, Container, Typography, CircularProgress, Box, List, ListItemButton } from '@mui/material';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { Button, Container, Typography, CircularProgress, Box, List, ListItemButton } from '@mui/material';
+import { SvitloThemeProvider } from '@svitlo/ui-kit/theme';
 import { DEFAULT_SUPPORTED_LANGUAGES, getLocaleDirection, type Locale } from '@svitlo/engine/localization';
 import { Lesson, useLessonNavigation } from '@svitlo/ui-kit/lesson';
 import { SceneLocaleProvider } from '@svitlo/ui-kit/scene-locale';
@@ -104,11 +105,6 @@ function PersistingLessonLayout(props: LessonLearningLayoutProps) {
     </Box>
   );
 }
-const theme = createTheme({
-  cssVariables: { colorSchemeSelector: 'data' },
-  colorSchemes: { light: true, dark: true },
-});
-
 type LessonData = { response: LessonResponse; messages: UiKitMessages };
 type LoadState =
   | { status: 'loading' }
@@ -184,23 +180,22 @@ function MobileContent() {
     }),
     [activeLocale, routeKey],
   );
+  let content: ReactNode;
   if (state.status === 'loading') {
-    return (
+    content = (
       <Box role="status" aria-busy="true" sx={{ display: 'grid', placeItems: 'center', height: '100%' }}>
         <CircularProgress aria-label="Loading textbook" />
       </Box>
     );
-  }
-  if (state.status === 'error') {
-    return (
+  } else if (state.status === 'error') {
+    content = (
       <Container sx={{ pt: 5 }}>
         <Typography role="alert">{state.message}</Typography>
         <Button onClick={() => navigate('/')}>Back to lessons</Button>
       </Container>
     );
-  }
-  if (state.status === 'home') {
-    return (
+  } else if (state.status === 'home') {
+    content = (
       <Container sx={{ py: 4, height: '100%', overflowY: 'auto' }}>
         <Typography variant="h4" component="h1">
           {textbook.title}
@@ -222,30 +217,34 @@ function MobileContent() {
         </List>
       </Container>
     );
+  } else if (route.type === 'lesson') {
+    const { response, messages } = state.data;
+    content = (
+      <LocaleContext.Provider value={localeBinding}>
+        <SceneLocaleProvider locale={localeForLanguage(route.lessonLanguage)!}>
+          <Lesson
+            key={routeKey}
+            response={response}
+            href={lessonHref(route.language, response.id, route.lessonLanguage)}
+            messages={messages}
+            layout={PersistingLessonLayout}
+            sceneRegistry={resolveScene}
+          />
+        </SceneLocaleProvider>
+      </LocaleContext.Provider>
+    );
+  } else {
+    content = null;
   }
-  if (route.type !== 'lesson') return null;
-  const { response, messages } = state.data;
+
+  // Keep the MUI theme direction synchronized with the active interface locale.
   return (
-    <LocaleContext.Provider value={localeBinding}>
-      <SceneLocaleProvider locale={localeForLanguage(route.lessonLanguage)!}>
-        <Lesson
-          key={routeKey}
-          response={response}
-          href={lessonHref(route.language, response.id, route.lessonLanguage)}
-          messages={messages}
-          layout={PersistingLessonLayout}
-          sceneRegistry={resolveScene}
-        />
-      </SceneLocaleProvider>
-    </LocaleContext.Provider>
+    <SvitloThemeProvider direction={getLocaleDirection(activeLocale)} defaultMode="system" noSsr>
+      {content}
+    </SvitloThemeProvider>
   );
 }
 
 export default function App() {
-  return (
-    <ThemeProvider theme={theme} defaultMode="system" noSsr disableTransitionOnChange>
-      <CssBaseline />
-      <MobileContent />
-    </ThemeProvider>
-  );
+  return <MobileContent />;
 }

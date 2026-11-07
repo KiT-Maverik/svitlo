@@ -5,8 +5,8 @@ import type { Locale } from '@svitlo/engine/localization';
 import type { UiKitMessages } from '@svitlo/ui-kit';
 import Link from 'next/link';
 import { Box, Container } from '@mui/material';
-import { useColorScheme } from '@mui/material/styles';
-import { LearningLayout, NavbarPreferences } from '@svitlo/ui-kit/learning-layout';
+import { useSvitloColorScheme } from '@svitlo/ui-kit/theme';
+import { LearningLayout, NavbarPreferences, ThemeSwitch } from '@svitlo/ui-kit/learning-layout';
 import { SkillsMindMap } from './SkillsMindMap';
 import { SkillsPagePreferences } from './SkillsPagePreferences';
 import { SkillsPageSettingsProvider, useSkillsPageSettings } from './SkillsPageSettingsContext';
@@ -29,7 +29,7 @@ function SkillAnalyticsContent({
   initialMessages: UiKitMessages;
 }) {
   const { locale, setLocale, ready, localeError } = useSkillsPageSettings();
-  const { mode, systemMode, setMode } = useColorScheme();
+  const { mode, systemMode, setMode } = useSvitloColorScheme();
   const [resource, setResource] = useState<{ locale: Locale; messages: UiKitMessages }>(() => ({
     locale: 'uk-UA',
     messages: initialMessages,
@@ -67,7 +67,7 @@ function SkillAnalyticsContent({
   }
   const messages = resource.messages;
 
-  // The page-scoped provider owns the switches and the active locale, while
+  // The page-scoped provider owns page preferences and locale, while
   // the existing LearningLayout owns the navbar and right settings drawer.
   return (
     <LearningLayout
@@ -78,16 +78,17 @@ function SkillAnalyticsContent({
       actions={unusedActions}
       topics={[{ id: 'skillAnalytics', title: 'Аналітика навичок', href: '/skillAnalytics' }]}
       linkComponent={Link}
-      showBottomNavbar={false}
-      preferences={
-        <NavbarPreferences
-          messages={messages.navbarPreferences}
-          locale={locale}
-          onLocaleChange={setLocale}
+      themeControl={
+        <ThemeSwitch
+          label={messages.navbarPreferences.theme.dark}
           mode={mode}
           systemMode={systemMode}
           onThemeChange={setMode}
         />
+      }
+      showBottomNavbar={false}
+      preferences={
+        <NavbarPreferences messages={messages.navbarPreferences} locale={locale} onLocaleChange={setLocale} />
       }
       settingsContent={({ closeSettings }) => <SkillsPagePreferences onFitToScreen={closeSettings} />}
     >
