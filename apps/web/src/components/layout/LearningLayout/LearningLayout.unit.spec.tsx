@@ -2,7 +2,6 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 vi.mock('@/i18n/useLessonLocale', () => ({ useLessonLocale: vi.fn() }));
 
-import { createElement } from 'react';
 import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { SvitloThemeProvider } from '@svitlo/ui-kit/theme';
@@ -90,13 +89,9 @@ describe('Layouts', () => {
       window.localStorage.setItem('mui-mode', 'light');
       try {
         render(
-          createElement(SvitloThemeProvider, {
-            direction: 'ltr',
-            children: createElement(LearningLayout, {
-              ...LearningLayout_fx.defaults,
-              children: 'Lesson content',
-            }),
-          }),
+          <SvitloThemeProvider direction="ltr">
+            <LearningLayout {...LearningLayout_fx.defaults}>Lesson content</LearningLayout>
+          </SvitloThemeProvider>,
         );
 
         await userEvent.click(screen.getByRole('button', { name: aria.actions.openSettings }));

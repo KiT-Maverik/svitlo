@@ -70,8 +70,8 @@ test('Course sidebar groups its published Module and Chapter and retains the act
 }) => {
   const response = await request.get('/data/pages/courses/' + courseId + '/toc/uk.json');
   const toc = await response.json();
-  const module = toc.children[0];
-  const chapter = module.children[0];
+  const courseModule = toc.children[0];
+  const chapter = courseModule.children[0];
   await page.goto('/uk/course/' + courseId + '/lesson/uk/' + lessonId);
   await page.getByRole('button', { name: 'Відкрити список тем' }).click();
 
