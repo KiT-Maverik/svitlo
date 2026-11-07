@@ -107,7 +107,7 @@ function fixture() {
       {
         id: 'flash-1', isDefault: true, front: [text('front', 'What travels?', 'Що поширюється?')],
         back: [text('back', 'Light', 'Світло')], hint: [],
-        tags: ['physics'], flags: ['list'], relationships: [
+        tags: ['physics'], flags: [{ type: 'list', count: 2 }, { type: 'custom', value: localized('Review', 'Повторення'), color: 'info', icon: 'bookmark' }], relationships: [
           { relationshipId: 'r-1', type: 'reverse', relatedFlashcardId: 'flash-2', position: 'peer' },
         ],
       },
@@ -159,6 +159,9 @@ function testSuite() {
       assert.match(markdown, /повітря/);
       assert.match(markdown, /relationshipId/);
       assert.match(markdown, /physics/);
+      assert.match(markdown, /Повторення/);
+      assert.match(markdown, /bookmark/);
+      assert.doesNotMatch(markdown, /Review/);
       assert.doesNotMatch(markdown, /Ray caption|Image unavailable|Playback failed|Straight line|First beam/);
       assert.doesNotMatch(markdown, /undefined|\[object Object\]/);
       assert.equal(markdown, renderLessonMarkdown({ lesson, locale: 'uk', languages: ['en', 'uk'], packagePath: 'content/playground' }));
