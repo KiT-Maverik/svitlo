@@ -2,10 +2,13 @@
 
 import type { Flashcard_Locale } from '../../../../data/locale/flashcard';
 
-import { forwardRef, type ReactElement, type ReactNode } from 'react';
+import { forwardRef, type ReactNode } from 'react';
 import { useState } from 'react';
 import Button from '@mui/material/Button';
-import Chip, { type ChipProps } from '@mui/material/Chip';
+import Chip from '@mui/material/Chip';
+import type { FlashcardFlag, Locale_Languages } from '@svitlo/engine/content';
+import { toFlashcardLabel, type FlashcardLabel } from './FlashcardFlags';
+export type { FlashcardLabel } from './FlashcardFlags';
 import Divider from '@mui/material/Divider';
 import Fade from '@mui/material/Fade';
 import IconButton from '@mui/material/IconButton';
@@ -19,16 +22,13 @@ import LockOpenOutlined from '@mui/icons-material/LockOpenOutlined';
 import Stack from '@mui/material/Stack';
 import styles from './Flashcard.module.css';
 
-export interface FlashcardLabel {
-  label: ReactNode;
-  icon?: ReactElement;
-  color?: ChipProps['color'];
-}
-
 export interface FlashcardProps {
   messages: Flashcard_Locale;
   question: ReactNode;
   answer: ReactNode;
+  /** Serializable, type-safe metadata from Flashcard response data. */
+  flags?: readonly FlashcardFlag<'response', Locale_Languages>[];
+  /** Optional presentation-only labels for host-specific UI. */
   labels?: readonly FlashcardLabel[];
   revealed?: boolean;
   disabled?: boolean;
@@ -38,10 +38,22 @@ export interface FlashcardProps {
 }
 
 export const Flashcard = forwardRef<HTMLButtonElement, FlashcardProps>(function Flashcard(
-  { question, answer, messages, labels = [], revealed = false, disabled = false, onReveal, onRate, onAddLabel },
+  {
+    question,
+    answer,
+    messages,
+    flags = [],
+    labels = [],
+    revealed = false,
+    disabled = false,
+    onReveal,
+    onRate,
+    onAddLabel,
+  },
   ref,
 ) {
   const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);
+  const allLabels = [...flags.map(flag => toFlashcardLabel(flag, messages)), ...labels];
   const closeMenu = () => setMenuAnchor(null);
   return (
     <section className={styles.flashStage} aria-label={messages.flashcard.region}>
@@ -63,9 +75,9 @@ export const Flashcard = forwardRef<HTMLButtonElement, FlashcardProps>(function 
               <MoreVert />
             </IconButton>
           </div>
-          {labels.length > 0 && (
+          {allLabels.length > 0 && (
             <div className={styles.flashLabels}>
-              {labels.map((item, index) => (
+              {allLabels.map((item, index) => (
                 <Chip
                   key={index}
                   icon={item.icon}

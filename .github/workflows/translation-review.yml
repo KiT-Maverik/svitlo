@@ -112,19 +112,30 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Install only the TypeScript parser, not the full monorepo
+      - name: Install and build current Lesson creator dependencies
         shell: bash
         run: |
           set -euo pipefail
-          npm install --prefix "$RUNNER_TEMP/agent-tools" --no-save --ignore-scripts --no-audit --no-fund 'typescript@5'
-          mkdir -p node_modules
-          ln -s "$RUNNER_TEMP/agent-tools/node_modules/typescript" node_modules/typescript
+          npm ci --ignore-scripts --no-audit --no-fund
+          npm run package:build --workspace @svitlo/contracts
+          npm run package:build --workspace @svitlo/engine
       - name: Validate Lesson artifact adapter
         run: |
           node --check scripts/generate-lesson-review-artifacts.mjs
           node --test scripts/generate-lesson-review-artifacts.spec.mjs
+          node --check scripts/generate-lessons-markdown.mjs
+          node --check scripts/lib/lesson-markdown.mjs
+          node --test scripts/generate-lessons-markdown.spec.mjs
           node --check scripts/generate-lessons-by-skill.mjs
           node --test scripts/generate-lessons-by-skill.spec.mjs
+      - name: Smoke-test actual Playground Lesson Markdown
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/generate-lessons-markdown.mjs --package content/playground --lesson d3048d21-8690-5255-b62c-984c69ac272c --locale uk --stdout > "$RUNNER_TEMP/lesson-uk.md"
+          grep -q '## Question Bank' "$RUNNER_TEMP/lesson-uk.md"
+          grep -q '## Flashcard Bank' "$RUNNER_TEMP/lesson-uk.md"
+          grep -q 'Quiz uses references' "$RUNNER_TEMP/lesson-uk.md"
       - name: Generate Skills and Lesson Markdown in every supported language
         run: |
           node --check scripts/generate-translation-review-artifacts.mjs
@@ -142,8 +153,7 @@ jobs:
       - name: Remove runner-only data
         if: always()
         run: |
-          rm -rf -- .agent-ci-artifacts "$RUNNER_TEMP/agent-tools"
-          rm -f -- node_modules/typescript
+          rm -rf -- .agent-ci-artifacts "$RUNNER_TEMP/lesson-uk.md"
 
   publish:
     name: Commit review documents to source PR branch
@@ -192,7 +202,7 @@ jobs:
           for (const entry of manifest.generated) {
             const name = entry.path;
             const segments = typeof name === 'string' ? name.split('/') : [];
-            const depth = segments[1] === 'taxonomies' ? 4 : segments[1] === 'lessons' ? 6 : segments[1] === 'lessons-by-skill' ? 3 : -1;
+            const depth = segments[1] === 'taxonomies' ? 4 : segments[1] === 'lessons' ? 6 : segments[1] === 'lessons-by-skill' ? 3 : segments[1] === 'assessment-methods' ? 3 : -1;
             if (typeof name !== 'string' ||
                 segments[0] !== root || segments.length !== depth ||
                 segments.slice(2).some(part => !/^[a-zA-Z0-9._-]+$/.test(part) || part === '..') ||

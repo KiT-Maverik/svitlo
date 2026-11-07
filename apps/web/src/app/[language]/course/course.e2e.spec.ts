@@ -70,13 +70,13 @@ test('Course sidebar groups its published Module and Chapter and retains the act
 }) => {
   const response = await request.get('/data/pages/courses/' + courseId + '/toc/uk.json');
   const toc = await response.json();
-  const module = toc.children[0];
-  const chapter = module.children[0];
+  const courseModule = toc.children[0];
+  const chapter = courseModule.children[0];
   await page.goto('/uk/course/' + courseId + '/lesson/uk/' + lessonId);
   await page.getByRole('button', { name: 'Відкрити список тем' }).click();
 
   const sidebar = page.getByRole('navigation', { name: 'Список тем' });
-  const moduleButton = sidebar.getByRole('button', { name: module.title }).first();
+  const moduleButton = sidebar.getByRole('button', { name: courseModule.title }).first();
   const chapterButton = sidebar.getByRole('button', { name: chapter.title }).first();
   const activeLink = sidebar.locator('a[href="/uk/course/' + courseId + '/lesson/uk/' + lessonId + '"]');
 

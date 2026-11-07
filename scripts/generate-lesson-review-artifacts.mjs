@@ -83,7 +83,7 @@ export function generateLessonReviewArtifacts({ root, output, languages, manifes
       const destination = path.join(output, relative);
       const generated = run(
         process.execPath,
-        [generator, '--package', lesson.package, '--lesson', `${lesson.relative}`, '--locale', locale, '--stdout'],
+        [generator, '--package', lesson.package, '--lesson', lesson.id, '--locale', locale, '--stdout'],
         { cwd: root, encoding: 'utf8', timeout: 180_000, maxBuffer: 32 * 1024 * 1024 },
       );
 
