@@ -14,7 +14,7 @@ resides at `shared/adapters/nextjs` but keeps its stable npm identity
 table below document the prior baseline and should not be treated as current
 Playground ownership.
 
-**Compiled distribution (Playground):** `npm run build --workspace @svitlo/playground`
+**Compiled distribution (Playground):** `npm run package:build --workspace @svitlo/playground`
 produces `content/playground/dist/` including ESM + declarations, Scene styles,
 localized lesson and Skills Analytics JSON and textbook assets. Consuming hosts
 import compiled exports and invoke the selected package's self-contained
@@ -122,19 +122,20 @@ From the monorepo root:
 
 ```bash
 npm ci
-npm run packages:check             # structure, package APIs and clone-baseline audit
-npm run typecheck
+npm run repo:check:packages             # structure, package APIs and clone-baseline audit
+npm run code:check:types
 npm test
 npm run test:components
 npm run test:components --workspace @svitlo/math
-npm run lint
-npm run build
-npm run packages:artifacts:check   # validates built JS/declaration/asset targets
-npm run test:e2e:db                # after Playwright browser install
-npm run test:e2e:platform          # after building Platform
+npm run code:lint:check
+npm run package:build
+npm run app:build
+npm run repo:check:artifacts   # validates built JS/declaration/asset targets
+npm run test:e2e:db --workspace @svitlo/indexdb                # after Playwright browser install
+npm run test:e2e --workspace @svitlo/platform          # after building Platform
 ```
 
-Individual app entrypoints: `npm run dev:informatics`, `npm run dev:physics`, `npm run dev:geography`, `npm run dev:math`, `npm run dev:platform`, `npm run dev --workspace @svitlo/playground`. The `Questions quality` workflow runs root checks and app E2E; the `Native IndexedDB browser controllers` workflow repeats real Chromium checks; `UI Kit Storybook` builds independently.
+Application entrypoints: `npm run app:start:dev --workspace @svitlo/web` (Web host with Playground content) or `npm run app:start:dev --workspace @svitlo/platform` (Platform). Content textbooks are buildable packages, not individual Next.js dev servers. The `Questions quality` workflow runs root checks and app E2E; the `Native IndexedDB browser controllers` workflow repeats real Chromium checks; `UI Kit Storybook` builds independently.
 
 **Evidence limitations:** these checks inspect declared packages, compiled artifacts and running apps **inside the monorepo**. Independent `npm pack`/registry installation, clean-room source extraction, production deployment and real backend/offline services are separate, not-yet-proven tasks.
 

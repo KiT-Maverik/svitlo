@@ -4,20 +4,16 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node ../../scripts/textbook-tooling/build.mjs",
-    "typecheck": "tsc -p tsconfig.json --noEmit",
-    "pretest:publish": "npm run build --workspace @svitlo/psychology",
+    "package:build": "node ../../scripts/textbook-tooling/build.mjs",
+    "code:check:types": "tsc -p tsconfig.json --noEmit",
+    "pretest:publish": "npm run package:build --workspace @svitlo/psychology",
     "test:publish": "node --test ../../scripts/textbook-tooling/test-publish.mjs",
-    "pretest:portability": "npm run build --workspace @svitlo/psychology",
+    "pretest:portability": "npm run package:build --workspace @svitlo/psychology",
     "test:portability": "node ../../scripts/textbook-tooling/check-portability.mjs",
-    "prepack": "npm run build"
+    "prepack": "npm run package:build",
+    "code:format:check": "prettier --check . --ignore-path ../../.prettierignore",
+    "code:format:fix": "prettier --write . --ignore-path ../../.prettierignore"
   },
-  "bin": {
-    "svitlo-psychology": "./dist/publish.mjs"
-  },
-  "files": [
-    "dist"
-  ],
   "dependencies": {
     "@svitlo/engine": "0.0.0"
   },
@@ -26,6 +22,12 @@
     "esbuild": "^0.28.2",
     "typescript": "^5"
   },
+  "bin": {
+    "svitlo-psychology": "./dist/publish.mjs"
+  },
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
       "types": "./dist/textbook/index.d.ts",

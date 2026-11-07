@@ -13,6 +13,7 @@ function resources() {
         data: {
           id,
           slug: 'lesson',
+          skills: [],
           title: null,
           parameters: {
             languages: ['uk'],

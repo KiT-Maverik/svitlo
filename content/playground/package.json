@@ -4,24 +4,20 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "generate:scenes": "node ../../scripts/textbook-tooling/generate-scenes.mjs --write",
-    "check:scenes": "node ../../scripts/textbook-tooling/generate-scenes.mjs --check",
-    "build": "node ../../scripts/textbook-tooling/build.mjs",
-    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "content:generate:scenes": "node ../../scripts/textbook-tooling/generate-scenes.mjs --write",
+    "content:check:scenes": "node ../../scripts/textbook-tooling/generate-scenes.mjs --check",
+    "package:build": "node ../../scripts/textbook-tooling/build.mjs",
+    "code:check:types": "tsc -p tsconfig.json --noEmit",
     "test:components": "vitest run",
     "test:components:coverage": "vitest run --coverage",
-    "pretest:portability": "npm run build --workspace @svitlo/playground",
+    "pretest:portability": "npm run package:build --workspace @svitlo/playground",
     "test:portability": "node ../../scripts/textbook-tooling/check-portability.mjs",
-    "pretest:publish": "npm run build --workspace @svitlo/playground",
+    "pretest:publish": "npm run package:build --workspace @svitlo/playground",
     "test:publish": "node --test ../../scripts/textbook-tooling/test-publish.mjs test-course-output.mjs",
-    "prepack": "npm run build"
+    "prepack": "npm run package:build",
+    "code:format:check": "prettier --check . --ignore-path ../../.prettierignore",
+    "code:format:fix": "prettier --write . --ignore-path ../../.prettierignore"
   },
-  "bin": {
-    "svitlo-playground": "./dist/publish.mjs"
-  },
-  "files": [
-    "dist"
-  ],
   "dependencies": {
     "@svitlo/engine": "0.0.0",
     "@svitlo/ui-kit": "0.0.0"
@@ -40,6 +36,12 @@
     "@mui/material": "^9.5.0",
     "react": "19.3.0"
   },
+  "bin": {
+    "svitlo-playground": "./dist/publish.mjs"
+  },
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
       "types": "./dist/textbook/index.d.ts",

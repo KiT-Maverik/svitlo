@@ -28,10 +28,10 @@ jobs:
           node-version: '24'
           cache: npm
       - run: npm ci
-      - run: npm run build --workspace @svitlo/mobile
-      - run: npm run verify:bundle --workspace @svitlo/mobile
-      - run: npm run typecheck --workspace @svitlo/mobile
-      - run: npm run lint --workspace @svitlo/adapter-capacitor
+      - run: npm run app:build --workspace @svitlo/mobile
+      - run: npm run app:check:bundle --workspace @svitlo/mobile
+      - run: npm run code:check:types --workspace @svitlo/mobile
+      - run: npm run code:lint:check --workspace @svitlo/adapter-capacitor
       - run: npm run test --workspace @svitlo/mobile
       - run: npm exec --workspace @svitlo/mobile -- playwright install chromium --with-deps
       - run: npm run test:e2e --workspace @svitlo/mobile
@@ -51,7 +51,7 @@ jobs:
           distribution: temurin
           java-version: '21'
       - run: npm ci
-      - run: npm run build --workspace @svitlo/mobile
+      - run: npm run app:build --workspace @svitlo/mobile
       - run: npm exec --workspace @svitlo/mobile -- cap sync android
       - name: Compile debug APK without signing
         working-directory: apps/mobile/android
@@ -68,7 +68,7 @@ jobs:
           node-version: '24'
           cache: npm
       - run: npm ci
-      - run: npm run build --workspace @svitlo/mobile
+      - run: npm run app:build --workspace @svitlo/mobile
       - run: npm exec --workspace @svitlo/mobile -- cap sync ios
       - name: Build simulator application without code signing
         run: xcodebuild -workspace apps/mobile/ios/App/App.xcworkspace -scheme App -configuration Debug -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build

@@ -11,9 +11,9 @@ exported. Build and publish only resources that actually exist.
 From the repository root after `npm ci`:
 
 ```bash
-npm run build --workspace @svitlo/informatics
-npm run typecheck --workspace @svitlo/informatics
-npm run lint --workspace @svitlo/informatics
+npm run package:build --workspace @svitlo/informatics
+npm run code:check:types --workspace @svitlo/informatics
+npm run code:lint:check --workspace @svitlo/informatics
 npm run test:publish --workspace @svitlo/informatics
 npm run test:portability --workspace @svitlo/informatics
 ```

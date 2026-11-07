@@ -29,8 +29,9 @@ the instructions and resources relevant to that task. **Do not assume that
 ### Studio resource map
 
 - [`studio/rules/`](studio/rules/) — repository and GitHub workflow rules.
-  In particular, follow the [GitHub labels and naming policy](studio/rules/github-labels-and-naming.md)
-  when working with Issues, PRs, or branches.
+  Follow the [GitHub labels and naming policy](studio/rules/github-labels-and-naming.md)
+  for Issues, PRs, and branches, and the [npm package script naming convention](studio/rules/package-scripts.md)
+  when creating or changing package scripts, build tooling, or CI invocations.
 - [`studio/personas/`](studio/personas/) — role-specific responsibilities
   and review criteria (coding agent, development reviewer, QA reviewer,
   methodologist, screenwriter, technical translator). Choose the persona(s)

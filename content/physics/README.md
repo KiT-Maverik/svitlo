@@ -13,8 +13,8 @@ Existing `docs/` are editorial sources, not application UI.
 From the monorepo root, after `npm ci`:
 
 ```bash
-npm run build --workspace @svitlo/physics
-npm run typecheck --workspace @svitlo/physics
+npm run package:build --workspace @svitlo/physics
+npm run code:check:types --workspace @svitlo/physics
 npm run test:publish --workspace @svitlo/physics
 npm run test:portability --workspace @svitlo/physics
 ```

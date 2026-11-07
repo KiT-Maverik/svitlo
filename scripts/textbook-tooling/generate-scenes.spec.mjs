@@ -44,7 +44,7 @@ test('stale generated registry fails check without being rewritten', async t => 
   add('c', 'gamma-scene');
   await assert.rejects(
     syncSceneRegistry(root, '--check', '@svitlo/example'),
-    /Stale Scene registry; run npm run generate:scenes --workspace @svitlo\/example/,
+    /Stale Scene registry; run npm run content:generate:scenes --workspace @svitlo\/example/,
   );
   assert.equal(readFileSync(loader, 'utf8'), previous);
   await syncSceneRegistry(root, '--write', '@svitlo/example');

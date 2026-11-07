@@ -11,12 +11,11 @@ exported. Build and publish only resources that actually exist.
 From the repository root after `npm ci`:
 
 ```bash
-npm run build --workspace @svitlo/geography
-npm run typecheck --workspace @svitlo/geography
-npm run lint --workspace @svitlo/geography
+npm run package:build --workspace @svitlo/geography
+npm run code:check:types --workspace @svitlo/geography
+npm run code:lint:check --workspace @svitlo/geography
 npm run test:publish --workspace @svitlo/geography
 npm run test:portability --workspace @svitlo/geography
-npm run test:locales --workspace @svitlo/geography
 ```
 
 `build` generates localized JSON using the shared Engine-based Skills Analytics generator,

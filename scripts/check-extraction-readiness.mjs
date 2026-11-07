@@ -182,7 +182,7 @@ assert(
   'UI Kit Storybook must not read application or monorepo source paths',
 );
 assert(
-  readJson('shared/ui-kit/package.json').scripts?.['build-storybook'],
+  readJson('shared/ui-kit/package.json').scripts?.['storybook:build'],
   'UI Kit must own the Storybook build command',
 );
 for (const application of [
@@ -210,7 +210,7 @@ for (const application of [
   );
   const appManifest = readJson(application + '/package.json');
   assert(
-    !appManifest.scripts?.storybook && !appManifest.scripts?.['build-storybook'],
+    !appManifest.scripts?.['storybook:start'] && !appManifest.scripts?.['storybook:build'],
     'Storybook commands must be owned by UI Kit: ' + application,
   );
 }

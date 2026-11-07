@@ -73,7 +73,7 @@ assert(
 );
 const quality = readFileSync(resolve(root, '.github/workflows/questions.yml'), 'utf8');
 assert(
-  quality.includes('test:e2e:platform') && quality.includes('packages:artifacts:check'),
+  quality.includes('test:e2e --workspace @svitlo/platform') && quality.includes('repo:check:artifacts'),
   'Questions CI must verify Platform smoke and built exports',
 );
 const db = readFileSync(resolve(root, '.github/workflows/db-controllers-e2e.yml'), 'utf8');

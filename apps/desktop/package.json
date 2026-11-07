@@ -1,27 +1,29 @@
 {
   "name": "@svitlo/desktop",
   "version": "0.0.0",
+  "description": "Offline-capable Electron host for Svitlo textbooks",
   "private": true,
   "type": "module",
-  "description": "Offline-capable Electron host for Svitlo textbooks",
-  "main": "dist-main/main.cjs",
   "scripts": {
-    "prepare:content": "node scripts/prepare-content.mjs",
-    "build:main": "node scripts/build-main.mjs",
-    "predev": "npm run prepare:content && npm run build:main",
-    "dev": "node scripts/dev.mjs",
-    "prebuild": "npm run prepare:content",
-    "build": "vite build && npm run build:main",
-    "start": "electron .",
-    "typecheck": "tsc -p tsconfig.json --noEmit",
-    "lint": "eslint .",
+    "app:prepare:content": "node scripts/prepare-content.mjs",
+    "app:build:main": "node scripts/build-main.mjs",
+    "preapp:start:dev": "npm run app:prepare:content && npm run app:build:main",
+    "app:start:dev": "node scripts/dev.mjs",
+    "preapp:build": "npm run app:prepare:content",
+    "app:build": "vite build && npm run app:build:main",
+    "app:start": "electron .",
+    "code:check:types": "tsc -p tsconfig.json --noEmit",
+    "code:lint:check": "eslint .",
     "test": "node --test tests/packaged-content.spec.mjs",
     "test:smoke": "playwright test tests/electron.smoke.spec.mjs",
-    "package": "npm run build && electron-builder --dir --publish never",
-    "package:win": "npm run build && electron-builder --win --publish never",
-    "package:mac": "npm run build && electron-builder --mac --publish never",
-    "package:linux": "npm run build && electron-builder --linux --publish never",
-    "test:packaged": "playwright test tests/electron.packaged.spec.mjs"
+    "app:pack": "npm run app:build && electron-builder --dir --publish never",
+    "app:pack:win": "npm run app:build && electron-builder --win --publish never",
+    "app:pack:mac": "npm run app:build && electron-builder --mac --publish never",
+    "app:pack:linux": "npm run app:build && electron-builder --linux --publish never",
+    "test:packaged": "playwright test tests/electron.packaged.spec.mjs",
+    "code:format:check": "prettier --check . --ignore-path ../../.prettierignore",
+    "code:format:fix": "prettier --write . --ignore-path ../../.prettierignore",
+    "code:lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "@svitlo/adapter-electron": "0.0.0",
@@ -55,5 +57,6 @@
     "@eslint/js": "^9.39.5",
     "typescript-eslint": "^8.72.0",
     "playwright": "^1.64.1"
-  }
+  },
+  "main": "dist-main/main.cjs"
 }

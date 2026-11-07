@@ -18,7 +18,7 @@
 ## Current audit results
 
 - **Workspace set:** eight packages, including the not-yet-implemented `@svitlo/server` placeholder, verified against `package.json` and `package-lock.json`.
-- **Known cloned application files:** 67 exact same-relative-path `content/math/src` ↔ `content/playground/src` blob pairs at audit time. See `scripts/known-app-duplicates.json`. Most are lesson composition, demo/API pages, locale adapters and related tests. **Not fully deduplicated.** New identical paths outside the reviewed baseline must fail `packages:check`.
+- **Known cloned application files:** 67 exact same-relative-path `content/math/src` ↔ `content/playground/src` blob pairs at audit time. See `scripts/known-app-duplicates.json`. Most are lesson composition, demo/API pages, locale adapters and related tests. **Not fully deduplicated.** New identical paths outside the reviewed baseline must fail `repo:check:packages`.
 - **No obsolete owners:** `src/db`, app-local NavbarPreferences and app-local DB-browser harness/config should not reappear.
 - **Dependency graph:** Contracts → Engine and IndexDB; UI Kit → Engine; apps consume public interfaces, not each other's sources. Platform has no `@svitlo/*` runtime dependencies; Server is a manifest-only placeholder.
 - **Data compatibility:** IndexedDB `svitlo-progress` version 1, `lessonStates` and `quizStates` are unchanged across extraction.
@@ -37,17 +37,18 @@
 
 ```bash
 npm ci
-npm run packages:check
-npm run typecheck
+npm run repo:check:packages
+npm run code:check:types
 npm test
 npm run test:components
 npm run test:components --workspace @svitlo/math
-npm run lint
-npm run build
-npm run packages:artifacts:check
+npm run code:lint:check
+npm run package:build
+npm run app:build
+npm run repo:check:artifacts
 npx playwright install chromium
-npm run test:e2e:db
-npm run test:e2e:platform
+npm run test:e2e:db --workspace @svitlo/indexdb
+npm run test:e2e --workspace @svitlo/platform
 ```
 
 Each stage PR must pass its own CI on its own head; earlier green runs do **not** prove this PR. Do not merge a stacked child before its parent. Re-run audits if the base is changed. See [canonical monorepo guide](./monorepo-and-textbook.md).

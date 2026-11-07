@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Canonical Node.js textbook build pipeline. Run via each content package's
- * npm "build" script. Not part of the textbook's runtime or packed source.
+ * npm "package:build" script. Not part of the textbook's runtime or packed source.
  */
 import {
   existsSync,
@@ -71,11 +71,11 @@ for (const [workspace, compiled] of [
     ? [['@svitlo/ui-kit', 'shared/ui-kit/dist/src/index.js']]
     : []),
 ]) {
-  if (!existsSync(join(repo, compiled))) run('npm', ['run', 'build', '--workspace', workspace]);
+  if (!existsSync(join(repo, compiled))) run('npm', ['run', 'package:build', '--workspace', workspace]);
 }
 // Some textbooks expose placeholder Scene registries before authoring real Scenes.
 // Enable generated-registry verification explicitly via the shared npm check.
-if (hasScenes && pkg.scripts?.['check:scenes']) {
+if (hasScenes && pkg.scripts?.['content:check:scenes']) {
   run(process.execPath, [join(repo, 'scripts/textbook-tooling/generate-scenes.mjs'), '--check'], root);
 }
 

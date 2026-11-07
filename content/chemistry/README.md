@@ -7,8 +7,8 @@
 From the repository root after `npm ci`:
 
 ```bash
-npm run build --workspace @svitlo/chemistry
-npm run typecheck --workspace @svitlo/chemistry
+npm run package:build --workspace @svitlo/chemistry
+npm run code:check:types --workspace @svitlo/chemistry
 npm run test:publish --workspace @svitlo/chemistry
 npm run test:portability --workspace @svitlo/chemistry
 ```
