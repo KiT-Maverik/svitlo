@@ -19,9 +19,7 @@ export default function AppDocument({
       <body>
         <InitColorSchemeScript attribute="data" />
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-          <SvitloThemeProvider direction={direction}>
-            {children}
-          </SvitloThemeProvider>
+          <SvitloThemeProvider direction={direction}>{children}</SvitloThemeProvider>
         </AppRouterCacheProvider>
       </body>
     </html>

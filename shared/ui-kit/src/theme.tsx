@@ -28,11 +28,12 @@ const themes = {
 /** Paint-only transitions; MUI component-specific movement stays authoritative. */
 const themeTransitions = {
   '@media (prefers-reduced-motion: no-preference)': {
-    ':where(body, .MuiBox-root, .MuiPaper-root, .MuiTypography-root, .MuiSvgIcon-root, .MuiButton-root, .MuiIconButton-root, .MuiInputBase-root, .MuiOutlinedInput-notchedOutline, .MuiDivider-root, .MuiChip-root, .MuiListItemButton-root, .MuiTab-root, .MuiAlert-root)': {
-      transitionProperty: 'background-color, color, border-color, box-shadow, fill, stroke',
-      transitionDuration: '280ms',
-      transitionTimingFunction: 'ease-in-out',
-    },
+    ':where(body, .MuiBox-root, .MuiPaper-root, .MuiTypography-root, .MuiSvgIcon-root, .MuiButton-root, .MuiIconButton-root, .MuiInputBase-root, .MuiOutlinedInput-notchedOutline, .MuiDivider-root, .MuiChip-root, .MuiListItemButton-root, .MuiTab-root, .MuiAlert-root)':
+      {
+        transitionProperty: 'background-color, color, border-color, box-shadow, fill, stroke',
+        transitionDuration: '280ms',
+        transitionTimingFunction: 'ease-in-out',
+      },
   },
 } as const;
 
@@ -45,12 +46,7 @@ export type SvitloThemeProviderProps = {
   noSsr?: boolean;
 };
 
-export function SvitloThemeProvider({
-  children,
-  direction,
-  defaultMode,
-  noSsr,
-}: SvitloThemeProviderProps) {
+export function SvitloThemeProvider({ children, direction, defaultMode, noSsr }: SvitloThemeProviderProps) {
   return (
     <ThemeProvider theme={themes[direction]} defaultMode={defaultMode} noSsr={noSsr}>
       <CssBaseline />
