@@ -29,6 +29,7 @@ function TestLayout({ messages, ...props }: LessonLearningLayoutProps) {
       <button onClick={() => (releaseTestBlocker = actions.blockNext('test-owner'))}>Block Next</button>
       <button onClick={() => releaseTestBlocker?.()}>Release Next</button>
       <button onClick={() => actions.updateSectionParams({ allowNavigation: true })}>Enable navigation</button>
+      <output data-testid="supported-lesson-languages">{props.supportedLessonLanguages?.join(',')}</output>
       <LearningLayout {...props} locale="en-US" messages={messages.learningLayout} />
     </>
   );
@@ -39,7 +40,7 @@ function response(required: boolean, allowNavigation = true): LessonView {
     id: 'lesson-test',
     title: 'Light lesson',
     locale: { code: 'en' },
-    parameters: { sections: { allowNavigation, allowSkipping: true, showIndexes: true } },
+    parameters: { languages: ['en', 'uk'], sections: { allowNavigation, allowSkipping: true, showIndexes: true } },
     sections: [
       {
         id: 'intro',
@@ -90,6 +91,12 @@ function showLesson(required = true, allowNavigation = true, editableSectionPara
 }
 
 describe('LessonController scoped state and navigation', () => {
+  it('passes only authored lesson languages to the Quick Settings layout', () => {
+    showLesson();
+    const supported = screen.getByTestId('supported-lesson-languages').textContent?.split(',');
+    expect(new Set(supported)).toEqual(new Set(['en-US', 'uk-UA']));
+  });
+
   it('blocks Next and direct forward navigation until required checkpoints are completed', () => {
     showLesson();
     const bottom = screen.getByRole('navigation', { name: enUiKitMessages.learningLayout.navigation.bottom });
@@ -343,7 +350,7 @@ describe('multiple Quiz Sections', () => {
     id: 'multi-quiz-lesson',
     title: 'Multiple quizzes',
     locale: { code: 'en' as const },
-    parameters: { sections: { allowNavigation: true, allowSkipping: true, showIndexes: true } },
+    parameters: { languages: ['en'], sections: { allowNavigation: true, allowSkipping: true, showIndexes: true } },
     sections: [
       quiz('quiz-first'),
       quiz('quiz-second'),
