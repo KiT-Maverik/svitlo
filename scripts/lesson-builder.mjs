@@ -377,7 +377,7 @@ function verifySkills(workspace, skills) {
       if (entry.isDirectory()) walk(full);
       else if (entry.isFile() && full.endsWith('.data.ts') && full.includes(path.sep + 'skills' + path.sep)) {
         const text = read(full);
-        for (const match of text.matchAll(/\bid:\s*['"]([0-9a-f]{8}-[0-9a-f-]{27})['"]/g))
+        for (const match of text.matchAll(/\bid:\s*['"]([0-9a-f-]{36})['"]/g))
           if (exactUuid.test(match[1])) known.add(match[1]);
       }
     }
@@ -470,7 +470,7 @@ function renderLesson(input, model) {
     if (section.type === 'quiz')
       return 'createSection<Languages>()(' + JSON.stringify(section, null, 2) + ')';
     const { content: blocks, ...meta } = section;
-    return 'createSection<Languages>()({ ...' + JSON.stringify(meta, null, 2) +
+    return 'createSection<Languages>()({ ...(' + JSON.stringify(meta, null, 2) + ' as const)' +
       ', content: [' + blocks.map(block => 'createContentBlock<Languages>()(' +
         JSON.stringify(block, null, 2) + ')').join(',\n') + '] })';
   });
