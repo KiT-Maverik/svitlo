@@ -112,7 +112,11 @@ describe('Course entity creators', () => {
     assert.equal((base.toc as { title?: string }).title, undefined);
     assert.equal(JSON.stringify(locale.toc).includes('course-1'), false);
     assert.deepEqual(mergeLessonResources(base.toc, locale.toc), toc);
-    assert.deepEqual(mergeLessonResources(base.episodes['episode-1'], locale.episodes['episode-1']), episodeData);
+    assert.deepEqual(mergeLessonResources(base.episodes['episode-1'], locale.episodes['episode-1']), {
+      ...episodeData,
+      title: { ...title, value: 'Подорож' },
+      sections: [{ ...episodeData.sections[0], title: 'Історія', navigationLabel: 'Історія' }],
+    });
   });
 
   it('accepts standalone Lessons with extra locales while publishing only Course locales', () => {
