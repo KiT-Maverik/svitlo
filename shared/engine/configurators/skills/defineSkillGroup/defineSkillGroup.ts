@@ -1,8 +1,4 @@
-import {
-  skillGroup_Config_Schema,
-  skillGroup_Props_Schema,
-  type SkillGroup_Config,
-} from './defineSkillGroup.schemas';
+import { skillGroup_Config_Schema, skillGroup_Props_Schema, type SkillGroup_Config } from './defineSkillGroup.schemas';
 
 export function defineSkillGroupMethod(config: SkillGroup_Config) {
   const { id, description, slug, name, skills } = config;
@@ -21,7 +17,7 @@ export function defineSkillGroupMethod(config: SkillGroup_Config) {
         props: (props: unknown) => skillGroup_Props_Schema.safeParse(props).success,
       },
     },
-    skill:
+    skill: Object.fromEntries(skills.map((skill): [string, typeof skill] => [skill.config.base.slug, skill])),
   };
 }
 
