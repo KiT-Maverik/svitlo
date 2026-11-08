@@ -4,12 +4,27 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "target": "ES2022",
-    "rootDir": "./src",
+    "rootDir": ".",
     "outDir": "./dist",
     "declaration": true,
     "noEmit": false,
     "incremental": false
   },
-  "include": ["src/**/*.ts"],
+  "include": [
+    "index.ts",
+    "builders/**/*.ts",
+    "configurators/**/*.ts",
+    "content/**/*.ts",
+    "data/**/*.ts",
+    "definitions/**/*.ts",
+    "generation/**/*.ts",
+    "lesson/**/*.ts",
+    "lessons/**/*.ts",
+    "localization/**/*.ts",
+    "schemas/**/*.ts",
+    "taxonomy/**/*.ts",
+    "types/**/*.ts",
+    "utils/**/*.ts"
+  ],
   "exclude": ["node_modules", "dist", "**/*.spec.ts", "**/*.unit.spec.ts", "**/*.typecheck.ts"]
 }

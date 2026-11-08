@@ -1,5 +1,4 @@
-import { howLightMoves_languages, type HowLightMoves_Languages } from '../../../constants';
-import { sceneLocalesToData } from '../../../sceneLocales';
+import type { HowLightMoves_Languages } from '../../../constants';
 import type { ContentBlock_Scene } from '@svitlo/engine/content';
 
 const en = {
@@ -683,44 +682,42 @@ const zh: Locale = {
   },
 };
 
-export const lightPropagationSimulation_Locale: Record<HowLightMoves_Languages[number], Locale> = {
-  en,
-  ar,
-  be,
-  bn,
-  de,
-  es,
-  et,
-  fr,
-  he,
-  hi,
-  id,
-  ja,
-  ka,
-  kk,
-  ko,
-  lt,
-  lv,
-  mr,
-  ms,
-  pl,
-  pt,
-  qm,
-  ta,
-  te,
-  tr,
-  uk,
-  ur,
-  vi,
-  zh,
-};
-
 export type LightPropagationSimulation_ContentBlock<ConfigType extends 'definition' | 'data' | 'response'> =
   ContentBlock_Scene<ConfigType, HowLightMoves_Languages, Locale>;
 
-export const lightPropagationSimulationData = {
+export const lightPropagationSimulation = {
   type: 'scene',
-  id: 'how-light-moves-scene-propagation',
-  slug: 'lightPropagationSimulation' as const,
-  locales: sceneLocalesToData(howLightMoves_languages, lightPropagationSimulation_Locale),
+  id: '968926d3-7b15-4575-8f57-a5a2a5054783',
+  slug: 'lightPropagationSimulation',
+  locales: {
+    en,
+    ar,
+    be,
+    bn,
+    de,
+    es,
+    et,
+    fr,
+    he,
+    hi,
+    id,
+    ja,
+    ka,
+    kk,
+    ko,
+    lt,
+    lv,
+    mr,
+    ms,
+    pl,
+    pt,
+    qm,
+    ta,
+    te,
+    tr,
+    uk,
+    ur,
+    vi,
+    zh,
+  },
 } satisfies LightPropagationSimulation_ContentBlock<'data'>;

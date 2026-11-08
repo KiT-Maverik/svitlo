@@ -1,5 +1,5 @@
 import { createLesson } from '@svitlo/engine/builders';
-import { howLightMoves_Data } from '../../c/d3048d21-8690-5255-b62c-984c69ac272c/howLightMoves.data';
+import { howLightMoves_Data } from '../../c/d3048d21-8690-5255-b62c-984c69ac272c';
 import type { HowLightMoves_Languages } from '../../c/d3048d21-8690-5255-b62c-984c69ac272c/constants';
 
 /** Playground-only structural copy: shares the existing approved section data and Scenes. */

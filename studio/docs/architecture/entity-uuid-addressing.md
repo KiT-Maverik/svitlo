@@ -45,6 +45,10 @@ The UUID is minted once upon creation (UUIDv4/v5/v7 supported); scripts may use 
 
 **Skills are explicitly excluded from the filesystem migration.** Skills retain their Domain → Group → Skill authored hierarchy and published domain/locale resources. This utility can be reused wherever an ID-addressed collection is intentionally adopted; do not relocate Skills merely because they have UUIDs.
 
+## Scene convention
+
+Textbook-owned React Scenes use `content/<book>/scenes/<bucket>/<uuid>/`, with the path returned by `resolveEntityPath(scene.id)`. The generated static Scene registry uses that same UUID as its key and validates every Scene directory against the canonical path. The authored Scene block and localized response retain the UUID; there is no separate renderer key. The Scene's slug remains human-readable metadata and does not determine its path.
+
 ## Editorial workflows
 
 - Create Lesson: assign its immutable UUID, use the Engine resolver to compute the directory, then write the Brief/Content there. Never pick a numbered bucket based on capacity or assign a manually stored `group`.

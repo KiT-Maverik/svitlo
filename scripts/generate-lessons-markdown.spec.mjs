@@ -102,7 +102,6 @@ function fixture() {
             id: 'scene-id',
             slug: 'simulation',
             type: 'scene',
-            rendererKey: 'ray-simulator',
             locales: { controls: { reset: localized('Reset', 'Скинути') } },
           },
           {
@@ -215,7 +214,7 @@ function testSuite() {
       assert.match(markdown, /## Question Bank/);
       assert.match(markdown, /## Flashcard Bank/);
       assert.match(markdown, /Скинути/);
-      assert.match(markdown, /rendererKey/);
+      assert.doesNotMatch(markdown, /rendererKey/);
       assert.match(markdown, /Промінь/);
       assert.match(markdown, /Підпис променя/);
       assert.match(markdown, /Зображення недоступне/);

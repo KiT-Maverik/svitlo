@@ -79,7 +79,8 @@ test('the Course-only gallery contains all supported renderable blocks and publi
     gallery.content.find(block => block.type === 'audio').fileLocation,
     '/textbooks/playground/demo-tone.wav',
   );
-  assert.equal(gallery.content.find(block => block.type === 'scene').id, 'how-light-moves-scene-ray');
+  assert.equal(gallery.content.find(block => block.type === 'scene').id, '72d22bea-d787-4c6d-9a83-144830c6d325');
+  assert.equal('rendererKey' in gallery.content.find(block => block.type === 'scene'), false);
   assert.equal(gallery.content.find(block => block.type === 'checkpoint').items[0].answer[0].type, 'text');
   for (const file of ['whale.png', 'carousel-light.svg', 'carousel-prism.svg', 'barabaka.mp4', 'demo-tone.wav']) {
     assert(files.includes('textbooks/playground/' + file), 'Missing published media ' + file);

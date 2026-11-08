@@ -1,5 +1,4 @@
-import { howLightMoves_languages, type HowLightMoves_Languages } from '../../../constants';
-import { sceneLocalesToData } from '../../../sceneLocales';
+import type { HowLightMoves_Languages } from '../../../constants';
 import type { ContentBlock_Scene } from '@svitlo/engine/content';
 
 const en = {
@@ -987,47 +986,45 @@ const zh: Locale = {
   },
 };
 
-export const showcase_Locale: Record<HowLightMoves_Languages[number], Locale> = {
-  en,
-  ar,
-  be,
-  bn,
-  de,
-  es,
-  et,
-  fr,
-  he,
-  hi,
-  id,
-  ja,
-  ka,
-  kk,
-  ko,
-  lt,
-  lv,
-  mr,
-  ms,
-  pl,
-  pt,
-  qm,
-  ta,
-  te,
-  tr,
-  uk,
-  ur,
-  vi,
-  zh,
-};
-
 export type Showcase_ContentBlock<ConfigType extends 'definition' | 'data' | 'response'> = ContentBlock_Scene<
   ConfigType,
   HowLightMoves_Languages,
   Locale
 >;
 
-export const showcaseData = {
+export const showcase = {
   type: 'scene',
-  id: 'how-light-moves-scene-showcase',
-  slug: 'showcase' as const,
-  locales: sceneLocalesToData(howLightMoves_languages, showcase_Locale),
+  id: '2abe959c-0908-4779-afbb-b2da6c1aa4d4',
+  slug: 'showcase',
+  locales: {
+    en,
+    ar,
+    be,
+    bn,
+    de,
+    es,
+    et,
+    fr,
+    he,
+    hi,
+    id,
+    ja,
+    ka,
+    kk,
+    ko,
+    lt,
+    lv,
+    mr,
+    ms,
+    pl,
+    pt,
+    qm,
+    ta,
+    te,
+    tr,
+    uk,
+    ur,
+    vi,
+    zh,
+  },
 } satisfies Showcase_ContentBlock<'data'>;

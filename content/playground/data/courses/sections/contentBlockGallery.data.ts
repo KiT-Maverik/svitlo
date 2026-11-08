@@ -1,6 +1,6 @@
 import { createSection, createContentBlock } from '@svitlo/engine/builders';
 import type { HowLightMoves_Languages } from '../../lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/constants';
-import { lightRayDiagramData } from '../../lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/sections/theory/scenes/lightRayDiagram';
+import { lightRayDiagram } from '../../lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/sections/theory/scenes/lightRayDiagram';
 
 /**
  * Course-only content fixture. It demonstrates every ContentBlock renderer in
@@ -10,7 +10,7 @@ import { lightRayDiagramData } from '../../lessons/c/d3048d21-8690-5255-b62c-984
  */
 export const contentBlockGallery_Creator = createSection<HowLightMoves_Languages>()({
   id: '4b60ac47-8d6e-55f1-8aaa-641abe18550d',
-  slug: 'contentBlockGallery' as const,
+  slug: 'contentBlockGallery',
   type: 'learningFlow',
   title: 'Content blocks · gallery',
   navigationLabel: 'Content blocks',
@@ -104,7 +104,7 @@ export const contentBlockGallery_Creator = createSection<HowLightMoves_Languages
     }),
     // Use an existing registered Scene so this course-only fixture needs no
     // separate Scene implementation or changes to the generated Scene registry.
-    createContentBlock<HowLightMoves_Languages>()(lightRayDiagramData),
+    createContentBlock<HowLightMoves_Languages>()(lightRayDiagram),
     createContentBlock<HowLightMoves_Languages>()({
       id: 'playground-gallery-checkpoint',
       slug: 'interactiveCheckpoint',

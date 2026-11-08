@@ -5,14 +5,18 @@ import { createSceneRegistry, type SceneModule } from './createSceneRegistry';
 type SceneComponent = NonNullable<ReturnType<SceneRegistry>>;
 
 const sceneImports: Readonly<Record<string, () => Promise<SceneModule>>> = {
-  'how-light-moves-scene-propagation': () =>
-    import('./n/how-light-moves-scene-propagation').then(mod => ({
+  '2abe959c-0908-4779-afbb-b2da6c1aa4d4': () =>
+    import('./4/2abe959c-0908-4779-afbb-b2da6c1aa4d4').then(mod => ({
       default: mod.default as unknown as SceneComponent,
     })),
-  'how-light-moves-scene-ray': () =>
-    import('./y/how-light-moves-scene-ray').then(mod => ({ default: mod.default as unknown as SceneComponent })),
-  'how-light-moves-scene-showcase': () =>
-    import('./e/how-light-moves-scene-showcase').then(mod => ({ default: mod.default as unknown as SceneComponent })),
+  '72d22bea-d787-4c6d-9a83-144830c6d325': () =>
+    import('./5/72d22bea-d787-4c6d-9a83-144830c6d325').then(mod => ({
+      default: mod.default as unknown as SceneComponent,
+    })),
+  '968926d3-7b15-4575-8f57-a5a2a5054783': () =>
+    import('./3/968926d3-7b15-4575-8f57-a5a2a5054783').then(mod => ({
+      default: mod.default as unknown as SceneComponent,
+    })),
 };
 
 const registry = createSceneRegistry(sceneImports);

@@ -1,5 +1,4 @@
-import { howLightMoves_languages, type HowLightMoves_Languages } from '../../../constants';
-import { sceneLocalesToData } from '../../../sceneLocales';
+import type { HowLightMoves_Languages } from '../../../constants';
 import type { ContentBlock_Scene } from '@svitlo/engine/content';
 
 const en = {
@@ -352,47 +351,45 @@ const zh: Locale = {
   },
 };
 
-export const lightRayDiagram_Locale: Record<HowLightMoves_Languages[number], Locale> = {
-  en,
-  ar,
-  be,
-  bn,
-  de,
-  es,
-  et,
-  fr,
-  he,
-  hi,
-  id,
-  ja,
-  ka,
-  kk,
-  ko,
-  lt,
-  lv,
-  mr,
-  ms,
-  pl,
-  pt,
-  qm,
-  ta,
-  te,
-  tr,
-  uk,
-  ur,
-  vi,
-  zh,
-};
-
 export type LightRayDiagram_ContentBlock<ConfigType extends 'definition' | 'data' | 'response'> = ContentBlock_Scene<
   ConfigType,
   HowLightMoves_Languages,
   Locale
 >;
 
-export const lightRayDiagramData = {
+export const lightRayDiagram = {
   type: 'scene',
-  id: 'how-light-moves-scene-ray',
-  slug: 'lightRayDiagram' as const,
-  locales: sceneLocalesToData(howLightMoves_languages, lightRayDiagram_Locale),
+  id: '72d22bea-d787-4c6d-9a83-144830c6d325',
+  slug: 'lightRayDiagram',
+  locales: {
+    en,
+    ar,
+    be,
+    bn,
+    de,
+    es,
+    et,
+    fr,
+    he,
+    hi,
+    id,
+    ja,
+    ka,
+    kk,
+    ko,
+    lt,
+    lv,
+    mr,
+    ms,
+    pl,
+    pt,
+    qm,
+    ta,
+    te,
+    tr,
+    uk,
+    ur,
+    vi,
+    zh,
+  },
 } satisfies LightRayDiagram_ContentBlock<'data'>;

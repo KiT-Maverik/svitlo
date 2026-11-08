@@ -13,7 +13,6 @@ const received: string[] = [];
 const celebration: EventScene = {
   id: 'event-celebration',
   type: 'scene',
-  rendererKey: 'event-celebration',
   locales: { title: 'Great work!' },
 };
 
