@@ -1,18 +1,15 @@
 import { z } from 'zod';
 
-import { locale_All_Schema } from '#schemas';
+import {locale_All_Schema, localeText_Schema} from '#schemas';
 
-import type { TaggedDefinition } from '../structured';
-import {textProps_Schema} from "../contentBlocks/defineText/defineText.schema";
-
-export const assessmentMethodSchema = z.strictObject({
-  description: locale_All_Schema,
+export const createAssessmentMethodSchema = (mode: 'config' | 'props') => z.strictObject({
+  description: mode === 'config' ? locale_All_Schema : localeText_Schema,
   id: z.uuid(),
   slug: z.string().min(1),
-  title: locale_All_Schema,
+  title: mode === 'config' ? locale_All_Schema : localeText_Schema,
 });
 
-export type AssessmentMethod_Config = z.infer<typeof assessmentMethodSchema>;
+export type AssessmentMethod_Config = z.infer<typeof createAssessmentMethodSchema>;
 
 export function defineAssessmentMethod(config: AssessmentMethod_Config) {
   const { id, description, slug, title } = config;
@@ -37,12 +34,11 @@ export function defineAssessmentMethod(config: AssessmentMethod_Config) {
         return result
       },
       test: {
-        config: () =>
-          assessmentMethodSchema.safeParse(config).success,
-        props: (props: unknown) => textProps_Schema.safeParse(props).success,
+        config: () => createAssessmentMethodSchema('config').safeParse(config).success,
+        props: (props: unknown) => createAssessmentMethodSchema('props').safeParse(props).success,
       },
     },
   };
 }
 
-export type AssessmentMethodDefinition = TaggedDefinition<'assessmentMethod'>;
+export type AssessmentMethod_Definition = ReturnType<typeof defineAssessmentMethod>;
