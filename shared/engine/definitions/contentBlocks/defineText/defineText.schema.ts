@@ -1,10 +1,15 @@
 import { z } from 'zod';
 
-import type { Locale_Languages } from '@svitlo/contracts';
+import {
+  createLocaleSubsetSchema,
+  localeText_Schema,
+  nonTranslatableText_Schema,
+  type LanguageCodes,
+} from '@schemas';
 
 import { createContentBlockMetaSchema, textStylingRules_Schema } from '../contentBlock.schemas';
-import type { ContentBlock_Text_Config } from './defineText.types';
-import { createLocaleSubsetSchema, localeText_Schema, nonTranslatableText_Schema } from '../../../schemas';
+
+export type TextLanguages = readonly [LanguageCodes, ...LanguageCodes[]];
 
 const params_Schema = z.strictObject({
   ...textStylingRules_Schema.shape,
@@ -17,23 +22,23 @@ const params_Schema = z.strictObject({
     .optional(),
 });
 
-export const createTextConfigSchema = <SupportedLanguages extends Locale_Languages>(
-  languages: SupportedLanguages,
-  config: ContentBlock_Text_Config<SupportedLanguages>,
-) => {
-  const base = createContentBlockMetaSchema(config.type);
-  const value =
-    typeof config.value === 'string' ? nonTranslatableText_Schema : createLocaleSubsetSchema(languages, true);
+const base = createContentBlockMetaSchema('text').shape;
 
-  return z.strictObject({ ...base.shape, params: params_Schema, value });
-};
-
-export const createTextPropsSchema = <SupportedLanguages extends Locale_Languages>(
-  config: ContentBlock_Text_Config<SupportedLanguages>,
-) => {
-  return z.strictObject({
-    ...createContentBlockMetaSchema(config.type).shape,
-    params: z.strictObject({ ...params_Schema.shape, disabled: z.literal(true).optional() }),
-    value: localeText_Schema,
+export const createTextConfigSchema = <const SupportedLanguages extends TextLanguages>(languages: SupportedLanguages) =>
+  z.strictObject({
+    ...base,
+    params: params_Schema,
+    value: z.union([nonTranslatableText_Schema, createLocaleSubsetSchema(languages, true)]),
   });
-};
+
+export type TextConfig<SupportedLanguages extends TextLanguages> = z.input<
+  ReturnType<typeof createTextConfigSchema<SupportedLanguages>>
+>;
+
+export const textProps_Schema = z.strictObject({
+  ...base,
+  params: z.strictObject({ ...params_Schema.shape, disabled: z.literal(true).optional() }),
+  value: localeText_Schema,
+});
+
+export type TextProps = z.output<typeof textProps_Schema>;
