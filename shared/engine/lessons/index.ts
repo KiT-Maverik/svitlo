@@ -1,6 +1,13 @@
 export { createLesson } from './createLesson';
+export type { LessonCreator, LessonBase, LessonLocale } from './createLesson';
 export { createSectionConfigurator } from './createSection';
+export type { SectionCreator } from './createSection';
 export { createContentBlock } from './createContentBlock';
+export type { ContentBlockCreator } from './createContentBlock';
 export { createLessonOverrides, LessonOverridesBuilder } from './createLessonOverrides';
+export { linkFlashcards } from './linkFlashcards';
+export type { FlashcardLink } from './linkFlashcards';
 export { mergeLessonResources } from './mergeLessonResources';
-export { assembleLessonResponse } from './assembleLessonResponse';
+export { prepareQuizQuestions } from './prepareQuizQuestions';
+export { applyCourseLessonOverride } from './applyCourseLessonOverride';
+export * from './assembleLessonResponse';

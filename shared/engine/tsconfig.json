@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "lib": ["es2022", "dom", "dom.iterable"],
+    "lib": [
+      "es2022",
+      "dom",
+      "dom.iterable"
+    ],
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "strict": true,
@@ -13,35 +17,37 @@
     "noEmit": true,
     "baseUrl": ".",
     "paths": {
-      "#builders": ["builders/index.ts"],
-      "#configurators": ["configurators/index.ts"],
-      "#content": ["content/index.ts"],
-      "#data": ["data/index.ts"],
-      "#definitions": ["definitions/index.ts"],
-      "#generation": ["generation/index.ts"],
-      "#lesson": ["lesson/index.ts"],
-      "#lessons": ["lessons/index.ts"],
-      "#localization": ["localization/index.ts"],
-      "#schemas": ["schemas/index.ts"],
-      "#taxonomy": ["taxonomy/index.ts"],
-      "#types": ["types/index.ts"],
-      "#utils": ["utils/index.ts"]
+      "#configurators": [
+        "configurators/index.ts"
+      ],
+      "#data": [
+        "data/index.ts"
+      ],
+      "#definitions": [
+        "definitions/index.ts"
+      ],
+      "#lessons": [
+        "lessons/index.ts"
+      ],
+      "#schemas": [
+        "schemas/index.ts"
+      ],
+      "#types": [
+        "types/index.ts"
+      ],
+      "#utils": [
+        "utils/index.ts"
+      ]
     },
     "jsx": "react-jsx"
   },
   "include": [
     "index.ts",
-    "builders/**/*.ts",
     "configurators/**/*.ts",
-    "content/**/*.ts",
     "data/**/*.ts",
     "definitions/**/*.ts",
-    "generation/**/*.ts",
-    "lesson/**/*.ts",
     "lessons/**/*.ts",
-    "localization/**/*.ts",
     "schemas/**/*.ts",
-    "taxonomy/**/*.ts",
     "types/**/*.ts",
     "utils/**/*.ts"
   ]

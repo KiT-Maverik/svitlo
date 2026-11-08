@@ -32,17 +32,11 @@
     "dist"
   ],
   "imports": {
-    "#builders": "./dist/builders/index.js",
     "#configurators": "./dist/configurators/index.js",
-    "#content": "./dist/content/index.js",
     "#data": "./dist/data/index.js",
     "#definitions": "./dist/definitions/index.js",
-    "#generation": "./dist/generation/index.js",
-    "#lesson": "./dist/lesson/index.js",
     "#lessons": "./dist/lessons/index.js",
-    "#localization": "./dist/localization/index.js",
     "#schemas": "./dist/schemas/index.js",
-    "#taxonomy": "./dist/taxonomy/index.js",
     "#types": "./dist/types/index.js",
     "#utils": "./dist/utils/index.js"
   }
