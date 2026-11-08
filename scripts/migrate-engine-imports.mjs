@@ -5,18 +5,46 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import ts from 'typescript';
 
 const taxonomyTypes = new Set([
-  'SkillId', 'Skill_Config', 'Skill', 'SkillData', 'SkillGroup_Config', 'SkillGroup',
-  'SkillGroupData', 'SkillDomain_Config', 'SkillDomain', 'SkillDomainData',
+  'SkillId',
+  'Skill_Config',
+  'Skill',
+  'SkillData',
+  'SkillGroup_Config',
+  'SkillGroup',
+  'SkillGroupData',
+  'SkillDomain_Config',
+  'SkillDomain',
+  'SkillDomainData',
 ]);
 const localizationContracts = new Set([
-  'DEFAULT_SUPPORTED_LANGUAGES', 'FALLBACK_LANGUAGE', 'FALLBACK_LOCALE',
-  'TextDirection', 'LanguageDefinition', 'AdditionalLanguages', 'AdditionalLanguage',
-  'DefaultSupportedLanguage', 'SupportedLanguage', 'Locale', 'LanguageCode',
-  'LanguageFor', 'LocalizedContent', 'LanguageConfiguration',
+  'DEFAULT_SUPPORTED_LANGUAGES',
+  'FALLBACK_LANGUAGE',
+  'FALLBACK_LOCALE',
+  'TextDirection',
+  'LanguageDefinition',
+  'AdditionalLanguages',
+  'AdditionalLanguage',
+  'DefaultSupportedLanguage',
+  'SupportedLanguage',
+  'Locale',
+  'LanguageCode',
+  'LanguageFor',
+  'LocalizedContent',
+  'LanguageConfiguration',
 ]);
 const subpaths = new Set([
-  'builders', 'content', 'generation', 'lesson', 'localization', 'taxonomy',
-  'assessment-methods', 'definitions', 'schemas', 'configurators', 'types', 'utils',
+  'builders',
+  'content',
+  'generation',
+  'lesson',
+  'localization',
+  'taxonomy',
+  'assessment-methods',
+  'definitions',
+  'schemas',
+  'configurators',
+  'types',
+  'utils',
 ]);
 const prefix = '@svitlo/engine/';
 
@@ -30,18 +58,21 @@ export function rewriteEngineImports(source, filename = 'source.ts') {
     if (!module || !ts.isStringLiteralLike(module) || !module.text.startsWith(prefix)) return;
     const subpath = module.text.slice(prefix.length);
     if (!subpaths.has(subpath)) throw new Error(filename + ': unsupported Engine import ' + module.text);
-    const contract = subpath === 'content' ? '@svitlo/contracts/content'
-      : subpath === 'taxonomy' ? '@svitlo/contracts/taxonomy'
-      : subpath === 'localization' ? '@svitlo/contracts/localization' : null;
-    const ownedTypes = subpath === 'taxonomy' ? taxonomyTypes
-      : subpath === 'localization' ? localizationContracts : null;
+    const contract =
+      subpath === 'content'
+        ? '@svitlo/contracts/content'
+        : subpath === 'taxonomy'
+          ? '@svitlo/contracts/taxonomy'
+          : subpath === 'localization'
+            ? '@svitlo/contracts/localization'
+            : null;
+    const ownedTypes =
+      subpath === 'taxonomy' ? taxonomyTypes : subpath === 'localization' ? localizationContracts : null;
     let target = subpath === 'content' ? contract : '@svitlo/engine';
 
     if (ownedTypes && declaration) {
       const isImport = ts.isImportDeclaration(declaration);
-      const members = isImport
-        ? declaration.importClause?.namedBindings
-        : declaration.exportClause;
+      const members = isImport ? declaration.importClause?.namedBindings : declaration.exportClause;
       const named = members && (ts.isNamedImports(members) || ts.isNamedExports(members)) ? members.elements : null;
       if (named) {
         const contracts = [];
@@ -56,11 +87,24 @@ export function rewriteEngineImports(source, filename = 'source.ts') {
           }
           const allType = isImport ? declaration.importClause?.isTypeOnly : declaration.isTypeOnly;
           const verb = isImport ? 'import' : 'export';
-          const render = (members, path) => verb + ' ' + (allType ? 'type ' : '') + '{ ' +
-            members.map(item => allType ? item.getText(file).replace(/^type\s+/, '') : item.getText(file)).join(', ') +
-            ' } from ' + source[module.getStart(file)] + path + source[module.end - 1] + ';';
-          replace(declaration.getStart(file), declaration.end,
-            render(contracts, contract) + '\n' + render(engine, '@svitlo/engine'));
+          const render = (members, path) =>
+            verb +
+            ' ' +
+            (allType ? 'type ' : '') +
+            '{ ' +
+            members
+              .map(item => (allType ? item.getText(file).replace(/^type\s+/, '') : item.getText(file)))
+              .join(', ') +
+            ' } from ' +
+            source[module.getStart(file)] +
+            path +
+            source[module.end - 1] +
+            ';';
+          replace(
+            declaration.getStart(file),
+            declaration.end,
+            render(contracts, contract) + '\n' + render(engine, '@svitlo/engine'),
+          );
           return;
         }
         if (contracts.length && !engine.length) target = contract;
@@ -77,23 +121,31 @@ export function rewriteEngineImports(source, filename = 'source.ts') {
     }
   }
   function walk(node) {
-    if (ts.isCallExpression(node) && node.arguments.length === 1 &&
-        (node.expression.kind === ts.SyntaxKind.ImportKeyword ||
-         (ts.isIdentifier(node.expression) && node.expression.text === 'require'))) {
+    if (
+      ts.isCallExpression(node) &&
+      node.arguments.length === 1 &&
+      (node.expression.kind === ts.SyntaxKind.ImportKeyword ||
+        (ts.isIdentifier(node.expression) && node.expression.text === 'require'))
+    ) {
       rewriteSpecifier(node.arguments[0], null);
     }
     ts.forEachChild(node, walk);
   }
   walk(file);
 
-  return edits.sort((a, b) => b.start - a.start).reduce(
-    (text, edit) => text.slice(0, edit.start) + edit.content + text.slice(edit.end), source);
+  return edits
+    .sort((a, b) => b.start - a.start)
+    .reduce((text, edit) => text.slice(0, edit.start) + edit.content + text.slice(edit.end), source);
 }
 
 export function rewriteTrackedFiles({ write = false, root = process.cwd() } = {}) {
   const paths = execFileSync('git', ['ls-files', '-z'], {
-    cwd: root, encoding: 'utf8', maxBuffer: 16 * 1024 * 1024,
-  }).split('\0').filter(path => /\.(?:tsx?|mts|cts|jsx?|mjs|cjs)$/.test(path));
+    cwd: root,
+    encoding: 'utf8',
+    maxBuffer: 16 * 1024 * 1024,
+  })
+    .split('\0')
+    .filter(path => /\.(?:tsx?|mts|cts|jsx?|mjs|cjs)$/.test(path));
   const grouped = {};
   let count = 0;
   for (const path of paths) {

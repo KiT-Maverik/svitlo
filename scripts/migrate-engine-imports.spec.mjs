@@ -25,7 +25,9 @@ test('splits mixed value and type imports without changing imported names', () =
 
 test('routes localization types to Contracts and helpers to Engine', () => {
   assert.equal(
-    rewriteEngineImports("import { type LanguageCode, createLocalizedFileLocations } from '@svitlo/engine/localization';"),
+    rewriteEngineImports(
+      "import { type LanguageCode, createLocalizedFileLocations } from '@svitlo/engine/localization';",
+    ),
     "import { type LanguageCode } from '@svitlo/contracts/localization';\nimport { createLocalizedFileLocations } from '@svitlo/engine';",
   );
 });

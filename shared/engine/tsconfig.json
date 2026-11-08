@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "lib": [
-      "es2022",
-      "dom",
-      "dom.iterable"
-    ],
+    "lib": ["es2022", "dom", "dom.iterable"],
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "strict": true,
@@ -17,27 +13,13 @@
     "noEmit": true,
     "baseUrl": ".",
     "paths": {
-      "#configurators": [
-        "configurators/index.ts"
-      ],
-      "#data": [
-        "data/index.ts"
-      ],
-      "#definitions": [
-        "definitions/index.ts"
-      ],
-      "#lessons": [
-        "lessons/index.ts"
-      ],
-      "#schemas": [
-        "schemas/index.ts"
-      ],
-      "#types": [
-        "types/index.ts"
-      ],
-      "#utils": [
-        "utils/index.ts"
-      ]
+      "#configurators": ["configurators/index.ts"],
+      "#data": ["data/index.ts"],
+      "#definitions": ["definitions/index.ts"],
+      "#lessons": ["lessons/index.ts"],
+      "#schemas": ["schemas/index.ts"],
+      "#types": ["types/index.ts"],
+      "#utils": ["utils/index.ts"]
     },
     "jsx": "react-jsx"
   },
