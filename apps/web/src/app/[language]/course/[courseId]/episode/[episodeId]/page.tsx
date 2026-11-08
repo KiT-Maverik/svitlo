@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
-import { loadPublishedUiKitMessages } from '@svitlo/adapter-nextjs/lesson';
+import { loadPublishedUiKitMessages } from '@svitlo/adapter-nextjs';
 import type { LessonResponse } from '@svitlo/engine';
 import { courseHasEpisode, loadCourseEpisode, loadCourseToc } from '@/lib/courseResources';
 import WebLesson from '@/components/pages/Lesson/Lesson';

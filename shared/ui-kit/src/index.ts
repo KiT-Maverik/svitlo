@@ -12,3 +12,6 @@ export type * from './types/uiKitMessages';
 export * from './components/lesson';
 
 export * from './components/pages/UserCabinet';
+
+export { testId as navbarTestId } from './components/layout/Navigation/Navbar.constants';
+export { testId as threeSlotLayoutTestId } from './components/layout/ThreeSlotLayout.constants';
