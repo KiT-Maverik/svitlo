@@ -1,22 +1,20 @@
-import {z} from "zod";
+import { z } from 'zod';
 
-import { locale_All_Schema, localeText_Schema } from "#schemas";
+import { localizationSwitch } from '#schemas';
 
-const skillDomain_Base_Schema = z.strictObject({
-  id: z.uuid(),
-  slug: z.string().min(1),
-});
+function createSkillDomainSchema<Mode extends keyof typeof localizationSwitch>(mode: Mode) {
+  const localized = localizationSwitch[mode];
 
-export const skillDomain_Config_Schema = z.strictObject({
-  description: locale_All_Schema,
-  title: locale_All_Schema,
-}).and(skillDomain_Base_Schema);
+  return z.object({
+    id: z.uuid(),
+    slug: z.string().min(1),
+    description: localized,
+    title: localized,
+  });
+}
 
+export const skillDomain_Config_Schema = createSkillDomainSchema('config');
 export type SkillDomain_Config = z.infer<typeof skillDomain_Config_Schema>;
 
-export const skillDomain_Props_Schema = z.strictObject({
-  description: localeText_Schema,
-  title: localeText_Schema,
-}).and(skillDomain_Base_Schema);
-
+export const skillDomain_Props_Schema = createSkillDomainSchema('props');
 export type SkillDomain_Props = z.infer<typeof skillDomain_Props_Schema>;
