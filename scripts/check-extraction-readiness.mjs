@@ -86,10 +86,28 @@ for (const [path, pkg] of workspaces) {
   const localAliases = readJson(path + '/tsconfig.json').compilerOptions?.paths || {};
   // Compiled textbook packages may not own any src/ tree. Their authored data/
   // is consumed by build-time Engine generators, never by runtime entrypoints.
-  const sourceRoots = path === 'shared/engine'
-    ? ['index.ts', 'builders', 'configurators', 'content', 'data', 'definitions', 'generation', 'lesson', 'lessons', 'localization', 'schemas', 'taxonomy', 'types', 'utils'].map(name => join(packageRoot, name))
-    : [join(packageRoot, 'src')];
-  const sourceFiles = sourceRoots.flatMap(folder => existsSync(folder) ? (folder.endsWith('.ts') ? [folder] : walk(folder)) : []);
+  const sourceRoots =
+    path === 'shared/engine'
+      ? [
+          'index.ts',
+          'builders',
+          'configurators',
+          'content',
+          'data',
+          'definitions',
+          'generation',
+          'lesson',
+          'lessons',
+          'localization',
+          'schemas',
+          'taxonomy',
+          'types',
+          'utils',
+        ].map(name => join(packageRoot, name))
+      : [join(packageRoot, 'src')];
+  const sourceFiles = sourceRoots.flatMap(folder =>
+    existsSync(folder) ? (folder.endsWith('.ts') ? [folder] : walk(folder)) : [],
+  );
   for (const file of sourceFiles.filter(isProductionSource)) {
     for (const specifier of importedModules(readFileSync(file, 'utf8'), file)) {
       const description = relative(root, file) + ' -> ' + specifier;
@@ -153,9 +171,10 @@ for (const [path, pkg] of workspaces.filter(([name]) => name.startsWith('shared/
         target.startsWith('./dist/') && target.endsWith('.js'),
         'Invalid compiled entrypoint: ' + pkg.name + subpath,
       );
-      const sourcePath = path === 'shared/engine'
-        ? target.replace(/^\.\/dist\//, '').replace(/\.js$/, '')
-        : target.replace(/^\.\/dist\/(?:src\/)?/, 'src/').replace(/\.js$/, '');
+      const sourcePath =
+        path === 'shared/engine'
+          ? target.replace(/^\.\/dist\//, '').replace(/\.js$/, '')
+          : target.replace(/^\.\/dist\/(?:src\/)?/, 'src/').replace(/\.js$/, '');
       assert(
         ['.ts', '.tsx'].some(ext => existsSync(resolve(root, path, sourcePath + ext))),
         'Missing public entrypoint source: ' + pkg.name + subpath,

@@ -1,4 +1,4 @@
-import {z} from "zod";
+import { z } from 'zod';
 
 export const allLanguageCodes = [
   'ar',
@@ -32,6 +32,6 @@ export const allLanguageCodes = [
   'zh',
 ] as const;
 
-export type LanguageCodes = typeof allLanguageCodes[number];
+export type LanguageCodes = (typeof allLanguageCodes)[number];
 
 export const languageCode_Schema = z.enum(allLanguageCodes);

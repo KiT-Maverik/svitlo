@@ -1,8 +1,4 @@
-import type {
-  Course_Creator,
-  Episode,
-  Locale_Languages,
-} from '@svitlo/contracts/content';
+import type { Course_Creator, Episode, Locale_Languages } from '@svitlo/contracts/content';
 
 export function createEpisodeConfigurator<const L extends Locale_Languages>(
   input: Episode<'data', L>,

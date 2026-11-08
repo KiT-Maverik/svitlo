@@ -1,11 +1,6 @@
 import { z } from 'zod';
 
-import {
-  createLocaleSubsetSchema,
-  localeText_Schema,
-  nonTranslatableText_Schema,
-  type LanguageCodes,
-} from '#schemas';
+import { createLocaleSubsetSchema, localeText_Schema, nonTranslatableText_Schema, type LanguageCodes } from '#schemas';
 
 import { createContentBlockMetaSchema, textStylingRules_Schema } from '../contentBlock.schemas';
 

@@ -205,9 +205,7 @@ assert(
   'Math textbook must export its canonical Skills taxonomy',
 );
 assert(
-  existsSync(
-    resolve(root, 'shared/engine/utils/createLocalizedFileLocations/createLocalizedFileLocations.spec.ts'),
-  ),
+  existsSync(resolve(root, 'shared/engine/utils/createLocalizedFileLocations/createLocalizedFileLocations.spec.ts')),
   'Engine must own shared locale path tests',
 );
 assert(
@@ -218,17 +216,34 @@ assert(
   engine.exports?.['./assessment-methods']?.default === './dist/data/assessmentMethodTaxonomy/index.data.js',
   'Engine must publicly export shared Assessment Methods',
 );
-const engineRoots = ['builders', 'configurators', 'content', 'data', 'definitions', 'generation', 'lesson', 'lessons', 'localization', 'schemas', 'taxonomy', 'types', 'utils'];
-const engineSources = [resolve(root, 'shared/engine/index.ts'), ...engineRoots.flatMap(dir => walk(resolve(root, 'shared/engine', dir)))].filter(
-  file => file.endsWith('.ts') && !/\.(?:spec|typecheck)\.ts$/.test(file),
-);
+const engineRoots = [
+  'builders',
+  'configurators',
+  'content',
+  'data',
+  'definitions',
+  'generation',
+  'lesson',
+  'lessons',
+  'localization',
+  'schemas',
+  'taxonomy',
+  'types',
+  'utils',
+];
+const engineSources = [
+  resolve(root, 'shared/engine/index.ts'),
+  ...engineRoots.flatMap(dir => walk(resolve(root, 'shared/engine', dir))),
+].filter(file => file.endsWith('.ts') && !/\.(?:spec|typecheck)\.ts$/.test(file));
 for (const file of engineSources) {
   const content = readFileSync(file, 'utf8');
   const imports = [...content.matchAll(/\b(?:from\s*|import\s*\(\s*)['"]([^'"]+)['"]/g)];
   for (const match of imports) {
     assert(
       match[1].startsWith('.') ||
-        match[1].startsWith('@svitlo/contracts') || match[1].startsWith('#') || match[1] === 'zod' ||
+        match[1].startsWith('@svitlo/contracts') ||
+        match[1].startsWith('#') ||
+        match[1] === 'zod' ||
         (relative(root, file).startsWith('shared/engine/utils/generators/') &&
           (match[1].startsWith('node:') || match[1] === 'esbuild')),
       'Engine must not import runtime, UI or application packages: ' + relative(root, file) + ' -> ' + match[1],

@@ -1,6 +1,14 @@
-import {createTextConfigSchema, textProps_Schema, type TextLanguages, ContentBlock_Text_Config, ContextBlock_Text_Props} from './defineText.schema';
+import {
+  createTextConfigSchema,
+  textProps_Schema,
+  type TextLanguages,
+  ContentBlock_Text_Config,
+  ContextBlock_Text_Props,
+} from './defineText.schema';
 
-export const defineText = <SupportedLanguages extends TextLanguages>(config: ContentBlock_Text_Config<SupportedLanguages>) => {
+export const defineText = <SupportedLanguages extends TextLanguages>(
+  config: ContentBlock_Text_Config<SupportedLanguages>,
+) => {
   const { id, type, value, params, slug } = config;
 
   const base: Partial<ContentBlock_Text_Config<SupportedLanguages>> = {

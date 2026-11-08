@@ -1,6 +1,10 @@
 export { buildAssessmentMethodConfig } from '../utils/builders/config/buildAssessmentMethodConfig.utils';
 export { createLessonOverrides, LessonOverridesBuilder } from '../lessons/createLessonOverrides';
-export { createChapter, createModule, createEpisode } from '../configurators/createCourseConfigurator/createCourseEntities';
+export {
+  createChapter,
+  createModule,
+  createEpisode,
+} from '../configurators/createCourseConfigurator/createCourseEntities';
 export { createCourse } from '../configurators/createCourseConfigurator/createCourseConfigurator';
 export { createLesson } from '../lessons/createLesson';
 export { linkFlashcards } from '../lessons/linkFlashcards';

@@ -152,11 +152,22 @@ for (const { path, name } of expected) {
       ].map(id => '@svitlo/' + id),
     ]).has(name)
   ) {
-    assert(name === '@svitlo/engine' ? !Object.keys(tsconfig.compilerOptions?.paths || {}).some(alias => alias.includes('*')) : tsconfig.compilerOptions?.paths?.['@/*']?.[0] === 'src/*', 'Invalid local aliases in ' + tsconfigPath);
+    assert(
+      name === '@svitlo/engine'
+        ? !Object.keys(tsconfig.compilerOptions?.paths || {}).some(alias => alias.includes('*'))
+        : tsconfig.compilerOptions?.paths?.['@/*']?.[0] === 'src/*',
+      'Invalid local aliases in ' + tsconfigPath,
+    );
     if (name === '@svitlo/engine') {
       for (const [alias, targets] of Object.entries(tsconfig.compilerOptions.paths)) {
-        assert(alias.startsWith('#') && targets.length === 1 && targets[0].endsWith('/index.ts'), 'Invalid Engine directory alias: ' + alias);
-        assert(pkg.imports?.[alias] === './dist/' + targets[0].replace(/\.ts$/, '.js'), 'Engine alias lacks matching runtime import: ' + alias);
+        assert(
+          alias.startsWith('#') && targets.length === 1 && targets[0].endsWith('/index.ts'),
+          'Invalid Engine directory alias: ' + alias,
+        );
+        assert(
+          pkg.imports?.[alias] === './dist/' + targets[0].replace(/\.ts$/, '.js'),
+          'Engine alias lacks matching runtime import: ' + alias,
+        );
       }
     }
   }
