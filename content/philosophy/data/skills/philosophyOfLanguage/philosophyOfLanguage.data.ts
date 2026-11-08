@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { communicationAndInterpretation_SkillGroup_Data } from './communicationAndInterpretation/communicationAndInterpretation.data';
 import { languageTruthAndPower_SkillGroup_Data } from './languageTruthAndPower/languageTruthAndPower.data';

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import {
   chooseAStructureForRequiredOperations_Skill_Data,

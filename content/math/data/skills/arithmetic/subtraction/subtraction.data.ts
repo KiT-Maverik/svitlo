@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import {
   subtractMeaning_Skill_Data,

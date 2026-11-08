@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const historicalMaps_Skill_Data = buildSkillConfig({
   slug: 'historicalMaps',

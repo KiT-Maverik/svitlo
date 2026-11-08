@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const interpretFoodLabels_Skill_Data = buildSkillConfig({
   slug: 'interpretFoodLabels',

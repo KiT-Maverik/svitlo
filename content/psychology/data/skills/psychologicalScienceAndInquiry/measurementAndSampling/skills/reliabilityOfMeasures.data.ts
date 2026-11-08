@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const reliabilityOfMeasures_Skill_Data = buildSkillConfig({
   slug: 'reliabilityOfMeasures',

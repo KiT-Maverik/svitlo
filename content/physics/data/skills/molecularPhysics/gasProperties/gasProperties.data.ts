@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import {
   explainGasCompressibility_Skill_Data,

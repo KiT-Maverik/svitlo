@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const resistUnsafePeerPressure_Skill_Data = buildSkillConfig({
   slug: 'resistUnsafePeerPressure',

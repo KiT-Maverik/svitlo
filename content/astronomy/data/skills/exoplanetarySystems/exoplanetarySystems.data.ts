@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { exoplanetCharacterization_SkillGroup_Data } from './exoplanetCharacterization/exoplanetCharacterization.data';
 import { exoplanetDetection_SkillGroup_Data } from './exoplanetDetection/exoplanetDetection.data';

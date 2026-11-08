@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { geographicCoordinates_SkillGroup_Data } from './geographicCoordinates/geographicCoordinates.data';
 import { geospatialTechnologies_SkillGroup_Data } from './geospatialTechnologies/geospatialTechnologies.data';

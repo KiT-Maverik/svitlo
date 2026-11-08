@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { currenciesAndExternalBalances_SkillGroup_Data } from './currenciesAndExternalBalances/currenciesAndExternalBalances.data';
 import { internationalFinance_SkillGroup_Data } from './internationalFinance/internationalFinance.data';

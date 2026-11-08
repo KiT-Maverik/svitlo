@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import {
   airConditioningSystems_Skill_Data,

@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { describingMotion_SkillGroup_Data } from './describingMotion/describingMotion.data';
 import { inertiaAndChangesInMotion_SkillGroup_Data } from './inertiaAndChangesInMotion/inertiaAndChangesInMotion.data';

@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const maritimeTradeOfSoutheastAsia_Skill_Data = buildSkillConfig({
   slug: 'maritimeTradeOfSoutheastAsia',

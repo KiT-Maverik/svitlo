@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const divisionOfLabor_Skill_Data = buildSkillConfig({
   slug: 'divisionOfLabor',

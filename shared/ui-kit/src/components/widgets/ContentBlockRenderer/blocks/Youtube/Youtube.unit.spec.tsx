@@ -2,7 +2,7 @@ import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import type { ContentBlock_Youtube_Response } from '@svitlo/engine/content';
+import type { ContentBlock_Youtube_Response } from '@svitlo/contracts/content';
 import { Youtube } from './Youtube';
 import { youtubeEmbedUrl, youtubeVideoId } from './Youtube.utils';
 

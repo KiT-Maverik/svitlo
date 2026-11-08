@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const buildingEnvelopes_Skill_Data = buildSkillConfig({
   slug: 'buildingEnvelopes',

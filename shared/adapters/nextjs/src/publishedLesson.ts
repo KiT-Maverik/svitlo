@@ -1,8 +1,8 @@
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { resolveEntityPath } from '@svitlo/engine';
-import { assembleLessonResponse, mergeLessonResources, type LessonResponse } from '@svitlo/engine/lesson';
-import type { LanguageCode } from '@svitlo/engine/localization';
+import { assembleLessonResponse, mergeLessonResources, type LessonResponse } from '@svitlo/engine';
+import type { LanguageCode } from '@svitlo/contracts/localization';
 
 /**
  * Read the invariant base and selected-language sparse patch from the standalone

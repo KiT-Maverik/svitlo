@@ -1,5 +1,5 @@
-import type { Course_Toc, Course_TocContent } from '@svitlo/engine/content';
-import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/localization';
+import type { Course_Toc, Course_TocContent } from '@svitlo/contracts/content';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
 import type { CourseMessages, CourseOutlineItem, CoursePreview } from '@svitlo/ui-kit/course';
 
 type MockCourse = {

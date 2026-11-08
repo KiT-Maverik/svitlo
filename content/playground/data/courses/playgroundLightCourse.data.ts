@@ -5,8 +5,8 @@ import {
   createLessonOverrides,
   createModule,
   createSection,
-} from '@svitlo/engine/builders';
-import type { Course } from '@svitlo/engine/content';
+} from '@svitlo/engine';
+import type { Course } from '@svitlo/contracts/content';
 import { contentBlockGallery_Section } from './sections/contentBlockGallery.data';
 import {
   howLightMoves_languages,

@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import type { Locale } from '@svitlo/engine/localization';
+import type { Locale } from '@svitlo/contracts/localization';
 import type { UiKitMessages } from '@svitlo/ui-kit';
 import Link from 'next/link';
 import { Box, Container } from '@mui/material';

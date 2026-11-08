@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const employmentContracts_Skill_Data = buildSkillConfig({
   slug: 'employmentContracts',

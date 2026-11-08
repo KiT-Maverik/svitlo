@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import { measurementContext_Skill_Data, priceQuantityCost_Skill_Data, workRateTime_Skill_Data } from './skills';
 

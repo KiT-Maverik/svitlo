@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import { assetRiskAndReturn_Skill_Data, bonds_Skill_Data, interestRates_Skill_Data, stocks_Skill_Data } from './skills';
 

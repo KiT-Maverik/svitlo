@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import type { ContentBlock_Text_Response } from '@svitlo/engine/content';
+import type { ContentBlock_Text_Response } from '@svitlo/contracts/content';
 import { Text } from './Text';
 import styles from '#utils/styledText/StyledText.module.css';
 

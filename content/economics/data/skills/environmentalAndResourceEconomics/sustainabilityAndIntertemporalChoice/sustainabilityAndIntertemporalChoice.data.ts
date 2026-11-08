@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import { discountingFutureConsequences_Skill_Data, intergenerationalEconomicImpacts_Skill_Data } from './skills';
 

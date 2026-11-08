@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { decompositionAndAbstraction_SkillGroup_Data } from './decompositionAndAbstraction/decompositionAndAbstraction.data';
 import { logicAndPatterns_SkillGroup_Data } from './logicAndPatterns/logicAndPatterns.data';

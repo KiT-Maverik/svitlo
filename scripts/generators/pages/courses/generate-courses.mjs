@@ -5,8 +5,8 @@ import path from 'node:path';
 import { createRequire } from 'node:module';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { build } from 'esbuild';
-import { createCourse } from '@svitlo/engine/builders';
-import { writeLessonFiles } from '@svitlo/engine/utils';
+import { createCourse } from '@svitlo/engine';
+import { writeLessonFiles } from '@svitlo/engine';
 
 const repo = path.resolve(fileURLToPath(new URL('../../../..', import.meta.url)));
 const require = createRequire(import.meta.url);

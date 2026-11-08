@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { causationTimeAndPossibility_SkillGroup_Data } from './causationTimeAndPossibility/causationTimeAndPossibility.data';
 import { existenceAndCategories_SkillGroup_Data } from './existenceAndCategories/existenceAndCategories.data';

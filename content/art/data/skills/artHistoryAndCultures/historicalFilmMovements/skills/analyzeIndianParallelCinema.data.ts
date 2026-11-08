@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const analyzeIndianParallelCinema_Skill_Data = buildSkillConfig({
   slug: 'analyzeIndianParallelCinema',

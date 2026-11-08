@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { personalHygiene_SkillGroup_Data } from './personalHygiene/personalHygiene.data';
 import { sanitaryEnvironments_SkillGroup_Data } from './sanitaryEnvironments/sanitaryEnvironments.data';

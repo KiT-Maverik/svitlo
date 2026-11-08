@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { keyContributions_SkillGroup_Data } from './keyContributions/keyContributions.data';
 import { machinesAndCryptanalysis_SkillGroup_Data } from './machinesAndCryptanalysis/machinesAndCryptanalysis.data';

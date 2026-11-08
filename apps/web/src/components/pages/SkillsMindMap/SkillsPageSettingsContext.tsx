@@ -1,7 +1,8 @@
 'use client';
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
-import { DEFAULT_SUPPORTED_LANGUAGES, getLocaleDirection, type Locale } from '@svitlo/engine/localization';
+import { DEFAULT_SUPPORTED_LANGUAGES, type Locale } from '@svitlo/contracts/localization';
+import { getLocaleDirection } from '@svitlo/engine';
 
 export interface SkillsPageSettings {
   readonly showMastery: boolean;

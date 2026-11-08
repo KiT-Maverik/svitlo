@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { elementFamiliesInContext_SkillGroup_Data } from './elementFamiliesInContext/elementFamiliesInContext.data';
 import { inorganicCompounds_SkillGroup_Data } from './inorganicCompounds/inorganicCompounds.data';

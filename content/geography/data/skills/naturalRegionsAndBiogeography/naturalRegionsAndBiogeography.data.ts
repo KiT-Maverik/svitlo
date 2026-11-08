@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { biomesAndHabitats_SkillGroup_Data } from './biomesAndHabitats/biomesAndHabitats.data';
 import { ecosystems_SkillGroup_Data } from './ecosystems/ecosystems.data';

@@ -1,5 +1,5 @@
 // Synthetic Playground fixtures. Locale-tagged strings are test placeholders, not translations.
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 import { testRecognizeTriangle_Skill_Data, testRecognizeSquare_Skill_Data } from './skills';
 
 export const testPolygonShapes_SkillGroup_Data = buildSkillGroupConfig({

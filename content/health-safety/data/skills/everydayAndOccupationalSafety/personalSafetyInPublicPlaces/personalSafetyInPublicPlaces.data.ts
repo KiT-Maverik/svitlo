@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import { respondToUnsafeApproachesInPublic_Skill_Data, seekHelpWhenLostOrSeparated_Skill_Data } from './skills';
 

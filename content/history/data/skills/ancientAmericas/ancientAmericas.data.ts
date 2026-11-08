@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { amazonAndCaribbean_SkillGroup_Data } from './amazonAndCaribbean/amazonAndCaribbean.data';
 import { ancientAndes_SkillGroup_Data } from './ancientAndes/ancientAndes.data';

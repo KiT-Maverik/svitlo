@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import { eclipseSeasons_Skill_Data, lunarEclipses_Skill_Data, solarEclipses_Skill_Data } from './skills';
 

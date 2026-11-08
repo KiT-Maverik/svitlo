@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const sampleReturnEvidence_Skill_Data = buildSkillConfig({
   slug: 'sampleReturnEvidence',

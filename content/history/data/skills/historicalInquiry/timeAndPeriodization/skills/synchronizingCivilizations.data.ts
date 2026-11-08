@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const synchronizingCivilizations_Skill_Data = buildSkillConfig({
   slug: 'synchronizingCivilizations',

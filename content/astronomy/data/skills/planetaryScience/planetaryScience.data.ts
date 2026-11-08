@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { atmospheresAndWeather_SkillGroup_Data } from './atmospheresAndWeather/atmospheresAndWeather.data';
 import { interiorsAndVolatiles_SkillGroup_Data } from './interiorsAndVolatiles/interiorsAndVolatiles.data';

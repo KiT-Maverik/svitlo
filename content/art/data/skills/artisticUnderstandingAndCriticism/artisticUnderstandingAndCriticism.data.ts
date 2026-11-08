@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { curationAndPresentation_SkillGroup_Data } from './curationAndPresentation/curationAndPresentation.data';
 import { formalLanguage_SkillGroup_Data } from './formalLanguage/formalLanguage.data';

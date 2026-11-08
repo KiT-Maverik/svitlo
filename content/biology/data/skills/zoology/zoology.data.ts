@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { animalDiversity_SkillGroup_Data } from './animalDiversity/animalDiversity.data';
 import { behavior_SkillGroup_Data } from './behavior/behavior.data';

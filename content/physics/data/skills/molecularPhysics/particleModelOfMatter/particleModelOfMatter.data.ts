@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import {
   compareParticleArrangementsInSolidsLiquidsAndGases_Skill_Data,

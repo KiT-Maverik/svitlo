@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import { jomonCulture_Skill_Data, kofunPeriod_Skill_Data, yayoiCulture_Skill_Data } from './skills';
 

@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const bigFiveTraitModel_Skill_Data = buildSkillConfig({
   slug: 'bigFiveTraitModel',

@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const recognizeMedicineMisuse_Skill_Data = buildSkillConfig({
   slug: 'recognizeMedicineMisuse',

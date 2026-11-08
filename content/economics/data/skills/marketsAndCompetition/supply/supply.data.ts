@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import { changeInQuantitySupplied_Skill_Data, lawOfSupply_Skill_Data, shiftInSupply_Skill_Data } from './skills';
 

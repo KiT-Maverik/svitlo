@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { asianArtisticTraditions_SkillGroup_Data } from './asianArtisticTraditions/asianArtisticTraditions.data';
 import { culturalHeritage_SkillGroup_Data } from './culturalHeritage/culturalHeritage.data';

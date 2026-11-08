@@ -1,6 +1,6 @@
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import type { Locale } from '@svitlo/engine/localization';
+import type { Locale } from '@svitlo/contracts/localization';
 import type { UiKitMessages } from '@svitlo/ui-kit';
 
 /** One read per locale per server process; never import authored UI Kit data. */

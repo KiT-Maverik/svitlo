@@ -177,13 +177,13 @@ assert(
 assert(!existsSync(resolve(root, 'math')), 'Root mathematics docs must be inside the textbook package');
 assert(uiKit.dependencies?.[engine.name] === engine.version, 'UI Kit must consume the published Engine API');
 assert(engine.scripts?.['package:build'] && engine.files?.includes('dist'), 'Engine must publish compiled artifacts');
-for (const subpath of ['.', './localization', './taxonomy', './content', './builders', './generation']) {
-  const target = engine.exports?.[subpath];
-  assert(
-    target?.types?.startsWith('./dist/') && target?.default?.startsWith('./dist/'),
-    'Engine public export is missing a dist entry: ' + subpath,
-  );
-}
+assert(
+  engine.exports &&
+    Object.keys(engine.exports).length === 1 &&
+    engine.exports['.']?.types === './dist/index.d.ts' &&
+    engine.exports['.']?.default === './dist/index.js',
+  'Engine must expose only the compiled root entrypoint',
+);
 assert(
   existsSync(resolve(root, 'shared/engine/data/assessmentMethodTaxonomy/index.data.ts')),
   'Engine must own the canonical Assessment Method Taxonomy',
@@ -213,8 +213,9 @@ assert(
   'Engine must own shared skill builder tests',
 );
 assert(
-  engine.exports?.['./assessment-methods']?.default === './dist/data/assessmentMethodTaxonomy/index.data.js',
-  'Engine must publicly export shared Assessment Methods',
+  existsSync(resolve(root, 'shared/engine/data/index.ts')) &&
+    readFileSync(resolve(root, 'shared/engine/data/index.ts'), 'utf8').includes('assessmentMethodTaxonomy'),
+  'Engine must expose Assessment Methods through the data barrel',
 );
 const engineRoots = [
   'builders',

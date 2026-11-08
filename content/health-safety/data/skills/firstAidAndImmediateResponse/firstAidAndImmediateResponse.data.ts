@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { basicLifeSupport_SkillGroup_Data } from './basicLifeSupport/basicLifeSupport.data';
 import { bleedingAndInjuries_SkillGroup_Data } from './bleedingAndInjuries/bleedingAndInjuries.data';

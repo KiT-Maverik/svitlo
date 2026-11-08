@@ -49,6 +49,10 @@ jobs:
           node-version: '24'
           cache: npm
       - run: npm ci
+      - name: Enforce the single Engine public entrypoint
+        run: |
+          node --test scripts/migrate-engine-imports.spec.mjs
+          node scripts/migrate-engine-imports.mjs --check
       - name: Scoped quality checks
         if: github.event_name == 'pull_request'
         env:

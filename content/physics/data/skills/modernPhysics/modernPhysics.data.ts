@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { atomsAndQuantumPhenomena_SkillGroup_Data } from './atomsAndQuantumPhenomena/atomsAndQuantumPhenomena.data';
 import { nuclearPhenomena_SkillGroup_Data } from './nuclearPhenomena/nuclearPhenomena.data';

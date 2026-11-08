@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { choreography_SkillGroup_Data } from './choreography/choreography.data';
 import { movementLanguage_SkillGroup_Data } from './movementLanguage/movementLanguage.data';

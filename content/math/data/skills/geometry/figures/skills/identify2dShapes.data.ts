@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const identify2dShapes_Skill_Data = buildSkillConfig({
   slug: 'identify2dShapes',

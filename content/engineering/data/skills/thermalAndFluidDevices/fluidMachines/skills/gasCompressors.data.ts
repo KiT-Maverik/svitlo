@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const gasCompressors_Skill_Data = buildSkillConfig({
   slug: 'gasCompressors',

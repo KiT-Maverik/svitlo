@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { classification_SkillGroup_Data } from './classification/classification.data';
 import { globalGeographicDivisions_SkillGroup_Data } from './globalGeographicDivisions/globalGeographicDivisions.data';

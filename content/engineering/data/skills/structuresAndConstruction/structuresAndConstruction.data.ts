@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { buildings_SkillGroup_Data } from './buildings/buildings.data';
 import { civilWorks_SkillGroup_Data } from './civilWorks/civilWorks.data';

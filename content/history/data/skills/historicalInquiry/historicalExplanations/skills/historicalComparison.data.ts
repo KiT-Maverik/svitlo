@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const historicalComparison_Skill_Data = buildSkillConfig({
   slug: 'historicalComparison',

@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { attentionAllocation_SkillGroup_Data } from './attentionAllocation/attentionAllocation.data';
 import { awarenessAndAutomaticity_SkillGroup_Data } from './awarenessAndAutomaticity/awarenessAndAutomaticity.data';

@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { advertisingAndCommunications_SkillGroup_Data } from './advertisingAndCommunications/advertisingAndCommunications.data';
 import { marketResearch_SkillGroup_Data } from './marketResearch/marketResearch.data';

@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { accountProtection_SkillGroup_Data } from './accountProtection/accountProtection.data';
 import { ethicsOfDigitalInteraction_SkillGroup_Data } from './ethicsOfDigitalInteraction/ethicsOfDigitalInteraction.data';

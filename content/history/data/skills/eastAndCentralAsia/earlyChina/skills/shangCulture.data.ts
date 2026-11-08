@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const shangCulture_Skill_Data = buildSkillConfig({
   slug: 'shangCulture',

@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const createAPhotographicSeries_Skill_Data = buildSkillConfig({
   slug: 'createAPhotographicSeries',

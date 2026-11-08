@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { accessibility_SkillGroup_Data } from './accessibility/accessibility.data';
 import { digitalInteractionDesign_SkillGroup_Data } from './digitalInteractionDesign/digitalInteractionDesign.data';

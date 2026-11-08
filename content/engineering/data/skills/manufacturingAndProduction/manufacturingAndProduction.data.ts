@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { assemblyAndQuality_SkillGroup_Data } from './assemblyAndQuality/assemblyAndQuality.data';
 import { materialShaping_SkillGroup_Data } from './materialShaping/materialShaping.data';

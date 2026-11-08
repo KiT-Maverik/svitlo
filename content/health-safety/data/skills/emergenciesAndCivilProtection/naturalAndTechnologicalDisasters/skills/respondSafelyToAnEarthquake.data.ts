@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const respondSafelyToAnEarthquake_Skill_Data = buildSkillConfig({
   slug: 'respondSafelyToAnEarthquake',

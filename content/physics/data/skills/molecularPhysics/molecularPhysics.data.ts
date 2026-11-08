@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { diffusionAndMixing_SkillGroup_Data } from './diffusionAndMixing/diffusionAndMixing.data';
 import { gasProperties_SkillGroup_Data } from './gasProperties/gasProperties.data';

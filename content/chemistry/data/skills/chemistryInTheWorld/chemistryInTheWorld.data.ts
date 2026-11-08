@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { airAndWater_SkillGroup_Data } from './airAndWater/airAndWater.data';
 import { materialsChemistry_SkillGroup_Data } from './materialsChemistry/materialsChemistry.data';

@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { philosophicalTraditions_SkillGroup_Data } from './philosophicalTraditions/philosophicalTraditions.data';
 import { readingPhilosophicalWorks_SkillGroup_Data } from './readingPhilosophicalWorks/readingPhilosophicalWorks.data';

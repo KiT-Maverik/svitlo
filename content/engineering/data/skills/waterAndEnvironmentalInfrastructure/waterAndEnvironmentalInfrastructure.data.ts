@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { environmentalControl_SkillGroup_Data } from './environmentalControl/environmentalControl.data';
 import { hydraulicInfrastructure_SkillGroup_Data } from './hydraulicInfrastructure/hydraulicInfrastructure.data';

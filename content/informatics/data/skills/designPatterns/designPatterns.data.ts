@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { behavioral_SkillGroup_Data } from './behavioral/behavioral.data';
 import { creational_SkillGroup_Data } from './creational/creational.data';

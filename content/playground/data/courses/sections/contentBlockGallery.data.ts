@@ -1,4 +1,4 @@
-import { createSection, createContentBlock } from '@svitlo/engine/builders';
+import { createSection, createContentBlock } from '@svitlo/engine';
 import type { HowLightMoves_Languages } from '../../lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/constants';
 import { lightRayDiagram } from '../../lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/sections/theory/scenes/lightRayDiagram';
 

@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { conservationOfEnergy_SkillGroup_Data } from './conservationOfEnergy/conservationOfEnergy.data';
 import { energyTransferAndTransformation_SkillGroup_Data } from './energyTransferAndTransformation/energyTransferAndTransformation.data';

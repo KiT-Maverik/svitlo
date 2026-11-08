@@ -88,16 +88,6 @@ function runGate(changed) {
   }
   if (
     changed.some(
-      f =>
-        f.startsWith('scripts/textbook-tooling/generate-scenes') ||
-        f.startsWith('content/playground/scenes/') ||
-        f === 'content/playground/package.json',
-    )
-  ) {
-    exec('node', ['--test', 'scripts/textbook-tooling/generate-scenes.spec.mjs']);
-  }
-  if (
-    changed.some(
       f => f.startsWith('scripts/generators/pages/skillAnalytics/') || f.startsWith('content/playground/data/skills/'),
     )
   ) {
@@ -220,6 +210,21 @@ function runGate(changed) {
       exec('npm', ['run', 'test:unit:selection', '--workspace', name]);
       exec('npm', ['run', 'test:components', '--workspace', name]);
     }
+  }
+  if (
+    changed.some(
+      f =>
+        f.startsWith('scripts/textbook-tooling/generate-scenes') ||
+        f.startsWith('content/playground/scenes/') ||
+        f === 'content/playground/package.json',
+    )
+  ) {
+    ensureSharedDependencies('@svitlo/engine');
+    if (!built.has('@svitlo/engine')) {
+      exec('npm', ['run', 'package:build', '--workspace', '@svitlo/engine']);
+      built.add('@svitlo/engine');
+    }
+    exec('node', ['--test', 'scripts/textbook-tooling/generate-scenes.spec.mjs']);
   }
   if (
     changed.some(

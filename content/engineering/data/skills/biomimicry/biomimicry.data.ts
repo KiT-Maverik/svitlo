@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { bioInspiredTechnologies_SkillGroup_Data } from './bioInspiredTechnologies/bioInspiredTechnologies.data';
 import { natureInspiredDesign_SkillGroup_Data } from './natureInspiredDesign/natureInspiredDesign.data';

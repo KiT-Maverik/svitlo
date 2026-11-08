@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import { chemicalChanges_Skill_Data, massConservation_Skill_Data, physicalChanges_Skill_Data } from './skills';
 

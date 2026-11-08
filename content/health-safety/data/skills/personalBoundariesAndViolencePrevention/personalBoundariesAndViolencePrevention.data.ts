@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { bodilyAutonomyAndConsent_SkillGroup_Data } from './bodilyAutonomyAndConsent/bodilyAutonomyAndConsent.data';
 import { pressureAndManipulation_SkillGroup_Data } from './pressureAndManipulation/pressureAndManipulation.data';

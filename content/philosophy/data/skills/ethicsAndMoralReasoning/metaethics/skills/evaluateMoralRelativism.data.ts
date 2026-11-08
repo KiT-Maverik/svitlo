@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const evaluateMoralRelativism_Skill_Data = buildSkillConfig({
   slug: 'evaluateMoralRelativism',

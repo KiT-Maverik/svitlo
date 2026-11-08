@@ -6,17 +6,11 @@
   },
   "include": [
     "index.ts",
-    "builders/**/*.ts",
     "configurators/**/*.ts",
-    "content/**/*.ts",
     "data/**/*.ts",
     "definitions/**/*.ts",
-    "generation/**/*.ts",
-    "lesson/**/*.ts",
     "lessons/**/*.ts",
-    "localization/**/*.ts",
     "schemas/**/*.ts",
-    "taxonomy/**/*.ts",
     "types/**/*.ts",
     "utils/**/*.ts"
   ],

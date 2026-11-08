@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { healthAndRisk_SkillGroup_Data } from './healthAndRisk/healthAndRisk.data';
 import { healthInformationAndMedicines_SkillGroup_Data } from './healthInformationAndMedicines/healthInformationAndMedicines.data';

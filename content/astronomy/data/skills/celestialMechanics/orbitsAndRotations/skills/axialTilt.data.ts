@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const axialTilt_Skill_Data = buildSkillConfig({
   slug: 'axialTilt',

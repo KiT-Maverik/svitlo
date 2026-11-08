@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import { positionWords_Skill_Data, gridMapNavigation_Skill_Data, spatialOrientationPath_Skill_Data } from './skills';
 

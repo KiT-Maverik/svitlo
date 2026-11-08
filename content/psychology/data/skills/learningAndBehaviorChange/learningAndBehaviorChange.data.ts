@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { operantLearning_SkillGroup_Data } from './operantLearning/operantLearning.data';
 import { respondentConditioning_SkillGroup_Data } from './respondentConditioning/respondentConditioning.data';

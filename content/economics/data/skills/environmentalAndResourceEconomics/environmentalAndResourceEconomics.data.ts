@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { commonPoolResources_SkillGroup_Data } from './commonPoolResources/commonPoolResources.data';
 import { environmentalIncentivesAndPolicy_SkillGroup_Data } from './environmentalIncentivesAndPolicy/environmentalIncentivesAndPolicy.data';

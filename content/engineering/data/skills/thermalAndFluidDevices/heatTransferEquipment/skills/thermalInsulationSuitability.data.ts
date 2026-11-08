@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const thermalInsulationSuitability_Skill_Data = buildSkillConfig({
   slug: 'thermalInsulationSuitability',

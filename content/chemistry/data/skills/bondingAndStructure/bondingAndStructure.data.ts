@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { chemicalBonds_SkillGroup_Data } from './chemicalBonds/chemicalBonds.data';
 import { interparticleInteractions_SkillGroup_Data } from './interparticleInteractions/interparticleInteractions.data';

@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const coordinateSoundAndImage_Skill_Data = buildSkillConfig({
   slug: 'coordinateSoundAndImage',

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import { distinguishOpenSourceFromPubliclyVisibleCode_Skill_Data, explainOpenSource_Skill_Data } from './skills';
 

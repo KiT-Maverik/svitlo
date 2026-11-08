@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { chemicalEnergetics_SkillGroup_Data } from './chemicalEnergetics/chemicalEnergetics.data';
 import { chemicalEquilibrium_SkillGroup_Data } from './chemicalEquilibrium/chemicalEquilibrium.data';

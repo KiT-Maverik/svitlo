@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const interpretAPhilosopherInHistoricalContext_Skill_Data = buildSkillConfig({
   slug: 'interpretAPhilosopherInHistoricalContext',

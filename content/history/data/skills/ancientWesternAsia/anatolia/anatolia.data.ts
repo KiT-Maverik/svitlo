@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import { anatolianTradeNetworks_Skill_Data, hittiteKingdom_Skill_Data, urartu_Skill_Data } from './skills';
 

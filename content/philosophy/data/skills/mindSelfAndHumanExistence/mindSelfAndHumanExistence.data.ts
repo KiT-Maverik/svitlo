@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { agencyAndFreeWill_SkillGroup_Data } from './agencyAndFreeWill/agencyAndFreeWill.data';
 import { humanExistenceAndMeaning_SkillGroup_Data } from './humanExistenceAndMeaning/humanExistenceAndMeaning.data';

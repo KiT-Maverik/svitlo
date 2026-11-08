@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { economicSystems_SkillGroup_Data } from './economicSystems/economicSystems.data';
 import { historicalEconomicTransformations_SkillGroup_Data } from './historicalEconomicTransformations/historicalEconomicTransformations.data';

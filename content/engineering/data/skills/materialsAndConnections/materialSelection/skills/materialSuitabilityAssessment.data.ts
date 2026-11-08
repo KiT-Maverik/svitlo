@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const materialSuitabilityAssessment_Skill_Data = buildSkillConfig({
   slug: 'materialSuitabilityAssessment',

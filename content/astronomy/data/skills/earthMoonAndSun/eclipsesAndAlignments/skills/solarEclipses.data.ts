@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const solarEclipses_Skill_Data = buildSkillConfig({
   slug: 'solarEclipses',

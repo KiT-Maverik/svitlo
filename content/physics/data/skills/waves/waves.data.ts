@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { acoustics_SkillGroup_Data } from './acoustics/acoustics.data';
 import { oscillations_SkillGroup_Data } from './oscillations/oscillations.data';

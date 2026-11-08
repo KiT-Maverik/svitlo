@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { entrepreneurshipAndAccounting_SkillGroup_Data } from './entrepreneurshipAndAccounting/entrepreneurshipAndAccounting.data';
 import { firmDecisionMakingAndManagement_SkillGroup_Data } from './firmDecisionMakingAndManagement/firmDecisionMakingAndManagement.data';

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import { hullDesignChoices_Skill_Data, marinePropulsion_Skill_Data, marineSteering_Skill_Data } from './skills';
 

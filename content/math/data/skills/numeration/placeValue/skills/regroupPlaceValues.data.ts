@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const regroupPlaceValues_Skill_Data = buildSkillConfig({
   slug: 'regroupPlaceValues',

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import { cosmicStructureFormation_Skill_Data, cosmicWeb_Skill_Data } from './skills';
 

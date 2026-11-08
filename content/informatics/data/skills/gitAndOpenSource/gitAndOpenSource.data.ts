@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { collaborativeDigitalProductDevelopment_SkillGroup_Data } from './collaborativeDigitalProductDevelopment/collaborativeDigitalProductDevelopment.data';
 import { gitVersionControl_SkillGroup_Data } from './gitVersionControl/gitVersionControl.data';

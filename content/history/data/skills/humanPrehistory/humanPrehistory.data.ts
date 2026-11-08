@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { growingSocialComplexity_SkillGroup_Data } from './growingSocialComplexity/growingSocialComplexity.data';
 import { humanOriginsAndDispersal_SkillGroup_Data } from './humanOriginsAndDispersal/humanOriginsAndDispersal.data';

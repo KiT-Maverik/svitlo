@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const nazcaCulture_Skill_Data = buildSkillConfig({
   slug: 'nazcaCulture',

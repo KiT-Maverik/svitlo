@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { aIFundamentals_SkillGroup_Data } from './aIFundamentals/aIFundamentals.data';
 import { imitationAndUnderstanding_SkillGroup_Data } from './imitationAndUnderstanding/imitationAndUnderstanding.data';

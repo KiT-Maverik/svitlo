@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/nextjs';
-import type { Question_SelectMultipleAnswers, Locale_Languages } from '@svitlo/engine/content';
+import type { Question_SelectMultipleAnswers, Locale_Languages } from '@svitlo/contracts/content';
 import { enUiKitMessages } from '../../../../testing/uiKitMessages.unit.fx';
 import { SelectMultipleAnswers } from './SelectMultipleAnswers';
 
