@@ -15,12 +15,14 @@ const isObject = (value: unknown): value is Record<string, unknown> =>
 export function isDefinition(value: unknown): value is EntityDefinition {
   if (!isObject(value) || !isObject(value.config)) return false;
   const config = value.config;
-  return 'base' in config &&
+  return (
+    'base' in config &&
     typeof config.locales === 'function' &&
     typeof config.overrides === 'function' &&
     isObject(config.test) &&
     typeof config.test.config === 'function' &&
-    typeof config.test.props === 'function';
+    typeof config.test.props === 'function'
+  );
 }
 
 export function childDefinition<Child extends EntityDefinition>(
@@ -32,16 +34,13 @@ export function childDefinition<Child extends EntityDefinition>(
 }
 
 export function taggedChild<Kind extends string>(...kinds: readonly Kind[]) {
-  return childDefinition<TaggedDefinition<Kind>>(value =>
-    'kind' in value && kinds.includes(value.kind as Kind),
-  );
+  return childDefinition<TaggedDefinition<Kind>>(value => 'kind' in value && kinds.includes(value.kind as Kind));
 }
 
 export const localizedText = <L extends DefinitionLanguages>(languages: L) =>
   z.union([z.string().min(1), createLocaleSubsetSchema(languages, true)]);
 
-export const localizedMap = <L extends DefinitionLanguages>(languages: L) =>
-  createLocaleSubsetSchema(languages, true);
+export const localizedMap = <L extends DefinitionLanguages>(languages: L) => createLocaleSubsetSchema(languages, true);
 
 export const uuid = z.uuid();
 export const slug = z.string().min(1);
@@ -57,10 +56,7 @@ const indexPath = (path: string) => path.replace(/\.\d+(?=\.|$)/g, '.*');
  * Arrays use sparse numeric patches; nested Definitions contribute their
  * projections without serializing functions into base data.
  */
-export function partitionDefinition(
-  source: unknown,
-  localizablePaths: readonly string[],
-): Split {
+export function partitionDefinition(source: unknown, localizablePaths: readonly string[]): Split {
   const paths = new Set(localizablePaths);
   const project = (value: unknown, path: string): Split => {
     if (isDefinition(value)) {
@@ -78,8 +74,12 @@ export function partitionDefinition(
       }
       return { base, locales, overrides };
     }
-    if (paths.has(indexPath(path)) && isObject(value) &&
-        Object.keys(value).length > 0 && Object.keys(value).every(key => codes.has(key))) {
+    if (
+      paths.has(indexPath(path)) &&
+      isObject(value) &&
+      Object.keys(value).length > 0 &&
+      Object.keys(value).every(key => codes.has(key))
+    ) {
       return { base: undefined, locales: { ...value }, overrides: {} };
     }
     if (Array.isArray(value)) {
@@ -116,8 +116,7 @@ export function partitionDefinition(
 const deepMerge = (left: Record<string, unknown>, right: Record<string, unknown>) => {
   const next = { ...left };
   for (const [key, value] of Object.entries(right)) {
-    next[key] = isObject(value) && isObject(next[key])
-      ? deepMerge(next[key] as Record<string, unknown>, value) : value;
+    next[key] = isObject(value) && isObject(next[key]) ? deepMerge(next[key] as Record<string, unknown>, value) : value;
   }
   return next;
 };
@@ -134,13 +133,7 @@ export function defineStructured<
   const L extends DefinitionLanguages,
   S extends z.ZodTypeAny,
   P extends z.ZodTypeAny,
->(
-  kind: Kind,
-  source: z.input<S>,
-  schema: (languages: L) => S,
-  propsSchema: P,
-  localizablePaths: readonly string[],
-) {
+>(kind: Kind, source: z.input<S>, schema: (languages: L) => S, propsSchema: P, localizablePaths: readonly string[]) {
   const split = partitionDefinition(source, localizablePaths);
   const initialBase = split.base as Record<string, unknown>;
   const create = (patch: Record<string, unknown>) => {
@@ -148,7 +141,7 @@ export function defineStructured<
       kind,
       config: {
         base: initialBase,
-        locales: () => Object.keys(split.locales).length ? split.locales : null,
+        locales: () => (Object.keys(split.locales).length ? split.locales : null),
         overrides: () => {
           const resolved = deepMerge(split.overrides, patch);
           return Object.keys(resolved).length ? resolved : null;
