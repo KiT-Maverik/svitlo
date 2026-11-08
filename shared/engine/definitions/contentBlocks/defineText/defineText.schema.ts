@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import {LanguageCode, NonEmptyArray} from '@svitlo/contracts';
+import {LanguageCode, type Locale_Languages, NonEmptyArray} from '@svitlo/contracts';
 
 import {createContentBlockMetaSchema, textStylingRules_Schema} from "../contentBlock.schemas";
 import {ContentBlock_Text_Config} from "./defineText.types";
@@ -14,16 +14,16 @@ const params_Schema = z.object({
   }).optional(),
 }).and(textStylingRules_Schema);
 
-export const createTextConfigSchema = (l: NonEmptyArray<LanguageCode>, config: ContentBlock_Text_Config)=> {
-  const base = createContentBlockMetaSchema(config).and(params_Schema);
+export const createTextConfigSchema = <SupportedLanguages extends Locale_Languages>(l: NonEmptyArray<LanguageCode>, config: ContentBlock_Text_Config<SupportedLanguages>)=> {
+  const base = createContentBlockMetaSchema(config.type).and(params_Schema);
 
   if (typeof config.value === 'string') return z.object({value: nonTranslatableText_Schema}).and(base)
 
   return z.object({ value: createLocaleSubsetSchema(l)}).and(base);
 }
 
-export const createTextPropsSchema = (config: ContentBlock_Text_Config)=> {
-  const base = createContentBlockMetaSchema(config).and(params_Schema);
+export const createTextPropsSchema = <SupportedLanguages extends Locale_Languages>(config: ContentBlock_Text_Config<SupportedLanguages>)=> {
+  const base = createContentBlockMetaSchema(config.type).and(params_Schema);
 
   return z.object({ value: localeText_Schema}).and(base);
 }
