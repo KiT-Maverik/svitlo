@@ -11,14 +11,13 @@ type Params = {
   }
 }
 
-type Locale<SupportedLanguages extends Locale_Languages | string> = Locale_Options<SupportedLanguages>
+type Locale<SupportedLanguages extends Locale_Languages | string> = { value: Locale_Options<SupportedLanguages> }
 
 export type ContentBlock_Text_Config<SupportedLanguages extends Locale_Languages> = ContentBlock_Meta<'text'> & {
   params: Params;
   value: Locale<SupportedLanguages>;
 }
 
-export type ContextBlock_Text_Props = ContentBlock_Meta<'text'> & {
+export type ContextBlock_Text_Props = ContentBlock_Meta<'text'> & Locale<string> & {
   params: Params & { disabled?: true };
-  value: Locale<string>;
 }
