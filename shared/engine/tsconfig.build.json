@@ -12,6 +12,7 @@
   },
   "include": [
     "index.ts",
+    "runtime.ts",
     "configurators/**/*.ts",
     "data/**/*.ts",
     "definitions/**/*.ts",

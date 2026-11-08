@@ -24,6 +24,14 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
+      "react-server": {
+        "types": "./dist/runtime.d.ts",
+        "default": "./dist/runtime.js"
+      },
+      "browser": {
+        "types": "./dist/runtime.d.ts",
+        "default": "./dist/runtime.js"
+      },
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
     }
