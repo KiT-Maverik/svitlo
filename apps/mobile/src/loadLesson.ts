@@ -1,5 +1,4 @@
-import { resolveEntityPath } from '@svitlo/engine';
-import { assembleLessonResponse, mergeLessonResources, type LessonResponse } from '@svitlo/engine';
+import { resolveEntityPath, assembleLessonResponse, mergeLessonResources, type LessonResponse } from '@svitlo/engine';
 import type { LanguageCode, Locale } from '@svitlo/contracts/localization';
 import type { UiKitMessages } from '@svitlo/ui-kit';
 
