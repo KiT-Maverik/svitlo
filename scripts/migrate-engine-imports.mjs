@@ -1,13 +1,14 @@
 #!/usr/bin/env node
-/** Deterministically migrate removed Engine subpath imports across tracked source files. */
+/** Migrate actual JS/TS module specifiers from removed Engine subpaths, without editing string fixtures. */
 import { execFileSync } from 'node:child_process';
 import { readFileSync, writeFileSync } from 'node:fs';
+import ts from 'typescript';
 
 const taxonomyTypes = new Set([
-  'SkillId', 'Skill_Config', 'Skill', 'SkillData', 'SkillGroup_Config',
-  'SkillGroup', 'SkillGroupData', 'SkillDomain_Config', 'SkillDomain', 'SkillDomainData',
+  'SkillId', 'Skill_Config', 'Skill', 'SkillData', 'SkillGroup_Config', 'SkillGroup',
+  'SkillGroupData', 'SkillDomain_Config', 'SkillDomain', 'SkillDomainData',
 ]);
-const localeContracts = new Set([
+const localizationContracts = new Set([
   'DEFAULT_SUPPORTED_LANGUAGES', 'FALLBACK_LANGUAGE', 'FALLBACK_LOCALE',
   'TextDirection', 'LanguageDefinition', 'AdditionalLanguages', 'AdditionalLanguage',
   'DefaultSupportedLanguage', 'SupportedLanguage', 'Locale', 'LanguageCode',
@@ -17,60 +18,97 @@ const subpaths = new Set([
   'builders', 'content', 'generation', 'lesson', 'localization', 'taxonomy',
   'assessment-methods', 'definitions', 'schemas', 'configurators', 'types', 'utils',
 ]);
+const prefix = '@svitlo/engine/';
 
-export function rewriteEngineImports(source) {
-  const named = /\b(import|export)\s+(type\s+)?\{([^}]+)\}\s+from\s+(['"])@svitlo\/engine\/(taxonomy|localization)\4\s*;?/g;
-  let result = source.replace(named, (whole, verb, typeOnly, fields, quote, domain) => {
-    const members = fields.split(',').map(item => item.trim()).filter(Boolean);
-    if (members.some(item => !/^(?:type\s+)?[A-Za-z_$][\w$]*(?:\s+as\s+[A-Za-z_$][\w$]*)?$/.test(item))) {
-      throw new Error('Unsupported Engine import declaration: ' + whole);
-    }
-    const contracts = [], engine = [];
-    const contractSymbols = domain === 'taxonomy' ? taxonomyTypes : localeContracts;
-    for (const item of members) {
-      const symbol = item.replace(/^type\s+/, '').split(/\s+as\s+/)[0];
-      (contractSymbols.has(symbol) ? contracts : engine).push(item);
-    }
-    const declaration = (items, module) => {
-      if (!items.length) return null;
-      const names = typeOnly ? items.map(item => item.replace(/^type\s+/, '')) : items;
-      return verb + ' ' + (typeOnly || '') + '{ ' + names.join(', ') + ' } from ' + quote + module + quote + ';';
-    };
-    return [
-      declaration(contracts, '@svitlo/contracts/' + domain),
-      declaration(engine, '@svitlo/engine'),
-    ].filter(Boolean).join('\n');
-  });
+export function rewriteEngineImports(source, filename = 'source.ts') {
+  const file = ts.createSourceFile(filename, source, ts.ScriptTarget.Latest, true);
+  const edits = [];
+  function replace(start, end, content) {
+    edits.push({ start, end, content });
+  }
+  function rewriteSpecifier(module, declaration) {
+    if (!module || !ts.isStringLiteralLike(module) || !module.text.startsWith(prefix)) return;
+    const subpath = module.text.slice(prefix.length);
+    if (!subpaths.has(subpath)) throw new Error(filename + ': unsupported Engine import ' + module.text);
+    const contract = subpath === 'content' ? '@svitlo/contracts/content'
+      : subpath === 'taxonomy' ? '@svitlo/contracts/taxonomy'
+      : subpath === 'localization' ? '@svitlo/contracts/localization' : null;
+    const ownedTypes = subpath === 'taxonomy' ? taxonomyTypes
+      : subpath === 'localization' ? localizationContracts : null;
+    let target = subpath === 'content' ? contract : '@svitlo/engine';
 
-  result = result.replace(/(['"])@svitlo\/engine\/([^'"\r\n]+)\1/g, (whole, quote, subpath) => {
-    if (!subpaths.has(subpath)) throw new Error('Unsupported Engine subpath: ' + subpath);
-    const module = subpath === 'content' ? '@svitlo/contracts/content' : '@svitlo/engine';
-    return quote + module + quote;
-  });
-  return result;
+    if (ownedTypes && declaration) {
+      const isImport = ts.isImportDeclaration(declaration);
+      const members = isImport
+        ? declaration.importClause?.namedBindings
+        : declaration.exportClause;
+      const named = members && (ts.isNamedImports(members) || ts.isNamedExports(members)) ? members.elements : null;
+      if (named) {
+        const contracts = [];
+        const engine = [];
+        for (const element of named) {
+          const name = (element.propertyName ?? element.name).text;
+          (ownedTypes.has(name) ? contracts : engine).push(element);
+        }
+        if (contracts.length && engine.length) {
+          if (isImport && declaration.importClause?.name) {
+            throw new Error(filename + ': unsupported mixed default import from ' + module.text);
+          }
+          const allType = isImport ? declaration.importClause?.isTypeOnly : declaration.isTypeOnly;
+          const verb = isImport ? 'import' : 'export';
+          const render = (members, path) => verb + ' ' + (allType ? 'type ' : '') + '{ ' +
+            members.map(item => allType ? item.getText(file).replace(/^type\s+/, '') : item.getText(file)).join(', ') +
+            ' } from ' + source[module.getStart(file)] + path + source[module.end - 1] + ';';
+          replace(declaration.getStart(file), declaration.end,
+            render(contracts, contract) + '\n' + render(engine, '@svitlo/engine'));
+          return;
+        }
+        if (contracts.length && !engine.length) target = contract;
+      }
+    }
+    replace(module.getStart(file) + 1, module.end - 1, target);
+  }
+
+  for (const statement of file.statements) {
+    if (ts.isImportDeclaration(statement) || ts.isExportDeclaration(statement)) {
+      rewriteSpecifier(statement.moduleSpecifier, statement);
+    } else if (ts.isImportEqualsDeclaration(statement) && ts.isExternalModuleReference(statement.moduleReference)) {
+      rewriteSpecifier(statement.moduleReference.expression, null);
+    }
+  }
+  function walk(node) {
+    if (ts.isCallExpression(node) && node.arguments.length === 1 &&
+        (node.expression.kind === ts.SyntaxKind.ImportKeyword ||
+         (ts.isIdentifier(node.expression) && node.expression.text === 'require'))) {
+      rewriteSpecifier(node.arguments[0], null);
+    }
+    ts.forEachChild(node, walk);
+  }
+  walk(file);
+
+  return edits.sort((a, b) => b.start - a.start).reduce(
+    (text, edit) => text.slice(0, edit.start) + edit.content + text.slice(edit.end), source);
 }
 
 export function rewriteTrackedFiles({ write = false, root = process.cwd() } = {}) {
-  const files = execFileSync('git', ['ls-files', '-z'], {
+  const paths = execFileSync('git', ['ls-files', '-z'], {
     cwd: root, encoding: 'utf8', maxBuffer: 16 * 1024 * 1024,
-  }).split('\0').filter(path => /\.(?:ts|tsx|mts|cts|js|jsx|mjs|cjs|json|yaml|yml)$/.test(path));
-  const changed = [];
-  for (const path of files) {
-    const name = root + '/' + path;
-    const oldContent = readFileSync(name, 'utf8');
-    const newContent = rewriteEngineImports(oldContent);
-    if (newContent === oldContent) continue;
-    changed.push(path);
-    if (write) writeFileSync(name, newContent);
-  }
+  }).split('\0').filter(path => /\.(?:tsx?|mts|cts|jsx?|mjs|cjs)$/.test(path));
   const grouped = {};
-  for (const path of changed) {
-    const key = path.split('/').slice(0, 2).join('/');
-    grouped[key] = (grouped[key] || 0) + 1;
+  let count = 0;
+  for (const path of paths) {
+    const filename = root + '/' + path;
+    const oldText = readFileSync(filename, 'utf8');
+    if (!oldText.includes(prefix)) continue;
+    const newText = rewriteEngineImports(oldText, path);
+    if (oldText === newText) continue;
+    count++;
+    const group = path.split('/').slice(0, 2).join('/');
+    grouped[group] = (grouped[group] || 0) + 1;
+    if (write) writeFileSync(filename, newText);
   }
-  return { count: changed.length, grouped };
+  return { count, grouped };
 }
-
 if (process.argv[1]?.endsWith('/migrate-engine-imports.mjs')) {
   const mode = process.argv[2];
   if (mode !== '--write' && mode !== '--check') {

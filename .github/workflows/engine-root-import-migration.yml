@@ -3,8 +3,7 @@ name: One-shot Engine consumer import migration
 on:
   push:
     branches: [refactor-engine-structure]
-    paths:
-      - scripts/migrate-engine-imports.mjs
+    paths: [scripts/migrate-engine-imports.mjs]
 
 permissions:
   contents: write
@@ -20,12 +19,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
+          cache: npm
+      - run: npm ci
       - name: Rewrite all tracked Engine consumers
         run: |
           node scripts/migrate-engine-imports.mjs --write
           node scripts/migrate-engine-imports.mjs --check
           git diff --check
-      - name: Commit consumers and remove this temporary workflow
+      - name: Commit consumers and remove temporary workflow
         run: |
           rm .github/workflows/engine-root-import-migration.yml
           git add -A
