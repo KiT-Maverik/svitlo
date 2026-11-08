@@ -7,8 +7,8 @@ import type {
   Locale_Languages,
   Module,
 } from '@svitlo/contracts/content';
-import { collectCoursePublicationItems } from './collectCoursePublicationItems';
-import type { LessonCreator } from '../lessons/createLesson';
+import { collectCoursePublicationItems } from '../collectCoursePublicationItems';
+import type { LessonCreator } from '../../../lessons/createLesson';
 
 type EpisodeCreator<L extends Locale_Languages> = Course_Creator<Episode<'data', L>, L>;
 type ChapterCreator<L extends Locale_Languages> = Course_Creator<Chapter<'data', L>, L>;

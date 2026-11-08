@@ -5,7 +5,7 @@ import {
   localeText_Schema,
   nonTranslatableText_Schema,
   type LanguageCodes,
-} from '@schemas';
+} from '#schemas';
 
 import { createContentBlockMetaSchema, textStylingRules_Schema } from '../contentBlock.schemas';
 

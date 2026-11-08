@@ -6,7 +6,8 @@
     "package:build": "tsc -p tsconfig.build.json",
     "code:check:types": "tsc -p tsconfig.json --noEmit",
     "prepack": "npm run package:build",
-    "test": "tsc -p tsconfig.test.json && node --test .test-build/utils/builders/*/*.spec.js .test-build/utils/createDynamicQuestion/*.spec.js .test-build/utils/createLocalizedFileLocations/*.spec.js .test-build/utils/entityPath/*.spec.js .test-build/utils/generators/getMarkdownLocale/*.spec.js .test-build/utils/generators/lessons/*.spec.js .test-build/course/*.spec.js .test-build/lessons/*.spec.js .test-build/data/assessmentMethodTaxonomy/*.spec.js",
+    "pretest": "npm run package:build",
+    "test": "tsc -p tsconfig.test.json && node --test .test-build/utils/builders/*/*.spec.js .test-build/utils/createDynamicQuestion/*.spec.js .test-build/utils/createLocalizedFileLocations/*.spec.js .test-build/utils/entityPath/*.spec.js .test-build/utils/generators/getMarkdownLocale/*.spec.js .test-build/utils/generators/lessons/*.spec.js .test-build/lessons/*.spec.js .test-build/data/assessmentMethodTaxonomy/*.spec.js .test-build/configurators/createCourseConfigurator/createModuleConfigurator/*.spec.js .test-build/schemas/*.spec.js",
     "code:format:check": "prettier --check . --ignore-path ../../.prettierignore",
     "code:format:fix": "prettier --write . --ignore-path ../../.prettierignore"
   },
@@ -27,40 +28,52 @@
       "default": "./dist/index.js"
     },
     "./localization": {
-      "types": "./dist/localization.d.ts",
-      "default": "./dist/localization.js"
+      "types": "./dist/localization/index.d.ts",
+      "default": "./dist/localization/index.js"
     },
     "./taxonomy": {
-      "types": "./dist/taxonomy.d.ts",
-      "default": "./dist/taxonomy.js"
+      "types": "./dist/taxonomy/index.d.ts",
+      "default": "./dist/taxonomy/index.js"
     },
     "./content": {
-      "types": "./dist/content.d.ts",
-      "default": "./dist/content.js"
+      "types": "./dist/content/index.d.ts",
+      "default": "./dist/content/index.js"
     },
     "./builders": {
-      "types": "./dist/builders.d.ts",
-      "default": "./dist/builders.js"
+      "types": "./dist/builders/index.d.ts",
+      "default": "./dist/builders/index.js"
     },
     "./generation": {
-      "types": "./dist/generation.d.ts",
-      "default": "./dist/generation.js"
+      "types": "./dist/generation/index.d.ts",
+      "default": "./dist/generation/index.js"
     },
     "./utils": {
-      "types": "./dist/utils.d.ts",
-      "default": "./dist/utils.js"
+      "types": "./dist/utils/index.d.ts",
+      "default": "./dist/utils/index.js"
     },
     "./types": {
-      "types": "./dist/types.d.ts",
-      "default": "./dist/types.js"
+      "types": "./dist/types/index.d.ts",
+      "default": "./dist/types/index.js"
     },
     "./assessment-methods": {
-      "types": "./dist/assessment-methods.d.ts",
-      "default": "./dist/assessment-methods.js"
+      "types": "./dist/data/assessmentMethodTaxonomy/index.data.d.ts",
+      "default": "./dist/data/assessmentMethodTaxonomy/index.data.js"
     },
     "./lesson": {
-      "types": "./dist/lesson.d.ts",
-      "default": "./dist/lesson.js"
+      "types": "./dist/lesson/index.d.ts",
+      "default": "./dist/lesson/index.js"
+    },
+    "./definitions": {
+      "types": "./dist/definitions/index.d.ts",
+      "default": "./dist/definitions/index.js"
+    },
+    "./schemas": {
+      "types": "./dist/schemas/index.d.ts",
+      "default": "./dist/schemas/index.js"
+    },
+    "./configurators": {
+      "types": "./dist/configurators/index.d.ts",
+      "default": "./dist/configurators/index.js"
     }
   },
   "files": [
@@ -68,36 +81,60 @@
   ],
   "typesVersions": {
     "*": {
-      "localization": [
-        "dist/localization.d.ts"
-      ],
-      "taxonomy": [
-        "dist/taxonomy.d.ts"
+      "builders": [
+        "dist/builders/index.d.ts"
       ],
       "content": [
-        "dist/content.d.ts"
-      ],
-      "builders": [
-        "dist/builders.d.ts"
+        "dist/content/index.d.ts"
       ],
       "generation": [
-        "dist/generation.d.ts"
+        "dist/generation/index.d.ts"
       ],
-      "utils": [
-        "dist/utils.d.ts"
+      "lesson": [
+        "dist/lesson/index.d.ts"
+      ],
+      "localization": [
+        "dist/localization/index.d.ts"
+      ],
+      "taxonomy": [
+        "dist/taxonomy/index.d.ts"
       ],
       "types": [
-        "dist/types.d.ts"
+        "dist/types/index.d.ts"
+      ],
+      "utils": [
+        "dist/utils/index.d.ts"
       ],
       "assessment-methods": [
-        "dist/assessment-methods.d.ts"
+        "dist/data/assessmentMethodTaxonomy/index.data.d.ts"
+      ],
+      "definitions": [
+        "dist/definitions/index.d.ts"
+      ],
+      "schemas": [
+        "dist/schemas/index.d.ts"
+      ],
+      "configurators": [
+        "dist/configurators/index.d.ts"
       ],
       "*": [
         "dist/index.d.ts"
-      ],
-      "lesson": [
-        "dist/lesson.d.ts"
       ]
     }
+  },
+  "imports": {
+    "#builders": "./dist/builders/index.js",
+    "#configurators": "./dist/configurators/index.js",
+    "#content": "./dist/content/index.js",
+    "#data": "./dist/data/index.js",
+    "#definitions": "./dist/definitions/index.js",
+    "#generation": "./dist/generation/index.js",
+    "#lesson": "./dist/lesson/index.js",
+    "#lessons": "./dist/lessons/index.js",
+    "#localization": "./dist/localization/index.js",
+    "#schemas": "./dist/schemas/index.js",
+    "#taxonomy": "./dist/taxonomy/index.js",
+    "#types": "./dist/types/index.js",
+    "#utils": "./dist/utils/index.js"
   }
 }

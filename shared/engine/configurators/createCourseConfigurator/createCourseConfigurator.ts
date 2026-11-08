@@ -10,9 +10,9 @@ import type {
   Locale_Languages,
 } from '@svitlo/contracts/content';
 import { collectCoursePublicationItems, isCourseLesson } from './collectCoursePublicationItems';
-import { mergeLessonResources } from '../lessons/mergeLessonResources';
-import { splitLessonValue, type SparseLessonValue } from '../lessons/splitLessonValue';
-import type { LessonCreator } from '../lessons/createLesson';
+import { mergeLessonResources } from '../../lessons/mergeLessonResources';
+import { splitLessonValue, type SparseLessonValue } from '../../lessons/splitLessonValue';
+import type { LessonCreator } from '../../lessons/createLesson';
 
 type CourseAuthoringEntry<L extends Locale_Languages> =
   | Course_Content<'data', L>

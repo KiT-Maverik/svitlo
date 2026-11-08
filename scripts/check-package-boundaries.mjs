@@ -185,7 +185,7 @@ for (const subpath of ['.', './localization', './taxonomy', './content', './buil
   );
 }
 assert(
-  existsSync(resolve(root, 'shared/engine/src/data/assessmentMethodTaxonomy/index.data.ts')),
+  existsSync(resolve(root, 'shared/engine/data/assessmentMethodTaxonomy/index.data.ts')),
   'Engine must own the canonical Assessment Method Taxonomy',
 );
 assert(
@@ -206,19 +206,20 @@ assert(
 );
 assert(
   existsSync(
-    resolve(root, 'shared/engine/src/utils/createLocalizedFileLocations/createLocalizedFileLocations.spec.ts'),
+    resolve(root, 'shared/engine/utils/createLocalizedFileLocations/createLocalizedFileLocations.spec.ts'),
   ),
   'Engine must own shared locale path tests',
 );
 assert(
-  existsSync(resolve(root, 'shared/engine/src/utils/builders/config/buildSkillCatalogConfig.spec.ts')),
+  existsSync(resolve(root, 'shared/engine/utils/builders/config/buildSkillCatalogConfig.spec.ts')),
   'Engine must own shared skill builder tests',
 );
 assert(
-  engine.exports?.['./assessment-methods']?.default === './dist/assessment-methods.js',
+  engine.exports?.['./assessment-methods']?.default === './dist/data/assessmentMethodTaxonomy/index.data.js',
   'Engine must publicly export shared Assessment Methods',
 );
-const engineSources = walk(resolve(root, 'shared/engine/src')).filter(
+const engineRoots = ['builders', 'configurators', 'content', 'data', 'definitions', 'generation', 'lesson', 'lessons', 'localization', 'schemas', 'taxonomy', 'types', 'utils'];
+const engineSources = [resolve(root, 'shared/engine/index.ts'), ...engineRoots.flatMap(dir => walk(resolve(root, 'shared/engine', dir)))].filter(
   file => file.endsWith('.ts') && !/\.(?:spec|typecheck)\.ts$/.test(file),
 );
 for (const file of engineSources) {
@@ -227,8 +228,8 @@ for (const file of engineSources) {
   for (const match of imports) {
     assert(
       match[1].startsWith('.') ||
-        match[1].startsWith('@svitlo/contracts') ||
-        (relative(root, file).startsWith('shared/engine/src/utils/generators/') &&
+        match[1].startsWith('@svitlo/contracts') || match[1].startsWith('#') || match[1] === 'zod' ||
+        (relative(root, file).startsWith('shared/engine/utils/generators/') &&
           (match[1].startsWith('node:') || match[1] === 'esbuild')),
       'Engine must not import runtime, UI or application packages: ' + relative(root, file) + ' -> ' + match[1],
     );

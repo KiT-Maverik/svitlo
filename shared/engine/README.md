@@ -6,14 +6,10 @@
 
 - `lessons/` contains Lesson, Section, and ContentBlock creators, sparse localization helpers, and response assembly.
 - `configurators/` contains Course configuration and publication helpers.
-- `definitions/` contains the newer schema-based content block definitions, including `defineText`.
+- `definitions/` contains schema-based content block definitions, including `defineText`.
 - `utils/`, `data/`, and `types/` contain supporting utilities, Assessment Method data, and language types.
-- `src/` contains the package entrypoints declared in `package.json`.
+- The root `index.ts` and domain `index.ts` files define package entrypoints. Available `@svitlo/engine/*` paths are listed in `package.json` exports.
 
-The older Lesson creators split authored data into invariant `getBase()` resources and language-specific `getLocale(language)` patches. Their generators handle resource paths and serialization; consumers merge a base resource with one locale patch before assembling a Lesson response. See [Lesson](../../studio/docs/entities/lesson.md) for the publication boundary.
+Lesson creators split authored data into invariant `getBase()` resources and language-specific `getLocale(language)` patches. Generators handle resource paths and serialization; consumers merge a base resource with one locale patch before assembling a Lesson response. See [Lesson](../../studio/docs/entities/lesson.md) for the publication boundary.
 
-The newer `defineText` API in `definitions/` is being developed separately. It is not yet declared as a package export.
-
-## Current integration status
-
-Some entrypoints in `src/` still import Lesson and Course modules using paths that no longer match their locations outside `src/`. Check the package build and typecheck before relying on `@svitlo/engine` exports; the source files alone do not establish a working published API.
+Internal domain imports use the `#domain` mappings declared in both `tsconfig.json` and `package.json`.
