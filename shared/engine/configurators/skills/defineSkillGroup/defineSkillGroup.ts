@@ -6,12 +6,13 @@ export function defineSkillGroupMethod(config: SkillGroup_Config) {
   const base = {
     id,
     slug,
+    description: { methodological: description.methodological },
   };
 
   return {
     config: {
       base,
-      locales: () => ({ name, description }),
+      locales: () => ({ name, description: { frontend: description.frontend } }),
       test: {
         config: () => skillGroup_Config_Schema.safeParse(config).success,
         props: (props: unknown) => skillGroup_Props_Schema.safeParse(props).success,
