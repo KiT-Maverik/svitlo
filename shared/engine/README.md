@@ -33,7 +33,7 @@ No field-level runtime fallback is performed.
 
 `@svitlo/engine/builders` exports `createCourse`, `createModule`,
 `createChapter`, `createEpisode`, `createLesson`,
-`createSection` and `createContentBlock`.
+`createSectionConfigurator` and `createContentBlock`.
 
 Every creator exposes `getData()` for authoring. Lesson, Section and
 ContentBlock creators expose `getBase()` and `getLocale()`; Section
@@ -55,7 +55,7 @@ const block = createContentBlock<typeof languages>()({
   type: 'text',
   value: { en: 'Hello', uk: 'Привіт' },
 });
-const section = createSection<typeof languages>()({
+const section = createSectionConfigurator<typeof languages>()({
   id: 'section-id',
   slug: 'theory',
   type: 'theory',
@@ -83,7 +83,7 @@ does **not** compute filenames, write files, or manufacture a combined resource.
 - `createLesson(data).getBase()` returns the invariant `config`, `flashcards`
   and `questions` documents. `getLocale(language)` returns only sparse locale
   patches and `localeSources` for the same three collections.
-- `createSection` and `createContentBlock` expose `getBase({ languages })`
+- `createSectionConfigurator` and `createContentBlock` expose `getBase({ languages })`
   and `getLocale({ languages, language })` because their creators have no
   runtime language tuple. Quiz is a Section.
 - `createCourse(course).getBase()` exposes invariant `toc`, `episodes` and
@@ -101,3 +101,16 @@ serialization. The **runtime** loads `base.json` plus the selected language
 patch and merges them using `mergeLessonResources` (including index-keyed
 array patches). Course resources are published independently for TOC, Episode
 and Lesson override; full imported Lesson data never appears in Course JSON.
+
+## Flat Engine source layout
+
+The Engine package has no `src/` directory. Its root `index.ts` and each
+public domain directory's `index.ts` provide the explicit export boundaries.
+The compiler emits root entrypoints to `dist/<domain>/index.js`; the public
+`@svitlo/engine/<domain>` paths are declared in `package.json` exports.
+
+Internal imports use exact, non-wildcard `#domain` specifiers (for example,
+`#schemas`), defined in both TypeScript paths and Node.js package imports.
+Do not introduce TypeScript-only `@domain` shortcuts: they survive a normal
+`tsc` emit and break Node.js resolution. New root domains need matching
+indexes, type paths, and runtime import mappings.
