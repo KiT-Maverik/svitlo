@@ -48,7 +48,7 @@ export const slug = z.string().min(1);
 export const resolvedProps = <Kind extends string>(kind: Kind) =>
   z.object({ type: z.literal(kind), id: uuid }).catchall(z.unknown());
 
-type Split = { base: unknown; locales: Record<string, unknown> };
+type Split = { base: unknown; locales: Record<string, unknown>; overrides: Record<string, unknown> };
 const noLocales = (): Record<string, unknown> => ({});
 const indexPath = (path: string) => path.replace(/\.\d+(?=\.|$)/g, '.*');
 
@@ -66,7 +66,9 @@ export function partitionDefinition(
     if (isDefinition(value)) {
       const base = value.config.base;
       const childLocales = value.config.locales();
-      if (!isObject(childLocales)) return { base, locales: noLocales() };
+      const childOverrides = value.config.overrides();
+      const overrides = isObject(childOverrides) ? childOverrides : {};
+      if (!isObject(childLocales)) return { base, locales: noLocales(), overrides };
       const locales: Record<string, unknown> = {};
       for (const [language, patch] of Object.entries(childLocales)) {
         if (!codes.has(language)) continue;
@@ -74,35 +76,39 @@ export function partitionDefinition(
         // language -> { value: string }; normalize it only at this boundary.
         locales[language] = typeof patch === 'string' ? { value: patch } : patch;
       }
-      return { base, locales };
+      return { base, locales, overrides };
     }
     if (paths.has(indexPath(path)) && isObject(value) &&
         Object.keys(value).length > 0 && Object.keys(value).every(key => codes.has(key))) {
-      return { base: undefined, locales: { ...value } };
+      return { base: undefined, locales: { ...value }, overrides: {} };
     }
     if (Array.isArray(value)) {
       const parts = value.map((item, index) => project(item, path ? path + '.' + index : String(index)));
       const locales: Record<string, Record<string, unknown>> = {};
+      const overrides: Record<string, unknown> = {};
       for (const [index, part] of parts.entries()) {
+        if (Object.keys(part.overrides).length) overrides[index] = part.overrides;
         for (const [language, patch] of Object.entries(part.locales)) {
           (locales[language] ??= {})[index] = patch;
         }
       }
-      return { base: parts.map(part => part.base), locales };
+      return { base: parts.map(part => part.base), locales, overrides };
     }
     if (isObject(value)) {
       const base: Record<string, unknown> = {};
       const locales: Record<string, Record<string, unknown>> = {};
+      const overrides: Record<string, unknown> = {};
       for (const [key, child] of Object.entries(value)) {
         const part = project(child, path ? path + '.' + key : key);
         if (part.base !== undefined) base[key] = part.base;
+        if (Object.keys(part.overrides).length) overrides[key] = part.overrides;
         for (const [language, patch] of Object.entries(part.locales)) {
           (locales[language] ??= {})[key] = patch;
         }
       }
-      return { base, locales };
+      return { base, locales, overrides };
     }
-    return { base: value, locales: noLocales() };
+    return { base: value, locales: noLocales(), overrides: {} };
   };
   return project(source, '');
 }
@@ -143,7 +149,10 @@ export function defineStructured<
       config: {
         base: initialBase,
         locales: () => Object.keys(split.locales).length ? split.locales : null,
-        overrides: () => Object.keys(patch).length ? { ...patch } : null,
+        overrides: () => {
+          const resolved = deepMerge(split.overrides, patch);
+          return Object.keys(resolved).length ? resolved : null;
+        },
         test: {
           config: (languages: L) => schema(languages).safeParse(source),
           props: (props: unknown) => propsSchema.safeParse(props),

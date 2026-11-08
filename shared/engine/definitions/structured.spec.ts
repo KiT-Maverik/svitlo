@@ -52,6 +52,9 @@ test('Course-local overrides do not mutate a standalone Lesson', () => {
     parameters:{languages},content:[courseVersion],
   });
   assert.equal(course.config.test.config(languages).success,true);
+  assert.deepEqual(course.config.overrides(), {
+    content: { 0: { title: { en:'Course Lesson', uk:'Урок у курсі' } } },
+  });
   assert.equal(JSON.stringify(course.config.base).includes('function'),false);
 });
 test('Skills use child Definition objects and assessment IDs are canonical', () => {
