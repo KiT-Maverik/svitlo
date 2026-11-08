@@ -10,6 +10,7 @@ export const createAssessmentMethodSchema = (mode: 'config' | 'props') => z.stri
 });
 
 export type AssessmentMethod_Config = z.infer<typeof createAssessmentMethodSchema>;
+export type AssessmentMethod_Props = z.infer<typeof createAssessmentMethodSchema>;
 
 export function defineAssessmentMethod(config: AssessmentMethod_Config) {
   const { id, description, slug, title } = config;
@@ -41,4 +42,4 @@ export function defineAssessmentMethod(config: AssessmentMethod_Config) {
   };
 }
 
-export type AssessmentMethod_Definition = ReturnType<typeof defineAssessmentMethod>;
+export type AssessmentMethod_Configurator = ReturnType<typeof defineAssessmentMethod>;
