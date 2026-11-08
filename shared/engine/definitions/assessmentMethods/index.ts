@@ -6,11 +6,11 @@ import { defineStructured, resolvedProps } from '../structured';
 import type { TaggedDefinition } from '../structured';
 
 export const assessmentMethodSchema = z.strictObject({
-  type: z.literal('assessmentMethod'),
-  slug: z.string().min(1),
-  id: z.uuid(),
-  title: locale_All_Schema,
   description: locale_All_Schema,
+  id: z.uuid(),
+  slug: z.string().min(1),
+  title: locale_All_Schema,
+  type: z.literal('assessmentMethod'),
 });
 
 export function defineAssessmentMethod(source: z.input<typeof assessmentMethodSchema>) {
