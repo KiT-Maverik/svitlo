@@ -31,7 +31,7 @@ export const createTextConfigSchema = <const SupportedLanguages extends TextLang
     value: z.union([nonTranslatableText_Schema, createLocaleSubsetSchema(languages, true)]),
   });
 
-export type TextConfig<SupportedLanguages extends TextLanguages> = z.input<
+export type ContentBlock_Text_Config<SupportedLanguages extends TextLanguages> = z.input<
   ReturnType<typeof createTextConfigSchema<SupportedLanguages>>
 >;
 
@@ -41,4 +41,4 @@ export const textProps_Schema = z.strictObject({
   value: localeText_Schema,
 });
 
-export type TextProps = z.output<typeof textProps_Schema>;
+export type ContextBlock_Text_Props = z.output<typeof textProps_Schema>;
