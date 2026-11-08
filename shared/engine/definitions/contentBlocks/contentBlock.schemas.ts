@@ -31,13 +31,15 @@ export type TextStylePreset = (typeof textStylePresets)[number];
 export const textTonePresets = ['neutral', 'info', 'warning', 'success'] as const;
 export type TextTonePreset = (typeof textTonePresets)[number];
 
+const textStyle_Schema = z.enum(textStylePresets);
+
 const textStylingRule_Schema = z.strictObject({
   id: z.uuid(),
-  applyStyle: z.array(z.enum(textStylePresets)).min(1),
+  applyStyle: z.tuple([textStyle_Schema], textStyle_Schema),
   applyColor: z.string().optional(),
   tone: z.enum(textTonePresets).optional(),
 });
 
 export const textStylingRules_Schema = z.object({
-  styling: z.array(textStylingRule_Schema).min(1).optional(),
+  styling: z.tuple([textStylingRule_Schema], textStylingRule_Schema).optional(),
 });
