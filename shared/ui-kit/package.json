@@ -17,6 +17,7 @@
     "code:format:fix": "prettier --write . --ignore-path ../../.prettierignore"
   },
   "dependencies": {
+    "@svitlo/contracts": "0.0.0",
     "@svitlo/engine": "0.0.0",
     "highlight.js": "^11.12.0"
   },
@@ -48,69 +49,6 @@
     ".": {
       "types": "./dist/src/index.d.ts",
       "default": "./dist/src/index.js"
-    },
-    "./widgets": {
-      "types": "./dist/src/widgets.d.ts",
-      "default": "./dist/src/widgets.js"
-    },
-    "./questions": {
-      "types": "./dist/src/questions.d.ts",
-      "default": "./dist/src/questions.js"
-    },
-    "./navigation": {
-      "types": "./dist/src/navigation.d.ts",
-      "default": "./dist/src/navigation.js"
-    },
-    "./widgets/*": {
-      "types": "./dist/src/components/widgets/*.d.ts",
-      "default": "./dist/src/components/widgets/*.js"
-    },
-    "./questions/*": {
-      "types": "./dist/src/components/widgets/questions/*.d.ts",
-      "default": "./dist/src/components/widgets/questions/*.js"
-    },
-    "./navigation/*": {
-      "types": "./dist/src/components/layout/Navigation/*.d.ts",
-      "default": "./dist/src/components/layout/Navigation/*.js"
-    },
-    "./layout": {
-      "types": "./dist/src/layout.d.ts",
-      "default": "./dist/src/layout.js"
-    },
-    "./layout/*": {
-      "types": "./dist/src/components/layout/*.d.ts",
-      "default": "./dist/src/components/layout/*.js"
-    },
-    "./user-cabinet": {
-      "types": "./dist/src/components/pages/UserCabinet/index.d.ts",
-      "default": "./dist/src/components/pages/UserCabinet/index.js"
-    },
-    "./learning-layout": {
-      "types": "./dist/src/components/layout/LearningLayout/index.d.ts",
-      "default": "./dist/src/components/layout/LearningLayout/index.js"
-    },
-    "./sync-flags": {
-      "default": "./scripts/sync-flags.mjs"
-    },
-    "./learning-layout/preferences": {
-      "types": "./dist/src/components/layout/LearningLayout/NavbarPreferences/NavbarPreferences.d.ts",
-      "default": "./dist/src/components/layout/LearningLayout/NavbarPreferences/NavbarPreferences.js"
-    },
-    "./theme": {
-      "types": "./dist/src/theme.d.ts",
-      "default": "./dist/src/theme.js"
-    },
-    "./lesson": {
-      "types": "./dist/src/components/lesson/index.d.ts",
-      "default": "./dist/src/components/lesson/index.js"
-    },
-    "./scene-locale": {
-      "types": "./dist/src/scene-locale.d.ts",
-      "default": "./dist/src/scene-locale.js"
-    },
-    "./course": {
-      "types": "./dist/src/course.d.ts",
-      "default": "./dist/src/course.js"
     }
   },
   "files": [
@@ -131,5 +69,8 @@
     "react-markdown": "^10.1.0",
     "rehype-raw": "^7.0.0",
     "rehype-sanitize": "^6.0.0"
+  },
+  "bin": {
+    "svitlo-sync-flags": "./scripts/sync-flags.mjs"
   }
 }

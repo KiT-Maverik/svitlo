@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import type { LessonResponse } from '@svitlo/engine';
@@ -6,7 +7,11 @@ import { preloadScene } from '@/generated/textbookScenes';
 import WebLesson from './Lesson';
 
 vi.mock('@/generated/textbookScenes', () => ({ preloadScene: vi.fn(), resolveScene: vi.fn() }));
-vi.mock('@svitlo/ui-kit/lesson', () => ({
+vi.mock('@svitlo/ui-kit', () => ({
+  // Root-only exports share one module mock after the package migration.
+  createLessonLearningLayout: () => () => null,
+  SceneLocaleProvider: ({ children }: { children: ReactNode }) => <>{children}</>,
+  ImageRendererProvider: ({ children }: { children: ReactNode }) => <>{children}</>,
   Lesson: ({
     contentLoading,
     contentError,

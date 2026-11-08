@@ -18,19 +18,18 @@
       "#definitions": ["definitions/index.ts"],
       "#lessons": ["lessons/index.ts"],
       "#schemas": ["schemas/index.ts"],
-      "#types": ["types/index.ts"],
       "#utils": ["utils/index.ts"]
     },
     "jsx": "react-jsx"
   },
   "include": [
     "index.ts",
+    "runtime.ts",
     "configurators/**/*.ts",
     "data/**/*.ts",
     "definitions/**/*.ts",
     "lessons/**/*.ts",
     "schemas/**/*.ts",
-    "types/**/*.ts",
     "utils/**/*.ts"
   ]
 }

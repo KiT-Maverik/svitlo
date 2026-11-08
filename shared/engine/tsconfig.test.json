@@ -6,12 +6,12 @@
   },
   "include": [
     "index.ts",
+    "runtime.ts",
     "configurators/**/*.ts",
     "data/**/*.ts",
     "definitions/**/*.ts",
     "lessons/**/*.ts",
     "schemas/**/*.ts",
-    "types/**/*.ts",
     "utils/**/*.ts"
   ],
   "exclude": ["node_modules", "dist", ".test-build", "**/*.typecheck.ts"]

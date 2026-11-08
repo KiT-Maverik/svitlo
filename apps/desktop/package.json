@@ -26,10 +26,6 @@
     "code:lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "@svitlo/adapter-electron": "0.0.0",
-    "@svitlo/engine": "0.0.0",
-    "@svitlo/ui-kit": "0.0.0",
-    "@svitlo/playground": "0.0.0",
     "@dnd-kit/core": "^6.3.1",
     "@dnd-kit/sortable": "^10.0.0",
     "@dnd-kit/utilities": "^3.2.2",
@@ -37,6 +33,11 @@
     "@emotion/styled": "^11.14.1",
     "@mui/icons-material": "^9.5.0",
     "@mui/material": "^9.5.0",
+    "@svitlo/adapter-electron": "0.0.0",
+    "@svitlo/contracts": "0.0.0",
+    "@svitlo/engine": "0.0.0",
+    "@svitlo/playground": "0.0.0",
+    "@svitlo/ui-kit": "0.0.0",
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "react-markdown": "^10.1.0",

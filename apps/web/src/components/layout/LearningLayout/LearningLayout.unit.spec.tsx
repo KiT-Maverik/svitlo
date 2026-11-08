@@ -4,7 +4,7 @@ vi.mock('@/i18n/useLessonLocale', () => ({ useLessonLocale: vi.fn() }));
 
 import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { SvitloThemeProvider } from '@svitlo/ui-kit/theme';
+import { SvitloThemeProvider } from '@svitlo/ui-kit';
 import LearningLayout from './LearningLayout';
 import { LearningLayout_fx } from './LearningLayout.unit.fx';
 import { LearningLayout_mx } from './LearningLayout.unit.mx';

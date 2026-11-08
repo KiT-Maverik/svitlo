@@ -1,12 +1,13 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
-import { SvitloThemeProvider } from '@svitlo/ui-kit/theme';
+import {
+  SvitloThemeProvider,
+  type UiKitMessages,
+  Lesson,
+  createLessonLearningLayout,
+  SceneLocaleProvider,
+} from '@svitlo/ui-kit';
 import { type Locale } from '@svitlo/contracts/localization';
-import { getLocaleDirection } from '@svitlo/engine';
-import type { LessonResponse } from '@svitlo/engine';
-import type { UiKitMessages } from '@svitlo/ui-kit';
-import { Lesson } from '@svitlo/ui-kit/lesson';
-import { createLessonLearningLayout } from '@svitlo/ui-kit/learning-layout';
-import { SceneLocaleProvider } from '@svitlo/ui-kit/scene-locale';
+import { getLocaleDirection, type LessonResponse } from '@svitlo/engine';
 import { resolveScene } from '@svitlo/playground/scenes';
 import { loadPublishedLesson, loadPublishedUiKitMessages } from '@svitlo/adapter-electron';
 import { changeLessonLocale, changeContentLocale, initialLessonRoute, lessonHref, type LessonRoute } from './routing';

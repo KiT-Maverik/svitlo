@@ -1,5 +1,5 @@
 import type { Lesson, Locale_Languages } from '@svitlo/contracts/content';
-import type { LanguageCode } from '../types/languages';
+import type { LanguageCode } from '@svitlo/contracts/localization';
 import { resolveEntityPath } from '../utils/entityPath/resolveEntityPath.utils';
 import { assertFlashcardLinks } from './assertFlashcardLinks';
 import { assertFlashcardFlags } from './assertFlashcardFlags';

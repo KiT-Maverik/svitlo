@@ -39,5 +39,5 @@ test('statically registered Scene modules are emitted as local JavaScript chunks
   const styles = readdirSync(assets).filter(name => name.endsWith('.css'));
   assert.ok(styles.length > 0, 'expected compiled textbook Scene styles');
   const content = javascript.map(name => readFileSync(join(assets, name), 'utf8')).join('\n');
-  assert.match(content, /how-light-moves-scene/);
+  assert.match(content, /2abe959c-0908-4779-afbb-b2da6c1aa4d4/);
 });

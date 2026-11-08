@@ -2,12 +2,8 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import type { Locale } from '@svitlo/contracts/localization';
-import type { UiKitMessages } from '@svitlo/ui-kit';
-import type { Topic } from '@svitlo/ui-kit/learning-layout';
-import { Lesson } from '@svitlo/ui-kit/lesson';
-import { ImageRendererProvider } from '@svitlo/ui-kit/widgets';
-import { SceneLocaleProvider } from '@svitlo/ui-kit/scene-locale';
-import { NextImageRenderer } from '@svitlo/adapter-nextjs/image';
+import { type UiKitMessages, type Topic, Lesson, ImageRendererProvider, SceneLocaleProvider } from '@svitlo/ui-kit';
+import { NextImageRenderer } from '@svitlo/adapter-nextjs';
 import { preloadScene, resolveScene } from '@/generated/textbookScenes';
 import type { LessonResponse } from '@svitlo/engine';
 import Layout from '@/components/layout/LearningLayout/LearningLayout';

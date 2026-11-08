@@ -4,7 +4,6 @@ import { existsSync, readFileSync, rmSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
-import { syncFlags } from '@svitlo/ui-kit/sync-flags';
 
 const desktopRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const repoRoot = resolve(desktopRoot, '../..');
@@ -53,7 +52,7 @@ run(process.execPath, [
   '--output',
   'apps/desktop/public/data/ui-kit',
 ]);
-syncFlags(desktopRoot);
+run(process.execPath, [join(repoRoot, 'shared/ui-kit/scripts/sync-flags.mjs'), desktopRoot]);
 if (!existsSync(join(publicRoot, 'data/pages/lessons')) || !existsSync(join(localeOutput, 'uk-UA.json'))) {
   throw new Error('Desktop lesson or UI Kit localization output is missing');
 }

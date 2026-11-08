@@ -77,13 +77,14 @@ assert(indexdb.name === '@svitlo/indexdb', 'Unexpected IndexedDB package name');
 assert(indexdb.dependencies?.[contracts.name] === contracts.version, 'IndexedDB must consume canonical Contracts');
 assert(!indexdb.dependencies?.[engine.name], 'IndexedDB cannot depend on Engine');
 assert(indexdb.dependencies?.zod, 'IndexedDB must declare its Zod schema dependency');
-for (const subpath of ['.', './controllers', './utils', './schemas', './config']) {
-  const target = indexdb.exports?.[subpath];
-  assert(
-    target?.types?.startsWith('./dist/') && target?.default?.startsWith('./dist/'),
-    'IndexedDB public API must use compiled exports: ' + subpath,
-  );
-}
+assert(
+  Object.keys(indexdb.exports ?? {}).length === 1 && Object.hasOwn(indexdb.exports ?? {}, '.'),
+  'IndexedDB must expose only the root entrypoint',
+);
+assert(
+  indexdb.exports['.']?.types === './dist/index.d.ts' && indexdb.exports['.']?.default === './dist/index.js',
+  'IndexedDB root entrypoint must use compiled artifacts',
+);
 assert(
   engine.dependencies?.[contracts.name] === contracts.version,
   'Engine must use versioned public Contracts dependency',
@@ -400,9 +401,15 @@ assert(
   'Shared NavbarPreferences missing from UI Kit',
 );
 assert(
-  uiKit.exports?.['./learning-layout/preferences']?.default ===
-    './dist/src/components/layout/LearningLayout/NavbarPreferences/NavbarPreferences.js',
-  'NavbarPreferences must have a compiled public UI Kit export',
+  Object.keys(uiKit.exports ?? {}).length === 1 &&
+    uiKit.exports?.['.']?.default === './dist/src/index.js' &&
+    readFileSync(resolve(root, 'shared/ui-kit/src/index.ts'), 'utf8').includes(
+      "export * from './components/layout/LearningLayout'",
+    ) &&
+    readFileSync(resolve(root, 'shared/ui-kit/src/components/layout/LearningLayout/index.ts'), 'utf8').includes(
+      'NavbarPreferences',
+    ),
+  'NavbarPreferences must be exposed through the compiled UI Kit root entrypoint',
 );
 const themeComponent = readFileSync(
   resolve(root, 'shared/ui-kit/src/components/layout/LearningLayout/NavbarPreferences/NavbarPreferences.tsx'),
