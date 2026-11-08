@@ -9,7 +9,7 @@ const questionTypes = [
   'answerWithNumber','orderSequence','buildAnswerWithBlocks',
   'fillBlanksWithBlocks','fillBlanksWithText',
 ] as const;
-const questions = () => z.record(z.enum(questionTypes),
+const questions = () => z.partialRecord(z.enum(questionTypes),
   z.record(z.string(),taggedChild(...questionTypes)));
 const customEvents = z.record(z.string(),z.unknown()).optional();
 
@@ -20,7 +20,11 @@ export const lessonSchema = <L extends DefinitionLanguages>(languages:L) =>
     flashcards:z.array(taggedChild('flashcard')),
     skills:z.array(uuid),
     parameters:z.strictObject({
-      requireQuiz:z.boolean(),languages:z.tuple([z.enum(languages)],z.enum(languages)),
+      requireQuiz:z.boolean(),languages:z.custom<L>(value => Array.isArray(value) && value.length > 0 &&
+      value.every(code => languages.includes(code)) &&
+      new Set(value).size === value.length, {
+      message: 'Declared languages must be a non-empty unique subset of supported languages',
+    }),
       sections:z.strictObject({
         allowNavigation:z.boolean(),allowSkipping:z.boolean(),showIndexes:z.boolean(),
       }),

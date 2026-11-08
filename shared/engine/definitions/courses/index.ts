@@ -2,9 +2,9 @@ import { z } from 'zod';
 import { childDefinition, defineStructured, uuid, resolvedProps, taggedChild } from '../structured';
 import type { DefinitionLanguages, TaggedDefinition } from '../structured';
 import { scenarioSectionChild } from '../sections';
-import type { ContentBlock_Text_Definition } from '../contentBlocks/defineText/defineText';
+import type { TextContentDefinition } from '../contentBlocks/defineRemaining';
 
-type TextDefinition = ContentBlock_Text_Definition;
+type TextDefinition = TextContentDefinition;
 const title = () => childDefinition<TextDefinition>(v => {
   const base = v.config.base;
   return typeof base === 'object' && base !== null && 'type' in base && base.type === 'text';
@@ -32,7 +32,11 @@ export const courseSchema = <L extends DefinitionLanguages>(languages:L) =>
       skillDomains:z.array(uuid).optional(),courses:z.array(uuid).optional(),
       text:markdown().optional(),
     }).optional(),
-    parameters:z.strictObject({languages:z.tuple([z.enum(languages)],z.enum(languages))}),
+    parameters:z.strictObject({languages:z.custom<L>(value => Array.isArray(value) && value.length > 0 &&
+      value.every(code => languages.includes(code)) &&
+      new Set(value).size === value.length, {
+      message: 'Declared languages must be a non-empty unique subset of supported languages',
+    })}),
     content:z.array(courseContent()),
   });
 

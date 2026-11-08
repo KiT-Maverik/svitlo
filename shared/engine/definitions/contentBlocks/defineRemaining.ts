@@ -1,11 +1,12 @@
 import { z } from 'zod';
 import { defineStructured, childDefinition, localizedText, uuid, slug, resolvedProps } from '../structured';
 import type { DefinitionLanguages, TaggedDefinition } from '../structured';
-import type { ContentBlock_Text_Definition } from './defineText/defineText';
+import type { EntityDefinition } from '../structured';
 import { createContentBlockMetaSchema } from './contentBlock.schemas';
 
 type OtherBlock = 'markdown'|'code'|'image'|'video'|'audio'|'youtube'|'carousel'|'checkpoint'|'scene';
-export type ContentBlockDefinition = ContentBlock_Text_Definition | TaggedDefinition<OtherBlock>;
+export type TextContentDefinition = EntityDefinition & { readonly config: { readonly base: { readonly type?: 'text' } } };
+export type ContentBlockDefinition = TextContentDefinition | TaggedDefinition<OtherBlock>;
 
 const meta = <T extends Parameters<typeof createContentBlockMetaSchema>[0]>(type: T) =>
   createContentBlockMetaSchema(type).shape;
