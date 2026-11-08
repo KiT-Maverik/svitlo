@@ -2,15 +2,24 @@ import { z } from 'zod';
 
 import {locale_All_Schema, localeText_Schema} from '#schemas';
 
-export const createAssessmentMethodSchema = (mode: 'config' | 'props') => z.strictObject({
-  description: mode === 'config' ? locale_All_Schema : localeText_Schema,
+const assessmentMethod_Base_Schema = z.strictObject({
   id: z.uuid(),
   slug: z.string().min(1),
-  title: mode === 'config' ? locale_All_Schema : localeText_Schema,
 });
 
-export type AssessmentMethod_Config = z.infer<typeof createAssessmentMethodSchema>;
-export type AssessmentMethod_Props = z.infer<typeof createAssessmentMethodSchema>;
+export const assessmentMethod_Config_Schema = z.strictObject({
+  description: locale_All_Schema,
+  title: locale_All_Schema,
+}).and(assessmentMethod_Base_Schema);
+
+export type AssessmentMethod_Config = z.infer<typeof assessmentMethod_Config_Schema>;
+
+export const assessmentMethod_Props_Schema = z.strictObject({
+  description: localeText_Schema,
+  title: localeText_Schema,
+}).and(assessmentMethod_Base_Schema);
+
+export type AssessmentMethod_Props = z.infer<typeof assessmentMethod_Props_Schema>;
 
 export function defineAssessmentMethod(config: AssessmentMethod_Config) {
   const { id, description, slug, title } = config;
@@ -35,8 +44,8 @@ export function defineAssessmentMethod(config: AssessmentMethod_Config) {
         return result
       },
       test: {
-        config: () => createAssessmentMethodSchema('config').safeParse(config).success,
-        props: (props: unknown) => createAssessmentMethodSchema('props').safeParse(props).success,
+        config: () => assessmentMethod_Config_Schema.safeParse(config).success,
+        props: (props: unknown) => assessmentMethod_Props_Schema.safeParse(props).success,
       },
     },
   };
