@@ -10,10 +10,21 @@ export const assessmentMethodSchema = z.strictObject({
   id: z.uuid(),
   slug: z.string().min(1),
   title: locale_All_Schema,
-  collection: z.literal('assessmentMethod'),
 });
 
-export function defineAssessmentMethod(source: z.input<typeof assessmentMethodSchema>) {
+export type AssessmentMethod_Config = z.infer<typeof assessmentMethodSchema>;
+
+export function defineAssessmentMethod(config: AssessmentMethod_Config) {
+  const { id, description, slug, title } = config;
+
+  const base: Partial<AssessmentMethod_Config> = {
+    id,
+    slug,
+  } as const;
+
+  if (typeof title === 'string') base.title = title;
+  if (typeof description === 'string') base.description = description;
+
   return defineStructured('assessmentMethod', source, () => assessmentMethodSchema, resolvedProps('assessmentMethod'), [
     'title',
     'description',
