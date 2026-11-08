@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const createAStrongPassphrase_Skill_Data = buildSkillConfig({
   slug: 'createAStrongPassphrase',

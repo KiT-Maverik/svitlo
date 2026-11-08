@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { communicationHardware_SkillGroup_Data } from './communicationHardware/communicationHardware.data';
 import { navigationEquipment_SkillGroup_Data } from './navigationEquipment/navigationEquipment.data';

@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { changesAndConservation_SkillGroup_Data } from './changesAndConservation/changesAndConservation.data';
 import { characteristicProperties_SkillGroup_Data } from './characteristicProperties/characteristicProperties.data';

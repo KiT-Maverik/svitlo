@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const ancientIranianReligions_Skill_Data = buildSkillConfig({
   slug: 'ancientIranianReligions',

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { Course_Toc } from '@svitlo/engine/content';
+import type { Course_Toc } from '@svitlo/contracts/content';
 import { courseTocToTopics } from './courseNavigation';
 
 const toc: Course_Toc = {

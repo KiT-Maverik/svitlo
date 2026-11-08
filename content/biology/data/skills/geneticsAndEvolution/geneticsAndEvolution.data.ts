@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { evolutionaryChanges_SkillGroup_Data } from './evolutionaryChanges/evolutionaryChanges.data';
 import { genetics_SkillGroup_Data } from './genetics/genetics.data';

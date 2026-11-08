@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { conductorsAndInsulators_SkillGroup_Data } from './conductorsAndInsulators/conductorsAndInsulators.data';
 import { currentVoltageAndResistance_SkillGroup_Data } from './currentVoltageAndResistance/currentVoltageAndResistance.data';

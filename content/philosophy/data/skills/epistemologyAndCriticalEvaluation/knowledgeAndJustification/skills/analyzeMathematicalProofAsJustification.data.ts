@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const analyzeMathematicalProofAsJustification_Skill_Data = buildSkillConfig({
   slug: 'analyzeMathematicalProofAsJustification',

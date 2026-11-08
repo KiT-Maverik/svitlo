@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { aestheticPerception_SkillGroup_Data } from './aestheticPerception/aestheticPerception.data';
 import { artisticCollaborationAndEthics_SkillGroup_Data } from './artisticCollaborationAndEthics/artisticCollaborationAndEthics.data';

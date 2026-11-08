@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { astronomicalTime_SkillGroup_Data } from './astronomicalTime/astronomicalTime.data';
 import { observationPractice_SkillGroup_Data } from './observationPractice/observationPractice.data';

@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const distinguishPersonalIdentityFromSimilarity_Skill_Data = buildSkillConfig({
   slug: 'distinguishPersonalIdentityFromSimilarity',

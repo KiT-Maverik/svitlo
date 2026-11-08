@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const formulateAnInformationQuery_Skill_Data = buildSkillConfig({
   slug: 'formulateAnInformationQuery',

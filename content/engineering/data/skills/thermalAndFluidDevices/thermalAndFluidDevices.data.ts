@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { fluidMachines_SkillGroup_Data } from './fluidMachines/fluidMachines.data';
 import { heatTransferEquipment_SkillGroup_Data } from './heatTransferEquipment/heatTransferEquipment.data';

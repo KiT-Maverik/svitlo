@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const priceElasticityOfSupply_Skill_Data = buildSkillConfig({
   slug: 'priceElasticityOfSupply',

@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const solubilityRules_Skill_Data = buildSkillConfig({
   slug: 'solubilityRules',

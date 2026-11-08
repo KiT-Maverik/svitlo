@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const lightGatheringAperture_Skill_Data = buildSkillConfig({
   slug: 'lightGatheringAperture',

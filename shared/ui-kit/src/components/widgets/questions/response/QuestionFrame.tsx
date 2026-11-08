@@ -4,7 +4,7 @@ import type { UiKitMessages } from '#types/uiKitMessages';
 
 import { useContext, useId, useState, type ReactNode } from 'react';
 import { Box, Button, Paper, Stack, Typography } from '@mui/material';
-import type { Question, Locale_Languages } from '@svitlo/engine/content';
+import type { Question, Locale_Languages } from '@svitlo/contracts/content';
 import { useContentLanguage } from '../../ContentBlockRenderer/ContentLanguageContext';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
 import { QuestionContent } from './QuestionContent';

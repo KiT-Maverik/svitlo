@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const explainSyntaxHighlighting_Skill_Data = buildSkillConfig({
   slug: 'explainSyntaxHighlighting',

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import { capacityConcept_Skill_Data, liter_Skill_Data, milliliter_Skill_Data } from './skills';
 

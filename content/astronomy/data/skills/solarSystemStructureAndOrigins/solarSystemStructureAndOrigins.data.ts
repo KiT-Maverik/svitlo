@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { formationAndChronology_SkillGroup_Data } from './formationAndChronology/formationAndChronology.data';
 import { minorBodies_SkillGroup_Data } from './minorBodies/minorBodies.data';

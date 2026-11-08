@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { atmosphericHazards_SkillGroup_Data } from './atmosphericHazards/atmosphericHazards.data';
 import { atmosphericProcesses_SkillGroup_Data } from './atmosphericProcesses/atmosphericProcesses.data';

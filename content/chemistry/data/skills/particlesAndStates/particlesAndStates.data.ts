@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { particleBehavior_SkillGroup_Data } from './particleBehavior/particleBehavior.data';
 import { phasesAndTransitions_SkillGroup_Data } from './phasesAndTransitions/phasesAndTransitions.data';

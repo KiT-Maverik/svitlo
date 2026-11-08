@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { adolescenceAndIdentity_SkillGroup_Data } from './adolescenceAndIdentity/adolescenceAndIdentity.data';
 import { adulthoodAndAging_SkillGroup_Data } from './adulthoodAndAging/adulthoodAndAging.data';

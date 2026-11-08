@@ -1,4 +1,4 @@
-import type { Question_Catalog } from '@svitlo/engine/content';
+import type { Question_Catalog } from '@svitlo/contracts/content';
 import type { HowLightMoves_Languages } from '../constants';
 import { airVacuumSpeed_Question_Data } from './airVacuumSpeed';
 import { fastestMedium_Question_Data } from './fastestMedium';

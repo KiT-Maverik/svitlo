@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { appliedEthics_SkillGroup_Data } from './appliedEthics/appliedEthics.data';
 import { ethicalFrameworks_SkillGroup_Data } from './ethicalFrameworks/ethicalFrameworks.data';

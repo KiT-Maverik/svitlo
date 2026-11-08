@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import { distributionChannels_Skill_Data, distributionCosts_Skill_Data, wholesaleTrade_Skill_Data } from './skills';
 

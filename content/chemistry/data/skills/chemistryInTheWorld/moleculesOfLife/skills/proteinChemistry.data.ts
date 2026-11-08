@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const proteinChemistry_Skill_Data = buildSkillConfig({
   slug: 'proteinChemistry',

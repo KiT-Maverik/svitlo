@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const cuneiformWriting_Skill_Data = buildSkillConfig({
   slug: 'cuneiformWriting',

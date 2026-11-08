@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const by0And1_Skill_Data = buildSkillConfig({
   slug: 'by0And1',

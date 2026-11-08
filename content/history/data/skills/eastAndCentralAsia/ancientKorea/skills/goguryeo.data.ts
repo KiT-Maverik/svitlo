@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const goguryeo_Skill_Data = buildSkillConfig({
   slug: 'goguryeo',

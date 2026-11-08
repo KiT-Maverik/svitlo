@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { appliedGraphics_SkillGroup_Data } from './appliedGraphics/appliedGraphics.data';
 import { fashionAndApparelDesign_SkillGroup_Data } from './fashionAndApparelDesign/fashionAndApparelDesign.data';

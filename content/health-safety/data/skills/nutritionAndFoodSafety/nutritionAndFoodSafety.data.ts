@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { foodborneHazards_SkillGroup_Data } from './foodborneHazards/foodborneHazards.data';
 import { foodChoicesAndInformation_SkillGroup_Data } from './foodChoicesAndInformation/foodChoicesAndInformation.data';

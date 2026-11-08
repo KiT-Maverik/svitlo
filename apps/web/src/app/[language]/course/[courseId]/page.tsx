@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
-import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/localization';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
 import { CoursePage } from '@svitlo/ui-kit/course';
 import { getMockCourse, getMockCourseMessages, mockCourseOutline } from '@/lib/mockCourses';
 

@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { analyticalChemistry_SkillGroup_Data } from './analyticalChemistry/analyticalChemistry.data';
 import { laboratoryReasoning_SkillGroup_Data } from './laboratoryReasoning/laboratoryReasoning.data';

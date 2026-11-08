@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { conceptSelection_SkillGroup_Data } from './conceptSelection/conceptSelection.data';
 import { problemDefinition_SkillGroup_Data } from './problemDefinition/problemDefinition.data';

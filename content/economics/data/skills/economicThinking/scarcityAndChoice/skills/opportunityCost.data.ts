@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const opportunityCost_Skill_Data = buildSkillConfig({
   slug: 'opportunityCost',

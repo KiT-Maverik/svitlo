@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import { explainMechanicalWork_Skill_Data, explainThePhysicalMeaningOfPower_Skill_Data } from './skills';
 

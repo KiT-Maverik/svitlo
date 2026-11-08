@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { colorPractice_SkillGroup_Data } from './colorPractice/colorPractice.data';
 import { paintingTechniques_SkillGroup_Data } from './paintingTechniques/paintingTechniques.data';

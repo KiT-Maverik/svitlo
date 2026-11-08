@@ -1,4 +1,4 @@
-import type { Collection } from '@svitlo/engine/content';
+import type { Collection } from '@svitlo/contracts/content';
 
 /** Reconstructed runtime model; neither source .data.ts nor published JSON is imported. */
 export type SkillNodeKind = Extract<Collection, 'skill' | 'skillGroup' | 'skillDomain'>;

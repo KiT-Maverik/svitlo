@@ -27,8 +27,8 @@ import { LessonSteps } from './LessonSteps';
 import { MediaVolumeControl } from './MediaVolumeControl';
 import { MediaSettingsProvider } from './MediaSettings';
 import type { LessonProps, LessonView } from './Lesson';
-import { DEFAULT_LESSON_EVENTS } from '@svitlo/engine/content';
-import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/localization';
+import { DEFAULT_LESSON_EVENTS } from '@svitlo/contracts/content';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
 import { EventSceneHost, LessonEventBusContext, createLessonEventBus, resolveLessonEventScenes } from './LessonEvents';
 import styles from './Lesson.module.css';
 

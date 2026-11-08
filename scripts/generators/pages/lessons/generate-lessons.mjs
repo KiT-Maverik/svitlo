@@ -2,7 +2,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { renderTextbookLessonFiles, writeLessonFiles } from '@svitlo/engine/utils';
+import { renderTextbookLessonFiles, writeLessonFiles } from '@svitlo/engine';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../..');
 

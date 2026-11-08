@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const selectTextilesForGarments_Skill_Data = buildSkillConfig({
   slug: 'selectTextilesForGarments',

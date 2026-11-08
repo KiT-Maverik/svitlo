@@ -11,8 +11,9 @@ import ExpandMoreRounded from '@mui/icons-material/ExpandMoreRounded';
 import LightbulbOutlineRounded from '@mui/icons-material/LightbulbOutlineRounded';
 import RadioButtonUncheckedRounded from '@mui/icons-material/RadioButtonUncheckedRounded';
 import CheckCircleRounded from '@mui/icons-material/CheckCircleRounded';
-import type { ContentBlock_Checkpoint_Response, Locale_Languages } from '@svitlo/engine/content';
-import { DEFAULT_SUPPORTED_LANGUAGES, getLocaleDirection } from '@svitlo/engine/localization';
+import type { ContentBlock_Checkpoint_Response, Locale_Languages } from '@svitlo/contracts/content';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
+import { getLocaleDirection } from '@svitlo/engine';
 
 import type { RenderNested } from '../../types';
 import { useContentLanguage } from '../../ContentLanguageContext';

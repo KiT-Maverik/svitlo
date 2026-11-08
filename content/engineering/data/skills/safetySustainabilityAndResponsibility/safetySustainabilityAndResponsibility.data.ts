@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { ethicsAndPublicEffects_SkillGroup_Data } from './ethicsAndPublicEffects/ethicsAndPublicEffects.data';
 import { lifeCycleAndResources_SkillGroup_Data } from './lifeCycleAndResources/lifeCycleAndResources.data';

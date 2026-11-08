@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { aircraft_SkillGroup_Data } from './aircraft/aircraft.data';
 import { roadAndRail_SkillGroup_Data } from './roadAndRail/roadAndRail.data';

@@ -1,7 +1,7 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/localization';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
 import { learningLayout as layouts } from '../../../../shared/ui-kit/data/locale/learningLayout';
 import { navbarPreferences as preferences } from '../../../../shared/ui-kit/data/locale/navbarPreferences';
 

@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { diversityAndMeaning_SkillGroup_Data } from './diversityAndMeaning/diversityAndMeaning.data';
 import { faithReasonAndExperience_SkillGroup_Data } from './faithReasonAndExperience/faithReasonAndExperience.data';

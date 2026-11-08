@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const explainArchimedesPrinciple_Skill_Data = buildSkillConfig({
   slug: 'explainArchimedesPrinciple',

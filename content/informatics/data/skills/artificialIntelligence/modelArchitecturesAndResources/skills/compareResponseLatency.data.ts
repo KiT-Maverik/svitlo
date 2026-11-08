@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const compareResponseLatency_Skill_Data = buildSkillConfig({
   slug: 'compareResponseLatency',

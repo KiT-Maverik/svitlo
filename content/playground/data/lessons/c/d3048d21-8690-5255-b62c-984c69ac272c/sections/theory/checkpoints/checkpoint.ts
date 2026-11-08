@@ -1,4 +1,4 @@
-import type { ContentBlock_Checkpoint } from '@svitlo/engine/content';
+import type { ContentBlock_Checkpoint } from '@svitlo/contracts/content';
 import type { HowLightMoves_Languages } from '../../../constants';
 
 export const checkpoint = {

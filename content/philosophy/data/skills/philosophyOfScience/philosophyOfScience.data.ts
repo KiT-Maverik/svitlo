@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { evidenceAndCausalInference_SkillGroup_Data } from './evidenceAndCausalInference/evidenceAndCausalInference.data';
 import { experimentalDesign_SkillGroup_Data } from './experimentalDesign/experimentalDesign.data';

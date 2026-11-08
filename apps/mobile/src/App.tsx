@@ -11,12 +11,13 @@ import {
 } from 'react';
 import { Button, Container, Typography, CircularProgress, Box, List, ListItemButton } from '@mui/material';
 import { SvitloThemeProvider } from '@svitlo/ui-kit/theme';
-import { DEFAULT_SUPPORTED_LANGUAGES, getLocaleDirection, type Locale } from '@svitlo/engine/localization';
+import { DEFAULT_SUPPORTED_LANGUAGES, type Locale } from '@svitlo/contracts/localization';
+import { getLocaleDirection } from '@svitlo/engine';
 import { Lesson, useLessonNavigation } from '@svitlo/ui-kit/lesson';
 import { SceneLocaleProvider } from '@svitlo/ui-kit/scene-locale';
 import { createLessonLearningLayout, type LessonLearningLayoutProps } from '@svitlo/ui-kit/learning-layout';
 import { registerNativeBackButton, exitNativeApp } from '@svitlo/adapter-capacitor';
-import type { LessonResponse } from '@svitlo/engine/lesson';
+import type { LessonResponse } from '@svitlo/engine';
 import type { UiKitMessages } from '@svitlo/ui-kit';
 import { textbook, resolveScene } from './generated/textbook';
 import { loadLesson, loadLessonIndex, loadMessages, type LessonIndex } from './loadLesson';

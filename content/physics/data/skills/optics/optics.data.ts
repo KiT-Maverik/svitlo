@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { lightAndShadows_SkillGroup_Data } from './lightAndShadows/lightAndShadows.data';
 import { lightReflection_SkillGroup_Data } from './lightReflection/lightReflection.data';

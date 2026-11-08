@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import { circleDisk_Skill_Data, radiusDiameter_Skill_Data, drawCircle_Skill_Data } from './skills';
 

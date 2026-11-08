@@ -1,4 +1,4 @@
-import type { Course_Toc, Course_TocContent } from '@svitlo/engine/content';
+import type { Course_Toc, Course_TocContent } from '@svitlo/contracts/content';
 
 /** Host-owned URLs; the UI Kit receives only serializable navigation data. */
 export type CourseNavigationTopic = {

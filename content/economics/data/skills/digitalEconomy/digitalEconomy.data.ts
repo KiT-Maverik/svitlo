@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { digitalProducts_SkillGroup_Data } from './digitalProducts/digitalProducts.data';
 import { financialTechnology_SkillGroup_Data } from './financialTechnology/financialTechnology.data';

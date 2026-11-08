@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const slaveryAndOtherDependencies_Skill_Data = buildSkillConfig({
   slug: 'slaveryAndOtherDependencies',

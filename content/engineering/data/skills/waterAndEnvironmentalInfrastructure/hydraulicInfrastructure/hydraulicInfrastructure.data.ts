@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import { canalLocks_Skill_Data, compareChannelsAndPipes_Skill_Data, flowControlValves_Skill_Data } from './skills';
 

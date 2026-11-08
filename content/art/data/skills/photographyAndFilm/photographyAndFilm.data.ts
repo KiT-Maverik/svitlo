@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { animation_SkillGroup_Data } from './animation/animation.data';
 import { filmLanguage_SkillGroup_Data } from './filmLanguage/filmLanguage.data';

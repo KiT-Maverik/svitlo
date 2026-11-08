@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const recognizeTheCellAsAStructuralUnit_Skill_Data = buildSkillConfig({
   slug: 'recognizeTheCellAsAStructuralUnit',

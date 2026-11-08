@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const diagnoseTransmissionFaults_Skill_Data = buildSkillConfig({
   slug: 'diagnoseTransmissionFaults',

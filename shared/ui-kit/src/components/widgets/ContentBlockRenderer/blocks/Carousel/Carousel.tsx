@@ -8,7 +8,7 @@ import FullscreenRounded from '@mui/icons-material/FullscreenRounded';
 import FullscreenExitRounded from '@mui/icons-material/FullscreenExitRounded';
 import PauseRounded from '@mui/icons-material/PauseRounded';
 import PlayArrowRounded from '@mui/icons-material/PlayArrowRounded';
-import type { ContentBlock_Carousel_Response, ContentBlock_Carousel_Slide_Response } from '@svitlo/engine/content';
+import type { ContentBlock_Carousel_Response, ContentBlock_Carousel_Slide_Response } from '@svitlo/contracts/content';
 import type { UiKitMessages } from '#types/uiKitMessages';
 import { localizedAttributes } from '../../utils';
 import { useContentLanguage } from '../../ContentLanguageContext';

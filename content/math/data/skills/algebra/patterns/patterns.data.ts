@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import { arithmeticPattern_Skill_Data, growingPattern_Skill_Data } from './skills';
 

@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { ancientTradeAndContact_SkillGroup_Data } from './ancientTradeAndContact/ancientTradeAndContact.data';
 import { crisesAndHistoricalTransformations_SkillGroup_Data } from './crisesAndHistoricalTransformations/crisesAndHistoricalTransformations.data';

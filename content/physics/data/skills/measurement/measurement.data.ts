@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { instrumentsAndMeasurementMethods_SkillGroup_Data } from './instrumentsAndMeasurementMethods/instrumentsAndMeasurementMethods.data';
 import { physicalQuantitiesAndUnits_SkillGroup_Data } from './physicalQuantitiesAndUnits/physicalQuantitiesAndUnits.data';

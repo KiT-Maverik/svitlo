@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const anatolianTradeNetworks_Skill_Data = buildSkillConfig({
   slug: 'anatolianTradeNetworks',

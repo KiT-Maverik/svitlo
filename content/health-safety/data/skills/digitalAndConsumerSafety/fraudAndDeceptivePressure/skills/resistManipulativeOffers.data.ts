@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const resistManipulativeOffers_Skill_Data = buildSkillConfig({
   slug: 'resistManipulativeOffers',

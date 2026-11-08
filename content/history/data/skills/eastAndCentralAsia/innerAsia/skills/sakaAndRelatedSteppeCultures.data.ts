@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const sakaAndRelatedSteppeCultures_Skill_Data = buildSkillConfig({
   slug: 'sakaAndRelatedSteppeCultures',

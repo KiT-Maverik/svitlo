@@ -1,7 +1,7 @@
 import type { UiKitMessages } from '#types/uiKitMessages';
 import type { ComponentType, ReactNode } from 'react';
-import type { ContentBlock, Locale_Languages } from '@svitlo/engine/content';
-import type { LanguageCode } from '@svitlo/engine/localization';
+import type { ContentBlock, Locale_Languages } from '@svitlo/contracts/content';
+import type { LanguageCode } from '@svitlo/contracts/localization';
 
 /** Quiz is a Section; ContentBlock contains renderable resources only. */
 export type ContentBlockResponse = ContentBlock<'response', Locale_Languages>;

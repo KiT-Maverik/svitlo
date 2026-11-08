@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { earthquakesAndVolcanism_SkillGroup_Data } from './earthquakesAndVolcanism/earthquakesAndVolcanism.data';
 import { earthsInteriorAndPlateTectonics_SkillGroup_Data } from './earthsInteriorAndPlateTectonics/earthsInteriorAndPlateTectonics.data';

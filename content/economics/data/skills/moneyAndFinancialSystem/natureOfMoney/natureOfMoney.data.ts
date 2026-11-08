@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import { formsOfMoney_Skill_Data, functionsOfMoney_Skill_Data, purchasingPowerOfMoney_Skill_Data } from './skills';
 

@@ -1,6 +1,6 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import type { LessonResponse } from '@svitlo/engine/lesson';
+import type { LessonResponse } from '@svitlo/engine';
 import type { UiKitMessages } from '@svitlo/ui-kit';
 import { preloadScene } from '@/generated/textbookScenes';
 import WebLesson from './Lesson';

@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const numberBonds10_Skill_Data = buildSkillConfig({
   slug: 'numberBonds10',

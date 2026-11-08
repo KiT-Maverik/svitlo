@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { length_SkillGroup_Data } from './length/length.data';
 import { mass_SkillGroup_Data } from './mass/mass.data';

@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { culturalGeography_SkillGroup_Data } from './culturalGeography/culturalGeography.data';
 import { economicGeography_SkillGroup_Data } from './economicGeography/economicGeography.data';

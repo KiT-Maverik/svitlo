@@ -4,7 +4,7 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from '
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import type { ContentBlock_Scene, Locale_Languages, SupportedLessonEvents } from '@svitlo/engine/content';
+import type { ContentBlock_Scene, Locale_Languages, SupportedLessonEvents } from '@svitlo/contracts/content';
 import type { SceneRegistry } from '../widgets/ContentBlockRenderer';
 import { Scene } from '../widgets/ContentBlockRenderer/blocks/Scene/Scene';
 

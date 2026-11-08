@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const numidianKingdoms_Skill_Data = buildSkillConfig({
   slug: 'numidianKingdoms',

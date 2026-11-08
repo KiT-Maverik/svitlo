@@ -1,5 +1,5 @@
 import type { HowLightMoves_Languages } from '../../../constants';
-import type { ContentBlock_Scene } from '@svitlo/engine/content';
+import type { ContentBlock_Scene } from '@svitlo/contracts/content';
 
 const en = {
   header: {

@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { assistiveAndMedicalProducts_SkillGroup_Data } from './assistiveAndMedicalProducts/assistiveAndMedicalProducts.data';
 import { medicalMeasurementDevices_SkillGroup_Data } from './medicalMeasurementDevices/medicalMeasurementDevices.data';

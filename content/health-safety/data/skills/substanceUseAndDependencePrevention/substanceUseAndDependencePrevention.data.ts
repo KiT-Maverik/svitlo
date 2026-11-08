@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { preventionAndAccessToHelp_SkillGroup_Data } from './preventionAndAccessToHelp/preventionAndAccessToHelp.data';
 import { substanceRelatedRisks_SkillGroup_Data } from './substanceRelatedRisks/substanceRelatedRisks.data';

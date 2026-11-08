@@ -1,9 +1,9 @@
 import type { HowLightMoves_Languages } from '../../constants';
-import { createSection, createContentBlock } from '@svitlo/engine/builders';
+import { createSection, createContentBlock } from '@svitlo/engine';
 import { checkpoint } from './checkpoints/checkpoint';
 import { lightPropagationSimulation } from './scenes/lightPropagationSimulation';
 import { lightRayDiagram } from './scenes/lightRayDiagram';
-import { getMarkdownLocale } from '@svitlo/engine/utils';
+import { getMarkdownLocale } from '@svitlo/engine';
 
 const title = {
   ar: 'النظرية',

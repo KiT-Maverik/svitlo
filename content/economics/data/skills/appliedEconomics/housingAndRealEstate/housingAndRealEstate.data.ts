@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import { housingAffordability_Skill_Data, housingMarket_Skill_Data, landUseEconomics_Skill_Data } from './skills';
 

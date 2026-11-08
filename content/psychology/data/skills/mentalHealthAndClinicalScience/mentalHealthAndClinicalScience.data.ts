@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { assessmentAndProfessionalSupport_SkillGroup_Data } from './assessmentAndProfessionalSupport/assessmentAndProfessionalSupport.data';
 import { interventionEvidenceAndEthics_SkillGroup_Data } from './interventionEvidenceAndEthics/interventionEvidenceAndEthics.data';

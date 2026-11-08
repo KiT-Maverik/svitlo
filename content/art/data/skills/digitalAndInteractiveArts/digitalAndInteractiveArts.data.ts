@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { digitalImages_SkillGroup_Data } from './digitalImages/digitalImages.data';
 import { digitalThreeDimensionalArt_SkillGroup_Data } from './digitalThreeDimensionalArt/digitalThreeDimensionalArt.data';

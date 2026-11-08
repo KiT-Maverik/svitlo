@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { anatolia_SkillGroup_Data } from './anatolia/anatolia.data';
 import { ancientIranianStates_SkillGroup_Data } from './ancientIranianStates/ancientIranianStates.data';

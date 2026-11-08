@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import { identifyMajorPlantOrgans_Skill_Data, relatePlantOrgansToTheirFunctions_Skill_Data } from './skills';
 

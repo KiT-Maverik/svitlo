@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import { collectiveBargaining_Skill_Data, employmentContracts_Skill_Data, minimumWage_Skill_Data } from './skills';
 

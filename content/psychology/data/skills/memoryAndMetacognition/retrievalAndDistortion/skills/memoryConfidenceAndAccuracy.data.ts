@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const memoryConfidenceAndAccuracy_Skill_Data = buildSkillConfig({
   slug: 'memoryConfidenceAndAccuracy',

@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { communityMediaAndEnvironment_SkillGroup_Data } from './communityMediaAndEnvironment/communityMediaAndEnvironment.data';
 import { healthBehavior_SkillGroup_Data } from './healthBehavior/healthBehavior.data';

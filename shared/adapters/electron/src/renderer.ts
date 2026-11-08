@@ -1,6 +1,6 @@
 import { resolveEntityPath } from '@svitlo/engine';
-import { assembleLessonResponse, mergeLessonResources, type LessonResponse } from '@svitlo/engine/lesson';
-import type { LanguageCode, Locale } from '@svitlo/engine/localization';
+import { assembleLessonResponse, mergeLessonResources, type LessonResponse } from '@svitlo/engine';
+import type { LanguageCode, Locale } from '@svitlo/contracts/localization';
 
 /** Fetch only build-published lesson data. No Node, Electron or authored *.data.ts at runtime. */
 async function loadJson(url: string): Promise<unknown> {

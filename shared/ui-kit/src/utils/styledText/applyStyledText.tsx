@@ -1,4 +1,4 @@
-import type { StyledText_Rules } from '@svitlo/engine/content';
+import type { StyledText_Rules } from '@svitlo/contracts/content';
 
 import { parseText } from '../text/parseText';
 import styles from './StyledText.module.css';

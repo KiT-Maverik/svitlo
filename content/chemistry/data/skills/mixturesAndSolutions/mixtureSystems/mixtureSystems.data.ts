@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import { alloys_Skill_Data, colloids_Skill_Data, solutions_Skill_Data, suspensions_Skill_Data } from './skills';
 

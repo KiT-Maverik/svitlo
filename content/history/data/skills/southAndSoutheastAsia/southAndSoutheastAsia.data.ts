@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { ancientSoutheastAsia_SkillGroup_Data } from './ancientSoutheastAsia/ancientSoutheastAsia.data';
 import { indusCivilization_SkillGroup_Data } from './indusCivilization/indusCivilization.data';

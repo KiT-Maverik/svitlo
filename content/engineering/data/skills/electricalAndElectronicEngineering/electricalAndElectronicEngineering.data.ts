@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { circuitConstruction_SkillGroup_Data } from './circuitConstruction/circuitConstruction.data';
 import { computingHardware_SkillGroup_Data } from './computingHardware/computingHardware.data';

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import { consumerSurplus_Skill_Data, deadweightLoss_Skill_Data, producerSurplus_Skill_Data } from './skills';
 

@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const workRateTime_Skill_Data = buildSkillConfig({
   slug: 'workRateTime',
