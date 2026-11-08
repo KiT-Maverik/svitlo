@@ -5,7 +5,7 @@ import {
 } from './defineSkillDomain.schemas';
 
 export function defineSkillDomainMethod(config: SkillDomain_Config) {
-  const { id, description, slug, title } = config;
+  const { id, description, slug, title, skills, groups } = config;
 
   const base = {
     id,
@@ -21,6 +21,8 @@ export function defineSkillDomainMethod(config: SkillDomain_Config) {
         props: (props: unknown) => skillDomain_Props_Schema.safeParse(props).success,
       },
     },
+    skill: Object.fromEntries((skills ?? []).map((skill): [string, typeof skill] => [skill.config.base.slug, skill])),
+    group: Object.fromEntries((groups ?? []).map((group): [string, typeof group] => [group.config.base.slug, group])),
   };
 }
 
