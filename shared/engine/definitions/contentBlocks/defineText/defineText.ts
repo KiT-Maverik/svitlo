@@ -47,7 +47,7 @@ export const defineText = <SupportedLanguages extends TextLanguages>(
   // Enforce the common methods without erasing Text-specific methods such as disable().
   return definition satisfies Definition<
     Partial<ContentBlock_Text_Config<SupportedLanguages>>,
-    Exclude<ContentBlock_Text_Config<SupportedLanguages>['value'], string>,
+    NonNullable<ReturnType<typeof definition.config.locales>>,
     Partial<ContextBlock_Text_Props>,
     SupportedLanguages
   >;
