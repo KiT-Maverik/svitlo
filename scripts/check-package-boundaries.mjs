@@ -77,13 +77,12 @@ assert(indexdb.name === '@svitlo/indexdb', 'Unexpected IndexedDB package name');
 assert(indexdb.dependencies?.[contracts.name] === contracts.version, 'IndexedDB must consume canonical Contracts');
 assert(!indexdb.dependencies?.[engine.name], 'IndexedDB cannot depend on Engine');
 assert(indexdb.dependencies?.zod, 'IndexedDB must declare its Zod schema dependency');
-for (const subpath of ['.', './controllers', './utils', './schemas', './config']) {
-  const target = indexdb.exports?.[subpath];
-  assert(
-    target?.types?.startsWith('./dist/') && target?.default?.startsWith('./dist/'),
-    'IndexedDB public API must use compiled exports: ' + subpath,
-  );
-}
+assert.deepEqual(Object.keys(indexdb.exports ?? {}), ['.'], 'IndexedDB must expose only the root entrypoint');
+assert(
+  indexdb.exports['.']?.types === './dist/index.d.ts' &&
+    indexdb.exports['.']?.default === './dist/index.js',
+  'IndexedDB root entrypoint must use compiled artifacts',
+);
 assert(
   engine.dependencies?.[contracts.name] === contracts.version,
   'Engine must use versioned public Contracts dependency',

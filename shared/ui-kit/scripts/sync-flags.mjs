@@ -40,4 +40,4 @@ const preloaded = process.execArgv.some((arg, index) => {
         : undefined;
   return specifier === import.meta.url || (specifier?.startsWith('/') && resolve(specifier) === scriptPath);
 });
-if (invokedDirectly || preloaded) syncFlags(process.cwd());
+if (invokedDirectly || preloaded) syncFlags(invokedDirectly && process.argv[2] ? process.argv[2] : process.cwd());
