@@ -1,7 +1,7 @@
 import { defineText } from './contentBlocks/defineText/defineText';
 import { defineTheorySection } from './sections';
 import { defineLesson } from './lessons';
-import { defineSkill, defineSkillGroup } from './skills';
+import { defineSkill, defineSkillGroup } from './skills/old';
 
 const languages = ['en', 'uk'] as const;
 const validText = defineText<typeof languages>({

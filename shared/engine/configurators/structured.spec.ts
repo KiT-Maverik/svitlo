@@ -8,7 +8,7 @@ import { defineMarkdown } from './contentBlocks/defineRemaining';
 import { defineTheorySection, regularSectionSchema } from './sections';
 import { defineLesson } from './lessons';
 import { defineCourse } from './courses';
-import { defineSkill, defineSkillGroup, defineSkillDomain } from './skills';
+import { defineSkill, defineSkillGroup, defineSkillDomain } from './skills/old';
 import { defineAssessmentMethod } from './assessmentMethods/defineAssessmentMethod';
 import { assessmentMethod_Config_Schema } from './assessmentMethods/defineAssessmentMethod.schemas';
 
