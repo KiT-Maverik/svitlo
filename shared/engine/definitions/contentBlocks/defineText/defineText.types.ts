@@ -1,6 +1,6 @@
 import type { LanguageCode, Locale_Languages, StyledText_Rules } from '@svitlo/contracts';
 
-import type { ContentBlock_Meta } from '../contentBlocks.types';
+import type { ContentBlock_Meta } from '../contentBlock.schemas';
 
 type Params = {
   styling?: StyledText_Rules;
