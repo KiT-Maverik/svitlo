@@ -190,8 +190,9 @@ for (const path of ['dist', 'assets/flags', 'scripts/sync-flags.mjs']) {
   if (path !== 'dist') assert(existsSync(resolve(root, 'shared/ui-kit', path)), 'Missing asset: ' + path);
 }
 assert(
-  kit.exports?.['./sync-flags']?.default === './scripts/sync-flags.mjs',
-  'UI Kit must export the included flag sync script',
+  kit.bin?.['svitlo-sync-flags'] === './scripts/sync-flags.mjs' &&
+    Object.keys(kit.exports ?? {}).length === 1,
+  'UI Kit flag sync must remain a bin script, not a public subpath export',
 );
 assert(
   readdirSync(resolve(root, 'shared/ui-kit/assets/flags')).some(name => name.endsWith('.svg')),
