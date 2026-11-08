@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const contentBlockTypes = ['text', 'code', 'image', 'video', 'youtube', 'carousel'] as const;
+export const contentBlockTypes = ['text', 'code', 'image', 'video', 'youtube', 'carousel', 'scene', 'checkpoint', 'markdown', 'audio'] as const;
 export type ContentBlock_Type = typeof contentBlockTypes[number];
 
 const createContentBlockMetaSchema = (type: ContentBlock_Type) => z.object({
@@ -8,6 +8,8 @@ const createContentBlockMetaSchema = (type: ContentBlock_Type) => z.object({
   slug: z.string().min(1),
   type: z.literal(type),
 });
+
+export type ContentBlock_Meta = z.infer<ReturnType<typeof createContentBlockMetaSchema>>;
 
 export const textStylePresets = ['highlight', 'bold', 'cursive', 'underscore', 'crossed', 'variable'] as const;
 export type TextStylePreset = typeof textStylePresets[number];
