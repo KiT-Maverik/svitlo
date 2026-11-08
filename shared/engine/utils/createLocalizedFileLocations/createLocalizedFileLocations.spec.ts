@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { DEFAULT_SUPPORTED_LANGUAGES } from '../../localization';
-import { createLocalizedFileLocations } from '../../localization';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
+import { createLocalizedFileLocations } from './createLocalizedFileLocations.utils';
 
 describe('Utils', () => {
   describe('CreateLocalizedFileLocations', () => {

@@ -1,5 +1,5 @@
-import type { Skill_Config } from '../../../taxonomy';
-import { buildSkillConfig } from '../../../taxonomy';
+import type { Skill_Config } from '@svitlo/contracts/taxonomy';
+import { buildSkillConfig } from './buildSkillConfig.utils';
 
 const names = {} as Skill_Config['name'];
 const description = { methodological: 'English conceptual boundaries.', frontend: names };

@@ -1,5 +1,7 @@
-import type { SkillGroup_Config } from '../../../taxonomy';
-import { buildSkillConfig, buildSkillGroupConfig, buildSkillDomainConfig } from '../../../taxonomy';
+import type { SkillGroup_Config } from '@svitlo/contracts/taxonomy';
+import { buildSkillConfig } from './buildSkillConfig.utils';
+import { buildSkillGroupConfig } from './buildSkillGroupConfig.utils';
+import { buildSkillDomainConfig } from './buildSkillDomainConfig.utils';
 
 declare const names: SkillGroup_Config['name'];
 const child = buildSkillConfig({

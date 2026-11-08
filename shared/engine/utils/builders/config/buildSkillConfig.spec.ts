@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { DEFAULT_SUPPORTED_LANGUAGES } from '../../../localization';
-import type { Skill_Config } from '../../../taxonomy';
-import { buildSkillConfig } from '../../../taxonomy';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
+import type { Skill_Config } from '@svitlo/contracts/taxonomy';
+import { buildSkillConfig } from './buildSkillConfig.utils';
 
 const allNames = () =>
   Object.fromEntries(

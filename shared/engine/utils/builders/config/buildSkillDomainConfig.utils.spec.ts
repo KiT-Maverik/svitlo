@@ -1,8 +1,10 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { DEFAULT_SUPPORTED_LANGUAGES } from '../../../localization';
-import type { SkillDomain_Config, Skill_Config } from '../../../taxonomy';
-import { buildSkillConfig, buildSkillGroupConfig, buildSkillDomainConfig } from '../../../taxonomy';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
+import type { SkillDomain_Config, Skill_Config } from '@svitlo/contracts/taxonomy';
+import { buildSkillConfig } from './buildSkillConfig.utils';
+import { buildSkillGroupConfig } from './buildSkillGroupConfig.utils';
+import { buildSkillDomainConfig } from './buildSkillDomainConfig.utils';
 
 const domainId = '11111111-1111-4111-8111-111111111111';
 const groupId = '22222222-2222-4222-8222-222222222222';
