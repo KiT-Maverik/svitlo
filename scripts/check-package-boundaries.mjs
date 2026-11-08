@@ -77,7 +77,10 @@ assert(indexdb.name === '@svitlo/indexdb', 'Unexpected IndexedDB package name');
 assert(indexdb.dependencies?.[contracts.name] === contracts.version, 'IndexedDB must consume canonical Contracts');
 assert(!indexdb.dependencies?.[engine.name], 'IndexedDB cannot depend on Engine');
 assert(indexdb.dependencies?.zod, 'IndexedDB must declare its Zod schema dependency');
-assert.deepEqual(Object.keys(indexdb.exports ?? {}), ['.'], 'IndexedDB must expose only the root entrypoint');
+assert(
+  Object.keys(indexdb.exports ?? {}).length === 1 && Object.hasOwn(indexdb.exports ?? {}, '.'),
+  'IndexedDB must expose only the root entrypoint',
+);
 assert(
   indexdb.exports['.']?.types === './dist/index.d.ts' &&
     indexdb.exports['.']?.default === './dist/index.js',

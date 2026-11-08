@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import type { SceneRegistry } from '@svitlo/ui-kit/widgets';
+import type { SceneRegistry } from '@svitlo/ui-kit';
 
 type SceneComponent = NonNullable<ReturnType<SceneRegistry>>;
 export type SceneModule = { default: SceneComponent };
