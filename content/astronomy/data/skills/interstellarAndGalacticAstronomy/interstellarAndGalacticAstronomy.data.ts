@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { activeGalacticNuclei_SkillGroup_Data } from './activeGalacticNuclei/activeGalacticNuclei.data';
 import { galaxiesAndTheirEvolution_SkillGroup_Data } from './galaxiesAndTheirEvolution/galaxiesAndTheirEvolution.data';

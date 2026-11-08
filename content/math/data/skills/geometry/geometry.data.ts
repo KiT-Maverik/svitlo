@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { orientation_SkillGroup_Data } from './orientation/orientation.data';
 import { figures_SkillGroup_Data } from './figures/figures.data';

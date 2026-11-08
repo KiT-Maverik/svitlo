@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import { angleAsTurn_Skill_Data, rightAngle_Skill_Data, angleTypes_Skill_Data } from './skills';
 

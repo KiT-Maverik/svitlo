@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const heliosphere_Skill_Data = buildSkillConfig({
   slug: 'heliosphere',

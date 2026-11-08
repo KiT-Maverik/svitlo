@@ -1,4 +1,4 @@
-import type { Flashcard } from '@svitlo/engine/content';
+import type { Flashcard } from '@svitlo/contracts/content';
 import type { HowLightMoves_Languages } from '../constants';
 import { fastestMedium_Question_Data } from '../questions/fastestMedium';
 import { lightTravelsStraight_Question_Data } from '../questions/lightTravelsStraight';

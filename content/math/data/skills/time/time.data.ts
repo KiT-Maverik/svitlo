@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { calendar_SkillGroup_Data } from './calendar/calendar.data';
 import { clock_SkillGroup_Data } from './clock/clock.data';

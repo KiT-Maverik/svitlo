@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const explainARepository_Skill_Data = buildSkillConfig({
   slug: 'explainARepository',

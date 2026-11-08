@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const identifyADigitalProductUsersGoal_Skill_Data = buildSkillConfig({
   slug: 'identifyADigitalProductUsersGoal',

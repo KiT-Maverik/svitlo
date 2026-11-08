@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import { predictTheDirectionOfAReflectedRay_Skill_Data, recognizeLightReflection_Skill_Data } from './skills';
 

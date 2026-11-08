@@ -2,7 +2,7 @@
 
 import type { UiKitMessages } from '#types/uiKitMessages';
 import { Stack, Typography } from '@mui/material';
-import type { Question_BuildAnswerWithBlocks, Locale_Languages } from '@svitlo/engine/content';
+import type { Question_BuildAnswerWithBlocks, Locale_Languages } from '@svitlo/contracts/content';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
 import { QuestionChoice } from '../response/QuestionChoice';
 import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';

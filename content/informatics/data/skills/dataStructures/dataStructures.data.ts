@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { dictionaries_SkillGroup_Data } from './dictionaries/dictionaries.data';
 import { graphs_SkillGroup_Data } from './graphs/graphs.data';

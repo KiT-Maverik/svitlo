@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { groupDynamics_SkillGroup_Data } from './groupDynamics/groupDynamics.data';
 import { influenceAndPersuasion_SkillGroup_Data } from './influenceAndPersuasion/influenceAndPersuasion.data';

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import { dequeueAnElement_Skill_Data, enqueueAnElement_Skill_Data, explainFIFO_Skill_Data } from './skills';
 

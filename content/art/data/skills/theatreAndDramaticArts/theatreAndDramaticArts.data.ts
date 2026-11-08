@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { acting_SkillGroup_Data } from './acting/acting.data';
 import { dramaturgyAndDirection_SkillGroup_Data } from './dramaturgyAndDirection/dramaturgyAndDirection.data';

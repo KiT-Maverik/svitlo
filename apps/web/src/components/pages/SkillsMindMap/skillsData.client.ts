@@ -1,4 +1,4 @@
-import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/localization';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
 import {
   flattenSkillNodes,
   languagePattern,

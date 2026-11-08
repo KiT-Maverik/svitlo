@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { agriculturalEconomics_SkillGroup_Data } from './agriculturalEconomics/agriculturalEconomics.data';
 import { economicsOfEducation_SkillGroup_Data } from './economicsOfEducation/economicsOfEducation.data';

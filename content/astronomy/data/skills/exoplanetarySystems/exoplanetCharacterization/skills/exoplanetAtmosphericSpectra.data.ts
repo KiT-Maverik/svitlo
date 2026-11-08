@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const exoplanetAtmosphericSpectra_Skill_Data = buildSkillConfig({
   slug: 'exoplanetAtmosphericSpectra',

@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const solventSoluteCompatibility_Skill_Data = buildSkillConfig({
   slug: 'solventSoluteCompatibility',

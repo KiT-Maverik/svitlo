@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const stellarLuminosity_Skill_Data = buildSkillConfig({
   slug: 'stellarLuminosity',

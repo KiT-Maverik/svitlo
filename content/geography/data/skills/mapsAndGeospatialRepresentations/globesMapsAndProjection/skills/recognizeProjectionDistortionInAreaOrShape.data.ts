@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const recognizeProjectionDistortionInAreaOrShape_Skill_Data = buildSkillConfig({
   slug: 'recognizeProjectionDistortionInAreaOrShape',

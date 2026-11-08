@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import {
   evaluateEcologicalRisksOfBiotechnologyUse_Skill_Data,

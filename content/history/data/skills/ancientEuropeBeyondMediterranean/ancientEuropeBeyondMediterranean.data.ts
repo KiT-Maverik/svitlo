@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { centralAndWesternEurope_SkillGroup_Data } from './centralAndWesternEurope/centralAndWesternEurope.data';
 import { earlyMedievalEasternEurope_SkillGroup_Data } from './earlyMedievalEasternEurope/earlyMedievalEasternEurope.data';

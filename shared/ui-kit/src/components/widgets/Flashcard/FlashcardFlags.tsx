@@ -1,6 +1,6 @@
 import type { ReactElement, ReactNode } from 'react';
 import type { ChipProps } from '@mui/material/Chip';
-import type { FlashcardFlag, FlashcardFlagIcon, Locale_Languages } from '@svitlo/engine/content';
+import type { FlashcardFlag, FlashcardFlagIcon, Locale_Languages } from '@svitlo/contracts/content';
 import type { Flashcard_Locale } from '../../../../data/locale/flashcard';
 import ListOutlined from '@mui/icons-material/ListOutlined';
 import PriorityHighOutlined from '@mui/icons-material/PriorityHighOutlined';

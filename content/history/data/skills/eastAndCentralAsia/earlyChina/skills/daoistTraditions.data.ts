@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const daoistTraditions_Skill_Data = buildSkillConfig({
   slug: 'daoistTraditions',

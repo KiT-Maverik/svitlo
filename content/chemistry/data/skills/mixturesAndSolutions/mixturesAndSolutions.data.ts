@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { concentration_SkillGroup_Data } from './concentration/concentration.data';
 import { dissolutionAndSolubility_SkillGroup_Data } from './dissolutionAndSolubility/dissolutionAndSolubility.data';

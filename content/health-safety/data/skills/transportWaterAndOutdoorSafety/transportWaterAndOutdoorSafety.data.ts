@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { roadAndTransportSafety_SkillGroup_Data } from './roadAndTransportSafety/roadAndTransportSafety.data';
 import { waterSafety_SkillGroup_Data } from './waterSafety/waterSafety.data';

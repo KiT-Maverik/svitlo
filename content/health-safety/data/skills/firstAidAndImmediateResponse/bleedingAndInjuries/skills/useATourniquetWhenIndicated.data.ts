@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const useATourniquetWhenIndicated_Skill_Data = buildSkillConfig({
   slug: 'useATourniquetWhenIndicated',

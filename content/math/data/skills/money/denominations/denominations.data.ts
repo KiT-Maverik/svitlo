@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import { recognizeDenominations_Skill_Data, composeAmount_Skill_Data, compareAmounts_Skill_Data } from './skills';
 

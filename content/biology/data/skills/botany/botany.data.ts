@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { nutritionAndGrowth_SkillGroup_Data } from './nutritionAndGrowth/nutritionAndGrowth.data';
 import { plantAdaptations_SkillGroup_Data } from './plantAdaptations/plantAdaptations.data';

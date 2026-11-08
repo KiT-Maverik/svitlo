@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const recognizeMagneticRepulsion_Skill_Data = buildSkillConfig({
   slug: 'recognizeMagneticRepulsion',

@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const readWrite1000_Skill_Data = buildSkillConfig({
   slug: 'readWrite1000',

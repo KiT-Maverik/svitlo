@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { australiaAndNewGuinea_SkillGroup_Data } from './australiaAndNewGuinea/australiaAndNewGuinea.data';
 import { pacificIslands_SkillGroup_Data } from './pacificIslands/pacificIslands.data';

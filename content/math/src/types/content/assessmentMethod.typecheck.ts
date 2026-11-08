@@ -1,5 +1,5 @@
-import { assessmentMethods_AssessmentMethod_Ids } from '@svitlo/engine/content';
-import type { AssessmentMethodId, Locale_Languages, Question } from '@svitlo/engine/content';
+import { assessmentMethods_AssessmentMethod_Ids } from '@svitlo/contracts/content';
+import type { AssessmentMethodId, Locale_Languages, Question } from '@svitlo/contracts/content';
 
 const valid: AssessmentMethodId = assessmentMethods_AssessmentMethod_Ids.retrieval;
 void valid;

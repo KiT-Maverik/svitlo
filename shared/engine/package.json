@@ -26,114 +26,17 @@
     ".": {
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
-    },
-    "./localization": {
-      "types": "./dist/localization/index.d.ts",
-      "default": "./dist/localization/index.js"
-    },
-    "./taxonomy": {
-      "types": "./dist/taxonomy/index.d.ts",
-      "default": "./dist/taxonomy/index.js"
-    },
-    "./content": {
-      "types": "./dist/content/index.d.ts",
-      "default": "./dist/content/index.js"
-    },
-    "./builders": {
-      "types": "./dist/builders/index.d.ts",
-      "default": "./dist/builders/index.js"
-    },
-    "./generation": {
-      "types": "./dist/generation/index.d.ts",
-      "default": "./dist/generation/index.js"
-    },
-    "./utils": {
-      "types": "./dist/utils/index.d.ts",
-      "default": "./dist/utils/index.js"
-    },
-    "./types": {
-      "types": "./dist/types/index.d.ts",
-      "default": "./dist/types/index.js"
-    },
-    "./assessment-methods": {
-      "types": "./dist/data/assessmentMethodTaxonomy/index.data.d.ts",
-      "default": "./dist/data/assessmentMethodTaxonomy/index.data.js"
-    },
-    "./lesson": {
-      "types": "./dist/lesson/index.d.ts",
-      "default": "./dist/lesson/index.js"
-    },
-    "./definitions": {
-      "types": "./dist/definitions/index.d.ts",
-      "default": "./dist/definitions/index.js"
-    },
-    "./schemas": {
-      "types": "./dist/schemas/index.d.ts",
-      "default": "./dist/schemas/index.js"
-    },
-    "./configurators": {
-      "types": "./dist/configurators/index.d.ts",
-      "default": "./dist/configurators/index.js"
     }
   },
   "files": [
     "dist"
   ],
-  "typesVersions": {
-    "*": {
-      "builders": [
-        "dist/builders/index.d.ts"
-      ],
-      "content": [
-        "dist/content/index.d.ts"
-      ],
-      "generation": [
-        "dist/generation/index.d.ts"
-      ],
-      "lesson": [
-        "dist/lesson/index.d.ts"
-      ],
-      "localization": [
-        "dist/localization/index.d.ts"
-      ],
-      "taxonomy": [
-        "dist/taxonomy/index.d.ts"
-      ],
-      "types": [
-        "dist/types/index.d.ts"
-      ],
-      "utils": [
-        "dist/utils/index.d.ts"
-      ],
-      "assessment-methods": [
-        "dist/data/assessmentMethodTaxonomy/index.data.d.ts"
-      ],
-      "definitions": [
-        "dist/definitions/index.d.ts"
-      ],
-      "schemas": [
-        "dist/schemas/index.d.ts"
-      ],
-      "configurators": [
-        "dist/configurators/index.d.ts"
-      ],
-      "*": [
-        "dist/index.d.ts"
-      ]
-    }
-  },
   "imports": {
-    "#builders": "./dist/builders/index.js",
     "#configurators": "./dist/configurators/index.js",
-    "#content": "./dist/content/index.js",
     "#data": "./dist/data/index.js",
     "#definitions": "./dist/definitions/index.js",
-    "#generation": "./dist/generation/index.js",
-    "#lesson": "./dist/lesson/index.js",
     "#lessons": "./dist/lessons/index.js",
-    "#localization": "./dist/localization/index.js",
     "#schemas": "./dist/schemas/index.js",
-    "#taxonomy": "./dist/taxonomy/index.js",
     "#types": "./dist/types/index.js",
     "#utils": "./dist/utils/index.js"
   }

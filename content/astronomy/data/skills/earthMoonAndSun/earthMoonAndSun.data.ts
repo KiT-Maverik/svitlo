@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { earthMoonInteractions_SkillGroup_Data } from './earthMoonInteractions/earthMoonInteractions.data';
 import { eclipsesAndAlignments_SkillGroup_Data } from './eclipsesAndAlignments/eclipsesAndAlignments.data';

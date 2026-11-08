@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { energyPerformance_SkillGroup_Data } from './energyPerformance/energyPerformance.data';
 import { generation_SkillGroup_Data } from './generation/generation.data';

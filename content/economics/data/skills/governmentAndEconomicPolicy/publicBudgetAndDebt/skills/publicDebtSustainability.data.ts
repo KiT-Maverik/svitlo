@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const publicDebtSustainability_Skill_Data = buildSkillConfig({
   slug: 'publicDebtSustainability',

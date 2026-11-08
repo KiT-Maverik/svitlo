@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const flowControlValves_Skill_Data = buildSkillConfig({
   slug: 'flowControlValves',

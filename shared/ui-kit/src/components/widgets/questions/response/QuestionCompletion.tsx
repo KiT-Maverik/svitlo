@@ -1,7 +1,7 @@
 'use client';
 
 import { createContext } from 'react';
-import type { Locale_Languages, Quiz_Parameters } from '@svitlo/engine/content';
+import type { Locale_Languages, Quiz_Parameters } from '@svitlo/contracts/content';
 
 /** Coordinates assessment status, feedback and retry policies across Question widgets. */
 export const QuestionCompletionContext = createContext<{

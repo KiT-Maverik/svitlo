@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { conditionsForLife_SkillGroup_Data } from './conditionsForLife/conditionsForLife.data';
 import { evidenceOfLife_SkillGroup_Data } from './evidenceOfLife/evidenceOfLife.data';

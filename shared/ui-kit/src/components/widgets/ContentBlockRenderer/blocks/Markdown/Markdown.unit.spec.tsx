@@ -1,7 +1,7 @@
 import { render, screen, within } from '@testing-library/react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
-import type { ContentBlock_Markdown_Response } from '@svitlo/engine/content';
+import type { ContentBlock_Markdown_Response } from '@svitlo/contracts/content';
 
 import { Markdown } from './Markdown';
 import { ContentLanguageContext } from '../../ContentLanguageContext';

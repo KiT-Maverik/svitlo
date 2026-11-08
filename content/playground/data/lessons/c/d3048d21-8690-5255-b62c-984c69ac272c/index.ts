@@ -1,4 +1,4 @@
-import { createLesson } from '@svitlo/engine/builders';
+import { createLesson } from '@svitlo/engine';
 import { howLightMoves_languages, type HowLightMoves_Languages } from './constants';
 import { howLightMoves_Flashcards } from './flashcards';
 import { howLightMoves_Questions } from './questions';

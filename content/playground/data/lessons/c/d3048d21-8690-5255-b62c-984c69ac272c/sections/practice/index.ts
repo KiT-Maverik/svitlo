@@ -1,5 +1,5 @@
 import type { HowLightMoves_Languages } from '../../constants';
-import { createSection, createContentBlock } from '@svitlo/engine/builders';
+import { createSection, createContentBlock } from '@svitlo/engine';
 import { showcase } from './scenes/showcase';
 
 const title = {

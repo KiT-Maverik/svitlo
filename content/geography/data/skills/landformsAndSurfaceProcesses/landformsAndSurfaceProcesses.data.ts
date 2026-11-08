@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { reliefAndElevation_SkillGroup_Data } from './reliefAndElevation/reliefAndElevation.data';
 import { soilsAndSurfaceSediments_SkillGroup_Data } from './soilsAndSurfaceSediments/soilsAndSurfaceSediments.data';

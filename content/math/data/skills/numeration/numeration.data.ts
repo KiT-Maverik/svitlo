@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { notation_SkillGroup_Data } from './notation/notation.data';
 import { placeValue_SkillGroup_Data } from './placeValue/placeValue.data';

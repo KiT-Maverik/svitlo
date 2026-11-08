@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const explainNewtonsSecondLaw_Skill_Data = buildSkillConfig({
   slug: 'explainNewtonsSecondLaw',

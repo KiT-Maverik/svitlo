@@ -8,7 +8,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 // Export the hook from the same MUI module instance that owns ThemeProvider.
 // Cross-platform consumers must not mix ESM and CommonJS MUI color-scheme contexts.
 export { useColorScheme as useSvitloColorScheme } from '@mui/material/styles';
-import type { TextDirection } from '@svitlo/engine/localization';
+import type { TextDirection } from '@svitlo/contracts/localization';
 
 /**
  * The same MUI palette, CSS-variable color schemes and motion are used by

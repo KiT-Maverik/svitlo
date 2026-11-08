@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { digitalDeviceComponents_SkillGroup_Data } from './digitalDeviceComponents/digitalDeviceComponents.data';
 import { memoryAndStorage_SkillGroup_Data } from './memoryAndStorage/memoryAndStorage.data';

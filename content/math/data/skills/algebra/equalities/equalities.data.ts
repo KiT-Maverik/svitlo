@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import { completeEquality_Skill_Data, equalityMeaning_Skill_Data, trueFalseEquality_Skill_Data } from './skills';
 

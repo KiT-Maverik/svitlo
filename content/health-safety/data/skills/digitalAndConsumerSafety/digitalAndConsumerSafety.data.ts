@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { fraudAndDeceptivePressure_SkillGroup_Data } from './fraudAndDeceptivePressure/fraudAndDeceptivePressure.data';
 import { onlineInteractionSafety_SkillGroup_Data } from './onlineInteractionSafety/onlineInteractionSafety.data';

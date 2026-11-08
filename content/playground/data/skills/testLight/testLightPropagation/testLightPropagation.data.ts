@@ -1,5 +1,5 @@
 // Synthetic Playground fixtures: locale-tagged placeholders, not translations.
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 import { testExplainLightTravel_Skill_Data } from './skills';
 
 export const testLightPropagation_SkillGroup_Data = buildSkillGroupConfig({

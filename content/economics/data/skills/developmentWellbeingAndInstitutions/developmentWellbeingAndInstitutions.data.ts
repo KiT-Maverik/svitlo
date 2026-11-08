@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { inequality_SkillGroup_Data } from './inequality/inequality.data';
 import { institutionsAndDevelopment_SkillGroup_Data } from './institutionsAndDevelopment/institutionsAndDevelopment.data';

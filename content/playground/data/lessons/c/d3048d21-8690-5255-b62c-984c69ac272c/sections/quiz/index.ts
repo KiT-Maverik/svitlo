@@ -1,6 +1,6 @@
 import type { HowLightMoves_Languages } from '../../constants';
-import type { Quiz_Parameters } from '@svitlo/engine/content';
-import { createSection } from '@svitlo/engine/builders';
+import type { Quiz_Parameters } from '@svitlo/contracts/content';
+import { createSection } from '@svitlo/engine';
 import { howLightMoves_Questions } from '../../questions';
 
 const title = {

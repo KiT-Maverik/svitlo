@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { ergonomicsAndSensoryCare_SkillGroup_Data } from './ergonomicsAndSensoryCare/ergonomicsAndSensoryCare.data';
 import { physicalActivity_SkillGroup_Data } from './physicalActivity/physicalActivity.data';

@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { objectFamilies_SkillGroup_Data } from './objectFamilies/objectFamilies.data';
 import { organizationAndMembership_SkillGroup_Data } from './organizationAndMembership/organizationAndMembership.data';

@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { acidBaseFundamentals_SkillGroup_Data } from './acidBaseFundamentals/acidBaseFundamentals.data';
 import { acidBaseSystems_SkillGroup_Data } from './acidBaseSystems/acidBaseSystems.data';

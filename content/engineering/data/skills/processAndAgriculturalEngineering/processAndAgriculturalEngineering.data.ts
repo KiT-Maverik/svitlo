@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { foodAndAgriculturalTechnology_SkillGroup_Data } from './foodAndAgriculturalTechnology/foodAndAgriculturalTechnology.data';
 import { industrialProcessEquipment_SkillGroup_Data } from './industrialProcessEquipment/industrialProcessEquipment.data';

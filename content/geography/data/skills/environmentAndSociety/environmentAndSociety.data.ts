@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { humanEnvironmentInteractions_SkillGroup_Data } from './humanEnvironmentInteractions/humanEnvironmentInteractions.data';
 import { naturalResources_SkillGroup_Data } from './naturalResources/naturalResources.data';

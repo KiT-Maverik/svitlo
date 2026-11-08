@@ -1,6 +1,6 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import type { ContentBlock_Carousel_Response } from '@svitlo/engine/content';
+import type { ContentBlock_Carousel_Response } from '@svitlo/contracts/content';
 import { ContentBlockRenderer } from '../../ContentBlockRenderer';
 import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 

@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const establishAFocalPoint_Skill_Data = buildSkillConfig({
   slug: 'establishAFocalPoint',

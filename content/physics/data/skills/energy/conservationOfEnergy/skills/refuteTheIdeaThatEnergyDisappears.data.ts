@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const refuteTheIdeaThatEnergyDisappears_Skill_Data = buildSkillConfig({
   slug: 'refuteTheIdeaThatEnergyDisappears',

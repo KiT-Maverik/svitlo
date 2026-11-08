@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const interestRates_Skill_Data = buildSkillConfig({
   slug: 'interestRates',

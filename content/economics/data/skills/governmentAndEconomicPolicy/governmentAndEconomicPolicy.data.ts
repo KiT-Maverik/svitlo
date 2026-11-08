@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { fiscalAndMonetaryPolicy_SkillGroup_Data } from './fiscalAndMonetaryPolicy/fiscalAndMonetaryPolicy.data';
 import { publicBudgetAndDebt_SkillGroup_Data } from './publicBudgetAndDebt/publicBudgetAndDebt.data';

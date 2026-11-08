@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const balancedDietaryPatterns_Skill_Data = buildSkillConfig({
   slug: 'balancedDietaryPatterns',

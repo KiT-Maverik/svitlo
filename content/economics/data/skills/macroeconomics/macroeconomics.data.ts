@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { businessFluctuationsAndAggregateDemand_SkillGroup_Data } from './businessFluctuationsAndAggregateDemand/businessFluctuationsAndAggregateDemand.data';
 import { growthAndProductivity_SkillGroup_Data } from './growthAndProductivity/growthAndProductivity.data';

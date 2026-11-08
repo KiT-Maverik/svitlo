@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import { conquestsOfAlexander_Skill_Data, hellenisticKingdoms_Skill_Data, riseOfMacedonia_Skill_Data } from './skills';
 

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import { certainImpossible_Skill_Data, likelihoodLanguage_Skill_Data, listOutcomes_Skill_Data } from './skills';
 

@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const placeValueMental_Skill_Data = buildSkillConfig({
   slug: 'placeValueMental',

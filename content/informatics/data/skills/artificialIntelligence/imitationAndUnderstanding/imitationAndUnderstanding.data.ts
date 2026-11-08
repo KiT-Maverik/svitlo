@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import { explainSearlesChineseRoom_Skill_Data, explainTheTuringTest_Skill_Data } from './skills';
 

@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import { DEFAULT_SUPPORTED_LANGUAGES } from '../../../types/languages';
 import { assessmentMethods_AssessmentMethod_Ids } from '@svitlo/contracts/content';
-import type { AssessmentMethod_Config } from '../../../content';
+import type { AssessmentMethod_Config } from '@svitlo/contracts/content';
 import { buildAssessmentMethodConfig } from './buildAssessmentMethodConfig.utils';
 
 const translations = () =>

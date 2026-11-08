@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { electromagneticRadiation_SkillGroup_Data } from './electromagneticRadiation/electromagneticRadiation.data';
 import { radiationAndMatter_SkillGroup_Data } from './radiationAndMatter/radiationAndMatter.data';

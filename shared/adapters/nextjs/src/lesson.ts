@@ -2,9 +2,9 @@ import { cache, createElement, Suspense, type ReactElement } from 'react';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { resolveEntityPath } from '@svitlo/engine';
-import { DEFAULT_SUPPORTED_LANGUAGES, type LanguageCode, type Locale } from '@svitlo/engine/localization';
+import { DEFAULT_SUPPORTED_LANGUAGES, type LanguageCode, type Locale } from '@svitlo/contracts/localization';
 import type { UiKitMessages } from '@svitlo/ui-kit';
-import type { LessonResponse } from '@svitlo/engine/lesson';
+import type { LessonResponse } from '@svitlo/engine';
 import { loadPublishedLesson } from './publishedLesson';
 import { loadPublishedUiKitMessages } from './publishedUiKitMessages';
 

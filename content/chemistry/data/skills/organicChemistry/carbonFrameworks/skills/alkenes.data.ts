@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const alkenes_Skill_Data = buildSkillConfig({
   slug: 'alkenes',

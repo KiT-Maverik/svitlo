@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const centrifugation_Skill_Data = buildSkillConfig({
   slug: 'centrifugation',

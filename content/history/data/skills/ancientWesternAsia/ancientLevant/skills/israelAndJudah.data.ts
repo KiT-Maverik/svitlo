@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const israelAndJudah_Skill_Data = buildSkillConfig({
   slug: 'israelAndJudah',

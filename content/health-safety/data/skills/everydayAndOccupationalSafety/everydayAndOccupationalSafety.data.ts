@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { electricityFireAndGas_SkillGroup_Data } from './electricityFireAndGas/electricityFireAndGas.data';
 import { hazardRecognitionAndPrevention_SkillGroup_Data } from './hazardRecognitionAndPrevention/hazardRecognitionAndPrevention.data';

@@ -4,7 +4,7 @@ import type { Video_Locale } from '../../../../../../data/locale/video';
 
 import { useEffect, useRef, useState, type SyntheticEvent } from 'react';
 import Button from '@mui/material/Button';
-import type { ContentBlock_Video_Response } from '@svitlo/engine/content';
+import type { ContentBlock_Video_Response } from '@svitlo/contracts/content';
 
 import { localizedAttributes } from '../../utils';
 import { useContentLanguage } from '../../ContentLanguageContext';

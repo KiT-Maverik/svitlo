@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { digitalMaterials_SkillGroup_Data } from './digitalMaterials/digitalMaterials.data';
 import { gameDesign_SkillGroup_Data } from './gameDesign/gameDesign.data';

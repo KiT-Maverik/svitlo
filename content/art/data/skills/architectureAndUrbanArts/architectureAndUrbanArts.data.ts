@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { architecturalFormAndStyle_SkillGroup_Data } from './architecturalFormAndStyle/architecturalFormAndStyle.data';
 import { architecturalSpace_SkillGroup_Data } from './architecturalSpace/architecturalSpace.data';

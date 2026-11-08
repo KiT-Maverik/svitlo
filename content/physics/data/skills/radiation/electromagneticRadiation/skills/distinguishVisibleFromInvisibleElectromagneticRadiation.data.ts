@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const distinguishVisibleFromInvisibleElectromagneticRadiation_Skill_Data = buildSkillConfig({
   slug: 'distinguishVisibleFromInvisibleElectromagneticRadiation',

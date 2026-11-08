@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import { findExtraneousData_Skill_Data, findMissingData_Skill_Data, identifyKnownUnknown_Skill_Data } from './skills';
 

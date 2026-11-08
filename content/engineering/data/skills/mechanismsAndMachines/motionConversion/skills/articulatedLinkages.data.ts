@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const articulatedLinkages_Skill_Data = buildSkillConfig({
   slug: 'articulatedLinkages',

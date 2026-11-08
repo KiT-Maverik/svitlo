@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import { compareCategories_Skill_Data, interpretConclusion_Skill_Data, missingInformation_Skill_Data } from './skills';
 

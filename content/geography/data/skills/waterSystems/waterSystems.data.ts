@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { frozenAndSubsurfaceWater_SkillGroup_Data } from './frozenAndSubsurfaceWater/frozenAndSubsurfaceWater.data';
 import { hydrologicConnections_SkillGroup_Data } from './hydrologicConnections/hydrologicConnections.data';

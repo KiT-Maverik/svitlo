@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { heliosphericEffects_SkillGroup_Data } from './heliosphericEffects/heliosphericEffects.data';
 import { magneticActivity_SkillGroup_Data } from './magneticActivity/magneticActivity.data';

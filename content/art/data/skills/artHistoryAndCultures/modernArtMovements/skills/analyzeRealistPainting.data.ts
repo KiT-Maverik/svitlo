@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const analyzeRealistPainting_Skill_Data = buildSkillConfig({
   slug: 'analyzeRealistPainting',

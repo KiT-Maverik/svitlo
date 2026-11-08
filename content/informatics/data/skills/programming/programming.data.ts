@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { dataTypesAndReferences_SkillGroup_Data } from './dataTypesAndReferences/dataTypesAndReferences.data';
 import { functionsAndReuse_SkillGroup_Data } from './functionsAndReuse/functionsAndReuse.data';

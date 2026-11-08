@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const designAnimatedTransitions_Skill_Data = buildSkillConfig({
   slug: 'designAnimatedTransitions',

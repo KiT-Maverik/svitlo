@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { financialRisksAndProtection_SkillGroup_Data } from './financialRisksAndProtection/financialRisksAndProtection.data';
 import { incomeAndBudgeting_SkillGroup_Data } from './incomeAndBudgeting/incomeAndBudgeting.data';

@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { competitiveMarketStructures_SkillGroup_Data } from './competitiveMarketStructures/competitiveMarketStructures.data';
 import { demand_SkillGroup_Data } from './demand/demand.data';

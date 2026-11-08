@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillDomainConfig } from '@svitlo/engine';
 
 import { choicesUnderUncertainty_SkillGroup_Data } from './choicesUnderUncertainty/choicesUnderUncertainty.data';
 import { heuristicsAndBiases_SkillGroup_Data } from './heuristicsAndBiases/heuristicsAndBiases.data';

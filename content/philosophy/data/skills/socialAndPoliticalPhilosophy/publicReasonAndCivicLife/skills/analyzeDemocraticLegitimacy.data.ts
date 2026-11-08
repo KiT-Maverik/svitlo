@@ -1,4 +1,4 @@
-import { buildSkillConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillConfig } from '@svitlo/engine';
 
 export const analyzeDemocraticLegitimacy_Skill_Data = buildSkillConfig({
   slug: 'analyzeDemocraticLegitimacy',

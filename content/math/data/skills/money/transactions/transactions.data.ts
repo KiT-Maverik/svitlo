@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';
+import { buildSkillGroupConfig } from '@svitlo/engine';
 
 import { calculateChange_Skill_Data, unitPriceTotal_Skill_Data, budgetConstraint_Skill_Data } from './skills';
 
