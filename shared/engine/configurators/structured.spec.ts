@@ -9,7 +9,7 @@ import { defineTheorySection, regularSectionSchema } from './sections';
 import { defineLesson } from './lessons';
 import { defineCourse } from './courses';
 import { defineSkill, defineSkillGroup, defineSkillDomain } from './skills';
-import { assessmentMethodSchema, defineAssessmentMethod } from './assessmentMethods';
+import { assessmentMethodSchema, defineAssessmentMethod } from './assessmentMethods/defineAssessmentMethod';
 
 const languages = ['en', 'uk'] as const;
 const id = (last: string) => 'b775647f-203d-481a-a1c7-4d331c779d' + last;

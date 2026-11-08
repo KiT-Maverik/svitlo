@@ -9,5 +9,5 @@ export * from './sections';
 export * from './lessons';
 export * from './courses';
 export * from './skills';
-export * from './assessmentMethods';
+export * from './assessmentMethods/defineAssessmentMethod';
 export * from './flashcards';
