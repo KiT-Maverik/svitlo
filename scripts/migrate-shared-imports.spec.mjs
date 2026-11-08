@@ -59,3 +59,23 @@ test('leaves namespace imports and side-effect-only imports semantically safe', 
   assert.match(result.code, /import \{ createLesson \} from '@svitlo\/engine';/);
   assert.equal((result.code.match(/import '@svitlo\/engine';/g) ?? []).length, 0);
 });
+
+test('retains side-effect execution when merging type-only imports', () => {
+  const source = [
+    "import type { LessonResponse } from '@svitlo/engine/types';",
+    "import '@svitlo/engine/generators';",
+  ].join('\\n');
+  const result = migrateSharedImports(source);
+  assert.match(result.code, /import type \\{ LessonResponse \\} from '@svitlo\\/engine';/);
+  assert.match(result.code, /import '@svitlo\\/engine';/);
+});
+
+test('deduplicates side-effect-only imports safely', () => {
+  const source = [
+    "import '@svitlo/indexdb/controllers';",
+    "import '@svitlo/indexdb/config';",
+  ].join('\\n');
+  const result = migrateSharedImports(source);
+  assert.equal((result.code.match(/import '@svitlo\\/indexdb';/g) ?? []).length, 1);
+  assert.equal(migrateSharedImports(result.code).changed, false);
+});

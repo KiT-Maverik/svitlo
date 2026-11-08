@@ -88,7 +88,15 @@ function combineNamedImports(source, filename) {
       node.importClause && !node.importClause.name &&
       node.importClause.namedBindings && ts.isNamedImports(node.importClause.namedBindings)
     );
-    if (named.length < 2 && !nodes.some(node => !node.importClause)) continue;
+    const sideEffects = nodes.filter(node => !node.importClause);
+    if (!named.length) {
+      // One side-effect import still has to evaluate the module.
+      for (const node of sideEffects.slice(1)) {
+        edits.push({ start: node.getStart(ast), end: node.getEnd(), text: '' });
+      }
+      continue;
+    }
+    if (named.length < 2 && !sideEffects.length) continue;
     const seen = new Map();
     const specifiers = [];
     let conflicting = false;
@@ -136,7 +144,10 @@ function combineNamedImports(source, filename) {
       if (node === first) continue;
       const isNamed = named.includes(node);
       const isSideEffectOnly = !node.importClause;
-      if (isNamed || isSideEffectOnly) {
+      // A type-only import does not execute the module; retain one side-effect
+      // import if the merged statement has no runtime bindings.
+      const keepSideEffect = allTypes && node === sideEffects[0];
+      if ((isNamed || isSideEffectOnly) && !keepSideEffect) {
         edits.push({ start: node.getStart(ast), end: node.getEnd(), text: '' });
       }
     }
