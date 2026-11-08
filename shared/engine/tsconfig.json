@@ -15,10 +15,11 @@
     "paths": {
       "@/*": ["src/*"],
       "@definitions": ["definitions"],
+      "@definitions/*": ["definitions/*"],
       "@schemas": ["schemas"],
-
+      "@schemas/*": ["schemas/*"]
     },
     "jsx": "react-jsx"
   },
-  "include": ["src/**/*.ts"]
+  "include": ["src/**/*.ts", "definitions/**/*.ts", "schemas/**/*.ts"]
 }
