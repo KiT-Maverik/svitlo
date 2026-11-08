@@ -1,13 +1,12 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { assessmentMethods_AssessmentMethod_Ids } from '@svitlo/contracts/content';
 import { defineText } from './contentBlocks/defineText/defineText';
 import { defineMarkdown } from './contentBlocks/defineRemaining';
 import { defineTheorySection, regularSectionSchema } from './sections';
 import { defineLesson } from './lessons';
 import { defineCourse } from './courses';
 import { defineSkill, defineSkillGroup, defineSkillDomain } from './skills';
-import { defineAssessmentMethod } from './assessmentMethods';
+import { assessmentMethodSchema, defineAssessmentMethod } from './assessmentMethods';
 
 const languages = ['en', 'uk'] as const;
 const id = (last: string) => 'b775647f-203d-481a-a1c7-4d331c779d' + last;
@@ -82,7 +81,7 @@ test('Course-local overrides do not mutate a standalone Lesson', () => {
   });
   assert.equal(JSON.stringify(course.config.base).includes('function'), false);
 });
-test('Skills use child Definition objects and assessment IDs are canonical', () => {
+test('Skills use child Definition objects and assessment IDs are valid UUIDs', () => {
   const skill = defineSkill<typeof languages>({
     type: 'skill',
     id: id('6f'),
@@ -107,11 +106,13 @@ test('Skills use child Definition objects and assessment IDs are canonical', () 
   assert.equal(skill.config.test.config(languages).success, true);
   assert.equal(group.config.test.config(languages).success, true);
   assert.equal(domain.config.test.config(languages).success, true);
-  const method = defineAssessmentMethod<typeof languages>({
+  const methodSource = {
     type: 'assessmentMethod',
-    id: assessmentMethods_AssessmentMethod_Ids.retrieval,
+    id: 'b775647f-203d-481a-a1c7-4d331c779d72',
     title: { en: 'Retrieval', uk: 'Відтворення' },
     description: { en: 'Recall', uk: 'Пригадування' },
-  });
+  } satisfies Parameters<typeof defineAssessmentMethod<typeof languages>>[0];
+  const method = defineAssessmentMethod<typeof languages>(methodSource);
   assert.equal(method.config.test.config(languages).success, true);
+  assert.equal(assessmentMethodSchema(languages).safeParse({ ...methodSource, id: 'not-a-uuid' }).success, false);
 });
