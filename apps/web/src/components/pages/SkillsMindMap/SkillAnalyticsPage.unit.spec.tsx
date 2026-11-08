@@ -1,6 +1,6 @@
 import { beforeEach, afterEach, describe, expect, it, vi } from 'vitest';
 import { fireEvent, render, screen, within } from '@testing-library/react';
-import { SvitloThemeProvider } from '@svitlo/ui-kit/theme';
+import { SvitloThemeProvider } from '@svitlo/ui-kit';
 import { ukUiKitMessages } from '../../../../../../shared/ui-kit/src/testing/uiKitMessages.unit.fx';
 const aria = ukUiKitMessages.learningLayout;
 import { SkillAnalyticsPage } from './SkillAnalyticsPage';

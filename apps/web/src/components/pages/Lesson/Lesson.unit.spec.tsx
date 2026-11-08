@@ -6,7 +6,7 @@ import { preloadScene } from '@/generated/textbookScenes';
 import WebLesson from './Lesson';
 
 vi.mock('@/generated/textbookScenes', () => ({ preloadScene: vi.fn(), resolveScene: vi.fn() }));
-vi.mock('@svitlo/ui-kit/lesson', () => ({
+vi.mock('@svitlo/ui-kit', () => ({
   Lesson: ({
     contentLoading,
     contentError,

@@ -374,7 +374,7 @@ function children(e, local) {
     });
 }
 function render(e, value, kids) {
-  const imports = ['import { build' + e.kind + "Config } from '@svitlo/engine/taxonomy';"];
+  const imports = ['import { build' + e.kind + "Config } from '@svitlo/engine';"];
   const lines = [
     '  slug: ' + JSON.stringify(e.slug) + ',',
     '  id: ' + JSON.stringify(value.id) + ',',

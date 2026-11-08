@@ -2,8 +2,7 @@ import { createElement, useState, type ComponentProps } from 'react';
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import LearningLayout from './LearningLayout';
-import { testId as navbarTestId } from '@svitlo/ui-kit/navigation/Navbar.constants';
-import { testId as spaceTestId } from '@svitlo/ui-kit/layout/ThreeSlotLayout.constants';
+import { navbarTestId, threeSlotLayoutTestId as spaceTestId } from '@svitlo/ui-kit';
 
 const Navbar_fx = {
   selectors: {
