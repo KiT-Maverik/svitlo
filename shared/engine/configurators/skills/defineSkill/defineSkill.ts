@@ -4,10 +4,14 @@ import {
   type Skill_Config,
 } from './defineSkill.schemas';
 
+type Base = Pick<Skill_Config, 'id' | 'slug' | 'name'>;
+
+type Locale = Partial<Pick<Skill_Config, 'name'>>
+
 export function defineSkill(config: Skill_Config) {
   const { id, description, slug, name } = config;
 
-  const base = {
+  const base: Base = {
     id,
     slug,
     description: { methodological: description.methodological },
@@ -16,7 +20,7 @@ export function defineSkill(config: Skill_Config) {
   return {
     config: {
       base,
-      locales: () => ({ name, description: { frontend: description.frontend } }),
+      locales: (): Locale => ({ name, description: { frontend: description.frontend } }),
       test: {
         config: () => skill_Config_Schema.safeParse(config).success,
         props: (props: unknown) => skill_Props_Schema.safeParse(props).success,
