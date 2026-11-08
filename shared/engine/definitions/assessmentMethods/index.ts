@@ -2,8 +2,8 @@ import { z } from 'zod';
 
 import { locale_All_Schema } from '#schemas';
 
-import { defineStructured, resolvedProps } from '../structured';
 import type { TaggedDefinition } from '../structured';
+import {textProps_Schema} from "../contentBlocks/defineText/defineText.schema";
 
 export const assessmentMethodSchema = z.strictObject({
   description: locale_All_Schema,
@@ -25,10 +25,24 @@ export function defineAssessmentMethod(config: AssessmentMethod_Config) {
   if (typeof title === 'string') base.title = title;
   if (typeof description === 'string') base.description = description;
 
-  return defineStructured('assessmentMethod', source, () => assessmentMethodSchema, resolvedProps('assessmentMethod'), [
-    'title',
-    'description',
-  ]);
+  return {
+    config: {
+      base,
+      locales: () => {
+        const result = {};
+
+        if (typeof title !== 'string') result.title = title;
+        if (typeof description !== 'string') result.description = title;
+
+        return result
+      },
+      test: {
+        config: () =>
+          assessmentMethodSchema.safeParse(config).success,
+        props: (props: unknown) => textProps_Schema.safeParse(props).success,
+      },
+    },
+  };
 }
 
 export type AssessmentMethodDefinition = TaggedDefinition<'assessmentMethod'>;
