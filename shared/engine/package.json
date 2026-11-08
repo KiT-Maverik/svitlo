@@ -37,7 +37,6 @@
     "#definitions": "./dist/definitions/index.js",
     "#lessons": "./dist/lessons/index.js",
     "#schemas": "./dist/schemas/index.js",
-    "#types": "./dist/types/index.js",
     "#utils": "./dist/utils/index.js"
   }
 }

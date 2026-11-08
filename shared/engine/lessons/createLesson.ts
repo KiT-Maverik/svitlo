@@ -7,7 +7,7 @@ import type {
   Question_Catalog_ValidSlugs,
   Section,
 } from '@svitlo/contracts/content';
-import { DEFAULT_SUPPORTED_LANGUAGES } from '../types/languages';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
 import { resolveEntityPath } from '../utils/entityPath/resolveEntityPath.utils';
 import { assertLessonData } from './assertLessonData';
 import { splitLessonValue, type SparseLessonValue } from './splitLessonValue';

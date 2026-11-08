@@ -1,4 +1,4 @@
-import { DEFAULT_SUPPORTED_LANGUAGES } from '../../../types/languages';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
 import type { Collection } from '@svitlo/contracts/content';
 import type { Skill_Config, SkillDescription_Config } from '@svitlo/contracts/taxonomy';
 import type { DeepReadonly } from '@svitlo/contracts/content';

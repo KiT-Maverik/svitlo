@@ -38,10 +38,6 @@ const preloaded = process.execArgv.some((arg, index) => {
       : arg.startsWith('--import=')
         ? arg.slice('--import='.length)
         : undefined;
-  return (
-    specifier === '@svitlo/ui-kit/sync-flags' ||
-    specifier === import.meta.url ||
-    (specifier?.startsWith('/') && resolve(specifier) === scriptPath)
-  );
+  return specifier === import.meta.url || (specifier?.startsWith('/') && resolve(specifier) === scriptPath);
 });
 if (invokedDirectly || preloaded) syncFlags(process.cwd());

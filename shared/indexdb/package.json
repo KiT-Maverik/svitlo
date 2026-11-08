@@ -37,44 +37,9 @@
     ".": {
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
-    },
-    "./controllers": {
-      "types": "./dist/controllers.d.ts",
-      "default": "./dist/controllers.js"
-    },
-    "./utils": {
-      "types": "./dist/utils.d.ts",
-      "default": "./dist/utils.js"
-    },
-    "./schemas": {
-      "types": "./dist/schemas.d.ts",
-      "default": "./dist/schemas.js"
-    },
-    "./config": {
-      "types": "./dist/config.d.ts",
-      "default": "./dist/config.js"
     }
   },
   "files": [
     "dist"
-  ],
-  "typesVersions": {
-    "*": {
-      "controllers": [
-        "dist/controllers.d.ts"
-      ],
-      "utils": [
-        "dist/utils.d.ts"
-      ],
-      "schemas": [
-        "dist/schemas.d.ts"
-      ],
-      "config": [
-        "dist/config.d.ts"
-      ],
-      "*": [
-        "dist/index.d.ts"
-      ]
-    }
-  }
+  ]
 }

@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { DEFAULT_SUPPORTED_LANGUAGES } from '../../../types/languages';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
 import { assessmentMethods_AssessmentMethod_Ids } from '@svitlo/contracts/content';
 import type { AssessmentMethod_Config } from '@svitlo/contracts/content';
 import { buildAssessmentMethodConfig } from './buildAssessmentMethodConfig.utils';
