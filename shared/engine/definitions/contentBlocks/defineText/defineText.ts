@@ -1,11 +1,11 @@
 import type {LanguageCode} from "@svitlo/contracts/localization";
-
-import type {ContentBlock_Text_Config} from "./defineText.types";
 import type {Locale_Languages} from "@svitlo/contracts";
+
+import type {ContentBlock_Text_Config, ContextBlock_Text_Props} from "./defineText.types";
 
 export const defineText = <SupportedLanguages extends Locale_Languages>({id, type, value, params, slug}: ContentBlock_Text_Config<SupportedLanguages>) => {
 
-  const base: Partial<ContentBlock_Text_Config> = {
+  const base: Partial<ContentBlock_Text_Config<SupportedLanguages>> = {
     id,
     type,
     slug,
@@ -13,10 +13,11 @@ export const defineText = <SupportedLanguages extends Locale_Languages>({id, typ
       styling: params.styling,
       wrap: params.wrap,
     },
-    value: typeof value === 'string' ? value : undefined,
   } as const;
 
-  const overrides: Partial<ContentBlock_Text_Config> = {};
+  if (typeof value === "string") base.value = value;
+
+  const overrides: Partial<ContextBlock_Text_Props> = {};
 
   const disable = () => overrides.params.disabled = true;
 
