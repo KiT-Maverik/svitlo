@@ -13,13 +13,25 @@
     "noEmit": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
+      "@src": ["src/*"],
+      "@configurators": ["configurators"],
+      "@data": ["data"],
       "@definitions": ["definitions"],
-      "@definitions/*": ["definitions/*"],
+      "@lessons": ["lessons"],
       "@schemas": ["schemas"],
-      "@schemas/*": ["schemas/*"]
+      "@types": ["types"],
+      "@utils": ["utils"],
     },
     "jsx": "react-jsx"
   },
-  "include": ["src/**/*.ts", "definitions/**/*.ts", "schemas/**/*.ts"]
+  "include": [
+    "src/**/*.ts",
+    "definitions/**/*.ts",
+    "configurators/**/*.ts",
+    "data/**/*.ts",
+    "lessons/**/*.ts",
+    "types/**/*.ts",
+    "utils/**/*.ts",
+    "schemas/**/*.ts"
+  ]
 }
