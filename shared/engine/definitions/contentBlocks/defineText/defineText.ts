@@ -26,7 +26,10 @@ export const defineText = <SupportedLanguages extends Locale_Languages>({id, typ
       base,
       overrides: () => Object.values(overrides).length ? {...overrides} : null,
       locales: () => typeof value === 'string' ? null : value,
-      test: (supportedLanguages: LanguageCode[]) => true,
+      test: {
+        config: (supportedLanguages: LanguageCode[]) => true,
+        props: () => true,
+      }
     },
     disable,
   };
