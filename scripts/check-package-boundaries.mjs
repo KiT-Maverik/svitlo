@@ -402,9 +402,11 @@ assert(
   'Shared NavbarPreferences missing from UI Kit',
 );
 assert(
-  uiKit.exports?.['./learning-layout/preferences']?.default ===
-    './dist/src/components/layout/LearningLayout/NavbarPreferences/NavbarPreferences.js',
-  'NavbarPreferences must have a compiled public UI Kit export',
+  Object.keys(uiKit.exports ?? {}).length === 1 &&
+    uiKit.exports?.['.']?.default === './dist/src/index.js' &&
+    readFileSync(resolve(root, 'shared/ui-kit/src/index.ts'), 'utf8').includes("export * from './components/layout/LearningLayout'") &&
+    readFileSync(resolve(root, 'shared/ui-kit/src/components/layout/LearningLayout/index.ts'), 'utf8').includes('NavbarPreferences'),
+  'NavbarPreferences must be exposed through the compiled UI Kit root entrypoint',
 );
 const themeComponent = readFileSync(
   resolve(root, 'shared/ui-kit/src/components/layout/LearningLayout/NavbarPreferences/NavbarPreferences.tsx'),

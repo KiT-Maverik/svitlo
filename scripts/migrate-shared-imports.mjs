@@ -88,7 +88,7 @@ function combineNamedImports(source, filename) {
       node.importClause && !node.importClause.name &&
       node.importClause.namedBindings && ts.isNamedImports(node.importClause.namedBindings)
     );
-    if (!named.length) continue;
+    if (named.length < 2 && !nodes.some(node => !node.importClause)) continue;
     const seen = new Map();
     const specifiers = [];
     let conflicting = false;
