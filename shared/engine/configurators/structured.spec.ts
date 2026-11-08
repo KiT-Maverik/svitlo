@@ -9,7 +9,8 @@ import { defineTheorySection, regularSectionSchema } from './sections';
 import { defineLesson } from './lessons';
 import { defineCourse } from './courses';
 import { defineSkill, defineSkillGroup, defineSkillDomain } from './skills';
-import { assessmentMethodSchema, defineAssessmentMethod } from './assessmentMethods/defineAssessmentMethod';
+import { defineAssessmentMethod } from './assessmentMethods/defineAssessmentMethod';
+import { assessmentMethod_Config_Schema } from './assessmentMethods/defineAssessmentMethod.schemas';
 
 const languages = ['en', 'uk'] as const;
 const id = (last: string) => 'b775647f-203d-481a-a1c7-4d331c779d' + last;
@@ -113,14 +114,18 @@ test('Skills use child Definition objects and assessment IDs are valid UUIDs', (
   const allLocales = (value: string) =>
     locale_All_Schema.parse(Object.fromEntries(allLanguageCodes.map(code => [code, value])));
   const methodSource = {
-    type: 'assessmentMethod',
     slug: 'retrieval',
     id: 'b775647f-203d-481a-a1c7-4d331c779d72',
     title: allLocales('Retrieval'),
     description: allLocales('Recall'),
   } satisfies Parameters<typeof defineAssessmentMethod>[0];
   const method = defineAssessmentMethod(methodSource);
-  assert.equal(method.config.test.config(allLanguageCodes).success, true);
-  assert.equal(assessmentMethodSchema.safeParse({ ...methodSource, id: 'not-a-uuid' }).success, false);
-  assert.equal(assessmentMethodSchema.safeParse({ ...methodSource, title: { en: 'Retrieval' } }).success, false);
+  assert.equal(method.config.test.config(), true);
+  assert.deepEqual(method.config.base, { id: methodSource.id, slug: methodSource.slug });
+  assert.deepEqual(method.config.locales(), { title: methodSource.title, description: methodSource.description });
+  assert.equal(assessmentMethod_Config_Schema.safeParse({ ...methodSource, id: 'not-a-uuid' }).success, false);
+  assert.equal(
+    assessmentMethod_Config_Schema.safeParse({ ...methodSource, title: { en: 'Retrieval' } }).success,
+    false,
+  );
 });
