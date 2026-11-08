@@ -2,7 +2,13 @@
 
 import { useEffect, useState } from 'react';
 import type { Locale } from '@svitlo/contracts/localization';
-import { type UiKitMessages, useSvitloColorScheme, LearningLayout, NavbarPreferences, ThemeSwitch } from '@svitlo/ui-kit';
+import {
+  type UiKitMessages,
+  useSvitloColorScheme,
+  LearningLayout,
+  NavbarPreferences,
+  ThemeSwitch,
+} from '@svitlo/ui-kit';
 import Link from 'next/link';
 import { Box, Container } from '@mui/material';
 import { SkillsMindMap } from './SkillsMindMap';

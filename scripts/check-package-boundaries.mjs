@@ -82,8 +82,7 @@ assert(
   'IndexedDB must expose only the root entrypoint',
 );
 assert(
-  indexdb.exports['.']?.types === './dist/index.d.ts' &&
-    indexdb.exports['.']?.default === './dist/index.js',
+  indexdb.exports['.']?.types === './dist/index.d.ts' && indexdb.exports['.']?.default === './dist/index.js',
   'IndexedDB root entrypoint must use compiled artifacts',
 );
 assert(
@@ -404,8 +403,12 @@ assert(
 assert(
   Object.keys(uiKit.exports ?? {}).length === 1 &&
     uiKit.exports?.['.']?.default === './dist/src/index.js' &&
-    readFileSync(resolve(root, 'shared/ui-kit/src/index.ts'), 'utf8').includes("export * from './components/layout/LearningLayout'") &&
-    readFileSync(resolve(root, 'shared/ui-kit/src/components/layout/LearningLayout/index.ts'), 'utf8').includes('NavbarPreferences'),
+    readFileSync(resolve(root, 'shared/ui-kit/src/index.ts'), 'utf8').includes(
+      "export * from './components/layout/LearningLayout'",
+    ) &&
+    readFileSync(resolve(root, 'shared/ui-kit/src/components/layout/LearningLayout/index.ts'), 'utf8').includes(
+      'NavbarPreferences',
+    ),
   'NavbarPreferences must be exposed through the compiled UI Kit root entrypoint',
 );
 const themeComponent = readFileSync(

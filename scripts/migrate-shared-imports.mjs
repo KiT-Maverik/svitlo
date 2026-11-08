@@ -53,9 +53,11 @@ function rewriteSpecifiers(source, filename) {
   const visit = node => {
     if (ts.isStringLiteral(node)) {
       const parent = node.parent;
-      const direct = (ts.isImportDeclaration(parent) || ts.isExportDeclaration(parent)) &&
-        parent.moduleSpecifier === node;
-      const call = ts.isCallExpression(parent) && parent.arguments[0] === node &&
+      const direct =
+        (ts.isImportDeclaration(parent) || ts.isExportDeclaration(parent)) && parent.moduleSpecifier === node;
+      const call =
+        ts.isCallExpression(parent) &&
+        parent.arguments[0] === node &&
         (parent.expression.kind === ts.SyntaxKind.ImportKeyword ||
           (ts.isIdentifier(parent.expression) && parent.expression.text === 'require'));
       const importType = ts.isLiteralTypeNode(parent) && ts.isImportTypeNode(parent.parent);
@@ -85,9 +87,12 @@ function combineNamedImports(source, filename) {
   }
   const edits = [];
   for (const [name, nodes] of groups) {
-    const named = nodes.filter(node =>
-      node.importClause && !node.importClause.name &&
-      node.importClause.namedBindings && ts.isNamedImports(node.importClause.namedBindings)
+    const named = nodes.filter(
+      node =>
+        node.importClause &&
+        !node.importClause.name &&
+        node.importClause.namedBindings &&
+        ts.isNamedImports(node.importClause.namedBindings),
     );
     const sideEffects = nodes.filter(node => !node.importClause);
     if (!named.length) {
@@ -130,12 +135,13 @@ function combineNamedImports(source, filename) {
     }
     if (conflicting) continue;
     const allTypes = specifiers.every(item => item.typeOnly);
-    const members = specifiers.map(item =>
-      (item.typeOnly && !allTypes ? 'type ' : '') + item.imported +
-      (item.local !== item.imported ? ' as ' + item.local : '')
+    const members = specifiers.map(
+      item =>
+        (item.typeOnly && !allTypes ? 'type ' : '') +
+        item.imported +
+        (item.local !== item.imported ? ' as ' + item.local : ''),
     );
-    const replacement = 'import ' + (allTypes ? 'type ' : '') +
-      '{ ' + members.join(', ') + " } from '" + name + "';";
+    const replacement = 'import ' + (allTypes ? 'type ' : '') + '{ ' + members.join(', ') + " } from '" + name + "';";
     const first = named[0];
     const sourceFirst = source.slice(first.getStart(ast), first.getEnd());
     if (sourceFirst !== replacement) {
@@ -171,7 +177,9 @@ async function main() {
     cwd: repositoryRoot,
     encoding: 'utf8',
     maxBuffer: 20 * 1024 * 1024,
-  }).split('\0').filter(file => /\.[cm]?[jt]sx?$/.test(file));
+  })
+    .split('\0')
+    .filter(file => /\.[cm]?[jt]sx?$/.test(file));
   let modified = 0;
   let failed = 0;
   const prettier = write ? await import('prettier') : null;

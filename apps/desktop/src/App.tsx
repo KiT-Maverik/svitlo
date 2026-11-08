@@ -1,5 +1,11 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
-import { SvitloThemeProvider, type UiKitMessages, Lesson, createLessonLearningLayout, SceneLocaleProvider } from '@svitlo/ui-kit';
+import {
+  SvitloThemeProvider,
+  type UiKitMessages,
+  Lesson,
+  createLessonLearningLayout,
+  SceneLocaleProvider,
+} from '@svitlo/ui-kit';
 import { type Locale } from '@svitlo/contracts/localization';
 import { getLocaleDirection, type LessonResponse } from '@svitlo/engine';
 import { resolveScene } from '@svitlo/playground/scenes';

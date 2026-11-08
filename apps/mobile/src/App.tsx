@@ -10,7 +10,15 @@ import {
   type ReactNode,
 } from 'react';
 import { Button, Container, Typography, CircularProgress, Box, List, ListItemButton } from '@mui/material';
-import { SvitloThemeProvider, Lesson, useLessonNavigation, SceneLocaleProvider, createLessonLearningLayout, type LessonLearningLayoutProps, type UiKitMessages } from '@svitlo/ui-kit';
+import {
+  SvitloThemeProvider,
+  Lesson,
+  useLessonNavigation,
+  SceneLocaleProvider,
+  createLessonLearningLayout,
+  type LessonLearningLayoutProps,
+  type UiKitMessages,
+} from '@svitlo/ui-kit';
 import { DEFAULT_SUPPORTED_LANGUAGES, type Locale } from '@svitlo/contracts/localization';
 import { getLocaleDirection, type LessonResponse } from '@svitlo/engine';
 import { registerNativeBackButton, exitNativeApp } from '@svitlo/adapter-capacitor';

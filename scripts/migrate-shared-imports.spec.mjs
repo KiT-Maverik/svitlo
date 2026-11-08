@@ -18,7 +18,10 @@ test('merges duplicate named imports, preserves aliases and runtime/type semanti
   ].join('\n');
   const result = migrateSharedImports(source);
   assert.equal(result.diagnostics.length, 0);
-  assert.match(result.code, /import \{ createLesson, getMarkdownLocale as markdown, type LessonResponse \} from '@svitlo\/engine';/);
+  assert.match(
+    result.code,
+    /import \{ createLesson, getMarkdownLocale as markdown, type LessonResponse \} from '@svitlo\/engine';/,
+  );
   assert.equal((result.code.match(/from '@svitlo\/engine'/g) ?? []).length, 1);
   assert.equal(migrateSharedImports(result.code).changed, false);
 });
@@ -71,10 +74,7 @@ test('retains side-effect execution when merging type-only imports', () => {
 });
 
 test('deduplicates side-effect-only imports safely', () => {
-  const source = [
-    "import '@svitlo/indexdb/controllers';",
-    "import '@svitlo/indexdb/config';",
-  ].join('\n');
+  const source = ["import '@svitlo/indexdb/controllers';", "import '@svitlo/indexdb/config';"].join('\n');
   const result = migrateSharedImports(source);
   assert.equal((result.code.match(/import '@svitlo\/indexdb';/g) ?? []).length, 1);
   assert.equal(migrateSharedImports(result.code).changed, false);

@@ -10,7 +10,7 @@ export async function loadLessonData(entry: string): Promise<unknown> {
   const directory = fs.mkdtempSync(path.join(path.dirname(entry), '.lesson-load-'));
   const output = path.join(directory, 'lesson.cjs');
   try {
-    const { build } = await import(['es', 'build'].join('')) as typeof import('esbuild');
+    const { build } = (await import(['es', 'build'].join(''))) as typeof import('esbuild');
     await build({
       entryPoints: [entry],
       outfile: output,
