@@ -1,5 +1,8 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
+import { allLanguageCodes } from '../schemas/languages.schemas';
+import { locale_All_Schema } from '../schemas/locale.schemas';
 import { defineText } from './contentBlocks/defineText/defineText';
 import { defineMarkdown } from './contentBlocks/defineRemaining';
 import { defineTheorySection, regularSectionSchema } from './sections';
@@ -106,13 +109,18 @@ test('Skills use child Definition objects and assessment IDs are valid UUIDs', (
   assert.equal(skill.config.test.config(languages).success, true);
   assert.equal(group.config.test.config(languages).success, true);
   assert.equal(domain.config.test.config(languages).success, true);
+  assert.deepEqual([...allLanguageCodes].sort(), DEFAULT_SUPPORTED_LANGUAGES.map(({ language }) => language).sort());
+  const allLocales = (value: string) =>
+    locale_All_Schema.parse(Object.fromEntries(allLanguageCodes.map(code => [code, value])));
   const methodSource = {
     type: 'assessmentMethod',
+    slug: 'retrieval',
     id: 'b775647f-203d-481a-a1c7-4d331c779d72',
-    title: { en: 'Retrieval', uk: 'Відтворення' },
-    description: { en: 'Recall', uk: 'Пригадування' },
-  } satisfies Parameters<typeof defineAssessmentMethod<typeof languages>>[0];
-  const method = defineAssessmentMethod<typeof languages>(methodSource);
-  assert.equal(method.config.test.config(languages).success, true);
-  assert.equal(assessmentMethodSchema(languages).safeParse({ ...methodSource, id: 'not-a-uuid' }).success, false);
+    title: allLocales('Retrieval'),
+    description: allLocales('Recall'),
+  } satisfies Parameters<typeof defineAssessmentMethod>[0];
+  const method = defineAssessmentMethod(methodSource);
+  assert.equal(method.config.test.config(allLanguageCodes).success, true);
+  assert.equal(assessmentMethodSchema.safeParse({ ...methodSource, id: 'not-a-uuid' }).success, false);
+  assert.equal(assessmentMethodSchema.safeParse({ ...methodSource, title: { en: 'Retrieval' } }).success, false);
 });

@@ -1,20 +1,20 @@
 import { z } from 'zod';
-import { defineStructured, localizedMap, resolvedProps } from '../structured';
-import type { DefinitionLanguages, TaggedDefinition } from '../structured';
 
-export const assessmentMethodSchema = <L extends DefinitionLanguages>(languages: L) =>
-  z.strictObject({
-    type: z.literal('assessmentMethod'),
-    slug: z.string().min(1),
-    id: z.uuid(),
-    title: localizedMap(languages),
-    description: localizedMap(languages),
-  });
+import { locale_All_Schema } from '#schemas';
 
-export function defineAssessmentMethod<const L extends DefinitionLanguages>(
-  source: z.input<ReturnType<typeof assessmentMethodSchema<L>>>,
-) {
-  return defineStructured('assessmentMethod', source, assessmentMethodSchema<L>, resolvedProps('assessmentMethod'), [
+import { defineStructured, resolvedProps } from '../structured';
+import type { TaggedDefinition } from '../structured';
+
+export const assessmentMethodSchema = z.strictObject({
+  type: z.literal('assessmentMethod'),
+  slug: z.string().min(1),
+  id: z.uuid(),
+  title: locale_All_Schema,
+  description: locale_All_Schema,
+});
+
+export function defineAssessmentMethod(source: z.input<typeof assessmentMethodSchema>) {
+  return defineStructured('assessmentMethod', source, () => assessmentMethodSchema, resolvedProps('assessmentMethod'), [
     'title',
     'description',
   ]);
