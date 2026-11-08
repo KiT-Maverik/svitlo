@@ -5,7 +5,7 @@ import {
 } from './defineSkillGroup.schemas';
 
 export function defineSkillGroupMethod(config: SkillGroup_Config) {
-  const { id, description, slug, title } = config;
+  const { id, description, slug, name, skills } = config;
 
   const base = {
     id,
@@ -15,12 +15,13 @@ export function defineSkillGroupMethod(config: SkillGroup_Config) {
   return {
     config: {
       base,
-      locales: () => ({ title, description }),
+      locales: () => ({ name, description }),
       test: {
         config: () => skillGroup_Config_Schema.safeParse(config).success,
         props: (props: unknown) => skillGroup_Props_Schema.safeParse(props).success,
       },
     },
+    skill:
   };
 }
 
