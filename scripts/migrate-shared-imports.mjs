@@ -20,6 +20,7 @@ const packageRoots = [
   '@svitlo/indexdb',
   '@svitlo/adapter-nextjs',
   '@svitlo/adapter-electron',
+  '@svitlo/adapter-capacitor',
 ];
 
 export function canonicalSharedSpecifier(value) {

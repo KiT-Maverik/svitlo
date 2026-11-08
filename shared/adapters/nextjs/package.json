@@ -11,6 +11,7 @@
     "code:format:fix": "prettier --write . --ignore-path ../../../.prettierignore"
   },
   "dependencies": {
+    "@svitlo/contracts": "0.0.0",
     "@svitlo/engine": "0.0.0",
     "@svitlo/ui-kit": "0.0.0"
   },
