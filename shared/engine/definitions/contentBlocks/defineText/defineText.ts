@@ -19,7 +19,7 @@ export const defineText = <SupportedLanguages extends Locale_Languages>({id, typ
 
   const overrides: Partial<ContextBlock_Text_Props> = {};
 
-  const disable = () => overrides.params.disabled = true;
+  const disable = () => { overrides.params = { disabled: true }; };
 
   return {
     config: {
