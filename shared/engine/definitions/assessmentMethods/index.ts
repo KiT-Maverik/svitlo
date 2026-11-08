@@ -5,6 +5,7 @@ import type { DefinitionLanguages, TaggedDefinition } from '../structured';
 export const assessmentMethodSchema = <L extends DefinitionLanguages>(languages: L) =>
   z.strictObject({
     type: z.literal('assessmentMethod'),
+    slug: z.string().min(1),
     id: z.uuid(),
     title: localizedMap(languages),
     description: localizedMap(languages),
