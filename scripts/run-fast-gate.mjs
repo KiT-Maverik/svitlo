@@ -73,6 +73,16 @@ function runGate(changed) {
   for (const f of plan.jsFiles) exec('node', ['--check', f]);
   for (const f of plan.jsonFiles) json(f);
   exec('node', ['--test', 'scripts/run-fast-gate.spec.mjs']);
+  // Validate editorial Course composition independently of unrelated workspace
+  // typecheck errors; the Course builder is deterministic repository tooling.
+  if (
+    changed.some(
+      f => f.startsWith('scripts/course-builder/') || f === 'studio/skills/course-workflow/course-toc.schema.json',
+    )
+  ) {
+    exec('node', ['--test', 'scripts/course-builder/build-course.spec.mjs']);
+  }
+
   if (changed.some(file => file === 'package.json' || file.startsWith('scripts/run-workspace-script.'))) {
     exec('node', ['--test', 'scripts/run-workspace-script.spec.mjs']);
   }
@@ -124,6 +134,22 @@ function runGate(changed) {
     )
   ) {
     exec('node', ['--test', 'scripts/generate-assessment-methods-reference.spec.mjs']);
+  }
+
+  // Lesson builder is root-owned deterministic tooling: test it only when its
+  // implementation, dependency, or canonical editorial input schemas change.
+  if (
+    changed.some(
+      file =>
+        file.startsWith('scripts/lesson-builder.') ||
+        file === 'package.json' ||
+        file === 'package-lock.json' ||
+        /^studio\/skills\/lesson-workflow\/lesson-(?:content|questions|methodology-frontmatter)\.schema\.json$/.test(
+          file,
+        ),
+    )
+  ) {
+    exec('node', ['--test', 'scripts/lesson-builder.spec.mjs']);
   }
 
   const built = new Set();

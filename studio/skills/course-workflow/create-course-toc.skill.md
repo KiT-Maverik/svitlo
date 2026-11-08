@@ -136,6 +136,10 @@ Missing required Skills must be recorded in `openIssues`, with a suggested locat
 - `openIssues` clearly distinguishes missing taxonomy competencies and actual blockers from completed work; `status: approved` is only an explicit editor decision.
 - Deliver a concise summary: scope, skill/slot counts, sequence rationale, gaps and pending approvals. **Do not** automatically run Lesson matching, scenario creation or code generation.
 
+## Downstream configuration review
+
+This TOC is the **skill-based plan**, not an input containing concrete Lesson overrides. Do not create `overrides.yaml` here: final `Lesson<'data'>` parameters and Section/ContentBlock slugs may not exist until Lesson Matching and production are complete. The [Course Methodology and Configuration Review](./review-course-methodology.skill.md) audits actual matched Lessons and may write pedagogically necessary overrides later. Optional scenario changes are separate Course Screenwriter work, with [Scenario Review](./review-course-scenario.skill.md) when a story layer exists.
+
 ## Responsibilities
 
 The Methodologist alone owns this skill's educational choices. This plan specifies _what to teach and in what sequence_, not _how to render, animate, narrate, evaluate via concrete questions or code an experience_. The Course Methodology document remains unchanged unless the editor separately authorizes a methodology revision.

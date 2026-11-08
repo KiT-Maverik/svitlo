@@ -10,6 +10,10 @@ For a **bounded group of lesson slots** (Chapter, Module or selected keys) in a 
 
 **Outputs:** update the same `toc.yaml` with one `lessonId` per selected Lesson slot (and optional suitability note); create standalone Methodologist drafts only for genuine gaps; and, for an **authorized production handoff**, create/reuse **one Lesson Production Issue** for the unique new/unimplemented Lesson UUIDs in the selected batch. No Lesson Source/Scene/Question code or new Course TOC is created by this skill.
 
+## Downstream Course configuration
+
+Matching selects or drafts **which** standalone Lesson belongs in each slot; it does **not** author `overrides.yaml`. Some matched Lesson UUIDs are editorial-only and have no runtime parameters or Section slugs. Once actual Lesson Data and any Course scenario sources are ready, use [Review Course Methodology and Configuration](./review-course-methodology.skill.md) to audit the assembled Course and author justified pedagogical overrides. [Scenario Review](./review-course-scenario.skill.md) is conditional on a Course-owned story layer. Neither review is launched automatically by matching.
+
 ## Lesson identity (no status flag)
 
 - If an existing implemented Lesson actually suits the audience, depth, prerequisites and **all intended outcomes** of a slot, reuse its canonical `lessonId`.

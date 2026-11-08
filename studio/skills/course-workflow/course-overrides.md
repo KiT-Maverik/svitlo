@@ -1,0 +1,99 @@
+# Course Lesson Overrides: approved editorial contract
+
+**Canonical schema:** [course-overrides.schema.json](./course-overrides.schema.json). This is a **separate**, optional, Course-owned editorial input: \`content/<book>/data/courses/<bucket>/<uuid>/overrides.yaml\`. It is not an extension of the Methodologist's skill-based \`toc.yaml\`.
+
+## Ownership and approval
+
+An authorized Course editor must approve the **Course-specific modification**, and the relevant content owner must approve any replacement prose, interaction, scenario, events or newly inserted Section/ContentBlock. An approved \`overrides.yaml\` can only reference already implemented standalone Lessons and already authored, reviewed **Course-owned TypeScript sources**. Approving this file does **not** change ownership of the original Lesson or authorize the builder to invent a scene, story, image, question or translation.
+
+The input is an ordered sequence of explicitly typed operations applied to one Course Lesson slot using \`createLessonOverrides(lesson)\`. References to existing Sections and ContentBlocks use immutable **slugs**, never array indexes. A new Course-owned item is referenced by an exported TypeScript object in the **same Course directory**, never copied into a Lesson directory:
+
+- \`sections/<name>.ts\`: an approved \`Section<'data', ...>\` source, usually produced with \`createSection(...).getData()\`;
+- \`blocks/<name>.ts\`: an approved \`ContentBlock<'data', ...>\` source, usually produced with \`createContentBlock(...).getData()\`;
+- \`patches/<name>.ts\`: an approved, typed sparse replacement, title, Section metadata or event patch. Its exported type must satisfy the existing creator API.
+
+The YAML builder checks source files and exported symbols. TypeScript and Engine creators validate the shapes and the existing original slug/ID invariants. New Course-owned material must have a distinct canonical content-producing workflow. No arbitrary inline TS/JS, fabricated strings, unknown Lesson-owned Question changes, or unreviewed translation fallback is permitted.
+
+## Multi-author workflow and configuration review
+
+The Course-owned `overrides.yaml` is **one shared approved input**, not separate methodological and scenario override files:
+
+- **Course Methodologist**, during [Review Course Methodology and Configuration](./review-course-methodology.skill.md), inspects real Lesson Data and may author **methodological** overrides (navigation, skipping, pacing/order, other approved operations) when needed for the Course's learning sequence. This does **not** happen while creating the skill-based TOC, which precedes Lesson matching.
+- **Course Screenwriter**, in the future Course scenario authoring stage, may propose **scenario** overrides (story integration, new approved Course-owned Sections/blocks, transitions/events and sequencing) within their creative scope. A missing Course Screenwriting skill is not permission for the Builder or Methodologist to fabricate narrative assets.
+- **Independent reviewers**: [Scenario Review](./review-course-scenario.skill.md) is conditional on actual scenario material; Methodological Review is required before final composed Course generation. Reviewers check distinct concerns and record exact reviewed source revisions. Their verdicts do not replace authorized editorial approval.
+
+The editor/content owner resolves contradictory operations; **do not silently overwrite** another specialist's approved modifications. Record operation-level author, rationale, affected slot and revision in review reports or PR discussion, **not as unsupported extra keys in the current YAML schema**. An edit to previously approved `overrides.yaml` reopens its approval gate: set it to `status: draft`, obtain approval for the new revision, and recheck the affected methodological/scenario reviews. When no changes are needed, omit the optional file instead of creating empty or decorative overrides.
+
+These are **editorial review requirements**. The current deterministic Builder checks `status: approved` plus its schema/source validation; it does not automatically inspect `scenario-review.md` or `methodology-review.md`.
+
+## Example (schematic UUIDs, never a production-ready editorial artifact)
+
+```yaml
+schemaVersion: 1
+kind: course-lesson-overrides
+status: approved
+courseId: 30ecbde1-97fd-5fe7-a353-ea89b9ef4a67
+overrides:
+  - slotKey: light-intro
+    lessonId: d3048d21-8690-5255-b62c-984c69ac272c
+    operations:
+      - type: params
+        sections:
+          allowSkipping: false
+
+      # Existing Section metadata, approved as typed Course-owned TS.
+      - type: section-set
+        slug: theory
+        source: { path: patches/theory.ts, export: theory_Patch }
+
+      # Original Lesson-owned block remains original; change only authored fields.
+      - type: block-set
+        sectionSlug: theory
+        slug: intro
+        source: { path: patches/intro.ts, export: intro_Patch }
+
+      - type: block-remove
+        sectionSlug: theory
+        slug: oldHint
+
+      # Every retained existing block must occur exactly once.
+      - type: block-order
+        sectionSlug: theory
+        entries:
+          - intro
+          - { source: { path: blocks/newHint.ts, export: newHint_Block } }
+
+      # Every retained existing Section must occur exactly once.
+      - type: section-order
+        entries:
+          - practice
+          - theory
+          - quiz
+          - { source: { path: sections/storyBridge.ts, export: storyBridge_Section } }
+```
+
+Replace the example's slugs, IDs and paths with verified sources. In an actual Lesson the retained Section and ContentBlock lists **must match** its existing authoring data; the builder rejects missing/duplicate members.
+
+## Supported operations
+
+| Type               | Required fields                                                                | Existing Engine method                                             |
+| ------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| \`params\`         | \`sections\` (allowNavigation / allowSkipping / showIndexes)                   | \`.setParams({ sections })\`                                       |
+| \`title\`          | \`source\` (approved typed title dictionary)                                   | \`.setTitle(source)\`                                              |
+| \`events\`         | \`source\` (approved typed event patch)                                        | \`.setEvents(source)\`                                             |
+| \`section-set\`    | \`slug\`, \`source\` (approved metadata patch)                                 | \`.sections.bySlug[slug].set(source)\`                             |
+| \`section-remove\` | \`slug\`                                                                       | \`.sections.remove(slug)\`                                         |
+| \`section-order\`  | \`entries\`: existing slugs or Course-owned Section source refs                | \`.sections.setOrder(entries)\`                                    |
+| \`block-set\`      | \`sectionSlug\`, \`slug\`, \`source\`                                          | \`.sections.bySlug[sectionSlug].content.bySlug[slug].set(source)\` |
+| \`block-remove\`   | \`sectionSlug\`, \`slug\`                                                      | \`.sections.bySlug[sectionSlug].content.remove(slug)\`             |
+| \`block-order\`    | \`sectionSlug\`, \`entries\`: existing slugs or Course-owned block source refs | \`.sections.bySlug[sectionSlug].content.setOrder(entries)\`        |
+
+The \`operations\` array is ordered. A \`remove\` should precede an affected \`setOrder\` (because \`setOrder\` includes all _currently present_ members), and new items must be represented by source refs inside their order operation. Schema validation rejects unsupported operations and fields. Slug membership and original Lesson languages are checked against actual authored Lesson Data; the existing creator enforces complete slug/ID uniqueness and Quiz invariants.
+
+## Important publication constraints
+
+The existing publisher writes Course-local sparse overrides under \`overrides/<lessonId>/\` and cannot distinguish different slots sharing a Lesson UUID. Therefore an override on a Lesson referenced twice is an explicit \`OVERRIDE_REUSED_LESSON\` blocker pending a separate route/identity change. **Reusing an unmodified Lesson any number of times remains valid.**
+
+A standalone Lesson may support extra languages: **Course languages ⊆ Lesson languages**. This must hold for each referenced Lesson (including an override's original Lesson); a missing Course locale is a blocker. A Course-owned addition should localize its own user-facing content for Course languages, without altering the standalone Lesson language declaration. TypeScript rejects incomplete \`Locale_Options\`; the builder does not duplicate source-locale content to other locales.
+
+The Course publisher remains responsible for writing \`getBase()\`, \`getLocale()\` and \`getContentEntries()\` projections. The builder writes only the generated typed composition factory and never rewrites \`data/lessons\`, \`Scenes\`, published resources or manually authored \`*.data.ts\` sources.

@@ -33,22 +33,43 @@ type AuthoredToc<L extends Locale_Languages> = {
   children?: readonly AuthoredToc<L>[];
 };
 
-function navigationItem<L extends Locale_Languages>(entry: Course_Content<'data', L>): AuthoredToc<L> {
+/**
+ * A reused Lesson can have more locales than its Course. Project only the
+ * already-authored Course locales into navigation; never mutate Lesson Data or
+ * weaken the strict shared locale splitter.
+ */
+function navigationTitle<L extends Locale_Languages>(
+  title: string | Readonly<Record<string, string>>,
+  languages: L,
+): TocTitle<L> {
+  if (typeof title === 'string') return title;
+  const values = Object.fromEntries(
+    languages.map(language => {
+      if (typeof title[language] !== 'string') {
+        throw new Error('Course TOC title missing required locale: ' + language);
+      }
+      return [language, title[language]];
+    }),
+  );
+  return values as Record<L[number], string>;
+}
+
+function navigationItem<L extends Locale_Languages>(entry: Course_Content<'data', L>, languages: L): AuthoredToc<L> {
   if (isCourseLesson(entry)) {
-    return { type: 'lesson', id: entry.id, title: entry.title };
+    return { type: 'lesson', id: entry.id, title: navigationTitle(entry.title, languages) };
   }
   switch (entry.type) {
     case 'lessonOverride':
       return {
         type: 'lesson',
         id: entry.lesson.id,
-        title: entry.overrides.title ?? entry.lesson.title,
+        title: navigationTitle(entry.overrides.title ?? entry.lesson.title, languages),
       };
     case 'episode':
       return {
         type: 'episode',
         id: entry.id,
-        title: entry.title.value,
+        title: navigationTitle(entry.title.value, languages),
         ...(entry.iconKey ? { iconKey: entry.iconKey } : {}),
       };
     case 'chapter':
@@ -57,7 +78,7 @@ function navigationItem<L extends Locale_Languages>(entry: Course_Content<'data'
         id: entry.id,
         title: entry.title.value,
         ...(entry.iconKey ? { iconKey: entry.iconKey } : {}),
-        children: entry.content.map(child => navigationItem(child)),
+        children: entry.content.map(child => navigationItem(child, languages)),
       };
     case 'module':
       return {
@@ -65,7 +86,7 @@ function navigationItem<L extends Locale_Languages>(entry: Course_Content<'data'
         id: entry.id,
         title: entry.title.value,
         ...(entry.iconKey ? { iconKey: entry.iconKey } : {}),
-        children: entry.content.map(child => navigationItem(child)),
+        children: entry.content.map(child => navigationItem(child, languages)),
       };
   }
 }
@@ -92,10 +113,24 @@ type CoursePartitions = {
 };
 
 export function createCourse<const L extends Locale_Languages>(course: CourseInput<L>): CourseCreator<L> {
-  const getData = (): Course<'data', L> => ({
-    ...course,
-    content: course.content.map(entry => ('getData' in entry ? entry.getData() : entry)),
-  });
+  const getData = (): Course<'data', L> => {
+    const data: Course<'data', L> = {
+      ...course,
+      content: course.content.map(entry => ('getData' in entry ? entry.getData() : entry)),
+    };
+    // Every Course locale must be implemented by each standalone Lesson.
+    // Extra Lesson locales are allowed and are not copied into Course assets.
+    const languages = data.parameters.languages;
+    for (const lesson of collectCoursePublicationItems<L>(data.content).lessons) {
+      const actual = lesson.parameters.languages;
+      if (new Set(actual).size !== actual.length || languages.some(language => !actual.includes(language))) {
+        throw new Error(
+          'Course ' + data.id + ': Lesson ' + lesson.id + ' does not cover Course languages ' + languages.join(', '),
+        );
+      }
+    }
+    return data;
+  };
   const getContentEntries = () => collectCoursePublicationItems<L>(getData().content);
 
   let partitions: CoursePartitions | undefined;
@@ -107,8 +142,8 @@ export function createCourse<const L extends Locale_Languages>(course: CourseInp
       const toc: AuthoredToc<L> = {
         type: 'course',
         id: data.id,
-        title: data.title.value,
-        children: data.content.map(entry => navigationItem(entry)),
+        title: navigationTitle(data.title.value, languages),
+        children: data.content.map(entry => navigationItem(entry, languages)),
       };
       partitions = {
         toc: splitLessonValue(toc, languages),
