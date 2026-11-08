@@ -3,7 +3,7 @@ import { z } from 'zod';
 export const contentBlockTypes = ['text', 'code', 'image', 'video', 'youtube', 'carousel', 'scene', 'checkpoint', 'markdown', 'audio'] as const;
 export type ContentBlock_Type = typeof contentBlockTypes[number];
 
-const createContentBlockMetaSchema = (type: ContentBlock_Type) => z.object({
+export const createContentBlockMetaSchema = (type: ContentBlock_Type) => z.object({
   id: z.uuid(),
   slug: z.string().min(1),
   type: z.literal(type),
