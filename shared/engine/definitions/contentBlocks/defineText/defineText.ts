@@ -5,6 +5,7 @@ import {
   ContentBlock_Text_Config,
   ContextBlock_Text_Props,
 } from './defineText.schema';
+import type { Definition } from '../../definition';
 
 export const defineText = <SupportedLanguages extends TextLanguages>(
   config: ContentBlock_Text_Config<SupportedLanguages>,
@@ -29,7 +30,7 @@ export const defineText = <SupportedLanguages extends TextLanguages>(
     overrides.params = { disabled: true };
   };
 
-  return {
+  const definition = {
     config: {
       base,
       overrides: () => (Object.values(overrides).length ? { ...overrides } : null),
@@ -42,6 +43,14 @@ export const defineText = <SupportedLanguages extends TextLanguages>(
     },
     disable,
   };
+
+  // Enforce the common methods without erasing Text-specific methods such as disable().
+  return definition satisfies Definition<
+    Partial<ContentBlock_Text_Config<SupportedLanguages>>,
+    Exclude<ContentBlock_Text_Config<SupportedLanguages>['value'], string>,
+    Partial<ContextBlock_Text_Props>,
+    SupportedLanguages
+  >;
 };
 
 export type ContentBlock_Text_Definition = ReturnType<typeof defineText>;
