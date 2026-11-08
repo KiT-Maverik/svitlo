@@ -1,21 +1,35 @@
 import { z } from 'zod';
 
-export const contentBlockTypes = ['text', 'code', 'image', 'video', 'youtube', 'carousel', 'scene', 'checkpoint', 'markdown', 'audio'] as const;
-export type ContentBlock_Type = typeof contentBlockTypes[number];
+export const contentBlockTypes = [
+  'text',
+  'code',
+  'image',
+  'video',
+  'youtube',
+  'carousel',
+  'scene',
+  'checkpoint',
+  'markdown',
+  'audio',
+] as const;
+export type ContentBlock_Type = (typeof contentBlockTypes)[number];
 
-export const createContentBlockMetaSchema = (type: ContentBlock_Type) => z.object({
-  id: z.uuid(),
-  slug: z.string().min(1),
-  type: z.literal(type),
-});
+export const createContentBlockMetaSchema = <const Type extends ContentBlock_Type>(type: Type) =>
+  z.object({
+    id: z.uuid(),
+    slug: z.string().min(1),
+    type: z.literal(type),
+  });
 
-export type ContentBlock_Meta = z.infer<ReturnType<typeof createContentBlockMetaSchema>>;
+export type ContentBlock_Meta<Type extends ContentBlock_Type> = z.infer<
+  ReturnType<typeof createContentBlockMetaSchema<Type>>
+>;
 
 export const textStylePresets = ['highlight', 'bold', 'cursive', 'underscore', 'crossed', 'variable'] as const;
-export type TextStylePreset = typeof textStylePresets[number];
+export type TextStylePreset = (typeof textStylePresets)[number];
 
 export const textTonePresets = ['neutral', 'info', 'warning', 'success'] as const;
-export type TextTonePreset = typeof textTonePresets[number];
+export type TextTonePreset = (typeof textTonePresets)[number];
 
 const textStylingRule_Schema = z.strictObject({
   id: z.uuid(),
@@ -26,4 +40,4 @@ const textStylingRule_Schema = z.strictObject({
 
 export const textStylingRules_Schema = z.object({
   styling: z.array(textStylingRule_Schema).min(1).optional(),
-})
+});
