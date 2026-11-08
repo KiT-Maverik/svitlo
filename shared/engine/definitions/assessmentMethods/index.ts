@@ -10,7 +10,7 @@ export const assessmentMethodSchema = z.strictObject({
   id: z.uuid(),
   slug: z.string().min(1),
   title: locale_All_Schema,
-  type: z.literal('assessmentMethod'),
+  collection: z.literal('assessmentMethod'),
 });
 
 export function defineAssessmentMethod(source: z.input<typeof assessmentMethodSchema>) {
