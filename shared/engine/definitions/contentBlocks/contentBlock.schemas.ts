@@ -1,7 +1,5 @@
 import { z } from 'zod';
 
-import type {ContentBlock_Type} from './contentBlocks.types';
-
 export const contentBlockTypes = ['text', 'code', 'image', 'video', 'youtube', 'carousel'] as const;
 export type ContentBlock_Type = typeof contentBlockTypes[number];
 
