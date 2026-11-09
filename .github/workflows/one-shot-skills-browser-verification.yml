@@ -1,4 +1,4 @@
-name: One-shot Skills browser and mobile verification (server props)
+name: One-shot Skills browser and mobile verification (Next suspense)
 on:
   push:
     paths:
