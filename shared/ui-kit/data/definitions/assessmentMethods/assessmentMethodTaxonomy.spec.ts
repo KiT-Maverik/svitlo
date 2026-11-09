@@ -3,7 +3,7 @@ import { describe, it } from 'node:test';
 import { readFileSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
-import type { AssessmentMethodKey } from '@svitlo/contracts/content';
+import { ASSESSMENT_METHOD_KEYS, type AssessmentMethodKey } from '@svitlo/contracts/content';
 import { assessmentMethod_Props_Schema } from '@svitlo/engine';
 import * as methods from './index';
 
@@ -16,6 +16,7 @@ const languages = DEFAULT_SUPPORTED_LANGUAGES.map(({ language }) => language);
 describe('Assessment Method authored definitions', () => {
   it('defines exactly the 16 canonical methods with unique, unchanged IDs and slugs', () => {
     assert.equal(names.length, 16);
+    assert.deepEqual(names, [...ASSESSMENT_METHOD_KEYS].sort());
     const ids = names.map(name => methods[name as keyof typeof methods].config.base.id);
     assert.equal(new Set(ids).size, 16);
     for (const name of names) {

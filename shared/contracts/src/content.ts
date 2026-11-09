@@ -16,6 +16,7 @@ export type * from './types/content/review.types';
 export type * from './types/content/blocks';
 export type * from './types/content/questions';
 export type * from './types/content/assessmentMethod.types';
+export { ASSESSMENT_METHOD_KEYS } from './types/content/assessmentMethod.types';
 export type * from './types/content/state.types';
 
 export { defineLessonData } from './types/content/lesson.types';
