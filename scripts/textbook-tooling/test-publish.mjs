@@ -98,6 +98,18 @@ test('repeat publication cleans only owned stale files and preserves foreign ass
   const result = run('publish', '--output', output);
   assert.equal(result.status, 0, result.stderr);
   assert(!existsSync(join(output, extra)));
+  // A host upgraded from the former analytics payload owns retired files in its old manifest.
+  const retired = 'data/pages/skillAnalytics/uk.json';
+  mkdirSync(join(output, 'data/pages/skillAnalytics'), { recursive: true });
+  writeFileSync(join(output, retired), '{}');
+  const ownershipFile = join(output, '.svitlo/publish-' + id + '.json');
+  const ownership = JSON.parse(readFileSync(ownershipFile, 'utf8'));
+  ownership.files.push(retired);
+  writeFileSync(ownershipFile, JSON.stringify(ownership));
+  const upgrade = run('publish', '--output', output);
+  assert.equal(upgrade.status, 0, upgrade.stderr);
+  assert(!existsSync(join(output, retired)), 'retired analytics resource must be removed');
+  assert(!JSON.parse(readFileSync(ownershipFile, 'utf8')).files.includes(retired));
   assert.equal(readFileSync(join(output, 'flags/uk.svg'), 'utf8'), 'host flag');
   assert.equal(readFileSync(join(output, 'textbooks/other/keep.txt'), 'utf8'), 'other book');
 });
