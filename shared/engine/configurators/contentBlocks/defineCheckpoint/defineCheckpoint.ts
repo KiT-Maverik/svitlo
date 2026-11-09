@@ -14,7 +14,8 @@ export function defineCheckpoint<
 
   const { id, type, slug, title, items, ...params } = config;
 
-  const localeEntries = { title } as const;
+  // Only localized questions belong to this projection; child configurators stay in items.
+  const localeEntries = { title, items: items.map(({ question }) => ({ question })) } as const;
 
   const base = {
     id,
@@ -27,7 +28,7 @@ export function defineCheckpoint<
   return {
     config: {
       base,
-      locales: () => onlyLocales({ title, items: items.map(({ question }) => ({ question })) }) satisfies DeepPartial<ContentBlock_Checkpoint_Config>,
+      locales: () => onlyLocales(localeEntries) satisfies DeepPartial<ContentBlock_Checkpoint_Config>,
     },
     // Keep the authored child configurators, never flatten them into raw configs.
     items,
