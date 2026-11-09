@@ -19,9 +19,16 @@ export function defineFlashcard<
   // TODO(#436): Array patch semantics for localized flag values remain unresolved.
   // Preserve the existing array projection; do not treat it as the final merge contract.
   const localeEntries = { flags } as const;
+  const invariantStrings = onlyStrings(localeEntries);
   const base = {
     type, id, isDefault, tags, relationships,
-    ...onlyStrings(localeEntries),
+    ...invariantStrings,
+    // A list flag carries a numeric invariant. OnlyStrings intentionally
+    // removes numbers; restore these from the original validated flags.
+    flags: flags.map((flag, index) => ({
+      ...(invariantStrings.flags?.[index] ?? {}),
+      ...(flag.type === 'list' ? { count: flag.count } : {}),
+    })),
   } satisfies DeepPartial<Flashcard_Config>;
 
   return {
