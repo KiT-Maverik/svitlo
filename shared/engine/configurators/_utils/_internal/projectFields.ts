@@ -3,11 +3,13 @@ import type { DeepPartial } from '#types';
 /**
  * Project JSON-like authored fields without mutating the input.
  * Array placeholders preserve indexes used by localized patches.
+ * Base projections can retain an array skeleton even when every element is localized.
  */
 export function projectFields<const T extends object>(
   source: T,
   include: (value: unknown) => boolean,
   skip: (value: unknown) => boolean = () => false,
+  preserveArrayShape = false,
 ): DeepPartial<T> {
   const visit = (value: unknown): unknown => {
     if (skip(value)) return undefined;
@@ -15,7 +17,7 @@ export function projectFields<const T extends object>(
 
     if (Array.isArray(value)) {
       const items = value.map(visit);
-      if (!items.some(item => item !== undefined)) return undefined;
+      if (!items.some(item => item !== undefined) && !(preserveArrayShape && items.length)) return undefined;
       return items.map(item => item ?? {});
     }
 
