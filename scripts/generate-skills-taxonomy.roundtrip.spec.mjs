@@ -60,7 +60,7 @@ function readEntity(file) {
     if (
       ts.isCallExpression(node) &&
       ts.isIdentifier(node.expression) &&
-      /^(buildSkill(Domain|Group)?Config|defineSkill(Domain|Group)?)$/.test(node.expression.text) &&
+      /^defineSkill(Domain|Group)?$/.test(node.expression.text) &&
       node.arguments.length === 1 &&
       ts.isObjectLiteralExpression(node.arguments[0])
     ) {
