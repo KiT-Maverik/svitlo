@@ -1,0 +1,26 @@
+import type { DeepPartial } from '#types';
+
+import { onlyLocales, onlyStrings } from '../../_utils';
+import type { Lesson_Configurator } from '../../lessons/defineLesson/defineLesson';
+import type { Chapter_Configurator } from '../defineChapter/defineChapter';
+import type { Episode_Configurator } from '../defineEpisode/defineEpisode';
+import { module_Config_Schema, type Module_Config } from './defineModule.schemas';
+
+export function defineModule<
+  const Content extends readonly (Lesson_Configurator | Episode_Configurator | Chapter_Configurator)[],
+>(config: Omit<Module_Config, 'content'> & { content: Content }) {
+  module_Config_Schema.parse(config);
+  const { type, id, iconKey, title, content } = config;
+  const localeEntries = {} as const;
+  const base = { type, id, iconKey, ...onlyStrings(localeEntries) } satisfies DeepPartial<Module_Config>;
+
+  return {
+    config: {
+      base,
+      locales: () => onlyLocales(localeEntries) satisfies DeepPartial<Module_Config>,
+    },
+    title,
+    content,
+  };
+}
+export type Module_Configurator = ReturnType<typeof defineModule>;
