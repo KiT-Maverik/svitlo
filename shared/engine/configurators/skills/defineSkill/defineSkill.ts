@@ -2,7 +2,7 @@ import type { DeepPartial } from '#types';
 
 import { skill_Config_Schema, type Skill_Config } from './defineSkill.schemas';
 
-export function defineSkill(config: Skill_Config) {
+export function defineSkill<const Slug extends string>(config: Skill_Config & { slug: Slug }) {
   skill_Config_Schema.parse(config);
 
   const { id, description, slug, name } = config;
