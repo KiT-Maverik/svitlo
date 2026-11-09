@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
@@ -8,11 +9,19 @@ import { textbook } from '@/generated/textbook';
 
 export const metadata: Metadata = { title: `Аналітика навичок — ${textbook.title}` };
 
-export default async function Page({
+type Props = { searchParams: Promise<{ lang?: string }> };
+
+export default function Page(props: Props) {
+  return (
+    <Suspense fallback={<main role="status" aria-busy="true">Завантаження навичок…</main>}>
+      <SkillAnalyticsServerContent {...props} />
+    </Suspense>
+  );
+}
+
+async function SkillAnalyticsServerContent({
   searchParams,
-}: {
-  searchParams: Promise<{ lang?: string }>;
-}) {
+}: Props) {
   const domainSlugs = textbook.skillAnalyticsDomains;
   if (!domainSlugs?.length) notFound();
   const language = (await searchParams).lang ?? 'uk';
