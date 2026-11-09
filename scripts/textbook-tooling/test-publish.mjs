@@ -54,6 +54,19 @@ test('isolated package publishes exactly the manifest resources', t => {
     JSON.parse(readFileSync(join(output, '.svitlo/publish-' + id + '.json'), 'utf8')).files,
     manifest.files,
   );
+  const skillFiles = manifest.files.filter(name => name.startsWith('data/skills/'));
+  if (skillFiles.length) {
+    assert.equal(skillFiles.length, 30, 'Skills must publish one base and 29 locale files');
+    assert(skillFiles.includes('data/skills/base.json'));
+    assert(skillFiles.includes('data/skills/uk.json'));
+    assert(skillFiles.includes('data/skills/en.json'));
+    assert(skillFiles.every(name => /^data\\/skills\\/(?:base|[a-z]{2,8})\\.json$/.test(name)),
+      'Skills must not publish per-entity directories');
+    const base = JSON.parse(readFileSync(join(root, 'dist/static/data/skills/base.json'), 'utf8'));
+    const uk = JSON.parse(readFileSync(join(root, 'dist/static/data/skills/uk.json'), 'utf8'));
+    assert(Object.keys(base).length > 0, 'Empty published Skill taxonomy');
+    assert.deepEqual(Object.keys(uk), Object.keys(base), 'Localized Skill tree must match base domain slugs');
+  }
   for (const name of manifest.files) {
     assert.deepEqual(readFileSync(join(output, name)), readFileSync(join(root, 'dist/static', name)));
   }
