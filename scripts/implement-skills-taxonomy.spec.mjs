@@ -256,7 +256,7 @@ test('create emits entity-owned IDs, direct imports and only allowed indexes', (
     const ids = new Set();
     for (const p of paths) {
       const content = source(f, p);
-      assert.match(content, /buildSkill(Domain|Group)?Config/);
+      assert.match(content, /defineSkill(Domain|Group)?/);
       const id = uuid(content);
       assert.match(id, /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/);
       ids.add(id);
