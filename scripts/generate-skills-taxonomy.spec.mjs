@@ -43,7 +43,8 @@ function entity(kind, slug, name, membership, withFrontend = kind === 'Skill') {
     ', id: ' +
     JSON.stringify(ids[slug]) +
     ', ' +
-    (kind === 'SkillDomain' ? 'title' : 'name') + ': ' +
+    (kind === 'SkillDomain' ? 'title' : 'name') +
+    ': ' +
     dictionary(name) +
     ', description: {methodological: ' +
     JSON.stringify('English explanation for ' + name) +

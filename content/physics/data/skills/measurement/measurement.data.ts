@@ -37,10 +37,7 @@ export const measurement_SkillDomain_Data = defineSkillDomain({
     kk: 'Өлшеу',
     qm: 'Ölçüv',
   },
-  groups: [
-    instrumentsAndMeasurementMethods_SkillGroup_Data,
-    physicalQuantitiesAndUnits_SkillGroup_Data,
-  ],
+  groups: [instrumentsAndMeasurementMethods_SkillGroup_Data, physicalQuantitiesAndUnits_SkillGroup_Data],
   description: {
     methodological:
       'Physical measurement connects an observable property to an agreed method of comparison through the choice of quantity, unit, and instrument. Its purpose is to make descriptions of phenomena reproducible without tying them to formulas or mathematics lessons.',

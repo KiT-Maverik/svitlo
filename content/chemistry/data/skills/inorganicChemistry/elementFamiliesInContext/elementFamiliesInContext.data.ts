@@ -41,12 +41,7 @@ export const elementFamiliesInContext_SkillGroup_Data = defineSkillGroup({
     kk: 'Элементтер отбасылары',
     qm: 'Elementlerniñ aileleri',
   },
-  skills: [
-    allotropes_Skill_Data,
-    metalReactivity_Skill_Data,
-    nobleGases_Skill_Data,
-    nonmetals_Skill_Data,
-  ],
+  skills: [allotropes_Skill_Data, metalReactivity_Skill_Data, nobleGases_Skill_Data, nonmetals_Skill_Data],
   description: {
     methodological:
       'Elemental forms can vary in structure, oxidation state and behavior despite shared periodic classification.',

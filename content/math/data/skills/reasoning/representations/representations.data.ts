@@ -36,9 +36,7 @@ export const representations_SkillGroup_Data = defineSkillGroup({
     pl: 'Reprezentacje matematyczne',
     uk: 'Математичні представлення',
   },
-  skills: [
-    multipleRepresentations_Skill_Data,
-  ],
+  skills: [multipleRepresentations_Skill_Data],
   description: {
     methodological:
       'Translating between concrete depictions, diagrams, verbal rules, and symbolic notation while preserving mathematical meaning.',

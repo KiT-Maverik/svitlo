@@ -62,10 +62,20 @@ test('dry-run preserves original sources; isolated preview upgrades all three le
     runMigration({ root, preview });
     assert.equal(planSkillsMigration(preview).changed, 0);
     for (const [name, content] of old) assert.equal(fs.readFileSync(path.join(root, name), 'utf8'), content);
-    assert.match(fs.readFileSync(path.join(preview, 'artistic/artistic.data.ts'), 'utf8'), /defineSkillDomain\(\{[\s\S]*title: \{ en: 'Art'/);
-    assert.match(fs.readFileSync(path.join(preview, 'artistic/artistic.data.ts'), 'utf8'), /groups: \[ seeing_SkillGroup_Data \]/);
-    assert.match(fs.readFileSync(path.join(preview, 'artistic/seeing/seeing.data.ts'), 'utf8'), /skills: \[ look_Skill_Data \]/);
-    for (const [name, content] of old) if (name.endsWith('index.ts')) assert.equal(fs.readFileSync(path.join(preview, name), 'utf8'), content);
+    assert.match(
+      fs.readFileSync(path.join(preview, 'artistic/artistic.data.ts'), 'utf8'),
+      /defineSkillDomain\(\{[\s\S]*title: \{ en: 'Art'/,
+    );
+    assert.match(
+      fs.readFileSync(path.join(preview, 'artistic/artistic.data.ts'), 'utf8'),
+      /groups: \[ seeing_SkillGroup_Data \]/,
+    );
+    assert.match(
+      fs.readFileSync(path.join(preview, 'artistic/seeing/seeing.data.ts'), 'utf8'),
+      /skills: \[ look_Skill_Data \]/,
+    );
+    for (const [name, content] of old)
+      if (name.endsWith('index.ts')) assert.equal(fs.readFileSync(path.join(preview, name), 'utf8'), content);
   });
 });
 test('write only changes intended declarations and rerun makes zero changes', () => {
@@ -85,34 +95,38 @@ test('missing child refuses all writes', () => {
 test('unknown field refuses destructive conversion', () => {
   sandbox(root => {
     const file = path.join(root, 'artistic/artistic.data.ts');
-    fs.writeFileSync(file, fs.readFileSync(file, 'utf8').replace("name: {", "customField: true, name: {"));
+    fs.writeFileSync(file, fs.readFileSync(file, 'utf8').replace('name: {', 'customField: true, name: {'));
     assert.throws(() => runMigration({ root, write: true }), /Unexpected config field/);
   });
 });
 
 const art = path.resolve(import.meta.dirname, '../content/art/data/skills');
-test('real Art taxonomy: complete non-destructive preview retains entity identities and dictionaries', { skip: !fs.existsSync(art) }, () => {
-  const baseline = planSkillsMigration(art);
-  assert(baseline.files.length > 300, 'Art unexpectedly lost Skills');
-  const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-art-migration-'));
-  try {
-    const preview = path.join(temp, 'skills');
-    runMigration({ root: art, preview });
-    const result = planSkillsMigration(preview);
-    assert.equal(result.changed, 0);
-    assert.deepEqual(result.counts, baseline.counts);
-    assert.deepEqual(
-      new Map(baseline.files.map(item => [path.relative(art, item.file), item.id])),
-      new Map(result.files.map(item => [path.relative(preview, item.file), item.id])),
-    );
-    // The only allowed source edits: configurator/import names, Domain name→title,
-    // and replacement of keyed child maps by ordered configurator arrays.
-    for (const item of baseline.files) {
-      const next = fs.readFileSync(path.join(preview, path.relative(art, item.file)), 'utf8');
-      assert.equal(next, item.result);
-      assert.doesNotMatch(next, /\bbuildSkill(?:Domain|Group)?Config\b/);
+test(
+  'real Art taxonomy: complete non-destructive preview retains entity identities and dictionaries',
+  { skip: !fs.existsSync(art) },
+  () => {
+    const baseline = planSkillsMigration(art);
+    assert(baseline.files.length > 300, 'Art unexpectedly lost Skills');
+    const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-art-migration-'));
+    try {
+      const preview = path.join(temp, 'skills');
+      runMigration({ root: art, preview });
+      const result = planSkillsMigration(preview);
+      assert.equal(result.changed, 0);
+      assert.deepEqual(result.counts, baseline.counts);
+      assert.deepEqual(
+        new Map(baseline.files.map(item => [path.relative(art, item.file), item.id])),
+        new Map(result.files.map(item => [path.relative(preview, item.file), item.id])),
+      );
+      // The only allowed source edits: configurator/import names, Domain name→title,
+      // and replacement of keyed child maps by ordered configurator arrays.
+      for (const item of baseline.files) {
+        const next = fs.readFileSync(path.join(preview, path.relative(art, item.file)), 'utf8');
+        assert.equal(next, item.result);
+        assert.doesNotMatch(next, /\bbuildSkill(?:Domain|Group)?Config\b/);
+      }
+    } finally {
+      fs.rmSync(temp, { recursive: true, force: true });
     }
-  } finally {
-    fs.rmSync(temp, { recursive: true, force: true });
-  }
-});
+  },
+);

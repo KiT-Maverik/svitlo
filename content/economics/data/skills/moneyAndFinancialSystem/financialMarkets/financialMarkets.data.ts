@@ -36,12 +36,7 @@ export const financialMarkets_SkillGroup_Data = defineSkillGroup({
     kk: 'Қаржы нарықтары',
     qm: 'Maliy bazarlar',
   },
-  skills: [
-    assetRiskAndReturn_Skill_Data,
-    bonds_Skill_Data,
-    interestRates_Skill_Data,
-    stocks_Skill_Data,
-  ],
+  skills: [assetRiskAndReturn_Skill_Data, bonds_Skill_Data, interestRates_Skill_Data, stocks_Skill_Data],
   description: {
     methodological:
       'Capital and risk are transferred through contractual claims and ownership rights whose prices depend on expectations.',

@@ -37,10 +37,7 @@ export const ancientOceania_SkillDomain_Data = defineSkillDomain({
     kk: 'Мұхит аралдары мен Аустралия (Океания)',
     qm: 'Okeaniya',
   },
-  groups: [
-    australiaAndNewGuinea_SkillGroup_Data,
-    pacificIslands_SkillGroup_Data,
-  ],
+  groups: [australiaAndNewGuinea_SkillGroup_Data, pacificIslands_SkillGroup_Data],
   description: {
     methodological:
       'The settlement of Australia and Pacific islands occurred through successive waves over a long period and required extensive environmental and navigation knowledge.',

@@ -36,10 +36,7 @@ export const oceaniaArtisticTraditions_SkillGroup_Data = defineSkillGroup({
     kk: 'Океанияның көркемдік дәстүрлері',
     qm: 'Okeaniya sanat ananeleri',
   },
-  skills: [
-    analyzeMaoriWhakairoCarving_Skill_Data,
-    analyzeYolUBarkPainting_Skill_Data,
-  ],
+  skills: [analyzeMaoriWhakairoCarving_Skill_Data, analyzeYolUBarkPainting_Skill_Data],
   description: {
     methodological:
       'Material practices in Aotearoa New Zealand and northern Australia are treated as distinct cultural traditions, not as interchangeable decorative vocabularies.',

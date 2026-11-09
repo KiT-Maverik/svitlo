@@ -37,10 +37,7 @@ export const computationalThinking_SkillDomain_Data = defineSkillDomain({
     kk: 'Есептік ойлау',
     qm: 'Esaplav fikirlemesi',
   },
-  groups: [
-    decompositionAndAbstraction_SkillGroup_Data,
-    logicAndPatterns_SkillGroup_Data,
-  ],
+  groups: [decompositionAndAbstraction_SkillGroup_Data, logicAndPatterns_SkillGroup_Data],
   description: {
     methodological:
       'Turning open-ended problems into formalized tasks by identifying relevant information, defining rules, and constructing solutions that can be repeated and checked. Unlike programming, this does not necessarily require expressing the solution as executable code.',

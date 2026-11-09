@@ -87,7 +87,10 @@ function runGate(changed) {
     exec('node', ['--test', 'scripts/run-workspace-script.spec.mjs']);
   }
   if (
-    changed.some(f => f.startsWith('scripts/generators/data/publish-skills-data.') || f.startsWith('content/playground/data/skills/'))
+    changed.some(
+      f =>
+        f.startsWith('scripts/generators/data/publish-skills-data.') || f.startsWith('content/playground/data/skills/'),
+    )
   ) {
     exec('node', ['--test', 'scripts/generators/data/publish-skills-data.spec.mjs']);
   }

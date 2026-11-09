@@ -36,11 +36,7 @@ export const equalities_SkillGroup_Data = defineSkillGroup({
     pl: 'Równości',
     uk: 'Рівності',
   },
-  skills: [
-    completeEquality_Skill_Data,
-    equalityMeaning_Skill_Data,
-    trueFalseEquality_Skill_Data,
-  ],
+  skills: [completeEquality_Skill_Data, equalityMeaning_Skill_Data, trueFalseEquality_Skill_Data],
   description: {
     methodological:
       'Equality as equal values of two expressions, the truth of equalities, and completing missing components.',

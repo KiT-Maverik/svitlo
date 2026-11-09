@@ -38,11 +38,7 @@ export const communicationAndMeasurementDevices_SkillDomain_Data = defineSkillDo
     kk: 'Байланыс және өлшеу құрылғылары',
     qm: 'Haberleşüv ve ölçüv cihazları',
   },
-  groups: [
-    communicationHardware_SkillGroup_Data,
-    navigationEquipment_SkillGroup_Data,
-    opticalDevices_SkillGroup_Data,
-  ],
+  groups: [communicationHardware_SkillGroup_Data, navigationEquipment_SkillGroup_Data, opticalDevices_SkillGroup_Data],
   description: {
     methodological:
       'Radio, optical and navigation equipment generates, propagates, detects and uses physical signals. Competencies concern real emitters, interfaces, receivers and instrumentation, rather than networking programs or generic data-processing algorithms.',

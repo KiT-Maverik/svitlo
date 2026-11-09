@@ -38,11 +38,7 @@ export const chemicalLanguageAndQuantities_SkillDomain_Data = defineSkillDomain(
     kk: 'Химиялық тіл және мөлшерлер',
     qm: 'Kimyeviy til ve miqdarlar',
   },
-  groups: [
-    amountOfSubstance_SkillGroup_Data,
-    chemicalNotation_SkillGroup_Data,
-    reactionEquations_SkillGroup_Data,
-  ],
+  groups: [amountOfSubstance_SkillGroup_Data, chemicalNotation_SkillGroup_Data, reactionEquations_SkillGroup_Data],
   description: {
     methodological:
       'Chemists represent composition and transformation with conventional symbols and use amounts to connect microscopic entities to measurable samples. This domain covers representational and quantitative relationships, not specific reaction mechanisms.',

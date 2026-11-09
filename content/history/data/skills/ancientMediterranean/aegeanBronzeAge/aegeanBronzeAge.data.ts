@@ -40,11 +40,7 @@ export const aegeanBronzeAge_SkillGroup_Data = defineSkillGroup({
     kk: 'Эгей қола дәуірі',
     qm: 'Egey bronza devri',
   },
-  skills: [
-    lateBronzeAgeCollapse_Skill_Data,
-    minoanCivilization_Skill_Data,
-    mycenaeanCivilization_Skill_Data,
-  ],
+  skills: [lateBronzeAgeCollapse_Skill_Data, minoanCivilization_Skill_Data, mycenaeanCivilization_Skill_Data],
   description: {
     methodological:
       'Island and mainland palace centers are known through archaeology, material exchange, and surviving writing systems.',

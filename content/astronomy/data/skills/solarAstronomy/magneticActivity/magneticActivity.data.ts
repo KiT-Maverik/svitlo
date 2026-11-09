@@ -41,12 +41,7 @@ export const magneticActivity_SkillGroup_Data = defineSkillGroup({
     he: 'הפעילות המגנטית של השמש',
     vi: 'Hoạt động từ tính của Mặt Trời',
   },
-  skills: [
-    coronalMassEjections_Skill_Data,
-    solarActivityCycle_Skill_Data,
-    solarFlares_Skill_Data,
-    sunspots_Skill_Data,
-  ],
+  skills: [coronalMassEjections_Skill_Data, solarActivityCycle_Skill_Data, solarFlares_Skill_Data, sunspots_Skill_Data],
   description: {
     methodological:
       'Magnetic fields in solar plasma produce time-variable surface features and energetic events rather than a perfectly steady star.',

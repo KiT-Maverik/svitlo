@@ -87,7 +87,12 @@ export function checkTaxonomy(root = defaultRoot) {
           d.initializer &&
           ts.isCallExpression(d.initializer) &&
           ts.isIdentifier(d.initializer.expression) &&
-          d.initializer.expression.text === (type === 'SkillDomain' ? 'defineSkillDomain' : type === 'SkillGroup' ? 'defineSkillGroup' : 'defineSkill') &&
+          d.initializer.expression.text ===
+            (type === 'SkillDomain'
+              ? 'defineSkillDomain'
+              : type === 'SkillGroup'
+                ? 'defineSkillGroup'
+                : 'defineSkill') &&
           d.initializer.arguments.length === 1 &&
           ts.isObjectLiteralExpression(d.initializer.arguments[0]),
       );

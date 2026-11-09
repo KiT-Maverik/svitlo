@@ -116,7 +116,8 @@ function readEntity(file, kind) {
     if (
       ts.isCallExpression(n) &&
       ts.isIdentifier(n.expression) &&
-      n.expression.text === (kind === 'SkillDomain' ? 'defineSkillDomain' : kind === 'SkillGroup' ? 'defineSkillGroup' : 'defineSkill') &&
+      n.expression.text ===
+        (kind === 'SkillDomain' ? 'defineSkillDomain' : kind === 'SkillGroup' ? 'defineSkillGroup' : 'defineSkill') &&
       n.arguments.length === 1 &&
       ts.isObjectLiteralExpression(n.arguments[0])
     ) {

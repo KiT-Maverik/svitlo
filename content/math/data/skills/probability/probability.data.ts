@@ -37,10 +37,7 @@ export const probability_SkillDomain_Data = defineSkillDomain({
     pl: 'Prawdopodobieństwo',
     uk: 'Ймовірність',
   },
-  groups: [
-    events_SkillGroup_Data,
-    experiments_SkillGroup_Data,
-  ],
+  groups: [events_SkillGroup_Data, experiments_SkillGroup_Data],
   description: {
     methodological:
       'Possible outcomes of random experiments, events and their probabilities, comparisons of chance, independence or dependence of outcomes, and random variability in repeated observations.',

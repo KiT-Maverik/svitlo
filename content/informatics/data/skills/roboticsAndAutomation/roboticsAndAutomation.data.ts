@@ -37,10 +37,7 @@ export const roboticsAndAutomation_SkillDomain_Data = defineSkillDomain({
     kk: 'Робототехника және автоматтандыру',
     qm: 'Robototehnika ve avtomatlaştırma',
   },
-  groups: [
-    robotControl_SkillGroup_Data,
-    roboticSystemComponents_SkillGroup_Data,
-  ],
+  groups: [robotControl_SkillGroup_Data, roboticSystemComponents_SkillGroup_Data],
   description: {
     methodological:
       'Programming the control logic of physical or simulated actuators in response to sensor readings. Engineering may also study mechanical design; this taxonomy emphasizes the relationship among information, rules, and actions.',

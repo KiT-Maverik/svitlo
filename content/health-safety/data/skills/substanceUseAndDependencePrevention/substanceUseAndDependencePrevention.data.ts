@@ -37,10 +37,7 @@ export const substanceUseAndDependencePrevention_SkillDomain_Data = defineSkillD
     kk: 'Заттарды қолдану және тәуелділіктің алдын алу',
     qm: 'Maddelerni qullanmaq ve bağlılıqnıñ ögüni almaq',
   },
-  groups: [
-    preventionAndAccessToHelp_SkillGroup_Data,
-    substanceRelatedRisks_SkillGroup_Data,
-  ],
+  groups: [preventionAndAccessToHelp_SkillGroup_Data, substanceRelatedRisks_SkillGroup_Data],
   description: {
     methodological:
       'Tobacco, alcohol, drugs, and other dependence-forming patterns can affect health and safety. The focus is recognizing hazards, resisting coercion, and seeking care rather than pharmacological synthesis or moral judgment.',

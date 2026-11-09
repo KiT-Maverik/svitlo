@@ -111,8 +111,10 @@ function orderedChildren(props, field, kind, file) {
   const seen = new Set();
   return array.elements.map(node => {
     const child = unwrap(node);
-    assert(child && ts.isIdentifier(child) && child.text.endsWith(suffix),
-      'Invalid ' + field + ' child configurator: ' + file);
+    assert(
+      child && ts.isIdentifier(child) && child.text.endsWith(suffix),
+      'Invalid ' + field + ' child configurator: ' + file,
+    );
     const slug = child.text.slice(0, -suffix.length);
     assert(slugPattern.test(slug) && !seen.has(slug), 'Duplicate or invalid child slug: ' + file + ':' + slug);
     seen.add(slug);
@@ -129,15 +131,24 @@ function readEntity(file, slug, kind, codes) {
     .filter(item => item.name.getText(ast) === symbol);
   assert(declarations.length === 1, 'Expected one ' + symbol + ': ' + file);
   const call = declarations[0].initializer;
-  const newName = kind === 'SkillDomain' ? 'defineSkillDomain' : kind === 'SkillGroup' ? 'defineSkillGroup' : 'defineSkill';
+  const newName =
+    kind === 'SkillDomain' ? 'defineSkillDomain' : kind === 'SkillGroup' ? 'defineSkillGroup' : 'defineSkill';
   assert(
-    call && ts.isCallExpression(call) && ts.isIdentifier(call.expression) &&
-    call.expression.text === newName && call.arguments.length === 1,
+    call &&
+      ts.isCallExpression(call) &&
+      ts.isIdentifier(call.expression) &&
+      call.expression.text === newName &&
+      call.arguments.length === 1,
     'Invalid configurator for ' + symbol + ': ' + file,
   );
   const props = fields(call.arguments[0], file);
-  const allowed = new Set(['slug', 'id', 'description', kind === 'SkillDomain' ? 'title' : 'name',
-    ...(kind === 'SkillDomain' ? ['groups', 'skills'] : kind === 'SkillGroup' ? ['skills'] : [])]);
+  const allowed = new Set([
+    'slug',
+    'id',
+    'description',
+    kind === 'SkillDomain' ? 'title' : 'name',
+    ...(kind === 'SkillDomain' ? ['groups', 'skills'] : kind === 'SkillGroup' ? ['skills'] : []),
+  ]);
   for (const name of props.keys()) assert(allowed.has(name), 'Unexpected config field: ' + file + '.' + name);
   const authoredSlug = literal(props.get('slug'), file + '.slug');
   assert(authoredSlug === slug && slugPattern.test(authoredSlug), 'Missing/mismatched Skill slug: ' + file);
@@ -153,7 +164,8 @@ function readEntity(file, slug, kind, codes) {
     for (const key of detail.keys()) {
       assert(key === 'methodological' || key === 'frontend', 'Unexpected description field: ' + file + '.' + key);
     }
-    if (detail.has('frontend')) description = localizedStrings(detail.get('frontend'), codes, file + '.description.frontend');
+    if (detail.has('frontend'))
+      description = localizedStrings(detail.get('frontend'), codes, file + '.description.frontend');
   }
   assert(!!methodological, 'Configurator requires methodological description: ' + file);
   assert(kind !== 'Skill' || description, 'Skill requires complete frontend descriptions: ' + file);
@@ -291,8 +303,10 @@ export function renderSkillFiles(graph, codes) {
   function baseEntity(entity) {
     const collection = collectionByKind[entity.kind];
     assert(collection, 'Unsupported Skill collection: ' + entity.kind);
-    assert(typeof entity.methodological === 'string' && entity.methodological.trim(),
-      'Missing methodological description: ' + entity.slug);
+    assert(
+      typeof entity.methodological === 'string' && entity.methodological.trim(),
+      'Missing methodological description: ' + entity.slug,
+    );
     return {
       id: entity.id,
       collection,
@@ -310,8 +324,10 @@ export function renderSkillFiles(graph, codes) {
     const label = entity.name[code];
     assert(typeof label === 'string' && label.trim(), 'Missing ' + code + ' name: ' + entity.slug);
     const frontend = entity.description?.[code];
-    assert(entity.kind !== 'Skill' || (typeof frontend === 'string' && frontend.trim()),
-      'Missing ' + code + ' frontend description: ' + entity.slug);
+    assert(
+      entity.kind !== 'Skill' || (typeof frontend === 'string' && frontend.trim()),
+      'Missing ' + code + ' frontend description: ' + entity.slug,
+    );
     return {
       [entity.kind === 'SkillDomain' ? 'title' : 'name']: label,
       ...(frontend ? { description: { frontend } } : {}),
@@ -423,9 +439,7 @@ function options(args) {
     pkg.startsWith(path.join(repositoryRoot, 'content') + path.sep) && fs.existsSync(path.join(pkg, 'package.json')),
     'Expected a textbook package under content/',
   );
-  const output = outputOverride
-    ? path.resolve(repositoryRoot, outputOverride)
-    : path.join(pkg, 'public/data/skills');
+  const output = outputOverride ? path.resolve(repositoryRoot, outputOverride) : path.join(pkg, 'public/data/skills');
   assert(output.startsWith(repositoryRoot + path.sep), 'Output must stay inside the repository');
   return { pkg, action, output };
 }

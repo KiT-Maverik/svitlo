@@ -38,11 +38,7 @@ export const danceAndChoreography_SkillDomain_Data = defineSkillDomain({
     kk: 'Би және хореография',
     qm: 'Oyun ve koreografiya',
   },
-  groups: [
-    choreography_SkillGroup_Data,
-    movementLanguage_SkillGroup_Data,
-    traditionsAndInterpretation_SkillGroup_Data,
-  ],
+  groups: [choreography_SkillGroup_Data, movementLanguage_SkillGroup_Data, traditionsAndInterpretation_SkillGroup_Data],
   description: {
     methodological:
       'Dance organizes bodily movement as expressive and culturally situated form. Its aim is choreographic communication rather than athletic conditioning.',

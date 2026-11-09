@@ -36,10 +36,7 @@ export const financialTechnology_SkillGroup_Data = defineSkillGroup({
     kk: 'Қаржылық технологиялар',
     qm: 'Maliye tehnologiyaları',
   },
-  skills: [
-    cryptoassetsAndDigitalCurrencies_Skill_Data,
-    paymentFinancialTechnologies_Skill_Data,
-  ],
+  skills: [cryptoassetsAndDigitalCurrencies_Skill_Data, paymentFinancialTechnologies_Skill_Data],
   description: {
     methodological:
       'Digital payment services and new asset classes alter financial intermediation, transaction speed, and risks; technological design does not by itself determine economic status.',

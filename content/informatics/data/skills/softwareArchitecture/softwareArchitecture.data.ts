@@ -37,10 +37,7 @@ export const softwareArchitecture_SkillDomain_Data = defineSkillDomain({
     kk: 'Бағдарламалық жасақтама архитектурасы',
     qm: 'Programma teminatınıñ arhitekturası',
   },
-  groups: [
-    designPrinciples_SkillGroup_Data,
-    objectModel_SkillGroup_Data,
-  ],
+  groups: [designPrinciples_SkillGroup_Data, objectModel_SkillGroup_Data],
   description: {
     methodological:
       'Explains program structure through objects, contracts, responsibilities, and dependencies. Design patterns form a separate domain of reusable solutions to object creation, composition, and behavior.',

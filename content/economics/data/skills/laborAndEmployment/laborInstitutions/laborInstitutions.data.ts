@@ -36,11 +36,7 @@ export const laborInstitutions_SkillGroup_Data = defineSkillGroup({
     kk: 'Еңбек институттары',
     qm: 'Emek müessiseleri',
   },
-  skills: [
-    collectiveBargaining_Skill_Data,
-    employmentContracts_Skill_Data,
-    minimumWage_Skill_Data,
-  ],
+  skills: [collectiveBargaining_Skill_Data, employmentContracts_Skill_Data, minimumWage_Skill_Data],
   description: {
     methodological: 'Employment relationships operate under contracts, collective bargaining, and legal protections.',
     frontend: {

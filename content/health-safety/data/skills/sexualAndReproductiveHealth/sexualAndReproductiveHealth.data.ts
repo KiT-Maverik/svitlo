@@ -37,10 +37,7 @@ export const sexualAndReproductiveHealth_SkillDomain_Data = defineSkillDomain({
     kk: 'Жыныстық және репродуктивтік денсаулық',
     qm: 'Cinsiy ve nesil artırma sağlamlığı',
   },
-  groups: [
-    developmentAndBodilyCare_SkillGroup_Data,
-    sexualAndReproductiveHealthcare_SkillGroup_Data,
-  ],
+  groups: [developmentAndBodilyCare_SkillGroup_Data, sexualAndReproductiveHealthcare_SkillGroup_Data],
   description: {
     methodological:
       'Practical knowledge about bodily development, sexual health, prevention, and access to services supports informed and safe choices. Anatomy and reproductive mechanisms are mainly Biology; moral evaluation is not substituted for factual health information.',

@@ -56,15 +56,23 @@ export const TEST_SKILL_NODES_UK: readonly SkillNode[] = [
     slug: 'testColors',
     kind: 'skillDomain',
     name: 'Кольори',
-    children: [{
-      id: uuid(2),
-      slug: 'testWarmColors',
-      kind: 'skillGroup',
-      name: 'Теплі кольори',
-      children: [{
-        id: uuid(3), slug: 'testRed', kind: 'skill',
-        name: 'Червоний', description: 'Розпізнавати червоний.', children: [],
-      }],
-    }],
+    children: [
+      {
+        id: uuid(2),
+        slug: 'testWarmColors',
+        kind: 'skillGroup',
+        name: 'Теплі кольори',
+        children: [
+          {
+            id: uuid(3),
+            slug: 'testRed',
+            kind: 'skill',
+            name: 'Червоний',
+            description: 'Розпізнавати червоний.',
+            children: [],
+          },
+        ],
+      },
+    ],
   },
 ];

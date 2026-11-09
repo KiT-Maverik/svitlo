@@ -40,11 +40,7 @@ export const searchEnvironments_SkillGroup_Data = defineSkillGroup({
     he: 'סביבות לחיפוש חיים',
     vi: 'Môi trường tìm kiếm sự sống',
   },
-  skills: [
-    exoplanetLifeSearches_Skill_Data,
-    solarSystemLifeSearches_Skill_Data,
-    subsurfaceHabitats_Skill_Data,
-  ],
+  skills: [exoplanetLifeSearches_Skill_Data, solarSystemLifeSearches_Skill_Data, subsurfaceHabitats_Skill_Data],
   description: {
     methodological:
       'Search strategies differ for nearby worlds whose material can be sampled and distant worlds known mainly through remote measurements.',

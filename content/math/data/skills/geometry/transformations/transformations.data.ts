@@ -36,11 +36,7 @@ export const transformations_SkillGroup_Data = defineSkillGroup({
     pl: 'Przekształcenia geometryczne',
     uk: 'Геометричні перетворення',
   },
-  skills: [
-    turnsQuarters_Skill_Data,
-    translationsReflections_Skill_Data,
-    reflectionSymmetry_Skill_Data,
-  ],
+  skills: [turnsQuarters_Skill_Data, translationsReflections_Skill_Data, reflectionSymmetry_Skill_Data],
   description: {
     methodological:
       "Changes in a shape's position through rotation, translation, and reflection, along with symmetry about an axis.",

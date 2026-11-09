@@ -36,12 +36,7 @@ export const steps_SkillGroup_Data = defineSkillGroup({
     pl: 'Liczenie skokowe',
     uk: 'Крокова лічба',
   },
-  skills: [
-    countBy2_Skill_Data,
-    countBy5_Skill_Data,
-    countBy10_Skill_Data,
-    countBy100_Skill_Data,
-  ],
+  skills: [countBy2_Skill_Data, countBy5_Skill_Data, countBy10_Skill_Data, countBy100_Skill_Data],
   description: {
     methodological:
       'Moving through the number sequence by fixed increments, connected with equal groups, tens, and hundreds rather than counting individual units.',

@@ -36,11 +36,7 @@ export const estimation_SkillGroup_Data = defineSkillGroup({
     pl: 'Szacowanie liczb',
     uk: 'Оцінювання чисел',
   },
-  skills: [
-    roundToTen_Skill_Data,
-    roundToHundred_Skill_Data,
-    estimateQuantity_Skill_Data,
-  ],
+  skills: [roundToTen_Skill_Data, roundToHundred_Skill_Data, estimateQuantity_Skill_Data],
   description: {
     methodological:
       'Approximate numerical values and quantities, rounding, and matching estimation precision to the magnitude of the actual quantity.',

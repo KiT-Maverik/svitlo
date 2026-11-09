@@ -183,7 +183,6 @@ describe('SkillsMindMap', () => {
   });
 
   it('displays a hard error for an unsupported requested language', async () => {
-    
     render(
       <SkillsPageSettingsProvider initialLanguage="ru">
         <SkillsPagePreferences />

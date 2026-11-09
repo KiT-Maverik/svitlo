@@ -39,10 +39,7 @@ export const accessibility_SkillGroup_Data = defineSkillGroup({
     kk: 'Қолжетімділік',
     qm: 'İrişimlilik',
   },
-  skills: [
-    identifyNeedsOfUsersWithDifferentAbilities_Skill_Data,
-    testDigitalInteractionAccessibility_Skill_Data,
-  ],
+  skills: [identifyNeedsOfUsersWithDifferentAbilities_Skill_Data, testDigitalInteractionAccessibility_Skill_Data],
   description: {
     methodological:
       'Address different ways people perceive and operate interfaces and verify actual usability rather than judging only visual appeal.',

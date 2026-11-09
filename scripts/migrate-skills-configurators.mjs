@@ -127,10 +127,13 @@ function transformFile(root, file, content) {
     .filter(declaration => ts.isIdentifier(declaration.name) && declaration.name.text === identity.symbol);
   assert(declarations.length === 1, 'Expected one exported ' + identity.symbol + ': ' + file);
   const declaration = declarations[0];
-  const variableStatement = source.statements.find(statement =>
-    ts.isVariableStatement(statement) && statement.declarationList.declarations.includes(declaration),
+  const variableStatement = source.statements.find(
+    statement => ts.isVariableStatement(statement) && statement.declarationList.declarations.includes(declaration),
   );
-  assert(variableStatement.modifiers?.some(m => m.kind === ts.SyntaxKind.ExportKeyword), 'Not exported: ' + file);
+  assert(
+    variableStatement.modifiers?.some(m => m.kind === ts.SyntaxKind.ExportKeyword),
+    'Not exported: ' + file,
+  );
   const call = declaration.initializer;
   assert(
     call && ts.isCallExpression(call) && ts.isIdentifier(call.expression) && call.arguments.length === 1,
@@ -142,7 +145,11 @@ function transformFile(root, file, content) {
   const config = properties(call.arguments[0], file);
   const required = ['slug', 'id', identity.kind === 'SkillDomain' && isNew ? 'title' : 'name', 'description'];
   for (const key of required) assert(config.has(key), 'Missing ' + key + ': ' + file);
-  const allowed = new Set([...required, ...(identity.kind !== 'Skill' ? ['skills'] : []), ...(identity.kind === 'SkillDomain' ? ['groups'] : [])]);
+  const allowed = new Set([
+    ...required,
+    ...(identity.kind !== 'Skill' ? ['skills'] : []),
+    ...(identity.kind === 'SkillDomain' ? ['groups'] : []),
+  ]);
   for (const key of config.keys()) assert(allowed.has(key), 'Unexpected config field ' + key + ': ' + file);
   assert(string(config.get('slug').initializer, file) === identity.slug, 'Slug mismatch: ' + file);
   const id = string(config.get('id').initializer, file);
@@ -158,7 +165,8 @@ function transformFile(root, file, content) {
   if (desc.has('frontend')) properties(desc.get('frontend').initializer, file + '.description.frontend');
   const refs = {};
   for (const key of ['groups', 'skills']) {
-    if (config.has(key)) refs[key] = readReferences(config.get(key).initializer, source, file + '.' + key, isNew, edits);
+    if (config.has(key))
+      refs[key] = readReferences(config.get(key).initializer, source, file + '.' + key, isNew, edits);
   }
   if (!isNew) {
     edits.push({ start: call.expression.getStart(source), end: call.expression.getEnd(), value: names.next });
@@ -166,8 +174,8 @@ function transformFile(root, file, content) {
       const name = config.get('name').name;
       edits.push({ start: name.getStart(source), end: name.getEnd(), value: 'title' });
     }
-    const candidates = source.statements.filter(statement =>
-      ts.isImportDeclaration(statement) && statement.moduleSpecifier.text === '@svitlo/engine',
+    const candidates = source.statements.filter(
+      statement => ts.isImportDeclaration(statement) && statement.moduleSpecifier.text === '@svitlo/engine',
     );
     let found = 0;
     for (const statement of candidates) {
@@ -220,7 +228,10 @@ export function planSkillsMigration(root) {
   const counts = { SkillDomain: 0, SkillGroup: 0, Skill: 0 };
   for (const item of plan) {
     counts[item.kind]++;
-    assert(!ids.has(item.id.toLowerCase()), 'Duplicate UUID in ' + item.file + ' and ' + ids.get(item.id.toLowerCase()));
+    assert(
+      !ids.has(item.id.toLowerCase()),
+      'Duplicate UUID in ' + item.file + ' and ' + ids.get(item.id.toLowerCase()),
+    );
     ids.set(item.id.toLowerCase(), item.file);
     for (const [key, symbols] of Object.entries(item.refs)) {
       for (const symbol of symbols) {
@@ -229,7 +240,14 @@ export function planSkillsMigration(root) {
         const [, slug, kind] = match;
         assert(key === (kind === 'Skill' ? 'skills' : 'groups'), 'Child kind mismatch: ' + item.file);
         const [domain, group] = item.parts;
-        const childFile = path.join(sourceRoot, domain, ...(kind === 'Skill' ? (item.kind === 'SkillGroup' ? [group] : []) : []), ...(kind === 'Skill' ? ['skills'] : []), ...(kind === 'SkillGroup' ? [slug] : []), slug + '.data.ts');
+        const childFile = path.join(
+          sourceRoot,
+          domain,
+          ...(kind === 'Skill' ? (item.kind === 'SkillGroup' ? [group] : []) : []),
+          ...(kind === 'Skill' ? ['skills'] : []),
+          ...(kind === 'SkillGroup' ? [slug] : []),
+          slug + '.data.ts',
+        );
         assert(byPath.has(childFile), 'Missing referenced child: ' + childFile);
         assert(!references.has(childFile), 'Child referenced by multiple parents: ' + childFile);
         references.set(childFile, item.file);
@@ -239,7 +257,8 @@ export function planSkillsMigration(root) {
   for (const item of plan) {
     assert(item.kind === 'SkillDomain' || references.has(item.file), 'Unreferenced Skill or Group: ' + item.file);
     if (item.kind === 'SkillGroup') assert(item.refs.skills?.length, 'Empty Group: ' + item.file);
-    if (item.kind === 'SkillDomain') assert((item.refs.groups?.length ?? 0) + (item.refs.skills?.length ?? 0) > 0, 'Empty Domain: ' + item.file);
+    if (item.kind === 'SkillDomain')
+      assert((item.refs.groups?.length ?? 0) + (item.refs.skills?.length ?? 0) > 0, 'Empty Domain: ' + item.file);
   }
   return { root: sourceRoot, files: plan, counts, changed: plan.filter(item => item.changed).length };
 }
@@ -257,9 +276,15 @@ function options(argv) {
       opts[key] = argv[++i];
     } else throw new Error('Unknown argument: ' + arg);
   }
-  assert(opts.package && !(opts.write && opts.preview), 'Usage: --package content/<textbook> [--preview <new-directory> | --write]');
+  assert(
+    opts.package && !(opts.write && opts.preview),
+    'Usage: --package content/<textbook> [--preview <new-directory> | --write]',
+  );
   const pkg = path.resolve(repoRoot, opts.package);
-  assert(pkg.startsWith(path.join(repoRoot, 'content') + path.sep) && fs.existsSync(path.join(pkg, 'package.json')), 'Expected existing textbook package under content/');
+  assert(
+    pkg.startsWith(path.join(repoRoot, 'content') + path.sep) && fs.existsSync(path.join(pkg, 'package.json')),
+    'Expected existing textbook package under content/',
+  );
   return { ...opts, pkg, root: path.join(pkg, 'data/skills') };
 }
 export function runMigration(opts) {
@@ -300,14 +325,20 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   try {
     const opts = options(process.argv.slice(2));
     const plan = runMigration(opts);
-    console.log(JSON.stringify({
-      mode: opts.preview ? 'preview' : opts.write ? 'write' : 'dry-run',
-      textbook: path.relative(repoRoot, opts.pkg),
-      entities: plan.counts,
-      examined: plan.files.length,
-      changed: plan.changed,
-      preview: opts.preview ? path.resolve(opts.preview) : undefined,
-    }, null, 2));
+    console.log(
+      JSON.stringify(
+        {
+          mode: opts.preview ? 'preview' : opts.write ? 'write' : 'dry-run',
+          textbook: path.relative(repoRoot, opts.pkg),
+          entities: plan.counts,
+          examined: plan.files.length,
+          changed: plan.changed,
+          preview: opts.preview ? path.resolve(opts.preview) : undefined,
+        },
+        null,
+        2,
+      ),
+    );
   } catch (error) {
     console.error(error.message);
     process.exitCode = 1;

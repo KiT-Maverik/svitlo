@@ -36,10 +36,7 @@ export const verification_SkillGroup_Data = defineSkillGroup({
     pl: 'Sprawdzanie rozwiązań',
     uk: 'Перевірка розв’язань',
   },
-  skills: [
-    checkReasonableness_Skill_Data,
-    verifyWithSecondMethod_Skill_Data,
-  ],
+  skills: [checkReasonableness_Skill_Data, verifyWithSecondMethod_Skill_Data],
   description: {
     methodological:
       'Critically comparing a calculated result with the problem conditions, identifying mistakes, and using independent methods of verification.',

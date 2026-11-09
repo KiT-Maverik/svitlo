@@ -36,9 +36,7 @@ export const magneticEffectsInPhysicalSystems_SkillGroup_Data = defineSkillGroup
     ka: 'მაგნიტური ეფექტები ფიზიკურ სისტემებში',
     kk: 'Физикалық жүйелердегі магниттік әсерлер',
   },
-  skills: [
-    explainThePhysicalRoleOfAMagneticFieldInASystem_Skill_Data,
-  ],
+  skills: [explainThePhysicalRoleOfAMagneticFieldInASystem_Skill_Data],
   description: {
     methodological:
       'Magnetic forces in real systems are explained by fields and material properties; choosing an engineering design belongs to Engineering.',

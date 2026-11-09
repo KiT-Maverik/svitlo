@@ -60,8 +60,11 @@ export async function loadPublishedSkills(language: string, domainSlugs: readonl
   ]);
   const merged = mergeLessonResources(base, locale);
   const domains = parseMergedSkillTree(merged);
-  if (!domainSlugs.length || new Set(domainSlugs).size !== domainSlugs.length ||
-      domainSlugs.some(slug => !slugPattern.test(slug) || !domains.some(node => node.slug === slug))) {
+  if (
+    !domainSlugs.length ||
+    new Set(domainSlugs).size !== domainSlugs.length ||
+    domainSlugs.some(slug => !slugPattern.test(slug) || !domains.some(node => node.slug === slug))
+  ) {
     throw new Error('Unknown or duplicate Skill Domain');
   }
   return domainSlugs.map(slug => domains.find(node => node.slug === slug)!);

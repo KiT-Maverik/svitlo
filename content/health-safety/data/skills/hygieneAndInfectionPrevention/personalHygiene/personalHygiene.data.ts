@@ -41,12 +41,7 @@ export const personalHygiene_SkillGroup_Data = defineSkillGroup({
     kk: 'Жеке гигиена',
     qm: 'Şahsiy temizlik',
   },
-  skills: [
-    bodyHygiene_Skill_Data,
-    handHygiene_Skill_Data,
-    hygieneOfPersonalItems_Skill_Data,
-    oralHygiene_Skill_Data,
-  ],
+  skills: [bodyHygiene_Skill_Data, handHygiene_Skill_Data, hygieneOfPersonalItems_Skill_Data, oralHygiene_Skill_Data],
   description: {
     methodological:
       'Effective routines reflect how contamination spreads between hands, body surfaces, shared objects, and everyday environments.',

@@ -36,10 +36,7 @@ export const groups_SkillGroup_Data = defineSkillGroup({
     pl: 'Zadania o grupach',
     uk: 'Задачі на групування',
   },
-  skills: [
-    correspondenceCombinations_Skill_Data,
-    equalGroups_Skill_Data,
-  ],
+  skills: [correspondenceCombinations_Skill_Data, equalGroups_Skill_Data],
   description: {
     methodological:
       'Situations involving equal groups and independent selections from two sets, distinguishing multiplication from counting combinations.',

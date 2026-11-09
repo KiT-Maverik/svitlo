@@ -37,10 +37,7 @@ export const historyOfProgramming_SkillDomain_Data = defineSkillDomain({
     kk: 'Бағдарламалау тарихы',
     qm: 'Programmalav tarihi',
   },
-  groups: [
-    keyContributions_SkillGroup_Data,
-    machinesAndCryptanalysis_SkillGroup_Data,
-  ],
+  groups: [keyContributions_SkillGroup_Data, machinesAndCryptanalysis_SkillGroup_Data],
   description: {
     methodological:
       "Traces the origins of algorithmic ideas, programming practices, software tools, networking solutions, and computing machines in historical context. Recognizes individual and collaborative contributions, including women's long-undervalued work, without making every biography a separate competency.",

@@ -13,15 +13,19 @@ type Props = { searchParams: Promise<{ lang?: string }> };
 
 export default function Page(props: Props) {
   return (
-    <Suspense fallback={<main role="status" aria-busy="true">Завантаження навичок…</main>}>
+    <Suspense
+      fallback={
+        <main role="status" aria-busy="true">
+          Завантаження навичок…
+        </main>
+      }
+    >
       <SkillAnalyticsServerContent {...props} />
     </Suspense>
   );
 }
 
-async function SkillAnalyticsServerContent({
-  searchParams,
-}: Props) {
+async function SkillAnalyticsServerContent({ searchParams }: Props) {
   const domainSlugs = textbook.skillAnalyticsDomains;
   if (!domainSlugs?.length) notFound();
   const language = (await searchParams).lang ?? 'uk';

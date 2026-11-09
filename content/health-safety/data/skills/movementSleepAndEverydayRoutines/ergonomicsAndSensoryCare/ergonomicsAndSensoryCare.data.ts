@@ -40,11 +40,7 @@ export const ergonomicsAndSensoryCare_SkillGroup_Data = defineSkillGroup({
     kk: 'Эргономика және сезім мүшелерін қорғау',
     qm: 'Ergonomika ve sezgi organlarını qoruv',
   },
-  skills: [
-    adaptAnErgonomicWorkspace_Skill_Data,
-    manageVisualStrain_Skill_Data,
-    protectHearingFromNoise_Skill_Data,
-  ],
+  skills: [adaptAnErgonomicWorkspace_Skill_Data, manageVisualStrain_Skill_Data, protectHearingFromNoise_Skill_Data],
   description: {
     methodological:
       'Workspaces and devices can be adapted to reduce strain, fatigue, and exposure rather than enforcing a single rigid body position.',

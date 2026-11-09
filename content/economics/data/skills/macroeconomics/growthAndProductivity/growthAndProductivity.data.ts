@@ -36,11 +36,7 @@ export const growthAndProductivity_SkillGroup_Data = defineSkillGroup({
     kk: 'Өсім және өнімділік',
     qm: 'Ösüv ve mahsuldarlıq',
   },
-  skills: [
-    driversOfLongTermGrowth_Skill_Data,
-    economicGrowth_Skill_Data,
-    potentialOutput_Skill_Data,
-  ],
+  skills: [driversOfLongTermGrowth_Skill_Data, economicGrowth_Skill_Data, potentialOutput_Skill_Data],
   description: {
     methodological: 'Long-run aggregate output depends on technology, capital, labor, and institutional quality.',
     frontend: {

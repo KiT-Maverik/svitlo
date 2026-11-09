@@ -38,11 +38,7 @@ export const molecularPhysics_SkillDomain_Data = defineSkillDomain({
     ka: 'მოლეკულური ფიზიკა',
     kk: 'Молекулалық физика',
   },
-  groups: [
-    diffusionAndMixing_SkillGroup_Data,
-    gasProperties_SkillGroup_Data,
-    particleModelOfMatter_SkillGroup_Data,
-  ],
+  groups: [diffusionAndMixing_SkillGroup_Data, gasProperties_SkillGroup_Data, particleModelOfMatter_SkillGroup_Data],
   description: {
     methodological:
       'Particle models help explain physical properties and changes in states of matter. Unlike chemistry, this Domain focuses on particle movement, interactions, and arrangement rather than chemical reactions.',

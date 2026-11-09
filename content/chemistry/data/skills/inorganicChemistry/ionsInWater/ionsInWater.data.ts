@@ -41,12 +41,7 @@ export const ionsInWater_SkillGroup_Data = defineSkillGroup({
     kk: 'Судағы иондар',
     qm: 'Suvda ionlar',
   },
-  skills: [
-    electrolytes_Skill_Data,
-    ionicEquations_Skill_Data,
-    solubilityRules_Skill_Data,
-    waterHardness_Skill_Data,
-  ],
+  skills: [electrolytes_Skill_Data, ionicEquations_Skill_Data, solubilityRules_Skill_Data, waterHardness_Skill_Data],
   description: {
     methodological:
       'Water permits dissociation and characteristic aqueous reactions, but not every dissolved substance produces free ions.',

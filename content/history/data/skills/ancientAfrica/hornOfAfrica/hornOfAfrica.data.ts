@@ -40,11 +40,7 @@ export const hornOfAfrica_SkillGroup_Data = defineSkillGroup({
     kk: 'Африка мүйісі',
     qm: 'Afrika Boynuzu',
   },
-  skills: [
-    aksumiteKingdom_Skill_Data,
-    christianizationOfAksum_Skill_Data,
-    earlyEthiopianHighlandStates_Skill_Data,
-  ],
+  skills: [aksumiteKingdom_Skill_Data, christianizationOfAksum_Skill_Data, earlyEthiopianHighlandStates_Skill_Data],
   description: {
     methodological:
       'Red Sea connections linked highland farming societies with maritime exchanges between Africa and Arabia.',

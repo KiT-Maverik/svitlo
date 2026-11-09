@@ -36,11 +36,7 @@ export const banksAndCreditIntermediation_SkillGroup_Data = defineSkillGroup({
     kk: 'Банктер және несие делдалдығы',
     qm: 'Banklar ve kredit aracılığı',
   },
-  skills: [
-    bankDeposits_Skill_Data,
-    bankLending_Skill_Data,
-    bankLiquidity_Skill_Data,
-  ],
+  skills: [bankDeposits_Skill_Data, bankLending_Skill_Data, bankLiquidity_Skill_Data],
   description: {
     methodological:
       'Financial intermediaries connect savers and borrowers and manage liquidity and payment infrastructure.',

@@ -40,11 +40,7 @@ export const incentivesAndDecisions_SkillGroup_Data = defineSkillGroup({
     kk: 'Ынталандырулар мен шешімдер',
     qm: 'Teşviqler ve qararlar',
   },
-  skills: [
-    budgetAndResourceConstraints_Skill_Data,
-    choiceUnderUncertainty_Skill_Data,
-    economicIncentives_Skill_Data,
-  ],
+  skills: [budgetAndResourceConstraints_Skill_Data, choiceUnderUncertainty_Skill_Data, economicIncentives_Skill_Data],
   description: {
     methodological:
       'Choices are influenced by benefits, costs, rules, and available information; the predictability of responses depends on context.',

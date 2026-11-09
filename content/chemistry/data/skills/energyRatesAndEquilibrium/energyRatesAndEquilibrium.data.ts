@@ -38,11 +38,7 @@ export const energyRatesAndEquilibrium_SkillDomain_Data = defineSkillDomain({
     kk: 'Энергия, жылдамдық және тепе-теңдік',
     qm: 'Energiya, reaktsiya tezligi ve muvazenet',
   },
-  groups: [
-    chemicalEnergetics_SkillGroup_Data,
-    chemicalEquilibrium_SkillGroup_Data,
-    reactionRates_SkillGroup_Data,
-  ],
+  groups: [chemicalEnergetics_SkillGroup_Data, chemicalEquilibrium_SkillGroup_Data, reactionRates_SkillGroup_Data],
   description: {
     methodological:
       'Chemical systems exchange energy, evolve at finite rates and may approach dynamic equilibrium. These are related but distinct questions: whether change is favorable, how quickly it occurs and what composition persists.',

@@ -36,11 +36,7 @@ export const capacity_SkillGroup_Data = defineSkillGroup({
     pl: 'Pojemność',
     uk: 'Місткість',
   },
-  skills: [
-    capacityConcept_Skill_Data,
-    liter_Skill_Data,
-    milliliter_Skill_Data,
-  ],
+  skills: [capacityConcept_Skill_Data, liter_Skill_Data, milliliter_Skill_Data],
   description: {
     methodological:
       'The volume of liquid that a container can hold, its measurement in liters and milliliters, and comparisons of capacities.',

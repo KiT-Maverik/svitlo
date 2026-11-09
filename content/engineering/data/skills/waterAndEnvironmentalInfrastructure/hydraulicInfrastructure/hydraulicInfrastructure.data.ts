@@ -36,11 +36,7 @@ export const hydraulicInfrastructure_SkillGroup_Data = defineSkillGroup({
     kk: 'Гидротехникалық инфрақұрылым',
     qm: 'Gidrotehnik infrastruktura',
   },
-  skills: [
-    canalLocks_Skill_Data,
-    compareChannelsAndPipes_Skill_Data,
-    flowControlValves_Skill_Data,
-  ],
+  skills: [canalLocks_Skill_Data, compareChannelsAndPipes_Skill_Data, flowControlValves_Skill_Data],
   description: {
     methodological:
       'Flow and water levels can be regulated by built chambers, gates and channels that connect transport or supply routes.',

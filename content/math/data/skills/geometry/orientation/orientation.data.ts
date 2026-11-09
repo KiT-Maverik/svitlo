@@ -36,11 +36,7 @@ export const orientation_SkillGroup_Data = defineSkillGroup({
     pl: 'Orientacja przestrzenna',
     uk: 'Просторова орієнтація',
   },
-  skills: [
-    positionWords_Skill_Data,
-    gridMapNavigation_Skill_Data,
-    spatialOrientationPath_Skill_Data,
-  ],
+  skills: [positionWords_Skill_Data, gridMapNavigation_Skill_Data, spatialOrientationPath_Skill_Data],
   description: {
     methodological:
       'Verbal descriptions of relative positions and movements, following and giving route instructions, and navigating a simple grid.',

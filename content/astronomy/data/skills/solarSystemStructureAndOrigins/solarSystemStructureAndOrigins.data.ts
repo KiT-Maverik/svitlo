@@ -38,11 +38,7 @@ export const solarSystemStructureAndOrigins_SkillDomain_Data = defineSkillDomain
     kk: 'Күн жүйесінің құрылысы мен пайда болуы',
     qm: 'Küneş sistemasınıñ quruluşu ve peyda oluvı',
   },
-  groups: [
-    formationAndChronology_SkillGroup_Data,
-    minorBodies_SkillGroup_Data,
-    systemArchitecture_SkillGroup_Data,
-  ],
+  groups: [formationAndChronology_SkillGroup_Data, minorBodies_SkillGroup_Data, systemArchitecture_SkillGroup_Data],
   description: {
     methodological:
       "The Solar System is classified by its orbital organization and by evidence of formation from a common disk. Individual worlds are examined in planetary science, while the Sun's internal structure and activity belong to solar astronomy.",

@@ -36,11 +36,7 @@ export const eclipsesAndAlignments_SkillGroup_Data = defineSkillGroup({
     kk: 'Тұтылулар және аспан денелерінің бір сызық бойына орналасуы',
     qm: 'Tutulmalar ve kök cisimleriniñ bir sırağa tizilüvi',
   },
-  skills: [
-    eclipseSeasons_Skill_Data,
-    lunarEclipses_Skill_Data,
-    solarEclipses_Skill_Data,
-  ],
+  skills: [eclipseSeasons_Skill_Data, lunarEclipses_Skill_Data, solarEclipses_Skill_Data],
   description: {
     methodological:
       "Occultation and shadow phenomena depend on an observer's line of sight and the relative positions and apparent sizes of bodies.",

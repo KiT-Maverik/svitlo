@@ -40,11 +40,7 @@ export const northernAndBalticEurope_SkillGroup_Data = defineSkillGroup({
     kk: 'Солтүстік және Балтық Еуропасы',
     qm: 'Şimaliy ve Baltıq Avropası',
   },
-  skills: [
-    ancientNorthernEuropeanEconomies_Skill_Data,
-    balticAmberTrade_Skill_Data,
-    scandinavianIronAge_Skill_Data,
-  ],
+  skills: [ancientNorthernEuropeanEconomies_Skill_Data, balticAmberTrade_Skill_Data, scandinavianIronAge_Skill_Data],
   description: {
     methodological: 'Rivers and seas connected communities with differing farming, herding, and craft traditions.',
     frontend: {

@@ -41,12 +41,7 @@ export const notation_SkillGroup_Data = defineSkillGroup({
     pl: 'Zapis liczb',
     uk: 'Числовий запис',
   },
-  skills: [
-    digits09_Skill_Data,
-    readWrite20_Skill_Data,
-    readWrite100_Skill_Data,
-    readWrite1000_Skill_Data,
-  ],
+  skills: [digits09_Skill_Data, readWrite20_Skill_Data, readWrite100_Skill_Data, readWrite1000_Skill_Data],
   description: {
     methodological:
       'Digits as signs in the decimal system and the correspondence between spoken number names, written notation, and quantities for one-, two-, and three-digit numbers.',

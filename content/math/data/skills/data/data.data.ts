@@ -38,11 +38,7 @@ export const data_SkillDomain_Data = defineSkillDomain({
     pl: 'Dane',
     uk: 'Дані',
   },
-  groups: [
-    collection_SkillGroup_Data,
-    presentation_SkillGroup_Data,
-    interpretation_SkillGroup_Data,
-  ],
+  groups: [collection_SkillGroup_Data, presentation_SkillGroup_Data, interpretation_SkillGroup_Data],
   description: {
     methodological:
       'Formulating questions, collecting and classifying information, representing it in tables and charts, and drawing conclusions supported by the data.',

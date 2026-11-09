@@ -40,11 +40,7 @@ export const paymentsAndTransactions_SkillGroup_Data = defineSkillGroup({
     kk: 'Төлемдер мен операциялар',
     qm: 'Ödemeler ve ameliyatlar',
   },
-  skills: [
-    paymentFeesAndTerms_Skill_Data,
-    paymentMethods_Skill_Data,
-    transactionConfirmation_Skill_Data,
-  ],
+  skills: [paymentFeesAndTerms_Skill_Data, paymentMethods_Skill_Data, transactionConfirmation_Skill_Data],
   description: {
     methodological: 'Money transfers involve different instruments, fees, timing, risks, and documentary evidence.',
     frontend: {

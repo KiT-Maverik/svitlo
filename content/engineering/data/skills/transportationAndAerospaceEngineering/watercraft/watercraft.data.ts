@@ -36,11 +36,7 @@ export const watercraft_SkillGroup_Data = defineSkillGroup({
     kk: 'Су көліктері',
     qm: 'Suv taşıtları',
   },
-  skills: [
-    hullDesignChoices_Skill_Data,
-    marinePropulsion_Skill_Data,
-    marineSteering_Skill_Data,
-  ],
+  skills: [hullDesignChoices_Skill_Data, marinePropulsion_Skill_Data, marineSteering_Skill_Data],
   description: {
     methodological:
       'Vessels need suitable hulls, propulsion and steering while managing stability and water resistance.',

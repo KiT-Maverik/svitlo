@@ -40,11 +40,7 @@ export const energyPerformance_SkillGroup_Data = defineSkillGroup({
     kk: 'Энергия тиімділігі',
     qm: 'Energiya faydalılığı',
   },
-  skills: [
-    estimateEnergyDemand_Skill_Data,
-    evaluateEnergyEfficiency_Skill_Data,
-    loadBalancing_Skill_Data,
-  ],
+  skills: [estimateEnergyDemand_Skill_Data, evaluateEnergyEfficiency_Skill_Data, loadBalancing_Skill_Data],
   description: {
     methodological:
       'Consumption varies over time, and practical output is less than input when converters or networks lose energy.',

@@ -36,10 +36,7 @@ export const openSource_SkillGroup_Data = defineSkillGroup({
     kk: 'Ашық бастапқы код',
     qm: 'Açıq menba',
   },
-  skills: [
-    distinguishOpenSourceFromPubliclyVisibleCode_Skill_Data,
-    explainOpenSource_Skill_Data,
-  ],
+  skills: [distinguishOpenSourceFromPubliclyVisibleCode_Skill_Data, explainOpenSource_Skill_Data],
   description: {
     methodological:
       'Software openness depends not only on visibility of source code but also on rights to use, modify, and distribute it.',

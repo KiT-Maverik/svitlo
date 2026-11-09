@@ -40,11 +40,7 @@ export const financialStabilityAndRegulation_SkillGroup_Data = defineSkillGroup(
     kk: 'Қаржылық тұрақтылық және реттеу',
     qm: 'Maliy sabitlik ve tertipleme',
   },
-  skills: [
-    depositInsurance_Skill_Data,
-    financialSupervision_Skill_Data,
-    systemicFinancialRisk_Skill_Data,
-  ],
+  skills: [depositInsurance_Skill_Data, financialSupervision_Skill_Data, systemicFinancialRisk_Skill_Data],
   description: {
     methodological:
       'Problems at individual intermediaries can spread through debt and confidence to the broader economy.',

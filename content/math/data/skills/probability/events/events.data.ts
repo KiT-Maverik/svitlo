@@ -36,11 +36,7 @@ export const events_SkillGroup_Data = defineSkillGroup({
     pl: 'Zdarzenia losowe',
     uk: 'Випадкові події',
   },
-  skills: [
-    certainImpossible_Skill_Data,
-    likelihoodLanguage_Skill_Data,
-    listOutcomes_Skill_Data,
-  ],
+  skills: [certainImpossible_Skill_Data, likelihoodLanguage_Skill_Data, listOutcomes_Skill_Data],
   description: {
     methodological:
       'Events as subsets of outcomes of a random experiment, identifying possible and impossible occurrences, and comparing chances under specified conditions. Mathematical probability is not restricted to qualitative estimates.',

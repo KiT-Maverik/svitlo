@@ -41,12 +41,7 @@ export const chemicalBonds_SkillGroup_Data = defineSkillGroup({
     kk: 'Химиялық байланыстар',
     qm: 'Kimyeviy bağlar',
   },
-  skills: [
-    bondPolarity_Skill_Data,
-    covalentBonding_Skill_Data,
-    ionicBonding_Skill_Data,
-    metallicBonding_Skill_Data,
-  ],
+  skills: [bondPolarity_Skill_Data, covalentBonding_Skill_Data, ionicBonding_Skill_Data, metallicBonding_Skill_Data],
   description: {
     methodological:
       'Different electron distributions support different limiting models of chemical bonding; real substances can have mixed characteristics.',

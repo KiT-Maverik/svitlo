@@ -36,11 +36,7 @@ export const programData_SkillGroup_Data = defineSkillGroup({
     kk: 'Бағдарлама деректері',
     qm: 'Programma malümatları',
   },
-  skills: [
-    updateProgramState_Skill_Data,
-    useAVariable_Skill_Data,
-    useInputData_Skill_Data,
-  ],
+  skills: [updateProgramState_Skill_Data, useAVariable_Skill_Data, useInputData_Skill_Data],
   description: {
     methodological:
       'Working with values received, stored, and changed at runtime: variables, types, inputs, and state transitions. This concerns data during code execution rather than external datasets for statistical analysis.',

@@ -26,9 +26,7 @@ function deepMerge(base, localized) {
   const merged = { ...base };
   for (const [key, value] of Object.entries(localized)) {
     merged[key] =
-      value && typeof value === 'object' && !Array.isArray(value)
-        ? deepMerge(merged[key] ?? {}, value)
-        : value;
+      value && typeof value === 'object' && !Array.isArray(value) ? deepMerge(merged[key] ?? {}, value) : value;
   }
   return merged;
 }
@@ -36,8 +34,14 @@ function deepMerge(base, localized) {
 test('publishes one complete base tree and exactly one sparse tree per supported language', () => {
   const { codes, graph, files } = resources();
   assert.equal(graph.length, 3);
-  assert.equal(graph.reduce((n, d) => n + (d.groups?.length ?? 0), 0), 5);
-  assert.equal(graph.reduce((n, d) => n + (d.groups ?? []).reduce((m, g) => m + g.skills.length, 0), 0), 9);
+  assert.equal(
+    graph.reduce((n, d) => n + (d.groups?.length ?? 0), 0),
+    5,
+  );
+  assert.equal(
+    graph.reduce((n, d) => n + (d.groups ?? []).reduce((m, g) => m + g.skills.length, 0), 0),
+    9,
+  );
   assert.equal(files.size, codes.length + 1);
   assert.deepEqual([...files.keys()], ['base.json', ...codes.map(code => code + '.json')]);
 
@@ -98,19 +102,40 @@ test('recursive merge restores a localized hierarchy while preserving IDs, metad
   assert.equal(skill.collection, 'skill');
   assert(skill.name.includes('[TEST uk]'));
   assert(skill.description.frontend.includes('[TEST uk]'));
-  assert.equal(skill.description.methodological, base.testColors.groups.testWarmColors.skills.testRecognizeRed.description.methodological);
+  assert.equal(
+    skill.description.methodological,
+    base.testColors.groups.testWarmColors.skills.testRecognizeRed.description.methodological,
+  );
 });
 
 test('preserves source order from root exports and nested configurator arrays, not alphabetical paths', () => {
   const { graph, files } = resources();
-  assert.deepEqual(graph.map(domain => domain.slug), ['testColors', 'testShapes', 'testLight']);
+  assert.deepEqual(
+    graph.map(domain => domain.slug),
+    ['testColors', 'testShapes', 'testLight'],
+  );
   const colors = graph[0];
-  assert.deepEqual(colors.groups.map(group => group.slug), ['testWarmColors', 'testCoolColors']);
-  assert.deepEqual(colors.groups[0].skills.map(skill => skill.slug), ['testRecognizeRed', 'testRecognizeOrange']);
+  assert.deepEqual(
+    colors.groups.map(group => group.slug),
+    ['testWarmColors', 'testCoolColors'],
+  );
+  assert.deepEqual(
+    colors.groups[0].skills.map(skill => skill.slug),
+    ['testRecognizeRed', 'testRecognizeOrange'],
+  );
   const base = JSON.parse(files.get('base.json'));
-  assert.deepEqual(Object.keys(base), graph.map(domain => domain.slug));
-  assert.deepEqual(Object.keys(base.testColors.groups), colors.groups.map(group => group.slug));
-  assert.deepEqual(Object.keys(base.testColors.groups.testWarmColors.skills), colors.groups[0].skills.map(skill => skill.slug));
+  assert.deepEqual(
+    Object.keys(base),
+    graph.map(domain => domain.slug),
+  );
+  assert.deepEqual(
+    Object.keys(base.testColors.groups),
+    colors.groups.map(group => group.slug),
+  );
+  assert.deepEqual(
+    Object.keys(base.testColors.groups.testWarmColors.skills),
+    colors.groups[0].skills.map(skill => skill.slug),
+  );
 });
 
 test('supports Domains with both direct Skills and Groups without duplicating the children', () => {
@@ -168,7 +193,9 @@ test('write/check publishes 30 flat files and removes obsolete per-entity direct
     const legacy = path.join(output, 'testColors/testWarmColors/testRecognizeRed/base.json');
     fs.mkdirSync(path.dirname(legacy), { recursive: true });
     fs.writeFileSync(legacy, '{}');
-    assert.deepEqual(checkPublishedFiles(output, files).stale, ['testColors/testWarmColors/testRecognizeRed/base.json']);
+    assert.deepEqual(checkPublishedFiles(output, files).stale, [
+      'testColors/testWarmColors/testRecognizeRed/base.json',
+    ]);
     fs.writeFileSync(path.join(output, 'base.json'), 'broken');
     assert.deepEqual(checkPublishedFiles(output, files).changed, ['base.json']);
     writePublishedFiles(output, files);

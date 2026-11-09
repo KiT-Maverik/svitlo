@@ -36,9 +36,7 @@ export const parity_SkillGroup_Data = defineSkillGroup({
     pl: 'Liczby parzyste i nieparzyste',
     uk: 'Парність',
   },
-  skills: [
-    evenOdd_Skill_Data,
-  ],
+  skills: [evenOdd_Skill_Data],
   description: {
     methodological:
       'Classifying natural numbers by whether a corresponding collection can be divided into pairs with no remainder.',

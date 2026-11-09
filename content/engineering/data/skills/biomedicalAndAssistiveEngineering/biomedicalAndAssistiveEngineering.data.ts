@@ -37,10 +37,7 @@ export const biomedicalAndAssistiveEngineering_SkillDomain_Data = defineSkillDom
     kk: 'Биомедициналық және көмекші инженерия',
     qm: 'Biotıbbiye ve yardımcı mühendislik',
   },
-  groups: [
-    assistiveAndMedicalProducts_SkillGroup_Data,
-    medicalMeasurementDevices_SkillGroup_Data,
-  ],
+  groups: [assistiveAndMedicalProducts_SkillGroup_Data, medicalMeasurementDevices_SkillGroup_Data],
   description: {
     methodological:
       'Devices supporting, measuring or interacting with human bodies must satisfy suitable physical interfaces, reliability and safe-use constraints. Clinical diagnosis and the biology of the human body remain outside this engineering domain.',

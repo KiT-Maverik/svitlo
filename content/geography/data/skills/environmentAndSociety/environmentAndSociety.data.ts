@@ -37,10 +37,7 @@ export const environmentAndSociety_SkillDomain_Data = defineSkillDomain({
     kk: 'Қоршаған орта және қоғам',
     qm: 'Çevre ve cemiyet',
   },
-  groups: [
-    humanEnvironmentInteractions_SkillGroup_Data,
-    naturalResources_SkillGroup_Data,
-  ],
+  groups: [humanEnvironmentInteractions_SkillGroup_Data, naturalResources_SkillGroup_Data],
   description: {
     methodological:
       'Natural resources, environmental constraints and human decisions influence one another across space. Geography examines rates of resource renewal, adaptation to local conditions, transformations of land and the travel of impacts between connected regions.',

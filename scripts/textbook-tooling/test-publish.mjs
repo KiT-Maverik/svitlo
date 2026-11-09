@@ -63,7 +63,10 @@ test('isolated package publishes exactly the manifest resources', t => {
     assert(skillFiles.includes('data/skills/qm.json'));
     assert(
       skillFiles.every(
-        name => name.startsWith('data/skills/') && name.split('/').length === 3 && /^(?:base|[a-z]{2,8})[.]json$/.test(name.split('/')[2]),
+        name =>
+          name.startsWith('data/skills/') &&
+          name.split('/').length === 3 &&
+          /^(?:base|[a-z]{2,8})[.]json$/.test(name.split('/')[2]),
       ),
       'Skills must not publish per-entity directories',
     );

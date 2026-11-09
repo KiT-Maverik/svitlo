@@ -36,11 +36,7 @@ export const acidBaseFundamentals_SkillGroup_Data = defineSkillGroup({
     kk: 'Қышқыл-негіз негіздері',
     qm: 'Asit ve baza esasları',
   },
-  skills: [
-    acidBaseModels_Skill_Data,
-    acidStrength_Skill_Data,
-    pH_Skill_Data,
-  ],
+  skills: [acidBaseModels_Skill_Data, acidStrength_Skill_Data, pH_Skill_Data],
   description: {
     methodological:
       'Conceptual acid–base models establish what counts as an acid or base, while strength and pH describe different aspects of chemical behavior and solution conditions.',

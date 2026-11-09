@@ -38,11 +38,7 @@ export const naturalRegionsAndBiogeography_SkillDomain_Data = defineSkillDomain(
     kk: 'Табиғи аймақтар және биогеография',
     qm: 'Tabiiy bölgeler ve biogeografiya',
   },
-  groups: [
-    biomesAndHabitats_SkillGroup_Data,
-    ecosystems_SkillGroup_Data,
-    environmentalGradients_SkillGroup_Data,
-  ],
+  groups: [biomesAndHabitats_SkillGroup_Data, ecosystems_SkillGroup_Data, environmentalGradients_SkillGroup_Data],
   description: {
     methodological:
       'Natural conditions create geographic variation in ecosystems, biodiversity and habitat patterns on land and in water. This field describes where ecological regions occur, how their distributions vary and how landscape changes affect them; organism physiology and detailed food-web mechanisms belong primarily to Biology.',

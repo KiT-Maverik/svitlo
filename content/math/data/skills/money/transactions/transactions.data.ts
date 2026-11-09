@@ -36,11 +36,7 @@ export const transactions_SkillGroup_Data = defineSkillGroup({
     pl: 'Zakupy',
     uk: 'Покупки',
   },
-  skills: [
-    calculateChange_Skill_Data,
-    unitPriceTotal_Skill_Data,
-    budgetConstraint_Skill_Data,
-  ],
+  skills: [calculateChange_Skill_Data, unitPriceTotal_Skill_Data, budgetConstraint_Skill_Data],
   description: {
     methodological:
       'Using monetary calculations for unit prices, quantities, purchase totals, change, and limited budgets.',

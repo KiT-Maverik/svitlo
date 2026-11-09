@@ -83,14 +83,17 @@ export function SkillsPageSettingsProvider({
     setSettings(current => ({ ...current, [key]: value }));
   }, []);
 
-  const setLocale = useCallback((next: Locale) => {
-    const parsed = supportedLocale(next);
-    if (!parsed) throw new Error('Непідтримувана мова Skills: ' + next);
-    const language = DEFAULT_SUPPORTED_LANGUAGES.find(entry => entry.locale === parsed)?.language;
-    if (!language) throw new Error('Немає мовного коду для ' + parsed);
-    // Request new Next.js Server Component props; do not fetch resources on the client.
-    onLanguageChange?.(language);
-  }, [onLanguageChange]);
+  const setLocale = useCallback(
+    (next: Locale) => {
+      const parsed = supportedLocale(next);
+      if (!parsed) throw new Error('Непідтримувана мова Skills: ' + next);
+      const language = DEFAULT_SUPPORTED_LANGUAGES.find(entry => entry.locale === parsed)?.language;
+      if (!language) throw new Error('Немає мовного коду для ' + parsed);
+      // Request new Next.js Server Component props; do not fetch resources on the client.
+      onLanguageChange?.(language);
+    },
+    [onLanguageChange],
+  );
 
   const setLanguageCode = useCallback(
     (code: string) => {

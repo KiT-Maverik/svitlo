@@ -37,10 +37,7 @@ export const money_SkillDomain_Data = defineSkillDomain({
     pl: 'Pieniądze',
     uk: 'Гроші',
   },
-  groups: [
-    denominations_SkillGroup_Data,
-    transactions_SkillGroup_Data,
-  ],
+  groups: [denominations_SkillGroup_Data, transactions_SkillGroup_Data],
   description: {
     methodological:
       'Applications of arithmetic to monetary denominations, composing and comparing amounts, calculating costs and change, and selecting purchases within a budget.',

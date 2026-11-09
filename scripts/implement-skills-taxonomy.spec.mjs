@@ -162,10 +162,7 @@ test('English-only create needs no reviewed translations and keeps locales visib
     assert.match(skill, /frontend: \{\s*en: /);
     assert.match(skill, /^  name: \{\n    en: "Compare Angles",\n  \},$/m);
     assert.match(skill, /^    frontend: \{\n      en: "Explore this topic\.",\n    \},$/m);
-    assert.match(
-      skill,
-      /^import \{ defineSkill \} from '@svitlo\/engine';\n\nexport const compareAngles_Skill_Data/m,
-    );
+    assert.match(skill, /^import \{ defineSkill \} from '@svitlo\/engine';\n\nexport const compareAngles_Skill_Data/m);
     assert.doesNotMatch(skill, /["'](?:en|uk)["']\s*:/);
     assert.match(skill, /methodological: "Definition of Compare Angles\."/);
     assert.match(domain, /en: "Geometry"/);

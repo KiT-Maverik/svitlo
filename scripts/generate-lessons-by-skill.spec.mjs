@@ -20,15 +20,11 @@ function withRepository(run) {
   try {
     put(
       'content/math/data/skills/numbers/addition/skills/one.data.ts',
-      "export const one_Skill_Data = defineSkill({ id: '" +
-        SKILL_ONE +
-        "', name: { en: 'Meaning of addition' } });\n",
+      "export const one_Skill_Data = defineSkill({ id: '" + SKILL_ONE + "', name: { en: 'Meaning of addition' } });\n",
     );
     put(
       'content/math/data/skills/numbers/addition/skills/two.data.ts',
-      "export const two_Skill_Data = defineSkill({ id: '" +
-        SKILL_TWO +
-        "', name: { en: 'Addition practice' } });\n",
+      "export const two_Skill_Data = defineSkill({ id: '" + SKILL_TWO + "', name: { en: 'Addition practice' } });\n",
     );
     const base = 'content/math/data/lessons/c/' + LESSON_ONE + '/';
     put(

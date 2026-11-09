@@ -40,11 +40,7 @@ export const structuralChange_SkillGroup_Data = defineSkillGroup({
     kk: 'Құрылымдық өзгерістер',
     qm: 'Quruluş deñişmeleri',
   },
-  skills: [
-    sectoralEconomicStructure_Skill_Data,
-    structuralTransformation_Skill_Data,
-    technologicalCatchUp_Skill_Data,
-  ],
+  skills: [sectoralEconomicStructure_Skill_Data, structuralTransformation_Skill_Data, technologicalCatchUp_Skill_Data],
   description: {
     methodological:
       'As productivity increases, the shares of industries and occupations and the organization of work change.',

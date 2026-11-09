@@ -37,10 +37,7 @@ export const acidBaseChemistry_SkillDomain_Data = defineSkillDomain({
     kk: 'Қышқылдар мен негіздер химиясы',
     qm: 'Asit ve bazalar kimiyası',
   },
-  groups: [
-    acidBaseFundamentals_SkillGroup_Data,
-    acidBaseSystems_SkillGroup_Data,
-  ],
+  groups: [acidBaseFundamentals_SkillGroup_Data, acidBaseSystems_SkillGroup_Data],
   description: {
     methodological:
       'Acid–base chemistry concerns proton transfer, electron-pair interactions, acidity, and the behavior of chemical systems under relevant conditions. Its models, solution properties, transformations and analytical methods are broader than reaction-pattern classification alone.',

@@ -38,11 +38,7 @@ export const aestheticsAndPhilosophyOfArt_SkillDomain_Data = defineSkillDomain({
     kk: 'Эстетика және өнер философиясы',
     qm: 'Estetika ve sanat felsefesi',
   },
-  groups: [
-    aestheticJudgment_SkillGroup_Data,
-    artAndInterpretation_SkillGroup_Data,
-    valueAndTaste_SkillGroup_Data,
-  ],
+  groups: [aestheticJudgment_SkillGroup_Data, artAndInterpretation_SkillGroup_Data, valueAndTaste_SkillGroup_Data],
   description: {
     methodological:
       'Aesthetic inquiry asks why experiences, works, and environments are judged beautiful, expressive, meaningful, or artistically valuable. Its focus is justification and concepts of value, not techniques of making art.',

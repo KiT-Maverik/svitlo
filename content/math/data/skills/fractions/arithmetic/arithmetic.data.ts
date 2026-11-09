@@ -36,10 +36,7 @@ export const arithmetic_SkillGroup_Data = defineSkillGroup({
     pl: 'Działania na ułamkach',
     uk: 'Обчислення з дробами',
   },
-  skills: [
-    addLikeDenominators_Skill_Data,
-    subtractLikeDenominators_Skill_Data,
-  ],
+  skills: [addLikeDenominators_Skill_Data, subtractLikeDenominators_Skill_Data],
   description: {
     methodological:
       'Changing the number of equal parts of the same whole through addition or subtraction with a common denominator.',

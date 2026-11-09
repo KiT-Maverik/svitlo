@@ -37,10 +37,7 @@ export const radiation_SkillDomain_Data = defineSkillDomain({
     kk: 'Сәулелену',
     qm: 'Nurlanuv',
   },
-  groups: [
-    electromagneticRadiation_SkillGroup_Data,
-    radiationAndMatter_SkillGroup_Data,
-  ],
+  groups: [electromagneticRadiation_SkillGroup_Data, radiationAndMatter_SkillGroup_Data],
   description: {
     methodological:
       'Radiation describes energy transfer from a source through space, including invisible parts of the electromagnetic spectrum and their interaction with matter. Geometric image formation with light belongs to Optics.',

@@ -40,11 +40,7 @@ export const cosmicComponentsAndConstraints_SkillGroup_Data = defineSkillGroup({
     ka: 'კოსმოსის შემადგენლობა და შეზღუდვები',
     kk: 'Ғарыштық құрамдастар мен шектеулер',
   },
-  skills: [
-    darkEnergyEvidence_Skill_Data,
-    darkMatterEvidence_Skill_Data,
-    limitsOfCosmologicalKnowledge_Skill_Data,
-  ],
+  skills: [darkEnergyEvidence_Skill_Data, darkMatterEvidence_Skill_Data, limitsOfCosmologicalKnowledge_Skill_Data],
   description: {
     methodological:
       'Gravitational and expansion measurements constrain otherwise unseen components, while cosmological parameters and theoretical uncertainties limit the interpretations that can be supported by available evidence.',

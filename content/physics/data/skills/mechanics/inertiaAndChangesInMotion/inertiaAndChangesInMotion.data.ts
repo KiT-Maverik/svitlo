@@ -39,10 +39,7 @@ export const inertiaAndChangesInMotion_SkillGroup_Data = defineSkillGroup({
     kk: 'Инерция және қозғалыстың өзгерістері',
     qm: 'İnertsiya ve areketniñ deñişmeleri',
   },
-  skills: [
-    distinguishUniformFromNonuniformMotion_Skill_Data,
-    recognizeManifestationsOfInertiaInMotion_Skill_Data,
-  ],
+  skills: [distinguishUniformFromNonuniformMotion_Skill_Data, recognizeManifestationsOfInertiaInMotion_Skill_Data],
   description: {
     methodological:
       'A body may continue moving after an applied action ceases, while changes in motion are associated with interaction; accessible models do not require equations of motion.',

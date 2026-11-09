@@ -143,9 +143,11 @@ export function SkillsMindMap({ domains }: { domains: readonly SkillNode[] }) {
   const error = '';
   const [collapsed, setCollapsed] = useState<Set<string>>(() => {
     const all = flattenSkillNodes(domains);
-    return new Set(all.length > 45
-      ? all.filter(node => node.kind === 'skillGroup' && node.children.length > 0).map(node => node.id)
-      : []);
+    return new Set(
+      all.length > 45
+        ? all.filter(node => node.kind === 'skillGroup' && node.children.length > 0).map(node => node.id)
+        : [],
+    );
   });
   // Card detail is independent from whether a Domain/Group branch is visible.
   const [expandedSkills, setExpandedSkills] = useState<Set<string>>(() => new Set());
@@ -182,7 +184,6 @@ export function SkillsMindMap({ domains }: { domains: readonly SkillNode[] }) {
   const didInitialFit = useRef(false);
   const handledFitRequest = useRef(0);
   const [fitRequest, setFitRequest] = useState(0);
-
 
   useEffect(() => {
     const element = viewportRef.current;

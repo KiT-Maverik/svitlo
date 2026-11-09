@@ -36,11 +36,7 @@ export const circles_SkillGroup_Data = defineSkillGroup({
     pl: 'Okręgi i koła',
     uk: 'Коло та круг',
   },
-  skills: [
-    circleDisk_Skill_Data,
-    radiusDiameter_Skill_Data,
-    drawCircle_Skill_Data,
-  ],
+  skills: [circleDisk_Skill_Data, radiusDiameter_Skill_Data, drawCircle_Skill_Data],
   description: {
     methodological:
       'The circumference as the boundary of a disk, its center, radius and diameter, and constructing a circle at a fixed distance from its center.',

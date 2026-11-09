@@ -37,10 +37,7 @@ export const geographicInquiry_SkillDomain_Data = defineSkillDomain({
     kk: 'Географиялық зерттеу',
     qm: 'Coğrafiy araştırma',
   },
-  groups: [
-    decisionsAndCommunication_SkillGroup_Data,
-    evidenceAndInvestigation_SkillGroup_Data,
-  ],
+  groups: [decisionsAndCommunication_SkillGroup_Data, evidenceAndInvestigation_SkillGroup_Data],
   description: {
     methodological:
       'Geographic investigation turns observations about places into reasoned evidence, maps, comparisons and decisions. It includes asking spatial questions, collecting and scrutinizing data, evaluating alternatives and communicating conclusions rather than memorizing a particular set of locations.',

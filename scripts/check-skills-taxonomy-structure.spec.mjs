@@ -91,10 +91,7 @@ test('mixed Domain with Groups and direct Skills is structurally valid', t => {
         'import { angles_SkillGroup_Data }',
         "import { rectangle_Skill_Data } from './skills';\nimport { angles_SkillGroup_Data }",
       )
-      .replace(
-        'groups: [angles_SkillGroup_Data]',
-        'groups: [angles_SkillGroup_Data], skills: [rectangle_Skill_Data]',
-      ),
+      .replace('groups: [angles_SkillGroup_Data]', 'groups: [angles_SkillGroup_Data], skills: [rectangle_Skill_Data]'),
   );
   assert.deepEqual(checkTaxonomy(root), { domains: 1, groups: 1, skills: 2 });
   const source = fs.readFileSync(file, 'utf8');

@@ -36,11 +36,7 @@ export const conditions_SkillGroup_Data = defineSkillGroup({
     pl: 'Analiza treści zadania',
     uk: 'Аналіз умови задачі',
   },
-  skills: [
-    identifyKnownUnknown_Skill_Data,
-    findExtraneousData_Skill_Data,
-    findMissingData_Skill_Data,
-  ],
+  skills: [identifyKnownUnknown_Skill_Data, findExtraneousData_Skill_Data, findMissingData_Skill_Data],
   description: {
     methodological:
       'Separating the question, known data, and implicit assumptions in a word problem before choosing an arithmetic operation.',

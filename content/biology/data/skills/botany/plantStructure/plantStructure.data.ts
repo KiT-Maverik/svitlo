@@ -36,10 +36,7 @@ export const plantStructure_SkillGroup_Data = defineSkillGroup({
     kk: 'Өсімдіктер құрылысы',
     qm: 'Ösümliklerniñ quruluşu',
   },
-  skills: [
-    identifyMajorPlantOrgans_Skill_Data,
-    relatePlantOrgansToTheirFunctions_Skill_Data,
-  ],
+  skills: [identifyMajorPlantOrgans_Skill_Data, relatePlantOrgansToTheirFunctions_Skill_Data],
   description: {
     methodological:
       'Plant organs perform different tasks: anchorage, absorption, transport, photosynthesis, and reproduction; their functions must be distinguished from their names.',

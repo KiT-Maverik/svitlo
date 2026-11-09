@@ -36,11 +36,7 @@ export const natureOfMoney_SkillGroup_Data = defineSkillGroup({
     kk: 'Ақшаның табиғаты',
     qm: 'Aqçanıñ tabiatı',
   },
-  skills: [
-    formsOfMoney_Skill_Data,
-    functionsOfMoney_Skill_Data,
-    purchasingPowerOfMoney_Skill_Data,
-  ],
+  skills: [formsOfMoney_Skill_Data, functionsOfMoney_Skill_Data, purchasingPowerOfMoney_Skill_Data],
   description: {
     methodological:
       'Money functions as a generally accepted means of payment and a unit for measuring value across different institutional forms.',

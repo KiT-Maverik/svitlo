@@ -36,11 +36,7 @@ export const denominations_SkillGroup_Data = defineSkillGroup({
     pl: 'Kwoty pieniędzy',
     uk: 'Грошові суми',
   },
-  skills: [
-    recognizeDenominations_Skill_Data,
-    composeAmount_Skill_Data,
-    compareAmounts_Skill_Data,
-  ],
+  skills: [recognizeDenominations_Skill_Data, composeAmount_Skill_Data, compareAmounts_Skill_Data],
   description: {
     methodological:
       'Monetary value represented by coins and banknotes of a specific currency, equivalent denomination combinations, and comparisons between amounts.',

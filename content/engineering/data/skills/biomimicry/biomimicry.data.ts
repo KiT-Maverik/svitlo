@@ -37,10 +37,7 @@ export const biomimicry_SkillDomain_Data = defineSkillDomain({
     kk: 'Биомимикрия',
     qm: 'Tabiatqa taqlit',
   },
-  groups: [
-    bioInspiredTechnologies_SkillGroup_Data,
-    natureInspiredDesign_SkillGroup_Data,
-  ],
+  groups: [bioInspiredTechnologies_SkillGroup_Data, natureInspiredDesign_SkillGroup_Data],
   description: {
     methodological:
       'Nature-inspired engineering abstracts useful functional strategies from living systems and subjects technical adaptations to testing. Evolution is not intentional design, and merely studying an organism is not itself an engineering competency.',

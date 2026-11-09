@@ -36,11 +36,7 @@ export const marketOutcomes_SkillGroup_Data = defineSkillGroup({
     kk: 'Нарық нәтижелері',
     qm: 'Bazar neticeleri',
   },
-  skills: [
-    consumerSurplus_Skill_Data,
-    deadweightLoss_Skill_Data,
-    producerSurplus_Skill_Data,
-  ],
+  skills: [consumerSurplus_Skill_Data, deadweightLoss_Skill_Data, producerSurplus_Skill_Data],
   description: {
     methodological:
       'Gains from exchange and forgone opportunities help characterize welfare created or lost through economic choices under given market conditions.',

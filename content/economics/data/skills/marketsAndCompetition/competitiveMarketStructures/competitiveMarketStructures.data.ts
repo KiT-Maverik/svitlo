@@ -40,11 +40,7 @@ export const competitiveMarketStructures_SkillGroup_Data = defineSkillGroup({
     kk: 'Бәсекелі нарық құрылымдары',
     qm: 'Raqiplikli bazar quruluşları',
   },
-  skills: [
-    barriersToMarketEntry_Skill_Data,
-    marketPower_Skill_Data,
-    typesOfMarketCompetition_Skill_Data,
-  ],
+  skills: [barriersToMarketEntry_Skill_Data, marketPower_Skill_Data, typesOfMarketCompetition_Skill_Data],
   description: {
     methodological:
       'Participant numbers and market power, product differentiation, information, and barriers to entry influence competitive behavior and outcomes.',

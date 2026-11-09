@@ -39,10 +39,7 @@ export const socialAndEnvironmentalImpactOfComputing_SkillGroup_Data = defineSki
     kk: 'Есептеу технологияларының әлеуметтік және экологиялық әсері',
     qm: 'Esaplavnıñ ictimaiy ve tabiatqa tesiri',
   },
-  skills: [
-    assessAnAlgorithmsImpactOnUserGroups_Skill_Data,
-    assessComputingsEnvironmentalImpact_Skill_Data,
-  ],
+  skills: [assessAnAlgorithmsImpactOnUserGroups_Skill_Data, assessComputingsEnvironmentalImpact_Skill_Data],
   description: {
     methodological:
       "Digital systems may affect social groups and the environment through uneven benefits and harms, energy consumption, material use, and electronic waste. Evaluation requires a specific context, not an abstract 'good/bad' label.",

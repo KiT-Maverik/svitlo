@@ -36,11 +36,7 @@ export const quantities_SkillGroup_Data = defineSkillGroup({
     pl: 'Zadania o wielkościach',
     uk: 'Задачі на величини',
   },
-  skills: [
-    workRateTime_Skill_Data,
-    priceQuantityCost_Skill_Data,
-    measurementContext_Skill_Data,
-  ],
+  skills: [workRateTime_Skill_Data, priceQuantityCost_Skill_Data, measurementContext_Skill_Data],
   description: {
     methodological: 'Practical relationships among work rate, time, price, quantity, mass, capacity, and length.',
   },

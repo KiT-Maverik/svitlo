@@ -38,11 +38,7 @@ export const designPatterns_SkillDomain_Data = defineSkillDomain({
     kk: 'Жобалау үлгілері',
     qm: 'Tasarlav şablonları',
   },
-  groups: [
-    behavioral_SkillGroup_Data,
-    creational_SkillGroup_Data,
-    structural_SkillGroup_Data,
-  ],
+  groups: [behavioral_SkillGroup_Data, creational_SkillGroup_Data, structural_SkillGroup_Data],
   description: {
     methodological:
       'The classic Gang of Four catalog describes 23 reusable structures for common object-design problems. Its three families focus on instance creation, component composition, and interactions. The existence of a pattern does not mean every problem should be made more complex to use one.',

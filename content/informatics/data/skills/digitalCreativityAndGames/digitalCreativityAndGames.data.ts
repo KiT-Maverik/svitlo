@@ -38,11 +38,7 @@ export const digitalCreativityAndGames_SkillDomain_Data = defineSkillDomain({
     kk: 'Цифрлық шығармашылық және ойындар',
     qm: 'Raqamlı yaratıcılıq ve oyunlar',
   },
-  groups: [
-    digitalMaterials_SkillGroup_Data,
-    gameDesign_SkillGroup_Data,
-    proceduralGeneration_SkillGroup_Data,
-  ],
+  groups: [digitalMaterials_SkillGroup_Data, gameDesign_SkillGroup_Data, proceduralGeneration_SkillGroup_Data],
   description: {
     methodological:
       'Creating and editing digital content, game mechanics and rules, and procedural generation of resources. Digital product UX has its own domain, while the use of musical or engineering learning tools does not in itself create Informatics skills.',

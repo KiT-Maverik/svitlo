@@ -40,11 +40,7 @@ export const general_SkillGroup_Data = defineSkillGroup({
     pl: 'Ogólne umiejętności mierzenia',
     uk: 'Загальні вимірювальні навички',
   },
-  skills: [
-    standardUnitPurpose_Skill_Data,
-    chooseAppropriateUnit_Skill_Data,
-    wordProblemsMeasures_Skill_Data,
-  ],
+  skills: [standardUnitPurpose_Skill_Data, chooseAppropriateUnit_Skill_Data, wordProblemsMeasures_Skill_Data],
   description: {
     methodological:
       'General principles for choosing units, reconciling measurements, and calculating with comparable quantities.',

@@ -87,7 +87,11 @@ function readCode(file, kind) {
   const ast = sourceFile(file, source);
   let found;
   function walk(n) {
-    if (ts.isCallExpression(n) && ts.isIdentifier(n.expression) && [ 'build' + kind + 'Config', 'define' + kind ].includes(n.expression.text)) {
+    if (
+      ts.isCallExpression(n) &&
+      ts.isIdentifier(n.expression) &&
+      ['build' + kind + 'Config', 'define' + kind].includes(n.expression.text)
+    ) {
       if (found || n.arguments.length !== 1 || !ts.isObjectLiteralExpression(n.arguments[0]))
         throw Error('Ambiguous ' + kind + ' config: ' + file);
       found = n.arguments[0];
@@ -290,7 +294,10 @@ function existing(e) {
   const frontendProp = optionalProperty(desc, 'frontend');
   const frontend = frontendProp ? dict(unwrap(frontendProp.initializer), 'frontend') : undefined;
   for (const p of code.config.properties)
-    if (!ts.isPropertyAssignment(p) || !['slug', 'id', 'name', 'title', 'description', 'groups', 'skills'].includes(p.name.text))
+    if (
+      !ts.isPropertyAssignment(p) ||
+      !['slug', 'id', 'name', 'title', 'description', 'groups', 'skills'].includes(p.name.text)
+    )
       throw Error('Unsupported config property; refusing rewrite: ' + rel(f));
   return { slug, id, name, frontend, methodological };
 }
@@ -419,7 +426,10 @@ function stableMembership(e, kids) {
   if (e.kind === 'Skill') return true;
   const old = readCode(fileOf(e), e.kind).config;
   if (optionalProperty(old, 'groupIds') || optionalProperty(old, 'skillIds')) return false;
-  for (const [field, kind] of [['groups', 'SkillGroup'], ['skills', 'Skill']]) {
+  for (const [field, kind] of [
+    ['groups', 'SkillGroup'],
+    ['skills', 'Skill'],
+  ]) {
     if (field === 'groups' && e.kind === 'SkillGroup') continue;
     const members = kids.filter(x => x.kind === kind);
     const prop = optionalProperty(old, field);
@@ -437,8 +447,12 @@ function stableMembership(e, kids) {
       if (value.properties.length !== members.length) return false;
       for (const member of members) {
         const entry = value.properties.find(p => ts.isPropertyAssignment(p) && p.name?.text === member.slug);
-        if (!entry || !ts.isIdentifier(entry.initializer) ||
-            entry.initializer.text !== member.slug + '_' + kind + '_Data') return false;
+        if (
+          !entry ||
+          !ts.isIdentifier(entry.initializer) ||
+          entry.initializer.text !== member.slug + '_' + kind + '_Data'
+        )
+          return false;
       }
     } else return false;
   }

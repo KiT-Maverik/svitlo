@@ -36,10 +36,7 @@ export const portions_SkillGroup_Data = defineSkillGroup({
     pl: 'Ułamkowe części wielkości',
     uk: 'Частини величини',
   },
-  skills: [
-    findUnitPart_Skill_Data,
-    reconstructWhole_Skill_Data,
-  ],
+  skills: [findUnitPart_Skill_Data, reconstructWhole_Skill_Data],
   description: {
     methodological:
       'Moving between a whole quantity and its unit fractional part through division and the inverse operation.',

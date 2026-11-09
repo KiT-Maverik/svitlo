@@ -36,10 +36,7 @@ export const sustainabilityAndIntertemporalChoice_SkillGroup_Data = defineSkillG
     kk: 'Тұрақтылық және уақыт аралық таңдау',
     qm: 'Devamlılıq ve zamanlarara saylav',
   },
-  skills: [
-    discountingFutureConsequences_Skill_Data,
-    intergenerationalEconomicImpacts_Skill_Data,
-  ],
+  skills: [discountingFutureConsequences_Skill_Data, intergenerationalEconomicImpacts_Skill_Data],
   description: {
     methodological:
       'Present decisions can change future resource availability, risks, and wellbeing across generations.',

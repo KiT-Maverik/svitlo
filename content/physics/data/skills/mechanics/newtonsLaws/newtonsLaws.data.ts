@@ -40,11 +40,7 @@ export const newtonsLaws_SkillGroup_Data = defineSkillGroup({
     kk: 'Ньютон заңдары',
     qm: 'Nyutonnıñ qanunları',
   },
-  skills: [
-    explainNewtonsFirstLaw_Skill_Data,
-    explainNewtonsSecondLaw_Skill_Data,
-    explainNewtonsThirdLaw_Skill_Data,
-  ],
+  skills: [explainNewtonsFirstLaw_Skill_Data, explainNewtonsSecondLaw_Skill_Data, explainNewtonsThirdLaw_Skill_Data],
   description: {
     methodological:
       "Newton's laws establish the relationships among forces, inertia, and changes in bodies' motion in the appropriate reference frames.",

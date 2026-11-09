@@ -32,10 +32,10 @@ function owned(name, allowRetiredAnalytics = false) {
   return (
     typeof name === 'string' &&
     !isAbsolute(name) &&
-    (
-      /^(?:data\/skills|data\/pages\/lessons|data\/pages\/courses|textbooks\/[a-z][a-z-]*)\/[a-zA-Z0-9_./-]+$/.test(name) ||
-      (allowRetiredAnalytics && /^data\/pages\/skillAnalytics\/[a-z]{2,8}\.json$/.test(name))
-    ) &&
+    (/^(?:data\/skills|data\/pages\/lessons|data\/pages\/courses|textbooks\/[a-z][a-z-]*)\/[a-zA-Z0-9_./-]+$/.test(
+      name,
+    ) ||
+      (allowRetiredAnalytics && /^data\/pages\/skillAnalytics\/[a-z]{2,8}\.json$/.test(name))) &&
     (name.startsWith('data/') || name.startsWith('textbooks/' + id + '/')) &&
     name.split('/').every(part => part && part !== '.' && part !== '..')
   );
@@ -95,8 +95,7 @@ function publish(args) {
   const names = readManifest(manifestFile);
   if (
     id === 'playground' &&
-    (!names.some(name => name.startsWith('data/pages/lessons/')) ||
-      !names.includes('data/skills/base.json'))
+    (!names.some(name => name.startsWith('data/pages/lessons/')) || !names.includes('data/skills/base.json'))
   ) {
     fail('missing required lesson or Skills resources in build');
   }

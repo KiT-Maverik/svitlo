@@ -36,11 +36,7 @@ export const earthMoonInteractions_SkillGroup_Data = defineSkillGroup({
     kk: 'Жер мен Айдың өзара әрекеттесуі',
     qm: 'Yer ile Ay arasındaki qarşılıqlı tesir',
   },
-  skills: [
-    lunarOrbitAndMonth_Skill_Data,
-    lunarTidalEvolution_Skill_Data,
-    oceanTides_Skill_Data,
-  ],
+  skills: [lunarOrbitAndMonth_Skill_Data, lunarTidalEvolution_Skill_Data, oceanTides_Skill_Data],
   description: {
     methodological:
       'The Earth–Moon system is a long-term dynamical pair whose interactions create measurable effects on Earth and its satellite.',

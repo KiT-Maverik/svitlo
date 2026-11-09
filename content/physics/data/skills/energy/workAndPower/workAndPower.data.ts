@@ -36,10 +36,7 @@ export const workAndPower_SkillGroup_Data = defineSkillGroup({
     kk: 'Жұмыс пен қуат',
     qm: 'İş ve quvet',
   },
-  skills: [
-    explainMechanicalWork_Skill_Data,
-    explainThePhysicalMeaningOfPower_Skill_Data,
-  ],
+  skills: [explainMechanicalWork_Skill_Data, explainThePhysicalMeaningOfPower_Skill_Data],
   description: {
     methodological:
       'Work describes energy transfer by a force during displacement, while power describes the rate of energy transfer.',
