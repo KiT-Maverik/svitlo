@@ -1,8 +1,8 @@
 // Synthetic Playground fixtures: locale-tagged placeholders, not translations.
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 import { testExplainLightTravel_Skill_Data } from './skills';
 
-export const testLightPropagation_SkillGroup_Data = buildSkillGroupConfig({
+export const testLightPropagation_SkillGroup_Data = defineSkillGroup({
   id: '00000000-0000-4000-8000-000000000016',
   slug: 'testLightPropagation',
   name: {
@@ -36,5 +36,39 @@ export const testLightPropagation_SkillGroup_Data = buildSkillGroupConfig({
     kk: '[TEST kk] Light propagation',
     qm: '[TEST qm] Light propagation',
   },
-  skills: { testExplainLightTravel: testExplainLightTravel_Skill_Data },
+  skills: [ testExplainLightTravel_Skill_Data ],
+  description: {
+    methodological: "Synthetic Playground fixture for testLightPropagation; testing only, not curricular content.",
+    frontend: {
+      en: "[TEST en] Synthetic testLightPropagation fixture.",
+      zh: "[TEST zh] Synthetic testLightPropagation fixture.",
+      hi: "[TEST hi] Synthetic testLightPropagation fixture.",
+      es: "[TEST es] Synthetic testLightPropagation fixture.",
+      ar: "[TEST ar] Synthetic testLightPropagation fixture.",
+      fr: "[TEST fr] Synthetic testLightPropagation fixture.",
+      bn: "[TEST bn] Synthetic testLightPropagation fixture.",
+      pt: "[TEST pt] Synthetic testLightPropagation fixture.",
+      ur: "[TEST ur] Synthetic testLightPropagation fixture.",
+      id: "[TEST id] Synthetic testLightPropagation fixture.",
+      de: "[TEST de] Synthetic testLightPropagation fixture.",
+      ja: "[TEST ja] Synthetic testLightPropagation fixture.",
+      ko: "[TEST ko] Synthetic testLightPropagation fixture.",
+      tr: "[TEST tr] Synthetic testLightPropagation fixture.",
+      vi: "[TEST vi] Synthetic testLightPropagation fixture.",
+      ta: "[TEST ta] Synthetic testLightPropagation fixture.",
+      te: "[TEST te] Synthetic testLightPropagation fixture.",
+      mr: "[TEST mr] Synthetic testLightPropagation fixture.",
+      ms: "[TEST ms] Synthetic testLightPropagation fixture.",
+      he: "[TEST he] Synthetic testLightPropagation fixture.",
+      pl: "[TEST pl] Synthetic testLightPropagation fixture.",
+      uk: "[TEST uk] Synthetic testLightPropagation fixture.",
+      lt: "[TEST lt] Synthetic testLightPropagation fixture.",
+      lv: "[TEST lv] Synthetic testLightPropagation fixture.",
+      et: "[TEST et] Synthetic testLightPropagation fixture.",
+      be: "[TEST be] Synthetic testLightPropagation fixture.",
+      ka: "[TEST ka] Synthetic testLightPropagation fixture.",
+      kk: "[TEST kk] Synthetic testLightPropagation fixture.",
+      qm: "[TEST qm] Synthetic testLightPropagation fixture.",
+    },
+  },
 });
