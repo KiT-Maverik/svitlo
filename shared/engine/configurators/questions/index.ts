@@ -1,10 +1,10 @@
 import { z } from 'zod';
 import { assessmentMethods_AssessmentMethod_Ids } from '@svitlo/contracts/content';
-import { childDefinition, defineStructured, localizedText, uuid, slug, resolvedProps } from '../structured';
+import { defineStructured, localizedText, uuid, slug, resolvedProps } from '../structured';
 import type { DefinitionLanguages } from '../structured';
-import type { ContentBlockDefinition } from '../contentBlocks/defineRemaining';
+import { contentBlockChild } from '../contentBlocks';
 
-const block = () => childDefinition<ContentBlockDefinition>();
+const block = () => contentBlockChild();
 const blocks = () => z.tuple([block()], block());
 const texts = <L extends DefinitionLanguages>(l: L) => localizedText(l);
 const assessmentKeys = Object.keys(assessmentMethods_AssessmentMethod_Ids) as [
