@@ -1,8 +1,10 @@
 import type { DeepPartial } from '#types';
 
-import { skill_Config_Schema, skill_Props_Schema, type Skill_Config } from './defineSkill.schemas';
+import { skill_Config_Schema, type Skill_Config } from './defineSkill.schemas';
 
 export function defineSkill(config: Skill_Config) {
+  skill_Config_Schema.parse(config);
+
   const { id, description, slug, name } = config;
 
   const base = {
@@ -15,10 +17,6 @@ export function defineSkill(config: Skill_Config) {
     config: {
       base,
       locales: () => ({ name, description: { frontend: description.frontend } }) satisfies DeepPartial<Skill_Config>,
-      test: {
-        config: () => skill_Config_Schema.safeParse(config).success,
-        props: (props: unknown) => skill_Props_Schema.safeParse(props).success,
-      },
     },
   };
 }
