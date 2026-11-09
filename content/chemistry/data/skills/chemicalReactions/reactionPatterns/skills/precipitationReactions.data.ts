@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const precipitationReactions_Skill_Data = buildSkillConfig({
+export const precipitationReactions_Skill_Data = defineSkill({
   slug: 'precipitationReactions',
   id: 'cad239d7-3bc4-4787-b07f-5a6d5d529dac',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainObjectOrientedProgramming_Skill_Data = buildSkillConfig({
+export const explainObjectOrientedProgramming_Skill_Data = defineSkill({
   slug: 'explainObjectOrientedProgramming',
   id: '8c6f945f-5add-4006-925d-0e4264ee80ec',
   name: {

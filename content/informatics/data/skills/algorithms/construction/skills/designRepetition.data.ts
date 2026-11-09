@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const designRepetition_Skill_Data = buildSkillConfig({
+export const designRepetition_Skill_Data = defineSkill({
   slug: 'designRepetition',
   id: 'f3e6d410-108b-46b7-bdf3-29aac565ed46',
   name: {

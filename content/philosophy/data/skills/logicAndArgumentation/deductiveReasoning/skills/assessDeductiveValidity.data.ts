@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const assessDeductiveValidity_Skill_Data = buildSkillConfig({
+export const assessDeductiveValidity_Skill_Data = defineSkill({
   slug: 'assessDeductiveValidity',
   id: '96f9b6c3-b770-4753-aa7b-cdbefddefd0d',
   name: {

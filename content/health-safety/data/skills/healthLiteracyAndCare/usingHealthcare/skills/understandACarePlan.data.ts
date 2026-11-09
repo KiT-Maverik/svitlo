@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const understandACarePlan_Skill_Data = buildSkillConfig({
+export const understandACarePlan_Skill_Data = defineSkill({
   slug: 'understandACarePlan',
   id: '2bb82ddf-6303-4dc1-a83b-49413617a16a',
   name: {

@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { atmospheresAndWeather_SkillGroup_Data } from './atmospheresAndWeather/atmospheresAndWeather.data';
 import { interiorsAndVolatiles_SkillGroup_Data } from './interiorsAndVolatiles/interiorsAndVolatiles.data';
 import { planetaryClasses_SkillGroup_Data } from './planetaryClasses/planetaryClasses.data';
 import { surfacesAndGeology_SkillGroup_Data } from './surfacesAndGeology/surfacesAndGeology.data';
 
-export const planetaryScience_SkillDomain_Data = buildSkillDomainConfig({
+export const planetaryScience_SkillDomain_Data = defineSkillDomain({
   slug: 'planetaryScience',
   id: 'adbaa859-119a-45d7-a929-9de4d468542b',
-  name: {
+  title: {
     en: 'Planetary Science',
     zh: '行星科学',
     hi: 'ग्रह विज्ञान',
@@ -39,12 +39,12 @@ export const planetaryScience_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Планетология',
     qm: 'Seyyareler ilimi',
   },
-  groups: {
-    atmospheresAndWeather: atmospheresAndWeather_SkillGroup_Data,
-    interiorsAndVolatiles: interiorsAndVolatiles_SkillGroup_Data,
-    planetaryClasses: planetaryClasses_SkillGroup_Data,
-    surfacesAndGeology: surfacesAndGeology_SkillGroup_Data,
-  },
+  groups: [
+    atmospheresAndWeather_SkillGroup_Data,
+    interiorsAndVolatiles_SkillGroup_Data,
+    planetaryClasses_SkillGroup_Data,
+    surfacesAndGeology_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Planetary science compares worlds by their surfaces, interiors, atmospheres and volatile materials. It uses Earth as one comparative case, but its categories also apply to moons, dwarf planets and worlds beyond the Solar System.',

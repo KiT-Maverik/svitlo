@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const useAVariable_Skill_Data = buildSkillConfig({
+export const useAVariable_Skill_Data = defineSkill({
   slug: 'useAVariable',
   id: '896d2bb4-2aa9-4c5c-baca-ea2ae000dc08',
   name: {

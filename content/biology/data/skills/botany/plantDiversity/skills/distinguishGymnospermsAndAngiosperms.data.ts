@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishGymnospermsAndAngiosperms_Skill_Data = buildSkillConfig({
+export const distinguishGymnospermsAndAngiosperms_Skill_Data = defineSkill({
   slug: 'distinguishGymnospermsAndAngiosperms',
   id: 'a75ac475-5459-4ac2-bd24-39cf53c03326',
   name: {

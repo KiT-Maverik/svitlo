@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const gridMapNavigation_Skill_Data = buildSkillConfig({
+export const gridMapNavigation_Skill_Data = defineSkill({
   slug: 'gridMapNavigation',
   id: '43b1fdd6-0846-4c0c-a01b-375a6fec3b2f',
   name: {

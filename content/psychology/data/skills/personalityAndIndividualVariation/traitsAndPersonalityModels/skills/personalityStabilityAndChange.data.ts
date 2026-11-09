@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const personalityStabilityAndChange_Skill_Data = buildSkillConfig({
+export const personalityStabilityAndChange_Skill_Data = defineSkill({
   slug: 'personalityStabilityAndChange',
   id: 'ecbd2bbf-2034-48a6-bcfe-00f503700f75',
   name: {

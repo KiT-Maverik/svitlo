@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareDevelopmentWithAndWithoutMetamorphosis_Skill_Data = buildSkillConfig({
+export const compareDevelopmentWithAndWithoutMetamorphosis_Skill_Data = defineSkill({
   slug: 'compareDevelopmentWithAndWithoutMetamorphosis',
   id: '8ca2ea87-fb7c-439c-886e-b6972c8db18b',
   name: {

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   circadianTiming_Skill_Data,
@@ -7,7 +7,7 @@ import {
   sleepStages_Skill_Data,
 } from './skills';
 
-export const sleepAndDailyRhythms_SkillGroup_Data = buildSkillGroupConfig({
+export const sleepAndDailyRhythms_SkillGroup_Data = defineSkillGroup({
   slug: 'sleepAndDailyRhythms',
   id: '3fce520d-43ba-4158-aeef-48c54372bbb5',
   name: {
@@ -41,12 +41,12 @@ export const sleepAndDailyRhythms_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Ұйқы және тәуліктік ырғақтар',
     qm: 'Yuqu ve künlük ritmler',
   },
-  skills: {
-    circadianTiming: circadianTiming_Skill_Data,
-    sleepAndMemory: sleepAndMemory_Skill_Data,
-    sleepDeprivationEffects: sleepDeprivationEffects_Skill_Data,
-    sleepStages: sleepStages_Skill_Data,
-  },
+  skills: [
+    circadianTiming_Skill_Data,
+    sleepAndMemory_Skill_Data,
+    sleepDeprivationEffects_Skill_Data,
+    sleepStages_Skill_Data,
+  ],
   description: {
     methodological:
       'Circadian timing and sleep states influence subsequent cognitive functioning, distinct from clinical sleep diagnosis.',

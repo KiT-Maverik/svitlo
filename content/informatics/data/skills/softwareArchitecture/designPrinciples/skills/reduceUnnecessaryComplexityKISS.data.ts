@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const reduceUnnecessaryComplexityKISS_Skill_Data = buildSkillConfig({
+export const reduceUnnecessaryComplexityKISS_Skill_Data = defineSkill({
   slug: 'reduceUnnecessaryComplexityKISS',
   id: 'c51781c1-1fda-47a7-9714-bdec0cb50352',
   name: {

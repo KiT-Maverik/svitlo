@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const nazcaCulture_Skill_Data = buildSkillConfig({
+export const nazcaCulture_Skill_Data = defineSkill({
   slug: 'nazcaCulture',
   id: 'f007b6d7-8d2e-4c3a-9ec2-df53352db41c',
   name: {

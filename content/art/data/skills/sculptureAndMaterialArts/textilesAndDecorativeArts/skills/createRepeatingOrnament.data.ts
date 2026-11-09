@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const createRepeatingOrnament_Skill_Data = buildSkillConfig({
+export const createRepeatingOrnament_Skill_Data = defineSkill({
   slug: 'createRepeatingOrnament',
   id: '1ed560b9-806b-451f-ba6a-455d53c9ce98',
   name: {

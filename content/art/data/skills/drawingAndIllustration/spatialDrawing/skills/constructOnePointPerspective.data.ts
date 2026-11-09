@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const constructOnePointPerspective_Skill_Data = buildSkillConfig({
+export const constructOnePointPerspective_Skill_Data = defineSkill({
   slug: 'constructOnePointPerspective',
   id: '3c48e48f-032b-47f6-9cb7-8d537e162837',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const mixPigmentColors_Skill_Data = buildSkillConfig({
+export const mixPigmentColors_Skill_Data = defineSkill({
   slug: 'mixPigmentColors',
   id: '54109c4a-510b-44bb-a16e-7fb3e31c20ee',
   name: {

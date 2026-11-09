@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const checkWithInverse_Skill_Data = buildSkillConfig({
+export const checkWithInverse_Skill_Data = defineSkill({
   slug: 'checkWithInverse',
   id: 'e336b8c9-07bf-44fa-beda-80663c3a87a4',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainThePurposeOfIP_Skill_Data = buildSkillConfig({
+export const explainThePurposeOfIP_Skill_Data = defineSkill({
   slug: 'explainThePurposeOfIP',
   id: 'f75e6d5a-0f53-4be0-9d45-8a7dd0ce7c7d',
   name: {

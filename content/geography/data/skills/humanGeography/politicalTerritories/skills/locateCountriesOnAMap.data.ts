@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const locateCountriesOnAMap_Skill_Data = buildSkillConfig({
+export const locateCountriesOnAMap_Skill_Data = defineSkill({
   slug: 'locateCountriesOnAMap',
   id: '6db76bde-5aa4-4a64-80bf-a752b0a9ee16',
   name: {

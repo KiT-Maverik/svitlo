@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const deadweightLoss_Skill_Data = buildSkillConfig({
+export const deadweightLoss_Skill_Data = defineSkill({
   slug: 'deadweightLoss',
   id: 'b791b139-b46a-4fa7-8cf0-1e4d50d030a0',
   name: {

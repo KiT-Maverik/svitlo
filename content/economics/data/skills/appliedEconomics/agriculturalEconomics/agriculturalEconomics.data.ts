@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   agriculturalMarkets_Skill_Data,
@@ -6,7 +6,7 @@ import {
   foodSecurityAsAnEconomicIssue_Skill_Data,
 } from './skills';
 
-export const agriculturalEconomics_SkillGroup_Data = buildSkillGroupConfig({
+export const agriculturalEconomics_SkillGroup_Data = defineSkillGroup({
   slug: 'agriculturalEconomics',
   id: 'd31cc523-188d-488b-972b-f222877bc173',
   name: {
@@ -40,11 +40,11 @@ export const agriculturalEconomics_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Ауыл шаруашылығы экономикасы',
     qm: 'Ziraat iqtisadı',
   },
-  skills: {
-    agriculturalMarkets: agriculturalMarkets_Skill_Data,
-    agriculturalSeasonalityAndRisk: agriculturalSeasonalityAndRisk_Skill_Data,
-    foodSecurityAsAnEconomicIssue: foodSecurityAsAnEconomicIssue_Skill_Data,
-  },
+  skills: [
+    agriculturalMarkets_Skill_Data,
+    agriculturalSeasonalityAndRisk_Skill_Data,
+    foodSecurityAsAnEconomicIssue_Skill_Data,
+  ],
   description: {
     methodological:
       'Biological cycles, uncertain weather, land use, and international exchange shape agricultural markets.',

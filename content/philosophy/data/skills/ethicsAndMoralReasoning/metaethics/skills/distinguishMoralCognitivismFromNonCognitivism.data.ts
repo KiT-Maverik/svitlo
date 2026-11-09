@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishMoralCognitivismFromNonCognitivism_Skill_Data = buildSkillConfig({
+export const distinguishMoralCognitivismFromNonCognitivism_Skill_Data = defineSkill({
   slug: 'distinguishMoralCognitivismFromNonCognitivism',
   id: 'fac5f632-bd40-4934-bda0-69200cd2b3ba',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const chooseAnAppropriateLevelOfHealthcare_Skill_Data = buildSkillConfig({
+export const chooseAnAppropriateLevelOfHealthcare_Skill_Data = defineSkill({
   slug: 'chooseAnAppropriateLevelOfHealthcare',
   id: 'd9fed1f1-9981-4216-8117-56c3eb1720b5',
   name: {

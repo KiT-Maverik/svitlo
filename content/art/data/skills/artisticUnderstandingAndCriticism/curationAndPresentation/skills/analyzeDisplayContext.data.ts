@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeDisplayContext_Skill_Data = buildSkillConfig({
+export const analyzeDisplayContext_Skill_Data = defineSkill({
   slug: 'analyzeDisplayContext',
   id: '4765dc0e-020b-4ce2-91ff-934674bd285e',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const providePsychologicalFirstAid_Skill_Data = buildSkillConfig({
+export const providePsychologicalFirstAid_Skill_Data = defineSkill({
   slug: 'providePsychologicalFirstAid',
   id: 'eeb5f1a3-bf05-4fd5-92c5-dd0c57b743d7',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const coordinateSoundAndImage_Skill_Data = buildSkillConfig({
+export const coordinateSoundAndImage_Skill_Data = defineSkill({
   slug: 'coordinateSoundAndImage',
   id: '8194a531-cf7f-41a8-ad1e-ea360615c94a',
   name: {

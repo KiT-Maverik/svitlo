@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const centrifugation_Skill_Data = buildSkillConfig({
+export const centrifugation_Skill_Data = defineSkill({
   slug: 'centrifugation',
   id: '2111bc41-dbd2-473d-a2f7-f14817afcd0e',
   name: {

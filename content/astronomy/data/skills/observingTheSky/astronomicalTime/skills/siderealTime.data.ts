@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const siderealTime_Skill_Data = buildSkillConfig({
+export const siderealTime_Skill_Data = defineSkill({
   slug: 'siderealTime',
   id: 'f8287f39-a8a4-4c79-a4ba-c7083d09197b',
   name: {

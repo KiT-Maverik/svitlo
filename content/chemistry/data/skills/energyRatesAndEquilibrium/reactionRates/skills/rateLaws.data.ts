@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const rateLaws_Skill_Data = buildSkillConfig({
+export const rateLaws_Skill_Data = defineSkill({
   slug: 'rateLaws',
   id: '09f4ff58-32ef-48ee-a524-0105387419cb',
   name: {

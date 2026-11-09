@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const decorateACeramicSurface_Skill_Data = buildSkillConfig({
+export const decorateACeramicSurface_Skill_Data = defineSkill({
   slug: 'decorateACeramicSurface',
   id: '36423be2-dab0-4d05-98b7-b1e17ed81deb',
   name: {

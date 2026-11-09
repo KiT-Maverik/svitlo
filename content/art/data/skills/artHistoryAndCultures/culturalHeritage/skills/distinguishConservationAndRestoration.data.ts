@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishConservationAndRestoration_Skill_Data = buildSkillConfig({
+export const distinguishConservationAndRestoration_Skill_Data = defineSkill({
   slug: 'distinguishConservationAndRestoration',
   id: 'b01359eb-7246-43da-83de-03591aa32b1b',
   name: {

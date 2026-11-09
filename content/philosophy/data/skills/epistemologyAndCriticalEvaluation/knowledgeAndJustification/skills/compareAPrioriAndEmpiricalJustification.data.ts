@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareAPrioriAndEmpiricalJustification_Skill_Data = buildSkillConfig({
+export const compareAPrioriAndEmpiricalJustification_Skill_Data = defineSkill({
   slug: 'compareAPrioriAndEmpiricalJustification',
   id: '0ec8701e-f6f4-470e-8e19-7ff433efe49e',
   name: {

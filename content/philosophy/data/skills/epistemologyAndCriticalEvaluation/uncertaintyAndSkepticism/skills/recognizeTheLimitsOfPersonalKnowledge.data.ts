@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeTheLimitsOfPersonalKnowledge_Skill_Data = buildSkillConfig({
+export const recognizeTheLimitsOfPersonalKnowledge_Skill_Data = defineSkill({
   slug: 'recognizeTheLimitsOfPersonalKnowledge',
   id: '0987f8e8-aecb-46a7-aad2-2ac5bf179bf9',
   name: {

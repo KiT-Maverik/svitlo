@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const copperBronzeAndIron_Skill_Data = buildSkillConfig({
+export const copperBronzeAndIron_Skill_Data = defineSkill({
   slug: 'copperBronzeAndIron',
   id: 'b0be1d1b-7236-46e7-b810-066f55bc499b',
   name: {

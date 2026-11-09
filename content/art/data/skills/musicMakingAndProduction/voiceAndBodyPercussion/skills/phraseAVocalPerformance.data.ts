@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const phraseAVocalPerformance_Skill_Data = buildSkillConfig({
+export const phraseAVocalPerformance_Skill_Data = defineSkill({
   slug: 'phraseAVocalPerformance',
   id: 'b1bcf721-510d-44c4-bc3d-e9c88650b3ef',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const empiricalFormulas_Skill_Data = buildSkillConfig({
+export const empiricalFormulas_Skill_Data = defineSkill({
   slug: 'empiricalFormulas',
   id: '35af22a1-4559-4f20-9f0b-ceafc5e16ed1',
   name: {

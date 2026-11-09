@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   compareSetsOfObservations_Skill_Data,
@@ -7,7 +7,7 @@ import {
   readAChart_Skill_Data,
 } from './skills';
 
-export const statisticalInvestigation_SkillGroup_Data = buildSkillGroupConfig({
+export const statisticalInvestigation_SkillGroup_Data = defineSkillGroup({
   slug: 'statisticalInvestigation',
   id: '89da9de7-eea1-4dc8-a2e0-998747bacc47',
   name: {
@@ -41,12 +41,12 @@ export const statisticalInvestigation_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Статистикалық зерттеу',
     qm: 'Statistik araştırma',
   },
-  skills: {
-    compareSetsOfObservations: compareSetsOfObservations_Skill_Data,
-    constructASimpleChart: constructASimpleChart_Skill_Data,
-    findTheMostFrequentValue: findTheMostFrequentValue_Skill_Data,
-    readAChart: readAChart_Skill_Data,
-  },
+  skills: [
+    compareSetsOfObservations_Skill_Data,
+    constructASimpleChart_Skill_Data,
+    findTheMostFrequentValue_Skill_Data,
+    readAChart_Skill_Data,
+  ],
   description: {
     methodological:
       'Read and create visual representations of datasets, find frequencies, and compare observations. Statistical conclusions describe data and are not equivalent to predicting a random outcome.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const useFossilsAsEvidenceOfPastEnvironments_Skill_Data = buildSkillConfig({
+export const useFossilsAsEvidenceOfPastEnvironments_Skill_Data = defineSkill({
   slug: 'useFossilsAsEvidenceOfPastEnvironments',
   id: '28006c55-444d-407b-a473-7940a38bf018',
   name: {

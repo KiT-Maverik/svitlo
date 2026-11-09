@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyLaserDeviceHazards_Skill_Data = buildSkillConfig({
+export const identifyLaserDeviceHazards_Skill_Data = defineSkill({
   slug: 'identifyLaserDeviceHazards',
   id: '452e6154-09af-439e-a3c4-6dd0a910bd9b',
   name: {

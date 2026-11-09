@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const tallyMarks_Skill_Data = buildSkillConfig({
+export const tallyMarks_Skill_Data = defineSkill({
   slug: 'tallyMarks',
   id: '8930fd33-d7d2-448f-a97c-637053e95731',
   name: {

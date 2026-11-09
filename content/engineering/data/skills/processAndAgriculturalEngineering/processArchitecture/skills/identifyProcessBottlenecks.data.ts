@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyProcessBottlenecks_Skill_Data = buildSkillConfig({
+export const identifyProcessBottlenecks_Skill_Data = defineSkill({
   slug: 'identifyProcessBottlenecks',
   id: 'ae29ef55-d22a-4d64-92cd-bc1852ac56a9',
   name: {

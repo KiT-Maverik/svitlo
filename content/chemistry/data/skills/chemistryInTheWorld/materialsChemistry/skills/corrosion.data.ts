@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const corrosion_Skill_Data = buildSkillConfig({
+export const corrosion_Skill_Data = defineSkill({
   slug: 'corrosion',
   id: '033cd50c-2adc-43e0-b5a4-1ac3938c4d5a',
   name: {

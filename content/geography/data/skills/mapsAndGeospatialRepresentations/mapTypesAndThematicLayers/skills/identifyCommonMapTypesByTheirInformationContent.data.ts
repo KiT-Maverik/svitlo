@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyCommonMapTypesByTheirInformationContent_Skill_Data = buildSkillConfig({
+export const identifyCommonMapTypesByTheirInformationContent_Skill_Data = defineSkill({
   slug: 'identifyCommonMapTypesByTheirInformationContent',
   id: '89a00d18-137f-4a46-a9d8-66b41fc77acb',
   name: {

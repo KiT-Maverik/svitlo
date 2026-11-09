@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const illusionsOfLearning_Skill_Data = buildSkillConfig({
+export const illusionsOfLearning_Skill_Data = defineSkill({
   slug: 'illusionsOfLearning',
   id: 'b2d5cb25-5ebb-4f78-967f-90132015baeb',
   name: {

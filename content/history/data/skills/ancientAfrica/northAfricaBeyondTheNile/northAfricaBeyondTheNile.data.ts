@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   carthage_Skill_Data,
@@ -7,7 +7,7 @@ import {
   numidianKingdoms_Skill_Data,
 } from './skills';
 
-export const northAfricaBeyondTheNile_SkillGroup_Data = buildSkillGroupConfig({
+export const northAfricaBeyondTheNile_SkillGroup_Data = defineSkillGroup({
   slug: 'northAfricaBeyondTheNile',
   id: '1a0ba7c6-d424-4499-8f24-f4e1138fc594',
   name: {
@@ -41,12 +41,12 @@ export const northAfricaBeyondTheNile_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Ніл аңғарынан тыс Солтүстік Африка',
     qm: 'Nil vadisinden tışqarı Şimaliy Afrika',
   },
-  skills: {
-    carthage: carthage_Skill_Data,
-    garamantes: garamantes_Skill_Data,
-    northAfricanCulturalInteractions: northAfricanCulturalInteractions_Skill_Data,
-    numidianKingdoms: numidianKingdoms_Skill_Data,
-  },
+  skills: [
+    carthage_Skill_Data,
+    garamantes_Skill_Data,
+    northAfricanCulturalInteractions_Skill_Data,
+    numidianKingdoms_Skill_Data,
+  ],
   description: {
     methodological:
       'Carthaginian, Numidian, and Saharan societies maintained their own political traditions amid Mediterranean and inland contacts.',

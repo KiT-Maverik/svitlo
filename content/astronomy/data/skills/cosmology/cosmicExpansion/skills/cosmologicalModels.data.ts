@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const cosmologicalModels_Skill_Data = buildSkillConfig({
+export const cosmologicalModels_Skill_Data = defineSkill({
   slug: 'cosmologicalModels',
   id: '3870fed0-7810-4684-baab-10740ff2b36a',
   name: {

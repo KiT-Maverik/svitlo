@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const dipoleInteractions_Skill_Data = buildSkillConfig({
+export const dipoleInteractions_Skill_Data = defineSkill({
   slug: 'dipoleInteractions',
   id: '7249f214-e786-4e99-9128-287f721add3e',
   name: {

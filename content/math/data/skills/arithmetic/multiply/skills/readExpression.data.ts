@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const readExpression_Skill_Data = buildSkillConfig({
+export const readExpression_Skill_Data = defineSkill({
   slug: 'readExpression',
   id: 'cb983432-175a-41ae-8655-468c2325f7cd',
   name: {

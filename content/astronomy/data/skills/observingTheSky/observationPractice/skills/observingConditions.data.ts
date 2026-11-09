@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const observingConditions_Skill_Data = buildSkillConfig({
+export const observingConditions_Skill_Data = defineSkill({
   slug: 'observingConditions',
   id: 'e03d9418-ddf6-4202-946a-6e76d2deeb85',
   name: {

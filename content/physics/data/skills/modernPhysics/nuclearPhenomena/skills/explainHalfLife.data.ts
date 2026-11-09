@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainHalfLife_Skill_Data = buildSkillConfig({
+export const explainHalfLife_Skill_Data = defineSkill({
   slug: 'explainHalfLife',
   id: 'abd2d230-07c6-4986-bbdb-9434cac88287',
   name: {

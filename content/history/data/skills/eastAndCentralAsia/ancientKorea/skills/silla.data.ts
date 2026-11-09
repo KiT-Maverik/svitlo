@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const silla_Skill_Data = buildSkillConfig({
+export const silla_Skill_Data = defineSkill({
   slug: 'silla',
   id: '06470589-cc59-44df-9cc2-a57c0889b464',
   name: {

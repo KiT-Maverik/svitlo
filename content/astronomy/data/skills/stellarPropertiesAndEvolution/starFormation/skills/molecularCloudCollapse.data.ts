@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const molecularCloudCollapse_Skill_Data = buildSkillConfig({
+export const molecularCloudCollapse_Skill_Data = defineSkill({
   slug: 'molecularCloudCollapse',
   id: '448b5df6-04d3-4d3a-b52d-c70ae70137ef',
   name: {

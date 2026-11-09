@@ -1,11 +1,11 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { classifyObjectsAsLivingDeadOrNeverAlive_Skill_Data } from './skills';
 
-export const characteristicsOfLivingThings_SkillDomain_Data = buildSkillDomainConfig({
+export const characteristicsOfLivingThings_SkillDomain_Data = defineSkillDomain({
   slug: 'characteristicsOfLivingThings',
   id: '73cc6edd-aa56-4999-966f-0c647868cabc',
-  name: {
+  title: {
     en: 'Characteristics of Living Things',
     zh: '生命的特征',
     hi: 'जीवित वस्तुओं की विशेषताएँ',
@@ -36,10 +36,8 @@ export const characteristicsOfLivingThings_SkillDomain_Data = buildSkillDomainCo
     kk: 'Тірі ағзалардың белгілері',
     qm: 'Canlılarnıñ hususiyetleri',
   },
-  groups: {},
-  skills: {
-    classifyObjectsAsLivingDeadOrNeverAlive: classifyObjectsAsLivingDeadOrNeverAlive_Skill_Data,
-  },
+  groups: [],
+  skills: [classifyObjectsAsLivingDeadOrNeverAlive_Skill_Data],
   description: {
     methodological:
       'Life processes, biological origin, and the distinction between living organisms, dead remains, and things that have never been alive. This distinction requires consideration of actual life processes rather than appearance or movement alone.',

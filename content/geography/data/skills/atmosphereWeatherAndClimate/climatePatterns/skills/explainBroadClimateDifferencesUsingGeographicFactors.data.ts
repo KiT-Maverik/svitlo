@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainBroadClimateDifferencesUsingGeographicFactors_Skill_Data = buildSkillConfig({
+export const explainBroadClimateDifferencesUsingGeographicFactors_Skill_Data = defineSkill({
   slug: 'explainBroadClimateDifferencesUsingGeographicFactors',
   id: '5029e61f-2077-4c23-9d62-06aad33c35c0',
   name: {

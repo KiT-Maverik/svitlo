@@ -10,10 +10,6 @@ export * from './schemas';
 export { getLanguageCode, getSupportedLanguages, isLocale, getLocaleDirection } from './utils/languages';
 export { splitLessonValue } from './lessons/splitLessonValue';
 export { resolveEntityPath } from './utils/entityPath/resolveEntityPath.utils';
-export { validateSkillUuid, validateSkillChildren } from './utils/builders/config/validateSkillChildren.utils';
-export { validateSkillConfig, buildSkillConfig } from './utils/builders/config/buildSkillConfig.utils';
-export { buildSkillGroupConfig } from './utils/builders/config/buildSkillGroupConfig.utils';
-export { buildSkillDomainConfig } from './utils/builders/config/buildSkillDomainConfig.utils';
 export { createLocalizedFileLocations } from './utils/createLocalizedFileLocations/createLocalizedFileLocations.utils';
 export type {
   CreateLocalizedFileLocationsOptions,

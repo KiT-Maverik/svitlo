@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const stoichiometricRatios_Skill_Data = buildSkillConfig({
+export const stoichiometricRatios_Skill_Data = defineSkill({
   slug: 'stoichiometricRatios',
   id: '050ebfa5-4ea4-4848-a223-d0cd5deb91ea',
   name: {

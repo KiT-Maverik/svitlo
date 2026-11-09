@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainOpenSource_Skill_Data = buildSkillConfig({
+export const explainOpenSource_Skill_Data = defineSkill({
   slug: 'explainOpenSource',
   id: 'fb133b51-d056-43b1-8ece-d5d93483bd61',
   name: {

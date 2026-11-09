@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareMotionOnDifferentSurfaces_Skill_Data = buildSkillConfig({
+export const compareMotionOnDifferentSurfaces_Skill_Data = defineSkill({
   slug: 'compareMotionOnDifferentSurfaces',
   id: '2896b349-011b-4bb8-978a-c6d31a674a5a',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeUkrainianBaroqueIconPainting_Skill_Data = buildSkillConfig({
+export const analyzeUkrainianBaroqueIconPainting_Skill_Data = defineSkill({
   slug: 'analyzeUkrainianBaroqueIconPainting',
   id: '7653d186-1e75-48fd-a061-0f71e84c3a08',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishTokensCharactersAndWords_Skill_Data = buildSkillConfig({
+export const distinguishTokensCharactersAndWords_Skill_Data = defineSkill({
   slug: 'distinguishTokensCharactersAndWords',
   id: '90cdf202-da8d-4d0e-a710-1cddf0de9c68',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const linesAndPoints_Skill_Data = buildSkillConfig({
+export const linesAndPoints_Skill_Data = defineSkill({
   slug: 'linesAndPoints',
   id: '32258326-50ad-496c-a202-059bff6828b6',
   name: {

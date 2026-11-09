@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const weekMonthYear_Skill_Data = buildSkillConfig({
+export const weekMonthYear_Skill_Data = defineSkill({
   slug: 'weekMonthYear',
   id: '3fccd9a5-9094-400e-8401-be2fa98cbfa6',
   name: {

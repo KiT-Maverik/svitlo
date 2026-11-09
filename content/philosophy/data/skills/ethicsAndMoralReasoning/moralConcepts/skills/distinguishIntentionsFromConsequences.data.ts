@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishIntentionsFromConsequences_Skill_Data = buildSkillConfig({
+export const distinguishIntentionsFromConsequences_Skill_Data = defineSkill({
   slug: 'distinguishIntentionsFromConsequences',
   id: 'd3c4d43f-0956-40f6-883d-dbc660e4893d',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interstellarChemicalCycling_Skill_Data = buildSkillConfig({
+export const interstellarChemicalCycling_Skill_Data = defineSkill({
   slug: 'interstellarChemicalCycling',
   id: '7c752177-67d2-4dd4-a2f1-fd0dc557e9a2',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const traceTechnicalFaults_Skill_Data = buildSkillConfig({
+export const traceTechnicalFaults_Skill_Data = defineSkill({
   slug: 'traceTechnicalFaults',
   id: '9c1ede4e-664a-4096-9284-507be793e26c',
   name: {

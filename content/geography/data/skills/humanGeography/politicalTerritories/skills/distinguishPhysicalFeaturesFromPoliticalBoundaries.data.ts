@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishPhysicalFeaturesFromPoliticalBoundaries_Skill_Data = buildSkillConfig({
+export const distinguishPhysicalFeaturesFromPoliticalBoundaries_Skill_Data = defineSkill({
   slug: 'distinguishPhysicalFeaturesFromPoliticalBoundaries',
   id: 'b50b79f8-23af-46d8-88b0-6ac18ca67568',
   name: {

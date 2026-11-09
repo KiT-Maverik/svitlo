@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const performSyncopation_Skill_Data = buildSkillConfig({
+export const performSyncopation_Skill_Data = defineSkill({
   slug: 'performSyncopation',
   id: 'd69083f0-78e8-4632-81fc-370c541b27a7',
   name: {

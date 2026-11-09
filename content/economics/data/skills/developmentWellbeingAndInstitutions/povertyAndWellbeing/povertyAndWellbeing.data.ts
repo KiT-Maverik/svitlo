@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   absoluteAndRelativePoverty_Skill_Data,
@@ -6,7 +6,7 @@ import {
   multidimensionalPoverty_Skill_Data,
 } from './skills';
 
-export const povertyAndWellbeing_SkillGroup_Data = buildSkillGroupConfig({
+export const povertyAndWellbeing_SkillGroup_Data = defineSkillGroup({
   slug: 'povertyAndWellbeing',
   id: '08c40c03-8d1c-490f-8e68-a3ce11baf921',
   name: {
@@ -40,11 +40,11 @@ export const povertyAndWellbeing_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Кедейлік және әл-ауқат',
     qm: 'Faqırlıq ve refah',
   },
-  skills: {
-    absoluteAndRelativePoverty: absoluteAndRelativePoverty_Skill_Data,
-    humanDevelopmentIndicators: humanDevelopmentIndicators_Skill_Data,
-    multidimensionalPoverty: multidimensionalPoverty_Skill_Data,
-  },
+  skills: [
+    absoluteAndRelativePoverty_Skill_Data,
+    humanDevelopmentIndicators_Skill_Data,
+    multidimensionalPoverty_Skill_Data,
+  ],
   description: {
     methodological:
       'Assessing living conditions requires attention to income, opportunities, and access to essential goods.',

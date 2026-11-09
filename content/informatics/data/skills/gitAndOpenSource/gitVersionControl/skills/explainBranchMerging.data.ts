@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainBranchMerging_Skill_Data = buildSkillConfig({
+export const explainBranchMerging_Skill_Data = defineSkill({
   slug: 'explainBranchMerging',
   id: 'f19dc47a-5c06-404e-9ad2-b5127517eaa8',
   name: {

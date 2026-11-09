@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const normativeSocialInfluence_Skill_Data = buildSkillConfig({
+export const normativeSocialInfluence_Skill_Data = defineSkill({
   slug: 'normativeSocialInfluence',
   id: '08ce2a5b-25f4-4eb5-aead-1b04a0b51de7',
   name: {

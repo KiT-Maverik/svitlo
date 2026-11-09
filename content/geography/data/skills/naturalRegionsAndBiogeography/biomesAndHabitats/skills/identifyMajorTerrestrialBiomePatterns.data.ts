@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyMajorTerrestrialBiomePatterns_Skill_Data = buildSkillConfig({
+export const identifyMajorTerrestrialBiomePatterns_Skill_Data = defineSkill({
   slug: 'identifyMajorTerrestrialBiomePatterns',
   id: '5815531c-060d-482c-81fa-c50ef8379a44',
   name: {

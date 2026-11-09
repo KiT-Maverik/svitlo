@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const agriculturalSeasonalityAndRisk_Skill_Data = buildSkillConfig({
+export const agriculturalSeasonalityAndRisk_Skill_Data = defineSkill({
   slug: 'agriculturalSeasonalityAndRisk',
   id: '30c2d2c7-0dad-4384-81e2-c0c81946674e',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeArtisticMetaphor_Skill_Data = buildSkillConfig({
+export const analyzeArtisticMetaphor_Skill_Data = defineSkill({
   slug: 'analyzeArtisticMetaphor',
   id: '578f26db-2e1d-4325-939a-2752e177b352',
   name: {

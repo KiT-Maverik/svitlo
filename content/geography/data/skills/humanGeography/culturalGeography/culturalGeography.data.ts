@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   compareCulturalLandscapesAcrossPlaces_Skill_Data,
@@ -7,7 +7,7 @@ import {
   recognizeHumanInfluencesOnACulturalLandscape_Skill_Data,
 } from './skills';
 
-export const culturalGeography_SkillGroup_Data = buildSkillGroupConfig({
+export const culturalGeography_SkillGroup_Data = defineSkillGroup({
   slug: 'culturalGeography',
   id: '0c32e711-1217-4b60-9fba-feb0158b0a02',
   name: {
@@ -41,13 +41,12 @@ export const culturalGeography_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Мәдени география',
     qm: 'Medeniy coğrafiya',
   },
-  skills: {
-    compareCulturalLandscapesAcrossPlaces: compareCulturalLandscapesAcrossPlaces_Skill_Data,
-    explainGeographicDiffusionOfCulturalPractices: explainGeographicDiffusionOfCulturalPractices_Skill_Data,
-    interpretTheGeographicDistributionOfCulturalCharacteristics:
-      interpretTheGeographicDistributionOfCulturalCharacteristics_Skill_Data,
-    recognizeHumanInfluencesOnACulturalLandscape: recognizeHumanInfluencesOnACulturalLandscape_Skill_Data,
-  },
+  skills: [
+    compareCulturalLandscapesAcrossPlaces_Skill_Data,
+    explainGeographicDiffusionOfCulturalPractices_Skill_Data,
+    interpretTheGeographicDistributionOfCulturalCharacteristics_Skill_Data,
+    recognizeHumanInfluencesOnACulturalLandscape_Skill_Data,
+  ],
   description: {
     methodological:
       'Languages, practices, built environments and cultural identities form geographic distributions that evolve through human movement and interaction. Geographic interpretation describes spatial patterns and diffusion without assigning one culture to all inhabitants of a territory.',

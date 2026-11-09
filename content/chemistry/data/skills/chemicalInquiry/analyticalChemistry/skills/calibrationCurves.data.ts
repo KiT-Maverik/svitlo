@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const calibrationCurves_Skill_Data = buildSkillConfig({
+export const calibrationCurves_Skill_Data = defineSkill({
   slug: 'calibrationCurves',
   id: '7ea3082d-a96d-488b-b1b3-df3fdc9cba84',
   name: {

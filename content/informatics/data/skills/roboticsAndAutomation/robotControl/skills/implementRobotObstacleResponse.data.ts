@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const implementRobotObstacleResponse_Skill_Data = buildSkillConfig({
+export const implementRobotObstacleResponse_Skill_Data = defineSkill({
   slug: 'implementRobotObstacleResponse',
   id: '44e6d553-194f-4331-9981-d5f583ab6a99',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const redoxCouples_Skill_Data = buildSkillConfig({
+export const redoxCouples_Skill_Data = defineSkill({
   slug: 'redoxCouples',
   id: '5a928525-684a-473f-b0f5-ee4401fe00dc',
   name: {

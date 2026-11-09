@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   budgetAndResourceConstraints_Skill_Data,
@@ -6,7 +6,7 @@ import {
   economicIncentives_Skill_Data,
 } from './skills';
 
-export const incentivesAndDecisions_SkillGroup_Data = buildSkillGroupConfig({
+export const incentivesAndDecisions_SkillGroup_Data = defineSkillGroup({
   slug: 'incentivesAndDecisions',
   id: 'ebaaf62f-dd43-40c4-a150-fdb67e69e23d',
   name: {
@@ -40,11 +40,7 @@ export const incentivesAndDecisions_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Ынталандырулар мен шешімдер',
     qm: 'Teşviqler ve qararlar',
   },
-  skills: {
-    budgetAndResourceConstraints: budgetAndResourceConstraints_Skill_Data,
-    choiceUnderUncertainty: choiceUnderUncertainty_Skill_Data,
-    economicIncentives: economicIncentives_Skill_Data,
-  },
+  skills: [budgetAndResourceConstraints_Skill_Data, choiceUnderUncertainty_Skill_Data, economicIncentives_Skill_Data],
   description: {
     methodological:
       'Choices are influenced by benefits, costs, rules, and available information; the predictability of responses depends on context.',

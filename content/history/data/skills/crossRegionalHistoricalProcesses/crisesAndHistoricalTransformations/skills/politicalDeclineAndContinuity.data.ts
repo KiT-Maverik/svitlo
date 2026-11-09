@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const politicalDeclineAndContinuity_Skill_Data = buildSkillConfig({
+export const politicalDeclineAndContinuity_Skill_Data = defineSkill({
   slug: 'politicalDeclineAndContinuity',
   id: '5986f95f-1b05-4363-b14b-5394bbf52366',
   name: {

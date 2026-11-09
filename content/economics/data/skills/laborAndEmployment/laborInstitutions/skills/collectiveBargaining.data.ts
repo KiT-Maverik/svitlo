@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const collectiveBargaining_Skill_Data = buildSkillConfig({
+export const collectiveBargaining_Skill_Data = defineSkill({
   slug: 'collectiveBargaining',
   id: '9f481508-ca1d-49c4-9f71-961414e3c84f',
   name: {

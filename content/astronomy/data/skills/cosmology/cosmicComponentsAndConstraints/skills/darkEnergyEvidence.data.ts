@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const darkEnergyEvidence_Skill_Data = buildSkillConfig({
+export const darkEnergyEvidence_Skill_Data = defineSkill({
   slug: 'darkEnergyEvidence',
   id: '87ccea22-b18a-4e5c-a4fe-37d78299dfe2',
   name: {

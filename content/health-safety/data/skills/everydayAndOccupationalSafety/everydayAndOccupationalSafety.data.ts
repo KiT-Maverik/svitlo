@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { electricityFireAndGas_SkillGroup_Data } from './electricityFireAndGas/electricityFireAndGas.data';
 import { hazardRecognitionAndPrevention_SkillGroup_Data } from './hazardRecognitionAndPrevention/hazardRecognitionAndPrevention.data';
@@ -6,10 +6,10 @@ import { householdHazards_SkillGroup_Data } from './householdHazards/householdHa
 import { personalSafetyInPublicPlaces_SkillGroup_Data } from './personalSafetyInPublicPlaces/personalSafetyInPublicPlaces.data';
 import { toolsAndWorkplaces_SkillGroup_Data } from './toolsAndWorkplaces/toolsAndWorkplaces.data';
 
-export const everydayAndOccupationalSafety_SkillDomain_Data = buildSkillDomainConfig({
+export const everydayAndOccupationalSafety_SkillDomain_Data = defineSkillDomain({
   slug: 'everydayAndOccupationalSafety',
   id: '49caa4a6-5c6a-4991-b835-737798296f1a',
-  name: {
+  title: {
     en: 'Everyday and Occupational Safety',
     zh: '日常与职业安全',
     hi: 'दैनिक जीवन और कार्यस्थल सुरक्षा',
@@ -40,13 +40,13 @@ export const everydayAndOccupationalSafety_SkillDomain_Data = buildSkillDomainCo
     kk: 'Күнделікті және еңбек қауіпсіздігі',
     qm: 'Kündelik ve iş yerinde havfsızlıq',
   },
-  groups: {
-    electricityFireAndGas: electricityFireAndGas_SkillGroup_Data,
-    hazardRecognitionAndPrevention: hazardRecognitionAndPrevention_SkillGroup_Data,
-    householdHazards: householdHazards_SkillGroup_Data,
-    personalSafetyInPublicPlaces: personalSafetyInPublicPlaces_SkillGroup_Data,
-    toolsAndWorkplaces: toolsAndWorkplaces_SkillGroup_Data,
-  },
+  groups: [
+    electricityFireAndGas_SkillGroup_Data,
+    hazardRecognitionAndPrevention_SkillGroup_Data,
+    householdHazards_SkillGroup_Data,
+    personalSafetyInPublicPlaces_SkillGroup_Data,
+    toolsAndWorkplaces_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Injuries often arise from foreseeable hazards in homes, workplaces, educational spaces, and public facilities. Preventive controls and safe equipment use take priority over reacting after an incident.',

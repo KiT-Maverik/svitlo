@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishSourceOscillationFromWavePropagation_Skill_Data = buildSkillConfig({
+export const distinguishSourceOscillationFromWavePropagation_Skill_Data = defineSkill({
   slug: 'distinguishSourceOscillationFromWavePropagation',
   id: '19c06485-1d79-436d-a240-33e612e70fa5',
   name: {

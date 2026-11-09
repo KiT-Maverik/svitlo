@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const warringStatesPeriod_Skill_Data = buildSkillConfig({
+export const warringStatesPeriod_Skill_Data = defineSkill({
   slug: 'warringStatesPeriod',
   id: '7a900550-760b-45c2-97c9-1205f29d8494',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const factorsOfProduction_Skill_Data = buildSkillConfig({
+export const factorsOfProduction_Skill_Data = defineSkill({
   slug: 'factorsOfProduction',
   id: 'c1f67e84-8093-4829-9e50-11a7340b1548',
   name: {

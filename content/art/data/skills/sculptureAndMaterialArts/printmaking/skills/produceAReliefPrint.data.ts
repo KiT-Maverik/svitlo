@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const produceAReliefPrint_Skill_Data = buildSkillConfig({
+export const produceAReliefPrint_Skill_Data = defineSkill({
   slug: 'produceAReliefPrint',
   id: '65750767-9f4d-475c-85a6-9ea87745f862',
   name: {

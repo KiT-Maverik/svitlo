@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const confoundingVariables_Skill_Data = buildSkillConfig({
+export const confoundingVariables_Skill_Data = defineSkill({
   slug: 'confoundingVariables',
   id: '33f3d70c-11ba-4627-9f0a-e0de4d3d028a',
   name: {

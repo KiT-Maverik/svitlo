@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainGeographicInterdependenceBetweenRegions_Skill_Data = buildSkillConfig({
+export const explainGeographicInterdependenceBetweenRegions_Skill_Data = defineSkill({
   slug: 'explainGeographicInterdependenceBetweenRegions',
   id: '24a609dc-1d1a-4dd4-a8f1-6d06aed0178e',
   name: {

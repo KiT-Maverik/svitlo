@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainEarlyElectronicProgramming_Skill_Data = buildSkillConfig({
+export const explainEarlyElectronicProgramming_Skill_Data = defineSkill({
   slug: 'explainEarlyElectronicProgramming',
   id: '21e6fc87-405d-425e-9393-062038e18c43',
   name: {

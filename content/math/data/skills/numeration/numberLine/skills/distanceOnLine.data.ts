@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distanceOnLine_Skill_Data = buildSkillConfig({
+export const distanceOnLine_Skill_Data = defineSkill({
   slug: 'distanceOnLine',
   id: 'c3a0e1b2-2158-4365-be77-cf97d3bace23',
   name: {

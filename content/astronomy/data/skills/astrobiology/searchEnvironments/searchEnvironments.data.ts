@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   exoplanetLifeSearches_Skill_Data,
@@ -6,7 +6,7 @@ import {
   subsurfaceHabitats_Skill_Data,
 } from './skills';
 
-export const searchEnvironments_SkillGroup_Data = buildSkillGroupConfig({
+export const searchEnvironments_SkillGroup_Data = defineSkillGroup({
   slug: 'searchEnvironments',
   id: 'f2ee296d-7ca0-4318-a494-cb036f74b21b',
   name: {
@@ -40,11 +40,7 @@ export const searchEnvironments_SkillGroup_Data = buildSkillGroupConfig({
     he: 'סביבות לחיפוש חיים',
     vi: 'Môi trường tìm kiếm sự sống',
   },
-  skills: {
-    exoplanetLifeSearches: exoplanetLifeSearches_Skill_Data,
-    solarSystemLifeSearches: solarSystemLifeSearches_Skill_Data,
-    subsurfaceHabitats: subsurfaceHabitats_Skill_Data,
-  },
+  skills: [exoplanetLifeSearches_Skill_Data, solarSystemLifeSearches_Skill_Data, subsurfaceHabitats_Skill_Data],
   description: {
     methodological:
       'Search strategies differ for nearby worlds whose material can be sampled and distant worlds known mainly through remote measurements.',

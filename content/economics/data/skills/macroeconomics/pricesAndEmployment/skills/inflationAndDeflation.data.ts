@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const inflationAndDeflation_Skill_Data = buildSkillConfig({
+export const inflationAndDeflation_Skill_Data = defineSkill({
   slug: 'inflationAndDeflation',
   id: 'e4855891-1e61-4918-bd6d-494eefe83adc',
   name: {

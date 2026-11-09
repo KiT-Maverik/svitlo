@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeMicroscopicEukaryotes_Skill_Data = buildSkillConfig({
+export const recognizeMicroscopicEukaryotes_Skill_Data = defineSkill({
   slug: 'recognizeMicroscopicEukaryotes',
   id: 'c3b920aa-3964-469d-8889-10111f03ec0d',
   name: {

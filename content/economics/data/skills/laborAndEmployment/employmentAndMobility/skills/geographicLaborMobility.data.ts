@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const geographicLaborMobility_Skill_Data = buildSkillConfig({
+export const geographicLaborMobility_Skill_Data = defineSkill({
   slug: 'geographicLaborMobility',
   id: '1291b185-0846-4e6b-a900-5e8f94fbbb0c',
   name: {

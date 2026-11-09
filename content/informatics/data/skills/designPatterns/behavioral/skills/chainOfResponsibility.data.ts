@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const chainOfResponsibility_Skill_Data = buildSkillConfig({
+export const chainOfResponsibility_Skill_Data = defineSkill({
   slug: 'chainOfResponsibility',
   id: 'f563a40e-9659-4152-a169-e93305a74fd8',
   name: {

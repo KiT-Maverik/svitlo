@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const representativenessHeuristic_Skill_Data = buildSkillConfig({
+export const representativenessHeuristic_Skill_Data = defineSkill({
   slug: 'representativenessHeuristic',
   id: '473f6cca-2007-45d8-8684-d2a9757d6b50',
   name: {

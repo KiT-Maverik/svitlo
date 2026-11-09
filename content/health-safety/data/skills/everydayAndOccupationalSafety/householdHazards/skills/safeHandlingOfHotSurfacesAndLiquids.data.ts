@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const safeHandlingOfHotSurfacesAndLiquids_Skill_Data = buildSkillConfig({
+export const safeHandlingOfHotSurfacesAndLiquids_Skill_Data = defineSkill({
   slug: 'safeHandlingOfHotSurfacesAndLiquids',
   id: 'e95ffc05-c374-45e0-ad85-cbc5a5ed8f8c',
   name: {

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   diagnoseManufacturingDefects_Skill_Data,
@@ -7,7 +7,7 @@ import {
   qualityInspection_Skill_Data,
 } from './skills';
 
-export const assemblyAndQuality_SkillGroup_Data = buildSkillGroupConfig({
+export const assemblyAndQuality_SkillGroup_Data = defineSkillGroup({
   slug: 'assemblyAndQuality',
   id: '2defad84-67bf-44b1-ba44-ba36b8d54770',
   name: {
@@ -41,12 +41,12 @@ export const assemblyAndQuality_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Құрастыру және сапа',
     qm: 'Cıyuv ve keyfiyet',
   },
-  skills: {
-    diagnoseManufacturingDefects: diagnoseManufacturingDefects_Skill_Data,
-    interpretManufacturingTolerances: interpretManufacturingTolerances_Skill_Data,
-    planAnAssemblySequence: planAnAssemblySequence_Skill_Data,
-    qualityInspection: qualityInspection_Skill_Data,
-  },
+  skills: [
+    diagnoseManufacturingDefects_Skill_Data,
+    interpretManufacturingTolerances_Skill_Data,
+    planAnAssemblySequence_Skill_Data,
+    qualityInspection_Skill_Data,
+  ],
   description: {
     methodological:
       'Making components separately is insufficient when fits, order of installation or verification are wrong.',

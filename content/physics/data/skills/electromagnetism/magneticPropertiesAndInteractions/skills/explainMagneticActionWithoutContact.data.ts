@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainMagneticActionWithoutContact_Skill_Data = buildSkillConfig({
+export const explainMagneticActionWithoutContact_Skill_Data = defineSkill({
   slug: 'explainMagneticActionWithoutContact',
   id: '202c5889-61e9-4f27-8104-bb1161388d2e',
   name: {

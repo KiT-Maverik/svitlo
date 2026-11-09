@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeNaturalLawTheory_Skill_Data = buildSkillConfig({
+export const analyzeNaturalLawTheory_Skill_Data = defineSkill({
   slug: 'analyzeNaturalLawTheory',
   id: 'b6a7cd29-e546-47e1-a699-e9bf10aecffc',
   name: {

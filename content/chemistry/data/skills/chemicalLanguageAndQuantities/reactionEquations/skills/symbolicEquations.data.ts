@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const symbolicEquations_Skill_Data = buildSkillConfig({
+export const symbolicEquations_Skill_Data = defineSkill({
   slug: 'symbolicEquations',
   id: '21039737-b899-407c-8035-6c75cabc3d9d',
   name: {

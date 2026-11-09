@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const protectPersonalDataInPrompts_Skill_Data = buildSkillConfig({
+export const protectPersonalDataInPrompts_Skill_Data = defineSkill({
   slug: 'protectPersonalDataInPrompts',
   id: '42bbcb35-f4d0-496b-b90c-495b08683e32',
   name: {

@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { locationAndReference_SkillGroup_Data } from './locationAndReference/locationAndReference.data';
 import { navigationAndMentalMaps_SkillGroup_Data } from './navigationAndMentalMaps/navigationAndMentalMaps.data';
 import { spatialRelationships_SkillGroup_Data } from './spatialRelationships/spatialRelationships.data';
 import { timeZones_SkillGroup_Data } from './timeZones/timeZones.data';
 
-export const spatialOrientation_SkillDomain_Data = buildSkillDomainConfig({
+export const spatialOrientation_SkillDomain_Data = defineSkillDomain({
   slug: 'spatialOrientation',
   id: '33495e13-e6fd-4c3a-a62e-b12684df6dea',
-  name: {
+  title: {
     en: 'Spatial Orientation',
     zh: '空间方位定位',
     hi: 'स्थानिक अभिविन्यास',
@@ -39,12 +39,12 @@ export const spatialOrientation_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Кеңістікте бағдарлану',
     qm: 'Mekânda yön tapuv',
   },
-  groups: {
-    locationAndReference: locationAndReference_SkillGroup_Data,
-    navigationAndMentalMaps: navigationAndMentalMaps_SkillGroup_Data,
-    spatialRelationships: spatialRelationships_SkillGroup_Data,
-    timeZones: timeZones_SkillGroup_Data,
-  },
+  groups: [
+    locationAndReference_SkillGroup_Data,
+    navigationAndMentalMaps_SkillGroup_Data,
+    spatialRelationships_SkillGroup_Data,
+    timeZones_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Locating and orienting oneself requires a stable or relative reference, directions, remembered spatial relationships and awareness of changing spatial and temporal frames. These competencies concern where places are, how we navigate between them, and how their civil and solar times relate—not how maps are drawn.',

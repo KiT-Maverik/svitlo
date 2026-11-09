@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainDensity_Skill_Data = buildSkillConfig({
+export const explainDensity_Skill_Data = defineSkill({
   slug: 'explainDensity',
   id: '0accadef-6cbc-477f-bd95-8e3175903fda',
   name: {

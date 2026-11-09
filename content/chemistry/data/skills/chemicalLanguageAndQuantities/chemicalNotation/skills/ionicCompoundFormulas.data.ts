@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const ionicCompoundFormulas_Skill_Data = buildSkillConfig({
+export const ionicCompoundFormulas_Skill_Data = defineSkill({
   slug: 'ionicCompoundFormulas',
   id: '45c0fbfa-c404-4044-a632-861c2363e038',
   name: {

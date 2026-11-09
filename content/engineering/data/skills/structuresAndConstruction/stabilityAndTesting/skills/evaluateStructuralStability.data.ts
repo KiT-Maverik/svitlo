@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateStructuralStability_Skill_Data = buildSkillConfig({
+export const evaluateStructuralStability_Skill_Data = defineSkill({
   slug: 'evaluateStructuralStability',
   id: 'fecfa75b-0293-4619-b731-8b1326ec8847',
   name: {

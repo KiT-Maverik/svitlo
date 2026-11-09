@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishConvergingAndDivergingLenses_Skill_Data = buildSkillConfig({
+export const distinguishConvergingAndDivergingLenses_Skill_Data = defineSkill({
   slug: 'distinguishConvergingAndDivergingLenses',
   id: '2a056d27-1b13-4147-97e3-055437334a06',
   name: {

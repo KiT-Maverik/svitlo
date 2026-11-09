@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const metalReactivity_Skill_Data = buildSkillConfig({
+export const metalReactivity_Skill_Data = defineSkill({
   slug: 'metalReactivity',
   id: '4ae45780-277e-496f-b31a-9a5cf60c2884',
   name: {

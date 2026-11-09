@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const peoplingOfContinents_Skill_Data = buildSkillConfig({
+export const peoplingOfContinents_Skill_Data = defineSkill({
   slug: 'peoplingOfContinents',
   id: '13b67e91-2c21-4a49-a730-f413f54d7085',
   name: {

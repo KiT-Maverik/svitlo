@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { causationTimeAndPossibility_SkillGroup_Data } from './causationTimeAndPossibility/causationTimeAndPossibility.data';
 import { existenceAndCategories_SkillGroup_Data } from './existenceAndCategories/existenceAndCategories.data';
 import { identityAndPersistence_SkillGroup_Data } from './identityAndPersistence/identityAndPersistence.data';
 import { mathematicalReality_SkillGroup_Data } from './mathematicalReality/mathematicalReality.data';
 
-export const metaphysics_SkillDomain_Data = buildSkillDomainConfig({
+export const metaphysics_SkillDomain_Data = defineSkillDomain({
   slug: 'metaphysics',
   id: '7545dc5f-4946-408c-897f-e4e5eb78c460',
-  name: {
+  title: {
     en: 'Metaphysics',
     zh: '形而上学',
     hi: 'तत्त्वमीमांसा',
@@ -39,12 +39,12 @@ export const metaphysics_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Метафизика',
     qm: 'Metafizika',
   },
-  groups: {
-    causationTimeAndPossibility: causationTimeAndPossibility_SkillGroup_Data,
-    existenceAndCategories: existenceAndCategories_SkillGroup_Data,
-    identityAndPersistence: identityAndPersistence_SkillGroup_Data,
-    mathematicalReality: mathematicalReality_SkillGroup_Data,
-  },
+  groups: [
+    causationTimeAndPossibility_SkillGroup_Data,
+    existenceAndCategories_SkillGroup_Data,
+    identityAndPersistence_SkillGroup_Data,
+    mathematicalReality_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Metaphysics examines the most general categories of reality, such as what exists, how things persist, and what makes events possible. Its conceptual questions differ from describing particular natural mechanisms in the sciences.',

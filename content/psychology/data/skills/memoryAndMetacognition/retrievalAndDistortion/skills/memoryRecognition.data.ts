@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const memoryRecognition_Skill_Data = buildSkillConfig({
+export const memoryRecognition_Skill_Data = defineSkill({
   slug: 'memoryRecognition',
   id: '0776c1b4-5c0d-47ed-bb55-dd307d7453cf',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateAMoralCounterargument_Skill_Data = buildSkillConfig({
+export const evaluateAMoralCounterargument_Skill_Data = defineSkill({
   slug: 'evaluateAMoralCounterargument',
   id: '665d7cbc-141c-42ce-be55-5a776c2f20fb',
   name: {

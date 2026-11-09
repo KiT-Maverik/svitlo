@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const equalSharing_Skill_Data = buildSkillConfig({
+export const equalSharing_Skill_Data = defineSkill({
   slug: 'equalSharing',
   id: '9a201a1d-c00d-4375-91c5-aaba7c579060',
   name: {

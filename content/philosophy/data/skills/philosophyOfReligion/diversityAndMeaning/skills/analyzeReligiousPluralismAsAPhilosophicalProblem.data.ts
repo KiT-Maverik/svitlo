@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeReligiousPluralismAsAPhilosophicalProblem_Skill_Data = buildSkillConfig({
+export const analyzeReligiousPluralismAsAPhilosophicalProblem_Skill_Data = defineSkill({
   slug: 'analyzeReligiousPluralismAsAPhilosophicalProblem',
   id: '1430870b-b9d3-4105-93cb-1ed0cf626c62',
   name: {

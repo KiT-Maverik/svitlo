@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const stellarRadius_Skill_Data = buildSkillConfig({
+export const stellarRadius_Skill_Data = defineSkill({
   slug: 'stellarRadius',
   id: '32ed5f6b-3ae3-4019-b6fd-d969ffa37b4c',
   name: {

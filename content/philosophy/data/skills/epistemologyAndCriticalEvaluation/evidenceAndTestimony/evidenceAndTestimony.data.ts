@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   analyzeEpistemicInjustice_Skill_Data,
@@ -8,7 +8,7 @@ import {
   evaluateTestimonialCredibility_Skill_Data,
 } from './skills';
 
-export const evidenceAndTestimony_SkillGroup_Data = buildSkillGroupConfig({
+export const evidenceAndTestimony_SkillGroup_Data = defineSkillGroup({
   slug: 'evidenceAndTestimony',
   id: '8f645f84-42a6-4385-85cd-a526a8105aa5',
   name: {
@@ -42,13 +42,13 @@ export const evidenceAndTestimony_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Дәлелдер мен куәліктер',
     qm: 'Deliller ve şaatlıq',
   },
-  skills: {
-    analyzeEpistemicInjustice: analyzeEpistemicInjustice_Skill_Data,
-    checkCorroborationAcrossSources: checkCorroborationAcrossSources_Skill_Data,
-    distinguishAClaimFromItsEvidence: distinguishAClaimFromItsEvidence_Skill_Data,
-    distinguishDirectEvidenceFromHearsay: distinguishDirectEvidenceFromHearsay_Skill_Data,
-    evaluateTestimonialCredibility: evaluateTestimonialCredibility_Skill_Data,
-  },
+  skills: [
+    analyzeEpistemicInjustice_Skill_Data,
+    checkCorroborationAcrossSources_Skill_Data,
+    distinguishAClaimFromItsEvidence_Skill_Data,
+    distinguishDirectEvidenceFromHearsay_Skill_Data,
+    evaluateTestimonialCredibility_Skill_Data,
+  ],
   description: {
     methodological:
       'Knowledge often depends on information supplied by other people or institutions. Source reliability, independence, and evidential fit require appraisal without treating every source as equally trustworthy.',

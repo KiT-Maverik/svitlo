@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretAdministrativeTerritoriesAtDifferentLevels_Skill_Data = buildSkillConfig({
+export const interpretAdministrativeTerritoriesAtDifferentLevels_Skill_Data = defineSkill({
   slug: 'interpretAdministrativeTerritoriesAtDifferentLevels',
   id: 'a67f24f7-0362-42c8-9649-0b44f1c2d96f',
   name: {

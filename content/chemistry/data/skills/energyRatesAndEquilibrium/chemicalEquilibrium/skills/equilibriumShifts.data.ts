@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const equilibriumShifts_Skill_Data = buildSkillConfig({
+export const equilibriumShifts_Skill_Data = defineSkill({
   slug: 'equilibriumShifts',
   id: 'e4f393fb-3a37-49f7-9dd6-5b58e03c0110',
   name: {

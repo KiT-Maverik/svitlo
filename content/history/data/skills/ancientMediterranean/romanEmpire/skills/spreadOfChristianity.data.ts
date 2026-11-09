@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const spreadOfChristianity_Skill_Data = buildSkillConfig({
+export const spreadOfChristianity_Skill_Data = defineSkill({
   slug: 'spreadOfChristianity',
   id: 'c093f651-30da-4cdb-ac64-8363199fc0e6',
   name: {

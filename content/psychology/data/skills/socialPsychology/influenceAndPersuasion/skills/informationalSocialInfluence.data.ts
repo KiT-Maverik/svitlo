@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const informationalSocialInfluence_Skill_Data = buildSkillConfig({
+export const informationalSocialInfluence_Skill_Data = defineSkill({
   slug: 'informationalSocialInfluence',
   id: 'c3bd6be9-e4eb-459e-91aa-e13aafd8477f',
   name: {

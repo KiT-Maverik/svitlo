@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainThePurposeOfROM_Skill_Data = buildSkillConfig({
+export const explainThePurposeOfROM_Skill_Data = defineSkill({
   slug: 'explainThePurposeOfROM',
   id: '4358947a-4da8-4463-8219-ba51cbc0abc9',
   name: {

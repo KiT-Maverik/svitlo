@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const multimessengerEvidence_Skill_Data = buildSkillConfig({
+export const multimessengerEvidence_Skill_Data = defineSkill({
   slug: 'multimessengerEvidence',
   id: '134a1b71-7e68-433b-87c0-e7163e549ffc',
   name: {

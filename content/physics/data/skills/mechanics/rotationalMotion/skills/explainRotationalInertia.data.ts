@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainRotationalInertia_Skill_Data = buildSkillConfig({
+export const explainRotationalInertia_Skill_Data = defineSkill({
   slug: 'explainRotationalInertia',
   id: '4de89d97-f976-4af7-bbf3-ca5bf8eda3e9',
   name: {

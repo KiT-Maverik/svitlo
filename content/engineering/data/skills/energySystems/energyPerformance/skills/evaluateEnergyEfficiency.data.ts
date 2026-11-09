@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateEnergyEfficiency_Skill_Data = buildSkillConfig({
+export const evaluateEnergyEfficiency_Skill_Data = defineSkill({
   slug: 'evaluateEnergyEfficiency',
   id: '5a22596f-3e6d-4845-813f-9da9eb39be43',
   name: {

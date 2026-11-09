@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainPhotosynthesis_Skill_Data = buildSkillConfig({
+export const explainPhotosynthesis_Skill_Data = defineSkill({
   slug: 'explainPhotosynthesis',
   id: 'eb8e36ae-8632-480c-8d3c-37ab0ae1edb6',
   name: {

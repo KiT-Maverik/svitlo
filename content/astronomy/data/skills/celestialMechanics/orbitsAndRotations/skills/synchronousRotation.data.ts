@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const synchronousRotation_Skill_Data = buildSkillConfig({
+export const synchronousRotation_Skill_Data = defineSkill({
   slug: 'synchronousRotation',
   id: '6aa3dfe5-06cf-4812-bbec-c20c86f93600',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeNohTheatre_Skill_Data = buildSkillConfig({
+export const analyzeNohTheatre_Skill_Data = defineSkill({
   slug: 'analyzeNohTheatre',
   id: '33e2b1f5-7494-472d-bd54-8c66a72671fb',
   name: {

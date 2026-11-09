@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   adaptAnErgonomicWorkspace_Skill_Data,
@@ -6,7 +6,7 @@ import {
   protectHearingFromNoise_Skill_Data,
 } from './skills';
 
-export const ergonomicsAndSensoryCare_SkillGroup_Data = buildSkillGroupConfig({
+export const ergonomicsAndSensoryCare_SkillGroup_Data = defineSkillGroup({
   slug: 'ergonomicsAndSensoryCare',
   id: 'a866822d-a2b0-4de7-b49e-f706daa847ec',
   name: {
@@ -40,11 +40,7 @@ export const ergonomicsAndSensoryCare_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Эргономика және сезім мүшелерін қорғау',
     qm: 'Ergonomika ve sezgi organlarını qoruv',
   },
-  skills: {
-    adaptAnErgonomicWorkspace: adaptAnErgonomicWorkspace_Skill_Data,
-    manageVisualStrain: manageVisualStrain_Skill_Data,
-    protectHearingFromNoise: protectHearingFromNoise_Skill_Data,
-  },
+  skills: [adaptAnErgonomicWorkspace_Skill_Data, manageVisualStrain_Skill_Data, protectHearingFromNoise_Skill_Data],
   description: {
     methodological:
       'Workspaces and devices can be adapted to reduce strain, fatigue, and exposure rather than enforcing a single rigid body position.',

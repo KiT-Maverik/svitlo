@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const computerHardwareBuses_Skill_Data = buildSkillConfig({
+export const computerHardwareBuses_Skill_Data = defineSkill({
   slug: 'computerHardwareBuses',
   id: '9117147a-35d1-476a-9a72-8452d130750a',
   name: {

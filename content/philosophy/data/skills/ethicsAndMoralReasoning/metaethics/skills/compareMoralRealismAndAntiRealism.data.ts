@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareMoralRealismAndAntiRealism_Skill_Data = buildSkillConfig({
+export const compareMoralRealismAndAntiRealism_Skill_Data = defineSkill({
   slug: 'compareMoralRealismAndAntiRealism',
   id: '7cedc9b6-469c-4060-a76f-a9a7e2db113a',
   name: {

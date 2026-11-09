@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const sakaAndRelatedSteppeCultures_Skill_Data = buildSkillConfig({
+export const sakaAndRelatedSteppeCultures_Skill_Data = defineSkill({
   slug: 'sakaAndRelatedSteppeCultures',
   id: '67f6acee-6cef-4395-9dd9-097e54678d2f',
   name: {

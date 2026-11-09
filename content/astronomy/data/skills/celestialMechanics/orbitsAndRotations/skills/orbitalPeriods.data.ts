@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const orbitalPeriods_Skill_Data = buildSkillConfig({
+export const orbitalPeriods_Skill_Data = defineSkill({
   slug: 'orbitalPeriods',
   id: '846d1abb-c8de-4d15-831a-54ce9ad98a30',
   name: {

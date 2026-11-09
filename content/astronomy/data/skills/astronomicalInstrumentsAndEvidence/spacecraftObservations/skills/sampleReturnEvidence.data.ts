@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const sampleReturnEvidence_Skill_Data = buildSkillConfig({
+export const sampleReturnEvidence_Skill_Data = defineSkill({
   slug: 'sampleReturnEvidence',
   id: 'eb3fd2e7-fa77-455b-9c9a-76e0128d7dd3',
   name: {

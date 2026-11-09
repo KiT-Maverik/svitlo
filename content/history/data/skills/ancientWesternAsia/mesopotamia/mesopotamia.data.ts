@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   akkadianEmpire_Skill_Data,
@@ -9,7 +9,7 @@ import {
   sumerianCityStates_Skill_Data,
 } from './skills';
 
-export const mesopotamia_SkillGroup_Data = buildSkillGroupConfig({
+export const mesopotamia_SkillGroup_Data = defineSkillGroup({
   slug: 'mesopotamia',
   id: '00e49671-064e-43da-85ae-e413fef5d01f',
   name: {
@@ -43,14 +43,14 @@ export const mesopotamia_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Месопотамия',
     qm: 'Mezopotamiya',
   },
-  skills: {
-    akkadianEmpire: akkadianEmpire_Skill_Data,
-    assyrianEmpire: assyrianEmpire_Skill_Data,
-    babylonianKingdoms: babylonianKingdoms_Skill_Data,
-    cuneiformWriting: cuneiformWriting_Skill_Data,
-    mesopotamianIrrigation: mesopotamianIrrigation_Skill_Data,
-    sumerianCityStates: sumerianCityStates_Skill_Data,
-  },
+  skills: [
+    akkadianEmpire_Skill_Data,
+    assyrianEmpire_Skill_Data,
+    babylonianKingdoms_Skill_Data,
+    cuneiformWriting_Skill_Data,
+    mesopotamianIrrigation_Skill_Data,
+    sumerianCityStates_Skill_Data,
+  ],
   description: {
     methodological:
       'The Tigris and Euphrates valleys supported cities, complex administration, writing, and successive supraregional states.',

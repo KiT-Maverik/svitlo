@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainTheConceptOfWeather_Skill_Data = buildSkillConfig({
+export const explainTheConceptOfWeather_Skill_Data = defineSkill({
   slug: 'explainTheConceptOfWeather',
   id: '85e7b560-e6d1-43c5-a131-0e5872890c2a',
   name: {

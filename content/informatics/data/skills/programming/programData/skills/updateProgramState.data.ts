@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const updateProgramState_Skill_Data = buildSkillConfig({
+export const updateProgramState_Skill_Data = defineSkill({
   slug: 'updateProgramState',
   id: 'adf4ab00-71f5-4bfc-b2ea-0b2a81b39b59',
   name: {

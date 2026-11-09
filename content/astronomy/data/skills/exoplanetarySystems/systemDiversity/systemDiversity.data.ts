@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   circumstellarHabitableZones_Skill_Data,
@@ -7,7 +7,7 @@ import {
   planetaryMigration_Skill_Data,
 } from './skills';
 
-export const systemDiversity_SkillGroup_Data = buildSkillGroupConfig({
+export const systemDiversity_SkillGroup_Data = defineSkillGroup({
   slug: 'systemDiversity',
   id: '2fdf0bf7-2911-4ca4-a23f-9dc2030d3f14',
   name: {
@@ -41,12 +41,12 @@ export const systemDiversity_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Ғаламшар жүйелерінің әртүрлілігі',
     qm: 'Seyyare sistemalarınıñ çeşitliligi',
   },
-  skills: {
-    circumstellarHabitableZones: circumstellarHabitableZones_Skill_Data,
-    exoplanetSystemArchitectures: exoplanetSystemArchitectures_Skill_Data,
-    limitsOfHabitabilityIndicators: limitsOfHabitabilityIndicators_Skill_Data,
-    planetaryMigration: planetaryMigration_Skill_Data,
-  },
+  skills: [
+    circumstellarHabitableZones_Skill_Data,
+    exoplanetSystemArchitectures_Skill_Data,
+    limitsOfHabitabilityIndicators_Skill_Data,
+    planetaryMigration_Skill_Data,
+  ],
   description: {
     methodological: 'Comparing observed systems reveals patterns and exceptions relative to Solar System expectations.',
     frontend: {

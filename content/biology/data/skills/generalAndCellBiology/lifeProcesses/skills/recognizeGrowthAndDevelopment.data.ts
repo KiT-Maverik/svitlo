@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeGrowthAndDevelopment_Skill_Data = buildSkillConfig({
+export const recognizeGrowthAndDevelopment_Skill_Data = defineSkill({
   slug: 'recognizeGrowthAndDevelopment',
   id: '492c4f54-5116-4a66-bcd6-4af38256484c',
   name: {

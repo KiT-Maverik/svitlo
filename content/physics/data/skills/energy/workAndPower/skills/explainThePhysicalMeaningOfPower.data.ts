@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainThePhysicalMeaningOfPower_Skill_Data = buildSkillConfig({
+export const explainThePhysicalMeaningOfPower_Skill_Data = defineSkill({
   slug: 'explainThePhysicalMeaningOfPower',
   id: '80d3808e-6f21-4639-9c1a-323582a67ff9',
   name: {

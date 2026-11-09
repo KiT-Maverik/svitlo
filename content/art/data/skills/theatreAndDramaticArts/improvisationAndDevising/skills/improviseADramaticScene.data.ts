@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const improviseADramaticScene_Skill_Data = buildSkillConfig({
+export const improviseADramaticScene_Skill_Data = defineSkill({
   slug: 'improviseADramaticScene',
   id: 'f70a4d59-35aa-4b3e-a548-b08fd075f3a7',
   name: {

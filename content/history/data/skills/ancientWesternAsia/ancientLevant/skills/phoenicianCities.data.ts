@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const phoenicianCities_Skill_Data = buildSkillConfig({
+export const phoenicianCities_Skill_Data = defineSkill({
   slug: 'phoenicianCities',
   id: 'f6aa2838-1b69-4fbb-aa5a-296de07acfe4',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const quasars_Skill_Data = buildSkillConfig({
+export const quasars_Skill_Data = defineSkill({
   slug: 'quasars',
   id: 'd88337d9-a374-45b1-a915-0fa209204c5b',
   name: {

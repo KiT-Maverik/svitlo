@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   digits09_Skill_Data,
@@ -7,7 +7,7 @@ import {
   readWrite1000_Skill_Data,
 } from './skills';
 
-export const notation_SkillGroup_Data = buildSkillGroupConfig({
+export const notation_SkillGroup_Data = defineSkillGroup({
   slug: 'notation',
   id: '26fde8d8-fc31-499b-892b-0dbe5dfcf09c',
   name: {
@@ -41,12 +41,7 @@ export const notation_SkillGroup_Data = buildSkillGroupConfig({
     pl: 'Zapis liczb',
     uk: 'Числовий запис',
   },
-  skills: {
-    digits09: digits09_Skill_Data,
-    readWrite20: readWrite20_Skill_Data,
-    readWrite100: readWrite100_Skill_Data,
-    readWrite1000: readWrite1000_Skill_Data,
-  },
+  skills: [digits09_Skill_Data, readWrite20_Skill_Data, readWrite100_Skill_Data, readWrite1000_Skill_Data],
   description: {
     methodological:
       'Digits as signs in the decimal system and the correspondence between spoken number names, written notation, and quantities for one-, two-, and three-digit numbers.',

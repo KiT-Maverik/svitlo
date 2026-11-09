@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   distinguishAPartOfAnOrganismFromAWholeOrganism_Skill_Data,
@@ -7,7 +7,7 @@ import {
   orderTheLevelsCellTissueOrganSystem_Skill_Data,
 } from './skills';
 
-export const levelsOfOrganization_SkillGroup_Data = buildSkillGroupConfig({
+export const levelsOfOrganization_SkillGroup_Data = defineSkillGroup({
   slug: 'levelsOfOrganization',
   id: '453e1185-8dd1-439f-b8cf-34bd3c7a5e1c',
   name: {
@@ -41,12 +41,12 @@ export const levelsOfOrganization_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Ұйымдасу деңгейлері',
     qm: 'Teşkilâtlanma seviyeleri',
   },
-  skills: {
-    distinguishAPartOfAnOrganismFromAWholeOrganism: distinguishAPartOfAnOrganismFromAWholeOrganism_Skill_Data,
-    explainAnOrgansFunctionInAnOrganism: explainAnOrgansFunctionInAnOrganism_Skill_Data,
-    explainTheInterdependenceOfOrgans: explainTheInterdependenceOfOrgans_Skill_Data,
-    orderTheLevelsCellTissueOrganSystem: orderTheLevelsCellTissueOrganSystem_Skill_Data,
-  },
+  skills: [
+    distinguishAPartOfAnOrganismFromAWholeOrganism_Skill_Data,
+    explainAnOrgansFunctionInAnOrganism_Skill_Data,
+    explainTheInterdependenceOfOrgans_Skill_Data,
+    orderTheLevelsCellTissueOrganSystem_Skill_Data,
+  ],
   description: {
     methodological:
       'Parts of cellular organisms form nested levels; the functioning of a whole depends on the coordinated work of its structures.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const castingProcesses_Skill_Data = buildSkillConfig({
+export const castingProcesses_Skill_Data = defineSkill({
   slug: 'castingProcesses',
   id: '81719fda-dcce-4815-a261-237e6913452d',
   name: {

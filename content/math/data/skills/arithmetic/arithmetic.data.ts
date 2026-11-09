@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { addition_SkillGroup_Data } from './addition/addition.data';
 import { subtraction_SkillGroup_Data } from './subtraction/subtraction.data';
@@ -6,10 +6,10 @@ import { additionSubtraction_SkillGroup_Data } from './additionSubtraction/addit
 import { multiply_SkillGroup_Data } from './multiply/multiply.data';
 import { divide_SkillGroup_Data } from './divide/divide.data';
 
-export const arithmetic_SkillDomain_Data = buildSkillDomainConfig({
+export const arithmetic_SkillDomain_Data = defineSkillDomain({
   slug: 'arithmetic',
   id: '488e1b0d-4c9b-469d-b3ee-dba724111826',
-  name: {
+  title: {
     en: 'Arithmetic',
     qm: 'Arifmetika',
     lt: 'Aritmetika',
@@ -40,13 +40,13 @@ export const arithmetic_SkillDomain_Data = buildSkillDomainConfig({
     pl: 'Arytmetyka',
     uk: 'Арифметика',
   },
-  groups: {
-    addition: addition_SkillGroup_Data,
-    subtraction: subtraction_SkillGroup_Data,
-    additionSubtraction: additionSubtraction_SkillGroup_Data,
-    multiply: multiply_SkillGroup_Data,
-    divide: divide_SkillGroup_Data,
-  },
+  groups: [
+    addition_SkillGroup_Data,
+    subtraction_SkillGroup_Data,
+    additionSubtraction_SkillGroup_Data,
+    multiply_SkillGroup_Data,
+    divide_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'The meanings and properties of addition, subtraction, multiplication, and division; their relationships; exact and approximate calculation methods; justifications of algorithms; and result verification. The Curriculum determines numerical ranges and degree of formalization.',

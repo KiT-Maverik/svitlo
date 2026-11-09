@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const molarMass_Skill_Data = buildSkillConfig({
+export const molarMass_Skill_Data = defineSkill({
   slug: 'molarMass',
   id: '5bc28cd2-056a-4bdf-856a-1ef79763ba62',
   name: {

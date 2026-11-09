@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { astronomicalTime_SkillGroup_Data } from './astronomicalTime/astronomicalTime.data';
 import { observationPractice_SkillGroup_Data } from './observationPractice/observationPractice.data';
 import { skyGeometry_SkillGroup_Data } from './skyGeometry/skyGeometry.data';
 import { skyPatterns_SkillGroup_Data } from './skyPatterns/skyPatterns.data';
 
-export const observingTheSky_SkillDomain_Data = buildSkillDomainConfig({
+export const observingTheSky_SkillDomain_Data = defineSkillDomain({
   slug: 'observingTheSky',
   id: '85a8b6db-20e6-466b-9a0c-23ec5bb54203',
-  name: {
+  title: {
     en: 'Observing the Sky',
     qm: 'Kökni közetüv',
     zh: '观测天空',
@@ -39,12 +39,12 @@ export const observingTheSky_SkillDomain_Data = buildSkillDomainConfig({
     ka: 'ცაზე დაკვირვება',
     kk: 'Аспанды бақылау',
   },
-  groups: {
-    astronomicalTime: astronomicalTime_SkillGroup_Data,
-    observationPractice: observationPractice_SkillGroup_Data,
-    skyGeometry: skyGeometry_SkillGroup_Data,
-    skyPatterns: skyPatterns_SkillGroup_Data,
-  },
+  groups: [
+    astronomicalTime_SkillGroup_Data,
+    observationPractice_SkillGroup_Data,
+    skyGeometry_SkillGroup_Data,
+    skyPatterns_SkillGroup_Data,
+  ],
   description: {
     methodological:
       "This domain addresses how celestial positions, patterns, brightness and changes are represented from an observer's location on Earth. It treats the sky as an observable system while distinguishing apparent motion from the physical causes developed in celestial mechanics.",

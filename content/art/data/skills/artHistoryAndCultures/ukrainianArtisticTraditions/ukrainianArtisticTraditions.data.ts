@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   analyzeBoychukism_Skill_Data,
@@ -6,7 +6,7 @@ import {
   analyzeUkrainianBaroqueIconPainting_Skill_Data,
 } from './skills';
 
-export const ukrainianArtisticTraditions_SkillGroup_Data = buildSkillGroupConfig({
+export const ukrainianArtisticTraditions_SkillGroup_Data = defineSkillGroup({
   slug: 'ukrainianArtisticTraditions',
   id: '44070f30-13ab-479f-9130-cb3354df3382',
   name: {
@@ -40,11 +40,11 @@ export const ukrainianArtisticTraditions_SkillGroup_Data = buildSkillGroupConfig
     kk: 'Украинаның өнер дәстүрлері',
     qm: 'Ukraina sanat adetleri',
   },
-  skills: {
-    analyzeBoychukism: analyzeBoychukism_Skill_Data,
-    analyzePetrykivkaDecorativePainting: analyzePetrykivkaDecorativePainting_Skill_Data,
-    analyzeUkrainianBaroqueIconPainting: analyzeUkrainianBaroqueIconPainting_Skill_Data,
-  },
+  skills: [
+    analyzeBoychukism_Skill_Data,
+    analyzePetrykivkaDecorativePainting_Skill_Data,
+    analyzeUkrainianBaroqueIconPainting_Skill_Data,
+  ],
   description: {
     methodological:
       'These practices distinguish decorative folk art, historical religious painting and a twentieth-century monumental-art movement while acknowledging their exchanges and transformations.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const cleaningAndDisinfection_Skill_Data = buildSkillConfig({
+export const cleaningAndDisinfection_Skill_Data = defineSkill({
   slug: 'cleaningAndDisinfection',
   id: '4af15ad6-0a4b-4625-a108-a73d2306cc18',
   name: {

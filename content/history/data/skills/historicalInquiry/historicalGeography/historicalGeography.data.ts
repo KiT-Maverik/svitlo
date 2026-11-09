@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   environmentOfAncientSocieties_Skill_Data,
@@ -6,7 +6,7 @@ import {
   migrationAndSettlement_Skill_Data,
 } from './skills';
 
-export const historicalGeography_SkillGroup_Data = buildSkillGroupConfig({
+export const historicalGeography_SkillGroup_Data = defineSkillGroup({
   slug: 'historicalGeography',
   id: 'ddced799-3043-44f5-8045-9ddc8c0374dc',
   name: {
@@ -40,11 +40,7 @@ export const historicalGeography_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Тарихи география',
     qm: 'Tarihiy coğrafiya',
   },
-  skills: {
-    environmentOfAncientSocieties: environmentOfAncientSocieties_Skill_Data,
-    historicalMaps: historicalMaps_Skill_Data,
-    migrationAndSettlement: migrationAndSettlement_Skill_Data,
-  },
+  skills: [environmentOfAncientSocieties_Skill_Data, historicalMaps_Skill_Data, migrationAndSettlement_Skill_Data],
   description: {
     methodological:
       'Landscapes, climate, distances, and routes inform reconstructions of settlement and exchange without assuming geography determines history.',

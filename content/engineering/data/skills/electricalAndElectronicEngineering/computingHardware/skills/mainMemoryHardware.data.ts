@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const mainMemoryHardware_Skill_Data = buildSkillConfig({
+export const mainMemoryHardware_Skill_Data = defineSkill({
   slug: 'mainMemoryHardware',
   id: '4e2f5104-5020-41b3-b8fd-660b68b2eab2',
   name: {

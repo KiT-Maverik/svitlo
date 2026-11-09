@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   conformity_Skill_Data,
@@ -9,7 +9,7 @@ import {
   recognizingPsychologicalManipulation_Skill_Data,
 } from './skills';
 
-export const influenceAndPersuasion_SkillGroup_Data = buildSkillGroupConfig({
+export const influenceAndPersuasion_SkillGroup_Data = defineSkillGroup({
   slug: 'influenceAndPersuasion',
   id: 'd25577b7-abdb-4a10-b5b1-1b82e4a55191',
   name: {
@@ -43,14 +43,14 @@ export const influenceAndPersuasion_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Ықпал және сендіру',
     qm: 'Tesir ve inandırmaq',
   },
-  skills: {
-    conformity: conformity_Skill_Data,
-    informationalSocialInfluence: informationalSocialInfluence_Skill_Data,
-    normativeSocialInfluence: normativeSocialInfluence_Skill_Data,
-    obedienceToAuthority: obedienceToAuthority_Skill_Data,
-    persuasionRoutes: persuasionRoutes_Skill_Data,
-    recognizingPsychologicalManipulation: recognizingPsychologicalManipulation_Skill_Data,
-  },
+  skills: [
+    conformity_Skill_Data,
+    informationalSocialInfluence_Skill_Data,
+    normativeSocialInfluence_Skill_Data,
+    obedienceToAuthority_Skill_Data,
+    persuasionRoutes_Skill_Data,
+    recognizingPsychologicalManipulation_Skill_Data,
+  ],
   description: {
     methodological:
       "Other people's behavior, claims, and group norms can shift beliefs or actions through identifiable social mechanisms.",

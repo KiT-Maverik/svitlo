@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const atmosphericCirculation_Skill_Data = buildSkillConfig({
+export const atmosphericCirculation_Skill_Data = defineSkill({
   slug: 'atmosphericCirculation',
   id: '6a8c1613-a7d7-487f-8550-fecbc8bc36a3',
   name: {

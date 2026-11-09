@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const gravitationalWaveAstronomy_Skill_Data = buildSkillConfig({
+export const gravitationalWaveAstronomy_Skill_Data = defineSkill({
   slug: 'gravitationalWaveAstronomy',
   id: 'f6c506b9-73e7-4394-b518-d485c5965573',
   name: {

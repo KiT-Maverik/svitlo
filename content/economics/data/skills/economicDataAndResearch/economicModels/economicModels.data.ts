@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   buildingEconomicModels_Skill_Data,
@@ -6,7 +6,7 @@ import {
   limitsOfEconomicModels_Skill_Data,
 } from './skills';
 
-export const economicModels_SkillGroup_Data = buildSkillGroupConfig({
+export const economicModels_SkillGroup_Data = defineSkillGroup({
   slug: 'economicModels',
   id: 'f970f789-b7d4-4cfa-bab9-d69227223efc',
   name: {
@@ -40,11 +40,7 @@ export const economicModels_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Экономикалық модельдер',
     qm: 'İqtisadiy modeller',
   },
-  skills: {
-    buildingEconomicModels: buildingEconomicModels_Skill_Data,
-    ceterisParibusAssumption: ceterisParibusAssumption_Skill_Data,
-    limitsOfEconomicModels: limitsOfEconomicModels_Skill_Data,
-  },
+  skills: [buildingEconomicModels_Skill_Data, ceterisParibusAssumption_Skill_Data, limitsOfEconomicModels_Skill_Data],
   description: {
     methodological:
       'Simplified representations help isolate mechanisms, but their conclusions depend on starting assumptions.',

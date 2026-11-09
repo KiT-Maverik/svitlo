@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainHowInducedCurrentArises_Skill_Data = buildSkillConfig({
+export const explainHowInducedCurrentArises_Skill_Data = defineSkill({
   slug: 'explainHowInducedCurrentArises',
   id: 'b82a097f-1dba-421a-9c2f-dc65b1db8928',
   name: {

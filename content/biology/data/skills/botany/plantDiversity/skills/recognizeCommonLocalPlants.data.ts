@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeCommonLocalPlants_Skill_Data = buildSkillConfig({
+export const recognizeCommonLocalPlants_Skill_Data = defineSkill({
   slug: 'recognizeCommonLocalPlants',
   id: 'c62f418f-749b-44d3-9afc-a20eba15217f',
   name: {

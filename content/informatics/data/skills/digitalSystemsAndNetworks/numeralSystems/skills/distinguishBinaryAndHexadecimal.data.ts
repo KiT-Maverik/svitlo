@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishBinaryAndHexadecimal_Skill_Data = buildSkillConfig({
+export const distinguishBinaryAndHexadecimal_Skill_Data = defineSkill({
   slug: 'distinguishBinaryAndHexadecimal',
   id: '595295a3-72b0-49d0-a66a-1b09ae6e69a4',
   name: {

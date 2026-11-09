@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyAnArgumentsConclusion_Skill_Data = buildSkillConfig({
+export const identifyAnArgumentsConclusion_Skill_Data = defineSkill({
   slug: 'identifyAnArgumentsConclusion',
   id: '09c4373a-75c0-4319-950a-ad93b395a9d8',
   name: {

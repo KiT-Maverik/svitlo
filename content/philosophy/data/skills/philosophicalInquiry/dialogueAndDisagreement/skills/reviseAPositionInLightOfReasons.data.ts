@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const reviseAPositionInLightOfReasons_Skill_Data = buildSkillConfig({
+export const reviseAPositionInLightOfReasons_Skill_Data = defineSkill({
   slug: 'reviseAPositionInLightOfReasons',
   id: 'a2bc44ea-a070-408a-9e00-e06abad2682d',
   name: {

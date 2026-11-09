@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareModelMemoryRequirements_Skill_Data = buildSkillConfig({
+export const compareModelMemoryRequirements_Skill_Data = defineSkill({
   slug: 'compareModelMemoryRequirements',
   id: '47fe7fe6-516d-4f52-aa11-4d49d3d2ae7e',
   name: {

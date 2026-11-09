@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const accessibleFixtureDesign_Skill_Data = buildSkillConfig({
+export const accessibleFixtureDesign_Skill_Data = defineSkill({
   slug: 'accessibleFixtureDesign',
   id: 'd71f8e71-da96-4768-9c3c-b4fe141926d2',
   name: {

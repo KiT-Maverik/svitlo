@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretAProcessFlowDiagram_Skill_Data = buildSkillConfig({
+export const interpretAProcessFlowDiagram_Skill_Data = defineSkill({
   slug: 'interpretAProcessFlowDiagram',
   id: '7df4e618-4953-4f21-9801-e320b1e2c7f6',
   name: {

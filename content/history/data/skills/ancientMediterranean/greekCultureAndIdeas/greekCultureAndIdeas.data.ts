@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   ancientGreekArt_Skill_Data,
@@ -7,7 +7,7 @@ import {
   greekReligionAndMythology_Skill_Data,
 } from './skills';
 
-export const greekCultureAndIdeas_SkillGroup_Data = buildSkillGroupConfig({
+export const greekCultureAndIdeas_SkillGroup_Data = defineSkillGroup({
   slug: 'greekCultureAndIdeas',
   id: 'f5e5caa8-dff9-4db1-ad33-7d6fcb46f407',
   name: {
@@ -41,12 +41,12 @@ export const greekCultureAndIdeas_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Ежелгі грек мәдениеті мен ой дәстүрлері',
     qm: 'Qadimiy Yunan medeniyeti ve fikirleri',
   },
-  skills: {
-    ancientGreekArt: ancientGreekArt_Skill_Data,
-    ancientGreekTheater: ancientGreekTheater_Skill_Data,
-    greekPhilosophy: greekPhilosophy_Skill_Data,
-    greekReligionAndMythology: greekReligionAndMythology_Skill_Data,
-  },
+  skills: [
+    ancientGreekArt_Skill_Data,
+    ancientGreekTheater_Skill_Data,
+    greekPhilosophy_Skill_Data,
+    greekReligionAndMythology_Skill_Data,
+  ],
   description: {
     methodological:
       'Greek religion, philosophy, and art varied across communities and periods rather than forming one fixed culture.',

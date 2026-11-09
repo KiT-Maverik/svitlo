@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const weighObject_Skill_Data = buildSkillConfig({
+export const weighObject_Skill_Data = defineSkill({
   slug: 'weighObject',
   id: '401849ab-d37f-49a3-9179-da85f6704707',
   name: {

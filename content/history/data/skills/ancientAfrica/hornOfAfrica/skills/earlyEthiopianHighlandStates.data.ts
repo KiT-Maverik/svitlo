@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const earlyEthiopianHighlandStates_Skill_Data = buildSkillConfig({
+export const earlyEthiopianHighlandStates_Skill_Data = defineSkill({
   slug: 'earlyEthiopianHighlandStates',
   id: '8b35ae63-b070-4370-93f5-67bce4a59b7b',
   name: {

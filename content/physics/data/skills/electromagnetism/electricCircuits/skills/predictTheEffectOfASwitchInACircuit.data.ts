@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const predictTheEffectOfASwitchInACircuit_Skill_Data = buildSkillConfig({
+export const predictTheEffectOfASwitchInACircuit_Skill_Data = defineSkill({
   slug: 'predictTheEffectOfASwitchInACircuit',
   id: 'e3b3291c-f917-4fb9-a52c-75998ca04469',
   name: {

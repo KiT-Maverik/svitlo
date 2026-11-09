@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const constructTwoPointPerspective_Skill_Data = buildSkillConfig({
+export const constructTwoPointPerspective_Skill_Data = defineSkill({
   slug: 'constructTwoPointPerspective',
   id: '76499fe4-e0e7-4b7b-9734-fbac24c27d7d',
   name: {

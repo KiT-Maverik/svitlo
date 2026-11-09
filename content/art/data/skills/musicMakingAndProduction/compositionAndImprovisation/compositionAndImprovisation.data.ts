@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   arrangeMusicForAnEnsemble_Skill_Data,
@@ -8,7 +8,7 @@ import {
   improviseARhythm_Skill_Data,
 } from './skills';
 
-export const compositionAndImprovisation_SkillGroup_Data = buildSkillGroupConfig({
+export const compositionAndImprovisation_SkillGroup_Data = defineSkillGroup({
   slug: 'compositionAndImprovisation',
   id: '46737c7a-d01b-41a9-a3be-05b9d1cd3509',
   name: {
@@ -42,13 +42,13 @@ export const compositionAndImprovisation_SkillGroup_Data = buildSkillGroupConfig
     kk: 'Композиция және импровизация',
     qm: 'Besteleme ve doğaçlama',
   },
-  skills: {
-    arrangeMusicForAnEnsemble: arrangeMusicForAnEnsemble_Skill_Data,
-    composeAMusicalPiece: composeAMusicalPiece_Skill_Data,
-    composeARhythmicGroove: composeARhythmicGroove_Skill_Data,
-    improviseAMelody: improviseAMelody_Skill_Data,
-    improviseARhythm: improviseARhythm_Skill_Data,
-  },
+  skills: [
+    arrangeMusicForAnEnsemble_Skill_Data,
+    composeAMusicalPiece_Skill_Data,
+    composeARhythmicGroove_Skill_Data,
+    improviseAMelody_Skill_Data,
+    improviseARhythm_Skill_Data,
+  ],
   description: {
     methodological:
       'Generating new musical phrases, forming completed pieces and arranging existing material require distinct authorial choices.',

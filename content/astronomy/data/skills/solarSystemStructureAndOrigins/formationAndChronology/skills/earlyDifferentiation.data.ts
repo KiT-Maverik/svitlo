@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const earlyDifferentiation_Skill_Data = buildSkillConfig({
+export const earlyDifferentiation_Skill_Data = defineSkill({
   slug: 'earlyDifferentiation',
   id: 'b8bbcc95-d17c-4911-a908-eb804c62b3e5',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const protectAgainstHarmfulUVExposure_Skill_Data = buildSkillConfig({
+export const protectAgainstHarmfulUVExposure_Skill_Data = defineSkill({
   slug: 'protectAgainstHarmfulUVExposure',
   id: '466006d1-8870-484f-97eb-bc6a0afeb422',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const egyptianForeignRelations_Skill_Data = buildSkillConfig({
+export const egyptianForeignRelations_Skill_Data = defineSkill({
   slug: 'egyptianForeignRelations',
   id: '2a98d27f-a2fe-433a-9247-80102db5e0e2',
   name: {

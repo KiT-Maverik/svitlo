@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeGeledeMasqueradeTraditions_Skill_Data = buildSkillConfig({
+export const analyzeGeledeMasqueradeTraditions_Skill_Data = defineSkill({
   slug: 'analyzeGeledeMasqueradeTraditions',
   id: '17621f8a-9bea-4905-8c57-858e40c33549',
   name: {

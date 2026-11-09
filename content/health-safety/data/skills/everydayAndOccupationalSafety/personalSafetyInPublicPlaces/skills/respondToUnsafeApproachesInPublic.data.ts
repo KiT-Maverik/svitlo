@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const respondToUnsafeApproachesInPublic_Skill_Data = buildSkillConfig({
+export const respondToUnsafeApproachesInPublic_Skill_Data = defineSkill({
   slug: 'respondToUnsafeApproachesInPublic',
   id: '6c6860cf-618f-4ea2-9fae-65806459b4be',
   name: {

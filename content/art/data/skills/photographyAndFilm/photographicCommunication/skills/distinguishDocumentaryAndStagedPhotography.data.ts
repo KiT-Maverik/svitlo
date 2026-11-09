@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishDocumentaryAndStagedPhotography_Skill_Data = buildSkillConfig({
+export const distinguishDocumentaryAndStagedPhotography_Skill_Data = defineSkill({
   slug: 'distinguishDocumentaryAndStagedPhotography',
   id: '170827b1-5455-4496-8161-205de02a10b6',
   name: {

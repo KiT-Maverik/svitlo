@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeHumanAutonomyInTechnologicalSystems_Skill_Data = buildSkillConfig({
+export const analyzeHumanAutonomyInTechnologicalSystems_Skill_Data = defineSkill({
   slug: 'analyzeHumanAutonomyInTechnologicalSystems',
   id: 'dfb7bf17-89af-462b-b47b-9db218de5cc9',
   name: {

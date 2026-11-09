@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyAdjacentVertices_Skill_Data = buildSkillConfig({
+export const identifyAdjacentVertices_Skill_Data = defineSkill({
   slug: 'identifyAdjacentVertices',
   id: '9e17a09a-41b4-46b5-b48f-132edc5d8f32',
   name: {

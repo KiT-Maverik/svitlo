@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const crossModalIntegration_Skill_Data = buildSkillConfig({
+export const crossModalIntegration_Skill_Data = defineSkill({
   slug: 'crossModalIntegration',
   id: '9d5b3c9a-9a9e-4e15-9818-26878d1f67ff',
   name: {

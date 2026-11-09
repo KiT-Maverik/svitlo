@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishAGeneFromATrait_Skill_Data = buildSkillConfig({
+export const distinguishAGeneFromATrait_Skill_Data = defineSkill({
   slug: 'distinguishAGeneFromATrait',
   id: 'd141d11a-9313-48e0-bb73-e160c76958e7',
   name: {

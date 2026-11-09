@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const adaptationToEnvironments_Skill_Data = buildSkillConfig({
+export const adaptationToEnvironments_Skill_Data = defineSkill({
   slug: 'adaptationToEnvironments',
   id: '628ab257-8ca4-4d9e-aaf3-4cd77233fa0c',
   name: {

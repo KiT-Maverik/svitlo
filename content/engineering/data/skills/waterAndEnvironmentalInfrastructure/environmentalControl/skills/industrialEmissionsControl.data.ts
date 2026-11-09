@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const industrialEmissionsControl_Skill_Data = buildSkillConfig({
+export const industrialEmissionsControl_Skill_Data = defineSkill({
   slug: 'industrialEmissionsControl',
   id: 'dfd70b0b-31c9-4af6-b4b0-2071c0df2d4d',
   name: {

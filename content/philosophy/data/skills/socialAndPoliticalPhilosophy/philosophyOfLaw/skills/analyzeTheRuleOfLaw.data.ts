@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeTheRuleOfLaw_Skill_Data = buildSkillConfig({
+export const analyzeTheRuleOfLaw_Skill_Data = defineSkill({
   slug: 'analyzeTheRuleOfLaw',
   id: 'efdf6de1-9b86-4cc8-983d-07cfc1920346',
   name: {

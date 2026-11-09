@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const incomeDistribution_Skill_Data = buildSkillConfig({
+export const incomeDistribution_Skill_Data = defineSkill({
   slug: 'incomeDistribution',
   id: 'f13a0fa1-568d-49d1-9a27-f114d68b0bef',
   name: {

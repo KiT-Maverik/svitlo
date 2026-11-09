@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifySemanticAmbiguity_Skill_Data = buildSkillConfig({
+export const identifySemanticAmbiguity_Skill_Data = defineSkill({
   slug: 'identifySemanticAmbiguity',
   id: 'ec2e5bd8-cc62-411e-9b9b-c53dc4846d5f',
   name: {

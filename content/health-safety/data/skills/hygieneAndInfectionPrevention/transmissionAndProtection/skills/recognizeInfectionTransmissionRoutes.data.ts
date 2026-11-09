@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeInfectionTransmissionRoutes_Skill_Data = buildSkillConfig({
+export const recognizeInfectionTransmissionRoutes_Skill_Data = defineSkill({
   slug: 'recognizeInfectionTransmissionRoutes',
   id: '76b7e737-2afe-489b-9868-319f89bd8103',
   name: {

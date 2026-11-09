@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const predictTheDirectionOfAReflectedRay_Skill_Data = buildSkillConfig({
+export const predictTheDirectionOfAReflectedRay_Skill_Data = defineSkill({
   slug: 'predictTheDirectionOfAReflectedRay',
   id: '13e4b49d-45c4-4716-a54e-ff38c974db71',
   name: {

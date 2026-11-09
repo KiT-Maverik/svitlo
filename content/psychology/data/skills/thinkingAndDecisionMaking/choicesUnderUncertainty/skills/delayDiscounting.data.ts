@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const delayDiscounting_Skill_Data = buildSkillConfig({
+export const delayDiscounting_Skill_Data = defineSkill({
   slug: 'delayDiscounting',
   id: '0f4ac143-245e-4d8a-a35f-5defa2a51c28',
   name: {

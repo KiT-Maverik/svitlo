@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const stereotypeActivation_Skill_Data = buildSkillConfig({
+export const stereotypeActivation_Skill_Data = defineSkill({
   slug: 'stereotypeActivation',
   id: 'fcf96811-fb82-409a-b1d1-8b0a32d648ff',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainAnOSProcess_Skill_Data = buildSkillConfig({
+export const explainAnOSProcess_Skill_Data = defineSkill({
   slug: 'explainAnOSProcess',
   id: 'b8101fdb-f626-4995-be7c-e05e25a8e3a2',
   name: {

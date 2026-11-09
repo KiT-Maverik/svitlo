@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const foodSecurityAsAnEconomicIssue_Skill_Data = buildSkillConfig({
+export const foodSecurityAsAnEconomicIssue_Skill_Data = defineSkill({
   slug: 'foodSecurityAsAnEconomicIssue',
   id: '41fcf6ba-dc3c-450c-bd76-e1c009cf1990',
   name: {

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   floodControlStructures_Skill_Data,
@@ -7,7 +7,7 @@ import {
   wastewaterTreatment_Skill_Data,
 } from './skills';
 
-export const wastewaterAndDrainage_SkillGroup_Data = buildSkillGroupConfig({
+export const wastewaterAndDrainage_SkillGroup_Data = defineSkillGroup({
   slug: 'wastewaterAndDrainage',
   id: '548774f2-1fa8-4313-ae4c-77a9c2946222',
   name: {
@@ -41,12 +41,12 @@ export const wastewaterAndDrainage_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Ағынды сулар және су ағызу',
     qm: 'Aqıntı suvlar ve suv ketirüv',
   },
-  skills: {
-    floodControlStructures: floodControlStructures_Skill_Data,
-    stormwaterDrainage: stormwaterDrainage_Skill_Data,
-    traceWastewaterCollection: traceWastewaterCollection_Skill_Data,
-    wastewaterTreatment: wastewaterTreatment_Skill_Data,
-  },
+  skills: [
+    floodControlStructures_Skill_Data,
+    stormwaterDrainage_Skill_Data,
+    traceWastewaterCollection_Skill_Data,
+    wastewaterTreatment_Skill_Data,
+  ],
   description: {
     methodological:
       'Sewage, storm runoff and treated discharge have different handling requirements; networks must account for capacity and contamination.',

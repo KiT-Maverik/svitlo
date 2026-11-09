@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const surfaceAgeEstimation_Skill_Data = buildSkillConfig({
+export const surfaceAgeEstimation_Skill_Data = defineSkill({
   slug: 'surfaceAgeEstimation',
   id: '832be903-d031-4b3b-89a0-f2473316891c',
   name: {

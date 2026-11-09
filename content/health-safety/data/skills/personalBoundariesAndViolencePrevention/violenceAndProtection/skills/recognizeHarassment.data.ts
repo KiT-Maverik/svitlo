@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeHarassment_Skill_Data = buildSkillConfig({
+export const recognizeHarassment_Skill_Data = defineSkill({
   slug: 'recognizeHarassment',
   id: '646a2b40-c9ee-49bc-b9da-396bdbd624b4',
   name: {

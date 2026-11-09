@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishElasticFromInelasticCollisions_Skill_Data = buildSkillConfig({
+export const distinguishElasticFromInelasticCollisions_Skill_Data = defineSkill({
   slug: 'distinguishElasticFromInelasticCollisions',
   id: '2b3f2b52-7d11-45ad-9253-d2e5ceb80b3b',
   name: {

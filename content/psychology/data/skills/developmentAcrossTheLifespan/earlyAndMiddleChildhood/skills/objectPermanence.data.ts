@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const objectPermanence_Skill_Data = buildSkillConfig({
+export const objectPermanence_Skill_Data = defineSkill({
   slug: 'objectPermanence',
   id: '3e0455f7-5d5c-43dc-90a4-6b36e5725f33',
   name: {

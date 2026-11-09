@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyEarthsGeographicHemispheres_Skill_Data = buildSkillConfig({
+export const identifyEarthsGeographicHemispheres_Skill_Data = defineSkill({
   slug: 'identifyEarthsGeographicHemispheres',
   id: '092c2a88-5988-4318-99cb-0162a1c0489a',
   name: {

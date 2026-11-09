@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const readTemperatureFromAThermometer_Skill_Data = buildSkillConfig({
+export const readTemperatureFromAThermometer_Skill_Data = defineSkill({
   slug: 'readTemperatureFromAThermometer',
   id: '9c9ff04f-5ae3-4d31-bfc1-562652307a03',
   name: {

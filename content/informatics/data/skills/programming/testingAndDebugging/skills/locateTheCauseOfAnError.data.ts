@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const locateTheCauseOfAnError_Skill_Data = buildSkillConfig({
+export const locateTheCauseOfAnError_Skill_Data = defineSkill({
   slug: 'locateTheCauseOfAnError',
   id: 'f5e6e900-34a8-4061-a708-b43ff8ab9791',
   name: {

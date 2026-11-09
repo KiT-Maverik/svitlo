@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { atmosphericHazards_SkillGroup_Data } from './atmosphericHazards/atmosphericHazards.data';
 import { atmosphericProcesses_SkillGroup_Data } from './atmosphericProcesses/atmosphericProcesses.data';
 import { climatePatterns_SkillGroup_Data } from './climatePatterns/climatePatterns.data';
 import { weatherObservations_SkillGroup_Data } from './weatherObservations/weatherObservations.data';
 
-export const atmosphereWeatherAndClimate_SkillDomain_Data = buildSkillDomainConfig({
+export const atmosphereWeatherAndClimate_SkillDomain_Data = defineSkillDomain({
   slug: 'atmosphereWeatherAndClimate',
   id: '0932373f-a251-4619-9fc4-4779bd00cead',
-  name: {
+  title: {
     en: 'Atmosphere, Weather, and Climate',
     zh: '大气、天气与气候',
     hi: 'वायुमंडल, मौसम और जलवायु',
@@ -39,12 +39,12 @@ export const atmosphereWeatherAndClimate_SkillDomain_Data = buildSkillDomainConf
     kk: 'Атмосфера, ауа райы және климат',
     qm: 'Atmosfera, ava şaraiti ve iklim',
   },
-  groups: {
-    atmosphericHazards: atmosphericHazards_SkillGroup_Data,
-    atmosphericProcesses: atmosphericProcesses_SkillGroup_Data,
-    climatePatterns: climatePatterns_SkillGroup_Data,
-    weatherObservations: weatherObservations_SkillGroup_Data,
-  },
+  groups: [
+    atmosphericHazards_SkillGroup_Data,
+    atmosphericProcesses_SkillGroup_Data,
+    climatePatterns_SkillGroup_Data,
+    weatherObservations_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Weather describes atmospheric conditions at a place and time, whereas climate characterizes their long-term distributions and change. Geographic inquiry examines how clouds, precipitation, air motion and circulation vary across places, and how hazards and climate trends influence regions.',

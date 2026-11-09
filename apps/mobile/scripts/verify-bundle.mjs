@@ -10,7 +10,7 @@ const index = JSON.parse(readFileSync(join(dist, 'data/lesson-index.json'), 'utf
 const publication = JSON.parse(readFileSync(join(dist, '.svitlo/publish-playground.json'), 'utf8'));
 assert.equal(publication.textbook, 'playground');
 assert.ok(publication.files.some(name => name.startsWith('data/pages/lessons/')));
-assert.ok(publication.files.includes('data/pages/skillAnalytics/uk.json'));
+assert.ok(publication.files.includes('data/skills/base.json'));
 assert.ok(index.lessons.length > 0, 'The offline textbook has no lessons');
 for (const lesson of index.lessons) {
   const base = join(dist, 'data/pages/lessons', lesson.id.at(-1), lesson.id);
@@ -22,7 +22,11 @@ for (const lesson of index.lessons) {
     }
   }
 }
-assert.ok(existsSync(join(dist, 'data/pages/skillAnalytics/uk.json')), 'Missing compiled Skills Analytics JSON');
+for (const language of ['base', 'uk']) {
+  const filename = join(dist, 'data/skills', language + '.json');
+  assert.ok(existsSync(filename), 'Missing compiled Skills resource: ' + filename);
+  JSON.parse(readFileSync(filename, 'utf8'));
+}
 const locales = readdirSync(join(dist, 'data/uiKit/components')).filter(name => name.endsWith('.json'));
 assert.ok(locales.length > 0, 'Missing UI Kit localizations');
 for (const locale of locales) JSON.parse(readFileSync(join(dist, 'data/uiKit/components', locale), 'utf8'));

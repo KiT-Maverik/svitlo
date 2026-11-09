@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   explainResponsesToStimuli_Skill_Data,
@@ -7,7 +7,7 @@ import {
   relateASenseOrganToTheInformationItDetects_Skill_Data,
 } from './skills';
 
-export const sensoryOrgansAndTheNervousSystem_SkillGroup_Data = buildSkillGroupConfig({
+export const sensoryOrgansAndTheNervousSystem_SkillGroup_Data = defineSkillGroup({
   slug: 'sensoryOrgansAndTheNervousSystem',
   id: 'd3683f34-48a8-4b91-8453-a5be1e59d88a',
   name: {
@@ -41,12 +41,12 @@ export const sensoryOrgansAndTheNervousSystem_SkillGroup_Data = buildSkillGroupC
     kk: 'Сезім мүшелері мен жүйке жүйесі',
     qm: 'Sezgi organları ve sinir sisteması',
   },
-  skills: {
-    explainResponsesToStimuli: explainResponsesToStimuli_Skill_Data,
-    identifyTheSkinsProtectiveFunction: identifyTheSkinsProtectiveFunction_Skill_Data,
-    recognizeTheBrainsRoleInPerception: recognizeTheBrainsRoleInPerception_Skill_Data,
-    relateASenseOrganToTheInformationItDetects: relateASenseOrganToTheInformationItDetects_Skill_Data,
-  },
+  skills: [
+    explainResponsesToStimuli_Skill_Data,
+    identifyTheSkinsProtectiveFunction_Skill_Data,
+    recognizeTheBrainsRoleInPerception_Skill_Data,
+    relateASenseOrganToTheInformationItDetects_Skill_Data,
+  ],
   description: {
     methodological:
       'Receptors detect different stimuli, the nervous system processes signals, and the skin also protects the body as a physical barrier.',

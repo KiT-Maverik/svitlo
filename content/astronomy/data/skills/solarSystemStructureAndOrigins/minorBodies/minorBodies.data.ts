@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   asteroids_Skill_Data,
@@ -7,7 +7,7 @@ import {
   transNeptunianObjects_Skill_Data,
 } from './skills';
 
-export const minorBodies_SkillGroup_Data = buildSkillGroupConfig({
+export const minorBodies_SkillGroup_Data = defineSkillGroup({
   slug: 'minorBodies',
   id: 'a0f454be-1873-4da3-a5dc-6f4669a4b2ac',
   name: {
@@ -41,12 +41,12 @@ export const minorBodies_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Күн жүйесінің кіші денелері',
     qm: 'Küneş sistemasınıñ kiçik cisimleri',
   },
-  skills: {
-    asteroids: asteroids_Skill_Data,
-    comets: comets_Skill_Data,
-    meteoroidsMeteorsAndMeteorites: meteoroidsMeteorsAndMeteorites_Skill_Data,
-    transNeptunianObjects: transNeptunianObjects_Skill_Data,
-  },
+  skills: [
+    asteroids_Skill_Data,
+    comets_Skill_Data,
+    meteoroidsMeteorsAndMeteorites_Skill_Data,
+    transNeptunianObjects_Skill_Data,
+  ],
   description: {
     methodological:
       'Small populations preserve clues about early formation while showing important differences in composition, orbital origin and activity.',

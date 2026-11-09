@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { collaborativeDigitalProductDevelopment_SkillGroup_Data } from './collaborativeDigitalProductDevelopment/collaborativeDigitalProductDevelopment.data';
 import { gitVersionControl_SkillGroup_Data } from './gitVersionControl/gitVersionControl.data';
 import { openSource_SkillGroup_Data } from './openSource/openSource.data';
 
-export const gitAndOpenSource_SkillDomain_Data = buildSkillDomainConfig({
+export const gitAndOpenSource_SkillDomain_Data = defineSkillDomain({
   slug: 'gitAndOpenSource',
   id: 'ecbff879-3706-40da-a4c1-0cdeb2611bb8',
-  name: {
+  title: {
     en: 'Git and Open Source',
     zh: 'Git 与开源',
     hi: 'Git और ओपन सोर्स',
@@ -38,11 +38,11 @@ export const gitAndOpenSource_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Git және ашық бастапқы код',
     qm: 'Git ve açıq menba',
   },
-  groups: {
-    collaborativeDigitalProductDevelopment: collaborativeDigitalProductDevelopment_SkillGroup_Data,
-    gitVersionControl: gitVersionControl_SkillGroup_Data,
-    openSource: openSource_SkillGroup_Data,
-  },
+  groups: [
+    collaborativeDigitalProductDevelopment_SkillGroup_Data,
+    gitVersionControl_SkillGroup_Data,
+    openSource_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'A distinct subject area covering software change history, collaboration in repositories, and licensed cooperative software creation rather than an automatic component of every digital lesson.',

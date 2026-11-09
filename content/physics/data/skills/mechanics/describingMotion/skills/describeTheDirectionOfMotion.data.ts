@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const describeTheDirectionOfMotion_Skill_Data = buildSkillConfig({
+export const describeTheDirectionOfMotion_Skill_Data = defineSkill({
   slug: 'describeTheDirectionOfMotion',
   id: 'afdae8eb-d3e3-43cb-bff6-0a22d17f86c1',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const structurePropertyRelationships_Skill_Data = buildSkillConfig({
+export const structurePropertyRelationships_Skill_Data = defineSkill({
   slug: 'structurePropertyRelationships',
   id: '1d31dee4-691c-408a-be8e-d1bdd6e684d2',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const continuityAndChange_Skill_Data = buildSkillConfig({
+export const continuityAndChange_Skill_Data = defineSkill({
   slug: 'continuityAndChange',
   id: 'bb6ee781-5440-4b57-a3ba-a11af97bab08',
   name: {

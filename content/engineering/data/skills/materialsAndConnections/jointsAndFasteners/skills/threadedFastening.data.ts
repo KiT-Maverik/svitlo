@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const threadedFastening_Skill_Data = buildSkillConfig({
+export const threadedFastening_Skill_Data = defineSkill({
   slug: 'threadedFastening',
   id: 'cb320aeb-a64f-4eee-a3bf-0e02dd051e9d',
   name: {

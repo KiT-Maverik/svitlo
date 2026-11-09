@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const diagnoseRestrictedFluidFlow_Skill_Data = buildSkillConfig({
+export const diagnoseRestrictedFluidFlow_Skill_Data = defineSkill({
   slug: 'diagnoseRestrictedFluidFlow',
   id: 'b192aa31-4ba9-40f4-96c1-4ab5949fd356',
   name: {

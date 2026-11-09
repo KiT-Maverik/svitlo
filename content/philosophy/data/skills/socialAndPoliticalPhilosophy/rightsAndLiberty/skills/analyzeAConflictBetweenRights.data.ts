@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeAConflictBetweenRights_Skill_Data = buildSkillConfig({
+export const analyzeAConflictBetweenRights_Skill_Data = defineSkill({
   slug: 'analyzeAConflictBetweenRights',
   id: 'a52b38dd-32d3-4c3e-a31c-7c9f93e70625',
   name: {

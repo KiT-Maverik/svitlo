@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const ceramics_Skill_Data = buildSkillConfig({
+export const ceramics_Skill_Data = defineSkill({
   slug: 'ceramics',
   id: 'd9a47c0f-3cac-4645-859a-d23a7e0aea7b',
   name: {

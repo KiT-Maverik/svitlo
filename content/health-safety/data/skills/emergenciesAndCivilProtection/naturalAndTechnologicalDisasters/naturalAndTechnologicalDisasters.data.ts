@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   chemicalIncidentProtection_Skill_Data,
@@ -7,7 +7,7 @@ import {
   respondSafelyToAnEarthquake_Skill_Data,
 } from './skills';
 
-export const naturalAndTechnologicalDisasters_SkillGroup_Data = buildSkillGroupConfig({
+export const naturalAndTechnologicalDisasters_SkillGroup_Data = defineSkillGroup({
   slug: 'naturalAndTechnologicalDisasters',
   id: 'e86c58d5-2069-4c5d-a4de-38c61e262a16',
   name: {
@@ -41,12 +41,12 @@ export const naturalAndTechnologicalDisasters_SkillGroup_Data = buildSkillGroupC
     kk: 'Табиғи және техногендік апаттар',
     qm: 'Tabiiy ve tehnologik felâketler',
   },
-  skills: {
-    chemicalIncidentProtection: chemicalIncidentProtection_Skill_Data,
-    floodSafety: floodSafety_Skill_Data,
-    radiologicalEmergencyProtection: radiologicalEmergencyProtection_Skill_Data,
-    respondSafelyToAnEarthquake: respondSafelyToAnEarthquake_Skill_Data,
-  },
+  skills: [
+    chemicalIncidentProtection_Skill_Data,
+    floodSafety_Skill_Data,
+    radiologicalEmergencyProtection_Skill_Data,
+    respondSafelyToAnEarthquake_Skill_Data,
+  ],
   description: {
     methodological:
       'Floods, earthquakes, chemical releases, and radiation incidents create different exposure pathways and require different protective behaviour.',

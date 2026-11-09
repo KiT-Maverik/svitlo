@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const breakAComplexPromptIntoSubtasks_Skill_Data = buildSkillConfig({
+export const breakAComplexPromptIntoSubtasks_Skill_Data = defineSkill({
   slug: 'breakAComplexPromptIntoSubtasks',
   id: 'd6f91678-7346-4d54-aad0-b9382f0a0ef6',
   name: {

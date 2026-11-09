@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const importTariffs_Skill_Data = buildSkillConfig({
+export const importTariffs_Skill_Data = defineSkill({
   slug: 'importTariffs',
   id: '46e5e999-6287-4c68-b8f4-83ed02a9a91f',
   name: {

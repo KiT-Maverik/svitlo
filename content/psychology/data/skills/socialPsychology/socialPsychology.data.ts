@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { groupDynamics_SkillGroup_Data } from './groupDynamics/groupDynamics.data';
 import { influenceAndPersuasion_SkillGroup_Data } from './influenceAndPersuasion/influenceAndPersuasion.data';
 import { relationshipsAndCommunication_SkillGroup_Data } from './relationshipsAndCommunication/relationshipsAndCommunication.data';
 import { socialPerception_SkillGroup_Data } from './socialPerception/socialPerception.data';
 
-export const socialPsychology_SkillDomain_Data = buildSkillDomainConfig({
+export const socialPsychology_SkillDomain_Data = defineSkillDomain({
   slug: 'socialPsychology',
   id: 'bb5e56e5-17d7-4ae3-aac3-260f60352c56',
-  name: {
+  title: {
     en: 'Social Psychology',
     zh: '社会心理学',
     hi: 'सामाजिक मनोविज्ञान',
@@ -39,12 +39,12 @@ export const socialPsychology_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Әлеуметтік психология',
     qm: 'İçtimaiy psihologiya',
   },
-  groups: {
-    groupDynamics: groupDynamics_SkillGroup_Data,
-    influenceAndPersuasion: influenceAndPersuasion_SkillGroup_Data,
-    relationshipsAndCommunication: relationshipsAndCommunication_SkillGroup_Data,
-    socialPerception: socialPerception_SkillGroup_Data,
-  },
+  groups: [
+    groupDynamics_SkillGroup_Data,
+    influenceAndPersuasion_SkillGroup_Data,
+    relationshipsAndCommunication_SkillGroup_Data,
+    socialPerception_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Thought and behavior change in the actual or imagined presence of others. Social processes involve interpretation, group membership, influence, and relationships without assuming all people respond alike.',

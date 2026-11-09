@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const nobleGases_Skill_Data = buildSkillConfig({
+export const nobleGases_Skill_Data = defineSkill({
   slug: 'nobleGases',
   id: '46ba83f0-c014-4704-ad2a-4bcea51c0a51',
   name: {

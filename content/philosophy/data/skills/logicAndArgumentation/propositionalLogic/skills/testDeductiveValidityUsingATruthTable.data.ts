@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const testDeductiveValidityUsingATruthTable_Skill_Data = buildSkillConfig({
+export const testDeductiveValidityUsingATruthTable_Skill_Data = defineSkill({
   slug: 'testDeductiveValidityUsingATruthTable',
   id: 'ebc763c6-1122-4e03-b6d4-7346ca1796bb',
   name: {

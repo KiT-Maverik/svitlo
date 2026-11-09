@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const crisisOfRomanRepublic_Skill_Data = buildSkillConfig({
+export const crisisOfRomanRepublic_Skill_Data = defineSkill({
   slug: 'crisisOfRomanRepublic',
   id: '74f4d5db-3b0a-4dfd-8aae-becf79e3934a',
   name: {

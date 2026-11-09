@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   giniCoefficient_Skill_Data,
@@ -7,7 +7,7 @@ import {
   wealthDistribution_Skill_Data,
 } from './skills';
 
-export const inequality_SkillGroup_Data = buildSkillGroupConfig({
+export const inequality_SkillGroup_Data = defineSkillGroup({
   slug: 'inequality',
   id: '8a274f84-80f8-4691-be7f-60301d304b68',
   name: {
@@ -41,12 +41,12 @@ export const inequality_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Теңсіздік',
     qm: 'Teñsizlik',
   },
-  skills: {
-    giniCoefficient: giniCoefficient_Skill_Data,
-    incomeDistribution: incomeDistribution_Skill_Data,
-    intergenerationalEconomicMobility: intergenerationalEconomicMobility_Skill_Data,
-    wealthDistribution: wealthDistribution_Skill_Data,
-  },
+  skills: [
+    giniCoefficient_Skill_Data,
+    incomeDistribution_Skill_Data,
+    intergenerationalEconomicMobility_Skill_Data,
+    wealthDistribution_Skill_Data,
+  ],
   description: {
     methodological:
       'Distributions of income and wealth can differ even among societies with identical average incomes.',

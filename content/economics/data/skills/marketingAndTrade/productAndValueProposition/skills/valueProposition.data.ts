@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const valueProposition_Skill_Data = buildSkillConfig({
+export const valueProposition_Skill_Data = defineSkill({
   slug: 'valueProposition',
   id: '43d19d85-f573-499a-8795-8998a5b3f1a7',
   name: {

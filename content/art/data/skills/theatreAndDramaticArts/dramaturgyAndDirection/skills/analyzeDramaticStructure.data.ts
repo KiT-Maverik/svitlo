@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeDramaticStructure_Skill_Data = buildSkillConfig({
+export const analyzeDramaticStructure_Skill_Data = defineSkill({
   slug: 'analyzeDramaticStructure',
   id: '84390dd5-ebf6-4b2e-a2af-2963a1170612',
   name: {

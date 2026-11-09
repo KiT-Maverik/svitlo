@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const predictTheEffectOfComponentChanges_Skill_Data = buildSkillConfig({
+export const predictTheEffectOfComponentChanges_Skill_Data = defineSkill({
   slug: 'predictTheEffectOfComponentChanges',
   id: '49ff501b-fa46-49d4-aa52-cdf267e19289',
   name: {

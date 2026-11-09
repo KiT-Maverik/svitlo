@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   followSafeEquipmentProcedures_Skill_Data,
@@ -6,7 +6,7 @@ import {
   usePersonalProtectiveEquipment_Skill_Data,
 } from './skills';
 
-export const toolsAndWorkplaces_SkillGroup_Data = buildSkillGroupConfig({
+export const toolsAndWorkplaces_SkillGroup_Data = defineSkillGroup({
   slug: 'toolsAndWorkplaces',
   id: 'e44d3ca8-b5f3-4ed7-a4b7-90bdb204caf4',
   name: {
@@ -40,11 +40,11 @@ export const toolsAndWorkplaces_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Құралдар және жұмыс орындары',
     qm: 'Aletler ve iş yerleri',
   },
-  skills: {
-    followSafeEquipmentProcedures: followSafeEquipmentProcedures_Skill_Data,
-    readSafetySignsAndInstructions: readSafetySignsAndInstructions_Skill_Data,
-    usePersonalProtectiveEquipment: usePersonalProtectiveEquipment_Skill_Data,
-  },
+  skills: [
+    followSafeEquipmentProcedures_Skill_Data,
+    readSafetySignsAndInstructions_Skill_Data,
+    usePersonalProtectiveEquipment_Skill_Data,
+  ],
   description: {
     methodological:
       'Protective procedures depend on the activity, equipment, and conditions; professional work requires role-appropriate training.',

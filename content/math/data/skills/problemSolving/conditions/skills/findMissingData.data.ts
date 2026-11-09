@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const findMissingData_Skill_Data = buildSkillConfig({
+export const findMissingData_Skill_Data = defineSkill({
   slug: 'findMissingData',
   id: 'f42f6f4a-7183-4ace-862d-e25a58d9a702',
   name: {

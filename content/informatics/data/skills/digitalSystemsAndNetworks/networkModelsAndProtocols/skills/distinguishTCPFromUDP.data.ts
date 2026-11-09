@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishTCPFromUDP_Skill_Data = buildSkillConfig({
+export const distinguishTCPFromUDP_Skill_Data = defineSkill({
   slug: 'distinguishTCPFromUDP',
   id: 'c12e79a7-2bf8-4564-8351-a433d905574d',
   name: {

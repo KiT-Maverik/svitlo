@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishExampleRule_Skill_Data = buildSkillConfig({
+export const distinguishExampleRule_Skill_Data = defineSkill({
   slug: 'distinguishExampleRule',
   id: 'a7426dcb-f817-41c5-bc9e-47244ea5301b',
   name: {

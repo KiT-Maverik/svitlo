@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainRadioactivity_Skill_Data = buildSkillConfig({
+export const explainRadioactivity_Skill_Data = defineSkill({
   slug: 'explainRadioactivity',
   id: 'fa53395a-5f54-43ca-bec4-7119999f5297',
   name: {

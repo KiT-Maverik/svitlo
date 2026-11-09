@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const gasLeakSafety_Skill_Data = buildSkillConfig({
+export const gasLeakSafety_Skill_Data = defineSkill({
   slug: 'gasLeakSafety',
   id: 'abdc04d1-b141-45ae-95fe-f20724dc5578',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareDigitalFileSizes_Skill_Data = buildSkillConfig({
+export const compareDigitalFileSizes_Skill_Data = defineSkill({
   slug: 'compareDigitalFileSizes',
   id: '0b0ba4f0-7029-4d74-b68b-7943a3ecaf88',
   name: {

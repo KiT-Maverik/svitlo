@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { bodilyAutonomyAndConsent_SkillGroup_Data } from './bodilyAutonomyAndConsent/bodilyAutonomyAndConsent.data';
 import { pressureAndManipulation_SkillGroup_Data } from './pressureAndManipulation/pressureAndManipulation.data';
 import { violenceAndProtection_SkillGroup_Data } from './violenceAndProtection/violenceAndProtection.data';
 
-export const personalBoundariesAndViolencePrevention_SkillDomain_Data = buildSkillDomainConfig({
+export const personalBoundariesAndViolencePrevention_SkillDomain_Data = defineSkillDomain({
   slug: 'personalBoundariesAndViolencePrevention',
   id: '364e9534-ac9f-4540-85d0-86233b09cd2d',
-  name: {
+  title: {
     en: 'Personal Boundaries and Violence Prevention',
     zh: '个人边界与防止暴力',
     hi: 'व्यक्तिगत सीमाएँ और हिंसा की रोकथाम',
@@ -38,11 +38,11 @@ export const personalBoundariesAndViolencePrevention_SkillDomain_Data = buildSki
     kk: 'Жеке шекаралар және зорлықтың алдын алу',
     qm: 'Şahsiy sıñırlar ve zulumğa qarşı tedbirler',
   },
-  groups: {
-    bodilyAutonomyAndConsent: bodilyAutonomyAndConsent_SkillGroup_Data,
-    pressureAndManipulation: pressureAndManipulation_SkillGroup_Data,
-    violenceAndProtection: violenceAndProtection_SkillGroup_Data,
-  },
+  groups: [
+    bodilyAutonomyAndConsent_SkillGroup_Data,
+    pressureAndManipulation_SkillGroup_Data,
+    violenceAndProtection_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Safety in relationships requires bodily autonomy, recognition of coercion, and effective routes to protection. Mechanisms of social influence are studied in Psychology; here the emphasis is on avoiding harm and obtaining help.',

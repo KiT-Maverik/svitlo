@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateEcologicalRisksOfBiotechnologyUse_Skill_Data = buildSkillConfig({
+export const evaluateEcologicalRisksOfBiotechnologyUse_Skill_Data = defineSkill({
   slug: 'evaluateEcologicalRisksOfBiotechnologyUse',
   id: 'd650d4af-5536-4e0f-a979-15552f965dab',
   name: {

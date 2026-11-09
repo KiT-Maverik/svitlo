@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const catalysis_Skill_Data = buildSkillConfig({
+export const catalysis_Skill_Data = defineSkill({
   slug: 'catalysis',
   id: '58506eb9-5209-4cce-a8ec-5822e1855cde',
   name: {

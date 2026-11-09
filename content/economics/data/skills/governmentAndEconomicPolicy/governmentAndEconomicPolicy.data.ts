@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { fiscalAndMonetaryPolicy_SkillGroup_Data } from './fiscalAndMonetaryPolicy/fiscalAndMonetaryPolicy.data';
 import { publicBudgetAndDebt_SkillGroup_Data } from './publicBudgetAndDebt/publicBudgetAndDebt.data';
@@ -6,10 +6,10 @@ import { publicGoodsAndRegulation_SkillGroup_Data } from './publicGoodsAndRegula
 import { redistributionAndSocialProtection_SkillGroup_Data } from './redistributionAndSocialProtection/redistributionAndSocialProtection.data';
 import { taxes_SkillGroup_Data } from './taxes/taxes.data';
 
-export const governmentAndEconomicPolicy_SkillDomain_Data = buildSkillDomainConfig({
+export const governmentAndEconomicPolicy_SkillDomain_Data = defineSkillDomain({
   slug: 'governmentAndEconomicPolicy',
   id: '386336c3-eed2-476c-8b10-da1ee8c18593',
-  name: {
+  title: {
     en: 'Держава та економічна політика',
     zh: '政府与经济政策',
     hi: 'सरकार और आर्थिक नीति',
@@ -40,13 +40,13 @@ export const governmentAndEconomicPolicy_SkillDomain_Data = buildSkillDomainConf
     kk: 'Мемлекет және экономикалық саясат',
     qm: 'Devlet ve iqtisadiy siyaset',
   },
-  groups: {
-    fiscalAndMonetaryPolicy: fiscalAndMonetaryPolicy_SkillGroup_Data,
-    publicBudgetAndDebt: publicBudgetAndDebt_SkillGroup_Data,
-    publicGoodsAndRegulation: publicGoodsAndRegulation_SkillGroup_Data,
-    redistributionAndSocialProtection: redistributionAndSocialProtection_SkillGroup_Data,
-    taxes: taxes_SkillGroup_Data,
-  },
+  groups: [
+    fiscalAndMonetaryPolicy_SkillGroup_Data,
+    publicBudgetAndDebt_SkillGroup_Data,
+    publicGoodsAndRegulation_SkillGroup_Data,
+    redistributionAndSocialProtection_SkillGroup_Data,
+    taxes_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'The public sector changes incentives, finances shared needs, and redistributes resources. Policy instruments have benefits, costs, risks, and political trade-offs; no single approach is assumed universally correct.',

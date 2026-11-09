@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainPositionalNumeralSystems_Skill_Data = buildSkillConfig({
+export const explainPositionalNumeralSystems_Skill_Data = defineSkill({
   slug: 'explainPositionalNumeralSystems',
   id: 'e02a99c1-3a90-4c83-9411-55df84c217a3',
   name: {

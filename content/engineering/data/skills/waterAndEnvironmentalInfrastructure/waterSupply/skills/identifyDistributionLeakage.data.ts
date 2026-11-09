@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyDistributionLeakage_Skill_Data = buildSkillConfig({
+export const identifyDistributionLeakage_Skill_Data = defineSkill({
   slug: 'identifyDistributionLeakage',
   id: 'ba2ee3b4-9485-4430-9ff4-0cfc17fb4691',
   name: {

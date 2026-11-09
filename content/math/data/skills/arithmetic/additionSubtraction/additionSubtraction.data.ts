@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   partWhole_Skill_Data,
@@ -16,7 +16,7 @@ import {
   checkWithInverse_Skill_Data,
 } from './skills';
 
-export const additionSubtraction_SkillGroup_Data = buildSkillGroupConfig({
+export const additionSubtraction_SkillGroup_Data = defineSkillGroup({
   slug: 'additionSubtraction',
   id: '0f2df82b-4d66-4ea9-94bb-373105c62c6f',
   name: {
@@ -50,21 +50,21 @@ export const additionSubtraction_SkillGroup_Data = buildSkillGroupConfig({
     pl: 'Łączenie dodawania i odejmowania',
     uk: 'Поєднання додавання та віднімання',
   },
-  skills: {
-    partWhole: partWhole_Skill_Data,
-    factsWithin10: factsWithin10_Skill_Data,
-    numberBonds10: numberBonds10_Skill_Data,
-    factsWithin20: factsWithin20_Skill_Data,
-    inverseOperations: inverseOperations_Skill_Data,
-    addSubtractTens: addSubtractTens_Skill_Data,
-    twoDigitNoRegroup: twoDigitNoRegroup_Skill_Data,
-    placeValueMental: placeValueMental_Skill_Data,
-    compensation: compensation_Skill_Data,
-    hundredsAndTens: hundredsAndTens_Skill_Data,
-    threeDigitNoRegroup: threeDigitNoRegroup_Skill_Data,
-    estimateResult: estimateResult_Skill_Data,
-    checkWithInverse: checkWithInverse_Skill_Data,
-  },
+  skills: [
+    partWhole_Skill_Data,
+    factsWithin10_Skill_Data,
+    numberBonds10_Skill_Data,
+    factsWithin20_Skill_Data,
+    inverseOperations_Skill_Data,
+    addSubtractTens_Skill_Data,
+    twoDigitNoRegroup_Skill_Data,
+    placeValueMental_Skill_Data,
+    compensation_Skill_Data,
+    hundredsAndTens_Skill_Data,
+    threeDigitNoRegroup_Skill_Data,
+    estimateResult_Skill_Data,
+    checkWithInverse_Skill_Data,
+  ],
   description: {
     methodological:
       'The relationship between inverse addition and subtraction, part-whole relationships, and flexible methods for mental calculation and self-checking.',

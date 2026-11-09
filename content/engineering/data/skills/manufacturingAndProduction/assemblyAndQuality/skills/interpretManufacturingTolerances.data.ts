@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretManufacturingTolerances_Skill_Data = buildSkillConfig({
+export const interpretManufacturingTolerances_Skill_Data = defineSkill({
   slug: 'interpretManufacturingTolerances',
   id: '9f3917f3-6a2b-44e5-b00d-197f510ae750',
   name: {

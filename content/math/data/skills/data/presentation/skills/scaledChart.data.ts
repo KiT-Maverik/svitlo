@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const scaledChart_Skill_Data = buildSkillConfig({
+export const scaledChart_Skill_Data = defineSkill({
   slug: 'scaledChart',
   id: '97aeb6ee-f087-4793-a9e4-60129d11d974',
   name: {

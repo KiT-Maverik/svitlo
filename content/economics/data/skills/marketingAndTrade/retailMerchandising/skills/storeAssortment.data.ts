@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const storeAssortment_Skill_Data = buildSkillConfig({
+export const storeAssortment_Skill_Data = defineSkill({
   slug: 'storeAssortment',
   id: '3c033dd1-876c-439a-b371-f7f6d033e0c7',
   name: {

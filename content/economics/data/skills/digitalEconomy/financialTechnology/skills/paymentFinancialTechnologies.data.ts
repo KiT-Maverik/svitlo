@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const paymentFinancialTechnologies_Skill_Data = buildSkillConfig({
+export const paymentFinancialTechnologies_Skill_Data = defineSkill({
   slug: 'paymentFinancialTechnologies',
   id: '009aa64b-a9e2-48f8-906a-68169caf4eee',
   name: {

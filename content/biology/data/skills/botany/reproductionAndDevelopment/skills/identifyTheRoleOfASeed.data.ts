@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyTheRoleOfASeed_Skill_Data = buildSkillConfig({
+export const identifyTheRoleOfASeed_Skill_Data = defineSkill({
   slug: 'identifyTheRoleOfASeed',
   id: '4563391d-fa54-4096-a8f4-871c31b5f460',
   name: {

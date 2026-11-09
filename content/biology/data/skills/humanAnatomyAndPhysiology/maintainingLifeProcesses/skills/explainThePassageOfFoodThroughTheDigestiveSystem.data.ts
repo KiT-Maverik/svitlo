@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainThePassageOfFoodThroughTheDigestiveSystem_Skill_Data = buildSkillConfig({
+export const explainThePassageOfFoodThroughTheDigestiveSystem_Skill_Data = defineSkill({
   slug: 'explainThePassageOfFoodThroughTheDigestiveSystem',
   id: 'dbc56243-9c7f-4786-81f4-a930ac4af342',
   name: {

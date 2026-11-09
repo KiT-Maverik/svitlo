@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   controlSungPitch_Skill_Data,
@@ -8,7 +8,7 @@ import {
   singVocalHarmony_Skill_Data,
 } from './skills';
 
-export const voiceAndBodyPercussion_SkillGroup_Data = buildSkillGroupConfig({
+export const voiceAndBodyPercussion_SkillGroup_Data = defineSkillGroup({
   slug: 'voiceAndBodyPercussion',
   id: '18c1fd5a-c540-42f6-8662-8f81858811c4',
   name: {
@@ -42,13 +42,13 @@ export const voiceAndBodyPercussion_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Дауыс және дене перкуссиясы',
     qm: 'Ses ve beden perkussiyası',
   },
-  skills: {
-    controlSungPitch: controlSungPitch_Skill_Data,
-    performBeatboxing: performBeatboxing_Skill_Data,
-    performBodyPercussion: performBodyPercussion_Skill_Data,
-    phraseAVocalPerformance: phraseAVocalPerformance_Skill_Data,
-    singVocalHarmony: singVocalHarmony_Skill_Data,
-  },
+  skills: [
+    controlSungPitch_Skill_Data,
+    performBeatboxing_Skill_Data,
+    performBodyPercussion_Skill_Data,
+    phraseAVocalPerformance_Skill_Data,
+    singVocalHarmony_Skill_Data,
+  ],
   description: {
     methodological:
       'Vocal articulation, breath and deliberate bodily sounds allow melodic and rhythmic performance without external instruments.',

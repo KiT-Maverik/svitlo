@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const planetaryWeather_Skill_Data = buildSkillConfig({
+export const planetaryWeather_Skill_Data = defineSkill({
   slug: 'planetaryWeather',
   id: 'ddbe1a3c-2ccd-4736-8927-b35e27c7902f',
   name: {

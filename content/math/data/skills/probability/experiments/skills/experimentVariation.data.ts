@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const experimentVariation_Skill_Data = buildSkillConfig({
+export const experimentVariation_Skill_Data = defineSkill({
   slug: 'experimentVariation',
   id: '90f7775d-bb0d-4b7b-85fd-d56870116d3f',
   name: {

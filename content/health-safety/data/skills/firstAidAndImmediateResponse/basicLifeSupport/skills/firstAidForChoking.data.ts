@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const firstAidForChoking_Skill_Data = buildSkillConfig({
+export const firstAidForChoking_Skill_Data = defineSkill({
   slug: 'firstAidForChoking',
   id: '21638ae7-dea5-4a53-84b6-5a7f566d3fd2',
   name: {

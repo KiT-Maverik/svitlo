@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   angularResolution_Skill_Data,
@@ -10,7 +10,7 @@ import {
   spaceBasedObservation_Skill_Data,
 } from './skills';
 
-export const telescopesAndDetectors_SkillGroup_Data = buildSkillGroupConfig({
+export const telescopesAndDetectors_SkillGroup_Data = defineSkillGroup({
   slug: 'telescopesAndDetectors',
   id: '922c69ea-ab21-43f5-b975-21066259b7d2',
   name: {
@@ -44,15 +44,15 @@ export const telescopesAndDetectors_SkillGroup_Data = buildSkillGroupConfig({
     he: 'טלסקופים וגלאים',
     vi: 'Kính thiên văn và đầu dò',
   },
-  skills: {
-    angularResolution: angularResolution_Skill_Data,
-    astronomicalDetectors: astronomicalDetectors_Skill_Data,
-    astronomicalInterferometry: astronomicalInterferometry_Skill_Data,
-    lightGatheringAperture: lightGatheringAperture_Skill_Data,
-    opticalTelescopeSystems: opticalTelescopeSystems_Skill_Data,
-    radioAstronomy: radioAstronomy_Skill_Data,
-    spaceBasedObservation: spaceBasedObservation_Skill_Data,
-  },
+  skills: [
+    angularResolution_Skill_Data,
+    astronomicalDetectors_Skill_Data,
+    astronomicalInterferometry_Skill_Data,
+    lightGatheringAperture_Skill_Data,
+    opticalTelescopeSystems_Skill_Data,
+    radioAstronomy_Skill_Data,
+    spaceBasedObservation_Skill_Data,
+  ],
   description: {
     methodological:
       'Instrumentation alters the detail, wavelengths and measurable signals available to observers; its scientific limitations are as important as its capabilities.',

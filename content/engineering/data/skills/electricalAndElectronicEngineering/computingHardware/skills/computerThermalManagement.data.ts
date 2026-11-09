@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const computerThermalManagement_Skill_Data = buildSkillConfig({
+export const computerThermalManagement_Skill_Data = defineSkill({
   slug: 'computerThermalManagement',
   id: 'f7acd032-2509-40ad-9a46-fe9525c3b25e',
   name: {

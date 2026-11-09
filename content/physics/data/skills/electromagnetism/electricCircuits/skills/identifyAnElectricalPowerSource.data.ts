@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyAnElectricalPowerSource_Skill_Data = buildSkillConfig({
+export const identifyAnElectricalPowerSource_Skill_Data = defineSkill({
   slug: 'identifyAnElectricalPowerSource',
   id: '0d1b8c0c-20cc-450f-bbd6-623dab8ec2d3',
   name: {

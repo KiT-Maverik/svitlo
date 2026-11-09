@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const defineAFunctionWithParameters_Skill_Data = buildSkillConfig({
+export const defineAFunctionWithParameters_Skill_Data = defineSkill({
   slug: 'defineAFunctionWithParameters',
   id: 'b19954db-a639-446f-8031-f0af7d93aade',
   name: {

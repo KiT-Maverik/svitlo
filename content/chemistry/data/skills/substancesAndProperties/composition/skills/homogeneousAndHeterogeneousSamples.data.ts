@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const homogeneousAndHeterogeneousSamples_Skill_Data = buildSkillConfig({
+export const homogeneousAndHeterogeneousSamples_Skill_Data = defineSkill({
   slug: 'homogeneousAndHeterogeneousSamples',
   id: '747dd6bb-d6b4-4c4d-997c-a90fc6d97551',
   name: {

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   adhesiveJoints_Skill_Data,
@@ -8,7 +8,7 @@ import {
   weldedJoints_Skill_Data,
 } from './skills';
 
-export const jointsAndFasteners_SkillGroup_Data = buildSkillGroupConfig({
+export const jointsAndFasteners_SkillGroup_Data = defineSkillGroup({
   slug: 'jointsAndFasteners',
   id: '9996ee09-eed9-4c91-afa3-f2d57596ecbf',
   name: {
@@ -42,13 +42,13 @@ export const jointsAndFasteners_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Қосылыстар мен бекіткіштер',
     qm: 'Bağlanışlar ve bekiticiler',
   },
-  skills: {
-    adhesiveJoints: adhesiveJoints_Skill_Data,
-    joiningMethodSuitability: joiningMethodSuitability_Skill_Data,
-    magneticFastening: magneticFastening_Skill_Data,
-    threadedFastening: threadedFastening_Skill_Data,
-    weldedJoints: weldedJoints_Skill_Data,
-  },
+  skills: [
+    adhesiveJoints_Skill_Data,
+    joiningMethodSuitability_Skill_Data,
+    magneticFastening_Skill_Data,
+    threadedFastening_Skill_Data,
+    weldedJoints_Skill_Data,
+  ],
   description: {
     methodological:
       'Connections can be temporary or permanent, transmit different forces and impose different maintenance requirements.',

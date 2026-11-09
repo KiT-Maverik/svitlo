@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishAPrivateChatFromAPublicLink_Skill_Data = buildSkillConfig({
+export const distinguishAPrivateChatFromAPublicLink_Skill_Data = defineSkill({
   slug: 'distinguishAPrivateChatFromAPublicLink',
   id: 'cda01f72-5e9e-40a0-a12d-521db4611ec4',
   name: {

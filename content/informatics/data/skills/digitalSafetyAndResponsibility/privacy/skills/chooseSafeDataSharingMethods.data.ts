@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const chooseSafeDataSharingMethods_Skill_Data = buildSkillConfig({
+export const chooseSafeDataSharingMethods_Skill_Data = defineSkill({
   slug: 'chooseSafeDataSharingMethods',
   id: '198086a4-bb96-4ef8-a346-e291794c3a45',
   name: {

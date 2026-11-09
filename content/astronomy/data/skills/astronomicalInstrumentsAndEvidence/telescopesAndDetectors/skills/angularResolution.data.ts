@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const angularResolution_Skill_Data = buildSkillConfig({
+export const angularResolution_Skill_Data = defineSkill({
   slug: 'angularResolution',
   id: 'a2c2454e-d66e-453e-869a-3220e5b27c4f',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const buildPictograph_Skill_Data = buildSkillConfig({
+export const buildPictograph_Skill_Data = defineSkill({
   slug: 'buildPictograph',
   id: 'fdbb130e-d9ff-490f-9979-4b3c3ef67271',
   name: {

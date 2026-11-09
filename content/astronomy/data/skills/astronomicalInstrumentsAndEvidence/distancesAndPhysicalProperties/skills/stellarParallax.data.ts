@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const stellarParallax_Skill_Data = buildSkillConfig({
+export const stellarParallax_Skill_Data = defineSkill({
   slug: 'stellarParallax',
   id: '7192ef38-85e2-4ca1-9b4c-0b33d46dca00',
   name: {

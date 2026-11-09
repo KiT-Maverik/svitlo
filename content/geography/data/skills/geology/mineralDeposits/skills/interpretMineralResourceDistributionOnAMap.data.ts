@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretMineralResourceDistributionOnAMap_Skill_Data = buildSkillConfig({
+export const interpretMineralResourceDistributionOnAMap_Skill_Data = defineSkill({
   slug: 'interpretMineralResourceDistributionOnAMap',
   id: 'c1934a49-c9f8-4089-80a4-28b35cd90798',
   name: {

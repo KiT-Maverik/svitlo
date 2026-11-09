@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const selfServingAttributions_Skill_Data = buildSkillConfig({
+export const selfServingAttributions_Skill_Data = defineSkill({
   slug: 'selfServingAttributions',
   id: '38785797-d7e7-4c8b-a6fa-6850155bc311',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const firstImpressions_Skill_Data = buildSkillConfig({
+export const firstImpressions_Skill_Data = defineSkill({
   slug: 'firstImpressions',
   id: '236f87eb-686e-4a01-94f3-fc9e4d583a53',
   name: {

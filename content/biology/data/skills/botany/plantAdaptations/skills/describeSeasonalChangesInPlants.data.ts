@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const describeSeasonalChangesInPlants_Skill_Data = buildSkillConfig({
+export const describeSeasonalChangesInPlants_Skill_Data = defineSkill({
   slug: 'describeSeasonalChangesInPlants',
   id: 'fbaa45ee-17df-4037-8780-780b7c574c42',
   name: {

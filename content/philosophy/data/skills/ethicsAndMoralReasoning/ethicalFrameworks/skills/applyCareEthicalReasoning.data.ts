@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const applyCareEthicalReasoning_Skill_Data = buildSkillConfig({
+export const applyCareEthicalReasoning_Skill_Data = defineSkill({
   slug: 'applyCareEthicalReasoning',
   id: 'bd38ae59-cb42-4391-b43b-9bf665e4cf55',
   name: {

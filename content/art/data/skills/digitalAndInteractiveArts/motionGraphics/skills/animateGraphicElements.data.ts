@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const animateGraphicElements_Skill_Data = buildSkillConfig({
+export const animateGraphicElements_Skill_Data = defineSkill({
   slug: 'animateGraphicElements',
   id: 'd3914770-5d7c-4bb6-b169-f7b435084ddb',
   name: {

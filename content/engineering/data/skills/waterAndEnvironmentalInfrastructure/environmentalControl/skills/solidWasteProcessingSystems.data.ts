@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const solidWasteProcessingSystems_Skill_Data = buildSkillConfig({
+export const solidWasteProcessingSystems_Skill_Data = defineSkill({
   slug: 'solidWasteProcessingSystems',
   id: '02310dd0-f7fc-49ee-842c-49939037a993',
   name: {

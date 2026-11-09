@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishRotationAboutAnAxisFromMotionAlongACircle_Skill_Data = buildSkillConfig({
+export const distinguishRotationAboutAnAxisFromMotionAlongACircle_Skill_Data = defineSkill({
   slug: 'distinguishRotationAboutAnAxisFromMotionAlongACircle',
   id: 'e1c8985d-82d8-45c9-b034-26f7112d0021',
   name: {

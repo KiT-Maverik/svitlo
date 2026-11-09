@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const mixedEconomies_Skill_Data = buildSkillConfig({
+export const mixedEconomies_Skill_Data = defineSkill({
   slug: 'mixedEconomies',
   id: '76d22460-164f-46a1-942f-3e3b46cccbed',
   name: {

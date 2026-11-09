@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainHowErosionTransportsSurfaceMaterial_Skill_Data = buildSkillConfig({
+export const explainHowErosionTransportsSurfaceMaterial_Skill_Data = defineSkill({
   slug: 'explainHowErosionTransportsSurfaceMaterial',
   id: '918d9c47-d413-4b64-a1ac-b6e2c4f51b9f',
   name: {

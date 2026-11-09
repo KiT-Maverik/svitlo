@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const strategicInterdependence_Skill_Data = buildSkillConfig({
+export const strategicInterdependence_Skill_Data = defineSkill({
   slug: 'strategicInterdependence',
   id: 'ebbfcb9e-b4d9-45cc-a352-89f892f1d9a1',
   name: {

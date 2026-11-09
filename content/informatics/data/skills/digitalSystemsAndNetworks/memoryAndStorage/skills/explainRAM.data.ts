@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainRAM_Skill_Data = buildSkillConfig({
+export const explainRAM_Skill_Data = defineSkill({
   slug: 'explainRAM',
   id: '8ba809d1-b245-4088-b7c4-c4294bd8f805',
   name: {

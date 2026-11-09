@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { ethicsAndPublicEffects_SkillGroup_Data } from './ethicsAndPublicEffects/ethicsAndPublicEffects.data';
 import { lifeCycleAndResources_SkillGroup_Data } from './lifeCycleAndResources/lifeCycleAndResources.data';
 import { riskAndProtection_SkillGroup_Data } from './riskAndProtection/riskAndProtection.data';
 
-export const safetySustainabilityAndResponsibility_SkillDomain_Data = buildSkillDomainConfig({
+export const safetySustainabilityAndResponsibility_SkillDomain_Data = defineSkillDomain({
   slug: 'safetySustainabilityAndResponsibility',
   id: 'ad5edac8-e854-44a1-a97d-130783e68137',
-  name: {
+  title: {
     en: 'Safety, Sustainability, and Responsibility',
     zh: '安全、可持续性与责任',
     hi: 'सुरक्षा, सततता और उत्तरदायित्व',
@@ -38,11 +38,11 @@ export const safetySustainabilityAndResponsibility_SkillDomain_Data = buildSkill
     kk: 'Қауіпсіздік, тұрақтылық және жауапкершілік',
     qm: 'Telükesizlik, devamlılıq ve mesuliyet',
   },
-  groups: {
-    ethicsAndPublicEffects: ethicsAndPublicEffects_SkillGroup_Data,
-    lifeCycleAndResources: lifeCycleAndResources_SkillGroup_Data,
-    riskAndProtection: riskAndProtection_SkillGroup_Data,
-  },
+  groups: [
+    ethicsAndPublicEffects_SkillGroup_Data,
+    lifeCycleAndResources_SkillGroup_Data,
+    riskAndProtection_SkillGroup_Data,
+  ],
   description: {
     methodological:
       "Engineering decisions affect people, resources and ecosystems throughout a product's service life. This domain examines foreseeable hazards, life-cycle choices and accountable technical judgment without turning an untested model into a safety certification.",

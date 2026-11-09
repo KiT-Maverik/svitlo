@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const by4_Skill_Data = buildSkillConfig({
+export const by4_Skill_Data = defineSkill({
   slug: 'by4',
   id: 'e7cae545-e436-40ee-bc77-38e075ca2058',
   name: {

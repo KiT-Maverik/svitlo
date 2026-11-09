@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const balancingEquations_Skill_Data = buildSkillConfig({
+export const balancingEquations_Skill_Data = defineSkill({
   slug: 'balancingEquations',
   id: '24800a51-f812-4103-a046-b5359436b164',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const pulleySystems_Skill_Data = buildSkillConfig({
+export const pulleySystems_Skill_Data = defineSkill({
   slug: 'pulleySystems',
   id: 'befc41a5-31d8-4250-9082-55c004d2e1a2',
   name: {

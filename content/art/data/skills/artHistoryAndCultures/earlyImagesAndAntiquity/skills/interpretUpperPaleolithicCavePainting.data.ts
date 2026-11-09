@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretUpperPaleolithicCavePainting_Skill_Data = buildSkillConfig({
+export const interpretUpperPaleolithicCavePainting_Skill_Data = defineSkill({
   slug: 'interpretUpperPaleolithicCavePainting',
   id: '3b84298a-cd9d-4a32-9fa1-8093427cb127',
   name: {

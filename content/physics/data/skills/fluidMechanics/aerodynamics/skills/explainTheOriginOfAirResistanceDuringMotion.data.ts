@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainTheOriginOfAirResistanceDuringMotion_Skill_Data = buildSkillConfig({
+export const explainTheOriginOfAirResistanceDuringMotion_Skill_Data = defineSkill({
   slug: 'explainTheOriginOfAirResistanceDuringMotion',
   id: '97ed08b8-acd2-4e67-ad84-771b4625cfcb',
   name: {

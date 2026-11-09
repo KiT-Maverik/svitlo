@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishMyceliumFromAFruitingBody_Skill_Data = buildSkillConfig({
+export const distinguishMyceliumFromAFruitingBody_Skill_Data = defineSkill({
   slug: 'distinguishMyceliumFromAFruitingBody',
   id: '7e1a9f06-8143-418b-8fc9-db3c3ecc8411',
   name: {

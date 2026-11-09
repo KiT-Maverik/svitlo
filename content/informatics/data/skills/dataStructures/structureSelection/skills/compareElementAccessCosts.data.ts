@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareElementAccessCosts_Skill_Data = buildSkillConfig({
+export const compareElementAccessCosts_Skill_Data = defineSkill({
   slug: 'compareElementAccessCosts',
   id: '3167babf-d227-4f39-8f4a-6e0c7a61f533',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const expenseTracking_Skill_Data = buildSkillConfig({
+export const expenseTracking_Skill_Data = defineSkill({
   slug: 'expenseTracking',
   id: '4201f3b0-12d8-47c2-b9bf-89ad2621c0fe',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const justifyAnAestheticJudgment_Skill_Data = buildSkillConfig({
+export const justifyAnAestheticJudgment_Skill_Data = defineSkill({
   slug: 'justifyAnAestheticJudgment',
   id: 'b1f6966d-c13a-41c8-bed1-1612379e6e4d',
   name: {

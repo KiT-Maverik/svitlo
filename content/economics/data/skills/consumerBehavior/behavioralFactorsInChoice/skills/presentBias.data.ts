@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const presentBias_Skill_Data = buildSkillConfig({
+export const presentBias_Skill_Data = defineSkill({
   slug: 'presentBias',
   id: '5cca8b25-71a7-482a-9085-389907ad7779',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeNaturalCommunitiesOfUkraine_Skill_Data = buildSkillConfig({
+export const recognizeNaturalCommunitiesOfUkraine_Skill_Data = defineSkill({
   slug: 'recognizeNaturalCommunitiesOfUkraine',
   id: '0fcc05ba-075e-4019-9858-06bec9268fc2',
   name: {

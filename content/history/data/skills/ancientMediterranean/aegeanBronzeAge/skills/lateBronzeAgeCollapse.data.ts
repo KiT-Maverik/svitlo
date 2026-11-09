@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const lateBronzeAgeCollapse_Skill_Data = buildSkillConfig({
+export const lateBronzeAgeCollapse_Skill_Data = defineSkill({
   slug: 'lateBronzeAgeCollapse',
   id: 'b5fc72e9-66ff-406a-a89b-f03d70cc6a75',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const predictTheDirectionOfFalling_Skill_Data = buildSkillConfig({
+export const predictTheDirectionOfFalling_Skill_Data = defineSkill({
   slug: 'predictTheDirectionOfFalling',
   id: 'c48dcef6-f1fc-494a-a286-dee359af15cb',
   name: {

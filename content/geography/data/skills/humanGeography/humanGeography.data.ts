@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { culturalGeography_SkillGroup_Data } from './culturalGeography/culturalGeography.data';
 import { economicGeography_SkillGroup_Data } from './economicGeography/economicGeography.data';
 import { politicalTerritories_SkillGroup_Data } from './politicalTerritories/politicalTerritories.data';
 import { populationAndSettlement_SkillGroup_Data } from './populationAndSettlement/populationAndSettlement.data';
 
-export const humanGeography_SkillDomain_Data = buildSkillDomainConfig({
+export const humanGeography_SkillDomain_Data = defineSkillDomain({
   slug: 'humanGeography',
   id: '4cbaebaf-99ce-425a-886f-46b577b152d3',
-  name: {
+  title: {
     en: 'Human Geography',
     zh: '人文地理学',
     hi: 'मानव भूगोल',
@@ -39,12 +39,12 @@ export const humanGeography_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Қоғамдық география',
     qm: 'İnsan coğrafiyası',
   },
-  groups: {
-    culturalGeography: culturalGeography_SkillGroup_Data,
-    economicGeography: economicGeography_SkillGroup_Data,
-    politicalTerritories: politicalTerritories_SkillGroup_Data,
-    populationAndSettlement: populationAndSettlement_SkillGroup_Data,
-  },
+  groups: [
+    culturalGeography_SkillGroup_Data,
+    economicGeography_SkillGroup_Data,
+    politicalTerritories_SkillGroup_Data,
+    populationAndSettlement_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Settlement, mobility, culture, political territories, livelihoods and economic connections create spatial patterns across inhabited places. The focus is geographic distribution, diffusion, regional relationships and the effects of place, not national political history or business accounting.',

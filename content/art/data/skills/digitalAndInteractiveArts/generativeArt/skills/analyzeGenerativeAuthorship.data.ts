@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeGenerativeAuthorship_Skill_Data = buildSkillConfig({
+export const analyzeGenerativeAuthorship_Skill_Data = defineSkill({
   slug: 'analyzeGenerativeAuthorship',
   id: '55e9f579-7a2b-40ca-9c68-aadff5f43b31',
   name: {

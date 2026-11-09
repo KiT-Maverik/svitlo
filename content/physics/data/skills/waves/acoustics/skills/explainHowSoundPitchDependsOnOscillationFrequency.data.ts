@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainHowSoundPitchDependsOnOscillationFrequency_Skill_Data = buildSkillConfig({
+export const explainHowSoundPitchDependsOnOscillationFrequency_Skill_Data = defineSkill({
   slug: 'explainHowSoundPitchDependsOnOscillationFrequency',
   id: '635c153a-5166-4981-90f5-885bdeb82b81',
   name: {

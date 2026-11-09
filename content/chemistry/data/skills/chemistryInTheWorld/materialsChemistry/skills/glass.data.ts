@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const glass_Skill_Data = buildSkillConfig({
+export const glass_Skill_Data = defineSkill({
   slug: 'glass',
   id: '33560118-d388-48a0-bb6a-48b5d795d95b',
   name: {

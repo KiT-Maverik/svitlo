@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const processContainment_Skill_Data = buildSkillConfig({
+export const processContainment_Skill_Data = defineSkill({
   slug: 'processContainment',
   id: 'ee2818b5-7673-4944-9dc8-7a0ba5ea6df1',
   name: {

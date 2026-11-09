@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeLegalPositivism_Skill_Data = buildSkillConfig({
+export const analyzeLegalPositivism_Skill_Data = defineSkill({
   slug: 'analyzeLegalPositivism',
   id: '9e79e11b-eef6-461d-8d1a-d816ae4891d5',
   name: {

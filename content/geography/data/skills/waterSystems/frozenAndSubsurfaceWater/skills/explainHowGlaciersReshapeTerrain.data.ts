@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainHowGlaciersReshapeTerrain_Skill_Data = buildSkillConfig({
+export const explainHowGlaciersReshapeTerrain_Skill_Data = defineSkill({
   slug: 'explainHowGlaciersReshapeTerrain',
   id: '7242750c-1082-48e6-93a6-a784f540226d',
   name: {

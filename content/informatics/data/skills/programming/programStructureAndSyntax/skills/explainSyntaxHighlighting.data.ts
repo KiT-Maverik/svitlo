@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainSyntaxHighlighting_Skill_Data = buildSkillConfig({
+export const explainSyntaxHighlighting_Skill_Data = defineSkill({
   slug: 'explainSyntaxHighlighting',
   id: 'b169b97a-aed5-4e87-a4ba-345f3e86a846',
   name: {

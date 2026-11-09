@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   compareMeasurementsOfTheSameQuantity_Skill_Data,
@@ -7,7 +7,7 @@ import {
   selectAUnitForAFamiliarPhysicalQuantity_Skill_Data,
 } from './skills';
 
-export const physicalQuantitiesAndUnits_SkillGroup_Data = buildSkillGroupConfig({
+export const physicalQuantitiesAndUnits_SkillGroup_Data = defineSkillGroup({
   slug: 'physicalQuantitiesAndUnits',
   id: '093b9b15-c9bb-4812-b026-b749cf33ea9d',
   name: {
@@ -41,13 +41,12 @@ export const physicalQuantitiesAndUnits_SkillGroup_Data = buildSkillGroupConfig(
     kk: 'Физикалық шамалар мен бірліктер',
     qm: 'Fizikiy miqdarlar ve ölçüv birlikleri',
   },
-  skills: {
-    compareMeasurementsOfTheSameQuantity: compareMeasurementsOfTheSameQuantity_Skill_Data,
-    distinguishAPhysicalQuantityFromItsUnitOfMeasurement:
-      distinguishAPhysicalQuantityFromItsUnitOfMeasurement_Skill_Data,
-    explainThePhysicalMeaningOfABodysMass: explainThePhysicalMeaningOfABodysMass_Skill_Data,
-    selectAUnitForAFamiliarPhysicalQuantity: selectAUnitForAFamiliarPhysicalQuantity_Skill_Data,
-  },
+  skills: [
+    compareMeasurementsOfTheSameQuantity_Skill_Data,
+    distinguishAPhysicalQuantityFromItsUnitOfMeasurement_Skill_Data,
+    explainThePhysicalMeaningOfABodysMass_Skill_Data,
+    selectAUnitForAFamiliarPhysicalQuantity_Skill_Data,
+  ],
   description: {
     methodological:
       'A single object can be described using different quantities; comparisons of the same quantity require compatible units and observation conditions.',

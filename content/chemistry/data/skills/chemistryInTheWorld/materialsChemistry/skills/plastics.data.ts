@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const plastics_Skill_Data = buildSkillConfig({
+export const plastics_Skill_Data = defineSkill({
   slug: 'plastics',
   id: '79b6fb2b-da42-441d-83d4-062ddb64f023',
   name: {

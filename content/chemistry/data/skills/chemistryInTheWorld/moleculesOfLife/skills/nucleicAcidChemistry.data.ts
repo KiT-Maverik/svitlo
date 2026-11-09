@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const nucleicAcidChemistry_Skill_Data = buildSkillConfig({
+export const nucleicAcidChemistry_Skill_Data = defineSkill({
   slug: 'nucleicAcidChemistry',
   id: '1874a1f0-a5a2-4233-80c0-9c92416a9977',
   name: {

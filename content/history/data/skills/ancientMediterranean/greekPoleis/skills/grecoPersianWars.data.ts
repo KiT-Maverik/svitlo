@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const grecoPersianWars_Skill_Data = buildSkillConfig({
+export const grecoPersianWars_Skill_Data = defineSkill({
   slug: 'grecoPersianWars',
   id: '9d3601dc-9908-460c-bc66-07c4d1da51b3',
   name: {

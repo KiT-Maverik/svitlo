@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const composeALandscapeView_Skill_Data = buildSkillConfig({
+export const composeALandscapeView_Skill_Data = defineSkill({
   slug: 'composeALandscapeView',
   id: '3a1e27c6-f208-47be-90fd-e9c902a272de',
   name: {

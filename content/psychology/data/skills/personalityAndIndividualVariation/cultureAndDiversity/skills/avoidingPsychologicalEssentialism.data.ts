@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const avoidingPsychologicalEssentialism_Skill_Data = buildSkillConfig({
+export const avoidingPsychologicalEssentialism_Skill_Data = defineSkill({
   slug: 'avoidingPsychologicalEssentialism',
   id: '84ebf855-858a-44d9-80ed-c5b9a10cf696',
   name: {

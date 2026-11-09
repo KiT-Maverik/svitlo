@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const planRegularPhysicalActivity_Skill_Data = buildSkillConfig({
+export const planRegularPhysicalActivity_Skill_Data = defineSkill({
   slug: 'planRegularPhysicalActivity',
   id: 'ac729eb1-9050-4132-9925-a33d6ba2a20f',
   name: {

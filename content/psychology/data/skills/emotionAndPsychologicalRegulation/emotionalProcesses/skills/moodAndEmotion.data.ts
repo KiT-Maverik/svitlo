@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const moodAndEmotion_Skill_Data = buildSkillConfig({
+export const moodAndEmotion_Skill_Data = defineSkill({
   slug: 'moodAndEmotion',
   id: '1ffa6d9c-6235-41fc-bcab-e64a781373f5',
   name: {

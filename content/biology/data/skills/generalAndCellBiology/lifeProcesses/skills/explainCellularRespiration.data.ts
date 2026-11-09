@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainCellularRespiration_Skill_Data = buildSkillConfig({
+export const explainCellularRespiration_Skill_Data = defineSkill({
   slug: 'explainCellularRespiration',
   id: 'b2ea43cb-f044-4ff8-841e-2bcfec153448',
   name: {

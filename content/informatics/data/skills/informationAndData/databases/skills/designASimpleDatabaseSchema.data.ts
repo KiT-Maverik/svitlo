@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const designASimpleDatabaseSchema_Skill_Data = buildSkillConfig({
+export const designASimpleDatabaseSchema_Skill_Data = defineSkill({
   slug: 'designASimpleDatabaseSchema',
   id: 'be337a54-262a-4bf5-a9ad-54fffb8247b3',
   name: {

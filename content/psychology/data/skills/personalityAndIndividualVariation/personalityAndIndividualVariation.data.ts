@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { cognitiveAndLearningDifferences_SkillGroup_Data } from './cognitiveAndLearningDifferences/cognitiveAndLearningDifferences.data';
 import { cultureAndDiversity_SkillGroup_Data } from './cultureAndDiversity/cultureAndDiversity.data';
 import { selfConceptAndIdentity_SkillGroup_Data } from './selfConceptAndIdentity/selfConceptAndIdentity.data';
 import { traitsAndPersonalityModels_SkillGroup_Data } from './traitsAndPersonalityModels/traitsAndPersonalityModels.data';
 
-export const personalityAndIndividualVariation_SkillDomain_Data = buildSkillDomainConfig({
+export const personalityAndIndividualVariation_SkillDomain_Data = defineSkillDomain({
   slug: 'personalityAndIndividualVariation',
   id: '67a62640-fd4a-41da-a481-0a564fcf70aa',
-  name: {
+  title: {
     en: 'Personality and Individual Variation',
     zh: '人格与个体差异',
     hi: 'व्यक्तित्व और व्यक्तिगत भिन्नताएँ',
@@ -39,12 +39,12 @@ export const personalityAndIndividualVariation_SkillDomain_Data = buildSkillDoma
     kk: 'Тұлға және жеке айырмашылықтар',
     qm: 'Şahsiyet ve ferdi farqlar',
   },
-  groups: {
-    cognitiveAndLearningDifferences: cognitiveAndLearningDifferences_SkillGroup_Data,
-    cultureAndDiversity: cultureAndDiversity_SkillGroup_Data,
-    selfConceptAndIdentity: selfConceptAndIdentity_SkillGroup_Data,
-    traitsAndPersonalityModels: traitsAndPersonalityModels_SkillGroup_Data,
-  },
+  groups: [
+    cognitiveAndLearningDifferences_SkillGroup_Data,
+    cultureAndDiversity_SkillGroup_Data,
+    selfConceptAndIdentity_SkillGroup_Data,
+    traitsAndPersonalityModels_SkillGroup_Data,
+  ],
   description: {
     methodological:
       "People differ in characteristic patterns of thought, feeling, and behavior, but measurement requires caution about situations, cultural meaning, and fairness. Describing a tendency never fixes a person's worth or destiny.",

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const visualHistoricalSources_Skill_Data = buildSkillConfig({
+export const visualHistoricalSources_Skill_Data = defineSkill({
   slug: 'visualHistoricalSources',
   id: '30caa1fe-1fe9-4f45-873c-86a609826108',
   name: {

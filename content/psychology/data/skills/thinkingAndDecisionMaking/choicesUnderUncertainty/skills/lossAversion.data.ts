@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const lossAversion_Skill_Data = buildSkillConfig({
+export const lossAversion_Skill_Data = defineSkill({
   slug: 'lossAversion',
   id: '118b4858-163c-4b16-9d61-52824d37a9bc',
   name: {

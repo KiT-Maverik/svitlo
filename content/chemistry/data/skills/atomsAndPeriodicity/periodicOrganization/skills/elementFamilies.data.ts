@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const elementFamilies_Skill_Data = buildSkillConfig({
+export const elementFamilies_Skill_Data = defineSkill({
   slug: 'elementFamilies',
   id: 'ec107d8f-6f82-4f5b-958c-57d862ca971a',
   name: {

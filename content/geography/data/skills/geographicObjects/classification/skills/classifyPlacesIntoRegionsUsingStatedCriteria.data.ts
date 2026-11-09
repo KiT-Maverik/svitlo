@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const classifyPlacesIntoRegionsUsingStatedCriteria_Skill_Data = buildSkillConfig({
+export const classifyPlacesIntoRegionsUsingStatedCriteria_Skill_Data = defineSkill({
   slug: 'classifyPlacesIntoRegionsUsingStatedCriteria',
   id: 'f2cacbe6-45ef-4d7e-8852-efefb5631fc3',
   name: {

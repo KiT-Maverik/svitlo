@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   explainWhyRepeatedMeasurementsMayDiffer_Skill_Data,
@@ -6,7 +6,7 @@ import {
   readTemperatureFromAThermometer_Skill_Data,
 } from './skills';
 
-export const instrumentsAndMeasurementMethods_SkillGroup_Data = buildSkillGroupConfig({
+export const instrumentsAndMeasurementMethods_SkillGroup_Data = defineSkillGroup({
   slug: 'instrumentsAndMeasurementMethods',
   id: '60dd799f-b290-4cf1-9f0c-b903d0949818',
   name: {
@@ -40,11 +40,11 @@ export const instrumentsAndMeasurementMethods_SkillGroup_Data = buildSkillGroupC
     kk: 'Аспаптар және өлшеу әдістері',
     qm: 'Aletler ve ölçüv usulları',
   },
-  skills: {
-    explainWhyRepeatedMeasurementsMayDiffer: explainWhyRepeatedMeasurementsMayDiffer_Skill_Data,
-    readASimpleMeasuringInstrument: readASimpleMeasuringInstrument_Skill_Data,
-    readTemperatureFromAThermometer: readTemperatureFromAThermometer_Skill_Data,
-  },
+  skills: [
+    explainWhyRepeatedMeasurementsMayDiffer_Skill_Data,
+    readASimpleMeasuringInstrument_Skill_Data,
+    readTemperatureFromAThermometer_Skill_Data,
+  ],
   description: {
     methodological:
       "An instrument's reading depends on its scale, units, and correct use; the method of obtaining data matters as much as the number itself.",

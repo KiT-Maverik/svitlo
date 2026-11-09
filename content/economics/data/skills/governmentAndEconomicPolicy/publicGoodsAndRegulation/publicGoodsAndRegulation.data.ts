@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   competitionPolicy_Skill_Data,
@@ -7,7 +7,7 @@ import {
   publicGoods_Skill_Data,
 } from './skills';
 
-export const publicGoodsAndRegulation_SkillGroup_Data = buildSkillGroupConfig({
+export const publicGoodsAndRegulation_SkillGroup_Data = defineSkillGroup({
   slug: 'publicGoodsAndRegulation',
   id: 'c9ef1548-14c3-4f82-a89d-96b77b45690a',
   name: {
@@ -41,12 +41,12 @@ export const publicGoodsAndRegulation_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Қоғамдық игіліктер және реттеу',
     qm: 'Cemaat malları ve tertip-qaydalar',
   },
-  skills: {
-    competitionPolicy: competitionPolicy_Skill_Data,
-    externalities: externalities_Skill_Data,
-    governmentFailure: governmentFailure_Skill_Data,
-    publicGoods: publicGoods_Skill_Data,
-  },
+  skills: [
+    competitionPolicy_Skill_Data,
+    externalities_Skill_Data,
+    governmentFailure_Skill_Data,
+    publicGoods_Skill_Data,
+  ],
   description: {
     methodological:
       'Not every beneficial service can be efficiently supplied through individual market transactions; regulation also has limitations.',

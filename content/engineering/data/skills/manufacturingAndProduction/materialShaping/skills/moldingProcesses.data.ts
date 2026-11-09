@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const moldingProcesses_Skill_Data = buildSkillConfig({
+export const moldingProcesses_Skill_Data = defineSkill({
   slug: 'moldingProcesses',
   id: '70826312-f941-430b-9a3d-4aee5e300b66',
   name: {

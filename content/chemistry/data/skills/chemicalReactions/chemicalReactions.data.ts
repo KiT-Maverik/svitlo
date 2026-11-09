@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { oxidationAndReduction_SkillGroup_Data } from './oxidationAndReduction/oxidationAndReduction.data';
 import { reactionPatterns_SkillGroup_Data } from './reactionPatterns/reactionPatterns.data';
 import { recognizingReactions_SkillGroup_Data } from './recognizingReactions/recognizingReactions.data';
 
-export const chemicalReactions_SkillDomain_Data = buildSkillDomainConfig({
+export const chemicalReactions_SkillDomain_Data = defineSkillDomain({
   slug: 'chemicalReactions',
   id: '307ec31d-a1a3-41ab-8681-799f49aa1825',
-  name: {
+  title: {
     en: 'Chemical Reactions',
     zh: '化学反应',
     hi: 'रासायनिक अभिक्रियाएँ',
@@ -38,11 +38,11 @@ export const chemicalReactions_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Химиялық реакциялар',
     qm: 'Kimyeviy reaktsiyalar',
   },
-  groups: {
-    oxidationAndReduction: oxidationAndReduction_SkillGroup_Data,
-    reactionPatterns: reactionPatterns_SkillGroup_Data,
-    recognizingReactions: recognizingReactions_SkillGroup_Data,
-  },
+  groups: [
+    oxidationAndReduction_SkillGroup_Data,
+    reactionPatterns_SkillGroup_Data,
+    recognizingReactions_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'This domain identifies and explains transformations in which constituent atoms are rearranged or electron/proton transfer occurs. Chemical equation notation and amount calculations remain in their dedicated domain.',

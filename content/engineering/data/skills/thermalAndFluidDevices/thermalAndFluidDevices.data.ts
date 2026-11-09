@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { fluidMachines_SkillGroup_Data } from './fluidMachines/fluidMachines.data';
 import { heatTransferEquipment_SkillGroup_Data } from './heatTransferEquipment/heatTransferEquipment.data';
 import { ventilationAndAirTreatment_SkillGroup_Data } from './ventilationAndAirTreatment/ventilationAndAirTreatment.data';
 
-export const thermalAndFluidDevices_SkillDomain_Data = buildSkillDomainConfig({
+export const thermalAndFluidDevices_SkillDomain_Data = defineSkillDomain({
   slug: 'thermalAndFluidDevices',
   id: 'd33742d7-e1a8-4ade-a7e6-dc3506b28a1c',
-  name: {
+  title: {
     en: 'Thermal and Fluid Devices',
     zh: '热工与流体设备',
     hi: 'ऊष्मीय और द्रव उपकरण',
@@ -38,11 +38,11 @@ export const thermalAndFluidDevices_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Жылу, сұйықтық және газ құрылғылары',
     qm: 'Issilik ve aqım cihazları',
   },
-  groups: {
-    fluidMachines: fluidMachines_SkillGroup_Data,
-    heatTransferEquipment: heatTransferEquipment_SkillGroup_Data,
-    ventilationAndAirTreatment: ventilationAndAirTreatment_SkillGroup_Data,
-  },
+  groups: [
+    fluidMachines_SkillGroup_Data,
+    heatTransferEquipment_SkillGroup_Data,
+    ventilationAndAirTreatment_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Practical equipment moves heat, air and other fluids through controlled component chains. Here the object of study is the apparatus and its operating cycle, not the isolated thermodynamic or fluid laws.',

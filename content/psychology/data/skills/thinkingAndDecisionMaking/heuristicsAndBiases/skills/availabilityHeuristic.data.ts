@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const availabilityHeuristic_Skill_Data = buildSkillConfig({
+export const availabilityHeuristic_Skill_Data = defineSkill({
   slug: 'availabilityHeuristic',
   id: 'f3ce79aa-03b2-4dd4-95da-734d36dd62ea',
   name: {

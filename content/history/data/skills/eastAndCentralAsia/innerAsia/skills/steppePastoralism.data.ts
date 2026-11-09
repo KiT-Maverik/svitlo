@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const steppePastoralism_Skill_Data = buildSkillConfig({
+export const steppePastoralism_Skill_Data = defineSkill({
   slug: 'steppePastoralism',
   id: 'cf23c273-e419-4b84-83e1-e1ba9526ac9e',
   name: {

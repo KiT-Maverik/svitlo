@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const followMusicalPhrases_Skill_Data = buildSkillConfig({
+export const followMusicalPhrases_Skill_Data = defineSkill({
   slug: 'followMusicalPhrases',
   id: '7e1474fe-182d-4854-b5a4-899670aa094f',
   name: {

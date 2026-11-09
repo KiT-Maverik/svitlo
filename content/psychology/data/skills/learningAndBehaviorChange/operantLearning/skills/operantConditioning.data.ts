@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const operantConditioning_Skill_Data = buildSkillConfig({
+export const operantConditioning_Skill_Data = defineSkill({
   slug: 'operantConditioning',
   id: '8df16c39-5f0d-47fa-9585-e25fb9db3e1e',
   name: {

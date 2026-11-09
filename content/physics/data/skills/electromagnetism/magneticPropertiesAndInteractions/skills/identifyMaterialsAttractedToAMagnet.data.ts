@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyMaterialsAttractedToAMagnet_Skill_Data = buildSkillConfig({
+export const identifyMaterialsAttractedToAMagnet_Skill_Data = defineSkill({
   slug: 'identifyMaterialsAttractedToAMagnet',
   id: 'e2993563-f633-4241-9565-a472be2ad895',
   name: {

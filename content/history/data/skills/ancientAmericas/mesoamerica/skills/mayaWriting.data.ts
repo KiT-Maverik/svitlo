@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const mayaWriting_Skill_Data = buildSkillConfig({
+export const mayaWriting_Skill_Data = defineSkill({
   slug: 'mayaWriting',
   id: '4de1f105-27c1-4513-9345-76470c9a9264',
   name: {

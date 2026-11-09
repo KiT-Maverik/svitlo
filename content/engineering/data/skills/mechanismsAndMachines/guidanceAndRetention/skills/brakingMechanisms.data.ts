@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const brakingMechanisms_Skill_Data = buildSkillConfig({
+export const brakingMechanisms_Skill_Data = defineSkill({
   slug: 'brakingMechanisms',
   id: 'b2365b60-4588-40e2-833d-2dcbe71e3566',
   name: {

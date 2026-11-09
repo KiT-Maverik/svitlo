@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyAffectedStakeholders_Skill_Data = buildSkillConfig({
+export const identifyAffectedStakeholders_Skill_Data = defineSkill({
   slug: 'identifyAffectedStakeholders',
   id: 'be14eebe-7ac8-4496-bfc0-67212e2d5ae4',
   name: {

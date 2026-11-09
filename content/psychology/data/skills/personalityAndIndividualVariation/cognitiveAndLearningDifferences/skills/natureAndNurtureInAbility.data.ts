@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const natureAndNurtureInAbility_Skill_Data = buildSkillConfig({
+export const natureAndNurtureInAbility_Skill_Data = defineSkill({
   slug: 'natureAndNurtureInAbility',
   id: 'fa46f27b-9242-40c6-943a-d1a3f46eacc6',
   name: {

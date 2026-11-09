@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainTokens_Skill_Data = buildSkillConfig({
+export const explainTokens_Skill_Data = defineSkill({
   slug: 'explainTokens',
   id: 'b4e37008-55e5-413d-a832-e193f33dfff1',
   name: {

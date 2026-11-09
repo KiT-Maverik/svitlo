@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const seasonalSkyVisibility_Skill_Data = buildSkillConfig({
+export const seasonalSkyVisibility_Skill_Data = defineSkill({
   slug: 'seasonalSkyVisibility',
   id: '4e930fe7-05ba-45ab-9efb-11dd43b3e9e2',
   name: {

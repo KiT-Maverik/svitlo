@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   absoluteAdvantage_Skill_Data,
@@ -7,7 +7,7 @@ import {
   globalValueChains_Skill_Data,
 } from './skills';
 
-export const specializationAndTradeGains_SkillGroup_Data = buildSkillGroupConfig({
+export const specializationAndTradeGains_SkillGroup_Data = defineSkillGroup({
   slug: 'specializationAndTradeGains',
   id: '7ab3048b-121f-415a-925b-b02d81ebcb70',
   name: {
@@ -41,12 +41,12 @@ export const specializationAndTradeGains_SkillGroup_Data = buildSkillGroupConfig
     kk: 'Мамандану және сауда пайдасы',
     qm: 'İhtisaslaşuv ve ticaret faydaları',
   },
-  skills: {
-    absoluteAdvantage: absoluteAdvantage_Skill_Data,
-    comparativeAdvantage: comparativeAdvantage_Skill_Data,
-    gainsFromInternationalTrade: gainsFromInternationalTrade_Skill_Data,
-    globalValueChains: globalValueChains_Skill_Data,
-  },
+  skills: [
+    absoluteAdvantage_Skill_Data,
+    comparativeAdvantage_Skill_Data,
+    gainsFromInternationalTrade_Skill_Data,
+    globalValueChains_Skill_Data,
+  ],
   description: {
     methodological:
       'Relative rather than merely absolute advantages can explain the pattern of exchange between economies.',

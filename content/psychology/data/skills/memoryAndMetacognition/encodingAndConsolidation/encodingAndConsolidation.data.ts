@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   elaborativeEncoding_Skill_Data,
@@ -7,7 +7,7 @@ import {
   spacingEffects_Skill_Data,
 } from './skills';
 
-export const encodingAndConsolidation_SkillGroup_Data = buildSkillGroupConfig({
+export const encodingAndConsolidation_SkillGroup_Data = defineSkillGroup({
   slug: 'encodingAndConsolidation',
   id: '3c2d8ef5-979a-4ffb-8c64-b284739179e3',
   name: {
@@ -41,12 +41,12 @@ export const encodingAndConsolidation_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Кодтау және бекіту',
     qm: 'Kodlav ve sağlamlaştırma',
   },
-  skills: {
-    elaborativeEncoding: elaborativeEncoding_Skill_Data,
-    memoryConsolidation: memoryConsolidation_Skill_Data,
-    organizationAndChunking: organizationAndChunking_Skill_Data,
-    spacingEffects: spacingEffects_Skill_Data,
-  },
+  skills: [
+    elaborativeEncoding_Skill_Data,
+    memoryConsolidation_Skill_Data,
+    organizationAndChunking_Skill_Data,
+    spacingEffects_Skill_Data,
+  ],
   description: {
     methodological:
       'Attention, meaningful structure, and subsequent processing influence what can later be remembered.',

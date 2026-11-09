@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   adaptFoodChoicesToDietaryNeeds_Skill_Data,
@@ -7,7 +7,7 @@ import {
   recognizeDietaryMisinformation_Skill_Data,
 } from './skills';
 
-export const foodChoicesAndInformation_SkillGroup_Data = buildSkillGroupConfig({
+export const foodChoicesAndInformation_SkillGroup_Data = defineSkillGroup({
   slug: 'foodChoicesAndInformation',
   id: '2bc5c50a-8f91-4d44-8337-8ab1e50c600c',
   name: {
@@ -41,12 +41,12 @@ export const foodChoicesAndInformation_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Тағам таңдау және ақпарат',
     qm: 'Aş saylavı ve malümat',
   },
-  skills: {
-    adaptFoodChoicesToDietaryNeeds: adaptFoodChoicesToDietaryNeeds_Skill_Data,
-    interpretFoodLabels: interpretFoodLabels_Skill_Data,
-    manageFoodAllergyRisks: manageFoodAllergyRisks_Skill_Data,
-    recognizeDietaryMisinformation: recognizeDietaryMisinformation_Skill_Data,
-  },
+  skills: [
+    adaptFoodChoicesToDietaryNeeds_Skill_Data,
+    interpretFoodLabels_Skill_Data,
+    manageFoodAllergyRisks_Skill_Data,
+    recognizeDietaryMisinformation_Skill_Data,
+  ],
   description: {
     methodological:
       'Marketing, accessibility, food labels, allergies, and personal circumstances shape real-life nutritional decisions.',

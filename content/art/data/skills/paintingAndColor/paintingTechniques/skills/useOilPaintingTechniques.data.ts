@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const useOilPaintingTechniques_Skill_Data = buildSkillConfig({
+export const useOilPaintingTechniques_Skill_Data = defineSkill({
   slug: 'useOilPaintingTechniques',
   id: 'e29b38e6-8c9d-44ac-bf22-29b115d68bf7',
   name: {

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   anxietyRelatedDifficulties_Skill_Data,
@@ -8,7 +8,7 @@ import {
   traumaRelatedResponses_Skill_Data,
 } from './skills';
 
-export const patternsOfPsychologicalDifficulty_SkillGroup_Data = buildSkillGroupConfig({
+export const patternsOfPsychologicalDifficulty_SkillGroup_Data = defineSkillGroup({
   slug: 'patternsOfPsychologicalDifficulty',
   id: 'e22d532a-720c-4ca0-920a-caaeffd7fdbd',
   name: {
@@ -42,13 +42,13 @@ export const patternsOfPsychologicalDifficulty_SkillGroup_Data = buildSkillGroup
     kk: 'Психологиялық қиындықтар үлгілері',
     qm: 'Ruhiy qıyınlıqlarnıñ çeşitleri',
   },
-  skills: {
-    anxietyRelatedDifficulties: anxietyRelatedDifficulties_Skill_Data,
-    clinicallySignificantNeurodevelopmentalConditions: clinicallySignificantNeurodevelopmentalConditions_Skill_Data,
-    compulsiveAndRepetitivePatterns: compulsiveAndRepetitivePatterns_Skill_Data,
-    depressiveDifficulties: depressiveDifficulties_Skill_Data,
-    traumaRelatedResponses: traumaRelatedResponses_Skill_Data,
-  },
+  skills: [
+    anxietyRelatedDifficulties_Skill_Data,
+    clinicallySignificantNeurodevelopmentalConditions_Skill_Data,
+    compulsiveAndRepetitivePatterns_Skill_Data,
+    depressiveDifficulties_Skill_Data,
+    traumaRelatedResponses_Skill_Data,
+  ],
   description: {
     methodological:
       'Clinical categories summarize heterogeneous symptom patterns; they should not be inferred from a few ordinary behaviors or applied as labels to peers.',

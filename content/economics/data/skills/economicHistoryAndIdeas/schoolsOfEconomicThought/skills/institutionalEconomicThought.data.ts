@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const institutionalEconomicThought_Skill_Data = buildSkillConfig({
+export const institutionalEconomicThought_Skill_Data = defineSkill({
   slug: 'institutionalEconomicThought',
   id: 'e996552e-3c7c-475c-8d0a-ee2ecee6e868',
   name: {

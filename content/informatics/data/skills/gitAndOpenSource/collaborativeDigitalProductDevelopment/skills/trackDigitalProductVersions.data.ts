@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const trackDigitalProductVersions_Skill_Data = buildSkillConfig({
+export const trackDigitalProductVersions_Skill_Data = defineSkill({
   slug: 'trackDigitalProductVersions',
   id: 'bb643b50-a138-463f-80f0-e99f320fee80',
   name: {

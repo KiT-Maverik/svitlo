@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const designAPoster_Skill_Data = buildSkillConfig({
+export const designAPoster_Skill_Data = defineSkill({
   slug: 'designAPoster',
   id: '91915017-0c79-48ac-9433-c630a482620e',
   name: {

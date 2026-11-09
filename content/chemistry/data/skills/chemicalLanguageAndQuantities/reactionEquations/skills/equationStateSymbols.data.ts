@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const equationStateSymbols_Skill_Data = buildSkillConfig({
+export const equationStateSymbols_Skill_Data = defineSkill({
   slug: 'equationStateSymbols',
   id: 'cc97d7e8-2b46-477d-82c0-15afbd433c3e',
   name: {

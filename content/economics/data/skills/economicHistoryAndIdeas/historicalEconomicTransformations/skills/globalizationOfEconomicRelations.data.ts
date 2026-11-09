@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const globalizationOfEconomicRelations_Skill_Data = buildSkillConfig({
+export const globalizationOfEconomicRelations_Skill_Data = defineSkill({
   slug: 'globalizationOfEconomicRelations',
   id: '0ef3e6d5-05f6-4a20-b7cc-cc6c46510139',
   name: {

@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { countBy2_Skill_Data, countBy5_Skill_Data, countBy10_Skill_Data, countBy100_Skill_Data } from './skills';
 
-export const steps_SkillGroup_Data = buildSkillGroupConfig({
+export const steps_SkillGroup_Data = defineSkillGroup({
   slug: 'steps',
   id: '6adaeb37-f3ed-4cad-899a-28057e94c8c3',
   name: {
@@ -36,12 +36,7 @@ export const steps_SkillGroup_Data = buildSkillGroupConfig({
     pl: 'Liczenie skokowe',
     uk: 'Крокова лічба',
   },
-  skills: {
-    countBy2: countBy2_Skill_Data,
-    countBy5: countBy5_Skill_Data,
-    countBy10: countBy10_Skill_Data,
-    countBy100: countBy100_Skill_Data,
-  },
+  skills: [countBy2_Skill_Data, countBy5_Skill_Data, countBy10_Skill_Data, countBy100_Skill_Data],
   description: {
     methodological:
       'Moving through the number sequence by fixed increments, connected with equal groups, tens, and hundreds rather than counting individual units.',

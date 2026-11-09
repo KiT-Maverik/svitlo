@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   chemicalProperties_Skill_Data,
@@ -7,7 +7,7 @@ import {
   propertyBasedIdentification_Skill_Data,
 } from './skills';
 
-export const characteristicProperties_SkillGroup_Data = buildSkillGroupConfig({
+export const characteristicProperties_SkillGroup_Data = defineSkillGroup({
   slug: 'characteristicProperties',
   id: 'a7cda477-ab13-43d0-88b0-0c16cb494146',
   name: {
@@ -41,12 +41,12 @@ export const characteristicProperties_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Сипаттамалық қасиеттер',
     qm: 'Ayırıcı hususiyetler',
   },
-  skills: {
-    chemicalProperties: chemicalProperties_Skill_Data,
-    density: density_Skill_Data,
-    physicalProperties: physicalProperties_Skill_Data,
-    propertyBasedIdentification: propertyBasedIdentification_Skill_Data,
-  },
+  skills: [
+    chemicalProperties_Skill_Data,
+    density_Skill_Data,
+    physicalProperties_Skill_Data,
+    propertyBasedIdentification_Skill_Data,
+  ],
   description: {
     methodological:
       'Physical and chemical properties supply different evidence about substances, and measurements are meaningful only under stated conditions.',

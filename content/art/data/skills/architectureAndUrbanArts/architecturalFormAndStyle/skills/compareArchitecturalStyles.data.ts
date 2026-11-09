@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareArchitecturalStyles_Skill_Data = buildSkillConfig({
+export const compareArchitecturalStyles_Skill_Data = defineSkill({
   slug: 'compareArchitecturalStyles',
   id: '7776587d-3529-4f9b-8558-e83aa254da5f',
   name: {

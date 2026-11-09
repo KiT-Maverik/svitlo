@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateTheLimitsOfStateCoercion_Skill_Data = buildSkillConfig({
+export const evaluateTheLimitsOfStateCoercion_Skill_Data = defineSkill({
   slug: 'evaluateTheLimitsOfStateCoercion',
   id: '9d155123-a679-47a4-a44b-9191bad81c12',
   name: {

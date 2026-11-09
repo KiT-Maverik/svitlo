@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const controlPhotographicExposure_Skill_Data = buildSkillConfig({
+export const controlPhotographicExposure_Skill_Data = defineSkill({
   slug: 'controlPhotographicExposure',
   id: '7a5a86c5-ea10-409f-a70c-e1a771016f79',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainSurfaceRunoffAsAWaterPathway_Skill_Data = buildSkillConfig({
+export const explainSurfaceRunoffAsAWaterPathway_Skill_Data = defineSkill({
   slug: 'explainSurfaceRunoffAsAWaterPathway',
   id: 'ae88fb14-08f6-497f-a48b-c90cca23f9f4',
   name: {

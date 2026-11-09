@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const providePromptContext_Skill_Data = buildSkillConfig({
+export const providePromptContext_Skill_Data = defineSkill({
   slug: 'providePromptContext',
   id: 'b4ec3a28-504f-4685-a3d5-13292dd6fd5c',
   name: {

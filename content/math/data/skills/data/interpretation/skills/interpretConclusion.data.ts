@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretConclusion_Skill_Data = buildSkillConfig({
+export const interpretConclusion_Skill_Data = defineSkill({
   slug: 'interpretConclusion',
   id: '57c71e4d-0641-42e2-856d-b2282f308374',
   name: {

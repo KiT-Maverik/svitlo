@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const microcontrollerArchitecture_Skill_Data = buildSkillConfig({
+export const microcontrollerArchitecture_Skill_Data = defineSkill({
   slug: 'microcontrollerArchitecture',
   id: '3b5e04c8-4b0d-47be-9001-26406e55b7c1',
   name: {

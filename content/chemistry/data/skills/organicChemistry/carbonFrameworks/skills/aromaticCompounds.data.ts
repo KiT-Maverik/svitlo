@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const aromaticCompounds_Skill_Data = buildSkillConfig({
+export const aromaticCompounds_Skill_Data = defineSkill({
   slug: 'aromaticCompounds',
   id: '54e81cbc-e802-4fad-9003-77181e5d19a6',
   name: {

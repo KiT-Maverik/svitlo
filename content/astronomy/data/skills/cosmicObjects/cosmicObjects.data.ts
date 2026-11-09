@@ -1,12 +1,12 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { objectFamilies_SkillGroup_Data } from './objectFamilies/objectFamilies.data';
 import { organizationAndMembership_SkillGroup_Data } from './organizationAndMembership/organizationAndMembership.data';
 
-export const cosmicObjects_SkillDomain_Data = buildSkillDomainConfig({
+export const cosmicObjects_SkillDomain_Data = defineSkillDomain({
   slug: 'cosmicObjects',
   id: '0bec5a68-7348-47dd-a603-0f6172e7e058',
-  name: {
+  title: {
     en: 'Cosmic Objects',
     zh: '宇宙天体与结构',
     hi: 'ब्रह्मांडीय पिंड',
@@ -37,10 +37,7 @@ export const cosmicObjects_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Ғарыш нысандары',
     qm: 'Kâinat cisimleri',
   },
-  groups: {
-    objectFamilies: objectFamilies_SkillGroup_Data,
-    organizationAndMembership: organizationAndMembership_SkillGroup_Data,
-  },
+  groups: [objectFamilies_SkillGroup_Data, organizationAndMembership_SkillGroup_Data],
   description: {
     methodological:
       "An overview of what kinds of physical objects and extended structures exist beyond Earth and how they are identified and organized. It teaches classification across cosmic scales and distinguishes an object's physical nature from its environment or apparent visual form; detailed physics belongs to the specialized planetary, stellar, galactic and cosmological domains.",

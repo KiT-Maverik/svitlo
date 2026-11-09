@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainGasCompressibility_Skill_Data = buildSkillConfig({
+export const explainGasCompressibility_Skill_Data = defineSkill({
   slug: 'explainGasCompressibility',
   id: '7e89bb8b-8962-41fb-b1e7-6db4f615997c',
   name: {

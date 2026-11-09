@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { digitalImages_SkillGroup_Data } from './digitalImages/digitalImages.data';
 import { digitalThreeDimensionalArt_SkillGroup_Data } from './digitalThreeDimensionalArt/digitalThreeDimensionalArt.data';
@@ -6,10 +6,10 @@ import { generativeArt_SkillGroup_Data } from './generativeArt/generativeArt.dat
 import { motionGraphics_SkillGroup_Data } from './motionGraphics/motionGraphics.data';
 import { participatoryArt_SkillGroup_Data } from './participatoryArt/participatoryArt.data';
 
-export const digitalAndInteractiveArts_SkillDomain_Data = buildSkillDomainConfig({
+export const digitalAndInteractiveArts_SkillDomain_Data = defineSkillDomain({
   slug: 'digitalAndInteractiveArts',
   id: 'c0712651-b591-4b73-97ff-6019793ad8af',
-  name: {
+  title: {
     en: 'Digital and Interactive Arts',
     zh: '数字与互动艺术',
     hi: 'डिजिटल और इंटरैक्टिव कला',
@@ -40,13 +40,13 @@ export const digitalAndInteractiveArts_SkillDomain_Data = buildSkillDomainConfig
     kk: 'Цифрлық және интерактивті өнер',
     qm: 'Sanat-i raqemiy ve interaktiv',
   },
-  groups: {
-    digitalImages: digitalImages_SkillGroup_Data,
-    digitalThreeDimensionalArt: digitalThreeDimensionalArt_SkillGroup_Data,
-    generativeArt: generativeArt_SkillGroup_Data,
-    motionGraphics: motionGraphics_SkillGroup_Data,
-    participatoryArt: participatoryArt_SkillGroup_Data,
-  },
+  groups: [
+    digitalImages_SkillGroup_Data,
+    digitalThreeDimensionalArt_SkillGroup_Data,
+    generativeArt_SkillGroup_Data,
+    motionGraphics_SkillGroup_Data,
+    participatoryArt_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Digital creative techniques provide editable imagery, audience-responsive experiences and rule-generated variation. The artistic design of outcomes is distinct from computer science implementation.',

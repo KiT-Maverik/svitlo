@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretAPopulationDensityMap_Skill_Data = buildSkillConfig({
+export const interpretAPopulationDensityMap_Skill_Data = defineSkill({
   slug: 'interpretAPopulationDensityMap',
   id: 'edaa41a5-0ebd-4896-8054-2ee46631d732',
   name: {

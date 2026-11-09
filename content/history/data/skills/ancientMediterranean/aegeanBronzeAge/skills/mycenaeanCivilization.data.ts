@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const mycenaeanCivilization_Skill_Data = buildSkillConfig({
+export const mycenaeanCivilization_Skill_Data = defineSkill({
   slug: 'mycenaeanCivilization',
   id: '87f99176-bf8f-43dd-a133-d2fb88c9bfaf',
   name: {

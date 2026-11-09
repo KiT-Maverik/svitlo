@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const exchangeBeforeStates_Skill_Data = buildSkillConfig({
+export const exchangeBeforeStates_Skill_Data = defineSkill({
   slug: 'exchangeBeforeStates',
   id: 'f41d300b-be71-4d9e-9b2d-f98c6d5d63db',
   name: {

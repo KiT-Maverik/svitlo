@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   analyzeBrazilianConcreteArt_Skill_Data,
@@ -6,7 +6,7 @@ import {
   analyzeMexicanMuralism_Skill_Data,
 } from './skills';
 
-export const latinAmericanArtMovements_SkillGroup_Data = buildSkillGroupConfig({
+export const latinAmericanArtMovements_SkillGroup_Data = defineSkillGroup({
   slug: 'latinAmericanArtMovements',
   id: '7954e614-55ec-4d5e-9468-bd961ba21149',
   name: {
@@ -40,11 +40,11 @@ export const latinAmericanArtMovements_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Латын Америкасындағы өнер қозғалыстары',
     qm: 'Latin Amerika sanat areketleri',
   },
-  skills: {
-    analyzeBrazilianConcreteArt: analyzeBrazilianConcreteArt_Skill_Data,
-    analyzeCuscoSchoolPainting: analyzeCuscoSchoolPainting_Skill_Data,
-    analyzeMexicanMuralism: analyzeMexicanMuralism_Skill_Data,
-  },
+  skills: [
+    analyzeBrazilianConcreteArt_Skill_Data,
+    analyzeCuscoSchoolPainting_Skill_Data,
+    analyzeMexicanMuralism_Skill_Data,
+  ],
   description: {
     methodological:
       'These movements reflect different engagements with Indigenous heritage, colonial institutions, modernism and public expression in specified places.',

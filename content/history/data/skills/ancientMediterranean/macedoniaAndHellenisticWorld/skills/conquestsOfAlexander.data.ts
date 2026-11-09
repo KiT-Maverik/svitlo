@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const conquestsOfAlexander_Skill_Data = buildSkillConfig({
+export const conquestsOfAlexander_Skill_Data = defineSkill({
   slug: 'conquestsOfAlexander',
   id: '5bbd9ba0-9852-45e5-aa48-2404b2f931a7',
   name: {

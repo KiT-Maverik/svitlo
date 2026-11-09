@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   communicateDesignLimitations_Skill_Data,
@@ -8,7 +8,7 @@ import {
   justifyResponsibleDesignDecisions_Skill_Data,
 } from './skills';
 
-export const ethicsAndPublicEffects_SkillGroup_Data = buildSkillGroupConfig({
+export const ethicsAndPublicEffects_SkillGroup_Data = defineSkillGroup({
   slug: 'ethicsAndPublicEffects',
   id: '822989c2-0371-4561-9cf3-59451ab57f4f',
   name: {
@@ -42,13 +42,13 @@ export const ethicsAndPublicEffects_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Этика және қоғамдық әсерлер',
     qm: 'Ahlâq ve cemiyetke tesir',
   },
-  skills: {
-    communicateDesignLimitations: communicateDesignLimitations_Skill_Data,
-    evaluateEnvironmentalImpactsOfADesign: evaluateEnvironmentalImpactsOfADesign_Skill_Data,
-    evaluateSocialImpactsOfADesign: evaluateSocialImpactsOfADesign_Skill_Data,
-    identifyAffectedStakeholders: identifyAffectedStakeholders_Skill_Data,
-    justifyResponsibleDesignDecisions: justifyResponsibleDesignDecisions_Skill_Data,
-  },
+  skills: [
+    communicateDesignLimitations_Skill_Data,
+    evaluateEnvironmentalImpactsOfADesign_Skill_Data,
+    evaluateSocialImpactsOfADesign_Skill_Data,
+    identifyAffectedStakeholders_Skill_Data,
+    justifyResponsibleDesignDecisions_Skill_Data,
+  ],
   description: {
     methodological:
       'Technical solutions create benefits and burdens for users, maintainers, neighbors and communities; limitations must be disclosed.',

@@ -1,8 +1,8 @@
 // Synthetic Playground fixtures. Locale-tagged strings are test placeholders, not translations.
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 import { testRecognizeCircle_Skill_Data, testRecognizeOval_Skill_Data } from './skills';
 
-export const testRoundShapes_SkillGroup_Data = buildSkillGroupConfig({
+export const testRoundShapes_SkillGroup_Data = defineSkillGroup({
   slug: 'testRoundShapes',
   id: '00000000-0000-4000-8000-000000000010',
   name: {
@@ -36,8 +36,39 @@ export const testRoundShapes_SkillGroup_Data = buildSkillGroupConfig({
     kk: '[TEST kk] Round shapes',
     qm: '[TEST qm] Round shapes',
   },
-  skills: {
-    testRecognizeCircle: testRecognizeCircle_Skill_Data,
-    testRecognizeOval: testRecognizeOval_Skill_Data,
+  skills: [testRecognizeCircle_Skill_Data, testRecognizeOval_Skill_Data],
+  description: {
+    methodological: 'Synthetic Playground fixture for testRoundShapes; testing only, not curricular content.',
+    frontend: {
+      en: '[TEST en] Synthetic testRoundShapes fixture.',
+      zh: '[TEST zh] Synthetic testRoundShapes fixture.',
+      hi: '[TEST hi] Synthetic testRoundShapes fixture.',
+      es: '[TEST es] Synthetic testRoundShapes fixture.',
+      ar: '[TEST ar] Synthetic testRoundShapes fixture.',
+      fr: '[TEST fr] Synthetic testRoundShapes fixture.',
+      bn: '[TEST bn] Synthetic testRoundShapes fixture.',
+      pt: '[TEST pt] Synthetic testRoundShapes fixture.',
+      ur: '[TEST ur] Synthetic testRoundShapes fixture.',
+      id: '[TEST id] Synthetic testRoundShapes fixture.',
+      de: '[TEST de] Synthetic testRoundShapes fixture.',
+      ja: '[TEST ja] Synthetic testRoundShapes fixture.',
+      ko: '[TEST ko] Synthetic testRoundShapes fixture.',
+      tr: '[TEST tr] Synthetic testRoundShapes fixture.',
+      vi: '[TEST vi] Synthetic testRoundShapes fixture.',
+      ta: '[TEST ta] Synthetic testRoundShapes fixture.',
+      te: '[TEST te] Synthetic testRoundShapes fixture.',
+      mr: '[TEST mr] Synthetic testRoundShapes fixture.',
+      ms: '[TEST ms] Synthetic testRoundShapes fixture.',
+      he: '[TEST he] Synthetic testRoundShapes fixture.',
+      pl: '[TEST pl] Synthetic testRoundShapes fixture.',
+      uk: '[TEST uk] Synthetic testRoundShapes fixture.',
+      lt: '[TEST lt] Synthetic testRoundShapes fixture.',
+      lv: '[TEST lv] Synthetic testRoundShapes fixture.',
+      et: '[TEST et] Synthetic testRoundShapes fixture.',
+      be: '[TEST be] Synthetic testRoundShapes fixture.',
+      ka: '[TEST ka] Synthetic testRoundShapes fixture.',
+      kk: '[TEST kk] Synthetic testRoundShapes fixture.',
+      qm: '[TEST qm] Synthetic testRoundShapes fixture.',
+    },
   },
 });

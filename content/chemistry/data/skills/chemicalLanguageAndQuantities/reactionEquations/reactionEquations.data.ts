@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   balancingEquations_Skill_Data,
@@ -7,7 +7,7 @@ import {
   wordEquations_Skill_Data,
 } from './skills';
 
-export const reactionEquations_SkillGroup_Data = buildSkillGroupConfig({
+export const reactionEquations_SkillGroup_Data = defineSkillGroup({
   slug: 'reactionEquations',
   id: 'e833a8d3-d31e-4af3-9181-36ff9e6e4dd7',
   name: {
@@ -41,12 +41,12 @@ export const reactionEquations_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Реакция теңдеулері',
     qm: 'Reaktsiya teñlemeleri',
   },
-  skills: {
-    balancingEquations: balancingEquations_Skill_Data,
-    equationStateSymbols: equationStateSymbols_Skill_Data,
-    symbolicEquations: symbolicEquations_Skill_Data,
-    wordEquations: wordEquations_Skill_Data,
-  },
+  skills: [
+    balancingEquations_Skill_Data,
+    equationStateSymbols_Skill_Data,
+    symbolicEquations_Skill_Data,
+    wordEquations_Skill_Data,
+  ],
   description: {
     methodological:
       'An equation records reactants, products and stoichiometric relationships but is not, by itself, a mechanism.',

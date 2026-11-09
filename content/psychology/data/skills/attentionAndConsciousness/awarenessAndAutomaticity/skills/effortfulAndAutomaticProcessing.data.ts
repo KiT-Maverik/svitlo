@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const effortfulAndAutomaticProcessing_Skill_Data = buildSkillConfig({
+export const effortfulAndAutomaticProcessing_Skill_Data = defineSkill({
   slug: 'effortfulAndAutomaticProcessing',
   id: '91d3c262-3a56-460a-9ac4-1c2be19de1f5',
   name: {

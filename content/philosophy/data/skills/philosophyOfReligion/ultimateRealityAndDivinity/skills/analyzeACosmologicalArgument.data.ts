@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeACosmologicalArgument_Skill_Data = buildSkillConfig({
+export const analyzeACosmologicalArgument_Skill_Data = defineSkill({
   slug: 'analyzeACosmologicalArgument',
   id: '4b7a9939-9483-4008-bf04-96a35bb66807',
   name: {

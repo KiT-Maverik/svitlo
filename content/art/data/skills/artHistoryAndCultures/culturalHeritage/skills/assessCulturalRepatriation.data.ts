@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const assessCulturalRepatriation_Skill_Data = buildSkillConfig({
+export const assessCulturalRepatriation_Skill_Data = defineSkill({
   slug: 'assessCulturalRepatriation',
   id: '23f7808e-54cc-4ea0-a586-3fc79c473f3f',
   name: {

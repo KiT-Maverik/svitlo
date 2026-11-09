@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const satelliteNavigationReceivers_Skill_Data = buildSkillConfig({
+export const satelliteNavigationReceivers_Skill_Data = defineSkill({
   slug: 'satelliteNavigationReceivers',
   id: 'dd16e1c9-aa6e-4d4a-aaf1-a353ba196156',
   name: {

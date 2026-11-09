@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const reactionYield_Skill_Data = buildSkillConfig({
+export const reactionYield_Skill_Data = defineSkill({
   slug: 'reactionYield',
   id: '29862c83-a1cd-436d-8544-eca7dc52a5ad',
   name: {

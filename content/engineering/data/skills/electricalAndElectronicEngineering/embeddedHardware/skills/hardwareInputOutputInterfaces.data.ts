@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const hardwareInputOutputInterfaces_Skill_Data = buildSkillConfig({
+export const hardwareInputOutputInterfaces_Skill_Data = defineSkill({
   slug: 'hardwareInputOutputInterfaces',
   id: 'e6254bce-3e31-4953-add4-94fda120d0e8',
   name: {

@@ -14,13 +14,13 @@ A **SkillGroup** organizes one coherent family of related Skills inside a SkillD
 
 ## EDITORIAL SLUG
 
-Each new-format SkillGroup has one English `Slug: lowerCamelCase` immediately below its heading, unique among all Domain, Group and Skill slugs in this textbook. An approved slug remains stable across presentation changes; it is a required `SkillGroup_Config.slug` distinct from the Group UUID. Preserve existing Code paths and UUIDs until an explicit migration is approved.
+Each new-format SkillGroup has one English `Slug: lowerCamelCase` immediately below its heading, unique among all Domain, Group and Skill slugs in this textbook. An approved slug remains stable across presentation changes; it is a required `defineSkillGroup` slug distinct from the Group UUID. Preserve existing Code paths and UUIDs until an explicit migration is approved.
 
 ## RUNTIME CONTRACT AND ARTIFACTS
 
 The Group config lives in `<PackageRoot>/data/skills/<domain>/<group>/<group>.data.ts`, imports child Skills from `./skills/index.ts` and embeds complete Skill entities in the `skills` dictionary, not UUID-only references. A Group does not have its own directory-level `index.ts`; only its `skills/index.ts` barrel exports immediate Skill Data.
 
-The shared-contract `SkillGroup_Config` has `slug`, `id`, localized `name` and a direct-child `skills` dictionary containing complete built Skill entities. It permits transitional optional `description: { methodological: string; frontend?: Record<LanguageCode, string> }` (reviewed English methodological text required for promotion; frontend absent or complete for all languages), but does not contain teaching order, evaluation evidence or student progress.
+The Engine `defineSkillGroup` config has `slug`, `id`, localized `name` and a `skills` array containing immediate Skill configurators. It requires `description: { methodological: string; frontend?: Record<LanguageCode, string> }` (reviewed English methodological text required for promotion; frontend absent or complete for all languages), but does not contain teaching order, evaluation evidence or student progress.
 
 - **Editorial authority until migration:** `<PackageRoot>/docs/skills/taxonomy.md`; after reviewed migration, Code localized name, English methodological meaning, any optional full frontend translations and parent/child placement.
 - **Implementation link:** a verified application `*.data.ts` file linked with its complete filename as the label, or exactly `[Not implemented](#)` as a standalone link without `Code:`.

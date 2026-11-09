@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const locatePartsOfTheWorldOnAGlobe_Skill_Data = buildSkillConfig({
+export const locatePartsOfTheWorldOnAGlobe_Skill_Data = defineSkill({
   slug: 'locatePartsOfTheWorldOnAGlobe',
   id: 'b4ed9b5d-5879-4a18-8d86-5b16e975411a',
   name: {

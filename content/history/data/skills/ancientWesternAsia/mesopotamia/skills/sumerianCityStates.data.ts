@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const sumerianCityStates_Skill_Data = buildSkillConfig({
+export const sumerianCityStates_Skill_Data = defineSkill({
   slug: 'sumerianCityStates',
   id: 'e17f88e3-0fd7-4ddc-b1f3-183fb1566675',
   name: {

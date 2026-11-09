@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const relatePlantOrgansToTheirFunctions_Skill_Data = buildSkillConfig({
+export const relatePlantOrgansToTheirFunctions_Skill_Data = defineSkill({
   slug: 'relatePlantOrgansToTheirFunctions',
   id: '1c78f970-d391-4dea-8f97-5f2e36d4a713',
   name: {

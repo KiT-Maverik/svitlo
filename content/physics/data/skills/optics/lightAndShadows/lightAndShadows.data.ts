@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   explainHowAShadowForms_Skill_Data,
@@ -6,7 +6,7 @@ import {
   predictThePositionOfAShadow_Skill_Data,
 } from './skills';
 
-export const lightAndShadows_SkillGroup_Data = buildSkillGroupConfig({
+export const lightAndShadows_SkillGroup_Data = defineSkillGroup({
   slug: 'lightAndShadows',
   id: '70f653d9-a3de-4ebc-84e4-d7aac98b02f6',
   name: {
@@ -40,11 +40,11 @@ export const lightAndShadows_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Жарық пен көлеңкелер',
     qm: 'Yarıq ve kölgeler',
   },
-  skills: {
-    explainHowAShadowForms: explainHowAShadowForms_Skill_Data,
-    predictChangesInShadowSize: predictChangesInShadowSize_Skill_Data,
-    predictThePositionOfAShadow: predictThePositionOfAShadow_Skill_Data,
-  },
+  skills: [
+    explainHowAShadowForms_Skill_Data,
+    predictChangesInShadowSize_Skill_Data,
+    predictThePositionOfAShadow_Skill_Data,
+  ],
   description: {
     methodological:
       "Obstacles and the source's position determine a shadow's appearance, direction, and size; a model enables qualitative predictions.",

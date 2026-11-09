@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const equalityMeaning_Skill_Data = buildSkillConfig({
+export const equalityMeaning_Skill_Data = defineSkill({
   slug: 'equalityMeaning',
   id: '974af868-5b72-4a5a-a88e-8f7e03e48661',
   name: {

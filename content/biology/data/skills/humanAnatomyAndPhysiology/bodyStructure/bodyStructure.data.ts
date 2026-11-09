@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   distinguishAnOrganFromAnOrganSystem_Skill_Data,
@@ -6,7 +6,7 @@ import {
   relateOrgansToTheirFunctions_Skill_Data,
 } from './skills';
 
-export const bodyStructure_SkillGroup_Data = buildSkillGroupConfig({
+export const bodyStructure_SkillGroup_Data = defineSkillGroup({
   slug: 'bodyStructure',
   id: '89ff6336-56ca-4763-8058-5b9f999946ee',
   name: {
@@ -40,11 +40,11 @@ export const bodyStructure_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Дене құрылысы',
     qm: 'Beden quruluşu',
   },
-  skills: {
-    distinguishAnOrganFromAnOrganSystem: distinguishAnOrganFromAnOrganSystem_Skill_Data,
-    identifyMajorBodyParts: identifyMajorBodyParts_Skill_Data,
-    relateOrgansToTheirFunctions: relateOrgansToTheirFunctions_Skill_Data,
-  },
+  skills: [
+    distinguishAnOrganFromAnOrganSystem_Skill_Data,
+    identifyMajorBodyParts_Skill_Data,
+    relateOrgansToTheirFunctions_Skill_Data,
+  ],
   description: {
     methodological:
       'External and internal body parts form organs and systems, each performing a particular function in the organism.',

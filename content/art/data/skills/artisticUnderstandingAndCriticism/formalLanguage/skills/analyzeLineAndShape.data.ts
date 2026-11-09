@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeLineAndShape_Skill_Data = buildSkillConfig({
+export const analyzeLineAndShape_Skill_Data = defineSkill({
   slug: 'analyzeLineAndShape',
   id: '002b4a55-6182-49b4-b6f2-33bd3f1f6ed4',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishWeightedAndUnweightedGraphs_Skill_Data = buildSkillConfig({
+export const distinguishWeightedAndUnweightedGraphs_Skill_Data = defineSkill({
   slug: 'distinguishWeightedAndUnweightedGraphs',
   id: '6c7fba6b-cf2e-4189-af8a-71dbcb3319ad',
   name: {

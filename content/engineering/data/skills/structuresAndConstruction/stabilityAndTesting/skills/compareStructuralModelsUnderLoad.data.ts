@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareStructuralModelsUnderLoad_Skill_Data = buildSkillConfig({
+export const compareStructuralModelsUnderLoad_Skill_Data = defineSkill({
   slug: 'compareStructuralModelsUnderLoad',
   id: 'c4deacdb-c7e2-45f2-aa94-0dc25a49d11c',
   name: {

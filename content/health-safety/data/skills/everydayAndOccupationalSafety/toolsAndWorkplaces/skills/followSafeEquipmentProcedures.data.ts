@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const followSafeEquipmentProcedures_Skill_Data = buildSkillConfig({
+export const followSafeEquipmentProcedures_Skill_Data = defineSkill({
   slug: 'followSafeEquipmentProcedures',
   id: '45c2e8ec-b7c8-485b-9b60-d9b42cd9484e',
   name: {

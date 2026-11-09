@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateConsentInAnEthicalScenario_Skill_Data = buildSkillConfig({
+export const evaluateConsentInAnEthicalScenario_Skill_Data = defineSkill({
   slug: 'evaluateConsentInAnEthicalScenario',
   id: '6e4f2369-b3fa-4a27-ab2e-9856b757825d',
   name: {

@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { discountingFutureConsequences_Skill_Data, intergenerationalEconomicImpacts_Skill_Data } from './skills';
 
-export const sustainabilityAndIntertemporalChoice_SkillGroup_Data = buildSkillGroupConfig({
+export const sustainabilityAndIntertemporalChoice_SkillGroup_Data = defineSkillGroup({
   slug: 'sustainabilityAndIntertemporalChoice',
   id: 'aa7653a3-7df3-4c59-b61b-96cc77329c93',
   name: {
@@ -36,10 +36,7 @@ export const sustainabilityAndIntertemporalChoice_SkillGroup_Data = buildSkillGr
     kk: 'Тұрақтылық және уақыт аралық таңдау',
     qm: 'Devamlılıq ve zamanlarara saylav',
   },
-  skills: {
-    discountingFutureConsequences: discountingFutureConsequences_Skill_Data,
-    intergenerationalEconomicImpacts: intergenerationalEconomicImpacts_Skill_Data,
-  },
+  skills: [discountingFutureConsequences_Skill_Data, intergenerationalEconomicImpacts_Skill_Data],
   description: {
     methodological:
       'Present decisions can change future resource availability, risks, and wellbeing across generations.',

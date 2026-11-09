@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const socialIdentity_Skill_Data = buildSkillConfig({
+export const socialIdentity_Skill_Data = defineSkill({
   slug: 'socialIdentity',
   id: '83b5e5bd-a074-4c16-8405-03e477c703bf',
   name: {

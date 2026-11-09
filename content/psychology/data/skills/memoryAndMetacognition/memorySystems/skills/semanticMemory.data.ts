@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const semanticMemory_Skill_Data = buildSkillConfig({
+export const semanticMemory_Skill_Data = defineSkill({
   slug: 'semanticMemory',
   id: 'b6719f54-fe10-4e60-81f4-a11b89aa3f50',
   name: {

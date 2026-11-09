@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishAGlobeFromAFlatMapAsEarthModels_Skill_Data = buildSkillConfig({
+export const distinguishAGlobeFromAFlatMapAsEarthModels_Skill_Data = defineSkill({
   slug: 'distinguishAGlobeFromAFlatMapAsEarthModels',
   id: 'a221c089-c331-466f-83ef-99b8a8479458',
   name: {

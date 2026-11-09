@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const starClusters_Skill_Data = buildSkillConfig({
+export const starClusters_Skill_Data = defineSkill({
   slug: 'starClusters',
   id: 'c23c0f53-51a5-48e5-bf31-effb38b8927d',
   name: {

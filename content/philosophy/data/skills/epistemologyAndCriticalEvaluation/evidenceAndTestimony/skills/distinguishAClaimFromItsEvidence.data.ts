@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishAClaimFromItsEvidence_Skill_Data = buildSkillConfig({
+export const distinguishAClaimFromItsEvidence_Skill_Data = defineSkill({
   slug: 'distinguishAClaimFromItsEvidence',
   id: '3b2a440f-c871-4bae-8358-69ca623b060d',
   name: {

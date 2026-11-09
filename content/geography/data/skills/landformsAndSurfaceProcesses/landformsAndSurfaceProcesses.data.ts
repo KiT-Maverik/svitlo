@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { reliefAndElevation_SkillGroup_Data } from './reliefAndElevation/reliefAndElevation.data';
 import { soilsAndSurfaceSediments_SkillGroup_Data } from './soilsAndSurfaceSediments/soilsAndSurfaceSediments.data';
 import { weatheringErosionAndDeposition_SkillGroup_Data } from './weatheringErosionAndDeposition/weatheringErosionAndDeposition.data';
 
-export const landformsAndSurfaceProcesses_SkillDomain_Data = buildSkillDomainConfig({
+export const landformsAndSurfaceProcesses_SkillDomain_Data = defineSkillDomain({
   slug: 'landformsAndSurfaceProcesses',
   id: '867dae3c-d00e-485c-8c37-304978460de1',
-  name: {
+  title: {
     en: 'Landforms and Surface Processes',
     zh: '地貌与地表过程',
     hi: 'स्थलरूप और सतही प्रक्रियाएँ',
@@ -38,11 +38,11 @@ export const landformsAndSurfaceProcesses_SkillDomain_Data = buildSkillDomainCon
     kk: 'Жер бедерінің пішіндері және жерүсті үдерістері',
     qm: 'Yer şekilleri ve yer yüzündeki süreçler',
   },
-  groups: {
-    reliefAndElevation: reliefAndElevation_SkillGroup_Data,
-    soilsAndSurfaceSediments: soilsAndSurfaceSediments_SkillGroup_Data,
-    weatheringErosionAndDeposition: weatheringErosionAndDeposition_SkillGroup_Data,
-  },
+  groups: [
+    reliefAndElevation_SkillGroup_Data,
+    soilsAndSurfaceSediments_SkillGroup_Data,
+    weatheringErosionAndDeposition_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Relief and unconsolidated surface materials form landscapes that change through weathering, transportation and deposition. This domain examines the recognizable forms and near-surface changes of terrain rather than the internal structure, mineralogy or deep-time evolution of solid Earth.',

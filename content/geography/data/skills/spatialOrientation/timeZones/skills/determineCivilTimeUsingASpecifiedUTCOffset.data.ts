@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const determineCivilTimeUsingASpecifiedUTCOffset_Skill_Data = buildSkillConfig({
+export const determineCivilTimeUsingASpecifiedUTCOffset_Skill_Data = defineSkill({
   slug: 'determineCivilTimeUsingASpecifiedUTCOffset',
   id: '195f08c7-f9cd-427f-8cf1-f231a13a1e94',
   name: {

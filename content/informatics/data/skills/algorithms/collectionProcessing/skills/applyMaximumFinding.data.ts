@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const applyMaximumFinding_Skill_Data = buildSkillConfig({
+export const applyMaximumFinding_Skill_Data = defineSkill({
   slug: 'applyMaximumFinding',
   id: '5818fb78-28b0-406a-803f-3b1a71f65b5b',
   name: {

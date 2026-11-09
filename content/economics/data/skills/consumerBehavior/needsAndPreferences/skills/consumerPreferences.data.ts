@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const consumerPreferences_Skill_Data = buildSkillConfig({
+export const consumerPreferences_Skill_Data = defineSkill({
   slug: 'consumerPreferences',
   id: '3e291196-cc0d-4cb3-b9de-600a67d59c3b',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyLandUsePatternsInASettlementOrRegion_Skill_Data = buildSkillConfig({
+export const identifyLandUsePatternsInASettlementOrRegion_Skill_Data = defineSkill({
   slug: 'identifyLandUsePatternsInASettlementOrRegion',
   id: '7923aea8-54a0-436e-bd24-a0f4fa73825a',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const editAMusicalSample_Skill_Data = buildSkillConfig({
+export const editAMusicalSample_Skill_Data = defineSkill({
   slug: 'editAMusicalSample',
   id: 'a4702171-93ba-4928-aeee-fe5d07b38e10',
   name: {

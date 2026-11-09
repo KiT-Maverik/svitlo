@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const fairnessInCognitiveAssessment_Skill_Data = buildSkillConfig({
+export const fairnessInCognitiveAssessment_Skill_Data = defineSkill({
   slug: 'fairnessInCognitiveAssessment',
   id: '59f147b2-7c2f-47af-8818-cea3097d15ea',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const ionicLattices_Skill_Data = buildSkillConfig({
+export const ionicLattices_Skill_Data = defineSkill({
   slug: 'ionicLattices',
   id: 'f7a9232d-67ba-4998-850d-0fd4f6874ccb',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const windTurbines_Skill_Data = buildSkillConfig({
+export const windTurbines_Skill_Data = defineSkill({
   slug: 'windTurbines',
   id: '8e9026a4-bca4-4106-b6df-b0228253cbb0',
   name: {

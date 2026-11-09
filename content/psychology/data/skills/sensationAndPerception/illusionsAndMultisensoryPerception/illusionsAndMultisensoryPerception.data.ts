@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   crossModalIntegration_Skill_Data,
@@ -7,7 +7,7 @@ import {
   visualIllusions_Skill_Data,
 } from './skills';
 
-export const illusionsAndMultisensoryPerception_SkillGroup_Data = buildSkillGroupConfig({
+export const illusionsAndMultisensoryPerception_SkillGroup_Data = defineSkillGroup({
   slug: 'illusionsAndMultisensoryPerception',
   id: 'aedf27d5-0c7a-43d3-8a94-8e1361e93155',
   name: {
@@ -41,12 +41,12 @@ export const illusionsAndMultisensoryPerception_SkillGroup_Data = buildSkillGrou
     kk: 'Иллюзиялар және көпсезімдік қабылдау',
     qm: 'Qabul etüv illüziyaları ve çoq duyğulı qabul etüv',
   },
-  skills: {
-    crossModalIntegration: crossModalIntegration_Skill_Data,
-    eyewitnessPerception: eyewitnessPerception_Skill_Data,
-    perceptualExpectations: perceptualExpectations_Skill_Data,
-    visualIllusions: visualIllusions_Skill_Data,
-  },
+  skills: [
+    crossModalIntegration_Skill_Data,
+    eyewitnessPerception_Skill_Data,
+    perceptualExpectations_Skill_Data,
+    visualIllusions_Skill_Data,
+  ],
   description: {
     methodological:
       'Systematic distortions and interactions across senses reveal how perception infers likely causes of stimulation.',

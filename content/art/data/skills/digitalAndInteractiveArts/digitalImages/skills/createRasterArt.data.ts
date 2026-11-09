@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const createRasterArt_Skill_Data = buildSkillConfig({
+export const createRasterArt_Skill_Data = defineSkill({
   slug: 'createRasterArt',
   id: '958379cd-2786-4cb7-aa69-3cd194887b3c',
   name: {

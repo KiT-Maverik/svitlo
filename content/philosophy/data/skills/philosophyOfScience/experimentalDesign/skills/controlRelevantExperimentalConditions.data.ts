@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const controlRelevantExperimentalConditions_Skill_Data = buildSkillConfig({
+export const controlRelevantExperimentalConditions_Skill_Data = defineSkill({
   slug: 'controlRelevantExperimentalConditions',
   id: '9cd18a1a-c166-4db3-91b3-35e2d1618968',
   name: {

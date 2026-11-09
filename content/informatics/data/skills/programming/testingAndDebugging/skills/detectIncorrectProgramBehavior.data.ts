@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const detectIncorrectProgramBehavior_Skill_Data = buildSkillConfig({
+export const detectIncorrectProgramBehavior_Skill_Data = defineSkill({
   slug: 'detectIncorrectProgramBehavior',
   id: '33da9c77-a33b-40f4-a2c5-c458623184b3',
   name: {

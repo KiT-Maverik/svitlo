@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishMoralFromNonMoralJudgments_Skill_Data = buildSkillConfig({
+export const distinguishMoralFromNonMoralJudgments_Skill_Data = defineSkill({
   slug: 'distinguishMoralFromNonMoralJudgments',
   id: '5013a436-7b36-40ad-8e50-a333a817b4af',
   name: {

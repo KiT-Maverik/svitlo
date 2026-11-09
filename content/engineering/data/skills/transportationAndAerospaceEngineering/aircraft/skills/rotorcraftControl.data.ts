@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const rotorcraftControl_Skill_Data = buildSkillConfig({
+export const rotorcraftControl_Skill_Data = defineSkill({
   slug: 'rotorcraftControl',
   id: 'fa901ccc-c6e9-4a91-8a54-281e89f5f094',
   name: {

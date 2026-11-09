@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const solubilityEquilibrium_Skill_Data = buildSkillConfig({
+export const solubilityEquilibrium_Skill_Data = defineSkill({
   slug: 'solubilityEquilibrium',
   id: '74f22eec-0932-4c3a-9bbf-b1aa958e64d1',
   name: {

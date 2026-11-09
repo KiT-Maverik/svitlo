@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeDNAsRoleInStoringHereditaryInformation_Skill_Data = buildSkillConfig({
+export const recognizeDNAsRoleInStoringHereditaryInformation_Skill_Data = defineSkill({
   slug: 'recognizeDNAsRoleInStoringHereditaryInformation',
   id: '06e6dc45-e3ce-42f2-949b-3bbca155dde9',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const applyWatercolorWashes_Skill_Data = buildSkillConfig({
+export const applyWatercolorWashes_Skill_Data = defineSkill({
   slug: 'applyWatercolorWashes',
   id: 'e4818418-0daf-47a0-8a14-486459130240',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const formulateAQuestionAboutASpatialPattern_Skill_Data = buildSkillConfig({
+export const formulateAQuestionAboutASpatialPattern_Skill_Data = defineSkill({
   slug: 'formulateAQuestionAboutASpatialPattern',
   id: 'e7763450-d775-4baa-93e8-21770b414cd6',
   name: {

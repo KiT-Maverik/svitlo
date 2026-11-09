@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const commonResourceGovernance_Skill_Data = buildSkillConfig({
+export const commonResourceGovernance_Skill_Data = defineSkill({
   slug: 'commonResourceGovernance',
   id: 'a2295d3e-24bb-4a0c-9cc2-4857fb080e23',
   name: {

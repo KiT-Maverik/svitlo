@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const applyMinimumFinding_Skill_Data = buildSkillConfig({
+export const applyMinimumFinding_Skill_Data = defineSkill({
   slug: 'applyMinimumFinding',
   id: '002178c5-f6c6-4d2b-9cc8-b295198fc3c8',
   name: {

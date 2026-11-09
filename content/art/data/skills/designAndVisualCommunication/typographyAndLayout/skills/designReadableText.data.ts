@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const designReadableText_Skill_Data = buildSkillConfig({
+export const designReadableText_Skill_Data = defineSkill({
   slug: 'designReadableText',
   id: '20f21893-f213-44b0-9031-04ffa599f80a',
   name: {

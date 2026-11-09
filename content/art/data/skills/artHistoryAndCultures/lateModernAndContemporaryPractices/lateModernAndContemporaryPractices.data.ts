@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   analyzeConceptualArt_Skill_Data,
@@ -8,7 +8,7 @@ import {
   analyzePopArt_Skill_Data,
 } from './skills';
 
-export const lateModernAndContemporaryPractices_SkillGroup_Data = buildSkillGroupConfig({
+export const lateModernAndContemporaryPractices_SkillGroup_Data = defineSkillGroup({
   slug: 'lateModernAndContemporaryPractices',
   id: '6118e75b-0c4a-4fe1-9e6a-a5415066f280',
   name: {
@@ -42,13 +42,13 @@ export const lateModernAndContemporaryPractices_SkillGroup_Data = buildSkillGrou
     kk: 'Кейінгі модерн және заманауи тәжірибелер',
     qm: 'Keç modernizm ve çağdaş sanat tecribeleri',
   },
-  skills: {
-    analyzeConceptualArt: analyzeConceptualArt_Skill_Data,
-    analyzeInstallationArt: analyzeInstallationArt_Skill_Data,
-    analyzeMinimalism: analyzeMinimalism_Skill_Data,
-    analyzePerformanceArt: analyzePerformanceArt_Skill_Data,
-    analyzePopArt: analyzePopArt_Skill_Data,
-  },
+  skills: [
+    analyzeConceptualArt_Skill_Data,
+    analyzeInstallationArt_Skill_Data,
+    analyzeMinimalism_Skill_Data,
+    analyzePerformanceArt_Skill_Data,
+    analyzePopArt_Skill_Data,
+  ],
   description: {
     methodological:
       'Artworks in these practices can privilege ideas, everyday images, participation or spatial conditions over traditional single-object representation.',

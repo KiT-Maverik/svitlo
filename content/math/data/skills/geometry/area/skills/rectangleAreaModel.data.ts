@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const rectangleAreaModel_Skill_Data = buildSkillConfig({
+export const rectangleAreaModel_Skill_Data = defineSkill({
   slug: 'rectangleAreaModel',
   id: '18927cbb-05bf-4f99-9d85-aaf60512417f',
   name: {

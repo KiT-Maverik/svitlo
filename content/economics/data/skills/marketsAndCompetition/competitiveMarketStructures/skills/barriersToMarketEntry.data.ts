@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const barriersToMarketEntry_Skill_Data = buildSkillConfig({
+export const barriersToMarketEntry_Skill_Data = defineSkill({
   slug: 'barriersToMarketEntry',
   id: '9df5bd93-f164-446a-8cf7-c7dab4198cdd',
   name: {

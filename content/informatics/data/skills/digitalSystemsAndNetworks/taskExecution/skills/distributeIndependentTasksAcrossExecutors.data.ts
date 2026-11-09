@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distributeIndependentTasksAcrossExecutors_Skill_Data = buildSkillConfig({
+export const distributeIndependentTasksAcrossExecutors_Skill_Data = defineSkill({
   slug: 'distributeIndependentTasksAcrossExecutors',
   id: 'fc6d08e8-022d-4e5a-b48f-3a90a047ca91',
   name: {

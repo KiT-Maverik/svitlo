@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const attachmentInRelationships_Skill_Data = buildSkillConfig({
+export const attachmentInRelationships_Skill_Data = defineSkill({
   slug: 'attachmentInRelationships',
   id: '05108cd9-0e07-4c7a-b304-aa4f862b6b8a',
   name: {

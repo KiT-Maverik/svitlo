@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const xiongnu_Skill_Data = buildSkillConfig({
+export const xiongnu_Skill_Data = defineSkill({
   slug: 'xiongnu',
   id: '02bd7c0b-da3e-47b4-8f71-2d786b482209',
   name: {

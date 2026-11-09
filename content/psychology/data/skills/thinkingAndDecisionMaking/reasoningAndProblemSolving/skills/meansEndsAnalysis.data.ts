@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const meansEndsAnalysis_Skill_Data = buildSkillConfig({
+export const meansEndsAnalysis_Skill_Data = defineSkill({
   slug: 'meansEndsAnalysis',
   id: 'ee8545ed-3a9a-4a40-9bda-21589e1f8020',
   name: {

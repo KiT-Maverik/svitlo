@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const preventEntrapmentAndSuffocationHazards_Skill_Data = buildSkillConfig({
+export const preventEntrapmentAndSuffocationHazards_Skill_Data = defineSkill({
   slug: 'preventEntrapmentAndSuffocationHazards',
   id: 'b8904b16-db62-40f4-9244-d8b5aa7175ce',
   name: {

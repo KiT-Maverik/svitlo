@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const traumaRelatedResponses_Skill_Data = buildSkillConfig({
+export const traumaRelatedResponses_Skill_Data = defineSkill({
   slug: 'traumaRelatedResponses',
   id: '4236ede0-7e5e-40b9-89c2-d1dc299ca58d',
   name: {

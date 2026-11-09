@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const designASwitchingCircuit_Skill_Data = buildSkillConfig({
+export const designASwitchingCircuit_Skill_Data = defineSkill({
   slug: 'designASwitchingCircuit',
   id: '637f2d25-73b6-4bea-a0a2-ee75244e9d46',
   name: {

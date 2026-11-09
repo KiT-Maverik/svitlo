@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const performADancePhrase_Skill_Data = buildSkillConfig({
+export const performADancePhrase_Skill_Data = defineSkill({
   slug: 'performADancePhrase',
   id: '0b784cb9-1d2e-44f0-b891-382bc93c6e23',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const hydraulicActuators_Skill_Data = buildSkillConfig({
+export const hydraulicActuators_Skill_Data = defineSkill({
   slug: 'hydraulicActuators',
   id: 'ef05afe2-a541-4db9-bc90-ea96a43108d8',
   name: {

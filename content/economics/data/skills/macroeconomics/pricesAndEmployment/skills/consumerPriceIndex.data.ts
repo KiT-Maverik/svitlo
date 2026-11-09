@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const consumerPriceIndex_Skill_Data = buildSkillConfig({
+export const consumerPriceIndex_Skill_Data = defineSkill({
   slug: 'consumerPriceIndex',
   id: '397b469a-a595-4558-8512-cfad6d670dc7',
   name: {

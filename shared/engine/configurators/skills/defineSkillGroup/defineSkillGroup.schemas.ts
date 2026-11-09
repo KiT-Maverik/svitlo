@@ -13,7 +13,7 @@ function createSkillGroupSchema<Mode extends keyof typeof localizationSwitch>(mo
     slug: z.string().min(1),
     description: z.object({
       methodological: localeText_Schema,
-      frontend: localized,
+      frontend: localized.optional(),
     }),
     name: localized,
   });

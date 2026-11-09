@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const comparePositionsAcrossPhilosophicalTraditions_Skill_Data = buildSkillConfig({
+export const comparePositionsAcrossPhilosophicalTraditions_Skill_Data = defineSkill({
   slug: 'comparePositionsAcrossPhilosophicalTraditions',
   id: '85cadfad-83bb-4143-bb3c-66457a53eb17',
   name: {

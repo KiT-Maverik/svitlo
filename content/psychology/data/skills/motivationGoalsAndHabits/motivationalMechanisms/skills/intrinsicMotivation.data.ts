@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const intrinsicMotivation_Skill_Data = buildSkillConfig({
+export const intrinsicMotivation_Skill_Data = defineSkill({
   slug: 'intrinsicMotivation',
   id: 'f5a70fc6-6332-4626-afcd-44b1f895066b',
   name: {

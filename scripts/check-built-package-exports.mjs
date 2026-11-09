@@ -79,8 +79,8 @@ for (const path of selected) {
       'Compiled lesson JSON missing',
     );
     assert(
-      manifest.files.some(file => file.startsWith('data/pages/skillAnalytics/')),
-      'Compiled analytics JSON missing',
+      manifest.files.some(file => file.startsWith('data/skills/')),
+      'Compiled Skills JSON missing',
     );
     for (const file of manifest.files) {
       assert(existsSync(resolve(root, path, 'dist/static', file)), 'Missing built textbook resource: ' + file);
@@ -97,7 +97,7 @@ for (const path of selected) {
       'Invalid textbook manifest: ' + name,
     );
     assert(
-      manifest.files.some(file => file.startsWith('data/pages/skillAnalytics/')),
+      manifest.files.some(file => file.startsWith('data/skills/')),
       'Missing authored Skills JSON: ' + name,
     );
     for (const file of manifest.files) {
@@ -115,7 +115,7 @@ for (const path of selected) {
     assert(new Set(manifest.files).size === manifest.files.length, 'Duplicate published resource: ' + path);
     if (['math', 'physics', 'psychology', 'philosophy'].includes(name)) {
       assert(
-        manifest.files.some(file => file.startsWith('data/pages/skillAnalytics/')),
+        manifest.files.some(file => file.startsWith('data/skills/')),
         'Authored taxonomy not published: ' + path,
       );
     } else assert(manifest.files.length === 0, 'Metadata-only package must not fabricate resources: ' + path);
@@ -140,8 +140,8 @@ for (const path of selected) {
       'Invalid textbook resource manifest: ' + name,
     );
     assert(
-      manifest.files.some(file => file.startsWith('data/pages/skillAnalytics/')),
-      'Missing authored Skill Analytics: ' + name,
+      manifest.files.some(file => file.startsWith('data/skills/')),
+      'Missing authored Skill taxonomy: ' + name,
     );
     assert(
       !manifest.files.some(file => file.startsWith('data/pages/lessons/')),

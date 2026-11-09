@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const designAccessibleBuildingCirculation_Skill_Data = buildSkillConfig({
+export const designAccessibleBuildingCirculation_Skill_Data = defineSkill({
   slug: 'designAccessibleBuildingCirculation',
   id: '9e7c897d-24fa-4447-82ea-6c5a56da26e0',
   name: {

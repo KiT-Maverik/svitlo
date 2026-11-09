@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const manageVisualStrain_Skill_Data = buildSkillConfig({
+export const manageVisualStrain_Skill_Data = defineSkill({
   slug: 'manageVisualStrain',
   id: '5afdb479-d5ca-4052-ad66-981e00da4437',
   name: {

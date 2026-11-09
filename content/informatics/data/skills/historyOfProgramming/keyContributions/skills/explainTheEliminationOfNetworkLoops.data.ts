@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainTheEliminationOfNetworkLoops_Skill_Data = buildSkillConfig({
+export const explainTheEliminationOfNetworkLoops_Skill_Data = defineSkill({
   slug: 'explainTheEliminationOfNetworkLoops',
   id: '85118226-9961-4f8d-961e-f08abb3ae508',
   name: {

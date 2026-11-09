@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const diagnosticImagingHardware_Skill_Data = buildSkillConfig({
+export const diagnosticImagingHardware_Skill_Data = defineSkill({
   slug: 'diagnosticImagingHardware',
   id: '53e0cc38-451f-4173-8f9e-cce5e752da58',
   name: {

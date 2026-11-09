@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainThePurposeOfAControlGroup_Skill_Data = buildSkillConfig({
+export const explainThePurposeOfAControlGroup_Skill_Data = defineSkill({
   slug: 'explainThePurposeOfAControlGroup',
   id: 'e243bc09-31ba-4eed-b49f-371adbf531c9',
   name: {

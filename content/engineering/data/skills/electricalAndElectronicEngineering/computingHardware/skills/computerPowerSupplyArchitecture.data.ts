@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const computerPowerSupplyArchitecture_Skill_Data = buildSkillConfig({
+export const computerPowerSupplyArchitecture_Skill_Data = defineSkill({
   slug: 'computerPowerSupplyArchitecture',
   id: 'c9f2e7b1-c729-4126-9b36-d9d7e0862923',
   name: {

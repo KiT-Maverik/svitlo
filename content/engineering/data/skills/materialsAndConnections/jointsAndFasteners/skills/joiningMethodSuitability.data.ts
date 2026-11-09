@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const joiningMethodSuitability_Skill_Data = buildSkillConfig({
+export const joiningMethodSuitability_Skill_Data = defineSkill({
   slug: 'joiningMethodSuitability',
   id: '6395ec68-5406-40f8-b957-bacefb83099f',
   name: {

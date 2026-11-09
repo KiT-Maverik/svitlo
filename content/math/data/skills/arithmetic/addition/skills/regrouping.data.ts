@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const regrouping_Skill_Data = buildSkillConfig({
+export const regrouping_Skill_Data = defineSkill({
   slug: 'regrouping',
   id: 'a1ff147a-bf4c-4cc9-ab9d-ccacd0a5fa47',
   name: {

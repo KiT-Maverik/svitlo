@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const maritimeTradeOfSoutheastAsia_Skill_Data = buildSkillConfig({
+export const maritimeTradeOfSoutheastAsia_Skill_Data = defineSkill({
   slug: 'maritimeTradeOfSoutheastAsia',
   id: '1426feaa-27a5-42bb-87c9-988cc52097cd',
   name: {

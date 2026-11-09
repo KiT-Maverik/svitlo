@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const mainSequence_Skill_Data = buildSkillConfig({
+export const mainSequence_Skill_Data = defineSkill({
   slug: 'mainSequence',
   id: '7dd1598d-acb4-45d1-8ad3-bf1be0436e39',
   name: {

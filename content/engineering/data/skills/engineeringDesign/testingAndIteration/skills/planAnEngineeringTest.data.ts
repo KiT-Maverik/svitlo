@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const planAnEngineeringTest_Skill_Data = buildSkillConfig({
+export const planAnEngineeringTest_Skill_Data = defineSkill({
   slug: 'planAnEngineeringTest',
   id: '25fe4149-a445-444b-9903-135e9826e75d',
   name: {

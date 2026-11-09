@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishElectricFromMagneticFields_Skill_Data = buildSkillConfig({
+export const distinguishElectricFromMagneticFields_Skill_Data = defineSkill({
   slug: 'distinguishElectricFromMagneticFields',
   id: '4794db1e-6753-40d9-8011-248c61e9912e',
   name: {

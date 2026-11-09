@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { chemicalBonds_SkillGroup_Data } from './chemicalBonds/chemicalBonds.data';
 import { interparticleInteractions_SkillGroup_Data } from './interparticleInteractions/interparticleInteractions.data';
 import { molecularAndExtendedStructure_SkillGroup_Data } from './molecularAndExtendedStructure/molecularAndExtendedStructure.data';
 
-export const bondingAndStructure_SkillDomain_Data = buildSkillDomainConfig({
+export const bondingAndStructure_SkillDomain_Data = defineSkillDomain({
   slug: 'bondingAndStructure',
   id: 'd2cd6136-612f-4c9a-8f63-0581db4243ac',
-  name: {
+  title: {
     en: 'Bonding and Structure',
     zh: '化学键与结构',
     hi: 'रासायनिक बंध और संरचना',
@@ -38,11 +38,11 @@ export const bondingAndStructure_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Химиялық байланыстар және құрылым',
     qm: 'Kimyeviy bağlar ve qurulış',
   },
-  groups: {
-    chemicalBonds: chemicalBonds_SkillGroup_Data,
-    interparticleInteractions: interparticleInteractions_SkillGroup_Data,
-    molecularAndExtendedStructure: molecularAndExtendedStructure_SkillGroup_Data,
-  },
+  groups: [
+    chemicalBonds_SkillGroup_Data,
+    interparticleInteractions_SkillGroup_Data,
+    molecularAndExtendedStructure_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Chemical properties arise partly from how atoms and ions are connected and how neighboring particles interact. This domain distinguishes intraparticle bonds from interactions between particles and from bulk structural arrangements.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const chemicalHazardSymbols_Skill_Data = buildSkillConfig({
+export const chemicalHazardSymbols_Skill_Data = defineSkill({
   slug: 'chemicalHazardSymbols',
   id: 'd238cafe-5ba0-410d-97b0-1ace06517c95',
   name: {

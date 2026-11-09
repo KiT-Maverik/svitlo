@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { explainDiffusion_Skill_Data } from './skills';
 
-export const diffusionAndMixing_SkillGroup_Data = buildSkillGroupConfig({
+export const diffusionAndMixing_SkillGroup_Data = defineSkillGroup({
   slug: 'diffusionAndMixing',
   id: 'e55646ac-2f04-4c36-a34b-d9050493877e',
   name: {
@@ -36,9 +36,7 @@ export const diffusionAndMixing_SkillGroup_Data = buildSkillGroupConfig({
     ka: 'დიფუზია და შერევა',
     kk: 'Диффузия және араласу',
   },
-  skills: {
-    explainDiffusion: explainDiffusion_Skill_Data,
-  },
+  skills: [explainDiffusion_Skill_Data],
   description: {
     methodological: 'Random thermal motion can cause particles to spread gradually without deliberate stirring.',
     frontend: {

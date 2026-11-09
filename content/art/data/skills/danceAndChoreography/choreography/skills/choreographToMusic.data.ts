@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const choreographToMusic_Skill_Data = buildSkillConfig({
+export const choreographToMusic_Skill_Data = defineSkill({
   slug: 'choreographToMusic',
   id: '78455098-c574-4d33-ae4e-a8042a8077f3',
   name: {

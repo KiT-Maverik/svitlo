@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const designAnEditorialSpread_Skill_Data = buildSkillConfig({
+export const designAnEditorialSpread_Skill_Data = defineSkill({
   slug: 'designAnEditorialSpread',
   id: 'ce555947-b877-4e48-9891-d73448cdc087',
   name: {

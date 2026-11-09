@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const respondToASuspectedExplosiveObject_Skill_Data = buildSkillConfig({
+export const respondToASuspectedExplosiveObject_Skill_Data = defineSkill({
   slug: 'respondToASuspectedExplosiveObject',
   id: '0771a6cc-5660-4641-a273-b54be12e563a',
   name: {

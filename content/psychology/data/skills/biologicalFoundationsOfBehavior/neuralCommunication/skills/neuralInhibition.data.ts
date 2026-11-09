@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const neuralInhibition_Skill_Data = buildSkillConfig({
+export const neuralInhibition_Skill_Data = defineSkill({
   slug: 'neuralInhibition',
   id: '81c10296-912e-433f-8d71-415bbf7271ab',
   name: {

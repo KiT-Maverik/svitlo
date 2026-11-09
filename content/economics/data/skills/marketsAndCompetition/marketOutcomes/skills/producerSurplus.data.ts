@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const producerSurplus_Skill_Data = buildSkillConfig({
+export const producerSurplus_Skill_Data = defineSkill({
   slug: 'producerSurplus',
   id: '79437d4f-589d-4496-8af5-94e39b6ca55c',
   name: {

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   identify2dShapes_Skill_Data,
@@ -8,7 +8,7 @@ import {
   composeDecomposeShapes_Skill_Data,
 } from './skills';
 
-export const figures_SkillGroup_Data = buildSkillGroupConfig({
+export const figures_SkillGroup_Data = defineSkillGroup({
   slug: 'figures',
   id: 'd4c9c57c-09a9-43f5-a7c5-3544d3133e51',
   name: {
@@ -42,13 +42,13 @@ export const figures_SkillGroup_Data = buildSkillGroupConfig({
     pl: 'Figury płaskie',
     uk: 'Плоскі фігури',
   },
-  skills: {
-    identify2dShapes: identify2dShapes_Skill_Data,
-    shapeAttributes: shapeAttributes_Skill_Data,
-    polygon: polygon_Skill_Data,
-    triangleRectangleSquare: triangleRectangleSquare_Skill_Data,
-    composeDecomposeShapes: composeDecomposeShapes_Skill_Data,
-  },
+  skills: [
+    identify2dShapes_Skill_Data,
+    shapeAttributes_Skill_Data,
+    polygon_Skill_Data,
+    triangleRectangleSquare_Skill_Data,
+    composeDecomposeShapes_Skill_Data,
+  ],
   description: {
     methodological:
       'Properties of polygons and other plane figures that remain independent of scale or orientation, and composing shapes from parts.',

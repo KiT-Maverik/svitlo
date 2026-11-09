@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const predictStructuralStability_Skill_Data = buildSkillConfig({
+export const predictStructuralStability_Skill_Data = defineSkill({
   slug: 'predictStructuralStability',
   id: '82e6e13f-6f24-4720-8411-27199f5aee37',
   name: {

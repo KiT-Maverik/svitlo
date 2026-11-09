@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyProductionWaste_Skill_Data = buildSkillConfig({
+export const identifyProductionWaste_Skill_Data = defineSkill({
   slug: 'identifyProductionWaste',
   id: '386ddad5-f38e-4603-a964-c946780bc29f',
   name: {

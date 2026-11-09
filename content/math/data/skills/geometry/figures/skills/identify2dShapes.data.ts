@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identify2dShapes_Skill_Data = buildSkillConfig({
+export const identify2dShapes_Skill_Data = defineSkill({
   slug: 'identify2dShapes',
   id: '54f96aba-7db2-48bb-97ae-5ba2f3436095',
   name: {

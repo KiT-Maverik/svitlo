@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const produceInstrumentalTone_Skill_Data = buildSkillConfig({
+export const produceInstrumentalTone_Skill_Data = defineSkill({
   slug: 'produceInstrumentalTone',
   id: '5dc56c70-face-4a45-a481-ca99fcd8bf6b',
   name: {

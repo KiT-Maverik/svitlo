@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishNegativeAndPositiveLiberty_Skill_Data = buildSkillConfig({
+export const distinguishNegativeAndPositiveLiberty_Skill_Data = defineSkill({
   slug: 'distinguishNegativeAndPositiveLiberty',
   id: '9e8a61a9-999e-4c41-a2f5-22d921008383',
   name: {

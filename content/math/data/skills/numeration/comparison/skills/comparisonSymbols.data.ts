@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const comparisonSymbols_Skill_Data = buildSkillConfig({
+export const comparisonSymbols_Skill_Data = defineSkill({
   slug: 'comparisonSymbols',
   id: 'b3fc5e27-fc9d-48cc-b429-7ee2febbefbb',
   name: {

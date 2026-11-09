@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishOceanSeaGulfAndBayInGeographicContext_Skill_Data = buildSkillConfig({
+export const distinguishOceanSeaGulfAndBayInGeographicContext_Skill_Data = defineSkill({
   slug: 'distinguishOceanSeaGulfAndBayInGeographicContext',
   id: '786ac60a-7c77-4791-8b1f-a8f4b899190d',
   name: {

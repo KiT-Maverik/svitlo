@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const observationalLearning_Skill_Data = buildSkillConfig({
+export const observationalLearning_Skill_Data = defineSkill({
   slug: 'observationalLearning',
   id: '95c9b67e-0526-4f09-9140-60262f55d0ad',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const detectCircularReasoning_Skill_Data = buildSkillConfig({
+export const detectCircularReasoning_Skill_Data = defineSkill({
   slug: 'detectCircularReasoning',
   id: '53966a3d-61b6-424f-9218-b22ebc55af6f',
   name: {

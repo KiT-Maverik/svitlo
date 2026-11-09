@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { agencyAndFreeWill_SkillGroup_Data } from './agencyAndFreeWill/agencyAndFreeWill.data';
 import { humanExistenceAndMeaning_SkillGroup_Data } from './humanExistenceAndMeaning/humanExistenceAndMeaning.data';
 import { mindAndConsciousness_SkillGroup_Data } from './mindAndConsciousness/mindAndConsciousness.data';
 import { personalIdentity_SkillGroup_Data } from './personalIdentity/personalIdentity.data';
 
-export const mindSelfAndHumanExistence_SkillDomain_Data = buildSkillDomainConfig({
+export const mindSelfAndHumanExistence_SkillDomain_Data = defineSkillDomain({
   slug: 'mindSelfAndHumanExistence',
   id: 'ec68429d-00ef-4c06-969e-fa19cce50f6a',
-  name: {
+  title: {
     en: 'Mind, Self, and Human Existence',
     zh: '心灵、自我与人类存在',
     hi: 'मन, स्व और मानव अस्तित्व',
@@ -39,12 +39,12 @@ export const mindSelfAndHumanExistence_SkillDomain_Data = buildSkillDomainConfig
     kk: 'Ақыл-ой, өзіндік болмыс және адам өмір сүруі',
     qm: 'Zihin, özlük ve insan yaşayışı',
   },
-  groups: {
-    agencyAndFreeWill: agencyAndFreeWill_SkillGroup_Data,
-    humanExistenceAndMeaning: humanExistenceAndMeaning_SkillGroup_Data,
-    mindAndConsciousness: mindAndConsciousness_SkillGroup_Data,
-    personalIdentity: personalIdentity_SkillGroup_Data,
-  },
+  groups: [
+    agencyAndFreeWill_SkillGroup_Data,
+    humanExistenceAndMeaning_SkillGroup_Data,
+    mindAndConsciousness_SkillGroup_Data,
+    personalIdentity_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Questions about subjective experience, the continuity of the self, deliberate action, and a meaningful human life cannot be resolved solely through psychological measurement. This domain examines theories of mind, identity, agency, and existential commitments, distinguishing them from empirical mental-health claims.',

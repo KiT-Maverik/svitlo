@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const relatePlateInteractionsToMajorGeologicalFeatures_Skill_Data = buildSkillConfig({
+export const relatePlateInteractionsToMajorGeologicalFeatures_Skill_Data = defineSkill({
   slug: 'relatePlateInteractionsToMajorGeologicalFeatures',
   id: 'bff0abc3-9b3b-4c29-9ef1-bbd29603c29a',
   name: {

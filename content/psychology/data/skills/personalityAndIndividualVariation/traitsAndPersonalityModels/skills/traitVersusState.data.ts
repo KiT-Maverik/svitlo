@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const traitVersusState_Skill_Data = buildSkillConfig({
+export const traitVersusState_Skill_Data = defineSkill({
   slug: 'traitVersusState',
   id: '19dc6992-f528-4c96-92dd-b5f06d3b47f6',
   name: {

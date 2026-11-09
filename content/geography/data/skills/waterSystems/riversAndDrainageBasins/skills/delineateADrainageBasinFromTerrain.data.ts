@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const delineateADrainageBasinFromTerrain_Skill_Data = buildSkillConfig({
+export const delineateADrainageBasinFromTerrain_Skill_Data = defineSkill({
   slug: 'delineateADrainageBasinFromTerrain',
   id: 'e464d992-75f9-4edb-ae27-8538b0b78ecd',
   name: {

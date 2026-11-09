@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareCulturalLandscapesAcrossPlaces_Skill_Data = buildSkillConfig({
+export const compareCulturalLandscapesAcrossPlaces_Skill_Data = defineSkill({
   slug: 'compareCulturalLandscapesAcrossPlaces',
   id: '85c341b8-1bbb-486f-894c-f85fbe1d1035',
   name: {

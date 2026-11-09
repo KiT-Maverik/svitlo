@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const perCapitaMeasuresAndShares_Skill_Data = buildSkillConfig({
+export const perCapitaMeasuresAndShares_Skill_Data = defineSkill({
   slug: 'perCapitaMeasuresAndShares',
   id: '7df03ddf-b7ae-44c5-a5b9-b98726c982a7',
   name: {

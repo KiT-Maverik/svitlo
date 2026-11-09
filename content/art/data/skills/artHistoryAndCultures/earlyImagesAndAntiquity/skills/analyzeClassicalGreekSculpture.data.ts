@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeClassicalGreekSculpture_Skill_Data = buildSkillConfig({
+export const analyzeClassicalGreekSculpture_Skill_Data = defineSkill({
   slug: 'analyzeClassicalGreekSculpture',
   id: '03821557-15ed-4615-af1e-8098db83ce7b',
   name: {

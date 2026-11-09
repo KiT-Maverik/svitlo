@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainHowPeopleAdaptToGeographicEnvironments_Skill_Data = buildSkillConfig({
+export const explainHowPeopleAdaptToGeographicEnvironments_Skill_Data = defineSkill({
   slug: 'explainHowPeopleAdaptToGeographicEnvironments',
   id: 'c184d81a-a4d2-44d8-baab-0be30f2bceda',
   name: {

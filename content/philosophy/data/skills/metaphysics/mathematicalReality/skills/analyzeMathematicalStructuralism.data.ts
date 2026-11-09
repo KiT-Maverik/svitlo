@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeMathematicalStructuralism_Skill_Data = buildSkillConfig({
+export const analyzeMathematicalStructuralism_Skill_Data = defineSkill({
   slug: 'analyzeMathematicalStructuralism',
   id: '28f83330-11da-4242-887d-173ab239f7be',
   name: {

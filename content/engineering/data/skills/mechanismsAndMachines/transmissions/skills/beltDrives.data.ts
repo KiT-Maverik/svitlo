@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const beltDrives_Skill_Data = buildSkillConfig({
+export const beltDrives_Skill_Data = defineSkill({
   slug: 'beltDrives',
   id: '21a87847-a6db-41d6-9af3-fe97039740cd',
   name: {

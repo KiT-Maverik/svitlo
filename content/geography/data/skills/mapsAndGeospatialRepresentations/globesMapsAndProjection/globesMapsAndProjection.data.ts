@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   distinguishAGlobeFromAFlatMapAsEarthModels_Skill_Data,
@@ -6,7 +6,7 @@ import {
   selectAGeographicRepresentationForAPurpose_Skill_Data,
 } from './skills';
 
-export const globesMapsAndProjection_SkillGroup_Data = buildSkillGroupConfig({
+export const globesMapsAndProjection_SkillGroup_Data = defineSkillGroup({
   slug: 'globesMapsAndProjection',
   id: 'ff4e9a7d-282b-4e27-a446-b470dfd89cf0',
   name: {
@@ -40,11 +40,11 @@ export const globesMapsAndProjection_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Глобустар, карталар және проекциялар',
     qm: 'Globuslar, haritalar ve proyeksiyalar',
   },
-  skills: {
-    distinguishAGlobeFromAFlatMapAsEarthModels: distinguishAGlobeFromAFlatMapAsEarthModels_Skill_Data,
-    recognizeProjectionDistortionInAreaOrShape: recognizeProjectionDistortionInAreaOrShape_Skill_Data,
-    selectAGeographicRepresentationForAPurpose: selectAGeographicRepresentationForAPurpose_Skill_Data,
-  },
+  skills: [
+    distinguishAGlobeFromAFlatMapAsEarthModels_Skill_Data,
+    recognizeProjectionDistortionInAreaOrShape_Skill_Data,
+    selectAGeographicRepresentationForAPurpose_Skill_Data,
+  ],
   description: {
     methodological:
       'A spherical Earth cannot be shown on a flat sheet without some distortion, and different representations support different questions. Choosing one is a reasoning decision rather than a display preference.',

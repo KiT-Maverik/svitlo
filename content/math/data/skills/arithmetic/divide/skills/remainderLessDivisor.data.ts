@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const remainderLessDivisor_Skill_Data = buildSkillConfig({
+export const remainderLessDivisor_Skill_Data = defineSkill({
   slug: 'remainderLessDivisor',
   id: '46afe67a-e62f-4789-b1e4-b19470544be5',
   name: {

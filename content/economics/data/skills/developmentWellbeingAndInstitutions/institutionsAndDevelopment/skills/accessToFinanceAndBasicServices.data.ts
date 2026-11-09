@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const accessToFinanceAndBasicServices_Skill_Data = buildSkillConfig({
+export const accessToFinanceAndBasicServices_Skill_Data = defineSkill({
   slug: 'accessToFinanceAndBasicServices',
   id: 'f7d569ee-87bc-4a49-ac84-734b233f1391',
   name: {

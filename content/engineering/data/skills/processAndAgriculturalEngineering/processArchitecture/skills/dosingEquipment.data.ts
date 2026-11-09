@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const dosingEquipment_Skill_Data = buildSkillConfig({
+export const dosingEquipment_Skill_Data = defineSkill({
   slug: 'dosingEquipment',
   id: '41644b4b-22ac-4bcd-bcb9-09ee4d13219b',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const insurancePrinciples_Skill_Data = buildSkillConfig({
+export const insurancePrinciples_Skill_Data = defineSkill({
   slug: 'insurancePrinciples',
   id: 'dd1a2fc8-c27a-4e11-a7e4-faa508bf801a',
   name: {

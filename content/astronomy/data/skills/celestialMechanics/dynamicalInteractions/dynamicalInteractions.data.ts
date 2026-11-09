@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   gravitationalPerturbations_Skill_Data,
@@ -7,7 +7,7 @@ import {
   tidalForces_Skill_Data,
 } from './skills';
 
-export const dynamicalInteractions_SkillGroup_Data = buildSkillGroupConfig({
+export const dynamicalInteractions_SkillGroup_Data = defineSkillGroup({
   slug: 'dynamicalInteractions',
   id: '62929efc-6b42-43e7-9068-10639b784945',
   name: {
@@ -41,12 +41,12 @@ export const dynamicalInteractions_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Динамикалық өзара әрекеттесулер',
     qm: 'Dinamik tesirleşüvler',
   },
-  skills: {
-    gravitationalPerturbations: gravitationalPerturbations_Skill_Data,
-    orbitalResonances: orbitalResonances_Skill_Data,
-    orbitalStability: orbitalStability_Skill_Data,
-    tidalForces: tidalForces_Skill_Data,
-  },
+  skills: [
+    gravitationalPerturbations_Skill_Data,
+    orbitalResonances_Skill_Data,
+    orbitalStability_Skill_Data,
+    tidalForces_Skill_Data,
+  ],
   description: {
     methodological:
       'Real celestial systems include many bodies, so resonances, tides and perturbations can alter otherwise idealized orbital motion.',

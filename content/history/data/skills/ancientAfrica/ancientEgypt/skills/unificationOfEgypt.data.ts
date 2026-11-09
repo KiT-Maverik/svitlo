@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const unificationOfEgypt_Skill_Data = buildSkillConfig({
+export const unificationOfEgypt_Skill_Data = defineSkill({
   slug: 'unificationOfEgypt',
   id: 'ccbdb397-d531-4021-add4-1f0d6ebd9150',
   name: {

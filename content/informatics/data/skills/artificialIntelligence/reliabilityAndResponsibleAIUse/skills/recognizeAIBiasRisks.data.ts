@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeAIBiasRisks_Skill_Data = buildSkillConfig({
+export const recognizeAIBiasRisks_Skill_Data = defineSkill({
   slug: 'recognizeAIBiasRisks',
   id: 'c6ec71b6-d08f-4840-adb2-bd25f71746d5',
   name: {

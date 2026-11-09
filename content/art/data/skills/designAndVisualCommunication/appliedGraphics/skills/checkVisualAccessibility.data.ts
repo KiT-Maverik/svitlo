@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const checkVisualAccessibility_Skill_Data = buildSkillConfig({
+export const checkVisualAccessibility_Skill_Data = defineSkill({
   slug: 'checkVisualAccessibility',
   id: '529a749d-ac17-4c66-8428-b8d9310a8370',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const traceAProductLifeCycle_Skill_Data = buildSkillConfig({
+export const traceAProductLifeCycle_Skill_Data = defineSkill({
   slug: 'traceAProductLifeCycle',
   id: '82e5d2e5-084c-4f81-8cd2-538c7ceeb423',
   name: {

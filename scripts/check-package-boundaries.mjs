@@ -213,8 +213,8 @@ assert(
   'Engine must own shared locale path tests',
 );
 assert(
-  existsSync(resolve(root, 'shared/engine/utils/builders/config/buildSkillCatalogConfig.spec.ts')),
-  'Engine must own shared skill builder tests',
+  existsSync(resolve(root, 'shared/engine/configurators/skills-slug-inference.spec.ts')),
+  'Engine must own modern Skill configurator tests',
 );
 assert(
   !existsSync(resolve(root, 'shared/engine/data/assessmentMethodTaxonomy')) &&

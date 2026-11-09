@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const completeEquality_Skill_Data = buildSkillConfig({
+export const completeEquality_Skill_Data = defineSkill({
   slug: 'completeEquality',
   id: 'b10f275e-3774-4e50-8450-b3da6be099af',
   name: {

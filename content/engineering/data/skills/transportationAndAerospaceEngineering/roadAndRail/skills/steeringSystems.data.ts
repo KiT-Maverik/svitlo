@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const steeringSystems_Skill_Data = buildSkillConfig({
+export const steeringSystems_Skill_Data = defineSkill({
   slug: 'steeringSystems',
   id: 'ee0dfe38-d51b-4fe6-94e5-ce60842712e7',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const scandinavianIronAge_Skill_Data = buildSkillConfig({
+export const scandinavianIronAge_Skill_Data = defineSkill({
   slug: 'scandinavianIronAge',
   id: '75012ac4-9286-4f63-8550-5b4e2d7a6926',
   name: {

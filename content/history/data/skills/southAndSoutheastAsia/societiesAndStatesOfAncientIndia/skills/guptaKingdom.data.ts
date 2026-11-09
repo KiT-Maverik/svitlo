@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const guptaKingdom_Skill_Data = buildSkillConfig({
+export const guptaKingdom_Skill_Data = defineSkill({
   slug: 'guptaKingdom',
   id: '80197cc7-5ad0-4a5c-b6ef-816f1c5873de',
   name: {

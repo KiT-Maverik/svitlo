@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const deceptionInResearch_Skill_Data = buildSkillConfig({
+export const deceptionInResearch_Skill_Data = defineSkill({
   slug: 'deceptionInResearch',
   id: 'd8015eb2-699d-4270-b34e-c15050ec7f75',
   name: {

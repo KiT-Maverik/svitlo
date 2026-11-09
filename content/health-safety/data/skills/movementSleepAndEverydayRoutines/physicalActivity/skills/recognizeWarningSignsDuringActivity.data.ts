@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeWarningSignsDuringActivity_Skill_Data = buildSkillConfig({
+export const recognizeWarningSignsDuringActivity_Skill_Data = defineSkill({
   slug: 'recognizeWarningSignsDuringActivity',
   id: 'd3f45933-7f00-4f06-be9f-ca48a0bde88d',
   name: {

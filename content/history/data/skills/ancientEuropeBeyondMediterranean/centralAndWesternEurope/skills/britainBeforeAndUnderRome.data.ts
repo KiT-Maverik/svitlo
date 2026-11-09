@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const britainBeforeAndUnderRome_Skill_Data = buildSkillConfig({
+export const britainBeforeAndUnderRome_Skill_Data = defineSkill({
   slug: 'britainBeforeAndUnderRome',
   id: 'f638bab0-b8db-4a56-894a-efb34f5caee8',
   name: {

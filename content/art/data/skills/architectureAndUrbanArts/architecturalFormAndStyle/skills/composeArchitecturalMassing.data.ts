@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const composeArchitecturalMassing_Skill_Data = buildSkillConfig({
+export const composeArchitecturalMassing_Skill_Data = defineSkill({
   slug: 'composeArchitecturalMassing',
   id: 'bc3efa30-756b-43c2-8e4d-7b8d99f24e70',
   name: {

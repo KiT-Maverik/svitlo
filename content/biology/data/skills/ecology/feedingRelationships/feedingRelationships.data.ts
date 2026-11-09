@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   constructASimpleFoodChain_Skill_Data,
@@ -8,7 +8,7 @@ import {
   recognizeDecomposers_Skill_Data,
 } from './skills';
 
-export const feedingRelationships_SkillGroup_Data = buildSkillGroupConfig({
+export const feedingRelationships_SkillGroup_Data = defineSkillGroup({
   slug: 'feedingRelationships',
   id: '68f19202-48b2-407f-8a10-12a4de57359d',
   name: {
@@ -42,13 +42,13 @@ export const feedingRelationships_SkillGroup_Data = buildSkillGroupConfig({
     ka: 'კვებითი კავშირები',
     kk: 'Қоректік байланыстар',
   },
-  skills: {
-    constructASimpleFoodChain: constructASimpleFoodChain_Skill_Data,
-    distinguishProducersAndConsumers: distinguishProducersAndConsumers_Skill_Data,
-    explainEnergyFlowInAnEcosystem: explainEnergyFlowInAnEcosystem_Skill_Data,
-    explainFoodWebs: explainFoodWebs_Skill_Data,
-    recognizeDecomposers: recognizeDecomposers_Skill_Data,
-  },
+  skills: [
+    constructASimpleFoodChain_Skill_Data,
+    distinguishProducersAndConsumers_Skill_Data,
+    explainEnergyFlowInAnEcosystem_Skill_Data,
+    explainFoodWebs_Skill_Data,
+    recognizeDecomposers_Skill_Data,
+  ],
   description: {
     methodological:
       'Matter and energy pass between organisms, and decomposers return matter to the environment; a disrupted relationship affects subsequent links.',

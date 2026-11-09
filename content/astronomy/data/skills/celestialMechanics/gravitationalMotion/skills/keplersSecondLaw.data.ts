@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const keplersSecondLaw_Skill_Data = buildSkillConfig({
+export const keplersSecondLaw_Skill_Data = defineSkill({
   slug: 'keplersSecondLaw',
   id: '08453948-3f5d-4e81-92b4-d1e3a083a326',
   name: {

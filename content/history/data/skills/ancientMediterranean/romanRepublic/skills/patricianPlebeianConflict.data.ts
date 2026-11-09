@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const patricianPlebeianConflict_Skill_Data = buildSkillConfig({
+export const patricianPlebeianConflict_Skill_Data = defineSkill({
   slug: 'patricianPlebeianConflict',
   id: '3b20808e-778a-4c9b-a9db-9e798c2af53c',
   name: {

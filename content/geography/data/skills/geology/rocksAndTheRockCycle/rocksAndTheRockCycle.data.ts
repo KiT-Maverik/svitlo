@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   classifyRocksByTheirModeOfOrigin_Skill_Data,
@@ -9,7 +9,7 @@ import {
   traceAPathwayThroughTheRockCycle_Skill_Data,
 } from './skills';
 
-export const rocksAndTheRockCycle_SkillGroup_Data = buildSkillGroupConfig({
+export const rocksAndTheRockCycle_SkillGroup_Data = defineSkillGroup({
   slug: 'rocksAndTheRockCycle',
   id: '37bb8dfa-e97a-432c-a339-9e3fa46fbee3',
   name: {
@@ -43,14 +43,14 @@ export const rocksAndTheRockCycle_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Тау жыныстары және олардың айналымы',
     qm: 'Qayalar ve qaya devri',
   },
-  skills: {
-    classifyRocksByTheirModeOfOrigin: classifyRocksByTheirModeOfOrigin_Skill_Data,
-    distinguishARockFromAMineral: distinguishARockFromAMineral_Skill_Data,
-    explainTheFormationOfIgneousRocks: explainTheFormationOfIgneousRocks_Skill_Data,
-    explainTheFormationOfMetamorphicRocks: explainTheFormationOfMetamorphicRocks_Skill_Data,
-    explainTheFormationOfSedimentaryRocks: explainTheFormationOfSedimentaryRocks_Skill_Data,
-    traceAPathwayThroughTheRockCycle: traceAPathwayThroughTheRockCycle_Skill_Data,
-  },
+  skills: [
+    classifyRocksByTheirModeOfOrigin_Skill_Data,
+    distinguishARockFromAMineral_Skill_Data,
+    explainTheFormationOfIgneousRocks_Skill_Data,
+    explainTheFormationOfMetamorphicRocks_Skill_Data,
+    explainTheFormationOfSedimentaryRocks_Skill_Data,
+    traceAPathwayThroughTheRockCycle_Skill_Data,
+  ],
   description: {
     methodological:
       'Consolidated natural materials record formation through magma cooling, deposition and lithification, or alteration in the solid state. Classifications concern how a rock formed, and the rock cycle describes multiple possible paths between types rather than a mandatory fixed sequence.',

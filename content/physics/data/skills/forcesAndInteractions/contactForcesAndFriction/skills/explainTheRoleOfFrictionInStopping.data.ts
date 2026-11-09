@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainTheRoleOfFrictionInStopping_Skill_Data = buildSkillConfig({
+export const explainTheRoleOfFrictionInStopping_Skill_Data = defineSkill({
   slug: 'explainTheRoleOfFrictionInStopping',
   id: '16645082-1602-4ac9-835b-a045c14c6d03',
   name: {

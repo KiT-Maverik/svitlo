@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainSingleBlinding_Skill_Data = buildSkillConfig({
+export const explainSingleBlinding_Skill_Data = defineSkill({
   slug: 'explainSingleBlinding',
   id: '9b95e723-9a41-4c9c-86dd-796f68ba92e3',
   name: {

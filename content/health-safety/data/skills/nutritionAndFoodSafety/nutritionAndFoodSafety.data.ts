@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { foodborneHazards_SkillGroup_Data } from './foodborneHazards/foodborneHazards.data';
 import { foodChoicesAndInformation_SkillGroup_Data } from './foodChoicesAndInformation/foodChoicesAndInformation.data';
 import { nutritionalFoundations_SkillGroup_Data } from './nutritionalFoundations/nutritionalFoundations.data';
 
-export const nutritionAndFoodSafety_SkillDomain_Data = buildSkillDomainConfig({
+export const nutritionAndFoodSafety_SkillDomain_Data = defineSkillDomain({
   slug: 'nutritionAndFoodSafety',
   id: 'dda753e6-e49c-4d4e-ae16-6ddae38a4bf8',
-  name: {
+  title: {
     en: 'Nutrition and Food Safety',
     zh: '营养与食品安全',
     hi: 'पोषण और खाद्य सुरक्षा',
@@ -38,11 +38,11 @@ export const nutritionAndFoodSafety_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Тамақтану және азық-түлік қауіпсіздігі',
     qm: 'Beslenüv ve aş havfsızlığı',
   },
-  groups: {
-    foodborneHazards: foodborneHazards_SkillGroup_Data,
-    foodChoicesAndInformation: foodChoicesAndInformation_SkillGroup_Data,
-    nutritionalFoundations: nutritionalFoundations_SkillGroup_Data,
-  },
+  groups: [
+    foodborneHazards_SkillGroup_Data,
+    foodChoicesAndInformation_SkillGroup_Data,
+    nutritionalFoundations_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Eating and drinking support health through nutrients, adequate intake, and safe preparation. Nutritional choices and microbial or chemical food hazards are distinct competencies, even though the same meal can involve both.',

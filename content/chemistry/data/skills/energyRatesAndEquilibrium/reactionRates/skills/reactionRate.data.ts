@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const reactionRate_Skill_Data = buildSkillConfig({
+export const reactionRate_Skill_Data = defineSkill({
   slug: 'reactionRate',
   id: '692bb447-d64e-4a8c-baf4-ebaaceba85a9',
   name: {

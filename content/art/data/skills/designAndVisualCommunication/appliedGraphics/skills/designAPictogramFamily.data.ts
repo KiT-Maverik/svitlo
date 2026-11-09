@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const designAPictogramFamily_Skill_Data = buildSkillConfig({
+export const designAPictogramFamily_Skill_Data = defineSkill({
   slug: 'designAPictogramFamily',
   id: 'e65a00c1-190f-49f8-abb5-4073a9077a61',
   name: {

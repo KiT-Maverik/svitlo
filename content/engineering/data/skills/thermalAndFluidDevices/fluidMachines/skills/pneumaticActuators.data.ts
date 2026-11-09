@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const pneumaticActuators_Skill_Data = buildSkillConfig({
+export const pneumaticActuators_Skill_Data = defineSkill({
   slug: 'pneumaticActuators',
   id: '82046101-ef89-43d8-ab97-956d9115b1e4',
   name: {

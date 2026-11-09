@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { conflictRelatedDangers_SkillGroup_Data } from './conflictRelatedDangers/conflictRelatedDangers.data';
 import { evacuationAndShelter_SkillGroup_Data } from './evacuationAndShelter/evacuationAndShelter.data';
 import { naturalAndTechnologicalDisasters_SkillGroup_Data } from './naturalAndTechnologicalDisasters/naturalAndTechnologicalDisasters.data';
 import { preparednessAndAlerts_SkillGroup_Data } from './preparednessAndAlerts/preparednessAndAlerts.data';
 
-export const emergenciesAndCivilProtection_SkillDomain_Data = buildSkillDomainConfig({
+export const emergenciesAndCivilProtection_SkillDomain_Data = defineSkillDomain({
   slug: 'emergenciesAndCivilProtection',
   id: '58c4ecae-a7da-4fe2-ba16-fe63cf9df259',
-  name: {
+  title: {
     en: 'Emergencies and Civil Protection',
     zh: '紧急情况与民防',
     hi: 'आपातकाल और नागरिक सुरक्षा',
@@ -39,12 +39,12 @@ export const emergenciesAndCivilProtection_SkillDomain_Data = buildSkillDomainCo
     kk: 'Төтенше жағдайлар және азаматтық қорғау',
     qm: 'Acil vaziyetler ve sivil qorçalav',
   },
-  groups: {
-    conflictRelatedDangers: conflictRelatedDangers_SkillGroup_Data,
-    evacuationAndShelter: evacuationAndShelter_SkillGroup_Data,
-    naturalAndTechnologicalDisasters: naturalAndTechnologicalDisasters_SkillGroup_Data,
-    preparednessAndAlerts: preparednessAndAlerts_SkillGroup_Data,
-  },
+  groups: [
+    conflictRelatedDangers_SkillGroup_Data,
+    evacuationAndShelter_SkillGroup_Data,
+    naturalAndTechnologicalDisasters_SkillGroup_Data,
+    preparednessAndAlerts_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Collective hazards can overwhelm normal routines and require verified alerts, protective shelter, evacuation, and coordination with responders. Local regulations and emergency numbers belong to contextual lessons, not permanent country-specific Skill identities.',

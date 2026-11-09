@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const carbonMonoxideSafety_Skill_Data = buildSkillConfig({
+export const carbonMonoxideSafety_Skill_Data = defineSkill({
   slug: 'carbonMonoxideSafety',
   id: 'f0639413-44af-4196-801d-1f1a1de8667e',
   name: {

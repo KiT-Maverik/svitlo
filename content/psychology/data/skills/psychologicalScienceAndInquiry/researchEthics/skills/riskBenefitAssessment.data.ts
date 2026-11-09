@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const riskBenefitAssessment_Skill_Data = buildSkillConfig({
+export const riskBenefitAssessment_Skill_Data = defineSkill({
   slug: 'riskBenefitAssessment',
   id: '10b22acd-8598-43b8-9a24-204f23216128',
   name: {

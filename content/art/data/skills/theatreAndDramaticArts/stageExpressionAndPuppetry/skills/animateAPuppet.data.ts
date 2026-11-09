@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const animateAPuppet_Skill_Data = buildSkillConfig({
+export const animateAPuppet_Skill_Data = defineSkill({
   slug: 'animateAPuppet',
   id: '6b881f77-5271-4d1c-a114-2221519d88ba',
   name: {

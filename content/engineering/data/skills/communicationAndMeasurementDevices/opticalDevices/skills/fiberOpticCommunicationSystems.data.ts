@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const fiberOpticCommunicationSystems_Skill_Data = buildSkillConfig({
+export const fiberOpticCommunicationSystems_Skill_Data = defineSkill({
   slug: 'fiberOpticCommunicationSystems',
   id: '3774e1b1-6bfe-4d40-8483-2b8308045ed6',
   name: {

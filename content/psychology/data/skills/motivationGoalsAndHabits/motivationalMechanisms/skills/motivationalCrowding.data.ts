@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const motivationalCrowding_Skill_Data = buildSkillConfig({
+export const motivationalCrowding_Skill_Data = defineSkill({
   slug: 'motivationalCrowding',
   id: '9aed7f8b-8351-44e3-ad2e-5c52f03c4bbb',
   name: {

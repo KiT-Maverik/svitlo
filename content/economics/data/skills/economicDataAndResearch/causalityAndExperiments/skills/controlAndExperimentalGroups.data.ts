@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const controlAndExperimentalGroups_Skill_Data = buildSkillConfig({
+export const controlAndExperimentalGroups_Skill_Data = defineSkill({
   slug: 'controlAndExperimentalGroups',
   id: '18e5f33e-18d0-42af-ab8e-86fb8358b166',
   name: {

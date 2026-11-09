@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const controlExternalBleeding_Skill_Data = buildSkillConfig({
+export const controlExternalBleeding_Skill_Data = defineSkill({
   slug: 'controlExternalBleeding',
   id: '41e9caf9-b94f-4bfd-9512-048120508924',
   name: {

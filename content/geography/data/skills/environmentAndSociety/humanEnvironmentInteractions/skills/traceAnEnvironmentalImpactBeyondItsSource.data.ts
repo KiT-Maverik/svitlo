@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const traceAnEnvironmentalImpactBeyondItsSource_Skill_Data = buildSkillConfig({
+export const traceAnEnvironmentalImpactBeyondItsSource_Skill_Data = defineSkill({
   slug: 'traceAnEnvironmentalImpactBeyondItsSource',
   id: '9a18efed-79fd-4d27-909f-628b08711f2c',
   name: {

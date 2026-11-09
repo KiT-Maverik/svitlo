@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { acting_SkillGroup_Data } from './acting/acting.data';
 import { dramaturgyAndDirection_SkillGroup_Data } from './dramaturgyAndDirection/dramaturgyAndDirection.data';
 import { improvisationAndDevising_SkillGroup_Data } from './improvisationAndDevising/improvisationAndDevising.data';
 import { stageExpressionAndPuppetry_SkillGroup_Data } from './stageExpressionAndPuppetry/stageExpressionAndPuppetry.data';
 
-export const theatreAndDramaticArts_SkillDomain_Data = buildSkillDomainConfig({
+export const theatreAndDramaticArts_SkillDomain_Data = defineSkillDomain({
   slug: 'theatreAndDramaticArts',
   id: 'db9a6b16-6707-4a85-80bf-875fb766fc20',
-  name: {
+  title: {
     en: 'Theatre and Dramatic Arts',
     zh: '戏剧与戏剧艺术',
     hi: 'रंगमंच और नाट्य कला',
@@ -39,12 +39,12 @@ export const theatreAndDramaticArts_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Театр және драмалық өнер',
     qm: 'Teatr ve dramatik sanatlar',
   },
-  groups: {
-    acting: acting_SkillGroup_Data,
-    dramaturgyAndDirection: dramaturgyAndDirection_SkillGroup_Data,
-    improvisationAndDevising: improvisationAndDevising_SkillGroup_Data,
-    stageExpressionAndPuppetry: stageExpressionAndPuppetry_SkillGroup_Data,
-  },
+  groups: [
+    acting_SkillGroup_Data,
+    dramaturgyAndDirection_SkillGroup_Data,
+    improvisationAndDevising_SkillGroup_Data,
+    stageExpressionAndPuppetry_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Theatre creates meaning through embodied roles, dramatic situations, live collaboration and staging. Its practical focus differs from general literary theory or building stage machinery.',

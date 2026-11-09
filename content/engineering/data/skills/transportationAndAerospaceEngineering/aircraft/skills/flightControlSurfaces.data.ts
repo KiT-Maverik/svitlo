@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const flightControlSurfaces_Skill_Data = buildSkillConfig({
+export const flightControlSurfaces_Skill_Data = defineSkill({
   slug: 'flightControlSurfaces',
   id: '492d14dd-d66d-4442-8220-ce50f656b1fa',
   name: {

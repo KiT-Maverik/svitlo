@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const personnelAssessmentFairness_Skill_Data = buildSkillConfig({
+export const personnelAssessmentFairness_Skill_Data = defineSkill({
   slug: 'personnelAssessmentFairness',
   id: '7ce2da13-889c-4afb-886d-d29ed2f5b7ed',
   name: {

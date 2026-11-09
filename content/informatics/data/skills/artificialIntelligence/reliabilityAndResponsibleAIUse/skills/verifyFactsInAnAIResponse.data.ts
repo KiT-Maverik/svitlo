@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const verifyFactsInAnAIResponse_Skill_Data = buildSkillConfig({
+export const verifyFactsInAnAIResponse_Skill_Data = defineSkill({
   slug: 'verifyFactsInAnAIResponse',
   id: '4f039591-11ed-4341-90ab-7389f7ce8efe',
   name: {

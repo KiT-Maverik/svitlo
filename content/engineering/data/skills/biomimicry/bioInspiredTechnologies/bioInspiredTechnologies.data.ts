@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   bioInspiredAttachment_Skill_Data,
@@ -7,7 +7,7 @@ import {
   selfCleaningSurfaces_Skill_Data,
 } from './skills';
 
-export const bioInspiredTechnologies_SkillGroup_Data = buildSkillGroupConfig({
+export const bioInspiredTechnologies_SkillGroup_Data = defineSkillGroup({
   slug: 'bioInspiredTechnologies',
   id: 'a56ffc78-7789-4050-8f10-d80e3de2c126',
   name: {
@@ -41,12 +41,12 @@ export const bioInspiredTechnologies_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Биологиядан шабыт алған технологиялар',
     qm: 'Biologiyadan ilham alğan tehnologiyalar',
   },
-  skills: {
-    bioInspiredAttachment: bioInspiredAttachment_Skill_Data,
-    biomimeticStreamlining: biomimeticStreamlining_Skill_Data,
-    lightweightBioInspiredStructures: lightweightBioInspiredStructures_Skill_Data,
-    selfCleaningSurfaces: selfCleaningSurfaces_Skill_Data,
-  },
+  skills: [
+    bioInspiredAttachment_Skill_Data,
+    biomimeticStreamlining_Skill_Data,
+    lightweightBioInspiredStructures_Skill_Data,
+    selfCleaningSurfaces_Skill_Data,
+  ],
   description: {
     methodological: 'Distinct examples show recurring design strategies, not a separate Skill for every organism.',
     frontend: {

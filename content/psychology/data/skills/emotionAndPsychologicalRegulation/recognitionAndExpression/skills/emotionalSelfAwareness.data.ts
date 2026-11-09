@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const emotionalSelfAwareness_Skill_Data = buildSkillConfig({
+export const emotionalSelfAwareness_Skill_Data = defineSkill({
   slug: 'emotionalSelfAwareness',
   id: '6dbe32fb-4578-4775-a43c-38d4cbdcbcab',
   name: {

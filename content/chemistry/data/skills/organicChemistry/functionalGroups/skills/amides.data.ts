@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const amides_Skill_Data = buildSkillConfig({
+export const amides_Skill_Data = defineSkill({
   slug: 'amides',
   id: '9fac13f7-0545-4b36-b62e-48bd31cc9b5f',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyAPotentialAIError_Skill_Data = buildSkillConfig({
+export const identifyAPotentialAIError_Skill_Data = defineSkill({
   slug: 'identifyAPotentialAIError',
   id: 'f93aa878-a1ad-4820-82a3-30f4b182f147',
   name: {

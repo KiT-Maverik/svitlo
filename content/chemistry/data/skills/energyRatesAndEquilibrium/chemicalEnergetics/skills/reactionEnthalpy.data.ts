@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const reactionEnthalpy_Skill_Data = buildSkillConfig({
+export const reactionEnthalpy_Skill_Data = defineSkill({
   slug: 'reactionEnthalpy',
   id: '5df513d5-6670-430f-a3ee-01c546869409',
   name: {

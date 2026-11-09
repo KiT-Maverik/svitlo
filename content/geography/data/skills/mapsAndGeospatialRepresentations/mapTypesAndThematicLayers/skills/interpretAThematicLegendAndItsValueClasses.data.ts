@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretAThematicLegendAndItsValueClasses_Skill_Data = buildSkillConfig({
+export const interpretAThematicLegendAndItsValueClasses_Skill_Data = defineSkill({
   slug: 'interpretAThematicLegendAndItsValueClasses',
   id: 'b6984127-4f77-4912-80e0-a6a10a513aa3',
   name: {

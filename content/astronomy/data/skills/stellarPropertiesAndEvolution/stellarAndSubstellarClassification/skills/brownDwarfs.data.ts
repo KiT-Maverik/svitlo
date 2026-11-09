@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const brownDwarfs_Skill_Data = buildSkillConfig({
+export const brownDwarfs_Skill_Data = defineSkill({
   slug: 'brownDwarfs',
   id: 'e8cd7af1-2fe2-448d-bdf4-dabc2957d885',
   name: {

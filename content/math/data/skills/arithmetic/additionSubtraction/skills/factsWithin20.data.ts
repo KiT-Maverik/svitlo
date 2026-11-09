@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const factsWithin20_Skill_Data = buildSkillConfig({
+export const factsWithin20_Skill_Data = defineSkill({
   slug: 'factsWithin20',
   id: '1ffee805-7302-4069-a2ae-1639b07ce718',
   name: {

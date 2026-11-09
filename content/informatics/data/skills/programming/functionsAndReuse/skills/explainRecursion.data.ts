@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainRecursion_Skill_Data = buildSkillConfig({
+export const explainRecursion_Skill_Data = defineSkill({
   slug: 'explainRecursion',
   id: '00025f01-ef21-4851-acc8-8c42c1aed040',
   name: {

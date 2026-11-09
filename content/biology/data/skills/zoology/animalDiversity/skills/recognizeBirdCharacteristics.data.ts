@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeBirdCharacteristics_Skill_Data = buildSkillConfig({
+export const recognizeBirdCharacteristics_Skill_Data = defineSkill({
   slug: 'recognizeBirdCharacteristics',
   id: '774a8afe-32ef-429f-af0d-e9e0d48ff6cf',
   name: {

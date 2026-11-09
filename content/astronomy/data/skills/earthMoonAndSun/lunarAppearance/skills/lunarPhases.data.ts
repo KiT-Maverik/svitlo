@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const lunarPhases_Skill_Data = buildSkillConfig({
+export const lunarPhases_Skill_Data = defineSkill({
   slug: 'lunarPhases',
   id: '53bba831-1f84-4b25-8e05-33f54167cc98',
   name: {

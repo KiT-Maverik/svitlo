@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const shiftInSupply_Skill_Data = buildSkillConfig({
+export const shiftInSupply_Skill_Data = defineSkill({
   slug: 'shiftInSupply',
   id: 'ede1469c-f3c0-4b47-a07d-7a23010766f3',
   name: {

@@ -1,12 +1,12 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { assistiveAndMedicalProducts_SkillGroup_Data } from './assistiveAndMedicalProducts/assistiveAndMedicalProducts.data';
 import { medicalMeasurementDevices_SkillGroup_Data } from './medicalMeasurementDevices/medicalMeasurementDevices.data';
 
-export const biomedicalAndAssistiveEngineering_SkillDomain_Data = buildSkillDomainConfig({
+export const biomedicalAndAssistiveEngineering_SkillDomain_Data = defineSkillDomain({
   slug: 'biomedicalAndAssistiveEngineering',
   id: '47038e6b-6a25-40ad-876b-06514696de76',
-  name: {
+  title: {
     en: 'Biomedical and Assistive Engineering',
     zh: '生物医学与辅助工程',
     hi: 'जैवचिकित्सा और सहायक अभियांत्रिकी',
@@ -37,10 +37,7 @@ export const biomedicalAndAssistiveEngineering_SkillDomain_Data = buildSkillDoma
     kk: 'Биомедициналық және көмекші инженерия',
     qm: 'Biotıbbiye ve yardımcı mühendislik',
   },
-  groups: {
-    assistiveAndMedicalProducts: assistiveAndMedicalProducts_SkillGroup_Data,
-    medicalMeasurementDevices: medicalMeasurementDevices_SkillGroup_Data,
-  },
+  groups: [assistiveAndMedicalProducts_SkillGroup_Data, medicalMeasurementDevices_SkillGroup_Data],
   description: {
     methodological:
       'Devices supporting, measuring or interacting with human bodies must satisfy suitable physical interfaces, reliability and safe-use constraints. Clinical diagnosis and the biology of the human body remain outside this engineering domain.',

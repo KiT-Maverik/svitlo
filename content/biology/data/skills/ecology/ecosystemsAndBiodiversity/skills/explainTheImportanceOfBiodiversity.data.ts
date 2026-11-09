@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainTheImportanceOfBiodiversity_Skill_Data = buildSkillConfig({
+export const explainTheImportanceOfBiodiversity_Skill_Data = defineSkill({
   slug: 'explainTheImportanceOfBiodiversity',
   id: '607263de-1373-4d00-93a1-30daec0fdbb8',
   name: {

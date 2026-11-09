@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const purchasingPowerOfMoney_Skill_Data = buildSkillConfig({
+export const purchasingPowerOfMoney_Skill_Data = defineSkill({
   slug: 'purchasingPowerOfMoney',
   id: 'aa1dccb0-eb8e-4caf-82ff-2a1f4d43491c',
   name: {

@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { evidenceAndInterpretation_SkillGroup_Data } from './evidenceAndInterpretation/evidenceAndInterpretation.data';
 import { foundationsAndPerspectives_SkillGroup_Data } from './foundationsAndPerspectives/foundationsAndPerspectives.data';
@@ -6,10 +6,10 @@ import { measurementAndSampling_SkillGroup_Data } from './measurementAndSampling
 import { researchEthics_SkillGroup_Data } from './researchEthics/researchEthics.data';
 import { studyDesigns_SkillGroup_Data } from './studyDesigns/studyDesigns.data';
 
-export const psychologicalScienceAndInquiry_SkillDomain_Data = buildSkillDomainConfig({
+export const psychologicalScienceAndInquiry_SkillDomain_Data = defineSkillDomain({
   slug: 'psychologicalScienceAndInquiry',
   id: 'cd1a92f9-77e8-49a4-94c4-7435a47ddd4e',
-  name: {
+  title: {
     en: 'Psychological Science and Inquiry',
     zh: '心理科学与探究',
     hi: 'मनोवैज्ञानिक विज्ञान और अनुसंधान',
@@ -40,13 +40,13 @@ export const psychologicalScienceAndInquiry_SkillDomain_Data = buildSkillDomainC
     kk: 'Психология ғылымы және зерттеу',
     qm: 'Psihologiya ilimi ve tetqiq',
   },
-  groups: {
-    evidenceAndInterpretation: evidenceAndInterpretation_SkillGroup_Data,
-    foundationsAndPerspectives: foundationsAndPerspectives_SkillGroup_Data,
-    measurementAndSampling: measurementAndSampling_SkillGroup_Data,
-    researchEthics: researchEthics_SkillGroup_Data,
-    studyDesigns: studyDesigns_SkillGroup_Data,
-  },
+  groups: [
+    evidenceAndInterpretation_SkillGroup_Data,
+    foundationsAndPerspectives_SkillGroup_Data,
+    measurementAndSampling_SkillGroup_Data,
+    researchEthics_SkillGroup_Data,
+    studyDesigns_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Psychology explains behavior and mental processes through empirical evidence, multiple levels of analysis, and ethical inquiry. Its explanations are provisional and require stronger support than anecdote or authority.',

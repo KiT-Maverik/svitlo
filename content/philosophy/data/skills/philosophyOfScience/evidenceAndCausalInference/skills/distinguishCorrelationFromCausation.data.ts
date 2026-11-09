@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishCorrelationFromCausation_Skill_Data = buildSkillConfig({
+export const distinguishCorrelationFromCausation_Skill_Data = defineSkill({
   slug: 'distinguishCorrelationFromCausation',
   id: 'ef685f1a-49aa-4d1f-978e-5a0e9f9b5e22',
   name: {

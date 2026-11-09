@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const modelCharacteristics_Skill_Data = buildSkillConfig({
+export const modelCharacteristics_Skill_Data = defineSkill({
   slug: 'modelCharacteristics',
   id: '8810835c-94e5-457b-9c50-6e9e5eab7ef6',
   name: {

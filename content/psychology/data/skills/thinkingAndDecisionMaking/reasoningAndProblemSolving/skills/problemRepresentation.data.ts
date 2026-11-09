@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const problemRepresentation_Skill_Data = buildSkillConfig({
+export const problemRepresentation_Skill_Data = defineSkill({
   slug: 'problemRepresentation',
   id: '8e75e208-3a6c-4e5d-8cb4-ccb6daeaff3b',
   name: {

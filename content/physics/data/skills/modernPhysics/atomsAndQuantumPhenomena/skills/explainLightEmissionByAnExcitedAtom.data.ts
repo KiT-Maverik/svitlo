@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainLightEmissionByAnExcitedAtom_Skill_Data = buildSkillConfig({
+export const explainLightEmissionByAnExcitedAtom_Skill_Data = defineSkill({
   slug: 'explainLightEmissionByAnExcitedAtom',
   id: '6491e9fd-5b7a-44a2-b2f9-f9219b344fb5',
   name: {

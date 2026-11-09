@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const careForMinorWounds_Skill_Data = buildSkillConfig({
+export const careForMinorWounds_Skill_Data = defineSkill({
   slug: 'careForMinorWounds',
   id: '5247422e-e37e-49a6-bfa0-78dc057ba324',
   name: {

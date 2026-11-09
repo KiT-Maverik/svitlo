@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const collectiveActionProblem_Skill_Data = buildSkillConfig({
+export const collectiveActionProblem_Skill_Data = defineSkill({
   slug: 'collectiveActionProblem',
   id: '249dc134-d9c3-4eef-8c7f-a297ab618e5e',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const establishTypographicHierarchy_Skill_Data = buildSkillConfig({
+export const establishTypographicHierarchy_Skill_Data = defineSkill({
   slug: 'establishTypographicHierarchy',
   id: '1e3b7281-7a16-4094-9b83-375f8a6aeb35',
   name: {

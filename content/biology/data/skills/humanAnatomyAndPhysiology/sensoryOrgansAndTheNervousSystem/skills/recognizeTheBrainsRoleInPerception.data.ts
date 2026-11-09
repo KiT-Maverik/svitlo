@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeTheBrainsRoleInPerception_Skill_Data = buildSkillConfig({
+export const recognizeTheBrainsRoleInPerception_Skill_Data = defineSkill({
   slug: 'recognizeTheBrainsRoleInPerception',
   id: '70ec7147-b764-4969-9ba9-aa83e22c4962',
   name: {

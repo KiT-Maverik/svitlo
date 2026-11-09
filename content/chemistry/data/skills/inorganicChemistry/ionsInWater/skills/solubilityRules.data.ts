@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const solubilityRules_Skill_Data = buildSkillConfig({
+export const solubilityRules_Skill_Data = defineSkill({
   slug: 'solubilityRules',
   id: 'cb010de7-42a1-488c-abe6-3e93fde31b02',
   name: {

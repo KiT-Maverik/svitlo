@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainWhyRepeatedMeasurementsMayDiffer_Skill_Data = buildSkillConfig({
+export const explainWhyRepeatedMeasurementsMayDiffer_Skill_Data = defineSkill({
   slug: 'explainWhyRepeatedMeasurementsMayDiffer',
   id: '991335aa-cfff-4b9e-a113-e1a8ab5d7195',
   name: {

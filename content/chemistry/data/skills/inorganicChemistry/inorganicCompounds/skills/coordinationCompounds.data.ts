@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const coordinationCompounds_Skill_Data = buildSkillConfig({
+export const coordinationCompounds_Skill_Data = defineSkill({
   slug: 'coordinationCompounds',
   id: '6cd3e7e7-d30c-4ab1-9206-e17d9a50b139',
   name: {

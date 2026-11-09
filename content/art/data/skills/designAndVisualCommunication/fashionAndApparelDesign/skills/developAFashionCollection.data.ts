@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const developAFashionCollection_Skill_Data = buildSkillConfig({
+export const developAFashionCollection_Skill_Data = defineSkill({
   slug: 'developAFashionCollection',
   id: 'b71d1336-c7bb-4dde-bad3-e983e414b968',
   name: {

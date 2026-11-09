@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretAGeologicalTimeScale_Skill_Data = buildSkillConfig({
+export const interpretAGeologicalTimeScale_Skill_Data = defineSkill({
   slug: 'interpretAGeologicalTimeScale',
   id: '278220f8-7fd4-44cc-8c7c-63b588474115',
   name: {

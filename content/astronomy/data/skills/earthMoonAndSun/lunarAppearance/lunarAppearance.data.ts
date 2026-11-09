@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   lunarLibration_Skill_Data,
@@ -7,7 +7,7 @@ import {
   nearAndFarLunarHemispheres_Skill_Data,
 } from './skills';
 
-export const lunarAppearance_SkillGroup_Data = buildSkillGroupConfig({
+export const lunarAppearance_SkillGroup_Data = defineSkillGroup({
   slug: 'lunarAppearance',
   id: '48079b94-cef6-4aaa-9d94-80c5099520df',
   name: {
@@ -41,12 +41,12 @@ export const lunarAppearance_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Айдың көрінісі',
     qm: 'Aynıñ körünişi',
   },
-  skills: {
-    lunarLibration: lunarLibration_Skill_Data,
-    lunarMotion: lunarMotion_Skill_Data,
-    lunarPhases: lunarPhases_Skill_Data,
-    nearAndFarLunarHemispheres: nearAndFarLunarHemispheres_Skill_Data,
-  },
+  skills: [
+    lunarLibration_Skill_Data,
+    lunarMotion_Skill_Data,
+    lunarPhases_Skill_Data,
+    nearAndFarLunarHemispheres_Skill_Data,
+  ],
   description: {
     methodological:
       "The Moon's changing appearance follows its illumination and orbital viewing geometry, not changes to its intrinsic light production.",

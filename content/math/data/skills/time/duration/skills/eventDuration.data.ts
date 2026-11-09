@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const eventDuration_Skill_Data = buildSkillConfig({
+export const eventDuration_Skill_Data = defineSkill({
   slug: 'eventDuration',
   id: 'c11ad392-6a44-49f4-a2b7-ea246a9a8ae4',
   name: {

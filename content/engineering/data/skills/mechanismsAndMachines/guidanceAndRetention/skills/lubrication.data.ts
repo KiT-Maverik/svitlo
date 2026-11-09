@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const lubrication_Skill_Data = buildSkillConfig({
+export const lubrication_Skill_Data = defineSkill({
   slug: 'lubrication',
   id: '39b7b1fe-962b-4242-b080-8e8df254327a',
   name: {

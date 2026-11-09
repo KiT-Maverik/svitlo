@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const designDependenciesOnContractsDIP_Skill_Data = buildSkillConfig({
+export const designDependenciesOnContractsDIP_Skill_Data = defineSkill({
   slug: 'designDependenciesOnContractsDIP',
   id: '1c760870-e709-4df3-9670-5df2f10c009a',
   name: {

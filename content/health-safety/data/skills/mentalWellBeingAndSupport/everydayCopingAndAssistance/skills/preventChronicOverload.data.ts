@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const preventChronicOverload_Skill_Data = buildSkillConfig({
+export const preventChronicOverload_Skill_Data = defineSkill({
   slug: 'preventChronicOverload',
   id: '6a7e398b-8497-4ec6-a618-bc72e23f638a',
   name: {

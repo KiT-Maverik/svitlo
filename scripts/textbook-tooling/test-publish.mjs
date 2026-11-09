@@ -54,12 +54,29 @@ test('isolated package publishes exactly the manifest resources', t => {
     JSON.parse(readFileSync(join(output, '.svitlo/publish-' + id + '.json'), 'utf8')).files,
     manifest.files,
   );
+  const skillFiles = manifest.files.filter(name => name.startsWith('data/skills/'));
+  if (skillFiles.length) {
+    assert.equal(skillFiles.length, 30, 'Skills must publish one base and 29 locale files');
+    assert(skillFiles.includes('data/skills/base.json'));
+    assert(skillFiles.includes('data/skills/uk.json'));
+    assert(skillFiles.includes('data/skills/en.json'));
+    assert(skillFiles.includes('data/skills/qm.json'));
+    assert(
+      skillFiles.every(
+        name =>
+          name.startsWith('data/skills/') &&
+          name.split('/').length === 3 &&
+          /^(?:base|[a-z]{2,8})[.]json$/.test(name.split('/')[2]),
+      ),
+      'Skills must not publish per-entity directories',
+    );
+    const base = JSON.parse(readFileSync(join(root, 'dist/static/data/skills/base.json'), 'utf8'));
+    const uk = JSON.parse(readFileSync(join(root, 'dist/static/data/skills/uk.json'), 'utf8'));
+    assert(Object.keys(base).length > 0, 'Empty published Skill taxonomy');
+    assert.deepEqual(Object.keys(uk), Object.keys(base), 'Localized Skill tree must match base domain slugs');
+  }
   for (const name of manifest.files) {
     assert.deepEqual(readFileSync(join(output, name)), readFileSync(join(root, 'dist/static', name)));
-  }
-  if (manifest.files.some(name => name.startsWith('data/pages/skillAnalytics/'))) {
-    assert(manifest.files.includes('data/pages/skillAnalytics/uk.json'));
-    assert(manifest.files.includes('data/pages/skillAnalytics/qm.json'));
   }
 });
 
@@ -84,6 +101,18 @@ test('repeat publication cleans only owned stale files and preserves foreign ass
   const result = run('publish', '--output', output);
   assert.equal(result.status, 0, result.stderr);
   assert(!existsSync(join(output, extra)));
+  // A host upgraded from the former analytics payload owns retired files in its old manifest.
+  const retired = 'data/pages/skillAnalytics/uk.json';
+  mkdirSync(join(output, 'data/pages/skillAnalytics'), { recursive: true });
+  writeFileSync(join(output, retired), '{}');
+  const ownershipFile = join(output, '.svitlo/publish-' + id + '.json');
+  const ownership = JSON.parse(readFileSync(ownershipFile, 'utf8'));
+  ownership.files.push(retired);
+  writeFileSync(ownershipFile, JSON.stringify(ownership));
+  const upgrade = run('publish', '--output', output);
+  assert.equal(upgrade.status, 0, upgrade.stderr);
+  assert(!existsSync(join(output, retired)), 'retired analytics resource must be removed');
+  assert(!JSON.parse(readFileSync(ownershipFile, 'utf8')).files.includes(retired));
   assert.equal(readFileSync(join(output, 'flags/uk.svg'), 'utf8'), 'host flag');
   assert.equal(readFileSync(join(output, 'textbooks/other/keep.txt'), 'utf8'), 'other book');
 });

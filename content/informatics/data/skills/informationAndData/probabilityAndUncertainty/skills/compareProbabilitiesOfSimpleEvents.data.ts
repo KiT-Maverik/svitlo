@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareProbabilitiesOfSimpleEvents_Skill_Data = buildSkillConfig({
+export const compareProbabilitiesOfSimpleEvents_Skill_Data = defineSkill({
   slug: 'compareProbabilitiesOfSimpleEvents',
   id: '4916b92e-f8e8-46d6-a83d-dd2b33bc87e7',
   name: {

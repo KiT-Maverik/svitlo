@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const safeUseOfHeatingEquipment_Skill_Data = buildSkillConfig({
+export const safeUseOfHeatingEquipment_Skill_Data = defineSkill({
   slug: 'safeUseOfHeatingEquipment',
   id: '3394e2d3-0793-42e8-b57e-d292ae9017e3',
   name: {

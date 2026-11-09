@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   analyzeGeographicRelationshipsUsingSpatialDataLayers_Skill_Data,
@@ -6,7 +6,7 @@ import {
   useSatellitePositioningInformationForGeographicOrientation_Skill_Data,
 } from './skills';
 
-export const geospatialTechnologies_SkillGroup_Data = buildSkillGroupConfig({
+export const geospatialTechnologies_SkillGroup_Data = defineSkillGroup({
   slug: 'geospatialTechnologies',
   id: 'fa687826-95fb-4580-92b6-d4308b2521ab',
   name: {
@@ -40,13 +40,11 @@ export const geospatialTechnologies_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Геокеңістіктік технологиялар',
     qm: 'Coğrafiy mekân tehnologiyaları',
   },
-  skills: {
-    analyzeGeographicRelationshipsUsingSpatialDataLayers:
-      analyzeGeographicRelationshipsUsingSpatialDataLayers_Skill_Data,
-    interpretRemoteSensingImagery: interpretRemoteSensingImagery_Skill_Data,
-    useSatellitePositioningInformationForGeographicOrientation:
-      useSatellitePositioningInformationForGeographicOrientation_Skill_Data,
-  },
+  skills: [
+    analyzeGeographicRelationshipsUsingSpatialDataLayers_Skill_Data,
+    interpretRemoteSensingImagery_Skill_Data,
+    useSatellitePositioningInformationForGeographicOrientation_Skill_Data,
+  ],
   description: {
     methodological:
       'Satellite and aerial imagery, positioning systems and geographic information systems provide different kinds of geographically referenced evidence. The focus is interpreting and using that evidence for geographic questions, not programming a software package or memorizing individual interface controls.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const axialTilt_Skill_Data = buildSkillConfig({
+export const axialTilt_Skill_Data = defineSkill({
   slug: 'axialTilt',
   id: 'dd97c791-4f4c-48f5-bc52-57a2b35e41a5',
   name: {

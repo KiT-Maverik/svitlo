@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   chemicalReactorSystems_Skill_Data,
@@ -7,7 +7,7 @@ import {
   processHeatingSystems_Skill_Data,
 } from './skills';
 
-export const industrialProcessEquipment_SkillGroup_Data = buildSkillGroupConfig({
+export const industrialProcessEquipment_SkillGroup_Data = defineSkillGroup({
   slug: 'industrialProcessEquipment',
   id: '249ccd27-a422-400a-9a7a-0e52bff8480d',
   name: {
@@ -41,12 +41,12 @@ export const industrialProcessEquipment_SkillGroup_Data = buildSkillGroupConfig(
     kk: 'Өнеркәсіптік процестер жабдығы',
     qm: 'Sanayi protsess cihazları',
   },
-  skills: {
-    chemicalReactorSystems: chemicalReactorSystems_Skill_Data,
-    industrialSeparationEquipment: industrialSeparationEquipment_Skill_Data,
-    processContainment: processContainment_Skill_Data,
-    processHeatingSystems: processHeatingSystems_Skill_Data,
-  },
+  skills: [
+    chemicalReactorSystems_Skill_Data,
+    industrialSeparationEquipment_Skill_Data,
+    processContainment_Skill_Data,
+    processHeatingSystems_Skill_Data,
+  ],
   description: {
     methodological:
       'Process apparatus can separate mixtures, support controlled chemical transformations or maintain thermal conditions while containing potentially hazardous materials.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const chooseEvacuationOrShelter_Skill_Data = buildSkillConfig({
+export const chooseEvacuationOrShelter_Skill_Data = defineSkill({
   slug: 'chooseEvacuationOrShelter',
   id: '364a6b9a-83e4-4f8e-b308-65cfc55f61d2',
   name: {

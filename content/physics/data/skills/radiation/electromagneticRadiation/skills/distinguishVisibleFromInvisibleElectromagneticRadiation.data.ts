@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishVisibleFromInvisibleElectromagneticRadiation_Skill_Data = buildSkillConfig({
+export const distinguishVisibleFromInvisibleElectromagneticRadiation_Skill_Data = defineSkill({
   slug: 'distinguishVisibleFromInvisibleElectromagneticRadiation',
   id: '5d01c89d-8ccf-4aa6-8988-eda2c331eeaa',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const astronomicalInterferometry_Skill_Data = buildSkillConfig({
+export const astronomicalInterferometry_Skill_Data = defineSkill({
   slug: 'astronomicalInterferometry',
   id: 'ba50b84c-d46d-4223-b9fb-4dc052116e31',
   name: {

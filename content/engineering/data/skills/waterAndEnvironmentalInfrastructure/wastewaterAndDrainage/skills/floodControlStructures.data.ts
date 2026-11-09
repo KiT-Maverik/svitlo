@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const floodControlStructures_Skill_Data = buildSkillConfig({
+export const floodControlStructures_Skill_Data = defineSkill({
   slug: 'floodControlStructures',
   id: '63abe1a0-19d1-484f-b9ab-63bf136c1614',
   name: {

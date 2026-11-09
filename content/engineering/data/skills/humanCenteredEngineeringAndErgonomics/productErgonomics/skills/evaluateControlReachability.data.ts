@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateControlReachability_Skill_Data = buildSkillConfig({
+export const evaluateControlReachability_Skill_Data = defineSkill({
   slug: 'evaluateControlReachability',
   id: 'e649d896-9262-45cc-bcbe-0e593d750818',
   name: {

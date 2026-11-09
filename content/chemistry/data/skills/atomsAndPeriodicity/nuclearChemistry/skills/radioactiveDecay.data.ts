@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const radioactiveDecay_Skill_Data = buildSkillConfig({
+export const radioactiveDecay_Skill_Data = defineSkill({
   slug: 'radioactiveDecay',
   id: '9ed79c8e-6676-460d-9f83-12f4aaca57ee',
   name: {

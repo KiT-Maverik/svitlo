@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeMelodicContour_Skill_Data = buildSkillConfig({
+export const recognizeMelodicContour_Skill_Data = defineSkill({
   slug: 'recognizeMelodicContour',
   id: '01e30a13-9365-4f29-8585-b132a0477869',
   name: {

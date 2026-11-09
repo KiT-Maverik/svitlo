@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const seekHelpWhenLostOrSeparated_Skill_Data = buildSkillConfig({
+export const seekHelpWhenLostOrSeparated_Skill_Data = defineSkill({
   slug: 'seekHelpWhenLostOrSeparated',
   id: 'c13df6a9-6b68-4b72-92fa-ba8bb58fce0d',
   name: {

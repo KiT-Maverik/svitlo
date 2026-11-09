@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   divisionOfLabor_Skill_Data,
@@ -7,7 +7,7 @@ import {
   transactionCosts_Skill_Data,
 } from './skills';
 
-export const exchangeAndInstitutions_SkillGroup_Data = buildSkillGroupConfig({
+export const exchangeAndInstitutions_SkillGroup_Data = defineSkillGroup({
   slug: 'exchangeAndInstitutions',
   id: '50673eda-6225-46e8-beb7-6529231473af',
   name: {
@@ -41,12 +41,12 @@ export const exchangeAndInstitutions_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Айырбас пен институттар',
     qm: 'Alış-veriş ve müessiseler',
   },
-  skills: {
-    divisionOfLabor: divisionOfLabor_Skill_Data,
-    gainsFromVoluntaryExchange: gainsFromVoluntaryExchange_Skill_Data,
-    propertyRights: propertyRights_Skill_Data,
-    transactionCosts: transactionCosts_Skill_Data,
-  },
+  skills: [
+    divisionOfLabor_Skill_Data,
+    gainsFromVoluntaryExchange_Skill_Data,
+    propertyRights_Skill_Data,
+    transactionCosts_Skill_Data,
+  ],
   description: {
     methodological:
       'Cooperation and resource allocation depend on specialization, agreements, rights, and mechanisms for enforcing them.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const understandPregnancyRelatedHealthcare_Skill_Data = buildSkillConfig({
+export const understandPregnancyRelatedHealthcare_Skill_Data = defineSkill({
   slug: 'understandPregnancyRelatedHealthcare',
   id: '3ca85448-d55c-4787-9500-ad596a9ac1d2',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compulsiveAndRepetitivePatterns_Skill_Data = buildSkillConfig({
+export const compulsiveAndRepetitivePatterns_Skill_Data = defineSkill({
   slug: 'compulsiveAndRepetitivePatterns',
   id: '3201830a-2129-4df4-9cd8-6cd410fe9885',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const greekReligionAndMythology_Skill_Data = buildSkillConfig({
+export const greekReligionAndMythology_Skill_Data = defineSkill({
   slug: 'greekReligionAndMythology',
   id: 'd6db5f74-df93-4858-8a3e-7b5b14816de9',
   name: {

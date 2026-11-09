@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateTheRoleOfMemoryInPersonalIdentity_Skill_Data = buildSkillConfig({
+export const evaluateTheRoleOfMemoryInPersonalIdentity_Skill_Data = defineSkill({
   slug: 'evaluateTheRoleOfMemoryInPersonalIdentity',
   id: '61e09d7a-b381-4e8e-8ce7-b48136c47cc5',
   name: {

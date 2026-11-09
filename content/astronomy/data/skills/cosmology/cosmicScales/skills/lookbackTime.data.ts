@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const lookbackTime_Skill_Data = buildSkillConfig({
+export const lookbackTime_Skill_Data = defineSkill({
   slug: 'lookbackTime',
   id: '3431da8f-dea0-4ac7-a362-aad77da8afc0',
   name: {

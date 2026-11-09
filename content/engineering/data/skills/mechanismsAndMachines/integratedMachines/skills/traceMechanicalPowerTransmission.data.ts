@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const traceMechanicalPowerTransmission_Skill_Data = buildSkillConfig({
+export const traceMechanicalPowerTransmission_Skill_Data = defineSkill({
   slug: 'traceMechanicalPowerTransmission',
   id: '51bbcbfa-6441-450b-9c32-bd81ba0f8086',
   name: {

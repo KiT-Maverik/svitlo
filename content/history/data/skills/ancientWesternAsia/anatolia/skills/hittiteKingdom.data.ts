@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const hittiteKingdom_Skill_Data = buildSkillConfig({
+export const hittiteKingdom_Skill_Data = defineSkill({
   slug: 'hittiteKingdom',
   id: '40aa3cad-4b59-478d-8b91-406fd9a50430',
   name: {

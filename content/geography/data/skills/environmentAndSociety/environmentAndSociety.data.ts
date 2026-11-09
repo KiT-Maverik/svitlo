@@ -1,12 +1,12 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { humanEnvironmentInteractions_SkillGroup_Data } from './humanEnvironmentInteractions/humanEnvironmentInteractions.data';
 import { naturalResources_SkillGroup_Data } from './naturalResources/naturalResources.data';
 
-export const environmentAndSociety_SkillDomain_Data = buildSkillDomainConfig({
+export const environmentAndSociety_SkillDomain_Data = defineSkillDomain({
   slug: 'environmentAndSociety',
   id: '2dba802b-84f8-48a6-90da-d115e9628407',
-  name: {
+  title: {
     en: 'Environment and Society',
     zh: '环境与社会',
     hi: 'पर्यावरण और समाज',
@@ -37,10 +37,7 @@ export const environmentAndSociety_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Қоршаған орта және қоғам',
     qm: 'Çevre ve cemiyet',
   },
-  groups: {
-    humanEnvironmentInteractions: humanEnvironmentInteractions_SkillGroup_Data,
-    naturalResources: naturalResources_SkillGroup_Data,
-  },
+  groups: [humanEnvironmentInteractions_SkillGroup_Data, naturalResources_SkillGroup_Data],
   description: {
     methodological:
       'Natural resources, environmental constraints and human decisions influence one another across space. Geography examines rates of resource renewal, adaptation to local conditions, transformations of land and the travel of impacts between connected regions.',

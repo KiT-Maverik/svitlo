@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishArtisticIntentionFromInterpretation_Skill_Data = buildSkillConfig({
+export const distinguishArtisticIntentionFromInterpretation_Skill_Data = defineSkill({
   slug: 'distinguishArtisticIntentionFromInterpretation',
   id: '7d06aaaf-9c52-4e6c-b3d0-6480a2fd5f18',
   name: {

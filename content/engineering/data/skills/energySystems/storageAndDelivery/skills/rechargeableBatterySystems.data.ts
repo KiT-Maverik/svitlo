@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const rechargeableBatterySystems_Skill_Data = buildSkillConfig({
+export const rechargeableBatterySystems_Skill_Data = defineSkill({
   slug: 'rechargeableBatterySystems',
   id: '07a24200-6e42-4c1f-98b3-dba6a63acb68',
   name: {

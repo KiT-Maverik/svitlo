@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const respiratoryHygiene_Skill_Data = buildSkillConfig({
+export const respiratoryHygiene_Skill_Data = defineSkill({
   slug: 'respiratoryHygiene',
   id: '31f3fc68-f004-4a6a-9140-e28700fc082f',
   name: {

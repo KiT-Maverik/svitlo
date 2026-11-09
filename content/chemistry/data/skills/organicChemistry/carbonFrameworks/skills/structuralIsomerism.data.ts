@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const structuralIsomerism_Skill_Data = buildSkillConfig({
+export const structuralIsomerism_Skill_Data = defineSkill({
   slug: 'structuralIsomerism',
   id: 'af2d8291-cfea-40ac-acfe-63c8dc152292',
   name: {

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   comparePhilosophicalAccountsOfTime_Skill_Data,
@@ -7,7 +7,7 @@ import {
   evaluateACounterfactualClaim_Skill_Data,
 } from './skills';
 
-export const causationTimeAndPossibility_SkillGroup_Data = buildSkillGroupConfig({
+export const causationTimeAndPossibility_SkillGroup_Data = defineSkillGroup({
   slug: 'causationTimeAndPossibility',
   id: '0a0eec2f-b437-468f-9aad-d19d755aeac5',
   name: {
@@ -41,12 +41,12 @@ export const causationTimeAndPossibility_SkillGroup_Data = buildSkillGroupConfig
     kk: 'Себептілік, уақыт және мүмкіндік',
     qm: 'Sebeplilik, zaman ve imkân',
   },
-  skills: {
-    comparePhilosophicalAccountsOfTime: comparePhilosophicalAccountsOfTime_Skill_Data,
-    distinguishCausationFromTemporalSuccession: distinguishCausationFromTemporalSuccession_Skill_Data,
-    distinguishPossibilityFromNecessity: distinguishPossibilityFromNecessity_Skill_Data,
-    evaluateACounterfactualClaim: evaluateACounterfactualClaim_Skill_Data,
-  },
+  skills: [
+    comparePhilosophicalAccountsOfTime_Skill_Data,
+    distinguishCausationFromTemporalSuccession_Skill_Data,
+    distinguishPossibilityFromNecessity_Skill_Data,
+    evaluateACounterfactualClaim_Skill_Data,
+  ],
   description: {
     methodological:
       'Metaphysical inquiry asks what causal dependence means and how temporal or modal claims relate beyond specific measurements.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const deriveFacts_Skill_Data = buildSkillConfig({
+export const deriveFacts_Skill_Data = defineSkill({
   slug: 'deriveFacts',
   id: '3785f833-039d-49f7-a70f-4a1ebdb6654a',
   name: {

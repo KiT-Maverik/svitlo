@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const gibbsEnergy_Skill_Data = buildSkillConfig({
+export const gibbsEnergy_Skill_Data = defineSkill({
   slug: 'gibbsEnergy',
   id: '9007dc88-e77d-415c-9f00-0c90e217b296',
   name: {

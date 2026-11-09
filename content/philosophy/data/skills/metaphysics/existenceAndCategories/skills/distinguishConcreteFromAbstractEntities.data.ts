@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishConcreteFromAbstractEntities_Skill_Data = buildSkillConfig({
+export const distinguishConcreteFromAbstractEntities_Skill_Data = defineSkill({
   slug: 'distinguishConcreteFromAbstractEntities',
   id: '89f5fe46-05d7-4674-8fb7-a8750b59e795',
   name: {

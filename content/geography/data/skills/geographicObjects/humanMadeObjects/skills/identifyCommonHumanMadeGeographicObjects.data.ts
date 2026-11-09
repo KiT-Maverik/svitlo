@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyCommonHumanMadeGeographicObjects_Skill_Data = buildSkillConfig({
+export const identifyCommonHumanMadeGeographicObjects_Skill_Data = defineSkill({
   slug: 'identifyCommonHumanMadeGeographicObjects',
   id: '86acc10c-8c69-4c10-9edc-31abb845f6dd',
   name: {

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   additionPolymers_Skill_Data,
@@ -7,7 +7,7 @@ import {
   polymerStructureAndProperties_Skill_Data,
 } from './skills';
 
-export const macromolecules_SkillGroup_Data = buildSkillGroupConfig({
+export const macromolecules_SkillGroup_Data = defineSkillGroup({
   slug: 'macromolecules',
   id: 'cd5a512e-29a2-4a69-92c3-18aef052399c',
   name: {
@@ -41,12 +41,12 @@ export const macromolecules_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Макромолекулалар',
     qm: 'Makromolekulalar',
   },
-  skills: {
-    additionPolymers: additionPolymers_Skill_Data,
-    condensationPolymers: condensationPolymers_Skill_Data,
-    polymerization: polymerization_Skill_Data,
-    polymerStructureAndProperties: polymerStructureAndProperties_Skill_Data,
-  },
+  skills: [
+    additionPolymers_Skill_Data,
+    condensationPolymers_Skill_Data,
+    polymerization_Skill_Data,
+    polymerStructureAndProperties_Skill_Data,
+  ],
   description: {
     methodological:
       'Repeated subunits and molecular architecture create materials with behaviors not predicted by monomer identities alone.',

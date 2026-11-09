@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   identityAndSocialContext_Skill_Data,
@@ -7,7 +7,7 @@ import {
   selfServingAttributions_Skill_Data,
 } from './skills';
 
-export const selfConceptAndIdentity_SkillGroup_Data = buildSkillGroupConfig({
+export const selfConceptAndIdentity_SkillGroup_Data = defineSkillGroup({
   slug: 'selfConceptAndIdentity',
   id: 'b0f4bdbf-73f4-4656-a20a-2f746460d558',
   name: {
@@ -41,12 +41,12 @@ export const selfConceptAndIdentity_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Мен-тұжырымдамасы және бірегейлік',
     qm: 'Öz añlayışı ve kimlik',
   },
-  skills: {
-    identityAndSocialContext: identityAndSocialContext_Skill_Data,
-    selfConcept: selfConcept_Skill_Data,
-    selfEsteem: selfEsteem_Skill_Data,
-    selfServingAttributions: selfServingAttributions_Skill_Data,
-  },
+  skills: [
+    identityAndSocialContext_Skill_Data,
+    selfConcept_Skill_Data,
+    selfEsteem_Skill_Data,
+    selfServingAttributions_Skill_Data,
+  ],
   description: {
     methodological:
       'Accounts people hold about themselves are shaped through experience and relationships and may not match external observations.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const sameDenominatorModel_Skill_Data = buildSkillConfig({
+export const sameDenominatorModel_Skill_Data = defineSkill({
   slug: 'sameDenominatorModel',
   id: '78e25627-943c-4912-bde5-37d05a6045ac',
   name: {

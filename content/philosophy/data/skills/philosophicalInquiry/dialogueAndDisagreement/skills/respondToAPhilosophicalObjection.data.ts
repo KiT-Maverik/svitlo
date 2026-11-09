@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const respondToAPhilosophicalObjection_Skill_Data = buildSkillConfig({
+export const respondToAPhilosophicalObjection_Skill_Data = defineSkill({
   slug: 'respondToAPhilosophicalObjection',
   id: '4dcb687e-5763-4c31-9152-dc7752822c9b',
   name: {

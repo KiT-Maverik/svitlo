@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainTheImportanceOfSleepForRecovery_Skill_Data = buildSkillConfig({
+export const explainTheImportanceOfSleepForRecovery_Skill_Data = defineSkill({
   slug: 'explainTheImportanceOfSleepForRecovery',
   id: '5c341f9f-e5c2-409d-949b-77773ac572c7',
   name: {

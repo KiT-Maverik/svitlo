@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishAdjacencyFromProximity_Skill_Data = buildSkillConfig({
+export const distinguishAdjacencyFromProximity_Skill_Data = defineSkill({
   slug: 'distinguishAdjacencyFromProximity',
   id: '1c18013c-e48a-4fc6-801c-a69c6c8fd129',
   name: {

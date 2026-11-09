@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { growingSocialComplexity_SkillGroup_Data } from './growingSocialComplexity/growingSocialComplexity.data';
 import { humanOriginsAndDispersal_SkillGroup_Data } from './humanOriginsAndDispersal/humanOriginsAndDispersal.data';
 import { hunterGathererSocieties_SkillGroup_Data } from './hunterGathererSocieties/hunterGathererSocieties.data';
 import { transitionToFoodProduction_SkillGroup_Data } from './transitionToFoodProduction/transitionToFoodProduction.data';
 
-export const humanPrehistory_SkillDomain_Data = buildSkillDomainConfig({
+export const humanPrehistory_SkillDomain_Data = defineSkillDomain({
   slug: 'humanPrehistory',
   id: '76421fa2-5fcb-4a89-abc2-55966aa5f2f7',
-  name: {
+  title: {
     en: 'Human Prehistory',
     zh: '人类史前史',
     hi: 'मानव प्रागैतिहास',
@@ -39,12 +39,12 @@ export const humanPrehistory_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Адамзаттың тарихқа дейінгі дәуірі',
     qm: 'İnsaniyetniñ yazıdan evelki tarihı',
   },
-  groups: {
-    growingSocialComplexity: growingSocialComplexity_SkillGroup_Data,
-    humanOriginsAndDispersal: humanOriginsAndDispersal_SkillGroup_Data,
-    hunterGathererSocieties: hunterGathererSocieties_SkillGroup_Data,
-    transitionToFoodProduction: transitionToFoodProduction_SkillGroup_Data,
-  },
+  groups: [
+    growingSocialComplexity_SkillGroup_Data,
+    humanOriginsAndDispersal_SkillGroup_Data,
+    hunterGathererSocieties_SkillGroup_Data,
+    transitionToFoodProduction_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'The long era before written states encompasses human evolution, global dispersal, varied subsistence, and uneven regional transitions toward settlements and metallurgy.',

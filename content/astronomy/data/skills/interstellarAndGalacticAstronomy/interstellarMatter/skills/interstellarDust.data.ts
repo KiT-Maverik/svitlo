@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interstellarDust_Skill_Data = buildSkillConfig({
+export const interstellarDust_Skill_Data = defineSkill({
   slug: 'interstellarDust',
   id: '2592da19-e7d8-44f0-b88d-e3dfc05f74bb',
   name: {

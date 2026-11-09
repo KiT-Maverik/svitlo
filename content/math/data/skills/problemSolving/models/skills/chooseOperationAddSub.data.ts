@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const chooseOperationAddSub_Skill_Data = buildSkillConfig({
+export const chooseOperationAddSub_Skill_Data = defineSkill({
   slug: 'chooseOperationAddSub',
   id: '52f1bc76-4795-452b-b241-4dc3099063e6',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const solarSystemsGalacticLocation_Skill_Data = buildSkillConfig({
+export const solarSystemsGalacticLocation_Skill_Data = defineSkill({
   slug: 'solarSystemsGalacticLocation',
   id: 'b4eca2f9-27c6-41d7-93e3-f1a183415b1f',
   name: {

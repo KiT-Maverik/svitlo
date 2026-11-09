@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const camMechanisms_Skill_Data = buildSkillConfig({
+export const camMechanisms_Skill_Data = defineSkill({
   slug: 'camMechanisms',
   id: 'ef3832e3-6413-4710-82b4-ba0f91be45bf',
   name: {

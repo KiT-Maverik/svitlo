@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretStageDirections_Skill_Data = buildSkillConfig({
+export const interpretStageDirections_Skill_Data = defineSkill({
   slug: 'interpretStageDirections',
   id: '5bec4a38-1be3-4b18-bfb8-c3a74cf303a5',
   name: {

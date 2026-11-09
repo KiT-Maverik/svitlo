@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateEvidenceBehindAHeadline_Skill_Data = buildSkillConfig({
+export const evaluateEvidenceBehindAHeadline_Skill_Data = defineSkill({
   slug: 'evaluateEvidenceBehindAHeadline',
   id: '0ff12af8-34c9-4d73-baa4-5167dbd6afc8',
   name: {

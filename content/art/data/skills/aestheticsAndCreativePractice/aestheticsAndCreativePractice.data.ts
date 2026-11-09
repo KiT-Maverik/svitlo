@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { aestheticPerception_SkillGroup_Data } from './aestheticPerception/aestheticPerception.data';
 import { artisticCollaborationAndEthics_SkillGroup_Data } from './artisticCollaborationAndEthics/artisticCollaborationAndEthics.data';
 import { creativeDevelopment_SkillGroup_Data } from './creativeDevelopment/creativeDevelopment.data';
 import { expressionAndMeaning_SkillGroup_Data } from './expressionAndMeaning/expressionAndMeaning.data';
 
-export const aestheticsAndCreativePractice_SkillDomain_Data = buildSkillDomainConfig({
+export const aestheticsAndCreativePractice_SkillDomain_Data = defineSkillDomain({
   slug: 'aestheticsAndCreativePractice',
   id: '013a7a2a-8e50-4424-9c32-32915b51cd45',
-  name: {
+  title: {
     en: 'Aesthetics and Creative Practice',
     zh: '美学与创作实践',
     hi: 'सौंदर्यशास्त्र और रचनात्मक अभ्यास',
@@ -39,12 +39,12 @@ export const aestheticsAndCreativePractice_SkillDomain_Data = buildSkillDomainCo
     kk: 'Эстетика және шығармашылық тәжірибе',
     qm: 'Estetika ve icadiy faaliyet',
   },
-  groups: {
-    aestheticPerception: aestheticPerception_SkillGroup_Data,
-    artisticCollaborationAndEthics: artisticCollaborationAndEthics_SkillGroup_Data,
-    creativeDevelopment: creativeDevelopment_SkillGroup_Data,
-    expressionAndMeaning: expressionAndMeaning_SkillGroup_Data,
-  },
+  groups: [
+    aestheticPerception_SkillGroup_Data,
+    artisticCollaborationAndEthics_SkillGroup_Data,
+    creativeDevelopment_SkillGroup_Data,
+    expressionAndMeaning_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Artistic experience, imagination, revision and ethical decisions cross individual media. This domain avoids prescribing a universal theory of beauty or one compulsory creative workflow.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const readSafetySignsAndInstructions_Skill_Data = buildSkillConfig({
+export const readSafetySignsAndInstructions_Skill_Data = defineSkill({
   slug: 'readSafetySignsAndInstructions',
   id: '27a12e4d-5840-4a20-bc6b-26a77612e8c3',
   name: {

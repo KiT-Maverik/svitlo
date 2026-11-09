@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const respondAfterSuspectedFraud_Skill_Data = buildSkillConfig({
+export const respondAfterSuspectedFraud_Skill_Data = defineSkill({
   slug: 'respondAfterSuspectedFraud',
   id: 'e65eeb0b-3f2a-4405-a83c-a4ebf5e8530d',
   name: {

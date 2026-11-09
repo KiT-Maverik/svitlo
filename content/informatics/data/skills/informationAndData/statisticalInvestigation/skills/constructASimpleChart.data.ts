@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const constructASimpleChart_Skill_Data = buildSkillConfig({
+export const constructASimpleChart_Skill_Data = defineSkill({
   slug: 'constructASimpleChart',
   id: 'a0fc01d5-ef1c-4af6-941c-930f6f853ce0',
   name: {

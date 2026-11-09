@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const mixtures_Skill_Data = buildSkillConfig({
+export const mixtures_Skill_Data = defineSkill({
   slug: 'mixtures',
   id: 'bc3e12df-d52e-4b92-bb8b-60018916fdee',
   name: {

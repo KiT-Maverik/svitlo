@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainTheDevelopmentOfSoftwareReliability_Skill_Data = buildSkillConfig({
+export const explainTheDevelopmentOfSoftwareReliability_Skill_Data = defineSkill({
   slug: 'explainTheDevelopmentOfSoftwareReliability',
   id: '7916abc7-ba07-450f-8efe-c15e7564f922',
   name: {

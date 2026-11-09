@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { ecosystemsAndBiodiversity_SkillGroup_Data } from './ecosystemsAndBiodiversity/ecosystemsAndBiodiversity.data';
 import { feedingRelationships_SkillGroup_Data } from './feedingRelationships/feedingRelationships.data';
 import { habitats_SkillGroup_Data } from './habitats/habitats.data';
 import { interactionsAmongOrganisms_SkillGroup_Data } from './interactionsAmongOrganisms/interactionsAmongOrganisms.data';
 
-export const ecology_SkillDomain_Data = buildSkillDomainConfig({
+export const ecology_SkillDomain_Data = defineSkillDomain({
   slug: 'ecology',
   id: 'e425631d-499d-428d-b68f-217a8867af95',
-  name: {
+  title: {
     en: 'Ecology',
     qm: 'Ekologiya',
     zh: '生态学',
@@ -39,12 +39,12 @@ export const ecology_SkillDomain_Data = buildSkillDomainConfig({
     ka: 'ეკოლოგია',
     kk: 'Экология',
   },
-  groups: {
-    ecosystemsAndBiodiversity: ecosystemsAndBiodiversity_SkillGroup_Data,
-    feedingRelationships: feedingRelationships_SkillGroup_Data,
-    habitats: habitats_SkillGroup_Data,
-    interactionsAmongOrganisms: interactionsAmongOrganisms_SkillGroup_Data,
-  },
+  groups: [
+    ecosystemsAndBiodiversity_SkillGroup_Data,
+    feedingRelationships_SkillGroup_Data,
+    habitats_SkillGroup_Data,
+    interactionsAmongOrganisms_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Dependencies among organisms, populations, nonliving factors, and flows of matter and energy, together with the consequences of disrupted relationships. The geographical distribution of natural zones and climate processes belongs to Geography.',

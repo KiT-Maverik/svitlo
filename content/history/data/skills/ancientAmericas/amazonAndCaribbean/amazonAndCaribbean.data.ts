@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   caribbeanIslandSettlement_Skill_Data,
@@ -6,7 +6,7 @@ import {
   tropicalSouthAmericanFarming_Skill_Data,
 } from './skills';
 
-export const amazonAndCaribbean_SkillGroup_Data = buildSkillGroupConfig({
+export const amazonAndCaribbean_SkillGroup_Data = defineSkillGroup({
   slug: 'amazonAndCaribbean',
   id: 'b71fa763-19d5-423f-b785-85046c9dbf4f',
   name: {
@@ -40,11 +40,11 @@ export const amazonAndCaribbean_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Амазония және Кариб аймағы',
     qm: 'Amazon ve Karib deñizi avzası',
   },
-  skills: {
-    caribbeanIslandSettlement: caribbeanIslandSettlement_Skill_Data,
-    earlyAmazonianSocieties: earlyAmazonianSocieties_Skill_Data,
-    tropicalSouthAmericanFarming: tropicalSouthAmericanFarming_Skill_Data,
-  },
+  skills: [
+    caribbeanIslandSettlement_Skill_Data,
+    earlyAmazonianSocieties_Skill_Data,
+    tropicalSouthAmericanFarming_Skill_Data,
+  ],
   description: {
     methodological:
       'River and island environments supported diverse cultures that cannot be judged only by the presence of stone cities.',

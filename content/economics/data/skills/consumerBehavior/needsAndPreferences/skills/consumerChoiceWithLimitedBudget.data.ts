@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const consumerChoiceWithLimitedBudget_Skill_Data = buildSkillConfig({
+export const consumerChoiceWithLimitedBudget_Skill_Data = defineSkill({
   slug: 'consumerChoiceWithLimitedBudget',
   id: '268e3742-9773-4342-b30b-f077b7b1a05d',
   name: {

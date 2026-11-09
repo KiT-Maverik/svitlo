@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const respondToSignsOfInfectiousIllness_Skill_Data = buildSkillConfig({
+export const respondToSignsOfInfectiousIllness_Skill_Data = defineSkill({
   slug: 'respondToSignsOfInfectiousIllness',
   id: '8ad359d7-03e8-4d3a-9c14-e85d1e0c678a',
   name: {

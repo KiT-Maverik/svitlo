@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainASortingCriterion_Skill_Data = buildSkillConfig({
+export const explainASortingCriterion_Skill_Data = defineSkill({
   slug: 'explainASortingCriterion',
   id: 'edc1241e-3837-406b-ab4a-4ad443beb2c3',
   name: {

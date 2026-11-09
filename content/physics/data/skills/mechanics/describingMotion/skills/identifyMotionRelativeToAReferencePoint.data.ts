@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyMotionRelativeToAReferencePoint_Skill_Data = buildSkillConfig({
+export const identifyMotionRelativeToAReferencePoint_Skill_Data = defineSkill({
   slug: 'identifyMotionRelativeToAReferencePoint',
   id: '352cfaf8-b0bb-4276-8b1d-e8c426d0d480',
   name: {

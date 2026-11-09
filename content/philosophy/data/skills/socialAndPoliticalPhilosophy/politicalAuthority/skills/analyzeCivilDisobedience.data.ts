@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeCivilDisobedience_Skill_Data = buildSkillConfig({
+export const analyzeCivilDisobedience_Skill_Data = defineSkill({
   slug: 'analyzeCivilDisobedience',
   id: '03a44015-0a41-46c3-90a4-5d0183729448',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const inventoryManagement_Skill_Data = buildSkillConfig({
+export const inventoryManagement_Skill_Data = defineSkill({
   slug: 'inventoryManagement',
   id: '1337e36f-3567-437d-9f8b-09a4aae6fa5f',
   name: {

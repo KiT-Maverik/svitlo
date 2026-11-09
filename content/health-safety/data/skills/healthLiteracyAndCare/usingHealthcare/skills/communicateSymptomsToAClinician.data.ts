@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const communicateSymptomsToAClinician_Skill_Data = buildSkillConfig({
+export const communicateSymptomsToAClinician_Skill_Data = defineSkill({
   slug: 'communicateSymptomsToAClinician',
   id: 'db7a94e9-b062-415c-b811-a0e51b029242',
   name: {

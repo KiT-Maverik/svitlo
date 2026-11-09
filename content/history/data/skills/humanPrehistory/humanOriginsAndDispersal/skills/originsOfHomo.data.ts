@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const originsOfHomo_Skill_Data = buildSkillConfig({
+export const originsOfHomo_Skill_Data = defineSkill({
   slug: 'originsOfHomo',
   id: 'b74458c9-95a2-41e5-9a36-1f67923d4837',
   name: {

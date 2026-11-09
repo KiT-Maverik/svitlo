@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const chooseAStructureForRequiredOperations_Skill_Data = buildSkillConfig({
+export const chooseAStructureForRequiredOperations_Skill_Data = defineSkill({
   slug: 'chooseAStructureForRequiredOperations',
   id: 'a76b95ef-efed-47ce-a4de-5056e19e0f22',
   name: {

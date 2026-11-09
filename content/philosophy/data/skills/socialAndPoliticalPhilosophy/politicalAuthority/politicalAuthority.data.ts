@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   analyzeCivilDisobedience_Skill_Data,
@@ -7,7 +7,7 @@ import {
   evaluateTheLimitsOfStateCoercion_Skill_Data,
 } from './skills';
 
-export const politicalAuthority_SkillGroup_Data = buildSkillGroupConfig({
+export const politicalAuthority_SkillGroup_Data = defineSkillGroup({
   slug: 'politicalAuthority',
   id: 'e6aae331-0352-41f5-a7e3-fce6fcb3466b',
   name: {
@@ -41,12 +41,12 @@ export const politicalAuthority_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Саяси билік',
     qm: 'Siyasiy akimiyet',
   },
-  skills: {
-    analyzeCivilDisobedience: analyzeCivilDisobedience_Skill_Data,
-    compareSocialContractArguments: compareSocialContractArguments_Skill_Data,
-    evaluateTheLegitimacyOfPoliticalAuthority: evaluateTheLegitimacyOfPoliticalAuthority_Skill_Data,
-    evaluateTheLimitsOfStateCoercion: evaluateTheLimitsOfStateCoercion_Skill_Data,
-  },
+  skills: [
+    analyzeCivilDisobedience_Skill_Data,
+    compareSocialContractArguments_Skill_Data,
+    evaluateTheLegitimacyOfPoliticalAuthority_Skill_Data,
+    evaluateTheLimitsOfStateCoercion_Skill_Data,
+  ],
   description: {
     methodological:
       'Institutions exercise collective power that requires justification. Political legitimacy, coercion, and obedience are distinct concepts.',

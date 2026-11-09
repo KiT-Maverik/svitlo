@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const numidianKingdoms_Skill_Data = buildSkillConfig({
+export const numidianKingdoms_Skill_Data = defineSkill({
   slug: 'numidianKingdoms',
   id: 'fa62cd73-5220-42ca-93a3-0a819c2cc34f',
   name: {

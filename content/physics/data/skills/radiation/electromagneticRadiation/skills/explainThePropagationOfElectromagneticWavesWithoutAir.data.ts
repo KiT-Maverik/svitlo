@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainThePropagationOfElectromagneticWavesWithoutAir_Skill_Data = buildSkillConfig({
+export const explainThePropagationOfElectromagneticWavesWithoutAir_Skill_Data = defineSkill({
   slug: 'explainThePropagationOfElectromagneticWavesWithoutAir',
   id: 'aef96ceb-8f55-4666-87fe-43ab7a68c0e9',
   name: {

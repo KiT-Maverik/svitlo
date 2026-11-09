@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeMolluscCharacteristics_Skill_Data = buildSkillConfig({
+export const recognizeMolluscCharacteristics_Skill_Data = defineSkill({
   slug: 'recognizeMolluscCharacteristics',
   id: '0b776b55-4790-40f9-8e95-38cea90bacb8',
   name: {

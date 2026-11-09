@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const absoluteAndRelativePoverty_Skill_Data = buildSkillConfig({
+export const absoluteAndRelativePoverty_Skill_Data = defineSkill({
   slug: 'absoluteAndRelativePoverty',
   id: 'b6743675-e13a-4a0d-bc55-c97d55dd2d8c',
   name: {

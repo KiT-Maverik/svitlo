@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const kyivanRus_Skill_Data = buildSkillConfig({
+export const kyivanRus_Skill_Data = defineSkill({
   slug: 'kyivanRus',
   id: '80a36811-c314-40c2-aa55-63c41d13a3e8',
   name: {

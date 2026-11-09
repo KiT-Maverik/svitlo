@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const biosignatures_Skill_Data = buildSkillConfig({
+export const biosignatures_Skill_Data = defineSkill({
   slug: 'biosignatures',
   id: '7841d1ff-7ed6-443a-8752-689dc6ce0768',
   name: {

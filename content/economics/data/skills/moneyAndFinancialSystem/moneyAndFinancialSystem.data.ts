@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { banksAndCreditIntermediation_SkillGroup_Data } from './banksAndCreditIntermediation/banksAndCreditIntermediation.data';
 import { financialMarkets_SkillGroup_Data } from './financialMarkets/financialMarkets.data';
 import { financialStabilityAndRegulation_SkillGroup_Data } from './financialStabilityAndRegulation/financialStabilityAndRegulation.data';
 import { natureOfMoney_SkillGroup_Data } from './natureOfMoney/natureOfMoney.data';
 
-export const moneyAndFinancialSystem_SkillDomain_Data = buildSkillDomainConfig({
+export const moneyAndFinancialSystem_SkillDomain_Data = defineSkillDomain({
   slug: 'moneyAndFinancialSystem',
   id: '43d4b32d-b5bc-4245-9368-36aad346c56a',
-  name: {
+  title: {
     en: 'Гроші та фінансова система',
     zh: '货币与金融体系',
     hi: 'मुद्रा और वित्तीय प्रणाली',
@@ -39,12 +39,12 @@ export const moneyAndFinancialSystem_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Ақша және қаржы жүйесі',
     qm: 'Aqça ve maliy sistema',
   },
-  groups: {
-    banksAndCreditIntermediation: banksAndCreditIntermediation_SkillGroup_Data,
-    financialMarkets: financialMarkets_SkillGroup_Data,
-    financialStabilityAndRegulation: financialStabilityAndRegulation_SkillGroup_Data,
-    natureOfMoney: natureOfMoney_SkillGroup_Data,
-  },
+  groups: [
+    banksAndCreditIntermediation_SkillGroup_Data,
+    financialMarkets_SkillGroup_Data,
+    financialStabilityAndRegulation_SkillGroup_Data,
+    natureOfMoney_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Financial institutions redistribute funds across time and among economic participants. The focus is system instruments and mechanisms; personal financial decisions belong to a neighboring domain.',

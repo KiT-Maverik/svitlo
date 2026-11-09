@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const colloids_Skill_Data = buildSkillConfig({
+export const colloids_Skill_Data = defineSkill({
   slug: 'colloids',
   id: '2b8ae0ab-6f68-483f-acee-4e596141dcfb',
   name: {

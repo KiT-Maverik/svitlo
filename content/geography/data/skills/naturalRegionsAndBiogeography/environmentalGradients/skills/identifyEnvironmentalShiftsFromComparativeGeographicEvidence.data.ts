@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyEnvironmentalShiftsFromComparativeGeographicEvidence_Skill_Data = buildSkillConfig({
+export const identifyEnvironmentalShiftsFromComparativeGeographicEvidence_Skill_Data = defineSkill({
   slug: 'identifyEnvironmentalShiftsFromComparativeGeographicEvidence',
   id: '39addcdb-17af-4363-bbfd-fcd3475d0e39',
   name: {

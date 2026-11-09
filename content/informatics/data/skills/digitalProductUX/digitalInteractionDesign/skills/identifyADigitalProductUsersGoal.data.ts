@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyADigitalProductUsersGoal_Skill_Data = buildSkillConfig({
+export const identifyADigitalProductUsersGoal_Skill_Data = defineSkill({
   slug: 'identifyADigitalProductUsersGoal',
   id: '489f153e-8c9f-47eb-a459-31466cc13fb4',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainLungVentilation_Skill_Data = buildSkillConfig({
+export const explainLungVentilation_Skill_Data = defineSkill({
   slug: 'explainLungVentilation',
   id: 'd92454c4-9472-401a-b58f-113d7f5f6e52',
   name: {

@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import type { Locale } from '@svitlo/contracts/localization';
-import { getLanguageCode } from '@svitlo/engine';
+import { useCallback } from 'react';
+import { useRouter } from 'next/navigation';
+import type { SkillNode } from './skillsMindMap.utils';
 import {
   type UiKitMessages,
   useSvitloColorScheme,
@@ -27,52 +27,15 @@ const idleProgress = {
 const unusedActions = { back: () => {}, next: () => {}, skip: () => {} };
 
 function SkillAnalyticsContent({
-  domainSlugs,
+  domains,
   initialMessages,
 }: {
-  domainSlugs: readonly string[];
+  domains: readonly SkillNode[];
   initialMessages: UiKitMessages;
 }) {
   const { locale, setLocale, ready, localeError } = useSkillsPageSettings();
   const { mode, systemMode, setMode } = useSvitloColorScheme();
-  const [resource, setResource] = useState<{ locale: Locale; messages: UiKitMessages }>(() => ({
-    locale: 'uk-UA',
-    messages: initialMessages,
-  }));
-  const [resourceError, setResourceError] = useState<{ locale: Locale; message: string } | null>(null);
-
-  useEffect(() => {
-    if (resource.locale === locale) return;
-    const controller = new AbortController();
-    void fetch('/data/uiKit/components/' + encodeURIComponent(getLanguageCode(locale)) + '.json', {
-      signal: controller.signal,
-    })
-      .then(response => {
-        if (!response.ok) throw new Error('HTTP ' + response.status);
-        return response.json() as Promise<UiKitMessages>;
-      })
-      .then(messages => {
-        if (!controller.signal.aborted) {
-          setResource({ locale, messages });
-          setResourceError(null);
-        }
-      })
-      .catch(error => {
-        if (!controller.signal.aborted)
-          setResourceError({ locale, message: error instanceof Error ? error.message : String(error) });
-      });
-    return () => controller.abort();
-  }, [locale, resource.locale]);
-
-  if (resource.locale !== locale) {
-    const currentError = resourceError?.locale === locale ? resourceError.message : null;
-    return (
-      <Box role={currentError ? 'alert' : 'status'} aria-busy={!currentError}>
-        {currentError ? 'Не вдалося завантажити переклад інтерфейсу: ' + currentError : 'Завантаження інтерфейсу…'}
-      </Box>
-    );
-  }
-  const messages = resource.messages;
+  const messages = initialMessages;
 
   // The page-scoped provider owns page preferences and locale, while
   // the existing LearningLayout owns the navbar and right settings drawer.
@@ -103,22 +66,29 @@ function SkillAnalyticsContent({
         <Box sx={{ mb: 2, fontSize: 14 }}>
           <Link href="/">← {textbook.title}</Link>
         </Box>
-        {ready && (localeError ? <Box role="alert">{localeError}</Box> : <SkillsMindMap domainSlugs={domainSlugs} />)}
+        {ready && (localeError ? <Box role="alert">{localeError}</Box> : <SkillsMindMap domains={domains} />)}
       </Container>
     </LearningLayout>
   );
 }
 
 export function SkillAnalyticsPage({
-  domainSlugs,
+  domains,
+  language,
   initialMessages,
 }: {
-  domainSlugs: readonly string[];
+  domains: readonly SkillNode[];
+  language: string;
   initialMessages: UiKitMessages;
 }) {
+  const router = useRouter();
+  const onLanguageChange = useCallback(
+    (next: string) => router.replace('/skillAnalytics?lang=' + encodeURIComponent(next), { scroll: false }),
+    [router],
+  );
   return (
-    <SkillsPageSettingsProvider>
-      <SkillAnalyticsContent domainSlugs={domainSlugs} initialMessages={initialMessages} />
+    <SkillsPageSettingsProvider initialLanguage={language} onLanguageChange={onLanguageChange}>
+      <SkillAnalyticsContent domains={domains} initialMessages={initialMessages} />
     </SkillsPageSettingsProvider>
   );
 }

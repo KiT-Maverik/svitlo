@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const framingEffects_Skill_Data = buildSkillConfig({
+export const framingEffects_Skill_Data = defineSkill({
   slug: 'framingEffects',
   id: 'e1a4f2ce-1c93-4b42-a5a5-77e1d86e61f3',
   name: {

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   expenseTracking_Skill_Data,
@@ -7,7 +7,7 @@ import {
   personalIncomeSources_Skill_Data,
 } from './skills';
 
-export const incomeAndBudgeting_SkillGroup_Data = buildSkillGroupConfig({
+export const incomeAndBudgeting_SkillGroup_Data = defineSkillGroup({
   slug: 'incomeAndBudgeting',
   id: '3be00d44-63ce-44f3-b834-de556de97751',
   name: {
@@ -41,12 +41,12 @@ export const incomeAndBudgeting_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Кіріс және бюджет',
     qm: 'Kirset ve bücet',
   },
-  skills: {
-    expenseTracking: expenseTracking_Skill_Data,
-    financialGoals: financialGoals_Skill_Data,
-    personalBudget: personalBudget_Skill_Data,
-    personalIncomeSources: personalIncomeSources_Skill_Data,
-  },
+  skills: [
+    expenseTracking_Skill_Data,
+    financialGoals_Skill_Data,
+    personalBudget_Skill_Data,
+    personalIncomeSources_Skill_Data,
+  ],
   description: {
     methodological:
       'Money planning begins by understanding sources of income, recurring obligations, and the limits of available spending.',

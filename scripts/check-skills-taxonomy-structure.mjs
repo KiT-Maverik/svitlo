@@ -50,18 +50,15 @@ function imported(source, file) {
 function childRefs(config, name, file, optional = false) {
   const p = field(config, name);
   if (!p && optional) return new Map();
-  check(p && ts.isObjectLiteralExpression(p.initializer), 'Missing literal ' + name + ': ' + file);
+  check(p, 'Missing child collection ' + name + ': ' + file);
   const result = new Map();
-  for (const child of p.initializer.properties) {
-    check(
-      ts.isPropertyAssignment(child) &&
-        ts.isIdentifier(child.name) &&
-        identifier.test(child.name.text) &&
-        ts.isIdentifier(child.initializer),
-      'Invalid child entity reference: ' + file,
-    );
-    check(!result.has(child.name.text), 'Duplicate child slug ' + child.name.text + ': ' + file);
-    result.set(child.name.text, child.initializer.text);
+  check(ts.isArrayLiteralExpression(p.initializer), 'Invalid child configurator array ' + name + ': ' + file);
+  for (const entry of p.initializer.elements) {
+    check(ts.isIdentifier(entry), 'Invalid configurator array reference: ' + file);
+    const match = /^(\w+)_(?:SkillGroup|Skill)_Data$/.exec(entry.text);
+    check(match && identifier.test(match[1]), 'Invalid child configurator symbol: ' + file);
+    check(!result.has(match[1]), 'Duplicate child slug ' + match[1] + ': ' + file);
+    result.set(match[1], entry.text);
   }
   return result;
 }
@@ -90,7 +87,12 @@ export function checkTaxonomy(root = defaultRoot) {
           d.initializer &&
           ts.isCallExpression(d.initializer) &&
           ts.isIdentifier(d.initializer.expression) &&
-          d.initializer.expression.text === 'build' + type + 'Config' &&
+          d.initializer.expression.text ===
+            (type === 'SkillDomain'
+              ? 'defineSkillDomain'
+              : type === 'SkillGroup'
+                ? 'defineSkillGroup'
+                : 'defineSkill') &&
           d.initializer.arguments.length === 1 &&
           ts.isObjectLiteralExpression(d.initializer.arguments[0]),
       );
@@ -204,7 +206,7 @@ export function checkTaxonomy(root = defaultRoot) {
       !field(parent.config, 'groupIds') && !field(parent.config, 'skillIds'),
       'Obsolete ID-only Domain children: ' + dir,
     );
-    const groupRefs = childRefs(parent.config, 'groups', parent.source.fileName);
+    const groupRefs = childRefs(parent.config, 'groups', parent.source.fileName, true);
     same(groupRefs.keys(), groups, 'Group membership: ' + dir);
     const directRefs = childRefs(parent.config, 'skills', parent.source.fileName, !directSkills);
     if (!directSkills) check(directRefs.size === 0, 'Direct Skills without directory: ' + dir);

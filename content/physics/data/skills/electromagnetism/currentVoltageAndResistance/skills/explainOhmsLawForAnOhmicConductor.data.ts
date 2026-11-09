@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainOhmsLawForAnOhmicConductor_Skill_Data = buildSkillConfig({
+export const explainOhmsLawForAnOhmicConductor_Skill_Data = defineSkill({
   slug: 'explainOhmsLawForAnOhmicConductor',
   id: 'b0ec03a2-e1f8-478d-a5b4-6251451f97fc',
   name: {

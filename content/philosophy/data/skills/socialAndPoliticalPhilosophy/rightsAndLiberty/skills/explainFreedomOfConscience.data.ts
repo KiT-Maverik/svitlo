@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainFreedomOfConscience_Skill_Data = buildSkillConfig({
+export const explainFreedomOfConscience_Skill_Data = defineSkill({
   slug: 'explainFreedomOfConscience',
   id: '12b47368-50cf-44b0-85b7-f0dc90b34e09',
   name: {

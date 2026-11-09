@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainPlantsNeedForWater_Skill_Data = buildSkillConfig({
+export const explainPlantsNeedForWater_Skill_Data = defineSkill({
   slug: 'explainPlantsNeedForWater',
   id: '07c93377-44af-40ac-aa6f-7e3874f433c5',
   name: {

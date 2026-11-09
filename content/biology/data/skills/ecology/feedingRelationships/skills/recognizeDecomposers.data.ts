@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeDecomposers_Skill_Data = buildSkillConfig({
+export const recognizeDecomposers_Skill_Data = defineSkill({
   slug: 'recognizeDecomposers',
   id: '3301f858-7bb1-4afb-8df9-fbf100c4ce98',
   name: {

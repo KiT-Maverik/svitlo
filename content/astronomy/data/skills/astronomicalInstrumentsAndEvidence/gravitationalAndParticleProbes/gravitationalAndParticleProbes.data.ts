@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   gravitationalLensing_Skill_Data,
@@ -7,7 +7,7 @@ import {
   neutrinoAstronomy_Skill_Data,
 } from './skills';
 
-export const gravitationalAndParticleProbes_SkillGroup_Data = buildSkillGroupConfig({
+export const gravitationalAndParticleProbes_SkillGroup_Data = defineSkillGroup({
   slug: 'gravitationalAndParticleProbes',
   id: '13ffe4cf-acb8-40f7-b43a-59b10d38eb18',
   name: {
@@ -41,12 +41,12 @@ export const gravitationalAndParticleProbes_SkillGroup_Data = buildSkillGroupCon
     he: 'תצפיות באמצעות כבידה וחלקיקים',
     vi: 'Thăm dò bằng hấp dẫn và hạt',
   },
-  skills: {
-    gravitationalLensing: gravitationalLensing_Skill_Data,
-    gravitationalWaveAstronomy: gravitationalWaveAstronomy_Skill_Data,
-    multimessengerEvidence: multimessengerEvidence_Skill_Data,
-    neutrinoAstronomy: neutrinoAstronomy_Skill_Data,
-  },
+  skills: [
+    gravitationalLensing_Skill_Data,
+    gravitationalWaveAstronomy_Skill_Data,
+    multimessengerEvidence_Skill_Data,
+    neutrinoAstronomy_Skill_Data,
+  ],
   description: {
     methodological:
       'Gravitational lensing, gravitational waves and astrophysical particles supply information that differs from ordinary electromagnetic imaging and spectroscopy; a multimessenger inference combines distinct independent signals. Lensing is observed through light affected by gravity and is not itself a non-electromagnetic measurement.',

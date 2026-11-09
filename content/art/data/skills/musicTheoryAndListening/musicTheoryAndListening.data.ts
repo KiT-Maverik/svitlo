@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { harmonyAndMusicalForm_SkillGroup_Data } from './harmonyAndMusicalForm/harmonyAndMusicalForm.data';
 import { musicalSoundAndTexture_SkillGroup_Data } from './musicalSoundAndTexture/musicalSoundAndTexture.data';
 import { pitchAndMelody_SkillGroup_Data } from './pitchAndMelody/pitchAndMelody.data';
 import { pulseAndRhythm_SkillGroup_Data } from './pulseAndRhythm/pulseAndRhythm.data';
 
-export const musicTheoryAndListening_SkillDomain_Data = buildSkillDomainConfig({
+export const musicTheoryAndListening_SkillDomain_Data = defineSkillDomain({
   slug: 'musicTheoryAndListening',
   id: '8afffe49-bea2-4c5a-ae83-a35f8ae90a21',
-  name: {
+  title: {
     en: 'Music Theory and Listening',
     zh: '音乐理论与聆听',
     hi: 'संगीत सिद्धांत और श्रवण',
@@ -39,12 +39,12 @@ export const musicTheoryAndListening_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Музыка теориясы және тыңдау',
     qm: 'Muzika nazariyesi ve diñleme',
   },
-  groups: {
-    harmonyAndMusicalForm: harmonyAndMusicalForm_SkillGroup_Data,
-    musicalSoundAndTexture: musicalSoundAndTexture_SkillGroup_Data,
-    pitchAndMelody: pitchAndMelody_SkillGroup_Data,
-    pulseAndRhythm: pulseAndRhythm_SkillGroup_Data,
-  },
+  groups: [
+    harmonyAndMusicalForm_SkillGroup_Data,
+    musicalSoundAndTexture_SkillGroup_Data,
+    pitchAndMelody_SkillGroup_Data,
+    pulseAndRhythm_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Musical listening distinguishes acoustic character and patterned relationships among events. Theoretical models vary across traditions and are not confined to Western staff notation.',

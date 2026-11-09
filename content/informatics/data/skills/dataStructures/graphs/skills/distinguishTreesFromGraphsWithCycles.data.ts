@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishTreesFromGraphsWithCycles_Skill_Data = buildSkillConfig({
+export const distinguishTreesFromGraphsWithCycles_Skill_Data = defineSkill({
   slug: 'distinguishTreesFromGraphsWithCycles',
   id: '8a4de3b6-ea03-4ee3-8c9c-307fa71ef78b',
   name: {

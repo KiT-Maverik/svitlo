@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainDiffusion_Skill_Data = buildSkillConfig({
+export const explainDiffusion_Skill_Data = defineSkill({
   slug: 'explainDiffusion',
   id: 'c0a41a83-acb2-4d10-9ca0-7ec7f9971a18',
   name: {

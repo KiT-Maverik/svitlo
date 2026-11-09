@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const createStopMotionAnimation_Skill_Data = buildSkillConfig({
+export const createStopMotionAnimation_Skill_Data = defineSkill({
   slug: 'createStopMotionAnimation',
   id: 'fe2faba3-cef1-406b-8071-30c76edc5593',
   name: {

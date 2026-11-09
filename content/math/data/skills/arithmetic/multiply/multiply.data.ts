@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   equalGroups_Skill_Data,
@@ -27,7 +27,7 @@ import {
   checkProduct_Skill_Data,
 } from './skills';
 
-export const multiply_SkillGroup_Data = buildSkillGroupConfig({
+export const multiply_SkillGroup_Data = defineSkillGroup({
   slug: 'multiply',
   id: '1cb60869-1e45-44c0-bc72-aab0a8df8af7',
   name: {
@@ -61,32 +61,32 @@ export const multiply_SkillGroup_Data = buildSkillGroupConfig({
     pl: 'Mnożenie',
     uk: 'Множення',
   },
-  skills: {
-    equalGroups: equalGroups_Skill_Data,
-    repeatedAddition: repeatedAddition_Skill_Data,
-    arrayModel: arrayModel_Skill_Data,
-    readExpression: readExpression_Skill_Data,
-    by2: by2_Skill_Data,
-    by3: by3_Skill_Data,
-    by4: by4_Skill_Data,
-    by5: by5_Skill_Data,
-    by6: by6_Skill_Data,
-    by7: by7_Skill_Data,
-    by8: by8_Skill_Data,
-    by9: by9_Skill_Data,
-    by10: by10_Skill_Data,
-    by0And1: by0And1_Skill_Data,
-    commutative: commutative_Skill_Data,
-    associative: associative_Skill_Data,
-    distributive: distributive_Skill_Data,
-    deriveFacts: deriveFacts_Skill_Data,
-    doubleTwice: doubleTwice_Skill_Data,
-    roundTens: roundTens_Skill_Data,
-    roundHundreds: roundHundreds_Skill_Data,
-    twoDigitByOne: twoDigitByOne_Skill_Data,
-    threeDigitByOne: threeDigitByOne_Skill_Data,
-    checkProduct: checkProduct_Skill_Data,
-  },
+  skills: [
+    equalGroups_Skill_Data,
+    repeatedAddition_Skill_Data,
+    arrayModel_Skill_Data,
+    readExpression_Skill_Data,
+    by2_Skill_Data,
+    by3_Skill_Data,
+    by4_Skill_Data,
+    by5_Skill_Data,
+    by6_Skill_Data,
+    by7_Skill_Data,
+    by8_Skill_Data,
+    by9_Skill_Data,
+    by10_Skill_Data,
+    by0And1_Skill_Data,
+    commutative_Skill_Data,
+    associative_Skill_Data,
+    distributive_Skill_Data,
+    deriveFacts_Skill_Data,
+    doubleTwice_Skill_Data,
+    roundTens_Skill_Data,
+    roundHundreds_Skill_Data,
+    twoDigitByOne_Skill_Data,
+    threeDigitByOne_Skill_Data,
+    checkProduct_Skill_Data,
+  ],
   description: {
     methodological:
       'Products as equal groups or rectangular arrays, multiplication facts and properties, and place-value-based computation methods.',

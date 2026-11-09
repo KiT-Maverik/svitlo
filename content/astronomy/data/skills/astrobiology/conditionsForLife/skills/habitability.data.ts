@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const habitability_Skill_Data = buildSkillConfig({
+export const habitability_Skill_Data = defineSkill({
   slug: 'habitability',
   id: 'ffb659ed-b31f-4282-9653-af21af95a950',
   name: {

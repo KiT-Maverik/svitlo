@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeHarmonicProgressions_Skill_Data = buildSkillConfig({
+export const recognizeHarmonicProgressions_Skill_Data = defineSkill({
   slug: 'recognizeHarmonicProgressions',
   id: 'dc3f3fc2-2c63-45e5-b05e-3e60b762dd6d',
   name: {

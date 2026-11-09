@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyAccessibilityBarriers_Skill_Data = buildSkillConfig({
+export const identifyAccessibilityBarriers_Skill_Data = defineSkill({
   slug: 'identifyAccessibilityBarriers',
   id: '13f0ad7a-679a-48a3-890d-0eb33a2906d5',
   name: {

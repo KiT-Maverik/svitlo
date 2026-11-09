@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const designMultisensoryRelationships_Skill_Data = buildSkillConfig({
+export const designMultisensoryRelationships_Skill_Data = defineSkill({
   slug: 'designMultisensoryRelationships',
   id: 'b076bad5-eec8-4b77-93ce-b74b1ed425d0',
   name: {

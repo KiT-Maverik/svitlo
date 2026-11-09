@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainThePrincipleOfGeneticModification_Skill_Data = buildSkillConfig({
+export const explainThePrincipleOfGeneticModification_Skill_Data = defineSkill({
   slug: 'explainThePrincipleOfGeneticModification',
   id: '6350e09a-4fc8-48de-89a1-6ce047c2db6b',
   name: {

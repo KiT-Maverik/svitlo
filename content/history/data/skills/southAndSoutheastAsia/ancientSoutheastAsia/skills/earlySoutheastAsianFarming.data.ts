@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const earlySoutheastAsianFarming_Skill_Data = buildSkillConfig({
+export const earlySoutheastAsianFarming_Skill_Data = defineSkill({
   slug: 'earlySoutheastAsianFarming',
   id: '11a48885-dcaa-4f45-826e-8ba2ae3389e2',
   name: {

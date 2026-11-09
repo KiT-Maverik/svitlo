@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const inputDeviceHardware_Skill_Data = buildSkillConfig({
+export const inputDeviceHardware_Skill_Data = defineSkill({
   slug: 'inputDeviceHardware',
   id: 'cb942b26-b1bd-4ce3-bdf9-af32e94b8395',
   name: {

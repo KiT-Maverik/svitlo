@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const bottomUpAndTopDownProcessing_Skill_Data = buildSkillConfig({
+export const bottomUpAndTopDownProcessing_Skill_Data = defineSkill({
   slug: 'bottomUpAndTopDownProcessing',
   id: '6547fe73-0c2a-40ba-9a03-5a122a8c748d',
   name: {

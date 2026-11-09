@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { distributionChannels_Skill_Data, distributionCosts_Skill_Data, wholesaleTrade_Skill_Data } from './skills';
 
-export const salesChannelsAndDistribution_SkillGroup_Data = buildSkillGroupConfig({
+export const salesChannelsAndDistribution_SkillGroup_Data = defineSkillGroup({
   slug: 'salesChannelsAndDistribution',
   id: '6131a2e9-3592-41cc-b0e7-af5ebc270965',
   name: {
@@ -36,11 +36,7 @@ export const salesChannelsAndDistribution_SkillGroup_Data = buildSkillGroupConfi
     kk: 'Сату арналары және тарату',
     qm: 'Satış kanalları ve tarqatma',
   },
-  skills: {
-    distributionChannels: distributionChannels_Skill_Data,
-    distributionCosts: distributionCosts_Skill_Data,
-    wholesaleTrade: wholesaleTrade_Skill_Data,
-  },
+  skills: [distributionChannels_Skill_Data, distributionCosts_Skill_Data, wholesaleTrade_Skill_Data],
   description: {
     methodological:
       'Goods can reach end consumers through different numbers of intermediaries, wholesale transactions, warehouses, and transport; channel choice affects costs, availability, and control over sales.',

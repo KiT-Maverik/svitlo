@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishValidityFromSoundness_Skill_Data = buildSkillConfig({
+export const distinguishValidityFromSoundness_Skill_Data = defineSkill({
   slug: 'distinguishValidityFromSoundness',
   id: 'dac1c7e0-93fa-4aac-afe8-8dcb3cfbdf28',
   name: {

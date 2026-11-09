@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeMagneticAttraction_Skill_Data = buildSkillConfig({
+export const recognizeMagneticAttraction_Skill_Data = defineSkill({
   slug: 'recognizeMagneticAttraction',
   id: '05e7b8cf-78b7-4fdb-839d-1626efd3d66f',
   name: {

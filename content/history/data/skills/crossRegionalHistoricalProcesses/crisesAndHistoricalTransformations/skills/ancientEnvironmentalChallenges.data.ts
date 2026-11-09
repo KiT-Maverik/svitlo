@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const ancientEnvironmentalChallenges_Skill_Data = buildSkillConfig({
+export const ancientEnvironmentalChallenges_Skill_Data = defineSkill({
   slug: 'ancientEnvironmentalChallenges',
   id: '15263259-8bcb-407a-87b5-0ed1bba0f2a7',
   name: {

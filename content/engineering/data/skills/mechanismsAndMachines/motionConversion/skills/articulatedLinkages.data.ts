@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const articulatedLinkages_Skill_Data = buildSkillConfig({
+export const articulatedLinkages_Skill_Data = defineSkill({
   slug: 'articulatedLinkages',
   id: '34e9c19b-695f-4000-bb01-4a07991dd060',
   name: {

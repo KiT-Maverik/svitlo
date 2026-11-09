@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const feedbackInEducation_Skill_Data = buildSkillConfig({
+export const feedbackInEducation_Skill_Data = defineSkill({
   slug: 'feedbackInEducation',
   id: '5740806a-5b37-4648-88db-b23205ff1b29',
   name: {

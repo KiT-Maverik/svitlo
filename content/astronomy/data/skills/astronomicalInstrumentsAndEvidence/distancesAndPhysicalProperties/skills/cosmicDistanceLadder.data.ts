@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const cosmicDistanceLadder_Skill_Data = buildSkillConfig({
+export const cosmicDistanceLadder_Skill_Data = defineSkill({
   slug: 'cosmicDistanceLadder',
   id: '7eb2719c-130e-4a4d-8266-7940ef7a2a9c',
   name: {

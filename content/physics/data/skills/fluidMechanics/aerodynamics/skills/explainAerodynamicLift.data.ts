@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainAerodynamicLift_Skill_Data = buildSkillConfig({
+export const explainAerodynamicLift_Skill_Data = defineSkill({
   slug: 'explainAerodynamicLift',
   id: 'a43841f0-4bc5-496f-abe9-3ed421012e34',
   name: {

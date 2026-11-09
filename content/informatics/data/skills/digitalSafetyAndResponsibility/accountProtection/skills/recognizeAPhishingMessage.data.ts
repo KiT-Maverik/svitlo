@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeAPhishingMessage_Skill_Data = buildSkillConfig({
+export const recognizeAPhishingMessage_Skill_Data = defineSkill({
   slug: 'recognizeAPhishingMessage',
   id: '488abc6b-a03e-4127-9457-974181354a79',
   name: {

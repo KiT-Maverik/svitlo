@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeBryophyteCharacteristics_Skill_Data = buildSkillConfig({
+export const recognizeBryophyteCharacteristics_Skill_Data = defineSkill({
   slug: 'recognizeBryophyteCharacteristics',
   id: 'bf0aa43b-af7a-4911-98d6-b171efb34eb0',
   name: {

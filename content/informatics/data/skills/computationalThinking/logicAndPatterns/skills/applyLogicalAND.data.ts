@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const applyLogicalAND_Skill_Data = buildSkillConfig({
+export const applyLogicalAND_Skill_Data = defineSkill({
   slug: 'applyLogicalAND',
   id: '09f1c8e9-9e7b-4d80-8d91-c18f86e96b06',
   name: {

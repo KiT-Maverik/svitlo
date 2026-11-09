@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const preventFallsInLivingSpaces_Skill_Data = buildSkillConfig({
+export const preventFallsInLivingSpaces_Skill_Data = defineSkill({
   slug: 'preventFallsInLivingSpaces',
   id: 'a066486d-e957-4ec3-a6e6-aaed5f1b024a',
   name: {

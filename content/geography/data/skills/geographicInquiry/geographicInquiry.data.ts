@@ -1,12 +1,12 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { decisionsAndCommunication_SkillGroup_Data } from './decisionsAndCommunication/decisionsAndCommunication.data';
 import { evidenceAndInvestigation_SkillGroup_Data } from './evidenceAndInvestigation/evidenceAndInvestigation.data';
 
-export const geographicInquiry_SkillDomain_Data = buildSkillDomainConfig({
+export const geographicInquiry_SkillDomain_Data = defineSkillDomain({
   slug: 'geographicInquiry',
   id: '928c9bcd-2b25-4af0-8229-0e3329448c75',
-  name: {
+  title: {
     en: 'Geographic Inquiry',
     zh: '地理探究',
     hi: 'भौगोलिक अन्वेषण',
@@ -37,10 +37,7 @@ export const geographicInquiry_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Географиялық зерттеу',
     qm: 'Coğrafiy araştırma',
   },
-  groups: {
-    decisionsAndCommunication: decisionsAndCommunication_SkillGroup_Data,
-    evidenceAndInvestigation: evidenceAndInvestigation_SkillGroup_Data,
-  },
+  groups: [decisionsAndCommunication_SkillGroup_Data, evidenceAndInvestigation_SkillGroup_Data],
   description: {
     methodological:
       'Geographic investigation turns observations about places into reasoned evidence, maps, comparisons and decisions. It includes asking spatial questions, collecting and scrutinizing data, evaluating alternatives and communicating conclusions rather than memorizing a particular set of locations.',

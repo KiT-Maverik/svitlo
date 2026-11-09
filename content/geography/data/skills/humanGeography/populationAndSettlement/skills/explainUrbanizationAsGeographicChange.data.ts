@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainUrbanizationAsGeographicChange_Skill_Data = buildSkillConfig({
+export const explainUrbanizationAsGeographicChange_Skill_Data = defineSkill({
   slug: 'explainUrbanizationAsGeographicChange',
   id: '54ba0440-30de-4551-8876-893d413b412e',
   name: {

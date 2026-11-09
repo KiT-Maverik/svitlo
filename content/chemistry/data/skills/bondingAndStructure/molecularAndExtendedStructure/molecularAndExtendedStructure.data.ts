@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   ionicLattices_Skill_Data,
@@ -7,7 +7,7 @@ import {
   networkSolids_Skill_Data,
 } from './skills';
 
-export const molecularAndExtendedStructure_SkillGroup_Data = buildSkillGroupConfig({
+export const molecularAndExtendedStructure_SkillGroup_Data = defineSkillGroup({
   slug: 'molecularAndExtendedStructure',
   id: 'f680f310-7c99-406f-b347-6b8060e08cf2',
   name: {
@@ -41,12 +41,12 @@ export const molecularAndExtendedStructure_SkillGroup_Data = buildSkillGroupConf
     kk: 'Молекулалық және кеңейтілген құрылым',
     qm: 'Molekulalı ve şebekeli qurulışlar',
   },
-  skills: {
-    ionicLattices: ionicLattices_Skill_Data,
-    molecularGeometry: molecularGeometry_Skill_Data,
-    molecularPolarity: molecularPolarity_Skill_Data,
-    networkSolids: networkSolids_Skill_Data,
-  },
+  skills: [
+    ionicLattices_Skill_Data,
+    molecularGeometry_Skill_Data,
+    molecularPolarity_Skill_Data,
+    networkSolids_Skill_Data,
+  ],
   description: {
     methodological:
       'Spatial arrangement and connectedness influence substance behavior independently of a simple formula.',

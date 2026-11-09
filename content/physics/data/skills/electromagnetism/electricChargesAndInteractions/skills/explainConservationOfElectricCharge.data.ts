@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainConservationOfElectricCharge_Skill_Data = buildSkillConfig({
+export const explainConservationOfElectricCharge_Skill_Data = defineSkill({
   slug: 'explainConservationOfElectricCharge',
   id: '5ace80c2-6396-4abf-8299-616e14d981f2',
   name: {

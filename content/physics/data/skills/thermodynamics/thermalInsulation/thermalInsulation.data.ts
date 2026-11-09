@@ -1,11 +1,11 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   compareMaterialsThermalInsulationProperties_Skill_Data,
   selectAMaterialForMaintainingTemperature_Skill_Data,
 } from './skills';
 
-export const thermalInsulation_SkillGroup_Data = buildSkillGroupConfig({
+export const thermalInsulation_SkillGroup_Data = defineSkillGroup({
   slug: 'thermalInsulation',
   id: 'c6848cf3-7068-430a-a06c-def5689a40c5',
   name: {
@@ -39,10 +39,7 @@ export const thermalInsulation_SkillGroup_Data = buildSkillGroupConfig({
     ka: 'თბოიზოლაცია',
     kk: 'Жылу оқшаулау',
   },
-  skills: {
-    compareMaterialsThermalInsulationProperties: compareMaterialsThermalInsulationProperties_Skill_Data,
-    selectAMaterialForMaintainingTemperature: selectAMaterialForMaintainingTemperature_Skill_Data,
-  },
+  skills: [compareMaterialsThermalInsulationProperties_Skill_Data, selectAMaterialForMaintainingTemperature_Skill_Data],
   description: {
     methodological:
       'Insulating materials slow down energy transfer but do not create energy themselves; this differs from describing the three mechanisms of heat exchange.',

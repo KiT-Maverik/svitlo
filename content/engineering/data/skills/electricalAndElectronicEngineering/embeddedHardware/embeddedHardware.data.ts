@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   actuatorDriverCompatibility_Skill_Data,
@@ -7,7 +7,7 @@ import {
   sensorInterfaceCompatibility_Skill_Data,
 } from './skills';
 
-export const embeddedHardware_SkillGroup_Data = buildSkillGroupConfig({
+export const embeddedHardware_SkillGroup_Data = defineSkillGroup({
   slug: 'embeddedHardware',
   id: '202be020-95eb-4cdc-8821-b5d7685462bc',
   name: {
@@ -41,12 +41,12 @@ export const embeddedHardware_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Ендірілген аппараттық құралдар',
     qm: 'İçine yerleştirilgen cihazlar',
   },
-  skills: {
-    actuatorDriverCompatibility: actuatorDriverCompatibility_Skill_Data,
-    hardwareInputOutputInterfaces: hardwareInputOutputInterfaces_Skill_Data,
-    microcontrollerArchitecture: microcontrollerArchitecture_Skill_Data,
-    sensorInterfaceCompatibility: sensorInterfaceCompatibility_Skill_Data,
-  },
+  skills: [
+    actuatorDriverCompatibility_Skill_Data,
+    hardwareInputOutputInterfaces_Skill_Data,
+    microcontrollerArchitecture_Skill_Data,
+    sensorInterfaceCompatibility_Skill_Data,
+  ],
   description: {
     methodological:
       'Controllers communicate with sensors and actuators through real physical interfaces; programming concepts are treated separately in Informatics.',

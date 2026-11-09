@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const subscriptionsVersusOneTimePurchases_Skill_Data = buildSkillConfig({
+export const subscriptionsVersusOneTimePurchases_Skill_Data = defineSkill({
   slug: 'subscriptionsVersusOneTimePurchases',
   id: '7858eb52-a565-4844-8525-35377ea99483',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const expressCharacterThroughGesture_Skill_Data = buildSkillConfig({
+export const expressCharacterThroughGesture_Skill_Data = defineSkill({
   slug: 'expressCharacterThroughGesture',
   id: 'aaa77be4-669f-4c71-9805-fa3f752cac6f',
   name: {

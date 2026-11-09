@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const psychologicalWellbeing_Skill_Data = buildSkillConfig({
+export const psychologicalWellbeing_Skill_Data = defineSkill({
   slug: 'psychologicalWellbeing',
   id: 'e67827a7-f0b5-4bf0-b57e-e83a73f6ce19',
   name: {

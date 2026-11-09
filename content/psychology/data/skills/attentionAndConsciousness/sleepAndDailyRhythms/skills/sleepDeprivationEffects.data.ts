@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const sleepDeprivationEffects_Skill_Data = buildSkillConfig({
+export const sleepDeprivationEffects_Skill_Data = defineSkill({
   slug: 'sleepDeprivationEffects',
   id: 'ff525623-040a-49b8-b0e4-b3555375e564',
   name: {

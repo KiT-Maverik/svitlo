@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const supernovae_Skill_Data = buildSkillConfig({
+export const supernovae_Skill_Data = defineSkill({
   slug: 'supernovae',
   id: '4bd7ed89-0734-4d58-8e99-24ed26f7092d',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const greekCitiesOfBlackSea_Skill_Data = buildSkillConfig({
+export const greekCitiesOfBlackSea_Skill_Data = defineSkill({
   slug: 'greekCitiesOfBlackSea',
   id: '50852105-81fb-4d81-9dcd-a1284247c102',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const dongSonCulture_Skill_Data = buildSkillConfig({
+export const dongSonCulture_Skill_Data = defineSkill({
   slug: 'dongSonCulture',
   id: 'be9bfc99-02fd-4dec-95fe-66021608c863',
   name: {

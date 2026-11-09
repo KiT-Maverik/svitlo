@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretGeographicPatternsOfOceanCurrents_Skill_Data = buildSkillConfig({
+export const interpretGeographicPatternsOfOceanCurrents_Skill_Data = defineSkill({
   slug: 'interpretGeographicPatternsOfOceanCurrents',
   id: 'f9287665-1bc6-4911-a1eb-400d1d92a6dc',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const circleDisk_Skill_Data = buildSkillConfig({
+export const circleDisk_Skill_Data = defineSkill({
   slug: 'circleDisk',
   id: 'e875516d-7466-4b91-b249-1b4e0de6b052',
   name: {

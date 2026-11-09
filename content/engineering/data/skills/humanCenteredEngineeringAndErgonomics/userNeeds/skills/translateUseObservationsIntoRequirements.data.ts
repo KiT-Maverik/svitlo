@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const translateUseObservationsIntoRequirements_Skill_Data = buildSkillConfig({
+export const translateUseObservationsIntoRequirements_Skill_Data = defineSkill({
   slug: 'translateUseObservationsIntoRequirements',
   id: '1549c4f8-3b37-4ddc-a5f5-b52c7043298f',
   name: {

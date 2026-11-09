@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const controlArchitectureTradeOffs_Skill_Data = buildSkillConfig({
+export const controlArchitectureTradeOffs_Skill_Data = defineSkill({
   slug: 'controlArchitectureTradeOffs',
   id: '783d4503-4231-4d22-9725-ba80a7209480',
   name: {

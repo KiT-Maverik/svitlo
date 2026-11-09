@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const advertisingEffectiveness_Skill_Data = buildSkillConfig({
+export const advertisingEffectiveness_Skill_Data = defineSkill({
   slug: 'advertisingEffectiveness',
   id: 'd70f9048-ef45-4e57-a33d-2aadfa877510',
   name: {

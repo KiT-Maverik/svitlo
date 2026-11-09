@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const balanceAMusicMix_Skill_Data = buildSkillConfig({
+export const balanceAMusicMix_Skill_Data = defineSkill({
   slug: 'balanceAMusicMix',
   id: 'ec43566e-ec01-494d-9361-ea4075c6a468',
   name: {

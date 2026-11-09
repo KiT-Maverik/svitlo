@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const taxIncidence_Skill_Data = buildSkillConfig({
+export const taxIncidence_Skill_Data = defineSkill({
   slug: 'taxIncidence',
   id: '4204124e-a98b-4f3d-b0f1-ec2ed9015d0f',
   name: {

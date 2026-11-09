@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const marginalCostOfDigitalCopying_Skill_Data = buildSkillConfig({
+export const marginalCostOfDigitalCopying_Skill_Data = defineSkill({
   slug: 'marginalCostOfDigitalCopying',
   id: '2f183279-4c68-4a00-9bf0-116ffcb92d33',
   name: {

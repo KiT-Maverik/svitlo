@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   compareInformationSources_Skill_Data,
@@ -7,7 +7,7 @@ import {
   verifyAClaimAgainstASource_Skill_Data,
 } from './skills';
 
-export const informationSearchAndVerification_SkillGroup_Data = buildSkillGroupConfig({
+export const informationSearchAndVerification_SkillGroup_Data = defineSkillGroup({
   slug: 'informationSearchAndVerification',
   id: '9d222908-c5d9-4a48-9ae9-df8865d76f73',
   name: {
@@ -41,12 +41,12 @@ export const informationSearchAndVerification_SkillGroup_Data = buildSkillGroupC
     kk: 'Ақпарат іздеу және тексеру',
     qm: 'Malümat qıdıruv ve teşkerüv',
   },
-  skills: {
-    compareInformationSources: compareInformationSources_Skill_Data,
-    distinguishMessagesFromData: distinguishMessagesFromData_Skill_Data,
-    formulateAnInformationQuery: formulateAnInformationQuery_Skill_Data,
-    verifyAClaimAgainstASource: verifyAClaimAgainstASource_Skill_Data,
-  },
+  skills: [
+    compareInformationSources_Skill_Data,
+    distinguishMessagesFromData_Skill_Data,
+    formulateAnInformationQuery_Skill_Data,
+    verifyAClaimAgainstASource_Skill_Data,
+  ],
   description: {
     methodological:
       'Find relevant facts and determine whether independent sources support a particular claim. Formulating queries, comparing reports, and verifying facts are distinct operations.',

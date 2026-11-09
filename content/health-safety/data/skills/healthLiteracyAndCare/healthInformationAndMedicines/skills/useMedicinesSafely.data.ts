@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const useMedicinesSafely_Skill_Data = buildSkillConfig({
+export const useMedicinesSafely_Skill_Data = defineSkill({
   slug: 'useMedicinesSafely',
   id: '8e6792b7-2e18-4b9f-9feb-ea1a0354f324',
   name: {

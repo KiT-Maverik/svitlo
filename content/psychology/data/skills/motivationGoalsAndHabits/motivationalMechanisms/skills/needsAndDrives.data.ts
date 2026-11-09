@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const needsAndDrives_Skill_Data = buildSkillConfig({
+export const needsAndDrives_Skill_Data = defineSkill({
   slug: 'needsAndDrives',
   id: 'f4937795-3dbe-4176-87d9-1d6baf40171a',
   name: {

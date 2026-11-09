@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const safetyMargins_Skill_Data = buildSkillConfig({
+export const safetyMargins_Skill_Data = defineSkill({
   slug: 'safetyMargins',
   id: 'ba2b96ce-3ea4-4ca8-8a36-e63bbba894bb',
   name: {

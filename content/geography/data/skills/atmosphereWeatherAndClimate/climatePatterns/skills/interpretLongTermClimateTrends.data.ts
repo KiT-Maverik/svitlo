@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretLongTermClimateTrends_Skill_Data = buildSkillConfig({
+export const interpretLongTermClimateTrends_Skill_Data = defineSkill({
   slug: 'interpretLongTermClimateTrends',
   id: '1845dcb1-decd-473e-93a1-fcab4a7c5682',
   name: {

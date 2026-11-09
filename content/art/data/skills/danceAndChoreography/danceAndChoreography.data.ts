@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { choreography_SkillGroup_Data } from './choreography/choreography.data';
 import { movementLanguage_SkillGroup_Data } from './movementLanguage/movementLanguage.data';
 import { traditionsAndInterpretation_SkillGroup_Data } from './traditionsAndInterpretation/traditionsAndInterpretation.data';
 
-export const danceAndChoreography_SkillDomain_Data = buildSkillDomainConfig({
+export const danceAndChoreography_SkillDomain_Data = defineSkillDomain({
   slug: 'danceAndChoreography',
   id: '75ed10ea-1788-4f9c-8d96-b2db3ad59e67',
-  name: {
+  title: {
     en: 'Dance and Choreography',
     zh: '舞蹈与编舞',
     hi: 'नृत्य और नृत्यरचना',
@@ -38,11 +38,7 @@ export const danceAndChoreography_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Би және хореография',
     qm: 'Oyun ve koreografiya',
   },
-  groups: {
-    choreography: choreography_SkillGroup_Data,
-    movementLanguage: movementLanguage_SkillGroup_Data,
-    traditionsAndInterpretation: traditionsAndInterpretation_SkillGroup_Data,
-  },
+  groups: [choreography_SkillGroup_Data, movementLanguage_SkillGroup_Data, traditionsAndInterpretation_SkillGroup_Data],
   description: {
     methodological:
       'Dance organizes bodily movement as expressive and culturally situated form. Its aim is choreographic communication rather than athletic conditioning.',

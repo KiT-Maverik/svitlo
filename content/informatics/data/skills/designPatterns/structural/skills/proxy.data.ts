@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const proxy_Skill_Data = buildSkillConfig({
+export const proxy_Skill_Data = defineSkill({
   slug: 'proxy',
   id: '1709b904-6835-4563-a8db-b536d0187a6e',
   name: {

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   configureARepeatedRobotAction_Skill_Data,
@@ -7,7 +7,7 @@ import {
   implementRobotObstacleResponse_Skill_Data,
 } from './skills';
 
-export const robotControl_SkillGroup_Data = buildSkillGroupConfig({
+export const robotControl_SkillGroup_Data = defineSkillGroup({
   slug: 'robotControl',
   id: '346f7bb7-c1ac-4615-99b2-d9551d10e129',
   name: {
@@ -41,12 +41,12 @@ export const robotControl_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Роботты басқару',
     qm: 'Robotnı idare etüv',
   },
-  skills: {
-    configureARepeatedRobotAction: configureARepeatedRobotAction_Skill_Data,
-    createARobotMovementSequence: createARobotMovementSequence_Skill_Data,
-    debugRobotBehavior: debugRobotBehavior_Skill_Data,
-    implementRobotObstacleResponse: implementRobotObstacleResponse_Skill_Data,
-  },
+  skills: [
+    configureARepeatedRobotAction_Skill_Data,
+    createARobotMovementSequence_Skill_Data,
+    debugRobotBehavior_Skill_Data,
+    implementRobotObstacleResponse_Skill_Data,
+  ],
   description: {
     methodological:
       'Construct and adjust commands for movement, obstacle response, and repeated robot operations. Unlike general programming, these algorithms interact with a physical or simulated environment.',

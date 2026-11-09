@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainGravityAsSpacetimeCurvature_Skill_Data = buildSkillConfig({
+export const explainGravityAsSpacetimeCurvature_Skill_Data = defineSkill({
   slug: 'explainGravityAsSpacetimeCurvature',
   id: '86937193-51cb-4582-bb5a-8809fa4884d4',
   name: {

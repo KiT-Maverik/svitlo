@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   explainHowEnvironmentalConditionsInfluenceHumanActivities_Skill_Data,
@@ -7,7 +7,7 @@ import {
   traceAnEnvironmentalImpactBeyondItsSource_Skill_Data,
 } from './skills';
 
-export const humanEnvironmentInteractions_SkillGroup_Data = buildSkillGroupConfig({
+export const humanEnvironmentInteractions_SkillGroup_Data = defineSkillGroup({
   slug: 'humanEnvironmentInteractions',
   id: '45d148d1-2a1b-4213-b0d1-7abd6bf19c5d',
   name: {
@@ -41,13 +41,12 @@ export const humanEnvironmentInteractions_SkillGroup_Data = buildSkillGroupConfi
     kk: 'Адам мен қоршаған ортаның өзара әрекеті',
     qm: 'İnsan ve çevre arasında tesirleşüv',
   },
-  skills: {
-    explainHowEnvironmentalConditionsInfluenceHumanActivities:
-      explainHowEnvironmentalConditionsInfluenceHumanActivities_Skill_Data,
-    explainHowPeopleAdaptToGeographicEnvironments: explainHowPeopleAdaptToGeographicEnvironments_Skill_Data,
-    identifyGeographicConsequencesOfLandUseChange: identifyGeographicConsequencesOfLandUseChange_Skill_Data,
-    traceAnEnvironmentalImpactBeyondItsSource: traceAnEnvironmentalImpactBeyondItsSource_Skill_Data,
-  },
+  skills: [
+    explainHowEnvironmentalConditionsInfluenceHumanActivities_Skill_Data,
+    explainHowPeopleAdaptToGeographicEnvironments_Skill_Data,
+    identifyGeographicConsequencesOfLandUseChange_Skill_Data,
+    traceAnEnvironmentalImpactBeyondItsSource_Skill_Data,
+  ],
   description: {
     methodological:
       'People use and alter environmental conditions, while climate, terrain, water and hazards shape the possibilities and constraints for human activities. These influences are reciprocal but not necessarily symmetric; different choices can reduce or intensify impacts.',

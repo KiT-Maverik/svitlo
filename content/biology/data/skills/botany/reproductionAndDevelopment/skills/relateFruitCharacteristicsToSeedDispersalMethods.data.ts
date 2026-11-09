@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const relateFruitCharacteristicsToSeedDispersalMethods_Skill_Data = buildSkillConfig({
+export const relateFruitCharacteristicsToSeedDispersalMethods_Skill_Data = defineSkill({
   slug: 'relateFruitCharacteristicsToSeedDispersalMethods',
   id: '9dba3430-d028-4a0f-a0ee-ec8624a6b7d6',
   name: {

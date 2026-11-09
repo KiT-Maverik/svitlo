@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const fermentationProductionEquipment_Skill_Data = buildSkillConfig({
+export const fermentationProductionEquipment_Skill_Data = defineSkill({
   slug: 'fermentationProductionEquipment',
   id: '936209eb-190b-4e79-b63b-f3cf67d541d2',
   name: {

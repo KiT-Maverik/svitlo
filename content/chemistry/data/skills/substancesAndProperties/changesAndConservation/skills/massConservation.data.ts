@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const massConservation_Skill_Data = buildSkillConfig({
+export const massConservation_Skill_Data = defineSkill({
   slug: 'massConservation',
   id: '9e2bdcf3-a181-44e5-bde5-a6c8cfd1218e',
   name: {

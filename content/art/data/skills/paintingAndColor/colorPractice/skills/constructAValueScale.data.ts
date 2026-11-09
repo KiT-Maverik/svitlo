@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const constructAValueScale_Skill_Data = buildSkillConfig({
+export const constructAValueScale_Skill_Data = defineSkill({
   slug: 'constructAValueScale',
   id: 'd263ede2-1175-4d83-a92b-4cf2cc666e25',
   name: {

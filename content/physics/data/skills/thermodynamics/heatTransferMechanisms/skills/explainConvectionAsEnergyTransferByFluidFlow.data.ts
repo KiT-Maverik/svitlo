@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainConvectionAsEnergyTransferByFluidFlow_Skill_Data = buildSkillConfig({
+export const explainConvectionAsEnergyTransferByFluidFlow_Skill_Data = defineSkill({
   slug: 'explainConvectionAsEnergyTransferByFluidFlow',
   id: '79b6ca80-96e2-4770-b8d6-ca337df5bb4e',
   name: {

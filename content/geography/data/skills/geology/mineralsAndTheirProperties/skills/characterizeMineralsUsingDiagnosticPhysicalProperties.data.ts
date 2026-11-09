@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const characterizeMineralsUsingDiagnosticPhysicalProperties_Skill_Data = buildSkillConfig({
+export const characterizeMineralsUsingDiagnosticPhysicalProperties_Skill_Data = defineSkill({
   slug: 'characterizeMineralsUsingDiagnosticPhysicalProperties',
   id: '066f3c55-f17a-48e1-b914-a90e755c8847',
   name: {

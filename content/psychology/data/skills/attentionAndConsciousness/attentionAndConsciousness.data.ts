@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { attentionAllocation_SkillGroup_Data } from './attentionAllocation/attentionAllocation.data';
 import { awarenessAndAutomaticity_SkillGroup_Data } from './awarenessAndAutomaticity/awarenessAndAutomaticity.data';
 import { sleepAndDailyRhythms_SkillGroup_Data } from './sleepAndDailyRhythms/sleepAndDailyRhythms.data';
 
-export const attentionAndConsciousness_SkillDomain_Data = buildSkillDomainConfig({
+export const attentionAndConsciousness_SkillDomain_Data = defineSkillDomain({
   slug: 'attentionAndConsciousness',
   id: '1e13a491-7d19-4972-a19d-d7d1aa0a43d7',
-  name: {
+  title: {
     en: 'Attention and Consciousness',
     zh: '注意与意识',
     hi: 'ध्यान और चेतना',
@@ -38,11 +38,11 @@ export const attentionAndConsciousness_SkillDomain_Data = buildSkillDomainConfig
     kk: 'Зейін және сана',
     qm: 'Diqqat ve şuurlılıq',
   },
-  groups: {
-    attentionAllocation: attentionAllocation_SkillGroup_Data,
-    awarenessAndAutomaticity: awarenessAndAutomaticity_SkillGroup_Data,
-    sleepAndDailyRhythms: sleepAndDailyRhythms_SkillGroup_Data,
-  },
+  groups: [
+    attentionAllocation_SkillGroup_Data,
+    awarenessAndAutomaticity_SkillGroup_Data,
+    sleepAndDailyRhythms_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Not all available information receives equal processing or enters reportable awareness. Focus, automaticity, waking states, and sleep have related but distinct psychological mechanisms.',

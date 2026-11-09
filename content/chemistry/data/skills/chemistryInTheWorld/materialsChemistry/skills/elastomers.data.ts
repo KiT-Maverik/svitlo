@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const elastomers_Skill_Data = buildSkillConfig({
+export const elastomers_Skill_Data = defineSkill({
   slug: 'elastomers',
   id: 'ea34d875-6f00-4af9-907d-9a23e7b1badb',
   name: {

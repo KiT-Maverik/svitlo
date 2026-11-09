@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const crankSliderMechanisms_Skill_Data = buildSkillConfig({
+export const crankSliderMechanisms_Skill_Data = defineSkill({
   slug: 'crankSliderMechanisms',
   id: '405e7ea7-7981-4f79-bc99-bc3f503d5399',
   name: {

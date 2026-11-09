@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const languageComprehension_Skill_Data = buildSkillConfig({
+export const languageComprehension_Skill_Data = defineSkill({
   slug: 'languageComprehension',
   id: '8d52bac8-b9ef-437b-978d-8cc350f69264',
   name: {

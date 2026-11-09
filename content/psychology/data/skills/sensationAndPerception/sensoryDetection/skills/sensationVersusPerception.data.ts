@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const sensationVersusPerception_Skill_Data = buildSkillConfig({
+export const sensationVersusPerception_Skill_Data = defineSkill({
   slug: 'sensationVersusPerception',
   id: '1fb21908-12ad-4031-98b0-a17d8faede5b',
   name: {

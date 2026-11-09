@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const safeNavigationInUnfamiliarTerrain_Skill_Data = buildSkillConfig({
+export const safeNavigationInUnfamiliarTerrain_Skill_Data = defineSkill({
   slug: 'safeNavigationInUnfamiliarTerrain',
   id: 'e17e0688-3afb-41df-bd52-6f24e740932a',
   name: {

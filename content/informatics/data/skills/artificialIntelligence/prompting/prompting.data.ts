@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   breakAComplexPromptIntoSubtasks_Skill_Data,
@@ -10,7 +10,7 @@ import {
   specifyPromptConstraints_Skill_Data,
 } from './skills';
 
-export const prompting_SkillGroup_Data = buildSkillGroupConfig({
+export const prompting_SkillGroup_Data = defineSkillGroup({
   slug: 'prompting',
   id: 'b1ca0627-ec01-4c90-9e78-d3e54acaf01f',
   name: {
@@ -44,15 +44,15 @@ export const prompting_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Промпт құрастыру',
     qm: 'Suniy intellektke sorav yazuv',
   },
-  skills: {
-    breakAComplexPromptIntoSubtasks: breakAComplexPromptIntoSubtasks_Skill_Data,
-    providePromptContext: providePromptContext_Skill_Data,
-    refineAPromptBasedOnResults: refineAPromptBasedOnResults_Skill_Data,
-    specifyAnOutputFormat: specifyAnOutputFormat_Skill_Data,
-    specifyAPromptObjective: specifyAPromptObjective_Skill_Data,
-    specifyARoleInAPrompt: specifyARoleInAPrompt_Skill_Data,
-    specifyPromptConstraints: specifyPromptConstraints_Skill_Data,
-  },
+  skills: [
+    breakAComplexPromptIntoSubtasks_Skill_Data,
+    providePromptContext_Skill_Data,
+    refineAPromptBasedOnResults_Skill_Data,
+    specifyAnOutputFormat_Skill_Data,
+    specifyAPromptObjective_Skill_Data,
+    specifyARoleInAPrompt_Skill_Data,
+    specifyPromptConstraints_Skill_Data,
+  ],
   description: {
     methodological:
       'Specifying requirements for an AI request: objective, context, constraints, desired output format, and iterative refinement. Prompt components can vary independently; checking whether answers are true belongs to AI reliability.',

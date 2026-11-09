@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const saharanClimateChange_Skill_Data = buildSkillConfig({
+export const saharanClimateChange_Skill_Data = defineSkill({
   slug: 'saharanClimateChange',
   id: 'e9fac5b2-7335-463e-85c5-76a48f80c08d',
   name: {

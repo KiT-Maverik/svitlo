@@ -1,12 +1,12 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { bioInspiredTechnologies_SkillGroup_Data } from './bioInspiredTechnologies/bioInspiredTechnologies.data';
 import { natureInspiredDesign_SkillGroup_Data } from './natureInspiredDesign/natureInspiredDesign.data';
 
-export const biomimicry_SkillDomain_Data = buildSkillDomainConfig({
+export const biomimicry_SkillDomain_Data = defineSkillDomain({
   slug: 'biomimicry',
   id: 'f9d9e4b0-ceeb-4f89-b9a3-c6aaea519577',
-  name: {
+  title: {
     en: 'Biomimicry',
     zh: '仿生学',
     hi: 'जैव-अनुकरण',
@@ -37,10 +37,7 @@ export const biomimicry_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Биомимикрия',
     qm: 'Tabiatqa taqlit',
   },
-  groups: {
-    bioInspiredTechnologies: bioInspiredTechnologies_SkillGroup_Data,
-    natureInspiredDesign: natureInspiredDesign_SkillGroup_Data,
-  },
+  groups: [bioInspiredTechnologies_SkillGroup_Data, natureInspiredDesign_SkillGroup_Data],
   description: {
     methodological:
       'Nature-inspired engineering abstracts useful functional strategies from living systems and subjects technical adaptations to testing. Evolution is not intentional design, and merely studying an organism is not itself an engineering competency.',

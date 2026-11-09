@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyMusicalTexture_Skill_Data = buildSkillConfig({
+export const identifyMusicalTexture_Skill_Data = defineSkill({
   slug: 'identifyMusicalTexture',
   id: 'd96647e9-3127-4945-8dac-174945bf7545',
   name: {

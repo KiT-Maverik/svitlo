@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const useInputData_Skill_Data = buildSkillConfig({
+export const useInputData_Skill_Data = defineSkill({
   slug: 'useInputData',
   id: 'd78501df-c1f6-4c9f-96df-97c074fa7394',
   name: {

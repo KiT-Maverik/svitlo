@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainRandomThermalMotionOfParticles_Skill_Data = buildSkillConfig({
+export const explainRandomThermalMotionOfParticles_Skill_Data = defineSkill({
   slug: 'explainRandomThermalMotionOfParticles',
   id: '45620736-e248-44d5-b084-b48305f4c113',
   name: {

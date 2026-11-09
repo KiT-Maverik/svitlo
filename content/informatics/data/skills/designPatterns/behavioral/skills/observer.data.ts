@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const observer_Skill_Data = buildSkillConfig({
+export const observer_Skill_Data = defineSkill({
   slug: 'observer',
   id: '54077d59-4091-478a-ba0a-e92f9311d281',
   name: {

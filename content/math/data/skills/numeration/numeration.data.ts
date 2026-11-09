@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { notation_SkillGroup_Data } from './notation/notation.data';
 import { placeValue_SkillGroup_Data } from './placeValue/placeValue.data';
@@ -6,10 +6,10 @@ import { comparison_SkillGroup_Data } from './comparison/comparison.data';
 import { numberLine_SkillGroup_Data } from './numberLine/numberLine.data';
 import { estimation_SkillGroup_Data } from './estimation/estimation.data';
 
-export const numeration_SkillDomain_Data = buildSkillDomainConfig({
+export const numeration_SkillDomain_Data = defineSkillDomain({
   slug: 'numeration',
   id: '445d4a85-bebe-4569-bf45-2af8c15a051b',
-  name: {
+  title: {
     en: 'Natural numbers',
     qm: 'Tabiiy sayılar',
     lt: 'Natūralieji skaičiai',
@@ -40,13 +40,13 @@ export const numeration_SkillDomain_Data = buildSkillDomainConfig({
     pl: 'Liczby naturalne',
     uk: 'Натуральні числа',
   },
-  groups: {
-    notation: notation_SkillGroup_Data,
-    placeValue: placeValue_SkillGroup_Data,
-    comparison: comparison_SkillGroup_Data,
-    numberLine: numberLine_SkillGroup_Data,
-    estimation: estimation_SkillGroup_Data,
-  },
+  groups: [
+    notation_SkillGroup_Data,
+    placeValue_SkillGroup_Data,
+    comparison_SkillGroup_Data,
+    numberLine_SkillGroup_Data,
+    estimation_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'How natural numbers express quantity, how decimal positional notation works, and how numbers are compared, decomposed, and estimated.',

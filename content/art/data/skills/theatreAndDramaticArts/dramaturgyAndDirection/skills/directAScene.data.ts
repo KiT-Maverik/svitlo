@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const directAScene_Skill_Data = buildSkillConfig({
+export const directAScene_Skill_Data = defineSkill({
   slug: 'directAScene',
   id: '7f107b1e-1d15-4178-968d-332c5c560e46',
   name: {

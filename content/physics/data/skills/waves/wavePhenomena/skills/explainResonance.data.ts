@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainResonance_Skill_Data = buildSkillConfig({
+export const explainResonance_Skill_Data = defineSkill({
   slug: 'explainResonance',
   id: '24087d08-7fe9-4e22-8ac7-162ccf6f56d8',
   name: {

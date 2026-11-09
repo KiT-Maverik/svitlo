@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const testSetMembership_Skill_Data = buildSkillConfig({
+export const testSetMembership_Skill_Data = defineSkill({
   slug: 'testSetMembership',
   id: '78226a20-e21f-479a-84fe-ef99787c5c5e',
   name: {

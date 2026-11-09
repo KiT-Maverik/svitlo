@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const writeASequenceOfCommands_Skill_Data = buildSkillConfig({
+export const writeASequenceOfCommands_Skill_Data = defineSkill({
   slug: 'writeASequenceOfCommands',
   id: 'e62d8ab7-d6d7-4d44-9030-4bf107580631',
   name: {

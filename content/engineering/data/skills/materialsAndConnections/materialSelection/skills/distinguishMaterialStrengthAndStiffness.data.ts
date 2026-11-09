@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishMaterialStrengthAndStiffness_Skill_Data = buildSkillConfig({
+export const distinguishMaterialStrengthAndStiffness_Skill_Data = defineSkill({
   slug: 'distinguishMaterialStrengthAndStiffness',
   id: 'a0499542-04ca-4b7f-90f3-c8de2874192a',
   name: {

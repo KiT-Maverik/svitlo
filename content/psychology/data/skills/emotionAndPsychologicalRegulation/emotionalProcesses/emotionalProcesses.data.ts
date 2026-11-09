@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   emotionalAppraisal_Skill_Data,
@@ -8,7 +8,7 @@ import {
   physiologyOfEmotion_Skill_Data,
 } from './skills';
 
-export const emotionalProcesses_SkillGroup_Data = buildSkillGroupConfig({
+export const emotionalProcesses_SkillGroup_Data = defineSkillGroup({
   slug: 'emotionalProcesses',
   id: '30801456-e62b-422e-8c5b-58809ad131b6',
   name: {
@@ -42,13 +42,13 @@ export const emotionalProcesses_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Эмоциялық үдерістер',
     qm: 'Duyğu adiseleri',
   },
-  skills: {
-    emotionalAppraisal: emotionalAppraisal_Skill_Data,
-    emotionFunctions: emotionFunctions_Skill_Data,
-    emotionTheories: emotionTheories_Skill_Data,
-    moodAndEmotion: moodAndEmotion_Skill_Data,
-    physiologyOfEmotion: physiologyOfEmotion_Skill_Data,
-  },
+  skills: [
+    emotionalAppraisal_Skill_Data,
+    emotionFunctions_Skill_Data,
+    emotionTheories_Skill_Data,
+    moodAndEmotion_Skill_Data,
+    physiologyOfEmotion_Skill_Data,
+  ],
   description: {
     methodological:
       'Emotions emerge from interpretations, physiological changes, and situational information that interact in complex ways.',

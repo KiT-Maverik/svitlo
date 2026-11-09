@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const separateNarrowInterfacesISP_Skill_Data = buildSkillConfig({
+export const separateNarrowInterfacesISP_Skill_Data = defineSkill({
   slug: 'separateNarrowInterfacesISP',
   id: 'f6c5fd7e-015a-4139-af56-390b3faff3b0',
   name: {

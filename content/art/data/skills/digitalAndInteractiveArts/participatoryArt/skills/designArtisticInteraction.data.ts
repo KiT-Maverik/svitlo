@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const designArtisticInteraction_Skill_Data = buildSkillConfig({
+export const designArtisticInteraction_Skill_Data = defineSkill({
   slug: 'designArtisticInteraction',
   id: '4024242e-6be3-4ec7-abfc-8b032a4b2b45',
   name: {

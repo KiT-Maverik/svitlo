@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   manageMenstrualHealth_Skill_Data,
@@ -6,7 +6,7 @@ import {
   understandPubertalChanges_Skill_Data,
 } from './skills';
 
-export const developmentAndBodilyCare_SkillGroup_Data = buildSkillGroupConfig({
+export const developmentAndBodilyCare_SkillGroup_Data = defineSkillGroup({
   slug: 'developmentAndBodilyCare',
   id: '0562dc6a-4366-4774-ac8b-8db8684c8eca',
   name: {
@@ -40,11 +40,11 @@ export const developmentAndBodilyCare_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Даму және дене күтімі',
     qm: 'İnkişaf ve beden baqımı',
   },
-  skills: {
-    manageMenstrualHealth: manageMenstrualHealth_Skill_Data,
-    recognizeReproductiveHealthConcerns: recognizeReproductiveHealthConcerns_Skill_Data,
-    understandPubertalChanges: understandPubertalChanges_Skill_Data,
-  },
+  skills: [
+    manageMenstrualHealth_Skill_Data,
+    recognizeReproductiveHealthConcerns_Skill_Data,
+    understandPubertalChanges_Skill_Data,
+  ],
   description: {
     methodological:
       'Changes through puberty differ in timing and expression; normal variation and symptoms needing assessment should not be conflated.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const internationalCapitalFlows_Skill_Data = buildSkillConfig({
+export const internationalCapitalFlows_Skill_Data = defineSkill({
   slug: 'internationalCapitalFlows',
   id: '24c003f7-2f2b-4f79-a17d-cceaa7f3dcd1',
   name: {

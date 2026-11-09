@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishMeltingFromFreezingOfWater_Skill_Data = buildSkillConfig({
+export const distinguishMeltingFromFreezingOfWater_Skill_Data = defineSkill({
   slug: 'distinguishMeltingFromFreezingOfWater',
   id: '15252d24-cf6d-4a29-8bd0-be4ff3224dfa',
   name: {

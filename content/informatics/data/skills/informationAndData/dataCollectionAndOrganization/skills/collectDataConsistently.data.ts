@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const collectDataConsistently_Skill_Data = buildSkillConfig({
+export const collectDataConsistently_Skill_Data = defineSkill({
   slug: 'collectDataConsistently',
   id: 'e8d82925-d952-4f95-b26a-21e5cbfa5ba6',
   name: {

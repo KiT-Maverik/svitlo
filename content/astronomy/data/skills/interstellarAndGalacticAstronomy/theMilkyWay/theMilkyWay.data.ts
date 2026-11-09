@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   galacticRotation_Skill_Data,
@@ -7,7 +7,7 @@ import {
   starClusters_Skill_Data,
 } from './skills';
 
-export const theMilkyWay_SkillGroup_Data = buildSkillGroupConfig({
+export const theMilkyWay_SkillGroup_Data = defineSkillGroup({
   slug: 'theMilkyWay',
   id: '8e527ec4-34b1-40bc-9dd1-851c05b29573',
   name: {
@@ -41,12 +41,12 @@ export const theMilkyWay_SkillGroup_Data = buildSkillGroupConfig({
     ka: 'ირმის ნახტომი',
     kk: 'Құс жолы',
   },
-  skills: {
-    galacticRotation: galacticRotation_Skill_Data,
-    milkyWayStructure: milkyWayStructure_Skill_Data,
-    solarSystemsGalacticLocation: solarSystemsGalacticLocation_Skill_Data,
-    starClusters: starClusters_Skill_Data,
-  },
+  skills: [
+    galacticRotation_Skill_Data,
+    milkyWayStructure_Skill_Data,
+    solarSystemsGalacticLocation_Skill_Data,
+    starClusters_Skill_Data,
+  ],
   description: {
     methodological:
       'Our galaxy is mapped from an interior viewpoint by combining stellar distributions, gas, motions and distance measurements.',

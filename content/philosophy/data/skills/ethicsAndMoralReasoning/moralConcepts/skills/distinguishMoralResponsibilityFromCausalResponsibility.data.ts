@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishMoralResponsibilityFromCausalResponsibility_Skill_Data = buildSkillConfig({
+export const distinguishMoralResponsibilityFromCausalResponsibility_Skill_Data = defineSkill({
   slug: 'distinguishMoralResponsibilityFromCausalResponsibility',
   id: '735a47da-9dd5-4e1a-b99d-d12272e768e8',
   name: {

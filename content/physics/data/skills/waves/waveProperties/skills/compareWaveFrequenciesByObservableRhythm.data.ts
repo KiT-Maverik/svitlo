@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareWaveFrequenciesByObservableRhythm_Skill_Data = buildSkillConfig({
+export const compareWaveFrequenciesByObservableRhythm_Skill_Data = defineSkill({
   slug: 'compareWaveFrequenciesByObservableRhythm',
   id: '9ccf65b4-bb45-4d53-a7b5-b5dfe77c8606',
   name: {

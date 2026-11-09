@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const constructASimpleFoodChain_Skill_Data = buildSkillConfig({
+export const constructASimpleFoodChain_Skill_Data = defineSkill({
   slug: 'constructASimpleFoodChain',
   id: '52d7022f-bf92-46b5-bc2b-dcf27f823f31',
   name: {

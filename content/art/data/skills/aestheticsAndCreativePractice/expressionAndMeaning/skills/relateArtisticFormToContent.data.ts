@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const relateArtisticFormToContent_Skill_Data = buildSkillConfig({
+export const relateArtisticFormToContent_Skill_Data = defineSkill({
   slug: 'relateArtisticFormToContent',
   id: 'aef86e64-86f7-46c1-baa1-b131cfe7369a',
   name: {

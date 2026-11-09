@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distressVersusDisorder_Skill_Data = buildSkillConfig({
+export const distressVersusDisorder_Skill_Data = defineSkill({
   slug: 'distressVersusDisorder',
   id: '8efc37de-0187-4970-9ccf-9aa13d12f769',
   name: {

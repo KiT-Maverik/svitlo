@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainElectricVoltage_Skill_Data = buildSkillConfig({
+export const explainElectricVoltage_Skill_Data = defineSkill({
   slug: 'explainElectricVoltage',
   id: '44d6bdfa-c713-4010-be3b-deffeea15d99',
   name: {

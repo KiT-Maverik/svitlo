@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const arches_Skill_Data = buildSkillConfig({
+export const arches_Skill_Data = defineSkill({
   slug: 'arches',
   id: '8fb63773-7037-4389-a933-322aa36a0c2f',
   name: {

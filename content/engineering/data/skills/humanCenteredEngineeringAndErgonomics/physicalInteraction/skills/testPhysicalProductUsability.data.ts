@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const testPhysicalProductUsability_Skill_Data = buildSkillConfig({
+export const testPhysicalProductUsability_Skill_Data = defineSkill({
   slug: 'testPhysicalProductUsability',
   id: '9711cd92-d232-4cce-82ab-91b7f62dbc34',
   name: {

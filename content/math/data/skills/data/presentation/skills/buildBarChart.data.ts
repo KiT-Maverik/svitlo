@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const buildBarChart_Skill_Data = buildSkillConfig({
+export const buildBarChart_Skill_Data = defineSkill({
   slug: 'buildBarChart',
   id: '5dd18314-5344-4219-9ffb-1b9df9fc7ec7',
   name: {

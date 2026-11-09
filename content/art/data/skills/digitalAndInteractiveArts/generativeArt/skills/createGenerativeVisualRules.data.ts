@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const createGenerativeVisualRules_Skill_Data = buildSkillConfig({
+export const createGenerativeVisualRules_Skill_Data = defineSkill({
   slug: 'createGenerativeVisualRules',
   id: 'ad63c2ef-ea7e-4449-9a02-c8bcecf8a9b1',
   name: {

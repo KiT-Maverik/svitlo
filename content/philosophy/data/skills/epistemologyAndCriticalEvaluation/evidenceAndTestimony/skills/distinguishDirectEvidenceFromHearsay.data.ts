@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishDirectEvidenceFromHearsay_Skill_Data = buildSkillConfig({
+export const distinguishDirectEvidenceFromHearsay_Skill_Data = defineSkill({
   slug: 'distinguishDirectEvidenceFromHearsay',
   id: 'f891c455-29a7-4540-ac7e-4fc905fda10b',
   name: {

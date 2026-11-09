@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { canalLocks_Skill_Data, compareChannelsAndPipes_Skill_Data, flowControlValves_Skill_Data } from './skills';
 
-export const hydraulicInfrastructure_SkillGroup_Data = buildSkillGroupConfig({
+export const hydraulicInfrastructure_SkillGroup_Data = defineSkillGroup({
   slug: 'hydraulicInfrastructure',
   id: '2eecd113-1105-4b05-9538-76847e2ac730',
   name: {
@@ -36,11 +36,7 @@ export const hydraulicInfrastructure_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Гидротехникалық инфрақұрылым',
     qm: 'Gidrotehnik infrastruktura',
   },
-  skills: {
-    canalLocks: canalLocks_Skill_Data,
-    compareChannelsAndPipes: compareChannelsAndPipes_Skill_Data,
-    flowControlValves: flowControlValves_Skill_Data,
-  },
+  skills: [canalLocks_Skill_Data, compareChannelsAndPipes_Skill_Data, flowControlValves_Skill_Data],
   description: {
     methodological:
       'Flow and water levels can be regulated by built chambers, gates and channels that connect transport or supply routes.',

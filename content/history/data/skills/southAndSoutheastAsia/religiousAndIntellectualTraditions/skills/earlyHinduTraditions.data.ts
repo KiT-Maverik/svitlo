@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const earlyHinduTraditions_Skill_Data = buildSkillConfig({
+export const earlyHinduTraditions_Skill_Data = defineSkill({
   slug: 'earlyHinduTraditions',
   id: '0cc39976-d667-4b4b-a105-9763ff2ea7ff',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const relateASenseOrganToTheInformationItDetects_Skill_Data = buildSkillConfig({
+export const relateASenseOrganToTheInformationItDetects_Skill_Data = defineSkill({
   slug: 'relateASenseOrganToTheInformationItDetects',
   id: 'ae445054-70dd-41ce-a4e4-f3a877b5fa2d',
   name: {

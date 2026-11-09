@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { historicalExplanations_SkillGroup_Data } from './historicalExplanations/historicalExplanations.data';
 import { historicalGeography_SkillGroup_Data } from './historicalGeography/historicalGeography.data';
 import { historicalSources_SkillGroup_Data } from './historicalSources/historicalSources.data';
 import { timeAndPeriodization_SkillGroup_Data } from './timeAndPeriodization/timeAndPeriodization.data';
 
-export const historicalInquiry_SkillDomain_Data = buildSkillDomainConfig({
+export const historicalInquiry_SkillDomain_Data = defineSkillDomain({
   slug: 'historicalInquiry',
   id: '15c40ab9-112c-47f4-b106-4ff75ad99b1e',
-  name: {
+  title: {
     en: 'Historical Inquiry',
     zh: '历史探究',
     hi: 'ऐतिहासिक अन्वेषण',
@@ -39,12 +39,12 @@ export const historicalInquiry_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Тарихи таным',
     qm: 'Tarihiy araştırma',
   },
-  groups: {
-    historicalExplanations: historicalExplanations_SkillGroup_Data,
-    historicalGeography: historicalGeography_SkillGroup_Data,
-    historicalSources: historicalSources_SkillGroup_Data,
-    timeAndPeriodization: timeAndPeriodization_SkillGroup_Data,
-  },
+  groups: [
+    historicalExplanations_SkillGroup_Data,
+    historicalGeography_SkillGroup_Data,
+    historicalSources_SkillGroup_Data,
+    timeAndPeriodization_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Methods for establishing and checking knowledge of past societies through chronology, geography, source evidence, and historical inference. These competencies apply across ancient regions rather than defining a lesson sequence.',

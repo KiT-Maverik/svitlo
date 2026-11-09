@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const classifyObjectsAsLivingDeadOrNeverAlive_Skill_Data = buildSkillConfig({
+export const classifyObjectsAsLivingDeadOrNeverAlive_Skill_Data = defineSkill({
   slug: 'classifyObjectsAsLivingDeadOrNeverAlive',
   id: '5b92ed2d-af5d-47ff-b7f1-71209407050c',
   name: {

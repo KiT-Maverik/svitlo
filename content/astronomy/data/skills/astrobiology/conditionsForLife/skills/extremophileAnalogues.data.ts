@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const extremophileAnalogues_Skill_Data = buildSkillConfig({
+export const extremophileAnalogues_Skill_Data = defineSkill({
   slug: 'extremophileAnalogues',
   id: '107fc21c-0c4b-458f-ad9d-885d97d3de3d',
   name: {

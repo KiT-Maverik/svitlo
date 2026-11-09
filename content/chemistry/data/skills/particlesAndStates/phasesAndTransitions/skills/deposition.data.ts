@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const deposition_Skill_Data = buildSkillConfig({
+export const deposition_Skill_Data = defineSkill({
   slug: 'deposition',
   id: '1aee82d1-eb02-41eb-bc31-4def4e699e3b',
   name: {

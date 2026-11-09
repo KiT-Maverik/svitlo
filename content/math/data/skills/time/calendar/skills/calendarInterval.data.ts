@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const calendarInterval_Skill_Data = buildSkillConfig({
+export const calendarInterval_Skill_Data = defineSkill({
   slug: 'calendarInterval',
   id: '0fc1cfb2-dd71-439f-8518-09128e47642b',
   name: {

@@ -1,12 +1,12 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { events_SkillGroup_Data } from './events/events.data';
 import { experiments_SkillGroup_Data } from './experiments/experiments.data';
 
-export const probability_SkillDomain_Data = buildSkillDomainConfig({
+export const probability_SkillDomain_Data = defineSkillDomain({
   slug: 'probability',
   id: '55bc6d54-f5fc-49fc-8e7f-8d31230e1aca',
-  name: {
+  title: {
     en: 'Probability',
     qm: 'İhtimallıq',
     lt: 'Tikimybė',
@@ -37,10 +37,7 @@ export const probability_SkillDomain_Data = buildSkillDomainConfig({
     pl: 'Prawdopodobieństwo',
     uk: 'Ймовірність',
   },
-  groups: {
-    events: events_SkillGroup_Data,
-    experiments: experiments_SkillGroup_Data,
-  },
+  groups: [events_SkillGroup_Data, experiments_SkillGroup_Data],
   description: {
     methodological:
       'Possible outcomes of random experiments, events and their probabilities, comparisons of chance, independence or dependence of outcomes, and random variability in repeated observations.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const neurotransmitterAction_Skill_Data = buildSkillConfig({
+export const neurotransmitterAction_Skill_Data = defineSkill({
   slug: 'neurotransmitterAction',
   id: 'a830ce95-8098-41c2-b6eb-5c3501107456',
   name: {

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   controlMovementAlignment_Skill_Data,
@@ -8,7 +8,7 @@ import {
   varyMovementDynamics_Skill_Data,
 } from './skills';
 
-export const movementLanguage_SkillGroup_Data = buildSkillGroupConfig({
+export const movementLanguage_SkillGroup_Data = defineSkillGroup({
   slug: 'movementLanguage',
   id: '1cb3cffe-4c1a-4998-95f1-3ac523ed77c0',
   name: {
@@ -42,13 +42,13 @@ export const movementLanguage_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Қозғалыс тілі',
     qm: 'Areket tili',
   },
-  skills: {
-    controlMovementAlignment: controlMovementAlignment_Skill_Data,
-    coordinateDanceWithPulse: coordinateDanceWithPulse_Skill_Data,
-    performADancePhrase: performADancePhrase_Skill_Data,
-    useSpatialLevels: useSpatialLevels_Skill_Data,
-    varyMovementDynamics: varyMovementDynamics_Skill_Data,
-  },
+  skills: [
+    controlMovementAlignment_Skill_Data,
+    coordinateDanceWithPulse_Skill_Data,
+    performADancePhrase_Skill_Data,
+    useSpatialLevels_Skill_Data,
+    varyMovementDynamics_Skill_Data,
+  ],
   description: {
     methodological:
       'Bodily alignment, energy, pathways and temporal decisions distinguish expressive movement from simply moving between points.',

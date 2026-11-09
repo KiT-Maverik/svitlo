@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   explainLIFO_Skill_Data,
@@ -6,7 +6,7 @@ import {
   pushAnElementOntoAStack_Skill_Data,
 } from './skills';
 
-export const stack_SkillGroup_Data = buildSkillGroupConfig({
+export const stack_SkillGroup_Data = defineSkillGroup({
   slug: 'stack',
   id: 'db6f2969-d2a6-4eb8-8139-335342dd4deb',
   name: {
@@ -40,11 +40,7 @@ export const stack_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Стек',
     qm: 'Stek',
   },
-  skills: {
-    explainLIFO: explainLIFO_Skill_Data,
-    popAnElementFromAStack: popAnElementFromAStack_Skill_Data,
-    pushAnElementOntoAStack: pushAnElementOntoAStack_Skill_Data,
-  },
+  skills: [explainLIFO_Skill_Data, popAnElementFromAStack_Skill_Data, pushAnElementOntoAStack_Skill_Data],
   description: {
     methodological:
       'A structure using last-in, first-out (LIFO) access to its top element. Pushing, popping, and handling an empty stack are distinct operations.',

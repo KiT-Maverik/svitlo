@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const planetaryTectonics_Skill_Data = buildSkillConfig({
+export const planetaryTectonics_Skill_Data = defineSkill({
   slug: 'planetaryTectonics',
   id: 'c00cb75e-f141-46c9-907c-f324a61832f4',
   name: {

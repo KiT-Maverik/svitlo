@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeSpongeCharacteristics_Skill_Data = buildSkillConfig({
+export const recognizeSpongeCharacteristics_Skill_Data = defineSkill({
   slug: 'recognizeSpongeCharacteristics',
   id: '26a46619-577c-4447-9435-e2e308e8711b',
   name: {

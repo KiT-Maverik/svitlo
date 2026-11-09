@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const needsAndWants_Skill_Data = buildSkillConfig({
+export const needsAndWants_Skill_Data = defineSkill({
   slug: 'needsAndWants',
   id: 'ede7fbd0-769e-4f92-b602-81841ec87ab9',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateCompoundLogicalExpressions_Skill_Data = buildSkillConfig({
+export const evaluateCompoundLogicalExpressions_Skill_Data = defineSkill({
   slug: 'evaluateCompoundLogicalExpressions',
   id: '2c1b6f46-ded9-4367-9e31-8a3fa8fbfb13',
   name: {

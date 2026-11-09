@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   feedbackInEducation_Skill_Data,
@@ -6,7 +6,7 @@ import {
   motivationalClimate_Skill_Data,
 } from './skills';
 
-export const learningEnvironments_SkillGroup_Data = buildSkillGroupConfig({
+export const learningEnvironments_SkillGroup_Data = defineSkillGroup({
   slug: 'learningEnvironments',
   id: '1086e6e8-5f7f-43d9-badf-b6290495535e',
   name: {
@@ -40,11 +40,7 @@ export const learningEnvironments_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Оқу орталары',
     qm: 'Ögrenüv muhitleri',
   },
-  skills: {
-    feedbackInEducation: feedbackInEducation_Skill_Data,
-    learningEnvironmentDesign: learningEnvironmentDesign_Skill_Data,
-    motivationalClimate: motivationalClimate_Skill_Data,
-  },
+  skills: [feedbackInEducation_Skill_Data, learningEnvironmentDesign_Skill_Data, motivationalClimate_Skill_Data],
   description: {
     methodological:
       'Educational psychology examines attention, feedback, motivation, and differences among learners to understand conditions for effective learning.',

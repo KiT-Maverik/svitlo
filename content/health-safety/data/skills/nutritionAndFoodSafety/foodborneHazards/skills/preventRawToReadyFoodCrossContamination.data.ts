@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const preventRawToReadyFoodCrossContamination_Skill_Data = buildSkillConfig({
+export const preventRawToReadyFoodCrossContamination_Skill_Data = defineSkill({
   slug: 'preventRawToReadyFoodCrossContamination',
   id: '1778aa27-11e6-4e53-b66e-1768f68bafef',
   name: {

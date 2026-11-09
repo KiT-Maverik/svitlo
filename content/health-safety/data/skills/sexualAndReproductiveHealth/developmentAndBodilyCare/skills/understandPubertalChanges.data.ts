@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const understandPubertalChanges_Skill_Data = buildSkillConfig({
+export const understandPubertalChanges_Skill_Data = defineSkill({
   slug: 'understandPubertalChanges',
   id: '058bc677-6f96-4648-8b64-13f71c2e4cff',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const modelObjectComposition_Skill_Data = buildSkillConfig({
+export const modelObjectComposition_Skill_Data = defineSkill({
   slug: 'modelObjectComposition',
   id: 'b61d2c5d-b157-4614-9e65-cd7f86506ef2',
   name: {

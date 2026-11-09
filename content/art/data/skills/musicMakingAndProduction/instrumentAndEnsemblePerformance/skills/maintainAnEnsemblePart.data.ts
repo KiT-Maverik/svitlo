@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const maintainAnEnsemblePart_Skill_Data = buildSkillConfig({
+export const maintainAnEnsemblePart_Skill_Data = defineSkill({
   slug: 'maintainAnEnsemblePart',
   id: '895a1d53-e34b-4ffd-a1df-370ab0d23326',
   name: {

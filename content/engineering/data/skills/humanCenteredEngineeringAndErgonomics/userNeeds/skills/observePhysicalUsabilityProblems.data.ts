@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const observePhysicalUsabilityProblems_Skill_Data = buildSkillConfig({
+export const observePhysicalUsabilityProblems_Skill_Data = defineSkill({
   slug: 'observePhysicalUsabilityProblems',
   id: '666e063b-9912-4baf-aed6-a11e9631e307',
   name: {

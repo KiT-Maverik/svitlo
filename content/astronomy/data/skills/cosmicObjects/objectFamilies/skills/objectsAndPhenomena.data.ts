@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const objectsAndPhenomena_Skill_Data = buildSkillConfig({
+export const objectsAndPhenomena_Skill_Data = defineSkill({
   slug: 'objectsAndPhenomena',
   id: '21f08efd-4c9f-4cb8-8988-33e1f1c7a135',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const applyDigitalThreeDimensionalMaterials_Skill_Data = buildSkillConfig({
+export const applyDigitalThreeDimensionalMaterials_Skill_Data = defineSkill({
   slug: 'applyDigitalThreeDimensionalMaterials',
   id: '9e500a5b-1b92-4662-b708-bb6a99a8cf24',
   name: {

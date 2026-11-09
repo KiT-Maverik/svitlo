@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeFungiAsADistinctGroupOfOrganisms_Skill_Data = buildSkillConfig({
+export const recognizeFungiAsADistinctGroupOfOrganisms_Skill_Data = defineSkill({
   slug: 'recognizeFungiAsADistinctGroupOfOrganisms',
   id: 'dfb632e0-bfef-4c75-b3ee-a7f9f4de954e',
   name: {

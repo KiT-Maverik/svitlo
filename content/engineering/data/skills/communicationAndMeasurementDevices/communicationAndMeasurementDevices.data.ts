@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { communicationHardware_SkillGroup_Data } from './communicationHardware/communicationHardware.data';
 import { navigationEquipment_SkillGroup_Data } from './navigationEquipment/navigationEquipment.data';
 import { opticalDevices_SkillGroup_Data } from './opticalDevices/opticalDevices.data';
 
-export const communicationAndMeasurementDevices_SkillDomain_Data = buildSkillDomainConfig({
+export const communicationAndMeasurementDevices_SkillDomain_Data = defineSkillDomain({
   slug: 'communicationAndMeasurementDevices',
   id: '2a858c0c-bfe4-417f-bc32-251de4294f0b',
-  name: {
+  title: {
     en: 'Communication and Measurement Devices',
     zh: '通信与测量设备',
     hi: 'संचार और मापन उपकरण',
@@ -38,11 +38,7 @@ export const communicationAndMeasurementDevices_SkillDomain_Data = buildSkillDom
     kk: 'Байланыс және өлшеу құрылғылары',
     qm: 'Haberleşüv ve ölçüv cihazları',
   },
-  groups: {
-    communicationHardware: communicationHardware_SkillGroup_Data,
-    navigationEquipment: navigationEquipment_SkillGroup_Data,
-    opticalDevices: opticalDevices_SkillGroup_Data,
-  },
+  groups: [communicationHardware_SkillGroup_Data, navigationEquipment_SkillGroup_Data, opticalDevices_SkillGroup_Data],
   description: {
     methodological:
       'Radio, optical and navigation equipment generates, propagates, detects and uses physical signals. Competencies concern real emitters, interfaces, receivers and instrumentation, rather than networking programs or generic data-processing algorithms.',

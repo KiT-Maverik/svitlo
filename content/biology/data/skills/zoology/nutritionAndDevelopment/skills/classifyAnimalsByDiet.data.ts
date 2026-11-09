@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const classifyAnimalsByDiet_Skill_Data = buildSkillConfig({
+export const classifyAnimalsByDiet_Skill_Data = defineSkill({
   slug: 'classifyAnimalsByDiet',
   id: '556699c0-f7b9-4254-aa24-b157bbd4a28e',
   name: {

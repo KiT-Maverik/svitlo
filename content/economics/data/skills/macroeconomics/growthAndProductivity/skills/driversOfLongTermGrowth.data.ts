@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const driversOfLongTermGrowth_Skill_Data = buildSkillConfig({
+export const driversOfLongTermGrowth_Skill_Data = defineSkill({
   slug: 'driversOfLongTermGrowth',
   id: '38f1bd83-8f70-4c89-b3d7-0af56ca6cb9e',
   name: {

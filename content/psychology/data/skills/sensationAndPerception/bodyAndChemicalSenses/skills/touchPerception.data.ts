@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const touchPerception_Skill_Data = buildSkillConfig({
+export const touchPerception_Skill_Data = defineSkill({
   slug: 'touchPerception',
   id: 'b9a4fa54-171c-49fb-bee1-b6de53dd8888',
   name: {

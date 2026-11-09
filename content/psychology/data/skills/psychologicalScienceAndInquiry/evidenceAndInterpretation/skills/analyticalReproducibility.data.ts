@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyticalReproducibility_Skill_Data = buildSkillConfig({
+export const analyticalReproducibility_Skill_Data = defineSkill({
   slug: 'analyticalReproducibility',
   id: '830be238-a34b-4b1b-9e25-d54ef805211b',
   name: {

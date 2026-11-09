@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainWirelessCommunication_Skill_Data = buildSkillConfig({
+export const explainWirelessCommunication_Skill_Data = defineSkill({
   slug: 'explainWirelessCommunication',
   id: '6b45096a-1f6c-44bd-9331-af8f0e97413e',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const dopplerShift_Skill_Data = buildSkillConfig({
+export const dopplerShift_Skill_Data = defineSkill({
   slug: 'dopplerShift',
   id: '07adc502-1c59-4109-b03d-92828c606ca3',
   name: {

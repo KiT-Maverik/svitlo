@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   analyzeHumanAutonomyInTechnologicalSystems_Skill_Data,
@@ -6,7 +6,7 @@ import {
   evaluateTechnologicalDeterminism_Skill_Data,
 } from './skills';
 
-export const technologyAndSociety_SkillGroup_Data = buildSkillGroupConfig({
+export const technologyAndSociety_SkillGroup_Data = defineSkillGroup({
   slug: 'technologyAndSociety',
   id: 'b62dd9d0-920a-4840-840d-876f73fc3903',
   name: {
@@ -40,11 +40,11 @@ export const technologyAndSociety_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Технология және қоғам',
     qm: 'Tehnologiyalar ve cemiyet',
   },
-  skills: {
-    analyzeHumanAutonomyInTechnologicalSystems: analyzeHumanAutonomyInTechnologicalSystems_Skill_Data,
-    analyzeTechnologicalMediation: analyzeTechnologicalMediation_Skill_Data,
-    evaluateTechnologicalDeterminism: evaluateTechnologicalDeterminism_Skill_Data,
-  },
+  skills: [
+    analyzeHumanAutonomyInTechnologicalSystems_Skill_Data,
+    analyzeTechnologicalMediation_Skill_Data,
+    evaluateTechnologicalDeterminism_Skill_Data,
+  ],
   description: {
     methodological:
       'Technological artifacts and institutions shape the practical conditions of action, social change, and control. Philosophical analysis evaluates these mediation and agency claims rather than measuring product usage or engineering device performance.',

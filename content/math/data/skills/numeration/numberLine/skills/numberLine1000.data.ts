@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const numberLine1000_Skill_Data = buildSkillConfig({
+export const numberLine1000_Skill_Data = defineSkill({
   slug: 'numberLine1000',
   id: 'c52e0d8f-5d4d-435b-a283-9fc0f41b4605',
   name: {

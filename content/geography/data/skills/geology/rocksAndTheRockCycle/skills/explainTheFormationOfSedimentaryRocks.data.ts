@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainTheFormationOfSedimentaryRocks_Skill_Data = buildSkillConfig({
+export const explainTheFormationOfSedimentaryRocks_Skill_Data = defineSkill({
   slug: 'explainTheFormationOfSedimentaryRocks',
   id: '33cff36c-734c-4e47-80aa-986fbf59fe47',
   name: {

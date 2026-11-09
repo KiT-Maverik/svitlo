@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   ancientGermanicCommunities_Skill_Data,
@@ -7,7 +7,7 @@ import {
   europeanBronzeAge_Skill_Data,
 } from './skills';
 
-export const centralAndWesternEurope_SkillGroup_Data = buildSkillGroupConfig({
+export const centralAndWesternEurope_SkillGroup_Data = defineSkillGroup({
   slug: 'centralAndWesternEurope',
   id: '0fbaa949-a1c8-44cd-8f95-a40687821dc1',
   name: {
@@ -41,12 +41,12 @@ export const centralAndWesternEurope_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Орталық және Батыс Еуропа',
     qm: 'Merkeziy ve Ğarbiy Avropa',
   },
-  skills: {
-    ancientGermanicCommunities: ancientGermanicCommunities_Skill_Data,
-    britainBeforeAndUnderRome: britainBeforeAndUnderRome_Skill_Data,
-    celticIronAgeCultures: celticIronAgeCultures_Skill_Data,
-    europeanBronzeAge: europeanBronzeAge_Skill_Data,
-  },
+  skills: [
+    ancientGermanicCommunities_Skill_Data,
+    britainBeforeAndUnderRome_Skill_Data,
+    celticIronAgeCultures_Skill_Data,
+    europeanBronzeAge_Skill_Data,
+  ],
   description: {
     methodological:
       'Study metallurgy, settlements, and confederations primarily through archaeological evidence and uneven external descriptions.',

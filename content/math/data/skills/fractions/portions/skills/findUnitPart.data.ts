@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const findUnitPart_Skill_Data = buildSkillConfig({
+export const findUnitPart_Skill_Data = defineSkill({
   slug: 'findUnitPart',
   id: '98870d29-e56b-471d-aba8-8ed9f22e3c3a',
   name: {

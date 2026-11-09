@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainHowThePassageOfTimeDependsOnObserversRelativeMotion_Skill_Data = buildSkillConfig({
+export const explainHowThePassageOfTimeDependsOnObserversRelativeMotion_Skill_Data = defineSkill({
   slug: 'explainHowThePassageOfTimeDependsOnObserversRelativeMotion',
   id: 'bb06dcd5-0278-42ad-bd81-67495a8631e2',
   name: {

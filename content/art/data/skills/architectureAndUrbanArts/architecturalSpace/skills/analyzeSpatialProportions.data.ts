@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeSpatialProportions_Skill_Data = buildSkillConfig({
+export const analyzeSpatialProportions_Skill_Data = defineSkill({
   slug: 'analyzeSpatialProportions',
   id: '1b46c9cf-ccc6-4cac-b31f-2bdbd07e975b',
   name: {

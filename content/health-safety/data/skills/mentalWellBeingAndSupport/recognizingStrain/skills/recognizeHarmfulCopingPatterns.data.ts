@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeHarmfulCopingPatterns_Skill_Data = buildSkillConfig({
+export const recognizeHarmfulCopingPatterns_Skill_Data = defineSkill({
   slug: 'recognizeHarmfulCopingPatterns',
   id: '0742b03b-9184-4a41-ac16-6f40699654e6',
   name: {

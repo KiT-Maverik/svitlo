@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   computeSetIntersection_Skill_Data,
@@ -7,7 +7,7 @@ import {
   testSetMembership_Skill_Data,
 } from './skills';
 
-export const sets_SkillGroup_Data = buildSkillGroupConfig({
+export const sets_SkillGroup_Data = defineSkillGroup({
   slug: 'sets',
   id: '526a36eb-6cd4-41d6-aa8e-72ed92effbd1',
   name: {
@@ -41,12 +41,12 @@ export const sets_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Жиындар',
     qm: 'Kümeler',
   },
-  skills: {
-    computeSetIntersection: computeSetIntersection_Skill_Data,
-    computeSetUnion: computeSetUnion_Skill_Data,
-    explainSetStructure: explainSetStructure_Skill_Data,
-    testSetMembership: testSetMembership_Skill_Data,
-  },
+  skills: [
+    computeSetIntersection_Skill_Data,
+    computeSetUnion_Skill_Data,
+    explainSetStructure_Skill_Data,
+    testSetMembership_Skill_Data,
+  ],
   description: {
     methodological:
       'Collections of unique elements supporting membership tests, union, and intersection. Positional indexing is not an inherent property of a set.',

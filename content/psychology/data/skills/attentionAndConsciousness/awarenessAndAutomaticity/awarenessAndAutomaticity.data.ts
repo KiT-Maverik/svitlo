@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   alteredStatesOfConsciousness_Skill_Data,
@@ -7,7 +7,7 @@ import {
   skillAutomaticity_Skill_Data,
 } from './skills';
 
-export const awarenessAndAutomaticity_SkillGroup_Data = buildSkillGroupConfig({
+export const awarenessAndAutomaticity_SkillGroup_Data = defineSkillGroup({
   slug: 'awarenessAndAutomaticity',
   id: 'dfa867cf-ad2e-4620-a80a-47af9961798c',
   name: {
@@ -41,12 +41,12 @@ export const awarenessAndAutomaticity_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Саналы ұғыну және автоматтану',
     qm: 'Farqındalıq ve avtomatikleşüv',
   },
-  skills: {
-    alteredStatesOfConsciousness: alteredStatesOfConsciousness_Skill_Data,
-    effortfulAndAutomaticProcessing: effortfulAndAutomaticProcessing_Skill_Data,
-    limitsOfIntrospection: limitsOfIntrospection_Skill_Data,
-    skillAutomaticity: skillAutomaticity_Skill_Data,
-  },
+  skills: [
+    alteredStatesOfConsciousness_Skill_Data,
+    effortfulAndAutomaticProcessing_Skill_Data,
+    limitsOfIntrospection_Skill_Data,
+    skillAutomaticity_Skill_Data,
+  ],
   description: {
     methodological:
       'Deliberate processing differs from practiced routines, and retrospective introspection is an imperfect account of causes.',

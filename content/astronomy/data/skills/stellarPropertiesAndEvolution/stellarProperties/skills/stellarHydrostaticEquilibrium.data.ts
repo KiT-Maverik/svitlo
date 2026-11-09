@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const stellarHydrostaticEquilibrium_Skill_Data = buildSkillConfig({
+export const stellarHydrostaticEquilibrium_Skill_Data = defineSkill({
   slug: 'stellarHydrostaticEquilibrium',
   id: 'ba40b6b2-bf44-47ca-953b-45514df23ad3',
   name: {

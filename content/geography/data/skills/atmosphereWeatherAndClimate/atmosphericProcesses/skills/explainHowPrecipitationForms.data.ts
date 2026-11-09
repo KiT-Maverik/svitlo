@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainHowPrecipitationForms_Skill_Data = buildSkillConfig({
+export const explainHowPrecipitationForms_Skill_Data = defineSkill({
   slug: 'explainHowPrecipitationForms',
   id: 'b1d7f4df-7171-48ad-81b9-b3d4a13cc5ac',
   name: {

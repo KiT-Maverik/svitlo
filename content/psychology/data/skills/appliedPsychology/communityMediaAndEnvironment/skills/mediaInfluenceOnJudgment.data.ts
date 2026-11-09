@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const mediaInfluenceOnJudgment_Skill_Data = buildSkillConfig({
+export const mediaInfluenceOnJudgment_Skill_Data = defineSkill({
   slug: 'mediaInfluenceOnJudgment',
   id: '82d7f6e1-f9df-493c-aa24-0286e5b8b0df',
   name: {

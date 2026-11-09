@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const predictInteractionsBetweenMagneticPoles_Skill_Data = buildSkillConfig({
+export const predictInteractionsBetweenMagneticPoles_Skill_Data = defineSkill({
   slug: 'predictInteractionsBetweenMagneticPoles',
   id: '9dcf9fa0-204a-415e-9a6d-c1da8c425c9e',
   name: {

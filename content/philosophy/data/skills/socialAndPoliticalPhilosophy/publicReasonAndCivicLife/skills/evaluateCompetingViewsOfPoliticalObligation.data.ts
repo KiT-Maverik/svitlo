@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateCompetingViewsOfPoliticalObligation_Skill_Data = buildSkillConfig({
+export const evaluateCompetingViewsOfPoliticalObligation_Skill_Data = defineSkill({
   slug: 'evaluateCompetingViewsOfPoliticalObligation',
   id: '86bf44b3-b2fb-461f-816a-e46de6798be6',
   name: {

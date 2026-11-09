@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishDescriptiveFromEvaluativeLanguage_Skill_Data = buildSkillConfig({
+export const distinguishDescriptiveFromEvaluativeLanguage_Skill_Data = defineSkill({
   slug: 'distinguishDescriptiveFromEvaluativeLanguage',
   id: '3dc31a72-af38-4bbc-8da3-613a79900e8d',
   name: {

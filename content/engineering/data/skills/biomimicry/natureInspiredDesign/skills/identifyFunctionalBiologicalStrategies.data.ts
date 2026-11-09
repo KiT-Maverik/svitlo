@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyFunctionalBiologicalStrategies_Skill_Data = buildSkillConfig({
+export const identifyFunctionalBiologicalStrategies_Skill_Data = defineSkill({
   slug: 'identifyFunctionalBiologicalStrategies',
   id: '73f610ce-014c-420b-8bc5-07c49e14c201',
   name: {

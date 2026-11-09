@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const functionsOfMoney_Skill_Data = buildSkillConfig({
+export const functionsOfMoney_Skill_Data = defineSkill({
   slug: 'functionsOfMoney',
   id: 'ec568a5d-a017-4a96-b3af-84a792619cc5',
   name: {

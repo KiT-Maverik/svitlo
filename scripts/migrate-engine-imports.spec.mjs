@@ -2,24 +2,24 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { rewriteEngineImports } from './migrate-engine-imports.mjs';
 
-test('moves value-only taxonomy builders to the Engine root', () => {
+test('moves former taxonomy configurators to the Engine root', () => {
   assert.equal(
-    rewriteEngineImports("import { buildSkillConfig } from '@svitlo/engine/taxonomy';"),
-    "import { buildSkillConfig } from '@svitlo/engine';",
+    rewriteEngineImports("import { defineSkill } from '@svitlo/engine/taxonomy';"),
+    "import { defineSkill } from '@svitlo/engine';",
   );
 });
 
 test('moves Contracts-owned taxonomy types to Contracts', () => {
   assert.equal(
-    rewriteEngineImports("import type { SkillId, Skill_Config } from '@svitlo/engine/taxonomy';"),
-    "import type { SkillId, Skill_Config } from '@svitlo/contracts/taxonomy';",
+    rewriteEngineImports("import type { SkillId } from '@svitlo/engine/taxonomy';"),
+    "import type { SkillId } from '@svitlo/contracts/taxonomy';",
   );
 });
 
 test('splits mixed value and type imports without changing imported names', () => {
   assert.equal(
-    rewriteEngineImports("import { type SkillId, buildSkillConfig } from '@svitlo/engine/taxonomy';"),
-    "import { type SkillId } from '@svitlo/contracts/taxonomy';\nimport { buildSkillConfig } from '@svitlo/engine';",
+    rewriteEngineImports("import { type SkillId, defineSkill } from '@svitlo/engine/taxonomy';"),
+    "import { type SkillId } from '@svitlo/contracts/taxonomy';\nimport { defineSkill } from '@svitlo/engine';",
   );
 });
 
@@ -47,7 +47,7 @@ test('rewrites imports from other former Engine entrypoints', () => {
 });
 
 test('does not rewrite strings containing sample source code', () => {
-  const fixture = 'const fixture = "import { buildSkillConfig } from \'@svitlo/engine/taxonomy\';";';
+  const fixture = 'const fixture = "import { defineSkill } from \'@svitlo/engine/taxonomy\';";';
   assert.equal(rewriteEngineImports(fixture, 'fixture.ts'), fixture);
 });
 

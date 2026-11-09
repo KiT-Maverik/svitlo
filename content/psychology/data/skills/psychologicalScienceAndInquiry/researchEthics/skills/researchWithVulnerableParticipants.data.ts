@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const researchWithVulnerableParticipants_Skill_Data = buildSkillConfig({
+export const researchWithVulnerableParticipants_Skill_Data = defineSkill({
   slug: 'researchWithVulnerableParticipants',
   id: 'd5c35f4d-bb00-48c8-9b2e-94e79b6ee77c',
   name: {

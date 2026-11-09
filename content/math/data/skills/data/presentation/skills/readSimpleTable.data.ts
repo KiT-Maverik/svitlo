@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const readSimpleTable_Skill_Data = buildSkillConfig({
+export const readSimpleTable_Skill_Data = defineSkill({
   slug: 'readSimpleTable',
   id: '68637838-f4bd-4a06-a40f-a86a53a27d19',
   name: {

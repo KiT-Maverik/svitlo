@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifySatelliteSubsystems_Skill_Data = buildSkillConfig({
+export const identifySatelliteSubsystems_Skill_Data = defineSkill({
   slug: 'identifySatelliteSubsystems',
   id: 'd220fcea-9c61-457f-a592-d66be8cea5f5',
   name: {

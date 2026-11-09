@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   interpretMusicalMeter_Skill_Data,
@@ -8,7 +8,7 @@ import {
   usePolyrhythm_Skill_Data,
 } from './skills';
 
-export const pulseAndRhythm_SkillGroup_Data = buildSkillGroupConfig({
+export const pulseAndRhythm_SkillGroup_Data = defineSkillGroup({
   slug: 'pulseAndRhythm',
   id: '7baa3205-c393-4572-81e5-6ed3f5401197',
   name: {
@@ -42,13 +42,13 @@ export const pulseAndRhythm_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Пульс пен ырғақ',
     qm: 'Nabız ve ritim',
   },
-  skills: {
-    interpretMusicalMeter: interpretMusicalMeter_Skill_Data,
-    maintainASteadyBeat: maintainASteadyBeat_Skill_Data,
-    performSyncopation: performSyncopation_Skill_Data,
-    reproduceARhythmicPattern: reproduceARhythmicPattern_Skill_Data,
-    usePolyrhythm: usePolyrhythm_Skill_Data,
-  },
+  skills: [
+    interpretMusicalMeter_Skill_Data,
+    maintainASteadyBeat_Skill_Data,
+    performSyncopation_Skill_Data,
+    reproduceARhythmicPattern_Skill_Data,
+    usePolyrhythm_Skill_Data,
+  ],
   description: {
     methodological:
       'A steady temporal reference can coexist with differing performed durations, accents and layered rhythmic cycles.',

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   distinguishAttractionFromRepulsionBetweenElectricCharges_Skill_Data,
@@ -6,7 +6,7 @@ import {
   recognizeTheChargingOfObjectsByFriction_Skill_Data,
 } from './skills';
 
-export const electricChargesAndInteractions_SkillGroup_Data = buildSkillGroupConfig({
+export const electricChargesAndInteractions_SkillGroup_Data = defineSkillGroup({
   slug: 'electricChargesAndInteractions',
   id: '6675b50e-4ced-4075-afd3-3d8831b023dd',
   name: {
@@ -40,12 +40,11 @@ export const electricChargesAndInteractions_SkillGroup_Data = buildSkillGroupCon
     ka: 'ელექტრული მუხტები და ურთიერთქმედებები',
     kk: 'Электр зарядтары және өзара әрекеттесу',
   },
-  skills: {
-    distinguishAttractionFromRepulsionBetweenElectricCharges:
-      distinguishAttractionFromRepulsionBetweenElectricCharges_Skill_Data,
-    explainConservationOfElectricCharge: explainConservationOfElectricCharge_Skill_Data,
-    recognizeTheChargingOfObjectsByFriction: recognizeTheChargingOfObjectsByFriction_Skill_Data,
-  },
+  skills: [
+    distinguishAttractionFromRepulsionBetweenElectricCharges_Skill_Data,
+    explainConservationOfElectricCharge_Skill_Data,
+    recognizeTheChargingOfObjectsByFriction_Skill_Data,
+  ],
   description: {
     methodological:
       'Electrification, interactions between charged bodies, and charge transfer obey conservation of electric charge. Electric interaction can occur without direct contact.',

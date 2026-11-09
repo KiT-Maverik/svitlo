@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareSetsOfObservations_Skill_Data = buildSkillConfig({
+export const compareSetsOfObservations_Skill_Data = defineSkill({
   slug: 'compareSetsOfObservations',
   id: 'bdc0d418-89f0-45b2-89f0-a8c8d921c6d3',
   name: {

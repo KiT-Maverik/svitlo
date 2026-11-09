@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { frozenAndSubsurfaceWater_SkillGroup_Data } from './frozenAndSubsurfaceWater/frozenAndSubsurfaceWater.data';
 import { hydrologicConnections_SkillGroup_Data } from './hydrologicConnections/hydrologicConnections.data';
 import { marineAndCoastalProcesses_SkillGroup_Data } from './marineAndCoastalProcesses/marineAndCoastalProcesses.data';
 import { riversAndDrainageBasins_SkillGroup_Data } from './riversAndDrainageBasins/riversAndDrainageBasins.data';
 
-export const waterSystems_SkillDomain_Data = buildSkillDomainConfig({
+export const waterSystems_SkillDomain_Data = defineSkillDomain({
   slug: 'waterSystems',
   id: '00317d1d-492a-4491-a387-ef75cd29fb7d',
-  name: {
+  title: {
     en: 'Water Systems',
     zh: '水系统',
     hi: 'जल तंत्र',
@@ -39,12 +39,12 @@ export const waterSystems_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Су жүйелері',
     qm: 'Suv sistemaları',
   },
-  groups: {
-    frozenAndSubsurfaceWater: frozenAndSubsurfaceWater_SkillGroup_Data,
-    hydrologicConnections: hydrologicConnections_SkillGroup_Data,
-    marineAndCoastalProcesses: marineAndCoastalProcesses_SkillGroup_Data,
-    riversAndDrainageBasins: riversAndDrainageBasins_SkillGroup_Data,
-  },
+  groups: [
+    frozenAndSubsurfaceWater_SkillGroup_Data,
+    hydrologicConnections_SkillGroup_Data,
+    marineAndCoastalProcesses_SkillGroup_Data,
+    riversAndDrainageBasins_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Water connects landscapes through drainage networks, oceans, atmosphere, and underground storage. Geographic questions center on where water moves and accumulates, how its distribution varies, and how water features shape places.',

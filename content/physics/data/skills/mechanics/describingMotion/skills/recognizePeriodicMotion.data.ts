@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizePeriodicMotion_Skill_Data = buildSkillConfig({
+export const recognizePeriodicMotion_Skill_Data = defineSkill({
   slug: 'recognizePeriodicMotion',
   id: 'c36a7728-a266-4a9d-9b71-03a9e2bd129f',
   name: {

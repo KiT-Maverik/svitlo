@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const prostheticDeviceFunctions_Skill_Data = buildSkillConfig({
+export const prostheticDeviceFunctions_Skill_Data = defineSkill({
   slug: 'prostheticDeviceFunctions',
   id: '6dd2f145-758b-4718-8a77-a526e6d609db',
   name: {

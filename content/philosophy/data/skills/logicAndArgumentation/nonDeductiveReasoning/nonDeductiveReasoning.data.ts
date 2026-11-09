@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   distinguishDeductiveCertaintyFromProbabilisticSupport_Skill_Data,
@@ -7,7 +7,7 @@ import {
   evaluateAnInferenceToTheBestExplanation_Skill_Data,
 } from './skills';
 
-export const nonDeductiveReasoning_SkillGroup_Data = buildSkillGroupConfig({
+export const nonDeductiveReasoning_SkillGroup_Data = defineSkillGroup({
   slug: 'nonDeductiveReasoning',
   id: 'efea3959-c495-472e-99c9-c8aea629b408',
   name: {
@@ -41,13 +41,12 @@ export const nonDeductiveReasoning_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Дедуктивті емес пайымдау',
     qm: 'Deduktiv olmağan fikir yürsetüv',
   },
-  skills: {
-    distinguishDeductiveCertaintyFromProbabilisticSupport:
-      distinguishDeductiveCertaintyFromProbabilisticSupport_Skill_Data,
-    evaluateAnalogicalReasoning: evaluateAnalogicalReasoning_Skill_Data,
-    evaluateAnInductiveGeneralization: evaluateAnInductiveGeneralization_Skill_Data,
-    evaluateAnInferenceToTheBestExplanation: evaluateAnInferenceToTheBestExplanation_Skill_Data,
-  },
+  skills: [
+    distinguishDeductiveCertaintyFromProbabilisticSupport_Skill_Data,
+    evaluateAnalogicalReasoning_Skill_Data,
+    evaluateAnInductiveGeneralization_Skill_Data,
+    evaluateAnInferenceToTheBestExplanation_Skill_Data,
+  ],
   description: {
     methodological:
       'Many reasonable arguments support conclusions without guaranteeing them. Their strength depends on evidence, alternatives, sampling, or explanatory power rather than formal certainty.',

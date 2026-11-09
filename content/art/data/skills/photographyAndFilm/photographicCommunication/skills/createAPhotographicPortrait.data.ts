@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const createAPhotographicPortrait_Skill_Data = buildSkillConfig({
+export const createAPhotographicPortrait_Skill_Data = defineSkill({
   slug: 'createAPhotographicPortrait',
   id: 'e1ee4139-d395-45db-a1b5-3ebe996a371e',
   name: {

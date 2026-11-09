@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyticalInterferences_Skill_Data = buildSkillConfig({
+export const analyticalInterferences_Skill_Data = defineSkill({
   slug: 'analyticalInterferences',
   id: '998b9a25-7413-466d-9992-8492d569bea1',
   name: {

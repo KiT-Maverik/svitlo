@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const austronesianExpansion_Skill_Data = buildSkillConfig({
+export const austronesianExpansion_Skill_Data = defineSkill({
   slug: 'austronesianExpansion',
   id: '40f41c66-906c-4d51-ae6d-ef330d584617',
   name: {

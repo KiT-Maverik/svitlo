@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainReplenishmentAndDepletionOfNaturalResources_Skill_Data = buildSkillConfig({
+export const explainReplenishmentAndDepletionOfNaturalResources_Skill_Data = defineSkill({
   slug: 'explainReplenishmentAndDepletionOfNaturalResources',
   id: 'd5091906-395e-4955-839b-9db8729765c7',
   name: {

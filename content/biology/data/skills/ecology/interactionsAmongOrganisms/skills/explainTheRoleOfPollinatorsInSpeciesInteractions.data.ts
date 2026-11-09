@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainTheRoleOfPollinatorsInSpeciesInteractions_Skill_Data = buildSkillConfig({
+export const explainTheRoleOfPollinatorsInSpeciesInteractions_Skill_Data = defineSkill({
   slug: 'explainTheRoleOfPollinatorsInSpeciesInteractions',
   id: 'f052071e-40e0-4ec6-a24b-f5d937f1ab4a',
   name: {

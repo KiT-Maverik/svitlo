@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const slaveryAndOtherDependencies_Skill_Data = buildSkillConfig({
+export const slaveryAndOtherDependencies_Skill_Data = defineSkill({
   slug: 'slaveryAndOtherDependencies',
   id: '3cc87d64-4ba2-4088-ac67-32ec27b0b2c3',
   name: {

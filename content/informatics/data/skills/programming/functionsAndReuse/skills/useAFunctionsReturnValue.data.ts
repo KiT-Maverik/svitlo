@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const useAFunctionsReturnValue_Skill_Data = buildSkillConfig({
+export const useAFunctionsReturnValue_Skill_Data = defineSkill({
   slug: 'useAFunctionsReturnValue',
   id: '0ffc3fc0-7e50-47ab-b71d-e26f71e07365',
   name: {

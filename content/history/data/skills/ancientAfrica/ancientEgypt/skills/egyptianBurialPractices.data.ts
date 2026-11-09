@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const egyptianBurialPractices_Skill_Data = buildSkillConfig({
+export const egyptianBurialPractices_Skill_Data = defineSkill({
   slug: 'egyptianBurialPractices',
   id: '1180dc48-b2d7-426d-ad0b-a5c646de0b51',
   name: {

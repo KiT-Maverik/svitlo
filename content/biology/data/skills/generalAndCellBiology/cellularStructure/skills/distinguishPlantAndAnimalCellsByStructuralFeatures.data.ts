@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishPlantAndAnimalCellsByStructuralFeatures_Skill_Data = buildSkillConfig({
+export const distinguishPlantAndAnimalCellsByStructuralFeatures_Skill_Data = defineSkill({
   slug: 'distinguishPlantAndAnimalCellsByStructuralFeatures',
   id: 'b3b06ffe-0a3b-4b18-9731-a9bf9128a505',
   name: {

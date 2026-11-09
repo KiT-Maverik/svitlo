@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyTheHeatTransferMechanismFromAPhysicalSituation_Skill_Data = buildSkillConfig({
+export const identifyTheHeatTransferMechanismFromAPhysicalSituation_Skill_Data = defineSkill({
   slug: 'identifyTheHeatTransferMechanismFromAPhysicalSituation',
   id: 'd26f04f8-7e59-46f1-8f45-d3e7479e98db',
   name: {

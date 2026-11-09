@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeSubsystemDependencies_Skill_Data = buildSkillConfig({
+export const analyzeSubsystemDependencies_Skill_Data = defineSkill({
   slug: 'analyzeSubsystemDependencies',
   id: '8dc55400-10b9-40c7-a1d4-74dca8819455',
   name: {

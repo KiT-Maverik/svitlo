@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishLakesRiversAndWetlandsByWaterBehavior_Skill_Data = buildSkillConfig({
+export const distinguishLakesRiversAndWetlandsByWaterBehavior_Skill_Data = defineSkill({
   slug: 'distinguishLakesRiversAndWetlandsByWaterBehavior',
   id: '8a7b984d-78c5-4772-81ed-f8ba2ec8b2d4',
   name: {

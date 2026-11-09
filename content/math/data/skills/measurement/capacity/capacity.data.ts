@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { capacityConcept_Skill_Data, liter_Skill_Data, milliliter_Skill_Data } from './skills';
 
-export const capacity_SkillGroup_Data = buildSkillGroupConfig({
+export const capacity_SkillGroup_Data = defineSkillGroup({
   slug: 'capacity',
   id: '4ab3d3b7-3c90-4805-ad05-cf27cb9ae725',
   name: {
@@ -36,11 +36,7 @@ export const capacity_SkillGroup_Data = buildSkillGroupConfig({
     pl: 'Pojemność',
     uk: 'Місткість',
   },
-  skills: {
-    capacityConcept: capacityConcept_Skill_Data,
-    liter: liter_Skill_Data,
-    milliliter: milliliter_Skill_Data,
-  },
+  skills: [capacityConcept_Skill_Data, liter_Skill_Data, milliliter_Skill_Data],
   description: {
     methodological:
       'The volume of liquid that a container can hold, its measurement in liters and milliliters, and comparisons of capacities.',

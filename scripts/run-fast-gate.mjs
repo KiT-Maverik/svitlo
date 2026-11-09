@@ -88,16 +88,17 @@ function runGate(changed) {
   }
   if (
     changed.some(
-      f => f.startsWith('scripts/generators/pages/skillAnalytics/') || f.startsWith('content/playground/data/skills/'),
+      f =>
+        f.startsWith('scripts/generators/data/publish-skills-data.') || f.startsWith('content/playground/data/skills/'),
     )
   ) {
-    exec('node', ['--test', 'scripts/generators/pages/skillAnalytics/generate-skill-analytics.spec.mjs']);
-    exec('node', [
-      'scripts/generators/pages/skillAnalytics/generate-skill-analytics.mjs',
-      '--package',
-      'content/playground',
-      '--measure',
-    ]);
+    exec('node', ['--test', 'scripts/generators/data/publish-skills-data.spec.mjs']);
+  }
+
+  // Run the complete Art preview only when the migration utility changes.
+  // It writes to an isolated temporary directory; authored Skills stay untouched.
+  if (changed.some(f => f.startsWith('scripts/migrate-skills-configurators.'))) {
+    exec('node', ['--test', 'scripts/migrate-skills-configurators.spec.mjs']);
   }
   if (
     changed.some(f =>

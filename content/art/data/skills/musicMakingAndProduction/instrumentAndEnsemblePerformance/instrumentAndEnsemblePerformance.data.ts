@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   maintainAnEnsemblePart_Skill_Data,
@@ -8,7 +8,7 @@ import {
   shapePerformanceDynamics_Skill_Data,
 } from './skills';
 
-export const instrumentAndEnsemblePerformance_SkillGroup_Data = buildSkillGroupConfig({
+export const instrumentAndEnsemblePerformance_SkillGroup_Data = defineSkillGroup({
   slug: 'instrumentAndEnsemblePerformance',
   id: '90e96078-a5ad-4bc1-8fce-407be51f9032',
   name: {
@@ -42,13 +42,13 @@ export const instrumentAndEnsemblePerformance_SkillGroup_Data = buildSkillGroupC
     kk: 'Аспапта және ансамбльде орындау',
     qm: 'Saz çalmaq ve ansambl icrası',
   },
-  skills: {
-    maintainAnEnsemblePart: maintainAnEnsemblePart_Skill_Data,
-    performAnInstrumentalPhrase: performAnInstrumentalPhrase_Skill_Data,
-    produceInstrumentalTone: produceInstrumentalTone_Skill_Data,
-    respondToMusicalCues: respondToMusicalCues_Skill_Data,
-    shapePerformanceDynamics: shapePerformanceDynamics_Skill_Data,
-  },
+  skills: [
+    maintainAnEnsemblePart_Skill_Data,
+    performAnInstrumentalPhrase_Skill_Data,
+    produceInstrumentalTone_Skill_Data,
+    respondToMusicalCues_Skill_Data,
+    shapePerformanceDynamics_Skill_Data,
+  ],
   description: {
     methodological:
       'Sound production and responsiveness to fellow performers support coherent realization of musical ideas.',

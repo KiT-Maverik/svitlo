@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const useSpatialLevels_Skill_Data = buildSkillConfig({
+export const useSpatialLevels_Skill_Data = defineSkill({
   slug: 'useSpatialLevels',
   id: '0a2860f9-c61b-4d59-9d3d-53781b251018',
   name: {

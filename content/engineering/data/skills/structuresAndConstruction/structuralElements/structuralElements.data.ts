@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   arches_Skill_Data,
@@ -9,7 +9,7 @@ import {
   trusses_Skill_Data,
 } from './skills';
 
-export const structuralElements_SkillGroup_Data = buildSkillGroupConfig({
+export const structuralElements_SkillGroup_Data = defineSkillGroup({
   slug: 'structuralElements',
   id: '18633aac-eac9-45dd-be1d-625881c5ed90',
   name: {
@@ -43,14 +43,14 @@ export const structuralElements_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Құрылымдық элементтер',
     qm: 'Qurulış elementleri',
   },
-  skills: {
-    arches: arches_Skill_Data,
-    beams: beams_Skill_Data,
-    columns: columns_Skill_Data,
-    foundations: foundations_Skill_Data,
-    structuralBracing: structuralBracing_Skill_Data,
-    trusses: trusses_Skill_Data,
-  },
+  skills: [
+    arches_Skill_Data,
+    beams_Skill_Data,
+    columns_Skill_Data,
+    foundations_Skill_Data,
+    structuralBracing_Skill_Data,
+    trusses_Skill_Data,
+  ],
   description: {
     methodological:
       'Characteristic forms route forces differently; a safe structure is not just a visually plausible shape.',

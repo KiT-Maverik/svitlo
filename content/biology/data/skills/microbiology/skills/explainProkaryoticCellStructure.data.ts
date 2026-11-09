@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainProkaryoticCellStructure_Skill_Data = buildSkillConfig({
+export const explainProkaryoticCellStructure_Skill_Data = defineSkill({
   slug: 'explainProkaryoticCellStructure',
   id: '66036238-3e1a-471d-9080-ae3aa23d4659',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyTheMainPartsOfAMushroomFruitingBody_Skill_Data = buildSkillConfig({
+export const identifyTheMainPartsOfAMushroomFruitingBody_Skill_Data = defineSkill({
   slug: 'identifyTheMainPartsOfAMushroomFruitingBody',
   id: 'e25e0cf7-e313-422a-8350-210143298faf',
   name: {

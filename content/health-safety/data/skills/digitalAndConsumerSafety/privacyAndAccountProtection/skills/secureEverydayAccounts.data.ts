@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const secureEverydayAccounts_Skill_Data = buildSkillConfig({
+export const secureEverydayAccounts_Skill_Data = defineSkill({
   slug: 'secureEverydayAccounts',
   id: '0839b888-848a-432d-9853-b09e6e17dcef',
   name: {

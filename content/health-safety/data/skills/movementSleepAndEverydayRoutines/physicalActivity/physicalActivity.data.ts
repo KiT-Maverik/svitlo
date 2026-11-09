@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   planRegularPhysicalActivity_Skill_Data,
@@ -7,7 +7,7 @@ import {
   recognizeWarningSignsDuringActivity_Skill_Data,
 } from './skills';
 
-export const physicalActivity_SkillGroup_Data = buildSkillGroupConfig({
+export const physicalActivity_SkillGroup_Data = defineSkillGroup({
   slug: 'physicalActivity',
   id: '3244da43-c224-40e6-b362-92f3d33dc09b',
   name: {
@@ -41,12 +41,12 @@ export const physicalActivity_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Дене белсенділігі',
     qm: 'Beden faaliyeti',
   },
-  skills: {
-    planRegularPhysicalActivity: planRegularPhysicalActivity_Skill_Data,
-    prepareForPhysicalExertion: prepareForPhysicalExertion_Skill_Data,
-    preventExerciseRelatedInjury: preventExerciseRelatedInjury_Skill_Data,
-    recognizeWarningSignsDuringActivity: recognizeWarningSignsDuringActivity_Skill_Data,
-  },
+  skills: [
+    planRegularPhysicalActivity_Skill_Data,
+    prepareForPhysicalExertion_Skill_Data,
+    preventExerciseRelatedInjury_Skill_Data,
+    recognizeWarningSignsDuringActivity_Skill_Data,
+  ],
   description: {
     methodological:
       'Activity can vary by intensity, form, and personal ability; protective choices include gradual progression and responding to warning signals.',

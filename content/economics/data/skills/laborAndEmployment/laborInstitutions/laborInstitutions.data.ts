@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { collectiveBargaining_Skill_Data, employmentContracts_Skill_Data, minimumWage_Skill_Data } from './skills';
 
-export const laborInstitutions_SkillGroup_Data = buildSkillGroupConfig({
+export const laborInstitutions_SkillGroup_Data = defineSkillGroup({
   slug: 'laborInstitutions',
   id: '3256784f-e258-4049-9ea3-41d886351fee',
   name: {
@@ -36,11 +36,7 @@ export const laborInstitutions_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Еңбек институттары',
     qm: 'Emek müessiseleri',
   },
-  skills: {
-    collectiveBargaining: collectiveBargaining_Skill_Data,
-    employmentContracts: employmentContracts_Skill_Data,
-    minimumWage: minimumWage_Skill_Data,
-  },
+  skills: [collectiveBargaining_Skill_Data, employmentContracts_Skill_Data, minimumWage_Skill_Data],
   description: {
     methodological: 'Employment relationships operate under contracts, collective bargaining, and legal protections.',
     frontend: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const describeInteractionsBetweenBonesAndMuscles_Skill_Data = buildSkillConfig({
+export const describeInteractionsBetweenBonesAndMuscles_Skill_Data = defineSkill({
   slug: 'describeInteractionsBetweenBonesAndMuscles',
   id: 'a0c53efb-58bb-40cc-849a-32f33557a02d',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const radialVelocityDetection_Skill_Data = buildSkillConfig({
+export const radialVelocityDetection_Skill_Data = defineSkill({
   slug: 'radialVelocityDetection',
   id: 'be2c5a7f-3121-4a90-b7e2-380b19adc3ce',
   name: {

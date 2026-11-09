@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const inverseOperations_Skill_Data = buildSkillConfig({
+export const inverseOperations_Skill_Data = defineSkill({
   slug: 'inverseOperations',
   id: '99807d43-bd91-498f-86d6-553f1cd3b51b',
   name: {

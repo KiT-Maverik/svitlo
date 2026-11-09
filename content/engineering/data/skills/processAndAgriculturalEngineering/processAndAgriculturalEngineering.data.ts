@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { foodAndAgriculturalTechnology_SkillGroup_Data } from './foodAndAgriculturalTechnology/foodAndAgriculturalTechnology.data';
 import { industrialProcessEquipment_SkillGroup_Data } from './industrialProcessEquipment/industrialProcessEquipment.data';
 import { processArchitecture_SkillGroup_Data } from './processArchitecture/processArchitecture.data';
 
-export const processAndAgriculturalEngineering_SkillDomain_Data = buildSkillDomainConfig({
+export const processAndAgriculturalEngineering_SkillDomain_Data = defineSkillDomain({
   slug: 'processAndAgriculturalEngineering',
   id: 'ed20c277-0b50-43ea-acfa-292b9c850283',
-  name: {
+  title: {
     en: 'Process and Agricultural Engineering',
     zh: '过程与农业工程',
     hi: 'प्रक्रिया और कृषि अभियांत्रिकी',
@@ -38,11 +38,11 @@ export const processAndAgriculturalEngineering_SkillDomain_Data = buildSkillDoma
     kk: 'Технологиялық процестер мен ауыл шаруашылығы инженериясы',
     qm: 'Protsess ve ziraat müendisligi',
   },
-  groups: {
-    foodAndAgriculturalTechnology: foodAndAgriculturalTechnology_SkillGroup_Data,
-    industrialProcessEquipment: industrialProcessEquipment_SkillGroup_Data,
-    processArchitecture: processArchitecture_SkillGroup_Data,
-  },
+  groups: [
+    foodAndAgriculturalTechnology_SkillGroup_Data,
+    industrialProcessEquipment_SkillGroup_Data,
+    processArchitecture_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Some engineered systems transform flowing materials rather than assembling separate mechanical parts. Their design coordinates equipment, transfer rates, process conditions and product quality; agricultural and food technologies adapt these principles to living materials and variable field environments.',

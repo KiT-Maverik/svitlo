@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const order1000_Skill_Data = buildSkillConfig({
+export const order1000_Skill_Data = defineSkill({
   slug: 'order1000',
   id: 'd5a5fa8a-d208-4fc7-94c9-1ccc91caf6ce',
   name: {

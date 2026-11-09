@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { operantLearning_SkillGroup_Data } from './operantLearning/operantLearning.data';
 import { respondentConditioning_SkillGroup_Data } from './respondentConditioning/respondentConditioning.data';
 import { socialLearning_SkillGroup_Data } from './socialLearning/socialLearning.data';
 import { transferAndBehavioralFlexibility_SkillGroup_Data } from './transferAndBehavioralFlexibility/transferAndBehavioralFlexibility.data';
 
-export const learningAndBehaviorChange_SkillDomain_Data = buildSkillDomainConfig({
+export const learningAndBehaviorChange_SkillDomain_Data = defineSkillDomain({
   slug: 'learningAndBehaviorChange',
   id: 'ccaf830f-559a-4140-b1c0-5affd6741164',
-  name: {
+  title: {
     en: 'Learning and Behavior Change',
     zh: '学习与行为改变',
     hi: 'अधिगम और व्यवहार परिवर्तन',
@@ -39,12 +39,12 @@ export const learningAndBehaviorChange_SkillDomain_Data = buildSkillDomainConfig
     kk: 'Үйрену және мінез-құлықтың өзгеруі',
     qm: 'Ögrenüv ve areketniñ deñişüvi',
   },
-  groups: {
-    operantLearning: operantLearning_SkillGroup_Data,
-    respondentConditioning: respondentConditioning_SkillGroup_Data,
-    socialLearning: socialLearning_SkillGroup_Data,
-    transferAndBehavioralFlexibility: transferAndBehavioralFlexibility_SkillGroup_Data,
-  },
+  groups: [
+    operantLearning_SkillGroup_Data,
+    respondentConditioning_SkillGroup_Data,
+    socialLearning_SkillGroup_Data,
+    transferAndBehavioralFlexibility_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Past experience modifies responding through predictive cues, consequences, and social observation. This domain explains mechanisms of behavioral acquisition and flexibility rather than memory storage or a teaching sequence.',

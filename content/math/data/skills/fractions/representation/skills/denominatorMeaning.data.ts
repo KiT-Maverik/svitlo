@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const denominatorMeaning_Skill_Data = buildSkillConfig({
+export const denominatorMeaning_Skill_Data = defineSkill({
   slug: 'denominatorMeaning',
   id: '7297efca-9524-4bae-b64f-556efe5d2a5e',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const multiplierEffect_Skill_Data = buildSkillConfig({
+export const multiplierEffect_Skill_Data = defineSkill({
   slug: 'multiplierEffect',
   id: 'bbabc514-4014-461f-999a-86a4fdeec375',
   name: {

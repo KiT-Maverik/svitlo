@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainHowAPulleyWorks_Skill_Data = buildSkillConfig({
+export const explainHowAPulleyWorks_Skill_Data = defineSkill({
   slug: 'explainHowAPulleyWorks',
   id: '586f8ea3-c314-46e0-97fe-1efcb32645c8',
   name: {

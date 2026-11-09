@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   oneToOne_Skill_Data,
@@ -8,7 +8,7 @@ import {
   forward1000_Skill_Data,
 } from './skills';
 
-export const sequence_SkillGroup_Data = buildSkillGroupConfig({
+export const sequence_SkillGroup_Data = defineSkillGroup({
   slug: 'sequence',
   id: 'e7fe00f1-52d4-43c2-8047-28de913d4de3',
   name: {
@@ -42,13 +42,13 @@ export const sequence_SkillGroup_Data = buildSkillGroupConfig({
     pl: 'Ciągi liczbowe',
     uk: 'Числові послідовності',
   },
-  skills: {
-    oneToOne: oneToOne_Skill_Data,
-    forward20: forward20_Skill_Data,
-    backward20: backward20_Skill_Data,
-    forward100: forward100_Skill_Data,
-    forward1000: forward1000_Skill_Data,
-  },
+  skills: [
+    oneToOne_Skill_Data,
+    forward20_Skill_Data,
+    backward20_Skill_Data,
+    forward100_Skill_Data,
+    forward1000_Skill_Data,
+  ],
   description: {
     methodological:
       'Naming consecutive natural numbers, moving forward and backward, and restoring missing elements of the sequence without necessarily starting from one.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const sleepAndMemory_Skill_Data = buildSkillConfig({
+export const sleepAndMemory_Skill_Data = defineSkill({
   slug: 'sleepAndMemory',
   id: 'f06f4067-f54e-4457-bf47-e3943a4d4845',
   name: {

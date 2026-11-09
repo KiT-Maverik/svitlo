@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const elaborativeEncoding_Skill_Data = buildSkillConfig({
+export const elaborativeEncoding_Skill_Data = defineSkill({
   slug: 'elaborativeEncoding',
   id: '9414a493-45c3-47bf-b2fc-d6467e71b1b0',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const melting_Skill_Data = buildSkillConfig({
+export const melting_Skill_Data = defineSkill({
   slug: 'melting',
   id: 'c0e165ac-b4fb-4fcd-b179-ca687614fa81',
   name: {

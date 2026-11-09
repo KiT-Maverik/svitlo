@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const limitsOfEconomicModels_Skill_Data = buildSkillConfig({
+export const limitsOfEconomicModels_Skill_Data = defineSkill({
   slug: 'limitsOfEconomicModels',
   id: 'dc718fa1-24a4-465f-b301-acb3cfc3982e',
   name: {

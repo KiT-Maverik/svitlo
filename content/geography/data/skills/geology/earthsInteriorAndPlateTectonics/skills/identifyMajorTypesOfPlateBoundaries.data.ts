@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyMajorTypesOfPlateBoundaries_Skill_Data = buildSkillConfig({
+export const identifyMajorTypesOfPlateBoundaries_Skill_Data = defineSkill({
   slug: 'identifyMajorTypesOfPlateBoundaries',
   id: 'e230f726-0413-4683-938c-39b8bbd846c8',
   name: {

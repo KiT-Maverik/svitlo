@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const hydration_Skill_Data = buildSkillConfig({
+export const hydration_Skill_Data = defineSkill({
   slug: 'hydration',
   id: '1afd2315-ce40-4998-ba77-c12142561ce1',
   name: {

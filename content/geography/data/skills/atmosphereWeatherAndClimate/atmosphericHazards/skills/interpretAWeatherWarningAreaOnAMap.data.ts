@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretAWeatherWarningAreaOnAMap_Skill_Data = buildSkillConfig({
+export const interpretAWeatherWarningAreaOnAMap_Skill_Data = defineSkill({
   slug: 'interpretAWeatherWarningAreaOnAMap',
   id: '15799551-7e29-44b0-95da-1bf2e5305e85',
   name: {

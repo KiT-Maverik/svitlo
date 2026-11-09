@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const prototype_Skill_Data = buildSkillConfig({
+export const prototype_Skill_Data = defineSkill({
   slug: 'prototype',
   id: 'a3fbd495-5b5b-4032-baaa-11e9f23de2b0',
   name: {

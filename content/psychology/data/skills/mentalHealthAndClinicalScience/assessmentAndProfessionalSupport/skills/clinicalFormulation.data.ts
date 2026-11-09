@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const clinicalFormulation_Skill_Data = buildSkillConfig({
+export const clinicalFormulation_Skill_Data = defineSkill({
   slug: 'clinicalFormulation',
   id: '833df35c-53f2-4527-819c-eeb4465a40f4',
   name: {

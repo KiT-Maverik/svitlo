@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareTheStrengthOfStructuralShapes_Skill_Data = buildSkillConfig({
+export const compareTheStrengthOfStructuralShapes_Skill_Data = defineSkill({
   slug: 'compareTheStrengthOfStructuralShapes',
   id: '3b9aeffe-2c29-45e6-8b4a-11794ebb673d',
   name: {

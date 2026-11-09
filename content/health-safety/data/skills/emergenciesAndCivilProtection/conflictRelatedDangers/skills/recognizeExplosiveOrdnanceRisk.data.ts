@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeExplosiveOrdnanceRisk_Skill_Data = buildSkillConfig({
+export const recognizeExplosiveOrdnanceRisk_Skill_Data = defineSkill({
   slug: 'recognizeExplosiveOrdnanceRisk',
   id: '90f3442c-df86-476b-a8c0-c454206540ac',
   name: {

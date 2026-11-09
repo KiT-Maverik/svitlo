@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyRelevantMaterialProperties_Skill_Data = buildSkillConfig({
+export const identifyRelevantMaterialProperties_Skill_Data = defineSkill({
   slug: 'identifyRelevantMaterialProperties',
   id: '3bb55518-952c-4642-86b9-b7a3b3574a26',
   name: {

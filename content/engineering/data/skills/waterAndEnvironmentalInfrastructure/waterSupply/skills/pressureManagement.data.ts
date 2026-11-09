@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const pressureManagement_Skill_Data = buildSkillConfig({
+export const pressureManagement_Skill_Data = defineSkill({
   slug: 'pressureManagement',
   id: '5a09f9a8-5fc0-4d59-b177-e84802fa2bd4',
   name: {

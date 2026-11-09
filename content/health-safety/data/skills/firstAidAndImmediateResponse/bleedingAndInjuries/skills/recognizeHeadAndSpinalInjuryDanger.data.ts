@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeHeadAndSpinalInjuryDanger_Skill_Data = buildSkillConfig({
+export const recognizeHeadAndSpinalInjuryDanger_Skill_Data = defineSkill({
   slug: 'recognizeHeadAndSpinalInjuryDanger',
   id: '250e2a65-04d4-4f2e-ac84-7255f1c3e49d',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const classifyRocksByTheirModeOfOrigin_Skill_Data = buildSkillConfig({
+export const classifyRocksByTheirModeOfOrigin_Skill_Data = defineSkill({
   slug: 'classifyRocksByTheirModeOfOrigin',
   id: '4c95d2f4-60ac-423a-8664-fff6f9b24b90',
   name: {

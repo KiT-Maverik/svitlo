@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainPersistentStorage_Skill_Data = buildSkillConfig({
+export const explainPersistentStorage_Skill_Data = defineSkill({
   slug: 'explainPersistentStorage',
   id: 'c29594da-7041-478d-9168-82eadbb6dbb7',
   name: {

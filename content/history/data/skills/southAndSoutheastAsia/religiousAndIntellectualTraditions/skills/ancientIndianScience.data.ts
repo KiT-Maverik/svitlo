@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const ancientIndianScience_Skill_Data = buildSkillConfig({
+export const ancientIndianScience_Skill_Data = defineSkill({
   slug: 'ancientIndianScience',
   id: 'a30624e8-65ae-4f5d-aba5-9dd15a75b61c',
   name: {

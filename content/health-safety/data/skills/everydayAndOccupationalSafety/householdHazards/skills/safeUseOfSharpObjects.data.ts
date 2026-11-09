@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const safeUseOfSharpObjects_Skill_Data = buildSkillConfig({
+export const safeUseOfSharpObjects_Skill_Data = defineSkill({
   slug: 'safeUseOfSharpObjects',
   id: '653566eb-051e-41f6-8d9c-9392b90adb6c',
   name: {

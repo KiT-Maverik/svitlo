@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { economicSystems_SkillGroup_Data } from './economicSystems/economicSystems.data';
 import { historicalEconomicTransformations_SkillGroup_Data } from './historicalEconomicTransformations/historicalEconomicTransformations.data';
 import { schoolsOfEconomicThought_SkillGroup_Data } from './schoolsOfEconomicThought/schoolsOfEconomicThought.data';
 
-export const economicHistoryAndIdeas_SkillDomain_Data = buildSkillDomainConfig({
+export const economicHistoryAndIdeas_SkillDomain_Data = defineSkillDomain({
   slug: 'economicHistoryAndIdeas',
   id: '54e286e8-7e77-4af3-b029-72d463ded63e',
-  name: {
+  title: {
     en: 'Економічна історія та ідеї',
     zh: '经济史与经济思想',
     hi: 'आर्थिक इतिहास और विचार',
@@ -38,11 +38,11 @@ export const economicHistoryAndIdeas_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Экономикалық тарих және идеялар',
     qm: 'İqtisadiy tarih ve fikirler',
   },
-  groups: {
-    economicSystems: economicSystems_SkillGroup_Data,
-    historicalEconomicTransformations: historicalEconomicTransformations_SkillGroup_Data,
-    schoolsOfEconomicThought: schoolsOfEconomicThought_SkillGroup_Data,
-  },
+  groups: [
+    economicSystems_SkillGroup_Data,
+    historicalEconomicTransformations_SkillGroup_Data,
+    schoolsOfEconomicThought_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Economic systems, institutions, and theories evolved alongside production, trade, and social conflicts. Historical interpretations require context and comparisons of sources.',

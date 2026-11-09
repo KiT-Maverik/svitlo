@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   distinguishElasticFromInelasticCollisions_Skill_Data,
@@ -7,7 +7,7 @@ import {
   explainLinearMomentum_Skill_Data,
 } from './skills';
 
-export const momentumAndCollisions_SkillGroup_Data = buildSkillGroupConfig({
+export const momentumAndCollisions_SkillGroup_Data = defineSkillGroup({
   slug: 'momentumAndCollisions',
   id: '1d8aeab0-47a2-44b2-8254-77494f6288d1',
   name: {
@@ -41,12 +41,12 @@ export const momentumAndCollisions_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Импульс және соқтығысулар',
     qm: 'Areket miqdarı ve çarpışmalar',
   },
-  skills: {
-    distinguishElasticFromInelasticCollisions: distinguishElasticFromInelasticCollisions_Skill_Data,
-    explainConservationOfLinearMomentum: explainConservationOfLinearMomentum_Skill_Data,
-    explainImpulse: explainImpulse_Skill_Data,
-    explainLinearMomentum: explainLinearMomentum_Skill_Data,
-  },
+  skills: [
+    distinguishElasticFromInelasticCollisions_Skill_Data,
+    explainConservationOfLinearMomentum_Skill_Data,
+    explainImpulse_Skill_Data,
+    explainLinearMomentum_Skill_Data,
+  ],
   description: {
     methodological:
       "Momentum characterizes a body's motion, while collisions demonstrate momentum transfer and change. In the absence of external impulse, the total momentum of a system is conserved regardless of the type of collision.",

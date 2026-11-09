@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainInfiltrationDifferencesAmongSurfaceMaterials_Skill_Data = buildSkillConfig({
+export const explainInfiltrationDifferencesAmongSurfaceMaterials_Skill_Data = defineSkill({
   slug: 'explainInfiltrationDifferencesAmongSurfaceMaterials',
   id: 'c8ce5099-6f33-4188-aae1-810ca97f8b83',
   name: {

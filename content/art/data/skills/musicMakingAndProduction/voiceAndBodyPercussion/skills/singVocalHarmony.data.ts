@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const singVocalHarmony_Skill_Data = buildSkillConfig({
+export const singVocalHarmony_Skill_Data = defineSkill({
   slug: 'singVocalHarmony',
   id: '2f1dd157-7b16-491b-9a3c-5aa4c4a3070c',
   name: {

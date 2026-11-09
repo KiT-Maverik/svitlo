@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const simpleInterest_Skill_Data = buildSkillConfig({
+export const simpleInterest_Skill_Data = defineSkill({
   slug: 'simpleInterest',
   id: '033ebc6d-27a2-4cc7-aed3-a4dd2396ae9a',
   name: {

@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { dynamicalInteractions_SkillGroup_Data } from './dynamicalInteractions/dynamicalInteractions.data';
 import { gravitationalMotion_SkillGroup_Data } from './gravitationalMotion/gravitationalMotion.data';
 import { orbitsAndRotations_SkillGroup_Data } from './orbitsAndRotations/orbitsAndRotations.data';
 
-export const celestialMechanics_SkillDomain_Data = buildSkillDomainConfig({
+export const celestialMechanics_SkillDomain_Data = defineSkillDomain({
   slug: 'celestialMechanics',
   id: 'beff441b-e494-47ba-84ed-10fa679fd636',
-  name: {
+  title: {
     en: 'Celestial Mechanics',
     zh: '天体力学',
     hi: 'खगोलीय यांत्रिकी',
@@ -38,11 +38,11 @@ export const celestialMechanics_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Аспан механикасы',
     qm: 'Kök mehanikası',
   },
-  groups: {
-    dynamicalInteractions: dynamicalInteractions_SkillGroup_Data,
-    gravitationalMotion: gravitationalMotion_SkillGroup_Data,
-    orbitsAndRotations: orbitsAndRotations_SkillGroup_Data,
-  },
+  groups: [
+    dynamicalInteractions_SkillGroup_Data,
+    gravitationalMotion_SkillGroup_Data,
+    orbitsAndRotations_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'This domain concerns how gravity and angular momentum govern orbital motion, rotation and mutual perturbations across planetary and stellar systems. Geometrical appearances arising from these motions are addressed separately when the observational phenomenon itself is the competency.',

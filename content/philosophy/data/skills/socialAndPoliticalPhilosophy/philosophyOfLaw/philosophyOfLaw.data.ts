@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   analyzeLegalPositivism_Skill_Data,
@@ -7,7 +7,7 @@ import {
   evaluateTheoriesOfLegalInterpretation_Skill_Data,
 } from './skills';
 
-export const philosophyOfLaw_SkillGroup_Data = buildSkillGroupConfig({
+export const philosophyOfLaw_SkillGroup_Data = defineSkillGroup({
   slug: 'philosophyOfLaw',
   id: '65eb7d82-e6c3-49ed-8af0-60b055994e0b',
   name: {
@@ -41,12 +41,12 @@ export const philosophyOfLaw_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Құқық философиясы',
     qm: 'Huquq felsefesi',
   },
-  skills: {
-    analyzeLegalPositivism: analyzeLegalPositivism_Skill_Data,
-    analyzeNaturalLawTheory: analyzeNaturalLawTheory_Skill_Data,
-    analyzeTheRuleOfLaw: analyzeTheRuleOfLaw_Skill_Data,
-    evaluateTheoriesOfLegalInterpretation: evaluateTheoriesOfLegalInterpretation_Skill_Data,
-  },
+  skills: [
+    analyzeLegalPositivism_Skill_Data,
+    analyzeNaturalLawTheory_Skill_Data,
+    analyzeTheRuleOfLaw_Skill_Data,
+    evaluateTheoriesOfLegalInterpretation_Skill_Data,
+  ],
   description: {
     methodological:
       "Jurisprudence considers what makes a norm legally valid, why legal institutions claim authority, and how rules should be interpreted. These questions are not limited to any country's current statutes or to political legitimacy in general.",

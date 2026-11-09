@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const centralAsianOasisCenters_Skill_Data = buildSkillConfig({
+export const centralAsianOasisCenters_Skill_Data = defineSkill({
   slug: 'centralAsianOasisCenters',
   id: '1d88f52d-603d-4cfc-bc53-c3382200c599',
   name: {

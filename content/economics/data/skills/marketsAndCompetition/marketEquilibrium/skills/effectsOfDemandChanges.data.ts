@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const effectsOfDemandChanges_Skill_Data = buildSkillConfig({
+export const effectsOfDemandChanges_Skill_Data = defineSkill({
   slug: 'effectsOfDemandChanges',
   id: '079ee920-92c3-4cc7-be95-488a6e88ea57',
   name: {

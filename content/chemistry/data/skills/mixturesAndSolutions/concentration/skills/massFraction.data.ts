@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const massFraction_Skill_Data = buildSkillConfig({
+export const massFraction_Skill_Data = defineSkill({
   slug: 'massFraction',
   id: '2fc283e4-1452-456b-b79a-bbd4034315d3',
   name: {

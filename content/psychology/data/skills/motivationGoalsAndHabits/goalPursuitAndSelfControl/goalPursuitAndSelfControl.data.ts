@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   goalRevisionAndDisengagement_Skill_Data,
@@ -8,7 +8,7 @@ import {
   selfEfficacy_Skill_Data,
 } from './skills';
 
-export const goalPursuitAndSelfControl_SkillGroup_Data = buildSkillGroupConfig({
+export const goalPursuitAndSelfControl_SkillGroup_Data = defineSkillGroup({
   slug: 'goalPursuitAndSelfControl',
   id: '81716eb9-7d4f-4895-a0ba-ffc107468b36',
   name: {
@@ -42,13 +42,13 @@ export const goalPursuitAndSelfControl_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Мақсатқа ұмтылу және өзін бақылау',
     qm: 'Maqsatqa tırışuv ve özüni idare etüv',
   },
-  skills: {
-    goalRevisionAndDisengagement: goalRevisionAndDisengagement_Skill_Data,
-    goalSpecificity: goalSpecificity_Skill_Data,
-    implementationIntentions: implementationIntentions_Skill_Data,
-    selfControlAndInhibition: selfControlAndInhibition_Skill_Data,
-    selfEfficacy: selfEfficacy_Skill_Data,
-  },
+  skills: [
+    goalRevisionAndDisengagement_Skill_Data,
+    goalSpecificity_Skill_Data,
+    implementationIntentions_Skill_Data,
+    selfControlAndInhibition_Skill_Data,
+    selfEfficacy_Skill_Data,
+  ],
   description: {
     methodological:
       'Persistent action requires monitoring progress, choosing responses, and adapting goals to changing conditions.',

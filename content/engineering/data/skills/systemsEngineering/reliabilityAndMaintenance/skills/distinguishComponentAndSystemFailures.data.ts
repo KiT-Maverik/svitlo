@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishComponentAndSystemFailures_Skill_Data = buildSkillConfig({
+export const distinguishComponentAndSystemFailures_Skill_Data = defineSkill({
   slug: 'distinguishComponentAndSystemFailures',
   id: 'f3feca6f-aff7-4c67-9986-012ec5bc9cc5',
   name: {

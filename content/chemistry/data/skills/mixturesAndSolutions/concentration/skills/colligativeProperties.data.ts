@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const colligativeProperties_Skill_Data = buildSkillConfig({
+export const colligativeProperties_Skill_Data = defineSkill({
   slug: 'colligativeProperties',
   id: 'e5729430-f619-4da6-b398-d6ea791d9a8e',
   name: {

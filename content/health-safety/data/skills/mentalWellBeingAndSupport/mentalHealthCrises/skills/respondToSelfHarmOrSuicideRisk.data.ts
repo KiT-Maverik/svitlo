@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const respondToSelfHarmOrSuicideRisk_Skill_Data = buildSkillConfig({
+export const respondToSelfHarmOrSuicideRisk_Skill_Data = defineSkill({
   slug: 'respondToSelfHarmOrSuicideRisk',
   id: '0dda830b-c52a-436f-b92c-0ec0b16efca0',
   name: {

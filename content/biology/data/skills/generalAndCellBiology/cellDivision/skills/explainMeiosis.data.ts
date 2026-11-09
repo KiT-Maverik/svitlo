@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainMeiosis_Skill_Data = buildSkillConfig({
+export const explainMeiosis_Skill_Data = defineSkill({
   slug: 'explainMeiosis',
   id: '161a72c9-8440-471c-a517-20cb8cfb6f5f',
   name: {

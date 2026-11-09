@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   animateFrameByFrame_Skill_Data,
@@ -7,7 +7,7 @@ import {
   designAnimatedTransitions_Skill_Data,
 } from './skills';
 
-export const animation_SkillGroup_Data = buildSkillGroupConfig({
+export const animation_SkillGroup_Data = defineSkillGroup({
   slug: 'animation',
   id: '4d3c4cb1-4525-470d-9fd1-19a8a0c25ecd',
   name: {
@@ -42,12 +42,12 @@ export const animation_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Анимация',
     qm: 'Canlandırma',
   },
-  skills: {
-    animateFrameByFrame: animateFrameByFrame_Skill_Data,
-    controlAnimationTiming: controlAnimationTiming_Skill_Data,
-    createStopMotionAnimation: createStopMotionAnimation_Skill_Data,
-    designAnimatedTransitions: designAnimatedTransitions_Skill_Data,
-  },
+  skills: [
+    animateFrameByFrame_Skill_Data,
+    controlAnimationTiming_Skill_Data,
+    createStopMotionAnimation_Skill_Data,
+    designAnimatedTransitions_Skill_Data,
+  ],
   description: {
     methodological:
       'Animating involves designing change across successive states and controlling the temporal character of motion.',

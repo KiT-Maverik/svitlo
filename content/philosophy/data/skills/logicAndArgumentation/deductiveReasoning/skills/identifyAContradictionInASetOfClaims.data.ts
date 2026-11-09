@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyAContradictionInASetOfClaims_Skill_Data = buildSkillConfig({
+export const identifyAContradictionInASetOfClaims_Skill_Data = defineSkill({
   slug: 'identifyAContradictionInASetOfClaims',
   id: '8f643826-3b5e-4205-8f5b-8ffcdbb88afd',
   name: {

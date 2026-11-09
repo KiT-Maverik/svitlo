@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { causalityAndExperiments_SkillGroup_Data } from './causalityAndExperiments/causalityAndExperiments.data';
 import { economicIndicators_SkillGroup_Data } from './economicIndicators/economicIndicators.data';
 import { economicModels_SkillGroup_Data } from './economicModels/economicModels.data';
 import { empiricalConclusionsAndForecasts_SkillGroup_Data } from './empiricalConclusionsAndForecasts/empiricalConclusionsAndForecasts.data';
 
-export const economicDataAndResearch_SkillDomain_Data = buildSkillDomainConfig({
+export const economicDataAndResearch_SkillDomain_Data = defineSkillDomain({
   slug: 'economicDataAndResearch',
   id: 'feb1ad22-0cd9-4aea-b1c6-9865a07880e0',
-  name: {
+  title: {
     en: 'Економічні дані та дослідження',
     zh: '经济数据与研究',
     hi: 'आर्थिक आँकड़े और शोध',
@@ -39,12 +39,12 @@ export const economicDataAndResearch_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Экономикалық деректер мен зерттеулер',
     qm: 'İqtisadiy malümatlar ve araştırmalar',
   },
-  groups: {
-    causalityAndExperiments: causalityAndExperiments_SkillGroup_Data,
-    economicIndicators: economicIndicators_SkillGroup_Data,
-    economicModels: economicModels_SkillGroup_Data,
-    empiricalConclusionsAndForecasts: empiricalConclusionsAndForecasts_SkillGroup_Data,
-  },
+  groups: [
+    causalityAndExperiments_SkillGroup_Data,
+    economicIndicators_SkillGroup_Data,
+    economicModels_SkillGroup_Data,
+    empiricalConclusionsAndForecasts_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Economic claims are tested through measurement, models, comparison, and causal analysis. The emphasis is on the validity of conclusions rather than programming data-processing tools.',

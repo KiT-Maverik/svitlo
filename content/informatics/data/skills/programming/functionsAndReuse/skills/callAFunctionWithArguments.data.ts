@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const callAFunctionWithArguments_Skill_Data = buildSkillConfig({
+export const callAFunctionWithArguments_Skill_Data = defineSkill({
   slug: 'callAFunctionWithArguments',
   id: 'd5342f1e-42c1-4798-86d9-24052620530a',
   name: {

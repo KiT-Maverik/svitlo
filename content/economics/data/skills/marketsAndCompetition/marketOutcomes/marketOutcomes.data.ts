@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { consumerSurplus_Skill_Data, deadweightLoss_Skill_Data, producerSurplus_Skill_Data } from './skills';
 
-export const marketOutcomes_SkillGroup_Data = buildSkillGroupConfig({
+export const marketOutcomes_SkillGroup_Data = defineSkillGroup({
   slug: 'marketOutcomes',
   id: 'e5058dd8-ca2e-4122-a934-25a36180a04b',
   name: {
@@ -36,11 +36,7 @@ export const marketOutcomes_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Нарық нәтижелері',
     qm: 'Bazar neticeleri',
   },
-  skills: {
-    consumerSurplus: consumerSurplus_Skill_Data,
-    deadweightLoss: deadweightLoss_Skill_Data,
-    producerSurplus: producerSurplus_Skill_Data,
-  },
+  skills: [consumerSurplus_Skill_Data, deadweightLoss_Skill_Data, producerSurplus_Skill_Data],
   description: {
     methodological:
       'Gains from exchange and forgone opportunities help characterize welfare created or lost through economic choices under given market conditions.',

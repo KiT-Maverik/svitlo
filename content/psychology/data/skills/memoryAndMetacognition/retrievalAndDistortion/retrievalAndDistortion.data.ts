@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   memoryConfidenceAndAccuracy_Skill_Data,
@@ -10,7 +10,7 @@ import {
   retroactiveInterference_Skill_Data,
 } from './skills';
 
-export const retrievalAndDistortion_SkillGroup_Data = buildSkillGroupConfig({
+export const retrievalAndDistortion_SkillGroup_Data = defineSkillGroup({
   slug: 'retrievalAndDistortion',
   id: 'c9433305-42d1-413e-ac6a-481662936b44',
   name: {
@@ -44,15 +44,15 @@ export const retrievalAndDistortion_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Еске түсіру және жадының бұрмалануы',
     qm: 'Hatırlav ve hafızanıñ bozuluvı',
   },
-  skills: {
-    memoryConfidenceAndAccuracy: memoryConfidenceAndAccuracy_Skill_Data,
-    memoryRecall: memoryRecall_Skill_Data,
-    memoryRecognition: memoryRecognition_Skill_Data,
-    misinformationEffects: misinformationEffects_Skill_Data,
-    proactiveInterference: proactiveInterference_Skill_Data,
-    retrievalCues: retrievalCues_Skill_Data,
-    retroactiveInterference: retroactiveInterference_Skill_Data,
-  },
+  skills: [
+    memoryConfidenceAndAccuracy_Skill_Data,
+    memoryRecall_Skill_Data,
+    memoryRecognition_Skill_Data,
+    misinformationEffects_Skill_Data,
+    proactiveInterference_Skill_Data,
+    retrievalCues_Skill_Data,
+    retroactiveInterference_Skill_Data,
+  ],
   description: {
     methodological:
       'Access is cue-dependent and reconstructive; incorrect recollection does not automatically imply deliberate deception.',

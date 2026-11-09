@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const resistManipulativeOffers_Skill_Data = buildSkillConfig({
+export const resistManipulativeOffers_Skill_Data = defineSkill({
   slug: 'resistManipulativeOffers',
   id: '3d2dc95a-3c8d-46dc-93df-f8dc5e32d91c',
   name: {

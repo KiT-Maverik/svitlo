@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   barriersToMarketEntry_Skill_Data,
@@ -6,7 +6,7 @@ import {
   typesOfMarketCompetition_Skill_Data,
 } from './skills';
 
-export const competitiveMarketStructures_SkillGroup_Data = buildSkillGroupConfig({
+export const competitiveMarketStructures_SkillGroup_Data = defineSkillGroup({
   slug: 'competitiveMarketStructures',
   id: '9b682e39-5dc9-44c9-abab-65a58e1a9ad1',
   name: {
@@ -40,11 +40,7 @@ export const competitiveMarketStructures_SkillGroup_Data = buildSkillGroupConfig
     kk: 'Бәсекелі нарық құрылымдары',
     qm: 'Raqiplikli bazar quruluşları',
   },
-  skills: {
-    barriersToMarketEntry: barriersToMarketEntry_Skill_Data,
-    marketPower: marketPower_Skill_Data,
-    typesOfMarketCompetition: typesOfMarketCompetition_Skill_Data,
-  },
+  skills: [barriersToMarketEntry_Skill_Data, marketPower_Skill_Data, typesOfMarketCompetition_Skill_Data],
   description: {
     methodological:
       'Participant numbers and market power, product differentiation, information, and barriers to entry influence competitive behavior and outcomes.',

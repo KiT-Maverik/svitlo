@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainPrimitiveValuesInALanguage_Skill_Data = buildSkillConfig({
+export const explainPrimitiveValuesInALanguage_Skill_Data = defineSkill({
   slug: 'explainPrimitiveValuesInALanguage',
   id: '2299b4ed-fd55-4147-b66e-2ea6c236bf02',
   name: {

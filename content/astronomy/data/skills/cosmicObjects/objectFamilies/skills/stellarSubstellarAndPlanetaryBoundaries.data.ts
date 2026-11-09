@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const stellarSubstellarAndPlanetaryBoundaries_Skill_Data = buildSkillConfig({
+export const stellarSubstellarAndPlanetaryBoundaries_Skill_Data = defineSkill({
   slug: 'stellarSubstellarAndPlanetaryBoundaries',
   id: '989bd772-381f-4aae-9e1a-2188f40b3fc0',
   name: {

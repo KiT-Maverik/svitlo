@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const registerMultiplePrintLayers_Skill_Data = buildSkillConfig({
+export const registerMultiplePrintLayers_Skill_Data = defineSkill({
   slug: 'registerMultiplePrintLayers',
   id: 'a8a4c111-e2fa-4ca4-96bb-0b02c9bc698a',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishTruthFromJustification_Skill_Data = buildSkillConfig({
+export const distinguishTruthFromJustification_Skill_Data = defineSkill({
   slug: 'distinguishTruthFromJustification',
   id: 'ad6b40d9-2f9c-4a59-b2dc-2faeebcac57a',
   name: {

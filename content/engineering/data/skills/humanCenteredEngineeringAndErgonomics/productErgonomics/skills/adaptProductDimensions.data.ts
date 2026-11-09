@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const adaptProductDimensions_Skill_Data = buildSkillConfig({
+export const adaptProductDimensions_Skill_Data = defineSkill({
   slug: 'adaptProductDimensions',
   id: '4abd554b-3de3-40b0-bae0-d20b448d2fcb',
   name: {

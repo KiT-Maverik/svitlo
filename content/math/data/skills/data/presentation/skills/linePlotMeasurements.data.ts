@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const linePlotMeasurements_Skill_Data = buildSkillConfig({
+export const linePlotMeasurements_Skill_Data = defineSkill({
   slug: 'linePlotMeasurements',
   id: '3dbc0531-ff4b-4921-99cd-22c6a7d6b827',
   name: {

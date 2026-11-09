@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   analyzeMathematicalProofAsJustification_Skill_Data,
@@ -8,7 +8,7 @@ import {
   evaluateReasonsForABelief_Skill_Data,
 } from './skills';
 
-export const knowledgeAndJustification_SkillGroup_Data = buildSkillGroupConfig({
+export const knowledgeAndJustification_SkillGroup_Data = defineSkillGroup({
   slug: 'knowledgeAndJustification',
   id: '4f98fb29-5b82-4274-96bc-1482c64fd6fb',
   name: {
@@ -42,13 +42,13 @@ export const knowledgeAndJustification_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Білім және негіздеу',
     qm: 'Bilgi ve esaslandırma',
   },
-  skills: {
-    analyzeMathematicalProofAsJustification: analyzeMathematicalProofAsJustification_Skill_Data,
-    compareAPrioriAndEmpiricalJustification: compareAPrioriAndEmpiricalJustification_Skill_Data,
-    distinguishBeliefFromKnowledge: distinguishBeliefFromKnowledge_Skill_Data,
-    distinguishTruthFromJustification: distinguishTruthFromJustification_Skill_Data,
-    evaluateReasonsForABelief: evaluateReasonsForABelief_Skill_Data,
-  },
+  skills: [
+    analyzeMathematicalProofAsJustification_Skill_Data,
+    compareAPrioriAndEmpiricalJustification_Skill_Data,
+    distinguishBeliefFromKnowledge_Skill_Data,
+    distinguishTruthFromJustification_Skill_Data,
+    evaluateReasonsForABelief_Skill_Data,
+  ],
   description: {
     methodological:
       'Belief, truth, evidence, and knowledge have distinct roles in epistemic evaluation. Competing theories of knowledge can disagree about exactly how those roles connect.',

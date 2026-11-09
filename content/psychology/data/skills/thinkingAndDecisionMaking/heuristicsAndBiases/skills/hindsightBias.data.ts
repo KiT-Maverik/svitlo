@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const hindsightBias_Skill_Data = buildSkillConfig({
+export const hindsightBias_Skill_Data = defineSkill({
   slug: 'hindsightBias',
   id: '5331abcc-5937-48b3-8c32-1dcb47c9c1f1',
   name: {

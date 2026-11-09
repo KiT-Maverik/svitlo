@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const additiveManufacturing_Skill_Data = buildSkillConfig({
+export const additiveManufacturing_Skill_Data = defineSkill({
   slug: 'additiveManufacturing',
   id: 'fd8ac188-af63-42ac-bf10-316fd3af65bd',
   name: {

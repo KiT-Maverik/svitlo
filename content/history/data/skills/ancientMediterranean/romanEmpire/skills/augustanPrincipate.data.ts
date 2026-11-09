@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const augustanPrincipate_Skill_Data = buildSkillConfig({
+export const augustanPrincipate_Skill_Data = defineSkill({
   slug: 'augustanPrincipate',
   id: 'fd921b81-5d61-4419-80a1-dc52c10f25dd',
   name: {

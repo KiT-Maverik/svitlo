@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const ethicalMarketing_Skill_Data = buildSkillConfig({
+export const ethicalMarketing_Skill_Data = defineSkill({
   slug: 'ethicalMarketing',
   id: '98a7bdfc-ad64-4782-915e-6b6a86c708fa',
   name: {

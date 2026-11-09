@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const turnsQuarters_Skill_Data = buildSkillConfig({
+export const turnsQuarters_Skill_Data = defineSkill({
   slug: 'turnsQuarters',
   id: '578cbf11-a5f5-4ca2-ba07-6957f7c8f510',
   name: {

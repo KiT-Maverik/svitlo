@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { ergonomicsAndSensoryCare_SkillGroup_Data } from './ergonomicsAndSensoryCare/ergonomicsAndSensoryCare.data';
 import { physicalActivity_SkillGroup_Data } from './physicalActivity/physicalActivity.data';
 import { sleepAndRecovery_SkillGroup_Data } from './sleepAndRecovery/sleepAndRecovery.data';
 
-export const movementSleepAndEverydayRoutines_SkillDomain_Data = buildSkillDomainConfig({
+export const movementSleepAndEverydayRoutines_SkillDomain_Data = defineSkillDomain({
   slug: 'movementSleepAndEverydayRoutines',
   id: 'ec59c28f-6362-471e-8ce0-e510b83f94ac',
-  name: {
+  title: {
     en: 'Movement, Sleep and Everyday Routines',
     zh: '运动、睡眠与日常习惯',
     hi: 'शारीरिक गतिविधि, नींद और दैनिक आदतें',
@@ -38,11 +38,11 @@ export const movementSleepAndEverydayRoutines_SkillDomain_Data = buildSkillDomai
     kk: 'Қозғалыс, ұйқы және күнделікті әдеттер',
     qm: 'Areket, yuqu ve kündelikli adetler',
   },
-  groups: {
-    ergonomicsAndSensoryCare: ergonomicsAndSensoryCare_SkillGroup_Data,
-    physicalActivity: physicalActivity_SkillGroup_Data,
-    sleepAndRecovery: sleepAndRecovery_SkillGroup_Data,
-  },
+  groups: [
+    ergonomicsAndSensoryCare_SkillGroup_Data,
+    physicalActivity_SkillGroup_Data,
+    sleepAndRecovery_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Physical functioning benefits from feasible movement, adequate recovery, and adjustments to daily environments. This domain concerns practical health habits, not the physiology of exercise as a separate science.',

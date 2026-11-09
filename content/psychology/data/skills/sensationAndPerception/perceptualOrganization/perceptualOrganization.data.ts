@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   bottomUpAndTopDownProcessing_Skill_Data,
@@ -7,7 +7,7 @@ import {
   perceptualConstancy_Skill_Data,
 } from './skills';
 
-export const perceptualOrganization_SkillGroup_Data = buildSkillGroupConfig({
+export const perceptualOrganization_SkillGroup_Data = defineSkillGroup({
   slug: 'perceptualOrganization',
   id: 'c821fe61-e8e0-4e2d-81b3-001e392c44ab',
   name: {
@@ -41,12 +41,12 @@ export const perceptualOrganization_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Қабылдауды ұйымдастыру',
     qm: 'Qabul etüvni tertipleme',
   },
-  skills: {
-    bottomUpAndTopDownProcessing: bottomUpAndTopDownProcessing_Skill_Data,
-    figureGroundOrganization: figureGroundOrganization_Skill_Data,
-    gestaltGrouping: gestaltGrouping_Skill_Data,
-    perceptualConstancy: perceptualConstancy_Skill_Data,
-  },
+  skills: [
+    bottomUpAndTopDownProcessing_Skill_Data,
+    figureGroundOrganization_Skill_Data,
+    gestaltGrouping_Skill_Data,
+    perceptualConstancy_Skill_Data,
+  ],
   description: {
     methodological:
       'The mind uses grouping cues and expectations to construct coherent objects from ambiguous sensory input.',

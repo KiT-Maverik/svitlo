@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   earlyStateFormation_Skill_Data,
@@ -7,7 +7,7 @@ import {
   womenInAncientSocieties_Skill_Data,
 } from './skills';
 
-export const powerAndSocialRelations_SkillGroup_Data = buildSkillGroupConfig({
+export const powerAndSocialRelations_SkillGroup_Data = defineSkillGroup({
   slug: 'powerAndSocialRelations',
   id: '069c0e55-cd2f-49b1-ab91-2614dc1618c6',
   name: {
@@ -41,12 +41,12 @@ export const powerAndSocialRelations_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Билік және әлеуметтік қатынастар',
     qm: 'Akımiyet ve cemiyet alâqaları',
   },
-  skills: {
-    earlyStateFormation: earlyStateFormation_Skill_Data,
-    slaveryAndOtherDependencies: slaveryAndOtherDependencies_Skill_Data,
-    socialHierarchies: socialHierarchies_Skill_Data,
-    womenInAncientSocieties: womenInAncientSocieties_Skill_Data,
-  },
+  skills: [
+    earlyStateFormation_Skill_Data,
+    slaveryAndOtherDependencies_Skill_Data,
+    socialHierarchies_Skill_Data,
+    womenInAncientSocieties_Skill_Data,
+  ],
   description: {
     methodological:
       'Comparing institutions requires identifying their functions rather than equating unfamiliar ancient names with familiar ones.',

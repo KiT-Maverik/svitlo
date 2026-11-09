@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compositionOfAir_Skill_Data = buildSkillConfig({
+export const compositionOfAir_Skill_Data = defineSkill({
   slug: 'compositionOfAir',
   id: '40e02913-6390-4c8a-9ccc-d78d825c3838',
   name: {

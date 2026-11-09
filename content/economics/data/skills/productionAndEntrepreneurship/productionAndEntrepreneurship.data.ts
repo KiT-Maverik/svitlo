@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { entrepreneurshipAndAccounting_SkillGroup_Data } from './entrepreneurshipAndAccounting/entrepreneurshipAndAccounting.data';
 import { firmDecisionMakingAndManagement_SkillGroup_Data } from './firmDecisionMakingAndManagement/firmDecisionMakingAndManagement.data';
 import { productionCostsAndScale_SkillGroup_Data } from './productionCostsAndScale/productionCostsAndScale.data';
 import { productiveResourcesAndTechnology_SkillGroup_Data } from './productiveResourcesAndTechnology/productiveResourcesAndTechnology.data';
 
-export const productionAndEntrepreneurship_SkillDomain_Data = buildSkillDomainConfig({
+export const productionAndEntrepreneurship_SkillDomain_Data = defineSkillDomain({
   slug: 'productionAndEntrepreneurship',
   id: '02c4f179-d868-4c51-8bf7-031bcd0bd182',
-  name: {
+  title: {
     en: 'Production and Entrepreneurship',
     zh: '生产与创业',
     hi: 'उत्पादन और उद्यमिता',
@@ -39,12 +39,12 @@ export const productionAndEntrepreneurship_SkillDomain_Data = buildSkillDomainCo
     kk: 'Өндіріс пен кәсіпкерлік',
     qm: 'İstisal ve işadamlıq',
   },
-  groups: {
-    entrepreneurshipAndAccounting: entrepreneurshipAndAccounting_SkillGroup_Data,
-    firmDecisionMakingAndManagement: firmDecisionMakingAndManagement_SkillGroup_Data,
-    productionCostsAndScale: productionCostsAndScale_SkillGroup_Data,
-    productiveResourcesAndTechnology: productiveResourcesAndTechnology_SkillGroup_Data,
-  },
+  groups: [
+    entrepreneurshipAndAccounting_SkillGroup_Data,
+    firmDecisionMakingAndManagement_SkillGroup_Data,
+    productionCostsAndScale_SkillGroup_Data,
+    productiveResourcesAndTechnology_SkillGroup_Data,
+  ],
   description: {
     methodological:
       "Creating value combines resources, technology, organization, and risk. This domain studies firms' production decisions and the sustainability of their operations.",

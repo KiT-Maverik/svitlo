@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const convertMinutesSeconds_Skill_Data = buildSkillConfig({
+export const convertMinutesSeconds_Skill_Data = defineSkill({
   slug: 'convertMinutesSeconds',
   id: 'b6540c9a-5a76-405d-ba58-9dc213908443',
   name: {

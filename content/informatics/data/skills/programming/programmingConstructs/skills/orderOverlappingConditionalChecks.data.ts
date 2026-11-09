@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const orderOverlappingConditionalChecks_Skill_Data = buildSkillConfig({
+export const orderOverlappingConditionalChecks_Skill_Data = defineSkill({
   slug: 'orderOverlappingConditionalChecks',
   id: '6a835c1c-939a-4aea-bb0c-b25e22ba1131',
   name: {

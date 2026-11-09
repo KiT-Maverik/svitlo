@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const respondToSuspectedHypoglycaemia_Skill_Data = buildSkillConfig({
+export const respondToSuspectedHypoglycaemia_Skill_Data = defineSkill({
   slug: 'respondToSuspectedHypoglycaemia',
   id: 'bdc94536-95c2-48f6-9c71-f6e5bd42e632',
   name: {

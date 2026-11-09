@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { colorPractice_SkillGroup_Data } from './colorPractice/colorPractice.data';
 import { paintingTechniques_SkillGroup_Data } from './paintingTechniques/paintingTechniques.data';
 import { pictorialComposition_SkillGroup_Data } from './pictorialComposition/pictorialComposition.data';
 
-export const paintingAndColor_SkillDomain_Data = buildSkillDomainConfig({
+export const paintingAndColor_SkillDomain_Data = defineSkillDomain({
   slug: 'paintingAndColor',
   id: '37202bbb-4bc0-485d-b742-4cf7d50e8463',
-  name: {
+  title: {
     en: 'Painting and Color',
     zh: '绘画与色彩',
     hi: 'चित्रकारी और रंग',
@@ -38,11 +38,7 @@ export const paintingAndColor_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Кескіндеме және түс',
     qm: 'Resim ve tüs',
   },
-  groups: {
-    colorPractice: colorPractice_SkillGroup_Data,
-    paintingTechniques: paintingTechniques_SkillGroup_Data,
-    pictorialComposition: pictorialComposition_SkillGroup_Data,
-  },
+  groups: [colorPractice_SkillGroup_Data, paintingTechniques_SkillGroup_Data, pictorialComposition_SkillGroup_Data],
   description: {
     methodological:
       'Painting uses pigment and surfaces to organize color, form and expression. The material behavior of paint and pictorial composition create distinct competencies.',

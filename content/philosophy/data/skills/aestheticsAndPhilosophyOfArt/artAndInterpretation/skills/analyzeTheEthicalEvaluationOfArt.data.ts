@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeTheEthicalEvaluationOfArt_Skill_Data = buildSkillConfig({
+export const analyzeTheEthicalEvaluationOfArt_Skill_Data = defineSkill({
   slug: 'analyzeTheEthicalEvaluationOfArt',
   id: 'd0b1ea09-2871-47b7-afdb-1bfdab8014ab',
   name: {

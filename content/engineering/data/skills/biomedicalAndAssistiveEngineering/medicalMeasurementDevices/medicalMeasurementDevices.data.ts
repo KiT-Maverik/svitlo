@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   biomedicalMeasurementReliability_Skill_Data,
@@ -6,7 +6,7 @@ import {
   physiologicalMonitoringDevices_Skill_Data,
 } from './skills';
 
-export const medicalMeasurementDevices_SkillGroup_Data = buildSkillGroupConfig({
+export const medicalMeasurementDevices_SkillGroup_Data = defineSkillGroup({
   slug: 'medicalMeasurementDevices',
   id: '4238e4eb-0fad-48c7-8693-bde20859e3bc',
   name: {
@@ -40,11 +40,11 @@ export const medicalMeasurementDevices_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Медициналық өлшеу құрылғылары',
     qm: 'Tıbbiy ölçü cihazları',
   },
-  skills: {
-    biomedicalMeasurementReliability: biomedicalMeasurementReliability_Skill_Data,
-    diagnosticImagingHardware: diagnosticImagingHardware_Skill_Data,
-    physiologicalMonitoringDevices: physiologicalMonitoringDevices_Skill_Data,
-  },
+  skills: [
+    biomedicalMeasurementReliability_Skill_Data,
+    diagnosticImagingHardware_Skill_Data,
+    physiologicalMonitoringDevices_Skill_Data,
+  ],
   description: {
     methodological:
       'Biomedical devices measure physiological or physical signals with specialized coupling, safety and reliability concerns distinct from ordinary industrial sensing.',

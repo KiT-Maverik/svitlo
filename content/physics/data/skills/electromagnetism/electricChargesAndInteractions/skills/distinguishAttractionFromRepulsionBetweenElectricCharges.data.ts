@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishAttractionFromRepulsionBetweenElectricCharges_Skill_Data = buildSkillConfig({
+export const distinguishAttractionFromRepulsionBetweenElectricCharges_Skill_Data = defineSkill({
   slug: 'distinguishAttractionFromRepulsionBetweenElectricCharges',
   id: '5c8e5306-0b4e-488f-a545-4cd7bb2419fc',
   name: {

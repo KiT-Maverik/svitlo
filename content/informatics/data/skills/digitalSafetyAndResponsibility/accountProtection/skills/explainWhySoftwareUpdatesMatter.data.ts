@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainWhySoftwareUpdatesMatter_Skill_Data = buildSkillConfig({
+export const explainWhySoftwareUpdatesMatter_Skill_Data = defineSkill({
   slug: 'explainWhySoftwareUpdatesMatter',
   id: '38b77d92-9304-484c-8c2e-d3a2aa695419',
   name: {

@@ -28,13 +28,14 @@ const staticRoot = join(dist, 'static');
 const manifestFile = join(dist, 'manifest.json');
 const ownershipName = '.svitlo/publish-' + id + '.json';
 
-function owned(name) {
+function owned(name, allowRetiredAnalytics = false) {
   return (
     typeof name === 'string' &&
     !isAbsolute(name) &&
-    /^(?:data\/pages\/lessons|data\/pages\/courses|data\/pages\/skillAnalytics|textbooks\/[a-z][a-z-]*)\/[a-zA-Z0-9_./-]+$/.test(
+    (/^(?:data\/skills|data\/pages\/lessons|data\/pages\/courses|textbooks\/[a-z][a-z-]*)\/[a-zA-Z0-9_./-]+$/.test(
       name,
-    ) &&
+    ) ||
+      (allowRetiredAnalytics && /^data\/pages\/skillAnalytics\/[a-z]{2,8}\.json$/.test(name))) &&
     (name.startsWith('data/') || name.startsWith('textbooks/' + id + '/')) &&
     name.split('/').every(part => part && part !== '.' && part !== '..')
   );
@@ -46,7 +47,7 @@ function safePath(target) {
     if (existsSync(cursor) && lstatSync(cursor).isSymbolicLink()) fail('refusing symlink: ' + cursor);
   }
 }
-function readManifest(filename) {
+function readManifest(filename, allowRetiredAnalytics = false) {
   let data;
   try {
     data = JSON.parse(readFileSync(filename, 'utf8'));
@@ -57,15 +58,15 @@ function readManifest(filename) {
     data?.version !== 1 ||
     data.textbook !== id ||
     !Array.isArray(data.files) ||
-    data.files.some(name => !owned(name)) ||
+    data.files.some(name => !owned(name, allowRetiredAnalytics)) ||
     new Set(data.files).size !== data.files.length
   ) {
     fail('invalid ' + id + ' ownership manifest: ' + filename);
   }
   return data.files;
 }
-function outputPath(base, name) {
-  if (!owned(name)) fail('unsafe published path: ' + name);
+function outputPath(base, name, allowRetiredAnalytics = false) {
+  if (!owned(name, allowRetiredAnalytics)) fail('unsafe published path: ' + name);
   const target = resolve(base, name);
   const rel = relative(base, target);
   if (!rel || rel === '..' || rel.startsWith('..' + sep) || isAbsolute(rel)) {
@@ -94,10 +95,9 @@ function publish(args) {
   const names = readManifest(manifestFile);
   if (
     id === 'playground' &&
-    (!names.some(name => name.startsWith('data/pages/lessons/')) ||
-      !names.some(name => name.startsWith('data/pages/skillAnalytics/')))
+    (!names.some(name => name.startsWith('data/pages/lessons/')) || !names.includes('data/skills/base.json'))
   ) {
-    fail('missing required lesson or analytics resources in build');
+    fail('missing required lesson or Skills resources in build');
   }
   for (const name of names) {
     const source = outputPath(staticRoot, name);
@@ -105,7 +105,8 @@ function publish(args) {
   }
   const ownership = join(output, ownershipName);
   safePath(ownership);
-  const previous = existsSync(ownership) ? readManifest(ownership) : [];
+  // Existing host manifests may own the old analytics JSON; allow those names only to remove them.
+  const previous = existsSync(ownership) ? readManifest(ownership, true) : [];
   mkdirSync(output, { recursive: true });
   for (const name of names) {
     const destination = outputPath(output, name);
@@ -115,7 +116,7 @@ function publish(args) {
   const current = new Set(names);
   for (const name of previous) {
     if (current.has(name)) continue;
-    const stale = outputPath(output, name);
+    const stale = outputPath(output, name, true);
     if (existsSync(stale)) {
       if (!lstatSync(stale).isFile()) fail('stale resource is not a file: ' + name);
       rmSync(stale);

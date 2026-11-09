@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const adaptationToAmericanEcosystems_Skill_Data = buildSkillConfig({
+export const adaptationToAmericanEcosystems_Skill_Data = defineSkill({
   slug: 'adaptationToAmericanEcosystems',
   id: '6148308a-7616-4842-b204-fcfef34ebb29',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainImpulse_Skill_Data = buildSkillConfig({
+export const explainImpulse_Skill_Data = defineSkill({
   slug: 'explainImpulse',
   id: 'fb50ca43-45b4-404f-92af-e139fb0d6348',
   name: {

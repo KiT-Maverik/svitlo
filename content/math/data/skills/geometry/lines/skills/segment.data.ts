@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const segment_Skill_Data = buildSkillConfig({
+export const segment_Skill_Data = defineSkill({
   slug: 'segment',
   id: '174ccc59-ccc9-4c20-83ec-1882af1c3ec8',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareMaterialsThermalInsulationProperties_Skill_Data = buildSkillConfig({
+export const compareMaterialsThermalInsulationProperties_Skill_Data = defineSkill({
   slug: 'compareMaterialsThermalInsulationProperties',
   id: 'eeee4637-f76a-4e77-b18b-93270bcbf39c',
   name: {

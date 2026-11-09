@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeGeologicalControlsOnMineralOccurrence_Skill_Data = buildSkillConfig({
+export const recognizeGeologicalControlsOnMineralOccurrence_Skill_Data = defineSkill({
   slug: 'recognizeGeologicalControlsOnMineralOccurrence',
   id: '1af518e7-c24b-4df3-99e5-05b5e7cac329',
   name: {

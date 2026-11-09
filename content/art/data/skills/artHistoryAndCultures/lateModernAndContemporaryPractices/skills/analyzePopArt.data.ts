@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzePopArt_Skill_Data = buildSkillConfig({
+export const analyzePopArt_Skill_Data = defineSkill({
   slug: 'analyzePopArt',
   id: '09c69eba-91a7-4111-bef2-e4df9a517acc',
   name: {

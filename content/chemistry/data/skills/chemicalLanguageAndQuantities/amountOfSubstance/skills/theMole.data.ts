@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const theMole_Skill_Data = buildSkillConfig({
+export const theMole_Skill_Data = defineSkill({
   slug: 'theMole',
   id: 'be668c98-af7a-4d3b-a27e-3fe0c7692807',
   name: {

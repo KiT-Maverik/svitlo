@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   distinguishDeciduousAndEvergreenPlants_Skill_Data,
@@ -9,7 +9,7 @@ import {
   recognizeFernAndFernAllyCharacteristics_Skill_Data,
 } from './skills';
 
-export const plantDiversity_SkillGroup_Data = buildSkillGroupConfig({
+export const plantDiversity_SkillGroup_Data = defineSkillGroup({
   slug: 'plantDiversity',
   id: '57abdae5-4627-4d50-9edd-56bad9b9c31e',
   name: {
@@ -43,14 +43,14 @@ export const plantDiversity_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Өсімдіктердің алуантүрлілігі',
     qm: 'Ösümlikler çeşitliligi',
   },
-  skills: {
-    distinguishDeciduousAndEvergreenPlants: distinguishDeciduousAndEvergreenPlants_Skill_Data,
-    distinguishGymnospermsAndAngiosperms: distinguishGymnospermsAndAngiosperms_Skill_Data,
-    distinguishTreesShrubsAndHerbaceousPlants: distinguishTreesShrubsAndHerbaceousPlants_Skill_Data,
-    recognizeBryophyteCharacteristics: recognizeBryophyteCharacteristics_Skill_Data,
-    recognizeCommonLocalPlants: recognizeCommonLocalPlants_Skill_Data,
-    recognizeFernAndFernAllyCharacteristics: recognizeFernAndFernAllyCharacteristics_Skill_Data,
-  },
+  skills: [
+    distinguishDeciduousAndEvergreenPlants_Skill_Data,
+    distinguishGymnospermsAndAngiosperms_Skill_Data,
+    distinguishTreesShrubsAndHerbaceousPlants_Skill_Data,
+    recognizeBryophyteCharacteristics_Skill_Data,
+    recognizeCommonLocalPlants_Skill_Data,
+    recognizeFernAndFernAllyCharacteristics_Skill_Data,
+  ],
   description: {
     methodological:
       'External structure, branching patterns, and seasonality provide grounds for comparing familiar species without equating growth form with biological relatedness.',

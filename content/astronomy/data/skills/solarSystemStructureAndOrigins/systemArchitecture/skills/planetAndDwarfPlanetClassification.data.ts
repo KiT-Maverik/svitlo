@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const planetAndDwarfPlanetClassification_Skill_Data = buildSkillConfig({
+export const planetAndDwarfPlanetClassification_Skill_Data = defineSkill({
   slug: 'planetAndDwarfPlanetClassification',
   id: '608431bd-6348-4fb5-8e37-5a4a854c6bec',
   name: {

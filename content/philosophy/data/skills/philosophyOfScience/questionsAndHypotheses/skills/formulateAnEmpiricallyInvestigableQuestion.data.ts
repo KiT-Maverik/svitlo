@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const formulateAnEmpiricallyInvestigableQuestion_Skill_Data = buildSkillConfig({
+export const formulateAnEmpiricallyInvestigableQuestion_Skill_Data = defineSkill({
   slug: 'formulateAnEmpiricallyInvestigableQuestion',
   id: '13b81e9b-51b7-4b4a-a655-382ce641ceea',
   name: {

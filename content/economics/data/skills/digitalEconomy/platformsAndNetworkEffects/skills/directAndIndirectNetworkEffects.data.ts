@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const directAndIndirectNetworkEffects_Skill_Data = buildSkillConfig({
+export const directAndIndirectNetworkEffects_Skill_Data = defineSkill({
   slug: 'directAndIndirectNetworkEffects',
   id: '9431535c-b32d-4ffc-9b96-f17d60ebd3f9',
   name: {

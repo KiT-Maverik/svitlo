@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const heatExchangers_Skill_Data = buildSkillConfig({
+export const heatExchangers_Skill_Data = defineSkill({
   slug: 'heatExchangers',
   id: '016bccbe-0744-45cb-bd06-610a8551d7a1',
   name: {

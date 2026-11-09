@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const nonUnitModel_Skill_Data = buildSkillConfig({
+export const nonUnitModel_Skill_Data = defineSkill({
   slug: 'nonUnitModel',
   id: 'ee8b4be0-4de7-4f66-9a05-7eca8f524caa',
   name: {

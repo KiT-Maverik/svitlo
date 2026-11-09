@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainDifferencesAmongOffspringOfTheSameSpecies_Skill_Data = buildSkillConfig({
+export const explainDifferencesAmongOffspringOfTheSameSpecies_Skill_Data = defineSkill({
   slug: 'explainDifferencesAmongOffspringOfTheSameSpecies',
   id: '497d8f87-fd66-4716-9b6c-91a10bbd0e61',
   name: {

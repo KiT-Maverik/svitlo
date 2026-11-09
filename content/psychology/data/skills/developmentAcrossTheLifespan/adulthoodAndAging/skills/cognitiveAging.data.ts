@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const cognitiveAging_Skill_Data = buildSkillConfig({
+export const cognitiveAging_Skill_Data = defineSkill({
   slug: 'cognitiveAging',
   id: '600d2dae-6242-4f95-94fa-97a4226551fb',
   name: {

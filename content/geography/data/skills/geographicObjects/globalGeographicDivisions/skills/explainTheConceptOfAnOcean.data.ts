@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainTheConceptOfAnOcean_Skill_Data = buildSkillConfig({
+export const explainTheConceptOfAnOcean_Skill_Data = defineSkill({
   slug: 'explainTheConceptOfAnOcean',
   id: '487f0ca2-ecd4-44a6-96b4-c1efb4595c80',
   name: {

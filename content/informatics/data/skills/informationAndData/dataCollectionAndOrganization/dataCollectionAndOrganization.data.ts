@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   collectDataConsistently_Skill_Data,
@@ -7,7 +7,7 @@ import {
   presentDataInATable_Skill_Data,
 } from './skills';
 
-export const dataCollectionAndOrganization_SkillGroup_Data = buildSkillGroupConfig({
+export const dataCollectionAndOrganization_SkillGroup_Data = defineSkillGroup({
   slug: 'dataCollectionAndOrganization',
   id: 'c32c008f-12e8-4595-abbd-ee17221cf40c',
   name: {
@@ -41,12 +41,12 @@ export const dataCollectionAndOrganization_SkillGroup_Data = buildSkillGroupConf
     kk: 'Деректерді жинау және ұйымдастыру',
     qm: 'Verilgenlerni toplav ve tertiplemek',
   },
-  skills: {
-    collectDataConsistently: collectDataConsistently_Skill_Data,
-    groupDataByAttribute: groupDataByAttribute_Skill_Data,
-    identifyDataNeededForATask: identifyDataNeededForATask_Skill_Data,
-    presentDataInATable: presentDataInATable_Skill_Data,
-  },
+  skills: [
+    collectDataConsistently_Skill_Data,
+    groupDataByAttribute_Skill_Data,
+    identifyDataNeededForATask_Skill_Data,
+    presentDataInATable_Skill_Data,
+  ],
   description: {
     methodological:
       'Identify required fields, record observations consistently, classify by an attribute, and organize a table. Collecting data generates records; tabulation structures existing records.',

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   interpretLatitude_Skill_Data,
@@ -6,7 +6,7 @@ import {
   locateAPointFromALatitudeLongitudePair_Skill_Data,
 } from './skills';
 
-export const geographicCoordinates_SkillGroup_Data = buildSkillGroupConfig({
+export const geographicCoordinates_SkillGroup_Data = defineSkillGroup({
   slug: 'geographicCoordinates',
   id: 'c7a49433-a463-4c5e-a372-2ffefaf4fb51',
   name: {
@@ -40,11 +40,11 @@ export const geographicCoordinates_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Географиялық координаттар',
     qm: 'Coğrafiy koordinatlar',
   },
-  skills: {
-    interpretLatitude: interpretLatitude_Skill_Data,
-    interpretLongitude: interpretLongitude_Skill_Data,
-    locateAPointFromALatitudeLongitudePair: locateAPointFromALatitudeLongitudePair_Skill_Data,
-  },
+  skills: [
+    interpretLatitude_Skill_Data,
+    interpretLongitude_Skill_Data,
+    locateAPointFromALatitudeLongitudePair_Skill_Data,
+  ],
   description: {
     methodological:
       'The graticule provides a worldwide angular reference for positions. Latitude and longitude are distinct measurements whose ordered combination identifies a location.',

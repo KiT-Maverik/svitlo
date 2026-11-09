@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { curationAndPresentation_SkillGroup_Data } from './curationAndPresentation/curationAndPresentation.data';
 import { formalLanguage_SkillGroup_Data } from './formalLanguage/formalLanguage.data';
 import { formsAndPurposes_SkillGroup_Data } from './formsAndPurposes/formsAndPurposes.data';
 import { interpretationAndEvaluation_SkillGroup_Data } from './interpretationAndEvaluation/interpretationAndEvaluation.data';
 
-export const artisticUnderstandingAndCriticism_SkillDomain_Data = buildSkillDomainConfig({
+export const artisticUnderstandingAndCriticism_SkillDomain_Data = defineSkillDomain({
   slug: 'artisticUnderstandingAndCriticism',
   id: '60ca5a77-0ef4-4397-a1b0-619852fbea02',
-  name: {
+  title: {
     en: 'Artistic Understanding and Criticism',
     zh: '艺术理解与批评',
     hi: 'कला की समझ और आलोचना',
@@ -39,12 +39,12 @@ export const artisticUnderstandingAndCriticism_SkillDomain_Data = buildSkillDoma
     kk: 'Өнерді түсіну және сын',
     qm: 'Sanatnı añlav ve tenqit',
   },
-  groups: {
-    curationAndPresentation: curationAndPresentation_SkillGroup_Data,
-    formalLanguage: formalLanguage_SkillGroup_Data,
-    formsAndPurposes: formsAndPurposes_SkillGroup_Data,
-    interpretationAndEvaluation: interpretationAndEvaluation_SkillGroup_Data,
-  },
+  groups: [
+    curationAndPresentation_SkillGroup_Data,
+    formalLanguage_SkillGroup_Data,
+    formsAndPurposes_SkillGroup_Data,
+    interpretationAndEvaluation_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Interpretation of artistic work depends on the medium, formal relationships, intentions and cultural contexts. This field supports attentive analysis of existing artworks rather than instruction in a particular material technique.',

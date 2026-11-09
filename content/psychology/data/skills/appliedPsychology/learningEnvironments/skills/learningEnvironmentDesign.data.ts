@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const learningEnvironmentDesign_Skill_Data = buildSkillConfig({
+export const learningEnvironmentDesign_Skill_Data = defineSkill({
   slug: 'learningEnvironmentDesign',
   id: '5020dd06-9798-4699-8472-1d8c2e3fe514',
   name: {

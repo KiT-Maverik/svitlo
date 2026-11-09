@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const chooseASafeWayToReportAProblem_Skill_Data = buildSkillConfig({
+export const chooseASafeWayToReportAProblem_Skill_Data = defineSkill({
   slug: 'chooseASafeWayToReportAProblem',
   id: 'c6f6a76d-2696-4193-bd6f-b583de1bc47f',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const seekHelpForSubstanceRelatedProblems_Skill_Data = buildSkillConfig({
+export const seekHelpForSubstanceRelatedProblems_Skill_Data = defineSkill({
   slug: 'seekHelpForSubstanceRelatedProblems',
   id: '8e095ec3-e994-4785-9486-ce425340917d',
   name: {

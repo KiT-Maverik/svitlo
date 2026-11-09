@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateReligiousExperienceAsEvidence_Skill_Data = buildSkillConfig({
+export const evaluateReligiousExperienceAsEvidence_Skill_Data = defineSkill({
   slug: 'evaluateReligiousExperienceAsEvidence',
   id: '3b9b0ac8-5b51-48d3-9cf7-3f58f93f4353',
   name: {

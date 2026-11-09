@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { heliosphericEffects_SkillGroup_Data } from './heliosphericEffects/heliosphericEffects.data';
 import { magneticActivity_SkillGroup_Data } from './magneticActivity/magneticActivity.data';
 import { solarStructureAndEnergy_SkillGroup_Data } from './solarStructureAndEnergy/solarStructureAndEnergy.data';
 
-export const solarAstronomy_SkillDomain_Data = buildSkillDomainConfig({
+export const solarAstronomy_SkillDomain_Data = defineSkillDomain({
   slug: 'solarAstronomy',
   id: 'a124b21b-c0a8-4063-bb45-48a8c6264e25',
-  name: {
+  title: {
     en: 'Solar Astronomy',
     qm: 'Küneş astronomiyası',
     bn: 'সৌর জ্যোতির্বিজ্ঞান',
@@ -38,11 +38,11 @@ export const solarAstronomy_SkillDomain_Data = buildSkillDomainConfig({
     he: 'אסטרונומיה של השמש',
     vi: 'Thiên văn học Mặt Trời',
   },
-  groups: {
-    heliosphericEffects: heliosphericEffects_SkillGroup_Data,
-    magneticActivity: magneticActivity_SkillGroup_Data,
-    solarStructureAndEnergy: solarStructureAndEnergy_SkillGroup_Data,
-  },
+  groups: [
+    heliosphericEffects_SkillGroup_Data,
+    magneticActivity_SkillGroup_Data,
+    solarStructureAndEnergy_SkillGroup_Data,
+  ],
   description: {
     methodological:
       "The Sun is examined as a physical star whose radiation, plasma and magnetism affect the Solar System. Stellar populations and the Sun's long-term evolutionary fate are treated in stellar astronomy.",

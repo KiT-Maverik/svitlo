@@ -1,11 +1,11 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   explainGasCompressibility_Skill_Data,
   explainHowGasPressureDependsOnTemperatureAtConstantVolume_Skill_Data,
 } from './skills';
 
-export const gasProperties_SkillGroup_Data = buildSkillGroupConfig({
+export const gasProperties_SkillGroup_Data = defineSkillGroup({
   slug: 'gasProperties',
   id: '370da89e-fa86-43b4-b7b3-231aa98ac394',
   name: {
@@ -39,11 +39,7 @@ export const gasProperties_SkillGroup_Data = buildSkillGroupConfig({
     ka: 'აირების თვისებები',
     kk: 'Газдардың қасиеттері',
   },
-  skills: {
-    explainGasCompressibility: explainGasCompressibility_Skill_Data,
-    explainHowGasPressureDependsOnTemperatureAtConstantVolume:
-      explainHowGasPressureDependsOnTemperatureAtConstantVolume_Skill_Data,
-  },
+  skills: [explainGasCompressibility_Skill_Data, explainHowGasPressureDependsOnTemperatureAtConstantVolume_Skill_Data],
   description: {
     methodological:
       'The compressibility of gases and the dependence of their pressure on conditions follow from particle motion and the spaces between particles.',

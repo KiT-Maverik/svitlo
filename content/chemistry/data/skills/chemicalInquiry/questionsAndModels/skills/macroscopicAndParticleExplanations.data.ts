@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const macroscopicAndParticleExplanations_Skill_Data = buildSkillConfig({
+export const macroscopicAndParticleExplanations_Skill_Data = defineSkill({
   slug: 'macroscopicAndParticleExplanations',
   id: '156ddb4c-a96c-4d78-860f-0921460718a2',
   name: {

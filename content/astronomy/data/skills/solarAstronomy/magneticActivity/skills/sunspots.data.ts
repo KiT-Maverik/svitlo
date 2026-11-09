@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const sunspots_Skill_Data = buildSkillConfig({
+export const sunspots_Skill_Data = defineSkill({
   slug: 'sunspots',
   id: '63ef035f-cea9-4396-a7c2-4fe4f5f34cd7',
   name: {

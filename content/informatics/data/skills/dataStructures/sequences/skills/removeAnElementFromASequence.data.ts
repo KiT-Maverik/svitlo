@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const removeAnElementFromASequence_Skill_Data = buildSkillConfig({
+export const removeAnElementFromASequence_Skill_Data = defineSkill({
   slug: 'removeAnElementFromASequence',
   id: '6c2e4182-d9ba-468d-94c9-43f7f0447377',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const consumerSegmentation_Skill_Data = buildSkillConfig({
+export const consumerSegmentation_Skill_Data = defineSkill({
   slug: 'consumerSegmentation',
   id: 'f6c8a7f1-5302-4090-9ad6-fbf55fcc61ff',
   name: {

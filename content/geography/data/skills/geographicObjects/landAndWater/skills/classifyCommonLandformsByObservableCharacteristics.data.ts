@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const classifyCommonLandformsByObservableCharacteristics_Skill_Data = buildSkillConfig({
+export const classifyCommonLandformsByObservableCharacteristics_Skill_Data = defineSkill({
   slug: 'classifyCommonLandformsByObservableCharacteristics',
   id: '0af88bce-69a2-4989-84bd-a6e79de8a047',
   name: {

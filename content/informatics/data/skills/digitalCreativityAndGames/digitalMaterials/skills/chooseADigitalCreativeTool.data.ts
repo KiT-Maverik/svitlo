@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const chooseADigitalCreativeTool_Skill_Data = buildSkillConfig({
+export const chooseADigitalCreativeTool_Skill_Data = defineSkill({
   slug: 'chooseADigitalCreativeTool',
   id: '94b8ed9a-2d71-464d-ae36-5b60f8203c83',
   name: {

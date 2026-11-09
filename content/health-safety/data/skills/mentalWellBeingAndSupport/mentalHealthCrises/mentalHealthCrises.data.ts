@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   providePsychologicalFirstAid_Skill_Data,
@@ -6,7 +6,7 @@ import {
   respondToSelfHarmOrSuicideRisk_Skill_Data,
 } from './skills';
 
-export const mentalHealthCrises_SkillGroup_Data = buildSkillGroupConfig({
+export const mentalHealthCrises_SkillGroup_Data = defineSkillGroup({
   slug: 'mentalHealthCrises',
   id: '6712238b-386d-45eb-aa4d-780747dea487',
   name: {
@@ -40,11 +40,11 @@ export const mentalHealthCrises_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Психикалық денсаулық дағдарыстары',
     qm: 'Ruhiy sağlamlıq buhranları',
   },
-  skills: {
-    providePsychologicalFirstAid: providePsychologicalFirstAid_Skill_Data,
-    recognizeAnAcutePsychologicalCrisis: recognizeAnAcutePsychologicalCrisis_Skill_Data,
-    respondToSelfHarmOrSuicideRisk: respondToSelfHarmOrSuicideRisk_Skill_Data,
-  },
+  skills: [
+    providePsychologicalFirstAid_Skill_Data,
+    recognizeAnAcutePsychologicalCrisis_Skill_Data,
+    respondToSelfHarmOrSuicideRisk_Skill_Data,
+  ],
   description: {
     methodological:
       'Immediate safety and connection to competent support take priority over attempting therapy or managing a potentially dangerous situation alone.',

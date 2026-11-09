@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const exoplanetLifeSearches_Skill_Data = buildSkillConfig({
+export const exoplanetLifeSearches_Skill_Data = defineSkill({
   slug: 'exoplanetLifeSearches',
   id: 'ec69f7d3-d0ee-48c0-b54e-b207d975cc8b',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const spacecraftAttitudeControl_Skill_Data = buildSkillConfig({
+export const spacecraftAttitudeControl_Skill_Data = defineSkill({
   slug: 'spacecraftAttitudeControl',
   id: '68725c0e-b188-406a-a89c-38fb5503bf61',
   name: {

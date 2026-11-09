@@ -11,7 +11,7 @@ const script = fileURLToPath(new URL('./check-built-package-exports.mjs', import
 function fixture(t) {
   const root = mkdtempSync(join(tmpdir(), 'svitlo-scoped-artifacts-'));
   t.after(() => rmSync(root, { recursive: true, force: true }));
-  const resource = 'data/pages/skillAnalytics/en.json';
+  const resource = 'data/skills/base.json';
 
   for (const name of ['math', 'art']) {
     const path = join(root, 'content', name);
@@ -23,7 +23,7 @@ function fixture(t) {
     ]) {
       const target = join(path, file);
       mkdirSync(dirname(target), { recursive: true });
-      writeFileSync(target, file.endsWith('.json') ? '{"domains":[]}\n' : '');
+      writeFileSync(target, file.endsWith('.json') ? '{"test":{}}\n' : '');
     }
     writeFileSync(join(path, 'dist/manifest.json'), JSON.stringify({ version: 1, textbook: name, files: [resource] }));
     writeFileSync(

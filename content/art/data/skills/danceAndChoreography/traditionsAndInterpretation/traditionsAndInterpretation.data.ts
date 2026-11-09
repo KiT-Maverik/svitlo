@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   adaptTraditionalMovementResponsibly_Skill_Data,
@@ -8,7 +8,7 @@ import {
   interpretExpressiveMovement_Skill_Data,
 } from './skills';
 
-export const traditionsAndInterpretation_SkillGroup_Data = buildSkillGroupConfig({
+export const traditionsAndInterpretation_SkillGroup_Data = defineSkillGroup({
   slug: 'traditionsAndInterpretation',
   id: '125a3506-b220-4e80-99af-c25ffb7118a2',
   name: {
@@ -42,13 +42,13 @@ export const traditionsAndInterpretation_SkillGroup_Data = buildSkillGroupConfig
     kk: 'Дәстүрлер мен түсіндіру',
     qm: 'Ananeler ve tefsir',
   },
-  skills: {
-    adaptTraditionalMovementResponsibly: adaptTraditionalMovementResponsibly_Skill_Data,
-    analyzeDanceInCulturalContext: analyzeDanceInCulturalContext_Skill_Data,
-    distinguishDanceGenres: distinguishDanceGenres_Skill_Data,
-    evaluateDancePerformance: evaluateDancePerformance_Skill_Data,
-    interpretExpressiveMovement: interpretExpressiveMovement_Skill_Data,
-  },
+  skills: [
+    adaptTraditionalMovementResponsibly_Skill_Data,
+    analyzeDanceInCulturalContext_Skill_Data,
+    distinguishDanceGenres_Skill_Data,
+    evaluateDancePerformance_Skill_Data,
+    interpretExpressiveMovement_Skill_Data,
+  ],
   description: {
     methodological:
       'Dance forms have social and historical purposes that must be understood on their own cultural terms.',

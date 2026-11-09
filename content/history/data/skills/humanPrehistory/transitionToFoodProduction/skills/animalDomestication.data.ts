@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const animalDomestication_Skill_Data = buildSkillConfig({
+export const animalDomestication_Skill_Data = defineSkill({
   slug: 'animalDomestication',
   id: 'f8135b68-0ce4-45d0-9394-bec327682954',
   name: {

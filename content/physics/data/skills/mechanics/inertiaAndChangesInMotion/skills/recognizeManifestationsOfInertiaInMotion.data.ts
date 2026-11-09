@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeManifestationsOfInertiaInMotion_Skill_Data = buildSkillConfig({
+export const recognizeManifestationsOfInertiaInMotion_Skill_Data = defineSkill({
   slug: 'recognizeManifestationsOfInertiaInMotion',
   id: '83f61d3b-a2a9-452d-9b9a-5a2235fa7dc0',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const monetaryTransmissionMechanism_Skill_Data = buildSkillConfig({
+export const monetaryTransmissionMechanism_Skill_Data = defineSkill({
   slug: 'monetaryTransmissionMechanism',
   id: '289f6894-f753-4b2c-b53f-2fb6aa76b154',
   name: {

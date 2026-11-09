@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const shapeAttributes_Skill_Data = buildSkillConfig({
+export const shapeAttributes_Skill_Data = defineSkill({
   slug: 'shapeAttributes',
   id: '91ac826f-9b38-4dee-8e19-bd7883514afe',
   name: {

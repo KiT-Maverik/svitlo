@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeGothicCathedralSculpture_Skill_Data = buildSkillConfig({
+export const analyzeGothicCathedralSculpture_Skill_Data = defineSkill({
   slug: 'analyzeGothicCathedralSculpture',
   id: 'ff5fd9b8-9ff7-4bc7-86af-2d65e48084a8',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const detectVibrationsOfASoundSource_Skill_Data = buildSkillConfig({
+export const detectVibrationsOfASoundSource_Skill_Data = defineSkill({
   slug: 'detectVibrationsOfASoundSource',
   id: '50ff0729-b6a4-42cd-8820-c0e3caba43e8',
   name: {

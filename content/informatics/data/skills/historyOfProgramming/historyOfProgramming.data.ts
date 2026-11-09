@@ -1,12 +1,12 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { keyContributions_SkillGroup_Data } from './keyContributions/keyContributions.data';
 import { machinesAndCryptanalysis_SkillGroup_Data } from './machinesAndCryptanalysis/machinesAndCryptanalysis.data';
 
-export const historyOfProgramming_SkillDomain_Data = buildSkillDomainConfig({
+export const historyOfProgramming_SkillDomain_Data = defineSkillDomain({
   slug: 'historyOfProgramming',
   id: '2e78bd25-108e-4fc4-9a8a-98376c0efc29',
-  name: {
+  title: {
     en: 'History of Programming',
     zh: '编程史',
     hi: 'प्रोग्रामिंग का इतिहास',
@@ -37,10 +37,7 @@ export const historyOfProgramming_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Бағдарламалау тарихы',
     qm: 'Programmalav tarihi',
   },
-  groups: {
-    keyContributions: keyContributions_SkillGroup_Data,
-    machinesAndCryptanalysis: machinesAndCryptanalysis_SkillGroup_Data,
-  },
+  groups: [keyContributions_SkillGroup_Data, machinesAndCryptanalysis_SkillGroup_Data],
   description: {
     methodological:
       "Traces the origins of algorithmic ideas, programming practices, software tools, networking solutions, and computing machines in historical context. Recognizes individual and collaborative contributions, including women's long-undervalued work, without making every biography a separate competency.",

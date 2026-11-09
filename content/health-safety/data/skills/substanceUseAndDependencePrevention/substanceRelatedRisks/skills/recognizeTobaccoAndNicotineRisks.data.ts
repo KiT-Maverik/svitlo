@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeTobaccoAndNicotineRisks_Skill_Data = buildSkillConfig({
+export const recognizeTobaccoAndNicotineRisks_Skill_Data = defineSkill({
   slug: 'recognizeTobaccoAndNicotineRisks',
   id: '7c0c779d-88c2-40d4-a193-2da43601f439',
   name: {

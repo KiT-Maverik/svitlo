@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const pharaonicRule_Skill_Data = buildSkillConfig({
+export const pharaonicRule_Skill_Data = defineSkill({
   slug: 'pharaonicRule',
   id: '967b8736-f1a7-4807-a511-2b04fd59ec31',
   name: {

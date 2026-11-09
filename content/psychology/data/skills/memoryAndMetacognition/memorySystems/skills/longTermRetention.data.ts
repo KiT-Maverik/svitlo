@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const longTermRetention_Skill_Data = buildSkillConfig({
+export const longTermRetention_Skill_Data = defineSkill({
   slug: 'longTermRetention',
   id: '722f6f85-3dba-461c-908c-0a9903f122ca',
   name: {

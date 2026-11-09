@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const traverseASequence_Skill_Data = buildSkillConfig({
+export const traverseASequence_Skill_Data = defineSkill({
   slug: 'traverseASequence',
   id: '874d4641-c959-4057-aa46-8662a72c31dd',
   name: {

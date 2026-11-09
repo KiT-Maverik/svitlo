@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const memento_Skill_Data = buildSkillConfig({
+export const memento_Skill_Data = defineSkill({
   slug: 'memento',
   id: '4b1f7c11-8b1b-4995-823a-d960d2b16bfb',
   name: {

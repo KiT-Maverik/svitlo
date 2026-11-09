@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compoundInterest_Skill_Data = buildSkillConfig({
+export const compoundInterest_Skill_Data = defineSkill({
   slug: 'compoundInterest',
   id: '083738c5-cc2f-4eac-8898-c2c84c0cec8a',
   name: {

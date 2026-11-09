@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const ownersManagersAndWorkers_Skill_Data = buildSkillConfig({
+export const ownersManagersAndWorkers_Skill_Data = defineSkill({
   slug: 'ownersManagersAndWorkers',
   id: '7565e257-b0e1-4e18-b595-743a527f1198',
   name: {

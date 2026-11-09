@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const applyANaturalPrincipleToADesign_Skill_Data = buildSkillConfig({
+export const applyANaturalPrincipleToADesign_Skill_Data = defineSkill({
   slug: 'applyANaturalPrincipleToADesign',
   id: 'c7e1eded-a31a-40ae-b414-4419cc864f93',
   name: {

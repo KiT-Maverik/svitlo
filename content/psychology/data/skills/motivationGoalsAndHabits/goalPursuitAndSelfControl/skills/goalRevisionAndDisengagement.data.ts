@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const goalRevisionAndDisengagement_Skill_Data = buildSkillConfig({
+export const goalRevisionAndDisengagement_Skill_Data = defineSkill({
   slug: 'goalRevisionAndDisengagement',
   id: 'fd506204-ad8e-472b-b048-85881dd81701',
   name: {

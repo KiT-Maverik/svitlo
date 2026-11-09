@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainAPlaceboControl_Skill_Data = buildSkillConfig({
+export const explainAPlaceboControl_Skill_Data = defineSkill({
   slug: 'explainAPlaceboControl',
   id: '91f13c32-4dbe-41a3-8889-6cec87b06f2e',
   name: {

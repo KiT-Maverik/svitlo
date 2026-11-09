@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const composeWithColorMasses_Skill_Data = buildSkillConfig({
+export const composeWithColorMasses_Skill_Data = defineSkill({
   slug: 'composeWithColorMasses',
   id: '4f9a90c2-f646-4fe2-b4c0-f76ac10ad730',
   name: {

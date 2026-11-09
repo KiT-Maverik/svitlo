@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const ancientChineseMetallurgy_Skill_Data = buildSkillConfig({
+export const ancientChineseMetallurgy_Skill_Data = defineSkill({
   slug: 'ancientChineseMetallurgy',
   id: '134855c3-aaf8-4391-8327-2b8db4bd3d3c',
   name: {

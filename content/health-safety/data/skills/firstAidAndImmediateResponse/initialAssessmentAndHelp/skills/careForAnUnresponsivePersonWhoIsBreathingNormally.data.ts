@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const careForAnUnresponsivePersonWhoIsBreathingNormally_Skill_Data = buildSkillConfig({
+export const careForAnUnresponsivePersonWhoIsBreathingNormally_Skill_Data = defineSkill({
   slug: 'careForAnUnresponsivePersonWhoIsBreathingNormally',
   id: '7361d00f-61f7-4d4a-9de9-5354669ddef5',
   name: {

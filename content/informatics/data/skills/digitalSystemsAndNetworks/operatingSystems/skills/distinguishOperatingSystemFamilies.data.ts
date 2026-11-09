@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishOperatingSystemFamilies_Skill_Data = buildSkillConfig({
+export const distinguishOperatingSystemFamilies_Skill_Data = defineSkill({
   slug: 'distinguishOperatingSystemFamilies',
   id: '0899f964-c496-42b0-8b6c-a3586aceaf8d',
   name: {

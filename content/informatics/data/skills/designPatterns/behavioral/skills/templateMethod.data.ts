@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const templateMethod_Skill_Data = buildSkillConfig({
+export const templateMethod_Skill_Data = defineSkill({
   slug: 'templateMethod',
   id: 'bbbfce51-ab9b-49d0-960f-204134b75b00',
   name: {

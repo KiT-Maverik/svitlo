@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const divisionOfLabor_Skill_Data = buildSkillConfig({
+export const divisionOfLabor_Skill_Data = defineSkill({
   slug: 'divisionOfLabor',
   id: '66fdff0e-f227-4cc4-8ccb-8afc7d473b68',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const performBodyPercussion_Skill_Data = buildSkillConfig({
+export const performBodyPercussion_Skill_Data = defineSkill({
   slug: 'performBodyPercussion',
   id: 'ca80b1d4-83cc-43b6-ab47-595cb3a6d4be',
   name: {

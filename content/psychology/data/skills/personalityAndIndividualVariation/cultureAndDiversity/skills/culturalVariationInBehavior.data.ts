@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const culturalVariationInBehavior_Skill_Data = buildSkillConfig({
+export const culturalVariationInBehavior_Skill_Data = defineSkill({
   slug: 'culturalVariationInBehavior',
   id: '2ed4b4b8-e511-45a1-acf2-59e423728973',
   name: {

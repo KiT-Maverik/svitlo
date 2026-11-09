@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const photovoltaicSystems_Skill_Data = buildSkillConfig({
+export const photovoltaicSystems_Skill_Data = defineSkill({
   slug: 'photovoltaicSystems',
   id: '23cef1a5-1e2d-4037-ae14-c4a7f17c1078',
   name: {

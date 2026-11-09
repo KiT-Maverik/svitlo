@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const useExpressiveStageVoice_Skill_Data = buildSkillConfig({
+export const useExpressiveStageVoice_Skill_Data = defineSkill({
   slug: 'useExpressiveStageVoice',
   id: 'f02bb5c0-a3b0-4b6b-88f2-c0d7315973d5',
   name: {

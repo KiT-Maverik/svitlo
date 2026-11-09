@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const healthBeliefsAndAction_Skill_Data = buildSkillConfig({
+export const healthBeliefsAndAction_Skill_Data = defineSkill({
   slug: 'healthBeliefsAndAction',
   id: '3a3abe3d-7548-4d3e-992d-dcb06b72725c',
   name: {

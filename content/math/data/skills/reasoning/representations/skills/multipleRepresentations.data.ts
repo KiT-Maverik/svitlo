@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const multipleRepresentations_Skill_Data = buildSkillConfig({
+export const multipleRepresentations_Skill_Data = defineSkill({
   slug: 'multipleRepresentations',
   id: '6e59c042-7eed-4fb0-83dc-836b3808bca7',
   name: {

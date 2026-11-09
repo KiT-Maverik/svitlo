@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const useDigitalMasks_Skill_Data = buildSkillConfig({
+export const useDigitalMasks_Skill_Data = defineSkill({
   slug: 'useDigitalMasks',
   id: '42e3c5c8-422a-4c86-a014-aa1ffda952c2',
   name: {

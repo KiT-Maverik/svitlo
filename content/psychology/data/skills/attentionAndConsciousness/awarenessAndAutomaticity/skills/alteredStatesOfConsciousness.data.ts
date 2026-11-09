@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const alteredStatesOfConsciousness_Skill_Data = buildSkillConfig({
+export const alteredStatesOfConsciousness_Skill_Data = defineSkill({
   slug: 'alteredStatesOfConsciousness',
   id: '1078ee13-1ac1-420a-8686-526971f29645',
   name: {

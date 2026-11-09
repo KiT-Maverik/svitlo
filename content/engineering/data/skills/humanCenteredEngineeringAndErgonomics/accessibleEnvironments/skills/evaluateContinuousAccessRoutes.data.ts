@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateContinuousAccessRoutes_Skill_Data = buildSkillConfig({
+export const evaluateContinuousAccessRoutes_Skill_Data = defineSkill({
   slug: 'evaluateContinuousAccessRoutes',
   id: '2a70f463-6d13-447d-bb5b-28a57a5cd70e',
   name: {

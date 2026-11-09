@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateContextualInterpretations_Skill_Data = buildSkillConfig({
+export const evaluateContextualInterpretations_Skill_Data = defineSkill({
   slug: 'evaluateContextualInterpretations',
   id: 'dcd359eb-2dee-42a8-ab25-c9aa524629a1',
   name: {

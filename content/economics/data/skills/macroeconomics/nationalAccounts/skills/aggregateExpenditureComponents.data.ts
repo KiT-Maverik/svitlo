@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const aggregateExpenditureComponents_Skill_Data = buildSkillConfig({
+export const aggregateExpenditureComponents_Skill_Data = defineSkill({
   slug: 'aggregateExpenditureComponents',
   id: '93c76543-1706-4bac-8545-f95f93bd377b',
   name: {

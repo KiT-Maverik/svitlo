@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const periodicity_Skill_Data = buildSkillConfig({
+export const periodicity_Skill_Data = defineSkill({
   slug: 'periodicity',
   id: 'c66a601d-d31e-4400-aa88-7e5c72d14580',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyASensorsPurpose_Skill_Data = buildSkillConfig({
+export const identifyASensorsPurpose_Skill_Data = defineSkill({
   slug: 'identifyASensorsPurpose',
   id: 'aa2009f8-66f0-411e-b007-876b9360e813',
   name: {

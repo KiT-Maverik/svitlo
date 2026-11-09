@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const sequenceMotionGraphics_Skill_Data = buildSkillConfig({
+export const sequenceMotionGraphics_Skill_Data = defineSkill({
   slug: 'sequenceMotionGraphics',
   id: '48dfcdff-074f-430f-b7e2-45e29edc5536',
   name: {

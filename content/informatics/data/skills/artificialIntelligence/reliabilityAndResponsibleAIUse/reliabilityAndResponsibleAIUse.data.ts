@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   explainHumanResponsibilityForAIAssistedDecisions_Skill_Data,
@@ -7,7 +7,7 @@ import {
   verifyFactsInAnAIResponse_Skill_Data,
 } from './skills';
 
-export const reliabilityAndResponsibleAIUse_SkillGroup_Data = buildSkillGroupConfig({
+export const reliabilityAndResponsibleAIUse_SkillGroup_Data = defineSkillGroup({
   slug: 'reliabilityAndResponsibleAIUse',
   id: 'c598e274-63e6-4795-b822-66e0ef76e73b',
   name: {
@@ -41,12 +41,12 @@ export const reliabilityAndResponsibleAIUse_SkillGroup_Data = buildSkillGroupCon
     kk: 'ЖИ сенімділігі және жауапты пайдалану',
     qm: 'Suniy intellektniñ işançlılığı ve mesuliyetli qullanıluvı',
   },
-  skills: {
-    explainHumanResponsibilityForAIAssistedDecisions: explainHumanResponsibilityForAIAssistedDecisions_Skill_Data,
-    protectPersonalDataInPrompts: protectPersonalDataInPrompts_Skill_Data,
-    recognizeAIBiasRisks: recognizeAIBiasRisks_Skill_Data,
-    verifyFactsInAnAIResponse: verifyFactsInAnAIResponse_Skill_Data,
-  },
+  skills: [
+    explainHumanResponsibilityForAIAssistedDecisions_Skill_Data,
+    protectPersonalDataInPrompts_Skill_Data,
+    recognizeAIBiasRisks_Skill_Data,
+    verifyFactsInAnAIResponse_Skill_Data,
+  ],
   description: {
     methodological:
       'Protecting data and identifying unreliable results or unfair consequences of AI use. Fact-checking, bias assessment, and human accountability address different risks.',

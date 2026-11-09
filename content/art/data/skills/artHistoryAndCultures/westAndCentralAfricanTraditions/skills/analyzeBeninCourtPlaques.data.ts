@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeBeninCourtPlaques_Skill_Data = buildSkillConfig({
+export const analyzeBeninCourtPlaques_Skill_Data = defineSkill({
   slug: 'analyzeBeninCourtPlaques',
   id: '6876cdd7-f714-4a57-9c6a-0f58f17e6a9c',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishEnergyEmissionFromReflectionOfReceivedLight_Skill_Data = buildSkillConfig({
+export const distinguishEnergyEmissionFromReflectionOfReceivedLight_Skill_Data = defineSkill({
   slug: 'distinguishEnergyEmissionFromReflectionOfReceivedLight',
   id: 'ea99f42a-31b9-4204-abe2-b8d6dd0738ad',
   name: {

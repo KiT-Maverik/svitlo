@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const reconstructAPhilosophicalArgumentAboutDivinity_Skill_Data = buildSkillConfig({
+export const reconstructAPhilosophicalArgumentAboutDivinity_Skill_Data = defineSkill({
   slug: 'reconstructAPhilosophicalArgumentAboutDivinity',
   id: '986ee53c-2f08-4f41-939f-8f8c6f704c74',
   name: {

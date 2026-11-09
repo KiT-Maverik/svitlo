@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const economicForecastUncertainty_Skill_Data = buildSkillConfig({
+export const economicForecastUncertainty_Skill_Data = defineSkill({
   slug: 'economicForecastUncertainty',
   id: 'f53f97b1-f336-42ba-8bde-0f7113876f03',
   name: {

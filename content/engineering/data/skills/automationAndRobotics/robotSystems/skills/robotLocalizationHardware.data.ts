@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const robotLocalizationHardware_Skill_Data = buildSkillConfig({
+export const robotLocalizationHardware_Skill_Data = defineSkill({
   slug: 'robotLocalizationHardware',
   id: '9c3e78cd-f278-48f2-8266-e8442efb6aa3',
   name: {

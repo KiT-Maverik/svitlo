@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const addLikeDenominators_Skill_Data = buildSkillConfig({
+export const addLikeDenominators_Skill_Data = defineSkill({
   slug: 'addLikeDenominators',
   id: 'bb4932e9-7867-4556-a715-8c4d3afc1553',
   name: {

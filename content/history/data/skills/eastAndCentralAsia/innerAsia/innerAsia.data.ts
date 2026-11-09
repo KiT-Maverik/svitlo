@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   centralAsianOasisCenters_Skill_Data,
@@ -7,7 +7,7 @@ import {
   xiongnu_Skill_Data,
 } from './skills';
 
-export const innerAsia_SkillGroup_Data = buildSkillGroupConfig({
+export const innerAsia_SkillGroup_Data = defineSkillGroup({
   slug: 'innerAsia',
   id: '7aa11b7a-047f-4c39-968d-9f18b9e16e5e',
   name: {
@@ -41,12 +41,12 @@ export const innerAsia_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Ішкі Азия',
     qm: 'İçki Asiya',
   },
-  skills: {
-    centralAsianOasisCenters: centralAsianOasisCenters_Skill_Data,
-    sakaAndRelatedSteppeCultures: sakaAndRelatedSteppeCultures_Skill_Data,
-    steppePastoralism: steppePastoralism_Skill_Data,
-    xiongnu: xiongnu_Skill_Data,
-  },
+  skills: [
+    centralAsianOasisCenters_Skill_Data,
+    sakaAndRelatedSteppeCultures_Skill_Data,
+    steppePastoralism_Skill_Data,
+    xiongnu_Skill_Data,
+  ],
   description: {
     methodological: 'Steppe and oasis societies created polities and connections among large agricultural states.',
     frontend: {

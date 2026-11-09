@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishAnActionFromAnEvent_Skill_Data = buildSkillConfig({
+export const distinguishAnActionFromAnEvent_Skill_Data = defineSkill({
   slug: 'distinguishAnActionFromAnEvent',
   id: 'e24663c9-db90-48bd-a512-ba83a7ea279b',
   name: {

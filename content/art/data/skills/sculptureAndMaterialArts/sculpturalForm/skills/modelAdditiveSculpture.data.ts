@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const modelAdditiveSculpture_Skill_Data = buildSkillConfig({
+export const modelAdditiveSculpture_Skill_Data = defineSkill({
   slug: 'modelAdditiveSculpture',
   id: '4d206210-3ef8-4cd4-9b98-da39535c401e',
   name: {

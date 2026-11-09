@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const preventCommonDigitalInteractionErrors_Skill_Data = buildSkillConfig({
+export const preventCommonDigitalInteractionErrors_Skill_Data = defineSkill({
   slug: 'preventCommonDigitalInteractionErrors',
   id: 'ea96960b-4471-421a-86b6-f15dcec63a3e',
   name: {

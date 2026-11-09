@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const countBy5_Skill_Data = buildSkillConfig({
+export const countBy5_Skill_Data = defineSkill({
   slug: 'countBy5',
   id: '422c0a18-53eb-43fb-a816-ba38a9567894',
   name: {

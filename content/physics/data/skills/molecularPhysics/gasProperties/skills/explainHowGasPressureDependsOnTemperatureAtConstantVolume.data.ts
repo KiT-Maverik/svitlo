@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainHowGasPressureDependsOnTemperatureAtConstantVolume_Skill_Data = buildSkillConfig({
+export const explainHowGasPressureDependsOnTemperatureAtConstantVolume_Skill_Data = defineSkill({
   slug: 'explainHowGasPressureDependsOnTemperatureAtConstantVolume',
   id: 'a9453991-3aa9-438a-bf8e-b37652fbda90',
   name: {

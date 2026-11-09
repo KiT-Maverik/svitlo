@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   analyzeBeninCourtPlaques_Skill_Data,
@@ -6,7 +6,7 @@ import {
   analyzeKongoNkisiFigures_Skill_Data,
 } from './skills';
 
-export const westAndCentralAfricanTraditions_SkillGroup_Data = buildSkillGroupConfig({
+export const westAndCentralAfricanTraditions_SkillGroup_Data = defineSkillGroup({
   slug: 'westAndCentralAfricanTraditions',
   id: '7e2da08a-9d4e-424c-a17e-995d111a6f19',
   name: {
@@ -40,11 +40,11 @@ export const westAndCentralAfricanTraditions_SkillGroup_Data = buildSkillGroupCo
     kk: 'Батыс және Орталық Африка дәстүрлері',
     qm: 'Batı ve Orta Afrika adetleri',
   },
-  skills: {
-    analyzeBeninCourtPlaques: analyzeBeninCourtPlaques_Skill_Data,
-    analyzeGeledeMasqueradeTraditions: analyzeGeledeMasqueradeTraditions_Skill_Data,
-    analyzeKongoNkisiFigures: analyzeKongoNkisiFigures_Skill_Data,
-  },
+  skills: [
+    analyzeBeninCourtPlaques_Skill_Data,
+    analyzeGeledeMasqueradeTraditions_Skill_Data,
+    analyzeKongoNkisiFigures_Skill_Data,
+  ],
   description: {
     methodological:
       "These examples refer to particular peoples and court or community practices. They are not interchangeable illustrations of a supposedly uniform 'African art'.",

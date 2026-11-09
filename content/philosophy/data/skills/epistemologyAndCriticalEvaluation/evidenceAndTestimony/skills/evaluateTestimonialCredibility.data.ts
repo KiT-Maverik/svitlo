@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateTestimonialCredibility_Skill_Data = buildSkillConfig({
+export const evaluateTestimonialCredibility_Skill_Data = defineSkill({
   slug: 'evaluateTestimonialCredibility',
   id: '1620e060-a801-4b4c-8270-cc883d7f9086',
   name: {

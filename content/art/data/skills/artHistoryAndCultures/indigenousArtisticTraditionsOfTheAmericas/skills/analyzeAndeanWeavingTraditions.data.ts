@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeAndeanWeavingTraditions_Skill_Data = buildSkillConfig({
+export const analyzeAndeanWeavingTraditions_Skill_Data = defineSkill({
   slug: 'analyzeAndeanWeavingTraditions',
   id: '3888eeb0-80f8-405e-99fe-e7315b19207a',
   name: {

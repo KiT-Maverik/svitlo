@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { housingAffordability_Skill_Data, housingMarket_Skill_Data, landUseEconomics_Skill_Data } from './skills';
 
-export const housingAndRealEstate_SkillGroup_Data = buildSkillGroupConfig({
+export const housingAndRealEstate_SkillGroup_Data = defineSkillGroup({
   slug: 'housingAndRealEstate',
   id: 'e7db97cc-0c63-461a-b970-9bb3520ecd81',
   name: {
@@ -36,11 +36,7 @@ export const housingAndRealEstate_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Тұрғын үй және жылжымайтын мүлік',
     qm: 'Mesken ve taşınmaz mülk',
   },
-  skills: {
-    housingAffordability: housingAffordability_Skill_Data,
-    housingMarket: housingMarket_Skill_Data,
-    landUseEconomics: landUseEconomics_Skill_Data,
-  },
+  skills: [housingAffordability_Skill_Data, housingMarket_Skill_Data, landUseEconomics_Skill_Data],
   description: {
     methodological:
       'Housing prices and affordability depend on land, construction, income, mortgage finance, local demand, and regulation.',

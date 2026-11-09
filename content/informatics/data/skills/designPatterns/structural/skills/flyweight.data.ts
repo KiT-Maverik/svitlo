@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const flyweight_Skill_Data = buildSkillConfig({
+export const flyweight_Skill_Data = defineSkill({
   slug: 'flyweight',
   id: 'b6eadcb3-ce95-4f54-becb-ca2db81995f5',
   name: {

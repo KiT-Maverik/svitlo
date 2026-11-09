@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const safeCookingAndReheating_Skill_Data = buildSkillConfig({
+export const safeCookingAndReheating_Skill_Data = defineSkill({
   slug: 'safeCookingAndReheating',
   id: '026dd100-864e-4727-828a-9c2f98faee45',
   name: {

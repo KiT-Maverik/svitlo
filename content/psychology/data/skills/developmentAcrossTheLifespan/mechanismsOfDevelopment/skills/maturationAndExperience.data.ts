@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const maturationAndExperience_Skill_Data = buildSkillConfig({
+export const maturationAndExperience_Skill_Data = defineSkill({
   slug: 'maturationAndExperience',
   id: 'd30933f3-7204-4b80-ac5a-08e8fcdb2045',
   name: {

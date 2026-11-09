@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   ancientDiets_Skill_Data,
@@ -9,7 +9,7 @@ import {
   leisureAndPublicLife_Skill_Data,
 } from './skills';
 
-export const everydayLifeInAntiquity_SkillGroup_Data = buildSkillGroupConfig({
+export const everydayLifeInAntiquity_SkillGroup_Data = defineSkillGroup({
   slug: 'everydayLifeInAntiquity',
   id: 'fd3f6b88-5a95-49a7-9df4-bc044b840af6',
   name: {
@@ -43,14 +43,14 @@ export const everydayLifeInAntiquity_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Ежелгі күнделікті өмір',
     qm: 'Qadimiy devirde kündelik yaşayış',
   },
-  skills: {
-    ancientDiets: ancientDiets_Skill_Data,
-    ancientWorkAndOccupations: ancientWorkAndOccupations_Skill_Data,
-    childhoodAndEducationInAntiquity: childhoodAndEducationInAntiquity_Skill_Data,
-    familyAndKinship: familyAndKinship_Skill_Data,
-    housingAndDomesticSpace: housingAndDomesticSpace_Skill_Data,
-    leisureAndPublicLife: leisureAndPublicLife_Skill_Data,
-  },
+  skills: [
+    ancientDiets_Skill_Data,
+    ancientWorkAndOccupations_Skill_Data,
+    childhoodAndEducationInAntiquity_Skill_Data,
+    familyAndKinship_Skill_Data,
+    housingAndDomesticSpace_Skill_Data,
+    leisureAndPublicLife_Skill_Data,
+  ],
   description: {
     methodological:
       'Compare dwellings, objects, texts, and images to reconstruct family relations and daily practices across regions.',

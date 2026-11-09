@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const acidStrength_Skill_Data = buildSkillConfig({
+export const acidStrength_Skill_Data = defineSkill({
   slug: 'acidStrength',
   id: 'e1080b0a-6222-47fb-a3da-bfa4c98f5493',
   name: {

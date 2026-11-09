@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   analyzeBaroquePainting_Skill_Data,
@@ -8,7 +8,7 @@ import {
   analyzeNorthernRenaissancePrintmaking_Skill_Data,
 } from './skills';
 
-export const medievalAndEarlyModernArts_SkillGroup_Data = buildSkillGroupConfig({
+export const medievalAndEarlyModernArts_SkillGroup_Data = defineSkillGroup({
   slug: 'medievalAndEarlyModernArts',
   id: 'ba6cbbcc-2bf5-43a7-b8f6-5103031c4799',
   name: {
@@ -42,13 +42,13 @@ export const medievalAndEarlyModernArts_SkillGroup_Data = buildSkillGroupConfig(
     kk: 'Орта ғасырлар және ерте жаңа дәуір өнері',
     qm: 'Orta çağ ve erte yañı devir sanatları',
   },
-  skills: {
-    analyzeBaroquePainting: analyzeBaroquePainting_Skill_Data,
-    analyzeByzantineIconPainting: analyzeByzantineIconPainting_Skill_Data,
-    analyzeEarlyItalianRenaissancePainting: analyzeEarlyItalianRenaissancePainting_Skill_Data,
-    analyzeGothicCathedralSculpture: analyzeGothicCathedralSculpture_Skill_Data,
-    analyzeNorthernRenaissancePrintmaking: analyzeNorthernRenaissancePrintmaking_Skill_Data,
-  },
+  skills: [
+    analyzeBaroquePainting_Skill_Data,
+    analyzeByzantineIconPainting_Skill_Data,
+    analyzeEarlyItalianRenaissancePainting_Skill_Data,
+    analyzeGothicCathedralSculpture_Skill_Data,
+    analyzeNorthernRenaissancePrintmaking_Skill_Data,
+  ],
   description: {
     methodological:
       'Comparative analysis here concerns distinct sacred, civic and courtly image practices shaped by differing patrons, techniques and concepts of representation.',

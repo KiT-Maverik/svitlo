@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const conceptFormation_Skill_Data = buildSkillConfig({
+export const conceptFormation_Skill_Data = defineSkill({
   slug: 'conceptFormation',
   id: '7c850412-573c-4631-8269-933b408e71a5',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const vaporization_Skill_Data = buildSkillConfig({
+export const vaporization_Skill_Data = defineSkill({
   slug: 'vaporization',
   id: 'd4b8e9b7-f999-4d5c-a0c2-ec4cda63f58a',
   name: {

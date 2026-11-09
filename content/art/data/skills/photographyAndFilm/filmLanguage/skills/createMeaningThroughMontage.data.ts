@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const createMeaningThroughMontage_Skill_Data = buildSkillConfig({
+export const createMeaningThroughMontage_Skill_Data = defineSkill({
   slug: 'createMeaningThroughMontage',
   id: '823f1699-0f71-4974-b588-cae55103db00',
   name: {

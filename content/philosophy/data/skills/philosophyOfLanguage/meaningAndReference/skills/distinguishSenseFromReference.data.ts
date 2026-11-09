@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishSenseFromReference_Skill_Data = buildSkillConfig({
+export const distinguishSenseFromReference_Skill_Data = defineSkill({
   slug: 'distinguishSenseFromReference',
   id: '20ff8cbf-f885-4ec2-9ce8-5687cea20f2f',
   name: {

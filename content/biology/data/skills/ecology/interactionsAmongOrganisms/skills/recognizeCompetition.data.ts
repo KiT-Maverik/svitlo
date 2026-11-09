@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeCompetition_Skill_Data = buildSkillConfig({
+export const recognizeCompetition_Skill_Data = defineSkill({
   slug: 'recognizeCompetition',
   id: '5a2d2f91-3a8e-483c-83b7-d38552459783',
   name: {

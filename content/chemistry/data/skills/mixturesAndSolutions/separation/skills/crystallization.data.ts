@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const crystallization_Skill_Data = buildSkillConfig({
+export const crystallization_Skill_Data = defineSkill({
   slug: 'crystallization',
   id: '63a39a88-f7e4-4745-b110-8f9b8dfc8196',
   name: {

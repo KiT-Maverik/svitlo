@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const teotihuacan_Skill_Data = buildSkillConfig({
+export const teotihuacan_Skill_Data = defineSkill({
   slug: 'teotihuacan',
   id: 'a3f6267e-418d-4059-8620-5e239e93514c',
   name: {

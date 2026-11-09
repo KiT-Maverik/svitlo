@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const specifyAnOutputFormat_Skill_Data = buildSkillConfig({
+export const specifyAnOutputFormat_Skill_Data = defineSkill({
   slug: 'specifyAnOutputFormat',
   id: '27de7e92-d880-4429-8c99-bc65f7babec4',
   name: {

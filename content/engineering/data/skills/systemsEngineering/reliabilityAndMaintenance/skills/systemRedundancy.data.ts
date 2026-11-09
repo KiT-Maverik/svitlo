@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const systemRedundancy_Skill_Data = buildSkillConfig({
+export const systemRedundancy_Skill_Data = defineSkill({
   slug: 'systemRedundancy',
   id: '209e2d5f-3fe3-46c7-9fe0-bb778a31e03b',
   name: {

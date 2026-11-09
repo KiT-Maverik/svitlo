@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const lawOfSupply_Skill_Data = buildSkillConfig({
+export const lawOfSupply_Skill_Data = defineSkill({
   slug: 'lawOfSupply',
   id: 'a8c63896-2cdf-48ea-a616-437df889c2f6',
   name: {

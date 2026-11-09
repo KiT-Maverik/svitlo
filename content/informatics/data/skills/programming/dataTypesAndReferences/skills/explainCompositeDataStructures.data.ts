@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainCompositeDataStructures_Skill_Data = buildSkillConfig({
+export const explainCompositeDataStructures_Skill_Data = defineSkill({
   slug: 'explainCompositeDataStructures',
   id: 'c0790de0-634b-4cd5-b3b6-a4551df323c5',
   name: {

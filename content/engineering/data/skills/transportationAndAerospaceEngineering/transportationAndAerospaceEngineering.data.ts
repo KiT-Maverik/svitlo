@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { aircraft_SkillGroup_Data } from './aircraft/aircraft.data';
 import { roadAndRail_SkillGroup_Data } from './roadAndRail/roadAndRail.data';
 import { spacecraft_SkillGroup_Data } from './spacecraft/spacecraft.data';
 import { watercraft_SkillGroup_Data } from './watercraft/watercraft.data';
 
-export const transportationAndAerospaceEngineering_SkillDomain_Data = buildSkillDomainConfig({
+export const transportationAndAerospaceEngineering_SkillDomain_Data = defineSkillDomain({
   slug: 'transportationAndAerospaceEngineering',
   id: 'c1f92626-c711-4809-81de-1b44b472c738',
-  name: {
+  title: {
     en: 'Transportation and Aerospace Engineering',
     zh: '交通运输与航空航天工程',
     hi: 'परिवहन और वांतरिक्ष अभियांत्रिकी',
@@ -39,12 +39,12 @@ export const transportationAndAerospaceEngineering_SkillDomain_Data = buildSkill
     kk: 'Көлік және аэроғарыш инженериясы',
     qm: 'Ulaşım ve ava-kosmos müendisligi',
   },
-  groups: {
-    aircraft: aircraft_SkillGroup_Data,
-    roadAndRail: roadAndRail_SkillGroup_Data,
-    spacecraft: spacecraft_SkillGroup_Data,
-    watercraft: watercraft_SkillGroup_Data,
-  },
+  groups: [
+    aircraft_SkillGroup_Data,
+    roadAndRail_SkillGroup_Data,
+    spacecraft_SkillGroup_Data,
+    watercraft_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Transport machines coordinate power, support, steering, stopping and protection while moving through land, air, water or space. Each vehicle is a system with characteristic environmental and operating constraints.',

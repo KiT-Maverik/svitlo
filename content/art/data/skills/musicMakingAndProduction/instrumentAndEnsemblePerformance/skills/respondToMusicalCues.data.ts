@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const respondToMusicalCues_Skill_Data = buildSkillConfig({
+export const respondToMusicalCues_Skill_Data = defineSkill({
   slug: 'respondToMusicalCues',
   id: '5c74c55f-9f2d-478b-ae1f-0bc33b20fad4',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishDigitalContentLicenses_Skill_Data = buildSkillConfig({
+export const distinguishDigitalContentLicenses_Skill_Data = defineSkill({
   slug: 'distinguishDigitalContentLicenses',
   id: '16f2346c-7488-44f2-a4e6-69da203ee88d',
   name: {

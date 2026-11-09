@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const suspensionSystems_Skill_Data = buildSkillConfig({
+export const suspensionSystems_Skill_Data = defineSkill({
   slug: 'suspensionSystems',
   id: '4f38b0e0-d390-4443-b278-61d194edebeb',
   name: {

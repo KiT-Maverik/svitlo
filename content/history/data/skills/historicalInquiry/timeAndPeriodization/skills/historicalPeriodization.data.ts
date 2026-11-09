@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const historicalPeriodization_Skill_Data = buildSkillConfig({
+export const historicalPeriodization_Skill_Data = defineSkill({
   slug: 'historicalPeriodization',
   id: 'a981f46d-c5c3-4d5e-9830-f64fd1f7bb94',
   name: {

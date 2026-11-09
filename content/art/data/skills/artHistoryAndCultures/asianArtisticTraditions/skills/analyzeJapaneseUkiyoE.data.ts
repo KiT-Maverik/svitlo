@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeJapaneseUkiyoE_Skill_Data = buildSkillConfig({
+export const analyzeJapaneseUkiyoE_Skill_Data = defineSkill({
   slug: 'analyzeJapaneseUkiyoE',
   id: 'bef355d9-4827-4967-94f6-7c26b8319081',
   name: {

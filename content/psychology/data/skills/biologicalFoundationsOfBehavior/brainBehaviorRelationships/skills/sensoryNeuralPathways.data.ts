@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const sensoryNeuralPathways_Skill_Data = buildSkillConfig({
+export const sensoryNeuralPathways_Skill_Data = defineSkill({
   slug: 'sensoryNeuralPathways',
   id: '5c230f09-2698-4dda-a0d0-a679dbf7be34',
   name: {

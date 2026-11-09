@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeMaoriWhakairoCarving_Skill_Data = buildSkillConfig({
+export const analyzeMaoriWhakairoCarving_Skill_Data = defineSkill({
   slug: 'analyzeMaoriWhakairoCarving',
   id: '097c806c-fd4d-47d7-bcd9-183f3871cce9',
   name: {

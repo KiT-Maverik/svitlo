@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const hubbleLemaitreRelation_Skill_Data = buildSkillConfig({
+export const hubbleLemaitreRelation_Skill_Data = defineSkill({
   slug: 'hubbleLemaitreRelation',
   id: '9443ff1b-9dea-4004-8f01-c5ccfeb9e76b',
   name: {

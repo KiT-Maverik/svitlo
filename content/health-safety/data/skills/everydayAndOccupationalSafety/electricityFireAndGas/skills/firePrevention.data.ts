@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const firePrevention_Skill_Data = buildSkillConfig({
+export const firePrevention_Skill_Data = defineSkill({
   slug: 'firePrevention',
   id: '2ca54667-e966-4eb8-88f7-8a7c60e56a27',
   name: {

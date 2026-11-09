@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const joinClayComponents_Skill_Data = buildSkillConfig({
+export const joinClayComponents_Skill_Data = defineSkill({
   slug: 'joinClayComponents',
   id: 'c997dad9-559f-4c29-bec7-527fe1d91a64',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyDigitalDevices_Skill_Data = buildSkillConfig({
+export const identifyDigitalDevices_Skill_Data = defineSkill({
   slug: 'identifyDigitalDevices',
   id: '0000b5e9-fa19-45d0-8b8d-1367d82dc123',
   name: {

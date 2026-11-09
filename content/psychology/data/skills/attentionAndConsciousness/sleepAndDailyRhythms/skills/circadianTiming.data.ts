@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const circadianTiming_Skill_Data = buildSkillConfig({
+export const circadianTiming_Skill_Data = defineSkill({
   slug: 'circadianTiming',
   id: 'b1ec2dff-88d4-4b0d-8cd4-dd486d286315',
   name: {

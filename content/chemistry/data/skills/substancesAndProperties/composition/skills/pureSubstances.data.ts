@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const pureSubstances_Skill_Data = buildSkillConfig({
+export const pureSubstances_Skill_Data = defineSkill({
   slug: 'pureSubstances',
   id: 'd903f13e-b3ed-488e-887d-e8857583e2b0',
   name: {

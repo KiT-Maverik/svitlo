@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { amazonAndCaribbean_SkillGroup_Data } from './amazonAndCaribbean/amazonAndCaribbean.data';
 import { ancientAndes_SkillGroup_Data } from './ancientAndes/ancientAndes.data';
@@ -6,10 +6,10 @@ import { earliestAmericanPopulations_SkillGroup_Data } from './earliestAmericanP
 import { mesoamerica_SkillGroup_Data } from './mesoamerica/mesoamerica.data';
 import { northAmericaBeyondMesoamerica_SkillGroup_Data } from './northAmericaBeyondMesoamerica/northAmericaBeyondMesoamerica.data';
 
-export const ancientAmericas_SkillDomain_Data = buildSkillDomainConfig({
+export const ancientAmericas_SkillDomain_Data = defineSkillDomain({
   slug: 'ancientAmericas',
   id: 'b460f1a4-07a1-463a-8095-03f27708ad9e',
-  name: {
+  title: {
     en: 'Americas',
     zh: '美洲',
     hi: 'अमेरिकी महाद्वीप',
@@ -40,13 +40,13 @@ export const ancientAmericas_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Америка құрлықтары',
     qm: 'Amerika qıtaları',
   },
-  groups: {
-    amazonAndCaribbean: amazonAndCaribbean_SkillGroup_Data,
-    ancientAndes: ancientAndes_SkillGroup_Data,
-    earliestAmericanPopulations: earliestAmericanPopulations_SkillGroup_Data,
-    mesoamerica: mesoamerica_SkillGroup_Data,
-    northAmericaBeyondMesoamerica: northAmericaBeyondMesoamerica_SkillGroup_Data,
-  },
+  groups: [
+    amazonAndCaribbean_SkillGroup_Data,
+    ancientAndes_SkillGroup_Data,
+    earliestAmericanPopulations_SkillGroup_Data,
+    mesoamerica_SkillGroup_Data,
+    northAmericaBeyondMesoamerica_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'American history includes early peopling, independent agriculture, complex cities and states, and diverse societies without major cities.',

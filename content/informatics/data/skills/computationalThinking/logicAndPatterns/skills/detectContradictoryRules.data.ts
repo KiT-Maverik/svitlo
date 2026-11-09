@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const detectContradictoryRules_Skill_Data = buildSkillConfig({
+export const detectContradictoryRules_Skill_Data = defineSkill({
   slug: 'detectContradictoryRules',
   id: '088c6d02-54c7-4d35-ac1d-e4bbfacb1afe',
   name: {

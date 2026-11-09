@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const buildingEnvelopes_Skill_Data = buildSkillConfig({
+export const buildingEnvelopes_Skill_Data = defineSkill({
   slug: 'buildingEnvelopes',
   id: 'faac5277-dce4-4710-9009-eab2403c63f2',
   name: {

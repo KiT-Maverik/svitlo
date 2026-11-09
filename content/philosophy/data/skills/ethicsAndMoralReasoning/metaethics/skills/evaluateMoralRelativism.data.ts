@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateMoralRelativism_Skill_Data = buildSkillConfig({
+export const evaluateMoralRelativism_Skill_Data = defineSkill({
   slug: 'evaluateMoralRelativism',
   id: '495e5a73-c2e4-4d48-a992-063bda3ee434',
   name: {

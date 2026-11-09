@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { assessmentAndProfessionalSupport_SkillGroup_Data } from './assessmentAndProfessionalSupport/assessmentAndProfessionalSupport.data';
 import { interventionEvidenceAndEthics_SkillGroup_Data } from './interventionEvidenceAndEthics/interventionEvidenceAndEthics.data';
 import { patternsOfPsychologicalDifficulty_SkillGroup_Data } from './patternsOfPsychologicalDifficulty/patternsOfPsychologicalDifficulty.data';
 import { wellbeingAndImpairment_SkillGroup_Data } from './wellbeingAndImpairment/wellbeingAndImpairment.data';
 
-export const mentalHealthAndClinicalScience_SkillDomain_Data = buildSkillDomainConfig({
+export const mentalHealthAndClinicalScience_SkillDomain_Data = defineSkillDomain({
   slug: 'mentalHealthAndClinicalScience',
   id: 'e4cacd3a-1021-43ac-a5b2-e0ee8788672a',
-  name: {
+  title: {
     en: 'Mental Health and Clinical Science',
     zh: '心理健康与临床科学',
     hi: 'मानसिक स्वास्थ्य और नैदानिक विज्ञान',
@@ -39,12 +39,12 @@ export const mentalHealthAndClinicalScience_SkillDomain_Data = buildSkillDomainC
     kk: 'Психикалық денсаулық және клиникалық ғылым',
     qm: 'Ruhiy sağlıq ve klinik ilim',
   },
-  groups: {
-    assessmentAndProfessionalSupport: assessmentAndProfessionalSupport_SkillGroup_Data,
-    interventionEvidenceAndEthics: interventionEvidenceAndEthics_SkillGroup_Data,
-    patternsOfPsychologicalDifficulty: patternsOfPsychologicalDifficulty_SkillGroup_Data,
-    wellbeingAndImpairment: wellbeingAndImpairment_SkillGroup_Data,
-  },
+  groups: [
+    assessmentAndProfessionalSupport_SkillGroup_Data,
+    interventionEvidenceAndEthics_SkillGroup_Data,
+    patternsOfPsychologicalDifficulty_SkillGroup_Data,
+    wellbeingAndImpairment_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Clinical psychology investigates distress, impaired functioning, and evidence-based assessment and intervention. Learning these concepts does not authorize students to diagnose themselves or others, deliver therapy, or replace qualified professional care.',

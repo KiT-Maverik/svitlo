@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const galvanicCells_Skill_Data = buildSkillConfig({
+export const galvanicCells_Skill_Data = defineSkill({
   slug: 'galvanicCells',
   id: '46fdf50f-aa72-4cfc-a6a9-4e6ab8f17819',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const createARobotMovementSequence_Skill_Data = buildSkillConfig({
+export const createARobotMovementSequence_Skill_Data = defineSkill({
   slug: 'createARobotMovementSequence',
   id: '468dfb56-ac58-4d9a-818b-adf644de4c53',
   name: {

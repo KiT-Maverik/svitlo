@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainTheRoleOfSignalsInAnimalCommunication_Skill_Data = buildSkillConfig({
+export const explainTheRoleOfSignalsInAnimalCommunication_Skill_Data = defineSkill({
   slug: 'explainTheRoleOfSignalsInAnimalCommunication',
   id: 'a93646a6-a95a-4426-bffd-98465bb3eba4',
   name: {

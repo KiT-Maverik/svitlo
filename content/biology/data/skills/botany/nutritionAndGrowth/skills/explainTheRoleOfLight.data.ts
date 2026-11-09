@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainTheRoleOfLight_Skill_Data = buildSkillConfig({
+export const explainTheRoleOfLight_Skill_Data = defineSkill({
   slug: 'explainTheRoleOfLight',
   id: 'd5c5d111-8465-4e2e-b998-3be6ada3f0da',
   name: {

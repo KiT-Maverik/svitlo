@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const safeContactWithBloodAndBodyFluids_Skill_Data = buildSkillConfig({
+export const safeContactWithBloodAndBodyFluids_Skill_Data = defineSkill({
   slug: 'safeContactWithBloodAndBodyFluids',
   id: 'efba41e9-a578-4cfd-a7f0-3b49b085ae2f',
   name: {

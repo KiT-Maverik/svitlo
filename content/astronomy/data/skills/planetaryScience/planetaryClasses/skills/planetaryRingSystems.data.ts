@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const planetaryRingSystems_Skill_Data = buildSkillConfig({
+export const planetaryRingSystems_Skill_Data = defineSkill({
   slug: 'planetaryRingSystems',
   id: '0d5c5349-48a3-4455-af87-5985d873aba6',
   name: {

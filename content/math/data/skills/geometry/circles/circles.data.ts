@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { circleDisk_Skill_Data, radiusDiameter_Skill_Data, drawCircle_Skill_Data } from './skills';
 
-export const circles_SkillGroup_Data = buildSkillGroupConfig({
+export const circles_SkillGroup_Data = defineSkillGroup({
   slug: 'circles',
   id: 'fdca56d5-299f-4755-b87f-dd7d46f5d851',
   name: {
@@ -36,11 +36,7 @@ export const circles_SkillGroup_Data = buildSkillGroupConfig({
     pl: 'Okręgi i koła',
     uk: 'Коло та круг',
   },
-  skills: {
-    circleDisk: circleDisk_Skill_Data,
-    radiusDiameter: radiusDiameter_Skill_Data,
-    drawCircle: drawCircle_Skill_Data,
-  },
+  skills: [circleDisk_Skill_Data, radiusDiameter_Skill_Data, drawCircle_Skill_Data],
   description: {
     methodological:
       'The circumference as the boundary of a disk, its center, radius and diameter, and constructing a circle at a fixed distance from its center.',

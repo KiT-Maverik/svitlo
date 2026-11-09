@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const ancientAboriginalAustralianSocieties_Skill_Data = buildSkillConfig({
+export const ancientAboriginalAustralianSocieties_Skill_Data = defineSkill({
   slug: 'ancientAboriginalAustralianSocieties',
   id: '1784b5ad-11c2-44d4-a160-fabc89363a24',
   name: {

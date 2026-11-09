@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainInfiltrationAndGroundwaterRecharge_Skill_Data = buildSkillConfig({
+export const explainInfiltrationAndGroundwaterRecharge_Skill_Data = defineSkill({
   slug: 'explainInfiltrationAndGroundwaterRecharge',
   id: '9d02979e-3df6-448f-85a8-bf411f3a2cb9',
   name: {

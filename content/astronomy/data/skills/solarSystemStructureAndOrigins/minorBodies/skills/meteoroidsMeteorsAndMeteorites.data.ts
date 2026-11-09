@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const meteoroidsMeteorsAndMeteorites_Skill_Data = buildSkillConfig({
+export const meteoroidsMeteorsAndMeteorites_Skill_Data = defineSkill({
   slug: 'meteoroidsMeteorsAndMeteorites',
   id: 'fbd804b9-3ac3-477a-a937-070e1280f188',
   name: {

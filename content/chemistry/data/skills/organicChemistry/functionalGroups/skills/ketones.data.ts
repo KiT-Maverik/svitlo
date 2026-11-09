@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const ketones_Skill_Data = buildSkillConfig({
+export const ketones_Skill_Data = defineSkill({
   slug: 'ketones',
   id: '4ee5fca7-fd0d-4531-9fc1-a47fb07c2aa0',
   name: {

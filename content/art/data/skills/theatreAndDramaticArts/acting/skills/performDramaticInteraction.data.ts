@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const performDramaticInteraction_Skill_Data = buildSkillConfig({
+export const performDramaticInteraction_Skill_Data = defineSkill({
   slug: 'performDramaticInteraction',
   id: '9b6b65af-0ce6-4061-a70e-7c731204fd61',
   name: {

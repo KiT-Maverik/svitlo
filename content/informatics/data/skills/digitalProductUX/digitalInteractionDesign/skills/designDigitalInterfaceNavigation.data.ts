@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const designDigitalInterfaceNavigation_Skill_Data = buildSkillConfig({
+export const designDigitalInterfaceNavigation_Skill_Data = defineSkill({
   slug: 'designDigitalInterfaceNavigation',
   id: '0acb5c21-aa20-47bf-af6c-4cac5ec05147',
   name: {

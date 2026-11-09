@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeReligiousToleranceAsAnEthicalPrinciple_Skill_Data = buildSkillConfig({
+export const analyzeReligiousToleranceAsAnEthicalPrinciple_Skill_Data = defineSkill({
   slug: 'analyzeReligiousToleranceAsAnEthicalPrinciple',
   id: '0094233c-51be-4df6-9adc-2b3379c4f5ec',
   name: {

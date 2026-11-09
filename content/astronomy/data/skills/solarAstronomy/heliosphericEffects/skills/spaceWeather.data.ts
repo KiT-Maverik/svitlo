@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const spaceWeather_Skill_Data = buildSkillConfig({
+export const spaceWeather_Skill_Data = defineSkill({
   slug: 'spaceWeather',
   id: '78d330ce-dffd-4f9a-92bd-f46c8b7f33e4',
   name: {

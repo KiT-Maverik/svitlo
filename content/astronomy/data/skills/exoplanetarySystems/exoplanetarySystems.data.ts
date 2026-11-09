@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { exoplanetCharacterization_SkillGroup_Data } from './exoplanetCharacterization/exoplanetCharacterization.data';
 import { exoplanetDetection_SkillGroup_Data } from './exoplanetDetection/exoplanetDetection.data';
 import { systemDiversity_SkillGroup_Data } from './systemDiversity/systemDiversity.data';
 
-export const exoplanetarySystems_SkillDomain_Data = buildSkillDomainConfig({
+export const exoplanetarySystems_SkillDomain_Data = defineSkillDomain({
   slug: 'exoplanetarySystems',
   id: '9336c2a0-2350-4649-88cf-127a02eb71cf',
-  name: {
+  title: {
     en: 'Exoplanetary Systems',
     zh: '系外行星系统',
     hi: 'बहिर्ग्रहीय प्रणालियाँ',
@@ -38,11 +38,11 @@ export const exoplanetarySystems_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Экзопланеталық жүйелер',
     qm: 'Ekzoseyyare sistemaları',
   },
-  groups: {
-    exoplanetCharacterization: exoplanetCharacterization_SkillGroup_Data,
-    exoplanetDetection: exoplanetDetection_SkillGroup_Data,
-    systemDiversity: systemDiversity_SkillGroup_Data,
-  },
+  groups: [
+    exoplanetCharacterization_SkillGroup_Data,
+    exoplanetDetection_SkillGroup_Data,
+    systemDiversity_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Planetary systems beyond the Sun provide evidence about the diversity of worlds and formation outcomes. Detection, physical inference and habitability are separated to avoid treating an apparent signal as proof of a specific environment.',

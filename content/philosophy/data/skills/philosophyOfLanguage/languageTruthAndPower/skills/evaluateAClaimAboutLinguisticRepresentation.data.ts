@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateAClaimAboutLinguisticRepresentation_Skill_Data = buildSkillConfig({
+export const evaluateAClaimAboutLinguisticRepresentation_Skill_Data = defineSkill({
   slug: 'evaluateAClaimAboutLinguisticRepresentation',
   id: '319a1143-b0fb-49f0-995d-768e4ce89db6',
   name: {

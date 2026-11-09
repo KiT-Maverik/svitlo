@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const mauryanEmpire_Skill_Data = buildSkillConfig({
+export const mauryanEmpire_Skill_Data = defineSkill({
   slug: 'mauryanEmpire',
   id: '6e8e6c87-7ecd-4f8b-8021-2ff2f4b2c044',
   name: {

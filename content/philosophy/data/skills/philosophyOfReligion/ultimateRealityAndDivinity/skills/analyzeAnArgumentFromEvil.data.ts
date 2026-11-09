@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeAnArgumentFromEvil_Skill_Data = buildSkillConfig({
+export const analyzeAnArgumentFromEvil_Skill_Data = defineSkill({
   slug: 'analyzeAnArgumentFromEvil',
   id: 'acbe68a8-efbd-402b-bc01-cec68cc13e3a',
   name: {

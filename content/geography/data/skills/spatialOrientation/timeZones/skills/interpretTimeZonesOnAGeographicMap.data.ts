@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretTimeZonesOnAGeographicMap_Skill_Data = buildSkillConfig({
+export const interpretTimeZonesOnAGeographicMap_Skill_Data = defineSkill({
   slug: 'interpretTimeZonesOnAGeographicMap',
   id: 'f7c19fb8-bd0c-4aec-8dbf-7f5fd3582d04',
   name: {

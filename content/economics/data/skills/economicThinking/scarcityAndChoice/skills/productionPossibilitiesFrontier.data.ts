@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const productionPossibilitiesFrontier_Skill_Data = buildSkillConfig({
+export const productionPossibilitiesFrontier_Skill_Data = defineSkill({
   slug: 'productionPossibilitiesFrontier',
   id: '4d290838-693b-4c9b-ba83-a256f82c1c2a',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const contaminatedSiteRemediationEquipment_Skill_Data = buildSkillConfig({
+export const contaminatedSiteRemediationEquipment_Skill_Data = defineSkill({
   slug: 'contaminatedSiteRemediationEquipment',
   id: '69b27c2d-8fb9-4d09-bb28-e86f8e4166c4',
   name: {

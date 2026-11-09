@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const motionMechanismSuitability_Skill_Data = buildSkillConfig({
+export const motionMechanismSuitability_Skill_Data = defineSkill({
   slug: 'motionMechanismSuitability',
   id: 'd3c1b15e-f25e-4c12-bc4b-e6b3ef5805dc',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishHighPitchedFromLowPitchedSounds_Skill_Data = buildSkillConfig({
+export const distinguishHighPitchedFromLowPitchedSounds_Skill_Data = defineSkill({
   slug: 'distinguishHighPitchedFromLowPitchedSounds',
   id: '72f5dad8-ceee-40d3-8e21-b772512a211e',
   name: {

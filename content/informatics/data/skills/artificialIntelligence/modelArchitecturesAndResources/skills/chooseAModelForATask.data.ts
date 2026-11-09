@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const chooseAModelForATask_Skill_Data = buildSkillConfig({
+export const chooseAModelForATask_Skill_Data = defineSkill({
   slug: 'chooseAModelForATask',
   id: '424a062d-9f9b-4c98-a182-fd62eb82574f',
   name: {

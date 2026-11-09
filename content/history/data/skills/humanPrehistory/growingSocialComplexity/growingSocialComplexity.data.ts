@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   copperBronzeAndIron_Skill_Data,
@@ -7,7 +7,7 @@ import {
   prehistoricInequality_Skill_Data,
 } from './skills';
 
-export const growingSocialComplexity_SkillGroup_Data = buildSkillGroupConfig({
+export const growingSocialComplexity_SkillGroup_Data = defineSkillGroup({
   slug: 'growingSocialComplexity',
   id: '8e0c5ba0-75c9-40cb-b71f-0841f645de49',
   name: {
@@ -41,12 +41,12 @@ export const growingSocialComplexity_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Қоғамдық күрделіліктің артуы',
     qm: 'Cemiyetniñ mürekkepleşüvi',
   },
-  skills: {
-    copperBronzeAndIron: copperBronzeAndIron_Skill_Data,
-    emergenceOfUrbanCenters: emergenceOfUrbanCenters_Skill_Data,
-    exchangeBeforeStates: exchangeBeforeStates_Skill_Data,
-    prehistoricInequality: prehistoricInequality_Skill_Data,
-  },
+  skills: [
+    copperBronzeAndIron_Skill_Data,
+    emergenceOfUrbanCenters_Skill_Data,
+    exchangeBeforeStates_Skill_Data,
+    prehistoricInequality_Skill_Data,
+  ],
   description: {
     methodological:
       'Larger communities and exchanges sometimes accompanied inequality and centralization but did not inevitably lead to them.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const dequeueAnElement_Skill_Data = buildSkillConfig({
+export const dequeueAnElement_Skill_Data = defineSkill({
   slug: 'dequeueAnElement',
   id: '7401fef0-db89-4569-b357-23b3276b0fab',
   name: {

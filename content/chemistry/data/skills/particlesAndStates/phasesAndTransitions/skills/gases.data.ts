@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const gases_Skill_Data = buildSkillConfig({
+export const gases_Skill_Data = defineSkill({
   slug: 'gases',
   id: 'c6eef246-9b3c-4564-888d-50c401fa0eec',
   name: {

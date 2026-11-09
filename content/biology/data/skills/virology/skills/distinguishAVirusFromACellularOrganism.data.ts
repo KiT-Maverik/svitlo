@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishAVirusFromACellularOrganism_Skill_Data = buildSkillConfig({
+export const distinguishAVirusFromACellularOrganism_Skill_Data = defineSkill({
   slug: 'distinguishAVirusFromACellularOrganism',
   id: 'ee9b2f42-01af-4e9a-994e-94e5d85f8e45',
   name: {

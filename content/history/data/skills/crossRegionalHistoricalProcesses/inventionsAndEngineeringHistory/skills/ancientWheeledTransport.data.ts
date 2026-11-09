@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const ancientWheeledTransport_Skill_Data = buildSkillConfig({
+export const ancientWheeledTransport_Skill_Data = defineSkill({
   slug: 'ancientWheeledTransport',
   id: '380d5d55-c2dd-4c65-9a98-c8d0a4d41da6',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const molarConcentration_Skill_Data = buildSkillConfig({
+export const molarConcentration_Skill_Data = defineSkill({
   slug: 'molarConcentration',
   id: 'cfd53008-a7cd-44de-88a4-47fc65767880',
   name: {

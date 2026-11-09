@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const logicalElimination_Skill_Data = buildSkillConfig({
+export const logicalElimination_Skill_Data = defineSkill({
   slug: 'logicalElimination',
   id: '0322e05e-0418-4031-8473-5b84e7ebb363',
   name: {

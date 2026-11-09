@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainWhyLocalSolarTimeVariesWithLongitude_Skill_Data = buildSkillConfig({
+export const explainWhyLocalSolarTimeVariesWithLongitude_Skill_Data = defineSkill({
   slug: 'explainWhyLocalSolarTimeVariesWithLongitude',
   id: '3e7a573c-d8f0-4983-b285-b8faa85674a4',
   name: {

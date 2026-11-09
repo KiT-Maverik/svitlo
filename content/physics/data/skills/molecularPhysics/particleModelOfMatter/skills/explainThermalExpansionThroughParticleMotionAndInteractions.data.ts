@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainThermalExpansionThroughParticleMotionAndInteractions_Skill_Data = buildSkillConfig({
+export const explainThermalExpansionThroughParticleMotionAndInteractions_Skill_Data = defineSkill({
   slug: 'explainThermalExpansionThroughParticleMotionAndInteractions',
   id: '8f9fb656-8308-464f-82ac-885b2b690611',
   name: {

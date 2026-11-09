@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const permanentSettlements_Skill_Data = buildSkillConfig({
+export const permanentSettlements_Skill_Data = defineSkill({
   slug: 'permanentSettlements',
   id: '10f31be3-3f7b-4cc9-8ee6-701a110e178b',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyPremisesInAnArgument_Skill_Data = buildSkillConfig({
+export const identifyPremisesInAnArgument_Skill_Data = defineSkill({
   slug: 'identifyPremisesInAnArgument',
   id: '8208c00e-a65f-4115-b229-386545bb1927',
   name: {

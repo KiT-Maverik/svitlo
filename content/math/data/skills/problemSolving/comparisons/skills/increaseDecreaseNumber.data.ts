@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const increaseDecreaseNumber_Skill_Data = buildSkillConfig({
+export const increaseDecreaseNumber_Skill_Data = defineSkill({
   slug: 'increaseDecreaseNumber',
   id: '4b3a53a2-c2dc-49b6-beb8-c81a0544978b',
   name: {

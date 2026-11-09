@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const traceAPathwayThroughTheRockCycle_Skill_Data = buildSkillConfig({
+export const traceAPathwayThroughTheRockCycle_Skill_Data = defineSkill({
   slug: 'traceAPathwayThroughTheRockCycle',
   id: 'f0323e11-98ba-4846-b6a4-985b26ff4ee0',
   name: {

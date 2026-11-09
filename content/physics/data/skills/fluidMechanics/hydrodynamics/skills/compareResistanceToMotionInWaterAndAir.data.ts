@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareResistanceToMotionInWaterAndAir_Skill_Data = buildSkillConfig({
+export const compareResistanceToMotionInWaterAndAir_Skill_Data = defineSkill({
   slug: 'compareResistanceToMotionInWaterAndAir',
   id: 'b51cb2ba-c063-4b2c-b3bc-957d1dd86cc9',
   name: {

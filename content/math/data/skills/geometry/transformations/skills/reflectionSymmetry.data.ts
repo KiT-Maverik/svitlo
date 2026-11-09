@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const reflectionSymmetry_Skill_Data = buildSkillConfig({
+export const reflectionSymmetry_Skill_Data = defineSkill({
   slug: 'reflectionSymmetry',
   id: 'f570551e-7d44-4a2c-8567-16ebbffeb142',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const infrastructureInvestmentAppraisal_Skill_Data = buildSkillConfig({
+export const infrastructureInvestmentAppraisal_Skill_Data = defineSkill({
   slug: 'infrastructureInvestmentAppraisal',
   id: 'e8c832c8-5311-46e7-836f-82af1311b84b',
   name: {

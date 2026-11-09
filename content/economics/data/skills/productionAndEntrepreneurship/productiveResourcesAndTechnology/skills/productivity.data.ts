@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const productivity_Skill_Data = buildSkillConfig({
+export const productivity_Skill_Data = defineSkill({
   slug: 'productivity',
   id: '92fa2ed1-19b8-439a-82bc-df6cb090ceb3',
   name: {

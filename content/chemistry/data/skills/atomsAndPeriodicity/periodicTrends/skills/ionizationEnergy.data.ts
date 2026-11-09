@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const ionizationEnergy_Skill_Data = buildSkillConfig({
+export const ionizationEnergy_Skill_Data = defineSkill({
   slug: 'ionizationEnergy',
   id: 'd3aea96c-838d-4166-b649-467ad83161cf',
   name: {

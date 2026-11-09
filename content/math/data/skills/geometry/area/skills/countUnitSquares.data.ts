@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const countUnitSquares_Skill_Data = buildSkillConfig({
+export const countUnitSquares_Skill_Data = defineSkill({
   slug: 'countUnitSquares',
   id: '4c389e9b-24de-476f-8882-e973d812809a',
   name: {

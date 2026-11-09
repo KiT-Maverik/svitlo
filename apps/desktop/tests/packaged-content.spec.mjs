@@ -47,12 +47,14 @@ test('build bundles the real lesson and localized config, flashcards and questio
       assert.ok(data[method].description);
     }
   }
-  assert.ok(existsSync(join(renderer, 'data/pages/skillAnalytics/uk.json')));
+  assert.ok(existsSync(join(renderer, 'data/skills/base.json')));
+  assert.ok(existsSync(join(renderer, 'data/skills/uk.json')));
   assert.ok(existsSync(join(renderer, 'flags/ua.svg')));
   const published = JSON.parse(readFileSync(join(renderer, '.svitlo/publish-playground.json'), 'utf8'));
   assert.equal(published.textbook, 'playground');
   assert.ok(published.files.some(name => name.startsWith('data/pages/lessons/')));
-  assert.ok(published.files.includes('data/pages/skillAnalytics/uk.json'));
+  assert.ok(published.files.includes('data/skills/base.json'));
+  assert.ok(published.files.includes('data/skills/uk.json'));
 });
 test('statically registered Scene modules are emitted as local JavaScript chunks', () => {
   const assets = join(renderer, 'assets');

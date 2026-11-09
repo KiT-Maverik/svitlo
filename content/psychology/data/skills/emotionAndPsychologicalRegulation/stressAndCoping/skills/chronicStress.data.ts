@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const chronicStress_Skill_Data = buildSkillConfig({
+export const chronicStress_Skill_Data = defineSkill({
   slug: 'chronicStress',
   id: '310d77b6-f079-42e2-bb2b-afff9cbcbe97',
   name: {

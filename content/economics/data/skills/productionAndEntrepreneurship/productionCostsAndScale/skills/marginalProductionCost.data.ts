@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const marginalProductionCost_Skill_Data = buildSkillConfig({
+export const marginalProductionCost_Skill_Data = defineSkill({
   slug: 'marginalProductionCost',
   id: 'bf902371-cd6a-421f-8d7c-d9f4fe01cbd0',
   name: {

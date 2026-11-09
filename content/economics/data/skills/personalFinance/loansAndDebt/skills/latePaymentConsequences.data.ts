@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const latePaymentConsequences_Skill_Data = buildSkillConfig({
+export const latePaymentConsequences_Skill_Data = defineSkill({
   slug: 'latePaymentConsequences',
   id: 'b556a906-f5c8-4a5b-a118-b93bfa3d7a89',
   name: {

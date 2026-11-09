@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const commercialRoleOfPackaging_Skill_Data = buildSkillConfig({
+export const commercialRoleOfPackaging_Skill_Data = defineSkill({
   slug: 'commercialRoleOfPackaging',
   id: 'e3365b28-6f5e-4feb-ad3f-2816be8c00d1',
   name: {

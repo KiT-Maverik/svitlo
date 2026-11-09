@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const boundedRationality_Skill_Data = buildSkillConfig({
+export const boundedRationality_Skill_Data = defineSkill({
   slug: 'boundedRationality',
   id: 'c522f045-93ca-46a4-b213-2f86297325eb',
   name: {

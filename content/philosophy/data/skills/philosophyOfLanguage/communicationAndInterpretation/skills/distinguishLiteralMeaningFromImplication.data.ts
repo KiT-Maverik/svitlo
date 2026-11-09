@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishLiteralMeaningFromImplication_Skill_Data = buildSkillConfig({
+export const distinguishLiteralMeaningFromImplication_Skill_Data = defineSkill({
   slug: 'distinguishLiteralMeaningFromImplication',
   id: '2f3925f2-3b08-4944-aa8b-b0efb69e800b',
   name: {

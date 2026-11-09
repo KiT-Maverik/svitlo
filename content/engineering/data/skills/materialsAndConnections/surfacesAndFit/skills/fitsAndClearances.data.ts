@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const fitsAndClearances_Skill_Data = buildSkillConfig({
+export const fitsAndClearances_Skill_Data = defineSkill({
   slug: 'fitsAndClearances',
   id: '323fbd57-3ebc-41ec-b0e3-d36a9020b742',
   name: {

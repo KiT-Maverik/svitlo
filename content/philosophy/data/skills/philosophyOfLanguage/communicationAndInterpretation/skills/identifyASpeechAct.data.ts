@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyASpeechAct_Skill_Data = buildSkillConfig({
+export const identifyASpeechAct_Skill_Data = defineSkill({
   slug: 'identifyASpeechAct',
   id: 'dac97a90-5597-4d16-8192-77eabe5bf35e',
   name: {

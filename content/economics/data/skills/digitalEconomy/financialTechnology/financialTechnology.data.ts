@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { cryptoassetsAndDigitalCurrencies_Skill_Data, paymentFinancialTechnologies_Skill_Data } from './skills';
 
-export const financialTechnology_SkillGroup_Data = buildSkillGroupConfig({
+export const financialTechnology_SkillGroup_Data = defineSkillGroup({
   slug: 'financialTechnology',
   id: 'd312f368-e15a-4c37-be64-c00773a9e72f',
   name: {
@@ -36,10 +36,7 @@ export const financialTechnology_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Қаржылық технологиялар',
     qm: 'Maliye tehnologiyaları',
   },
-  skills: {
-    cryptoassetsAndDigitalCurrencies: cryptoassetsAndDigitalCurrencies_Skill_Data,
-    paymentFinancialTechnologies: paymentFinancialTechnologies_Skill_Data,
-  },
+  skills: [cryptoassetsAndDigitalCurrencies_Skill_Data, paymentFinancialTechnologies_Skill_Data],
   description: {
     methodological:
       'Digital payment services and new asset classes alter financial intermediation, transaction speed, and risks; technological design does not by itself determine economic status.',

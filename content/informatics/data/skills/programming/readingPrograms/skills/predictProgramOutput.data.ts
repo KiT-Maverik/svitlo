@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const predictProgramOutput_Skill_Data = buildSkillConfig({
+export const predictProgramOutput_Skill_Data = defineSkill({
   slug: 'predictProgramOutput',
   id: '862987ae-e4dd-46c7-945f-875b48120be1',
   name: {

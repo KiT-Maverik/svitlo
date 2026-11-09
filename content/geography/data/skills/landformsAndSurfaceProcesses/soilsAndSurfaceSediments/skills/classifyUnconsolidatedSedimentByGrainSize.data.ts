@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const classifyUnconsolidatedSedimentByGrainSize_Skill_Data = buildSkillConfig({
+export const classifyUnconsolidatedSedimentByGrainSize_Skill_Data = defineSkill({
   slug: 'classifyUnconsolidatedSedimentByGrainSize',
   id: '278fd5c5-393b-49f6-81b3-9f92055c9ed8',
   name: {

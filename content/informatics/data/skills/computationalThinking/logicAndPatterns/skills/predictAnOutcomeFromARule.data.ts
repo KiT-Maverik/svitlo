@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const predictAnOutcomeFromARule_Skill_Data = buildSkillConfig({
+export const predictAnOutcomeFromARule_Skill_Data = defineSkill({
   slug: 'predictAnOutcomeFromARule',
   id: '47f930b4-e3a8-47a0-b9e1-f971c9c1893a',
   name: {

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   continuityAndChange_Skill_Data,
@@ -7,7 +7,7 @@ import {
   historicalUncertainty_Skill_Data,
 } from './skills';
 
-export const historicalExplanations_SkillGroup_Data = buildSkillGroupConfig({
+export const historicalExplanations_SkillGroup_Data = defineSkillGroup({
   slug: 'historicalExplanations',
   id: 'dc762b63-609d-434b-9553-0acac99b583b',
   name: {
@@ -41,12 +41,12 @@ export const historicalExplanations_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Тарихи түсіндірмелер',
     qm: 'Tarihiy izaatlar',
   },
-  skills: {
-    continuityAndChange: continuityAndChange_Skill_Data,
-    historicalCausality: historicalCausality_Skill_Data,
-    historicalComparison: historicalComparison_Skill_Data,
-    historicalUncertainty: historicalUncertainty_Skill_Data,
-  },
+  skills: [
+    continuityAndChange_Skill_Data,
+    historicalCausality_Skill_Data,
+    historicalComparison_Skill_Data,
+    historicalUncertainty_Skill_Data,
+  ],
   description: {
     methodological:
       'Distinguish supported facts, explanatory models, values, uncertain reconstructions, and competing interpretations when reasoning about the past.',

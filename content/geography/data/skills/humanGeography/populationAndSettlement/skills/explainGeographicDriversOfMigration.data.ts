@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainGeographicDriversOfMigration_Skill_Data = buildSkillConfig({
+export const explainGeographicDriversOfMigration_Skill_Data = defineSkill({
   slug: 'explainGeographicDriversOfMigration',
   id: 'cb1425f0-7c16-4310-9178-2e965a7ae27e',
   name: {

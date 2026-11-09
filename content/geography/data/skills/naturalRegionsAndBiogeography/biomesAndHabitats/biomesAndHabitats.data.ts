@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   compareHabitatConditionsBetweenGeographicLocations_Skill_Data,
@@ -6,7 +6,7 @@ import {
   recognizeTransitionZonesBetweenBiomes_Skill_Data,
 } from './skills';
 
-export const biomesAndHabitats_SkillGroup_Data = buildSkillGroupConfig({
+export const biomesAndHabitats_SkillGroup_Data = defineSkillGroup({
   slug: 'biomesAndHabitats',
   id: '3f57866e-626f-449f-b278-f7abcca7e431',
   name: {
@@ -40,11 +40,11 @@ export const biomesAndHabitats_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Биомдар мен тіршілік орталары',
     qm: 'Biomlar ve yaşayış muhitleri',
   },
-  skills: {
-    compareHabitatConditionsBetweenGeographicLocations: compareHabitatConditionsBetweenGeographicLocations_Skill_Data,
-    identifyMajorTerrestrialBiomePatterns: identifyMajorTerrestrialBiomePatterns_Skill_Data,
-    recognizeTransitionZonesBetweenBiomes: recognizeTransitionZonesBetweenBiomes_Skill_Data,
-  },
+  skills: [
+    compareHabitatConditionsBetweenGeographicLocations_Skill_Data,
+    identifyMajorTerrestrialBiomePatterns_Skill_Data,
+    recognizeTransitionZonesBetweenBiomes_Skill_Data,
+  ],
   description: {
     methodological:
       'Broad vegetation and habitat patterns reflect environmental conditions while local ecosystems can be more varied than a single biome label suggests.',

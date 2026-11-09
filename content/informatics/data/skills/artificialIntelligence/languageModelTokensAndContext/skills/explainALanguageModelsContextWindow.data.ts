@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainALanguageModelsContextWindow_Skill_Data = buildSkillConfig({
+export const explainALanguageModelsContextWindow_Skill_Data = defineSkill({
   slug: 'explainALanguageModelsContextWindow',
   id: 'd4360ab9-32a7-4be5-8d74-40069809cf31',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const respondSafelyToAnEarthquake_Skill_Data = buildSkillConfig({
+export const respondSafelyToAnEarthquake_Skill_Data = defineSkill({
   slug: 'respondSafelyToAnEarthquake',
   id: 'f28a9f6d-9847-4bbd-ad4f-f09f6521e0e4',
   name: {

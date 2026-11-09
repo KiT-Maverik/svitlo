@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainResponsesToStimuli_Skill_Data = buildSkillConfig({
+export const explainResponsesToStimuli_Skill_Data = defineSkill({
   slug: 'explainResponsesToStimuli',
   id: '2d4043a7-a9a7-48b1-ad12-d579a25ae6f4',
   name: {

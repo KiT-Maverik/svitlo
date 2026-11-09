@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const roundTens_Skill_Data = buildSkillConfig({
+export const roundTens_Skill_Data = defineSkill({
   slug: 'roundTens',
   id: 'ee269917-40de-4ba1-834a-c3dfda084af2',
   name: {

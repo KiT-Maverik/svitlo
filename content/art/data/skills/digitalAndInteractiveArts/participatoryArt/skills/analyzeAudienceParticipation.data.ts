@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeAudienceParticipation_Skill_Data = buildSkillConfig({
+export const analyzeAudienceParticipation_Skill_Data = defineSkill({
   slug: 'analyzeAudienceParticipation',
   id: '8f412dbd-87ae-4ccc-8310-488ca5285278',
   name: {

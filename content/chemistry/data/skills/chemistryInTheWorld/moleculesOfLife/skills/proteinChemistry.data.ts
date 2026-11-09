@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const proteinChemistry_Skill_Data = buildSkillConfig({
+export const proteinChemistry_Skill_Data = defineSkill({
   slug: 'proteinChemistry',
   id: '703714db-00e9-4796-9b1c-b748e83109b1',
   name: {

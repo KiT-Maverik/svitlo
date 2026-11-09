@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const neutrinoAstronomy_Skill_Data = buildSkillConfig({
+export const neutrinoAstronomy_Skill_Data = defineSkill({
   slug: 'neutrinoAstronomy',
   id: 'd8012b76-7228-4f0c-b5ae-90acaa920f90',
   name: {

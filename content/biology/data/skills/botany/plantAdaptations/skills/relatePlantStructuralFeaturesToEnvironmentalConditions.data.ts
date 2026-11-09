@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const relatePlantStructuralFeaturesToEnvironmentalConditions_Skill_Data = buildSkillConfig({
+export const relatePlantStructuralFeaturesToEnvironmentalConditions_Skill_Data = defineSkill({
   slug: 'relatePlantStructuralFeaturesToEnvironmentalConditions',
   id: '3cdaa305-6e70-437d-8b8d-c9be07a35bae',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const workLeisureTradeoff_Skill_Data = buildSkillConfig({
+export const workLeisureTradeoff_Skill_Data = defineSkill({
   slug: 'workLeisureTradeoff',
   id: '310779b5-0b28-4e61-854e-6bf62557137f',
   name: {

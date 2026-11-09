@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const environmentOfAncientSocieties_Skill_Data = buildSkillConfig({
+export const environmentOfAncientSocieties_Skill_Data = defineSkill({
   slug: 'environmentOfAncientSocieties',
   id: '0fd7bb70-c12e-43d5-936a-07a10a33f865',
   name: {

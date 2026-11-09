@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const positionWords_Skill_Data = buildSkillConfig({
+export const positionWords_Skill_Data = defineSkill({
   slug: 'positionWords',
   id: '30001f22-2352-4068-a1be-f0e8f0278588',
   name: {

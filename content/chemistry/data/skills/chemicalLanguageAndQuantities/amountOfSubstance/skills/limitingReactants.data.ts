@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const limitingReactants_Skill_Data = buildSkillConfig({
+export const limitingReactants_Skill_Data = defineSkill({
   slug: 'limitingReactants',
   id: 'b9979ffb-d690-4ca5-97c2-3c0da01c2dab',
   name: {

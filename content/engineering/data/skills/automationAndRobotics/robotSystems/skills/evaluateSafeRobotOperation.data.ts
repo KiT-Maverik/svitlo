@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateSafeRobotOperation_Skill_Data = buildSkillConfig({
+export const evaluateSafeRobotOperation_Skill_Data = defineSkill({
   slug: 'evaluateSafeRobotOperation',
   id: 'a6acf9e9-9950-40e3-b80e-980f31ab1e97',
   name: {

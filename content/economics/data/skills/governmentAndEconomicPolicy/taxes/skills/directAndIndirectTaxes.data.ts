@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const directAndIndirectTaxes_Skill_Data = buildSkillConfig({
+export const directAndIndirectTaxes_Skill_Data = defineSkill({
   slug: 'directAndIndirectTaxes',
   id: 'a6e29eb4-064f-41e7-8cd2-e37934fbc7dc',
   name: {

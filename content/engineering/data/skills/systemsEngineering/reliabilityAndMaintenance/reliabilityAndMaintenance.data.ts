@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   distinguishComponentAndSystemFailures_Skill_Data,
@@ -7,7 +7,7 @@ import {
   traceTechnicalFaults_Skill_Data,
 } from './skills';
 
-export const reliabilityAndMaintenance_SkillGroup_Data = buildSkillGroupConfig({
+export const reliabilityAndMaintenance_SkillGroup_Data = defineSkillGroup({
   slug: 'reliabilityAndMaintenance',
   id: 'd38a799a-5bc5-4823-b551-986f5971c5dc',
   name: {
@@ -41,12 +41,12 @@ export const reliabilityAndMaintenance_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Сенімділік және техникалық қызмет көрсету',
     qm: 'İşançlılıq ve tehnik baqım',
   },
-  skills: {
-    distinguishComponentAndSystemFailures: distinguishComponentAndSystemFailures_Skill_Data,
-    planPreventiveMaintenance: planPreventiveMaintenance_Skill_Data,
-    systemRedundancy: systemRedundancy_Skill_Data,
-    traceTechnicalFaults: traceTechnicalFaults_Skill_Data,
-  },
+  skills: [
+    distinguishComponentAndSystemFailures_Skill_Data,
+    planPreventiveMaintenance_Skill_Data,
+    systemRedundancy_Skill_Data,
+    traceTechnicalFaults_Skill_Data,
+  ],
   description: {
     methodological:
       'Operating systems face wear and faults, so diagnosis and continued service require explicit understanding of possible failure paths.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainTheConditionForAnObjectToBeVisible_Skill_Data = buildSkillConfig({
+export const explainTheConditionForAnObjectToBeVisible_Skill_Data = defineSkill({
   slug: 'explainTheConditionForAnObjectToBeVisible',
   id: 'b8fb44ad-0353-4368-9972-e96c2d2f5d6e',
   name: {

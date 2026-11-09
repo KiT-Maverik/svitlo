@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const weldedJoints_Skill_Data = buildSkillConfig({
+export const weldedJoints_Skill_Data = defineSkill({
   slug: 'weldedJoints',
   id: 'def54f22-c156-44eb-beaf-38d0f6e5de86',
   name: {

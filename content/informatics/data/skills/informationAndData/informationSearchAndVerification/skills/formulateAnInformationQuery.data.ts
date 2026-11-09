@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const formulateAnInformationQuery_Skill_Data = buildSkillConfig({
+export const formulateAnInformationQuery_Skill_Data = defineSkill({
   slug: 'formulateAnInformationQuery',
   id: '9c3c5f3a-e11f-4ab6-a9f6-2b8cdd31366a',
   name: {

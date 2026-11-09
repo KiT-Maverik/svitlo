@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const atmosphericReEntryProtection_Skill_Data = buildSkillConfig({
+export const atmosphericReEntryProtection_Skill_Data = defineSkill({
   slug: 'atmosphericReEntryProtection',
   id: '88ecbc94-562c-4aa8-ac10-d794a952404b',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const classifyObjectsByMagneticInteraction_Skill_Data = buildSkillConfig({
+export const classifyObjectsByMagneticInteraction_Skill_Data = defineSkill({
   slug: 'classifyObjectsByMagneticInteraction',
   id: 'f3d98b94-9e23-4976-a795-f92092c70edc',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareEnvironmentalTradeOffs_Skill_Data = buildSkillConfig({
+export const compareEnvironmentalTradeOffs_Skill_Data = defineSkill({
   slug: 'compareEnvironmentalTradeOffs',
   id: 'a23ff2a1-f702-4a60-87e8-b56adbb57ca8',
   name: {

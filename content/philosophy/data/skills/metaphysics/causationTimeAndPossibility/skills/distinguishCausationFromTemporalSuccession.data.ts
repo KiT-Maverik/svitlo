@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishCausationFromTemporalSuccession_Skill_Data = buildSkillConfig({
+export const distinguishCausationFromTemporalSuccession_Skill_Data = defineSkill({
   slug: 'distinguishCausationFromTemporalSuccession',
   id: '34a9b327-fce5-4914-b869-b0b74a424cc4',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateEnvironmentalObligations_Skill_Data = buildSkillConfig({
+export const evaluateEnvironmentalObligations_Skill_Data = defineSkill({
   slug: 'evaluateEnvironmentalObligations',
   id: '050edd84-1850-4337-8ac4-2cf3f2772f99',
   name: {

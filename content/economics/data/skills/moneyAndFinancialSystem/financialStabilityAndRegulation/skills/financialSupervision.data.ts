@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const financialSupervision_Skill_Data = buildSkillConfig({
+export const financialSupervision_Skill_Data = defineSkill({
   slug: 'financialSupervision',
   id: '0285a5a8-5850-4253-b475-792e9f758dd4',
   name: {

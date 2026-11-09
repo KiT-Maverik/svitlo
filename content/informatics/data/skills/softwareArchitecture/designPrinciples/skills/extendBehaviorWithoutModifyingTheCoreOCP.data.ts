@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const extendBehaviorWithoutModifyingTheCoreOCP_Skill_Data = buildSkillConfig({
+export const extendBehaviorWithoutModifyingTheCoreOCP_Skill_Data = defineSkill({
   slug: 'extendBehaviorWithoutModifyingTheCoreOCP',
   id: '2300c155-5699-4e5f-bdc1-dd71cad8c059',
   name: {

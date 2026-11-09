@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeMexicanMuralism_Skill_Data = buildSkillConfig({
+export const analyzeMexicanMuralism_Skill_Data = defineSkill({
   slug: 'analyzeMexicanMuralism',
   id: '71af0b98-5c3c-4925-a0d3-cdd5f3189b1e',
   name: {

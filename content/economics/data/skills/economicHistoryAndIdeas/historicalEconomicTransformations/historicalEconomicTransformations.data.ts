@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   agrarianEconomies_Skill_Data,
@@ -6,7 +6,7 @@ import {
   industrialization_Skill_Data,
 } from './skills';
 
-export const historicalEconomicTransformations_SkillGroup_Data = buildSkillGroupConfig({
+export const historicalEconomicTransformations_SkillGroup_Data = defineSkillGroup({
   slug: 'historicalEconomicTransformations',
   id: '88b42a7a-2204-4d59-937b-bac54997f385',
   name: {
@@ -40,11 +40,7 @@ export const historicalEconomicTransformations_SkillGroup_Data = buildSkillGroup
     kk: 'Тарихи экономикалық өзгерістер',
     qm: 'Tarihiy iqtisadiy deñişiklikler',
   },
-  skills: {
-    agrarianEconomies: agrarianEconomies_Skill_Data,
-    globalizationOfEconomicRelations: globalizationOfEconomicRelations_Skill_Data,
-    industrialization: industrialization_Skill_Data,
-  },
+  skills: [agrarianEconomies_Skill_Data, globalizationOfEconomicRelations_Skill_Data, industrialization_Skill_Data],
   description: {
     methodological:
       'Technological, commercial, and institutional changes have transformed how goods are produced and distributed.',

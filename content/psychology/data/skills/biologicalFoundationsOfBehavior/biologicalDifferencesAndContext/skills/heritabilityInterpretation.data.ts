@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const heritabilityInterpretation_Skill_Data = buildSkillConfig({
+export const heritabilityInterpretation_Skill_Data = defineSkill({
   slug: 'heritabilityInterpretation',
   id: '6aead28b-b544-4e2f-8006-1790433d9d9c',
   name: {

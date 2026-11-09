@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const applyLinearSearch_Skill_Data = buildSkillConfig({
+export const applyLinearSearch_Skill_Data = defineSkill({
   slug: 'applyLinearSearch',
   id: '0db01fdb-33f9-49b6-99ca-e35d87a00912',
   name: {

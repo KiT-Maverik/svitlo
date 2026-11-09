@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const adaptAnErgonomicWorkspace_Skill_Data = buildSkillConfig({
+export const adaptAnErgonomicWorkspace_Skill_Data = defineSkill({
   slug: 'adaptAnErgonomicWorkspace',
   id: '042ab0ed-b95f-464d-978f-4797509b0a3f',
   name: {

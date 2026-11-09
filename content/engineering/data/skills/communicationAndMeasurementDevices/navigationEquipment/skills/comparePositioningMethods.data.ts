@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const comparePositioningMethods_Skill_Data = buildSkillConfig({
+export const comparePositioningMethods_Skill_Data = defineSkill({
   slug: 'comparePositioningMethods',
   id: '63888187-1591-488d-806b-2edd2f408be2',
   name: {

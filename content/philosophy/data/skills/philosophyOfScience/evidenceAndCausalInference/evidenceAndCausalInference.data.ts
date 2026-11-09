@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   assessMeasurementValidity_Skill_Data,
@@ -9,7 +9,7 @@ import {
   identifyAConfoundingFactor_Skill_Data,
 } from './skills';
 
-export const evidenceAndCausalInference_SkillGroup_Data = buildSkillGroupConfig({
+export const evidenceAndCausalInference_SkillGroup_Data = defineSkillGroup({
   slug: 'evidenceAndCausalInference',
   id: 'b8d2d950-9001-44af-a7ef-e19c39b6f6c6',
   name: {
@@ -43,14 +43,14 @@ export const evidenceAndCausalInference_SkillGroup_Data = buildSkillGroupConfig(
     kk: 'Дәлел және себептік қорытынды',
     qm: 'Deliller ve sebep-netice neticesi',
   },
-  skills: {
-    assessMeasurementValidity: assessMeasurementValidity_Skill_Data,
-    assessSampleRepresentativeness: assessSampleRepresentativeness_Skill_Data,
-    distinguishCorrelationFromCausation: distinguishCorrelationFromCausation_Skill_Data,
-    evaluateACausalConclusionFromAStudy: evaluateACausalConclusionFromAStudy_Skill_Data,
-    evaluateSamplingUncertainty: evaluateSamplingUncertainty_Skill_Data,
-    identifyAConfoundingFactor: identifyAConfoundingFactor_Skill_Data,
-  },
+  skills: [
+    assessMeasurementValidity_Skill_Data,
+    assessSampleRepresentativeness_Skill_Data,
+    distinguishCorrelationFromCausation_Skill_Data,
+    evaluateACausalConclusionFromAStudy_Skill_Data,
+    evaluateSamplingUncertainty_Skill_Data,
+    identifyAConfoundingFactor_Skill_Data,
+  ],
   description: {
     methodological:
       'Observations become informative only through assumptions about measurement, variation, and alternative explanations. The quality of a causal conclusion is not identical to the size of an observed association.',

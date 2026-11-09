@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainPotentialEnergy_Skill_Data = buildSkillConfig({
+export const explainPotentialEnergy_Skill_Data = defineSkill({
   slug: 'explainPotentialEnergy',
   id: '8a54fd7a-5fb8-4d1a-95bb-ee74be672fe8',
   name: {

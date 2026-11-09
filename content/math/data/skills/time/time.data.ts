@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { calendar_SkillGroup_Data } from './calendar/calendar.data';
 import { clock_SkillGroup_Data } from './clock/clock.data';
 import { duration_SkillGroup_Data } from './duration/duration.data';
 
-export const time_SkillDomain_Data = buildSkillDomainConfig({
+export const time_SkillDomain_Data = defineSkillDomain({
   slug: 'time',
   id: 'be33de46-a3d9-4535-8eee-cf1c3c304827',
-  name: {
+  title: {
     en: 'Time',
     qm: 'Vaqıt',
     lt: 'Laikas',
@@ -38,11 +38,7 @@ export const time_SkillDomain_Data = buildSkillDomainConfig({
     pl: 'Czas',
     uk: 'Час',
   },
-  groups: {
-    calendar: calendar_SkillGroup_Data,
-    clock: clock_SkillGroup_Data,
-    duration: duration_SkillGroup_Data,
-  },
+  groups: [calendar_SkillGroup_Data, clock_SkillGroup_Data, duration_SkillGroup_Data],
   description: {
     methodological:
       'Calendar cycles, ways to represent instants, and calculations of event durations, distinguishing a date, a clock reading, and an elapsed interval.',

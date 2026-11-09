@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const calibrateConfidenceToEvidence_Skill_Data = buildSkillConfig({
+export const calibrateConfidenceToEvidence_Skill_Data = defineSkill({
   slug: 'calibrateConfidenceToEvidence',
   id: '6d8ef31a-abed-4dd6-8862-425b867cd22b',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeFernAndFernAllyCharacteristics_Skill_Data = buildSkillConfig({
+export const recognizeFernAndFernAllyCharacteristics_Skill_Data = defineSkill({
   slug: 'recognizeFernAndFernAllyCharacteristics',
   id: 'e4152db9-0fe9-48b1-9cda-bf5b92285e31',
   name: {

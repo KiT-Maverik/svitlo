@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const objectMembershipAndIsolation_Skill_Data = buildSkillConfig({
+export const objectMembershipAndIsolation_Skill_Data = defineSkill({
   slug: 'objectMembershipAndIsolation',
   id: 'c883bf63-0436-4b2d-85ab-4dad7377a5e2',
   name: {

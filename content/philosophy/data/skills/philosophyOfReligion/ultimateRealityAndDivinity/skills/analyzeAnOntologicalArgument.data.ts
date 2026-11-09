@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeAnOntologicalArgument_Skill_Data = buildSkillConfig({
+export const analyzeAnOntologicalArgument_Skill_Data = defineSkill({
   slug: 'analyzeAnOntologicalArgument',
   id: 'c1d53bc9-dbf1-4e49-9c6d-ed4d1cd85acd',
   name: {

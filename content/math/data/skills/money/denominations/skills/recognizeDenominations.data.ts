@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeDenominations_Skill_Data = buildSkillConfig({
+export const recognizeDenominations_Skill_Data = defineSkill({
   slug: 'recognizeDenominations',
   id: '2086fcee-1737-4cbb-aa46-34cfc4f3fe44',
   name: {

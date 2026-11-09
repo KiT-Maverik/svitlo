@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const robotDegreesOfFreedom_Skill_Data = buildSkillConfig({
+export const robotDegreesOfFreedom_Skill_Data = defineSkill({
   slug: 'robotDegreesOfFreedom',
   id: 'b30fb4bc-65d7-4a6a-ad06-d1a59431e161',
   name: {

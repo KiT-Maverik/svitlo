@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   analyzeAnEnlightenmentPhilosophicalArgument_Skill_Data,
@@ -6,7 +6,7 @@ import {
   compareMajorModernEpistemologicalApproaches_Skill_Data,
 } from './skills';
 
-export const schoolsAndMovements_SkillGroup_Data = buildSkillGroupConfig({
+export const schoolsAndMovements_SkillGroup_Data = defineSkillGroup({
   slug: 'schoolsAndMovements',
   id: 'ef8fce1e-df27-4702-9d54-1040f4e0965e',
   name: {
@@ -40,12 +40,11 @@ export const schoolsAndMovements_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Философиялық мектептер мен ағымдар',
     qm: 'Felsefe mektepleri ve aqımları',
   },
-  skills: {
-    analyzeAnEnlightenmentPhilosophicalArgument: analyzeAnEnlightenmentPhilosophicalArgument_Skill_Data,
-    compareExistentialistAndAnalyticApproachesToAProblem:
-      compareExistentialistAndAnalyticApproachesToAProblem_Skill_Data,
-    compareMajorModernEpistemologicalApproaches: compareMajorModernEpistemologicalApproaches_Skill_Data,
-  },
+  skills: [
+    analyzeAnEnlightenmentPhilosophicalArgument_Skill_Data,
+    compareExistentialistAndAnalyticApproachesToAProblem_Skill_Data,
+    compareMajorModernEpistemologicalApproaches_Skill_Data,
+  ],
   description: {
     methodological:
       'Philosophical movements and schools arise around distinctive approaches to knowledge, reason, liberty, and existence; their boundaries and internal disagreements cannot be reduced to dates alone.',

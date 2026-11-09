@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const modelDigitalThreeDimensionalForms_Skill_Data = buildSkillConfig({
+export const modelDigitalThreeDimensionalForms_Skill_Data = defineSkill({
   slug: 'modelDigitalThreeDimensionalForms',
   id: '4ecb1014-c8ac-4cef-8a31-6ebabfdd23bf',
   name: {

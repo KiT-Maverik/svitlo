@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const transactionConfirmation_Skill_Data = buildSkillConfig({
+export const transactionConfirmation_Skill_Data = defineSkill({
   slug: 'transactionConfirmation',
   id: '67449267-c954-43d2-8d5a-382f468e9d4e',
   name: {

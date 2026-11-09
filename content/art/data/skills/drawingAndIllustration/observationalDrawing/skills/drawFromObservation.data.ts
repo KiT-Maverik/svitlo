@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const drawFromObservation_Skill_Data = buildSkillConfig({
+export const drawFromObservation_Skill_Data = defineSkill({
   slug: 'drawFromObservation',
   id: '50960dcd-0929-4566-a613-fbce4ac736be',
   name: {

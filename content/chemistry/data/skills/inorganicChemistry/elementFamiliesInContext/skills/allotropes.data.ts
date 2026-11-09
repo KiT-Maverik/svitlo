@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const allotropes_Skill_Data = buildSkillConfig({
+export const allotropes_Skill_Data = defineSkill({
   slug: 'allotropes',
   id: '141ced17-c7cc-459b-8e6f-39721e413831',
   name: {

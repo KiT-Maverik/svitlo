@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateSamplingUncertainty_Skill_Data = buildSkillConfig({
+export const evaluateSamplingUncertainty_Skill_Data = defineSkill({
   slug: 'evaluateSamplingUncertainty',
   id: 'e66dc35b-8873-4711-bda0-79fc527b3d0d',
   name: {

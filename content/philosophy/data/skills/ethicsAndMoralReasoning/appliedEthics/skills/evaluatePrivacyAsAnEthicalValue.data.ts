@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluatePrivacyAsAnEthicalValue_Skill_Data = buildSkillConfig({
+export const evaluatePrivacyAsAnEthicalValue_Skill_Data = defineSkill({
   slug: 'evaluatePrivacyAsAnEthicalValue',
   id: '095065ea-2168-4aff-a215-4694146a8a77',
   name: {

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   explainBroadEnvironmentalVariationWithLatitude_Skill_Data,
@@ -6,7 +6,7 @@ import {
   recognizeAltitudinalChangesInNaturalConditions_Skill_Data,
 } from './skills';
 
-export const environmentalGradients_SkillGroup_Data = buildSkillGroupConfig({
+export const environmentalGradients_SkillGroup_Data = defineSkillGroup({
   slug: 'environmentalGradients',
   id: 'de686794-a73f-4d34-9866-3f4711e4bc44',
   name: {
@@ -40,12 +40,11 @@ export const environmentalGradients_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Экологиялық градиенттер',
     qm: 'Çevre şartlarınıñ dereceli deñişüvi',
   },
-  skills: {
-    explainBroadEnvironmentalVariationWithLatitude: explainBroadEnvironmentalVariationWithLatitude_Skill_Data,
-    identifyEnvironmentalShiftsFromComparativeGeographicEvidence:
-      identifyEnvironmentalShiftsFromComparativeGeographicEvidence_Skill_Data,
-    recognizeAltitudinalChangesInNaturalConditions: recognizeAltitudinalChangesInNaturalConditions_Skill_Data,
-  },
+  skills: [
+    explainBroadEnvironmentalVariationWithLatitude_Skill_Data,
+    identifyEnvironmentalShiftsFromComparativeGeographicEvidence_Skill_Data,
+    recognizeAltitudinalChangesInNaturalConditions_Skill_Data,
+  ],
   description: {
     methodological:
       'Natural conditions often vary systematically with elevation, latitude, and proximity to water. Such gradients help explain patterns without implying that every place at the same latitude is identical.',

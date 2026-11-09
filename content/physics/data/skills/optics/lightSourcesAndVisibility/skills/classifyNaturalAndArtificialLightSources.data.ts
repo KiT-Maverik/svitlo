@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const classifyNaturalAndArtificialLightSources_Skill_Data = buildSkillConfig({
+export const classifyNaturalAndArtificialLightSources_Skill_Data = defineSkill({
   slug: 'classifyNaturalAndArtificialLightSources',
   id: 'd5502e63-eed1-4226-ab3f-9d80e4d19f90',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const maintainStagePresence_Skill_Data = buildSkillConfig({
+export const maintainStagePresence_Skill_Data = defineSkill({
   slug: 'maintainStagePresence',
   id: '1a5cb830-cba8-410a-a4a7-00d6e35a0767',
   name: {

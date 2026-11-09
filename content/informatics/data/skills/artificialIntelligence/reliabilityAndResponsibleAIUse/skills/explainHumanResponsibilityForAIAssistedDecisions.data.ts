@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainHumanResponsibilityForAIAssistedDecisions_Skill_Data = buildSkillConfig({
+export const explainHumanResponsibilityForAIAssistedDecisions_Skill_Data = defineSkill({
   slug: 'explainHumanResponsibilityForAIAssistedDecisions',
   id: '4340c77a-1771-4b87-aafb-b4970d14a8a4',
   name: {

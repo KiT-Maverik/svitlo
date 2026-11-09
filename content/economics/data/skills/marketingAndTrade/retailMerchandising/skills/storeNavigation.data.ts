@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const storeNavigation_Skill_Data = buildSkillConfig({
+export const storeNavigation_Skill_Data = defineSkill({
   slug: 'storeNavigation',
   id: '0082aeea-ed13-40ba-877c-5a74362d942e',
   name: {

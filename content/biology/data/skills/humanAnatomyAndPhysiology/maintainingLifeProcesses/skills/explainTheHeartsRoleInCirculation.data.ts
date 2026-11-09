@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainTheHeartsRoleInCirculation_Skill_Data = buildSkillConfig({
+export const explainTheHeartsRoleInCirculation_Skill_Data = defineSkill({
   slug: 'explainTheHeartsRoleInCirculation',
   id: '6c8bb57b-341d-41b8-a449-e0b6721b81da',
   name: {

@@ -4,7 +4,10 @@ import { SvitloThemeProvider } from '@svitlo/ui-kit';
 import { ukUiKitMessages } from '../../../../../../shared/ui-kit/src/testing/uiKitMessages.unit.fx';
 const aria = ukUiKitMessages.learningLayout;
 import { SkillAnalyticsPage } from './SkillAnalyticsPage';
-import { fixtureJsonForSkillUrl, TEST_SKILLS_DOMAIN_SLUGS } from './skillsData.fixture';
+vi.mock('next/navigation', () => ({
+  useRouter: () => ({ replace: vi.fn() }),
+}));
+import { fixtureJsonForSkillUrl, TEST_SKILLS_DOMAIN_SLUGS, TEST_SKILL_NODES_UK } from './skillsData.fixture';
 
 describe('Skills page in shared LearningLayout', () => {
   const originalFetch = globalThis.fetch;
@@ -31,7 +34,7 @@ describe('Skills page in shared LearningLayout', () => {
   it('opens the existing navbar settings drawer and changes page-owned Skill cards', async () => {
     render(
       <SvitloThemeProvider direction="ltr">
-        <SkillAnalyticsPage domainSlugs={TEST_SKILLS_DOMAIN_SLUGS} initialMessages={ukUiKitMessages} />
+        <SkillAnalyticsPage domains={TEST_SKILL_NODES_UK} language="uk" initialMessages={ukUiKitMessages} />
       </SvitloThemeProvider>,
     );
     const card = await screen.findByTestId('skill-node-testRed');

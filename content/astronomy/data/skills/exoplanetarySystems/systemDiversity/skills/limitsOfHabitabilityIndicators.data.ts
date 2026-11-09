@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const limitsOfHabitabilityIndicators_Skill_Data = buildSkillConfig({
+export const limitsOfHabitabilityIndicators_Skill_Data = defineSkill({
   slug: 'limitsOfHabitabilityIndicators',
   id: 'b1bc3c4a-0c8b-4a3d-ae57-a628f672aaa5',
   name: {

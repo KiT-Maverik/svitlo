@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const thermalInsulationSuitability_Skill_Data = buildSkillConfig({
+export const thermalInsulationSuitability_Skill_Data = defineSkill({
   slug: 'thermalInsulationSuitability',
   id: '40d0db59-d8fc-4e20-89fc-8439e34a5295',
   name: {

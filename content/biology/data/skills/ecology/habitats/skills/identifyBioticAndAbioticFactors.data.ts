@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyBioticAndAbioticFactors_Skill_Data = buildSkillConfig({
+export const identifyBioticAndAbioticFactors_Skill_Data = defineSkill({
   slug: 'identifyBioticAndAbioticFactors',
   id: 'a7b8cb1c-4826-45a1-b93c-f8a4c5653d8e',
   name: {

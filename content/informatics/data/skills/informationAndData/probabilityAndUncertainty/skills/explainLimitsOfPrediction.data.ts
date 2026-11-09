@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainLimitsOfPrediction_Skill_Data = buildSkillConfig({
+export const explainLimitsOfPrediction_Skill_Data = defineSkill({
   slug: 'explainLimitsOfPrediction',
   id: '83daf43c-1d12-4445-b8b8-aff00415b6ee',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const expansionVersusBoundSystems_Skill_Data = buildSkillConfig({
+export const expansionVersusBoundSystems_Skill_Data = defineSkill({
   slug: 'expansionVersusBoundSystems',
   id: 'ef9a941e-dbf1-43dd-aa82-a640e15ed9d0',
   name: {

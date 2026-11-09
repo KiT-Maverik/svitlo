@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const communicationsInfrastructure_Skill_Data = buildSkillConfig({
+export const communicationsInfrastructure_Skill_Data = defineSkill({
   slug: 'communicationsInfrastructure',
   id: '4e09c759-f697-4950-98b2-4092aba243d1',
   name: {

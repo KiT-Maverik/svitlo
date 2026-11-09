@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeChangesInHealthStatus_Skill_Data = buildSkillConfig({
+export const recognizeChangesInHealthStatus_Skill_Data = defineSkill({
   slug: 'recognizeChangesInHealthStatus',
   id: 'b296e972-4462-4fc4-882c-f988f47add03',
   name: {

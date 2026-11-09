@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const editFilmContinuity_Skill_Data = buildSkillConfig({
+export const editFilmContinuity_Skill_Data = defineSkill({
   slug: 'editFilmContinuity',
   id: 'efcc4b8b-59f3-447a-a905-e3778fb75521',
   name: {

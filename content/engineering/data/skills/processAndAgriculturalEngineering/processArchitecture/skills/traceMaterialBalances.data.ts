@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const traceMaterialBalances_Skill_Data = buildSkillConfig({
+export const traceMaterialBalances_Skill_Data = defineSkill({
   slug: 'traceMaterialBalances',
   id: '02540402-28e2-4d25-92c1-47863215e213',
   name: {

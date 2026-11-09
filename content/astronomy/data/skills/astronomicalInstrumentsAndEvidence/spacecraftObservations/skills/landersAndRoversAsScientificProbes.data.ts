@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const landersAndRoversAsScientificProbes_Skill_Data = buildSkillConfig({
+export const landersAndRoversAsScientificProbes_Skill_Data = defineSkill({
   slug: 'landersAndRoversAsScientificProbes',
   id: 'bf514e0a-7d8d-4671-80b7-9924a93c665c',
   name: {

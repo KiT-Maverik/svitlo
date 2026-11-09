@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const implementationIntentions_Skill_Data = buildSkillConfig({
+export const implementationIntentions_Skill_Data = defineSkill({
   slug: 'implementationIntentions',
   id: '661e3ed7-acc5-4897-a227-f6150795032f',
   name: {

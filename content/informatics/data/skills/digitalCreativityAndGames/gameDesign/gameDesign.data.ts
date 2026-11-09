@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   designAGameMechanic_Skill_Data,
@@ -6,7 +6,7 @@ import {
   testTheBalanceOfASimpleGame_Skill_Data,
 } from './skills';
 
-export const gameDesign_SkillGroup_Data = buildSkillGroupConfig({
+export const gameDesign_SkillGroup_Data = defineSkillGroup({
   slug: 'gameDesign',
   id: '2d72fb63-9d5e-495b-8db5-530419a07175',
   name: {
@@ -40,11 +40,7 @@ export const gameDesign_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Ойын дизайны',
     qm: 'Oyun tasarımı',
   },
-  skills: {
-    designAGameMechanic: designAGameMechanic_Skill_Data,
-    formulateAGameRule: formulateAGameRule_Skill_Data,
-    testTheBalanceOfASimpleGame: testTheBalanceOfASimpleGame_Skill_Data,
-  },
+  skills: [designAGameMechanic_Skill_Data, formulateAGameRule_Skill_Data, testTheBalanceOfASimpleGame_Skill_Data],
   description: {
     methodological:
       'Define game rules, create mechanics, and evaluate their effects on gameplay. Describing a rule, implementing it as interaction, and testing balance are related but independently assessable.',

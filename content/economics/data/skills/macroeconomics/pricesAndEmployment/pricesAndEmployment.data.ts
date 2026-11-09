@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   causesAndMechanismsOfInflation_Skill_Data,
@@ -9,7 +9,7 @@ import {
   unemploymentRate_Skill_Data,
 } from './skills';
 
-export const pricesAndEmployment_SkillGroup_Data = buildSkillGroupConfig({
+export const pricesAndEmployment_SkillGroup_Data = defineSkillGroup({
   slug: 'pricesAndEmployment',
   id: '569a685b-d88e-4429-be52-d8ba505df4d6',
   name: {
@@ -43,14 +43,14 @@ export const pricesAndEmployment_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Бағалар және жұмыспен қамту',
     qm: 'Fiyatlar ve işnen temin',
   },
-  skills: {
-    causesAndMechanismsOfInflation: causesAndMechanismsOfInflation_Skill_Data,
-    consumerPriceIndex: consumerPriceIndex_Skill_Data,
-    inflationAndDeflation: inflationAndDeflation_Skill_Data,
-    laborForceParticipationRate: laborForceParticipationRate_Skill_Data,
-    typesOfUnemployment: typesOfUnemployment_Skill_Data,
-    unemploymentRate: unemploymentRate_Skill_Data,
-  },
+  skills: [
+    causesAndMechanismsOfInflation_Skill_Data,
+    consumerPriceIndex_Skill_Data,
+    inflationAndDeflation_Skill_Data,
+    laborForceParticipationRate_Skill_Data,
+    typesOfUnemployment_Skill_Data,
+    unemploymentRate_Skill_Data,
+  ],
   description: {
     methodological: 'Changes in the general price level and labor utilization have different causes and effects.',
     frontend: {

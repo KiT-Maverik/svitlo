@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const relateFamiliarTypesOfRadiationToTheElectromagneticSpectrum_Skill_Data = buildSkillConfig({
+export const relateFamiliarTypesOfRadiationToTheElectromagneticSpectrum_Skill_Data = defineSkill({
   slug: 'relateFamiliarTypesOfRadiationToTheElectromagneticSpectrum',
   id: 'e1756318-44d9-4319-b1f4-7af63c4c1213',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const binaryAndMultipleStars_Skill_Data = buildSkillConfig({
+export const binaryAndMultipleStars_Skill_Data = defineSkill({
   slug: 'binaryAndMultipleStars',
   id: 'afc3597d-3650-463f-96c7-c8e6f84f9827',
   name: {

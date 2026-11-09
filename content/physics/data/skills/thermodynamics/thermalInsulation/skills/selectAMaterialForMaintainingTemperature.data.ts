@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const selectAMaterialForMaintainingTemperature_Skill_Data = buildSkillConfig({
+export const selectAMaterialForMaintainingTemperature_Skill_Data = defineSkill({
   slug: 'selectAMaterialForMaintainingTemperature',
   id: '4640dda1-6953-4679-a115-30aeb988e8d3',
   name: {

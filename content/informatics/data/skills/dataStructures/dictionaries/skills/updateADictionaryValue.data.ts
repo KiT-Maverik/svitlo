@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const updateADictionaryValue_Skill_Data = buildSkillConfig({
+export const updateADictionaryValue_Skill_Data = defineSkill({
   slug: 'updateADictionaryValue',
   id: '40a4c105-9e0e-4165-832c-b92a35dae263',
   name: {

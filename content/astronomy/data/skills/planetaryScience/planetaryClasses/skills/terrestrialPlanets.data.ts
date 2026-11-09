@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const terrestrialPlanets_Skill_Data = buildSkillConfig({
+export const terrestrialPlanets_Skill_Data = defineSkill({
   slug: 'terrestrialPlanets',
   id: '2cc91d1f-1ef5-424d-ac21-a73315aeef8e',
   name: {

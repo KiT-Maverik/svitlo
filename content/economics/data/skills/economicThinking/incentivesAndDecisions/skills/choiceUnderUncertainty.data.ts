@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const choiceUnderUncertainty_Skill_Data = buildSkillConfig({
+export const choiceUnderUncertainty_Skill_Data = defineSkill({
   slug: 'choiceUnderUncertainty',
   id: '5be4cc74-4266-4789-af8b-76081409213e',
   name: {

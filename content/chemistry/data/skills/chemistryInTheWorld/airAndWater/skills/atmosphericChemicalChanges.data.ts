@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const atmosphericChemicalChanges_Skill_Data = buildSkillConfig({
+export const atmosphericChemicalChanges_Skill_Data = defineSkill({
   slug: 'atmosphericChemicalChanges',
   id: 'c0fe2718-aa7e-44af-aa34-375189ae2dd4',
   name: {

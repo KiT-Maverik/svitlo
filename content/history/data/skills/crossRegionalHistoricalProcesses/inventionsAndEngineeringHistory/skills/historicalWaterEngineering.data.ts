@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const historicalWaterEngineering_Skill_Data = buildSkillConfig({
+export const historicalWaterEngineering_Skill_Data = defineSkill({
   slug: 'historicalWaterEngineering',
   id: 'a285f2fd-6d7f-434b-b78a-261875a3b867',
   name: {

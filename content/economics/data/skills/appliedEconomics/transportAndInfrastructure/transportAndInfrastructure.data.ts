@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   congestionEconomics_Skill_Data,
@@ -6,7 +6,7 @@ import {
   transportDemand_Skill_Data,
 } from './skills';
 
-export const transportAndInfrastructure_SkillGroup_Data = buildSkillGroupConfig({
+export const transportAndInfrastructure_SkillGroup_Data = defineSkillGroup({
   slug: 'transportAndInfrastructure',
   id: 'e9ddae22-2b8e-4528-859e-b785fa71826e',
   name: {
@@ -40,11 +40,7 @@ export const transportAndInfrastructure_SkillGroup_Data = buildSkillGroupConfig(
     kk: 'Көлік және инфрақұрылым',
     qm: 'Naqliyat ve altyapı',
   },
-  skills: {
-    congestionEconomics: congestionEconomics_Skill_Data,
-    infrastructureInvestmentAppraisal: infrastructureInvestmentAppraisal_Skill_Data,
-    transportDemand: transportDemand_Skill_Data,
-  },
+  skills: [congestionEconomics_Skill_Data, infrastructureInvestmentAppraisal_Skill_Data, transportDemand_Skill_Data],
   description: {
     methodological:
       'Moving people and goods creates direct and external costs, while infrastructure requires large initial investments and lasts for long periods.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainWhatMakesSomethingANaturalResource_Skill_Data = buildSkillConfig({
+export const explainWhatMakesSomethingANaturalResource_Skill_Data = defineSkill({
   slug: 'explainWhatMakesSomethingANaturalResource',
   id: '0d3c54b0-08d7-4f84-9175-769eec63045a',
   name: {

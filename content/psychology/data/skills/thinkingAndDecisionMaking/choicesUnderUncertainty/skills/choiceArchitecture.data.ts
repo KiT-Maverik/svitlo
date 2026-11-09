@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const choiceArchitecture_Skill_Data = buildSkillConfig({
+export const choiceArchitecture_Skill_Data = defineSkill({
   slug: 'choiceArchitecture',
   id: 'abbc4e05-bcbd-42bb-9f67-6aa351a914f2',
   name: {

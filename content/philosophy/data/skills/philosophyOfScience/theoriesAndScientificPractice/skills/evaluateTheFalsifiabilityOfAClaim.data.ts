@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateTheFalsifiabilityOfAClaim_Skill_Data = buildSkillConfig({
+export const evaluateTheFalsifiabilityOfAClaim_Skill_Data = defineSkill({
   slug: 'evaluateTheFalsifiabilityOfAClaim',
   id: '980c7176-434c-45c9-978e-25477bcf4f9e',
   name: {

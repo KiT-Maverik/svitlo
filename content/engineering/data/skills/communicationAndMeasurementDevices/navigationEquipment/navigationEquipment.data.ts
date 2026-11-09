@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   comparePositioningMethods_Skill_Data,
@@ -6,7 +6,7 @@ import {
   satelliteNavigationReceivers_Skill_Data,
 } from './skills';
 
-export const navigationEquipment_SkillGroup_Data = buildSkillGroupConfig({
+export const navigationEquipment_SkillGroup_Data = defineSkillGroup({
   slug: 'navigationEquipment',
   id: '91acdacb-dbd6-4bf8-8346-87fd8f818292',
   name: {
@@ -40,11 +40,11 @@ export const navigationEquipment_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Навигациялық жабдық',
     qm: 'Navigatsiya cihazları',
   },
-  skills: {
-    comparePositioningMethods: comparePositioningMethods_Skill_Data,
-    inertialNavigationHardware: inertialNavigationHardware_Skill_Data,
-    satelliteNavigationReceivers: satelliteNavigationReceivers_Skill_Data,
-  },
+  skills: [
+    comparePositioningMethods_Skill_Data,
+    inertialNavigationHardware_Skill_Data,
+    satelliteNavigationReceivers_Skill_Data,
+  ],
   description: {
     methodological:
       'Positioning methods use different physical measurements, and each has characteristic failures and accuracy limitations.',

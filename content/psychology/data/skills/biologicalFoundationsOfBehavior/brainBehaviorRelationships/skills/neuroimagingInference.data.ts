@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const neuroimagingInference_Skill_Data = buildSkillConfig({
+export const neuroimagingInference_Skill_Data = defineSkill({
   slug: 'neuroimagingInference',
   id: '95ee8740-08c9-4372-a8b5-238cfda5dd53',
   name: {

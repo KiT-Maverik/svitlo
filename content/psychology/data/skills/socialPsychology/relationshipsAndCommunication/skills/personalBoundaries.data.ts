@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const personalBoundaries_Skill_Data = buildSkillConfig({
+export const personalBoundaries_Skill_Data = defineSkill({
   slug: 'personalBoundaries',
   id: '97277b4d-16c3-4a92-ba41-a4a7881d7c93',
   name: {

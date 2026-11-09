@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { everydayCopingAndAssistance_SkillGroup_Data } from './everydayCopingAndAssistance/everydayCopingAndAssistance.data';
 import { mentalHealthCrises_SkillGroup_Data } from './mentalHealthCrises/mentalHealthCrises.data';
 import { recognizingStrain_SkillGroup_Data } from './recognizingStrain/recognizingStrain.data';
 
-export const mentalWellBeingAndSupport_SkillDomain_Data = buildSkillDomainConfig({
+export const mentalWellBeingAndSupport_SkillDomain_Data = defineSkillDomain({
   slug: 'mentalWellBeingAndSupport',
   id: 'e64b92de-dd2d-4f80-ab3e-9d6f1e7577e7',
-  name: {
+  title: {
     en: 'Mental Well-being and Support',
     zh: '心理健康与支持',
     hi: 'मानसिक कल्याण और सहायता',
@@ -38,11 +38,11 @@ export const mentalWellBeingAndSupport_SkillDomain_Data = buildSkillDomainConfig
     kk: 'Психикалық саулық пен қолдау',
     qm: 'Ruhiy sağlamlıq ve destek',
   },
-  groups: {
-    everydayCopingAndAssistance: everydayCopingAndAssistance_SkillGroup_Data,
-    mentalHealthCrises: mentalHealthCrises_SkillGroup_Data,
-    recognizingStrain: recognizingStrain_SkillGroup_Data,
-  },
+  groups: [
+    everydayCopingAndAssistance_SkillGroup_Data,
+    mentalHealthCrises_SkillGroup_Data,
+    recognizingStrain_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Health protection includes noticing psychological strain, choosing supportive coping strategies, and connecting people with qualified help. The psychological mechanisms of emotion and cognition belong principally to Psychology.',

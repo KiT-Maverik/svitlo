@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const locateContinentsOnAGlobe_Skill_Data = buildSkillConfig({
+export const locateContinentsOnAGlobe_Skill_Data = defineSkill({
   slug: 'locateContinentsOnAGlobe',
   id: 'c4240a07-0bae-47cc-949a-73a960e16771',
   name: {

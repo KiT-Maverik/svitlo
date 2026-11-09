@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const actuatorSuitability_Skill_Data = buildSkillConfig({
+export const actuatorSuitability_Skill_Data = defineSkill({
   slug: 'actuatorSuitability',
   id: '4f0e0455-8ed3-443c-ad1d-bf7b23f5ebe5',
   name: {

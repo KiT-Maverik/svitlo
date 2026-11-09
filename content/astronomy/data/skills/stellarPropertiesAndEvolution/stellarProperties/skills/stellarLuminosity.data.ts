@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const stellarLuminosity_Skill_Data = buildSkillConfig({
+export const stellarLuminosity_Skill_Data = defineSkill({
   slug: 'stellarLuminosity',
   id: 'afe345ad-55d9-4190-a904-4e702d16176f',
   name: {

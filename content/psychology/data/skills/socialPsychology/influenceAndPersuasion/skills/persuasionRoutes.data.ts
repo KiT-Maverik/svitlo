@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const persuasionRoutes_Skill_Data = buildSkillConfig({
+export const persuasionRoutes_Skill_Data = defineSkill({
   slug: 'persuasionRoutes',
   id: '923f422b-97a8-490d-98ba-f8ce300308c8',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const sustainedAttention_Skill_Data = buildSkillConfig({
+export const sustainedAttention_Skill_Data = defineSkill({
   slug: 'sustainedAttention',
   id: '24ea9e21-204e-4f62-946a-6e941522edad',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishAnAtomFromItsPrincipalComponents_Skill_Data = buildSkillConfig({
+export const distinguishAnAtomFromItsPrincipalComponents_Skill_Data = defineSkill({
   slug: 'distinguishAnAtomFromItsPrincipalComponents',
   id: 'f66aadc5-7a28-466d-b7f9-318ef5ca1d1a',
   name: {

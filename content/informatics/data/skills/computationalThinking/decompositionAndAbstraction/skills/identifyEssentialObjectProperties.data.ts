@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyEssentialObjectProperties_Skill_Data = buildSkillConfig({
+export const identifyEssentialObjectProperties_Skill_Data = defineSkill({
   slug: 'identifyEssentialObjectProperties',
   id: '35e71073-e3e6-4156-ba56-75e952aa78fc',
   name: {

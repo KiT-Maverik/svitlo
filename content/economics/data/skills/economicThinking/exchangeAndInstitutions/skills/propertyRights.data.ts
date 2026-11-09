@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const propertyRights_Skill_Data = buildSkillConfig({
+export const propertyRights_Skill_Data = defineSkill({
   slug: 'propertyRights',
   id: '98ceed9e-8e89-41ff-99ad-d0557adab1a8',
   name: {

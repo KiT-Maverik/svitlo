@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   explainHowFaultSlipProducesEarthquakes_Skill_Data,
@@ -8,7 +8,7 @@ import {
   recognizeLandformsCreatedByVolcanicActivity_Skill_Data,
 } from './skills';
 
-export const earthquakesAndVolcanism_SkillGroup_Data = buildSkillGroupConfig({
+export const earthquakesAndVolcanism_SkillGroup_Data = defineSkillGroup({
   slug: 'earthquakesAndVolcanism',
   id: '5afabf1f-c809-4fbd-9916-25eb5ed14e76',
   name: {
@@ -42,13 +42,13 @@ export const earthquakesAndVolcanism_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Жер сілкіністері және жанартаулық әрекет',
     qm: 'Yer titrevleri ve vulkanizm',
   },
-  skills: {
-    explainHowFaultSlipProducesEarthquakes: explainHowFaultSlipProducesEarthquakes_Skill_Data,
-    explainHowMagmaReachesEarthsSurface: explainHowMagmaReachesEarthsSurface_Skill_Data,
-    interpretEarthquakeDistributionsOnAMap: interpretEarthquakeDistributionsOnAMap_Skill_Data,
-    interpretGeographicExposureToGeologicalHazards: interpretGeographicExposureToGeologicalHazards_Skill_Data,
-    recognizeLandformsCreatedByVolcanicActivity: recognizeLandformsCreatedByVolcanicActivity_Skill_Data,
-  },
+  skills: [
+    explainHowFaultSlipProducesEarthquakes_Skill_Data,
+    explainHowMagmaReachesEarthsSurface_Skill_Data,
+    interpretEarthquakeDistributionsOnAMap_Skill_Data,
+    interpretGeographicExposureToGeologicalHazards_Skill_Data,
+    recognizeLandformsCreatedByVolcanicActivity_Skill_Data,
+  ],
   description: {
     methodological:
       'Sudden slip on faults and the movement of magma produce recognizable geological events with uneven spatial occurrence. This group addresses causes, observable landforms and spatial exposure; it does not prescribe individual emergency procedures or detailed physical equations.',

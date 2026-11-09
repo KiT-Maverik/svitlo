@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const socialCostOfPollution_Skill_Data = buildSkillConfig({
+export const socialCostOfPollution_Skill_Data = defineSkill({
   slug: 'socialCostOfPollution',
   id: 'd5f9f207-6410-4870-9863-c06158cf3346',
   name: {

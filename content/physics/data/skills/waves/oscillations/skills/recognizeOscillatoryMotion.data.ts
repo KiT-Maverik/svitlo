@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeOscillatoryMotion_Skill_Data = buildSkillConfig({
+export const recognizeOscillatoryMotion_Skill_Data = defineSkill({
   slug: 'recognizeOscillatoryMotion',
   id: '36e397bb-7467-40d4-8627-62ed6e627128',
   name: {

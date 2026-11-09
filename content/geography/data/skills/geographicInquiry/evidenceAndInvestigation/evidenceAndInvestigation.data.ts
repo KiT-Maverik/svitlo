@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   assessLimitationsOfGeographicDataSources_Skill_Data,
@@ -6,7 +6,7 @@ import {
   formulateAQuestionAboutASpatialPattern_Skill_Data,
 } from './skills';
 
-export const evidenceAndInvestigation_SkillGroup_Data = buildSkillGroupConfig({
+export const evidenceAndInvestigation_SkillGroup_Data = defineSkillGroup({
   slug: 'evidenceAndInvestigation',
   id: '9de41af8-a44a-409d-acee-238532f70e33',
   name: {
@@ -40,12 +40,11 @@ export const evidenceAndInvestigation_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Дәлелдер мен зерттеу',
     qm: 'Deliller ve araştırma',
   },
-  skills: {
-    assessLimitationsOfGeographicDataSources: assessLimitationsOfGeographicDataSources_Skill_Data,
-    collectAndRecordGeographicallyReferencedObservations:
-      collectAndRecordGeographicallyReferencedObservations_Skill_Data,
-    formulateAQuestionAboutASpatialPattern: formulateAQuestionAboutASpatialPattern_Skill_Data,
-  },
+  skills: [
+    assessLimitationsOfGeographicDataSources_Skill_Data,
+    collectAndRecordGeographicallyReferencedObservations_Skill_Data,
+    formulateAQuestionAboutASpatialPattern_Skill_Data,
+  ],
   description: {
     methodological:
       'Geographic claims are supported by observations located in space and time. Evidence may come from fieldwork, maps, images, measurements, or datasets and must be evaluated for limitations.',

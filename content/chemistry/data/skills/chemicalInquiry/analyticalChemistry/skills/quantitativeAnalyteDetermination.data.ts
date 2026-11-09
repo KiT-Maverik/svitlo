@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const quantitativeAnalyteDetermination_Skill_Data = buildSkillConfig({
+export const quantitativeAnalyteDetermination_Skill_Data = defineSkill({
   slug: 'quantitativeAnalyteDetermination',
   id: 'b4bbfd1a-b03e-45ef-8d5b-8f85959b4fae',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretConsonanceAndDissonance_Skill_Data = buildSkillConfig({
+export const interpretConsonanceAndDissonance_Skill_Data = defineSkill({
   slug: 'interpretConsonanceAndDissonance',
   id: 'c7573cac-79ef-47f9-82d3-9c041c5dc954',
   name: {

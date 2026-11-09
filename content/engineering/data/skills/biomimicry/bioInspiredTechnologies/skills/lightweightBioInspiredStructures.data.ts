@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const lightweightBioInspiredStructures_Skill_Data = buildSkillConfig({
+export const lightweightBioInspiredStructures_Skill_Data = defineSkill({
   slug: 'lightweightBioInspiredStructures',
   id: 'db5dc88f-7b81-49db-bb3a-51977c54f2f8',
   name: {

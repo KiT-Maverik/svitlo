@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const checkReasonableness_Skill_Data = buildSkillConfig({
+export const checkReasonableness_Skill_Data = defineSkill({
   slug: 'checkReasonableness',
   id: 'd9a090cc-ab44-4e08-babd-357a9b7a3154',
   name: {

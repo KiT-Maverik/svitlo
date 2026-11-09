@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { justiceAndEquality_SkillGroup_Data } from './justiceAndEquality/justiceAndEquality.data';
 import { philosophyOfLaw_SkillGroup_Data } from './philosophyOfLaw/philosophyOfLaw.data';
@@ -7,10 +7,10 @@ import { publicReasonAndCivicLife_SkillGroup_Data } from './publicReasonAndCivic
 import { rightsAndLiberty_SkillGroup_Data } from './rightsAndLiberty/rightsAndLiberty.data';
 import { technologyAndSociety_SkillGroup_Data } from './technologyAndSociety/technologyAndSociety.data';
 
-export const socialAndPoliticalPhilosophy_SkillDomain_Data = buildSkillDomainConfig({
+export const socialAndPoliticalPhilosophy_SkillDomain_Data = defineSkillDomain({
   slug: 'socialAndPoliticalPhilosophy',
   id: '8b7b2f42-79a4-42ac-b363-f24597ed954e',
-  name: {
+  title: {
     en: 'Social and Political Philosophy',
     zh: '社会与政治哲学',
     hi: 'सामाजिक और राजनीतिक दर्शन',
@@ -41,14 +41,14 @@ export const socialAndPoliticalPhilosophy_SkillDomain_Data = buildSkillDomainCon
     kk: 'Әлеуметтік және саяси философия',
     qm: 'İçtimaiy ve siyasiy felsefe',
   },
-  groups: {
-    justiceAndEquality: justiceAndEquality_SkillGroup_Data,
-    philosophyOfLaw: philosophyOfLaw_SkillGroup_Data,
-    politicalAuthority: politicalAuthority_SkillGroup_Data,
-    publicReasonAndCivicLife: publicReasonAndCivicLife_SkillGroup_Data,
-    rightsAndLiberty: rightsAndLiberty_SkillGroup_Data,
-    technologyAndSociety: technologyAndSociety_SkillGroup_Data,
-  },
+  groups: [
+    justiceAndEquality_SkillGroup_Data,
+    philosophyOfLaw_SkillGroup_Data,
+    politicalAuthority_SkillGroup_Data,
+    publicReasonAndCivicLife_SkillGroup_Data,
+    rightsAndLiberty_SkillGroup_Data,
+    technologyAndSociety_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Political and social philosophy examines the justification of collective rules, institutions, authority, rights, and distributions of benefits and burdens. It asks normative questions rather than describing the chronology of regimes or the mechanics of markets.',

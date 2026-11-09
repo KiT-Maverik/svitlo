@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const economiesOfScale_Skill_Data = buildSkillConfig({
+export const economiesOfScale_Skill_Data = defineSkill({
   slug: 'economiesOfScale',
   id: 'a0ac4138-f3c6-4154-8fa0-547b9a7dd341',
   name: {

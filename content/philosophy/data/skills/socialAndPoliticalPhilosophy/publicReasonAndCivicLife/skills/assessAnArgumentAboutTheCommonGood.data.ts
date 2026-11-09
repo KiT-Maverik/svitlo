@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const assessAnArgumentAboutTheCommonGood_Skill_Data = buildSkillConfig({
+export const assessAnArgumentAboutTheCommonGood_Skill_Data = defineSkill({
   slug: 'assessAnArgumentAboutTheCommonGood',
   id: '79097846-ca0e-437e-ae12-c880e3dea2ce',
   name: {

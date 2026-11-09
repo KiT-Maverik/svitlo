@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   consumerRightsAndResponsibilities_Skill_Data,
@@ -7,7 +7,7 @@ import {
   unitPricing_Skill_Data,
 } from './skills';
 
-export const consumerInformationAndRights_SkillGroup_Data = buildSkillGroupConfig({
+export const consumerInformationAndRights_SkillGroup_Data = defineSkillGroup({
   slug: 'consumerInformationAndRights',
   id: '1a00f55f-eadd-4f85-aaf7-9922b973cf2a',
   name: {
@@ -41,12 +41,12 @@ export const consumerInformationAndRights_SkillGroup_Data = buildSkillGroupConfi
     kk: 'Тұтынушы ақпараты мен құқықтары',
     qm: 'İstimalci malümatı ve aqları',
   },
-  skills: {
-    consumerRightsAndResponsibilities: consumerRightsAndResponsibilities_Skill_Data,
-    qualityOfConsumerInformation: qualityOfConsumerInformation_Skill_Data,
-    totalCostOfPurchase: totalCostOfPurchase_Skill_Data,
-    unitPricing: unitPricing_Skill_Data,
-  },
+  skills: [
+    consumerRightsAndResponsibilities_Skill_Data,
+    qualityOfConsumerInformation_Skill_Data,
+    totalCostOfPurchase_Skill_Data,
+    unitPricing_Skill_Data,
+  ],
   description: {
     methodological:
       'Sound consumer decisions depend not only on price but also on product information, contract terms, and possible protections.',

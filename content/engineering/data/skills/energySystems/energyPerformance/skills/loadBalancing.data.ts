@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const loadBalancing_Skill_Data = buildSkillConfig({
+export const loadBalancing_Skill_Data = defineSkill({
   slug: 'loadBalancing',
   id: '46632261-6df7-4814-ba51-c159ff30a6a1',
   name: {

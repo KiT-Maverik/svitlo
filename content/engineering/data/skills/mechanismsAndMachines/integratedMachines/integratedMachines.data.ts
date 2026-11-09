@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   diagnoseTransmissionFaults_Skill_Data,
@@ -6,7 +6,7 @@ import {
   traceMechanicalPowerTransmission_Skill_Data,
 } from './skills';
 
-export const integratedMachines_SkillGroup_Data = buildSkillGroupConfig({
+export const integratedMachines_SkillGroup_Data = defineSkillGroup({
   slug: 'integratedMachines',
   id: '017492af-88e9-4e95-b81e-762a0a488f28',
   name: {
@@ -40,11 +40,11 @@ export const integratedMachines_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Біріктірілген машиналар',
     qm: 'Birleşken maşinalar',
   },
-  skills: {
-    diagnoseTransmissionFaults: diagnoseTransmissionFaults_Skill_Data,
-    motionMechanismSuitability: motionMechanismSuitability_Skill_Data,
-    traceMechanicalPowerTransmission: traceMechanicalPowerTransmission_Skill_Data,
-  },
+  skills: [
+    diagnoseTransmissionFaults_Skill_Data,
+    motionMechanismSuitability_Skill_Data,
+    traceMechanicalPowerTransmission_Skill_Data,
+  ],
   description: {
     methodological:
       'Machines combine multiple components in a working sequence, so their behavior cannot be inferred from a single named part.',

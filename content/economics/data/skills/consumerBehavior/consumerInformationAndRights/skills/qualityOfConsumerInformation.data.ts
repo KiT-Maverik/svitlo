@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const qualityOfConsumerInformation_Skill_Data = buildSkillConfig({
+export const qualityOfConsumerInformation_Skill_Data = defineSkill({
   slug: 'qualityOfConsumerInformation',
   id: '231c6709-ec35-44f2-a7d7-3c2ec1f9d53e',
   name: {

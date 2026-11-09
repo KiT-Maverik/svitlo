@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretCalendarDateChangesAcrossTheInternationalDateLine_Skill_Data = buildSkillConfig({
+export const interpretCalendarDateChangesAcrossTheInternationalDateLine_Skill_Data = defineSkill({
   slug: 'interpretCalendarDateChangesAcrossTheInternationalDateLine',
   id: 'cf438f29-f7a1-4ae0-b2ee-86b526ac7fbb',
   name: {

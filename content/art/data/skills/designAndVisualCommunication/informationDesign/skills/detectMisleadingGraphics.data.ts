@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const detectMisleadingGraphics_Skill_Data = buildSkillConfig({
+export const detectMisleadingGraphics_Skill_Data = defineSkill({
   slug: 'detectMisleadingGraphics',
   id: '23ada7db-8ce7-453a-80a2-6661dda98483',
   name: {

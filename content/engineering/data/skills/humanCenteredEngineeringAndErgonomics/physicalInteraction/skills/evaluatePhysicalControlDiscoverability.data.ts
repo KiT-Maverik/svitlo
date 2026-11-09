@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluatePhysicalControlDiscoverability_Skill_Data = buildSkillConfig({
+export const evaluatePhysicalControlDiscoverability_Skill_Data = defineSkill({
   slug: 'evaluatePhysicalControlDiscoverability',
   id: 'ca6b7ef1-b5a8-4f01-9461-01e43454dfd6',
   name: {

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   constructARouteThroughOrderedWaypoints_Skill_Data,
@@ -7,7 +7,7 @@ import {
   useMentalMapsForSpatialOrientation_Skill_Data,
 } from './skills';
 
-export const navigationAndMentalMaps_SkillGroup_Data = buildSkillGroupConfig({
+export const navigationAndMentalMaps_SkillGroup_Data = defineSkillGroup({
   slug: 'navigationAndMentalMaps',
   id: 'b5609f19-9ab3-4de6-bf20-0ce9ab8b5fad',
   name: {
@@ -41,12 +41,12 @@ export const navigationAndMentalMaps_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Бағдарлау және ойша карталар',
     qm: 'Yol tapuv ve zihniy haritalar',
   },
-  skills: {
-    constructARouteThroughOrderedWaypoints: constructARouteThroughOrderedWaypoints_Skill_Data,
-    useCardinalDirectionsToOrientARoute: useCardinalDirectionsToOrientARoute_Skill_Data,
-    useIntermediateDirectionsToDistinguishBearings: useIntermediateDirectionsToDistinguishBearings_Skill_Data,
-    useMentalMapsForSpatialOrientation: useMentalMapsForSpatialOrientation_Skill_Data,
-  },
+  skills: [
+    constructARouteThroughOrderedWaypoints_Skill_Data,
+    useCardinalDirectionsToOrientARoute_Skill_Data,
+    useIntermediateDirectionsToDistinguishBearings_Skill_Data,
+    useMentalMapsForSpatialOrientation_Skill_Data,
+  ],
   description: {
     methodological:
       'Moving between places relies on orientation, directional instructions, and sequences of turns. The focus is spatial navigation, not the mathematical calculation of distance.',

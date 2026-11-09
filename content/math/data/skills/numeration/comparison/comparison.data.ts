@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   moreLessEqual_Skill_Data,
@@ -8,7 +8,7 @@ import {
   order1000_Skill_Data,
 } from './skills';
 
-export const comparison_SkillGroup_Data = buildSkillGroupConfig({
+export const comparison_SkillGroup_Data = defineSkillGroup({
   slug: 'comparison',
   id: 'c7676622-4e6b-4689-bebb-4ce30ab748b6',
   name: {
@@ -42,13 +42,13 @@ export const comparison_SkillGroup_Data = buildSkillGroupConfig({
     pl: 'Porównywanie liczb',
     uk: 'Порівняння чисел',
   },
-  skills: {
-    moreLessEqual: moreLessEqual_Skill_Data,
-    comparisonSymbols: comparisonSymbols_Skill_Data,
-    order20: order20_Skill_Data,
-    order100: order100_Skill_Data,
-    order1000: order1000_Skill_Data,
-  },
+  skills: [
+    moreLessEqual_Skill_Data,
+    comparisonSymbols_Skill_Data,
+    order20_Skill_Data,
+    order100_Skill_Data,
+    order1000_Skill_Data,
+  ],
   description: {
     methodological:
       'Order relations between quantities and numerical representations, including comparison symbols and sorting numbers.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const workMotivation_Skill_Data = buildSkillConfig({
+export const workMotivation_Skill_Data = defineSkill({
   slug: 'workMotivation',
   id: '03405acb-35e2-4e46-9b5b-cd664fe4a83e',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const cognitiveReappraisal_Skill_Data = buildSkillConfig({
+export const cognitiveReappraisal_Skill_Data = defineSkill({
   slug: 'cognitiveReappraisal',
   id: '0bb60033-d6a1-4d5f-9bb3-4e65061ed810',
   name: {

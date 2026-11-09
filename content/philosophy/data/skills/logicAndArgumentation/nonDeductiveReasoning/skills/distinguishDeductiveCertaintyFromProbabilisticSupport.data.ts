@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishDeductiveCertaintyFromProbabilisticSupport_Skill_Data = buildSkillConfig({
+export const distinguishDeductiveCertaintyFromProbabilisticSupport_Skill_Data = defineSkill({
   slug: 'distinguishDeductiveCertaintyFromProbabilisticSupport',
   id: '88b8cd6a-7c67-4420-942b-ebdc1d53eb86',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainKineticEnergyAsEnergyOfMotion_Skill_Data = buildSkillConfig({
+export const explainKineticEnergyAsEnergyOfMotion_Skill_Data = defineSkill({
   slug: 'explainKineticEnergyAsEnergyOfMotion',
   id: '116459c6-85be-4f2f-a7be-2b171eaa9101',
   name: {

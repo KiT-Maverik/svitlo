@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const createAMovementMotif_Skill_Data = buildSkillConfig({
+export const createAMovementMotif_Skill_Data = defineSkill({
   slug: 'createAMovementMotif',
   id: '7d14499f-815f-477c-af71-065ee10f3ed6',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const limitSwitches_Skill_Data = buildSkillConfig({
+export const limitSwitches_Skill_Data = defineSkill({
   slug: 'limitSwitches',
   id: '68b70263-3109-4b67-bc8e-a387eeeb4293',
   name: {

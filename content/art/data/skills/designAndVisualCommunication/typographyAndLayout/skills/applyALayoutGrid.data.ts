@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const applyALayoutGrid_Skill_Data = buildSkillConfig({
+export const applyALayoutGrid_Skill_Data = defineSkill({
   slug: 'applyALayoutGrid',
   id: '6eed9ff1-a34a-457a-97d6-5cd517636ecc',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeClassicMayaReliefSculpture_Skill_Data = buildSkillConfig({
+export const analyzeClassicMayaReliefSculpture_Skill_Data = defineSkill({
   slug: 'analyzeClassicMayaReliefSculpture',
   id: '76038b21-a697-49f1-a741-6a0e5b438340',
   name: {

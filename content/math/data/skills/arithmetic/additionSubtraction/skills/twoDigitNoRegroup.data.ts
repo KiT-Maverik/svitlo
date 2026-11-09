@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const twoDigitNoRegroup_Skill_Data = buildSkillConfig({
+export const twoDigitNoRegroup_Skill_Data = defineSkill({
   slug: 'twoDigitNoRegroup',
   id: '3e712df5-1468-4ade-9539-f74986e61ea3',
   name: {

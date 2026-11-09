@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainWaveReflection_Skill_Data = buildSkillConfig({
+export const explainWaveReflection_Skill_Data = defineSkill({
   slug: 'explainWaveReflection',
   id: '7b35ea20-c5a1-494e-a34c-e173139eb26e',
   name: {

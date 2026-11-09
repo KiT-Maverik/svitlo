@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const designConditionalBranching_Skill_Data = buildSkillConfig({
+export const designConditionalBranching_Skill_Data = defineSkill({
   slug: 'designConditionalBranching',
   id: '2ba0a75d-a0d5-4e5a-bc0c-ebf60a547b1e',
   name: {

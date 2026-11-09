@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const transformerUse_Skill_Data = buildSkillConfig({
+export const transformerUse_Skill_Data = defineSkill({
   slug: 'transformerUse',
   id: '997562e6-d045-495a-ae33-a2e824b838cb',
   name: {

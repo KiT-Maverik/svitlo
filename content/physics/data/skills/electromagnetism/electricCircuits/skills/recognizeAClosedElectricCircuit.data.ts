@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeAClosedElectricCircuit_Skill_Data = buildSkillConfig({
+export const recognizeAClosedElectricCircuit_Skill_Data = defineSkill({
   slug: 'recognizeAClosedElectricCircuit',
   id: '80bc9661-5536-4573-8798-51e5185014c4',
   name: {

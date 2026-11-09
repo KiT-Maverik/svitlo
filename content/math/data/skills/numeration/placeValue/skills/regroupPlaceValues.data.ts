@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const regroupPlaceValues_Skill_Data = buildSkillConfig({
+export const regroupPlaceValues_Skill_Data = defineSkill({
   slug: 'regroupPlaceValues',
   id: 'a0f3d851-b215-4c14-938d-2275831b4148',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const atomicRadiusTrends_Skill_Data = buildSkillConfig({
+export const atomicRadiusTrends_Skill_Data = defineSkill({
   slug: 'atomicRadiusTrends',
   id: '435bad9a-d2b7-4c52-b10c-ba425f4b0df8',
   name: {

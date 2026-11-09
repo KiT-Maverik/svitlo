@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const episodicMemory_Skill_Data = buildSkillConfig({
+export const episodicMemory_Skill_Data = defineSkill({
   slug: 'episodicMemory',
   id: '77afb10b-e5ea-4ad6-b521-5af0ae57a6b3',
   name: {

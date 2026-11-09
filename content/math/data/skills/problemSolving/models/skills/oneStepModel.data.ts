@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const oneStepModel_Skill_Data = buildSkillConfig({
+export const oneStepModel_Skill_Data = defineSkill({
   slug: 'oneStepModel',
   id: '64808d1f-bbb7-4252-965f-9f361078720c',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishLocalAndRemoteRepositories_Skill_Data = buildSkillConfig({
+export const distinguishLocalAndRemoteRepositories_Skill_Data = defineSkill({
   slug: 'distinguishLocalAndRemoteRepositories',
   id: 'acd4b51c-984a-4310-b1da-5e6e75cbc3ff',
   name: {

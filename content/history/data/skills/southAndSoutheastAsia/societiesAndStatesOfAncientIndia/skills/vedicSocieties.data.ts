@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const vedicSocieties_Skill_Data = buildSkillConfig({
+export const vedicSocieties_Skill_Data = defineSkill({
   slug: 'vedicSocieties',
   id: 'a3707296-1f32-434a-a36e-074fd1f85349',
   name: {

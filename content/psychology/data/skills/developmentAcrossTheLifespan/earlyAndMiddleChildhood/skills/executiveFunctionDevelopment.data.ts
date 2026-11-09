@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const executiveFunctionDevelopment_Skill_Data = buildSkillConfig({
+export const executiveFunctionDevelopment_Skill_Data = defineSkill({
   slug: 'executiveFunctionDevelopment',
   id: '4178c665-14fd-4b6c-931f-6921d55be103',
   name: {

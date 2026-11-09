@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const networkSolids_Skill_Data = buildSkillConfig({
+export const networkSolids_Skill_Data = defineSkill({
   slug: 'networkSolids',
   id: '5931e8ed-972b-48b6-8d90-82b54a07f29e',
   name: {

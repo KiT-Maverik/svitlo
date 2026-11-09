@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const renderLightAndShadow_Skill_Data = buildSkillConfig({
+export const renderLightAndShadow_Skill_Data = defineSkill({
   slug: 'renderLightAndShadow',
   id: '06314c15-c442-4662-9d6c-5cf5dbdf6537',
   name: {

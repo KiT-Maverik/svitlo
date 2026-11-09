@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const opportunityCost_Skill_Data = buildSkillConfig({
+export const opportunityCost_Skill_Data = defineSkill({
   slug: 'opportunityCost',
   id: '6f01ce8a-22c5-44bf-8193-3e6e1f8207f8',
   name: {

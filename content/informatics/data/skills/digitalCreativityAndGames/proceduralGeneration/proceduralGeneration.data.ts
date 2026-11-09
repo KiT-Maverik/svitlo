@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   compareResourceStorageAndGeneration_Skill_Data,
@@ -7,7 +7,7 @@ import {
   reproduceResultsUsingAGenerationSeed_Skill_Data,
 } from './skills';
 
-export const proceduralGeneration_SkillGroup_Data = buildSkillGroupConfig({
+export const proceduralGeneration_SkillGroup_Data = defineSkillGroup({
   slug: 'proceduralGeneration',
   id: '9db6f9e5-6ec4-45dc-b07d-907575574e25',
   name: {
@@ -41,12 +41,12 @@ export const proceduralGeneration_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Процедуралық генерация',
     qm: 'Protsedural yaratılış',
   },
-  skills: {
-    compareResourceStorageAndGeneration: compareResourceStorageAndGeneration_Skill_Data,
-    configureGeneratorParameters: configureGeneratorParameters_Skill_Data,
-    explainProceduralResourceGeneration: explainProceduralResourceGeneration_Skill_Data,
-    reproduceResultsUsingAGenerationSeed: reproduceResultsUsingAGenerationSeed_Skill_Data,
-  },
+  skills: [
+    compareResourceStorageAndGeneration_Skill_Data,
+    configureGeneratorParameters_Skill_Data,
+    explainProceduralResourceGeneration_Skill_Data,
+    reproduceResultsUsingAGenerationSeed_Skill_Data,
+  ],
   description: {
     methodological:
       'Produce images, sounds, objects, or game worlds through rules and parameters instead of storing every finished variant. Distinguish parameter changes, reproducibility through a seed, and resource trade-offs.',

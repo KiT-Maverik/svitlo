@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const hearingAssistanceDevices_Skill_Data = buildSkillConfig({
+export const hearingAssistanceDevices_Skill_Data = defineSkill({
   slug: 'hearingAssistanceDevices',
   id: '131473c2-3c17-4bf1-a988-b960d5360d2b',
   name: {

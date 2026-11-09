@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const designRationale_Skill_Data = buildSkillConfig({
+export const designRationale_Skill_Data = defineSkill({
   slug: 'designRationale',
   id: 'a2878230-c083-4b3c-bc17-b66419101041',
   name: {

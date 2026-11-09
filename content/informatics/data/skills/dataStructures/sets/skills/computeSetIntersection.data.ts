@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const computeSetIntersection_Skill_Data = buildSkillConfig({
+export const computeSetIntersection_Skill_Data = defineSkill({
   slug: 'computeSetIntersection',
   id: '1fcffa8d-5b4f-4708-ae32-f5f488e42ea9',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainWhyAMineralDepositMayOrMayNotBeAnOre_Skill_Data = buildSkillConfig({
+export const explainWhyAMineralDepositMayOrMayNotBeAnOre_Skill_Data = defineSkill({
   slug: 'explainWhyAMineralDepositMayOrMayNotBeAnOre',
   id: 'e642faff-65e7-473b-92ce-16ac87dfc589',
   name: {

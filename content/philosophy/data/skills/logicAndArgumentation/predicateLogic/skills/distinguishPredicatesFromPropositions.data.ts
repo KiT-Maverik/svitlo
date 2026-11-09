@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishPredicatesFromPropositions_Skill_Data = buildSkillConfig({
+export const distinguishPredicatesFromPropositions_Skill_Data = defineSkill({
   slug: 'distinguishPredicatesFromPropositions',
   id: 'eb8c4b87-96ef-42cf-83d6-c5c4d7b03dd5',
   name: {

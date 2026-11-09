@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const assessAnEmailSendersAuthenticity_Skill_Data = buildSkillConfig({
+export const assessAnEmailSendersAuthenticity_Skill_Data = defineSkill({
   slug: 'assessAnEmailSendersAuthenticity',
   id: '4bbfbe52-aecf-41ab-b745-9b3b94832c21',
   name: {

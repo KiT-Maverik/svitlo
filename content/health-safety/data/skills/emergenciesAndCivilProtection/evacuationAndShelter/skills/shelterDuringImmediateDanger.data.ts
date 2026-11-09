@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const shelterDuringImmediateDanger_Skill_Data = buildSkillConfig({
+export const shelterDuringImmediateDanger_Skill_Data = defineSkill({
   slug: 'shelterDuringImmediateDanger',
   id: '1f1d60fb-56ef-4457-9030-05157ba662eb',
   name: {

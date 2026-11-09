@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainHowMagmaReachesEarthsSurface_Skill_Data = buildSkillConfig({
+export const explainHowMagmaReachesEarthsSurface_Skill_Data = defineSkill({
   slug: 'explainHowMagmaReachesEarthsSurface',
   id: '0a89c947-3f90-4b3f-a8f8-69bf874d3809',
   name: {

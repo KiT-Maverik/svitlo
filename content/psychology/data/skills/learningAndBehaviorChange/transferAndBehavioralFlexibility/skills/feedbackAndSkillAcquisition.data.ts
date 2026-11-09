@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const feedbackAndSkillAcquisition_Skill_Data = buildSkillConfig({
+export const feedbackAndSkillAcquisition_Skill_Data = defineSkill({
   slug: 'feedbackAndSkillAcquisition',
   id: '8c0589d1-1865-4cc2-b914-356daae5bf17',
   name: {

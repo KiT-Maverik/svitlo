@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainLinusTorvaldsRoleInLinux_Skill_Data = buildSkillConfig({
+export const explainLinusTorvaldsRoleInLinux_Skill_Data = defineSkill({
   slug: 'explainLinusTorvaldsRoleInLinux',
   id: '43fd1150-c2b5-424f-ace6-2129606b0ad6',
   name: {

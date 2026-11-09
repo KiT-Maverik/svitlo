@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const galaxyGroupsAndClusters_Skill_Data = buildSkillConfig({
+export const galaxyGroupsAndClusters_Skill_Data = defineSkill({
   slug: 'galaxyGroupsAndClusters',
   id: '3e37d21f-07d6-42a3-b2ae-0232006782fe',
   name: {

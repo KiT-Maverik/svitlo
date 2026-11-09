@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const bearings_Skill_Data = buildSkillConfig({
+export const bearings_Skill_Data = defineSkill({
   slug: 'bearings',
   id: 'd6a9870a-9de5-40d7-84b4-18c9c6a5c55b',
   name: {

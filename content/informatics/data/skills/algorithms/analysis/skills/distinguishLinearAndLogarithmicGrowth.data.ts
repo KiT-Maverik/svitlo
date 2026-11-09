@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishLinearAndLogarithmicGrowth_Skill_Data = buildSkillConfig({
+export const distinguishLinearAndLogarithmicGrowth_Skill_Data = defineSkill({
   slug: 'distinguishLinearAndLogarithmicGrowth',
   id: '03958bf9-384b-4a11-87ba-b87506e0b9d6',
   name: {

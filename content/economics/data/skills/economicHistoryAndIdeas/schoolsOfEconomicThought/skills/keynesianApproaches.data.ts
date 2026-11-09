@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const keynesianApproaches_Skill_Data = buildSkillConfig({
+export const keynesianApproaches_Skill_Data = defineSkill({
   slug: 'keynesianApproaches',
   id: '18aa124e-562e-4523-b4e9-e6c29d2d75b7',
   name: {

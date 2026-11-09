@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   distinguishDirectedAndUndirectedGraphs_Skill_Data,
@@ -9,7 +9,7 @@ import {
   identifyAdjacentVertices_Skill_Data,
 } from './skills';
 
-export const graphs_SkillGroup_Data = buildSkillGroupConfig({
+export const graphs_SkillGroup_Data = defineSkillGroup({
   slug: 'graphs',
   id: 'ac76c24f-09ee-456e-844f-9ebfbd892b0d',
   name: {
@@ -43,14 +43,14 @@ export const graphs_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Графтар',
     qm: 'Graflar',
   },
-  skills: {
-    distinguishDirectedAndUndirectedGraphs: distinguishDirectedAndUndirectedGraphs_Skill_Data,
-    distinguishTreesFromGraphsWithCycles: distinguishTreesFromGraphsWithCycles_Skill_Data,
-    distinguishWeightedAndUnweightedGraphs: distinguishWeightedAndUnweightedGraphs_Skill_Data,
-    explainGraphStructure: explainGraphStructure_Skill_Data,
-    findAPathInAGraph: findAPathInAGraph_Skill_Data,
-    identifyAdjacentVertices: identifyAdjacentVertices_Skill_Data,
-  },
+  skills: [
+    distinguishDirectedAndUndirectedGraphs_Skill_Data,
+    distinguishTreesFromGraphsWithCycles_Skill_Data,
+    distinguishWeightedAndUnweightedGraphs_Skill_Data,
+    explainGraphStructure_Skill_Data,
+    findAPathInAGraph_Skill_Data,
+    identifyAdjacentVertices_Skill_Data,
+  ],
   description: {
     methodological:
       'Graphs describe vertices and connections, including cycles, directed relationships, and numeric edge weights.',

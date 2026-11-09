@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const iterator_Skill_Data = buildSkillConfig({
+export const iterator_Skill_Data = defineSkill({
   slug: 'iterator',
   id: '1e7127bc-f931-4027-8274-88b03bdeb9e7',
   name: {

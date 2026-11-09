@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const describeMigrationAsMovementBetweenPlaces_Skill_Data = buildSkillConfig({
+export const describeMigrationAsMovementBetweenPlaces_Skill_Data = defineSkill({
   slug: 'describeMigrationAsMovementBetweenPlaces',
   id: 'b03cb24d-52a1-4d2b-88ed-63b6c1c0f8ea',
   name: {

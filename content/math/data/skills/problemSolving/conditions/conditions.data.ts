@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { findExtraneousData_Skill_Data, findMissingData_Skill_Data, identifyKnownUnknown_Skill_Data } from './skills';
 
-export const conditions_SkillGroup_Data = buildSkillGroupConfig({
+export const conditions_SkillGroup_Data = defineSkillGroup({
   slug: 'conditions',
   id: 'bd512014-8ad2-4db5-8b53-cd24ee73492b',
   name: {
@@ -36,11 +36,7 @@ export const conditions_SkillGroup_Data = buildSkillGroupConfig({
     pl: 'Analiza treści zadania',
     uk: 'Аналіз умови задачі',
   },
-  skills: {
-    identifyKnownUnknown: identifyKnownUnknown_Skill_Data,
-    findExtraneousData: findExtraneousData_Skill_Data,
-    findMissingData: findMissingData_Skill_Data,
-  },
+  skills: [identifyKnownUnknown_Skill_Data, findExtraneousData_Skill_Data, findMissingData_Skill_Data],
   description: {
     methodological:
       'Separating the question, known data, and implicit assumptions in a word problem before choosing an arithmetic operation.',

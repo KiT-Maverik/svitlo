@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const sectoralEconomicStructure_Skill_Data = buildSkillConfig({
+export const sectoralEconomicStructure_Skill_Data = defineSkill({
   slug: 'sectoralEconomicStructure',
   id: '06845d15-d9bd-42d7-a1c4-9323dc0d24d9',
   name: {

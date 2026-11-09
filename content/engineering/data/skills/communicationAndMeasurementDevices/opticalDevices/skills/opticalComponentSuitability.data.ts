@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const opticalComponentSuitability_Skill_Data = buildSkillConfig({
+export const opticalComponentSuitability_Skill_Data = defineSkill({
   slug: 'opticalComponentSuitability',
   id: '3c9b4ca1-eb54-4ec4-a645-9ea37485c702',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const resourceScarcity_Skill_Data = buildSkillConfig({
+export const resourceScarcity_Skill_Data = defineSkill({
   slug: 'resourceScarcity',
   id: '6f18f7e1-f15d-4307-a629-f7a58681a386',
   name: {

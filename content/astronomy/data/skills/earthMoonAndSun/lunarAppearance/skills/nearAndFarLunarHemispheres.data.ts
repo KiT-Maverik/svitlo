@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const nearAndFarLunarHemispheres_Skill_Data = buildSkillConfig({
+export const nearAndFarLunarHemispheres_Skill_Data = defineSkill({
   slug: 'nearAndFarLunarHemispheres',
   id: 'b012cc82-e835-456b-a692-55ee8dbebd0a',
   name: {

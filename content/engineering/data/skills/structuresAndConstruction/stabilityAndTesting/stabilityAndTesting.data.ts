@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   compareStructuralModelsUnderLoad_Skill_Data,
@@ -7,7 +7,7 @@ import {
   traceStructuralLoadPaths_Skill_Data,
 } from './skills';
 
-export const stabilityAndTesting_SkillGroup_Data = buildSkillGroupConfig({
+export const stabilityAndTesting_SkillGroup_Data = defineSkillGroup({
   slug: 'stabilityAndTesting',
   id: '37a29f5a-5fbe-45e2-aa63-5514f9a8f35d',
   name: {
@@ -41,12 +41,12 @@ export const stabilityAndTesting_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Орнықтылық және сынақтар',
     qm: 'Turaqlılıq ve sınavlar',
   },
-  skills: {
-    compareStructuralModelsUnderLoad: compareStructuralModelsUnderLoad_Skill_Data,
-    evaluateStructuralStability: evaluateStructuralStability_Skill_Data,
-    interpretStructuralDeformation: interpretStructuralDeformation_Skill_Data,
-    traceStructuralLoadPaths: traceStructuralLoadPaths_Skill_Data,
-  },
+  skills: [
+    compareStructuralModelsUnderLoad_Skill_Data,
+    evaluateStructuralStability_Skill_Data,
+    interpretStructuralDeformation_Skill_Data,
+    traceStructuralLoadPaths_Skill_Data,
+  ],
   description: {
     methodological:
       'Deformation, loss of equilibrium and local failure can all compromise a structure before every component breaks.',

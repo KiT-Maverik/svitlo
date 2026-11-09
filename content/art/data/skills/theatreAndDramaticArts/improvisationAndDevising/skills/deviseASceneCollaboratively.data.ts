@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const deviseASceneCollaboratively_Skill_Data = buildSkillConfig({
+export const deviseASceneCollaboratively_Skill_Data = defineSkill({
   slug: 'deviseASceneCollaboratively',
   id: 'ea121024-77bb-4ee1-b74d-3b25a7a9fb54',
   name: {

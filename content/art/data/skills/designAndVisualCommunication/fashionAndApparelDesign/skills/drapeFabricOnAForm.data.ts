@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const drapeFabricOnAForm_Skill_Data = buildSkillConfig({
+export const drapeFabricOnAForm_Skill_Data = defineSkill({
   slug: 'drapeFabricOnAForm',
   id: '9902ede9-c3bf-4fa5-b15e-1ee0159c4077',
   name: {

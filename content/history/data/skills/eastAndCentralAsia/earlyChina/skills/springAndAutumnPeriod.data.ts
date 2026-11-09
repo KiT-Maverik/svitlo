@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const springAndAutumnPeriod_Skill_Data = buildSkillConfig({
+export const springAndAutumnPeriod_Skill_Data = defineSkill({
   slug: 'springAndAutumnPeriod',
   id: 'b8e1ee01-28ee-4d35-9094-4ba7707f5b03',
   name: {

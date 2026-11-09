@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeABuildingFacade_Skill_Data = buildSkillConfig({
+export const analyzeABuildingFacade_Skill_Data = defineSkill({
   slug: 'analyzeABuildingFacade',
   id: '18ca2346-51e2-4899-a8e6-8c08e270ac11',
   name: {

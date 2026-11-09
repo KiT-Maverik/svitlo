@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { amountOfSubstance_SkillGroup_Data } from './amountOfSubstance/amountOfSubstance.data';
 import { chemicalNotation_SkillGroup_Data } from './chemicalNotation/chemicalNotation.data';
 import { reactionEquations_SkillGroup_Data } from './reactionEquations/reactionEquations.data';
 
-export const chemicalLanguageAndQuantities_SkillDomain_Data = buildSkillDomainConfig({
+export const chemicalLanguageAndQuantities_SkillDomain_Data = defineSkillDomain({
   slug: 'chemicalLanguageAndQuantities',
   id: 'b53c9b92-9cdb-46fa-9ec5-e4c86e6cfaa6',
-  name: {
+  title: {
     en: 'Chemical Language and Quantities',
     zh: '化学语言与化学计量',
     hi: 'रासायनिक भाषा और मात्राएँ',
@@ -38,11 +38,7 @@ export const chemicalLanguageAndQuantities_SkillDomain_Data = buildSkillDomainCo
     kk: 'Химиялық тіл және мөлшерлер',
     qm: 'Kimyeviy til ve miqdarlar',
   },
-  groups: {
-    amountOfSubstance: amountOfSubstance_SkillGroup_Data,
-    chemicalNotation: chemicalNotation_SkillGroup_Data,
-    reactionEquations: reactionEquations_SkillGroup_Data,
-  },
+  groups: [amountOfSubstance_SkillGroup_Data, chemicalNotation_SkillGroup_Data, reactionEquations_SkillGroup_Data],
   description: {
     methodological:
       'Chemists represent composition and transformation with conventional symbols and use amounts to connect microscopic entities to measurable samples. This domain covers representational and quantitative relationships, not specific reaction mechanisms.',

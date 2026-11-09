@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   financialFraudWarningSigns_Skill_Data,
@@ -6,7 +6,7 @@ import {
   insurancePrinciples_Skill_Data,
 } from './skills';
 
-export const financialRisksAndProtection_SkillGroup_Data = buildSkillGroupConfig({
+export const financialRisksAndProtection_SkillGroup_Data = defineSkillGroup({
   slug: 'financialRisksAndProtection',
   id: 'e4edf951-cc50-458e-a233-82eef79c324f',
   name: {
@@ -40,11 +40,11 @@ export const financialRisksAndProtection_SkillGroup_Data = buildSkillGroupConfig
     kk: 'Қаржылық тәуекелдер және қорғаныс',
     qm: 'Maliy havflar ve qorunuv',
   },
-  skills: {
-    financialFraudWarningSigns: financialFraudWarningSigns_Skill_Data,
-    financialRiskAndExpectedReward: financialRiskAndExpectedReward_Skill_Data,
-    insurancePrinciples: insurancePrinciples_Skill_Data,
-  },
+  skills: [
+    financialFraudWarningSigns_Skill_Data,
+    financialRiskAndExpectedReward_Skill_Data,
+    insurancePrinciples_Skill_Data,
+  ],
   description: {
     methodological:
       'Financial security involves understanding acceptable risk, insurance options, and warning signs of deceptive offers.',

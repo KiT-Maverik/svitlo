@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeNematodeCharacteristics_Skill_Data = buildSkillConfig({
+export const recognizeNematodeCharacteristics_Skill_Data = defineSkill({
   slug: 'recognizeNematodeCharacteristics',
   id: 'b69b5b59-0a80-4cc5-bb4c-866d223dc68d',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const relateOrganismStructureToEnvironmentalConditions_Skill_Data = buildSkillConfig({
+export const relateOrganismStructureToEnvironmentalConditions_Skill_Data = defineSkill({
   slug: 'relateOrganismStructureToEnvironmentalConditions',
   id: 'e8ac8beb-7d61-4df4-b4f8-5c787508f8d5',
   name: {

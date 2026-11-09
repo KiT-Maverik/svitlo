@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyHereditaryTraitsInExamples_Skill_Data = buildSkillConfig({
+export const identifyHereditaryTraitsInExamples_Skill_Data = defineSkill({
   slug: 'identifyHereditaryTraitsInExamples',
   id: 'e3891512-115c-4542-8807-1cd48de726a1',
   name: {

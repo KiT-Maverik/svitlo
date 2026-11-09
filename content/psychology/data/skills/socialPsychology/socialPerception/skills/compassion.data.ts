@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compassion_Skill_Data = buildSkillConfig({
+export const compassion_Skill_Data = defineSkill({
   slug: 'compassion',
   id: 'd8ef3c93-77af-47e5-92bc-f6fb717e09fd',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const atomicMass_Skill_Data = buildSkillConfig({
+export const atomicMass_Skill_Data = defineSkill({
   slug: 'atomicMass',
   id: 'd736184c-47f1-4ecf-95c2-3abbe4954d6f',
   name: {

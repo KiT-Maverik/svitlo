@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishHereditaryAndAcquiredTraits_Skill_Data = buildSkillConfig({
+export const distinguishHereditaryAndAcquiredTraits_Skill_Data = defineSkill({
   slug: 'distinguishHereditaryAndAcquiredTraits',
   id: '2e649482-c54b-43bc-82a8-f5b2c1a3129f',
   name: {

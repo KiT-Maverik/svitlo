@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const exchangeRateRegimes_Skill_Data = buildSkillConfig({
+export const exchangeRateRegimes_Skill_Data = defineSkill({
   slug: 'exchangeRateRegimes',
   id: 'd3eb5343-6143-480c-8769-c40df425180d',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const abstractFactory_Skill_Data = buildSkillConfig({
+export const abstractFactory_Skill_Data = defineSkill({
   slug: 'abstractFactory',
   id: '724c070d-5608-4b68-b197-99ac97d3a36a',
   name: {

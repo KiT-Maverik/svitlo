@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const earlyWesternPolynesianSettlement_Skill_Data = buildSkillConfig({
+export const earlyWesternPolynesianSettlement_Skill_Data = defineSkill({
   slug: 'earlyWesternPolynesianSettlement',
   id: '6a35e7a7-4de3-4bbd-a3bd-3e30c420004f',
   name: {

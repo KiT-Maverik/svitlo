@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const professionalRolesAndReferral_Skill_Data = buildSkillConfig({
+export const professionalRolesAndReferral_Skill_Data = defineSkill({
   slug: 'professionalRolesAndReferral',
   id: 'b90faf66-554a-4fc8-9ba8-ac372cd48ab5',
   name: {

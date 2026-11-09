@@ -142,15 +142,15 @@ test('English-only create needs no reviewed translations and keeps locales visib
     const directDomain = source(f, 'music/music.data.ts');
     assert.match(
       domain,
-      /^import \{ buildSkillDomainConfig \} from '@svitlo\/engine';\n\nimport \{ angles_SkillGroup_Data \} from '\.\/angles\/angles\.data';/,
+      /^import \{ defineSkillDomain \} from '@svitlo\/engine';\n\nimport \{ angles_SkillGroup_Data \} from '\.\/angles\/angles\.data';/,
     );
     assert.match(
       group,
-      /^import \{ buildSkillGroupConfig \} from '@svitlo\/engine';\n\nimport \{ compareAngles_Skill_Data \} from '\.\/skills';/,
+      /^import \{ defineSkillGroup \} from '@svitlo\/engine';\n\nimport \{ compareAngles_Skill_Data \} from '\.\/skills';/,
     );
     assert.match(
       directDomain,
-      /^import \{ buildSkillDomainConfig \} from '@svitlo\/engine';\n\nimport \{ hearRhythm_Skill_Data \} from '\.\/skills';/,
+      /^import \{ defineSkillDomain \} from '@svitlo\/engine';\n\nimport \{ hearRhythm_Skill_Data \} from '\.\/skills';/,
     );
     assert.match(skill, /^  slug: "compareAngles",$/m);
     assert.match(group, /^  slug: "angles",$/m);
@@ -162,10 +162,7 @@ test('English-only create needs no reviewed translations and keeps locales visib
     assert.match(skill, /frontend: \{\s*en: /);
     assert.match(skill, /^  name: \{\n    en: "Compare Angles",\n  \},$/m);
     assert.match(skill, /^    frontend: \{\n      en: "Explore this topic\.",\n    \},$/m);
-    assert.match(
-      skill,
-      /^import \{ buildSkillConfig \} from '@svitlo\/engine';\n\nexport const compareAngles_Skill_Data/m,
-    );
+    assert.match(skill, /^import \{ defineSkill \} from '@svitlo\/engine';\n\nexport const compareAngles_Skill_Data/m);
     assert.doesNotMatch(skill, /["'](?:en|uk)["']\s*:/);
     assert.match(skill, /methodological: "Definition of Compare Angles\."/);
     assert.match(domain, /en: "Geometry"/);
@@ -184,10 +181,10 @@ test('mixed Domain contains both full SkillGroup and direct Skill entities', () 
     const r = f.runEnglishOnly('--apply');
     assert.equal(r.status, 0, r.stderr);
     const domain = source(f, 'geometry/geometry.data.ts');
-    assert.match(domain, /groups: \{/);
-    assert.match(domain, /angles: angles_SkillGroup_Data,/);
-    assert.match(domain, /skills: \{/);
-    assert.match(domain, /recognizeShapes: recognizeShapes_Skill_Data,/);
+    assert.match(domain, /groups: \[/);
+    assert.match(domain, /^\s+angles_SkillGroup_Data,$/m);
+    assert.match(domain, /skills: \[/);
+    assert.match(domain, /^\s+recognizeShapes_Skill_Data,$/m);
     assert.doesNotMatch(domain, /groupIds|skillIds|_Data\.id/);
     assert.match(source(f, 'geometry/skills/index.ts'), /recognizeShapes_Skill_Data/);
     assert.ok(fs.existsSync(path.join(data(f), 'geometry/skills/recognizeShapes.data.ts')));
@@ -256,17 +253,17 @@ test('create emits entity-owned IDs, direct imports and only allowed indexes', (
     const ids = new Set();
     for (const p of paths) {
       const content = source(f, p);
-      assert.match(content, /buildSkill(Domain|Group)?Config/);
+      assert.match(content, /defineSkill(Domain|Group)?/);
       const id = uuid(content);
       assert.match(id, /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/);
       ids.add(id);
       assert.match(content, /\bslug\s*:/);
     }
     assert.equal(ids.size, 5);
-    assert.match(source(f, 'geometry/geometry.data.ts'), /angles: angles_SkillGroup_Data,/);
-    assert.match(source(f, 'geometry/angles/angles.data.ts'), /compareAngles: compareAngles_Skill_Data,/);
-    assert.match(source(f, 'music/music.data.ts'), /groups:\s*\{\s*\}/);
-    assert.match(source(f, 'music/music.data.ts'), /hearRhythm: hearRhythm_Skill_Data,/);
+    assert.match(source(f, 'geometry/geometry.data.ts'), /\bangles_SkillGroup_Data,/);
+    assert.match(source(f, 'geometry/angles/angles.data.ts'), /\bcompareAngles_Skill_Data,/);
+    assert.match(source(f, 'music/music.data.ts'), /groups:\s*\[\s*\]/);
+    assert.match(source(f, 'music/music.data.ts'), /\bhearRhythm_Skill_Data,/);
     assert.match(source(f, 'index.ts'), /geometry_SkillDomain_Data/);
     assert.match(source(f, 'geometry/angles/skills/index.ts'), /compareAngles_Skill_Data/);
     assert.match(source(f, 'music/skills/index.ts'), /hearRhythm_Skill_Data/);

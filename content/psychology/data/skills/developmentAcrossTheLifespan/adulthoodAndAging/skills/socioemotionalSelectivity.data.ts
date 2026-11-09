@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const socioemotionalSelectivity_Skill_Data = buildSkillConfig({
+export const socioemotionalSelectivity_Skill_Data = defineSkill({
   slug: 'socioemotionalSelectivity',
   id: '98d40732-56b5-446d-a57d-03ce9455fe1f',
   name: {

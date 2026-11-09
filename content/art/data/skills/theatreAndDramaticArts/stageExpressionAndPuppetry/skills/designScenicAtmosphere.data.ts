@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const designScenicAtmosphere_Skill_Data = buildSkillConfig({
+export const designScenicAtmosphere_Skill_Data = defineSkill({
   slug: 'designScenicAtmosphere',
   id: '52a2bd59-7ed3-4195-b443-cc5963b6f4f6',
   name: {

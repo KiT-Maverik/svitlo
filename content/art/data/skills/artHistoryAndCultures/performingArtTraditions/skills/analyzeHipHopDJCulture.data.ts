@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeHipHopDJCulture_Skill_Data = buildSkillConfig({
+export const analyzeHipHopDJCulture_Skill_Data = defineSkill({
   slug: 'analyzeHipHopDJCulture',
   id: '765011ac-f09f-4a00-b7a8-e5c710973805',
   name: {

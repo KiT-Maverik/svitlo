@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const controlMovementAlignment_Skill_Data = buildSkillConfig({
+export const controlMovementAlignment_Skill_Data = defineSkill({
   slug: 'controlMovementAlignment',
   id: '4faf276e-d143-4500-b564-4784d5f12d47',
   name: {

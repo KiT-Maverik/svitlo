@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const investmentDiversification_Skill_Data = buildSkillConfig({
+export const investmentDiversification_Skill_Data = defineSkill({
   slug: 'investmentDiversification',
   id: '0290d21f-3931-4a59-b7c0-d6929621ebd6',
   name: {

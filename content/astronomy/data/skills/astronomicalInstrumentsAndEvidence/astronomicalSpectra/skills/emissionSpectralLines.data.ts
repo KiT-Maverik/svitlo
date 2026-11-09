@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const emissionSpectralLines_Skill_Data = buildSkillConfig({
+export const emissionSpectralLines_Skill_Data = defineSkill({
   slug: 'emissionSpectralLines',
   id: 'b7e6fe95-cc11-4e73-902b-270d21adc38b',
   name: {

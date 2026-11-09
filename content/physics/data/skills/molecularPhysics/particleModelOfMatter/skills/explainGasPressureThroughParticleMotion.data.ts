@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainGasPressureThroughParticleMotion_Skill_Data = buildSkillConfig({
+export const explainGasPressureThroughParticleMotion_Skill_Data = defineSkill({
   slug: 'explainGasPressureThroughParticleMotion',
   id: '99e5dfa6-e685-4a4a-9ed7-6bb10e592e4f',
   name: {

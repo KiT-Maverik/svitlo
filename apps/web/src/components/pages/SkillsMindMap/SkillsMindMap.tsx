@@ -12,7 +12,7 @@ import ZoomInRoundedIcon from '@mui/icons-material/ZoomInRounded';
 import ZoomOutRoundedIcon from '@mui/icons-material/ZoomOutRounded';
 import { expandableSkillIds, fitVisibleSkillNodes, flattenSkillNodes, layoutSkillMindMap } from './skillsMindMap.utils';
 import type { SkillNode, MapEdge } from './skillsMindMap.utils';
-import { loadSkillAnalyticsPage, resolveSkillLanguage } from './skillsData.client';
+import { resolveSkillLanguage } from './skillsData.client';
 import styles from './SkillsMindMap.module.css';
 import { SkillAction, SkillLeafCard, SkillMastery } from './SkillLeafCard';
 import { useSkillsPageSettings } from './SkillsPageSettingsContext';
@@ -136,13 +136,19 @@ function SkillOutline({
 }
 
 /** Map visualization within the reusable skillAnalytics page. */
-export function SkillsMindMap({ domainSlugs }: { domainSlugs: readonly string[] }) {
+export function SkillsMindMap({ domains }: { domains: readonly SkillNode[] }) {
   const { locale, localeError, setLanguageCode, registerMapActions } = useSkillsPageSettings();
   const language = resolveSkillLanguage(locale);
-  const [domains, setDomains] = useState<SkillNode[]>([]);
-  const [status, setStatus] = useState<LoadingStatus>('loading');
-  const [error, setError] = useState('');
-  const [collapsed, setCollapsed] = useState<Set<string>>(() => new Set());
+  const [status] = useState<LoadingStatus>('ready');
+  const error = '';
+  const [collapsed, setCollapsed] = useState<Set<string>>(() => {
+    const all = flattenSkillNodes(domains);
+    return new Set(
+      all.length > 45
+        ? all.filter(node => node.kind === 'skillGroup' && node.children.length > 0).map(node => node.id)
+        : [],
+    );
+  });
   // Card detail is independent from whether a Domain/Group branch is visible.
   const [expandedSkills, setExpandedSkills] = useState<Set<string>>(() => new Set());
   const [rootCollapsed, setRootCollapsed] = useState(false);
@@ -175,42 +181,9 @@ export function SkillsMindMap({ domainSlugs }: { domainSlugs: readonly string[] 
   useEffect(() => {
     viewRef.current = { zoom, pan };
   }, [zoom, pan]);
-  const firstLoad = useRef(true);
   const didInitialFit = useRef(false);
   const handledFitRequest = useRef(0);
   const [fitRequest, setFitRequest] = useState(0);
-
-  useEffect(() => {
-    const controller = new AbortController();
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- Hide stale data immediately when the requested locale changes.
-    setStatus('loading');
-    setError('');
-    void (async () => {
-      try {
-        const loaded = await loadSkillAnalyticsPage(language, controller.signal, domainSlugs);
-        if (controller.signal.aborted) return;
-        const all = flattenSkillNodes(loaded);
-        setDomains(loaded);
-        if (firstLoad.current) {
-          setCollapsed(
-            new Set(
-              all.length > 45
-                ? all.filter(node => node.kind === 'skillGroup' && node.children.length > 0).map(node => node.id)
-                : [],
-            ),
-          );
-          firstLoad.current = false;
-        }
-        setStatus('ready');
-      } catch (cause) {
-        if (!controller.signal.aborted) {
-          setStatus('error');
-          setError(cause instanceof Error ? cause.message : 'Не вдалося завантажити скіли.');
-        }
-      }
-    })();
-    return () => controller.abort();
-  }, [domainSlugs, language]);
 
   useEffect(() => {
     const element = viewportRef.current;

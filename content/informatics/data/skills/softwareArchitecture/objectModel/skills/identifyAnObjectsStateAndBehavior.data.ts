@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyAnObjectsStateAndBehavior_Skill_Data = buildSkillConfig({
+export const identifyAnObjectsStateAndBehavior_Skill_Data = defineSkill({
   slug: 'identifyAnObjectsStateAndBehavior',
   id: '899e5b22-0a46-4637-ae18-54b1a7183195',
   name: {

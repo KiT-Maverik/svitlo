@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const riskPerception_Skill_Data = buildSkillConfig({
+export const riskPerception_Skill_Data = defineSkill({
   slug: 'riskPerception',
   id: '5fdcee3e-fa42-45b6-ae62-fc6ecb9fcd54',
   name: {

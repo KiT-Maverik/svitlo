@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { guidanceAndRetention_SkillGroup_Data } from './guidanceAndRetention/guidanceAndRetention.data';
 import { integratedMachines_SkillGroup_Data } from './integratedMachines/integratedMachines.data';
 import { motionConversion_SkillGroup_Data } from './motionConversion/motionConversion.data';
 import { transmissions_SkillGroup_Data } from './transmissions/transmissions.data';
 
-export const mechanismsAndMachines_SkillDomain_Data = buildSkillDomainConfig({
+export const mechanismsAndMachines_SkillDomain_Data = defineSkillDomain({
   slug: 'mechanismsAndMachines',
   id: '88d67d4b-b09b-485e-a0ff-bea7bbb47d58',
-  name: {
+  title: {
     en: 'Mechanisms and Machines',
     zh: '机构与机械',
     hi: 'तंत्र और मशीनें',
@@ -39,12 +39,12 @@ export const mechanismsAndMachines_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Механизмдер мен машиналар',
     qm: 'Mehanizmler ve maşinalar',
   },
-  groups: {
-    guidanceAndRetention: guidanceAndRetention_SkillGroup_Data,
-    integratedMachines: integratedMachines_SkillGroup_Data,
-    motionConversion: motionConversion_SkillGroup_Data,
-    transmissions: transmissions_SkillGroup_Data,
-  },
+  groups: [
+    guidanceAndRetention_SkillGroup_Data,
+    integratedMachines_SkillGroup_Data,
+    motionConversion_SkillGroup_Data,
+    transmissions_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Moving assemblies redirect or transmit force, torque and motion to achieve tasks. This domain investigates how real mechanical arrangements work, not the underlying laws of mechanics as an independent science.',

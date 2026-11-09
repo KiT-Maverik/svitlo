@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const speechPerception_Skill_Data = buildSkillConfig({
+export const speechPerception_Skill_Data = defineSkill({
   slug: 'speechPerception',
   id: '6c7c7fdc-bf6f-48a5-b53c-70cfdd98c265',
   name: {

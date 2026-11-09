@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const sensorPlacement_Skill_Data = buildSkillConfig({
+export const sensorPlacement_Skill_Data = defineSkill({
   slug: 'sensorPlacement',
   id: '13524912-c933-4b03-83ad-1ea18259c67a',
   name: {

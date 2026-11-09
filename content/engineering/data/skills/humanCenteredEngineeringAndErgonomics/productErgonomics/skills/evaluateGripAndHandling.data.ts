@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateGripAndHandling_Skill_Data = buildSkillConfig({
+export const evaluateGripAndHandling_Skill_Data = defineSkill({
   slug: 'evaluateGripAndHandling',
   id: '1977cbe8-f8c8-4d6f-9f8a-1ca4bdabb58a',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const saturation_Skill_Data = buildSkillConfig({
+export const saturation_Skill_Data = defineSkill({
   slug: 'saturation',
   id: '0317ea71-b896-4521-90a4-ca6e4dfbe381',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const esters_Skill_Data = buildSkillConfig({
+export const esters_Skill_Data = defineSkill({
   slug: 'esters',
   id: '98f15f0f-962f-406c-9b32-dce442d6684a',
   name: {

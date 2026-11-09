@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeTheScopeOfAQuantifier_Skill_Data = buildSkillConfig({
+export const analyzeTheScopeOfAQuantifier_Skill_Data = defineSkill({
   slug: 'analyzeTheScopeOfAQuantifier',
   id: '3638b49a-42a8-4de6-8ed9-76978b27e1a9',
   name: {

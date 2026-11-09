@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   actuatorSuitability_Skill_Data,
@@ -8,7 +8,7 @@ import {
   servoPositioning_Skill_Data,
 } from './skills';
 
-export const drivesAndActuators_SkillGroup_Data = buildSkillGroupConfig({
+export const drivesAndActuators_SkillGroup_Data = defineSkillGroup({
   slug: 'drivesAndActuators',
   id: 'e4ad551e-d663-4758-8b09-8893ea518de9',
   name: {
@@ -42,13 +42,13 @@ export const drivesAndActuators_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Жетектер және атқарушы тетіктер',
     qm: 'Sürücüler ve areketlendirgicler',
   },
-  skills: {
-    actuatorSuitability: actuatorSuitability_Skill_Data,
-    electricMotorConstruction: electricMotorConstruction_Skill_Data,
-    limitSwitches: limitSwitches_Skill_Data,
-    motorDrivenActuation: motorDrivenActuation_Skill_Data,
-    servoPositioning: servoPositioning_Skill_Data,
-  },
+  skills: [
+    actuatorSuitability_Skill_Data,
+    electricMotorConstruction_Skill_Data,
+    limitSwitches_Skill_Data,
+    motorDrivenActuation_Skill_Data,
+    servoPositioning_Skill_Data,
+  ],
   description: {
     methodological:
       'A controller requires suitable physical mechanisms to turn supplied energy into controllable displacement, rotation or force.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const vicariousReinforcement_Skill_Data = buildSkillConfig({
+export const vicariousReinforcement_Skill_Data = defineSkill({
   slug: 'vicariousReinforcement',
   id: '05da1b3f-e9f8-4785-bd8d-6f90fd9ebfcc',
   name: {

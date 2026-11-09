@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const traceProgramState_Skill_Data = buildSkillConfig({
+export const traceProgramState_Skill_Data = defineSkill({
   slug: 'traceProgramState',
   id: '5267e1c5-bc2f-4600-b8a8-e86b9fc10fe1',
   name: {

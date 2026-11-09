@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretLogicalNegation_Skill_Data = buildSkillConfig({
+export const interpretLogicalNegation_Skill_Data = defineSkill({
   slug: 'interpretLogicalNegation',
   id: 'b8600bab-1d8d-4baa-bb89-2df6bf8438b4',
   name: {

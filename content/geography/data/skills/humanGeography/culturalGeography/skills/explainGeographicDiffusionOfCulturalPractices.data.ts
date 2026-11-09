@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainGeographicDiffusionOfCulturalPractices_Skill_Data = buildSkillConfig({
+export const explainGeographicDiffusionOfCulturalPractices_Skill_Data = defineSkill({
   slug: 'explainGeographicDiffusionOfCulturalPractices',
   id: '37ce6b8d-2243-482d-8658-52718e606cfc',
   name: {

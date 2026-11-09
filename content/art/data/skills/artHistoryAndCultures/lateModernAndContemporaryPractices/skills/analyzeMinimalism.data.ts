@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeMinimalism_Skill_Data = buildSkillConfig({
+export const analyzeMinimalism_Skill_Data = defineSkill({
   slug: 'analyzeMinimalism',
   id: '8c95feca-d2be-4088-aaaf-40bff8a961fd',
   name: {

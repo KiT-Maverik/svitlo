@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishARealObjectFromItsAbstractModel_Skill_Data = buildSkillConfig({
+export const distinguishARealObjectFromItsAbstractModel_Skill_Data = defineSkill({
   slug: 'distinguishARealObjectFromItsAbstractModel',
   id: '23e942cf-c34d-4393-9c6e-80127191fd58',
   name: {

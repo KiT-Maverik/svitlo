@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const meters_Skill_Data = buildSkillConfig({
+export const meters_Skill_Data = defineSkill({
   slug: 'meters',
   id: 'd427dfd0-7501-447b-ad8a-c75e8ec25196',
   name: {

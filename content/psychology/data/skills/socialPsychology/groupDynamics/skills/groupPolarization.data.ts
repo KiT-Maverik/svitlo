@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const groupPolarization_Skill_Data = buildSkillConfig({
+export const groupPolarization_Skill_Data = defineSkill({
   slug: 'groupPolarization',
   id: '5c739446-ef97-4784-8116-cfa7ba82afde',
   name: {

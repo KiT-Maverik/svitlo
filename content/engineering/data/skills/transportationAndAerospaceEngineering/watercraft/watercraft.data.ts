@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { hullDesignChoices_Skill_Data, marinePropulsion_Skill_Data, marineSteering_Skill_Data } from './skills';
 
-export const watercraft_SkillGroup_Data = buildSkillGroupConfig({
+export const watercraft_SkillGroup_Data = defineSkillGroup({
   slug: 'watercraft',
   id: '2f729c9f-3813-4796-9e50-d603b065e251',
   name: {
@@ -36,11 +36,7 @@ export const watercraft_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Су көліктері',
     qm: 'Suv taşıtları',
   },
-  skills: {
-    hullDesignChoices: hullDesignChoices_Skill_Data,
-    marinePropulsion: marinePropulsion_Skill_Data,
-    marineSteering: marineSteering_Skill_Data,
-  },
+  skills: [hullDesignChoices_Skill_Data, marinePropulsion_Skill_Data, marineSteering_Skill_Data],
   description: {
     methodological:
       'Vessels need suitable hulls, propulsion and steering while managing stability and water resistance.',

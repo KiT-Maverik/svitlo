@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishValueCopyingFromSharedReferences_Skill_Data = buildSkillConfig({
+export const distinguishValueCopyingFromSharedReferences_Skill_Data = defineSkill({
   slug: 'distinguishValueCopyingFromSharedReferences',
   id: 'f6499ac2-6ad9-4160-81a6-64404f83aa81',
   name: {

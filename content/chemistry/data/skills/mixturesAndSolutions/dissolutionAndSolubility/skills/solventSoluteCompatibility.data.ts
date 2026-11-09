@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const solventSoluteCompatibility_Skill_Data = buildSkillConfig({
+export const solventSoluteCompatibility_Skill_Data = defineSkill({
   slug: 'solventSoluteCompatibility',
   id: '9b58c345-0ff1-4108-82c5-95baf273ed2f',
   name: {

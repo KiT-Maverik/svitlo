@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const adapter_Skill_Data = buildSkillConfig({
+export const adapter_Skill_Data = defineSkill({
   slug: 'adapter',
   id: 'df520d41-4bc3-4451-8fb1-0e70f755d5e6',
   name: {

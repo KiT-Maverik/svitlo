@@ -1,11 +1,11 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   distinguishEnergyEmissionFromReflectionOfReceivedLight_Skill_Data,
   explainHeatingThroughRadiationAbsorption_Skill_Data,
 } from './skills';
 
-export const radiationAndMatter_SkillGroup_Data = buildSkillGroupConfig({
+export const radiationAndMatter_SkillGroup_Data = defineSkillGroup({
   slug: 'radiationAndMatter',
   id: '1ea877ce-e5fb-4273-bf09-bfd1a7e880cd',
   name: {
@@ -39,11 +39,10 @@ export const radiationAndMatter_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Сәулелену және зат',
     qm: 'Nurlanuv ve madde',
   },
-  skills: {
-    distinguishEnergyEmissionFromReflectionOfReceivedLight:
-      distinguishEnergyEmissionFromReflectionOfReceivedLight_Skill_Data,
-    explainHeatingThroughRadiationAbsorption: explainHeatingThroughRadiationAbsorption_Skill_Data,
-  },
+  skills: [
+    distinguishEnergyEmissionFromReflectionOfReceivedLight_Skill_Data,
+    explainHeatingThroughRadiationAbsorption_Skill_Data,
+  ],
   description: {
     methodological:
       'Materials can emit, reflect, transmit, or absorb energy; the outcomes depend on the type of radiation and the properties of matter.',

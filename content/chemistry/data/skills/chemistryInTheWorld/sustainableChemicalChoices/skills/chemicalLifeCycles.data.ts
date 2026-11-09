@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const chemicalLifeCycles_Skill_Data = buildSkillConfig({
+export const chemicalLifeCycles_Skill_Data = defineSkill({
   slug: 'chemicalLifeCycles',
   id: '8da44d2b-c294-4dbd-9284-18fea2641908',
   name: {

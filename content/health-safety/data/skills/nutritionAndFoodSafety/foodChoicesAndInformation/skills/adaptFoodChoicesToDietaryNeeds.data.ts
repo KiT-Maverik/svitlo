@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const adaptFoodChoicesToDietaryNeeds_Skill_Data = buildSkillConfig({
+export const adaptFoodChoicesToDietaryNeeds_Skill_Data = defineSkill({
   slug: 'adaptFoodChoicesToDietaryNeeds',
   id: 'c07436d2-edde-48c5-84f4-96f7697b228f',
   name: {

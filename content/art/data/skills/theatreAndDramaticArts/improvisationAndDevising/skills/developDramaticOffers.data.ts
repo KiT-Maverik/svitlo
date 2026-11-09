@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const developDramaticOffers_Skill_Data = buildSkillConfig({
+export const developDramaticOffers_Skill_Data = defineSkill({
   slug: 'developDramaticOffers',
   id: 'd27d46dd-f720-40f8-85f4-612a4170518b',
   name: {

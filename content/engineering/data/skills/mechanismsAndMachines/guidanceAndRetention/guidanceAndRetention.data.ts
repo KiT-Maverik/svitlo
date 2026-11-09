@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   bearings_Skill_Data,
@@ -8,7 +8,7 @@ import {
   lubrication_Skill_Data,
 } from './skills';
 
-export const guidanceAndRetention_SkillGroup_Data = buildSkillGroupConfig({
+export const guidanceAndRetention_SkillGroup_Data = defineSkillGroup({
   slug: 'guidanceAndRetention',
   id: '3ed9a99c-8635-4a5b-b232-ca17743ee80e',
   name: {
@@ -42,13 +42,13 @@ export const guidanceAndRetention_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Қозғалысты бағыттау және бекіту',
     qm: 'Areketni yöneltüv ve tutuv',
   },
-  skills: {
-    bearings: bearings_Skill_Data,
-    brakingMechanisms: brakingMechanisms_Skill_Data,
-    latches: latches_Skill_Data,
-    locks: locks_Skill_Data,
-    lubrication: lubrication_Skill_Data,
-  },
+  skills: [
+    bearings_Skill_Data,
+    brakingMechanisms_Skill_Data,
+    latches_Skill_Data,
+    locks_Skill_Data,
+    lubrication_Skill_Data,
+  ],
   description: {
     methodological:
       'Motion must be supported and limited while interfaces are protected from damaging friction or unintended release.',

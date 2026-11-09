@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishBeautyAndArtisticValue_Skill_Data = buildSkillConfig({
+export const distinguishBeautyAndArtisticValue_Skill_Data = defineSkill({
   slug: 'distinguishBeautyAndArtisticValue',
   id: 'bd0f1d89-6430-4d79-939f-0c92d0088e77',
   name: {

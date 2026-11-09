@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishLeafAndInternalTreeNodes_Skill_Data = buildSkillConfig({
+export const distinguishLeafAndInternalTreeNodes_Skill_Data = defineSkill({
   slug: 'distinguishLeafAndInternalTreeNodes',
   id: 'ff117d95-52f6-4e7c-92c0-9d92f00c63d9',
   name: {

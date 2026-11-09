@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   analyzeDemocraticLegitimacy_Skill_Data,
@@ -7,7 +7,7 @@ import {
   evaluateCompetingViewsOfPoliticalObligation_Skill_Data,
 } from './skills';
 
-export const publicReasonAndCivicLife_SkillGroup_Data = buildSkillGroupConfig({
+export const publicReasonAndCivicLife_SkillGroup_Data = defineSkillGroup({
   slug: 'publicReasonAndCivicLife',
   id: 'f4faa2aa-3c17-48a7-a10e-9eb442653432',
   name: {
@@ -41,12 +41,12 @@ export const publicReasonAndCivicLife_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Қоғамдық ақыл және азаматтық өмір',
     qm: 'İçtimaiy aqıl ve vatandaşlıq ayatı',
   },
-  skills: {
-    analyzeDemocraticLegitimacy: analyzeDemocraticLegitimacy_Skill_Data,
-    assessAnArgumentAboutTheCommonGood: assessAnArgumentAboutTheCommonGood_Skill_Data,
-    distinguishPublicReasonsFromPrivatePreferences: distinguishPublicReasonsFromPrivatePreferences_Skill_Data,
-    evaluateCompetingViewsOfPoliticalObligation: evaluateCompetingViewsOfPoliticalObligation_Skill_Data,
-  },
+  skills: [
+    analyzeDemocraticLegitimacy_Skill_Data,
+    assessAnArgumentAboutTheCommonGood_Skill_Data,
+    distinguishPublicReasonsFromPrivatePreferences_Skill_Data,
+    evaluateCompetingViewsOfPoliticalObligation_Skill_Data,
+  ],
   description: {
     methodological:
       'People with incompatible values must still make shared decisions. Philosophical inquiry examines how disagreements can be handled under pluralism and institutional accountability.',

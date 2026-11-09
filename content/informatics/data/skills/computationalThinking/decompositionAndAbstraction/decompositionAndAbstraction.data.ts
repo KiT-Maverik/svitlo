@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   buildAnAbstractSystemModel_Skill_Data,
@@ -7,7 +7,7 @@ import {
   identifyEssentialObjectProperties_Skill_Data,
 } from './skills';
 
-export const decompositionAndAbstraction_SkillGroup_Data = buildSkillGroupConfig({
+export const decompositionAndAbstraction_SkillGroup_Data = defineSkillGroup({
   slug: 'decompositionAndAbstraction',
   id: '0aced4cc-9732-4bc2-ad8e-59febc0d78db',
   name: {
@@ -41,12 +41,12 @@ export const decompositionAndAbstraction_SkillGroup_Data = buildSkillGroupConfig
     kk: 'Бөлшектеу және абстракциялау',
     qm: 'Parçalarğa bölüv ve soyutlav',
   },
-  skills: {
-    buildAnAbstractSystemModel: buildAnAbstractSystemModel_Skill_Data,
-    decomposeAProblem: decomposeAProblem_Skill_Data,
-    generalizeARepeatedMethod: generalizeARepeatedMethod_Skill_Data,
-    identifyEssentialObjectProperties: identifyEssentialObjectProperties_Skill_Data,
-  },
+  skills: [
+    buildAnAbstractSystemModel_Skill_Data,
+    decomposeAProblem_Skill_Data,
+    generalizeARepeatedMethod_Skill_Data,
+    identifyEssentialObjectProperties_Skill_Data,
+  ],
   description: {
     methodological:
       "Defining a problem's boundaries by breaking it into subproblems, identifying meaningful characteristics, and constructing a simplified model. These operations precede selecting a specific algorithm or class structure.",

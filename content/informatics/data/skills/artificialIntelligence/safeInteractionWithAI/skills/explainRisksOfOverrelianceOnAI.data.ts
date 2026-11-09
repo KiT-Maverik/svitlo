@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainRisksOfOverrelianceOnAI_Skill_Data = buildSkillConfig({
+export const explainRisksOfOverrelianceOnAI_Skill_Data = defineSkill({
   slug: 'explainRisksOfOverrelianceOnAI',
   id: '865f487b-53d1-4664-9463-05b82d20a2c3',
   name: {

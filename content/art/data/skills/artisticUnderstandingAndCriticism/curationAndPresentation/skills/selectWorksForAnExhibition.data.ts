@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const selectWorksForAnExhibition_Skill_Data = buildSkillConfig({
+export const selectWorksForAnExhibition_Skill_Data = defineSkill({
   slug: 'selectWorksForAnExhibition',
   id: '2683a750-f868-4024-ba81-0b1a2d286933',
   name: {

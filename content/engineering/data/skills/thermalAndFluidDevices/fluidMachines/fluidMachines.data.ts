@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   gasCompressors_Skill_Data,
@@ -7,7 +7,7 @@ import {
   pneumaticActuators_Skill_Data,
 } from './skills';
 
-export const fluidMachines_SkillGroup_Data = buildSkillGroupConfig({
+export const fluidMachines_SkillGroup_Data = defineSkillGroup({
   slug: 'fluidMachines',
   id: '9187f9ae-8ec0-47cd-88d4-b63ff79f763c',
   name: {
@@ -41,12 +41,12 @@ export const fluidMachines_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Сұйықтық және газ машиналары',
     qm: 'Sıyıqlıq ve gaz maşinaları',
   },
-  skills: {
-    gasCompressors: gasCompressors_Skill_Data,
-    hydraulicActuators: hydraulicActuators_Skill_Data,
-    liquidPumps: liquidPumps_Skill_Data,
-    pneumaticActuators: pneumaticActuators_Skill_Data,
-  },
+  skills: [
+    gasCompressors_Skill_Data,
+    hydraulicActuators_Skill_Data,
+    liquidPumps_Skill_Data,
+    pneumaticActuators_Skill_Data,
+  ],
   description: {
     methodological:
       'Mechanical energy can produce fluid flow, pressure or driven motion using distinct devices with different operating media.',

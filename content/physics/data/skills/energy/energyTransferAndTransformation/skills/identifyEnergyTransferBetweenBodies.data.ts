@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyEnergyTransferBetweenBodies_Skill_Data = buildSkillConfig({
+export const identifyEnergyTransferBetweenBodies_Skill_Data = defineSkill({
   slug: 'identifyEnergyTransferBetweenBodies',
   id: 'f3a822e0-c51e-4d80-8cab-27c3ee023abf',
   name: {

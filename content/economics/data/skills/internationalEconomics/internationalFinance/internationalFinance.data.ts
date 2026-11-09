@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   currencyCrises_Skill_Data,
@@ -7,7 +7,7 @@ import {
   internationalCapitalFlows_Skill_Data,
 } from './skills';
 
-export const internationalFinance_SkillGroup_Data = buildSkillGroupConfig({
+export const internationalFinance_SkillGroup_Data = defineSkillGroup({
   slug: 'internationalFinance',
   id: 'ed9e2528-b5b9-4b78-aa4e-97c57dd91cf1',
   name: {
@@ -41,12 +41,12 @@ export const internationalFinance_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Халықаралық қаржы',
     qm: 'Halqlarara maliye',
   },
-  skills: {
-    currencyCrises: currencyCrises_Skill_Data,
-    debtCrises: debtCrises_Skill_Data,
-    foreignDirectInvestment: foreignDirectInvestment_Skill_Data,
-    internationalCapitalFlows: internationalCapitalFlows_Skill_Data,
-  },
+  skills: [
+    currencyCrises_Skill_Data,
+    debtCrises_Skill_Data,
+    foreignDirectInvestment_Skill_Data,
+    internationalCapitalFlows_Skill_Data,
+  ],
   description: {
     methodological:
       'Capital crosses borders through investments, loans, and other claims with distinctive benefits and risks.',

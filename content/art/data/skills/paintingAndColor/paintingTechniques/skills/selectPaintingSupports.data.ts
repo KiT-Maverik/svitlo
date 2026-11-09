@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const selectPaintingSupports_Skill_Data = buildSkillConfig({
+export const selectPaintingSupports_Skill_Data = defineSkill({
   slug: 'selectPaintingSupports',
   id: 'af7e137a-5b1a-4c42-a1ef-0a3534e4d42c',
   name: {

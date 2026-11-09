@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const economicDataQuality_Skill_Data = buildSkillConfig({
+export const economicDataQuality_Skill_Data = defineSkill({
   slug: 'economicDataQuality',
   id: '60febcca-4187-4172-baae-58d4086cea21',
   name: {

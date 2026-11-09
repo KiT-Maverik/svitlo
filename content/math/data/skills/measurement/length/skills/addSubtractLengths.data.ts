@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const addSubtractLengths_Skill_Data = buildSkillConfig({
+export const addSubtractLengths_Skill_Data = defineSkill({
   slug: 'addSubtractLengths',
   id: 'c3226a47-162d-4c7e-8d56-52814767de5f',
   name: {

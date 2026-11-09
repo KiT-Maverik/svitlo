@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const composeDecomposeShapes_Skill_Data = buildSkillConfig({
+export const composeDecomposeShapes_Skill_Data = defineSkill({
   slug: 'composeDecomposeShapes',
   id: '1612d301-b286-45d0-ab5f-b52393bdce31',
   name: {

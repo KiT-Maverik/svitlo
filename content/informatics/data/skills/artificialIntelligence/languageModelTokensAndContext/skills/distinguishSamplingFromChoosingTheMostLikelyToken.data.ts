@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishSamplingFromChoosingTheMostLikelyToken_Skill_Data = buildSkillConfig({
+export const distinguishSamplingFromChoosingTheMostLikelyToken_Skill_Data = defineSkill({
   slug: 'distinguishSamplingFromChoosingTheMostLikelyToken',
   id: '5f2b4a96-a6e8-46d0-aeeb-a8c84da9ada5',
   name: {

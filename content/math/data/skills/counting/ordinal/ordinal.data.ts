@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { basicOrdinal_Skill_Data } from './skills';
 
-export const ordinal_SkillGroup_Data = buildSkillGroupConfig({
+export const ordinal_SkillGroup_Data = defineSkillGroup({
   slug: 'ordinal',
   id: 'e7661e0a-4758-4f27-9754-3d75cc7afc12',
   name: {
@@ -36,9 +36,7 @@ export const ordinal_SkillGroup_Data = buildSkillGroupConfig({
     pl: 'Liczenie porządkowe',
     uk: 'Порядкова лічба',
   },
-  skills: {
-    basicOrdinal: basicOrdinal_Skill_Data,
-  },
+  skills: [basicOrdinal_Skill_Data],
   description: {
     methodological:
       "The distinction between an element's position in an ordered sequence and the total number of elements, separating 'which position?' from 'how many?'.",

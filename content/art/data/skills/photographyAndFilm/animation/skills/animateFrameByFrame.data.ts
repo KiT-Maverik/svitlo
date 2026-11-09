@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const animateFrameByFrame_Skill_Data = buildSkillConfig({
+export const animateFrameByFrame_Skill_Data = defineSkill({
   slug: 'animateFrameByFrame',
   id: '301187f2-870f-44c8-8e92-2641384bfa2b',
   name: {

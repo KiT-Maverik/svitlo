@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const useWaterSafetyMeasures_Skill_Data = buildSkillConfig({
+export const useWaterSafetyMeasures_Skill_Data = defineSkill({
   slug: 'useWaterSafetyMeasures',
   id: '988fc1d4-29c0-4d2b-b1e0-a2fb0d1505ef',
   name: {

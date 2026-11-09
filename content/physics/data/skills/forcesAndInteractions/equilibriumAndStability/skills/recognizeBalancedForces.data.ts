@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeBalancedForces_Skill_Data = buildSkillConfig({
+export const recognizeBalancedForces_Skill_Data = defineSkill({
   slug: 'recognizeBalancedForces',
   id: 'f75660d5-a2c4-4579-b6fd-642a0986b517',
   name: {

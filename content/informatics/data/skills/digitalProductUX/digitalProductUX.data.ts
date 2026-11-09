@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { accessibility_SkillGroup_Data } from './accessibility/accessibility.data';
 import { digitalInteractionDesign_SkillGroup_Data } from './digitalInteractionDesign/digitalInteractionDesign.data';
 import { experienceEvaluationAndEthics_SkillGroup_Data } from './experienceEvaluationAndEthics/experienceEvaluationAndEthics.data';
 
-export const digitalProductUX_SkillDomain_Data = buildSkillDomainConfig({
+export const digitalProductUX_SkillDomain_Data = defineSkillDomain({
   slug: 'digitalProductUX',
   id: 'b7d62fbd-b818-426e-b86b-9d30d49b8295',
-  name: {
+  title: {
     en: 'Digital Product UX',
     zh: '数字产品用户体验',
     hi: 'डिजिटल उत्पाद का उपयोगकर्ता अनुभव',
@@ -38,11 +38,11 @@ export const digitalProductUX_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Цифрлық өнімнің пайдаланушы тәжірибесі',
     qm: 'Raqamlı mahsulatnıñ qullanıcı tecribesi',
   },
-  groups: {
-    accessibility: accessibility_SkillGroup_Data,
-    digitalInteractionDesign: digitalInteractionDesign_SkillGroup_Data,
-    experienceEvaluationAndEthics: experienceEvaluationAndEthics_SkillGroup_Data,
-  },
+  groups: [
+    accessibility_SkillGroup_Data,
+    digitalInteractionDesign_SkillGroup_Data,
+    experienceEvaluationAndEthics_SkillGroup_Data,
+  ],
   description: {
     methodological:
       "An Informatics perspective on people's experience with programs, digital devices, and electronic interfaces: goals, navigation, feedback, accessibility, usability, and ethics. Engineering separately studies UX for physical products and engineering systems; a shared discipline name does not imply shared Skill identities across textbooks.",

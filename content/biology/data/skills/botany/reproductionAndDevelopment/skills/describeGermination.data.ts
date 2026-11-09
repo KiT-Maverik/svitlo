@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const describeGermination_Skill_Data = buildSkillConfig({
+export const describeGermination_Skill_Data = defineSkill({
   slug: 'describeGermination',
   id: '3069a90c-6804-4565-9d83-e1602f66554c',
   name: {

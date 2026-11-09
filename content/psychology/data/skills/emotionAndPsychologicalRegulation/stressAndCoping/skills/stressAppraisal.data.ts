@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const stressAppraisal_Skill_Data = buildSkillConfig({
+export const stressAppraisal_Skill_Data = defineSkill({
   slug: 'stressAppraisal',
   id: '70b0acbd-c4f0-4c50-9284-7218339be56c',
   name: {

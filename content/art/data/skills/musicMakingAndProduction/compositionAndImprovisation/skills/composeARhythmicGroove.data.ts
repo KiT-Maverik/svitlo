@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const composeARhythmicGroove_Skill_Data = buildSkillConfig({
+export const composeARhythmicGroove_Skill_Data = defineSkill({
   slug: 'composeARhythmicGroove',
   id: '6020e823-ad36-4656-b991-a15f650e43d8',
   name: {

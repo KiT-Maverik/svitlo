@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   carveSubtractiveSculpture_Skill_Data,
@@ -8,7 +8,7 @@ import {
   usePositiveAndNegativeSpace_Skill_Data,
 } from './skills';
 
-export const sculpturalForm_SkillGroup_Data = buildSkillGroupConfig({
+export const sculpturalForm_SkillGroup_Data = defineSkillGroup({
   slug: 'sculpturalForm',
   id: '65afcf28-567a-4826-8ea2-69cc02876167',
   name: {
@@ -42,13 +42,13 @@ export const sculpturalForm_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Мүсіндік пішін',
     qm: 'Heykel şekli',
   },
-  skills: {
-    carveSubtractiveSculpture: carveSubtractiveSculpture_Skill_Data,
-    constructThreeDimensionalForm: constructThreeDimensionalForm_Skill_Data,
-    createReliefSculpture: createReliefSculpture_Skill_Data,
-    modelAdditiveSculpture: modelAdditiveSculpture_Skill_Data,
-    usePositiveAndNegativeSpace: usePositiveAndNegativeSpace_Skill_Data,
-  },
+  skills: [
+    carveSubtractiveSculpture_Skill_Data,
+    constructThreeDimensionalForm_Skill_Data,
+    createReliefSculpture_Skill_Data,
+    modelAdditiveSculpture_Skill_Data,
+    usePositiveAndNegativeSpace_Skill_Data,
+  ],
   description: {
     methodological:
       'Volume and void, physical viewpoints and material manipulation characterize three-dimensional artistic work.',

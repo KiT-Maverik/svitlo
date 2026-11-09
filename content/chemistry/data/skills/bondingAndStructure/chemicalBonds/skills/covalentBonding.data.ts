@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const covalentBonding_Skill_Data = buildSkillConfig({
+export const covalentBonding_Skill_Data = defineSkill({
   slug: 'covalentBonding',
   id: 'a3339cb6-b5eb-4e5f-9f75-c9a616d930d8',
   name: {

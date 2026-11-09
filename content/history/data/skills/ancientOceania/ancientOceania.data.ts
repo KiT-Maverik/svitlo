@@ -1,12 +1,12 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { australiaAndNewGuinea_SkillGroup_Data } from './australiaAndNewGuinea/australiaAndNewGuinea.data';
 import { pacificIslands_SkillGroup_Data } from './pacificIslands/pacificIslands.data';
 
-export const ancientOceania_SkillDomain_Data = buildSkillDomainConfig({
+export const ancientOceania_SkillDomain_Data = defineSkillDomain({
   slug: 'ancientOceania',
   id: '83bcaecb-a01b-450c-9e1e-540a4c4f5b12',
-  name: {
+  title: {
     en: 'Oceania',
     zh: '大洋洲',
     hi: 'ओशिनिया',
@@ -37,10 +37,7 @@ export const ancientOceania_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Мұхит аралдары мен Аустралия (Океания)',
     qm: 'Okeaniya',
   },
-  groups: {
-    australiaAndNewGuinea: australiaAndNewGuinea_SkillGroup_Data,
-    pacificIslands: pacificIslands_SkillGroup_Data,
-  },
+  groups: [australiaAndNewGuinea_SkillGroup_Data, pacificIslands_SkillGroup_Data],
   description: {
     methodological:
       'The settlement of Australia and Pacific islands occurred through successive waves over a long period and required extensive environmental and navigation knowledge.',

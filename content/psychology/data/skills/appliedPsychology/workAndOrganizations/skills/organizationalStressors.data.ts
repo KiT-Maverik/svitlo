@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const organizationalStressors_Skill_Data = buildSkillConfig({
+export const organizationalStressors_Skill_Data = defineSkill({
   slug: 'organizationalStressors',
   id: 'd263f5c3-73dc-434a-8232-d17ee757a998',
   name: {

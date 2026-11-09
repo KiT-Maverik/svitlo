@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { centralPlanning_Skill_Data, marketCoordination_Skill_Data, mixedEconomies_Skill_Data } from './skills';
 
-export const economicSystems_SkillGroup_Data = buildSkillGroupConfig({
+export const economicSystems_SkillGroup_Data = defineSkillGroup({
   slug: 'economicSystems',
   id: '4f15e5dd-93d8-43ba-b9b4-08126f18c563',
   name: {
@@ -36,11 +36,7 @@ export const economicSystems_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Экономикалық жүйелер',
     qm: 'İqtisadiy sistemalar',
   },
-  skills: {
-    centralPlanning: centralPlanning_Skill_Data,
-    marketCoordination: marketCoordination_Skill_Data,
-    mixedEconomies: mixedEconomies_Skill_Data,
-  },
+  skills: [centralPlanning_Skill_Data, marketCoordination_Skill_Data, mixedEconomies_Skill_Data],
   description: {
     methodological:
       'Societies combine markets, planning, public coordination, traditions, and ownership forms in different ways.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const controlPaintedEdges_Skill_Data = buildSkillConfig({
+export const controlPaintedEdges_Skill_Data = defineSkill({
   slug: 'controlPaintedEdges',
   id: '816e12ed-872e-4a3c-91d6-ac31b861e528',
   name: {

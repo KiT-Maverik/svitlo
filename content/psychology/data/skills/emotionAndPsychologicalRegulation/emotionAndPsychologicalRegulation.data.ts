@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { emotionalProcesses_SkillGroup_Data } from './emotionalProcesses/emotionalProcesses.data';
 import { recognitionAndExpression_SkillGroup_Data } from './recognitionAndExpression/recognitionAndExpression.data';
 import { regulationStrategies_SkillGroup_Data } from './regulationStrategies/regulationStrategies.data';
 import { stressAndCoping_SkillGroup_Data } from './stressAndCoping/stressAndCoping.data';
 
-export const emotionAndPsychologicalRegulation_SkillDomain_Data = buildSkillDomainConfig({
+export const emotionAndPsychologicalRegulation_SkillDomain_Data = defineSkillDomain({
   slug: 'emotionAndPsychologicalRegulation',
   id: '73a0c114-3219-4229-b19f-d67cf632abb7',
-  name: {
+  title: {
     en: 'Emotion and Psychological Regulation',
     zh: '情绪与心理调节',
     hi: 'भावनाएँ और मनोवैज्ञानिक नियमन',
@@ -39,12 +39,12 @@ export const emotionAndPsychologicalRegulation_SkillDomain_Data = buildSkillDoma
     kk: 'Эмоциялар және психологиялық реттеу',
     qm: 'Duyğular ve psihologik idare etüv',
   },
-  groups: {
-    emotionalProcesses: emotionalProcesses_SkillGroup_Data,
-    recognitionAndExpression: recognitionAndExpression_SkillGroup_Data,
-    regulationStrategies: regulationStrategies_SkillGroup_Data,
-    stressAndCoping: stressAndCoping_SkillGroup_Data,
-  },
+  groups: [
+    emotionalProcesses_SkillGroup_Data,
+    recognitionAndExpression_SkillGroup_Data,
+    regulationStrategies_SkillGroup_Data,
+    stressAndCoping_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Emotional responses combine appraisal, bodily activation, expression, and action tendencies. Regulation concerns responding flexibly to emotions, not suppressing every uncomfortable experience.',

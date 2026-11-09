@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeMughalMiniaturePainting_Skill_Data = buildSkillConfig({
+export const analyzeMughalMiniaturePainting_Skill_Data = defineSkill({
   slug: 'analyzeMughalMiniaturePainting',
   id: '93730a06-751a-4179-bb69-12038af7c2c2',
   name: {

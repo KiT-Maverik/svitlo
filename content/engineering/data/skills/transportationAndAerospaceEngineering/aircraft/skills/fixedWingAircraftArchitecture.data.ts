@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const fixedWingAircraftArchitecture_Skill_Data = buildSkillConfig({
+export const fixedWingAircraftArchitecture_Skill_Data = defineSkill({
   slug: 'fixedWingAircraftArchitecture',
   id: 'ade2b664-ca83-4f82-ba43-109665792228',
   name: {

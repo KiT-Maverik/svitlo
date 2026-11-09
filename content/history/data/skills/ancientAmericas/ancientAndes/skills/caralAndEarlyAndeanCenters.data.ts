@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const caralAndEarlyAndeanCenters_Skill_Data = buildSkillConfig({
+export const caralAndEarlyAndeanCenters_Skill_Data = defineSkill({
   slug: 'caralAndEarlyAndeanCenters',
   id: '6f196a1e-663e-4dc3-80ca-6bbc4aa19072',
   name: {

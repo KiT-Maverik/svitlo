@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const standardUnitPurpose_Skill_Data = buildSkillConfig({
+export const standardUnitPurpose_Skill_Data = defineSkill({
   slug: 'standardUnitPurpose',
   id: '543a4960-c0e1-43cf-911b-4c59b6c36571',
   name: {

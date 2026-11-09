@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const verifyAWebsitesDomain_Skill_Data = buildSkillConfig({
+export const verifyAWebsitesDomain_Skill_Data = defineSkill({
   slug: 'verifyAWebsitesDomain',
   id: '41659055-755a-46d0-ac1d-090c651e8f11',
   name: {

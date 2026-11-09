@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const operationalDefinitions_Skill_Data = buildSkillConfig({
+export const operationalDefinitions_Skill_Data = defineSkill({
   slug: 'operationalDefinitions',
   id: '345f5e02-4971-4387-bef6-ffb1fee235a2',
   name: {

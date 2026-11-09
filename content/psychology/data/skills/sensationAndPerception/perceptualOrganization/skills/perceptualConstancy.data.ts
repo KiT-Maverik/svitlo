@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const perceptualConstancy_Skill_Data = buildSkillConfig({
+export const perceptualConstancy_Skill_Data = defineSkill({
   slug: 'perceptualConstancy',
   id: '49551c38-1494-4b12-bc40-0ed57973095d',
   name: {

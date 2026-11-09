@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainTheEffectOfGravityOnThePassageOfTime_Skill_Data = buildSkillConfig({
+export const explainTheEffectOfGravityOnThePassageOfTime_Skill_Data = defineSkill({
   slug: 'explainTheEffectOfGravityOnThePassageOfTime',
   id: '5098662d-76bc-4cc9-beaa-43829cf9ba52',
   name: {

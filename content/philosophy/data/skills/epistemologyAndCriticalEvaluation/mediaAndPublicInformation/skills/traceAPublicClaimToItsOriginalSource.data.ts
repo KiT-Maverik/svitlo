@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const traceAPublicClaimToItsOriginalSource_Skill_Data = buildSkillConfig({
+export const traceAPublicClaimToItsOriginalSource_Skill_Data = defineSkill({
   slug: 'traceAPublicClaimToItsOriginalSource',
   id: '968bd359-751e-428a-a3ea-853cffe01fd7',
   name: {

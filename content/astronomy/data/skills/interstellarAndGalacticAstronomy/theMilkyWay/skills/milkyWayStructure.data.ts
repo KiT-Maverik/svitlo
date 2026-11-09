@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const milkyWayStructure_Skill_Data = buildSkillConfig({
+export const milkyWayStructure_Skill_Data = defineSkill({
   slug: 'milkyWayStructure',
   id: 'd6602fe7-c23d-44ed-ac6c-68afc483fbec',
   name: {

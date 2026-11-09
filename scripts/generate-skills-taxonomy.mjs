@@ -116,7 +116,8 @@ function readEntity(file, kind) {
     if (
       ts.isCallExpression(n) &&
       ts.isIdentifier(n.expression) &&
-      n.expression.text === 'build' + kind + 'Config' &&
+      n.expression.text ===
+        (kind === 'SkillDomain' ? 'defineSkillDomain' : kind === 'SkillGroup' ? 'defineSkillGroup' : 'defineSkill') &&
       n.arguments.length === 1 &&
       ts.isObjectLiteralExpression(n.arguments[0])
     ) {
@@ -126,9 +127,9 @@ function readEntity(file, kind) {
     ts.forEachChild(n, visit);
   }
   visit(sf);
-  if (!config) fail('Missing build' + kind + 'Config in ' + file);
+  if (!config) fail('Missing Skill configurator for ' + kind + ': ' + file);
 
-  const name = dictionary(config, 'name', file);
+  const name = dictionary(config, kind === 'SkillDomain' ? 'title' : 'name', file);
   const descriptionMember = getProperty(config, 'description');
   if (!descriptionMember) fail('Missing description (taxonomy not yet migrated): ' + file);
   const description = unwrap(descriptionMember.initializer);

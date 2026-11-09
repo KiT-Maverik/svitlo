@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeTechnologicalMediation_Skill_Data = buildSkillConfig({
+export const analyzeTechnologicalMediation_Skill_Data = defineSkill({
   slug: 'analyzeTechnologicalMediation',
   id: '23ddb3b7-91dc-4dc5-815f-5a2a51415f98',
   name: {

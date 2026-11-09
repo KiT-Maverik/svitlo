@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   caralAndEarlyAndeanCenters_Skill_Data,
@@ -7,7 +7,7 @@ import {
   nazcaCulture_Skill_Data,
 } from './skills';
 
-export const ancientAndes_SkillGroup_Data = buildSkillGroupConfig({
+export const ancientAndes_SkillGroup_Data = defineSkillGroup({
   slug: 'ancientAndes',
   id: '80ecf86d-411d-45ad-a562-3147d4346bac',
   name: {
@@ -41,12 +41,12 @@ export const ancientAndes_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Анд таулары',
     qm: 'And dağları',
   },
-  skills: {
-    caralAndEarlyAndeanCenters: caralAndEarlyAndeanCenters_Skill_Data,
-    chavinCulture: chavinCulture_Skill_Data,
-    mocheCulture: mocheCulture_Skill_Data,
-    nazcaCulture: nazcaCulture_Skill_Data,
-  },
+  skills: [
+    caralAndEarlyAndeanCenters_Skill_Data,
+    chavinCulture_Skill_Data,
+    mocheCulture_Skill_Data,
+    nazcaCulture_Skill_Data,
+  ],
   description: {
     methodological: 'Coastal valleys and highlands supported diverse farming, cities, and social coordination.',
     frontend: {

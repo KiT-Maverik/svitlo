@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const neuralSignaling_Skill_Data = buildSkillConfig({
+export const neuralSignaling_Skill_Data = defineSkill({
   slug: 'neuralSignaling',
   id: 'ba92607d-1ad4-403c-a1f3-5c876731d284',
   name: {

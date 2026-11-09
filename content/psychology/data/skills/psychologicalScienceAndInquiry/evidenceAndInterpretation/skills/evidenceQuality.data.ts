@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evidenceQuality_Skill_Data = buildSkillConfig({
+export const evidenceQuality_Skill_Data = defineSkill({
   slug: 'evidenceQuality',
   id: '5c4aeafb-6af7-4fca-a850-d1b59bcd3ed1',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const illustrateASequence_Skill_Data = buildSkillConfig({
+export const illustrateASequence_Skill_Data = defineSkill({
   slug: 'illustrateASequence',
   id: '563e160d-92c1-402f-bb7e-f8ec0025fbcf',
   name: {

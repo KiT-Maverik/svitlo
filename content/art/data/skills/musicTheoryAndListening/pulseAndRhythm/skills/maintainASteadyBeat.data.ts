@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const maintainASteadyBeat_Skill_Data = buildSkillConfig({
+export const maintainASteadyBeat_Skill_Data = defineSkill({
   slug: 'maintainASteadyBeat',
   id: '27177be4-eff5-4016-aa42-f0903e5bfabc',
   name: {

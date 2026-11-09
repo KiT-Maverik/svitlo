@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const avoidanceMotivation_Skill_Data = buildSkillConfig({
+export const avoidanceMotivation_Skill_Data = defineSkill({
   slug: 'avoidanceMotivation',
   id: 'bbb4d156-c719-4972-8af2-a2b380e84c46',
   name: {

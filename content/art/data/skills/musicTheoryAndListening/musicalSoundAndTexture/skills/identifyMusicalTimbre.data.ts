@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyMusicalTimbre_Skill_Data = buildSkillConfig({
+export const identifyMusicalTimbre_Skill_Data = defineSkill({
   slug: 'identifyMusicalTimbre',
   id: '49eebf73-e722-4df2-a425-f0f2ffbf21cf',
   name: {

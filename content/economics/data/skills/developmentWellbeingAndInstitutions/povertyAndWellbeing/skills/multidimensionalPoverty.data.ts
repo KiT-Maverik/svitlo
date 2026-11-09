@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const multidimensionalPoverty_Skill_Data = buildSkillConfig({
+export const multidimensionalPoverty_Skill_Data = defineSkill({
   slug: 'multidimensionalPoverty',
   id: '8f0e0d12-6df7-4289-8b72-343b2e371550',
   name: {

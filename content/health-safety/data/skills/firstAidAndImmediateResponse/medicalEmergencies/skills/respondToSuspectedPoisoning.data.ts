@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const respondToSuspectedPoisoning_Skill_Data = buildSkillConfig({
+export const respondToSuspectedPoisoning_Skill_Data = defineSkill({
   slug: 'respondToSuspectedPoisoning',
   id: '71b84e35-3ad3-4a1e-a25d-0a472e519c7a',
   name: {

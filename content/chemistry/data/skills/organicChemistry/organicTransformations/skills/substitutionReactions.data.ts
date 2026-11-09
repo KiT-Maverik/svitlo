@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const substitutionReactions_Skill_Data = buildSkillConfig({
+export const substitutionReactions_Skill_Data = defineSkill({
   slug: 'substitutionReactions',
   id: '2a5c6f0f-5197-45de-b318-e45c8740b78c',
   name: {

@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { commonPoolResources_SkillGroup_Data } from './commonPoolResources/commonPoolResources.data';
 import { environmentalIncentivesAndPolicy_SkillGroup_Data } from './environmentalIncentivesAndPolicy/environmentalIncentivesAndPolicy.data';
 import { sustainabilityAndIntertemporalChoice_SkillGroup_Data } from './sustainabilityAndIntertemporalChoice/sustainabilityAndIntertemporalChoice.data';
 
-export const environmentalAndResourceEconomics_SkillDomain_Data = buildSkillDomainConfig({
+export const environmentalAndResourceEconomics_SkillDomain_Data = defineSkillDomain({
   slug: 'environmentalAndResourceEconomics',
   id: 'b024a531-e8f6-4eca-abcd-352668390df1',
-  name: {
+  title: {
     en: 'Економіка довкілля та ресурсів',
     zh: '环境与资源经济学',
     hi: 'पर्यावरण एवं संसाधन अर्थशास्त्र',
@@ -38,11 +38,11 @@ export const environmentalAndResourceEconomics_SkillDomain_Data = buildSkillDoma
     kk: 'Қоршаған орта және ресурстар экономикасы',
     qm: 'Çevre ve resurslar iqtisadiyatı',
   },
-  groups: {
-    commonPoolResources: commonPoolResources_SkillGroup_Data,
-    environmentalIncentivesAndPolicy: environmentalIncentivesAndPolicy_SkillGroup_Data,
-    sustainabilityAndIntertemporalChoice: sustainabilityAndIntertemporalChoice_SkillGroup_Data,
-  },
+  groups: [
+    commonPoolResources_SkillGroup_Data,
+    environmentalIncentivesAndPolicy_SkillGroup_Data,
+    sustainabilityAndIntertemporalChoice_SkillGroup_Data,
+  ],
   description: {
     methodological:
       "Production and consumption depend on ecosystems, resources, and the environment's capacity to absorb impacts. This domain examines economic incentives, valuation, and rules governing nature rather than the physics or biology of underlying processes.",

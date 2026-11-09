@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const nokCulture_Skill_Data = buildSkillConfig({
+export const nokCulture_Skill_Data = defineSkill({
   slug: 'nokCulture',
   id: 'dce464f8-c4e0-4763-99e4-92ff0926fffc',
   name: {

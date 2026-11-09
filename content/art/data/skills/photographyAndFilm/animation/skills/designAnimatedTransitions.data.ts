@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const designAnimatedTransitions_Skill_Data = buildSkillConfig({
+export const designAnimatedTransitions_Skill_Data = defineSkill({
   slug: 'designAnimatedTransitions',
   id: 'e598542d-3cda-4aa9-b0e3-ae520319ca2d',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const skyMapsAndStarCharts_Skill_Data = buildSkillConfig({
+export const skyMapsAndStarCharts_Skill_Data = defineSkill({
   slug: 'skyMapsAndStarCharts',
   id: 'f8b17444-6be3-448e-91b6-b92102202225',
   name: {

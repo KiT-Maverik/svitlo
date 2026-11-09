@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateDutiesTowardNonhumanAnimals_Skill_Data = buildSkillConfig({
+export const evaluateDutiesTowardNonhumanAnimals_Skill_Data = defineSkill({
   slug: 'evaluateDutiesTowardNonhumanAnimals',
   id: '4a31746b-7543-43f5-8626-4f914ad662bc',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const noDivisionByZero_Skill_Data = buildSkillConfig({
+export const noDivisionByZero_Skill_Data = defineSkill({
   slug: 'noDivisionByZero',
   id: '531a8f3a-537c-4e2a-985f-a9b57e7dab9a',
   name: {

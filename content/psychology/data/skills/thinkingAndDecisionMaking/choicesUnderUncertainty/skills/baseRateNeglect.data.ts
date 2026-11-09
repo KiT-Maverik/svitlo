@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const baseRateNeglect_Skill_Data = buildSkillConfig({
+export const baseRateNeglect_Skill_Data = defineSkill({
   slug: 'baseRateNeglect',
   id: '6c3ba586-db45-4d6a-b69e-3126cbc7dacf',
   name: {

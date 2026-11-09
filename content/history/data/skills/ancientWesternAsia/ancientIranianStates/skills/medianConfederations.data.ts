@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const medianConfederations_Skill_Data = buildSkillConfig({
+export const medianConfederations_Skill_Data = defineSkill({
   slug: 'medianConfederations',
   id: 'a8e5cbe9-257f-41a1-b2e7-3abead672e6e',
   name: {

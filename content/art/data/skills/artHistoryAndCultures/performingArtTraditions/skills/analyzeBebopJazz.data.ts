@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeBebopJazz_Skill_Data = buildSkillConfig({
+export const analyzeBebopJazz_Skill_Data = defineSkill({
   slug: 'analyzeBebopJazz',
   id: '86698621-3030-4d7c-b05b-d8a434d1e961',
   name: {

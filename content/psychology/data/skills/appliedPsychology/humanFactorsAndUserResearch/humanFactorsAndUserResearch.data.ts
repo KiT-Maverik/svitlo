@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   accessibleInteractionPsychology_Skill_Data,
@@ -7,7 +7,7 @@ import {
   usabilityResearchMethods_Skill_Data,
 } from './skills';
 
-export const humanFactorsAndUserResearch_SkillGroup_Data = buildSkillGroupConfig({
+export const humanFactorsAndUserResearch_SkillGroup_Data = defineSkillGroup({
   slug: 'humanFactorsAndUserResearch',
   id: 'd3198e57-ffdb-4e21-a96f-78e4bcf03293',
   name: {
@@ -41,12 +41,12 @@ export const humanFactorsAndUserResearch_SkillGroup_Data = buildSkillGroupConfig
     kk: 'Адам факторлары және пайдаланушыларды зерттеу',
     qm: 'İnsan faktorları ve qullanıcı araştırmaları',
   },
-  skills: {
-    accessibleInteractionPsychology: accessibleInteractionPsychology_Skill_Data,
-    cognitiveLoadInInterfaces: cognitiveLoadInInterfaces_Skill_Data,
-    humanErrorAndSystemDesign: humanErrorAndSystemDesign_Skill_Data,
-    usabilityResearchMethods: usabilityResearchMethods_Skill_Data,
-  },
+  skills: [
+    accessibleInteractionPsychology_Skill_Data,
+    cognitiveLoadInInterfaces_Skill_Data,
+    humanErrorAndSystemDesign_Skill_Data,
+    usabilityResearchMethods_Skill_Data,
+  ],
   description: {
     methodological:
       'Design decisions benefit from evidence about human attention, memory, perception, workload, and error; implementation remains owned by engineering or informatics.',

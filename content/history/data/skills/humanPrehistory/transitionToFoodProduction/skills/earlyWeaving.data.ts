@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const earlyWeaving_Skill_Data = buildSkillConfig({
+export const earlyWeaving_Skill_Data = defineSkill({
   slug: 'earlyWeaving',
   id: '6fadfd73-0fca-4191-bfdf-869edfd2b48d',
   name: {

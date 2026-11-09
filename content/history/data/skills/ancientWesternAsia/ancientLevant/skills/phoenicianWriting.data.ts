@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const phoenicianWriting_Skill_Data = buildSkillConfig({
+export const phoenicianWriting_Skill_Data = defineSkill({
   slug: 'phoenicianWriting',
   id: 'ff509e58-f4fb-412b-924c-d5f665019165',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const automaticStabilizers_Skill_Data = buildSkillConfig({
+export const automaticStabilizers_Skill_Data = defineSkill({
   slug: 'automaticStabilizers',
   id: '7d69f3b3-fc87-4ecf-b79c-4f866a61ca50',
   name: {

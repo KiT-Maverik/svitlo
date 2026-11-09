@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const lunarLibration_Skill_Data = buildSkillConfig({
+export const lunarLibration_Skill_Data = defineSkill({
   slug: 'lunarLibration',
   id: '58878ae0-7163-44d4-826e-a1b03b47ec6a',
   name: {

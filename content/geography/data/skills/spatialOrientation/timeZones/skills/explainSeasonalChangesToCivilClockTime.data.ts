@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainSeasonalChangesToCivilClockTime_Skill_Data = buildSkillConfig({
+export const explainSeasonalChangesToCivilClockTime_Skill_Data = defineSkill({
   slug: 'explainSeasonalChangesToCivilClockTime',
   id: 'deac7226-c16d-4b55-96b1-d7a91c9d03e5',
   name: {

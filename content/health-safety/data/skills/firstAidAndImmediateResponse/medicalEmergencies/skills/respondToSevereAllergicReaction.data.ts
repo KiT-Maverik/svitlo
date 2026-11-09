@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const respondToSevereAllergicReaction_Skill_Data = buildSkillConfig({
+export const respondToSevereAllergicReaction_Skill_Data = defineSkill({
   slug: 'respondToSevereAllergicReaction',
   id: '743cd98e-10fb-4e3b-9a77-98ef804086d1',
   name: {

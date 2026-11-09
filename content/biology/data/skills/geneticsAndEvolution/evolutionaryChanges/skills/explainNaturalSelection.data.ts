@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainNaturalSelection_Skill_Data = buildSkillConfig({
+export const explainNaturalSelection_Skill_Data = defineSkill({
   slug: 'explainNaturalSelection',
   id: '9f24316d-aeea-4728-8ecc-4022755c2a78',
   name: {

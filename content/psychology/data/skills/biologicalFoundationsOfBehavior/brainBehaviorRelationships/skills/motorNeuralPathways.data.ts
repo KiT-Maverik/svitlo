@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const motorNeuralPathways_Skill_Data = buildSkillConfig({
+export const motorNeuralPathways_Skill_Data = defineSkill({
   slug: 'motorNeuralPathways',
   id: 'dfe20d50-c666-463b-ab15-0be7d6392291',
   name: {

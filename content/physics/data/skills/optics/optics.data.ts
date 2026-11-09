@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { lightAndShadows_SkillGroup_Data } from './lightAndShadows/lightAndShadows.data';
 import { lightReflection_SkillGroup_Data } from './lightReflection/lightReflection.data';
@@ -6,10 +6,10 @@ import { lightSourcesAndVisibility_SkillGroup_Data } from './lightSourcesAndVisi
 import { refractionAndLenses_SkillGroup_Data } from './refractionAndLenses/refractionAndLenses.data';
 import { transparency_SkillGroup_Data } from './transparency/transparency.data';
 
-export const optics_SkillDomain_Data = buildSkillDomainConfig({
+export const optics_SkillDomain_Data = defineSkillDomain({
   slug: 'optics',
   id: 'ceb0d29f-42e8-4ed3-b88f-ee8de5b753ea',
-  name: {
+  title: {
     en: 'Optics',
     zh: '光学',
     hi: 'प्रकाशिकी',
@@ -40,13 +40,13 @@ export const optics_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Оптика',
     qm: 'Optika',
   },
-  groups: {
-    lightAndShadows: lightAndShadows_SkillGroup_Data,
-    lightReflection: lightReflection_SkillGroup_Data,
-    lightSourcesAndVisibility: lightSourcesAndVisibility_SkillGroup_Data,
-    refractionAndLenses: refractionAndLenses_SkillGroup_Data,
-    transparency: transparency_SkillGroup_Data,
-  },
+  groups: [
+    lightAndShadows_SkillGroup_Data,
+    lightReflection_SkillGroup_Data,
+    lightSourcesAndVisibility_SkillGroup_Data,
+    refractionAndLenses_SkillGroup_Data,
+    transparency_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Optics studies the propagation of light, image formation, and the interaction of light rays with surfaces, water, and lenses. The broader electromagnetic radiation spectrum is classified separately.',

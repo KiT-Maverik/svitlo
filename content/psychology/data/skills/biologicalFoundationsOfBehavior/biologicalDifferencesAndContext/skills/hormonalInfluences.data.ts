@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const hormonalInfluences_Skill_Data = buildSkillConfig({
+export const hormonalInfluences_Skill_Data = defineSkill({
   slug: 'hormonalInfluences',
   id: 'facdba52-efa9-4177-8427-4234b7b8aef3',
   name: {

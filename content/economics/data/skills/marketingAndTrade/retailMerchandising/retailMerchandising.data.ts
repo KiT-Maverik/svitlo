@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   inventoryManagement_Skill_Data,
@@ -7,7 +7,7 @@ import {
   storeNavigation_Skill_Data,
 } from './skills';
 
-export const retailMerchandising_SkillGroup_Data = buildSkillGroupConfig({
+export const retailMerchandising_SkillGroup_Data = defineSkillGroup({
   slug: 'retailMerchandising',
   id: 'b1f308b8-3a29-4230-acd4-881d99b208df',
   name: {
@@ -41,12 +41,12 @@ export const retailMerchandising_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Бөлшек саудадағы тауарларды орналастыру',
     qm: 'Dükânda mallarnı yerleştirmek',
   },
-  skills: {
-    inventoryManagement: inventoryManagement_Skill_Data,
-    productDisplay: productDisplay_Skill_Data,
-    storeAssortment: storeAssortment_Skill_Data,
-    storeNavigation: storeNavigation_Skill_Data,
-  },
+  skills: [
+    inventoryManagement_Skill_Data,
+    productDisplay_Skill_Data,
+    storeAssortment_Skill_Data,
+    storeNavigation_Skill_Data,
+  ],
   description: {
     methodological:
       'Product placement, availability, presentation, and logistics affect how easily customers find and buy goods.',

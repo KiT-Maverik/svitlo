@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const airFiltrationEquipment_Skill_Data = buildSkillConfig({
+export const airFiltrationEquipment_Skill_Data = defineSkill({
   slug: 'airFiltrationEquipment',
   id: '362724ca-6ed5-43a3-8770-ba7f04cb6316',
   name: {

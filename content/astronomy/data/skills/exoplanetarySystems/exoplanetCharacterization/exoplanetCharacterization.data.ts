@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   exoplanetAtmosphericSpectra_Skill_Data,
@@ -8,7 +8,7 @@ import {
   exoplanetRadius_Skill_Data,
 } from './skills';
 
-export const exoplanetCharacterization_SkillGroup_Data = buildSkillGroupConfig({
+export const exoplanetCharacterization_SkillGroup_Data = defineSkillGroup({
   slug: 'exoplanetCharacterization',
   id: '042ade1c-e4e1-4b95-865a-e5b961b24811',
   name: {
@@ -42,13 +42,13 @@ export const exoplanetCharacterization_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Экзопланеталардың сипаттарын анықтау',
     qm: 'Ekzoseyyarelerniñ hususiyetlerini belgilev',
   },
-  skills: {
-    exoplanetAtmosphericSpectra: exoplanetAtmosphericSpectra_Skill_Data,
-    exoplanetBulkComposition: exoplanetBulkComposition_Skill_Data,
-    exoplanetMass: exoplanetMass_Skill_Data,
-    exoplanetOrbitalProperties: exoplanetOrbitalProperties_Skill_Data,
-    exoplanetRadius: exoplanetRadius_Skill_Data,
-  },
+  skills: [
+    exoplanetAtmosphericSpectra_Skill_Data,
+    exoplanetBulkComposition_Skill_Data,
+    exoplanetMass_Skill_Data,
+    exoplanetOrbitalProperties_Skill_Data,
+    exoplanetRadius_Skill_Data,
+  ],
   description: {
     methodological:
       'Planet properties are inferred by combining signals and interpreting assumptions, with important differences between measured quantities and theoretical models.',

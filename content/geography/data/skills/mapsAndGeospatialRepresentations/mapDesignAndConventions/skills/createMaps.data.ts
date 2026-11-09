@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const createMaps_Skill_Data = buildSkillConfig({
+export const createMaps_Skill_Data = defineSkill({
   slug: 'createMaps',
   id: '5ca5023d-7336-42bb-8b66-63bc02cf9290',
   name: {

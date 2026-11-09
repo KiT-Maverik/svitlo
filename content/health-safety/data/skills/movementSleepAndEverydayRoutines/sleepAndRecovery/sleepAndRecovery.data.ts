@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   recognizeProblematicSleepPatterns_Skill_Data,
@@ -6,7 +6,7 @@ import {
   understandSleepNeeds_Skill_Data,
 } from './skills';
 
-export const sleepAndRecovery_SkillGroup_Data = buildSkillGroupConfig({
+export const sleepAndRecovery_SkillGroup_Data = defineSkillGroup({
   slug: 'sleepAndRecovery',
   id: '5707083d-71c1-40f2-ab26-0f9440208252',
   name: {
@@ -40,11 +40,11 @@ export const sleepAndRecovery_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Ұйқы және қалпына келу',
     qm: 'Yuqu ve quvetni qaytaruv',
   },
-  skills: {
-    recognizeProblematicSleepPatterns: recognizeProblematicSleepPatterns_Skill_Data,
-    supportHealthySleepRoutines: supportHealthySleepRoutines_Skill_Data,
-    understandSleepNeeds: understandSleepNeeds_Skill_Data,
-  },
+  skills: [
+    recognizeProblematicSleepPatterns_Skill_Data,
+    supportHealthySleepRoutines_Skill_Data,
+    understandSleepNeeds_Skill_Data,
+  ],
   description: {
     methodological:
       'Sleep quality is affected by timing, environment, individual needs, and habits; persistent difficulty may warrant professional attention.',

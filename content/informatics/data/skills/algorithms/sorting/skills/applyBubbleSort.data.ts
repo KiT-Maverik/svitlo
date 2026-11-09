@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const applyBubbleSort_Skill_Data = buildSkillConfig({
+export const applyBubbleSort_Skill_Data = defineSkill({
   slug: 'applyBubbleSort',
   id: '8d93d23b-c641-4b73-8361-ede81e84e9d4',
   name: {

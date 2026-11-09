@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const naturalSatellites_Skill_Data = buildSkillConfig({
+export const naturalSatellites_Skill_Data = defineSkill({
   slug: 'naturalSatellites',
   id: 'b5dae7fe-35f4-41ad-a931-7bef62bdf808',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeSignsOfAHeartAttack_Skill_Data = buildSkillConfig({
+export const recognizeSignsOfAHeartAttack_Skill_Data = defineSkill({
   slug: 'recognizeSignsOfAHeartAttack',
   id: '73d5fe41-ef84-45a2-a5f0-6de23aef5647',
   name: {

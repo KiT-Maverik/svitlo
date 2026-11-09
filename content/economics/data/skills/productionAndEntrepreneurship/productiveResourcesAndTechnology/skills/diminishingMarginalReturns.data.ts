@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const diminishingMarginalReturns_Skill_Data = buildSkillConfig({
+export const diminishingMarginalReturns_Skill_Data = defineSkill({
   slug: 'diminishingMarginalReturns',
   id: '5a3b0ecb-3f0b-4b18-8a33-3b4a0087c9e2',
   name: {

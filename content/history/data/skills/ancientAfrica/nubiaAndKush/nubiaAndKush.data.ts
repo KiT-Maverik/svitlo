@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   kermaCulture_Skill_Data,
@@ -7,7 +7,7 @@ import {
   nileCulturalExchange_Skill_Data,
 } from './skills';
 
-export const nubiaAndKush_SkillGroup_Data = buildSkillGroupConfig({
+export const nubiaAndKush_SkillGroup_Data = defineSkillGroup({
   slug: 'nubiaAndKush',
   id: '17daa14b-d8b4-40b9-af0b-b37ed9037d3b',
   name: {
@@ -41,12 +41,7 @@ export const nubiaAndKush_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Нубия және Куш',
     qm: 'Nubiya ve Kuş',
   },
-  skills: {
-    kermaCulture: kermaCulture_Skill_Data,
-    kingdomOfKush: kingdomOfKush_Skill_Data,
-    meroe: meroe_Skill_Data,
-    nileCulturalExchange: nileCulturalExchange_Skill_Data,
-  },
+  skills: [kermaCulture_Skill_Data, kingdomOfKush_Skill_Data, meroe_Skill_Data, nileCulturalExchange_Skill_Data],
   description: {
     methodological:
       'Middle Nile societies formed independent political and cultural centers with complex relations to Egypt.',

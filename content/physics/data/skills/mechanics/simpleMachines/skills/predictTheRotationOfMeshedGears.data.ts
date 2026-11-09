@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const predictTheRotationOfMeshedGears_Skill_Data = buildSkillConfig({
+export const predictTheRotationOfMeshedGears_Skill_Data = defineSkill({
   slug: 'predictTheRotationOfMeshedGears',
   id: 'c750d2e9-3c4f-4e61-a019-958b9bd246f0',
   name: {

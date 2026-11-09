@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const consumerRightsAndResponsibilities_Skill_Data = buildSkillConfig({
+export const consumerRightsAndResponsibilities_Skill_Data = defineSkill({
   slug: 'consumerRightsAndResponsibilities',
   id: '976c56e4-140d-44ba-8e54-58b6c28519d8',
   name: {

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   culturalVariationInExpression_Skill_Data,
@@ -7,7 +7,7 @@ import {
   readingEmotionalCues_Skill_Data,
 } from './skills';
 
-export const recognitionAndExpression_SkillGroup_Data = buildSkillGroupConfig({
+export const recognitionAndExpression_SkillGroup_Data = defineSkillGroup({
   slug: 'recognitionAndExpression',
   id: 'a201153b-7b45-4399-b561-8a6ced3c42a0',
   name: {
@@ -41,12 +41,12 @@ export const recognitionAndExpression_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Тану және білдіру',
     qm: 'Tanımaq ve ifade etmek',
   },
-  skills: {
-    culturalVariationInExpression: culturalVariationInExpression_Skill_Data,
-    emotionalSelfAwareness: emotionalSelfAwareness_Skill_Data,
-    emotionVocabulary: emotionVocabulary_Skill_Data,
-    readingEmotionalCues: readingEmotionalCues_Skill_Data,
-  },
+  skills: [
+    culturalVariationInExpression_Skill_Data,
+    emotionalSelfAwareness_Skill_Data,
+    emotionVocabulary_Skill_Data,
+    readingEmotionalCues_Skill_Data,
+  ],
   description: {
     methodological:
       'Emotional information is conveyed through multiple channels, but neither facial expression nor tone is an infallible window into another mind.',

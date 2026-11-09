@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const expectationEffects_Skill_Data = buildSkillConfig({
+export const expectationEffects_Skill_Data = defineSkill({
   slug: 'expectationEffects',
   id: 'd5f4c818-c0e1-4cee-ab50-92d660d40ebb',
   name: {

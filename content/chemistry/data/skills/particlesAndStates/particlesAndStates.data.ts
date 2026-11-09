@@ -1,12 +1,12 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { particleBehavior_SkillGroup_Data } from './particleBehavior/particleBehavior.data';
 import { phasesAndTransitions_SkillGroup_Data } from './phasesAndTransitions/phasesAndTransitions.data';
 
-export const particlesAndStates_SkillDomain_Data = buildSkillDomainConfig({
+export const particlesAndStates_SkillDomain_Data = defineSkillDomain({
   slug: 'particlesAndStates',
   id: '22544804-a376-48e0-b804-b89ae734e265',
-  name: {
+  title: {
     en: 'Particles and States',
     zh: '粒子与物质状态',
     hi: 'कण और पदार्थ की अवस्थाएँ',
@@ -37,10 +37,7 @@ export const particlesAndStates_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Бөлшектер және заттың күйлері',
     qm: 'Parçacıqlar ve maddeniñ alları',
   },
-  groups: {
-    particleBehavior: particleBehavior_SkillGroup_Data,
-    phasesAndTransitions: phasesAndTransitions_SkillGroup_Data,
-  },
+  groups: [particleBehavior_SkillGroup_Data, phasesAndTransitions_SkillGroup_Data],
   description: {
     methodological:
       'Particle arrangements and motion explain properties of solids, liquids and gases, including transitions between phases. Detailed equations of thermodynamics belong to their own chemical energy competencies.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainLearningFromExamples_Skill_Data = buildSkillConfig({
+export const explainLearningFromExamples_Skill_Data = defineSkill({
   slug: 'explainLearningFromExamples',
   id: '799b85b6-30c0-489b-8e8a-b821a3332a75',
   name: {

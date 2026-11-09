@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { fraudAndDeceptivePressure_SkillGroup_Data } from './fraudAndDeceptivePressure/fraudAndDeceptivePressure.data';
 import { onlineInteractionSafety_SkillGroup_Data } from './onlineInteractionSafety/onlineInteractionSafety.data';
 import { privacyAndAccountProtection_SkillGroup_Data } from './privacyAndAccountProtection/privacyAndAccountProtection.data';
 
-export const digitalAndConsumerSafety_SkillDomain_Data = buildSkillDomainConfig({
+export const digitalAndConsumerSafety_SkillDomain_Data = defineSkillDomain({
   slug: 'digitalAndConsumerSafety',
   id: '393ba847-2916-407a-bf88-3d3b408af530',
-  name: {
+  title: {
     en: 'Digital and Consumer Safety',
     zh: '数字与消费安全',
     hi: 'डिजिटल और उपभोक्ता सुरक्षा',
@@ -38,11 +38,11 @@ export const digitalAndConsumerSafety_SkillDomain_Data = buildSkillDomainConfig(
     kk: 'Цифрлық және тұтынушы қауіпсіздігі',
     qm: 'Raqamlı ve istimalcı emniyeti',
   },
-  groups: {
-    fraudAndDeceptivePressure: fraudAndDeceptivePressure_SkillGroup_Data,
-    onlineInteractionSafety: onlineInteractionSafety_SkillGroup_Data,
-    privacyAndAccountProtection: privacyAndAccountProtection_SkillGroup_Data,
-  },
+  groups: [
+    fraudAndDeceptivePressure_SkillGroup_Data,
+    onlineInteractionSafety_SkillGroup_Data,
+    privacyAndAccountProtection_SkillGroup_Data,
+  ],
   description: {
     methodological:
       "Online environments expose people to privacy breaches, coercion, deception, and financial or personal exploitation. Computer security mechanisms belong primarily to Informatics; this domain concerns a person's protective decisions and recourse.",

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const balticAmberTrade_Skill_Data = buildSkillConfig({
+export const balticAmberTrade_Skill_Data = defineSkill({
   slug: 'balticAmberTrade',
   id: '984029a3-a2cb-4b24-ac1e-b2fb2ab04603',
   name: {

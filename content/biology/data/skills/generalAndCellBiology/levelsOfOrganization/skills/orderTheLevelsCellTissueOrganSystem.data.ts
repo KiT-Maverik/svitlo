@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const orderTheLevelsCellTissueOrganSystem_Skill_Data = buildSkillConfig({
+export const orderTheLevelsCellTissueOrganSystem_Skill_Data = defineSkill({
   slug: 'orderTheLevelsCellTissueOrganSystem',
   id: '989b8b8c-7031-4951-be54-bf311192c4bc',
   name: {

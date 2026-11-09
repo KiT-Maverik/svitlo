@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const inorganicNomenclature_Skill_Data = buildSkillConfig({
+export const inorganicNomenclature_Skill_Data = defineSkill({
   slug: 'inorganicNomenclature',
   id: '3090120f-03c4-49ad-9a8d-2c81312c69d7',
   name: {

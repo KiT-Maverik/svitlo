@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const readFiveMinute_Skill_Data = buildSkillConfig({
+export const readFiveMinute_Skill_Data = defineSkill({
   slug: 'readFiveMinute',
   id: '21d2c77f-39e4-4c54-98fc-b54a8e1568fe',
   name: {

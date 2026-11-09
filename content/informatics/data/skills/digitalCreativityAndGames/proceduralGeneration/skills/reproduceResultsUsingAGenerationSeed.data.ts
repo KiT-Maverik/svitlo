@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const reproduceResultsUsingAGenerationSeed_Skill_Data = buildSkillConfig({
+export const reproduceResultsUsingAGenerationSeed_Skill_Data = defineSkill({
   slug: 'reproduceResultsUsingAGenerationSeed',
   id: 'e28d313e-86fa-45a4-b20f-432f99a12138',
   name: {

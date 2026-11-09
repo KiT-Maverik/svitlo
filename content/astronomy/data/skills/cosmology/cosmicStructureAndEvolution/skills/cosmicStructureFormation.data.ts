@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const cosmicStructureFormation_Skill_Data = buildSkillConfig({
+export const cosmicStructureFormation_Skill_Data = defineSkill({
   slug: 'cosmicStructureFormation',
   id: 'cdb0f7e5-f1da-47d6-9a87-591471ca9bde',
   name: {

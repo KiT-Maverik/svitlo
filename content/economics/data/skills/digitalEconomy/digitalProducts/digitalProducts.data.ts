@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   economicsOfPersonalData_Skill_Data,
@@ -6,7 +6,7 @@ import {
   subscriptionsVersusOneTimePurchases_Skill_Data,
 } from './skills';
 
-export const digitalProducts_SkillGroup_Data = buildSkillGroupConfig({
+export const digitalProducts_SkillGroup_Data = defineSkillGroup({
   slug: 'digitalProducts',
   id: '2ccba606-5b57-4eb7-b4d8-f1087010988c',
   name: {
@@ -40,11 +40,11 @@ export const digitalProducts_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Цифрлық өнімдер',
     qm: 'Raqamlı mahsullar',
   },
-  skills: {
-    economicsOfPersonalData: economicsOfPersonalData_Skill_Data,
-    marginalCostOfDigitalCopying: marginalCostOfDigitalCopying_Skill_Data,
-    subscriptionsVersusOneTimePurchases: subscriptionsVersusOneTimePurchases_Skill_Data,
-  },
+  skills: [
+    economicsOfPersonalData_Skill_Data,
+    marginalCostOfDigitalCopying_Skill_Data,
+    subscriptionsVersusOneTimePurchases_Skill_Data,
+  ],
   description: {
     methodological:
       'Information goods often involve large initial costs and low costs of reproduction, enabling different business models.',

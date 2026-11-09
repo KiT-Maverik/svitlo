@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateTechnologicalDeterminism_Skill_Data = buildSkillConfig({
+export const evaluateTechnologicalDeterminism_Skill_Data = defineSkill({
   slug: 'evaluateTechnologicalDeterminism',
   id: 'ce28db1f-a7df-4a52-8b43-51b4c55fe834',
   name: {

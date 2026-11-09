@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareMajorModernEpistemologicalApproaches_Skill_Data = buildSkillConfig({
+export const compareMajorModernEpistemologicalApproaches_Skill_Data = defineSkill({
   slug: 'compareMajorModernEpistemologicalApproaches',
   id: '991b455f-fa36-4053-b4ea-9c4ccc7dd499',
   name: {

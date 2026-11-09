@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const immobilizeSuspectedFractures_Skill_Data = buildSkillConfig({
+export const immobilizeSuspectedFractures_Skill_Data = defineSkill({
   slug: 'immobilizeSuspectedFractures',
   id: '7a44cfcb-c8d4-4485-ad22-951f684782e8',
   name: {

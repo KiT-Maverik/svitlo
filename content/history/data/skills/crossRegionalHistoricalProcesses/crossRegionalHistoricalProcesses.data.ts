@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { ancientTradeAndContact_SkillGroup_Data } from './ancientTradeAndContact/ancientTradeAndContact.data';
 import { crisesAndHistoricalTransformations_SkillGroup_Data } from './crisesAndHistoricalTransformations/crisesAndHistoricalTransformations.data';
@@ -7,10 +7,10 @@ import { inventionsAndEngineeringHistory_SkillGroup_Data } from './inventionsAnd
 import { powerAndSocialRelations_SkillGroup_Data } from './powerAndSocialRelations/powerAndSocialRelations.data';
 import { productionAndKnowledge_SkillGroup_Data } from './productionAndKnowledge/productionAndKnowledge.data';
 
-export const crossRegionalHistoricalProcesses_SkillDomain_Data = buildSkillDomainConfig({
+export const crossRegionalHistoricalProcesses_SkillDomain_Data = defineSkillDomain({
   slug: 'crossRegionalHistoricalProcesses',
   id: '963c15c5-4829-4514-9fea-8e2e5f6083f0',
-  name: {
+  title: {
     en: 'Cross-Regional Historical Processes',
     zh: '跨区域历史进程',
     hi: 'अंतरक्षेत्रीय ऐतिहासिक प्रक्रियाएँ',
@@ -41,14 +41,14 @@ export const crossRegionalHistoricalProcesses_SkillDomain_Data = buildSkillDomai
     kk: 'Аймақаралық тарихи үдерістер',
     qm: 'Bölgelerara tarihiy süreçler',
   },
-  groups: {
-    ancientTradeAndContact: ancientTradeAndContact_SkillGroup_Data,
-    crisesAndHistoricalTransformations: crisesAndHistoricalTransformations_SkillGroup_Data,
-    everydayLifeInAntiquity: everydayLifeInAntiquity_SkillGroup_Data,
-    inventionsAndEngineeringHistory: inventionsAndEngineeringHistory_SkillGroup_Data,
-    powerAndSocialRelations: powerAndSocialRelations_SkillGroup_Data,
-    productionAndKnowledge: productionAndKnowledge_SkillGroup_Data,
-  },
+  groups: [
+    ancientTradeAndContact_SkillGroup_Data,
+    crisesAndHistoricalTransformations_SkillGroup_Data,
+    everydayLifeInAntiquity_SkillGroup_Data,
+    inventionsAndEngineeringHistory_SkillGroup_Data,
+    powerAndSocialRelations_SkillGroup_Data,
+    productionAndKnowledge_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Study shared patterns of interaction among independent regional histories without inventing a single unified ancient civilization.',

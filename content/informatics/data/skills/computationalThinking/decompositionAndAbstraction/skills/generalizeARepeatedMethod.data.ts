@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const generalizeARepeatedMethod_Skill_Data = buildSkillConfig({
+export const generalizeARepeatedMethod_Skill_Data = defineSkill({
   slug: 'generalizeARepeatedMethod',
   id: 'd2716a77-b2a1-4dc4-895f-2f9fd06703e1',
   name: {

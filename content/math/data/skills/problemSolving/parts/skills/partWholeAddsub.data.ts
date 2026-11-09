@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const partWholeAddsub_Skill_Data = buildSkillConfig({
+export const partWholeAddsub_Skill_Data = defineSkill({
   slug: 'partWholeAddsub',
   id: 'adb1adc5-7f54-495d-a65f-e8754a2a0748',
   name: {

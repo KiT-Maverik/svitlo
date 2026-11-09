@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const protectiveGrounding_Skill_Data = buildSkillConfig({
+export const protectiveGrounding_Skill_Data = defineSkill({
   slug: 'protectiveGrounding',
   id: 'fa9d0440-9dc1-4825-bf93-efa881b60989',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeSoundTransmissionThroughAMedium_Skill_Data = buildSkillConfig({
+export const recognizeSoundTransmissionThroughAMedium_Skill_Data = defineSkill({
   slug: 'recognizeSoundTransmissionThroughAMedium',
   id: '8e9085c2-9fc3-45fd-96d9-70db8599e17b',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const mesopotamianIrrigation_Skill_Data = buildSkillConfig({
+export const mesopotamianIrrigation_Skill_Data = defineSkill({
   slug: 'mesopotamianIrrigation',
   id: '71e1ee98-234d-400f-9984-cfabb6e3756d',
   name: {

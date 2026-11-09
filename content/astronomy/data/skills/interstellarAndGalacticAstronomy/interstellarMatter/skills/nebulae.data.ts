@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const nebulae_Skill_Data = buildSkillConfig({
+export const nebulae_Skill_Data = defineSkill({
   slug: 'nebulae',
   id: 'af0e6597-0519-4e84-9ec7-0ffdb8b6df88',
   name: {

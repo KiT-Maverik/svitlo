@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const doubleHalf_Skill_Data = buildSkillConfig({
+export const doubleHalf_Skill_Data = defineSkill({
   slug: 'doubleHalf',
   id: 'cfb05426-4c79-46eb-a49e-53a128a661de',
   name: {

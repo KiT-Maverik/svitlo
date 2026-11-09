@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeNontheisticReligiousAccountsOfReality_Skill_Data = buildSkillConfig({
+export const analyzeNontheisticReligiousAccountsOfReality_Skill_Data = defineSkill({
   slug: 'analyzeNontheisticReligiousAccountsOfReality',
   id: 'fe1e9f85-b288-4c70-83e6-6e956e6168bd',
   name: {

@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { evidenceAndTestimony_SkillGroup_Data } from './evidenceAndTestimony/evidenceAndTestimony.data';
 import { knowledgeAndJustification_SkillGroup_Data } from './knowledgeAndJustification/knowledgeAndJustification.data';
 import { mediaAndPublicInformation_SkillGroup_Data } from './mediaAndPublicInformation/mediaAndPublicInformation.data';
 import { uncertaintyAndSkepticism_SkillGroup_Data } from './uncertaintyAndSkepticism/uncertaintyAndSkepticism.data';
 
-export const epistemologyAndCriticalEvaluation_SkillDomain_Data = buildSkillDomainConfig({
+export const epistemologyAndCriticalEvaluation_SkillDomain_Data = defineSkillDomain({
   slug: 'epistemologyAndCriticalEvaluation',
   id: 'b9b076ca-f5fc-47ed-ac06-d5a516f3176e',
-  name: {
+  title: {
     en: 'Epistemology and Critical Evaluation',
     zh: '认识论与批判性评估',
     hi: 'ज्ञानमीमांसा और आलोचनात्मक मूल्यांकन',
@@ -39,12 +39,12 @@ export const epistemologyAndCriticalEvaluation_SkillDomain_Data = buildSkillDoma
     kk: 'Эпистемология және сыни бағалау',
     qm: 'Bilgi nazariyesi ve tenqidiy baalav',
   },
-  groups: {
-    evidenceAndTestimony: evidenceAndTestimony_SkillGroup_Data,
-    knowledgeAndJustification: knowledgeAndJustification_SkillGroup_Data,
-    mediaAndPublicInformation: mediaAndPublicInformation_SkillGroup_Data,
-    uncertaintyAndSkepticism: uncertaintyAndSkepticism_SkillGroup_Data,
-  },
+  groups: [
+    evidenceAndTestimony_SkillGroup_Data,
+    knowledgeAndJustification_SkillGroup_Data,
+    mediaAndPublicInformation_SkillGroup_Data,
+    uncertaintyAndSkepticism_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Questions about knowledge concern what can be believed responsibly, what makes claims true, and when confidence should change. This domain applies general standards of justification to testimony and public information; scientific experimental design has its own domain.',

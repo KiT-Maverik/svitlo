@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const supportHealthySleepRoutines_Skill_Data = buildSkillConfig({
+export const supportHealthySleepRoutines_Skill_Data = defineSkill({
   slug: 'supportHealthySleepRoutines',
   id: '0c5c41be-0dd2-424b-a4f5-3c36f315058d',
   name: {

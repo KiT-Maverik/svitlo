@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareSearchMethodsByCheckCount_Skill_Data = buildSkillConfig({
+export const compareSearchMethodsByCheckCount_Skill_Data = defineSkill({
   slug: 'compareSearchMethodsByCheckCount',
   id: 'e06b06db-1e17-480b-92ac-d112d1faad1c',
   name: {

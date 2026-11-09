@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const preventHouseholdPoisoning_Skill_Data = buildSkillConfig({
+export const preventHouseholdPoisoning_Skill_Data = defineSkill({
   slug: 'preventHouseholdPoisoning',
   id: '03a60e11-f837-4db9-b01f-c763608ba558',
   name: {

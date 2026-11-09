@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const validateDataAgainstAContract_Skill_Data = buildSkillConfig({
+export const validateDataAgainstAContract_Skill_Data = defineSkill({
   slug: 'validateDataAgainstAContract',
   id: 'c148f5f4-d326-4263-b3bd-ded33b46cd8b',
   name: {

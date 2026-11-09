@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const indusSigns_Skill_Data = buildSkillConfig({
+export const indusSigns_Skill_Data = defineSkill({
   slug: 'indusSigns',
   id: '7cf46757-ae12-478d-ab10-48f2904563f2',
   name: {

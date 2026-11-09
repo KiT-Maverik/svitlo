@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishAlphaBetaAndGammaRadiation_Skill_Data = buildSkillConfig({
+export const distinguishAlphaBetaAndGammaRadiation_Skill_Data = defineSkill({
   slug: 'distinguishAlphaBetaAndGammaRadiation',
   id: '1501d7a7-b616-4bfb-b31c-997283414b2c',
   name: {

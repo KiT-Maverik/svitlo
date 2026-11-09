@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const useMusicalScales_Skill_Data = buildSkillConfig({
+export const useMusicalScales_Skill_Data = defineSkill({
   slug: 'useMusicalScales',
   id: 'cf5b3f01-e50e-4011-a6a7-012c9bc67424',
   name: {

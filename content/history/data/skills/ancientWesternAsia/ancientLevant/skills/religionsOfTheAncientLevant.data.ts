@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const religionsOfTheAncientLevant_Skill_Data = buildSkillConfig({
+export const religionsOfTheAncientLevant_Skill_Data = defineSkill({
   slug: 'religionsOfTheAncientLevant',
   id: '0e910841-6bbf-4b11-826c-f6208848fdb4',
   name: {

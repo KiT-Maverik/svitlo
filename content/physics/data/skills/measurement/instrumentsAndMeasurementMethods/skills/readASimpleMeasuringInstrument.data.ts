@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const readASimpleMeasuringInstrument_Skill_Data = buildSkillConfig({
+export const readASimpleMeasuringInstrument_Skill_Data = defineSkill({
   slug: 'readASimpleMeasuringInstrument',
   id: 'fd1cac35-f339-4469-b3c7-fe9687e66b43',
   name: {

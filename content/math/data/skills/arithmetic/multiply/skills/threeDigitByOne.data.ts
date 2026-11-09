@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const threeDigitByOne_Skill_Data = buildSkillConfig({
+export const threeDigitByOne_Skill_Data = defineSkill({
   slug: 'threeDigitByOne',
   id: '035e48c3-be50-4fd1-b5c7-a9c087624e6b',
   name: {

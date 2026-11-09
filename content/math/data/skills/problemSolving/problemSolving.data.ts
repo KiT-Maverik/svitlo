@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { conditions_SkillGroup_Data } from './conditions/conditions.data';
 import { models_SkillGroup_Data } from './models/models.data';
@@ -8,10 +8,10 @@ import { parts_SkillGroup_Data } from './parts/parts.data';
 import { groups_SkillGroup_Data } from './groups/groups.data';
 import { quantities_SkillGroup_Data } from './quantities/quantities.data';
 
-export const problemSolving_SkillDomain_Data = buildSkillDomainConfig({
+export const problemSolving_SkillDomain_Data = defineSkillDomain({
   slug: 'problemSolving',
   id: '695fd427-aaea-4cbb-bd07-2d1702f36a17',
-  name: {
+  title: {
     en: 'Problem solving',
     qm: 'Mesele çezüv',
     lt: 'Uždavinių sprendimas',
@@ -42,15 +42,15 @@ export const problemSolving_SkillDomain_Data = buildSkillDomainConfig({
     pl: 'Rozwiązywanie zadań',
     uk: 'Розв’язування задач',
   },
-  groups: {
-    conditions: conditions_SkillGroup_Data,
-    models: models_SkillGroup_Data,
-    planning: planning_SkillGroup_Data,
-    comparisons: comparisons_SkillGroup_Data,
-    parts: parts_SkillGroup_Data,
-    groups: groups_SkillGroup_Data,
-    quantities: quantities_SkillGroup_Data,
-  },
+  groups: [
+    conditions_SkillGroup_Data,
+    models_SkillGroup_Data,
+    planning_SkillGroup_Data,
+    comparisons_SkillGroup_Data,
+    parts_SkillGroup_Data,
+    groups_SkillGroup_Data,
+    quantities_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Translating real-life situations into mathematical models, selecting operations, planning multi-step solutions, and checking whether answers make sense.',

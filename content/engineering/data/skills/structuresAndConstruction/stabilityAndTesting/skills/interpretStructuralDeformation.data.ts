@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretStructuralDeformation_Skill_Data = buildSkillConfig({
+export const interpretStructuralDeformation_Skill_Data = defineSkill({
   slug: 'interpretStructuralDeformation',
   id: '6995018e-85ea-4fe9-a15f-6ff65848a9e4',
   name: {

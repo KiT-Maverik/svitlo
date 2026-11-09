@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const expectancyAndValue_Skill_Data = buildSkillConfig({
+export const expectancyAndValue_Skill_Data = defineSkill({
   slug: 'expectancyAndValue',
   id: '7ab7ea06-d25b-4cd7-8692-20a9c740fa67',
   name: {

@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { behavioralFactorsInChoice_SkillGroup_Data } from './behavioralFactorsInChoice/behavioralFactorsInChoice.data';
 import { consumerInformationAndRights_SkillGroup_Data } from './consumerInformationAndRights/consumerInformationAndRights.data';
 import { needsAndPreferences_SkillGroup_Data } from './needsAndPreferences/needsAndPreferences.data';
 
-export const consumerBehavior_SkillDomain_Data = buildSkillDomainConfig({
+export const consumerBehavior_SkillDomain_Data = defineSkillDomain({
   slug: 'consumerBehavior',
   id: 'd69b6b66-cd9a-44c0-95e1-4cadaa325466',
-  name: {
+  title: {
     en: 'Consumer Behavior',
     zh: '消费者行为',
     hi: 'उपभोक्ता व्यवहार',
@@ -38,11 +38,11 @@ export const consumerBehavior_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Тұтынушы мінез-құлқы',
     qm: 'İstimalciniñ areketi',
   },
-  groups: {
-    behavioralFactorsInChoice: behavioralFactorsInChoice_SkillGroup_Data,
-    consumerInformationAndRights: consumerInformationAndRights_SkillGroup_Data,
-    needsAndPreferences: needsAndPreferences_SkillGroup_Data,
-  },
+  groups: [
+    behavioralFactorsInChoice_SkillGroup_Data,
+    consumerInformationAndRights_SkillGroup_Data,
+    needsAndPreferences_SkillGroup_Data,
+  ],
   description: {
     methodological:
       "Consumers evaluate needs, quality, alternatives, and information under varying incomes and psychological constraints. This domain analyzes their choices rather than sellers' methods of promoting goods.",

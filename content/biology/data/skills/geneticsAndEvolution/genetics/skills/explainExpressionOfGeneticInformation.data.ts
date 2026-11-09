@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainExpressionOfGeneticInformation_Skill_Data = buildSkillConfig({
+export const explainExpressionOfGeneticInformation_Skill_Data = defineSkill({
   slug: 'explainExpressionOfGeneticInformation',
   id: '2210cfe4-5068-4101-8410-7814cec116da',
   name: {

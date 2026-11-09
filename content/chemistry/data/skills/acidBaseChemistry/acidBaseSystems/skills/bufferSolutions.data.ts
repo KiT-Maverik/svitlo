@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const bufferSolutions_Skill_Data = buildSkillConfig({
+export const bufferSolutions_Skill_Data = defineSkill({
   slug: 'bufferSolutions',
   id: 'ea95aa6c-8f49-4e47-818d-af13f251b613',
   name: {

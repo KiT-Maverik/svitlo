@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainSearlesChineseRoom_Skill_Data = buildSkillConfig({
+export const explainSearlesChineseRoom_Skill_Data = defineSkill({
   slug: 'explainSearlesChineseRoom',
   id: '8a77d93a-7440-4aa2-81d4-6c52d65c38ed',
   name: {

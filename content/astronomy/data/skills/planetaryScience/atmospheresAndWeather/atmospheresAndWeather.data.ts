@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   atmosphericCirculation_Skill_Data,
@@ -7,7 +7,7 @@ import {
   planetaryWeather_Skill_Data,
 } from './skills';
 
-export const atmospheresAndWeather_SkillGroup_Data = buildSkillGroupConfig({
+export const atmospheresAndWeather_SkillGroup_Data = defineSkillGroup({
   slug: 'atmospheresAndWeather',
   id: 'b0cfe307-925b-4547-8962-1ab550f937e4',
   name: {
@@ -41,12 +41,12 @@ export const atmospheresAndWeather_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Атмосфералар мен ауа райы',
     qm: 'Atmosferalar ve ava vaziyeti',
   },
-  skills: {
-    atmosphericCirculation: atmosphericCirculation_Skill_Data,
-    atmosphericRetentionAndEscape: atmosphericRetentionAndEscape_Skill_Data,
-    planetaryGreenhouseEffects: planetaryGreenhouseEffects_Skill_Data,
-    planetaryWeather: planetaryWeather_Skill_Data,
-  },
+  skills: [
+    atmosphericCirculation_Skill_Data,
+    atmosphericRetentionAndEscape_Skill_Data,
+    planetaryGreenhouseEffects_Skill_Data,
+    planetaryWeather_Skill_Data,
+  ],
   description: {
     methodological:
       'Atmospheric behavior depends on composition, gravity, radiation, pressure and circulation in ways that vary widely from Earth.',

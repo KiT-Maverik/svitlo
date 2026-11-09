@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const laborForceParticipationRate_Skill_Data = buildSkillConfig({
+export const laborForceParticipationRate_Skill_Data = defineSkill({
   slug: 'laborForceParticipationRate',
   id: '06790974-77ba-40f6-aba5-3009da233979',
   name: {

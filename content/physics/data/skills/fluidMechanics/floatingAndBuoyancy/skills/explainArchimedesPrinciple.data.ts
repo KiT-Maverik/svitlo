@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainArchimedesPrinciple_Skill_Data = buildSkillConfig({
+export const explainArchimedesPrinciple_Skill_Data = defineSkill({
   slug: 'explainArchimedesPrinciple',
   id: 'c9b6cf4d-2ed5-40f6-bc0e-9a9112d0671e',
   name: {

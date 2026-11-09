@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   manageADigitalFootprint_Skill_Data,
@@ -7,7 +7,7 @@ import {
   respondToHarmfulOnlineContact_Skill_Data,
 } from './skills';
 
-export const onlineInteractionSafety_SkillGroup_Data = buildSkillGroupConfig({
+export const onlineInteractionSafety_SkillGroup_Data = defineSkillGroup({
   slug: 'onlineInteractionSafety',
   id: '8167e596-e4d8-43f1-b31f-a33b819e8580',
   name: {
@@ -41,12 +41,12 @@ export const onlineInteractionSafety_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Интернеттегі қарым-қатынас қауіпсіздігі',
     qm: 'İnternette bağ emniyeti',
   },
-  skills: {
-    manageADigitalFootprint: manageADigitalFootprint_Skill_Data,
-    protectAgainstOnlineSexualExploitation: protectAgainstOnlineSexualExploitation_Skill_Data,
-    recognizeTechnologyFacilitatedHarassment: recognizeTechnologyFacilitatedHarassment_Skill_Data,
-    respondToHarmfulOnlineContact: respondToHarmfulOnlineContact_Skill_Data,
-  },
+  skills: [
+    manageADigitalFootprint_Skill_Data,
+    protectAgainstOnlineSexualExploitation_Skill_Data,
+    recognizeTechnologyFacilitatedHarassment_Skill_Data,
+    respondToHarmfulOnlineContact_Skill_Data,
+  ],
   description: {
     methodological:
       'Digital abuse can extend beyond the screen; protective responses should prioritize personal safety, consent, and trustworthy reporting channels.',

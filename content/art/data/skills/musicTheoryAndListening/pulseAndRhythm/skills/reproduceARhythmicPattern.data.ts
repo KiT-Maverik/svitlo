@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const reproduceARhythmicPattern_Skill_Data = buildSkillConfig({
+export const reproduceARhythmicPattern_Skill_Data = defineSkill({
   slug: 'reproduceARhythmicPattern',
   id: 'd06e4955-fb54-4346-a2c8-4d2f5d4c6fb6',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const calibrateASensor_Skill_Data = buildSkillConfig({
+export const calibrateASensor_Skill_Data = defineSkill({
   slug: 'calibrateASensor',
   id: 'e9baf5e7-6c21-4fa9-8126-16d2d9a33734',
   name: {

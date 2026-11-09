@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const thunderstormSafety_Skill_Data = buildSkillConfig({
+export const thunderstormSafety_Skill_Data = defineSkill({
   slug: 'thunderstormSafety',
   id: 'b99b9367-3094-4645-8a82-a413a6cbaca4',
   name: {

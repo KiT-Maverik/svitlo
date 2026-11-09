@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainRadiativeHeatTransfer_Skill_Data = buildSkillConfig({
+export const explainRadiativeHeatTransfer_Skill_Data = defineSkill({
   slug: 'explainRadiativeHeatTransfer',
   id: 'd17a8e05-68a6-4b26-b09f-0d1940438439',
   name: {

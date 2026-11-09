@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainBenefitsOfGroupBehavior_Skill_Data = buildSkillConfig({
+export const explainBenefitsOfGroupBehavior_Skill_Data = defineSkill({
   slug: 'explainBenefitsOfGroupBehavior',
   id: 'c126a8fa-0e62-4645-8ddc-40ccd22bcf49',
   name: {

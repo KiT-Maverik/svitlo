@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainADataTypeContract_Skill_Data = buildSkillConfig({
+export const explainADataTypeContract_Skill_Data = defineSkill({
   slug: 'explainADataTypeContract',
   id: '2f5ef4e7-1714-4486-9b5b-3abde40b8272',
   name: {

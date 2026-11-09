@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainSetStructure_Skill_Data = buildSkillConfig({
+export const explainSetStructure_Skill_Data = defineSkill({
   slug: 'explainSetStructure',
   id: '4eb8ec63-1695-49cb-ab91-cb26136d67ad',
   name: {

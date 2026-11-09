@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyADisagreementAboutEvidenceStandards_Skill_Data = buildSkillConfig({
+export const identifyADisagreementAboutEvidenceStandards_Skill_Data = defineSkill({
   slug: 'identifyADisagreementAboutEvidenceStandards',
   id: 'b947abcb-1e27-4ad6-a706-9e8bc08048ec',
   name: {

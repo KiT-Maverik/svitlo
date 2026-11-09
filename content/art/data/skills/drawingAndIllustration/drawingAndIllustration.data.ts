@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { illustrativeStorytelling_SkillGroup_Data } from './illustrativeStorytelling/illustrativeStorytelling.data';
 import { observationalDrawing_SkillGroup_Data } from './observationalDrawing/observationalDrawing.data';
 import { spatialDrawing_SkillGroup_Data } from './spatialDrawing/spatialDrawing.data';
 
-export const drawingAndIllustration_SkillDomain_Data = buildSkillDomainConfig({
+export const drawingAndIllustration_SkillDomain_Data = defineSkillDomain({
   slug: 'drawingAndIllustration',
   id: 'c4de4e18-df2f-4eb9-9871-ef89e4318775',
-  name: {
+  title: {
     en: 'Drawing and Illustration',
     zh: '绘画与插画',
     hi: 'चित्रांकन और चित्रण',
@@ -38,11 +38,11 @@ export const drawingAndIllustration_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Сурет салу және иллюстрация',
     qm: 'Sızuv ve illüstratsiya',
   },
-  groups: {
-    illustrativeStorytelling: illustrativeStorytelling_SkillGroup_Data,
-    observationalDrawing: observationalDrawing_SkillGroup_Data,
-    spatialDrawing: spatialDrawing_SkillGroup_Data,
-  },
+  groups: [
+    illustrativeStorytelling_SkillGroup_Data,
+    observationalDrawing_SkillGroup_Data,
+    spatialDrawing_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Drawing creates marks and constructed spatial relationships, whereas illustration connects a visual image to a communicative narrative or concept. Neither is limited to literal realism.',

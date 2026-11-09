@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const housingMarket_Skill_Data = buildSkillConfig({
+export const housingMarket_Skill_Data = defineSkill({
   slug: 'housingMarket',
   id: 'f7db6a27-2c7a-4cfd-bb56-527fd3886684',
   name: {

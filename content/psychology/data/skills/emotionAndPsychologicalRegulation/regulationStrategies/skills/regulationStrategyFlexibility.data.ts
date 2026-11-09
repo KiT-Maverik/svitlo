@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const regulationStrategyFlexibility_Skill_Data = buildSkillConfig({
+export const regulationStrategyFlexibility_Skill_Data = defineSkill({
   slug: 'regulationStrategyFlexibility',
   id: 'd200944c-302c-4530-8b41-2fc786cfe818',
   name: {

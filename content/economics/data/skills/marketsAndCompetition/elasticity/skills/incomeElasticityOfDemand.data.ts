@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const incomeElasticityOfDemand_Skill_Data = buildSkillConfig({
+export const incomeElasticityOfDemand_Skill_Data = defineSkill({
   slug: 'incomeElasticityOfDemand',
   id: '7d1146d7-cec1-4a39-97bb-8a59414140ca',
   name: {

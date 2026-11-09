@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { environmentalControl_SkillGroup_Data } from './environmentalControl/environmentalControl.data';
 import { hydraulicInfrastructure_SkillGroup_Data } from './hydraulicInfrastructure/hydraulicInfrastructure.data';
 import { wastewaterAndDrainage_SkillGroup_Data } from './wastewaterAndDrainage/wastewaterAndDrainage.data';
 import { waterSupply_SkillGroup_Data } from './waterSupply/waterSupply.data';
 
-export const waterAndEnvironmentalInfrastructure_SkillDomain_Data = buildSkillDomainConfig({
+export const waterAndEnvironmentalInfrastructure_SkillDomain_Data = defineSkillDomain({
   slug: 'waterAndEnvironmentalInfrastructure',
   id: '2442ece9-8e6c-406a-a3b1-5b7a38cf51e7',
-  name: {
+  title: {
     en: 'Water and Environmental Infrastructure',
     zh: '水务与环境基础设施',
     hi: 'जल और पर्यावरणीय बुनियादी ढाँचा',
@@ -39,12 +39,12 @@ export const waterAndEnvironmentalInfrastructure_SkillDomain_Data = buildSkillDo
     kk: 'Су және қоршаған орта инфрақұрылымы',
     qm: 'Suv ve çevre infrastrukturası',
   },
-  groups: {
-    environmentalControl: environmentalControl_SkillGroup_Data,
-    hydraulicInfrastructure: hydraulicInfrastructure_SkillGroup_Data,
-    wastewaterAndDrainage: wastewaterAndDrainage_SkillGroup_Data,
-    waterSupply: waterSupply_SkillGroup_Data,
-  },
+  groups: [
+    environmentalControl_SkillGroup_Data,
+    hydraulicInfrastructure_SkillGroup_Data,
+    wastewaterAndDrainage_SkillGroup_Data,
+    waterSupply_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Public services depend on connected intake, treatment, storage and collection systems. This domain concerns engineered infrastructure rather than natural water circulation or public-health instruction.',

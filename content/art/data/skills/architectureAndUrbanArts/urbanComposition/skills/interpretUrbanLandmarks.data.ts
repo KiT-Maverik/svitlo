@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretUrbanLandmarks_Skill_Data = buildSkillConfig({
+export const interpretUrbanLandmarks_Skill_Data = defineSkill({
   slug: 'interpretUrbanLandmarks',
   id: 'd7c863ec-e9a0-4003-8af5-bed1cf5f6937',
   name: {

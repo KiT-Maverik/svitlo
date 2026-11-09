@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const composeASpatialSequence_Skill_Data = buildSkillConfig({
+export const composeASpatialSequence_Skill_Data = defineSkill({
   slug: 'composeASpatialSequence',
   id: 'cff1460a-87db-46f8-bf97-f2a1d96b914b',
   name: {

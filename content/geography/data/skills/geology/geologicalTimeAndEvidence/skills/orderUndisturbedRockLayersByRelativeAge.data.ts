@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const orderUndisturbedRockLayersByRelativeAge_Skill_Data = buildSkillConfig({
+export const orderUndisturbedRockLayersByRelativeAge_Skill_Data = defineSkill({
   slug: 'orderUndisturbedRockLayersByRelativeAge',
   id: 'c22de2a5-b447-4971-bb8d-84410b80ecc6',
   name: {

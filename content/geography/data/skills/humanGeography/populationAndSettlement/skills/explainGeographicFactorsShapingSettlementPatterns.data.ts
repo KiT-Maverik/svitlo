@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainGeographicFactorsShapingSettlementPatterns_Skill_Data = buildSkillConfig({
+export const explainGeographicFactorsShapingSettlementPatterns_Skill_Data = defineSkill({
   slug: 'explainGeographicFactorsShapingSettlementPatterns',
   id: '9ccfdf34-3bcd-4c25-896c-f2d32062b6fc',
   name: {

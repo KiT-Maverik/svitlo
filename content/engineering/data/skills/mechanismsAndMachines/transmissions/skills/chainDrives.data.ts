@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const chainDrives_Skill_Data = buildSkillConfig({
+export const chainDrives_Skill_Data = defineSkill({
   slug: 'chainDrives',
   id: '155ef6eb-6432-4eca-9275-e9d4df3d9558',
   name: {

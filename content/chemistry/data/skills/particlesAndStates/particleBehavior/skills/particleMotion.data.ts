@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const particleMotion_Skill_Data = buildSkillConfig({
+export const particleMotion_Skill_Data = defineSkill({
   slug: 'particleMotion',
   id: '5416a71d-e761-4965-8d77-bd458ad3f231',
   name: {

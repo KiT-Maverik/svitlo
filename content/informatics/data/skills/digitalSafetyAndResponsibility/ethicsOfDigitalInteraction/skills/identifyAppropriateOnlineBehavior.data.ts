@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyAppropriateOnlineBehavior_Skill_Data = buildSkillConfig({
+export const identifyAppropriateOnlineBehavior_Skill_Data = defineSkill({
   slug: 'identifyAppropriateOnlineBehavior',
   id: '1b98e383-dda7-467f-823c-d26d96551ac7',
   name: {

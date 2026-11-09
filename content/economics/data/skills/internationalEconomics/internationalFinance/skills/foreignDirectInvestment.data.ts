@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const foreignDirectInvestment_Skill_Data = buildSkillConfig({
+export const foreignDirectInvestment_Skill_Data = defineSkill({
   slug: 'foreignDirectInvestment',
   id: '4d9f8662-5fb5-4e58-971a-998cbafd102a',
   name: {

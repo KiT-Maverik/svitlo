@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   distinguishSamplingFromChoosingTheMostLikelyToken_Skill_Data,
@@ -9,7 +9,7 @@ import {
   explainTokens_Skill_Data,
 } from './skills';
 
-export const languageModelTokensAndContext_SkillGroup_Data = buildSkillGroupConfig({
+export const languageModelTokensAndContext_SkillGroup_Data = defineSkillGroup({
   slug: 'languageModelTokensAndContext',
   id: 'eacbce78-8a3b-416e-8119-5fe49906f53a',
   name: {
@@ -43,14 +43,14 @@ export const languageModelTokensAndContext_SkillGroup_Data = buildSkillGroupConf
     kk: 'Тіл модельдерінің токендері және контексі',
     qm: 'Til modelleriniñ tokenleri ve konteksti',
   },
-  skills: {
-    distinguishSamplingFromChoosingTheMostLikelyToken: distinguishSamplingFromChoosingTheMostLikelyToken_Skill_Data,
-    distinguishTokensCharactersAndWords: distinguishTokensCharactersAndWords_Skill_Data,
-    explainALanguageModelsContextWindow: explainALanguageModelsContextWindow_Skill_Data,
-    explainContextWindowOverflow: explainContextWindowOverflow_Skill_Data,
-    explainNextTokenSelection: explainNextTokenSelection_Skill_Data,
-    explainTokens: explainTokens_Skill_Data,
-  },
+  skills: [
+    distinguishSamplingFromChoosingTheMostLikelyToken_Skill_Data,
+    distinguishTokensCharactersAndWords_Skill_Data,
+    explainALanguageModelsContextWindow_Skill_Data,
+    explainContextWindowOverflow_Skill_Data,
+    explainNextTokenSelection_Skill_Data,
+    explainTokens_Skill_Data,
+  ],
   description: {
     methodological:
       'Language models process tokens, evaluate possible continuations, and operate within a limited context window; model parameter count does not determine context length.',

@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { recognizeDenominations_Skill_Data, composeAmount_Skill_Data, compareAmounts_Skill_Data } from './skills';
 
-export const denominations_SkillGroup_Data = buildSkillGroupConfig({
+export const denominations_SkillGroup_Data = defineSkillGroup({
   slug: 'denominations',
   id: 'b2a96b3c-533d-4649-98e3-dd1e58566e66',
   name: {
@@ -36,11 +36,7 @@ export const denominations_SkillGroup_Data = buildSkillGroupConfig({
     pl: 'Kwoty pieniędzy',
     uk: 'Грошові суми',
   },
-  skills: {
-    recognizeDenominations: recognizeDenominations_Skill_Data,
-    composeAmount: composeAmount_Skill_Data,
-    compareAmounts: compareAmounts_Skill_Data,
-  },
+  skills: [recognizeDenominations_Skill_Data, composeAmount_Skill_Data, compareAmounts_Skill_Data],
   description: {
     methodological:
       'Monetary value represented by coins and banknotes of a specific currency, equivalent denomination combinations, and comparisons between amounts.',

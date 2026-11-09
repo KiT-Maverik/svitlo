@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   auroralProcesses_Skill_Data,
@@ -7,7 +7,7 @@ import {
   spaceWeather_Skill_Data,
 } from './skills';
 
-export const heliosphericEffects_SkillGroup_Data = buildSkillGroupConfig({
+export const heliosphericEffects_SkillGroup_Data = defineSkillGroup({
   slug: 'heliosphericEffects',
   id: 'f02ffa81-886b-4ba4-acd1-cfffe28487a9',
   name: {
@@ -41,12 +41,7 @@ export const heliosphericEffects_SkillGroup_Data = buildSkillGroupConfig({
     he: 'השפעות ההליוספירה',
     vi: 'Ảnh hưởng của nhật quyển',
   },
-  skills: {
-    auroralProcesses: auroralProcesses_Skill_Data,
-    heliosphere: heliosphere_Skill_Data,
-    solarWind: solarWind_Skill_Data,
-    spaceWeather: spaceWeather_Skill_Data,
-  },
+  skills: [auroralProcesses_Skill_Data, heliosphere_Skill_Data, solarWind_Skill_Data, spaceWeather_Skill_Data],
   description: {
     methodological:
       'Solar material and magnetic fields extend outward and can influence planetary space environments even far from the solar surface.',

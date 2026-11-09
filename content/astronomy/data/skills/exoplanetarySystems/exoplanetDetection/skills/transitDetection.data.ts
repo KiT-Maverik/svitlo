@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const transitDetection_Skill_Data = buildSkillConfig({
+export const transitDetection_Skill_Data = defineSkill({
   slug: 'transitDetection',
   id: '92e94b4c-6676-4db0-94ed-36a264989713',
   name: {

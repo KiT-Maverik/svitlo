@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const cosmicElementEnrichment_Skill_Data = buildSkillConfig({
+export const cosmicElementEnrichment_Skill_Data = defineSkill({
   slug: 'cosmicElementEnrichment',
   id: '362a1d94-ea39-4a8a-ae2c-726dbe29d10c',
   name: {

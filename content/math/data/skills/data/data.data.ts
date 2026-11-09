@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { collection_SkillGroup_Data } from './collection/collection.data';
 import { presentation_SkillGroup_Data } from './presentation/presentation.data';
 import { interpretation_SkillGroup_Data } from './interpretation/interpretation.data';
 
-export const data_SkillDomain_Data = buildSkillDomainConfig({
+export const data_SkillDomain_Data = defineSkillDomain({
   slug: 'data',
   id: 'ae6d7bb7-0ee8-4bdd-8853-3d8d11233007',
-  name: {
+  title: {
     en: 'Data',
     qm: 'Malümatlar',
     lt: 'Duomenys',
@@ -38,11 +38,7 @@ export const data_SkillDomain_Data = buildSkillDomainConfig({
     pl: 'Dane',
     uk: 'Дані',
   },
-  groups: {
-    collection: collection_SkillGroup_Data,
-    presentation: presentation_SkillGroup_Data,
-    interpretation: interpretation_SkillGroup_Data,
-  },
+  groups: [collection_SkillGroup_Data, presentation_SkillGroup_Data, interpretation_SkillGroup_Data],
   description: {
     methodological:
       'Formulating questions, collecting and classifying information, representing it in tables and charts, and drawing conclusions supported by the data.',

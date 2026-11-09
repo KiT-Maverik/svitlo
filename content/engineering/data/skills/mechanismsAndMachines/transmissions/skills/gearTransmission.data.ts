@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const gearTransmission_Skill_Data = buildSkillConfig({
+export const gearTransmission_Skill_Data = defineSkill({
   slug: 'gearTransmission',
   id: 'b826705e-a712-42d5-b95b-88c8fbc12e05',
   name: {

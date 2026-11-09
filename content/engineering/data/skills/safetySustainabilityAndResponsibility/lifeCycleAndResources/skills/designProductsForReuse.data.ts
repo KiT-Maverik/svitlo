@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const designProductsForReuse_Skill_Data = buildSkillConfig({
+export const designProductsForReuse_Skill_Data = defineSkill({
   slug: 'designProductsForReuse',
   id: 'c16212d9-3fc6-45e5-b477-6dc1a2f52e6c',
   name: {

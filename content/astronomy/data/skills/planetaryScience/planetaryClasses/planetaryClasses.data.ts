@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   giantPlanets_Skill_Data,
@@ -8,7 +8,7 @@ import {
   terrestrialPlanets_Skill_Data,
 } from './skills';
 
-export const planetaryClasses_SkillGroup_Data = buildSkillGroupConfig({
+export const planetaryClasses_SkillGroup_Data = defineSkillGroup({
   slug: 'planetaryClasses',
   id: 'ccef5030-d741-4f0d-904e-40f8aa8ce696',
   name: {
@@ -42,13 +42,13 @@ export const planetaryClasses_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Ғаламшар денелерінің кластары',
     qm: 'Seyyare cisimleriniñ sınıfları',
   },
-  skills: {
-    giantPlanets: giantPlanets_Skill_Data,
-    naturalSatellites: naturalSatellites_Skill_Data,
-    planetaryDensityAndComposition: planetaryDensityAndComposition_Skill_Data,
-    planetaryRingSystems: planetaryRingSystems_Skill_Data,
-    terrestrialPlanets: terrestrialPlanets_Skill_Data,
-  },
+  skills: [
+    giantPlanets_Skill_Data,
+    naturalSatellites_Skill_Data,
+    planetaryDensityAndComposition_Skill_Data,
+    planetaryRingSystems_Skill_Data,
+    terrestrialPlanets_Skill_Data,
+  ],
   description: {
     methodological:
       'Composition, density and thermal history help explain why planets and moons display very different structures rather than simply different sizes.',

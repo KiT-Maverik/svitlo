@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishDirectedAndUndirectedGraphs_Skill_Data = buildSkillConfig({
+export const distinguishDirectedAndUndirectedGraphs_Skill_Data = defineSkill({
   slug: 'distinguishDirectedAndUndirectedGraphs',
   id: 'eed7de30-8bf4-4e59-a4b3-06c965c82c4c',
   name: {

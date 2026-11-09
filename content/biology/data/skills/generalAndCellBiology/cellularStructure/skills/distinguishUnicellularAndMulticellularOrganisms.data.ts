@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishUnicellularAndMulticellularOrganisms_Skill_Data = buildSkillConfig({
+export const distinguishUnicellularAndMulticellularOrganisms_Skill_Data = defineSkill({
   slug: 'distinguishUnicellularAndMulticellularOrganisms',
   id: '066b9494-9c0f-412a-83e9-244d424c4302',
   name: {

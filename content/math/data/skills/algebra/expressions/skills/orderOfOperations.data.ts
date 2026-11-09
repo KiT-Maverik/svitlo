@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const orderOfOperations_Skill_Data = buildSkillConfig({
+export const orderOfOperations_Skill_Data = defineSkill({
   slug: 'orderOfOperations',
   id: '87cd08bd-e276-4a36-88de-77dd23028abf',
   name: {

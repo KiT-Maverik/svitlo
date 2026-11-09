@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishARockFromAMineral_Skill_Data = buildSkillConfig({
+export const distinguishARockFromAMineral_Skill_Data = defineSkill({
   slug: 'distinguishARockFromAMineral',
   id: '9bd2c592-eecd-4bd4-be04-3c1d62006f1c',
   name: {

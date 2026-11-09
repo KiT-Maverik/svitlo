@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   galaxyGroupsAndClusters_Skill_Data,
@@ -7,7 +7,7 @@ import {
   galaxyStellarPopulations_Skill_Data,
 } from './skills';
 
-export const galaxiesAndTheirEvolution_SkillGroup_Data = buildSkillGroupConfig({
+export const galaxiesAndTheirEvolution_SkillGroup_Data = defineSkillGroup({
   slug: 'galaxiesAndTheirEvolution',
   id: 'aa40e4d5-7025-4cbd-9f06-2cd0ef767f75',
   name: {
@@ -41,12 +41,12 @@ export const galaxiesAndTheirEvolution_SkillGroup_Data = buildSkillGroupConfig({
     ka: 'გალაქტიკები და მათი ევოლუცია',
     kk: 'Галактикалар және олардың эволюциясы',
   },
-  skills: {
-    galaxyGroupsAndClusters: galaxyGroupsAndClusters_Skill_Data,
-    galaxyInteractionsAndMergers: galaxyInteractionsAndMergers_Skill_Data,
-    galaxyMorphology: galaxyMorphology_Skill_Data,
-    galaxyStellarPopulations: galaxyStellarPopulations_Skill_Data,
-  },
+  skills: [
+    galaxyGroupsAndClusters_Skill_Data,
+    galaxyInteractionsAndMergers_Skill_Data,
+    galaxyMorphology_Skill_Data,
+    galaxyStellarPopulations_Skill_Data,
+  ],
   description: {
     methodological:
       'Galaxies differ in morphology, stellar content, formation history and interaction, rather than representing fixed shapes throughout cosmic time.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const measurementUncertainty_Skill_Data = buildSkillConfig({
+export const measurementUncertainty_Skill_Data = defineSkill({
   slug: 'measurementUncertainty',
   id: '9beca053-75d2-489f-a882-2f7bcc1a49f6',
   name: {

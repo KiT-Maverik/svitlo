@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const standardizedScoreInterpretation_Skill_Data = buildSkillConfig({
+export const standardizedScoreInterpretation_Skill_Data = defineSkill({
   slug: 'standardizedScoreInterpretation',
   id: 'e63c8873-23f3-4173-8d9a-fa454aa518f7',
   name: {

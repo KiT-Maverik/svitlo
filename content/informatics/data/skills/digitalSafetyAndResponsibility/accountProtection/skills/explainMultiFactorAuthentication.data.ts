@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainMultiFactorAuthentication_Skill_Data = buildSkillConfig({
+export const explainMultiFactorAuthentication_Skill_Data = defineSkill({
   slug: 'explainMultiFactorAuthentication',
   id: '1b11ddbb-539c-49e2-aaa1-0a5d2425ecff',
   name: {

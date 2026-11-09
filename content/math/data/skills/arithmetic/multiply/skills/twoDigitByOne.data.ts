@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const twoDigitByOne_Skill_Data = buildSkillConfig({
+export const twoDigitByOne_Skill_Data = defineSkill({
   slug: 'twoDigitByOne',
   id: 'd2a66536-011d-4d97-b85b-707e2b55919d',
   name: {

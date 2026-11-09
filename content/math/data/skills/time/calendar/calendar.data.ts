@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   calendarInterval_Skill_Data,
@@ -7,7 +7,7 @@ import {
   weekMonthYear_Skill_Data,
 } from './skills';
 
-export const calendar_SkillGroup_Data = buildSkillGroupConfig({
+export const calendar_SkillGroup_Data = defineSkillGroup({
   slug: 'calendar',
   id: '923b7a49-4547-4043-b5f6-fdb7cce37a41',
   name: {
@@ -41,12 +41,7 @@ export const calendar_SkillGroup_Data = buildSkillGroupConfig({
     pl: 'Kalendarz',
     uk: 'Календар',
   },
-  skills: {
-    daySequence: daySequence_Skill_Data,
-    leapYearDays: leapYearDays_Skill_Data,
-    weekMonthYear: weekMonthYear_Skill_Data,
-    calendarInterval: calendarInterval_Skill_Data,
-  },
+  skills: [daySequence_Skill_Data, leapYearDays_Skill_Data, weekMonthYear_Skill_Data, calendarInterval_Skill_Data],
   description: {
     methodological:
       'Navigating days, weeks, months, and years while accounting for varying month lengths and leap years.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const respondToSevereBreathingDifficulty_Skill_Data = buildSkillConfig({
+export const respondToSevereBreathingDifficulty_Skill_Data = defineSkill({
   slug: 'respondToSevereBreathingDifficulty',
   id: '62cb02e8-1dc8-4d87-84c3-67d748640f4b',
   name: {

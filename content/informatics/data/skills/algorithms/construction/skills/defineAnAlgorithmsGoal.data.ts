@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const defineAnAlgorithmsGoal_Skill_Data = buildSkillConfig({
+export const defineAnAlgorithmsGoal_Skill_Data = defineSkill({
   slug: 'defineAnAlgorithmsGoal',
   id: '51b1d000-2787-4ad0-ac03-3398de248da3',
   name: {

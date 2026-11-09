@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareDistributivePrinciples_Skill_Data = buildSkillConfig({
+export const compareDistributivePrinciples_Skill_Data = defineSkill({
   slug: 'compareDistributivePrinciples',
   id: '7208887e-2140-48e5-9912-057c8f22b6e8',
   name: {

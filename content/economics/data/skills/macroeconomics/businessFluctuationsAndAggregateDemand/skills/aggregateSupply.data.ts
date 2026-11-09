@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const aggregateSupply_Skill_Data = buildSkillConfig({
+export const aggregateSupply_Skill_Data = defineSkill({
   slug: 'aggregateSupply',
   id: '71a64b7a-6a90-42f8-91a4-2bdde909a869',
   name: {

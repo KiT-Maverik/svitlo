@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyLocationAtLocalRegionalAndGlobalScales_Skill_Data = buildSkillConfig({
+export const identifyLocationAtLocalRegionalAndGlobalScales_Skill_Data = defineSkill({
   slug: 'identifyLocationAtLocalRegionalAndGlobalScales',
   id: '383744f9-4f6c-4e3d-a7fb-b3e8ef22e824',
   name: {
