@@ -52,7 +52,7 @@ run(process.execPath, [
   '--output',
   'apps/desktop/public/data/ui-kit',
 ]);
-for (const resource of ['assessment-methods/base.json', 'assessment-methods/uk-UA.json']) {
+for (const resource of ['assessment-methods/base.json', 'assessment-methods/uk.json']) {
   const filename = join(localeOutput, resource);
   if (!existsSync(filename)) throw new Error('Missing UI Kit Assessment Method resource: ' + filename);
 }

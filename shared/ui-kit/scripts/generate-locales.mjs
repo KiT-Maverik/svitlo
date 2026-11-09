@@ -118,12 +118,14 @@ function loadAssessmentMethodDefinitions() {
 
 function createAssessmentMethodResources() {
   const entries = loadAssessmentMethodDefinitions();
-  const codes = DEFAULT_SUPPORTED_LANGUAGES.map(({ language }) => language);
-  const locales = DEFAULT_SUPPORTED_LANGUAGES.map(({ locale }) => locale);
+  const languages = DEFAULT_SUPPORTED_LANGUAGES.map(({ language }) => language);
+  if (languages.some(language => !/^[a-z]{2}$/.test(language)) || new Set(languages).size !== languages.length) {
+    throw new Error('Assessment Method publication requires unique two-letter language codes');
+  }
   const { assessmentMethod_Props_Schema } = require('@svitlo/engine');
   const ids = new Set();
   const base = {};
-  const localized = Object.fromEntries(locales.map(locale => [locale, {}]));
+  const localized = Object.fromEntries(languages.map(language => [language, {}]));
 
   for (const { name, definition } of entries) {
     const metadata = definition.config?.base;
@@ -143,23 +145,30 @@ function createAssessmentMethodResources() {
     for (const field of ['title', 'description']) {
       if (
         !dictionaries[field] ||
-        Object.keys(dictionaries[field]).sort().join(',') !== [...codes].sort().join(',')
+        Object.keys(dictionaries[field]).sort().join(',') !== [...languages].sort().join(',')
       ) {
         throw new Error('Incomplete Assessment Method ' + field + ' translations: ' + name);
       }
     }
     base[name] = { id: metadata.id, slug: metadata.slug };
-    for (const { locale, language } of DEFAULT_SUPPORTED_LANGUAGES) {
+    for (const { language } of DEFAULT_SUPPORTED_LANGUAGES) {
       const title = dictionaries.title[language];
       const description = dictionaries.description[language];
       if (typeof title !== 'string' || !title.trim() || typeof description !== 'string' || !description.trim()) {
         throw new Error('Missing Assessment Method text: ' + name + '/' + language);
       }
       const props = assessmentMethod_Props_Schema.parse({ ...metadata, title, description });
-      localized[locale][name] = { title: props.title, description: props.description };
+      localized[language][name] = { title: props.title, description: props.description };
     }
   }
-  return { base, localized, methods: entries.map(({ name }) => name), locales };
+  return {
+    base: {
+      meta: { scope: 'global', methods: entries.map(({ name }) => name), languages },
+      data: base,
+    },
+    localized,
+    languages,
+  };
 }
 
 try {
@@ -215,20 +224,12 @@ try {
     const methodsOutput = join(output, 'assessment-methods');
     mkdirSync(methodsOutput, { recursive: true });
     writeFileSync(join(methodsOutput, 'base.json'), JSON.stringify(assessmentMethods.base, null, 2) + '\n');
-    for (const locale of assessmentMethods.locales) {
+    for (const language of assessmentMethods.languages) {
       writeFileSync(
-        join(methodsOutput, locale + '.json'),
-        JSON.stringify(assessmentMethods.localized[locale], null, 2) + '\n',
+        join(methodsOutput, language + '.json'),
+        JSON.stringify(assessmentMethods.localized[language], null, 2) + '\n',
       );
     }
-    writeFileSync(
-      join(methodsOutput, 'meta.json'),
-      JSON.stringify(
-        { scope: 'global', methods: assessmentMethods.methods, locales: assessmentMethods.locales },
-        null,
-        2,
-      ) + '\n',
-    );
     console.log(`Generated ${published.length} global UI Kit locale JSON and Assessment Method resources in ${output}`);
   }
 } finally {

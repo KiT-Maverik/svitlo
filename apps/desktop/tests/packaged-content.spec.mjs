@@ -26,12 +26,12 @@ test('build bundles the real lesson and localized config, flashcards and questio
   }
   assert.ok(existsSync(join(renderer, 'data/ui-kit/uk-UA.json')));
   const methodsRoot = join(renderer, 'data/ui-kit/assessment-methods');
-  const meta = JSON.parse(readFileSync(join(methodsRoot, 'meta.json'), 'utf8'));
-  const base = JSON.parse(readFileSync(join(methodsRoot, 'base.json'), 'utf8'));
+  const { meta, data: base } = JSON.parse(readFileSync(join(methodsRoot, 'base.json'), 'utf8'));
+  assert.equal(existsSync(join(methodsRoot, 'meta.json')), false);
   assert.equal(meta.methods.length, 16);
   assert.deepEqual(Object.keys(base).sort(), [...meta.methods].sort());
-  for (const locale of meta.locales) {
-    const data = JSON.parse(readFileSync(join(methodsRoot, locale + '.json'), 'utf8'));
+  for (const language of meta.languages) {
+    const data = JSON.parse(readFileSync(join(methodsRoot, language + '.json'), 'utf8'));
     assert.deepEqual(Object.keys(data).sort(), [...meta.methods].sort());
   }
   assert.ok(existsSync(join(renderer, 'data/pages/skillAnalytics/uk.json')));

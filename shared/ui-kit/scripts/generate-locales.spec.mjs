@@ -97,34 +97,41 @@ describe('Assessment Methods sparse publication', () => {
   it('publishes one invariant base and a complete selected-language resource for every locale', () => {
     const result = generate();
     assert.equal(result.status, 0, result.stderr);
-    const meta = JSON.parse(readFileSync(path.join(methodsRoot, 'meta.json'), 'utf8'));
-    const base = JSON.parse(readFileSync(path.join(methodsRoot, 'base.json'), 'utf8'));
+    const baseResource = JSON.parse(readFileSync(path.join(methodsRoot, 'base.json'), 'utf8'));
+    assert.deepEqual(Object.keys(baseResource).sort(), ['data', 'meta']);
+    const { meta, data: base } = baseResource;
+    assert.equal(meta.scope, 'global');
     assert.equal(names.length, 16);
     assert.deepEqual(meta.methods, names);
-    assert.deepEqual(meta.locales, DEFAULT_SUPPORTED_LANGUAGES.map(({ locale }) => locale));
+    assert.deepEqual(meta.languages, DEFAULT_SUPPORTED_LANGUAGES.map(({ language }) => language));
+    assert.ok(meta.languages.every(language => /^[a-z]{2}$/.test(language)));
     assert.deepEqual(Object.keys(base), names);
     assert.deepEqual(readdirSync(methodsRoot).sort(), [
-      'base.json', 'meta.json', ...meta.locales.map(locale => locale + '.json'),
+      'base.json', ...meta.languages.map(language => language + '.json'),
     ].sort());
 
     for (const name of names) {
       assert.deepEqual(base[name], { id: assessmentMethods_AssessmentMethod_Ids[name], slug: name });
     }
-    for (const { locale } of DEFAULT_SUPPORTED_LANGUAGES) {
-      const local = JSON.parse(readFileSync(path.join(methodsRoot, locale + '.json'), 'utf8'));
+    for (const { language } of DEFAULT_SUPPORTED_LANGUAGES) {
+      const local = JSON.parse(readFileSync(path.join(methodsRoot, language + '.json'), 'utf8'));
       assert.deepEqual(Object.keys(local), names);
       for (const name of names) {
         assert.deepEqual(Object.keys(local[name]).sort(), ['description', 'title']);
-        assert.ok(local[name].title.trim(), name + '/' + locale);
-        assert.ok(local[name].description.trim(), name + '/' + locale);
+        assert.ok(local[name].title.trim(), name + '/' + language);
+        assert.ok(local[name].description.trim(), name + '/' + language);
         assert.deepEqual(
           assessmentMethod_Props_Schema.parse({ ...base[name], ...local[name] }),
           { ...base[name], ...local[name] },
         );
       }
     }
-    const uk = JSON.parse(readFileSync(path.join(methodsRoot, 'uk-UA.json'), 'utf8'));
-    const en = JSON.parse(readFileSync(path.join(methodsRoot, 'en-US.json'), 'utf8'));
+    const uk = JSON.parse(readFileSync(path.join(methodsRoot, 'uk.json'), 'utf8'));
+    const en = JSON.parse(readFileSync(path.join(methodsRoot, 'en.json'), 'utf8'));
+    const qm = JSON.parse(readFileSync(path.join(methodsRoot, 'qm.json'), 'utf8'));
+    assert.ok(qm.analogicalReasoning.title.trim());
+    assert.equal(existsSync(path.join(methodsRoot, 'meta.json')), false);
+    assert.equal(existsSync(path.join(methodsRoot, 'uk-UA.json')), false);
     assert.equal(uk.analogicalReasoning.title, 'Міркування за аналогією');
     assert.equal(en.retrieval.title, 'Retrieval');
   });
@@ -139,10 +146,15 @@ describe('Assessment Methods sparse publication', () => {
     const obsoleteMethod = path.join(methodsRoot, 'obsolete.json');
     writeFileSync(obsoleteGlobal, '{}');
     writeFileSync(obsoleteMethod, '{}');
+    // Previous publication format must not survive regeneration.
+    writeFileSync(path.join(methodsRoot, 'meta.json'), '{}');
+    writeFileSync(path.join(methodsRoot, 'uk-UA.json'), '{}');
     result = generate();
     assert.equal(result.status, 0, result.stderr);
     assert.equal(existsSync(obsoleteGlobal), false);
     assert.equal(existsSync(obsoleteMethod), false);
+    assert.equal(existsSync(path.join(methodsRoot, 'meta.json')), false);
+    assert.equal(existsSync(path.join(methodsRoot, 'uk-UA.json')), false);
     assert.deepEqual(Object.fromEntries(readdirSync(methodsRoot).sort().map(name => [
       name, readFileSync(path.join(methodsRoot, name), 'utf8'),
     ])), snapshot);
