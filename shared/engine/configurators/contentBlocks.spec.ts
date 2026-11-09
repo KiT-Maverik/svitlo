@@ -63,6 +63,89 @@ test('every atomic ContentBlock uses the same config.base/config.locales convent
   );
 });
 
+
+test('Audio separates invariant fallback strings from localized media fields', () => {
+  const audio = defineAudio({
+    id,
+    slug: 'narration',
+    type: 'audio',
+    fileLocation: { en: '/voice/en.mp3', uk: '/voice/uk.mp3' },
+    title: 'Narration',
+    fallback: {
+      offline: { en: 'Offline', uk: 'Немає мережі' },
+      retry: 'Retry',
+    },
+  });
+
+  assert.deepEqual(audio.config.base, {
+    id,
+    slug: 'narration',
+    type: 'audio',
+    title: 'Narration',
+    fallback: { retry: 'Retry' },
+  });
+  assert.deepEqual(audio.config.locales(), {
+    fileLocation: { en: '/voice/en.mp3', uk: '/voice/uk.mp3' },
+    fallback: { offline: { en: 'Offline', uk: 'Немає мережі' } },
+  });
+});
+
+test('Code and Carousel retain indexed nested fields without duplicating locale dictionaries in base', () => {
+  const code = defineCode({
+    id,
+    slug: 'example',
+    type: 'code',
+    language: 'typescript',
+    code: value,
+    variables: [
+      { id: 'localized', value: { uk: 'Локальна змінна' } },
+      { id: 'fixed', value: 'invariant' },
+    ],
+  });
+
+  assert.deepEqual(code.config.base, {
+    id,
+    slug: 'example',
+    type: 'code',
+    language: 'typescript',
+    variables: [
+      { id: 'localized' },
+      { id: 'fixed', value: 'invariant' },
+    ],
+  });
+  assert.deepEqual(code.config.locales(), {
+    code: value,
+    variables: [
+      { value: { uk: 'Локальна змінна' } },
+      {},
+    ],
+  });
+
+  const carousel = defineCarousel({
+    id,
+    slug: 'slides',
+    type: 'carousel',
+    loop: true,
+    slides: [
+      { src: value, alt: { en: 'First image' } },
+      { src: 'invariant.png', alt: value, caption: 'Fixed caption' },
+    ],
+  });
+  assert.deepEqual(carousel.config.base, {
+    id,
+    slug: 'slides',
+    type: 'carousel',
+    loop: true,
+    slides: [{}, { src: 'invariant.png', caption: 'Fixed caption' }],
+  });
+  assert.deepEqual(carousel.config.locales(), {
+    slides: [
+      { src: value, alt: { en: 'First image' } },
+      { alt: value },
+    ],
+  });
+});
+
 test('Checkpoint stores nested configurators and a Section can project them to data and localized patches', () => {
   const answer = defineText({ id, slug: 'answer', type: 'text', params: {}, value });
   const checkpoint = defineCheckpoint({
