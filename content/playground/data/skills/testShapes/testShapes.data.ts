@@ -1,12 +1,12 @@
 // Synthetic Playground fixtures. Locale-tagged strings are test placeholders, not translations.
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 import { testRoundShapes_SkillGroup_Data } from './testRoundShapes/testRoundShapes.data';
 import { testPolygonShapes_SkillGroup_Data } from './testPolygonShapes/testPolygonShapes.data';
 
-export const testShapes_SkillDomain_Data = buildSkillDomainConfig({
+export const testShapes_SkillDomain_Data = defineSkillDomain({
   slug: 'testShapes',
   id: '00000000-0000-4000-8000-000000000014',
-  name: {
+  title: {
     en: '[TEST en] Shape recognition',
     zh: '[TEST zh] Shape recognition',
     hi: '[TEST hi] Shape recognition',
@@ -37,8 +37,42 @@ export const testShapes_SkillDomain_Data = buildSkillDomainConfig({
     kk: '[TEST kk] Shape recognition',
     qm: '[TEST qm] Shape recognition',
   },
-  groups: {
-    testRoundShapes: testRoundShapes_SkillGroup_Data,
-    testPolygonShapes: testPolygonShapes_SkillGroup_Data,
+  groups: [
+    testRoundShapes_SkillGroup_Data,
+    testPolygonShapes_SkillGroup_Data,
+  ],
+  description: {
+    methodological: "Synthetic Playground fixture for testShapes; testing only, not curricular content.",
+    frontend: {
+      en: "[TEST en] Synthetic testShapes fixture.",
+      zh: "[TEST zh] Synthetic testShapes fixture.",
+      hi: "[TEST hi] Synthetic testShapes fixture.",
+      es: "[TEST es] Synthetic testShapes fixture.",
+      ar: "[TEST ar] Synthetic testShapes fixture.",
+      fr: "[TEST fr] Synthetic testShapes fixture.",
+      bn: "[TEST bn] Synthetic testShapes fixture.",
+      pt: "[TEST pt] Synthetic testShapes fixture.",
+      ur: "[TEST ur] Synthetic testShapes fixture.",
+      id: "[TEST id] Synthetic testShapes fixture.",
+      de: "[TEST de] Synthetic testShapes fixture.",
+      ja: "[TEST ja] Synthetic testShapes fixture.",
+      ko: "[TEST ko] Synthetic testShapes fixture.",
+      tr: "[TEST tr] Synthetic testShapes fixture.",
+      vi: "[TEST vi] Synthetic testShapes fixture.",
+      ta: "[TEST ta] Synthetic testShapes fixture.",
+      te: "[TEST te] Synthetic testShapes fixture.",
+      mr: "[TEST mr] Synthetic testShapes fixture.",
+      ms: "[TEST ms] Synthetic testShapes fixture.",
+      he: "[TEST he] Synthetic testShapes fixture.",
+      pl: "[TEST pl] Synthetic testShapes fixture.",
+      uk: "[TEST uk] Synthetic testShapes fixture.",
+      lt: "[TEST lt] Synthetic testShapes fixture.",
+      lv: "[TEST lv] Synthetic testShapes fixture.",
+      et: "[TEST et] Synthetic testShapes fixture.",
+      be: "[TEST be] Synthetic testShapes fixture.",
+      ka: "[TEST ka] Synthetic testShapes fixture.",
+      kk: "[TEST kk] Synthetic testShapes fixture.",
+      qm: "[TEST qm] Synthetic testShapes fixture.",
+    },
   },
 });
