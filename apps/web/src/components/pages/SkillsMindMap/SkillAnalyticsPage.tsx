@@ -1,6 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import type { SkillNode } from './skillsMindMap.utils';
 import type { Locale } from '@svitlo/contracts/localization';
 import {
   type UiKitMessages,
@@ -26,10 +28,12 @@ const idleProgress = {
 const unusedActions = { back: () => {}, next: () => {}, skip: () => {} };
 
 function SkillAnalyticsContent({
-  domainSlugs,
+  domains,
+  language,
   initialMessages,
 }: {
-  domainSlugs: readonly string[];
+  domains: readonly SkillNode[];
+  language: string;
   initialMessages: UiKitMessages;
 }) {
   const { locale, setLocale, ready, localeError } = useSkillsPageSettings();
@@ -100,22 +104,29 @@ function SkillAnalyticsContent({
         <Box sx={{ mb: 2, fontSize: 14 }}>
           <Link href="/">← {textbook.title}</Link>
         </Box>
-        {ready && (localeError ? <Box role="alert">{localeError}</Box> : <SkillsMindMap domainSlugs={domainSlugs} />)}
+        {ready && (localeError ? <Box role="alert">{localeError}</Box> : <SkillsMindMap domains={domains} />)}
       </Container>
     </LearningLayout>
   );
 }
 
 export function SkillAnalyticsPage({
-  domainSlugs,
+  domains,
+  language,
   initialMessages,
 }: {
-  domainSlugs: readonly string[];
+  domains: readonly SkillNode[];
+  language: string;
   initialMessages: UiKitMessages;
 }) {
+  const router = useRouter();
+  const onLanguageChange = useCallback(
+    (next: string) => router.replace('/skillAnalytics?lang=' + encodeURIComponent(next), { scroll: false }),
+    [router],
+  );
   return (
-    <SkillsPageSettingsProvider>
-      <SkillAnalyticsContent domainSlugs={domainSlugs} initialMessages={initialMessages} />
+    <SkillsPageSettingsProvider initialLanguage={language} onLanguageChange={onLanguageChange}>
+      <SkillAnalyticsContent domains={domains} language={language} initialMessages={initialMessages} />
     </SkillsPageSettingsProvider>
   );
 }

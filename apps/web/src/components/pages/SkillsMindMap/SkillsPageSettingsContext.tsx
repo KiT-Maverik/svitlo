@@ -43,11 +43,19 @@ function supportedLocale(value: string): Locale | null {
 }
 
 /** Page instance owns these switches: no global app defaults or authoring Data changes. */
-export function SkillsPageSettingsProvider({ children }: { children: ReactNode }) {
+export function SkillsPageSettingsProvider({
+  children,
+  initialLanguage = 'uk',
+  onLanguageChange,
+}: {
+  children: ReactNode;
+  initialLanguage?: string;
+  onLanguageChange?: (language: string) => void;
+}) {
   const [settings, setSettings] = useState<SkillsPageSettings>(DEFAULT_SKILLS_PAGE_SETTINGS);
-  const [locale, updateLocale] = useState<Locale>('uk-UA');
-  const [localeError, setLocaleError] = useState<string | null>(null);
-  const [ready, setReady] = useState(false);
+  const locale = supportedLocale(initialLanguage) ?? 'uk-UA';
+  const localeError = supportedLocale(initialLanguage) ? null : 'Мова сторінки відсутня в реєстрі: ' + initialLanguage;
+  const ready = true;
   const actionsRef = useRef<SkillsMapActions | null>(null);
   const [mapReady, setMapReady] = useState(false);
 
@@ -58,20 +66,6 @@ export function SkillsPageSettingsProvider({ children }: { children: ReactNode }
   const runMapAction = useCallback((action: keyof SkillsMapActions) => {
     actionsRef.current?.[action]();
   }, []);
-
-  /* eslint-disable react-hooks/set-state-in-effect -- The initial language is URL/document state available only after hydration. */
-  useEffect(() => {
-    const requested = new URLSearchParams(window.location.search).get('lang');
-    const parsed = requested ? supportedLocale(requested) : supportedLocale(document.documentElement.lang);
-    if (!parsed) {
-      setLocaleError('Мова сторінки відсутня в реєстрі: ' + (requested ?? document.documentElement.lang));
-    } else {
-      updateLocale(parsed);
-      setLocaleError(null);
-    }
-    setReady(true);
-  }, []);
-  /* eslint-enable react-hooks/set-state-in-effect */
 
   useEffect(() => {
     if (!ready || localeError) return;
@@ -92,14 +86,11 @@ export function SkillsPageSettingsProvider({ children }: { children: ReactNode }
   const setLocale = useCallback((next: Locale) => {
     const parsed = supportedLocale(next);
     if (!parsed) throw new Error('Непідтримувана мова Skills: ' + next);
-    const language = DEFAULT_SUPPORTED_LANGUAGES.find(item => item.locale === parsed)?.language;
+    const language = DEFAULT_SUPPORTED_LANGUAGES.find(entry => entry.locale === parsed)?.language;
     if (!language) throw new Error('Немає мовного коду для ' + parsed);
-    const url = new URL(window.location.href);
-    url.searchParams.set('lang', language);
-    window.history.replaceState(null, '', url);
-    updateLocale(parsed);
-    setLocaleError(null);
-  }, []);
+    // Request new Next.js Server Component props; do not fetch resources on the client.
+    onLanguageChange?.(language);
+  }, [onLanguageChange]);
 
   const setLanguageCode = useCallback(
     (code: string) => {

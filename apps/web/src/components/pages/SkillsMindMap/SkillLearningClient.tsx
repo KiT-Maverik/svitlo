@@ -1,88 +1,46 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { textbook } from '@/generated/textbook';
-import { Alert, Box, CircularProgress, Paper, Stack, Typography } from '@mui/material';
+import { Alert, Box, Paper, Stack, Typography } from '@mui/material';
 import { SkillMastery } from '@/components/pages/SkillsMindMap/SkillLeafCard';
-import { flattenSkillNodes } from '@/components/pages/SkillsMindMap/skillsMindMap.utils';
-import { loadSkillAnalyticsPage, resolveSkillLanguage } from '@/components/pages/SkillsMindMap/skillsData.client';
 import type { SkillNode } from '@/components/pages/SkillsMindMap/skillsMindMap.utils';
 
 interface SkillLearningClientProps {
-  skillId: string;
-  domainSlugs: readonly string[];
+  node: SkillNode | null;
+  language: string;
 }
 
-type State =
-  { status: 'loading' } | { status: 'error'; message: string } | { status: 'ready'; node: SkillNode; language: string };
-
-/**
- * This is the future entry point for Skill-linked Lessons and Programs.
- * The selected textbook supplies the message for unavailable Skill links.
- */
-export function SkillLearningClient({ skillId, domainSlugs }: SkillLearningClientProps) {
-  const requestKey = skillId + ':' + domainSlugs.join('|');
-  const [loaded, setLoaded] = useState<State & { requestKey: string }>({ status: 'loading', requestKey });
-  const state: State = loaded.requestKey === requestKey ? loaded : { status: 'loading' };
-
-  useEffect(() => {
-    const controller = new AbortController();
-    void (async () => {
-      try {
-        const language = resolveSkillLanguage(
-          new URLSearchParams(window.location.search).get('lang') ?? document.documentElement.lang,
-        );
-        const domains = await loadSkillAnalyticsPage(language, controller.signal, domainSlugs);
-        const match = flattenSkillNodes(domains).find(node => node.kind === 'skill' && node.id === skillId);
-        if (!match) throw new Error('Скіл із таким UUID не знайдено в каталозі.');
-        if (!controller.signal.aborted) setLoaded({ status: 'ready', node: match, language, requestKey });
-      } catch (error) {
-        if (!controller.signal.aborted)
-          setLoaded({
-            requestKey,
-            status: 'error',
-            message: error instanceof Error ? error.message : 'Помилка завантаження скіла.',
-          });
-      }
-    })();
-    return () => controller.abort();
-  }, [skillId, domainSlugs, requestKey]);
-
-  if (state.status === 'loading') {
-    return (
-      <Box role="status" sx={{ display: 'flex', gap: 2, alignItems: 'center', py: 7 }}>
-        <CircularProgress size={28} /> Завантаження навички…
-      </Box>
-    );
-  }
-  if (state.status === 'error')
+/** Server loads and resolves Skill UUID; client renders only received props. */
+export function SkillLearningClient({ node, language }: SkillLearningClientProps) {
+  if (!node) {
     return (
       <Alert severity="error" role="alert" sx={{ mt: 3 }}>
-        {state.message}
+        Скіл із таким UUID не знайдено в каталозі.
         <Box sx={{ mt: 2 }}>
           <Link href="/skillAnalytics">Повернутися до мапи навичок</Link>
         </Box>
       </Alert>
     );
-  const dir = state.language === 'ar' || state.language === 'he' || state.language === 'ur' ? 'rtl' : 'ltr';
-  const returnHref = '/skillAnalytics?lang=' + encodeURIComponent(state.language);
+  }
+  const dir = language === 'ar' || language === 'he' || language === 'ur' ? 'rtl' : 'ltr';
+  const returnHref = '/skillAnalytics?lang=' + encodeURIComponent(language);
   return (
     <Stack spacing={3} sx={{ pt: 2 }}>
       <Box>
         <Typography variant="overline" color="primary" sx={{ fontWeight: 800 }}>
           SKILL · ПРОКАЧУВАННЯ
         </Typography>
-        <Typography component="h1" variant="h3" sx={{ fontWeight: 800 }} lang={state.language} dir={dir}>
-          {state.node.name}
+        <Typography component="h1" variant="h3" sx={{ fontWeight: 800 }} lang={language} dir={dir}>
+          {node.name}
         </Typography>
-        {state.node.description && (
-          <Typography lang={state.language} dir={dir} sx={{ mt: 2, maxWidth: 750 }}>
-            {state.node.description}
+        {node.description && (
+          <Typography lang={language} dir={dir} sx={{ mt: 2, maxWidth: 750 }}>
+            {node.description}
           </Typography>
         )}
         <Box sx={{ maxWidth: 350, mt: 3 }}>
-          <SkillMastery skillId={state.node.id} />
+          <SkillMastery skillId={node.id} />
           <Typography color="text.secondary" variant="caption">
             Тестове значення, не реальна оцінка знань.
           </Typography>
