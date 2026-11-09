@@ -206,7 +206,6 @@ try {
     // Validate every resource before replacing previously published output.
     const assessmentMethods = createAssessmentMethodResources();
     rmSync(output, { recursive: true, force: true });
-    if (output.endsWith(sep + 'uiKit')) rmSync(join(dirname(output), 'ui-kit'), { recursive: true, force: true });
     mkdirSync(output, { recursive: true });
     const componentsOutput = join(output, 'components');
     mkdirSync(componentsOutput, { recursive: true });

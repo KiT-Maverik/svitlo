@@ -1,6 +1,6 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync, readdirSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
+import { readFileSync, readdirSync, writeFileSync, existsSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
@@ -133,11 +133,8 @@ describe('Assessment Methods sparse publication', () => {
     );
     const obsoleteGlobal = path.join(output, 'components', 'obsolete.json');
     const obsoleteMethod = path.join(methodsRoot, 'obsolete.json');
-    const legacyOutput = path.join(root, target, 'public/data/ui-kit');
     writeFileSync(obsoleteGlobal, '{}');
     writeFileSync(obsoleteMethod, '{}');
-    mkdirSync(legacyOutput, { recursive: true });
-    writeFileSync(path.join(legacyOutput, 'obsolete.json'), '{}');
     // Previous publication format must not survive regeneration.
     writeFileSync(path.join(methodsRoot, 'meta.json'), '{}');
     writeFileSync(path.join(methodsRoot, 'uk-UA.json'), '{}');
@@ -145,7 +142,6 @@ describe('Assessment Methods sparse publication', () => {
     assert.equal(result.status, 0, result.stderr);
     assert.equal(existsSync(obsoleteGlobal), false);
     assert.equal(existsSync(obsoleteMethod), false);
-    assert.equal(existsSync(legacyOutput), false);
     assert.equal(existsSync(path.join(methodsRoot, 'meta.json')), false);
     assert.equal(existsSync(path.join(methodsRoot, 'uk-UA.json')), false);
     assert.deepEqual(
