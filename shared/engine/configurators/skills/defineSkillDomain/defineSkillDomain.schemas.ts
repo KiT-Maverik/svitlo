@@ -15,7 +15,7 @@ function createSkillDomainSchema<Mode extends keyof typeof localizationSwitch>(m
     slug: z.string().min(1),
     description: z.object({
       methodological: localeText_Schema,
-      frontend: localized,
+      frontend: localized.optional(),
     }),
     title: localized,
   });
