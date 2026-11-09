@@ -1,11 +1,21 @@
 import { z } from 'zod';
-import type { Definition } from './definition';
-import type { TextLanguages } from './contentBlocks/defineText/defineText.schema';
+
+import type { LanguageCodes } from '../schemas/languages.schemas';
 import { allLanguageCodes } from '../schemas/languages.schemas';
 import { createLocaleSubsetSchema } from '../schemas/locale.schemas';
 
-export type DefinitionLanguages = TextLanguages;
-export type EntityDefinition = Definition<unknown, unknown, unknown, any, unknown, unknown>;
+export type DefinitionLanguages = readonly [LanguageCodes, ...LanguageCodes[]];
+export type EntityDefinition = {
+  readonly config: {
+    readonly base: unknown;
+    readonly locales: () => unknown;
+    readonly overrides?: () => unknown;
+    readonly test?: {
+      readonly config: (...args: any[]) => unknown;
+      readonly props: (props: unknown) => unknown;
+    };
+  };
+};
 export type TaggedDefinition<Kind extends string> = EntityDefinition & { readonly kind: Kind };
 
 const codes = new Set<string>(allLanguageCodes);
@@ -15,14 +25,7 @@ const isObject = (value: unknown): value is Record<string, unknown> =>
 export function isDefinition(value: unknown): value is EntityDefinition {
   if (!isObject(value) || !isObject(value.config)) return false;
   const config = value.config;
-  return (
-    'base' in config &&
-    typeof config.locales === 'function' &&
-    typeof config.overrides === 'function' &&
-    isObject(config.test) &&
-    typeof config.test.config === 'function' &&
-    typeof config.test.props === 'function'
-  );
+  return 'base' in config && typeof config.locales === 'function';
 }
 
 export function childDefinition<Child extends EntityDefinition>(
@@ -58,24 +61,42 @@ const indexPath = (path: string) => path.replace(/\.\d+(?=\.|$)/g, '.*');
  */
 export function partitionDefinition(source: unknown, localizablePaths: readonly string[]): Split {
   const paths = new Set(localizablePaths);
-  const project = (value: unknown, path: string): Split => {
+  const project = (value: unknown, path: string, localized = false): Split => {
     if (isDefinition(value)) {
-      const base = value.config.base;
       const childLocales = value.config.locales();
-      const childOverrides = value.config.overrides();
+      const childOverrides = value.config.overrides?.();
       const overrides = isObject(childOverrides) ? childOverrides : {};
-      if (!isObject(childLocales)) return { base, locales: noLocales(), overrides };
+      const localeKeys = isObject(childLocales) ? Object.keys(childLocales) : [];
+      const perLanguage = localeKeys.length > 0 && localeKeys.every(key => codes.has(key));
       const locales: Record<string, unknown> = {};
-      for (const [language, patch] of Object.entries(childLocales)) {
-        if (!codes.has(language)) continue;
-        // The original defineText emits language -> string, rather than
-        // language -> { value: string }; normalize it only at this boundary.
-        locales[language] = typeof patch === 'string' ? { value: patch } : patch;
+
+      if (perLanguage && isObject(childLocales)) {
+        for (const [language, patch] of Object.entries(childLocales)) {
+          locales[language] = typeof patch === 'string' ? { value: patch } : patch;
+        }
+      } else if (isObject(childLocales)) {
+        Object.assign(locales, project(childLocales, '', true).locales);
       }
+
+      let base = value.config.base;
+      // Composite ContentBlocks expose their child configurators outside config,
+      // matching the SkillGroup / SkillDomain composition convention.
+      if ('items' in value && Array.isArray(value.items)) {
+        const items = project(value.items, 'items', true);
+        if (isObject(base)) base = { ...base, items: items.base };
+        for (const [language, patch] of Object.entries(items.locales)) {
+          if (isObject(patch)) {
+            const previous = locales[language];
+            locales[language] = isObject(previous) ? deepMerge(previous, patch) : patch;
+          }
+        }
+        Object.assign(overrides, items.overrides);
+      }
+
       return { base, locales, overrides };
     }
     if (
-      paths.has(indexPath(path)) &&
+      (localized || paths.has(indexPath(path))) &&
       isObject(value) &&
       Object.keys(value).length > 0 &&
       Object.keys(value).every(key => codes.has(key))
@@ -83,7 +104,7 @@ export function partitionDefinition(source: unknown, localizablePaths: readonly 
       return { base: undefined, locales: { ...value }, overrides: {} };
     }
     if (Array.isArray(value)) {
-      const parts = value.map((item, index) => project(item, path ? path + '.' + index : String(index)));
+      const parts = value.map((item, index) => project(item, path ? path + '.' + index : String(index), localized));
       const locales: Record<string, Record<string, unknown>> = {};
       const overrides: Record<string, unknown> = {};
       for (const [index, part] of parts.entries()) {
@@ -99,7 +120,7 @@ export function partitionDefinition(source: unknown, localizablePaths: readonly 
       const locales: Record<string, Record<string, unknown>> = {};
       const overrides: Record<string, unknown> = {};
       for (const [key, child] of Object.entries(value)) {
-        const part = project(child, path ? path + '.' + key : key);
+        const part = project(child, path ? path + '.' + key : key, localized);
         if (part.base !== undefined) base[key] = part.base;
         if (Object.keys(part.overrides).length) overrides[key] = part.overrides;
         for (const [language, patch] of Object.entries(part.locales)) {
