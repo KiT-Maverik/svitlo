@@ -21,8 +21,8 @@ jobs:
           echo '### Legacy builder/validator references (tracked files)'
           git grep -nE 'buildSkill(Config|GroupConfig|DomainConfig)|validateSkill(Config|Children|Uuid)' -- . ':!package-lock.json' ':!.github/workflows/one-shot-legacy-skill-audit.yml' || :
           echo '### Legacy taxonomy contract type references'
-          git grep -nE '\\b(SkillDescription_Config|SkillGroup_Config|SkillDomain_Config|Skill_Config|SkillGroupData|SkillDomainData|SkillData)\\b' -- . ':!package-lock.json' ':!.github/workflows/one-shot-legacy-skill-audit.yml' || :
-          echo '### Legacy registered Skill or Domain usages / imports'
+          git grep -nE 'SkillDescription_Config|SkillGroup_Config|SkillDomain_Config|Skill_Config|SkillGroupData|SkillDomainData|SkillData' -- . ':!package-lock.json' ':!.github/workflows/one-shot-legacy-skill-audit.yml' || :
+          echo '### Paths importing @svitlo/contracts/taxonomy'\n          git grep -n "@svitlo/contracts/taxonomy" -- . ':!package-lock.json' ':!**/*.md' || :\n          echo '### Legacy registered Skill or Domain usages / imports'
           git grep -nE '@svitlo/contracts/taxonomy|from .*[sS]kill(\.types)?|SkillId|fileLocation' -- shared apps scripts content ':!**/*.md' | head -250 || :
           echo '### Files under legacy builders'
           git ls-files 'shared/engine/utils/builders/config/*Skill*' 'shared/engine/utils/builders/config/*skill*' 'shared/contracts/src/types/content/skill*' 'shared/contracts/src/taxonomy.ts'
