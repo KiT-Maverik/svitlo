@@ -7,12 +7,15 @@ const sceneValue_Schema: z.ZodType<string | { [key: string]: unknown }> = z.lazy
   z.union([z.string(), z.record(z.string(), sceneValue_Schema)]),
 );
 
-function createSceneSchema<Mode extends 'config' | 'props'>(mode: Mode) {
+const sceneLocalizationSwitch = {
+  config: z.partialRecord(languageCode_Schema, sceneValue_Schema),
+  props: sceneValue_Schema,
+} as const;
+
+function createSceneSchema<Mode extends keyof typeof sceneLocalizationSwitch>(mode: Mode) {
   return z.object({
     ...createContentBlockMetaSchema('scene').shape,
-    locales: mode === 'config'
-      ? z.partialRecord(languageCode_Schema, sceneValue_Schema)
-      : sceneValue_Schema,
+    locales: sceneLocalizationSwitch[mode],
   });
 }
 
