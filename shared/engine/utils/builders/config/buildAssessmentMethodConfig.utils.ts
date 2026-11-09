@@ -1,13 +1,15 @@
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
 import type { AssessmentMethod_Config } from '@svitlo/contracts/content';
 import type { DeepReadonly } from '@svitlo/contracts/content';
-import { validateSkillUuid } from './validateSkillChildren.utils';
+import { z } from 'zod';
 
 const supported = new Set<string>(DEFAULT_SUPPORTED_LANGUAGES.map(({ language }) => language));
 
 /** Validates independently authored method descriptors without creating relationships or identifiers. */
 export function buildAssessmentMethodConfig<const T extends AssessmentMethod_Config>(config: T): DeepReadonly<T> {
-  validateSkillUuid(config.id, 'Assessment Method id');
+  if (!z.uuid().safeParse(config.id).success) {
+    throw new Error('Assessment Method id must be a UUID');
+  }
   for (const field of ['title', 'description'] as const) {
     const dictionary = config[field];
     if (!dictionary || typeof dictionary !== 'object' || Array.isArray(dictionary)) {
