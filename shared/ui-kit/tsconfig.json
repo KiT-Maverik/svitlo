@@ -15,6 +15,7 @@
     "paths": {
       "@/*": ["src/*"],
       "#layout/*": ["src/components/layout/*"],
+      "#data/*": ["src/components/data/*"],
       "#widgets/*": ["src/components/widgets/*"],
       "#testing/*": ["src/testing/*"],
       "#types/*": ["src/types/*"],
@@ -23,6 +24,6 @@
     "jsx": "react-jsx",
     "types": ["node", "vitest/globals"]
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "scripts/generate-locales.spec.ts"],
   "exclude": ["node_modules", "dist", ".test-build", "**/*.e2e.spec.ts"]
 }
