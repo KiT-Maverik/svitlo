@@ -138,7 +138,7 @@ function readEntity(file, slug, kind, codes) {
   }
   assert(!modern || !!methodological, 'Configurator requires methodological description: ' + file);
   assert(kind !== 'Skill' || description, 'Skill requires complete frontend descriptions: ' + file);
-  assert(!modern || !!description, 'Configurator requires complete frontend descriptions: ' + file);
+  assert(!modern || kind !== 'Skill' || !!description, 'Skill configurator requires complete frontend descriptions: ' + file);
   return { id, slug, kind, name, description, methodological };
 }
 
@@ -264,7 +264,7 @@ export function renderSkillFiles(graph, codes) {
       const label = entity.name[code];
       assert(typeof label === 'string' && label.trim(), 'Missing ' + code + ' name: ' + entityPath);
       const frontend = entity.description?.[code];
-      assert(entity.kind !== 'Skill' && entity.methodological === undefined || (typeof frontend === 'string' && frontend.trim()),
+      assert(entity.kind !== 'Skill' || (typeof frontend === 'string' && frontend.trim()),
         'Missing ' + code + ' frontend description: ' + entityPath);
       const copy = {
         [entity.kind === 'SkillDomain' ? 'title' : 'name']: label,
