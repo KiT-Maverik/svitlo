@@ -69,7 +69,8 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- 'content/*/data/skills'
+          mapfile -t packages < <(find content -mindepth 3 -maxdepth 3 -type d -path '*/data/skills' ! -path 'content/playground/data/skills' | sort)
+          git add -- "${packages[@]}"
           git rm -- .github/workflows/one-shot-skill-migration.yml
           staged="$(git diff --cached --name-only)"
           count="$(printf "%s\n" "${staged}" | sed '/^$/d' | wc -l)"
