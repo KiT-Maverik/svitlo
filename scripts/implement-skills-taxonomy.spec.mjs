@@ -263,10 +263,10 @@ test('create emits entity-owned IDs, direct imports and only allowed indexes', (
       assert.match(content, /\bslug\s*:/);
     }
     assert.equal(ids.size, 5);
-    assert.match(source(f, 'geometry/geometry.data.ts'), /angles: angles_SkillGroup_Data,/);
-    assert.match(source(f, 'geometry/angles/angles.data.ts'), /compareAngles: compareAngles_Skill_Data,/);
-    assert.match(source(f, 'music/music.data.ts'), /groups:\s*\{\s*\}/);
-    assert.match(source(f, 'music/music.data.ts'), /hearRhythm: hearRhythm_Skill_Data,/);
+    assert.match(source(f, 'geometry/geometry.data.ts'), /\bangles_SkillGroup_Data,/);
+    assert.match(source(f, 'geometry/angles/angles.data.ts'), /\bcompareAngles_Skill_Data,/);
+    assert.match(source(f, 'music/music.data.ts'), /groups:\s*\[\s*\]/);
+    assert.match(source(f, 'music/music.data.ts'), /\bhearRhythm_Skill_Data,/);
     assert.match(source(f, 'index.ts'), /geometry_SkillDomain_Data/);
     assert.match(source(f, 'geometry/angles/skills/index.ts'), /compareAngles_Skill_Data/);
     assert.match(source(f, 'music/skills/index.ts'), /hearRhythm_Skill_Data/);
