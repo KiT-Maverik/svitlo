@@ -1,15 +1,14 @@
-import { assessmentMethods_AssessmentMethod_Ids } from '@svitlo/contracts/content';
-import type { AssessmentMethodId, Locale_Languages, Question } from '@svitlo/contracts/content';
+import type { AssessmentMethodKey, Locale_Languages, Question } from '@svitlo/contracts/content';
 
-const valid: AssessmentMethodId = assessmentMethods_AssessmentMethod_Ids.retrieval;
+const valid: AssessmentMethodKey = 'retrieval';
 void valid;
 
-// @ts-expect-error A semantic key is not a stable method UUID.
-const badKey: AssessmentMethodId = 'retrieval';
+// @ts-expect-error Unknown method slugs are not valid assessment methods.
+const badKey: AssessmentMethodKey = 'unknownMethod';
 void badKey;
 
-// @ts-expect-error UUIDs outside the authored dictionary are not allowed.
-const badUuid: AssessmentMethodId = 'aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa';
+// @ts-expect-error Question assessment methods reference slugs, never UUIDs.
+const badUuid: AssessmentMethodKey = 'aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa';
 void badUuid;
 
 // The canonical question response includes an assessment method and restrictions.

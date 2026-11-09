@@ -19,7 +19,6 @@ const definitions = fs
   .filter(name => /^[a-z][A-Za-z0-9]*\.ts$/.test(name) && name !== 'index.ts')
   .sort();
 const sources = [
-  'shared/contracts/src/types/content/assessmentMethod.ids.ts',
   'shared/contracts/src/types/languages.ts',
   definitionRoot + '/retrieval.ts',
   'shared/ui-kit/data/locale/assessmentMethods.ts',
@@ -51,11 +50,12 @@ test('every supported language has exactly the canonical 16 keys, IDs and actual
   assert.ok(languages.includes('en'));
   assert.ok(languages.includes('uk'));
   assert.ok(languages.includes('qm'));
-  const canonicalIds = new Map(
-    [
-      ...fs.readFileSync(path.join(repoRoot, sources[0]), 'utf8').matchAll(/^\s{2}([A-Za-z]+): '([a-f0-9-]{36})'/gm),
-    ].map(match => [match[1], match[2]]),
-  );
+  const canonicalIds = new Map(definitions.map(filename => {
+    const source = fs.readFileSync(path.join(repoRoot, definitionRoot, filename), 'utf8');
+    const match = source.match(/^\s*id:\s*'([a-f0-9-]{36})'/m);
+    assert.ok(match, 'Missing literal canonical UUID in ' + filename);
+    return [filename.slice(0, -3), match[1]];
+  }));
   assert.equal(canonicalIds.size, 16);
   const reference = readAssessmentMethodsReference({ locale: 'en' });
   const keys = reference.methods.map(method => method.key);
@@ -74,7 +74,8 @@ test('every supported language has exactly the canonical 16 keys, IDs and actual
     assert.ok(markdown.includes('Frontend label language: ' + String.fromCharCode(96) + locale));
     assert.ok(markdown.includes('Question type'));
     assert.ok(markdown.includes('Methods: 16'));
-    assert.ok(markdown.includes('../../shared/contracts/src/types/content/assessmentMethod.ids.ts'));
+    assert.ok(!markdown.includes('assessmentMethod.ids.ts'));
+    assert.ok(markdown.includes('../../shared/ui-kit/data/definitions/assessmentMethods'));
     assert.ok(markdown.includes('../../shared/ui-kit/data/locale/assessmentMethods.ts'));
     assert.ok(markdown.includes('../../shared/ui-kit/data/definitions/assessmentMethods/retrieval.ts'));
     for (let i = 0; i < data.methods.length; i++) {
@@ -118,7 +119,7 @@ test('generation is byte-for-byte deterministic and --stdout creates no artifact
 
 test('missing method labels and whole locales fail, without English fallback', () =>
   withFixture(root => {
-    const file = sources[3];
+    const file = sources[2];
     replaceFile(root, file, text => {
       const match = text.match(/const uk: AssessmentMethods_Locale = \{\n  retrieval: [^\n]+\n/);
       assert.ok(match, 'Expected UI Kit uk source is missing');
@@ -142,16 +143,25 @@ test('unknown locales, missing source, invalid UUIDs and missing English descrip
       () => readAssessmentMethodsReference({ root, locale: 'xx' }),
       /Unsupported Assessment Methods locale/,
     );
-    replaceFile(root, sources[0], text => text.replace(/db75ef83-f99d-4a93-940c-9402abc908d5/, 'invalid'));
+    replaceFile(root, sources[1], text => text.replace(/db75ef83-f99d-4a93-940c-9402abc908d5/, 'invalid'));
     assert.throws(
       () => readAssessmentMethodsReference({ root, locale: 'uk' }),
       /Invalid canonical Assessment Method UUID/,
     );
   }));
 
+test('missing authored method definitions are rejected', () =>
+  withFixture(root => {
+    fs.rmSync(path.join(root, definitionRoot, 'retrieval.ts'));
+    assert.throws(
+      () => readAssessmentMethodsReference({ root, locale: 'uk' }),
+      /Expected exactly 16 canonical Assessment Methods/,
+    );
+  }));
+
 test('missing English descriptions are not repaired using localized content', () =>
   withFixture(root => {
-    replaceFile(root, sources[2], text => text.replace('  description: {', '  missingDescription: {'));
+    replaceFile(root, sources[1], text => text.replace('  description: {', '  missingDescription: {'));
     assert.throws(
       () => readAssessmentMethodsReference({ root, locale: 'uk' }),
       /Missing English methodological description for retrieval/,
@@ -193,7 +203,7 @@ test('PR-artifact manifest records success, failures and only allowed temporary 
         }),
       /PR-scoped .agent-ci-artifacts/,
     );
-    replaceFile(root, sources[3], text => text.replace(/  uk,\n/, ''));
+    replaceFile(root, sources[2], text => text.replace(/  uk,\n/, ''));
     const before = manifest.generated.length;
     const retry = generateAssessmentMethodsReviewArtifacts({ root, output, languages: ['uk'], manifest, saveManifest });
     assert.deepEqual(retry, { generated: 0, failures: 1 });

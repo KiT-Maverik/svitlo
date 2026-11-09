@@ -90,9 +90,12 @@ describe('global UI Kit translation coverage', () => {
 
 describe('Assessment Methods sparse publication', () => {
   const methodsRoot = path.join(output, 'assessment-methods');
-  const { assessmentMethods_AssessmentMethod_Ids } = require('@svitlo/contracts/content');
   const { assessmentMethod_Props_Schema } = require('@svitlo/engine');
-  const names = Object.keys(assessmentMethods_AssessmentMethod_Ids).sort();
+  const definitionsRoot = path.join(root, 'shared/ui-kit/data/definitions/assessmentMethods');
+  const names = readdirSync(definitionsRoot)
+    .filter(name => /^[a-z][A-Za-z0-9]*\.ts$/.test(name) && name !== 'index.ts')
+    .map(name => name.slice(0, -3))
+    .sort();
 
   it('publishes one invariant base and a complete selected-language resource for every locale', () => {
     const result = generate();
@@ -104,8 +107,15 @@ describe('Assessment Methods sparse publication', () => {
       'base.json', ...DEFAULT_SUPPORTED_LANGUAGES.map(({ language }) => language + '.json'),
     ].sort());
 
+    const ids = new Set();
     for (const name of names) {
-      assert.deepEqual(base[name], { id: assessmentMethods_AssessmentMethod_Ids[name], slug: name });
+      assert.deepEqual(Object.keys(base[name]).sort(), ['id', 'slug']);
+      assert.equal(base[name].slug, name);
+      assert.match(base[name].id, /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i);
+      assert.ok(!ids.has(base[name].id), 'Duplicate Assessment Method UUID: ' + name);
+      ids.add(base[name].id);
+      const source = readFileSync(path.join(definitionsRoot, name + '.ts'), 'utf8');
+      assert.ok(source.includes("id: '" + base[name].id + "'"));
     }
     for (const { language } of DEFAULT_SUPPORTED_LANGUAGES) {
       const local = JSON.parse(readFileSync(path.join(methodsRoot, language + '.json'), 'utf8'));

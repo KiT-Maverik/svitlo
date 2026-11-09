@@ -1,10 +1,7 @@
-import { assessmentMethods_AssessmentMethod_Ids } from '@svitlo/contracts/content';
-import type { AssessmentMethod_Config } from '@svitlo/contracts/content';
 import type { Skill_Config } from '@svitlo/contracts/taxonomy';
 import { buildSkillConfig } from './buildSkillConfig.utils';
 import { buildSkillGroupConfig } from './buildSkillGroupConfig.utils';
 import { buildSkillDomainConfig } from './buildSkillDomainConfig.utils';
-import { buildAssessmentMethodConfig } from './buildAssessmentMethodConfig.utils';
 
 const names = {} as Skill_Config['name'];
 const skill = buildSkillConfig({
@@ -36,13 +33,4 @@ const domain = buildSkillDomainConfig({
 // @ts-expect-error Skill Domain references are readonly.
 domain.groups.first = group;
 
-const translated = {} as AssessmentMethod_Config['title'];
-const assessment = buildAssessmentMethodConfig({
-  id: assessmentMethods_AssessmentMethod_Ids.application,
-  title: translated,
-  description: translated,
-});
-// @ts-expect-error Assessment Method translations are readonly.
-assessment.description.uk = 'Changed';
-
-void [skill, group, domain, assessment];
+void [skill, group, domain];
