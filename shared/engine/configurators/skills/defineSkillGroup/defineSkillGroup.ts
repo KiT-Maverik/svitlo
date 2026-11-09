@@ -1,4 +1,5 @@
 import type { DeepPartial } from '#types';
+import { configuratorArrayToSluggedObject } from '../../../utils/configuratorArrayToSluggedObject/configuratorArrayToSluggedObject.utils';
 
 import { skillGroup_Config_Schema, type SkillGroup_Config } from './defineSkillGroup.schemas';
 
@@ -19,7 +20,7 @@ export function defineSkillGroup(config: SkillGroup_Config) {
       locales: () =>
         ({ name, description: { frontend: description.frontend } }) satisfies DeepPartial<SkillGroup_Config>,
     },
-    skill: Object.fromEntries(skills.map((skill): [string, typeof skill] => [skill.config.base.slug, skill])),
+    skill: configuratorArrayToSluggedObject(skills),
   };
 }
 

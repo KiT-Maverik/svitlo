@@ -9,6 +9,7 @@ export * from './lessons';
 export * from './schemas';
 
 export { getLanguageCode, getSupportedLanguages, isLocale, getLocaleDirection } from './utils/languages';
+export { configuratorArrayToSluggedObject } from './utils/configuratorArrayToSluggedObject/configuratorArrayToSluggedObject.utils';
 export { splitLessonValue } from './lessons/splitLessonValue';
 export { resolveEntityPath } from './utils/entityPath/resolveEntityPath.utils';
 export { buildAssessmentMethodConfig } from './utils/builders/config/buildAssessmentMethodConfig.utils';

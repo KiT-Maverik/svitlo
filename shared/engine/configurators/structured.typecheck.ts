@@ -1,7 +1,7 @@
 import { defineText } from './contentBlocks/defineText/defineText';
 import { defineTheorySection } from './sections';
 import { defineLesson } from './lessons';
-import { defineSkill, defineSkillGroupMethod, type Skill_Config } from './skills';
+import { defineSkill, defineSkillGroup, type Skill_Config } from './skills';
 import { allLanguageCodes } from '../schemas/languages.schemas';
 
 const languages = ['en', 'uk'] as const;
@@ -36,14 +36,14 @@ const skill = defineSkill({
   name: allLocales,
   description: { methodological: 'Reading', frontend: allLocales },
 });
-defineSkillGroupMethod({
+defineSkillGroup({
   id: 'b775647f-203d-481a-a1c7-4d331c779d6b',
   slug: 'literacy',
   name: allLocales,
   description: { methodological: 'Literacy', frontend: allLocales },
   skills: [skill],
 });
-defineSkillGroupMethod({
+defineSkillGroup({
   id: 'b775647f-203d-481a-a1c7-4d331c779d6b',
   slug: 'invalid',
   name: allLocales,

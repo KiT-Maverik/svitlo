@@ -8,7 +8,7 @@ import { defineMarkdown } from './contentBlocks/defineRemaining';
 import { defineTheorySection, regularSectionSchema } from './sections';
 import { defineLesson } from './lessons';
 import { defineCourse } from './courses';
-import { defineSkill, defineSkillGroupMethod, defineSkillDomainMethod } from './skills';
+import { defineSkill, defineSkillGroup, defineSkillDomain } from './skills';
 import { defineAssessmentMethod } from './assessmentMethods/defineAssessmentMethod';
 import { assessmentMethod_Config_Schema } from './assessmentMethods/defineAssessmentMethod.schemas';
 
@@ -100,14 +100,14 @@ test('Minimal Skill hierarchy and Assessment Method configurators validate and p
     name: allLocales('Reading'),
     description: description('Identify written text'),
   });
-  const group = defineSkillGroupMethod({
+  const group = defineSkillGroup({
     id: id('70'),
     slug: 'literacy',
     name: allLocales('Literacy'),
     description: description('Literacy'),
     skills: [skill],
   });
-  const domain = defineSkillDomainMethod({
+  const domain = defineSkillDomain({
     id: id('71'),
     slug: 'language',
     title: allLocales('Language'),
@@ -118,6 +118,39 @@ test('Minimal Skill hierarchy and Assessment Method configurators validate and p
   assert.deepEqual(Object.keys(group.skill), ['reading']);
   assert.deepEqual(Object.keys(domain.group), ['literacy']);
   assert.deepEqual(skill.config.locales().name, allLocales('Reading'));
+  assert.throws(
+    () =>
+      defineSkillGroup({
+        id: id('72'),
+        slug: 'duplicate',
+        name: allLocales('Duplicate'),
+        description: description('Duplicate'),
+        skills: [skill, skill],
+      }),
+    /Duplicate configurator slug: reading/,
+  );
+  assert.throws(
+    () =>
+      defineSkillDomain({
+        id: id('73'),
+        slug: 'duplicate',
+        title: allLocales('Duplicate'),
+        description: description('Duplicate'),
+        groups: [group, group],
+      }),
+    /Duplicate configurator slug: literacy/,
+  );
+  assert.throws(
+    () =>
+      defineSkillDomain({
+        id: id('74'),
+        slug: 'duplicate',
+        title: allLocales('Duplicate'),
+        description: description('Duplicate'),
+        skills: [skill, skill],
+      }),
+    /Duplicate configurator slug: reading/,
+  );
 
   const methodSource = {
     slug: 'retrieval',
