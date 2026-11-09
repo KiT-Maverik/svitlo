@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import type { Locale_Languages, Locale_Options } from '@svitlo/contracts/content';
-import { DEFAULT_SUPPORTED_LANGUAGES } from '../../types/languages';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
 import type { DynamicQuestion_Config, DynamicQuestion_Variant } from './createDynamicQuestion.types';
 import {
   createDynamicQuestion,

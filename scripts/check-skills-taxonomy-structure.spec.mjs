@@ -16,7 +16,7 @@ function fixture() {
   write(
     'geometry/geometry.data.ts',
     [
-      "import { buildSkillDomainConfig } from '@svitlo/engine/taxonomy';",
+      "import { buildSkillDomainConfig } from '@svitlo/engine';",
       "import { angles_SkillGroup_Data } from './angles/angles.data';",
       "export const geometry_SkillDomain_Data = buildSkillDomainConfig({ slug: 'geometry', id: '11111111-1111-4111-8111-111111111111', name: {}, groups: { angles: angles_SkillGroup_Data } });",
     ].join('\n'),
@@ -24,7 +24,7 @@ function fixture() {
   write(
     'geometry/angles/angles.data.ts',
     [
-      "import { buildSkillGroupConfig } from '@svitlo/engine/taxonomy';",
+      "import { buildSkillGroupConfig } from '@svitlo/engine';",
       "import { rightAngle_Skill_Data } from './skills';",
       "export const angles_SkillGroup_Data = buildSkillGroupConfig({ slug: 'angles', id: '22222222-2222-4222-8222-222222222222', name: {}, skills: { rightAngle: rightAngle_Skill_Data } });",
     ].join('\n'),
@@ -32,7 +32,7 @@ function fixture() {
   write('geometry/angles/skills/index.ts', "export { rightAngle_Skill_Data } from './rightAngle.data';\n");
   write(
     'geometry/angles/skills/rightAngle.data.ts',
-    "import { buildSkillConfig } from '@svitlo/engine/taxonomy';\nexport const rightAngle_Skill_Data = buildSkillConfig({ slug: 'rightAngle', id: '33333333-3333-4333-8333-333333333333', name: {} });\n",
+    "import { buildSkillConfig } from '@svitlo/engine';\nexport const rightAngle_Skill_Data = buildSkillConfig({ slug: 'rightAngle', id: '33333333-3333-4333-8333-333333333333', name: {} });\n",
   );
   return { root, write };
 }
@@ -79,7 +79,7 @@ test('mixed Domain with Groups and direct Skills is structurally valid', t => {
   write('geometry/skills/index.ts', "export { rectangle_Skill_Data } from './rectangle.data';\n");
   write(
     'geometry/skills/rectangle.data.ts',
-    "import { buildSkillConfig } from '@svitlo/engine/taxonomy';\n" +
+    "import { buildSkillConfig } from '@svitlo/engine';\n" +
       "export const rectangle_Skill_Data = buildSkillConfig({ slug: 'rectangle', id: '44444444-4444-4444-8444-444444444444', name: {} });\n",
   );
   const file = path.join(root, 'geometry/geometry.data.ts');

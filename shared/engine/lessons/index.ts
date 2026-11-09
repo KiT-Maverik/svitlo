@@ -1,6 +1,6 @@
 export { createLesson } from './createLesson';
 export type { LessonCreator, LessonBase, LessonLocale } from './createLesson';
-export { createSectionConfigurator } from './createSection';
+export { createSectionConfigurator, createSectionConfigurator as createSection } from './createSection';
 export type { SectionCreator } from './createSection';
 export { createContentBlock } from './createContentBlock';
 export type { ContentBlockCreator } from './createContentBlock';

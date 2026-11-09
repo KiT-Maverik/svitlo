@@ -12,13 +12,20 @@
   },
   "include": [
     "index.ts",
+    "runtime.ts",
     "configurators/**/*.ts",
+    "configurators_old/**/*.ts",
     "data/**/*.ts",
-    "definitions/**/*.ts",
     "lessons/**/*.ts",
     "schemas/**/*.ts",
     "types/**/*.ts",
     "utils/**/*.ts"
   ],
-  "exclude": ["node_modules", "dist", "**/*.spec.ts", "**/*.unit.spec.ts", "**/*.typecheck.ts"]
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.spec.ts",
+    "**/*.unit.spec.ts",
+    "**/*.typecheck.ts"
+  ]
 }

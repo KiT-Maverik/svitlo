@@ -2,7 +2,6 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { pathToFileURL } from 'node:url';
-import { build } from 'esbuild';
 import { createLessonFromUnknown } from '../../../lessons/createLesson';
 import { resolveEntityPath } from '../../entityPath/resolveEntityPath.utils';
 
@@ -11,6 +10,7 @@ export async function loadLessonData(entry: string): Promise<unknown> {
   const directory = fs.mkdtempSync(path.join(path.dirname(entry), '.lesson-load-'));
   const output = path.join(directory, 'lesson.cjs');
   try {
+    const { build } = (await import(['es', 'build'].join(''))) as typeof import('esbuild');
     await build({
       entryPoints: [entry],
       outfile: output,

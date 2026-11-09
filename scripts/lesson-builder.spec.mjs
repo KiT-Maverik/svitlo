@@ -328,7 +328,7 @@ test('does not fake Scene implementations; missing specifications fail explicitl
   }));
 test('real Playground Lesson is read-only integration evidence of current creators and Question Bank', () => {
   const root = path.join(repoRoot, 'content/playground/data/lessons/c', lessonId);
-  const lesson = fs.readFileSync(path.join(root, 'howLightMoves.data.ts'), 'utf8');
+  const lesson = fs.readFileSync(path.join(root, 'index.ts'), 'utf8');
   const quiz = fs.readFileSync(path.join(root, 'sections/quiz/index.ts'), 'utf8');
   const catalog = fs.readFileSync(path.join(root, 'questions/index.ts'), 'utf8');
   assert.match(lesson, /createLesson<HowLightMoves_Languages>/);
@@ -375,8 +375,7 @@ test('single-language generated TypeScript matches real Engine/Contracts APIs', 
       esModuleInterop: true,
       baseUrl: repoRoot,
       paths: {
-        '@svitlo/engine': ['shared/engine/src/index.ts'],
-        '@svitlo/engine/*': ['shared/engine/src/*'],
+        '@svitlo/engine': ['shared/engine/index.ts'],
         '@svitlo/contracts': ['shared/contracts/src/index.ts'],
         '@svitlo/contracts/*': ['shared/contracts/src/*'],
       },

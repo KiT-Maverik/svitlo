@@ -427,8 +427,8 @@ export function renderCourseSource(plan, outputFilename) {
     generatedHeader.trimEnd(),
     'import { createCourse, createChapter, createModule' +
       (authoredOverrides.length ? ', createLessonOverrides' : '') +
-      ' } from "@svitlo/engine/builders";',
-    'import type { Course, Locale_Languages } from "@svitlo/engine/content";',
+      ' } from "@svitlo/engine";',
+    'import type { Course, Locale_Languages } from "@svitlo/contracts/content";',
     ...importLines,
     ...ownedImports,
     '',

@@ -3,7 +3,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { useTheme } from '@mui/material/styles';
-import { SvitloThemeProvider, useSvitloColorScheme } from '@svitlo/ui-kit/theme';
+import { SvitloThemeProvider, useSvitloColorScheme } from '@svitlo/ui-kit';
 
 function ThemeConsumer() {
   const { mode, setMode } = useSvitloColorScheme();

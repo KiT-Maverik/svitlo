@@ -11,6 +11,7 @@
     "code:format:fix": "prettier --write . --ignore-path ../../../.prettierignore"
   },
   "dependencies": {
+    "@svitlo/contracts": "0.0.0",
     "@svitlo/engine": "0.0.0"
   },
   "devDependencies": {
@@ -20,16 +21,12 @@
   },
   "exports": {
     ".": {
-      "types": "./dist/renderer.d.ts",
-      "default": "./dist/renderer.js"
-    },
-    "./main": {
-      "types": "./dist/main.d.ts",
-      "default": "./dist/main.js"
-    },
-    "./resources": {
-      "types": "./dist/resourcePath.d.ts",
-      "default": "./dist/resourcePath.js"
+      "browser": {
+        "types": "./dist/renderer.d.ts",
+        "default": "./dist/renderer.js"
+      },
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     }
   }
 }

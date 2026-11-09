@@ -68,21 +68,21 @@ Create or extend only the selected taxonomy subtree in the **specific textbook p
 └── src/
     └── data/
         └── skillsTaxonomy/
-            ├── defineAssessmentMethod.ts            # Domain Data exports ONLY
+            ├── index.ts            # Domain Data exports ONLY
             ├── index.ids.ts             # Domain ID-only exports ONLY
             └── <domainCamelCase>/
                 ├── <domainCamelCase>.data.ts    # Domain config
                 ├── <domainCamelCase>.ids.ts     # Domain UUID
-                ├── defineAssessmentMethod.ts                # this Domain Data ONLY
+                ├── index.ts                # this Domain Data ONLY
                 ├── index.ids.ts                 # immediate Group or direct Skill ID mapping (based on Domain mode)
                 └── <groupCamelCase>/
                     ├── <groupCamelCase>.data.ts  # Group config
                     ├── <groupCamelCase>.ids.ts   # Group UUID
-                    ├── defineAssessmentMethod.ts             # this Group Data ONLY
+                    ├── index.ts             # this Group Data ONLY
                     ├── index.ids.ts              # Group UUID export; no Skill Data
                     └── skills/
                         ├── <skillCamelCase>.data.ts
-                        ├── defineAssessmentMethod.ts         # Skills in THIS Group ONLY
+                        ├── index.ts         # Skills in THIS Group ONLY
                         └── index.ids.ts          # Skill UUIDs in THIS Group ONLY
 ```
 

@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
-import { CoursePage } from '@svitlo/ui-kit/course';
+import { CoursePage } from '@svitlo/ui-kit';
 import { getMockCourse, getMockCourseMessages, mockCourseOutline } from '@/lib/mockCourses';
 
 type Props = { params: Promise<{ language: string; courseId: string }> };

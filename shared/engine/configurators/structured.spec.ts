@@ -8,7 +8,7 @@ import { defineMarkdown } from './contentBlocks/defineRemaining';
 import { defineTheorySection, regularSectionSchema } from './sections';
 import { defineLesson } from './lessons';
 import { defineCourse } from './courses';
-import { defineSkill, defineSkillGroup, defineSkillDomain } from './skills/old';
+import { defineSkill, defineSkillGroupMethod, defineSkillDomainMethod } from './skills';
 import { defineAssessmentMethod } from './assessmentMethods/defineAssessmentMethod';
 import { assessmentMethod_Config_Schema } from './assessmentMethods/defineAssessmentMethod.schemas';
 
@@ -85,34 +85,40 @@ test('Course-local overrides do not mutate a standalone Lesson', () => {
   });
   assert.equal(JSON.stringify(course.config.base).includes('function'), false);
 });
-test('Skills use child Definition objects and assessment IDs are valid UUIDs', () => {
-  const skill = defineSkill<typeof languages>({
-    type: 'skill',
-    id: id('6f'),
-    slug: 'reading',
-    name: { en: 'Read', uk: 'Читати' },
-    description: { methodological: 'Identify written text', frontend: { en: 'Reading', uk: 'Читання' } },
-  });
-  const group = defineSkillGroup<typeof languages>({
-    type: 'skillGroup',
-    id: id('70'),
-    slug: 'literacy',
-    name: { en: 'Literacy', uk: 'Грамотність' },
-    skills: { reading: skill },
-  });
-  const domain = defineSkillDomain<typeof languages>({
-    type: 'skillDomain',
-    id: id('71'),
-    slug: 'language',
-    name: { en: 'Language', uk: 'Мова' },
-    groups: { literacy: group },
-  });
-  assert.equal(skill.config.test.config(languages).success, true);
-  assert.equal(group.config.test.config(languages).success, true);
-  assert.equal(domain.config.test.config(languages).success, true);
+test('Minimal Skill hierarchy and Assessment Method configurators validate and project fields', () => {
   assert.deepEqual([...allLanguageCodes].sort(), DEFAULT_SUPPORTED_LANGUAGES.map(({ language }) => language).sort());
   const allLocales = (value: string) =>
     locale_All_Schema.parse(Object.fromEntries(allLanguageCodes.map(code => [code, value])));
+  const description = (methodological: string) => ({
+    methodological,
+    frontend: allLocales(methodological),
+  });
+
+  const skill = defineSkill({
+    id: id('6f'),
+    slug: 'reading',
+    name: allLocales('Reading'),
+    description: description('Identify written text'),
+  });
+  const group = defineSkillGroupMethod({
+    id: id('70'),
+    slug: 'literacy',
+    name: allLocales('Literacy'),
+    description: description('Literacy'),
+    skills: [skill],
+  });
+  const domain = defineSkillDomainMethod({
+    id: id('71'),
+    slug: 'language',
+    title: allLocales('Language'),
+    description: description('Language'),
+    groups: [group],
+  });
+  assert.equal(skill.config.base.slug, 'reading');
+  assert.deepEqual(Object.keys(group.skill), ['reading']);
+  assert.deepEqual(Object.keys(domain.group), ['literacy']);
+  assert.deepEqual(skill.config.locales().name, allLocales('Reading'));
+
   const methodSource = {
     slug: 'retrieval',
     id: 'b775647f-203d-481a-a1c7-4d331c779d72',

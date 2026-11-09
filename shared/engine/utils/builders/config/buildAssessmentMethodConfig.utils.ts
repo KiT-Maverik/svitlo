@@ -1,4 +1,4 @@
-import { DEFAULT_SUPPORTED_LANGUAGES } from '../../../types/languages';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
 import type { AssessmentMethod_Config } from '@svitlo/contracts/content';
 import type { DeepReadonly } from '@svitlo/contracts/content';
 import { validateSkillUuid } from './validateSkillChildren.utils';

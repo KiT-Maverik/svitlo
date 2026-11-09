@@ -81,14 +81,14 @@ For the selected textbook package only:
 │       └── taxonomy.md                  # outstanding editorial staging, if any
 └── data/
     └── skills/
-        ├── defineAssessmentMethod.ts                     # named Domain Data exports
+        ├── index.ts                     # named Domain Data exports
         └── <domainCamelCase>/
             ├── <domainCamelCase>.data.ts # Domain config, UUID, child references
             └── <groupCamelCase>/
                 ├── <groupCamelCase>.data.ts # Group config, UUID, child references
                 └── skills/
                     ├── <skillCamelCase>.data.ts # Skill config, UUID
-                    └── defineAssessmentMethod.ts          # immediate Skill Data named exports
+                    └── index.ts          # immediate Skill Data named exports
 ```
 
 For an approved direct-Skill Domain, omit the Group directory and place its Skills in `<domainCamelCase>/skills/` with `skills/index.ts`. Both grouped and direct-Skill Domain Data import immediate child Data objects and embed the child objects themselves. **No `index.ts` exists in the Domain or Group directory root**. Do not create `*.ids.ts`, `index.ids.ts`, or `index.ts`.

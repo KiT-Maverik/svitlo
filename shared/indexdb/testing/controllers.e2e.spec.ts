@@ -1,6 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
 import type { LessonState, QuizResult, QuizState } from '@svitlo/contracts/content';
-import { DATABASE_NAME, DATABASE_VERSION } from '@svitlo/indexdb/config';
+import { DATABASE_NAME, DATABASE_VERSION } from '@svitlo/indexdb';
 import type { ControllerCommand, DatabaseInspection } from './db-browser-commands';
 
 const date = '2026-01-01T00:00:00.000Z';
