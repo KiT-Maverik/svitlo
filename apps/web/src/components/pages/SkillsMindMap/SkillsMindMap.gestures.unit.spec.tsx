@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { SkillsMindMap } from './SkillsMindMap';
 import { SkillsPageSettingsProvider } from './SkillsPageSettingsContext';
-import { fixtureJsonForSkillUrl, TEST_SKILLS_DOMAIN_SLUGS } from './skillsData.fixture';
+import { fixtureJsonForSkillUrl, TEST_SKILLS_DOMAIN_SLUGS, TEST_SKILL_NODES_UK } from './skillsData.fixture';
 
 type PointerTest = {
   id: number;
@@ -45,7 +45,7 @@ describe('Skills mind-map touch gestures', () => {
   async function map() {
     render(
       <SkillsPageSettingsProvider>
-        <SkillsMindMap domainSlugs={TEST_SKILLS_DOMAIN_SLUGS} />
+        <SkillsMindMap domains={TEST_SKILL_NODES_UK} />
       </SkillsPageSettingsProvider>,
     );
     await screen.findByTestId('skill-node-testRed');

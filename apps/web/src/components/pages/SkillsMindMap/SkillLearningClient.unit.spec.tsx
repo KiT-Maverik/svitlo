@@ -1,7 +1,7 @@
 import { beforeEach, afterEach, describe, expect, it, vi } from 'vitest';
 import { render, screen, within } from '@testing-library/react';
 import { SkillLearningClient } from './SkillLearningClient';
-import { fixtureJsonForSkillUrl, TEST_SKILLS_DOMAIN_SLUGS } from './skillsData.fixture';
+import { fixtureJsonForSkillUrl, TEST_SKILLS_DOMAIN_SLUGS, TEST_SKILL_NODES_UK } from './skillsData.fixture';
 
 const uuid = (n: number) => '00000000-0000-4000-8000-' + String(n).padStart(12, '0');
 describe('Skill learning destination', () => {
@@ -25,7 +25,7 @@ describe('Skill learning destination', () => {
   });
 
   it('loads one locale, selects the UUID and does not invent linked content', async () => {
-    render(<SkillLearningClient skillId={uuid(3)} domainSlugs={TEST_SKILLS_DOMAIN_SLUGS} />);
+    render(<SkillLearningClient node={TEST_SKILL_NODES_UK[0].children[0].children[0]} language="uk" />);
     expect(await screen.findByRole('heading', { name: 'Червоний' })).toBeInTheDocument();
     expect(screen.getByText('Розпізнавати червоний.')).toBeInTheDocument();
     expect(screen.getByRole('progressbar', { name: /Демонстраційний рівень/ })).toHaveAttribute('aria-valuenow');
@@ -34,14 +34,11 @@ describe('Skill learning destination', () => {
       'href',
       '/skillAnalytics?lang=uk',
     );
-    expect(globalThis.fetch).toHaveBeenCalledWith(
-      '/data/skills/uk.json',
-      expect.objectContaining({ signal: expect.any(AbortSignal) }),
-    );
+    expect(globalThis.fetch).not.toHaveBeenCalled();
   });
 
   it('reports an unknown skill rather than substituting a different lesson', async () => {
-    render(<SkillLearningClient skillId={uuid(99)} domainSlugs={TEST_SKILLS_DOMAIN_SLUGS} />);
+    render(<SkillLearningClient node={null} language="uk" />);
     const alert = await screen.findByRole('alert');
     expect(alert).toHaveTextContent('не знайдено');
     expect(within(alert).getByRole('link', { name: /Повернутися/ })).toHaveAttribute('href', '/skillAnalytics');

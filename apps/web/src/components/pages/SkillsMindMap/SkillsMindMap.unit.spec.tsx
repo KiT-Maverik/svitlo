@@ -3,7 +3,7 @@ import { fireEvent, render, screen, waitFor, within } from '@testing-library/rea
 import { SkillsMindMap } from './SkillsMindMap';
 import { SkillsPageSettingsProvider } from './SkillsPageSettingsContext';
 import { SkillsPagePreferences } from './SkillsPagePreferences';
-import { fixtureJsonForSkillUrl, TEST_SKILLS_DOMAIN_SLUGS } from './skillsData.fixture';
+import { fixtureJsonForSkillUrl, TEST_SKILLS_DOMAIN_SLUGS, TEST_SKILL_NODES_UK } from './skillsData.fixture';
 
 const uuid = (n: number) => '00000000-0000-4000-8000-' + String(n).padStart(12, '0');
 describe('SkillsMindMap', () => {
@@ -30,7 +30,7 @@ describe('SkillsMindMap', () => {
     render(
       <SkillsPageSettingsProvider>
         <SkillsPagePreferences />
-        <SkillsMindMap domainSlugs={TEST_SKILLS_DOMAIN_SLUGS} />
+        <SkillsMindMap domains={TEST_SKILL_NODES_UK} />
       </SkillsPageSettingsProvider>,
     );
     const node = await screen.findByTestId('skill-node-testWarmColors');
@@ -42,17 +42,14 @@ describe('SkillsMindMap', () => {
     expect(screen.getByTestId('skill-node-testWarmColors')).toHaveAttribute('aria-expanded', 'false');
     fireEvent.click(screen.getByTestId('skill-node-testWarmColors'));
     expect(screen.getByTestId('skill-node-testRed')).toBeInTheDocument();
-    expect(globalThis.fetch).toHaveBeenCalledWith(
-      '/data/skills/uk.json',
-      expect.objectContaining({ signal: expect.any(AbortSignal) }),
-    );
+    expect(globalThis.fetch).not.toHaveBeenCalled();
   });
 
   it('starts compact with visible mastery, expands the description and Pump action, then collapses again', async () => {
     render(
       <SkillsPageSettingsProvider>
         <SkillsPagePreferences />
-        <SkillsMindMap domainSlugs={TEST_SKILLS_DOMAIN_SLUGS} />
+        <SkillsMindMap domains={TEST_SKILL_NODES_UK} />
       </SkillsPageSettingsProvider>,
     );
     const leaf = await screen.findByTestId('skill-node-testRed');
@@ -92,7 +89,7 @@ describe('SkillsMindMap', () => {
     render(
       <SkillsPageSettingsProvider>
         <SkillsPagePreferences />
-        <SkillsMindMap domainSlugs={TEST_SKILLS_DOMAIN_SLUGS} />
+        <SkillsMindMap domains={TEST_SKILL_NODES_UK} />
       </SkillsPageSettingsProvider>,
     );
     await screen.findByTestId('skill-node-testRed');
@@ -120,7 +117,7 @@ describe('SkillsMindMap', () => {
     render(
       <SkillsPageSettingsProvider>
         <SkillsPagePreferences />
-        <SkillsMindMap domainSlugs={TEST_SKILLS_DOMAIN_SLUGS} />
+        <SkillsMindMap domains={TEST_SKILL_NODES_UK} />
       </SkillsPageSettingsProvider>,
     );
     const leaf = await screen.findByTestId('skill-node-testRed');
@@ -141,7 +138,7 @@ describe('SkillsMindMap', () => {
     render(
       <SkillsPageSettingsProvider>
         <SkillsPagePreferences />
-        <SkillsMindMap domainSlugs={TEST_SKILLS_DOMAIN_SLUGS} />
+        <SkillsMindMap domains={TEST_SKILL_NODES_UK} />
       </SkillsPageSettingsProvider>,
     );
     await screen.findByTestId('skill-node-testRed');
@@ -159,7 +156,7 @@ describe('SkillsMindMap', () => {
     render(
       <SkillsPageSettingsProvider>
         <SkillsPagePreferences />
-        <SkillsMindMap domainSlugs={TEST_SKILLS_DOMAIN_SLUGS} />
+        <SkillsMindMap domains={TEST_SKILL_NODES_UK} />
       </SkillsPageSettingsProvider>,
     );
     await screen.findByTestId('skill-node-testColors');
@@ -170,29 +167,27 @@ describe('SkillsMindMap', () => {
     expect(screen.getByTestId('skill-node-testColors')).toBeInTheDocument();
   });
 
-  it('switches to the requested language without loading all locale files', async () => {
+  it('requests server navigation rather than changing Skill labels client-side', async () => {
+    const navigate = vi.fn();
     render(
-      <SkillsPageSettingsProvider>
+      <SkillsPageSettingsProvider initialLanguage="uk" onLanguageChange={navigate}>
         <SkillsPagePreferences />
-        <SkillsMindMap domainSlugs={TEST_SKILLS_DOMAIN_SLUGS} />
+        <SkillsMindMap domains={TEST_SKILL_NODES_UK} />
       </SkillsPageSettingsProvider>,
     );
     await screen.findByTestId('skill-node-testRed');
     fireEvent.change(screen.getByRole('combobox', { name: 'Мова даних Skills' }), { target: { value: 'en' } });
-    await waitFor(() => expect(screen.getByTestId('skill-node-testRed')).toHaveTextContent('Red'));
-    expect(window.location.search).toBe('?lang=en');
-    expect(globalThis.fetch).toHaveBeenCalledWith(
-      '/data/skills/en.json',
-      expect.objectContaining({ signal: expect.any(AbortSignal) }),
-    );
+    expect(navigate).toHaveBeenCalledWith('en');
+    expect(screen.getByTestId('skill-node-testRed')).toHaveTextContent('Червоний');
+    expect(globalThis.fetch).not.toHaveBeenCalled();
   });
 
   it('displays a hard error for an unsupported requested language', async () => {
-    window.history.replaceState({}, '', '/skillAnalytics?lang=ru');
+    
     render(
-      <SkillsPageSettingsProvider>
+      <SkillsPageSettingsProvider initialLanguage="ru">
         <SkillsPagePreferences />
-        <SkillsMindMap domainSlugs={TEST_SKILLS_DOMAIN_SLUGS} />
+        <SkillsMindMap domains={TEST_SKILL_NODES_UK} />
       </SkillsPageSettingsProvider>,
     );
     expect(await screen.findByRole('alert')).toHaveTextContent('відсутня');

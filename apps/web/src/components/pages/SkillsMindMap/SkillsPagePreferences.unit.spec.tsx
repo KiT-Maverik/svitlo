@@ -3,7 +3,7 @@ import { fireEvent, render, screen, waitFor, within } from '@testing-library/rea
 import { SkillsMindMap } from './SkillsMindMap';
 import { SkillsPagePreferences } from './SkillsPagePreferences';
 import { SkillsPageSettingsProvider } from './SkillsPageSettingsContext';
-import { fixtureJsonForSkillUrl, TEST_SKILLS_DOMAIN_SLUGS } from './skillsData.fixture';
+import { fixtureJsonForSkillUrl, TEST_SKILLS_DOMAIN_SLUGS, TEST_SKILL_NODES_UK } from './skillsData.fixture';
 
 const uuid = (n: number) => '00000000-0000-4000-8000-' + String(n).padStart(12, '0');
 describe('Skills page-scoped settings', () => {
@@ -30,7 +30,7 @@ describe('Skills page-scoped settings', () => {
     return render(
       <SkillsPageSettingsProvider>
         <SkillsPagePreferences />
-        <SkillsMindMap domainSlugs={TEST_SKILLS_DOMAIN_SLUGS} />
+        <SkillsMindMap domains={TEST_SKILL_NODES_UK} />
       </SkillsPageSettingsProvider>,
     );
   }
