@@ -26,6 +26,15 @@ assert.ok(existsSync(join(dist, 'data/pages/skillAnalytics/uk.json')), 'Missing 
 const locales = readdirSync(join(dist, 'data/ui-kit')).filter(name => name.endsWith('.json'));
 assert.ok(locales.length > 0, 'Missing UI Kit localizations');
 for (const locale of locales) JSON.parse(readFileSync(join(dist, 'data/ui-kit', locale), 'utf8'));
+const methodsRoot = join(dist, 'data/ui-kit/assessment-methods');
+const methodsMeta = JSON.parse(readFileSync(join(methodsRoot, 'meta.json'), 'utf8'));
+const methodsBase = JSON.parse(readFileSync(join(methodsRoot, 'base.json'), 'utf8'));
+assert.equal(methodsMeta.methods.length, 16);
+assert.deepEqual(Object.keys(methodsBase).sort(), [...methodsMeta.methods].sort());
+for (const locale of methodsMeta.locales) {
+  const data = JSON.parse(readFileSync(join(methodsRoot, locale + '.json'), 'utf8'));
+  assert.deepEqual(Object.keys(data).sort(), [...methodsMeta.methods].sort());
+}
 for (const flag of ['ua.svg', 'qm.svg']) {
   assert.ok(existsSync(join(dist, 'flags', flag)), 'Missing UI Kit flag: ' + flag);
 }

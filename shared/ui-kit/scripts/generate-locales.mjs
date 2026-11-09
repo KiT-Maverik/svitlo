@@ -4,14 +4,15 @@
  */
 import { mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join, resolve, relative, sep } from 'node:path';
+import { join, resolve, relative, sep, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { createRequire } from 'node:module';
+import { createRequire, Module } from 'node:module';
 import ts from 'typescript';
 
 const require = createRequire(import.meta.url);
 const repoRoot = fileURLToPath(new URL('../../../', import.meta.url));
 const dataRoot = join(repoRoot, 'shared/ui-kit/data/locale');
+const methodsRoot = join(repoRoot, 'shared/ui-kit/data/definitions/assessmentMethods');
 const targetFlag = process.argv.indexOf('--package');
 if (targetFlag < 0 || !process.argv[targetFlag + 1]) {
   throw new Error('Usage: node generate-locales.mjs --package content/<textbook>');
@@ -84,6 +85,83 @@ function auditMissingTranslations(dictionaries, components) {
   return missing;
 }
 
+/**
+ * Resolve authored definitions at build time. Compiled JS is never imported
+ * by application code or placed in the published output.
+ */
+function loadAssessmentMethodDefinitions() {
+  const filenames = readdirSync(methodsRoot)
+    .filter(name => /^[a-z][A-Za-z0-9]*\.ts$/.test(name) && name !== 'index.ts')
+    .sort();
+  if (filenames.length !== 16) {
+    throw new Error('Expected 16 Assessment Method definitions; found ' + filenames.length);
+  }
+
+  return filenames.map(filename => {
+    const name = filename.slice(0, -3);
+    const filepath = join(methodsRoot, filename);
+    const js = ts.transpileModule(readFileSync(filepath, 'utf8'), {
+      compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
+    }).outputText;
+    // Keep the original path for normal workspace dependency resolution.
+    const compiled = new Module(filepath);
+    compiled.filename = filepath;
+    compiled.paths = Module._nodeModulePaths(dirname(filepath));
+    compiled._compile(js, filepath);
+    const definition = compiled.exports[name];
+    if (!definition || Object.keys(compiled.exports).length !== 1) {
+      throw new Error('Expected one named Assessment Method export in ' + filename);
+    }
+    return { name, definition };
+  });
+}
+
+function createAssessmentMethodResources() {
+  const entries = loadAssessmentMethodDefinitions();
+  const codes = DEFAULT_SUPPORTED_LANGUAGES.map(({ language }) => language);
+  const locales = DEFAULT_SUPPORTED_LANGUAGES.map(({ locale }) => locale);
+  const { assessmentMethod_Props_Schema } = require('@svitlo/engine');
+  const ids = new Set();
+  const base = {};
+  const localized = Object.fromEntries(locales.map(locale => [locale, {}]));
+
+  for (const { name, definition } of entries) {
+    const metadata = definition.config?.base;
+    const dictionaries = definition.config?.locales?.();
+    if (
+      metadata?.slug !== name ||
+      typeof metadata?.id !== 'string' ||
+      Object.keys(metadata).sort().join(',') !== 'id,slug' ||
+      ids.has(metadata.id)
+    ) {
+      throw new Error('Invalid or duplicate Assessment Method identity: ' + name);
+    }
+    ids.add(metadata.id);
+    if (!dictionaries || Object.keys(dictionaries).sort().join(',') !== 'description,title') {
+      throw new Error('Invalid Assessment Method locale projection: ' + name);
+    }
+    for (const field of ['title', 'description']) {
+      if (
+        !dictionaries[field] ||
+        Object.keys(dictionaries[field]).sort().join(',') !== [...codes].sort().join(',')
+      ) {
+        throw new Error('Incomplete Assessment Method ' + field + ' translations: ' + name);
+      }
+    }
+    base[name] = { id: metadata.id, slug: metadata.slug };
+    for (const { locale, language } of DEFAULT_SUPPORTED_LANGUAGES) {
+      const title = dictionaries.title[language];
+      const description = dictionaries.description[language];
+      if (typeof title !== 'string' || !title.trim() || typeof description !== 'string' || !description.trim()) {
+        throw new Error('Missing Assessment Method text: ' + name + '/' + language);
+      }
+      const props = assessmentMethod_Props_Schema.parse({ ...metadata, title, description });
+      localized[locale][name] = { title: props.title, description: props.description };
+    }
+  }
+  return { base, localized, methods: entries.map(({ name }) => name), locales };
+}
+
 try {
   const whole = loadLocaleIndex();
   const components = Object.keys(whole);
@@ -123,6 +201,9 @@ try {
       return { locale, messages };
     });
 
+    // Validate every resource before replacing previously published output.
+    const assessmentMethods = createAssessmentMethodResources();
+    rmSync(output, { recursive: true, force: true });
     mkdirSync(output, { recursive: true });
     for (const { locale, messages } of published) {
       writeFileSync(join(output, locale + '.json'), JSON.stringify(messages, null, 2) + '\n');
@@ -131,7 +212,24 @@ try {
       join(output, 'meta.json'),
       JSON.stringify({ scope: 'global', components, locales: published.map(item => item.locale) }, null, 2) + '\n',
     );
-    console.log(`Generated ${published.length} global UI Kit locale JSON resources in ${output}`);
+    const methodsOutput = join(output, 'assessment-methods');
+    mkdirSync(methodsOutput, { recursive: true });
+    writeFileSync(join(methodsOutput, 'base.json'), JSON.stringify(assessmentMethods.base, null, 2) + '\n');
+    for (const locale of assessmentMethods.locales) {
+      writeFileSync(
+        join(methodsOutput, locale + '.json'),
+        JSON.stringify(assessmentMethods.localized[locale], null, 2) + '\n',
+      );
+    }
+    writeFileSync(
+      join(methodsOutput, 'meta.json'),
+      JSON.stringify(
+        { scope: 'global', methods: assessmentMethods.methods, locales: assessmentMethods.locales },
+        null,
+        2,
+      ) + '\n',
+    );
+    console.log(`Generated ${published.length} global UI Kit locale JSON and Assessment Method resources in ${output}`);
   }
 } finally {
   rmSync(tmp, { recursive: true, force: true });

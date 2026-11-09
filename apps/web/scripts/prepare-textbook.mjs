@@ -60,6 +60,10 @@ run('node', [
   '--output',
   'apps/web/public/data/ui-kit',
 ]);
+for (const resource of ['assessment-methods/base.json', 'assessment-methods/uk-UA.json']) {
+  const filename = join(targetPublic, 'data/ui-kit', resource);
+  if (!existsSync(filename)) throw new Error('Missing UI Kit Assessment Method resource: ' + filename);
+}
 if (!existsSync(join(targetPublic, 'data/pages/lessons'))) {
   throw new Error('No published lessons for ' + id);
 }

@@ -4,7 +4,6 @@
  * root condition without entering client/server rendering bundles.
  */
 export * from './configurators';
-export * from './data';
 export * from './lessons';
 export * from './schemas';
 

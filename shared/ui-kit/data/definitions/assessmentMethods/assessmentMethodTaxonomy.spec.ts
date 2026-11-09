@@ -1,50 +1,57 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { readFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { readFileSync, readdirSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
 import { assessmentMethods_AssessmentMethod_Ids } from '@svitlo/contracts/content';
+import { assessmentMethod_Props_Schema } from '@svitlo/engine';
 import * as methods from './index';
-import { buildAssessmentMethodConfig } from '../../utils/builders/config/buildAssessmentMethodConfig.utils';
 
-const directory = join(process.cwd(), 'data', 'assessmentMethodTaxonomy');
-const ids = Object.values(assessmentMethods_AssessmentMethod_Ids);
-const configs = Object.values(methods);
+const directory = fileURLToPath(new URL('./', import.meta.url));
+const names = Object.keys(assessmentMethods_AssessmentMethod_Ids).sort();
+const languages = DEFAULT_SUPPORTED_LANGUAGES.map(({ language }) => language);
 
-describe('Assessment Method Taxonomy', () => {
-  it('has exactly 16 distinct UUIDs', () => {
-    assert.equal(ids.length, 16);
-    assert.equal(new Set(ids).size, 16);
-    for (const id of ids)
-      assert.match(id, /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i);
+describe('Assessment Method authored definitions', () => {
+  it('defines exactly the 16 canonical methods with unique, unchanged IDs and slugs', () => {
+    assert.equal(names.length, 16);
+    assert.equal(new Set(Object.values(assessmentMethods_AssessmentMethod_Ids)).size, 16);
+    assert.deepEqual(Object.keys(methods).sort(), names);
+    for (const name of names) {
+      const { base } = methods[name as keyof typeof methods].config;
+      assert.deepEqual(base, { id: assessmentMethods_AssessmentMethod_Ids[name as keyof typeof assessmentMethods_AssessmentMethod_Ids], slug: name });
+      assert.match(base.id, /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i);
+    }
   });
 
-  it('registers one object per ID with every required localized title and description', () => {
-    assert.equal(configs.length, 16);
-    assert.deepEqual(new Set(configs.map(config => config.id)), new Set(ids));
-    const languages = DEFAULT_SUPPORTED_LANGUAGES.map(language => language.language);
-    for (const config of configs) {
-      assert.equal(buildAssessmentMethodConfig(config), config);
+  it('has complete non-empty titles and descriptions in every canonical language', () => {
+    for (const name of names) {
+      const definition = methods[name as keyof typeof methods];
+      const locales = definition.config.locales();
       for (const field of ['title', 'description'] as const) {
-        assert.deepEqual(Object.keys(config[field]).sort(), [...languages].sort());
-        for (const lang of languages) {
-          assert.ok(config[field][lang]?.trim(), `${config.id} has empty ${field} for ${lang}`);
+        assert.deepEqual(Object.keys(locales[field]).sort(), [...languages].sort(), name + '/' + field);
+        for (const language of languages) {
+          assert.ok(locales[field][language as keyof typeof locales[typeof field]]?.trim(), name + '/' + field + '/' + language);
         }
+      }
+      for (const language of languages) {
+        const props = assessmentMethod_Props_Schema.parse({
+          ...definition.config.base,
+          title: locales.title[language as keyof typeof locales.title],
+          description: locales.description[language as keyof typeof locales.description],
+        });
+        assert.equal(props.slug, name);
       }
     }
   });
 
-  it('rejects incomplete localized dictionaries', () => {
-    const config = configs[0];
-    assert.throws(() => buildAssessmentMethodConfig({ ...config, title: { ...config.title, uk: '' } }), /non-empty uk/);
-  });
-
-  it('keeps data and ID exports isolated to their own collection', () => {
-    const source = readFileSync(join(directory, 'index.data.ts'), 'utf8').trim().split('\n');
-    const names = Object.keys(assessmentMethods_AssessmentMethod_Ids).sort();
-    assert.deepEqual(
-      source,
-      names.map(name => `export { ${name}_AssessmentMethod_Data } from './${name}.data';`),
-    );
+  it('keeps each method in a single defineAssessmentMethod() file with a literal UUID', () => {
+    const files = readdirSync(directory).filter(name => /^[a-z][A-Za-z0-9]*\.ts$/.test(name) && name !== 'index.ts');
+    assert.deepEqual(files.sort(), names.map(name => name + '.ts').sort());
+    for (const name of names) {
+      const source = readFileSync(fileURLToPath(new URL('./' + name + '.ts', import.meta.url)), 'utf8');
+      assert.match(source, /defineAssessmentMethod\(/);
+      assert.ok(source.includes("id: '" + assessmentMethods_AssessmentMethod_Ids[name as keyof typeof assessmentMethods_AssessmentMethod_Ids] + "'"));
+      assert.doesNotMatch(source, /assessmentMethodTranslations|_AssessmentMethod_Data|assessmentMethods_AssessmentMethod_Ids|from ['"]\.\/locales/);
+    }
   });
 });

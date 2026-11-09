@@ -1,6 +1,6 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync, readdirSync } from 'node:fs';
+import { readFileSync, readdirSync, writeFileSync, existsSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
@@ -84,5 +84,67 @@ describe('global UI Kit translation coverage', () => {
     assert.equal(en.learningLayout.actions.skip, 'Skip');
     assert.equal(uk.learningLayout.actions.skip, 'Пропустити');
     assert.equal(qm.questionFrame.check, 'Tekşer');
+  });
+});
+
+
+describe('Assessment Methods sparse publication', () => {
+  const methodsRoot = path.join(output, 'assessment-methods');
+  const { assessmentMethods_AssessmentMethod_Ids } = require('@svitlo/contracts/content');
+  const { assessmentMethod_Props_Schema } = require('@svitlo/engine');
+  const names = Object.keys(assessmentMethods_AssessmentMethod_Ids).sort();
+
+  it('publishes one invariant base and a complete selected-language resource for every locale', () => {
+    const result = generate();
+    assert.equal(result.status, 0, result.stderr);
+    const meta = JSON.parse(readFileSync(path.join(methodsRoot, 'meta.json'), 'utf8'));
+    const base = JSON.parse(readFileSync(path.join(methodsRoot, 'base.json'), 'utf8'));
+    assert.equal(names.length, 16);
+    assert.deepEqual(meta.methods, names);
+    assert.deepEqual(meta.locales, DEFAULT_SUPPORTED_LANGUAGES.map(({ locale }) => locale));
+    assert.deepEqual(Object.keys(base), names);
+    assert.deepEqual(readdirSync(methodsRoot).sort(), [
+      'base.json', 'meta.json', ...meta.locales.map(locale => locale + '.json'),
+    ].sort());
+
+    for (const name of names) {
+      assert.deepEqual(base[name], { id: assessmentMethods_AssessmentMethod_Ids[name], slug: name });
+    }
+    for (const { locale } of DEFAULT_SUPPORTED_LANGUAGES) {
+      const local = JSON.parse(readFileSync(path.join(methodsRoot, locale + '.json'), 'utf8'));
+      assert.deepEqual(Object.keys(local), names);
+      for (const name of names) {
+        assert.deepEqual(Object.keys(local[name]).sort(), ['description', 'title']);
+        assert.ok(local[name].title.trim(), name + '/' + locale);
+        assert.ok(local[name].description.trim(), name + '/' + locale);
+        assert.deepEqual(
+          assessmentMethod_Props_Schema.parse({ ...base[name], ...local[name] }),
+          { ...base[name], ...local[name] },
+        );
+      }
+    }
+    const uk = JSON.parse(readFileSync(path.join(methodsRoot, 'uk-UA.json'), 'utf8'));
+    const en = JSON.parse(readFileSync(path.join(methodsRoot, 'en-US.json'), 'utf8'));
+    assert.equal(uk.analogicalReasoning.title, 'Міркування за аналогією');
+    assert.equal(en.retrieval.title, 'Retrieval');
+  });
+
+  it('reproduces identical output and removes stale JSON on repeat generation', () => {
+    let result = generate();
+    assert.equal(result.status, 0, result.stderr);
+    const snapshot = Object.fromEntries(readdirSync(methodsRoot).sort().map(name => [
+      name, readFileSync(path.join(methodsRoot, name), 'utf8'),
+    ]));
+    const obsoleteGlobal = path.join(output, 'obsolete.json');
+    const obsoleteMethod = path.join(methodsRoot, 'obsolete.json');
+    writeFileSync(obsoleteGlobal, '{}');
+    writeFileSync(obsoleteMethod, '{}');
+    result = generate();
+    assert.equal(result.status, 0, result.stderr);
+    assert.equal(existsSync(obsoleteGlobal), false);
+    assert.equal(existsSync(obsoleteMethod), false);
+    assert.deepEqual(Object.fromEntries(readdirSync(methodsRoot).sort().map(name => [
+      name, readFileSync(path.join(methodsRoot, name), 'utf8'),
+    ])), snapshot);
   });
 });

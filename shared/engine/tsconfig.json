@@ -20,9 +20,6 @@
       "#configurators": [
         "configurators/index.ts"
       ],
-      "#data": [
-        "data/index.ts"
-      ],
       "#lessons": [
         "lessons/index.ts"
       ],
@@ -43,7 +40,6 @@
     "runtime.ts",
     "configurators/**/*.ts",
     "configurators_old/**/*.ts",
-    "data/**/*.ts",
     "lessons/**/*.ts",
     "schemas/**/*.ts",
     "types/**/*.ts",

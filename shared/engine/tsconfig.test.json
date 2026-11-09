@@ -11,7 +11,6 @@
     "runtime.ts",
     "configurators/**/*.ts",
     "configurators_old/**/*.ts",
-    "data/**/*.ts",
     "lessons/**/*.ts",
     "schemas/**/*.ts",
     "types/**/*.ts",

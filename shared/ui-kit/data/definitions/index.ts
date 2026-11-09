@@ -1,1 +1,1 @@
-export * from './assessmentMethodTaxonomy/index.data';
+export * from './assessmentMethods';

@@ -52,6 +52,10 @@ run(process.execPath, [
   '--output',
   'apps/desktop/public/data/ui-kit',
 ]);
+for (const resource of ['assessment-methods/base.json', 'assessment-methods/uk-UA.json']) {
+  const filename = join(localeOutput, resource);
+  if (!existsSync(filename)) throw new Error('Missing UI Kit Assessment Method resource: ' + filename);
+}
 run(process.execPath, [join(repoRoot, 'shared/ui-kit/scripts/sync-flags.mjs'), desktopRoot]);
 if (!existsSync(join(publicRoot, 'data/pages/lessons')) || !existsSync(join(localeOutput, 'uk-UA.json'))) {
   throw new Error('Desktop lesson or UI Kit localization output is missing');

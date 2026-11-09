@@ -68,6 +68,10 @@ run(process.execPath, [
   '--output',
   'apps/mobile/public/data/ui-kit',
 ]);
+for (const resource of ['assessment-methods/base.json', 'assessment-methods/uk-UA.json']) {
+  const filename = join(publicRoot, 'data/ui-kit', resource);
+  if (!existsSync(filename)) throw new Error('Missing UI Kit Assessment Method resource: ' + filename);
+}
 run(process.execPath, [join(repoRoot, 'shared/ui-kit/scripts/sync-flags.mjs')], mobileRoot);
 
 const lessonsRoot = join(publicRoot, 'data/pages/lessons');
