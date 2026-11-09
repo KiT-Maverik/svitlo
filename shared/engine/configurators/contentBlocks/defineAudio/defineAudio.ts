@@ -1,6 +1,7 @@
 import type { DeepPartial } from '#types';
 
 import { audio_Config_Schema, type ContentBlock_Audio_Config } from './defineAudio.schemas';
+import {onlyStrings} from "../../_utils";
 
 export function defineAudio<const Slug extends string>(config: Omit<ContentBlock_Audio_Config, 'slug'> & { slug: Slug }) {
   audio_Config_Schema.parse(config);
@@ -10,15 +11,12 @@ export function defineAudio<const Slug extends string>(config: Omit<ContentBlock
     id,
     type,
     slug,
-    fileLocation: typeof fileLocation === 'string' ? fileLocation : undefined,
-    title: typeof title === 'string' ? title : undefined,
-    description: typeof description === 'string' ? description : undefined,
-    fallback: fallback && {
-      offline: typeof fallback.offline === 'string' ? fallback.offline : undefined,
-      unavailable: typeof fallback.unavailable === 'string' ? fallback.unavailable : undefined,
-      playbackError: typeof fallback.playbackError === 'string' ? fallback.playbackError : undefined,
-      retry: typeof fallback.retry === 'string' ? fallback.retry : undefined,
-    },
+    ...onlyStrings({
+      fileLocation,
+      title,
+      description,
+      fallback,
+    }),
   } satisfies DeepPartial<ContentBlock_Audio_Config>;
 
   return {
