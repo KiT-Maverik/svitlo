@@ -19,8 +19,23 @@ const hasScenes = Boolean(pkg.exports?.['./scenes']);
 const hasStyles = Boolean(pkg.exports?.['./styles']);
 const temp = mkdtempSync(join(tmpdir(), 'svitlo-' + id + '-pack-'));
 function command(program, args, cwd = root) {
-  const result = spawnSync(program, args, { cwd, encoding: 'utf8', env: process.env, maxBuffer: 64 * 1024 * 1024 });
-  assert.equal(result.status, 0, program + ' ' + args.join(' ') + '\n' + (result.error?.message ?? '') + '\n' + (result.stderr ?? '') + '\n' + (result.stdout ?? '').slice(-4096));
+  // Sparse Skills publication can create thousands of distinct JSON entries,
+  // making npm pack --json larger than Node's default child-process buffer.
+  const result = spawnSync(program, args, {
+    cwd,
+    encoding: 'utf8',
+    env: process.env,
+    maxBuffer: 64 * 1024 * 1024,
+  });
+  const diagnostics = [
+    program + ' ' + args.join(' '),
+    result.error?.message,
+    result.stderr,
+    result.stdout?.slice(-4096),
+  ]
+    .filter(Boolean)
+    .join('\n');
+  assert.equal(result.status, 0, diagnostics);
   return result.stdout;
 }
 try {
