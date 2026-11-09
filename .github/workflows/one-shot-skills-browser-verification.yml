@@ -1,4 +1,4 @@
-name: One-shot Skills browser and mobile verification
+name: One-shot Skills browser and mobile verification (retest)
 on:
   push:
     paths:
