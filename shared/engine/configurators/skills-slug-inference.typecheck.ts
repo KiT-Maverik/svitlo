@@ -66,6 +66,17 @@ const readonlySkills = [reading, writing] as const;
 const readonlyGroup = defineSkillGroup({ ...fields, slug: 'readonly', skills: readonlySkills });
 type ReadonlyKeys = Expect<Equal<keyof typeof readonlyGroup.skill, 'reading' | 'writing'>>;
 
+const readonlyDomain = defineSkillDomain({
+  id: fields.id,
+  slug: 'readonly-domain',
+  title: localized,
+  description: fields.description,
+  groups: [group] as const,
+  skills: readonlySkills,
+});
+type ReadonlyDomainGroupKeys = Expect<Equal<keyof typeof readonlyDomain.group, 'literacy'>>;
+type ReadonlyDomainSkillKeys = Expect<Equal<keyof typeof readonlyDomain.skill, 'reading' | 'writing'>>;
+
 const inline = configuratorArrayToSluggedObject([
   { config: { base: { slug: 'first' } }, onlyFirst: true },
   { config: { base: { slug: 'second' } }, onlySecond: true },
