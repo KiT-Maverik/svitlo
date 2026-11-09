@@ -1,9 +1,17 @@
 import { skillGroup_Config_Schema, skillGroup_Props_Schema, type SkillGroup_Config } from './defineSkillGroup.schemas';
 
+type Base = Pick<SkillGroup_Config, 'id' | 'slug'> & {
+  description: Pick<SkillGroup_Config['description'], 'methodological'>;
+};
+
+type Locale = Pick<SkillGroup_Config, 'name'> & {
+  description: Pick<SkillGroup_Config['description'], 'frontend'>;
+};
+
 export function defineSkillGroupMethod(config: SkillGroup_Config) {
   const { id, description, slug, name, skills } = config;
 
-  const base = {
+  const base: Base = {
     id,
     slug,
     description: { methodological: description.methodological },
@@ -12,7 +20,7 @@ export function defineSkillGroupMethod(config: SkillGroup_Config) {
   return {
     config: {
       base,
-      locales: () => ({ name, description: { frontend: description.frontend } }),
+      locales: (): Locale => ({ name, description: { frontend: description.frontend } }),
       test: {
         config: () => skillGroup_Config_Schema.safeParse(config).success,
         props: (props: unknown) => skillGroup_Props_Schema.safeParse(props).success,
