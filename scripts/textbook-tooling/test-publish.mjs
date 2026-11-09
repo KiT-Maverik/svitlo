@@ -60,8 +60,12 @@ test('isolated package publishes exactly the manifest resources', t => {
     assert(skillFiles.includes('data/skills/base.json'));
     assert(skillFiles.includes('data/skills/uk.json'));
     assert(skillFiles.includes('data/skills/en.json'));
-    assert(skillFiles.every(name => /^data\\/skills\\/(?:base|[a-z]{2,8})\\.json$/.test(name)),
-      'Skills must not publish per-entity directories');
+    assert(
+      skillFiles.every(
+        name => name.startsWith('data/skills/') && name.split('/').length === 3 && /^(?:base|[a-z]{2,8})[.]json$/.test(name.split('/')[2]),
+      ),
+      'Skills must not publish per-entity directories',
+    );
     const base = JSON.parse(readFileSync(join(root, 'dist/static/data/skills/base.json'), 'utf8'));
     const uk = JSON.parse(readFileSync(join(root, 'dist/static/data/skills/uk.json'), 'utf8'));
     assert(Object.keys(base).length > 0, 'Empty published Skill taxonomy');
