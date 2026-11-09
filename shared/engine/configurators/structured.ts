@@ -83,7 +83,8 @@ export function partitionDefinition(source: unknown, localizablePaths: readonly 
         for (const [language, patch] of Object.entries(items.locales)) {
           if (isObject(patch)) {
             const previous = locales[language];
-            locales[language] = isObject(previous) ? deepMerge(previous, patch) : patch;
+            const nestedPatch = { items: patch };
+            locales[language] = isObject(previous) ? deepMerge(previous, nestedPatch) : nestedPatch;
           }
         }
         if (Object.keys(items.overrides).length) overrides.items = items.overrides;
