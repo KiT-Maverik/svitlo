@@ -34,11 +34,11 @@ test('publishes sparse base and per-language files for every Skill entity', () =
   assert.deepEqual(Object.keys(domain).sort(), ['collection', 'description', 'groups', 'id', 'slug']);
   assert.equal(domain.collection, 'skillDomain');
   assert.equal(domain.description.methodological.includes('Synthetic Playground'), true);
-  assert.deepEqual(domain.groups, ['testWarmColors', 'testCoolColors']);
+  assert.deepEqual(domain.groups, ['testCoolColors', 'testWarmColors']);
 
   const group = JSON.parse(files.get('testColors/testWarmColors/base.json'));
   assert.equal(group.collection, 'skillGroup');
-  assert.deepEqual(group.skills, ['testRecognizeRed', 'testRecognizeOrange']);
+  assert.deepEqual(group.skills, ['testRecognizeOrange', 'testRecognizeRed']);
 
   const skill = JSON.parse(files.get('testColors/testWarmColors/testRecognizeRed/base.json'));
   assert.equal(skill.collection, 'skill');
