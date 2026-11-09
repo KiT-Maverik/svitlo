@@ -1,0 +1,19 @@
+name: One-shot Skill consumers audit
+on:
+  push:
+    paths:
+      - .github/workflows/one-shot-skill-consumers-audit.yml
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Locate published Skills resource consumers
+        shell: bash
+        run: |
+          echo "::group::Skills references in application and shared source"
+          git grep -n -E 'data/skills|skillAnalytics|loadSkill|SkillDomainData|SkillGroupData|SkillData' -- apps shared content/*/src scripts 2>/dev/null | head -n 440 || true
+          echo "::endgroup::"
+          echo "::group::All data resource access patterns in runtime"
+          git grep -n -E 'fetch\\(|readFileSync|/data/skills|/data/pages/skillAnalytics|mergeSkill|deepMerge' -- apps shared 2>/dev/null | head -n 280 || true
+          echo "::endgroup::"
