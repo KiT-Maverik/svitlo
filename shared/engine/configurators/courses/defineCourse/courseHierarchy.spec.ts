@@ -14,6 +14,13 @@ import { defineCourse } from './defineCourse';
 import { chapter_Config_Schema } from '../defineChapter/defineChapter.schemas';
 import { course_Config_Schema } from './defineCourse.schemas';
 
+function containsFunction(value: unknown): boolean {
+  if (typeof value === 'function') return true;
+  if (Array.isArray(value)) return value.some(containsFunction);
+  if (value !== null && typeof value === 'object') return Object.values(value).some(containsFunction);
+  return false;
+}
+
 const id = (suffix: string) => 'b775647f-203d-481a-a1c7-4d331c779d' + suffix;
 const languages = ['en', 'uk'] as const;
 const text = defineText({
@@ -68,8 +75,8 @@ test('typed ContentBlock to Flashcard/Section/Lesson/Course composition preserve
   assert.equal(course.description, description);
   assert.equal(course.config.base.type, 'course');
   assert.equal(lesson.config.base.slug, 'lesson');
-  assert.equal(JSON.stringify(course.config.base).includes('function'), false);
-  assert.equal(JSON.stringify(lesson.config.base).includes('function'), false);
+  assert.equal(containsFunction(course.config.base), false);
+  assert.equal(containsFunction(lesson.config.base), false);
   assert.deepEqual(lesson.config.locales(), { title: { en: 'Lesson', uk: 'Урок' } });
   assert.equal(course_Config_Schema.safeParse({
     type: 'course', id: id('ca'), title: text, description,
