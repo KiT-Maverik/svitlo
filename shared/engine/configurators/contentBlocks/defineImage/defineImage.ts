@@ -4,7 +4,9 @@ import { onlyLocales, onlyStrings } from '../../_utils';
 
 import { image_Config_Schema, type ContentBlock_Image_Config } from './defineImage.schemas';
 
-export function defineImage<const Slug extends string>(config: Omit<ContentBlock_Image_Config, 'slug'> & { slug: Slug }) {
+export function defineImage<const Slug extends string>(
+  config: Omit<ContentBlock_Image_Config, 'slug'> & { slug: Slug },
+) {
   image_Config_Schema.parse(config);
 
   const { id, type, slug, src, alt, caption, fallback, ...layout } = config;

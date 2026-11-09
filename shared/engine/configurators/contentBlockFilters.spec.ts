@@ -53,10 +53,7 @@ test('onlyLocales keeps valid sparse locale dictionaries at their original neste
   assert.deepEqual(onlyLocales(authored), {
     translated: enUk,
     nested: { caption: { en: 'Caption' } },
-    slides: [
-      { src: enUk },
-      { src: { uk: 'Другий' }, caption: { en: 'Second' } },
-    ],
+    slides: [{ src: enUk }, { src: { uk: 'Другий' }, caption: { en: 'Second' } }],
   });
   assert.deepEqual(onlyLocales({ title: 'Plain', fallback: null, items: [] }), {});
   assert.deepEqual(onlyStrings({ title: enUk, fallback: null, items: [] }), {});

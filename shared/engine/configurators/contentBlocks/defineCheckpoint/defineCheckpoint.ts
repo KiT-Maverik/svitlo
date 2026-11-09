@@ -7,9 +7,7 @@ import { checkpoint_Config_Schema, type ContentBlock_Checkpoint_Config } from '.
 export function defineCheckpoint<
   const Slug extends string,
   const Items extends readonly ContentBlock_Checkpoint_Config['items'][number][],
->(
-  config: Omit<ContentBlock_Checkpoint_Config, 'slug' | 'items'> & { slug: Slug; items: Items },
-) {
+>(config: Omit<ContentBlock_Checkpoint_Config, 'slug' | 'items'> & { slug: Slug; items: Items }) {
   checkpoint_Config_Schema.parse(config);
 
   const { id, type, slug, title, items, ...params } = config;

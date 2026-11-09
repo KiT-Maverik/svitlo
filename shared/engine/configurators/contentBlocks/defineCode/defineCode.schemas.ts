@@ -5,17 +5,18 @@ import { createContentBlockMetaSchema, contentBlockLocalizationSwitch } from '..
 function createCodeSchema<Mode extends keyof typeof contentBlockLocalizationSwitch>(mode: Mode) {
   const localized = contentBlockLocalizationSwitch[mode];
 
-  return z.object({
-    ...createContentBlockMetaSchema('code').shape,
-    language: z.string().min(1),
-    title: localized.optional(),
-    code: localized.optional(),
-    fileLocation: localized.optional(),
-    variables: z.array(z.object({ id: z.string().min(1), value: localized })).optional(),
-  }).refine(
-    value => Number(value.code !== undefined) + Number(value.fileLocation !== undefined) === 1,
-    { message: 'Provide exactly one of code or fileLocation' },
-  );
+  return z
+    .object({
+      ...createContentBlockMetaSchema('code').shape,
+      language: z.string().min(1),
+      title: localized.optional(),
+      code: localized.optional(),
+      fileLocation: localized.optional(),
+      variables: z.array(z.object({ id: z.string().min(1), value: localized })).optional(),
+    })
+    .refine(value => Number(value.code !== undefined) + Number(value.fileLocation !== undefined) === 1, {
+      message: 'Provide exactly one of code or fileLocation',
+    });
 }
 
 export const code_Config_Schema = createCodeSchema('config');

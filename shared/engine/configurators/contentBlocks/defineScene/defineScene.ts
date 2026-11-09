@@ -4,7 +4,9 @@ import { onlyLocales, onlyStrings } from '../../_utils';
 
 import { scene_Config_Schema, type ContentBlock_Scene_Config } from './defineScene.schemas';
 
-export function defineScene<const Slug extends string>(config: Omit<ContentBlock_Scene_Config, 'slug'> & { slug: Slug }) {
+export function defineScene<const Slug extends string>(
+  config: Omit<ContentBlock_Scene_Config, 'slug'> & { slug: Slug },
+) {
   scene_Config_Schema.parse(config);
 
   const { id, type, slug, locales } = config;

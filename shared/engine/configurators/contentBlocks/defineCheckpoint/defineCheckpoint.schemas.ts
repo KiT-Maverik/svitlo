@@ -25,11 +25,13 @@ function createCheckpointSchema<Mode extends keyof typeof contentBlockLocalizati
     enableChecks: z.boolean().optional(),
     requireCompletion: z.boolean().optional(),
     renderAsGroup: z.boolean().optional(),
-    items: z.array(z.object({
-      question: localized,
-      answer: z.tuple([child], child),
-      check: z.literal(true).optional(),
-    })),
+    items: z.array(
+      z.object({
+        question: localized,
+        answer: z.tuple([child], child),
+        check: z.literal(true).optional(),
+      }),
+    ),
   });
 }
 

@@ -10,12 +10,14 @@ function createVideoSchema<Mode extends keyof typeof contentBlockLocalizationSwi
     fileLocation: localized,
     poster: localized,
     title: localized.optional(),
-    fallback: z.object({
-      offline: localized.optional(),
-      unavailable: localized.optional(),
-      playbackError: localized.optional(),
-      retry: localized.optional(),
-    }).optional(),
+    fallback: z
+      .object({
+        offline: localized.optional(),
+        unavailable: localized.optional(),
+        playbackError: localized.optional(),
+        retry: localized.optional(),
+      })
+      .optional(),
   });
 }
 

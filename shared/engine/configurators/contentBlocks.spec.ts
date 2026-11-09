@@ -27,7 +27,10 @@ test('Text validates and splits authored localized values into base and locales'
   assert.equal(text.config.base.value, undefined);
   assert.deepEqual(text.config.locales(), { value });
   assert.equal(text_Config_Schema.safeParse({ id, slug: 'intro', type: 'text', params: {}, value }).success, true);
-  assert.equal(text_Props_Schema.safeParse({ id, slug: 'intro', type: 'text', params: {}, value: 'Hello' }).success, true);
+  assert.equal(
+    text_Props_Schema.safeParse({ id, slug: 'intro', type: 'text', params: {}, value: 'Hello' }).success,
+    true,
+  );
   assert.equal(text_Props_Schema.safeParse({ id, slug: 'intro', type: 'text', params: {}, value }).success, false);
   assert.throws(() => defineText({ id: 'bad', slug: 'intro', type: 'text', params: {}, value }), /Invalid UUID/);
 });
@@ -41,7 +44,12 @@ test('every atomic ContentBlock uses the same config.base/config.locales convent
     defineAudio({ id, slug: 'audio', type: 'audio', fileLocation: value, title: 'Audio' }),
     defineYoutube({ id, slug: 'youtube', type: 'youtube', href: value, mode: 'link' }),
     defineCarousel({ id, slug: 'carousel', type: 'carousel', slides: [{ src: value, alt: 'Image' }] }),
-    defineScene({ id, slug: 'scene', type: 'scene', locales: { en: { greeting: 'Hello' }, uk: { greeting: 'Привіт' } } }),
+    defineScene({
+      id,
+      slug: 'scene',
+      type: 'scene',
+      locales: { en: { greeting: 'Hello' }, uk: { greeting: 'Привіт' } },
+    }),
   ];
   assert.equal(definitions.length, 8);
   for (const definition of definitions) {
@@ -58,11 +66,8 @@ test('every atomic ContentBlock uses the same config.base/config.locales convent
     () => defineImage({ id, slug: 'image', type: 'image', src: 'x', alt: 'y' }),
     /Image requires either fill/,
   );
-  assert.throws(
-    () => defineCarousel({ id, slug: 'carousel', type: 'carousel', slides: [] }),
-  );
+  assert.throws(() => defineCarousel({ id, slug: 'carousel', type: 'carousel', slides: [] }));
 });
-
 
 test('Audio separates invariant fallback strings from localized media fields', () => {
   const audio = defineAudio({
@@ -108,17 +113,11 @@ test('Code and Carousel retain indexed nested fields without duplicating locale 
     slug: 'example',
     type: 'code',
     language: 'typescript',
-    variables: [
-      { id: 'localized' },
-      { id: 'fixed', value: 'invariant' },
-    ],
+    variables: [{ id: 'localized' }, { id: 'fixed', value: 'invariant' }],
   });
   assert.deepEqual(code.config.locales(), {
     code: value,
-    variables: [
-      { value: { uk: 'Локальна змінна' } },
-      {},
-    ],
+    variables: [{ value: { uk: 'Локальна змінна' } }, {}],
   });
 
   const carousel = defineCarousel({
@@ -139,10 +138,7 @@ test('Code and Carousel retain indexed nested fields without duplicating locale 
     slides: [{}, { src: 'invariant.png', caption: 'Fixed caption' }],
   });
   assert.deepEqual(carousel.config.locales(), {
-    slides: [
-      { src: value, alt: { en: 'First image' } },
-      { alt: value },
-    ],
+    slides: [{ src: value, alt: { en: 'First image' } }, { alt: value }],
   });
 });
 
@@ -173,13 +169,15 @@ test('Checkpoint stores nested configurators and a Section can project them to d
   assert.equal(locales.uk.content[0].items[0].answer[0].value, 'Привіт');
   assert.throws(() =>
     defineCheckpoint({
-      id, slug: 'bad', type: 'checkpoint', title: 'Review',
+      id,
+      slug: 'bad',
+      type: 'checkpoint',
+      title: 'Review',
       // @ts-expect-error Child must be a configurator.
       items: [{ question: 'Question', answer: [{ id, slug: 'raw', type: 'text' }] }],
     }),
   );
 });
-
 
 test('Carousel keeps a base array when every slide field is translated', () => {
   const carousel = defineCarousel({

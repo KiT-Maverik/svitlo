@@ -1,11 +1,17 @@
 import { z } from 'zod';
 
-import { createContentBlockMetaSchema, contentBlockLocalizationSwitch, textStylingRules_Schema } from '../contentBlock.schemas';
+import {
+  createContentBlockMetaSchema,
+  contentBlockLocalizationSwitch,
+  textStylingRules_Schema,
+} from '../contentBlock.schemas';
 
-const wrap_Schema = z.strictObject({
-  enabled: z.literal(true).optional(),
-  typographyProps: z.unknown().optional(),
-}).optional();
+const wrap_Schema = z
+  .strictObject({
+    enabled: z.literal(true).optional(),
+    typographyProps: z.unknown().optional(),
+  })
+  .optional();
 
 function createTextSchema<Mode extends keyof typeof contentBlockLocalizationSwitch>(mode: Mode) {
   const localized = contentBlockLocalizationSwitch[mode];

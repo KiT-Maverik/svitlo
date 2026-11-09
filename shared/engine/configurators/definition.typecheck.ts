@@ -39,7 +39,13 @@ const nestedText: typeof text = checkpoint.items[0].answer[0];
 void nestedText;
 
 // @ts-expect-error Raw authored Text config is not a nested configurator.
-defineCheckpoint({ id: authored.id, type: 'checkpoint', slug: 'bad', title: 'Bad', items: [{ question: 'Q', answer: [authored] }] });
+defineCheckpoint({
+  id: authored.id,
+  type: 'checkpoint',
+  slug: 'bad',
+  title: 'Bad',
+  items: [{ question: 'Q', answer: [authored] }],
+});
 
 // The older Definition contract remains available to legacy structured entities.
 const complete: Definition<object, object, object, typeof languages> = {

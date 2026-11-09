@@ -3,7 +3,9 @@ import type { DeepPartial } from '#types';
 import { onlyLocales, onlyStrings } from '../../_utils';
 import { video_Config_Schema, type ContentBlock_Video_Config } from './defineVideo.schemas';
 
-export function defineVideo<const Slug extends string>(config: Omit<ContentBlock_Video_Config, 'slug'> & { slug: Slug }) {
+export function defineVideo<const Slug extends string>(
+  config: Omit<ContentBlock_Video_Config, 'slug'> & { slug: Slug },
+) {
   video_Config_Schema.parse(config);
 
   const { id, type, slug, fileLocation, poster, title, fallback } = config;
