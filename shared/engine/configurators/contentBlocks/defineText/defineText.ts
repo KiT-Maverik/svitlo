@@ -1,56 +1,26 @@
-import {
-  createTextConfigSchema,
-  textProps_Schema,
-  type TextLanguages,
-  ContentBlock_Text_Config,
-  ContextBlock_Text_Props,
-} from './defineText.schema';
-import type { Definition } from '../../definition';
+import type { DeepPartial } from '#types';
 
-export const defineText = <SupportedLanguages extends TextLanguages>(
-  config: ContentBlock_Text_Config<SupportedLanguages>,
-) => {
-  const { id, type, value, params, slug } = config;
+import { text_Config_Schema, type ContentBlock_Text_Config } from './defineText.schemas';
 
-  const base: Partial<ContentBlock_Text_Config<SupportedLanguages>> = {
+export function defineText<const Slug extends string>(config: Omit<ContentBlock_Text_Config, 'slug'> & { slug: Slug }) {
+  text_Config_Schema.parse(config);
+
+  const { id, type, slug, value, params } = config;
+
+  const base = {
     id,
     type,
     slug,
-    params: {
-      styling: params.styling,
-      wrap: params.wrap,
-    },
-  } as const;
+    params,
+    ...(typeof value === 'string' ? { value } : {}),
+  } satisfies DeepPartial<ContentBlock_Text_Config>;
 
-  if (typeof value === 'string') base.value = value;
-
-  const overrides: Partial<ContextBlock_Text_Props> = {};
-
-  const disable = () => {
-    overrides.params = { disabled: true };
-  };
-
-  const definition = {
+  return {
     config: {
       base,
-      overrides: () => (Object.values(overrides).length ? { ...overrides } : null),
-      locales: () => (typeof value === 'string' ? null : value),
-      test: {
-        config: (supportedLanguages: SupportedLanguages) =>
-          createTextConfigSchema(supportedLanguages).safeParse(config).success,
-        props: (props: unknown) => textProps_Schema.safeParse(props).success,
-      },
+      locales: () => (typeof value === 'string' ? {} : { value }) satisfies DeepPartial<ContentBlock_Text_Config>,
     },
-    disable,
   };
+}
 
-  // Enforce the common methods without erasing Text-specific methods such as disable().
-  return definition satisfies Definition<
-    Partial<ContentBlock_Text_Config<SupportedLanguages>>,
-    NonNullable<ReturnType<typeof definition.config.locales>>,
-    Partial<ContextBlock_Text_Props>,
-    SupportedLanguages
-  >;
-};
-
-export type ContentBlock_Text_Definition = ReturnType<typeof defineText>;
+export type ContentBlock_Text_Configurator = ReturnType<typeof defineText>;
