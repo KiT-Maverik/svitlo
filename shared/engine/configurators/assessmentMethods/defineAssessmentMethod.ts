@@ -1,25 +1,21 @@
-import {
-  assessmentMethod_Config_Schema,
-  assessmentMethod_Props_Schema,
-  type AssessmentMethod_Config,
-} from './defineAssessmentMethod.schemas';
+import type { DeepPartial } from '#types';
+
+import { assessmentMethod_Config_Schema, type AssessmentMethod_Config } from './defineAssessmentMethod.schemas';
 
 export function defineAssessmentMethod(config: AssessmentMethod_Config) {
+  assessmentMethod_Config_Schema.parse(config);
+
   const { id, description, slug, title } = config;
 
   const base = {
     id,
     slug,
-  };
+  } satisfies DeepPartial<AssessmentMethod_Config>;
 
   return {
     config: {
       base,
-      locales: () => ({ title, description }),
-      test: {
-        config: () => assessmentMethod_Config_Schema.safeParse(config).success,
-        props: (props: unknown) => assessmentMethod_Props_Schema.safeParse(props).success,
-      },
+      locales: () => ({ title, description }) satisfies DeepPartial<AssessmentMethod_Config>,
     },
   };
 }
