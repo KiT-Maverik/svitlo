@@ -2,12 +2,14 @@ import { z } from 'zod';
 
 import {
   contentBlockConfigurator_Schema,
+  contentBlockResolved_Schema,
   contentBlockLocalizationSwitch,
   createContentBlockMetaSchema,
 } from '../contentBlock.schemas';
 
 function createCheckpointSchema<Mode extends keyof typeof contentBlockLocalizationSwitch>(mode: Mode) {
   const localized = contentBlockLocalizationSwitch[mode];
+  const child = { config: contentBlockConfigurator_Schema, props: contentBlockResolved_Schema }[mode];
   return z.object({
     ...createContentBlockMetaSchema('checkpoint').shape,
     title: localized,
@@ -23,7 +25,7 @@ function createCheckpointSchema<Mode extends keyof typeof contentBlockLocalizati
     renderAsGroup: z.boolean().optional(),
     items: z.array(z.object({
       question: localized,
-      answer: z.tuple([contentBlockConfigurator_Schema], contentBlockConfigurator_Schema),
+      answer: z.tuple([child], child),
       check: z.literal(true).optional(),
     })),
   });
