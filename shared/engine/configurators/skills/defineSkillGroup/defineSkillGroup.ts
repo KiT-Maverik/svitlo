@@ -4,10 +4,9 @@ import type { Skill_Configurator } from '../defineSkill/defineSkill';
 
 import { skillGroup_Config_Schema, type SkillGroup_Config } from './defineSkillGroup.schemas';
 
-export function defineSkillGroup<
-  const Slug extends string,
-  const Skills extends readonly Skill_Configurator[],
->(config: Omit<SkillGroup_Config, 'slug' | 'skills'> & { slug: Slug; skills: Skills }) {
+export function defineSkillGroup<const Slug extends string, const Skills extends readonly Skill_Configurator[]>(
+  config: Omit<SkillGroup_Config, 'slug' | 'skills'> & { slug: Slug; skills: Skills },
+) {
   skillGroup_Config_Schema.parse(config);
 
   const { id, description, slug, name, skills } = config;

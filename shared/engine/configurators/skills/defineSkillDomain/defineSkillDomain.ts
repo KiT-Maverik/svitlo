@@ -9,11 +9,13 @@ export function defineSkillDomain<
   const Slug extends string,
   const Groups extends readonly SkillGroup_Configurator[] = readonly [],
   const Skills extends readonly Skill_Configurator[] = readonly [],
->(config: Omit<SkillDomain_Config, 'slug' | 'groups' | 'skills'> & {
-  slug: Slug;
-  groups?: Groups;
-  skills?: Skills;
-}) {
+>(
+  config: Omit<SkillDomain_Config, 'slug' | 'groups' | 'skills'> & {
+    slug: Slug;
+    groups?: Groups;
+    skills?: Skills;
+  },
+) {
   skillDomain_Config_Schema.parse(config);
 
   const { id, description, slug, title, skills, groups } = config;

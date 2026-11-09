@@ -64,7 +64,8 @@ test('nested Skill and SkillGroup collections still reject duplicate slugs', () 
     /Duplicate configurator slug: reading/,
   );
   assert.throws(
-    () => defineSkillDomain({ id: fields.id, slug: 'duplicates', title: localized, description, groups: [group, group] }),
+    () =>
+      defineSkillDomain({ id: fields.id, slug: 'duplicates', title: localized, description, groups: [group, group] }),
     /Duplicate configurator slug: literacy/,
   );
   assert.throws(

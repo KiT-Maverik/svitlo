@@ -5,9 +5,9 @@ type SluggedConfigurator = { readonly config: { readonly base: { readonly slug: 
  * Dynamic string slugs are optional because an arbitrary key may not exist.
  */
 type SluggedConfiguratorMap<Configurator extends SluggedConfigurator> = {
-  [Entry in Configurator as string extends Entry['config']['base']['slug']
-    ? never
-    : Entry['config']['base']['slug']]: Entry;
+  [
+    Entry in Configurator as string extends Entry['config']['base']['slug'] ? never : Entry['config']['base']['slug']
+  ]: Entry;
 } & (string extends Configurator['config']['base']['slug'] ? Partial<Record<string, Configurator>> : {});
 
 export function configuratorArrayToSluggedObject<const Configurators extends readonly SluggedConfigurator[]>(
