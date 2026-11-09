@@ -1,3 +1,4 @@
+import type { SkillId } from '@svitlo/contracts/content';
 import type { DeepPartial } from '#types';
 
 import { skill_Config_Schema, type Skill_Config } from './defineSkill.schemas';
@@ -8,7 +9,8 @@ export function defineSkill<const Slug extends string>(config: Skill_Config & { 
   const { id, description, slug, name } = config;
 
   const base = {
-    id,
+    // The UUID has already passed Zod's uuid() validation above.
+    id: id as SkillId,
     slug,
     description: { methodological: description.methodological },
   } satisfies DeepPartial<Skill_Config>;
