@@ -1,9 +1,6 @@
 import type { Definition } from './definition';
 import { defineText } from './contentBlocks/defineText/defineText';
-import type {
-  ContentBlock_Text_Config,
-  ContextBlock_Text_Props,
-} from './contentBlocks/defineText/defineText.schema';
+import type { ContentBlock_Text_Config, ContextBlock_Text_Props } from './contentBlocks/defineText/defineText.schema';
 
 const languages = ['en', 'uk'] as const;
 type TextConfig = ContentBlock_Text_Config<typeof languages>;

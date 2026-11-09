@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import {localeText_Schema, localizationSwitch} from '#schemas';
+import { localeText_Schema, localizationSwitch } from '#schemas';
 
 import type { Skill_Configurator } from '../defineSkill/defineSkill';
 import type { Skill_Props } from '../defineSkill/defineSkill.schemas';
