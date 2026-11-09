@@ -42,7 +42,7 @@ export const howLightMoves_Lesson_Configurator = createLesson<HowLightMoves_Lang
     uk: 'Як рухається світло',
   },
   flashcards: howLightMoves_Flashcards,
-  skills: [testExplainLightTravel_Skill_Data.id],
+  skills: [testExplainLightTravel_Skill_Data.config.base.id],
   parameters: {
     requireQuiz: true,
     languages: howLightMoves_languages,
