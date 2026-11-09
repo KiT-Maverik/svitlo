@@ -1,6 +1,6 @@
 import type { HowLightMoves_Languages } from '../../constants';
 import type { Quiz_Parameters } from '@svitlo/contracts/content';
-import { createSection } from '@svitlo/engine';
+import { createSectionConfigurator } from '@svitlo/engine';
 import { howLightMoves_Questions } from '../../questions';
 
 const title = {
@@ -62,7 +62,7 @@ const parameters = {
   },
 } satisfies Quiz_Parameters<'data', HowLightMoves_Languages>;
 
-export const quiz_Section_Configurator = createSection<HowLightMoves_Languages>()({
+export const quiz_Section_Configurator = createSectionConfigurator<HowLightMoves_Languages>()({
   id: '2a02b81f-dbd6-58d8-9711-4deb97312a56',
   type: 'quiz',
   slug: 'quiz',

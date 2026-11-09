@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
   /* config options here */
   cacheComponents: true,
   transpilePackages: ['@svitlo/ui-kit', selection.package],
+  serverExternalPackages: ['@svitlo/engine', 'esbuild'],
   partialPrefetching: true,
 };
 

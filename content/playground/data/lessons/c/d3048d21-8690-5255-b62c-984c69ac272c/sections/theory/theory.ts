@@ -1,5 +1,5 @@
 import type { HowLightMoves_Languages } from '../../constants';
-import { createSection, createContentBlock, getMarkdownLocale } from '@svitlo/engine';
+import { createSectionConfigurator, createContentBlock, getMarkdownLocale } from '@svitlo/engine';
 import { checkpoint } from './checkpoints/checkpoint';
 import { lightPropagationSimulation } from './scenes/lightPropagationSimulation';
 import { lightRayDiagram } from './scenes/lightRayDiagram';
@@ -36,7 +36,7 @@ const title = {
   zh: '理论',
 };
 
-export const theory_Section_Configurator = createSection<HowLightMoves_Languages>()({
+export const theory_Section_Configurator = createSectionConfigurator<HowLightMoves_Languages>()({
   id: '32376510-b49a-5da8-91d7-e13cf162c9f9',
   type: 'theory',
   slug: 'theory',

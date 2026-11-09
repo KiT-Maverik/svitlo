@@ -1,6 +1,7 @@
-import { defineQuestion } from './defineQuestion';
+import type { Question_SelectOneAnswer } from '@svitlo/contracts/content';
+import type { HowLightMoves_Languages } from '../constants';
 
-export const lightSpeedInWater_Question_Data = defineQuestion({
+export const lightSpeedInWater_Question_Data = {
   answers: {
     correct: {
       decreases: {
@@ -157,7 +158,7 @@ export const lightSpeedInWater_Question_Data = defineQuestion({
     },
   ],
   id: 'f42370dc-1de2-59bf-93a0-0e304f9021f0',
-  slug: 'lightSpeedInWater',
+  slug: 'lightSpeedInWater' as const,
   question: [
     {
       id: '802c89a1-87bc-5f24-9190-92b8f145b5e0',
@@ -198,4 +199,4 @@ export const lightSpeedInWater_Question_Data = defineQuestion({
   ],
   restrictions: [],
   type: 'selectOneAnswer',
-});
+} satisfies Question_SelectOneAnswer<'data', HowLightMoves_Languages>;

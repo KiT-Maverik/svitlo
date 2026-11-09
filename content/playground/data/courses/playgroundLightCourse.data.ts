@@ -4,7 +4,7 @@ import {
   createEpisode,
   createLessonOverrides,
   createModule,
-  createSection,
+  createSectionConfigurator,
 } from '@svitlo/engine';
 import type { Course } from '@svitlo/contracts/content';
 import { contentBlockGallery_Section } from './sections/contentBlockGallery.data';
@@ -46,7 +46,7 @@ const episode = createEpisode<HowLightMoves_Languages>({
   ],
 });
 
-const storyInsideLesson = createSection<HowLightMoves_Languages>()({
+const storyInsideLesson = createSectionConfigurator<HowLightMoves_Languages>()({
   id: '5234f750-02c0-54fc-a02f-c9b76b2d680b',
   slug: 'storyBridge',
   type: 'scenario',

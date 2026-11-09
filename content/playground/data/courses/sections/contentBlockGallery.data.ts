@@ -1,4 +1,4 @@
-import { createSection, createContentBlock } from '@svitlo/engine';
+import { createSectionConfigurator, createContentBlock } from '@svitlo/engine';
 import type { HowLightMoves_Languages } from '../../lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/constants';
 import { lightRayDiagram } from '../../lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/sections/theory/scenes/lightRayDiagram';
 
@@ -8,7 +8,7 @@ import { lightRayDiagram } from '../../lessons/c/d3048d21-8690-5255-b62c-984c69a
  * As with the existing demo Course, example prose is English-only test copy;
  * this fixture is not localized instructional material.
  */
-export const contentBlockGallery_Creator = createSection<HowLightMoves_Languages>()({
+export const contentBlockGallery_Creator = createSectionConfigurator<HowLightMoves_Languages>()({
   id: '4b60ac47-8d6e-55f1-8aaa-641abe18550d',
   slug: 'contentBlockGallery',
   type: 'learningFlow',
