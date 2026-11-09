@@ -22,8 +22,8 @@ test('Skill Analytics renders from the published base tree and requested locale'
   await page.goto('/skillAnalytics?lang=uk');
   await expect(page.getByTestId('skill-node-testColors')).toBeVisible();
   await expect(page.getByTestId('skill-node-testRecognizeRed')).toBeVisible();
-  expect(requested).toContain('/data/skills/base.json');
-  expect(requested).toContain('/data/skills/uk.json');
+  // Sparse resources are read and merged on the Next.js server, not fetched by the browser.
+  expect(requested).toEqual([]);
   expect(requested.some(url => url.includes('/data/pages/skillAnalytics/'))).toBe(false);
 });
 
