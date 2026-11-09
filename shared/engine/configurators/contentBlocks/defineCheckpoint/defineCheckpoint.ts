@@ -1,5 +1,7 @@
 import type { DeepPartial } from '#types';
 
+import { onlyLocales, onlyStrings } from '../../_utils';
+
 import { checkpoint_Config_Schema, type ContentBlock_Checkpoint_Config } from './defineCheckpoint.schemas';
 
 export function defineCheckpoint<
@@ -11,26 +13,21 @@ export function defineCheckpoint<
   checkpoint_Config_Schema.parse(config);
 
   const { id, type, slug, title, items, ...params } = config;
+
   const base = {
     id,
     type,
     slug,
     ...params,
-    title: typeof title === 'string' ? title : undefined,
+    ...onlyStrings({ title }),
   } satisfies DeepPartial<ContentBlock_Checkpoint_Config>;
 
   return {
     config: {
       base,
-      locales: () =>
-        ({
-          title: typeof title === 'object' ? title : undefined,
-          items: items.map(({ question }) => ({
-            question: typeof question === 'object' ? question : undefined,
-          })),
-        }) satisfies DeepPartial<ContentBlock_Checkpoint_Config>,
+      locales: () => onlyLocales({ title, items: items.map(({ question }) => ({ question })) }) satisfies DeepPartial<ContentBlock_Checkpoint_Config>,
     },
-    // Like SkillGroup.skill, children stay as configurators, never raw authored configs.
+    // Keep the authored child configurators, never flatten them into raw configs.
     items,
   };
 }
