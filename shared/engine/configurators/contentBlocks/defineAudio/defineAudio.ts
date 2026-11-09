@@ -9,18 +9,20 @@ export function defineAudio<const Slug extends string>(config: Omit<ContentBlock
 
   const { id, type, slug, fileLocation, title, description, fallback } = config;
 
+  const localeEntries = { fileLocation, title, description, fallback }
+
   const base = {
     id,
     type,
     slug,
-    ...onlyStrings({ fileLocation, title, description, fallback }),
+    ...onlyStrings(localeEntries),
   } satisfies DeepPartial<ContentBlock_Audio_Config>;
 
   return {
     config: {
       base,
       locales: () =>
-        onlyLocales({ fileLocation, title, description, fallback }) satisfies DeepPartial<ContentBlock_Audio_Config>,
+        onlyLocales(localeEntries) satisfies DeepPartial<ContentBlock_Audio_Config>,
     },
   };
 }
