@@ -11,7 +11,7 @@ export function defineCarousel<const Slug extends string>(
 
   const { id, type, slug, title, slides, ...params } = config;
 
-  const localeEntries = { title } as const;
+  const localeEntries = { title, slides } as const;
 
   const base = {
     id,
@@ -19,13 +19,12 @@ export function defineCarousel<const Slug extends string>(
     slug,
     ...params,
     ...onlyStrings(localeEntries),
-    slides: slides.map(slide => onlyStrings(slide)),
   } satisfies DeepPartial<ContentBlock_Carousel_Config>;
 
   return {
     config: {
       base,
-      locales: () => onlyLocales({ title, slides }) satisfies DeepPartial<ContentBlock_Carousel_Config>,
+      locales: () => onlyLocales(localeEntries) satisfies DeepPartial<ContentBlock_Carousel_Config>,
     },
   };
 }
