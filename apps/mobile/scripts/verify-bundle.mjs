@@ -23,9 +23,31 @@ for (const lesson of index.lessons) {
   }
 }
 assert.ok(existsSync(join(dist, 'data/pages/skillAnalytics/uk.json')), 'Missing compiled Skills Analytics JSON');
-const locales = readdirSync(join(dist, 'data/ui-kit')).filter(name => name.endsWith('.json'));
+const locales = readdirSync(join(dist, 'data/uiKit/components')).filter(name => name.endsWith('.json'));
 assert.ok(locales.length > 0, 'Missing UI Kit localizations');
-for (const locale of locales) JSON.parse(readFileSync(join(dist, 'data/ui-kit', locale), 'utf8'));
+for (const locale of locales) JSON.parse(readFileSync(join(dist, 'data/uiKit/components', locale), 'utf8'));
+const methodsRoot = join(dist, 'data/uiKit/assessmentMethods');
+const methodsBase = JSON.parse(readFileSync(join(methodsRoot, 'base.json'), 'utf8'));
+const methods = Object.keys(methodsBase).sort();
+assert.equal(existsSync(join(methodsRoot, 'meta.json')), false);
+assert.equal(methods.length, 16);
+for (const method of methods) {
+  assert.equal(methodsBase[method].slug, method);
+  assert.ok(methodsBase[method].id);
+}
+const methodLanguages = readdirSync(methodsRoot).filter(name => name !== 'base.json');
+assert.equal(methodLanguages.length, 29);
+assert.ok(methodLanguages.includes('uk.json'));
+assert.ok(methodLanguages.includes('qm.json'));
+for (const filename of methodLanguages) {
+  assert.match(filename, /^[a-z]{2}\.json$/);
+  const data = JSON.parse(readFileSync(join(methodsRoot, filename), 'utf8'));
+  assert.deepEqual(Object.keys(data).sort(), methods);
+  for (const method of methods) {
+    assert.ok(data[method].title);
+    assert.ok(data[method].description);
+  }
+}
 for (const flag of ['ua.svg', 'qm.svg']) {
   assert.ok(existsSync(join(dist, 'flags', flag)), 'Missing UI Kit flag: ' + flag);
 }

@@ -1,6 +1,5 @@
 import type { UiKitMessages } from '#types/uiKitMessages';
 import {
-  assessmentMethods,
   learningLayout as layout,
   navbarPreferences as preferences,
   lesson,
@@ -15,7 +14,6 @@ import {
 
 /** Test-only fixture. This module is not emitted in the UI Kit runtime build. */
 export const ukUiKitMessages: UiKitMessages = {
-  assessmentMethods: assessmentMethods.uk,
   lesson: lesson.uk,
   learningLayout: layout.uk,
   navbarPreferences: preferences.uk,
@@ -30,7 +28,6 @@ export const ukUiKitMessages: UiKitMessages = {
 
 export const enUiKitMessages: UiKitMessages = {
   ...ukUiKitMessages,
-  assessmentMethods: assessmentMethods.en,
   lesson: lesson.en,
   learningLayout: layout.en,
   navbarPreferences: preferences.en,

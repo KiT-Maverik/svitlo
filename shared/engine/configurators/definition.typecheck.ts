@@ -38,12 +38,12 @@ type CheckpointSlug = Expect<Equal<typeof checkpoint.config.base.slug, 'review'>
 const nestedText: typeof text = checkpoint.items[0].answer[0];
 void nestedText;
 
-// @ts-expect-error Raw authored Text config is not a nested configurator.
 defineCheckpoint({
   id: authored.id,
   type: 'checkpoint',
   slug: 'bad',
   title: 'Bad',
+  // @ts-expect-error Raw authored Text config is not a nested configurator.
   items: [{ question: 'Q', answer: [authored] }],
 });
 

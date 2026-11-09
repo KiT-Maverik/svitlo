@@ -23,4 +23,4 @@ if (!existsSync(localeDist)) throw new Error('Missing UI Kit locale declarations
 for (const file of readdirSync(localeDist)) {
   if (file.endsWith('.js') || file.endsWith('.js.map')) rmSync(join(localeDist, file));
 }
-run(process.execPath, ['scripts/copy-assets.mjs']);
+run(process.execPath, ['scripts/copyAssets.mjs']);
