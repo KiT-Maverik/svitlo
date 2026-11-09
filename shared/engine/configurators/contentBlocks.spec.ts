@@ -84,8 +84,10 @@ test('Checkpoint stores nested configurators and a Section can project them to d
   const base = section.config.base as { content: { items: { answer: unknown[] }[] }[] };
   assert.equal(base.content[0].items[0].answer.length, 1);
   assert.equal(JSON.stringify(base).includes('function'), false);
-  const locales = section.config.locales();
-  assert.equal(JSON.stringify(locales).includes('Привіт'), true);
+  const locales = section.config.locales() as {
+    uk: { content: Record<number, { items: Record<number, { answer: Record<number, { value: string }> }> }> };
+  };
+  assert.equal(locales.uk.content[0].items[0].answer[0].value, 'Привіт');
   assert.throws(() =>
     defineCheckpoint({
       id, slug: 'bad', type: 'checkpoint', title: 'Review',
