@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
 import { assessmentMethods_AssessmentMethod_Ids } from '@svitlo/contracts/content';
-import * as methods from './index.data';
+import * as methods from './index';
 import { buildAssessmentMethodConfig } from '../../utils/builders/config/buildAssessmentMethodConfig.utils';
 
 const directory = join(process.cwd(), 'data', 'assessmentMethodTaxonomy');

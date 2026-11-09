@@ -1,4 +1,4 @@
-export { analogicalReasoning_AssessmentMethod_Data } from './analogicalReasoning.data';
+export { analogicalReasoning_AssessmentMethod_Data } from './analogicalReasoning';
 export { application_AssessmentMethod_Data } from './application.data';
 export { classification_AssessmentMethod_Data } from './classification.data';
 export { errorDiagnosis_AssessmentMethod_Data } from './errorDiagnosis.data';
