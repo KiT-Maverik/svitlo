@@ -20,7 +20,7 @@ const common = {
   id,
   slug: 'question-one',
   assessmentMethod: 'retrieval' as const,
-  restrictions: ['none'],
+  restrictions: ['dyslexia' as const],
   question: [block] as [typeof block],
 };
 const answers = { correct: { yes: block }, incorrect: { no: block }, distractors: { maybe: block } };
@@ -64,5 +64,9 @@ defineFillBlanksWithBlocks({ ...common, type: 'fillBlanksWithBlocks', slots: [{ 
 defineAnswerWithNumber({ ...common, type: 'answerWithNumber', correctAnswers: ['2'], placeholder: 'Number' });
 // @ts-expect-error Correct answers for text questions must be localized text.
 defineAnswerWithText({ ...common, type: 'answerWithText', correctAnswers: [2], placeholder: 'Answer' });
+// @ts-expect-error Assessment Method is an enum of known slugs, not any string or contract ID.
+defineSelectOneAnswer({ ...common, type: 'selectOneAnswer', assessmentMethod: 'invalid-method', answers });
+// @ts-expect-error Restrictions are known perception limitations, not arbitrary strings.
+defineSelectOneAnswer({ ...common, type: 'selectOneAnswer', restrictions: ['none'], answers });
 
 void [one, multiple, matched, text, number, order, build, blocks, blanks];

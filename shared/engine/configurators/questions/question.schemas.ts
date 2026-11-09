@@ -1,5 +1,7 @@
 import { z } from 'zod';
-import { assessmentMethods_AssessmentMethod_Ids } from '@svitlo/contracts/content';
+import { disability_Schema } from '#schemas';
+
+import { assessmentMethodSlug_Schema } from './assessmentMethod.schemas';
 
 import { contentBlockChild } from '../contentBlocks/contentBlockChild/contentBlockChild';
 import {
@@ -29,11 +31,6 @@ export const questionBlockSwitch = {
 
 export const questionLocalizationSwitch = contentBlockLocalizationSwitch;
 
-const assessmentMethods = Object.keys(assessmentMethods_AssessmentMethod_Ids) as [
-  keyof typeof assessmentMethods_AssessmentMethod_Ids,
-  ...(keyof typeof assessmentMethods_AssessmentMethod_Ids)[],
-];
-
 export function createQuestionFields<
   const Kind extends Question_Type,
   Mode extends keyof typeof questionBlockSwitch,
@@ -44,8 +41,8 @@ export function createQuestionFields<
     id: z.uuid(),
     slug: z.string().min(1),
     type: z.literal(kind),
-    assessmentMethod: z.enum(assessmentMethods),
-    restrictions: z.array(z.string()),
+    assessmentMethod: assessmentMethodSlug_Schema,
+    restrictions: z.array(disability_Schema),
     question: z.tuple([child], child),
     hint: z.tuple([child], child).optional(),
     explanation: z.tuple([child], child).optional(),

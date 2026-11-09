@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 
 import { defineText } from '../contentBlocks/defineText/defineText';
+import { allDisabilities, disability_Schema } from '../../schemas';
 import {
   defineSelectOneAnswer,
   defineSelectMultipleAnswers,
@@ -12,6 +13,8 @@ import {
   defineBuildAnswerWithBlocks,
   defineFillBlanksWithBlocks,
   defineFillBlanksWithText,
+  assessmentMethodSlugs,
+  assessmentMethodSlug_Schema,
   selectOneAnswer_Config_Schema,
   selectOneAnswer_Props_Schema,
   selectMultipleAnswers_Config_Schema,
@@ -38,7 +41,7 @@ const resolvedBlock = { id, slug: 'prompt-block', type: 'text' as const, params:
 const locale = { en: 'Answer', uk: 'Відповідь' } as const;
 
 function common<const Kind extends string>(type: Kind) {
-  return { id, slug: 'test-question', type, assessmentMethod: 'retrieval' as const, restrictions: ['text'], question: [block] as [typeof block] };
+  return { id, slug: 'test-question', type, assessmentMethod: 'retrieval' as const, restrictions: ['dyslexia' as const], question: [block] as [typeof block] };
 }
 
 const answers = {
@@ -127,6 +130,7 @@ test('all nine Question Config and Props schemas validate authored definitions a
     assert.equal(entry.configSchema.safeParse({ ...entry.config, id: 'invalid' }).success, false, entry.config.type);
     assert.equal(entry.configSchema.safeParse({ ...entry.config, assessmentMethod: 'unregistered' }).success, false, entry.config.type);
     assert.equal(entry.configSchema.safeParse({ ...entry.config, restrictions: [12] }).success, false, entry.config.type);
+    assert.equal(entry.configSchema.safeParse({ ...entry.config, restrictions: ['unknown-restriction'] }).success, false, entry.config.type);
   }
 });
 
@@ -142,7 +146,7 @@ test('Question definitions preserve nested ContentBlock identity and avoid autho
     slug: 'test-question',
     type: 'selectOneAnswer',
     assessmentMethod: 'retrieval',
-    restrictions: ['text'],
+    restrictions: ['dyslexia'],
   });
   assert.deepEqual(select.config.locales(), {});
   assert.equal(JSON.stringify(select.config.base).includes('locales'), false);
@@ -208,4 +212,18 @@ test('Nested child and answer constraints reject malformed inputs at runtime', (
   assert.equal(fillBlanksWithText_Config_Schema.safeParse({ ...common('fillBlanksWithText'), slots: [{ selector: 'a', correctAnswers: [17] }], placeholder: 'A' }).success, false);
   assert.equal(buildAnswerWithBlocks_Config_Schema.safeParse({ ...common('buildAnswerWithBlocks'), correctSequence: [raw], distractors: [], placeholder: 'A' }).success, false);
   assert.equal(selectMultipleAnswers_Config_Schema.safeParse({ ...common('selectMultipleAnswers'), answers: { ...answers, incorrect: { bad: raw } } }).success, false);
+});
+
+test('Assessment Method slugs and perception restrictions have finite schema-backed values', () => {
+  assert.equal(assessmentMethodSlugs.length, 16);
+  assert.equal(allDisabilities.length, 19);
+  for (const slug of assessmentMethodSlugs) {
+    assert.equal(assessmentMethodSlug_Schema.safeParse(slug).success, true, slug);
+  }
+  for (const disability of allDisabilities) {
+    assert.equal(disability_Schema.safeParse(disability).success, true, disability);
+  }
+  assert.equal(assessmentMethodSlug_Schema.safeParse('legacy-method-id').success, false);
+  assert.equal(disability_Schema.safeParse('text').success, false);
+  assert.equal(disability_Schema.safeParse('none').success, false);
 });
