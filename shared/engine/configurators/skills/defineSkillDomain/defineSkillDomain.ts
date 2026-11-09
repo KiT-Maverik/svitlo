@@ -30,7 +30,7 @@ export function defineSkillDomain<
     config: {
       base,
       locales: () =>
-        ({ title, description: { frontend: description.frontend } }) satisfies DeepPartial<SkillDomain_Config>,
+        ({ title, ...(description.frontend === undefined ? {} : { description: { frontend: description.frontend } }) }) satisfies DeepPartial<SkillDomain_Config>,
     },
     group: configuratorArrayToSluggedObject(groups ?? []),
     skill: configuratorArrayToSluggedObject(skills ?? []),
