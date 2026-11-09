@@ -49,6 +49,9 @@ function dictionary(object) {
   }
   return data;
 }
+function propsKind(config) {
+  return config.properties.some(p => ts.isPropertyAssignment(p) && p.name.text === 'title') ? 'SkillDomain' : 'other';
+}
 function readEntity(file) {
   const ast = ts.createSourceFile(file, fs.readFileSync(file, 'utf8'), ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
   assert.equal(ast.parseDiagnostics.length, 0, 'Invalid TypeScript in ' + file);
@@ -57,7 +60,7 @@ function readEntity(file) {
     if (
       ts.isCallExpression(node) &&
       ts.isIdentifier(node.expression) &&
-      /^buildSkill(Domain|Group)?Config$/.test(node.expression.text) &&
+      /^(buildSkill(Domain|Group)?Config|defineSkill(Domain|Group)?)$/.test(node.expression.text) &&
       node.arguments.length === 1 &&
       ts.isObjectLiteralExpression(node.arguments[0])
     ) {
@@ -68,7 +71,8 @@ function readEntity(file) {
   }
   visit(ast);
   assert.ok(config, 'No taxonomy config in ' + file);
-  const name = dictionary(prop(config, 'name'));
+  const name = dictionary(prop(config, propsKind(config) === 'SkillDomain' ? 'title' : 'name'));
+
   const desc = prop(config, 'description');
   const methodological = prop(desc, 'methodological');
   assert.ok(ts.isStringLiteral(methodological) || ts.isNoSubstitutionTemplateLiteral(methodological));
