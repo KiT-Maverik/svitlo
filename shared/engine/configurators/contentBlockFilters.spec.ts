@@ -65,7 +65,9 @@ test('onlyLocales keeps valid sparse locale dictionaries at their original neste
 test('locale recognition excludes unsupported language codes and invalid localized text', () => {
   assert.deepEqual(onlyLocales({ text: { xx: 'Not supported' } }), {});
   assert.deepEqual(onlyLocales({ text: { en: 42 } }), {});
-  assert.deepEqual(onlyLocales({ text: { en: '' } }), {});
+  // ContentBlock schemas validate nonempty text; this projector checks locale
+  // structure only, so it can also preserve Scene text values.
+  assert.deepEqual(onlyLocales({ text: { en: '' } }), { text: { en: '' } });
   assert.deepEqual(onlyLocales({ text: {} }), {});
   assert.deepEqual(onlyLocales({ text: { en: 'Text', label: 'Not a locale key' } }), {});
 });
@@ -84,4 +86,28 @@ test('partial array patches retain source indexes without mutating their element
   assert.deepEqual(onlyStrings(authored), {
     parts: [{ label: 'Fixed' }, {}, { label: 'Another fixed' }],
   });
+});
+
+test('localized-only arrays keep their base skeleton and precise locale positions', () => {
+  const source = {
+    slides: [
+      { src: { en: 'first.png' }, alt: { uk: 'Перший' } },
+      { src: { en: 'second.png' }, alt: { uk: 'Другий' } },
+    ],
+  };
+  assert.deepEqual(onlyStrings(source), { slides: [{}, {}] });
+  assert.deepEqual(onlyLocales(source), source);
+});
+
+test('structured Scene dictionaries remain localized rather than leaking into base', () => {
+  const source = {
+    locales: {
+      en: { greeting: 'Hello', state: { message: 'Ready' } },
+      uk: { greeting: 'Привіт', state: { message: 'Готово' } },
+    },
+  };
+  assert.deepEqual(onlyStrings(source), {});
+  assert.deepEqual(onlyLocales(source), source);
+  // A record with arbitrary keys is not a locale dictionary.
+  assert.deepEqual(onlyLocales({ value: { greeting: 'Hello' } }), {});
 });
