@@ -1,4 +1,10 @@
-import { resolveEntityPath, assembleLessonResponse, mergeLessonResources, type LessonResponse } from '@svitlo/engine';
+import {
+  resolveEntityPath,
+  assembleLessonResponse,
+  mergeLessonResources,
+  getLanguageCode,
+  type LessonResponse,
+} from '@svitlo/engine';
 import type { LanguageCode, Locale } from '@svitlo/contracts/localization';
 import type { UiKitMessages } from '@svitlo/ui-kit';
 
@@ -24,7 +30,7 @@ export async function loadLesson(id: string, language: LanguageCode): Promise<Le
 }
 
 export async function loadMessages(locale: Locale): Promise<UiKitMessages> {
-  return fetchLocalJson('/data/ui-kit/' + locale + '.json') as Promise<UiKitMessages>;
+  return fetchLocalJson('/data/uiKit/components/' + getLanguageCode(locale) + '.json') as Promise<UiKitMessages>;
 }
 
 export type LessonIndex = {

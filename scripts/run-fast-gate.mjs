@@ -117,8 +117,8 @@ function runGate(changed) {
       file =>
         file.startsWith('scripts/generate-assessment-methods-reference.') ||
         file === 'scripts/generate-translation-review-artifacts.mjs' ||
-        file === 'shared/ui-kit/data/locale/assessmentMethods.ts' ||
-        file === 'shared/engine/src/data/assessmentMethodTaxonomy/locales/en.ts',
+        file.startsWith('shared/ui-kit/data/definitions/assessmentMethods/') ||
+        file === 'shared/contracts/src/types/content/assessmentMethod.ids.ts',
     )
   ) {
     exec('node', ['--test', 'scripts/generate-assessment-methods-reference.spec.mjs']);

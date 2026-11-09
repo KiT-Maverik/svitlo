@@ -4,7 +4,7 @@ import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
 import { allLanguageCodes } from '../schemas/languages.schemas';
 import { locale_All_Schema } from '../schemas/locale.schemas';
 import { defineText } from './contentBlocks/defineText/defineText';
-import { defineMarkdown } from './contentBlocks/defineRemaining';
+import { defineMarkdown } from './contentBlocks/defineMarkdown/defineMarkdown';
 import { defineTheorySection, regularSectionSchema } from './sections';
 import { defineLesson } from './lessons';
 import { defineCourse } from './courses';
@@ -15,7 +15,7 @@ import { assessmentMethod_Config_Schema } from './assessmentMethods/defineAssess
 const languages = ['en', 'uk'] as const;
 const id = (last: string) => 'b775647f-203d-481a-a1c7-4d331c779d' + last;
 const textBlock = () =>
-  defineText<typeof languages>({
+  defineText({
     type: 'text',
     id: id('6a'),
     slug: 'introduction',
@@ -65,7 +65,7 @@ test('Course-local overrides do not mutate a standalone Lesson', () => {
   const courseVersion = lesson.withOverrides({ title: { en: 'Course Lesson', uk: 'Урок у курсі' } });
   assert.equal(lesson.config.overrides(), null);
   assert.ok(courseVersion.config.overrides());
-  const description = defineMarkdown<typeof languages>({
+  const description = defineMarkdown({
     type: 'markdown',
     id: id('6d'),
     slug: 'description',

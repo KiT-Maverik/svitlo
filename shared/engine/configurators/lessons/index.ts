@@ -2,7 +2,6 @@ import { z } from 'zod';
 import { defineStructured, taggedChild, localizedText, uuid, slug, resolvedProps } from '../structured';
 import type { DefinitionLanguages, TaggedDefinition } from '../structured';
 import { sectionChild } from '../sections';
-import { assessmentMethods_AssessmentMethod_Ids } from '@svitlo/contracts/content';
 
 const questionTypes = [
   'selectOneAnswer',

@@ -1,4 +1,11 @@
-import { resolveEntityPath, assembleLessonResponse, mergeLessonResources, type LessonResponse } from '@svitlo/engine';
+import {
+  resolveEntityPath,
+  assembleLessonResponse,
+  mergeLessonResources,
+  getLanguageCode,
+  isLocale,
+  type LessonResponse,
+} from '@svitlo/engine';
 import type { LanguageCode, Locale } from '@svitlo/contracts/localization';
 
 /** Fetch only build-published lesson data. No Node, Electron or authored *.data.ts at runtime. */
@@ -26,6 +33,6 @@ export async function loadPublishedLesson(id: string, language: LanguageCode): P
 }
 
 export async function loadPublishedUiKitMessages<T>(locale: Locale): Promise<T> {
-  if (!/^[a-z]{2}(?:-[A-Z]{2})?$/.test(locale)) throw new Error('Unsupported locale');
-  return (await loadJson('/data/ui-kit/' + locale + '.json')) as T;
+  if (!isLocale(locale)) throw new Error('Unsupported locale');
+  return (await loadJson('/data/uiKit/components/' + getLanguageCode(locale) + '.json')) as T;
 }

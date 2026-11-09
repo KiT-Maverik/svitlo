@@ -156,7 +156,7 @@ for (const path of selected) {
   if (name === 'ui-kit') {
     assert(existsSync(resolve(root, path, 'assets/flags')), 'UI Kit packaged flag assets missing');
     assert(
-      existsSync(resolve(root, path, 'scripts/sync-flags.mjs')),
+      existsSync(resolve(root, path, 'scripts/syncFlags.mjs')),
       'UI Kit packaged flag synchronization script missing',
     );
   }

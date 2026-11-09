@@ -43,17 +43,21 @@ const publicRoot = join(desktopRoot, 'public');
 run(process.execPath, [join(repoRoot, selected.directory, publish), 'publish', '--output', publicRoot]);
 
 // UI Kit-owned global strings and flags are independent of textbook publication.
-const localeOutput = join(publicRoot, 'data/ui-kit');
+const localeOutput = join(publicRoot, 'data/uiKit');
 rmSync(localeOutput, { recursive: true, force: true });
 run(process.execPath, [
-  'shared/ui-kit/scripts/generate-locales.mjs',
+  'shared/ui-kit/scripts/generateLocales.mjs',
   '--package',
   selected.directory,
   '--output',
-  'apps/desktop/public/data/ui-kit',
+  'apps/desktop/public/data/uiKit',
 ]);
-run(process.execPath, [join(repoRoot, 'shared/ui-kit/scripts/sync-flags.mjs'), desktopRoot]);
-if (!existsSync(join(publicRoot, 'data/pages/lessons')) || !existsSync(join(localeOutput, 'uk-UA.json'))) {
+for (const resource of ['assessmentMethods/base.json', 'assessmentMethods/uk.json', 'components/uk.json']) {
+  const filename = join(localeOutput, resource);
+  if (!existsSync(filename)) throw new Error('Missing UI Kit Assessment Method resource: ' + filename);
+}
+run(process.execPath, [join(repoRoot, 'shared/ui-kit/scripts/syncFlags.mjs'), desktopRoot]);
+if (!existsSync(join(publicRoot, 'data/pages/lessons')) || !existsSync(join(localeOutput, 'components/uk.json'))) {
   throw new Error('Desktop lesson or UI Kit localization output is missing');
 }
 console.log('Desktop content prepared from compiled package ' + selected.package);

@@ -5,7 +5,7 @@ import { defineSkill, defineSkillGroup, type Skill_Config } from './skills';
 import { allLanguageCodes } from '../schemas/languages.schemas';
 
 const languages = ['en', 'uk'] as const;
-const validText = defineText<typeof languages>({
+const validText = defineText({
   type: 'text',
   id: 'b775647f-203d-481a-a1c7-4d331c779d6a',
   slug: 'intro',
