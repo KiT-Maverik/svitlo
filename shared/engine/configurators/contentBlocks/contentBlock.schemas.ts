@@ -1,7 +1,6 @@
 import { z } from 'zod';
 
-import { languageCode_Schema } from '#schemas';
-import { localeText_Schema, nonTranslatableText_Schema } from '#schemas';
+import { languageCode_Schema, localeText_Schema, nonTranslatableText_Schema } from '#schemas';
 
 export const contentBlockTypes = [
   'text', 'code', 'image', 'video', 'youtube', 'carousel', 'scene', 'checkpoint', 'markdown', 'audio',
@@ -41,6 +40,13 @@ const textStylingRule_Schema = z.strictObject({
 export const textStylingRules_Schema = z.object({
   styling: z.tuple([textStylingRule_Schema], textStylingRule_Schema).optional(),
 });
+
+/** Resolved child blocks are plain props, never authoring-time configurators. */
+export const contentBlockResolved_Schema = z.object({
+  id: z.uuid(),
+  slug: z.string().min(1),
+  type: z.enum(contentBlockTypes),
+}).catchall(z.unknown());
 
 /** Nest configurators, not authored child configs. */
 export const contentBlockConfigurator_Schema = z.custom<{
