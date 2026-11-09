@@ -10,4 +10,5 @@ export * from './lessons';
 export * from './courses';
 export * from './skills';
 export * from './assessmentMethods/defineAssessmentMethod';
+export * from './assessmentMethods/defineAssessmentMethod.schemas';
 export * from './flashcards';

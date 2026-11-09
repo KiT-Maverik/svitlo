@@ -120,7 +120,7 @@ test('Skills use child Definition objects and assessment IDs are valid UUIDs', (
     description: allLocales('Recall'),
   } satisfies Parameters<typeof defineAssessmentMethod>[0];
   const method = defineAssessmentMethod(methodSource);
-  assert.equal(method.config.test.config(), true);
+  assert.throws(() => defineAssessmentMethod({ ...methodSource, id: 'not-a-uuid' }));
   assert.deepEqual(method.config.base, { id: methodSource.id, slug: methodSource.slug });
   assert.deepEqual(method.config.locales(), { title: methodSource.title, description: methodSource.description });
   assert.equal(assessmentMethod_Config_Schema.safeParse({ ...methodSource, id: 'not-a-uuid' }).success, false);
