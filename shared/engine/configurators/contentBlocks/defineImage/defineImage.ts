@@ -1,5 +1,7 @@
 import type { DeepPartial } from '#types';
 
+import { onlyLocales, onlyStrings } from '../../_utils';
+
 import { image_Config_Schema, type ContentBlock_Image_Config } from './defineImage.schemas';
 
 export function defineImage<const Slug extends string>(config: Omit<ContentBlock_Image_Config, 'slug'> & { slug: Slug }) {
@@ -12,30 +14,13 @@ export function defineImage<const Slug extends string>(config: Omit<ContentBlock
     type,
     slug,
     ...layout,
-    src: typeof src === 'string' ? src : undefined,
-    alt: typeof alt === 'string' ? alt : undefined,
-    caption: typeof caption === 'string' ? caption : undefined,
-    fallback: fallback && {
-      offline: typeof fallback.offline === 'string' ? fallback.offline : undefined,
-      unavailable: typeof fallback.unavailable === 'string' ? fallback.unavailable : undefined,
-      retry: typeof fallback.retry === 'string' ? fallback.retry : undefined,
-    },
+    ...onlyStrings({ src, alt, caption, fallback }),
   } satisfies DeepPartial<ContentBlock_Image_Config>;
 
   return {
     config: {
       base,
-      locales: () =>
-        ({
-          src: typeof src === 'object' ? src : undefined,
-          alt: typeof alt === 'object' ? alt : undefined,
-          caption: typeof caption === 'object' ? caption : undefined,
-          fallback: fallback && {
-            offline: typeof fallback.offline === 'object' ? fallback.offline : undefined,
-            unavailable: typeof fallback.unavailable === 'object' ? fallback.unavailable : undefined,
-            retry: typeof fallback.retry === 'object' ? fallback.retry : undefined,
-          },
-        }) satisfies DeepPartial<ContentBlock_Image_Config>,
+      locales: () => onlyLocales({ src, alt, caption, fallback }) satisfies DeepPartial<ContentBlock_Image_Config>,
     },
   };
 }
