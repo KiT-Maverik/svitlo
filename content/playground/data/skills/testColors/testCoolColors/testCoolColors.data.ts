@@ -1,8 +1,8 @@
 // Synthetic Playground fixtures. Locale-tagged strings are test placeholders, not translations.
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 import { testRecognizeBlue_Skill_Data, testRecognizeGreen_Skill_Data } from './skills';
 
-export const testCoolColors_SkillGroup_Data = buildSkillGroupConfig({
+export const testCoolColors_SkillGroup_Data = defineSkillGroup({
   slug: 'testCoolColors',
   id: '00000000-0000-4000-8000-000000000006',
   name: {
@@ -36,8 +36,42 @@ export const testCoolColors_SkillGroup_Data = buildSkillGroupConfig({
     kk: '[TEST kk] Cool colors',
     qm: '[TEST qm] Cool colors',
   },
-  skills: {
-    testRecognizeBlue: testRecognizeBlue_Skill_Data,
-    testRecognizeGreen: testRecognizeGreen_Skill_Data,
+  skills: [
+    testRecognizeBlue_Skill_Data,
+    testRecognizeGreen_Skill_Data,
+  ],
+  description: {
+    methodological: "Synthetic Playground fixture for testCoolColors; testing only, not curricular content.",
+    frontend: {
+      en: "[TEST en] Synthetic testCoolColors fixture.",
+      zh: "[TEST zh] Synthetic testCoolColors fixture.",
+      hi: "[TEST hi] Synthetic testCoolColors fixture.",
+      es: "[TEST es] Synthetic testCoolColors fixture.",
+      ar: "[TEST ar] Synthetic testCoolColors fixture.",
+      fr: "[TEST fr] Synthetic testCoolColors fixture.",
+      bn: "[TEST bn] Synthetic testCoolColors fixture.",
+      pt: "[TEST pt] Synthetic testCoolColors fixture.",
+      ur: "[TEST ur] Synthetic testCoolColors fixture.",
+      id: "[TEST id] Synthetic testCoolColors fixture.",
+      de: "[TEST de] Synthetic testCoolColors fixture.",
+      ja: "[TEST ja] Synthetic testCoolColors fixture.",
+      ko: "[TEST ko] Synthetic testCoolColors fixture.",
+      tr: "[TEST tr] Synthetic testCoolColors fixture.",
+      vi: "[TEST vi] Synthetic testCoolColors fixture.",
+      ta: "[TEST ta] Synthetic testCoolColors fixture.",
+      te: "[TEST te] Synthetic testCoolColors fixture.",
+      mr: "[TEST mr] Synthetic testCoolColors fixture.",
+      ms: "[TEST ms] Synthetic testCoolColors fixture.",
+      he: "[TEST he] Synthetic testCoolColors fixture.",
+      pl: "[TEST pl] Synthetic testCoolColors fixture.",
+      uk: "[TEST uk] Synthetic testCoolColors fixture.",
+      lt: "[TEST lt] Synthetic testCoolColors fixture.",
+      lv: "[TEST lv] Synthetic testCoolColors fixture.",
+      et: "[TEST et] Synthetic testCoolColors fixture.",
+      be: "[TEST be] Synthetic testCoolColors fixture.",
+      ka: "[TEST ka] Synthetic testCoolColors fixture.",
+      kk: "[TEST kk] Synthetic testCoolColors fixture.",
+      qm: "[TEST qm] Synthetic testCoolColors fixture.",
+    },
   },
 });
