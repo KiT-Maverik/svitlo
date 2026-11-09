@@ -1,5 +1,7 @@
 import type { DeepPartial } from '#types';
 
+import { onlyLocales, onlyStrings } from '../../_utils';
+
 import { code_Config_Schema, type ContentBlock_Code_Config } from './defineCode.schemas';
 
 export function defineCode<const Slug extends string>(config: Omit<ContentBlock_Code_Config, 'slug'> & { slug: Slug }) {
@@ -12,27 +14,13 @@ export function defineCode<const Slug extends string>(config: Omit<ContentBlock_
     slug,
     type,
     language,
-    title: typeof title === 'string' ? title : undefined,
-    code: typeof code === 'string' ? code : undefined,
-    fileLocation: typeof fileLocation === 'string' ? fileLocation : undefined,
-    variables: variables?.map(({ id, value }) => ({
-      id,
-      value: typeof value === 'string' ? value : undefined,
-    })),
+    ...onlyStrings({ title, code, fileLocation, variables }),
   } satisfies DeepPartial<ContentBlock_Code_Config>;
 
   return {
     config: {
       base,
-      locales: () =>
-        ({
-          title: typeof title === 'object' ? title : undefined,
-          code: typeof code === 'object' ? code : undefined,
-          fileLocation: typeof fileLocation === 'object' ? fileLocation : undefined,
-          variables: variables?.map(({ value }) => ({
-            value: typeof value === 'object' ? value : undefined,
-          })),
-        }) satisfies DeepPartial<ContentBlock_Code_Config>,
+      locales: () => onlyLocales({ title, code, fileLocation, variables }) satisfies DeepPartial<ContentBlock_Code_Config>,
     },
   };
 }
