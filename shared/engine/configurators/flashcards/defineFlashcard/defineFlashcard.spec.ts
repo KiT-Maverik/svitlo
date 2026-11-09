@@ -17,7 +17,7 @@ const source = {
   back: [text],
   hint: [text],
   tags: ['math'],
-  flags: [{ type: 'warning' as const }, { type: 'acronym' as const, value: { en: 'ABC', uk: 'АБВ' } }],
+  flags: [{ type: 'list' as const, count: 4 }, { type: 'acronym' as const, value: { en: 'ABC', uk: 'АБВ' } }],
   relationships: [{
     relationshipId: 'r1', type: 'reverse' as const,
     relatedFlashcardId: id('a3'), position: 'peer' as const,
@@ -30,6 +30,7 @@ test('Flashcard validates nested definitions and preserves ordered blocks', () =
   assert.equal(card.back[0], text);
   assert.equal(card.hint[0], text);
   assert.equal(card.config.base.type, 'flashcard');
+  assert.equal(card.config.base.flags?.[0]?.count, 4);
   assert.equal(card.config.base.relationships?.[0].type, 'reverse');
   assert.deepEqual(card.config.locales(), {
     flags: [{}, { value: { en: 'ABC', uk: 'АБВ' } }],
