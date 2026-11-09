@@ -5,11 +5,11 @@ import { skill_Config_Schema, skill_Props_Schema, type Skill_Config } from './de
 export function defineSkill(config: Skill_Config) {
   const { id, description, slug, name } = config;
 
-  const base: DeepPartial<Skill_Config> = {
+  const base = {
     id,
     slug,
     description: { methodological: description.methodological },
-  };
+  } satisfies DeepPartial<Skill_Config>;
 
   return {
     config: {
