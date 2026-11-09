@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Publish one-language-at-a-time Skill Data JSON from canonical TypeScript configs.
+ * Publish one full Skill taxonomy tree and one sparse localized tree per language.
  *
  * Usage:
  *   node scripts/generators/data/publish-skills-data.mjs --package content/playground --write
@@ -100,6 +100,26 @@ function localizedStrings(node, codes, label) {
   return result;
 }
 
+/** Preserve authored child order without evaluating any authoring module. */
+function orderedChildren(props, field, kind, file) {
+  const value = props.get(field);
+  if (value === undefined) return [];
+  const array = unwrap(value);
+  assert(array && ts.isArrayLiteralExpression(array), 'Expected ' + field + ' configurator array: ' + file);
+
+  const suffix = '_' + kind + '_Data';
+  const seen = new Set();
+  return array.elements.map(node => {
+    const child = unwrap(node);
+    assert(child && ts.isIdentifier(child) && child.text.endsWith(suffix),
+      'Invalid ' + field + ' child configurator: ' + file);
+    const slug = child.text.slice(0, -suffix.length);
+    assert(slugPattern.test(slug) && !seen.has(slug), 'Duplicate or invalid child slug: ' + file + ':' + slug);
+    seen.add(slug);
+    return slug;
+  });
+}
+
 function readEntity(file, slug, kind, codes) {
   const ast = parse(file);
   const symbol = slug + '_' + kind + '_Data';
@@ -137,7 +157,22 @@ function readEntity(file, slug, kind, codes) {
   }
   assert(!!methodological, 'Configurator requires methodological description: ' + file);
   assert(kind !== 'Skill' || description, 'Skill requires complete frontend descriptions: ' + file);
-  return { id, slug, kind, name, description, methodological };
+  return {
+    id,
+    slug,
+    kind,
+    name,
+    description,
+    methodological,
+    ...(kind === 'SkillDomain'
+      ? {
+          groupSlugs: orderedChildren(props, 'groups', 'SkillGroup', file),
+          skillSlugs: orderedChildren(props, 'skills', 'Skill', file),
+        }
+      : kind === 'SkillGroup'
+        ? { skillSlugs: orderedChildren(props, 'skills', 'Skill', file) }
+        : {}),
+  };
 }
 
 function directories(root) {
@@ -174,28 +209,38 @@ export function loadSkillGraph(root, codes = languageCodes()) {
     allIds.add(result.id);
     return result;
   }
-  for (const domainSlug of directories(root)) {
+  // Root barrel order defines Domain order. Nested authoring arrays define child order.
+  const domainSlugs = parse(path.join(root, 'index.ts')).statements.flatMap(statement => {
+    if (!ts.isExportDeclaration(statement) || !statement.exportClause || !ts.isNamedExports(statement.exportClause)) {
+      return [];
+    }
+    const suffix = '_SkillDomain_Data';
+    return statement.exportClause.elements.map(item => {
+      assert(item.name.text.endsWith(suffix), 'Unexpected Domain export: ' + item.name.text);
+      return item.name.text.slice(0, -suffix.length);
+    });
+  });
+
+  for (const domainSlug of domainSlugs) {
     const domainDir = path.join(root, domainSlug);
     const domain = entity(path.join(domainDir, domainSlug + '.data.ts'), domainSlug, 'SkillDomain');
-    const directSkills = path.join(domainDir, 'skills');
-    if (fs.existsSync(directSkills)) {
-      domain.skills = skillSlugs(directSkills).map(skillSlug =>
-        entity(path.join(directSkills, skillSlug + '.data.ts'), skillSlug, 'Skill'),
+
+    if (domain.skillSlugs.length) {
+      domain.skills = domain.skillSlugs.map(skillSlug =>
+        entity(path.join(domainDir, 'skills', skillSlug + '.data.ts'), skillSlug, 'Skill'),
       );
     }
-    const groupSlugs = directories(domainDir).filter(slug => slug !== 'skills');
-    if (groupSlugs.length) {
-      domain.groups = [];
-      for (const groupSlug of groupSlugs) {
+    if (domain.groupSlugs.length) {
+      domain.groups = domain.groupSlugs.map(groupSlug => {
         const groupDir = path.join(domainDir, groupSlug);
         const group = entity(path.join(groupDir, groupSlug + '.data.ts'), groupSlug, 'SkillGroup');
-        group.skills = [];
-        for (const skillSlug of skillSlugs(path.join(groupDir, 'skills'))) {
-          group.skills.push(entity(path.join(groupDir, 'skills', skillSlug + '.data.ts'), skillSlug, 'Skill'));
-        }
-        domain.groups.push(group);
-      }
+        group.skills = group.skillSlugs.map(skillSlug =>
+          entity(path.join(groupDir, 'skills', skillSlug + '.data.ts'), skillSlug, 'Skill'),
+        );
+        return group;
+      });
     }
+
     assert(
       (domain.groups?.length ?? 0) + (domain.skills?.length ?? 0) > 0,
       'Domain must include Groups or direct Skills: ' + domainSlug,
@@ -231,49 +276,63 @@ const collectionByKind = Object.freeze({
   SkillDomain: 'skillDomain',
 });
 
-/** Publish immutable metadata once per entity, and only localized copy per language.
- * Parent references are child slugs, not duplicate entity objects; the full graph
- * is reassembled by the consumer using these immutable relationships.
- */
-/** Sparse Skill payloads: common config in base.json, only translated text per locale.
- * No duplicate immutable IDs, parents or methodological text in localized files.
+/**
+ * One sparse tree per textbook: root and every nested collection are keyed by slug.
+ * The source's ordered configurator arrays determine JSON object insertion order.
+ * Common metadata is emitted once in base.json; per-language trees contain only
+ * localized copy. Keys also identify entities, so slug is not duplicated in values.
  */
 export function renderSkillFiles(graph, codes) {
   const supported = taxonomyCollections();
   for (const collection of Object.values(collectionByKind)) {
     assert(supported.has(collection), 'Unknown shared Collection discriminator: ' + collection);
   }
-  const files = new Map();
-  function publish(entity, parentPath = '') {
-    const entityPath = parentPath ? parentPath + '/' + entity.slug : entity.slug;
-    const groups = entity.groups?.map(child => child.slug);
-    const skills = entity.skills?.map(child => child.slug);
-    const base = {
+
+  function baseEntity(entity) {
+    const collection = collectionByKind[entity.kind];
+    assert(collection, 'Unsupported Skill collection: ' + entity.kind);
+    assert(typeof entity.methodological === 'string' && entity.methodological.trim(),
+      'Missing methodological description: ' + entity.slug);
+    return {
       id: entity.id,
-      slug: entity.slug,
-      collection: collectionByKind[entity.kind],
-      ...(entity.methodological ? { description: { methodological: entity.methodological } } : {}),
-      ...(groups ? { groups } : {}),
-      ...(skills ? { skills } : {}),
+      collection,
+      description: { methodological: entity.methodological },
+      ...(entity.groups?.length
+        ? { groups: Object.fromEntries(entity.groups.map(child => [child.slug, baseEntity(child)])) }
+        : {}),
+      ...(entity.skills?.length
+        ? { skills: Object.fromEntries(entity.skills.map(child => [child.slug, baseEntity(child)])) }
+        : {}),
     };
-    assert(base.collection, 'Unsupported Skill collection: ' + entity.kind);
-    files.set(entityPath + '/base.json', JSON.stringify(base, null, 2) + '\n');
-    for (const code of codes) {
-      const label = entity.name[code];
-      assert(typeof label === 'string' && label.trim(), 'Missing ' + code + ' name: ' + entityPath);
-      const frontend = entity.description?.[code];
-      assert(entity.kind !== 'Skill' || (typeof frontend === 'string' && frontend.trim()),
-        'Missing ' + code + ' frontend description: ' + entityPath);
-      const copy = {
-        [entity.kind === 'SkillDomain' ? 'title' : 'name']: label,
-        ...(frontend ? { description: { frontend } } : {}),
-      };
-      files.set(entityPath + '/' + code + '.json', JSON.stringify(copy, null, 2) + '\n');
-    }
-    for (const group of entity.groups ?? []) publish(group, entityPath);
-    for (const skill of entity.skills ?? []) publish(skill, entityPath);
   }
-  for (const domain of graph) publish(domain);
+
+  function localizedEntity(entity, code) {
+    const label = entity.name[code];
+    assert(typeof label === 'string' && label.trim(), 'Missing ' + code + ' name: ' + entity.slug);
+    const frontend = entity.description?.[code];
+    assert(entity.kind !== 'Skill' || (typeof frontend === 'string' && frontend.trim()),
+      'Missing ' + code + ' frontend description: ' + entity.slug);
+    return {
+      [entity.kind === 'SkillDomain' ? 'title' : 'name']: label,
+      ...(frontend ? { description: { frontend } } : {}),
+      ...(entity.groups?.length
+        ? { groups: Object.fromEntries(entity.groups.map(child => [child.slug, localizedEntity(child, code)])) }
+        : {}),
+      ...(entity.skills?.length
+        ? { skills: Object.fromEntries(entity.skills.map(child => [child.slug, localizedEntity(child, code)])) }
+        : {}),
+    };
+  }
+
+  assert(graph.length > 0, 'Skill taxonomy must include at least one Domain');
+  const files = new Map();
+  const base = Object.fromEntries(graph.map(domain => [domain.slug, baseEntity(domain)]));
+  files.set('base.json', JSON.stringify(base, null, 2) + '\n');
+  for (const code of codes) {
+    const locale = Object.fromEntries(graph.map(domain => [domain.slug, localizedEntity(domain, code)]));
+    assert(!files.has(code + '.json'), 'Duplicate Skill locale: ' + code);
+    files.set(code + '.json', JSON.stringify(locale, null, 2) + '\n');
+  }
   return files;
 }
 
