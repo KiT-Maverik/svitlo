@@ -32,7 +32,7 @@ function owned(name) {
   return (
     typeof name === 'string' &&
     !isAbsolute(name) &&
-    /^(?:data\/skills|data\/pages\/lessons|data\/pages\/courses|data\/pages\/skillAnalytics|textbooks\/[a-z][a-z-]*)\/[a-zA-Z0-9_./-]+$/.test(
+    /^(?:data\/skills|data\/pages\/lessons|data\/pages\/courses|textbooks\/[a-z][a-z-]*)\/[a-zA-Z0-9_./-]+$/.test(
       name,
     ) &&
     (name.startsWith('data/') || name.startsWith('textbooks/' + id + '/')) &&
@@ -95,9 +95,9 @@ function publish(args) {
   if (
     id === 'playground' &&
     (!names.some(name => name.startsWith('data/pages/lessons/')) ||
-      !names.some(name => name.startsWith('data/pages/skillAnalytics/')))
+      !names.includes('data/skills/base.json'))
   ) {
-    fail('missing required lesson or analytics resources in build');
+    fail('missing required lesson or Skills resources in build');
   }
   for (const name of names) {
     const source = outputPath(staticRoot, name);

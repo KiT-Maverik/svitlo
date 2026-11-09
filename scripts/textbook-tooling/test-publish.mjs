@@ -60,6 +60,7 @@ test('isolated package publishes exactly the manifest resources', t => {
     assert(skillFiles.includes('data/skills/base.json'));
     assert(skillFiles.includes('data/skills/uk.json'));
     assert(skillFiles.includes('data/skills/en.json'));
+    assert(skillFiles.includes('data/skills/qm.json'));
     assert(
       skillFiles.every(
         name => name.startsWith('data/skills/') && name.split('/').length === 3 && /^(?:base|[a-z]{2,8})[.]json$/.test(name.split('/')[2]),
@@ -73,10 +74,6 @@ test('isolated package publishes exactly the manifest resources', t => {
   }
   for (const name of manifest.files) {
     assert.deepEqual(readFileSync(join(output, name)), readFileSync(join(root, 'dist/static', name)));
-  }
-  if (manifest.files.some(name => name.startsWith('data/pages/skillAnalytics/'))) {
-    assert(manifest.files.includes('data/pages/skillAnalytics/uk.json'));
-    assert(manifest.files.includes('data/pages/skillAnalytics/qm.json'));
   }
 });
 
