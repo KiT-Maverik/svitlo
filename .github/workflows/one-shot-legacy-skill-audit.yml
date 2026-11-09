@@ -1,0 +1,28 @@
+name: Audit legacy Skill API references
+
+on:
+  push:
+    branches: [tooling/migrate-skill-definitions]
+    paths:
+      - '.github/workflows/one-shot-legacy-skill-audit.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Find legacy builder and contract imports
+        shell: bash
+        run: |
+          set -uo pipefail
+          echo '### Legacy builder/validator references (tracked files)'
+          git grep -nE 'buildSkill(Config|GroupConfig|DomainConfig)|validateSkill(Config|Children|Uuid)' -- . ':!package-lock.json' ':!.github/workflows/one-shot-legacy-skill-audit.yml' || :
+          echo '### Legacy taxonomy contract type references'
+          git grep -nE '\\b(SkillDescription_Config|SkillGroup_Config|SkillDomain_Config|Skill_Config|SkillGroupData|SkillDomainData|SkillData)\\b' -- . ':!package-lock.json' ':!.github/workflows/one-shot-legacy-skill-audit.yml' || :
+          echo '### Legacy registered Skill or Domain usages / imports'
+          git grep -nE '@svitlo/contracts/taxonomy|from .*[sS]kill(\.types)?|SkillId|fileLocation' -- shared apps scripts content ':!**/*.md' | head -250 || :
+          echo '### Files under legacy builders'
+          git ls-files 'shared/engine/utils/builders/config/*Skill*' 'shared/engine/utils/builders/config/*skill*' 'shared/contracts/src/types/content/skill*' 'shared/contracts/src/taxonomy.ts'
