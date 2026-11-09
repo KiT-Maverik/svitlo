@@ -179,3 +179,48 @@ test('Checkpoint stores nested configurators and a Section can project them to d
     }),
   );
 });
+
+
+test('Carousel keeps a base array when every slide field is translated', () => {
+  const carousel = defineCarousel({
+    id,
+    type: 'carousel',
+    slug: 'fully-localized',
+    slides: [
+      { src: { en: 'one.png', uk: 'один.png' }, alt: { en: 'One' } },
+      { src: { en: 'two.png' }, alt: { uk: 'Два' } },
+    ],
+  });
+
+  assert.deepEqual(carousel.config.base.slides, [{}, {}]);
+  assert.deepEqual(carousel.config.locales(), {
+    slides: [
+      { src: { en: 'one.png', uk: 'один.png' }, alt: { en: 'One' } },
+      { src: { en: 'two.png' }, alt: { uk: 'Два' } },
+    ],
+  });
+});
+
+test('Scene projects nested per-language data without copying it into base', () => {
+  const sceneLocales = {
+    en: { greeting: 'Hello', state: { message: 'Ready' } },
+    uk: { greeting: 'Привіт', state: { message: 'Готово' } },
+  };
+  const scene = defineScene({ id, slug: 'introduction', type: 'scene', locales: sceneLocales });
+
+  assert.deepEqual(scene.config.base, { id, slug: 'introduction', type: 'scene' });
+  assert.deepEqual(scene.config.locales(), { locales: sceneLocales });
+
+  const section = defineTheorySection<readonly ['en', 'uk']>({
+    type: 'theory',
+    id: anotherId,
+    slug: 'scene-theory',
+    title: 'Theory',
+    navigationLabel: 'Scene',
+    content: [scene],
+  });
+  const patch = section.config.locales() as {
+    uk: { content: Record<number, { locales: { greeting: string; state: { message: string } } }> };
+  };
+  assert.deepEqual(patch.uk.content[0].locales, sceneLocales.uk);
+});
