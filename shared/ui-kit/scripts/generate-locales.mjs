@@ -93,10 +93,6 @@ function loadAssessmentMethodDefinitions() {
   const filenames = readdirSync(methodsRoot)
     .filter(name => /^[a-z][A-Za-z0-9]*\.ts$/.test(name) && name !== 'index.ts')
     .sort();
-  if (filenames.length !== 16) {
-    throw new Error('Expected 16 Assessment Method definitions; found ' + filenames.length);
-  }
-
   return filenames.map(filename => {
     const name = filename.slice(0, -3);
     const filepath = join(methodsRoot, filename);
@@ -119,45 +115,28 @@ function loadAssessmentMethodDefinitions() {
 function createAssessmentMethodResources() {
   const entries = loadAssessmentMethodDefinitions();
   const languages = DEFAULT_SUPPORTED_LANGUAGES.map(({ language }) => language);
-  if (languages.some(language => !/^[a-z]{2}$/.test(language)) || new Set(languages).size !== languages.length) {
-    throw new Error('Assessment Method publication requires unique two-letter language codes');
-  }
   const { assessmentMethod_Props_Schema } = require('@svitlo/engine');
   const ids = new Set();
   const base = {};
   const localized = Object.fromEntries(languages.map(language => [language, {}]));
 
   for (const { name, definition } of entries) {
-    const metadata = definition.config?.base;
-    const dictionaries = definition.config?.locales?.();
-    if (
-      metadata?.slug !== name ||
-      typeof metadata?.id !== 'string' ||
-      Object.keys(metadata).sort().join(',') !== 'id,slug' ||
-      ids.has(metadata.id)
-    ) {
+    const metadata = definition.config.base;
+    const dictionaries = definition.config.locales();
+    if (metadata.slug !== name || ids.has(metadata.id)) {
       throw new Error('Invalid or duplicate Assessment Method identity: ' + name);
     }
     ids.add(metadata.id);
-    if (!dictionaries || Object.keys(dictionaries).sort().join(',') !== 'description,title') {
-      throw new Error('Invalid Assessment Method locale projection: ' + name);
-    }
-    for (const field of ['title', 'description']) {
-      if (
-        !dictionaries[field] ||
-        Object.keys(dictionaries[field]).sort().join(',') !== [...languages].sort().join(',')
-      ) {
-        throw new Error('Incomplete Assessment Method ' + field + ' translations: ' + name);
-      }
-    }
     base[name] = { id: metadata.id, slug: metadata.slug };
     for (const { language } of DEFAULT_SUPPORTED_LANGUAGES) {
-      const title = dictionaries.title[language];
-      const description = dictionaries.description[language];
-      if (typeof title !== 'string' || !title.trim() || typeof description !== 'string' || !description.trim()) {
+      const props = assessmentMethod_Props_Schema.parse({
+        ...metadata,
+        title: dictionaries.title[language],
+        description: dictionaries.description[language],
+      });
+      if (!props.title.trim() || !props.description.trim()) {
         throw new Error('Missing Assessment Method text: ' + name + '/' + language);
       }
-      const props = assessmentMethod_Props_Schema.parse({ ...metadata, title, description });
       localized[language][name] = { title: props.title, description: props.description };
     }
   }

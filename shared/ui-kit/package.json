@@ -34,7 +34,8 @@
     "next": "16.4.2",
     "storybook": "^10.6.3",
     "typescript": "^5",
-    "vitest": "^3.2.4"
+    "vitest": "^3.2.4",
+    "zod": "^4.6.7"
   },
   "main": "./dist/src/index.js",
   "types": "./dist/src/index.d.ts",
