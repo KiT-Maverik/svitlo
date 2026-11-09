@@ -13,7 +13,7 @@ function createCarouselSchema<Mode extends keyof typeof contentBlockLocalization
   return z.object({
     ...createContentBlockMetaSchema('carousel').shape,
     title: localized.optional(),
-    slides: z.tuple([slide], slide),
+    slides: z.array(slide).min(1),
     aspectRatio: z.number().positive().optional(),
     objectFit: z.enum(['cover', 'contain']).optional(),
     loop: z.boolean().optional(),
