@@ -23,10 +23,10 @@ for (const lesson of index.lessons) {
   }
 }
 assert.ok(existsSync(join(dist, 'data/pages/skillAnalytics/uk.json')), 'Missing compiled Skills Analytics JSON');
-const locales = readdirSync(join(dist, 'data/ui-kit')).filter(name => name.endsWith('.json'));
+const locales = readdirSync(join(dist, 'data/uiKit/components')).filter(name => name.endsWith('.json'));
 assert.ok(locales.length > 0, 'Missing UI Kit localizations');
-for (const locale of locales) JSON.parse(readFileSync(join(dist, 'data/ui-kit', locale), 'utf8'));
-const methodsRoot = join(dist, 'data/ui-kit/assessment-methods');
+for (const locale of locales) JSON.parse(readFileSync(join(dist, 'data/uiKit/components', locale), 'utf8'));
+const methodsRoot = join(dist, 'data/uiKit/assessmentMethods');
 const methodsBase = JSON.parse(readFileSync(join(methodsRoot, 'base.json'), 'utf8'));
 const methods = Object.keys(methodsBase).sort();
 assert.equal(existsSync(join(methodsRoot, 'meta.json')), false);

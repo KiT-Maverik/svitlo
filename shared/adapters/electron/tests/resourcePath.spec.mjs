@@ -8,8 +8,8 @@ test('routes a locale-specific lesson to the bundled index', () => {
 });
 test('retains lazy assets and published localized resources', () => {
   assert.equal(
-    resolvePackagedResource('/tmp/svitlo', 'svitlo://app/data/ui-kit/uk-UA.json'),
-    resolve('/tmp/svitlo/data/ui-kit/uk-UA.json'),
+    resolvePackagedResource('/tmp/svitlo', 'svitlo://app/data/uiKit/components/uk.json'),
+    resolve('/tmp/svitlo/data/uiKit/components/uk.json'),
   );
   assert.equal(
     resolvePackagedResource('/tmp/svitlo', 'svitlo://app/assets/scene.js'),

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * PR-scoped Assessment Methods reference, statically assembled from canonical
- * Contracts, UI Kit authored methodological definitions and short UI labels.
+ * Contracts and UI Kit authored Assessment Method definitions.
  *
  * node scripts/generate-assessment-methods-reference.mjs --locale uk --stdout
  * node scripts/generate-assessment-methods-reference.mjs --locale uk \
@@ -20,7 +20,6 @@ const sourcePaths = Object.freeze({
   identities: 'shared/contracts/src/types/content/assessmentMethod.ids.ts',
   languages: 'shared/contracts/src/types/languages.ts',
   descriptions: 'shared/ui-kit/data/definitions/assessmentMethods',
-  labels: 'shared/ui-kit/data/locale/assessmentMethods.ts',
 });
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const tick = String.fromCharCode(96);
@@ -103,12 +102,11 @@ function assertExactKeys(value, keys, context) {
   }
 }
 
-
 /**
  * Extract English methodology directly from literal defineAssessmentMethod()
  * arguments. The reference generator deliberately never executes TypeScript.
  */
-function readEnglishMethodDescriptions(root, ids) {
+function readMethodDefinitions(root, ids, languages) {
   const descriptions = Object.create(null);
   for (const [key, id] of Object.entries(ids)) {
     const relative = path.posix.join(sourcePaths.descriptions, key + '.ts');
@@ -142,7 +140,8 @@ function readEnglishMethodDescriptions(root, ids) {
     if (typeof description !== 'string' || !description.trim()) {
       throw new Error('Missing English methodological description for ' + key);
     }
-    descriptions[key] = { description };
+    assertExactKeys(config.title, languages, 'Assessment Method titles for ' + key);
+    descriptions[key] = { description, title: config.title };
   }
   return descriptions;
 }
@@ -171,24 +170,20 @@ export function readAssessmentMethodsReference({ root = repoRoot, locale }) {
     knownIds.add(id.toLowerCase());
   }
 
-  const descriptions = readEnglishMethodDescriptions(root, ids);
+  const descriptions = readMethodDefinitions(root, ids, languages);
   assertExactKeys(descriptions, keys, 'English methodological descriptions');
-  const uiKit = declaration(root, sourcePaths.labels, 'assessmentMethods');
-  assertExactKeys(uiKit, languages, 'UI Kit Assessment Methods locales');
-  const localized = uiKit[locale];
-  assertExactKeys(localized, keys, 'UI Kit labels for ' + locale);
 
   const methods = keys.map(key => {
     const english = descriptions[key];
     if (!english || typeof english.description !== 'string' || !english.description.trim()) {
       throw new Error('Missing English methodological description for ' + key);
     }
-    const label = localized[key];
-    if (typeof label !== 'string' || !label.trim()) {
-      throw new Error('Missing UI Kit label for ' + key + ' (' + locale + ')');
+    const title = english.title[locale];
+    if (typeof title !== 'string' || !title.trim()) {
+      throw new Error('Missing Assessment Method title for ' + key + ' (' + locale + ')');
     }
-    if (/[\r\n]/.test(label)) throw new Error('Multiline UI Kit label for ' + key + ' (' + locale + ')');
-    return { key, id: ids[key], label, description: english.description.trim() };
+    if (/[\r\n]/.test(title)) throw new Error('Multiline Assessment Method title for ' + key + ' (' + locale + ')');
+    return { key, id: ids[key], title, description: english.description.trim() };
   });
   return { locale, methods };
 }
@@ -202,13 +197,12 @@ export function renderAssessmentMethodsReference(options) {
   const links = {
     identities: '../../' + sourcePaths.identities,
     descriptions: '../../' + sourcePaths.descriptions,
-    labels: '../../' + sourcePaths.labels,
   };
   const lines = [
     '<!-- GENERATED FROM CODE; DO NOT EDIT. -->',
     '# Assessment Methods — ' + locale,
     '',
-    'Frontend label language: ' + tick + locale + tick + '. Methodological descriptions: **English only**.',
+    'Frontend title language: ' + tick + locale + tick + '. Methodological descriptions: **English only**.',
     '',
     'An **Assessment Method** specifies the cognitive operation a learner must demonstrate and the evidence a task should elicit. ' +
       'A **Question type** specifies how the learner supplies a response (such as selecting, matching or entering text). ' +
@@ -224,11 +218,8 @@ export function renderAssessmentMethodsReference(options) {
     'Canonical sources: [Assessment Method keys and UUIDs](' +
       links.identities +
       '), ' +
-      '[English methodological descriptions](' +
+      '[Assessment Method titles and English methodological descriptions](' +
       links.descriptions +
-      ') and ' +
-      '[UI Kit labels](' +
-      links.labels +
       ').',
     '',
     'Methods: ' + methods.length,
@@ -239,18 +230,16 @@ export function renderAssessmentMethodsReference(options) {
       '## ' + tick + method.key + tick,
       '',
       '- **UUID:** ' + tick + method.id + tick,
-      '- **Frontend label (' + locale + '):** ' + escapeMarkdown(method.label),
+      '- **Frontend title (' + locale + '):** ' + escapeMarkdown(method.title),
       '- **Methodological description (English):** ' + escapeMarkdown(method.description),
       '- **Canonical definitions:** [identity](' +
         links.identities +
         '), ' +
-        '[methodology](' +
+        '[methodology and localized title](' +
         links.descriptions +
         '/' +
         method.key +
-        '.ts), [localized label](' +
-        links.labels +
-        ')',
+        '.ts)',
       '',
     );
   }

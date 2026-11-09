@@ -60,16 +60,16 @@ run(process.execPath, [
 
 // UI Kit owns global dictionaries and SVG flags. The textbook publisher must
 // not overwrite either, nor the Capacitor app's own static resources.
-rmSync(join(publicRoot, 'data/ui-kit'), { recursive: true, force: true });
+rmSync(join(publicRoot, 'data/uiKit'), { recursive: true, force: true });
 run(process.execPath, [
   'shared/ui-kit/scripts/generate-locales.mjs',
   '--package',
   selection.directory,
   '--output',
-  'apps/mobile/public/data/ui-kit',
+  'apps/mobile/public/data/uiKit',
 ]);
-for (const resource of ['assessment-methods/base.json', 'assessment-methods/uk.json']) {
-  const filename = join(publicRoot, 'data/ui-kit', resource);
+for (const resource of ['assessmentMethods/base.json', 'assessmentMethods/uk.json', 'components/uk.json']) {
+  const filename = join(publicRoot, 'data/uiKit', resource);
   if (!existsSync(filename)) throw new Error('Missing UI Kit Assessment Method resource: ' + filename);
 }
 run(process.execPath, [join(repoRoot, 'shared/ui-kit/scripts/sync-flags.mjs')], mobileRoot);

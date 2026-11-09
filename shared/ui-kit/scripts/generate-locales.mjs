@@ -26,7 +26,7 @@ const outputFlag = process.argv.indexOf('--output');
 const output =
   outputFlag >= 0 && process.argv[outputFlag + 1]
     ? resolve(repoRoot, process.argv[outputFlag + 1])
-    : join(target, 'public/data/ui-kit');
+    : join(target, 'public/data/uiKit');
 if (!output.startsWith(resolve(repoRoot) + sep)) throw new Error('Output must stay inside the repository');
 const { DEFAULT_SUPPORTED_LANGUAGES } = require('@svitlo/contracts/localization');
 const tmp = mkdtempSync(join(tmpdir(), 'svitlo-ui-kit-'));
@@ -200,21 +200,20 @@ try {
           return [c, value];
         }),
       );
-      return { locale, messages };
+      return { language, messages };
     });
 
     // Validate every resource before replacing previously published output.
     const assessmentMethods = createAssessmentMethodResources();
     rmSync(output, { recursive: true, force: true });
+    if (output.endsWith(sep + 'uiKit')) rmSync(join(dirname(output), 'ui-kit'), { recursive: true, force: true });
     mkdirSync(output, { recursive: true });
-    for (const { locale, messages } of published) {
-      writeFileSync(join(output, locale + '.json'), JSON.stringify(messages, null, 2) + '\n');
+    const componentsOutput = join(output, 'components');
+    mkdirSync(componentsOutput, { recursive: true });
+    for (const { language, messages } of published) {
+      writeFileSync(join(componentsOutput, language + '.json'), JSON.stringify(messages, null, 2) + '\n');
     }
-    writeFileSync(
-      join(output, 'meta.json'),
-      JSON.stringify({ scope: 'global', components, locales: published.map(item => item.locale) }, null, 2) + '\n',
-    );
-    const methodsOutput = join(output, 'assessment-methods');
+    const methodsOutput = join(output, 'assessmentMethods');
     mkdirSync(methodsOutput, { recursive: true });
     writeFileSync(join(methodsOutput, 'base.json'), JSON.stringify(assessmentMethods.base, null, 2) + '\n');
     for (const language of assessmentMethods.languages) {
@@ -223,7 +222,9 @@ try {
         JSON.stringify(assessmentMethods.localized[language], null, 2) + '\n',
       );
     }
-    console.log(`Generated ${published.length} global UI Kit locale JSON and Assessment Method resources in ${output}`);
+    console.log(
+      `Generated ${published.length} UI Kit component dictionaries and Assessment Method resources in ${output}`,
+    );
   }
 } finally {
   rmSync(tmp, { recursive: true, force: true });

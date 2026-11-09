@@ -22,7 +22,6 @@ const sources = [
   'shared/contracts/src/types/content/assessmentMethod.ids.ts',
   'shared/contracts/src/types/languages.ts',
   definitionRoot + '/retrieval.ts',
-  'shared/ui-kit/data/locale/assessmentMethods.ts',
   ...definitions.filter(name => name !== 'retrieval.ts').map(name => definitionRoot + '/' + name),
 ];
 const keyHeading = /^## \x60([A-Za-z]+)\x60$/gm;
@@ -46,7 +45,7 @@ function replaceFile(root, relative, transform) {
   fs.writeFileSync(file, transform(fs.readFileSync(file, 'utf8')), 'utf8');
 }
 
-test('every supported language has exactly the canonical 16 keys, IDs and actual UI Kit labels', () => {
+test('every supported language has exactly the canonical 16 keys, IDs and authored titles', () => {
   const languages = supportedAssessmentMethodLocales();
   assert.ok(languages.includes('en'));
   assert.ok(languages.includes('uk'));
@@ -71,19 +70,18 @@ test('every supported language has exactly the canonical 16 keys, IDs and actual
     const markdown = renderAssessmentMethodsReference({ locale });
     const headings = [...markdown.matchAll(keyHeading)].map(match => match[1]);
     assert.deepEqual(headings, keys);
-    assert.ok(markdown.includes('Frontend label language: ' + String.fromCharCode(96) + locale));
+    assert.ok(markdown.includes('Frontend title language: ' + String.fromCharCode(96) + locale));
     assert.ok(markdown.includes('Question type'));
     assert.ok(markdown.includes('Methods: 16'));
     assert.ok(markdown.includes('../../shared/contracts/src/types/content/assessmentMethod.ids.ts'));
-    assert.ok(markdown.includes('../../shared/ui-kit/data/locale/assessmentMethods.ts'));
     assert.ok(markdown.includes('../../shared/ui-kit/data/definitions/assessmentMethods/retrieval.ts'));
     for (let i = 0; i < data.methods.length; i++) {
       const method = data.methods[i];
       assert.equal(method.id, canonicalIds.get(method.key));
       assert.equal(method.description, reference.methods[i].description);
-      assert.ok(method.label.trim().length > 0);
+      assert.ok(method.title.trim().length > 0);
       assert.ok(markdown.includes(method.id));
-      assert.ok(markdown.includes(method.label));
+      assert.ok(markdown.includes(method.title));
       assert.ok(markdown.includes(method.description.replace(/([*_()[\]<>])/g, '\\$1')));
     }
   }
@@ -116,23 +114,17 @@ test('generation is byte-for-byte deterministic and --stdout creates no artifact
   assert.ok(before.startsWith('<!-- GENERATED FROM CODE; DO NOT EDIT. -->'));
 });
 
-test('missing method labels and whole locales fail, without English fallback', () =>
+test('missing method titles fail without English fallback', () =>
   withFixture(root => {
-    const file = sources[3];
+    const file = sources[2];
     replaceFile(root, file, text => {
-      const match = text.match(/const uk: AssessmentMethods_Locale = \{\n  retrieval: [^\n]+\n/);
-      assert.ok(match, 'Expected UI Kit uk source is missing');
-      return text.replace(match[0], 'const uk: AssessmentMethods_Locale = {\n');
+      const match = text.match(/    uk: [^\n]+\n/);
+      assert.ok(match, 'Expected Assessment Method uk title is missing');
+      return text.replace(match[0], '');
     });
     assert.throws(
       () => readAssessmentMethodsReference({ root, locale: 'uk' }),
-      /UI Kit labels for uk: missing \[retrieval\]/,
-    );
-    assert.equal(readAssessmentMethodsReference({ root, locale: 'en' }).methods.length, 16);
-    replaceFile(root, file, text => text.replace(/  uk,\n/, ''));
-    assert.throws(
-      () => readAssessmentMethodsReference({ root, locale: 'uk' }),
-      /UI Kit Assessment Methods locales: missing \[uk\]/,
+      /Assessment Method titles for retrieval: missing \[uk\]/,
     );
   }));
 
@@ -193,7 +185,7 @@ test('PR-artifact manifest records success, failures and only allowed temporary 
         }),
       /PR-scoped .agent-ci-artifacts/,
     );
-    replaceFile(root, sources[3], text => text.replace(/  uk,\n/, ''));
+    replaceFile(root, sources[2], text => text.replace(/    uk: [^\n]+\n/, ''));
     const before = manifest.generated.length;
     const retry = generateAssessmentMethodsReviewArtifacts({ root, output, languages: ['uk'], manifest, saveManifest });
     assert.deepEqual(retry, { generated: 0, failures: 1 });

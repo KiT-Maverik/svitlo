@@ -24,8 +24,8 @@ test('build bundles the real lesson and localized config, flashcards and questio
       assert.ok(JSON.parse(readFileSync(filename, 'utf8')).data !== undefined);
     }
   }
-  assert.ok(existsSync(join(renderer, 'data/ui-kit/uk-UA.json')));
-  const methodsRoot = join(renderer, 'data/ui-kit/assessment-methods');
+  assert.ok(existsSync(join(renderer, 'data/uiKit/components/uk.json')));
+  const methodsRoot = join(renderer, 'data/uiKit/assessmentMethods');
   const base = JSON.parse(readFileSync(join(methodsRoot, 'base.json'), 'utf8'));
   const methods = Object.keys(base).sort();
   assert.equal(existsSync(join(methodsRoot, 'meta.json')), false);

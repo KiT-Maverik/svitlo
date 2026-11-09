@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import type { Locale } from '@svitlo/contracts/localization';
+import { getLanguageCode } from '@svitlo/engine';
 import {
   type UiKitMessages,
   useSvitloColorScheme,
@@ -43,7 +44,9 @@ function SkillAnalyticsContent({
   useEffect(() => {
     if (resource.locale === locale) return;
     const controller = new AbortController();
-    void fetch('/data/ui-kit/' + encodeURIComponent(locale) + '.json', { signal: controller.signal })
+    void fetch('/data/uiKit/components/' + encodeURIComponent(getLanguageCode(locale)) + '.json', {
+      signal: controller.signal,
+    })
       .then(response => {
         if (!response.ok) throw new Error('HTTP ' + response.status);
         return response.json() as Promise<UiKitMessages>;

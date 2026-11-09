@@ -52,16 +52,16 @@ run(process.execPath, [join(textbookRoot, manifest.bin[cli[0]]), 'publish', '--o
 
 // The UI Kit owns global UI translations; Web stages them independently of
 // textbook resource ownership, just as it stages UI Kit flags.
-rmSync(join(targetPublic, 'data/ui-kit'), { recursive: true, force: true });
+rmSync(join(targetPublic, 'data/uiKit'), { recursive: true, force: true });
 run('node', [
   'shared/ui-kit/scripts/generate-locales.mjs',
   '--package',
   selection.directory,
   '--output',
-  'apps/web/public/data/ui-kit',
+  'apps/web/public/data/uiKit',
 ]);
-for (const resource of ['assessment-methods/base.json', 'assessment-methods/uk.json']) {
-  const filename = join(targetPublic, 'data/ui-kit', resource);
+for (const resource of ['assessmentMethods/base.json', 'assessmentMethods/uk.json', 'components/uk.json']) {
+  const filename = join(targetPublic, 'data/uiKit', resource);
   if (!existsSync(filename)) throw new Error('Missing UI Kit Assessment Method resource: ' + filename);
 }
 if (!existsSync(join(targetPublic, 'data/pages/lessons'))) {
