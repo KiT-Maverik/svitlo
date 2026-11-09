@@ -1,4 +1,5 @@
 name: One-time Playground Skill fixtures migration
+# Retry after aligning JSON test ordering with the existing slug-sorted loader.
 on:
   push:
     branches: [tooling/migrate-skill-definitions]
