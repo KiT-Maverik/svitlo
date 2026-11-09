@@ -6,7 +6,7 @@ import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
 import { ASSESSMENT_METHOD_KEYS, type AssessmentMethodKey } from '@svitlo/contracts/content';
 import { assessmentMethod_Props_Schema } from '@svitlo/engine';
 import * as methods from './index';
-
+vbvkhbv
 const directory = fileURLToPath(new URL('./', import.meta.url));
 const names = Object.keys(methods).sort();
 const typedMethods: Record<AssessmentMethodKey, (typeof methods)[keyof typeof methods]> = methods;

@@ -1,9 +1,8 @@
 import { z } from 'zod';
 import { defineStructured, localizedText, uuid, resolvedProps } from './structured';
 import type { DefinitionLanguages } from './structured';
-import { contentBlockChild } from './contentBlocks';
+import { contentBlockChild_Schema } from './contentBlocks';
 
-const block = () => contentBlockChild();
 const flags = <L extends DefinitionLanguages>(l: L) =>
   z.discriminatedUnion('type', [
     z.strictObject({ type: z.literal('list'), count: z.number().int().nonnegative() }),
@@ -21,9 +20,9 @@ export const flashcardSchema = <L extends DefinitionLanguages>(l: L) =>
     type: z.literal('flashcard'),
     id: uuid,
     isDefault: z.literal(true).optional(),
-    front: z.array(block()),
-    back: z.array(block()),
-    hint: z.array(block()),
+    front: z.array(contentBlockChild_Schema),
+    back: z.array(contentBlockChild_Schema),
+    hint: z.array(contentBlockChild_Schema),
     tags: z.array(z.string()),
     flags: z.array(flags(l)),
     relationships: z

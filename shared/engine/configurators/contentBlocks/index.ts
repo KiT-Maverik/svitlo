@@ -29,5 +29,4 @@ export * from './defineScene/defineScene';
 export * from './defineScene/defineScene.schemas';
 
 export type { ContentBlock_Configurator } from './contentBlock.types';
-export { contentBlockChild } from './contentBlockChild/contentBlockChild';
 export * from './contentBlock.schemas';

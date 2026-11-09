@@ -9,13 +9,12 @@ import {
   resolvedProps,
 } from '../structured';
 import type { DefinitionLanguages, TaggedDefinition } from '../structured';
-import { contentBlockChild } from '../contentBlocks';
+import { contentBlockChild_Schema } from '../contentBlocks';
 
-const block = () => contentBlockChild();
 const screen = () =>
   z.strictObject({
     showDefaultContent: z.boolean().optional(),
-    content: z.array(block()).optional(),
+    content: z.array(contentBlockChild_Schema).optional(),
   });
 const quizParameters = () =>
   z.strictObject({
@@ -67,7 +66,7 @@ const common = <Kind extends string, L extends DefinitionLanguages>(kind: Kind, 
   skippable: z.literal(true).optional(),
 });
 export const regularSectionSchema = <Kind extends RegularKind, L extends DefinitionLanguages>(kind: Kind, l: L) =>
-  z.strictObject({ ...common(kind, l), content: z.array(block()) });
+  z.strictObject({ ...common(kind, l), content: z.array(contentBlockChild_Schema) });
 export const quizSectionSchema = <L extends DefinitionLanguages>(l: L) =>
   z.strictObject({ ...common('quiz', l), parameters: quizParameters() });
 type RegularKind = 'theory' | 'practice' | 'codingTask' | 'learningFlow' | 'flashcards' | 'scenario';
