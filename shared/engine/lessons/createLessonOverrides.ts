@@ -47,13 +47,17 @@ type DuplicateSlugs<Items extends readonly unknown[], Seen extends string = neve
   : never;
 
 /** Compile-time full order and duplicate detection for literal tuples. Runtime checks all inputs. */
-type CheckOrder<Current extends string, Items extends readonly unknown[]> = [Exclude<Current, SlugsOf<Items>>] extends [
-  never,
-]
-  ? [DuplicateSlugs<Items>] extends [never]
+type CheckOrder<Current extends string, Items extends readonly unknown[]> = string extends Current
+  ? // A widened string slug union cannot be exhaustively checked at compile time.
+    // assertAllIncluded() still validates the complete order at runtime.
+    [DuplicateSlugs<Items>] extends [never]
     ? unknown
     : { readonly __duplicateSlugs: DuplicateSlugs<Items> }
-  : { readonly __missingSlugs: Exclude<Current, SlugsOf<Items>> };
+  : [Exclude<Current, SlugsOf<Items>>] extends [never]
+    ? [DuplicateSlugs<Items>] extends [never]
+      ? unknown
+      : { readonly __duplicateSlugs: DuplicateSlugs<Items> }
+    : { readonly __missingSlugs: Exclude<Current, SlugsOf<Items>> };
 
 type OrderedSections<Old extends readonly AnySection[], Items extends readonly unknown[]> = {
   readonly [Index in keyof Items]: Items[Index] extends string ? SectionFor<Old, Items[Index]> : Items[Index];
