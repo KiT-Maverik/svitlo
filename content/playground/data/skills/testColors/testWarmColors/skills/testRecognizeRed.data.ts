@@ -1,7 +1,7 @@
 // Synthetic Playground fixtures. Locale-tagged strings are test placeholders, not translations.
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const testRecognizeRed_Skill_Data = buildSkillConfig({
+export const testRecognizeRed_Skill_Data = defineSkill({
   slug: 'testRecognizeRed',
   id: '00000000-0000-4000-8000-000000000001',
   name: {
